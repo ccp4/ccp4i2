@@ -1,0 +1,197 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PHL     PHL      L-PHENYLALANINOL     NON-POLYMER     24     11     .     
+#
+data_comp_PHL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PHL     N       N       NT2     0       -11.055     16.594      8.639       
+PHL     CA      C       CH1     0       -11.420     17.173      9.947       
+PHL     C       C       CH2     0       -10.921     18.605      10.112      
+PHL     O       O       OH1     0       -11.519     19.251      11.224      
+PHL     CB      C       CH2     0       -10.909     16.309      11.110      
+PHL     CG      C       CR6     0       -11.430     14.889      11.091      
+PHL     CD1     C       CR16    0       -12.767     14.620      11.365      
+PHL     CD2     C       CR16    0       -10.588     13.821      10.800      
+PHL     CE1     C       CR16    0       -13.248     13.317      11.348      
+PHL     CE2     C       CR16    0       -11.071     12.518      10.784      
+PHL     CZ      C       CR16    0       -12.400     12.268      11.058      
+PHL     H       H       H       0       -11.631     15.954      8.420       
+PHL     H2      H       H       0       -11.090     17.204      7.996       
+PHL     HA      H       H       0       -12.403     17.193      10.003      
+PHL     HC1     H       H       0       -11.123     19.116      9.299       
+PHL     HC2     H       H       0       -9.947      18.596      10.228      
+PHL     HO      H       H       0       -12.345     19.343      11.069      
+PHL     HB2     H       H       0       -11.173     16.728      11.956      
+PHL     HB3     H       H       0       -9.929      16.289      11.081      
+PHL     HD1     H       H       0       -13.353     15.333      11.564      
+PHL     HD2     H       H       0       -9.678      13.984      10.612      
+PHL     HE1     H       H       0       -14.158     13.149      11.536      
+PHL     HE2     H       H       0       -10.488     11.803      10.585      
+PHL     HZ      H       H       0       -12.728     11.382      11.046      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PHL           N          CA      SINGLE       n     1.473  0.0130     1.473  0.0130
+PHL          CA           C      SINGLE       n     1.523  0.0127     1.523  0.0127
+PHL          CA          CB      SINGLE       n     1.535  0.0100     1.535  0.0100
+PHL           C           O      SINGLE       n     1.417  0.0200     1.417  0.0200
+PHL          CB          CG      SINGLE       n     1.512  0.0103     1.512  0.0103
+PHL          CG         CD1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+PHL          CG         CD2      SINGLE       y     1.385  0.0111     1.385  0.0111
+PHL         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+PHL         CD2         CE2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PHL         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PHL         CE2          CZ      SINGLE       y     1.376  0.0124     1.376  0.0124
+PHL           N           H      SINGLE       n     1.036  0.0160     0.888  0.0200
+PHL           N          H2      SINGLE       n     1.036  0.0160     0.888  0.0200
+PHL          CA          HA      SINGLE       n     1.089  0.0100     0.985  0.0149
+PHL           C         HC1      SINGLE       n     1.089  0.0100     0.981  0.0174
+PHL           C         HC2      SINGLE       n     1.089  0.0100     0.981  0.0174
+PHL           O          HO      SINGLE       n     0.970  0.0120     0.846  0.0200
+PHL          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0150
+PHL          CB         HB3      SINGLE       n     1.089  0.0100     0.981  0.0150
+PHL         CD1         HD1      SINGLE       n     1.082  0.0130     0.944  0.0174
+PHL         CD2         HD2      SINGLE       n     1.082  0.0130     0.944  0.0174
+PHL         CE1         HE1      SINGLE       n     1.082  0.0130     0.944  0.0175
+PHL         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+PHL          CZ          HZ      SINGLE       n     1.082  0.0130     0.944  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PHL          CA           N           H     109.715    3.00
+PHL          CA           N          H2     109.715    3.00
+PHL           H           N          H2     107.559    3.00
+PHL           N          CA           C     111.883    2.59
+PHL           N          CA          CB     111.883    2.59
+PHL           N          CA          HA     107.944    1.55
+PHL           C          CA          CB     109.839    1.50
+PHL           C          CA          HA     107.627    1.50
+PHL          CB          CA          HA     107.624    1.50
+PHL          CA           C           O     111.903    1.66
+PHL          CA           C         HC1     109.343    1.50
+PHL          CA           C         HC2     109.343    1.50
+PHL           O           C         HC1     109.411    1.50
+PHL           O           C         HC2     109.411    1.50
+PHL         HC1           C         HC2     108.070    1.50
+PHL           C           O          HO     108.529    2.94
+PHL          CA          CB          CG     113.565    1.50
+PHL          CA          CB         HB2     108.839    1.50
+PHL          CA          CB         HB3     108.839    1.50
+PHL          CG          CB         HB2     108.862    1.50
+PHL          CG          CB         HB3     108.862    1.50
+PHL         HB2          CB         HB3     107.782    1.50
+PHL          CB          CG         CD1     120.970    1.50
+PHL          CB          CG         CD2     120.970    1.50
+PHL         CD1          CG         CD2     118.060    1.50
+PHL          CG         CD1         CE1     120.624    1.50
+PHL          CG         CD1         HD1     119.591    1.50
+PHL         CE1         CD1         HD1     119.786    1.50
+PHL          CG         CD2         CE2     120.624    1.50
+PHL          CG         CD2         HD2     119.591    1.50
+PHL         CE2         CD2         HD2     119.786    1.50
+PHL         CD1         CE1          CZ     120.325    1.50
+PHL         CD1         CE1         HE1     119.792    1.50
+PHL          CZ         CE1         HE1     119.883    1.50
+PHL         CD2         CE2          CZ     120.325    1.50
+PHL         CD2         CE2         HE2     119.792    1.50
+PHL          CZ         CE2         HE2     119.883    1.50
+PHL         CE1          CZ         CE2     120.043    1.50
+PHL         CE1          CZ          HZ     119.979    1.50
+PHL         CE2          CZ          HZ     119.979    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PHL             sp3_sp3_1           C          CA           N           H     180.000    10.0     3
+PHL             sp3_sp3_7           O           C          CA           N     180.000    10.0     3
+PHL            sp3_sp3_16           N          CA          CB          CG     180.000    10.0     3
+PHL            sp3_sp3_25          CA           C           O          HO     180.000    10.0     3
+PHL             sp2_sp3_2         CD1          CG          CB          CA     -90.000    10.0     6
+PHL       const_sp2_sp2_2         CE1         CD1          CG          CB     180.000     5.0     2
+PHL              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+PHL       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+PHL              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+PHL       const_sp2_sp2_9         CD1         CE1          CZ         CE2       0.000     5.0     2
+PHL              const_13         CD2         CE2          CZ         CE1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PHL    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PHL    plan-1          CB   0.020
+PHL    plan-1         CD1   0.020
+PHL    plan-1         CD2   0.020
+PHL    plan-1         CE1   0.020
+PHL    plan-1         CE2   0.020
+PHL    plan-1          CG   0.020
+PHL    plan-1          CZ   0.020
+PHL    plan-1         HD1   0.020
+PHL    plan-1         HD2   0.020
+PHL    plan-1         HE1   0.020
+PHL    plan-1         HE2   0.020
+PHL    plan-1          HZ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PHL           SMILES              ACDLabs 10.04                                                           OCC(N)Cc1ccccc1
+PHL SMILES_CANONICAL               CACTVS 3.341                                                       N[C@H](CO)Cc1ccccc1
+PHL           SMILES               CACTVS 3.341                                                        N[CH](CO)Cc1ccccc1
+PHL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                    c1ccc(cc1)C[C@@H](CO)N
+PHL           SMILES "OpenEye OEToolkits" 1.5.0                                                         c1ccc(cc1)CC(CO)N
+PHL            InChI                InChI  1.03 InChI=1S/C9H13NO/c10-9(7-11)6-8-4-2-1-3-5-8/h1-5,9,11H,6-7,10H2/t9-/m0/s1
+PHL         InChIKey                InChI  1.03                                               STVVMTBJNDTZBF-VIFPVBQESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PHL acedrg               243         "dictionary generator"                  
+PHL acedrg_database      11          "data source"                           
+PHL rdkit                2017.03.2   "Chemoinformatics tool"
+PHL refmac5              5.8.0238    "optimization tool"                     

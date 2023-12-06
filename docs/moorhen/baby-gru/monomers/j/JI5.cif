@@ -1,0 +1,367 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JI5     JI5      "N-{(3R,4R)-4-[(6-amino-4-methylpyridin-2-yl)methyl]pyrrolidin-3-yl}-N'-[2-(3-fluorophenyl)ethyl]ethane-1,2-diamine"     NON-POLYMER     57     27     .     
+#
+data_comp_JI5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JI5     C1      C       CH2     0       18.333      1.793       56.622      
+JI5     N1      N       NT1     0       18.025      2.596       55.432      
+JI5     C2      C       CH2     0       17.081      1.220       57.262      
+JI5     N2      N       NT1     0       16.379      2.193       58.097      
+JI5     C3      C       CH2     0       15.075      1.728       58.584      
+JI5     C4      C       CH2     0       14.305      2.852       59.270      
+JI5     "N1'"   N       NT1     0       19.247      3.515       52.487      
+JI5     C11     C       CR6     0       12.996      2.376       59.856      
+JI5     N11     N       NRD6    0       16.480      7.271       53.805      
+JI5     C12     C       CR16    0       12.822      2.300       61.232      
+JI5     C13     C       CR6     0       11.616      1.863       61.735      
+JI5     F13     F       F       0       11.463      1.794       63.083      
+JI5     C14     C       CR16    0       10.567      1.494       60.937      
+JI5     C15     C       CR16    0       10.740      1.570       59.568      
+JI5     C16     C       CR16    0       11.943      2.007       59.028      
+JI5     "C2'"   C       CH2     0       19.743      2.788       53.669      
+JI5     C21     C       CR6     0       17.511      7.048       54.648      
+JI5     "C3'"   C       CH1     0       19.092      3.449       54.894      
+JI5     C31     C       CR16    0       18.379      8.068       55.019      
+JI5     "C4'"   C       CH1     0       18.680      4.825       54.337      
+JI5     C41     C       CR6     0       18.195      9.355       54.524      
+JI5     "C5'"   C       CH2     0       18.176      4.400       52.964      
+JI5     C51     C       CR16    0       17.136      9.585       53.660      
+JI5     C61     C       CR6     0       16.287      8.515       53.316      
+JI5     N61     N       NH2     0       15.252      8.697       52.484      
+JI5     C71     C       CH2     0       17.676      5.642       55.158      
+JI5     C81     C       CH3     0       19.125      10.477      54.915      
+JI5     H1      H       H       0       18.803      2.354       57.285      
+JI5     H1A     H       H       0       18.932      1.051       56.362      
+JI5     HN1     H       H       0       17.207      2.924       55.428      
+JI5     H2      H       H       0       17.329      0.445       57.808      
+JI5     H2A     H       H       0       16.479      0.906       56.555      
+JI5     HN2     H       H       0       16.252      2.942       57.615      
+JI5     H3      H       H       0       15.208      0.992       59.220      
+JI5     H3A     H       H       0       14.546      1.389       57.829      
+JI5     H4      H       H       0       14.127      3.562       58.617      
+JI5     H4A     H       H       0       14.863      3.233       59.982      
+JI5     "HN1'"  H       H       0       18.889      2.935       51.947      
+JI5     H12     H       H       0       13.534      2.550       61.827      
+JI5     H14     H       H       0       9.752       1.198       61.311      
+JI5     H15     H       H       0       10.030      1.321       58.994      
+JI5     H16     H       H       0       12.047      2.053       58.091      
+JI5     "H2'"   H       H       0       19.497      1.840       53.607      
+JI5     "H2'A"  H       H       0       20.721      2.853       53.714      
+JI5     "H3'"   H       H       0       19.787      3.565       55.588      
+JI5     H31     H       H       0       19.095      7.894       55.607      
+JI5     "H4'"   H       H       0       19.500      5.375       54.217      
+JI5     "H5'"   H       H       0       17.326      3.915       53.029      
+JI5     "H5'A"  H       H       0       18.069      5.171       52.367      
+JI5     H51     H       H       0       16.989      10.449      53.311      
+JI5     HN61    H       H       0       15.174      9.451       52.042      
+JI5     HN6A    H       H       0       14.654      8.062       52.382      
+JI5     H71     H       H       0       16.807      5.190       55.140      
+JI5     H71A    H       H       0       17.980      5.672       56.090      
+JI5     H81     H       H       0       19.225      11.092      54.169      
+JI5     H81A    H       H       0       19.993      10.113      55.151      
+JI5     H81B    H       H       0       18.758      10.954      55.677      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JI5          C1          N1      SINGLE       n     1.465  0.0118     1.465  0.0118
+JI5          C1          C2      SINGLE       n     1.516  0.0162     1.516  0.0162
+JI5          N1       "C3'"      SINGLE       n     1.464  0.0100     1.464  0.0100
+JI5          C2          N2      SINGLE       n     1.462  0.0100     1.462  0.0100
+JI5          N2          C3      SINGLE       n     1.467  0.0127     1.467  0.0127
+JI5          C3          C4      SINGLE       n     1.525  0.0180     1.525  0.0180
+JI5          C4         C11      SINGLE       n     1.511  0.0100     1.511  0.0100
+JI5       "N1'"       "C2'"      SINGLE       n     1.466  0.0121     1.466  0.0121
+JI5       "N1'"       "C5'"      SINGLE       n     1.466  0.0121     1.466  0.0121
+JI5         C11         C12      DOUBLE       y     1.385  0.0109     1.385  0.0109
+JI5         C11         C16      SINGLE       y     1.385  0.0110     1.385  0.0110
+JI5         N11         C21      DOUBLE       y     1.345  0.0100     1.345  0.0100
+JI5         N11         C61      SINGLE       y     1.343  0.0133     1.343  0.0133
+JI5         C12         C13      SINGLE       y     1.374  0.0100     1.374  0.0100
+JI5         C13         F13      SINGLE       n     1.359  0.0106     1.359  0.0106
+JI5         C13         C14      DOUBLE       y     1.364  0.0125     1.364  0.0125
+JI5         C14         C15      SINGLE       y     1.375  0.0128     1.375  0.0128
+JI5         C15         C16      DOUBLE       y     1.385  0.0100     1.385  0.0100
+JI5       "C2'"       "C3'"      SINGLE       n     1.531  0.0175     1.531  0.0175
+JI5         C21         C31      SINGLE       y     1.383  0.0127     1.383  0.0127
+JI5         C21         C71      SINGLE       n     1.505  0.0100     1.505  0.0100
+JI5       "C3'"       "C4'"      SINGLE       n     1.545  0.0151     1.545  0.0151
+JI5         C31         C41      DOUBLE       y     1.388  0.0100     1.388  0.0100
+JI5       "C4'"       "C5'"      SINGLE       n     1.527  0.0100     1.527  0.0100
+JI5       "C4'"         C71      SINGLE       n     1.532  0.0100     1.532  0.0100
+JI5         C41         C51      SINGLE       y     1.383  0.0100     1.383  0.0100
+JI5         C41         C81      SINGLE       n     1.509  0.0144     1.509  0.0144
+JI5         C51         C61      DOUBLE       y     1.398  0.0169     1.398  0.0169
+JI5         C61         N61      SINGLE       n     1.335  0.0166     1.335  0.0166
+JI5          C1          H1      SINGLE       n     1.089  0.0100     0.988  0.0200
+JI5          C1         H1A      SINGLE       n     1.089  0.0100     0.988  0.0200
+JI5          N1         HN1      SINGLE       n     1.036  0.0160     0.882  0.0200
+JI5          C2          H2      SINGLE       n     1.089  0.0100     0.980  0.0143
+JI5          C2         H2A      SINGLE       n     1.089  0.0100     0.980  0.0143
+JI5          N2         HN2      SINGLE       n     1.036  0.0160     0.899  0.0200
+JI5          C3          H3      SINGLE       n     1.089  0.0100     0.982  0.0143
+JI5          C3         H3A      SINGLE       n     1.089  0.0100     0.982  0.0143
+JI5          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0158
+JI5          C4         H4A      SINGLE       n     1.089  0.0100     0.981  0.0158
+JI5       "N1'"      "HN1'"      SINGLE       n     1.036  0.0160     0.869  0.0200
+JI5         C12         H12      SINGLE       n     1.082  0.0130     0.961  0.0200
+JI5         C14         H14      SINGLE       n     1.082  0.0130     0.945  0.0200
+JI5         C15         H15      SINGLE       n     1.082  0.0130     0.946  0.0200
+JI5         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0174
+JI5       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.981  0.0178
+JI5       "C2'"      "H2'A"      SINGLE       n     1.089  0.0100     0.981  0.0178
+JI5       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.989  0.0131
+JI5         C31         H31      SINGLE       n     1.082  0.0130     0.943  0.0168
+JI5       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+JI5       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.981  0.0178
+JI5       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.981  0.0178
+JI5         C51         H51      SINGLE       n     1.082  0.0130     0.943  0.0168
+JI5         N61        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+JI5         N61        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+JI5         C71         H71      SINGLE       n     1.089  0.0100     0.980  0.0157
+JI5         C71        H71A      SINGLE       n     1.089  0.0100     0.980  0.0157
+JI5         C81         H81      SINGLE       n     1.089  0.0100     0.971  0.0135
+JI5         C81        H81A      SINGLE       n     1.089  0.0100     0.971  0.0135
+JI5         C81        H81B      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JI5          N1          C1          C2     111.883    2.59
+JI5          N1          C1          H1     109.292    2.33
+JI5          N1          C1         H1A     109.292    2.33
+JI5          C2          C1          H1     109.260    1.50
+JI5          C2          C1         H1A     109.260    1.50
+JI5          H1          C1         H1A     108.466    1.50
+JI5          C1          N1       "C3'"     114.793    2.66
+JI5          C1          N1         HN1     112.572    3.00
+JI5       "C3'"          N1         HN1     115.130    3.00
+JI5          C1          C2          N2     113.402    1.73
+JI5          C1          C2          H2     109.201    1.50
+JI5          C1          C2         H2A     109.201    1.50
+JI5          N2          C2          H2     109.410    1.50
+JI5          N2          C2         H2A     109.410    1.50
+JI5          H2          C2         H2A     107.909    1.50
+JI5          C2          N2          C3     113.474    1.55
+JI5          C2          N2         HN2     108.452    3.00
+JI5          C3          N2         HN2     108.280    3.00
+JI5          N2          C3          C4     111.644    2.18
+JI5          N2          C3          H3     109.402    1.50
+JI5          N2          C3         H3A     109.402    1.50
+JI5          C4          C3          H3     109.189    1.50
+JI5          C4          C3         H3A     109.189    1.50
+JI5          H3          C3         H3A     108.162    1.50
+JI5          C3          C4         C11     112.139    1.84
+JI5          C3          C4          H4     109.025    1.50
+JI5          C3          C4         H4A     109.025    1.50
+JI5         C11          C4          H4     109.239    1.50
+JI5         C11          C4         H4A     109.239    1.50
+JI5          H4          C4         H4A     107.823    1.50
+JI5       "C2'"       "N1'"       "C5'"     103.992    1.50
+JI5       "C2'"       "N1'"      "HN1'"     107.738    2.27
+JI5       "C5'"       "N1'"      "HN1'"     107.738    2.27
+JI5          C4         C11         C12     120.562    1.50
+JI5          C4         C11         C16     120.805    1.50
+JI5         C12         C11         C16     118.633    1.50
+JI5         C21         N11         C61     118.635    1.50
+JI5         C11         C12         C13     119.366    1.50
+JI5         C11         C12         H12     120.251    1.50
+JI5         C13         C12         H12     120.383    1.50
+JI5         C12         C13         F13     118.372    1.50
+JI5         C12         C13         C14     123.191    1.50
+JI5         F13         C13         C14     118.436    1.50
+JI5         C13         C14         C15     117.830    1.50
+JI5         C13         C14         H14     121.001    1.50
+JI5         C15         C14         H14     121.169    1.50
+JI5         C14         C15         C16     120.526    1.50
+JI5         C14         C15         H15     119.626    1.50
+JI5         C16         C15         H15     119.848    1.50
+JI5         C11         C16         C15     120.454    1.50
+JI5         C11         C16         H16     119.676    1.50
+JI5         C15         C16         H16     119.871    1.50
+JI5       "N1'"       "C2'"       "C3'"     103.104    2.01
+JI5       "N1'"       "C2'"       "H2'"     110.393    1.50
+JI5       "N1'"       "C2'"      "H2'A"     110.393    1.50
+JI5       "C3'"       "C2'"       "H2'"     111.532    1.50
+JI5       "C3'"       "C2'"      "H2'A"     111.532    1.50
+JI5       "H2'"       "C2'"      "H2'A"     109.055    1.50
+JI5         N11         C21         C31     121.464    1.50
+JI5         N11         C21         C71     116.685    1.50
+JI5         C31         C21         C71     121.851    1.70
+JI5          N1       "C3'"       "C2'"     113.888    3.00
+JI5          N1       "C3'"       "C4'"     113.888    3.00
+JI5          N1       "C3'"       "H3'"     108.544    1.50
+JI5       "C2'"       "C3'"       "C4'"     103.194    1.50
+JI5       "C2'"       "C3'"       "H3'"     108.495    1.50
+JI5       "C4'"       "C3'"       "H3'"     111.326    2.96
+JI5         C21         C31         C41     120.185    1.50
+JI5         C21         C31         H31     120.325    1.50
+JI5         C41         C31         H31     119.490    1.50
+JI5       "C3'"       "C4'"       "C5'"     103.397    1.89
+JI5       "C3'"       "C4'"         C71     113.745    2.48
+JI5       "C3'"       "C4'"       "H4'"     109.713    3.00
+JI5       "C5'"       "C4'"         C71     113.745    2.48
+JI5       "C5'"       "C4'"       "H4'"     108.836    1.50
+JI5         C71       "C4'"       "H4'"     108.365    1.61
+JI5         C31         C41         C51     118.497    1.50
+JI5         C31         C41         C81     120.917    1.50
+JI5         C51         C41         C81     120.586    1.50
+JI5       "N1'"       "C5'"       "C4'"     103.104    2.01
+JI5       "N1'"       "C5'"       "H5'"     110.393    1.50
+JI5       "N1'"       "C5'"      "H5'A"     110.393    1.50
+JI5       "C4'"       "C5'"       "H5'"     110.966    1.50
+JI5       "C4'"       "C5'"      "H5'A"     110.966    1.50
+JI5       "H5'"       "C5'"      "H5'A"     109.055    1.50
+JI5         C41         C51         C61     119.340    1.50
+JI5         C41         C51         H51     120.018    1.50
+JI5         C61         C51         H51     120.642    1.50
+JI5         N11         C61         C51     121.879    1.50
+JI5         N11         C61         N61     117.161    1.55
+JI5         C51         C61         N61     120.961    1.50
+JI5         C61         N61        HN61     119.818    1.59
+JI5         C61         N61        HN6A     119.818    1.59
+JI5        HN61         N61        HN6A     120.363    1.85
+JI5         C21         C71       "C4'"     113.066    2.20
+JI5         C21         C71         H71     108.985    1.50
+JI5         C21         C71        H71A     108.985    1.50
+JI5       "C4'"         C71         H71     108.728    1.50
+JI5       "C4'"         C71        H71A     108.728    1.50
+JI5         H71         C71        H71A     107.752    1.50
+JI5         C41         C81         H81     109.567    1.50
+JI5         C41         C81        H81A     109.567    1.50
+JI5         C41         C81        H81B     109.567    1.50
+JI5         H81         C81        H81A     109.348    1.50
+JI5         H81         C81        H81B     109.348    1.50
+JI5        H81A         C81        H81B     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JI5            sp3_sp3_34          C2          C1          N1       "C3'"     180.000    10.0     3
+JI5            sp3_sp3_40          N1          C1          C2          N2     180.000    10.0     3
+JI5              const_11         F13         C13         C14         C15     180.000    10.0     2
+JI5              const_13         C13         C14         C15         C16       0.000    10.0     2
+JI5              const_17         C14         C15         C16         C11       0.000    10.0     2
+JI5             sp3_sp3_8       "N1'"       "C2'"       "C3'"          N1      60.000    10.0     3
+JI5              const_25         C71         C21         C31         C41     180.000    10.0     2
+JI5             sp2_sp3_8         N11         C21         C71       "C4'"     -90.000    10.0     6
+JI5            sp3_sp3_20          N1       "C3'"       "C4'"         C71      60.000    10.0     3
+JI5              const_28         C21         C31         C41         C81     180.000    10.0     2
+JI5            sp3_sp3_28         C71       "C4'"       "C5'"       "N1'"     180.000    10.0     3
+JI5            sp3_sp3_82       "C3'"       "C4'"         C71         C21     180.000    10.0     3
+JI5            sp3_sp3_50       "C2'"       "C3'"          N1          C1     -60.000    10.0     3
+JI5              const_33         C81         C41         C51         C61     180.000    10.0     2
+JI5            sp2_sp3_13         C31         C41         C81         H81     150.000    10.0     6
+JI5              const_36         C41         C51         C61         N61     180.000    10.0     2
+JI5             sp2_sp2_3         N11         C61         N61        HN61       0.000     5.0     2
+JI5            sp3_sp3_56          C1          C2          N2          C3     -60.000    10.0     3
+JI5            sp3_sp3_61          C4          C3          N2          C2     180.000    10.0     3
+JI5            sp3_sp3_67          N2          C3          C4         C11     180.000    10.0     3
+JI5             sp2_sp3_2         C12         C11          C4          C3     -90.000    10.0     6
+JI5             sp3_sp3_1       "C3'"       "C2'"       "N1'"       "C5'"      60.000    10.0     3
+JI5            sp3_sp3_76       "C4'"       "C5'"       "N1'"       "C2'"     180.000    10.0     3
+JI5              const_41          C4         C11         C16         C15     180.000    10.0     2
+JI5       const_sp2_sp2_3          C4         C11         C12         C13     180.000     5.0     2
+JI5              const_22         C71         C21         N11         C61     180.000    10.0     2
+JI5              const_44         N61         C61         N11         C21     180.000    10.0     2
+JI5       const_sp2_sp2_6         C11         C12         C13         F13     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JI5    chir_1    "C3'"    N1    "C2'"    "C4'"    negative
+JI5    chir_2    "C4'"    "C3'"    "C5'"    C71    negative
+JI5    chir_3    N1    "C3'"    C1    HN1    both
+JI5    chir_4    N2    C2    C3    HN2    both
+JI5    chir_5    "N1'"    "C2'"    "C5'"    "HN1'"    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JI5    plan-1         C11   0.020
+JI5    plan-1         C12   0.020
+JI5    plan-1         C13   0.020
+JI5    plan-1         C14   0.020
+JI5    plan-1         C15   0.020
+JI5    plan-1         C16   0.020
+JI5    plan-1          C4   0.020
+JI5    plan-1         F13   0.020
+JI5    plan-1         H12   0.020
+JI5    plan-1         H14   0.020
+JI5    plan-1         H15   0.020
+JI5    plan-1         H16   0.020
+JI5    plan-2         C21   0.020
+JI5    plan-2         C31   0.020
+JI5    plan-2         C41   0.020
+JI5    plan-2         C51   0.020
+JI5    plan-2         C61   0.020
+JI5    plan-2         C71   0.020
+JI5    plan-2         C81   0.020
+JI5    plan-2         H31   0.020
+JI5    plan-2         H51   0.020
+JI5    plan-2         N11   0.020
+JI5    plan-2         N61   0.020
+JI5    plan-3         C61   0.020
+JI5    plan-3        HN61   0.020
+JI5    plan-3        HN6A   0.020
+JI5    plan-3         N61   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JI5           SMILES              ACDLabs 11.02                                                                                                                             Fc1cccc(c1)CCNCCNC2C(CNC2)Cc3nc(N)cc(c3)C
+JI5 SMILES_CANONICAL               CACTVS 3.352                                                                                                                     Cc1cc(N)nc(C[C@@H]2CNC[C@@H]2NCCNCCc3cccc(F)c3)c1
+JI5           SMILES               CACTVS 3.352                                                                                                                         Cc1cc(N)nc(C[CH]2CNC[CH]2NCCNCCc3cccc(F)c3)c1
+JI5 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                     Cc1cc(nc(c1)N)C[C@@H]2CNC[C@@H]2NCCNCCc3cccc(c3)F
+JI5           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                               Cc1cc(nc(c1)N)CC2CNCC2NCCNCCc3cccc(c3)F
+JI5            InChI                InChI  1.03 InChI=1S/C21H30FN5/c1-15-9-19(27-21(23)10-15)12-17-13-25-14-20(17)26-8-7-24-6-5-16-3-2-4-18(22)11-16/h2-4,9-11,17,20,24-26H,5-8,12-14H2,1H3,(H2,23,27)/t17-,20+/m1/s1
+JI5         InChIKey                InChI  1.03                                                                                                                                           PUOKPLCASUFBAN-XLIONFOSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JI5 acedrg               243         "dictionary generator"                  
+JI5 acedrg_database      11          "data source"                           
+JI5 rdkit                2017.03.2   "Chemoinformatics tool"
+JI5 refmac5              5.8.0238    "optimization tool"                     

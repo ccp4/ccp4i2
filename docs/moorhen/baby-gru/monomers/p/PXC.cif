@@ -1,0 +1,222 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PXC     PXC      "phenazine-1,6-dicarboxylic acid"     NON-POLYMER     26     20     .     
+#
+data_comp_PXC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PXC     OAA     O       OC      -1      55.396      9.517       72.219      
+PXC     OAB     O       O       0       63.915      9.870       75.801      
+PXC     OAC     O       O       0       56.246      7.495       71.980      
+PXC     OAD     O       OC      -1      63.024      7.988       76.529      
+PXC     CAE     C       CR16    0       56.736      9.028       76.317      
+PXC     CAF     C       CR16    0       62.556      8.408       71.948      
+PXC     CAG     C       CR16    0       56.110      8.877       75.061      
+PXC     CAH     C       CR16    0       63.181      8.559       73.203      
+PXC     CAI     C       CR16    0       58.098      9.026       76.428      
+PXC     CAJ     C       CR16    0       61.194      8.410       71.837      
+PXC     NAK     N       NRD6    0       59.034      8.566       72.872      
+PXC     NAL     N       NRD6    0       60.257      8.869       75.392      
+PXC     CAM     C       C       0       56.102      8.566       72.598      
+PXC     CAN     C       C       0       63.188      8.870       75.667      
+PXC     CAO     C       CR6     0       56.841      8.722       73.906      
+PXC     CAP     C       CR6     0       62.450      8.713       74.359      
+PXC     CAQ     C       CR66    0       58.915      8.870       75.272      
+PXC     CAR     C       CR66    0       60.376      8.565       72.992      
+PXC     CAS     C       CR66    0       58.290      8.716       73.991      
+PXC     CAT     C       CR66    0       61.002      8.719       74.273      
+PXC     HAE     H       H       0       56.211      9.131       77.087      
+PXC     HAF     H       H       0       63.080      8.304       71.177      
+PXC     HAG     H       H       0       55.173      8.882       75.015      
+PXC     HAH     H       H       0       64.118      8.554       73.250      
+PXC     HAI     H       H       0       58.506      9.128       77.275      
+PXC     HAJ     H       H       0       60.785      8.308       70.990      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PXC         OAA         CAM      SINGLE       n     1.244  0.0200     1.244  0.0200
+PXC         OAB         CAN      DOUBLE       n     1.244  0.0200     1.244  0.0200
+PXC         OAC         CAM      DOUBLE       n     1.244  0.0200     1.244  0.0200
+PXC         OAD         CAN      SINGLE       n     1.244  0.0200     1.244  0.0200
+PXC         CAE         CAG      DOUBLE       y     1.406  0.0100     1.406  0.0100
+PXC         CAE         CAI      SINGLE       y     1.362  0.0100     1.362  0.0100
+PXC         CAF         CAJ      DOUBLE       y     1.362  0.0100     1.362  0.0100
+PXC         CAF         CAH      SINGLE       y     1.406  0.0100     1.406  0.0100
+PXC         CAG         CAO      SINGLE       y     1.372  0.0100     1.372  0.0100
+PXC         CAH         CAP      DOUBLE       y     1.372  0.0100     1.372  0.0100
+PXC         CAI         CAQ      DOUBLE       y     1.421  0.0100     1.421  0.0100
+PXC         CAJ         CAR      SINGLE       y     1.421  0.0100     1.421  0.0100
+PXC         NAK         CAR      DOUBLE       y     1.344  0.0100     1.344  0.0100
+PXC         NAK         CAS      SINGLE       y     1.346  0.0118     1.346  0.0118
+PXC         NAL         CAT      DOUBLE       y     1.346  0.0118     1.346  0.0118
+PXC         NAL         CAQ      SINGLE       y     1.344  0.0100     1.344  0.0100
+PXC         CAM         CAO      SINGLE       n     1.509  0.0121     1.509  0.0121
+PXC         CAN         CAP      SINGLE       n     1.509  0.0121     1.509  0.0121
+PXC         CAO         CAS      DOUBLE       y     1.439  0.0180     1.439  0.0180
+PXC         CAP         CAT      SINGLE       y     1.439  0.0180     1.439  0.0180
+PXC         CAQ         CAS      SINGLE       y     1.428  0.0109     1.428  0.0109
+PXC         CAR         CAT      SINGLE       y     1.428  0.0109     1.428  0.0109
+PXC         CAE         HAE      SINGLE       n     1.082  0.0130     0.938  0.0101
+PXC         CAF         HAF      SINGLE       n     1.082  0.0130     0.938  0.0101
+PXC         CAG         HAG      SINGLE       n     1.082  0.0130     0.938  0.0129
+PXC         CAH         HAH      SINGLE       n     1.082  0.0130     0.938  0.0129
+PXC         CAI         HAI      SINGLE       n     1.082  0.0130     0.946  0.0200
+PXC         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.946  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PXC         CAG         CAE         CAI     120.265    1.50
+PXC         CAG         CAE         HAE     119.995    1.50
+PXC         CAI         CAE         HAE     119.740    1.50
+PXC         CAJ         CAF         CAH     120.265    1.50
+PXC         CAJ         CAF         HAF     119.740    1.50
+PXC         CAH         CAF         HAF     119.995    1.50
+PXC         CAE         CAG         CAO     121.061    1.50
+PXC         CAE         CAG         HAG     119.418    1.50
+PXC         CAO         CAG         HAG     119.521    1.50
+PXC         CAF         CAH         CAP     121.061    1.50
+PXC         CAF         CAH         HAH     119.418    1.50
+PXC         CAP         CAH         HAH     119.521    1.50
+PXC         CAE         CAI         CAQ     120.182    1.50
+PXC         CAE         CAI         HAI     120.321    1.50
+PXC         CAQ         CAI         HAI     119.498    1.50
+PXC         CAF         CAJ         CAR     120.182    1.50
+PXC         CAF         CAJ         HAJ     120.321    1.50
+PXC         CAR         CAJ         HAJ     119.498    1.50
+PXC         CAR         NAK         CAS     118.086    1.50
+PXC         CAT         NAL         CAQ     118.086    1.50
+PXC         OAA         CAM         OAC     124.939    1.50
+PXC         OAA         CAM         CAO     117.531    1.50
+PXC         OAC         CAM         CAO     117.531    1.50
+PXC         OAB         CAN         OAD     124.939    1.50
+PXC         OAB         CAN         CAP     117.531    1.50
+PXC         OAD         CAN         CAP     117.531    1.50
+PXC         CAG         CAO         CAM     118.908    1.94
+PXC         CAG         CAO         CAS     119.217    1.53
+PXC         CAM         CAO         CAS     121.876    2.03
+PXC         CAH         CAP         CAN     118.908    1.94
+PXC         CAH         CAP         CAT     119.217    1.53
+PXC         CAN         CAP         CAT     121.876    2.03
+PXC         CAI         CAQ         NAL     119.629    1.50
+PXC         CAI         CAQ         CAS     119.414    1.50
+PXC         NAL         CAQ         CAS     120.957    1.50
+PXC         CAJ         CAR         NAK     119.629    1.50
+PXC         CAJ         CAR         CAT     119.414    1.50
+PXC         NAK         CAR         CAT     120.957    1.50
+PXC         NAK         CAS         CAO     119.181    1.50
+PXC         NAK         CAS         CAQ     120.957    1.50
+PXC         CAO         CAS         CAQ     119.862    1.50
+PXC         NAL         CAT         CAP     119.181    1.50
+PXC         NAL         CAT         CAR     120.957    1.50
+PXC         CAP         CAT         CAR     119.862    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PXC              const_42         CAJ         CAR         NAK         CAS     180.000    10.0     2
+PXC              const_56         CAO         CAS         NAK         CAR     180.000    10.0     2
+PXC              const_46         CAI         CAQ         NAL         CAT     180.000    10.0     2
+PXC              const_44         CAP         CAT         NAL         CAQ     180.000    10.0     2
+PXC             sp2_sp2_1         OAA         CAM         CAO         CAG     180.000     5.0     2
+PXC             sp2_sp2_5         OAB         CAN         CAP         CAH     180.000     5.0     2
+PXC              const_12         CAM         CAO         CAS         NAK       0.000    10.0     2
+PXC              const_36         CAN         CAP         CAT         NAL       0.000    10.0     2
+PXC              const_14         CAI         CAQ         CAS         NAK     180.000    10.0     2
+PXC              const_30         CAJ         CAR         CAT         NAL     180.000    10.0     2
+PXC       const_sp2_sp2_1         CAI         CAE         CAG         CAO       0.000     5.0     2
+PXC              const_47         CAG         CAE         CAI         CAQ       0.000    10.0     2
+PXC              const_51         CAJ         CAF         CAH         CAP       0.000    10.0     2
+PXC              const_21         CAH         CAF         CAJ         CAR       0.000    10.0     2
+PXC       const_sp2_sp2_6         CAE         CAG         CAO         CAM     180.000     5.0     2
+PXC              const_38         CAF         CAH         CAP         CAN     180.000    10.0     2
+PXC              const_18         CAE         CAI         CAQ         NAL     180.000    10.0     2
+PXC              const_26         CAF         CAJ         CAR         NAK     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PXC    plan-1         CAE   0.020
+PXC    plan-1         CAF   0.020
+PXC    plan-1         CAG   0.020
+PXC    plan-1         CAH   0.020
+PXC    plan-1         CAI   0.020
+PXC    plan-1         CAJ   0.020
+PXC    plan-1         CAM   0.020
+PXC    plan-1         CAN   0.020
+PXC    plan-1         CAO   0.020
+PXC    plan-1         CAP   0.020
+PXC    plan-1         CAQ   0.020
+PXC    plan-1         CAR   0.020
+PXC    plan-1         CAS   0.020
+PXC    plan-1         CAT   0.020
+PXC    plan-1         HAE   0.020
+PXC    plan-1         HAF   0.020
+PXC    plan-1         HAG   0.020
+PXC    plan-1         HAH   0.020
+PXC    plan-1         HAI   0.020
+PXC    plan-1         HAJ   0.020
+PXC    plan-1         NAK   0.020
+PXC    plan-1         NAL   0.020
+PXC    plan-2         CAM   0.020
+PXC    plan-2         CAO   0.020
+PXC    plan-2         OAA   0.020
+PXC    plan-2         OAC   0.020
+PXC    plan-3         CAN   0.020
+PXC    plan-3         CAP   0.020
+PXC    plan-3         OAB   0.020
+PXC    plan-3         OAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PXC SMILES_CANONICAL               CACTVS 3.352                                                                     OC(=O)c1cccc2nc3c(cccc3C(O)=O)nc12
+PXC           SMILES               CACTVS 3.352                                                                     OC(=O)c1cccc2nc3c(cccc3C(O)=O)nc12
+PXC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                 c1cc(c2c(c1)nc3c(cccc3n2)C(=O)O)C(=O)O
+PXC           SMILES "OpenEye OEToolkits" 1.7.0                                                                 c1cc(c2c(c1)nc3c(cccc3n2)C(=O)O)C(=O)O
+PXC            InChI                InChI  1.03 InChI=1S/C14H8N2O4/c17-13(18)7-3-1-5-9-11(7)16-10-6-2-4-8(14(19)20)12(10)15-9/h1-6H,(H,17,18)(H,19,20)
+PXC         InChIKey                InChI  1.03                                                                            MJALVONLCNWZHK-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PXC acedrg               243         "dictionary generator"                  
+PXC acedrg_database      11          "data source"                           
+PXC rdkit                2017.03.2   "Chemoinformatics tool"
+PXC refmac5              5.8.0238    "optimization tool"                     

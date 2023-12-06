@@ -1,0 +1,577 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YZY     YZY      "(2S)-2-(hexadecanoyloxy)-3-hydroxypropyl (9Z)-octadec-9-enoate"     NON-POLYMER     112     42     .     
+#
+data_comp_YZY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YZY     O1      O       OH1     0       -4.686      15.514      45.993      
+YZY     C1      C       CH2     0       -5.997      15.641      45.449      
+YZY     C2      C       CH1     0       -6.356      14.448      44.593      
+YZY     O2      O       O2      0       -5.390      14.384      43.500      
+YZY     C3      C       C       0       -4.713      13.247      43.234      
+YZY     O3      O       O       0       -4.864      12.191      43.796      
+YZY     C4      C       CH2     0       -3.727      13.443      42.114      
+YZY     C5      C       CH2     0       -4.367      13.653      40.772      
+YZY     C6      C       CH2     0       -4.939      12.373      40.179      
+YZY     C7      C       CH2     0       -5.808      12.582      38.957      
+YZY     C8      C       CH2     0       -5.088      13.121      37.739      
+YZY     C9      C       CH2     0       -4.048      12.191      37.163      
+YZY     C10     C       CH2     0       -3.523      12.609      35.813      
+YZY     C11     C       CH2     0       -2.455      11.700      35.259      
+YZY     C12     C       CH2     0       -1.814      12.200      33.989      
+YZY     C13     C       CH2     0       -2.675      12.042      32.759      
+YZY     C14     C       CH2     0       -2.061      12.593      31.491      
+YZY     C15     C       CH2     0       -0.854      11.829      30.986      
+YZY     C16     C       CH2     0       0.474       12.478      31.300      
+YZY     C17     C       CH2     0       0.841       13.610      30.374      
+YZY     C18     C       CH3     0       2.173       14.245      30.691      
+YZY     C19     C       CH2     0       -7.750      14.529      44.011      
+YZY     O4      O       O2      0       -8.043      13.288      43.327      
+YZY     C20     C       C       0       -9.268      13.130      42.824      
+YZY     O5      O       O       0       -10.075     14.019      42.707      
+YZY     C21     C       CH2     0       -9.511      11.705      42.410      
+YZY     C22     C       CH2     0       -8.671      11.272      41.249      
+YZY     C23     C       CH2     0       -9.064      9.905       40.716      
+YZY     C24     C       CH2     0       -8.179      9.398       39.604      
+YZY     C25     C       CH2     0       -8.433      7.962       39.212      
+YZY     C26     C       CH2     0       -9.716      7.746       38.420      
+YZY     C27     C       CH2     0       -9.823      6.396       37.782      
+YZY     C28     C       C1      0       -11.141     6.164       37.107      
+YZY     C29     C       C1      0       -12.147     5.439       37.541      
+YZY     C30     C       CH2     0       -12.217     4.664       38.822      
+YZY     C31     C       CH2     0       -13.512     3.934       39.006      
+YZY     C32     C       CH2     0       -13.648     3.232       40.346      
+YZY     C33     C       CH2     0       -12.789     1.999       40.490      
+YZY     C34     C       CH2     0       -13.000     1.245       41.782      
+YZY     C35     C       CH2     0       -12.057     0.078       41.991      
+YZY     C36     C       CH2     0       -10.888     0.354       42.905      
+YZY     C37     C       CH3     0       -9.897      1.346       42.346      
+YZY     H1O     H       H       0       -4.499      16.230      46.403      
+YZY     H11     H       H       0       -6.044      16.463      44.904      
+YZY     H12     H       H       0       -6.648      15.723      46.188      
+YZY     H21     H       H       0       -6.297      13.635      45.154      
+YZY     H41     H       H       0       -3.141      12.658      42.066      
+YZY     H42     H       H       0       -3.163      14.220      42.320      
+YZY     H51     H       H       0       -3.700      14.015      40.153      
+YZY     H52     H       H       0       -5.087      14.312      40.853      
+YZY     H61     H       H       0       -5.475      11.920      40.863      
+YZY     H62     H       H       0       -4.198      11.777      39.945      
+YZY     H71     H       H       0       -6.530      13.203      39.191      
+YZY     H72     H       H       0       -6.222      11.725      38.719      
+YZY     H81     H       H       0       -4.656      13.969      37.975      
+YZY     H82     H       H       0       -5.753      13.313      37.044      
+YZY     H91     H       H       0       -4.436      11.294      37.085      
+YZY     H92     H       H       0       -3.294      12.136      37.788      
+YZY     H101    H       H       0       -3.159      13.517      35.884      
+YZY     H102    H       H       0       -4.272      12.638      35.180      
+YZY     H111    H       H       0       -2.850      10.819      35.086      
+YZY     H112    H       H       0       -1.757      11.584      35.939      
+YZY     H121    H       H       0       -0.973      11.714      33.850      
+YZY     H122    H       H       0       -1.594      13.149      34.100      
+YZY     H131    H       H       0       -3.530      12.497      32.915      
+YZY     H132    H       H       0       -2.865      11.089      32.629      
+YZY     H141    H       H       0       -1.802      13.526      31.650      
+YZY     H142    H       H       0       -2.746      12.593      30.789      
+YZY     H151    H       H       0       -0.931      11.731      30.013      
+YZY     H152    H       H       0       -0.861      10.929      31.375      
+YZY     H161    H       H       0       1.176       11.795      31.255      
+YZY     H162    H       H       0       0.448       12.820      32.219      
+YZY     H171    H       H       0       0.141       14.297      30.423      
+YZY     H172    H       H       0       0.862       13.269      29.453      
+YZY     H181    H       H       0       2.349       14.964      30.059      
+YZY     H182    H       H       0       2.877       13.577      30.625      
+YZY     H183    H       H       0       2.155       14.607      31.594      
+YZY     H191    H       H       0       -7.809      15.278      43.374      
+YZY     H192    H       H       0       -8.409      14.674      44.729      
+YZY     H211    H       H       0       -10.457     11.598      42.175      
+YZY     H212    H       H       0       -9.327      11.116      43.173      
+YZY     H221    H       H       0       -7.730      11.245      41.522      
+YZY     H222    H       H       0       -8.754      11.929      40.527      
+YZY     H231    H       H       0       -9.988      9.949       40.387      
+YZY     H232    H       H       0       -9.042      9.260       41.455      
+YZY     H241    H       H       0       -7.242      9.486       39.884      
+YZY     H242    H       H       0       -8.307      9.967       38.815      
+YZY     H251    H       H       0       -8.471      7.417       40.026      
+YZY     H252    H       H       0       -7.676      7.644       38.676      
+YZY     H261    H       H       0       -9.772      8.430       37.721      
+YZY     H262    H       H       0       -10.480     7.873       39.020      
+YZY     H271    H       H       0       -9.684      5.708       38.469      
+YZY     H272    H       H       0       -9.106      6.304       37.116      
+YZY     H281    H       H       0       -11.264     6.588       36.271      
+YZY     H291    H       H       0       -12.909     5.404       36.983      
+YZY     H301    H       H       0       -12.091     5.283       39.575      
+YZY     H302    H       H       0       -11.480     4.013       38.839      
+YZY     H311    H       H       0       -13.602     3.268       38.293      
+YZY     H312    H       H       0       -14.249     4.572       38.910      
+YZY     H321    H       H       0       -14.587     2.979       40.474      
+YZY     H322    H       H       0       -13.411     3.865       41.058      
+YZY     H331    H       H       0       -11.847     2.264       40.431      
+YZY     H332    H       H       0       -12.977     1.396       39.740      
+YZY     H341    H       H       0       -13.922     0.908       41.800      
+YZY     H342    H       H       0       -12.900     1.871       42.531      
+YZY     H351    H       H       0       -11.710     -0.206      41.119      
+YZY     H352    H       H       0       -12.569     -0.672      42.362      
+YZY     H361    H       H       0       -10.422     -0.492      43.084      
+YZY     H362    H       H       0       -11.229     0.693       43.760      
+YZY     H371    H       H       0       -9.125      1.403       42.935      
+YZY     H372    H       H       0       -10.316     2.222       42.277      
+YZY     H373    H       H       0       -9.608      1.057       41.463      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YZY          O1          C1      SINGLE       n     1.425  0.0100     1.425  0.0100
+YZY          C1          C2      SINGLE       n     1.512  0.0104     1.512  0.0104
+YZY          C2          O2      SINGLE       n     1.454  0.0123     1.454  0.0123
+YZY          C2         C19      SINGLE       n     1.512  0.0104     1.512  0.0104
+YZY          O2          C3      SINGLE       n     1.342  0.0131     1.342  0.0131
+YZY          C3          C4      SINGLE       n     1.503  0.0174     1.503  0.0174
+YZY          C3          O3      DOUBLE       n     1.203  0.0150     1.203  0.0150
+YZY          C4          C5      SINGLE       n     1.497  0.0200     1.497  0.0200
+YZY          C5          C6      SINGLE       n     1.519  0.0164     1.519  0.0164
+YZY          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY          C7          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY          C8          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY          C9         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY         C12         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY         C16         C17      SINGLE       n     1.507  0.0200     1.507  0.0200
+YZY         C17         C18      SINGLE       n     1.510  0.0200     1.510  0.0200
+YZY         C19          O4      SINGLE       n     1.444  0.0100     1.444  0.0100
+YZY          O4         C20      SINGLE       n     1.329  0.0116     1.329  0.0116
+YZY         C20         C21      SINGLE       n     1.503  0.0174     1.503  0.0174
+YZY         C20          O5      DOUBLE       n     1.203  0.0150     1.203  0.0150
+YZY         C21         C22      SINGLE       n     1.497  0.0200     1.497  0.0200
+YZY         C22         C23      SINGLE       n     1.519  0.0164     1.519  0.0164
+YZY         C23         C24      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY         C24         C25      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY         C25         C26      SINGLE       n     1.523  0.0117     1.523  0.0117
+YZY         C26         C27      SINGLE       n     1.497  0.0200     1.497  0.0200
+YZY         C27         C28      SINGLE       n     1.497  0.0127     1.497  0.0127
+YZY         C28         C29      DOUBLE       n     1.308  0.0200     1.308  0.0200
+YZY         C29         C30      SINGLE       n     1.497  0.0127     1.497  0.0127
+YZY         C30         C31      SINGLE       n     1.497  0.0200     1.497  0.0200
+YZY         C31         C32      SINGLE       n     1.519  0.0164     1.519  0.0164
+YZY         C32         C33      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY         C33         C34      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY         C34         C35      SINGLE       n     1.509  0.0200     1.509  0.0200
+YZY         C35         C36      SINGLE       n     1.507  0.0200     1.507  0.0200
+YZY         C36         C37      SINGLE       n     1.510  0.0200     1.510  0.0200
+YZY          O1         H1O      SINGLE       n     0.970  0.0120     0.846  0.0200
+YZY          C1         H11      SINGLE       n     1.089  0.0100     0.988  0.0200
+YZY          C1         H12      SINGLE       n     1.089  0.0100     0.988  0.0200
+YZY          C2         H21      SINGLE       n     1.089  0.0100     0.990  0.0148
+YZY          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0185
+YZY          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0185
+YZY          C5         H51      SINGLE       n     1.089  0.0100     0.980  0.0160
+YZY          C5         H52      SINGLE       n     1.089  0.0100     0.980  0.0160
+YZY          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C17        H171      SINGLE       n     1.089  0.0100     0.982  0.0155
+YZY         C17        H172      SINGLE       n     1.089  0.0100     0.982  0.0155
+YZY         C18        H181      SINGLE       n     1.089  0.0100     0.973  0.0157
+YZY         C18        H182      SINGLE       n     1.089  0.0100     0.973  0.0157
+YZY         C18        H183      SINGLE       n     1.089  0.0100     0.973  0.0157
+YZY         C19        H191      SINGLE       n     1.089  0.0100     0.985  0.0188
+YZY         C19        H192      SINGLE       n     1.089  0.0100     0.985  0.0188
+YZY         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0185
+YZY         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0185
+YZY         C22        H221      SINGLE       n     1.089  0.0100     0.980  0.0160
+YZY         C22        H222      SINGLE       n     1.089  0.0100     0.980  0.0160
+YZY         C23        H231      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C23        H232      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C24        H241      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C24        H242      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C25        H251      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C25        H252      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C26        H261      SINGLE       n     1.089  0.0100     0.980  0.0160
+YZY         C26        H262      SINGLE       n     1.089  0.0100     0.980  0.0160
+YZY         C27        H271      SINGLE       n     1.089  0.0100     0.983  0.0180
+YZY         C27        H272      SINGLE       n     1.089  0.0100     0.983  0.0180
+YZY         C28        H281      SINGLE       n     1.082  0.0130     0.945  0.0200
+YZY         C29        H291      SINGLE       n     1.082  0.0130     0.945  0.0200
+YZY         C30        H301      SINGLE       n     1.089  0.0100     0.983  0.0180
+YZY         C30        H302      SINGLE       n     1.089  0.0100     0.983  0.0180
+YZY         C31        H311      SINGLE       n     1.089  0.0100     0.980  0.0160
+YZY         C31        H312      SINGLE       n     1.089  0.0100     0.980  0.0160
+YZY         C32        H321      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C32        H322      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C33        H331      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C33        H332      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C34        H341      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C34        H342      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C35        H351      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C35        H352      SINGLE       n     1.089  0.0100     0.981  0.0163
+YZY         C36        H361      SINGLE       n     1.089  0.0100     0.982  0.0155
+YZY         C36        H362      SINGLE       n     1.089  0.0100     0.982  0.0155
+YZY         C37        H371      SINGLE       n     1.089  0.0100     0.973  0.0157
+YZY         C37        H372      SINGLE       n     1.089  0.0100     0.973  0.0157
+YZY         C37        H373      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YZY          C1          O1         H1O     108.280    3.00
+YZY          O1          C1          C2     111.469    1.50
+YZY          O1          C1         H11     109.268    1.50
+YZY          O1          C1         H12     109.268    1.50
+YZY          C2          C1         H11     109.582    1.50
+YZY          C2          C1         H12     109.582    1.50
+YZY         H11          C1         H12     108.313    1.50
+YZY          C1          C2          O2     109.042    2.74
+YZY          C1          C2         C19     113.504    1.50
+YZY          C1          C2         H21     108.656    1.50
+YZY          O2          C2         C19     109.042    2.74
+YZY          O2          C2         H21     109.221    1.50
+YZY         C19          C2         H21     108.656    1.50
+YZY          C2          O2          C3     117.944    1.50
+YZY          O2          C3          C4     113.008    3.00
+YZY          O2          C3          O3     122.278    2.43
+YZY          C4          C3          O3     124.714    2.71
+YZY          C3          C4          C5     113.365    1.50
+YZY          C3          C4         H41     108.883    1.50
+YZY          C3          C4         H42     108.883    1.50
+YZY          C5          C4         H41     108.815    1.50
+YZY          C5          C4         H42     108.815    1.50
+YZY         H41          C4         H42     107.521    1.50
+YZY          C4          C5          C6     112.553    1.50
+YZY          C4          C5         H51     109.164    1.50
+YZY          C4          C5         H52     109.164    1.50
+YZY          C6          C5         H51     108.698    1.50
+YZY          C6          C5         H52     108.698    1.50
+YZY         H51          C5         H52     107.646    1.50
+YZY          C5          C6          C7     114.243    1.69
+YZY          C5          C6         H61     108.698    1.50
+YZY          C5          C6         H62     108.698    1.50
+YZY          C7          C6         H61     108.698    1.50
+YZY          C7          C6         H62     108.698    1.50
+YZY         H61          C6         H62     107.646    1.50
+YZY          C6          C7          C8     114.243    1.69
+YZY          C6          C7         H71     108.698    1.50
+YZY          C6          C7         H72     108.698    1.50
+YZY          C8          C7         H71     108.698    1.50
+YZY          C8          C7         H72     108.698    1.50
+YZY         H71          C7         H72     107.646    1.50
+YZY          C7          C8          C9     114.243    1.69
+YZY          C7          C8         H81     108.698    1.50
+YZY          C7          C8         H82     108.698    1.50
+YZY          C9          C8         H81     108.698    1.50
+YZY          C9          C8         H82     108.698    1.50
+YZY         H81          C8         H82     107.646    1.50
+YZY          C8          C9         C10     114.243    1.69
+YZY          C8          C9         H91     108.698    1.50
+YZY          C8          C9         H92     108.698    1.50
+YZY         C10          C9         H91     108.698    1.50
+YZY         C10          C9         H92     108.698    1.50
+YZY         H91          C9         H92     107.646    1.50
+YZY          C9         C10         C11     114.243    1.69
+YZY          C9         C10        H101     108.698    1.50
+YZY          C9         C10        H102     108.698    1.50
+YZY         C11         C10        H101     108.698    1.50
+YZY         C11         C10        H102     108.698    1.50
+YZY        H101         C10        H102     107.646    1.50
+YZY         C10         C11         C12     114.243    1.69
+YZY         C10         C11        H111     108.698    1.50
+YZY         C10         C11        H112     108.698    1.50
+YZY         C12         C11        H111     108.698    1.50
+YZY         C12         C11        H112     108.698    1.50
+YZY        H111         C11        H112     107.646    1.50
+YZY         C11         C12         C13     114.243    1.69
+YZY         C11         C12        H121     108.698    1.50
+YZY         C11         C12        H122     108.698    1.50
+YZY         C13         C12        H121     108.698    1.50
+YZY         C13         C12        H122     108.698    1.50
+YZY        H121         C12        H122     107.646    1.50
+YZY         C12         C13         C14     114.243    1.69
+YZY         C12         C13        H131     108.698    1.50
+YZY         C12         C13        H132     108.698    1.50
+YZY         C14         C13        H131     108.698    1.50
+YZY         C14         C13        H132     108.698    1.50
+YZY        H131         C13        H132     107.646    1.50
+YZY         C13         C14         C15     114.243    1.69
+YZY         C13         C14        H141     108.698    1.50
+YZY         C13         C14        H142     108.698    1.50
+YZY         C15         C14        H141     108.698    1.50
+YZY         C15         C14        H142     108.698    1.50
+YZY        H141         C14        H142     107.646    1.50
+YZY         C14         C15         C16     114.243    1.69
+YZY         C14         C15        H151     108.698    1.50
+YZY         C14         C15        H152     108.698    1.50
+YZY         C16         C15        H151     108.698    1.50
+YZY         C16         C15        H152     108.698    1.50
+YZY        H151         C15        H152     107.646    1.50
+YZY         C15         C16         C17     114.362    3.00
+YZY         C15         C16        H161     108.698    1.50
+YZY         C15         C16        H162     108.698    1.50
+YZY         C17         C16        H161     108.653    1.50
+YZY         C17         C16        H162     108.653    1.50
+YZY        H161         C16        H162     107.646    1.50
+YZY         C16         C17         C18     113.719    3.00
+YZY         C16         C17        H171     108.758    1.50
+YZY         C16         C17        H172     108.758    1.50
+YZY         C18         C17        H171     108.918    1.50
+YZY         C18         C17        H172     108.918    1.50
+YZY        H171         C17        H172     107.763    1.50
+YZY         C17         C18        H181     109.554    1.50
+YZY         C17         C18        H182     109.554    1.50
+YZY         C17         C18        H183     109.554    1.50
+YZY        H181         C18        H182     109.380    1.50
+YZY        H181         C18        H183     109.380    1.50
+YZY        H182         C18        H183     109.380    1.50
+YZY          C2         C19          O4     108.641    1.70
+YZY          C2         C19        H191     110.376    1.50
+YZY          C2         C19        H192     110.376    1.50
+YZY          O4         C19        H191     109.514    1.50
+YZY          O4         C19        H192     109.514    1.50
+YZY        H191         C19        H192     108.601    1.50
+YZY         C19          O4         C20     116.187    1.50
+YZY          O4         C20         C21     111.516    1.50
+YZY          O4         C20          O5     123.233    1.50
+YZY         C21         C20          O5     125.251    2.71
+YZY         C20         C21         C22     113.365    1.50
+YZY         C20         C21        H211     108.883    1.50
+YZY         C20         C21        H212     108.883    1.50
+YZY         C22         C21        H211     108.815    1.50
+YZY         C22         C21        H212     108.815    1.50
+YZY        H211         C21        H212     107.521    1.50
+YZY         C21         C22         C23     112.553    1.50
+YZY         C21         C22        H221     109.164    1.50
+YZY         C21         C22        H222     109.164    1.50
+YZY         C23         C22        H221     108.698    1.50
+YZY         C23         C22        H222     108.698    1.50
+YZY        H221         C22        H222     107.646    1.50
+YZY         C22         C23         C24     114.243    1.69
+YZY         C22         C23        H231     108.698    1.50
+YZY         C22         C23        H232     108.698    1.50
+YZY         C24         C23        H231     108.698    1.50
+YZY         C24         C23        H232     108.698    1.50
+YZY        H231         C23        H232     107.646    1.50
+YZY         C23         C24         C25     114.243    1.69
+YZY         C23         C24        H241     108.698    1.50
+YZY         C23         C24        H242     108.698    1.50
+YZY         C25         C24        H241     108.698    1.50
+YZY         C25         C24        H242     108.698    1.50
+YZY        H241         C24        H242     107.646    1.50
+YZY         C24         C25         C26     114.243    1.69
+YZY         C24         C25        H251     108.698    1.50
+YZY         C24         C25        H252     108.698    1.50
+YZY         C26         C25        H251     108.698    1.50
+YZY         C26         C25        H252     108.698    1.50
+YZY        H251         C25        H252     107.646    1.50
+YZY         C25         C26         C27     114.266    1.80
+YZY         C25         C26        H261     108.698    1.50
+YZY         C25         C26        H262     108.698    1.50
+YZY         C27         C26        H261     108.805    1.50
+YZY         C27         C26        H262     108.805    1.50
+YZY        H261         C26        H262     107.646    1.50
+YZY         C26         C27         C28     113.226    1.94
+YZY         C26         C27        H271     108.819    1.50
+YZY         C26         C27        H272     108.819    1.50
+YZY         C28         C27        H271     108.886    1.50
+YZY         C28         C27        H272     108.886    1.50
+YZY        H271         C27        H272     107.922    1.50
+YZY         C27         C28         C29     125.684    3.00
+YZY         C27         C28        H281     117.007    1.61
+YZY         C29         C28        H281     117.310    2.16
+YZY         C28         C29         C30     125.684    3.00
+YZY         C28         C29        H291     117.310    2.16
+YZY         C30         C29        H291     117.007    1.61
+YZY         C29         C30         C31     113.226    1.94
+YZY         C29         C30        H301     108.886    1.50
+YZY         C29         C30        H302     108.886    1.50
+YZY         C31         C30        H301     108.819    1.50
+YZY         C31         C30        H302     108.819    1.50
+YZY        H301         C30        H302     107.922    1.50
+YZY         C30         C31         C32     114.266    1.80
+YZY         C30         C31        H311     108.805    1.50
+YZY         C30         C31        H312     108.805    1.50
+YZY         C32         C31        H311     108.698    1.50
+YZY         C32         C31        H312     108.698    1.50
+YZY        H311         C31        H312     107.646    1.50
+YZY         C31         C32         C33     114.243    1.69
+YZY         C31         C32        H321     108.698    1.50
+YZY         C31         C32        H322     108.698    1.50
+YZY         C33         C32        H321     108.698    1.50
+YZY         C33         C32        H322     108.698    1.50
+YZY        H321         C32        H322     107.646    1.50
+YZY         C32         C33         C34     114.243    1.69
+YZY         C32         C33        H331     108.698    1.50
+YZY         C32         C33        H332     108.698    1.50
+YZY         C34         C33        H331     108.698    1.50
+YZY         C34         C33        H332     108.698    1.50
+YZY        H331         C33        H332     107.646    1.50
+YZY         C33         C34         C35     114.243    1.69
+YZY         C33         C34        H341     108.698    1.50
+YZY         C33         C34        H342     108.698    1.50
+YZY         C35         C34        H341     108.698    1.50
+YZY         C35         C34        H342     108.698    1.50
+YZY        H341         C34        H342     107.646    1.50
+YZY         C34         C35         C36     114.362    3.00
+YZY         C34         C35        H351     108.698    1.50
+YZY         C34         C35        H352     108.698    1.50
+YZY         C36         C35        H351     108.653    1.50
+YZY         C36         C35        H352     108.653    1.50
+YZY        H351         C35        H352     107.646    1.50
+YZY         C35         C36         C37     113.719    3.00
+YZY         C35         C36        H361     108.758    1.50
+YZY         C35         C36        H362     108.758    1.50
+YZY         C37         C36        H361     108.918    1.50
+YZY         C37         C36        H362     108.918    1.50
+YZY        H361         C36        H362     107.763    1.50
+YZY         C36         C37        H371     109.554    1.50
+YZY         C36         C37        H372     109.554    1.50
+YZY         C36         C37        H373     109.554    1.50
+YZY        H371         C37        H372     109.380    1.50
+YZY        H371         C37        H373     109.380    1.50
+YZY        H372         C37        H373     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YZY             sp3_sp3_1          C2          C1          O1         H1O     180.000    10.0     3
+YZY            sp3_sp3_61          C7          C8          C9         C10     180.000    10.0     3
+YZY            sp3_sp3_70         C11         C10          C9          C8     180.000    10.0     3
+YZY            sp3_sp3_79          C9         C10         C11         C12     180.000    10.0     3
+YZY            sp3_sp3_88         C10         C11         C12         C13     180.000    10.0     3
+YZY            sp3_sp3_97         C11         C12         C13         C14     180.000    10.0     3
+YZY           sp3_sp3_106         C12         C13         C14         C15     180.000    10.0     3
+YZY           sp3_sp3_115         C13         C14         C15         C16     180.000    10.0     3
+YZY           sp3_sp3_124         C14         C15         C16         C17     180.000    10.0     3
+YZY           sp3_sp3_133         C15         C16         C17         C18     180.000    10.0     3
+YZY           sp3_sp3_142         C16         C17         C18        H181     180.000    10.0     3
+YZY             sp3_sp3_4          O1          C1          C2          O2     180.000    10.0     3
+YZY           sp3_sp3_151          C2         C19          O4         C20     180.000    10.0     3
+YZY             sp2_sp2_3         C21         C20          O4         C19     180.000     5.0     2
+YZY             sp2_sp3_8          O4         C20         C21         C22     120.000    10.0     6
+YZY           sp3_sp3_154         C20         C21         C22         C23     180.000    10.0     3
+YZY           sp3_sp3_163         C21         C22         C23         C24     180.000    10.0     3
+YZY           sp3_sp3_172         C22         C23         C24         C25     180.000    10.0     3
+YZY           sp3_sp3_181         C23         C24         C25         C26     180.000    10.0     3
+YZY           sp3_sp3_190         C24         C25         C26         C27     180.000    10.0     3
+YZY            sp3_sp3_16          O4         C19          C2          C1     180.000    10.0     3
+YZY            sp3_sp3_13          C1          C2          O2          C3     180.000    10.0     3
+YZY           sp3_sp3_199         C25         C26         C27         C28     180.000    10.0     3
+YZY            sp2_sp3_14         C29         C28         C27         C26     120.000    10.0     6
+YZY             sp2_sp2_5         C27         C28         C29         C30     180.000     5.0     2
+YZY            sp2_sp3_20         C28         C29         C30         C31     120.000    10.0     6
+YZY           sp3_sp3_208         C29         C30         C31         C32     180.000    10.0     3
+YZY           sp3_sp3_217         C30         C31         C32         C33     180.000    10.0     3
+YZY           sp3_sp3_226         C31         C32         C33         C34     180.000    10.0     3
+YZY           sp3_sp3_235         C32         C33         C34         C35     180.000    10.0     3
+YZY           sp3_sp3_244         C33         C34         C35         C36     180.000    10.0     3
+YZY           sp3_sp3_253         C34         C35         C36         C37     180.000    10.0     3
+YZY             sp2_sp2_1          C4          C3          O2          C2     180.000     5.0     2
+YZY           sp3_sp3_262         C35         C36         C37        H371     180.000    10.0     3
+YZY             sp2_sp3_2          O2          C3          C4          C5     120.000    10.0     6
+YZY            sp3_sp3_25          C3          C4          C5          C6     180.000    10.0     3
+YZY            sp3_sp3_34          C4          C5          C6          C7     180.000    10.0     3
+YZY            sp3_sp3_43          C5          C6          C7          C8     180.000    10.0     3
+YZY            sp3_sp3_52          C6          C7          C8          C9     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+YZY    chir_1    C2    O2    C19    C1    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YZY    plan-1          C3   0.020
+YZY    plan-1          C4   0.020
+YZY    plan-1          O2   0.020
+YZY    plan-1          O3   0.020
+YZY    plan-2         C20   0.020
+YZY    plan-2         C21   0.020
+YZY    plan-2          O4   0.020
+YZY    plan-2          O5   0.020
+YZY    plan-3         C27   0.020
+YZY    plan-3         C28   0.020
+YZY    plan-3         C29   0.020
+YZY    plan-3        H281   0.020
+YZY    plan-4         C28   0.020
+YZY    plan-4         C29   0.020
+YZY    plan-4         C30   0.020
+YZY    plan-4        H291   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YZY           SMILES              ACDLabs 12.01                                                                                                                                       O=C(OC(CO)COC(=O)CCCCCCC\C=C/CCCCCCCC)CCCCCCCCCCCCCCC
+YZY            InChI                InChI  1.03 InChI=1S/C37H70O5/c1-3-5-7-9-11-13-15-17-18-20-21-23-25-27-29-31-36(39)41-34-35(33-38)42-37(40)32-30-28-26-24-22-19-16-14-12-10-8-6-4-2/h17-18,35,38H,3-16,19-34H2,1-2H3/b18-17-/t35-/m0/s1
+YZY         InChIKey                InChI  1.03                                                                                                                                                                 DOZKMFVMCATMEH-OZKTZCCCSA-N
+YZY SMILES_CANONICAL               CACTVS 3.370                                                                                                                                  CCCCCCCCCCCCCCCC(=O)O[C@@H](CO)COC(=O)CCCCCCC\C=C/CCCCCCCC
+YZY           SMILES               CACTVS 3.370                                                                                                                                      CCCCCCCCCCCCCCCC(=O)O[CH](CO)COC(=O)CCCCCCCC=CCCCCCCCC
+YZY SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                  CCCCCCCCCCCCCCCC(=O)O[C@@H](CO)COC(=O)CCCCCCC/C=C\CCCCCCCC
+YZY           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                         CCCCCCCCCCCCCCCC(=O)OC(CO)COC(=O)CCCCCCCC=CCCCCCCCC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YZY acedrg               243         "dictionary generator"                  
+YZY acedrg_database      11          "data source"                           
+YZY rdkit                2017.03.2   "Chemoinformatics tool"
+YZY refmac5              5.8.0238    "optimization tool"                     

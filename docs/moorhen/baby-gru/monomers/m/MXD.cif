@@ -1,0 +1,231 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MXD     MXD      "6-PIPERIDIN-1-YLPYRIMIDINE-2,4-DIAMINE 3-OXIDE"     NON-POLYMER     30     15     .     
+#
+data_comp_MXD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MXD     NAO     N       NH2     0       8.095       -2.047      11.713      
+MXD     CAE     C       CR6     0       7.100       -1.409      11.015      
+MXD     CAF     C       CR16    0       6.593       -1.973      9.852       
+MXD     NAC     N       NR6     1       6.585       -0.203      11.450      
+MXD     OAN     O       OC      -1      7.076       0.361       12.595      
+MXD     CAA     C       CR6     0       5.594       0.420       10.742      
+MXD     NAM     N       NH2     0       5.121       1.584       11.195      
+MXD     NAB     N       NRD6    0       5.096       -0.114      9.608       
+MXD     CAD     C       CR6     0       5.575       -1.296      9.153       
+MXD     NAI     N       NR6     0       5.027       -1.793      8.000       
+MXD     CAG     C       CH2     0       3.579       -1.907      7.774       
+MXD     CAK     C       CH2     0       5.834       -2.320      6.891       
+MXD     CAL     C       CH2     0       5.451       -1.682      5.569       
+MXD     CAJ     C       CH2     0       3.960       -1.805      5.301       
+MXD     CAH     C       CH2     0       3.175       -1.240      6.473       
+MXD     HAO1    H       H       0       8.300       -1.777      12.522      
+MXD     HAO2    H       H       0       8.526       -2.721      11.351      
+MXD     HAF     H       H       0       6.935       -2.795      9.540       
+MXD     HAM1    H       H       0       4.478       1.995       10.760      
+MXD     HAM2    H       H       0       5.455       1.933       11.928      
+MXD     HAG1    H       H       0       3.332       -2.861      7.742       
+MXD     HAG2    H       H       0       3.089       -1.491      8.522       
+MXD     HAK1    H       H       0       5.704       -3.296      6.833       
+MXD     HAK2    H       H       0       6.789       -2.150      7.067       
+MXD     HAL1    H       H       0       5.949       -2.118      4.842       
+MXD     HAL2    H       H       0       5.703       -0.732      5.582       
+MXD     HAJ1    H       H       0       3.724       -2.748      5.170       
+MXD     HAJ2    H       H       0       3.729       -1.316      4.482       
+MXD     HAH1    H       H       0       3.336       -0.273      6.540       
+MXD     HAH2    H       H       0       2.213       -1.379      6.321       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MXD         NAO         CAE      SINGLE       n     1.370  0.0200     1.370  0.0200
+MXD         CAE         CAF      DOUBLE       y     1.387  0.0122     1.387  0.0122
+MXD         CAE         NAC      SINGLE       y     1.376  0.0146     1.376  0.0146
+MXD         CAF         CAD      SINGLE       y     1.405  0.0100     1.405  0.0100
+MXD         NAC         OAN      SINGLE       n     1.366  0.0100     1.366  0.0100
+MXD         NAC         CAA      DOUBLE       y     1.362  0.0100     1.362  0.0100
+MXD         CAA         NAM      SINGLE       n     1.333  0.0133     1.333  0.0133
+MXD         CAA         NAB      SINGLE       y     1.339  0.0119     1.339  0.0119
+MXD         NAB         CAD      DOUBLE       y     1.348  0.0100     1.348  0.0100
+MXD         CAD         NAI      SINGLE       n     1.366  0.0103     1.366  0.0103
+MXD         NAI         CAG      SINGLE       n     1.465  0.0100     1.465  0.0100
+MXD         NAI         CAK      SINGLE       n     1.465  0.0100     1.465  0.0100
+MXD         CAG         CAH      SINGLE       n     1.515  0.0100     1.515  0.0100
+MXD         CAK         CAL      SINGLE       n     1.515  0.0100     1.515  0.0100
+MXD         CAL         CAJ      SINGLE       n     1.519  0.0104     1.519  0.0104
+MXD         CAJ         CAH      SINGLE       n     1.519  0.0104     1.519  0.0104
+MXD         NAO        HAO1      SINGLE       n     1.016  0.0100     0.877  0.0200
+MXD         NAO        HAO2      SINGLE       n     1.016  0.0100     0.877  0.0200
+MXD         CAF         HAF      SINGLE       n     1.082  0.0130     0.943  0.0168
+MXD         NAM        HAM1      SINGLE       n     1.016  0.0100     0.877  0.0200
+MXD         NAM        HAM2      SINGLE       n     1.016  0.0100     0.877  0.0200
+MXD         CAG        HAG1      SINGLE       n     1.089  0.0100     0.986  0.0100
+MXD         CAG        HAG2      SINGLE       n     1.089  0.0100     0.986  0.0100
+MXD         CAK        HAK1      SINGLE       n     1.089  0.0100     0.986  0.0100
+MXD         CAK        HAK2      SINGLE       n     1.089  0.0100     0.986  0.0100
+MXD         CAL        HAL1      SINGLE       n     1.089  0.0100     0.983  0.0130
+MXD         CAL        HAL2      SINGLE       n     1.089  0.0100     0.983  0.0130
+MXD         CAJ        HAJ1      SINGLE       n     1.089  0.0100     0.981  0.0121
+MXD         CAJ        HAJ2      SINGLE       n     1.089  0.0100     0.981  0.0121
+MXD         CAH        HAH1      SINGLE       n     1.089  0.0100     0.983  0.0130
+MXD         CAH        HAH2      SINGLE       n     1.089  0.0100     0.983  0.0130
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MXD         CAE         NAO        HAO1     119.878    2.77
+MXD         CAE         NAO        HAO2     119.878    2.77
+MXD        HAO1         NAO        HAO2     120.243    1.85
+MXD         NAO         CAE         CAF     119.814    1.50
+MXD         NAO         CAE         NAC     120.557    1.61
+MXD         CAF         CAE         NAC     119.629    1.64
+MXD         CAE         CAF         CAD     119.489    1.50
+MXD         CAE         CAF         HAF     119.652    1.50
+MXD         CAD         CAF         HAF     120.858    1.50
+MXD         CAE         NAC         OAN     119.714    3.00
+MXD         CAE         NAC         CAA     120.572    2.37
+MXD         OAN         NAC         CAA     119.714    3.00
+MXD         NAC         CAA         NAM     118.531    1.50
+MXD         NAC         CAA         NAB     121.059    1.50
+MXD         NAM         CAA         NAB     120.410    1.50
+MXD         CAA         NAM        HAM1     119.700    2.06
+MXD         CAA         NAM        HAM2     119.700    2.06
+MXD        HAM1         NAM        HAM2     120.601    1.96
+MXD         CAA         NAB         CAD     118.474    1.50
+MXD         CAF         CAD         NAB     120.777    1.50
+MXD         CAF         CAD         NAI     122.495    1.50
+MXD         NAB         CAD         NAI     116.727    1.50
+MXD         CAD         NAI         CAG     123.295    1.63
+MXD         CAD         NAI         CAK     123.295    1.63
+MXD         CAG         NAI         CAK     113.410    1.54
+MXD         NAI         CAG         CAH     110.602    1.50
+MXD         NAI         CAG        HAG1     109.264    1.50
+MXD         NAI         CAG        HAG2     109.264    1.50
+MXD         CAH         CAG        HAG1     109.573    1.50
+MXD         CAH         CAG        HAG2     109.573    1.50
+MXD        HAG1         CAG        HAG2     108.202    1.50
+MXD         NAI         CAK         CAL     110.602    1.50
+MXD         NAI         CAK        HAK1     109.264    1.50
+MXD         NAI         CAK        HAK2     109.264    1.50
+MXD         CAL         CAK        HAK1     109.573    1.50
+MXD         CAL         CAK        HAK2     109.573    1.50
+MXD        HAK1         CAK        HAK2     108.202    1.50
+MXD         CAK         CAL         CAJ     111.312    1.50
+MXD         CAK         CAL        HAL1     109.299    1.50
+MXD         CAK         CAL        HAL2     109.299    1.50
+MXD         CAJ         CAL        HAL1     109.453    1.50
+MXD         CAJ         CAL        HAL2     109.453    1.50
+MXD        HAL1         CAL        HAL2     108.022    1.50
+MXD         CAL         CAJ         CAH     110.168    1.50
+MXD         CAL         CAJ        HAJ1     109.613    1.50
+MXD         CAL         CAJ        HAJ2     109.613    1.50
+MXD         CAH         CAJ        HAJ1     109.613    1.50
+MXD         CAH         CAJ        HAJ2     109.613    1.50
+MXD        HAJ1         CAJ        HAJ2     108.036    1.50
+MXD         CAG         CAH         CAJ     111.312    1.50
+MXD         CAG         CAH        HAH1     109.299    1.50
+MXD         CAG         CAH        HAH2     109.299    1.50
+MXD         CAJ         CAH        HAH1     109.453    1.50
+MXD         CAJ         CAH        HAH2     109.453    1.50
+MXD        HAH1         CAH        HAH2     108.022    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MXD             sp2_sp2_1         CAF         CAE         NAO        HAO1     180.000     5.0     2
+MXD             sp3_sp3_1         NAI         CAG         CAH         CAJ     -60.000    10.0     3
+MXD            sp3_sp3_28         NAI         CAK         CAL         CAJ      60.000    10.0     3
+MXD            sp3_sp3_19         CAH         CAJ         CAL         CAK     -60.000    10.0     3
+MXD            sp3_sp3_10         CAG         CAH         CAJ         CAL      60.000    10.0     3
+MXD       const_sp2_sp2_3         NAO         CAE         CAF         CAD     180.000     5.0     2
+MXD              const_20         NAO         CAE         NAC         OAN       0.000    10.0     2
+MXD       const_sp2_sp2_5         NAB         CAD         CAF         CAE       0.000     5.0     2
+MXD              const_16         NAM         CAA         NAC         OAN       0.000    10.0     2
+MXD             sp2_sp2_5         NAC         CAA         NAM        HAM1     180.000     5.0     2
+MXD              const_12         NAM         CAA         NAB         CAD     180.000    10.0     2
+MXD       const_sp2_sp2_9         CAF         CAD         NAB         CAA       0.000     5.0     2
+MXD             sp2_sp2_9         CAF         CAD         NAI         CAG     180.000     5.0     2
+MXD             sp2_sp3_4         CAD         NAI         CAG         CAH     180.000    10.0     6
+MXD            sp2_sp3_10         CAD         NAI         CAK         CAL     180.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MXD    plan-1         CAA   0.020
+MXD    plan-1         CAD   0.020
+MXD    plan-1         CAE   0.020
+MXD    plan-1         CAF   0.020
+MXD    plan-1         HAF   0.020
+MXD    plan-1         NAB   0.020
+MXD    plan-1         NAC   0.020
+MXD    plan-1         NAI   0.020
+MXD    plan-1         NAM   0.020
+MXD    plan-1         NAO   0.020
+MXD    plan-1         OAN   0.020
+MXD    plan-2         CAE   0.020
+MXD    plan-2        HAO1   0.020
+MXD    plan-2        HAO2   0.020
+MXD    plan-2         NAO   0.020
+MXD    plan-3         CAA   0.020
+MXD    plan-3        HAM1   0.020
+MXD    plan-3        HAM2   0.020
+MXD    plan-3         NAM   0.020
+MXD    plan-4         CAD   0.020
+MXD    plan-4         CAG   0.020
+MXD    plan-4         CAK   0.020
+MXD    plan-4         NAI   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MXD           SMILES              ACDLabs 10.04                                                     "[O-][n+]1c(nc(cc1N)N2CCCCC2)N"
+MXD SMILES_CANONICAL               CACTVS 3.341                                                       Nc1cc(nc(N)[n+]1[O-])N2CCCCC2
+MXD           SMILES               CACTVS 3.341                                                       Nc1cc(nc(N)[n+]1[O-])N2CCCCC2
+MXD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                     c1c([n+](c(nc1N2CCCCC2)N)[O-])N
+MXD           SMILES "OpenEye OEToolkits" 1.5.0                                                     c1c([n+](c(nc1N2CCCCC2)N)[O-])N
+MXD            InChI                InChI  1.03 InChI=1S/C9H15N5O/c10-7-6-8(12-9(11)14(7)15)13-4-2-1-3-5-13/h6H,1-5,10H2,(H2,11,12)
+MXD         InChIKey                InChI  1.03                                                         ZFMITUMMTDLWHR-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MXD acedrg               243         "dictionary generator"                  
+MXD acedrg_database      11          "data source"                           
+MXD rdkit                2017.03.2   "Chemoinformatics tool"
+MXD refmac5              5.8.0238    "optimization tool"                     

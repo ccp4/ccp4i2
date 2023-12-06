@@ -1,0 +1,236 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FHW     FHW      (2~{R})-3-phenyl-2-(2~{H}-1,2,3,4-tetrazol-5-yl)propanehydrazide     NON-POLYMER     29     17     .     
+#
+data_comp_FHW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FHW     CAA     C       CR6     0       -1.773      -9.583      -17.761     
+FHW     CAB     C       CR16    0       -0.676      -10.102     -17.083     
+FHW     CAC     C       CR16    0       0.379       -9.281      -16.704     
+FHW     CAD     C       CR16    0       0.349       -7.933      -16.999     
+FHW     CAE     C       CR16    0       -0.731      -7.404      -17.671     
+FHW     CAF     C       CR16    0       -1.787      -8.223      -18.051     
+FHW     CAK     C       CR5     0       -4.922      -11.779     -17.471     
+FHW     CAL     C       CH1     0       -3.937      -10.743     -17.047     
+FHW     CAM     C       C       0       -4.651      -9.459      -16.625     
+FHW     CAQ     C       CH2     0       -2.921      -10.474     -18.174     
+FHW     NAG     N       NR5     0       -6.122      -13.496     -17.507     
+FHW     NAH     N       NRD5    0       -6.379      -12.822     -18.599     
+FHW     NAI     N       NRD5    0       -5.216      -12.869     -16.781     
+FHW     NAJ     N       NRD5    0       -5.617      -11.745     -18.560     
+FHW     NAO     N       NH1     0       -4.434      -9.039      -15.376     
+FHW     NAP     N       NT2     0       -5.017      -7.859      -14.866     
+FHW     OAN     O       O       0       -5.376      -8.855      -17.418     
+FHW     H1      H       H       0       -0.649      -11.023     -16.878     
+FHW     H2      H       H       0       1.117       -9.647      -16.244     
+FHW     H3      H       H       0       1.066       -7.376      -16.741     
+FHW     H4      H       H       0       -0.755      -6.482      -17.874     
+FHW     H5      H       H       0       -2.524      -7.854      -18.511     
+FHW     H6      H       H       0       -3.431      -11.084     -16.272     
+FHW     H7      H       H       0       -2.559      -11.330     -18.485     
+FHW     H8      H       H       0       -3.389      -10.058     -18.928     
+FHW     H9      H       H       0       -6.507      -14.267     -17.290     
+FHW     H10     H       H       0       -3.921      -9.487      -14.833     
+FHW     H11     H       H       0       -5.897      -8.030      -14.750     
+FHW     H12     H       H       0       -4.655      -7.715      -14.049     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FHW         CAM         OAN      DOUBLE       n     1.232  0.0104     1.232  0.0104
+FHW         CAE         CAF      DOUBLE       y     1.386  0.0100     1.386  0.0100
+FHW         CAA         CAF      SINGLE       y     1.385  0.0111     1.385  0.0111
+FHW         CAD         CAE      SINGLE       y     1.374  0.0127     1.374  0.0127
+FHW         CAA         CAQ      SINGLE       n     1.510  0.0100     1.510  0.0100
+FHW         CAL         CAQ      SINGLE       n     1.539  0.0125     1.539  0.0125
+FHW         CAA         CAB      DOUBLE       y     1.385  0.0111     1.385  0.0111
+FHW         CAL         CAM      SINGLE       n     1.525  0.0100     1.525  0.0100
+FHW         CAM         NAO      SINGLE       n     1.332  0.0100     1.332  0.0100
+FHW         NAH         NAJ      DOUBLE       y     1.317  0.0100     1.317  0.0100
+FHW         CAK         NAJ      SINGLE       y     1.284  0.0142     1.284  0.0142
+FHW         NAG         NAH      SINGLE       y     1.311  0.0100     1.311  0.0100
+FHW         CAK         CAL      SINGLE       n     1.490  0.0126     1.490  0.0126
+FHW         CAK         NAI      DOUBLE       y     1.323  0.0199     1.323  0.0199
+FHW         NAG         NAI      SINGLE       y     1.324  0.0100     1.324  0.0100
+FHW         CAC         CAD      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FHW         NAO         NAP      SINGLE       n     1.411  0.0100     1.411  0.0100
+FHW         CAB         CAC      SINGLE       y     1.386  0.0100     1.386  0.0100
+FHW         CAB          H1      SINGLE       n     1.082  0.0130     0.944  0.0174
+FHW         CAC          H2      SINGLE       n     1.082  0.0130     0.944  0.0175
+FHW         CAD          H3      SINGLE       n     1.082  0.0130     0.944  0.0161
+FHW         CAE          H4      SINGLE       n     1.082  0.0130     0.944  0.0175
+FHW         CAF          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+FHW         CAL          H6      SINGLE       n     1.089  0.0100     0.987  0.0200
+FHW         CAQ          H7      SINGLE       n     1.089  0.0100     0.980  0.0131
+FHW         CAQ          H8      SINGLE       n     1.089  0.0100     0.980  0.0131
+FHW         NAG          H9      SINGLE       n     1.016  0.0100     0.889  0.0200
+FHW         NAO         H10      SINGLE       n     1.016  0.0100     0.871  0.0200
+FHW         NAP         H11      SINGLE       n     1.036  0.0160     0.904  0.0200
+FHW         NAP         H12      SINGLE       n     1.036  0.0160     0.904  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FHW         CAF         CAA         CAQ     120.970    1.50
+FHW         CAF         CAA         CAB     118.060    1.50
+FHW         CAQ         CAA         CAB     120.970    1.50
+FHW         CAA         CAB         CAC     120.624    1.50
+FHW         CAA         CAB          H1     119.591    1.50
+FHW         CAC         CAB          H1     119.786    1.50
+FHW         CAD         CAC         CAB     120.325    1.50
+FHW         CAD         CAC          H2     119.883    1.50
+FHW         CAB         CAC          H2     119.792    1.50
+FHW         CAE         CAD         CAC     120.043    1.50
+FHW         CAE         CAD          H3     119.979    1.50
+FHW         CAC         CAD          H3     119.979    1.50
+FHW         CAF         CAE         CAD     120.325    1.50
+FHW         CAF         CAE          H4     119.792    1.50
+FHW         CAD         CAE          H4     119.883    1.50
+FHW         CAE         CAF         CAA     120.624    1.50
+FHW         CAE         CAF          H5     119.786    1.50
+FHW         CAA         CAF          H5     119.591    1.50
+FHW         NAJ         CAK         CAL     125.454    3.00
+FHW         NAJ         CAK         NAI     109.091    1.52
+FHW         CAL         CAK         NAI     125.454    3.00
+FHW         CAQ         CAL         CAM     111.511    2.91
+FHW         CAQ         CAL         CAK     110.747    2.16
+FHW         CAQ         CAL          H6     107.872    1.50
+FHW         CAM         CAL         CAK     112.079    2.81
+FHW         CAM         CAL          H6     107.903    1.50
+FHW         CAK         CAL          H6     109.366    1.50
+FHW         OAN         CAM         CAL     121.368    1.50
+FHW         OAN         CAM         NAO     123.365    1.50
+FHW         CAL         CAM         NAO     115.267    1.97
+FHW         CAA         CAQ         CAL     113.530    1.62
+FHW         CAA         CAQ          H7     108.906    1.50
+FHW         CAA         CAQ          H8     108.906    1.50
+FHW         CAL         CAQ          H7     108.873    1.50
+FHW         CAL         CAQ          H8     108.873    1.50
+FHW          H7         CAQ          H8     107.735    1.50
+FHW         NAH         NAG         NAI     111.911    1.50
+FHW         NAH         NAG          H9     123.577    2.38
+FHW         NAI         NAG          H9     124.512    1.95
+FHW         NAJ         NAH         NAG     106.211    1.50
+FHW         CAK         NAI         NAG     106.359    1.58
+FHW         NAH         NAJ         CAK     106.427    1.50
+FHW         CAM         NAO         NAP     122.274    1.50
+FHW         CAM         NAO         H10     120.040    2.41
+FHW         NAP         NAO         H10     117.686    2.61
+FHW         NAO         NAP         H11     106.810    2.44
+FHW         NAO         NAP         H12     106.810    2.44
+FHW         H11         NAP         H12     107.713    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FHW              const_30         CAQ         CAA         CAB         CAC     180.000    10.0     2
+FHW       const_sp2_sp2_3         CAQ         CAA         CAF         CAE     180.000     5.0     2
+FHW             sp2_sp3_2         CAF         CAA         CAQ         CAL     -90.000    10.0     6
+FHW              const_24         NAI         NAG         NAH         NAJ       0.000    10.0     2
+FHW              const_26         NAH         NAG         NAI         CAK       0.000    10.0     2
+FHW              const_23         NAG         NAH         NAJ         CAK       0.000    10.0     2
+FHW            sp2_sp3_19         CAM         NAO         NAP         H11       0.000    10.0     6
+FHW              const_17         CAA         CAB         CAC         CAD       0.000    10.0     2
+FHW              const_13         CAB         CAC         CAD         CAE       0.000    10.0     2
+FHW       const_sp2_sp2_9         CAC         CAD         CAE         CAF       0.000     5.0     2
+FHW       const_sp2_sp2_5         CAD         CAE         CAF         CAA       0.000     5.0     2
+FHW              const_33         CAL         CAK         NAI         NAG     180.000    10.0     2
+FHW              const_22         CAL         CAK         NAJ         NAH     180.000    10.0     2
+FHW            sp2_sp3_13         NAJ         CAK         CAL         CAQ     150.000    10.0     6
+FHW             sp2_sp3_7         OAN         CAM         CAL         CAQ       0.000    10.0     6
+FHW             sp3_sp3_1         CAM         CAL         CAQ         CAA     180.000    10.0     3
+FHW             sp2_sp2_3         OAN         CAM         NAO         NAP       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FHW    chir_1    CAL    CAM    CAK    CAQ    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FHW    plan-1         CAA   0.020
+FHW    plan-1         CAB   0.020
+FHW    plan-1         CAC   0.020
+FHW    plan-1         CAD   0.020
+FHW    plan-1         CAE   0.020
+FHW    plan-1         CAF   0.020
+FHW    plan-1         CAQ   0.020
+FHW    plan-1          H1   0.020
+FHW    plan-1          H2   0.020
+FHW    plan-1          H3   0.020
+FHW    plan-1          H4   0.020
+FHW    plan-1          H5   0.020
+FHW    plan-2         CAK   0.020
+FHW    plan-2         CAL   0.020
+FHW    plan-2          H9   0.020
+FHW    plan-2         NAG   0.020
+FHW    plan-2         NAH   0.020
+FHW    plan-2         NAI   0.020
+FHW    plan-2         NAJ   0.020
+FHW    plan-3         CAL   0.020
+FHW    plan-3         CAM   0.020
+FHW    plan-3         NAO   0.020
+FHW    plan-3         OAN   0.020
+FHW    plan-4         CAM   0.020
+FHW    plan-4         H10   0.020
+FHW    plan-4         NAO   0.020
+FHW    plan-4         NAP   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FHW            InChI                InChI  1.03 InChI=1S/C10H12N6O/c11-12-10(17)8(9-13-15-16-14-9)6-7-4-2-1-3-5-7/h1-5,8H,6,11H2,(H,12,17)(H,13,14,15,16)/t8-/m1/s1
+FHW         InChIKey                InChI  1.03                                                                                         SGFUQCKYWZCXFN-MRVPVSSYSA-N
+FHW SMILES_CANONICAL               CACTVS 3.385                                                                                   NNC(=O)[C@H](Cc1ccccc1)c2n[nH]nn2
+FHW           SMILES               CACTVS 3.385                                                                                    NNC(=O)[CH](Cc1ccccc1)c2n[nH]nn2
+FHW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                 c1ccc(cc1)C[C@H](c2n[nH]nn2)C(=O)NN
+FHW           SMILES "OpenEye OEToolkits" 2.0.6                                                                                     c1ccc(cc1)CC(c2n[nH]nn2)C(=O)NN
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FHW acedrg               243         "dictionary generator"                  
+FHW acedrg_database      11          "data source"                           
+FHW rdkit                2017.03.2   "Chemoinformatics tool"
+FHW refmac5              5.8.0238    "optimization tool"                     

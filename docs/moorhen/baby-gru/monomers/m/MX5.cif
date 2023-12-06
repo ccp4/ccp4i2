@@ -1,0 +1,281 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MX5     MX5      "{1-[4-(3,4-DIHYDROQUINOLIN-1(2H)-YL)-4-OXOBUTANOYL]HYDRAZINO}ACETIC ACID"     NON-POLYMER     40     22     .     
+#
+data_comp_MX5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MX5     C1      C       CR66    0       -14.389     42.343      38.612      
+MX5     C2      C       CH2     0       -14.952     42.434      37.228      
+MX5     N20     N       NT2     0       -9.924      34.701      38.524      
+MX5     C4      C       CR16    0       -13.291     42.141      41.165      
+MX5     C5      C       CR16    0       -14.217     43.131      40.896      
+MX5     C6      C       CR16    0       -14.756     43.229      39.626      
+MX5     C7      C       CR66    0       -13.442     41.344      38.888      
+MX5     C9      C       CH2     0       -11.605     38.518      37.263      
+MX5     C10     C       CH2     0       -11.047     37.203      37.823      
+MX5     C11     C       C       0       -9.971      36.586      36.959      
+MX5     C15     C       C       0       -12.768     39.100      38.033      
+MX5     C12     C       CH2     0       -8.544      34.552      36.484      
+MX5     C13     C       C       0       -7.095      34.785      36.904      
+MX5     C14     C       CH2     0       -13.031     40.965      36.443      
+MX5     N2      N       N       0       -9.494      35.316      37.321      
+MX5     N3      N       NR6     0       -13.074     40.442      37.829      
+MX5     O4      O       O       0       -13.436     38.416      38.802      
+MX5     O6      O       O       0       -9.510      37.183      35.986      
+MX5     O7      O       O       0       -6.675      35.959      36.873      
+MX5     C19     C       CH2     0       -13.850     42.233      36.213      
+MX5     O8      O       OC      -1      -6.433      33.785      37.247      
+MX5     C24     C       CR16    0       -12.901     41.252      40.177      
+MX5     H2C1    H       H       0       -15.643     41.751      37.108      
+MX5     H2C2    H       H       0       -15.367     43.311      37.098      
+MX5     H201    H       H       0       -9.663      33.873      38.585      
+MX5     H202    H       H       0       -9.583      35.134      39.197      
+MX5     H4      H       H       0       -12.919     42.069      42.027      
+MX5     H5      H       H       0       -14.479     43.736      41.572      
+MX5     H6      H       H       0       -15.389     43.901      39.436      
+MX5     H9C1    H       H       0       -11.883     38.370      36.348      
+MX5     H9C2    H       H       0       -10.892     39.171      37.235      
+MX5     H101    H       H       0       -11.781     36.563      37.916      
+MX5     H102    H       H       0       -10.680     37.370      38.716      
+MX5     H121    H       H       0       -8.742      33.595      36.553      
+MX5     H122    H       H       0       -8.647      34.812      35.545      
+MX5     H141    H       H       0       -13.360     40.273      35.835      
+MX5     H142    H       H       0       -12.100     41.149      36.208      
+MX5     H191    H       H       0       -13.236     42.995      36.236      
+MX5     H192    H       H       0       -14.232     42.188      35.313      
+MX5     H24     H       H       0       -12.265     40.580      40.379      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MX5          C1          C2      SINGLE       n     1.498  0.0172     1.498  0.0172
+MX5          C1          C6      SINGLE       y     1.393  0.0100     1.393  0.0100
+MX5          C1          C7      DOUBLE       y     1.397  0.0100     1.397  0.0100
+MX5          C2         C19      SINGLE       n     1.512  0.0142     1.512  0.0142
+MX5         N20          N2      SINGLE       n     1.408  0.0172     1.408  0.0172
+MX5          C4          C5      SINGLE       y     1.380  0.0107     1.380  0.0107
+MX5          C4         C24      DOUBLE       y     1.381  0.0100     1.381  0.0100
+MX5          C5          C6      DOUBLE       y     1.382  0.0100     1.382  0.0100
+MX5          C7          N3      SINGLE       n     1.431  0.0100     1.431  0.0100
+MX5          C7         C24      SINGLE       y     1.393  0.0100     1.393  0.0100
+MX5          C9         C10      SINGLE       n     1.527  0.0175     1.527  0.0175
+MX5          C9         C15      SINGLE       n     1.507  0.0105     1.507  0.0105
+MX5         C10         C11      SINGLE       n     1.506  0.0124     1.506  0.0124
+MX5         C11          N2      SINGLE       n     1.383  0.0200     1.383  0.0200
+MX5         C11          O6      DOUBLE       n     1.229  0.0102     1.229  0.0102
+MX5         C15          N3      SINGLE       n     1.373  0.0181     1.373  0.0181
+MX5         C15          O4      DOUBLE       n     1.225  0.0131     1.225  0.0131
+MX5         C12         C13      SINGLE       n     1.527  0.0103     1.527  0.0103
+MX5         C12          N2      SINGLE       n     1.472  0.0119     1.472  0.0119
+MX5         C13          O7      DOUBLE       n     1.247  0.0187     1.247  0.0187
+MX5         C13          O8      SINGLE       n     1.247  0.0187     1.247  0.0187
+MX5         C14          N3      SINGLE       n     1.474  0.0100     1.474  0.0100
+MX5         C14         C19      SINGLE       n     1.521  0.0151     1.521  0.0151
+MX5          C2        H2C1      SINGLE       n     1.089  0.0100     0.979  0.0132
+MX5          C2        H2C2      SINGLE       n     1.089  0.0100     0.979  0.0132
+MX5         N20        H201      SINGLE       n     1.036  0.0160     0.870  0.0100
+MX5         N20        H202      SINGLE       n     1.036  0.0160     0.870  0.0100
+MX5          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0177
+MX5          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0178
+MX5          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0132
+MX5          C9        H9C1      SINGLE       n     1.089  0.0100     0.967  0.0157
+MX5          C9        H9C2      SINGLE       n     1.089  0.0100     0.967  0.0157
+MX5         C10        H101      SINGLE       n     1.089  0.0100     0.979  0.0159
+MX5         C10        H102      SINGLE       n     1.089  0.0100     0.979  0.0159
+MX5         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0137
+MX5         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0137
+MX5         C14        H141      SINGLE       n     1.089  0.0100     0.978  0.0132
+MX5         C14        H142      SINGLE       n     1.089  0.0100     0.978  0.0132
+MX5         C19        H191      SINGLE       n     1.089  0.0100     0.979  0.0104
+MX5         C19        H192      SINGLE       n     1.089  0.0100     0.979  0.0104
+MX5         C24         H24      SINGLE       n     1.082  0.0130     0.947  0.0171
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MX5          C2          C1          C6     122.823    1.82
+MX5          C2          C1          C7     118.650    1.56
+MX5          C6          C1          C7     118.527    1.50
+MX5          C1          C2         C19     111.084    2.48
+MX5          C1          C2        H2C1     109.423    1.50
+MX5          C1          C2        H2C2     109.423    1.50
+MX5         C19          C2        H2C1     109.616    1.50
+MX5         C19          C2        H2C2     109.616    1.50
+MX5        H2C1          C2        H2C2     107.825    1.50
+MX5          N2         N20        H201     108.774    3.00
+MX5          N2         N20        H202     108.774    3.00
+MX5        H201         N20        H202     107.789    3.00
+MX5          C5          C4         C24     120.723    1.50
+MX5          C5          C4          H4     119.820    1.50
+MX5         C24          C4          H4     119.457    1.50
+MX5          C4          C5          C6     120.057    1.50
+MX5          C4          C5          H5     120.008    1.50
+MX5          C6          C5          H5     119.935    1.50
+MX5          C1          C6          C5     121.777    1.50
+MX5          C1          C6          H6     118.614    1.50
+MX5          C5          C6          H6     119.609    1.50
+MX5          C1          C7          N3     118.343    1.50
+MX5          C1          C7         C24     119.257    1.50
+MX5          N3          C7         C24     122.401    1.50
+MX5         C10          C9         C15     112.285    2.16
+MX5         C10          C9        H9C1     109.091    1.50
+MX5         C10          C9        H9C2     109.091    1.50
+MX5         C15          C9        H9C1     109.148    1.50
+MX5         C15          C9        H9C2     109.148    1.50
+MX5        H9C1          C9        H9C2     107.207    1.81
+MX5          C9         C10         C11     112.333    2.26
+MX5          C9         C10        H101     108.813    1.50
+MX5          C9         C10        H102     108.813    1.50
+MX5         C11         C10        H101     108.929    1.50
+MX5         C11         C10        H102     108.929    1.50
+MX5        H101         C10        H102     107.846    1.50
+MX5         C10         C11          N2     117.315    1.50
+MX5         C10         C11          O6     121.615    1.50
+MX5          N2         C11          O6     121.081    1.56
+MX5          C9         C15          N3     117.788    1.61
+MX5          C9         C15          O4     121.257    1.81
+MX5          N3         C15          O4     120.955    1.50
+MX5         C13         C12          N2     111.249    2.34
+MX5         C13         C12        H121     108.544    1.50
+MX5         C13         C12        H122     108.544    1.50
+MX5          N2         C12        H121     108.993    1.50
+MX5          N2         C12        H122     108.993    1.50
+MX5        H121         C12        H122     107.908    1.50
+MX5         C12         C13          O7     117.146    1.78
+MX5         C12         C13          O8     117.146    1.78
+MX5          O7         C13          O8     125.708    1.50
+MX5          N3         C14         C19     112.886    1.50
+MX5          N3         C14        H141     109.123    1.50
+MX5          N3         C14        H142     109.123    1.50
+MX5         C19         C14        H141     109.111    1.50
+MX5         C19         C14        H142     109.111    1.50
+MX5        H141         C14        H142     108.248    1.50
+MX5         N20          N2         C11     121.100    2.19
+MX5         N20          N2         C12     116.765    1.70
+MX5         C11          N2         C12     122.135    2.35
+MX5          C7          N3         C15     123.479    2.53
+MX5          C7          N3         C14     115.136    2.83
+MX5         C15          N3         C14     121.384    3.00
+MX5          C2         C19         C14     112.105    3.00
+MX5          C2         C19        H191     109.959    1.50
+MX5          C2         C19        H192     109.959    1.50
+MX5         C14         C19        H191     108.359    2.31
+MX5         C14         C19        H192     108.359    2.31
+MX5        H191         C19        H192     107.754    1.50
+MX5          C4         C24          C7     119.660    1.50
+MX5          C4         C24         H24     120.118    1.50
+MX5          C7         C24         H24     120.222    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MX5             sp2_sp3_4          C6          C1          C2         C19     180.000    10.0     6
+MX5       const_sp2_sp2_3          C2          C1          C6          C5     180.000     5.0     2
+MX5              const_21          C2          C1          C7          N3       0.000    10.0     2
+MX5            sp2_sp2_10          C9         C15          N3          C7       0.000     5.0     2
+MX5            sp2_sp3_30          O7         C13         C12          N2     120.000    10.0     6
+MX5            sp2_sp3_36         N20          N2         C12         C13     120.000    10.0     6
+MX5            sp2_sp3_10         C15          N3         C14         C19     180.000    10.0     6
+MX5            sp3_sp3_10          N3         C14         C19          C2      60.000    10.0     3
+MX5             sp3_sp3_1         C14         C19          C2          C1     -60.000    10.0     3
+MX5            sp2_sp3_13         C11          N2         N20        H201       0.000    10.0     6
+MX5              const_13          C7         C24          C4          C5       0.000    10.0     2
+MX5       const_sp2_sp2_9         C24          C4          C5          C6       0.000     5.0     2
+MX5       const_sp2_sp2_5          C4          C5          C6          C1       0.000     5.0     2
+MX5             sp2_sp2_2          C1          C7          N3         C15     180.000     5.0     2
+MX5              const_17          C4         C24          C7          C1       0.000    10.0     2
+MX5            sp2_sp3_21          O4         C15          C9         C10     -60.000    10.0     6
+MX5            sp3_sp3_19         C11         C10          C9         C15     180.000    10.0     3
+MX5            sp2_sp3_24          N2         C11         C10          C9     120.000    10.0     6
+MX5             sp2_sp2_6         C10         C11          N2         N20       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MX5    plan-1          C1   0.020
+MX5    plan-1          C2   0.020
+MX5    plan-1         C24   0.020
+MX5    plan-1          C4   0.020
+MX5    plan-1          C5   0.020
+MX5    plan-1          C6   0.020
+MX5    plan-1          C7   0.020
+MX5    plan-1         H24   0.020
+MX5    plan-1          H4   0.020
+MX5    plan-1          H5   0.020
+MX5    plan-1          H6   0.020
+MX5    plan-1          N3   0.020
+MX5    plan-2         C10   0.020
+MX5    plan-2         C11   0.020
+MX5    plan-2          N2   0.020
+MX5    plan-2          O6   0.020
+MX5    plan-3         C15   0.020
+MX5    plan-3          C9   0.020
+MX5    plan-3          N3   0.020
+MX5    plan-3          O4   0.020
+MX5    plan-4         C12   0.020
+MX5    plan-4         C13   0.020
+MX5    plan-4          O7   0.020
+MX5    plan-4          O8   0.020
+MX5    plan-5         C11   0.020
+MX5    plan-5         C12   0.020
+MX5    plan-5          N2   0.020
+MX5    plan-5         N20   0.020
+MX5    plan-6         C14   0.020
+MX5    plan-6         C15   0.020
+MX5    plan-6          C7   0.020
+MX5    plan-6          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MX5           SMILES              ACDLabs 10.04                                                                                 O=C(O)CN(N)C(=O)CCC(=O)N2c1ccccc1CCC2
+MX5 SMILES_CANONICAL               CACTVS 3.341                                                                                 NN(CC(O)=O)C(=O)CCC(=O)N1CCCc2ccccc12
+MX5           SMILES               CACTVS 3.341                                                                                 NN(CC(O)=O)C(=O)CCC(=O)N1CCCc2ccccc12
+MX5 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                               c1ccc2c(c1)CCCN2C(=O)CCC(=O)N(CC(=O)O)N
+MX5           SMILES "OpenEye OEToolkits" 1.5.0                                                                               c1ccc2c(c1)CCCN2C(=O)CCC(=O)N(CC(=O)O)N
+MX5            InChI                InChI  1.03 InChI=1S/C15H19N3O4/c16-18(10-15(21)22)14(20)8-7-13(19)17-9-3-5-11-4-1-2-6-12(11)17/h1-2,4,6H,3,5,7-10,16H2,(H,21,22)
+MX5         InChIKey                InChI  1.03                                                                                           YSHCCGXJNYTHDM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MX5 acedrg               243         "dictionary generator"                  
+MX5 acedrg_database      11          "data source"                           
+MX5 rdkit                2017.03.2   "Chemoinformatics tool"
+MX5 refmac5              5.8.0238    "optimization tool"                     

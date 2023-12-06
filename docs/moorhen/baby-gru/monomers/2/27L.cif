@@ -1,0 +1,255 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+27L     27L      4-(2,4,4-trimethylpentan-2-yl)phenol     NON-POLYMER     37     15     .     
+#
+data_comp_27L
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+27L     CAA     C       CH3     0       -15.694     -11.612     49.359      
+27L     CAN     C       CT      0       -14.308     -11.014     49.108      
+27L     CAB     C       CH3     0       -14.054     -9.978      50.203      
+27L     CAC     C       CH3     0       -14.358     -10.274     47.768      
+27L     CAK     C       CH2     0       -13.278     -12.177     49.099      
+27L     CAO     C       CT      0       -11.744     -12.057     49.362      
+27L     CAD     C       CH3     0       -11.147     -11.092     48.327      
+27L     CAE     C       CH3     0       -11.136     -13.431     49.050      
+27L     CAM     C       CR6     0       -11.407     -11.707     50.828      
+27L     CAI     C       CR16    0       -11.858     -12.512     51.878      
+27L     CAG     C       CR16    0       -11.570     -12.231     53.207      
+27L     CAL     C       CR6     0       -10.807     -11.121     53.529      
+27L     OAF     O       OH1     0       -10.518     -10.835     54.841      
+27L     CAH     C       CR16    0       -10.339     -10.301     52.515      
+27L     CAJ     C       CR16    0       -10.635     -10.596     51.190      
+27L     H1      H       H       0       -15.866     -12.317     48.711      
+27L     H2      H       H       0       -16.371     -10.920     49.271      
+27L     H3      H       H       0       -15.731     -11.984     50.258      
+27L     H4      H       H       0       -14.005     -10.422     51.067      
+27L     H5      H       H       0       -14.781     -9.332      50.213      
+27L     H6      H       H       0       -13.215     -9.516      50.028      
+27L     H7      H       H       0       -14.435     -10.916     47.041      
+27L     H8      H       H       0       -13.549     -9.750      47.652      
+27L     H9      H       H       0       -15.128     -9.678      47.753      
+27L     H10     H       H       0       -13.363     -12.600     48.211      
+27L     H11     H       H       0       -13.611     -12.844     49.745      
+27L     H12     H       H       0       -11.453     -10.187     48.505      
+27L     H13     H       H       0       -11.430     -11.356     47.434      
+27L     H14     H       H       0       -10.176     -11.120     48.379      
+27L     H15     H       H       0       -10.194     -13.435     49.294      
+27L     H16     H       H       0       -11.222     -13.621     48.099      
+27L     H17     H       H       0       -11.603     -14.119     49.557      
+27L     H18     H       H       0       -12.378     -13.274     51.679      
+27L     H19     H       H       0       -11.893     -12.795     53.891      
+27L     H20     H       H       0       -10.442     -10.017     55.097      
+27L     H21     H       H       0       -9.820      -9.543      52.725      
+27L     H22     H       H       0       -10.305     -10.023     50.522      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+27L         CAN         CAC      SINGLE       n     1.528  0.0126     1.528  0.0126
+27L         CAO         CAD      SINGLE       n     1.532  0.0111     1.532  0.0111
+27L         CAA         CAN      SINGLE       n     1.528  0.0126     1.528  0.0126
+27L         CAN         CAK      SINGLE       n     1.546  0.0100     1.546  0.0100
+27L         CAN         CAB      SINGLE       n     1.528  0.0126     1.528  0.0126
+27L         CAK         CAO      SINGLE       n     1.553  0.0100     1.553  0.0100
+27L         CAO         CAE      SINGLE       n     1.532  0.0111     1.532  0.0111
+27L         CAO         CAM      SINGLE       n     1.534  0.0100     1.534  0.0100
+27L         CAM         CAJ      DOUBLE       y     1.392  0.0100     1.392  0.0100
+27L         CAM         CAI      SINGLE       y     1.392  0.0100     1.392  0.0100
+27L         CAH         CAJ      SINGLE       y     1.385  0.0100     1.385  0.0100
+27L         CAI         CAG      DOUBLE       y     1.385  0.0100     1.385  0.0100
+27L         CAL         CAH      DOUBLE       y     1.383  0.0100     1.383  0.0100
+27L         CAG         CAL      SINGLE       y     1.383  0.0100     1.383  0.0100
+27L         CAL         OAF      SINGLE       n     1.374  0.0155     1.374  0.0155
+27L         CAA          H1      SINGLE       n     1.089  0.0100     0.973  0.0146
+27L         CAA          H2      SINGLE       n     1.089  0.0100     0.973  0.0146
+27L         CAA          H3      SINGLE       n     1.089  0.0100     0.973  0.0146
+27L         CAB          H4      SINGLE       n     1.089  0.0100     0.973  0.0146
+27L         CAB          H5      SINGLE       n     1.089  0.0100     0.973  0.0146
+27L         CAB          H6      SINGLE       n     1.089  0.0100     0.973  0.0146
+27L         CAC          H7      SINGLE       n     1.089  0.0100     0.973  0.0146
+27L         CAC          H8      SINGLE       n     1.089  0.0100     0.973  0.0146
+27L         CAC          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+27L         CAK         H10      SINGLE       n     1.089  0.0100     0.987  0.0100
+27L         CAK         H11      SINGLE       n     1.089  0.0100     0.987  0.0100
+27L         CAD         H12      SINGLE       n     1.089  0.0100     0.973  0.0141
+27L         CAD         H13      SINGLE       n     1.089  0.0100     0.973  0.0141
+27L         CAD         H14      SINGLE       n     1.089  0.0100     0.973  0.0141
+27L         CAE         H15      SINGLE       n     1.089  0.0100     0.973  0.0141
+27L         CAE         H16      SINGLE       n     1.089  0.0100     0.973  0.0141
+27L         CAE         H17      SINGLE       n     1.089  0.0100     0.973  0.0141
+27L         CAI         H18      SINGLE       n     1.082  0.0130     0.943  0.0173
+27L         CAG         H19      SINGLE       n     1.082  0.0130     0.943  0.0169
+27L         OAF         H20      SINGLE       n     0.966  0.0059     0.861  0.0200
+27L         CAH         H21      SINGLE       n     1.082  0.0130     0.943  0.0169
+27L         CAJ         H22      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+27L         CAN         CAA          H1     109.509    1.50
+27L         CAN         CAA          H2     109.509    1.50
+27L         CAN         CAA          H3     109.509    1.50
+27L          H1         CAA          H2     109.377    1.50
+27L          H1         CAA          H3     109.377    1.50
+27L          H2         CAA          H3     109.377    1.50
+27L         CAC         CAN         CAA     108.674    1.50
+27L         CAC         CAN         CAK     110.758    3.00
+27L         CAC         CAN         CAB     108.674    1.50
+27L         CAA         CAN         CAK     110.758    3.00
+27L         CAA         CAN         CAB     108.674    1.50
+27L         CAK         CAN         CAB     110.758    3.00
+27L         CAN         CAB          H4     109.509    1.50
+27L         CAN         CAB          H5     109.509    1.50
+27L         CAN         CAB          H6     109.509    1.50
+27L          H4         CAB          H5     109.377    1.50
+27L          H4         CAB          H6     109.377    1.50
+27L          H5         CAB          H6     109.377    1.50
+27L         CAN         CAC          H7     109.509    1.50
+27L         CAN         CAC          H8     109.509    1.50
+27L         CAN         CAC          H9     109.509    1.50
+27L          H7         CAC          H8     109.377    1.50
+27L          H7         CAC          H9     109.377    1.50
+27L          H8         CAC          H9     109.377    1.50
+27L         CAN         CAK         CAO     123.922    1.50
+27L         CAN         CAK         H10     106.342    1.50
+27L         CAN         CAK         H11     106.342    1.50
+27L         CAO         CAK         H10     106.358    1.50
+27L         CAO         CAK         H11     106.358    1.50
+27L         H10         CAK         H11     106.446    1.50
+27L         CAD         CAO         CAK     109.217    3.00
+27L         CAD         CAO         CAE     106.835    1.50
+27L         CAD         CAO         CAM     110.048    2.16
+27L         CAK         CAO         CAE     109.217    3.00
+27L         CAK         CAO         CAM     111.679    1.78
+27L         CAE         CAO         CAM     110.048    2.16
+27L         CAO         CAD         H12     109.570    1.50
+27L         CAO         CAD         H13     109.570    1.50
+27L         CAO         CAD         H14     109.570    1.50
+27L         H12         CAD         H13     109.375    1.50
+27L         H12         CAD         H14     109.375    1.50
+27L         H13         CAD         H14     109.375    1.50
+27L         CAO         CAE         H15     109.570    1.50
+27L         CAO         CAE         H16     109.570    1.50
+27L         CAO         CAE         H17     109.570    1.50
+27L         H15         CAE         H16     109.375    1.50
+27L         H15         CAE         H17     109.375    1.50
+27L         H16         CAE         H17     109.375    1.50
+27L         CAO         CAM         CAJ     121.517    1.50
+27L         CAO         CAM         CAI     121.517    1.50
+27L         CAJ         CAM         CAI     116.966    1.50
+27L         CAM         CAI         CAG     121.839    1.50
+27L         CAM         CAI         H18     119.032    1.50
+27L         CAG         CAI         H18     119.130    1.50
+27L         CAI         CAG         CAL     119.870    1.50
+27L         CAI         CAG         H19     120.146    1.50
+27L         CAL         CAG         H19     119.984    1.50
+27L         CAH         CAL         CAG     119.616    1.50
+27L         CAH         CAL         OAF     120.192    3.00
+27L         CAG         CAL         OAF     120.192    3.00
+27L         CAL         OAF         H20     120.000    3.00
+27L         CAJ         CAH         CAL     119.870    1.50
+27L         CAJ         CAH         H21     120.146    1.50
+27L         CAL         CAH         H21     119.984    1.50
+27L         CAM         CAJ         CAH     121.839    1.50
+27L         CAM         CAJ         H22     119.032    1.50
+27L         CAH         CAJ         H22     119.130    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+27L            sp3_sp3_19          H1         CAA         CAN         CAC     180.000    10.0     3
+27L              const_14         CAI         CAG         CAL         OAF     180.000    10.0     2
+27L             sp2_sp2_1         CAH         CAL         OAF         H20     180.000     5.0     2
+27L              const_10         CAJ         CAH         CAL         OAF     180.000    10.0     2
+27L       const_sp2_sp2_5         CAL         CAH         CAJ         CAM       0.000     5.0     2
+27L            sp3_sp3_38          H4         CAB         CAN         CAC     -60.000    10.0     3
+27L             sp3_sp3_2          H7         CAC         CAN         CAA     -60.000    10.0     3
+27L            sp3_sp3_29         CAO         CAK         CAN         CAC     -60.000    10.0     3
+27L            sp3_sp3_47         CAN         CAK         CAO         CAD     -60.000    10.0     3
+27L            sp3_sp3_10         H12         CAD         CAO         CAK     180.000    10.0     3
+27L            sp3_sp3_57         H15         CAE         CAO         CAD      60.000    10.0     3
+27L             sp2_sp3_1         CAJ         CAM         CAO         CAD     150.000    10.0     6
+27L       const_sp2_sp2_2         CAH         CAJ         CAM         CAO     180.000     5.0     2
+27L              const_22         CAG         CAI         CAM         CAO     180.000    10.0     2
+27L              const_17         CAL         CAG         CAI         CAM       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+27L    chir_1    CAN    CAK    CAC    CAA    both
+27L    chir_2    CAO    CAM    CAK    CAD    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+27L    plan-1         CAG   0.020
+27L    plan-1         CAH   0.020
+27L    plan-1         CAI   0.020
+27L    plan-1         CAJ   0.020
+27L    plan-1         CAL   0.020
+27L    plan-1         CAM   0.020
+27L    plan-1         CAO   0.020
+27L    plan-1         H18   0.020
+27L    plan-1         H19   0.020
+27L    plan-1         H21   0.020
+27L    plan-1         H22   0.020
+27L    plan-1         OAF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+27L           SMILES              ACDLabs 12.01                                                  Oc1ccc(cc1)C(CC(C)(C)C)(C)C
+27L            InChI                InChI  1.03 InChI=1S/C14H22O/c1-13(2,3)10-14(4,5)11-6-8-12(15)9-7-11/h6-9,15H,10H2,1-5H3
+27L         InChIKey                InChI  1.03                                                  ISAVYTVYFVQUDY-UHFFFAOYSA-N
+27L SMILES_CANONICAL               CACTVS 3.385                                                  CC(C)(C)CC(C)(C)c1ccc(O)cc1
+27L           SMILES               CACTVS 3.385                                                  CC(C)(C)CC(C)(C)c1ccc(O)cc1
+27L SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                  CC(C)(C)CC(C)(C)c1ccc(cc1)O
+27L           SMILES "OpenEye OEToolkits" 1.7.6                                                  CC(C)(C)CC(C)(C)c1ccc(cc1)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+27L acedrg               243         "dictionary generator"                  
+27L acedrg_database      11          "data source"                           
+27L rdkit                2017.03.2   "Chemoinformatics tool"
+27L refmac5              5.8.0238    "optimization tool"                     

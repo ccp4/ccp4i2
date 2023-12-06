@@ -1,0 +1,186 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JUT     JUT      4-[3,4-bis(fluoranyl)phenyl]-1,3-thiazol-2-amine     NON-POLYMER     20     14     .     
+#
+data_comp_JUT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JUT     CAN     C       CR16    0       47.297      43.921      -6.958      
+JUT     CAL     C       CR6     0       47.057      45.248      -6.695      
+JUT     FAM     F       F       0       47.723      46.191      -7.398      
+JUT     CAJ     C       CR6     0       46.151      45.631      -5.730      
+JUT     FAK     F       F       0       45.951      46.947      -5.508      
+JUT     CAI     C       CR16    0       45.467      44.693      -5.006      
+JUT     CAH     C       CR16    0       45.697      43.349      -5.260      
+JUT     CAG     C       CR6     0       46.614      42.944      -6.232      
+JUT     CAD     C       CR5     0       46.854      41.518      -6.503      
+JUT     NAC     N       NRD5    0       46.797      40.618      -5.427      
+JUT     CAB     C       CR5     0       47.038      39.335      -5.832      
+JUT     NAA     N       NH2     0       47.049      38.265      -5.045      
+JUT     SAF     S       S2      0       47.329      39.262      -7.473      
+JUT     CAE     C       CR15    0       47.145      40.899      -7.706      
+JUT     H1      H       H       0       47.919      43.662      -7.621      
+JUT     H2      H       H       0       44.848      44.959      -4.347      
+JUT     H3      H       H       0       45.228      42.703      -4.766      
+JUT     H4      H       H       0       46.888      38.353      -4.187      
+JUT     H5      H       H       0       47.215      37.473      -5.386      
+JUT     H6      H       H       0       47.237      41.293      -8.557      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JUT         SAF         CAE      SINGLE       y     1.695  0.0200     1.695  0.0200
+JUT         CAD         CAE      DOUBLE       y     1.371  0.0200     1.371  0.0200
+JUT         CAL         FAM      SINGLE       n     1.351  0.0100     1.351  0.0100
+JUT         CAN         CAL      DOUBLE       y     1.371  0.0100     1.371  0.0100
+JUT         CAN         CAG      SINGLE       y     1.391  0.0100     1.391  0.0100
+JUT         CAB         SAF      SINGLE       y     1.695  0.0200     1.695  0.0200
+JUT         CAL         CAJ      SINGLE       y     1.372  0.0134     1.372  0.0134
+JUT         CAG         CAD      SINGLE       n     1.469  0.0100     1.469  0.0100
+JUT         CAD         NAC      SINGLE       y     1.391  0.0109     1.391  0.0109
+JUT         CAH         CAG      DOUBLE       y     1.391  0.0100     1.391  0.0100
+JUT         NAC         CAB      DOUBLE       y     1.354  0.0165     1.354  0.0165
+JUT         CAB         NAA      SINGLE       n     1.328  0.0105     1.328  0.0105
+JUT         CAJ         FAK      SINGLE       n     1.349  0.0141     1.349  0.0141
+JUT         CAJ         CAI      DOUBLE       y     1.364  0.0113     1.364  0.0113
+JUT         CAI         CAH      SINGLE       y     1.383  0.0100     1.383  0.0100
+JUT         CAN          H1      SINGLE       n     1.082  0.0130     0.945  0.0193
+JUT         CAI          H2      SINGLE       n     1.082  0.0130     0.942  0.0184
+JUT         CAH          H3      SINGLE       n     1.082  0.0130     0.939  0.0102
+JUT         NAA          H4      SINGLE       n     1.016  0.0100     0.877  0.0200
+JUT         NAA          H5      SINGLE       n     1.016  0.0100     0.877  0.0200
+JUT         CAE          H6      SINGLE       n     1.082  0.0130     0.942  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JUT         CAL         CAN         CAG     119.126    1.50
+JUT         CAL         CAN          H1     121.055    1.50
+JUT         CAG         CAN          H1     119.820    1.50
+JUT         FAM         CAL         CAN     119.218    1.50
+JUT         FAM         CAL         CAJ     119.626    1.50
+JUT         CAN         CAL         CAJ     121.157    1.50
+JUT         CAL         CAJ         FAK     118.885    1.50
+JUT         CAL         CAJ         CAI     120.677    1.50
+JUT         FAK         CAJ         CAI     120.445    1.50
+JUT         CAJ         CAI         CAH     118.880    1.50
+JUT         CAJ         CAI          H2     120.382    1.50
+JUT         CAH         CAI          H2     120.738    1.50
+JUT         CAG         CAH         CAI     121.181    1.50
+JUT         CAG         CAH          H3     119.437    1.50
+JUT         CAI         CAH          H3     119.382    1.50
+JUT         CAN         CAG         CAD     120.510    1.50
+JUT         CAN         CAG         CAH     118.980    1.50
+JUT         CAD         CAG         CAH     120.510    1.50
+JUT         CAE         CAD         CAG     132.812    2.57
+JUT         CAE         CAD         NAC     108.547    1.50
+JUT         CAG         CAD         NAC     118.641    1.50
+JUT         CAD         NAC         CAB     105.585    1.50
+JUT         SAF         CAB         NAC     108.623    3.00
+JUT         SAF         CAB         NAA     124.759    3.00
+JUT         NAC         CAB         NAA     126.619    2.12
+JUT         CAB         NAA          H4     119.811    1.50
+JUT         CAB         NAA          H5     119.811    1.50
+JUT          H4         NAA          H5     120.377    1.82
+JUT         CAE         SAF         CAB     108.623    3.00
+JUT         SAF         CAE         CAD     108.623    3.00
+JUT         SAF         CAE          H6     122.728    3.00
+JUT         CAD         CAE          H6     128.649    2.15
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JUT              const_13         FAM         CAL         CAN         CAG     180.000    10.0     2
+JUT              const_33         CAD         CAG         CAN         CAL     180.000    10.0     2
+JUT             sp2_sp2_5         SAF         CAB         NAA          H4     180.000     5.0     2
+JUT       const_sp2_sp2_8         NAA         CAB         SAF         CAE     180.000     5.0     2
+JUT       const_sp2_sp2_5         CAD         CAE         SAF         CAB       0.000     5.0     2
+JUT              const_18         FAK         CAJ         CAL         FAM       0.000    10.0     2
+JUT              const_20         CAH         CAI         CAJ         FAK     180.000    10.0     2
+JUT              const_23         CAG         CAH         CAI         CAJ       0.000    10.0     2
+JUT              const_27         CAN         CAG         CAH         CAI       0.000    10.0     2
+JUT             sp2_sp2_1         CAE         CAD         CAG         CAN     180.000     5.0     2
+JUT       const_sp2_sp2_3         CAG         CAD         CAE         SAF     180.000     5.0     2
+JUT              const_35         CAE         CAD         NAC         CAB       0.000    10.0     2
+JUT              const_10         NAA         CAB         NAC         CAD     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JUT    plan-1         CAD   0.020
+JUT    plan-1         CAG   0.020
+JUT    plan-1         CAH   0.020
+JUT    plan-1         CAI   0.020
+JUT    plan-1         CAJ   0.020
+JUT    plan-1         CAL   0.020
+JUT    plan-1         CAN   0.020
+JUT    plan-1         FAK   0.020
+JUT    plan-1         FAM   0.020
+JUT    plan-1          H1   0.020
+JUT    plan-1          H2   0.020
+JUT    plan-1          H3   0.020
+JUT    plan-2         CAB   0.020
+JUT    plan-2         CAD   0.020
+JUT    plan-2         CAE   0.020
+JUT    plan-2         CAG   0.020
+JUT    plan-2          H6   0.020
+JUT    plan-2         NAA   0.020
+JUT    plan-2         NAC   0.020
+JUT    plan-2         SAF   0.020
+JUT    plan-3         CAB   0.020
+JUT    plan-3          H4   0.020
+JUT    plan-3          H5   0.020
+JUT    plan-3         NAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JUT            InChI                InChI  1.03 InChI=1S/C9H6F2N2S/c10-6-2-1-5(3-7(6)11)8-4-14-9(12)13-8/h1-4H,(H2,12,13)
+JUT         InChIKey                InChI  1.03                                               NDCSJUJQMRFHEX-UHFFFAOYSA-N
+JUT SMILES_CANONICAL               CACTVS 3.385                                                  Nc1scc(n1)c2ccc(F)c(F)c2
+JUT           SMILES               CACTVS 3.385                                                  Nc1scc(n1)c2ccc(F)c(F)c2
+JUT SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                  c1cc(c(cc1c2csc(n2)N)F)F
+JUT           SMILES "OpenEye OEToolkits" 2.0.7                                                  c1cc(c(cc1c2csc(n2)N)F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JUT acedrg               243         "dictionary generator"                  
+JUT acedrg_database      11          "data source"                           
+JUT rdkit                2017.03.2   "Chemoinformatics tool"
+JUT refmac5              5.8.0238    "optimization tool"                     

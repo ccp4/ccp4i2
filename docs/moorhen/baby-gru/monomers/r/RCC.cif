@@ -1,0 +1,537 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RCC     RCC      "3-{(2Z,3S,4S)-5-[(Z)-(4-ethenyl-3-methyl-5-oxo-1,5-dihydro-2H-pyrrol-2-ylidene)methyl]-2-[(5R)-2-[(3-ethyl-5-formyl-4-methyl-1H-pyrrol-2-yl)methyl]-5-(methoxycarbonyl)-3-methyl-4-oxo-4,5-dihydrocyclopenta[b]pyrrol-6(1H)-ylidene]-4-methyl-3,4-dihydro-2H-pyrrol-3-yl}propanoic acid"     NON-POLYMER     83     46     .     
+#
+data_comp_RCC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RCC     NA      N       NRD5    0       -11.935     -24.038     -15.042     
+RCC     NB      N       NR5     0       -10.795     -23.445     -17.974     
+RCC     OB      O       O       0       -9.613      -24.224     -19.799     
+RCC     NC      N       NR5     0       -8.034      -28.760     -16.741     
+RCC     OC      O       O       0       -5.050      -27.247     -17.889     
+RCC     ND      N       NT1     0       -10.822     -27.049     -15.151     
+RCC     C1A     C       CR5     0       -11.413     -24.120     -13.786     
+RCC     O1A     O       O       0       -10.482     -19.651     -11.424     
+RCC     C1B     C       CR5     0       -11.890     -22.600     -17.785     
+RCC     C1C     C       CR5     0       -7.192      -28.180     -17.663     
+RCC     C1D     C       CR5     0       -10.691     -28.405     -15.100     
+RCC     O1D     O       O       0       -13.379     -25.199     -11.076     
+RCC     C2A     C       CH1     0       -11.075     -22.775     -13.185     
+RCC     O2A     O       OC      -1      -8.952      -19.567     -12.999     
+RCC     C2B     C       CR5     0       -12.313     -22.100     -19.066     
+RCC     C2C     C       CR5     0       -7.984      -27.699     -18.705     
+RCC     C2D     C       CR5     0       -10.778     -28.854     -13.782     
+RCC     O2D     O       O2      0       -11.708     -24.238     -9.914      
+RCC     C3A     C       CH1     0       -11.737     -21.805     -14.179     
+RCC     C3B     C       CR5     0       -11.467     -22.683     -20.050     
+RCC     C3C     C       CR5     0       -9.323      -28.003     -18.387     
+RCC     C3D     C       CR55    0       -10.992     -27.694     -12.987     
+RCC     C4A     C       CR5     0       -12.067     -22.707     -15.349     
+RCC     C4B     C       CR5     0       -10.508     -23.543     -19.318     
+RCC     C4C     C       CR5     0       -9.317      -28.674     -17.173     
+RCC     C4D     C       CR55    0       -11.015     -26.610     -13.867     
+RCC     CAA     C       CH2     0       -9.570      -22.585     -12.977     
+RCC     CAB     C       C1      0       -11.507     -22.504     -21.436     
+RCC     CAC     C       CH2     0       -10.539     -27.681     -19.213     
+RCC     CAD     C       CR5     0       -11.197     -27.192     -11.623     
+RCC     CBA     C       CH2     0       -9.223      -21.626     -11.843     
+RCC     CBB     C       C2      0       -11.181     -21.407     -22.066     
+RCC     CBC     C       CH3     0       -10.866     -28.768     -20.223     
+RCC     CBD     C       CH1     0       -11.113     -25.650     -11.695     
+RCC     OBD     O       O       0       -11.388     -27.822     -10.602     
+RCC     CED     C       CH3     0       -12.630     -23.682     -8.943      
+RCC     CGA     C       C       0       -9.579      -20.173     -12.108     
+RCC     CGD     C       C       0       -12.208     -25.020     -10.877     
+RCC     CHA     C       CR5     0       -11.219     -25.346     -13.190     
+RCC     CHB     C       C1      0       -12.478     -22.284     -16.599     
+RCC     CHC     C       C1      0       -5.777      -28.137     -17.479     
+RCC     CHD     C       CH2     0       -10.446     -29.204     -16.344     
+RCC     CMA     C       CH3     0       -12.986     -21.086     -13.676     
+RCC     CMB     C       CH3     0       -13.438     -21.150     -19.361     
+RCC     CMC     C       CH3     0       -7.507      -26.990     -19.931     
+RCC     CMD     C       CH3     0       -10.675     -30.276     -13.318     
+RCC     HNB     H       H       0       -10.345     -23.862     -17.338     
+RCC     HNC     H       H       0       -7.778      -29.139     -15.989     
+RCC     HND     H       H       0       -10.796     -26.530     -15.882     
+RCC     H2A     H       H       0       -11.527     -22.672     -12.304     
+RCC     H3A     H       H       0       -11.076     -21.123     -14.461     
+RCC     HAA     H       H       0       -9.175      -22.251     -13.809     
+RCC     HAAA    H       H       0       -9.161      -23.455     -12.786     
+RCC     HAB     H       H       0       -11.795     -23.244     -21.946     
+RCC     HAC     H       H       0       -10.388     -26.835     -19.691     
+RCC     HACA    H       H       0       -11.310     -27.557     -18.615     
+RCC     HBA     H       H       0       -8.259      -21.679     -11.670     
+RCC     HBAA    H       H       0       -9.687      -21.916     -11.028     
+RCC     HBB     H       H       0       -11.050     -21.420     -23.005     
+RCC     HBBA    H       H       0       -11.076     -20.596     -21.585     
+RCC     HBC     H       H       0       -11.636     -28.498     -20.753     
+RCC     HBCA    H       H       0       -11.069     -29.597     -19.755     
+RCC     HBCB    H       H       0       -10.102     -28.907     -20.810     
+RCC     HBD     H       H       0       -10.232     -25.364     -11.354     
+RCC     HED     H       H       0       -13.113     -24.400     -8.505      
+RCC     HEDA    H       H       0       -13.258     -23.095     -9.393      
+RCC     HEDB    H       H       0       -12.133     -23.175     -8.281      
+RCC     HHB     H       H       0       -13.240     -21.724     -16.626     
+RCC     HHC     H       H       0       -5.376      -28.855     -16.999     
+RCC     HHD     H       H       0       -11.266     -29.201     -16.885     
+RCC     HHDA    H       H       0       -10.241     -30.131     -16.091     
+RCC     HMA     H       H       0       -13.295     -20.462     -14.351     
+RCC     HMAA    H       H       0       -12.777     -20.603     -12.861     
+RCC     HMAB    H       H       0       -13.683     -21.736     -13.495     
+RCC     HMB     H       H       0       -13.252     -20.667     -20.183     
+RCC     HMBA    H       H       0       -13.530     -20.517     -18.631     
+RCC     HMBB    H       H       0       -14.266     -21.649     -19.461     
+RCC     HMC     H       H       0       -8.161      -27.081     -20.642     
+RCC     HMCA    H       H       0       -6.664      -27.372     -20.224     
+RCC     HMCB    H       H       0       -7.378      -26.047     -19.735     
+RCC     HMD     H       H       0       -10.792     -30.312     -12.349     
+RCC     HMDA    H       H       0       -9.797      -30.632     -13.554     
+RCC     HMDB    H       H       0       -11.370     -30.810     -13.750     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RCC          NA         C1A      SINGLE       n     1.360  0.0100     1.360  0.0100
+RCC          NA         C4A      DOUBLE       n     1.371  0.0200     1.371  0.0200
+RCC          NB         C1B      SINGLE       n     1.380  0.0200     1.380  0.0200
+RCC          NB         C4B      SINGLE       n     1.377  0.0125     1.377  0.0125
+RCC          OB         C4B      DOUBLE       n     1.223  0.0129     1.223  0.0129
+RCC          NC         C1C      SINGLE       y     1.378  0.0100     1.378  0.0100
+RCC          NC         C4C      SINGLE       y     1.357  0.0100     1.357  0.0100
+RCC          OC         CHC      DOUBLE       n     1.220  0.0142     1.220  0.0142
+RCC          ND         C1D      SINGLE       y     1.362  0.0180     1.362  0.0180
+RCC          ND         C4D      SINGLE       y     1.378  0.0111     1.378  0.0111
+RCC         C1A         C2A      SINGLE       n     1.509  0.0100     1.509  0.0100
+RCC         C1A         CHA      DOUBLE       n     1.364  0.0200     1.364  0.0200
+RCC         O1A         CGA      DOUBLE       n     1.247  0.0187     1.247  0.0187
+RCC         C1B         C2B      SINGLE       n     1.423  0.0200     1.423  0.0200
+RCC         C1B         CHB      DOUBLE       n     1.350  0.0200     1.350  0.0200
+RCC         C1C         C2C      DOUBLE       y     1.395  0.0100     1.395  0.0100
+RCC         C1C         CHC      SINGLE       n     1.427  0.0120     1.427  0.0120
+RCC         C1D         C2D      DOUBLE       y     1.382  0.0162     1.382  0.0162
+RCC         C1D         CHD      SINGLE       n     1.499  0.0100     1.499  0.0100
+RCC         O1D         CGD      DOUBLE       n     1.200  0.0100     1.200  0.0100
+RCC         C2A         C3A      SINGLE       n     1.535  0.0200     1.535  0.0200
+RCC         C2A         CAA      SINGLE       n     1.527  0.0107     1.527  0.0107
+RCC         O2A         CGA      SINGLE       n     1.247  0.0187     1.247  0.0187
+RCC         C2B         C3B      DOUBLE       n     1.427  0.0200     1.427  0.0200
+RCC         C2B         CMB      SINGLE       n     1.501  0.0100     1.501  0.0100
+RCC         C2C         C3C      SINGLE       y     1.408  0.0147     1.408  0.0147
+RCC         C2C         CMC      SINGLE       n     1.495  0.0100     1.495  0.0100
+RCC         C2D         C3D      SINGLE       y     1.414  0.0200     1.414  0.0200
+RCC         C2D         CMD      SINGLE       n     1.499  0.0100     1.499  0.0100
+RCC         O2D         CED      SINGLE       n     1.448  0.0108     1.448  0.0108
+RCC         O2D         CGD      SINGLE       n     1.332  0.0119     1.332  0.0119
+RCC         C3A         C4A      SINGLE       n     1.516  0.0118     1.516  0.0118
+RCC         C3A         CMA      SINGLE       n     1.526  0.0100     1.526  0.0100
+RCC         C3B         C4B      SINGLE       n     1.494  0.0200     1.494  0.0200
+RCC         C3B         CAB      SINGLE       n     1.396  0.0200     1.396  0.0200
+RCC         C3C         C4C      DOUBLE       y     1.387  0.0100     1.387  0.0100
+RCC         C3C         CAC      SINGLE       n     1.503  0.0100     1.503  0.0100
+RCC         C3D         C4D      DOUBLE       y     1.419  0.0200     1.419  0.0200
+RCC         C3D         CAD      SINGLE       n     1.469  0.0146     1.469  0.0146
+RCC         C4A         CHB      SINGLE       n     1.377  0.0200     1.377  0.0200
+RCC         C4C         CHD      SINGLE       n     1.498  0.0100     1.498  0.0100
+RCC         C4D         CHA      SINGLE       n     1.457  0.0200     1.457  0.0200
+RCC         CAA         CBA      SINGLE       n     1.524  0.0101     1.524  0.0101
+RCC         CAB         CBB      DOUBLE       n     1.305  0.0200     1.305  0.0200
+RCC         CAC         CBC      SINGLE       n     1.520  0.0141     1.520  0.0141
+RCC         CAD         CBD      SINGLE       n     1.530  0.0200     1.530  0.0200
+RCC         CAD         OBD      DOUBLE       n     1.214  0.0128     1.214  0.0128
+RCC         CBA         CGA      SINGLE       n     1.519  0.0109     1.519  0.0109
+RCC         CBD         CGD      SINGLE       n     1.498  0.0200     1.498  0.0200
+RCC         CBD         CHA      SINGLE       n     1.515  0.0200     1.515  0.0200
+RCC          NB         HNB      SINGLE       n     1.016  0.0100     0.884  0.0200
+RCC          NC         HNC      SINGLE       n     1.016  0.0100     0.880  0.0200
+RCC          ND         HND      SINGLE       n     1.016  0.0100     0.897  0.0200
+RCC         C2A         H2A      SINGLE       n     1.089  0.0100     0.996  0.0120
+RCC         C3A         H3A      SINGLE       n     1.089  0.0100     0.991  0.0103
+RCC         CAA         HAA      SINGLE       n     1.089  0.0100     0.980  0.0152
+RCC         CAA        HAAA      SINGLE       n     1.089  0.0100     0.980  0.0152
+RCC         CAB         HAB      SINGLE       n     1.082  0.0130     0.943  0.0200
+RCC         CAC         HAC      SINGLE       n     1.089  0.0100     0.984  0.0124
+RCC         CAC        HACA      SINGLE       n     1.089  0.0100     0.984  0.0124
+RCC         CBA         HBA      SINGLE       n     1.089  0.0100     0.981  0.0185
+RCC         CBA        HBAA      SINGLE       n     1.089  0.0100     0.981  0.0185
+RCC         CBB         HBB      SINGLE       n     1.082  0.0130     0.948  0.0200
+RCC         CBB        HBBA      SINGLE       n     1.082  0.0130     0.948  0.0200
+RCC         CBC         HBC      SINGLE       n     1.089  0.0100     0.973  0.0120
+RCC         CBC        HBCA      SINGLE       n     1.089  0.0100     0.973  0.0120
+RCC         CBC        HBCB      SINGLE       n     1.089  0.0100     0.973  0.0120
+RCC         CBD         HBD      SINGLE       n     1.089  0.0100     0.986  0.0200
+RCC         CED         HED      SINGLE       n     1.089  0.0100     0.970  0.0175
+RCC         CED        HEDA      SINGLE       n     1.089  0.0100     0.970  0.0175
+RCC         CED        HEDB      SINGLE       n     1.089  0.0100     0.970  0.0175
+RCC         CHB         HHB      SINGLE       n     1.082  0.0130     0.946  0.0100
+RCC         CHC         HHC      SINGLE       n     1.082  0.0130     0.953  0.0200
+RCC         CHD         HHD      SINGLE       n     1.089  0.0100     0.983  0.0200
+RCC         CHD        HHDA      SINGLE       n     1.089  0.0100     0.983  0.0200
+RCC         CMA         HMA      SINGLE       n     1.089  0.0100     0.970  0.0163
+RCC         CMA        HMAA      SINGLE       n     1.089  0.0100     0.970  0.0163
+RCC         CMA        HMAB      SINGLE       n     1.089  0.0100     0.970  0.0163
+RCC         CMB         HMB      SINGLE       n     1.089  0.0100     0.971  0.0114
+RCC         CMB        HMBA      SINGLE       n     1.089  0.0100     0.971  0.0114
+RCC         CMB        HMBB      SINGLE       n     1.089  0.0100     0.971  0.0114
+RCC         CMC         HMC      SINGLE       n     1.089  0.0100     0.971  0.0172
+RCC         CMC        HMCA      SINGLE       n     1.089  0.0100     0.971  0.0172
+RCC         CMC        HMCB      SINGLE       n     1.089  0.0100     0.971  0.0172
+RCC         CMD         HMD      SINGLE       n     1.089  0.0100     0.977  0.0100
+RCC         CMD        HMDA      SINGLE       n     1.089  0.0100     0.977  0.0100
+RCC         CMD        HMDB      SINGLE       n     1.089  0.0100     0.977  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RCC         C1A          NA         C4A     107.157    3.00
+RCC         C1B          NB         C4B     108.738    1.50
+RCC         C1B          NB         HNB     126.319    2.37
+RCC         C4B          NB         HNB     124.943    2.00
+RCC         C1C          NC         C4C     109.621    1.50
+RCC         C1C          NC         HNC     125.249    2.32
+RCC         C4C          NC         HNC     125.130    1.50
+RCC         C1D          ND         C4D     108.518    2.27
+RCC         C1D          ND         HND     125.793    3.00
+RCC         C4D          ND         HND     124.642    3.00
+RCC          NA         C1A         C2A     114.070    1.55
+RCC          NA         C1A         CHA     121.640    2.67
+RCC         C2A         C1A         CHA     124.291    3.00
+RCC          NB         C1B         C2B     107.660    1.50
+RCC          NB         C1B         CHB     127.212    2.14
+RCC         C2B         C1B         CHB     125.128    2.81
+RCC          NC         C1C         C2C     107.414    1.50
+RCC          NC         C1C         CHC     122.226    1.50
+RCC         C2C         C1C         CHC     130.360    1.50
+RCC          ND         C1D         C2D     109.873    1.50
+RCC          ND         C1D         CHD     122.309    1.62
+RCC         C2D         C1D         CHD     127.818    1.59
+RCC         C1A         C2A         C3A     104.009    1.83
+RCC         C1A         C2A         CAA     111.539    2.78
+RCC         C1A         C2A         H2A     110.367    1.60
+RCC         C3A         C2A         CAA     114.843    3.00
+RCC         C3A         C2A         H2A     108.690    1.50
+RCC         CAA         C2A         H2A     108.695    1.50
+RCC         C1B         C2B         C3B     107.528    2.60
+RCC         C1B         C2B         CMB     127.364    2.66
+RCC         C3B         C2B         CMB     125.108    1.95
+RCC         C1C         C2C         C3C     107.488    1.50
+RCC         C1C         C2C         CMC     126.651    1.50
+RCC         C3C         C2C         CMC     125.861    1.50
+RCC         C1D         C2D         C3D     105.328    1.50
+RCC         C1D         C2D         CMD     126.280    2.75
+RCC         C3D         C2D         CMD     128.392    1.99
+RCC         CED         O2D         CGD     116.214    1.50
+RCC         C2A         C3A         C4A     104.009    1.83
+RCC         C2A         C3A         CMA     115.051    3.00
+RCC         C2A         C3A         H3A     108.733    1.50
+RCC         C4A         C3A         CMA     111.539    2.78
+RCC         C4A         C3A         H3A     109.292    1.96
+RCC         CMA         C3A         H3A     108.374    1.50
+RCC         C2B         C3B         C4B     107.980    2.03
+RCC         C2B         C3B         CAB     126.908    2.28
+RCC         C4B         C3B         CAB     125.111    3.00
+RCC         C2C         C3C         C4C     107.387    1.50
+RCC         C2C         C3C         CAC     126.668    1.50
+RCC         C4C         C3C         CAC     125.945    1.50
+RCC         C2D         C3D         C4D     106.935    3.00
+RCC         C2D         C3D         CAD     142.749    2.48
+RCC         C4D         C3D         CAD     110.316    3.00
+RCC          NA         C4A         C3A     113.486    1.55
+RCC          NA         C4A         CHB     120.980    2.83
+RCC         C3A         C4A         CHB     125.534    3.00
+RCC          NB         C4B          OB     125.060    1.50
+RCC          NB         C4B         C3B     108.094    1.50
+RCC          OB         C4B         C3B     126.846    2.75
+RCC          NC         C4C         C3C     108.090    1.50
+RCC          NC         C4C         CHD     121.462    1.50
+RCC         C3C         C4C         CHD     130.448    1.50
+RCC          ND         C4D         C3D     110.664    1.50
+RCC          ND         C4D         CHA     136.864    1.50
+RCC         C3D         C4D         CHA     112.472    3.00
+RCC         C2A         CAA         CBA     112.518    2.73
+RCC         C2A         CAA         HAA     108.649    1.50
+RCC         C2A         CAA        HAAA     108.649    1.50
+RCC         CBA         CAA         HAA     108.954    1.50
+RCC         CBA         CAA        HAAA     108.954    1.50
+RCC         HAA         CAA        HAAA     107.607    1.50
+RCC         C3B         CAB         CBB     125.100    3.00
+RCC         C3B         CAB         HAB     116.460    1.50
+RCC         CBB         CAB         HAB     118.440    2.08
+RCC         C3C         CAC         CBC     112.785    1.50
+RCC         C3C         CAC         HAC     109.062    1.50
+RCC         C3C         CAC        HACA     109.062    1.50
+RCC         CBC         CAC         HAC     108.966    1.50
+RCC         CBC         CAC        HACA     108.966    1.50
+RCC         HAC         CAC        HACA     107.843    1.50
+RCC         C3D         CAD         CBD     106.653    1.50
+RCC         C3D         CAD         OBD     128.959    1.50
+RCC         CBD         CAD         OBD     124.388    1.50
+RCC         CAA         CBA         CGA     114.504    2.22
+RCC         CAA         CBA         HBA     108.941    1.50
+RCC         CAA         CBA        HBAA     108.941    1.50
+RCC         CGA         CBA         HBA     108.416    1.50
+RCC         CGA         CBA        HBAA     108.416    1.50
+RCC         HBA         CBA        HBAA     107.765    1.50
+RCC         CAB         CBB         HBB     120.031    1.50
+RCC         CAB         CBB        HBBA     120.031    1.50
+RCC         HBB         CBB        HBBA     119.939    1.50
+RCC         CAC         CBC         HBC     109.509    1.50
+RCC         CAC         CBC        HBCA     109.509    1.50
+RCC         CAC         CBC        HBCB     109.509    1.50
+RCC         HBC         CBC        HBCA     109.422    1.50
+RCC         HBC         CBC        HBCB     109.422    1.50
+RCC        HBCA         CBC        HBCB     109.422    1.50
+RCC         CAD         CBD         CGD     110.962    3.00
+RCC         CAD         CBD         CHA     102.792    1.88
+RCC         CAD         CBD         HBD     109.707    2.75
+RCC         CGD         CBD         CHA     110.962    3.00
+RCC         CGD         CBD         HBD     109.314    3.00
+RCC         CHA         CBD         HBD     110.367    1.60
+RCC         O2D         CED         HED     109.361    1.50
+RCC         O2D         CED        HEDA     109.361    1.50
+RCC         O2D         CED        HEDB     109.361    1.50
+RCC         HED         CED        HEDA     109.532    1.53
+RCC         HED         CED        HEDB     109.532    1.53
+RCC        HEDA         CED        HEDB     109.532    1.53
+RCC         O1A         CGA         O2A     123.625    1.50
+RCC         O1A         CGA         CBA     118.187    1.67
+RCC         O2A         CGA         CBA     118.187    1.67
+RCC         O1D         CGD         O2D     124.098    1.50
+RCC         O1D         CGD         CBD     124.260    1.50
+RCC         O2D         CGD         CBD     111.642    1.50
+RCC         C1A         CHA         C4D     129.241    3.00
+RCC         C1A         CHA         CBD     123.954    3.00
+RCC         C4D         CHA         CBD     106.805    1.50
+RCC         C1B         CHB         C4A     125.044    2.33
+RCC         C1B         CHB         HHB     117.598    1.50
+RCC         C4A         CHB         HHB     117.357    1.67
+RCC          OC         CHC         C1C     124.674    1.50
+RCC          OC         CHC         HHC     117.958    1.76
+RCC         C1C         CHC         HHC     117.368    1.50
+RCC         C1D         CHD         C4C     114.942    1.50
+RCC         C1D         CHD         HHD     108.361    1.50
+RCC         C1D         CHD        HHDA     108.361    1.50
+RCC         C4C         CHD         HHD     108.482    1.50
+RCC         C4C         CHD        HHDA     108.482    1.50
+RCC         HHD         CHD        HHDA     108.204    2.25
+RCC         C3A         CMA         HMA     109.458    1.50
+RCC         C3A         CMA        HMAA     109.458    1.50
+RCC         C3A         CMA        HMAB     109.458    1.50
+RCC         HMA         CMA        HMAA     109.347    1.50
+RCC         HMA         CMA        HMAB     109.347    1.50
+RCC        HMAA         CMA        HMAB     109.347    1.50
+RCC         C2B         CMB         HMB     109.468    1.50
+RCC         C2B         CMB        HMBA     109.468    1.50
+RCC         C2B         CMB        HMBB     109.468    1.50
+RCC         HMB         CMB        HMBA     109.364    1.50
+RCC         HMB         CMB        HMBB     109.364    1.50
+RCC        HMBA         CMB        HMBB     109.364    1.50
+RCC         C2C         CMC         HMC     109.746    1.50
+RCC         C2C         CMC        HMCA     109.746    1.50
+RCC         C2C         CMC        HMCB     109.746    1.50
+RCC         HMC         CMC        HMCA     109.190    1.68
+RCC         HMC         CMC        HMCB     109.190    1.68
+RCC        HMCA         CMC        HMCB     109.190    1.68
+RCC         C2D         CMD         HMD     109.471    1.50
+RCC         C2D         CMD        HMDA     109.471    1.50
+RCC         C2D         CMD        HMDB     109.471    1.50
+RCC         HMD         CMD        HMDA     109.472    1.50
+RCC         HMD         CMD        HMDB     109.472    1.50
+RCC        HMDA         CMD        HMDB     109.472    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RCC            sp2_sp2_24         CHB         C4A          NA         C1A     180.000     5.0     2
+RCC             sp2_sp2_1         C2A         C1A          NA         C4A       0.000     5.0     2
+RCC              const_24         CHD         C1D         C2D         CMD       0.000    10.0     2
+RCC            sp2_sp3_26          ND         C1D         CHD         C4C     -90.000    10.0     6
+RCC             sp3_sp3_5         CAA         C2A         C3A         CMA      60.000    10.0     3
+RCC            sp3_sp3_10         C1A         C2A         CAA         CBA     180.000    10.0     3
+RCC            sp2_sp2_14         CMB         C2B         C3B         CAB       0.000     5.0     2
+RCC            sp2_sp3_31         C1B         C2B         CMB         HMB     150.000    10.0     6
+RCC              const_12         CMC         C2C         C3C         CAC       0.000    10.0     2
+RCC            sp2_sp3_37         C1C         C2C         CMC         HMC     150.000    10.0     6
+RCC              const_27         CMD         C2D         C3D         C4D     180.000    10.0     2
+RCC            sp2_sp3_43         C1D         C2D         CMD         HMD     150.000    10.0     6
+RCC            sp3_sp3_20         HED         CED         O2D         CGD     -60.000    10.0     3
+RCC            sp2_sp2_41         O1D         CGD         O2D         CED     180.000     5.0     2
+RCC            sp2_sp3_11         CHB         C4A         C3A         CMA     -60.000    10.0     6
+RCC            sp3_sp3_23         C2A         C3A         CMA         HMA     180.000    10.0     3
+RCC            sp2_sp2_18         CAB         C3B         C4B          OB       0.000     5.0     2
+RCC            sp2_sp2_43         C2B         C3B         CAB         CBB     180.000     5.0     2
+RCC            sp2_sp2_27          OB         C4B          NB         C1B     180.000     5.0     2
+RCC             sp2_sp2_5         CHB         C1B          NB         C4B     180.000     5.0     2
+RCC              const_16         CAC         C3C         C4C         CHD       0.000    10.0     2
+RCC            sp2_sp3_50         C2C         C3C         CAC         CBC     -90.000    10.0     6
+RCC              const_29         C2D         C3D         C4D          ND       0.000    10.0     2
+RCC            sp2_sp2_50         C2D         C3D         CAD         OBD       0.000     5.0     2
+RCC            sp2_sp2_53          NA         C4A         CHB         C1B       0.000     5.0     2
+RCC            sp2_sp3_56          NC         C4C         CHD         C1D     -90.000    10.0     6
+RCC            sp2_sp2_22          ND         C4D         CHA         C1A       0.000     5.0     2
+RCC            sp3_sp3_32         C2A         CAA         CBA         CGA     180.000    10.0     3
+RCC            sp2_sp2_55         C3B         CAB         CBB         HBB     180.000     5.0     2
+RCC            sp3_sp3_41         C3C         CAC         CBC         HBC     180.000    10.0     3
+RCC            sp2_sp3_23         OBD         CAD         CBD         CGD     -60.000    10.0     6
+RCC            sp2_sp3_62         O1A         CGA         CBA         CAA     120.000    10.0     6
+RCC            sp2_sp3_67         O1D         CGD         CBD         CAD       0.000    10.0     6
+RCC            sp2_sp3_17         C1A         CHA         CBD         CGD     -60.000    10.0     6
+RCC              const_35         CHD         C4C          NC         C1C     180.000    10.0     2
+RCC       const_sp2_sp2_3         CHC         C1C          NC         C4C     180.000     5.0     2
+RCC              const_19         CHD         C1D          ND         C4D     180.000    10.0     2
+RCC              const_37         C3D         C4D          ND         C1D       0.000    10.0     2
+RCC             sp2_sp3_2          NA         C1A         C2A         CAA     120.000    10.0     6
+RCC            sp2_sp2_32          NA         C1A         CHA         C4D     180.000     5.0     2
+RCC            sp2_sp2_10         CHB         C1B         C2B         CMB       0.000     5.0     2
+RCC            sp2_sp2_33          NB         C1B         CHB         C4A     180.000     5.0     2
+RCC       const_sp2_sp2_8         CHC         C1C         C2C         CMC       0.000     5.0     2
+RCC            sp2_sp2_37          NC         C1C         CHC          OC     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RCC    chir_1    C2A    C1A    C3A    CAA    positive
+RCC    chir_2    C3A    C4A    C2A    CMA    positive
+RCC    chir_3    CBD    CGD    CAD    CHA    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RCC    plan-1         C1D   0.020
+RCC    plan-1         C2D   0.020
+RCC    plan-1         C3D   0.020
+RCC    plan-1         C4D   0.020
+RCC    plan-1         CAD   0.020
+RCC    plan-1         CHA   0.020
+RCC    plan-1         CHD   0.020
+RCC    plan-1         CMD   0.020
+RCC    plan-1         HND   0.020
+RCC    plan-1          ND   0.020
+RCC    plan-2         C1C   0.020
+RCC    plan-2         C2C   0.020
+RCC    plan-2         C3C   0.020
+RCC    plan-2         C4C   0.020
+RCC    plan-2         CAC   0.020
+RCC    plan-2         CHC   0.020
+RCC    plan-2         CHD   0.020
+RCC    plan-2         CMC   0.020
+RCC    plan-2         HNC   0.020
+RCC    plan-2          NC   0.020
+RCC    plan-3         C1B   0.020
+RCC    plan-3         C4B   0.020
+RCC    plan-3         HNB   0.020
+RCC    plan-3          NB   0.020
+RCC    plan-4         C1A   0.020
+RCC    plan-4         C2A   0.020
+RCC    plan-4         CHA   0.020
+RCC    plan-4          NA   0.020
+RCC    plan-5         C1B   0.020
+RCC    plan-5         C2B   0.020
+RCC    plan-5         CHB   0.020
+RCC    plan-5          NB   0.020
+RCC    plan-6         C1B   0.020
+RCC    plan-6         C2B   0.020
+RCC    plan-6         C3B   0.020
+RCC    plan-6         CMB   0.020
+RCC    plan-7         C2B   0.020
+RCC    plan-7         C3B   0.020
+RCC    plan-7         C4B   0.020
+RCC    plan-7         CAB   0.020
+RCC    plan-8         C3A   0.020
+RCC    plan-8         C4A   0.020
+RCC    plan-8         CHB   0.020
+RCC    plan-8          NA   0.020
+RCC    plan-9         C3B   0.020
+RCC    plan-9         C4B   0.020
+RCC    plan-9          NB   0.020
+RCC    plan-9          OB   0.020
+RCC   plan-10         C3B   0.020
+RCC   plan-10         CAB   0.020
+RCC   plan-10         CBB   0.020
+RCC   plan-10         HAB   0.020
+RCC   plan-11         C3D   0.020
+RCC   plan-11         CAD   0.020
+RCC   plan-11         CBD   0.020
+RCC   plan-11         OBD   0.020
+RCC   plan-12         CAB   0.020
+RCC   plan-12         CBB   0.020
+RCC   plan-12         HBB   0.020
+RCC   plan-12        HBBA   0.020
+RCC   plan-13         CBA   0.020
+RCC   plan-13         CGA   0.020
+RCC   plan-13         O1A   0.020
+RCC   plan-13         O2A   0.020
+RCC   plan-14         CBD   0.020
+RCC   plan-14         CGD   0.020
+RCC   plan-14         O1D   0.020
+RCC   plan-14         O2D   0.020
+RCC   plan-15         C1A   0.020
+RCC   plan-15         C4D   0.020
+RCC   plan-15         CBD   0.020
+RCC   plan-15         CHA   0.020
+RCC   plan-16         C1B   0.020
+RCC   plan-16         C4A   0.020
+RCC   plan-16         CHB   0.020
+RCC   plan-16         HHB   0.020
+RCC   plan-17         C1C   0.020
+RCC   plan-17         CHC   0.020
+RCC   plan-17         HHC   0.020
+RCC   plan-17          OC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RCC           SMILES              ACDLabs 12.01                                                                                                                                                                         O=C5C(\C=C)=C(\C(=C\C4=N/C(=C2\c1nc(c(c1C(=O)C2C(=O)OC)C)Cc3c(c(c(C=O)n3)C)CC)C(CCC(=O)O)C4C)N5)C
+RCC SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                         CCc1c(C)c([nH]c1Cc2[nH]c3\C([C@@H](C(=O)OC)C(=O)c3c2C)=C4/N=C(\C=C5/NC(=O)C(=C5C)C=C)[C@@H](C)[C@@H]4CCC(O)=O)C=O
+RCC           SMILES               CACTVS 3.370                                                                                                                                                                   CCc1c(C)c([nH]c1Cc2[nH]c3C([CH](C(=O)OC)C(=O)c3c2C)=C4N=C(C=C5NC(=O)C(=C5C)C=C)[CH](C)[CH]4CCC(O)=O)C=O
+RCC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                  CCc1c(c([nH]c1Cc2c(c3c([nH]2)/C(=C\4/[C@H]([C@@H](C(=N4)/C=C\5/C(=C(C(=O)N5)C=C)C)C)CCC(=O)O)/[C@H](C3=O)C(=O)OC)C)C=O)C
+RCC           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                      CCc1c(c([nH]c1Cc2c(c3c([nH]2)C(=C4C(C(C(=N4)C=C5C(=C(C(=O)N5)C=C)C)C)CCC(=O)O)C(C3=O)C(=O)OC)C)C=O)C
+RCC            InChI                InChI  1.03 InChI=1S/C35H38N4O7/c1-8-19-15(3)26(14-40)36-25(19)13-24-18(6)28-32(38-24)29(30(33(28)43)35(45)46-7)31-21(10-11-27(41)42)17(5)22(37-31)12-23-16(4)20(9-2)34(44)39-23/h9,12,14,17,21,30,36,38H,2,8,10-11,13H2,1,3-7H3,(H,39,44)(H,41,42)/b23-12-,31-29-/t17-,21-,30+/m0/s1
+RCC         InChIKey                InChI  1.03                                                                                                                                                                                                                                               ZDEZVOKVUGXDCZ-FATBKOMMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RCC acedrg               243         "dictionary generator"                  
+RCC acedrg_database      11          "data source"                           
+RCC rdkit                2017.03.2   "Chemoinformatics tool"
+RCC refmac5              5.8.0238    "optimization tool"                     

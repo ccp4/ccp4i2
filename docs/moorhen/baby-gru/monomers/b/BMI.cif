@@ -1,0 +1,350 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BMI     BMI      3-[5-(1H-IMIDAZOL-1-YL)-7-METHYL-1H-BENZIMIDAZOL-2-YL]-4-[(PYRIDIN-2-YLMETHYL)AMINO]PYRIDIN-2(1H)-ONE     NON-POLYMER     49     30     .     
+#
+data_comp_BMI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BMI     C       C       CR6     0       4.227       -4.544      17.896      
+BMI     O       O       O       0       4.273       -5.539      17.162      
+BMI     N       N       NH1     0       4.654       -3.314      21.381      
+BMI     N1      N       NR6     0       3.899       -3.330      17.321      
+BMI     C1      C       CR6     0       4.407       -3.361      20.029      
+BMI     C2      C       CR16    0       4.063       -2.164      19.358      
+BMI     C3      C       CR16    0       3.820       -2.173      18.028      
+BMI     C4      C       CH2     0       5.579       -2.400      21.996      
+BMI     C5      C       CR16    0       7.035       -4.079      25.084      
+BMI     C6      C       CR16    0       6.101       -3.532      24.215      
+BMI     C7      C       CR16    0       8.365       -4.096      24.722      
+BMI     C8      C       CR6     0       6.529       -3.019      23.000      
+BMI     N2      N       NRD6    0       7.824       -3.030      22.641      
+BMI     C9      C       CR16    0       8.715       -3.564      23.497      
+BMI     C10     C       CR6     0       4.493       -4.577      19.295      
+BMI     C11     C       CR15    0       5.211       -12.184     22.836      
+BMI     C12     C       CR6     0       5.335       -10.058     21.514      
+BMI     C13     C       CR16    0       4.548       -9.301      20.658      
+BMI     N3      N       NR5     0       5.073       -11.454     21.679      
+BMI     C14     C       CR15    0       4.649       -12.331     20.738      
+BMI     N4      N       NRD5    0       4.508       -13.545     21.217      
+BMI     C15     C       CR15    0       4.864       -13.449     22.534      
+BMI     C16     C       CR56    0       4.822       -7.942      20.503      
+BMI     N5      N       NR5     0       5.867       -6.016      20.818      
+BMI     C17     C       CR5     0       4.841       -5.856      19.938      
+BMI     N6      N       NRD5    0       4.182       -6.988      19.721      
+BMI     C18     C       CR56    0       5.876       -7.343      21.198      
+BMI     C19     C       CR6     0       6.678       -8.106      22.065      
+BMI     C20     C       CR16    0       6.383       -9.459      22.200      
+BMI     C21     C       CH3     0       7.818       -7.502      22.830      
+BMI     HN      H       H       0       4.216       -3.859      21.901      
+BMI     HN1     H       H       0       3.731       -3.314      16.431      
+BMI     H2      H       H       0       4.007       -1.355      19.840      
+BMI     H3      H       H       0       3.591       -1.372      17.578      
+BMI     H41     H       H       0       5.067       -1.703      22.448      
+BMI     H42     H       H       0       6.106       -1.966      21.297      
+BMI     H5      H       H       0       6.762       -4.435      25.914      
+BMI     H6      H       H       0       5.186       -3.511      24.444      
+BMI     H7      H       H       0       9.020       -4.463      25.295      
+BMI     H9      H       H       0       9.623       -3.573      23.244      
+BMI     H11     H       H       0       5.494       -11.862     23.667      
+BMI     H13     H       H       0       3.838       -9.708      20.192      
+BMI     H14     H       H       0       4.472       -12.095     19.849      
+BMI     H15     H       H       0       4.863       -14.170     23.139      
+BMI     HN5     H       H       0       6.420       -5.394      21.100      
+BMI     H20     H       H       0       6.919       -9.973      22.780      
+BMI     H211    H       H       0       7.925       -7.969      23.675      
+BMI     H212    H       H       0       7.634       -6.564      23.002      
+BMI     H213    H       H       0       8.635       -7.581      22.312      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BMI           C           O      DOUBLE       n     1.235  0.0126     1.235  0.0126
+BMI           C          N1      SINGLE       y     1.379  0.0100     1.379  0.0100
+BMI           C         C10      SINGLE       y     1.398  0.0196     1.398  0.0196
+BMI           N          C1      SINGLE       n     1.363  0.0200     1.363  0.0200
+BMI           N          C4      SINGLE       n     1.436  0.0100     1.436  0.0100
+BMI          N1          C3      SINGLE       y     1.356  0.0100     1.356  0.0100
+BMI          C1          C2      SINGLE       y     1.401  0.0178     1.401  0.0178
+BMI          C1         C10      DOUBLE       y     1.410  0.0134     1.410  0.0134
+BMI          C2          C3      DOUBLE       y     1.348  0.0129     1.348  0.0129
+BMI          C4          C8      SINGLE       n     1.513  0.0100     1.513  0.0100
+BMI          C5          C7      DOUBLE       y     1.372  0.0130     1.372  0.0130
+BMI          C5          C6      SINGLE       y     1.381  0.0129     1.381  0.0129
+BMI          C6          C8      DOUBLE       y     1.380  0.0124     1.380  0.0124
+BMI          C7          C9      SINGLE       y     1.374  0.0152     1.374  0.0152
+BMI          C8          N2      SINGLE       y     1.339  0.0118     1.339  0.0118
+BMI          N2          C9      DOUBLE       y     1.342  0.0113     1.342  0.0113
+BMI         C10         C17      SINGLE       n     1.466  0.0119     1.466  0.0119
+BMI         C11          N3      SINGLE       y     1.372  0.0146     1.372  0.0146
+BMI         C11         C15      DOUBLE       y     1.346  0.0155     1.346  0.0155
+BMI         C12         C13      DOUBLE       y     1.383  0.0100     1.383  0.0100
+BMI         C12          N3      SINGLE       n     1.427  0.0100     1.427  0.0100
+BMI         C12         C20      SINGLE       y     1.382  0.0100     1.382  0.0100
+BMI         C13         C16      SINGLE       y     1.393  0.0100     1.393  0.0100
+BMI          N3         C14      SINGLE       y     1.352  0.0115     1.352  0.0115
+BMI         C14          N4      DOUBLE       y     1.313  0.0122     1.313  0.0122
+BMI          N4         C15      SINGLE       y     1.369  0.0161     1.369  0.0161
+BMI         C16          N6      SINGLE       y     1.390  0.0100     1.390  0.0100
+BMI         C16         C18      DOUBLE       y     1.397  0.0100     1.397  0.0100
+BMI          N5         C17      SINGLE       y     1.360  0.0100     1.360  0.0100
+BMI          N5         C18      SINGLE       y     1.380  0.0100     1.380  0.0100
+BMI         C17          N6      DOUBLE       y     1.326  0.0108     1.326  0.0108
+BMI         C18         C19      SINGLE       y     1.401  0.0100     1.401  0.0100
+BMI         C19         C20      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BMI         C19         C21      SINGLE       n     1.500  0.0108     1.500  0.0108
+BMI           N          HN      SINGLE       n     1.016  0.0100     0.871  0.0200
+BMI          N1         HN1      SINGLE       n     1.016  0.0100     0.904  0.0200
+BMI          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0196
+BMI          C3          H3      SINGLE       n     1.082  0.0130     0.947  0.0200
+BMI          C4         H41      SINGLE       n     1.089  0.0100     0.976  0.0145
+BMI          C4         H42      SINGLE       n     1.089  0.0100     0.976  0.0145
+BMI          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0191
+BMI          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0193
+BMI          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0200
+BMI          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0162
+BMI         C11         H11      SINGLE       n     1.082  0.0130     0.935  0.0110
+BMI         C13         H13      SINGLE       n     1.082  0.0130     0.942  0.0173
+BMI         C14         H14      SINGLE       n     1.082  0.0130     0.937  0.0140
+BMI         C15         H15      SINGLE       n     1.082  0.0130     0.942  0.0172
+BMI          N5         HN5      SINGLE       n     1.016  0.0100     0.879  0.0200
+BMI         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0168
+BMI         C21        H211      SINGLE       n     1.089  0.0100     0.971  0.0120
+BMI         C21        H212      SINGLE       n     1.089  0.0100     0.971  0.0120
+BMI         C21        H213      SINGLE       n     1.089  0.0100     0.971  0.0120
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BMI           O           C          N1     118.698    1.50
+BMI           O           C         C10     123.136    1.85
+BMI          N1           C         C10     118.166    3.00
+BMI          C1           N          C4     123.555    1.76
+BMI          C1           N          HN     118.465    2.04
+BMI          C4           N          HN     117.980    1.54
+BMI           C          N1          C3     122.613    1.50
+BMI           C          N1         HN1     117.976    1.78
+BMI          C3          N1         HN1     119.410    1.70
+BMI           N          C1          C2     119.869    1.76
+BMI           N          C1         C10     120.138    2.16
+BMI          C2          C1         C10     119.993    2.08
+BMI          C1          C2          C3     119.804    1.50
+BMI          C1          C2          H2     120.029    1.50
+BMI          C3          C2          H2     120.168    1.50
+BMI          N1          C3          C2     120.208    1.50
+BMI          N1          C3          H3     119.378    2.07
+BMI          C2          C3          H3     120.414    1.54
+BMI           N          C4          C8     114.963    1.84
+BMI           N          C4         H41     108.637    1.50
+BMI           N          C4         H42     108.637    1.50
+BMI          C8          C4         H41     108.655    1.50
+BMI          C8          C4         H42     108.655    1.50
+BMI         H41          C4         H42     107.618    1.50
+BMI          C7          C5          C6     118.960    1.50
+BMI          C7          C5          H5     120.530    1.50
+BMI          C6          C5          H5     120.510    1.50
+BMI          C5          C6          C8     118.968    1.50
+BMI          C5          C6          H6     120.667    1.50
+BMI          C8          C6          H6     120.359    1.50
+BMI          C5          C7          C9     118.279    1.50
+BMI          C5          C7          H7     120.931    1.50
+BMI          C9          C7          H7     120.790    1.50
+BMI          C4          C8          C6     122.661    1.50
+BMI          C4          C8          N2     115.183    1.50
+BMI          C6          C8          N2     122.162    1.50
+BMI          C8          N2          C9     118.039    1.50
+BMI          C7          C9          N2     123.599    1.50
+BMI          C7          C9          H9     118.448    1.50
+BMI          N2          C9          H9     117.953    1.50
+BMI           C         C10          C1     119.217    1.80
+BMI           C         C10         C17     119.508    1.80
+BMI          C1         C10         C17     121.275    1.72
+BMI          N3         C11         C15     106.368    1.56
+BMI          N3         C11         H11     126.554    1.50
+BMI         C15         C11         H11     127.079    1.50
+BMI         C13         C12          N3     119.903    1.50
+BMI         C13         C12         C20     120.313    1.64
+BMI          N3         C12         C20     119.784    1.50
+BMI         C12         C13         C16     119.539    1.50
+BMI         C12         C13         H13     119.515    1.50
+BMI         C16         C13         H13     120.946    1.50
+BMI         C11          N3         C12     126.391    1.50
+BMI         C11          N3         C14     106.030    1.50
+BMI         C12          N3         C14     127.580    1.50
+BMI          N3         C14          N4     111.997    1.50
+BMI          N3         C14         H14     123.903    1.50
+BMI          N4         C14         H14     124.100    1.50
+BMI         C14          N4         C15     105.051    1.50
+BMI         C11         C15          N4     110.555    1.50
+BMI         C11         C15         H15     125.066    1.50
+BMI          N4         C15         H15     124.379    1.50
+BMI         C13         C16          N6     129.647    1.50
+BMI         C13         C16         C18     120.999    1.50
+BMI          N6         C16         C18     109.354    1.50
+BMI         C17          N5         C18     107.257    1.50
+BMI         C17          N5         HN5     126.747    1.56
+BMI         C18          N5         HN5     125.996    1.93
+BMI         C10         C17          N5     123.812    1.50
+BMI         C10         C17          N6     123.718    1.50
+BMI          N5         C17          N6     112.470    1.50
+BMI         C16          N6         C17     104.934    1.50
+BMI         C16         C18          N5     105.985    1.50
+BMI         C16         C18         C19     120.499    1.50
+BMI          N5         C18         C19     133.516    2.40
+BMI         C18         C19         C20     117.116    1.50
+BMI         C18         C19         C21     122.325    1.76
+BMI         C20         C19         C21     120.559    1.66
+BMI         C12         C20         C19     121.534    1.50
+BMI         C12         C20         H20     119.967    1.50
+BMI         C19         C20         H20     118.499    1.50
+BMI         C19         C21        H211     109.609    1.50
+BMI         C19         C21        H212     109.609    1.50
+BMI         C19         C21        H213     109.609    1.50
+BMI        H211         C21        H212     109.424    1.50
+BMI        H211         C21        H213     109.424    1.50
+BMI        H212         C21        H213     109.424    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BMI              const_83           O           C         C10          C1     180.000    10.0     2
+BMI       const_sp2_sp2_3           O           C          N1          C3     180.000     5.0     2
+BMI              const_69          C5          C7          C9          N2       0.000    10.0     2
+BMI              const_76          C4          C8          N2          C9     180.000    10.0     2
+BMI              const_73          C7          C9          N2          C8       0.000    10.0     2
+BMI             sp2_sp2_5           C         C10         C17          N5     180.000     5.0     2
+BMI              const_22         C15         C11          N3         C12     180.000    10.0     2
+BMI              const_89          N3         C11         C15          N4       0.000    10.0     2
+BMI              const_35          N3         C12         C13         C16     180.000    10.0     2
+BMI             sp2_sp2_9         C13         C12          N3         C11     180.000     5.0     2
+BMI              const_93         C13         C12         C20         C19       0.000    10.0     2
+BMI              const_38         C12         C13         C16          N6     180.000    10.0     2
+BMI              const_25          N4         C14          N3         C11       0.000    10.0     2
+BMI              const_29          N3         C14          N4         C15       0.000    10.0     2
+BMI              const_31         C11         C15          N4         C14       0.000    10.0     2
+BMI              const_54         C13         C16          N6         C17     180.000    10.0     2
+BMI              const_42         C13         C16         C18          N5     180.000    10.0     2
+BMI              const_59         C10         C17          N5         C18     180.000    10.0     2
+BMI              const_61         C16         C18          N5         C17       0.000    10.0     2
+BMI              const_56         C10         C17          N6         C16     180.000    10.0     2
+BMI              const_46         C16         C18         C19         C21     180.000    10.0     2
+BMI              const_51         C21         C19         C20         C12     180.000    10.0     2
+BMI            sp2_sp3_13         C18         C19         C21        H211     150.000    10.0     6
+BMI             sp2_sp2_1          C2          C1           N          C4     180.000     5.0     2
+BMI             sp2_sp3_2          C1           N          C4          C8     120.000    10.0     6
+BMI       const_sp2_sp2_5          C2          C3          N1           C       0.000     5.0     2
+BMI              const_19           N          C1         C10           C     180.000    10.0     2
+BMI              const_15           N          C1          C2          C3     180.000    10.0     2
+BMI       const_sp2_sp2_9          C1          C2          C3          N1       0.000     5.0     2
+BMI             sp2_sp3_8          C6          C8          C4           N     -90.000    10.0     6
+BMI              const_65          C6          C5          C7          C9       0.000    10.0     2
+BMI              const_85          C7          C5          C6          C8       0.000    10.0     2
+BMI              const_78          C5          C6          C8          C4     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BMI    plan-1         C10   0.020
+BMI    plan-1         C12   0.020
+BMI    plan-1         C13   0.020
+BMI    plan-1         C16   0.020
+BMI    plan-1         C17   0.020
+BMI    plan-1         C18   0.020
+BMI    plan-1         C19   0.020
+BMI    plan-1         C20   0.020
+BMI    plan-1         C21   0.020
+BMI    plan-1         H13   0.020
+BMI    plan-1         H20   0.020
+BMI    plan-1         HN5   0.020
+BMI    plan-1          N3   0.020
+BMI    plan-1          N5   0.020
+BMI    plan-1          N6   0.020
+BMI    plan-2           C   0.020
+BMI    plan-2          C1   0.020
+BMI    plan-2         C10   0.020
+BMI    plan-2         C17   0.020
+BMI    plan-2          C2   0.020
+BMI    plan-2          C3   0.020
+BMI    plan-2          H2   0.020
+BMI    plan-2          H3   0.020
+BMI    plan-2         HN1   0.020
+BMI    plan-2           N   0.020
+BMI    plan-2          N1   0.020
+BMI    plan-2           O   0.020
+BMI    plan-3          C4   0.020
+BMI    plan-3          C5   0.020
+BMI    plan-3          C6   0.020
+BMI    plan-3          C7   0.020
+BMI    plan-3          C8   0.020
+BMI    plan-3          C9   0.020
+BMI    plan-3          H5   0.020
+BMI    plan-3          H6   0.020
+BMI    plan-3          H7   0.020
+BMI    plan-3          H9   0.020
+BMI    plan-3          N2   0.020
+BMI    plan-4         C11   0.020
+BMI    plan-4         C12   0.020
+BMI    plan-4         C14   0.020
+BMI    plan-4         C15   0.020
+BMI    plan-4         H11   0.020
+BMI    plan-4         H14   0.020
+BMI    plan-4         H15   0.020
+BMI    plan-4          N3   0.020
+BMI    plan-4          N4   0.020
+BMI    plan-5          C1   0.020
+BMI    plan-5          C4   0.020
+BMI    plan-5          HN   0.020
+BMI    plan-5           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BMI           SMILES              ACDLabs 10.04                                                                                                           O=C2NC=CC(NCc1ncccc1)=C2c5nc3c(c(cc(c3)n4ccnc4)C)n5
+BMI SMILES_CANONICAL               CACTVS 3.341                                                                                                          Cc1cc(cc2nc([nH]c12)C3=C(NCc4ccccn4)C=CNC3=O)n5ccnc5
+BMI           SMILES               CACTVS 3.341                                                                                                          Cc1cc(cc2nc([nH]c12)C3=C(NCc4ccccn4)C=CNC3=O)n5ccnc5
+BMI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                          Cc1cc(cc2c1[nH]c(n2)C3=C(C=CNC3=O)NCc4ccccn4)n5ccnc5
+BMI           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                          Cc1cc(cc2c1[nH]c(n2)C3=C(C=CNC3=O)NCc4ccccn4)n5ccnc5
+BMI            InChI                InChI  1.03 InChI=1S/C22H19N7O/c1-14-10-16(29-9-8-23-13-29)11-18-20(14)28-21(27-18)19-17(5-7-25-22(19)30)26-12-15-4-2-3-6-24-15/h2-11,13H,12H2,1H3,(H,27,28)(H2,25,26,30)
+BMI         InChIKey                InChI  1.03                                                                                                                                   GLTRPHMPCVLOJS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BMI acedrg               243         "dictionary generator"                  
+BMI acedrg_database      11          "data source"                           
+BMI rdkit                2017.03.2   "Chemoinformatics tool"
+BMI refmac5              5.8.0238    "optimization tool"                     

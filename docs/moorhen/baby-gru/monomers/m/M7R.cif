@@ -1,0 +1,521 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+M7R     M7R      "(2R)-2-benzyl-3-(4-propoxy-3-{[({4-[(3S,5S,7S)-tricyclo[3.3.1.1~3,7~]dec-1-yl]phenyl}carbonyl)amino]methyl}phenyl)propanoic acid"     NON-POLYMER     84     42     .     
+#
+data_comp_M7R
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+M7R     C1      C       C       0       19.383      66.739      17.928      
+M7R     O1      O       O       0       20.620      66.606      18.024      
+M7R     C2      C       CH1     0       18.811      67.266      16.605      
+M7R     O2      O       OC      -1      18.582      66.468      18.845      
+M7R     C3      C       CH2     0       18.100      68.632      16.810      
+M7R     O3      O       O2      0       16.526      67.281      10.538      
+M7R     C4      C       CR6     0       19.021      69.737      17.270      
+M7R     C5      C       CH2     0       17.885      66.201      15.957      
+M7R     C6      C       CR6     0       17.546      66.481      14.513      
+M7R     C7      C       CR16    0       16.296      66.992      14.155      
+M7R     C8      C       CR6     0       15.948      67.256      12.829      
+M7R     C9      C       CR6     0       16.907      67.010      11.831      
+M7R     C10     C       CR16    0       18.154      66.493      12.173      
+M7R     C11     C       CR16    0       18.462      66.239      13.500      
+M7R     C12     C       CH2     0       17.479      67.824      9.611       
+M7R     C13     C       CH2     0       16.798      68.194      8.322       
+M7R     C14     C       CH3     0       17.789      68.553      7.242       
+M7R     C15     C       CH2     0       14.587      67.816      12.495      
+M7R     C17     C       CR16    0       14.512      71.485      9.213       
+M7R     C19     C       CR16    0       15.284      72.428      8.549       
+M7R     C22     C       CR16    0       16.359      70.964      10.623      
+M7R     C23     C       CT      0       17.521      73.695      8.195       
+M7R     C24     C       CH2     0       18.789      72.998      7.638       
+M7R     C25     C       CH2     0       17.986      74.802      9.172       
+M7R     C26     C       CH2     0       16.828      74.399      7.000       
+M7R     C27     C       CH1     0       19.732      73.998      6.951       
+M7R     C28     C       CH1     0       18.930      75.802      8.482       
+M7R     C29     C       CH1     0       17.770      75.398      6.307       
+M7R     C30     C       CH2     0       20.167      75.065      7.960       
+M7R     C31     C       CH2     0       19.005      74.662      5.779       
+M7R     C32     C       CH2     0       18.204      76.471      7.310       
+M7R     C51     C       CR16    0       18.905      70.283      18.544      
+M7R     C52     C       CR16    0       19.756      71.299      18.962      
+M7R     C53     C       CR16    0       20.731      71.781      18.113      
+M7R     C54     C       CR16    0       20.858      71.250      16.847      
+M7R     C55     C       CR16    0       20.009      70.234      16.427      
+M7R     C87     C       CR6     0       15.030      70.752      10.275      
+M7R     C97     C       C       0       14.198      69.701      10.963      
+M7R     C98     C       CR6     0       16.620      72.671      8.908       
+M7R     C99     C       CR16    0       17.130      71.907      9.965       
+M7R     N99     N       NH1     0       14.669      69.225      12.122      
+M7R     O99     O       O       0       13.249      69.180      10.376      
+M7R     H2      H       H       0       19.567      67.412      15.996      
+M7R     H3      H       H       0       17.383      68.518      17.471      
+M7R     H3A     H       H       0       17.684      68.905      15.965      
+M7R     H5      H       H       0       17.052      66.150      16.474      
+M7R     H5A     H       H       0       18.323      65.325      16.011      
+M7R     H7      H       H       0       15.662      67.162      14.837      
+M7R     H10     H       H       0       18.794      66.318      11.506      
+M7R     H11     H       H       0       19.312      65.893      13.717      
+M7R     H12     H       H       0       18.177      67.162      9.427       
+M7R     H12A    H       H       0       17.904      68.616      9.999       
+M7R     H13     H       H       0       16.203      68.956      8.477       
+M7R     H13A    H       H       0       16.249      67.439      8.020       
+M7R     H14     H       H       0       17.312      68.837      6.443       
+M7R     H14A    H       H       0       18.337      67.777      7.032       
+M7R     H14B    H       H       0       18.361      69.277      7.551       
+M7R     H15     H       H       0       14.000      67.724      13.275      
+M7R     H15A    H       H       0       14.197      67.292      11.764      
+M7R     H17     H       H       0       13.620      71.350      8.947       
+M7R     H19     H       H       0       14.895      72.916      7.844       
+M7R     H22     H       H       0       16.742      70.474      11.327      
+M7R     H24     H       H       0       19.276      72.555      8.371       
+M7R     H24A    H       H       0       18.521      72.304      6.990       
+M7R     H25     H       H       0       17.198      75.283      9.520       
+M7R     H25A    H       H       0       18.453      74.392      9.938       
+M7R     H26     H       H       0       16.029      74.881      7.320       
+M7R     H26A    H       H       0       16.534      73.723      6.344       
+M7R     H27     H       H       0       20.532      73.515      6.613       
+M7R     H28     H       H       0       19.209      76.494      9.137       
+M7R     H29     H       H       0       17.292      75.828      5.550       
+M7R     H30     H       H       0       20.644      74.641      8.709       
+M7R     H30A    H       H       0       20.778      75.704      7.527       
+M7R     H31     H       H       0       18.732      73.979      5.125       
+M7R     H31A    H       H       0       19.606      75.298      5.329       
+M7R     H32     H       H       0       18.804      77.115      6.871       
+M7R     H32A    H       H       0       17.416      76.958      7.640       
+M7R     H51     H       H       0       18.241      69.958      19.131      
+M7R     H52     H       H       0       19.665      71.660      19.829      
+M7R     H53     H       H       0       21.308      72.471      18.398      
+M7R     H54     H       H       0       21.524      71.578      16.264      
+M7R     H55     H       H       0       20.103      69.876      15.559      
+M7R     H99     H       H       0       18.025      72.038      10.236      
+M7R     HN99    H       H       0       15.002      69.783      12.708      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+M7R          C1          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+M7R          C1          C2      SINGLE       n     1.533  0.0100     1.533  0.0100
+M7R          C1          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+M7R          C2          C3      SINGLE       n     1.552  0.0103     1.552  0.0103
+M7R          C2          C5      SINGLE       n     1.552  0.0103     1.552  0.0103
+M7R          C3          C4      SINGLE       n     1.509  0.0100     1.509  0.0100
+M7R          O3          C9      SINGLE       n     1.368  0.0107     1.368  0.0107
+M7R          O3         C12      SINGLE       n     1.432  0.0101     1.432  0.0101
+M7R          C4         C51      DOUBLE       y     1.385  0.0111     1.385  0.0111
+M7R          C4         C55      SINGLE       y     1.385  0.0111     1.385  0.0111
+M7R          C5          C6      SINGLE       n     1.509  0.0100     1.509  0.0100
+M7R          C6          C7      DOUBLE       y     1.394  0.0100     1.394  0.0100
+M7R          C6         C11      SINGLE       y     1.385  0.0110     1.385  0.0110
+M7R          C7          C8      SINGLE       y     1.391  0.0100     1.391  0.0100
+M7R          C8          C9      DOUBLE       y     1.396  0.0100     1.396  0.0100
+M7R          C8         C15      SINGLE       n     1.504  0.0128     1.504  0.0128
+M7R          C9         C10      SINGLE       y     1.385  0.0100     1.385  0.0100
+M7R         C10         C11      DOUBLE       y     1.383  0.0100     1.383  0.0100
+M7R         C12         C13      SINGLE       n     1.503  0.0136     1.503  0.0136
+M7R         C13         C14      SINGLE       n     1.508  0.0200     1.508  0.0200
+M7R         C15         N99      SINGLE       n     1.458  0.0100     1.458  0.0100
+M7R         C17         C19      DOUBLE       y     1.384  0.0100     1.384  0.0100
+M7R         C17         C87      SINGLE       y     1.386  0.0100     1.386  0.0100
+M7R         C19         C98      SINGLE       y     1.395  0.0100     1.395  0.0100
+M7R         C22         C87      DOUBLE       y     1.386  0.0100     1.386  0.0100
+M7R         C22         C99      SINGLE       y     1.384  0.0100     1.384  0.0100
+M7R         C23         C24      SINGLE       n     1.543  0.0100     1.543  0.0100
+M7R         C23         C25      SINGLE       n     1.543  0.0100     1.543  0.0100
+M7R         C23         C26      SINGLE       n     1.543  0.0100     1.543  0.0100
+M7R         C23         C98      SINGLE       n     1.531  0.0100     1.531  0.0100
+M7R         C24         C27      SINGLE       n     1.534  0.0100     1.534  0.0100
+M7R         C25         C28      SINGLE       n     1.534  0.0100     1.534  0.0100
+M7R         C26         C29      SINGLE       n     1.534  0.0100     1.534  0.0100
+M7R         C27         C30      SINGLE       n     1.529  0.0100     1.529  0.0100
+M7R         C27         C31      SINGLE       n     1.529  0.0100     1.529  0.0100
+M7R         C28         C30      SINGLE       n     1.529  0.0100     1.529  0.0100
+M7R         C28         C32      SINGLE       n     1.529  0.0100     1.529  0.0100
+M7R         C29         C31      SINGLE       n     1.529  0.0100     1.529  0.0100
+M7R         C29         C32      SINGLE       n     1.529  0.0100     1.529  0.0100
+M7R         C51         C52      SINGLE       y     1.386  0.0100     1.386  0.0100
+M7R         C52         C53      DOUBLE       y     1.376  0.0124     1.376  0.0124
+M7R         C53         C54      SINGLE       y     1.374  0.0127     1.374  0.0127
+M7R         C54         C55      DOUBLE       y     1.386  0.0100     1.386  0.0100
+M7R         C87         C97      SINGLE       n     1.502  0.0100     1.502  0.0100
+M7R         C97         N99      SINGLE       n     1.334  0.0100     1.334  0.0100
+M7R         C97         O99      DOUBLE       n     1.230  0.0114     1.230  0.0114
+M7R         C98         C99      DOUBLE       y     1.395  0.0100     1.395  0.0100
+M7R          C2          H2      SINGLE       n     1.089  0.0100     0.982  0.0200
+M7R          C3          H3      SINGLE       n     1.089  0.0100     0.981  0.0169
+M7R          C3         H3A      SINGLE       n     1.089  0.0100     0.981  0.0169
+M7R          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0169
+M7R          C5         H5A      SINGLE       n     1.089  0.0100     0.981  0.0169
+M7R          C7          H7      SINGLE       n     1.082  0.0130     0.946  0.0164
+M7R         C10         H10      SINGLE       n     1.082  0.0130     0.942  0.0141
+M7R         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0173
+M7R         C12         H12      SINGLE       n     1.089  0.0100     0.979  0.0131
+M7R         C12        H12A      SINGLE       n     1.089  0.0100     0.979  0.0131
+M7R         C13         H13      SINGLE       n     1.089  0.0100     0.981  0.0133
+M7R         C13        H13A      SINGLE       n     1.089  0.0100     0.981  0.0133
+M7R         C14         H14      SINGLE       n     1.089  0.0100     0.973  0.0157
+M7R         C14        H14A      SINGLE       n     1.089  0.0100     0.973  0.0157
+M7R         C14        H14B      SINGLE       n     1.089  0.0100     0.973  0.0157
+M7R         C15         H15      SINGLE       n     1.089  0.0100     0.980  0.0169
+M7R         C15        H15A      SINGLE       n     1.089  0.0100     0.980  0.0169
+M7R         C17         H17      SINGLE       n     1.082  0.0130     0.941  0.0168
+M7R         C19         H19      SINGLE       n     1.082  0.0130     0.945  0.0176
+M7R         C22         H22      SINGLE       n     1.082  0.0130     0.941  0.0168
+M7R         C24         H24      SINGLE       n     1.089  0.0100     0.987  0.0124
+M7R         C24        H24A      SINGLE       n     1.089  0.0100     0.987  0.0124
+M7R         C25         H25      SINGLE       n     1.089  0.0100     0.987  0.0124
+M7R         C25        H25A      SINGLE       n     1.089  0.0100     0.987  0.0124
+M7R         C26         H26      SINGLE       n     1.089  0.0100     0.987  0.0124
+M7R         C26        H26A      SINGLE       n     1.089  0.0100     0.987  0.0124
+M7R         C27         H27      SINGLE       n     1.089  0.0100     0.993  0.0134
+M7R         C28         H28      SINGLE       n     1.089  0.0100     0.993  0.0134
+M7R         C29         H29      SINGLE       n     1.089  0.0100     0.993  0.0134
+M7R         C30         H30      SINGLE       n     1.089  0.0100     0.984  0.0144
+M7R         C30        H30A      SINGLE       n     1.089  0.0100     0.984  0.0144
+M7R         C31         H31      SINGLE       n     1.089  0.0100     0.984  0.0144
+M7R         C31        H31A      SINGLE       n     1.089  0.0100     0.984  0.0144
+M7R         C32         H32      SINGLE       n     1.089  0.0100     0.984  0.0144
+M7R         C32        H32A      SINGLE       n     1.089  0.0100     0.984  0.0144
+M7R         C51         H51      SINGLE       n     1.082  0.0130     0.944  0.0174
+M7R         C52         H52      SINGLE       n     1.082  0.0130     0.944  0.0175
+M7R         C53         H53      SINGLE       n     1.082  0.0130     0.944  0.0161
+M7R         C54         H54      SINGLE       n     1.082  0.0130     0.944  0.0175
+M7R         C55         H55      SINGLE       n     1.082  0.0130     0.944  0.0174
+M7R         C99         H99      SINGLE       n     1.082  0.0130     0.945  0.0176
+M7R         N99        HN99      SINGLE       n     1.016  0.0100     0.875  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+M7R          O1          C1          C2     118.051    1.50
+M7R          O1          C1          O2     123.899    1.50
+M7R          C2          C1          O2     118.051    1.50
+M7R          C1          C2          C3     111.500    2.27
+M7R          C1          C2          C5     111.500    2.27
+M7R          C1          C2          H2     107.706    1.93
+M7R          C3          C2          C5     112.434    1.50
+M7R          C3          C2          H2     107.967    1.50
+M7R          C5          C2          H2     107.967    1.50
+M7R          C2          C3          C4     113.495    1.50
+M7R          C2          C3          H3     108.792    1.50
+M7R          C2          C3         H3A     108.792    1.50
+M7R          C4          C3          H3     108.738    1.50
+M7R          C4          C3         H3A     108.738    1.50
+M7R          H3          C3         H3A     107.709    1.50
+M7R          C9          O3         C12     118.290    1.50
+M7R          C3          C4         C51     120.970    1.50
+M7R          C3          C4         C55     120.970    1.50
+M7R         C51          C4         C55     118.060    1.50
+M7R          C2          C5          C6     113.495    1.50
+M7R          C2          C5          H5     108.792    1.50
+M7R          C2          C5         H5A     108.792    1.50
+M7R          C6          C5          H5     108.738    1.50
+M7R          C6          C5         H5A     108.738    1.50
+M7R          H5          C5         H5A     107.709    1.50
+M7R          C5          C6          C7     120.837    1.50
+M7R          C5          C6         C11     121.175    1.50
+M7R          C7          C6         C11     117.988    1.50
+M7R          C6          C7          C8     121.792    1.50
+M7R          C6          C7          H7     119.061    1.50
+M7R          C8          C7          H7     119.148    1.50
+M7R          C7          C8          C9     118.013    1.50
+M7R          C7          C8         C15     121.497    1.50
+M7R          C9          C8         C15     120.490    1.51
+M7R          O3          C9          C8     115.691    1.50
+M7R          O3          C9         C10     123.605    1.50
+M7R          C8          C9         C10     120.704    1.50
+M7R          C9         C10         C11     119.994    1.50
+M7R          C9         C10         H10     119.984    1.50
+M7R         C11         C10         H10     120.023    1.50
+M7R          C6         C11         C10     121.511    1.50
+M7R          C6         C11         H11     119.298    1.50
+M7R         C10         C11         H11     119.191    1.50
+M7R          O3         C12         C13     109.363    2.29
+M7R          O3         C12         H12     109.943    1.50
+M7R          O3         C12        H12A     109.943    1.50
+M7R         C13         C12         H12     109.925    1.50
+M7R         C13         C12        H12A     109.925    1.50
+M7R         H12         C12        H12A     108.474    1.50
+M7R         C12         C13         C14     111.939    1.73
+M7R         C12         C13         H13     109.095    1.50
+M7R         C12         C13        H13A     109.095    1.50
+M7R         C14         C13         H13     109.194    1.50
+M7R         C14         C13        H13A     109.194    1.50
+M7R         H13         C13        H13A     107.894    1.50
+M7R         C13         C14         H14     109.599    1.50
+M7R         C13         C14        H14A     109.599    1.50
+M7R         C13         C14        H14B     109.599    1.50
+M7R         H14         C14        H14A     109.380    1.50
+M7R         H14         C14        H14B     109.380    1.50
+M7R        H14A         C14        H14B     109.380    1.50
+M7R          C8         C15         N99     112.746    1.93
+M7R          C8         C15         H15     108.972    1.50
+M7R          C8         C15        H15A     108.972    1.50
+M7R         N99         C15         H15     109.133    1.50
+M7R         N99         C15        H15A     109.133    1.50
+M7R         H15         C15        H15A     107.860    1.50
+M7R         C19         C17         C87     120.849    1.50
+M7R         C19         C17         H17     119.587    1.50
+M7R         C87         C17         H17     119.564    1.50
+M7R         C17         C19         C98     121.079    1.50
+M7R         C17         C19         H19     119.765    1.50
+M7R         C98         C19         H19     119.156    1.50
+M7R         C87         C22         C99     120.849    1.50
+M7R         C87         C22         H22     119.564    1.50
+M7R         C99         C22         H22     119.587    1.50
+M7R         C24         C23         C25     107.874    1.50
+M7R         C24         C23         C26     107.874    1.50
+M7R         C24         C23         C98     111.031    1.51
+M7R         C25         C23         C26     107.874    1.50
+M7R         C25         C23         C98     111.031    1.51
+M7R         C26         C23         C98     111.031    1.51
+M7R         C23         C24         C27     110.839    1.50
+M7R         C23         C24         H24     109.520    1.50
+M7R         C23         C24        H24A     109.520    1.50
+M7R         C27         C24         H24     109.455    1.50
+M7R         C27         C24        H24A     109.455    1.50
+M7R         H24         C24        H24A     107.991    1.50
+M7R         C23         C25         C28     110.839    1.50
+M7R         C23         C25         H25     109.520    1.50
+M7R         C23         C25        H25A     109.520    1.50
+M7R         C28         C25         H25     109.455    1.50
+M7R         C28         C25        H25A     109.455    1.50
+M7R         H25         C25        H25A     107.991    1.50
+M7R         C23         C26         C29     110.839    1.50
+M7R         C23         C26         H26     109.520    1.50
+M7R         C23         C26        H26A     109.520    1.50
+M7R         C29         C26         H26     109.455    1.50
+M7R         C29         C26        H26A     109.455    1.50
+M7R         H26         C26        H26A     107.991    1.50
+M7R         C24         C27         C30     109.593    1.50
+M7R         C24         C27         C31     109.593    1.50
+M7R         C24         C27         H27     109.302    1.50
+M7R         C30         C27         C31     109.627    1.50
+M7R         C30         C27         H27     109.490    1.50
+M7R         C31         C27         H27     109.490    1.50
+M7R         C25         C28         C30     109.593    1.50
+M7R         C25         C28         C32     109.593    1.50
+M7R         C25         C28         H28     109.302    1.50
+M7R         C30         C28         C32     109.627    1.50
+M7R         C30         C28         H28     109.490    1.50
+M7R         C32         C28         H28     109.490    1.50
+M7R         C26         C29         C31     109.593    1.50
+M7R         C26         C29         C32     109.593    1.50
+M7R         C26         C29         H29     109.302    1.50
+M7R         C31         C29         C32     109.627    1.50
+M7R         C31         C29         H29     109.490    1.50
+M7R         C32         C29         H29     109.490    1.50
+M7R         C27         C30         C28     109.494    1.50
+M7R         C27         C30         H30     109.767    1.50
+M7R         C27         C30        H30A     109.767    1.50
+M7R         C28         C30         H30     109.767    1.50
+M7R         C28         C30        H30A     109.767    1.50
+M7R         H30         C30        H30A     108.211    1.50
+M7R         C27         C31         C29     109.494    1.50
+M7R         C27         C31         H31     109.767    1.50
+M7R         C27         C31        H31A     109.767    1.50
+M7R         C29         C31         H31     109.767    1.50
+M7R         C29         C31        H31A     109.767    1.50
+M7R         H31         C31        H31A     108.211    1.50
+M7R         C28         C32         C29     109.494    1.50
+M7R         C28         C32         H32     109.767    1.50
+M7R         C28         C32        H32A     109.767    1.50
+M7R         C29         C32         H32     109.767    1.50
+M7R         C29         C32        H32A     109.767    1.50
+M7R         H32         C32        H32A     108.211    1.50
+M7R          C4         C51         C52     120.624    1.50
+M7R          C4         C51         H51     119.591    1.50
+M7R         C52         C51         H51     119.786    1.50
+M7R         C51         C52         C53     120.325    1.50
+M7R         C51         C52         H52     119.792    1.50
+M7R         C53         C52         H52     119.883    1.50
+M7R         C52         C53         C54     120.043    1.50
+M7R         C52         C53         H53     119.979    1.50
+M7R         C54         C53         H53     119.979    1.50
+M7R         C53         C54         C55     120.325    1.50
+M7R         C53         C54         H54     119.883    1.50
+M7R         C55         C54         H54     119.792    1.50
+M7R          C4         C55         C54     120.624    1.50
+M7R          C4         C55         H55     119.591    1.50
+M7R         C54         C55         H55     119.786    1.50
+M7R         C17         C87         C22     119.085    1.50
+M7R         C17         C87         C97     120.458    2.80
+M7R         C22         C87         C97     120.458    2.80
+M7R         C87         C97         N99     116.722    1.50
+M7R         C87         C97         O99     120.965    1.50
+M7R         N99         C97         O99     122.313    1.50
+M7R         C19         C98         C23     121.470    1.56
+M7R         C19         C98         C99     117.060    1.50
+M7R         C23         C98         C99     121.470    1.56
+M7R         C22         C99         C98     121.079    1.50
+M7R         C22         C99         H99     119.765    1.50
+M7R         C98         C99         H99     119.156    1.50
+M7R         C15         N99         C97     121.850    1.50
+M7R         C15         N99        HN99     118.637    1.50
+M7R         C97         N99        HN99     119.513    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+M7R             sp2_sp3_1          O1          C1          C2          C3       0.000    10.0     6
+M7R              const_12         C15          C8          C9          O3       0.000    10.0     2
+M7R            sp2_sp3_20          C7          C8         C15         N99     -90.000    10.0     6
+M7R              const_14         C11         C10          C9          O3     180.000    10.0     2
+M7R              const_17          C9         C10         C11          C6       0.000    10.0     2
+M7R           sp3_sp3_121          O3         C12         C13         C14     180.000    10.0     3
+M7R           sp3_sp3_130         C12         C13         C14         H14     180.000    10.0     3
+M7R            sp2_sp3_26         C97         N99         C15          C8     120.000    10.0     6
+M7R              const_21         C87         C17         C19         C98       0.000    10.0     2
+M7R              const_70         C19         C17         C87         C97     180.000    10.0     2
+M7R              const_26         C17         C19         C98         C23     180.000    10.0     2
+M7R              const_38         C99         C22         C87         C97     180.000    10.0     2
+M7R              const_33         C87         C22         C99         C98       0.000    10.0     2
+M7R             sp3_sp3_1         C25         C23         C24         C27      60.000    10.0     3
+M7R            sp3_sp3_73         C24         C23         C25         C28      60.000    10.0     3
+M7R           sp3_sp3_139         C24         C23         C26         C29     180.000    10.0     3
+M7R            sp2_sp3_32         C19         C98         C23         C24     -90.000    10.0     6
+M7R            sp3_sp3_10         C23         C24         C27         C30     -60.000    10.0     3
+M7R            sp3_sp3_37         C23         C25         C28         C30      60.000    10.0     3
+M7R            sp3_sp3_64         C23         C26         C29         C31      60.000    10.0     3
+M7R            sp3_sp3_19         C24         C27         C30         C28      60.000    10.0     3
+M7R            sp3_sp3_46         C24         C27         C31         C29      60.000    10.0     3
+M7R            sp3_sp3_28         C25         C28         C30         C27     -60.000    10.0     3
+M7R            sp3_sp3_82         C25         C28         C32         C29      60.000    10.0     3
+M7R            sp3_sp3_55         C26         C29         C31         C27     -60.000    10.0     3
+M7R            sp3_sp3_91         C26         C29         C32         C28     -60.000    10.0     3
+M7R           sp3_sp3_100          C1          C2          C3          C4     180.000    10.0     3
+M7R           sp3_sp3_109          C1          C2          C5          C6     180.000    10.0     3
+M7R              const_45          C4         C51         C52         C53       0.000    10.0     2
+M7R              const_49         C51         C52         C53         C54       0.000    10.0     2
+M7R              const_53         C52         C53         C54         C55       0.000    10.0     2
+M7R              const_57         C53         C54         C55          C4       0.000    10.0     2
+M7R             sp2_sp2_3         C17         C87         C97         N99     180.000     5.0     2
+M7R             sp2_sp2_9         O99         C97         N99         C15       0.000     5.0     2
+M7R              const_29         C19         C98         C99         C22       0.000    10.0     2
+M7R             sp2_sp3_8         C51          C4          C3          C2     -90.000    10.0     6
+M7R             sp2_sp2_1          C8          C9          O3         C12     180.000     5.0     2
+M7R           sp3_sp3_118         C13         C12          O3          C9     180.000    10.0     3
+M7R              const_43          C3          C4         C51         C52     180.000    10.0     2
+M7R              const_63          C3          C4         C55         C54     180.000    10.0     2
+M7R            sp2_sp3_14          C7          C6          C5          C2     -90.000    10.0     6
+M7R              const_66         C10         C11          C6          C5     180.000    10.0     2
+M7R       const_sp2_sp2_3          C5          C6          C7          C8     180.000     5.0     2
+M7R       const_sp2_sp2_6          C6          C7          C8         C15     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+M7R    chir_1    C2    C1    C5    C3    negative
+M7R    chir_2    C23    C98    C24    C25    both
+M7R    chir_3    C27    C24    C30    C31    both
+M7R    chir_4    C28    C25    C30    C32    both
+M7R    chir_5    C29    C26    C31    C32    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+M7R    plan-1         C10   0.020
+M7R    plan-1         C11   0.020
+M7R    plan-1         C15   0.020
+M7R    plan-1          C5   0.020
+M7R    plan-1          C6   0.020
+M7R    plan-1          C7   0.020
+M7R    plan-1          C8   0.020
+M7R    plan-1          C9   0.020
+M7R    plan-1         H10   0.020
+M7R    plan-1         H11   0.020
+M7R    plan-1          H7   0.020
+M7R    plan-1          O3   0.020
+M7R    plan-2         C17   0.020
+M7R    plan-2         C19   0.020
+M7R    plan-2         C22   0.020
+M7R    plan-2         C23   0.020
+M7R    plan-2         C87   0.020
+M7R    plan-2         C97   0.020
+M7R    plan-2         C98   0.020
+M7R    plan-2         C99   0.020
+M7R    plan-2         H17   0.020
+M7R    plan-2         H19   0.020
+M7R    plan-2         H22   0.020
+M7R    plan-2         H99   0.020
+M7R    plan-3          C3   0.020
+M7R    plan-3          C4   0.020
+M7R    plan-3         C51   0.020
+M7R    plan-3         C52   0.020
+M7R    plan-3         C53   0.020
+M7R    plan-3         C54   0.020
+M7R    plan-3         C55   0.020
+M7R    plan-3         H51   0.020
+M7R    plan-3         H52   0.020
+M7R    plan-3         H53   0.020
+M7R    plan-3         H54   0.020
+M7R    plan-3         H55   0.020
+M7R    plan-4          C1   0.020
+M7R    plan-4          C2   0.020
+M7R    plan-4          O1   0.020
+M7R    plan-4          O2   0.020
+M7R    plan-5         C87   0.020
+M7R    plan-5         C97   0.020
+M7R    plan-5         N99   0.020
+M7R    plan-5         O99   0.020
+M7R    plan-6         C15   0.020
+M7R    plan-6         C97   0.020
+M7R    plan-6        HN99   0.020
+M7R    plan-6         N99   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+M7R           SMILES              ACDLabs 12.01                                                                                                                                                                        O=C(O)C(Cc1ccccc1)Cc2cc(c(OCCC)cc2)CNC(=O)c3ccc(cc3)C46CC5CC(CC(C4)C5)C6
+M7R SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                     CCCOc1ccc(C[C@@H](Cc2ccccc2)C(O)=O)cc1CNC(=O)c3ccc(cc3)[C]45C[CH]6[CH2]C([CH2][CH](C6)C4)C5
+M7R           SMILES               CACTVS 3.370                                                                                                                                                       CCCOc1ccc(C[CH](Cc2ccccc2)C(O)=O)cc1CNC(=O)c3ccc(cc3)[C]45C[CH]6[CH2]C([CH2][CH](C6)C4)C5
+M7R SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                                     CCCOc1ccc(cc1CNC(=O)c2ccc(cc2)C34CC5CC(C3)CC(C5)C4)C[C@@H](Cc6ccccc6)C(=O)O
+M7R           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                          CCCOc1ccc(cc1CNC(=O)c2ccc(cc2)C34CC5CC(C3)CC(C5)C4)CC(Cc6ccccc6)C(=O)O
+M7R            InChI                InChI  1.03 InChI=1S/C37H43NO4/c1-2-14-42-34-13-8-26(19-31(36(40)41)18-25-6-4-3-5-7-25)20-32(34)24-38-35(39)30-9-11-33(12-10-30)37-21-27-15-28(22-37)17-29(16-27)23-37/h3-13,20,27-29,31H,2,14-19,21-24H2,1H3,(H,38,39)(H,40,41)/t27-,28+,29-,31-,37-/m1/s1
+M7R         InChIKey                InChI  1.03                                                                                                                                                                                                                     XYMQLACGAYNBRX-FJRQOFADSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+M7R acedrg               243         "dictionary generator"                  
+M7R acedrg_database      11          "data source"                           
+M7R rdkit                2017.03.2   "Chemoinformatics tool"
+M7R refmac5              5.8.0238    "optimization tool"                     

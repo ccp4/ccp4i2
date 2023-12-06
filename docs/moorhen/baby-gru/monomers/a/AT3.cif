@@ -1,0 +1,195 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AT3     AT3      ACETYLTHIOCHOLINE     NON-POLYMER     26     10     .     
+#
+data_comp_AT3
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AT3     N1      N       NT      1       4.787       68.227      60.497      
+AT3     C2      C       CH2     0       4.563       68.654      61.939      
+AT3     C3      C       CH2     0       5.785       69.022      62.751      
+AT3     C5      C       C       0       6.453       70.390      65.494      
+AT3     O7      O       O       0       6.207       71.198      66.355      
+AT3     C6      C       CH3     0       7.623       69.469      65.546      
+AT3     C8      C       CH3     0       5.144       69.403      59.648      
+AT3     C9      C       CH3     0       3.520       67.634      59.971      
+AT3     C10     C       CH3     0       5.873       67.200      60.400      
+AT3     S24     S       S2      0       5.425       70.215      64.067      
+AT3     H2C1    H       H       0       4.100       67.925      62.394      
+AT3     H2C2    H       H       0       3.951       69.415      61.927      
+AT3     H3C1    H       H       0       6.466       69.397      62.161      
+AT3     H3C2    H       H       0       6.153       68.209      63.151      
+AT3     H6C1    H       H       0       8.368       69.918      65.978      
+AT3     H6C2    H       H       0       7.881       69.212      64.646      
+AT3     H6C3    H       H       0       7.388       68.676      66.054      
+AT3     H8C1    H       H       0       5.259       69.110      58.732      
+AT3     H8C2    H       H       0       5.969       69.796      59.970      
+AT3     H8C3    H       H       0       4.430       70.057      59.694      
+AT3     H9C1    H       H       0       2.801       68.273      60.084      
+AT3     H9C2    H       H       0       3.319       66.824      60.463      
+AT3     H9C3    H       H       0       3.629       67.427      59.031      
+AT3     H103    H       H       0       5.856       66.799      59.518      
+AT3     H101    H       H       0       5.725       66.518      61.072      
+AT3     H102    H       H       0       6.733       67.624      60.546      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AT3          N1          C2      SINGLE       n     1.515  0.0100     1.515  0.0100
+AT3          N1          C8      SINGLE       n     1.488  0.0165     1.488  0.0165
+AT3          N1          C9      SINGLE       n     1.488  0.0165     1.488  0.0165
+AT3          N1         C10      SINGLE       n     1.488  0.0165     1.488  0.0165
+AT3          C2          C3      SINGLE       n     1.506  0.0137     1.506  0.0137
+AT3          C3         S24      SINGLE       n     1.809  0.0191     1.809  0.0191
+AT3          C5          O7      DOUBLE       n     1.207  0.0100     1.207  0.0100
+AT3          C5          C6      SINGLE       n     1.487  0.0165     1.487  0.0165
+AT3          C5         S24      SINGLE       n     1.762  0.0200     1.762  0.0200
+AT3          C2        H2C1      SINGLE       n     1.089  0.0100     0.976  0.0165
+AT3          C2        H2C2      SINGLE       n     1.089  0.0100     0.976  0.0165
+AT3          C3        H3C1      SINGLE       n     1.089  0.0100     0.978  0.0177
+AT3          C3        H3C2      SINGLE       n     1.089  0.0100     0.978  0.0177
+AT3          C6        H6C1      SINGLE       n     1.089  0.0100     0.971  0.0140
+AT3          C6        H6C2      SINGLE       n     1.089  0.0100     0.971  0.0140
+AT3          C6        H6C3      SINGLE       n     1.089  0.0100     0.971  0.0140
+AT3          C8        H8C1      SINGLE       n     1.089  0.0100     0.969  0.0145
+AT3          C8        H8C2      SINGLE       n     1.089  0.0100     0.969  0.0145
+AT3          C8        H8C3      SINGLE       n     1.089  0.0100     0.969  0.0145
+AT3          C9        H9C1      SINGLE       n     1.089  0.0100     0.969  0.0145
+AT3          C9        H9C2      SINGLE       n     1.089  0.0100     0.969  0.0145
+AT3          C9        H9C3      SINGLE       n     1.089  0.0100     0.969  0.0145
+AT3         C10        H103      SINGLE       n     1.089  0.0100     0.969  0.0145
+AT3         C10        H101      SINGLE       n     1.089  0.0100     0.969  0.0145
+AT3         C10        H102      SINGLE       n     1.089  0.0100     0.969  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AT3          C2          N1          C8     109.603    1.93
+AT3          C2          N1          C9     109.603    1.93
+AT3          C2          N1         C10     109.603    1.93
+AT3          C8          N1          C9     109.041    1.50
+AT3          C8          N1         C10     109.041    1.50
+AT3          C9          N1         C10     109.041    1.50
+AT3          N1          C2          C3     115.936    1.50
+AT3          N1          C2        H2C1     108.242    1.50
+AT3          N1          C2        H2C2     108.242    1.50
+AT3          C3          C2        H2C1     109.603    1.50
+AT3          C3          C2        H2C2     109.603    1.50
+AT3        H2C1          C2        H2C2     107.788    1.50
+AT3          C2          C3         S24     112.239    3.00
+AT3          C2          C3        H3C1     108.906    1.50
+AT3          C2          C3        H3C2     108.906    1.50
+AT3         S24          C3        H3C1     109.066    1.50
+AT3         S24          C3        H3C2     109.066    1.50
+AT3        H3C1          C3        H3C2     107.807    1.50
+AT3          O7          C5          C6     123.736    1.50
+AT3          O7          C5         S24     122.942    2.65
+AT3          C6          C5         S24     113.322    2.65
+AT3          C5          C6        H6C1     109.460    1.50
+AT3          C5          C6        H6C2     109.460    1.50
+AT3          C5          C6        H6C3     109.460    1.50
+AT3        H6C1          C6        H6C2     109.377    1.50
+AT3        H6C1          C6        H6C3     109.377    1.50
+AT3        H6C2          C6        H6C3     109.377    1.50
+AT3          N1          C8        H8C1     108.994    1.50
+AT3          N1          C8        H8C2     108.994    1.50
+AT3          N1          C8        H8C3     108.994    1.50
+AT3        H8C1          C8        H8C2     109.693    1.55
+AT3        H8C1          C8        H8C3     109.693    1.55
+AT3        H8C2          C8        H8C3     109.693    1.55
+AT3          N1          C9        H9C1     108.994    1.50
+AT3          N1          C9        H9C2     108.994    1.50
+AT3          N1          C9        H9C3     108.994    1.50
+AT3        H9C1          C9        H9C2     109.693    1.55
+AT3        H9C1          C9        H9C3     109.693    1.55
+AT3        H9C2          C9        H9C3     109.693    1.55
+AT3          N1         C10        H103     108.994    1.50
+AT3          N1         C10        H101     108.994    1.50
+AT3          N1         C10        H102     108.994    1.50
+AT3        H103         C10        H101     109.693    1.55
+AT3        H103         C10        H102     109.693    1.55
+AT3        H101         C10        H102     109.693    1.55
+AT3          C3         S24          C5     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AT3             sp3_sp3_2          C3          C2          N1          C8     -60.000    10.0     3
+AT3            sp3_sp3_10        H8C1          C8          N1          C2     180.000    10.0     3
+AT3            sp3_sp3_20        H9C1          C9          N1          C2     -60.000    10.0     3
+AT3            sp3_sp3_28        H103         C10          N1          C2     180.000    10.0     3
+AT3            sp3_sp3_37          N1          C2          C3         S24     180.000    10.0     3
+AT3            sp3_sp3_46          C2          C3         S24          C5     180.000    10.0     3
+AT3             sp2_sp3_1          O7          C5          C6        H6C1       0.000    10.0     6
+AT3             sp2_sp2_1          O7          C5         S24          C3     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AT3    chir_1    N1    C2    C8    C9    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AT3    plan-1          C5   0.020
+AT3    plan-1          C6   0.020
+AT3    plan-1          O7   0.020
+AT3    plan-1         S24   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AT3           SMILES              ACDLabs 10.04                                     O=C(SCC[N+](C)(C)C)C
+AT3 SMILES_CANONICAL               CACTVS 3.341                                     CC(=O)SCC[N+](C)(C)C
+AT3           SMILES               CACTVS 3.341                                     CC(=O)SCC[N+](C)(C)C
+AT3 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                     CC(=O)SCC[N+](C)(C)C
+AT3           SMILES "OpenEye OEToolkits" 1.5.0                                     CC(=O)SCC[N+](C)(C)C
+AT3            InChI                InChI  1.03 InChI=1S/C7H16NOS/c1-7(9)10-6-5-8(2,3)4/h5-6H2,1-4H3/q+1
+AT3         InChIKey                InChI  1.03                              GFFIJCYHQYHUHB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AT3 acedrg               243         "dictionary generator"                  
+AT3 acedrg_database      11          "data source"                           
+AT3 rdkit                2017.03.2   "Chemoinformatics tool"
+AT3 refmac5              5.8.0238    "optimization tool"                     

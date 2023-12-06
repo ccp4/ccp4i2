@@ -1,0 +1,236 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RWY     RWY      "2-(4-phenoxyphenoxy)ethyl thiocyanate"     NON-POLYMER     32     19     .     
+#
+data_comp_RWY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RWY     NAA     N       NSP     0       24.673      -7.799      8.128       
+RWY     CAB     C       CSP     0       24.372      -8.761      7.575       
+RWY     CAC     C       CR16    0       23.620      -21.747     5.035       
+RWY     CAD     C       CR16    0       22.814      -21.954     6.134       
+RWY     CAE     C       CR16    0       24.493      -20.680     5.021       
+RWY     CAF     C       CR16    0       22.874      -21.097     7.225       
+RWY     CAG     C       CR16    0       24.569      -19.813     6.104       
+RWY     CAH     C       CR16    0       24.571      -15.833     9.385       
+RWY     CAI     C       CR16    0       23.231      -15.664     7.400       
+RWY     CAJ     C       CR16    0       24.497      -17.218     9.317       
+RWY     CAK     C       CR16    0       23.157      -17.050     7.333       
+RWY     CAL     C       CH2     0       23.939      -12.797     7.482       
+RWY     CAM     C       CH2     0       24.319      -11.423     7.939       
+RWY     OAN     O       O2      0       24.072      -13.690     8.596       
+RWY     OAO     O       O2      0       23.775      -19.211     8.318       
+RWY     SAP     S       S2      0       23.916      -10.150     6.707       
+RWY     CAQ     C       CR6     0       23.946      -15.046     8.425       
+RWY     CAR     C       CR6     0       23.747      -20.030     7.192       
+RWY     CAS     C       CR6     0       23.799      -17.817     8.289       
+RWY     HAC     H       H       0       23.574      -22.333     4.295       
+RWY     HAD     H       H       0       22.215      -22.682     6.147       
+RWY     HAE     H       H       0       25.046      -20.535     4.271       
+RWY     HAF     H       H       0       22.322      -21.241     7.975       
+RWY     HAG     H       H       0       25.166      -19.085     6.090       
+RWY     HAH     H       H       0       25.053      -15.426     10.085      
+RWY     HAI     H       H       0       22.797      -15.146     6.745       
+RWY     HAJ     H       H       0       24.928      -17.744     9.969       
+RWY     HAK     H       H       0       22.676      -17.460     6.634       
+RWY     HAL     H       H       0       24.525      -13.082     6.751       
+RWY     HALA    H       H       0       23.015      -12.798     7.160       
+RWY     HAM     H       H       0       25.282      -11.391     8.122       
+RWY     HAMA    H       H       0       23.849      -11.212     8.775       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RWY         NAA         CAB      TRIPLE       n     1.149  0.0200     1.149  0.0200
+RWY         CAB         SAP      SINGLE       n     1.701  0.0200     1.701  0.0200
+RWY         CAC         CAE      DOUBLE       y     1.375  0.0126     1.375  0.0126
+RWY         CAC         CAD      SINGLE       y     1.375  0.0126     1.375  0.0126
+RWY         CAD         CAF      DOUBLE       y     1.385  0.0100     1.385  0.0100
+RWY         CAE         CAG      SINGLE       y     1.385  0.0100     1.385  0.0100
+RWY         CAF         CAR      SINGLE       y     1.375  0.0100     1.375  0.0100
+RWY         CAG         CAR      DOUBLE       y     1.375  0.0100     1.375  0.0100
+RWY         CAH         CAQ      DOUBLE       y     1.386  0.0109     1.386  0.0109
+RWY         CAH         CAJ      SINGLE       y     1.385  0.0100     1.385  0.0100
+RWY         CAI         CAK      DOUBLE       y     1.385  0.0100     1.385  0.0100
+RWY         CAI         CAQ      SINGLE       y     1.386  0.0109     1.386  0.0109
+RWY         CAJ         CAS      DOUBLE       y     1.376  0.0114     1.376  0.0114
+RWY         CAK         CAS      SINGLE       y     1.376  0.0114     1.376  0.0114
+RWY         CAL         OAN      SINGLE       n     1.432  0.0101     1.432  0.0101
+RWY         CAL         CAM      SINGLE       n     1.497  0.0115     1.497  0.0115
+RWY         CAM         SAP      SINGLE       n     1.817  0.0100     1.817  0.0100
+RWY         OAN         CAQ      SINGLE       n     1.369  0.0106     1.369  0.0106
+RWY         OAO         CAR      SINGLE       n     1.390  0.0100     1.390  0.0100
+RWY         OAO         CAS      SINGLE       n     1.390  0.0100     1.390  0.0100
+RWY         CAC         HAC      SINGLE       n     1.082  0.0130     0.944  0.0161
+RWY         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0183
+RWY         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0183
+RWY         CAF         HAF      SINGLE       n     1.082  0.0130     0.942  0.0163
+RWY         CAG         HAG      SINGLE       n     1.082  0.0130     0.942  0.0163
+RWY         CAH         HAH      SINGLE       n     1.082  0.0130     0.942  0.0174
+RWY         CAI         HAI      SINGLE       n     1.082  0.0130     0.942  0.0174
+RWY         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.942  0.0174
+RWY         CAK         HAK      SINGLE       n     1.082  0.0130     0.942  0.0174
+RWY         CAL         HAL      SINGLE       n     1.089  0.0100     0.979  0.0131
+RWY         CAL        HALA      SINGLE       n     1.089  0.0100     0.979  0.0131
+RWY         CAM         HAM      SINGLE       n     1.089  0.0100     0.981  0.0167
+RWY         CAM        HAMA      SINGLE       n     1.089  0.0100     0.981  0.0167
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RWY         NAA         CAB         SAP     178.076    1.50
+RWY         CAE         CAC         CAD     119.908    1.50
+RWY         CAE         CAC         HAC     120.046    1.50
+RWY         CAD         CAC         HAC     120.046    1.50
+RWY         CAC         CAD         CAF     120.691    1.50
+RWY         CAC         CAD         HAD     119.839    1.50
+RWY         CAF         CAD         HAD     119.470    1.50
+RWY         CAC         CAE         CAG     120.691    1.50
+RWY         CAC         CAE         HAE     119.839    1.50
+RWY         CAG         CAE         HAE     119.470    1.50
+RWY         CAD         CAF         CAR     118.805    1.50
+RWY         CAD         CAF         HAF     120.526    1.50
+RWY         CAR         CAF         HAF     120.669    1.50
+RWY         CAE         CAG         CAR     118.805    1.50
+RWY         CAE         CAG         HAG     120.526    1.50
+RWY         CAR         CAG         HAG     120.669    1.50
+RWY         CAQ         CAH         CAJ     120.113    1.50
+RWY         CAQ         CAH         HAH     120.036    1.50
+RWY         CAJ         CAH         HAH     119.850    1.50
+RWY         CAK         CAI         CAQ     120.113    1.50
+RWY         CAK         CAI         HAI     119.850    1.50
+RWY         CAQ         CAI         HAI     120.036    1.50
+RWY         CAH         CAJ         CAS     119.459    1.50
+RWY         CAH         CAJ         HAJ     120.071    1.50
+RWY         CAS         CAJ         HAJ     120.470    1.50
+RWY         CAI         CAK         CAS     119.459    1.50
+RWY         CAI         CAK         HAK     120.071    1.50
+RWY         CAS         CAK         HAK     120.470    1.50
+RWY         OAN         CAL         CAM     108.191    1.75
+RWY         OAN         CAL         HAL     110.003    1.50
+RWY         OAN         CAL        HALA     110.003    1.50
+RWY         CAM         CAL         HAL     109.974    1.50
+RWY         CAM         CAL        HALA     109.974    1.50
+RWY         HAL         CAL        HALA     108.500    1.50
+RWY         CAL         CAM         SAP     112.239    3.00
+RWY         CAL         CAM         HAM     109.644    1.50
+RWY         CAL         CAM        HAMA     109.644    1.50
+RWY         SAP         CAM         HAM     108.775    1.50
+RWY         SAP         CAM        HAMA     108.775    1.50
+RWY         HAM         CAM        HAMA     107.741    1.50
+RWY         CAL         OAN         CAQ     117.464    1.77
+RWY         CAR         OAO         CAS     119.193    2.13
+RWY         CAB         SAP         CAM      99.569    1.56
+RWY         CAH         CAQ         CAI     119.831    1.50
+RWY         CAH         CAQ         OAN     120.084    3.00
+RWY         CAI         CAQ         OAN     120.084    3.00
+RWY         CAF         CAR         CAG     121.100    1.50
+RWY         CAF         CAR         OAO     119.450    3.00
+RWY         CAG         CAR         OAO     119.450    3.00
+RWY         CAJ         CAS         CAK     121.025    1.50
+RWY         CAJ         CAS         OAO     119.487    3.00
+RWY         CAK         CAS         OAO     119.487    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RWY              const_34         CAI         CAK         CAS         OAO     180.000    10.0     2
+RWY             sp3_sp3_4         OAN         CAL         CAM         SAP     180.000    10.0     3
+RWY             sp3_sp3_1         CAM         CAL         OAN         CAQ     180.000    10.0     3
+RWY            sp3_sp3_13         CAL         CAM         SAP         CAB     180.000    10.0     3
+RWY             sp2_sp2_1         CAH         CAQ         OAN         CAL     180.000     5.0     2
+RWY             sp2_sp2_3         CAF         CAR         OAO         CAS     180.000     5.0     2
+RWY             sp2_sp2_5         CAJ         CAS         OAO         CAR     180.000     5.0     2
+RWY              const_41         CAE         CAC         CAD         CAF       0.000    10.0     2
+RWY       const_sp2_sp2_1         CAD         CAC         CAE         CAG       0.000     5.0     2
+RWY              const_17         CAC         CAD         CAF         CAR       0.000    10.0     2
+RWY       const_sp2_sp2_5         CAC         CAE         CAG         CAR       0.000     5.0     2
+RWY              const_14         CAD         CAF         CAR         OAO     180.000    10.0     2
+RWY              const_10         CAE         CAG         CAR         OAO     180.000    10.0     2
+RWY              const_22         CAJ         CAH         CAQ         OAN     180.000    10.0     2
+RWY              const_45         CAQ         CAH         CAJ         CAS       0.000    10.0     2
+RWY              const_29         CAQ         CAI         CAK         CAS       0.000    10.0     2
+RWY              const_26         CAK         CAI         CAQ         OAN     180.000    10.0     2
+RWY              const_38         CAH         CAJ         CAS         OAO     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RWY    plan-1         CAH   0.020
+RWY    plan-1         CAI   0.020
+RWY    plan-1         CAJ   0.020
+RWY    plan-1         CAK   0.020
+RWY    plan-1         CAQ   0.020
+RWY    plan-1         CAS   0.020
+RWY    plan-1         HAH   0.020
+RWY    plan-1         HAI   0.020
+RWY    plan-1         HAJ   0.020
+RWY    plan-1         HAK   0.020
+RWY    plan-1         OAN   0.020
+RWY    plan-1         OAO   0.020
+RWY    plan-2         CAC   0.020
+RWY    plan-2         CAD   0.020
+RWY    plan-2         CAE   0.020
+RWY    plan-2         CAF   0.020
+RWY    plan-2         CAG   0.020
+RWY    plan-2         CAR   0.020
+RWY    plan-2         HAC   0.020
+RWY    plan-2         HAD   0.020
+RWY    plan-2         HAE   0.020
+RWY    plan-2         HAF   0.020
+RWY    plan-2         HAG   0.020
+RWY    plan-2         OAO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RWY           SMILES              ACDLabs 12.01                                                               N#CSCCOc2ccc(Oc1ccccc1)cc2
+RWY SMILES_CANONICAL               CACTVS 3.370                                                               N#CSCCOc1ccc(Oc2ccccc2)cc1
+RWY           SMILES               CACTVS 3.370                                                               N#CSCCOc1ccc(Oc2ccccc2)cc1
+RWY SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                             c1ccc(cc1)Oc2ccc(cc2)OCCSC#N
+RWY           SMILES "OpenEye OEToolkits" 1.7.2                                                             c1ccc(cc1)Oc2ccc(cc2)OCCSC#N
+RWY            InChI                InChI  1.03 InChI=1S/C15H13NO2S/c16-12-19-11-10-17-13-6-8-15(9-7-13)18-14-4-2-1-3-5-14/h1-9H,10-11H2
+RWY         InChIKey                InChI  1.03                                                              YQZHGQYIMXWEHI-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RWY acedrg               243         "dictionary generator"                  
+RWY acedrg_database      11          "data source"                           
+RWY rdkit                2017.03.2   "Chemoinformatics tool"
+RWY refmac5              5.8.0238    "optimization tool"                     

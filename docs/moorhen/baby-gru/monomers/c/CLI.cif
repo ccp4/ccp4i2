@@ -1,0 +1,217 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CLI     CLI      "3-(2-CARBOXY-ETHYL)-4,6-DICHLORO-1H-INDOLE-2-CARBOXYLIC ACID"     NON-POLYMER     27     19     .     
+#
+data_comp_CLI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CLI     O19     O       OC      -1      10.280      -32.850     6.934       
+CLI     C16     C       C       0       9.087       -32.614     6.661       
+CLI     O18     O       O       0       8.126       -33.176     7.222       
+CLI     C12     C       CH2     0       8.786       -31.585     5.584       
+CLI     C6      C       CH2     0       8.487       -30.193     6.130       
+CLI     C2      C       CR5     0       8.230       -29.172     5.061       
+CLI     C1      C       CR56    0       9.202       -28.466     4.274       
+CLI     C5      C       CR5     0       6.980       -28.735     4.648       
+CLI     C11     C       C       0       5.623       -29.098     5.087       
+CLI     O14     O       OH1     0       5.450       -30.424     5.134       
+CLI     O15     O       O       0       4.756       -28.288     5.373       
+CLI     N7      N       NR5     0       7.139       -27.798     3.651       
+CLI     C3      C       CR56    0       8.471       -27.616     3.405       
+CLI     C8      C       CR16    0       9.102       -26.774     2.489       
+CLI     C13     C       CR6     0       10.489      -26.800     2.460       
+CLI     CL17    CL      CL      0       11.316      -25.761     1.327       
+CLI     C9      C       CR16    0       11.240      -27.627     3.304       
+CLI     C4      C       CR6     0       10.610      -28.463     4.214       
+CLI     CL10    CL      CL      0       11.568      -29.465     5.234       
+CLI     H121    H       H       0       8.018       -31.903     5.060       
+CLI     H122    H       H       0       9.556       -31.541     4.975       
+CLI     H61     H       H       0       9.232       -29.890     6.682       
+CLI     H62     H       H       0       7.702       -30.238     6.710       
+CLI     H14     H       H       0       5.472       -30.887     4.409       
+CLI     HN7     H       H       0       6.489       -27.382     3.237       
+CLI     HC8     H       H       0       8.610       -26.221     1.923       
+CLI     HC9     H       H       0       12.182      -27.616     3.254       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CLI         O19         C16      SINGLE       n     1.247  0.0187     1.247  0.0187
+CLI         C16         O18      DOUBLE       n     1.247  0.0187     1.247  0.0187
+CLI         C16         C12      SINGLE       n     1.519  0.0109     1.519  0.0109
+CLI         C12          C6      SINGLE       n     1.524  0.0100     1.524  0.0100
+CLI          C6          C2      SINGLE       n     1.499  0.0100     1.499  0.0100
+CLI          C2          C1      SINGLE       y     1.433  0.0100     1.433  0.0100
+CLI          C2          C5      DOUBLE       y     1.387  0.0100     1.387  0.0100
+CLI          C1          C3      DOUBLE       y     1.414  0.0100     1.414  0.0100
+CLI          C1          C4      SINGLE       y     1.401  0.0104     1.401  0.0104
+CLI          C5         C11      SINGLE       n     1.471  0.0101     1.471  0.0101
+CLI          C5          N7      SINGLE       y     1.379  0.0100     1.379  0.0100
+CLI         C11         O14      SINGLE       n     1.338  0.0153     1.338  0.0153
+CLI         C11         O15      DOUBLE       n     1.220  0.0138     1.220  0.0138
+CLI          N7          C3      SINGLE       y     1.366  0.0100     1.366  0.0100
+CLI          C3          C8      SINGLE       y     1.392  0.0100     1.392  0.0100
+CLI          C8         C13      DOUBLE       y     1.385  0.0100     1.385  0.0100
+CLI         C13        CL17      SINGLE       n     1.746  0.0100     1.746  0.0100
+CLI         C13          C9      SINGLE       y     1.396  0.0100     1.396  0.0100
+CLI          C9          C4      DOUBLE       y     1.380  0.0128     1.380  0.0128
+CLI          C4        CL10      SINGLE       n     1.721  0.0100     1.721  0.0100
+CLI         C12        H121      SINGLE       n     1.089  0.0100     0.983  0.0139
+CLI         C12        H122      SINGLE       n     1.089  0.0100     0.983  0.0139
+CLI          C6         H61      SINGLE       n     1.089  0.0100     0.977  0.0135
+CLI          C6         H62      SINGLE       n     1.089  0.0100     0.977  0.0135
+CLI         O14         H14      SINGLE       n     0.966  0.0059     0.861  0.0200
+CLI          N7         HN7      SINGLE       n     1.016  0.0100     0.876  0.0200
+CLI          C8         HC8      SINGLE       n     1.082  0.0130     0.932  0.0200
+CLI          C9         HC9      SINGLE       n     1.082  0.0130     0.943  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CLI         O19         C16         O18     123.625    1.50
+CLI         O19         C16         C12     118.187    1.67
+CLI         O18         C16         C12     118.187    1.67
+CLI         C16         C12          C6     113.936    1.58
+CLI         C16         C12        H121     108.416    1.50
+CLI         C16         C12        H122     108.416    1.50
+CLI          C6         C12        H121     109.544    1.50
+CLI          C6         C12        H122     109.544    1.50
+CLI        H121         C12        H122     107.356    1.50
+CLI         C12          C6          C2     113.075    2.06
+CLI         C12          C6         H61     109.247    1.50
+CLI         C12          C6         H62     109.247    1.50
+CLI          C2          C6         H61     108.295    1.50
+CLI          C2          C6         H62     108.295    1.50
+CLI         H61          C6         H62     107.076    1.55
+CLI          C6          C2          C1     125.399    1.82
+CLI          C6          C2          C5     127.097    2.58
+CLI          C1          C2          C5     107.504    1.50
+CLI          C2          C1          C3     106.854    1.50
+CLI          C2          C1          C4     132.960    1.50
+CLI          C3          C1          C4     120.186    1.63
+CLI          C2          C5         C11     131.247    2.12
+CLI          C2          C5          N7     108.988    1.50
+CLI         C11          C5          N7     119.765    1.93
+CLI          C5         C11         O14     111.867    1.50
+CLI          C5         C11         O15     124.182    1.61
+CLI         O14         C11         O15     123.950    1.64
+CLI         C11         O14         H14     120.000    3.00
+CLI          C5          N7          C3     109.059    1.50
+CLI          C5          N7         HN7     125.584    1.50
+CLI          C3          N7         HN7     125.362    1.50
+CLI          C1          C3          N7     107.590    1.50
+CLI          C1          C3          C8     122.163    1.50
+CLI          N7          C3          C8     130.247    1.50
+CLI          C3          C8         C13     116.776    1.50
+CLI          C3          C8         HC8     121.323    1.50
+CLI         C13          C8         HC8     121.902    1.50
+CLI          C8         C13        CL17     118.508    1.50
+CLI          C8         C13          C9     122.133    1.50
+CLI        CL17         C13          C9     119.358    1.50
+CLI         C13          C9          C4     119.940    1.50
+CLI         C13          C9         HC9     120.128    1.50
+CLI          C4          C9         HC9     119.932    1.50
+CLI          C1          C4          C9     118.802    1.50
+CLI          C1          C4        CL10     120.789    1.50
+CLI          C9          C4        CL10     120.409    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CLI              const_25          C1          C3          N7          C5       0.000    10.0     2
+CLI       const_sp2_sp2_5          C1          C3          C8         C13       0.000     5.0     2
+CLI              const_11        CL17         C13          C8          C3     180.000    10.0     2
+CLI              const_15        CL17         C13          C9          C4     180.000    10.0     2
+CLI              const_19        CL10          C4          C9         C13     180.000    10.0     2
+CLI             sp2_sp3_2         O19         C16         C12          C6     120.000    10.0     6
+CLI             sp3_sp3_1         C16         C12          C6          C2     180.000    10.0     3
+CLI             sp2_sp3_8          C1          C2          C6         C12     -90.000    10.0     6
+CLI              const_22          C3          C1          C2          C6     180.000    10.0     2
+CLI              const_36          C6          C2          C5         C11       0.000    10.0     2
+CLI       const_sp2_sp2_1          C2          C1          C3          N7       0.000     5.0     2
+CLI              const_40          C2          C1          C4        CL10       0.000    10.0     2
+CLI              const_31         C11          C5          N7          C3     180.000    10.0     2
+CLI             sp2_sp2_1         O14         C11          C5          C2     180.000     5.0     2
+CLI             sp2_sp2_6         O15         C11         O14         H14       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CLI    plan-1          C1   0.020
+CLI    plan-1         C11   0.020
+CLI    plan-1         C13   0.020
+CLI    plan-1          C2   0.020
+CLI    plan-1          C3   0.020
+CLI    plan-1          C4   0.020
+CLI    plan-1          C5   0.020
+CLI    plan-1          C6   0.020
+CLI    plan-1          C8   0.020
+CLI    plan-1          C9   0.020
+CLI    plan-1        CL10   0.020
+CLI    plan-1        CL17   0.020
+CLI    plan-1         HC8   0.020
+CLI    plan-1         HC9   0.020
+CLI    plan-1         HN7   0.020
+CLI    plan-1          N7   0.020
+CLI    plan-2         C12   0.020
+CLI    plan-2         C16   0.020
+CLI    plan-2         O18   0.020
+CLI    plan-2         O19   0.020
+CLI    plan-3         C11   0.020
+CLI    plan-3          C5   0.020
+CLI    plan-3         O14   0.020
+CLI    plan-3         O15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CLI           SMILES              ACDLabs 10.04                                                                      Clc1cc2c(c(Cl)c1)c(c(C(=O)O)n2)CCC(=O)O
+CLI SMILES_CANONICAL               CACTVS 3.341                                                                     OC(=O)CCc1c([nH]c2cc(Cl)cc(Cl)c12)C(O)=O
+CLI           SMILES               CACTVS 3.341                                                                     OC(=O)CCc1c([nH]c2cc(Cl)cc(Cl)c12)C(O)=O
+CLI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                     c1c(cc(c2c1[nH]c(c2CCC(=O)O)C(=O)O)Cl)Cl
+CLI           SMILES "OpenEye OEToolkits" 1.5.0                                                                     c1c(cc(c2c1[nH]c(c2CCC(=O)O)C(=O)O)Cl)Cl
+CLI            InChI                InChI  1.03 InChI=1S/C12H9Cl2NO4/c13-5-3-7(14)10-6(1-2-9(16)17)11(12(18)19)15-8(10)4-5/h3-4,15H,1-2H2,(H,16,17)(H,18,19)
+CLI         InChIKey                InChI  1.03                                                                                  KNBSYZNKEAWABY-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CLI acedrg               243         "dictionary generator"                  
+CLI acedrg_database      11          "data source"                           
+CLI rdkit                2017.03.2   "Chemoinformatics tool"
+CLI refmac5              5.8.0238    "optimization tool"                     

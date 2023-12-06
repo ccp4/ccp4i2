@@ -1,0 +1,175 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+47E     47E      "(2R)-(3-chlorophenyl)(hydroxy)ethanoic acid"     NON-POLYMER     18     12     .     
+#
+data_comp_47E
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+47E     C4      C       CR16    0       -18.534     8.725       -13.737     
+47E     C5      C       CR16    0       -17.771     8.868       -12.591     
+47E     C6      C       CR6     0       -17.806     7.870       -11.637     
+47E     C7      C       CR16    0       -18.584     6.738       -11.807     
+47E     CL      CL      CL      0       -16.849     8.042       -10.191     
+47E     C3      C       CR16    0       -19.321     7.601       -13.929     
+47E     C2      C       CR6     0       -19.353     6.593       -12.954     
+47E     C1      C       CH1     0       -20.209     5.356       -13.152     
+47E     O2      O       OH1     0       -19.410     4.182       -13.154     
+47E     C       C       C       0       -21.282     5.282       -12.060     
+47E     O       O       O       0       -22.257     6.047       -12.174     
+47E     O1      O       OC      -1      -21.107     4.469       -11.132     
+47E     H1      H       H       0       -18.516     9.401       -14.395     
+47E     H2      H       H       0       -17.237     9.633       -12.465     
+47E     H3      H       H       0       -18.595     6.073       -11.147     
+47E     H4      H       H       0       -19.837     7.516       -14.715     
+47E     H5      H       H       0       -20.673     5.426       -14.041     
+47E     H6      H       H       0       -19.808     3.566       -13.582     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+47E          C4          C3      DOUBLE       y     1.382  0.0106     1.382  0.0106
+47E          C3          C2      SINGLE       y     1.399  0.0100     1.399  0.0100
+47E          C4          C5      SINGLE       y     1.378  0.0126     1.378  0.0126
+47E          C1          O2      SINGLE       n     1.419  0.0121     1.419  0.0121
+47E          C2          C1      SINGLE       n     1.516  0.0100     1.516  0.0100
+47E          C1           C      SINGLE       n     1.526  0.0200     1.526  0.0200
+47E          C7          C2      DOUBLE       y     1.385  0.0100     1.385  0.0100
+47E          C5          C6      DOUBLE       y     1.375  0.0126     1.375  0.0126
+47E           C           O      DOUBLE       n     1.244  0.0200     1.244  0.0200
+47E           C          O1      SINGLE       n     1.244  0.0200     1.244  0.0200
+47E          C6          C7      SINGLE       y     1.379  0.0118     1.379  0.0118
+47E          C6          CL      SINGLE       n     1.742  0.0100     1.742  0.0100
+47E          C4          H1      SINGLE       n     1.082  0.0130     0.943  0.0200
+47E          C5          H2      SINGLE       n     1.082  0.0130     0.941  0.0166
+47E          C7          H3      SINGLE       n     1.082  0.0130     0.937  0.0118
+47E          C3          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+47E          C1          H5      SINGLE       n     1.089  0.0100     1.005  0.0200
+47E          O2          H6      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+47E          C3          C4          C5     120.679    1.50
+47E          C3          C4          H1     119.736    1.50
+47E          C5          C4          H1     119.585    1.50
+47E          C4          C5          C6     118.693    1.50
+47E          C4          C5          H2     120.663    1.50
+47E          C6          C5          H2     120.644    1.50
+47E          C5          C6          C7     121.229    1.50
+47E          C5          C6          CL     119.292    1.50
+47E          C7          C6          CL     119.479    1.50
+47E          C2          C7          C6     119.809    1.50
+47E          C2          C7          H3     120.110    1.50
+47E          C6          C7          H3     120.081    1.50
+47E          C4          C3          C2     120.148    1.50
+47E          C4          C3          H4     119.932    1.50
+47E          C2          C3          H4     119.920    1.50
+47E          C3          C2          C1     120.264    1.50
+47E          C3          C2          C7     119.442    1.50
+47E          C1          C2          C7     120.294    1.50
+47E          O2          C1          C2     111.231    1.77
+47E          O2          C1           C     110.368    1.62
+47E          O2          C1          H5     108.842    1.50
+47E          C2          C1           C     109.882    1.80
+47E          C2          C1          H5     108.650    1.50
+47E           C          C1          H5     108.446    1.50
+47E          C1          O2          H6     109.683    3.00
+47E          C1           C           O     117.183    1.52
+47E          C1           C          O1     117.184    1.52
+47E           O           C          O1     125.634    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+47E              const_21          C3          C4          C5          C6       0.000    10.0     2
+47E       const_sp2_sp2_1          C2          C3          C4          C5       0.000     5.0     2
+47E              const_18          C4          C5          C6          CL     180.000    10.0     2
+47E              const_15          CL          C6          C7          C2     180.000    10.0     2
+47E              const_11          C1          C2          C7          C6     180.000    10.0     2
+47E       const_sp2_sp2_7          C1          C2          C3          C4     180.000     5.0     2
+47E             sp2_sp3_1          C3          C2          C1          O2     150.000    10.0     6
+47E             sp3_sp3_2           C          C1          O2          H6      60.000    10.0     3
+47E             sp2_sp3_7           O           C          C1          O2       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+47E    chir_1    C1    O2    C    C2    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+47E    plan-1          C1   0.020
+47E    plan-1          C2   0.020
+47E    plan-1          C3   0.020
+47E    plan-1          C4   0.020
+47E    plan-1          C5   0.020
+47E    plan-1          C6   0.020
+47E    plan-1          C7   0.020
+47E    plan-1          CL   0.020
+47E    plan-1          H1   0.020
+47E    plan-1          H2   0.020
+47E    plan-1          H3   0.020
+47E    plan-1          H4   0.020
+47E    plan-2           C   0.020
+47E    plan-2          C1   0.020
+47E    plan-2           O   0.020
+47E    plan-2          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+47E           SMILES              ACDLabs 12.01                                                         Clc1cc(ccc1)C(O)C(=O)O
+47E            InChI                InChI  1.03 InChI=1S/C8H7ClO3/c9-6-3-1-2-5(4-6)7(10)8(11)12/h1-4,7,10H,(H,11,12)/t7-/m1/s1
+47E         InChIKey                InChI  1.03                                                    SAMVPMGKGGLIPF-SSDOTTSWSA-N
+47E SMILES_CANONICAL               CACTVS 3.385                                                    O[C@@H](C(O)=O)c1cccc(Cl)c1
+47E           SMILES               CACTVS 3.385                                                      O[CH](C(O)=O)c1cccc(Cl)c1
+47E SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                   c1cc(cc(c1)Cl)[C@H](C(=O)O)O
+47E           SMILES "OpenEye OEToolkits" 1.9.2                                                       c1cc(cc(c1)Cl)C(C(=O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+47E acedrg               243         "dictionary generator"                  
+47E acedrg_database      11          "data source"                           
+47E rdkit                2017.03.2   "Chemoinformatics tool"
+47E refmac5              5.8.0238    "optimization tool"                     

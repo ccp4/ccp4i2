@@ -1,0 +1,484 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AYH     AYH      (1R,3S)-3-[1-(acetylamino)-1-methylethyl]-N-[(1S,2S,4R)-1-benzyl-5-(butylamino)-2-hydroxy-4-methyl-5-oxopentyl]cyclohexanecarboxamide     NON-POLYMER     83     36     .     
+#
+data_comp_AYH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AYH     N1      N       NH1     0       -22.403     17.624      -2.146      
+AYH     C3      C       CH1     0       -22.802     16.263      -2.554      
+AYH     C5      C       CH1     0       -24.075     15.812      -1.817      
+AYH     O7      O       OH1     0       -23.895     16.007      -0.416      
+AYH     C9      C       CH2     0       -25.345     16.538      -2.250      
+AYH     C12     C       CH1     0       -26.681     16.024      -1.699      
+AYH     C14     C       CH3     0       -27.793     17.045      -1.898      
+AYH     C18     C       C       0       -27.058     14.698      -2.338      
+AYH     O19     O       O       0       -27.348     14.665      -3.534      
+AYH     N20     N       NH1     0       -27.051     13.614      -1.561      
+AYH     C22     C       CH2     0       -27.399     12.283      -2.045      
+AYH     C25     C       CH2     0       -27.385     11.234      -0.949      
+AYH     C28     C       CH2     0       -27.817     9.863       -1.442      
+AYH     C31     C       CH3     0       -26.753     9.166       -2.256      
+AYH     C35     C       CH2     0       -21.635     15.288      -2.331      
+AYH     C38     C       CR6     0       -20.322     15.770      -2.910      
+AYH     C39     C       CR16    0       -20.178     15.961      -4.279      
+AYH     C41     C       CR16    0       -18.974     16.406      -4.812      
+AYH     C43     C       CR16    0       -17.902     16.667      -3.983      
+AYH     C45     C       CR16    0       -18.030     16.485      -2.623      
+AYH     C47     C       CR16    0       -19.233     16.040      -2.088      
+AYH     C49     C       C       0       -22.239     18.653      -2.991      
+AYH     O50     O       O       0       -22.495     18.554      -4.196      
+AYH     C51     C       CH1     0       -21.666     19.938      -2.405      
+AYH     C53     C       CH2     0       -20.132     19.909      -2.480      
+AYH     C56     C       CH1     0       -19.495     21.164      -1.883      
+AYH     C58     C       CH2     0       -20.049     22.387      -2.616      
+AYH     C61     C       CH2     0       -21.571     22.464      -2.530      
+AYH     C64     C       CH2     0       -22.218     21.194      -3.085      
+AYH     C67     C       CT      0       -17.916     21.087      -1.745      
+AYH     N68     N       NH1     0       -17.477     19.886      -0.987      
+AYH     C70     C       C       0       -17.773     19.555      0.281       
+AYH     O71     O       O       0       -18.471     20.247      1.021       
+AYH     C72     C       CH3     0       -17.200     18.260      0.763       
+AYH     C76     C       CH3     0       -17.248     21.028      -3.117      
+AYH     C80     C       CH3     0       -17.367     22.318      -1.029      
+AYH     HN1     H       H       0       -22.263     17.753      -1.274      
+AYH     H3      H       H       0       -23.013     16.268      -3.514      
+AYH     H5      H       H       0       -24.198     14.842      -1.984      
+AYH     HO7     H       H       0       -24.338     15.417      0.003       
+AYH     H9      H       H       0       -25.390     16.515      -3.232      
+AYH     H9A     H       H       0       -25.255     17.484      -1.996      
+AYH     H12     H       H       0       -26.570     15.878      -0.727      
+AYH     H14     H       H       0       -28.629     16.687      -1.552      
+AYH     H14A    H       H       0       -27.891     17.237      -2.847      
+AYH     H14B    H       H       0       -27.570     17.864      -1.423      
+AYH     HN20    H       H       0       -26.825     13.694      -0.722      
+AYH     H22     H       H       0       -26.764     12.024      -2.747      
+AYH     H22A    H       H       0       -28.293     12.316      -2.447      
+AYH     H25     H       H       0       -27.984     11.522      -0.227      
+AYH     H25A    H       H       0       -26.478     11.175      -0.580      
+AYH     H28     H       H       0       -28.626     9.961       -1.991      
+AYH     H28A    H       H       0       -28.046     9.302       -0.669      
+AYH     H31     H       H       0       -27.043     8.261       -2.464      
+AYH     H31A    H       H       0       -25.924     9.132       -1.748      
+AYH     H31B    H       H       0       -26.604     9.655       -3.084      
+AYH     H35     H       H       0       -21.862     14.426      -2.739      
+AYH     H35A    H       H       0       -21.525     15.142      -1.367      
+AYH     H39     H       H       0       -20.906     15.784      -4.853      
+AYH     H41     H       H       0       -18.890     16.530      -5.745      
+AYH     H43     H       H       0       -17.085     16.969      -4.346      
+AYH     H45     H       H       0       -17.299     16.662      -2.053      
+AYH     H47     H       H       0       -19.311     15.917      -1.155      
+AYH     H51     H       H       0       -21.917     19.974      -1.451      
+AYH     H53     H       H       0       -19.806     19.124      -2.003      
+AYH     H53A    H       H       0       -19.860     19.826      -3.412      
+AYH     H56     H       H       0       -19.824     21.230      -0.955      
+AYH     H58     H       H       0       -19.783     22.346      -3.556      
+AYH     H58A    H       H       0       -19.667     23.201      -2.231      
+AYH     H61     H       H       0       -21.889     23.243      -3.040      
+AYH     H61A    H       H       0       -21.840     22.584      -1.591      
+AYH     H64     H       H       0       -23.188     21.239      -2.949      
+AYH     H64A    H       H       0       -22.051     21.146      -4.049      
+AYH     HN68    H       H       0       -16.965     19.336      -1.434      
+AYH     H72     H       H       0       -17.428     18.129      1.697       
+AYH     H72A    H       H       0       -16.233     18.276      0.668       
+AYH     H72B    H       H       0       -17.562     17.528      0.238       
+AYH     H76     H       H       0       -17.533     20.225      -3.585      
+AYH     H76A    H       H       0       -16.282     21.008      -3.003      
+AYH     H76B    H       H       0       -17.493     21.812      -3.637      
+AYH     H80     H       H       0       -17.361     23.077      -1.639      
+AYH     H80A    H       H       0       -16.460     22.140      -0.725      
+AYH     H80B    H       H       0       -17.930     22.527      -0.263      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AYH          N1          C3      SINGLE       n     1.470  0.0100     1.470  0.0100
+AYH          N1         C49      SINGLE       n     1.335  0.0100     1.335  0.0100
+AYH          C3          C5      SINGLE       n     1.538  0.0100     1.538  0.0100
+AYH          C3         C35      SINGLE       n     1.536  0.0100     1.536  0.0100
+AYH          C5          O7      SINGLE       n     1.424  0.0199     1.424  0.0199
+AYH          C5          C9      SINGLE       n     1.525  0.0100     1.525  0.0100
+AYH          C9         C12      SINGLE       n     1.532  0.0112     1.532  0.0112
+AYH         C12         C14      SINGLE       n     1.521  0.0173     1.521  0.0173
+AYH         C12         C18      SINGLE       n     1.516  0.0100     1.516  0.0100
+AYH         C18         O19      DOUBLE       n     1.229  0.0102     1.229  0.0102
+AYH         C18         N20      SINGLE       n     1.330  0.0100     1.330  0.0100
+AYH         N20         C22      SINGLE       n     1.456  0.0109     1.456  0.0109
+AYH         C22         C25      SINGLE       n     1.517  0.0143     1.517  0.0143
+AYH         C25         C28      SINGLE       n     1.520  0.0176     1.520  0.0176
+AYH         C28         C31      SINGLE       n     1.510  0.0200     1.510  0.0200
+AYH         C35         C38      SINGLE       n     1.512  0.0103     1.512  0.0103
+AYH         C38         C39      DOUBLE       y     1.385  0.0111     1.385  0.0111
+AYH         C38         C47      SINGLE       y     1.385  0.0111     1.385  0.0111
+AYH         C39         C41      SINGLE       y     1.386  0.0100     1.386  0.0100
+AYH         C41         C43      DOUBLE       y     1.376  0.0124     1.376  0.0124
+AYH         C43         C45      SINGLE       y     1.374  0.0127     1.374  0.0127
+AYH         C45         C47      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AYH         C49         O50      DOUBLE       n     1.234  0.0100     1.234  0.0100
+AYH         C49         C51      SINGLE       n     1.520  0.0100     1.520  0.0100
+AYH         C51         C53      SINGLE       n     1.534  0.0100     1.534  0.0100
+AYH         C51         C64      SINGLE       n     1.529  0.0100     1.529  0.0100
+AYH         C53         C56      SINGLE       n     1.526  0.0100     1.526  0.0100
+AYH         C56         C58      SINGLE       n     1.526  0.0116     1.526  0.0116
+AYH         C56         C67      SINGLE       n     1.570  0.0180     1.570  0.0180
+AYH         C58         C61      SINGLE       n     1.526  0.0100     1.526  0.0100
+AYH         C61         C64      SINGLE       n     1.528  0.0126     1.528  0.0126
+AYH         C67         N68      SINGLE       n     1.480  0.0100     1.480  0.0100
+AYH         C67         C76      SINGLE       n     1.524  0.0104     1.524  0.0104
+AYH         C67         C80      SINGLE       n     1.524  0.0104     1.524  0.0104
+AYH         N68         C70      SINGLE       n     1.337  0.0106     1.337  0.0106
+AYH         C70         O71      DOUBLE       n     1.229  0.0102     1.229  0.0102
+AYH         C70         C72      SINGLE       n     1.495  0.0100     1.495  0.0100
+AYH          N1         HN1      SINGLE       n     1.016  0.0100     0.893  0.0200
+AYH          C3          H3      SINGLE       n     1.089  0.0100     0.984  0.0181
+AYH          C5          H5      SINGLE       n     1.089  0.0100     0.992  0.0184
+AYH          O7         HO7      SINGLE       n     0.970  0.0120     0.848  0.0200
+AYH          C9          H9      SINGLE       n     1.089  0.0100     0.983  0.0100
+AYH          C9         H9A      SINGLE       n     1.089  0.0100     0.983  0.0100
+AYH         C12         H12      SINGLE       n     1.089  0.0100     0.990  0.0142
+AYH         C14         H14      SINGLE       n     1.089  0.0100     0.973  0.0141
+AYH         C14        H14A      SINGLE       n     1.089  0.0100     0.973  0.0141
+AYH         C14        H14B      SINGLE       n     1.089  0.0100     0.973  0.0141
+AYH         N20        HN20      SINGLE       n     1.016  0.0100     0.872  0.0200
+AYH         C22         H22      SINGLE       n     1.089  0.0100     0.981  0.0152
+AYH         C22        H22A      SINGLE       n     1.089  0.0100     0.981  0.0152
+AYH         C25         H25      SINGLE       n     1.089  0.0100     0.981  0.0160
+AYH         C25        H25A      SINGLE       n     1.089  0.0100     0.981  0.0160
+AYH         C28         H28      SINGLE       n     1.089  0.0100     0.982  0.0155
+AYH         C28        H28A      SINGLE       n     1.089  0.0100     0.982  0.0155
+AYH         C31         H31      SINGLE       n     1.089  0.0100     0.973  0.0157
+AYH         C31        H31A      SINGLE       n     1.089  0.0100     0.973  0.0157
+AYH         C31        H31B      SINGLE       n     1.089  0.0100     0.973  0.0157
+AYH         C35         H35      SINGLE       n     1.089  0.0100     0.981  0.0150
+AYH         C35        H35A      SINGLE       n     1.089  0.0100     0.981  0.0150
+AYH         C39         H39      SINGLE       n     1.082  0.0130     0.944  0.0174
+AYH         C41         H41      SINGLE       n     1.082  0.0130     0.944  0.0175
+AYH         C43         H43      SINGLE       n     1.082  0.0130     0.944  0.0161
+AYH         C45         H45      SINGLE       n     1.082  0.0130     0.944  0.0175
+AYH         C47         H47      SINGLE       n     1.082  0.0130     0.944  0.0174
+AYH         C51         H51      SINGLE       n     1.089  0.0100     0.988  0.0115
+AYH         C53         H53      SINGLE       n     1.089  0.0100     0.975  0.0145
+AYH         C53        H53A      SINGLE       n     1.089  0.0100     0.975  0.0145
+AYH         C56         H56      SINGLE       n     1.089  0.0100     0.988  0.0159
+AYH         C58         H58      SINGLE       n     1.089  0.0100     0.978  0.0143
+AYH         C58        H58A      SINGLE       n     1.089  0.0100     0.978  0.0143
+AYH         C61         H61      SINGLE       n     1.089  0.0100     0.984  0.0109
+AYH         C61        H61A      SINGLE       n     1.089  0.0100     0.984  0.0109
+AYH         C64         H64      SINGLE       n     1.089  0.0100     0.980  0.0157
+AYH         C64        H64A      SINGLE       n     1.089  0.0100     0.980  0.0157
+AYH         N68        HN68      SINGLE       n     1.016  0.0100     0.872  0.0200
+AYH         C72         H72      SINGLE       n     1.089  0.0100     0.971  0.0140
+AYH         C72        H72A      SINGLE       n     1.089  0.0100     0.971  0.0140
+AYH         C72        H72B      SINGLE       n     1.089  0.0100     0.971  0.0140
+AYH         C76         H76      SINGLE       n     1.089  0.0100     0.973  0.0146
+AYH         C76        H76A      SINGLE       n     1.089  0.0100     0.973  0.0146
+AYH         C76        H76B      SINGLE       n     1.089  0.0100     0.973  0.0146
+AYH         C80         H80      SINGLE       n     1.089  0.0100     0.973  0.0146
+AYH         C80        H80A      SINGLE       n     1.089  0.0100     0.973  0.0146
+AYH         C80        H80B      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AYH          C3          N1         C49     122.766    1.50
+AYH          C3          N1         HN1     118.094    1.99
+AYH         C49          N1         HN1     119.140    1.50
+AYH          N1          C3          C5     111.308    2.28
+AYH          N1          C3         C35     109.721    1.50
+AYH          N1          C3          H3     108.116    1.50
+AYH          C5          C3         C35     112.266    1.50
+AYH          C5          C3          H3     107.639    1.50
+AYH         C35          C3          H3     108.431    1.50
+AYH          C3          C5          O7     109.040    1.72
+AYH          C3          C5          C9     114.793    1.69
+AYH          C3          C5          H5     108.500    1.50
+AYH          O7          C5          C9     109.024    2.32
+AYH          O7          C5          H5     108.700    1.50
+AYH          C9          C5          H5     108.603    1.50
+AYH          C5          O7         HO7     108.640    2.32
+AYH          C5          C9         C12     117.566    3.00
+AYH          C5          C9          H9     108.468    1.50
+AYH          C5          C9         H9A     108.468    1.50
+AYH         C12          C9          H9     108.447    1.50
+AYH         C12          C9         H9A     108.447    1.50
+AYH          H9          C9         H9A     106.914    1.50
+AYH          C9         C12         C14     111.474    1.79
+AYH          C9         C12         C18     110.094    2.47
+AYH          C9         C12         H12     107.780    1.50
+AYH         C14         C12         C18     110.451    1.50
+AYH         C14         C12         H12     108.292    1.72
+AYH         C18         C12         H12     107.412    1.52
+AYH         C12         C14         H14     109.487    1.50
+AYH         C12         C14        H14A     109.487    1.50
+AYH         C12         C14        H14B     109.487    1.50
+AYH         H14         C14        H14A     109.411    1.50
+AYH         H14         C14        H14B     109.411    1.50
+AYH        H14A         C14        H14B     109.411    1.50
+AYH         C12         C18         O19     120.333    2.03
+AYH         C12         C18         N20     116.526    1.50
+AYH         O19         C18         N20     123.141    1.50
+AYH         C18         N20         C22     122.964    1.80
+AYH         C18         N20        HN20     118.685    1.94
+AYH         C22         N20        HN20     118.351    1.90
+AYH         N20         C22         C25     112.624    1.50
+AYH         N20         C22         H22     108.979    1.50
+AYH         N20         C22        H22A     108.979    1.50
+AYH         C25         C22         H22     109.197    1.51
+AYH         C25         C22        H22A     109.197    1.51
+AYH         H22         C22        H22A     107.877    1.50
+AYH         C22         C25         C28     112.919    1.70
+AYH         C22         C25         H25     108.956    1.50
+AYH         C22         C25        H25A     108.956    1.50
+AYH         C28         C25         H25     109.463    1.50
+AYH         C28         C25        H25A     109.463    1.50
+AYH         H25         C25        H25A     107.927    1.57
+AYH         C25         C28         C31     112.927    1.64
+AYH         C25         C28         H28     108.966    1.50
+AYH         C25         C28        H28A     108.966    1.50
+AYH         C31         C28         H28     108.918    1.50
+AYH         C31         C28        H28A     108.918    1.50
+AYH         H28         C28        H28A     107.763    1.50
+AYH         C28         C31         H31     109.554    1.50
+AYH         C28         C31        H31A     109.554    1.50
+AYH         C28         C31        H31B     109.554    1.50
+AYH         H31         C31        H31A     109.380    1.50
+AYH         H31         C31        H31B     109.380    1.50
+AYH        H31A         C31        H31B     109.380    1.50
+AYH          C3         C35         C38     113.215    1.50
+AYH          C3         C35         H35     108.892    1.50
+AYH          C3         C35        H35A     108.892    1.50
+AYH         C38         C35         H35     108.862    1.50
+AYH         C38         C35        H35A     108.862    1.50
+AYH         H35         C35        H35A     107.782    1.50
+AYH         C35         C38         C39     120.970    1.50
+AYH         C35         C38         C47     120.970    1.50
+AYH         C39         C38         C47     118.060    1.50
+AYH         C38         C39         C41     120.624    1.50
+AYH         C38         C39         H39     119.591    1.50
+AYH         C41         C39         H39     119.786    1.50
+AYH         C39         C41         C43     120.325    1.50
+AYH         C39         C41         H41     119.792    1.50
+AYH         C43         C41         H41     119.883    1.50
+AYH         C41         C43         C45     120.043    1.50
+AYH         C41         C43         H43     119.979    1.50
+AYH         C45         C43         H43     119.979    1.50
+AYH         C43         C45         C47     120.325    1.50
+AYH         C43         C45         H45     119.883    1.50
+AYH         C47         C45         H45     119.792    1.50
+AYH         C38         C47         C45     120.624    1.50
+AYH         C38         C47         H47     119.591    1.50
+AYH         C45         C47         H47     119.786    1.50
+AYH          N1         C49         O50     121.283    1.75
+AYH          N1         C49         C51     116.644    2.17
+AYH         O50         C49         C51     122.073    1.50
+AYH         C49         C51         C53     110.678    1.86
+AYH         C49         C51         C64     111.531    2.78
+AYH         C49         C51         H51     107.664    1.50
+AYH         C53         C51         C64     110.554    1.50
+AYH         C53         C51         H51     107.687    1.74
+AYH         C64         C51         H51     108.269    1.50
+AYH         C51         C53         C56     111.841    1.50
+AYH         C51         C53         H53     109.336    1.50
+AYH         C51         C53        H53A     109.336    1.50
+AYH         C56         C53         H53     109.162    1.50
+AYH         C56         C53        H53A     109.162    1.50
+AYH         H53         C53        H53A     107.990    1.50
+AYH         C53         C56         C58     109.460    1.50
+AYH         C53         C56         C67     115.327    2.51
+AYH         C53         C56         H56     107.583    1.50
+AYH         C58         C56         C67     115.327    2.51
+AYH         C58         C56         H56     107.583    1.50
+AYH         C67         C56         H56     105.628    1.50
+AYH         C56         C58         C61     112.072    1.50
+AYH         C56         C58         H58     109.162    1.50
+AYH         C56         C58        H58A     109.162    1.50
+AYH         C61         C58         H58     109.267    1.50
+AYH         C61         C58        H58A     109.267    1.50
+AYH         H58         C58        H58A     107.919    1.50
+AYH         C58         C61         C64     111.269    1.50
+AYH         C58         C61         H61     109.388    1.50
+AYH         C58         C61        H61A     109.388    1.50
+AYH         C64         C61         H61     109.388    1.50
+AYH         C64         C61        H61A     109.388    1.50
+AYH         H61         C61        H61A     108.036    1.50
+AYH         C51         C64         C61     111.433    1.50
+AYH         C51         C64         H64     109.415    1.50
+AYH         C51         C64        H64A     109.415    1.50
+AYH         C61         C64         H64     109.267    1.50
+AYH         C61         C64        H64A     109.267    1.50
+AYH         H64         C64        H64A     107.919    1.50
+AYH         C56         C67         N68     112.102    2.36
+AYH         C56         C67         C76     110.896    1.50
+AYH         C56         C67         C80     110.896    1.50
+AYH         N68         C67         C76     108.690    2.19
+AYH         N68         C67         C80     108.690    2.19
+AYH         C76         C67         C80     108.020    1.50
+AYH         C67         N68         C70     125.436    1.82
+AYH         C67         N68        HN68     116.110    2.24
+AYH         C70         N68        HN68     118.454    1.94
+AYH         N68         C70         O71     122.594    1.50
+AYH         N68         C70         C72     115.848    1.50
+AYH         O71         C70         C72     121.558    1.50
+AYH         C70         C72         H72     109.678    1.50
+AYH         C70         C72        H72A     109.678    1.50
+AYH         C70         C72        H72B     109.678    1.50
+AYH         H72         C72        H72A     109.365    1.50
+AYH         H72         C72        H72B     109.365    1.50
+AYH        H72A         C72        H72B     109.365    1.50
+AYH         C67         C76         H76     109.460    1.50
+AYH         C67         C76        H76A     109.460    1.50
+AYH         C67         C76        H76B     109.460    1.50
+AYH         H76         C76        H76A     109.470    1.50
+AYH         H76         C76        H76B     109.470    1.50
+AYH        H76A         C76        H76B     109.470    1.50
+AYH         C67         C80         H80     109.460    1.50
+AYH         C67         C80        H80A     109.460    1.50
+AYH         C67         C80        H80B     109.460    1.50
+AYH         H80         C80        H80A     109.470    1.50
+AYH         H80         C80        H80B     109.470    1.50
+AYH        H80A         C80        H80B     109.470    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AYH             sp2_sp3_1         C49          N1          C3          C5       0.000    10.0     6
+AYH             sp2_sp2_3         O50         C49          N1          C3       0.000     5.0     2
+AYH            sp3_sp3_94         N20         C22         C25         C28     180.000    10.0     3
+AYH           sp3_sp3_103         C22         C25         C28         C31     180.000    10.0     3
+AYH           sp3_sp3_112         C25         C28         C31         H31     180.000    10.0     3
+AYH            sp2_sp3_20         C39         C38         C35          C3     -90.000    10.0     6
+AYH       const_sp2_sp2_3         C35         C38         C39         C41     180.000     5.0     2
+AYH              const_23         C35         C38         C47         C45     180.000    10.0     2
+AYH       const_sp2_sp2_5         C38         C39         C41         C43       0.000     5.0     2
+AYH       const_sp2_sp2_9         C39         C41         C43         C45       0.000     5.0     2
+AYH              const_13         C41         C43         C45         C47       0.000    10.0     2
+AYH              const_17         C43         C45         C47         C38       0.000    10.0     2
+AYH            sp3_sp3_55          N1          C3         C35         C38     180.000    10.0     3
+AYH            sp3_sp3_46          N1          C3          C5          O7     180.000    10.0     3
+AYH            sp2_sp3_25          N1         C49         C51         C53       0.000    10.0     6
+AYH             sp3_sp3_4         C49         C51         C53         C56     -60.000    10.0     3
+AYH           sp3_sp3_124         C49         C51         C64         C61      60.000    10.0     3
+AYH            sp3_sp3_11         C51         C53         C56         C67      60.000    10.0     3
+AYH            sp3_sp3_22         C67         C56         C58         C61     -60.000    10.0     3
+AYH           sp3_sp3_130         C53         C56         C67         N68     180.000    10.0     3
+AYH            sp3_sp3_28         C56         C58         C61         C64     -60.000    10.0     3
+AYH            sp3_sp3_37         C58         C61         C64         C51      60.000    10.0     3
+AYH            sp2_sp3_31         C70         N68         C67         C76       0.000    10.0     6
+AYH           sp3_sp3_142         N68         C67         C76         H76      60.000    10.0     3
+AYH           sp3_sp3_148         N68         C67         C80         H80     180.000    10.0     3
+AYH            sp3_sp3_64          C3          C5          O7         HO7     180.000    10.0     3
+AYH            sp3_sp3_67          C3          C5          C9         C12     180.000    10.0     3
+AYH            sp2_sp2_11         O71         C70         N68         C67       0.000     5.0     2
+AYH            sp2_sp3_37         N68         C70         C72         H72       0.000    10.0     6
+AYH            sp3_sp3_76         C14         C12          C9          C5     180.000    10.0     3
+AYH            sp3_sp3_85          C9         C12         C14         H14     180.000    10.0     3
+AYH             sp2_sp3_7         O19         C18         C12          C9       0.000    10.0     6
+AYH             sp2_sp2_5         C12         C18         N20         C22     180.000     5.0     2
+AYH            sp2_sp3_14         C18         N20         C22         C25     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AYH    chir_1    C3    N1    C5    C35    positive
+AYH    chir_2    C5    O7    C3    C9    positive
+AYH    chir_3    C12    C18    C9    C14    negative
+AYH    chir_4    C51    C49    C53    C64    negative
+AYH    chir_5    C56    C67    C53    C58    positive
+AYH    chir_6    C67    N68    C56    C76    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AYH    plan-1         C35   0.020
+AYH    plan-1         C38   0.020
+AYH    plan-1         C39   0.020
+AYH    plan-1         C41   0.020
+AYH    plan-1         C43   0.020
+AYH    plan-1         C45   0.020
+AYH    plan-1         C47   0.020
+AYH    plan-1         H39   0.020
+AYH    plan-1         H41   0.020
+AYH    plan-1         H43   0.020
+AYH    plan-1         H45   0.020
+AYH    plan-1         H47   0.020
+AYH    plan-2          C3   0.020
+AYH    plan-2         C49   0.020
+AYH    plan-2         HN1   0.020
+AYH    plan-2          N1   0.020
+AYH    plan-3         C12   0.020
+AYH    plan-3         C18   0.020
+AYH    plan-3         N20   0.020
+AYH    plan-3         O19   0.020
+AYH    plan-4         C18   0.020
+AYH    plan-4         C22   0.020
+AYH    plan-4        HN20   0.020
+AYH    plan-4         N20   0.020
+AYH    plan-5         C49   0.020
+AYH    plan-5         C51   0.020
+AYH    plan-5          N1   0.020
+AYH    plan-5         O50   0.020
+AYH    plan-6         C67   0.020
+AYH    plan-6         C70   0.020
+AYH    plan-6        HN68   0.020
+AYH    plan-6         N68   0.020
+AYH    plan-7         C70   0.020
+AYH    plan-7         C72   0.020
+AYH    plan-7         N68   0.020
+AYH    plan-7         O71   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AYH SMILES_CANONICAL               CACTVS 3.352                                                                                                                                                CCCCNC(=O)[C@H](C)C[C@H](O)[C@H](Cc1ccccc1)NC(=O)[C@@H]2CCC[C@@H](C2)C(C)(C)NC(C)=O
+AYH           SMILES               CACTVS 3.352                                                                                                                                                       CCCCNC(=O)[CH](C)C[CH](O)[CH](Cc1ccccc1)NC(=O)[CH]2CCC[CH](C2)C(C)(C)NC(C)=O
+AYH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                               CCCCNC(=O)[C@H](C)C[C@@H]([C@H](Cc1ccccc1)NC(=O)[C@@H]2CCC[C@@H](C2)C(C)(C)NC(=O)C)O
+AYH           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                      CCCCNC(=O)C(C)CC(C(Cc1ccccc1)NC(=O)C2CCCC(C2)C(C)(C)NC(=O)C)O
+AYH            InChI                InChI  1.03 InChI=1S/C29H47N3O4/c1-6-7-16-30-27(35)20(2)17-26(34)25(18-22-12-9-8-10-13-22)31-28(36)23-14-11-15-24(19-23)29(4,5)32-21(3)33/h8-10,12-13,20,23-26,34H,6-7,11,14-19H2,1-5H3,(H,30,35)(H,31,36)(H,32,33)/t20-,23-,24+,25+,26+/m1/s1
+AYH         InChIKey                InChI  1.03                                                                                                                                                                                                        NGUMIHCAWWHVPZ-MTKOPPBXSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AYH acedrg               243         "dictionary generator"                  
+AYH acedrg_database      11          "data source"                           
+AYH rdkit                2017.03.2   "Chemoinformatics tool"
+AYH refmac5              5.8.0238    "optimization tool"                     

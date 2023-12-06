@@ -1,0 +1,594 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZEX     ZEX      (1R,2S)-4-{(1E,3E,5E,7E,9E,11E,13E,15E,17E)-18-[(4S)-4-hydroxy-2,6,6-trimethylcyclohex-1-en-1-yl]-3,7,12,16-tetramethyloctadeca-1,3,5,7,9,11,13,15,17-nonaen-1-yl}-2,5,5-trimethylcyclohex-3-en-1-ol     NON-POLYMER     98     42     .     
+#
+data_comp_ZEX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZEX     C6      C       CR6     0       -6.596      12.372      109.445     
+ZEX     C17     C       CH3     0       -8.979      11.715      109.842     
+ZEX     C4      C       CH2     0       -5.861      13.432      111.598     
+ZEX     C3      C       CH1     0       -7.111      12.848      112.229     
+ZEX     O3      O       OH1     0       -6.979      12.819      113.649     
+ZEX     C2      C       CH2     0       -7.349      11.446      111.699     
+ZEX     C1      C       CT      0       -7.516      11.390      110.174     
+ZEX     C5      C       CR6     0       -5.721      13.157      110.125     
+ZEX     C18     C       CH3     0       -4.536      13.861      109.515     
+ZEX     C16     C       CH3     0       -7.244      9.948       109.718     
+ZEX     O23     O       OH1     0       -12.636     18.877      84.217      
+ZEX     C26     C       CR6     0       -13.407     19.093      88.386      
+ZEX     C7      C       C1      0       -6.627      12.334      107.977     
+ZEX     C8      C       C1      0       -6.411      13.359      107.098     
+ZEX     C9      C       C       0       -6.056      13.246      105.748     
+ZEX     C19     C       CH3     0       -5.281      12.088      105.217     
+ZEX     C10     C       C1      0       -6.624      14.150      104.819     
+ZEX     C11     C       C1      0       -6.569      14.171      103.431     
+ZEX     C12     C       C1      0       -7.424      14.900      102.612     
+ZEX     C13     C       C       0       -7.526      14.959      101.200     
+ZEX     C20     C       CH3     0       -6.421      14.410      100.355     
+ZEX     C14     C       C1      0       -8.704      15.456      100.582     
+ZEX     C15     C       C1      0       -9.071      15.526      99.245      
+ZEX     C35     C       C1      0       -10.245     15.990      98.667      
+ZEX     C34     C       C1      0       -10.581     16.089      97.324      
+ZEX     C33     C       C       0       -11.759     16.561      96.690      
+ZEX     C40     C       CH3     0       -12.975     16.856      97.510      
+ZEX     C32     C       C1      0       -11.782     16.790      95.290      
+ZEX     C31     C       C1      0       -12.732     17.405      94.482      
+ZEX     C30     C       C1      0       -12.609     17.616      93.110      
+ZEX     C29     C       C       0       -13.449     18.309      92.192      
+ZEX     C39     C       CH3     0       -14.754     18.833      92.704      
+ZEX     C28     C       C1      0       -13.007     18.516      90.864      
+ZEX     C27     C       C1      0       -13.631     19.203      89.841      
+ZEX     C21     C       CT      0       -14.382     19.809      87.451      
+ZEX     C36     C       CH3     0       -14.205     21.331      87.574      
+ZEX     C37     C       CH3     0       -15.830     19.476      87.849      
+ZEX     C22     C       CH2     0       -14.202     19.414      85.977      
+ZEX     C23     C       CH1     0       -12.739     19.258      85.592      
+ZEX     C24     C       CH1     0       -12.048     18.204      86.454      
+ZEX     C25     C       CR16    0       -12.336     18.434      87.913      
+ZEX     C38     C       CH3     0       -12.357     16.757      86.064      
+ZEX     H171    H       H       0       -9.107      11.730      108.880     
+ZEX     H172    H       H       0       -9.212      12.583      110.209     
+ZEX     H173    H       H       0       -9.558      11.038      110.228     
+ZEX     H41     H       H       0       -5.862      14.393      111.732     
+ZEX     H42     H       H       0       -5.082      13.073      112.051     
+ZEX     H3      H       H       0       -7.887      13.416      111.996     
+ZEX     HO3     H       H       0       -6.359      12.291      113.863     
+ZEX     H21     H       H       0       -8.158      11.072      112.126     
+ZEX     H22     H       H       0       -6.586      10.873      111.957     
+ZEX     H181    H       H       0       -3.890      14.080      110.204     
+ZEX     H182    H       H       0       -4.827      14.679      109.085     
+ZEX     H183    H       H       0       -4.114      13.288      108.858     
+ZEX     H161    H       H       0       -6.287      9.807       109.629     
+ZEX     H162    H       H       0       -7.672      9.786       108.861     
+ZEX     H163    H       H       0       -7.599      9.324       110.372     
+ZEX     H1      H       H       0       -11.844     19.004      83.965      
+ZEX     H7      H       H       0       -6.807      11.502      107.585     
+ZEX     H8      H       H       0       -6.503      14.243      107.413     
+ZEX     H191    H       H       0       -4.628      12.402      104.573     
+ZEX     H192    H       H       0       -5.884      11.465      104.785     
+ZEX     H193    H       H       0       -4.821      11.641      105.943     
+ZEX     H10     H       H       0       -7.123      14.860      105.190     
+ZEX     H11     H       H       0       -5.900      13.657      103.014     
+ZEX     H12     H       H       0       -8.031      15.444      103.086     
+ZEX     H201    H       H       0       -6.335      14.935      99.547      
+ZEX     H202    H       H       0       -6.619      13.490      100.122     
+ZEX     H203    H       H       0       -5.586      14.445      100.842     
+ZEX     H14     H       H       0       -9.359      15.800      101.168     
+ZEX     H15     H       H       0       -8.438      15.206      98.627      
+ZEX     H35     H       H       0       -10.893     16.285      99.282      
+ZEX     H34     H       H       0       -9.900      15.783      96.747      
+ZEX     H401    H       H       0       -13.772     16.707      96.981      
+ZEX     H402    H       H       0       -12.952     17.780      97.802      
+ZEX     H403    H       H       0       -12.998     16.275      98.284      
+ZEX     H32     H       H       0       -11.032     16.474      94.814      
+ZEX     H31     H       H       0       -13.516     17.712      94.899      
+ZEX     H30     H       H       0       -11.836     17.221      92.741      
+ZEX     H391    H       H       0       -15.354     19.008      91.966      
+ZEX     H392    H       H       0       -14.602     19.655      93.195      
+ZEX     H393    H       H       0       -15.160     18.179      93.291      
+ZEX     H28     H       H       0       -12.166     18.139      90.679      
+ZEX     H27     H       H       0       -14.250     19.852      90.112      
+ZEX     H361    H       H       0       -13.422     21.613      87.076      
+ZEX     H362    H       H       0       -14.096     21.581      88.506      
+ZEX     H363    H       H       0       -14.988     21.780      87.215      
+ZEX     H371    H       H       0       -16.430     19.704      87.120      
+ZEX     H372    H       H       0       -16.082     19.984      88.638      
+ZEX     H373    H       H       0       -15.907     18.527      88.041      
+ZEX     H221    H       H       0       -14.618     20.104      85.405      
+ZEX     H222    H       H       0       -14.675     18.563      85.811      
+ZEX     H23     H       H       0       -12.277     20.122      85.710      
+ZEX     H24     H       H       0       -11.075     18.333      86.330      
+ZEX     H25     H       H       0       -11.703     18.098      88.525      
+ZEX     H381    H       H       0       -12.088     16.161      86.783      
+ZEX     H382    H       H       0       -11.868     16.526      85.258      
+ZEX     H383    H       H       0       -13.308     16.657      85.904      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZEX          C6          C1      SINGLE       n     1.519  0.0100     1.519  0.0100
+ZEX          C6          C5      DOUBLE       n     1.347  0.0100     1.347  0.0100
+ZEX          C6          C7      SINGLE       n     1.442  0.0200     1.442  0.0200
+ZEX         C17          C1      SINGLE       n     1.530  0.0137     1.530  0.0137
+ZEX          C4          C3      SINGLE       n     1.517  0.0100     1.517  0.0100
+ZEX          C4          C5      SINGLE       n     1.500  0.0100     1.500  0.0100
+ZEX          C3          O3      SINGLE       n     1.425  0.0100     1.425  0.0100
+ZEX          C3          C2      SINGLE       n     1.517  0.0100     1.517  0.0100
+ZEX          C2          C1      SINGLE       n     1.532  0.0100     1.532  0.0100
+ZEX          C1         C16      SINGLE       n     1.530  0.0137     1.530  0.0137
+ZEX          C5         C18      SINGLE       n     1.504  0.0100     1.504  0.0100
+ZEX         O23         C23      SINGLE       n     1.430  0.0100     1.430  0.0100
+ZEX         C26         C27      SINGLE       n     1.442  0.0200     1.442  0.0200
+ZEX         C26         C21      SINGLE       n     1.519  0.0100     1.519  0.0100
+ZEX         C26         C25      DOUBLE       n     1.335  0.0100     1.335  0.0100
+ZEX          C7          C8      DOUBLE       n     1.365  0.0200     1.365  0.0200
+ZEX          C8          C9      SINGLE       n     1.397  0.0200     1.397  0.0200
+ZEX          C9         C19      SINGLE       n     1.483  0.0200     1.483  0.0200
+ZEX          C9         C10      DOUBLE       n     1.408  0.0200     1.408  0.0200
+ZEX         C10         C11      SINGLE       n     1.385  0.0200     1.385  0.0200
+ZEX         C11         C12      DOUBLE       n     1.385  0.0200     1.385  0.0200
+ZEX         C12         C13      SINGLE       n     1.408  0.0200     1.408  0.0200
+ZEX         C13         C20      SINGLE       n     1.483  0.0200     1.483  0.0200
+ZEX         C13         C14      DOUBLE       n     1.408  0.0200     1.408  0.0200
+ZEX         C14         C15      SINGLE       n     1.385  0.0200     1.385  0.0200
+ZEX         C15         C35      DOUBLE       n     1.391  0.0200     1.391  0.0200
+ZEX         C35         C34      SINGLE       n     1.385  0.0200     1.385  0.0200
+ZEX         C34         C33      DOUBLE       n     1.408  0.0200     1.408  0.0200
+ZEX         C33         C40      SINGLE       n     1.483  0.0200     1.483  0.0200
+ZEX         C33         C32      SINGLE       n     1.408  0.0200     1.408  0.0200
+ZEX         C32         C31      DOUBLE       n     1.385  0.0200     1.385  0.0200
+ZEX         C31         C30      SINGLE       n     1.385  0.0200     1.385  0.0200
+ZEX         C30         C29      DOUBLE       n     1.408  0.0200     1.408  0.0200
+ZEX         C29         C39      SINGLE       n     1.483  0.0200     1.483  0.0200
+ZEX         C29         C28      SINGLE       n     1.397  0.0200     1.397  0.0200
+ZEX         C28         C27      DOUBLE       n     1.365  0.0200     1.365  0.0200
+ZEX         C21         C36      SINGLE       n     1.530  0.0137     1.530  0.0137
+ZEX         C21         C37      SINGLE       n     1.530  0.0137     1.530  0.0137
+ZEX         C21         C22      SINGLE       n     1.532  0.0100     1.532  0.0100
+ZEX         C22         C23      SINGLE       n     1.519  0.0123     1.519  0.0123
+ZEX         C23         C24      SINGLE       n     1.524  0.0100     1.524  0.0100
+ZEX         C24         C25      SINGLE       n     1.502  0.0100     1.502  0.0100
+ZEX         C24         C38      SINGLE       n     1.528  0.0100     1.528  0.0100
+ZEX         C17        H171      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX         C17        H172      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX         C17        H173      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX          C4         H41      SINGLE       n     1.089  0.0100     0.970  0.0100
+ZEX          C4         H42      SINGLE       n     1.089  0.0100     0.970  0.0100
+ZEX          C3          H3      SINGLE       n     1.089  0.0100     0.989  0.0104
+ZEX          O3         HO3      SINGLE       n     0.970  0.0120     0.841  0.0200
+ZEX          C2         H21      SINGLE       n     1.089  0.0100     0.988  0.0100
+ZEX          C2         H22      SINGLE       n     1.089  0.0100     0.988  0.0100
+ZEX         C18        H181      SINGLE       n     1.089  0.0100     0.969  0.0158
+ZEX         C18        H182      SINGLE       n     1.089  0.0100     0.969  0.0158
+ZEX         C18        H183      SINGLE       n     1.089  0.0100     0.969  0.0158
+ZEX         C16        H161      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX         C16        H162      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX         C16        H163      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX         O23          H1      SINGLE       n     0.970  0.0120     0.841  0.0200
+ZEX          C7          H7      SINGLE       n     1.082  0.0130     0.938  0.0146
+ZEX          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0196
+ZEX         C19        H191      SINGLE       n     1.089  0.0100     0.969  0.0177
+ZEX         C19        H192      SINGLE       n     1.089  0.0100     0.969  0.0177
+ZEX         C19        H193      SINGLE       n     1.089  0.0100     0.969  0.0177
+ZEX         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0196
+ZEX         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0196
+ZEX         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0196
+ZEX         C20        H201      SINGLE       n     1.089  0.0100     0.969  0.0177
+ZEX         C20        H202      SINGLE       n     1.089  0.0100     0.969  0.0177
+ZEX         C20        H203      SINGLE       n     1.089  0.0100     0.969  0.0177
+ZEX         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0196
+ZEX         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0196
+ZEX         C35         H35      SINGLE       n     1.082  0.0130     0.943  0.0196
+ZEX         C34         H34      SINGLE       n     1.082  0.0130     0.943  0.0196
+ZEX         C40        H401      SINGLE       n     1.089  0.0100     0.969  0.0177
+ZEX         C40        H402      SINGLE       n     1.089  0.0100     0.969  0.0177
+ZEX         C40        H403      SINGLE       n     1.089  0.0100     0.969  0.0177
+ZEX         C32         H32      SINGLE       n     1.082  0.0130     0.943  0.0196
+ZEX         C31         H31      SINGLE       n     1.082  0.0130     0.943  0.0196
+ZEX         C30         H30      SINGLE       n     1.082  0.0130     0.943  0.0196
+ZEX         C39        H391      SINGLE       n     1.089  0.0100     0.969  0.0177
+ZEX         C39        H392      SINGLE       n     1.089  0.0100     0.969  0.0177
+ZEX         C39        H393      SINGLE       n     1.089  0.0100     0.969  0.0177
+ZEX         C28         H28      SINGLE       n     1.082  0.0130     0.943  0.0196
+ZEX         C27         H27      SINGLE       n     1.082  0.0130     0.938  0.0146
+ZEX         C36        H361      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX         C36        H362      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX         C36        H363      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX         C37        H371      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX         C37        H372      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX         C37        H373      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX         C22        H221      SINGLE       n     1.089  0.0100     0.988  0.0100
+ZEX         C22        H222      SINGLE       n     1.089  0.0100     0.988  0.0100
+ZEX         C23         H23      SINGLE       n     1.089  0.0100     0.988  0.0100
+ZEX         C24         H24      SINGLE       n     1.089  0.0100     0.989  0.0200
+ZEX         C25         H25      SINGLE       n     1.082  0.0130     0.947  0.0200
+ZEX         C38        H381      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX         C38        H382      SINGLE       n     1.089  0.0100     0.971  0.0163
+ZEX         C38        H383      SINGLE       n     1.089  0.0100     0.971  0.0163
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZEX          C1          C6          C5     119.631    3.00
+ZEX          C1          C6          C7     119.411    3.00
+ZEX          C5          C6          C7     120.958    1.50
+ZEX          C1         C17        H171     109.665    1.50
+ZEX          C1         C17        H172     109.665    1.50
+ZEX          C1         C17        H173     109.665    1.50
+ZEX        H171         C17        H172     109.363    1.50
+ZEX        H171         C17        H173     109.363    1.50
+ZEX        H172         C17        H173     109.363    1.50
+ZEX          C3          C4          C5     112.021    2.38
+ZEX          C3          C4         H41     109.059    1.50
+ZEX          C3          C4         H42     109.059    1.50
+ZEX          C5          C4         H41     108.710    1.50
+ZEX          C5          C4         H42     108.710    1.50
+ZEX         H41          C4         H42     107.887    1.50
+ZEX          C4          C3          O3     109.943    1.55
+ZEX          C4          C3          C2     110.366    1.50
+ZEX          C4          C3          H3     109.453    2.12
+ZEX          O3          C3          C2     109.687    1.93
+ZEX          O3          C3          H3     108.828    1.50
+ZEX          C2          C3          H3     109.129    1.50
+ZEX          C3          O3         HO3     108.820    1.99
+ZEX          C3          C2          C1     113.614    1.50
+ZEX          C3          C2         H21     109.270    1.50
+ZEX          C3          C2         H22     109.270    1.50
+ZEX          C1          C2         H21     108.850    1.50
+ZEX          C1          C2         H22     108.850    1.50
+ZEX         H21          C2         H22     107.757    1.50
+ZEX          C6          C1         C17     110.110    1.50
+ZEX          C6          C1          C2     112.021    2.38
+ZEX          C6          C1         C16     110.110    1.50
+ZEX         C17          C1          C2     109.331    1.50
+ZEX         C17          C1         C16     108.431    1.50
+ZEX          C2          C1         C16     109.331    1.50
+ZEX          C6          C5          C4     120.892    1.95
+ZEX          C6          C5         C18     124.158    1.50
+ZEX          C4          C5         C18     114.950    1.85
+ZEX          C5         C18        H181     110.039    1.89
+ZEX          C5         C18        H182     110.039    1.89
+ZEX          C5         C18        H183     110.039    1.89
+ZEX        H181         C18        H182     109.339    1.50
+ZEX        H181         C18        H183     109.339    1.50
+ZEX        H182         C18        H183     109.339    1.50
+ZEX          C1         C16        H161     109.665    1.50
+ZEX          C1         C16        H162     109.665    1.50
+ZEX          C1         C16        H163     109.665    1.50
+ZEX        H161         C16        H162     109.363    1.50
+ZEX        H161         C16        H163     109.363    1.50
+ZEX        H162         C16        H163     109.363    1.50
+ZEX         C23         O23          H1     108.390    2.00
+ZEX         C27         C26         C21     120.387    3.00
+ZEX         C27         C26         C25     119.006    2.35
+ZEX         C21         C26         C25     120.607    3.00
+ZEX          C6          C7          C8     126.680    1.50
+ZEX          C6          C7          H7     116.520    1.50
+ZEX          C8          C7          H7     116.800    1.66
+ZEX          C7          C8          C9     126.725    3.00
+ZEX          C7          C8          H8     118.267    2.25
+ZEX          C9          C8          H8     115.008    1.81
+ZEX          C8          C9         C19     120.215    3.00
+ZEX          C8          C9         C10     122.650    3.00
+ZEX         C19          C9         C10     117.135    1.50
+ZEX          C9         C19        H191     109.517    1.50
+ZEX          C9         C19        H192     109.517    1.50
+ZEX          C9         C19        H193     109.517    1.50
+ZEX        H191         C19        H192     109.342    1.50
+ZEX        H191         C19        H193     109.342    1.50
+ZEX        H192         C19        H193     109.342    1.50
+ZEX          C9         C10         C11     128.593    1.85
+ZEX          C9         C10         H10     116.030    1.50
+ZEX         C11         C10         H10     115.376    2.90
+ZEX         C10         C11         C12     128.131    3.00
+ZEX         C10         C11         H11     115.934    2.93
+ZEX         C12         C11         H11     115.934    2.93
+ZEX         C11         C12         C13     128.593    1.85
+ZEX         C11         C12         H12     115.376    2.90
+ZEX         C13         C12         H12     116.030    1.50
+ZEX         C12         C13         C20     118.162    1.50
+ZEX         C12         C13         C14     123.676    3.00
+ZEX         C20         C13         C14     118.162    1.50
+ZEX         C13         C20        H201     109.517    1.50
+ZEX         C13         C20        H202     109.517    1.50
+ZEX         C13         C20        H203     109.517    1.50
+ZEX        H201         C20        H202     109.342    1.50
+ZEX        H201         C20        H203     109.342    1.50
+ZEX        H202         C20        H203     109.342    1.50
+ZEX         C13         C14         C15     128.593    1.85
+ZEX         C13         C14         H14     116.030    1.50
+ZEX         C15         C14         H14     115.376    2.90
+ZEX         C14         C15         C35     131.161    3.00
+ZEX         C14         C15         H15     114.236    2.93
+ZEX         C35         C15         H15     114.602    1.85
+ZEX         C15         C35         C34     131.162    3.00
+ZEX         C15         C35         H35     114.603    1.85
+ZEX         C34         C35         H35     114.236    2.93
+ZEX         C35         C34         C33     128.593    1.85
+ZEX         C35         C34         H34     115.376    2.90
+ZEX         C33         C34         H34     116.030    1.50
+ZEX         C34         C33         C40     118.162    1.50
+ZEX         C34         C33         C32     123.676    3.00
+ZEX         C40         C33         C32     118.162    1.50
+ZEX         C33         C40        H401     109.517    1.50
+ZEX         C33         C40        H402     109.517    1.50
+ZEX         C33         C40        H403     109.517    1.50
+ZEX        H401         C40        H402     109.342    1.50
+ZEX        H401         C40        H403     109.342    1.50
+ZEX        H402         C40        H403     109.342    1.50
+ZEX         C33         C32         C31     128.593    1.85
+ZEX         C33         C32         H32     116.030    1.50
+ZEX         C31         C32         H32     115.376    2.90
+ZEX         C32         C31         C30     128.131    3.00
+ZEX         C32         C31         H31     115.934    2.93
+ZEX         C30         C31         H31     115.934    2.93
+ZEX         C31         C30         C29     128.593    1.85
+ZEX         C31         C30         H30     115.376    2.90
+ZEX         C29         C30         H30     116.030    1.50
+ZEX         C30         C29         C39     117.135    1.50
+ZEX         C30         C29         C28     122.650    3.00
+ZEX         C39         C29         C28     120.215    3.00
+ZEX         C29         C39        H391     109.517    1.50
+ZEX         C29         C39        H392     109.517    1.50
+ZEX         C29         C39        H393     109.517    1.50
+ZEX        H391         C39        H392     109.342    1.50
+ZEX        H391         C39        H393     109.342    1.50
+ZEX        H392         C39        H393     109.342    1.50
+ZEX         C29         C28         C27     126.725    3.00
+ZEX         C29         C28         H28     115.008    1.81
+ZEX         C27         C28         H28     118.267    2.25
+ZEX         C26         C27         C28     126.680    1.50
+ZEX         C26         C27         H27     116.520    1.50
+ZEX         C28         C27         H27     116.800    1.66
+ZEX         C26         C21         C36     110.110    1.50
+ZEX         C26         C21         C37     110.110    1.50
+ZEX         C26         C21         C22     112.021    2.38
+ZEX         C36         C21         C37     108.431    1.50
+ZEX         C36         C21         C22     109.331    1.50
+ZEX         C37         C21         C22     109.331    1.50
+ZEX         C21         C36        H361     109.665    1.50
+ZEX         C21         C36        H362     109.665    1.50
+ZEX         C21         C36        H363     109.665    1.50
+ZEX        H361         C36        H362     109.363    1.50
+ZEX        H361         C36        H363     109.363    1.50
+ZEX        H362         C36        H363     109.363    1.50
+ZEX         C21         C37        H371     109.665    1.50
+ZEX         C21         C37        H372     109.665    1.50
+ZEX         C21         C37        H373     109.665    1.50
+ZEX        H371         C37        H372     109.363    1.50
+ZEX        H371         C37        H373     109.363    1.50
+ZEX        H372         C37        H373     109.363    1.50
+ZEX         C21         C22         C23     111.124    1.57
+ZEX         C21         C22        H221     108.850    1.50
+ZEX         C21         C22        H222     108.850    1.50
+ZEX         C23         C22        H221     109.270    1.50
+ZEX         C23         C22        H222     109.270    1.50
+ZEX        H221         C22        H222     107.757    1.50
+ZEX         O23         C23         C22     109.687    1.93
+ZEX         O23         C23         C24     107.953    1.74
+ZEX         O23         C23         H23     108.504    1.50
+ZEX         C22         C23         C24     111.124    1.57
+ZEX         C22         C23         H23     109.129    1.50
+ZEX         C24         C23         H23     109.034    1.50
+ZEX         C23         C24         C25     110.485    1.50
+ZEX         C23         C24         C38     113.906    1.50
+ZEX         C23         C24         H24     106.935    1.50
+ZEX         C25         C24         C38     110.894    1.50
+ZEX         C25         C24         H24     107.287    1.59
+ZEX         C38         C24         H24     107.263    1.50
+ZEX         C26         C25         C24     122.056    3.00
+ZEX         C26         C25         H25     119.409    1.50
+ZEX         C24         C25         H25     118.536    1.50
+ZEX         C24         C38        H381     109.541    1.50
+ZEX         C24         C38        H382     109.541    1.50
+ZEX         C24         C38        H383     109.541    1.50
+ZEX        H381         C38        H382     109.342    1.50
+ZEX        H381         C38        H383     109.342    1.50
+ZEX        H382         C38        H383     109.342    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZEX             sp2_sp2_5          C1          C6          C7          C8     180.000     5.0     2
+ZEX             sp2_sp3_6          C7          C6          C1         C17      60.000    10.0     6
+ZEX             sp2_sp2_4         C18          C5          C6          C7       0.000     5.0     2
+ZEX            sp3_sp3_76         C22         C23         O23          H1     180.000    10.0     3
+ZEX             sp2_sp2_9         C21         C26         C27         C28     180.000     5.0     2
+ZEX            sp2_sp3_18         C27         C26         C21         C36      60.000    10.0     6
+ZEX            sp2_sp2_14         C24         C25         C26         C27     180.000     5.0     2
+ZEX            sp2_sp2_17          C6          C7          C8          C9     180.000     5.0     2
+ZEX            sp2_sp2_22          C7          C8          C9         C19       0.000     5.0     2
+ZEX            sp2_sp3_31          C8          C9         C19        H191       0.000    10.0     6
+ZEX            sp2_sp2_25         C11         C10          C9          C8     180.000     5.0     2
+ZEX            sp2_sp2_29          C9         C10         C11         C12     180.000     5.0     2
+ZEX            sp2_sp2_33         C10         C11         C12         C13     180.000     5.0     2
+ZEX            sp2_sp2_38         C11         C12         C13         C20       0.000     5.0     2
+ZEX            sp2_sp3_37         C12         C13         C20        H201       0.000    10.0     6
+ZEX            sp2_sp2_43         C12         C13         C14         C15       0.000     5.0     2
+ZEX            sp3_sp3_61         C16          C1         C17        H171     -60.000    10.0     3
+ZEX            sp2_sp2_45         C13         C14         C15         C35     180.000     5.0     2
+ZEX            sp2_sp2_49         C14         C15         C35         C34     180.000     5.0     2
+ZEX            sp2_sp2_53         C33         C34         C35         C15     180.000     5.0     2
+ZEX            sp2_sp2_59         C40         C33         C34         C35       0.000     5.0     2
+ZEX            sp2_sp3_43         C34         C33         C40        H401       0.000    10.0     6
+ZEX            sp2_sp2_61         C31         C32         C33         C34     180.000     5.0     2
+ZEX            sp2_sp2_65         C30         C31         C32         C33     180.000     5.0     2
+ZEX            sp2_sp2_69         C29         C30         C31         C32     180.000     5.0     2
+ZEX            sp2_sp2_75         C39         C29         C30         C31       0.000     5.0     2
+ZEX            sp3_sp3_22          O3          C3          C4          C5     180.000    10.0     3
+ZEX            sp2_sp3_10         C18          C5          C4          C3     180.000    10.0     6
+ZEX            sp2_sp3_49         C30         C29         C39        H391       0.000    10.0     6
+ZEX            sp2_sp2_77         C27         C28         C29         C30     180.000     5.0     2
+ZEX            sp2_sp2_81         C26         C27         C28         C29     180.000     5.0     2
+ZEX            sp3_sp3_85         C37         C21         C36        H361     -60.000    10.0     3
+ZEX            sp3_sp3_94         C36         C21         C37        H371     -60.000    10.0     3
+ZEX            sp3_sp3_31         C36         C21         C22         C23     180.000    10.0     3
+ZEX            sp3_sp3_38         C21         C22         C23         O23     180.000    10.0     3
+ZEX            sp3_sp3_50         O23         C23         C24         C38     -60.000    10.0     3
+ZEX            sp2_sp3_20         C26         C25         C24         C38     120.000    10.0     6
+ZEX            sp3_sp3_97         C23         C24         C38        H381     180.000    10.0     3
+ZEX            sp3_sp3_64          C4          C3          O3         HO3     180.000    10.0     3
+ZEX            sp3_sp3_11          C1          C2          C3          O3     180.000    10.0     3
+ZEX             sp3_sp3_4         C17          C1          C2          C3     180.000    10.0     3
+ZEX            sp3_sp3_73         C17          C1         C16        H161     -60.000    10.0     3
+ZEX            sp2_sp3_25          C6          C5         C18        H181     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZEX    chir_1    C3    O3    C4    C2    negative
+ZEX    chir_2    C1    C6    C2    C17    both
+ZEX    chir_3    C21    C26    C22    C36    both
+ZEX    chir_4    C23    O23    C24    C22    positive
+ZEX    chir_5    C24    C23    C25    C38    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZEX    plan-1          C1   0.020
+ZEX    plan-1          C5   0.020
+ZEX    plan-1          C6   0.020
+ZEX    plan-1          C7   0.020
+ZEX    plan-2         C18   0.020
+ZEX    plan-2          C4   0.020
+ZEX    plan-2          C5   0.020
+ZEX    plan-2          C6   0.020
+ZEX    plan-3         C21   0.020
+ZEX    plan-3         C25   0.020
+ZEX    plan-3         C26   0.020
+ZEX    plan-3         C27   0.020
+ZEX    plan-4          C6   0.020
+ZEX    plan-4          C7   0.020
+ZEX    plan-4          C8   0.020
+ZEX    plan-4          H7   0.020
+ZEX    plan-5          C7   0.020
+ZEX    plan-5          C8   0.020
+ZEX    plan-5          C9   0.020
+ZEX    plan-5          H8   0.020
+ZEX    plan-6         C10   0.020
+ZEX    plan-6         C19   0.020
+ZEX    plan-6          C8   0.020
+ZEX    plan-6          C9   0.020
+ZEX    plan-7         C10   0.020
+ZEX    plan-7         C11   0.020
+ZEX    plan-7          C9   0.020
+ZEX    plan-7         H10   0.020
+ZEX    plan-8         C10   0.020
+ZEX    plan-8         C11   0.020
+ZEX    plan-8         C12   0.020
+ZEX    plan-8         H11   0.020
+ZEX    plan-9         C11   0.020
+ZEX    plan-9         C12   0.020
+ZEX    plan-9         C13   0.020
+ZEX    plan-9         H12   0.020
+ZEX   plan-10         C12   0.020
+ZEX   plan-10         C13   0.020
+ZEX   plan-10         C14   0.020
+ZEX   plan-10         C20   0.020
+ZEX   plan-11         C13   0.020
+ZEX   plan-11         C14   0.020
+ZEX   plan-11         C15   0.020
+ZEX   plan-11         H14   0.020
+ZEX   plan-12         C14   0.020
+ZEX   plan-12         C15   0.020
+ZEX   plan-12         C35   0.020
+ZEX   plan-12         H15   0.020
+ZEX   plan-13         C15   0.020
+ZEX   plan-13         C34   0.020
+ZEX   plan-13         C35   0.020
+ZEX   plan-13         H35   0.020
+ZEX   plan-14         C33   0.020
+ZEX   plan-14         C34   0.020
+ZEX   plan-14         C35   0.020
+ZEX   plan-14         H34   0.020
+ZEX   plan-15         C32   0.020
+ZEX   plan-15         C33   0.020
+ZEX   plan-15         C34   0.020
+ZEX   plan-15         C40   0.020
+ZEX   plan-16         C31   0.020
+ZEX   plan-16         C32   0.020
+ZEX   plan-16         C33   0.020
+ZEX   plan-16         H32   0.020
+ZEX   plan-17         C30   0.020
+ZEX   plan-17         C31   0.020
+ZEX   plan-17         C32   0.020
+ZEX   plan-17         H31   0.020
+ZEX   plan-18         C29   0.020
+ZEX   plan-18         C30   0.020
+ZEX   plan-18         C31   0.020
+ZEX   plan-18         H30   0.020
+ZEX   plan-19         C28   0.020
+ZEX   plan-19         C29   0.020
+ZEX   plan-19         C30   0.020
+ZEX   plan-19         C39   0.020
+ZEX   plan-20         C27   0.020
+ZEX   plan-20         C28   0.020
+ZEX   plan-20         C29   0.020
+ZEX   plan-20         H28   0.020
+ZEX   plan-21         C26   0.020
+ZEX   plan-21         C27   0.020
+ZEX   plan-21         C28   0.020
+ZEX   plan-21         H27   0.020
+ZEX   plan-22         C24   0.020
+ZEX   plan-22         C25   0.020
+ZEX   plan-22         C26   0.020
+ZEX   plan-22         H25   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZEX           SMILES              ACDLabs 10.04                                                                                                                                                                              OC2CC(=C(\C=C\C(=C\C=C\C(=C\C=C\C=C(\C=C\C=C(\C=C\C1=CC(C)C(O)CC1(C)C)C)C)C)C)C(C)(C)C2)C
+ZEX SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                    C[C@H]1C=C(/C=C/C(C)=C/C=C/C(C)=C/C=C/C=C(C)/C=C/C=C(C)/C=C/C2=C(C)C[C@H](O)CC2(C)C)C(C)(C)C[C@H]1O
+ZEX           SMILES               CACTVS 3.341                                                                                                                                                                                 C[CH]1C=C(C=CC(C)=CC=CC(C)=CC=CC=C(C)C=CC=C(C)C=CC2=C(C)C[CH](O)CC2(C)C)C(C)(C)C[CH]1O
+ZEX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                CC1C=C(C(CC1O)(C)C)C=CC(=C\C=C\C(=CC=CC=C(C)C=C\C=C(/C)\C=CC2=C(C[C@@H](CC2(C)C)O)C)C)C
+ZEX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                          CC1C=C(C(CC1O)(C)C)C=CC(=CC=CC(=CC=CC=C(C)C=CC=C(C)C=CC2=C(CC(CC2(C)C)O)C)C)C
+ZEX            InChI                InChI  1.03 InChI=1S/C40H56O2/c1-29(17-13-19-31(3)21-23-35-25-34(6)38(42)28-39(35,7)8)15-11-12-16-30(2)18-14-20-32(4)22-24-37-33(5)26-36(41)27-40(37,9)10/h11-25,34,36,38,41-42H,26-28H2,1-10H3/b12-11+,17-13+,18-14+,23-21+,24-22+,29-15+,30-16+,31-19+,32-20+/t34-,36-,38+/m0/s1
+ZEX         InChIKey                InChI  1.03                                                                                                                                                                                                                                            YRMDXLDAZBQLBK-WIHRHFSMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZEX acedrg               243         "dictionary generator"                  
+ZEX acedrg_database      11          "data source"                           
+ZEX rdkit                2017.03.2   "Chemoinformatics tool"
+ZEX refmac5              5.8.0238    "optimization tool"                     

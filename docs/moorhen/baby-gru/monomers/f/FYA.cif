@@ -1,0 +1,375 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FYA     FYA      "ADENOSINE-5'-[PHENYLALANINOL-PHOSPHATE]"     NON-POLYMER     57     33     .     
+#
+data_comp_FYA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FYA     C       C       CH2     0       16.221      64.259      18.983      
+FYA     CA      C       CH1     0       17.666      63.796      18.868      
+FYA     N       N       NT2     0       17.893      62.588      19.683      
+FYA     CB      C       CH2     0       18.037      63.607      17.389      
+FYA     CG      C       CR6     0       19.433      63.066      17.172      
+FYA     CD1     C       CR16    0       20.549      63.850      17.446      
+FYA     CD2     C       CR16    0       19.634      61.774      16.699      
+FYA     CE1     C       CR16    0       21.832      63.354      17.249      
+FYA     CE2     C       CR16    0       20.918      61.280      16.502      
+FYA     CZ      C       CR16    0       22.015      62.070      16.778      
+FYA     P       P       P       0       14.593      66.220      18.291      
+FYA     O1P     O       O       0       13.815      65.974      19.554      
+FYA     O2P     O       OP      -1      14.727      67.617      17.750      
+FYA     O3P     O       O2      0       16.069      65.617      18.485      
+FYA     "O5'"   O       O2      0       13.979      65.292      17.132      
+FYA     "C5'"   C       CH2     0       14.489      65.432      15.780      
+FYA     "C4'"   C       CH1     0       14.192      64.182      14.987      
+FYA     "O4'"   O       O2      0       14.700      63.019      15.687      
+FYA     "C3'"   C       CH1     0       12.715      63.842      14.765      
+FYA     "O3'"   O       OH1     0       12.158      64.619      13.712      
+FYA     "C2'"   C       CH1     0       12.800      62.350      14.427      
+FYA     "O2'"   O       OH1     0       13.067      62.113      13.061      
+FYA     "C1'"   C       CH1     0       13.963      61.878      15.303      
+FYA     N9      N       NT      0       13.529      61.164      16.509      
+FYA     C8      C       CR15    0       13.256      61.682      17.757      
+FYA     N7      N       NRD5    0       12.883      60.761      18.616      
+FYA     C5      C       CR56    0       12.906      59.574      17.894      
+FYA     C6      C       CR6     0       12.612      58.237      18.239      
+FYA     N6      N       NH2     0       12.221      57.857      19.452      
+FYA     N1      N       NRD6    0       12.741      57.294      17.269      
+FYA     C2      C       CR16    0       13.137      57.683      16.046      
+FYA     N3      N       NRD6    0       13.439      58.907      15.610      
+FYA     C4      C       CR56    0       13.302      59.816      16.593      
+FYA     H1      H       H       0       15.944      64.220      19.922      
+FYA     H2A     H       H       0       15.647      63.653      18.471      
+FYA     HA      H       H       0       18.237      64.514      19.227      
+FYA     HN1     H       H       0       18.740      62.550      19.947      
+FYA     HN2     H       H       0       17.719      61.855      19.213      
+FYA     HB1     H       H       0       17.960      64.472      16.932      
+FYA     HB2     H       H       0       17.390      62.995      16.977      
+FYA     HD1     H       H       0       20.431      64.729      17.769      
+FYA     HD2     H       H       0       18.889      61.227      16.508      
+FYA     HE1     H       H       0       22.580      63.898      17.438      
+FYA     HE2     H       H       0       21.039      60.401      16.180      
+FYA     HZ      H       H       0       22.887      61.734      16.644      
+FYA     "H5'1"  H       H       0       15.467      65.583      15.802      
+FYA     "H5'2"  H       H       0       14.064      66.210      15.341      
+FYA     "H4'"   H       H       0       14.643      64.253      14.119      
+FYA     "H3'"   H       H       0       12.199      63.977      15.601      
+FYA     "HO'3"  H       H       0       11.341      64.407      13.619      
+FYA     "H2'"   H       H       0       11.959      61.889      14.690      
+FYA     "HO'2"  H       H       0       13.023      61.278      12.911      
+FYA     "H1'"   H       H       0       14.539      61.283      14.771      
+FYA     H8      H       H       0       13.330      62.594      17.983      
+FYA     H61     H       H       0       11.627      57.216      19.538      
+FYA     H62     H       H       0       12.556      58.250      20.161      
+FYA     H2      H       H       0       13.212      56.993      15.405      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FYA           C          CA      SINGLE       n     1.521  0.0100     1.521  0.0100
+FYA           C         O3P      SINGLE       n     1.454  0.0165     1.454  0.0165
+FYA          CA           N      SINGLE       n     1.473  0.0130     1.473  0.0130
+FYA          CA          CB      SINGLE       n     1.535  0.0100     1.535  0.0100
+FYA          CB          CG      SINGLE       n     1.512  0.0103     1.512  0.0103
+FYA          CG         CD1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+FYA          CG         CD2      SINGLE       y     1.385  0.0111     1.385  0.0111
+FYA         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+FYA         CD2         CE2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+FYA         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FYA         CE2          CZ      SINGLE       y     1.376  0.0124     1.376  0.0124
+FYA           P         O1P      DOUBLE       n     1.504  0.0115     1.504  0.0115
+FYA           P         O2P      SINGLE       n     1.504  0.0115     1.504  0.0115
+FYA           P         O3P      SINGLE       n     1.606  0.0100     1.606  0.0100
+FYA           P       "O5'"      SINGLE       n     1.606  0.0100     1.606  0.0100
+FYA       "O5'"       "C5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+FYA       "C5'"       "C4'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+FYA       "C4'"       "O4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+FYA       "C4'"       "C3'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+FYA       "O4'"       "C1'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+FYA       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+FYA       "C3'"       "C2'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+FYA       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+FYA       "C2'"       "C1'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+FYA       "C1'"          N9      SINGLE       n     1.458  0.0200     1.458  0.0200
+FYA          N9          C8      SINGLE       y     1.372  0.0200     1.372  0.0200
+FYA          N9          C4      SINGLE       y     1.372  0.0100     1.372  0.0100
+FYA          C8          N7      DOUBLE       y     1.310  0.0100     1.310  0.0100
+FYA          N7          C5      SINGLE       y     1.388  0.0100     1.388  0.0100
+FYA          C5          C6      SINGLE       y     1.408  0.0100     1.408  0.0100
+FYA          C5          C4      DOUBLE       y     1.381  0.0100     1.381  0.0100
+FYA          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+FYA          C6          N1      DOUBLE       y     1.354  0.0100     1.354  0.0100
+FYA          N1          C2      SINGLE       y     1.339  0.0100     1.339  0.0100
+FYA          C2          N3      DOUBLE       y     1.330  0.0100     1.330  0.0100
+FYA          N3          C4      SINGLE       y     1.343  0.0100     1.343  0.0100
+FYA           C          H1      SINGLE       n     1.089  0.0100     0.980  0.0146
+FYA           C         H2A      SINGLE       n     1.089  0.0100     0.980  0.0146
+FYA          CA          HA      SINGLE       n     1.089  0.0100     0.985  0.0149
+FYA           N         HN1      SINGLE       n     1.036  0.0160     0.888  0.0200
+FYA           N         HN2      SINGLE       n     1.036  0.0160     0.888  0.0200
+FYA          CB         HB1      SINGLE       n     1.089  0.0100     0.981  0.0150
+FYA          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0150
+FYA         CD1         HD1      SINGLE       n     1.082  0.0130     0.944  0.0174
+FYA         CD2         HD2      SINGLE       n     1.082  0.0130     0.944  0.0174
+FYA         CE1         HE1      SINGLE       n     1.082  0.0130     0.944  0.0175
+FYA         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+FYA          CZ          HZ      SINGLE       n     1.082  0.0130     0.944  0.0161
+FYA       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+FYA       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+FYA       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+FYA       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+FYA       "O3'"      "HO'3"      SINGLE       n     0.970  0.0120     0.849  0.0200
+FYA       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+FYA       "O2'"      "HO'2"      SINGLE       n     0.970  0.0120     0.849  0.0200
+FYA       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+FYA          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+FYA          N6         H61      SINGLE       n     1.016  0.0100     0.877  0.0200
+FYA          N6         H62      SINGLE       n     1.016  0.0100     0.877  0.0200
+FYA          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FYA          CA           C         O3P     110.589    2.35
+FYA          CA           C          H1     109.343    1.50
+FYA          CA           C         H2A     109.343    1.50
+FYA         O3P           C          H1     109.758    1.50
+FYA         O3P           C         H2A     109.758    1.50
+FYA          H1           C         H2A     108.157    1.50
+FYA           C          CA           N     111.883    2.59
+FYA           C          CA          CB     109.839    1.50
+FYA           C          CA          HA     107.627    1.50
+FYA           N          CA          CB     111.883    2.59
+FYA           N          CA          HA     107.944    1.55
+FYA          CB          CA          HA     107.624    1.50
+FYA          CA           N         HN1     109.715    3.00
+FYA          CA           N         HN2     109.715    3.00
+FYA         HN1           N         HN2     107.559    3.00
+FYA          CA          CB          CG     113.565    1.50
+FYA          CA          CB         HB1     108.839    1.50
+FYA          CA          CB         HB2     108.839    1.50
+FYA          CG          CB         HB1     108.862    1.50
+FYA          CG          CB         HB2     108.862    1.50
+FYA         HB1          CB         HB2     107.782    1.50
+FYA          CB          CG         CD1     120.970    1.50
+FYA          CB          CG         CD2     120.970    1.50
+FYA         CD1          CG         CD2     118.060    1.50
+FYA          CG         CD1         CE1     120.624    1.50
+FYA          CG         CD1         HD1     119.591    1.50
+FYA         CE1         CD1         HD1     119.786    1.50
+FYA          CG         CD2         CE2     120.624    1.50
+FYA          CG         CD2         HD2     119.591    1.50
+FYA         CE2         CD2         HD2     119.786    1.50
+FYA         CD1         CE1          CZ     120.325    1.50
+FYA         CD1         CE1         HE1     119.792    1.50
+FYA          CZ         CE1         HE1     119.883    1.50
+FYA         CD2         CE2          CZ     120.325    1.50
+FYA         CD2         CE2         HE2     119.792    1.50
+FYA          CZ         CE2         HE2     119.883    1.50
+FYA         CE1          CZ         CE2     120.043    1.50
+FYA         CE1          CZ          HZ     119.979    1.50
+FYA         CE2          CZ          HZ     119.979    1.50
+FYA         O1P           P         O2P     119.782    1.83
+FYA         O1P           P         O3P     107.777    3.00
+FYA         O1P           P       "O5'"     107.912    2.57
+FYA         O2P           P         O3P     107.777    3.00
+FYA         O2P           P       "O5'"     107.912    2.57
+FYA         O3P           P       "O5'"     102.789    2.10
+FYA           C         O3P           P     119.251    1.51
+FYA           P       "O5'"       "C5'"     118.553    2.41
+FYA       "O5'"       "C5'"       "C4'"     109.342    1.50
+FYA       "O5'"       "C5'"      "H5'1"     109.845    1.50
+FYA       "O5'"       "C5'"      "H5'2"     109.845    1.50
+FYA       "C4'"       "C5'"      "H5'1"     109.624    1.50
+FYA       "C4'"       "C5'"      "H5'2"     109.624    1.50
+FYA      "H5'1"       "C5'"      "H5'2"     108.472    1.50
+FYA       "C5'"       "C4'"       "O4'"     109.123    1.50
+FYA       "C5'"       "C4'"       "C3'"     116.008    1.52
+FYA       "C5'"       "C4'"       "H4'"     108.268    1.50
+FYA       "O4'"       "C4'"       "C3'"     105.388    1.50
+FYA       "O4'"       "C4'"       "H4'"     108.947    1.50
+FYA       "C3'"       "C4'"       "H4'"     109.363    1.86
+FYA       "C4'"       "O4'"       "C1'"     109.903    1.50
+FYA       "C4'"       "C3'"       "O3'"     111.281    2.46
+FYA       "C4'"       "C3'"       "C2'"     102.602    1.50
+FYA       "C4'"       "C3'"       "H3'"     110.452    2.54
+FYA       "O3'"       "C3'"       "C2'"     111.581    2.83
+FYA       "O3'"       "C3'"       "H3'"     110.380    1.67
+FYA       "C2'"       "C3'"       "H3'"     110.504    1.75
+FYA       "C3'"       "O3'"      "HO'3"     108.744    3.00
+FYA       "C3'"       "C2'"       "O2'"     112.782    2.45
+FYA       "C3'"       "C2'"       "C1'"     101.239    1.50
+FYA       "C3'"       "C2'"       "H2'"     110.596    1.51
+FYA       "O2'"       "C2'"       "C1'"     111.715    2.69
+FYA       "O2'"       "C2'"       "H2'"     110.448    1.97
+FYA       "C1'"       "C2'"       "H2'"     110.636    1.70
+FYA       "C2'"       "O2'"      "HO'2"     109.103    2.13
+FYA       "O4'"       "C1'"       "C2'"     106.047    1.50
+FYA       "O4'"       "C1'"          N9     108.167    1.51
+FYA       "O4'"       "C1'"       "H1'"     109.807    1.50
+FYA       "C2'"       "C1'"          N9     113.752    2.20
+FYA       "C2'"       "C1'"       "H1'"     109.015    1.50
+FYA          N9       "C1'"       "H1'"     109.246    1.50
+FYA       "C1'"          N9          C8     126.078    2.46
+FYA       "C1'"          N9          C4     125.158    1.54
+FYA          C8          N9          C4     107.594    1.50
+FYA          N9          C8          N7     112.130    1.94
+FYA          N9          C8          H8     124.701    2.19
+FYA          N7          C8          H8     123.170    1.50
+FYA          C8          N7          C5     103.927    1.50
+FYA          N7          C5          C6     132.145    1.50
+FYA          N7          C5          C4     110.588    1.50
+FYA          C6          C5          C4     117.267    1.50
+FYA          C5          C6          N6     123.792    1.50
+FYA          C5          C6          N1     117.409    1.50
+FYA          N6          C6          N1     118.799    1.50
+FYA          C6          N6         H61     119.723    1.50
+FYA          C6          N6         H62     119.723    1.50
+FYA         H61          N6         H62     120.554    1.88
+FYA          C6          N1          C2     118.521    1.50
+FYA          N1          C2          N3     129.332    1.50
+FYA          N1          C2          H2     115.313    1.50
+FYA          N3          C2          H2     115.355    1.50
+FYA          C2          N3          C4     110.982    1.50
+FYA          N9          C4          C5     107.666    1.69
+FYA          N9          C4          N3     125.845    1.50
+FYA          C5          C4          N3     126.489    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FYA            sp3_sp3_25         O3P           C          CA           N     180.000    10.0     3
+FYA            sp3_sp3_34          CA           C         O3P           P     180.000    10.0     3
+FYA            sp3_sp3_54           C         O3P           P         O1P      60.000    10.0     3
+FYA            sp3_sp3_57       "C5'"       "O5'"           P         O1P      60.000    10.0     3
+FYA            sp3_sp3_58       "C4'"       "C5'"       "O5'"           P     180.000    10.0     3
+FYA            sp3_sp3_61       "O4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+FYA             sp3_sp3_2       "C5'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+FYA            sp3_sp3_74       "O3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+FYA             sp3_sp3_4       "C2'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+FYA            sp3_sp3_79       "C4'"       "C3'"       "O3'"      "HO'3"     180.000    10.0     3
+FYA            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+FYA            sp3_sp3_37           C          CA           N         HN1     180.000    10.0     3
+FYA            sp3_sp3_43           C          CA          CB          CG     180.000    10.0     3
+FYA            sp3_sp3_82       "C3'"       "C2'"       "O2'"      "HO'2"     180.000    10.0     3
+FYA             sp3_sp3_8       "O4'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+FYA             sp2_sp3_7          C8          N9       "C1'"       "O4'"     150.000    10.0     6
+FYA              const_14          N7          C8          N9       "C1'"     180.000    10.0     2
+FYA              const_50          C5          C4          N9       "C1'"     180.000    10.0     2
+FYA              const_17          N9          C8          N7          C5       0.000    10.0     2
+FYA              const_20          C6          C5          N7          C8     180.000    10.0     2
+FYA       const_sp2_sp2_4          N7          C5          C6          N6       0.000     5.0     2
+FYA              const_21          N9          C4          C5          N7       0.000    10.0     2
+FYA             sp2_sp2_1          C5          C6          N6         H61     180.000     5.0     2
+FYA       const_sp2_sp2_6          N6          C6          N1          C2     180.000     5.0     2
+FYA       const_sp2_sp2_7          N3          C2          N1          C6       0.000     5.0     2
+FYA       const_sp2_sp2_9          N1          C2          N3          C4       0.000     5.0     2
+FYA              const_12          N9          C4          N3          C2     180.000    10.0     2
+FYA             sp2_sp3_2         CD1          CG          CB          CA     -90.000    10.0     6
+FYA              const_26         CE1         CD1          CG          CB     180.000    10.0     2
+FYA              const_46         CE2         CD2          CG          CB     180.000    10.0     2
+FYA              const_29          CG         CD1         CE1          CZ       0.000    10.0     2
+FYA              const_41          CG         CD2         CE2          CZ       0.000    10.0     2
+FYA              const_33         CD1         CE1          CZ         CE2       0.000    10.0     2
+FYA              const_37         CD2         CE2          CZ         CE1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FYA    chir_1    CA    N    C    CB    positive
+FYA    chir_2    P    "O5'"    O3P    O2P    both
+FYA    chir_3    "C4'"    "O4'"    "C3'"    "C5'"    negative
+FYA    chir_4    "C3'"    "O3'"    "C4'"    "C2'"    positive
+FYA    chir_5    "C2'"    "O2'"    "C1'"    "C3'"    negative
+FYA    chir_6    "C1'"    "O4'"    N9    "C2'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FYA    plan-1       "C1'"   0.020
+FYA    plan-1          C2   0.020
+FYA    plan-1          C4   0.020
+FYA    plan-1          C5   0.020
+FYA    plan-1          C6   0.020
+FYA    plan-1          C8   0.020
+FYA    plan-1          H2   0.020
+FYA    plan-1          H8   0.020
+FYA    plan-1          N1   0.020
+FYA    plan-1          N3   0.020
+FYA    plan-1          N6   0.020
+FYA    plan-1          N7   0.020
+FYA    plan-1          N9   0.020
+FYA    plan-2          CB   0.020
+FYA    plan-2         CD1   0.020
+FYA    plan-2         CD2   0.020
+FYA    plan-2         CE1   0.020
+FYA    plan-2         CE2   0.020
+FYA    plan-2          CG   0.020
+FYA    plan-2          CZ   0.020
+FYA    plan-2         HD1   0.020
+FYA    plan-2         HD2   0.020
+FYA    plan-2         HE1   0.020
+FYA    plan-2         HE2   0.020
+FYA    plan-2          HZ   0.020
+FYA    plan-3          C6   0.020
+FYA    plan-3         H61   0.020
+FYA    plan-3         H62   0.020
+FYA    plan-3          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FYA           SMILES              ACDLabs 10.04                                                                                                                                                                 O=P(O)(OCC(N)Cc1ccccc1)OCC4OC(n3cnc2c(ncnc23)N)C(O)C4O
+FYA SMILES_CANONICAL               CACTVS 3.341                                                                                                                                         N[C@H](CO[P@](O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)n2cnc3c(N)ncnc23)Cc4ccccc4
+FYA           SMILES               CACTVS 3.341                                                                                                                                                N[CH](CO[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O)n2cnc3c(N)ncnc23)Cc4ccccc4
+FYA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                    c1ccc(cc1)C[C@@H](CO[P@@](=O)(O)OC[C@@H]2[C@H]([C@H]([C@@H](O2)n3cnc4c3ncnc4N)O)O)N
+FYA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                               c1ccc(cc1)CC(COP(=O)(O)OCC2C(C(C(O2)n3cnc4c3ncnc4N)O)O)N
+FYA            InChI                InChI  1.03 InChI=1S/C19H25N6O7P/c20-12(6-11-4-2-1-3-5-11)7-30-33(28,29)31-8-13-15(26)16(27)19(32-13)25-10-24-14-17(21)22-9-23-18(14)25/h1-5,9-10,12-13,15-16,19,26-27H,6-8,20H2,(H,28,29)(H2,21,22,23)/t12-,13+,15+,16+,19+/m0/s1
+FYA         InChIKey                InChI  1.03                                                                                                                                                                                            XNEAAYNJQROQFE-BPAMBQHCSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FYA acedrg               243         "dictionary generator"                  
+FYA acedrg_database      11          "data source"                           
+FYA rdkit                2017.03.2   "Chemoinformatics tool"
+FYA refmac5              5.8.0238    "optimization tool"                     

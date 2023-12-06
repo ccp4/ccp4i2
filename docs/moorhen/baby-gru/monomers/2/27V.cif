@@ -1,0 +1,325 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+27V     27V      "(2E,5S,9R,10S)-10-(acetylamino)-2-imino-4-oxo-9-(pentan-3-yloxy)-1-thia-3-azaspiro[4.5]dec-6-ene-7-carboxylic acid"     NON-POLYMER     47     25     .     
+#
+data_comp_27V
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+27V     OAG     O       O       0       112.465     109.369     125.139     
+27V     CAT     C       CR5     0       112.929     108.469     125.811     
+27V     NAM     N       NR5     0       112.890     107.133     125.466     
+27V     CAS     C       CR5     0       112.703     106.282     126.527     
+27V     NAD     N       NH1     0       112.193     105.117     126.440     
+27V     SAP     S       S2      0       113.319     107.044     127.936     
+27V     CAY     C       CT      0       113.658     108.622     127.169     
+27V     CAX     C       CH1     0       115.175     108.891     127.030     
+27V     NAN     N       NH1     0       115.820     108.022     126.043     
+27V     CAQ     C       C       0       116.477     106.887     126.338     
+27V     OAE     O       O       0       116.595     106.472     127.488     
+27V     CAC     C       CH3     0       117.068     106.137     125.182     
+27V     CAI     C       CR16    0       112.971     109.708     127.988     
+27V     CAU     C       CR6     0       113.467     110.933     128.232     
+27V     CAR     C       C       0       112.741     111.859     128.958     
+27V     OAH     O       O       0       113.296     112.893     129.297     
+27V     OAF     O       OC      -1      111.566     111.652     129.229     
+27V     CAL     C       CH2     0       114.861     111.284     127.758     
+27V     CAW     C       CH1     0       115.409     110.365     126.678     
+27V     OAO     O       O2      0       116.817     110.588     126.614     
+27V     CAV     C       CH1     0       117.362     111.057     125.352     
+27V     CAK     C       CH2     0       118.846     110.718     125.340     
+27V     CAB     C       CH3     0       119.116     109.235     125.234     
+27V     CAJ     C       CH2     0       117.056     112.540     125.165     
+27V     CAA     C       CH3     0       117.595     113.427     126.270     
+27V     H1      H       H       0       112.979     106.871     124.634     
+27V     H2      H       H       0       112.660     104.540     126.926     
+27V     H3      H       H       0       115.614     108.730     127.903     
+27V     H4      H       H       0       115.783     108.260     125.199     
+27V     H5      H       H       0       116.478     106.200     124.413     
+27V     H6      H       H       0       117.179     105.203     125.425     
+27V     H7      H       H       0       117.933     106.516     124.957     
+27V     H8      H       H       0       112.131     109.482     128.352     
+27V     H10     H       H       0       115.468     111.263     128.521     
+27V     H11     H       H       0       114.860     112.193     127.407     
+27V     H12     H       H       0       114.987     110.567     125.808     
+27V     H13     H       H       0       116.927     110.554     124.614     
+27V     H14     H       H       0       119.258     111.059     126.162     
+27V     H15     H       H       0       119.270     111.173     124.581     
+27V     H16     H       H       0       120.070     109.086     125.110     
+27V     H17     H       H       0       118.631     108.869     124.475     
+27V     H18     H       H       0       118.823     108.792     126.049     
+27V     H19     H       H       0       116.084     112.659     125.110     
+27V     H20     H       H       0       117.438     112.835     124.310     
+27V     H21     H       H       0       117.339     114.349     126.099     
+27V     H22     H       H       0       118.566     113.363     126.298     
+27V     H23     H       H       0       117.228     113.145     127.126     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+27V         CAQ         CAC      SINGLE       n     1.498  0.0100     1.498  0.0100
+27V         OAG         CAT      DOUBLE       n     1.215  0.0100     1.215  0.0100
+27V         CAV         CAJ      SINGLE       n     1.522  0.0153     1.522  0.0153
+27V         CAJ         CAA      SINGLE       n     1.511  0.0200     1.511  0.0200
+27V         CAV         CAK      SINGLE       n     1.522  0.0153     1.522  0.0153
+27V         CAK         CAB      SINGLE       n     1.511  0.0200     1.511  0.0200
+27V         OAO         CAV      SINGLE       n     1.446  0.0150     1.446  0.0150
+27V         CAT         NAM      SINGLE       n     1.368  0.0126     1.368  0.0126
+27V         NAM         CAS      SINGLE       n     1.352  0.0200     1.352  0.0200
+27V         CAT         CAY      SINGLE       n     1.540  0.0170     1.540  0.0170
+27V         NAN         CAQ      SINGLE       n     1.336  0.0116     1.336  0.0116
+27V         CAX         NAN      SINGLE       n     1.460  0.0100     1.460  0.0100
+27V         CAQ         OAE      DOUBLE       n     1.227  0.0100     1.227  0.0100
+27V         CAS         NAD      DOUBLE       n     1.275  0.0200     1.275  0.0200
+27V         CAS         SAP      SINGLE       n     1.734  0.0200     1.734  0.0200
+27V         CAW         OAO      SINGLE       n     1.423  0.0100     1.423  0.0100
+27V         CAX         CAW      SINGLE       n     1.533  0.0100     1.533  0.0100
+27V         CAL         CAW      SINGLE       n     1.518  0.0142     1.518  0.0142
+27V         CAY         CAX      SINGLE       n     1.540  0.0161     1.540  0.0161
+27V         SAP         CAY      SINGLE       n     1.817  0.0200     1.817  0.0200
+27V         CAY         CAI      SINGLE       n     1.509  0.0170     1.509  0.0170
+27V         CAU         CAL      SINGLE       n     1.506  0.0100     1.506  0.0100
+27V         CAI         CAU      DOUBLE       n     1.333  0.0100     1.333  0.0100
+27V         CAU         CAR      SINGLE       n     1.343  0.0200     1.343  0.0200
+27V         CAR         OAH      DOUBLE       n     1.217  0.0200     1.217  0.0200
+27V         CAR         OAF      SINGLE       n     1.217  0.0200     1.217  0.0200
+27V         NAM          H1      SINGLE       n     1.016  0.0100     0.877  0.0200
+27V         NAD          H2      SINGLE       n     1.016  0.0100     0.887  0.0200
+27V         CAX          H3      SINGLE       n     1.089  0.0100     0.990  0.0148
+27V         NAN          H4      SINGLE       n     1.016  0.0100     0.876  0.0200
+27V         CAC          H5      SINGLE       n     1.089  0.0100     0.971  0.0140
+27V         CAC          H6      SINGLE       n     1.089  0.0100     0.971  0.0140
+27V         CAC          H7      SINGLE       n     1.089  0.0100     0.971  0.0140
+27V         CAI          H8      SINGLE       n     1.082  0.0130     0.943  0.0129
+27V         CAL         H10      SINGLE       n     1.089  0.0100     0.975  0.0100
+27V         CAL         H11      SINGLE       n     1.089  0.0100     0.975  0.0100
+27V         CAW         H12      SINGLE       n     1.089  0.0100     0.988  0.0151
+27V         CAV         H13      SINGLE       n     1.089  0.0100     0.994  0.0100
+27V         CAK         H14      SINGLE       n     1.089  0.0100     0.981  0.0160
+27V         CAK         H15      SINGLE       n     1.089  0.0100     0.981  0.0160
+27V         CAB         H16      SINGLE       n     1.089  0.0100     0.973  0.0157
+27V         CAB         H17      SINGLE       n     1.089  0.0100     0.973  0.0157
+27V         CAB         H18      SINGLE       n     1.089  0.0100     0.973  0.0157
+27V         CAJ         H19      SINGLE       n     1.089  0.0100     0.981  0.0160
+27V         CAJ         H20      SINGLE       n     1.089  0.0100     0.981  0.0160
+27V         CAA         H21      SINGLE       n     1.089  0.0100     0.973  0.0157
+27V         CAA         H22      SINGLE       n     1.089  0.0100     0.973  0.0157
+27V         CAA         H23      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+27V         OAG         CAT         NAM     125.140    1.50
+27V         OAG         CAT         CAY     126.760    1.81
+27V         NAM         CAT         CAY     108.100    1.50
+27V         CAT         NAM         CAS     109.625    2.36
+27V         CAT         NAM          H1     124.551    3.00
+27V         CAS         NAM          H1     125.824    2.27
+27V         NAM         CAS         NAD     123.376    3.00
+27V         NAM         CAS         SAP     110.656    2.60
+27V         NAD         CAS         SAP     125.968    3.00
+27V         CAS         NAD          H2     110.235    2.27
+27V         CAS         SAP         CAY     120.000    3.00
+27V         CAT         CAY         CAX     112.355    3.00
+27V         CAT         CAY         SAP     106.151    1.69
+27V         CAT         CAY         CAI     109.932    3.00
+27V         CAX         CAY         SAP     110.986    2.51
+27V         CAX         CAY         CAI     109.207    2.42
+27V         SAP         CAY         CAI     110.044    2.76
+27V         NAN         CAX         CAW     110.565    2.00
+27V         NAN         CAX         CAY     110.879    2.08
+27V         NAN         CAX          H3     106.651    1.50
+27V         CAW         CAX         CAY     111.476    2.14
+27V         CAW         CAX          H3     107.253    1.50
+27V         CAY         CAX          H3     109.008    1.50
+27V         CAQ         NAN         CAX     122.828    1.50
+27V         CAQ         NAN          H4     118.197    2.17
+27V         CAX         NAN          H4     118.975    1.50
+27V         CAC         CAQ         NAN     116.225    1.50
+27V         CAC         CAQ         OAE     121.977    1.50
+27V         NAN         CAQ         OAE     121.799    1.50
+27V         CAQ         CAC          H5     109.527    1.50
+27V         CAQ         CAC          H6     109.527    1.50
+27V         CAQ         CAC          H7     109.527    1.50
+27V          H5         CAC          H6     109.365    1.50
+27V          H5         CAC          H7     109.365    1.50
+27V          H6         CAC          H7     109.365    1.50
+27V         CAY         CAI         CAU     121.805    3.00
+27V         CAY         CAI          H8     118.846    1.67
+27V         CAU         CAI          H8     119.349    1.50
+27V         CAL         CAU         CAI     118.716    2.75
+27V         CAL         CAU         CAR     121.366    2.04
+27V         CAI         CAU         CAR     119.918    2.59
+27V         CAU         CAR         OAH     118.450    3.00
+27V         CAU         CAR         OAF     118.450    3.00
+27V         OAH         CAR         OAF     123.100    1.50
+27V         CAW         CAL         CAU     112.021    2.38
+27V         CAW         CAL         H10     108.743    1.50
+27V         CAW         CAL         H11     108.743    1.50
+27V         CAU         CAL         H10     109.221    1.50
+27V         CAU         CAL         H11     109.221    1.50
+27V         H10         CAL         H11     107.887    1.50
+27V         OAO         CAW         CAX     107.272    1.50
+27V         OAO         CAW         CAL     105.466    2.24
+27V         OAO         CAW         H12     109.096    1.50
+27V         CAX         CAW         CAL     111.124    1.57
+27V         CAX         CAW         H12     108.832    1.50
+27V         CAL         CAW         H12     109.453    2.12
+27V         CAV         OAO         CAW     115.660    1.65
+27V         CAJ         CAV         CAK     114.240    1.50
+27V         CAJ         CAV         OAO     108.494    2.99
+27V         CAJ         CAV         H13     108.488    1.50
+27V         CAK         CAV         OAO     108.494    2.99
+27V         CAK         CAV         H13     108.488    1.50
+27V         OAO         CAV         H13     108.457    1.50
+27V         CAV         CAK         CAB     113.258    1.50
+27V         CAV         CAK         H14     108.924    1.50
+27V         CAV         CAK         H15     108.924    1.50
+27V         CAB         CAK         H14     108.955    1.50
+27V         CAB         CAK         H15     108.955    1.50
+27V         H14         CAK         H15     107.797    1.50
+27V         CAK         CAB         H16     109.517    1.50
+27V         CAK         CAB         H17     109.517    1.50
+27V         CAK         CAB         H18     109.517    1.50
+27V         H16         CAB         H17     109.380    1.50
+27V         H16         CAB         H18     109.380    1.50
+27V         H17         CAB         H18     109.380    1.50
+27V         CAV         CAJ         CAA     113.258    1.50
+27V         CAV         CAJ         H19     108.924    1.50
+27V         CAV         CAJ         H20     108.924    1.50
+27V         CAA         CAJ         H19     108.955    1.50
+27V         CAA         CAJ         H20     108.955    1.50
+27V         H19         CAJ         H20     107.797    1.50
+27V         CAJ         CAA         H21     109.517    1.50
+27V         CAJ         CAA         H22     109.517    1.50
+27V         CAJ         CAA         H23     109.517    1.50
+27V         H21         CAA         H22     109.380    1.50
+27V         H21         CAA         H23     109.380    1.50
+27V         H22         CAA         H23     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+27V             sp2_sp2_2         CAY         CAI         CAU         CAR     180.000     5.0     2
+27V            sp2_sp2_21         OAH         CAR         CAU         CAL     180.000     5.0     2
+27V             sp2_sp3_4         CAR         CAU         CAL         CAW     180.000    10.0     6
+27V            sp3_sp3_20         CAU         CAL         CAW         OAO     180.000    10.0     3
+27V            sp3_sp3_70         CAX         CAW         OAO         CAV     180.000    10.0     3
+27V            sp3_sp3_68         CAJ         CAV         OAO         CAW      60.000    10.0     3
+27V             sp2_sp2_7         OAG         CAT         NAM         CAS     180.000     5.0     2
+27V            sp2_sp3_17         OAG         CAT         CAY         CAX     -60.000    10.0     6
+27V            sp3_sp3_49         CAB         CAK         CAV         CAJ     180.000    10.0     3
+27V            sp3_sp3_32         CAA         CAJ         CAV         CAK     -60.000    10.0     3
+27V            sp3_sp3_58         H16         CAB         CAK         CAV     180.000    10.0     3
+27V            sp3_sp3_40         H21         CAA         CAJ         CAV     180.000    10.0     3
+27V            sp2_sp2_11         NAD         CAS         NAM         CAT     180.000     5.0     2
+27V            sp2_sp2_19         NAM         CAS         NAD          H2     180.000     5.0     2
+27V            sp2_sp2_14         NAD         CAS         SAP         CAY     180.000     5.0     2
+27V            sp3_sp3_28         CAT         CAY         SAP         CAS     -60.000    10.0     3
+27V            sp2_sp3_26         CAU         CAI         CAY         CAT     120.000    10.0     6
+27V             sp3_sp3_5         NAN         CAX         CAY         CAT      60.000    10.0     3
+27V            sp3_sp3_14         OAO         CAW         CAX         NAN     -60.000    10.0     3
+27V            sp2_sp3_19         CAQ         NAN         CAX         CAW       0.000    10.0     6
+27V            sp2_sp2_15         CAC         CAQ         NAN         CAX     180.000     5.0     2
+27V             sp2_sp3_7         NAN         CAQ         CAC          H5       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+27V    chir_1    CAY    SAP    CAT    CAX    positive
+27V    chir_2    CAX    NAN    CAY    CAW    positive
+27V    chir_3    CAW    OAO    CAX    CAL    negative
+27V    chir_4    CAV    OAO    CAJ    CAK    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+27V    plan-1         CAT   0.020
+27V    plan-1         CAY   0.020
+27V    plan-1         NAM   0.020
+27V    plan-1         OAG   0.020
+27V    plan-2         CAS   0.020
+27V    plan-2         CAT   0.020
+27V    plan-2          H1   0.020
+27V    plan-2         NAM   0.020
+27V    plan-3         CAS   0.020
+27V    plan-3         NAD   0.020
+27V    plan-3         NAM   0.020
+27V    plan-3         SAP   0.020
+27V    plan-4         CAQ   0.020
+27V    plan-4         CAX   0.020
+27V    plan-4          H4   0.020
+27V    plan-4         NAN   0.020
+27V    plan-5         CAC   0.020
+27V    plan-5         CAQ   0.020
+27V    plan-5         NAN   0.020
+27V    plan-5         OAE   0.020
+27V    plan-6         CAI   0.020
+27V    plan-6         CAU   0.020
+27V    plan-6         CAY   0.020
+27V    plan-6          H8   0.020
+27V    plan-7         CAI   0.020
+27V    plan-7         CAL   0.020
+27V    plan-7         CAR   0.020
+27V    plan-7         CAU   0.020
+27V    plan-8         CAR   0.020
+27V    plan-8         CAU   0.020
+27V    plan-8         OAF   0.020
+27V    plan-8         OAH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+27V           SMILES              ACDLabs 12.01                                                                                                                   O=C(O)C2=CC1(SC(=[N@H])NC1=O)C(NC(=O)C)C(OC(CC)CC)C2
+27V            InChI                InChI  1.03 InChI=1S/C16H23N3O5S/c1-4-10(5-2)24-11-6-9(13(21)22)7-16(12(11)18-8(3)20)14(23)19-15(17)25-16/h7,10-12H,4-6H2,1-3H3,(H,18,20)(H,21,22)(H2,17,19,23)/t11-,12+,16+/m1/s1
+27V         InChIKey                InChI  1.03                                                                                                                                            YPLGHUGDNRYXJS-WQGACYEGSA-N
+27V SMILES_CANONICAL               CACTVS 3.385                                                                                                             CCC(CC)O[C@@H]1CC(=C[C@]2(SC(=N)NC2=O)[C@H]1NC(C)=O)C(O)=O
+27V           SMILES               CACTVS 3.385                                                                                                                 CCC(CC)O[CH]1CC(=C[C]2(SC(=N)NC2=O)[CH]1NC(C)=O)C(O)=O
+27V SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                   "[H]/N=C/1\NC(=O)[C@]2(S1)C=C(C[C@H]([C@@H]2NC(=O)C)OC(CC)CC)C(=O)O"
+27V           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                       CCC(CC)OC1CC(=CC2(C1NC(=O)C)C(=O)NC(=N)S2)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+27V acedrg               243         "dictionary generator"                  
+27V acedrg_database      11          "data source"                           
+27V rdkit                2017.03.2   "Chemoinformatics tool"
+27V refmac5              5.8.0238    "optimization tool"                     

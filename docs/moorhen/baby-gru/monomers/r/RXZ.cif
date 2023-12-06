@@ -1,0 +1,415 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RXZ     RXZ      SPHINX31     NON-POLYMER     61     37     .     
+#
+data_comp_RXZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RXZ     C4      C       CH2     0       12.377      49.144      29.370      
+RXZ     C5      C       CR6     0       12.150      47.934      30.243      
+RXZ     C6      C       CR16    0       12.442      47.950      31.602      
+RXZ     N1      N       NT      0       11.140      49.656      28.766      
+RXZ     C7      C       CR16    0       12.206      46.809      32.356      
+RXZ     C8      C       CR16    0       11.684      45.690      31.741      
+RXZ     N2      N       NRD6    0       11.638      46.848      29.637      
+RXZ     C9      C       CR16    0       11.416      45.752      30.387      
+RXZ     C10     C       CR6     0       8.372       52.622      27.599      
+RXZ     C11     C       CR16    0       6.979       52.524      27.570      
+RXZ     C12     C       CR16    0       6.195       53.633      27.302      
+RXZ     N3      N       NH1     0       10.366      54.057      27.373      
+RXZ     C13     C       CR6     0       6.777       54.869      27.057      
+RXZ     C14     C       CR16    0       8.165       54.997      27.093      
+RXZ     C15     C       CR6     0       8.962       53.889      27.370      
+RXZ     N4      N       NRD6    0       17.255      51.743      29.740      
+RXZ     F2      F       F       0       5.658       56.773      27.864      
+RXZ     C26     C       CT      0       5.929       56.068      26.772      
+RXZ     F       F       F       0       4.750       55.765      26.234      
+RXZ     F1      F       F       0       6.495       56.920      25.921      
+RXZ     C16     C       C       0       11.122      54.417      26.300      
+RXZ     O1      O       O       0       10.670      54.635      25.179      
+RXZ     C17     C       CR5     0       12.573      54.550      26.520      
+RXZ     O       O       O2      0       13.217      53.668      27.354      
+RXZ     C20     C       CR5     0       14.546      54.010      27.359      
+RXZ     C21     C       CR6     0       15.461      53.226      28.180      
+RXZ     C25     C       CR16    0       15.003      52.338      29.156      
+RXZ     C24     C       CR16    0       15.932      51.630      29.898      
+RXZ     C23     C       CR16    0       17.682      52.597      28.805      
+RXZ     C22     C       CR16    0       16.840      53.352      28.010      
+RXZ     C19     C       CR15    0       14.731      55.070      26.535      
+RXZ     C18     C       CR15    0       13.470      55.408      25.998      
+RXZ     N       N       NR6     0       9.146       51.503      27.880      
+RXZ     C1      C       CH2     0       8.984       50.745      29.129      
+RXZ     C2      C       CH2     0       10.112      50.923      26.932      
+RXZ     C3      C       CH2     0       11.403      50.523      27.614      
+RXZ     C       C       CH2     0       10.320      50.385      29.736      
+RXZ     H1      H       H       0       13.009      48.898      28.659      
+RXZ     H2      H       H       0       12.791      49.853      29.909      
+RXZ     H3      H       H       0       12.799      48.725      32.005      
+RXZ     H5      H       H       0       12.400      46.799      33.279      
+RXZ     H6      H       H       0       11.515      44.901      32.232      
+RXZ     H7      H       H       0       11.060      44.989      29.963      
+RXZ     H8      H       H       0       6.580       51.677      27.735      
+RXZ     H9      H       H       0       5.257       53.534      27.287      
+RXZ     H10     H       H       0       10.780      53.916      28.132      
+RXZ     H11     H       H       0       8.570       55.832      26.930      
+RXZ     H12     H       H       0       14.085      52.225      29.304      
+RXZ     H13     H       H       0       15.614      51.031      30.555      
+RXZ     H14     H       H       0       18.615      52.688      28.681      
+RXZ     H15     H       H       0       17.186      53.938      27.366      
+RXZ     H16     H       H       0       15.546      55.502      26.357      
+RXZ     H17     H       H       0       13.292      56.104      25.397      
+RXZ     H18     H       H       0       8.481       49.924      28.946      
+RXZ     H19     H       H       0       8.470       51.277      29.772      
+RXZ     H20     H       H       0       10.309      51.575      26.227      
+RXZ     H21     H       H       0       9.713       50.134      26.509      
+RXZ     H22     H       H       0       11.878      51.325      27.909      
+RXZ     H23     H       H       0       11.971      50.052      26.972      
+RXZ     H24     H       H       0       10.784      51.201      30.012      
+RXZ     H25     H       H       0       10.173      49.835      30.531      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RXZ         C26          F1      SINGLE       n     1.329  0.0183     1.329  0.0183
+RXZ          F2         C26      SINGLE       n     1.329  0.0183     1.329  0.0183
+RXZ         C13         C26      SINGLE       n     1.491  0.0100     1.491  0.0100
+RXZ         C26           F      SINGLE       n     1.329  0.0183     1.329  0.0183
+RXZ          C2          C3      SINGLE       n     1.511  0.0100     1.511  0.0100
+RXZ           N          C2      SINGLE       n     1.467  0.0100     1.467  0.0100
+RXZ         C12         C13      SINGLE       y     1.383  0.0100     1.383  0.0100
+RXZ         C13         C14      DOUBLE       y     1.388  0.0100     1.388  0.0100
+RXZ         C11         C12      DOUBLE       y     1.381  0.0109     1.381  0.0109
+RXZ         C14         C15      SINGLE       y     1.389  0.0100     1.389  0.0100
+RXZ          N1          C3      SINGLE       n     1.462  0.0100     1.462  0.0100
+RXZ         C10         C11      SINGLE       y     1.393  0.0100     1.393  0.0100
+RXZ         C10         C15      DOUBLE       y     1.410  0.0100     1.410  0.0100
+RXZ          N3         C15      SINGLE       n     1.410  0.0100     1.410  0.0100
+RXZ         C16          O1      DOUBLE       n     1.227  0.0100     1.227  0.0100
+RXZ         C10           N      SINGLE       n     1.384  0.0200     1.384  0.0200
+RXZ          N3         C16      SINGLE       n     1.357  0.0100     1.357  0.0100
+RXZ         C16         C17      SINGLE       n     1.471  0.0100     1.471  0.0100
+RXZ           N          C1      SINGLE       n     1.467  0.0100     1.467  0.0100
+RXZ         C17         C18      DOUBLE       y     1.345  0.0126     1.345  0.0126
+RXZ         C19         C18      SINGLE       y     1.411  0.0100     1.411  0.0100
+RXZ         C17           O      SINGLE       y     1.372  0.0132     1.372  0.0132
+RXZ         C20         C19      DOUBLE       y     1.356  0.0100     1.356  0.0100
+RXZ           O         C20      SINGLE       y     1.370  0.0100     1.370  0.0100
+RXZ          C4          N1      SINGLE       n     1.465  0.0100     1.465  0.0100
+RXZ          N1           C      SINGLE       n     1.462  0.0100     1.462  0.0100
+RXZ         C20         C21      SINGLE       n     1.455  0.0100     1.455  0.0100
+RXZ          C4          C5      SINGLE       n     1.508  0.0100     1.508  0.0100
+RXZ         C21         C25      DOUBLE       y     1.392  0.0100     1.392  0.0100
+RXZ         C21         C22      SINGLE       y     1.392  0.0100     1.392  0.0100
+RXZ         C25         C24      SINGLE       y     1.379  0.0100     1.379  0.0100
+RXZ          C1           C      SINGLE       n     1.511  0.0100     1.511  0.0100
+RXZ         C23         C22      DOUBLE       y     1.379  0.0100     1.379  0.0100
+RXZ          N4         C24      DOUBLE       y     1.332  0.0107     1.332  0.0107
+RXZ          N4         C23      SINGLE       y     1.332  0.0107     1.332  0.0107
+RXZ          C5          N2      SINGLE       y     1.342  0.0100     1.342  0.0100
+RXZ          C5          C6      DOUBLE       y     1.386  0.0100     1.386  0.0100
+RXZ          N2          C9      DOUBLE       y     1.342  0.0113     1.342  0.0113
+RXZ          C6          C7      SINGLE       y     1.381  0.0129     1.381  0.0129
+RXZ          C8          C9      SINGLE       y     1.374  0.0152     1.374  0.0152
+RXZ          C7          C8      DOUBLE       y     1.372  0.0130     1.372  0.0130
+RXZ          C4          H1      SINGLE       n     1.089  0.0100     0.982  0.0103
+RXZ          C4          H2      SINGLE       n     1.089  0.0100     0.982  0.0103
+RXZ          C6          H3      SINGLE       n     1.082  0.0130     0.944  0.0193
+RXZ          C7          H5      SINGLE       n     1.082  0.0130     0.944  0.0191
+RXZ          C8          H6      SINGLE       n     1.082  0.0130     0.944  0.0200
+RXZ          C9          H7      SINGLE       n     1.082  0.0130     0.943  0.0162
+RXZ         C11          H8      SINGLE       n     1.082  0.0130     0.950  0.0100
+RXZ         C12          H9      SINGLE       n     1.082  0.0130     0.943  0.0173
+RXZ          N3         H10      SINGLE       n     1.016  0.0100     0.874  0.0200
+RXZ         C14         H11      SINGLE       n     1.082  0.0130     0.942  0.0139
+RXZ         C25         H12      SINGLE       n     1.082  0.0130     0.937  0.0140
+RXZ         C24         H13      SINGLE       n     1.082  0.0130     0.945  0.0200
+RXZ         C23         H14      SINGLE       n     1.082  0.0130     0.945  0.0200
+RXZ         C22         H15      SINGLE       n     1.082  0.0130     0.937  0.0140
+RXZ         C19         H16      SINGLE       n     1.082  0.0130     0.939  0.0104
+RXZ         C18         H17      SINGLE       n     1.082  0.0130     0.937  0.0166
+RXZ          C1         H18      SINGLE       n     1.089  0.0100     0.980  0.0187
+RXZ          C1         H19      SINGLE       n     1.089  0.0100     0.980  0.0187
+RXZ          C2         H20      SINGLE       n     1.089  0.0100     0.980  0.0187
+RXZ          C2         H21      SINGLE       n     1.089  0.0100     0.980  0.0187
+RXZ          C3         H22      SINGLE       n     1.089  0.0100     0.978  0.0109
+RXZ          C3         H23      SINGLE       n     1.089  0.0100     0.978  0.0109
+RXZ           C         H24      SINGLE       n     1.089  0.0100     0.978  0.0109
+RXZ           C         H25      SINGLE       n     1.089  0.0100     0.978  0.0109
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RXZ          N1          C4          C5     112.817    1.50
+RXZ          N1          C4          H1     108.938    1.50
+RXZ          N1          C4          H2     108.938    1.50
+RXZ          C5          C4          H1     108.678    1.50
+RXZ          C5          C4          H2     108.678    1.50
+RXZ          H1          C4          H2     107.925    1.50
+RXZ          C4          C5          N2     116.314    1.50
+RXZ          C4          C5          C6     121.479    1.50
+RXZ          N2          C5          C6     122.207    1.50
+RXZ          C5          C6          C7     118.959    1.50
+RXZ          C5          C6          H3     120.412    1.50
+RXZ          C7          C6          H3     120.630    1.50
+RXZ          C3          N1          C4     111.009    1.50
+RXZ          C3          N1           C     109.260    1.50
+RXZ          C4          N1           C     111.009    1.50
+RXZ          C6          C7          C8     118.949    1.50
+RXZ          C6          C7          H5     120.515    1.50
+RXZ          C8          C7          H5     120.536    1.50
+RXZ          C9          C8          C7     118.269    1.50
+RXZ          C9          C8          H6     120.795    1.50
+RXZ          C7          C8          H6     120.936    1.50
+RXZ          C5          N2          C9     118.028    1.50
+RXZ          N2          C9          C8     123.588    1.50
+RXZ          N2          C9          H7     117.958    1.50
+RXZ          C8          C9          H7     118.453    1.50
+RXZ         C11         C10         C15     117.847    2.56
+RXZ         C11         C10           N     122.128    1.79
+RXZ         C15         C10           N     120.025    1.50
+RXZ         C12         C11         C10     119.873    1.50
+RXZ         C12         C11          H8     120.806    1.50
+RXZ         C10         C11          H8     119.321    2.95
+RXZ         C13         C12         C11     120.575    1.50
+RXZ         C13         C12          H9     120.153    1.50
+RXZ         C11         C12          H9     119.272    1.50
+RXZ         C15          N3         C16     127.121    2.35
+RXZ         C15          N3         H10     116.378    2.05
+RXZ         C16          N3         H10     116.501    1.81
+RXZ         C26         C13         C12     120.108    1.50
+RXZ         C26         C13         C14     119.269    1.50
+RXZ         C12         C13         C14     120.623    1.50
+RXZ         C13         C14         C15     120.225    1.50
+RXZ         C13         C14         H11     119.917    1.50
+RXZ         C15         C14         H11     119.858    1.50
+RXZ         C14         C15         C10     120.857    1.50
+RXZ         C14         C15          N3     119.798    3.00
+RXZ         C10         C15          N3     119.346    2.04
+RXZ         C24          N4         C23     116.226    1.50
+RXZ          F1         C26          F2     105.974    1.50
+RXZ          F1         C26         C13     112.813    1.50
+RXZ          F1         C26           F     105.974    1.50
+RXZ          F2         C26         C13     112.813    1.50
+RXZ          F2         C26           F     105.974    1.50
+RXZ         C13         C26           F     112.813    1.50
+RXZ          O1         C16          N3     124.942    1.50
+RXZ          O1         C16         C17     120.303    1.50
+RXZ          N3         C16         C17     114.755    1.58
+RXZ         C16         C17         C18     132.091    1.50
+RXZ         C16         C17           O     118.513    1.80
+RXZ         C18         C17           O     109.397    1.50
+RXZ         C17           O         C20     107.554    1.50
+RXZ         C19         C20           O     109.586    1.50
+RXZ         C19         C20         C21     133.546    1.50
+RXZ           O         C20         C21     116.868    1.50
+RXZ         C20         C21         C25     120.742    1.50
+RXZ         C20         C21         C22     120.742    1.50
+RXZ         C25         C21         C22     118.517    1.50
+RXZ         C21         C25         C24     118.942    1.50
+RXZ         C21         C25         H12     120.131    1.50
+RXZ         C24         C25         H12     120.926    1.50
+RXZ         C25         C24          N4     123.686    1.50
+RXZ         C25         C24         H13     118.273    1.50
+RXZ          N4         C24         H13     118.041    1.50
+RXZ         C22         C23          N4     123.686    1.50
+RXZ         C22         C23         H14     118.273    1.50
+RXZ          N4         C23         H14     118.041    1.50
+RXZ         C21         C22         C23     118.942    1.50
+RXZ         C21         C22         H15     120.131    1.50
+RXZ         C23         C22         H15     120.926    1.50
+RXZ         C18         C19         C20     106.911    1.50
+RXZ         C18         C19         H16     126.527    1.50
+RXZ         C20         C19         H16     126.562    1.50
+RXZ         C17         C18         C19     106.552    1.50
+RXZ         C17         C18         H17     126.855    1.50
+RXZ         C19         C18         H17     126.593    1.50
+RXZ          C2           N         C10     123.506    1.63
+RXZ          C2           N          C1     112.989    2.47
+RXZ         C10           N          C1     123.506    1.63
+RXZ           N          C1           C     110.858    1.50
+RXZ           N          C1         H18     109.542    1.50
+RXZ           N          C1         H19     109.542    1.50
+RXZ           C          C1         H18     109.514    1.50
+RXZ           C          C1         H19     109.514    1.50
+RXZ         H18          C1         H19     108.196    1.50
+RXZ          C3          C2           N     110.858    1.50
+RXZ          C3          C2         H20     109.514    1.50
+RXZ          C3          C2         H21     109.514    1.50
+RXZ           N          C2         H20     109.542    1.50
+RXZ           N          C2         H21     109.542    1.50
+RXZ         H20          C2         H21     108.196    1.50
+RXZ          C2          C3          N1     110.760    1.50
+RXZ          C2          C3         H22     109.482    1.50
+RXZ          C2          C3         H23     109.482    1.50
+RXZ          N1          C3         H22     109.507    1.50
+RXZ          N1          C3         H23     109.507    1.50
+RXZ         H22          C3         H23     108.187    1.50
+RXZ          N1           C          C1     110.760    1.50
+RXZ          N1           C         H24     109.507    1.50
+RXZ          N1           C         H25     109.507    1.50
+RXZ          C1           C         H24     109.482    1.50
+RXZ          C1           C         H25     109.482    1.50
+RXZ         H24           C         H25     108.187    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RXZ            sp2_sp3_20          N2          C5          C4          N1     -90.000    10.0     6
+RXZ            sp3_sp3_26          C5          C4          N1          C3     -60.000    10.0     3
+RXZ              const_10         C11         C12         C13         C26     180.000    10.0     2
+RXZ             sp2_sp2_1         C14         C15          N3         C16     180.000     5.0     2
+RXZ            sp2_sp2_11          O1         C16          N3         C15       0.000     5.0     2
+RXZ              const_15         C26         C13         C14         C15     180.000    10.0     2
+RXZ            sp2_sp3_13         C12         C13         C26          F1     150.000    10.0     6
+RXZ              const_18         C13         C14         C15          N3     180.000    10.0     2
+RXZ              const_35         C25         C24          N4         C23       0.000    10.0     2
+RXZ              const_75         C22         C23          N4         C24       0.000    10.0     2
+RXZ              const_79          C4          C5          C6          C7     180.000    10.0     2
+RXZ              const_54          C4          C5          N2          C9     180.000    10.0     2
+RXZ            sp2_sp2_15          O1         C16         C17         C18       0.000     5.0     2
+RXZ              const_74         C16         C17           O         C20     180.000    10.0     2
+RXZ              const_23         C16         C17         C18         C19     180.000    10.0     2
+RXZ              const_33         C19         C20           O         C17       0.000    10.0     2
+RXZ            sp2_sp2_17         C19         C20         C21         C25     180.000     5.0     2
+RXZ              const_29         C18         C19         C20           O       0.000    10.0     2
+RXZ              const_43         C20         C21         C25         C24     180.000    10.0     2
+RXZ              const_47         C20         C21         C22         C23     180.000    10.0     2
+RXZ              const_37          N4         C24         C25         C21       0.000    10.0     2
+RXZ              const_49         C21         C22         C23          N4       0.000    10.0     2
+RXZ              const_65          C5          C6          C7          C8       0.000    10.0     2
+RXZ              const_25         C17         C18         C19         C20       0.000    10.0     2
+RXZ             sp2_sp3_7          C2           N          C1           C       0.000    10.0     6
+RXZ             sp2_sp3_4         C10           N          C2          C3     180.000    10.0     6
+RXZ            sp3_sp3_16          N1           C          C1           N      60.000    10.0     3
+RXZ             sp3_sp3_7           N          C2          C3          N1     -60.000    10.0     3
+RXZ             sp3_sp3_2          C2          C3          N1          C4     180.000    10.0     3
+RXZ            sp3_sp3_32          C1           C          N1          C4     -60.000    10.0     3
+RXZ              const_61          C6          C7          C8          C9       0.000    10.0     2
+RXZ              const_57          C7          C8          C9          N2       0.000    10.0     2
+RXZ              const_55          C8          C9          N2          C5       0.000    10.0     2
+RXZ              const_70         C11         C10         C15          N3     180.000    10.0     2
+RXZ             sp2_sp2_5         C11         C10           N          C2     180.000     5.0     2
+RXZ       const_sp2_sp2_1         C15         C10         C11         C12       0.000     5.0     2
+RXZ       const_sp2_sp2_5         C10         C11         C12         C13       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RXZ    chir_1    N1    C4    C3    C    both
+RXZ    chir_2    C26    F1    F2    F    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RXZ    plan-1         C10   0.020
+RXZ    plan-1         C11   0.020
+RXZ    plan-1         C12   0.020
+RXZ    plan-1         C13   0.020
+RXZ    plan-1         C14   0.020
+RXZ    plan-1         C15   0.020
+RXZ    plan-1         C26   0.020
+RXZ    plan-1         H11   0.020
+RXZ    plan-1          H8   0.020
+RXZ    plan-1          H9   0.020
+RXZ    plan-1           N   0.020
+RXZ    plan-1          N3   0.020
+RXZ    plan-2         C20   0.020
+RXZ    plan-2         C21   0.020
+RXZ    plan-2         C22   0.020
+RXZ    plan-2         C23   0.020
+RXZ    plan-2         C24   0.020
+RXZ    plan-2         C25   0.020
+RXZ    plan-2         H12   0.020
+RXZ    plan-2         H13   0.020
+RXZ    plan-2         H14   0.020
+RXZ    plan-2         H15   0.020
+RXZ    plan-2          N4   0.020
+RXZ    plan-3          C4   0.020
+RXZ    plan-3          C5   0.020
+RXZ    plan-3          C6   0.020
+RXZ    plan-3          C7   0.020
+RXZ    plan-3          C8   0.020
+RXZ    plan-3          C9   0.020
+RXZ    plan-3          H3   0.020
+RXZ    plan-3          H5   0.020
+RXZ    plan-3          H6   0.020
+RXZ    plan-3          H7   0.020
+RXZ    plan-3          N2   0.020
+RXZ    plan-4         C16   0.020
+RXZ    plan-4         C17   0.020
+RXZ    plan-4         C18   0.020
+RXZ    plan-4         C19   0.020
+RXZ    plan-4         C20   0.020
+RXZ    plan-4         C21   0.020
+RXZ    plan-4         H16   0.020
+RXZ    plan-4         H17   0.020
+RXZ    plan-4           O   0.020
+RXZ    plan-5         C15   0.020
+RXZ    plan-5         C16   0.020
+RXZ    plan-5         H10   0.020
+RXZ    plan-5          N3   0.020
+RXZ    plan-6         C16   0.020
+RXZ    plan-6         C17   0.020
+RXZ    plan-6          N3   0.020
+RXZ    plan-6          O1   0.020
+RXZ    plan-7          C1   0.020
+RXZ    plan-7         C10   0.020
+RXZ    plan-7          C2   0.020
+RXZ    plan-7           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RXZ            InChI                InChI  1.03 InChI=1S/C27H24F3N5O2/c28-27(29,30)20-4-5-23(35-15-13-34(14-16-35)18-21-3-1-2-10-32-21)22(17-20)33-26(36)25-7-6-24(37-25)19-8-11-31-12-9-19/h1-12,17H,13-16,18H2,(H,33,36)
+RXZ         InChIKey                InChI  1.03                                                                                                                                                VURLRACCOCGFDB-UHFFFAOYSA-N
+RXZ SMILES_CANONICAL               CACTVS 3.385                                                                                                             FC(F)(F)c1ccc(N2CCN(CC2)Cc3ccccn3)c(NC(=O)c4oc(cc4)c5ccncc5)c1
+RXZ           SMILES               CACTVS 3.385                                                                                                             FC(F)(F)c1ccc(N2CCN(CC2)Cc3ccccn3)c(NC(=O)c4oc(cc4)c5ccncc5)c1
+RXZ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                             c1ccnc(c1)CN2CCN(CC2)c3ccc(cc3NC(=O)c4ccc(o4)c5ccncc5)C(F)(F)F
+RXZ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                             c1ccnc(c1)CN2CCN(CC2)c3ccc(cc3NC(=O)c4ccc(o4)c5ccncc5)C(F)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RXZ acedrg               243         "dictionary generator"                  
+RXZ acedrg_database      11          "data source"                           
+RXZ rdkit                2017.03.2   "Chemoinformatics tool"
+RXZ refmac5              5.8.0238    "optimization tool"                     

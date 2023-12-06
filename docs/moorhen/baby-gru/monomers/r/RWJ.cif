@@ -1,0 +1,362 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RWJ     RWJ      "CYCLOPENTANECARBOXYLIC ACID [1-(BENZOTHIAZOLE-2-CARBONYL)-4-GUANIDINO-BUTYL]-AMIDE"     NON-POLYMER     53     27     .     
+#
+data_comp_RWJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RWJ     C51     C       CH1     0       43.039      24.561      50.701      
+RWJ     C52     C       CH2     0       43.599      25.995      50.658      
+RWJ     C53     C       CH2     0       42.389      26.915      50.494      
+RWJ     C54     C       CH2     0       41.195      26.074      50.266      
+RWJ     C55     C       CH2     0       41.714      24.682      49.929      
+RWJ     CP      C       C       0       44.008      23.515      50.166      
+RWJ     OP      O       O       0       45.226      23.659      50.288      
+RWJ     N       N       NH1     0       43.476      22.455      49.515      
+RWJ     CA      C       CH1     0       44.244      21.521      48.702      
+RWJ     CB      C       CH2     0       44.379      20.175      49.418      
+RWJ     CG      C       CH2     0       45.119      20.246      50.746      
+RWJ     CD      C       CH2     0       45.308      18.868      51.355      
+RWJ     NE      N       NH1     0       45.970      18.896      52.656      
+RWJ     CZ      C       C       0       46.249      17.829      53.410      
+RWJ     NH1     N       NH2     1       45.931      16.605      53.009      
+RWJ     NH2     N       NH2     0       46.853      17.990      54.577      
+RWJ     O       O       O       0       43.121      20.321      46.957      
+RWJ     N5      N       NRD5    0       42.930      22.563      45.277      
+RWJ     C5      C       CR5     0       43.556      22.555      46.422      
+RWJ     S5      S       S2      0       44.287      24.030      46.723      
+RWJ     C61     C       CR56    0       43.028      23.787      44.604      
+RWJ     C62     C       CR56    0       43.775      24.731      45.311      
+RWJ     C63     C       CR16    0       43.991      26.009      44.816      
+RWJ     C64     C       CR16    0       43.445      26.340      43.593      
+RWJ     C65     C       CR16    0       42.695      25.404      42.876      
+RWJ     C66     C       CR16    0       42.479      24.136      43.363      
+RWJ     C       C       C       0       43.601      21.384      47.318      
+RWJ     H511    H       H       0       42.825      24.345      51.642      
+RWJ     H521    H       H       0       44.078      26.201      51.485      
+RWJ     H522    H       H       0       44.213      26.103      49.906      
+RWJ     H531    H       H       0       42.527      27.526      49.726      
+RWJ     H532    H       H       0       42.268      27.468      51.307      
+RWJ     H541    H       H       0       40.653      26.434      49.518      
+RWJ     H542    H       H       0       40.629      26.047      51.079      
+RWJ     H551    H       H       0       41.080      23.996      50.218      
+RWJ     H552    H       H       0       41.863      24.590      48.968      
+RWJ     H1N     H       H       0       42.632      22.286      49.611      
+RWJ     HA1     H       H       0       45.159      21.872      48.581      
+RWJ     HB1     H       H       0       44.854      19.551      48.829      
+RWJ     HB2     H       H       0       43.483      19.812      49.578      
+RWJ     HG1     H       H       0       44.614      20.807      51.372      
+RWJ     HG2     H       H       0       45.998      20.659      50.607      
+RWJ     HD1     H       H       0       45.838      18.318      50.739      
+RWJ     HD2     H       H       0       44.430      18.441      51.454      
+RWJ     HE1     H       H       0       46.204      19.678      52.966      
+RWJ     HN11    H       H       0       46.121      15.913      53.519      
+RWJ     HH12    H       H       0       45.535      16.472      52.239      
+RWJ     HN21    H       H       0       47.040      17.290      55.078      
+RWJ     HN22    H       H       0       47.071      18.797      54.858      
+RWJ     H631    H       H       0       44.497      26.636      45.301      
+RWJ     H641    H       H       0       43.579      27.202      43.238      
+RWJ     H651    H       H       0       42.330      25.646      42.045      
+RWJ     H661    H       H       0       41.972      23.513      42.874      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RWJ         C51         C52      SINGLE       n     1.538  0.0112     1.538  0.0112
+RWJ         C51         C55      SINGLE       n     1.538  0.0112     1.538  0.0112
+RWJ         C51          CP      SINGLE       n     1.517  0.0100     1.517  0.0100
+RWJ         C52         C53      SINGLE       n     1.526  0.0120     1.526  0.0120
+RWJ         C53         C54      SINGLE       n     1.476  0.0200     1.476  0.0200
+RWJ         C54         C55      SINGLE       n     1.526  0.0120     1.526  0.0120
+RWJ          CP          OP      DOUBLE       n     1.231  0.0100     1.231  0.0100
+RWJ          CP           N      SINGLE       n     1.345  0.0100     1.345  0.0100
+RWJ           N          CA      SINGLE       n     1.453  0.0100     1.453  0.0100
+RWJ          CA          CB      SINGLE       n     1.528  0.0100     1.528  0.0100
+RWJ          CA           C      SINGLE       n     1.527  0.0108     1.527  0.0108
+RWJ          CB          CG      SINGLE       n     1.522  0.0100     1.522  0.0100
+RWJ          CG          CD      SINGLE       n     1.517  0.0143     1.517  0.0143
+RWJ          CD          NE      SINGLE       n     1.456  0.0136     1.456  0.0136
+RWJ          NE          CZ      SINGLE       n     1.328  0.0112     1.328  0.0112
+RWJ          CZ         NH1      DOUBLE       n     1.322  0.0100     1.322  0.0100
+RWJ          CZ         NH2      SINGLE       n     1.321  0.0100     1.321  0.0100
+RWJ           O           C      DOUBLE       n     1.220  0.0102     1.220  0.0102
+RWJ          N5          C5      DOUBLE       y     1.297  0.0108     1.297  0.0108
+RWJ          N5         C61      SINGLE       y     1.390  0.0100     1.390  0.0100
+RWJ          C5          S5      SINGLE       y     1.695  0.0200     1.695  0.0200
+RWJ          C5           C      SINGLE       n     1.460  0.0195     1.460  0.0195
+RWJ          S5         C62      SINGLE       y     1.695  0.0200     1.695  0.0200
+RWJ         C61         C62      DOUBLE       y     1.385  0.0119     1.385  0.0119
+RWJ         C61         C66      SINGLE       y     1.396  0.0100     1.396  0.0100
+RWJ         C62         C63      SINGLE       y     1.382  0.0123     1.382  0.0123
+RWJ         C63         C64      DOUBLE       y     1.378  0.0108     1.378  0.0108
+RWJ         C64         C65      SINGLE       y     1.395  0.0112     1.395  0.0112
+RWJ         C65         C66      DOUBLE       y     1.371  0.0115     1.371  0.0115
+RWJ         C51        H511      SINGLE       n     1.089  0.0100     0.989  0.0148
+RWJ         C52        H521      SINGLE       n     1.089  0.0100     0.977  0.0165
+RWJ         C52        H522      SINGLE       n     1.089  0.0100     0.977  0.0165
+RWJ         C53        H531      SINGLE       n     1.089  0.0100     0.991  0.0100
+RWJ         C53        H532      SINGLE       n     1.089  0.0100     0.991  0.0100
+RWJ         C54        H541      SINGLE       n     1.089  0.0100     0.991  0.0100
+RWJ         C54        H542      SINGLE       n     1.089  0.0100     0.991  0.0100
+RWJ         C55        H551      SINGLE       n     1.089  0.0100     0.977  0.0165
+RWJ         C55        H552      SINGLE       n     1.089  0.0100     0.977  0.0165
+RWJ           N         H1N      SINGLE       n     1.016  0.0100     0.869  0.0200
+RWJ          CA         HA1      SINGLE       n     1.089  0.0100     0.988  0.0164
+RWJ          CB         HB1      SINGLE       n     1.089  0.0100     0.980  0.0160
+RWJ          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0160
+RWJ          CG         HG1      SINGLE       n     1.089  0.0100     0.981  0.0160
+RWJ          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0160
+RWJ          CD         HD1      SINGLE       n     1.089  0.0100     0.981  0.0152
+RWJ          CD         HD2      SINGLE       n     1.089  0.0100     0.981  0.0152
+RWJ          NE         HE1      SINGLE       n     1.016  0.0100     0.872  0.0200
+RWJ         NH1        HN11      SINGLE       n     1.016  0.0100     0.879  0.0200
+RWJ         NH1        HH12      SINGLE       n     1.016  0.0100     0.879  0.0200
+RWJ         NH2        HN21      SINGLE       n     1.016  0.0100     0.881  0.0200
+RWJ         NH2        HN22      SINGLE       n     1.016  0.0100     0.881  0.0200
+RWJ         C63        H631      SINGLE       n     1.082  0.0130     0.941  0.0170
+RWJ         C64        H641      SINGLE       n     1.082  0.0130     0.942  0.0176
+RWJ         C65        H651      SINGLE       n     1.082  0.0130     0.939  0.0159
+RWJ         C66        H661      SINGLE       n     1.082  0.0130     0.940  0.0191
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RWJ         C52         C51         C55     104.385    1.50
+RWJ         C52         C51          CP     113.677    1.50
+RWJ         C52         C51        H511     108.610    1.91
+RWJ         C55         C51          CP     113.677    1.50
+RWJ         C55         C51        H511     108.610    1.91
+RWJ          CP         C51        H511     109.216    1.50
+RWJ         C51         C52         C53     105.254    1.50
+RWJ         C51         C52        H521     110.667    1.50
+RWJ         C51         C52        H522     110.667    1.50
+RWJ         C53         C52        H521     110.744    1.50
+RWJ         C53         C52        H522     110.744    1.50
+RWJ        H521         C52        H522     108.821    1.50
+RWJ         C52         C53         C54     106.544    3.00
+RWJ         C52         C53        H531     110.704    1.50
+RWJ         C52         C53        H532     110.704    1.50
+RWJ         C54         C53        H531     110.679    1.50
+RWJ         C54         C53        H532     110.679    1.50
+RWJ        H531         C53        H532     108.634    1.62
+RWJ         C53         C54         C55     106.544    3.00
+RWJ         C53         C54        H541     110.679    1.50
+RWJ         C53         C54        H542     110.679    1.50
+RWJ         C55         C54        H541     110.704    1.50
+RWJ         C55         C54        H542     110.704    1.50
+RWJ        H541         C54        H542     108.634    1.62
+RWJ         C51         C55         C54     105.254    1.50
+RWJ         C51         C55        H551     110.667    1.50
+RWJ         C51         C55        H552     110.667    1.50
+RWJ         C54         C55        H551     110.744    1.50
+RWJ         C54         C55        H552     110.744    1.50
+RWJ        H551         C55        H552     108.821    1.50
+RWJ         C51          CP          OP     122.088    1.50
+RWJ         C51          CP           N     116.039    1.50
+RWJ          OP          CP           N     121.873    1.50
+RWJ          CP           N          CA     121.917    2.35
+RWJ          CP           N         H1N     119.575    1.50
+RWJ          CA           N         H1N     118.508    1.50
+RWJ           N          CA          CB     110.930    1.50
+RWJ           N          CA           C     111.249    2.34
+RWJ           N          CA         HA1     108.366    1.50
+RWJ          CB          CA           C     111.469    2.23
+RWJ          CB          CA         HA1     107.451    1.50
+RWJ           C          CA         HA1     108.572    1.52
+RWJ          CA          CB          CG     113.636    1.85
+RWJ          CA          CB         HB1     108.818    1.50
+RWJ          CA          CB         HB2     108.818    1.50
+RWJ          CG          CB         HB1     108.775    1.50
+RWJ          CG          CB         HB2     108.775    1.50
+RWJ         HB1          CB         HB2     107.844    1.50
+RWJ          CB          CG          CD     112.387    3.00
+RWJ          CB          CG         HG1     109.262    1.50
+RWJ          CB          CG         HG2     109.262    1.50
+RWJ          CD          CG         HG1     108.956    1.50
+RWJ          CD          CG         HG2     108.956    1.50
+RWJ         HG1          CG         HG2     107.927    1.57
+RWJ          CG          CD          NE     112.382    2.90
+RWJ          CG          CD         HD1     109.197    1.51
+RWJ          CG          CD         HD2     109.197    1.51
+RWJ          NE          CD         HD1     109.183    1.50
+RWJ          NE          CD         HD2     109.183    1.50
+RWJ         HD1          CD         HD2     107.877    1.50
+RWJ          CD          NE          CZ     124.510    1.50
+RWJ          CD          NE         HE1     117.883    1.50
+RWJ          CZ          NE         HE1     117.606    1.50
+RWJ          NE          CZ         NH1     120.052    1.50
+RWJ          NE          CZ         NH2     120.052    1.50
+RWJ         NH1          CZ         NH2     119.896    1.50
+RWJ          CZ         NH1        HN11     119.855    2.01
+RWJ          CZ         NH1        HH12     119.855    2.01
+RWJ        HN11         NH1        HH12     120.290    2.09
+RWJ          CZ         NH2        HN21     119.855    2.01
+RWJ          CZ         NH2        HN22     119.855    2.01
+RWJ        HN21         NH2        HN22     120.290    2.09
+RWJ          C5          N5         C61     106.262    1.50
+RWJ          N5          C5          S5     108.216    3.00
+RWJ          N5          C5           C     126.993    2.83
+RWJ          S5          C5           C     124.791    3.00
+RWJ          C5          S5         C62     108.216    3.00
+RWJ          N5         C61         C62     109.090    1.50
+RWJ          N5         C61         C66     130.344    1.50
+RWJ         C62         C61         C66     120.566    1.92
+RWJ          S5         C62         C61     108.216    3.00
+RWJ          S5         C62         C63     131.219    3.00
+RWJ         C61         C62         C63     120.566    1.92
+RWJ         C62         C63         C64     118.428    1.50
+RWJ         C62         C63        H631     120.920    1.50
+RWJ         C64         C63        H631     120.653    1.50
+RWJ         C63         C64         C65     120.956    1.50
+RWJ         C63         C64        H641     119.539    1.50
+RWJ         C65         C64        H641     119.506    1.50
+RWJ         C64         C65         C66     121.524    1.50
+RWJ         C64         C65        H651     119.292    1.50
+RWJ         C66         C65        H651     119.184    1.50
+RWJ         C61         C66         C65     117.961    1.50
+RWJ         C61         C66        H661     120.885    1.50
+RWJ         C65         C66        H661     121.153    1.50
+RWJ          CA           C           O     120.495    1.50
+RWJ          CA           C          C5     117.576    2.21
+RWJ           O           C          C5     121.929    2.69
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RWJ             sp3_sp3_7          CP         C51         C52         C53     180.000    10.0     3
+RWJ            sp3_sp3_40          CP         C51         C55         C54      60.000    10.0     3
+RWJ             sp2_sp3_2          OP          CP         C51         C52     120.000    10.0     6
+RWJ            sp3_sp3_64          NE          CD          CG          CB     180.000    10.0     3
+RWJ            sp2_sp3_20          CZ          NE          CD          CG     120.000    10.0     6
+RWJ             sp2_sp2_5         NH1          CZ          NE          CD     180.000     5.0     2
+RWJ             sp2_sp2_9          NE          CZ         NH1        HN11     180.000     5.0     2
+RWJ            sp2_sp2_13          NE          CZ         NH2        HN21     180.000     5.0     2
+RWJ       const_sp2_sp2_2           C          C5          N5         C61     180.000     5.0     2
+RWJ              const_27         C62         C61          N5          C5       0.000    10.0     2
+RWJ       const_sp2_sp2_4           C          C5          S5         C62     180.000     5.0     2
+RWJ            sp2_sp2_17          CA           C          C5          N5     180.000     5.0     2
+RWJ       const_sp2_sp2_5         C61         C62          S5          C5       0.000     5.0     2
+RWJ            sp3_sp3_10         C51         C52         C53         C54     -60.000    10.0     3
+RWJ       const_sp2_sp2_7          N5         C61         C62          S5       0.000     5.0     2
+RWJ              const_31          N5         C61         C66         C65     180.000    10.0     2
+RWJ              const_13          S5         C62         C63         C64     180.000    10.0     2
+RWJ              const_15         C62         C63         C64         C65       0.000    10.0     2
+RWJ              const_19         C63         C64         C65         C66       0.000    10.0     2
+RWJ              const_23         C64         C65         C66         C61       0.000    10.0     2
+RWJ            sp3_sp3_19         C52         C53         C54         C55      60.000    10.0     3
+RWJ            sp3_sp3_28         C53         C54         C55         C51     -60.000    10.0     3
+RWJ             sp2_sp2_3          OP          CP           N          CA       0.000     5.0     2
+RWJ             sp2_sp3_7          CP           N          CA          CB       0.000    10.0     6
+RWJ            sp2_sp3_13           O           C          CA           N       0.000    10.0     6
+RWJ            sp3_sp3_46           N          CA          CB          CG     180.000    10.0     3
+RWJ            sp3_sp3_55          CA          CB          CG          CD     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RWJ    chir_1    C51    CP    C52    C55    both
+RWJ    chir_2    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RWJ    plan-1           C   0.020
+RWJ    plan-1          C5   0.020
+RWJ    plan-1         C61   0.020
+RWJ    plan-1         C62   0.020
+RWJ    plan-1         C63   0.020
+RWJ    plan-1         C64   0.020
+RWJ    plan-1         C65   0.020
+RWJ    plan-1         C66   0.020
+RWJ    plan-1        H631   0.020
+RWJ    plan-1        H641   0.020
+RWJ    plan-1        H651   0.020
+RWJ    plan-1        H661   0.020
+RWJ    plan-1          N5   0.020
+RWJ    plan-1          S5   0.020
+RWJ    plan-2         C51   0.020
+RWJ    plan-2          CP   0.020
+RWJ    plan-2           N   0.020
+RWJ    plan-2          OP   0.020
+RWJ    plan-3          CA   0.020
+RWJ    plan-3          CP   0.020
+RWJ    plan-3         H1N   0.020
+RWJ    plan-3           N   0.020
+RWJ    plan-4          CD   0.020
+RWJ    plan-4          CZ   0.020
+RWJ    plan-4         HE1   0.020
+RWJ    plan-4          NE   0.020
+RWJ    plan-5          CZ   0.020
+RWJ    plan-5          NE   0.020
+RWJ    plan-5         NH1   0.020
+RWJ    plan-5         NH2   0.020
+RWJ    plan-6          CZ   0.020
+RWJ    plan-6        HH12   0.020
+RWJ    plan-6        HN11   0.020
+RWJ    plan-6         NH1   0.020
+RWJ    plan-7          CZ   0.020
+RWJ    plan-7        HN21   0.020
+RWJ    plan-7        HN22   0.020
+RWJ    plan-7         NH2   0.020
+RWJ    plan-8           C   0.020
+RWJ    plan-8          C5   0.020
+RWJ    plan-8          CA   0.020
+RWJ    plan-8           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RWJ           SMILES              ACDLabs 10.04                                                                                                                         O=C(NC(C(=O)c1nc2ccccc2s1)CCCNC(=[N@H])N)C3CCCC3
+RWJ SMILES_CANONICAL               CACTVS 3.341                                                                                                                         NC(=N)NCCC[C@H](NC(=O)C1CCCC1)C(=O)c2sc3ccccc3n2
+RWJ           SMILES               CACTVS 3.341                                                                                                                          NC(=N)NCCC[CH](NC(=O)C1CCCC1)C(=O)c2sc3ccccc3n2
+RWJ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                     c1ccc2c(c1)nc(s2)C(=O)[C@H](CCCNC(=N)N)NC(=O)C3CCCC3
+RWJ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                         c1ccc2c(c1)nc(s2)C(=O)C(CCCNC(=N)N)NC(=O)C3CCCC3
+RWJ            InChI                InChI  1.03 InChI=1S/C19H25N5O2S/c20-19(21)22-11-5-9-14(23-17(26)12-6-1-2-7-12)16(25)18-24-13-8-3-4-10-15(13)27-18/h3-4,8,10,12,14H,1-2,5-7,9,11H2,(H,23,26)(H4,20,21,22)/t14-/m0/s1
+RWJ         InChIKey                InChI  1.03                                                                                                                                              NQABUEUFRXDDFI-AWEZNQCLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RWJ acedrg               243         "dictionary generator"                  
+RWJ acedrg_database      11          "data source"                           
+RWJ rdkit                2017.03.2   "Chemoinformatics tool"
+RWJ refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,370 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+G2R     G2R      "[(2R,3R,4R,5R)-5-(2-AMINO-6-OXO-1,6-DIHYDRO-9H-PURIN-9-YL)-3,4-DIHYDROXYTETRAHYDROFURAN-2-YL]METHYL [(2R,3S,4S)-3,4-DIHYDROXYTETRAHYDROFURAN-2-YL]METHYL DIHYDROGEN DIPHOSPHATE"     NON-POLYMER     57     36     .     
+#
+data_comp_G2R
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+G2R     O6      O       O       0       13.084      4.815       -21.841     
+G2R     C6      C       CR6     0       14.187      4.337       -21.542     
+G2R     N1      N       NR6     0       15.257      5.181       -21.218     
+G2R     C2      C       CR6     0       16.522      4.758       -20.872     
+G2R     N2      N       NH2     0       17.424      5.709       -20.593     
+G2R     N3      N       NRD6    0       16.872      3.469       -20.803     
+G2R     C4      C       CR56    0       15.847      2.633       -21.116     
+G2R     C5      C       CR56    0       14.558      2.967       -21.472     
+G2R     N7      N       NRD5    0       13.806      1.822       -21.714     
+G2R     C8      C       CR15    0       14.639      0.828       -21.503     
+G2R     N9      N       NT      0       15.900      1.261       -21.146     
+G2R     "C1'"   C       CH1     0       17.072      0.417       -20.827     
+G2R     "O4'"   O       O2      0       18.237      1.027       -21.336     
+G2R     "C2'"   C       CH1     0       17.045      -0.977      -21.447     
+G2R     "O2'"   O       OH1     0       16.271      -1.872      -20.679     
+G2R     "C3'"   C       CH1     0       18.535      -1.328      -21.437     
+G2R     "O3'"   O       OH1     0       18.829      -2.338      -22.396     
+G2R     "C4'"   C       CH1     0       19.193      0.022       -21.763     
+G2R     "C5'"   C       CH2     0       19.551      0.275       -23.209     
+G2R     "O5'"   O       O2      0       20.020      1.642       -23.356     
+G2R     PA      P       P       0       20.514      2.150       -24.795     
+G2R     O1A     O       O       0       21.504      1.181       -25.351     
+G2R     O2A     O       OP      -1      20.908      3.587       -24.703     
+G2R     O3A     O       O2      0       19.157      2.044       -25.644     
+G2R     PB      P       P       0       17.793      2.888       -25.625     
+G2R     O2B     O       O       0       16.800      2.211       -26.512     
+G2R     O1B     O       OP      -1      17.409      3.146       -24.206     
+G2R     O5X     O       O2      0       18.268      4.262       -26.305     
+G2R     C5X     C       CH2     0       18.687      4.285       -27.697     
+G2R     C4X     C       CH1     0       17.535      4.743       -28.559     
+G2R     O4X     O       O2      0       17.188      6.099       -28.199     
+G2R     C1X     C       CH2     0       17.462      6.978       -29.293     
+G2R     C2X     C       CH1     0       18.296      6.192       -30.288     
+G2R     O2X     O       OH1     0       18.040      6.674       -31.601     
+G2R     C3X     C       CH1     0       17.800      4.763       -30.072     
+G2R     O3X     O       OH1     0       16.615      4.463       -30.798     
+G2R     HN1     H       H       0       15.099      6.064       -21.240     
+G2R     HN21    H       H       0       18.245      5.633       -20.890     
+G2R     HN22    H       H       0       17.190      6.406       -20.115     
+G2R     H8      H       H       0       14.390      -0.075      -21.598     
+G2R     "H1'"   H       H       0       17.147      0.327       -19.850     
+G2R     "H2'"   H       H       0       16.704      -0.939      -22.380     
+G2R     "HO2'"  H       H       0       16.323      -2.648      -21.020     
+G2R     "H3'"   H       H       0       18.811      -1.627      -20.533     
+G2R     "HO3'"  H       H       0       19.662      -2.500      -22.375     
+G2R     "H4'"   H       H       0       20.010      0.116       -21.227     
+G2R     "H5'1"  H       H       0       18.756      0.129       -23.778     
+G2R     "H5'2"  H       H       0       20.260      -0.354      -23.491     
+G2R     H5X1    H       H       0       18.976      3.383       -27.982     
+G2R     H5X2    H       H       0       19.449      4.906       -27.807     
+G2R     H4X     H       H       0       16.765      4.157       -28.375     
+G2R     H1X1    H       H       0       17.951      7.762       -28.972     
+G2R     H1X2    H       H       0       16.621      7.271       -29.697     
+G2R     H2X     H       H       0       19.268      6.245       -30.068     
+G2R     HO2X    H       H       0       18.301      6.148       -32.213     
+G2R     H3X     H       H       0       18.517      4.116       -30.302     
+G2R     HO3X    H       H       0       16.830      4.121       -31.545     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+G2R          O6          C6      DOUBLE       n     1.239  0.0100     1.239  0.0100
+G2R          C6          C5      SINGLE       y     1.417  0.0103     1.417  0.0103
+G2R          C6          N1      SINGLE       y     1.396  0.0107     1.396  0.0107
+G2R          N1          C2      SINGLE       y     1.374  0.0100     1.374  0.0100
+G2R          C2          N3      DOUBLE       y     1.333  0.0104     1.333  0.0104
+G2R          C2          N2      SINGLE       n     1.340  0.0101     1.340  0.0101
+G2R          N3          C4      SINGLE       y     1.355  0.0100     1.355  0.0100
+G2R          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+G2R          C4          C5      DOUBLE       y     1.377  0.0100     1.377  0.0100
+G2R          C5          N7      SINGLE       y     1.390  0.0100     1.390  0.0100
+G2R          N7          C8      DOUBLE       y     1.312  0.0100     1.312  0.0100
+G2R          C8          N9      SINGLE       y     1.372  0.0200     1.372  0.0200
+G2R          N9       "C1'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+G2R       "C1'"       "O4'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+G2R       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+G2R       "O4'"       "C4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+G2R       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+G2R       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+G2R       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+G2R       "C3'"       "C4'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+G2R       "C4'"       "C5'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+G2R       "C5'"       "O5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+G2R       "O5'"          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+G2R          PA         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+G2R          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+G2R          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+G2R         O3A          PB      SINGLE       n     1.604  0.0133     1.604  0.0133
+G2R          PB         O2B      DOUBLE       n     1.493  0.0122     1.493  0.0122
+G2R          PB         O5X      SINGLE       n     1.604  0.0133     1.604  0.0133
+G2R          PB         O1B      SINGLE       n     1.493  0.0122     1.493  0.0122
+G2R         O5X         C5X      SINGLE       n     1.450  0.0166     1.450  0.0166
+G2R         C5X         C4X      SINGLE       n     1.509  0.0100     1.509  0.0100
+G2R         C4X         C3X      SINGLE       n     1.535  0.0100     1.535  0.0100
+G2R         C4X         O4X      SINGLE       n     1.444  0.0115     1.444  0.0115
+G2R         O4X         C1X      SINGLE       n     1.427  0.0200     1.427  0.0200
+G2R         C1X         C2X      SINGLE       n     1.520  0.0161     1.520  0.0161
+G2R         C2X         O2X      SINGLE       n     1.421  0.0100     1.421  0.0100
+G2R         C2X         C3X      SINGLE       n     1.529  0.0127     1.529  0.0127
+G2R         C3X         O3X      SINGLE       n     1.422  0.0100     1.422  0.0100
+G2R          N1         HN1      SINGLE       n     1.016  0.0100     0.897  0.0200
+G2R          N2        HN21      SINGLE       n     1.016  0.0100     0.877  0.0200
+G2R          N2        HN22      SINGLE       n     1.016  0.0100     0.877  0.0200
+G2R          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+G2R       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+G2R       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+G2R       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+G2R       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+G2R       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+G2R       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+G2R       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+G2R       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+G2R         C5X        H5X1      SINGLE       n     1.089  0.0100     0.989  0.0200
+G2R         C5X        H5X2      SINGLE       n     1.089  0.0100     0.989  0.0200
+G2R         C4X         H4X      SINGLE       n     1.089  0.0100     0.986  0.0200
+G2R         C1X        H1X1      SINGLE       n     1.089  0.0100     0.978  0.0200
+G2R         C1X        H1X2      SINGLE       n     1.089  0.0100     0.978  0.0200
+G2R         C2X         H2X      SINGLE       n     1.089  0.0100     0.998  0.0100
+G2R         O2X        HO2X      SINGLE       n     0.970  0.0120     0.849  0.0200
+G2R         C3X         H3X      SINGLE       n     1.089  0.0100     0.992  0.0200
+G2R         O3X        HO3X      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+G2R          O6          C6          C5     128.244    1.50
+G2R          O6          C6          N1     120.389    1.50
+G2R          C5          C6          N1     111.367    1.50
+G2R          C6          N1          C2     125.351    1.50
+G2R          C6          N1         HN1     116.978    2.44
+G2R          C2          N1         HN1     117.677    2.71
+G2R          N1          C2          N3     123.603    1.50
+G2R          N1          C2          N2     116.575    1.50
+G2R          N3          C2          N2     119.821    1.50
+G2R          C2          N2        HN21     119.868    1.50
+G2R          C2          N2        HN22     119.868    1.50
+G2R        HN21          N2        HN22     120.263    1.96
+G2R          C2          N3          C4     112.066    1.50
+G2R          N3          C4          N9     124.984    1.50
+G2R          N3          C4          C5     128.211    1.50
+G2R          N9          C4          C5     106.805    1.69
+G2R          C6          C5          C4     119.397    1.50
+G2R          C6          C5          N7     129.975    1.50
+G2R          C4          C5          N7     110.629    1.50
+G2R          C5          N7          C8     103.927    1.50
+G2R          N7          C8          N9     112.130    1.94
+G2R          N7          C8          H8     123.170    1.50
+G2R          N9          C8          H8     124.701    2.19
+G2R          C4          N9          C8     107.594    1.50
+G2R          C4          N9       "C1'"     125.158    1.54
+G2R          C8          N9       "C1'"     126.078    2.46
+G2R          N9       "C1'"       "O4'"     108.167    1.51
+G2R          N9       "C1'"       "C2'"     113.752    2.20
+G2R          N9       "C1'"       "H1'"     109.246    1.50
+G2R       "O4'"       "C1'"       "C2'"     106.047    1.50
+G2R       "O4'"       "C1'"       "H1'"     109.807    1.50
+G2R       "C2'"       "C1'"       "H1'"     109.015    1.50
+G2R       "C1'"       "O4'"       "C4'"     109.903    1.50
+G2R       "C1'"       "C2'"       "C3'"     101.239    1.50
+G2R       "C1'"       "C2'"       "O2'"     111.715    2.69
+G2R       "C1'"       "C2'"       "H2'"     110.636    1.70
+G2R       "C3'"       "C2'"       "O2'"     112.782    2.45
+G2R       "C3'"       "C2'"       "H2'"     110.596    1.51
+G2R       "O2'"       "C2'"       "H2'"     110.448    1.97
+G2R       "C2'"       "O2'"      "HO2'"     109.103    2.13
+G2R       "C2'"       "C3'"       "O3'"     111.581    2.83
+G2R       "C2'"       "C3'"       "C4'"     102.602    1.50
+G2R       "C2'"       "C3'"       "H3'"     110.504    1.75
+G2R       "O3'"       "C3'"       "C4'"     111.281    2.46
+G2R       "O3'"       "C3'"       "H3'"     110.380    1.67
+G2R       "C4'"       "C3'"       "H3'"     110.452    2.54
+G2R       "C3'"       "O3'"      "HO3'"     108.744    3.00
+G2R       "O4'"       "C4'"       "C3'"     105.388    1.50
+G2R       "O4'"       "C4'"       "C5'"     109.123    1.50
+G2R       "O4'"       "C4'"       "H4'"     108.947    1.50
+G2R       "C3'"       "C4'"       "C5'"     116.008    1.52
+G2R       "C3'"       "C4'"       "H4'"     109.363    1.86
+G2R       "C5'"       "C4'"       "H4'"     108.268    1.50
+G2R       "C4'"       "C5'"       "O5'"     109.342    1.50
+G2R       "C4'"       "C5'"      "H5'1"     109.624    1.50
+G2R       "C4'"       "C5'"      "H5'2"     109.624    1.50
+G2R       "O5'"       "C5'"      "H5'1"     109.845    1.50
+G2R       "O5'"       "C5'"      "H5'2"     109.845    1.50
+G2R      "H5'1"       "C5'"      "H5'2"     108.472    1.50
+G2R       "C5'"       "O5'"          PA     118.553    2.41
+G2R       "O5'"          PA         O3A     101.065    1.97
+G2R       "O5'"          PA         O1A     109.410    1.50
+G2R       "O5'"          PA         O2A     109.410    1.50
+G2R         O3A          PA         O1A     108.816    2.14
+G2R         O3A          PA         O2A     108.816    2.14
+G2R         O1A          PA         O2A     118.411    2.35
+G2R          PA         O3A          PB     132.542    3.00
+G2R         O3A          PB         O2B     108.816    2.14
+G2R         O3A          PB         O5X     101.065    1.97
+G2R         O3A          PB         O1B     108.816    2.14
+G2R         O2B          PB         O5X     109.410    1.50
+G2R         O2B          PB         O1B     118.411    2.35
+G2R         O5X          PB         O1B     109.410    1.50
+G2R          PB         O5X         C5X     118.553    2.41
+G2R         O5X         C5X         C4X     109.342    1.50
+G2R         O5X         C5X        H5X1     109.845    1.50
+G2R         O5X         C5X        H5X2     109.845    1.50
+G2R         C4X         C5X        H5X1     109.624    1.50
+G2R         C4X         C5X        H5X2     109.624    1.50
+G2R        H5X1         C5X        H5X2     108.472    1.50
+G2R         C5X         C4X         C3X     116.008    1.52
+G2R         C5X         C4X         O4X     109.123    1.50
+G2R         C5X         C4X         H4X     108.268    1.50
+G2R         C3X         C4X         O4X     105.508    1.50
+G2R         C3X         C4X         H4X     109.363    1.86
+G2R         O4X         C4X         H4X     109.115    1.50
+G2R         C4X         O4X         C1X     107.967    2.51
+G2R         O4X         C1X         C2X     106.664    2.41
+G2R         O4X         C1X        H1X1     109.245    3.00
+G2R         O4X         C1X        H1X2     109.245    3.00
+G2R         C2X         C1X        H1X1     110.717    1.50
+G2R         C2X         C1X        H1X2     110.717    1.50
+G2R        H1X1         C1X        H1X2     108.734    2.05
+G2R         C1X         C2X         O2X     109.430    1.50
+G2R         C1X         C2X         C3X     104.443    2.26
+G2R         C1X         C2X         H2X     111.679    1.50
+G2R         O2X         C2X         C3X     112.463    2.73
+G2R         O2X         C2X         H2X     111.638    1.50
+G2R         C3X         C2X         H2X     110.255    2.04
+G2R         C2X         O2X        HO2X     113.614    3.00
+G2R         C4X         C3X         C2X     102.352    1.50
+G2R         C4X         C3X         O3X     111.281    2.46
+G2R         C4X         C3X         H3X     110.452    2.54
+G2R         C2X         C3X         O3X     112.463    2.73
+G2R         C2X         C3X         H3X     110.255    2.04
+G2R         O3X         C3X         H3X     110.380    1.67
+G2R         C3X         O3X        HO3X     108.744    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+G2R             sp2_sp3_1          C4          N9       "C1'"       "O4'"     150.000    10.0     6
+G2R             sp3_sp3_2          N9       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+G2R            sp3_sp3_59          N9       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+G2R             sp3_sp3_5       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+G2R            sp3_sp3_64       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+G2R            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+G2R            sp3_sp3_67       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+G2R            sp3_sp3_11       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+G2R            sp3_sp3_70       "O4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+G2R            sp3_sp3_79       "C4'"       "C5'"       "O5'"          PA     180.000    10.0     3
+G2R            sp3_sp3_82       "C5'"       "O5'"          PA         O3A     180.000    10.0     3
+G2R              const_31          O6          C6          N1          C2     180.000    10.0     2
+G2R       const_sp2_sp2_2          C4          C5          C6          O6     180.000     5.0     2
+G2R            sp3_sp3_86          PB         O3A          PA       "O5'"     -60.000    10.0     3
+G2R            sp3_sp3_90          PA         O3A          PB         O2B      60.000    10.0     3
+G2R            sp3_sp3_91         C5X         O5X          PB         O3A     180.000    10.0     3
+G2R            sp3_sp3_94         C4X         C5X         O5X          PB     180.000    10.0     3
+G2R            sp3_sp3_97         C3X         C4X         C5X         O5X     180.000    10.0     3
+G2R           sp3_sp3_107         C5X         C4X         O4X         C1X      60.000    10.0     3
+G2R            sp3_sp3_29         O3X         C3X         C4X         C5X      60.000    10.0     3
+G2R              const_15          N2          C2          N1          C6     180.000    10.0     2
+G2R            sp3_sp3_52         C2X         C1X         O4X         C4X     -60.000    10.0     3
+G2R            sp3_sp3_44         O4X         C1X         C2X         O2X     180.000    10.0     3
+G2R           sp3_sp3_109         C1X         C2X         O2X        HO2X     180.000    10.0     3
+G2R            sp3_sp3_38         O2X         C2X         C3X         O3X     -60.000    10.0     3
+G2R           sp3_sp3_112         C4X         C3X         O3X        HO3X     180.000    10.0     3
+G2R             sp2_sp2_1          N1          C2          N2        HN21     180.000     5.0     2
+G2R              const_12          N2          C2          N3          C4     180.000    10.0     2
+G2R              const_10          N9          C4          N3          C2     180.000    10.0     2
+G2R              const_19          N3          C4          N9          C8     180.000    10.0     2
+G2R       const_sp2_sp2_5          N3          C4          C5          C6       0.000     5.0     2
+G2R              const_28          C6          C5          N7          C8     180.000    10.0     2
+G2R              const_25          N9          C8          N7          C5       0.000    10.0     2
+G2R              const_21          N7          C8          N9          C4       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+G2R    chir_1    "C1'"    "O4'"    N9    "C2'"    negative
+G2R    chir_2    "C2'"    "O2'"    "C1'"    "C3'"    negative
+G2R    chir_3    "C3'"    "O3'"    "C4'"    "C2'"    negative
+G2R    chir_4    "C4'"    "O4'"    "C3'"    "C5'"    negative
+G2R    chir_5    PA    O3A    "O5'"    O2A    both
+G2R    chir_6    PB    O3A    O5X    O1B    both
+G2R    chir_7    C4X    O4X    C3X    C5X    negative
+G2R    chir_8    C2X    O2X    C3X    C1X    positive
+G2R    chir_9    C3X    O3X    C4X    C2X    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+G2R    plan-1       "C1'"   0.020
+G2R    plan-1          C2   0.020
+G2R    plan-1          C4   0.020
+G2R    plan-1          C5   0.020
+G2R    plan-1          C6   0.020
+G2R    plan-1          C8   0.020
+G2R    plan-1          H8   0.020
+G2R    plan-1         HN1   0.020
+G2R    plan-1          N1   0.020
+G2R    plan-1          N2   0.020
+G2R    plan-1          N3   0.020
+G2R    plan-1          N7   0.020
+G2R    plan-1          N9   0.020
+G2R    plan-1          O6   0.020
+G2R    plan-2          C2   0.020
+G2R    plan-2        HN21   0.020
+G2R    plan-2        HN22   0.020
+G2R    plan-2          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+G2R           SMILES              ACDLabs 10.04                                                                                                                                                                  O=P(O)(OCC1OCC(O)C1O)OP(=O)(O)OCC4OC(n3cnc2c3N=C(N)NC2=O)C(O)C4O
+G2R SMILES_CANONICAL               CACTVS 3.341                                                                                                                           NC1=Nc2n(cnc2C(=O)N1)[C@@H]3O[C@H](CO[P@@](O)(=O)O[P@](O)(=O)OC[C@H]4OC[C@H](O)[C@@H]4O)[C@H](O)[C@H]3O
+G2R           SMILES               CACTVS 3.341                                                                                                                                       NC1=Nc2n(cnc2C(=O)N1)[CH]3O[CH](CO[P](O)(=O)O[P](O)(=O)OC[CH]4OC[CH](O)[CH]4O)[CH](O)[CH]3O
+G2R SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                       c1nc2c(n1[C@H]3[C@@H]([C@H]([C@H](O3)CO[P@](=O)(O)O[P@@](=O)(O)OC[C@@H]4[C@H]([C@H](CO4)O)O)O)O)N=C(NC2=O)N
+G2R           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                            c1nc2c(n1C3C(C(C(O3)COP(=O)(O)OP(=O)(O)OCC4C(C(CO4)O)O)O)O)N=C(NC2=O)N
+G2R            InChI                InChI  1.03 InChI=1S/C15H23N5O14P2/c16-15-18-12-8(13(25)19-15)17-4-20(12)14-11(24)10(23)7(33-14)3-32-36(28,29)34-35(26,27)31-2-6-9(22)5(21)1-30-6/h4-7,9-11,14,21-24H,1-3H2,(H,26,27)(H,28,29)(H3,16,18,19,25)/t5-,6+,7+,9-,10-,11+,14+/m0/s1
+G2R         InChIKey                InChI  1.03                                                                                                                                                                                                       NOLLEWZDVQOFJY-DCLLCRAESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+G2R acedrg               243         "dictionary generator"                  
+G2R acedrg_database      11          "data source"                           
+G2R rdkit                2017.03.2   "Chemoinformatics tool"
+G2R refmac5              5.8.0238    "optimization tool"                     

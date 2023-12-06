@@ -1,0 +1,374 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AAT     AAT      S-ADENOSYL-1,8-DIAMINO-3-THIOOCTANE     NON-POLYMER     59     29     .     
+#
+data_comp_AAT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AAT     N       N       NT2     0       51.298      43.947      25.328      
+AAT     CA      C       CH2     0       51.050      42.895      26.321      
+AAT     CB      C       C1      0       52.308      42.374      26.942      
+AAT     CG      C       C       0       52.406      41.201      27.746      
+AAT     SD      S       S2      0       53.931      40.650      28.430      
+AAT     "C5'"   C       CH2     0       55.458      41.626      28.468      
+AAT     "C4'"   C       CH1     0       56.481      41.327      29.556      
+AAT     "O4'"   O       O2      0       56.766      42.552      30.277      
+AAT     "C3'"   C       CH1     0       56.101      40.307      30.640      
+AAT     "O3'"   O       OH1     0       57.234      39.581      31.109      
+AAT     "C2'"   C       CH1     0       55.505      41.212      31.722      
+AAT     "O2'"   O       OH1     0       55.498      40.623      33.004      
+AAT     "C1'"   C       CH1     0       56.469      42.390      31.646      
+AAT     N9      N       NR5     0       55.931      43.644      32.161      
+AAT     C8      C       CR15    0       54.844      44.332      31.681      
+AAT     N7      N       NRD5    0       54.591      45.434      32.340      
+AAT     C5      C       CR56    0       55.573      45.484      33.318      
+AAT     C6      C       CR6     0       55.849      46.416      34.343      
+AAT     N6      N       NH2     0       55.129      47.515      34.553      
+AAT     N1      N       NRD6    0       56.910      46.166      35.153      
+AAT     C2      C       CR16    0       57.632      45.056      34.937      
+AAT     N3      N       NRD6    0       57.466      44.114      34.008      
+AAT     C4      C       CR56    0       56.408      44.384      33.219      
+AAT     C11     C       CH2     0       51.263      40.332      28.193      
+AAT     C12     C       CH2     0       50.940      40.492      29.652      
+AAT     C13     C       CH2     0       49.595      39.908      30.046      
+AAT     C14     C       CH2     0       48.410      40.806      29.756      
+AAT     C15     C       CH2     0       47.182      40.433      30.559      
+AAT     N16     N       NT3     1       45.947      40.990      29.960      
+AAT     HN1     H       H       0       50.460      44.210      25.121      
+AAT     HN2     H       H       0       51.611      43.474      24.626      
+AAT     HCA1    H       H       0       50.582      42.160      25.892      
+AAT     HCA2    H       H       0       50.477      43.250      27.019      
+AAT     HCB     H       H       0       53.107      42.857      26.793      
+AAT     "H5'1"  H       H       0       55.211      42.563      28.542      
+AAT     "H5'2"  H       H       0       55.906      41.515      27.612      
+AAT     "H4'C"  H       H       0       57.313      41.022      29.116      
+AAT     "H3'C"  H       H       0       55.423      39.669      30.320      
+AAT     "H3'O"  H       H       0       57.923      40.073      31.174      
+AAT     "H2'C"  H       H       0       54.586      41.495      31.470      
+AAT     "H2'O"  H       H       0       55.005      39.933      32.990      
+AAT     "H1'C"  H       H       0       57.290      42.158      32.135      
+AAT     HC8     H       H       0       54.330      44.037      30.949      
+AAT     HN61    H       H       0       55.518      48.239      34.861      
+AAT     HN62    H       H       0       54.269      47.511      34.380      
+AAT     HC2     H       H       0       58.360      44.924      35.525      
+AAT     H111    H       H       0       51.493      39.397      28.020      
+AAT     H112    H       H       0       50.469      40.545      27.664      
+AAT     H121    H       H       0       50.951      41.446      29.880      
+AAT     H122    H       H       0       51.635      40.052      30.184      
+AAT     H131    H       H       0       49.612      39.709      31.007      
+AAT     H132    H       H       0       49.471      39.059      29.571      
+AAT     H141    H       H       0       48.194      40.752      28.801      
+AAT     H142    H       H       0       48.650      41.735      29.959      
+AAT     H151    H       H       0       47.273      40.770      31.470      
+AAT     H152    H       H       0       47.104      39.461      30.603      
+AAT     H161    H       H       0       45.234      40.785      30.481      
+AAT     H162    H       H       0       45.821      40.639      29.133      
+AAT     H163    H       H       0       46.017      41.891      29.893      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AAT           N          CA      SINGLE       n     1.467  0.0144     1.467  0.0144
+AAT          CA          CB      SINGLE       n     1.495  0.0142     1.495  0.0142
+AAT          CB          CG      DOUBLE       n     1.421  0.0200     1.421  0.0200
+AAT          CG          SD      SINGLE       n     1.762  0.0200     1.762  0.0200
+AAT          CG         C11      SINGLE       n     1.501  0.0125     1.501  0.0125
+AAT          SD       "C5'"      SINGLE       n     1.809  0.0191     1.809  0.0191
+AAT       "C5'"       "C4'"      SINGLE       n     1.510  0.0136     1.510  0.0136
+AAT       "C4'"       "O4'"      SINGLE       n     1.446  0.0100     1.446  0.0100
+AAT       "C4'"       "C3'"      SINGLE       n     1.528  0.0117     1.528  0.0117
+AAT       "O4'"       "C1'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+AAT       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+AAT       "C3'"       "C2'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+AAT       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+AAT       "C2'"       "C1'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+AAT       "C1'"          N9      SINGLE       n     1.458  0.0100     1.458  0.0100
+AAT          N9          C8      SINGLE       y     1.372  0.0100     1.372  0.0100
+AAT          N9          C4      SINGLE       y     1.374  0.0101     1.374  0.0101
+AAT          C8          N7      DOUBLE       y     1.310  0.0100     1.310  0.0100
+AAT          N7          C5      SINGLE       y     1.388  0.0100     1.388  0.0100
+AAT          C5          C6      SINGLE       y     1.408  0.0100     1.408  0.0100
+AAT          C5          C4      DOUBLE       y     1.381  0.0100     1.381  0.0100
+AAT          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+AAT          C6          N1      DOUBLE       y     1.354  0.0100     1.354  0.0100
+AAT          N1          C2      SINGLE       y     1.339  0.0100     1.339  0.0100
+AAT          C2          N3      DOUBLE       y     1.330  0.0100     1.330  0.0100
+AAT          N3          C4      SINGLE       y     1.343  0.0100     1.343  0.0100
+AAT         C11         C12      SINGLE       n     1.497  0.0200     1.497  0.0200
+AAT         C12         C13      SINGLE       n     1.519  0.0164     1.519  0.0164
+AAT         C13         C14      SINGLE       n     1.514  0.0200     1.514  0.0200
+AAT         C14         C15      SINGLE       n     1.514  0.0111     1.514  0.0111
+AAT         C15         N16      SINGLE       n     1.482  0.0123     1.482  0.0123
+AAT           N         HN1      SINGLE       n     1.036  0.0160     0.902  0.0200
+AAT           N         HN2      SINGLE       n     1.036  0.0160     0.902  0.0200
+AAT          CA        HCA1      SINGLE       n     1.089  0.0100     0.971  0.0200
+AAT          CA        HCA2      SINGLE       n     1.089  0.0100     0.971  0.0200
+AAT          CB         HCB      SINGLE       n     1.082  0.0130     0.945  0.0200
+AAT       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.972  0.0100
+AAT       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.972  0.0100
+AAT       "C4'"      "H4'C"      SINGLE       n     1.089  0.0100     0.989  0.0197
+AAT       "C3'"      "H3'C"      SINGLE       n     1.089  0.0100     0.992  0.0200
+AAT       "O3'"      "H3'O"      SINGLE       n     0.970  0.0120     0.849  0.0200
+AAT       "C2'"      "H2'C"      SINGLE       n     1.089  0.0100     0.994  0.0200
+AAT       "O2'"      "H2'O"      SINGLE       n     0.970  0.0120     0.849  0.0200
+AAT       "C1'"      "H1'C"      SINGLE       n     1.089  0.0100     0.984  0.0200
+AAT          C8         HC8      SINGLE       n     1.082  0.0130     0.942  0.0170
+AAT          N6        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+AAT          N6        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+AAT          C2         HC2      SINGLE       n     1.082  0.0130     0.945  0.0200
+AAT         C11        H111      SINGLE       n     1.089  0.0100     0.978  0.0100
+AAT         C11        H112      SINGLE       n     1.089  0.0100     0.978  0.0100
+AAT         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0160
+AAT         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0160
+AAT         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0163
+AAT         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0163
+AAT         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0160
+AAT         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0160
+AAT         C15        H151      SINGLE       n     1.089  0.0100     0.976  0.0165
+AAT         C15        H152      SINGLE       n     1.089  0.0100     0.976  0.0165
+AAT         N16        H161      SINGLE       n     1.036  0.0160     0.907  0.0200
+AAT         N16        H162      SINGLE       n     1.036  0.0160     0.907  0.0200
+AAT         N16        H163      SINGLE       n     1.036  0.0160     0.907  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AAT          CA           N         HN1     102.011    3.00
+AAT          CA           N         HN2     102.011    3.00
+AAT         HN1           N         HN2     107.243    3.00
+AAT           N          CA          CB     112.134    2.59
+AAT           N          CA        HCA1     108.833    1.50
+AAT           N          CA        HCA2     108.833    1.50
+AAT          CB          CA        HCA1     108.801    1.50
+AAT          CB          CA        HCA2     108.801    1.50
+AAT        HCA1          CA        HCA2     107.908    1.50
+AAT          CA          CB          CG     124.410    3.00
+AAT          CA          CB         HCB     118.212    1.67
+AAT          CG          CB         HCB     117.378    2.13
+AAT          CB          CG          SD     121.964    3.00
+AAT          CB          CG         C11     123.927    3.00
+AAT          SD          CG         C11     114.109    2.65
+AAT          CG          SD       "C5'"     120.000    3.00
+AAT          SD       "C5'"       "C4'"     113.180    3.00
+AAT          SD       "C5'"      "H5'1"     109.066    1.50
+AAT          SD       "C5'"      "H5'2"     109.066    1.50
+AAT       "C4'"       "C5'"      "H5'1"     108.376    1.50
+AAT       "C4'"       "C5'"      "H5'2"     108.376    1.50
+AAT      "H5'1"       "C5'"      "H5'2"     108.127    1.50
+AAT       "C5'"       "C4'"       "O4'"     109.275    1.50
+AAT       "C5'"       "C4'"       "C3'"     114.880    1.64
+AAT       "C5'"       "C4'"      "H4'C"     109.000    1.62
+AAT       "O4'"       "C4'"       "C3'"     105.508    1.50
+AAT       "O4'"       "C4'"      "H4'C"     109.115    1.50
+AAT       "C3'"       "C4'"      "H4'C"     109.143    1.50
+AAT       "C4'"       "O4'"       "C1'"     109.426    1.50
+AAT       "C4'"       "C3'"       "O3'"     110.985    2.41
+AAT       "C4'"       "C3'"       "C2'"     102.352    1.50
+AAT       "C4'"       "C3'"      "H3'C"     110.624    1.81
+AAT       "O3'"       "C3'"       "C2'"     111.581    2.83
+AAT       "O3'"       "C3'"      "H3'C"     110.380    1.67
+AAT       "C2'"       "C3'"      "H3'C"     110.504    1.75
+AAT       "C3'"       "O3'"      "H3'O"     108.744    3.00
+AAT       "C3'"       "C2'"       "O2'"     112.782    2.45
+AAT       "C3'"       "C2'"       "C1'"     101.239    1.50
+AAT       "C3'"       "C2'"      "H2'C"     110.596    1.51
+AAT       "O2'"       "C2'"       "C1'"     111.715    2.69
+AAT       "O2'"       "C2'"      "H2'C"     110.448    1.97
+AAT       "C1'"       "C2'"      "H2'C"     110.636    1.70
+AAT       "C2'"       "O2'"      "H2'O"     109.103    2.13
+AAT       "O4'"       "C1'"       "C2'"     106.047    1.50
+AAT       "O4'"       "C1'"          N9     108.477    1.50
+AAT       "O4'"       "C1'"      "H1'C"     109.807    1.50
+AAT       "C2'"       "C1'"          N9     113.824    1.50
+AAT       "C2'"       "C1'"      "H1'C"     109.015    1.50
+AAT          N9       "C1'"      "H1'C"     109.561    1.50
+AAT       "C1'"          N9          C8     126.848    1.91
+AAT       "C1'"          N9          C4     127.459    1.80
+AAT          C8          N9          C4     105.693    1.50
+AAT          N9          C8          N7     113.469    1.50
+AAT          N9          C8         HC8     123.206    1.50
+AAT          N7          C8         HC8     123.326    1.50
+AAT          C8          N7          C5     104.739    1.50
+AAT          N7          C5          C6     132.250    1.50
+AAT          N7          C5          C4     110.483    1.50
+AAT          C6          C5          C4     117.267    1.50
+AAT          C5          C6          N6     123.792    1.50
+AAT          C5          C6          N1     117.409    1.50
+AAT          N6          C6          N1     118.799    1.50
+AAT          C6          N6        HN61     119.723    1.50
+AAT          C6          N6        HN62     119.723    1.50
+AAT        HN61          N6        HN62     120.554    1.88
+AAT          C6          N1          C2     118.521    1.50
+AAT          N1          C2          N3     129.332    1.50
+AAT          N1          C2         HC2     115.313    1.50
+AAT          N3          C2         HC2     115.355    1.50
+AAT          C2          N3          C4     110.982    1.50
+AAT          N9          C4          C5     105.616    1.50
+AAT          N9          C4          N3     127.895    1.50
+AAT          C5          C4          N3     126.489    1.50
+AAT          CG         C11         C12     114.315    2.77
+AAT          CG         C11        H111     108.800    1.50
+AAT          CG         C11        H112     108.800    1.50
+AAT         C12         C11        H111     108.946    1.50
+AAT         C12         C11        H112     108.946    1.50
+AAT        H111         C11        H112     107.705    1.50
+AAT         C11         C12         C13     113.146    1.68
+AAT         C11         C12        H121     108.866    1.50
+AAT         C11         C12        H122     108.866    1.50
+AAT         C13         C12        H121     108.698    1.50
+AAT         C13         C12        H122     108.698    1.50
+AAT        H121         C12        H122     107.646    1.50
+AAT         C12         C13         C14     113.853    2.32
+AAT         C12         C13        H131     108.698    1.50
+AAT         C12         C13        H132     108.698    1.50
+AAT         C14         C13        H131     108.806    1.50
+AAT         C14         C13        H132     108.806    1.50
+AAT        H131         C13        H132     107.646    1.50
+AAT         C13         C14         C15     113.073    1.98
+AAT         C13         C14        H141     109.041    1.50
+AAT         C13         C14        H142     109.041    1.50
+AAT         C15         C14        H141     108.889    1.50
+AAT         C15         C14        H142     108.889    1.50
+AAT        H141         C14        H142     107.927    1.57
+AAT         C14         C15         N16     111.734    1.84
+AAT         C14         C15        H151     109.576    1.50
+AAT         C14         C15        H152     109.576    1.50
+AAT         N16         C15        H151     108.989    1.50
+AAT         N16         C15        H152     108.989    1.50
+AAT        H151         C15        H152     108.067    1.50
+AAT         C15         N16        H161     109.775    1.81
+AAT         C15         N16        H162     109.775    1.81
+AAT         C15         N16        H163     109.775    1.81
+AAT        H161         N16        H162     109.021    2.83
+AAT        H161         N16        H163     109.021    2.83
+AAT        H162         N16        H163     109.021    2.83
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AAT            sp3_sp3_25          CB          CA           N         HN1     180.000    10.0     3
+AAT            sp3_sp3_55       "C3'"       "C2'"       "O2'"      "H2'O"     180.000    10.0     3
+AAT             sp3_sp3_8       "O4'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+AAT            sp2_sp3_13          C8          N9       "C1'"       "O4'"     150.000    10.0     6
+AAT              const_14          N7          C8          N9       "C1'"     180.000    10.0     2
+AAT              const_26          C5          C4          N9       "C1'"     180.000    10.0     2
+AAT              const_17          N9          C8          N7          C5       0.000    10.0     2
+AAT              const_20          C6          C5          N7          C8     180.000    10.0     2
+AAT       const_sp2_sp2_4          N7          C5          C6          N6       0.000     5.0     2
+AAT              const_21          N9          C4          C5          N7       0.000    10.0     2
+AAT             sp2_sp2_7          C5          C6          N6        HN61     180.000     5.0     2
+AAT       const_sp2_sp2_6          N6          C6          N1          C2     180.000     5.0     2
+AAT       const_sp2_sp2_7          N3          C2          N1          C6       0.000     5.0     2
+AAT             sp2_sp3_2          CG          CB          CA           N     120.000    10.0     6
+AAT       const_sp2_sp2_9          N1          C2          N3          C4       0.000     5.0     2
+AAT              const_12          N9          C4          N3          C2     180.000    10.0     2
+AAT            sp3_sp3_58          CG         C11         C12         C13     180.000    10.0     3
+AAT            sp3_sp3_67         C11         C12         C13         C14     180.000    10.0     3
+AAT            sp3_sp3_76         C12         C13         C14         C15     180.000    10.0     3
+AAT            sp3_sp3_85         C13         C14         C15         N16     180.000    10.0     3
+AAT            sp3_sp3_94         C14         C15         N16        H161     180.000    10.0     3
+AAT             sp2_sp2_2          CA          CB          CG          SD       0.000     5.0     2
+AAT             sp2_sp3_8          CB          CG         C11         C12     120.000    10.0     6
+AAT             sp2_sp2_5          CB          CG          SD       "C5'"     180.000     5.0     2
+AAT            sp3_sp3_31       "C4'"       "C5'"          SD          CG     180.000    10.0     3
+AAT            sp3_sp3_34       "O4'"       "C4'"       "C5'"          SD     180.000    10.0     3
+AAT             sp3_sp3_2       "C5'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+AAT            sp3_sp3_47       "O3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+AAT             sp3_sp3_4       "C2'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+AAT            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+AAT            sp3_sp3_52       "C4'"       "C3'"       "O3'"      "H3'O"     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AAT    chir_1    "C4'"    "O4'"    "C5'"    "C3'"    positive
+AAT    chir_2    "C3'"    "O3'"    "C4'"    "C2'"    positive
+AAT    chir_3    "C2'"    "O2'"    "C1'"    "C3'"    negative
+AAT    chir_4    "C1'"    "O4'"    N9    "C2'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AAT    plan-1       "C1'"   0.020
+AAT    plan-1          C2   0.020
+AAT    plan-1          C4   0.020
+AAT    plan-1          C5   0.020
+AAT    plan-1          C6   0.020
+AAT    plan-1          C8   0.020
+AAT    plan-1         HC2   0.020
+AAT    plan-1         HC8   0.020
+AAT    plan-1          N1   0.020
+AAT    plan-1          N3   0.020
+AAT    plan-1          N6   0.020
+AAT    plan-1          N7   0.020
+AAT    plan-1          N9   0.020
+AAT    plan-2          CA   0.020
+AAT    plan-2          CB   0.020
+AAT    plan-2          CG   0.020
+AAT    plan-2         HCB   0.020
+AAT    plan-3         C11   0.020
+AAT    plan-3          CB   0.020
+AAT    plan-3          CG   0.020
+AAT    plan-3          SD   0.020
+AAT    plan-4          C6   0.020
+AAT    plan-4        HN61   0.020
+AAT    plan-4        HN62   0.020
+AAT    plan-4          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AAT           SMILES              ACDLabs 10.04                                                                                                                                             n2c1c(ncnc1n(c2)C3OC(C(O)C3O)CS/C(=C/CN)CCCCCN)N
+AAT SMILES_CANONICAL               CACTVS 3.341                                                                                                                              NCCCCCC(\SC[C@H]1O[C@H]([C@H](O)[C@@H]1O)n2cnc3c(N)ncnc23)=C/CN
+AAT           SMILES               CACTVS 3.341                                                                                                                                     NCCCCCC(SC[CH]1O[CH]([CH](O)[CH]1O)n2cnc3c(N)ncnc23)=CCN
+AAT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                         c1nc(c2c(n1)n(cn2)[C@H]3[C@@H]([C@@H]([C@H](O3)CSC(=CCN)CCCCCN)O)O)N
+AAT           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                           c1nc(c2c(n1)n(cn2)C3C(C(C(O3)CSC(=CCN)CCCCCN)O)O)N
+AAT            InChI                InChI  1.03 InChI=1S/C18H29N7O3S/c19-6-3-1-2-4-11(5-7-20)29-8-12-14(26)15(27)18(28-12)25-10-24-13-16(21)22-9-23-17(13)25/h5,9-10,12,14-15,18,26-27H,1-4,6-8,19-20H2,(H2,21,22,23)/t12-,14-,15-,18-/m1/s1
+AAT         InChIKey                InChI  1.03                                                                                                                                                                  SUUGLGYBZXSJAA-SCFUHWHPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AAT acedrg               243         "dictionary generator"                  
+AAT acedrg_database      11          "data source"                           
+AAT rdkit                2017.03.2   "Chemoinformatics tool"
+AAT refmac5              5.8.0238    "optimization tool"                     

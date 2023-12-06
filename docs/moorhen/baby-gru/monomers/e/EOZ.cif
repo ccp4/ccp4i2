@@ -1,0 +1,259 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EOZ     EOZ      "3,5-BIS[(PHOSPHONOACETYL)AMINO]BENZOIC ACID"     NON-POLYMER     34     25     .     
+#
+data_comp_EOZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EOZ     OAD     O       OP      -1      71.545      53.908      55.836      
+EOZ     PAX     P       P       0       70.547      53.268      56.762      
+EOZ     OAH     O       OP      -1      70.608      53.882      58.134      
+EOZ     OAG     O       O       0       70.741      51.779      56.824      
+EOZ     CAN     C       CH2     0       68.881      53.576      56.101      
+EOZ     CAS     C       C       0       68.789      54.820      55.246      
+EOZ     OAB     O       O       0       69.266      55.880      55.617      
+EOZ     NAP     N       NH1     0       68.136      54.670      54.062      
+EOZ     CAU     C       CR6     0       68.465      53.825      52.960      
+EOZ     CAK     C       CR16    0       69.750      53.288      52.786      
+EOZ     CAL     C       CR16    0       67.456      53.532      52.032      
+EOZ     CAW     C       CR6     0       67.718      52.712      50.940      
+EOZ     CAR     C       C       0       66.634      52.406      49.953      
+EOZ     OAA     O       OC      -1      66.861      52.634      48.752      
+EOZ     OAF     O       O       0       65.566      51.939      50.391      
+EOZ     CAM     C       CR16    0       68.990      52.179      50.766      
+EOZ     CAV     C       CR6     0       70.006      52.462      51.683      
+EOZ     NAQ     N       NH1     0       71.295      51.892      51.471      
+EOZ     CAT     C       C       0       72.083      51.261      52.385      
+EOZ     OAC     O       O       0       71.669      50.837      53.452      
+EOZ     CAO     C       CH2     0       73.536      51.096      51.998      
+EOZ     PAY     P       P       0       73.951      49.395      51.515      
+EOZ     OAI     O       OP      -1      73.044      49.007      50.379      
+EOZ     OAE     O       OP      -1      73.729      48.514      52.713      
+EOZ     OAJ     O       O       0       75.393      49.383      51.089      
+EOZ     HAN1    H       H       0       68.264      53.664      56.851      
+EOZ     HAN2    H       H       0       68.610      52.801      55.577      
+EOZ     HAP     H       H       0       67.421      55.163      53.959      
+EOZ     HAK     H       H       0       70.437      53.477      53.406      
+EOZ     HAL     H       H       0       66.598      53.894      52.152      
+EOZ     HAM     H       H       0       69.172      51.624      50.031      
+EOZ     HAQ     H       H       0       71.596      51.942      50.651      
+EOZ     HAO1    H       H       0       74.094      51.346      52.758      
+EOZ     HAO2    H       H       0       73.747      51.692      51.257      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EOZ         OAD         PAX      SINGLE       n     1.505  0.0200     1.505  0.0200
+EOZ         PAX         OAH      SINGLE       n     1.505  0.0200     1.505  0.0200
+EOZ         PAX         OAG      DOUBLE       n     1.505  0.0200     1.505  0.0200
+EOZ         PAX         CAN      SINGLE       n     1.816  0.0200     1.816  0.0200
+EOZ         CAN         CAS      SINGLE       n     1.509  0.0134     1.509  0.0134
+EOZ         CAS         OAB      DOUBLE       n     1.220  0.0113     1.220  0.0113
+EOZ         CAS         NAP      SINGLE       n     1.356  0.0127     1.356  0.0127
+EOZ         NAP         CAU      SINGLE       n     1.424  0.0100     1.424  0.0100
+EOZ         CAU         CAK      DOUBLE       y     1.396  0.0109     1.396  0.0109
+EOZ         CAU         CAL      SINGLE       y     1.392  0.0140     1.392  0.0140
+EOZ         CAK         CAV      SINGLE       y     1.396  0.0109     1.396  0.0109
+EOZ         CAL         CAW      DOUBLE       y     1.387  0.0100     1.387  0.0100
+EOZ         CAW         CAR      SINGLE       n     1.498  0.0200     1.498  0.0200
+EOZ         CAW         CAM      SINGLE       y     1.387  0.0100     1.387  0.0100
+EOZ         CAR         OAA      SINGLE       n     1.244  0.0200     1.244  0.0200
+EOZ         CAR         OAF      DOUBLE       n     1.244  0.0200     1.244  0.0200
+EOZ         CAM         CAV      DOUBLE       y     1.392  0.0140     1.392  0.0140
+EOZ         CAV         NAQ      SINGLE       n     1.424  0.0100     1.424  0.0100
+EOZ         NAQ         CAT      SINGLE       n     1.356  0.0127     1.356  0.0127
+EOZ         CAT         OAC      DOUBLE       n     1.220  0.0113     1.220  0.0113
+EOZ         CAT         CAO      SINGLE       n     1.509  0.0134     1.509  0.0134
+EOZ         CAO         PAY      SINGLE       n     1.816  0.0200     1.816  0.0200
+EOZ         PAY         OAI      SINGLE       n     1.505  0.0200     1.505  0.0200
+EOZ         PAY         OAE      SINGLE       n     1.505  0.0200     1.505  0.0200
+EOZ         PAY         OAJ      DOUBLE       n     1.505  0.0200     1.505  0.0200
+EOZ         CAN        HAN1      SINGLE       n     1.089  0.0100     0.975  0.0200
+EOZ         CAN        HAN2      SINGLE       n     1.089  0.0100     0.975  0.0200
+EOZ         NAP         HAP      SINGLE       n     1.016  0.0100     0.874  0.0200
+EOZ         CAK         HAK      SINGLE       n     1.082  0.0130     0.946  0.0200
+EOZ         CAL         HAL      SINGLE       n     1.082  0.0130     0.939  0.0130
+EOZ         CAM         HAM      SINGLE       n     1.082  0.0130     0.939  0.0130
+EOZ         NAQ         HAQ      SINGLE       n     1.016  0.0100     0.874  0.0200
+EOZ         CAO        HAO1      SINGLE       n     1.089  0.0100     0.975  0.0200
+EOZ         CAO        HAO2      SINGLE       n     1.089  0.0100     0.975  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EOZ         OAD         PAX         OAH     111.786    1.50
+EOZ         OAD         PAX         OAG     111.786    1.50
+EOZ         OAD         PAX         CAN     110.326    3.00
+EOZ         OAH         PAX         OAG     111.786    1.50
+EOZ         OAH         PAX         CAN     110.326    3.00
+EOZ         OAG         PAX         CAN     110.326    3.00
+EOZ         PAX         CAN         CAS     113.247    3.00
+EOZ         PAX         CAN        HAN1     108.528    1.50
+EOZ         PAX         CAN        HAN2     108.528    1.50
+EOZ         CAS         CAN        HAN1     108.907    1.50
+EOZ         CAS         CAN        HAN2     108.907    1.50
+EOZ        HAN1         CAN        HAN2     108.296    2.31
+EOZ         CAN         CAS         OAB     121.489    1.50
+EOZ         CAN         CAS         NAP     114.843    1.50
+EOZ         OAB         CAS         NAP     123.669    1.50
+EOZ         CAS         NAP         CAU     127.405    2.00
+EOZ         CAS         NAP         HAP     116.687    1.78
+EOZ         CAU         NAP         HAP     115.908    1.69
+EOZ         NAP         CAU         CAK     120.604    3.00
+EOZ         NAP         CAU         CAL     119.275    3.00
+EOZ         CAK         CAU         CAL     120.121    1.50
+EOZ         CAU         CAK         CAV     119.108    1.50
+EOZ         CAU         CAK         HAK     120.446    1.50
+EOZ         CAV         CAK         HAK     120.446    1.50
+EOZ         CAU         CAL         CAW     120.398    1.50
+EOZ         CAU         CAL         HAL     119.490    1.50
+EOZ         CAW         CAL         HAL     120.112    1.50
+EOZ         CAL         CAW         CAR     120.073    1.50
+EOZ         CAL         CAW         CAM     119.854    1.50
+EOZ         CAR         CAW         CAM     120.079    1.50
+EOZ         CAW         CAR         OAA     117.791    1.50
+EOZ         CAW         CAR         OAF     117.791    1.50
+EOZ         OAA         CAR         OAF     124.418    1.50
+EOZ         CAW         CAM         CAV     120.398    1.50
+EOZ         CAW         CAM         HAM     120.112    1.50
+EOZ         CAV         CAM         HAM     119.490    1.50
+EOZ         CAK         CAV         CAM     120.121    1.50
+EOZ         CAK         CAV         NAQ     120.604    3.00
+EOZ         CAM         CAV         NAQ     119.275    3.00
+EOZ         CAV         NAQ         CAT     127.405    2.00
+EOZ         CAV         NAQ         HAQ     115.908    1.69
+EOZ         CAT         NAQ         HAQ     116.687    1.78
+EOZ         NAQ         CAT         OAC     123.669    1.50
+EOZ         NAQ         CAT         CAO     114.843    1.50
+EOZ         OAC         CAT         CAO     121.489    1.50
+EOZ         CAT         CAO         PAY     113.247    3.00
+EOZ         CAT         CAO        HAO1     108.907    1.50
+EOZ         CAT         CAO        HAO2     108.907    1.50
+EOZ         PAY         CAO        HAO1     108.528    1.50
+EOZ         PAY         CAO        HAO2     108.528    1.50
+EOZ        HAO1         CAO        HAO2     108.296    2.31
+EOZ         CAO         PAY         OAI     110.326    3.00
+EOZ         CAO         PAY         OAE     110.326    3.00
+EOZ         CAO         PAY         OAJ     110.326    3.00
+EOZ         OAI         PAY         OAE     111.786    1.50
+EOZ         OAI         PAY         OAJ     111.786    1.50
+EOZ         OAE         PAY         OAJ     111.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EOZ              const_18         CAU         CAL         CAW         CAR     180.000    10.0     2
+EOZ             sp2_sp2_9         OAA         CAR         CAW         CAL     180.000     5.0     2
+EOZ              const_14         CAV         CAM         CAW         CAR     180.000    10.0     2
+EOZ              const_10         CAW         CAM         CAV         NAQ     180.000    10.0     2
+EOZ            sp2_sp2_13         CAK         CAV         NAQ         CAT     180.000     5.0     2
+EOZ            sp2_sp2_19         OAC         CAT         NAQ         CAV       0.000     5.0     2
+EOZ             sp2_sp3_8         NAQ         CAT         CAO         PAY     120.000    10.0     6
+EOZ             sp3_sp3_1         CAS         CAN         PAX         OAD     180.000    10.0     3
+EOZ            sp3_sp3_10         CAT         CAO         PAY         OAI     180.000    10.0     3
+EOZ             sp2_sp3_2         OAB         CAS         CAN         PAX     120.000    10.0     6
+EOZ             sp2_sp2_1         CAN         CAS         NAP         CAU     180.000     5.0     2
+EOZ             sp2_sp2_5         CAK         CAU         NAP         CAS     180.000     5.0     2
+EOZ              const_22         CAW         CAL         CAU         NAP     180.000    10.0     2
+EOZ       const_sp2_sp2_2         CAV         CAK         CAU         NAP     180.000     5.0     2
+EOZ       const_sp2_sp2_6         CAU         CAK         CAV         NAQ     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EOZ    chir_1    PAX    OAD    OAH    OAG    both
+EOZ    chir_2    PAY    OAI    OAE    OAJ    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EOZ    plan-1         CAK   0.020
+EOZ    plan-1         CAL   0.020
+EOZ    plan-1         CAM   0.020
+EOZ    plan-1         CAR   0.020
+EOZ    plan-1         CAU   0.020
+EOZ    plan-1         CAV   0.020
+EOZ    plan-1         CAW   0.020
+EOZ    plan-1         HAK   0.020
+EOZ    plan-1         HAL   0.020
+EOZ    plan-1         HAM   0.020
+EOZ    plan-1         NAP   0.020
+EOZ    plan-1         NAQ   0.020
+EOZ    plan-2         CAN   0.020
+EOZ    plan-2         CAS   0.020
+EOZ    plan-2         NAP   0.020
+EOZ    plan-2         OAB   0.020
+EOZ    plan-3         CAS   0.020
+EOZ    plan-3         CAU   0.020
+EOZ    plan-3         HAP   0.020
+EOZ    plan-3         NAP   0.020
+EOZ    plan-4         CAR   0.020
+EOZ    plan-4         CAW   0.020
+EOZ    plan-4         OAA   0.020
+EOZ    plan-4         OAF   0.020
+EOZ    plan-5         CAT   0.020
+EOZ    plan-5         CAV   0.020
+EOZ    plan-5         HAQ   0.020
+EOZ    plan-5         NAQ   0.020
+EOZ    plan-6         CAO   0.020
+EOZ    plan-6         CAT   0.020
+EOZ    plan-6         NAQ   0.020
+EOZ    plan-6         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EOZ           SMILES              ACDLabs 10.04                                                                                                            O=C(Nc1cc(cc(c1)NC(=O)CP(=O)(O)O)C(=O)O)CP(=O)(O)O
+EOZ SMILES_CANONICAL               CACTVS 3.341                                                                                                        OC(=O)c1cc(NC(=O)C[P](O)(O)=O)cc(NC(=O)C[P](O)(O)=O)c1
+EOZ           SMILES               CACTVS 3.341                                                                                                        OC(=O)c1cc(NC(=O)C[P](O)(O)=O)cc(NC(=O)C[P](O)(O)=O)c1
+EOZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                            c1c(cc(cc1NC(=O)CP(=O)(O)O)NC(=O)CP(=O)(O)O)C(=O)O
+EOZ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                            c1c(cc(cc1NC(=O)CP(=O)(O)O)NC(=O)CP(=O)(O)O)C(=O)O
+EOZ            InChI                InChI  1.03 InChI=1S/C11H14N2O10P2/c14-9(4-24(18,19)20)12-7-1-6(11(16)17)2-8(3-7)13-10(15)5-25(21,22)23/h1-3H,4-5H2,(H,12,14)(H,13,15)(H,16,17)(H2,18,19,20)(H2,21,22,23)
+EOZ         InChIKey                InChI  1.03                                                                                                                                   LGLZCZRWQTWLGU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EOZ acedrg               243         "dictionary generator"                  
+EOZ acedrg_database      11          "data source"                           
+EOZ rdkit                2017.03.2   "Chemoinformatics tool"
+EOZ refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,321 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GJV     GJV      9-(7-{[amino(iminio)methyl]amino}-5,6,7-trideoxy-beta-D-ribo-heptofuranosyl)-9H-purin-6-amine     NON-POLYMER     45     24     .     
+#
+data_comp_GJV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GJV     N1      N       NRD6    0       -27.853     9.450       -20.914     
+GJV     C2      C       CR16    0       -27.265     10.481      -20.286     
+GJV     N3      N       NRD6    0       -26.271     10.467      -19.396     
+GJV     C4      C       CR56    0       -25.860     9.208       -19.152     
+GJV     C5      C       CR56    0       -26.362     8.051       -19.717     
+GJV     C6      C       CR6     0       -27.415     8.192       -20.647     
+GJV     N6      N       NH2     0       -27.994     7.167       -21.267     
+GJV     N7      N       NRD5    0       -25.688     6.943       -19.222     
+GJV     C8      C       CR15    0       -24.805     7.437       -18.385     
+GJV     N9      N       NT      0       -24.869     8.811       -18.292     
+GJV     N10     N       NH2     0       -18.127     4.072       -17.017     
+GJV     N11     N       NH2     1       -19.706     3.611       -15.428     
+GJV     "C1'"   C       CH1     0       -24.034     9.700       -17.471     
+GJV     "C2'"   C       CH1     0       -23.791     9.227       -16.037     
+GJV     "O2'"   O       OH1     0       -24.768     9.734       -15.153     
+GJV     "C3'"   C       CH1     0       -22.385     9.770       -15.762     
+GJV     "O3'"   O       OH1     0       -22.382     11.129      -15.336     
+GJV     "C4'"   C       CH1     0       -21.716     9.610       -17.125     
+GJV     "O4'"   O       O2      0       -22.773     9.794       -18.095     
+GJV     "C5'"   C       CH2     0       -21.054     8.263       -17.346     
+GJV     "C6'"   C       CH2     0       -19.629     8.164       -16.812     
+GJV     "C7'"   C       CH2     0       -18.957     6.827       -17.057     
+GJV     "N8'"   N       NH1     0       -19.515     5.756       -16.235     
+GJV     "C9'"   C       C       0       -19.112     4.483       -16.231     
+GJV     H2      H       H       0       -27.603     11.336      -20.504     
+GJV     H1N6    H       H       0       -28.071     6.397       -20.854     
+GJV     H2N6    H       H       0       -28.294     7.266       -22.086     
+GJV     H8      H       H       0       -24.204     6.899       -17.897     
+GJV     H10     H       H       0       -17.875     3.228       -16.999     
+GJV     "H20'"  H       H       0       -17.718     4.631       -17.559     
+GJV     H11     H       H       0       -20.361     3.869       -14.901     
+GJV     H21     H       H       0       -19.446     2.771       -15.418     
+GJV     "H1'"   H       H       0       -24.448     10.592      -17.438     
+GJV     "H2'"   H       H       0       -23.785     8.236       -15.989     
+GJV     "HO2'"  H       H       0       -24.687     10.578      -15.090     
+GJV     "H3'"   H       H       0       -21.927     9.204       -15.088     
+GJV     "HO3'"  H       H       0       -22.678     11.636      -15.950     
+GJV     "H4'"   H       H       0       -21.040     10.322      -17.242     
+GJV     "H15'"  H       H       0       -21.041     8.075       -18.307     
+GJV     "H25'"  H       H       0       -21.598     7.572       -16.914     
+GJV     "H16'"  H       H       0       -19.644     8.336       -15.846     
+GJV     "H26'"  H       H       0       -19.088     8.868       -17.230     
+GJV     "H17'"  H       H       0       -17.998     6.911       -16.865     
+GJV     "H27'"  H       H       0       -19.054     6.589       -18.003     
+GJV     "HN8'"  H       H       0       -20.171     5.968       -15.699     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GJV          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+GJV          N1          C6      DOUBLE       y     1.354  0.0100     1.354  0.0100
+GJV          N1          C2      SINGLE       y     1.339  0.0100     1.339  0.0100
+GJV          C5          C6      SINGLE       y     1.408  0.0100     1.408  0.0100
+GJV          C2          N3      DOUBLE       y     1.330  0.0100     1.330  0.0100
+GJV          C4          C5      DOUBLE       y     1.381  0.0100     1.381  0.0100
+GJV          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+GJV          N3          C4      SINGLE       y     1.343  0.0100     1.343  0.0100
+GJV          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+GJV          N7          C8      DOUBLE       y     1.310  0.0100     1.310  0.0100
+GJV          C8          N9      SINGLE       y     1.372  0.0200     1.372  0.0200
+GJV          N9       "C1'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+GJV       "C1'"       "O4'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+GJV       "C4'"       "O4'"      SINGLE       n     1.447  0.0100     1.447  0.0100
+GJV       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+GJV         N10       "C9'"      SINGLE       n     1.321  0.0100     1.321  0.0100
+GJV       "C7'"       "N8'"      SINGLE       n     1.456  0.0136     1.456  0.0136
+GJV       "C6'"       "C7'"      SINGLE       n     1.516  0.0128     1.516  0.0128
+GJV       "C4'"       "C5'"      SINGLE       n     1.517  0.0116     1.517  0.0116
+GJV       "C5'"       "C6'"      SINGLE       n     1.525  0.0114     1.525  0.0114
+GJV       "N8'"       "C9'"      SINGLE       n     1.328  0.0112     1.328  0.0112
+GJV         N11       "C9'"      DOUBLE       n     1.322  0.0100     1.322  0.0100
+GJV       "C3'"       "C4'"      SINGLE       n     1.528  0.0117     1.528  0.0117
+GJV       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+GJV       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+GJV       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+GJV          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+GJV          N6        H1N6      SINGLE       n     1.016  0.0100     0.877  0.0200
+GJV          N6        H2N6      SINGLE       n     1.016  0.0100     0.877  0.0200
+GJV          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+GJV         N10         H10      SINGLE       n     1.016  0.0100     0.881  0.0200
+GJV         N10      "H20'"      SINGLE       n     1.016  0.0100     0.881  0.0200
+GJV         N11         H11      SINGLE       n     1.016  0.0100     0.879  0.0200
+GJV         N11         H21      SINGLE       n     1.016  0.0100     0.879  0.0200
+GJV       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+GJV       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+GJV       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+GJV       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+GJV       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+GJV       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.989  0.0197
+GJV       "C5'"      "H15'"      SINGLE       n     1.089  0.0100     0.979  0.0139
+GJV       "C5'"      "H25'"      SINGLE       n     1.089  0.0100     0.979  0.0139
+GJV       "C6'"      "H16'"      SINGLE       n     1.089  0.0100     0.981  0.0160
+GJV       "C6'"      "H26'"      SINGLE       n     1.089  0.0100     0.981  0.0160
+GJV       "C7'"      "H17'"      SINGLE       n     1.089  0.0100     0.981  0.0152
+GJV       "C7'"      "H27'"      SINGLE       n     1.089  0.0100     0.981  0.0152
+GJV       "N8'"      "HN8'"      SINGLE       n     1.016  0.0100     0.872  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GJV          C6          N1          C2     118.521    1.50
+GJV          N1          C2          N3     129.332    1.50
+GJV          N1          C2          H2     115.313    1.50
+GJV          N3          C2          H2     115.355    1.50
+GJV          C2          N3          C4     110.982    1.50
+GJV          C5          C4          N3     126.489    1.50
+GJV          C5          C4          N9     107.666    1.69
+GJV          N3          C4          N9     125.845    1.50
+GJV          C6          C5          C4     117.267    1.50
+GJV          C6          C5          N7     132.145    1.50
+GJV          C4          C5          N7     110.588    1.50
+GJV          N6          C6          N1     118.799    1.50
+GJV          N6          C6          C5     123.792    1.50
+GJV          N1          C6          C5     117.409    1.50
+GJV          C6          N6        H1N6     119.723    1.50
+GJV          C6          N6        H2N6     119.723    1.50
+GJV        H1N6          N6        H2N6     120.554    1.88
+GJV          C5          N7          C8     103.927    1.50
+GJV          N7          C8          N9     112.130    1.94
+GJV          N7          C8          H8     123.170    1.50
+GJV          N9          C8          H8     124.701    2.19
+GJV          C4          N9          C8     107.594    1.50
+GJV          C4          N9       "C1'"     125.158    1.54
+GJV          C8          N9       "C1'"     126.078    2.46
+GJV       "C9'"         N10         H10     119.855    2.01
+GJV       "C9'"         N10      "H20'"     119.855    2.01
+GJV         H10         N10      "H20'"     120.290    2.09
+GJV       "C9'"         N11         H11     119.855    2.01
+GJV       "C9'"         N11         H21     119.855    2.01
+GJV         H11         N11         H21     120.290    2.09
+GJV          N9       "C1'"       "O4'"     108.167    1.51
+GJV          N9       "C1'"       "C2'"     113.752    2.20
+GJV          N9       "C1'"       "H1'"     109.246    1.50
+GJV       "O4'"       "C1'"       "C2'"     106.047    1.50
+GJV       "O4'"       "C1'"       "H1'"     109.807    1.50
+GJV       "C2'"       "C1'"       "H1'"     109.015    1.50
+GJV       "C1'"       "C2'"       "C3'"     101.239    1.50
+GJV       "C1'"       "C2'"       "O2'"     111.715    2.69
+GJV       "C1'"       "C2'"       "H2'"     110.636    1.70
+GJV       "C3'"       "C2'"       "O2'"     112.782    2.45
+GJV       "C3'"       "C2'"       "H2'"     110.596    1.51
+GJV       "O2'"       "C2'"       "H2'"     110.448    1.97
+GJV       "C2'"       "O2'"      "HO2'"     109.103    2.13
+GJV       "C4'"       "C3'"       "C2'"     102.352    1.50
+GJV       "C4'"       "C3'"       "O3'"     110.985    2.41
+GJV       "C4'"       "C3'"       "H3'"     110.624    1.81
+GJV       "C2'"       "C3'"       "O3'"     111.581    2.83
+GJV       "C2'"       "C3'"       "H3'"     110.504    1.75
+GJV       "O3'"       "C3'"       "H3'"     110.380    1.67
+GJV       "C3'"       "O3'"      "HO3'"     108.744    3.00
+GJV       "O4'"       "C4'"       "C5'"     109.832    2.52
+GJV       "O4'"       "C4'"       "C3'"     105.508    1.50
+GJV       "O4'"       "C4'"       "H4'"     109.115    1.50
+GJV       "C5'"       "C4'"       "C3'"     114.308    1.50
+GJV       "C5'"       "C4'"       "H4'"     108.791    1.87
+GJV       "C3'"       "C4'"       "H4'"     109.143    1.50
+GJV       "C1'"       "O4'"       "C4'"     109.426    1.50
+GJV       "C4'"       "C5'"       "C6'"     114.035    1.89
+GJV       "C4'"       "C5'"      "H15'"     108.430    1.50
+GJV       "C4'"       "C5'"      "H25'"     108.430    1.50
+GJV       "C6'"       "C5'"      "H15'"     108.506    1.50
+GJV       "C6'"       "C5'"      "H25'"     108.506    1.50
+GJV      "H15'"       "C5'"      "H25'"     107.601    1.50
+GJV       "C7'"       "C6'"       "C5'"     115.316    2.54
+GJV       "C7'"       "C6'"      "H16'"     108.805    1.50
+GJV       "C7'"       "C6'"      "H26'"     108.805    1.50
+GJV       "C5'"       "C6'"      "H16'"     108.816    1.50
+GJV       "C5'"       "C6'"      "H26'"     108.816    1.50
+GJV      "H16'"       "C6'"      "H26'"     107.738    1.50
+GJV       "N8'"       "C7'"       "C6'"     112.309    1.89
+GJV       "N8'"       "C7'"      "H17'"     109.183    1.50
+GJV       "N8'"       "C7'"      "H27'"     109.183    1.50
+GJV       "C6'"       "C7'"      "H17'"     109.099    1.50
+GJV       "C6'"       "C7'"      "H27'"     109.099    1.50
+GJV      "H17'"       "C7'"      "H27'"     107.877    1.50
+GJV       "C7'"       "N8'"       "C9'"     124.510    1.50
+GJV       "C7'"       "N8'"      "HN8'"     117.883    1.50
+GJV       "C9'"       "N8'"      "HN8'"     117.606    1.50
+GJV         N10       "C9'"       "N8'"     120.052    1.50
+GJV         N10       "C9'"         N11     119.896    1.50
+GJV       "N8'"       "C9'"         N11     120.052    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GJV              const_23          N3          C2          N1          C6       0.000    10.0     2
+GJV       const_sp2_sp2_2          N6          C6          N1          C2     180.000     5.0     2
+GJV             sp2_sp2_5       "N8'"       "C9'"         N10         H10     180.000     5.0     2
+GJV            sp2_sp2_15         N10       "C9'"         N11         H11       0.000     5.0     2
+GJV            sp3_sp3_29          N9       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+GJV             sp3_sp3_2          N9       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+GJV            sp3_sp3_61       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+GJV            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+GJV            sp3_sp3_64       "C4'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+GJV            sp3_sp3_11       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+GJV             sp3_sp3_5       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+GJV            sp3_sp3_43       "O4'"       "C4'"       "C5'"       "C6'"     180.000    10.0     3
+GJV            sp3_sp3_52       "C4'"       "C5'"       "C6'"       "C7'"     180.000    10.0     3
+GJV              const_13          N1          C2          N3          C4       0.000    10.0     2
+GJV            sp3_sp3_34       "C5'"       "C6'"       "C7'"       "N8'"     180.000    10.0     3
+GJV             sp2_sp3_8       "C9'"       "N8'"       "C7'"       "C6'"     120.000    10.0     6
+GJV             sp2_sp2_9         N10       "C9'"       "N8'"       "C7'"     180.000     5.0     2
+GJV              const_11          C5          C4          N3          C2       0.000    10.0     2
+GJV       const_sp2_sp2_7          N3          C4          C5          C6       0.000     5.0     2
+GJV              const_25          C5          C4          N9          C8       0.000    10.0     2
+GJV       const_sp2_sp2_4          C4          C5          C6          N6     180.000     5.0     2
+GJV              const_16          C6          C5          N7          C8     180.000    10.0     2
+GJV             sp2_sp2_3          N1          C6          N6        H1N6       0.000     5.0     2
+GJV              const_17          N9          C8          N7          C5       0.000    10.0     2
+GJV              const_19          N7          C8          N9          C4       0.000    10.0     2
+GJV             sp2_sp3_1          C4          N9       "C1'"       "O4'"     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GJV    chir_1    "C1'"    "O4'"    N9    "C2'"    negative
+GJV    chir_2    "C2'"    "O2'"    "C1'"    "C3'"    negative
+GJV    chir_3    "C3'"    "O3'"    "C4'"    "C2'"    positive
+GJV    chir_4    "C4'"    "O4'"    "C3'"    "C5'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GJV    plan-1       "C1'"   0.020
+GJV    plan-1          C2   0.020
+GJV    plan-1          C4   0.020
+GJV    plan-1          C5   0.020
+GJV    plan-1          C6   0.020
+GJV    plan-1          C8   0.020
+GJV    plan-1          H2   0.020
+GJV    plan-1          H8   0.020
+GJV    plan-1          N1   0.020
+GJV    plan-1          N3   0.020
+GJV    plan-1          N6   0.020
+GJV    plan-1          N7   0.020
+GJV    plan-1          N9   0.020
+GJV    plan-2          C6   0.020
+GJV    plan-2        H1N6   0.020
+GJV    plan-2        H2N6   0.020
+GJV    plan-2          N6   0.020
+GJV    plan-3       "C9'"   0.020
+GJV    plan-3         H10   0.020
+GJV    plan-3      "H20'"   0.020
+GJV    plan-3         N10   0.020
+GJV    plan-4       "C9'"   0.020
+GJV    plan-4         H11   0.020
+GJV    plan-4         H21   0.020
+GJV    plan-4         N11   0.020
+GJV    plan-5       "C7'"   0.020
+GJV    plan-5       "C9'"   0.020
+GJV    plan-5      "HN8'"   0.020
+GJV    plan-5       "N8'"   0.020
+GJV    plan-6       "C9'"   0.020
+GJV    plan-6         N10   0.020
+GJV    plan-6         N11   0.020
+GJV    plan-6       "N8'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GJV           SMILES              ACDLabs 12.01                                                                                                                     n1c(c2c(nc1)n(cn2)C3C(C(O)C(O3)CCCNC(\N)=[NH2+])O)N
+GJV            InChI                InChI  1.03 InChI=1S/C13H20N8O3/c14-10-7-11(19-4-18-10)21(5-20-7)12-9(23)8(22)6(24-12)2-1-3-17-13(15)16/h4-6,8-9,12,22-23H,1-3H2,(H2,14,18,19)(H4,15,16,17)/p+1/t6-,8-,9-,12-/m1/s1
+GJV         InChIKey                InChI  1.03                                                                                                                                             NGQAXJZDWQDSQY-WOUKDFQISA-O
+GJV SMILES_CANONICAL               CACTVS 3.385                                                                                                           NC(=[NH2+])NCCC[C@H]1O[C@H]([C@H](O)[C@@H]1O)n2cnc3c(N)ncnc23
+GJV           SMILES               CACTVS 3.385                                                                                                                NC(=[NH2+])NCCC[CH]1O[CH]([CH](O)[CH]1O)n2cnc3c(N)ncnc23
+GJV SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                    c1nc(c2c(n1)n(cn2)[C@H]3[C@@H]([C@@H]([C@H](O3)CCCNC(=[NH2+])N)O)O)N
+GJV           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                      c1nc(c2c(n1)n(cn2)C3C(C(C(O3)CCCNC(=[NH2+])N)O)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GJV acedrg               243         "dictionary generator"                  
+GJV acedrg_database      11          "data source"                           
+GJV rdkit                2017.03.2   "Chemoinformatics tool"
+GJV refmac5              5.8.0238    "optimization tool"                     

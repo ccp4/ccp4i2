@@ -1,0 +1,273 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+30L     30L      "{5-fluoro-2-[(3-nitrobenzyl)carbamoyl]phenoxy}acetic acid"     NON-POLYMER     37     25     .     
+#
+data_comp_30L
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+30L     N1      N       NH1     0       64.979      -6.413      38.847      
+30L     C3      C       CH2     0       65.367      -5.188      38.153      
+30L     C4      C       CR6     0       64.850      -5.132      36.737      
+30L     C5      C       CR16    0       65.726      -5.171      35.655      
+30L     C6      C       CR6     0       65.226      -5.116      34.355      
+30L     N7      N       N       1       66.157      -5.159      33.233      
+30L     O8      O       O       0       67.032      -4.308      33.173      
+30L     O9      O       OC      -1      66.020      -6.043      32.402      
+30L     C10     C       CR16    0       63.857      -5.022      34.101      
+30L     C11     C       CR16    0       62.996      -4.984      35.187      
+30L     C12     C       CR16    0       63.481      -5.037      36.488      
+30L     C19     C       C       0       65.586      -7.586      38.636      
+30L     O20     O       O       0       66.474      -7.732      37.794      
+30L     C21     C       CR6     0       65.181      -8.748      39.485      
+30L     C22     C       CR16    0       64.864      -9.942      38.822      
+30L     C24     C       CR16    0       64.484      -11.062     39.524      
+30L     C26     C       CR6     0       64.423      -10.979     40.901      
+30L     F27     F       F       0       64.049      -12.076     41.604      
+30L     C28     C       CR16    0       64.724      -9.841      41.601      
+30L     C30     C       CR6     0       65.109      -8.701      40.895      
+30L     O31     O       O2      0       65.438      -7.490      41.479      
+30L     C32     C       CH2     0       65.337      -7.225      42.874      
+30L     C33     C       C       0       63.897      -7.100      43.345      
+30L     O34     O       O       0       63.123      -6.410      42.652      
+30L     O36     O       OC      -1      63.590      -7.697      44.397      
+30L     H1      H       H       0       64.315      -6.369      39.417      
+30L     H2      H       H       0       66.345      -5.115      38.145      
+30L     H3      H       H       0       65.017      -4.418      38.648      
+30L     H4      H       H       0       66.651      -5.234      35.806      
+30L     H5      H       H       0       63.524      -4.986      33.222      
+30L     H6      H       H       0       62.067      -4.920      35.039      
+30L     H7      H       H       0       62.877      -5.010      37.213      
+30L     H8      H       H       0       64.913      -9.975      37.876      
+30L     H9      H       H       0       64.270      -11.864     39.079      
+30L     H10     H       H       0       64.669      -9.825      42.550      
+30L     H11     H       H       0       65.805      -6.394      43.071      
+30L     H12     H       H       0       65.779      -7.936      43.372      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+30L          N7          O9      SINGLE       n     1.221  0.0162     1.221  0.0162
+30L          N7          O8      DOUBLE       n     1.221  0.0162     1.221  0.0162
+30L          C6          N7      SINGLE       n     1.457  0.0200     1.457  0.0200
+30L          C6         C10      SINGLE       y     1.393  0.0100     1.393  0.0100
+30L         C10         C11      DOUBLE       y     1.382  0.0100     1.382  0.0100
+30L          C5          C6      DOUBLE       y     1.392  0.0100     1.392  0.0100
+30L         C11         C12      SINGLE       y     1.380  0.0131     1.380  0.0131
+30L          C4          C5      SINGLE       y     1.388  0.0129     1.388  0.0129
+30L          C4         C12      DOUBLE       y     1.390  0.0100     1.390  0.0100
+30L          C3          C4      SINGLE       n     1.508  0.0100     1.508  0.0100
+30L          N1          C3      SINGLE       n     1.458  0.0100     1.458  0.0100
+30L         C19         O20      DOUBLE       n     1.230  0.0114     1.230  0.0114
+30L          N1         C19      SINGLE       n     1.334  0.0100     1.334  0.0100
+30L         C19         C21      SINGLE       n     1.492  0.0102     1.492  0.0102
+30L         C21         C22      DOUBLE       y     1.397  0.0100     1.397  0.0100
+30L         C22         C24      SINGLE       y     1.374  0.0100     1.374  0.0100
+30L         C21         C30      SINGLE       y     1.405  0.0100     1.405  0.0100
+30L         C24         C26      DOUBLE       y     1.378  0.0138     1.378  0.0138
+30L         C33         O34      DOUBLE       n     1.247  0.0187     1.247  0.0187
+30L         C30         O31      SINGLE       n     1.377  0.0110     1.377  0.0110
+30L         C28         C30      DOUBLE       y     1.387  0.0100     1.387  0.0100
+30L         O31         C32      SINGLE       n     1.420  0.0100     1.420  0.0100
+30L         C26         C28      SINGLE       y     1.366  0.0100     1.366  0.0100
+30L         C26         F27      SINGLE       n     1.355  0.0107     1.355  0.0107
+30L         C32         C33      SINGLE       n     1.520  0.0100     1.520  0.0100
+30L         C33         O36      SINGLE       n     1.247  0.0187     1.247  0.0187
+30L          N1          H1      SINGLE       n     1.016  0.0100     0.875  0.0200
+30L          C3          H2      SINGLE       n     1.089  0.0100     0.980  0.0169
+30L          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0169
+30L          C5          H4      SINGLE       n     1.082  0.0130     0.939  0.0130
+30L         C10          H5      SINGLE       n     1.082  0.0130     0.941  0.0200
+30L         C11          H6      SINGLE       n     1.082  0.0130     0.943  0.0185
+30L         C12          H7      SINGLE       n     1.082  0.0130     0.944  0.0174
+30L         C22          H8      SINGLE       n     1.082  0.0130     0.947  0.0170
+30L         C24          H9      SINGLE       n     1.082  0.0130     0.941  0.0154
+30L         C28         H10      SINGLE       n     1.082  0.0130     0.952  0.0160
+30L         C32         H11      SINGLE       n     1.089  0.0100     0.974  0.0102
+30L         C32         H12      SINGLE       n     1.089  0.0100     0.974  0.0102
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+30L          C3          N1         C19     121.850    1.50
+30L          C3          N1          H1     118.637    1.50
+30L         C19          N1          H1     119.513    1.50
+30L          C4          C3          N1     112.551    1.55
+30L          C4          C3          H2     109.073    1.50
+30L          C4          C3          H3     109.073    1.50
+30L          N1          C3          H2     109.133    1.50
+30L          N1          C3          H3     109.133    1.50
+30L          H2          C3          H3     107.860    1.50
+30L          C5          C4         C12     118.754    1.50
+30L          C5          C4          C3     120.561    1.50
+30L         C12          C4          C3     120.685    1.50
+30L          C6          C5          C4     120.462    1.50
+30L          C6          C5          H4     120.130    1.50
+30L          C4          C5          H4     119.408    1.50
+30L          N7          C6         C10     118.962    1.50
+30L          N7          C6          C5     118.732    1.50
+30L         C10          C6          C5     122.306    1.50
+30L          O9          N7          O8     123.486    1.50
+30L          O9          N7          C6     118.257    1.50
+30L          O8          N7          C6     118.257    1.50
+30L          C6         C10         C11     117.849    1.50
+30L          C6         C10          H5     121.379    1.50
+30L         C11         C10          H5     120.772    1.50
+30L         C10         C11         C12     120.376    1.50
+30L         C10         C11          H6     119.716    1.50
+30L         C12         C11          H6     119.907    1.50
+30L         C11         C12          C4     120.253    1.50
+30L         C11         C12          H7     119.910    1.50
+30L          C4         C12          H7     119.837    1.50
+30L         O20         C19          N1     122.130    1.50
+30L         O20         C19         C21     119.978    1.50
+30L          N1         C19         C21     117.892    1.50
+30L         C19         C21         C22     117.680    3.00
+30L         C19         C21         C30     123.584    1.50
+30L         C22         C21         C30     118.737    1.50
+30L         C21         C22         C24     120.704    1.50
+30L         C21         C22          H8     119.419    1.50
+30L         C24         C22          H8     119.877    1.50
+30L         C22         C24         C26     118.365    1.50
+30L         C22         C24          H9     120.888    1.50
+30L         C26         C24          H9     120.747    1.50
+30L         C24         C26         C28     123.499    1.50
+30L         C24         C26         F27     118.649    1.50
+30L         C28         C26         F27     117.852    1.50
+30L         C30         C28         C26     118.345    1.50
+30L         C30         C28         H10     120.167    1.50
+30L         C26         C28         H10     121.488    1.50
+30L         C21         C30         O31     117.936    1.50
+30L         C21         C30         C28     120.351    1.50
+30L         O31         C30         C28     121.713    3.00
+30L         C30         O31         C32     117.150    2.12
+30L         O31         C32         C33     111.607    2.58
+30L         O31         C32         H11     109.378    1.50
+30L         O31         C32         H12     109.378    1.50
+30L         C33         C32         H11     109.314    1.50
+30L         C33         C32         H12     109.314    1.50
+30L         H11         C32         H12     108.052    1.50
+30L         O34         C33         C32     117.215    2.48
+30L         O34         C33         O36     125.570    1.50
+30L         C32         C33         O36     117.215    2.48
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+30L             sp2_sp3_8         C19          N1          C3          C4     120.000    10.0     6
+30L             sp2_sp2_7         O20         C19          N1          C3       0.000     5.0     2
+30L            sp2_sp2_11         O20         C19         C21         C22       0.000     5.0     2
+30L              const_23         C19         C21         C22         C24     180.000    10.0     2
+30L              const_48         C19         C21         C30         O31       0.000    10.0     2
+30L              const_25         C21         C22         C24         C26       0.000    10.0     2
+30L              const_30         C22         C24         C26         F27     180.000    10.0     2
+30L              const_35         F27         C26         C28         C30     180.000    10.0     2
+30L              const_38         C26         C28         C30         O31     180.000    10.0     2
+30L            sp2_sp2_13         C21         C30         O31         C32     180.000     5.0     2
+30L             sp2_sp3_2          C5          C4          C3          N1     -90.000    10.0     6
+30L             sp3_sp3_1         C33         C32         O31         C30     180.000    10.0     3
+30L            sp2_sp3_14         O34         C33         C32         O31     120.000    10.0     6
+30L              const_42         C11         C12          C4          C3     180.000    10.0     2
+30L       const_sp2_sp2_3          C3          C4          C5          C6     180.000     5.0     2
+30L       const_sp2_sp2_6          C4          C5          C6          N7     180.000     5.0     2
+30L             sp2_sp2_1         C10          C6          N7          O9     180.000     5.0     2
+30L              const_10         C11         C10          C6          N7     180.000    10.0     2
+30L              const_13          C6         C10         C11         C12       0.000    10.0     2
+30L              const_17         C10         C11         C12          C4       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+30L    plan-1         C10   0.020
+30L    plan-1         C11   0.020
+30L    plan-1         C12   0.020
+30L    plan-1          C3   0.020
+30L    plan-1          C4   0.020
+30L    plan-1          C5   0.020
+30L    plan-1          C6   0.020
+30L    plan-1          H4   0.020
+30L    plan-1          H5   0.020
+30L    plan-1          H6   0.020
+30L    plan-1          H7   0.020
+30L    plan-1          N7   0.020
+30L    plan-2         C19   0.020
+30L    plan-2         C21   0.020
+30L    plan-2         C22   0.020
+30L    plan-2         C24   0.020
+30L    plan-2         C26   0.020
+30L    plan-2         C28   0.020
+30L    plan-2         C30   0.020
+30L    plan-2         F27   0.020
+30L    plan-2         H10   0.020
+30L    plan-2          H8   0.020
+30L    plan-2          H9   0.020
+30L    plan-2         O31   0.020
+30L    plan-3         C19   0.020
+30L    plan-3          C3   0.020
+30L    plan-3          H1   0.020
+30L    plan-3          N1   0.020
+30L    plan-4          C6   0.020
+30L    plan-4          N7   0.020
+30L    plan-4          O8   0.020
+30L    plan-4          O9   0.020
+30L    plan-5         C19   0.020
+30L    plan-5         C21   0.020
+30L    plan-5          N1   0.020
+30L    plan-5         O20   0.020
+30L    plan-6         C32   0.020
+30L    plan-6         C33   0.020
+30L    plan-6         O34   0.020
+30L    plan-6         O36   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+30L           SMILES              ACDLabs 12.01                                                                           "[O-][N+](=O)c1cccc(c1)CNC(=O)c2ccc(F)cc2OCC(=O)O"
+30L            InChI                InChI  1.03 InChI=1S/C16H13FN2O6/c17-11-4-5-13(14(7-11)25-9-15(20)21)16(22)18-8-10-2-1-3-12(6-10)19(23)24/h1-7H,8-9H2,(H,18,22)(H,20,21)
+30L         InChIKey                InChI  1.03                                                                                                  HOFFXZBMYHZMTN-UHFFFAOYSA-N
+30L SMILES_CANONICAL               CACTVS 3.385                                                                             OC(=O)COc1cc(F)ccc1C(=O)NCc2cccc(c2)[N+]([O-])=O
+30L           SMILES               CACTVS 3.385                                                                             OC(=O)COc1cc(F)ccc1C(=O)NCc2cccc(c2)[N+]([O-])=O
+30L SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                           c1cc(cc(c1)[N+](=O)[O-])CNC(=O)c2ccc(cc2OCC(=O)O)F
+30L           SMILES "OpenEye OEToolkits" 1.7.6                                                                           c1cc(cc(c1)[N+](=O)[O-])CNC(=O)c2ccc(cc2OCC(=O)O)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+30L acedrg               243         "dictionary generator"                  
+30L acedrg_database      11          "data source"                           
+30L rdkit                2017.03.2   "Chemoinformatics tool"
+30L refmac5              5.8.0238    "optimization tool"                     

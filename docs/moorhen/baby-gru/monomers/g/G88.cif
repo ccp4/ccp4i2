@@ -1,0 +1,178 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+G88     G88      "(2S)-2-(PHOSPHONOMETHYL)PENTANEDIOIC ACID"     NON-POLYMER     21     14     .     
+#
+data_comp_G88
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+G88     O6      O       O       0       13.722      48.574      41.304      
+G88     C6      C       C       0       14.297      47.816      40.498      
+G88     O7      O       OC      -1      14.029      47.774      39.281      
+G88     C5      C       CH2     0       15.381      46.893      41.028      
+G88     C4      C       CH2     0       14.870      45.539      41.507      
+G88     C2      C       CH1     0       15.912      44.557      42.089      
+G88     C3      C       C       0       16.871      44.060      40.998      
+G88     O5      O       OC      -1      16.665      42.928      40.515      
+G88     O4      O       O       0       17.810      44.803      40.643      
+G88     C1      C       CH2     0       16.665      45.154      43.296      
+G88     P1      P       P       0       17.667      43.951      44.200      
+G88     O2      O       O       0       16.924      42.659      44.264      
+G88     O3      O       OP      -1      18.955      43.803      43.463      
+G88     O1      O       OP      -1      17.885      44.519      45.562      
+G88     H5C1    H       H       0       15.834      47.347      41.768      
+G88     H5C2    H       H       0       16.040      46.755      40.316      
+G88     H4C1    H       H       0       14.426      45.092      40.756      
+G88     H4C2    H       H       0       14.187      45.692      42.194      
+G88     H2      H       H       0       15.416      43.769      42.407      
+G88     H1C1    H       H       0       16.007      45.549      43.904      
+G88     H1C2    H       H       0       17.239      45.880      42.979      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+G88          O6          C6      DOUBLE       n     1.247  0.0187     1.247  0.0187
+G88          C6          O7      SINGLE       n     1.247  0.0187     1.247  0.0187
+G88          C6          C5      SINGLE       n     1.519  0.0109     1.519  0.0109
+G88          C5          C4      SINGLE       n     1.521  0.0151     1.521  0.0151
+G88          C4          C2      SINGLE       n     1.543  0.0100     1.543  0.0100
+G88          C2          C1      SINGLE       n     1.540  0.0100     1.540  0.0100
+G88          C2          C3      SINGLE       n     1.533  0.0102     1.533  0.0102
+G88          C3          O5      SINGLE       n     1.247  0.0187     1.247  0.0187
+G88          C3          O4      DOUBLE       n     1.247  0.0187     1.247  0.0187
+G88          C1          P1      SINGLE       n     1.803  0.0200     1.803  0.0200
+G88          P1          O1      SINGLE       n     1.492  0.0200     1.492  0.0200
+G88          P1          O2      DOUBLE       n     1.492  0.0200     1.492  0.0200
+G88          P1          O3      SINGLE       n     1.492  0.0200     1.492  0.0200
+G88          C5        H5C1      SINGLE       n     1.089  0.0100     0.981  0.0185
+G88          C5        H5C2      SINGLE       n     1.089  0.0100     0.981  0.0185
+G88          C4        H4C1      SINGLE       n     1.089  0.0100     0.980  0.0178
+G88          C4        H4C2      SINGLE       n     1.089  0.0100     0.980  0.0178
+G88          C2          H2      SINGLE       n     1.089  0.0100     0.985  0.0200
+G88          C1        H1C1      SINGLE       n     1.089  0.0100     0.979  0.0200
+G88          C1        H1C2      SINGLE       n     1.089  0.0100     0.979  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+G88          O6          C6          O7     123.571    1.50
+G88          O6          C6          C5     118.214    1.64
+G88          O7          C6          C5     118.214    1.64
+G88          C6          C5          C4     114.629    2.24
+G88          C6          C5        H5C1     108.404    1.50
+G88          C6          C5        H5C2     108.404    1.50
+G88          C4          C5        H5C1     108.893    1.50
+G88          C4          C5        H5C2     108.893    1.50
+G88        H5C1          C5        H5C2     107.521    1.50
+G88          C5          C4          C2     114.526    2.58
+G88          C5          C4        H4C1     109.044    1.50
+G88          C5          C4        H4C2     109.044    1.50
+G88          C2          C4        H4C1     108.447    1.50
+G88          C2          C4        H4C2     108.447    1.50
+G88        H4C1          C4        H4C2     107.657    1.50
+G88          C4          C2          C1     111.414    2.37
+G88          C4          C2          C3     110.778    2.06
+G88          C4          C2          H2     107.780    1.50
+G88          C1          C2          C3     110.778    2.06
+G88          C1          C2          H2     108.236    1.50
+G88          C3          C2          H2     107.706    1.93
+G88          C2          C3          O5     118.051    1.50
+G88          C2          C3          O4     118.051    1.50
+G88          O5          C3          O4     123.899    1.50
+G88          C2          C1          P1     111.410    2.87
+G88          C2          C1        H1C1     108.507    1.50
+G88          C2          C1        H1C2     108.507    1.50
+G88          P1          C1        H1C1     109.545    1.50
+G88          P1          C1        H1C2     109.545    1.50
+G88        H1C1          C1        H1C2     107.498    1.50
+G88          C1          P1          O1     108.625    3.00
+G88          C1          P1          O2     108.625    3.00
+G88          C1          P1          O3     108.625    3.00
+G88          O1          P1          O2     111.786    1.50
+G88          O1          P1          O3     111.786    1.50
+G88          O2          P1          O3     111.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+G88             sp2_sp3_2          O6          C6          C5          C4     120.000    10.0     6
+G88             sp3_sp3_1          C2          C4          C5          C6     180.000    10.0     3
+G88            sp3_sp3_10          C1          C2          C4          C5     180.000    10.0     3
+G88             sp2_sp3_7          O5          C3          C2          C4       0.000    10.0     6
+G88            sp3_sp3_19          P1          C1          C2          C4     180.000    10.0     3
+G88            sp3_sp3_28          C2          C1          P1          O1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+G88    chir_1    C2    C1    C3    C4    positive
+G88    chir_2    P1    O1    O3    O2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+G88    plan-1          C5   0.020
+G88    plan-1          C6   0.020
+G88    plan-1          O6   0.020
+G88    plan-1          O7   0.020
+G88    plan-2          C2   0.020
+G88    plan-2          C3   0.020
+G88    plan-2          O4   0.020
+G88    plan-2          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+G88           SMILES              ACDLabs 10.04                                                                          O=P(O)(O)CC(C(=O)O)CCC(=O)O
+G88 SMILES_CANONICAL               CACTVS 3.341                                                                    OC(=O)CC[C@H](C[P](O)(O)=O)C(O)=O
+G88           SMILES               CACTVS 3.341                                                                     OC(=O)CC[CH](C[P](O)(O)=O)C(O)=O
+G88 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                    C(CC(=O)O)[C@H](CP(=O)(O)O)C(=O)O
+G88           SMILES "OpenEye OEToolkits" 1.5.0                                                                        C(CC(=O)O)C(CP(=O)(O)O)C(=O)O
+G88            InChI                InChI  1.03 InChI=1S/C6H11O7P/c7-5(8)2-1-4(6(9)10)3-14(11,12)13/h4H,1-3H2,(H,7,8)(H,9,10)(H2,11,12,13)/t4-/m1/s1
+G88         InChIKey                InChI  1.03                                                                          ISEYJGQFXSTPMQ-SCSAIBSYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+G88 acedrg               243         "dictionary generator"                  
+G88 acedrg_database      11          "data source"                           
+G88 rdkit                2017.03.2   "Chemoinformatics tool"
+G88 refmac5              5.8.0238    "optimization tool"                     

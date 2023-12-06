@@ -64,9 +64,9 @@ class xia2_multiplex_report(Report):
             jobNumber = self.jobInfo.get("jobnumber", None)
 
             xia2MultiplexUrl = (
-                "/database/?getProjectJobFile?projectId="
+                "/database/getProjectJobFile?projectId="
                 + projectid
-                + "?fileName=xia2.multiplex-i2.html?jobNumber="
+                + "&fileName=xia2.multiplex.html&jobNumber="
                 + jobNumber
             )
             xia2MultiplexHtmlFold = parent.addFold(

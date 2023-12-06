@@ -1,0 +1,525 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ENE     ENE      (4Z)-2,8:7,12:11,15:14,18:17,22-PENTAANHYDRO-4,5,6,9,10,13,19,20,21-NONADEOXY-D-ARABINO-D-ALLO-D-ALLO-DOCOSA-4,9,20-TRIENITOL     NON-POLYMER     60     30     .     
+#
+data_comp_ENE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ENE     OAB     O       OH1     0       -18.437     7.231       -39.079     
+ENE     CAT     C       CH1     0       -17.711     7.686       -37.932     
+ENE     CAG     C       C1      0       -18.589     8.550       -37.085     
+ENE     CAF     C       C1      0       -18.202     9.405       -36.170     
+ENE     CAM     C       CH2     0       -16.779     9.685       -35.783     
+ENE     CAY     C       CH1     0       -16.273     8.789       -34.656     
+ENE     OAR     O       O2      0       -17.029     9.157       -33.457     
+ENE     CAZ     C       CH1     0       -16.419     8.930       -32.190     
+ENE     CAN     C       CH2     0       -17.147     9.834       -31.204     
+ENE     CBB     C       CH1     0       -16.761     9.452       -29.792     
+ENE     OAS     O       O2      0       -17.566     10.224      -28.888     
+ENE     CBA     C       CH1     0       -17.236     9.983       -27.507     
+ENE     CAL     C       CH2     0       -18.130     10.919      -26.712     
+ENE     CAE     C       C1      0       -17.799     11.017      -25.260     
+ENE     CAD     C       C1      0       -17.644     10.020      -24.417     
+ENE     CAJ     C       CH2     0       -17.754     8.578       -24.745     
+ENE     OAO     O       O2      0       -16.923     8.224       -25.856     
+ENE     CBC     C       CH1     0       -17.437     8.500       -27.163     
+ENE     CAW     C       CH1     0       -16.680     7.593       -28.131     
+ENE     OAC     O       OH1     0       -17.061     6.235       -27.924     
+ENE     CBD     C       CH1     0       -17.000     7.973       -29.561     
+ENE     OAQ     O       O2      0       -16.165     7.221       -30.449     
+ENE     CAV     C       CH1     0       -16.538     7.443       -31.821     
+ENE     CAI     C       C1      0       -15.639     6.569       -32.635     
+ENE     CAH     C       C1      0       -15.609     6.511       -33.946     
+ENE     CAU     C       CH1     0       -16.460     7.292       -34.903     
+ENE     OAP     O       O2      0       -16.135     6.967       -36.268     
+ENE     CAX     C       CH1     0       -17.151     6.481       -37.163     
+ENE     CAK     C       CH2     0       -16.492     5.427       -38.038     
+ENE     OAA     O       OH1     0       -15.564     6.013       -38.947     
+ENE     HAB     H       H       0       -19.081     6.736       -38.831     
+ENE     HAT     H       H       0       -16.948     8.234       -38.250     
+ENE     HAG     H       H       0       -19.520     8.468       -37.229     
+ENE     HAF     H       H       0       -18.876     9.885       -35.715     
+ENE     HAM1    H       H       0       -16.722     10.616      -35.481     
+ENE     HAM2    H       H       0       -16.178     9.600       -36.552     
+ENE     HAY     H       H       0       -15.307     8.975       -34.511     
+ENE     HAZ     H       H       0       -15.469     9.197       -32.228     
+ENE     HAN1    H       H       0       -16.904     10.770      -31.375     
+ENE     HAN2    H       H       0       -18.117     9.736       -31.323     
+ENE     HBB     H       H       0       -15.800     9.664       -29.643     
+ENE     HBA     H       H       0       -16.297     10.223      -27.356     
+ENE     HAL1    H       H       0       -18.075     11.797      -27.095     
+ENE     HAL2    H       H       0       -19.038     10.622      -26.797     
+ENE     HAE     H       H       0       -17.694     11.889      -24.912     
+ENE     HAD     H       H       0       -17.440     10.239      -23.520     
+ENE     HAJ1    H       H       0       -18.685     8.355       -24.950     
+ENE     HAJ2    H       H       0       -17.483     8.045       -23.970     
+ENE     HBC     H       H       0       -18.399     8.274       -27.201     
+ENE     HAW     H       H       0       -15.707     7.690       -27.968     
+ENE     HAC     H       H       0       -16.521     5.735       -28.331     
+ENE     HBD     H       H       0       -17.952     7.764       -29.745     
+ENE     HAV     H       H       0       -17.477     7.149       -31.956     
+ENE     HAI     H       H       0       -15.034     6.006       -32.162     
+ENE     HAH     H       H       0       -14.988     5.913       -34.330     
+ENE     HAU     H       H       0       -17.405     7.063       -34.728     
+ENE     HAX     H       H       0       -17.891     6.069       -36.641     
+ENE     HAK1    H       H       0       -17.185     4.940       -38.547     
+ENE     HAK2    H       H       0       -16.017     4.778       -37.465     
+ENE     HAA     H       H       0       -14.926     6.342       -38.500     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ENE         OAB         CAT      SINGLE       n     1.431  0.0106     1.431  0.0106
+ENE         CAT         CAG      SINGLE       n     1.493  0.0100     1.493  0.0100
+ENE         CAT         CAX      SINGLE       n     1.531  0.0100     1.531  0.0100
+ENE         CAG         CAF      DOUBLE       n     1.299  0.0200     1.299  0.0200
+ENE         CAF         CAM      SINGLE       n     1.498  0.0100     1.498  0.0100
+ENE         CAM         CAY      SINGLE       n     1.525  0.0100     1.525  0.0100
+ENE         CAY         OAR      SINGLE       n     1.458  0.0200     1.458  0.0200
+ENE         CAY         CAU      SINGLE       n     1.522  0.0173     1.522  0.0173
+ENE         OAR         CAZ      SINGLE       n     1.423  0.0100     1.423  0.0100
+ENE         CAZ         CAN      SINGLE       n     1.518  0.0130     1.518  0.0130
+ENE         CAZ         CAV      SINGLE       n     1.533  0.0100     1.533  0.0100
+ENE         CAN         CBB      SINGLE       n     1.513  0.0100     1.513  0.0100
+ENE         CBB         OAS      SINGLE       n     1.433  0.0114     1.433  0.0114
+ENE         CBB         CBD      SINGLE       n     1.515  0.0116     1.515  0.0116
+ENE         OAS         CBA      SINGLE       n     1.438  0.0100     1.438  0.0100
+ENE         CBA         CAL      SINGLE       n     1.518  0.0103     1.518  0.0103
+ENE         CBA         CBC      SINGLE       n     1.525  0.0170     1.525  0.0170
+ENE         CAL         CAE      SINGLE       n     1.493  0.0111     1.493  0.0111
+ENE         CAE         CAD      DOUBLE       n     1.316  0.0100     1.316  0.0100
+ENE         CAD         CAJ      SINGLE       n     1.485  0.0115     1.485  0.0115
+ENE         CAJ         OAO      SINGLE       n     1.430  0.0100     1.430  0.0100
+ENE         OAO         CBC      SINGLE       n     1.428  0.0102     1.428  0.0102
+ENE         CBC         CAW      SINGLE       n     1.525  0.0100     1.525  0.0100
+ENE         CAW         CBD      SINGLE       n     1.512  0.0111     1.512  0.0111
+ENE         CAW         OAC      SINGLE       n     1.425  0.0102     1.425  0.0102
+ENE         CBD         OAQ      SINGLE       n     1.430  0.0101     1.430  0.0101
+ENE         OAQ         CAV      SINGLE       n     1.434  0.0100     1.434  0.0100
+ENE         CAV         CAI      SINGLE       n     1.494  0.0100     1.494  0.0100
+ENE         CAI         CAH      DOUBLE       n     1.314  0.0118     1.314  0.0118
+ENE         CAH         CAU      SINGLE       n     1.501  0.0100     1.501  0.0100
+ENE         CAU         OAP      SINGLE       n     1.433  0.0164     1.433  0.0164
+ENE         OAP         CAX      SINGLE       n     1.435  0.0100     1.435  0.0100
+ENE         CAX         CAK      SINGLE       n     1.517  0.0115     1.517  0.0115
+ENE         CAK         OAA      SINGLE       n     1.425  0.0100     1.425  0.0100
+ENE         OAB         HAB      SINGLE       n     0.970  0.0120     0.848  0.0200
+ENE         CAT         HAT      SINGLE       n     1.089  0.0100     0.992  0.0100
+ENE         CAG         HAG      SINGLE       n     1.082  0.0130     0.945  0.0200
+ENE         CAF         HAF      SINGLE       n     1.082  0.0130     0.945  0.0200
+ENE         CAM        HAM1      SINGLE       n     1.089  0.0100     0.981  0.0185
+ENE         CAM        HAM2      SINGLE       n     1.089  0.0100     0.981  0.0185
+ENE         CAY         HAY      SINGLE       n     1.089  0.0100     0.994  0.0168
+ENE         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.988  0.0151
+ENE         CAN        HAN1      SINGLE       n     1.089  0.0100     0.982  0.0100
+ENE         CAN        HAN2      SINGLE       n     1.089  0.0100     0.982  0.0100
+ENE         CBB         HBB      SINGLE       n     1.089  0.0100     0.996  0.0129
+ENE         CBA         HBA      SINGLE       n     1.089  0.0100     0.981  0.0200
+ENE         CAL        HAL1      SINGLE       n     1.089  0.0100     0.960  0.0200
+ENE         CAL        HAL2      SINGLE       n     1.089  0.0100     0.960  0.0200
+ENE         CAE         HAE      SINGLE       n     1.082  0.0130     0.945  0.0200
+ENE         CAD         HAD      SINGLE       n     1.082  0.0130     0.945  0.0200
+ENE         CAJ        HAJ1      SINGLE       n     1.089  0.0100     0.979  0.0144
+ENE         CAJ        HAJ2      SINGLE       n     1.089  0.0100     0.979  0.0144
+ENE         CBC         HBC      SINGLE       n     1.089  0.0100     0.989  0.0181
+ENE         CAW         HAW      SINGLE       n     1.089  0.0100     0.991  0.0200
+ENE         OAC         HAC      SINGLE       n     0.970  0.0120     0.841  0.0200
+ENE         CBD         HBD      SINGLE       n     1.089  0.0100     0.992  0.0131
+ENE         CAV         HAV      SINGLE       n     1.089  0.0100     0.993  0.0179
+ENE         CAI         HAI      SINGLE       n     1.082  0.0130     0.951  0.0200
+ENE         CAH         HAH      SINGLE       n     1.082  0.0130     0.944  0.0200
+ENE         CAU         HAU      SINGLE       n     1.089  0.0100     0.988  0.0129
+ENE         CAX         HAX      SINGLE       n     1.089  0.0100     0.995  0.0200
+ENE         CAK        HAK1      SINGLE       n     1.089  0.0100     0.988  0.0200
+ENE         CAK        HAK2      SINGLE       n     1.089  0.0100     0.988  0.0200
+ENE         OAA         HAA      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ENE         CAT         OAB         HAB     109.416    1.50
+ENE         OAB         CAT         CAG     110.754    1.50
+ENE         OAB         CAT         CAX     109.434    2.40
+ENE         OAB         CAT         HAT     108.666    1.50
+ENE         CAG         CAT         CAX     112.540    1.50
+ENE         CAG         CAT         HAT     108.518    1.50
+ENE         CAX         CAT         HAT     108.687    1.50
+ENE         CAT         CAG         CAF     125.184    1.80
+ENE         CAT         CAG         HAG     117.000    1.50
+ENE         CAF         CAG         HAG     117.816    1.50
+ENE         CAG         CAF         CAM     124.219    1.50
+ENE         CAG         CAF         HAF     117.692    1.50
+ENE         CAM         CAF         HAF     118.089    1.96
+ENE         CAF         CAM         CAY     111.511    2.91
+ENE         CAF         CAM        HAM1     109.879    2.65
+ENE         CAF         CAM        HAM2     109.879    2.65
+ENE         CAY         CAM        HAM1     108.734    1.72
+ENE         CAY         CAM        HAM2     108.734    1.72
+ENE        HAM1         CAM        HAM2     107.440    1.74
+ENE         CAM         CAY         OAR     109.482    3.00
+ENE         CAM         CAY         CAU     111.094    2.85
+ENE         CAM         CAY         HAY     109.072    1.50
+ENE         OAR         CAY         CAU     109.482    3.00
+ENE         OAR         CAY         HAY     109.308    1.85
+ENE         CAU         CAY         HAY     109.155    1.50
+ENE         CAY         OAR         CAZ     115.660    1.65
+ENE         OAR         CAZ         CAN     109.448    2.67
+ENE         OAR         CAZ         CAV     109.247    2.43
+ENE         OAR         CAZ         HAZ     109.096    1.50
+ENE         CAN         CAZ         CAV     111.124    1.57
+ENE         CAN         CAZ         HAZ     108.993    1.50
+ENE         CAV         CAZ         HAZ     110.070    1.50
+ENE         CAZ         CAN         CBB     108.157    1.50
+ENE         CAZ         CAN        HAN1     109.800    1.50
+ENE         CAZ         CAN        HAN2     109.800    1.50
+ENE         CBB         CAN        HAN1     110.041    1.50
+ENE         CBB         CAN        HAN2     110.041    1.50
+ENE        HAN1         CAN        HAN2     109.336    2.87
+ENE         CAN         CBB         OAS     108.189    2.01
+ENE         CAN         CBB         CBD     110.743    1.50
+ENE         CAN         CBB         HBB     109.106    1.50
+ENE         OAS         CBB         CBD     109.603    1.50
+ENE         OAS         CBB         HBB     109.178    1.50
+ENE         CBD         CBB         HBB     109.453    1.50
+ENE         CBB         OAS         CBA     111.356    1.56
+ENE         OAS         CBA         CAL     106.008    1.50
+ENE         OAS         CBA         CBC     109.944    1.50
+ENE         OAS         CBA         HBA     108.802    1.50
+ENE         CAL         CBA         CBC     112.833    1.50
+ENE         CAL         CBA         HBA     109.152    1.50
+ENE         CBC         CBA         HBA     108.898    1.50
+ENE         CBA         CAL         CAE     114.690    1.50
+ENE         CBA         CAL        HAL1     109.052    1.50
+ENE         CBA         CAL        HAL2     109.052    1.50
+ENE         CAE         CAL        HAL1     108.853    1.50
+ENE         CAE         CAL        HAL2     108.853    1.50
+ENE        HAL1         CAL        HAL2     107.869    1.50
+ENE         CAL         CAE         CAD     127.760    3.00
+ENE         CAL         CAE         HAE     115.796    2.23
+ENE         CAD         CAE         HAE     116.444    1.78
+ENE         CAE         CAD         CAJ     126.383    1.50
+ENE         CAE         CAD         HAD     117.031    1.78
+ENE         CAJ         CAD         HAD     116.586    1.50
+ENE         CAD         CAJ         OAO     112.587    2.00
+ENE         CAD         CAJ        HAJ1     109.819    1.50
+ENE         CAD         CAJ        HAJ2     109.819    1.50
+ENE         OAO         CAJ        HAJ1     108.928    1.50
+ENE         OAO         CAJ        HAJ2     108.928    1.50
+ENE        HAJ1         CAJ        HAJ2     108.070    1.50
+ENE         CAJ         OAO         CBC     114.605    1.66
+ENE         CBA         CBC         OAO     107.676    2.35
+ENE         CBA         CBC         CAW     111.026    1.78
+ENE         CBA         CBC         HBC     109.550    1.50
+ENE         OAO         CBC         CAW     109.317    2.61
+ENE         OAO         CBC         HBC     109.096    1.50
+ENE         CAW         CBC         HBC     108.754    1.50
+ENE         CBC         CAW         CBD     109.024    1.50
+ENE         CBC         CAW         OAC     110.004    2.18
+ENE         CBC         CAW         HAW     108.864    1.50
+ENE         CBD         CAW         OAC     108.653    1.50
+ENE         CBD         CAW         HAW     109.707    1.50
+ENE         OAC         CAW         HAW     109.323    1.50
+ENE         CAW         OAC         HAC     108.924    2.58
+ENE         CBB         CBD         CAW     110.669    1.50
+ENE         CBB         CBD         OAQ     109.603    1.50
+ENE         CBB         CBD         HBD     109.111    1.50
+ENE         CAW         CBD         OAQ     109.753    1.66
+ENE         CAW         CBD         HBD     109.181    1.50
+ENE         OAQ         CBD         HBD     109.178    1.50
+ENE         CBD         OAQ         CAV     109.029    1.55
+ENE         CAZ         CAV         OAQ     109.496    1.56
+ENE         CAZ         CAV         CAI     113.232    1.95
+ENE         CAZ         CAV         HAV     109.094    1.50
+ENE         OAQ         CAV         CAI     107.911    2.76
+ENE         OAQ         CAV         HAV     109.067    1.50
+ENE         CAI         CAV         HAV     108.919    1.50
+ENE         CAV         CAI         CAH     125.629    2.23
+ENE         CAV         CAI         HAI     117.133    1.50
+ENE         CAH         CAI         HAI     117.238    1.50
+ENE         CAI         CAH         CAU     127.050    3.00
+ENE         CAI         CAH         HAH     116.678    1.50
+ENE         CAU         CAH         HAH     116.272    3.00
+ENE         CAY         CAU         CAH     111.511    2.91
+ENE         CAY         CAU         OAP     109.482    3.00
+ENE         CAY         CAU         HAU     109.155    1.50
+ENE         CAH         CAU         OAP     111.768    1.50
+ENE         CAH         CAU         HAU     108.825    1.50
+ENE         OAP         CAU         HAU     109.077    1.50
+ENE         CAU         OAP         CAX     113.350    3.00
+ENE         CAT         CAX         OAP     107.178    1.79
+ENE         CAT         CAX         CAK     111.094    2.85
+ENE         CAT         CAX         HAX     108.238    1.72
+ENE         OAP         CAX         CAK     108.081    2.47
+ENE         OAP         CAX         HAX     108.915    1.50
+ENE         CAK         CAX         HAX     109.852    1.50
+ENE         CAX         CAK         OAA     111.077    1.50
+ENE         CAX         CAK        HAK1     109.447    1.50
+ENE         CAX         CAK        HAK2     109.447    1.50
+ENE         OAA         CAK        HAK1     109.268    1.50
+ENE         OAA         CAK        HAK2     109.268    1.50
+ENE        HAK1         CAK        HAK2     108.313    1.50
+ENE         CAK         OAA         HAA     108.280    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ENE                   nu0         CBB         OAS         CBA         CBC     -64.170    10.0     3
+ENE                   nu1         OAS         CBA         CBC         CAW      55.185    10.0     3
+ENE                   nu2         CBA         CBC         CAW         CBD     -50.062    10.0     3
+ENE                   nu3         CBC         CAW         CBD         CBB      52.073    10.0     3
+ENE                   nu4         CAW         CBD         CBB         OAS     -59.586    10.0     3
+ENE                   nu5         CBD         CBB         OAS         CBA      66.711    10.0     3
+ENE             sp3_sp3_1         CBB         CAN         CAZ         CAV      60.000    10.0     3
+ENE             sp3_sp3_2         CBB         CAN         CAZ         OAR     180.000    10.0     3
+ENE             sp3_sp3_3         CBB         CAN         CAZ         HAZ     -60.000    10.0     3
+ENE             sp3_sp3_4        HAN1         CAN         CAZ         CAV     180.000    10.0     3
+ENE             sp3_sp3_5        HAN1         CAN         CAZ         OAR     -60.000    10.0     3
+ENE             sp3_sp3_6        HAN1         CAN         CAZ         HAZ      60.000    10.0     3
+ENE             sp3_sp3_7        HAN2         CAN         CAZ         CAV     -60.000    10.0     3
+ENE             sp3_sp3_8        HAN2         CAN         CAZ         OAR      60.000    10.0     3
+ENE             sp3_sp3_9        HAN2         CAN         CAZ         HAZ     180.000    10.0     3
+ENE            sp3_sp3_10         CAZ         CAN         CBB         CBD     -60.000    10.0     3
+ENE            sp3_sp3_11         CAZ         CAN         CBB         OAS      60.000    10.0     3
+ENE            sp3_sp3_12         CAZ         CAN         CBB         HBB     180.000    10.0     3
+ENE            sp3_sp3_13        HAN1         CAN         CBB         CBD      60.000    10.0     3
+ENE            sp3_sp3_14        HAN1         CAN         CBB         OAS     180.000    10.0     3
+ENE            sp3_sp3_15        HAN1         CAN         CBB         HBB     -60.000    10.0     3
+ENE            sp3_sp3_16        HAN2         CAN         CBB         CBD     180.000    10.0     3
+ENE            sp3_sp3_17        HAN2         CAN         CBB         OAS     -60.000    10.0     3
+ENE            sp3_sp3_18        HAN2         CAN         CBB         HBB      60.000    10.0     3
+ENE            sp3_sp3_28         CBB         CBD         OAQ         CAV     -60.000    10.0     3
+ENE            sp3_sp3_29         CAW         CBD         OAQ         CAV      60.000    10.0     3
+ENE            sp3_sp3_30         HBD         CBD         OAQ         CAV     180.000    10.0     3
+ENE            sp3_sp3_31         CAZ         CAV         OAQ         CBD      60.000    10.0     3
+ENE            sp3_sp3_32         CAI         CAV         OAQ         CBD     -60.000    10.0     3
+ENE            sp3_sp3_33         HAV         CAV         OAQ         CBD     180.000    10.0     3
+ENE            sp3_sp3_67         CAG         CAT         OAB         HAB     180.000    10.0     3
+ENE            sp3_sp3_68         CAX         CAT         OAB         HAB      60.000    10.0     3
+ENE            sp3_sp3_69         HAT         CAT         OAB         HAB     -60.000    10.0     3
+ENE             sp2_sp3_1         CAF         CAG         CAT         OAB       0.000    10.0     6
+ENE             sp2_sp3_2         CAF         CAG         CAT         CAX     120.000    10.0     6
+ENE             sp2_sp3_3         CAF         CAG         CAT         HAT    -120.000    10.0     6
+ENE             sp2_sp3_4         HAG         CAG         CAT         OAB     180.000    10.0     6
+ENE             sp2_sp3_5         HAG         CAG         CAT         CAX     -60.000    10.0     6
+ENE             sp2_sp3_6         HAG         CAG         CAT         HAT      60.000    10.0     6
+ENE            sp3_sp3_70         OAB         CAT         CAX         OAP     180.000    10.0     3
+ENE            sp3_sp3_71         OAB         CAT         CAX         CAK     -60.000    10.0     3
+ENE            sp3_sp3_72         OAB         CAT         CAX         HAX      60.000    10.0     3
+ENE            sp3_sp3_73         CAG         CAT         CAX         OAP      60.000    10.0     3
+ENE            sp3_sp3_74         CAG         CAT         CAX         CAK     180.000    10.0     3
+ENE            sp3_sp3_75         CAG         CAT         CAX         HAX     -60.000    10.0     3
+ENE            sp3_sp3_76         HAT         CAT         CAX         OAP     -60.000    10.0     3
+ENE            sp3_sp3_77         HAT         CAT         CAX         CAK      60.000    10.0     3
+ENE            sp3_sp3_78         HAT         CAT         CAX         HAX     180.000    10.0     3
+ENE             sp2_sp2_1         CAM         CAF         CAG         CAT     180.000     5.0     2
+ENE             sp2_sp2_2         CAM         CAF         CAG         HAG       0.000     5.0     2
+ENE             sp2_sp2_3         HAF         CAF         CAG         CAT       0.000     5.0     2
+ENE             sp2_sp2_4         HAF         CAF         CAG         HAG     180.000     5.0     2
+ENE             sp2_sp3_7         CAG         CAF         CAM        HAM1       0.000    10.0     6
+ENE             sp2_sp3_8         CAG         CAF         CAM         CAY     120.000    10.0     6
+ENE             sp2_sp3_9         CAG         CAF         CAM        HAM2    -120.000    10.0     6
+ENE            sp2_sp3_10         HAF         CAF         CAM        HAM1     180.000    10.0     6
+ENE            sp2_sp3_11         HAF         CAF         CAM         CAY     -60.000    10.0     6
+ENE            sp2_sp3_12         HAF         CAF         CAM        HAM2      60.000    10.0     6
+ENE            sp3_sp3_79         CAF         CAM         CAY         OAR     180.000    10.0     3
+ENE            sp3_sp3_80         CAF         CAM         CAY         CAU     -60.000    10.0     3
+ENE            sp3_sp3_81         CAF         CAM         CAY         HAY      60.000    10.0     3
+ENE            sp3_sp3_82        HAM1         CAM         CAY         OAR      60.000    10.0     3
+ENE            sp3_sp3_83        HAM1         CAM         CAY         CAU     180.000    10.0     3
+ENE            sp3_sp3_84        HAM1         CAM         CAY         HAY     -60.000    10.0     3
+ENE            sp3_sp3_85        HAM2         CAM         CAY         OAR     -60.000    10.0     3
+ENE            sp3_sp3_86        HAM2         CAM         CAY         CAU      60.000    10.0     3
+ENE            sp3_sp3_87        HAM2         CAM         CAY         HAY     180.000    10.0     3
+ENE            sp3_sp3_88         CAM         CAY         OAR         CAZ     180.000    10.0     3
+ENE            sp3_sp3_89         CAU         CAY         OAR         CAZ      60.000    10.0     3
+ENE            sp3_sp3_90         HAY         CAY         OAR         CAZ     -60.000    10.0     3
+ENE            sp3_sp3_91         CAH         CAU         CAY         CAM     180.000    10.0     3
+ENE            sp3_sp3_92         CAH         CAU         CAY         OAR     -60.000    10.0     3
+ENE            sp3_sp3_93         CAH         CAU         CAY         HAY      60.000    10.0     3
+ENE            sp3_sp3_94         OAP         CAU         CAY         CAM      60.000    10.0     3
+ENE            sp3_sp3_95         OAP         CAU         CAY         OAR     180.000    10.0     3
+ENE            sp3_sp3_96         OAP         CAU         CAY         HAY     -60.000    10.0     3
+ENE            sp3_sp3_97         HAU         CAU         CAY         CAM     -60.000    10.0     3
+ENE            sp3_sp3_98         HAU         CAU         CAY         OAR      60.000    10.0     3
+ENE            sp3_sp3_99         HAU         CAU         CAY         HAY     180.000    10.0     3
+ENE           sp3_sp3_100         CAN         CAZ         OAR         CAY     180.000    10.0     3
+ENE           sp3_sp3_101         CAV         CAZ         OAR         CAY      60.000    10.0     3
+ENE           sp3_sp3_102         HAZ         CAZ         OAR         CAY     -60.000    10.0     3
+ENE           sp3_sp3_103         OAQ         CAV         CAZ         CAN     -60.000    10.0     3
+ENE           sp3_sp3_104         OAQ         CAV         CAZ         OAR      60.000    10.0     3
+ENE           sp3_sp3_105         OAQ         CAV         CAZ         HAZ     180.000    10.0     3
+ENE           sp3_sp3_106         CAI         CAV         CAZ         CAN      60.000    10.0     3
+ENE           sp3_sp3_107         CAI         CAV         CAZ         OAR     180.000    10.0     3
+ENE           sp3_sp3_108         CAI         CAV         CAZ         HAZ     -60.000    10.0     3
+ENE           sp3_sp3_109         HAV         CAV         CAZ         CAN     180.000    10.0     3
+ENE           sp3_sp3_110         HAV         CAV         CAZ         OAR     -60.000    10.0     3
+ENE           sp3_sp3_111         HAV         CAV         CAZ         HAZ      60.000    10.0     3
+ENE           sp3_sp3_112         CAE         CAL         CBA         OAS     180.000    10.0     3
+ENE           sp3_sp3_113         CAE         CAL         CBA         CBC     -60.000    10.0     3
+ENE           sp3_sp3_114         CAE         CAL         CBA         HBA      60.000    10.0     3
+ENE           sp3_sp3_115        HAL1         CAL         CBA         OAS      60.000    10.0     3
+ENE           sp3_sp3_116        HAL1         CAL         CBA         CBC     180.000    10.0     3
+ENE           sp3_sp3_117        HAL1         CAL         CBA         HBA     -60.000    10.0     3
+ENE           sp3_sp3_118        HAL2         CAL         CBA         OAS     -60.000    10.0     3
+ENE           sp3_sp3_119        HAL2         CAL         CBA         CBC      60.000    10.0     3
+ENE           sp3_sp3_120        HAL2         CAL         CBA         HBA     180.000    10.0     3
+ENE            sp2_sp3_13         CAD         CAE         CAL        HAL1       0.000    10.0     6
+ENE            sp2_sp3_14         CAD         CAE         CAL         CBA     120.000    10.0     6
+ENE            sp2_sp3_15         CAD         CAE         CAL        HAL2    -120.000    10.0     6
+ENE            sp2_sp3_16         HAE         CAE         CAL        HAL1     180.000    10.0     6
+ENE            sp2_sp3_17         HAE         CAE         CAL         CBA     -60.000    10.0     6
+ENE            sp2_sp3_18         HAE         CAE         CAL        HAL2      60.000    10.0     6
+ENE             sp2_sp2_5         CAJ         CAD         CAE         CAL     180.000     5.0     2
+ENE             sp2_sp2_6         CAJ         CAD         CAE         HAE       0.000     5.0     2
+ENE             sp2_sp2_7         HAD         CAD         CAE         CAL       0.000     5.0     2
+ENE             sp2_sp2_8         HAD         CAD         CAE         HAE     180.000     5.0     2
+ENE            sp2_sp3_19         CAE         CAD         CAJ        HAJ1       0.000    10.0     6
+ENE            sp2_sp3_20         CAE         CAD         CAJ         OAO     120.000    10.0     6
+ENE            sp2_sp3_21         CAE         CAD         CAJ        HAJ2    -120.000    10.0     6
+ENE            sp2_sp3_22         HAD         CAD         CAJ        HAJ1     180.000    10.0     6
+ENE            sp2_sp3_23         HAD         CAD         CAJ         OAO     -60.000    10.0     6
+ENE            sp2_sp3_24         HAD         CAD         CAJ        HAJ2      60.000    10.0     6
+ENE           sp3_sp3_121         CAD         CAJ         OAO         CBC     180.000    10.0     3
+ENE           sp3_sp3_122        HAJ1         CAJ         OAO         CBC      60.000    10.0     3
+ENE           sp3_sp3_123        HAJ2         CAJ         OAO         CBC     -60.000    10.0     3
+ENE           sp3_sp3_124         CBA         CBC         OAO         CAJ     180.000    10.0     3
+ENE           sp3_sp3_125         CAW         CBC         OAO         CAJ      60.000    10.0     3
+ENE           sp3_sp3_126         HBC         CBC         OAO         CAJ     -60.000    10.0     3
+ENE           sp3_sp3_127         CBC         CAW         OAC         HAC     180.000    10.0     3
+ENE           sp3_sp3_128         CBD         CAW         OAC         HAC      60.000    10.0     3
+ENE           sp3_sp3_129         HAW         CAW         OAC         HAC     -60.000    10.0     3
+ENE            sp2_sp3_25         CAH         CAI         CAV         CAZ       0.000    10.0     6
+ENE            sp2_sp3_26         CAH         CAI         CAV         OAQ     120.000    10.0     6
+ENE            sp2_sp3_27         CAH         CAI         CAV         HAV    -120.000    10.0     6
+ENE            sp2_sp3_28         HAI         CAI         CAV         CAZ     180.000    10.0     6
+ENE            sp2_sp3_29         HAI         CAI         CAV         OAQ     -60.000    10.0     6
+ENE            sp2_sp3_30         HAI         CAI         CAV         HAV      60.000    10.0     6
+ENE             sp2_sp2_9         CAU         CAH         CAI         CAV     180.000     5.0     2
+ENE            sp2_sp2_10         CAU         CAH         CAI         HAI       0.000     5.0     2
+ENE            sp2_sp2_11         HAH         CAH         CAI         CAV       0.000     5.0     2
+ENE            sp2_sp2_12         HAH         CAH         CAI         HAI     180.000     5.0     2
+ENE            sp2_sp3_31         CAI         CAH         CAU         CAY       0.000    10.0     6
+ENE            sp2_sp3_32         CAI         CAH         CAU         OAP     120.000    10.0     6
+ENE            sp2_sp3_33         CAI         CAH         CAU         HAU    -120.000    10.0     6
+ENE            sp2_sp3_34         HAH         CAH         CAU         CAY     180.000    10.0     6
+ENE            sp2_sp3_35         HAH         CAH         CAU         OAP     -60.000    10.0     6
+ENE            sp2_sp3_36         HAH         CAH         CAU         HAU      60.000    10.0     6
+ENE           sp3_sp3_130         CAY         CAU         OAP         CAX     180.000    10.0     3
+ENE           sp3_sp3_131         CAH         CAU         OAP         CAX      60.000    10.0     3
+ENE           sp3_sp3_132         HAU         CAU         OAP         CAX     -60.000    10.0     3
+ENE           sp3_sp3_133         CAT         CAX         OAP         CAU     180.000    10.0     3
+ENE           sp3_sp3_134         CAK         CAX         OAP         CAU      60.000    10.0     3
+ENE           sp3_sp3_135         HAX         CAX         OAP         CAU     -60.000    10.0     3
+ENE           sp3_sp3_136         OAA         CAK         CAX         CAT     180.000    10.0     3
+ENE           sp3_sp3_137         OAA         CAK         CAX         OAP     -60.000    10.0     3
+ENE           sp3_sp3_138         OAA         CAK         CAX         HAX      60.000    10.0     3
+ENE           sp3_sp3_139        HAK1         CAK         CAX         CAT      60.000    10.0     3
+ENE           sp3_sp3_140        HAK1         CAK         CAX         OAP     180.000    10.0     3
+ENE           sp3_sp3_141        HAK1         CAK         CAX         HAX     -60.000    10.0     3
+ENE           sp3_sp3_142        HAK2         CAK         CAX         CAT     -60.000    10.0     3
+ENE           sp3_sp3_143        HAK2         CAK         CAX         OAP      60.000    10.0     3
+ENE           sp3_sp3_144        HAK2         CAK         CAX         HAX     180.000    10.0     3
+ENE           sp3_sp3_145         CAX         CAK         OAA         HAA     180.000    10.0     3
+ENE           sp3_sp3_146        HAK1         CAK         OAA         HAA      60.000    10.0     3
+ENE           sp3_sp3_147        HAK2         CAK         OAA         HAA     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ENE    chir_1    CAT    OAB    CAX    CAG    positive
+ENE    chir_2    CAY    OAR    CAU    CAM    negative
+ENE    chir_3    CAZ    OAR    CAV    CAN    positive
+ENE    chir_4    CBB    OAS    CBD    CAN    negative
+ENE    chir_5    CBA    OAS    CBC    CAL    positive
+ENE    chir_6    CBC    OAO    CBA    CAW    negative
+ENE    chir_7    CAW    OAC    CBD    CBC    negative
+ENE    chir_8    CBD    OAQ    CBB    CAW    positive
+ENE    chir_9    CAV    OAQ    CAZ    CAI    negative
+ENE    chir_10    CAU    OAP    CAY    CAH    positive
+ENE    chir_11    CAX    OAP    CAT    CAK    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ENE    plan-1         CAF   0.020
+ENE    plan-1         CAG   0.020
+ENE    plan-1         CAT   0.020
+ENE    plan-1         HAG   0.020
+ENE    plan-2         CAF   0.020
+ENE    plan-2         CAG   0.020
+ENE    plan-2         CAM   0.020
+ENE    plan-2         HAF   0.020
+ENE    plan-3         CAD   0.020
+ENE    plan-3         CAE   0.020
+ENE    plan-3         CAL   0.020
+ENE    plan-3         HAE   0.020
+ENE    plan-4         CAD   0.020
+ENE    plan-4         CAE   0.020
+ENE    plan-4         CAJ   0.020
+ENE    plan-4         HAD   0.020
+ENE    plan-5         CAH   0.020
+ENE    plan-5         CAI   0.020
+ENE    plan-5         CAV   0.020
+ENE    plan-5         HAI   0.020
+ENE    plan-6         CAH   0.020
+ENE    plan-6         CAI   0.020
+ENE    plan-6         CAU   0.020
+ENE    plan-6         HAH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ENE           SMILES              ACDLabs 10.04                                                                                                                                                    O3C1C(OC(CO)C(O)C=CC1)C=CC4OC2C(O)C5OCC=CCC5OC2CC34
+ENE SMILES_CANONICAL               CACTVS 3.341                                                                                                      OC[C@H]1O[C@H]2C=C[C@H]3O[C@@H]4[C@@H](C[C@@H]3O[C@@H]2C\C=C/[C@@H]1O)O[C@H]5CC=CCO[C@@H]5[C@H]4O
+ENE           SMILES               CACTVS 3.341                                                                                                                         OC[CH]1O[CH]2C=C[CH]3O[CH]4[CH](C[CH]3O[CH]2CC=C[CH]1O)O[CH]5CC=CCO[CH]5[CH]4O
+ENE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                  C1C=CCO[C@H]2[C@H]1O[C@@H]3C[C@H]4[C@@H](C=C[C@H]5[C@H](O4)C\C=C/[C@@H]([C@H](O5)CO)O)O[C@H]3[C@@H]2O
+ENE           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                    C1C=CCOC2C1OC3CC4C(C=CC5C(O4)CC=CC(C(O5)CO)O)OC3C2O
+ENE            InChI                InChI  1.03 InChI=1S/C22H30O8/c23-11-19-12(24)4-3-6-13-14(28-19)7-8-15-17(27-13)10-18-22(30-15)20(25)21-16(29-18)5-1-2-9-26-21/h1-4,7-8,12-25H,5-6,9-11H2/b4-3-/t12-,13+,14-,15+,16-,17-,18+,19+,20+,21-,22+/m0/s1
+ENE         InChIKey                InChI  1.03                                                                                                                                                                            VDRIXSJOPKVWKM-HXGIDPQASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ENE acedrg               243         "dictionary generator"                  
+ENE acedrg_database      11          "data source"                           
+ENE rdkit                2017.03.2   "Chemoinformatics tool"
+ENE refmac5              5.8.0238    "optimization tool"                     

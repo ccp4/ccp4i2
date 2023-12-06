@@ -1,0 +1,269 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RCJ     RCJ      "(2~{S},4~{S},5~{R},6~{R},7~{S},8~{R})-5-acetamido-2,4,6,7,8,9-hexakis(oxidanyl)nonanoic acid"     NON-POLYMER     41     21     .     
+#
+data_comp_RCJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RCJ     O1A     O       O       0       23.413      -11.651     -43.955     
+RCJ     C1      C       C       0       24.331      -12.453     -44.220     
+RCJ     O1B     O       OC      -1      24.542      -13.530     -43.628     
+RCJ     C2      C       CH1     0       25.280      -12.084     -45.367     
+RCJ     O2      O       OH1     0       24.545      -11.772     -46.540     
+RCJ     C3      C       CH2     0       26.169      -10.897     -45.007     
+RCJ     C4      C       CH1     0       27.298      -10.597     -45.990     
+RCJ     O4      O       OH1     0       28.259      -11.645     -45.890     
+RCJ     C5      C       CH1     0       28.014      -9.251      -45.789     
+RCJ     N5      N       NH1     0       28.488      -9.151      -44.401     
+RCJ     C10     C       C       0       27.830      -8.561      -43.393     
+RCJ     C11     C       CH3     0       28.510      -8.572      -42.060     
+RCJ     O10     O       O       0       26.725      -8.042      -43.542     
+RCJ     C6      C       CH1     0       29.187      -9.009      -46.756     
+RCJ     O6      O       OH1     0       28.928      -9.645      -48.014     
+RCJ     C7      C       CH1     0       29.541      -7.538      -47.019     
+RCJ     O7      O       OH1     0       30.415      -7.477      -48.155     
+RCJ     C8      C       CH1     0       30.181      -6.816      -45.825     
+RCJ     O8      O       OH1     0       29.155      -6.232      -45.020     
+RCJ     C9      C       CH2     0       31.160      -5.730      -46.225     
+RCJ     O9      O       OH1     0       32.368      -6.279      -46.744     
+RCJ     H2      H       H       0       25.851      -12.869     -45.553     
+RCJ     H3      H       H       0       24.277      -12.498     -46.888     
+RCJ     H4      H       H       0       26.563      -11.064     -44.123     
+RCJ     H5      H       H       0       25.602      -10.097     -44.930     
+RCJ     H6      H       H       0       26.913      -10.611     -46.903     
+RCJ     H7      H       H       0       28.016      -12.288     -46.387     
+RCJ     H8      H       H       0       27.350      -8.535      -45.950     
+RCJ     H9      H       H       0       29.258      -9.523      -44.230     
+RCJ     H10     H       H       0       27.963      -8.101      -41.411     
+RCJ     H11     H       H       0       29.373      -8.133      -42.131     
+RCJ     H12     H       H       0       28.639      -9.489      -41.767     
+RCJ     H13     H       H       0       29.993      -9.456      -46.390     
+RCJ     H14     H       H       0       28.251      -9.281      -48.375     
+RCJ     H15     H       H       0       28.702      -7.061      -47.253     
+RCJ     H16     H       H       0       30.148      -6.868      -48.683     
+RCJ     H17     H       H       0       30.678      -7.489      -45.270     
+RCJ     H18     H       H       0       29.412      -6.139      -44.217     
+RCJ     H19     H       H       0       31.369      -5.176      -45.434     
+RCJ     H20     H       H       0       30.744      -5.149      -46.908     
+RCJ     H21     H       H       0       32.843      -5.644      -47.039     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RCJ          C6          O6      SINGLE       n     1.424  0.0199     1.424  0.0199
+RCJ          C7          O7      SINGLE       n     1.424  0.0199     1.424  0.0199
+RCJ          C6          C7      SINGLE       n     1.531  0.0100     1.531  0.0100
+RCJ          C7          C8      SINGLE       n     1.530  0.0100     1.530  0.0100
+RCJ          C5          C6      SINGLE       n     1.532  0.0103     1.532  0.0103
+RCJ          C4          O4      SINGLE       n     1.424  0.0199     1.424  0.0199
+RCJ          C9          O9      SINGLE       n     1.425  0.0100     1.425  0.0100
+RCJ          C4          C5      SINGLE       n     1.532  0.0103     1.532  0.0103
+RCJ          C3          C4      SINGLE       n     1.525  0.0100     1.525  0.0100
+RCJ          C8          C9      SINGLE       n     1.514  0.0100     1.514  0.0100
+RCJ          C2          O2      SINGLE       n     1.419  0.0162     1.419  0.0162
+RCJ          C5          N5      SINGLE       n     1.464  0.0100     1.464  0.0100
+RCJ          C8          O8      SINGLE       n     1.429  0.0100     1.429  0.0100
+RCJ          C2          C3      SINGLE       n     1.525  0.0100     1.525  0.0100
+RCJ          C1          C2      SINGLE       n     1.533  0.0100     1.533  0.0100
+RCJ          N5         C10      SINGLE       n     1.335  0.0103     1.335  0.0103
+RCJ         O1A          C1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+RCJ          C1         O1B      SINGLE       n     1.247  0.0187     1.247  0.0187
+RCJ         C10         O10      DOUBLE       n     1.229  0.0102     1.229  0.0102
+RCJ         C10         C11      SINGLE       n     1.495  0.0100     1.495  0.0100
+RCJ          C2          H2      SINGLE       n     1.089  0.0100     0.988  0.0129
+RCJ          O2          H3      SINGLE       n     0.970  0.0120     0.848  0.0200
+RCJ          C3          H4      SINGLE       n     1.089  0.0100     0.983  0.0125
+RCJ          C3          H5      SINGLE       n     1.089  0.0100     0.983  0.0125
+RCJ          C4          H6      SINGLE       n     1.089  0.0100     0.992  0.0184
+RCJ          O4          H7      SINGLE       n     0.970  0.0120     0.848  0.0200
+RCJ          C5          H8      SINGLE       n     1.089  0.0100     0.989  0.0122
+RCJ          N5          H9      SINGLE       n     1.016  0.0100     0.872  0.0200
+RCJ         C11         H10      SINGLE       n     1.089  0.0100     0.971  0.0140
+RCJ         C11         H11      SINGLE       n     1.089  0.0100     0.971  0.0140
+RCJ         C11         H12      SINGLE       n     1.089  0.0100     0.971  0.0140
+RCJ          C6         H13      SINGLE       n     1.089  0.0100     0.992  0.0184
+RCJ          O6         H14      SINGLE       n     0.970  0.0120     0.848  0.0200
+RCJ          C7         H15      SINGLE       n     1.089  0.0100     0.992  0.0184
+RCJ          O7         H16      SINGLE       n     0.970  0.0120     0.848  0.0200
+RCJ          C8         H17      SINGLE       n     1.089  0.0100     1.004  0.0200
+RCJ          O8         H18      SINGLE       n     0.970  0.0120     0.848  0.0200
+RCJ          C9         H19      SINGLE       n     1.089  0.0100     0.988  0.0200
+RCJ          C9         H20      SINGLE       n     1.089  0.0100     0.988  0.0200
+RCJ          O9         H21      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RCJ          C2          C1         O1A     117.318    2.01
+RCJ          C2          C1         O1B     117.318    2.01
+RCJ         O1A          C1         O1B     125.364    1.50
+RCJ          O2          C2          C3     108.204    2.17
+RCJ          O2          C2          C1     110.439    2.49
+RCJ          O2          C2          H2     108.401    1.50
+RCJ          C3          C2          C1     111.511    2.91
+RCJ          C3          C2          H2     108.868    1.50
+RCJ          C1          C2          H2     107.755    1.52
+RCJ          C2          O2          H3     108.308    3.00
+RCJ          C4          C3          C2     114.498    3.00
+RCJ          C4          C3          H4     108.468    1.50
+RCJ          C4          C3          H5     108.468    1.50
+RCJ          C2          C3          H4     108.460    1.50
+RCJ          C2          C3          H5     108.460    1.50
+RCJ          H4          C3          H5     107.406    1.50
+RCJ          O4          C4          C5     109.040    1.72
+RCJ          O4          C4          C3     109.024    2.32
+RCJ          O4          C4          H6     108.700    1.50
+RCJ          C5          C4          C3     114.793    1.69
+RCJ          C5          C4          H6     108.500    1.50
+RCJ          C3          C4          H6     108.603    1.50
+RCJ          C4          O4          H7     108.640    2.32
+RCJ          C6          C5          C4     111.094    2.85
+RCJ          C6          C5          N5     109.748    1.50
+RCJ          C6          C5          H8     107.639    1.50
+RCJ          C4          C5          N5     109.748    1.50
+RCJ          C4          C5          H8     107.639    1.50
+RCJ          N5          C5          H8     108.194    1.50
+RCJ          C5          N5         C10     123.516    1.63
+RCJ          C5          N5          H9     117.373    3.00
+RCJ         C10          N5          H9     119.111    2.25
+RCJ          N5         C10         O10     121.667    1.50
+RCJ          N5         C10         C11     116.420    1.50
+RCJ         O10         C10         C11     121.913    1.50
+RCJ         C10         C11         H10     109.678    1.50
+RCJ         C10         C11         H11     109.678    1.50
+RCJ         C10         C11         H12     109.678    1.50
+RCJ         H10         C11         H11     109.365    1.50
+RCJ         H10         C11         H12     109.365    1.50
+RCJ         H11         C11         H12     109.365    1.50
+RCJ          O6          C6          C7     109.320    2.01
+RCJ          O6          C6          C5     109.040    1.72
+RCJ          O6          C6         H13     108.081    2.87
+RCJ          C7          C6          C5     115.018    1.61
+RCJ          C7          C6         H13     108.450    1.83
+RCJ          C5          C6         H13     108.500    1.50
+RCJ          C6          O6         H14     108.522    3.00
+RCJ          O7          C7          C6     109.320    2.01
+RCJ          O7          C7          C8     109.164    1.97
+RCJ          O7          C7         H15     108.243    1.50
+RCJ          C6          C7          C8     113.695    2.13
+RCJ          C6          C7         H15     108.450    1.83
+RCJ          C8          C7         H15     108.336    1.50
+RCJ          C7          O7         H16     108.564    3.00
+RCJ          C7          C8          C9     112.159    1.50
+RCJ          C7          C8          O8     109.549    1.85
+RCJ          C7          C8         H17     108.777    1.50
+RCJ          C9          C8          O8     109.623    1.60
+RCJ          C9          C8         H17     107.986    1.50
+RCJ          O8          C8         H17     108.591    1.50
+RCJ          C8          O8         H18     111.202    3.00
+RCJ          O9          C9          C8     111.364    1.50
+RCJ          O9          C9         H19     109.268    1.50
+RCJ          O9          C9         H20     109.268    1.50
+RCJ          C8          C9         H19     109.234    1.50
+RCJ          C8          C9         H20     109.234    1.50
+RCJ         H19          C9         H20     108.313    1.50
+RCJ          C9          O9         H21     108.280    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RCJ            sp2_sp3_13          N5         C10         C11         H10       0.000    10.0     6
+RCJ             sp3_sp3_1          C7          C6          O6         H14     180.000    10.0     3
+RCJ             sp3_sp3_7          O6          C6          C7          O7     180.000    10.0     3
+RCJ             sp3_sp3_4          C6          C7          O7         H16     180.000    10.0     3
+RCJ            sp3_sp3_16          O7          C7          C8          C9     180.000    10.0     3
+RCJ            sp3_sp3_70          C7          C8          O8         H18     180.000    10.0     3
+RCJ            sp3_sp3_58          C7          C8          C9          O9     180.000    10.0     3
+RCJ            sp3_sp3_37          C8          C9          O9         H21     180.000    10.0     3
+RCJ             sp2_sp3_7         O1A          C1          C2          O2       0.000    10.0     6
+RCJ            sp3_sp3_67          C3          C2          O2          H3     180.000    10.0     3
+RCJ            sp3_sp3_73          O2          C2          C3          C4     180.000    10.0     3
+RCJ            sp3_sp3_49          C2          C3          C4          O4     180.000    10.0     3
+RCJ            sp3_sp3_34          C5          C4          O4          H7     180.000    10.0     3
+RCJ            sp3_sp3_40          O4          C4          C5          C6     180.000    10.0     3
+RCJ            sp3_sp3_25          C4          C5          C6          O6     180.000    10.0     3
+RCJ             sp2_sp3_1         C10          N5          C5          C6       0.000    10.0     6
+RCJ             sp2_sp2_3         O10         C10          N5          C5       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RCJ    chir_1    C2    O2    C1    C3    positive
+RCJ    chir_2    C4    O4    C5    C3    positive
+RCJ    chir_3    C5    N5    C6    C4    negative
+RCJ    chir_4    C6    O6    C7    C5    negative
+RCJ    chir_5    C7    O7    C8    C6    positive
+RCJ    chir_6    C8    O8    C7    C9    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RCJ    plan-1          C1   0.020
+RCJ    plan-1          C2   0.020
+RCJ    plan-1         O1A   0.020
+RCJ    plan-1         O1B   0.020
+RCJ    plan-2         C10   0.020
+RCJ    plan-2          C5   0.020
+RCJ    plan-2          H9   0.020
+RCJ    plan-2          N5   0.020
+RCJ    plan-3         C10   0.020
+RCJ    plan-3         C11   0.020
+RCJ    plan-3          N5   0.020
+RCJ    plan-3         O10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RCJ            InChI                InChI  1.03 InChI=1S/C11H21NO9/c1-4(14)12-8(5(15)2-6(16)11(20)21)10(19)9(18)7(17)3-13/h5-10,13,15-19H,2-3H2,1H3,(H,12,14)(H,20,21)/t5-,6-,7+,8+,9+,10+/m0/s1
+RCJ         InChIKey                InChI  1.03                                                                                                                      REORMAHRVILHOU-HQBQHRAMSA-N
+RCJ SMILES_CANONICAL               CACTVS 3.385                                                                                CC(=O)N[C@H]([C@@H](O)C[C@H](O)C(O)=O)[C@@H](O)[C@H](O)[C@H](O)CO
+RCJ           SMILES               CACTVS 3.385                                                                                        CC(=O)N[CH]([CH](O)C[CH](O)C(O)=O)[CH](O)[CH](O)[CH](O)CO
+RCJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                                               CC(=O)N[C@H]([C@H](C[C@@H](C(=O)O)O)O)[C@H]([C@@H]([C@@H](CO)O)O)O
+RCJ           SMILES "OpenEye OEToolkits" 2.0.5                                                                                                          CC(=O)NC(C(CC(C(=O)O)O)O)C(C(C(CO)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RCJ acedrg               243         "dictionary generator"                  
+RCJ acedrg_database      11          "data source"                           
+RCJ rdkit                2017.03.2   "Chemoinformatics tool"
+RCJ refmac5              5.8.0238    "optimization tool"                     

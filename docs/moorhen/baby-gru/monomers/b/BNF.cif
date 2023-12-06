@@ -1,0 +1,174 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BNF     BNF      N-BENZYLFORMAMIDE     NON-POLYMER     19     10     .     
+#
+data_comp_BNF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BNF     C1      C       CR16    0       -1.974      -0.813      -19.431     
+BNF     C2      C       CR16    0       -2.286      0.144       -18.486     
+BNF     C3      C       CR16    0       -1.346      0.510       -17.545     
+BNF     C4      C       CR16    0       -0.089      -0.082      -17.547     
+BNF     C5      C       CR6     0       0.237       -1.046      -18.494     
+BNF     C6      C       CR16    0       -0.718      -1.407      -19.437     
+BNF     C12     C       CH2     0       1.602       -1.689      -18.495     
+BNF     N13     N       NH1     0       2.533       -1.042      -19.419     
+BNF     C14     C       C1      0       2.843       -1.522      -20.628     
+BNF     O16     O       O       0       2.396       -2.552      -21.137     
+BNF     H1      H       H       0       -2.616      -1.064      -20.076     
+BNF     H2      H       H       0       -3.139      0.547       -18.483     
+BNF     H3      H       H       0       -1.557      1.164       -16.898     
+BNF     H4      H       H       0       0.550       0.173       -16.900     
+BNF     H6      H       H       0       -0.512      -2.060      -20.086     
+BNF     H121    H       H       0       1.509       -2.635      -18.732     
+BNF     H122    H       H       0       1.974       -1.645      -17.590     
+BNF     H13     H       H       0       2.911       -0.296      -19.167     
+BNF     H14     H       H       0       3.477       -0.998      -21.131     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BNF          C1          C2      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BNF          C1          C6      SINGLE       y     1.386  0.0100     1.386  0.0100
+BNF          C2          C3      SINGLE       y     1.374  0.0127     1.374  0.0127
+BNF          C3          C4      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BNF          C4          C5      SINGLE       y     1.386  0.0100     1.386  0.0100
+BNF          C5          C6      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BNF          C5         C12      SINGLE       n     1.508  0.0100     1.508  0.0100
+BNF         C12         N13      SINGLE       n     1.455  0.0191     1.455  0.0191
+BNF         N13         C14      SINGLE       n     1.328  0.0200     1.328  0.0200
+BNF         C14         O16      DOUBLE       n     1.232  0.0100     1.232  0.0100
+BNF          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0175
+BNF          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0161
+BNF          C3          H3      SINGLE       n     1.082  0.0130     0.944  0.0175
+BNF          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+BNF          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0174
+BNF         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0169
+BNF         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0169
+BNF         N13         H13      SINGLE       n     1.016  0.0100     0.873  0.0200
+BNF         C14         H14      SINGLE       n     1.082  0.0130     0.964  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BNF          C2          C1          C6     120.273    1.50
+BNF          C2          C1          H1     119.909    1.50
+BNF          C6          C1          H1     119.818    1.50
+BNF          C1          C2          C3     119.997    1.50
+BNF          C1          C2          H2     119.998    1.50
+BNF          C3          C2          H2     119.998    1.50
+BNF          C2          C3          C4     120.273    1.50
+BNF          C2          C3          H3     119.909    1.50
+BNF          C4          C3          H3     119.818    1.50
+BNF          C3          C4          C5     120.442    1.50
+BNF          C3          C4          H4     119.815    1.50
+BNF          C5          C4          H4     119.742    1.50
+BNF          C4          C5          C6     118.580    1.50
+BNF          C4          C5         C12     120.710    1.50
+BNF          C6          C5         C12     120.710    1.50
+BNF          C1          C6          C5     120.442    1.50
+BNF          C1          C6          H6     119.815    1.50
+BNF          C5          C6          H6     119.742    1.50
+BNF          C5         C12         N13     112.746    1.93
+BNF          C5         C12        H121     109.073    1.50
+BNF          C5         C12        H122     109.073    1.50
+BNF         N13         C12        H121     108.967    1.50
+BNF         N13         C12        H122     108.967    1.50
+BNF        H121         C12        H122     107.860    1.50
+BNF         C12         N13         C14     122.916    1.50
+BNF         C12         N13         H13     118.611    1.76
+BNF         C14         N13         H13     118.473    1.93
+BNF         N13         C14         O16     125.163    1.50
+BNF         N13         C14         H14     115.820    2.36
+BNF         O16         C14         H14     119.017    2.52
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BNF       const_sp2_sp2_1          C6          C1          C2          C3       0.000     5.0     2
+BNF              const_21          C2          C1          C6          C5       0.000    10.0     2
+BNF       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+BNF       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+BNF              const_14          C3          C4          C5         C12     180.000    10.0     2
+BNF              const_19         C12          C5          C6          C1     180.000    10.0     2
+BNF             sp2_sp3_2          C4          C5         C12         N13     -90.000    10.0     6
+BNF             sp2_sp3_8         C14         N13         C12          C5     120.000    10.0     6
+BNF             sp2_sp2_1         O16         C14         N13         C12     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BNF    plan-1          C1   0.020
+BNF    plan-1         C12   0.020
+BNF    plan-1          C2   0.020
+BNF    plan-1          C3   0.020
+BNF    plan-1          C4   0.020
+BNF    plan-1          C5   0.020
+BNF    plan-1          C6   0.020
+BNF    plan-1          H1   0.020
+BNF    plan-1          H2   0.020
+BNF    plan-1          H3   0.020
+BNF    plan-1          H4   0.020
+BNF    plan-1          H6   0.020
+BNF    plan-2         C12   0.020
+BNF    plan-2         C14   0.020
+BNF    plan-2         H13   0.020
+BNF    plan-2         N13   0.020
+BNF    plan-3         C14   0.020
+BNF    plan-3         H14   0.020
+BNF    plan-3         N13   0.020
+BNF    plan-3         O16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BNF           SMILES              ACDLabs 10.04                                                O=CNCc1ccccc1
+BNF SMILES_CANONICAL               CACTVS 3.341                                                O=CNCc1ccccc1
+BNF           SMILES               CACTVS 3.341                                                O=CNCc1ccccc1
+BNF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                              c1ccc(cc1)CNC=O
+BNF           SMILES "OpenEye OEToolkits" 1.5.0                                              c1ccc(cc1)CNC=O
+BNF            InChI                InChI  1.03 InChI=1S/C8H9NO/c10-7-9-6-8-4-2-1-3-5-8/h1-5,7H,6H2,(H,9,10)
+BNF         InChIKey                InChI  1.03                                  IIBOGKHTXBPGEI-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BNF acedrg               243         "dictionary generator"                  
+BNF acedrg_database      11          "data source"                           
+BNF rdkit                2017.03.2   "Chemoinformatics tool"
+BNF refmac5              5.8.0238    "optimization tool"                     

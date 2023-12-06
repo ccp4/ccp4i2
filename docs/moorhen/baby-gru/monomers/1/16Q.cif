@@ -1,0 +1,167 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+16Q     16Q      ethoxybenzene     NON-POLYMER     19     9     .     
+#
+data_comp_16Q
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+16Q     C9      C       CH3     0       13.691      53.662      82.084      
+16Q     C8      C       CH2     0       12.729      53.235      81.011      
+16Q     O7      O       O2      0       12.538      51.815      81.113      
+16Q     C1      C       CR6     0       13.474      50.925      80.641      
+16Q     C2      C       CR16    0       14.709      51.232      80.069      
+16Q     C6      C       CR16    0       13.095      49.593      80.780      
+16Q     C5      C       CR16    0       13.945      48.584      80.347      
+16Q     C4      C       CR16    0       15.164      48.887      79.781      
+16Q     C3      C       CR16    0       15.543      50.206      79.643      
+16Q     H1      H       H       0       14.556      53.854      81.686      
+16Q     H2      H       H       0       13.789      52.954      82.741      
+16Q     H3      H       H       0       13.354      54.461      82.521      
+16Q     H4      H       H       0       13.077      53.471      80.127      
+16Q     H5      H       H       0       11.872      53.692      81.133      
+16Q     H6      H       H       0       14.982      52.127      79.969      
+16Q     H7      H       H       0       12.263      49.377      81.166      
+16Q     H8      H       H       0       13.683      47.683      80.443      
+16Q     H9      H       H       0       15.737      48.196      79.489      
+16Q     H10     H       H       0       16.377      50.417      79.256      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+16Q          C2          C3      SINGLE       y     1.385  0.0100     1.385  0.0100
+16Q          C4          C3      DOUBLE       y     1.376  0.0124     1.376  0.0124
+16Q          C1          C2      DOUBLE       y     1.386  0.0109     1.386  0.0109
+16Q          C5          C4      SINGLE       y     1.375  0.0126     1.375  0.0126
+16Q          O7          C1      SINGLE       n     1.369  0.0106     1.369  0.0106
+16Q          C1          C6      SINGLE       y     1.386  0.0109     1.386  0.0109
+16Q          C8          O7      SINGLE       n     1.432  0.0104     1.432  0.0104
+16Q          C6          C5      DOUBLE       y     1.385  0.0100     1.385  0.0100
+16Q          C9          C8      SINGLE       n     1.498  0.0164     1.498  0.0164
+16Q          C9          H1      SINGLE       n     1.089  0.0100     0.971  0.0156
+16Q          C9          H2      SINGLE       n     1.089  0.0100     0.971  0.0156
+16Q          C9          H3      SINGLE       n     1.089  0.0100     0.971  0.0156
+16Q          C8          H4      SINGLE       n     1.089  0.0100     0.979  0.0127
+16Q          C8          H5      SINGLE       n     1.089  0.0100     0.979  0.0127
+16Q          C2          H6      SINGLE       n     1.082  0.0130     0.942  0.0163
+16Q          C6          H7      SINGLE       n     1.082  0.0130     0.942  0.0163
+16Q          C5          H8      SINGLE       n     1.082  0.0130     0.943  0.0183
+16Q          C4          H9      SINGLE       n     1.082  0.0130     0.944  0.0161
+16Q          C3         H10      SINGLE       n     1.082  0.0130     0.943  0.0183
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+16Q          C8          C9          H1     109.553    1.50
+16Q          C8          C9          H2     109.553    1.50
+16Q          C8          C9          H3     109.553    1.50
+16Q          H1          C9          H2     109.410    1.50
+16Q          H1          C9          H3     109.410    1.50
+16Q          H2          C9          H3     109.410    1.50
+16Q          O7          C8          C9     107.613    1.50
+16Q          O7          C8          H4     110.040    1.50
+16Q          O7          C8          H5     110.040    1.50
+16Q          C9          C8          H4     110.271    1.50
+16Q          C9          C8          H5     110.271    1.50
+16Q          H4          C8          H5     108.599    1.50
+16Q          C1          O7          C8     118.081    1.50
+16Q          C2          C1          O7     120.025    3.00
+16Q          C2          C1          C6     119.950    1.50
+16Q          O7          C1          C6     120.025    3.00
+16Q          C3          C2          C1     119.315    1.50
+16Q          C3          C2          H6     120.377    1.50
+16Q          C1          C2          H6     120.308    1.50
+16Q          C1          C6          C5     119.315    1.50
+16Q          C1          C6          H7     120.308    1.50
+16Q          C5          C6          H7     120.377    1.50
+16Q          C4          C5          C6     120.734    1.50
+16Q          C4          C5          H8     119.817    1.50
+16Q          C6          C5          H8     119.448    1.50
+16Q          C3          C4          C5     119.951    1.50
+16Q          C3          C4          H9     120.024    1.50
+16Q          C5          C4          H9     120.024    1.50
+16Q          C2          C3          C4     120.734    1.50
+16Q          C2          C3         H10     119.448    1.50
+16Q          C4          C3         H10     119.817    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+16Q             sp3_sp3_4          O7          C8          C9          H1     180.000    10.0     3
+16Q             sp3_sp3_1          C9          C8          O7          C1     180.000    10.0     3
+16Q             sp2_sp2_1          C2          C1          O7          C8     180.000     5.0     2
+16Q       const_sp2_sp2_3          O7          C1          C2          C3     180.000     5.0     2
+16Q              const_23          O7          C1          C6          C5     180.000    10.0     2
+16Q       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+16Q              const_17          C4          C5          C6          C1       0.000    10.0     2
+16Q              const_13          C3          C4          C5          C6       0.000    10.0     2
+16Q       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+16Q    plan-1          C1   0.020
+16Q    plan-1          C2   0.020
+16Q    plan-1          C3   0.020
+16Q    plan-1          C4   0.020
+16Q    plan-1          C5   0.020
+16Q    plan-1          C6   0.020
+16Q    plan-1         H10   0.020
+16Q    plan-1          H6   0.020
+16Q    plan-1          H7   0.020
+16Q    plan-1          H8   0.020
+16Q    plan-1          H9   0.020
+16Q    plan-1          O7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+16Q           SMILES              ACDLabs 12.01                               "ethyl phenyl ether"
+16Q            InChI                InChI  1.03 InChI=1S/C8H10O/c1-2-9-8-6-4-3-5-7-8/h3-7H,2H2,1H3
+16Q         InChIKey                InChI  1.03                        DLRJIFUOBPOJNS-UHFFFAOYSA-N
+16Q SMILES_CANONICAL               CACTVS 3.370                                        CCOc1ccccc1
+16Q           SMILES               CACTVS 3.370                                        CCOc1ccccc1
+16Q SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                        CCOc1ccccc1
+16Q           SMILES "OpenEye OEToolkits" 1.7.6                                        CCOc1ccccc1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+16Q acedrg               243         "dictionary generator"                  
+16Q acedrg_database      11          "data source"                           
+16Q rdkit                2017.03.2   "Chemoinformatics tool"
+16Q refmac5              5.8.0238    "optimization tool"                     

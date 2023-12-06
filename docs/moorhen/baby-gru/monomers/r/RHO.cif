@@ -1,0 +1,426 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RHO     RHO      TETRAMETHYLRHODAMINE-5-MALEIMIDE     NON-POLYMER     60     36     .     
+#
+data_comp_RHO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RHO     C       C       CR6     0       -1.838      -1.601      -0.350      
+RHO     C1      C       CR16    0       -2.623      -0.645      0.313       
+RHO     C2      C       CR66    0       -3.460      -1.007      1.336       
+RHO     C3      C       CR66    0       -3.569      -2.339      1.759       
+RHO     C4      C       CR16    0       -2.785      -3.314      1.101       
+RHO     C5      C       CR16    0       -1.952      -2.960      0.086       
+RHO     N       N       N       0       -1.000      -1.259      -1.372      
+RHO     C6      C       CH3     0       -0.085      -0.140      -1.255      
+RHO     C7      C       CH3     0       -0.992      -1.998      -2.619      
+RHO     OH1     O       O2      0       -4.196      -0.016      1.942       
+RHO     C8      C       CR6     0       -4.490      -2.646      2.861       
+RHO     C9      C       CR66    0       -4.834      -0.254      3.103       
+RHO     C10     C       CR16    0       -5.225      0.828       3.913       
+RHO     C11     C       CR6     0       -6.247      0.677       4.875       
+RHO     C12     C       CR16    0       -6.667      -0.554      5.169       
+RHO     C13     C       CH2     0       -6.105      -1.753      4.638       
+RHO     C14     C       CR66    0       -5.125      -1.555      3.514       
+RHO     N1      N       N       0       -6.808      1.752       5.472       
+RHO     C15     C       CH3     0       -7.377      2.841       4.687       
+RHO     C16     C       CH3     0       -6.859      1.882       6.923       
+RHO     C17     C       CR6     0       -4.767      -4.061      3.263       
+RHO     C18     C       CR6     0       -4.050      -4.703      4.296       
+RHO     C19     C       CR16    0       -4.358      -6.030      4.620       
+RHO     C20     C       CR6     0       -5.356      -6.704      3.929       
+RHO     C21     C       CR16    0       -6.059      -6.081      2.916       
+RHO     C22     C       CR16    0       -5.768      -4.768      2.582       
+RHO     C23     C       C       0       -2.957      -4.008      5.073       
+RHO     OH2     O       O       0       -3.185      -3.720      6.262       
+RHO     OH3     O       OC      -1      -1.891      -3.764      4.481       
+RHO     N2      N       NR5     0       -5.658      -8.061      4.272       
+RHO     C24     C       CR5     0       -4.756      -9.130      4.218       
+RHO     OH4     O       O       0       -3.598      -9.052      3.892       
+RHO     C25     C       CR15    0       -5.519      -10.332     4.635       
+RHO     C26     C       CR15    0       -6.779      -10.000     4.808       
+RHO     C27     C       CR5     0       -6.905      -8.525      4.707       
+RHO     OH5     O       O       0       -7.865      -7.835      4.943       
+RHO     HC1     H       H       0       -2.573      0.253       0.053       
+RHO     HC4     H       H       0       -2.833      -4.217      1.361       
+RHO     HC5     H       H       0       -1.441      -3.620      -0.338      
+RHO     HC61    H       H       0       0.158       -0.008      -0.323      
+RHO     HC62    H       H       0       -0.512      0.665       -1.591      
+RHO     HC63    H       H       0       0.718       -0.317      -1.772      
+RHO     HC71    H       H       0       -1.869      -2.384      -2.781      
+RHO     HC72    H       H       0       -0.333      -2.710      -2.571      
+RHO     HC73    H       H       0       -0.765      -1.402      -3.353      
+RHO     H10C    H       H       0       -4.798      1.660       3.811       
+RHO     H12C    H       H       0       -7.394      -0.640      5.766       
+RHO     H131    H       H       0       -6.839      -2.319      4.319       
+RHO     H132    H       H       0       -5.654      -2.230      5.368       
+RHO     H151    H       H       0       -7.635      2.516       3.808       
+RHO     H152    H       H       0       -6.718      3.547       4.587       
+RHO     H153    H       H       0       -8.160      3.195       5.140       
+RHO     H161    H       H       0       -6.152      1.351       7.327       
+RHO     H162    H       H       0       -7.720      1.571       7.247       
+RHO     H163    H       H       0       -6.740      2.814       7.171       
+RHO     H19C    H       H       0       -3.887      -6.462      5.305       
+RHO     H21C    H       H       0       -6.730      -6.542      2.456       
+RHO     H22C    H       H       0       -6.248      -4.344      1.890       
+RHO     H25C    H       H       0       -5.154      -11.189     4.754       
+RHO     H26C    H       H       0       -7.489      -10.593     4.969       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RHO           C          C1      DOUBLE       y     1.399  0.0100     1.399  0.0100
+RHO           C          C5      SINGLE       y     1.426  0.0109     1.426  0.0109
+RHO           C           N      SINGLE       n     1.351  0.0198     1.351  0.0198
+RHO          C1          C2      SINGLE       y     1.366  0.0108     1.366  0.0108
+RHO          C2          C3      DOUBLE       y     1.395  0.0100     1.395  0.0100
+RHO          C2         OH1      SINGLE       n     1.371  0.0100     1.371  0.0100
+RHO          C3          C4      SINGLE       y     1.404  0.0133     1.404  0.0133
+RHO          C3          C8      SINGLE       n     1.446  0.0200     1.446  0.0200
+RHO          C4          C5      DOUBLE       y     1.357  0.0100     1.357  0.0100
+RHO           N          C6      SINGLE       n     1.447  0.0119     1.447  0.0119
+RHO           N          C7      SINGLE       n     1.447  0.0119     1.447  0.0119
+RHO         OH1          C9      SINGLE       n     1.341  0.0100     1.341  0.0100
+RHO          C8         C14      DOUBLE       n     1.404  0.0200     1.404  0.0200
+RHO          C8         C17      SINGLE       n     1.494  0.0100     1.494  0.0100
+RHO          C9         C10      DOUBLE       n     1.407  0.0100     1.407  0.0100
+RHO          C9         C14      SINGLE       n     1.387  0.0200     1.387  0.0200
+RHO         C10         C11      SINGLE       n     1.393  0.0200     1.393  0.0200
+RHO         C11         C12      DOUBLE       n     1.324  0.0107     1.324  0.0107
+RHO         C11          N1      SINGLE       n     1.345  0.0127     1.345  0.0127
+RHO         C12         C13      SINGLE       n     1.401  0.0200     1.401  0.0200
+RHO         C13         C14      SINGLE       n     1.491  0.0200     1.491  0.0200
+RHO          N1         C15      SINGLE       n     1.456  0.0100     1.456  0.0100
+RHO          N1         C16      SINGLE       n     1.456  0.0100     1.456  0.0100
+RHO         C17         C18      DOUBLE       y     1.406  0.0100     1.406  0.0100
+RHO         C17         C22      SINGLE       y     1.385  0.0200     1.385  0.0200
+RHO         C18         C19      SINGLE       y     1.395  0.0112     1.395  0.0112
+RHO         C18         C23      SINGLE       n     1.508  0.0126     1.508  0.0126
+RHO         C19         C20      DOUBLE       y     1.385  0.0100     1.385  0.0100
+RHO         C20         C21      SINGLE       y     1.379  0.0105     1.379  0.0105
+RHO         C20          N2      SINGLE       n     1.430  0.0100     1.430  0.0100
+RHO         C21         C22      DOUBLE       y     1.383  0.0100     1.383  0.0100
+RHO         C23         OH2      DOUBLE       n     1.244  0.0200     1.244  0.0200
+RHO         C23         OH3      SINGLE       n     1.244  0.0200     1.244  0.0200
+RHO          N2         C24      SINGLE       n     1.399  0.0100     1.399  0.0100
+RHO          N2         C27      SINGLE       n     1.399  0.0100     1.399  0.0100
+RHO         C24         OH4      DOUBLE       n     1.205  0.0100     1.205  0.0100
+RHO         C24         C25      SINGLE       n     1.484  0.0100     1.484  0.0100
+RHO         C25         C26      DOUBLE       n     1.315  0.0114     1.315  0.0114
+RHO         C26         C27      SINGLE       n     1.484  0.0100     1.484  0.0100
+RHO         C27         OH5      DOUBLE       n     1.205  0.0100     1.205  0.0100
+RHO          C1         HC1      SINGLE       n     1.082  0.0130     0.936  0.0100
+RHO          C4         HC4      SINGLE       n     1.082  0.0130     0.942  0.0111
+RHO          C5         HC5      SINGLE       n     1.082  0.0130     0.936  0.0146
+RHO          C6        HC61      SINGLE       n     1.089  0.0100     0.971  0.0181
+RHO          C6        HC62      SINGLE       n     1.089  0.0100     0.971  0.0181
+RHO          C6        HC63      SINGLE       n     1.089  0.0100     0.971  0.0181
+RHO          C7        HC71      SINGLE       n     1.089  0.0100     0.971  0.0181
+RHO          C7        HC72      SINGLE       n     1.089  0.0100     0.971  0.0181
+RHO          C7        HC73      SINGLE       n     1.089  0.0100     0.971  0.0181
+RHO         C10        H10C      SINGLE       n     1.082  0.0130     0.941  0.0138
+RHO         C12        H12C      SINGLE       n     1.082  0.0130     0.944  0.0144
+RHO         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0200
+RHO         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0200
+RHO         C15        H151      SINGLE       n     1.089  0.0100     0.971  0.0181
+RHO         C15        H152      SINGLE       n     1.089  0.0100     0.971  0.0181
+RHO         C15        H153      SINGLE       n     1.089  0.0100     0.971  0.0181
+RHO         C16        H161      SINGLE       n     1.089  0.0100     0.971  0.0181
+RHO         C16        H162      SINGLE       n     1.089  0.0100     0.971  0.0181
+RHO         C16        H163      SINGLE       n     1.089  0.0100     0.971  0.0181
+RHO         C19        H19C      SINGLE       n     1.082  0.0130     0.937  0.0116
+RHO         C21        H21C      SINGLE       n     1.082  0.0130     0.935  0.0124
+RHO         C22        H22C      SINGLE       n     1.082  0.0130     0.943  0.0195
+RHO         C25        H25C      SINGLE       n     1.082  0.0130     0.939  0.0109
+RHO         C26        H26C      SINGLE       n     1.082  0.0130     0.939  0.0109
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RHO          C1           C          C5     117.331    1.50
+RHO          C1           C           N     121.667    1.50
+RHO          C5           C           N     121.002    1.50
+RHO           C          C1          C2     120.501    1.50
+RHO           C          C1         HC1     119.616    1.50
+RHO          C2          C1         HC1     119.882    1.50
+RHO          C1          C2          C3     121.442    1.50
+RHO          C1          C2         OH1     117.838    1.50
+RHO          C3          C2         OH1     120.720    1.87
+RHO          C2          C3          C4     118.669    1.50
+RHO          C2          C3          C8     119.288    1.50
+RHO          C4          C3          C8     122.043    1.50
+RHO          C3          C4          C5     120.658    1.50
+RHO          C3          C4         HC4     119.879    1.50
+RHO          C5          C4         HC4     119.462    1.50
+RHO           C          C5          C4     121.398    1.50
+RHO           C          C5         HC5     119.199    1.50
+RHO          C4          C5         HC5     119.403    1.50
+RHO           C           N          C6     121.205    1.50
+RHO           C           N          C7     121.205    1.50
+RHO          C6           N          C7     117.590    1.50
+RHO           N          C6        HC61     109.662    1.50
+RHO           N          C6        HC62     109.662    1.50
+RHO           N          C6        HC63     109.662    1.50
+RHO        HC61          C6        HC62     109.352    1.56
+RHO        HC61          C6        HC63     109.352    1.56
+RHO        HC62          C6        HC63     109.352    1.56
+RHO           N          C7        HC71     109.662    1.50
+RHO           N          C7        HC72     109.662    1.50
+RHO           N          C7        HC73     109.662    1.50
+RHO        HC71          C7        HC72     109.352    1.56
+RHO        HC71          C7        HC73     109.352    1.56
+RHO        HC72          C7        HC73     109.352    1.56
+RHO          C2         OH1          C9     119.736    1.50
+RHO          C3          C8         C14     119.756    1.80
+RHO          C3          C8         C17     118.947    3.00
+RHO         C14          C8         C17     121.297    3.00
+RHO         OH1          C9         C10     117.739    2.98
+RHO         OH1          C9         C14     120.853    1.50
+RHO         C10          C9         C14     121.408    1.88
+RHO          C9         C10         C11     120.775    1.98
+RHO          C9         C10        H10C     119.397    1.50
+RHO         C11         C10        H10C     119.828    1.50
+RHO         C10         C11         C12     117.570    1.50
+RHO         C10         C11          N1     122.006    1.50
+RHO         C12         C11          N1     120.423    2.97
+RHO         C11         C12         C13     121.779    3.00
+RHO         C11         C12        H12C     118.950    1.50
+RHO         C13         C12        H12C     119.270    1.50
+RHO         C12         C13         C14     111.158    2.71
+RHO         C12         C13        H131     108.266    1.50
+RHO         C12         C13        H132     108.266    1.50
+RHO         C14         C13        H131     108.688    1.50
+RHO         C14         C13        H132     108.688    1.50
+RHO        H131         C13        H132     107.850    2.28
+RHO          C8         C14          C9     119.647    1.56
+RHO          C8         C14         C13     119.175    2.34
+RHO          C9         C14         C13     121.178    2.42
+RHO         C11          N1         C15     121.264    1.50
+RHO         C11          N1         C16     121.264    1.50
+RHO         C15          N1         C16     117.472    1.50
+RHO          N1         C15        H151     109.571    1.50
+RHO          N1         C15        H152     109.571    1.50
+RHO          N1         C15        H153     109.571    1.50
+RHO        H151         C15        H152     109.377    1.50
+RHO        H151         C15        H153     109.377    1.50
+RHO        H152         C15        H153     109.377    1.50
+RHO          N1         C16        H161     109.571    1.50
+RHO          N1         C16        H162     109.571    1.50
+RHO          N1         C16        H163     109.571    1.50
+RHO        H161         C16        H162     109.377    1.50
+RHO        H161         C16        H163     109.377    1.50
+RHO        H162         C16        H163     109.377    1.50
+RHO          C8         C17         C18     121.463    1.91
+RHO          C8         C17         C22     119.292    1.61
+RHO         C18         C17         C22     119.245    1.50
+RHO         C17         C18         C19     119.193    1.50
+RHO         C17         C18         C23     121.766    2.32
+RHO         C19         C18         C23     119.041    1.50
+RHO         C18         C19         C20     120.086    1.81
+RHO         C18         C19        H19C     119.696    1.50
+RHO         C20         C19        H19C     120.218    1.50
+RHO         C19         C20         C21     121.054    1.50
+RHO         C19         C20          N2     119.348    1.50
+RHO         C21         C20          N2     119.598    1.50
+RHO         C20         C21         C22     119.926    1.50
+RHO         C20         C21        H21C     120.195    1.50
+RHO         C22         C21        H21C     119.883    1.50
+RHO         C17         C22         C21     120.492    1.50
+RHO         C17         C22        H22C     119.671    1.50
+RHO         C21         C22        H22C     119.837    1.50
+RHO         C18         C23         OH2     117.750    1.50
+RHO         C18         C23         OH3     117.750    1.50
+RHO         OH2         C23         OH3     124.500    1.50
+RHO         C20          N2         C24     125.212    1.50
+RHO         C20          N2         C27     125.212    1.50
+RHO         C24          N2         C27     109.577    1.50
+RHO          N2         C24         OH4     125.233    1.50
+RHO          N2         C24         C25     106.117    1.50
+RHO         OH4         C24         C25     128.651    1.50
+RHO         C24         C25         C26     109.095    1.50
+RHO         C24         C25        H25C     124.999    1.80
+RHO         C26         C25        H25C     125.906    1.50
+RHO         C25         C26         C27     109.095    1.50
+RHO         C25         C26        H26C     125.906    1.50
+RHO         C27         C26        H26C     124.999    1.80
+RHO          N2         C27         C26     106.116    1.50
+RHO          N2         C27         OH5     125.234    1.50
+RHO         C26         C27         OH5     128.651    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RHO              const_27           N           C          C1          C2     180.000    10.0     2
+RHO              const_43           N           C          C5          C4     180.000    10.0     2
+RHO            sp2_sp2_43          C1           C           N          C6     180.000     5.0     2
+RHO            sp2_sp2_17          C9         C14          C8          C3       0.000     5.0     2
+RHO            sp2_sp2_49         C18         C17          C8          C3     180.000     5.0     2
+RHO             sp2_sp2_2         C11         C10          C9         OH1     180.000     5.0     2
+RHO            sp2_sp2_21          C8         C14          C9         OH1       0.000     5.0     2
+RHO             sp2_sp2_6          C9         C10         C11          N1     180.000     5.0     2
+RHO            sp2_sp2_11          N1         C11         C12         C13     180.000     5.0     2
+RHO            sp2_sp2_53         C10         C11          N1         C15     180.000     5.0     2
+RHO             sp2_sp3_1         C11         C12         C13         C14       0.000    10.0     6
+RHO            sp2_sp3_10          C8         C14         C13         C12     180.000    10.0     6
+RHO            sp2_sp3_28         C16          N1         C15        H151     180.000    10.0     6
+RHO            sp2_sp3_34         C15          N1         C16        H161     180.000    10.0     6
+RHO              const_29           C          C1          C2          C3       0.000    10.0     2
+RHO       const_sp2_sp2_8          C8         C17         C18         C23       0.000     5.0     2
+RHO              const_47          C8         C17         C22         C21     180.000    10.0     2
+RHO              const_11         C23         C18         C19         C20     180.000    10.0     2
+RHO            sp2_sp2_57         C17         C18         C23         OH2     180.000     5.0     2
+RHO              const_13         C18         C19         C20         C21       0.000    10.0     2
+RHO              const_17         C19         C20         C21         C22       0.000    10.0     2
+RHO            sp2_sp2_61         C19         C20          N2         C24     180.000     5.0     2
+RHO              const_21         C20         C21         C22         C17       0.000    10.0     2
+RHO            sp2_sp2_30         OH4         C24          N2         C20       0.000     5.0     2
+RHO            sp2_sp2_68         OH5         C27          N2         C20       0.000     5.0     2
+RHO       const_sp2_sp2_1          C1          C2          C3          C4       0.000     5.0     2
+RHO            sp2_sp2_48          C1          C2         OH1          C9     180.000     5.0     2
+RHO            sp2_sp2_33         OH4         C24         C25         C26     180.000     5.0     2
+RHO            sp2_sp2_35         C24         C25         C26         C27       0.000     5.0     2
+RHO            sp2_sp2_40         C25         C26         C27         OH5     180.000     5.0     2
+RHO            sp2_sp2_13          C2          C3          C8         C14       0.000     5.0     2
+RHO              const_33          C2          C3          C4          C5       0.000    10.0     2
+RHO              const_37          C3          C4          C5           C       0.000    10.0     2
+RHO            sp2_sp3_16          C7           N          C6        HC61     180.000    10.0     6
+RHO            sp2_sp3_22          C6           N          C7        HC71     180.000    10.0     6
+RHO            sp2_sp2_26         C10          C9         OH1          C2     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RHO    plan-1           C   0.020
+RHO    plan-1          C1   0.020
+RHO    plan-1          C2   0.020
+RHO    plan-1          C3   0.020
+RHO    plan-1          C4   0.020
+RHO    plan-1          C5   0.020
+RHO    plan-1          C8   0.020
+RHO    plan-1         HC1   0.020
+RHO    plan-1         HC4   0.020
+RHO    plan-1         HC5   0.020
+RHO    plan-1           N   0.020
+RHO    plan-1         OH1   0.020
+RHO    plan-2         C17   0.020
+RHO    plan-2         C18   0.020
+RHO    plan-2         C19   0.020
+RHO    plan-2         C20   0.020
+RHO    plan-2         C21   0.020
+RHO    plan-2         C22   0.020
+RHO    plan-2         C23   0.020
+RHO    plan-2          C8   0.020
+RHO    plan-2        H19C   0.020
+RHO    plan-2        H21C   0.020
+RHO    plan-2        H22C   0.020
+RHO    plan-2          N2   0.020
+RHO    plan-3           C   0.020
+RHO    plan-3          C6   0.020
+RHO    plan-3          C7   0.020
+RHO    plan-3           N   0.020
+RHO    plan-4         C14   0.020
+RHO    plan-4         C17   0.020
+RHO    plan-4          C3   0.020
+RHO    plan-4          C8   0.020
+RHO    plan-5         C10   0.020
+RHO    plan-5         C14   0.020
+RHO    plan-5          C9   0.020
+RHO    plan-5         OH1   0.020
+RHO    plan-6         C10   0.020
+RHO    plan-6         C11   0.020
+RHO    plan-6          C9   0.020
+RHO    plan-6        H10C   0.020
+RHO    plan-7         C10   0.020
+RHO    plan-7         C11   0.020
+RHO    plan-7         C12   0.020
+RHO    plan-7          N1   0.020
+RHO    plan-8         C11   0.020
+RHO    plan-8         C12   0.020
+RHO    plan-8         C13   0.020
+RHO    plan-8        H12C   0.020
+RHO    plan-9         C13   0.020
+RHO    plan-9         C14   0.020
+RHO    plan-9          C8   0.020
+RHO    plan-9          C9   0.020
+RHO   plan-10         C11   0.020
+RHO   plan-10         C15   0.020
+RHO   plan-10         C16   0.020
+RHO   plan-10          N1   0.020
+RHO   plan-11         C18   0.020
+RHO   plan-11         C23   0.020
+RHO   plan-11         OH2   0.020
+RHO   plan-11         OH3   0.020
+RHO   plan-12         C20   0.020
+RHO   plan-12         C24   0.020
+RHO   plan-12         C27   0.020
+RHO   plan-12          N2   0.020
+RHO   plan-13         C24   0.020
+RHO   plan-13         C25   0.020
+RHO   plan-13          N2   0.020
+RHO   plan-13         OH4   0.020
+RHO   plan-14         C24   0.020
+RHO   plan-14         C25   0.020
+RHO   plan-14         C26   0.020
+RHO   plan-14        H25C   0.020
+RHO   plan-15         C25   0.020
+RHO   plan-15         C26   0.020
+RHO   plan-15         C27   0.020
+RHO   plan-15        H26C   0.020
+RHO   plan-16         C26   0.020
+RHO   plan-16         C27   0.020
+RHO   plan-16          N2   0.020
+RHO   plan-16         OH5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RHO           SMILES              ACDLabs 10.04                                                                                               O=C1C=CC(=O)N1c5ccc(C=2c4c(OC=3C=2CC=C(N(C)C)C=3)cc(cc4)N(C)C)c(C(=O)O)c5
+RHO SMILES_CANONICAL               CACTVS 3.341                                                                                                     CN(C)C1=CCC2=C(c3ccc(cc3OC2=C1)N(C)C)c4ccc(cc4C(O)=O)N5C(=O)C=CC5=O
+RHO           SMILES               CACTVS 3.341                                                                                                     CN(C)C1=CCC2=C(c3ccc(cc3OC2=C1)N(C)C)c4ccc(cc4C(O)=O)N5C(=O)C=CC5=O
+RHO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                     CN(C)c1ccc2c(c1)OC3=CC(=CCC3=C2c4ccc(cc4C(=O)O)N5C(=O)C=CC5=O)N(C)C
+RHO           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                     CN(C)c1ccc2c(c1)OC3=CC(=CCC3=C2c4ccc(cc4C(=O)O)N5C(=O)C=CC5=O)N(C)C
+RHO            InChI                InChI  1.03 InChI=1S/C28H25N3O5/c1-29(2)16-5-9-20-23(14-16)36-24-15-17(30(3)4)6-10-21(24)27(20)19-8-7-18(13-22(19)28(34)35)31-25(32)11-12-26(31)33/h5-9,11-15H,10H2,1-4H3,(H,34,35)
+RHO         InChIKey                InChI  1.03                                                                                                                                             KGFLZYXDJDOIEE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RHO acedrg               243         "dictionary generator"                  
+RHO acedrg_database      11          "data source"                           
+RHO rdkit                2017.03.2   "Chemoinformatics tool"
+RHO refmac5              5.8.0238    "optimization tool"                     

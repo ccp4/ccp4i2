@@ -1,0 +1,250 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BTM     BTM      N-benzyl-N,N-diethylethanaminium     NON-POLYMER     36     14     .     
+#
+data_comp_BTM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BTM     N       N       NT      1       -39.731     -3.033      15.816      
+BTM     C1      C       CH2     0       -40.564     -2.427      14.668      
+BTM     C2      C       CH2     0       -40.614     -3.323      17.037      
+BTM     C3      C       CH3     0       -41.298     -4.664      17.129      
+BTM     C4      C       CH2     0       -38.667     -2.006      16.222      
+BTM     C5      C       CH3     0       -39.126     -0.749      16.925      
+BTM     C6      C       CH2     0       -38.995     -4.305      15.381      
+BTM     C7      C       CH3     0       -37.922     -4.173      14.331      
+BTM     C8      C       CR6     0       -41.634     -3.280      14.033      
+BTM     C9      C       CR16    0       -42.951     -3.199      14.470      
+BTM     C10     C       CR16    0       -43.940     -3.978      13.881      
+BTM     C11     C       CR16    0       -43.625     -4.831      12.842      
+BTM     C12     C       CR16    0       -42.324     -4.911      12.392      
+BTM     C13     C       CR16    0       -41.333     -4.133      12.978      
+BTM     H1      H       H       0       -39.950     -2.146      13.964      
+BTM     H1A     H       H       0       -40.997     -1.621      15.003      
+BTM     H2      H       H       0       -41.303     -2.633      17.086      
+BTM     H2A     H       H       0       -40.062     -3.230      17.837      
+BTM     H3      H       H       0       -42.040     -4.603      17.753      
+BTM     H3A     H       H       0       -40.666     -5.329      17.449      
+BTM     H3B     H       H       0       -41.633     -4.931      16.261      
+BTM     H4      H       H       0       -38.183     -1.730      15.423      
+BTM     H4A     H       H       0       -38.024     -2.454      16.806      
+BTM     H5      H       H       0       -38.381     -0.131      16.990      
+BTM     H5A     H       H       0       -39.439     -0.964      17.818      
+BTM     H5B     H       H       0       -39.842     -0.331      16.424      
+BTM     H6      H       H       0       -39.645     -4.950      15.053      
+BTM     H6A     H       H       0       -38.583     -4.696      16.175      
+BTM     H7      H       H       0       -37.059     -4.067      14.763      
+BTM     H7A     H       H       0       -38.096     -3.404      13.768      
+BTM     H7B     H       H       0       -37.910     -4.974      13.782      
+BTM     H9      H       H       0       -43.173     -2.620      15.182      
+BTM     H10     H       H       0       -44.830     -3.921      14.191      
+BTM     H11     H       H       0       -44.298     -5.358      12.442      
+BTM     H12     H       H       0       -42.106     -5.493      11.682      
+BTM     H13     H       H       0       -40.444     -4.196      12.667      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BTM           N          C1      SINGLE       n     1.533  0.0104     1.533  0.0104
+BTM           N          C2      SINGLE       n     1.518  0.0119     1.518  0.0119
+BTM           N          C4      SINGLE       n     1.518  0.0119     1.518  0.0119
+BTM           N          C6      SINGLE       n     1.518  0.0119     1.518  0.0119
+BTM          C1          C8      SINGLE       n     1.506  0.0100     1.506  0.0100
+BTM          C2          C3      SINGLE       n     1.493  0.0200     1.493  0.0200
+BTM          C4          C5      SINGLE       n     1.493  0.0200     1.493  0.0200
+BTM          C6          C7      SINGLE       n     1.493  0.0200     1.493  0.0200
+BTM          C8          C9      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BTM          C8         C13      SINGLE       y     1.386  0.0100     1.386  0.0100
+BTM          C9         C10      SINGLE       y     1.386  0.0100     1.386  0.0100
+BTM         C10         C11      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BTM         C11         C12      SINGLE       y     1.374  0.0127     1.374  0.0127
+BTM         C12         C13      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BTM          C1          H1      SINGLE       n     1.089  0.0100     0.977  0.0158
+BTM          C1         H1A      SINGLE       n     1.089  0.0100     0.977  0.0158
+BTM          C2          H2      SINGLE       n     1.089  0.0100     0.976  0.0165
+BTM          C2         H2A      SINGLE       n     1.089  0.0100     0.976  0.0165
+BTM          C3          H3      SINGLE       n     1.089  0.0100     0.971  0.0145
+BTM          C3         H3A      SINGLE       n     1.089  0.0100     0.971  0.0145
+BTM          C3         H3B      SINGLE       n     1.089  0.0100     0.971  0.0145
+BTM          C4          H4      SINGLE       n     1.089  0.0100     0.976  0.0165
+BTM          C4         H4A      SINGLE       n     1.089  0.0100     0.976  0.0165
+BTM          C5          H5      SINGLE       n     1.089  0.0100     0.971  0.0145
+BTM          C5         H5A      SINGLE       n     1.089  0.0100     0.971  0.0145
+BTM          C5         H5B      SINGLE       n     1.089  0.0100     0.971  0.0145
+BTM          C6          H6      SINGLE       n     1.089  0.0100     0.976  0.0165
+BTM          C6         H6A      SINGLE       n     1.089  0.0100     0.976  0.0165
+BTM          C7          H7      SINGLE       n     1.089  0.0100     0.971  0.0145
+BTM          C7         H7A      SINGLE       n     1.089  0.0100     0.971  0.0145
+BTM          C7         H7B      SINGLE       n     1.089  0.0100     0.971  0.0145
+BTM          C9          H9      SINGLE       n     1.082  0.0130     0.944  0.0174
+BTM         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0175
+BTM         C11         H11      SINGLE       n     1.082  0.0130     0.944  0.0161
+BTM         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0175
+BTM         C13         H13      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BTM          C1           N          C2     109.238    2.21
+BTM          C1           N          C4     109.238    2.21
+BTM          C1           N          C6     109.238    2.21
+BTM          C2           N          C4     109.601    2.33
+BTM          C2           N          C6     109.601    2.33
+BTM          C4           N          C6     109.601    2.33
+BTM           N          C1          C8     116.044    1.50
+BTM           N          C1          H1     108.249    1.50
+BTM           N          C1         H1A     108.249    1.50
+BTM          C8          C1          H1     108.580    1.50
+BTM          C8          C1         H1A     108.580    1.50
+BTM          H1          C1         H1A     107.626    1.50
+BTM           N          C2          C3     115.195    1.50
+BTM           N          C2          H2     108.472    1.50
+BTM           N          C2         H2A     108.472    1.50
+BTM          C3          C2          H2     108.481    1.50
+BTM          C3          C2         H2A     108.481    1.50
+BTM          H2          C2         H2A     107.623    1.50
+BTM          C2          C3          H3     109.493    1.50
+BTM          C2          C3         H3A     109.493    1.50
+BTM          C2          C3         H3B     109.493    1.50
+BTM          H3          C3         H3A     109.415    1.50
+BTM          H3          C3         H3B     109.415    1.50
+BTM         H3A          C3         H3B     109.415    1.50
+BTM           N          C4          C5     115.195    1.50
+BTM           N          C4          H4     108.472    1.50
+BTM           N          C4         H4A     108.472    1.50
+BTM          C5          C4          H4     108.481    1.50
+BTM          C5          C4         H4A     108.481    1.50
+BTM          H4          C4         H4A     107.623    1.50
+BTM          C4          C5          H5     109.493    1.50
+BTM          C4          C5         H5A     109.493    1.50
+BTM          C4          C5         H5B     109.493    1.50
+BTM          H5          C5         H5A     109.415    1.50
+BTM          H5          C5         H5B     109.415    1.50
+BTM         H5A          C5         H5B     109.415    1.50
+BTM           N          C6          C7     115.195    1.50
+BTM           N          C6          H6     108.472    1.50
+BTM           N          C6         H6A     108.472    1.50
+BTM          C7          C6          H6     108.481    1.50
+BTM          C7          C6         H6A     108.481    1.50
+BTM          H6          C6         H6A     107.623    1.50
+BTM          C6          C7          H7     109.493    1.50
+BTM          C6          C7         H7A     109.493    1.50
+BTM          C6          C7         H7B     109.493    1.50
+BTM          H7          C7         H7A     109.415    1.50
+BTM          H7          C7         H7B     109.415    1.50
+BTM         H7A          C7         H7B     109.415    1.50
+BTM          C1          C8          C9     120.710    1.50
+BTM          C1          C8         C13     120.710    1.50
+BTM          C9          C8         C13     118.580    1.50
+BTM          C8          C9         C10     120.442    1.50
+BTM          C8          C9          H9     119.742    1.50
+BTM         C10          C9          H9     119.815    1.50
+BTM          C9         C10         C11     120.273    1.50
+BTM          C9         C10         H10     119.818    1.50
+BTM         C11         C10         H10     119.909    1.50
+BTM         C10         C11         C12     119.997    1.50
+BTM         C10         C11         H11     119.998    1.50
+BTM         C12         C11         H11     119.998    1.50
+BTM         C11         C12         C13     120.273    1.50
+BTM         C11         C12         H12     119.909    1.50
+BTM         C13         C12         H12     119.818    1.50
+BTM          C8         C13         C12     120.442    1.50
+BTM          C8         C13         H13     119.742    1.50
+BTM         C12         C13         H13     119.815    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BTM             sp3_sp3_2          C8          C1           N          C2     -60.000    10.0     3
+BTM            sp3_sp3_10          C3          C2           N          C1     180.000    10.0     3
+BTM            sp3_sp3_20          C5          C4           N          C1     -60.000    10.0     3
+BTM            sp3_sp3_28          C7          C6           N          C1     180.000    10.0     3
+BTM       const_sp2_sp2_9          C9         C10         C11         C12       0.000     5.0     2
+BTM              const_13         C10         C11         C12         C13       0.000    10.0     2
+BTM              const_17         C11         C12         C13          C8       0.000    10.0     2
+BTM             sp2_sp3_2          C9          C8          C1           N     -90.000    10.0     6
+BTM            sp3_sp3_37           N          C2          C3          H3     180.000    10.0     3
+BTM            sp3_sp3_46           N          C4          C5          H5     180.000    10.0     3
+BTM            sp3_sp3_55           N          C6          C7          H7     180.000    10.0     3
+BTM              const_22         C12         C13          C8          C1     180.000    10.0     2
+BTM       const_sp2_sp2_3          C1          C8          C9         C10     180.000     5.0     2
+BTM       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BTM    chir_1    N    C1    C2    C4    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BTM    plan-1          C1   0.020
+BTM    plan-1         C10   0.020
+BTM    plan-1         C11   0.020
+BTM    plan-1         C12   0.020
+BTM    plan-1         C13   0.020
+BTM    plan-1          C8   0.020
+BTM    plan-1          C9   0.020
+BTM    plan-1         H10   0.020
+BTM    plan-1         H11   0.020
+BTM    plan-1         H12   0.020
+BTM    plan-1         H13   0.020
+BTM    plan-1          H9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BTM           SMILES              ACDLabs 10.04                                                         c1ccccc1C[N+](CC)(CC)CC
+BTM SMILES_CANONICAL               CACTVS 3.341                                                         CC[N+](CC)(CC)Cc1ccccc1
+BTM           SMILES               CACTVS 3.341                                                         CC[N+](CC)(CC)Cc1ccccc1
+BTM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                         CC[N+](CC)(CC)Cc1ccccc1
+BTM           SMILES "OpenEye OEToolkits" 1.5.0                                                         CC[N+](CC)(CC)Cc1ccccc1
+BTM            InChI                InChI  1.03 InChI=1S/C13H22N/c1-4-14(5-2,6-3)12-13-10-8-7-9-11-13/h7-11H,4-6,12H2,1-3H3/q+1
+BTM         InChIKey                InChI  1.03                                                     VBQDSLGFSUGBBE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BTM acedrg               243         "dictionary generator"                  
+BTM acedrg_database      11          "data source"                           
+BTM rdkit                2017.03.2   "Chemoinformatics tool"
+BTM refmac5              5.8.0238    "optimization tool"                     

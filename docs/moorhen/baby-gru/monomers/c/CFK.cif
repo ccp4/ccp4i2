@@ -1,0 +1,240 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CFK     CFK      3-(carbamoylamino)-5-phenylthiophene-2-carboxamide     NON-POLYMER     29     18     .     
+#
+data_comp_CFK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CFK     C1      C       CR16    0       23.092      14.303      30.834      
+CFK     C2      C       CR16    0       21.734      14.062      30.778      
+CFK     C3      C       CR16    0       21.231      12.809      31.095      
+CFK     C4      C       CR6     0       22.090      11.775      31.480      
+CFK     C5      C       CR16    0       23.461      12.036      31.529      
+CFK     C6      C       CR16    0       23.953      13.292      31.209      
+CFK     C7      C       CR5     0       21.587      10.437      31.818      
+CFK     C8      C       CR15    0       22.221      9.214       31.675      
+CFK     C9      C       CR5     0       21.404      8.167       32.123      
+CFK     C10     C       CR5     0       20.153      8.544       32.616      
+CFK     S11     S       S2      0       20.064      10.205      32.491      
+CFK     C12     C       C       0       19.056      7.726       33.156      
+CFK     O13     O       O       0       19.025      6.517       32.927      
+CFK     N14     N       NH2     0       18.130      8.341       33.881      
+CFK     N15     N       NH1     0       21.814      6.822       32.087      
+CFK     C16     C       C       0       22.510      6.208       31.058      
+CFK     O17     O       O       0       22.287      6.460       29.869      
+CFK     N18     N       NH2     0       23.439      5.319       31.422      
+CFK     H1      H       H       0       23.430      15.158      30.617      
+CFK     H2      H       H       0       21.144      14.751      30.522      
+CFK     H3      H       H       0       20.304      12.659      31.050      
+CFK     H5      H       H       0       24.058      11.354      31.783      
+CFK     H6      H       H       0       24.881      13.455      31.249      
+CFK     H8      H       H       0       23.087      9.097       31.323      
+CFK     HN14    H       H       0       18.186      9.213       34.025      
+CFK     HN1A    H       H       0       17.461      7.869       34.215      
+CFK     HN15    H       H       0       21.607      6.318       32.779      
+CFK     HN18    H       H       0       23.906      4.897       30.805      
+CFK     HN1B    H       H       0       23.589      5.154       32.276      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CFK          C1          C2      DOUBLE       y     1.376  0.0124     1.376  0.0124
+CFK          C1          C6      SINGLE       y     1.376  0.0124     1.376  0.0124
+CFK          C2          C3      SINGLE       y     1.383  0.0100     1.383  0.0100
+CFK          C3          C4      DOUBLE       y     1.392  0.0100     1.392  0.0100
+CFK          C4          C5      SINGLE       y     1.392  0.0100     1.392  0.0100
+CFK          C4          C7      SINGLE       n     1.464  0.0100     1.464  0.0100
+CFK          C5          C6      DOUBLE       y     1.383  0.0100     1.383  0.0100
+CFK          C7          C8      DOUBLE       y     1.363  0.0200     1.363  0.0200
+CFK          C7         S11      SINGLE       y     1.695  0.0200     1.695  0.0200
+CFK          C8          C9      SINGLE       y     1.382  0.0148     1.382  0.0148
+CFK          C9         C10      DOUBLE       y     1.389  0.0200     1.389  0.0200
+CFK          C9         N15      SINGLE       n     1.405  0.0100     1.405  0.0100
+CFK         C10         S11      SINGLE       y     1.695  0.0200     1.695  0.0200
+CFK         C10         C12      SINGLE       n     1.467  0.0127     1.467  0.0127
+CFK         C12         O13      DOUBLE       n     1.231  0.0100     1.231  0.0100
+CFK         C12         N14      SINGLE       n     1.325  0.0100     1.325  0.0100
+CFK         N15         C16      SINGLE       n     1.379  0.0200     1.379  0.0200
+CFK         C16         O17      DOUBLE       n     1.235  0.0158     1.235  0.0158
+CFK         C16         N18      SINGLE       n     1.334  0.0126     1.334  0.0126
+CFK          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0161
+CFK          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0180
+CFK          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0147
+CFK          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0147
+CFK          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0180
+CFK          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0154
+CFK         N14        HN14      SINGLE       n     1.016  0.0100     0.884  0.0200
+CFK         N14        HN1A      SINGLE       n     1.016  0.0100     0.884  0.0200
+CFK         N15        HN15      SINGLE       n     1.016  0.0100     0.881  0.0200
+CFK         N18        HN18      SINGLE       n     1.016  0.0100     0.881  0.0200
+CFK         N18        HN1B      SINGLE       n     1.016  0.0100     0.881  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CFK          C2          C1          C6     119.797    1.50
+CFK          C2          C1          H1     120.102    1.50
+CFK          C6          C1          H1     120.102    1.50
+CFK          C1          C2          C3     120.241    1.50
+CFK          C1          C2          H2     119.980    1.50
+CFK          C3          C2          H2     119.779    1.50
+CFK          C2          C3          C4     120.458    1.50
+CFK          C2          C3          H3     119.816    1.50
+CFK          C4          C3          H3     119.725    1.50
+CFK          C3          C4          C5     118.804    1.50
+CFK          C3          C4          C7     120.598    1.61
+CFK          C5          C4          C7     120.598    1.61
+CFK          C4          C5          C6     120.458    1.50
+CFK          C4          C5          H5     119.725    1.50
+CFK          C6          C5          H5     119.816    1.50
+CFK          C1          C6          C5     120.241    1.50
+CFK          C1          C6          H6     119.980    1.50
+CFK          C5          C6          H6     119.779    1.50
+CFK          C4          C7          C8     131.138    2.36
+CFK          C4          C7         S11     120.623    3.00
+CFK          C8          C7         S11     108.239    3.00
+CFK          C7          C8          C9     107.256    1.50
+CFK          C7          C8          H8     126.595    1.50
+CFK          C9          C8          H8     126.149    1.50
+CFK          C8          C9         C10     108.027    2.27
+CFK          C8          C9         N15     125.643    3.00
+CFK         C10          C9         N15     126.330    2.73
+CFK          C9         C10         S11     108.239    3.00
+CFK          C9         C10         C12     131.394    3.00
+CFK         S11         C10         C12     120.367    3.00
+CFK          C7         S11         C10     108.239    3.00
+CFK         C10         C12         O13     120.399    1.72
+CFK         C10         C12         N14     116.584    1.62
+CFK         O13         C12         N14     123.018    1.50
+CFK         C12         N14        HN14     119.305    2.54
+CFK         C12         N14        HN1A     119.305    2.54
+CFK        HN14         N14        HN1A     121.391    3.00
+CFK          C9         N15         C16     125.211    2.23
+CFK          C9         N15        HN15     118.083    2.72
+CFK         C16         N15        HN15     116.706    1.50
+CFK         N15         C16         O17     122.359    1.50
+CFK         N15         C16         N18     115.856    2.49
+CFK         O17         C16         N18     121.785    1.50
+CFK         C16         N18        HN18     119.802    2.52
+CFK         C16         N18        HN1B     119.802    2.52
+CFK        HN18         N18        HN1B     120.396    2.62
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CFK              const_15          C6          C1          C2          C3       0.000    10.0     2
+CFK              const_35          C2          C1          C6          C5       0.000    10.0     2
+CFK            sp2_sp2_15         O13         C12         N14        HN14       0.000     5.0     2
+CFK            sp2_sp2_19         O17         C16         N15          C9       0.000     5.0     2
+CFK            sp2_sp2_21         N15         C16         N18        HN18     180.000     5.0     2
+CFK              const_19          C1          C2          C3          C4       0.000    10.0     2
+CFK              const_23          C2          C3          C4          C5       0.000    10.0     2
+CFK              const_27          C3          C4          C5          C6       0.000    10.0     2
+CFK             sp2_sp2_1          C3          C4          C7          C8     180.000     5.0     2
+CFK              const_31          C4          C5          C6          C1       0.000    10.0     2
+CFK              const_40          C4          C7         S11         C10     180.000    10.0     2
+CFK       const_sp2_sp2_3          C4          C7          C8          C9     180.000     5.0     2
+CFK       const_sp2_sp2_6          C7          C8          C9         N15     180.000     5.0     2
+CFK             sp2_sp2_5          C8          C9         N15         C16     180.000     5.0     2
+CFK              const_12         C12         C10          C9         N15       0.000    10.0     2
+CFK              const_14         C12         C10         S11          C7     180.000    10.0     2
+CFK            sp2_sp2_10          C9         C10         C12         O13       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CFK    plan-1          C1   0.020
+CFK    plan-1          C2   0.020
+CFK    plan-1          C3   0.020
+CFK    plan-1          C4   0.020
+CFK    plan-1          C5   0.020
+CFK    plan-1          C6   0.020
+CFK    plan-1          C7   0.020
+CFK    plan-1          H1   0.020
+CFK    plan-1          H2   0.020
+CFK    plan-1          H3   0.020
+CFK    plan-1          H5   0.020
+CFK    plan-1          H6   0.020
+CFK    plan-2         C10   0.020
+CFK    plan-2         C12   0.020
+CFK    plan-2          C4   0.020
+CFK    plan-2          C7   0.020
+CFK    plan-2          C8   0.020
+CFK    plan-2          C9   0.020
+CFK    plan-2          H8   0.020
+CFK    plan-2         N15   0.020
+CFK    plan-2         S11   0.020
+CFK    plan-3         C10   0.020
+CFK    plan-3         C12   0.020
+CFK    plan-3         N14   0.020
+CFK    plan-3         O13   0.020
+CFK    plan-4         C12   0.020
+CFK    plan-4        HN14   0.020
+CFK    plan-4        HN1A   0.020
+CFK    plan-4         N14   0.020
+CFK    plan-5         C16   0.020
+CFK    plan-5          C9   0.020
+CFK    plan-5        HN15   0.020
+CFK    plan-5         N15   0.020
+CFK    plan-6         C16   0.020
+CFK    plan-6         N15   0.020
+CFK    plan-6         N18   0.020
+CFK    plan-6         O17   0.020
+CFK    plan-7         C16   0.020
+CFK    plan-7        HN18   0.020
+CFK    plan-7        HN1B   0.020
+CFK    plan-7         N18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CFK           SMILES              ACDLabs 12.01                                                                        O=C(c1sc(cc1NC(=O)N)c2ccccc2)N
+CFK SMILES_CANONICAL               CACTVS 3.370                                                                        NC(=O)Nc1cc(sc1C(N)=O)c2ccccc2
+CFK           SMILES               CACTVS 3.370                                                                        NC(=O)Nc1cc(sc1C(N)=O)c2ccccc2
+CFK SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                    c1ccc(cc1)c2cc(c(s2)C(=O)N)NC(=O)N
+CFK           SMILES "OpenEye OEToolkits" 1.7.0                                                                    c1ccc(cc1)c2cc(c(s2)C(=O)N)NC(=O)N
+CFK            InChI                InChI  1.03 InChI=1S/C12H11N3O2S/c13-11(16)10-8(15-12(14)17)6-9(18-10)7-4-2-1-3-5-7/h1-6H,(H2,13,16)(H3,14,15,17)
+CFK         InChIKey                InChI  1.03                                                                           HKWYRLYHYBFHLL-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CFK acedrg               243         "dictionary generator"                  
+CFK acedrg_database      11          "data source"                           
+CFK rdkit                2017.03.2   "Chemoinformatics tool"
+CFK refmac5              5.8.0238    "optimization tool"                     

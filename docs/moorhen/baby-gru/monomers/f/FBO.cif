@@ -1,0 +1,401 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FBO     FBO      L-phenylalanyl-N6-[(benzyloxy)carbonyl]-N1-hydroxy-L-lysinamide     NON-POLYMER     63     32     .     
+#
+data_comp_FBO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FBO     C1      C       CR16    0       40.790      -67.150     -39.031     
+FBO     C2      C       CR16    0       41.245      -67.247     -40.330     
+FBO     C3      C       CR16    0       40.667      -66.476     -41.316     
+FBO     C4      C       CR16    0       39.631      -65.603     -41.004     
+FBO     C5      C       CR6     0       39.162      -65.493     -39.700     
+FBO     C6      C       CR16    0       39.755      -66.278     -38.717     
+FBO     C7      C       CH2     0       38.035      -64.549     -39.360     
+FBO     C8      C       CH1     0       36.632      -65.116     -39.636     
+FBO     C9      C       C       0       36.372      -66.371     -38.803     
+FBO     N10     N       NH1     0       36.598      -67.539     -39.424     
+FBO     O11     O       O       0       35.980      -66.276     -37.641     
+FBO     N12     N       NT3     1       35.605      -64.090     -39.286     
+FBO     C13     C       CH2     0       32.982      -70.138     -36.167     
+FBO     C14     C       CH1     0       36.628      -68.808     -38.709     
+FBO     C15     C       CH2     0       35.228      -69.334     -38.382     
+FBO     C16     C       CH2     0       35.215      -70.443     -37.336     
+FBO     C17     C       CH2     0       33.837      -71.010     -37.068     
+FBO     N18     N       NH1     0       31.777      -70.827     -35.710     
+FBO     C20     C       C       0       31.489      -71.032     -34.406     
+FBO     O21     O       O2      0       30.331      -71.711     -34.294     
+FBO     O22     O       O       0       32.168      -70.660     -33.473     
+FBO     C23     C       CH2     0       29.872      -72.097     -32.967     
+FBO     C24     C       CR6     0       30.651      -73.281     -32.466     
+FBO     C25     C       CR16    0       31.406      -73.196     -31.305     
+FBO     C26     C       CR16    0       32.125      -74.293     -30.847     
+FBO     C27     C       CR16    0       32.094      -75.483     -31.546     
+FBO     C28     C       CR16    0       31.347      -75.579     -32.702     
+FBO     C29     C       CR16    0       30.628      -74.482     -33.161     
+FBO     C30     C       C       0       37.412      -69.844     -39.530     
+FBO     O31     O       O       0       36.975      -70.241     -40.609     
+FBO     N32     N       NH1     0       38.559      -70.247     -39.011     
+FBO     O33     O       OH1     0       39.330      -71.196     -39.672     
+FBO     H1      H       H       0       41.183      -67.677     -38.353     
+FBO     H2      H       H       0       41.948      -67.839     -40.543     
+FBO     H3      H       H       0       40.975      -66.539     -42.206     
+FBO     H4      H       H       0       39.240      -65.079     -41.684     
+FBO     H6      H       H       0       39.449      -66.218     -37.826     
+FBO     H7      H       H       0       38.148      -63.724     -39.877     
+FBO     H7A     H       H       0       38.098      -64.315     -38.410     
+FBO     H8      H       H       0       36.553      -65.334     -40.598     
+FBO     HN10    H       H       0       36.721      -67.539     -40.290     
+FBO     HN12    H       H       0       34.802      -64.487     -39.110     
+FBO     HN1A    H       H       0       35.496      -63.516     -39.986     
+FBO     H18     H       H       0       35.864      -63.614     -38.553     
+FBO     H13     H       H       0       32.718      -69.333     -36.662     
+FBO     H13A    H       H       0       33.517      -69.852     -35.397     
+FBO     H14     H       H       0       37.105      -68.664     -37.853     
+FBO     H15     H       H       0       34.812      -69.671     -39.202     
+FBO     H15A    H       H       0       34.679      -68.592     -38.053     
+FBO     H16     H       H       0       35.585      -70.090     -36.499     
+FBO     H16A    H       H       0       35.800      -71.170     -37.636     
+FBO     H17     H       H       0       33.373      -71.132     -37.923     
+FBO     H17A    H       H       0       33.934      -71.894     -36.652     
+FBO     HN18    H       H       0       31.219      -71.117     -36.317     
+FBO     H23     H       H       0       28.921      -72.330     -33.012     
+FBO     H23A    H       H       0       29.967      -71.344     -32.346     
+FBO     H25     H       H       0       31.433      -72.386     -30.821     
+FBO     H26     H       H       0       32.635      -74.224     -30.056     
+FBO     H27     H       H       0       32.582      -76.229     -31.235     
+FBO     H28     H       H       0       31.324      -76.391     -33.182     
+FBO     H29     H       H       0       30.119      -74.554     -33.952     
+FBO     HN32    H       H       0       38.875      -69.942     -38.255     
+FBO     HO33    H       H       0       39.731      -70.805     -40.334     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FBO          C1          C2      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FBO          C1          C6      SINGLE       y     1.386  0.0100     1.386  0.0100
+FBO          C2          C3      SINGLE       y     1.374  0.0127     1.374  0.0127
+FBO          C3          C4      DOUBLE       y     1.386  0.0100     1.386  0.0100
+FBO          C4          C5      SINGLE       y     1.385  0.0111     1.385  0.0111
+FBO          C5          C6      DOUBLE       y     1.385  0.0111     1.385  0.0111
+FBO          C5          C7      SINGLE       n     1.508  0.0100     1.508  0.0100
+FBO          C7          C8      SINGLE       n     1.536  0.0100     1.536  0.0100
+FBO          C8          C9      SINGLE       n     1.525  0.0100     1.525  0.0100
+FBO          C8         N12      SINGLE       n     1.490  0.0100     1.490  0.0100
+FBO          C9         N10      SINGLE       n     1.337  0.0100     1.337  0.0100
+FBO          C9         O11      DOUBLE       n     1.229  0.0102     1.229  0.0102
+FBO         N10         C14      SINGLE       n     1.453  0.0100     1.453  0.0100
+FBO         C13         C17      SINGLE       n     1.517  0.0143     1.517  0.0143
+FBO         C13         N18      SINGLE       n     1.455  0.0131     1.455  0.0131
+FBO         C14         C15      SINGLE       n     1.528  0.0100     1.528  0.0100
+FBO         C14         C30      SINGLE       n     1.532  0.0100     1.532  0.0100
+FBO         C15         C16      SINGLE       n     1.523  0.0114     1.523  0.0114
+FBO         C16         C17      SINGLE       n     1.514  0.0200     1.514  0.0200
+FBO         N18         C20      SINGLE       n     1.340  0.0141     1.340  0.0141
+FBO         C20         O21      SINGLE       n     1.341  0.0100     1.341  0.0100
+FBO         C20         O22      DOUBLE       n     1.210  0.0102     1.210  0.0102
+FBO         O21         C23      SINGLE       n     1.450  0.0125     1.450  0.0125
+FBO         C23         C24      SINGLE       n     1.501  0.0101     1.501  0.0101
+FBO         C24         C25      DOUBLE       y     1.383  0.0108     1.383  0.0108
+FBO         C24         C29      SINGLE       y     1.383  0.0108     1.383  0.0108
+FBO         C25         C26      SINGLE       y     1.386  0.0100     1.386  0.0100
+FBO         C26         C27      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FBO         C27         C28      SINGLE       y     1.374  0.0127     1.374  0.0127
+FBO         C28         C29      DOUBLE       y     1.386  0.0100     1.386  0.0100
+FBO         C30         O31      DOUBLE       n     1.229  0.0102     1.229  0.0102
+FBO         C30         N32      SINGLE       n     1.318  0.0100     1.318  0.0100
+FBO         N32         O33      SINGLE       n     1.389  0.0110     1.389  0.0110
+FBO          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0175
+FBO          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0161
+FBO          C3          H3      SINGLE       n     1.082  0.0130     0.944  0.0175
+FBO          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+FBO          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0174
+FBO          C7          H7      SINGLE       n     1.089  0.0100     0.980  0.0164
+FBO          C7         H7A      SINGLE       n     1.089  0.0100     0.980  0.0164
+FBO          C8          H8      SINGLE       n     1.089  0.0100     0.990  0.0136
+FBO         N10        HN10      SINGLE       n     1.016  0.0100     0.873  0.0200
+FBO         N12        HN12      SINGLE       n     1.036  0.0160     0.911  0.0200
+FBO         N12        HN1A      SINGLE       n     1.036  0.0160     0.911  0.0200
+FBO         N12         H18      SINGLE       n     1.036  0.0160     0.911  0.0200
+FBO         C13         H13      SINGLE       n     1.089  0.0100     0.981  0.0152
+FBO         C13        H13A      SINGLE       n     1.089  0.0100     0.981  0.0152
+FBO         C14         H14      SINGLE       n     1.089  0.0100     0.991  0.0200
+FBO         C15         H15      SINGLE       n     1.089  0.0100     0.980  0.0160
+FBO         C15        H15A      SINGLE       n     1.089  0.0100     0.980  0.0160
+FBO         C16         H16      SINGLE       n     1.089  0.0100     0.981  0.0163
+FBO         C16        H16A      SINGLE       n     1.089  0.0100     0.981  0.0163
+FBO         C17         H17      SINGLE       n     1.089  0.0100     0.981  0.0160
+FBO         C17        H17A      SINGLE       n     1.089  0.0100     0.981  0.0160
+FBO         N18        HN18      SINGLE       n     1.016  0.0100     0.872  0.0200
+FBO         C23         H23      SINGLE       n     1.089  0.0100     0.980  0.0157
+FBO         C23        H23A      SINGLE       n     1.089  0.0100     0.980  0.0157
+FBO         C25         H25      SINGLE       n     1.082  0.0130     0.944  0.0174
+FBO         C26         H26      SINGLE       n     1.082  0.0130     0.944  0.0175
+FBO         C27         H27      SINGLE       n     1.082  0.0130     0.944  0.0161
+FBO         C28         H28      SINGLE       n     1.082  0.0130     0.944  0.0175
+FBO         C29         H29      SINGLE       n     1.082  0.0130     0.944  0.0174
+FBO         N32        HN32      SINGLE       n     1.016  0.0100     0.875  0.0200
+FBO         O33        HO33      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FBO          C2          C1          C6     120.325    1.50
+FBO          C2          C1          H1     119.883    1.50
+FBO          C6          C1          H1     119.792    1.50
+FBO          C1          C2          C3     120.043    1.50
+FBO          C1          C2          H2     119.979    1.50
+FBO          C3          C2          H2     119.979    1.50
+FBO          C2          C3          C4     120.325    1.50
+FBO          C2          C3          H3     119.883    1.50
+FBO          C4          C3          H3     119.792    1.50
+FBO          C3          C4          C5     120.624    1.50
+FBO          C3          C4          H4     119.786    1.50
+FBO          C5          C4          H4     119.591    1.50
+FBO          C4          C5          C6     118.059    1.50
+FBO          C4          C5          C7     120.970    1.50
+FBO          C6          C5          C7     120.970    1.50
+FBO          C1          C6          C5     120.624    1.50
+FBO          C1          C6          H6     119.786    1.50
+FBO          C5          C6          H6     119.591    1.50
+FBO          C5          C7          C8     114.005    1.50
+FBO          C5          C7          H7     108.862    1.50
+FBO          C5          C7         H7A     108.862    1.50
+FBO          C8          C7          H7     108.744    1.50
+FBO          C8          C7         H7A     108.744    1.50
+FBO          H7          C7         H7A     107.782    1.50
+FBO          C7          C8          C9     111.492    1.54
+FBO          C7          C8         N12     108.934    1.60
+FBO          C7          C8          H8     109.621    1.50
+FBO          C9          C8         N12     107.654    1.50
+FBO          C9          C8          H8     109.459    1.50
+FBO         N12          C8          H8     109.613    1.50
+FBO          C8          C9         N10     115.666    1.50
+FBO          C8          C9         O11     120.774    1.50
+FBO         N10          C9         O11     123.560    1.50
+FBO          C9         N10         C14     121.028    1.58
+FBO          C9         N10        HN10     119.169    1.83
+FBO         C14         N10        HN10     119.803    1.64
+FBO          C8         N12        HN12     109.803    1.98
+FBO          C8         N12        HN1A     109.803    1.98
+FBO          C8         N12         H18     109.803    1.98
+FBO        HN12         N12        HN1A     109.028    2.41
+FBO        HN12         N12         H18     109.028    2.41
+FBO        HN1A         N12         H18     109.028    2.41
+FBO         C17         C13         N18     112.766    1.50
+FBO         C17         C13         H13     109.197    1.51
+FBO         C17         C13        H13A     109.197    1.51
+FBO         N18         C13         H13     109.015    1.50
+FBO         N18         C13        H13A     109.015    1.50
+FBO         H13         C13        H13A     107.877    1.50
+FBO         N10         C14         C15     111.528    2.08
+FBO         N10         C14         C30     111.106    2.53
+FBO         N10         C14         H14     107.954    1.50
+FBO         C15         C14         C30     110.281    1.60
+FBO         C15         C14         H14     108.242    1.50
+FBO         C30         C14         H14     108.061    1.50
+FBO         C14         C15         C16     113.702    1.73
+FBO         C14         C15         H15     108.827    1.50
+FBO         C14         C15        H15A     108.827    1.50
+FBO         C16         C15         H15     108.650    1.50
+FBO         C16         C15        H15A     108.650    1.50
+FBO         H15         C15        H15A     107.844    1.50
+FBO         C15         C16         C17     113.328    2.00
+FBO         C15         C16         H16     108.601    1.50
+FBO         C15         C16        H16A     108.601    1.50
+FBO         C17         C16         H16     108.806    1.50
+FBO         C17         C16        H16A     108.806    1.50
+FBO         H16         C16        H16A     107.646    1.50
+FBO         C13         C17         C16     113.159    3.00
+FBO         C13         C17         H17     108.956    1.50
+FBO         C13         C17        H17A     108.956    1.50
+FBO         C16         C17         H17     109.041    1.50
+FBO         C16         C17        H17A     109.041    1.50
+FBO         H17         C17        H17A     107.927    1.57
+FBO         C13         N18         C20     121.872    1.50
+FBO         C13         N18        HN18     118.828    1.50
+FBO         C20         N18        HN18     119.301    1.50
+FBO         N18         C20         O21     110.513    1.50
+FBO         N18         C20         O22     125.036    1.50
+FBO         O21         C20         O22     124.451    1.50
+FBO         C20         O21         C23     115.730    1.50
+FBO         O21         C23         C24     109.508    2.22
+FBO         O21         C23         H23     109.538    1.50
+FBO         O21         C23        H23A     109.538    1.50
+FBO         C24         C23         H23     109.785    1.50
+FBO         C24         C23        H23A     109.785    1.50
+FBO         H23         C23        H23A     108.275    1.50
+FBO         C23         C24         C25     120.651    1.50
+FBO         C23         C24         C29     120.651    1.50
+FBO         C25         C24         C29     118.697    1.50
+FBO         C24         C25         C26     120.514    1.50
+FBO         C24         C25         H25     119.732    1.50
+FBO         C26         C25         H25     119.754    1.50
+FBO         C25         C26         C27     120.186    1.50
+FBO         C25         C26         H26     119.862    1.50
+FBO         C27         C26         H26     119.952    1.50
+FBO         C26         C27         C28     119.903    1.50
+FBO         C26         C27         H27     120.048    1.50
+FBO         C28         C27         H27     120.048    1.50
+FBO         C27         C28         C29     120.186    1.50
+FBO         C27         C28         H28     119.952    1.50
+FBO         C29         C28         H28     119.862    1.50
+FBO         C24         C29         C28     120.514    1.50
+FBO         C24         C29         H29     119.732    1.50
+FBO         C28         C29         H29     119.754    1.50
+FBO         C14         C30         O31     120.878    1.50
+FBO         C14         C30         N32     115.173    1.50
+FBO         O31         C30         N32     123.949    1.50
+FBO         C30         N32         O33     120.051    1.50
+FBO         C30         N32        HN32     122.120    2.48
+FBO         O33         N32        HN32     117.829    2.59
+FBO         N32         O33        HO33     108.051    2.18
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FBO       const_sp2_sp2_1          C6          C1          C2          C3       0.000     5.0     2
+FBO              const_41          C2          C1          C6          C5       0.000    10.0     2
+FBO            sp3_sp3_19         N18         C13         C17         C16     180.000    10.0     3
+FBO            sp2_sp3_20         C20         N18         C13         C17     120.000    10.0     6
+FBO            sp3_sp3_28         N10         C14         C15         C16     180.000    10.0     3
+FBO            sp2_sp3_25         O31         C30         C14         N10       0.000    10.0     6
+FBO            sp3_sp3_37         C14         C15         C16         C17     180.000    10.0     3
+FBO            sp3_sp3_46         C15         C16         C17         C13     180.000    10.0     3
+FBO             sp2_sp2_5         O21         C20         N18         C13     180.000     5.0     2
+FBO             sp2_sp2_9         N18         C20         O21         C23     180.000     5.0     2
+FBO            sp3_sp3_55         C24         C23         O21         C20     180.000    10.0     3
+FBO       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+FBO            sp2_sp3_32         C25         C24         C23         O21     -90.000    10.0     6
+FBO              const_23         C23         C24         C25         C26     180.000    10.0     2
+FBO              const_47         C23         C24         C29         C28     180.000    10.0     2
+FBO              const_25         C24         C25         C26         C27       0.000    10.0     2
+FBO              const_29         C25         C26         C27         C28       0.000    10.0     2
+FBO              const_33         C26         C27         C28         C29       0.000    10.0     2
+FBO              const_37         C27         C28         C29         C24       0.000    10.0     2
+FBO            sp2_sp2_11         C14         C30         N32         O33     180.000     5.0     2
+FBO       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+FBO              const_14          C3          C4          C5          C7     180.000    10.0     2
+FBO              const_19          C7          C5          C6          C1     180.000    10.0     2
+FBO             sp2_sp3_2          C4          C5          C7          C8     -90.000    10.0     6
+FBO             sp3_sp3_1          C5          C7          C8          C9     180.000    10.0     3
+FBO            sp3_sp3_10          C7          C8         N12        HN12     180.000    10.0     3
+FBO             sp2_sp3_7         N10          C9          C8          C7       0.000    10.0     6
+FBO             sp2_sp2_1          C8          C9         N10         C14     180.000     5.0     2
+FBO            sp2_sp3_13          C9         N10         C14         C15       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FBO    chir_1    C8    N12    C9    C7    positive
+FBO    chir_2    C14    N10    C30    C15    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FBO    plan-1          C1   0.020
+FBO    plan-1          C2   0.020
+FBO    plan-1          C3   0.020
+FBO    plan-1          C4   0.020
+FBO    plan-1          C5   0.020
+FBO    plan-1          C6   0.020
+FBO    plan-1          C7   0.020
+FBO    plan-1          H1   0.020
+FBO    plan-1          H2   0.020
+FBO    plan-1          H3   0.020
+FBO    plan-1          H4   0.020
+FBO    plan-1          H6   0.020
+FBO    plan-2         C23   0.020
+FBO    plan-2         C24   0.020
+FBO    plan-2         C25   0.020
+FBO    plan-2         C26   0.020
+FBO    plan-2         C27   0.020
+FBO    plan-2         C28   0.020
+FBO    plan-2         C29   0.020
+FBO    plan-2         H25   0.020
+FBO    plan-2         H26   0.020
+FBO    plan-2         H27   0.020
+FBO    plan-2         H28   0.020
+FBO    plan-2         H29   0.020
+FBO    plan-3          C8   0.020
+FBO    plan-3          C9   0.020
+FBO    plan-3         N10   0.020
+FBO    plan-3         O11   0.020
+FBO    plan-4         C14   0.020
+FBO    plan-4          C9   0.020
+FBO    plan-4        HN10   0.020
+FBO    plan-4         N10   0.020
+FBO    plan-5         C13   0.020
+FBO    plan-5         C20   0.020
+FBO    plan-5        HN18   0.020
+FBO    plan-5         N18   0.020
+FBO    plan-6         C20   0.020
+FBO    plan-6         N18   0.020
+FBO    plan-6         O21   0.020
+FBO    plan-6         O22   0.020
+FBO    plan-7         C14   0.020
+FBO    plan-7         C30   0.020
+FBO    plan-7         N32   0.020
+FBO    plan-7         O31   0.020
+FBO    plan-8         C30   0.020
+FBO    plan-8        HN32   0.020
+FBO    plan-8         N32   0.020
+FBO    plan-8         O33   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FBO           SMILES              ACDLabs 12.01                                                                                                                                               O=C(NO)C(NC(=O)C(N)Cc1ccccc1)CCCCNC(=O)OCc2ccccc2
+FBO SMILES_CANONICAL               CACTVS 3.370                                                                                                                                     N[C@@H](Cc1ccccc1)C(=O)N[C@@H](CCCCNC(=O)OCc2ccccc2)C(=O)NO
+FBO           SMILES               CACTVS 3.370                                                                                                                                         N[CH](Cc1ccccc1)C(=O)N[CH](CCCCNC(=O)OCc2ccccc2)C(=O)NO
+FBO SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                   c1ccc(cc1)C[C@@H](C(=O)N[C@@H](CCCCNC(=O)OCc2ccccc2)C(=O)NO)N
+FBO           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                             c1ccc(cc1)CC(C(=O)NC(CCCCNC(=O)OCc2ccccc2)C(=O)NO)N
+FBO            InChI                InChI  1.03 InChI=1S/C23H30N4O5/c24-19(15-17-9-3-1-4-10-17)21(28)26-20(22(29)27-31)13-7-8-14-25-23(30)32-16-18-11-5-2-6-12-18/h1-6,9-12,19-20,31H,7-8,13-16,24H2,(H,25,30)(H,26,28)(H,27,29)/t19-,20-/m0/s1
+FBO         InChIKey                InChI  1.03                                                                                                                                                                     YGHNIVJEKSKDJB-PMACEKPBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FBO acedrg               243         "dictionary generator"                  
+FBO acedrg_database      11          "data source"                           
+FBO rdkit                2017.03.2   "Chemoinformatics tool"
+FBO refmac5              5.8.0238    "optimization tool"                     

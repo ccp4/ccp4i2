@@ -1,0 +1,175 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LG5     LG5      1-METHYL-1,6-DIHYDROPYRIDIN-3-AMINE     NON-POLYMER     18     8     .     
+#
+data_comp_LG5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LG5     C1      C       CR16    0       -9.265      71.866      16.914      
+LG5     C2      C       CH2     0       -8.743      72.024      15.518      
+LG5     N3      N       NR6     0       -7.902      70.927      15.052      
+LG5     C4      C       CR16    0       -7.633      69.852      15.862      
+LG5     C5      C       CR6     0       -8.157      69.751      17.157      
+LG5     C6      C       CR16    0       -8.966      70.797      17.645      
+LG5     C7      C       CH3     0       -7.361      71.023      13.692      
+LG5     N8      N       NH2     0       -7.878      68.653      17.919      
+LG5     H1      H       H       0       -9.818      72.549      17.268      
+LG5     H21     H       H       0       -9.491      72.109      14.906      
+LG5     H22     H       H       0       -8.225      72.843      15.464      
+LG5     H4      H       H       0       -7.076      69.164      15.526      
+LG5     H6      H       H       0       -9.310      70.737      18.528      
+LG5     H71     H       H       0       -6.823      70.240      13.494      
+LG5     H72     H       H       0       -6.810      71.819      13.620      
+LG5     H73     H       H       0       -8.094      71.080      13.058      
+LG5     HN81    H       H       0       -8.202      68.591      18.726      
+LG5     HN82    H       H       0       -7.378      68.014      17.600      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LG5          C1          C2      SINGLE       n     1.499  0.0100     1.499  0.0100
+LG5          C1          C6      DOUBLE       n     1.326  0.0112     1.326  0.0112
+LG5          C2          N3      SINGLE       n     1.458  0.0100     1.458  0.0100
+LG5          N3          C4      SINGLE       n     1.357  0.0200     1.357  0.0200
+LG5          N3          C7      SINGLE       n     1.465  0.0100     1.465  0.0100
+LG5          C4          C5      DOUBLE       n     1.392  0.0119     1.392  0.0119
+LG5          C5          C6      SINGLE       n     1.397  0.0151     1.397  0.0151
+LG5          C5          N8      SINGLE       n     1.363  0.0171     1.363  0.0171
+LG5          C1          H1      SINGLE       n     1.082  0.0130     0.947  0.0200
+LG5          C2         H21      SINGLE       n     1.089  0.0100     0.970  0.0200
+LG5          C2         H22      SINGLE       n     1.089  0.0100     0.970  0.0200
+LG5          C4          H4      SINGLE       n     1.082  0.0130     0.947  0.0200
+LG5          C6          H6      SINGLE       n     1.082  0.0130     0.949  0.0100
+LG5          C7         H71      SINGLE       n     1.089  0.0100     0.971  0.0199
+LG5          C7         H72      SINGLE       n     1.089  0.0100     0.971  0.0199
+LG5          C7         H73      SINGLE       n     1.089  0.0100     0.971  0.0199
+LG5          N8        HN81      SINGLE       n     1.016  0.0100     0.871  0.0200
+LG5          N8        HN82      SINGLE       n     1.016  0.0100     0.871  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LG5          C2          C1          C6     121.677    2.14
+LG5          C2          C1          H1     118.159    1.69
+LG5          C6          C1          H1     120.165    1.51
+LG5          C1          C2          N3     116.209    1.50
+LG5          C1          C2         H21     109.335    1.50
+LG5          C1          C2         H22     109.335    1.50
+LG5          N3          C2         H21     108.242    1.50
+LG5          N3          C2         H22     108.242    1.50
+LG5         H21          C2         H22     107.855    1.50
+LG5          C2          N3          C4     122.161    2.50
+LG5          C2          N3          C7     117.570    1.50
+LG5          C4          N3          C7     120.269    2.33
+LG5          N3          C4          C5     120.517    3.00
+LG5          N3          C4          H4     118.861    1.50
+LG5          C5          C4          H4     120.622    1.50
+LG5          C4          C5          C6     117.453    1.50
+LG5          C4          C5          N8     120.413    1.50
+LG5          C6          C5          N8     122.134    1.50
+LG5          C1          C6          C5     121.343    1.75
+LG5          C1          C6          H6     119.281    1.50
+LG5          C5          C6          H6     119.376    1.50
+LG5          N3          C7         H71     109.451    1.50
+LG5          N3          C7         H72     109.451    1.50
+LG5          N3          C7         H73     109.451    1.50
+LG5         H71          C7         H72     109.428    1.50
+LG5         H71          C7         H73     109.428    1.50
+LG5         H72          C7         H73     109.428    1.50
+LG5          C5          N8        HN81     119.892    2.02
+LG5          C5          N8        HN82     119.884    2.02
+LG5        HN81          N8        HN82     120.208    1.77
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LG5             sp2_sp3_1          C6          C1          C2          N3       0.000    10.0     6
+LG5            sp2_sp2_13          C2          C1          C6          C5       0.000     5.0     2
+LG5            sp2_sp3_10          C7          N3          C2          C1     180.000    10.0     6
+LG5             sp2_sp2_2          C5          C4          N3          C7     180.000     5.0     2
+LG5            sp2_sp3_13          C2          N3          C7         H71     150.000    10.0     6
+LG5             sp2_sp2_6          N3          C4          C5          N8     180.000     5.0     2
+LG5            sp2_sp2_11          N8          C5          C6          C1     180.000     5.0     2
+LG5            sp2_sp2_17          C4          C5          N8        HN81     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LG5    plan-1          C1   0.020
+LG5    plan-1          C2   0.020
+LG5    plan-1          C6   0.020
+LG5    plan-1          H1   0.020
+LG5    plan-2          C2   0.020
+LG5    plan-2          C4   0.020
+LG5    plan-2          C7   0.020
+LG5    plan-2          N3   0.020
+LG5    plan-3          C4   0.020
+LG5    plan-3          C5   0.020
+LG5    plan-3          H4   0.020
+LG5    plan-3          N3   0.020
+LG5    plan-4          C4   0.020
+LG5    plan-4          C5   0.020
+LG5    plan-4          C6   0.020
+LG5    plan-4          N8   0.020
+LG5    plan-5          C1   0.020
+LG5    plan-5          C5   0.020
+LG5    plan-5          C6   0.020
+LG5    plan-5          H6   0.020
+LG5    plan-6          C5   0.020
+LG5    plan-6        HN81   0.020
+LG5    plan-6        HN82   0.020
+LG5    plan-6          N8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LG5           SMILES              ACDLabs 10.04                                       NC=1C=CCN(C=1)C
+LG5 SMILES_CANONICAL               CACTVS 3.341                                        CN1CC=CC(=C1)N
+LG5           SMILES               CACTVS 3.341                                        CN1CC=CC(=C1)N
+LG5 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                        CN1CC=CC(=C1)N
+LG5           SMILES "OpenEye OEToolkits" 1.5.0                                        CN1CC=CC(=C1)N
+LG5            InChI                InChI  1.03 InChI=1S/C6H10N2/c1-8-4-2-3-6(7)5-8/h2-3,5H,4,7H2,1H3
+LG5         InChIKey                InChI  1.03                           NJIDBKRVRJXCLL-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LG5 acedrg               243         "dictionary generator"                  
+LG5 acedrg_database      11          "data source"                           
+LG5 rdkit                2017.03.2   "Chemoinformatics tool"
+LG5 refmac5              5.8.0238    "optimization tool"                     

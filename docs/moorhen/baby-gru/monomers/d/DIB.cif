@@ -1,0 +1,164 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DIB     DIB      3-AMINO-(DIMETHYLPROPYLAMINE)     NON-POLYMER     21     7     .     
+#
+data_comp_DIB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DIB     N       N       NT2     0       53.582      -0.091      80.577      
+DIB     CA      C       CH2     0       54.313      1.001       79.927      
+DIB     CB      C       CH2     0       53.646      1.457       78.658      
+DIB     CG      C       CH2     0       53.510      0.381       77.595      
+DIB     ND      N       NT      0       54.789      -0.226      77.186      
+DIB     CE1     C       CH3     0       54.589      -1.584      76.659      
+DIB     CE2     C       CH3     0       55.504      0.603       76.202      
+DIB     H       H       H       0       53.920      -0.263      81.380      
+DIB     HN2     H       H       0       52.728      0.125       80.692      
+DIB     HA1     H       H       0       55.224      0.701       79.730      
+DIB     HA2     H       H       0       54.374      1.754       80.550      
+DIB     HB1     H       H       0       54.155      2.205       78.285      
+DIB     HB2     H       H       0       52.753      1.795       78.875      
+DIB     HG1     H       H       0       53.075      0.770       76.807      
+DIB     HG2     H       H       0       52.918      -0.321      77.940      
+DIB     HE11    H       H       0       55.418      -1.906      76.253      
+DIB     HE12    H       H       0       53.882      -1.572      75.984      
+DIB     HE13    H       H       0       54.332      -2.182      77.387      
+DIB     HE21    H       H       0       56.459      0.402       76.243      
+DIB     HE22    H       H       0       55.367      1.550       76.399      
+DIB     HE23    H       H       0       55.171      0.410       75.303      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DIB           N          CA      SINGLE       n     1.466  0.0117     1.466  0.0117
+DIB          CA          CB      SINGLE       n     1.502  0.0191     1.502  0.0191
+DIB          CB          CG      SINGLE       n     1.512  0.0200     1.512  0.0200
+DIB          CG          ND      SINGLE       n     1.468  0.0114     1.468  0.0114
+DIB          ND         CE1      SINGLE       n     1.466  0.0117     1.466  0.0117
+DIB          ND         CE2      SINGLE       n     1.466  0.0117     1.466  0.0117
+DIB           N           H      SINGLE       n     1.036  0.0160     0.888  0.0200
+DIB           N         HN2      SINGLE       n     1.036  0.0160     0.888  0.0200
+DIB          CA         HA1      SINGLE       n     1.089  0.0100     0.979  0.0106
+DIB          CA         HA2      SINGLE       n     1.089  0.0100     0.979  0.0106
+DIB          CB         HB1      SINGLE       n     1.089  0.0100     0.979  0.0161
+DIB          CB         HB2      SINGLE       n     1.089  0.0100     0.979  0.0161
+DIB          CG         HG1      SINGLE       n     1.089  0.0100     0.980  0.0143
+DIB          CG         HG2      SINGLE       n     1.089  0.0100     0.980  0.0143
+DIB         CE1        HE11      SINGLE       n     1.089  0.0100     0.977  0.0113
+DIB         CE1        HE12      SINGLE       n     1.089  0.0100     0.977  0.0113
+DIB         CE1        HE13      SINGLE       n     1.089  0.0100     0.977  0.0113
+DIB         CE2        HE21      SINGLE       n     1.089  0.0100     0.977  0.0113
+DIB         CE2        HE22      SINGLE       n     1.089  0.0100     0.977  0.0113
+DIB         CE2        HE23      SINGLE       n     1.089  0.0100     0.977  0.0113
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DIB          CA           N           H     110.839    3.00
+DIB          CA           N         HN2     110.839    3.00
+DIB           H           N         HN2     107.243    3.00
+DIB           N          CA          CB     111.621    2.46
+DIB           N          CA         HA1     108.763    1.50
+DIB           N          CA         HA2     108.763    1.50
+DIB          CB          CA         HA1     109.330    1.50
+DIB          CB          CA         HA2     109.330    1.50
+DIB         HA1          CA         HA2     107.806    1.50
+DIB          CA          CB          CG     114.005    1.96
+DIB          CA          CB         HB1     109.108    1.50
+DIB          CA          CB         HB2     109.108    1.50
+DIB          CG          CB         HB1     108.861    1.50
+DIB          CG          CB         HB2     108.861    1.50
+DIB         HB1          CB         HB2     107.594    1.73
+DIB          CB          CG          ND     113.546    1.50
+DIB          CB          CG         HG1     108.842    1.50
+DIB          CB          CG         HG2     108.842    1.50
+DIB          ND          CG         HG1     108.882    1.50
+DIB          ND          CG         HG2     108.882    1.50
+DIB         HG1          CG         HG2     107.673    1.50
+DIB          CG          ND         CE1     110.729    1.50
+DIB          CG          ND         CE2     110.729    1.50
+DIB         CE1          ND         CE2     109.730    1.50
+DIB          ND         CE1        HE11     109.516    1.50
+DIB          ND         CE1        HE12     109.516    1.50
+DIB          ND         CE1        HE13     109.516    1.50
+DIB        HE11         CE1        HE12     109.408    1.50
+DIB        HE11         CE1        HE13     109.408    1.50
+DIB        HE12         CE1        HE13     109.408    1.50
+DIB          ND         CE2        HE21     109.516    1.50
+DIB          ND         CE2        HE22     109.516    1.50
+DIB          ND         CE2        HE23     109.516    1.50
+DIB        HE21         CE2        HE22     109.408    1.50
+DIB        HE21         CE2        HE23     109.408    1.50
+DIB        HE22         CE2        HE23     109.408    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DIB             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+DIB             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+DIB            sp3_sp3_16          CA          CB          CG          ND     180.000    10.0     3
+DIB            sp3_sp3_26          CB          CG          ND         CE1     -60.000    10.0     3
+DIB            sp3_sp3_31        HE11         CE1          ND          CG     180.000    10.0     3
+DIB            sp3_sp3_38        HE21         CE2          ND          CG     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DIB    chir_1    ND    CG    CE1    CE2    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DIB           SMILES              ACDLabs 10.04                                    NCCCN(C)C
+DIB SMILES_CANONICAL               CACTVS 3.341                                    CN(C)CCCN
+DIB           SMILES               CACTVS 3.341                                    CN(C)CCCN
+DIB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                    CN(C)CCCN
+DIB           SMILES "OpenEye OEToolkits" 1.5.0                                    CN(C)CCCN
+DIB            InChI                InChI  1.03 InChI=1S/C5H14N2/c1-7(2)5-3-4-6/h3-6H2,1-2H3
+DIB         InChIKey                InChI  1.03                  IUNMPGNGSSIWFP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DIB acedrg               243         "dictionary generator"                  
+DIB acedrg_database      11          "data source"                           
+DIB rdkit                2017.03.2   "Chemoinformatics tool"
+DIB refmac5              5.8.0238    "optimization tool"                     

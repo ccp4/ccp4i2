@@ -1,0 +1,360 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ARU     ARU      "5'-O-[(R)-{[(R)-[dibromo(phosphono)methyl](hydroxy)phosphoryl]oxy}(hydroxy)phosphoryl]-N,N-diethyladenosine"     NON-POLYMER     57     37     .     
+#
+data_comp_ARU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ARU     N1      N       NRD6    0       35.106      25.901      30.744      
+ARU     C2      C       CR16    0       33.956      25.391      31.213      
+ARU     N3      N       NRD6    0       32.941      26.020      31.805      
+ARU     C4      C       CR56    0       33.184      27.341      31.912      
+ARU     C5      C       CR56    0       34.318      28.008      31.487      
+ARU     C6      C       CR6     0       35.334      27.234      30.873      
+ARU     N6      N       N       0       36.497      27.734      30.376      
+ARU     N7      N       NRD5    0       34.189      29.362      31.776      
+ARU     C8      C       CR15    0       33.018      29.483      32.356      
+ARU     N9      N       NT      0       32.363      28.283      32.475      
+ARU     "C1'"   C       CH1     0       31.034      28.015      33.040      
+ARU     "C2'"   C       CH1     0       30.461      29.055      34.000      
+ARU     "O2'"   O       OH1     0       29.570      28.450      34.915      
+ARU     "C3'"   C       CH1     0       29.776      30.045      33.048      
+ARU     "O3'"   O       OH1     0       28.627      30.638      33.642      
+ARU     "C4'"   C       CH1     0       29.370      29.176      31.845      
+ARU     "O4'"   O       O2      0       30.132      27.945      31.960      
+ARU     "C5'"   C       CH2     0       29.576      29.759      30.462      
+ARU     "O5'"   O       O2      0       30.808      30.532      30.405      
+ARU     CAA     C       CH3     0       35.521      29.122      28.546      
+ARU     CAB     C       CH2     0       36.530      29.022      29.664      
+ARU     CAD     C       CH2     0       37.768      27.001      30.490      
+ARU     CAE     C       CH3     0       38.346      27.016      31.878      
+ARU     OAF     O       OP      -1      30.899      35.316      24.951      
+ARU     BRAG    BR      BR      0       27.782      33.740      27.593      
+ARU     OAH     O       OP      -1      31.947      32.891      26.450      
+ARU     OAI     O       O       0       32.874      31.490      29.307      
+ARU     OAJ     O       O       0       28.640      36.178      25.564      
+ARU     PAK     P       P       0       29.495      34.957      25.357      
+ARU     CAL     C       CT      0       29.610      34.126      26.954      
+ARU     PAM     P       P       0       30.548      32.564      26.897      
+ARU     OAN     O       O2      0       30.597      31.986      28.378      
+ARU     PAO     P       P       0       31.549      30.864      29.019      
+ARU     OAV     O       OP      -1      28.864      33.984      24.398      
+ARU     BRAW    BR      BR      0       30.492      35.352      28.225      
+ARU     OAX     O       O       0       29.787      31.605      26.025      
+ARU     OAY     O       OP      -1      31.524      29.664      28.130      
+ARU     H2      H       H       0       33.850      24.458      31.104      
+ARU     H8      H       H       0       32.681      30.308      32.657      
+ARU     "H1'"   H       H       0       31.057      27.145      33.501      
+ARU     "H2'"   H       H       0       31.192      29.507      34.499      
+ARU     "HO2'"  H       H       0       28.918      28.108      34.492      
+ARU     "H3'"   H       H       0       30.411      30.754      32.789      
+ARU     "HO3'"  H       H       0       28.283      31.181      33.087      
+ARU     "H4'"   H       H       0       28.418      28.954      31.930      
+ARU     "H5'"   H       H       0       28.809      30.340      30.235      
+ARU     "H5'A"  H       H       0       29.611      29.024      29.803      
+ARU     HAA     H       H       0       35.772      29.845      27.948      
+ARU     HAAA    H       H       0       34.641      29.300      28.915      
+ARU     HAAB    H       H       0       35.502      28.287      28.051      
+ARU     HAB     H       H       0       37.421      29.169      29.290      
+ARU     HABA    H       H       0       36.364      29.742      30.305      
+ARU     HAD     H       H       0       38.425      27.384      29.874      
+ARU     HADA    H       H       0       37.628      26.072      30.217      
+ARU     HAE     H       H       0       39.203      26.558      31.877      
+ARU     HAEA    H       H       0       37.740      26.564      32.487      
+ARU     HAEB    H       H       0       38.471      27.934      32.168      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ARU          N1          C2      DOUBLE       y     1.339  0.0100     1.339  0.0100
+ARU          N1          C6      SINGLE       y     1.353  0.0100     1.353  0.0100
+ARU          C2          N3      SINGLE       y     1.330  0.0100     1.330  0.0100
+ARU          N3          C4      DOUBLE       y     1.343  0.0100     1.343  0.0100
+ARU          C4          C5      SINGLE       y     1.381  0.0100     1.381  0.0100
+ARU          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+ARU          C5          C6      DOUBLE       y     1.409  0.0100     1.409  0.0100
+ARU          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+ARU          C6          N6      SINGLE       n     1.352  0.0100     1.352  0.0100
+ARU          N6         CAB      SINGLE       n     1.464  0.0105     1.464  0.0105
+ARU          N6         CAD      SINGLE       n     1.464  0.0105     1.464  0.0105
+ARU          N7          C8      DOUBLE       y     1.310  0.0100     1.310  0.0100
+ARU          C8          N9      SINGLE       y     1.372  0.0200     1.372  0.0200
+ARU          N9       "C1'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+ARU       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+ARU       "C1'"       "O4'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+ARU       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+ARU       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+ARU       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+ARU       "C3'"       "C4'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+ARU       "C4'"       "O4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+ARU       "C4'"       "C5'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+ARU       "C5'"       "O5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+ARU       "O5'"         PAO      SINGLE       n     1.604  0.0133     1.604  0.0133
+ARU         CAA         CAB      SINGLE       n     1.505  0.0159     1.505  0.0159
+ARU         CAD         CAE      SINGLE       n     1.505  0.0159     1.505  0.0159
+ARU         OAF         PAK      SINGLE       n     1.505  0.0200     1.505  0.0200
+ARU        BRAG         CAL      SINGLE       n     1.974  0.0118     1.974  0.0118
+ARU         OAH         PAM      SINGLE       n     1.504  0.0125     1.504  0.0125
+ARU         OAI         PAO      DOUBLE       n     1.493  0.0122     1.493  0.0122
+ARU         OAJ         PAK      DOUBLE       n     1.505  0.0200     1.505  0.0200
+ARU         PAK         CAL      SINGLE       n     1.803  0.0200     1.803  0.0200
+ARU         PAK         OAV      SINGLE       n     1.505  0.0200     1.505  0.0200
+ARU         CAL         PAM      SINGLE       n     1.822  0.0194     1.822  0.0194
+ARU         CAL        BRAW      SINGLE       n     1.974  0.0118     1.974  0.0118
+ARU         PAM         OAN      SINGLE       n     1.590  0.0138     1.590  0.0138
+ARU         PAM         OAX      DOUBLE       n     1.504  0.0125     1.504  0.0125
+ARU         OAN         PAO      SINGLE       n     1.604  0.0133     1.604  0.0133
+ARU         PAO         OAY      SINGLE       n     1.493  0.0122     1.493  0.0122
+ARU          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+ARU          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+ARU       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+ARU       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+ARU       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+ARU       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+ARU       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+ARU       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+ARU       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.989  0.0200
+ARU       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.989  0.0200
+ARU         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0145
+ARU         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0145
+ARU         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0145
+ARU         CAB         HAB      SINGLE       n     1.089  0.0100     0.979  0.0121
+ARU         CAB        HABA      SINGLE       n     1.089  0.0100     0.979  0.0121
+ARU         CAD         HAD      SINGLE       n     1.089  0.0100     0.979  0.0121
+ARU         CAD        HADA      SINGLE       n     1.089  0.0100     0.979  0.0121
+ARU         CAE         HAE      SINGLE       n     1.089  0.0100     0.971  0.0145
+ARU         CAE        HAEA      SINGLE       n     1.089  0.0100     0.971  0.0145
+ARU         CAE        HAEB      SINGLE       n     1.089  0.0100     0.971  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ARU          C2          N1          C6     118.537    1.50
+ARU          N1          C2          N3     129.059    1.50
+ARU          N1          C2          H2     115.449    1.50
+ARU          N3          C2          H2     115.492    1.50
+ARU          C2          N3          C4     110.708    1.50
+ARU          N3          C4          C5     126.216    1.50
+ARU          N3          C4          N9     125.981    1.50
+ARU          C5          C4          N9     107.803    1.69
+ARU          C4          C5          C6     117.333    1.50
+ARU          C4          C5          N7     109.677    1.50
+ARU          C6          C5          N7     132.989    1.50
+ARU          N1          C6          C5     118.147    1.50
+ARU          N1          C6          N6     118.186    1.50
+ARU          C5          C6          N6     123.667    2.29
+ARU          C6          N6         CAB     121.513    2.21
+ARU          C6          N6         CAD     121.513    2.21
+ARU         CAB          N6         CAD     116.974    1.50
+ARU          C5          N7          C8     103.927    1.50
+ARU          N7          C8          N9     112.130    1.94
+ARU          N7          C8          H8     123.170    1.50
+ARU          N9          C8          H8     124.701    2.19
+ARU          C4          N9          C8     107.594    1.50
+ARU          C4          N9       "C1'"     125.158    1.54
+ARU          C8          N9       "C1'"     126.078    2.46
+ARU          N9       "C1'"       "C2'"     113.752    2.20
+ARU          N9       "C1'"       "O4'"     108.167    1.51
+ARU          N9       "C1'"       "H1'"     109.246    1.50
+ARU       "C2'"       "C1'"       "O4'"     106.047    1.50
+ARU       "C2'"       "C1'"       "H1'"     109.015    1.50
+ARU       "O4'"       "C1'"       "H1'"     109.807    1.50
+ARU       "C1'"       "C2'"       "O2'"     111.715    2.69
+ARU       "C1'"       "C2'"       "C3'"     101.239    1.50
+ARU       "C1'"       "C2'"       "H2'"     110.636    1.70
+ARU       "O2'"       "C2'"       "C3'"     112.782    2.45
+ARU       "O2'"       "C2'"       "H2'"     110.448    1.97
+ARU       "C3'"       "C2'"       "H2'"     110.596    1.51
+ARU       "C2'"       "O2'"      "HO2'"     109.103    2.13
+ARU       "C2'"       "C3'"       "O3'"     111.581    2.83
+ARU       "C2'"       "C3'"       "C4'"     102.602    1.50
+ARU       "C2'"       "C3'"       "H3'"     110.504    1.75
+ARU       "O3'"       "C3'"       "C4'"     111.281    2.46
+ARU       "O3'"       "C3'"       "H3'"     110.380    1.67
+ARU       "C4'"       "C3'"       "H3'"     110.452    2.54
+ARU       "C3'"       "O3'"      "HO3'"     108.744    3.00
+ARU       "C3'"       "C4'"       "O4'"     105.388    1.50
+ARU       "C3'"       "C4'"       "C5'"     116.008    1.52
+ARU       "C3'"       "C4'"       "H4'"     109.363    1.86
+ARU       "O4'"       "C4'"       "C5'"     109.123    1.50
+ARU       "O4'"       "C4'"       "H4'"     108.947    1.50
+ARU       "C5'"       "C4'"       "H4'"     108.268    1.50
+ARU       "C1'"       "O4'"       "C4'"     109.903    1.50
+ARU       "C4'"       "C5'"       "O5'"     109.342    1.50
+ARU       "C4'"       "C5'"       "H5'"     109.624    1.50
+ARU       "C4'"       "C5'"      "H5'A"     109.624    1.50
+ARU       "O5'"       "C5'"       "H5'"     109.845    1.50
+ARU       "O5'"       "C5'"      "H5'A"     109.845    1.50
+ARU       "H5'"       "C5'"      "H5'A"     108.472    1.50
+ARU       "C5'"       "O5'"         PAO     118.553    2.41
+ARU         CAB         CAA         HAA     109.499    1.50
+ARU         CAB         CAA        HAAA     109.499    1.50
+ARU         CAB         CAA        HAAB     109.499    1.50
+ARU         HAA         CAA        HAAA     109.415    1.50
+ARU         HAA         CAA        HAAB     109.415    1.50
+ARU        HAAA         CAA        HAAB     109.415    1.50
+ARU          N6         CAB         CAA     113.153    1.50
+ARU          N6         CAB         HAB     108.897    1.50
+ARU          N6         CAB        HABA     108.897    1.50
+ARU         CAA         CAB         HAB     109.031    1.50
+ARU         CAA         CAB        HABA     109.031    1.50
+ARU         HAB         CAB        HABA     107.721    1.50
+ARU          N6         CAD         CAE     113.153    1.50
+ARU          N6         CAD         HAD     108.897    1.50
+ARU          N6         CAD        HADA     108.897    1.50
+ARU         CAE         CAD         HAD     109.031    1.50
+ARU         CAE         CAD        HADA     109.031    1.50
+ARU         HAD         CAD        HADA     107.721    1.50
+ARU         CAD         CAE         HAE     109.499    1.50
+ARU         CAD         CAE        HAEA     109.499    1.50
+ARU         CAD         CAE        HAEB     109.499    1.50
+ARU         HAE         CAE        HAEA     109.415    1.50
+ARU         HAE         CAE        HAEB     109.415    1.50
+ARU        HAEA         CAE        HAEB     109.415    1.50
+ARU         OAF         PAK         OAJ     112.502    1.50
+ARU         OAF         PAK         CAL     108.625    3.00
+ARU         OAF         PAK         OAV     112.502    1.50
+ARU         OAJ         PAK         CAL     108.625    3.00
+ARU         OAJ         PAK         OAV     112.502    1.50
+ARU         CAL         PAK         OAV     108.625    3.00
+ARU        BRAG         CAL         PAK     109.471    3.00
+ARU        BRAG         CAL         PAM     109.471    3.00
+ARU        BRAG         CAL        BRAW     109.284    1.50
+ARU         PAK         CAL         PAM     114.813    3.00
+ARU         PAK         CAL        BRAW     109.471    3.00
+ARU         PAM         CAL        BRAW     109.471    3.00
+ARU         OAH         PAM         CAL     107.585    2.44
+ARU         OAH         PAM         OAN     109.115    3.00
+ARU         OAH         PAM         OAX     115.915    1.71
+ARU         CAL         PAM         OAN     105.177    2.72
+ARU         CAL         PAM         OAX     107.585    2.44
+ARU         OAN         PAM         OAX     109.115    3.00
+ARU         PAM         OAN         PAO     132.584    3.00
+ARU       "O5'"         PAO         OAI     109.410    1.50
+ARU       "O5'"         PAO         OAN     101.065    1.97
+ARU       "O5'"         PAO         OAY     109.410    1.50
+ARU         OAI         PAO         OAN     108.570    2.41
+ARU         OAI         PAO         OAY     118.411    2.35
+ARU         OAN         PAO         OAY     108.570    2.41
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ARU       const_sp2_sp2_1          N3          C2          N1          C6       0.000     5.0     2
+ARU              const_24          N6          C6          N1          C2     180.000    10.0     2
+ARU             sp3_sp3_5          N9       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+ARU            sp3_sp3_32          N9       "C1'"       "O4'"       "C4'"      60.000    10.0     3
+ARU            sp3_sp3_34       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+ARU            sp3_sp3_14       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+ARU            sp3_sp3_37       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+ARU            sp3_sp3_23       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+ARU            sp3_sp3_29       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+ARU            sp3_sp3_40       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+ARU            sp3_sp3_49       "C4'"       "C5'"       "O5'"         PAO     180.000    10.0     3
+ARU            sp3_sp3_54       "C5'"       "O5'"         PAO         OAI      60.000    10.0     3
+ARU            sp3_sp3_55         HAA         CAA         CAB          N6     180.000    10.0     3
+ARU       const_sp2_sp2_3          N1          C2          N3          C4       0.000     5.0     2
+ARU            sp3_sp3_64          N6         CAD         CAE         HAE     180.000    10.0     3
+ARU            sp3_sp3_73        BRAG         CAL         PAK         OAF     180.000    10.0     3
+ARU            sp3_sp3_83        BRAG         CAL         PAM         OAH     -60.000    10.0     3
+ARU       const_sp2_sp2_5          C5          C4          N3          C2       0.000     5.0     2
+ARU            sp3_sp3_92         PAO         OAN         PAM         OAH     -60.000    10.0     3
+ARU            sp3_sp3_95         PAM         OAN         PAO       "O5'"     -60.000    10.0     3
+ARU       const_sp2_sp2_7          N3          C4          C5          C6       0.000     5.0     2
+ARU              const_27          N3          C4          N9          C8     180.000    10.0     2
+ARU              const_12          C4          C5          C6          N6     180.000    10.0     2
+ARU              const_15          C4          C5          N7          C8       0.000    10.0     2
+ARU             sp2_sp2_3          N1          C6          N6         CAB       0.000     5.0     2
+ARU             sp2_sp3_5         CAD          N6         CAB         CAA     -60.000    10.0     6
+ARU            sp2_sp3_11         CAB          N6         CAD         CAE     -60.000    10.0     6
+ARU              const_17          N9          C8          N7          C5       0.000    10.0     2
+ARU              const_19          N7          C8          N9          C4       0.000    10.0     2
+ARU            sp2_sp3_13          C4          N9       "C1'"       "C2'"     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ARU    chir_1    "C1'"    "O4'"    N9    "C2'"    negative
+ARU    chir_2    "C2'"    "O2'"    "C1'"    "C3'"    negative
+ARU    chir_3    "C3'"    "O3'"    "C4'"    "C2'"    positive
+ARU    chir_4    "C4'"    "O4'"    "C3'"    "C5'"    negative
+ARU    chir_5    PAM    OAN    OAH    OAX    both
+ARU    chir_6    PAO    OAN    "O5'"    OAY    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ARU    plan-1       "C1'"   0.020
+ARU    plan-1          C2   0.020
+ARU    plan-1          C4   0.020
+ARU    plan-1          C5   0.020
+ARU    plan-1          C6   0.020
+ARU    plan-1          C8   0.020
+ARU    plan-1          H2   0.020
+ARU    plan-1          H8   0.020
+ARU    plan-1          N1   0.020
+ARU    plan-1          N3   0.020
+ARU    plan-1          N6   0.020
+ARU    plan-1          N7   0.020
+ARU    plan-1          N9   0.020
+ARU    plan-2          C6   0.020
+ARU    plan-2         CAB   0.020
+ARU    plan-2         CAD   0.020
+ARU    plan-2          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ARU SMILES_CANONICAL               CACTVS 3.352                                                                                                                                CCN(CC)c1ncnc2n(cnc12)[C@@H]3O[C@H](CO[P](O)(=O)O[P](O)(=O)C(Br)(Br)[P](O)(O)=O)[C@@H](O)[C@H]3O
+ARU           SMILES               CACTVS 3.352                                                                                                                                      CCN(CC)c1ncnc2n(cnc12)[CH]3O[CH](CO[P](O)(=O)O[P](O)(=O)C(Br)(Br)[P](O)(O)=O)[CH](O)[CH]3O
+ARU SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                          CCN(CC)c1c2c(ncn1)n(cn2)[C@H]3[C@@H]([C@@H]([C@H](O3)CO[P@@](=O)(O)O[P@@](=O)(C(P(=O)(O)O)(Br)Br)O)O)O
+ARU           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                    CCN(CC)c1c2c(ncn1)n(cn2)C3C(C(C(O3)COP(=O)(O)OP(=O)(C(P(=O)(O)O)(Br)Br)O)O)O
+ARU            InChI                InChI  1.03 InChI=1S/C15H24Br2N5O12P3/c1-3-21(4-2)12-9-13(19-6-18-12)22(7-20-9)14-11(24)10(23)8(33-14)5-32-37(30,31)34-36(28,29)15(16,17)35(25,26)27/h6-8,10-11,14,23-24H,3-5H2,1-2H3,(H,28,29)(H,30,31)(H2,25,26,27)/t8-,10-,11-,14-/m1/s1
+ARU         InChIKey                InChI  1.03                                                                                                                                                                                                     ILXFKEOLRYLPJG-IDTAVKCVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ARU acedrg               243         "dictionary generator"                  
+ARU acedrg_database      11          "data source"                           
+ARU rdkit                2017.03.2   "Chemoinformatics tool"
+ARU refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,217 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HF1     HF1      "4-(2-HYDROXY-4-FLUOROPHENYLTHIO)-BUTYLPHOSPHONIC ACID"     NON-POLYMER     27     17     .     
+#
+data_comp_HF1
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HF1     P1      P       P       0       48.316      29.317      10.014      
+HF1     O3      O       O       0       46.870      28.929      9.843       
+HF1     O1      O       OP      -1      49.097      28.699      8.885       
+HF1     O2      O       OP      -1      48.436      30.814      9.911       
+HF1     C2      C       C1      0       48.946      29.497      12.647      
+HF1     C3      C       CH2     0       48.377      28.285      14.774      
+HF1     C9      C       CR16    0       49.899      24.807      15.302      
+HF1     C8      C       CR6     0       50.334      26.089      15.639      
+HF1     C7      C       CR6     0       51.701      26.409      15.608      
+HF1     OH      O       OH1     0       52.150      27.667      15.934      
+HF1     C6      C       CR16    0       52.617      25.427      15.241      
+HF1     C5      C       CR16    0       52.187      24.148      14.907      
+HF1     C10     C       CR6     0       50.843      23.867      14.944      
+HF1     F       F       F       0       50.421      22.615      14.617      
+HF1     S1      S       S2      0       49.124      27.301      16.094      
+HF1     C4      C       CH2     0       49.421      29.074      14.003      
+HF1     C1      C       C1      0       48.922      28.736      11.571      
+HF1     H2      H       H       0       48.638      30.384      12.563      
+HF1     H31     H       H       0       47.727      28.902      15.165      
+HF1     H32     H       H       0       47.905      27.686      14.161      
+HF1     H9      H       H       0       48.978      24.600      15.323      
+HF1     HO7     H       H       0       52.915      27.767      16.316      
+HF1     H6      H       H       0       53.536      25.636      15.221      
+HF1     H5      H       H       0       52.808      23.485      14.659      
+HF1     H41     H       H       0       49.664      29.871      14.520      
+HF1     H42     H       H       0       50.228      28.526      13.901      
+HF1     H1      H       H       0       49.237      27.850      11.630      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HF1          P1          O3      DOUBLE       n     1.508  0.0200     1.508  0.0200
+HF1          P1          O1      SINGLE       n     1.508  0.0200     1.508  0.0200
+HF1          P1          O2      SINGLE       n     1.508  0.0200     1.508  0.0200
+HF1          P1          C1      SINGLE       n     1.768  0.0200     1.768  0.0200
+HF1          C2          C4      SINGLE       n     1.498  0.0152     1.498  0.0152
+HF1          C2          C1      DOUBLE       n     1.318  0.0200     1.318  0.0200
+HF1          C3          S1      SINGLE       n     1.809  0.0191     1.809  0.0191
+HF1          C3          C4      SINGLE       n     1.518  0.0100     1.518  0.0100
+HF1          C9          C8      DOUBLE       y     1.394  0.0173     1.394  0.0173
+HF1          C9         C10      SINGLE       y     1.378  0.0100     1.378  0.0100
+HF1          C8          C7      SINGLE       y     1.400  0.0117     1.400  0.0117
+HF1          C8          S1      SINGLE       n     1.772  0.0127     1.772  0.0127
+HF1          C7          OH      SINGLE       n     1.374  0.0155     1.374  0.0155
+HF1          C7          C6      DOUBLE       y     1.387  0.0100     1.387  0.0100
+HF1          C6          C5      SINGLE       y     1.383  0.0100     1.383  0.0100
+HF1          C5         C10      DOUBLE       y     1.367  0.0111     1.367  0.0111
+HF1         C10           F      SINGLE       n     1.361  0.0100     1.361  0.0100
+HF1          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0181
+HF1          C3         H31      SINGLE       n     1.089  0.0100     0.978  0.0151
+HF1          C3         H32      SINGLE       n     1.089  0.0100     0.978  0.0151
+HF1          C9          H9      SINGLE       n     1.082  0.0130     0.944  0.0100
+HF1          OH         HO7      SINGLE       n     0.966  0.0059     0.861  0.0200
+HF1          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0170
+HF1          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0131
+HF1          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0185
+HF1          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0185
+HF1          C1          H1      SINGLE       n     1.082  0.0130     0.942  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HF1          O3          P1          O1     111.149    3.00
+HF1          O3          P1          O2     111.149    3.00
+HF1          O3          P1          C1     113.187    2.44
+HF1          O1          P1          O2     111.149    3.00
+HF1          O1          P1          C1     113.187    2.44
+HF1          O2          P1          C1     113.187    2.44
+HF1          C4          C2          C1     125.827    2.61
+HF1          C4          C2          H2     116.685    1.85
+HF1          C1          C2          H2     117.487    1.82
+HF1          S1          C3          C4     112.239    3.00
+HF1          S1          C3         H31     109.066    1.50
+HF1          S1          C3         H32     109.066    1.50
+HF1          C4          C3         H31     109.443    1.50
+HF1          C4          C3         H32     109.443    1.50
+HF1         H31          C3         H32     108.532    1.88
+HF1          C8          C9         C10     119.326    1.50
+HF1          C8          C9          H9     119.539    1.50
+HF1         C10          C9          H9     121.135    1.50
+HF1          C9          C8          C7     121.713    1.50
+HF1          C9          C8          S1     119.144    2.83
+HF1          C7          C8          S1     119.144    2.83
+HF1          C8          C7          OH     120.449    3.00
+HF1          C8          C7          C6     119.101    1.74
+HF1          OH          C7          C6     120.449    3.00
+HF1          C7          OH         HO7     120.000    3.00
+HF1          C7          C6          C5     119.280    1.50
+HF1          C7          C6          H6     120.015    1.50
+HF1          C5          C6          H6     120.704    1.50
+HF1          C6          C5         C10     117.917    1.50
+HF1          C6          C5          H5     120.966    1.50
+HF1         C10          C5          H5     121.116    1.50
+HF1          C9         C10          C5     122.662    1.50
+HF1          C9         C10           F     118.410    1.50
+HF1          C5         C10           F     118.927    1.50
+HF1          C3          S1          C8     120.000    3.00
+HF1          C2          C4          C3     112.942    2.28
+HF1          C2          C4         H41     109.013    1.50
+HF1          C2          C4         H42     109.013    1.50
+HF1          C3          C4         H41     109.027    1.89
+HF1          C3          C4         H42     109.027    1.89
+HF1         H41          C4         H42     107.705    1.50
+HF1          P1          C1          C2     121.870    3.00
+HF1          P1          C1          H1     118.943    2.51
+HF1          C2          C1          H1     119.187    1.82
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HF1             sp2_sp3_3          C2          C1          P1          O3    -120.000    10.0     6
+HF1              const_13         C10          C5          C6          C7       0.000    10.0     2
+HF1              const_19           F         C10          C5          C6     180.000    10.0     2
+HF1             sp2_sp3_8          C1          C2          C4          C3     120.000    10.0     6
+HF1             sp2_sp2_1          P1          C1          C2          C4     180.000     5.0     2
+HF1             sp3_sp3_1          C4          C3          S1          C8     180.000    10.0     3
+HF1             sp3_sp3_4          S1          C3          C4          C2     180.000    10.0     3
+HF1              const_23           F         C10          C9          C8     180.000    10.0     2
+HF1       const_sp2_sp2_3          S1          C8          C9         C10     180.000     5.0     2
+HF1             sp2_sp2_5          C9          C8          S1          C3     180.000     5.0     2
+HF1       const_sp2_sp2_8          OH          C7          C8          S1       0.000     5.0     2
+HF1              const_10          C5          C6          C7          OH     180.000    10.0     2
+HF1             sp2_sp2_7          C8          C7          OH         HO7     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HF1    chir_1    P1    O1    O2    O3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HF1    plan-1         C10   0.020
+HF1    plan-1          C5   0.020
+HF1    plan-1          C6   0.020
+HF1    plan-1          C7   0.020
+HF1    plan-1          C8   0.020
+HF1    plan-1          C9   0.020
+HF1    plan-1           F   0.020
+HF1    plan-1          H5   0.020
+HF1    plan-1          H6   0.020
+HF1    plan-1          H9   0.020
+HF1    plan-1          OH   0.020
+HF1    plan-1          S1   0.020
+HF1    plan-2          C1   0.020
+HF1    plan-2          C2   0.020
+HF1    plan-2          C4   0.020
+HF1    plan-2          H2   0.020
+HF1    plan-3          C1   0.020
+HF1    plan-3          C2   0.020
+HF1    plan-3          H1   0.020
+HF1    plan-3          P1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HF1           SMILES              ACDLabs 10.04                                                                          Fc1cc(SCC/C=C/P(=O)(O)O)c(O)cc1
+HF1 SMILES_CANONICAL               CACTVS 3.341                                                                          Oc1ccc(F)cc1SCC\C=C\[P](O)(O)=O
+HF1           SMILES               CACTVS 3.341                                                                            Oc1ccc(F)cc1SCCC=C[P](O)(O)=O
+HF1 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                            c1cc(c(cc1F)SCCC=CP(=O)(O)O)O
+HF1           SMILES "OpenEye OEToolkits" 1.5.0                                                                            c1cc(c(cc1F)SCCC=CP(=O)(O)O)O
+HF1            InChI                InChI  1.03 InChI=1S/C10H12FO4PS/c11-8-3-4-9(12)10(7-8)17-6-2-1-5-16(13,14)15/h1,3-5,7,12H,2,6H2,(H2,13,14,15)/b5-1+
+HF1         InChIKey                InChI  1.03                                                                              UXOYJQMPYTYCMG-ORCRQEGFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HF1 acedrg               243         "dictionary generator"                  
+HF1 acedrg_database      11          "data source"                           
+HF1 rdkit                2017.03.2   "Chemoinformatics tool"
+HF1 refmac5              5.8.0238    "optimization tool"                     

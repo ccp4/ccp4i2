@@ -1,0 +1,289 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SPS     SPS      SPARSOMYCIN     NON-POLYMER     42     23     .     
+#
+data_comp_SPS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SPS     C1      C       CR6     0       78.183      116.570     100.654     
+SPS     O1      O       O       0       77.527      117.613     100.758     
+SPS     N2      N       NR6     0       79.438      116.627     100.074     
+SPS     C3      C       CR6     0       80.289      115.567     99.883      
+SPS     O3      O       O       0       81.386      115.703     99.360      
+SPS     N4      N       NR6     0       79.818      114.354     100.319     
+SPS     C5      C       CR6     0       78.581      114.185     100.914     
+SPS     C7      C       CH3     0       78.220      112.792     101.329     
+SPS     C6      C       CR6     0       77.745      115.271     101.092     
+SPS     C8      C       C1      0       76.418      115.156     101.713     
+SPS     C9      C       C1      0       75.965      115.817     102.784     
+SPS     C10     C       C       0       74.592      115.643     103.323     
+SPS     O10     O       O       0       73.796      114.824     102.862     
+SPS     N11     N       NH1     0       74.263      116.469     104.333     
+SPS     C12     C       CH1     0       72.967      116.513     105.019     
+SPS     C13     C       CH2     0       73.193      116.541     106.525     
+SPS     O13     O       OH1     0       72.001      116.266     107.241     
+SPS     C14     C       CH2     0       72.165      117.728     104.546     
+SPS     S15     S       S3      0       71.637      117.525     102.832     
+SPS     O15     O       O       0       70.568      116.468     102.842     
+SPS     C16     C       CH2     0       70.793      119.076     102.631     
+SPS     S17     S       S2      0       70.730      119.553     100.877     
+SPS     C18     C       CH3     0       69.454      118.443     100.274     
+SPS     HN2     H       H       0       79.729      117.424     99.795      
+SPS     HN4     H       H       0       80.343      113.652     100.210     
+SPS     H71     H       H       0       77.636      112.815     102.099     
+SPS     H72     H       H       0       79.024      112.303     101.559     
+SPS     H73     H       H       0       77.771      112.343     100.598     
+SPS     H81     H       H       0       75.823      114.547     101.304     
+SPS     H91     H       H       0       76.549      116.420     103.218     
+SPS     HN11    H       H       0       74.859      117.037     104.616     
+SPS     H121    H       H       0       72.455      115.695     104.806     
+SPS     H131    H       H       0       73.530      117.425     106.785     
+SPS     H132    H       H       0       73.874      115.876     106.762     
+SPS     HO13    H       H       0       72.140      116.417     108.062     
+SPS     H141    H       H       0       72.720      118.531     104.624     
+SPS     H142    H       H       0       71.379      117.838     105.118     
+SPS     H161    H       H       0       71.260      119.774     103.136     
+SPS     H162    H       H       0       69.879      119.001     102.975     
+SPS     H181    H       H       0       69.329      118.580     99.327      
+SPS     H182    H       H       0       68.626      118.622     100.737     
+SPS     H183    H       H       0       69.720      117.529     100.434     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SPS          C1          O1      DOUBLE       n     1.235  0.0126     1.235  0.0126
+SPS          C1          N2      SINGLE       y     1.383  0.0100     1.383  0.0100
+SPS          C1          C6      SINGLE       y     1.432  0.0125     1.432  0.0125
+SPS          N2          C3      SINGLE       y     1.370  0.0100     1.370  0.0100
+SPS          C3          O3      DOUBLE       n     1.223  0.0100     1.223  0.0100
+SPS          C3          N4      SINGLE       y     1.368  0.0100     1.368  0.0100
+SPS          N4          C5      SINGLE       y     1.366  0.0160     1.366  0.0160
+SPS          C5          C7      SINGLE       n     1.494  0.0100     1.494  0.0100
+SPS          C5          C6      DOUBLE       y     1.375  0.0100     1.375  0.0100
+SPS          C6          C8      SINGLE       n     1.466  0.0121     1.466  0.0121
+SPS          C8          C9      DOUBLE       n     1.327  0.0200     1.327  0.0200
+SPS          C9         C10      SINGLE       n     1.479  0.0120     1.479  0.0120
+SPS         C10         O10      DOUBLE       n     1.229  0.0129     1.229  0.0129
+SPS         C10         N11      SINGLE       n     1.336  0.0127     1.336  0.0127
+SPS         N11         C12      SINGLE       n     1.460  0.0142     1.460  0.0142
+SPS         C12         C13      SINGLE       n     1.523  0.0136     1.523  0.0136
+SPS         C12         C14      SINGLE       n     1.529  0.0121     1.529  0.0121
+SPS         C13         O13      SINGLE       n     1.417  0.0200     1.417  0.0200
+SPS         C14         S15      SINGLE       n     1.804  0.0100     1.804  0.0100
+SPS         S15         O15      DOUBLE       n     1.503  0.0200     1.503  0.0200
+SPS         S15         C16      SINGLE       n     1.777  0.0200     1.777  0.0200
+SPS         C16         S17      SINGLE       n     1.818  0.0114     1.818  0.0114
+SPS         S17         C18      SINGLE       n     1.796  0.0165     1.796  0.0165
+SPS          N2         HN2      SINGLE       n     1.016  0.0100     0.892  0.0200
+SPS          N4         HN4      SINGLE       n     1.016  0.0100     0.883  0.0200
+SPS          C7         H71      SINGLE       n     1.089  0.0100     0.968  0.0196
+SPS          C7         H72      SINGLE       n     1.089  0.0100     0.968  0.0196
+SPS          C7         H73      SINGLE       n     1.089  0.0100     0.968  0.0196
+SPS          C8         H81      SINGLE       n     1.082  0.0130     0.945  0.0200
+SPS          C9         H91      SINGLE       n     1.082  0.0130     0.945  0.0193
+SPS         N11        HN11      SINGLE       n     1.016  0.0100     0.870  0.0200
+SPS         C12        H121      SINGLE       n     1.089  0.0100     0.988  0.0127
+SPS         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0174
+SPS         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0174
+SPS         O13        HO13      SINGLE       n     0.970  0.0120     0.846  0.0200
+SPS         C14        H141      SINGLE       n     1.089  0.0100     0.979  0.0128
+SPS         C14        H142      SINGLE       n     1.089  0.0100     0.979  0.0128
+SPS         C16        H161      SINGLE       n     1.089  0.0100     0.980  0.0156
+SPS         C16        H162      SINGLE       n     1.089  0.0100     0.980  0.0156
+SPS         C18        H181      SINGLE       n     1.089  0.0100     0.965  0.0170
+SPS         C18        H182      SINGLE       n     1.089  0.0100     0.965  0.0170
+SPS         C18        H183      SINGLE       n     1.089  0.0100     0.965  0.0170
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SPS          O1          C1          N2     118.903    1.50
+SPS          O1          C1          C6     124.513    1.50
+SPS          N2          C1          C6     116.585    1.50
+SPS          C1          N2          C3     126.604    1.50
+SPS          C1          N2         HN2     117.312    1.81
+SPS          C3          N2         HN2     116.083    2.30
+SPS          N2          C3          O3     122.074    1.50
+SPS          N2          C3          N4     115.029    1.50
+SPS          O3          C3          N4     122.896    1.50
+SPS          C3          N4          C5     122.388    1.50
+SPS          C3          N4         HN4     118.111    1.73
+SPS          C5          N4         HN4     119.501    2.27
+SPS          N4          C5          C7     117.570    1.50
+SPS          N4          C5          C6     119.738    1.50
+SPS          C7          C5          C6     122.693    1.50
+SPS          C5          C7         H71     109.504    1.50
+SPS          C5          C7         H72     109.504    1.50
+SPS          C5          C7         H73     109.504    1.50
+SPS         H71          C7         H72     109.339    1.66
+SPS         H71          C7         H73     109.339    1.66
+SPS         H72          C7         H73     109.339    1.66
+SPS          C1          C6          C5     119.655    1.61
+SPS          C1          C6          C8     119.440    3.00
+SPS          C5          C6          C8     120.904    2.69
+SPS          C6          C8          C9     127.302    1.50
+SPS          C6          C8         H81     116.203    1.50
+SPS          C9          C8         H81     116.495    1.60
+SPS          C8          C9         C10     121.613    2.02
+SPS          C8          C9         H91     119.447    1.90
+SPS         C10          C9         H91     118.940    1.50
+SPS          C9         C10         O10     122.991    1.50
+SPS          C9         C10         N11     115.067    1.50
+SPS         O10         C10         N11     121.951    1.75
+SPS         C10         N11         C12     124.225    1.50
+SPS         C10         N11        HN11     118.189    1.50
+SPS         C12         N11        HN11     117.592    3.00
+SPS         N11         C12         C13     109.157    1.65
+SPS         N11         C12         C14     109.529    1.50
+SPS         N11         C12        H121     108.194    1.50
+SPS         C13         C12         C14     111.094    2.85
+SPS         C13         C12        H121     107.627    1.50
+SPS         C14         C12        H121     108.253    1.50
+SPS         C12         C13         O13     111.903    1.66
+SPS         C12         C13        H131     109.343    1.50
+SPS         C12         C13        H132     109.343    1.50
+SPS         O13         C13        H131     109.411    1.50
+SPS         O13         C13        H132     109.411    1.50
+SPS        H131         C13        H132     108.070    1.50
+SPS         C13         O13        HO13     108.529    2.94
+SPS         C12         C14         S15     108.220    3.00
+SPS         C12         C14        H141     108.870    1.50
+SPS         C12         C14        H142     108.870    1.50
+SPS         S15         C14        H141     109.128    1.59
+SPS         S15         C14        H142     109.128    1.59
+SPS        H141         C14        H142     108.148    1.50
+SPS         C14         S15         O15     106.316    1.50
+SPS         C14         S15         C16      98.345    1.79
+SPS         O15         S15         C16     106.041    1.50
+SPS         S15         C16         S17     109.471    3.00
+SPS         S15         C16        H161     109.362    1.50
+SPS         S15         C16        H162     109.362    1.50
+SPS         S17         C16        H161     108.707    1.51
+SPS         S17         C16        H162     108.707    1.51
+SPS        H161         C16        H162     108.188    1.50
+SPS         C16         S17         C18     100.682    1.50
+SPS         S17         C18        H181     109.490    1.50
+SPS         S17         C18        H182     109.490    1.50
+SPS         S17         C18        H183     109.490    1.50
+SPS        H181         C18        H182     109.509    1.50
+SPS        H181         C18        H183     109.509    1.50
+SPS        H182         C18        H183     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SPS       const_sp2_sp2_3          O1          C1          N2          C3     180.000     5.0     2
+SPS              const_24          O1          C1          C6          C8       0.000    10.0     2
+SPS            sp2_sp2_11         O10         C10          C9          C8       0.000     5.0     2
+SPS            sp2_sp2_13          C9         C10         N11         C12     180.000     5.0     2
+SPS             sp2_sp3_7         C10         N11         C12         C13       0.000    10.0     6
+SPS             sp3_sp3_1         N11         C12         C13         O13     180.000    10.0     3
+SPS            sp3_sp3_10         N11         C12         C14         S15     180.000    10.0     3
+SPS            sp3_sp3_19         C12         C13         O13        HO13     180.000    10.0     3
+SPS            sp3_sp3_22         C12         C14         S15         O15     180.000    10.0     3
+SPS            sp3_sp3_28         S17         C16         S15         C14     180.000    10.0     3
+SPS            sp3_sp3_34         S15         C16         S17         C18     180.000    10.0     3
+SPS            sp3_sp3_37        H181         C18         S17         C16     180.000    10.0     3
+SPS       const_sp2_sp2_7          O3          C3          N2          C1     180.000     5.0     2
+SPS              const_11          O3          C3          N4          C5     180.000    10.0     2
+SPS              const_15          C7          C5          N4          C3     180.000    10.0     2
+SPS             sp2_sp3_1          N4          C5          C7         H71     150.000    10.0     6
+SPS              const_20          C7          C5          C6          C8       0.000    10.0     2
+SPS             sp2_sp2_1          C1          C6          C8          C9     180.000     5.0     2
+SPS             sp2_sp2_5          C6          C8          C9         C10     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SPS    chir_1    C12    N11    C14    C13    positive
+SPS    chir_2    S15    O15    C16    C14    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SPS    plan-1          C1   0.020
+SPS    plan-1          C3   0.020
+SPS    plan-1          C5   0.020
+SPS    plan-1          C6   0.020
+SPS    plan-1          C7   0.020
+SPS    plan-1          C8   0.020
+SPS    plan-1         HN2   0.020
+SPS    plan-1         HN4   0.020
+SPS    plan-1          N2   0.020
+SPS    plan-1          N4   0.020
+SPS    plan-1          O1   0.020
+SPS    plan-1          O3   0.020
+SPS    plan-2          C6   0.020
+SPS    plan-2          C8   0.020
+SPS    plan-2          C9   0.020
+SPS    plan-2         H81   0.020
+SPS    plan-3         C10   0.020
+SPS    plan-3          C8   0.020
+SPS    plan-3          C9   0.020
+SPS    plan-3         H91   0.020
+SPS    plan-4         C10   0.020
+SPS    plan-4          C9   0.020
+SPS    plan-4         N11   0.020
+SPS    plan-4         O10   0.020
+SPS    plan-5         C10   0.020
+SPS    plan-5         C12   0.020
+SPS    plan-5        HN11   0.020
+SPS    plan-5         N11   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SPS           SMILES              ACDLabs 10.04                                                                                                             O=C1NC(=C(\C=C\C(=O)NC(CS(=O)CSC)CO)C(=O)N1)C
+SPS            InChI                InChI  1.03 InChI=1S/C13H19N3O5S2/c1-8-10(12(19)16-13(20)14-8)3-4-11(18)15-9(5-17)6-23(21)7-22-2/h3-4,9,17H,5-7H2,1-2H3,(H,15,18)(H2,14,16,19,20)/b4-3+/t9-,23+/m0/s1
+SPS         InChIKey                InChI  1.03                                                                                                                               XKLZIVIOZDNKEQ-CLQLPEFOSA-N
+SPS SMILES_CANONICAL               CACTVS 3.385                                                                                                        CSC[S@](=O)C[C@H](CO)NC(=O)/C=C/C1=C(C)NC(=O)NC1=O
+SPS           SMILES               CACTVS 3.385                                                                                                            CSC[S](=O)C[CH](CO)NC(=O)C=CC1=C(C)NC(=O)NC1=O
+SPS SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                                                    CC1=C(C(=O)NC(=O)N1)/C=C/C(=O)N[C@@H](CO)C[S@@](=O)CSC
+SPS           SMILES "OpenEye OEToolkits" 1.7.5                                                                                                               CC1=C(C(=O)NC(=O)N1)C=CC(=O)NC(CO)CS(=O)CSC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SPS acedrg               243         "dictionary generator"                  
+SPS acedrg_database      11          "data source"                           
+SPS rdkit                2017.03.2   "Chemoinformatics tool"
+SPS refmac5              5.8.0238    "optimization tool"                     

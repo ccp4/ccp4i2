@@ -1,0 +1,368 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AXD     AXD      "2-[4-({2-[(2S,5R)-2-(AMINOMETHYL)-5-ETHYNYLPYRROLIDIN-1-YL]-2-OXOETHYL}AMINO)-4-METHYLPIPERIDIN-1-YL]ISONICOTINIC ACID"     NON-POLYMER     58     29     .     
+#
+data_comp_AXD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AXD     N1      N       NT1     0       31.558      3.473       63.322      
+AXD     C2      C       CT      0       32.924      4.077       63.340      
+AXD     C3      C       CH2     0       33.901      2.991       62.843      
+AXD     C4      C       CH2     0       35.304      3.520       62.605      
+AXD     N5      N       NR6     0       35.280      4.664       61.688      
+AXD     C6      C       CH2     0       34.438      5.764       62.170      
+AXD     C7      C       CH2     0       33.013      5.292       62.392      
+AXD     C8      C       CH1     0       28.652      6.797       63.160      
+AXD     N9      N       NT      0       28.917      5.833       62.093      
+AXD     C10     C       CH1     0       28.145      6.245       60.905      
+AXD     C11     C       CH2     0       26.888      6.827       61.537      
+AXD     C12     C       CH2     0       27.386      7.554       62.762      
+AXD     C13     C       CH2     0       28.941      7.199       60.020      
+AXD     N14     N       NT3     1       30.174      6.594       59.460      
+AXD     C15     C       C       0       29.714      4.694       62.165      
+AXD     O16     O       O       0       29.880      3.982       61.177      
+AXD     C17     C       CH2     0       30.370      4.322       63.474      
+AXD     C18     C       CR6     0       35.963      4.700       60.505      
+AXD     C19     C       CR16    0       37.352      4.639       60.452      
+AXD     C20     C       CR6     0       37.997      4.680       59.221      
+AXD     C21     C       CR16    0       37.231      4.782       58.070      
+AXD     C22     C       CR16    0       35.853      4.839       58.194      
+AXD     N23     N       NRD6    0       35.220      4.800       59.382      
+AXD     C24     C       CSP     0       29.789      7.717       63.353      
+AXD     C25     C       CSP     0       30.745      8.381       63.509      
+AXD     C26     C       CH3     0       33.246      4.481       64.785      
+AXD     C27     C       C       0       39.492      4.614       59.154      
+AXD     O28     O       OC      -1      40.139      5.412       59.854      
+AXD     O29     O       O       0       40.002      3.765       58.401      
+AXD     HN1     H       H       0       31.489      2.770       63.866      
+AXD     H31     H       H       0       33.932      2.269       63.506      
+AXD     H32     H       H       0       33.550      2.617       62.007      
+AXD     H41     H       H       0       35.862      2.808       62.225      
+AXD     H42     H       H       0       35.702      3.798       63.458      
+AXD     H61     H       H       0       34.443      6.492       61.513      
+AXD     H62     H       H       0       34.807      6.109       63.011      
+AXD     H71     H       H       0       32.485      6.028       62.768      
+AXD     H72     H       H       0       32.615      5.045       61.530      
+AXD     H8      H       H       0       28.480      6.328       64.015      
+AXD     H10     H       H       0       27.900      5.452       60.367      
+AXD     H111    H       H       0       26.259      6.113       61.785      
+AXD     H112    H       H       0       26.440      7.447       60.919      
+AXD     H121    H       H       0       27.582      8.494       62.552      
+AXD     H122    H       H       0       26.717      7.522       63.481      
+AXD     H131    H       H       0       29.183      7.989       60.546      
+AXD     H132    H       H       0       28.368      7.495       59.282      
+AXD     H141    H       H       0       30.505      7.121       58.800      
+AXD     H142    H       H       0       29.989      5.774       59.120      
+AXD     H143    H       H       0       30.800      6.509       60.112      
+AXD     H171    H       H       0       30.618      5.127       63.950      
+AXD     H172    H       H       0       29.721      3.850       64.021      
+AXD     H19     H       H       0       37.864      4.569       61.240      
+AXD     H21     H       H       0       37.638      4.812       57.219      
+AXD     H22     H       H       0       35.326      4.909       57.412      
+AXD     H25     H       H       0       31.535      8.900       63.614      
+AXD     H261    H       H       0       33.435      5.432       64.829      
+AXD     H262    H       H       0       34.019      3.989       65.103      
+AXD     H263    H       H       0       32.488      4.283       65.360      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AXD          N1          C2      SINGLE       n     1.489  0.0100     1.489  0.0100
+AXD          N1         C17      SINGLE       n     1.461  0.0118     1.461  0.0118
+AXD          C2          C7      SINGLE       n     1.538  0.0100     1.538  0.0100
+AXD          C2          C3      SINGLE       n     1.538  0.0100     1.538  0.0100
+AXD          C2         C26      SINGLE       n     1.524  0.0127     1.524  0.0127
+AXD          C3          C4      SINGLE       n     1.512  0.0143     1.512  0.0143
+AXD          C4          N5      SINGLE       n     1.465  0.0100     1.465  0.0100
+AXD          N5         C18      SINGLE       n     1.366  0.0103     1.366  0.0103
+AXD          N5          C6      SINGLE       n     1.465  0.0100     1.465  0.0100
+AXD          C6          C7      SINGLE       n     1.512  0.0143     1.512  0.0143
+AXD          C8         C24      SINGLE       n     1.474  0.0100     1.474  0.0100
+AXD          C8          N9      SINGLE       n     1.453  0.0130     1.453  0.0130
+AXD          C8         C12      SINGLE       n     1.523  0.0107     1.523  0.0107
+AXD          N9         C10      SINGLE       n     1.476  0.0129     1.476  0.0129
+AXD          N9         C15      SINGLE       n     1.366  0.0198     1.366  0.0198
+AXD         C10         C13      SINGLE       n     1.525  0.0112     1.525  0.0112
+AXD         C10         C11      SINGLE       n     1.526  0.0100     1.526  0.0100
+AXD         C11         C12      SINGLE       n     1.511  0.0200     1.511  0.0200
+AXD         C13         N14      SINGLE       n     1.483  0.0133     1.483  0.0133
+AXD         C15         O16      DOUBLE       n     1.227  0.0149     1.227  0.0149
+AXD         C15         C17      SINGLE       n     1.501  0.0161     1.501  0.0161
+AXD         C18         N23      SINGLE       y     1.345  0.0100     1.345  0.0100
+AXD         C18         C19      DOUBLE       y     1.386  0.0128     1.386  0.0128
+AXD         C19         C20      SINGLE       y     1.387  0.0100     1.387  0.0100
+AXD         C20         C21      DOUBLE       y     1.383  0.0101     1.383  0.0101
+AXD         C20         C27      SINGLE       n     1.498  0.0200     1.498  0.0200
+AXD         C21         C22      SINGLE       y     1.381  0.0100     1.381  0.0100
+AXD         C22         N23      DOUBLE       y     1.342  0.0100     1.342  0.0100
+AXD         C24         C25      TRIPLE       n     1.174  0.0107     1.174  0.0107
+AXD         C27         O29      DOUBLE       n     1.244  0.0200     1.244  0.0200
+AXD         C27         O28      SINGLE       n     1.244  0.0200     1.244  0.0200
+AXD          N1         HN1      SINGLE       n     1.036  0.0160     0.889  0.0200
+AXD          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0147
+AXD          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0147
+AXD          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0110
+AXD          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0110
+AXD          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0110
+AXD          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0110
+AXD          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0147
+AXD          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0147
+AXD          C8          H8      SINGLE       n     1.089  0.0100     0.991  0.0142
+AXD         C10         H10      SINGLE       n     1.089  0.0100     0.989  0.0157
+AXD         C11        H111      SINGLE       n     1.089  0.0100     0.983  0.0200
+AXD         C11        H112      SINGLE       n     1.089  0.0100     0.983  0.0200
+AXD         C12        H121      SINGLE       n     1.089  0.0100     0.983  0.0137
+AXD         C12        H122      SINGLE       n     1.089  0.0100     0.983  0.0137
+AXD         C13        H131      SINGLE       n     1.089  0.0100     0.980  0.0160
+AXD         C13        H132      SINGLE       n     1.089  0.0100     0.980  0.0160
+AXD         N14        H141      SINGLE       n     1.036  0.0160     0.907  0.0200
+AXD         N14        H142      SINGLE       n     1.036  0.0160     0.907  0.0200
+AXD         N14        H143      SINGLE       n     1.036  0.0160     0.907  0.0200
+AXD         C17        H171      SINGLE       n     1.089  0.0100     0.971  0.0200
+AXD         C17        H172      SINGLE       n     1.089  0.0100     0.971  0.0200
+AXD         C19         H19      SINGLE       n     1.082  0.0130     0.942  0.0177
+AXD         C21         H21      SINGLE       n     1.082  0.0130     0.944  0.0103
+AXD         C22         H22      SINGLE       n     1.082  0.0130     0.946  0.0126
+AXD         C25         H25      SINGLE       n     1.048  0.0100     0.950  0.0200
+AXD         C26        H261      SINGLE       n     1.089  0.0100     0.971  0.0171
+AXD         C26        H262      SINGLE       n     1.089  0.0100     0.971  0.0171
+AXD         C26        H263      SINGLE       n     1.089  0.0100     0.971  0.0171
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AXD          C2          N1         C17     114.477    2.43
+AXD          C2          N1         HN1     112.476    3.00
+AXD         C17          N1         HN1     109.185    3.00
+AXD          N1          C2          C7     111.865    2.42
+AXD          N1          C2          C3     111.865    2.42
+AXD          N1          C2         C26     108.843    2.88
+AXD          C7          C2          C3     108.584    1.53
+AXD          C7          C2         C26     110.751    1.50
+AXD          C3          C2         C26     110.751    1.50
+AXD          C2          C3          C4     111.124    1.57
+AXD          C2          C3         H31     108.666    1.54
+AXD          C2          C3         H32     108.666    1.54
+AXD          C4          C3         H31     109.491    1.50
+AXD          C4          C3         H32     109.491    1.50
+AXD         H31          C3         H32     108.019    1.50
+AXD          C3          C4          N5     110.478    1.50
+AXD          C3          C4         H41     109.565    1.50
+AXD          C3          C4         H42     109.565    1.50
+AXD          N5          C4         H41     109.264    1.50
+AXD          N5          C4         H42     109.264    1.50
+AXD         H41          C4         H42     108.202    1.50
+AXD          C4          N5         C18     123.295    1.63
+AXD          C4          N5          C6     113.410    1.54
+AXD         C18          N5          C6     123.295    1.63
+AXD          N5          C6          C7     110.478    1.50
+AXD          N5          C6         H61     109.264    1.50
+AXD          N5          C6         H62     109.264    1.50
+AXD          C7          C6         H61     109.565    1.50
+AXD          C7          C6         H62     109.565    1.50
+AXD         H61          C6         H62     108.202    1.50
+AXD          C2          C7          C6     111.124    1.57
+AXD          C2          C7         H71     108.666    1.54
+AXD          C2          C7         H72     108.666    1.54
+AXD          C6          C7         H71     109.491    1.50
+AXD          C6          C7         H72     109.491    1.50
+AXD         H71          C7         H72     108.019    1.50
+AXD         C24          C8          N9     112.395    3.00
+AXD         C24          C8         C12     111.690    2.21
+AXD         C24          C8          H8     108.916    2.10
+AXD          N9          C8         C12     103.104    2.01
+AXD          N9          C8          H8     110.535    1.50
+AXD         C12          C8          H8     108.819    1.50
+AXD          C8          N9         C10     109.056    3.00
+AXD          C8          N9         C15     121.979    3.00
+AXD         C10          N9         C15     125.245    2.86
+AXD          N9         C10         C13     111.633    2.37
+AXD          N9         C10         C11     102.816    1.50
+AXD          N9         C10         H10     109.883    1.86
+AXD         C13         C10         C11     115.412    3.00
+AXD         C13         C10         H10     108.708    1.80
+AXD         C11         C10         H10     109.529    1.50
+AXD         C10         C11         C12     104.634    1.50
+AXD         C10         C11        H111     110.817    1.50
+AXD         C10         C11        H112     110.817    1.50
+AXD         C12         C11        H111     110.811    1.50
+AXD         C12         C11        H112     110.811    1.50
+AXD        H111         C11        H112     108.922    1.50
+AXD          C8         C12         C11     102.527    1.50
+AXD          C8         C12        H121     111.011    1.50
+AXD          C8         C12        H122     111.011    1.50
+AXD         C11         C12        H121     110.811    1.50
+AXD         C11         C12        H122     110.811    1.50
+AXD        H121         C12        H122     108.922    1.50
+AXD         C10         C13         N14     113.223    3.00
+AXD         C10         C13        H131     108.624    1.50
+AXD         C10         C13        H132     108.624    1.50
+AXD         N14         C13        H131     108.967    1.50
+AXD         N14         C13        H132     108.967    1.50
+AXD        H131         C13        H132     107.717    1.50
+AXD         C13         N14        H141     110.027    2.34
+AXD         C13         N14        H142     110.027    2.34
+AXD         C13         N14        H143     110.027    2.34
+AXD        H141         N14        H142     109.063    1.50
+AXD        H141         N14        H143     109.063    1.50
+AXD        H142         N14        H143     109.063    1.50
+AXD          N9         C15         O16     121.157    1.53
+AXD          N9         C15         C17     118.102    1.50
+AXD         O16         C15         C17     120.742    1.50
+AXD          N1         C17         C15     114.120    1.50
+AXD          N1         C17        H171     109.040    1.50
+AXD          N1         C17        H172     109.040    1.50
+AXD         C15         C17        H171     109.078    1.50
+AXD         C15         C17        H172     109.078    1.50
+AXD        H171         C17        H172     107.908    1.50
+AXD          N5         C18         N23     116.617    1.50
+AXD          N5         C18         C19     122.081    1.50
+AXD         N23         C18         C19     121.302    1.50
+AXD         C18         C19         C20     120.014    1.50
+AXD         C18         C19         H19     120.725    1.50
+AXD         C20         C19         H19     119.261    1.50
+AXD         C19         C20         C21     119.173    1.50
+AXD         C19         C20         C27     119.869    1.50
+AXD         C21         C20         C27     120.959    1.50
+AXD         C20         C21         C22     118.847    1.50
+AXD         C20         C21         H21     120.729    1.50
+AXD         C22         C21         H21     120.424    1.50
+AXD         C21         C22         N23     122.893    1.50
+AXD         C21         C22         H22     118.998    1.50
+AXD         N23         C22         H22     118.108    1.88
+AXD         C18         N23         C22     117.771    1.50
+AXD          C8         C24         C25     175.946    2.62
+AXD         C24         C25         H25     179.124    1.50
+AXD          C2         C26        H261     109.465    1.50
+AXD          C2         C26        H262     109.465    1.50
+AXD          C2         C26        H263     109.465    1.50
+AXD        H261         C26        H262     109.408    1.50
+AXD        H261         C26        H263     109.408    1.50
+AXD        H262         C26        H263     109.408    1.50
+AXD         C20         C27         O29     117.791    1.50
+AXD         C20         C27         O28     117.791    1.50
+AXD         O29         C27         O28     124.418    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AXD            sp3_sp3_51         C26          C2          N1         C17      60.000    10.0     3
+AXD            sp3_sp3_52         C15         C17          N1          C2     180.000    10.0     3
+AXD            sp3_sp3_10         C10         C11         C12          C8     -60.000    10.0     3
+AXD            sp3_sp3_94         C10         C13         N14        H141     180.000    10.0     3
+AXD            sp2_sp3_29         O16         C15         C17          N1     -60.000    10.0     6
+AXD              const_19          N5         C18         C19         C20     180.000    10.0     2
+AXD       const_sp2_sp2_2          N5         C18         N23         C22     180.000     5.0     2
+AXD              const_14         C18         C19         C20         C27     180.000    10.0     2
+AXD              const_11         C27         C20         C21         C22     180.000    10.0     2
+AXD             sp2_sp2_9         C19         C20         C27         O29     180.000     5.0     2
+AXD            sp3_sp3_61          N1          C2          C3          C4      60.000    10.0     3
+AXD            sp3_sp3_67          N1          C2         C26        H261     180.000    10.0     3
+AXD            sp3_sp3_25          N1          C2          C7          C6     180.000    10.0     3
+AXD       const_sp2_sp2_5         C20         C21         C22         N23       0.000     5.0     2
+AXD       const_sp2_sp2_3         C21         C22         N23         C18       0.000     5.0     2
+AXD           other_tor_1          C8         C24         C25         H25     180.000    10.0     1
+AXD            sp3_sp3_37          C2          C3          C4          N5      60.000    10.0     3
+AXD            sp2_sp3_22         C18          N5          C4          C3     180.000    10.0     6
+AXD             sp2_sp2_3         N23         C18          N5          C4       0.000     5.0     2
+AXD            sp2_sp3_13          C4          N5          C6          C7       0.000    10.0     6
+AXD            sp3_sp3_28          N5          C6          C7          C2     -60.000    10.0     3
+AXD            sp3_sp3_77         C11         C12          C8         C24     -60.000    10.0     3
+AXD             sp2_sp3_5         C15          N9          C8         C24     -60.000    10.0     6
+AXD             sp2_sp2_7         O16         C15          N9          C8       0.000     5.0     2
+AXD            sp2_sp3_11         C15          N9         C10         C13     -60.000    10.0     6
+AXD             sp3_sp3_4         C13         C10         C11         C12     -60.000    10.0     3
+AXD            sp3_sp3_85          N9         C10         C13         N14     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AXD    chir_1    C2    N1    C7    C3    both
+AXD    chir_2    C8    N9    C24    C12    negative
+AXD    chir_3    C10    N9    C13    C11    positive
+AXD    chir_4    N1    C2    C17    HN1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AXD    plan-1         C18   0.020
+AXD    plan-1         C19   0.020
+AXD    plan-1         C20   0.020
+AXD    plan-1         C21   0.020
+AXD    plan-1         C22   0.020
+AXD    plan-1         C27   0.020
+AXD    plan-1         H19   0.020
+AXD    plan-1         H21   0.020
+AXD    plan-1         H22   0.020
+AXD    plan-1         N23   0.020
+AXD    plan-1          N5   0.020
+AXD    plan-2         C18   0.020
+AXD    plan-2          C4   0.020
+AXD    plan-2          C6   0.020
+AXD    plan-2          N5   0.020
+AXD    plan-3         C15   0.020
+AXD    plan-3         C17   0.020
+AXD    plan-3          N9   0.020
+AXD    plan-3         O16   0.020
+AXD    plan-4         C20   0.020
+AXD    plan-4         C27   0.020
+AXD    plan-4         O28   0.020
+AXD    plan-4         O29   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AXD           SMILES              ACDLabs 10.04                                                                                                                                    O=C(O)c1cc(ncc1)N3CCC(NCC(=O)N2C(C#C)CCC2CN)(CC3)C
+AXD SMILES_CANONICAL               CACTVS 3.341                                                                                                                           CC1(CCN(CC1)c2cc(ccn2)C(O)=O)NCC(=O)N3[C@H](CN)CC[C@@H]3C#C
+AXD           SMILES               CACTVS 3.341                                                                                                                              CC1(CCN(CC1)c2cc(ccn2)C(O)=O)NCC(=O)N3[CH](CN)CC[CH]3C#C
+AXD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                          CC1(CCN(CC1)c2cc(ccn2)C(=O)O)NCC(=O)N3[C@@H](CC[C@@H]3C#C)CN
+AXD           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                    CC1(CCN(CC1)c2cc(ccn2)C(=O)O)NCC(=O)N3C(CCC3C#C)CN
+AXD            InChI                InChI  1.03 InChI=1S/C21H29N5O3/c1-3-16-4-5-17(13-22)26(16)19(27)14-24-21(2)7-10-25(11-8-21)18-12-15(20(28)29)6-9-23-18/h1,6,9,12,16-17,24H,4-5,7-8,10-11,13-14,22H2,2H3,(H,28,29)/t16-,17-/m0/s1
+AXD         InChIKey                InChI  1.03                                                                                                                                                           SDLYKSXRUIHFDH-IRXDYDNUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AXD acedrg               243         "dictionary generator"                  
+AXD acedrg_database      11          "data source"                           
+AXD rdkit                2017.03.2   "Chemoinformatics tool"
+AXD refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,533 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LCV     LCV      "(2~{S})-1-[2-[3-[[(2~{R})-4-[[[(2~{R},3~{S},4~{R},5~{R})-5-(6-aminopurin-9-yl)-4-oxidanyl-3-phosphonooxy-oxolan-2-yl]methoxy-oxidanyl-phosphoryl]oxy-oxidanyl-phosphoryl]oxy-3,3-dimethyl-2-oxidanyl-butanoyl]amino]propanoylamino]ethoxy]-1-oxidanylidene-propane-2-sulfonic acid"     NON-POLYMER     92     56     .     
+#
+data_comp_LCV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LCV     C2      C       CR16    0       25.935      21.514      17.015      
+LCV     C4      C       CR56    0       24.613      22.910      18.111      
+LCV     C5      C       CR56    0       25.104      22.493      19.336      
+LCV     C6      C       CR6     0       26.100      21.492      19.329      
+LCV     N1      N       NRD6    0       26.503      21.013      18.123      
+LCV     O6      O       O2      0       19.193      23.184      21.111      
+LCV     O56     O       O       0       32.693      12.940      14.837      
+LCV     SS4     S       S3      0       31.553      13.639      15.328      
+LCV     OS5     O       OH1     0       31.566      13.688      16.876      
+LCV     OS4     O       O       0       30.260      13.282      14.845      
+LCV     CS2     C       CH1     0       31.836      15.369      14.833      
+LCV     CS3     C       CH3     0       31.698      15.568      13.319      
+LCV     CS1     C       C       0       30.938      16.326      15.603      
+LCV     OS1     O       O       0       31.374      17.169      16.347      
+LCV     OPS     O       O2      0       29.647      16.112      15.349      
+LCV     CP1     C       CH2     0       28.636      16.952      15.960      
+LCV     CP2     C       CH2     0       28.445      16.538      17.392      
+LCV     NP1     N       NH1     0       27.248      17.118      17.989      
+LCV     CP3     C       C       0       26.049      16.520      18.072      
+LCV     OP1     O       O       0       25.830      15.409      17.591      
+LCV     CP4     C       CH2     0       24.952      17.263      18.809      
+LCV     CP5     C       CH2     0       24.166      18.188      17.904      
+LCV     NP2     N       NH1     0       23.305      19.095      18.653      
+LCV     CP6     C       C       0       22.166      18.725      19.231      
+LCV     OP2     O       O       0       21.717      17.582      19.160      
+LCV     CP7     C       CH1     0       21.396      19.768      20.036      
+LCV     OP3     O       OH1     0       21.500      21.041      19.389      
+LCV     CPA     C       CT      0       21.771      19.803      21.536      
+LCV     CP9     C       CH3     0       23.291      19.918      21.723      
+LCV     CP8     C       CH3     0       21.303      18.506      22.213      
+LCV     CPB     C       CH2     0       21.111      20.983      22.253      
+LCV     O7      O       O2      0       19.669      20.943      22.050      
+LCV     P2      P       P       0       18.796      22.253      22.355      
+LCV     O21     O       O       0       17.351      21.893      22.259      
+LCV     O22     O       OP      -1      19.305      22.872      23.615      
+LCV     P1      P       P       0       18.562      23.351      19.646      
+LCV     O11     O       O       0       18.320      21.993      19.074      
+LCV     O12     O       OP      -1      17.408      24.294      19.734      
+LCV     "O5'"   O       O2      0       19.781      24.047      18.864      
+LCV     "C5'"   C       CH2     0       19.600      25.343      18.234      
+LCV     "C4'"   C       CH1     0       20.770      25.638      17.326      
+LCV     "O4'"   O       O2      0       22.009      25.502      18.070      
+LCV     "C1'"   C       CH1     0       22.875      24.610      17.407      
+LCV     "C2'"   C       CH1     0       21.973      23.719      16.560      
+LCV     "O2'"   O       OH1     0       22.678      23.143      15.481      
+LCV     "C3'"   C       CH1     0       20.898      24.715      16.114      
+LCV     "O3'"   O       O2      0       21.310      25.448      14.955      
+LCV     P3      P       P       0       20.102      25.882      13.967      
+LCV     O31     O       O       0       20.700      26.851      12.965      
+LCV     O32     O       OP      -1      19.030      26.535      14.821      
+LCV     O33     O       OP      -1      19.608      24.609      13.305      
+LCV     N9      N       NR5     0       23.670      23.873      18.387      
+LCV     C8      C       CR15    0       23.644      23.986      19.758      
+LCV     N7      N       NRD5    0       24.481      23.183      20.365      
+LCV     N6      N       NH2     0       26.659      21.000      20.432      
+LCV     N3      N       NRD6    0       24.994      22.452      16.903      
+LCV     H1      H       H       0       26.246      21.150      16.200      
+LCV     H40     H       H       0       32.186      14.140      17.139      
+LCV     H2      H       H       0       32.767      15.600      15.060      
+LCV     H3      H       H       0       31.234      16.404      13.135      
+LCV     H4      H       H       0       31.196      14.831      12.932      
+LCV     H5      H       H       0       32.584      15.598      12.917      
+LCV     H6      H       H       0       27.790      16.854      15.473      
+LCV     H7      H       H       0       28.905      17.895      15.916      
+LCV     H8      H       H       0       29.221      16.828      17.919      
+LCV     H9      H       H       0       28.389      15.559      17.445      
+LCV     H10     H       H       0       27.328      17.925      18.311      
+LCV     H11     H       H       0       25.349      17.780      19.532      
+LCV     H12     H       H       0       24.348      16.615      19.210      
+LCV     H13     H       H       0       23.618      17.651      17.294      
+LCV     H14     H       H       0       24.791      18.715      17.363      
+LCV     H15     H       H       0       23.559      19.925      18.724      
+LCV     H16     H       H       0       20.445      19.502      19.992      
+LCV     H17     H       H       0       22.164      21.502      19.642      
+LCV     H18     H       H       0       23.488      20.197      22.634      
+LCV     H19     H       H       0       23.650      20.577      21.104      
+LCV     H20     H       H       0       23.715      19.058      21.556      
+LCV     H21     H       H       0       21.426      18.579      23.175      
+LCV     H22     H       H       0       21.822      17.753      21.881      
+LCV     H23     H       H       0       20.362      18.356      22.021      
+LCV     H24     H       H       0       21.473      21.823      21.908      
+LCV     H25     H       H       0       21.310      20.939      23.210      
+LCV     H28     H       H       0       19.533      26.046      18.927      
+LCV     H29     H       H       0       18.765      25.346      17.705      
+LCV     H30     H       H       0       20.687      26.565      17.015      
+LCV     H31     H       H       0       23.475      25.113      16.811      
+LCV     H32     H       H       0       21.564      23.007      17.120      
+LCV     H33     H       H       0       22.988      22.390      15.721      
+LCV     H34     H       H       0       20.052      24.238      15.949      
+LCV     H37     H       H       0       23.079      24.582      20.218      
+LCV     H38     H       H       0       26.681      21.486      21.163      
+LCV     H39     H       H       0       27.002      20.192      20.425      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LCV          P3         O31      DOUBLE       n     1.517  0.0192     1.517  0.0192
+LCV         CS2         CS3      SINGLE       n     1.524  0.0163     1.524  0.0163
+LCV          P3         O33      SINGLE       n     1.517  0.0192     1.517  0.0192
+LCV       "O3'"          P3      SINGLE       n     1.614  0.0178     1.614  0.0178
+LCV          P3         O32      SINGLE       n     1.517  0.0192     1.517  0.0192
+LCV       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+LCV          C2          N3      DOUBLE       y     1.330  0.0100     1.330  0.0100
+LCV          C2          N1      SINGLE       y     1.339  0.0100     1.339  0.0100
+LCV       "C3'"       "O3'"      SINGLE       n     1.425  0.0152     1.425  0.0152
+LCV          C4          N3      SINGLE       y     1.343  0.0100     1.343  0.0100
+LCV         O56         SS4      DOUBLE       n     1.425  0.0142     1.425  0.0142
+LCV          C6          N1      DOUBLE       y     1.354  0.0100     1.354  0.0100
+LCV         SS4         CS2      SINGLE       n     1.811  0.0200     1.811  0.0200
+LCV         CS2         CS1      SINGLE       n     1.517  0.0119     1.517  0.0119
+LCV         CS1         OPS      SINGLE       n     1.327  0.0104     1.327  0.0104
+LCV         OPS         CP1      SINGLE       n     1.446  0.0100     1.446  0.0100
+LCV       "C2'"       "C3'"      SINGLE       n     1.529  0.0125     1.529  0.0125
+LCV       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+LCV         SS4         OS4      DOUBLE       n     1.425  0.0142     1.425  0.0142
+LCV         SS4         OS5      SINGLE       n     1.549  0.0200     1.549  0.0200
+LCV       "C4'"       "C3'"      SINGLE       n     1.525  0.0133     1.525  0.0133
+LCV          C4          N9      SINGLE       y     1.374  0.0101     1.374  0.0101
+LCV          C4          C5      DOUBLE       y     1.381  0.0100     1.381  0.0100
+LCV         CS1         OS1      DOUBLE       n     1.203  0.0150     1.203  0.0150
+LCV          C5          C6      SINGLE       y     1.408  0.0100     1.408  0.0100
+LCV          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+LCV       "C1'"          N9      SINGLE       n     1.458  0.0100     1.458  0.0100
+LCV       "O4'"       "C1'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+LCV         CP1         CP2      SINGLE       n     1.498  0.0200     1.498  0.0200
+LCV          N9          C8      SINGLE       y     1.372  0.0100     1.372  0.0100
+LCV          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+LCV       "C4'"       "O4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+LCV       "C5'"       "C4'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+LCV         CP3         OP1      DOUBLE       n     1.229  0.0102     1.229  0.0102
+LCV         CP2         NP1      SINGLE       n     1.455  0.0100     1.455  0.0100
+LCV          C8          N7      DOUBLE       y     1.310  0.0100     1.310  0.0100
+LCV         CP5         NP2      SINGLE       n     1.457  0.0100     1.457  0.0100
+LCV         CP4         CP5      SINGLE       n     1.513  0.0195     1.513  0.0195
+LCV         NP1         CP3      SINGLE       n     1.337  0.0118     1.337  0.0118
+LCV         CP3         CP4      SINGLE       n     1.514  0.0100     1.514  0.0100
+LCV       "O5'"       "C5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+LCV          P1       "O5'"      SINGLE       n     1.604  0.0133     1.604  0.0133
+LCV         NP2         CP6      SINGLE       n     1.326  0.0100     1.326  0.0100
+LCV          P1         O11      DOUBLE       n     1.493  0.0122     1.493  0.0122
+LCV          P1         O12      SINGLE       n     1.493  0.0122     1.493  0.0122
+LCV          O6          P1      SINGLE       n     1.604  0.0133     1.604  0.0133
+LCV         CP7         OP3      SINGLE       n     1.419  0.0162     1.419  0.0162
+LCV         CP6         OP2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+LCV         CP6         CP7      SINGLE       n     1.519  0.0108     1.519  0.0108
+LCV         CP7         CPA      SINGLE       n     1.532  0.0112     1.532  0.0112
+LCV          O6          P2      SINGLE       n     1.604  0.0133     1.604  0.0133
+LCV         CPA         CP9      SINGLE       n     1.531  0.0109     1.531  0.0109
+LCV         CPA         CPB      SINGLE       n     1.526  0.0108     1.526  0.0108
+LCV         CPA         CP8      SINGLE       n     1.531  0.0109     1.531  0.0109
+LCV          P2         O21      DOUBLE       n     1.493  0.0122     1.493  0.0122
+LCV          O7          P2      SINGLE       n     1.604  0.0133     1.604  0.0133
+LCV         CPB          O7      SINGLE       n     1.454  0.0165     1.454  0.0165
+LCV          P2         O22      SINGLE       n     1.493  0.0122     1.493  0.0122
+LCV          C2          H1      SINGLE       n     1.082  0.0130     0.945  0.0200
+LCV         OS5         H40      SINGLE       n     0.970  0.0120     0.811  0.0200
+LCV         CS2          H2      SINGLE       n     1.089  0.0100     0.986  0.0200
+LCV         CS3          H3      SINGLE       n     1.089  0.0100     0.973  0.0141
+LCV         CS3          H4      SINGLE       n     1.089  0.0100     0.973  0.0141
+LCV         CS3          H5      SINGLE       n     1.089  0.0100     0.973  0.0141
+LCV         CP1          H6      SINGLE       n     1.089  0.0100     0.981  0.0136
+LCV         CP1          H7      SINGLE       n     1.089  0.0100     0.981  0.0136
+LCV         CP2          H8      SINGLE       n     1.089  0.0100     0.982  0.0177
+LCV         CP2          H9      SINGLE       n     1.089  0.0100     0.982  0.0177
+LCV         NP1         H10      SINGLE       n     1.016  0.0100     0.872  0.0200
+LCV         CP4         H11      SINGLE       n     1.089  0.0100     0.973  0.0156
+LCV         CP4         H12      SINGLE       n     1.089  0.0100     0.973  0.0156
+LCV         CP5         H13      SINGLE       n     1.089  0.0100     0.980  0.0159
+LCV         CP5         H14      SINGLE       n     1.089  0.0100     0.980  0.0159
+LCV         NP2         H15      SINGLE       n     1.016  0.0100     0.872  0.0200
+LCV         CP7         H16      SINGLE       n     1.089  0.0100     0.988  0.0129
+LCV         OP3         H17      SINGLE       n     0.970  0.0120     0.848  0.0200
+LCV         CP9         H18      SINGLE       n     1.089  0.0100     0.973  0.0146
+LCV         CP9         H19      SINGLE       n     1.089  0.0100     0.973  0.0146
+LCV         CP9         H20      SINGLE       n     1.089  0.0100     0.973  0.0146
+LCV         CP8         H21      SINGLE       n     1.089  0.0100     0.973  0.0146
+LCV         CP8         H22      SINGLE       n     1.089  0.0100     0.973  0.0146
+LCV         CP8         H23      SINGLE       n     1.089  0.0100     0.973  0.0146
+LCV         CPB         H24      SINGLE       n     1.089  0.0100     0.978  0.0102
+LCV         CPB         H25      SINGLE       n     1.089  0.0100     0.978  0.0102
+LCV       "C5'"         H28      SINGLE       n     1.089  0.0100     0.989  0.0200
+LCV       "C5'"         H29      SINGLE       n     1.089  0.0100     0.989  0.0200
+LCV       "C4'"         H30      SINGLE       n     1.089  0.0100     0.981  0.0200
+LCV       "C1'"         H31      SINGLE       n     1.089  0.0100     0.984  0.0200
+LCV       "C2'"         H32      SINGLE       n     1.089  0.0100     0.994  0.0200
+LCV       "O2'"         H33      SINGLE       n     0.970  0.0120     0.849  0.0200
+LCV       "C3'"         H34      SINGLE       n     1.089  0.0100     0.985  0.0119
+LCV          C8         H37      SINGLE       n     1.082  0.0130     0.942  0.0170
+LCV          N6         H38      SINGLE       n     1.016  0.0100     0.877  0.0200
+LCV          N6         H39      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LCV          N3          C2          N1     129.332    1.50
+LCV          N3          C2          H1     115.355    1.50
+LCV          N1          C2          H1     115.313    1.50
+LCV          N3          C4          N9     127.895    1.50
+LCV          N3          C4          C5     126.489    1.50
+LCV          N9          C4          C5     105.616    1.50
+LCV          C4          C5          C6     117.270    1.50
+LCV          C4          C5          N7     110.483    1.50
+LCV          C6          C5          N7     132.247    1.50
+LCV          N1          C6          C5     117.409    1.50
+LCV          N1          C6          N6     118.799    1.50
+LCV          C5          C6          N6     123.792    1.50
+LCV          C2          N1          C6     118.521    1.50
+LCV          P1          O6          P2     132.542    3.00
+LCV         O56         SS4         CS2     104.582    2.45
+LCV         O56         SS4         OS4     119.289    2.60
+LCV         O56         SS4         OS5     110.831    2.65
+LCV         CS2         SS4         OS4     104.582    2.45
+LCV         CS2         SS4         OS5     103.568    2.80
+LCV         OS4         SS4         OS5     110.831    2.65
+LCV         SS4         OS5         H40     110.371    3.00
+LCV         CS3         CS2         SS4     111.256    2.92
+LCV         CS3         CS2         CS1     110.636    2.31
+LCV         CS3         CS2          H2     107.425    1.50
+LCV         SS4         CS2         CS1     111.664    2.75
+LCV         SS4         CS2          H2     108.888    1.50
+LCV         CS1         CS2          H2     108.083    1.50
+LCV         CS2         CS3          H3     109.550    1.50
+LCV         CS2         CS3          H4     109.550    1.50
+LCV         CS2         CS3          H5     109.550    1.50
+LCV          H3         CS3          H4     109.455    1.50
+LCV          H3         CS3          H5     109.455    1.50
+LCV          H4         CS3          H5     109.455    1.50
+LCV         CS2         CS1         OPS     111.924    1.50
+LCV         CS2         CS1         OS1     123.660    1.76
+LCV         OPS         CS1         OS1     124.416    1.73
+LCV         CS1         OPS         CP1     116.652    1.80
+LCV         OPS         CP1         CP2     108.253    2.12
+LCV         OPS         CP1          H6     109.754    1.50
+LCV         OPS         CP1          H7     109.754    1.50
+LCV         CP2         CP1          H6     109.857    1.50
+LCV         CP2         CP1          H7     109.857    1.50
+LCV          H6         CP1          H7     108.313    1.50
+LCV         CP1         CP2         NP1     112.279    1.50
+LCV         CP1         CP2          H8     109.233    1.50
+LCV         CP1         CP2          H9     109.233    1.50
+LCV         NP1         CP2          H8     108.374    1.50
+LCV         NP1         CP2          H9     108.374    1.50
+LCV          H8         CP2          H9     108.238    1.99
+LCV         CP2         NP1         CP3     123.791    1.80
+LCV         CP2         NP1         H10     117.993    2.56
+LCV         CP3         NP1         H10     118.216    2.10
+LCV         OP1         CP3         NP1     121.943    1.50
+LCV         OP1         CP3         CP4     120.987    1.50
+LCV         NP1         CP3         CP4     117.070    1.96
+LCV         CP5         CP4         CP3     112.120    2.79
+LCV         CP5         CP4         H11     109.432    1.50
+LCV         CP5         CP4         H12     109.432    1.50
+LCV         CP3         CP4         H11     108.945    1.50
+LCV         CP3         CP4         H12     108.945    1.50
+LCV         H11         CP4         H12     107.745    2.07
+LCV         NP2         CP5         CP4     112.257    1.50
+LCV         NP2         CP5         H13     108.979    1.50
+LCV         NP2         CP5         H14     108.979    1.50
+LCV         CP4         CP5         H13     108.971    1.50
+LCV         CP4         CP5         H14     108.971    1.50
+LCV         H13         CP5         H14     107.877    1.50
+LCV         CP5         NP2         CP6     122.964    1.80
+LCV         CP5         NP2         H15     118.351    1.90
+LCV         CP6         NP2         H15     118.685    1.94
+LCV         NP2         CP6         OP2     122.985    1.50
+LCV         NP2         CP6         CP7     117.147    1.50
+LCV         OP2         CP6         CP7     119.851    1.78
+LCV         OP3         CP7         CP6     109.850    1.55
+LCV         OP3         CP7         CPA     109.482    3.00
+LCV         OP3         CP7         H16     108.675    1.50
+LCV         CP6         CP7         CPA     111.511    2.91
+LCV         CP6         CP7         H16     108.529    1.70
+LCV         CPA         CP7         H16     107.825    1.50
+LCV         CP7         OP3         H17     108.894    3.00
+LCV         CP7         CPA         CP9     109.534    1.52
+LCV         CP7         CPA         CPB     111.094    2.85
+LCV         CP7         CPA         CP8     109.534    1.52
+LCV         CP9         CPA         CPB     109.385    1.50
+LCV         CP9         CPA         CP8     108.765    1.50
+LCV         CPB         CPA         CP8     109.385    1.50
+LCV         CPA         CP9         H18     109.575    1.50
+LCV         CPA         CP9         H19     109.575    1.50
+LCV         CPA         CP9         H20     109.575    1.50
+LCV         H18         CP9         H19     109.377    1.50
+LCV         H18         CP9         H20     109.377    1.50
+LCV         H19         CP9         H20     109.377    1.50
+LCV         CPA         CP8         H21     109.575    1.50
+LCV         CPA         CP8         H22     109.575    1.50
+LCV         CPA         CP8         H23     109.575    1.50
+LCV         H21         CP8         H22     109.377    1.50
+LCV         H21         CP8         H23     109.377    1.50
+LCV         H22         CP8         H23     109.377    1.50
+LCV         CPA         CPB          O7     108.435    1.69
+LCV         CPA         CPB         H24     109.473    1.50
+LCV         CPA         CPB         H25     109.473    1.50
+LCV          O7         CPB         H24     109.739    1.50
+LCV          O7         CPB         H25     109.739    1.50
+LCV         H24         CPB         H25     108.108    1.50
+LCV          P2          O7         CPB     119.251    1.51
+LCV          O6          P2         O21     108.816    2.14
+LCV          O6          P2          O7     101.065    1.97
+LCV          O6          P2         O22     108.816    2.14
+LCV         O21          P2          O7     107.912    2.57
+LCV         O21          P2         O22     118.411    2.35
+LCV          O7          P2         O22     107.912    2.57
+LCV       "O5'"          P1         O11     109.410    1.50
+LCV       "O5'"          P1         O12     109.410    1.50
+LCV       "O5'"          P1          O6     101.065    1.97
+LCV         O11          P1         O12     118.411    2.35
+LCV         O11          P1          O6     108.816    2.14
+LCV         O12          P1          O6     108.816    2.14
+LCV       "C5'"       "O5'"          P1     118.553    2.41
+LCV       "C4'"       "C5'"       "O5'"     109.342    1.50
+LCV       "C4'"       "C5'"         H28     109.624    1.50
+LCV       "C4'"       "C5'"         H29     109.624    1.50
+LCV       "O5'"       "C5'"         H28     109.845    1.50
+LCV       "O5'"       "C5'"         H29     109.845    1.50
+LCV         H28       "C5'"         H29     108.472    1.50
+LCV       "C3'"       "C4'"       "O4'"     105.508    1.50
+LCV       "C3'"       "C4'"       "C5'"     114.866    1.63
+LCV       "C3'"       "C4'"         H30     109.143    1.50
+LCV       "O4'"       "C4'"       "C5'"     109.123    1.50
+LCV       "O4'"       "C4'"         H30     108.947    1.50
+LCV       "C5'"       "C4'"         H30     108.268    1.50
+LCV       "C1'"       "O4'"       "C4'"     109.903    1.50
+LCV       "C2'"       "C1'"          N9     113.824    1.50
+LCV       "C2'"       "C1'"       "O4'"     106.047    1.50
+LCV       "C2'"       "C1'"         H31     109.015    1.50
+LCV          N9       "C1'"       "O4'"     108.477    1.50
+LCV          N9       "C1'"         H31     109.561    1.50
+LCV       "O4'"       "C1'"         H31     109.807    1.50
+LCV       "O2'"       "C2'"       "C3'"     112.463    2.73
+LCV       "O2'"       "C2'"       "C1'"     111.715    2.69
+LCV       "O2'"       "C2'"         H32     110.448    1.97
+LCV       "C3'"       "C2'"       "C1'"     101.388    1.50
+LCV       "C3'"       "C2'"         H32     110.255    2.04
+LCV       "C1'"       "C2'"         H32     110.636    1.70
+LCV       "C2'"       "O2'"         H33     109.103    2.13
+LCV       "O3'"       "C3'"       "C2'"     110.766    3.00
+LCV       "O3'"       "C3'"       "C4'"     110.864    2.31
+LCV       "O3'"       "C3'"         H34     110.343    1.64
+LCV       "C2'"       "C3'"       "C4'"     102.352    1.50
+LCV       "C2'"       "C3'"         H34     110.255    2.04
+LCV       "C4'"       "C3'"         H34     110.624    1.81
+LCV          P3       "O3'"       "C3'"     109.471    3.00
+LCV         O31          P3         O33     112.139    1.52
+LCV         O31          P3       "O3'"     106.518    3.00
+LCV         O31          P3         O32     112.139    1.52
+LCV         O33          P3       "O3'"     106.518    3.00
+LCV         O33          P3         O32     112.139    1.52
+LCV       "O3'"          P3         O32     106.518    3.00
+LCV          C4          N9       "C1'"     127.459    1.80
+LCV          C4          N9          C8     105.693    1.50
+LCV       "C1'"          N9          C8     126.848    1.91
+LCV          N9          C8          N7     113.469    1.50
+LCV          N9          C8         H37     123.206    1.50
+LCV          N7          C8         H37     123.326    1.50
+LCV          C5          N7          C8     104.739    1.50
+LCV          C6          N6         H38     119.723    1.50
+LCV          C6          N6         H39     119.723    1.50
+LCV         H38          N6         H39     120.554    1.88
+LCV          C2          N3          C4     110.982    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LCV              const_27          N3          C2          N1          C6       0.000    10.0     2
+LCV       const_sp2_sp2_1          N1          C2          N3          C4       0.000     5.0     2
+LCV            sp3_sp3_31         SS4         CS2         CS3          H3     180.000    10.0     3
+LCV             sp2_sp3_1         OPS         CS1         CS2         CS3       0.000    10.0     6
+LCV             sp2_sp2_1         CS2         CS1         OPS         CP1     180.000     5.0     2
+LCV            sp3_sp3_58         CP2         CP1         OPS         CS1     180.000    10.0     3
+LCV            sp3_sp3_64         OPS         CP1         CP2         NP1     180.000    10.0     3
+LCV            sp2_sp3_14         CP3         NP1         CP2         CP1     120.000    10.0     6
+LCV             sp2_sp2_9         OP1         CP3         NP1         CP2       0.000     5.0     2
+LCV            sp2_sp3_26         OP1         CP3         CP4         CP5     120.000    10.0     6
+LCV       const_sp2_sp2_5          N3          C4          C5          C6       0.000     5.0     2
+LCV              const_18          N3          C4          N9       "C1'"       0.000    10.0     2
+LCV       const_sp2_sp2_4          N9          C4          N3          C2     180.000     5.0     2
+LCV            sp3_sp3_85         CP3         CP4         CP5         NP2     180.000    10.0     3
+LCV            sp2_sp3_20         CP6         NP2         CP5         CP4     120.000    10.0     6
+LCV            sp2_sp2_13         OP2         CP6         NP2         CP5       0.000     5.0     2
+LCV            sp2_sp3_31         NP2         CP6         CP7         OP3       0.000    10.0     6
+LCV           sp3_sp3_103         CP6         CP7         OP3         H17     180.000    10.0     3
+LCV           sp3_sp3_106         OP3         CP7         CPA         CP9     180.000    10.0     3
+LCV           sp3_sp3_119         H18         CP9         CPA         CP7     -60.000    10.0     3
+LCV           sp3_sp3_136         H21         CP8         CPA         CP7     180.000    10.0     3
+LCV           sp3_sp3_127         CP7         CPA         CPB          O7     180.000    10.0     3
+LCV              const_10          C4          C5          C6          N6     180.000    10.0     2
+LCV              const_25          C4          C5          N7          C8       0.000    10.0     2
+LCV           sp3_sp3_148         CPA         CPB          O7          P2     180.000    10.0     3
+LCV           sp3_sp3_145         CPB          O7          P2          O6     180.000    10.0     3
+LCV            sp3_sp3_99       "C5'"       "O5'"          P1         O11      60.000    10.0     3
+LCV            sp3_sp3_94       "C4'"       "C5'"       "O5'"          P1     180.000    10.0     3
+LCV            sp3_sp3_76       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+LCV              const_14          N6          C6          N1          C2     180.000    10.0     2
+LCV             sp2_sp2_5          N1          C6          N6         H38       0.000     5.0     2
+LCV            sp3_sp3_74       "C5'"       "C4'"       "O4'"       "C1'"      60.000    10.0     3
+LCV             sp3_sp3_5       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+LCV            sp3_sp3_28       "C2'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+LCV            sp3_sp3_23          N9       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+LCV             sp2_sp3_7          C4          N9       "C1'"       "C2'"     150.000    10.0     6
+LCV            sp3_sp3_43       "C3'"       "C2'"       "O2'"         H33     180.000    10.0     3
+LCV            sp3_sp3_14       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+LCV            sp3_sp3_46       "C2'"       "C3'"       "O3'"          P3     180.000    10.0     3
+LCV            sp3_sp3_42       "C3'"       "O3'"          P3         O31      60.000    10.0     3
+LCV              const_19          N7          C8          N9          C4       0.000    10.0     2
+LCV              const_23          N9          C8          N7          C5       0.000    10.0     2
+LCV           sp3_sp3_117          P1          O6          P2         O21      60.000    10.0     3
+LCV           sp3_sp3_101          P2          O6          P1       "O5'"     -60.000    10.0     3
+LCV            sp3_sp3_49         CS3         CS2         SS4         O56     180.000    10.0     3
+LCV            sp3_sp3_62         H40         OS5         SS4         O56     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LCV    chir_1    SS4    O56    OS4    OS5    both
+LCV    chir_2    CS2    SS4    CS1    CS3    positive
+LCV    chir_3    CP7    OP3    CP6    CPA    negative
+LCV    chir_4    CPA    CP7    CPB    CP9    both
+LCV    chir_5    P2    O6    O7    O22    both
+LCV    chir_6    P1    O6    "O5'"    O12    both
+LCV    chir_7    "C4'"    "O4'"    "C3'"    "C5'"    negative
+LCV    chir_8    "C1'"    "O4'"    N9    "C2'"    negative
+LCV    chir_9    "C2'"    "O2'"    "C1'"    "C3'"    negative
+LCV    chir_10    "C3'"    "O3'"    "C4'"    "C2'"    positive
+LCV    chir_11    P3    "O3'"    O33    O32    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LCV    plan-1       "C1'"   0.020
+LCV    plan-1          C2   0.020
+LCV    plan-1          C4   0.020
+LCV    plan-1          C5   0.020
+LCV    plan-1          C6   0.020
+LCV    plan-1          C8   0.020
+LCV    plan-1          H1   0.020
+LCV    plan-1         H37   0.020
+LCV    plan-1          N1   0.020
+LCV    plan-1          N3   0.020
+LCV    plan-1          N6   0.020
+LCV    plan-1          N7   0.020
+LCV    plan-1          N9   0.020
+LCV    plan-2         CS1   0.020
+LCV    plan-2         CS2   0.020
+LCV    plan-2         OPS   0.020
+LCV    plan-2         OS1   0.020
+LCV    plan-3         CP2   0.020
+LCV    plan-3         CP3   0.020
+LCV    plan-3         H10   0.020
+LCV    plan-3         NP1   0.020
+LCV    plan-4         CP3   0.020
+LCV    plan-4         CP4   0.020
+LCV    plan-4         NP1   0.020
+LCV    plan-4         OP1   0.020
+LCV    plan-5         CP5   0.020
+LCV    plan-5         CP6   0.020
+LCV    plan-5         H15   0.020
+LCV    plan-5         NP2   0.020
+LCV    plan-6         CP6   0.020
+LCV    plan-6         CP7   0.020
+LCV    plan-6         NP2   0.020
+LCV    plan-6         OP2   0.020
+LCV    plan-7          C6   0.020
+LCV    plan-7         H38   0.020
+LCV    plan-7         H39   0.020
+LCV    plan-7          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LCV           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                  c3nc2n(C1OC(COP(OP(OCC(C(C(NCCC(NCCOC(C(S(=O)(=O)O)C)=O)=O)=O)O)(C)C)(O)=O)(=O)O)C(C1O)OP(O)(=O)O)cnc2c(N)n3
+LCV            InChI                InChI  1.03 InChI=1S/C24H40N7O21P3S/c1-12(56(44,45)46)23(36)47-7-6-26-14(32)4-5-27-21(35)18(34)24(2,3)9-49-55(42,43)52-54(40,41)48-8-13-17(51-53(37,38)39)16(33)22(50-13)31-11-30-15-19(25)28-10-29-20(15)31/h10-13,16-18,22,33-34H,4-9H2,1-3H3,(H,26,32)(H,27,35)(H,40,41)(H,42,43)(H2,25,28,29)(H2,37,38,39)(H,44,45,46)/t12-,13+,16+,17+,18-,22+/m0/s1
+LCV         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                   BEMUOEZGNHFKKE-IBNUZSNCSA-N
+LCV SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                                  C[C@@H](C(=O)OCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O[P](O)(O)=O)n2cnc3c(N)ncnc23)[S](O)(=O)=O
+LCV           SMILES               CACTVS 3.385                                                                                                                                                                                                          C[CH](C(=O)OCCNC(=O)CCNC(=O)[CH](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O[P](O)(O)=O)n2cnc3c(N)ncnc23)[S](O)(=O)=O
+LCV SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                                                                                                                        C[C@@H](C(=O)OCCNC(=O)CCNC(=O)[C@@H](C(C)(C)COP(=O)(O)OP(=O)(O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O)S(=O)(=O)O
+LCV           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                                                                                                                                    CC(C(=O)OCCNC(=O)CCNC(=O)C(C(C)(C)COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O)S(=O)(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LCV acedrg               243         "dictionary generator"                  
+LCV acedrg_database      11          "data source"                           
+LCV rdkit                2017.03.2   "Chemoinformatics tool"
+LCV refmac5              5.8.0238    "optimization tool"                     

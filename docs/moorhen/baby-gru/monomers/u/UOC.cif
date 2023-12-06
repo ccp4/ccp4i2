@@ -1,0 +1,221 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+UOC     UOC      undecan-2-one     NON-POLYMER     34     12     .     
+#
+data_comp_UOC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+UOC     CCG     C       CH3     0       16.244      6.458       14.962      
+UOC     CCF     C       CH2     0       17.413      5.889       14.193      
+UOC     CCE     C       CH2     0       18.413      5.168       15.060      
+UOC     CCD     C       CH2     0       19.513      4.474       14.294      
+UOC     CCC     C       CH2     0       20.521      5.410       13.673      
+UOC     CCB     C       CH2     0       21.708      4.717       13.051      
+UOC     CCA     C       CH2     0       22.608      5.625       12.244      
+UOC     CBZ     C       CH2     0       23.349      6.675       13.062      
+UOC     CBY     C       CH2     0       22.735      8.042       13.022      
+UOC     CBX     C       C       0       23.414      9.043       13.908      
+UOC     OCH     O       O       0       23.361      8.954       15.113      
+UOC     CBW     C       CH3     0       24.152      10.145      13.239      
+UOC     HCG     H       H       0       15.642      6.914       14.349      
+UOC     HCGA    H       H       0       16.569      7.090       15.626      
+UOC     HCGB    H       H       0       15.766      5.738       15.408      
+UOC     HCF     H       H       0       17.871      6.619       13.723      
+UOC     HCFA    H       H       0       17.073      5.264       13.516      
+UOC     HCE     H       H       0       17.937      4.501       15.599      
+UOC     HCEA    H       H       0       18.818      5.815       15.676      
+UOC     HCD     H       H       0       19.108      3.932       13.584      
+UOC     HCDA    H       H       0       19.983      3.865       14.902      
+UOC     HCC     H       H       0       20.844      6.028       14.364      
+UOC     HCCA    H       H       0       20.071      5.944       12.984      
+UOC     HCB     H       H       0       21.382      4.000       12.467      
+UOC     HCBA    H       H       0       22.238      4.301       13.763      
+UOC     HCA     H       H       0       22.065      6.079       11.564      
+UOC     HCAA    H       H       0       23.268      5.073       11.774      
+UOC     HBZ     H       H       0       24.269      6.736       12.731      
+UOC     HBZA    H       H       0       23.391      6.377       13.995      
+UOC     HBY     H       H       0       21.794      7.973       13.292      
+UOC     HBYA    H       H       0       22.756      8.370       12.098      
+UOC     HBW     H       H       0       24.576      10.708      13.907      
+UOC     HBWA    H       H       0       23.535      10.679      12.713      
+UOC     HBWB    H       H       0       24.833      9.773       12.655      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+UOC         CCG         CCF      SINGLE       n     1.510  0.0200     1.510  0.0200
+UOC         CCF         CCE      SINGLE       n     1.507  0.0200     1.507  0.0200
+UOC         CCE         CCD      SINGLE       n     1.509  0.0200     1.509  0.0200
+UOC         CCD         CCC      SINGLE       n     1.509  0.0200     1.509  0.0200
+UOC         CCC         CCB      SINGLE       n     1.509  0.0200     1.509  0.0200
+UOC         CCB         CCA      SINGLE       n     1.509  0.0200     1.509  0.0200
+UOC         CCA         CBZ      SINGLE       n     1.519  0.0164     1.519  0.0164
+UOC         CBZ         CBY      SINGLE       n     1.497  0.0200     1.497  0.0200
+UOC         CBY         CBX      SINGLE       n     1.497  0.0200     1.497  0.0200
+UOC         CBX         OCH      DOUBLE       n     1.209  0.0200     1.209  0.0200
+UOC         CBX         CBW      SINGLE       n     1.483  0.0200     1.483  0.0200
+UOC         CCG         HCG      SINGLE       n     1.089  0.0100     0.973  0.0157
+UOC         CCG        HCGA      SINGLE       n     1.089  0.0100     0.973  0.0157
+UOC         CCG        HCGB      SINGLE       n     1.089  0.0100     0.973  0.0157
+UOC         CCF         HCF      SINGLE       n     1.089  0.0100     0.982  0.0155
+UOC         CCF        HCFA      SINGLE       n     1.089  0.0100     0.982  0.0155
+UOC         CCE         HCE      SINGLE       n     1.089  0.0100     0.981  0.0163
+UOC         CCE        HCEA      SINGLE       n     1.089  0.0100     0.981  0.0163
+UOC         CCD         HCD      SINGLE       n     1.089  0.0100     0.981  0.0163
+UOC         CCD        HCDA      SINGLE       n     1.089  0.0100     0.981  0.0163
+UOC         CCC         HCC      SINGLE       n     1.089  0.0100     0.981  0.0163
+UOC         CCC        HCCA      SINGLE       n     1.089  0.0100     0.981  0.0163
+UOC         CCB         HCB      SINGLE       n     1.089  0.0100     0.981  0.0163
+UOC         CCB        HCBA      SINGLE       n     1.089  0.0100     0.981  0.0163
+UOC         CCA         HCA      SINGLE       n     1.089  0.0100     0.981  0.0163
+UOC         CCA        HCAA      SINGLE       n     1.089  0.0100     0.981  0.0163
+UOC         CBZ         HBZ      SINGLE       n     1.089  0.0100     0.980  0.0160
+UOC         CBZ        HBZA      SINGLE       n     1.089  0.0100     0.980  0.0160
+UOC         CBY         HBY      SINGLE       n     1.089  0.0100     0.981  0.0185
+UOC         CBY        HBYA      SINGLE       n     1.089  0.0100     0.981  0.0185
+UOC         CBW         HBW      SINGLE       n     1.089  0.0100     0.971  0.0145
+UOC         CBW        HBWA      SINGLE       n     1.089  0.0100     0.971  0.0145
+UOC         CBW        HBWB      SINGLE       n     1.089  0.0100     0.971  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+UOC         CCF         CCG         HCG     109.554    1.50
+UOC         CCF         CCG        HCGA     109.554    1.50
+UOC         CCF         CCG        HCGB     109.554    1.50
+UOC         HCG         CCG        HCGA     109.380    1.50
+UOC         HCG         CCG        HCGB     109.380    1.50
+UOC        HCGA         CCG        HCGB     109.380    1.50
+UOC         CCG         CCF         CCE     113.719    3.00
+UOC         CCG         CCF         HCF     108.918    1.50
+UOC         CCG         CCF        HCFA     108.918    1.50
+UOC         CCE         CCF         HCF     108.758    1.50
+UOC         CCE         CCF        HCFA     108.758    1.50
+UOC         HCF         CCF        HCFA     107.763    1.50
+UOC         CCF         CCE         CCD     114.362    3.00
+UOC         CCF         CCE         HCE     108.653    1.50
+UOC         CCF         CCE        HCEA     108.653    1.50
+UOC         CCD         CCE         HCE     108.698    1.50
+UOC         CCD         CCE        HCEA     108.698    1.50
+UOC         HCE         CCE        HCEA     107.646    1.50
+UOC         CCE         CCD         CCC     114.243    1.69
+UOC         CCE         CCD         HCD     108.698    1.50
+UOC         CCE         CCD        HCDA     108.698    1.50
+UOC         CCC         CCD         HCD     108.698    1.50
+UOC         CCC         CCD        HCDA     108.698    1.50
+UOC         HCD         CCD        HCDA     107.646    1.50
+UOC         CCD         CCC         CCB     114.243    1.69
+UOC         CCD         CCC         HCC     108.698    1.50
+UOC         CCD         CCC        HCCA     108.698    1.50
+UOC         CCB         CCC         HCC     108.698    1.50
+UOC         CCB         CCC        HCCA     108.698    1.50
+UOC         HCC         CCC        HCCA     107.646    1.50
+UOC         CCC         CCB         CCA     114.243    1.69
+UOC         CCC         CCB         HCB     108.698    1.50
+UOC         CCC         CCB        HCBA     108.698    1.50
+UOC         CCA         CCB         HCB     108.698    1.50
+UOC         CCA         CCB        HCBA     108.698    1.50
+UOC         HCB         CCB        HCBA     107.646    1.50
+UOC         CCB         CCA         CBZ     114.243    1.69
+UOC         CCB         CCA         HCA     108.698    1.50
+UOC         CCB         CCA        HCAA     108.698    1.50
+UOC         CBZ         CCA         HCA     108.698    1.50
+UOC         CBZ         CCA        HCAA     108.698    1.50
+UOC         HCA         CCA        HCAA     107.646    1.50
+UOC         CCA         CBZ         CBY     114.272    1.50
+UOC         CCA         CBZ         HBZ     108.698    1.50
+UOC         CCA         CBZ        HBZA     108.698    1.50
+UOC         CBY         CBZ         HBZ     108.724    1.50
+UOC         CBY         CBZ        HBZA     108.724    1.50
+UOC         HBZ         CBZ        HBZA     107.646    1.50
+UOC         CBZ         CBY         CBX     114.397    2.37
+UOC         CBZ         CBY         HBY     108.866    1.50
+UOC         CBZ         CBY        HBYA     108.866    1.50
+UOC         CBX         CBY         HBY     108.742    1.50
+UOC         CBX         CBY        HBYA     108.742    1.50
+UOC         HBY         CBY        HBYA     107.764    1.50
+UOC         CBY         CBX         OCH     121.417    1.50
+UOC         CBY         CBX         CBW     116.808    1.50
+UOC         OCH         CBX         CBW     121.774    1.50
+UOC         CBX         CBW         HBW     109.690    1.50
+UOC         CBX         CBW        HBWA     109.690    1.50
+UOC         CBX         CBW        HBWB     109.690    1.50
+UOC         HBW         CBW        HBWA     109.400    1.50
+UOC         HBW         CBW        HBWB     109.400    1.50
+UOC        HBWA         CBW        HBWB     109.400    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+UOC             sp3_sp3_1         CCE         CCF         CCG         HCG     180.000    10.0     3
+UOC            sp3_sp3_10         CCD         CCE         CCF         CCG     180.000    10.0     3
+UOC            sp3_sp3_19         CCC         CCD         CCE         CCF     180.000    10.0     3
+UOC            sp3_sp3_28         CCB         CCC         CCD         CCE     180.000    10.0     3
+UOC            sp3_sp3_37         CCA         CCB         CCC         CCD     180.000    10.0     3
+UOC            sp3_sp3_46         CBZ         CCA         CCB         CCC     180.000    10.0     3
+UOC            sp3_sp3_55         CBY         CBZ         CCA         CCB     180.000    10.0     3
+UOC            sp3_sp3_64         CBX         CBY         CBZ         CCA     180.000    10.0     3
+UOC             sp2_sp3_2         OCH         CBX         CBY         CBZ     120.000    10.0     6
+UOC             sp2_sp3_7         CBY         CBX         CBW         HBW       0.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+UOC    plan-1         CBW   0.020
+UOC    plan-1         CBX   0.020
+UOC    plan-1         CBY   0.020
+UOC    plan-1         OCH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+UOC           SMILES              ACDLabs 10.04                                            O=C(CCCCCCCCC)C
+UOC SMILES_CANONICAL               CACTVS 3.341                                            CCCCCCCCCC(C)=O
+UOC           SMILES               CACTVS 3.341                                            CCCCCCCCCC(C)=O
+UOC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                            CCCCCCCCCC(=O)C
+UOC           SMILES "OpenEye OEToolkits" 1.5.0                                            CCCCCCCCCC(=O)C
+UOC            InChI                InChI  1.03 InChI=1S/C11H22O/c1-3-4-5-6-7-8-9-10-11(2)12/h3-10H2,1-2H3
+UOC         InChIKey                InChI  1.03                                KYWIYKKSMDLRDC-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+UOC acedrg               243         "dictionary generator"                  
+UOC acedrg_database      11          "data source"                           
+UOC rdkit                2017.03.2   "Chemoinformatics tool"
+UOC refmac5              5.8.0238    "optimization tool"                     

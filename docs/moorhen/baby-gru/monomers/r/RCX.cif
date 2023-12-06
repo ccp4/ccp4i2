@@ -1,0 +1,280 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RCX     RCX      Rofecoxib     NON-POLYMER     36     22     .     
+#
+data_comp_RCX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RCX     C1      C       CR5     0       23.765      2.818       32.630      
+RCX     C2      C       CR5     0       22.799      1.807       32.629      
+RCX     C3      C       CH2     0       22.069      1.849       31.329      
+RCX     C4      C       CR5     0       23.714      3.450       31.293      
+RCX     O5      O       O2      0       22.785      2.815       30.526      
+RCX     O6      O       O       0       24.347      4.378       30.848      
+RCX     C7      C       CR6     0       24.696      3.251       33.685      
+RCX     C8      C       CR16    0       24.247      3.484       34.985      
+RCX     C9      C       CR16    0       25.127      3.891       35.979      
+RCX     C10     C       CR16    0       26.465      4.071       35.691      
+RCX     C11     C       CR16    0       26.928      3.844       34.410      
+RCX     C12     C       CR16    0       26.052      3.437       33.413      
+RCX     C13     C       CR6     0       22.492      0.833       33.694      
+RCX     C14     C       CR16    0       23.515      0.135       34.340      
+RCX     C15     C       CR16    0       23.231      -0.778      35.339      
+RCX     C16     C       CR6     0       21.910      -1.008      35.702      
+RCX     C17     C       CR16    0       20.877      -0.325      35.072      
+RCX     C18     C       CR16    0       21.170      0.587       34.075      
+RCX     S19     S       S3      0       21.550      -2.176      36.980      
+RCX     O20     O       O       0       22.550      -3.205      36.944      
+RCX     O21     O       O       0       20.174      -2.570      36.869      
+RCX     C22     C       CH3     0       21.747      -1.270      38.467      
+RCX     H2      H       H       0       22.077      0.976       30.904      
+RCX     H1      H       H       0       21.149      2.127       31.462      
+RCX     H3      H       H       0       23.333      3.364       35.190      
+RCX     H4      H       H       0       24.808      4.046       36.853      
+RCX     H5      H       H       0       27.062      4.348       36.368      
+RCX     H6      H       H       0       27.841      3.966       34.210      
+RCX     H7      H       H       0       26.376      3.284       32.540      
+RCX     H8      H       H       0       24.411      0.290       34.094      
+RCX     H9      H       H       0       23.928      -1.238      35.764      
+RCX     H10     H       H       0       19.986      -0.477      35.316      
+RCX     H11     H       H       0       20.470      1.049       33.648      
+RCX     H12     H       H       0       20.910      -1.256      38.947      
+RCX     H13     H       H       0       22.014      -0.366      38.259      
+RCX     H14     H       H       0       22.424      -1.689      39.011      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RCX          C4          O5      SINGLE       n     1.361  0.0100     1.361  0.0100
+RCX          C3          O5      SINGLE       n     1.443  0.0116     1.443  0.0116
+RCX          C4          O6      DOUBLE       n     1.209  0.0100     1.209  0.0100
+RCX          C1          C4      SINGLE       n     1.485  0.0179     1.485  0.0179
+RCX          C2          C3      SINGLE       n     1.491  0.0100     1.491  0.0100
+RCX          C1          C2      DOUBLE       n     1.404  0.0200     1.404  0.0200
+RCX          C1          C7      SINGLE       n     1.471  0.0120     1.471  0.0120
+RCX          C2         C13      SINGLE       n     1.475  0.0126     1.475  0.0126
+RCX          C7         C12      SINGLE       y     1.392  0.0100     1.392  0.0100
+RCX         C11         C12      DOUBLE       y     1.385  0.0100     1.385  0.0100
+RCX         C13         C18      SINGLE       y     1.393  0.0100     1.393  0.0100
+RCX         C13         C14      DOUBLE       y     1.393  0.0100     1.393  0.0100
+RCX          C7          C8      DOUBLE       y     1.392  0.0100     1.392  0.0100
+RCX         C17         C18      DOUBLE       y     1.379  0.0100     1.379  0.0100
+RCX         C10         C11      SINGLE       y     1.376  0.0124     1.376  0.0124
+RCX         C14         C15      SINGLE       y     1.379  0.0100     1.379  0.0100
+RCX         C16         C17      SINGLE       y     1.386  0.0100     1.386  0.0100
+RCX          C8          C9      SINGLE       y     1.385  0.0100     1.385  0.0100
+RCX         C15         C16      DOUBLE       y     1.386  0.0100     1.386  0.0100
+RCX         C16         S19      SINGLE       n     1.767  0.0100     1.767  0.0100
+RCX          C9         C10      DOUBLE       y     1.376  0.0124     1.376  0.0124
+RCX         S19         O20      DOUBLE       n     1.435  0.0100     1.435  0.0100
+RCX         S19         O21      DOUBLE       n     1.435  0.0100     1.435  0.0100
+RCX         S19         C22      SINGLE       n     1.753  0.0100     1.753  0.0100
+RCX          C3          H2      SINGLE       n     1.089  0.0100     0.970  0.0166
+RCX          C3          H1      SINGLE       n     1.089  0.0100     0.970  0.0166
+RCX          C8          H3      SINGLE       n     1.082  0.0130     0.944  0.0142
+RCX          C9          H4      SINGLE       n     1.082  0.0130     0.943  0.0180
+RCX         C10          H5      SINGLE       n     1.082  0.0130     0.944  0.0161
+RCX         C11          H6      SINGLE       n     1.082  0.0130     0.943  0.0180
+RCX         C12          H7      SINGLE       n     1.082  0.0130     0.944  0.0142
+RCX         C14          H8      SINGLE       n     1.082  0.0130     0.942  0.0161
+RCX         C15          H9      SINGLE       n     1.082  0.0130     0.937  0.0111
+RCX         C17         H10      SINGLE       n     1.082  0.0130     0.937  0.0111
+RCX         C18         H11      SINGLE       n     1.082  0.0130     0.942  0.0161
+RCX         C22         H12      SINGLE       n     1.089  0.0100     0.965  0.0106
+RCX         C22         H13      SINGLE       n     1.089  0.0100     0.965  0.0106
+RCX         C22         H14      SINGLE       n     1.089  0.0100     0.965  0.0106
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RCX          C4          C1          C2     109.085    3.00
+RCX          C4          C1          C7     122.205    1.90
+RCX          C2          C1          C7     128.710    2.47
+RCX          C3          C2          C1     109.397    2.72
+RCX          C3          C2         C13     122.809    2.14
+RCX          C1          C2         C13     127.793    2.00
+RCX          O5          C3          C2     103.937    1.50
+RCX          O5          C3          H2     110.470    1.50
+RCX          O5          C3          H1     110.470    1.50
+RCX          C2          C3          H2     110.367    1.60
+RCX          C2          C3          H1     110.367    1.60
+RCX          H2          C3          H1     108.710    1.64
+RCX          O5          C4          O6     120.425    1.50
+RCX          O5          C4          C1     109.767    1.50
+RCX          O6          C4          C1     129.808    1.50
+RCX          C4          O5          C3     108.925    1.50
+RCX          C1          C7         C12     120.961    1.50
+RCX          C1          C7          C8     120.961    1.50
+RCX         C12          C7          C8     118.078    1.50
+RCX          C7          C8          C9     120.784    1.50
+RCX          C7          C8          H3     119.518    1.50
+RCX          C9          C8          H3     119.698    1.50
+RCX          C8          C9         C10     120.241    1.50
+RCX          C8          C9          H4     119.796    1.50
+RCX         C10          C9          H4     119.963    1.50
+RCX         C11         C10          C9     119.871    1.50
+RCX         C11         C10          H5     120.065    1.50
+RCX          C9         C10          H5     120.065    1.50
+RCX         C12         C11         C10     120.241    1.50
+RCX         C12         C11          H6     119.796    1.50
+RCX         C10         C11          H6     119.963    1.50
+RCX          C7         C12         C11     120.784    1.50
+RCX          C7         C12          H7     119.518    1.50
+RCX         C11         C12          H7     119.698    1.50
+RCX          C2         C13         C18     120.887    1.50
+RCX          C2         C13         C14     120.887    1.50
+RCX         C18         C13         C14     118.226    1.50
+RCX         C13         C14         C15     120.584    1.50
+RCX         C13         C14          H8     119.727    1.50
+RCX         C15         C14          H8     119.690    1.50
+RCX         C14         C15         C16     119.715    1.50
+RCX         C14         C15          H9     119.896    1.50
+RCX         C16         C15          H9     120.390    1.50
+RCX         C17         C16         C15     121.173    1.50
+RCX         C17         C16         S19     119.413    1.50
+RCX         C15         C16         S19     119.413    1.50
+RCX         C18         C17         C16     119.715    1.50
+RCX         C18         C17         H10     119.896    1.50
+RCX         C16         C17         H10     120.390    1.50
+RCX         C13         C18         C17     120.584    1.50
+RCX         C13         C18         H11     119.727    1.50
+RCX         C17         C18         H11     119.690    1.50
+RCX         C16         S19         O20     108.209    1.50
+RCX         C16         S19         O21     108.209    1.50
+RCX         C16         S19         C22     104.460    1.50
+RCX         O20         S19         O21     118.198    1.50
+RCX         O20         S19         C22     108.393    1.50
+RCX         O21         S19         C22     108.393    1.50
+RCX         S19         C22         H12     109.379    1.50
+RCX         S19         C22         H13     109.379    1.50
+RCX         S19         C22         H14     109.379    1.50
+RCX         H12         C22         H13     109.535    1.86
+RCX         H12         C22         H14     109.535    1.86
+RCX         H13         C22         H14     109.535    1.86
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RCX             sp2_sp2_7          C4          C1          C2          C3       0.000     5.0     2
+RCX             sp2_sp2_2          C2          C1          C4          O6     180.000     5.0     2
+RCX            sp2_sp2_11          C4          C1          C7         C12     180.000     5.0     2
+RCX       const_sp2_sp2_5         C10         C11         C12          C7       0.000     5.0     2
+RCX              const_43          C2         C13         C14         C15     180.000    10.0     2
+RCX              const_23          C2         C13         C18         C17     180.000    10.0     2
+RCX              const_37         C13         C14         C15         C16       0.000    10.0     2
+RCX              const_34         C14         C15         C16         S19     180.000    10.0     2
+RCX              const_31         S19         C16         C17         C18     180.000    10.0     2
+RCX             sp2_sp3_8         C17         C16         S19         O20     -90.000    10.0     6
+RCX              const_25         C16         C17         C18         C13       0.000    10.0     2
+RCX             sp3_sp3_4         H12         C22         S19         O20     180.000    10.0     3
+RCX            sp2_sp2_15         C18         C13          C2          C3     180.000     5.0     2
+RCX             sp2_sp3_1          C1          C2          C3          O5       0.000    10.0     6
+RCX             sp3_sp3_1          C2          C3          O5          C4      60.000    10.0     3
+RCX             sp2_sp2_6          O6          C4          O5          C3     180.000     5.0     2
+RCX       const_sp2_sp2_2         C11         C12          C7          C1     180.000     5.0     2
+RCX              const_47          C1          C7          C8          C9     180.000    10.0     2
+RCX              const_17          C7          C8          C9         C10       0.000    10.0     2
+RCX              const_13         C11         C10          C9          C8       0.000    10.0     2
+RCX       const_sp2_sp2_9          C9         C10         C11         C12       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RCX    chir_1    S19    O20    O21    C16    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RCX    plan-1          C1   0.020
+RCX    plan-1         C10   0.020
+RCX    plan-1         C11   0.020
+RCX    plan-1         C12   0.020
+RCX    plan-1          C7   0.020
+RCX    plan-1          C8   0.020
+RCX    plan-1          C9   0.020
+RCX    plan-1          H3   0.020
+RCX    plan-1          H4   0.020
+RCX    plan-1          H5   0.020
+RCX    plan-1          H6   0.020
+RCX    plan-1          H7   0.020
+RCX    plan-2         C13   0.020
+RCX    plan-2         C14   0.020
+RCX    plan-2         C15   0.020
+RCX    plan-2         C16   0.020
+RCX    plan-2         C17   0.020
+RCX    plan-2         C18   0.020
+RCX    plan-2          C2   0.020
+RCX    plan-2         H10   0.020
+RCX    plan-2         H11   0.020
+RCX    plan-2          H8   0.020
+RCX    plan-2          H9   0.020
+RCX    plan-2         S19   0.020
+RCX    plan-3          C1   0.020
+RCX    plan-3          C2   0.020
+RCX    plan-3          C4   0.020
+RCX    plan-3          C7   0.020
+RCX    plan-4          C1   0.020
+RCX    plan-4         C13   0.020
+RCX    plan-4          C2   0.020
+RCX    plan-4          C3   0.020
+RCX    plan-5          C1   0.020
+RCX    plan-5          C4   0.020
+RCX    plan-5          O5   0.020
+RCX    plan-5          O6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RCX            InChI                InChI  1.03 InChI=1S/C17H14O4S/c1-22(19,20)14-9-7-12(8-10-14)15-11-21-17(18)16(15)13-5-3-2-4-6-13/h2-10H,11H2,1H3
+RCX         InChIKey                InChI  1.03                                                                           RZJQGNCSTQAWON-UHFFFAOYSA-N
+RCX SMILES_CANONICAL               CACTVS 3.385                                                          C[S](=O)(=O)c1ccc(cc1)C2=C(C(=O)OC2)c3ccccc3
+RCX           SMILES               CACTVS 3.385                                                          C[S](=O)(=O)c1ccc(cc1)C2=C(C(=O)OC2)c3ccccc3
+RCX SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                            CS(=O)(=O)c1ccc(cc1)C2=C(C(=O)OC2)c3ccccc3
+RCX           SMILES "OpenEye OEToolkits" 2.0.5                                                            CS(=O)(=O)c1ccc(cc1)C2=C(C(=O)OC2)c3ccccc3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RCX acedrg               243         "dictionary generator"                  
+RCX acedrg_database      11          "data source"                           
+RCX rdkit                2017.03.2   "Chemoinformatics tool"
+RCX refmac5              5.8.0238    "optimization tool"                     

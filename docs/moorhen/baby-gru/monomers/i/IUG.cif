@@ -1,0 +1,567 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IUG     IUG      "1-(2-NITROPHENYL)ETHYL UDP-GALACTOSE"     NON-POLYMER     73     46     .     
+#
+data_comp_IUG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IUG     C1      C       CH1     0       -10.324     17.774      -22.429     
+IUG     O1      O       O2      0       -10.500     19.158      -22.605     
+IUG     C2      C       CH1     0       -8.923      17.537      -21.857     
+IUG     O2      O       OH1     0       -8.732      18.319      -20.680     
+IUG     C3      C       CH1     0       -7.850      17.857      -22.896     
+IUG     O3      O       OH1     0       -6.561      17.538      -22.370     
+IUG     C4      C       CH1     0       -8.101      17.098      -24.193     
+IUG     O4      O       OH1     0       -7.904      15.695      -23.987     
+IUG     C5      C       CH1     0       -9.527      17.381      -24.691     
+IUG     O5      O       O2      0       -10.490     17.062      -23.649     
+IUG     C6      C       CH2     0       -9.886      16.562      -25.906     
+IUG     O6      O       O2      0       -11.150     16.992      -26.401     
+IUG     "C1'"   C       CH1     0       -16.712     19.827      -17.037     
+IUG     "C2'"   C       CH1     0       -17.766     18.849      -17.574     
+IUG     "O2'"   O       OH1     0       -17.995     17.836      -16.616     
+IUG     "C3'"   C       CH1     0       -17.116     18.320      -18.862     
+IUG     "O3'"   O       OH1     0       -17.508     16.990      -19.181     
+IUG     "C4'"   C       CH1     0       -15.627     18.388      -18.508     
+IUG     "O4'"   O       O2      0       -15.526     19.637      -17.782     
+IUG     "C5'"   C       CH2     0       -14.653     18.370      -19.663     
+IUG     "O5'"   O       O2      0       -14.847     19.552      -20.487     
+IUG     OAA     O       O       0       -18.293     25.101      -17.442     
+IUG     OAB     O       O       0       -17.237     21.529      -14.866     
+IUG     OAC     O       O       0       -11.887     14.972      -30.512     
+IUG     OAD     O       O       0       -15.235     18.340      -22.679     
+IUG     OAE     O       O       0       -11.738     21.333      -22.888     
+IUG     OAK     O       OC      -1      -13.734     16.069      -30.616     
+IUG     OAL     O       OP      -1      -14.839     20.864      -22.646     
+IUG     OAM     O       OP      -1      -12.162     19.405      -24.499     
+IUG     CAN     C       CR16    0       -10.485     19.610      -29.585     
+IUG     CAO     C       CR16    0       -10.986     19.361      -30.847     
+IUG     CAP     C       CR16    0       -10.647     18.677      -28.577     
+IUG     CAQ     C       CR16    0       -11.655     18.178      -31.116     
+IUG     CAR     C       CR16    0       -17.685     23.101      -18.571     
+IUG     CAS     C       CR16    0       -17.303     21.822      -18.402     
+IUG     CAT     C       CH2     0       -11.480     16.469      -27.686     
+IUG     NAW     N       NR6     0       -17.756     23.287      -16.205     
+IUG     OBC     O       O2      0       -12.966     19.278      -22.109     
+IUG     CBD     C       CR6     0       -11.317     17.470      -28.802     
+IUG     CBE     C       CR6     0       -11.819     17.235      -30.095     
+IUG     CBF     C       CR6     0       -17.939     23.922      -17.421     
+IUG     CBG     C       CR6     0       -17.365     21.983      -15.997     
+IUG     NBQ     N       NR6     0       -17.133     21.249      -17.158     
+IUG     NBR     N       N       1       -12.529     16.007      -30.431     
+IUG     PBS     P       P       0       -14.553     19.519      -22.066     
+IUG     PBT     P       P       0       -11.854     19.861      -23.110     
+IUG     H1      H       H       0       -10.996     17.447      -21.780     
+IUG     H2      H       H       0       -8.840      16.585      -21.610     
+IUG     HO2     H       H       0       -8.008      18.097      -20.316     
+IUG     H3      H       H       0       -7.879      18.829      -23.090     
+IUG     HO3     H       H       0       -6.520      16.712      -22.212     
+IUG     H4      H       H       0       -7.459      17.413      -24.872     
+IUG     HO4     H       H       0       -8.578      15.338      -23.631     
+IUG     H5      H       H       0       -9.601      18.338      -24.922     
+IUG     H6      H       H       0       -9.931      15.612      -25.669     
+IUG     H6A     H       H       0       -9.198      16.676      -26.596     
+IUG     "H1'"   H       H       0       -16.524     19.614      -16.098     
+IUG     "H2'"   H       H       0       -18.599     19.319      -17.781     
+IUG     "HO2'"  H       H       0       -18.560     17.281      -16.922     
+IUG     "H3'"   H       H       0       -17.320     18.928      -19.618     
+IUG     "HO3'"  H       H       0       -17.095     16.744      -19.881     
+IUG     "H4'"   H       H       0       -15.400     17.652      -17.901     
+IUG     "H5'"   H       H       0       -14.798     17.553      -20.200     
+IUG     "H5'A"  H       H       0       -13.728     18.353      -19.314     
+IUG     HAN     H       H       0       -10.031     20.418      -29.409     
+IUG     HAO     H       H       0       -10.874     19.999      -31.531     
+IUG     HAP     H       H       0       -10.298     18.864      -27.723     
+IUG     HAQ     H       H       0       -11.995     18.013      -31.978     
+IUG     HAR     H       H       0       -17.785     23.453      -19.431     
+IUG     HAS     H       H       0       -17.139     21.296      -19.161     
+IUG     HAT     H       H       0       -12.411     16.164      -27.663     
+IUG     HATA    H       H       0       -10.921     15.684      -27.871     
+IUG     HNAW    H       H       0       -17.905     23.766      -15.470     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IUG          C1          O5      SINGLE       n     1.417  0.0109     1.417  0.0109
+IUG          C1          O1      SINGLE       n     1.403  0.0143     1.403  0.0143
+IUG          C1          C2      SINGLE       n     1.522  0.0165     1.522  0.0165
+IUG          O1         PBT      SINGLE       n     1.604  0.0133     1.604  0.0133
+IUG          C2          C3      SINGLE       n     1.519  0.0200     1.519  0.0200
+IUG          C2          O2      SINGLE       n     1.425  0.0112     1.425  0.0112
+IUG          C3          C4      SINGLE       n     1.520  0.0158     1.520  0.0158
+IUG          C3          O3      SINGLE       n     1.427  0.0138     1.427  0.0138
+IUG          C4          C5      SINGLE       n     1.524  0.0200     1.524  0.0200
+IUG          C4          O4      SINGLE       n     1.425  0.0176     1.425  0.0176
+IUG          C5          C6      SINGLE       n     1.508  0.0100     1.508  0.0100
+IUG          C5          O5      SINGLE       n     1.440  0.0195     1.440  0.0195
+IUG          C6          O6      SINGLE       n     1.416  0.0200     1.416  0.0200
+IUG          O6         CAT      SINGLE       n     1.420  0.0124     1.420  0.0124
+IUG       "C1'"       "C2'"      SINGLE       n     1.529  0.0100     1.529  0.0100
+IUG       "C1'"       "O4'"      SINGLE       n     1.412  0.0100     1.412  0.0100
+IUG       "C1'"         NBQ      SINGLE       n     1.476  0.0133     1.476  0.0133
+IUG       "C2'"       "C3'"      SINGLE       n     1.533  0.0109     1.533  0.0109
+IUG       "C2'"       "O2'"      SINGLE       n     1.412  0.0100     1.412  0.0100
+IUG       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+IUG       "C3'"       "C4'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+IUG       "C4'"       "C5'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+IUG       "C4'"       "O4'"      SINGLE       n     1.451  0.0111     1.451  0.0111
+IUG       "C5'"       "O5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+IUG       "O5'"         PBS      SINGLE       n     1.604  0.0133     1.604  0.0133
+IUG         OAA         CBF      DOUBLE       n     1.231  0.0100     1.231  0.0100
+IUG         OAB         CBG      DOUBLE       n     1.224  0.0111     1.224  0.0111
+IUG         OAC         NBR      DOUBLE       n     1.221  0.0162     1.221  0.0162
+IUG         OAD         PBS      DOUBLE       n     1.493  0.0122     1.493  0.0122
+IUG         OAE         PBT      DOUBLE       n     1.493  0.0122     1.493  0.0122
+IUG         OAK         NBR      SINGLE       n     1.221  0.0162     1.221  0.0162
+IUG         OAL         PBS      SINGLE       n     1.493  0.0122     1.493  0.0122
+IUG         OAM         PBT      SINGLE       n     1.493  0.0122     1.493  0.0122
+IUG         CAN         CAO      DOUBLE       y     1.376  0.0124     1.376  0.0124
+IUG         CAN         CAP      SINGLE       y     1.379  0.0111     1.379  0.0111
+IUG         CAO         CAQ      SINGLE       y     1.382  0.0100     1.382  0.0100
+IUG         CAP         CBD      DOUBLE       y     1.392  0.0100     1.392  0.0100
+IUG         CAQ         CBE      DOUBLE       y     1.394  0.0127     1.394  0.0127
+IUG         CAR         CAS      DOUBLE       y     1.342  0.0100     1.342  0.0100
+IUG         CAR         CBF      SINGLE       y     1.434  0.0100     1.434  0.0100
+IUG         CAS         NBQ      SINGLE       y     1.375  0.0106     1.375  0.0106
+IUG         CAT         CBD      SINGLE       n     1.503  0.0100     1.503  0.0100
+IUG         NAW         CBF      SINGLE       y     1.381  0.0100     1.381  0.0100
+IUG         NAW         CBG      SINGLE       y     1.372  0.0112     1.372  0.0112
+IUG         OBC         PBT      SINGLE       n     1.604  0.0133     1.604  0.0133
+IUG         OBC         PBS      SINGLE       n     1.604  0.0133     1.604  0.0133
+IUG         CBD         CBE      SINGLE       y     1.402  0.0100     1.402  0.0100
+IUG         CBE         NBR      SINGLE       n     1.457  0.0200     1.457  0.0200
+IUG         CBG         NBQ      SINGLE       y     1.383  0.0100     1.383  0.0100
+IUG          C1          H1      SINGLE       n     1.089  0.0100     0.989  0.0153
+IUG          C2          H2      SINGLE       n     1.089  0.0100     0.987  0.0140
+IUG          O2         HO2      SINGLE       n     0.970  0.0120     0.841  0.0200
+IUG          C3          H3      SINGLE       n     1.089  0.0100     0.991  0.0121
+IUG          O3         HO3      SINGLE       n     0.970  0.0120     0.841  0.0200
+IUG          C4          H4      SINGLE       n     1.089  0.0100     0.986  0.0131
+IUG          O4         HO4      SINGLE       n     0.970  0.0120     0.841  0.0200
+IUG          C5          H5      SINGLE       n     1.089  0.0100     0.988  0.0182
+IUG          C6          H6      SINGLE       n     1.089  0.0100     0.980  0.0170
+IUG          C6         H6A      SINGLE       n     1.089  0.0100     0.980  0.0170
+IUG       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.981  0.0118
+IUG       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.978  0.0200
+IUG       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+IUG       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+IUG       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+IUG       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+IUG       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.989  0.0200
+IUG       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.989  0.0200
+IUG         CAN         HAN      SINGLE       n     1.082  0.0130     0.944  0.0175
+IUG         CAO         HAO      SINGLE       n     1.082  0.0130     0.943  0.0172
+IUG         CAP         HAP      SINGLE       n     1.082  0.0130     0.943  0.0173
+IUG         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.941  0.0200
+IUG         CAR         HAR      SINGLE       n     1.082  0.0130     0.935  0.0100
+IUG         CAS         HAS      SINGLE       n     1.082  0.0130     0.938  0.0107
+IUG         CAT         HAT      SINGLE       n     1.089  0.0100     0.980  0.0180
+IUG         CAT        HATA      SINGLE       n     1.089  0.0100     0.980  0.0180
+IUG         NAW        HNAW      SINGLE       n     1.016  0.0100     0.889  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IUG          O5          C1          O1     110.394    2.23
+IUG          O5          C1          C2     110.164    1.50
+IUG          O5          C1          H1     109.272    1.61
+IUG          O1          C1          C2     108.240    1.70
+IUG          O1          C1          H1     109.322    1.50
+IUG          C2          C1          H1     109.599    1.50
+IUG          C1          O1         PBT     122.306    2.63
+IUG          C1          C2          C3     110.229    1.69
+IUG          C1          C2          O2     109.976    1.78
+IUG          C1          C2          H2     108.925    1.50
+IUG          C3          C2          O2     111.053    2.62
+IUG          C3          C2          H2     108.505    1.50
+IUG          O2          C2          H2     108.551    1.50
+IUG          C2          O2         HO2     109.126    2.06
+IUG          C2          C3          C4     110.687    1.67
+IUG          C2          C3          O3     109.587    2.09
+IUG          C2          C3          H3     108.712    1.50
+IUG          C4          C3          O3     110.243    1.88
+IUG          C4          C3          H3     108.653    1.50
+IUG          O3          C3          H3     108.767    1.50
+IUG          C3          O3         HO3     108.895    2.41
+IUG          C3          C4          C5     110.272    1.76
+IUG          C3          C4          O4     110.101    1.97
+IUG          C3          C4          H4     109.032    1.50
+IUG          C5          C4          O4     109.072    2.07
+IUG          C5          C4          H4     109.223    1.50
+IUG          O4          C4          H4     109.194    1.50
+IUG          C4          O4         HO4     109.564    3.00
+IUG          C4          C5          C6     111.824    1.50
+IUG          C4          C5          O5     109.140    1.86
+IUG          C4          C5          H5     108.960    1.50
+IUG          C6          C5          O5     107.192    1.50
+IUG          C6          C5          H5     108.952    1.50
+IUG          O5          C5          H5     109.134    1.50
+IUG          C1          O5          C5     113.152    1.70
+IUG          C5          C6          O6     109.158    1.80
+IUG          C5          C6          H6     109.921    1.50
+IUG          C5          C6         H6A     109.921    1.50
+IUG          O6          C6          H6     109.937    1.50
+IUG          O6          C6         H6A     109.937    1.50
+IUG          H6          C6         H6A     108.378    1.50
+IUG          C6          O6         CAT     112.269    1.78
+IUG       "C2'"       "C1'"       "O4'"     106.825    1.50
+IUG       "C2'"       "C1'"         NBQ     112.859    1.50
+IUG       "C2'"       "C1'"       "H1'"     109.776    1.83
+IUG       "O4'"       "C1'"         NBQ     108.667    1.50
+IUG       "O4'"       "C1'"       "H1'"     109.327    1.50
+IUG         NBQ       "C1'"       "H1'"     109.166    1.50
+IUG       "C1'"       "C2'"       "C3'"     101.269    1.50
+IUG       "C1'"       "C2'"       "O2'"     109.476    3.00
+IUG       "C1'"       "C2'"       "H2'"     110.760    1.63
+IUG       "C3'"       "C2'"       "O2'"     112.861    2.52
+IUG       "C3'"       "C2'"       "H2'"     110.799    1.82
+IUG       "O2'"       "C2'"       "H2'"     111.022    1.77
+IUG       "C2'"       "O2'"      "HO2'"     109.449    1.85
+IUG       "C2'"       "C3'"       "O3'"     111.993    3.00
+IUG       "C2'"       "C3'"       "C4'"     102.071    1.50
+IUG       "C2'"       "C3'"       "H3'"     110.108    1.66
+IUG       "O3'"       "C3'"       "C4'"     111.281    2.46
+IUG       "O3'"       "C3'"       "H3'"     110.380    1.67
+IUG       "C4'"       "C3'"       "H3'"     110.452    2.54
+IUG       "C3'"       "O3'"      "HO3'"     108.744    3.00
+IUG       "C3'"       "C4'"       "C5'"     116.008    1.52
+IUG       "C3'"       "C4'"       "O4'"     104.439    1.50
+IUG       "C3'"       "C4'"       "H4'"     109.363    1.86
+IUG       "C5'"       "C4'"       "O4'"     109.615    1.50
+IUG       "C5'"       "C4'"       "H4'"     108.268    1.50
+IUG       "O4'"       "C4'"       "H4'"     108.698    1.50
+IUG       "C1'"       "O4'"       "C4'"     109.578    1.50
+IUG       "C4'"       "C5'"       "O5'"     109.342    1.50
+IUG       "C4'"       "C5'"       "H5'"     109.624    1.50
+IUG       "C4'"       "C5'"      "H5'A"     109.624    1.50
+IUG       "O5'"       "C5'"       "H5'"     109.845    1.50
+IUG       "O5'"       "C5'"      "H5'A"     109.845    1.50
+IUG       "H5'"       "C5'"      "H5'A"     108.472    1.50
+IUG       "C5'"       "O5'"         PBS     118.553    2.41
+IUG         CAO         CAN         CAP     120.207    1.50
+IUG         CAO         CAN         HAN     119.942    1.50
+IUG         CAP         CAN         HAN     119.851    1.50
+IUG         CAN         CAO         CAQ     120.533    1.50
+IUG         CAN         CAO         HAO     119.875    1.50
+IUG         CAQ         CAO         HAO     119.593    1.50
+IUG         CAN         CAP         CBD     121.414    1.50
+IUG         CAN         CAP         HAP     119.442    1.50
+IUG         CBD         CAP         HAP     119.144    1.50
+IUG         CAO         CAQ         CBE     119.116    1.50
+IUG         CAO         CAQ         HAQ     120.294    1.50
+IUG         CBE         CAQ         HAQ     120.590    1.50
+IUG         CAS         CAR         CBF     119.525    1.50
+IUG         CAS         CAR         HAR     120.325    1.50
+IUG         CBF         CAR         HAR     120.151    1.50
+IUG         CAR         CAS         NBQ     122.557    1.50
+IUG         CAR         CAS         HAS     118.966    1.50
+IUG         NBQ         CAS         HAS     118.477    1.50
+IUG          O6         CAT         CBD     110.270    2.42
+IUG          O6         CAT         HAT     109.336    1.50
+IUG          O6         CAT        HATA     109.336    1.50
+IUG         CBD         CAT         HAT     110.082    1.50
+IUG         CBD         CAT        HATA     110.082    1.50
+IUG         HAT         CAT        HATA     108.275    1.50
+IUG         CBF         NAW         CBG     126.992    1.50
+IUG         CBF         NAW        HNAW     117.236    1.73
+IUG         CBG         NAW        HNAW     115.772    1.79
+IUG         PBT         OBC         PBS     132.542    3.00
+IUG         CAP         CBD         CAT     118.912    1.50
+IUG         CAP         CBD         CBE     118.040    1.50
+IUG         CAT         CBD         CBE     123.048    1.50
+IUG         CAQ         CBE         CBD     120.690    1.78
+IUG         CAQ         CBE         NBR     117.469    1.50
+IUG         CBD         CBE         NBR     121.841    1.50
+IUG         OAA         CBF         CAR     125.940    1.50
+IUG         OAA         CBF         NAW     119.401    1.50
+IUG         CAR         CBF         NAW     114.659    1.50
+IUG         OAB         CBG         NAW     122.311    1.50
+IUG         OAB         CBG         NBQ     122.841    1.50
+IUG         NAW         CBG         NBQ     114.848    1.50
+IUG       "C1'"         NBQ         CAS     121.471    1.52
+IUG       "C1'"         NBQ         CBG     117.109    1.50
+IUG         CAS         NBQ         CBG     121.419    1.50
+IUG         OAC         NBR         OAK     123.502    1.50
+IUG         OAC         NBR         CBE     118.249    1.50
+IUG         OAK         NBR         CBE     118.249    1.50
+IUG       "O5'"         PBS         OAD     109.410    1.50
+IUG       "O5'"         PBS         OAL     109.410    1.50
+IUG       "O5'"         PBS         OBC     101.065    1.97
+IUG         OAD         PBS         OAL     118.411    2.35
+IUG         OAD         PBS         OBC     108.816    2.14
+IUG         OAL         PBS         OBC     108.816    2.14
+IUG          O1         PBT         OAE     108.530    2.45
+IUG          O1         PBT         OAM     108.530    2.45
+IUG          O1         PBT         OBC     101.077    2.30
+IUG         OAE         PBT         OAM     116.964    2.85
+IUG         OAE         PBT         OBC     108.570    2.41
+IUG         OAM         PBT         OBC     108.570    2.41
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IUG                   nu0          C5          O5          C1          C2     -63.010    10.0     3
+IUG                   nu1          O5          C1          C2          C3      55.267    10.0     3
+IUG                   nu2          C1          C2          C3          C4     -49.310    10.0     3
+IUG                   nu3          C2          C3          C4          C5      49.571    10.0     3
+IUG                   nu4          C3          C4          C5          O5     -56.434    10.0     3
+IUG                   nu5          C4          C5          O5          C1      63.742    10.0     3
+IUG             sp3_sp3_1       "O4'"       "C1'"       "C2'"       "C3'"      60.000    10.0     3
+IUG             sp3_sp3_2       "O4'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+IUG             sp3_sp3_3       "O4'"       "C1'"       "C2'"       "H2'"     -60.000    10.0     3
+IUG             sp3_sp3_4         NBQ       "C1'"       "C2'"       "C3'"     -60.000    10.0     3
+IUG             sp3_sp3_5         NBQ       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+IUG             sp3_sp3_6         NBQ       "C1'"       "C2'"       "H2'"     180.000    10.0     3
+IUG             sp3_sp3_7       "H1'"       "C1'"       "C2'"       "C3'"     180.000    10.0     3
+IUG             sp3_sp3_8       "H1'"       "C1'"       "C2'"       "O2'"     -60.000    10.0     3
+IUG             sp3_sp3_9       "H1'"       "C1'"       "C2'"       "H2'"      60.000    10.0     3
+IUG            sp3_sp3_10       "C1'"       "C2'"       "C3'"       "C4'"     -60.000    10.0     3
+IUG            sp3_sp3_11       "C1'"       "C2'"       "C3'"       "O3'"      60.000    10.0     3
+IUG            sp3_sp3_12       "C1'"       "C2'"       "C3'"       "H3'"     180.000    10.0     3
+IUG            sp3_sp3_13       "O2'"       "C2'"       "C3'"       "C4'"     180.000    10.0     3
+IUG            sp3_sp3_14       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+IUG            sp3_sp3_15       "O2'"       "C2'"       "C3'"       "H3'"      60.000    10.0     3
+IUG            sp3_sp3_16       "H2'"       "C2'"       "C3'"       "C4'"      60.000    10.0     3
+IUG            sp3_sp3_17       "H2'"       "C2'"       "C3'"       "O3'"     180.000    10.0     3
+IUG            sp3_sp3_18       "H2'"       "C2'"       "C3'"       "H3'"     -60.000    10.0     3
+IUG            sp3_sp3_19       "C2'"       "C3'"       "C4'"       "O4'"      60.000    10.0     3
+IUG            sp3_sp3_20       "C2'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+IUG            sp3_sp3_21       "C2'"       "C3'"       "C4'"       "H4'"     -60.000    10.0     3
+IUG            sp3_sp3_22       "O3'"       "C3'"       "C4'"       "O4'"     -60.000    10.0     3
+IUG            sp3_sp3_23       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+IUG            sp3_sp3_24       "O3'"       "C3'"       "C4'"       "H4'"     180.000    10.0     3
+IUG            sp3_sp3_25       "H3'"       "C3'"       "C4'"       "O4'"     180.000    10.0     3
+IUG            sp3_sp3_26       "H3'"       "C3'"       "C4'"       "C5'"     -60.000    10.0     3
+IUG            sp3_sp3_27       "H3'"       "C3'"       "C4'"       "H4'"      60.000    10.0     3
+IUG            sp3_sp3_28       "C3'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+IUG            sp3_sp3_29       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+IUG            sp3_sp3_30       "H4'"       "C4'"       "O4'"       "C1'"      60.000    10.0     3
+IUG       const_sp2_sp2_1         CAP         CAN         CAO         CAQ       0.000     5.0     2
+IUG       const_sp2_sp2_2         CAP         CAN         CAO         HAO     180.000     5.0     2
+IUG       const_sp2_sp2_3         HAN         CAN         CAO         CAQ     180.000     5.0     2
+IUG       const_sp2_sp2_4         HAN         CAN         CAO         HAO       0.000     5.0     2
+IUG       const_sp2_sp2_5         CAN         CAO         CAQ         CBE       0.000     5.0     2
+IUG       const_sp2_sp2_6         CAN         CAO         CAQ         HAQ     180.000     5.0     2
+IUG       const_sp2_sp2_7         HAO         CAO         CAQ         CBE     180.000     5.0     2
+IUG       const_sp2_sp2_8         HAO         CAO         CAQ         HAQ       0.000     5.0     2
+IUG       const_sp2_sp2_9         CAO         CAQ         CBE         CBD       0.000     5.0     2
+IUG              const_10         CAO         CAQ         CBE         NBR     180.000    10.0     2
+IUG              const_11         HAQ         CAQ         CBE         CBD     180.000    10.0     2
+IUG              const_12         HAQ         CAQ         CBE         NBR       0.000    10.0     2
+IUG              const_13         CAP         CBD         CBE         CAQ       0.000    10.0     2
+IUG              const_14         CAP         CBD         CBE         NBR     180.000    10.0     2
+IUG              const_15         CAT         CBD         CBE         CAQ     180.000    10.0     2
+IUG              const_16         CAT         CBD         CBE         NBR       0.000    10.0     2
+IUG              const_17         CAN         CAP         CBD         CBE       0.000    10.0     2
+IUG              const_18         CAN         CAP         CBD         CAT     180.000    10.0     2
+IUG              const_19         HAP         CAP         CBD         CBE     180.000    10.0     2
+IUG              const_20         HAP         CAP         CBD         CAT       0.000    10.0     2
+IUG              const_21         CBF         CAR         CAS         NBQ       0.000    10.0     2
+IUG              const_22         CBF         CAR         CAS         HAS     180.000    10.0     2
+IUG              const_23         HAR         CAR         CAS         NBQ     180.000    10.0     2
+IUG              const_24         HAR         CAR         CAS         HAS       0.000    10.0     2
+IUG              const_25         CAR         CAS         NBQ         CBG       0.000    10.0     2
+IUG              const_26         CAR         CAS         NBQ       "C1'"     180.000    10.0     2
+IUG              const_27         HAS         CAS         NBQ         CBG     180.000    10.0     2
+IUG              const_28         HAS         CAS         NBQ       "C1'"       0.000    10.0     2
+IUG              const_29         NAW         CBG         NBQ         CAS       0.000    10.0     2
+IUG              const_30         NAW         CBG         NBQ       "C1'"     180.000    10.0     2
+IUG              const_31         OAB         CBG         NBQ         CAS     180.000    10.0     2
+IUG              const_32         OAB         CBG         NBQ       "C1'"       0.000    10.0     2
+IUG              const_33         NBQ         CBG         NAW         CBF       0.000    10.0     2
+IUG              const_34         NBQ         CBG         NAW        HNAW     180.000    10.0     2
+IUG              const_35         OAB         CBG         NAW         CBF     180.000    10.0     2
+IUG              const_36         OAB         CBG         NAW        HNAW       0.000    10.0     2
+IUG              const_37         CAR         CBF         NAW         CBG       0.000    10.0     2
+IUG              const_38         CAR         CBF         NAW        HNAW     180.000    10.0     2
+IUG              const_39         OAA         CBF         NAW         CBG     180.000    10.0     2
+IUG              const_40         OAA         CBF         NAW        HNAW       0.000    10.0     2
+IUG            sp3_sp3_64          O5          C1          O1         PBT     180.000    10.0     3
+IUG            sp3_sp3_65          C2          C1          O1         PBT      60.000    10.0     3
+IUG            sp3_sp3_66          H1          C1          O1         PBT     -60.000    10.0     3
+IUG            sp3_sp3_76          C1          O1         PBT         OBC     180.000    10.0     3
+IUG            sp3_sp3_77          C1          O1         PBT         OAM     -60.000    10.0     3
+IUG            sp3_sp3_78          C1          O1         PBT         OAE      60.000    10.0     3
+IUG            sp3_sp3_79          C1          C2          O2         HO2     180.000    10.0     3
+IUG            sp3_sp3_80          C3          C2          O2         HO2      60.000    10.0     3
+IUG            sp3_sp3_81          H2          C2          O2         HO2     -60.000    10.0     3
+IUG            sp3_sp3_82          C2          C3          O3         HO3     180.000    10.0     3
+IUG            sp3_sp3_83          C4          C3          O3         HO3      60.000    10.0     3
+IUG            sp3_sp3_84          H3          C3          O3         HO3     -60.000    10.0     3
+IUG            sp3_sp3_85          C3          C4          O4         HO4     180.000    10.0     3
+IUG            sp3_sp3_86          C5          C4          O4         HO4      60.000    10.0     3
+IUG            sp3_sp3_87          H4          C4          O4         HO4     -60.000    10.0     3
+IUG            sp3_sp3_88          C4          C5          C6          O6     180.000    10.0     3
+IUG            sp3_sp3_89          C4          C5          C6          H6     -60.000    10.0     3
+IUG            sp3_sp3_90          C4          C5          C6         H6A      60.000    10.0     3
+IUG            sp3_sp3_91          O5          C5          C6          O6      60.000    10.0     3
+IUG            sp3_sp3_92          O5          C5          C6          H6     180.000    10.0     3
+IUG            sp3_sp3_93          O5          C5          C6         H6A     -60.000    10.0     3
+IUG            sp3_sp3_94          H5          C5          C6          O6     -60.000    10.0     3
+IUG            sp3_sp3_95          H5          C5          C6          H6      60.000    10.0     3
+IUG            sp3_sp3_96          H5          C5          C6         H6A     180.000    10.0     3
+IUG            sp3_sp3_97          C5          C6          O6         CAT     180.000    10.0     3
+IUG            sp3_sp3_98          H6          C6          O6         CAT      60.000    10.0     3
+IUG            sp3_sp3_99         H6A          C6          O6         CAT     -60.000    10.0     3
+IUG           sp3_sp3_100         CBD         CAT          O6          C6     180.000    10.0     3
+IUG           sp3_sp3_101         HAT         CAT          O6          C6      60.000    10.0     3
+IUG           sp3_sp3_102        HATA         CAT          O6          C6     -60.000    10.0     3
+IUG           sp3_sp3_103       "C2'"       "C1'"       "O4'"       "C4'"     180.000    10.0     3
+IUG           sp3_sp3_104         NBQ       "C1'"       "O4'"       "C4'"      60.000    10.0     3
+IUG           sp3_sp3_105       "H1'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+IUG             sp2_sp3_1         CAS         NBQ       "C1'"       "C2'"     150.000    10.0     6
+IUG             sp2_sp3_2         CAS         NBQ       "C1'"       "O4'"     -90.000    10.0     6
+IUG             sp2_sp3_3         CAS         NBQ       "C1'"       "H1'"      30.000    10.0     6
+IUG             sp2_sp3_4         CBG         NBQ       "C1'"       "C2'"     -30.000    10.0     6
+IUG             sp2_sp3_5         CBG         NBQ       "C1'"       "O4'"      90.000    10.0     6
+IUG             sp2_sp3_6         CBG         NBQ       "C1'"       "H1'"    -150.000    10.0     6
+IUG           sp3_sp3_106       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+IUG           sp3_sp3_107       "C3'"       "C2'"       "O2'"      "HO2'"      60.000    10.0     3
+IUG           sp3_sp3_108       "H2'"       "C2'"       "O2'"      "HO2'"     -60.000    10.0     3
+IUG           sp3_sp3_109       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+IUG           sp3_sp3_110       "C4'"       "C3'"       "O3'"      "HO3'"      60.000    10.0     3
+IUG           sp3_sp3_111       "H3'"       "C3'"       "O3'"      "HO3'"     -60.000    10.0     3
+IUG           sp3_sp3_112       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+IUG           sp3_sp3_113       "C3'"       "C4'"       "C5'"       "H5'"     -60.000    10.0     3
+IUG           sp3_sp3_114       "C3'"       "C4'"       "C5'"      "H5'A"      60.000    10.0     3
+IUG           sp3_sp3_115       "O4'"       "C4'"       "C5'"       "O5'"      60.000    10.0     3
+IUG           sp3_sp3_116       "O4'"       "C4'"       "C5'"       "H5'"     180.000    10.0     3
+IUG           sp3_sp3_117       "O4'"       "C4'"       "C5'"      "H5'A"     -60.000    10.0     3
+IUG           sp3_sp3_118       "H4'"       "C4'"       "C5'"       "O5'"     -60.000    10.0     3
+IUG           sp3_sp3_119       "H4'"       "C4'"       "C5'"       "H5'"      60.000    10.0     3
+IUG           sp3_sp3_120       "H4'"       "C4'"       "C5'"      "H5'A"     180.000    10.0     3
+IUG           sp3_sp3_121       "C4'"       "C5'"       "O5'"         PBS     180.000    10.0     3
+IUG           sp3_sp3_122       "H5'"       "C5'"       "O5'"         PBS      60.000    10.0     3
+IUG           sp3_sp3_123      "H5'A"       "C5'"       "O5'"         PBS     -60.000    10.0     3
+IUG           sp3_sp3_124       "C5'"       "O5'"         PBS         OBC     180.000    10.0     3
+IUG           sp3_sp3_125       "C5'"       "O5'"         PBS         OAL     -60.000    10.0     3
+IUG           sp3_sp3_126       "C5'"       "O5'"         PBS         OAD      60.000    10.0     3
+IUG              const_41         CAO         CAN         CAP         CBD       0.000    10.0     2
+IUG              const_42         CAO         CAN         CAP         HAP     180.000    10.0     2
+IUG              const_43         HAN         CAN         CAP         CBD     180.000    10.0     2
+IUG              const_44         HAN         CAN         CAP         HAP       0.000    10.0     2
+IUG              const_45         CAS         CAR         CBF         NAW       0.000    10.0     2
+IUG              const_46         CAS         CAR         CBF         OAA     180.000    10.0     2
+IUG              const_47         HAR         CAR         CBF         NAW     180.000    10.0     2
+IUG              const_48         HAR         CAR         CBF         OAA       0.000    10.0     2
+IUG             sp2_sp3_7         CAP         CBD         CAT         HAT     150.000    10.0     6
+IUG             sp2_sp3_8         CAP         CBD         CAT          O6     -90.000    10.0     6
+IUG             sp2_sp3_9         CAP         CBD         CAT        HATA      30.000    10.0     6
+IUG            sp2_sp3_10         CBE         CBD         CAT         HAT     -30.000    10.0     6
+IUG            sp2_sp3_11         CBE         CBD         CAT          O6      90.000    10.0     6
+IUG            sp2_sp3_12         CBE         CBD         CAT        HATA    -150.000    10.0     6
+IUG           sp3_sp3_127         PBS         OBC         PBT         OAM     180.000    10.0     3
+IUG           sp3_sp3_128         PBS         OBC         PBT          O1     -60.000    10.0     3
+IUG           sp3_sp3_129         PBS         OBC         PBT         OAE      60.000    10.0     3
+IUG           sp3_sp3_130         PBT         OBC         PBS         OAL     180.000    10.0     3
+IUG           sp3_sp3_131         PBT         OBC         PBS       "O5'"     -60.000    10.0     3
+IUG           sp3_sp3_132         PBT         OBC         PBS         OAD      60.000    10.0     3
+IUG             sp2_sp2_1         CAQ         CBE         NBR         OAC     180.000     5.0     2
+IUG             sp2_sp2_2         CAQ         CBE         NBR         OAK       0.000     5.0     2
+IUG             sp2_sp2_3         CBD         CBE         NBR         OAC       0.000     5.0     2
+IUG             sp2_sp2_4         CBD         CBE         NBR         OAK     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IUG    chir_1    C1    O1    O5    C2    negative
+IUG    chir_2    C2    O2    C1    C3    negative
+IUG    chir_3    C3    O3    C2    C4    positive
+IUG    chir_4    C4    O4    C5    C3    negative
+IUG    chir_5    C5    O5    C4    C6    negative
+IUG    chir_6    "C1'"    "O4'"    NBQ    "C2'"    negative
+IUG    chir_7    "C2'"    "O2'"    "C1'"    "C3'"    negative
+IUG    chir_8    "C3'"    "O3'"    "C4'"    "C2'"    positive
+IUG    chir_9    "C4'"    "O4'"    "C3'"    "C5'"    negative
+IUG    chir_10    PBS    OBC    "O5'"    OAL    both
+IUG    chir_11    PBT    OBC    O1    OAM    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IUG    plan-1         CAN   0.020
+IUG    plan-1         CAO   0.020
+IUG    plan-1         CAP   0.020
+IUG    plan-1         CAQ   0.020
+IUG    plan-1         CAT   0.020
+IUG    plan-1         CBD   0.020
+IUG    plan-1         CBE   0.020
+IUG    plan-1         HAN   0.020
+IUG    plan-1         HAO   0.020
+IUG    plan-1         HAP   0.020
+IUG    plan-1         HAQ   0.020
+IUG    plan-1         NBR   0.020
+IUG    plan-2       "C1'"   0.020
+IUG    plan-2         CAR   0.020
+IUG    plan-2         CAS   0.020
+IUG    plan-2         CBF   0.020
+IUG    plan-2         CBG   0.020
+IUG    plan-2         HAR   0.020
+IUG    plan-2         HAS   0.020
+IUG    plan-2        HNAW   0.020
+IUG    plan-2         NAW   0.020
+IUG    plan-2         NBQ   0.020
+IUG    plan-2         OAA   0.020
+IUG    plan-2         OAB   0.020
+IUG    plan-3         CBE   0.020
+IUG    plan-3         NBR   0.020
+IUG    plan-3         OAC   0.020
+IUG    plan-3         OAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IUG           SMILES              ACDLabs 12.01                                                                                                                                                                                                     O=C1C=CN(C(=O)N1)C2OC(C(O)C2O)COP(=O)(OP(=O)(OC3OC(C(O)C(O)C3O)COCc4ccccc4N(=O)O)O)O
+IUG            InChI                InChI  1.03 InChI=1S/C22H31N3O19P2/c26-14-5-6-24(22(32)23-14)20-18(30)16(28)13(41-20)9-40-45(35,36)44-46(37,38)43-21-19(31)17(29)15(27)12(42-21)8-39-7-10-3-1-2-4-11(10)25(33)34/h1-6,12-13,15-21,25,27-31H,7-9H2,(H,33,34)(H,35,36)(H,37,38)(H,23,26,32)/t12-,13-,15+,16-,17+,18-,19-,20-,21-/m1/s1
+IUG         InChIKey                InChI  1.03                                                                                                                                                                                                                                                              NGBDXGVIYRIOPC-DZEIOYJHSA-N
+IUG SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                        O[C@H]1[C@@H](O)[C@@H](COCc2ccccc2[N+](O)=O)O[C@H](O[P](O)(=O)O[P](O)(=O)OC[C@H]3O[C@H]([C@H](O)[C@@H]3O)N4C=CC(=O)NC4=O)[C@@H]1O
+IUG           SMILES               CACTVS 3.370                                                                                                                                                                     O[CH]1[CH](O)[CH](COCc2ccccc2[N+](O)=O)O[CH](O[P](O)(=O)O[P](O)(=O)OC[CH]3O[CH]([CH](O)[CH]3O)N4C=CC(=O)NC4=O)[CH]1O
+IUG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                   c1ccc(c(c1)COC[C@@H]2[C@@H]([C@@H]([C@H]([C@H](O2)OP(=O)(O)OP(=O)(O)OC[C@@H]3[C@H]([C@H]([C@@H](O3)N4C=CC(=O)NC4=O)O)O)O)O)O)[N+](=O)O
+IUG           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                            c1ccc(c(c1)COCC2C(C(C(C(O2)OP(=O)(O)OP(=O)(O)OCC3C(C(C(O3)N4C=CC(=O)NC4=O)O)O)O)O)O)[N+](=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IUG acedrg               243         "dictionary generator"                  
+IUG acedrg_database      11          "data source"                           
+IUG rdkit                2017.03.2   "Chemoinformatics tool"
+IUG refmac5              5.8.0238    "optimization tool"                     

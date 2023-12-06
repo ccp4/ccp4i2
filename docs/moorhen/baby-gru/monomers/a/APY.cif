@@ -1,0 +1,153 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+APY     APY      2-AMINOMETHYL-PYRIDINE     NON-POLYMER     16     8     .     
+#
+data_comp_APY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+APY     N       N       NT2     0       6.967       -7.178      17.243      
+APY     CM      C       CH2     0       6.592       -8.403      17.962      
+APY     C2      C       CR6     0       5.106       -8.540      18.189      
+APY     C3      C       CR16    0       4.433       -7.747      19.104      
+APY     C4      C       CR16    0       3.065       -7.918      19.270      
+APY     C5      C       CR16    0       2.409       -8.872      18.522      
+APY     C6      C       CR16    0       3.148       -9.624      17.630      
+APY     N1      N       NRD6    0       4.474       -9.472      17.455      
+APY     HN1     H       H       0       6.643       -6.452      17.789      
+APY     HN2     H       H       0       6.446       -7.186      16.430      
+APY     HM1     H       H       0       7.051       -8.401      18.829      
+APY     HM2     H       H       0       6.917       -9.173      17.448      
+APY     H3      H       H       0       4.900       -7.098      19.607      
+APY     H4      H       H       0       2.590       -7.386      19.889      
+APY     H5      H       H       0       1.480       -9.008      18.616      
+APY     H6      H       H       0       2.704       -10.278     17.116      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+APY           N          CM      SINGLE       n     1.467  0.0144     1.467  0.0144
+APY          CM          C2      SINGLE       n     1.508  0.0100     1.508  0.0100
+APY          C2          C3      DOUBLE       y     1.380  0.0124     1.380  0.0124
+APY          C2          N1      SINGLE       y     1.339  0.0118     1.339  0.0118
+APY          C3          C4      SINGLE       y     1.381  0.0129     1.381  0.0129
+APY          C4          C5      DOUBLE       y     1.372  0.0130     1.372  0.0130
+APY          C5          C6      SINGLE       y     1.374  0.0152     1.374  0.0152
+APY          C6          N1      DOUBLE       y     1.342  0.0113     1.342  0.0113
+APY           N         HN1      SINGLE       n     1.036  0.0160     0.965  0.0200
+APY           N         HN2      SINGLE       n     1.036  0.0160     0.965  0.0200
+APY          CM         HM1      SINGLE       n     1.089  0.0100     0.981  0.0172
+APY          CM         HM2      SINGLE       n     1.089  0.0100     0.981  0.0172
+APY          C3          H3      SINGLE       n     1.082  0.0130     0.944  0.0193
+APY          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0191
+APY          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0200
+APY          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0162
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+APY          CM           N         HN1     104.789    3.00
+APY          CM           N         HN2     104.789    3.00
+APY         HN1           N         HN2     107.163    3.00
+APY           N          CM          C2     112.424    2.20
+APY           N          CM         HM1     107.542    2.93
+APY           N          CM         HM2     107.542    2.93
+APY          C2          CM         HM1     108.982    1.50
+APY          C2          CM         HM2     108.982    1.50
+APY         HM1          CM         HM2     107.838    1.50
+APY          CM          C2          C3     121.776    1.50
+APY          CM          C2          N1     116.062    1.50
+APY          C3          C2          N1     122.162    1.50
+APY          C2          C3          C4     118.968    1.50
+APY          C2          C3          H3     120.359    1.50
+APY          C4          C3          H3     120.667    1.50
+APY          C3          C4          C5     118.960    1.50
+APY          C3          C4          H4     120.510    1.50
+APY          C5          C4          H4     120.530    1.50
+APY          C4          C5          C6     118.279    1.50
+APY          C4          C5          H5     120.931    1.50
+APY          C6          C5          H5     120.790    1.50
+APY          C5          C6          N1     123.599    1.50
+APY          C5          C6          H6     118.448    1.50
+APY          N1          C6          H6     117.953    1.50
+APY          C2          N1          C6     118.039    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+APY             sp3_sp3_1          C2          CM           N         HN1     180.000    10.0     3
+APY             sp2_sp3_2          C3          C2          CM           N     -90.000    10.0     6
+APY       const_sp2_sp2_3          CM          C2          C3          C4     180.000     5.0     2
+APY              const_20          CM          C2          N1          C6     180.000    10.0     2
+APY       const_sp2_sp2_5          C2          C3          C4          C5       0.000     5.0     2
+APY       const_sp2_sp2_9          C3          C4          C5          C6       0.000     5.0     2
+APY              const_13          C4          C5          C6          N1       0.000    10.0     2
+APY              const_17          C5          C6          N1          C2       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+APY    plan-1          C2   0.020
+APY    plan-1          C3   0.020
+APY    plan-1          C4   0.020
+APY    plan-1          C5   0.020
+APY    plan-1          C6   0.020
+APY    plan-1          CM   0.020
+APY    plan-1          H3   0.020
+APY    plan-1          H4   0.020
+APY    plan-1          H5   0.020
+APY    plan-1          H6   0.020
+APY    plan-1          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+APY           SMILES              ACDLabs 10.04                                     n1ccccc1CN
+APY SMILES_CANONICAL               CACTVS 3.341                                     NCc1ccccn1
+APY           SMILES               CACTVS 3.341                                     NCc1ccccn1
+APY SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                   c1ccnc(c1)CN
+APY           SMILES "OpenEye OEToolkits" 1.5.0                                   c1ccnc(c1)CN
+APY            InChI                InChI  1.03 InChI=1S/C6H8N2/c7-5-6-3-1-2-4-8-6/h1-4H,5,7H2
+APY         InChIKey                InChI  1.03                    WOXFMYVTSLAQMO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+APY acedrg               243         "dictionary generator"                  
+APY acedrg_database      11          "data source"                           
+APY rdkit                2017.03.2   "Chemoinformatics tool"
+APY refmac5              5.8.0238    "optimization tool"                     

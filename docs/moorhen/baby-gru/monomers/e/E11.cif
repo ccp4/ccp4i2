@@ -1,0 +1,447 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+E11     E11      N~4~-(1-benzylpiperidin-4-yl)-N~2~-[3-(dimethylamino)propyl]-6,7-dimethoxyquinazoline-2,4-diamine     NON-POLYMER     73     35     .     
+#
+data_comp_E11
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+E11     N1      N       NRD6    0       -19.926     -7.859      26.427      
+E11     C2      C       CR6     0       -19.387     -9.096      26.311      
+E11     N3      N       NRD6    0       -18.772     -9.552      25.196      
+E11     C4      C       CR66    0       -18.681     -8.705      24.118      
+E11     C5      C       CR66    0       -19.220     -7.387      24.156      
+E11     C6      C       CR6     0       -19.867     -7.003      25.397      
+E11     CAC     C       CR16    0       -18.035     -9.171      22.950      
+E11     CAD     C       CR6     0       -17.914     -8.369      21.851      
+E11     CAE     C       CR6     0       -18.466     -7.039      21.868      
+E11     CAF     C       CR16    0       -19.088     -6.569      23.001      
+E11     OAK     O       O2      0       -18.258     -6.339      20.709      
+E11     OAL     O       O2      0       -17.322     -8.707      20.668      
+E11     NAM     N       NH1     0       -20.423     -5.762      25.565      
+E11     NAN     N       NH1     0       -19.489     -9.908      27.381      
+E11     CAO     C       CH2     0       -18.904     -11.236     27.503      
+E11     CAP     C       CH2     0       -19.928     -12.327     27.253      
+E11     CAQ     C       CH2     0       -20.520     -12.309     25.859      
+E11     NAR     N       NT      0       -21.526     -13.360     25.633      
+E11     CAS     C       CH3     0       -22.491     -12.965     24.598      
+E11     CAU     C       CH3     0       -20.896     -14.636     25.268      
+E11     CAV     C       CH1     0       -21.490     -5.456      26.516      
+E11     CAW     C       CH2     0       -22.776     -6.216      26.234      
+E11     CAX     C       CH2     0       -23.877     -5.811      27.215      
+E11     NAY     N       NT      0       -24.106     -4.366      27.205      
+E11     CAZ     C       CH2     0       -22.875     -3.656      27.552      
+E11     CBA     C       CH2     0       -21.766     -3.964      26.560      
+E11     CBB     C       CH2     0       -25.209     -3.990      28.101      
+E11     CBC     C       CR6     0       -25.800     -2.634      27.791      
+E11     CBD     C       CR16    0       -25.762     -1.607      28.726      
+E11     CBE     C       CR16    0       -26.304     -0.361      28.433      
+E11     CBF     C       CR16    0       -26.886     -0.131      27.203      
+E11     CBG     C       CR16    0       -26.928     -1.141      26.265      
+E11     CBH     C       CR16    0       -26.387     -2.387      26.557      
+E11     CBI     C       CH3     0       -16.463     -9.845      20.599      
+E11     CBJ     C       CH3     0       -19.207     -5.364      20.279      
+E11     HAC     H       H       0       -17.687     -10.039     22.939      
+E11     HAF     H       H       0       -19.436     -5.698      23.009      
+E11     HNAM    H       H       0       -20.101     -5.104      25.095      
+E11     HNAN    H       H       0       -19.951     -9.610      28.070      
+E11     HAO     H       H       0       -18.542     -11.336     28.406      
+E11     HAOA    H       H       0       -18.161     -11.332     26.874      
+E11     HAP     H       H       0       -20.654     -12.236     27.903      
+E11     HAPA    H       H       0       -19.507     -13.197     27.406      
+E11     HAQ     H       H       0       -19.795     -12.409     25.206      
+E11     HAQA    H       H       0       -20.934     -11.434     25.707      
+E11     HAS     H       H       0       -23.108     -13.702     24.424      
+E11     HASA    H       H       0       -22.013     -12.740     23.776      
+E11     HASB    H       H       0       -22.997     -12.186     24.902      
+E11     HAU     H       H       0       -20.234     -14.881     25.943      
+E11     HAUA    H       H       0       -20.458     -14.548     24.400      
+E11     HAUB    H       H       0       -21.578     -15.334     25.218      
+E11     HAV     H       H       0       -21.185     -5.719      27.414      
+E11     HAW     H       H       0       -23.070     -6.030      25.316      
+E11     HAWA    H       H       0       -22.610     -7.181      26.311      
+E11     HAX     H       H       0       -23.627     -6.089      28.113      
+E11     HAXA    H       H       0       -24.700     -6.271      26.976      
+E11     HAZ     H       H       0       -22.591     -3.921      28.445      
+E11     HAZA    H       H       0       -23.039     -2.697      27.560      
+E11     HBA     H       H       0       -22.029     -3.654      25.666      
+E11     HBAA    H       H       0       -20.948     -3.488      26.821      
+E11     HBB     H       H       0       -24.886     -3.997      29.029      
+E11     HBBA    H       H       0       -25.923     -4.661      28.034      
+E11     HBD     H       H       0       -25.366     -1.756      29.570      
+E11     HBE     H       H       0       -26.274     0.328       29.077      
+E11     HBF     H       H       0       -27.254     0.715       27.004      
+E11     HBG     H       H       0       -27.326     -0.987      25.423      
+E11     HBH     H       H       0       -26.419     -3.074      25.910      
+E11     HBI     H       H       0       -16.984     -10.653     20.735      
+E11     HBIA    H       H       0       -15.780     -9.779      21.286      
+E11     HBIB    H       H       0       -16.041     -9.877      19.725      
+E11     HBJ     H       H       0       -18.901     -4.965      19.448      
+E11     HBJA    H       H       0       -19.295     -4.671      20.953      
+E11     HBJB    H       H       0       -20.067     -5.790      20.135      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+E11          N1          C6      DOUBLE       y     1.335  0.0100     1.335  0.0100
+E11          N1          C2      SINGLE       y     1.348  0.0113     1.348  0.0113
+E11          C2          N3      DOUBLE       y     1.347  0.0109     1.347  0.0109
+E11          C2         NAN      SINGLE       n     1.341  0.0100     1.341  0.0100
+E11          N3          C4      SINGLE       y     1.372  0.0100     1.372  0.0100
+E11          C4         CAC      SINGLE       y     1.411  0.0100     1.411  0.0100
+E11          C4          C5      DOUBLE       y     1.421  0.0100     1.421  0.0100
+E11          C5         CAF      SINGLE       y     1.417  0.0100     1.417  0.0100
+E11          C5          C6      SINGLE       y     1.443  0.0100     1.443  0.0100
+E11          C6         NAM      SINGLE       n     1.349  0.0200     1.349  0.0200
+E11         CAC         CAD      DOUBLE       y     1.358  0.0100     1.358  0.0100
+E11         CAD         OAL      SINGLE       n     1.359  0.0100     1.359  0.0100
+E11         CAD         CAE      SINGLE       y     1.431  0.0100     1.431  0.0100
+E11         CAE         OAK      SINGLE       n     1.363  0.0100     1.363  0.0100
+E11         CAE         CAF      DOUBLE       y     1.368  0.0100     1.368  0.0100
+E11         OAK         CBJ      SINGLE       n     1.424  0.0117     1.424  0.0117
+E11         OAL         CBI      SINGLE       n     1.424  0.0117     1.424  0.0117
+E11         NAM         CAV      SINGLE       n     1.457  0.0100     1.457  0.0100
+E11         NAN         CAO      SINGLE       n     1.451  0.0113     1.451  0.0113
+E11         CAO         CAP      SINGLE       n     1.516  0.0135     1.516  0.0135
+E11         CAP         CAQ      SINGLE       n     1.512  0.0200     1.512  0.0200
+E11         CAQ         NAR      SINGLE       n     1.468  0.0114     1.468  0.0114
+E11         NAR         CAS      SINGLE       n     1.466  0.0117     1.466  0.0117
+E11         NAR         CAU      SINGLE       n     1.466  0.0117     1.466  0.0117
+E11         CAV         CAW      SINGLE       n     1.517  0.0100     1.517  0.0100
+E11         CAV         CBA      SINGLE       n     1.517  0.0100     1.517  0.0100
+E11         CAW         CAX      SINGLE       n     1.517  0.0183     1.517  0.0183
+E11         CAX         NAY      SINGLE       n     1.458  0.0100     1.458  0.0100
+E11         NAY         CAZ      SINGLE       n     1.458  0.0100     1.458  0.0100
+E11         NAY         CBB      SINGLE       n     1.465  0.0100     1.465  0.0100
+E11         CAZ         CBA      SINGLE       n     1.517  0.0183     1.517  0.0183
+E11         CBB         CBC      SINGLE       n     1.509  0.0100     1.509  0.0100
+E11         CBC         CBH      SINGLE       y     1.385  0.0100     1.385  0.0100
+E11         CBC         CBD      DOUBLE       y     1.385  0.0100     1.385  0.0100
+E11         CBD         CBE      SINGLE       y     1.386  0.0100     1.386  0.0100
+E11         CBE         CBF      DOUBLE       y     1.376  0.0124     1.376  0.0124
+E11         CBF         CBG      SINGLE       y     1.374  0.0127     1.374  0.0127
+E11         CBG         CBH      DOUBLE       y     1.386  0.0100     1.386  0.0100
+E11         CAC         HAC      SINGLE       n     1.082  0.0130     0.936  0.0100
+E11         CAF         HAF      SINGLE       n     1.082  0.0130     0.938  0.0100
+E11         NAM        HNAM      SINGLE       n     1.016  0.0100     0.873  0.0200
+E11         NAN        HNAN      SINGLE       n     1.016  0.0100     0.880  0.0200
+E11         CAO         HAO      SINGLE       n     1.089  0.0100     0.979  0.0121
+E11         CAO        HAOA      SINGLE       n     1.089  0.0100     0.979  0.0121
+E11         CAP         HAP      SINGLE       n     1.089  0.0100     0.979  0.0161
+E11         CAP        HAPA      SINGLE       n     1.089  0.0100     0.979  0.0161
+E11         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.980  0.0143
+E11         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.980  0.0143
+E11         CAS         HAS      SINGLE       n     1.089  0.0100     0.977  0.0113
+E11         CAS        HASA      SINGLE       n     1.089  0.0100     0.977  0.0113
+E11         CAS        HASB      SINGLE       n     1.089  0.0100     0.977  0.0113
+E11         CAU         HAU      SINGLE       n     1.089  0.0100     0.977  0.0113
+E11         CAU        HAUA      SINGLE       n     1.089  0.0100     0.977  0.0113
+E11         CAU        HAUB      SINGLE       n     1.089  0.0100     0.977  0.0113
+E11         CAV         HAV      SINGLE       n     1.089  0.0100     0.985  0.0100
+E11         CAW         HAW      SINGLE       n     1.089  0.0100     0.982  0.0100
+E11         CAW        HAWA      SINGLE       n     1.089  0.0100     0.982  0.0100
+E11         CAX         HAX      SINGLE       n     1.089  0.0100     0.973  0.0129
+E11         CAX        HAXA      SINGLE       n     1.089  0.0100     0.973  0.0129
+E11         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.973  0.0129
+E11         CAZ        HAZA      SINGLE       n     1.089  0.0100     0.973  0.0129
+E11         CBA         HBA      SINGLE       n     1.089  0.0100     0.982  0.0100
+E11         CBA        HBAA      SINGLE       n     1.089  0.0100     0.982  0.0100
+E11         CBB         HBB      SINGLE       n     1.089  0.0100     0.982  0.0103
+E11         CBB        HBBA      SINGLE       n     1.089  0.0100     0.982  0.0103
+E11         CBD         HBD      SINGLE       n     1.082  0.0130     0.944  0.0174
+E11         CBE         HBE      SINGLE       n     1.082  0.0130     0.944  0.0175
+E11         CBF         HBF      SINGLE       n     1.082  0.0130     0.944  0.0161
+E11         CBG         HBG      SINGLE       n     1.082  0.0130     0.944  0.0175
+E11         CBH         HBH      SINGLE       n     1.082  0.0130     0.944  0.0174
+E11         CBI         HBI      SINGLE       n     1.089  0.0100     0.971  0.0157
+E11         CBI        HBIA      SINGLE       n     1.089  0.0100     0.971  0.0157
+E11         CBI        HBIB      SINGLE       n     1.089  0.0100     0.971  0.0157
+E11         CBJ         HBJ      SINGLE       n     1.089  0.0100     0.971  0.0157
+E11         CBJ        HBJA      SINGLE       n     1.089  0.0100     0.971  0.0157
+E11         CBJ        HBJB      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+E11          C6          N1          C2     118.283    1.50
+E11          N1          C2          N3     124.553    1.50
+E11          N1          C2         NAN     117.771    1.50
+E11          N3          C2         NAN     117.676    1.62
+E11          C2          N3          C4     117.670    1.50
+E11          N3          C4         CAC     118.332    1.50
+E11          N3          C4          C5     121.686    1.50
+E11         CAC          C4          C5     119.983    1.50
+E11          C4          C5         CAF     119.179    1.50
+E11          C4          C5          C6     116.699    1.50
+E11         CAF          C5          C6     124.123    1.72
+E11          N1          C6          C5     121.109    1.50
+E11          N1          C6         NAM     118.880    1.88
+E11          C5          C6         NAM     120.011    2.28
+E11          C4         CAC         CAD     120.372    1.50
+E11          C4         CAC         HAC     119.741    1.50
+E11         CAD         CAC         HAC     119.887    1.50
+E11         CAC         CAD         OAL     125.459    1.50
+E11         CAC         CAD         CAE     120.075    1.50
+E11         OAL         CAD         CAE     114.466    1.50
+E11         CAD         CAE         OAK     114.450    1.50
+E11         CAD         CAE         CAF     119.974    1.50
+E11         OAK         CAE         CAF     125.576    1.50
+E11          C5         CAF         CAE     120.418    1.50
+E11          C5         CAF         HAF     120.014    1.50
+E11         CAE         CAF         HAF     119.568    1.50
+E11         CAE         OAK         CBJ     117.238    1.50
+E11         CAD         OAL         CBI     117.238    1.50
+E11          C6         NAM         CAV     123.034    2.33
+E11          C6         NAM        HNAM     118.342    1.52
+E11         CAV         NAM        HNAM     118.624    1.57
+E11          C2         NAN         CAO     123.718    1.50
+E11          C2         NAN        HNAN     117.814    2.32
+E11         CAO         NAN        HNAN     118.468    2.02
+E11         NAN         CAO         CAP     111.831    1.79
+E11         NAN         CAO         HAO     108.912    1.50
+E11         NAN         CAO        HAOA     108.912    1.50
+E11         CAP         CAO         HAO     109.506    1.50
+E11         CAP         CAO        HAOA     109.506    1.50
+E11         HAO         CAO        HAOA     107.909    1.50
+E11         CAO         CAP         CAQ     113.712    1.68
+E11         CAO         CAP         HAP     109.143    1.50
+E11         CAO         CAP        HAPA     109.143    1.50
+E11         CAQ         CAP         HAP     108.861    1.50
+E11         CAQ         CAP        HAPA     108.861    1.50
+E11         HAP         CAP        HAPA     107.594    1.73
+E11         CAP         CAQ         NAR     113.546    1.50
+E11         CAP         CAQ         HAQ     108.842    1.50
+E11         CAP         CAQ        HAQA     108.842    1.50
+E11         NAR         CAQ         HAQ     108.882    1.50
+E11         NAR         CAQ        HAQA     108.882    1.50
+E11         HAQ         CAQ        HAQA     107.673    1.50
+E11         CAQ         NAR         CAS     110.729    1.50
+E11         CAQ         NAR         CAU     110.729    1.50
+E11         CAS         NAR         CAU     109.730    1.50
+E11         NAR         CAS         HAS     109.516    1.50
+E11         NAR         CAS        HASA     109.516    1.50
+E11         NAR         CAS        HASB     109.516    1.50
+E11         HAS         CAS        HASA     109.408    1.50
+E11         HAS         CAS        HASB     109.408    1.50
+E11        HASA         CAS        HASB     109.408    1.50
+E11         NAR         CAU         HAU     109.516    1.50
+E11         NAR         CAU        HAUA     109.516    1.50
+E11         NAR         CAU        HAUB     109.516    1.50
+E11         HAU         CAU        HAUA     109.408    1.50
+E11         HAU         CAU        HAUB     109.408    1.50
+E11        HAUA         CAU        HAUB     109.408    1.50
+E11         NAM         CAV         CAW     111.209    2.04
+E11         NAM         CAV         CBA     111.209    2.04
+E11         NAM         CAV         HAV     108.206    1.50
+E11         CAW         CAV         CBA     110.769    1.50
+E11         CAW         CAV         HAV     107.655    1.50
+E11         CBA         CAV         HAV     107.655    1.50
+E11         CAV         CAW         CAX     110.795    1.50
+E11         CAV         CAW         HAW     109.341    1.50
+E11         CAV         CAW        HAWA     109.341    1.50
+E11         CAX         CAW         HAW     109.507    1.50
+E11         CAX         CAW        HAWA     109.507    1.50
+E11         HAW         CAW        HAWA     108.048    1.50
+E11         CAW         CAX         NAY     111.032    1.50
+E11         CAW         CAX         HAX     109.494    1.50
+E11         CAW         CAX        HAXA     109.494    1.50
+E11         NAY         CAX         HAX     109.373    1.50
+E11         NAY         CAX        HAXA     109.373    1.50
+E11         HAX         CAX        HAXA     108.159    1.50
+E11         CAX         NAY         CAZ     109.879    1.50
+E11         CAX         NAY         CBB     110.624    1.50
+E11         CAZ         NAY         CBB     110.624    1.50
+E11         NAY         CAZ         CBA     111.032    1.50
+E11         NAY         CAZ         HAZ     109.373    1.50
+E11         NAY         CAZ        HAZA     109.373    1.50
+E11         CBA         CAZ         HAZ     109.494    1.50
+E11         CBA         CAZ        HAZA     109.494    1.50
+E11         HAZ         CAZ        HAZA     108.159    1.50
+E11         CAV         CBA         CAZ     110.795    1.50
+E11         CAV         CBA         HBA     109.341    1.50
+E11         CAV         CBA        HBAA     109.341    1.50
+E11         CAZ         CBA         HBA     109.507    1.50
+E11         CAZ         CBA        HBAA     109.507    1.50
+E11         HBA         CBA        HBAA     108.048    1.50
+E11         NAY         CBB         CBC     113.287    1.50
+E11         NAY         CBB         HBB     108.958    1.50
+E11         NAY         CBB        HBBA     108.958    1.50
+E11         CBC         CBB         HBB     109.108    1.50
+E11         CBC         CBB        HBBA     109.108    1.50
+E11         HBB         CBB        HBBA     107.841    1.50
+E11         CBB         CBC         CBH     120.718    1.50
+E11         CBB         CBC         CBD     120.718    1.50
+E11         CBH         CBC         CBD     118.565    1.50
+E11         CBC         CBD         CBE     120.633    1.50
+E11         CBC         CBD         HBD     119.681    1.50
+E11         CBE         CBD         HBD     119.686    1.50
+E11         CBD         CBE         CBF     120.151    1.50
+E11         CBD         CBE         HBE     119.879    1.50
+E11         CBF         CBE         HBE     119.970    1.50
+E11         CBE         CBF         CBG     119.868    1.50
+E11         CBE         CBF         HBF     120.066    1.50
+E11         CBG         CBF         HBF     120.066    1.50
+E11         CBF         CBG         CBH     120.151    1.50
+E11         CBF         CBG         HBG     119.970    1.50
+E11         CBH         CBG         HBG     119.879    1.50
+E11         CBC         CBH         CBG     120.633    1.50
+E11         CBC         CBH         HBH     119.681    1.50
+E11         CBG         CBH         HBH     119.686    1.50
+E11         OAL         CBI         HBI     109.428    1.50
+E11         OAL         CBI        HBIA     109.428    1.50
+E11         OAL         CBI        HBIB     109.428    1.50
+E11         HBI         CBI        HBIA     109.509    1.50
+E11         HBI         CBI        HBIB     109.509    1.50
+E11        HBIA         CBI        HBIB     109.509    1.50
+E11         OAK         CBJ         HBJ     109.428    1.50
+E11         OAK         CBJ        HBJA     109.428    1.50
+E11         OAK         CBJ        HBJB     109.428    1.50
+E11         HBJ         CBJ        HBJA     109.509    1.50
+E11         HBJ         CBJ        HBJB     109.509    1.50
+E11        HBJA         CBJ        HBJB     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+E11              const_56         NAN          C2          N1          C6     180.000    10.0     2
+E11       const_sp2_sp2_2         NAM          C6          N1          C2     180.000     5.0     2
+E11            sp3_sp3_41         HBJ         CBJ         OAK         CAE     -60.000    10.0     3
+E11            sp3_sp3_45         HBI         CBI         OAL         CAD     -60.000    10.0     3
+E11             sp2_sp3_2          C6         NAM         CAV         CAW     120.000    10.0     6
+E11             sp2_sp3_8          C2         NAN         CAO         CAP     120.000    10.0     6
+E11            sp3_sp3_48         NAN         CAO         CAP         CAQ     180.000    10.0     3
+E11            sp3_sp3_57         CAO         CAP         CAQ         NAR     180.000    10.0     3
+E11            sp3_sp3_67         CAP         CAQ         NAR         CAS     -60.000    10.0     3
+E11            sp3_sp3_72         HAS         CAS         NAR         CAQ     180.000    10.0     3
+E11            sp3_sp3_79         HAU         CAU         NAR         CAQ     -60.000    10.0     3
+E11             sp2_sp2_1          N1          C2         NAN         CAO     180.000     5.0     2
+E11              const_14         NAN          C2          N3          C4     180.000    10.0     2
+E11             sp3_sp3_7         NAM         CAV         CAW         CAX     180.000    10.0     3
+E11            sp3_sp3_87         NAM         CAV         CBA         CAZ      60.000    10.0     3
+E11            sp3_sp3_10         CAV         CAW         CAX         NAY     -60.000    10.0     3
+E11            sp3_sp3_20         CAW         CAX         NAY         CBB     180.000    10.0     3
+E11            sp3_sp3_26         CBA         CAZ         NAY         CBB      60.000    10.0     3
+E11            sp3_sp3_94         CBC         CBB         NAY         CAX     -60.000    10.0     3
+E11            sp3_sp3_31         NAY         CAZ         CBA         CAV      60.000    10.0     3
+E11            sp2_sp3_14         CBH         CBC         CBB         NAY     -90.000    10.0     6
+E11              const_59         CBB         CBC         CBD         CBE     180.000    10.0     2
+E11              const_37         CBB         CBC         CBH         CBG     180.000    10.0     2
+E11              const_51         CBC         CBD         CBE         CBF       0.000    10.0     2
+E11              const_47         CBD         CBE         CBF         CBG       0.000    10.0     2
+E11              const_12         CAC          C4          N3          C2     180.000    10.0     2
+E11              const_43         CBE         CBF         CBG         CBH       0.000    10.0     2
+E11              const_39         CBF         CBG         CBH         CBC       0.000    10.0     2
+E11       const_sp2_sp2_8          N3          C4          C5         CAF     180.000     5.0     2
+E11              const_17          N3          C4         CAC         CAD     180.000    10.0     2
+E11       const_sp2_sp2_4          C4          C5          C6         NAM     180.000     5.0     2
+E11              const_31          C4          C5         CAF         CAE       0.000    10.0     2
+E11             sp2_sp2_7          N1          C6         NAM         CAV       0.000     5.0     2
+E11              const_20          C4         CAC         CAD         OAL     180.000    10.0     2
+E11             sp2_sp2_9         CAC         CAD         OAL         CBI     180.000     5.0     2
+E11              const_26         OAL         CAD         CAE         OAK       0.000    10.0     2
+E11            sp2_sp2_11         CAD         CAE         OAK         CBJ     180.000     5.0     2
+E11              const_29         OAK         CAE         CAF          C5     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+E11    chir_1    NAR    CAQ    CAS    CAU    both
+E11    chir_2    CAV    NAM    CAW    CBA    both
+E11    chir_3    NAY    CBB    CAX    CAZ    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+E11    plan-1          C2   0.020
+E11    plan-1          C4   0.020
+E11    plan-1          C5   0.020
+E11    plan-1          C6   0.020
+E11    plan-1         CAC   0.020
+E11    plan-1         CAD   0.020
+E11    plan-1         CAE   0.020
+E11    plan-1         CAF   0.020
+E11    plan-1         HAC   0.020
+E11    plan-1         HAF   0.020
+E11    plan-1          N1   0.020
+E11    plan-1          N3   0.020
+E11    plan-1         NAM   0.020
+E11    plan-1         NAN   0.020
+E11    plan-1         OAK   0.020
+E11    plan-1         OAL   0.020
+E11    plan-2         CBB   0.020
+E11    plan-2         CBC   0.020
+E11    plan-2         CBD   0.020
+E11    plan-2         CBE   0.020
+E11    plan-2         CBF   0.020
+E11    plan-2         CBG   0.020
+E11    plan-2         CBH   0.020
+E11    plan-2         HBD   0.020
+E11    plan-2         HBE   0.020
+E11    plan-2         HBF   0.020
+E11    plan-2         HBG   0.020
+E11    plan-2         HBH   0.020
+E11    plan-3          C6   0.020
+E11    plan-3         CAV   0.020
+E11    plan-3        HNAM   0.020
+E11    plan-3         NAM   0.020
+E11    plan-4          C2   0.020
+E11    plan-4         CAO   0.020
+E11    plan-4        HNAN   0.020
+E11    plan-4         NAN   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+E11           SMILES              ACDLabs 12.01                                                                                                                                    O(c4cc1c(nc(nc1NC3CCN(Cc2ccccc2)CC3)NCCCN(C)C)cc4OC)C
+E11 SMILES_CANONICAL               CACTVS 3.370                                                                                                                                      COc1cc2nc(NCCCN(C)C)nc(NC3CCN(CC3)Cc4ccccc4)c2cc1OC
+E11           SMILES               CACTVS 3.370                                                                                                                                      COc1cc2nc(NCCCN(C)C)nc(NC3CCN(CC3)Cc4ccccc4)c2cc1OC
+E11 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                    CN(C)CCCNc1nc2cc(c(cc2c(n1)NC3CCN(CC3)Cc4ccccc4)OC)OC
+E11           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                    CN(C)CCCNc1nc2cc(c(cc2c(n1)NC3CCN(CC3)Cc4ccccc4)OC)OC
+E11            InChI                InChI  1.03 InChI=1S/C27H38N6O2/c1-32(2)14-8-13-28-27-30-23-18-25(35-4)24(34-3)17-22(23)26(31-27)29-21-11-15-33(16-12-21)19-20-9-6-5-7-10-20/h5-7,9-10,17-18,21H,8,11-16,19H2,1-4H3,(H2,28,29,30,31)
+E11         InChIKey                InChI  1.03                                                                                                                                                              YYFDMPHIONBOKZ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+E11 acedrg               243         "dictionary generator"                  
+E11 acedrg_database      11          "data source"                           
+E11 rdkit                2017.03.2   "Chemoinformatics tool"
+E11 refmac5              5.8.0238    "optimization tool"                     

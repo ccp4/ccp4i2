@@ -1,0 +1,247 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+63Y     63Y      5-methyl-6-[(2,3,4-trifluorophenyl)sulfanyl]thieno[2,3-d]pyrimidine-2,4-diamine     NON-POLYMER     31     22     .     
+#
+data_comp_63Y
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+63Y     C4      C       CR56    0       -2.175      17.795      23.629      
+63Y     C5      C       CR56    0       -1.979      18.696      24.722      
+63Y     C6      C       CR6     0       -1.962      20.082      24.418      
+63Y     N1      N       NRD6    0       -2.126      20.485      23.134      
+63Y     N3      N       NRD6    0       -2.336      18.222      22.365      
+63Y     FAF     F       F       0       -3.277      16.580      29.239      
+63Y     CAS     C       CR6     0       -4.006      15.661      28.587      
+63Y     CAR     C       CR6     0       -5.296      15.413      29.012      
+63Y     FAE     F       F       0       -5.798      16.085      30.062      
+63Y     CAN     C       CR6     0       -6.056      14.473      28.352      
+63Y     FAD     F       F       0       -7.311      14.250      28.791      
+63Y     CAG     C       CR16    0       -5.562      13.772      27.275      
+63Y     CAH     C       CR16    0       -4.264      14.021      26.847      
+63Y     CAQ     C       CR6     0       -3.470      14.958      27.511      
+63Y     SAK     S       S2      0       -1.828      15.288      26.941      
+63Y     CAT     C       CR5     0       -1.905      16.580      25.776      
+63Y     SAL     S       S2      0       -2.167      16.220      24.170      
+63Y     C2      C       CR6     0       -2.307      19.553      22.157      
+63Y     NAB     N       NH2     0       -2.467      20.017      20.898      
+63Y     NAC     N       NH2     0       -1.790      21.033      25.345      
+63Y     CAP     C       CR5     0       -1.832      17.983      25.979      
+63Y     CAA     C       CH3     0       -1.615      18.668      27.294      
+63Y     H1      H       H       0       -6.097      13.133      26.839      
+63Y     H2      H       H       0       -3.912      13.551      26.113      
+63Y     H3      H       H       0       -2.930      20.748      20.755      
+63Y     H4      H       H       0       -2.110      19.583      20.224      
+63Y     H5      H       H       0       -1.084      21.551      25.310      
+63Y     H6      H       H       0       -2.385      21.132      25.981      
+63Y     H7      H       H       0       -1.404      18.013      27.979      
+63Y     H8      H       H       0       -2.420      19.150      27.548      
+63Y     H9      H       H       0       -0.877      19.296      27.217      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+63Y          C2         NAB      SINGLE       n     1.352  0.0104     1.352  0.0104
+63Y          N3          C2      DOUBLE       y     1.346  0.0100     1.346  0.0100
+63Y          N1          C2      SINGLE       y     1.359  0.0100     1.359  0.0100
+63Y          C4          N3      SINGLE       y     1.338  0.0176     1.338  0.0176
+63Y          C6          N1      DOUBLE       y     1.350  0.0100     1.350  0.0100
+63Y          C4         SAL      SINGLE       y     1.695  0.0200     1.695  0.0200
+63Y          C4          C5      DOUBLE       y     1.401  0.0200     1.401  0.0200
+63Y         CAT         SAL      SINGLE       y     1.695  0.0200     1.695  0.0200
+63Y          C5          C6      SINGLE       y     1.412  0.0104     1.412  0.0104
+63Y          C6         NAC      SINGLE       n     1.339  0.0100     1.339  0.0100
+63Y          C5         CAP      SINGLE       y     1.439  0.0114     1.439  0.0114
+63Y         CAT         CAP      DOUBLE       y     1.404  0.0200     1.404  0.0200
+63Y         SAK         CAT      SINGLE       n     1.744  0.0119     1.744  0.0119
+63Y         CAP         CAA      SINGLE       n     1.497  0.0100     1.497  0.0100
+63Y         CAQ         SAK      SINGLE       n     1.772  0.0127     1.772  0.0127
+63Y         CAH         CAQ      SINGLE       y     1.393  0.0100     1.393  0.0100
+63Y         CAS         CAQ      DOUBLE       y     1.390  0.0100     1.390  0.0100
+63Y         CAG         CAH      DOUBLE       y     1.385  0.0100     1.385  0.0100
+63Y         CAN         CAG      SINGLE       y     1.371  0.0101     1.371  0.0101
+63Y         FAF         CAS      SINGLE       n     1.343  0.0110     1.343  0.0110
+63Y         CAS         CAR      SINGLE       y     1.377  0.0105     1.377  0.0105
+63Y         CAR         CAN      DOUBLE       y     1.373  0.0107     1.373  0.0107
+63Y         CAN         FAD      SINGLE       n     1.348  0.0100     1.348  0.0100
+63Y         CAR         FAE      SINGLE       n     1.344  0.0100     1.344  0.0100
+63Y         CAG          H1      SINGLE       n     1.082  0.0130     0.941  0.0159
+63Y         CAH          H2      SINGLE       n     1.082  0.0130     0.940  0.0163
+63Y         NAB          H3      SINGLE       n     1.016  0.0100     0.877  0.0200
+63Y         NAB          H4      SINGLE       n     1.016  0.0100     0.877  0.0200
+63Y         NAC          H5      SINGLE       n     1.016  0.0100     0.877  0.0200
+63Y         NAC          H6      SINGLE       n     1.016  0.0100     0.877  0.0200
+63Y         CAA          H7      SINGLE       n     1.089  0.0100     0.972  0.0139
+63Y         CAA          H8      SINGLE       n     1.089  0.0100     0.972  0.0139
+63Y         CAA          H9      SINGLE       n     1.089  0.0100     0.972  0.0139
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+63Y          N3          C4         SAL     129.589    3.00
+63Y          N3          C4          C5     122.275    2.68
+63Y         SAL          C4          C5     108.136    3.00
+63Y          C4          C5          C6     118.303    1.50
+63Y          C4          C5         CAP     107.721    1.70
+63Y          C6          C5         CAP     133.976    2.28
+63Y          N1          C6          C5     118.612    1.50
+63Y          N1          C6         NAC     118.368    1.50
+63Y          C5          C6         NAC     123.020    1.50
+63Y          C2          N1          C6     118.424    1.50
+63Y          C2          N3          C4     117.599    2.19
+63Y         CAQ         CAS         FAF     120.405    1.50
+63Y         CAQ         CAS         CAR     121.075    1.50
+63Y         FAF         CAS         CAR     118.520    1.50
+63Y         CAS         CAR         CAN     119.334    1.50
+63Y         CAS         CAR         FAE     120.067    1.50
+63Y         CAN         CAR         FAE     120.598    1.50
+63Y         CAG         CAN         CAR     121.153    1.50
+63Y         CAG         CAN         FAD     120.550    1.50
+63Y         CAR         CAN         FAD     118.297    1.50
+63Y         CAH         CAG         CAN     118.479    1.50
+63Y         CAH         CAG          H1     120.968    1.50
+63Y         CAN         CAG          H1     120.554    1.50
+63Y         CAQ         CAH         CAG     120.260    1.50
+63Y         CAQ         CAH          H2     119.711    1.50
+63Y         CAG         CAH          H2     120.029    1.50
+63Y         SAK         CAQ         CAH     120.150    2.83
+63Y         SAK         CAQ         CAS     120.150    2.83
+63Y         CAH         CAQ         CAS     119.699    1.50
+63Y         CAT         SAK         CAQ     120.000    3.00
+63Y         SAL         CAT         CAP     108.136    3.00
+63Y         SAL         CAT         SAK     122.490    3.00
+63Y         CAP         CAT         SAK     129.373    2.21
+63Y          C4         SAL         CAT     108.136    3.00
+63Y         NAB          C2          N3     118.672    1.50
+63Y         NAB          C2          N1     116.541    1.50
+63Y          N3          C2          N1     124.788    1.50
+63Y          C2         NAB          H3     119.901    1.50
+63Y          C2         NAB          H4     119.901    1.50
+63Y          H3         NAB          H4     120.198    1.96
+63Y          C6         NAC          H5     119.737    1.50
+63Y          C6         NAC          H6     119.737    1.50
+63Y          H5         NAC          H6     120.527    1.88
+63Y          C5         CAP         CAT     107.870    1.50
+63Y          C5         CAP         CAA     124.569    1.50
+63Y         CAT         CAP         CAA     127.561    1.50
+63Y         CAP         CAA          H7     109.644    1.50
+63Y         CAP         CAA          H8     109.644    1.50
+63Y         CAP         CAA          H9     109.644    1.50
+63Y          H7         CAA          H8     109.292    1.50
+63Y          H7         CAA          H9     109.292    1.50
+63Y          H8         CAA          H9     109.292    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+63Y              const_45          N3          C4          C5          C6       0.000    10.0     2
+63Y              const_14          N3          C4         SAL         CAT     180.000    10.0     2
+63Y       const_sp2_sp2_2         SAL          C4          N3          C2     180.000     5.0     2
+63Y              const_33         CAN         CAG         CAH         CAQ       0.000    10.0     2
+63Y              const_30         CAG         CAH         CAQ         SAK     180.000    10.0     2
+63Y            sp2_sp2_11         CAH         CAQ         SAK         CAT     180.000     5.0     2
+63Y             sp2_sp2_9         SAL         CAT         SAK         CAQ     180.000     5.0     2
+63Y              const_16         SAK         CAT         SAL          C4     180.000    10.0     2
+63Y              const_20         CAA         CAP         CAT         SAK       0.000    10.0     2
+63Y             sp2_sp2_1          N3          C2         NAB          H3     180.000     5.0     2
+63Y              const_10          C4          C5          C6         NAC     180.000    10.0     2
+63Y              const_22          C4          C5         CAP         CAA     180.000    10.0     2
+63Y             sp2_sp3_1          C5         CAP         CAA          H7     150.000    10.0     6
+63Y             sp2_sp2_7          N1          C6         NAC          H5       0.000     5.0     2
+63Y       const_sp2_sp2_8         NAC          C6          N1          C2     180.000     5.0     2
+63Y       const_sp2_sp2_6         NAB          C2          N1          C6     180.000     5.0     2
+63Y       const_sp2_sp2_4         NAB          C2          N3          C4     180.000     5.0     2
+63Y              const_28         SAK         CAQ         CAS         FAF       0.000    10.0     2
+63Y              const_52         FAE         CAR         CAS         FAF       0.000    10.0     2
+63Y              const_44         FAD         CAN         CAR         FAE       0.000    10.0     2
+63Y              const_38         CAH         CAG         CAN         FAD     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+63Y    plan-1          C2   0.020
+63Y    plan-1          C4   0.020
+63Y    plan-1          C5   0.020
+63Y    plan-1          C6   0.020
+63Y    plan-1         CAA   0.020
+63Y    plan-1         CAP   0.020
+63Y    plan-1         CAT   0.020
+63Y    plan-1          N1   0.020
+63Y    plan-1          N3   0.020
+63Y    plan-1         NAB   0.020
+63Y    plan-1         NAC   0.020
+63Y    plan-1         SAK   0.020
+63Y    plan-1         SAL   0.020
+63Y    plan-2         CAG   0.020
+63Y    plan-2         CAH   0.020
+63Y    plan-2         CAN   0.020
+63Y    plan-2         CAQ   0.020
+63Y    plan-2         CAR   0.020
+63Y    plan-2         CAS   0.020
+63Y    plan-2         FAD   0.020
+63Y    plan-2         FAE   0.020
+63Y    plan-2         FAF   0.020
+63Y    plan-2          H1   0.020
+63Y    plan-2          H2   0.020
+63Y    plan-2         SAK   0.020
+63Y    plan-3          C2   0.020
+63Y    plan-3          H3   0.020
+63Y    plan-3          H4   0.020
+63Y    plan-3         NAB   0.020
+63Y    plan-4          C6   0.020
+63Y    plan-4          H5   0.020
+63Y    plan-4          H6   0.020
+63Y    plan-4         NAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+63Y           SMILES              ACDLabs 12.01                                                                      c23sc(Sc1c(F)c(F)c(F)cc1)c(c2c(N)nc(n3)N)C
+63Y            InChI                InChI  1.03 InChI=1S/C13H9F3N4S2/c1-4-7-10(17)19-13(18)20-11(7)22-12(4)21-6-3-2-5(14)8(15)9(6)16/h2-3H,1H3,(H4,17,18,19,20)
+63Y         InChIKey                InChI  1.03                                                                                     HOYROOKWEBIDCA-UHFFFAOYSA-N
+63Y SMILES_CANONICAL               CACTVS 3.385                                                                          Cc1c(Sc2ccc(F)c(F)c2F)sc3nc(N)nc(N)c13
+63Y           SMILES               CACTVS 3.385                                                                          Cc1c(Sc2ccc(F)c(F)c2F)sc3nc(N)nc(N)c13
+63Y SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                            Cc1c2c(nc(nc2sc1Sc3ccc(c(c3F)F)F)N)N
+63Y           SMILES "OpenEye OEToolkits" 2.0.4                                                                            Cc1c2c(nc(nc2sc1Sc3ccc(c(c3F)F)F)N)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+63Y acedrg               243         "dictionary generator"                  
+63Y acedrg_database      11          "data source"                           
+63Y rdkit                2017.03.2   "Chemoinformatics tool"
+63Y refmac5              5.8.0238    "optimization tool"                     

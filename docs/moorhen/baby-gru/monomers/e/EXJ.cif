@@ -1,0 +1,278 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EXJ     EXJ      (3R)-3-(3-chlorophenyl)-3-[(5-methyl-7-oxo-6,7-dihydro[1,2,4]triazolo[1,5-a]pyrimidin-2-yl)amino]propanenitrile     NON-POLYMER     36     23     .     
+#
+data_comp_EXJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EXJ     C1      C       CR6     0       30.543      -9.925      31.786      
+EXJ     C2      C       CH2     0       29.988      -10.686     30.612      
+EXJ     C3      C       CR6     0       28.610      -10.349     30.317      
+EXJ     C13     C       CH1     0       24.174      -7.602      31.649      
+EXJ     C14     C       CH2     0       23.202      -6.445      31.880      
+EXJ     C15     C       CSP     0       22.122      -6.446      30.898      
+EXJ     C16     C       CR6     0       23.563      -8.928      32.070      
+EXJ     C17     C       CR16    0       23.477      -9.267      33.415      
+EXJ     C18     C       CR6     0       22.919      -10.475     33.796      
+EXJ     C19     C       CR16    0       22.438      -11.367     32.859      
+EXJ     C20     C       CR16    0       22.522      -11.032     31.519      
+EXJ     C21     C       CR16    0       23.078      -9.825      31.125      
+EXJ     N4      N       NT      0       27.988      -9.394      31.100      
+EXJ     C5      C       CR56    0       28.626      -8.720      32.099      
+EXJ     N6      N       NRD6    0       29.945      -8.902      32.439      
+EXJ     N7      N       NRD5    0       26.697      -8.996      31.007      
+EXJ     C8      C       CR5     0       26.622      -8.071      31.983      
+EXJ     N9      N       NRD5    0       27.767      -7.869      32.672      
+EXJ     C10     C       CH3     0       31.896      -10.351     32.276      
+EXJ     O11     O       O       0       28.024      -10.906     29.396      
+EXJ     N12     N       NH1     0       25.455      -7.345      32.295      
+EXJ     CL      CL      CL      0       22.822      -10.880     35.487      
+EXJ     N23     N       NSP     0       21.267      -6.245      30.133      
+EXJ     H1      H       H       0       30.543      -10.497     29.817      
+EXJ     H2      H       H       0       30.052      -11.653     30.798      
+EXJ     H3      H       H       0       24.334      -7.647      30.673      
+EXJ     H4      H       H       0       23.687      -5.588      31.822      
+EXJ     H5      H       H       0       22.813      -6.514      32.783      
+EXJ     H6      H       H       0       23.800      -8.672      34.063      
+EXJ     H7      H       H       0       22.060      -12.186     33.126      
+EXJ     H8      H       H       0       22.197      -11.632     30.868      
+EXJ     H9      H       H       0       23.128      -9.611      30.207      
+EXJ     H10     H       H       0       32.342      -9.600      32.694      
+EXJ     H11     H       H       0       32.426      -10.665     31.527      
+EXJ     H12     H       H       0       31.795      -11.067     32.921      
+EXJ     H13     H       H       0       25.505      -6.719      32.903      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EXJ          C3         O11      DOUBLE       n     1.225  0.0114     1.225  0.0114
+EXJ          C2          C3      SINGLE       n     1.443  0.0200     1.443  0.0200
+EXJ          C3          N4      SINGLE       n     1.379  0.0122     1.379  0.0122
+EXJ         C15         N23      TRIPLE       n     1.149  0.0200     1.149  0.0200
+EXJ          C1          C2      SINGLE       n     1.494  0.0200     1.494  0.0200
+EXJ          N4          N7      SINGLE       y     1.366  0.0181     1.366  0.0181
+EXJ          N7          C8      DOUBLE       y     1.338  0.0160     1.338  0.0160
+EXJ         C20         C21      DOUBLE       y     1.382  0.0106     1.382  0.0106
+EXJ         C16         C21      SINGLE       y     1.386  0.0100     1.386  0.0100
+EXJ          N4          C5      SINGLE       y     1.368  0.0160     1.368  0.0160
+EXJ         C14         C15      SINGLE       n     1.458  0.0121     1.458  0.0121
+EXJ         C19         C20      SINGLE       y     1.378  0.0126     1.378  0.0126
+EXJ         C13         C14      SINGLE       n     1.527  0.0116     1.527  0.0116
+EXJ         C13         C16      SINGLE       n     1.519  0.0100     1.519  0.0100
+EXJ         C13         N12      SINGLE       n     1.454  0.0149     1.454  0.0149
+EXJ          C8         N12      SINGLE       n     1.402  0.0200     1.402  0.0200
+EXJ          C8          N9      SINGLE       y     1.331  0.0200     1.331  0.0200
+EXJ          C1         C10      SINGLE       n     1.500  0.0133     1.500  0.0133
+EXJ          C1          N6      DOUBLE       n     1.333  0.0200     1.333  0.0200
+EXJ         C16         C17      DOUBLE       y     1.385  0.0100     1.385  0.0100
+EXJ          C5          N6      SINGLE       n     1.355  0.0200     1.355  0.0200
+EXJ          C5          N9      DOUBLE       y     1.333  0.0200     1.333  0.0200
+EXJ         C18         C19      DOUBLE       y     1.375  0.0126     1.375  0.0126
+EXJ         C17         C18      SINGLE       y     1.379  0.0118     1.379  0.0118
+EXJ         C18          CL      SINGLE       n     1.742  0.0100     1.742  0.0100
+EXJ          C2          H1      SINGLE       n     1.089  0.0100     0.987  0.0200
+EXJ          C2          H2      SINGLE       n     1.089  0.0100     0.987  0.0200
+EXJ         C13          H3      SINGLE       n     1.089  0.0100     0.989  0.0189
+EXJ         C14          H4      SINGLE       n     1.089  0.0100     0.986  0.0178
+EXJ         C14          H5      SINGLE       n     1.089  0.0100     0.986  0.0178
+EXJ         C17          H6      SINGLE       n     1.082  0.0130     0.937  0.0118
+EXJ         C19          H7      SINGLE       n     1.082  0.0130     0.941  0.0166
+EXJ         C20          H8      SINGLE       n     1.082  0.0130     0.943  0.0200
+EXJ         C21          H9      SINGLE       n     1.082  0.0130     0.944  0.0174
+EXJ         C10         H10      SINGLE       n     1.089  0.0100     0.969  0.0150
+EXJ         C10         H11      SINGLE       n     1.089  0.0100     0.969  0.0150
+EXJ         C10         H12      SINGLE       n     1.089  0.0100     0.969  0.0150
+EXJ         N12         H13      SINGLE       n     1.016  0.0100     0.873  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EXJ          C2          C1         C10     117.197    2.44
+EXJ          C2          C1          N6     125.198    3.00
+EXJ         C10          C1          N6     117.605    2.43
+EXJ          C3          C2          C1     112.879    3.00
+EXJ          C3          C2          H1     108.871    1.50
+EXJ          C3          C2          H2     108.871    1.50
+EXJ          C1          C2          H1     108.678    1.50
+EXJ          C1          C2          H2     108.678    1.50
+EXJ          H1          C2          H2     106.810    3.00
+EXJ         O11          C3          C2     120.070    1.72
+EXJ         O11          C3          N4     119.965    3.00
+EXJ          C2          C3          N4     119.965    3.00
+EXJ         C14         C13         C16     111.802    2.54
+EXJ         C14         C13         N12     111.308    2.28
+EXJ         C14         C13          H3     106.888    1.50
+EXJ         C16         C13         N12     113.005    2.09
+EXJ         C16         C13          H3     107.328    1.50
+EXJ         N12         C13          H3     108.020    1.50
+EXJ         C15         C14         C13     110.326    2.62
+EXJ         C15         C14          H4     109.018    1.50
+EXJ         C15         C14          H5     109.018    1.50
+EXJ         C13         C14          H4     109.664    1.50
+EXJ         C13         C14          H5     109.664    1.50
+EXJ          H4         C14          H5     107.947    1.50
+EXJ         N23         C15         C14     180.000    3.00
+EXJ         C21         C16         C13     120.667    1.68
+EXJ         C21         C16         C17     118.666    1.50
+EXJ         C13         C16         C17     120.667    1.68
+EXJ         C16         C17         C18     120.205    1.50
+EXJ         C16         C17          H6     119.585    1.50
+EXJ         C18         C17          H6     120.210    1.50
+EXJ         C19         C18         C17     121.218    1.50
+EXJ         C19         C18          CL     119.298    1.50
+EXJ         C17         C18          CL     119.485    1.50
+EXJ         C20         C19         C18     118.682    1.50
+EXJ         C20         C19          H7     120.669    1.50
+EXJ         C18         C19          H7     120.649    1.50
+EXJ         C21         C20         C19     120.668    1.50
+EXJ         C21         C20          H8     119.741    1.50
+EXJ         C19         C20          H8     119.590    1.50
+EXJ         C20         C21         C16     120.561    1.50
+EXJ         C20         C21          H9     119.743    1.50
+EXJ         C16         C21          H9     119.695    1.50
+EXJ          C3          N4          N7     109.471    3.00
+EXJ          C3          N4          C5     109.471    3.00
+EXJ          N7          N4          C5     111.210    1.50
+EXJ          N4          C5          N6     122.836    1.50
+EXJ          N4          C5          N9     111.465    1.50
+EXJ          N6          C5          N9     125.699    1.50
+EXJ          C1          N6          C5     112.140    1.50
+EXJ          N4          N7          C8     104.585    1.50
+EXJ          N7          C8         N12     122.136    2.98
+EXJ          N7          C8          N9     115.728    1.52
+EXJ         N12          C8          N9     122.136    2.98
+EXJ          C8          N9          C5     103.688    1.50
+EXJ          C1         C10         H10     109.369    1.50
+EXJ          C1         C10         H11     109.369    1.50
+EXJ          C1         C10         H12     109.369    1.50
+EXJ         H10         C10         H11     109.380    1.50
+EXJ         H10         C10         H12     109.380    1.50
+EXJ         H11         C10         H12     109.380    1.50
+EXJ         C13         N12          C8     121.129    2.32
+EXJ         C13         N12         H13     119.286    1.76
+EXJ          C8         N12         H13     119.585    2.44
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EXJ             sp2_sp3_4         C10          C1          C2          C3     180.000    10.0     6
+EXJ            sp2_sp2_12         C10          C1          N6          C5     180.000     5.0     2
+EXJ            sp2_sp3_25          C2          C1         C10         H10     150.000    10.0     6
+EXJ       const_sp2_sp2_5         C19         C20         C21         C16       0.000     5.0     2
+EXJ              const_21          N6          C5          N4          C3       0.000    10.0     2
+EXJ              const_26          C3          N4          N7          C8     180.000    10.0     2
+EXJ             sp2_sp2_5          N4          C5          N6          C1       0.000     5.0     2
+EXJ              const_31          N4          C5          N9          C8       0.000    10.0     2
+EXJ              const_28         N12          C8          N7          N4     180.000    10.0     2
+EXJ              const_30         N12          C8          N9          C5     180.000    10.0     2
+EXJ             sp2_sp2_7          N7          C8         N12         C13     180.000     5.0     2
+EXJ            sp2_sp3_10         O11          C3          C2          C1     180.000    10.0     6
+EXJ             sp2_sp2_4         O11          C3          N4          N7       0.000     5.0     2
+EXJ            sp2_sp3_19          C8         N12         C13         C14       0.000    10.0     6
+EXJ             sp3_sp3_7         N12         C13         C14         C15      60.000    10.0     3
+EXJ            sp2_sp3_13         C21         C16         C13         C14     150.000    10.0     6
+EXJ             sp3_sp3_1         N23         C15         C14         C13     180.000    10.0     3
+EXJ       const_sp2_sp2_3         C13         C16         C21         C20     180.000     5.0     2
+EXJ              const_35         C13         C16         C17         C18     180.000    10.0     2
+EXJ              const_18         C16         C17         C18          CL     180.000    10.0     2
+EXJ              const_15          CL         C18         C19         C20     180.000    10.0     2
+EXJ       const_sp2_sp2_9         C18         C19         C20         C21       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EXJ    chir_1    C13    N12    C16    C14    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EXJ    plan-1         C13   0.020
+EXJ    plan-1         C16   0.020
+EXJ    plan-1         C17   0.020
+EXJ    plan-1         C18   0.020
+EXJ    plan-1         C19   0.020
+EXJ    plan-1         C20   0.020
+EXJ    plan-1         C21   0.020
+EXJ    plan-1          CL   0.020
+EXJ    plan-1          H6   0.020
+EXJ    plan-1          H7   0.020
+EXJ    plan-1          H8   0.020
+EXJ    plan-1          H9   0.020
+EXJ    plan-2          C3   0.020
+EXJ    plan-2          C5   0.020
+EXJ    plan-2          C8   0.020
+EXJ    plan-2         N12   0.020
+EXJ    plan-2          N4   0.020
+EXJ    plan-2          N6   0.020
+EXJ    plan-2          N7   0.020
+EXJ    plan-2          N9   0.020
+EXJ    plan-3          C1   0.020
+EXJ    plan-3         C10   0.020
+EXJ    plan-3          C2   0.020
+EXJ    plan-3          N6   0.020
+EXJ    plan-4          C2   0.020
+EXJ    plan-4          C3   0.020
+EXJ    plan-4          N4   0.020
+EXJ    plan-4         O11   0.020
+EXJ    plan-5         C13   0.020
+EXJ    plan-5          C8   0.020
+EXJ    plan-5         H13   0.020
+EXJ    plan-5         N12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EXJ           SMILES              ACDLabs 12.01                                                                                       C1(C)=Nc3n(C(C1)=O)nc(NC(CC#N)c2cc(Cl)ccc2)n3
+EXJ            InChI                InChI  1.03 InChI=1S/C15H13ClN6O/c1-9-7-13(23)22-15(18-9)20-14(21-22)19-12(5-6-17)10-3-2-4-11(16)8-10/h2-4,8,12H,5,7H2,1H3,(H,19,21)/t12-/m1/s1
+EXJ         InChIKey                InChI  1.03                                                                                                         NHMPMHHRMRFBHQ-GFCCVEGCSA-N
+EXJ SMILES_CANONICAL               CACTVS 3.385                                                                                       CC1=Nc2nc(N[C@H](CC#N)c3cccc(Cl)c3)nn2C(=O)C1
+EXJ           SMILES               CACTVS 3.385                                                                                        CC1=Nc2nc(N[CH](CC#N)c3cccc(Cl)c3)nn2C(=O)C1
+EXJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                       CC1=Nc2nc(nn2C(=O)C1)N[C@H](CC#N)c3cccc(c3)Cl
+EXJ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                           CC1=Nc2nc(nn2C(=O)C1)NC(CC#N)c3cccc(c3)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EXJ acedrg               243         "dictionary generator"                  
+EXJ acedrg_database      11          "data source"                           
+EXJ rdkit                2017.03.2   "Chemoinformatics tool"
+EXJ refmac5              5.8.0238    "optimization tool"                     

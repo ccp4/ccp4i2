@@ -1,0 +1,269 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NAU     NAU      "4,4,6,7,8,9-HEXAHYDROXY-5-METHYLCARBOXAMIDONONANOIC ACID"     NON-POLYMER     41     21     .     
+#
+data_comp_NAU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NAU     C1      C       C       0       2.269       14.502      6.494       
+NAU     O1A     O       O       0       2.828       13.394      6.625       
+NAU     O1B     O       OC      -1      1.470       14.765      5.574       
+NAU     C2      C       CH2     0       2.579       15.591      7.508       
+NAU     C3      C       CH2     0       1.401       16.024      8.382       
+NAU     C4      C       CT      0       1.289       15.296      9.737       
+NAU     C5      C       CH1     0       -0.084      15.517      10.408      
+NAU     N2      N       NH1     0       -0.276      14.507      11.459      
+NAU     C10     C       C       0       -1.155      13.496      11.422      
+NAU     C11     C       CH3     0       -1.187      12.604      12.623      
+NAU     O10     O       O       0       -1.895      13.297      10.460      
+NAU     O6      O       OH1     0       -0.497      17.856      9.947       
+NAU     C6      C       CH1     0       -0.321      16.920      11.009      
+NAU     C7      C       CH1     0       -1.529      17.044      11.949      
+NAU     O7      O       OH1     0       -2.691      16.608      11.242      
+NAU     C8      C       CH1     0       -1.771      18.453      12.506      
+NAU     O8      O       OH1     0       -0.600      18.907      13.189      
+NAU     C9      C       CH2     0       -2.954      18.522      13.450      
+NAU     O9      O       OH1     0       -2.785      17.662      14.574      
+NAU     O4A     O       OH1     0       2.312       15.749      10.557      
+NAU     O4B     O       OH1     0       1.434       13.928      9.520       
+NAU     HC21    H       H       0       2.910       16.376      7.021       
+NAU     HC22    H       H       0       3.311       15.278      8.085       
+NAU     HC31    H       H       0       0.569       15.886      7.882       
+NAU     HC32    H       H       0       1.483       16.984      8.552       
+NAU     HC5     H       H       0       -0.785      15.386      9.724       
+NAU     HN2     H       H       0       0.233       14.595      12.163      
+NAU     H111    H       H       0       -1.898      11.950      12.525      
+NAU     H112    H       H       0       -1.348      13.136      13.420      
+NAU     H113    H       H       0       -0.337      12.144      12.711      
+NAU     HO6     H       H       0       -0.108      18.583      10.147      
+NAU     HC6     H       H       0       0.486       17.186      11.519      
+NAU     HC7     H       H       0       -1.388      16.435      12.717      
+NAU     HO7     H       H       0       -3.197      16.182      11.774      
+NAU     HC8     H       H       0       -1.955      19.076      11.742      
+NAU     HO8     H       H       0       -0.656      19.732      13.377      
+NAU     HC91    H       H       0       -3.777      18.268      12.966      
+NAU     HC92    H       H       0       -3.059      19.452      13.767      
+NAU     HO9     H       H       0       -3.533      17.579      14.959      
+NAU     HO4A    H       H       0       2.331       15.301      11.279      
+NAU     HO4B    H       H       0       0.834       13.644      8.989       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NAU          C1         O1A      DOUBLE       n     1.247  0.0187     1.247  0.0187
+NAU          C1         O1B      SINGLE       n     1.247  0.0187     1.247  0.0187
+NAU          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+NAU          C2          C3      SINGLE       n     1.517  0.0200     1.517  0.0200
+NAU          C3          C4      SINGLE       n     1.537  0.0100     1.537  0.0100
+NAU          C4          C5      SINGLE       n     1.525  0.0149     1.525  0.0149
+NAU          C4         O4A      SINGLE       n     1.385  0.0185     1.385  0.0185
+NAU          C4         O4B      SINGLE       n     1.385  0.0185     1.385  0.0185
+NAU          C5          N2      SINGLE       n     1.464  0.0100     1.464  0.0100
+NAU          C5          C6      SINGLE       n     1.537  0.0100     1.537  0.0100
+NAU          N2         C10      SINGLE       n     1.335  0.0103     1.335  0.0103
+NAU         C10         C11      SINGLE       n     1.495  0.0100     1.495  0.0100
+NAU         C10         O10      DOUBLE       n     1.229  0.0102     1.229  0.0102
+NAU          O6          C6      SINGLE       n     1.424  0.0199     1.424  0.0199
+NAU          C6          C7      SINGLE       n     1.531  0.0100     1.531  0.0100
+NAU          C7          O7      SINGLE       n     1.424  0.0199     1.424  0.0199
+NAU          C7          C8      SINGLE       n     1.530  0.0100     1.530  0.0100
+NAU          C8          O8      SINGLE       n     1.429  0.0100     1.429  0.0100
+NAU          C8          C9      SINGLE       n     1.514  0.0100     1.514  0.0100
+NAU          C9          O9      SINGLE       n     1.425  0.0100     1.425  0.0100
+NAU          C2        HC21      SINGLE       n     1.089  0.0100     0.981  0.0185
+NAU          C2        HC22      SINGLE       n     1.089  0.0100     0.981  0.0185
+NAU          C3        HC31      SINGLE       n     1.089  0.0100     0.980  0.0160
+NAU          C3        HC32      SINGLE       n     1.089  0.0100     0.980  0.0160
+NAU          C5         HC5      SINGLE       n     1.089  0.0100     0.989  0.0122
+NAU          N2         HN2      SINGLE       n     1.016  0.0100     0.872  0.0200
+NAU         C11        H111      SINGLE       n     1.089  0.0100     0.971  0.0140
+NAU         C11        H112      SINGLE       n     1.089  0.0100     0.971  0.0140
+NAU         C11        H113      SINGLE       n     1.089  0.0100     0.971  0.0140
+NAU          O6         HO6      SINGLE       n     0.970  0.0120     0.848  0.0200
+NAU          C6         HC6      SINGLE       n     1.089  0.0100     0.992  0.0184
+NAU          C7         HC7      SINGLE       n     1.089  0.0100     0.992  0.0184
+NAU          O7         HO7      SINGLE       n     0.970  0.0120     0.848  0.0200
+NAU          C8         HC8      SINGLE       n     1.089  0.0100     1.004  0.0200
+NAU          O8         HO8      SINGLE       n     0.970  0.0120     0.848  0.0200
+NAU          C9        HC91      SINGLE       n     1.089  0.0100     0.988  0.0200
+NAU          C9        HC92      SINGLE       n     1.089  0.0100     0.988  0.0200
+NAU          O9         HO9      SINGLE       n     0.970  0.0120     0.846  0.0200
+NAU         O4A        HO4A      SINGLE       n     0.970  0.0120     0.848  0.0200
+NAU         O4B        HO4B      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NAU         O1A          C1         O1B     123.571    1.50
+NAU         O1A          C1          C2     118.214    1.64
+NAU         O1B          C1          C2     118.214    1.64
+NAU          C1          C2          C3     114.629    2.24
+NAU          C1          C2        HC21     108.404    1.50
+NAU          C1          C2        HC22     108.404    1.50
+NAU          C3          C2        HC21     108.844    1.50
+NAU          C3          C2        HC22     108.844    1.50
+NAU        HC21          C2        HC22     107.521    1.50
+NAU          C2          C3          C4     111.094    2.85
+NAU          C2          C3        HC31     108.915    1.50
+NAU          C2          C3        HC32     108.915    1.50
+NAU          C4          C3        HC31     108.725    1.50
+NAU          C4          C3        HC32     108.725    1.50
+NAU        HC31          C3        HC32     107.556    1.50
+NAU          C3          C4          C5     111.094    2.85
+NAU          C3          C4         O4A     111.123    2.23
+NAU          C3          C4         O4B     111.123    2.23
+NAU          C5          C4         O4A     109.482    3.00
+NAU          C5          C4         O4B     109.482    3.00
+NAU         O4A          C4         O4B     113.458    2.75
+NAU          C4          C5          N2     111.308    2.28
+NAU          C4          C5          C6     111.094    2.85
+NAU          C4          C5         HC5     109.155    1.50
+NAU          N2          C5          C6     109.748    1.50
+NAU          N2          C5         HC5     108.194    1.50
+NAU          C6          C5         HC5     107.639    1.50
+NAU          C5          N2         C10     123.516    1.63
+NAU          C5          N2         HN2     117.373    3.00
+NAU         C10          N2         HN2     119.111    2.25
+NAU          N2         C10         C11     116.420    1.50
+NAU          N2         C10         O10     121.667    1.50
+NAU         C11         C10         O10     121.913    1.50
+NAU         C10         C11        H111     109.678    1.50
+NAU         C10         C11        H112     109.678    1.50
+NAU         C10         C11        H113     109.678    1.50
+NAU        H111         C11        H112     109.365    1.50
+NAU        H111         C11        H113     109.365    1.50
+NAU        H112         C11        H113     109.365    1.50
+NAU          C6          O6         HO6     108.522    3.00
+NAU          C5          C6          O6     109.040    1.72
+NAU          C5          C6          C7     115.018    1.61
+NAU          C5          C6         HC6     108.500    1.50
+NAU          O6          C6          C7     109.320    2.01
+NAU          O6          C6         HC6     108.081    2.87
+NAU          C7          C6         HC6     108.450    1.83
+NAU          C6          C7          O7     109.320    2.01
+NAU          C6          C7          C8     113.695    2.13
+NAU          C6          C7         HC7     108.450    1.83
+NAU          O7          C7          C8     109.164    1.97
+NAU          O7          C7         HC7     108.243    1.50
+NAU          C8          C7         HC7     108.336    1.50
+NAU          C7          O7         HO7     108.564    3.00
+NAU          C7          C8          O8     109.549    1.85
+NAU          C7          C8          C9     112.159    1.50
+NAU          C7          C8         HC8     108.777    1.50
+NAU          O8          C8          C9     109.623    1.60
+NAU          O8          C8         HC8     108.591    1.50
+NAU          C9          C8         HC8     107.986    1.50
+NAU          C8          O8         HO8     111.202    3.00
+NAU          C8          C9          O9     111.364    1.50
+NAU          C8          C9        HC91     109.234    1.50
+NAU          C8          C9        HC92     109.234    1.50
+NAU          O9          C9        HC91     109.268    1.50
+NAU          O9          C9        HC92     109.268    1.50
+NAU        HC91          C9        HC92     108.313    1.50
+NAU          C9          O9         HO9     108.280    3.00
+NAU          C4         O4A        HO4A     108.906    3.00
+NAU          C4         O4B        HO4B     108.906    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NAU             sp2_sp3_2         O1A          C1          C2          C3     120.000    10.0     6
+NAU            sp3_sp3_43          C5          C6          O6         HO6     180.000    10.0     3
+NAU            sp3_sp3_46          C5          C6          C7          O7     180.000    10.0     3
+NAU            sp3_sp3_55          C6          C7          O7         HO7     180.000    10.0     3
+NAU            sp3_sp3_58          C6          C7          C8          O8     180.000    10.0     3
+NAU            sp3_sp3_67          C7          C8          O8         HO8     180.000    10.0     3
+NAU            sp3_sp3_70          C7          C8          C9          O9     180.000    10.0     3
+NAU            sp3_sp3_79          C8          C9          O9         HO9     180.000    10.0     3
+NAU             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+NAU            sp3_sp3_12          C2          C3          C4          C5      60.000    10.0     3
+NAU            sp3_sp3_30          C3          C4         O4A        HO4A     -60.000    10.0     3
+NAU            sp3_sp3_33          C3          C4         O4B        HO4B     -60.000    10.0     3
+NAU            sp3_sp3_25          C3          C4          C5          N2     -60.000    10.0     3
+NAU            sp3_sp3_34          C4          C5          C6          O6     180.000    10.0     3
+NAU             sp2_sp3_7         C10          N2          C5          C4       0.000    10.0     6
+NAU             sp2_sp2_1         C11         C10          N2          C5     180.000     5.0     2
+NAU            sp2_sp3_13          N2         C10         C11        H111       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NAU    chir_1    C4    O4A    O4B    C5    both
+NAU    chir_2    C5    N2    C4    C6    positive
+NAU    chir_3    C6    O6    C7    C5    negative
+NAU    chir_4    C7    O7    C8    C6    positive
+NAU    chir_5    C8    O8    C7    C9    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NAU    plan-1          C1   0.020
+NAU    plan-1          C2   0.020
+NAU    plan-1         O1A   0.020
+NAU    plan-1         O1B   0.020
+NAU    plan-2         C10   0.020
+NAU    plan-2          C5   0.020
+NAU    plan-2         HN2   0.020
+NAU    plan-2          N2   0.020
+NAU    plan-3         C10   0.020
+NAU    plan-3         C11   0.020
+NAU    plan-3          N2   0.020
+NAU    plan-3         O10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NAU           SMILES              ACDLabs 10.04                                                                                                         O=C(NC(C(O)(O)CCC(=O)O)C(O)C(O)C(O)CO)C
+NAU SMILES_CANONICAL               CACTVS 3.341                                                                                       CC(=O)N[C@@H]([C@@H](O)[C@H](O)[C@H](O)CO)C(O)(O)CCC(O)=O
+NAU           SMILES               CACTVS 3.341                                                                                             CC(=O)N[CH]([CH](O)[CH](O)[CH](O)CO)C(O)(O)CCC(O)=O
+NAU SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                      CC(=O)N[C@@H]([C@H]([C@@H]([C@@H](CO)O)O)O)C(CCC(=O)O)(O)O
+NAU           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                         CC(=O)NC(C(C(C(CO)O)O)O)C(CCC(=O)O)(O)O
+NAU            InChI                InChI  1.03 InChI=1S/C11H21NO9/c1-5(14)12-10(9(19)8(18)6(15)4-13)11(20,21)3-2-7(16)17/h6,8-10,13,15,18-21H,2-4H2,1H3,(H,12,14)(H,16,17)/t6-,8-,9+,10+/m1/s1
+NAU         InChIKey                InChI  1.03                                                                                                                     LNLFFPBOMACCNX-PRQTWWFRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NAU acedrg               243         "dictionary generator"                  
+NAU acedrg_database      11          "data source"                           
+NAU rdkit                2017.03.2   "Chemoinformatics tool"
+NAU refmac5              5.8.0238    "optimization tool"                     

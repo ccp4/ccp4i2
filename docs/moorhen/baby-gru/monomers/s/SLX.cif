@@ -1,0 +1,316 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SLX     SLX      (13aS)-3,10-dimethoxy-5,8,13,13a-tetrahydro-6H-isoquino[3,2-a]isoquinoline-2,9-diol     NON-POLYMER     45     24     .     
+#
+data_comp_SLX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SLX     C1      C       CR66    0       -29.132     -8.353      -11.032     
+SLX     C2      C       CR16    0       -28.362     -9.525      -10.913     
+SLX     C3      C       CR6     0       -28.413     -10.519     -11.874     
+SLX     C5      C       CR6     0       -29.241     -10.365     -13.005     
+SLX     C8      C       CR16    0       -29.989     -9.208      -13.134     
+SLX     C9      C       CR66    0       -29.943     -8.194      -12.163     
+SLX     C10     C       CH2     0       -30.776     -6.952      -12.340     
+SLX     C11     C       CH2     0       -30.193     -5.807      -11.540     
+SLX     N12     N       NT      0       -30.055     -6.216      -10.139     
+SLX     C14     C       CH1     0       -29.039     -7.276      -9.957      
+SLX     C16     C       CH2     0       -29.212     -7.829      -8.543      
+SLX     C17     C       CR66    0       -29.305     -6.749      -7.485      
+SLX     C25     C       CR16    0       -29.137     -7.070      -6.134      
+SLX     C24     C       CR16    0       -29.216     -6.102      -5.148      
+SLX     C21     C       CR6     0       -29.475     -4.781      -5.491      
+SLX     O22     O       O2      0       -29.573     -3.720      -4.619      
+SLX     C23     C       CH3     0       -29.744     -3.963      -3.224      
+SLX     C19     C       CR6     0       -29.643     -4.443      -6.844      
+SLX     O20     O       OH1     0       -29.894     -3.136      -7.203      
+SLX     C18     C       CR66    0       -29.565     -5.421      -7.844      
+SLX     C13     C       CH2     0       -29.746     -5.052      -9.295      
+SLX     O6      O       O2      0       -29.199     -11.416     -13.890     
+SLX     C7      C       CH3     0       -30.165     -11.495     -14.937     
+SLX     O4      O       OH1     0       -27.645     -11.647     -11.696     
+SLX     H2      H       H       0       -27.807     -9.639      -10.162     
+SLX     H8      H       H       0       -30.545     -9.090      -13.888     
+SLX     H10     H       H       0       -31.690     -7.125      -12.043     
+SLX     H10A    H       H       0       -30.803     -6.708      -13.286     
+SLX     H11     H       H       0       -30.780     -5.032      -11.603     
+SLX     H11A    H       H       0       -29.320     -5.565      -11.898     
+SLX     H14     H       H       0       -28.149     -6.864      -10.016     
+SLX     H16     H       H       0       -28.452     -8.409      -8.336      
+SLX     H16A    H       H       0       -30.021     -8.379      -8.519      
+SLX     H25     H       H       0       -28.964     -7.966      -5.890      
+SLX     H24     H       H       0       -29.099     -6.343      -4.254      
+SLX     H23     H       H       0       -28.937     -4.366      -2.865      
+SLX     H23A    H       H       0       -30.495     -4.562      -3.087      
+SLX     H23B    H       H       0       -29.914     -3.122      -2.769      
+SLX     HO20    H       H       0       -29.313     -2.696      -7.662      
+SLX     H13     H       H       0       -30.460     -4.405      -9.359      
+SLX     H13A    H       H       0       -28.934     -4.625      -9.598      
+SLX     H7      H       H       0       -30.040     -10.752     -15.550     
+SLX     H7A     H       H       0       -31.058     -11.458     -14.559     
+SLX     H7B     H       H       0       -30.051     -12.331     -15.418     
+SLX     HO4     H       H       0       -27.356     -12.086     -12.378     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SLX          C1          C2      DOUBLE       y     1.401  0.0100     1.401  0.0100
+SLX          C1          C9      SINGLE       y     1.395  0.0100     1.395  0.0100
+SLX          C1         C14      SINGLE       n     1.518  0.0100     1.518  0.0100
+SLX          C2          C3      SINGLE       y     1.380  0.0100     1.380  0.0100
+SLX          C3          C5      DOUBLE       y     1.405  0.0100     1.405  0.0100
+SLX          C3          O4      SINGLE       n     1.374  0.0155     1.374  0.0155
+SLX          C5          C8      SINGLE       y     1.377  0.0100     1.377  0.0100
+SLX          C5          O6      SINGLE       n     1.369  0.0100     1.369  0.0100
+SLX          C8          C9      DOUBLE       y     1.402  0.0100     1.402  0.0100
+SLX          C9         C10      SINGLE       n     1.505  0.0100     1.505  0.0100
+SLX         C10         C11      SINGLE       n     1.512  0.0100     1.512  0.0100
+SLX         C11         N12      SINGLE       n     1.463  0.0100     1.463  0.0100
+SLX         N12         C14      SINGLE       n     1.473  0.0100     1.473  0.0100
+SLX         N12         C13      SINGLE       n     1.465  0.0143     1.465  0.0143
+SLX         C14         C16      SINGLE       n     1.520  0.0133     1.520  0.0133
+SLX         C16         C17      SINGLE       n     1.511  0.0100     1.511  0.0100
+SLX         C17         C25      DOUBLE       y     1.395  0.0100     1.395  0.0100
+SLX         C17         C18      SINGLE       y     1.394  0.0100     1.394  0.0100
+SLX         C25         C24      SINGLE       y     1.381  0.0100     1.381  0.0100
+SLX         C24         C21      DOUBLE       y     1.382  0.0100     1.382  0.0100
+SLX         C21         O22      SINGLE       n     1.371  0.0100     1.371  0.0100
+SLX         C21         C19      SINGLE       y     1.399  0.0100     1.399  0.0100
+SLX         O22         C23      SINGLE       n     1.424  0.0117     1.424  0.0117
+SLX         C19         O20      SINGLE       n     1.374  0.0155     1.374  0.0155
+SLX         C19         C18      DOUBLE       y     1.386  0.0145     1.386  0.0145
+SLX         C18         C13      SINGLE       n     1.504  0.0100     1.504  0.0100
+SLX          O6          C7      SINGLE       n     1.424  0.0117     1.424  0.0117
+SLX          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0143
+SLX          C8          H8      SINGLE       n     1.082  0.0130     0.945  0.0164
+SLX         C10         H10      SINGLE       n     1.089  0.0100     0.977  0.0107
+SLX         C10        H10A      SINGLE       n     1.089  0.0100     0.977  0.0107
+SLX         C11         H11      SINGLE       n     1.089  0.0100     0.974  0.0100
+SLX         C11        H11A      SINGLE       n     1.089  0.0100     0.974  0.0100
+SLX         C14         H14      SINGLE       n     1.089  0.0100     0.983  0.0100
+SLX         C16         H16      SINGLE       n     1.089  0.0100     0.979  0.0104
+SLX         C16        H16A      SINGLE       n     1.089  0.0100     0.979  0.0104
+SLX         C25         H25      SINGLE       n     1.082  0.0130     0.945  0.0124
+SLX         C24         H24      SINGLE       n     1.082  0.0130     0.934  0.0160
+SLX         C23         H23      SINGLE       n     1.089  0.0100     0.971  0.0157
+SLX         C23        H23A      SINGLE       n     1.089  0.0100     0.971  0.0157
+SLX         C23        H23B      SINGLE       n     1.089  0.0100     0.971  0.0157
+SLX         O20        HO20      SINGLE       n     0.966  0.0059     0.861  0.0200
+SLX         C13         H13      SINGLE       n     1.089  0.0100     0.966  0.0100
+SLX         C13        H13A      SINGLE       n     1.089  0.0100     0.966  0.0100
+SLX          C7          H7      SINGLE       n     1.089  0.0100     0.971  0.0157
+SLX          C7         H7A      SINGLE       n     1.089  0.0100     0.971  0.0157
+SLX          C7         H7B      SINGLE       n     1.089  0.0100     0.971  0.0157
+SLX          O4         HO4      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SLX          C2          C1          C9     119.062    1.50
+SLX          C2          C1         C14     118.721    1.50
+SLX          C9          C1         C14     122.217    1.50
+SLX          C1          C2          C3     120.866    1.50
+SLX          C1          C2          H2     119.317    1.50
+SLX          C3          C2          H2     119.817    1.50
+SLX          C2          C3          C5     119.638    1.50
+SLX          C2          C3          O4     120.181    3.00
+SLX          C5          C3          O4     120.181    3.00
+SLX          C3          C5          C8     119.652    1.50
+SLX          C3          C5          O6     115.122    1.50
+SLX          C8          C5          O6     125.226    1.50
+SLX          C5          C8          C9     121.365    1.50
+SLX          C5          C8          H8     119.392    1.50
+SLX          C9          C8          H8     119.243    1.50
+SLX          C1          C9          C8     119.410    1.50
+SLX          C1          C9         C10     120.635    1.50
+SLX          C8          C9         C10     119.960    1.50
+SLX          C9         C10         C11     110.168    1.50
+SLX          C9         C10         H10     109.681    1.50
+SLX          C9         C10        H10A     109.681    1.50
+SLX         C11         C10         H10     109.581    1.50
+SLX         C11         C10        H10A     109.581    1.50
+SLX         H10         C10        H10A     108.287    1.50
+SLX         C10         C11         N12     109.579    1.50
+SLX         C10         C11         H11     109.937    1.50
+SLX         C10         C11        H11A     109.937    1.50
+SLX         N12         C11         H11     109.757    1.50
+SLX         N12         C11        H11A     109.757    1.50
+SLX         H11         C11        H11A     108.826    1.50
+SLX         C11         N12         C14     111.342    1.50
+SLX         C11         N12         C13     109.595    1.50
+SLX         C14         N12         C13     110.008    1.50
+SLX          C1         C14         N12     111.872    1.50
+SLX          C1         C14         C16     111.794    1.50
+SLX          C1         C14         H14     108.359    1.50
+SLX         N12         C14         C16     107.831    1.50
+SLX         N12         C14         H14     108.276    1.50
+SLX         C16         C14         H14     108.182    1.50
+SLX         C14         C16         C17     112.053    1.50
+SLX         C14         C16         H16     108.797    1.50
+SLX         C14         C16        H16A     108.797    1.50
+SLX         C17         C16         H16     109.627    1.50
+SLX         C17         C16        H16A     109.627    1.50
+SLX         H16         C16        H16A     107.885    1.50
+SLX         C16         C17         C25     121.089    1.50
+SLX         C16         C17         C18     119.629    1.50
+SLX         C25         C17         C18     119.281    1.50
+SLX         C17         C25         C24     120.986    1.50
+SLX         C17         C25         H25     119.509    1.50
+SLX         C24         C25         H25     119.505    1.50
+SLX         C25         C24         C21     119.614    1.50
+SLX         C25         C24         H24     120.233    1.50
+SLX         C21         C24         H24     120.153    1.50
+SLX         C24         C21         O22     125.116    1.50
+SLX         C24         C21         C19     119.689    1.50
+SLX         O22         C21         C19     115.195    1.50
+SLX         C21         O22         C23     117.412    1.50
+SLX         O22         C23         H23     109.428    1.50
+SLX         O22         C23        H23A     109.428    1.50
+SLX         O22         C23        H23B     109.428    1.50
+SLX         H23         C23        H23A     109.509    1.50
+SLX         H23         C23        H23B     109.509    1.50
+SLX        H23A         C23        H23B     109.509    1.50
+SLX         C21         C19         O20     121.024    3.00
+SLX         C21         C19         C18     120.832    1.50
+SLX         O20         C19         C18     118.144    2.42
+SLX         C19         O20        HO20     120.000    3.00
+SLX         C17         C18         C19     119.598    1.50
+SLX         C17         C18         C13     120.277    2.13
+SLX         C19         C18         C13     120.125    1.50
+SLX         N12         C13         C18     112.199    1.50
+SLX         N12         C13         H13     110.142    2.14
+SLX         N12         C13        H13A     110.142    2.14
+SLX         C18         C13         H13     107.906    2.58
+SLX         C18         C13        H13A     107.906    2.58
+SLX         H13         C13        H13A     107.662    1.50
+SLX          C5          O6          C7     116.964    1.50
+SLX          O6          C7          H7     109.428    1.50
+SLX          O6          C7         H7A     109.428    1.50
+SLX          O6          C7         H7B     109.428    1.50
+SLX          H7          C7         H7A     109.509    1.50
+SLX          H7          C7         H7B     109.509    1.50
+SLX         H7A          C7         H7B     109.509    1.50
+SLX          C3          O4         HO4     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SLX              const_29          C9          C1          C2          C3       0.000    10.0     2
+SLX       const_sp2_sp2_1          C2          C1          C9          C8       0.000     5.0     2
+SLX            sp2_sp3_22          C2          C1         C14         N12     180.000    10.0     6
+SLX            sp2_sp3_10         C25         C17         C16         C14     180.000    10.0     6
+SLX              const_11         C16         C17         C25         C24     180.000    10.0     2
+SLX       const_sp2_sp2_6         C16         C17         C18         C19     180.000     5.0     2
+SLX              const_13         C21         C24         C25         C17       0.000    10.0     2
+SLX              const_19         O22         C21         C24         C25     180.000    10.0     2
+SLX             sp2_sp2_5         C24         C21         O22         C23     180.000     5.0     2
+SLX              const_24         O20         C19         C21         O22       0.000    10.0     2
+SLX            sp3_sp3_38         H23         C23         O22         C21     -60.000    10.0     3
+SLX             sp2_sp2_7         C21         C19         O20        HO20     180.000     5.0     2
+SLX              const_26         C17         C18         C19         O20     180.000    10.0     2
+SLX            sp2_sp3_13         C17         C18         C13         N12       0.000    10.0     6
+SLX              const_34          C1          C2          C3          O4     180.000    10.0     2
+SLX            sp3_sp3_42          H7          C7          O6          C5     -60.000    10.0     3
+SLX             sp2_sp2_1          C2          C3          O4         HO4     180.000     5.0     2
+SLX              const_40          O4          C3          C5          O6       0.000    10.0     2
+SLX             sp2_sp2_3          C3          C5          O6          C7     180.000     5.0     2
+SLX              const_43          O6          C5          C8          C9     180.000    10.0     2
+SLX              const_45          C5          C8          C9          C1       0.000    10.0     2
+SLX             sp2_sp3_1          C1          C9         C10         C11       0.000    10.0     6
+SLX             sp3_sp3_1          C9         C10         C11         N12      60.000    10.0     3
+SLX            sp3_sp3_10         C10         C11         N12         C14     -60.000    10.0     3
+SLX            sp3_sp3_32         C18         C13         N12         C11     -60.000    10.0     3
+SLX            sp3_sp3_16          C1         C14         N12         C11      60.000    10.0     3
+SLX            sp3_sp3_25          C1         C14         C16         C17     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SLX    chir_1    N12    C14    C13    C11    negative
+SLX    chir_2    C14    N12    C1    C16    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SLX    plan-1          C1   0.020
+SLX    plan-1         C10   0.020
+SLX    plan-1         C14   0.020
+SLX    plan-1          C2   0.020
+SLX    plan-1          C3   0.020
+SLX    plan-1          C5   0.020
+SLX    plan-1          C8   0.020
+SLX    plan-1          C9   0.020
+SLX    plan-1          H2   0.020
+SLX    plan-1          H8   0.020
+SLX    plan-1          O4   0.020
+SLX    plan-1          O6   0.020
+SLX    plan-2         C13   0.020
+SLX    plan-2         C16   0.020
+SLX    plan-2         C17   0.020
+SLX    plan-2         C18   0.020
+SLX    plan-2         C19   0.020
+SLX    plan-2         C21   0.020
+SLX    plan-2         C24   0.020
+SLX    plan-2         C25   0.020
+SLX    plan-2         H24   0.020
+SLX    plan-2         H25   0.020
+SLX    plan-2         O20   0.020
+SLX    plan-2         O22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SLX           SMILES              ACDLabs 10.04                                                                                                    Oc1c4c(ccc1OC)CC3c2c(cc(OC)c(O)c2)CCN3C4
+SLX SMILES_CANONICAL               CACTVS 3.341                                                                                                 COc1ccc2C[C@@H]3N(CCc4cc(OC)c(O)cc34)Cc2c1O
+SLX           SMILES               CACTVS 3.341                                                                                                   COc1ccc2C[CH]3N(CCc4cc(OC)c(O)cc34)Cc2c1O
+SLX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                              COc1ccc2c(c1O)C[N@]3CCc4cc(c(cc4[C@@H]3C2)O)OC
+SLX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                      COc1ccc2c(c1O)CN3CCc4cc(c(cc4C3C2)O)OC
+SLX            InChI                InChI  1.03 InChI=1S/C19H21NO4/c1-23-17-4-3-11-7-15-13-9-16(21)18(24-2)8-12(13)5-6-20(15)10-14(11)19(17)22/h3-4,8-9,15,21-22H,5-7,10H2,1-2H3/t15-/m0/s1
+SLX         InChIKey                InChI  1.03                                                                                                                 KNWVMRVOBAFFMH-HNNXBMFYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SLX acedrg               243         "dictionary generator"                  
+SLX acedrg_database      11          "data source"                           
+SLX rdkit                2017.03.2   "Chemoinformatics tool"
+SLX refmac5              5.8.0238    "optimization tool"                     

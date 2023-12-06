@@ -1,0 +1,176 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CCM     CCM      1-METHYL-1-CARBOXY-CYCLOPENTANE     NON-POLYMER     20     9     .     
+#
+data_comp_CCM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CCM     CH2     C       CH3     0       35.680      41.351      -4.106      
+CCM     CA      C       CT      0       36.762      41.917      -3.173      
+CCM     CB1     C       CH2     0       36.576      43.440      -3.027      
+CCM     CB2     C       CH2     0       36.500      41.447      -1.731      
+CCM     CG1     C       CH2     0       37.171      43.795      -1.663      
+CCM     CG2     C       CH2     0       37.089      42.533      -0.827      
+CCM     C       C       C       0       38.162      41.479      -3.665      
+CCM     O       O       O       0       39.041      42.313      -3.812      
+CCM     OXT     O       OC      -1      38.323      40.287      -3.870      
+CCM     HH21    H       H       0       34.807      41.668      -3.827      
+CCM     HH22    H       H       0       35.692      40.382      -4.072      
+CCM     HH23    H       H       0       35.851      41.642      -5.016      
+CCM     HB11    H       H       0       37.039      43.919      -3.743      
+CCM     HB12    H       H       0       35.628      43.678      -3.054      
+CCM     HB21    H       H       0       36.935      40.587      -1.564      
+CCM     HB22    H       H       0       35.540      41.351      -1.570      
+CCM     HG11    H       H       0       36.665      44.515      -1.248      
+CCM     HG12    H       H       0       38.096      44.082      -1.760      
+CCM     HG21    H       H       0       37.973      42.271      -0.516      
+CCM     HG22    H       H       0       36.518      42.673      -0.052      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CCM         CH2          CA      SINGLE       n     1.533  0.0138     1.533  0.0138
+CCM          CA         CB1      SINGLE       n     1.538  0.0131     1.538  0.0131
+CCM          CA         CB2      SINGLE       n     1.538  0.0131     1.538  0.0131
+CCM          CA           C      SINGLE       n     1.531  0.0200     1.531  0.0200
+CCM         CB1         CG1      SINGLE       n     1.530  0.0131     1.530  0.0131
+CCM         CB2         CG2      SINGLE       n     1.530  0.0131     1.530  0.0131
+CCM         CG1         CG2      SINGLE       n     1.512  0.0200     1.512  0.0200
+CCM           C           O      DOUBLE       n     1.218  0.0200     1.218  0.0200
+CCM           C         OXT      SINGLE       n     1.218  0.0200     1.218  0.0200
+CCM         CH2        HH21      SINGLE       n     1.089  0.0100     0.970  0.0163
+CCM         CH2        HH22      SINGLE       n     1.089  0.0100     0.970  0.0163
+CCM         CH2        HH23      SINGLE       n     1.089  0.0100     0.970  0.0163
+CCM         CB1        HB11      SINGLE       n     1.089  0.0100     0.978  0.0104
+CCM         CB1        HB12      SINGLE       n     1.089  0.0100     0.978  0.0104
+CCM         CB2        HB21      SINGLE       n     1.089  0.0100     0.978  0.0104
+CCM         CB2        HB22      SINGLE       n     1.089  0.0100     0.978  0.0104
+CCM         CG1        HG11      SINGLE       n     1.089  0.0100     0.973  0.0141
+CCM         CG1        HG12      SINGLE       n     1.089  0.0100     0.973  0.0141
+CCM         CG2        HG21      SINGLE       n     1.089  0.0100     0.973  0.0141
+CCM         CG2        HG22      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CCM          CA         CH2        HH21     109.543    1.50
+CCM          CA         CH2        HH22     109.543    1.50
+CCM          CA         CH2        HH23     109.543    1.50
+CCM        HH21         CH2        HH22     109.263    1.50
+CCM        HH21         CH2        HH23     109.263    1.50
+CCM        HH22         CH2        HH23     109.263    1.50
+CCM         CH2          CA         CB1     109.614    1.50
+CCM         CH2          CA         CB2     109.614    1.50
+CCM         CH2          CA           C     109.981    2.26
+CCM         CB1          CA         CB2     104.443    2.26
+CCM         CB1          CA           C     112.424    2.46
+CCM         CB2          CA           C     112.424    2.46
+CCM          CA         CB1         CG1     106.297    1.50
+CCM          CA         CB1        HB11     110.497    1.50
+CCM          CA         CB1        HB12     110.497    1.50
+CCM         CG1         CB1        HB11     110.615    1.50
+CCM         CG1         CB1        HB12     110.615    1.50
+CCM        HB11         CB1        HB12     108.820    1.50
+CCM          CA         CB2         CG2     106.297    1.50
+CCM          CA         CB2        HB21     110.497    1.50
+CCM          CA         CB2        HB22     110.497    1.50
+CCM         CG2         CB2        HB21     110.615    1.50
+CCM         CG2         CB2        HB22     110.615    1.50
+CCM        HB21         CB2        HB22     108.820    1.50
+CCM         CB1         CG1         CG2     107.229    3.00
+CCM         CB1         CG1        HG11     110.435    1.50
+CCM         CB1         CG1        HG12     110.435    1.50
+CCM         CG2         CG1        HG11     110.679    1.50
+CCM         CG2         CG1        HG12     110.679    1.50
+CCM        HG11         CG1        HG12     108.634    1.62
+CCM         CB2         CG2         CG1     107.229    3.00
+CCM         CB2         CG2        HG21     110.435    1.50
+CCM         CB2         CG2        HG22     110.435    1.50
+CCM         CG1         CG2        HG21     110.679    1.50
+CCM         CG1         CG2        HG22     110.679    1.50
+CCM        HG21         CG2        HG22     108.634    1.62
+CCM          CA           C           O     117.765    3.00
+CCM          CA           C         OXT     117.765    3.00
+CCM           O           C         OXT     124.470    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CCM            sp3_sp3_37           C          CA         CH2        HH21     180.000    10.0     3
+CCM             sp3_sp3_4         CH2          CA         CB1         CG1     -60.000    10.0     3
+CCM            sp3_sp3_52         CH2          CA         CB2         CG2     -60.000    10.0     3
+CCM             sp2_sp3_3           O           C          CA         CH2    -120.000    10.0     6
+CCM            sp3_sp3_10          CA         CB1         CG1         CG2     -60.000    10.0     3
+CCM            sp3_sp3_28          CA         CB2         CG2         CG1     -60.000    10.0     3
+CCM            sp3_sp3_19         CB1         CG1         CG2         CB2      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CCM    chir_1    CA    C    CB1    CB2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CCM    plan-1           C   0.020
+CCM    plan-1          CA   0.020
+CCM    plan-1           O   0.020
+CCM    plan-1         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CCM           SMILES              ACDLabs 10.04                                         O=C(O)C1(C)CCCC1
+CCM SMILES_CANONICAL               CACTVS 3.341                                         CC1(CCCC1)C(O)=O
+CCM           SMILES               CACTVS 3.341                                         CC1(CCCC1)C(O)=O
+CCM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                         CC1(CCCC1)C(=O)O
+CCM           SMILES "OpenEye OEToolkits" 1.5.0                                         CC1(CCCC1)C(=O)O
+CCM            InChI                InChI  1.03 InChI=1S/C7H12O2/c1-7(6(8)9)4-2-3-5-7/h2-5H2,1H3,(H,8,9)
+CCM         InChIKey                InChI  1.03                              MNIBBVOEXUQHFF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CCM acedrg               243         "dictionary generator"                  
+CCM acedrg_database      11          "data source"                           
+CCM rdkit                2017.03.2   "Chemoinformatics tool"
+CCM refmac5              5.8.0238    "optimization tool"                     

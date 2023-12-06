@@ -1,0 +1,559 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IRC     IRC      "S-[2-[3-[[(2R)-4-[[[(2R,3S,4R,5R)-5-(6-aminopurin-9-yl)-4-hydroxy-3-phosphonooxy-oxolan-2-yl]methoxy-hydroxy-phosphoryl]oxy-hydroxy-phosphoryl]oxy-2-hydroxy-3,3-dimethyl-butanoyl]amino]propanoylamino]ethyl] (2R)-2-hydroxy-4-methyl-pentanethioate"     NON-POLYMER     98     56     .     
+#
+data_comp_IRC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IRC     N1A     N       NRD6    0       57.842      1.195       1.541       
+IRC     O1A     O       O       0       50.901      7.522       -5.481      
+IRC     P1A     P       P       0       51.519      7.547       -4.122      
+IRC     C1B     C       CH1     0       55.545      4.878       -1.204      
+IRC     S1P     S       S2      0       46.032      14.796      6.232       
+IRC     C2A     C       CR16    0       57.546      2.478       1.809       
+IRC     O2A     O       OP      -1      52.232      8.787       -3.691      
+IRC     P2A     P       P       0       50.490      6.674       -1.526      
+IRC     C2B     C       CH1     0       56.657      5.847       -1.605      
+IRC     O2B     O       OH1     0       57.257      6.406       -0.455      
+IRC     C2P     C       CH2     0       47.498      15.185      5.243       
+IRC     N3A     N       NRD6    0       56.941      3.380       1.035       
+IRC     O3A     O       O2      0       50.389      7.212       -3.034      
+IRC     C3B     C       CH1     0       55.968      6.862       -2.542      
+IRC     O3B     O       O2      0       56.116      8.240       -2.138      
+IRC     P3B     P       P       0       55.355      8.934       -0.878      
+IRC     C3P     C       CH2     0       48.220      14.017      4.606       
+IRC     C4A     C       CR56    0       56.616      2.849       -0.159      
+IRC     O4A     O       OP      -1      50.928      5.247       -1.549      
+IRC     C4B     C       CH1     0       54.513      6.385       -2.640      
+IRC     O4B     O       O2      0       54.515      5.024       -2.150      
+IRC     N4P     N       NH1     0       47.329      12.967      4.124       
+IRC     C5A     C       CR56    0       56.852      1.555       -0.581      
+IRC     O5A     O       O       0       51.269      7.650       -0.708      
+IRC     C5B     C       CH2     0       53.931      6.398       -4.033      
+IRC     O5B     O       O2      0       52.484      6.274       -3.951      
+IRC     C5P     C       C       0       47.703      12.006      3.264       
+IRC     O5P     O       O       0       48.814      11.995      2.736       
+IRC     C6A     C       CR6     0       57.501      0.689       0.327       
+IRC     N6A     N       NH2     0       57.792      -0.581      0.056       
+IRC     O6A     O       O2      0       48.955      6.718       -1.058      
+IRC     C6P     C       CH2     0       46.703      10.910      2.954       
+IRC     N7A     N       NRD5    0       56.375      1.376       -1.873      
+IRC     O7A     O       OP      -1      56.316      9.985       -0.354      
+IRC     C7P     C       CH2     0       45.673      11.318      1.923       
+IRC     C8A     C       CR15    0       55.869      2.542       -2.206      
+IRC     O8A     O       OP      -1      55.055      7.873       0.165       
+IRC     N8P     N       NH1     0       44.781      10.220      1.559       
+IRC     N9A     N       NT      0       55.982      3.478       -1.197      
+IRC     O9A     O       O       0       54.090      9.555       -1.437      
+IRC     C9P     C       C       0       44.912      9.348       0.556       
+IRC     O9P     O       O       0       43.981      8.608       0.243       
+IRC     CAP     C       CH1     0       46.230      9.238       -0.214      
+IRC     OAP     O       OH1     0       46.009      9.750       -1.526      
+IRC     CBP     C       CT      0       46.901      7.849       -0.307      
+IRC     CCP     C       CH2     0       48.235      7.987       -1.051      
+IRC     CDP     C       CH3     0       46.010      6.838       -1.045      
+IRC     CEP     C       CH3     0       47.167      7.326       1.112       
+IRC     CI1     C       C       0       45.911      15.468      7.865       
+IRC     OI1     O       O       0       46.869      15.932      8.434       
+IRC     CI2     C       CH1     0       44.529      15.429      8.518       
+IRC     OI2     O       OH1     0       43.725      14.378      7.999       
+IRC     CI3     C       CH2     0       43.761      16.744      8.367       
+IRC     CI4     C       CH1     0       43.734      17.430      6.994       
+IRC     CI5     C       CH3     0       42.836      16.691      6.012       
+IRC     CI6     C       CH3     0       43.292      18.880      7.116       
+IRC     H1B     H       H       0       55.212      5.120       -0.310      
+IRC     H2A     H       H       0       57.803      2.783       2.665       
+IRC     H2B     H       H       0       57.353      5.362       -2.124      
+IRC     HO2B    H       H       0       57.877      6.935       -0.694      
+IRC     H2P     H       H       0       48.134      15.660      5.814       
+IRC     H2PA    H       H       0       47.233      15.803      4.533       
+IRC     H3B     H       H       0       56.385      6.760       -3.429      
+IRC     H3P     H       H       0       48.840      13.632      5.261       
+IRC     H3PA    H       H       0       48.751      14.354      3.853       
+IRC     H4B     H       H       0       53.938      6.925       -2.067      
+IRC     HN4P    H       H       0       46.504      12.960      4.410       
+IRC     H5B     H       H       0       54.301      5.640       -4.551      
+IRC     H5BA    H       H       0       54.181      7.238       -4.492      
+IRC     HN6A    H       H       0       57.327      -1.014      -0.549      
+IRC     HN6B    H       H       0       58.449      -0.979      0.482       
+IRC     H6P     H       H       0       46.251      10.657      3.777       
+IRC     H6PA    H       H       0       47.185      10.128      2.634       
+IRC     H7P     H       H       0       46.124      11.663      1.126       
+IRC     H7PA    H       H       0       45.133      12.048      2.294       
+IRC     H8A     H       H       0       55.471      2.706       -3.044      
+IRC     HN8P    H       H       0       44.076      10.123      2.066       
+IRC     HAP     H       H       0       46.891      9.822       0.225       
+IRC     HOAP    H       H       0       46.631      10.289      -1.735      
+IRC     HCP     H       H       0       48.070      8.270       -1.972      
+IRC     HCPA    H       H       0       48.781      8.673       -0.617      
+IRC     HDP     H       H       0       45.625      7.249       -1.836      
+IRC     HDPA    H       H       0       45.295      6.540       -0.457      
+IRC     HDPB    H       H       0       46.537      6.066       -1.312      
+IRC     HEP     H       H       0       47.646      6.481       1.070       
+IRC     HEPA    H       H       0       46.324      7.187       1.577       
+IRC     HEPB    H       H       0       47.702      7.974       1.602       
+IRC     HI2     H       H       0       44.659      15.262      9.483       
+IRC     HOI2    H       H       0       43.109      14.201      8.555       
+IRC     HI3     H       H       0       44.131      17.383      9.016       
+IRC     HI3A    H       H       0       42.830      16.582      8.639       
+IRC     HI4     H       H       0       44.650      17.433      6.628       
+IRC     HI5     H       H       0       42.777      17.197      5.183       
+IRC     HI5A    H       H       0       41.948      16.593      6.395       
+IRC     HI5B    H       H       0       43.207      15.812      5.826       
+IRC     HI6     H       H       0       43.916      19.363      7.686       
+IRC     HI6A    H       H       0       42.402      18.917      7.507       
+IRC     HI6B    H       H       0       43.275      19.290      6.234       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IRC         N1A         C2A      DOUBLE       y     1.339  0.0100     1.339  0.0100
+IRC         N1A         C6A      SINGLE       y     1.354  0.0100     1.354  0.0100
+IRC         O1A         P1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+IRC         P1A         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+IRC         P1A         O5B      SINGLE       n     1.604  0.0133     1.604  0.0133
+IRC         P1A         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+IRC         C1B         C2B      SINGLE       n     1.525  0.0100     1.525  0.0100
+IRC         C1B         O4B      SINGLE       n     1.409  0.0100     1.409  0.0100
+IRC         C1B         N9A      SINGLE       n     1.458  0.0200     1.458  0.0200
+IRC         S1P         C2P      SINGLE       n     1.809  0.0191     1.809  0.0191
+IRC         S1P         CI1      SINGLE       n     1.762  0.0200     1.762  0.0200
+IRC         C2A         N3A      SINGLE       y     1.330  0.0100     1.330  0.0100
+IRC         P2A         O5A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+IRC         P2A         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+IRC         P2A         O4A      SINGLE       n     1.493  0.0122     1.493  0.0122
+IRC         P2A         O6A      SINGLE       n     1.604  0.0133     1.604  0.0133
+IRC         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+IRC         C2B         C3B      SINGLE       n     1.529  0.0125     1.529  0.0125
+IRC         C2P         C3P      SINGLE       n     1.510  0.0158     1.510  0.0158
+IRC         N3A         C4A      DOUBLE       y     1.343  0.0100     1.343  0.0100
+IRC         C3B         O3B      SINGLE       n     1.425  0.0152     1.425  0.0152
+IRC         C3B         C4B      SINGLE       n     1.525  0.0133     1.525  0.0133
+IRC         O3B         P3B      SINGLE       n     1.614  0.0178     1.614  0.0178
+IRC         P3B         O9A      DOUBLE       n     1.517  0.0192     1.517  0.0192
+IRC         P3B         O7A      SINGLE       n     1.517  0.0192     1.517  0.0192
+IRC         P3B         O8A      SINGLE       n     1.517  0.0192     1.517  0.0192
+IRC         C3P         N4P      SINGLE       n     1.455  0.0100     1.455  0.0100
+IRC         C4A         N9A      SINGLE       y     1.372  0.0100     1.372  0.0100
+IRC         C4A         C5A      SINGLE       y     1.381  0.0100     1.381  0.0100
+IRC         C4B         C5B      SINGLE       n     1.509  0.0100     1.509  0.0100
+IRC         C4B         O4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+IRC         N4P         C5P      SINGLE       n     1.337  0.0118     1.337  0.0118
+IRC         C5A         C6A      DOUBLE       y     1.408  0.0100     1.408  0.0100
+IRC         C5A         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+IRC         C5B         O5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+IRC         C5P         C6P      SINGLE       n     1.514  0.0100     1.514  0.0100
+IRC         C5P         O5P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+IRC         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+IRC         O6A         CCP      SINGLE       n     1.454  0.0165     1.454  0.0165
+IRC         C6P         C7P      SINGLE       n     1.513  0.0195     1.513  0.0195
+IRC         N7A         C8A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+IRC         C7P         N8P      SINGLE       n     1.457  0.0100     1.457  0.0100
+IRC         C8A         N9A      SINGLE       y     1.372  0.0200     1.372  0.0200
+IRC         N8P         C9P      SINGLE       n     1.326  0.0100     1.326  0.0100
+IRC         C9P         O9P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+IRC         C9P         CAP      SINGLE       n     1.519  0.0108     1.519  0.0108
+IRC         CAP         OAP      SINGLE       n     1.419  0.0162     1.419  0.0162
+IRC         CAP         CBP      SINGLE       n     1.532  0.0112     1.532  0.0112
+IRC         CBP         CDP      SINGLE       n     1.531  0.0109     1.531  0.0109
+IRC         CBP         CCP      SINGLE       n     1.526  0.0108     1.526  0.0108
+IRC         CBP         CEP      SINGLE       n     1.531  0.0109     1.531  0.0109
+IRC         CI1         CI2      SINGLE       n     1.520  0.0156     1.520  0.0156
+IRC         CI1         OI1      DOUBLE       n     1.207  0.0100     1.207  0.0100
+IRC         CI2         OI2      SINGLE       n     1.419  0.0162     1.419  0.0162
+IRC         CI2         CI3      SINGLE       n     1.525  0.0100     1.525  0.0100
+IRC         CI3         CI4      SINGLE       n     1.527  0.0131     1.527  0.0131
+IRC         CI4         CI5      SINGLE       n     1.521  0.0151     1.521  0.0151
+IRC         CI4         CI6      SINGLE       n     1.521  0.0151     1.521  0.0151
+IRC         C1B         H1B      SINGLE       n     1.089  0.0100     0.984  0.0200
+IRC         C2A         H2A      SINGLE       n     1.082  0.0130     0.945  0.0200
+IRC         C2B         H2B      SINGLE       n     1.089  0.0100     0.994  0.0200
+IRC         O2B        HO2B      SINGLE       n     0.970  0.0120     0.849  0.0200
+IRC         C2P         H2P      SINGLE       n     1.089  0.0100     0.978  0.0177
+IRC         C2P        H2PA      SINGLE       n     1.089  0.0100     0.978  0.0177
+IRC         C3B         H3B      SINGLE       n     1.089  0.0100     0.985  0.0119
+IRC         C3P         H3P      SINGLE       n     1.089  0.0100     0.981  0.0127
+IRC         C3P        H3PA      SINGLE       n     1.089  0.0100     0.981  0.0127
+IRC         C4B         H4B      SINGLE       n     1.089  0.0100     0.981  0.0200
+IRC         N4P        HN4P      SINGLE       n     1.016  0.0100     0.872  0.0200
+IRC         C5B         H5B      SINGLE       n     1.089  0.0100     0.989  0.0200
+IRC         C5B        H5BA      SINGLE       n     1.089  0.0100     0.989  0.0200
+IRC         N6A        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+IRC         N6A        HN6B      SINGLE       n     1.016  0.0100     0.877  0.0200
+IRC         C6P         H6P      SINGLE       n     1.089  0.0100     0.973  0.0156
+IRC         C6P        H6PA      SINGLE       n     1.089  0.0100     0.973  0.0156
+IRC         C7P         H7P      SINGLE       n     1.089  0.0100     0.980  0.0159
+IRC         C7P        H7PA      SINGLE       n     1.089  0.0100     0.980  0.0159
+IRC         C8A         H8A      SINGLE       n     1.082  0.0130     0.942  0.0170
+IRC         N8P        HN8P      SINGLE       n     1.016  0.0100     0.872  0.0200
+IRC         CAP         HAP      SINGLE       n     1.089  0.0100     0.988  0.0129
+IRC         OAP        HOAP      SINGLE       n     0.970  0.0120     0.848  0.0200
+IRC         CCP         HCP      SINGLE       n     1.089  0.0100     0.978  0.0102
+IRC         CCP        HCPA      SINGLE       n     1.089  0.0100     0.978  0.0102
+IRC         CDP         HDP      SINGLE       n     1.089  0.0100     0.973  0.0146
+IRC         CDP        HDPA      SINGLE       n     1.089  0.0100     0.973  0.0146
+IRC         CDP        HDPB      SINGLE       n     1.089  0.0100     0.973  0.0146
+IRC         CEP         HEP      SINGLE       n     1.089  0.0100     0.973  0.0146
+IRC         CEP        HEPA      SINGLE       n     1.089  0.0100     0.973  0.0146
+IRC         CEP        HEPB      SINGLE       n     1.089  0.0100     0.973  0.0146
+IRC         CI2         HI2      SINGLE       n     1.089  0.0100     0.988  0.0129
+IRC         OI2        HOI2      SINGLE       n     0.970  0.0120     0.848  0.0200
+IRC         CI3         HI3      SINGLE       n     1.089  0.0100     0.983  0.0100
+IRC         CI3        HI3A      SINGLE       n     1.089  0.0100     0.983  0.0100
+IRC         CI4         HI4      SINGLE       n     1.089  0.0100     0.989  0.0162
+IRC         CI5         HI5      SINGLE       n     1.089  0.0100     0.973  0.0146
+IRC         CI5        HI5A      SINGLE       n     1.089  0.0100     0.973  0.0146
+IRC         CI5        HI5B      SINGLE       n     1.089  0.0100     0.973  0.0146
+IRC         CI6         HI6      SINGLE       n     1.089  0.0100     0.973  0.0146
+IRC         CI6        HI6A      SINGLE       n     1.089  0.0100     0.973  0.0146
+IRC         CI6        HI6B      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IRC         C2A         N1A         C6A     118.521    1.50
+IRC         O1A         P1A         O2A     118.411    2.35
+IRC         O1A         P1A         O5B     109.410    1.50
+IRC         O1A         P1A         O3A     108.816    2.14
+IRC         O2A         P1A         O5B     109.410    1.50
+IRC         O2A         P1A         O3A     108.816    2.14
+IRC         O5B         P1A         O3A     101.065    1.97
+IRC         C2B         C1B         O4B     106.047    1.50
+IRC         C2B         C1B         N9A     113.752    2.20
+IRC         C2B         C1B         H1B     109.015    1.50
+IRC         O4B         C1B         N9A     108.167    1.51
+IRC         O4B         C1B         H1B     109.807    1.50
+IRC         N9A         C1B         H1B     109.246    1.50
+IRC         C2P         S1P         CI1     120.000    3.00
+IRC         N1A         C2A         N3A     129.332    1.50
+IRC         N1A         C2A         H2A     115.313    1.50
+IRC         N3A         C2A         H2A     115.355    1.50
+IRC         O5A         P2A         O3A     108.816    2.14
+IRC         O5A         P2A         O4A     118.411    2.35
+IRC         O5A         P2A         O6A     107.912    2.57
+IRC         O3A         P2A         O4A     108.816    2.14
+IRC         O3A         P2A         O6A     101.065    1.97
+IRC         O4A         P2A         O6A     107.912    2.57
+IRC         C1B         C2B         O2B     111.715    2.69
+IRC         C1B         C2B         C3B     101.388    1.50
+IRC         C1B         C2B         H2B     110.636    1.70
+IRC         O2B         C2B         C3B     112.463    2.73
+IRC         O2B         C2B         H2B     110.448    1.97
+IRC         C3B         C2B         H2B     110.255    2.04
+IRC         C2B         O2B        HO2B     109.103    2.13
+IRC         S1P         C2P         C3P     112.239    3.00
+IRC         S1P         C2P         H2P     109.066    1.50
+IRC         S1P         C2P        H2PA     109.066    1.50
+IRC         C3P         C2P         H2P     108.964    1.50
+IRC         C3P         C2P        H2PA     108.964    1.50
+IRC         H2P         C2P        H2PA     107.807    1.50
+IRC         C2A         N3A         C4A     110.982    1.50
+IRC         P1A         O3A         P2A     132.542    3.00
+IRC         C2B         C3B         O3B     110.766    3.00
+IRC         C2B         C3B         C4B     102.352    1.50
+IRC         C2B         C3B         H3B     110.255    2.04
+IRC         O3B         C3B         C4B     110.864    2.31
+IRC         O3B         C3B         H3B     110.343    1.64
+IRC         C4B         C3B         H3B     110.624    1.81
+IRC         C3B         O3B         P3B     109.471    3.00
+IRC         O3B         P3B         O9A     106.518    3.00
+IRC         O3B         P3B         O7A     106.518    3.00
+IRC         O3B         P3B         O8A     106.518    3.00
+IRC         O9A         P3B         O7A     112.139    1.52
+IRC         O9A         P3B         O8A     112.139    1.52
+IRC         O7A         P3B         O8A     112.139    1.52
+IRC         C2P         C3P         N4P     112.117    1.54
+IRC         C2P         C3P         H3P     109.038    1.50
+IRC         C2P         C3P        H3PA     109.038    1.50
+IRC         N4P         C3P         H3P     109.102    1.50
+IRC         N4P         C3P        H3PA     109.102    1.50
+IRC         H3P         C3P        H3PA     107.995    1.50
+IRC         N3A         C4A         N9A     125.845    1.50
+IRC         N3A         C4A         C5A     126.489    1.50
+IRC         N9A         C4A         C5A     107.666    1.69
+IRC         C3B         C4B         C5B     114.866    1.63
+IRC         C3B         C4B         O4B     105.508    1.50
+IRC         C3B         C4B         H4B     109.143    1.50
+IRC         C5B         C4B         O4B     109.123    1.50
+IRC         C5B         C4B         H4B     108.268    1.50
+IRC         O4B         C4B         H4B     108.947    1.50
+IRC         C1B         O4B         C4B     109.903    1.50
+IRC         C3P         N4P         C5P     123.437    1.80
+IRC         C3P         N4P        HN4P     118.700    1.83
+IRC         C5P         N4P        HN4P     117.862    2.10
+IRC         C4A         C5A         C6A     117.267    1.50
+IRC         C4A         C5A         N7A     110.588    1.50
+IRC         C6A         C5A         N7A     132.145    1.50
+IRC         C4B         C5B         O5B     109.342    1.50
+IRC         C4B         C5B         H5B     109.624    1.50
+IRC         C4B         C5B        H5BA     109.624    1.50
+IRC         O5B         C5B         H5B     109.845    1.50
+IRC         O5B         C5B        H5BA     109.845    1.50
+IRC         H5B         C5B        H5BA     108.472    1.50
+IRC         P1A         O5B         C5B     118.553    2.41
+IRC         N4P         C5P         C6P     117.070    1.96
+IRC         N4P         C5P         O5P     121.943    1.50
+IRC         C6P         C5P         O5P     120.987    1.50
+IRC         N1A         C6A         C5A     117.409    1.50
+IRC         N1A         C6A         N6A     118.799    1.50
+IRC         C5A         C6A         N6A     123.792    1.50
+IRC         C6A         N6A        HN6A     119.723    1.50
+IRC         C6A         N6A        HN6B     119.723    1.50
+IRC        HN6A         N6A        HN6B     120.554    1.88
+IRC         P2A         O6A         CCP     119.251    1.51
+IRC         C5P         C6P         C7P     112.120    2.79
+IRC         C5P         C6P         H6P     108.945    1.50
+IRC         C5P         C6P        H6PA     108.945    1.50
+IRC         C7P         C6P         H6P     109.432    1.50
+IRC         C7P         C6P        H6PA     109.432    1.50
+IRC         H6P         C6P        H6PA     107.745    2.07
+IRC         C5A         N7A         C8A     103.927    1.50
+IRC         C6P         C7P         N8P     112.257    1.50
+IRC         C6P         C7P         H7P     108.971    1.50
+IRC         C6P         C7P        H7PA     108.971    1.50
+IRC         N8P         C7P         H7P     108.979    1.50
+IRC         N8P         C7P        H7PA     108.979    1.50
+IRC         H7P         C7P        H7PA     107.877    1.50
+IRC         N7A         C8A         N9A     112.130    1.94
+IRC         N7A         C8A         H8A     123.170    1.50
+IRC         N9A         C8A         H8A     124.701    2.19
+IRC         C7P         N8P         C9P     122.964    1.80
+IRC         C7P         N8P        HN8P     118.351    1.90
+IRC         C9P         N8P        HN8P     118.685    1.94
+IRC         C1B         N9A         C4A     125.158    1.54
+IRC         C1B         N9A         C8A     126.078    2.46
+IRC         C4A         N9A         C8A     107.594    1.50
+IRC         N8P         C9P         O9P     122.985    1.50
+IRC         N8P         C9P         CAP     117.147    1.50
+IRC         O9P         C9P         CAP     119.851    1.78
+IRC         C9P         CAP         OAP     109.850    1.55
+IRC         C9P         CAP         CBP     111.511    2.91
+IRC         C9P         CAP         HAP     108.529    1.70
+IRC         OAP         CAP         CBP     109.482    3.00
+IRC         OAP         CAP         HAP     108.675    1.50
+IRC         CBP         CAP         HAP     107.825    1.50
+IRC         CAP         OAP        HOAP     108.894    3.00
+IRC         CAP         CBP         CDP     109.534    1.52
+IRC         CAP         CBP         CCP     111.094    2.85
+IRC         CAP         CBP         CEP     109.534    1.52
+IRC         CDP         CBP         CCP     109.385    1.50
+IRC         CDP         CBP         CEP     108.765    1.50
+IRC         CCP         CBP         CEP     109.385    1.50
+IRC         O6A         CCP         CBP     108.435    1.69
+IRC         O6A         CCP         HCP     109.739    1.50
+IRC         O6A         CCP        HCPA     109.739    1.50
+IRC         CBP         CCP         HCP     109.473    1.50
+IRC         CBP         CCP        HCPA     109.473    1.50
+IRC         HCP         CCP        HCPA     108.108    1.50
+IRC         CBP         CDP         HDP     109.575    1.50
+IRC         CBP         CDP        HDPA     109.575    1.50
+IRC         CBP         CDP        HDPB     109.575    1.50
+IRC         HDP         CDP        HDPA     109.377    1.50
+IRC         HDP         CDP        HDPB     109.377    1.50
+IRC        HDPA         CDP        HDPB     109.377    1.50
+IRC         CBP         CEP         HEP     109.575    1.50
+IRC         CBP         CEP        HEPA     109.575    1.50
+IRC         CBP         CEP        HEPB     109.575    1.50
+IRC         HEP         CEP        HEPA     109.377    1.50
+IRC         HEP         CEP        HEPB     109.377    1.50
+IRC        HEPA         CEP        HEPB     109.377    1.50
+IRC         S1P         CI1         CI2     113.865    2.65
+IRC         S1P         CI1         OI1     123.484    2.65
+IRC         CI2         CI1         OI1     122.651    1.84
+IRC         CI1         CI2         OI2     110.535    2.02
+IRC         CI1         CI2         CI3     112.324    1.50
+IRC         CI1         CI2         HI2     108.585    1.50
+IRC         OI2         CI2         CI3     108.204    2.17
+IRC         OI2         CI2         HI2     108.675    1.50
+IRC         CI3         CI2         HI2     108.868    1.50
+IRC         CI2         OI2        HOI2     108.894    3.00
+IRC         CI2         CI3         CI4     111.094    2.85
+IRC         CI2         CI3         HI3     108.460    1.50
+IRC         CI2         CI3        HI3A     108.460    1.50
+IRC         CI4         CI3         HI3     108.471    1.50
+IRC         CI4         CI3        HI3A     108.471    1.50
+IRC         HI3         CI3        HI3A     106.914    1.50
+IRC         CI3         CI4         CI5     111.118    1.50
+IRC         CI3         CI4         CI6     111.118    1.50
+IRC         CI3         CI4         HI4     107.675    1.50
+IRC         CI5         CI4         CI6     110.507    1.50
+IRC         CI5         CI4         HI4     108.052    1.50
+IRC         CI6         CI4         HI4     108.052    1.50
+IRC         CI4         CI5         HI5     109.488    1.50
+IRC         CI4         CI5        HI5A     109.488    1.50
+IRC         CI4         CI5        HI5B     109.488    1.50
+IRC         HI5         CI5        HI5A     109.411    1.50
+IRC         HI5         CI5        HI5B     109.411    1.50
+IRC        HI5A         CI5        HI5B     109.411    1.50
+IRC         CI4         CI6         HI6     109.488    1.50
+IRC         CI4         CI6        HI6A     109.488    1.50
+IRC         CI4         CI6        HI6B     109.488    1.50
+IRC         HI6         CI6        HI6A     109.411    1.50
+IRC         HI6         CI6        HI6B     109.411    1.50
+IRC        HI6A         CI6        HI6B     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IRC              const_28         N6A         C6A         N1A         C2A     180.000    10.0     2
+IRC       const_sp2_sp2_1         N3A         C2A         N1A         C6A       0.000     5.0     2
+IRC            sp3_sp3_52         S1P         C2P         C3P         N4P     180.000    10.0     3
+IRC       const_sp2_sp2_6         N9A         C4A         N3A         C2A     180.000     5.0     2
+IRC            sp3_sp3_61         C2B         C3B         O3B         P3B     180.000    10.0     3
+IRC            sp3_sp3_23         O3B         C3B         C4B         C5B      60.000    10.0     3
+IRC            sp3_sp3_66         C3B         O3B         P3B         O9A      60.000    10.0     3
+IRC             sp2_sp3_8         C5P         N4P         C3P         C2P     120.000    10.0     6
+IRC       const_sp2_sp2_7         N3A         C4A         C5A         C6A       0.000     5.0     2
+IRC              const_18         N3A         C4A         N9A         C1B       0.000    10.0     2
+IRC            sp3_sp3_29         C5B         C4B         O4B         C1B     180.000    10.0     3
+IRC            sp3_sp3_67         C3B         C4B         C5B         O5B     180.000    10.0     3
+IRC             sp2_sp2_3         C6P         C5P         N4P         C3P     180.000     5.0     2
+IRC              const_12         C4A         C5A         C6A         N6A     180.000    10.0     2
+IRC              const_25         C4A         C5A         N7A         C8A       0.000    10.0     2
+IRC            sp3_sp3_76         C4B         C5B         O5B         P1A     180.000    10.0     3
+IRC            sp2_sp3_14         N4P         C5P         C6P         C7P     120.000    10.0     6
+IRC             sp2_sp2_9         N1A         C6A         N6A        HN6A       0.000     5.0     2
+IRC            sp3_sp3_36         P2A         O3A         P1A         O1A      60.000    10.0     3
+IRC            sp3_sp3_33         C5B         O5B         P1A         O1A      60.000    10.0     3
+IRC            sp3_sp3_79         CBP         CCP         O6A         P2A     180.000    10.0     3
+IRC            sp3_sp3_82         C5P         C6P         C7P         N8P     180.000    10.0     3
+IRC              const_23         N9A         C8A         N7A         C5A       0.000    10.0     2
+IRC            sp2_sp3_20         C9P         N8P         C7P         C6P     120.000    10.0     6
+IRC              const_20         N7A         C8A         N9A         C1B     180.000    10.0     2
+IRC            sp2_sp2_13         O9P         C9P         N8P         C7P       0.000     5.0     2
+IRC            sp3_sp3_37         C2B         C1B         O4B         C4B     180.000    10.0     3
+IRC             sp2_sp3_1         C4A         N9A         C1B         C2B     150.000    10.0     6
+IRC             sp3_sp3_2         O4B         C1B         C2B         O2B     180.000    10.0     3
+IRC            sp2_sp3_25         N8P         C9P         CAP         OAP       0.000    10.0     6
+IRC            sp3_sp3_91         C9P         CAP         OAP        HOAP     180.000    10.0     3
+IRC            sp3_sp3_94         C9P         CAP         CBP         CDP     180.000    10.0     3
+IRC           sp3_sp3_112         CAP         CBP         CCP         O6A     180.000    10.0     3
+IRC           sp3_sp3_106         CAP         CBP         CDP         HDP      60.000    10.0     3
+IRC           sp3_sp3_121         CAP         CBP         CEP         HEP     180.000    10.0     3
+IRC            sp2_sp3_31         S1P         CI1         CI2         OI2       0.000    10.0     6
+IRC            sp3_sp3_40         C3P         C2P         S1P         CI1     180.000    10.0     3
+IRC             sp2_sp2_1         CI2         CI1         S1P         C2P     180.000     5.0     2
+IRC           sp3_sp3_130         CI1         CI2         OI2        HOI2     180.000    10.0     3
+IRC           sp3_sp3_133         CI1         CI2         CI3         CI4     180.000    10.0     3
+IRC           sp3_sp3_143         CI2         CI3         CI4         CI5     -60.000    10.0     3
+IRC           sp3_sp3_151         CI3         CI4         CI5         HI5     180.000    10.0     3
+IRC           sp3_sp3_163         CI3         CI4         CI6         HI6      60.000    10.0     3
+IRC       const_sp2_sp2_3         N1A         C2A         N3A         C4A       0.000     5.0     2
+IRC            sp3_sp3_45         P1A         O3A         P2A         O5A      60.000    10.0     3
+IRC            sp3_sp3_48         CCP         O6A         P2A         O5A      60.000    10.0     3
+IRC            sp3_sp3_14         O2B         C2B         C3B         O3B     -60.000    10.0     3
+IRC            sp3_sp3_49         C1B         C2B         O2B        HO2B     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IRC    chir_1    P1A    O3A    O5B    O2A    both
+IRC    chir_2    C1B    O4B    N9A    C2B    negative
+IRC    chir_3    P2A    O3A    O6A    O4A    both
+IRC    chir_4    C2B    O2B    C1B    C3B    negative
+IRC    chir_5    C3B    O3B    C4B    C2B    positive
+IRC    chir_6    P3B    O3B    O7A    O8A    both
+IRC    chir_7    C4B    O4B    C3B    C5B    negative
+IRC    chir_8    CAP    OAP    C9P    CBP    negative
+IRC    chir_9    CBP    CAP    CCP    CDP    both
+IRC    chir_10    CI2    OI2    CI1    CI3    negative
+IRC    chir_11    CI4    CI3    CI5    CI6    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IRC    plan-1         C1B   0.020
+IRC    plan-1         C2A   0.020
+IRC    plan-1         C4A   0.020
+IRC    plan-1         C5A   0.020
+IRC    plan-1         C6A   0.020
+IRC    plan-1         C8A   0.020
+IRC    plan-1         H2A   0.020
+IRC    plan-1         H8A   0.020
+IRC    plan-1         N1A   0.020
+IRC    plan-1         N3A   0.020
+IRC    plan-1         N6A   0.020
+IRC    plan-1         N7A   0.020
+IRC    plan-1         N9A   0.020
+IRC    plan-2         C3P   0.020
+IRC    plan-2         C5P   0.020
+IRC    plan-2        HN4P   0.020
+IRC    plan-2         N4P   0.020
+IRC    plan-3         C5P   0.020
+IRC    plan-3         C6P   0.020
+IRC    plan-3         N4P   0.020
+IRC    plan-3         O5P   0.020
+IRC    plan-4         C6A   0.020
+IRC    plan-4        HN6A   0.020
+IRC    plan-4        HN6B   0.020
+IRC    plan-4         N6A   0.020
+IRC    plan-5         C7P   0.020
+IRC    plan-5         C9P   0.020
+IRC    plan-5        HN8P   0.020
+IRC    plan-5         N8P   0.020
+IRC    plan-6         C9P   0.020
+IRC    plan-6         CAP   0.020
+IRC    plan-6         N8P   0.020
+IRC    plan-6         O9P   0.020
+IRC    plan-7         CI1   0.020
+IRC    plan-7         CI2   0.020
+IRC    plan-7         OI1   0.020
+IRC    plan-7         S1P   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IRC           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                O=C(SCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(=O)(O)OP(=O)(O)OCC3OC(n2cnc1c(ncnc12)N)C(O)C3OP(=O)(O)O)C(O)CC(C)C
+IRC SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                                                CC(C)C[C@@H](O)C(=O)SCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O[P](O)(O)=O)n2cnc3c(N)ncnc23
+IRC           SMILES               CACTVS 3.370                                                                                                                                                                                                        CC(C)C[CH](O)C(=O)SCCNC(=O)CCNC(=O)[CH](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O[P](O)(O)=O)n2cnc3c(N)ncnc23
+IRC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                                                             CC(C)C[C@H](C(=O)SCCNC(=O)CCNC(=O)[C@@H](C(C)(C)CO[P@@](=O)(O)O[P@@](=O)(O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O)O
+IRC           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                                                                                CC(C)CC(C(=O)SCCNC(=O)CCNC(=O)C(C(C)(C)COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O)O
+IRC            InChI                InChI  1.03 InChI=1S/C27H46N7O18P3S/c1-14(2)9-15(35)26(40)56-8-7-29-17(36)5-6-30-24(39)21(38)27(3,4)11-49-55(46,47)52-54(44,45)48-10-16-20(51-53(41,42)43)19(37)25(50-16)34-13-33-18-22(28)31-12-32-23(18)34/h12-16,19-21,25,35,37-38H,5-11H2,1-4H3,(H,29,36)(H,30,39)(H,44,45)(H,46,47)(H2,28,31,32)(H2,41,42,43)/t15-,16-,19-,20-,21+,25-/m1/s1
+IRC         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                           CFNPCSNXESBNGR-LYALRYAQSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IRC acedrg               243         "dictionary generator"                  
+IRC acedrg_database      11          "data source"                           
+IRC rdkit                2017.03.2   "Chemoinformatics tool"
+IRC refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,454 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AKI     AKI      1-(4-{2-[(5,6-diphenylfuro[2,3-d]pyrimidin-4-yl)amino]ethyl}phenyl)-3-phenylurea     NON-POLYMER     67     40     .     
+#
+data_comp_AKI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AKI     N1      N       NRD6    0       3.459       31.714      8.815       
+AKI     C2      C       CR16    0       4.326       30.936      9.465       
+AKI     N3      N       NRD6    0       5.266       30.154      8.904       
+AKI     C4      C       CR6     0       5.368       30.111      7.549       
+AKI     C5      C       CR56    0       4.481       30.922      6.791       
+AKI     C6      C       CR56    0       3.556       31.689      7.514       
+AKI     CAA     C       CR16    0       6.362       30.905      2.291       
+AKI     CAB     C       CR16    0       5.701       31.444      3.385       
+AKI     CAC     C       CR6     0       4.946       30.630      4.239       
+AKI     CAD     C       CR16    0       4.874       29.262      3.947       
+AKI     CAE     C       CR16    0       5.542       28.733      2.852       
+AKI     CAF     C       CR16    0       6.283       29.553      2.025       
+AKI     CAG     C       CR5     0       4.233       31.199      5.404       
+AKI     CAH     C       CR5     0       3.192       32.097      5.375       
+AKI     OAI     O       O2      0       2.778       32.399      6.657       
+AKI     CAL     C       CR6     0       2.461       32.785      4.313       
+AKI     CAM     C       CR16    0       2.034       32.092      3.175       
+AKI     CAN     C       CR16    0       1.347       32.752      2.167       
+AKI     CAO     C       CR16    0       1.081       34.102      2.272       
+AKI     CAP     C       CR16    0       1.501       34.801      3.387       
+AKI     CAQ     C       CR16    0       2.189       34.154      4.402       
+AKI     CAV     C       CH2     0       6.962       28.188      7.618       
+AKI     CAW     C       CH2     0       8.367       28.543      8.095       
+AKI     CAX     C       CR6     0       9.187       27.348      8.526       
+AKI     CAY     C       CR16    0       8.945       26.709      9.736       
+AKI     CAZ     C       CR16    0       9.700       25.620      10.144      
+AKI     CBA     C       CR6     0       10.729      25.145      9.338       
+AKI     CBB     C       CR16    0       10.991      25.781      8.131       
+AKI     CBC     C       CR16    0       10.225      26.867      7.737       
+AKI     NBD     N       NH1     0       11.513      24.044      9.740       
+AKI     CBE     C       C       0       11.653      22.842      9.083       
+AKI     NBF     N       NH1     0       12.247      21.864      9.851       
+AKI     CBG     C       CR6     0       12.782      20.641      9.397       
+AKI     CBH     C       CR16    0       14.128      20.339      9.564       
+AKI     CBI     C       CR16    0       14.627      19.125      9.111       
+AKI     CBJ     C       CR16    0       13.794      18.211      8.497       
+AKI     CBK     C       CR16    0       12.457      18.508      8.334       
+AKI     CBL     C       CR16    0       11.946      19.718      8.784       
+AKI     OBM     O       O       0       11.284      22.659      7.928       
+AKI     NBN     N       NH1     0       6.324       29.330      6.972       
+AKI     H2      H       H       0       4.277       30.936      10.411      
+AKI     HAA     H       H       0       6.869       31.466      1.727       
+AKI     HAB     H       H       0       5.761       32.368      3.559       
+AKI     HAD     H       H       0       4.372       28.695      4.507       
+AKI     HAE     H       H       0       5.486       27.809      2.672       
+AKI     HAF     H       H       0       6.735       29.190      1.280       
+AKI     HAM     H       H       0       2.211       31.170      3.096       
+AKI     HAN     H       H       0       1.061       32.274      1.407       
+AKI     HAO     H       H       0       0.613       34.547      1.584       
+AKI     HAP     H       H       0       1.320       35.724      3.459       
+AKI     HAQ     H       H       0       2.471       34.638      5.159       
+AKI     HAV     H       H       0       6.417       27.887      8.381       
+AKI     HAVA    H       H       0       7.013       27.445      6.973       
+AKI     HAW     H       H       0       8.292       29.168      8.848       
+AKI     HAWA    H       H       0       8.834       29.009      7.368       
+AKI     HAY     H       H       0       8.249       27.020      10.290      
+AKI     HAZ     H       H       0       9.516       25.199      10.966      
+AKI     HBB     H       H       0       11.686      25.468      7.578       
+AKI     HBC     H       H       0       10.412      27.287      6.913       
+AKI     HNBD    H       H       0       11.972      24.156      10.483      
+AKI     HNBF    H       H       0       12.284      21.997      10.720      
+AKI     HBH     H       H       0       14.702      20.960      9.982       
+AKI     HBI     H       H       0       15.542      18.925      9.224       
+AKI     HBJ     H       H       0       14.137      17.387      8.191       
+AKI     HBK     H       H       0       11.884      17.887      7.915       
+AKI     HBL     H       H       0       11.031      19.917      8.668       
+AKI     HNBN    H       H       0       6.606       29.539      6.171       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AKI          N1          C2      DOUBLE       y     1.330  0.0100     1.330  0.0100
+AKI          N1          C6      SINGLE       y     1.303  0.0100     1.303  0.0100
+AKI          C2          N3      SINGLE       y     1.339  0.0100     1.339  0.0100
+AKI          N3          C4      DOUBLE       y     1.353  0.0100     1.353  0.0100
+AKI          C4          C5      SINGLE       y     1.415  0.0100     1.415  0.0100
+AKI          C4         NBN      SINGLE       n     1.346  0.0181     1.346  0.0181
+AKI          C5          C6      DOUBLE       y     1.401  0.0200     1.401  0.0200
+AKI          C5         CAG      SINGLE       y     1.434  0.0100     1.434  0.0100
+AKI          C6         OAI      SINGLE       y     1.358  0.0100     1.358  0.0100
+AKI         CAA         CAB      DOUBLE       y     1.384  0.0100     1.384  0.0100
+AKI         CAA         CAF      SINGLE       y     1.376  0.0114     1.376  0.0114
+AKI         CAB         CAC      SINGLE       y     1.397  0.0100     1.397  0.0100
+AKI         CAC         CAD      DOUBLE       y     1.397  0.0100     1.397  0.0100
+AKI         CAC         CAG      SINGLE       n     1.480  0.0100     1.480  0.0100
+AKI         CAD         CAE      SINGLE       y     1.384  0.0100     1.384  0.0100
+AKI         CAE         CAF      DOUBLE       y     1.376  0.0114     1.376  0.0114
+AKI         CAG         CAH      DOUBLE       y     1.372  0.0160     1.372  0.0160
+AKI         CAH         OAI      SINGLE       y     1.379  0.0100     1.379  0.0100
+AKI         CAH         CAL      SINGLE       n     1.461  0.0100     1.461  0.0100
+AKI         CAL         CAM      DOUBLE       y     1.395  0.0100     1.395  0.0100
+AKI         CAL         CAQ      SINGLE       y     1.395  0.0100     1.395  0.0100
+AKI         CAM         CAN      SINGLE       y     1.383  0.0100     1.383  0.0100
+AKI         CAN         CAO      DOUBLE       y     1.376  0.0114     1.376  0.0114
+AKI         CAO         CAP      SINGLE       y     1.376  0.0124     1.376  0.0124
+AKI         CAP         CAQ      DOUBLE       y     1.383  0.0100     1.383  0.0100
+AKI         CAV         CAW      SINGLE       n     1.525  0.0200     1.525  0.0200
+AKI         CAV         NBN      SINGLE       n     1.455  0.0100     1.455  0.0100
+AKI         CAW         CAX      SINGLE       n     1.511  0.0100     1.511  0.0100
+AKI         CAX         CAY      DOUBLE       y     1.385  0.0110     1.385  0.0110
+AKI         CAX         CBC      SINGLE       y     1.385  0.0110     1.385  0.0110
+AKI         CAY         CAZ      SINGLE       y     1.383  0.0100     1.383  0.0100
+AKI         CAZ         CBA      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AKI         CBA         CBB      SINGLE       y     1.386  0.0100     1.386  0.0100
+AKI         CBA         NBD      SINGLE       n     1.407  0.0126     1.407  0.0126
+AKI         CBB         CBC      DOUBLE       y     1.383  0.0100     1.383  0.0100
+AKI         NBD         CBE      SINGLE       n     1.371  0.0114     1.371  0.0114
+AKI         CBE         NBF      SINGLE       n     1.371  0.0114     1.371  0.0114
+AKI         CBE         OBM      DOUBLE       n     1.225  0.0102     1.225  0.0102
+AKI         NBF         CBG      SINGLE       n     1.407  0.0126     1.407  0.0126
+AKI         CBG         CBH      DOUBLE       y     1.385  0.0100     1.385  0.0100
+AKI         CBG         CBL      SINGLE       y     1.385  0.0100     1.385  0.0100
+AKI         CBH         CBI      SINGLE       y     1.385  0.0100     1.385  0.0100
+AKI         CBI         CBJ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+AKI         CBJ         CBK      SINGLE       y     1.376  0.0112     1.376  0.0112
+AKI         CBK         CBL      DOUBLE       y     1.385  0.0100     1.385  0.0100
+AKI          C2          H2      SINGLE       n     1.082  0.0130     0.947  0.0200
+AKI         CAA         HAA      SINGLE       n     1.082  0.0130     0.943  0.0180
+AKI         CAB         HAB      SINGLE       n     1.082  0.0130     0.942  0.0125
+AKI         CAD         HAD      SINGLE       n     1.082  0.0130     0.942  0.0125
+AKI         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0180
+AKI         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0161
+AKI         CAM         HAM      SINGLE       n     1.082  0.0130     0.942  0.0133
+AKI         CAN         HAN      SINGLE       n     1.082  0.0130     0.943  0.0180
+AKI         CAO         HAO      SINGLE       n     1.082  0.0130     0.944  0.0161
+AKI         CAP         HAP      SINGLE       n     1.082  0.0130     0.943  0.0180
+AKI         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.942  0.0133
+AKI         CAV         HAV      SINGLE       n     1.089  0.0100     0.985  0.0100
+AKI         CAV        HAVA      SINGLE       n     1.089  0.0100     0.985  0.0100
+AKI         CAW         HAW      SINGLE       n     1.089  0.0100     0.981  0.0158
+AKI         CAW        HAWA      SINGLE       n     1.089  0.0100     0.981  0.0158
+AKI         CAY         HAY      SINGLE       n     1.082  0.0130     0.943  0.0173
+AKI         CAZ         HAZ      SINGLE       n     1.082  0.0130     0.942  0.0183
+AKI         CBB         HBB      SINGLE       n     1.082  0.0130     0.942  0.0183
+AKI         CBC         HBC      SINGLE       n     1.082  0.0130     0.943  0.0173
+AKI         NBD        HNBD      SINGLE       n     1.016  0.0100     0.879  0.0200
+AKI         NBF        HNBF      SINGLE       n     1.016  0.0100     0.879  0.0200
+AKI         CBH         HBH      SINGLE       n     1.082  0.0130     0.943  0.0178
+AKI         CBI         HBI      SINGLE       n     1.082  0.0130     0.943  0.0172
+AKI         CBJ         HBJ      SINGLE       n     1.082  0.0130     0.944  0.0161
+AKI         CBK         HBK      SINGLE       n     1.082  0.0130     0.943  0.0172
+AKI         CBL         HBL      SINGLE       n     1.082  0.0130     0.943  0.0178
+AKI         NBN        HNBN      SINGLE       n     1.016  0.0100     0.880  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AKI          C2          N1          C6     115.150    1.50
+AKI          N1          C2          N3     125.670    1.50
+AKI          N1          C2          H2     117.185    1.50
+AKI          N3          C2          H2     117.145    1.50
+AKI          C2          N3          C4     117.694    1.50
+AKI          N3          C4          C5     118.121    1.50
+AKI          N3          C4         NBN     119.252    1.50
+AKI          C5          C4         NBN     122.628    2.29
+AKI          C4          C5          C6     117.811    1.50
+AKI          C4          C5         CAG     134.877    2.28
+AKI          C6          C5         CAG     107.312    1.50
+AKI          N1          C6          C5     125.556    1.50
+AKI          N1          C6         OAI     124.786    1.67
+AKI          C5          C6         OAI     109.659    1.50
+AKI         CAB         CAA         CAF     120.285    1.50
+AKI         CAB         CAA         HAA     119.757    1.50
+AKI         CAF         CAA         HAA     119.958    1.50
+AKI         CAA         CAB         CAC     120.832    1.50
+AKI         CAA         CAB         HAB     119.713    1.50
+AKI         CAC         CAB         HAB     119.455    1.50
+AKI         CAB         CAC         CAD     117.926    1.50
+AKI         CAB         CAC         CAG     121.037    1.50
+AKI         CAD         CAC         CAG     121.037    1.50
+AKI         CAC         CAD         CAE     120.832    1.50
+AKI         CAC         CAD         HAD     119.455    1.50
+AKI         CAE         CAD         HAD     119.713    1.50
+AKI         CAD         CAE         CAF     120.285    1.50
+AKI         CAD         CAE         HAE     119.757    1.50
+AKI         CAF         CAE         HAE     119.958    1.50
+AKI         CAA         CAF         CAE     119.840    1.50
+AKI         CAA         CAF         HAF     120.080    1.50
+AKI         CAE         CAF         HAF     120.080    1.50
+AKI          C5         CAG         CAC     126.033    2.23
+AKI          C5         CAG         CAH     106.264    1.50
+AKI         CAC         CAG         CAH     127.703    1.50
+AKI         CAG         CAH         OAI     109.927    1.50
+AKI         CAG         CAH         CAL     135.021    1.50
+AKI         OAI         CAH         CAL     115.052    1.50
+AKI          C6         OAI         CAH     106.839    1.50
+AKI         CAH         CAL         CAM     120.685    1.50
+AKI         CAH         CAL         CAQ     120.685    1.50
+AKI         CAM         CAL         CAQ     118.629    1.50
+AKI         CAL         CAM         CAN     120.393    1.50
+AKI         CAL         CAM         HAM     119.734    1.50
+AKI         CAN         CAM         HAM     119.873    1.50
+AKI         CAM         CAN         CAO     120.343    1.50
+AKI         CAM         CAN         HAN     119.728    1.50
+AKI         CAO         CAN         HAN     119.929    1.50
+AKI         CAN         CAO         CAP     119.899    1.50
+AKI         CAN         CAO         HAO     120.051    1.50
+AKI         CAP         CAO         HAO     120.051    1.50
+AKI         CAO         CAP         CAQ     120.343    1.50
+AKI         CAO         CAP         HAP     119.929    1.50
+AKI         CAQ         CAP         HAP     119.728    1.50
+AKI         CAL         CAQ         CAP     120.393    1.50
+AKI         CAL         CAQ         HAQ     119.734    1.50
+AKI         CAP         CAQ         HAQ     119.873    1.50
+AKI         CAW         CAV         NBN     112.002    1.73
+AKI         CAW         CAV         HAV     109.449    1.50
+AKI         CAW         CAV        HAVA     109.449    1.50
+AKI         NBN         CAV         HAV     108.900    1.50
+AKI         NBN         CAV        HAVA     108.900    1.50
+AKI         HAV         CAV        HAVA     107.881    1.50
+AKI         CAV         CAW         CAX     112.520    1.88
+AKI         CAV         CAW         HAW     108.688    1.50
+AKI         CAV         CAW        HAWA     108.688    1.50
+AKI         CAX         CAW         HAW     109.239    1.50
+AKI         CAX         CAW        HAWA     109.239    1.50
+AKI         HAW         CAW        HAWA     107.823    1.50
+AKI         CAW         CAX         CAY     121.083    1.50
+AKI         CAW         CAX         CBC     121.083    1.50
+AKI         CAY         CAX         CBC     117.835    1.50
+AKI         CAX         CAY         CAZ     121.431    1.50
+AKI         CAX         CAY         HAY     119.328    1.50
+AKI         CAZ         CAY         HAY     119.241    1.50
+AKI         CAY         CAZ         CBA     119.999    1.50
+AKI         CAY         CAZ         HAZ     120.101    1.50
+AKI         CBA         CAZ         HAZ     119.900    1.50
+AKI         CAZ         CBA         CBB     119.305    1.50
+AKI         CAZ         CBA         NBD     120.347    3.00
+AKI         CBB         CBA         NBD     120.347    3.00
+AKI         CBA         CBB         CBC     119.999    1.50
+AKI         CBA         CBB         HBB     119.900    1.50
+AKI         CBC         CBB         HBB     120.101    1.50
+AKI         CAX         CBC         CBB     121.431    1.50
+AKI         CAX         CBC         HBC     119.328    1.50
+AKI         CBB         CBC         HBC     119.241    1.50
+AKI         CBA         NBD         CBE     126.621    1.86
+AKI         CBA         NBD        HNBD     116.583    1.97
+AKI         CBE         NBD        HNBD     116.797    1.80
+AKI         NBD         CBE         NBF     112.213    1.51
+AKI         NBD         CBE         OBM     123.894    1.50
+AKI         NBF         CBE         OBM     123.894    1.50
+AKI         CBE         NBF         CBG     126.621    1.86
+AKI         CBE         NBF        HNBF     116.797    1.80
+AKI         CBG         NBF        HNBF     116.583    1.97
+AKI         NBF         CBG         CBH     120.302    3.00
+AKI         NBF         CBG         CBL     120.302    3.00
+AKI         CBH         CBG         CBL     119.396    1.50
+AKI         CBG         CBH         CBI     119.830    1.50
+AKI         CBG         CBH         HBH     120.019    1.50
+AKI         CBI         CBH         HBH     120.151    1.50
+AKI         CBH         CBI         CBJ     120.518    1.50
+AKI         CBH         CBI         HBI     119.600    1.50
+AKI         CBJ         CBI         HBI     119.882    1.50
+AKI         CBI         CBJ         CBK     119.909    1.50
+AKI         CBI         CBJ         HBJ     120.046    1.50
+AKI         CBK         CBJ         HBJ     120.046    1.50
+AKI         CBJ         CBK         CBL     120.518    1.50
+AKI         CBJ         CBK         HBK     119.882    1.50
+AKI         CBL         CBK         HBK     119.600    1.50
+AKI         CBG         CBL         CBK     119.830    1.50
+AKI         CBG         CBL         HBL     120.019    1.50
+AKI         CBK         CBL         HBL     120.151    1.50
+AKI          C4         NBN         CAV     121.953    2.30
+AKI          C4         NBN        HNBN     119.523    1.50
+AKI         CAV         NBN        HNBN     118.524    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AKI       const_sp2_sp2_1          N3          C2          N1          C6       0.000     5.0     2
+AKI             const_103          C5          C6          N1          C2       0.000    10.0     2
+AKI              const_39         CAD         CAE         CAF         CAA       0.000    10.0     2
+AKI              const_19          C5         CAG         CAH         OAI       0.000    10.0     2
+AKI              const_17         CAG         CAH         OAI          C6       0.000    10.0     2
+AKI             sp2_sp2_9         CAG         CAH         CAL         CAM     180.000     5.0     2
+AKI              const_45         CAH         CAL         CAM         CAN     180.000    10.0     2
+AKI             const_115         CAH         CAL         CAQ         CAP     180.000    10.0     2
+AKI              const_47         CAL         CAM         CAN         CAO       0.000    10.0     2
+AKI              const_51         CAM         CAN         CAO         CAP       0.000    10.0     2
+AKI              const_55         CAN         CAO         CAP         CAQ       0.000    10.0     2
+AKI              const_59         CAO         CAP         CAQ         CAL       0.000    10.0     2
+AKI       const_sp2_sp2_3          N1          C2          N3          C4       0.000     5.0     2
+AKI             sp3_sp3_1         NBN         CAV         CAW         CAX     180.000    10.0     3
+AKI             sp2_sp3_2          C4         NBN         CAV         CAW     120.000    10.0     6
+AKI             sp2_sp3_8         CAY         CAX         CAW         CAV     -90.000    10.0     6
+AKI              const_65         CAW         CAX         CAY         CAZ     180.000    10.0     2
+AKI             const_119         CAW         CAX         CBC         CBB     180.000    10.0     2
+AKI              const_67         CAX         CAY         CAZ         CBA       0.000    10.0     2
+AKI              const_72         CAY         CAZ         CBA         NBD     180.000    10.0     2
+AKI              const_77         NBD         CBA         CBB         CBC     180.000    10.0     2
+AKI            sp2_sp2_13         CAZ         CBA         NBD         CBE     180.000     5.0     2
+AKI              const_79         CBA         CBB         CBC         CAX       0.000    10.0     2
+AKI            sp2_sp2_17         NBF         CBE         NBD         CBA     180.000     5.0     2
+AKI       const_sp2_sp2_6         NBN          C4          N3          C2     180.000     5.0     2
+AKI            sp2_sp2_21         NBD         CBE         NBF         CBG     180.000     5.0     2
+AKI            sp2_sp2_25         CBH         CBG         NBF         CBE     180.000     5.0     2
+AKI              const_85         NBF         CBG         CBH         CBI     180.000    10.0     2
+AKI             const_123         NBF         CBG         CBL         CBK     180.000    10.0     2
+AKI              const_87         CBG         CBH         CBI         CBJ       0.000    10.0     2
+AKI              const_91         CBH         CBI         CBJ         CBK       0.000    10.0     2
+AKI              const_95         CBI         CBJ         CBK         CBL       0.000    10.0     2
+AKI              const_99         CBJ         CBK         CBL         CBG       0.000    10.0     2
+AKI             sp2_sp2_3          N3          C4         NBN         CAV       0.000     5.0     2
+AKI       const_sp2_sp2_9         NBN          C4          C5          C6     180.000     5.0     2
+AKI             const_108          C4          C5         CAG         CAC       0.000    10.0     2
+AKI              const_11          C4          C5          C6          N1       0.000    10.0     2
+AKI              const_16          N1          C6         OAI         CAH     180.000    10.0     2
+AKI             const_109         CAB         CAA         CAF         CAE       0.000    10.0     2
+AKI              const_23         CAF         CAA         CAB         CAC       0.000    10.0     2
+AKI              const_27         CAA         CAB         CAC         CAD       0.000    10.0     2
+AKI             sp2_sp2_5         CAB         CAC         CAG          C5     180.000     5.0     2
+AKI              const_31         CAB         CAC         CAD         CAE       0.000    10.0     2
+AKI              const_35         CAC         CAD         CAE         CAF       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AKI    plan-1          C2   0.020
+AKI    plan-1          C4   0.020
+AKI    plan-1          C5   0.020
+AKI    plan-1          C6   0.020
+AKI    plan-1         CAC   0.020
+AKI    plan-1         CAG   0.020
+AKI    plan-1         CAH   0.020
+AKI    plan-1         CAL   0.020
+AKI    plan-1          H2   0.020
+AKI    plan-1          N1   0.020
+AKI    plan-1          N3   0.020
+AKI    plan-1         NBN   0.020
+AKI    plan-1         OAI   0.020
+AKI    plan-2         CAA   0.020
+AKI    plan-2         CAB   0.020
+AKI    plan-2         CAC   0.020
+AKI    plan-2         CAD   0.020
+AKI    plan-2         CAE   0.020
+AKI    plan-2         CAF   0.020
+AKI    plan-2         CAG   0.020
+AKI    plan-2         HAA   0.020
+AKI    plan-2         HAB   0.020
+AKI    plan-2         HAD   0.020
+AKI    plan-2         HAE   0.020
+AKI    plan-2         HAF   0.020
+AKI    plan-3         CAH   0.020
+AKI    plan-3         CAL   0.020
+AKI    plan-3         CAM   0.020
+AKI    plan-3         CAN   0.020
+AKI    plan-3         CAO   0.020
+AKI    plan-3         CAP   0.020
+AKI    plan-3         CAQ   0.020
+AKI    plan-3         HAM   0.020
+AKI    plan-3         HAN   0.020
+AKI    plan-3         HAO   0.020
+AKI    plan-3         HAP   0.020
+AKI    plan-3         HAQ   0.020
+AKI    plan-4         CAW   0.020
+AKI    plan-4         CAX   0.020
+AKI    plan-4         CAY   0.020
+AKI    plan-4         CAZ   0.020
+AKI    plan-4         CBA   0.020
+AKI    plan-4         CBB   0.020
+AKI    plan-4         CBC   0.020
+AKI    plan-4         HAY   0.020
+AKI    plan-4         HAZ   0.020
+AKI    plan-4         HBB   0.020
+AKI    plan-4         HBC   0.020
+AKI    plan-4         NBD   0.020
+AKI    plan-5         CBG   0.020
+AKI    plan-5         CBH   0.020
+AKI    plan-5         CBI   0.020
+AKI    plan-5         CBJ   0.020
+AKI    plan-5         CBK   0.020
+AKI    plan-5         CBL   0.020
+AKI    plan-5         HBH   0.020
+AKI    plan-5         HBI   0.020
+AKI    plan-5         HBJ   0.020
+AKI    plan-5         HBK   0.020
+AKI    plan-5         HBL   0.020
+AKI    plan-5         NBF   0.020
+AKI    plan-6         CBA   0.020
+AKI    plan-6         CBE   0.020
+AKI    plan-6        HNBD   0.020
+AKI    plan-6         NBD   0.020
+AKI    plan-7         CBE   0.020
+AKI    plan-7         NBD   0.020
+AKI    plan-7         NBF   0.020
+AKI    plan-7         OBM   0.020
+AKI    plan-8         CBE   0.020
+AKI    plan-8         CBG   0.020
+AKI    plan-8        HNBF   0.020
+AKI    plan-8         NBF   0.020
+AKI    plan-9          C4   0.020
+AKI    plan-9         CAV   0.020
+AKI    plan-9        HNBN   0.020
+AKI    plan-9         NBN   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AKI           SMILES              ACDLabs 12.01                                                                                                                                     O=C(Nc1ccccc1)Nc2ccc(cc2)CCNc3ncnc4oc(c(c34)c5ccccc5)c6ccccc6
+AKI SMILES_CANONICAL               CACTVS 3.370                                                                                                                                     O=C(Nc1ccccc1)Nc2ccc(CCNc3ncnc4oc(c5ccccc5)c(c6ccccc6)c34)cc2
+AKI           SMILES               CACTVS 3.370                                                                                                                                     O=C(Nc1ccccc1)Nc2ccc(CCNc3ncnc4oc(c5ccccc5)c(c6ccccc6)c34)cc2
+AKI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                     c1ccc(cc1)c2c3c(ncnc3oc2c4ccccc4)NCCc5ccc(cc5)NC(=O)Nc6ccccc6
+AKI           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                     c1ccc(cc1)c2c3c(ncnc3oc2c4ccccc4)NCCc5ccc(cc5)NC(=O)Nc6ccccc6
+AKI            InChI                InChI  1.03 InChI=1S/C33H27N5O2/c39-33(37-26-14-8-3-9-15-26)38-27-18-16-23(17-19-27)20-21-34-31-29-28(24-10-4-1-5-11-24)30(25-12-6-2-7-13-25)40-32(29)36-22-35-31/h1-19,22H,20-21H2,(H,34,35,36)(H2,37,38,39)
+AKI         InChIKey                InChI  1.03                                                                                                                                                                       SPKHBKVYERIGTO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AKI acedrg               243         "dictionary generator"                  
+AKI acedrg_database      11          "data source"                           
+AKI rdkit                2017.03.2   "Chemoinformatics tool"
+AKI refmac5              5.8.0238    "optimization tool"                     

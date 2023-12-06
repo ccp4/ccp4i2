@@ -1,0 +1,269 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YI5     YI5      4-CHLORO-6-[5-(3,4-DIMETHOXYPHENYL)-1,2,3-THIADIAZOL-4-YL]BENZENE-1,3-DIOL     NON-POLYMER     37     24     .     
+#
+data_comp_YI5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YI5     N1      N       NRD5    0       2.196       32.935      7.194       
+YI5     N2      N       NRD5    0       2.107       32.451      5.950       
+YI5     C3      C       CR5     0       1.626       33.414      5.101       
+YI5     C4      C       CR5     0       1.332       34.641      5.619       
+YI5     C6      C       CR6     0       1.488       33.006      3.690       
+YI5     C7      C       CR6     0       0.821       35.899      5.064       
+YI5     C12     C       CR16    0       -0.125      36.660      5.762       
+YI5     C13     C       CR6     0       -0.609      37.853      5.228       
+YI5     C14     C       CR6     0       -0.135      38.306      3.976       
+YI5     C15     C       CR16    0       0.805       37.545      3.293       
+YI5     C16     C       CR16    0       1.278       36.359      3.828       
+YI5     C21     C       CR6     0       2.600       32.570      2.940       
+YI5     C22     C       CR16    0       2.452       32.189      1.610       
+YI5     C23     C       CR6     0       1.200       32.238      1.003       
+YI5     C24     C       CR6     0       0.102       32.671      1.747       
+YI5     C25     C       CR16    0       0.235       33.052      3.070       
+YI5     O29     O       OH1     0       1.058       31.861      -0.311      
+YI5     O30     O       OH1     0       3.852       32.508      3.505       
+YI5     O33     O       O2      0       -0.654      39.487      3.526       
+YI5     S1      S       S2      0       1.707       34.493      7.246       
+YI5     C34     C       CH3     0       -1.853      39.445      2.753       
+YI5     CL      CL      CL      0       -1.464      32.736      1.003       
+YI5     CAB     C       CH3     0       -2.675      38.060      6.442       
+YI5     OAN     O       O2      0       -1.527      38.662      5.846       
+YI5     H12     H       H       0       -0.440      36.359      6.599       
+YI5     H15     H       H       0       1.122       37.840      2.458       
+YI5     H16     H       H       0       1.914       35.858      3.349       
+YI5     H22     H       H       0       3.198       31.898      1.114       
+YI5     H25     H       H       0       -0.510      33.339      3.554       
+YI5     H29     H       H       0       0.452       31.291      -0.533      
+YI5     H30     H       H       0       4.534       32.815      3.077       
+YI5     H341    H       H       0       -2.600      39.729      3.304       
+YI5     H342    H       H       0       -2.012      38.541      2.433       
+YI5     H343    H       H       0       -1.766      40.044      1.994       
+YI5     HAB1    H       H       0       -2.412      37.599      7.255       
+YI5     HAB2    H       H       0       -3.070      37.426      5.822       
+YI5     HAB3    H       H       0       -3.324      38.750      6.657       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YI5          N1          N2      DOUBLE       y     1.324  0.0200     1.324  0.0200
+YI5          N1          S1      SINGLE       y     1.652  0.0200     1.652  0.0200
+YI5          N2          C3      SINGLE       y     1.364  0.0100     1.364  0.0100
+YI5          C3          C4      DOUBLE       y     1.360  0.0100     1.360  0.0100
+YI5          C3          C6      SINGLE       n     1.474  0.0100     1.474  0.0100
+YI5          C4          C7      SINGLE       n     1.464  0.0100     1.464  0.0100
+YI5          C4          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+YI5          C6         C21      DOUBLE       y     1.405  0.0100     1.405  0.0100
+YI5          C6         C25      SINGLE       y     1.396  0.0100     1.396  0.0100
+YI5          C7         C12      DOUBLE       y     1.394  0.0100     1.394  0.0100
+YI5          C7         C16      SINGLE       y     1.392  0.0100     1.392  0.0100
+YI5         C12         C13      SINGLE       y     1.388  0.0100     1.388  0.0100
+YI5         C13         C14      DOUBLE       y     1.408  0.0100     1.408  0.0100
+YI5         C13         OAN      SINGLE       n     1.367  0.0100     1.367  0.0100
+YI5         C14         C15      SINGLE       y     1.386  0.0100     1.386  0.0100
+YI5         C14         O33      SINGLE       n     1.364  0.0100     1.364  0.0100
+YI5         C15         C16      DOUBLE       y     1.382  0.0100     1.382  0.0100
+YI5         C21         C22      SINGLE       y     1.387  0.0100     1.387  0.0100
+YI5         C21         O30      SINGLE       n     1.374  0.0155     1.374  0.0155
+YI5         C22         C23      DOUBLE       y     1.388  0.0100     1.388  0.0100
+YI5         C23         C24      SINGLE       y     1.391  0.0100     1.391  0.0100
+YI5         C23         O29      SINGLE       n     1.374  0.0155     1.374  0.0155
+YI5         C24         C25      DOUBLE       y     1.379  0.0110     1.379  0.0110
+YI5         C24          CL      SINGLE       n     1.735  0.0100     1.735  0.0100
+YI5         O33         C34      SINGLE       n     1.424  0.0117     1.424  0.0117
+YI5         CAB         OAN      SINGLE       n     1.424  0.0117     1.424  0.0117
+YI5         C12         H12      SINGLE       n     1.082  0.0130     0.945  0.0200
+YI5         C15         H15      SINGLE       n     1.082  0.0130     0.940  0.0196
+YI5         C16         H16      SINGLE       n     1.082  0.0130     0.941  0.0147
+YI5         C22         H22      SINGLE       n     1.082  0.0130     0.943  0.0179
+YI5         C25         H25      SINGLE       n     1.082  0.0130     0.933  0.0100
+YI5         O29         H29      SINGLE       n     0.966  0.0059     0.861  0.0200
+YI5         O30         H30      SINGLE       n     0.966  0.0059     0.861  0.0200
+YI5         C34        H341      SINGLE       n     1.089  0.0100     0.971  0.0157
+YI5         C34        H342      SINGLE       n     1.089  0.0100     0.971  0.0157
+YI5         C34        H343      SINGLE       n     1.089  0.0100     0.971  0.0157
+YI5         CAB        HAB1      SINGLE       n     1.089  0.0100     0.971  0.0157
+YI5         CAB        HAB2      SINGLE       n     1.089  0.0100     0.971  0.0157
+YI5         CAB        HAB3      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YI5          N2          N1          S1     107.087    3.00
+YI5          N1          N2          C3     105.997    1.50
+YI5          N2          C3          C4     112.741    3.00
+YI5          N2          C3          C6     117.571    1.50
+YI5          C4          C3          C6     129.688    2.53
+YI5          C3          C4          C7     133.316    2.53
+YI5          C3          C4          S1     107.087    3.00
+YI5          C7          C4          S1     119.596    3.00
+YI5          C3          C6         C21     121.196    1.50
+YI5          C3          C6         C25     119.809    1.50
+YI5         C21          C6         C25     118.994    1.50
+YI5          C4          C7         C12     120.533    1.61
+YI5          C4          C7         C16     120.533    1.61
+YI5         C12          C7         C16     118.933    1.50
+YI5          C7         C12         C13     120.079    1.50
+YI5          C7         C12         H12     119.741    1.50
+YI5         C13         C12         H12     120.180    1.50
+YI5         C12         C13         C14     120.176    1.50
+YI5         C12         C13         OAN     124.361    1.50
+YI5         C14         C13         OAN     115.463    1.50
+YI5         C13         C14         C15     119.596    1.50
+YI5         C13         C14         O33     115.343    1.50
+YI5         C15         C14         O33     125.060    1.50
+YI5         C14         C15         C16     120.627    1.50
+YI5         C14         C15         H15     119.595    1.50
+YI5         C16         C15         H15     119.778    1.50
+YI5          C7         C16         C15     120.588    1.50
+YI5          C7         C16         H16     119.874    1.50
+YI5         C15         C16         H16     119.538    1.50
+YI5          C6         C21         C22     120.522    1.50
+YI5          C6         C21         O30     119.739    3.00
+YI5         C22         C21         O30     119.739    3.00
+YI5         C21         C22         C23     119.836    1.50
+YI5         C21         C22         H22     120.413    1.50
+YI5         C23         C22         H22     119.751    1.50
+YI5         C22         C23         C24     118.943    1.50
+YI5         C22         C23         O29     120.528    3.00
+YI5         C24         C23         O29     120.528    3.00
+YI5         C23         C24         C25     121.559    1.50
+YI5         C23         C24          CL     119.364    1.50
+YI5         C25         C24          CL     119.078    1.50
+YI5          C6         C25         C24     120.145    1.50
+YI5          C6         C25         H25     119.592    1.50
+YI5         C24         C25         H25     120.263    1.50
+YI5         C23         O29         H29     120.000    3.00
+YI5         C21         O30         H30     120.000    3.00
+YI5         C14         O33         C34     117.276    1.50
+YI5          N1          S1          C4     107.087    3.00
+YI5         O33         C34        H341     109.428    1.50
+YI5         O33         C34        H342     109.428    1.50
+YI5         O33         C34        H343     109.428    1.50
+YI5        H341         C34        H342     109.509    1.50
+YI5        H341         C34        H343     109.509    1.50
+YI5        H342         C34        H343     109.509    1.50
+YI5         OAN         CAB        HAB1     109.428    1.50
+YI5         OAN         CAB        HAB2     109.428    1.50
+YI5         OAN         CAB        HAB3     109.428    1.50
+YI5        HAB1         CAB        HAB2     109.509    1.50
+YI5        HAB1         CAB        HAB3     109.509    1.50
+YI5        HAB2         CAB        HAB3     109.509    1.50
+YI5         C13         OAN         CAB     117.276    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YI5              const_41          S1          N1          N2          C3       0.000    10.0     2
+YI5              const_50          N2          N1          S1          C4       0.000    10.0     2
+YI5              const_27         O30         C21         C22         C23     180.000    10.0     2
+YI5            sp2_sp2_13          C6         C21         O30         H30     180.000     5.0     2
+YI5              const_30         C21         C22         C23         O29     180.000    10.0     2
+YI5              const_36         O29         C23         C24          CL       0.000    10.0     2
+YI5            sp2_sp2_15         C22         C23         O29         H29     180.000     5.0     2
+YI5              const_39          CL         C24         C25          C6     180.000    10.0     2
+YI5             sp3_sp3_2        H341         C34         O33         C14     -60.000    10.0     3
+YI5              const_42          C4          C3          N2          N1       0.000    10.0     2
+YI5             sp3_sp3_6        HAB1         CAB         OAN         C13     -60.000    10.0     3
+YI5              const_45          N2          C3          C4          C7     180.000    10.0     2
+YI5             sp2_sp2_3          N2          C3          C6         C21       0.000     5.0     2
+YI5              const_48          C3          C4          S1          N1       0.000    10.0     2
+YI5             sp2_sp2_5          C3          C4          C7         C12     180.000     5.0     2
+YI5              const_24         O30         C21          C6          C3       0.000    10.0     2
+YI5              const_52         C24         C25          C6          C3     180.000    10.0     2
+YI5              const_56         C15         C16          C7          C4     180.000    10.0     2
+YI5       const_sp2_sp2_2         C13         C12          C7          C4     180.000     5.0     2
+YI5       const_sp2_sp2_6          C7         C12         C13         OAN     180.000     5.0     2
+YI5             sp2_sp2_9         C12         C13         OAN         CAB     180.000     5.0     2
+YI5              const_12         OAN         C13         C14         O33       0.000    10.0     2
+YI5            sp2_sp2_11         C13         C14         O33         C34     180.000     5.0     2
+YI5              const_15         O33         C14         C15         C16     180.000    10.0     2
+YI5              const_17         C14         C15         C16          C7       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YI5    plan-1          C3   0.020
+YI5    plan-1          C4   0.020
+YI5    plan-1          C6   0.020
+YI5    plan-1          C7   0.020
+YI5    plan-1          N1   0.020
+YI5    plan-1          N2   0.020
+YI5    plan-1          S1   0.020
+YI5    plan-2         C12   0.020
+YI5    plan-2         C13   0.020
+YI5    plan-2         C14   0.020
+YI5    plan-2         C15   0.020
+YI5    plan-2         C16   0.020
+YI5    plan-2          C4   0.020
+YI5    plan-2          C7   0.020
+YI5    plan-2         H12   0.020
+YI5    plan-2         H15   0.020
+YI5    plan-2         H16   0.020
+YI5    plan-2         O33   0.020
+YI5    plan-2         OAN   0.020
+YI5    plan-3         C21   0.020
+YI5    plan-3         C22   0.020
+YI5    plan-3         C23   0.020
+YI5    plan-3         C24   0.020
+YI5    plan-3         C25   0.020
+YI5    plan-3          C3   0.020
+YI5    plan-3          C6   0.020
+YI5    plan-3          CL   0.020
+YI5    plan-3         H22   0.020
+YI5    plan-3         H25   0.020
+YI5    plan-3         O29   0.020
+YI5    plan-3         O30   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YI5 SMILES_CANONICAL               CACTVS 3.352                                                                            COc1ccc(cc1OC)c2snnc2c3cc(Cl)c(O)cc3O
+YI5           SMILES               CACTVS 3.352                                                                            COc1ccc(cc1OC)c2snnc2c3cc(Cl)c(O)cc3O
+YI5 SMILES_CANONICAL "OpenEye OEToolkits" 1.6.1                                                                          COc1ccc(cc1OC)c2c(nns2)c3cc(c(cc3O)O)Cl
+YI5           SMILES "OpenEye OEToolkits" 1.6.1                                                                          COc1ccc(cc1OC)c2c(nns2)c3cc(c(cc3O)O)Cl
+YI5            InChI                InChI  1.03 InChI=1S/C16H13ClN2O4S/c1-22-13-4-3-8(5-14(13)23-2)16-15(18-19-24-16)9-6-10(17)12(21)7-11(9)20/h3-7,20-21H,1-2H3
+YI5         InChIKey                InChI  1.03                                                                                      UTWGFIMJBOZKAO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YI5 acedrg               243         "dictionary generator"                  
+YI5 acedrg_database      11          "data source"                           
+YI5 rdkit                2017.03.2   "Chemoinformatics tool"
+YI5 refmac5              5.8.0238    "optimization tool"                     

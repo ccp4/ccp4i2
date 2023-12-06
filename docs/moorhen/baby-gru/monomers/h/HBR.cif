@@ -1,0 +1,143 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HBR     HBR      R,3-HYDROXYBUTAN-2-ONE     NON-POLYMER     14     6     .     
+#
+data_comp_HBR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HBR     C4      C       CH3     0       10.862      0.905       2.881       
+HBR     C3      C       CH1     0       9.948       0.924       1.673       
+HBR     O7      O       OH1     0       9.700       2.267       1.282       
+HBR     C2      C       C       0       10.519      0.134       0.502       
+HBR     C1      C       CH3     0       9.789       -1.075      0.046       
+HBR     O2      O       O       0       11.543      0.509       -0.021      
+HBR     H41     H       H       0       11.642      0.351       2.699       
+HBR     H42     H       H       0       10.380      0.541       3.644       
+HBR     H43     H       H       0       11.153      1.811       3.088       
+HBR     H3      H       H       0       9.084       0.514       1.923       
+HBR     HO7     H       H       0       9.005       2.287       0.796       
+HBR     H11     H       H       0       10.258      -1.475      -0.704      
+HBR     H12     H       H       0       8.891       -0.827      -0.229      
+HBR     H13     H       H       0       9.738       -1.716      0.774       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HBR          C4          C3      SINGLE       n     1.511  0.0128     1.511  0.0128
+HBR          C3          O7      SINGLE       n     1.419  0.0162     1.419  0.0162
+HBR          C3          C2      SINGLE       n     1.523  0.0100     1.523  0.0100
+HBR          C2          C1      SINGLE       n     1.483  0.0200     1.483  0.0200
+HBR          C2          O2      DOUBLE       n     1.209  0.0200     1.209  0.0200
+HBR          C4         H41      SINGLE       n     1.089  0.0100     0.973  0.0141
+HBR          C4         H42      SINGLE       n     1.089  0.0100     0.973  0.0141
+HBR          C4         H43      SINGLE       n     1.089  0.0100     0.973  0.0141
+HBR          C3          H3      SINGLE       n     1.089  0.0100     0.988  0.0129
+HBR          O7         HO7      SINGLE       n     0.970  0.0120     0.848  0.0200
+HBR          C1         H11      SINGLE       n     1.089  0.0100     0.971  0.0145
+HBR          C1         H12      SINGLE       n     1.089  0.0100     0.971  0.0145
+HBR          C1         H13      SINGLE       n     1.089  0.0100     0.971  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HBR          C3          C4         H41     109.501    1.50
+HBR          C3          C4         H42     109.501    1.50
+HBR          C3          C4         H43     109.501    1.50
+HBR         H41          C4         H42     109.425    1.50
+HBR         H41          C4         H43     109.425    1.50
+HBR         H42          C4         H43     109.425    1.50
+HBR          C4          C3          O7     109.930    2.03
+HBR          C4          C3          C2     111.511    2.91
+HBR          C4          C3          H3     109.385    1.54
+HBR          O7          C3          C2     111.032    1.80
+HBR          O7          C3          H3     108.675    1.50
+HBR          C2          C3          H3     108.449    1.57
+HBR          C3          O7         HO7     108.894    3.00
+HBR          C3          C2          C1     118.142    1.50
+HBR          C3          C2          O2     119.363    1.88
+HBR          C1          C2          O2     122.494    1.50
+HBR          C2          C1         H11     109.473    1.50
+HBR          C2          C1         H12     109.473    1.50
+HBR          C2          C1         H13     109.473    1.50
+HBR         H11          C1         H12     109.400    1.50
+HBR         H11          C1         H13     109.400    1.50
+HBR         H12          C1         H13     109.400    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HBR             sp3_sp3_1          O7          C3          C4         H41     180.000    10.0     3
+HBR            sp3_sp3_10          C4          C3          O7         HO7     180.000    10.0     3
+HBR             sp2_sp3_1          C1          C2          C3          C4       0.000    10.0     6
+HBR             sp2_sp3_7          C3          C2          C1         H11       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HBR    chir_1    C3    O7    C2    C4    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HBR    plan-1          C1   0.020
+HBR    plan-1          C2   0.020
+HBR    plan-1          C3   0.020
+HBR    plan-1          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HBR           SMILES              ACDLabs 11.02                                        O=C(C)C(O)C
+HBR SMILES_CANONICAL               CACTVS 3.352                                   C[C@@H](O)C(C)=O
+HBR           SMILES               CACTVS 3.352                                     C[CH](O)C(C)=O
+HBR SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                    C[C@H](C(=O)C)O
+HBR           SMILES "OpenEye OEToolkits" 1.7.0                                        CC(C(=O)C)O
+HBR            InChI                InChI  1.03 InChI=1S/C4H8O2/c1-3(5)4(2)6/h3,5H,1-2H3/t3-/m1/s1
+HBR         InChIKey                InChI  1.03                        ROWKJAVDOGWPAT-GSVOUGTGSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HBR acedrg               243         "dictionary generator"                  
+HBR acedrg_database      11          "data source"                           
+HBR rdkit                2017.03.2   "Chemoinformatics tool"
+HBR refmac5              5.8.0238    "optimization tool"                     

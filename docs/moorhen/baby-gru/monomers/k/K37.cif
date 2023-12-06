@@ -1,0 +1,175 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+K37     K37      4,5,6,7-TETRABROMO-2-(METHYLSULFANYL)-1H-BENZIMIDAZOLE     NON-POLYMER     19     15     .     
+#
+data_comp_K37
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+K37     C1      C       CR6     0       21.009      8.980       19.718      
+K37     C2      C       CR6     0       20.840      9.085       18.324      
+K37     C3      C       CR6     0       21.613      8.321       17.459      
+K37     C4      C       CR6     0       21.953      8.108       20.249      
+K37     N5      N       NR5     0       23.724      6.408       19.580      
+K37     C6      C       CR56    0       22.731      7.340       19.385      
+K37     C7      C       CR56    0       22.563      7.444       17.999      
+K37     N8      N       NRD5    0       23.449      6.582       17.362      
+K37     C9      C       CR5     0       24.119      5.989       18.353      
+K37     S       S       S2      0       25.371      4.795       18.139      
+K37     C11     C       CH3     0       24.925      3.047       18.010      
+K37     BR10    BR      BR      0       22.158      7.987       22.131      
+K37     BR11    BR      BR      0       19.949      10.027      20.895      
+K37     BR12    BR      BR      0       19.550      10.276      17.601      
+K37     BR13    BR      BR      0       21.392      8.457       15.591      
+K37     HN5     H       H       0       24.033      6.146       20.335      
+K37     H111    H       H       0       24.250      2.940       17.328      
+K37     H112    H       H       0       24.581      2.742       18.858      
+K37     H113    H       H       0       25.708      2.535       17.774      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+K37          C1          C2      DOUBLE       y     1.393  0.0161     1.393  0.0161
+K37          C1          C4      SINGLE       y     1.379  0.0134     1.379  0.0134
+K37          C1        BR11      SINGLE       n     1.897  0.0105     1.897  0.0105
+K37          C2          C3      SINGLE       y     1.379  0.0134     1.379  0.0134
+K37          C2        BR12      SINGLE       n     1.897  0.0105     1.897  0.0105
+K37          C3          C7      DOUBLE       y     1.397  0.0114     1.397  0.0114
+K37          C3        BR13      SINGLE       n     1.884  0.0167     1.884  0.0167
+K37          C4          C6      DOUBLE       y     1.391  0.0100     1.391  0.0100
+K37          C4        BR10      SINGLE       n     1.896  0.0109     1.896  0.0109
+K37          N5          C6      SINGLE       y     1.375  0.0100     1.375  0.0100
+K37          N5          C9      SINGLE       y     1.356  0.0105     1.356  0.0105
+K37          C6          C7      SINGLE       y     1.397  0.0100     1.397  0.0100
+K37          C7          N8      SINGLE       y     1.391  0.0100     1.391  0.0100
+K37          N8          C9      DOUBLE       y     1.338  0.0200     1.338  0.0200
+K37          C9           S      SINGLE       n     1.744  0.0119     1.744  0.0119
+K37           S         C11      SINGLE       n     1.809  0.0191     1.809  0.0191
+K37          N5         HN5      SINGLE       n     1.016  0.0100     0.857  0.0200
+K37         C11        H111      SINGLE       n     1.089  0.0100     0.965  0.0106
+K37         C11        H112      SINGLE       n     1.089  0.0100     0.965  0.0106
+K37         C11        H113      SINGLE       n     1.089  0.0100     0.965  0.0106
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+K37          C2          C1          C4     120.241    1.50
+K37          C2          C1        BR11     120.707    1.50
+K37          C4          C1        BR11     119.052    1.50
+K37          C1          C2          C3     120.241    1.50
+K37          C1          C2        BR12     120.707    1.50
+K37          C3          C2        BR12     119.052    1.50
+K37          C2          C3          C7     118.704    1.50
+K37          C2          C3        BR13     120.422    1.50
+K37          C7          C3        BR13     120.874    1.50
+K37          C1          C4          C6     119.104    1.50
+K37          C1          C4        BR10     118.884    1.50
+K37          C6          C4        BR10     122.012    2.22
+K37          C6          N5          C9     106.955    1.50
+K37          C6          N5         HN5     126.280    1.93
+K37          C9          N5         HN5     126.765    1.50
+K37          C4          C6          N5     133.479    1.50
+K37          C4          C6          C7     120.748    1.84
+K37          N5          C6          C7     105.772    1.50
+K37          C3          C7          C6     120.962    1.99
+K37          C3          C7          N8     129.897    1.50
+K37          C6          C7          N8     109.141    1.50
+K37          C7          N8          C9     105.011    1.50
+K37          N5          C9          N8     113.121    1.50
+K37          N5          C9           S     122.038    2.05
+K37          N8          C9           S     124.841    3.00
+K37          C9           S         C11     120.000    3.00
+K37           S         C11        H111     109.066    1.50
+K37           S         C11        H112     109.066    1.50
+K37           S         C11        H113     109.066    1.50
+K37        H111         C11        H112     109.466    1.50
+K37        H111         C11        H113     109.466    1.50
+K37        H112         C11        H113     109.466    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+K37       const_sp2_sp2_4        BR11          C1          C2        BR12       0.000     5.0     2
+K37              const_32        BR11          C1          C4        BR10       0.000    10.0     2
+K37       const_sp2_sp2_8        BR12          C2          C3        BR13       0.000     5.0     2
+K37              const_11        BR13          C3          C7          C6     180.000    10.0     2
+K37              const_20        BR10          C4          C6          N5       0.000    10.0     2
+K37              const_23          C4          C6          N5          C9     180.000    10.0     2
+K37              const_35           S          C9          N5          C6     180.000    10.0     2
+K37              const_13          C4          C6          C7          C3       0.000    10.0     2
+K37              const_26          C3          C7          N8          C9     180.000    10.0     2
+K37              const_28           S          C9          N8          C7     180.000    10.0     2
+K37             sp2_sp2_1          N5          C9           S         C11     180.000     5.0     2
+K37             sp3_sp3_2        H111         C11           S          C9     -60.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+K37    plan-1        BR10   0.020
+K37    plan-1        BR11   0.020
+K37    plan-1        BR12   0.020
+K37    plan-1        BR13   0.020
+K37    plan-1          C1   0.020
+K37    plan-1          C2   0.020
+K37    plan-1          C3   0.020
+K37    plan-1          C4   0.020
+K37    plan-1          C6   0.020
+K37    plan-1          C7   0.020
+K37    plan-1          C9   0.020
+K37    plan-1         HN5   0.020
+K37    plan-1          N5   0.020
+K37    plan-1          N8   0.020
+K37    plan-1           S   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+K37           SMILES              ACDLabs 10.04                                               Brc2c1nc(SC)nc1c(Br)c(Br)c2Br
+K37 SMILES_CANONICAL               CACTVS 3.341                                          CSc1[nH]c2c(Br)c(Br)c(Br)c(Br)c2n1
+K37           SMILES               CACTVS 3.341                                          CSc1[nH]c2c(Br)c(Br)c(Br)c(Br)c2n1
+K37 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                          CSc1[nH]c2c(n1)c(c(c(c2Br)Br)Br)Br
+K37           SMILES "OpenEye OEToolkits" 1.5.0                                          CSc1[nH]c2c(n1)c(c(c(c2Br)Br)Br)Br
+K37            InChI                InChI  1.03 InChI=1S/C8H4Br4N2S/c1-15-8-13-6-4(11)2(9)3(10)5(12)7(6)14-8/h1H3,(H,13,14)
+K37         InChIKey                InChI  1.03                                                 ZIGJZZDDPXRGTL-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+K37 acedrg               243         "dictionary generator"                  
+K37 acedrg_database      11          "data source"                           
+K37 rdkit                2017.03.2   "Chemoinformatics tool"
+K37 refmac5              5.8.0238    "optimization tool"                     

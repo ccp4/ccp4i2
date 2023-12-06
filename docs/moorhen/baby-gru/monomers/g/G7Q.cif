@@ -1,0 +1,346 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+G7Q     G7Q      (2~{R})-1-[2-[4,4-bis(fluoranyl)cyclohexyl]ethyl]-~{N}-(4-ethanoyl-1,3-thiazol-2-yl)piperazine-2-carboxamide     NON-POLYMER     53     27     .     
+#
+data_comp_G7Q
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+G7Q     N       N       NT      0       -32.774     43.043      12.783      
+G7Q     CA      C       CH1     0       -31.562     42.509      13.426      
+G7Q     C       C       C       0       -30.368     43.462      13.391      
+G7Q     O       O       O       0       -30.351     44.472      14.084      
+G7Q     CB      C       CH2     0       -31.854     42.118      14.881      
+G7Q     CAA     C       CH3     0       -25.332     45.199      8.358       
+G7Q     CAF     C       CR15    0       -27.622     45.709      10.347      
+G7Q     CAG     C       CH2     0       -34.197     41.842      14.393      
+G7Q     CAH     C       CH2     0       -32.175     42.500      10.358      
+G7Q     CAI     C       CH2     0       -31.953     41.835      7.930       
+G7Q     CAJ     C       CH2     0       -30.740     43.851      8.778       
+G7Q     CAK     C       CH2     0       -33.968     42.200      12.939      
+G7Q     CAL     C       CH2     0       -32.634     43.527      11.384      
+G7Q     CAM     C       CH2     0       -31.758     42.311      6.494       
+G7Q     CAN     C       CH2     0       -30.521     44.332      7.346       
+G7Q     CAT     C       C       0       -25.864     44.138      9.276       
+G7Q     CAV     C       CR5     0       -27.000     44.477      10.162      
+G7Q     CAW     C       CR5     0       -28.603     43.905      11.714      
+G7Q     CAX     C       CH1     0       -31.994     42.992      8.925       
+G7Q     CBA     C       CT      0       -30.512     43.173      6.361       
+G7Q     FAD     F       F       0       -30.439     43.659      5.099       
+G7Q     FAE     F       F       0       -29.416     42.410      6.577       
+G7Q     NAP     N       NRD5    0       -27.565     43.461      10.943      
+G7Q     NAQ     N       NT1     0       -33.001     41.205      14.955      
+G7Q     NAR     N       NH1     0       -29.334     43.115      12.578      
+G7Q     OAB     O       O       0       -25.373     43.016      9.297       
+G7Q     SAS     S       S2      0       -28.848     45.544      11.460      
+G7Q     H2      H       H       0       -31.311     41.679      12.940      
+G7Q     H3      H       H       0       -31.065     41.682      15.266      
+G7Q     H4      H       H       0       -32.047     42.923      15.405      
+G7Q     H5      H       H       0       -25.385     46.065      8.786       
+G7Q     H6      H       H       0       -25.852     45.210      7.540       
+G7Q     H7      H       H       0       -24.406     45.005      8.146       
+G7Q     H8      H       H       0       -27.418     46.532      9.936       
+G7Q     H9      H       H       0       -34.972     41.220      14.466      
+G7Q     H10     H       H       0       -34.410     42.666      14.910      
+G7Q     H11     H       H       0       -32.834     41.761      10.350      
+G7Q     H12     H       H       0       -31.312     42.124      10.663      
+G7Q     H13     H       H       0       -32.789     41.331      7.991       
+G7Q     H14     H       H       0       -31.223     41.231      8.171       
+G7Q     H15     H       H       0       -30.816     44.628      9.366       
+G7Q     H16     H       H       0       -29.962     43.334      9.067       
+G7Q     H17     H       H       0       -33.859     41.380      12.418      
+G7Q     H18     H       H       0       -34.752     42.674      12.596      
+G7Q     H19     H       H       0       -32.006     44.274      11.375      
+G7Q     H20     H       H       0       -33.497     43.881      11.094      
+G7Q     H21     H       H       0       -31.678     41.533      5.901       
+G7Q     H22     H       H       0       -32.542     42.827      6.212       
+G7Q     H23     H       H       0       -29.666     44.810      7.292       
+G7Q     H24     H       H       0       -31.234     44.960      7.102       
+G7Q     H25     H       H       0       -32.772     43.552      8.707       
+G7Q     H26     H       H       0       -32.817     40.464      14.503      
+G7Q     H28     H       H       0       -29.082     42.274      12.606      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+G7Q         CBA         FAD      SINGLE       n     1.353  0.0156     1.353  0.0156
+G7Q         CAM         CBA      SINGLE       n     1.519  0.0133     1.519  0.0133
+G7Q         CBA         FAE      SINGLE       n     1.353  0.0156     1.353  0.0156
+G7Q         CAN         CBA      SINGLE       n     1.519  0.0133     1.519  0.0133
+G7Q         CAI         CAM      SINGLE       n     1.524  0.0100     1.524  0.0100
+G7Q         CAJ         CAN      SINGLE       n     1.524  0.0100     1.524  0.0100
+G7Q         CAI         CAX      SINGLE       n     1.524  0.0100     1.524  0.0100
+G7Q         CAJ         CAX      SINGLE       n     1.524  0.0100     1.524  0.0100
+G7Q         CAH         CAX      SINGLE       n     1.526  0.0115     1.526  0.0115
+G7Q         CAA         CAT      SINGLE       n     1.497  0.0156     1.497  0.0156
+G7Q         CAH         CAL      SINGLE       n     1.520  0.0100     1.520  0.0100
+G7Q         CAT         CAV      SINGLE       n     1.476  0.0100     1.476  0.0100
+G7Q         CAT         OAB      DOUBLE       n     1.224  0.0152     1.224  0.0152
+G7Q         CAF         CAV      DOUBLE       y     1.379  0.0196     1.379  0.0196
+G7Q         CAF         SAS      SINGLE       y     1.695  0.0200     1.695  0.0200
+G7Q         CAV         NAP      SINGLE       y     1.390  0.0100     1.390  0.0100
+G7Q           N         CAL      SINGLE       n     1.467  0.0160     1.467  0.0160
+G7Q         CAW         SAS      SINGLE       y     1.695  0.0200     1.695  0.0200
+G7Q         CAW         NAP      DOUBLE       y     1.354  0.0165     1.354  0.0165
+G7Q         CAW         NAR      SINGLE       n     1.367  0.0190     1.367  0.0190
+G7Q           C         NAR      SINGLE       n     1.355  0.0135     1.355  0.0135
+G7Q           N         CAK      SINGLE       n     1.464  0.0104     1.464  0.0104
+G7Q           N          CA      SINGLE       n     1.462  0.0113     1.462  0.0113
+G7Q          CA           C      SINGLE       n     1.517  0.0168     1.517  0.0168
+G7Q           C           O      DOUBLE       n     1.224  0.0100     1.224  0.0100
+G7Q         CAG         CAK      SINGLE       n     1.511  0.0192     1.511  0.0192
+G7Q          CA          CB      SINGLE       n     1.532  0.0100     1.532  0.0100
+G7Q         CAG         NAQ      SINGLE       n     1.466  0.0134     1.466  0.0134
+G7Q          CB         NAQ      SINGLE       n     1.467  0.0114     1.467  0.0114
+G7Q          CA          H2      SINGLE       n     1.089  0.0100     0.994  0.0120
+G7Q          CB          H3      SINGLE       n     1.089  0.0100     0.980  0.0143
+G7Q          CB          H4      SINGLE       n     1.089  0.0100     0.980  0.0143
+G7Q         CAA          H5      SINGLE       n     1.089  0.0100     0.969  0.0198
+G7Q         CAA          H6      SINGLE       n     1.089  0.0100     0.969  0.0198
+G7Q         CAA          H7      SINGLE       n     1.089  0.0100     0.969  0.0198
+G7Q         CAF          H8      SINGLE       n     1.082  0.0130     0.942  0.0200
+G7Q         CAG          H9      SINGLE       n     1.089  0.0100     0.996  0.0200
+G7Q         CAG         H10      SINGLE       n     1.089  0.0100     0.996  0.0200
+G7Q         CAH         H11      SINGLE       n     1.089  0.0100     0.990  0.0100
+G7Q         CAH         H12      SINGLE       n     1.089  0.0100     0.990  0.0100
+G7Q         CAI         H13      SINGLE       n     1.089  0.0100     0.978  0.0143
+G7Q         CAI         H14      SINGLE       n     1.089  0.0100     0.978  0.0143
+G7Q         CAJ         H15      SINGLE       n     1.089  0.0100     0.978  0.0143
+G7Q         CAJ         H16      SINGLE       n     1.089  0.0100     0.978  0.0143
+G7Q         CAK         H17      SINGLE       n     1.089  0.0100     0.978  0.0109
+G7Q         CAK         H18      SINGLE       n     1.089  0.0100     0.978  0.0109
+G7Q         CAL         H19      SINGLE       n     1.089  0.0100     0.977  0.0152
+G7Q         CAL         H20      SINGLE       n     1.089  0.0100     0.977  0.0152
+G7Q         CAM         H21      SINGLE       n     1.089  0.0100     0.981  0.0147
+G7Q         CAM         H22      SINGLE       n     1.089  0.0100     0.981  0.0147
+G7Q         CAN         H23      SINGLE       n     1.089  0.0100     0.981  0.0147
+G7Q         CAN         H24      SINGLE       n     1.089  0.0100     0.981  0.0147
+G7Q         CAX         H25      SINGLE       n     1.089  0.0100     0.983  0.0100
+G7Q         NAQ         H26      SINGLE       n     1.036  0.0160     0.887  0.0200
+G7Q         NAR         H28      SINGLE       n     1.016  0.0100     0.878  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+G7Q         CAL           N         CAK     111.219    1.66
+G7Q         CAL           N          CA     111.960    2.41
+G7Q         CAK           N          CA     113.643    3.00
+G7Q           N          CA           C     111.994    1.73
+G7Q           N          CA          CB     110.258    1.51
+G7Q           N          CA          H2     107.282    1.53
+G7Q           C          CA          CB     111.056    2.52
+G7Q           C          CA          H2     107.955    1.50
+G7Q          CB          CA          H2     107.949    1.50
+G7Q         NAR           C          CA     116.259    2.43
+G7Q         NAR           C           O     122.628    1.50
+G7Q          CA           C           O     121.114    1.50
+G7Q          CA          CB         NAQ     110.258    1.51
+G7Q          CA          CB          H3     109.284    1.50
+G7Q          CA          CB          H4     109.284    1.50
+G7Q         NAQ          CB          H3     109.326    1.50
+G7Q         NAQ          CB          H4     109.326    1.50
+G7Q          H3          CB          H4     108.200    1.50
+G7Q         CAT         CAA          H5     109.525    1.50
+G7Q         CAT         CAA          H6     109.525    1.50
+G7Q         CAT         CAA          H7     109.525    1.50
+G7Q          H5         CAA          H6     109.390    1.59
+G7Q          H5         CAA          H7     109.390    1.59
+G7Q          H6         CAA          H7     109.390    1.59
+G7Q         CAV         CAF         SAS     108.532    3.00
+G7Q         CAV         CAF          H8     128.300    1.50
+G7Q         SAS         CAF          H8     123.168    3.00
+G7Q         CAK         CAG         NAQ     110.456    1.63
+G7Q         CAK         CAG          H9     109.542    1.50
+G7Q         CAK         CAG         H10     109.542    1.50
+G7Q         NAQ         CAG          H9     109.479    1.50
+G7Q         NAQ         CAG         H10     109.479    1.50
+G7Q          H9         CAG         H10     108.060    1.50
+G7Q         CAX         CAH         CAL     116.735    2.08
+G7Q         CAX         CAH         H11     108.361    1.50
+G7Q         CAX         CAH         H12     108.361    1.50
+G7Q         CAL         CAH         H11     107.811    1.50
+G7Q         CAL         CAH         H12     107.811    1.50
+G7Q         H11         CAH         H12     107.474    1.50
+G7Q         CAM         CAI         CAX     111.949    1.50
+G7Q         CAM         CAI         H13     109.388    1.50
+G7Q         CAM         CAI         H14     109.388    1.50
+G7Q         CAX         CAI         H13     109.293    1.50
+G7Q         CAX         CAI         H14     109.293    1.50
+G7Q         H13         CAI         H14     107.919    1.50
+G7Q         CAN         CAJ         CAX     111.949    1.50
+G7Q         CAN         CAJ         H15     109.388    1.50
+G7Q         CAN         CAJ         H16     109.388    1.50
+G7Q         CAX         CAJ         H15     109.293    1.50
+G7Q         CAX         CAJ         H16     109.293    1.50
+G7Q         H15         CAJ         H16     107.919    1.50
+G7Q           N         CAK         CAG     110.745    1.50
+G7Q           N         CAK         H17     109.490    1.50
+G7Q           N         CAK         H18     109.490    1.50
+G7Q         CAG         CAK         H17     109.627    1.50
+G7Q         CAG         CAK         H18     109.627    1.50
+G7Q         H17         CAK         H18     108.187    1.50
+G7Q         CAH         CAL           N     113.716    2.56
+G7Q         CAH         CAL         H19     109.111    1.50
+G7Q         CAH         CAL         H20     109.111    1.50
+G7Q           N         CAL         H19     108.913    1.50
+G7Q           N         CAL         H20     108.913    1.50
+G7Q         H19         CAL         H20     107.868    1.50
+G7Q         CBA         CAM         CAI     111.223    1.50
+G7Q         CBA         CAM         H21     109.354    1.50
+G7Q         CBA         CAM         H22     109.354    1.50
+G7Q         CAI         CAM         H21     109.388    1.50
+G7Q         CAI         CAM         H22     109.388    1.50
+G7Q         H21         CAM         H22     108.019    1.50
+G7Q         CBA         CAN         CAJ     111.223    1.50
+G7Q         CBA         CAN         H23     109.354    1.50
+G7Q         CBA         CAN         H24     109.354    1.50
+G7Q         CAJ         CAN         H23     109.388    1.50
+G7Q         CAJ         CAN         H24     109.388    1.50
+G7Q         H23         CAN         H24     108.019    1.50
+G7Q         CAA         CAT         CAV     117.684    1.50
+G7Q         CAA         CAT         OAB     121.736    1.50
+G7Q         CAV         CAT         OAB     120.580    1.50
+G7Q         CAT         CAV         CAF     129.705    3.00
+G7Q         CAT         CAV         NAP     121.591    3.00
+G7Q         CAF         CAV         NAP     108.704    1.50
+G7Q         SAS         CAW         NAP     108.532    3.00
+G7Q         SAS         CAW         NAR     122.734    3.00
+G7Q         NAP         CAW         NAR     128.734    3.00
+G7Q         CAI         CAX         CAJ     109.635    1.50
+G7Q         CAI         CAX         CAH     111.907    1.50
+G7Q         CAI         CAX         H25     107.897    1.50
+G7Q         CAJ         CAX         CAH     111.907    1.50
+G7Q         CAJ         CAX         H25     107.897    1.50
+G7Q         CAH         CAX         H25     107.292    1.50
+G7Q         FAD         CBA         CAM     108.462    1.50
+G7Q         FAD         CBA         FAE     106.934    1.73
+G7Q         FAD         CBA         CAN     108.462    1.50
+G7Q         CAM         CBA         FAE     108.462    1.50
+G7Q         CAM         CBA         CAN     111.223    1.50
+G7Q         FAE         CBA         CAN     108.462    1.50
+G7Q         CAV         NAP         CAW     105.700    1.59
+G7Q         CAG         NAQ          CB     110.415    1.50
+G7Q         CAG         NAQ         H26     109.673    3.00
+G7Q          CB         NAQ         H26     109.383    3.00
+G7Q         CAW         NAR           C     124.962    2.96
+G7Q         CAW         NAR         H28     117.165    2.70
+G7Q           C         NAR         H28     117.873    2.44
+G7Q         CAF         SAS         CAW     108.532    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+G7Q           sp3_sp3_118           C          CA           N         CAL     180.000    10.0     3
+G7Q             sp3_sp3_2         CAG         CAK           N         CAL     180.000    10.0     3
+G7Q           sp3_sp3_109         CAH         CAL           N         CAK     180.000    10.0     3
+G7Q            sp3_sp3_64         CAX         CAJ         CAN         CBA     -60.000    10.0     3
+G7Q            sp3_sp3_74         CAN         CAJ         CAX         CAH     180.000    10.0     3
+G7Q            sp3_sp3_48         CAI         CAM         CBA         FAD     180.000    10.0     3
+G7Q            sp3_sp3_56         CAJ         CAN         CBA         FAD     180.000    10.0     3
+G7Q             sp2_sp2_1         CAA         CAT         CAV         CAF     180.000     5.0     2
+G7Q       const_sp2_sp2_6         CAT         CAV         NAP         CAW     180.000     5.0     2
+G7Q       const_sp2_sp2_8         NAR         CAW         NAP         CAV     180.000     5.0     2
+G7Q             sp2_sp2_5         SAS         CAW         NAR           C     180.000     5.0     2
+G7Q              const_10         NAR         CAW         SAS         CAF     180.000    10.0     2
+G7Q             sp2_sp3_7         NAR           C          CA           N       0.000    10.0     6
+G7Q            sp3_sp3_31           C          CA          CB         NAQ     -60.000    10.0     3
+G7Q            sp2_sp2_11           O           C         NAR         CAW       0.000     5.0     2
+G7Q            sp3_sp3_22          CA          CB         NAQ         CAG     -60.000    10.0     3
+G7Q             sp2_sp3_4         OAB         CAT         CAA          H5     180.000    10.0     6
+G7Q       const_sp2_sp2_2         SAS         CAF         CAV         CAT     180.000     5.0     2
+G7Q              const_11         CAV         CAF         SAS         CAW       0.000    10.0     2
+G7Q             sp3_sp3_7         NAQ         CAG         CAK           N     -60.000    10.0     3
+G7Q            sp3_sp3_16         CAK         CAG         NAQ          CB      60.000    10.0     3
+G7Q           sp3_sp3_100         CAX         CAH         CAL           N     180.000    10.0     3
+G7Q            sp3_sp3_92         CAL         CAH         CAX         CAI     -60.000    10.0     3
+G7Q            sp3_sp3_37         CAX         CAI         CAM         CBA      60.000    10.0     3
+G7Q            sp3_sp3_84         CAM         CAI         CAX         CAH      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+G7Q    chir_1    N    CA    CAK    CAL    positive
+G7Q    chir_2    CA    N    C    CB    negative
+G7Q    chir_3    CAX    CAH    CAI    CAJ    both
+G7Q    chir_4    CBA    FAD    FAE    CAM    both
+G7Q    chir_5    NAQ    CB    CAG    H26    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+G7Q    plan-1         CAF   0.020
+G7Q    plan-1         CAT   0.020
+G7Q    plan-1         CAV   0.020
+G7Q    plan-1         CAW   0.020
+G7Q    plan-1          H8   0.020
+G7Q    plan-1         NAP   0.020
+G7Q    plan-1         NAR   0.020
+G7Q    plan-1         SAS   0.020
+G7Q    plan-2           C   0.020
+G7Q    plan-2          CA   0.020
+G7Q    plan-2         NAR   0.020
+G7Q    plan-2           O   0.020
+G7Q    plan-3         CAA   0.020
+G7Q    plan-3         CAT   0.020
+G7Q    plan-3         CAV   0.020
+G7Q    plan-3         OAB   0.020
+G7Q    plan-4           C   0.020
+G7Q    plan-4         CAW   0.020
+G7Q    plan-4         H28   0.020
+G7Q    plan-4         NAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+G7Q            InChI                InChI  1.03 InChI=1S/C18H26F2N4O2S/c1-12(25)14-11-27-17(22-14)23-16(26)15-10-21-7-9-24(15)8-4-13-2-5-18(19,20)6-3-13/h11,13,15,21H,2-10H2,1H3,(H,22,23,26)/t15-/m1/s1
+G7Q         InChIKey                InChI  1.03                                                                                                                               XAAULFWATXYIOV-OAHLLOKOSA-N
+G7Q SMILES_CANONICAL               CACTVS 3.385                                                                                                         CC(=O)c1csc(NC(=O)[C@H]2CNCCN2CCC3CCC(F)(F)CC3)n1
+G7Q           SMILES               CACTVS 3.385                                                                                                          CC(=O)c1csc(NC(=O)[CH]2CNCCN2CCC3CCC(F)(F)CC3)n1
+G7Q SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                         CC(=O)c1csc(n1)NC(=O)[C@H]2CNCCN2CCC3CCC(CC3)(F)F
+G7Q           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                             CC(=O)c1csc(n1)NC(=O)C2CNCCN2CCC3CCC(CC3)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+G7Q acedrg               243         "dictionary generator"                  
+G7Q acedrg_database      11          "data source"                           
+G7Q rdkit                2017.03.2   "Chemoinformatics tool"
+G7Q refmac5              5.8.0238    "optimization tool"                     

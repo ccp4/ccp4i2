@@ -1,0 +1,344 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EB2     EB2      N-cycloheptyl-1-ethyl-2-oxo-1,2-dihydrobenzo[cd]indole-6-sulfonamide     NON-POLYMER     50     26     .     
+#
+data_comp_EB2
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EB2     CAU     C       CH2     0       3.774       8.559       -1.579      
+EB2     CAV     C       CH2     0       3.954       7.107       -1.958      
+EB2     CAW     C       CH2     0       4.388       6.867       -3.387      
+EB2     CAX     C       CH2     0       5.888       6.891       -3.622      
+EB2     CAY     C       CH2     0       6.667       7.986       -2.909      
+EB2     CAZ     C       CH2     0       5.947       9.300       -2.668      
+EB2     CAT     C       CH1     0       5.087       9.327       -1.398      
+EB2     NAS     N       NT1     0       4.819       10.718      -0.975      
+EB2     SAP     S       S3      0       5.669       11.467      0.175       
+EB2     OAQ     O       O       0       4.993       12.696      0.461       
+EB2     OAR     O       O       0       7.022       11.525      -0.289      
+EB2     CAC     C       CR6     0       5.571       10.430      1.620       
+EB2     CAB     C       CR16    0       6.734       9.850       2.077       
+EB2     CAA     C       CR16    0       6.762       9.012       3.198       
+EB2     CAF     C       CR56    0       5.599       8.752       3.861       
+EB2     CAE     C       CR56    0       4.406       9.320       3.415       
+EB2     CAD     C       CR66    0       4.331       10.167      2.297       
+EB2     CAG     C       CR16    0       3.039       10.661      1.977       
+EB2     CAH     C       CR16    0       1.960       10.299      2.747       
+EB2     CAI     C       CR16    0       2.073       9.439       3.870       
+EB2     CAJ     C       CR56    0       3.320       8.954       4.200       
+EB2     CAL     C       CR5     0       3.880       8.056       5.243       
+EB2     OAO     O       O       0       3.299       7.446       6.124       
+EB2     NAK     N       NT      0       5.265       7.972       4.994       
+EB2     CAM     C       CH2     0       6.167       7.034       5.671       
+EB2     CAN     C       CH3     0       6.242       5.692       4.989       
+EB2     H1      H       H       0       3.244       9.005       -2.274      
+EB2     H2      H       H       0       3.269       8.604       -0.740      
+EB2     H3      H       H       0       4.619       6.709       -1.357      
+EB2     H4      H       H       0       3.105       6.640       -1.808      
+EB2     H5      H       H       0       3.973       7.547       -3.960      
+EB2     H6      H       H       0       4.044       5.994       -3.672      
+EB2     H7      H       H       0       6.046       6.981       -4.586      
+EB2     H8      H       H       0       6.256       6.024       -3.347      
+EB2     H9      H       H       0       7.474       8.176       -3.434      
+EB2     H10     H       H       0       6.965       7.634       -2.043      
+EB2     H11     H       H       0       5.374       9.496       -3.440      
+EB2     H12     H       H       0       6.616       10.015      -2.604      
+EB2     H13     H       H       0       5.599       8.878       -0.678      
+EB2     H14     H       H       0       4.557       11.266      -1.587      
+EB2     H15     H       H       0       7.550       10.023      1.626       
+EB2     H16     H       H       0       7.583       8.632       3.489       
+EB2     H17     H       H       0       2.918       11.234      1.240       
+EB2     H18     H       H       0       1.108       10.636      2.521       
+EB2     H19     H       H       0       1.314       9.208       4.381       
+EB2     H20     H       H       0       5.865       6.909       6.593       
+EB2     H21     H       H       0       7.064       7.426       5.702       
+EB2     H22     H       H       0       6.852       5.113       5.477       
+EB2     H23     H       H       0       6.564       5.808       4.079       
+EB2     H24     H       H       0       5.358       5.288       4.970       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EB2         CAX         CAY      SINGLE       n     1.509  0.0200     1.509  0.0200
+EB2         CAW         CAX      SINGLE       n     1.509  0.0200     1.509  0.0200
+EB2         CAY         CAZ      SINGLE       n     1.509  0.0200     1.509  0.0200
+EB2         CAV         CAW      SINGLE       n     1.509  0.0200     1.509  0.0200
+EB2         CAZ         CAT      SINGLE       n     1.532  0.0153     1.532  0.0153
+EB2         CAU         CAV      SINGLE       n     1.509  0.0200     1.509  0.0200
+EB2         CAU         CAT      SINGLE       n     1.532  0.0153     1.532  0.0153
+EB2         CAT         NAS      SINGLE       n     1.476  0.0100     1.476  0.0100
+EB2         NAS         SAP      SINGLE       n     1.613  0.0107     1.613  0.0107
+EB2         SAP         OAR      DOUBLE       n     1.431  0.0100     1.431  0.0100
+EB2         SAP         OAQ      DOUBLE       n     1.431  0.0100     1.431  0.0100
+EB2         SAP         CAC      SINGLE       n     1.778  0.0101     1.778  0.0101
+EB2         CAC         CAD      SINGLE       y     1.432  0.0100     1.432  0.0100
+EB2         CAC         CAB      DOUBLE       y     1.367  0.0100     1.367  0.0100
+EB2         CAD         CAG      DOUBLE       y     1.415  0.0100     1.415  0.0100
+EB2         CAG         CAH      SINGLE       y     1.368  0.0100     1.368  0.0100
+EB2         CAE         CAD      SINGLE       y     1.406  0.0100     1.406  0.0100
+EB2         CAB         CAA      SINGLE       y     1.385  0.0126     1.385  0.0126
+EB2         CAH         CAI      DOUBLE       y     1.413  0.0100     1.413  0.0100
+EB2         CAF         CAE      SINGLE       y     1.404  0.0100     1.404  0.0100
+EB2         CAE         CAJ      DOUBLE       y     1.398  0.0100     1.398  0.0100
+EB2         CAA         CAF      DOUBLE       y     1.360  0.0100     1.360  0.0100
+EB2         CAI         CAJ      SINGLE       y     1.375  0.0100     1.375  0.0100
+EB2         CAF         NAK      SINGLE       n     1.401  0.0200     1.401  0.0200
+EB2         CAJ         CAL      SINGLE       n     1.484  0.0100     1.484  0.0100
+EB2         CAL         NAK      SINGLE       n     1.398  0.0100     1.398  0.0100
+EB2         NAK         CAM      SINGLE       n     1.467  0.0100     1.467  0.0100
+EB2         CAL         OAO      DOUBLE       n     1.218  0.0100     1.218  0.0100
+EB2         CAM         CAN      SINGLE       n     1.506  0.0200     1.506  0.0200
+EB2         CAU          H1      SINGLE       n     1.089  0.0100     0.981  0.0160
+EB2         CAU          H2      SINGLE       n     1.089  0.0100     0.981  0.0160
+EB2         CAV          H3      SINGLE       n     1.089  0.0100     0.981  0.0163
+EB2         CAV          H4      SINGLE       n     1.089  0.0100     0.981  0.0163
+EB2         CAW          H5      SINGLE       n     1.089  0.0100     0.981  0.0163
+EB2         CAW          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+EB2         CAX          H7      SINGLE       n     1.089  0.0100     0.981  0.0163
+EB2         CAX          H8      SINGLE       n     1.089  0.0100     0.981  0.0163
+EB2         CAY          H9      SINGLE       n     1.089  0.0100     0.981  0.0163
+EB2         CAY         H10      SINGLE       n     1.089  0.0100     0.981  0.0163
+EB2         CAZ         H11      SINGLE       n     1.089  0.0100     0.981  0.0160
+EB2         CAZ         H12      SINGLE       n     1.089  0.0100     0.981  0.0160
+EB2         CAT         H13      SINGLE       n     1.089  0.0100     0.992  0.0135
+EB2         NAS         H14      SINGLE       n     1.036  0.0160     0.862  0.0200
+EB2         CAB         H15      SINGLE       n     1.082  0.0130     0.949  0.0100
+EB2         CAA         H16      SINGLE       n     1.082  0.0130     0.950  0.0200
+EB2         CAG         H17      SINGLE       n     1.082  0.0130     0.943  0.0158
+EB2         CAH         H18      SINGLE       n     1.082  0.0130     0.944  0.0177
+EB2         CAI         H19      SINGLE       n     1.082  0.0130     0.943  0.0182
+EB2         CAM         H20      SINGLE       n     1.089  0.0100     0.979  0.0139
+EB2         CAM         H21      SINGLE       n     1.089  0.0100     0.979  0.0139
+EB2         CAN         H22      SINGLE       n     1.089  0.0100     0.972  0.0122
+EB2         CAN         H23      SINGLE       n     1.089  0.0100     0.972  0.0122
+EB2         CAN         H24      SINGLE       n     1.089  0.0100     0.972  0.0122
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EB2         CAV         CAU         CAT     113.909    2.09
+EB2         CAV         CAU          H1     108.650    1.50
+EB2         CAV         CAU          H2     108.650    1.50
+EB2         CAT         CAU          H1     108.489    1.50
+EB2         CAT         CAU          H2     108.489    1.50
+EB2          H1         CAU          H2     107.844    1.50
+EB2         CAW         CAV         CAU     115.138    2.03
+EB2         CAW         CAV          H3     108.698    1.50
+EB2         CAW         CAV          H4     108.698    1.50
+EB2         CAU         CAV          H3     108.601    1.50
+EB2         CAU         CAV          H4     108.601    1.50
+EB2          H3         CAV          H4     107.646    1.50
+EB2         CAX         CAW         CAV     114.243    1.69
+EB2         CAX         CAW          H5     108.698    1.50
+EB2         CAX         CAW          H6     108.698    1.50
+EB2         CAV         CAW          H5     108.698    1.50
+EB2         CAV         CAW          H6     108.698    1.50
+EB2          H5         CAW          H6     107.646    1.50
+EB2         CAY         CAX         CAW     114.243    1.69
+EB2         CAY         CAX          H7     108.698    1.50
+EB2         CAY         CAX          H8     108.698    1.50
+EB2         CAW         CAX          H7     108.698    1.50
+EB2         CAW         CAX          H8     108.698    1.50
+EB2          H7         CAX          H8     107.646    1.50
+EB2         CAX         CAY         CAZ     115.138    2.03
+EB2         CAX         CAY          H9     108.698    1.50
+EB2         CAX         CAY         H10     108.698    1.50
+EB2         CAZ         CAY          H9     108.601    1.50
+EB2         CAZ         CAY         H10     108.601    1.50
+EB2          H9         CAY         H10     107.646    1.50
+EB2         CAY         CAZ         CAT     113.909    2.09
+EB2         CAY         CAZ         H11     108.650    1.50
+EB2         CAY         CAZ         H12     108.650    1.50
+EB2         CAT         CAZ         H11     108.489    1.50
+EB2         CAT         CAZ         H12     108.489    1.50
+EB2         H11         CAZ         H12     107.844    1.50
+EB2         CAZ         CAT         CAU     111.414    2.37
+EB2         CAZ         CAT         NAS     110.590    2.21
+EB2         CAZ         CAT         H13     107.815    1.50
+EB2         CAU         CAT         NAS     110.590    2.21
+EB2         CAU         CAT         H13     107.815    1.50
+EB2         NAS         CAT         H13     107.961    1.50
+EB2         CAT         NAS         SAP     122.139    2.10
+EB2         CAT         NAS         H14     116.930    2.40
+EB2         SAP         NAS         H14     111.936    3.00
+EB2         NAS         SAP         OAR     106.989    1.50
+EB2         NAS         SAP         OAQ     106.989    1.50
+EB2         NAS         SAP         CAC     106.584    1.50
+EB2         OAR         SAP         OAQ     118.871    1.50
+EB2         OAR         SAP         CAC     108.126    1.82
+EB2         OAQ         SAP         CAC     108.126    1.82
+EB2         SAP         CAC         CAD     122.308    1.50
+EB2         SAP         CAC         CAB     117.382    1.50
+EB2         CAD         CAC         CAB     120.309    1.50
+EB2         CAC         CAB         CAA     121.025    1.50
+EB2         CAC         CAB         H15     119.694    1.50
+EB2         CAA         CAB         H15     119.281    1.50
+EB2         CAB         CAA         CAF     118.316    1.50
+EB2         CAB         CAA         H16     120.549    1.50
+EB2         CAF         CAA         H16     121.134    1.50
+EB2         CAE         CAF         CAA     119.953    1.50
+EB2         CAE         CAF         NAK     109.964    2.05
+EB2         CAA         CAF         NAK     130.082    2.06
+EB2         CAD         CAE         CAF     122.335    1.50
+EB2         CAD         CAE         CAJ     122.365    1.50
+EB2         CAF         CAE         CAJ     115.300    1.52
+EB2         CAC         CAD         CAG     124.882    1.78
+EB2         CAC         CAD         CAE     118.062    1.50
+EB2         CAG         CAD         CAE     117.056    1.50
+EB2         CAD         CAG         CAH     120.214    1.50
+EB2         CAD         CAG         H17     119.782    1.50
+EB2         CAH         CAG         H17     120.004    1.50
+EB2         CAG         CAH         CAI     122.700    1.50
+EB2         CAG         CAH         H18     118.709    1.50
+EB2         CAI         CAH         H18     118.591    1.50
+EB2         CAH         CAI         CAJ     118.634    1.50
+EB2         CAH         CAI         H19     120.715    1.50
+EB2         CAJ         CAI         H19     120.651    1.50
+EB2         CAE         CAJ         CAI     119.030    1.50
+EB2         CAE         CAJ         CAL     108.487    1.50
+EB2         CAI         CAJ         CAL     132.483    2.15
+EB2         CAJ         CAL         NAK     105.816    1.50
+EB2         CAJ         CAL         OAO     129.591    1.50
+EB2         NAK         CAL         OAO     124.593    1.50
+EB2         CAF         NAK         CAL     108.306    1.71
+EB2         CAF         NAK         CAM     125.726    1.96
+EB2         CAL         NAK         CAM     123.170    2.36
+EB2         NAK         CAM         CAN     113.700    1.50
+EB2         NAK         CAM         H20     109.079    1.50
+EB2         NAK         CAM         H21     109.079    1.50
+EB2         CAN         CAM         H20     109.334    1.50
+EB2         CAN         CAM         H21     109.334    1.50
+EB2         H20         CAM         H21     107.982    1.50
+EB2         CAM         CAN         H22     109.478    1.50
+EB2         CAM         CAN         H23     109.478    1.50
+EB2         CAM         CAN         H24     109.478    1.50
+EB2         H22         CAN         H23     109.442    1.50
+EB2         H22         CAN         H24     109.442    1.50
+EB2         H23         CAN         H24     109.442    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EB2            sp3_sp3_46         CAT         CAU         CAV         CAW     180.000    10.0     3
+EB2            sp3_sp3_55         CAZ         CAT         CAU         CAV     180.000    10.0     3
+EB2              const_45         CAA         CAB         CAC         SAP     180.000    10.0     2
+EB2       const_sp2_sp2_4         SAP         CAC         CAD         CAG       0.000     5.0     2
+EB2              const_17         CAF         CAA         CAB         CAC       0.000    10.0     2
+EB2              const_13         CAB         CAA         CAF         CAE       0.000    10.0     2
+EB2       const_sp2_sp2_9         CAD         CAE         CAF         CAA       0.000     5.0     2
+EB2             sp2_sp2_6         CAE         CAF         NAK         CAM     180.000     5.0     2
+EB2       const_sp2_sp2_5         CAC         CAD         CAE         CAF       0.000     5.0     2
+EB2              const_37         CAD         CAE         CAJ         CAI       0.000    10.0     2
+EB2              const_23         CAC         CAD         CAG         CAH     180.000    10.0     2
+EB2              const_25         CAD         CAG         CAH         CAI       0.000    10.0     2
+EB2              const_29         CAG         CAH         CAI         CAJ       0.000    10.0     2
+EB2              const_33         CAH         CAI         CAJ         CAE       0.000    10.0     2
+EB2            sp3_sp3_28         CAU         CAV         CAW         CAX     180.000    10.0     3
+EB2             sp2_sp2_1         CAE         CAJ         CAL         OAO     180.000     5.0     2
+EB2             sp2_sp2_5         OAO         CAL         NAK         CAM       0.000     5.0     2
+EB2             sp2_sp3_8         CAF         NAK         CAM         CAN     -90.000    10.0     6
+EB2            sp3_sp3_76         NAK         CAM         CAN         H22     180.000    10.0     3
+EB2            sp3_sp3_10         CAV         CAW         CAX         CAY     180.000    10.0     3
+EB2             sp3_sp3_1         CAW         CAX         CAY         CAZ     180.000    10.0     3
+EB2            sp3_sp3_19         CAX         CAY         CAZ         CAT     180.000    10.0     3
+EB2            sp3_sp3_40         CAU         CAT         CAZ         CAY      60.000    10.0     3
+EB2            sp3_sp3_66         CAZ         CAT         NAS         SAP      60.000    10.0     3
+EB2            sp3_sp3_74         CAT         NAS         SAP         OAR     180.000    10.0     3
+EB2             sp2_sp3_3         CAD         CAC         SAP         NAS      30.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EB2    chir_1    CAT    NAS    CAZ    CAU    both
+EB2    chir_2    SAP    OAR    OAQ    NAS    both
+EB2    chir_3    NAS    SAP    CAT    H14    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EB2    plan-1         CAA   0.020
+EB2    plan-1         CAB   0.020
+EB2    plan-1         CAC   0.020
+EB2    plan-1         CAD   0.020
+EB2    plan-1         CAE   0.020
+EB2    plan-1         CAF   0.020
+EB2    plan-1         CAG   0.020
+EB2    plan-1         CAJ   0.020
+EB2    plan-1         H15   0.020
+EB2    plan-1         H16   0.020
+EB2    plan-1         NAK   0.020
+EB2    plan-1         SAP   0.020
+EB2    plan-2         CAC   0.020
+EB2    plan-2         CAD   0.020
+EB2    plan-2         CAE   0.020
+EB2    plan-2         CAF   0.020
+EB2    plan-2         CAG   0.020
+EB2    plan-2         CAH   0.020
+EB2    plan-2         CAI   0.020
+EB2    plan-2         CAJ   0.020
+EB2    plan-2         CAL   0.020
+EB2    plan-2         H17   0.020
+EB2    plan-2         H18   0.020
+EB2    plan-2         H19   0.020
+EB2    plan-3         CAJ   0.020
+EB2    plan-3         CAL   0.020
+EB2    plan-3         NAK   0.020
+EB2    plan-3         OAO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EB2           SMILES              ACDLabs 12.01                                                                                   C1CCCCCC1NS(=O)(c2c4c3c(cc2)N(C(c3ccc4)=O)CC)=O
+EB2            InChI                InChI  1.03 InChI=1S/C20H24N2O3S/c1-2-22-17-12-13-18(15-10-7-11-16(19(15)17)20(22)23)26(24,25)21-14-8-5-3-4-6-9-14/h7,10-14,21H,2-6,8-9H2,1H3
+EB2         InChIKey                InChI  1.03                                                                                                       TWESOBGJQLUFED-UHFFFAOYSA-N
+EB2 SMILES_CANONICAL               CACTVS 3.385                                                                                   CCN1C(=O)c2cccc3c(ccc1c23)[S](=O)(=O)NC4CCCCCC4
+EB2           SMILES               CACTVS 3.385                                                                                   CCN1C(=O)c2cccc3c(ccc1c23)[S](=O)(=O)NC4CCCCCC4
+EB2 SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                     CCN1c2ccc(c3c2c(ccc3)C1=O)S(=O)(=O)NC4CCCCCC4
+EB2           SMILES "OpenEye OEToolkits" 1.9.2                                                                                     CCN1c2ccc(c3c2c(ccc3)C1=O)S(=O)(=O)NC4CCCCCC4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EB2 acedrg               243         "dictionary generator"                  
+EB2 acedrg_database      11          "data source"                           
+EB2 rdkit                2017.03.2   "Chemoinformatics tool"
+EB2 refmac5              5.8.0238    "optimization tool"                     

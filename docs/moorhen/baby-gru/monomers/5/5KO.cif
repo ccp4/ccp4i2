@@ -1,0 +1,143 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+5KO     5KO      (3R)-3-hydroxybutanal     NON-POLYMER     14     6     .     
+#
+data_comp_5KO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+5KO     O01     O       O       0       -21.386     8.979       57.030      
+5KO     C02     C       C1      0       -21.226     9.936       56.337      
+5KO     C03     C       CH2     0       -21.095     9.926       54.852      
+5KO     C04     C       CH1     0       -22.430     9.854       54.125      
+5KO     O05     O       OH1     0       -23.237     10.972      54.509      
+5KO     C06     C       CH3     0       -23.182     8.570       54.389      
+5KO     H1      H       H       0       -21.178     10.774      56.767      
+5KO     H2      H       H       0       -20.550     9.155       54.585      
+5KO     H3      H       H       0       -20.625     10.739      54.567      
+5KO     H4      H       H       0       -22.267     9.927       53.154      
+5KO     H5      H       H       0       -22.895     11.690      54.214      
+5KO     H6      H       H       0       -22.578     7.811       54.298      
+5KO     H7      H       H       0       -23.911     8.479       53.749      
+5KO     H8      H       H       0       -23.547     8.583       55.292      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+5KO         C04         O05      SINGLE       n     1.430  0.0200     1.430  0.0200
+5KO         C04         C06      SINGLE       n     1.510  0.0200     1.510  0.0200
+5KO         C03         C04      SINGLE       n     1.520  0.0150     1.520  0.0150
+5KO         C02         C03      SINGLE       n     1.490  0.0115     1.490  0.0115
+5KO         O01         C02      DOUBLE       n     1.192  0.0200     1.192  0.0200
+5KO         C02          H1      SINGLE       n     1.082  0.0130     0.943  0.0105
+5KO         C03          H2      SINGLE       n     1.089  0.0100     0.981  0.0185
+5KO         C03          H3      SINGLE       n     1.089  0.0100     0.981  0.0185
+5KO         C04          H4      SINGLE       n     1.089  0.0100     0.988  0.0200
+5KO         O05          H5      SINGLE       n     0.970  0.0120     0.848  0.0200
+5KO         C06          H6      SINGLE       n     1.089  0.0100     0.974  0.0145
+5KO         C06          H7      SINGLE       n     1.089  0.0100     0.974  0.0145
+5KO         C06          H8      SINGLE       n     1.089  0.0100     0.974  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+5KO         C03         C02         O01     125.770    1.96
+5KO         C03         C02          H1     117.100    1.50
+5KO         O01         C02          H1     117.130    1.50
+5KO         C04         C03         C02     111.511    2.91
+5KO         C04         C03          H2     108.544    1.56
+5KO         C04         C03          H3     108.544    1.56
+5KO         C02         C03          H2     108.942    1.50
+5KO         C02         C03          H3     108.942    1.50
+5KO          H2         C03          H3     107.705    1.50
+5KO         O05         C04         C06     109.534    2.02
+5KO         O05         C04         C03     108.747    2.04
+5KO         O05         C04          H4     107.545    2.92
+5KO         C06         C04         C03     112.969    1.50
+5KO         C06         C04          H4     108.620    2.54
+5KO         C03         C04          H4     108.825    1.50
+5KO         C04         O05          H5     109.880    2.07
+5KO         C04         C06          H6     109.852    1.50
+5KO         C04         C06          H7     109.852    1.50
+5KO         C04         C06          H8     109.852    1.50
+5KO          H6         C06          H7     109.425    1.50
+5KO          H6         C06          H8     109.425    1.50
+5KO          H7         C06          H8     109.425    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+5KO             sp2_sp3_2         O01         C02         C03         C04     120.000    10.0     6
+5KO            sp3_sp3_13         C02         C03         C04         O05     180.000    10.0     3
+5KO             sp3_sp3_1         C06         C04         O05          H5     180.000    10.0     3
+5KO             sp3_sp3_4         O05         C04         C06          H6     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+5KO    chir_1    C04    O05    C03    C06    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+5KO    plan-1         C02   0.020
+5KO    plan-1         C03   0.020
+5KO    plan-1          H1   0.020
+5KO    plan-1         O01   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+5KO           SMILES              ACDLabs 12.01                                              O=CCC(C)O
+5KO            InChI                InChI  1.03 InChI=1S/C4H8O2/c1-4(6)2-3-5/h3-4,6H,2H2,1H3/t4-/m1/s1
+5KO         InChIKey                InChI  1.03                            HSJKGGMUJITCBW-SCSAIBSYSA-N
+5KO SMILES_CANONICAL               CACTVS 3.385                                         C[C@@H](O)CC=O
+5KO           SMILES               CACTVS 3.385                                           C[CH](O)CC=O
+5KO SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                          C[C@H](CC=O)O
+5KO           SMILES "OpenEye OEToolkits" 1.9.2                                              CC(CC=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+5KO acedrg               243         "dictionary generator"                  
+5KO acedrg_database      11          "data source"                           
+5KO rdkit                2017.03.2   "Chemoinformatics tool"
+5KO refmac5              5.8.0238    "optimization tool"                     

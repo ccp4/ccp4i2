@@ -1,0 +1,332 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OUY     OUY      "methyl 3-[5-azanyl-6-[[2,4-bis(fluoranyl)phenyl]methylcarbamoyl]-8-oxidanyl-7-oxidanylidene-1,8-naphthyridin-3-yl]propanoate"     NON-POLYMER     49     31     .     
+#
+data_comp_OUY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OUY     FAH     F       F       0       -37.492     37.819      -20.142     
+OUY     CAY     C       CR6     0       -38.643     37.799      -20.855     
+OUY     CAL     C       CR16    0       -39.705     38.572      -20.405     
+OUY     CAV     C       CR6     0       -40.862     38.532      -21.150     
+OUY     FAG     F       F       0       -41.917     39.277      -20.735     
+OUY     CAI     C       CR16    0       -40.997     37.775      -22.289     
+OUY     CAJ     C       CR16    0       -39.913     37.013      -22.709     
+OUY     CAZ     C       CR6     0       -38.710     37.014      -22.001     
+OUY     CAP     C       CH2     0       -37.543     36.177      -22.465     
+OUY     NAR     N       NH1     0       -37.351     34.980      -21.651     
+OUY     CAU     C       C       0       -38.205     33.949      -21.676     
+OUY     OAD     O       O       0       -39.146     33.882      -22.468     
+OUY     CBA     C       CR6     0       -38.011     32.871      -20.649     
+OUY     CBB     C       CR6     0       -37.868     33.235      -19.249     
+OUY     OAE     O       O       0       -37.887     34.424      -18.905     
+OUY     NBE     N       NR6     0       -37.695     32.259      -18.274     
+OUY     OAF     O       OH1     0       -37.552     32.635      -16.948     
+OUY     CAX     C       CR6     0       -37.991     31.503      -21.019     
+OUY     NAB     N       NH2     0       -38.132     31.132      -22.336     
+OUY     CBC     C       CR66    0       -37.813     30.500      -20.001     
+OUY     CAM     C       CR16    0       -37.772     29.124      -20.265     
+OUY     CBD     C       CR66    0       -37.665     30.906      -18.616     
+OUY     NAQ     N       NRD6    0       -37.494     30.014      -17.611     
+OUY     CAK     C       CR16    0       -37.463     28.709      -17.922     
+OUY     CAW     C       CR6     0       -37.598     28.217      -19.251     
+OUY     CAO     C       CH2     0       -37.554     26.730      -19.505     
+OUY     CAN     C       CH2     0       -38.936     26.099      -19.568     
+OUY     CAT     C       C       0       -38.922     24.628      -19.877     
+OUY     OAC     O       O       0       -37.935     23.978      -20.126     
+OUY     OAS     O       O2      0       -40.157     24.125      -19.839     
+OUY     CAA     C       CH3     0       -40.332     22.721      -20.159     
+OUY     H1      H       H       0       -39.634     39.098      -19.629     
+OUY     H2      H       H       0       -41.804     37.773      -22.771     
+OUY     H3      H       H       0       -39.995     36.490      -23.490     
+OUY     H4      H       H       0       -36.728     36.721      -22.430     
+OUY     H5      H       H       0       -37.686     35.915      -23.398     
+OUY     H6      H       H       0       -36.638     34.938      -21.144     
+OUY     H7      H       H       0       -36.720     32.579      -16.790     
+OUY     H8      H       H       0       -38.825     30.670      -22.590     
+OUY     H9      H       H       0       -37.530     31.358      -22.923     
+OUY     H10     H       H       0       -37.864     28.813      -21.146     
+OUY     H11     H       H       0       -37.344     28.085      -17.224     
+OUY     H12     H       H       0       -37.038     26.299      -18.791     
+OUY     H13     H       H       0       -37.089     26.565      -20.353     
+OUY     H14     H       H       0       -39.463     26.551      -20.253     
+OUY     H15     H       H       0       -39.385     26.228      -18.712     
+OUY     H16     H       H       0       -39.834     22.179      -19.526     
+OUY     H17     H       H       0       -40.009     22.550      -21.058     
+OUY     H18     H       H       0       -41.274     22.495      -20.107     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OUY         CAI         CAJ      DOUBLE       y     1.386  0.0101     1.386  0.0101
+OUY         CAJ         CAZ      SINGLE       y     1.391  0.0116     1.391  0.0116
+OUY         CAU         OAD      DOUBLE       n     1.230  0.0114     1.230  0.0114
+OUY         CAV         CAI      SINGLE       y     1.365  0.0159     1.365  0.0159
+OUY         CAX         NAB      SINGLE       n     1.370  0.0200     1.370  0.0200
+OUY         CAZ         CAP      SINGLE       n     1.508  0.0100     1.508  0.0100
+OUY         CAP         NAR      SINGLE       n     1.458  0.0100     1.458  0.0100
+OUY         CAY         CAZ      DOUBLE       y     1.385  0.0121     1.385  0.0121
+OUY         NAR         CAU      SINGLE       n     1.334  0.0100     1.334  0.0100
+OUY         CAU         CBA      SINGLE       n     1.498  0.0100     1.498  0.0100
+OUY         CAV         FAG      SINGLE       n     1.357  0.0100     1.357  0.0100
+OUY         CAL         CAV      DOUBLE       y     1.368  0.0158     1.368  0.0158
+OUY         CBA         CAX      DOUBLE       y     1.406  0.0154     1.406  0.0154
+OUY         CAX         CBC      SINGLE       y     1.417  0.0200     1.417  0.0200
+OUY         CBA         CBB      SINGLE       y     1.448  0.0113     1.448  0.0113
+OUY         CAY         CAL      SINGLE       y     1.380  0.0148     1.380  0.0148
+OUY         FAH         CAY      SINGLE       n     1.354  0.0100     1.354  0.0100
+OUY         CBC         CAM      SINGLE       y     1.398  0.0100     1.398  0.0100
+OUY         CAM         CAW      DOUBLE       y     1.369  0.0106     1.369  0.0106
+OUY         CAT         OAC      DOUBLE       n     1.203  0.0150     1.203  0.0150
+OUY         CBC         CBD      DOUBLE       y     1.423  0.0200     1.423  0.0200
+OUY         CAN         CAT      SINGLE       n     1.502  0.0100     1.502  0.0100
+OUY         CAT         OAS      SINGLE       n     1.328  0.0136     1.328  0.0136
+OUY         OAS         CAA      SINGLE       n     1.447  0.0130     1.447  0.0130
+OUY         CAO         CAN      SINGLE       n     1.519  0.0161     1.519  0.0161
+OUY         CAW         CAO      SINGLE       n     1.509  0.0100     1.509  0.0100
+OUY         CAK         CAW      SINGLE       y     1.419  0.0123     1.419  0.0123
+OUY         CBB         OAE      DOUBLE       n     1.235  0.0126     1.235  0.0126
+OUY         CBB         NBE      SINGLE       y     1.378  0.0174     1.378  0.0174
+OUY         NBE         CBD      SINGLE       y     1.380  0.0176     1.380  0.0176
+OUY         CBD         NAQ      SINGLE       y     1.349  0.0100     1.349  0.0100
+OUY         NBE         OAF      SINGLE       n     1.384  0.0100     1.384  0.0100
+OUY         NAQ         CAK      DOUBLE       y     1.335  0.0124     1.335  0.0124
+OUY         CAL          H1      SINGLE       n     1.082  0.0130     0.940  0.0146
+OUY         CAI          H2      SINGLE       n     1.082  0.0130     0.940  0.0141
+OUY         CAJ          H3      SINGLE       n     1.082  0.0130     0.943  0.0173
+OUY         CAP          H4      SINGLE       n     1.089  0.0100     0.980  0.0169
+OUY         CAP          H5      SINGLE       n     1.089  0.0100     0.980  0.0169
+OUY         NAR          H6      SINGLE       n     1.016  0.0100     0.875  0.0200
+OUY         OAF          H7      SINGLE       n     0.970  0.0120     0.849  0.0200
+OUY         NAB          H8      SINGLE       n     1.016  0.0100     0.871  0.0200
+OUY         NAB          H9      SINGLE       n     1.016  0.0100     0.871  0.0200
+OUY         CAM         H10      SINGLE       n     1.082  0.0130     0.939  0.0158
+OUY         CAK         H11      SINGLE       n     1.082  0.0130     0.944  0.0200
+OUY         CAO         H12      SINGLE       n     1.089  0.0100     0.981  0.0169
+OUY         CAO         H13      SINGLE       n     1.089  0.0100     0.981  0.0169
+OUY         CAN         H14      SINGLE       n     1.089  0.0100     0.975  0.0139
+OUY         CAN         H15      SINGLE       n     1.089  0.0100     0.975  0.0139
+OUY         CAA         H16      SINGLE       n     1.089  0.0100     0.970  0.0175
+OUY         CAA         H17      SINGLE       n     1.089  0.0100     0.970  0.0175
+OUY         CAA         H18      SINGLE       n     1.089  0.0100     0.970  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OUY         CAZ         CAY         CAL     123.148    1.50
+OUY         CAZ         CAY         FAH     118.686    1.50
+OUY         CAL         CAY         FAH     118.166    1.50
+OUY         CAV         CAL         CAY     116.717    1.50
+OUY         CAV         CAL          H1     121.784    1.50
+OUY         CAY         CAL          H1     121.500    1.50
+OUY         CAI         CAV         FAG     118.668    1.50
+OUY         CAI         CAV         CAL     123.195    1.50
+OUY         FAG         CAV         CAL     118.137    1.50
+OUY         CAJ         CAI         CAV     118.323    1.50
+OUY         CAJ         CAI          H2     120.909    1.50
+OUY         CAV         CAI          H2     120.768    1.50
+OUY         CAI         CAJ         CAZ     121.013    1.50
+OUY         CAI         CAJ          H3     119.272    1.50
+OUY         CAZ         CAJ          H3     119.714    1.50
+OUY         CAJ         CAZ         CAP     120.623    1.50
+OUY         CAJ         CAZ         CAY     117.603    1.50
+OUY         CAP         CAZ         CAY     121.774    1.50
+OUY         CAZ         CAP         NAR     112.746    1.93
+OUY         CAZ         CAP          H4     109.005    1.50
+OUY         CAZ         CAP          H5     109.005    1.50
+OUY         NAR         CAP          H4     109.133    1.50
+OUY         NAR         CAP          H5     109.133    1.50
+OUY          H4         CAP          H5     107.860    1.50
+OUY         CAP         NAR         CAU     121.850    1.50
+OUY         CAP         NAR          H6     118.637    1.50
+OUY         CAU         NAR          H6     119.513    1.50
+OUY         OAD         CAU         NAR     122.397    1.50
+OUY         OAD         CAU         CBA     120.879    1.50
+OUY         NAR         CAU         CBA     116.724    1.50
+OUY         CAU         CBA         CAX     121.561    2.04
+OUY         CAU         CBA         CBB     118.523    2.75
+OUY         CAX         CBA         CBB     119.916    1.80
+OUY         CBA         CBB         OAE     120.305    1.50
+OUY         CBA         CBB         NBE     120.929    1.50
+OUY         OAE         CBB         NBE     118.766    1.67
+OUY         CBB         NBE         CBD     120.789    2.19
+OUY         CBB         NBE         OAF     119.634    1.50
+OUY         CBD         NBE         OAF     119.577    1.50
+OUY         NBE         OAF          H7     105.130    3.00
+OUY         NAB         CAX         CBA     120.857    1.50
+OUY         NAB         CAX         CBC     120.013    1.88
+OUY         CBA         CAX         CBC     119.130    1.50
+OUY         CAX         NAB          H8     120.307    1.50
+OUY         CAX         NAB          H9     120.307    1.50
+OUY          H8         NAB          H9     119.386    2.24
+OUY         CAX         CBC         CAM     123.176    1.55
+OUY         CAX         CBC         CBD     119.202    1.50
+OUY         CAM         CBC         CBD     117.621    1.50
+OUY         CBC         CAM         CAW     120.986    1.50
+OUY         CBC         CAM         H10     119.632    1.50
+OUY         CAW         CAM         H10     119.382    1.50
+OUY         CBC         CBD         NBE     120.033    1.50
+OUY         CBC         CBD         NAQ     122.758    1.50
+OUY         NBE         CBD         NAQ     117.209    1.70
+OUY         CBD         NAQ         CAK     117.032    1.50
+OUY         CAW         CAK         NAQ     123.088    1.51
+OUY         CAW         CAK         H11     118.396    1.50
+OUY         NAQ         CAK         H11     118.515    1.50
+OUY         CAM         CAW         CAO     121.962    1.50
+OUY         CAM         CAW         CAK     118.514    2.01
+OUY         CAO         CAW         CAK     119.524    1.91
+OUY         CAN         CAO         CAW     113.063    1.84
+OUY         CAN         CAO         H12     108.882    1.50
+OUY         CAN         CAO         H13     108.882    1.50
+OUY         CAW         CAO         H12     108.906    1.50
+OUY         CAW         CAO         H13     108.906    1.50
+OUY         H12         CAO         H13     107.745    1.50
+OUY         CAT         CAN         CAO     113.176    1.59
+OUY         CAT         CAN         H14     108.334    1.67
+OUY         CAT         CAN         H15     108.334    1.67
+OUY         CAO         CAN         H14     109.117    1.50
+OUY         CAO         CAN         H15     109.117    1.50
+OUY         H14         CAN         H15     107.822    1.50
+OUY         OAC         CAT         CAN     125.216    1.50
+OUY         OAC         CAT         OAS     123.117    1.50
+OUY         CAN         CAT         OAS     111.666    1.92
+OUY         CAT         OAS         CAA     116.218    1.50
+OUY         OAS         CAA         H16     109.367    1.50
+OUY         OAS         CAA         H17     109.367    1.50
+OUY         OAS         CAA         H18     109.367    1.50
+OUY         H16         CAA         H17     109.532    1.53
+OUY         H16         CAA         H18     109.532    1.53
+OUY         H17         CAA         H18     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OUY            sp2_sp2_11         OAD         CAU         CBA         CAX       0.000     5.0     2
+OUY              const_60         CAU         CBA         CBB         OAE       0.000    10.0     2
+OUY              const_40         NAB         CAX         CBA         CAU       0.000    10.0     2
+OUY              const_56         OAE         CBB         NBE         OAF       0.000    10.0     2
+OUY              const_50         CBC         CBD         NBE         OAF     180.000    10.0     2
+OUY             sp2_sp2_1         CBA         CAX         NAB          H8     180.000     5.0     2
+OUY              const_44         NAB         CAX         CBC         CAM       0.000    10.0     2
+OUY              const_22         CAW         CAM         CBC         CAX     180.000    10.0     2
+OUY              const_45         CAX         CBC         CBD         NBE       0.000    10.0     2
+OUY              const_62         CAV         CAL         CAY         FAH     180.000    10.0     2
+OUY       const_sp2_sp2_4         FAH         CAY         CAZ         CAP       0.000     5.0     2
+OUY              const_26         CBC         CAM         CAW         CAO     180.000    10.0     2
+OUY              const_35         CBC         CBD         NAQ         CAK       0.000    10.0     2
+OUY              const_33         CAW         CAK         NAQ         CBD       0.000    10.0     2
+OUY              const_30         NAQ         CAK         CAW         CAO     180.000    10.0     2
+OUY            sp2_sp3_20         CAM         CAW         CAO         CAN     -90.000    10.0     6
+OUY             sp3_sp3_5         CAT         CAN         CAO         CAW     180.000    10.0     3
+OUY            sp2_sp3_14         OAC         CAT         CAN         CAO     120.000    10.0     6
+OUY            sp2_sp2_13         OAC         CAT         OAS         CAA     180.000     5.0     2
+OUY             sp3_sp3_2         H16         CAA         OAS         CAT     -60.000    10.0     3
+OUY              const_18         CAY         CAL         CAV         FAG     180.000    10.0     2
+OUY              const_14         CAJ         CAI         CAV         FAG     180.000    10.0     2
+OUY       const_sp2_sp2_9         CAV         CAI         CAJ         CAZ       0.000     5.0     2
+OUY       const_sp2_sp2_6         CAI         CAJ         CAZ         CAP     180.000     5.0     2
+OUY             sp2_sp3_2         CAJ         CAZ         CAP         NAR     -90.000    10.0     6
+OUY             sp2_sp3_8         CAU         NAR         CAP         CAZ     120.000    10.0     6
+OUY             sp2_sp2_7         OAD         CAU         NAR         CAP       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OUY    plan-1         CAK   0.020
+OUY    plan-1         CAM   0.020
+OUY    plan-1         CAO   0.020
+OUY    plan-1         CAU   0.020
+OUY    plan-1         CAW   0.020
+OUY    plan-1         CAX   0.020
+OUY    plan-1         CBA   0.020
+OUY    plan-1         CBB   0.020
+OUY    plan-1         CBC   0.020
+OUY    plan-1         CBD   0.020
+OUY    plan-1         H10   0.020
+OUY    plan-1         H11   0.020
+OUY    plan-1         NAB   0.020
+OUY    plan-1         NAQ   0.020
+OUY    plan-1         NBE   0.020
+OUY    plan-1         OAE   0.020
+OUY    plan-1         OAF   0.020
+OUY    plan-2         CAI   0.020
+OUY    plan-2         CAJ   0.020
+OUY    plan-2         CAL   0.020
+OUY    plan-2         CAP   0.020
+OUY    plan-2         CAV   0.020
+OUY    plan-2         CAY   0.020
+OUY    plan-2         CAZ   0.020
+OUY    plan-2         FAG   0.020
+OUY    plan-2         FAH   0.020
+OUY    plan-2          H1   0.020
+OUY    plan-2          H2   0.020
+OUY    plan-2          H3   0.020
+OUY    plan-3         CAP   0.020
+OUY    plan-3         CAU   0.020
+OUY    plan-3          H6   0.020
+OUY    plan-3         NAR   0.020
+OUY    plan-4         CAU   0.020
+OUY    plan-4         CBA   0.020
+OUY    plan-4         NAR   0.020
+OUY    plan-4         OAD   0.020
+OUY    plan-5         CAX   0.020
+OUY    plan-5          H8   0.020
+OUY    plan-5          H9   0.020
+OUY    plan-5         NAB   0.020
+OUY    plan-6         CAN   0.020
+OUY    plan-6         CAT   0.020
+OUY    plan-6         OAC   0.020
+OUY    plan-6         OAS   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OUY            InChI                InChI  1.03 InChI=1S/C20H18F2N4O5/c1-31-15(27)5-2-10-6-13-17(23)16(20(29)26(30)18(13)24-8-10)19(28)25-9-11-3-4-12(21)7-14(11)22/h3-4,6-8,30H,2,5,9,23H2,1H3,(H,25,28)
+OUY         InChIKey                InChI  1.03                                                                                                                               JVWFVALMCGSXOC-UHFFFAOYSA-N
+OUY SMILES_CANONICAL               CACTVS 3.385                                                                                                   COC(=O)CCc1cnc2N(O)C(=O)C(=C(N)c2c1)C(=O)NCc3ccc(F)cc3F
+OUY           SMILES               CACTVS 3.385                                                                                                   COC(=O)CCc1cnc2N(O)C(=O)C(=C(N)c2c1)C(=O)NCc3ccc(F)cc3F
+OUY SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                   COC(=O)CCc1cc2c(nc1)N(C(=O)C(=C2N)C(=O)NCc3ccc(cc3F)F)O
+OUY           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                   COC(=O)CCc1cc2c(nc1)N(C(=O)C(=C2N)C(=O)NCc3ccc(cc3F)F)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OUY acedrg               243         "dictionary generator"                  
+OUY acedrg_database      11          "data source"                           
+OUY rdkit                2017.03.2   "Chemoinformatics tool"
+OUY refmac5              5.8.0238    "optimization tool"                     

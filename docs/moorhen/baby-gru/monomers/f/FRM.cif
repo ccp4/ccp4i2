@@ -1,0 +1,356 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FRM     FRM      2-{3-[4-(4-FLUOROPHENYL)-3,6-DIHYDRO-1(2H)-PYRIDINYL]PROPYL}-8-METHYL-4(3H)-QUINAZOLINONE     NON-POLYMER     52     28     .     
+#
+data_comp_FRM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FRM     C1      C       CR16    0       7.780       -6.152      31.836      
+FRM     C2      C       CR6     0       8.107       -4.956      32.431      
+FRM     C3      C       CR66    0       7.290       -4.506      33.517      
+FRM     C4      C       CR66    0       6.181       -5.297      33.940      
+FRM     C5      C       CR16    0       5.895       -6.524      33.282      
+FRM     C6      C       CR16    0       6.683       -6.939      32.249      
+FRM     N10     N       NRD6    0       7.587       -3.298      34.152      
+FRM     C11     C       CR6     0       6.848       -2.892      35.131      
+FRM     N12     N       NR6     0       5.754       -3.604      35.600      
+FRM     C13     C       CR6     0       5.366       -4.810      35.051      
+FRM     O14     O       O       0       4.380       -5.406      35.506      
+FRM     C17     C       CH2     0       7.189       -1.591      35.795      
+FRM     C20     C       CH2     0       6.395       -0.386      35.289      
+FRM     C23     C       CH2     0       6.538       -0.136      33.787      
+FRM     N26     N       NT      0       7.935       -0.159      33.286      
+FRM     C29     C       CH2     0       8.025       -0.427      31.847      
+FRM     C30     C       CR16    0       7.672       0.760       31.006      
+FRM     C31     C       CR6     0       7.812       2.022       31.466      
+FRM     C32     C       CH2     0       8.233       2.278       32.878      
+FRM     C33     C       CH2     0       8.690       1.051       33.652      
+FRM     C40     C       CR6     0       7.569       3.202       30.587      
+FRM     C42     C       CR16    0       8.117       3.265       29.301      
+FRM     C43     C       CR16    0       7.894       4.357       28.484      
+FRM     C44     C       CR6     0       7.123       5.385       28.962      
+FRM     C45     C       CR16    0       6.565       5.374       30.214      
+FRM     C46     C       CR16    0       6.790       4.278       31.027      
+FRM     C7      C       CH3     0       9.289       -4.159      31.949      
+FRM     F1      F       F       0       6.903       6.462       28.160      
+FRM     H1      H       H       0       8.314       -6.456      31.119      
+FRM     H5      H       H       0       5.168       -7.049      33.554      
+FRM     H6      H       H       0       6.495       -7.757      31.809      
+FRM     H12     H       H       0       5.286       -3.272      36.276      
+FRM     H171    H       H       0       8.144       -1.411      35.675      
+FRM     H172    H       H       0       7.027       -1.681      36.757      
+FRM     H201    H       H       0       6.695       0.417       35.778      
+FRM     H202    H       H       0       5.442       -0.527      35.499      
+FRM     H231    H       H       0       6.140       0.728       33.572      
+FRM     H232    H       H       0       6.023       -0.815      33.310      
+FRM     H291    H       H       0       8.943       -0.699      31.629      
+FRM     H292    H       H       0       7.432       -1.172      31.608      
+FRM     H30     H       H       0       7.336       0.625       30.126      
+FRM     H321    H       H       0       7.499       2.687       33.355      
+FRM     H322    H       H       0       8.949       2.926       32.878      
+FRM     H331    H       H       0       9.636       0.897       33.475      
+FRM     H332    H       H       0       8.591       1.218       34.607      
+FRM     H42     H       H       0       8.643       2.554       28.986      
+FRM     H43     H       H       0       8.264       4.396       27.619      
+FRM     H45     H       H       0       6.040       6.095       30.513      
+FRM     H46     H       H       0       6.413       4.256       31.886      
+FRM     H71     H       H       0       9.235       -3.243      32.264      
+FRM     H72     H       H       0       9.304       -4.157      30.976      
+FRM     H73     H       H       0       10.111      -4.562      32.278      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FRM          C1          C2      DOUBLE       y     1.371  0.0100     1.371  0.0100
+FRM          C1          C6      SINGLE       y     1.408  0.0100     1.408  0.0100
+FRM          C2          C3      SINGLE       y     1.423  0.0100     1.423  0.0100
+FRM          C2          C7      SINGLE       n     1.502  0.0100     1.502  0.0100
+FRM          C3          C4      DOUBLE       y     1.416  0.0163     1.416  0.0163
+FRM          C3         N10      SINGLE       y     1.392  0.0100     1.392  0.0100
+FRM          C4          C5      SINGLE       y     1.418  0.0111     1.418  0.0111
+FRM          C4         C13      SINGLE       y     1.460  0.0100     1.460  0.0100
+FRM          C5          C6      DOUBLE       y     1.361  0.0115     1.361  0.0115
+FRM         N10         C11      DOUBLE       y     1.286  0.0100     1.286  0.0100
+FRM         C11         N12      SINGLE       y     1.371  0.0161     1.371  0.0161
+FRM         C11         C17      SINGLE       n     1.499  0.0108     1.499  0.0108
+FRM         N12         C13      SINGLE       y     1.376  0.0104     1.376  0.0104
+FRM         C13         O14      DOUBLE       n     1.238  0.0100     1.238  0.0100
+FRM         C17         C20      SINGLE       n     1.525  0.0127     1.525  0.0127
+FRM         C20         C23      SINGLE       n     1.525  0.0123     1.525  0.0123
+FRM         C23         N26      SINGLE       n     1.467  0.0160     1.467  0.0160
+FRM         N26         C29      SINGLE       n     1.462  0.0100     1.462  0.0100
+FRM         N26         C33      SINGLE       n     1.461  0.0125     1.461  0.0125
+FRM         C29         C30      SINGLE       n     1.496  0.0100     1.496  0.0100
+FRM         C30         C31      DOUBLE       n     1.344  0.0200     1.344  0.0200
+FRM         C31         C32      SINGLE       n     1.483  0.0200     1.483  0.0200
+FRM         C31         C40      SINGLE       n     1.490  0.0100     1.490  0.0100
+FRM         C32         C33      SINGLE       n     1.515  0.0111     1.515  0.0111
+FRM         C40         C42      DOUBLE       y     1.394  0.0100     1.394  0.0100
+FRM         C40         C46      SINGLE       y     1.394  0.0100     1.394  0.0100
+FRM         C42         C43      SINGLE       y     1.379  0.0100     1.379  0.0100
+FRM         C43         C44      DOUBLE       y     1.368  0.0100     1.368  0.0100
+FRM         C44         C45      SINGLE       y     1.368  0.0100     1.368  0.0100
+FRM         C44          F1      SINGLE       n     1.361  0.0100     1.361  0.0100
+FRM         C45         C46      DOUBLE       y     1.379  0.0100     1.379  0.0100
+FRM          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0200
+FRM          C5          H5      SINGLE       n     1.082  0.0130     0.937  0.0161
+FRM          C6          H6      SINGLE       n     1.082  0.0130     0.948  0.0200
+FRM         N12         H12      SINGLE       n     1.016  0.0100     0.886  0.0200
+FRM         C17        H171      SINGLE       n     1.089  0.0100     0.979  0.0114
+FRM         C17        H172      SINGLE       n     1.089  0.0100     0.979  0.0114
+FRM         C20        H201      SINGLE       n     1.089  0.0100     0.987  0.0100
+FRM         C20        H202      SINGLE       n     1.089  0.0100     0.987  0.0100
+FRM         C23        H231      SINGLE       n     1.089  0.0100     0.977  0.0152
+FRM         C23        H232      SINGLE       n     1.089  0.0100     0.977  0.0152
+FRM         C29        H291      SINGLE       n     1.089  0.0100     0.982  0.0184
+FRM         C29        H292      SINGLE       n     1.089  0.0100     0.982  0.0184
+FRM         C30         H30      SINGLE       n     1.082  0.0130     0.952  0.0109
+FRM         C32        H321      SINGLE       n     1.089  0.0100     0.966  0.0200
+FRM         C32        H322      SINGLE       n     1.089  0.0100     0.966  0.0200
+FRM         C33        H331      SINGLE       n     1.089  0.0100     0.975  0.0134
+FRM         C33        H332      SINGLE       n     1.089  0.0100     0.975  0.0134
+FRM         C42         H42      SINGLE       n     1.082  0.0130     0.939  0.0105
+FRM         C43         H43      SINGLE       n     1.082  0.0130     0.941  0.0154
+FRM         C45         H45      SINGLE       n     1.082  0.0130     0.941  0.0154
+FRM         C46         H46      SINGLE       n     1.082  0.0130     0.939  0.0105
+FRM          C7         H71      SINGLE       n     1.089  0.0100     0.973  0.0200
+FRM          C7         H72      SINGLE       n     1.089  0.0100     0.973  0.0200
+FRM          C7         H73      SINGLE       n     1.089  0.0100     0.973  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FRM          C2          C1          C6     122.591    1.50
+FRM          C2          C1          H1     118.440    1.50
+FRM          C6          C1          H1     118.969    1.50
+FRM          C1          C2          C3     117.989    1.50
+FRM          C1          C2          C7     121.895    1.50
+FRM          C3          C2          C7     120.116    1.50
+FRM          C2          C3          C4     119.684    1.50
+FRM          C2          C3         N10     117.995    1.50
+FRM          C4          C3         N10     122.321    1.50
+FRM          C3          C4          C5     119.490    1.50
+FRM          C3          C4         C13     119.881    1.50
+FRM          C5          C4         C13     120.629    1.50
+FRM          C4          C5          C6     120.059    1.50
+FRM          C4          C5          H5     120.157    1.50
+FRM          C6          C5          H5     119.784    1.50
+FRM          C1          C6          C5     120.187    1.50
+FRM          C1          C6          H6     119.932    1.50
+FRM          C5          C6          H6     119.881    1.50
+FRM          C3         N10         C11     118.824    1.50
+FRM         N10         C11         N12     121.066    2.80
+FRM         N10         C11         C17     119.284    2.08
+FRM         N12         C11         C17     119.650    2.34
+FRM         C11         N12         C13     121.353    2.37
+FRM         C11         N12         H12     119.505    2.18
+FRM         C13         N12         H12     119.142    1.50
+FRM          C4         C13         N12     116.555    1.50
+FRM          C4         C13         O14     123.731    1.50
+FRM         N12         C13         O14     119.714    1.50
+FRM         C11         C17         C20     114.048    1.78
+FRM         C11         C17        H171     108.884    1.50
+FRM         C11         C17        H172     108.884    1.50
+FRM         C20         C17        H171     108.612    1.50
+FRM         C20         C17        H172     108.612    1.50
+FRM        H171         C17        H172     107.735    1.50
+FRM         C17         C20         C23     112.509    1.50
+FRM         C17         C20        H201     108.750    1.50
+FRM         C17         C20        H202     108.750    1.50
+FRM         C23         C20        H201     109.061    1.50
+FRM         C23         C20        H202     109.061    1.50
+FRM        H201         C20        H202     107.884    1.50
+FRM         C20         C23         N26     113.885    1.66
+FRM         C20         C23        H231     109.398    1.50
+FRM         C20         C23        H232     109.398    1.50
+FRM         N26         C23        H231     108.728    1.50
+FRM         N26         C23        H232     108.728    1.50
+FRM        H231         C23        H232     107.831    1.50
+FRM         C23         N26         C29     110.664    1.80
+FRM         C23         N26         C33     110.653    1.50
+FRM         C29         N26         C33     110.232    1.94
+FRM         N26         C29         C30     112.324    2.63
+FRM         N26         C29        H291     109.384    1.50
+FRM         N26         C29        H292     109.384    1.50
+FRM         C30         C29        H291     108.871    1.50
+FRM         C30         C29        H292     108.871    1.50
+FRM        H291         C29        H292     107.855    1.50
+FRM         C29         C30         C31     122.098    3.00
+FRM         C29         C30         H30     119.222    1.50
+FRM         C31         C30         H30     118.680    1.50
+FRM         C30         C31         C32     120.691    1.50
+FRM         C30         C31         C40     121.412    1.50
+FRM         C32         C31         C40     117.897    1.50
+FRM         C31         C32         C33     112.021    2.38
+FRM         C31         C32        H321     109.659    1.99
+FRM         C31         C32        H322     109.659    1.99
+FRM         C33         C32        H321     109.107    1.76
+FRM         C33         C32        H322     109.107    1.76
+FRM        H321         C32        H322     107.737    3.00
+FRM         N26         C33         C32     110.158    1.50
+FRM         N26         C33        H331     109.353    1.50
+FRM         N26         C33        H332     109.353    1.50
+FRM         C32         C33        H331     109.570    1.50
+FRM         C32         C33        H332     109.570    1.50
+FRM        H331         C33        H332     108.159    1.50
+FRM         C31         C40         C42     120.883    1.50
+FRM         C31         C40         C46     120.883    1.50
+FRM         C42         C40         C46     118.235    1.50
+FRM         C40         C42         C43     120.823    1.50
+FRM         C40         C42         H42     119.647    1.50
+FRM         C43         C42         H42     119.530    1.50
+FRM         C42         C43         C44     118.480    1.50
+FRM         C42         C43         H43     120.786    1.50
+FRM         C44         C43         H43     120.734    1.50
+FRM         C43         C44         C45     123.160    1.50
+FRM         C43         C44          F1     118.420    1.50
+FRM         C45         C44          F1     118.420    1.50
+FRM         C44         C45         C46     118.480    1.50
+FRM         C44         C45         H45     120.734    1.50
+FRM         C46         C45         H45     120.786    1.50
+FRM         C40         C46         C45     120.823    1.50
+FRM         C40         C46         H46     119.647    1.50
+FRM         C45         C46         H46     119.530    1.50
+FRM          C2          C7         H71     109.665    1.50
+FRM          C2          C7         H72     109.665    1.50
+FRM          C2          C7         H73     109.665    1.50
+FRM         H71          C7         H72     109.180    1.50
+FRM         H71          C7         H73     109.180    1.50
+FRM         H72          C7         H73     109.180    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FRM              const_20          C6          C1          C2          C7     180.000    10.0     2
+FRM              const_55          C2          C1          C6          C5       0.000    10.0     2
+FRM            sp3_sp3_16         C11         C17         C20         C23     180.000    10.0     3
+FRM            sp3_sp3_25         C17         C20         C23         N26     180.000    10.0     3
+FRM            sp3_sp3_34         C20         C23         N26         C29     180.000    10.0     3
+FRM             sp3_sp3_2         C30         C29         N26         C23     180.000    10.0     3
+FRM            sp3_sp3_41         C32         C33         N26         C23     -60.000    10.0     3
+FRM             sp2_sp3_1         C31         C30         C29         N26       0.000    10.0     6
+FRM             sp2_sp2_1         C29         C30         C31         C32       0.000     5.0     2
+FRM             sp2_sp3_7         C30         C31         C32         C33       0.000    10.0     6
+FRM             sp2_sp2_7         C30         C31         C40         C42       0.000     5.0     2
+FRM             sp3_sp3_7         C31         C32         C33         N26      60.000    10.0     3
+FRM              const_25          C7          C2          C3          C4     180.000    10.0     2
+FRM            sp2_sp3_13          C1          C2          C7         H71     150.000    10.0     6
+FRM              const_37         C31         C40         C42         C43     180.000    10.0     2
+FRM              const_63         C31         C40         C46         C45     180.000    10.0     2
+FRM              const_39         C40         C42         C43         C44       0.000    10.0     2
+FRM              const_44         C42         C43         C44          F1     180.000    10.0     2
+FRM              const_49          F1         C44         C45         C46     180.000    10.0     2
+FRM              const_51         C44         C45         C46         C40       0.000    10.0     2
+FRM       const_sp2_sp2_1          C2          C3          C4          C5       0.000     5.0     2
+FRM              const_60          C2          C3         N10         C11     180.000    10.0     2
+FRM              const_27          C3          C4          C5          C6       0.000    10.0     2
+FRM       const_sp2_sp2_7         O14         C13          C4          C3     180.000     5.0     2
+FRM              const_31          C4          C5          C6          C1       0.000    10.0     2
+FRM              const_18         C17         C11         N10          C3     180.000    10.0     2
+FRM            sp2_sp3_20         N10         C11         C17         C20     -90.000    10.0     6
+FRM              const_15         C17         C11         N12         C13     180.000    10.0     2
+FRM              const_11         O14         C13         N12         C11     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FRM    chir_1    N26    C29    C33    C23    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FRM    plan-1          C1   0.020
+FRM    plan-1         C11   0.020
+FRM    plan-1         C13   0.020
+FRM    plan-1         C17   0.020
+FRM    plan-1          C2   0.020
+FRM    plan-1          C3   0.020
+FRM    plan-1          C4   0.020
+FRM    plan-1          C5   0.020
+FRM    plan-1          C6   0.020
+FRM    plan-1          C7   0.020
+FRM    plan-1          H1   0.020
+FRM    plan-1         H12   0.020
+FRM    plan-1          H5   0.020
+FRM    plan-1          H6   0.020
+FRM    plan-1         N10   0.020
+FRM    plan-1         N12   0.020
+FRM    plan-1         O14   0.020
+FRM    plan-2         C31   0.020
+FRM    plan-2         C40   0.020
+FRM    plan-2         C42   0.020
+FRM    plan-2         C43   0.020
+FRM    plan-2         C44   0.020
+FRM    plan-2         C45   0.020
+FRM    plan-2         C46   0.020
+FRM    plan-2          F1   0.020
+FRM    plan-2         H42   0.020
+FRM    plan-2         H43   0.020
+FRM    plan-2         H45   0.020
+FRM    plan-2         H46   0.020
+FRM    plan-3         C29   0.020
+FRM    plan-3         C30   0.020
+FRM    plan-3         C31   0.020
+FRM    plan-3         H30   0.020
+FRM    plan-4         C30   0.020
+FRM    plan-4         C31   0.020
+FRM    plan-4         C32   0.020
+FRM    plan-4         C40   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FRM           SMILES              ACDLabs 10.04                                                                                                       Fc4ccc(C3=CCN(CCCC1=Nc2c(C(=O)N1)cccc2C)CC3)cc4
+FRM SMILES_CANONICAL               CACTVS 3.341                                                                                                       Cc1cccc2C(=O)NC(=Nc12)CCCN3CCC(=CC3)c4ccc(F)cc4
+FRM           SMILES               CACTVS 3.341                                                                                                       Cc1cccc2C(=O)NC(=Nc12)CCCN3CCC(=CC3)c4ccc(F)cc4
+FRM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                     Cc1cccc2c1N=C(NC2=O)CCC[N@@]3CCC(=CC3)c4ccc(cc4)F
+FRM           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                         Cc1cccc2c1N=C(NC2=O)CCCN3CCC(=CC3)c4ccc(cc4)F
+FRM            InChI                InChI  1.03 InChI=1S/C23H24FN3O/c1-16-4-2-5-20-22(16)25-21(26-23(20)28)6-3-13-27-14-11-18(12-15-27)17-7-9-19(24)10-8-17/h2,4-5,7-11H,3,6,12-15H2,1H3,(H,25,26,28)
+FRM         InChIKey                InChI  1.03                                                                                                                           LOFDUAJQRUYHBR-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FRM acedrg               243         "dictionary generator"                  
+FRM acedrg_database      11          "data source"                           
+FRM rdkit                2017.03.2   "Chemoinformatics tool"
+FRM refmac5              5.8.0238    "optimization tool"                     

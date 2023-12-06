@@ -1,0 +1,168 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4FG     4FG      6-aminopyridine-3-carboxamide     NON-POLYMER     17     10     .     
+#
+data_comp_4FG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4FG     C2      C       CR16    0       -21.204     40.863      -8.421      
+4FG     C3      C       CR16    0       -20.174     40.548      -9.281      
+4FG     C5      C       CR16    0       -19.681     42.116      -7.093      
+4FG     C1      C       CR6     0       -20.976     41.660      -7.307      
+4FG     C4      C       CR6     0       -18.885     41.050      -9.002      
+4FG     C       C       C       0       -22.086     42.007      -6.363      
+4FG     N2      N       NRD6    0       -18.654     41.833      -7.905      
+4FG     N1      N       NH2     0       -17.833     40.779      -9.802      
+4FG     N       N       NH2     0       -22.252     43.278      -6.020      
+4FG     O       O       O       0       -22.819     41.106      -5.925      
+4FG     H1      H       H       0       -22.068     40.535      -8.595      
+4FG     H2      H       H       0       -20.320     40.006      -10.045     
+4FG     H3      H       H       0       -19.512     42.653      -6.346      
+4FG     H4      H       H       0       -17.078     41.216      -9.699      
+4FG     H5      H       H       0       -17.906     40.166      -10.426     
+4FG     H6      H       H       0       -22.898     43.504      -5.449      
+4FG     H7      H       H       0       -21.731     43.920      -6.356      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4FG          C4          N1      SINGLE       n     1.345  0.0200     1.345  0.0200
+4FG          C3          C4      SINGLE       y     1.399  0.0200     1.399  0.0200
+4FG          C2          C3      DOUBLE       y     1.375  0.0100     1.375  0.0100
+4FG          C4          N2      DOUBLE       y     1.350  0.0190     1.350  0.0190
+4FG          C2          C1      SINGLE       y     1.385  0.0100     1.385  0.0100
+4FG          C5          N2      SINGLE       y     1.335  0.0100     1.335  0.0100
+4FG          C5          C1      DOUBLE       y     1.386  0.0100     1.386  0.0100
+4FG          C1           C      SINGLE       n     1.497  0.0100     1.497  0.0100
+4FG           C           O      DOUBLE       n     1.241  0.0105     1.241  0.0105
+4FG           C           N      SINGLE       n     1.326  0.0100     1.326  0.0100
+4FG          C2          H1      SINGLE       n     1.082  0.0130     0.941  0.0168
+4FG          C3          H2      SINGLE       n     1.082  0.0130     0.948  0.0187
+4FG          C5          H3      SINGLE       n     1.082  0.0130     0.935  0.0100
+4FG          N1          H4      SINGLE       n     1.016  0.0100     0.877  0.0200
+4FG          N1          H5      SINGLE       n     1.016  0.0100     0.877  0.0200
+4FG           N          H6      SINGLE       n     1.016  0.0100     0.891  0.0200
+4FG           N          H7      SINGLE       n     1.016  0.0100     0.891  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4FG          C3          C2          C1     120.846    1.50
+4FG          C3          C2          H1     119.340    1.50
+4FG          C1          C2          H1     119.815    1.50
+4FG          C4          C3          C2     118.800    1.50
+4FG          C4          C3          H2     120.053    1.50
+4FG          C2          C3          H2     121.147    1.50
+4FG          N2          C5          C1     123.175    1.50
+4FG          N2          C5          H3     118.009    1.50
+4FG          C1          C5          H3     118.815    1.50
+4FG          C2          C1          C5     118.012    1.50
+4FG          C2          C1           C     121.306    2.50
+4FG          C5          C1           C     120.682    2.45
+4FG          N1          C4          C3     121.599    1.50
+4FG          N1          C4          N2     117.088    1.95
+4FG          C3          C4          N2     121.313    1.50
+4FG          C1           C           O     119.730    1.50
+4FG          C1           C           N     118.032    1.50
+4FG           O           C           N     122.238    1.50
+4FG          C4          N2          C5     117.854    1.50
+4FG          C4          N1          H4     119.818    1.59
+4FG          C4          N1          H5     119.818    1.59
+4FG          H4          N1          H5     120.363    1.85
+4FG           C           N          H6     120.236    2.75
+4FG           C           N          H7     120.236    2.75
+4FG          H6           N          H7     119.529    2.83
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4FG       const_sp2_sp2_1          C1          C2          C3          C4       0.000     5.0     2
+4FG              const_19           C          C1          C2          C3     180.000    10.0     2
+4FG       const_sp2_sp2_6          C2          C3          C4          N1     180.000     5.0     2
+4FG              const_15           C          C1          C5          N2     180.000    10.0     2
+4FG              const_11          C1          C5          N2          C4       0.000    10.0     2
+4FG             sp2_sp2_7           O           C          C1          C2       0.000     5.0     2
+4FG              const_10          N1          C4          N2          C5     180.000    10.0     2
+4FG             sp2_sp2_1          C3          C4          N1          H4     180.000     5.0     2
+4FG            sp2_sp2_11           O           C           N          H6       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4FG    plan-1           C   0.020
+4FG    plan-1          C1   0.020
+4FG    plan-1          C2   0.020
+4FG    plan-1          C3   0.020
+4FG    plan-1          C4   0.020
+4FG    plan-1          C5   0.020
+4FG    plan-1          H1   0.020
+4FG    plan-1          H2   0.020
+4FG    plan-1          H3   0.020
+4FG    plan-1          N1   0.020
+4FG    plan-1          N2   0.020
+4FG    plan-2           C   0.020
+4FG    plan-2          C1   0.020
+4FG    plan-2           N   0.020
+4FG    plan-2           O   0.020
+4FG    plan-3          C4   0.020
+4FG    plan-3          H4   0.020
+4FG    plan-3          H5   0.020
+4FG    plan-3          N1   0.020
+4FG    plan-4           C   0.020
+4FG    plan-4          H6   0.020
+4FG    plan-4          H7   0.020
+4FG    plan-4           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4FG           SMILES              ACDLabs 12.01                                              c1c(cnc(c1)N)C(=O)N
+4FG            InChI                InChI  1.03 InChI=1S/C6H7N3O/c7-5-2-1-4(3-9-5)6(8)10/h1-3H,(H2,7,9)(H2,8,10)
+4FG         InChIKey                InChI  1.03                                      ZLWYEPMDOUQDBW-UHFFFAOYSA-N
+4FG SMILES_CANONICAL               CACTVS 3.385                                                NC(=O)c1ccc(N)nc1
+4FG           SMILES               CACTVS 3.385                                                NC(=O)c1ccc(N)nc1
+4FG SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                c1cc(ncc1C(=O)N)N
+4FG           SMILES "OpenEye OEToolkits" 1.9.2                                                c1cc(ncc1C(=O)N)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4FG acedrg               243         "dictionary generator"                  
+4FG acedrg_database      11          "data source"                           
+4FG rdkit                2017.03.2   "Chemoinformatics tool"
+4FG refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,347 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AUP     AUP      2-(2-PHENYL-3-PYRIDIN-2-YL-4,5,6,7-TETRAHYDRO-2H-ISOPHOSPHINDOL-1-YL)PYRIDINE     NON-POLYMER     48     27     .     
+#
+data_comp_AUP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AUP     C1      C       CR56    0       -25.251     -0.444      95.674      
+AUP     C2      C       CR56    0       -25.889     -1.182      96.707      
+AUP     C3      C       CH2     0       -25.496     -1.025      98.155      
+AUP     C4      C       CH2     0       -24.262     -0.155      98.384      
+AUP     C5      C       CH2     0       -24.151     0.997       97.429      
+AUP     C6      C       CH2     0       -24.142     0.527       95.985      
+AUP     C7      C       CR5     0       -25.767     -0.696      94.377      
+AUP     P       P       P1      0       -27.253     -1.745      94.477      
+AUP     C9      C       CR5     0       -26.920     -2.034      96.241      
+AUP     N14     N       NRD6    0       -27.002     -3.940      97.690      
+AUP     C15     C       CR16    0       -27.688     -4.883      98.354      
+AUP     C16     C       CR16    0       -29.065     -4.994      98.320      
+AUP     C17     C       CR16    0       -29.775     -4.085      97.563      
+AUP     C18     C       CR16    0       -29.092     -3.100      96.869      
+AUP     C19     C       CR6     0       -27.702     -3.052      96.953      
+AUP     C24     C       CR16    0       -27.077     -5.726      92.111      
+AUP     C25     C       CR16    0       -26.016     -5.367      92.918      
+AUP     C26     C       CR16    0       -26.051     -4.178      93.634      
+AUP     C27     C       CR6     0       -27.153     -3.327      93.545      
+AUP     C28     C       CR16    0       -28.220     -3.707      92.728      
+AUP     C29     C       CR16    0       -28.178     -4.898      92.016      
+AUP     N35     N       NRD6    0       -23.951     -0.305      92.863      
+AUP     C36     C       CR6     0       -25.282     -0.218      93.075      
+AUP     C37     C       CR16    0       -26.148     0.308       92.116      
+AUP     C38     C       CR16    0       -25.626     0.747       90.911      
+AUP     C39     C       CR16    0       -24.266     0.659       90.687      
+AUP     C40     C       CR16    0       -23.472     0.130       91.686      
+AUP     H31     H       H       0       -26.254     -0.639      98.641      
+AUP     H32     H       H       0       -25.332     -1.914      98.530      
+AUP     H41     H       H       0       -23.464     -0.715      98.301      
+AUP     H42     H       H       0       -24.287     0.191       99.298      
+AUP     H51     H       H       0       -23.328     1.492       97.610      
+AUP     H52     H       H       0       -24.906     1.604       97.563      
+AUP     H61     H       H       0       -24.227     1.301       95.391      
+AUP     H62     H       H       0       -23.284     0.097       95.789      
+AUP     H15     H       H       0       -27.199     -5.504      98.871      
+AUP     H16     H       H       0       -29.507     -5.675      98.803      
+AUP     H17     H       H       0       -30.716     -4.134      97.519      
+AUP     H18     H       H       0       -29.561     -2.470      96.347      
+AUP     H24     H       H       0       -27.051     -6.535      91.625      
+AUP     H25     H       H       0       -25.261     -5.934      92.984      
+AUP     H26     H       H       0       -25.318     -3.938      94.186      
+AUP     H28     H       H       0       -28.978     -3.142      92.659      
+AUP     H29     H       H       0       -28.906     -5.141      91.463      
+AUP     H37     H       H       0       -27.074     0.362       92.286      
+AUP     H38     H       H       0       -26.195     1.104       90.248      
+AUP     H39     H       H       0       -23.888     0.952       89.873      
+AUP     H40     H       H       0       -22.541     0.067       91.536      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AUP          C1          C2      SINGLE       n     1.383  0.0200     1.383  0.0200
+AUP          C1          C6      SINGLE       n     1.504  0.0100     1.504  0.0100
+AUP          C1          C7      DOUBLE       n     1.405  0.0200     1.405  0.0200
+AUP          C2          C3      SINGLE       n     1.504  0.0100     1.504  0.0100
+AUP          C2          C9      DOUBLE       n     1.405  0.0200     1.405  0.0200
+AUP          C3          C4      SINGLE       n     1.518  0.0191     1.518  0.0191
+AUP          C4          C5      SINGLE       n     1.500  0.0200     1.500  0.0200
+AUP          C5          C6      SINGLE       n     1.518  0.0191     1.518  0.0191
+AUP          C7           P      SINGLE       n     1.836  0.0200     1.836  0.0200
+AUP          C7         C36      SINGLE       n     1.468  0.0100     1.468  0.0100
+AUP           P          C9      SINGLE       n     1.836  0.0200     1.836  0.0200
+AUP           P         C27      SINGLE       n     1.839  0.0100     1.839  0.0100
+AUP          C9         C19      SINGLE       n     1.468  0.0100     1.468  0.0100
+AUP         N14         C15      DOUBLE       y     1.339  0.0100     1.339  0.0100
+AUP         N14         C19      SINGLE       y     1.344  0.0127     1.344  0.0127
+AUP         C15         C16      SINGLE       y     1.376  0.0130     1.376  0.0130
+AUP         C16         C17      DOUBLE       y     1.374  0.0129     1.374  0.0129
+AUP         C17         C18      SINGLE       y     1.381  0.0101     1.381  0.0101
+AUP         C18         C19      DOUBLE       y     1.387  0.0136     1.387  0.0136
+AUP         C24         C25      DOUBLE       y     1.377  0.0103     1.377  0.0103
+AUP         C24         C29      SINGLE       y     1.377  0.0103     1.377  0.0103
+AUP         C25         C26      SINGLE       y     1.385  0.0100     1.385  0.0100
+AUP         C26         C27      DOUBLE       y     1.392  0.0100     1.392  0.0100
+AUP         C27         C28      SINGLE       y     1.392  0.0100     1.392  0.0100
+AUP         C28         C29      DOUBLE       y     1.385  0.0100     1.385  0.0100
+AUP         N35         C36      DOUBLE       y     1.344  0.0127     1.344  0.0127
+AUP         N35         C40      SINGLE       y     1.339  0.0100     1.339  0.0100
+AUP         C36         C37      SINGLE       y     1.387  0.0136     1.387  0.0136
+AUP         C37         C38      DOUBLE       y     1.381  0.0101     1.381  0.0101
+AUP         C38         C39      SINGLE       y     1.374  0.0129     1.374  0.0129
+AUP         C39         C40      DOUBLE       y     1.376  0.0130     1.376  0.0130
+AUP          C3         H31      SINGLE       n     1.089  0.0100     0.979  0.0135
+AUP          C3         H32      SINGLE       n     1.089  0.0100     0.979  0.0135
+AUP          C4         H41      SINGLE       n     1.089  0.0100     0.978  0.0134
+AUP          C4         H42      SINGLE       n     1.089  0.0100     0.978  0.0134
+AUP          C5         H51      SINGLE       n     1.089  0.0100     0.978  0.0134
+AUP          C5         H52      SINGLE       n     1.089  0.0100     0.978  0.0134
+AUP          C6         H61      SINGLE       n     1.089  0.0100     0.979  0.0135
+AUP          C6         H62      SINGLE       n     1.089  0.0100     0.979  0.0135
+AUP         C15         H15      SINGLE       n     1.082  0.0130     0.945  0.0200
+AUP         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0200
+AUP         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0200
+AUP         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0135
+AUP         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0161
+AUP         C25         H25      SINGLE       n     1.082  0.0130     0.946  0.0152
+AUP         C26         H26      SINGLE       n     1.082  0.0130     0.948  0.0100
+AUP         C28         H28      SINGLE       n     1.082  0.0130     0.948  0.0100
+AUP         C29         H29      SINGLE       n     1.082  0.0130     0.946  0.0152
+AUP         C37         H37      SINGLE       n     1.082  0.0130     0.943  0.0135
+AUP         C38         H38      SINGLE       n     1.082  0.0130     0.944  0.0200
+AUP         C39         H39      SINGLE       n     1.082  0.0130     0.944  0.0200
+AUP         C40         H40      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AUP          C2          C1          C6     120.872    1.50
+AUP          C2          C1          C7     111.570    3.00
+AUP          C6          C1          C7     127.558    3.00
+AUP          C1          C2          C3     120.872    1.50
+AUP          C1          C2          C9     111.570    3.00
+AUP          C3          C2          C9     127.558    3.00
+AUP          C2          C3          C4     112.861    1.50
+AUP          C2          C3         H31     108.904    1.50
+AUP          C2          C3         H32     108.904    1.50
+AUP          C4          C3         H31     109.567    1.50
+AUP          C4          C3         H32     109.567    1.50
+AUP         H31          C3         H32     107.797    1.59
+AUP          C3          C4          C5     112.699    2.90
+AUP          C3          C4         H41     108.980    1.50
+AUP          C3          C4         H42     108.980    1.50
+AUP          C5          C4         H41     109.248    1.50
+AUP          C5          C4         H42     109.248    1.50
+AUP         H41          C4         H42     107.912    1.50
+AUP          C4          C5          C6     112.699    2.90
+AUP          C4          C5         H51     109.248    1.50
+AUP          C4          C5         H52     109.248    1.50
+AUP          C6          C5         H51     108.980    1.50
+AUP          C6          C5         H52     108.980    1.50
+AUP         H51          C5         H52     107.912    1.50
+AUP          C1          C6          C5     112.861    1.50
+AUP          C1          C6         H61     108.904    1.50
+AUP          C1          C6         H62     108.904    1.50
+AUP          C5          C6         H61     109.567    1.50
+AUP          C5          C6         H62     109.567    1.50
+AUP         H61          C6         H62     107.797    1.59
+AUP          C1          C7           P     115.886    3.00
+AUP          C1          C7         C36     127.588    2.61
+AUP           P          C7         C36     116.526    2.96
+AUP          C7           P          C9     109.471    3.00
+AUP          C7           P         C27     109.471    3.00
+AUP          C9           P         C27     109.471    3.00
+AUP          C2          C9           P     115.886    3.00
+AUP          C2          C9         C19     127.588    2.61
+AUP           P          C9         C19     116.526    2.96
+AUP         C15         N14         C19     117.739    1.50
+AUP         N14         C15         C16     123.862    1.50
+AUP         N14         C15         H15     117.828    1.50
+AUP         C16         C15         H15     118.310    1.50
+AUP         C15         C16         C17     118.330    1.50
+AUP         C15         C16         H16     120.764    1.50
+AUP         C17         C16         H16     120.905    1.50
+AUP         C16         C17         C18     119.121    1.50
+AUP         C16         C17         H17     120.434    1.50
+AUP         C18         C17         H17     120.445    1.50
+AUP         C17         C18         C19     118.987    1.50
+AUP         C17         C18         H18     120.574    1.50
+AUP         C19         C18         H18     120.438    1.50
+AUP          C9         C19         N14     116.317    1.50
+AUP          C9         C19         C18     121.722    1.50
+AUP         N14         C19         C18     121.961    1.50
+AUP         C25         C24         C29     119.864    1.50
+AUP         C25         C24         H24     120.068    1.50
+AUP         C29         C24         H24     120.068    1.50
+AUP         C24         C25         C26     120.220    1.50
+AUP         C24         C25         H25     119.998    1.50
+AUP         C26         C25         H25     119.789    1.50
+AUP         C25         C26         C27     120.616    1.50
+AUP         C25         C26         H26     119.849    1.50
+AUP         C27         C26         H26     119.536    1.50
+AUP           P         C27         C26     120.774    3.00
+AUP           P         C27         C28     120.774    3.00
+AUP         C26         C27         C28     118.453    1.50
+AUP         C27         C28         C29     120.616    1.50
+AUP         C27         C28         H28     119.536    1.50
+AUP         C29         C28         H28     119.849    1.50
+AUP         C24         C29         C28     120.220    1.50
+AUP         C24         C29         H29     119.998    1.50
+AUP         C28         C29         H29     119.789    1.50
+AUP         C36         N35         C40     117.739    1.50
+AUP          C7         C36         N35     116.317    1.50
+AUP          C7         C36         C37     121.722    1.50
+AUP         N35         C36         C37     121.961    1.50
+AUP         C36         C37         C38     118.987    1.50
+AUP         C36         C37         H37     120.438    1.50
+AUP         C38         C37         H37     120.574    1.50
+AUP         C37         C38         C39     119.121    1.50
+AUP         C37         C38         H38     120.445    1.50
+AUP         C39         C38         H38     120.434    1.50
+AUP         C38         C39         C40     118.330    1.50
+AUP         C38         C39         H39     120.905    1.50
+AUP         C40         C39         H39     120.764    1.50
+AUP         N35         C40         C39     123.862    1.50
+AUP         N35         C40         H40     117.828    1.50
+AUP         C39         C40         H40     118.310    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AUP             sp2_sp2_1          C6          C1          C2          C3       0.000     5.0     2
+AUP            sp2_sp3_15          C2          C1          C6          C5       0.000    10.0     6
+AUP             sp2_sp2_9          C2          C1          C7           P       0.000     5.0     2
+AUP       const_sp2_sp2_3         N14         C15         C16         C17       0.000     5.0     2
+AUP       const_sp2_sp2_7         C15         C16         C17         C18       0.000     5.0     2
+AUP              const_11         C16         C17         C18         C19       0.000    10.0     2
+AUP              const_16         C17         C18         C19          C9     180.000    10.0     2
+AUP              const_19         C29         C24         C25         C26       0.000    10.0     2
+AUP              const_59         C25         C24         C29         C28       0.000    10.0     2
+AUP              const_23         C24         C25         C26         C27       0.000    10.0     2
+AUP              const_28         C25         C26         C27           P     180.000    10.0     2
+AUP              const_33           P         C27         C28         C29     180.000    10.0     2
+AUP              const_35         C27         C28         C29         C24       0.000    10.0     2
+AUP             sp2_sp3_1          C1          C2          C3          C4       0.000    10.0     6
+AUP             sp2_sp2_5          C1          C2          C9           P       0.000     5.0     2
+AUP              const_40          C7         C36         N35         C40     180.000    10.0     2
+AUP              const_63         C39         C40         N35         C36       0.000    10.0     2
+AUP              const_43          C7         C36         C37         C38     180.000    10.0     2
+AUP              const_45         C36         C37         C38         C39       0.000    10.0     2
+AUP              const_49         C37         C38         C39         C40       0.000    10.0     2
+AUP              const_53         C38         C39         C40         N35       0.000    10.0     2
+AUP             sp3_sp3_1          C2          C3          C4          C5      60.000    10.0     3
+AUP            sp3_sp3_10          C3          C4          C5          C6     -60.000    10.0     3
+AUP            sp3_sp3_19          C4          C5          C6          C1      60.000    10.0     3
+AUP            sp2_sp2_15         N35         C36          C7          C1       0.000     5.0     2
+AUP            sp2_sp3_11          C1          C7           P          C9       0.000    10.0     6
+AUP            sp2_sp3_21         C26         C27           P          C7     150.000    10.0     6
+AUP             sp2_sp3_7          C2          C9           P          C7       0.000    10.0     6
+AUP            sp2_sp2_19         N14         C19          C9          C2       0.000     5.0     2
+AUP       const_sp2_sp2_1         C16         C15         N14         C19       0.000     5.0     2
+AUP              const_58          C9         C19         N14         C15     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AUP    plan-1         C15   0.020
+AUP    plan-1         C16   0.020
+AUP    plan-1         C17   0.020
+AUP    plan-1         C18   0.020
+AUP    plan-1         C19   0.020
+AUP    plan-1          C9   0.020
+AUP    plan-1         H15   0.020
+AUP    plan-1         H16   0.020
+AUP    plan-1         H17   0.020
+AUP    plan-1         H18   0.020
+AUP    plan-1         N14   0.020
+AUP    plan-2         C24   0.020
+AUP    plan-2         C25   0.020
+AUP    plan-2         C26   0.020
+AUP    plan-2         C27   0.020
+AUP    plan-2         C28   0.020
+AUP    plan-2         C29   0.020
+AUP    plan-2         H24   0.020
+AUP    plan-2         H25   0.020
+AUP    plan-2         H26   0.020
+AUP    plan-2         H28   0.020
+AUP    plan-2         H29   0.020
+AUP    plan-2           P   0.020
+AUP    plan-3         C36   0.020
+AUP    plan-3         C37   0.020
+AUP    plan-3         C38   0.020
+AUP    plan-3         C39   0.020
+AUP    plan-3         C40   0.020
+AUP    plan-3          C7   0.020
+AUP    plan-3         H37   0.020
+AUP    plan-3         H38   0.020
+AUP    plan-3         H39   0.020
+AUP    plan-3         H40   0.020
+AUP    plan-3         N35   0.020
+AUP    plan-4          C1   0.020
+AUP    plan-4          C2   0.020
+AUP    plan-4          C6   0.020
+AUP    plan-4          C7   0.020
+AUP    plan-5          C1   0.020
+AUP    plan-5          C2   0.020
+AUP    plan-5          C3   0.020
+AUP    plan-5          C9   0.020
+AUP    plan-6          C1   0.020
+AUP    plan-6         C36   0.020
+AUP    plan-6          C7   0.020
+AUP    plan-6           P   0.020
+AUP    plan-7         C19   0.020
+AUP    plan-7          C2   0.020
+AUP    plan-7          C9   0.020
+AUP    plan-7           P   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AUP           SMILES              ACDLabs 10.04                                                                                              n1ccccc1c3c5c(c(c2ncccc2)p3c4ccccc4)CCCC5
+AUP SMILES_CANONICAL               CACTVS 3.341                                                                                          C1CCc2c(C1)c([p](c3ccccc3)c2c4ccccn4)c5ccccn5
+AUP           SMILES               CACTVS 3.341                                                                                          C1CCc2c(C1)c([p](c3ccccc3)c2c4ccccn4)c5ccccn5
+AUP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                            c1ccc(cc1)p2c(c3c(c2c4ccccn4)CCCC3)c5ccccn5
+AUP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                            c1ccc(cc1)p2c(c3c(c2c4ccccn4)CCCC3)c5ccccn5
+AUP            InChI                InChI  1.03 InChI=1S/C24H21N2P/c1-2-10-18(11-3-1)27-23(21-14-6-8-16-25-21)19-12-4-5-13-20(19)24(27)22-15-7-9-17-26-22/h1-3,6-11,14-17H,4-5,12-13H2
+AUP         InChIKey                InChI  1.03                                                                                                            GSKNNHAAFLPYHG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AUP acedrg               243         "dictionary generator"                  
+AUP acedrg_database      11          "data source"                           
+AUP rdkit                2017.03.2   "Chemoinformatics tool"
+AUP refmac5              5.8.0238    "optimization tool"                     

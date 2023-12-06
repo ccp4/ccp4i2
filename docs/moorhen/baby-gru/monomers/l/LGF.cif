@@ -1,0 +1,435 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LGF     LGF      1-[5-[[3-[2,4-bis(fluoranyl)phenyl]-6,8-dihydro-5~{H}-imidazo[1,5-a]pyrazin-7-yl]carbonyl]-6-methoxy-1~{H}-pyrrolo[2,3-b]pyridin-3-yl]-2-[(3~{R})-3-oxidanylpyrrolidin-1-yl]ethane-1,2-dione     NON-POLYMER     64     40     .     
+#
+data_comp_LGF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LGF     C13     C       CR6     0       -5.396      0.219       16.182      
+LGF     C18     C       CR6     0       -0.600      -1.225      24.855      
+LGF     C16     C       C       0       -0.940      -1.660      23.454      
+LGF     C15     C       CR16    0       -3.963      1.635       17.430      
+LGF     C19     C       CR16    0       -1.424      -1.667      25.898      
+LGF     C21     C       CR6     0       0.536       -0.407      25.181      
+LGF     C22     C       CR56    0       0.023       -0.463      27.390      
+LGF     C23     C       CR56    0       -1.118      -1.281      27.207      
+LGF     C24     C       CR5     0       -1.677      -1.485      28.522      
+LGF     C11     C       CR6     0       -5.108      -0.186      18.484      
+LGF     C12     C       CR16    0       -5.698      -0.540      17.289      
+LGF     C27     C       C       0       -2.836      -2.261      28.856      
+LGF     F33     F       F       0       -5.969      -0.118      14.999      
+LGF     C14     C       CR16    0       -4.546      1.295       16.219      
+LGF     F32     F       F       0       -5.395      -0.923      19.585      
+LGF     C10     C       CR6     0       -4.240      0.895       18.580      
+LGF     C9      C       CR5     0       -3.623      1.256       19.858      
+LGF     N8      N       NRD5    0       -3.829      2.432       20.442      
+LGF     N5      N       NT      0       -2.780      0.476       20.607      
+LGF     C6      C       CR56    0       -2.445      1.212       21.721      
+LGF     C7      C       CR15    0       -3.093      2.402       21.603      
+LGF     C4      C       CH2     0       -1.524      0.673       22.777      
+LGF     N3      N       NR6     0       -1.125      -0.726      22.487      
+LGF     C2      C       CH2     0       -0.971      -1.040      21.056      
+LGF     C1      C       CH2     0       -2.291      -0.882      20.335      
+LGF     O17     O       O       0       -0.940      -2.865      23.214      
+LGF     N26     N       NR5     0       0.158       -0.193      28.721      
+LGF     C25     C       CR15    0       -0.845      -0.804      29.400      
+LGF     N20     N       NRD6    0       0.824       -0.035      26.398      
+LGF     O34     O       O2      0       1.328       0.015       24.157      
+LGF     C35     C       CH3     0       2.737       -0.256      24.235      
+LGF     O28     O       O       0       -2.987      -3.381      28.326      
+LGF     C29     C       C       0       -3.849      -1.781      29.897      
+LGF     O31     O       O       0       -3.788      -0.592      30.210      
+LGF     N30     N       NR5     0       -4.762      -2.563      30.516      
+LGF     C36     C       CH2     0       -5.018      -3.993      30.249      
+LGF     C37     C       CH1     0       -6.115      -4.382      31.234      
+LGF     O40     O       OH1     0       -7.393      -4.340      30.612      
+LGF     C38     C       CH2     0       -6.009      -3.342      32.338      
+LGF     C39     C       CH2     0       -5.631      -2.076      31.604      
+LGF     H1      H       H       0       -3.377      2.370       17.476      
+LGF     H2      H       H       0       -2.173      -2.212      25.719      
+LGF     H3      H       H       0       -6.285      -1.275      17.240      
+LGF     H4      H       H       0       -4.363      1.791       15.440      
+LGF     H5      H       H       0       -3.053      3.119       22.226      
+LGF     H6      H       H       0       -1.975      0.714       23.646      
+LGF     H7      H       H       0       -0.720      1.230       22.832      
+LGF     H8      H       H       0       -0.638      -1.972      20.936      
+LGF     H9      H       H       0       -0.300      -0.421      20.653      
+LGF     H10     H       H       0       -2.165      -1.005      19.372      
+LGF     H11     H       H       0       -2.936      -1.541      20.663      
+LGF     H12     H       H       0       0.779       0.286       29.074      
+LGF     H13     H       H       0       -0.965      -0.759      30.333      
+LGF     H14     H       H       0       2.878       -1.184      24.490      
+LGF     H15     H       H       0       3.142       0.327       24.898      
+LGF     H16     H       H       0       3.145       -0.094      23.369      
+LGF     H17     H       H       0       -5.321      -4.129      29.315      
+LGF     H18     H       H       0       -4.201      -4.532      30.402      
+LGF     H19     H       H       0       -5.943      -5.295      31.599      
+LGF     H20     H       H       0       -7.483      -3.599      30.206      
+LGF     H21     H       H       0       -5.317      -3.596      32.990      
+LGF     H22     H       H       0       -6.868      -3.240      32.804      
+LGF     H23     H       H       0       -6.419      -1.625      31.249      
+LGF     H24     H       H       0       -5.154      -1.463      32.193      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LGF         C13         F33      SINGLE       n     1.357  0.0100     1.357  0.0100
+LGF         C13         C14      DOUBLE       y     1.367  0.0100     1.367  0.0100
+LGF         C13         C12      SINGLE       y     1.371  0.0101     1.371  0.0101
+LGF         C15         C14      SINGLE       y     1.383  0.0100     1.383  0.0100
+LGF         C11         C12      DOUBLE       y     1.374  0.0111     1.374  0.0111
+LGF         C15         C10      DOUBLE       y     1.392  0.0100     1.392  0.0100
+LGF         C11         C10      SINGLE       y     1.386  0.0100     1.386  0.0100
+LGF         C11         F32      SINGLE       n     1.355  0.0164     1.355  0.0164
+LGF         C10          C9      SINGLE       n     1.464  0.0100     1.464  0.0100
+LGF          C9          N8      DOUBLE       y     1.328  0.0100     1.328  0.0100
+LGF          C9          N5      SINGLE       y     1.371  0.0105     1.371  0.0105
+LGF          N8          C7      SINGLE       y     1.374  0.0104     1.374  0.0104
+LGF          N5          C1      SINGLE       n     1.469  0.0100     1.469  0.0100
+LGF          C2          C1      SINGLE       n     1.512  0.0100     1.512  0.0100
+LGF          N5          C6      SINGLE       y     1.379  0.0200     1.379  0.0200
+LGF          N3          C2      SINGLE       n     1.466  0.0100     1.466  0.0100
+LGF          C6          C7      DOUBLE       y     1.361  0.0100     1.361  0.0100
+LGF          C6          C4      SINGLE       n     1.491  0.0152     1.491  0.0152
+LGF          C4          N3      SINGLE       n     1.464  0.0141     1.464  0.0141
+LGF         C16          N3      SINGLE       n     1.347  0.0100     1.347  0.0100
+LGF         C16         O17      DOUBLE       n     1.228  0.0115     1.228  0.0115
+LGF         C18         C16      SINGLE       n     1.501  0.0100     1.501  0.0100
+LGF         O34         C35      SINGLE       n     1.435  0.0110     1.435  0.0110
+LGF         C21         O34      SINGLE       n     1.357  0.0135     1.357  0.0135
+LGF         C18         C21      SINGLE       y     1.406  0.0200     1.406  0.0200
+LGF         C18         C19      DOUBLE       y     1.393  0.0126     1.393  0.0126
+LGF         C21         N20      DOUBLE       y     1.298  0.0100     1.298  0.0100
+LGF         C19         C23      SINGLE       y     1.397  0.0100     1.397  0.0100
+LGF         C22         N20      SINGLE       y     1.342  0.0100     1.342  0.0100
+LGF         C22         C23      DOUBLE       y     1.416  0.0100     1.416  0.0100
+LGF         C22         N26      SINGLE       y     1.363  0.0100     1.363  0.0100
+LGF         C23         C24      SINGLE       y     1.444  0.0100     1.444  0.0100
+LGF         C27         O28      DOUBLE       n     1.249  0.0200     1.249  0.0200
+LGF         N26         C25      SINGLE       y     1.354  0.0122     1.354  0.0122
+LGF         C24         C27      SINGLE       n     1.432  0.0100     1.432  0.0100
+LGF         C24         C25      DOUBLE       y     1.387  0.0100     1.387  0.0100
+LGF         C27         C29      SINGLE       n     1.500  0.0200     1.500  0.0200
+LGF         C37         O40      SINGLE       n     1.420  0.0105     1.420  0.0105
+LGF         C29         O31      DOUBLE       n     1.228  0.0115     1.228  0.0115
+LGF         C29         N30      SINGLE       n     1.338  0.0129     1.338  0.0129
+LGF         N30         C36      SINGLE       n     1.473  0.0100     1.473  0.0100
+LGF         N30         C39      SINGLE       n     1.473  0.0100     1.473  0.0100
+LGF         C36         C37      SINGLE       n     1.522  0.0100     1.522  0.0100
+LGF         C37         C38      SINGLE       n     1.521  0.0137     1.521  0.0137
+LGF         C38         C39      SINGLE       n     1.515  0.0149     1.515  0.0149
+LGF         C15          H1      SINGLE       n     1.082  0.0130     0.941  0.0147
+LGF         C19          H2      SINGLE       n     1.082  0.0130     0.943  0.0101
+LGF         C12          H3      SINGLE       n     1.082  0.0130     0.942  0.0108
+LGF         C14          H4      SINGLE       n     1.082  0.0130     0.941  0.0154
+LGF          C7          H5      SINGLE       n     1.082  0.0130     0.950  0.0200
+LGF          C4          H6      SINGLE       n     1.089  0.0100     0.980  0.0174
+LGF          C4          H7      SINGLE       n     1.089  0.0100     0.980  0.0174
+LGF          C2          H8      SINGLE       n     1.089  0.0100     0.998  0.0200
+LGF          C2          H9      SINGLE       n     1.089  0.0100     0.998  0.0200
+LGF          C1         H10      SINGLE       n     1.089  0.0100     0.979  0.0153
+LGF          C1         H11      SINGLE       n     1.089  0.0100     0.979  0.0153
+LGF         N26         H12      SINGLE       n     1.016  0.0100     0.860  0.0100
+LGF         C25         H13      SINGLE       n     1.082  0.0130     0.942  0.0200
+LGF         C35         H14      SINGLE       n     1.089  0.0100     0.971  0.0157
+LGF         C35         H15      SINGLE       n     1.089  0.0100     0.971  0.0157
+LGF         C35         H16      SINGLE       n     1.089  0.0100     0.971  0.0157
+LGF         C36         H17      SINGLE       n     1.089  0.0100     0.991  0.0200
+LGF         C36         H18      SINGLE       n     1.089  0.0100     0.991  0.0200
+LGF         C37         H19      SINGLE       n     1.089  0.0100     0.998  0.0200
+LGF         O40         H20      SINGLE       n     0.970  0.0120     0.849  0.0200
+LGF         C38         H21      SINGLE       n     1.089  0.0100     0.983  0.0160
+LGF         C38         H22      SINGLE       n     1.089  0.0100     0.983  0.0160
+LGF         C39         H23      SINGLE       n     1.089  0.0100     0.975  0.0186
+LGF         C39         H24      SINGLE       n     1.089  0.0100     0.975  0.0186
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LGF         F33         C13         C14     118.828    1.50
+LGF         F33         C13         C12     118.297    1.50
+LGF         C14         C13         C12     122.875    1.50
+LGF         C16         C18         C21     122.284    2.69
+LGF         C16         C18         C19     119.060    2.75
+LGF         C21         C18         C19     118.657    1.50
+LGF          N3         C16         O17     122.300    1.50
+LGF          N3         C16         C18     118.228    1.50
+LGF         O17         C16         C18     119.472    1.50
+LGF         C14         C15         C10     120.315    1.50
+LGF         C14         C15          H1     119.784    1.50
+LGF         C10         C15          H1     119.901    1.50
+LGF         C18         C19         C23     119.131    1.50
+LGF         C18         C19          H2     120.341    1.50
+LGF         C23         C19          H2     120.528    1.50
+LGF         O34         C21         C18     117.466    1.50
+LGF         O34         C21         N20     119.796    3.00
+LGF         C18         C21         N20     122.738    1.50
+LGF         N20         C22         C23     125.024    1.50
+LGF         N20         C22         N26     126.480    1.65
+LGF         C23         C22         N26     108.497    1.50
+LGF         C19         C23         C22     117.842    1.50
+LGF         C19         C23         C24     135.531    1.50
+LGF         C22         C23         C24     106.627    1.50
+LGF         C23         C24         C27     126.351    1.75
+LGF         C23         C24         C25     106.818    1.50
+LGF         C27         C24         C25     126.831    1.68
+LGF         C12         C11         C10     122.133    1.50
+LGF         C12         C11         F32     118.368    1.50
+LGF         C10         C11         F32     119.499    1.50
+LGF         C13         C12         C11     117.258    1.50
+LGF         C13         C12          H3     121.826    1.50
+LGF         C11         C12          H3     120.908    1.50
+LGF         O28         C27         C24     120.463    1.50
+LGF         O28         C27         C29     117.925    1.98
+LGF         C24         C27         C29     121.613    3.00
+LGF         C13         C14         C15     118.153    1.50
+LGF         C13         C14          H4     120.916    1.50
+LGF         C15         C14          H4     120.931    1.50
+LGF         C15         C10         C11     119.275    1.64
+LGF         C15         C10          C9     120.303    2.83
+LGF         C11         C10          C9     120.422    1.61
+LGF         C10          C9          N8     122.322    2.33
+LGF         C10          C9          N5     126.310    1.50
+LGF          N8          C9          N5     111.368    1.50
+LGF          C9          N8          C7     105.430    1.50
+LGF          C9          N5          C1     124.744    3.00
+LGF          C9          N5          C6     107.156    1.50
+LGF          C1          N5          C6     123.427    1.66
+LGF          N5          C6          C7     107.999    1.50
+LGF          N5          C6          C4     120.000    1.86
+LGF          C7          C6          C4     132.002    2.34
+LGF          N8          C7          C6     110.724    1.50
+LGF          N8          C7          H5     123.786    1.55
+LGF          C6          C7          H5     125.491    1.74
+LGF          C6          C4          N3     108.722    1.50
+LGF          C6          C4          H6     110.075    1.50
+LGF          C6          C4          H7     110.075    1.50
+LGF          N3          C4          H6     109.353    1.50
+LGF          N3          C4          H7     109.353    1.50
+LGF          H6          C4          H7     108.071    1.50
+LGF          C2          N3          C4     115.352    1.50
+LGF          C2          N3         C16     123.051    2.77
+LGF          C4          N3         C16     121.597    3.00
+LGF          C1          C2          N3     110.295    1.50
+LGF          C1          C2          H8     109.499    1.50
+LGF          C1          C2          H9     109.499    1.50
+LGF          N3          C2          H8     109.531    1.50
+LGF          N3          C2          H9     109.531    1.50
+LGF          H8          C2          H9     108.200    1.50
+LGF          N5          C1          C2     106.882    2.39
+LGF          N5          C1         H10     109.227    1.50
+LGF          N5          C1         H11     109.227    1.50
+LGF          C2          C1         H10     109.501    1.50
+LGF          C2          C1         H11     109.501    1.50
+LGF         H10          C1         H11     108.604    1.50
+LGF         C22         N26         C25     108.298    1.50
+LGF         C22         N26         H12     125.973    1.50
+LGF         C25         N26         H12     125.729    1.67
+LGF         N26         C25         C24     109.761    1.50
+LGF         N26         C25         H13     124.921    1.50
+LGF         C24         C25         H13     125.318    1.50
+LGF         C21         N20         C22     116.608    1.50
+LGF         C35         O34         C21     117.090    1.50
+LGF         O34         C35         H14     109.390    1.50
+LGF         O34         C35         H15     109.390    1.50
+LGF         O34         C35         H16     109.390    1.50
+LGF         H14         C35         H15     109.509    1.50
+LGF         H14         C35         H16     109.509    1.50
+LGF         H15         C35         H16     109.509    1.50
+LGF         C27         C29         O31     119.246    1.98
+LGF         C27         C29         N30     120.909    3.00
+LGF         O31         C29         N30     119.845    1.50
+LGF         C29         N30         C36     124.273    2.62
+LGF         C29         N30         C39     124.273    2.62
+LGF         C36         N30         C39     111.453    1.50
+LGF         N30         C36         C37     102.939    1.50
+LGF         N30         C36         H17     111.006    1.50
+LGF         N30         C36         H18     111.006    1.50
+LGF         C37         C36         H17     111.058    1.50
+LGF         C37         C36         H18     111.058    1.50
+LGF         H17         C36         H18     108.952    1.50
+LGF         O40         C37         C36     110.264    2.19
+LGF         O40         C37         C38     111.015    2.41
+LGF         O40         C37         H19     110.852    1.50
+LGF         C36         C37         C38     103.389    1.50
+LGF         C36         C37         H19     111.046    1.50
+LGF         C38         C37         H19     111.076    1.50
+LGF         C37         O40         H20     108.359    1.75
+LGF         C37         C38         C39     103.603    1.50
+LGF         C37         C38         H21     110.947    1.50
+LGF         C37         C38         H22     110.947    1.50
+LGF         C39         C38         H21     111.408    1.50
+LGF         C39         C38         H22     111.408    1.50
+LGF         H21         C38         H22     109.400    1.57
+LGF         N30         C39         C38     103.334    1.50
+LGF         N30         C39         H23     111.133    1.50
+LGF         N30         C39         H24     111.133    1.50
+LGF         C38         C39         H23     111.311    1.50
+LGF         C38         C39         H24     111.311    1.50
+LGF         H23         C39         H24     108.998    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LGF              const_62         C11         C12         C13         F33     180.000    10.0     2
+LGF       const_sp2_sp2_3         F33         C13         C14         C15     180.000     5.0     2
+LGF            sp2_sp2_22         O28         C27         C29         O31     180.000     5.0     2
+LGF             sp2_sp2_2         C15         C10          C9          N8       0.000     5.0     2
+LGF              const_50         C10          C9          N8          C7     180.000    10.0     2
+LGF              const_68         C10          C9          N5          C1       0.000    10.0     2
+LGF              const_51          C6          C7          N8          C9       0.000    10.0     2
+LGF              const_57          C7          C6          N5          C9       0.000    10.0     2
+LGF             sp2_sp3_4          C9          N5          C1          C2     180.000    10.0     6
+LGF              const_53          N5          C6          C7          N8       0.000    10.0     2
+LGF            sp2_sp3_19          N5          C6          C4          N3       0.000    10.0     6
+LGF            sp2_sp2_11         O17         C16         C18         C21       0.000     5.0     2
+LGF              const_71         C16         C18         C19         C23     180.000    10.0     2
+LGF              const_24         C16         C18         C21         O34       0.000    10.0     2
+LGF            sp2_sp3_16         C16          N3          C4          C6     180.000    10.0     6
+LGF            sp2_sp3_10         C16          N3          C2          C1     180.000    10.0     6
+LGF             sp3_sp3_1          N5          C1          C2          N3     -60.000    10.0     3
+LGF              const_45         C24         C25         N26         C22       0.000    10.0     2
+LGF            sp3_sp3_38         H14         C35         O34         C21     -60.000    10.0     3
+LGF             sp2_sp2_7         O17         C16          N3          C2       0.000     5.0     2
+LGF            sp2_sp2_23         C27         C29         N30         C36     180.000     5.0     2
+LGF            sp2_sp3_28         C29         N30         C36         C37     180.000    10.0     6
+LGF            sp2_sp3_34         C29         N30         C39         C38     180.000    10.0     6
+LGF            sp3_sp3_11         N30         C36         C37         O40      60.000    10.0     3
+LGF            sp3_sp3_41         C36         C37         O40         H20     180.000    10.0     3
+LGF            sp3_sp3_22         O40         C37         C38         C39     -60.000    10.0     3
+LGF            sp3_sp3_28         C37         C38         C39         N30     -60.000    10.0     3
+LGF       const_sp2_sp2_5         C13         C14         C15         C10       0.000     5.0     2
+LGF       const_sp2_sp2_9         C11         C10         C15         C14       0.000     5.0     2
+LGF              const_33         C18         C19         C23         C22       0.000    10.0     2
+LGF              const_26         O34         C21         N20         C22     180.000    10.0     2
+LGF            sp2_sp2_13         C18         C21         O34         C35     180.000     5.0     2
+LGF              const_75         N20         C22         N26         C25     180.000    10.0     2
+LGF              const_27         C23         C22         N20         C21       0.000    10.0     2
+LGF              const_29         N20         C22         C23         C19       0.000    10.0     2
+LGF              const_40         C19         C23         C24         C27       0.000    10.0     2
+LGF            sp2_sp2_16         C23         C24         C27         O28       0.000     5.0     2
+LGF              const_43         C27         C24         C25         N26     180.000    10.0     2
+LGF              const_19         F32         C11         C12         C13     180.000    10.0     2
+LGF              const_14         C15         C10         C11         F32     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LGF    chir_1    C37    O40    C36    C38    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LGF    plan-1         C16   0.020
+LGF    plan-1         C18   0.020
+LGF    plan-1         C19   0.020
+LGF    plan-1         C21   0.020
+LGF    plan-1         C22   0.020
+LGF    plan-1         C23   0.020
+LGF    plan-1         C24   0.020
+LGF    plan-1         C25   0.020
+LGF    plan-1         C27   0.020
+LGF    plan-1         H12   0.020
+LGF    plan-1         H13   0.020
+LGF    plan-1          H2   0.020
+LGF    plan-1         N20   0.020
+LGF    plan-1         N26   0.020
+LGF    plan-1         O34   0.020
+LGF    plan-2         C10   0.020
+LGF    plan-2         C11   0.020
+LGF    plan-2         C12   0.020
+LGF    plan-2         C13   0.020
+LGF    plan-2         C14   0.020
+LGF    plan-2         C15   0.020
+LGF    plan-2          C9   0.020
+LGF    plan-2         F32   0.020
+LGF    plan-2         F33   0.020
+LGF    plan-2          H1   0.020
+LGF    plan-2          H3   0.020
+LGF    plan-2          H4   0.020
+LGF    plan-3          C1   0.020
+LGF    plan-3         C10   0.020
+LGF    plan-3          C4   0.020
+LGF    plan-3          C6   0.020
+LGF    plan-3          C7   0.020
+LGF    plan-3          C9   0.020
+LGF    plan-3          H5   0.020
+LGF    plan-3          N5   0.020
+LGF    plan-3          N8   0.020
+LGF    plan-4         C16   0.020
+LGF    plan-4         C18   0.020
+LGF    plan-4          N3   0.020
+LGF    plan-4         O17   0.020
+LGF    plan-5         C24   0.020
+LGF    plan-5         C27   0.020
+LGF    plan-5         C29   0.020
+LGF    plan-5         O28   0.020
+LGF    plan-6         C16   0.020
+LGF    plan-6          C2   0.020
+LGF    plan-6          C4   0.020
+LGF    plan-6          N3   0.020
+LGF    plan-7         C27   0.020
+LGF    plan-7         C29   0.020
+LGF    plan-7         N30   0.020
+LGF    plan-7         O31   0.020
+LGF    plan-8         C29   0.020
+LGF    plan-8         C36   0.020
+LGF    plan-8         C39   0.020
+LGF    plan-8         N30   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LGF            InChI                InChI  1.03 InChI=1S/C27H24F2N6O5/c1-40-25-19(9-18-20(11-30-23(18)32-25)22(37)27(39)33-5-4-16(36)13-33)26(38)34-6-7-35-15(12-34)10-31-24(35)17-3-2-14(28)8-21(17)29/h2-3,8-11,16,36H,4-7,12-13H2,1H3,(H,30,32)/t16-/m1/s1
+LGF         InChIKey                InChI  1.03                                                                                                                                                                                   GRRHHDRNCLEFSY-MRXNPFEDSA-N
+LGF SMILES_CANONICAL               CACTVS 3.385                                                                                                                                 COc1nc2[nH]cc(C(=O)C(=O)N3CC[C@@H](O)C3)c2cc1C(=O)N4CCn5c(C4)cnc5c6ccc(F)cc6F
+LGF           SMILES               CACTVS 3.385                                                                                                                                   COc1nc2[nH]cc(C(=O)C(=O)N3CC[CH](O)C3)c2cc1C(=O)N4CCn5c(C4)cnc5c6ccc(F)cc6F
+LGF SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                COc1c(cc2c(c[nH]c2n1)C(=O)C(=O)N3CC[C@H](C3)O)C(=O)N4CCn5c(cnc5c6ccc(cc6F)F)C4
+LGF           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                    COc1c(cc2c(c[nH]c2n1)C(=O)C(=O)N3CCC(C3)O)C(=O)N4CCn5c(cnc5c6ccc(cc6F)F)C4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LGF acedrg               243         "dictionary generator"                  
+LGF acedrg_database      11          "data source"                           
+LGF rdkit                2017.03.2   "Chemoinformatics tool"
+LGF refmac5              5.8.0238    "optimization tool"                     

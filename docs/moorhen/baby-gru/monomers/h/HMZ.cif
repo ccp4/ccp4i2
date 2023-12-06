@@ -1,0 +1,208 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HMZ     HMZ      "4-(2-hydroxy-4-methoxyphenyl)-4-oxobutanoic acid"     NON-POLYMER     27     16     .     
+#
+data_comp_HMZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HMZ     CAA     C       CH3     0       17.872      33.968      9.859       
+HMZ     OAB     O       O       0       26.020      36.237      13.186      
+HMZ     OAC     O       O       0       22.096      33.133      15.687      
+HMZ     OAD     O       OC      -1      25.009      37.196      14.885      
+HMZ     OAE     O       OH1     0       19.849      35.976      15.161      
+HMZ     CAF     C       CR16    0       19.953      33.481      11.839      
+HMZ     CAG     C       CR16    0       20.940      33.394      12.789      
+HMZ     CAH     C       CR16    0       18.904      35.236      13.116      
+HMZ     CAI     C       CH2     0       23.916      35.349      13.843      
+HMZ     CAJ     C       CH2     0       23.041      35.219      15.073      
+HMZ     OAK     O       O2      0       17.877      34.602      11.138      
+HMZ     CAL     C       C       0       25.066      36.333      13.984      
+HMZ     CAM     C       C       0       22.034      34.105      14.956      
+HMZ     CAN     C       CR6     0       18.926      34.410      11.997      
+HMZ     CAO     C       CR6     0       19.908      35.139      14.072      
+HMZ     CAP     C       CR6     0       20.961      34.209      13.933      
+HMZ     HAA     H       H       0       17.831      33.005      9.976       
+HMZ     HAAA    H       H       0       18.681      34.203      9.377       
+HMZ     HAAB    H       H       0       17.097      34.266      9.356       
+HMZ     HOAE    H       H       0       19.726      35.651      15.949      
+HMZ     HAF     H       H       0       19.977      32.916      11.088      
+HMZ     HAG     H       H       0       21.630      32.765      12.671      
+HMZ     HAH     H       H       0       18.213      35.861      13.228      
+HMZ     HAI     H       H       0       23.362      35.629      13.087      
+HMZ     HAIA    H       H       0       24.288      34.469      13.626      
+HMZ     HAJ     H       H       0       22.565      36.062      15.219      
+HMZ     HAJA    H       H       0       23.607      35.056      15.855      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HMZ         CAA         OAK      SINGLE       n     1.424  0.0117     1.424  0.0117
+HMZ         OAB         CAL      DOUBLE       n     1.247  0.0187     1.247  0.0187
+HMZ         OAC         CAM      DOUBLE       n     1.218  0.0120     1.218  0.0120
+HMZ         OAD         CAL      SINGLE       n     1.247  0.0187     1.247  0.0187
+HMZ         OAE         CAO      SINGLE       n     1.374  0.0155     1.374  0.0155
+HMZ         CAF         CAG      DOUBLE       y     1.369  0.0104     1.369  0.0104
+HMZ         CAF         CAN      SINGLE       y     1.386  0.0109     1.386  0.0109
+HMZ         CAG         CAP      SINGLE       y     1.400  0.0131     1.400  0.0131
+HMZ         CAH         CAN      DOUBLE       y     1.387  0.0100     1.387  0.0100
+HMZ         CAH         CAO      SINGLE       y     1.385  0.0100     1.385  0.0100
+HMZ         CAI         CAJ      SINGLE       n     1.514  0.0100     1.514  0.0100
+HMZ         CAI         CAL      SINGLE       n     1.519  0.0109     1.519  0.0109
+HMZ         CAJ         CAM      SINGLE       n     1.506  0.0112     1.506  0.0112
+HMZ         OAK         CAN      SINGLE       n     1.364  0.0100     1.364  0.0100
+HMZ         CAM         CAP      SINGLE       n     1.483  0.0190     1.483  0.0190
+HMZ         CAO         CAP      DOUBLE       y     1.407  0.0102     1.407  0.0102
+HMZ         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+HMZ         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+HMZ         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0157
+HMZ         OAE        HOAE      SINGLE       n     0.966  0.0059     0.861  0.0200
+HMZ         CAF         HAF      SINGLE       n     1.082  0.0130     0.941  0.0179
+HMZ         CAG         HAG      SINGLE       n     1.082  0.0130     0.940  0.0176
+HMZ         CAH         HAH      SINGLE       n     1.082  0.0130     0.939  0.0167
+HMZ         CAI         HAI      SINGLE       n     1.089  0.0100     0.979  0.0159
+HMZ         CAI        HAIA      SINGLE       n     1.089  0.0100     0.979  0.0159
+HMZ         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.979  0.0116
+HMZ         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.979  0.0116
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HMZ         OAK         CAA         HAA     109.428    1.50
+HMZ         OAK         CAA        HAAA     109.428    1.50
+HMZ         OAK         CAA        HAAB     109.428    1.50
+HMZ         HAA         CAA        HAAA     109.509    1.50
+HMZ         HAA         CAA        HAAB     109.509    1.50
+HMZ        HAAA         CAA        HAAB     109.509    1.50
+HMZ         CAO         OAE        HOAE     120.000    3.00
+HMZ         CAG         CAF         CAN     119.610    1.50
+HMZ         CAG         CAF         HAF     120.214    1.50
+HMZ         CAN         CAF         HAF     120.176    1.50
+HMZ         CAF         CAG         CAP     122.319    1.50
+HMZ         CAF         CAG         HAG     119.007    1.50
+HMZ         CAP         CAG         HAG     118.673    1.50
+HMZ         CAN         CAH         CAO     119.535    1.50
+HMZ         CAN         CAH         HAH     120.414    1.50
+HMZ         CAO         CAH         HAH     120.051    1.50
+HMZ         CAJ         CAI         CAL     113.936    1.58
+HMZ         CAJ         CAI         HAI     108.838    1.50
+HMZ         CAJ         CAI        HAIA     108.838    1.50
+HMZ         CAL         CAI         HAI     108.404    1.50
+HMZ         CAL         CAI        HAIA     108.404    1.50
+HMZ         HAI         CAI        HAIA     107.521    1.50
+HMZ         CAI         CAJ         CAM     112.524    1.50
+HMZ         CAI         CAJ         HAJ     109.106    1.50
+HMZ         CAI         CAJ        HAJA     109.106    1.50
+HMZ         CAM         CAJ         HAJ     108.788    1.50
+HMZ         CAM         CAJ        HAJA     108.788    1.50
+HMZ         HAJ         CAJ        HAJA     107.639    1.50
+HMZ         CAA         OAK         CAN     117.529    1.50
+HMZ         OAB         CAL         OAD     123.571    1.50
+HMZ         OAB         CAL         CAI     118.214    1.64
+HMZ         OAD         CAL         CAI     118.214    1.64
+HMZ         OAC         CAM         CAJ     120.603    1.50
+HMZ         OAC         CAM         CAP     120.459    1.50
+HMZ         CAJ         CAM         CAP     118.939    1.50
+HMZ         CAF         CAN         CAH     120.544    1.50
+HMZ         CAF         CAN         OAK     119.908    3.00
+HMZ         CAH         CAN         OAK     119.548    3.00
+HMZ         OAE         CAO         CAH     119.464    3.00
+HMZ         OAE         CAO         CAP     119.464    3.00
+HMZ         CAH         CAO         CAP     121.072    1.50
+HMZ         CAG         CAP         CAM     122.360    1.50
+HMZ         CAG         CAP         CAO     116.920    1.50
+HMZ         CAM         CAP         CAO     120.720    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HMZ             sp3_sp3_2         HAA         CAA         OAK         CAN     -60.000    10.0     3
+HMZ             sp2_sp2_3         CAF         CAN         OAK         CAA     180.000     5.0     2
+HMZ             sp2_sp2_7         OAC         CAM         CAP         CAG       0.000     5.0     2
+HMZ              const_12         OAE         CAO         CAP         CAM       0.000    10.0     2
+HMZ             sp2_sp2_1         CAH         CAO         OAE        HOAE     180.000     5.0     2
+HMZ              const_22         CAG         CAF         CAN         OAK     180.000    10.0     2
+HMZ       const_sp2_sp2_1         CAN         CAF         CAG         CAP       0.000     5.0     2
+HMZ       const_sp2_sp2_6         CAF         CAG         CAP         CAM     180.000     5.0     2
+HMZ              const_18         CAO         CAH         CAN         OAK     180.000    10.0     2
+HMZ              const_14         CAN         CAH         CAO         OAE     180.000    10.0     2
+HMZ             sp2_sp3_2         OAB         CAL         CAI         CAJ     120.000    10.0     6
+HMZ             sp3_sp3_5         CAL         CAI         CAJ         CAM     180.000    10.0     3
+HMZ             sp2_sp3_8         OAC         CAM         CAJ         CAI     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HMZ    plan-1         CAF   0.020
+HMZ    plan-1         CAG   0.020
+HMZ    plan-1         CAH   0.020
+HMZ    plan-1         CAM   0.020
+HMZ    plan-1         CAN   0.020
+HMZ    plan-1         CAO   0.020
+HMZ    plan-1         CAP   0.020
+HMZ    plan-1         HAF   0.020
+HMZ    plan-1         HAG   0.020
+HMZ    plan-1         HAH   0.020
+HMZ    plan-1         OAE   0.020
+HMZ    plan-1         OAK   0.020
+HMZ    plan-2         CAI   0.020
+HMZ    plan-2         CAL   0.020
+HMZ    plan-2         OAB   0.020
+HMZ    plan-2         OAD   0.020
+HMZ    plan-3         CAJ   0.020
+HMZ    plan-3         CAM   0.020
+HMZ    plan-3         CAP   0.020
+HMZ    plan-3         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HMZ           SMILES              ACDLabs 12.01                                                                 O=C(c1ccc(OC)cc1O)CCC(=O)O
+HMZ            InChI                InChI  1.03 InChI=1S/C11H12O5/c1-16-7-2-3-8(10(13)6-7)9(12)4-5-11(14)15/h2-3,6,13H,4-5H2,1H3,(H,14,15)
+HMZ         InChIKey                InChI  1.03                                                                MMMHZBODZRNHIN-UHFFFAOYSA-N
+HMZ SMILES_CANONICAL               CACTVS 3.370                                                               COc1ccc(C(=O)CCC(O)=O)c(O)c1
+HMZ           SMILES               CACTVS 3.370                                                               COc1ccc(C(=O)CCC(O)=O)c(O)c1
+HMZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                               COc1ccc(c(c1)O)C(=O)CCC(=O)O
+HMZ           SMILES "OpenEye OEToolkits" 1.7.2                                                               COc1ccc(c(c1)O)C(=O)CCC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HMZ acedrg               243         "dictionary generator"                  
+HMZ acedrg_database      11          "data source"                           
+HMZ rdkit                2017.03.2   "Chemoinformatics tool"
+HMZ refmac5              5.8.0238    "optimization tool"                     

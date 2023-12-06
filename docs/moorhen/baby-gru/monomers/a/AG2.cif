@@ -1,0 +1,187 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AG2     AG2      AGMATINE     NON-POLYMER     24     9     .     
+#
+data_comp_AG2
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AG2     N       N       NT2     0       10.089      -3.791      -13.015     
+AG2     CA      C       CH2     0       9.161       -3.852      -14.148     
+AG2     CB      C       CH2     0       7.709       -3.573      -13.791     
+AG2     CG      C       CH2     0       6.777       -3.627      -14.990     
+AG2     CD      C       CH2     0       5.331       -3.351      -14.620     
+AG2     NE      N       NH1     0       5.121       -1.986      -14.148     
+AG2     CZ      C       C       0       5.104       -0.882      -14.903     
+AG2     NH1     N       NH2     1       5.261       -0.938      -16.219     
+AG2     NH2     N       NH2     0       4.930       0.298       -14.326     
+AG2     HN1     H       H       0       10.927      -3.704      -13.297     
+AG2     HN2     H       H       0       9.912       -3.092      -12.498     
+AG2     HA1     H       H       0       9.217       -4.742      -14.552     
+AG2     HA2     H       H       0       9.446       -3.201      -14.822     
+AG2     HB1     H       H       0       7.652       -2.684      -13.381     
+AG2     HB2     H       H       0       7.416       -4.233      -13.127     
+AG2     HG1     H       H       0       6.837       -4.516      -15.401     
+AG2     HG2     H       H       0       7.071       -2.967      -15.652     
+AG2     HD1     H       H       0       5.059       -3.976      -13.914     
+AG2     HD2     H       H       0       4.759       -3.518      -15.400     
+AG2     HE1     H       H       0       4.994       -1.883      -13.291     
+AG2     HH11    H       H       0       5.256       -0.196      -16.692     
+AG2     HH12    H       H       0       5.362       -1.701      -16.632     
+AG2     HH21    H       H       0       4.916       1.031       -14.816     
+AG2     HH22    H       H       0       4.827       0.357       -13.453     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AG2           N          CA      SINGLE       n     1.466  0.0117     1.466  0.0117
+AG2          CA          CB      SINGLE       n     1.521  0.0102     1.521  0.0102
+AG2          CB          CG      SINGLE       n     1.519  0.0150     1.519  0.0150
+AG2          CG          CD      SINGLE       n     1.517  0.0143     1.517  0.0143
+AG2          CD          NE      SINGLE       n     1.456  0.0136     1.456  0.0136
+AG2          NE          CZ      SINGLE       n     1.328  0.0112     1.328  0.0112
+AG2          CZ         NH1      DOUBLE       n     1.322  0.0100     1.322  0.0100
+AG2          CZ         NH2      SINGLE       n     1.321  0.0100     1.321  0.0100
+AG2           N         HN1      SINGLE       n     1.036  0.0160     0.888  0.0200
+AG2           N         HN2      SINGLE       n     1.036  0.0160     0.888  0.0200
+AG2          CA         HA1      SINGLE       n     1.089  0.0100     0.979  0.0106
+AG2          CA         HA2      SINGLE       n     1.089  0.0100     0.979  0.0106
+AG2          CB         HB1      SINGLE       n     1.089  0.0100     0.981  0.0160
+AG2          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0160
+AG2          CG         HG1      SINGLE       n     1.089  0.0100     0.981  0.0160
+AG2          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0160
+AG2          CD         HD1      SINGLE       n     1.089  0.0100     0.981  0.0152
+AG2          CD         HD2      SINGLE       n     1.089  0.0100     0.981  0.0152
+AG2          NE         HE1      SINGLE       n     1.016  0.0100     0.872  0.0200
+AG2         NH1        HH11      SINGLE       n     1.016  0.0100     0.879  0.0200
+AG2         NH1        HH12      SINGLE       n     1.016  0.0100     0.879  0.0200
+AG2         NH2        HH21      SINGLE       n     1.016  0.0100     0.881  0.0200
+AG2         NH2        HH22      SINGLE       n     1.016  0.0100     0.881  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AG2          CA           N         HN1     110.839    3.00
+AG2          CA           N         HN2     110.839    3.00
+AG2         HN1           N         HN2     107.243    3.00
+AG2           N          CA          CB     114.751    2.00
+AG2           N          CA         HA1     108.763    1.50
+AG2           N          CA         HA2     108.763    1.50
+AG2          CB          CA         HA1     108.627    1.50
+AG2          CB          CA         HA2     108.627    1.50
+AG2         HA1          CA         HA2     107.806    1.50
+AG2          CA          CB          CG     113.118    2.03
+AG2          CA          CB         HB1     108.630    1.50
+AG2          CA          CB         HB2     108.630    1.50
+AG2          CG          CB         HB1     108.999    1.50
+AG2          CG          CB         HB2     108.999    1.50
+AG2         HB1          CB         HB2     107.927    1.57
+AG2          CB          CG          CD     112.652    1.50
+AG2          CB          CG         HG1     108.999    1.50
+AG2          CB          CG         HG2     108.999    1.50
+AG2          CD          CG         HG1     108.956    1.50
+AG2          CD          CG         HG2     108.956    1.50
+AG2         HG1          CG         HG2     107.927    1.57
+AG2          CG          CD          NE     112.382    2.90
+AG2          CG          CD         HD1     109.197    1.51
+AG2          CG          CD         HD2     109.197    1.51
+AG2          NE          CD         HD1     109.183    1.50
+AG2          NE          CD         HD2     109.183    1.50
+AG2         HD1          CD         HD2     107.877    1.50
+AG2          CD          NE          CZ     124.510    1.50
+AG2          CD          NE         HE1     117.883    1.50
+AG2          CZ          NE         HE1     117.606    1.50
+AG2          NE          CZ         NH1     120.052    1.50
+AG2          NE          CZ         NH2     120.052    1.50
+AG2         NH1          CZ         NH2     119.896    1.50
+AG2          CZ         NH1        HH11     119.855    2.01
+AG2          CZ         NH1        HH12     119.855    2.01
+AG2        HH11         NH1        HH12     120.290    2.09
+AG2          CZ         NH2        HH21     119.855    2.01
+AG2          CZ         NH2        HH22     119.855    2.01
+AG2        HH21         NH2        HH22     120.290    2.09
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AG2             sp3_sp3_1          CB          CA           N         HN1     180.000    10.0     3
+AG2             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+AG2            sp3_sp3_16          CA          CB          CG          CD     180.000    10.0     3
+AG2            sp3_sp3_25          NE          CD          CG          CB     180.000    10.0     3
+AG2             sp2_sp3_2          CZ          NE          CD          CG     120.000    10.0     6
+AG2             sp2_sp2_1         NH1          CZ          NE          CD     180.000     5.0     2
+AG2             sp2_sp2_5          NE          CZ         NH1        HH11     180.000     5.0     2
+AG2             sp2_sp2_9          NE          CZ         NH2        HH21     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AG2    plan-1          CD   0.020
+AG2    plan-1          CZ   0.020
+AG2    plan-1         HE1   0.020
+AG2    plan-1          NE   0.020
+AG2    plan-2          CZ   0.020
+AG2    plan-2          NE   0.020
+AG2    plan-2         NH1   0.020
+AG2    plan-2         NH2   0.020
+AG2    plan-3          CZ   0.020
+AG2    plan-3        HH11   0.020
+AG2    plan-3        HH12   0.020
+AG2    plan-3         NH1   0.020
+AG2    plan-4          CZ   0.020
+AG2    plan-4        HH21   0.020
+AG2    plan-4        HH22   0.020
+AG2    plan-4         NH2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AG2           SMILES              ACDLabs 10.04                                      "[N@H]=C(N)NCCCCN"
+AG2 SMILES_CANONICAL               CACTVS 3.341                                            NCCCCNC(N)=N
+AG2           SMILES               CACTVS 3.341                                            NCCCCNC(N)=N
+AG2 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                          C(CCNC(=N)N)CN
+AG2           SMILES "OpenEye OEToolkits" 1.5.0                                          C(CCNC(=N)N)CN
+AG2            InChI                InChI  1.03 InChI=1S/C5H14N4/c6-3-1-2-4-9-5(7)8/h1-4,6H2,(H4,7,8,9)
+AG2         InChIKey                InChI  1.03                             QYPPJABKJHAVHS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AG2 acedrg               243         "dictionary generator"                  
+AG2 acedrg_database      11          "data source"                           
+AG2 rdkit                2017.03.2   "Chemoinformatics tool"
+AG2 refmac5              5.8.0238    "optimization tool"                     

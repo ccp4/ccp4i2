@@ -1,0 +1,278 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+G6E     G6E      (2~{R})-2-azanyl-~{N}-[5-(5-azanylpyridin-3-yl)-4-ethanoyl-1,3-thiazol-2-yl]propanamide     NON-POLYMER     37     21     .     
+#
+data_comp_G6E
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+G6E     N       N       NT3     1       -24.844     47.906      -2.344      
+G6E     CA      C       CH1     0       -24.799     48.265      -3.791      
+G6E     C       C       C       0       -23.515     48.960      -4.256      
+G6E     O       O       O       0       -23.436     49.406      -5.393      
+G6E     CB      C       CH3     0       -25.016     47.007      -4.619      
+G6E     CAA     C       CH3     0       -16.782     50.458      -2.264      
+G6E     CAG     C       CR16    0       -15.377     48.843      -6.838      
+G6E     CAH     C       CR16    0       -16.555     48.165      -4.960      
+G6E     CAI     C       CR16    0       -17.528     49.805      -6.397      
+G6E     CAN     C       C       0       -17.807     49.394      -2.011      
+G6E     CAP     C       CR6     0       -16.393     49.722      -7.207      
+G6E     CAQ     C       CR6     0       -17.624     49.011      -5.253      
+G6E     CAR     C       CR5     0       -21.129     49.106      -3.534      
+G6E     CAS     C       CR5     0       -18.907     49.242      -2.990      
+G6E     CAT     C       CR5     0       -18.793     49.077      -4.371      
+G6E     NAC     N       NH2     0       -16.276     50.488      -8.344      
+G6E     NAJ     N       NRD6    0       -15.447     48.075      -5.739      
+G6E     NAK     N       NRD5    0       -20.215     49.259      -2.528      
+G6E     NAL     N       NH1     0       -22.499     49.099      -3.337      
+G6E     OAE     O       O       0       -17.748     48.667      -1.028      
+G6E     SAM     S       S2      0       -20.333     48.952      -5.003      
+G6E     H1      H       H       0       -24.822     48.659      -1.833      
+G6E     H2      H       H       0       -24.138     47.372      -2.129      
+G6E     H3      H       H       0       -25.615     47.456      -2.160      
+G6E     H4      H       H       0       -25.540     48.879      -3.960      
+G6E     H5      H       H       0       -25.869     46.604      -4.383      
+G6E     H6      H       H       0       -24.302     46.372      -4.443      
+G6E     H7      H       H       0       -25.020     47.233      -5.565      
+G6E     H8      H       H       0       -17.070     51.023      -2.998      
+G6E     H9      H       H       0       -15.936     50.044      -2.490      
+G6E     H10     H       H       0       -16.673     50.998      -1.467      
+G6E     H11     H       H       0       -14.601     48.782      -7.388      
+G6E     H12     H       H       0       -16.604     47.625      -4.186      
+G6E     H13     H       H       0       -18.225     50.389      -6.622      
+G6E     H14     H       H       0       -16.952     50.980      -8.611      
+G6E     H15     H       H       0       -15.526     50.484      -8.800      
+G6E     H16     H       H       0       -22.716     49.248      -2.503      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+G6E         CAP         NAC      SINGLE       n     1.373  0.0200     1.373  0.0200
+G6E         CAG         CAP      DOUBLE       y     1.390  0.0107     1.390  0.0107
+G6E         CAI         CAP      SINGLE       y     1.393  0.0100     1.393  0.0100
+G6E         CAG         NAJ      SINGLE       y     1.337  0.0105     1.337  0.0105
+G6E         CAI         CAQ      DOUBLE       y     1.393  0.0100     1.393  0.0100
+G6E           C           O      DOUBLE       n     1.223  0.0143     1.223  0.0143
+G6E         CAH         NAJ      DOUBLE       y     1.340  0.0198     1.340  0.0198
+G6E         CAT         SAM      SINGLE       y     1.695  0.0200     1.695  0.0200
+G6E         CAR         SAM      SINGLE       y     1.695  0.0200     1.695  0.0200
+G6E         CAH         CAQ      SINGLE       y     1.391  0.0100     1.391  0.0100
+G6E         CAQ         CAT      SINGLE       n     1.464  0.0100     1.464  0.0100
+G6E          CA          CB      SINGLE       n     1.521  0.0100     1.521  0.0100
+G6E          CA           C      SINGLE       n     1.518  0.0150     1.518  0.0150
+G6E           C         NAL      SINGLE       n     1.357  0.0187     1.357  0.0187
+G6E         CAS         CAT      DOUBLE       y     1.385  0.0200     1.385  0.0200
+G6E           N          CA      SINGLE       n     1.489  0.0100     1.489  0.0100
+G6E         CAR         NAL      SINGLE       n     1.367  0.0190     1.367  0.0190
+G6E         CAR         NAK      DOUBLE       y     1.354  0.0165     1.354  0.0165
+G6E         CAS         NAK      SINGLE       y     1.378  0.0100     1.378  0.0100
+G6E         CAN         CAS      SINGLE       n     1.479  0.0100     1.479  0.0100
+G6E         CAA         CAN      SINGLE       n     1.497  0.0156     1.497  0.0156
+G6E         CAN         OAE      DOUBLE       n     1.224  0.0152     1.224  0.0152
+G6E           N          H1      SINGLE       n     1.036  0.0160     0.911  0.0200
+G6E           N          H2      SINGLE       n     1.036  0.0160     0.911  0.0200
+G6E           N          H3      SINGLE       n     1.036  0.0160     0.911  0.0200
+G6E          CA          H4      SINGLE       n     1.089  0.0100     0.977  0.0200
+G6E          CB          H5      SINGLE       n     1.089  0.0100     0.972  0.0152
+G6E          CB          H6      SINGLE       n     1.089  0.0100     0.972  0.0152
+G6E          CB          H7      SINGLE       n     1.089  0.0100     0.972  0.0152
+G6E         CAA          H8      SINGLE       n     1.089  0.0100     0.969  0.0198
+G6E         CAA          H9      SINGLE       n     1.089  0.0100     0.969  0.0198
+G6E         CAA         H10      SINGLE       n     1.089  0.0100     0.969  0.0198
+G6E         CAG         H11      SINGLE       n     1.082  0.0130     0.953  0.0200
+G6E         CAH         H12      SINGLE       n     1.082  0.0130     0.945  0.0181
+G6E         CAI         H13      SINGLE       n     1.082  0.0130     0.937  0.0103
+G6E         NAC         H14      SINGLE       n     1.016  0.0100     0.877  0.0200
+G6E         NAC         H15      SINGLE       n     1.016  0.0100     0.877  0.0200
+G6E         NAL         H16      SINGLE       n     1.016  0.0100     0.878  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+G6E          CA           N          H1     110.048    1.62
+G6E          CA           N          H2     110.048    1.62
+G6E          CA           N          H3     110.048    1.62
+G6E          H1           N          H2     109.028    2.41
+G6E          H1           N          H3     109.028    2.41
+G6E          H2           N          H3     109.028    2.41
+G6E          CB          CA           C     110.471    2.28
+G6E          CB          CA           N     109.928    1.50
+G6E          CB          CA          H4     109.423    1.50
+G6E           C          CA           N     109.935    2.65
+G6E           C          CA          H4     108.362    1.50
+G6E           N          CA          H4     108.662    1.78
+G6E           O           C          CA     121.609    1.62
+G6E           O           C         NAL     122.676    1.50
+G6E          CA           C         NAL     115.715    1.50
+G6E          CA          CB          H5     109.719    1.50
+G6E          CA          CB          H6     109.719    1.50
+G6E          CA          CB          H7     109.719    1.50
+G6E          H5          CB          H6     109.386    1.50
+G6E          H5          CB          H7     109.386    1.50
+G6E          H6          CB          H7     109.386    1.50
+G6E         CAN         CAA          H8     109.525    1.50
+G6E         CAN         CAA          H9     109.525    1.50
+G6E         CAN         CAA         H10     109.525    1.50
+G6E          H8         CAA          H9     109.390    1.59
+G6E          H8         CAA         H10     109.390    1.59
+G6E          H9         CAA         H10     109.390    1.59
+G6E         CAP         CAG         NAJ     122.572    1.50
+G6E         CAP         CAG         H11     118.805    1.50
+G6E         NAJ         CAG         H11     118.623    1.50
+G6E         NAJ         CAH         CAQ     122.972    1.50
+G6E         NAJ         CAH         H12     118.433    1.50
+G6E         CAQ         CAH         H12     118.595    1.50
+G6E         CAP         CAI         CAQ     119.956    1.50
+G6E         CAP         CAI         H13     120.213    1.50
+G6E         CAQ         CAI         H13     119.831    1.50
+G6E         CAS         CAN         CAA     117.684    1.50
+G6E         CAS         CAN         OAE     120.580    1.50
+G6E         CAA         CAN         OAE     121.736    1.50
+G6E         NAC         CAP         CAG     120.279    1.86
+G6E         NAC         CAP         CAI     120.957    1.50
+G6E         CAG         CAP         CAI     118.764    1.50
+G6E         CAI         CAQ         CAH     118.081    1.50
+G6E         CAI         CAQ         CAT     121.183    1.61
+G6E         CAH         CAQ         CAT     120.736    1.50
+G6E         SAM         CAR         NAL     122.802    3.00
+G6E         SAM         CAR         NAK     108.396    3.00
+G6E         NAL         CAR         NAK     128.802    3.00
+G6E         CAT         CAS         NAK     109.250    1.50
+G6E         CAT         CAS         CAN     129.433    3.00
+G6E         NAK         CAS         CAN     121.318    3.00
+G6E         SAM         CAT         CAQ     119.129    3.00
+G6E         SAM         CAT         CAS     108.396    3.00
+G6E         CAQ         CAT         CAS     132.475    2.08
+G6E         CAP         NAC         H14     119.789    2.29
+G6E         CAP         NAC         H15     119.789    2.29
+G6E         H14         NAC         H15     120.421    3.00
+G6E         CAG         NAJ         CAH     117.655    1.50
+G6E         CAR         NAK         CAS     105.563    1.59
+G6E           C         NAL         CAR     124.557    2.96
+G6E           C         NAL         H16     118.683    1.66
+G6E         CAR         NAL         H16     116.760    2.70
+G6E         CAT         SAM         CAR     108.396    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+G6E            sp3_sp3_10          CB          CA           N          H1     180.000    10.0     3
+G6E             sp2_sp2_1         CAG         CAP         NAC         H14     180.000     5.0     2
+G6E             sp2_sp2_6         CAI         CAQ         CAT         SAM       0.000     5.0     2
+G6E              const_32         NAL         CAR         NAK         CAS     180.000    10.0     2
+G6E            sp2_sp2_13         SAM         CAR         NAL           C     180.000     5.0     2
+G6E              const_20         NAL         CAR         SAM         CAT     180.000    10.0     2
+G6E              const_25         CAN         CAS         CAT         SAM     180.000    10.0     2
+G6E              const_28         CAN         CAS         NAK         CAR     180.000    10.0     2
+G6E              const_22         CAQ         CAT         SAM         CAR     180.000    10.0     2
+G6E             sp2_sp3_1           O           C          CA          CB       0.000    10.0     6
+G6E             sp3_sp3_1           C          CA          CB          H5     180.000    10.0     3
+G6E            sp2_sp2_11           O           C         NAL         CAR       0.000     5.0     2
+G6E            sp2_sp3_10         OAE         CAN         CAA          H8     180.000    10.0     6
+G6E       const_sp2_sp2_2         NAJ         CAG         CAP         NAC     180.000     5.0     2
+G6E              const_29         CAP         CAG         NAJ         CAH       0.000    10.0     2
+G6E              const_13         NAJ         CAH         CAQ         CAI       0.000    10.0     2
+G6E              const_17         CAQ         CAH         NAJ         CAG       0.000    10.0     2
+G6E       const_sp2_sp2_6         CAQ         CAI         CAP         NAC     180.000     5.0     2
+G6E       const_sp2_sp2_9         CAP         CAI         CAQ         CAH       0.000     5.0     2
+G6E            sp2_sp2_17         CAA         CAN         CAS         CAT     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+G6E    chir_1    CA    N    C    CB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+G6E    plan-1         CAG   0.020
+G6E    plan-1         CAH   0.020
+G6E    plan-1         CAI   0.020
+G6E    plan-1         CAP   0.020
+G6E    plan-1         CAQ   0.020
+G6E    plan-1         CAT   0.020
+G6E    plan-1         H11   0.020
+G6E    plan-1         H12   0.020
+G6E    plan-1         H13   0.020
+G6E    plan-1         NAC   0.020
+G6E    plan-1         NAJ   0.020
+G6E    plan-2         CAN   0.020
+G6E    plan-2         CAQ   0.020
+G6E    plan-2         CAR   0.020
+G6E    plan-2         CAS   0.020
+G6E    plan-2         CAT   0.020
+G6E    plan-2         NAK   0.020
+G6E    plan-2         NAL   0.020
+G6E    plan-2         SAM   0.020
+G6E    plan-3           C   0.020
+G6E    plan-3          CA   0.020
+G6E    plan-3         NAL   0.020
+G6E    plan-3           O   0.020
+G6E    plan-4         CAA   0.020
+G6E    plan-4         CAN   0.020
+G6E    plan-4         CAS   0.020
+G6E    plan-4         OAE   0.020
+G6E    plan-5         CAP   0.020
+G6E    plan-5         H14   0.020
+G6E    plan-5         H15   0.020
+G6E    plan-5         NAC   0.020
+G6E    plan-6           C   0.020
+G6E    plan-6         CAR   0.020
+G6E    plan-6         H16   0.020
+G6E    plan-6         NAL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+G6E            InChI                InChI  1.03 InChI=1S/C13H15N5O2S/c1-6(14)12(20)18-13-17-10(7(2)19)11(21-13)8-3-9(15)5-16-4-8/h3-6H,14-15H2,1-2H3,(H,17,18,20)/t6-/m1/s1
+G6E         InChIKey                InChI  1.03                                                                                                 DVUMUHRRODTQIU-ZCFIWIBFSA-N
+G6E SMILES_CANONICAL               CACTVS 3.385                                                                                C[C@@H](N)C(=O)Nc1sc(c2cncc(N)c2)c(n1)C(C)=O
+G6E           SMILES               CACTVS 3.385                                                                                  C[CH](N)C(=O)Nc1sc(c2cncc(N)c2)c(n1)C(C)=O
+G6E SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                 C[C@H](C(=O)Nc1nc(c(s1)c2cc(cnc2)N)C(=O)C)N
+G6E           SMILES "OpenEye OEToolkits" 2.0.6                                                                                     CC(C(=O)Nc1nc(c(s1)c2cc(cnc2)N)C(=O)C)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+G6E acedrg               243         "dictionary generator"                  
+G6E acedrg_database      11          "data source"                           
+G6E rdkit                2017.03.2   "Chemoinformatics tool"
+G6E refmac5              5.8.0238    "optimization tool"                     

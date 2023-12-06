@@ -1,0 +1,171 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+12W     12W      "cyclopentyl hydrogen carbonate"     NON-POLYMER     19     9     .     
+#
+data_comp_12W
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+12W     C25     C       C       0       1.852       0.273       -0.356      
+12W     O26     O       O       0       1.852       1.352       -0.868      
+12W     O27     O       O2      0       0.804       -0.431      0.086       
+12W     C28     C       CH1     0       -0.521      -0.079      -0.399      
+12W     C29     C       CH2     0       -1.052      1.046       0.435       
+12W     C30     C       CH2     0       -2.549      0.821       0.502       
+12W     C31     C       CH2     0       -2.797      -0.586      0.076       
+12W     C32     C       CH2     0       -1.438      -1.222      -0.109      
+12W     OXT     O       OH1     0       2.954       -0.445      -0.118      
+12W     H26     H       H       0       -0.499      0.145       -1.361      
+12W     H27     H       H       0       -0.659      1.029       1.339       
+12W     H28     H       H       0       -0.850      1.915       0.016       
+12W     H29     H       H       0       -3.017      1.450       -0.096      
+12W     H30     H       H       0       -2.875      0.965       1.421       
+12W     H31     H       H       0       -3.305      -0.608      -0.769      
+12W     H32     H       H       0       -3.312      -1.070      0.763       
+12W     H33     H       H       0       -1.162      -1.697      0.710       
+12W     H34     H       H       0       -1.452      -1.859      -0.861      
+12W     HXT     H       H       0       3.663       -0.058      0.181       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+12W         C25         O27      SINGLE       n     1.332  0.0131     1.332  0.0131
+12W         C25         O26      DOUBLE       n     1.193  0.0100     1.193  0.0100
+12W         O27         C28      SINGLE       n     1.445  0.0174     1.445  0.0174
+12W         C28         C29      SINGLE       n     1.496  0.0200     1.496  0.0200
+12W         C29         C30      SINGLE       n     1.512  0.0200     1.512  0.0200
+12W         C28         C32      SINGLE       n     1.496  0.0200     1.496  0.0200
+12W         C30         C31      SINGLE       n     1.488  0.0200     1.488  0.0200
+12W         C31         C32      SINGLE       n     1.512  0.0200     1.512  0.0200
+12W         C25         OXT      SINGLE       n     1.337  0.0193     1.337  0.0193
+12W         C28         H26      SINGLE       n     1.089  0.0100     0.988  0.0141
+12W         C29         H27      SINGLE       n     1.089  0.0100     0.986  0.0108
+12W         C29         H28      SINGLE       n     1.089  0.0100     0.986  0.0108
+12W         C30         H29      SINGLE       n     1.089  0.0100     0.986  0.0110
+12W         C30         H30      SINGLE       n     1.089  0.0100     0.986  0.0110
+12W         C31         H31      SINGLE       n     1.089  0.0100     0.986  0.0110
+12W         C31         H32      SINGLE       n     1.089  0.0100     0.986  0.0110
+12W         C32         H33      SINGLE       n     1.089  0.0100     0.986  0.0108
+12W         C32         H34      SINGLE       n     1.089  0.0100     0.986  0.0108
+12W         OXT         HXT      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+12W         O27         C25         O26     126.738    2.45
+12W         O27         C25         OXT     108.732    3.00
+12W         O26         C25         OXT     124.530    1.64
+12W         C25         O27         C28     116.971    1.50
+12W         O27         C28         C29     108.493    2.67
+12W         O27         C28         C32     108.493    2.67
+12W         O27         C28         H26     111.136    1.50
+12W         C29         C28         C32     105.141    1.50
+12W         C29         C28         H26     112.648    1.50
+12W         C32         C28         H26     112.648    1.50
+12W         C28         C29         C30     105.200    1.50
+12W         C28         C29         H27     110.862    1.50
+12W         C28         C29         H28     110.862    1.50
+12W         C30         C29         H27     110.763    1.50
+12W         C30         C29         H28     110.763    1.50
+12W         H27         C29         H28     109.046    1.50
+12W         C29         C30         C31     106.171    2.25
+12W         C29         C30         H29     110.533    1.50
+12W         C29         C30         H30     110.533    1.50
+12W         C31         C30         H29     110.679    1.50
+12W         C31         C30         H30     110.679    1.50
+12W         H29         C30         H30     108.634    1.62
+12W         C30         C31         C32     106.171    2.25
+12W         C30         C31         H31     110.679    1.50
+12W         C30         C31         H32     110.679    1.50
+12W         C32         C31         H31     110.533    1.50
+12W         C32         C31         H32     110.533    1.50
+12W         H31         C31         H32     108.634    1.62
+12W         C28         C32         C31     105.200    1.50
+12W         C28         C32         H33     110.862    1.50
+12W         C28         C32         H34     110.862    1.50
+12W         C31         C32         H33     110.763    1.50
+12W         C31         C32         H34     110.763    1.50
+12W         H33         C32         H34     109.046    1.50
+12W         C25         OXT         HXT     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+12W             sp2_sp2_1         O26         C25         O27         C28     180.000     5.0     2
+12W             sp2_sp2_3         O27         C25         OXT         HXT     180.000     5.0     2
+12W            sp3_sp3_37         C29         C28         O27         C25     180.000    10.0     3
+12W             sp3_sp3_7         O27         C28         C29         C30     180.000    10.0     3
+12W            sp3_sp3_43         O27         C28         C32         C31      60.000    10.0     3
+12W            sp3_sp3_10         C28         C29         C30         C31     -60.000    10.0     3
+12W            sp3_sp3_19         C29         C30         C31         C32      60.000    10.0     3
+12W            sp3_sp3_28         C30         C31         C32         C28     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+12W    chir_1    C28    O27    C29    C32    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+12W    plan-1         C25   0.020
+12W    plan-1         O26   0.020
+12W    plan-1         O27   0.020
+12W    plan-1         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+12W           SMILES              ACDLabs 12.01                                          O=C(O)OC1CCCC1
+12W            InChI                InChI  1.03 InChI=1S/C6H10O3/c7-6(8)9-5-3-1-2-4-5/h5H,1-4H2,(H,7,8)
+12W         InChIKey                InChI  1.03                             AVOZEJJQAGFSRD-UHFFFAOYSA-N
+12W SMILES_CANONICAL               CACTVS 3.370                                          OC(=O)OC1CCCC1
+12W           SMILES               CACTVS 3.370                                          OC(=O)OC1CCCC1
+12W SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                        C1CCC(C1)OC(=O)O
+12W           SMILES "OpenEye OEToolkits" 1.7.6                                        C1CCC(C1)OC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+12W acedrg               243         "dictionary generator"                  
+12W acedrg_database      11          "data source"                           
+12W rdkit                2017.03.2   "Chemoinformatics tool"
+12W refmac5              5.8.0238    "optimization tool"                     

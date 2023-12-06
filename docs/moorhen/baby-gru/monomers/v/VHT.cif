@@ -1,0 +1,319 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VHT     VHT      "methyl 2-[[3-[[2,4-bis(fluoranyl)phenyl]methylcarbamoyl]-1-oxidanyl-2-oxidanylidene-1,8-naphthyridin-4-yl]amino]ethanoate"     NON-POLYMER     46     30     .     
+#
+data_comp_VHT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VHT     FAG     F       F       0       -39.101     36.322      -19.578     
+VHT     CAW     C       CR6     0       -39.358     36.267      -20.906     
+VHT     CAM     C       CR16    0       -40.683     36.300      -21.318     
+VHT     CAV     C       CR6     0       -40.912     36.243      -22.675     
+VHT     FAF     F       F       0       -42.198     36.274      -23.108     
+VHT     CAJ     C       CR16    0       -39.904     36.155      -23.605     
+VHT     CAK     C       CR16    0       -38.589     36.124      -23.156     
+VHT     CAX     C       CR6     0       -38.290     36.182      -21.793     
+VHT     CAO     C       CH2     0       -36.861     36.142      -21.311     
+VHT     NAQ     N       NH1     0       -36.527     34.867      -20.684     
+VHT     CAU     C       C       0       -36.319     33.751      -21.391     
+VHT     OAC     O       O       0       -36.304     33.734      -22.623     
+VHT     CAZ     C       CR6     0       -36.151     32.474      -20.620     
+VHT     CBA     C       CR6     0       -35.038     32.332      -19.696     
+VHT     OAD     O       O       0       -34.232     33.257      -19.538     
+VHT     NBD     N       NR6     0       -34.862     31.157      -18.972     
+VHT     OAE     O       OH1     0       -33.793     31.048      -18.096     
+VHT     CBC     C       CR66    0       -35.748     30.087      -19.118     
+VHT     NAP     N       NRD6    0       -35.515     28.975      -18.383     
+VHT     CAI     C       CR16    0       -36.357     27.955      -18.520     
+VHT     CAH     C       CR16    0       -37.474     27.952      -19.378     
+VHT     CAL     C       CR16    0       -37.721     29.066      -20.124     
+VHT     CBB     C       CR66    0       -36.869     30.189      -20.031     
+VHT     CAY     C       CR6     0       -37.061     31.400      -20.784     
+VHT     N       N       NH1     0       -38.122     31.516      -21.657     
+VHT     CA      C       CH2     0       -39.365     32.169      -21.311     
+VHT     C       C       C       0       -40.419     32.086      -22.394     
+VHT     O       O       O       0       -41.496     31.579      -22.257     
+VHT     OAS     O       O2      0       -39.971     32.654      -23.515     
+VHT     CAA     C       CH3     0       -40.897     32.771      -24.627     
+VHT     H1      H       H       0       -41.387     36.360      -20.699     
+VHT     H2      H       H       0       -40.101     36.118      -24.524     
+VHT     H3      H       H       0       -37.890     36.064      -23.785     
+VHT     H4      H       H       0       -36.725     36.864      -20.662     
+VHT     H5      H       H       0       -36.259     36.303      -22.067     
+VHT     H6      H       H       0       -36.465     34.842      -19.810     
+VHT     H7      H       H       0       -34.130     31.148      -17.323     
+VHT     H8      H       H       0       -36.188     27.164      -17.995     
+VHT     H9      H       H       0       -38.037     27.198      -19.433     
+VHT     H10     H       H       0       -38.462     29.089      -20.706     
+VHT     H11     H       H       0       -38.024     31.175      -22.452     
+VHT     H12     H       H       0       -39.182     33.115      -21.118     
+VHT     H13     H       H       0       -39.719     31.761      -20.490     
+VHT     H14     H       H       0       -41.674     33.282      -24.349     
+VHT     H15     H       H       0       -41.174     31.886      -24.912     
+VHT     H16     H       H       0       -40.457     33.225      -25.363     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VHT         OAS         CAA      SINGLE       n     1.447  0.0130     1.447  0.0130
+VHT           C         OAS      SINGLE       n     1.331  0.0100     1.331  0.0100
+VHT           C           O      DOUBLE       n     1.197  0.0100     1.197  0.0100
+VHT          CA           C      SINGLE       n     1.512  0.0100     1.512  0.0100
+VHT         CAJ         CAK      DOUBLE       y     1.386  0.0101     1.386  0.0101
+VHT         CAK         CAX      SINGLE       y     1.391  0.0116     1.391  0.0116
+VHT         CAU         OAC      DOUBLE       n     1.230  0.0114     1.230  0.0114
+VHT         CAV         CAJ      SINGLE       y     1.365  0.0159     1.365  0.0159
+VHT           N          CA      SINGLE       n     1.446  0.0100     1.446  0.0100
+VHT         CAY           N      SINGLE       n     1.372  0.0200     1.372  0.0200
+VHT         CAX         CAO      SINGLE       n     1.508  0.0100     1.508  0.0100
+VHT         CAO         NAQ      SINGLE       n     1.458  0.0100     1.458  0.0100
+VHT         CAW         CAX      DOUBLE       y     1.385  0.0121     1.385  0.0121
+VHT         NAQ         CAU      SINGLE       n     1.334  0.0100     1.334  0.0100
+VHT         CAU         CAZ      SINGLE       n     1.498  0.0100     1.498  0.0100
+VHT         CAV         FAF      SINGLE       n     1.357  0.0100     1.357  0.0100
+VHT         CAM         CAV      DOUBLE       y     1.368  0.0158     1.368  0.0158
+VHT         CAZ         CAY      DOUBLE       y     1.406  0.0154     1.406  0.0154
+VHT         CBB         CAY      SINGLE       y     1.417  0.0200     1.417  0.0200
+VHT         CAZ         CBA      SINGLE       y     1.448  0.0113     1.448  0.0113
+VHT         CAW         CAM      SINGLE       y     1.380  0.0148     1.380  0.0148
+VHT         FAG         CAW      SINGLE       n     1.354  0.0100     1.354  0.0100
+VHT         CAL         CBB      SINGLE       y     1.405  0.0129     1.405  0.0129
+VHT         CAH         CAL      DOUBLE       y     1.359  0.0110     1.359  0.0110
+VHT         CBC         CBB      DOUBLE       y     1.423  0.0200     1.423  0.0200
+VHT         CBA         OAD      DOUBLE       n     1.235  0.0126     1.235  0.0126
+VHT         CBA         NBD      SINGLE       y     1.378  0.0174     1.378  0.0174
+VHT         CAI         CAH      SINGLE       y     1.406  0.0100     1.406  0.0100
+VHT         NBD         CBC      SINGLE       y     1.380  0.0176     1.380  0.0176
+VHT         CBC         NAP      SINGLE       y     1.349  0.0100     1.349  0.0100
+VHT         NBD         OAE      SINGLE       n     1.384  0.0100     1.384  0.0100
+VHT         NAP         CAI      DOUBLE       y     1.326  0.0100     1.326  0.0100
+VHT         CAM          H1      SINGLE       n     1.082  0.0130     0.940  0.0146
+VHT         CAJ          H2      SINGLE       n     1.082  0.0130     0.940  0.0141
+VHT         CAK          H3      SINGLE       n     1.082  0.0130     0.943  0.0173
+VHT         CAO          H4      SINGLE       n     1.089  0.0100     0.980  0.0169
+VHT         CAO          H5      SINGLE       n     1.089  0.0100     0.980  0.0169
+VHT         NAQ          H6      SINGLE       n     1.016  0.0100     0.875  0.0200
+VHT         OAE          H7      SINGLE       n     0.970  0.0120     0.849  0.0200
+VHT         CAI          H8      SINGLE       n     1.082  0.0130     0.964  0.0200
+VHT         CAH          H9      SINGLE       n     1.082  0.0130     0.942  0.0187
+VHT         CAL         H10      SINGLE       n     1.082  0.0130     0.943  0.0175
+VHT           N         H11      SINGLE       n     1.016  0.0100     0.870  0.0200
+VHT          CA         H12      SINGLE       n     1.089  0.0100     0.983  0.0100
+VHT          CA         H13      SINGLE       n     1.089  0.0100     0.983  0.0100
+VHT         CAA         H14      SINGLE       n     1.089  0.0100     0.970  0.0175
+VHT         CAA         H15      SINGLE       n     1.089  0.0100     0.970  0.0175
+VHT         CAA         H16      SINGLE       n     1.089  0.0100     0.970  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VHT         CAX         CAW         CAM     123.148    1.50
+VHT         CAX         CAW         FAG     118.686    1.50
+VHT         CAM         CAW         FAG     118.166    1.50
+VHT         CAV         CAM         CAW     116.717    1.50
+VHT         CAV         CAM          H1     121.784    1.50
+VHT         CAW         CAM          H1     121.500    1.50
+VHT         CAJ         CAV         FAF     118.668    1.50
+VHT         CAJ         CAV         CAM     123.195    1.50
+VHT         FAF         CAV         CAM     118.137    1.50
+VHT         CAK         CAJ         CAV     118.323    1.50
+VHT         CAK         CAJ          H2     120.909    1.50
+VHT         CAV         CAJ          H2     120.768    1.50
+VHT         CAJ         CAK         CAX     121.013    1.50
+VHT         CAJ         CAK          H3     119.272    1.50
+VHT         CAX         CAK          H3     119.714    1.50
+VHT         CAK         CAX         CAO     120.623    1.50
+VHT         CAK         CAX         CAW     117.603    1.50
+VHT         CAO         CAX         CAW     121.774    1.50
+VHT         CAX         CAO         NAQ     112.746    1.93
+VHT         CAX         CAO          H4     109.005    1.50
+VHT         CAX         CAO          H5     109.005    1.50
+VHT         NAQ         CAO          H4     109.133    1.50
+VHT         NAQ         CAO          H5     109.133    1.50
+VHT          H4         CAO          H5     107.860    1.50
+VHT         CAO         NAQ         CAU     121.850    1.50
+VHT         CAO         NAQ          H6     118.637    1.50
+VHT         CAU         NAQ          H6     119.513    1.50
+VHT         OAC         CAU         NAQ     122.397    1.50
+VHT         OAC         CAU         CAZ     120.879    1.50
+VHT         NAQ         CAU         CAZ     116.724    1.50
+VHT         CAU         CAZ         CAY     121.561    2.04
+VHT         CAU         CAZ         CBA     118.523    2.75
+VHT         CAY         CAZ         CBA     119.916    1.80
+VHT         CAZ         CBA         OAD     120.305    1.50
+VHT         CAZ         CBA         NBD     120.929    1.50
+VHT         OAD         CBA         NBD     118.766    1.67
+VHT         CBA         NBD         CBC     120.789    2.19
+VHT         CBA         NBD         OAE     119.634    1.50
+VHT         CBC         NBD         OAE     119.577    1.50
+VHT         NBD         OAE          H7     105.130    3.00
+VHT         CBB         CBC         NBD     120.033    1.50
+VHT         CBB         CBC         NAP     122.633    1.50
+VHT         NBD         CBC         NAP     117.334    1.70
+VHT         CBC         NAP         CAI     116.907    1.50
+VHT         CAH         CAI         NAP     124.372    1.50
+VHT         CAH         CAI          H8     118.041    1.50
+VHT         NAP         CAI          H8     117.587    1.50
+VHT         CAL         CAH         CAI     118.367    1.50
+VHT         CAL         CAH          H9     120.957    1.50
+VHT         CAI         CAH          H9     120.677    1.50
+VHT         CBB         CAL         CAH     120.224    1.50
+VHT         CBB         CAL         H10     119.459    1.50
+VHT         CAH         CAL         H10     120.317    1.50
+VHT         CAY         CBB         CAL     123.301    1.55
+VHT         CAY         CBB         CBC     119.202    1.50
+VHT         CAL         CBB         CBC     117.497    1.50
+VHT           N         CAY         CAZ     120.641    2.16
+VHT           N         CAY         CBB     120.229    1.59
+VHT         CAZ         CAY         CBB     119.130    1.50
+VHT          CA           N         CAY     123.323    1.78
+VHT          CA           N         H11     119.021    1.97
+VHT         CAY           N         H11     117.656    3.00
+VHT           C          CA           N     113.356    1.91
+VHT           C          CA         H12     109.111    1.50
+VHT           C          CA         H13     109.111    1.50
+VHT           N          CA         H12     108.890    1.50
+VHT           N          CA         H13     108.890    1.50
+VHT         H12          CA         H13     107.761    1.50
+VHT         OAS           C           O     124.453    1.50
+VHT         OAS           C          CA     110.557    1.50
+VHT           O           C          CA     124.990    1.50
+VHT         CAA         OAS           C     116.047    1.50
+VHT         OAS         CAA         H14     109.367    1.50
+VHT         OAS         CAA         H15     109.367    1.50
+VHT         OAS         CAA         H16     109.367    1.50
+VHT         H14         CAA         H15     109.532    1.53
+VHT         H14         CAA         H16     109.532    1.53
+VHT         H15         CAA         H16     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VHT            sp2_sp2_13         OAC         CAU         CAZ         CAY       0.000     5.0     2
+VHT              const_58         CAU         CAZ         CBA         OAD       0.000    10.0     2
+VHT              const_42           N         CAY         CAZ         CAU       0.000    10.0     2
+VHT              const_54         OAD         CBA         NBD         OAE       0.000    10.0     2
+VHT              const_48         CBB         CBC         NBD         OAE     180.000    10.0     2
+VHT              const_63         CBB         CBC         NAP         CAI       0.000    10.0     2
+VHT       const_sp2_sp2_1         CAY         CBB         CBC         NBD       0.000     5.0     2
+VHT              const_17         CAH         CAI         NAP         CBC       0.000    10.0     2
+VHT              const_13         CAL         CAH         CAI         NAP       0.000    10.0     2
+VHT              const_60         CAV         CAM         CAW         FAG     180.000    10.0     2
+VHT              const_22         FAG         CAW         CAX         CAO       0.000    10.0     2
+VHT       const_sp2_sp2_9         CAI         CAH         CAL         CBB       0.000     5.0     2
+VHT       const_sp2_sp2_6         CAH         CAL         CBB         CAY     180.000     5.0     2
+VHT              const_46           N         CAY         CBB         CAL       0.000    10.0     2
+VHT             sp2_sp2_3         CAZ         CAY           N          CA     180.000     5.0     2
+VHT             sp2_sp3_8         CAY           N          CA           C     120.000    10.0     6
+VHT             sp2_sp3_2         OAS           C          CA           N     120.000    10.0     6
+VHT             sp2_sp2_1           O           C         OAS         CAA     180.000     5.0     2
+VHT             sp3_sp3_2         H14         CAA         OAS           C     -60.000    10.0     3
+VHT              const_36         CAW         CAM         CAV         FAF     180.000    10.0     2
+VHT              const_32         CAK         CAJ         CAV         FAF     180.000    10.0     2
+VHT              const_27         CAV         CAJ         CAK         CAX       0.000    10.0     2
+VHT              const_24         CAJ         CAK         CAX         CAO     180.000    10.0     2
+VHT            sp2_sp3_14         CAK         CAX         CAO         NAQ     -90.000    10.0     6
+VHT            sp2_sp3_20         CAU         NAQ         CAO         CAX     120.000    10.0     6
+VHT             sp2_sp2_9         OAC         CAU         NAQ         CAO       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VHT    plan-1         CAH   0.020
+VHT    plan-1         CAI   0.020
+VHT    plan-1         CAL   0.020
+VHT    plan-1         CAU   0.020
+VHT    plan-1         CAY   0.020
+VHT    plan-1         CAZ   0.020
+VHT    plan-1         CBA   0.020
+VHT    plan-1         CBB   0.020
+VHT    plan-1         CBC   0.020
+VHT    plan-1         H10   0.020
+VHT    plan-1          H8   0.020
+VHT    plan-1          H9   0.020
+VHT    plan-1           N   0.020
+VHT    plan-1         NAP   0.020
+VHT    plan-1         NBD   0.020
+VHT    plan-1         OAD   0.020
+VHT    plan-1         OAE   0.020
+VHT    plan-2         CAJ   0.020
+VHT    plan-2         CAK   0.020
+VHT    plan-2         CAM   0.020
+VHT    plan-2         CAO   0.020
+VHT    plan-2         CAV   0.020
+VHT    plan-2         CAW   0.020
+VHT    plan-2         CAX   0.020
+VHT    plan-2         FAF   0.020
+VHT    plan-2         FAG   0.020
+VHT    plan-2          H1   0.020
+VHT    plan-2          H2   0.020
+VHT    plan-2          H3   0.020
+VHT    plan-3         CAO   0.020
+VHT    plan-3         CAU   0.020
+VHT    plan-3          H6   0.020
+VHT    plan-3         NAQ   0.020
+VHT    plan-4         CAU   0.020
+VHT    plan-4         CAZ   0.020
+VHT    plan-4         NAQ   0.020
+VHT    plan-4         OAC   0.020
+VHT    plan-5          CA   0.020
+VHT    plan-5         CAY   0.020
+VHT    plan-5         H11   0.020
+VHT    plan-5           N   0.020
+VHT    plan-6           C   0.020
+VHT    plan-6          CA   0.020
+VHT    plan-6           O   0.020
+VHT    plan-6         OAS   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VHT            InChI                InChI  1.03 InChI=1S/C19H16F2N4O5/c1-30-14(26)9-23-16-12-3-2-6-22-17(12)25(29)19(28)15(16)18(27)24-8-10-4-5-11(20)7-13(10)21/h2-7,23,29H,8-9H2,1H3,(H,24,27)
+VHT         InChIKey                InChI  1.03                                                                                                                      DPDVGSIUVKMEDW-UHFFFAOYSA-N
+VHT SMILES_CANONICAL               CACTVS 3.385                                                                                             COC(=O)CNC1=C(C(=O)NCc2ccc(F)cc2F)C(=O)N(O)c3ncccc13
+VHT           SMILES               CACTVS 3.385                                                                                             COC(=O)CNC1=C(C(=O)NCc2ccc(F)cc2F)C(=O)N(O)c3ncccc13
+VHT SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                             COC(=O)CNC1=C(C(=O)N(c2c1cccn2)O)C(=O)NCc3ccc(cc3F)F
+VHT           SMILES "OpenEye OEToolkits" 2.0.6                                                                                             COC(=O)CNC1=C(C(=O)N(c2c1cccn2)O)C(=O)NCc3ccc(cc3F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VHT acedrg               243         "dictionary generator"                  
+VHT acedrg_database      11          "data source"                           
+VHT rdkit                2017.03.2   "Chemoinformatics tool"
+VHT refmac5              5.8.0238    "optimization tool"                     

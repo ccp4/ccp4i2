@@ -1,0 +1,206 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SZ7     SZ7      ~{N}-[(~{E})-thiophen-2-ylmethylideneamino]cyclopropanecarboxamide     NON-POLYMER     23     13     .     
+#
+data_comp_SZ7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SZ7     C4      C       C1      0       24.605      16.721      -17.641     
+SZ7     C5      C       C       0       25.033      16.386      -14.177     
+SZ7     C6      C       CH1     0       24.321      15.109      -13.985     
+SZ7     N1      N       NH1     0       25.008      16.928      -15.413     
+SZ7     C7      C       CH2     0       24.882      14.129      -12.989     
+SZ7     C8      C       CH2     0       25.009      13.846      -14.430     
+SZ7     O       O       O       0       25.617      16.951      -13.258     
+SZ7     N       N       N       0       24.337      16.309      -16.455     
+SZ7     C2      C       CR5     0       24.151      16.035      -18.821     
+SZ7     C1      C       CR15    0       24.340      16.376      -20.125     
+SZ7     S       S       S2      0       23.260      14.627      -18.711     
+SZ7     C3      C       CR15    0       23.106      14.433      -20.355     
+SZ7     C       C       CR15    0       23.728      15.436      -21.025     
+SZ7     H1      H       H       0       25.114      17.508      -17.764     
+SZ7     H2      H       H       0       23.344      15.141      -14.077     
+SZ7     H3      H       H       0       25.418      17.687      -15.542     
+SZ7     H4      H       H       0       25.688      14.383      -12.505     
+SZ7     H5      H       H       0       24.251      13.595      -12.476     
+SZ7     H6      H       H       0       25.891      13.929      -14.831     
+SZ7     H7      H       H       0       24.456      13.138      -14.802     
+SZ7     H8      H       H       0       24.816      17.138      -20.409     
+SZ7     H9      H       H       0       22.638      13.704      -20.724     
+SZ7     H10     H       H       0       23.759      15.514      -21.963     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SZ7          C3           C      DOUBLE       y     1.343  0.0200     1.343  0.0200
+SZ7          C1           C      SINGLE       y     1.413  0.0154     1.413  0.0154
+SZ7           S          C3      SINGLE       y     1.695  0.0200     1.695  0.0200
+SZ7          C2          C1      DOUBLE       y     1.352  0.0140     1.352  0.0140
+SZ7          C2           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+SZ7          C4          C2      SINGLE       n     1.436  0.0100     1.436  0.0100
+SZ7          C4           N      DOUBLE       n     1.280  0.0100     1.280  0.0100
+SZ7          N1           N      SINGLE       n     1.380  0.0100     1.380  0.0100
+SZ7          C5          N1      SINGLE       n     1.346  0.0100     1.346  0.0100
+SZ7          C6          C8      SINGLE       n     1.505  0.0106     1.505  0.0106
+SZ7          C7          C8      SINGLE       n     1.476  0.0137     1.476  0.0137
+SZ7          C5          C6      SINGLE       n     1.472  0.0100     1.472  0.0100
+SZ7          C5           O      DOUBLE       n     1.225  0.0100     1.225  0.0100
+SZ7          C6          C7      SINGLE       n     1.505  0.0106     1.505  0.0106
+SZ7          C4          H1      SINGLE       n     1.082  0.0130     0.944  0.0181
+SZ7          C6          H2      SINGLE       n     1.089  0.0100     0.982  0.0185
+SZ7          N1          H3      SINGLE       n     1.016  0.0100     0.869  0.0200
+SZ7          C7          H4      SINGLE       n     1.089  0.0100     0.973  0.0200
+SZ7          C7          H5      SINGLE       n     1.089  0.0100     0.973  0.0200
+SZ7          C8          H6      SINGLE       n     1.089  0.0100     0.973  0.0200
+SZ7          C8          H7      SINGLE       n     1.089  0.0100     0.973  0.0200
+SZ7          C1          H8      SINGLE       n     1.082  0.0130     0.942  0.0154
+SZ7          C3          H9      SINGLE       n     1.082  0.0130     0.942  0.0200
+SZ7           C         H10      SINGLE       n     1.082  0.0130     0.942  0.0153
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SZ7          C2          C4           N     121.566    1.84
+SZ7          C2          C4          H1     118.712    2.38
+SZ7           N          C4          H1     119.721    1.50
+SZ7          N1          C5          C6     115.706    1.71
+SZ7          N1          C5           O     121.726    1.94
+SZ7          C6          C5           O     122.568    1.50
+SZ7          C8          C6          C5     117.574    1.59
+SZ7          C8          C6          C7      58.261    1.50
+SZ7          C8          C6          H2     116.898    1.50
+SZ7          C5          C6          C7     117.574    1.59
+SZ7          C5          C6          H2     115.904    1.65
+SZ7          C7          C6          H2     116.898    1.50
+SZ7           N          N1          C5     120.036    1.56
+SZ7           N          N1          H3     120.076    2.03
+SZ7          C5          N1          H3     119.888    2.33
+SZ7          C8          C7          C6      60.870    1.50
+SZ7          C8          C7          H4     117.759    1.50
+SZ7          C8          C7          H5     117.759    1.50
+SZ7          C6          C7          H4     117.683    1.50
+SZ7          C6          C7          H5     117.683    1.50
+SZ7          H4          C7          H5     114.868    1.50
+SZ7          C6          C8          C7      60.870    1.50
+SZ7          C6          C8          H6     117.683    1.50
+SZ7          C6          C8          H7     117.683    1.50
+SZ7          C7          C8          H6     117.759    1.50
+SZ7          C7          C8          H7     117.759    1.50
+SZ7          H6          C8          H7     114.868    1.50
+SZ7          C4           N          N1     115.019    1.50
+SZ7          C1          C2           S     108.336    3.00
+SZ7          C1          C2          C4     131.202    2.33
+SZ7           S          C2          C4     120.463    3.00
+SZ7           C          C1          C2     107.620    1.50
+SZ7           C          C1          H8     125.837    1.50
+SZ7          C2          C1          H8     126.542    1.56
+SZ7          C3           S          C2     108.336    3.00
+SZ7           C          C3           S     108.336    3.00
+SZ7           C          C3          H9     128.460    2.40
+SZ7           S          C3          H9     123.204    3.00
+SZ7          C3           C          C1     107.373    1.50
+SZ7          C3           C         H10     126.679    1.50
+SZ7          C1           C         H10     125.949    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SZ7             sp2_sp2_5          C2          C4           N          N1     180.000     5.0     2
+SZ7             sp2_sp2_3           S          C2          C4           N       0.000     5.0     2
+SZ7              const_13           C          C3           S          C2       0.000    10.0     2
+SZ7       const_sp2_sp2_9          C1           C          C3           S       0.000     5.0     2
+SZ7             sp2_sp3_4           O          C5          C6          C7     180.000    10.0     6
+SZ7             sp2_sp3_1          N1          C5          C6          C7       0.000    10.0     6
+SZ7            sp3_sp3_25          H2          C6          C7          C8     -60.000    10.0     3
+SZ7             sp3_sp3_1          C5          C6          C8          C7      60.000    10.0     3
+SZ7             sp2_sp2_9          C6          C5          N1           N     180.000     5.0     2
+SZ7             sp2_sp2_2          C1          C2          C4          H1       0.000     5.0     2
+SZ7       const_sp2_sp2_2           C          C1          C2          C4     180.000     5.0     2
+SZ7       const_sp2_sp2_5          C3           C          C1          C2       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SZ7    chir_1    C6    C5    C8    C7    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SZ7    plan-1           C   0.020
+SZ7    plan-1          C1   0.020
+SZ7    plan-1          C2   0.020
+SZ7    plan-1          C3   0.020
+SZ7    plan-1          C4   0.020
+SZ7    plan-1         H10   0.020
+SZ7    plan-1          H8   0.020
+SZ7    plan-1          H9   0.020
+SZ7    plan-1           S   0.020
+SZ7    plan-2          C2   0.020
+SZ7    plan-2          C4   0.020
+SZ7    plan-2          H1   0.020
+SZ7    plan-2           N   0.020
+SZ7    plan-3          C5   0.020
+SZ7    plan-3          C6   0.020
+SZ7    plan-3          N1   0.020
+SZ7    plan-3           O   0.020
+SZ7    plan-4          C5   0.020
+SZ7    plan-4          H3   0.020
+SZ7    plan-4           N   0.020
+SZ7    plan-4          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SZ7            InChI                InChI  1.03 InChI=1S/C9H10N2OS/c12-9(7-3-4-7)11-10-6-8-2-1-5-13-8/h1-2,5-7H,3-4H2,(H,11,12)/b10-6+
+SZ7         InChIKey                InChI  1.03                                                            WQCIBERJKZYXCC-UXBLZVDNSA-N
+SZ7 SMILES_CANONICAL               CACTVS 3.385                                                                O=C(N/N=C/c1sccc1)C2CC2
+SZ7           SMILES               CACTVS 3.385                                                                  O=C(NN=Cc1sccc1)C2CC2
+SZ7 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                              c1cc(sc1)/C=N/NC(=O)C2CC2
+SZ7           SMILES "OpenEye OEToolkits" 2.0.6                                                                c1cc(sc1)C=NNC(=O)C2CC2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SZ7 acedrg               243         "dictionary generator"                  
+SZ7 acedrg_database      11          "data source"                           
+SZ7 rdkit                2017.03.2   "Chemoinformatics tool"
+SZ7 refmac5              5.8.0238    "optimization tool"                     

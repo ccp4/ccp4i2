@@ -1,0 +1,163 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+P2Y     P2Y      (2S)-PYRROLIDIN-2-YLMETHYLAMINE     NON-POLYMER     19     7     .     
+#
+data_comp_P2Y
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+P2Y     NA      N       NT2     0       8.338       -34.221     71.134      
+P2Y     C       C       CH2     0       8.670       -32.851     70.736      
+P2Y     CA      C       CH1     0       7.925       -32.426     69.471      
+P2Y     N       N       NT1     0       8.135       -33.393     68.376      
+P2Y     CD      C       CH2     0       6.853       -33.778     67.779      
+P2Y     CG      C       CH2     0       5.847       -33.551     68.892      
+P2Y     CB      C       CH2     0       6.399       -32.351     69.650      
+P2Y     HNA1    H       H       0       8.974       -34.545     71.662      
+P2Y     HNA2    H       H       0       7.582       -34.227     71.599      
+P2Y     H1      H       H       0       9.637       -32.787     70.577      
+P2Y     H2      H       H       0       8.437       -32.239     71.468      
+P2Y     HA      H       H       0       8.264       -31.542     69.181      
+P2Y     H       H       H       0       8.600       -33.024     67.734      
+P2Y     HD3     H       H       0       6.865       -34.718     67.502      
+P2Y     HD2     H       H       0       6.648       -33.220     67.000      
+P2Y     HG3     H       H       0       5.787       -34.335     69.473      
+P2Y     HG2     H       H       0       4.961       -33.357     68.526      
+P2Y     HB2     H       H       0       6.048       -31.516     69.279      
+P2Y     HB3     H       H       0       6.157       -32.400     70.598      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+P2Y          NA           C      SINGLE       n     1.464  0.0200     1.464  0.0200
+P2Y           C          CA      SINGLE       n     1.528  0.0102     1.528  0.0102
+P2Y          CA           N      SINGLE       n     1.475  0.0100     1.475  0.0100
+P2Y          CA          CB      SINGLE       n     1.535  0.0123     1.535  0.0123
+P2Y           N          CD      SINGLE       n     1.466  0.0121     1.466  0.0121
+P2Y          CD          CG      SINGLE       n     1.524  0.0200     1.524  0.0200
+P2Y          CG          CB      SINGLE       n     1.523  0.0139     1.523  0.0139
+P2Y          NA        HNA1      SINGLE       n     1.036  0.0160     0.888  0.0200
+P2Y          NA        HNA2      SINGLE       n     1.036  0.0160     0.888  0.0200
+P2Y           C          H1      SINGLE       n     1.089  0.0100     0.982  0.0100
+P2Y           C          H2      SINGLE       n     1.089  0.0100     0.982  0.0100
+P2Y          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0135
+P2Y           N           H      SINGLE       n     1.036  0.0160     0.874  0.0200
+P2Y          CD         HD3      SINGLE       n     1.089  0.0100     0.980  0.0107
+P2Y          CD         HD2      SINGLE       n     1.089  0.0100     0.980  0.0107
+P2Y          CG         HG3      SINGLE       n     1.089  0.0100     0.978  0.0105
+P2Y          CG         HG2      SINGLE       n     1.089  0.0100     0.978  0.0105
+P2Y          CB         HB2      SINGLE       n     1.089  0.0100     0.979  0.0105
+P2Y          CB         HB3      SINGLE       n     1.089  0.0100     0.979  0.0105
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+P2Y           C          NA        HNA1     109.971    3.00
+P2Y           C          NA        HNA2     109.971    3.00
+P2Y        HNA1          NA        HNA2     107.163    3.00
+P2Y          NA           C          CA     110.786    2.77
+P2Y          NA           C          H1     108.847    1.50
+P2Y          NA           C          H2     108.847    1.50
+P2Y          CA           C          H1     108.875    1.50
+P2Y          CA           C          H2     108.875    1.50
+P2Y          H1           C          H2     108.010    1.71
+P2Y           C          CA           N     111.633    2.37
+P2Y           C          CA          CB     113.583    1.63
+P2Y           C          CA          HA     109.171    1.55
+P2Y           N          CA          CB     103.453    1.87
+P2Y           N          CA          HA     108.836    1.79
+P2Y          CB          CA          HA     109.529    1.50
+P2Y          CA           N          CD     109.056    3.00
+P2Y          CA           N           H     110.078    2.70
+P2Y          CD           N           H     106.136    2.25
+P2Y           N          CD          CG     105.071    2.33
+P2Y           N          CD         HD3     110.738    1.50
+P2Y           N          CD         HD2     110.738    1.50
+P2Y          CG          CD         HD3     110.867    1.50
+P2Y          CG          CD         HD2     110.867    1.50
+P2Y         HD3          CD         HD2     108.731    1.50
+P2Y          CD          CG          CB     104.503    1.95
+P2Y          CD          CG         HG3     110.804    1.50
+P2Y          CD          CG         HG2     110.804    1.50
+P2Y          CB          CG         HG3     110.864    1.50
+P2Y          CB          CG         HG2     110.864    1.50
+P2Y         HG3          CG         HG2     108.899    1.50
+P2Y          CA          CB          CG     104.634    1.50
+P2Y          CA          CB         HB2     110.817    1.50
+P2Y          CA          CB         HB3     110.817    1.50
+P2Y          CG          CB         HB2     110.886    1.50
+P2Y          CG          CB         HB3     110.886    1.50
+P2Y         HB2          CB         HB3     108.922    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+P2Y            sp3_sp3_31          CA           C          NA        HNA1     180.000    10.0     3
+P2Y            sp3_sp3_37          NA           C          CA           N     180.000    10.0     3
+P2Y             sp3_sp3_3           C          CA           N          CD     -60.000    10.0     3
+P2Y            sp3_sp3_49           C          CA          CB          CG      60.000    10.0     3
+P2Y             sp3_sp3_7          CG          CD           N          CA     -60.000    10.0     3
+P2Y            sp3_sp3_13           N          CD          CG          CB      60.000    10.0     3
+P2Y            sp3_sp3_22          CA          CB          CG          CD     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+P2Y    chir_1    CA    N    C    CB    positive
+P2Y    chir_2    N    CA    CD    H    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+P2Y           SMILES              ACDLabs 10.04                                                 NCC1NCCC1
+P2Y SMILES_CANONICAL               CACTVS 3.341                                            NC[C@@H]1CCCN1
+P2Y           SMILES               CACTVS 3.341                                              NC[CH]1CCCN1
+P2Y SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                           C1C[C@H](NC1)CN
+P2Y           SMILES "OpenEye OEToolkits" 1.5.0                                               C1CC(NC1)CN
+P2Y            InChI                InChI  1.03 InChI=1S/C5H12N2/c6-4-5-2-1-3-7-5/h5,7H,1-4,6H2/t5-/m0/s1
+P2Y         InChIKey                InChI  1.03                               AUKXFNABVHIUAC-YFKPBYRVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+P2Y acedrg               243         "dictionary generator"                  
+P2Y acedrg_database      11          "data source"                           
+P2Y rdkit                2017.03.2   "Chemoinformatics tool"
+P2Y refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,238 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PIN     PIN      "PIPERAZINE-N,N'-BIS(2-ETHANESULFONIC ACID)"     NON-POLYMER     36     18     .     
+#
+data_comp_PIN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PIN     C1      C       CH2     0       8.445       54.030      50.802      
+PIN     C2      C       CH2     0       9.808       54.234      50.155      
+PIN     N1      N       NT      0       10.670      55.196      50.887      
+PIN     C3      C       CH2     0       11.625      55.890      49.994      
+PIN     C4      C       CH2     0       11.356      54.589      52.053      
+PIN     "C1'"   C       CH2     0       15.707      55.109      52.745      
+PIN     "C2'"   C       CH2     0       14.424      55.897      52.523      
+PIN     "N1'"   N       NT      0       13.614      55.390      51.387      
+PIN     "C3'"   C       CH2     0       12.787      54.212      51.745      
+PIN     "C4'"   C       CH2     0       12.800      56.455      50.756      
+PIN     S1      S       S3      0       7.467       55.508      50.807      
+PIN     "S1'"   S       S3      0       16.691      55.788      54.052      
+PIN     O1      O       O       0       6.246       55.191      51.490      
+PIN     O2      O       O       0       7.401       55.968      49.449      
+PIN     O3      O       OH1     0       8.307       56.490      51.660      
+PIN     "O1'"   O       O       0       16.005      55.500      55.279      
+PIN     "O2'"   O       O       0       16.957      57.155      53.707      
+PIN     "O3'"   O       OH1     0       18.000      54.964      53.971      
+PIN     H11     H       H       0       8.568       53.729      51.721      
+PIN     H12     H       H       0       7.962       53.333      50.320      
+PIN     H21     H       H       0       9.674       54.553      49.240      
+PIN     H22     H       H       0       10.264      53.371      50.100      
+PIN     H31     H       H       0       11.949      55.269      49.311      
+PIN     H32     H       H       0       11.160      56.620      49.536      
+PIN     H41     H       H       0       10.871      53.789      52.339      
+PIN     H42     H       H       0       11.343      55.222      52.799      
+PIN     "H1'1"  H       H       0       16.230      55.107      51.922      
+PIN     "H1'2"  H       H       0       15.484      54.185      52.963      
+PIN     "H2'1"  H       H       0       14.657      56.832      52.359      
+PIN     "H2'2"  H       H       0       13.888      55.866      53.340      
+PIN     "H3'1"  H       H       0       12.800      53.573      51.004      
+PIN     "H3'2"  H       H       0       13.173      53.765      52.525      
+PIN     "H4'1"  H       H       0       12.474      57.071      51.443      
+PIN     "H4'2"  H       H       0       13.364      56.965      50.142      
+PIN     HO3     H       H       0       8.220       56.325      52.449      
+PIN     "HO3'"  H       H       0       18.631      55.412      54.212      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PIN          C1          C2      SINGLE       n     1.521  0.0150     1.521  0.0150
+PIN          C1          S1      SINGLE       n     1.771  0.0119     1.771  0.0119
+PIN          C2          N1      SINGLE       n     1.471  0.0185     1.471  0.0185
+PIN          N1          C3      SINGLE       n     1.469  0.0137     1.469  0.0137
+PIN          N1          C4      SINGLE       n     1.469  0.0137     1.469  0.0137
+PIN          C3       "C4'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+PIN          C4       "C3'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+PIN       "C1'"       "C2'"      SINGLE       n     1.521  0.0150     1.521  0.0150
+PIN       "C1'"       "S1'"      SINGLE       n     1.771  0.0119     1.771  0.0119
+PIN       "C2'"       "N1'"      SINGLE       n     1.471  0.0185     1.471  0.0185
+PIN       "N1'"       "C3'"      SINGLE       n     1.469  0.0137     1.469  0.0137
+PIN       "N1'"       "C4'"      SINGLE       n     1.469  0.0137     1.469  0.0137
+PIN          S1          O1      DOUBLE       n     1.435  0.0100     1.435  0.0100
+PIN          S1          O2      DOUBLE       n     1.435  0.0100     1.435  0.0100
+PIN          S1          O3      SINGLE       n     1.549  0.0200     1.549  0.0200
+PIN       "S1'"       "O1'"      DOUBLE       n     1.435  0.0100     1.435  0.0100
+PIN       "S1'"       "O2'"      DOUBLE       n     1.435  0.0100     1.435  0.0100
+PIN       "S1'"       "O3'"      SINGLE       n     1.549  0.0200     1.549  0.0200
+PIN          C1         H11      SINGLE       n     1.089  0.0100     0.975  0.0200
+PIN          C1         H12      SINGLE       n     1.089  0.0100     0.975  0.0200
+PIN          C2         H21      SINGLE       n     1.089  0.0100     0.977  0.0152
+PIN          C2         H22      SINGLE       n     1.089  0.0100     0.977  0.0152
+PIN          C3         H31      SINGLE       n     1.089  0.0100     0.978  0.0109
+PIN          C3         H32      SINGLE       n     1.089  0.0100     0.978  0.0109
+PIN          C4         H41      SINGLE       n     1.089  0.0100     0.978  0.0109
+PIN          C4         H42      SINGLE       n     1.089  0.0100     0.978  0.0109
+PIN       "C1'"      "H1'1"      SINGLE       n     1.089  0.0100     0.975  0.0200
+PIN       "C1'"      "H1'2"      SINGLE       n     1.089  0.0100     0.975  0.0200
+PIN       "C2'"      "H2'1"      SINGLE       n     1.089  0.0100     0.977  0.0152
+PIN       "C2'"      "H2'2"      SINGLE       n     1.089  0.0100     0.977  0.0152
+PIN       "C3'"      "H3'1"      SINGLE       n     1.089  0.0100     0.978  0.0109
+PIN       "C3'"      "H3'2"      SINGLE       n     1.089  0.0100     0.978  0.0109
+PIN       "C4'"      "H4'1"      SINGLE       n     1.089  0.0100     0.978  0.0109
+PIN       "C4'"      "H4'2"      SINGLE       n     1.089  0.0100     0.978  0.0109
+PIN          O3         HO3      SINGLE       n     0.970  0.0120     0.811  0.0200
+PIN       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.811  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PIN          C2          C1          S1     111.256    2.92
+PIN          C2          C1         H11     109.160    1.50
+PIN          C2          C1         H12     109.160    1.50
+PIN          S1          C1         H11     108.904    1.50
+PIN          S1          C1         H12     108.904    1.50
+PIN         H11          C1         H12     107.925    1.50
+PIN          C1          C2          N1     113.716    2.56
+PIN          C1          C2         H21     109.015    1.50
+PIN          C1          C2         H22     109.015    1.50
+PIN          N1          C2         H21     109.135    1.50
+PIN          N1          C2         H22     109.135    1.50
+PIN         H21          C2         H22     107.781    1.50
+PIN          C2          N1          C3     111.692    1.59
+PIN          C2          N1          C4     111.692    1.59
+PIN          C3          N1          C4     108.582    1.50
+PIN          N1          C3       "C4'"     110.891    1.50
+PIN          N1          C3         H31     109.491    1.50
+PIN          N1          C3         H32     109.491    1.50
+PIN       "C4'"          C3         H31     109.532    1.50
+PIN       "C4'"          C3         H32     109.532    1.50
+PIN         H31          C3         H32     108.187    1.50
+PIN          N1          C4       "C3'"     110.891    1.50
+PIN          N1          C4         H41     109.491    1.50
+PIN          N1          C4         H42     109.491    1.50
+PIN       "C3'"          C4         H41     109.532    1.50
+PIN       "C3'"          C4         H42     109.532    1.50
+PIN         H41          C4         H42     108.187    1.50
+PIN       "C2'"       "C1'"       "S1'"     111.256    2.92
+PIN       "C2'"       "C1'"      "H1'1"     109.160    1.50
+PIN       "C2'"       "C1'"      "H1'2"     109.160    1.50
+PIN       "S1'"       "C1'"      "H1'1"     108.904    1.50
+PIN       "S1'"       "C1'"      "H1'2"     108.904    1.50
+PIN      "H1'1"       "C1'"      "H1'2"     107.925    1.50
+PIN       "C1'"       "C2'"       "N1'"     113.716    2.56
+PIN       "C1'"       "C2'"      "H2'1"     109.015    1.50
+PIN       "C1'"       "C2'"      "H2'2"     109.015    1.50
+PIN       "N1'"       "C2'"      "H2'1"     109.135    1.50
+PIN       "N1'"       "C2'"      "H2'2"     109.135    1.50
+PIN      "H2'1"       "C2'"      "H2'2"     107.781    1.50
+PIN       "C2'"       "N1'"       "C3'"     111.692    1.59
+PIN       "C2'"       "N1'"       "C4'"     111.692    1.59
+PIN       "C3'"       "N1'"       "C4'"     108.582    1.50
+PIN          C4       "C3'"       "N1'"     110.891    1.50
+PIN          C4       "C3'"      "H3'1"     109.532    1.50
+PIN          C4       "C3'"      "H3'2"     109.532    1.50
+PIN       "N1'"       "C3'"      "H3'1"     109.491    1.50
+PIN       "N1'"       "C3'"      "H3'2"     109.491    1.50
+PIN      "H3'1"       "C3'"      "H3'2"     108.187    1.50
+PIN          C3       "C4'"       "N1'"     110.891    1.50
+PIN          C3       "C4'"      "H4'1"     109.532    1.50
+PIN          C3       "C4'"      "H4'2"     109.532    1.50
+PIN       "N1'"       "C4'"      "H4'1"     109.491    1.50
+PIN       "N1'"       "C4'"      "H4'2"     109.491    1.50
+PIN      "H4'1"       "C4'"      "H4'2"     108.187    1.50
+PIN          C1          S1          O1     106.916    1.50
+PIN          C1          S1          O2     106.916    1.50
+PIN          C1          S1          O3     103.568    2.80
+PIN          O1          S1          O2     119.289    2.60
+PIN          O1          S1          O3     110.306    2.80
+PIN          O2          S1          O3     110.306    2.80
+PIN       "C1'"       "S1'"       "O1'"     106.916    1.50
+PIN       "C1'"       "S1'"       "O2'"     106.916    1.50
+PIN       "C1'"       "S1'"       "O3'"     103.568    2.80
+PIN       "O1'"       "S1'"       "O2'"     119.289    2.60
+PIN       "O1'"       "S1'"       "O3'"     110.306    2.80
+PIN       "O2'"       "S1'"       "O3'"     110.306    2.80
+PIN          S1          O3         HO3     110.371    3.00
+PIN       "S1'"       "O3'"      "HO3'"     110.371    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PIN            sp3_sp3_37          S1          C1          C2          N1     180.000    10.0     3
+PIN            sp3_sp3_46          C2          C1          S1          O1     180.000    10.0     3
+PIN            sp3_sp3_93         HO3          O3          S1          C1      60.000    10.0     3
+PIN            sp3_sp3_96      "HO3'"       "O3'"       "S1'"       "C1'"      60.000    10.0     3
+PIN            sp3_sp3_56          C1          C2          N1          C3     -60.000    10.0     3
+PIN             sp3_sp3_2       "C4'"          C3          N1          C2     180.000    10.0     3
+PIN            sp3_sp3_62       "C3'"          C4          N1          C2     -60.000    10.0     3
+PIN             sp3_sp3_7          N1          C3       "C4'"       "N1'"     -60.000    10.0     3
+PIN            sp3_sp3_28       "N1'"       "C3'"          C4          N1      60.000    10.0     3
+PIN            sp3_sp3_76       "C2'"       "C1'"       "S1'"       "O1'"     180.000    10.0     3
+PIN            sp3_sp3_67       "S1'"       "C1'"       "C2'"       "N1'"     180.000    10.0     3
+PIN            sp3_sp3_86       "C1'"       "C2'"       "N1'"       "C3'"     -60.000    10.0     3
+PIN            sp3_sp3_23          C4       "C3'"       "N1'"       "C2'"      60.000    10.0     3
+PIN            sp3_sp3_17          C3       "C4'"       "N1'"       "C2'"     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PIN    chir_1    N1    C2    C3    C4    both
+PIN    chir_2    "N1'"    "C2'"    "C3'"    "C4'"    both
+PIN    chir_3    S1    O1    O2    O3    both
+PIN    chir_4    "S1'"    "O1'"    "O2'"    "O3'"    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PIN           SMILES              ACDLabs 10.04                                                                   O=S(=O)(O)CCN1CCN(CCS(=O)(=O)O)CC1
+PIN SMILES_CANONICAL               CACTVS 3.341                                                               O[S](=O)(=O)CCN1CCN(CC1)CC[S](O)(=O)=O
+PIN           SMILES               CACTVS 3.341                                                               O[S](=O)(=O)CCN1CCN(CC1)CC[S](O)(=O)=O
+PIN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                   C1CN(CCN1CCS(=O)(=O)O)CCS(=O)(=O)O
+PIN           SMILES "OpenEye OEToolkits" 1.5.0                                                                   C1CN(CCN1CCS(=O)(=O)O)CCS(=O)(=O)O
+PIN            InChI                InChI  1.03 InChI=1S/C8H18N2O6S2/c11-17(12,13)7-5-9-1-2-10(4-3-9)6-8-18(14,15)16/h1-8H2,(H,11,12,13)(H,14,15,16)
+PIN         InChIKey                InChI  1.03                                                                          IHPYMWDTONKSCO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PIN acedrg               243         "dictionary generator"                  
+PIN acedrg_database      11          "data source"                           
+PIN rdkit                2017.03.2   "Chemoinformatics tool"
+PIN refmac5              5.8.0238    "optimization tool"                     

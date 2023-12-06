@@ -1,0 +1,414 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FRW     FRW      "4-[[(2S)-3-methyl-1-oxo-1-[(2S)-2-[[(3S)-1,1,1-trifluoro-4-methyl-2-oxo-pentan-3-yl]carbamoyl]pyrrolidin-1-yl]butan-2-yl]carbamoyl]benzoic acid"     NON-POLYMER     65     36     .     
+#
+data_comp_FRW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FRW     O6      O       O       0       18.866      13.709      6.887       
+FRW     C4      C       C       0       18.582      12.531      6.598       
+FRW     O5      O       OC      -1      18.953      11.539      7.250       
+FRW     C3      C       CR6     0       17.739      12.291      5.381       
+FRW     C2      C       CR16    0       18.084      11.301      4.470       
+FRW     C1      C       CR16    0       17.308      11.079      3.344       
+FRW     C7      C       CR16    0       16.600      13.053      5.149       
+FRW     C8      C       CR16    0       15.821      12.830      4.025       
+FRW     C9      C       CR6     0       16.160      11.835      3.111       
+FRW     C10     C       C       0       15.302      11.622      1.893       
+FRW     O11     O       O       0       14.843      12.594      1.290       
+FRW     N12     N       NH1     0       15.082      10.355      1.503       
+FRW     C13     C       CH1     0       14.337      9.983       0.303       
+FRW     C14     C       CH1     0       15.015      8.831       -0.471      
+FRW     C15     C       CH3     0       14.312      8.555       -1.797      
+FRW     C16     C       CH3     0       16.498      9.107       -0.695      
+FRW     C17     C       C       0       12.914      9.583       0.710       
+FRW     O18     O       O       0       12.754      8.748       1.600       
+FRW     N19     N       NR5     0       11.861      10.174      0.114       
+FRW     C23     C       CH2     0       11.841      11.370      -0.746      
+FRW     C22     C       CH2     0       10.425      11.861      -0.597      
+FRW     C21     C       CH2     0       9.607       10.602      -0.495      
+FRW     C20     C       CH1     0       10.512      9.608       0.250       
+FRW     C24     C       C       0       10.402      8.208       -0.360      
+FRW     O25     O       O       0       10.791      8.008       -1.512      
+FRW     N26     N       NH1     0       9.896       7.243       0.432       
+FRW     C27     C       CH1     0       9.772       5.847       0.029       
+FRW     C28     C       CH1     0       11.009      5.019       0.459       
+FRW     C29     C       CH3     0       12.218      5.326       -0.414      
+FRW     C30     C       CH3     0       11.359      5.220       1.929       
+FRW     C31     C       C       0       8.431       5.284       0.522       
+FRW     O32     O       O       0       8.379       4.312       1.244       
+FRW     C33     C       CT      0       7.177       5.963       0.080       
+FRW     F36     F       F       0       6.460       6.386       1.108       
+FRW     F34     F       F       0       7.405       7.020       -0.683      
+FRW     F35     F       F       0       6.399       5.153       -0.617      
+FRW     H2      H       H       0       18.853      10.779      4.616       
+FRW     H1      H       H       0       17.554      10.404      2.736       
+FRW     H7      H       H       0       16.355      13.726      5.759       
+FRW     H8      H       H       0       15.053      13.355      3.881       
+FRW     HN12    H       H       0       15.384      9.706       2.000       
+FRW     H13     H       H       0       14.299      10.764      -0.301      
+FRW     H14     H       H       0       14.943      8.014       0.082       
+FRW     H15     H       H       0       14.894      8.037       -2.379      
+FRW     H15A    H       H       0       14.091      9.397       -2.230      
+FRW     H15B    H       H       0       13.495      8.051       -1.634      
+FRW     H16     H       H       0       16.973      9.048       0.152       
+FRW     H16A    H       H       0       16.610      9.999       -1.067      
+FRW     H16B    H       H       0       16.865      8.451       -1.313      
+FRW     H23     H       H       0       12.478      12.045      -0.435      
+FRW     H23A    H       H       0       12.043      11.141      -1.678      
+FRW     H22     H       H       0       10.156      12.392      -1.375      
+FRW     H22A    H       H       0       10.329      12.408      0.211       
+FRW     H21     H       H       0       9.371       10.269      -1.387      
+FRW     H21A    H       H       0       8.781       10.764      0.010       
+FRW     H20     H       H       0       10.258      9.580       1.203       
+FRW     HN26    H       H       0       9.629       7.462       1.230       
+FRW     H27     H       H       0       9.737       5.815       -0.960      
+FRW     H28     H       H       0       10.791      4.063       0.332       
+FRW     H29     H       H       0       12.929      4.691       -0.217      
+FRW     H29A    H       H       0       12.532      6.228       -0.231      
+FRW     H29B    H       H       0       11.972      5.252       -1.353      
+FRW     H30     H       H       0       10.559      5.139       2.475       
+FRW     H30A    H       H       0       11.745      6.105       2.053       
+FRW     H30B    H       H       0       12.005      4.546       2.203       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FRW          O6          C4      DOUBLE       n     1.244  0.0200     1.244  0.0200
+FRW          C4          O5      SINGLE       n     1.244  0.0200     1.244  0.0200
+FRW          C4          C3      SINGLE       n     1.498  0.0200     1.498  0.0200
+FRW          C3          C2      DOUBLE       y     1.385  0.0114     1.385  0.0114
+FRW          C3          C7      SINGLE       y     1.385  0.0114     1.385  0.0114
+FRW          C2          C1      SINGLE       y     1.382  0.0100     1.382  0.0100
+FRW          C1          C9      DOUBLE       y     1.389  0.0100     1.389  0.0100
+FRW          C7          C8      DOUBLE       y     1.382  0.0100     1.382  0.0100
+FRW          C8          C9      SINGLE       y     1.389  0.0100     1.389  0.0100
+FRW          C9         C10      SINGLE       n     1.502  0.0100     1.502  0.0100
+FRW         C10         O11      DOUBLE       n     1.230  0.0114     1.230  0.0114
+FRW         C10         N12      SINGLE       n     1.337  0.0101     1.337  0.0101
+FRW         N12         C13      SINGLE       n     1.456  0.0100     1.456  0.0100
+FRW         C13         C14      SINGLE       n     1.541  0.0100     1.541  0.0100
+FRW         C13         C17      SINGLE       n     1.528  0.0100     1.528  0.0100
+FRW         C14         C15      SINGLE       n     1.521  0.0135     1.521  0.0135
+FRW         C14         C16      SINGLE       n     1.521  0.0135     1.521  0.0135
+FRW         C17         O18      DOUBLE       n     1.227  0.0149     1.227  0.0149
+FRW         C17         N19      SINGLE       n     1.337  0.0100     1.337  0.0100
+FRW         N19         C23      SINGLE       n     1.472  0.0100     1.472  0.0100
+FRW         N19         C20      SINGLE       n     1.463  0.0100     1.463  0.0100
+FRW         C23         C22      SINGLE       n     1.512  0.0163     1.512  0.0163
+FRW         C22         C21      SINGLE       n     1.508  0.0200     1.508  0.0200
+FRW         C21         C20      SINGLE       n     1.533  0.0100     1.533  0.0100
+FRW         C20         C24      SINGLE       n     1.525  0.0113     1.525  0.0113
+FRW         C24         O25      DOUBLE       n     1.231  0.0100     1.231  0.0100
+FRW         C24         N26      SINGLE       n     1.337  0.0122     1.337  0.0122
+FRW         N26         C27      SINGLE       n     1.453  0.0100     1.453  0.0100
+FRW         C27         C28      SINGLE       n     1.542  0.0112     1.542  0.0112
+FRW         C27         C31      SINGLE       n     1.529  0.0100     1.529  0.0100
+FRW         C28         C29      SINGLE       n     1.521  0.0135     1.521  0.0135
+FRW         C28         C30      SINGLE       n     1.521  0.0135     1.521  0.0135
+FRW         C31         O32      DOUBLE       n     1.209  0.0200     1.209  0.0200
+FRW         C31         C33      SINGLE       n     1.484  0.0200     1.484  0.0200
+FRW         C33         F36      SINGLE       n     1.322  0.0175     1.322  0.0175
+FRW         C33         F34      SINGLE       n     1.322  0.0175     1.322  0.0175
+FRW         C33         F35      SINGLE       n     1.322  0.0175     1.322  0.0175
+FRW          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+FRW          C1          H1      SINGLE       n     1.082  0.0130     0.941  0.0168
+FRW          C7          H7      SINGLE       n     1.082  0.0130     0.941  0.0168
+FRW          C8          H8      SINGLE       n     1.082  0.0130     0.941  0.0168
+FRW         N12        HN12      SINGLE       n     1.016  0.0100     0.872  0.0200
+FRW         C13         H13      SINGLE       n     1.089  0.0100     0.992  0.0128
+FRW         C14         H14      SINGLE       n     1.089  0.0100     0.989  0.0175
+FRW         C15         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRW         C15        H15A      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRW         C15        H15B      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRW         C16         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRW         C16        H16A      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRW         C16        H16B      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRW         C23         H23      SINGLE       n     1.089  0.0100     0.980  0.0200
+FRW         C23        H23A      SINGLE       n     1.089  0.0100     0.980  0.0200
+FRW         C22         H22      SINGLE       n     1.089  0.0100     0.980  0.0200
+FRW         C22        H22A      SINGLE       n     1.089  0.0100     0.980  0.0200
+FRW         C21         H21      SINGLE       n     1.089  0.0100     0.981  0.0200
+FRW         C21        H21A      SINGLE       n     1.089  0.0100     0.981  0.0200
+FRW         C20         H20      SINGLE       n     1.089  0.0100     0.987  0.0200
+FRW         N26        HN26      SINGLE       n     1.016  0.0100     0.869  0.0200
+FRW         C27         H27      SINGLE       n     1.089  0.0100     0.991  0.0200
+FRW         C28         H28      SINGLE       n     1.089  0.0100     0.989  0.0175
+FRW         C29         H29      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRW         C29        H29A      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRW         C29        H29B      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRW         C30         H30      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRW         C30        H30A      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRW         C30        H30B      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FRW          O6          C4          O5     124.418    1.50
+FRW          O6          C4          C3     117.791    1.50
+FRW          O5          C4          C3     117.791    1.50
+FRW          C4          C3          C2     120.450    1.50
+FRW          C4          C3          C7     120.450    1.50
+FRW          C2          C3          C7     119.099    1.50
+FRW          C3          C2          C1     120.476    1.50
+FRW          C3          C2          H2     119.835    1.50
+FRW          C1          C2          H2     119.689    1.50
+FRW          C2          C1          C9     120.506    1.50
+FRW          C2          C1          H1     119.650    1.50
+FRW          C9          C1          H1     119.844    1.50
+FRW          C3          C7          C8     120.476    1.50
+FRW          C3          C7          H7     119.835    1.50
+FRW          C8          C7          H7     119.689    1.50
+FRW          C7          C8          C9     120.506    1.50
+FRW          C7          C8          H8     119.650    1.50
+FRW          C9          C8          H8     119.844    1.50
+FRW          C1          C9          C8     118.936    1.50
+FRW          C1          C9         C10     120.532    2.80
+FRW          C8          C9         C10     120.532    2.80
+FRW          C9         C10         O11     120.865    1.50
+FRW          C9         C10         N12     116.740    1.50
+FRW         O11         C10         N12     122.394    1.50
+FRW         C10         N12         C13     121.986    2.35
+FRW         C10         N12        HN12     119.438    1.94
+FRW         C13         N12        HN12     118.576    1.50
+FRW         N12         C13         C14     112.157    1.50
+FRW         N12         C13         C17     111.249    2.34
+FRW         N12         C13         H13     108.366    1.50
+FRW         C14         C13         C17     110.055    1.86
+FRW         C14         C13         H13     108.502    1.50
+FRW         C17         C13         H13     108.319    1.50
+FRW         C13         C14         C15     111.263    1.62
+FRW         C13         C14         C16     111.263    1.62
+FRW         C13         C14         H14     107.750    1.50
+FRW         C15         C14         C16     110.676    1.50
+FRW         C15         C14         H14     107.603    1.50
+FRW         C16         C14         H14     107.603    1.50
+FRW         C14         C15         H15     109.507    1.50
+FRW         C14         C15        H15A     109.507    1.50
+FRW         C14         C15        H15B     109.507    1.50
+FRW         H15         C15        H15A     109.411    1.50
+FRW         H15         C15        H15B     109.411    1.50
+FRW        H15A         C15        H15B     109.411    1.50
+FRW         C14         C16         H16     109.507    1.50
+FRW         C14         C16        H16A     109.507    1.50
+FRW         C14         C16        H16B     109.507    1.50
+FRW         H16         C16        H16A     109.411    1.50
+FRW         H16         C16        H16B     109.411    1.50
+FRW        H16A         C16        H16B     109.411    1.50
+FRW         C13         C17         O18     121.302    1.50
+FRW         C13         C17         N19     117.377    1.50
+FRW         O18         C17         N19     121.322    1.50
+FRW         C17         N19         C23     126.301    3.00
+FRW         C17         N19         C20     120.973    1.99
+FRW         C23         N19         C20     112.727    1.50
+FRW         N19         C23         C22     103.293    1.50
+FRW         N19         C23         H23     111.063    1.50
+FRW         N19         C23        H23A     111.063    1.50
+FRW         C22         C23         H23     111.171    1.50
+FRW         C22         C23        H23A     111.171    1.50
+FRW         H23         C23        H23A     108.998    1.50
+FRW         C23         C22         C21     104.327    2.00
+FRW         C23         C22         H22     110.793    1.50
+FRW         C23         C22        H22A     110.793    1.50
+FRW         C21         C22         H22     110.864    1.50
+FRW         C21         C22        H22A     110.864    1.50
+FRW         H22         C22        H22A     108.899    1.50
+FRW         C22         C21         C20     103.507    1.50
+FRW         C22         C21         H21     110.886    1.50
+FRW         C22         C21        H21A     110.886    1.50
+FRW         C20         C21         H21     110.824    1.50
+FRW         C20         C21        H21A     110.824    1.50
+FRW         H21         C21        H21A     108.922    1.50
+FRW         N19         C20         C21     103.192    1.50
+FRW         N19         C20         C24     112.246    1.50
+FRW         N19         C20         H20     110.260    1.50
+FRW         C21         C20         C24     111.268    1.50
+FRW         C21         C20         H20     110.282    1.50
+FRW         C24         C20         H20     109.755    1.50
+FRW         C20         C24         O25     120.913    1.50
+FRW         C20         C24         N26     115.978    1.58
+FRW         O25         C24         N26     123.109    1.50
+FRW         C24         N26         C27     122.130    1.52
+FRW         C24         N26        HN26     118.679    2.92
+FRW         C27         N26        HN26     119.191    1.91
+FRW         N26         C27         C28     112.135    1.61
+FRW         N26         C27         C31     111.249    2.34
+FRW         N26         C27         H27     108.209    1.50
+FRW         C28         C27         C31     111.511    2.91
+FRW         C28         C27         H27     107.847    1.50
+FRW         C31         C27         H27     107.798    1.50
+FRW         C27         C28         C29     111.173    1.50
+FRW         C27         C28         C30     111.173    1.50
+FRW         C27         C28         H28     107.639    1.50
+FRW         C29         C28         C30     110.676    1.50
+FRW         C29         C28         H28     107.603    1.50
+FRW         C30         C28         H28     107.603    1.50
+FRW         C28         C29         H29     109.507    1.50
+FRW         C28         C29        H29A     109.507    1.50
+FRW         C28         C29        H29B     109.507    1.50
+FRW         H29         C29        H29A     109.411    1.50
+FRW         H29         C29        H29B     109.411    1.50
+FRW        H29A         C29        H29B     109.411    1.50
+FRW         C28         C30         H30     109.507    1.50
+FRW         C28         C30        H30A     109.507    1.50
+FRW         C28         C30        H30B     109.507    1.50
+FRW         H30         C30        H30A     109.411    1.50
+FRW         H30         C30        H30B     109.411    1.50
+FRW        H30A         C30        H30B     109.411    1.50
+FRW         C27         C31         O32     120.768    1.50
+FRW         C27         C31         C33     117.694    1.50
+FRW         O32         C31         C33     121.539    1.76
+FRW         C31         C33         F36     112.072    1.73
+FRW         C31         C33         F34     112.072    1.73
+FRW         C31         C33         F35     112.072    1.73
+FRW         F36         C33         F34     106.822    1.50
+FRW         F36         C33         F35     106.822    1.50
+FRW         F34         C33         F35     106.822    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FRW             sp2_sp3_7         C10         N12         C13         C14       0.000    10.0     6
+FRW            sp3_sp3_29         N12         C13         C14         C15     -60.000    10.0     3
+FRW            sp2_sp3_13         O18         C17         C13         N12       0.000    10.0     6
+FRW            sp3_sp3_37         C13         C14         C15         H15     180.000    10.0     3
+FRW            sp3_sp3_49         C13         C14         C16         H16      60.000    10.0     3
+FRW            sp2_sp2_13         C13         C17         N19         C23     180.000     5.0     2
+FRW             sp2_sp3_4         C17         N19         C23         C22     180.000    10.0     6
+FRW            sp2_sp3_23         C17         N19         C20         C24     -60.000    10.0     6
+FRW             sp3_sp3_1         C21         C22         C23         N19     -60.000    10.0     3
+FRW             sp2_sp2_1          C2          C3          C4          O6     180.000     5.0     2
+FRW            sp3_sp3_10         C20         C21         C22         C23      60.000    10.0     3
+FRW            sp3_sp3_22         C24         C20         C21         C22     180.000    10.0     3
+FRW            sp2_sp3_25         O25         C24         C20         N19       0.000    10.0     6
+FRW            sp2_sp2_19         O25         C24         N26         C27       0.000     5.0     2
+FRW            sp2_sp3_31         C24         N26         C27         C28       0.000    10.0     6
+FRW            sp3_sp3_56         N26         C27         C28         C29     -60.000    10.0     3
+FRW            sp2_sp3_37         O32         C31         C27         N26       0.000    10.0     6
+FRW            sp3_sp3_64         C27         C28         C29         H29     180.000    10.0     3
+FRW            sp3_sp3_76         C27         C28         C30         H30      60.000    10.0     3
+FRW            sp2_sp3_43         C27         C31         C33         F36       0.000    10.0     6
+FRW       const_sp2_sp2_2          C1          C2          C3          C4     180.000     5.0     2
+FRW              const_23          C4          C3          C7          C8     180.000    10.0     2
+FRW       const_sp2_sp2_5          C9          C1          C2          C3       0.000     5.0     2
+FRW              const_10          C2          C1          C9         C10     180.000    10.0     2
+FRW              const_17          C3          C7          C8          C9       0.000    10.0     2
+FRW              const_14          C7          C8          C9         C10     180.000    10.0     2
+FRW             sp2_sp2_7         O11         C10          C9          C1       0.000     5.0     2
+FRW            sp2_sp2_11         O11         C10         N12         C13       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FRW    chir_1    C13    N12    C17    C14    positive
+FRW    chir_2    C14    C13    C15    C16    both
+FRW    chir_3    C20    N19    C24    C21    positive
+FRW    chir_4    C27    N26    C31    C28    positive
+FRW    chir_5    C28    C27    C29    C30    both
+FRW    chir_6    C33    F36    F34    F35    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FRW    plan-1          C1   0.020
+FRW    plan-1         C10   0.020
+FRW    plan-1          C2   0.020
+FRW    plan-1          C3   0.020
+FRW    plan-1          C4   0.020
+FRW    plan-1          C7   0.020
+FRW    plan-1          C8   0.020
+FRW    plan-1          C9   0.020
+FRW    plan-1          H1   0.020
+FRW    plan-1          H2   0.020
+FRW    plan-1          H7   0.020
+FRW    plan-1          H8   0.020
+FRW    plan-2          C3   0.020
+FRW    plan-2          C4   0.020
+FRW    plan-2          O5   0.020
+FRW    plan-2          O6   0.020
+FRW    plan-3         C10   0.020
+FRW    plan-3          C9   0.020
+FRW    plan-3         N12   0.020
+FRW    plan-3         O11   0.020
+FRW    plan-4         C10   0.020
+FRW    plan-4         C13   0.020
+FRW    plan-4        HN12   0.020
+FRW    plan-4         N12   0.020
+FRW    plan-5         C13   0.020
+FRW    plan-5         C17   0.020
+FRW    plan-5         N19   0.020
+FRW    plan-5         O18   0.020
+FRW    plan-6         C17   0.020
+FRW    plan-6         C20   0.020
+FRW    plan-6         C23   0.020
+FRW    plan-6         N19   0.020
+FRW    plan-7         C20   0.020
+FRW    plan-7         C24   0.020
+FRW    plan-7         N26   0.020
+FRW    plan-7         O25   0.020
+FRW    plan-8         C24   0.020
+FRW    plan-8         C27   0.020
+FRW    plan-8        HN26   0.020
+FRW    plan-8         N26   0.020
+FRW    plan-9         C27   0.020
+FRW    plan-9         C31   0.020
+FRW    plan-9         C33   0.020
+FRW    plan-9         O32   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FRW           SMILES              ACDLabs 10.04                                                                                                                                          O=C(NC(C(=O)C(F)(F)F)C(C)C)C2N(C(=O)C(NC(=O)c1ccc(C(=O)O)cc1)C(C)C)CCC2
+FRW SMILES_CANONICAL               CACTVS 3.341                                                                                                                               CC(C)[C@H](NC(=O)c1ccc(cc1)C(O)=O)C(=O)N2CCC[C@H]2C(=O)N[C@@H](C(C)C)C(=O)C(F)(F)F
+FRW           SMILES               CACTVS 3.341                                                                                                                                   CC(C)[CH](NC(=O)c1ccc(cc1)C(O)=O)C(=O)N2CCC[CH]2C(=O)N[CH](C(C)C)C(=O)C(F)(F)F
+FRW SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                              CC(C)[C@@H](C(=O)C(F)(F)F)NC(=O)[C@@H]1CCCN1C(=O)[C@H](C(C)C)NC(=O)c2ccc(cc2)C(=O)O
+FRW           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                            CC(C)C(C(=O)C(F)(F)F)NC(=O)C1CCCN1C(=O)C(C(C)C)NC(=O)c2ccc(cc2)C(=O)O
+FRW            InChI                InChI  1.03 InChI=1S/C24H30F3N3O6/c1-12(2)17(19(31)24(25,26)27)28-21(33)16-6-5-11-30(16)22(34)18(13(3)4)29-20(32)14-7-9-15(10-8-14)23(35)36/h7-10,12-13,16-18H,5-6,11H2,1-4H3,(H,28,33)(H,29,32)(H,35,36)/t16-,17-,18-/m0/s1
+FRW         InChIKey                InChI  1.03                                                                                                                                                                                      FGNPKLCZJAUKFU-BZSNNMDCSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FRW acedrg               243         "dictionary generator"                  
+FRW acedrg_database      11          "data source"                           
+FRW rdkit                2017.03.2   "Chemoinformatics tool"
+FRW refmac5              5.8.0238    "optimization tool"                     

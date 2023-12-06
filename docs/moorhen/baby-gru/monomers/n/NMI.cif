@@ -1,0 +1,214 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NMI     NMI      "3-(1-methyl-1H-indol-3-yl)propanoic acid"     NON-POLYMER     27     15     .     
+#
+data_comp_NMI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NMI     CAA     C       CH3     0       1.811       -6.792      -1.242      
+NMI     NAN     N       NR5     0       2.763       -6.623      -2.331      
+NMI     CAH     C       CR15    0       4.068       -6.215      -2.197      
+NMI     CAM     C       CR56    0       2.502       -6.845      -3.660      
+NMI     CAG     C       CR16    0       1.329       -7.266      -4.289      
+NMI     CAE     C       CR16    0       1.360       -7.404      -5.662      
+NMI     CAD     C       CR16    0       2.517       -7.136      -6.399      
+NMI     CAF     C       CR16    0       3.679       -6.719      -5.780      
+NMI     CAL     C       CR56    0       3.686       -6.567      -4.383      
+NMI     CAK     C       CR5     0       4.676       -6.164      -3.421      
+NMI     CAJ     C       CH2     0       6.091       -5.772      -3.726      
+NMI     CAI     C       CH2     0       7.012       -6.966      -3.947      
+NMI     CAC     C       C       0       7.326       -7.742      -2.679      
+NMI     OAB     O       O       0       6.927       -8.921      -2.593      
+NMI     O1      O       OC      -1      7.970       -7.165      -1.781      
+NMI     H1      H       H       0       2.290       -6.905      -0.409      
+NMI     H2      H       H       0       1.265       -7.574      -1.409      
+NMI     H3      H       H       0       1.244       -6.009      -1.185      
+NMI     H4      H       H       0       4.485       -6.001      -1.376      
+NMI     H5      H       H       0       0.549       -7.447      -3.796      
+NMI     H6      H       H       0       0.584       -7.687      -6.112      
+NMI     H7      H       H       0       2.503       -7.241      -7.337      
+NMI     H8      H       H       0       4.456       -6.540      -6.285      
+NMI     H9      H       H       0       6.435       -5.231      -2.989      
+NMI     H10     H       H       0       6.097       -5.208      -4.524      
+NMI     H11     H       H       0       7.859       -6.657      -4.337      
+NMI     H12     H       H       0       6.601       -7.581      -4.595      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NMI         CAD         CAF      DOUBLE       y     1.377  0.0100     1.377  0.0100
+NMI         CAE         CAD      SINGLE       y     1.394  0.0106     1.394  0.0106
+NMI         CAF         CAL      SINGLE       y     1.402  0.0100     1.402  0.0100
+NMI         CAG         CAE      DOUBLE       y     1.376  0.0100     1.376  0.0100
+NMI         CAM         CAL      DOUBLE       y     1.413  0.0100     1.413  0.0100
+NMI         CAL         CAK      SINGLE       y     1.439  0.0100     1.439  0.0100
+NMI         CAM         CAG      SINGLE       y     1.393  0.0100     1.393  0.0100
+NMI         CAJ         CAI      SINGLE       n     1.524  0.0100     1.524  0.0100
+NMI         CAI         CAC      SINGLE       n     1.519  0.0109     1.519  0.0109
+NMI         CAK         CAJ      SINGLE       n     1.499  0.0100     1.499  0.0100
+NMI         NAN         CAM      SINGLE       y     1.372  0.0100     1.372  0.0100
+NMI         CAH         CAK      DOUBLE       y     1.367  0.0112     1.367  0.0112
+NMI         CAC         OAB      DOUBLE       n     1.247  0.0187     1.247  0.0187
+NMI         NAN         CAH      SINGLE       y     1.372  0.0112     1.372  0.0112
+NMI         CAA         NAN      SINGLE       n     1.456  0.0100     1.456  0.0100
+NMI         CAC          O1      SINGLE       n     1.247  0.0187     1.247  0.0187
+NMI         CAA          H1      SINGLE       n     1.089  0.0100     0.968  0.0155
+NMI         CAA          H2      SINGLE       n     1.089  0.0100     0.968  0.0155
+NMI         CAA          H3      SINGLE       n     1.089  0.0100     0.968  0.0155
+NMI         CAH          H4      SINGLE       n     1.082  0.0130     0.945  0.0191
+NMI         CAG          H5      SINGLE       n     1.082  0.0130     0.941  0.0184
+NMI         CAE          H6      SINGLE       n     1.082  0.0130     0.941  0.0181
+NMI         CAD          H7      SINGLE       n     1.082  0.0130     0.944  0.0181
+NMI         CAF          H8      SINGLE       n     1.082  0.0130     0.944  0.0200
+NMI         CAJ          H9      SINGLE       n     1.089  0.0100     0.977  0.0135
+NMI         CAJ         H10      SINGLE       n     1.089  0.0100     0.977  0.0135
+NMI         CAI         H11      SINGLE       n     1.089  0.0100     0.983  0.0139
+NMI         CAI         H12      SINGLE       n     1.089  0.0100     0.983  0.0139
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NMI         NAN         CAA          H1     109.482    1.50
+NMI         NAN         CAA          H2     109.482    1.50
+NMI         NAN         CAA          H3     109.482    1.50
+NMI          H1         CAA          H2     109.427    1.50
+NMI          H1         CAA          H3     109.427    1.50
+NMI          H2         CAA          H3     109.427    1.50
+NMI         CAM         NAN         CAH     108.542    1.50
+NMI         CAM         NAN         CAA     125.642    1.50
+NMI         CAH         NAN         CAA     125.816    1.50
+NMI         CAK         CAH         NAN     109.866    1.50
+NMI         CAK         CAH          H4     125.148    1.50
+NMI         NAN         CAH          H4     124.986    1.50
+NMI         CAL         CAM         CAG     122.239    1.50
+NMI         CAL         CAM         NAN     107.809    1.50
+NMI         CAG         CAM         NAN     129.952    1.50
+NMI         CAE         CAG         CAM     117.300    1.50
+NMI         CAE         CAG          H5     121.433    1.50
+NMI         CAM         CAG          H5     121.267    1.50
+NMI         CAD         CAE         CAG     121.643    1.50
+NMI         CAD         CAE          H6     119.233    1.50
+NMI         CAG         CAE          H6     119.124    1.50
+NMI         CAF         CAD         CAE     121.227    1.50
+NMI         CAF         CAD          H7     119.464    1.50
+NMI         CAE         CAD          H7     119.309    1.50
+NMI         CAD         CAF         CAL     118.831    1.50
+NMI         CAD         CAF          H8     120.670    1.50
+NMI         CAL         CAF          H8     120.498    1.50
+NMI         CAF         CAL         CAM     118.761    1.50
+NMI         CAF         CAL         CAK     133.963    1.50
+NMI         CAM         CAL         CAK     107.277    1.50
+NMI         CAL         CAK         CAJ     125.860    1.50
+NMI         CAL         CAK         CAH     106.506    1.50
+NMI         CAJ         CAK         CAH     127.634    1.57
+NMI         CAI         CAJ         CAK     113.075    2.06
+NMI         CAI         CAJ          H9     109.247    1.50
+NMI         CAI         CAJ         H10     109.247    1.50
+NMI         CAK         CAJ          H9     108.855    1.50
+NMI         CAK         CAJ         H10     108.855    1.50
+NMI          H9         CAJ         H10     107.076    1.55
+NMI         CAJ         CAI         CAC     113.936    1.58
+NMI         CAJ         CAI         H11     109.544    1.50
+NMI         CAJ         CAI         H12     109.544    1.50
+NMI         CAC         CAI         H11     108.416    1.50
+NMI         CAC         CAI         H12     108.416    1.50
+NMI         H11         CAI         H12     107.356    1.50
+NMI         CAI         CAC         OAB     118.187    1.67
+NMI         CAI         CAC          O1     118.187    1.67
+NMI         OAB         CAC          O1     123.625    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NMI            sp2_sp3_13         CAM         NAN         CAA          H1     150.000    10.0     6
+NMI             sp3_sp3_1         CAC         CAI         CAJ         CAK     180.000    10.0     3
+NMI             sp2_sp3_2         OAB         CAC         CAI         CAJ     120.000    10.0     6
+NMI              const_38         CAK         CAH         NAN         CAA     180.000    10.0     2
+NMI              const_22         CAL         CAM         NAN         CAA     180.000    10.0     2
+NMI              const_30         NAN         CAH         CAK         CAJ     180.000    10.0     2
+NMI              const_33         CAE         CAG         CAM         CAL       0.000    10.0     2
+NMI       const_sp2_sp2_1         CAF         CAL         CAM         CAG       0.000     5.0     2
+NMI              const_17         CAD         CAE         CAG         CAM       0.000    10.0     2
+NMI              const_13         CAF         CAD         CAE         CAG       0.000    10.0     2
+NMI       const_sp2_sp2_9         CAE         CAD         CAF         CAL       0.000     5.0     2
+NMI       const_sp2_sp2_5         CAD         CAF         CAL         CAM       0.000     5.0     2
+NMI              const_28         CAJ         CAK         CAL         CAF       0.000    10.0     2
+NMI             sp2_sp3_8         CAL         CAK         CAJ         CAI     -90.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NMI    plan-1         CAA   0.020
+NMI    plan-1         CAD   0.020
+NMI    plan-1         CAE   0.020
+NMI    plan-1         CAF   0.020
+NMI    plan-1         CAG   0.020
+NMI    plan-1         CAH   0.020
+NMI    plan-1         CAJ   0.020
+NMI    plan-1         CAK   0.020
+NMI    plan-1         CAL   0.020
+NMI    plan-1         CAM   0.020
+NMI    plan-1          H4   0.020
+NMI    plan-1          H5   0.020
+NMI    plan-1          H6   0.020
+NMI    plan-1          H7   0.020
+NMI    plan-1          H8   0.020
+NMI    plan-1         NAN   0.020
+NMI    plan-2         CAC   0.020
+NMI    plan-2         CAI   0.020
+NMI    plan-2          O1   0.020
+NMI    plan-2         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NMI           SMILES              ACDLabs 12.01                                                                  O=C(O)CCc2c1ccccc1n(c2)C
+NMI            InChI                InChI  1.03 InChI=1S/C12H13NO2/c1-13-8-9(6-7-12(14)15)10-4-2-3-5-11(10)13/h2-5,8H,6-7H2,1H3,(H,14,15)
+NMI         InChIKey                InChI  1.03                                                               VVKVBQDZJLGAFG-UHFFFAOYSA-N
+NMI SMILES_CANONICAL               CACTVS 3.385                                                                  Cn1cc(CCC(O)=O)c2ccccc12
+NMI           SMILES               CACTVS 3.385                                                                  Cn1cc(CCC(O)=O)c2ccccc12
+NMI SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                  Cn1cc(c2c1cccc2)CCC(=O)O
+NMI           SMILES "OpenEye OEToolkits" 1.9.2                                                                  Cn1cc(c2c1cccc2)CCC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NMI acedrg               243         "dictionary generator"                  
+NMI acedrg_database      11          "data source"                           
+NMI rdkit                2017.03.2   "Chemoinformatics tool"
+NMI refmac5              5.8.0238    "optimization tool"                     

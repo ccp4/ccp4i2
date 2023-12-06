@@ -1,0 +1,274 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CQU     CQU      N-[2-(5-methyl-4H-1,2,4-triazol-3-yl)phenyl]-7H-pyrrolo[2,3-d]pyrimidin-4-amine     NON-POLYMER     35     22     .     
+#
+data_comp_CQU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CQU     N3      N       NH1     0       5.059       3.902       17.296      
+CQU     C7      C       CR6     0       6.032       4.557       18.073      
+CQU     C6      C       CR15    0       3.188       2.406       15.190      
+CQU     C13     C       CR16    0       6.461       5.835       17.693      
+CQU     C21     C       CR5     0       6.242       0.607       20.554      
+CQU     C8      C       CR16    0       2.084       5.846       17.044      
+CQU     C16     C       CR16    0       7.414       6.496       18.443      
+CQU     C19     C       CR16    0       7.954       5.901       19.565      
+CQU     C22     C       CH3     0       6.762       -0.596      21.249      
+CQU     N18     N       NR5     0       6.972       1.711       20.317      
+CQU     N20     N       NRD5    0       5.039       0.786       20.077      
+CQU     N17     N       NRD5    0       4.992       2.053       19.512      
+CQU     C14     C       CR5     0       6.179       2.599       19.670      
+CQU     C12     C       CR6     0       6.578       3.939       19.219      
+CQU     C15     C       CR16    0       7.542       4.638       19.949      
+CQU     C1      C       CR6     0       3.819       4.323       16.914      
+CQU     C2      C       CR56    0       3.045       3.597       15.965      
+CQU     C5      C       CR56    0       1.773       4.133       15.644      
+CQU     N9      N       NR5     0       1.181       3.312       14.729      
+CQU     C11     C       CR15    0       2.045       2.272       14.462      
+CQU     N10     N       NRD6    0       1.264       5.261       16.171      
+CQU     N4      N       NRD6    0       3.304       5.453       17.441      
+CQU     HN3     H       H       0       5.291       3.105       17.002      
+CQU     H6      H       H       0       3.929       1.826       15.185      
+CQU     H13     H       H       0       6.094       6.247       16.930      
+CQU     H8      H       H       0       1.763       6.643       17.437      
+CQU     H16     H       H       0       7.697       7.357       18.184      
+CQU     H19     H       H       0       8.606       6.356       20.073      
+CQU     H22     H       H       0       7.563       -0.910      20.799      
+CQU     H22A    H       H       0       6.088       -1.295      21.236      
+CQU     H22B    H       H       0       6.976       -0.372      22.169      
+CQU     HN18    H       H       0       7.814       1.828       20.546      
+CQU     H15     H       H       0       7.916       4.241       20.716      
+CQU     HN9     H       H       0       0.344       3.442       14.358      
+CQU     H11     H       H       0       1.854       1.565       13.849      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CQU          N3          C7      SINGLE       n     1.395  0.0200     1.395  0.0200
+CQU          N3          C1      SINGLE       n     1.360  0.0100     1.360  0.0100
+CQU          C7         C13      DOUBLE       y     1.396  0.0100     1.396  0.0100
+CQU          C7         C12      SINGLE       y     1.406  0.0100     1.406  0.0100
+CQU          C6          C2      SINGLE       y     1.430  0.0100     1.430  0.0100
+CQU          C6         C11      DOUBLE       y     1.362  0.0100     1.362  0.0100
+CQU         C13         C16      SINGLE       y     1.378  0.0101     1.378  0.0101
+CQU         C21         C22      SINGLE       n     1.483  0.0100     1.483  0.0100
+CQU         C21         N18      SINGLE       y     1.344  0.0100     1.344  0.0100
+CQU         C21         N20      DOUBLE       y     1.306  0.0100     1.306  0.0100
+CQU          C8         N10      SINGLE       y     1.330  0.0100     1.330  0.0100
+CQU          C8          N4      DOUBLE       y     1.339  0.0100     1.339  0.0100
+CQU         C16         C19      DOUBLE       y     1.376  0.0124     1.376  0.0124
+CQU         C19         C15      SINGLE       y     1.380  0.0100     1.380  0.0100
+CQU         N18         C14      SINGLE       y     1.356  0.0100     1.356  0.0100
+CQU         N20         N17      SINGLE       y     1.388  0.0100     1.388  0.0100
+CQU         N17         C14      DOUBLE       y     1.317  0.0100     1.317  0.0100
+CQU         C14         C12      SINGLE       n     1.467  0.0102     1.467  0.0102
+CQU         C12         C15      DOUBLE       y     1.392  0.0100     1.392  0.0100
+CQU          C1          C2      DOUBLE       y     1.418  0.0100     1.418  0.0100
+CQU          C1          N4      SINGLE       y     1.344  0.0100     1.344  0.0100
+CQU          C2          C5      SINGLE       y     1.412  0.0120     1.412  0.0120
+CQU          C5          N9      SINGLE       y     1.363  0.0100     1.363  0.0100
+CQU          C5         N10      DOUBLE       y     1.342  0.0100     1.342  0.0100
+CQU          N9         C11      SINGLE       y     1.377  0.0100     1.377  0.0100
+CQU          N3         HN3      SINGLE       n     1.016  0.0100     0.879  0.0200
+CQU          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0140
+CQU         C13         H13      SINGLE       n     1.082  0.0130     0.942  0.0198
+CQU          C8          H8      SINGLE       n     1.082  0.0130     0.945  0.0200
+CQU         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0172
+CQU         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0180
+CQU         C22         H22      SINGLE       n     1.089  0.0100     0.971  0.0200
+CQU         C22        H22A      SINGLE       n     1.089  0.0100     0.971  0.0200
+CQU         C22        H22B      SINGLE       n     1.089  0.0100     0.971  0.0200
+CQU         N18        HN18      SINGLE       n     1.016  0.0100     0.880  0.0200
+CQU         C15         H15      SINGLE       n     1.082  0.0130     0.941  0.0157
+CQU          N9         HN9      SINGLE       n     1.016  0.0100     0.925  0.0200
+CQU         C11         H11      SINGLE       n     1.082  0.0130     0.955  0.0105
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CQU          C7          N3          C1     129.061    1.50
+CQU          C7          N3         HN3     115.837    2.39
+CQU          C1          N3         HN3     115.101    1.50
+CQU          N3          C7         C13     120.124    2.70
+CQU          N3          C7         C12     119.474    2.04
+CQU         C13          C7         C12     120.402    2.08
+CQU          C2          C6         C11     107.170    1.50
+CQU          C2          C6          H6     126.360    1.50
+CQU         C11          C6          H6     126.470    1.50
+CQU          C7         C13         C16     119.931    1.50
+CQU          C7         C13         H13     120.037    1.50
+CQU         C16         C13         H13     120.033    1.50
+CQU         C22         C21         N18     124.081    1.50
+CQU         C22         C21         N20     127.261    1.50
+CQU         N18         C21         N20     108.658    1.88
+CQU         N10          C8          N4     128.954    1.50
+CQU         N10          C8          H8     115.545    1.50
+CQU          N4          C8          H8     115.502    1.50
+CQU         C13         C16         C19     120.361    1.50
+CQU         C13         C16         H16     119.679    1.50
+CQU         C19         C16         H16     119.961    1.50
+CQU         C16         C19         C15     120.201    1.50
+CQU         C16         C19         H19     119.998    1.50
+CQU         C15         C19         H19     119.796    1.50
+CQU         C21         C22         H22     109.472    1.50
+CQU         C21         C22        H22A     109.472    1.50
+CQU         C21         C22        H22B     109.472    1.50
+CQU         H22         C22        H22A     109.308    2.38
+CQU         H22         C22        H22B     109.308    2.38
+CQU        H22A         C22        H22B     109.308    2.38
+CQU         C21         N18         C14     107.866    2.04
+CQU         C21         N18        HN18     125.636    2.25
+CQU         C14         N18        HN18     126.498    2.16
+CQU         C21         N20         N17     107.389    1.50
+CQU         N20         N17         C14     107.428    1.50
+CQU         N18         C14         N17     108.658    1.88
+CQU         N18         C14         C12     125.725    1.57
+CQU         N17         C14         C12     125.616    1.55
+CQU          C7         C12         C14     121.808    1.99
+CQU          C7         C12         C15     118.193    1.50
+CQU         C14         C12         C15     119.999    2.31
+CQU         C19         C15         C12     120.917    1.50
+CQU         C19         C15         H15     119.744    1.50
+CQU         C12         C15         H15     119.339    1.50
+CQU          N3          C1          C2     121.668    3.00
+CQU          N3          C1          N4     119.473    1.50
+CQU          C2          C1          N4     118.859    1.50
+CQU          C6          C2          C1     136.746    2.40
+CQU          C6          C2          C5     106.950    1.50
+CQU          C1          C2          C5     116.303    1.50
+CQU          C2          C5          N9     108.067    1.50
+CQU          C2          C5         N10     124.618    1.50
+CQU          N9          C5         N10     127.315    1.65
+CQU          C5          N9         C11     107.592    1.50
+CQU          C5          N9         HN9     125.526    1.50
+CQU         C11          N9         HN9     126.883    1.53
+CQU          C6         C11          N9     110.222    1.50
+CQU          C6         C11         H11     125.821    1.67
+CQU          N9         C11         H11     123.957    1.77
+CQU          C8         N10          C5     112.834    1.50
+CQU          C8          N4          C1     118.432    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CQU             sp2_sp2_1         C13          C7          N3          C1     180.000     5.0     2
+CQU             sp2_sp2_5          C2          C1          N3          C7     180.000     5.0     2
+CQU              const_47         C14         N17         N20         C21       0.000    10.0     2
+CQU              const_45         N18         C14         N17         N20       0.000    10.0     2
+CQU             sp2_sp2_9          C7         C12         C14         N18     180.000     5.0     2
+CQU              const_33          C7         C12         C15         C19       0.000    10.0     2
+CQU              const_55          N3          C1          C2          C6       0.000    10.0     2
+CQU              const_57          N3          C1          N4          C8     180.000    10.0     2
+CQU       const_sp2_sp2_5          C6          C2          C5          N9       0.000     5.0     2
+CQU       const_sp2_sp2_9          C2          C5          N9         C11       0.000     5.0     2
+CQU              const_50          C2          C5         N10          C8       0.000    10.0     2
+CQU              const_13          C6         C11          N9          C5       0.000    10.0     2
+CQU              const_61         C14         C12          C7          N3       0.000    10.0     2
+CQU              const_18         C16         C13          C7          N3     180.000    10.0     2
+CQU       const_sp2_sp2_3          C1          C2          C6         C11     180.000     5.0     2
+CQU              const_62          N9         C11          C6          C2       0.000    10.0     2
+CQU              const_21          C7         C13         C16         C19       0.000    10.0     2
+CQU              const_67         C22         C21         N20         N17     180.000    10.0     2
+CQU             sp2_sp3_1         N18         C21         C22         H22     150.000    10.0     6
+CQU              const_39         C22         C21         N18         C14     180.000    10.0     2
+CQU              const_48          N4          C8         N10          C5       0.000    10.0     2
+CQU              const_68         N10          C8          N4          C1       0.000    10.0     2
+CQU              const_25         C13         C16         C19         C15       0.000    10.0     2
+CQU              const_29         C12         C15         C19         C16       0.000    10.0     2
+CQU              const_41         N17         C14         N18         C21       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CQU    plan-1          C1   0.020
+CQU    plan-1         C11   0.020
+CQU    plan-1          C2   0.020
+CQU    plan-1          C5   0.020
+CQU    plan-1          C6   0.020
+CQU    plan-1          C8   0.020
+CQU    plan-1         H11   0.020
+CQU    plan-1          H6   0.020
+CQU    plan-1          H8   0.020
+CQU    plan-1         HN9   0.020
+CQU    plan-1         N10   0.020
+CQU    plan-1          N3   0.020
+CQU    plan-1          N4   0.020
+CQU    plan-1          N9   0.020
+CQU    plan-2         C12   0.020
+CQU    plan-2         C14   0.020
+CQU    plan-2         C21   0.020
+CQU    plan-2         C22   0.020
+CQU    plan-2        HN18   0.020
+CQU    plan-2         N17   0.020
+CQU    plan-2         N18   0.020
+CQU    plan-2         N20   0.020
+CQU    plan-3         C12   0.020
+CQU    plan-3         C13   0.020
+CQU    plan-3         C14   0.020
+CQU    plan-3         C15   0.020
+CQU    plan-3         C16   0.020
+CQU    plan-3         C19   0.020
+CQU    plan-3          C7   0.020
+CQU    plan-3         H13   0.020
+CQU    plan-3         H15   0.020
+CQU    plan-3         H16   0.020
+CQU    plan-3         H19   0.020
+CQU    plan-3          N3   0.020
+CQU    plan-4          C1   0.020
+CQU    plan-4          C7   0.020
+CQU    plan-4         HN3   0.020
+CQU    plan-4          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CQU           SMILES              ACDLabs 10.04                                                                                          n1c4c(c(nc1)Nc3ccccc3c2nnc(n2)C)ccn4
+CQU SMILES_CANONICAL               CACTVS 3.341                                                                                        Cc1[nH]c(nn1)c2ccccc2Nc3ncnc4[nH]ccc34
+CQU           SMILES               CACTVS 3.341                                                                                        Cc1[nH]c(nn1)c2ccccc2Nc3ncnc4[nH]ccc34
+CQU SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                        Cc1[nH]c(nn1)c2ccccc2Nc3c4cc[nH]c4ncn3
+CQU           SMILES "OpenEye OEToolkits" 1.5.0                                                                                        Cc1[nH]c(nn1)c2ccccc2Nc3c4cc[nH]c4ncn3
+CQU            InChI                InChI  1.03 InChI=1S/C15H13N7/c1-9-19-15(22-21-9)10-4-2-3-5-12(10)20-14-11-6-7-16-13(11)17-8-18-14/h2-8H,1H3,(H,19,21,22)(H2,16,17,18,20)
+CQU         InChIKey                InChI  1.03                                                                                                   OKGCSZUKOGMZAL-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CQU acedrg               243         "dictionary generator"                  
+CQU acedrg_database      11          "data source"                           
+CQU rdkit                2017.03.2   "Chemoinformatics tool"
+CQU refmac5              5.8.0238    "optimization tool"                     

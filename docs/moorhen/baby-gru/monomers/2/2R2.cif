@@ -1,0 +1,322 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+2R2     2R2      "[4-(2-methoxyethyl)piperazin-1-yl][6-methyl-7-nitro-5-(trifluoromethyl)-1,3-benzothiazol-2-yl]methanone"     NON-POLYMER     48     29     .     
+#
+data_comp_2R2
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+2R2     FAF     F       F       0       11.267      -22.094     13.659      
+2R2     CAD     C       CT      0       10.527      -21.034     13.338      
+2R2     FAG     F       F       0       9.312       -21.310     13.802      
+2R2     FAE     F       F       0       10.994      -20.047     14.096      
+2R2     CAC     C       CR6     0       10.532      -20.701     11.869      
+2R2     CAH     C       CR16    0       11.269      -21.527     11.021      
+2R2     CAB     C       CR6     0       9.820       -19.592     11.346      
+2R2     CAA     C       CH3     0       9.014       -18.682     12.252      
+2R2     CAZ     C       CR6     0       9.870       -19.337     9.958       
+2R2     NBA     N       N       1       9.155       -18.207     9.368       
+2R2     OBB     O       O       0       7.987       -18.364     9.048       
+2R2     OBC     O       OC      -1      9.756       -17.154     9.222       
+2R2     CAY     C       CR56    0       10.630      -20.196     9.115       
+2R2     CAI     C       CR56    0       11.320      -21.278     9.645       
+2R2     NAJ     N       NRD5    0       12.013      -22.004     8.669       
+2R2     SAX     S       S2      0       10.885      -20.159     7.473       
+2R2     CAK     C       CR5     0       11.847      -21.529     7.467       
+2R2     CAL     C       C       0       12.473      -22.074     6.234       
+2R2     OAW     O       O       0       12.402      -21.428     5.190       
+2R2     NAM     N       NT      0       13.198      -23.223     6.306       
+2R2     CAV     C       CH2     0       12.523      -24.480     6.659       
+2R2     CAU     C       CH2     0       13.507      -25.450     7.281       
+2R2     NAP     N       NT      0       14.690      -25.694     6.421       
+2R2     CAO     C       CH2     0       15.298      -24.409     6.006       
+2R2     CAN     C       CH2     0       14.284      -23.493     5.357       
+2R2     CAQ     C       CH2     0       14.428      -26.616     5.304       
+2R2     CAR     C       CH2     0       14.489      -28.074     5.693       
+2R2     OAS     O       O2      0       15.787      -28.364     6.177       
+2R2     CAT     C       CH3     0       15.949      -29.717     6.569       
+2R2     H1      H       H       0       11.740      -22.263     11.371      
+2R2     H2      H       H       0       8.341       -19.199     12.723      
+2R2     H3      H       H       0       8.570       -17.995     11.733      
+2R2     H4      H       H       0       9.602       -18.256     12.896      
+2R2     H5      H       H       0       11.797      -24.310     7.290       
+2R2     H6      H       H       0       12.135      -24.875     5.855       
+2R2     H7      H       H       0       13.053      -26.299     7.453       
+2R2     H8      H       H       0       13.807      -25.094     8.141       
+2R2     H10     H       H       0       16.032      -24.577     5.382       
+2R2     H11     H       H       0       15.672      -23.965     6.793       
+2R2     H12     H       H       0       14.720      -22.656     5.100       
+2R2     H13     H       H       0       13.922      -23.913     4.551       
+2R2     H14     H       H       0       15.084      -26.460     4.597       
+2R2     H15     H       H       0       13.546      -26.430     4.930       
+2R2     H16     H       H       0       14.292      -28.640     4.916       
+2R2     H17     H       H       0       13.825      -28.268     6.389       
+2R2     H18     H       H       0       16.853      -29.852     6.895       
+2R2     H19     H       H       0       15.789      -30.297     5.806       
+2R2     H20     H       H       0       15.316      -29.928     7.275       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+2R2         CAO         CAN      SINGLE       n     1.512  0.0100     1.512  0.0100
+2R2         NAM         CAN      SINGLE       n     1.465  0.0100     1.465  0.0100
+2R2         CAR         OAS      SINGLE       n     1.412  0.0179     1.412  0.0179
+2R2         OAS         CAT      SINGLE       n     1.415  0.0200     1.415  0.0200
+2R2         CAQ         CAR      SINGLE       n     1.509  0.0178     1.509  0.0178
+2R2         NAP         CAQ      SINGLE       n     1.467  0.0100     1.467  0.0100
+2R2         NAP         CAO      SINGLE       n     1.469  0.0137     1.469  0.0137
+2R2         NAM         CAV      SINGLE       n     1.465  0.0100     1.465  0.0100
+2R2         CAL         NAM      SINGLE       n     1.354  0.0102     1.354  0.0102
+2R2         CAL         OAW      DOUBLE       n     1.228  0.0115     1.228  0.0115
+2R2         CAV         CAU      SINGLE       n     1.512  0.0100     1.512  0.0100
+2R2         CAU         NAP      SINGLE       n     1.469  0.0137     1.469  0.0137
+2R2         CAK         CAL      SINGLE       n     1.473  0.0191     1.473  0.0191
+2R2         SAX         CAK      SINGLE       y     1.695  0.0200     1.695  0.0200
+2R2         CAY         SAX      SINGLE       y     1.695  0.0200     1.695  0.0200
+2R2         NAJ         CAK      DOUBLE       y     1.297  0.0108     1.297  0.0108
+2R2         NBA         OBC      SINGLE       n     1.221  0.0162     1.221  0.0162
+2R2         NBA         OBB      DOUBLE       n     1.221  0.0162     1.221  0.0162
+2R2         CAZ         NBA      SINGLE       n     1.457  0.0200     1.457  0.0200
+2R2         CAI         NAJ      SINGLE       y     1.390  0.0100     1.390  0.0100
+2R2         CAZ         CAY      DOUBLE       y     1.423  0.0200     1.423  0.0200
+2R2         CAY         CAI      SINGLE       y     1.385  0.0119     1.385  0.0119
+2R2         CAB         CAZ      SINGLE       y     1.404  0.0100     1.404  0.0100
+2R2         CAH         CAI      DOUBLE       y     1.396  0.0100     1.396  0.0100
+2R2         CAC         CAB      DOUBLE       y     1.403  0.0100     1.403  0.0100
+2R2         CAB         CAA      SINGLE       n     1.508  0.0100     1.508  0.0100
+2R2         CAC         CAH      SINGLE       y     1.383  0.0100     1.383  0.0100
+2R2         CAD         CAC      SINGLE       n     1.495  0.0102     1.495  0.0102
+2R2         CAD         FAG      SINGLE       n     1.329  0.0183     1.329  0.0183
+2R2         FAF         CAD      SINGLE       n     1.329  0.0183     1.329  0.0183
+2R2         CAD         FAE      SINGLE       n     1.329  0.0183     1.329  0.0183
+2R2         CAH          H1      SINGLE       n     1.082  0.0130     0.942  0.0173
+2R2         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0135
+2R2         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0135
+2R2         CAA          H4      SINGLE       n     1.089  0.0100     0.971  0.0135
+2R2         CAV          H5      SINGLE       n     1.089  0.0100     0.978  0.0161
+2R2         CAV          H6      SINGLE       n     1.089  0.0100     0.978  0.0161
+2R2         CAU          H7      SINGLE       n     1.089  0.0100     0.978  0.0109
+2R2         CAU          H8      SINGLE       n     1.089  0.0100     0.978  0.0109
+2R2         CAO         H10      SINGLE       n     1.089  0.0100     0.978  0.0109
+2R2         CAO         H11      SINGLE       n     1.089  0.0100     0.978  0.0109
+2R2         CAN         H12      SINGLE       n     1.089  0.0100     0.978  0.0161
+2R2         CAN         H13      SINGLE       n     1.089  0.0100     0.978  0.0161
+2R2         CAQ         H14      SINGLE       n     1.089  0.0100     0.977  0.0152
+2R2         CAQ         H15      SINGLE       n     1.089  0.0100     0.977  0.0152
+2R2         CAR         H16      SINGLE       n     1.089  0.0100     0.981  0.0174
+2R2         CAR         H17      SINGLE       n     1.089  0.0100     0.981  0.0174
+2R2         CAT         H18      SINGLE       n     1.089  0.0100     0.971  0.0146
+2R2         CAT         H19      SINGLE       n     1.089  0.0100     0.971  0.0146
+2R2         CAT         H20      SINGLE       n     1.089  0.0100     0.971  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+2R2         CAC         CAD         FAG     112.758    1.50
+2R2         CAC         CAD         FAF     112.758    1.50
+2R2         CAC         CAD         FAE     112.758    1.50
+2R2         FAG         CAD         FAF     105.974    1.50
+2R2         FAG         CAD         FAE     105.974    1.50
+2R2         FAF         CAD         FAE     105.974    1.50
+2R2         CAB         CAC         CAH     120.411    1.50
+2R2         CAB         CAC         CAD     120.376    1.95
+2R2         CAH         CAC         CAD     119.212    1.94
+2R2         CAI         CAH         CAC     118.858    1.50
+2R2         CAI         CAH          H1     120.863    1.50
+2R2         CAC         CAH          H1     120.279    1.50
+2R2         CAZ         CAB         CAC     119.726    1.50
+2R2         CAZ         CAB         CAA     120.621    1.50
+2R2         CAC         CAB         CAA     119.653    1.50
+2R2         CAB         CAA          H2     109.580    1.50
+2R2         CAB         CAA          H3     109.580    1.50
+2R2         CAB         CAA          H4     109.580    1.50
+2R2          H2         CAA          H3     109.348    1.50
+2R2          H2         CAA          H4     109.348    1.50
+2R2          H3         CAA          H4     109.348    1.50
+2R2         NBA         CAZ         CAY     120.561    1.50
+2R2         NBA         CAZ         CAB     119.917    1.67
+2R2         CAY         CAZ         CAB     119.522    1.50
+2R2         OBC         NBA         OBB     123.395    1.50
+2R2         OBC         NBA         CAZ     118.299    1.50
+2R2         OBB         NBA         CAZ     118.299    1.50
+2R2         SAX         CAY         CAZ     131.073    3.00
+2R2         SAX         CAY         CAI     108.216    3.00
+2R2         CAZ         CAY         CAI     120.711    2.07
+2R2         NAJ         CAI         CAY     109.090    1.50
+2R2         NAJ         CAI         CAH     130.137    1.50
+2R2         CAY         CAI         CAH     120.773    1.92
+2R2         CAK         NAJ         CAI     106.262    1.50
+2R2         CAK         SAX         CAY     108.216    3.00
+2R2         CAL         CAK         SAX     123.836    3.00
+2R2         CAL         CAK         NAJ     127.948    3.00
+2R2         SAX         CAK         NAJ     108.216    3.00
+2R2         NAM         CAL         OAW     121.212    1.53
+2R2         NAM         CAL         CAK     119.062    3.00
+2R2         OAW         CAL         CAK     119.725    1.50
+2R2         CAN         NAM         CAV     112.431    1.50
+2R2         CAN         NAM         CAL     121.592    3.00
+2R2         CAV         NAM         CAL     121.592    3.00
+2R2         NAM         CAV         CAU     109.884    1.50
+2R2         NAM         CAV          H5     109.489    1.50
+2R2         NAM         CAV          H6     109.489    1.50
+2R2         CAU         CAV          H5     109.532    1.50
+2R2         CAU         CAV          H6     109.532    1.50
+2R2          H5         CAV          H6     108.187    1.50
+2R2         CAV         CAU         NAP     110.891    1.50
+2R2         CAV         CAU          H7     109.532    1.50
+2R2         CAV         CAU          H8     109.532    1.50
+2R2         NAP         CAU          H7     109.491    1.50
+2R2         NAP         CAU          H8     109.491    1.50
+2R2          H7         CAU          H8     108.187    1.50
+2R2         CAQ         NAP         CAO     110.993    1.77
+2R2         CAQ         NAP         CAU     110.993    1.77
+2R2         CAO         NAP         CAU     108.582    1.50
+2R2         CAN         CAO         NAP     110.891    1.50
+2R2         CAN         CAO         H10     109.532    1.50
+2R2         CAN         CAO         H11     109.532    1.50
+2R2         NAP         CAO         H10     109.491    1.50
+2R2         NAP         CAO         H11     109.491    1.50
+2R2         H10         CAO         H11     108.187    1.50
+2R2         CAO         CAN         NAM     109.884    1.50
+2R2         CAO         CAN         H12     109.532    1.50
+2R2         CAO         CAN         H13     109.532    1.50
+2R2         NAM         CAN         H12     109.489    1.50
+2R2         NAM         CAN         H13     109.489    1.50
+2R2         H12         CAN         H13     108.187    1.50
+2R2         CAR         CAQ         NAP     113.936    1.71
+2R2         CAR         CAQ         H14     108.918    1.50
+2R2         CAR         CAQ         H15     108.918    1.50
+2R2         NAP         CAQ         H14     108.784    1.50
+2R2         NAP         CAQ         H15     108.784    1.50
+2R2         H14         CAQ         H15     107.745    1.50
+2R2         OAS         CAR         CAQ     108.926    2.01
+2R2         OAS         CAR         H16     109.668    1.50
+2R2         OAS         CAR         H17     109.668    1.50
+2R2         CAQ         CAR         H16     110.167    1.50
+2R2         CAQ         CAR         H17     110.167    1.50
+2R2         H16         CAR         H17     108.268    1.50
+2R2         CAR         OAS         CAT     112.326    2.21
+2R2         OAS         CAT         H18     109.470    1.50
+2R2         OAS         CAT         H19     109.470    1.50
+2R2         OAS         CAT         H20     109.470    1.50
+2R2         H18         CAT         H19     109.532    1.53
+2R2         H18         CAT         H20     109.532    1.53
+2R2         H19         CAT         H20     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+2R2              const_13         NAJ         CAI         CAY         SAX       0.000    10.0     2
+2R2              const_22         CAZ         CAY         SAX         CAK     180.000    10.0     2
+2R2              const_27         CAY         CAI         NAJ         CAK       0.000    10.0     2
+2R2              const_26         CAL         CAK         NAJ         CAI     180.000    10.0     2
+2R2              const_24         CAL         CAK         SAX         CAY     180.000    10.0     2
+2R2             sp2_sp2_6         SAX         CAK         CAL         OAW       0.000     5.0     2
+2R2             sp2_sp2_3         OAW         CAL         NAM         CAN       0.000     5.0     2
+2R2            sp2_sp3_10         CAL         NAM         CAV         CAU     180.000    10.0     6
+2R2             sp2_sp3_4         CAL         NAM         CAN         CAO     180.000    10.0     6
+2R2            sp2_sp3_19         CAB         CAC         CAD         FAG     150.000    10.0     6
+2R2            sp3_sp3_22         NAP         CAU         CAV         NAM      60.000    10.0     3
+2R2            sp3_sp3_17         CAV         CAU         NAP         CAQ      60.000    10.0     3
+2R2            sp3_sp3_11         CAN         CAO         NAP         CAQ     180.000    10.0     3
+2R2            sp3_sp3_47         CAR         CAQ         NAP         CAO     -60.000    10.0     3
+2R2             sp3_sp3_1         NAM         CAN         CAO         NAP     -60.000    10.0     3
+2R2            sp3_sp3_37         NAP         CAQ         CAR         OAS     180.000    10.0     3
+2R2            sp3_sp3_31         CAQ         CAR         OAS         CAT     180.000    10.0     3
+2R2            sp3_sp3_34         H18         CAT         OAS         CAR     180.000    10.0     3
+2R2              const_31         CAD         CAC         CAH         CAI     180.000    10.0     2
+2R2       const_sp2_sp2_4         CAA         CAB         CAC         CAD       0.000     5.0     2
+2R2              const_18         CAC         CAH         CAI         NAJ     180.000    10.0     2
+2R2            sp2_sp3_13         CAZ         CAB         CAA          H2     150.000    10.0     6
+2R2       const_sp2_sp2_8         CAA         CAB         CAZ         NBA       0.000     5.0     2
+2R2              const_12         SAX         CAY         CAZ         NBA       0.000    10.0     2
+2R2             sp2_sp2_9         CAY         CAZ         NBA         OBC     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+2R2    chir_1    CAD    FAG    FAF    FAE    both
+2R2    chir_2    NAP    CAQ    CAO    CAU    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+2R2    plan-1         CAA   0.020
+2R2    plan-1         CAB   0.020
+2R2    plan-1         CAC   0.020
+2R2    plan-1         CAD   0.020
+2R2    plan-1         CAH   0.020
+2R2    plan-1         CAI   0.020
+2R2    plan-1         CAK   0.020
+2R2    plan-1         CAL   0.020
+2R2    plan-1         CAY   0.020
+2R2    plan-1         CAZ   0.020
+2R2    plan-1          H1   0.020
+2R2    plan-1         NAJ   0.020
+2R2    plan-1         NBA   0.020
+2R2    plan-1         SAX   0.020
+2R2    plan-2         CAZ   0.020
+2R2    plan-2         NBA   0.020
+2R2    plan-2         OBB   0.020
+2R2    plan-2         OBC   0.020
+2R2    plan-3         CAK   0.020
+2R2    plan-3         CAL   0.020
+2R2    plan-3         NAM   0.020
+2R2    plan-3         OAW   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+2R2           SMILES              ACDLabs 12.01                                                                      FC(F)(F)c1cc2nc(sc2c(c1C)[N+]([O-])=O)C(=O)N3CCN(CCOC)CC3
+2R2            InChI                InChI  1.03 InChI=1S/C17H19F3N4O4S/c1-10-11(17(18,19)20)9-12-14(13(10)24(26)27)29-15(21-12)16(25)23-5-3-22(4-6-23)7-8-28-2/h9H,3-8H2,1-2H3
+2R2         InChIKey                InChI  1.03                                                                                                    AOMUWGOWJLARPE-UHFFFAOYSA-N
+2R2 SMILES_CANONICAL               CACTVS 3.385                                                                    COCCN1CCN(CC1)C(=O)c2sc3c(cc(c(C)c3[N+]([O-])=O)C(F)(F)F)n2
+2R2           SMILES               CACTVS 3.385                                                                    COCCN1CCN(CC1)C(=O)c2sc3c(cc(c(C)c3[N+]([O-])=O)C(F)(F)F)n2
+2R2 SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                    Cc1c(cc2c(c1[N+](=O)[O-])sc(n2)C(=O)N3CCN(CC3)CCOC)C(F)(F)F
+2R2           SMILES "OpenEye OEToolkits" 1.9.2                                                                    Cc1c(cc2c(c1[N+](=O)[O-])sc(n2)C(=O)N3CCN(CC3)CCOC)C(F)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+2R2 acedrg               243         "dictionary generator"                  
+2R2 acedrg_database      11          "data source"                           
+2R2 rdkit                2017.03.2   "Chemoinformatics tool"
+2R2 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,388 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TDS     TDS      8-HYDROXY-5,7-DIMETHOXY-3-METHYL-2-TRIDECYL-4H-CHROMEN-4-ONE     NON-POLYMER     68     30     .     
+#
+data_comp_TDS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TDS     CBC     C       CH3     0       94.610      -9.185      77.490      
+TDS     CBB     C       CH2     0       94.920      -8.057      78.445      
+TDS     CBA     C       CH2     0       94.096      -8.090      79.705      
+TDS     CAZ     C       CH2     0       94.398      -6.975      80.675      
+TDS     CAY     C       CH2     0       93.566      -7.006      81.932      
+TDS     CAX     C       CH2     0       93.846      -5.874      82.890      
+TDS     CAW     C       CH2     0       93.103      -5.972      84.200      
+TDS     CAV     C       CH2     0       91.614      -5.756      84.083      
+TDS     CAU     C       CH2     0       90.908      -5.582      85.404      
+TDS     CAT     C       CH2     0       90.805      -6.844      86.225      
+TDS     CAS     C       CH2     0       90.003      -6.687      87.491      
+TDS     CAR     C       CH2     0       89.952      -7.930      88.369      
+TDS     CAQ     C       CH2     0       89.088      -7.765      89.605      
+TDS     CAP     C       CR6     0       89.695      -6.882      90.656      
+TDS     OAO     O       O2      0       89.312      -5.577      90.527      
+TDS     CAH     C       CR6     0       90.572      -7.284      91.672      
+TDS     CAI     C       CH3     0       90.998      -8.728      91.809      
+TDS     CAG     C       CR6     0       91.084      -6.292      92.621      
+TDS     OAC     O       O       0       91.867      -6.620      93.543      
+TDS     CAF     C       CR66    0       90.635      -4.895      92.440      
+TDS     CAN     C       CR66    0       89.756      -4.599      91.385      
+TDS     CAM     C       CR6     0       89.301      -3.291      91.170      
+TDS     OBD     O       OH1     0       88.440      -3.056      90.120      
+TDS     CAL     C       CR6     0       89.726      -2.260      92.016      
+TDS     OAK     O       O2      0       89.226      -1.019      91.726      
+TDS     CAJ     C       CH3     0       89.615      0.125       92.485      
+TDS     CAD     C       CR16    0       90.603      -2.538      93.076      
+TDS     CAE     C       CR6     0       91.056      -3.823      93.292      
+TDS     OAB     O       O2      0       91.907      -4.164      94.302      
+TDS     CAA     C       CH3     0       92.445      -3.176      95.189      
+TDS     HBC1    H       H       0       95.174      -9.108      76.701      
+TDS     HBC2    H       H       0       93.675      -9.139      77.224      
+TDS     HBC3    H       H       0       94.781      -10.037     77.927      
+TDS     HBB1    H       H       0       94.763      -7.201      77.988      
+TDS     HBB2    H       H       0       95.870      -8.097      78.687      
+TDS     HBA1    H       H       0       94.247      -8.948      80.156      
+TDS     HBA2    H       H       0       93.147      -8.046      79.461      
+TDS     HAZ1    H       H       0       94.252      -6.116      80.223      
+TDS     HAZ2    H       H       0       95.346      -7.022      80.924      
+TDS     HAY1    H       H       0       93.727      -7.857      82.395      
+TDS     HAY2    H       H       0       92.618      -6.979      81.682      
+TDS     HAX1    H       H       0       93.607      -5.028      82.455      
+TDS     HAX2    H       H       0       94.809      -5.851      83.076      
+TDS     HAW1    H       H       0       93.470      -5.306      84.820      
+TDS     HAW2    H       H       0       93.263      -6.859      84.587      
+TDS     HAV1    H       H       0       91.221      -6.523      83.616      
+TDS     HAV2    H       H       0       91.454      -4.959      83.534      
+TDS     HAU1    H       H       0       90.003      -5.243      85.235      
+TDS     HAU2    H       H       0       91.386      -4.904      85.929      
+TDS     HAT1    H       H       0       91.710      -7.142      86.459      
+TDS     HAT2    H       H       0       90.393      -7.544      85.675      
+TDS     HAS1    H       H       0       89.085      -6.435      87.252      
+TDS     HAS2    H       H       0       90.386      -5.949      88.013      
+TDS     HAR1    H       H       0       90.863      -8.158      88.648      
+TDS     HAR2    H       H       0       89.605      -8.677      87.839      
+TDS     HAQ1    H       H       0       88.913      -8.662      89.993      
+TDS     HAQ2    H       H       0       88.215      -7.382      89.330      
+TDS     HAI1    H       H       0       91.590      -8.837      92.569      
+TDS     HAI2    H       H       0       91.461      -9.004      91.001      
+TDS     HAI3    H       H       0       90.212      -9.285      91.933      
+TDS     HBD     H       H       0       88.398      -2.275      89.760      
+TDS     HAJ1    H       H       0       90.578      0.239       92.430      
+TDS     HAJ2    H       H       0       89.353      0.004       93.412      
+TDS     HAJ3    H       H       0       89.175      0.913       92.126      
+TDS     HAD     H       H       0       90.884      -1.840      93.642      
+TDS     HAA1    H       H       0       91.723      -2.748      95.676      
+TDS     HAA2    H       H       0       92.933      -2.511      94.676      
+TDS     HAA3    H       H       0       93.048      -3.605      95.817      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TDS         CBC         CBB      SINGLE       n     1.510  0.0200     1.510  0.0200
+TDS         CBB         CBA      SINGLE       n     1.507  0.0200     1.507  0.0200
+TDS         CBA         CAZ      SINGLE       n     1.509  0.0200     1.509  0.0200
+TDS         CAZ         CAY      SINGLE       n     1.509  0.0200     1.509  0.0200
+TDS         CAY         CAX      SINGLE       n     1.509  0.0200     1.509  0.0200
+TDS         CAX         CAW      SINGLE       n     1.509  0.0200     1.509  0.0200
+TDS         CAW         CAV      SINGLE       n     1.509  0.0200     1.509  0.0200
+TDS         CAV         CAU      SINGLE       n     1.509  0.0200     1.509  0.0200
+TDS         CAU         CAT      SINGLE       n     1.509  0.0200     1.509  0.0200
+TDS         CAT         CAS      SINGLE       n     1.509  0.0200     1.509  0.0200
+TDS         CAS         CAR      SINGLE       n     1.522  0.0142     1.522  0.0142
+TDS         CAR         CAQ      SINGLE       n     1.517  0.0109     1.517  0.0109
+TDS         CAQ         CAP      SINGLE       n     1.499  0.0108     1.499  0.0108
+TDS         CAP         OAO      SINGLE       y     1.363  0.0100     1.363  0.0100
+TDS         CAP         CAH      DOUBLE       y     1.395  0.0127     1.395  0.0127
+TDS         OAO         CAN      SINGLE       y     1.371  0.0100     1.371  0.0100
+TDS         CAH         CAI      SINGLE       n     1.508  0.0100     1.508  0.0100
+TDS         CAH         CAG      SINGLE       y     1.457  0.0111     1.457  0.0111
+TDS         CAG         OAC      DOUBLE       n     1.251  0.0138     1.251  0.0138
+TDS         CAG         CAF      SINGLE       y     1.460  0.0141     1.460  0.0141
+TDS         CAF         CAN      DOUBLE       y     1.396  0.0100     1.396  0.0100
+TDS         CAF         CAE      SINGLE       y     1.421  0.0100     1.421  0.0100
+TDS         CAN         CAM      SINGLE       y     1.396  0.0100     1.396  0.0100
+TDS         CAM         OBD      SINGLE       n     1.374  0.0155     1.374  0.0155
+TDS         CAM         CAL      DOUBLE       y     1.396  0.0107     1.396  0.0107
+TDS         CAL         OAK      SINGLE       n     1.363  0.0100     1.363  0.0100
+TDS         CAL         CAD      SINGLE       y     1.398  0.0100     1.398  0.0100
+TDS         OAK         CAJ      SINGLE       n     1.424  0.0117     1.424  0.0117
+TDS         CAD         CAE      DOUBLE       y     1.372  0.0100     1.372  0.0100
+TDS         CAE         OAB      SINGLE       n     1.356  0.0100     1.356  0.0100
+TDS         OAB         CAA      SINGLE       n     1.429  0.0109     1.429  0.0109
+TDS         CBC        HBC1      SINGLE       n     1.089  0.0100     0.973  0.0157
+TDS         CBC        HBC2      SINGLE       n     1.089  0.0100     0.973  0.0157
+TDS         CBC        HBC3      SINGLE       n     1.089  0.0100     0.973  0.0157
+TDS         CBB        HBB1      SINGLE       n     1.089  0.0100     0.982  0.0155
+TDS         CBB        HBB2      SINGLE       n     1.089  0.0100     0.982  0.0155
+TDS         CBA        HBA1      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CBA        HBA2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAZ        HAZ1      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAZ        HAZ2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAY        HAY1      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAY        HAY2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAX        HAX1      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAX        HAX2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAW        HAW1      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAW        HAW2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAV        HAV1      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAV        HAV2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAU        HAU1      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAU        HAU2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAT        HAT1      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAT        HAT2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAS        HAS1      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAS        HAS2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TDS         CAR        HAR1      SINGLE       n     1.089  0.0100     0.980  0.0160
+TDS         CAR        HAR2      SINGLE       n     1.089  0.0100     0.980  0.0160
+TDS         CAQ        HAQ1      SINGLE       n     1.089  0.0100     0.992  0.0100
+TDS         CAQ        HAQ2      SINGLE       n     1.089  0.0100     0.992  0.0100
+TDS         CAI        HAI1      SINGLE       n     1.089  0.0100     0.971  0.0135
+TDS         CAI        HAI2      SINGLE       n     1.089  0.0100     0.971  0.0135
+TDS         CAI        HAI3      SINGLE       n     1.089  0.0100     0.971  0.0135
+TDS         OBD         HBD      SINGLE       n     0.966  0.0059     0.861  0.0200
+TDS         CAJ        HAJ1      SINGLE       n     1.089  0.0100     0.971  0.0157
+TDS         CAJ        HAJ2      SINGLE       n     1.089  0.0100     0.971  0.0157
+TDS         CAJ        HAJ3      SINGLE       n     1.089  0.0100     0.971  0.0157
+TDS         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0130
+TDS         CAA        HAA1      SINGLE       n     1.089  0.0100     0.971  0.0157
+TDS         CAA        HAA2      SINGLE       n     1.089  0.0100     0.971  0.0157
+TDS         CAA        HAA3      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TDS         CBB         CBC        HBC1     109.554    1.50
+TDS         CBB         CBC        HBC2     109.554    1.50
+TDS         CBB         CBC        HBC3     109.554    1.50
+TDS        HBC1         CBC        HBC2     109.380    1.50
+TDS        HBC1         CBC        HBC3     109.380    1.50
+TDS        HBC2         CBC        HBC3     109.380    1.50
+TDS         CBC         CBB         CBA     113.719    3.00
+TDS         CBC         CBB        HBB1     108.918    1.50
+TDS         CBC         CBB        HBB2     108.918    1.50
+TDS         CBA         CBB        HBB1     108.758    1.50
+TDS         CBA         CBB        HBB2     108.758    1.50
+TDS        HBB1         CBB        HBB2     107.763    1.50
+TDS         CBB         CBA         CAZ     114.362    3.00
+TDS         CBB         CBA        HBA1     108.653    1.50
+TDS         CBB         CBA        HBA2     108.653    1.50
+TDS         CAZ         CBA        HBA1     108.698    1.50
+TDS         CAZ         CBA        HBA2     108.698    1.50
+TDS        HBA1         CBA        HBA2     107.646    1.50
+TDS         CBA         CAZ         CAY     114.243    1.69
+TDS         CBA         CAZ        HAZ1     108.698    1.50
+TDS         CBA         CAZ        HAZ2     108.698    1.50
+TDS         CAY         CAZ        HAZ1     108.698    1.50
+TDS         CAY         CAZ        HAZ2     108.698    1.50
+TDS        HAZ1         CAZ        HAZ2     107.646    1.50
+TDS         CAZ         CAY         CAX     114.243    1.69
+TDS         CAZ         CAY        HAY1     108.698    1.50
+TDS         CAZ         CAY        HAY2     108.698    1.50
+TDS         CAX         CAY        HAY1     108.698    1.50
+TDS         CAX         CAY        HAY2     108.698    1.50
+TDS        HAY1         CAY        HAY2     107.646    1.50
+TDS         CAY         CAX         CAW     114.243    1.69
+TDS         CAY         CAX        HAX1     108.698    1.50
+TDS         CAY         CAX        HAX2     108.698    1.50
+TDS         CAW         CAX        HAX1     108.698    1.50
+TDS         CAW         CAX        HAX2     108.698    1.50
+TDS        HAX1         CAX        HAX2     107.646    1.50
+TDS         CAX         CAW         CAV     114.243    1.69
+TDS         CAX         CAW        HAW1     108.698    1.50
+TDS         CAX         CAW        HAW2     108.698    1.50
+TDS         CAV         CAW        HAW1     108.698    1.50
+TDS         CAV         CAW        HAW2     108.698    1.50
+TDS        HAW1         CAW        HAW2     107.646    1.50
+TDS         CAW         CAV         CAU     114.243    1.69
+TDS         CAW         CAV        HAV1     108.698    1.50
+TDS         CAW         CAV        HAV2     108.698    1.50
+TDS         CAU         CAV        HAV1     108.698    1.50
+TDS         CAU         CAV        HAV2     108.698    1.50
+TDS        HAV1         CAV        HAV2     107.646    1.50
+TDS         CAV         CAU         CAT     114.243    1.69
+TDS         CAV         CAU        HAU1     108.698    1.50
+TDS         CAV         CAU        HAU2     108.698    1.50
+TDS         CAT         CAU        HAU1     108.698    1.50
+TDS         CAT         CAU        HAU2     108.698    1.50
+TDS        HAU1         CAU        HAU2     107.646    1.50
+TDS         CAU         CAT         CAS     114.243    1.69
+TDS         CAU         CAT        HAT1     108.698    1.50
+TDS         CAU         CAT        HAT2     108.698    1.50
+TDS         CAS         CAT        HAT1     108.698    1.50
+TDS         CAS         CAT        HAT2     108.698    1.50
+TDS        HAT1         CAT        HAT2     107.646    1.50
+TDS         CAT         CAS         CAR     114.491    1.55
+TDS         CAT         CAS        HAS1     108.698    1.50
+TDS         CAT         CAS        HAS2     108.698    1.50
+TDS         CAR         CAS        HAS1     108.625    1.50
+TDS         CAR         CAS        HAS2     108.625    1.50
+TDS        HAS1         CAS        HAS2     107.646    1.50
+TDS         CAS         CAR         CAQ     113.764    1.91
+TDS         CAS         CAR        HAR1     108.775    1.50
+TDS         CAS         CAR        HAR2     108.775    1.50
+TDS         CAQ         CAR        HAR1     108.750    1.50
+TDS         CAQ         CAR        HAR2     108.750    1.50
+TDS        HAR1         CAR        HAR2     107.749    1.50
+TDS         CAR         CAQ         CAP     114.048    1.78
+TDS         CAR         CAQ        HAQ1     108.612    1.50
+TDS         CAR         CAQ        HAQ2     108.612    1.50
+TDS         CAP         CAQ        HAQ1     108.851    1.50
+TDS         CAP         CAQ        HAQ2     108.851    1.50
+TDS        HAQ1         CAQ        HAQ2     107.735    1.50
+TDS         CAQ         CAP         OAO     113.464    1.50
+TDS         CAQ         CAP         CAH     126.037    3.00
+TDS         OAO         CAP         CAH     120.499    3.00
+TDS         CAP         OAO         CAN     120.100    1.50
+TDS         CAP         CAH         CAI     121.825    1.67
+TDS         CAP         CAH         CAG     120.111    1.50
+TDS         CAI         CAH         CAG     118.064    1.50
+TDS         CAH         CAI        HAI1     109.466    1.50
+TDS         CAH         CAI        HAI2     109.466    1.50
+TDS         CAH         CAI        HAI3     109.466    1.50
+TDS        HAI1         CAI        HAI2     109.348    1.50
+TDS        HAI1         CAI        HAI3     109.348    1.50
+TDS        HAI2         CAI        HAI3     109.348    1.50
+TDS         CAH         CAG         OAC     121.324    1.50
+TDS         CAH         CAG         CAF     117.462    1.50
+TDS         OAC         CAG         CAF     121.214    1.50
+TDS         CAG         CAF         CAN     120.420    1.50
+TDS         CAG         CAF         CAE     121.238    1.50
+TDS         CAN         CAF         CAE     118.342    1.50
+TDS         OAO         CAN         CAF     121.408    1.50
+TDS         OAO         CAN         CAM     118.532    1.50
+TDS         CAF         CAN         CAM     120.060    1.50
+TDS         CAN         CAM         OBD     118.810    2.50
+TDS         CAN         CAM         CAL     119.144    1.50
+TDS         OBD         CAM         CAL     122.046    3.00
+TDS         CAM         OBD         HBD     120.000    3.00
+TDS         CAM         CAL         OAK     117.216    2.87
+TDS         CAM         CAL         CAD     120.468    1.50
+TDS         OAK         CAL         CAD     122.316    1.50
+TDS         CAL         OAK         CAJ     117.877    1.50
+TDS         OAK         CAJ        HAJ1     109.428    1.50
+TDS         OAK         CAJ        HAJ2     109.428    1.50
+TDS         OAK         CAJ        HAJ3     109.428    1.50
+TDS        HAJ1         CAJ        HAJ2     109.509    1.50
+TDS        HAJ1         CAJ        HAJ3     109.509    1.50
+TDS        HAJ2         CAJ        HAJ3     109.509    1.50
+TDS         CAL         CAD         CAE     120.516    1.50
+TDS         CAL         CAD         HAD     119.713    1.50
+TDS         CAE         CAD         HAD     119.771    1.50
+TDS         CAF         CAE         CAD     121.470    1.50
+TDS         CAF         CAE         OAB     115.860    1.50
+TDS         CAD         CAE         OAB     122.670    1.50
+TDS         CAE         OAB         CAA     117.516    1.50
+TDS         OAB         CAA        HAA1     109.334    1.50
+TDS         OAB         CAA        HAA2     109.334    1.50
+TDS         OAB         CAA        HAA3     109.334    1.50
+TDS        HAA1         CAA        HAA2     109.509    1.50
+TDS        HAA1         CAA        HAA3     109.509    1.50
+TDS        HAA2         CAA        HAA3     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TDS             sp3_sp3_1         CBA         CBB         CBC        HBC1     180.000    10.0     3
+TDS            sp3_sp3_91         CAQ         CAR         CAS         CAT     180.000    10.0     3
+TDS           sp3_sp3_100         CAP         CAQ         CAR         CAS     180.000    10.0     3
+TDS             sp2_sp3_2         OAO         CAP         CAQ         CAR     -90.000    10.0     6
+TDS              const_22         CAQ         CAP         OAO         CAN     180.000    10.0     2
+TDS              const_36         CAI         CAH         CAP         CAQ       0.000    10.0     2
+TDS              const_23         CAF         CAN         OAO         CAP       0.000    10.0     2
+TDS             sp2_sp3_7         CAP         CAH         CAI        HAI1     150.000    10.0     6
+TDS              const_32         OAC         CAG         CAH         CAI       0.000    10.0     2
+TDS              const_26         CAN         CAF         CAG         OAC     180.000    10.0     2
+TDS       const_sp2_sp2_1         CAG         CAF         CAN         OAO       0.000     5.0     2
+TDS              const_40         OAB         CAE         CAF         CAG       0.000    10.0     2
+TDS            sp3_sp3_10         CAZ         CBA         CBB         CBC     180.000    10.0     3
+TDS       const_sp2_sp2_8         OBD         CAM         CAN         OAO       0.000     5.0     2
+TDS             sp2_sp2_1         CAN         CAM         OBD         HBD     180.000     5.0     2
+TDS              const_12         OAK         CAL         CAM         OBD       0.000    10.0     2
+TDS             sp2_sp2_3         CAM         CAL         OAK         CAJ     180.000     5.0     2
+TDS              const_14         CAE         CAD         CAL         OAK     180.000    10.0     2
+TDS           sp3_sp3_110        HAJ1         CAJ         OAK         CAL     -60.000    10.0     3
+TDS              const_18         CAL         CAD         CAE         OAB     180.000    10.0     2
+TDS             sp2_sp2_5         CAF         CAE         OAB         CAA     180.000     5.0     2
+TDS           sp3_sp3_114        HAA1         CAA         OAB         CAE     -60.000    10.0     3
+TDS            sp3_sp3_19         CAY         CAZ         CBA         CBB     180.000    10.0     3
+TDS            sp3_sp3_28         CAX         CAY         CAZ         CBA     180.000    10.0     3
+TDS            sp3_sp3_37         CAW         CAX         CAY         CAZ     180.000    10.0     3
+TDS            sp3_sp3_46         CAV         CAW         CAX         CAY     180.000    10.0     3
+TDS            sp3_sp3_55         CAU         CAV         CAW         CAX     180.000    10.0     3
+TDS            sp3_sp3_64         CAT         CAU         CAV         CAW     180.000    10.0     3
+TDS            sp3_sp3_73         CAS         CAT         CAU         CAV     180.000    10.0     3
+TDS            sp3_sp3_82         CAR         CAS         CAT         CAU     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TDS    plan-1         CAD   0.020
+TDS    plan-1         CAE   0.020
+TDS    plan-1         CAF   0.020
+TDS    plan-1         CAG   0.020
+TDS    plan-1         CAH   0.020
+TDS    plan-1         CAI   0.020
+TDS    plan-1         CAL   0.020
+TDS    plan-1         CAM   0.020
+TDS    plan-1         CAN   0.020
+TDS    plan-1         CAP   0.020
+TDS    plan-1         CAQ   0.020
+TDS    plan-1         HAD   0.020
+TDS    plan-1         OAB   0.020
+TDS    plan-1         OAC   0.020
+TDS    plan-1         OAK   0.020
+TDS    plan-1         OAO   0.020
+TDS    plan-1         OBD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TDS           SMILES              ACDLabs 10.04                                                                                   O=C1c2c(OC(=C1C)CCCCCCCCCCCCC)c(O)c(OC)cc2OC
+TDS SMILES_CANONICAL               CACTVS 3.341                                                                                 CCCCCCCCCCCCCC1=C(C)C(=O)c2c(OC)cc(OC)c(O)c2O1
+TDS           SMILES               CACTVS 3.341                                                                                 CCCCCCCCCCCCCC1=C(C)C(=O)c2c(OC)cc(OC)c(O)c2O1
+TDS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                 CCCCCCCCCCCCCC1=C(C(=O)c2c(cc(c(c2O1)O)OC)OC)C
+TDS           SMILES "OpenEye OEToolkits" 1.5.0                                                                                 CCCCCCCCCCCCCC1=C(C(=O)c2c(cc(c(c2O1)O)OC)OC)C
+TDS            InChI                InChI  1.03 InChI=1S/C25H38O5/c1-5-6-7-8-9-10-11-12-13-14-15-16-19-18(2)23(26)22-20(28-3)17-21(29-4)24(27)25(22)30-19/h17,27H,5-16H2,1-4H3
+TDS         InChIKey                InChI  1.03                                                                                                    LSHATXKKRQGSEC-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TDS acedrg               243         "dictionary generator"                  
+TDS acedrg_database      11          "data source"                           
+TDS rdkit                2017.03.2   "Chemoinformatics tool"
+TDS refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,639 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FWE     FWE      "4-[[4-[[4-[(3~{S})-5-azanyl-3-[[4-[[(~{E})-3-(4-hydroxyphenyl)-2-methyl-prop-2-enoyl]amino]phenyl]carbonylamino]-2-oxidanylidene-3~{H}-pyrrol-1-yl]phenyl]carbonylamino]-3-methoxy-2-oxidanyl-phenyl]carbonylamino]-3-methoxy-2-oxidanyl-benzoic acid"     NON-POLYMER     99     62     .     
+#
+data_comp_FWE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FWE     C13     C       CR16    0       -12.119     87.392      54.114      
+FWE     C15     C       C       0       -10.382     87.818      55.863      
+FWE     C17     C       CH1     0       -9.133      87.476      58.017      
+FWE     C21     C       CR5     0       -8.018      88.501      57.803      
+FWE     C24     C       CR16    0       -5.733      89.365      55.794      
+FWE     C26     C       CR6     0       -3.385      89.888      56.088      
+FWE     C02     C       CR6     0       -20.946     90.082      48.969      
+FWE     C03     C       CR16    0       -20.634     88.745      49.196      
+FWE     C04     C       CR16    0       -19.643     88.412      50.103      
+FWE     C05     C       CR6     0       -18.935     89.392      50.808      
+FWE     C06     C       C1      0       -17.892     89.010      51.769      
+FWE     C07     C       C       0       -17.843     89.185      53.101      
+FWE     C08     C       CH3     0       -19.104     89.662      53.787      
+FWE     C09     C       C       0       -16.630     88.994      53.894      
+FWE     C11     C       CR6     0       -14.159     88.668      53.988      
+FWE     C12     C       CR16    0       -13.329     87.658      53.499      
+FWE     C14     C       CR6     0       -11.704     88.122      55.226      
+FWE     C18     C       CR15    0       -8.411      86.212      57.661      
+FWE     C19     C       CR5     0       -7.075      86.494      57.272      
+FWE     C23     C       CR6     0       -5.692      88.540      56.902      
+FWE     C25     C       CR16    0       -4.586      90.036      55.393      
+FWE     C27     C       C       0       -2.180      90.648      55.619      
+FWE     C29     C       CR6     0       0.294       90.735      55.773      
+FWE     C30     C       CR16    0       0.531       91.958      56.382      
+FWE     C31     C       CR16    0       1.772       92.560      56.284      
+FWE     C32     C       CR6     0       2.815       91.949      55.576      
+FWE     C33     C       C       0       4.124       92.708      55.529      
+FWE     C35     C       CR6     0       6.424       92.778      56.452      
+FWE     C36     C       CR16    0       6.520       93.919      57.233      
+FWE     C37     C       CR16    0       7.758       94.481      57.478      
+FWE     C38     C       CR6     0       8.934       93.929      56.953      
+FWE     C39     C       C       0       10.264      94.564      57.238      
+FWE     C42     C       CR6     0       8.833       92.775      56.158      
+FWE     C44     C       CR6     0       7.580       92.194      55.900      
+FWE     C46     C       CH3     0       7.176       91.251      53.751      
+FWE     C48     C       CR6     0       2.575       90.718      54.951      
+FWE     C50     C       CR6     0       1.317       90.101      55.042      
+FWE     C52     C       CH3     0       1.473       87.731      55.161      
+FWE     C54     C       CR16    0       -3.371      89.058      57.209      
+FWE     C55     C       CR16    0       -4.516      88.381      57.612      
+FWE     C58     C       CR16    0       -12.530     89.139      55.701      
+FWE     C59     C       CR16    0       -13.741     89.413      55.092      
+FWE     C61     C       CR16    0       -19.269     90.729      50.565      
+FWE     C62     C       CR16    0       -20.258     91.075      49.659      
+FWE     N10     N       NH1     0       -15.392     88.951      53.351      
+FWE     N16     N       NH1     0       -10.348     87.713      57.225      
+FWE     N20     N       NH2     0       -6.149      85.583      56.910      
+FWE     N22     N       NR5     0       -6.884      87.846      57.314      
+FWE     N28     N       NH1     0       -0.959      90.086      55.826      
+FWE     N34     N       NH1     0       5.192       92.158      56.156      
+FWE     O01     O       OH1     0       -21.928     90.419      48.069      
+FWE     O40     O       O       0       11.156      93.852      57.733      
+FWE     O41     O       OC      -1      10.406      95.769      56.964      
+FWE     O43     O       OH1     0       9.963       92.201      55.622      
+FWE     O45     O       O2      0       7.497       91.074      55.127      
+FWE     O47     O       O       0       4.180       93.779      54.935      
+FWE     O49     O       OH1     0       3.585       90.105      54.246      
+FWE     O51     O       O2      0       1.102       88.899      54.435      
+FWE     O53     O       O       0       -2.315      91.739      55.074      
+FWE     O56     O       O       0       -8.104      89.692      58.024      
+FWE     O57     O       O       0       -9.375      87.683      55.167      
+FWE     O60     O       O       0       -16.745     88.812      55.106      
+FWE     H1      H       H       0       -11.572     86.704      53.776      
+FWE     H2      H       H       0       -9.375      87.438      58.971      
+FWE     H3      H       H       0       -6.530      89.469      55.316      
+FWE     H4      H       H       0       -21.096     88.070      48.731      
+FWE     H5      H       H       0       -19.441     87.504      50.248      
+FWE     H6      H       H       0       -17.167     88.542      51.389      
+FWE     H7      H       H       0       -18.971     89.720      54.743      
+FWE     H8      H       H       0       -19.825     89.041      53.604      
+FWE     H9      H       H       0       -19.345     90.537      53.447      
+FWE     H10     H       H       0       -13.598     87.153      52.750      
+FWE     H11     H       H       0       -8.797      85.348      57.692      
+FWE     H12     H       H       0       -4.624      90.595      54.637      
+FWE     H13     H       H       0       -0.158      92.381      56.863      
+FWE     H14     H       H       0       1.920       93.391      56.706      
+FWE     H15     H       H       0       5.744       94.307      57.597      
+FWE     H16     H       H       0       7.816       95.255      58.013      
+FWE     H17     H       H       0       7.821       91.851      53.341      
+FWE     H18     H       H       0       6.286       91.630      53.673      
+FWE     H19     H       H       0       7.203       90.391      53.301      
+FWE     H20     H       H       0       0.962       87.685      55.985      
+FWE     H21     H       H       0       2.422       87.766      55.369      
+FWE     H22     H       H       0       1.290       86.944      54.622      
+FWE     H23     H       H       0       -2.573      88.944      57.696      
+FWE     H24     H       H       0       -4.493      87.822      58.362      
+FWE     H25     H       H       0       -12.266     89.645      56.449      
+FWE     H26     H       H       0       -14.292     90.099      55.429      
+FWE     H27     H       H       0       -18.810     91.409      51.026      
+FWE     H28     H       H       0       -20.465     91.981      49.510      
+FWE     H29     H       H       0       -15.323     89.157      52.506      
+FWE     H30     H       H       0       -11.097     87.780      57.668      
+FWE     H31     H       H       0       -5.696      85.692      56.177      
+FWE     H32     H       H       0       -6.007      84.887      57.411      
+FWE     H33     H       H       0       -0.924      89.225      55.989      
+FWE     H34     H       H       0       5.126       91.321      56.410      
+FWE     H35     H       H       0       -22.436     91.098      48.220      
+FWE     H37     H       H       0       10.551      91.842      56.139      
+FWE     H38     H       H       0       3.948       90.507      53.576      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FWE         C02         O01      SINGLE       n     1.374  0.0155     1.374  0.0155
+FWE         C02         C03      DOUBLE       y     1.388  0.0100     1.388  0.0100
+FWE         C03         C04      SINGLE       y     1.381  0.0100     1.381  0.0100
+FWE         C02         C62      SINGLE       y     1.388  0.0100     1.388  0.0100
+FWE         C04         C05      DOUBLE       y     1.396  0.0100     1.396  0.0100
+FWE         C61         C62      DOUBLE       y     1.381  0.0100     1.381  0.0100
+FWE         C05         C61      SINGLE       y     1.396  0.0100     1.396  0.0100
+FWE         C05         C06      SINGLE       n     1.467  0.0108     1.467  0.0108
+FWE         C06         C07      DOUBLE       n     1.339  0.0100     1.339  0.0100
+FWE         C07         C09      SINGLE       n     1.420  0.0200     1.420  0.0200
+FWE         C07         C08      SINGLE       n     1.508  0.0100     1.508  0.0100
+FWE         C13         C12      DOUBLE       y     1.379  0.0100     1.379  0.0100
+FWE         C11         C12      SINGLE       y     1.392  0.0100     1.392  0.0100
+FWE         C11         N10      SINGLE       n     1.413  0.0100     1.413  0.0100
+FWE         C09         N10      SINGLE       n     1.343  0.0113     1.343  0.0113
+FWE         C13         C14      SINGLE       y     1.390  0.0100     1.390  0.0100
+FWE         C11         C59      DOUBLE       y     1.392  0.0100     1.392  0.0100
+FWE         C09         O60      DOUBLE       n     1.228  0.0122     1.228  0.0122
+FWE         C46         O45      SINGLE       n     1.424  0.0117     1.424  0.0117
+FWE         C15         C14      SINGLE       n     1.495  0.0106     1.495  0.0106
+FWE         C14         C58      DOUBLE       y     1.390  0.0100     1.390  0.0100
+FWE         C15         O57      DOUBLE       n     1.230  0.0114     1.230  0.0114
+FWE         C58         C59      SINGLE       y     1.379  0.0100     1.379  0.0100
+FWE         C42         O43      SINGLE       n     1.374  0.0155     1.374  0.0155
+FWE         C39         O40      DOUBLE       n     1.244  0.0200     1.244  0.0200
+FWE         C44         O45      SINGLE       n     1.362  0.0100     1.362  0.0100
+FWE         C15         N16      SINGLE       n     1.343  0.0186     1.343  0.0186
+FWE         C42         C44      DOUBLE       y     1.397  0.0114     1.397  0.0114
+FWE         C38         C42      SINGLE       y     1.399  0.0100     1.399  0.0100
+FWE         C48         O49      SINGLE       n     1.374  0.0155     1.374  0.0155
+FWE         C35         C44      SINGLE       y     1.402  0.0100     1.402  0.0100
+FWE         C50         O51      SINGLE       n     1.362  0.0100     1.362  0.0100
+FWE         C52         O51      SINGLE       n     1.424  0.0117     1.424  0.0117
+FWE         C38         C39      SINGLE       n     1.498  0.0200     1.498  0.0200
+FWE         C39         O41      SINGLE       n     1.244  0.0200     1.244  0.0200
+FWE         C37         C38      DOUBLE       y     1.398  0.0109     1.398  0.0109
+FWE         C24         C25      DOUBLE       y     1.385  0.0100     1.385  0.0100
+FWE         C26         C25      SINGLE       y     1.390  0.0100     1.390  0.0100
+FWE         C35         N34      SINGLE       n     1.409  0.0100     1.409  0.0100
+FWE         C35         C36      DOUBLE       y     1.383  0.0100     1.383  0.0100
+FWE         C48         C50      DOUBLE       y     1.397  0.0114     1.397  0.0114
+FWE         C32         C48      SINGLE       y     1.397  0.0100     1.397  0.0100
+FWE         C24         C23      SINGLE       y     1.379  0.0105     1.379  0.0105
+FWE         C29         C50      SINGLE       y     1.402  0.0100     1.402  0.0100
+FWE         C19         N20      SINGLE       n     1.348  0.0193     1.348  0.0193
+FWE         C33         N34      SINGLE       n     1.351  0.0126     1.351  0.0126
+FWE         C36         C37      SINGLE       y     1.379  0.0100     1.379  0.0100
+FWE         C32         C33      SINGLE       n     1.511  0.0107     1.511  0.0107
+FWE         C33         O47      DOUBLE       n     1.226  0.0100     1.226  0.0100
+FWE         C31         C32      DOUBLE       y     1.397  0.0100     1.397  0.0100
+FWE         C29         N28      SINGLE       n     1.409  0.0100     1.409  0.0100
+FWE         C29         C30      DOUBLE       y     1.383  0.0100     1.383  0.0100
+FWE         C27         N28      SINGLE       n     1.351  0.0126     1.351  0.0126
+FWE         C26         C27      SINGLE       n     1.494  0.0100     1.494  0.0100
+FWE         C27         O53      DOUBLE       n     1.226  0.0100     1.226  0.0100
+FWE         C18         C19      DOUBLE       n     1.418  0.0200     1.418  0.0200
+FWE         C19         N22      SINGLE       n     1.352  0.0172     1.352  0.0172
+FWE         C26         C54      DOUBLE       y     1.390  0.0100     1.390  0.0100
+FWE         C17         N16      SINGLE       n     1.451  0.0179     1.451  0.0179
+FWE         C23         N22      SINGLE       n     1.438  0.0100     1.438  0.0100
+FWE         C23         C55      DOUBLE       y     1.379  0.0105     1.379  0.0105
+FWE         C30         C31      SINGLE       y     1.379  0.0100     1.379  0.0100
+FWE         C17         C18      SINGLE       n     1.501  0.0100     1.501  0.0100
+FWE         C21         N22      SINGLE       n     1.392  0.0111     1.392  0.0111
+FWE         C54         C55      SINGLE       y     1.385  0.0100     1.385  0.0100
+FWE         C17         C21      SINGLE       n     1.530  0.0200     1.530  0.0200
+FWE         C21         O56      DOUBLE       n     1.214  0.0100     1.214  0.0100
+FWE         C13          H1      SINGLE       n     1.082  0.0130     0.941  0.0168
+FWE         C17          H2      SINGLE       n     1.089  0.0100     0.985  0.0181
+FWE         C24          H3      SINGLE       n     1.082  0.0130     0.935  0.0124
+FWE         C03          H4      SINGLE       n     1.082  0.0130     0.941  0.0179
+FWE         C04          H5      SINGLE       n     1.082  0.0130     0.941  0.0168
+FWE         C06          H6      SINGLE       n     1.082  0.0130     0.945  0.0200
+FWE         C08          H7      SINGLE       n     1.089  0.0100     0.969  0.0177
+FWE         C08          H8      SINGLE       n     1.089  0.0100     0.969  0.0177
+FWE         C08          H9      SINGLE       n     1.089  0.0100     0.969  0.0177
+FWE         C12         H10      SINGLE       n     1.082  0.0130     0.942  0.0198
+FWE         C18         H11      SINGLE       n     1.082  0.0130     0.947  0.0101
+FWE         C25         H12      SINGLE       n     1.082  0.0130     0.941  0.0168
+FWE         C30         H13      SINGLE       n     1.082  0.0130     0.941  0.0142
+FWE         C31         H14      SINGLE       n     1.082  0.0130     0.943  0.0200
+FWE         C36         H15      SINGLE       n     1.082  0.0130     0.941  0.0142
+FWE         C37         H16      SINGLE       n     1.082  0.0130     0.943  0.0200
+FWE         C46         H17      SINGLE       n     1.089  0.0100     0.971  0.0157
+FWE         C46         H18      SINGLE       n     1.089  0.0100     0.971  0.0157
+FWE         C46         H19      SINGLE       n     1.089  0.0100     0.971  0.0157
+FWE         C52         H20      SINGLE       n     1.089  0.0100     0.971  0.0157
+FWE         C52         H21      SINGLE       n     1.089  0.0100     0.971  0.0157
+FWE         C52         H22      SINGLE       n     1.089  0.0100     0.971  0.0157
+FWE         C54         H23      SINGLE       n     1.082  0.0130     0.941  0.0168
+FWE         C55         H24      SINGLE       n     1.082  0.0130     0.935  0.0124
+FWE         C58         H25      SINGLE       n     1.082  0.0130     0.941  0.0168
+FWE         C59         H26      SINGLE       n     1.082  0.0130     0.942  0.0198
+FWE         C61         H27      SINGLE       n     1.082  0.0130     0.941  0.0168
+FWE         C62         H28      SINGLE       n     1.082  0.0130     0.941  0.0179
+FWE         N10         H29      SINGLE       n     1.016  0.0100     0.876  0.0200
+FWE         N16         H30      SINGLE       n     1.016  0.0100     0.872  0.0200
+FWE         N20         H31      SINGLE       n     1.016  0.0100     0.869  0.0199
+FWE         N20         H32      SINGLE       n     1.016  0.0100     0.869  0.0199
+FWE         N28         H33      SINGLE       n     1.016  0.0100     0.876  0.0200
+FWE         N34         H34      SINGLE       n     1.016  0.0100     0.876  0.0200
+FWE         O01         H35      SINGLE       n     0.966  0.0059     0.861  0.0200
+FWE         O43         H37      SINGLE       n     0.966  0.0059     0.861  0.0200
+FWE         O49         H38      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FWE         C12         C13         C14     120.771    1.50
+FWE         C12         C13          H1     119.399    1.50
+FWE         C14         C13          H1     119.830    1.50
+FWE         C14         C15         O57     121.492    1.50
+FWE         C14         C15         N16     116.962    1.50
+FWE         O57         C15         N16     121.545    1.50
+FWE         N16         C17         C18     110.822    2.37
+FWE         N16         C17         C21     110.822    2.37
+FWE         N16         C17          H2     108.828    1.83
+FWE         C18         C17         C21     102.792    1.88
+FWE         C18         C17          H2     108.117    3.00
+FWE         C21         C17          H2     109.707    2.75
+FWE         N22         C21         C17     109.194    1.71
+FWE         N22         C21         O56     125.171    1.50
+FWE         C17         C21         O56     125.635    1.50
+FWE         C25         C24         C23     119.499    1.50
+FWE         C25         C24          H3     120.309    1.50
+FWE         C23         C24          H3     120.195    1.50
+FWE         C25         C26         C27     120.504    2.90
+FWE         C25         C26         C54     118.992    1.50
+FWE         C27         C26         C54     120.504    2.90
+FWE         O01         C02         C03     120.195    3.00
+FWE         O01         C02         C62     120.195    3.00
+FWE         C03         C02         C62     119.610    1.50
+FWE         C02         C03         C04     119.865    1.50
+FWE         C02         C03          H4     119.987    1.50
+FWE         C04         C03          H4     120.149    1.50
+FWE         C03         C04         C05     121.510    1.50
+FWE         C03         C04          H5     119.211    1.50
+FWE         C05         C04          H5     119.280    1.50
+FWE         C04         C05         C61     117.641    1.50
+FWE         C04         C05         C06     121.180    3.00
+FWE         C61         C05         C06     121.180    3.00
+FWE         C05         C06         C07     129.685    2.00
+FWE         C05         C06          H6     114.800    1.50
+FWE         C07         C06          H6     115.515    1.50
+FWE         C06         C07         C09     118.803    3.00
+FWE         C06         C07         C08     122.381    2.52
+FWE         C09         C07         C08     118.816    3.00
+FWE         C07         C08          H7     109.619    1.50
+FWE         C07         C08          H8     109.619    1.50
+FWE         C07         C08          H9     109.619    1.50
+FWE          H7         C08          H8     109.342    1.50
+FWE          H7         C08          H9     109.342    1.50
+FWE          H8         C08          H9     109.342    1.50
+FWE         C07         C09         N10     118.772    3.00
+FWE         C07         C09         O60     120.425    1.99
+FWE         N10         C09         O60     120.803    1.88
+FWE         C12         C11         N10     120.313    3.00
+FWE         C12         C11         C59     119.374    1.50
+FWE         N10         C11         C59     120.313    3.00
+FWE         C13         C12         C11     120.067    1.50
+FWE         C13         C12         H10     120.067    1.50
+FWE         C11         C12         H10     119.866    1.50
+FWE         C13         C14         C15     120.525    3.00
+FWE         C13         C14         C58     118.950    1.50
+FWE         C15         C14         C58     120.525    3.00
+FWE         C19         C18         C17     111.548    1.98
+FWE         C19         C18         H11     124.461    1.50
+FWE         C17         C18         H11     123.992    1.50
+FWE         N20         C19         C18     126.907    3.00
+FWE         N20         C19         N22     125.599    1.50
+FWE         C18         C19         N22     107.494    1.57
+FWE         C24         C23         N22     119.755    1.50
+FWE         C24         C23         C55     120.490    1.50
+FWE         N22         C23         C55     119.755    1.50
+FWE         C24         C25         C26     120.756    1.50
+FWE         C24         C25         H12     119.437    1.50
+FWE         C26         C25         H12     119.807    1.50
+FWE         N28         C27         C26     115.948    1.50
+FWE         N28         C27         O53     123.137    1.50
+FWE         C26         C27         O53     120.916    1.50
+FWE         C50         C29         N28     115.993    2.41
+FWE         C50         C29         C30     120.775    1.59
+FWE         N28         C29         C30     123.231    1.50
+FWE         C29         C30         C31     120.255    1.50
+FWE         C29         C30         H13     119.784    1.50
+FWE         C31         C30         H13     119.961    1.50
+FWE         C32         C31         C30     120.765    1.50
+FWE         C32         C31         H14     119.472    1.50
+FWE         C30         C31         H14     119.764    1.50
+FWE         C48         C32         C33     124.634    3.00
+FWE         C48         C32         C31     118.798    1.50
+FWE         C33         C32         C31     116.569    1.50
+FWE         N34         C33         C32     116.783    1.50
+FWE         N34         C33         O47     123.079    1.50
+FWE         C32         C33         O47     120.138    1.50
+FWE         C44         C35         N34     116.115    2.41
+FWE         C44         C35         C36     120.531    1.59
+FWE         N34         C35         C36     123.353    1.50
+FWE         C35         C36         C37     120.011    1.50
+FWE         C35         C36         H15     119.906    1.50
+FWE         C37         C36         H15     120.083    1.50
+FWE         C38         C37         C36     121.985    1.50
+FWE         C38         C37         H16     118.868    1.50
+FWE         C36         C37         H16     119.146    1.50
+FWE         C42         C38         C39     120.762    1.50
+FWE         C42         C38         C37     118.554    1.50
+FWE         C39         C38         C37     120.685    1.50
+FWE         O40         C39         C38     117.949    1.50
+FWE         O40         C39         O41     124.103    1.50
+FWE         C38         C39         O41     117.949    1.50
+FWE         O43         C42         C44     119.947    3.00
+FWE         O43         C42         C38     119.947    3.00
+FWE         C44         C42         C38     120.106    1.50
+FWE         O45         C44         C42     120.461    2.33
+FWE         O45         C44         C35     120.726    2.40
+FWE         C42         C44         C35     118.813    1.50
+FWE         O45         C46         H17     109.428    1.50
+FWE         O45         C46         H18     109.428    1.50
+FWE         O45         C46         H19     109.428    1.50
+FWE         H17         C46         H18     109.509    1.50
+FWE         H17         C46         H19     109.509    1.50
+FWE         H18         C46         H19     109.509    1.50
+FWE         O49         C48         C50     119.825    3.00
+FWE         O49         C48         C32     119.825    3.00
+FWE         C50         C48         C32     120.351    1.50
+FWE         O51         C50         C48     120.339    2.33
+FWE         O51         C50         C29     120.604    2.40
+FWE         C48         C50         C29     119.057    1.50
+FWE         O51         C52         H20     109.428    1.50
+FWE         O51         C52         H21     109.428    1.50
+FWE         O51         C52         H22     109.428    1.50
+FWE         H20         C52         H21     109.509    1.50
+FWE         H20         C52         H22     109.509    1.50
+FWE         H21         C52         H22     109.509    1.50
+FWE         C26         C54         C55     120.756    1.50
+FWE         C26         C54         H23     119.807    1.50
+FWE         C55         C54         H23     119.437    1.50
+FWE         C23         C55         C54     119.499    1.50
+FWE         C23         C55         H24     120.195    1.50
+FWE         C54         C55         H24     120.309    1.50
+FWE         C14         C58         C59     120.771    1.50
+FWE         C14         C58         H25     119.830    1.50
+FWE         C59         C58         H25     119.399    1.50
+FWE         C11         C59         C58     120.067    1.50
+FWE         C11         C59         H26     119.866    1.50
+FWE         C58         C59         H26     120.067    1.50
+FWE         C62         C61         C05     121.510    1.50
+FWE         C62         C61         H27     119.211    1.50
+FWE         C05         C61         H27     119.280    1.50
+FWE         C02         C62         C61     119.865    1.50
+FWE         C02         C62         H28     119.987    1.50
+FWE         C61         C62         H28     120.149    1.50
+FWE         C11         N10         C09     127.679    1.81
+FWE         C11         N10         H29     115.915    1.69
+FWE         C09         N10         H29     116.406    2.52
+FWE         C15         N16         C17     122.159    1.92
+FWE         C15         N16         H30     119.370    1.50
+FWE         C17         N16         H30     118.472    1.72
+FWE         C19         N20         H31     119.929    1.50
+FWE         C19         N20         H32     119.929    1.50
+FWE         H31         N20         H32     120.142    1.50
+FWE         C19         N22         C23     127.056    2.02
+FWE         C19         N22         C21     109.281    2.36
+FWE         C23         N22         C21     123.664    1.50
+FWE         C29         N28         C27     127.737    1.74
+FWE         C29         N28         H33     115.296    1.98
+FWE         C27         N28         H33     116.966    2.38
+FWE         C35         N34         C33     127.737    1.74
+FWE         C35         N34         H34     115.296    1.98
+FWE         C33         N34         H34     116.966    2.38
+FWE         C02         O01         H35     120.000    3.00
+FWE         C42         O43         H37     120.000    3.00
+FWE         C46         O45         C44     116.535    2.88
+FWE         C48         O49         H38     120.000    3.00
+FWE         C50         O51         C52     116.535    2.88
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FWE              const_21         C11         C12         C13         C14       0.000    10.0     2
+FWE             const_106         C12         C13         C14         C15     180.000    10.0     2
+FWE            sp2_sp2_19         C05         C06         C07         C09     180.000     5.0     2
+FWE             sp2_sp3_7         C06         C07         C08          H7       0.000    10.0     6
+FWE            sp2_sp2_25         C06         C07         C09         N10       0.000     5.0     2
+FWE            sp2_sp2_31         C07         C09         N10         C11     180.000     5.0     2
+FWE              const_27         N10         C11         C12         C13     180.000    10.0     2
+FWE              const_31         N10         C11         C59         C58     180.000    10.0     2
+FWE            sp2_sp2_27         C12         C11         N10         C09     180.000     5.0     2
+FWE              const_39         C15         C14         C58         C59     180.000    10.0     2
+FWE             sp2_sp2_2         C17         C18         C19         N20     180.000     5.0     2
+FWE            sp2_sp2_59         C18         C19         N20         H31     180.000     5.0     2
+FWE             sp2_sp2_8         N20         C19         N22         C23       0.000     5.0     2
+FWE              const_57         C24         C23         C55         C54       0.000    10.0     2
+FWE            sp2_sp2_83         C24         C23         N22         C19     180.000     5.0     2
+FWE            sp2_sp2_36         C13         C14         C15         O57       0.000     5.0     2
+FWE            sp2_sp2_45         O57         C15         N16         C17       0.000     5.0     2
+FWE            sp2_sp2_77         O53         C27         N28         C29       0.000     5.0     2
+FWE             const_119         N28         C29         C30         C31     180.000    10.0     2
+FWE              const_64         N28         C29         C50         O51       0.000    10.0     2
+FWE            sp2_sp2_71         C50         C29         N28         C27     180.000     5.0     2
+FWE              const_77         C29         C30         C31         C32       0.000    10.0     2
+FWE              const_74         C30         C31         C32         C33     180.000    10.0     2
+FWE            sp2_sp2_67         C48         C32         C33         N34     180.000     5.0     2
+FWE              const_72         C33         C32         C48         O49       0.000    10.0     2
+FWE            sp2_sp2_65         O47         C33         N34         C35       0.000     5.0     2
+FWE             const_111         N34         C35         C36         C37     180.000    10.0     2
+FWE              const_84         N34         C35         C44         O45       0.000    10.0     2
+FWE            sp2_sp2_55         C44         C35         N34         C33     180.000     5.0     2
+FWE              const_97         C35         C36         C37         C38       0.000    10.0     2
+FWE              const_94         C36         C37         C38         C39     180.000    10.0     2
+FWE             sp2_sp3_2         C19         C18         C17         N16     120.000    10.0     6
+FWE            sp2_sp3_23         O56         C21         C17         N16     -60.000    10.0     6
+FWE            sp2_sp3_13         C15         N16         C17         C18       0.000    10.0     6
+FWE            sp2_sp2_51         C42         C38         C39         O40     180.000     5.0     2
+FWE              const_92         C39         C38         C42         O43       0.000    10.0     2
+FWE              const_88         O43         C42         C44         O45       0.000    10.0     2
+FWE            sp2_sp2_39         C44         C42         O43         H37     180.000     5.0     2
+FWE            sp2_sp2_41         C42         C44         O45         C46     180.000     5.0     2
+FWE             sp3_sp3_2         H17         C46         O45         C44     -60.000    10.0     3
+FWE              const_68         O49         C48         C50         O51       0.000    10.0     2
+FWE            sp2_sp2_47         C50         C48         O49         H38     180.000     5.0     2
+FWE            sp2_sp2_49         C48         C50         O51         C52     180.000     5.0     2
+FWE             sp3_sp3_6         H20         C52         O51         C50     -60.000    10.0     3
+FWE              const_53         C26         C54         C55         C23       0.000    10.0     2
+FWE            sp2_sp2_11         O56         C21         N22         C19     180.000     5.0     2
+FWE              const_33         C14         C58         C59         C11       0.000    10.0     2
+FWE              const_17         C05         C61         C62         C02       0.000    10.0     2
+FWE             const_115         N22         C23         C24         C25     180.000    10.0     2
+FWE              const_41         C23         C24         C25         C26       0.000    10.0     2
+FWE              const_46         C24         C25         C26         C27     180.000    10.0     2
+FWE            sp2_sp2_79         C25         C26         C27         N28     180.000     5.0     2
+FWE              const_51         C27         C26         C54         C55     180.000    10.0     2
+FWE             const_103         O01         C02         C62         C61     180.000    10.0     2
+FWE            sp2_sp2_13         C03         C02         O01         H35     180.000     5.0     2
+FWE       const_sp2_sp2_3         O01         C02         C03         C04     180.000     5.0     2
+FWE       const_sp2_sp2_5         C02         C03         C04         C05       0.000     5.0     2
+FWE              const_10         C03         C04         C05         C06     180.000    10.0     2
+FWE            sp2_sp2_15         C04         C05         C06         C07     180.000     5.0     2
+FWE              const_15         C06         C05         C61         C62     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FWE    chir_1    C17    N16    C21    C18    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FWE    plan-1         C11   0.020
+FWE    plan-1         C12   0.020
+FWE    plan-1         C13   0.020
+FWE    plan-1         C14   0.020
+FWE    plan-1         C15   0.020
+FWE    plan-1         C58   0.020
+FWE    plan-1         C59   0.020
+FWE    plan-1          H1   0.020
+FWE    plan-1         H10   0.020
+FWE    plan-1         H25   0.020
+FWE    plan-1         H26   0.020
+FWE    plan-1         N10   0.020
+FWE    plan-2         C23   0.020
+FWE    plan-2         C24   0.020
+FWE    plan-2         C25   0.020
+FWE    plan-2         C26   0.020
+FWE    plan-2         C27   0.020
+FWE    plan-2         C54   0.020
+FWE    plan-2         C55   0.020
+FWE    plan-2         H12   0.020
+FWE    plan-2         H23   0.020
+FWE    plan-2         H24   0.020
+FWE    plan-2          H3   0.020
+FWE    plan-2         N22   0.020
+FWE    plan-3         C29   0.020
+FWE    plan-3         C30   0.020
+FWE    plan-3         C31   0.020
+FWE    plan-3         C32   0.020
+FWE    plan-3         C33   0.020
+FWE    plan-3         C48   0.020
+FWE    plan-3         C50   0.020
+FWE    plan-3         H13   0.020
+FWE    plan-3         H14   0.020
+FWE    plan-3         N28   0.020
+FWE    plan-3         O49   0.020
+FWE    plan-3         O51   0.020
+FWE    plan-4         C35   0.020
+FWE    plan-4         C36   0.020
+FWE    plan-4         C37   0.020
+FWE    plan-4         C38   0.020
+FWE    plan-4         C39   0.020
+FWE    plan-4         C42   0.020
+FWE    plan-4         C44   0.020
+FWE    plan-4         H15   0.020
+FWE    plan-4         H16   0.020
+FWE    plan-4         N34   0.020
+FWE    plan-4         O43   0.020
+FWE    plan-4         O45   0.020
+FWE    plan-5         C02   0.020
+FWE    plan-5         C03   0.020
+FWE    plan-5         C04   0.020
+FWE    plan-5         C05   0.020
+FWE    plan-5         C06   0.020
+FWE    plan-5         C61   0.020
+FWE    plan-5         C62   0.020
+FWE    plan-5         H27   0.020
+FWE    plan-5         H28   0.020
+FWE    plan-5          H4   0.020
+FWE    plan-5          H5   0.020
+FWE    plan-5         O01   0.020
+FWE    plan-6         C14   0.020
+FWE    plan-6         C15   0.020
+FWE    plan-6         N16   0.020
+FWE    plan-6         O57   0.020
+FWE    plan-7         C17   0.020
+FWE    plan-7         C21   0.020
+FWE    plan-7         N22   0.020
+FWE    plan-7         O56   0.020
+FWE    plan-8         C05   0.020
+FWE    plan-8         C06   0.020
+FWE    plan-8         C07   0.020
+FWE    plan-8          H6   0.020
+FWE    plan-9         C06   0.020
+FWE    plan-9         C07   0.020
+FWE    plan-9         C08   0.020
+FWE    plan-9         C09   0.020
+FWE   plan-10         C07   0.020
+FWE   plan-10         C09   0.020
+FWE   plan-10         N10   0.020
+FWE   plan-10         O60   0.020
+FWE   plan-11         C17   0.020
+FWE   plan-11         C18   0.020
+FWE   plan-11         C19   0.020
+FWE   plan-11         H11   0.020
+FWE   plan-12         C18   0.020
+FWE   plan-12         C19   0.020
+FWE   plan-12         N20   0.020
+FWE   plan-12         N22   0.020
+FWE   plan-13         C26   0.020
+FWE   plan-13         C27   0.020
+FWE   plan-13         N28   0.020
+FWE   plan-13         O53   0.020
+FWE   plan-14         C32   0.020
+FWE   plan-14         C33   0.020
+FWE   plan-14         N34   0.020
+FWE   plan-14         O47   0.020
+FWE   plan-15         C38   0.020
+FWE   plan-15         C39   0.020
+FWE   plan-15         O40   0.020
+FWE   plan-15         O41   0.020
+FWE   plan-16         C09   0.020
+FWE   plan-16         C11   0.020
+FWE   plan-16         H29   0.020
+FWE   plan-16         N10   0.020
+FWE   plan-17         C15   0.020
+FWE   plan-17         C17   0.020
+FWE   plan-17         H30   0.020
+FWE   plan-17         N16   0.020
+FWE   plan-18         C19   0.020
+FWE   plan-18         H31   0.020
+FWE   plan-18         H32   0.020
+FWE   plan-18         N20   0.020
+FWE   plan-19         C19   0.020
+FWE   plan-19         C21   0.020
+FWE   plan-19         C23   0.020
+FWE   plan-19         N22   0.020
+FWE   plan-20         C27   0.020
+FWE   plan-20         C29   0.020
+FWE   plan-20         H33   0.020
+FWE   plan-20         N28   0.020
+FWE   plan-21         C33   0.020
+FWE   plan-21         C35   0.020
+FWE   plan-21         H34   0.020
+FWE   plan-21         N34   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FWE            InChI                InChI  1.03 InChI=1S/C44H38N6O12/c1-22(20-23-4-14-28(51)15-5-23)39(54)46-26-10-6-24(7-11-26)41(56)49-33-21-34(45)50(43(33)58)27-12-8-25(9-13-27)40(55)47-31-18-16-29(35(52)37(31)61-2)42(57)48-32-19-17-30(44(59)60)36(53)38(32)62-3/h4-21,33,51-53H,45H2,1-3H3,(H,46,54)(H,47,55)(H,48,57)(H,49,56)(H,59,60)/b22-20+/t33-/m0/s1
+FWE         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                          VHKFIJVTNPVMBS-QCKJEFJWSA-N
+FWE SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                               COc1c(O)c(ccc1NC(=O)c2ccc(NC(=O)c3ccc(cc3)N4C(=C[C@H](NC(=O)c5ccc(NC(=O)C(/C)=C/c6ccc(O)cc6)cc5)C4=O)N)c(OC)c2O)C(O)=O
+FWE           SMILES               CACTVS 3.385                                                                                                                                                                                                  COc1c(O)c(ccc1NC(=O)c2ccc(NC(=O)c3ccc(cc3)N4C(=C[CH](NC(=O)c5ccc(NC(=O)C(C)=Cc6ccc(O)cc6)cc5)C4=O)N)c(OC)c2O)C(O)=O
+FWE SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                              C/C(=C\c1ccc(cc1)O)/C(=O)Nc2ccc(cc2)C(=O)N[C@H]3C=C(N(C3=O)c4ccc(cc4)C(=O)Nc5ccc(c(c5OC)O)C(=O)Nc6ccc(c(c6OC)O)C(=O)O)N
+FWE           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                                     CC(=Cc1ccc(cc1)O)C(=O)Nc2ccc(cc2)C(=O)NC3C=C(N(C3=O)c4ccc(cc4)C(=O)Nc5ccc(c(c5OC)O)C(=O)Nc6ccc(c(c6OC)O)C(=O)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FWE acedrg               243         "dictionary generator"                  
+FWE acedrg_database      11          "data source"                           
+FWE rdkit                2017.03.2   "Chemoinformatics tool"
+FWE refmac5              5.8.0238    "optimization tool"                     

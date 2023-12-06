@@ -1,0 +1,294 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CJH     CJH      "(2Z)-2-cyano-N-(3'-ethoxybiphenyl-4-yl)-3-hydroxybut-2-enamide"     NON-POLYMER     42     24     .     
+#
+data_comp_CJH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CJH     CAA     C       CH3     0       10.619      -28.974     -4.558      
+CJH     CAO     C       CH2     0       10.807      -29.834     -3.345      
+CJH     OAQ     O       O2      0       9.525       -30.001     -2.728      
+CJH     CAV     C       CR6     0       9.382       -30.963     -1.763      
+CJH     CAN     C       CR16    0       8.523       -32.036     -1.979      
+CJH     CAH     C       CR16    0       10.096      -30.853     -0.575      
+CJH     CAG     C       CR16    0       9.948       -31.826     0.396       
+CJH     CAK     C       CR16    0       9.090       -32.906     0.190       
+CJH     CAX     C       CR6     0       8.367       -33.024     -0.998      
+CJH     CAW     C       CR6     0       7.453       -34.170     -1.231      
+CJH     CAM     C       CR16    0       7.686       -35.078     -2.266      
+CJH     CAJ     C       CR16    0       6.839       -36.150     -2.492      
+CJH     CAL     C       CR16    0       6.330       -34.379     -0.426      
+CJH     CAI     C       CR16    0       5.474       -35.447     -0.640      
+CJH     CAU     C       CR6     0       5.722       -36.345     -1.679      
+CJH     NAP     N       NH1     0       4.868       -37.445     -1.926      
+CJH     CAS     C       C       0       3.867       -37.526     -2.838      
+CJH     OAD     O       O       0       3.991       -36.983     -3.942      
+CJH     CAT     C       C       0       2.641       -38.271     -2.502      
+CJH     CAF     C       CSP     0       1.623       -38.329     -3.493      
+CJH     NAC     N       NSP     0       0.834       -37.955     -4.357      
+CJH     CAR     C       C       0       2.371       -38.952     -1.251      
+CJH     CAB     C       CH3     0       1.150       -39.734     -0.917      
+CJH     OAE     O       OH1     0       3.314       -38.888     -0.259      
+CJH     HAA     H       H       0       11.479      -28.623     -4.844      
+CJH     HAAA    H       H       0       10.025      -28.235     -4.345      
+CJH     HAAB    H       H       0       10.233      -29.503     -5.275      
+CJH     HAO     H       H       0       11.427      -29.406     -2.719      
+CJH     HAOA    H       H       0       11.175      -30.704     -3.602      
+CJH     HAN     H       H       0       8.043       -32.097     -2.792      
+CJH     HAH     H       H       0       10.676      -30.124     -0.434      
+CJH     HAG     H       H       0       10.427      -31.757     1.199       
+CJH     HAK     H       H       0       8.996       -33.565     0.861       
+CJH     HAM     H       H       0       8.436       -34.960     -2.824      
+CJH     HAJ     H       H       0       7.016       -36.750     -3.197      
+CJH     HAL     H       H       0       6.150       -33.780     0.280       
+CJH     HAI     H       H       0       4.723       -35.568     -0.085      
+CJH     HNAP    H       H       0       5.031       -38.162     -1.449      
+CJH     HAB     H       H       0       1.082       -40.499     -1.512      
+CJH     HABA    H       H       0       0.366       -39.172     -1.023      
+CJH     HABB    H       H       0       1.203       -40.045     0.002       
+CJH     HOAE    H       H       0       3.155       -38.438     0.458       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CJH         CAA         CAO      SINGLE       n     1.498  0.0164     1.498  0.0164
+CJH         CAO         OAQ      SINGLE       n     1.432  0.0104     1.432  0.0104
+CJH         OAQ         CAV      SINGLE       n     1.369  0.0106     1.369  0.0106
+CJH         CAV         CAN      DOUBLE       y     1.387  0.0100     1.387  0.0100
+CJH         CAV         CAH      SINGLE       y     1.386  0.0109     1.386  0.0109
+CJH         CAN         CAX      SINGLE       y     1.398  0.0100     1.398  0.0100
+CJH         CAH         CAG      DOUBLE       y     1.380  0.0100     1.380  0.0100
+CJH         CAG         CAK      SINGLE       y     1.392  0.0100     1.392  0.0100
+CJH         CAK         CAX      DOUBLE       y     1.392  0.0100     1.392  0.0100
+CJH         CAX         CAW      SINGLE       n     1.484  0.0100     1.484  0.0100
+CJH         CAW         CAM      DOUBLE       y     1.392  0.0110     1.392  0.0110
+CJH         CAW         CAL      SINGLE       y     1.392  0.0110     1.392  0.0110
+CJH         CAM         CAJ      SINGLE       y     1.382  0.0100     1.382  0.0100
+CJH         CAJ         CAU      DOUBLE       y     1.392  0.0100     1.392  0.0100
+CJH         CAL         CAI      DOUBLE       y     1.382  0.0100     1.382  0.0100
+CJH         CAI         CAU      SINGLE       y     1.392  0.0100     1.392  0.0100
+CJH         CAU         NAP      SINGLE       n     1.413  0.0100     1.413  0.0100
+CJH         NAP         CAS      SINGLE       n     1.354  0.0105     1.354  0.0105
+CJH         CAS         OAD      DOUBLE       n     1.235  0.0100     1.235  0.0100
+CJH         CAS         CAT      SINGLE       n     1.468  0.0100     1.468  0.0100
+CJH         CAT         CAF      SINGLE       n     1.419  0.0117     1.419  0.0117
+CJH         CAT         CAR      DOUBLE       n     1.436  0.0200     1.436  0.0200
+CJH         CAF         NAC      TRIPLE       n     1.149  0.0200     1.149  0.0200
+CJH         CAR         CAB      SINGLE       n     1.486  0.0100     1.486  0.0100
+CJH         CAR         OAE      SINGLE       n     1.369  0.0200     1.369  0.0200
+CJH         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0156
+CJH         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0156
+CJH         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0156
+CJH         CAO         HAO      SINGLE       n     1.089  0.0100     0.979  0.0127
+CJH         CAO        HAOA      SINGLE       n     1.089  0.0100     0.979  0.0127
+CJH         CAN         HAN      SINGLE       n     1.082  0.0130     0.946  0.0100
+CJH         CAH         HAH      SINGLE       n     1.082  0.0130     0.942  0.0163
+CJH         CAG         HAG      SINGLE       n     1.082  0.0130     0.938  0.0149
+CJH         CAK         HAK      SINGLE       n     1.082  0.0130     0.945  0.0170
+CJH         CAM         HAM      SINGLE       n     1.082  0.0130     0.943  0.0154
+CJH         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.942  0.0198
+CJH         CAL         HAL      SINGLE       n     1.082  0.0130     0.943  0.0154
+CJH         CAI         HAI      SINGLE       n     1.082  0.0130     0.942  0.0198
+CJH         NAP        HNAP      SINGLE       n     1.016  0.0100     0.876  0.0200
+CJH         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0145
+CJH         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0145
+CJH         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0145
+CJH         OAE        HOAE      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CJH         CAO         CAA         HAA     109.553    1.50
+CJH         CAO         CAA        HAAA     109.553    1.50
+CJH         CAO         CAA        HAAB     109.553    1.50
+CJH         HAA         CAA        HAAA     109.410    1.50
+CJH         HAA         CAA        HAAB     109.410    1.50
+CJH        HAAA         CAA        HAAB     109.410    1.50
+CJH         CAA         CAO         OAQ     107.613    1.50
+CJH         CAA         CAO         HAO     110.271    1.50
+CJH         CAA         CAO        HAOA     110.271    1.50
+CJH         OAQ         CAO         HAO     110.040    1.50
+CJH         OAQ         CAO        HAOA     110.040    1.50
+CJH         HAO         CAO        HAOA     108.599    1.50
+CJH         CAO         OAQ         CAV     118.081    1.50
+CJH         OAQ         CAV         CAN     120.229    3.00
+CJH         OAQ         CAV         CAH     119.100    3.00
+CJH         CAN         CAV         CAH     120.671    1.50
+CJH         CAV         CAN         CAX     119.903    1.50
+CJH         CAV         CAN         HAN     119.989    1.50
+CJH         CAX         CAN         HAN     120.108    1.50
+CJH         CAV         CAH         CAG     119.315    1.50
+CJH         CAV         CAH         HAH     120.308    1.50
+CJH         CAG         CAH         HAH     120.377    1.50
+CJH         CAH         CAG         CAK     120.690    1.50
+CJH         CAH         CAG         HAG     119.522    1.50
+CJH         CAK         CAG         HAG     119.788    1.50
+CJH         CAG         CAK         CAX     120.923    1.50
+CJH         CAG         CAK         HAK     119.618    1.50
+CJH         CAX         CAK         HAK     119.459    1.50
+CJH         CAN         CAX         CAK     118.499    1.50
+CJH         CAN         CAX         CAW     120.273    1.50
+CJH         CAK         CAX         CAW     121.228    1.50
+CJH         CAX         CAW         CAM     121.185    1.50
+CJH         CAX         CAW         CAL     121.185    1.50
+CJH         CAM         CAW         CAL     117.629    1.50
+CJH         CAW         CAM         CAJ     121.464    1.50
+CJH         CAW         CAM         HAM     119.399    1.50
+CJH         CAJ         CAM         HAM     119.137    1.50
+CJH         CAM         CAJ         CAU     120.110    1.50
+CJH         CAM         CAJ         HAJ     120.007    1.50
+CJH         CAU         CAJ         HAJ     119.884    1.50
+CJH         CAW         CAL         CAI     121.464    1.50
+CJH         CAW         CAL         HAL     119.399    1.50
+CJH         CAI         CAL         HAL     119.137    1.50
+CJH         CAL         CAI         CAU     120.110    1.50
+CJH         CAL         CAI         HAI     120.007    1.50
+CJH         CAU         CAI         HAI     119.884    1.50
+CJH         CAJ         CAU         CAI     119.224    1.50
+CJH         CAJ         CAU         NAP     120.388    3.00
+CJH         CAI         CAU         NAP     120.388    3.00
+CJH         CAU         NAP         CAS     127.679    1.81
+CJH         CAU         NAP        HNAP     115.915    1.69
+CJH         CAS         NAP        HNAP     116.406    2.52
+CJH         NAP         CAS         OAD     121.269    1.88
+CJH         NAP         CAS         CAT     117.843    1.83
+CJH         OAD         CAS         CAT     120.888    1.50
+CJH         CAS         CAT         CAF     118.099    1.72
+CJH         CAS         CAT         CAR     124.216    3.00
+CJH         CAF         CAT         CAR     117.686    1.50
+CJH         CAT         CAF         NAC     180.000    3.00
+CJH         CAT         CAR         CAB     126.450    3.00
+CJH         CAT         CAR         OAE     117.918    3.00
+CJH         CAB         CAR         OAE     115.632    1.62
+CJH         CAR         CAB         HAB     109.454    1.50
+CJH         CAR         CAB        HABA     109.454    1.50
+CJH         CAR         CAB        HABB     109.454    1.50
+CJH         HAB         CAB        HABA     109.400    1.50
+CJH         HAB         CAB        HABB     109.400    1.50
+CJH        HABA         CAB        HABB     109.400    1.50
+CJH         CAR         OAE        HOAE     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CJH             sp3_sp3_1         HAA         CAA         CAO         OAQ     180.000    10.0     3
+CJH              const_25         CAU         CAJ         CAM         CAW       0.000    10.0     2
+CJH              const_30         CAM         CAJ         CAU         NAP     180.000    10.0     2
+CJH              const_37         CAU         CAI         CAL         CAW       0.000    10.0     2
+CJH              const_34         CAL         CAI         CAU         NAP     180.000    10.0     2
+CJH             sp2_sp2_7         CAJ         CAU         NAP         CAS     180.000     5.0     2
+CJH            sp2_sp2_13         OAD         CAS         NAP         CAU       0.000     5.0     2
+CJH            sp2_sp2_16         NAP         CAS         CAT         CAF       0.000     5.0     2
+CJH           other_tor_1         NAC         CAF         CAT         CAS      90.000    10.0     1
+CJH            sp2_sp2_19         CAB         CAR         CAT         CAS     180.000     5.0     2
+CJH            sp3_sp3_10         CAA         CAO         OAQ         CAV     180.000    10.0     3
+CJH             sp2_sp3_1         CAT         CAR         CAB         HAB       0.000    10.0     6
+CJH            sp2_sp2_23         CAT         CAR         OAE        HOAE     180.000     5.0     2
+CJH             sp2_sp2_1         CAN         CAV         OAQ         CAO     180.000     5.0     2
+CJH       const_sp2_sp2_2         CAX         CAN         CAV         OAQ     180.000     5.0     2
+CJH              const_42         CAG         CAH         CAV         OAQ     180.000    10.0     2
+CJH       const_sp2_sp2_5         CAV         CAN         CAX         CAK       0.000     5.0     2
+CJH              const_17         CAK         CAG         CAH         CAV       0.000    10.0     2
+CJH              const_13         CAH         CAG         CAK         CAX       0.000    10.0     2
+CJH       const_sp2_sp2_9         CAG         CAK         CAX         CAN       0.000     5.0     2
+CJH             sp2_sp2_3         CAM         CAW         CAX         CAN     180.000     5.0     2
+CJH              const_22         CAJ         CAM         CAW         CAX     180.000    10.0     2
+CJH              const_46         CAI         CAL         CAW         CAX     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CJH    plan-1         CAI   0.020
+CJH    plan-1         CAJ   0.020
+CJH    plan-1         CAL   0.020
+CJH    plan-1         CAM   0.020
+CJH    plan-1         CAU   0.020
+CJH    plan-1         CAW   0.020
+CJH    plan-1         CAX   0.020
+CJH    plan-1         HAI   0.020
+CJH    plan-1         HAJ   0.020
+CJH    plan-1         HAL   0.020
+CJH    plan-1         HAM   0.020
+CJH    plan-1         NAP   0.020
+CJH    plan-2         CAG   0.020
+CJH    plan-2         CAH   0.020
+CJH    plan-2         CAK   0.020
+CJH    plan-2         CAN   0.020
+CJH    plan-2         CAV   0.020
+CJH    plan-2         CAW   0.020
+CJH    plan-2         CAX   0.020
+CJH    plan-2         HAG   0.020
+CJH    plan-2         HAH   0.020
+CJH    plan-2         HAK   0.020
+CJH    plan-2         HAN   0.020
+CJH    plan-2         OAQ   0.020
+CJH    plan-3         CAS   0.020
+CJH    plan-3         CAU   0.020
+CJH    plan-3        HNAP   0.020
+CJH    plan-3         NAP   0.020
+CJH    plan-4         CAS   0.020
+CJH    plan-4         CAT   0.020
+CJH    plan-4         NAP   0.020
+CJH    plan-4         OAD   0.020
+CJH    plan-5         CAF   0.020
+CJH    plan-5         CAR   0.020
+CJH    plan-5         CAS   0.020
+CJH    plan-5         CAT   0.020
+CJH    plan-6         CAB   0.020
+CJH    plan-6         CAR   0.020
+CJH    plan-6         CAT   0.020
+CJH    plan-6         OAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CJH           SMILES              ACDLabs 10.04                                                                                     N#C\C(=C(\O)C)C(=O)Nc2ccc(c1cc(OCC)ccc1)cc2
+CJH SMILES_CANONICAL               CACTVS 3.341                                                                                     CCOc1cccc(c1)c2ccc(NC(=O)\C(C#N)=C(\C)O)cc2
+CJH           SMILES               CACTVS 3.341                                                                                       CCOc1cccc(c1)c2ccc(NC(=O)C(C#N)=C(C)O)cc2
+CJH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                   CCOc1cccc(c1)c2ccc(cc2)NC(=O)/C(=C(/C)\O)/C#N
+CJH           SMILES "OpenEye OEToolkits" 1.5.0                                                                                       CCOc1cccc(c1)c2ccc(cc2)NC(=O)C(=C(C)O)C#N
+CJH            InChI                InChI  1.03 InChI=1S/C19H18N2O3/c1-3-24-17-6-4-5-15(11-17)14-7-9-16(10-8-14)21-19(23)18(12-20)13(2)22/h4-11,22H,3H2,1-2H3,(H,21,23)/b18-13-
+CJH         InChIKey                InChI  1.03                                                                                                     RPILZQUCBKIPAZ-AQTBWJFISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CJH acedrg               243         "dictionary generator"                  
+CJH acedrg_database      11          "data source"                           
+CJH rdkit                2017.03.2   "Chemoinformatics tool"
+CJH refmac5              5.8.0238    "optimization tool"                     

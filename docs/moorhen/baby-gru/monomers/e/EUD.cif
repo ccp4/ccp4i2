@@ -1,0 +1,280 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EUD     EUD      "EUDESMANE CATION"     NON-POLYMER     41     15     .     
+#
+data_comp_EUD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EUD     C1      C       CH2     0       39.252      38.583      27.283      
+EUD     C2      C       CH1     0       39.012      37.068      27.357      
+EUD     C3      C       CH1     0       38.559      36.577      28.765      
+EUD     C4      C       CH3     0       37.650      37.526      29.546      
+EUD     C5      C       CH2     0       37.932      35.179      28.712      
+EUD     C6      C       CH2     0       38.426      34.352      27.536      
+EUD     C7      C       CH2     0       38.098      35.011      26.198      
+EUD     C8      C       CT      0       38.132      36.556      26.178      
+EUD     C9      C       CH3     0       36.683      37.075      26.212      
+EUD     C10     C       CH2     0       38.795      37.018      24.867      
+EUD     C11     C       CH2     0       39.051      38.523      24.778      
+EUD     C12     C       CH1     0       39.874      39.058      25.959      
+EUD     C13     C       C       0       41.381      38.817      25.891      
+EUD     C14     C       CH3     0       42.184      39.532      26.920      
+EUD     C15     C       C2      0       42.017      38.049      24.987      
+EUD     H11     H       H       0       38.397      39.051      27.405      
+EUD     H12     H       H       0       39.837      38.844      28.029      
+EUD     H2      H       H       0       39.912      36.658      27.209      
+EUD     H33     H       H       0       39.376      36.481      29.295      
+EUD     H41     H       H       0       37.211      37.043      30.266      
+EUD     H42     H       H       0       36.977      37.896      28.952      
+EUD     H43     H       H       0       38.179      38.248      29.922      
+EUD     H51     H       H       0       36.957      35.262      28.657      
+EUD     H52     H       H       0       38.144      34.705      29.543      
+EUD     H61     H       H       0       38.012      33.468      27.569      
+EUD     H62     H       H       0       39.392      34.231      27.609      
+EUD     H71     H       H       0       37.203      34.713      25.922      
+EUD     H72     H       H       0       38.731      34.667      25.531      
+EUD     H91     H       H       0       36.234      36.839      25.375      
+EUD     H92     H       H       0       36.676      38.043      26.317      
+EUD     H93     H       H       0       36.206      36.665      26.958      
+EUD     H101    H       H       0       38.222      36.753      24.115      
+EUD     H102    H       H       0       39.646      36.548      24.764      
+EUD     H111    H       H       0       38.194      38.988      24.751      
+EUD     H112    H       H       0       39.513      38.720      23.942      
+EUD     H121    H       H       0       39.761      40.043      25.943      
+EUD     H141    H       H       0       41.654      40.238      27.324      
+EUD     H142    H       H       0       42.972      39.920      26.506      
+EUD     H143    H       H       0       42.460      38.905      27.609      
+EUD     H151    H       H       0       42.958      37.942      25.044      
+EUD     H152    H       H       0       41.557      37.634      24.275      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EUD          C1          C2      SINGLE       n     1.530  0.0100     1.530  0.0100
+EUD          C1         C12      SINGLE       n     1.533  0.0100     1.533  0.0100
+EUD          C2          C3      SINGLE       n     1.548  0.0122     1.548  0.0122
+EUD          C2          C8      SINGLE       n     1.550  0.0100     1.550  0.0100
+EUD          C3          C4      SINGLE       n     1.523  0.0132     1.523  0.0132
+EUD          C3          C5      SINGLE       n     1.530  0.0100     1.530  0.0100
+EUD          C5          C6      SINGLE       n     1.520  0.0100     1.520  0.0100
+EUD          C6          C7      SINGLE       n     1.523  0.0100     1.523  0.0100
+EUD          C7          C8      SINGLE       n     1.535  0.0100     1.535  0.0100
+EUD          C8          C9      SINGLE       n     1.536  0.0100     1.536  0.0100
+EUD          C8         C10      SINGLE       n     1.535  0.0100     1.535  0.0100
+EUD         C10         C11      SINGLE       n     1.526  0.0100     1.526  0.0100
+EUD         C11         C12      SINGLE       n     1.531  0.0100     1.531  0.0100
+EUD         C12         C13      SINGLE       n     1.518  0.0100     1.518  0.0100
+EUD         C13         C14      SINGLE       n     1.481  0.0200     1.481  0.0200
+EUD         C13         C15      DOUBLE       n     1.332  0.0200     1.332  0.0200
+EUD          C1         H11      SINGLE       n     1.089  0.0100     0.986  0.0200
+EUD          C1         H12      SINGLE       n     1.089  0.0100     0.986  0.0200
+EUD          C2          H2      SINGLE       n     1.089  0.0100     1.000  0.0100
+EUD          C3         H33      SINGLE       n     1.089  0.0100     0.978  0.0200
+EUD          C4         H41      SINGLE       n     1.089  0.0100     0.971  0.0171
+EUD          C4         H42      SINGLE       n     1.089  0.0100     0.971  0.0171
+EUD          C4         H43      SINGLE       n     1.089  0.0100     0.971  0.0171
+EUD          C5         H51      SINGLE       n     1.089  0.0100     0.980  0.0131
+EUD          C5         H52      SINGLE       n     1.089  0.0100     0.980  0.0131
+EUD          C6         H61      SINGLE       n     1.089  0.0100     0.977  0.0100
+EUD          C6         H62      SINGLE       n     1.089  0.0100     0.977  0.0100
+EUD          C7         H71      SINGLE       n     1.089  0.0100     0.982  0.0200
+EUD          C7         H72      SINGLE       n     1.089  0.0100     0.982  0.0200
+EUD          C9         H91      SINGLE       n     1.089  0.0100     0.978  0.0200
+EUD          C9         H92      SINGLE       n     1.089  0.0100     0.978  0.0200
+EUD          C9         H93      SINGLE       n     1.089  0.0100     0.978  0.0200
+EUD         C10        H101      SINGLE       n     1.089  0.0100     0.982  0.0200
+EUD         C10        H102      SINGLE       n     1.089  0.0100     0.982  0.0200
+EUD         C11        H111      SINGLE       n     1.089  0.0100     0.976  0.0164
+EUD         C11        H112      SINGLE       n     1.089  0.0100     0.976  0.0164
+EUD         C12        H121      SINGLE       n     1.089  0.0100     0.992  0.0117
+EUD         C14        H141      SINGLE       n     1.089  0.0100     0.971  0.0140
+EUD         C14        H142      SINGLE       n     1.089  0.0100     0.971  0.0140
+EUD         C14        H143      SINGLE       n     1.089  0.0100     0.971  0.0140
+EUD         C15        H151      SINGLE       n     1.082  0.0130     0.949  0.0200
+EUD         C15        H152      SINGLE       n     1.082  0.0130     0.949  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EUD          C2          C1         C12     112.192    1.80
+EUD          C2          C1         H11     109.156    1.50
+EUD          C2          C1         H12     109.156    1.50
+EUD         C12          C1         H11     109.166    1.50
+EUD         C12          C1         H12     109.166    1.50
+EUD         H11          C1         H12     107.974    1.50
+EUD          C1          C2          C3     114.348    1.78
+EUD          C1          C2          C8     111.273    1.56
+EUD          C1          C2          H2     106.468    1.50
+EUD          C3          C2          C8     113.953    1.50
+EUD          C3          C2          H2     106.625    1.50
+EUD          C8          C2          H2     106.370    1.50
+EUD          C2          C3          C4     114.197    2.58
+EUD          C2          C3          C5     110.014    2.08
+EUD          C2          C3         H33     106.887    1.50
+EUD          C4          C3          C5     110.494    1.50
+EUD          C4          C3         H33     107.127    1.50
+EUD          C5          C3         H33     106.470    1.50
+EUD          C3          C4         H41     109.692    1.50
+EUD          C3          C4         H42     109.692    1.50
+EUD          C3          C4         H43     109.692    1.50
+EUD         H41          C4         H42     109.350    1.50
+EUD         H41          C4         H43     109.350    1.50
+EUD         H42          C4         H43     109.350    1.50
+EUD          C3          C5          C6     112.608    1.50
+EUD          C3          C5         H51     109.125    1.50
+EUD          C3          C5         H52     109.125    1.50
+EUD          C6          C5         H51     109.117    1.50
+EUD          C6          C5         H52     109.117    1.50
+EUD         H51          C5         H52     107.974    1.50
+EUD          C5          C6          C7     110.657    1.50
+EUD          C5          C6         H61     109.504    1.50
+EUD          C5          C6         H62     109.504    1.50
+EUD          C7          C6         H61     109.515    1.50
+EUD          C7          C6         H62     109.515    1.50
+EUD         H61          C6         H62     107.981    1.50
+EUD          C6          C7          C8     113.176    1.50
+EUD          C6          C7         H71     108.984    1.50
+EUD          C6          C7         H72     108.984    1.50
+EUD          C8          C7         H71     108.941    1.50
+EUD          C8          C7         H72     108.941    1.50
+EUD         H71          C7         H72     107.782    1.50
+EUD          C2          C8          C7     107.992    1.50
+EUD          C2          C8          C9     113.089    1.50
+EUD          C2          C8         C10     107.992    1.50
+EUD          C7          C8          C9     109.309    1.50
+EUD          C7          C8         C10     109.257    1.50
+EUD          C9          C8         C10     109.309    1.50
+EUD          C8          C9         H91     109.401    1.50
+EUD          C8          C9         H92     109.401    1.50
+EUD          C8          C9         H93     109.401    1.50
+EUD         H91          C9         H92     109.371    1.50
+EUD         H91          C9         H93     109.371    1.50
+EUD         H92          C9         H93     109.371    1.50
+EUD          C8         C10         C11     113.234    1.50
+EUD          C8         C10        H101     108.941    1.50
+EUD          C8         C10        H102     108.941    1.50
+EUD         C11         C10        H101     108.937    1.50
+EUD         C11         C10        H102     108.937    1.50
+EUD        H101         C10        H102     107.782    1.50
+EUD         C10         C11         C12     111.399    1.50
+EUD         C10         C11        H111     109.266    1.50
+EUD         C10         C11        H112     109.266    1.50
+EUD         C12         C11        H111     109.555    1.50
+EUD         C12         C11        H112     109.555    1.50
+EUD        H111         C11        H112     107.870    1.50
+EUD          C1         C12         C11     110.504    1.50
+EUD          C1         C12         C13     112.295    1.50
+EUD          C1         C12        H121     107.518    1.50
+EUD         C11         C12         C13     113.536    1.50
+EUD         C11         C12        H121     107.497    1.50
+EUD         C13         C12        H121     107.147    1.50
+EUD         C12         C13         C14     115.731    1.50
+EUD         C12         C13         C15     123.258    1.74
+EUD         C14         C13         C15     121.011    1.50
+EUD         C13         C14        H141     109.610    1.50
+EUD         C13         C14        H142     109.610    1.50
+EUD         C13         C14        H143     109.610    1.50
+EUD        H141         C14        H142     109.347    1.50
+EUD        H141         C14        H143     109.347    1.50
+EUD        H142         C14        H143     109.347    1.50
+EUD         C13         C15        H151     120.142    2.07
+EUD         C13         C15        H152     120.142    2.07
+EUD        H151         C15        H152     119.716    2.51
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EUD             sp3_sp3_2         C12          C1          C2          C3     180.000    10.0     3
+EUD            sp3_sp3_92          C2          C1         C12         C13     -60.000    10.0     3
+EUD            sp3_sp3_38         C10         C11         C12         C13     180.000    10.0     3
+EUD             sp2_sp3_1         C14         C13         C12          C1       0.000    10.0     6
+EUD            sp2_sp3_10         C15         C13         C14        H141     180.000    10.0     6
+EUD             sp2_sp2_3         C14         C13         C15        H151       0.000     5.0     2
+EUD            sp3_sp3_50          C1          C2          C3          C4      60.000    10.0     3
+EUD            sp3_sp3_12          C1          C2          C8          C9     180.000    10.0     3
+EUD           sp3_sp3_100          C2          C3          C4         H41     180.000    10.0     3
+EUD            sp3_sp3_58          C4          C3          C5          C6     180.000    10.0     3
+EUD            sp3_sp3_64          C3          C5          C6          C7      60.000    10.0     3
+EUD            sp3_sp3_73          C5          C6          C7          C8     -60.000    10.0     3
+EUD            sp3_sp3_83          C6          C7          C8          C9     180.000    10.0     3
+EUD           sp3_sp3_109          C2          C8          C9         H91     180.000    10.0     3
+EUD            sp3_sp3_21         C11         C10          C8          C9     -60.000    10.0     3
+EUD            sp3_sp3_28          C8         C10         C11         C12     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EUD    chir_1    C2    C8    C3    C1    positive
+EUD    chir_2    C3    C2    C5    C4    positive
+EUD    chir_3    C8    C2    C10    C7    negative
+EUD    chir_4    C12    C13    C1    C11    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EUD    plan-1         C12   0.020
+EUD    plan-1         C13   0.020
+EUD    plan-1         C14   0.020
+EUD    plan-1         C15   0.020
+EUD    plan-2         C13   0.020
+EUD    plan-2         C15   0.020
+EUD    plan-2        H151   0.020
+EUD    plan-2        H152   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EUD           SMILES              ACDLabs 10.04                                                                              C=C(\C1CCC2(CCCC(C2C1)C)C)C
+EUD SMILES_CANONICAL               CACTVS 3.341                                                             C[C@@H]1CCC[C@]2(C)CC[C@@H](C[C@@H]12)C(C)=C
+EUD           SMILES               CACTVS 3.341                                                                    C[CH]1CCC[C]2(C)CC[CH](C[CH]12)C(C)=C
+EUD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                    CC1CCC[C@]2([C@H]1C[C@H](CC2)C(=C)C)C
+EUD           SMILES "OpenEye OEToolkits" 1.5.0                                                                               CC1CCCC2(C1CC(CC2)C(=C)C)C
+EUD            InChI                InChI  1.03 InChI=1S/C15H26/c1-11(2)13-7-9-15(4)8-5-6-12(3)14(15)10-13/h12-14H,1,5-10H2,2-4H3/t12-,13+,14+,15-/m1/s1
+EUD         InChIKey                InChI  1.03                                                                              DJLBUNMUAZWONS-CBBWQLFWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EUD acedrg               243         "dictionary generator"                  
+EUD acedrg_database      11          "data source"                           
+EUD rdkit                2017.03.2   "Chemoinformatics tool"
+EUD refmac5              5.8.0238    "optimization tool"                     

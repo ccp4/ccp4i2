@@ -32,9 +32,9 @@ class AUSPEX_report(Report):
             jobNumber = self.jobInfo.get("jobnumber", None)
 
             imgUrl = (
-                "/database/?getProjectJobFile?projectId="
+                "/database/getProjectJobFile?projectId="
                 + projectid
-                + "?fileName="+img+"?jobNumber="
+                + "&fileName="+img+"&jobNumber="
                 + jobNumber
                 )
             return imgUrl

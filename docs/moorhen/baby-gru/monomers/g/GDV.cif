@@ -1,0 +1,333 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GDV     GDV      (5R,6R,7R,8S)-8-(ACETYLAMINO)-6,7-DIHYDROXY-5-(HYDROXYMETHYL)-N-PHENYL-1,5,6,7,8,8A-HEXAHYDROIMIDAZO[1,2-A]PYRIDINE-2-CARBOXAMIDE     NON-POLYMER     47     26     .     
+#
+data_comp_GDV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GDV     O1      O       O       0       2.491       -7.145      34.923      
+GDV     C10     C       C       0       2.671       -8.351      34.782      
+GDV     C12     C       CH3     0       3.137       -9.192      35.935      
+GDV     N4      N       NH1     0       2.466       -8.999      33.613      
+GDV     C2      C       CH1     0       2.015       -8.366      32.372      
+GDV     C3      C       CH1     0       3.049       -7.381      31.803      
+GDV     O3      O       OH1     0       4.215       -8.115      31.412      
+GDV     C4      C       CH1     0       2.482       -6.612      30.624      
+GDV     O4      O       OH1     0       3.517       -5.824      30.024      
+GDV     C5      C       CH1     0       1.305       -5.726      31.040      
+GDV     C6      C       CH2     0       0.574       -5.148      29.820      
+GDV     O5      O       OH1     0       -0.157      -6.149      29.122      
+GDV     C1      C       CR56    0       0.684       -7.676      32.517      
+GDV     N1      N       NR5     1       0.381       -6.484      31.894      
+GDV     C7      C       CR15    0       -0.904      -6.151      32.242      
+GDV     C8      C       CR5     0       -1.406      -7.134      33.065      
+GDV     N2      N       NR5     0       -0.417      -8.078      33.229      
+GDV     C9      C       C       0       -2.761      -7.157      33.647      
+GDV     O2      O       O       0       -3.581      -6.300      33.336      
+GDV     N3      N       NH1     0       -3.040      -8.162      34.521      
+GDV     C11     C       CR6     0       -4.001      -8.169      35.561      
+GDV     C17     C       CR16    0       -4.797      -9.295      35.732      
+GDV     C16     C       CR16    0       -5.750      -9.324      36.742      
+GDV     C15     C       CR16    0       -5.915      -8.240      37.578      
+GDV     C14     C       CR16    0       -5.127      -7.119      37.408      
+GDV     C13     C       CR16    0       -4.170      -7.077      36.403      
+GDV     H121    H       H       0       3.474       -10.044     35.614      
+GDV     H122    H       H       0       2.396       -9.347      36.543      
+GDV     H123    H       H       0       3.847       -8.726      36.407      
+GDV     H4      H       H       0       2.607       -9.854      33.599      
+GDV     H2      H       H       0       1.912       -9.087      31.706      
+GDV     H3      H       H       0       3.305       -6.738      32.506      
+GDV     HA      H       H       0       4.034       -8.625      30.767      
+GDV     HB      H       H       0       2.161       -7.261      29.952      
+GDV     HC      H       H       0       3.809       -5.264      30.580      
+GDV     H5      H       H       0       1.668       -4.969      31.565      
+GDV     H6C1    H       H       0       1.225       -4.743      29.210      
+GDV     H6C2    H       H       0       -0.043      -4.445      30.113      
+GDV     HD      H       H       0       -0.356      -5.858      28.350      
+GDV     H7      H       H       0       -1.367      -5.380      31.958      
+GDV     HE      H       H       0       -0.476      -8.811      33.709      
+GDV     HF      H       H       0       -2.607      -8.910      34.408      
+GDV     H17     H       H       0       -4.688      -10.039     35.163      
+GDV     H16     H       H       0       -6.286      -10.091     36.854      
+GDV     H15     H       H       0       -6.564      -8.264      38.263      
+GDV     H14     H       H       0       -5.237      -6.376      37.979      
+GDV     H13     H       H       0       -3.635      -6.308      36.293      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GDV          O1         C10      DOUBLE       n     1.227  0.0100     1.227  0.0100
+GDV         C10         C12      SINGLE       n     1.498  0.0100     1.498  0.0100
+GDV         C10          N4      SINGLE       n     1.344  0.0101     1.344  0.0101
+GDV          N4          C2      SINGLE       n     1.459  0.0100     1.459  0.0100
+GDV          C2          C3      SINGLE       n     1.532  0.0111     1.532  0.0111
+GDV          C2          C1      SINGLE       n     1.503  0.0100     1.503  0.0100
+GDV          C3          O3      SINGLE       n     1.431  0.0107     1.431  0.0107
+GDV          C3          C4      SINGLE       n     1.515  0.0100     1.515  0.0100
+GDV          C4          O4      SINGLE       n     1.431  0.0107     1.431  0.0107
+GDV          C4          C5      SINGLE       n     1.528  0.0100     1.528  0.0100
+GDV          C5          C6      SINGLE       n     1.533  0.0100     1.533  0.0100
+GDV          C5          N1      SINGLE       n     1.464  0.0100     1.464  0.0100
+GDV          C6          O5      SINGLE       n     1.422  0.0134     1.422  0.0134
+GDV          C1          N1      DOUBLE       y     1.378  0.0200     1.378  0.0200
+GDV          C1          N2      SINGLE       y     1.371  0.0131     1.371  0.0131
+GDV          N1          C7      SINGLE       y     1.373  0.0166     1.373  0.0166
+GDV          C7          C8      DOUBLE       y     1.376  0.0128     1.376  0.0128
+GDV          C8          N2      SINGLE       y     1.374  0.0100     1.374  0.0100
+GDV          C8          C9      SINGLE       n     1.467  0.0130     1.467  0.0130
+GDV          C9          O2      DOUBLE       n     1.225  0.0101     1.225  0.0101
+GDV          C9          N3      SINGLE       n     1.356  0.0119     1.356  0.0119
+GDV          N3         C11      SINGLE       n     1.414  0.0100     1.414  0.0100
+GDV         C11         C17      DOUBLE       y     1.385  0.0100     1.385  0.0100
+GDV         C11         C13      SINGLE       y     1.385  0.0100     1.385  0.0100
+GDV         C17         C16      SINGLE       y     1.385  0.0100     1.385  0.0100
+GDV         C16         C15      DOUBLE       y     1.376  0.0112     1.376  0.0112
+GDV         C15         C14      SINGLE       y     1.376  0.0124     1.376  0.0124
+GDV         C14         C13      DOUBLE       y     1.385  0.0100     1.385  0.0100
+GDV         C12        H121      SINGLE       n     1.089  0.0100     0.971  0.0140
+GDV         C12        H122      SINGLE       n     1.089  0.0100     0.971  0.0140
+GDV         C12        H123      SINGLE       n     1.089  0.0100     0.971  0.0140
+GDV          N4          H4      SINGLE       n     1.016  0.0100     0.866  0.0200
+GDV          C2          H2      SINGLE       n     1.089  0.0100     0.987  0.0137
+GDV          C3          H3      SINGLE       n     1.089  0.0100     0.988  0.0151
+GDV          O3          HA      SINGLE       n     0.970  0.0120     0.841  0.0200
+GDV          C4          HB      SINGLE       n     1.089  0.0100     0.988  0.0151
+GDV          O4          HC      SINGLE       n     0.970  0.0120     0.841  0.0200
+GDV          C5          H5      SINGLE       n     1.089  0.0100     0.990  0.0168
+GDV          C6        H6C1      SINGLE       n     1.089  0.0100     0.980  0.0159
+GDV          C6        H6C2      SINGLE       n     1.089  0.0100     0.980  0.0159
+GDV          O5          HD      SINGLE       n     0.970  0.0120     0.848  0.0200
+GDV          C7          H7      SINGLE       n     1.082  0.0130     0.943  0.0151
+GDV          N2          HE      SINGLE       n     1.016  0.0100     0.880  0.0200
+GDV          N3          HF      SINGLE       n     1.016  0.0100     0.874  0.0200
+GDV         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0178
+GDV         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0172
+GDV         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0161
+GDV         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0172
+GDV         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0178
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GDV          O1         C10         C12     121.840    1.50
+GDV          O1         C10          N4     122.481    1.56
+GDV         C12         C10          N4     115.679    1.50
+GDV         C10         C12        H121     109.527    1.50
+GDV         C10         C12        H122     109.527    1.50
+GDV         C10         C12        H123     109.527    1.50
+GDV        H121         C12        H122     109.365    1.50
+GDV        H121         C12        H123     109.365    1.50
+GDV        H122         C12        H123     109.365    1.50
+GDV         C10          N4          C2     122.746    1.50
+GDV         C10          N4          H4     118.326    2.17
+GDV          C2          N4          H4     118.928    1.50
+GDV          N4          C2          C3     110.829    2.03
+GDV          N4          C2          C1     109.471    3.00
+GDV          N4          C2          H2     107.675    1.50
+GDV          C3          C2          C1     109.233    1.61
+GDV          C3          C2          H2     108.050    1.89
+GDV          C1          C2          H2     108.874    1.50
+GDV          C2          C3          O3     108.845    1.54
+GDV          C2          C3          C4     111.124    1.57
+GDV          C2          C3          H3     108.804    1.50
+GDV          O3          C3          C4     110.081    2.02
+GDV          O3          C3          H3     108.790    1.50
+GDV          C4          C3          H3     109.166    1.50
+GDV          C3          O3          HA     109.099    3.00
+GDV          C3          C4          O4     110.081    2.02
+GDV          C3          C4          C5     111.928    1.50
+GDV          C3          C4          HB     109.166    1.50
+GDV          O4          C4          C5     110.894    1.50
+GDV          O4          C4          HB     108.790    1.50
+GDV          C5          C4          HB     108.977    1.50
+GDV          C4          O4          HC     109.099    3.00
+GDV          C4          C5          C6     111.163    2.25
+GDV          C4          C5          N1     108.748    1.59
+GDV          C4          C5          H5     107.612    1.50
+GDV          C6          C5          N1     110.288    1.50
+GDV          C6          C5          H5     107.898    1.50
+GDV          N1          C5          H5     108.535    1.50
+GDV          C5          C6          O5     111.669    2.74
+GDV          C5          C6        H6C1     109.529    1.50
+GDV          C5          C6        H6C2     109.529    1.50
+GDV          O5          C6        H6C1     109.275    1.50
+GDV          O5          C6        H6C2     109.275    1.50
+GDV        H6C1          C6        H6C2     108.230    1.50
+GDV          C6          O5          HD     109.039    2.77
+GDV          C2          C1          N1     123.467    1.50
+GDV          C2          C1          N2     128.652    1.77
+GDV          N1          C1          N2     107.881    1.50
+GDV          C5          N1          C1     124.570    1.85
+GDV          C5          N1          C7     127.359    2.38
+GDV          C1          N1          C7     108.071    1.50
+GDV          N1          C7          C8     108.469    1.50
+GDV          N1          C7          H7     125.625    1.50
+GDV          C8          C7          H7     125.906    1.50
+GDV          C7          C8          N2     107.654    1.50
+GDV          C7          C8          C9     128.945    3.00
+GDV          N2          C8          C9     123.401    3.00
+GDV          C1          N2          C8     107.925    1.50
+GDV          C1          N2          HE     126.151    1.73
+GDV          C8          N2          HE     125.923    2.08
+GDV          C8          C9          O2     121.082    1.50
+GDV          C8          C9          N3     115.239    1.50
+GDV          O2          C9          N3     123.680    1.50
+GDV          C9          N3         C11     127.989    1.57
+GDV          C9          N3          HF     115.802    2.04
+GDV         C11          N3          HF     116.209    1.71
+GDV          N3         C11         C17     120.302    3.00
+GDV          N3         C11         C13     120.302    3.00
+GDV         C17         C11         C13     119.396    1.50
+GDV         C11         C17         C16     119.830    1.50
+GDV         C11         C17         H17     120.019    1.50
+GDV         C16         C17         H17     120.151    1.50
+GDV         C17         C16         C15     120.518    1.50
+GDV         C17         C16         H16     119.600    1.50
+GDV         C15         C16         H16     119.882    1.50
+GDV         C16         C15         C14     119.909    1.50
+GDV         C16         C15         H15     120.046    1.50
+GDV         C14         C15         H15     120.046    1.50
+GDV         C15         C14         C13     120.518    1.50
+GDV         C15         C14         H14     119.882    1.50
+GDV         C13         C14         H14     119.600    1.50
+GDV         C11         C13         C14     119.830    1.50
+GDV         C11         C13         H13     120.019    1.50
+GDV         C14         C13         H13     120.151    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GDV            sp3_sp3_43          C5          C6          O5          HD     180.000    10.0     3
+GDV              const_21          C2          C1          N1          C5       0.000    10.0     2
+GDV              const_39          C2          C1          N2          C8     180.000    10.0     2
+GDV              const_26          C8          C7          N1          C5     180.000    10.0     2
+GDV              const_30          N1          C7          C8          C9     180.000    10.0     2
+GDV              const_35          C9          C8          N2          C1     180.000    10.0     2
+GDV             sp2_sp2_6          C7          C8          C9          O2       0.000     5.0     2
+GDV            sp2_sp2_11          O2          C9          N3         C11       0.000     5.0     2
+GDV            sp2_sp2_13         C17         C11          N3          C9     180.000     5.0     2
+GDV             sp2_sp3_7          O1         C10         C12        H121       0.000    10.0     6
+GDV             sp2_sp2_3          O1         C10          N4          C2       0.000     5.0     2
+GDV       const_sp2_sp2_3          N3         C11         C17         C16     180.000     5.0     2
+GDV              const_43          N3         C11         C13         C14     180.000    10.0     2
+GDV       const_sp2_sp2_5         C15         C16         C17         C11       0.000     5.0     2
+GDV       const_sp2_sp2_9         C14         C15         C16         C17       0.000     5.0     2
+GDV              const_13         C13         C14         C15         C16       0.000    10.0     2
+GDV              const_17         C11         C13         C14         C15       0.000    10.0     2
+GDV            sp2_sp3_13         C10          N4          C2          C3       0.000    10.0     6
+GDV            sp2_sp3_20          N1          C1          C2          N4     120.000    10.0     6
+GDV             sp3_sp3_5          N4          C2          C3          O3      60.000    10.0     3
+GDV            sp3_sp3_28          C2          C3          O3          HA     180.000    10.0     3
+GDV            sp3_sp3_14          O3          C3          C4          O4     -60.000    10.0     3
+GDV            sp3_sp3_31          C3          C4          O4          HC     180.000    10.0     3
+GDV            sp3_sp3_23          O4          C4          C5          C6      60.000    10.0     3
+GDV            sp3_sp3_34          C4          C5          C6          O5     180.000    10.0     3
+GDV             sp2_sp3_2          C1          N1          C5          C6     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GDV    chir_1    C2    N4    C3    C1    positive
+GDV    chir_2    C3    O3    C4    C2    negative
+GDV    chir_3    C4    O4    C3    C5    negative
+GDV    chir_4    C5    N1    C4    C6    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GDV    plan-1          C1   0.020
+GDV    plan-1          C2   0.020
+GDV    plan-1          C5   0.020
+GDV    plan-1          C7   0.020
+GDV    plan-1          C8   0.020
+GDV    plan-1          C9   0.020
+GDV    plan-1          H7   0.020
+GDV    plan-1          HE   0.020
+GDV    plan-1          N1   0.020
+GDV    plan-1          N2   0.020
+GDV    plan-2         C11   0.020
+GDV    plan-2         C13   0.020
+GDV    plan-2         C14   0.020
+GDV    plan-2         C15   0.020
+GDV    plan-2         C16   0.020
+GDV    plan-2         C17   0.020
+GDV    plan-2         H13   0.020
+GDV    plan-2         H14   0.020
+GDV    plan-2         H15   0.020
+GDV    plan-2         H16   0.020
+GDV    plan-2         H17   0.020
+GDV    plan-2          N3   0.020
+GDV    plan-3         C10   0.020
+GDV    plan-3         C12   0.020
+GDV    plan-3          N4   0.020
+GDV    plan-3          O1   0.020
+GDV    plan-4         C10   0.020
+GDV    plan-4          C2   0.020
+GDV    plan-4          H4   0.020
+GDV    plan-4          N4   0.020
+GDV    plan-5          C8   0.020
+GDV    plan-5          C9   0.020
+GDV    plan-5          N3   0.020
+GDV    plan-5          O2   0.020
+GDV    plan-6         C11   0.020
+GDV    plan-6          C9   0.020
+GDV    plan-6          HF   0.020
+GDV    plan-6          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GDV           SMILES              ACDLabs 10.04                                                                                                                           O=C(c1c[n+]2c(n1)C(NC(=O)C)C(O)C(O)C2CO)Nc3ccccc3
+GDV SMILES_CANONICAL               CACTVS 3.341                                                                                                     CC(=O)N[C@@H]1[C@@H](O)[C@H](O)[C@@H](CO)[n+]2cc([nH]c12)C(=O)Nc3ccccc3
+GDV           SMILES               CACTVS 3.341                                                                                                            CC(=O)N[CH]1[CH](O)[CH](O)[CH](CO)[n+]2cc([nH]c12)C(=O)Nc3ccccc3
+GDV SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                        CC(=O)N[C@H]1c2[nH]c(c[n+]2[C@@H]([C@H]([C@@H]1O)O)CO)C(=O)Nc3ccccc3
+GDV           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                          CC(=O)NC1c2[nH]c(c[n+]2C(C(C1O)O)CO)C(=O)Nc3ccccc3
+GDV            InChI                InChI  1.03 InChI=1S/C17H20N4O5/c1-9(23)18-13-15(25)14(24)12(8-22)21-7-11(20-16(13)21)17(26)19-10-5-3-2-4-6-10/h2-7,12-15,22,24-25H,8H2,1H3,(H2,18,19,23,26)/p+1/t12-,13-,14-,15-/m1/s1
+GDV         InChIKey                InChI  1.03                                                                                                                                                 WWSQBPPKQTUEDT-KBUPBQIOSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GDV acedrg               243         "dictionary generator"                  
+GDV acedrg_database      11          "data source"                           
+GDV rdkit                2017.03.2   "Chemoinformatics tool"
+GDV refmac5              5.8.0238    "optimization tool"                     

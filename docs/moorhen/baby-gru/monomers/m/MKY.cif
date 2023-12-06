@@ -1,0 +1,254 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MKY     MKY      "ethyl [(2Z)-2-(carbamimidoylimino)-6-hydroxy-1,3-benzothiazol-3(2H)-yl]acetate"     NON-POLYMER     34     20     .     
+#
+data_comp_MKY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MKY     C1      C       CH3     0       18.536      -12.841     22.006      
+MKY     C2      C       CH2     0       18.084      -11.449     22.218      
+MKY     O3      O       O2      0       17.022      -11.156     21.271      
+MKY     C4      C       C       0       16.387      -9.993      21.388      
+MKY     O5      O       O       0       16.743      -9.071      22.065      
+MKY     C6      C       CH2     0       15.141      -9.993      20.525      
+MKY     O7      O       OH1     0       10.824      -11.781     25.129      
+MKY     C8      C       CR6     0       11.682      -11.588     24.072      
+MKY     C9      C       CR16    0       12.500      -10.455     24.045      
+MKY     C10     C       CR16    0       13.377      -10.229     22.993      
+MKY     C11     C       CR56    0       13.428      -11.160     21.955      
+MKY     N12     N       NR5     0       14.251      -11.111     20.802      
+MKY     C13     C       CR5     0       14.171      -12.240     19.976      
+MKY     N14     N       N       0       14.938      -12.459     18.921      
+MKY     C15     C       C       0       14.608      -13.318     17.934      
+MKY     N16     N       NH2     0       14.803      -14.617     18.208      
+MKY     N17     N       NH1     0       14.127      -12.915     16.780      
+MKY     S18     S       S2      0       12.910      -13.228     20.576      
+MKY     C19     C       CR56    0       12.603      -12.291     21.993      
+MKY     C20     C       CR16    0       11.725      -12.517     23.048      
+MKY     H1      H       H       0       19.322      -13.013     22.550      
+MKY     H1A     H       H       0       18.756      -12.971     21.070      
+MKY     H1B     H       H       0       17.827      -13.454     22.260      
+MKY     H2      H       H       0       18.832      -10.830     22.082      
+MKY     H2A     H       H       0       17.755      -11.341     23.136      
+MKY     H6      H       H       0       15.407      -10.010     19.579      
+MKY     H6A     H       H       0       14.649      -9.155      20.679      
+MKY     HO7     H       H       0       10.678      -12.577     25.425      
+MKY     H9      H       H       0       12.455      -9.838      24.750      
+MKY     H10     H       H       0       13.923      -9.463      22.986      
+MKY     HN16    H       H       0       14.606      -15.234     17.602      
+MKY     HN1A    H       H       0       15.130      -14.861     18.998      
+MKY     HN17    H       H       0       13.945      -13.561     16.207      
+MKY     H20     H       H       0       11.175      -13.281     23.063      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MKY          C1          C2      SINGLE       n     1.478  0.0200     1.478  0.0200
+MKY          C2          O3      SINGLE       n     1.451  0.0100     1.451  0.0100
+MKY          O3          C4      SINGLE       n     1.327  0.0100     1.327  0.0100
+MKY          C4          C6      SINGLE       n     1.514  0.0102     1.514  0.0102
+MKY          C4          O5      DOUBLE       n     1.197  0.0100     1.197  0.0100
+MKY          C6         N12      SINGLE       n     1.451  0.0100     1.451  0.0100
+MKY          O7          C8      SINGLE       n     1.374  0.0155     1.374  0.0155
+MKY          C8          C9      DOUBLE       y     1.397  0.0100     1.397  0.0100
+MKY          C8         C20      SINGLE       y     1.381  0.0100     1.381  0.0100
+MKY          C9         C10      SINGLE       y     1.384  0.0108     1.384  0.0108
+MKY         C10         C11      DOUBLE       y     1.389  0.0100     1.389  0.0100
+MKY         C11         N12      SINGLE       n     1.404  0.0107     1.404  0.0107
+MKY         C11         C19      SINGLE       y     1.391  0.0100     1.391  0.0100
+MKY         N12         C13      SINGLE       n     1.372  0.0200     1.372  0.0200
+MKY         C13         N14      DOUBLE       n     1.310  0.0200     1.310  0.0200
+MKY         C13         S18      SINGLE       n     1.734  0.0200     1.734  0.0200
+MKY         N14         C15      SINGLE       n     1.342  0.0200     1.342  0.0200
+MKY         C15         N17      DOUBLE       n     1.306  0.0200     1.306  0.0200
+MKY         C15         N16      SINGLE       n     1.330  0.0200     1.330  0.0200
+MKY         S18         C19      SINGLE       n     1.739  0.0135     1.739  0.0135
+MKY         C19         C20      DOUBLE       y     1.381  0.0159     1.381  0.0159
+MKY          C1          H1      SINGLE       n     1.089  0.0100     0.971  0.0156
+MKY          C1         H1A      SINGLE       n     1.089  0.0100     0.971  0.0156
+MKY          C1         H1B      SINGLE       n     1.089  0.0100     0.971  0.0156
+MKY          C2          H2      SINGLE       n     1.089  0.0100     0.980  0.0148
+MKY          C2         H2A      SINGLE       n     1.089  0.0100     0.980  0.0148
+MKY          C6          H6      SINGLE       n     1.089  0.0100     0.984  0.0200
+MKY          C6         H6A      SINGLE       n     1.089  0.0100     0.984  0.0200
+MKY          O7         HO7      SINGLE       n     0.966  0.0059     0.861  0.0200
+MKY          C9          H9      SINGLE       n     1.082  0.0130     0.938  0.0139
+MKY         C10         H10      SINGLE       n     1.082  0.0130     0.941  0.0171
+MKY         N16        HN16      SINGLE       n     1.016  0.0100     0.887  0.0200
+MKY         N16        HN1A      SINGLE       n     1.016  0.0100     0.887  0.0200
+MKY         N17        HN17      SINGLE       n     1.016  0.0100     0.882  0.0200
+MKY         C20         H20      SINGLE       n     1.082  0.0130     0.942  0.0115
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MKY          C2          C1          H1     109.517    1.50
+MKY          C2          C1         H1A     109.517    1.50
+MKY          C2          C1         H1B     109.517    1.50
+MKY          H1          C1         H1A     109.410    1.50
+MKY          H1          C1         H1B     109.410    1.50
+MKY         H1A          C1         H1B     109.410    1.50
+MKY          C1          C2          O3     108.459    2.39
+MKY          C1          C2          H2     110.009    1.50
+MKY          C1          C2         H2A     110.009    1.50
+MKY          O3          C2          H2     109.826    1.50
+MKY          O3          C2         H2A     109.826    1.50
+MKY          H2          C2         H2A     108.453    1.50
+MKY          C2          O3          C4     116.708    1.50
+MKY          O3          C4          C6     109.902    1.50
+MKY          O3          C4          O5     125.059    1.50
+MKY          C6          C4          O5     125.039    1.50
+MKY          C4          C6         N12     112.861    1.50
+MKY          C4          C6          H6     109.171    1.50
+MKY          C4          C6         H6A     109.171    1.50
+MKY         N12          C6          H6     108.916    1.50
+MKY         N12          C6         H6A     108.916    1.50
+MKY          H6          C6         H6A     108.002    1.50
+MKY          C8          O7         HO7     120.000    3.00
+MKY          O7          C8          C9     119.407    3.00
+MKY          O7          C8         C20     119.407    3.00
+MKY          C9          C8         C20     121.186    1.50
+MKY          C8          C9         C10     121.205    1.50
+MKY          C8          C9          H9     119.319    1.50
+MKY         C10          C9          H9     119.477    1.50
+MKY          C9         C10         C11     117.893    1.50
+MKY          C9         C10         H10     120.839    1.50
+MKY         C11         C10         H10     121.267    1.50
+MKY         C10         C11         N12     129.654    1.98
+MKY         C10         C11         C19     120.888    1.50
+MKY         N12         C11         C19     109.458    1.50
+MKY          C6         N12         C11     124.224    1.50
+MKY          C6         N12         C13     124.324    2.04
+MKY         C11         N12         C13     111.451    1.50
+MKY         N12         C13         N14     124.283    1.77
+MKY         N12         C13         S18     106.364    2.60
+MKY         N14         C13         S18     129.353    3.00
+MKY         C13         N14         C15     120.034    3.00
+MKY         N14         C15         N17     124.354    3.00
+MKY         N14         C15         N16     115.719    3.00
+MKY         N17         C15         N16     119.927    3.00
+MKY         C15         N16        HN16     119.881    1.50
+MKY         C15         N16        HN1A     119.881    1.50
+MKY        HN16         N16        HN1A     120.239    2.09
+MKY         C15         N17        HN17     112.238    3.00
+MKY         C13         S18         C19     106.364    3.00
+MKY         C11         C19         S18     106.364    2.39
+MKY         C11         C19         C20     121.047    1.50
+MKY         S18         C19         C20     132.590    2.22
+MKY          C8         C20         C19     117.781    1.50
+MKY          C8         C20         H20     121.196    1.50
+MKY         C19         C20         H20     121.023    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MKY             sp3_sp3_1          H1          C1          C2          O3     180.000    10.0     3
+MKY             sp2_sp2_4         C10         C11         N12          C6       0.000     5.0     2
+MKY              const_14         C10         C11         C19         S18     180.000    10.0     2
+MKY             sp2_sp2_8         N14         C13         N12          C6       0.000     5.0     2
+MKY            sp2_sp2_17         N12         C13         N14         C15     180.000     5.0     2
+MKY            sp2_sp2_10         N14         C13         S18         C19     180.000     5.0     2
+MKY            sp2_sp2_19         N17         C15         N14         C13     180.000     5.0     2
+MKY            sp2_sp2_23         N14         C15         N16        HN16     180.000     5.0     2
+MKY            sp2_sp2_21         N14         C15         N17        HN17     180.000     5.0     2
+MKY            sp2_sp2_11         C11         C19         S18         C13       0.000     5.0     2
+MKY              const_17         C11         C19         C20          C8       0.000    10.0     2
+MKY            sp3_sp3_10          C1          C2          O3          C4     180.000    10.0     3
+MKY            sp2_sp2_13          C6          C4          O3          C2     180.000     5.0     2
+MKY             sp2_sp3_2          O3          C4          C6         N12     120.000    10.0     6
+MKY             sp2_sp3_8         C11         N12          C6          C4     -90.000    10.0     6
+MKY            sp2_sp2_15          C9          C8          O7         HO7     180.000     5.0     2
+MKY              const_22         C19         C20          C8          O7     180.000    10.0     2
+MKY       const_sp2_sp2_3          O7          C8          C9         C10     180.000     5.0     2
+MKY       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+MKY              const_10          C9         C10         C11         N12     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MKY    plan-1         C10   0.020
+MKY    plan-1         C11   0.020
+MKY    plan-1         C19   0.020
+MKY    plan-1         C20   0.020
+MKY    plan-1          C8   0.020
+MKY    plan-1          C9   0.020
+MKY    plan-1         H10   0.020
+MKY    plan-1         H20   0.020
+MKY    plan-1          H9   0.020
+MKY    plan-1         N12   0.020
+MKY    plan-1          O7   0.020
+MKY    plan-1         S18   0.020
+MKY    plan-2          C4   0.020
+MKY    plan-2          C6   0.020
+MKY    plan-2          O3   0.020
+MKY    plan-2          O5   0.020
+MKY    plan-3         C11   0.020
+MKY    plan-3         C13   0.020
+MKY    plan-3          C6   0.020
+MKY    plan-3         N12   0.020
+MKY    plan-4         C13   0.020
+MKY    plan-4         N12   0.020
+MKY    plan-4         N14   0.020
+MKY    plan-4         S18   0.020
+MKY    plan-5         C15   0.020
+MKY    plan-5         N14   0.020
+MKY    plan-5         N16   0.020
+MKY    plan-5         N17   0.020
+MKY    plan-6         C15   0.020
+MKY    plan-6        HN16   0.020
+MKY    plan-6        HN1A   0.020
+MKY    plan-6         N16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MKY           SMILES              ACDLabs 12.01                                                                             O=C(OCC)CN1c2ccc(O)cc2S\C1=N/C(=[N@H])N
+MKY SMILES_CANONICAL               CACTVS 3.370                                                                                 CCOC(=O)CN1C(Sc2cc(O)ccc12)=NC(N)=N
+MKY           SMILES               CACTVS 3.370                                                                                 CCOC(=O)CN1C(Sc2cc(O)ccc12)=NC(N)=N
+MKY SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                       "[H]/N=C(\N)/N=C\1/N(c2ccc(cc2S1)O)CC(=O)OCC"
+MKY           SMILES "OpenEye OEToolkits" 1.7.0                                                                                   CCOC(=O)CN1c2ccc(cc2SC1=NC(=N)N)O
+MKY            InChI                InChI  1.03 InChI=1S/C12H14N4O3S/c1-2-19-10(18)6-16-8-4-3-7(17)5-9(8)20-12(16)15-11(13)14/h3-5,17H,2,6H2,1H3,(H3,13,14)/b15-12-
+MKY         InChIKey                InChI  1.03                                                                                         QHEKEKSMRXTAKP-QINSGFPZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MKY acedrg               243         "dictionary generator"                  
+MKY acedrg_database      11          "data source"                           
+MKY rdkit                2017.03.2   "Chemoinformatics tool"
+MKY refmac5              5.8.0238    "optimization tool"                     

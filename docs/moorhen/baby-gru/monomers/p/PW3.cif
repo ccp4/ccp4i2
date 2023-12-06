@@ -1,0 +1,176 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PW3     PW3      4-acetyl-piperazin-2-one     NON-POLYMER     20     10     .     
+#
+data_comp_PW3
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PW3     C01     C       CH3     0       -28.547     3.014       8.454       
+PW3     C02     C       C       0       -28.397     2.811       6.972       
+PW3     N03     N       NR6     0       -29.482     2.952       6.156       
+PW3     C04     C       CH2     0       -30.864     3.104       6.653       
+PW3     C05     C       CH2     0       -31.898     2.589       5.666       
+PW3     N06     N       NR6     0       -31.641     3.149       4.348       
+PW3     C07     C       CR6     0       -30.439     3.379       3.847       
+PW3     C08     C       CH2     0       -29.247     3.024       4.688       
+PW3     O09     O       O       0       -30.261     3.871       2.715       
+PW3     O10     O       O       0       -27.302     2.499       6.515       
+PW3     H01     H       H       0       -29.009     3.847       8.626       
+PW3     H01A    H       H       0       -27.672     3.045       8.868       
+PW3     H01B    H       H       0       -29.053     2.282       8.835       
+PW3     H04     H       H       0       -30.967     2.615       7.492       
+PW3     H04A    H       H       0       -31.035     4.050       6.836       
+PW3     H05     H       H       0       -32.807     2.849       5.965       
+PW3     H05A    H       H       0       -31.855     1.599       5.620       
+PW3     HN06    H       H       0       -32.308     3.346       3.859       
+PW3     H08     H       H       0       -28.909     2.156       4.377       
+PW3     H08A    H       H       0       -28.548     3.691       4.509       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PW3         C01         C02      SINGLE       n     1.499  0.0131     1.499  0.0131
+PW3         C02         N03      SINGLE       n     1.356  0.0100     1.356  0.0100
+PW3         C02         O10      DOUBLE       n     1.226  0.0100     1.226  0.0100
+PW3         N03         C04      SINGLE       n     1.465  0.0100     1.465  0.0100
+PW3         N03         C08      SINGLE       n     1.470  0.0146     1.470  0.0146
+PW3         C04         C05      SINGLE       n     1.507  0.0200     1.507  0.0200
+PW3         C05         N06      SINGLE       n     1.457  0.0100     1.457  0.0100
+PW3         N06         C07      SINGLE       n     1.326  0.0114     1.326  0.0114
+PW3         C07         C08      SINGLE       n     1.501  0.0100     1.501  0.0100
+PW3         C07         O09      DOUBLE       n     1.247  0.0100     1.247  0.0100
+PW3         C01         H01      SINGLE       n     1.089  0.0100     0.968  0.0151
+PW3         C01        H01A      SINGLE       n     1.089  0.0100     0.968  0.0151
+PW3         C01        H01B      SINGLE       n     1.089  0.0100     0.968  0.0151
+PW3         C04         H04      SINGLE       n     1.089  0.0100     0.978  0.0161
+PW3         C04        H04A      SINGLE       n     1.089  0.0100     0.978  0.0161
+PW3         C05         H05      SINGLE       n     1.089  0.0100     0.992  0.0200
+PW3         C05        H05A      SINGLE       n     1.089  0.0100     0.992  0.0200
+PW3         N06        HN06      SINGLE       n     1.016  0.0100     0.849  0.0200
+PW3         C08         H08      SINGLE       n     1.089  0.0100     0.982  0.0120
+PW3         C08        H08A      SINGLE       n     1.089  0.0100     0.982  0.0120
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PW3         C02         C01         H01     109.694    1.50
+PW3         C02         C01        H01A     109.694    1.50
+PW3         C02         C01        H01B     109.694    1.50
+PW3         H01         C01        H01A     109.352    1.50
+PW3         H01         C01        H01B     109.352    1.50
+PW3        H01A         C01        H01B     109.352    1.50
+PW3         C01         C02         N03     118.222    1.50
+PW3         C01         C02         O10     120.838    1.50
+PW3         N03         C02         O10     120.940    1.50
+PW3         C02         N03         C04     122.912    2.72
+PW3         C02         N03         C08     122.866    2.86
+PW3         C04         N03         C08     114.223    2.92
+PW3         N03         C04         C05     110.222    1.50
+PW3         N03         C04         H04     109.471    1.50
+PW3         N03         C04        H04A     109.471    1.50
+PW3         C05         C04         H04     109.627    1.50
+PW3         C05         C04        H04A     109.627    1.50
+PW3         H04         C04        H04A     108.187    1.50
+PW3         C04         C05         N06     109.526    1.50
+PW3         C04         C05         H05     109.542    1.50
+PW3         C04         C05        H05A     109.542    1.50
+PW3         N06         C05         H05     109.237    1.50
+PW3         N06         C05        H05A     109.237    1.50
+PW3         H05         C05        H05A     108.060    1.50
+PW3         C05         N06         C07     126.480    1.50
+PW3         C05         N06        HN06     117.229    2.67
+PW3         C07         N06        HN06     116.291    1.89
+PW3         N06         C07         C08     119.073    1.50
+PW3         N06         C07         O09     122.145    1.50
+PW3         C08         C07         O09     118.782    1.50
+PW3         N03         C08         C07     111.725    2.77
+PW3         N03         C08         H08     109.288    1.50
+PW3         N03         C08        H08A     109.288    1.50
+PW3         C07         C08         H08     108.254    1.50
+PW3         C07         C08        H08A     108.254    1.50
+PW3         H08         C08        H08A     107.805    1.72
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PW3            sp2_sp3_22         O10         C02         C01         H01     180.000    10.0     6
+PW3             sp2_sp2_5         C01         C02         N03         C04     180.000     5.0     2
+PW3             sp2_sp3_4         C02         N03         C04         C05     180.000    10.0     6
+PW3            sp2_sp3_28         C02         N03         C08         C07     180.000    10.0     6
+PW3             sp3_sp3_1         N03         C04         C05         N06     -60.000    10.0     3
+PW3             sp2_sp3_7         C07         N06         C05         C04       0.000    10.0     6
+PW3             sp2_sp2_3         O09         C07         N06         C05     180.000     5.0     2
+PW3            sp2_sp3_16         O09         C07         C08         N03     180.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PW3    plan-1         C01   0.020
+PW3    plan-1         C02   0.020
+PW3    plan-1         N03   0.020
+PW3    plan-1         O10   0.020
+PW3    plan-2         C02   0.020
+PW3    plan-2         C04   0.020
+PW3    plan-2         C08   0.020
+PW3    plan-2         N03   0.020
+PW3    plan-3         C05   0.020
+PW3    plan-3         C07   0.020
+PW3    plan-3        HN06   0.020
+PW3    plan-3         N06   0.020
+PW3    plan-4         C07   0.020
+PW3    plan-4         C08   0.020
+PW3    plan-4         N06   0.020
+PW3    plan-4         O09   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PW3            InChI                InChI  1.03 InChI=1S/C6H10N2O2/c1-5(9)8-3-2-7-6(10)4-8/h2-4H2,1H3,(H,7,10)
+PW3         InChIKey                InChI  1.03                                    ISNPMTVERREURB-UHFFFAOYSA-N
+PW3 SMILES_CANONICAL               CACTVS 3.385                                             CC(=O)N1CCNC(=O)C1
+PW3           SMILES               CACTVS 3.385                                             CC(=O)N1CCNC(=O)C1
+PW3 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                             CC(=O)N1CCNC(=O)C1
+PW3           SMILES "OpenEye OEToolkits" 1.7.6                                             CC(=O)N1CCNC(=O)C1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PW3 acedrg               243         "dictionary generator"                  
+PW3 acedrg_database      11          "data source"                           
+PW3 rdkit                2017.03.2   "Chemoinformatics tool"
+PW3 refmac5              5.8.0238    "optimization tool"                     

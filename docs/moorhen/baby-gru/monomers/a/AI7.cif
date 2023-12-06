@@ -1,0 +1,244 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AI7     AI7      "3-(heptyloxy)benzoic acid"     NON-POLYMER     36     17     .     
+#
+data_comp_AI7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AI7     C1      C       CR16    0       57.038      64.128      -4.418      
+AI7     C2      C       CR16    0       55.741      64.494      -6.840      
+AI7     C3      C       CR16    0       57.061      64.076      -6.823      
+AI7     C4      C       CH2     0       51.789      64.181      1.016       
+AI7     C5      C       C       0       59.144      63.438      -5.576      
+AI7     C6      C       CH2     0       53.440      65.096      -1.586      
+AI7     C7      C       CR16    0       55.060      64.733      -5.659      
+AI7     C8      C       CH2     0       53.750      64.991      -3.056      
+AI7     C9      C       CH3     0       50.131      64.467      2.900       
+AI7     C10     C       CH2     0       51.549      64.132      2.504       
+AI7     C11     C       CR6     0       55.709      64.546      -4.438      
+AI7     C12     C       CH2     0       53.207      63.869      0.605       
+AI7     C13     C       CH2     0       53.409      63.759      -0.887      
+AI7     C14     C       CR6     0       57.715      63.890      -5.611      
+AI7     O15     O       O       0       59.462      62.461      -6.278      
+AI7     O16     O       O2      0       55.157      64.751      -3.197      
+AI7     O17     O       OC      -1      59.932      64.065      -4.845      
+AI7     H1      H       H       0       57.476      64.004      -3.594      
+AI7     H2      H       H       0       55.302      64.618      -7.659      
+AI7     H3      H       H       0       57.514      63.917      -7.632      
+AI7     H41     H       H       0       51.557      65.076      0.690       
+AI7     H42     H       H       0       51.187      63.540      0.581       
+AI7     H61     H       H       0       52.570      65.533      -1.476      
+AI7     H62     H       H       0       54.116      65.663      -1.159      
+AI7     H7      H       H       0       54.163      65.018      -5.686      
+AI7     H81     H       H       0       53.506      65.823      -3.511      
+AI7     H82     H       H       0       53.242      64.257      -3.457      
+AI7     H91     H       H       0       50.044      64.421      3.868       
+AI7     H92     H       H       0       49.520      63.831      2.490       
+AI7     H93     H       H       0       49.912      65.366      2.599       
+AI7     H101    H       H       0       52.160      64.764      2.942       
+AI7     H102    H       H       0       51.766      63.231      2.829       
+AI7     H121    H       H       0       53.476      63.022      1.021       
+AI7     H122    H       H       0       53.797      64.571      0.951       
+AI7     H131    H       H       0       54.254      63.290      -1.058      
+AI7     H132    H       H       0       52.685      63.218      -1.266      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AI7          C5         O15      DOUBLE       n     1.244  0.0200     1.244  0.0200
+AI7          C2          C3      DOUBLE       y     1.382  0.0100     1.382  0.0100
+AI7          C3         C14      SINGLE       y     1.387  0.0100     1.387  0.0100
+AI7          C2          C7      SINGLE       y     1.380  0.0100     1.380  0.0100
+AI7          C5         C14      SINGLE       n     1.498  0.0200     1.498  0.0200
+AI7          C5         O17      SINGLE       n     1.244  0.0200     1.244  0.0200
+AI7          C1         C14      DOUBLE       y     1.389  0.0100     1.389  0.0100
+AI7          C7         C11      DOUBLE       y     1.386  0.0109     1.386  0.0109
+AI7          C1         C11      SINGLE       y     1.388  0.0110     1.388  0.0110
+AI7         C11         O16      SINGLE       n     1.369  0.0106     1.369  0.0106
+AI7          C8         O16      SINGLE       n     1.432  0.0101     1.432  0.0101
+AI7          C6          C8      SINGLE       n     1.506  0.0128     1.506  0.0128
+AI7          C6         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+AI7         C12         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+AI7          C4         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+AI7          C4         C10      SINGLE       n     1.507  0.0200     1.507  0.0200
+AI7          C9         C10      SINGLE       n     1.510  0.0200     1.510  0.0200
+AI7          C1          H1      SINGLE       n     1.082  0.0130     0.942  0.0200
+AI7          C2          H2      SINGLE       n     1.082  0.0130     0.938  0.0149
+AI7          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+AI7          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+AI7          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+AI7          C6         H61      SINGLE       n     1.089  0.0100     0.980  0.0166
+AI7          C6         H62      SINGLE       n     1.089  0.0100     0.980  0.0166
+AI7          C7          H7      SINGLE       n     1.082  0.0130     0.942  0.0163
+AI7          C8         H81      SINGLE       n     1.089  0.0100     0.979  0.0131
+AI7          C8         H82      SINGLE       n     1.089  0.0100     0.979  0.0131
+AI7          C9         H91      SINGLE       n     1.089  0.0100     0.973  0.0157
+AI7          C9         H92      SINGLE       n     1.089  0.0100     0.973  0.0157
+AI7          C9         H93      SINGLE       n     1.089  0.0100     0.973  0.0157
+AI7         C10        H101      SINGLE       n     1.089  0.0100     0.982  0.0155
+AI7         C10        H102      SINGLE       n     1.089  0.0100     0.982  0.0155
+AI7         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0163
+AI7         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0163
+AI7         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0163
+AI7         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0163
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AI7         C14          C1         C11     119.895    1.50
+AI7         C14          C1          H1     120.232    1.50
+AI7         C11          C1          H1     119.877    1.50
+AI7          C3          C2          C7     120.488    1.50
+AI7          C3          C2          H2     119.895    1.50
+AI7          C7          C2          H2     119.617    1.50
+AI7          C2          C3         C14     120.202    1.50
+AI7          C2          C3          H3     119.848    1.50
+AI7         C14          C3          H3     119.950    1.50
+AI7         C12          C4         C10     114.362    3.00
+AI7         C12          C4         H41     108.698    1.50
+AI7         C12          C4         H42     108.698    1.50
+AI7         C10          C4         H41     108.653    1.50
+AI7         C10          C4         H42     108.653    1.50
+AI7         H41          C4         H42     107.646    1.50
+AI7         O15          C5         C14     117.791    1.50
+AI7         O15          C5         O17     124.418    1.50
+AI7         C14          C5         O17     117.791    1.50
+AI7          C8          C6         C13     113.147    2.01
+AI7          C8          C6         H61     108.916    1.50
+AI7          C8          C6         H62     108.916    1.50
+AI7         C13          C6         H61     108.944    1.50
+AI7         C13          C6         H62     108.944    1.50
+AI7         H61          C6         H62     107.788    1.50
+AI7          C2          C7         C11     119.332    1.50
+AI7          C2          C7          H7     120.369    1.50
+AI7         C11          C7          H7     120.299    1.50
+AI7         O16          C8          C6     107.985    2.03
+AI7         O16          C8         H81     109.943    1.50
+AI7         O16          C8         H82     109.943    1.50
+AI7          C6          C8         H81     110.162    1.50
+AI7          C6          C8         H82     110.162    1.50
+AI7         H81          C8         H82     108.474    1.50
+AI7         C10          C9         H91     109.554    1.50
+AI7         C10          C9         H92     109.554    1.50
+AI7         C10          C9         H93     109.554    1.50
+AI7         H91          C9         H92     109.380    1.50
+AI7         H91          C9         H93     109.380    1.50
+AI7         H92          C9         H93     109.380    1.50
+AI7          C4         C10          C9     113.719    3.00
+AI7          C4         C10        H101     108.758    1.50
+AI7          C4         C10        H102     108.758    1.50
+AI7          C9         C10        H101     108.918    1.50
+AI7          C9         C10        H102     108.918    1.50
+AI7        H101         C10        H102     107.763    1.50
+AI7          C7         C11          C1     120.143    1.50
+AI7          C7         C11         O16     120.202    3.00
+AI7          C1         C11         O16     119.656    3.00
+AI7         C13         C12          C4     114.243    1.69
+AI7         C13         C12        H121     108.698    1.50
+AI7         C13         C12        H122     108.698    1.50
+AI7          C4         C12        H121     108.698    1.50
+AI7          C4         C12        H122     108.698    1.50
+AI7        H121         C12        H122     107.646    1.50
+AI7          C6         C13         C12     113.259    1.53
+AI7          C6         C13        H131     108.902    1.50
+AI7          C6         C13        H132     108.902    1.50
+AI7         C12         C13        H131     108.698    1.50
+AI7         C12         C13        H132     108.698    1.50
+AI7        H131         C13        H132     107.646    1.50
+AI7          C3         C14          C5     120.465    1.50
+AI7          C3         C14          C1     119.935    1.50
+AI7          C5         C14          C1     119.599    1.50
+AI7         C11         O16          C8     118.103    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AI7              const_22         C14          C1         C11         O16     180.000    10.0     2
+AI7       const_sp2_sp2_2         C11          C1         C14          C5     180.000     5.0     2
+AI7             sp2_sp2_5          C7         C11         O16          C8     180.000     5.0     2
+AI7            sp3_sp3_22          C4         C12         C13          C6     180.000    10.0     3
+AI7       const_sp2_sp2_9          C7          C2          C3         C14       0.000     5.0     2
+AI7              const_13          C3          C2          C7         C11       0.000    10.0     2
+AI7       const_sp2_sp2_7          C5         C14          C3          C2     180.000     5.0     2
+AI7            sp3_sp3_31         C13         C12          C4         C10     180.000    10.0     3
+AI7            sp3_sp3_40          C9         C10          C4         C12     180.000    10.0     3
+AI7             sp2_sp2_1          C3         C14          C5         O15     180.000     5.0     2
+AI7            sp3_sp3_13         C12         C13          C6          C8     180.000    10.0     3
+AI7             sp3_sp3_4         C13          C6          C8         O16     180.000    10.0     3
+AI7              const_19         O16         C11          C7          C2     180.000    10.0     2
+AI7             sp3_sp3_1          C6          C8         O16         C11     180.000    10.0     3
+AI7            sp3_sp3_49          C4         C10          C9         H91     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AI7    plan-1          C1   0.020
+AI7    plan-1         C11   0.020
+AI7    plan-1         C14   0.020
+AI7    plan-1          C2   0.020
+AI7    plan-1          C3   0.020
+AI7    plan-1          C5   0.020
+AI7    plan-1          C7   0.020
+AI7    plan-1          H1   0.020
+AI7    plan-1          H2   0.020
+AI7    plan-1          H3   0.020
+AI7    plan-1          H7   0.020
+AI7    plan-1         O16   0.020
+AI7    plan-2         C14   0.020
+AI7    plan-2          C5   0.020
+AI7    plan-2         O15   0.020
+AI7    plan-2         O17   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AI7           SMILES              ACDLabs 10.04                                                                        O=C(O)c1cc(OCCCCCCC)ccc1
+AI7 SMILES_CANONICAL               CACTVS 3.341                                                                        CCCCCCCOc1cccc(c1)C(O)=O
+AI7           SMILES               CACTVS 3.341                                                                        CCCCCCCOc1cccc(c1)C(O)=O
+AI7 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                        CCCCCCCOc1cccc(c1)C(=O)O
+AI7           SMILES "OpenEye OEToolkits" 1.5.0                                                                        CCCCCCCOc1cccc(c1)C(=O)O
+AI7            InChI                InChI  1.03 InChI=1S/C14H20O3/c1-2-3-4-5-6-10-17-13-9-7-8-12(11-13)14(15)16/h7-9,11H,2-6,10H2,1H3,(H,15,16)
+AI7         InChIKey                InChI  1.03                                                                     FOFZVIUYGPBWLV-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AI7 acedrg               243         "dictionary generator"                  
+AI7 acedrg_database      11          "data source"                           
+AI7 rdkit                2017.03.2   "Chemoinformatics tool"
+AI7 refmac5              5.8.0238    "optimization tool"                     

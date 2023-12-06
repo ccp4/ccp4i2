@@ -1,0 +1,194 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CBQ     CBQ      "[(5-CHLORO-PYRIDIN-2-YLAMINO)-PHOSPHONO-METHYL]-PHOSPHONIC ACID"     NON-POLYMER     22     17     .     
+#
+data_comp_CBQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CBQ     O1      O       OP      -1      16.835      9.772       62.183      
+CBQ     P1      P       P       0       17.093      10.349      60.819      
+CBQ     O2      O       O       0       18.362      11.156      60.784      
+CBQ     O3      O       OP      -1      17.073      9.290       59.751      
+CBQ     C1      C       CH1     0       15.727      11.507      60.455      
+CBQ     N1      N       NH1     0       15.873      11.959      59.067      
+CBQ     C2      C       CR6     0       15.030      11.638      58.038      
+CBQ     N2      N       NRD6    0       14.773      12.626      57.149      
+CBQ     C3      C       CR16    0       13.953      12.349      56.113      
+CBQ     C4      C       CR6     0       13.379      11.110      55.930      
+CBQ     CL1     CL      CL      0       12.334      10.836      54.571      
+CBQ     C5      C       CR16    0       13.644      10.091      56.837      
+CBQ     C6      C       CR16    0       14.480      10.345      57.901      
+CBQ     P2      P       P       0       15.661      12.967      61.549      
+CBQ     O4      O       O       0       15.616      12.457      62.963      
+CBQ     O5      O       OP      -1      14.415      13.729      61.191      
+CBQ     O6      O       OP      -1      16.903      13.773      61.286      
+CBQ     H1      H       H       0       14.877      11.021      60.538      
+CBQ     HN1     H       H       0       16.560      12.473      58.904      
+CBQ     H3      H       H       0       13.772      13.046      55.494      
+CBQ     H5      H       H       0       13.254      9.235       56.718      
+CBQ     H6      H       H       0       14.673      9.669       58.531      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CBQ          O1          P1      SINGLE       n     1.505  0.0200     1.505  0.0200
+CBQ          P1          O2      DOUBLE       n     1.505  0.0200     1.505  0.0200
+CBQ          P1          O3      SINGLE       n     1.505  0.0200     1.505  0.0200
+CBQ          P1          C1      SINGLE       n     1.827  0.0200     1.827  0.0200
+CBQ          C1          N1      SINGLE       n     1.466  0.0101     1.466  0.0101
+CBQ          C1          P2      SINGLE       n     1.827  0.0200     1.827  0.0200
+CBQ          N1          C2      SINGLE       n     1.358  0.0185     1.358  0.0185
+CBQ          C2          N2      DOUBLE       y     1.343  0.0174     1.343  0.0174
+CBQ          C2          C6      SINGLE       y     1.396  0.0200     1.396  0.0200
+CBQ          N2          C3      SINGLE       y     1.346  0.0100     1.346  0.0100
+CBQ          C3          C4      DOUBLE       y     1.374  0.0100     1.374  0.0100
+CBQ          C4         CL1      SINGLE       n     1.736  0.0100     1.736  0.0100
+CBQ          C4          C5      SINGLE       y     1.385  0.0117     1.385  0.0117
+CBQ          C5          C6      DOUBLE       y     1.373  0.0100     1.373  0.0100
+CBQ          P2          O4      DOUBLE       n     1.505  0.0200     1.505  0.0200
+CBQ          P2          O5      SINGLE       n     1.505  0.0200     1.505  0.0200
+CBQ          P2          O6      SINGLE       n     1.505  0.0200     1.505  0.0200
+CBQ          C1          H1      SINGLE       n     1.089  0.0100     0.983  0.0180
+CBQ          N1         HN1      SINGLE       n     1.016  0.0100     0.873  0.0200
+CBQ          C3          H3      SINGLE       n     1.082  0.0130     0.949  0.0183
+CBQ          C5          H5      SINGLE       n     1.082  0.0130     0.948  0.0200
+CBQ          C6          H6      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CBQ          O1          P1          O2     112.502    1.50
+CBQ          O1          P1          O3     112.502    1.50
+CBQ          O1          P1          C1     110.326    3.00
+CBQ          O2          P1          O3     112.502    1.50
+CBQ          O2          P1          C1     110.326    3.00
+CBQ          O3          P1          C1     110.326    3.00
+CBQ          P1          C1          N1     108.817    2.81
+CBQ          P1          C1          P2     114.813    3.00
+CBQ          P1          C1          H1     108.528    1.50
+CBQ          N1          C1          P2     108.817    2.81
+CBQ          N1          C1          H1     107.862    1.50
+CBQ          P2          C1          H1     108.528    1.50
+CBQ          C1          N1          C2     122.816    2.30
+CBQ          C1          N1         HN1     117.883    3.00
+CBQ          C2          N1         HN1     119.301    1.50
+CBQ          N1          C2          N2     116.255    1.87
+CBQ          N1          C2          C6     121.039    1.71
+CBQ          N2          C2          C6     122.706    1.50
+CBQ          C2          N2          C3     117.524    1.50
+CBQ          N2          C3          C4     122.411    1.50
+CBQ          N2          C3          H3     117.829    1.78
+CBQ          C4          C3          H3     119.760    1.50
+CBQ          C3          C4         CL1     119.792    1.50
+CBQ          C3          C4          C5     119.528    1.50
+CBQ         CL1          C4          C5     120.680    1.50
+CBQ          C4          C5          C6     118.820    1.50
+CBQ          C4          C5          H5     120.184    1.92
+CBQ          C6          C5          H5     120.990    2.25
+CBQ          C2          C6          C5     119.017    1.50
+CBQ          C2          C6          H6     120.569    1.50
+CBQ          C5          C6          H6     120.415    1.50
+CBQ          C1          P2          O4     110.326    3.00
+CBQ          C1          P2          O5     110.326    3.00
+CBQ          C1          P2          O6     110.326    3.00
+CBQ          O4          P2          O5     112.502    1.50
+CBQ          O4          P2          O6     112.502    1.50
+CBQ          O5          P2          O6     112.502    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CBQ              const_13          C4          C5          C6          C2       0.000    10.0     2
+CBQ             sp3_sp3_1          N1          C1          P1          O1     180.000    10.0     3
+CBQ            sp3_sp3_12          P1          C1          P2          O4      60.000    10.0     3
+CBQ             sp2_sp3_2          C2          N1          C1          P1     120.000    10.0     6
+CBQ             sp2_sp2_3          N2          C2          N1          C1       0.000     5.0     2
+CBQ              const_19          N1          C2          C6          C5     180.000    10.0     2
+CBQ       const_sp2_sp2_2          N1          C2          N2          C3     180.000     5.0     2
+CBQ       const_sp2_sp2_3          C4          C3          N2          C2       0.000     5.0     2
+CBQ       const_sp2_sp2_6          N2          C3          C4         CL1     180.000     5.0     2
+CBQ              const_11         CL1          C4          C5          C6     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CBQ    chir_1    P1    O1    O3    O2    both
+CBQ    chir_2    C1    P1    P2    N1    both
+CBQ    chir_3    P2    O5    O6    O4    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CBQ    plan-1          C2   0.020
+CBQ    plan-1          C3   0.020
+CBQ    plan-1          C4   0.020
+CBQ    plan-1          C5   0.020
+CBQ    plan-1          C6   0.020
+CBQ    plan-1         CL1   0.020
+CBQ    plan-1          H3   0.020
+CBQ    plan-1          H5   0.020
+CBQ    plan-1          H6   0.020
+CBQ    plan-1          N1   0.020
+CBQ    plan-1          N2   0.020
+CBQ    plan-2          C1   0.020
+CBQ    plan-2          C2   0.020
+CBQ    plan-2         HN1   0.020
+CBQ    plan-2          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CBQ           SMILES              ACDLabs 10.04                                                                           O=P(O)(O)C(Nc1ncc(Cl)cc1)P(=O)(O)O
+CBQ SMILES_CANONICAL               CACTVS 3.341                                                                       O[P](O)(=O)C(Nc1ccc(Cl)cn1)[P](O)(O)=O
+CBQ           SMILES               CACTVS 3.341                                                                       O[P](O)(=O)C(Nc1ccc(Cl)cn1)[P](O)(O)=O
+CBQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                           c1cc(ncc1Cl)NC(P(=O)(O)O)P(=O)(O)O
+CBQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                           c1cc(ncc1Cl)NC(P(=O)(O)O)P(=O)(O)O
+CBQ            InChI                InChI  1.03 InChI=1S/C6H9ClN2O6P2/c7-4-1-2-5(8-3-4)9-6(16(10,11)12)17(13,14)15/h1-3,6H,(H,8,9)(H2,10,11,12)(H2,13,14,15)
+CBQ         InChIKey                InChI  1.03                                                                                  BNMYZGAZFGNKTH-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CBQ acedrg               243         "dictionary generator"                  
+CBQ acedrg_database      11          "data source"                           
+CBQ rdkit                2017.03.2   "Chemoinformatics tool"
+CBQ refmac5              5.8.0238    "optimization tool"                     

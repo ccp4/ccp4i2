@@ -1,0 +1,271 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NDJ     NDJ      (2R,3S,4R,5S)-N-butyl-3,4,5-trihydroxy-2-(hydroxymethyl)piperidine-1-carbothioamide     NON-POLYMER     40     18     .     
+#
+data_comp_NDJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NDJ     O2      O       OH1     0       -2.643      -21.387     4.291       
+NDJ     C2      C       CH1     0       -3.450      -21.119     5.433       
+NDJ     C3      C       CH1     0       -2.624      -21.191     6.713       
+NDJ     O3      O       OH1     0       -1.698      -20.101     6.726       
+NDJ     C1      C       CH2     0       -4.614      -22.100     5.446       
+NDJ     N5      N       NR6     0       -5.435      -21.896     6.650       
+NDJ     C5      C       CH1     0       -4.662      -22.142     7.897       
+NDJ     C6      C       CH2     0       -5.453      -22.211     9.200       
+NDJ     O6      O       OH1     0       -4.658      -22.789     10.231      
+NDJ     C4      C       CH1     0       -3.495      -21.150     7.976       
+NDJ     O4      O       OH1     0       -4.026      -19.846     8.202       
+NDJ     C7      C       C       0       -6.780      -21.676     6.587       
+NDJ     N8      N       NH1     0       -7.264      -20.697     7.356       
+NDJ     S7      S       S1      0       -7.761      -22.493     5.478       
+NDJ     C9      C       CH2     0       -8.687      -20.392     7.544       
+NDJ     C10     C       CH2     0       -9.377      -21.393     8.455       
+NDJ     C11     C       CH2     0       -10.795     -20.983     8.823       
+NDJ     C12     C       CH3     0       -11.301     -21.667     10.071      
+NDJ     H1      H       H       0       -2.147      -20.719     4.167       
+NDJ     H2      H       H       0       -3.803      -20.211     5.347       
+NDJ     H3      H       H       0       -2.107      -22.036     6.714       
+NDJ     H4      H       H       0       -1.117      -20.244     7.317       
+NDJ     H5      H       H       0       -4.268      -23.006     5.439       
+NDJ     H6      H       H       0       -5.146      -21.959     4.648       
+NDJ     H7      H       H       0       -4.255      -23.038     7.788       
+NDJ     H8      H       H       0       -6.256      -22.755     9.064       
+NDJ     H9      H       H       0       -5.732      -21.312     9.466       
+NDJ     H10     H       H       0       -5.144      -22.864     10.923      
+NDJ     H11     H       H       0       -2.934      -21.409     8.738       
+NDJ     H12     H       H       0       -4.403      -19.566     7.508       
+NDJ     H13     H       H       0       -6.684      -20.145     7.749       
+NDJ     H14     H       H       0       -9.141      -20.371     6.676       
+NDJ     H15     H       H       0       -8.765      -19.497     7.938       
+NDJ     H16     H       H       0       -8.845      -21.490     9.274       
+NDJ     H17     H       H       0       -9.399      -22.265     8.008       
+NDJ     H18     H       H       0       -11.395     -21.199     8.076       
+NDJ     H19     H       H       0       -10.825     -20.011     8.960       
+NDJ     H20     H       H       0       -12.241     -21.453     10.202      
+NDJ     H21     H       H       0       -10.790     -21.361     10.840      
+NDJ     H22     H       H       0       -11.199     -22.630     9.979       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NDJ          O2          C2      SINGLE       n     1.424  0.0100     1.424  0.0100
+NDJ          C7          S7      DOUBLE       n     1.679  0.0173     1.679  0.0173
+NDJ          C2          C1      SINGLE       n     1.519  0.0107     1.519  0.0107
+NDJ          C1          N5      SINGLE       n     1.466  0.0100     1.466  0.0100
+NDJ          C2          C3      SINGLE       n     1.521  0.0100     1.521  0.0100
+NDJ          N5          C7      SINGLE       n     1.341  0.0149     1.341  0.0149
+NDJ          C7          N8      SINGLE       n     1.304  0.0200     1.304  0.0200
+NDJ          N5          C5      SINGLE       n     1.477  0.0100     1.477  0.0100
+NDJ          C3          O3      SINGLE       n     1.430  0.0100     1.430  0.0100
+NDJ          C3          C4      SINGLE       n     1.521  0.0165     1.521  0.0165
+NDJ          N8          C9      SINGLE       n     1.461  0.0143     1.461  0.0143
+NDJ          C9         C10      SINGLE       n     1.517  0.0143     1.517  0.0143
+NDJ          C5          C4      SINGLE       n     1.529  0.0100     1.529  0.0100
+NDJ          C5          C6      SINGLE       n     1.519  0.0100     1.519  0.0100
+NDJ          C4          O4      SINGLE       n     1.423  0.0100     1.423  0.0100
+NDJ         C10         C11      SINGLE       n     1.520  0.0176     1.520  0.0176
+NDJ         C11         C12      SINGLE       n     1.510  0.0200     1.510  0.0200
+NDJ          C6          O6      SINGLE       n     1.425  0.0187     1.425  0.0187
+NDJ          O2          H1      SINGLE       n     0.970  0.0120     0.841  0.0200
+NDJ          C2          H2      SINGLE       n     1.089  0.0100     0.978  0.0167
+NDJ          C3          H3      SINGLE       n     1.089  0.0100     0.990  0.0200
+NDJ          O3          H4      SINGLE       n     0.970  0.0120     0.841  0.0200
+NDJ          C1          H5      SINGLE       n     1.089  0.0100     0.970  0.0100
+NDJ          C1          H6      SINGLE       n     1.089  0.0100     0.970  0.0100
+NDJ          C5          H7      SINGLE       n     1.089  0.0100     0.990  0.0117
+NDJ          C6          H8      SINGLE       n     1.089  0.0100     0.980  0.0170
+NDJ          C6          H9      SINGLE       n     1.089  0.0100     0.980  0.0170
+NDJ          O6         H10      SINGLE       n     0.970  0.0120     0.848  0.0200
+NDJ          C4         H11      SINGLE       n     1.089  0.0100     0.982  0.0200
+NDJ          O4         H12      SINGLE       n     0.970  0.0120     0.841  0.0200
+NDJ          N8         H13      SINGLE       n     1.016  0.0100     0.893  0.0200
+NDJ          C9         H14      SINGLE       n     1.089  0.0100     0.981  0.0152
+NDJ          C9         H15      SINGLE       n     1.089  0.0100     0.981  0.0152
+NDJ         C10         H16      SINGLE       n     1.089  0.0100     0.981  0.0160
+NDJ         C10         H17      SINGLE       n     1.089  0.0100     0.981  0.0160
+NDJ         C11         H18      SINGLE       n     1.089  0.0100     0.982  0.0155
+NDJ         C11         H19      SINGLE       n     1.089  0.0100     0.982  0.0155
+NDJ         C12         H20      SINGLE       n     1.089  0.0100     0.973  0.0157
+NDJ         C12         H21      SINGLE       n     1.089  0.0100     0.973  0.0157
+NDJ         C12         H22      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NDJ          C2          O2          H1     107.637    2.41
+NDJ          O2          C2          C1     109.653    2.18
+NDJ          O2          C2          C3     111.445    1.50
+NDJ          O2          C2          H2     109.251    2.36
+NDJ          C1          C2          C3     110.559    1.78
+NDJ          C1          C2          H2     109.232    1.50
+NDJ          C3          C2          H2     108.539    1.50
+NDJ          C2          C3          O3     109.464    2.12
+NDJ          C2          C3          C4     110.796    1.54
+NDJ          C2          C3          H3     109.462    1.50
+NDJ          O3          C3          C4     110.081    2.02
+NDJ          O3          C3          H3     108.767    1.50
+NDJ          C4          C3          H3     109.166    1.50
+NDJ          C3          O3          H4     108.895    2.41
+NDJ          C2          C1          N5     110.160    1.50
+NDJ          C2          C1          H5     109.333    1.50
+NDJ          C2          C1          H6     109.333    1.50
+NDJ          N5          C1          H5     109.531    1.50
+NDJ          N5          C1          H6     109.531    1.50
+NDJ          H5          C1          H6     109.290    1.64
+NDJ          C1          N5          C7     123.360    1.82
+NDJ          C1          N5          C5     115.482    1.50
+NDJ          C7          N5          C5     121.158    2.23
+NDJ          N5          C5          C4     110.160    1.50
+NDJ          N5          C5          C6     110.271    2.01
+NDJ          N5          C5          H7     107.415    1.50
+NDJ          C4          C5          C6     111.706    1.78
+NDJ          C4          C5          H7     107.957    1.50
+NDJ          C6          C5          H7     107.660    1.50
+NDJ          C5          C6          O6     110.487    1.50
+NDJ          C5          C6          H8     109.076    1.50
+NDJ          C5          C6          H9     109.076    1.50
+NDJ          O6          C6          H8     109.894    1.50
+NDJ          O6          C6          H9     109.894    1.50
+NDJ          H8          C6          H9     108.331    1.50
+NDJ          C6          O6         H10     107.864    2.31
+NDJ          C3          C4          C5     112.745    1.50
+NDJ          C3          C4          O4     110.081    2.02
+NDJ          C3          C4         H11     109.166    1.50
+NDJ          C5          C4          O4     107.407    1.50
+NDJ          C5          C4         H11     108.784    1.50
+NDJ          O4          C4         H11     110.494    1.50
+NDJ          C4          O4         H12     105.772    3.00
+NDJ          S7          C7          N5     122.411    1.52
+NDJ          S7          C7          N8     121.289    1.50
+NDJ          N5          C7          N8     116.300    1.50
+NDJ          C7          N8          C9     122.645    1.69
+NDJ          C7          N8         H13     118.833    2.17
+NDJ          C9          N8         H13     118.522    1.89
+NDJ          N8          C9         C10     112.211    1.50
+NDJ          N8          C9         H14     109.052    1.50
+NDJ          N8          C9         H15     109.052    1.50
+NDJ         C10          C9         H14     109.197    1.51
+NDJ         C10          C9         H15     109.197    1.51
+NDJ         H14          C9         H15     107.877    1.50
+NDJ          C9         C10         C11     112.919    1.70
+NDJ          C9         C10         H16     108.956    1.50
+NDJ          C9         C10         H17     108.956    1.50
+NDJ         C11         C10         H16     109.463    1.50
+NDJ         C11         C10         H17     109.463    1.50
+NDJ         H16         C10         H17     107.927    1.57
+NDJ         C10         C11         C12     112.927    1.64
+NDJ         C10         C11         H18     108.966    1.50
+NDJ         C10         C11         H19     108.966    1.50
+NDJ         C12         C11         H18     108.918    1.50
+NDJ         C12         C11         H19     108.918    1.50
+NDJ         H18         C11         H19     107.763    1.50
+NDJ         C11         C12         H20     109.554    1.50
+NDJ         C11         C12         H21     109.554    1.50
+NDJ         C11         C12         H22     109.554    1.50
+NDJ         H20         C12         H21     109.380    1.50
+NDJ         H20         C12         H22     109.380    1.50
+NDJ         H21         C12         H22     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NDJ            sp3_sp3_28          C1          C2          O2          H1     180.000    10.0     3
+NDJ             sp2_sp2_7          S7          C7          N8          C9       0.000     5.0     2
+NDJ            sp2_sp3_14          C7          N8          C9         C10     120.000    10.0     6
+NDJ            sp3_sp3_43         C11         C10          C9          N8     180.000    10.0     3
+NDJ            sp3_sp3_64          C9         C10         C11         C12     180.000    10.0     3
+NDJ            sp3_sp3_73         C10         C11         C12         H20     180.000    10.0     3
+NDJ            sp3_sp3_35          O2          C2          C3          O3     180.000    10.0     3
+NDJ             sp3_sp3_2          N5          C1          C2          O2     180.000    10.0     3
+NDJ            sp3_sp3_40          C2          C3          O3          H4     180.000    10.0     3
+NDJ            sp3_sp3_23          O3          C3          C4          O4      60.000    10.0     3
+NDJ             sp2_sp3_4          C7          N5          C1          C2     180.000    10.0     6
+NDJ             sp2_sp2_3          S7          C7          N5          C1       0.000     5.0     2
+NDJ            sp2_sp3_11          C7          N5          C5          C6     -60.000    10.0     6
+NDJ            sp3_sp3_52          N5          C5          C6          O6     180.000    10.0     3
+NDJ            sp3_sp3_14          O4          C4          C5          C6     -60.000    10.0     3
+NDJ            sp3_sp3_82          C5          C6          O6         H10     180.000    10.0     3
+NDJ            sp3_sp3_61          C3          C4          O4         H12     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NDJ    chir_1    C2    O2    C3    C1    positive
+NDJ    chir_2    C3    O3    C4    C2    negative
+NDJ    chir_3    C5    N5    C4    C6    negative
+NDJ    chir_4    C4    O4    C3    C5    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NDJ    plan-1          C1   0.020
+NDJ    plan-1          C5   0.020
+NDJ    plan-1          C7   0.020
+NDJ    plan-1          N5   0.020
+NDJ    plan-2          C7   0.020
+NDJ    plan-2          N5   0.020
+NDJ    plan-2          N8   0.020
+NDJ    plan-2          S7   0.020
+NDJ    plan-3          C7   0.020
+NDJ    plan-3          C9   0.020
+NDJ    plan-3         H13   0.020
+NDJ    plan-3          N8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NDJ           SMILES              ACDLabs 12.01                                                                                            S=C(NCCCC)N1C(C(O)C(O)C(O)C1)CO
+NDJ            InChI                InChI  1.03 InChI=1S/C11H22N2O4S/c1-2-3-4-12-11(18)13-5-8(15)10(17)9(16)7(13)6-14/h7-10,14-17H,2-6H2,1H3,(H,12,18)/t7-,8+,9+,10-/m1/s1
+NDJ         InChIKey                InChI  1.03                                                                                                VCRXDLDGTLMSHK-XFWSIPNHSA-N
+NDJ SMILES_CANONICAL               CACTVS 3.385                                                                            CCCCNC(=S)N1C[C@H](O)[C@@H](O)[C@@H](O)[C@H]1CO
+NDJ           SMILES               CACTVS 3.385                                                                                  CCCCNC(=S)N1C[CH](O)[CH](O)[CH](O)[CH]1CO
+NDJ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                             CCCCNC(=S)N1C[C@@H]([C@H]([C@H]([C@H]1CO)O)O)O
+NDJ           SMILES "OpenEye OEToolkits" 1.7.6                                                                                              CCCCNC(=S)N1CC(C(C(C1CO)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NDJ acedrg               243         "dictionary generator"                  
+NDJ acedrg_database      11          "data source"                           
+NDJ rdkit                2017.03.2   "Chemoinformatics tool"
+NDJ refmac5              5.8.0238    "optimization tool"                     

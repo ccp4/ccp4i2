@@ -1,0 +1,333 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GA9     GA9      3,3-BIS(3-BROMO-4-HYDROXYPHENYL)-7-CHLORO-1H,3H-BENZO[DE]ISOCHROMEN-1-ONE     NON-POLYMER     44     31     .     
+#
+data_comp_GA9
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GA9     C1      C       CR6     0       -45.416     10.496      50.061      
+GA9     C2      C       CR66    0       -44.164     11.251      49.883      
+GA9     C3      C       CR16    0       -43.239     10.865      48.940      
+GA9     C4      C       CR16    0       -42.047     11.593      48.769      
+GA9     C5      C       CR6     0       -41.781     12.708      49.535      
+GA9     C6      C       CR66    0       -42.709     13.148      50.522      
+GA9     C7      C       CR16    0       -42.497     14.285      51.344      
+GA9     C8      C       CR16    0       -43.423     14.666      52.278      
+GA9     C9      C       CR16    0       -44.622     13.934      52.450      
+GA9     C10     C       CR66    0       -44.896     12.809      51.665      
+GA9     C11     C       C       0       -43.936     12.391      50.694      
+GA9     C12     C       CT      0       -46.202     11.989      51.862      
+GA9     C13     C       CR6     0       -46.137     10.989      53.031      
+GA9     C14     C       CR16    0       -45.040     10.890      53.886      
+GA9     C15     C       CR6     0       -45.037     9.968       54.915      
+GA9     C16     C       CR6     0       -46.113     9.106       55.135      
+GA9     C17     C       CR16    0       -47.203     9.202       54.281      
+GA9     C18     C       CR16    0       -47.210     10.126      53.245      
+GA9     C19     C       CR6     0       -47.416     12.932      51.943      
+GA9     C20     C       CR16    0       -47.939     13.346      53.168      
+GA9     C21     C       CR6     0       -49.024     14.199      53.214      
+GA9     C22     C       CR6     0       -49.626     14.689      52.053      
+GA9     C23     C       CR16    0       -49.099     14.287      50.834      
+GA9     C24     C       CR16    0       -48.008     13.429      50.782      
+GA9     O1      O       O2      0       -46.427     11.144      50.709      
+GA9     O2      O       O       0       -45.621     9.352       49.690      
+GA9     O4      O       OH1     0       -50.704     15.540      52.110      
+GA9     O3      O       OH1     0       -46.098     8.193       56.163      
+GA9     BR1     BR      BR      0       -43.524     9.873       56.059      
+GA9     BR2     BR      BR      0       -49.711     14.722      54.906      
+GA9     CL3     CL      CL      0       -40.286     13.540      49.251      
+GA9     H3      H       H       0       -43.404     10.106      48.406      
+GA9     H4      H       H       0       -41.424     11.312      48.119      
+GA9     H7      H       H       0       -41.706     14.790      51.248      
+GA9     H8      H       H       0       -43.256     15.433      52.818      
+GA9     H9      H       H       0       -45.241     14.211      53.100      
+GA9     H14     H       H       0       -44.297     11.454      53.768      
+GA9     H17     H       H       0       -47.941     8.633       54.408      
+GA9     H18     H       H       0       -47.966     10.171      52.679      
+GA9     H20     H       H       0       -47.557     13.036      53.969      
+GA9     H23     H       H       0       -49.486     14.603      50.037      
+GA9     H24     H       H       0       -47.672     13.174      49.937      
+GA9     HO4     H       H       0       -50.888     16.051      51.442      
+GA9     HO3     H       H       0       -46.769     7.669       56.292      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GA9          C1          C2      SINGLE       n     1.471  0.0140     1.471  0.0140
+GA9          C1          O1      SINGLE       n     1.352  0.0181     1.352  0.0181
+GA9          C1          O2      DOUBLE       n     1.219  0.0149     1.219  0.0149
+GA9          C2          C3      SINGLE       y     1.372  0.0100     1.372  0.0100
+GA9          C2         C11      DOUBLE       y     1.414  0.0164     1.414  0.0164
+GA9          C3          C4      DOUBLE       y     1.398  0.0129     1.398  0.0129
+GA9          C4          C5      SINGLE       y     1.365  0.0155     1.365  0.0155
+GA9          C5          C6      DOUBLE       y     1.415  0.0126     1.415  0.0126
+GA9          C5         CL3      SINGLE       n     1.733  0.0132     1.733  0.0132
+GA9          C6          C7      SINGLE       y     1.415  0.0100     1.415  0.0100
+GA9          C6         C11      SINGLE       y     1.438  0.0200     1.438  0.0200
+GA9          C7          C8      DOUBLE       y     1.362  0.0124     1.362  0.0124
+GA9          C8          C9      SINGLE       y     1.411  0.0100     1.411  0.0100
+GA9          C9         C10      DOUBLE       y     1.393  0.0100     1.393  0.0100
+GA9         C10         C11      SINGLE       y     1.407  0.0200     1.407  0.0200
+GA9         C10         C12      SINGLE       n     1.535  0.0135     1.535  0.0135
+GA9         C12         C13      SINGLE       n     1.529  0.0100     1.529  0.0100
+GA9         C12         C19      SINGLE       n     1.529  0.0100     1.529  0.0100
+GA9         C12          O1      SINGLE       n     1.434  0.0134     1.434  0.0134
+GA9         C13         C14      DOUBLE       y     1.386  0.0100     1.386  0.0100
+GA9         C13         C18      SINGLE       y     1.386  0.0100     1.386  0.0100
+GA9         C14         C15      SINGLE       y     1.378  0.0100     1.378  0.0100
+GA9         C15         C16      DOUBLE       y     1.393  0.0117     1.393  0.0117
+GA9         C15         BR1      SINGLE       n     1.899  0.0105     1.899  0.0105
+GA9         C16         C17      SINGLE       y     1.385  0.0100     1.385  0.0100
+GA9         C16          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+GA9         C17         C18      DOUBLE       y     1.385  0.0100     1.385  0.0100
+GA9         C19         C20      DOUBLE       y     1.386  0.0100     1.386  0.0100
+GA9         C19         C24      SINGLE       y     1.386  0.0100     1.386  0.0100
+GA9         C20         C21      SINGLE       y     1.378  0.0100     1.378  0.0100
+GA9         C21         C22      DOUBLE       y     1.393  0.0117     1.393  0.0117
+GA9         C21         BR2      SINGLE       n     1.899  0.0105     1.899  0.0105
+GA9         C22         C23      SINGLE       y     1.385  0.0100     1.385  0.0100
+GA9         C22          O4      SINGLE       n     1.374  0.0155     1.374  0.0155
+GA9         C23         C24      DOUBLE       y     1.385  0.0100     1.385  0.0100
+GA9          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0168
+GA9          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0168
+GA9          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0114
+GA9          C8          H8      SINGLE       n     1.082  0.0130     0.953  0.0200
+GA9          C9          H9      SINGLE       n     1.082  0.0130     0.940  0.0172
+GA9         C14         H14      SINGLE       n     1.082  0.0130     0.941  0.0100
+GA9         C17         H17      SINGLE       n     1.082  0.0130     0.940  0.0112
+GA9         C18         H18      SINGLE       n     1.082  0.0130     0.945  0.0100
+GA9         C20         H20      SINGLE       n     1.082  0.0130     0.941  0.0100
+GA9         C23         H23      SINGLE       n     1.082  0.0130     0.940  0.0112
+GA9         C24         H24      SINGLE       n     1.082  0.0130     0.945  0.0100
+GA9          O4         HO4      SINGLE       n     0.966  0.0059     0.861  0.0200
+GA9          O3         HO3      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GA9          C2          C1          O1     117.223    1.50
+GA9          C2          C1          O2     125.285    1.50
+GA9          O1          C1          O2     117.492    1.50
+GA9          C1          C2          C3     119.452    1.50
+GA9          C1          C2         C11     119.804    1.50
+GA9          C3          C2         C11     120.744    1.50
+GA9          C2          C3          C4     120.159    1.50
+GA9          C2          C3          H3     119.839    1.50
+GA9          C4          C3          H3     120.003    1.50
+GA9          C3          C4          C5     120.004    1.50
+GA9          C3          C4          H4     119.747    1.50
+GA9          C5          C4          H4     120.250    1.50
+GA9          C4          C5          C6     120.389    1.50
+GA9          C4          C5         CL3     118.828    1.93
+GA9          C6          C5         CL3     120.783    1.91
+GA9          C5          C6          C7     122.058    1.75
+GA9          C5          C6         C11     119.058    1.50
+GA9          C7          C6         C11     118.883    1.50
+GA9          C6          C7          C8     120.794    1.50
+GA9          C6          C7          H7     119.492    1.50
+GA9          C8          C7          H7     119.714    1.50
+GA9          C7          C8          C9     120.075    1.50
+GA9          C7          C8          H8     119.858    1.50
+GA9          C9          C8          H8     120.067    1.50
+GA9          C8          C9         C10     120.677    1.50
+GA9          C8          C9          H9     119.923    1.50
+GA9         C10          C9          H9     119.400    1.50
+GA9          C9         C10         C11     120.219    1.50
+GA9          C9         C10         C12     119.713    1.74
+GA9         C11         C10         C12     120.068    1.50
+GA9          C2         C11          C6     119.646    1.50
+GA9          C2         C11         C10     121.003    1.55
+GA9          C6         C11         C10     119.351    1.50
+GA9         C10         C12         C13     112.019    2.15
+GA9         C10         C12         C19     112.019    2.15
+GA9         C10         C12          O1     110.720    1.50
+GA9         C13         C12         C19     112.320    1.95
+GA9         C13         C12          O1     107.436    1.75
+GA9         C19         C12          O1     107.436    1.75
+GA9         C12         C13         C14     120.529    1.99
+GA9         C12         C13         C18     120.529    1.99
+GA9         C14         C13         C18     118.942    1.50
+GA9         C13         C14         C15     120.140    1.50
+GA9         C13         C14         H14     119.505    1.50
+GA9         C15         C14         H14     120.355    1.50
+GA9         C14         C15         C16     121.843    1.50
+GA9         C14         C15         BR1     119.086    1.50
+GA9         C16         C15         BR1     119.071    1.50
+GA9         C15         C16         C17     117.867    1.50
+GA9         C15         C16          O3     121.067    3.00
+GA9         C17         C16          O3     121.067    3.00
+GA9         C16         C17         C18     120.200    1.50
+GA9         C16         C17         H17     119.662    1.50
+GA9         C18         C17         H17     120.138    1.50
+GA9         C13         C18         C17     121.008    1.50
+GA9         C13         C18         H18     119.630    1.50
+GA9         C17         C18         H18     119.362    1.50
+GA9         C12         C19         C20     120.529    1.99
+GA9         C12         C19         C24     120.529    1.99
+GA9         C20         C19         C24     118.942    1.50
+GA9         C19         C20         C21     120.140    1.50
+GA9         C19         C20         H20     119.505    1.50
+GA9         C21         C20         H20     120.355    1.50
+GA9         C20         C21         C22     121.843    1.50
+GA9         C20         C21         BR2     119.086    1.50
+GA9         C22         C21         BR2     119.071    1.50
+GA9         C21         C22         C23     117.867    1.50
+GA9         C21         C22          O4     121.067    3.00
+GA9         C23         C22          O4     121.067    3.00
+GA9         C22         C23         C24     120.200    1.50
+GA9         C22         C23         H23     119.662    1.50
+GA9         C24         C23         H23     120.138    1.50
+GA9         C19         C24         C23     121.008    1.50
+GA9         C19         C24         H24     119.630    1.50
+GA9         C23         C24         H24     119.362    1.50
+GA9          C1          O1         C12     119.296    2.75
+GA9         C22          O4         HO4     120.000    3.00
+GA9         C16          O3         HO3     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GA9             sp2_sp2_4          O2          C1          C2          C3       0.000     5.0     2
+GA9             sp2_sp2_6          O2          C1          O1         C12     180.000     5.0     2
+GA9             sp2_sp3_7         C14         C13         C12         C10     150.000    10.0     6
+GA9            sp2_sp3_14         C20         C19         C12         C10     -90.000    10.0     6
+GA9             sp3_sp3_1         C10         C12          O1          C1      60.000    10.0     3
+GA9              const_47         C12         C13         C14         C15     180.000    10.0     2
+GA9              const_87         C12         C13         C18         C17     180.000    10.0     2
+GA9              const_50         C13         C14         C15         BR1     180.000    10.0     2
+GA9              const_56         BR1         C15         C16          O3       0.000    10.0     2
+GA9              const_59          O3         C16         C17         C18     180.000    10.0     2
+GA9             sp2_sp2_7         C15         C16          O3         HO3     180.000     5.0     2
+GA9              const_61         C16         C17         C18         C13       0.000    10.0     2
+GA9              const_67         C12         C19         C20         C21     180.000    10.0     2
+GA9              const_91         C12         C19         C24         C23     180.000    10.0     2
+GA9              const_70         C19         C20         C21         BR2     180.000    10.0     2
+GA9       const_sp2_sp2_2          C6         C11          C2          C1     180.000     5.0     2
+GA9              const_27          C1          C2          C3          C4     180.000    10.0     2
+GA9              const_76         BR2         C21         C22          O4       0.000    10.0     2
+GA9              const_79          O4         C22         C23         C24     180.000    10.0     2
+GA9             sp2_sp2_9         C21         C22          O4         HO4     180.000     5.0     2
+GA9              const_81         C22         C23         C24         C19       0.000    10.0     2
+GA9              const_29          C2          C3          C4          C5       0.000    10.0     2
+GA9              const_34          C3          C4          C5         CL3     180.000    10.0     2
+GA9              const_40         CL3          C5          C6          C7       0.000    10.0     2
+GA9              const_41          C2         C11          C6          C5       0.000    10.0     2
+GA9              const_11          C5          C6          C7          C8     180.000    10.0     2
+GA9              const_13          C6          C7          C8          C9       0.000    10.0     2
+GA9              const_17          C7          C8          C9         C10       0.000    10.0     2
+GA9              const_21         C11         C10          C9          C8       0.000    10.0     2
+GA9       const_sp2_sp2_6          C9         C10         C11          C2     180.000     5.0     2
+GA9             sp2_sp3_5          C9         C10         C12         C13     -60.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GA9    chir_1    C12    O1    C10    C13    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GA9    plan-1          C1   0.020
+GA9    plan-1         C10   0.020
+GA9    plan-1         C11   0.020
+GA9    plan-1         C12   0.020
+GA9    plan-1          C2   0.020
+GA9    plan-1          C3   0.020
+GA9    plan-1          C4   0.020
+GA9    plan-1          C5   0.020
+GA9    plan-1          C6   0.020
+GA9    plan-1          C7   0.020
+GA9    plan-1          C8   0.020
+GA9    plan-1          C9   0.020
+GA9    plan-1         CL3   0.020
+GA9    plan-1          H3   0.020
+GA9    plan-1          H4   0.020
+GA9    plan-1          H7   0.020
+GA9    plan-1          H8   0.020
+GA9    plan-1          H9   0.020
+GA9    plan-2         BR1   0.020
+GA9    plan-2         C12   0.020
+GA9    plan-2         C13   0.020
+GA9    plan-2         C14   0.020
+GA9    plan-2         C15   0.020
+GA9    plan-2         C16   0.020
+GA9    plan-2         C17   0.020
+GA9    plan-2         C18   0.020
+GA9    plan-2         H14   0.020
+GA9    plan-2         H17   0.020
+GA9    plan-2         H18   0.020
+GA9    plan-2          O3   0.020
+GA9    plan-3         BR2   0.020
+GA9    plan-3         C12   0.020
+GA9    plan-3         C19   0.020
+GA9    plan-3         C20   0.020
+GA9    plan-3         C21   0.020
+GA9    plan-3         C22   0.020
+GA9    plan-3         C23   0.020
+GA9    plan-3         C24   0.020
+GA9    plan-3         H20   0.020
+GA9    plan-3         H23   0.020
+GA9    plan-3         H24   0.020
+GA9    plan-3          O4   0.020
+GA9    plan-4          C1   0.020
+GA9    plan-4          C2   0.020
+GA9    plan-4          O1   0.020
+GA9    plan-4          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GA9           SMILES              ACDLabs 10.04                                                                           Brc1c(O)ccc(c1)C4(OC(=O)c2c3c(c(Cl)cc2)cccc34)c5ccc(O)c(Br)c5
+GA9 SMILES_CANONICAL               CACTVS 3.341                                                                               Oc1ccc(cc1Br)C2(OC(=O)c3ccc(Cl)c4cccc2c34)c5ccc(O)c(Br)c5
+GA9           SMILES               CACTVS 3.341                                                                               Oc1ccc(cc1Br)C2(OC(=O)c3ccc(Cl)c4cccc2c34)c5ccc(O)c(Br)c5
+GA9 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                           c1cc2c(ccc3c2c(c1)C(OC3=O)(c4ccc(c(c4)Br)O)c5ccc(c(c5)Br)O)Cl
+GA9           SMILES "OpenEye OEToolkits" 1.5.0                                                                           c1cc2c(ccc3c2c(c1)C(OC3=O)(c4ccc(c(c4)Br)O)c5ccc(c(c5)Br)O)Cl
+GA9            InChI                InChI  1.03 InChI=1S/C24H13Br2ClO4/c25-17-10-12(4-8-20(17)28)24(13-5-9-21(29)18(26)11-13)16-3-1-2-14-19(27)7-6-15(22(14)16)23(30)31-24/h1-11,28-29H
+GA9         InChIKey                InChI  1.03                                                                                                             GFGZCXHXQCQRFP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GA9 acedrg               243         "dictionary generator"                  
+GA9 acedrg_database      11          "data source"                           
+GA9 rdkit                2017.03.2   "Chemoinformatics tool"
+GA9 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,178 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KPH     KPH      "[(1R)-1,5-diaminopentyl]phosphonic acid"     NON-POLYMER     24     11     .     
+#
+data_comp_KPH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KPH     O1      O       O       0       -0.215      2.535       0.733       
+KPH     P1      P       P       0       0.051       1.150       1.220       
+KPH     O2      O       OP      -1      -0.863      0.773       2.336       
+KPH     C1      C       CH1     0       -0.298      0.015       -0.159      
+KPH     N1      N       NT2     0       0.443       0.379       -1.380      
+KPH     C2      C       CH2     0       0.022       -1.427      0.245       
+KPH     C3      C       CH2     0       -0.421      -2.482      -0.761      
+KPH     C4      C       CH2     0       -0.202      -3.906      -0.296      
+KPH     C5      C       CH2     0       -0.620      -4.950      -1.319      
+KPH     N2      N       NT2     0       -0.507      -6.337      -0.857      
+KPH     O3      O       OP      -1      1.482       0.960       1.589       
+KPH     H2      H       H       0       -1.260      0.067       -0.367      
+KPH     H3      H       H       0       0.036       0.021       -2.104      
+KPH     H4      H       H       0       0.437       1.278       -1.491      
+KPH     H5      H       H       0       -0.411      -1.611      1.104       
+KPH     H6      H       H       0       0.990       -1.505      0.376       
+KPH     H7      H       H       0       0.069       -2.344      -1.599      
+KPH     H8      H       H       0       -1.375      -2.356      -0.951      
+KPH     H9      H       H       0       -0.711      -4.055      0.529       
+KPH     H10     H       H       0       0.749       -4.032      -0.090      
+KPH     H11     H       H       0       -0.066      -4.841      -2.119      
+KPH     H12     H       H       0       -1.549      -4.780      -1.575      
+KPH     H13     H       H       0       -0.484      -6.898      -1.545      
+KPH     H14     H       H       0       0.241       -6.457      -0.394      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KPH          O1          P1      DOUBLE       n     1.492  0.0200     1.492  0.0200
+KPH          P1          O2      SINGLE       n     1.492  0.0200     1.492  0.0200
+KPH          P1          C1      SINGLE       n     1.820  0.0200     1.820  0.0200
+KPH          C1          N1      SINGLE       n     1.473  0.0130     1.473  0.0130
+KPH          C1          C2      SINGLE       n     1.532  0.0129     1.532  0.0129
+KPH          C2          C3      SINGLE       n     1.523  0.0117     1.523  0.0117
+KPH          C3          C4      SINGLE       n     1.514  0.0200     1.514  0.0200
+KPH          C4          C5      SINGLE       n     1.521  0.0102     1.521  0.0102
+KPH          C5          N2      SINGLE       n     1.466  0.0117     1.466  0.0117
+KPH          P1          O3      SINGLE       n     1.492  0.0200     1.492  0.0200
+KPH          C1          H2      SINGLE       n     1.089  0.0100     0.986  0.0200
+KPH          N1          H3      SINGLE       n     1.036  0.0160     0.905  0.0200
+KPH          N1          H4      SINGLE       n     1.036  0.0160     0.905  0.0200
+KPH          C2          H5      SINGLE       n     1.089  0.0100     0.980  0.0160
+KPH          C2          H6      SINGLE       n     1.089  0.0100     0.980  0.0160
+KPH          C3          H7      SINGLE       n     1.089  0.0100     0.981  0.0163
+KPH          C3          H8      SINGLE       n     1.089  0.0100     0.981  0.0163
+KPH          C4          H9      SINGLE       n     1.089  0.0100     0.981  0.0160
+KPH          C4         H10      SINGLE       n     1.089  0.0100     0.981  0.0160
+KPH          C5         H11      SINGLE       n     1.089  0.0100     0.979  0.0106
+KPH          C5         H12      SINGLE       n     1.089  0.0100     0.979  0.0106
+KPH          N2         H13      SINGLE       n     1.036  0.0160     0.888  0.0200
+KPH          N2         H14      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KPH          O1          P1          O2     112.502    1.50
+KPH          O1          P1          C1     110.326    3.00
+KPH          O1          P1          O3     112.502    1.50
+KPH          O2          P1          C1     110.326    3.00
+KPH          O2          P1          O3     112.502    1.50
+KPH          C1          P1          O3     110.326    3.00
+KPH          P1          C1          N1     112.238    3.00
+KPH          P1          C1          C2     111.410    2.87
+KPH          P1          C1          H2     108.528    1.50
+KPH          N1          C1          C2     110.463    2.65
+KPH          N1          C1          H2     107.944    1.55
+KPH          C2          C1          H2     108.236    1.50
+KPH          C1          N1          H3     109.715    3.00
+KPH          C1          N1          H4     109.715    3.00
+KPH          H3          N1          H4     107.163    3.00
+KPH          C1          C2          C3     114.535    1.69
+KPH          C1          C2          H5     108.507    1.50
+KPH          C1          C2          H6     108.507    1.50
+KPH          C3          C2          H5     108.801    1.50
+KPH          C3          C2          H6     108.801    1.50
+KPH          H5          C2          H6     107.715    1.50
+KPH          C2          C3          C4     114.183    2.57
+KPH          C2          C3          H7     108.801    1.50
+KPH          C2          C3          H8     108.801    1.50
+KPH          C4          C3          H7     108.806    1.50
+KPH          C4          C3          H8     108.806    1.50
+KPH          H7          C3          H8     107.646    1.50
+KPH          C3          C4          C5     113.515    1.50
+KPH          C3          C4          H9     109.041    1.50
+KPH          C3          C4         H10     109.041    1.50
+KPH          C5          C4          H9     108.630    1.50
+KPH          C5          C4         H10     108.630    1.50
+KPH          H9          C4         H10     107.927    1.57
+KPH          C4          C5          N2     114.751    2.00
+KPH          C4          C5         H11     108.627    1.50
+KPH          C4          C5         H12     108.627    1.50
+KPH          N2          C5         H11     108.763    1.50
+KPH          N2          C5         H12     108.763    1.50
+KPH         H11          C5         H12     107.806    1.50
+KPH          C5          N2         H13     110.839    3.00
+KPH          C5          N2         H14     110.839    3.00
+KPH         H13          N2         H14     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KPH             sp3_sp3_3          N1          C1          P1          O1      60.000    10.0     3
+KPH            sp3_sp3_10          P1          C1          N1          H3     180.000    10.0     3
+KPH            sp3_sp3_16          P1          C1          C2          C3     180.000    10.0     3
+KPH            sp3_sp3_25          C1          C2          C3          C4     180.000    10.0     3
+KPH            sp3_sp3_34          C2          C3          C4          C5     180.000    10.0     3
+KPH            sp3_sp3_43          C3          C4          C5          N2     180.000    10.0     3
+KPH            sp3_sp3_52          C4          C5          N2         H13     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KPH    chir_1    P1    O2    O3    O1    both
+KPH    chir_2    C1    P1    N1    C2    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KPH           SMILES              ACDLabs 10.04                                                               O=P(O)(O)C(N)CCCCN
+KPH SMILES_CANONICAL               CACTVS 3.341                                                         NCCCC[C@H](N)[P](O)(O)=O
+KPH           SMILES               CACTVS 3.341                                                          NCCCC[CH](N)[P](O)(O)=O
+KPH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                         C(CCN)C[C@H](N)P(=O)(O)O
+KPH           SMILES "OpenEye OEToolkits" 1.5.0                                                             C(CCN)CC(N)P(=O)(O)O
+KPH            InChI                InChI  1.03 InChI=1S/C5H15N2O3P/c6-4-2-1-3-5(7)11(8,9)10/h5H,1-4,6-7H2,(H2,8,9,10)/t5-/m1/s1
+KPH         InChIKey                InChI  1.03                                                      LKFHLBGDPDYWSG-RXMQYKEDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KPH acedrg               243         "dictionary generator"                  
+KPH acedrg_database      11          "data source"                           
+KPH rdkit                2017.03.2   "Chemoinformatics tool"
+KPH refmac5              5.8.0238    "optimization tool"                     

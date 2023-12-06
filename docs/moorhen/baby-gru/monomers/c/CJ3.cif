@@ -1,0 +1,195 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CJ3     CJ3      1-hydroxy-2,3,1-benzodiazaborinine-2(1H)-carbothioamide     NON-POLYMER     22     14     .     
+#
+data_comp_CJ3
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CJ3     B1X     B       B       0       -8.874      -42.475     9.090       
+CJ3     C4X     C       CR66    0       -8.190      -43.822     8.834       
+CJ3     C5X     C       CR16    0       -6.980      -44.205     9.433       
+CJ3     C6X     C       CR16    0       -6.415      -45.431     9.162       
+CJ3     C7X     C       CR16    0       -7.057      -46.314     8.272       
+CJ3     C8X     C       CR16    0       -8.235      -45.962     7.677       
+CJ3     C1X     C       CR66    0       -8.824      -44.710     7.946       
+CJ3     C2X     C       CR16    0       -10.064     -44.303     7.339       
+CJ3     N1X     N       NRD6    0       -10.651     -43.163     7.551       
+CJ3     N2X     N       NR6     0       -10.105     -42.220     8.409       
+CJ3     C3X     C       C       0       -10.830     -40.967     8.589       
+CJ3     N3X     N       NH2     0       -11.100     -40.215     7.527       
+CJ3     S1X     S       S1      0       -11.305     -40.511     10.134      
+CJ3     O1X     O       OH1     0       -8.382      -41.503     9.927       
+CJ3     H1      H       H       0       -6.550      -43.614     10.029      
+CJ3     H2      H       H       0       -5.594      -45.683     9.573       
+CJ3     H3      H       H       0       -6.670      -47.155     8.085       
+CJ3     H4      H       H       0       -8.659      -46.559     7.082       
+CJ3     H5      H       H       0       -10.479     -44.900     6.750       
+CJ3     H6      H       H       0       -11.539     -39.456     7.622       
+CJ3     H7      H       H       0       -10.841     -40.475     6.726       
+CJ3     H8      H       H       0       -8.027      -40.860     9.502       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CJ3         C2X         N1X      DOUBLE       y     1.291  0.0122     1.291  0.0122
+CJ3         C1X         C2X      SINGLE       y     1.437  0.0100     1.437  0.0100
+CJ3         N1X         N2X      SINGLE       y     1.371  0.0171     1.371  0.0171
+CJ3         C8X         C1X      SINGLE       y     1.405  0.0129     1.405  0.0129
+CJ3         C7X         C8X      DOUBLE       y     1.361  0.0115     1.361  0.0115
+CJ3         C3X         N3X      SINGLE       n     1.328  0.0146     1.328  0.0146
+CJ3         C4X         C1X      DOUBLE       y     1.407  0.0100     1.407  0.0100
+CJ3         N2X         C3X      SINGLE       n     1.454  0.0200     1.454  0.0200
+CJ3         B1X         N2X      SINGLE       y     1.426  0.0108     1.426  0.0108
+CJ3         C6X         C7X      SINGLE       y     1.401  0.0132     1.401  0.0132
+CJ3         C3X         S1X      DOUBLE       n     1.679  0.0173     1.679  0.0173
+CJ3         B1X         C4X      SINGLE       y     1.534  0.0100     1.534  0.0100
+CJ3         C4X         C5X      SINGLE       y     1.400  0.0118     1.400  0.0118
+CJ3         B1X         O1X      SINGLE       n     1.370  0.0200     1.370  0.0200
+CJ3         C5X         C6X      DOUBLE       y     1.373  0.0100     1.373  0.0100
+CJ3         C5X          H1      SINGLE       n     1.082  0.0130     0.943  0.0108
+CJ3         C6X          H2      SINGLE       n     1.082  0.0130     0.952  0.0100
+CJ3         C7X          H3      SINGLE       n     1.082  0.0130     0.944  0.0184
+CJ3         C8X          H4      SINGLE       n     1.082  0.0130     0.943  0.0175
+CJ3         C2X          H5      SINGLE       n     1.082  0.0130     0.936  0.0143
+CJ3         N3X          H6      SINGLE       n     1.016  0.0100     0.881  0.0200
+CJ3         N3X          H7      SINGLE       n     1.016  0.0100     0.881  0.0200
+CJ3         O1X          H8      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CJ3         N2X         B1X         C4X     119.446    2.51
+CJ3         N2X         B1X         O1X     116.844    1.50
+CJ3         C4X         B1X         O1X     123.710    1.82
+CJ3         C1X         C4X         B1X     119.122    1.50
+CJ3         C1X         C4X         C5X     118.716    1.50
+CJ3         B1X         C4X         C5X     122.162    1.50
+CJ3         C4X         C5X         C6X     121.117    1.50
+CJ3         C4X         C5X          H1     119.361    1.50
+CJ3         C6X         C5X          H1     119.522    1.50
+CJ3         C7X         C6X         C5X     119.544    1.50
+CJ3         C7X         C6X          H2     120.004    1.50
+CJ3         C5X         C6X          H2     120.452    1.50
+CJ3         C8X         C7X         C6X     120.275    1.50
+CJ3         C8X         C7X          H3     119.890    1.50
+CJ3         C6X         C7X          H3     119.834    1.50
+CJ3         C1X         C8X         C7X     120.630    1.50
+CJ3         C1X         C8X          H4     119.586    1.50
+CJ3         C7X         C8X          H4     119.784    1.50
+CJ3         C2X         C1X         C8X     121.053    1.50
+CJ3         C2X         C1X         C4X     119.229    1.62
+CJ3         C8X         C1X         C4X     119.718    1.50
+CJ3         N1X         C2X         C1X     123.588    1.50
+CJ3         N1X         C2X          H5     118.009    1.50
+CJ3         C1X         C2X          H5     118.403    1.50
+CJ3         C2X         N1X         N2X     118.956    1.54
+CJ3         N1X         N2X         C3X     120.171    3.00
+CJ3         N1X         N2X         B1X     119.659    3.00
+CJ3         C3X         N2X         B1X     120.171    3.00
+CJ3         N3X         C3X         N2X     119.281    3.00
+CJ3         N3X         C3X         S1X     121.438    1.50
+CJ3         N2X         C3X         S1X     119.281    3.00
+CJ3         C3X         N3X          H6     119.959    2.30
+CJ3         C3X         N3X          H7     119.959    2.30
+CJ3          H6         N3X          H7     120.083    2.31
+CJ3         B1X         O1X          H8     112.405    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CJ3              const_35         O1X         B1X         C4X         C1X     180.000    10.0     2
+CJ3       const_sp2_sp2_4         O1X         B1X         N2X         C3X       0.000     5.0     2
+CJ3             sp2_sp2_3         S1X         C3X         N3X          H6       0.000     5.0     2
+CJ3              const_37         C1X         C4X         C5X         C6X       0.000    10.0     2
+CJ3              const_13         C2X         C1X         C4X         B1X       0.000    10.0     2
+CJ3              const_29         C4X         C5X         C6X         C7X       0.000    10.0     2
+CJ3              const_25         C5X         C6X         C7X         C8X       0.000    10.0     2
+CJ3              const_21         C6X         C7X         C8X         C1X       0.000    10.0     2
+CJ3              const_19         C2X         C1X         C8X         C7X     180.000    10.0     2
+CJ3              const_11         C8X         C1X         C2X         N1X     180.000    10.0     2
+CJ3       const_sp2_sp2_7         C1X         C2X         N1X         N2X       0.000     5.0     2
+CJ3       const_sp2_sp2_6         C2X         N1X         N2X         C3X     180.000     5.0     2
+CJ3             sp2_sp2_6         N3X         C3X         N2X         N1X       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CJ3    plan-1         B1X   0.020
+CJ3    plan-1         C1X   0.020
+CJ3    plan-1         C2X   0.020
+CJ3    plan-1         C3X   0.020
+CJ3    plan-1         C4X   0.020
+CJ3    plan-1         C5X   0.020
+CJ3    plan-1         C6X   0.020
+CJ3    plan-1         C7X   0.020
+CJ3    plan-1         C8X   0.020
+CJ3    plan-1          H1   0.020
+CJ3    plan-1          H2   0.020
+CJ3    plan-1          H3   0.020
+CJ3    plan-1          H4   0.020
+CJ3    plan-1          H5   0.020
+CJ3    plan-1         N1X   0.020
+CJ3    plan-1         N2X   0.020
+CJ3    plan-1         O1X   0.020
+CJ3    plan-2         C3X   0.020
+CJ3    plan-2         N2X   0.020
+CJ3    plan-2         N3X   0.020
+CJ3    plan-2         S1X   0.020
+CJ3    plan-3         C3X   0.020
+CJ3    plan-3          H6   0.020
+CJ3    plan-3          H7   0.020
+CJ3    plan-3         N3X   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CJ3           SMILES              ACDLabs 12.01                                                      B2(O)c1ccccc1C=NN2C(=S)N
+CJ3            InChI                InChI  1.03 InChI=1S/C8H8BN3OS/c10-8(14)12-9(13)7-4-2-1-3-6(7)5-11-12/h1-5,13H,(H2,10,14)
+CJ3         InChIKey                InChI  1.03                                                   TVUCBNKINJLIPR-UHFFFAOYSA-N
+CJ3 SMILES_CANONICAL               CACTVS 3.385                                                        NC(=S)N1N=Cc2ccccc2B1O
+CJ3           SMILES               CACTVS 3.385                                                        NC(=S)N1N=Cc2ccccc2B1O
+CJ3 SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                      B1(c2ccccc2C=NN1C(=S)N)O
+CJ3           SMILES "OpenEye OEToolkits" 1.9.2                                                      B1(c2ccccc2C=NN1C(=S)N)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CJ3 acedrg               243         "dictionary generator"                  
+CJ3 acedrg_database      11          "data source"                           
+CJ3 rdkit                2017.03.2   "Chemoinformatics tool"
+CJ3 refmac5              5.8.0238    "optimization tool"                     

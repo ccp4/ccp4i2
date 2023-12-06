@@ -1,0 +1,246 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4GA     4GA      1-butyl-3-(2-hydroxy-2,2-diphosphonoethyl)-1H-imidazol-3-ium     NON-POLYMER     35     20     .     
+#
+data_comp_4GA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4GA     CAA     C       CH3     0       18.799      82.885      25.295      
+4GA     OAB     O       OP      -1      16.520      78.677      23.747      
+4GA     OAC     O       OP      -1      16.049      78.064      28.398      
+4GA     OAD     O       OH1     0       15.052      76.016      26.186      
+4GA     OAE     O       OP      -1      16.965      76.244      24.002      
+4GA     OAF     O       O       0       14.717      77.025      23.279      
+4GA     OAG     O       OP      -1      17.670      76.704      27.094      
+4GA     OAH     O       O       0       17.372      79.117      26.572      
+4GA     CAI     C       CR15    0       13.952      81.369      24.300      
+4GA     CAJ     C       CR15    0       13.709      80.031      24.346      
+4GA     CAK     C       CR15    0       14.666      80.615      26.270      
+4GA     CAL     C       CH2     0       17.324      82.833      24.978      
+4GA     CAM     C       CH2     0       16.454      83.162      26.174      
+4GA     CAN     C       CH2     0       14.972      83.075      25.865      
+4GA     CAO     C       CH2     0       14.091      78.176      26.024      
+4GA     NAP     N       NR5     0       14.539      81.731      25.481      
+4GA     NAQ     N       NR5     1       14.166      79.560      25.554      
+4GA     CAR     C       CT      0       15.399      77.378      25.857      
+4GA     PAS     P       P       0       15.938      77.337      24.100      
+4GA     PAT     P       P       0       16.707      77.858      27.061      
+4GA     HAA     H       H       0       19.311      82.673      24.496      
+4GA     HAAA    H       H       0       19.005      82.238      25.992      
+4GA     HAAB    H       H       0       19.035      83.778      25.603      
+4GA     HOAD    H       H       0       15.718      75.494      26.109      
+4GA     HAI     H       H       0       13.745      81.936      23.581      
+4GA     HAJ     H       H       0       13.313      79.522      23.658      
+4GA     HAK     H       H       0       15.045      80.578      27.132      
+4GA     HAL     H       H       0       17.102      81.934      24.654      
+4GA     HALA    H       H       0       17.130      83.469      24.256      
+4GA     HAM     H       H       0       16.663      84.071      26.480      
+4GA     HAMA    H       H       0       16.667      82.544      26.905      
+4GA     HAN     H       H       0       14.764      83.696      25.139      
+4GA     HANA    H       H       0       14.468      83.359      26.653      
+4GA     HAO     H       H       0       13.382      77.714      25.529      
+4GA     HAOA    H       H       0       13.842      78.177      26.971      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4GA         CAA         CAL      SINGLE       n     1.510  0.0200     1.510  0.0200
+4GA         OAB         PAS      SINGLE       n     1.505  0.0200     1.505  0.0200
+4GA         OAF         PAS      DOUBLE       n     1.505  0.0200     1.505  0.0200
+4GA         OAH         PAT      DOUBLE       n     1.505  0.0200     1.505  0.0200
+4GA         CAI         NAP      SINGLE       y     1.368  0.0140     1.368  0.0140
+4GA         CAI         CAJ      DOUBLE       y     1.362  0.0137     1.362  0.0137
+4GA         CAJ         NAQ      SINGLE       y     1.373  0.0173     1.373  0.0173
+4GA         CAL         CAM      SINGLE       n     1.511  0.0200     1.511  0.0200
+4GA         CAM         CAN      SINGLE       n     1.514  0.0126     1.514  0.0126
+4GA         CAO         CAR      SINGLE       n     1.536  0.0118     1.536  0.0118
+4GA         CAK         NAP      SINGLE       y     1.372  0.0139     1.372  0.0139
+4GA         CAN         NAP      SINGLE       n     1.463  0.0100     1.463  0.0100
+4GA         CAK         NAQ      DOUBLE       y     1.368  0.0186     1.368  0.0186
+4GA         CAO         NAQ      SINGLE       n     1.462  0.0100     1.462  0.0100
+4GA         OAD         CAR      SINGLE       n     1.443  0.0100     1.443  0.0100
+4GA         CAR         PAT      SINGLE       n     1.837  0.0200     1.837  0.0200
+4GA         OAE         PAS      SINGLE       n     1.505  0.0200     1.505  0.0200
+4GA         CAR         PAS      SINGLE       n     1.837  0.0200     1.837  0.0200
+4GA         OAC         PAT      SINGLE       n     1.505  0.0200     1.505  0.0200
+4GA         OAG         PAT      SINGLE       n     1.505  0.0200     1.505  0.0200
+4GA         CAA         HAA      SINGLE       n     1.089  0.0100     0.973  0.0157
+4GA         CAA        HAAA      SINGLE       n     1.089  0.0100     0.973  0.0157
+4GA         CAA        HAAB      SINGLE       n     1.089  0.0100     0.973  0.0157
+4GA         OAD        HOAD      SINGLE       n     0.970  0.0120     0.849  0.0200
+4GA         CAI         HAI      SINGLE       n     1.082  0.0130     0.939  0.0102
+4GA         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0152
+4GA         CAK         HAK      SINGLE       n     1.082  0.0130     0.943  0.0184
+4GA         CAL         HAL      SINGLE       n     1.089  0.0100     0.982  0.0155
+4GA         CAL        HALA      SINGLE       n     1.089  0.0100     0.982  0.0155
+4GA         CAM         HAM      SINGLE       n     1.089  0.0100     0.981  0.0160
+4GA         CAM        HAMA      SINGLE       n     1.089  0.0100     0.981  0.0160
+4GA         CAN         HAN      SINGLE       n     1.089  0.0100     0.978  0.0180
+4GA         CAN        HANA      SINGLE       n     1.089  0.0100     0.978  0.0180
+4GA         CAO         HAO      SINGLE       n     1.089  0.0100     0.980  0.0157
+4GA         CAO        HAOA      SINGLE       n     1.089  0.0100     0.980  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4GA         CAL         CAA         HAA     109.554    1.50
+4GA         CAL         CAA        HAAA     109.554    1.50
+4GA         CAL         CAA        HAAB     109.554    1.50
+4GA         HAA         CAA        HAAA     109.380    1.50
+4GA         HAA         CAA        HAAB     109.380    1.50
+4GA        HAAA         CAA        HAAB     109.380    1.50
+4GA         CAR         OAD        HOAD     110.980    2.79
+4GA         NAP         CAI         CAJ     107.997    1.50
+4GA         NAP         CAI         HAI     126.535    1.50
+4GA         CAJ         CAI         HAI     125.468    1.50
+4GA         CAI         CAJ         NAQ     107.997    1.50
+4GA         CAI         CAJ         HAJ     125.468    1.50
+4GA         NAQ         CAJ         HAJ     126.535    1.50
+4GA         NAP         CAK         NAQ     106.719    1.50
+4GA         NAP         CAK         HAK     126.640    1.71
+4GA         NAQ         CAK         HAK     126.640    1.71
+4GA         CAA         CAL         CAM     112.857    3.00
+4GA         CAA         CAL         HAL     108.918    1.50
+4GA         CAA         CAL        HALA     108.918    1.50
+4GA         CAM         CAL         HAL     109.046    1.50
+4GA         CAM         CAL        HALA     109.046    1.50
+4GA         HAL         CAL        HALA     107.763    1.50
+4GA         CAL         CAM         CAN     111.228    3.00
+4GA         CAL         CAM         HAM     109.128    1.50
+4GA         CAL         CAM        HAMA     109.128    1.50
+4GA         CAN         CAM         HAM     109.130    1.50
+4GA         CAN         CAM        HAMA     109.130    1.50
+4GA         HAM         CAM        HAMA     107.897    1.50
+4GA         CAM         CAN         NAP     113.000    1.50
+4GA         CAM         CAN         HAN     108.891    1.50
+4GA         CAM         CAN        HANA     108.891    1.50
+4GA         NAP         CAN         HAN     109.029    1.50
+4GA         NAP         CAN        HANA     109.029    1.50
+4GA         HAN         CAN        HANA     107.740    1.50
+4GA         CAR         CAO         NAQ     111.867    1.85
+4GA         CAR         CAO         HAO     108.597    1.50
+4GA         CAR         CAO        HAOA     108.597    1.50
+4GA         NAQ         CAO         HAO     108.902    1.50
+4GA         NAQ         CAO        HAOA     108.902    1.50
+4GA         HAO         CAO        HAOA     107.991    1.50
+4GA         CAI         NAP         CAK     108.644    1.95
+4GA         CAI         NAP         CAN     126.701    1.50
+4GA         CAK         NAP         CAN     124.655    1.85
+4GA         CAJ         NAQ         CAK     108.644    1.95
+4GA         CAJ         NAQ         CAO     126.107    1.84
+4GA         CAK         NAQ         CAO     125.249    1.85
+4GA         CAO         CAR         OAD     108.069    2.19
+4GA         CAO         CAR         PAT     111.410    2.87
+4GA         CAO         CAR         PAS     111.410    2.87
+4GA         OAD         CAR         PAT     108.256    2.94
+4GA         OAD         CAR         PAS     108.256    2.94
+4GA         PAT         CAR         PAS     114.813    3.00
+4GA         OAB         PAS         OAF     112.502    1.50
+4GA         OAB         PAS         OAE     112.502    1.50
+4GA         OAB         PAS         CAR     110.326    3.00
+4GA         OAF         PAS         OAE     112.502    1.50
+4GA         OAF         PAS         CAR     110.326    3.00
+4GA         OAE         PAS         CAR     110.326    3.00
+4GA         OAH         PAT         CAR     110.326    3.00
+4GA         OAH         PAT         OAC     112.502    1.50
+4GA         OAH         PAT         OAG     112.502    1.50
+4GA         CAR         PAT         OAC     110.326    3.00
+4GA         CAR         PAT         OAG     110.326    3.00
+4GA         OAC         PAT         OAG     112.502    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4GA             sp3_sp3_1         HAA         CAA         CAL         CAM     180.000    10.0     3
+4GA       const_sp2_sp2_6         NAQ         CAK         NAP         CAN     180.000     5.0     2
+4GA              const_10         NAP         CAK         NAQ         CAO     180.000    10.0     2
+4GA            sp3_sp3_10         CAA         CAL         CAM         CAN     180.000    10.0     3
+4GA            sp3_sp3_19         CAL         CAM         CAN         NAP     180.000    10.0     3
+4GA             sp2_sp3_2         CAI         NAP         CAN         CAM     -90.000    10.0     6
+4GA             sp2_sp3_8         CAJ         NAQ         CAO         CAR     -90.000    10.0     6
+4GA            sp3_sp3_30         NAQ         CAO         CAR         OAD      60.000    10.0     3
+4GA            sp3_sp3_55         CAO         CAR         PAS         OAB     -60.000    10.0     3
+4GA            sp3_sp3_48         CAO         CAR         PAT         OAH     180.000    10.0     3
+4GA            sp3_sp3_39         CAO         CAR         OAD        HOAD     -60.000    10.0     3
+4GA       const_sp2_sp2_2         CAJ         CAI         NAP         CAN     180.000     5.0     2
+4GA              const_17         NAP         CAI         CAJ         NAQ       0.000    10.0     2
+4GA              const_14         CAI         CAJ         NAQ         CAO     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+4GA    chir_1    CAR    PAT    PAS    OAD    both
+4GA    chir_2    PAS    OAB    OAE    OAF    both
+4GA    chir_3    PAT    OAC    OAG    OAH    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4GA    plan-1         CAI   0.020
+4GA    plan-1         CAJ   0.020
+4GA    plan-1         CAK   0.020
+4GA    plan-1         CAN   0.020
+4GA    plan-1         CAO   0.020
+4GA    plan-1         HAI   0.020
+4GA    plan-1         HAJ   0.020
+4GA    plan-1         HAK   0.020
+4GA    plan-1         NAP   0.020
+4GA    plan-1         NAQ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4GA           SMILES              ACDLabs 12.01                                                                                      O=P(O)(O)C(O)(P(=O)(O)O)C[n+]1ccn(c1)CCCC
+4GA            InChI                InChI  1.03 InChI=1S/C9H18N2O7P2/c1-2-3-4-10-5-6-11(8-10)7-9(12,19(13,14)15)20(16,17)18/h5-6,8,12H,2-4,7H2,1H3,(H3-,13,14,15,16,17,18)/p+1
+4GA         InChIKey                InChI  1.03                                                                                                    JCMWHMYRNYPQAZ-UHFFFAOYSA-O
+4GA SMILES_CANONICAL               CACTVS 3.370                                                                                  CCCCn1cc[n+](CC(O)([P](O)(O)=O)[P](O)(O)=O)c1
+4GA           SMILES               CACTVS 3.370                                                                                  CCCCn1cc[n+](CC(O)([P](O)(O)=O)[P](O)(O)=O)c1
+4GA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                      CCCCn1cc[n+](c1)CC(O)(P(=O)(O)O)P(=O)(O)O
+4GA           SMILES "OpenEye OEToolkits" 1.7.6                                                                                      CCCCn1cc[n+](c1)CC(O)(P(=O)(O)O)P(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4GA acedrg               243         "dictionary generator"                  
+4GA acedrg_database      11          "data source"                           
+4GA rdkit                2017.03.2   "Chemoinformatics tool"
+4GA refmac5              5.8.0238    "optimization tool"                     

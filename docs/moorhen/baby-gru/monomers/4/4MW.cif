@@ -1,0 +1,585 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4MW     4MW      2-[(6S)-4-(4-chlorophenyl)-2,3,9-trimethyl-6H-thieno[3,2-f][1,2,4]triazolo[4,3-a][1,4]diazepin-6-yl]-N-(4-{[({2-[(3S)-2,6-dioxopiperidin-3-yl]-1,3-dioxo-2,3-dihydro-1H-isoindol-4-yl}oxy)acetyl]amino}butyl)acetamide     NON-POLYMER     92     55     .     
+#
+data_comp_4MW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4MW     O6      O       O       0       -15.670     -7.865      0.680       
+4MW     C19     C       C       0       -15.258     -7.296      1.690       
+4MW     C20     C       CH2     0       -14.447     -6.005      1.596       
+4MW     C21     C       CH1     0       -12.930     -6.226      1.584       
+4MW     C35     C       CR5     0       -12.160     -4.942      1.604       
+4MW     N6      N       NRD5    0       -12.656     -3.728      1.656       
+4MW     N7      N       NRD5    0       -11.576     -2.835      1.671       
+4MW     C36     C       CR5     0       -10.474     -3.540      1.634       
+4MW     C37     C       CH3     0       -9.091      -3.005      1.634       
+4MW     N5      N       NT      0       -10.768     -4.907      1.597       
+4MW     C30     C       CR5     0       -9.952      -6.024      1.543       
+4MW     S       S       S2      0       -8.535      -6.174      0.672       
+4MW     C31     C       CR5     0       -8.184      -7.760      1.073       
+4MW     C32     C       CH3     0       -6.942      -8.336      0.506       
+4MW     C33     C       CR5     0       -9.155      -8.279      1.898       
+4MW     C34     C       CH3     0       -9.149      -9.676      2.438       
+4MW     C29     C       CR5     0       -10.191     -7.278      2.172       
+4MW     C22     C       C       0       -11.383     -7.501      3.020       
+4MW     C23     C       CR6     0       -11.249     -8.246      4.304       
+4MW     C28     C       CR16    0       -10.235     -7.939      5.207       
+4MW     C27     C       CR16    0       -10.113     -8.636      6.401       
+4MW     C26     C       CR6     0       -11.013     -9.640      6.691       
+4MW     CL      CL      CL      0       -10.865     -10.515     8.188       
+4MW     C25     C       CR16    0       -12.029     -9.965      5.816       
+4MW     C24     C       CR16    0       -12.143     -9.266      4.623       
+4MW     N4      N       N       0       -12.559     -7.062      2.736       
+4MW     N3      N       NH1     0       -15.498     -7.772      2.922       
+4MW     C18     C       CH2     0       -16.159     -9.036      3.226       
+4MW     C17     C       CH2     0       -16.151     -9.362      4.711       
+4MW     C16     C       CH2     0       -16.318     -10.845     4.997       
+4MW     C15     C       CH2     0       -16.383     -11.146     6.483       
+4MW     N2      N       NH1     0       -16.356     -12.577     6.770       
+4MW     C       C       C       0       -15.415     -13.190     7.494       
+4MW     O       O       O       0       -14.413     -12.639     7.948       
+4MW     C1      C       CH2     0       -15.602     -14.669     7.747       
+4MW     O1      O       O2      0       -15.264     -15.040     9.084       
+4MW     C2      C       CR6     0       -15.999     -14.607     10.169      
+4MW     C13     C       CR56    0       -15.368     -14.733     11.409      
+4MW     C6      C       CR56    0       -16.007     -14.333     12.572      
+4MW     C5      C       CR16    0       -17.286     -13.807     12.549      
+4MW     C4      C       CR16    0       -17.912     -13.691     11.314      
+4MW     C3      C       CR16    0       -17.290     -14.084     10.142      
+4MW     C14     C       CR5     0       -14.022     -15.240     11.784      
+4MW     O5      O       O       0       -13.102     -15.549     11.060      
+4MW     N       N       NT      0       -13.985     -15.255     13.184      
+4MW     C7      C       CR5     0       -15.089     -14.577     13.715      
+4MW     O4      O       O       0       -15.226     -14.257     14.873      
+4MW     C8      C       CH1     0       -12.784     -15.567     13.952      
+4MW     C12     C       CH2     0       -12.006     -14.295     14.260      
+4MW     C11     C       CH2     0       -10.784     -14.615     15.099      
+4MW     C10     C       CR6     0       -11.105     -15.401     16.331      
+4MW     O2      O       O       0       -10.402     -15.379     17.324      
+4MW     N1      N       NR6     0       -12.255     -16.167     16.299      
+4MW     C9      C       CR6     0       -13.066     -16.402     15.207      
+4MW     O3      O       O       0       -13.943     -17.239     15.256      
+4MW     H1      H       H       0       -14.681     -5.427      2.354       
+4MW     H2      H       H       0       -14.705     -5.532      0.775       
+4MW     H3      H       H       0       -12.694     -6.705      0.753       
+4MW     H4      H       H       0       -8.543      -3.519      2.250       
+4MW     H5      H       H       0       -9.101      -2.075      1.912       
+4MW     H6      H       H       0       -8.716      -3.070      0.741       
+4MW     H7      H       H       0       -6.992      -9.302      0.517       
+4MW     H8      H       H       0       -6.181      -8.049      1.034       
+4MW     H9      H       H       0       -6.829      -8.032      -0.407      
+4MW     H10     H       H       0       -10.046     -10.047     2.397       
+4MW     H11     H       H       0       -8.848      -9.670      3.361       
+4MW     H12     H       H       0       -8.555      -10.234     1.913       
+4MW     H13     H       H       0       -9.622      -7.254      5.008       
+4MW     H14     H       H       0       -9.428      -8.425      7.006       
+4MW     H15     H       H       0       -12.634     -10.651     6.025       
+4MW     H16     H       H       0       -12.835     -9.486      4.025       
+4MW     H17     H       H       0       -15.238     -7.280      3.594       
+4MW     H18     H       H       0       -15.708     -9.756      2.736       
+4MW     H19     H       H       0       -17.087     -8.994      2.911       
+4MW     H20     H       H       0       -16.878     -8.869      5.148       
+4MW     H21     H       H       0       -15.304     -9.058      5.101       
+4MW     H22     H       H       0       -15.564     -11.334     4.604       
+4MW     H23     H       H       0       -17.142     -11.164     4.570       
+4MW     H24     H       H       0       -17.211     -10.768     6.848       
+4MW     H25     H       H       0       -15.632     -10.702     6.932       
+4MW     H26     H       H       0       -17.000     -13.059     6.433       
+4MW     H27     H       H       0       -15.035     -15.168     7.128       
+4MW     H28     H       H       0       -16.528     -14.922     7.566       
+4MW     H29     H       H       0       -17.720     -13.537     13.341      
+4MW     H30     H       H       0       -18.788     -13.335     11.271      
+4MW     H31     H       H       0       -17.748     -13.988     9.321       
+4MW     H32     H       H       0       -12.190     -16.130     13.365      
+4MW     H33     H       H       0       -11.726     -13.863     13.404      
+4MW     H34     H       H       0       -12.592     -13.653     14.751      
+4MW     H35     H       H       0       -10.347     -13.779     15.371      
+4MW     H36     H       H       0       -10.145     -15.132     14.561      
+4MW     H37     H       H       0       -12.504     -16.546     17.057      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4MW         C36         C37      SINGLE       n     1.483  0.0100     1.483  0.0100
+4MW         C31         C32      SINGLE       n     1.481  0.0100     1.481  0.0100
+4MW           S         C31      SINGLE       y     1.695  0.0200     1.695  0.0200
+4MW         C30           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+4MW         C31         C33      DOUBLE       y     1.362  0.0156     1.362  0.0156
+4MW          N7         C36      DOUBLE       y     1.307  0.0100     1.307  0.0100
+4MW         C36          N5      SINGLE       y     1.396  0.0161     1.396  0.0161
+4MW          N6          N7      SINGLE       y     1.399  0.0100     1.399  0.0100
+4MW          N5         C30      SINGLE       n     1.370  0.0200     1.370  0.0200
+4MW         C30         C29      DOUBLE       y     1.403  0.0200     1.403  0.0200
+4MW         C35          N5      SINGLE       y     1.396  0.0161     1.396  0.0161
+4MW         C33         C29      SINGLE       y     1.420  0.0200     1.420  0.0200
+4MW         C33         C34      SINGLE       n     1.496  0.0109     1.496  0.0109
+4MW         C35          N6      DOUBLE       y     1.311  0.0100     1.311  0.0100
+4MW         C21         C35      SINGLE       n     1.495  0.0100     1.495  0.0100
+4MW         C29         C22      SINGLE       n     1.471  0.0114     1.471  0.0114
+4MW         C20         C21      SINGLE       n     1.528  0.0112     1.528  0.0112
+4MW         C21          N4      SINGLE       n     1.465  0.0153     1.465  0.0153
+4MW         C22          N4      DOUBLE       n     1.282  0.0114     1.282  0.0114
+4MW         C22         C23      SINGLE       n     1.488  0.0108     1.488  0.0108
+4MW         C19         C20      SINGLE       n     1.519  0.0161     1.519  0.0161
+4MW         C23         C28      DOUBLE       y     1.388  0.0100     1.388  0.0100
+4MW         C28         C27      SINGLE       y     1.384  0.0100     1.384  0.0100
+4MW         C23         C24      SINGLE       y     1.388  0.0100     1.388  0.0100
+4MW          O6         C19      DOUBLE       n     1.229  0.0102     1.229  0.0102
+4MW         C19          N3      SINGLE       n     1.337  0.0118     1.337  0.0118
+4MW         C27         C26      DOUBLE       y     1.376  0.0100     1.376  0.0100
+4MW          N3         C18      SINGLE       n     1.456  0.0109     1.456  0.0109
+4MW         C25         C24      DOUBLE       y     1.384  0.0100     1.384  0.0100
+4MW         C26         C25      SINGLE       y     1.376  0.0100     1.376  0.0100
+4MW         C26          CL      SINGLE       n     1.741  0.0100     1.741  0.0100
+4MW         C18         C17      SINGLE       n     1.517  0.0143     1.517  0.0143
+4MW         C17         C16      SINGLE       n     1.519  0.0150     1.519  0.0150
+4MW         C16         C15      SINGLE       n     1.517  0.0143     1.517  0.0143
+4MW         C15          N2      SINGLE       n     1.456  0.0109     1.456  0.0109
+4MW          N2           C      SINGLE       n     1.329  0.0100     1.329  0.0100
+4MW           C          C1      SINGLE       n     1.501  0.0167     1.501  0.0167
+4MW           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+4MW          C1          O1      SINGLE       n     1.424  0.0100     1.424  0.0100
+4MW          O1          C2      SINGLE       n     1.372  0.0115     1.372  0.0115
+4MW         C14          O5      DOUBLE       n     1.210  0.0100     1.210  0.0100
+4MW          C2          C3      DOUBLE       y     1.387  0.0100     1.387  0.0100
+4MW          C2         C13      SINGLE       y     1.392  0.0100     1.392  0.0100
+4MW          C4          C3      SINGLE       y     1.380  0.0104     1.380  0.0104
+4MW         C13         C14      SINGLE       n     1.485  0.0100     1.485  0.0100
+4MW         C14           N      SINGLE       n     1.396  0.0100     1.396  0.0100
+4MW         C13          C6      DOUBLE       y     1.385  0.0100     1.385  0.0100
+4MW          C5          C4      DOUBLE       y     1.385  0.0109     1.385  0.0109
+4MW           N          C8      SINGLE       n     1.454  0.0100     1.454  0.0100
+4MW           N          C7      SINGLE       n     1.396  0.0100     1.396  0.0100
+4MW          C6          C5      SINGLE       y     1.380  0.0100     1.380  0.0100
+4MW          C6          C7      SINGLE       n     1.487  0.0100     1.487  0.0100
+4MW          C8          C9      SINGLE       n     1.527  0.0100     1.527  0.0100
+4MW          C8         C12      SINGLE       n     1.518  0.0100     1.518  0.0100
+4MW          C9          O3      DOUBLE       n     1.212  0.0100     1.212  0.0100
+4MW          C7          O4      DOUBLE       n     1.209  0.0100     1.209  0.0100
+4MW          N1          C9      SINGLE       n     1.377  0.0100     1.377  0.0100
+4MW         C12         C11      SINGLE       n     1.516  0.0100     1.516  0.0100
+4MW         C10          N1      SINGLE       n     1.381  0.0100     1.381  0.0100
+4MW         C11         C10      SINGLE       n     1.496  0.0100     1.496  0.0100
+4MW         C10          O2      DOUBLE       n     1.216  0.0100     1.216  0.0100
+4MW         C20          H1      SINGLE       n     1.089  0.0100     0.982  0.0140
+4MW         C20          H2      SINGLE       n     1.089  0.0100     0.982  0.0140
+4MW         C21          H3      SINGLE       n     1.089  0.0100     0.988  0.0170
+4MW         C37          H4      SINGLE       n     1.089  0.0100     0.971  0.0200
+4MW         C37          H5      SINGLE       n     1.089  0.0100     0.971  0.0200
+4MW         C37          H6      SINGLE       n     1.089  0.0100     0.971  0.0200
+4MW         C32          H7      SINGLE       n     1.089  0.0100     0.969  0.0144
+4MW         C32          H8      SINGLE       n     1.089  0.0100     0.969  0.0144
+4MW         C32          H9      SINGLE       n     1.089  0.0100     0.969  0.0144
+4MW         C34         H10      SINGLE       n     1.089  0.0100     0.971  0.0172
+4MW         C34         H11      SINGLE       n     1.089  0.0100     0.971  0.0172
+4MW         C34         H12      SINGLE       n     1.089  0.0100     0.971  0.0172
+4MW         C28         H13      SINGLE       n     1.082  0.0130     0.941  0.0168
+4MW         C27         H14      SINGLE       n     1.082  0.0130     0.938  0.0140
+4MW         C25         H15      SINGLE       n     1.082  0.0130     0.938  0.0140
+4MW         C24         H16      SINGLE       n     1.082  0.0130     0.941  0.0168
+4MW          N3         H17      SINGLE       n     1.016  0.0100     0.872  0.0200
+4MW         C18         H18      SINGLE       n     1.089  0.0100     0.981  0.0152
+4MW         C18         H19      SINGLE       n     1.089  0.0100     0.981  0.0152
+4MW         C17         H20      SINGLE       n     1.089  0.0100     0.981  0.0160
+4MW         C17         H21      SINGLE       n     1.089  0.0100     0.981  0.0160
+4MW         C16         H22      SINGLE       n     1.089  0.0100     0.981  0.0160
+4MW         C16         H23      SINGLE       n     1.089  0.0100     0.981  0.0160
+4MW         C15         H24      SINGLE       n     1.089  0.0100     0.981  0.0152
+4MW         C15         H25      SINGLE       n     1.089  0.0100     0.981  0.0152
+4MW          N2         H26      SINGLE       n     1.016  0.0100     0.872  0.0200
+4MW          C1         H27      SINGLE       n     1.089  0.0100     0.977  0.0137
+4MW          C1         H28      SINGLE       n     1.089  0.0100     0.977  0.0137
+4MW          C5         H29      SINGLE       n     1.082  0.0130     0.943  0.0179
+4MW          C4         H30      SINGLE       n     1.082  0.0130     0.947  0.0200
+4MW          C3         H31      SINGLE       n     1.082  0.0130     0.946  0.0200
+4MW          C8         H32      SINGLE       n     1.089  0.0100     1.008  0.0148
+4MW         C12         H33      SINGLE       n     1.089  0.0100     0.999  0.0200
+4MW         C12         H34      SINGLE       n     1.089  0.0100     0.999  0.0200
+4MW         C11         H35      SINGLE       n     1.089  0.0100     0.982  0.0110
+4MW         C11         H36      SINGLE       n     1.089  0.0100     0.982  0.0110
+4MW          N1         H37      SINGLE       n     1.016  0.0100     0.881  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4MW         C20         C19          O6     121.606    1.50
+4MW         C20         C19          N3     116.510    1.50
+4MW          O6         C19          N3     121.904    1.50
+4MW         C21         C20         C19     112.873    3.00
+4MW         C21         C20          H1     109.171    1.50
+4MW         C21         C20          H2     109.171    1.50
+4MW         C19         C20          H1     108.929    1.50
+4MW         C19         C20          H2     108.929    1.50
+4MW          H1         C20          H2     107.705    1.50
+4MW         C35         C21         C20     110.747    2.16
+4MW         C35         C21          N4     111.244    1.50
+4MW         C35         C21          H3     108.146    1.50
+4MW         C20         C21          N4     109.508    2.50
+4MW         C20         C21          H3     108.806    1.50
+4MW          N4         C21          H3     109.364    1.50
+4MW          N5         C35          N6     113.318    1.94
+4MW          N5         C35         C21     123.341    1.62
+4MW          N6         C35         C21     123.341    3.00
+4MW          N7          N6         C35     107.540    1.50
+4MW         C36          N7          N6     107.540    1.50
+4MW         C37         C36          N7     126.298    1.50
+4MW         C37         C36          N5     121.862    1.62
+4MW          N7         C36          N5     111.839    1.94
+4MW         C36         C37          H4     109.621    1.50
+4MW         C36         C37          H5     109.621    1.50
+4MW         C36         C37          H6     109.621    1.50
+4MW          H4         C37          H5     109.308    2.38
+4MW          H4         C37          H6     109.308    2.38
+4MW          H5         C37          H6     109.308    2.38
+4MW         C36          N5         C30     129.963    3.00
+4MW         C36          N5         C35     108.641    1.96
+4MW         C30          N5         C35     129.963    3.00
+4MW           S         C30          N5     125.115    3.00
+4MW           S         C30         C29     108.208    3.00
+4MW          N5         C30         C29     126.677    3.00
+4MW         C31           S         C30     108.208    3.00
+4MW         C32         C31           S     119.912    3.00
+4MW         C32         C31         C33     131.880    3.00
+4MW           S         C31         C33     108.208    3.00
+4MW         C31         C32          H7     109.576    1.50
+4MW         C31         C32          H8     109.576    1.50
+4MW         C31         C32          H9     109.576    1.50
+4MW          H7         C32          H8     109.334    1.50
+4MW          H7         C32          H9     109.334    1.50
+4MW          H8         C32          H9     109.334    1.50
+4MW         C31         C33         C29     107.379    1.50
+4MW         C31         C33         C34     127.594    2.46
+4MW         C29         C33         C34     125.027    1.50
+4MW         C33         C34         H10     109.729    1.50
+4MW         C33         C34         H11     109.729    1.50
+4MW         C33         C34         H12     109.729    1.50
+4MW         H10         C34         H11     109.190    1.68
+4MW         H10         C34         H12     109.190    1.68
+4MW         H11         C34         H12     109.190    1.68
+4MW         C30         C29         C33     107.997    2.27
+4MW         C30         C29         C22     127.171    3.00
+4MW         C33         C29         C22     124.832    1.59
+4MW         C29         C22          N4     121.153    3.00
+4MW         C29         C22         C23     118.478    1.50
+4MW          N4         C22         C23     120.369    3.00
+4MW         C22         C23         C28     120.482    1.50
+4MW         C22         C23         C24     120.482    1.50
+4MW         C28         C23         C24     119.037    1.50
+4MW         C23         C28         C27     120.725    1.50
+4MW         C23         C28         H13     119.823    1.50
+4MW         C27         C28         H13     119.450    1.50
+4MW         C28         C27         C26     119.107    1.50
+4MW         C28         C27         H14     120.471    1.50
+4MW         C26         C27         H14     120.415    1.50
+4MW         C27         C26         C25     121.321    1.50
+4MW         C27         C26          CL     119.340    1.50
+4MW         C25         C26          CL     119.340    1.50
+4MW         C24         C25         C26     119.107    1.50
+4MW         C24         C25         H15     120.471    1.50
+4MW         C26         C25         H15     120.415    1.50
+4MW         C23         C24         C25     120.725    1.50
+4MW         C23         C24         H16     119.823    1.50
+4MW         C25         C24         H16     119.450    1.50
+4MW         C21          N4         C22     119.132    2.76
+4MW         C19          N3         C18     124.480    2.27
+4MW         C19          N3         H17     117.279    2.10
+4MW         C18          N3         H17     118.241    1.90
+4MW          N3         C18         C17     112.624    1.50
+4MW          N3         C18         H18     108.979    1.50
+4MW          N3         C18         H19     108.979    1.50
+4MW         C17         C18         H18     109.197    1.51
+4MW         C17         C18         H19     109.197    1.51
+4MW         H18         C18         H19     107.877    1.50
+4MW         C18         C17         C16     112.652    1.50
+4MW         C18         C17         H20     108.956    1.50
+4MW         C18         C17         H21     108.956    1.50
+4MW         C16         C17         H20     108.999    1.50
+4MW         C16         C17         H21     108.999    1.50
+4MW         H20         C17         H21     107.927    1.57
+4MW         C17         C16         C15     112.652    1.50
+4MW         C17         C16         H22     108.999    1.50
+4MW         C17         C16         H23     108.999    1.50
+4MW         C15         C16         H22     108.956    1.50
+4MW         C15         C16         H23     108.956    1.50
+4MW         H22         C16         H23     107.927    1.57
+4MW         C16         C15          N2     112.624    1.50
+4MW         C16         C15         H24     109.197    1.51
+4MW         C16         C15         H25     109.197    1.51
+4MW          N2         C15         H24     108.979    1.50
+4MW          N2         C15         H25     108.979    1.50
+4MW         H24         C15         H25     107.877    1.50
+4MW         C15          N2           C     123.228    1.50
+4MW         C15          N2         H26     118.274    1.90
+4MW           C          N2         H26     118.498    2.34
+4MW          N2           C          C1     116.460    1.50
+4MW          N2           C           O     124.220    1.50
+4MW          C1           C           O     119.319    1.50
+4MW           C          C1          O1     110.761    2.33
+4MW           C          C1         H27     109.413    1.50
+4MW           C          C1         H28     109.413    1.50
+4MW          O1          C1         H27     109.511    1.50
+4MW          O1          C1         H28     109.511    1.50
+4MW         H27          C1         H28     108.122    1.50
+4MW          C1          O1          C2     117.302    1.83
+4MW          O1          C2          C3     122.309    3.00
+4MW          O1          C2         C13     118.832    3.00
+4MW          C3          C2         C13     118.859    1.52
+4MW          C2         C13         C14     130.573    3.00
+4MW          C2         C13          C6     120.879    1.50
+4MW         C14         C13          C6     108.548    1.50
+4MW         C13          C6          C5     121.106    1.50
+4MW         C13          C6          C7     108.604    1.50
+4MW          C5          C6          C7     130.290    1.50
+4MW          C4          C5          C6     117.385    1.50
+4MW          C4          C5         H29     121.145    1.50
+4MW          C6          C5         H29     121.470    1.50
+4MW          C3          C4          C5     121.560    1.50
+4MW          C3          C4         H30     119.020    1.50
+4MW          C5          C4         H30     119.420    1.50
+4MW          C2          C3          C4     120.212    1.50
+4MW          C2          C3         H31     119.917    1.50
+4MW          C4          C3         H31     119.871    1.50
+4MW          O5         C14         C13     129.126    1.50
+4MW          O5         C14           N     124.777    1.50
+4MW         C13         C14           N     106.097    1.50
+4MW         C14           N          C8     123.222    1.79
+4MW         C14           N          C7     111.207    1.50
+4MW          C8           N          C7     123.222    1.79
+4MW           N          C7          C6     106.094    1.50
+4MW           N          C7          O4     124.848    1.50
+4MW          C6          C7          O4     129.058    1.50
+4MW           N          C8          C9     110.927    2.91
+4MW           N          C8         C12     112.383    2.26
+4MW           N          C8         H32     107.266    1.50
+4MW          C9          C8         C12     111.296    1.50
+4MW          C9          C8         H32     107.312    1.50
+4MW         C12          C8         H32     107.033    1.50
+4MW          C8         C12         C11     109.387    1.50
+4MW          C8         C12         H33     109.588    1.50
+4MW          C8         C12         H34     109.588    1.50
+4MW         C11         C12         H33     109.997    1.50
+4MW         C11         C12         H34     109.997    1.50
+4MW         H33         C12         H34     108.153    1.50
+4MW         C12         C11         C10     113.606    1.50
+4MW         C12         C11         H35     109.216    1.50
+4MW         C12         C11         H36     109.216    1.50
+4MW         C10         C11         H35     108.151    1.50
+4MW         C10         C11         H36     108.151    1.50
+4MW         H35         C11         H36     107.867    1.50
+4MW          N1         C10         C11     117.448    1.50
+4MW          N1         C10          O2     120.192    1.50
+4MW         C11         C10          O2     122.360    1.65
+4MW          C9          N1         C10     127.067    1.50
+4MW          C9          N1         H37     116.031    1.54
+4MW         C10          N1         H37     116.902    1.59
+4MW          C8          C9          O3     123.090    1.50
+4MW          C8          C9          N1     115.868    1.50
+4MW          O3          C9          N1     121.042    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4MW              const_42          N5         C30           S         C31     180.000    10.0     2
+4MW              const_66         C22         C29         C30           S     180.000    10.0     2
+4MW              const_44         C32         C31           S         C30     180.000    10.0     2
+4MW            sp2_sp3_19           S         C31         C32          H7     150.000    10.0     6
+4MW              const_48         C32         C31         C33         C34       0.000    10.0     2
+4MW            sp2_sp3_25         C31         C33         C34         H10     150.000    10.0     6
+4MW              const_52         C22         C29         C33         C34       0.000    10.0     2
+4MW            sp2_sp2_31          N4         C22         C29         C30       0.000     5.0     2
+4MW            sp2_sp2_37          N4         C22         C23         C28       0.000     5.0     2
+4MW            sp2_sp2_33         C29         C22          N4         C21     180.000     5.0     2
+4MW              const_23         C22         C23         C28         C27     180.000    10.0     2
+4MW              const_72         C22         C23         C24         C25     180.000    10.0     2
+4MW              const_25         C26         C27         C28         C23       0.000    10.0     2
+4MW            sp2_sp3_41          O6         C19         C20         C21     120.000    10.0     6
+4MW            sp2_sp2_39         C20         C19          N3         C18     180.000     5.0     2
+4MW              const_31          CL         C26         C27         C28     180.000    10.0     2
+4MW              const_34         C24         C25         C26          CL     180.000    10.0     2
+4MW              const_37         C23         C24         C25         C26       0.000    10.0     2
+4MW            sp2_sp3_47         C19          N3         C18         C17     120.000    10.0     6
+4MW            sp3_sp3_19         C16         C17         C18          N3     180.000    10.0     3
+4MW            sp3_sp3_28         C15         C16         C17         C18     180.000    10.0     3
+4MW            sp3_sp3_37          N2         C15         C16         C17     180.000    10.0     3
+4MW            sp3_sp3_11         C19         C20         C21          N4     -60.000    10.0     3
+4MW            sp2_sp3_53           C          N2         C15         C16     120.000    10.0     6
+4MW            sp2_sp2_43          C1           C          N2         C15     180.000     5.0     2
+4MW            sp2_sp3_59          N2           C          C1          O1     120.000    10.0     6
+4MW            sp3_sp3_46           C          C1          O1          C2     180.000    10.0     3
+4MW            sp2_sp2_47          C3          C2          O1          C1     180.000     5.0     2
+4MW              const_77         C14         C13          C2          O1       0.000    10.0     2
+4MW       const_sp2_sp2_3          O1          C2          C3          C4     180.000     5.0     2
+4MW              const_17          C2         C13          C6          C5       0.000    10.0     2
+4MW            sp2_sp2_12          C2         C13         C14          O5       0.000     5.0     2
+4MW              const_13          C4          C5          C6         C13       0.000    10.0     2
+4MW            sp2_sp2_22         C13          C6          C7          O4     180.000     5.0     2
+4MW       const_sp2_sp2_9          C3          C4          C5          C6       0.000     5.0     2
+4MW            sp2_sp3_38         C22          N4         C21         C20     120.000    10.0     6
+4MW            sp2_sp3_31          N5         C35         C21         C20     150.000    10.0     6
+4MW       const_sp2_sp2_5          C2          C3          C4          C5       0.000     5.0     2
+4MW            sp2_sp2_16          O5         C14           N          C8       0.000     5.0     2
+4MW            sp2_sp2_19          O4          C7           N         C14     180.000     5.0     2
+4MW            sp2_sp3_64         C14           N          C8          C9     150.000    10.0     6
+4MW            sp3_sp3_50         C11         C12          C8           N     -60.000    10.0     3
+4MW             sp2_sp3_5          O3          C9          C8           N     -60.000    10.0     6
+4MW             sp3_sp3_1         C10         C11         C12          C8      60.000    10.0     3
+4MW            sp2_sp3_10          O2         C10         C11         C12     180.000    10.0     6
+4MW              const_69         C21         C35          N6          N7     180.000    10.0     2
+4MW              const_55         C21         C35          N5         C36     180.000    10.0     2
+4MW             sp2_sp2_7          O2         C10          N1          C9     180.000     5.0     2
+4MW             sp2_sp2_3          O3          C9          N1         C10     180.000     5.0     2
+4MW              const_63         C35          N6          N7         C36       0.000    10.0     2
+4MW              const_62         C37         C36          N7          N6     180.000    10.0     2
+4MW            sp2_sp3_13          N7         C36         C37          H4     150.000    10.0     6
+4MW              const_60         C37         C36          N5         C30       0.000    10.0     2
+4MW            sp2_sp2_27           S         C30          N5         C36       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+4MW    chir_1    C21    N4    C35    C20    positive
+4MW    chir_2    C8    N    C9    C12    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4MW    plan-1         C22   0.020
+4MW    plan-1         C29   0.020
+4MW    plan-1         C30   0.020
+4MW    plan-1         C31   0.020
+4MW    plan-1         C32   0.020
+4MW    plan-1         C33   0.020
+4MW    plan-1         C34   0.020
+4MW    plan-1          N5   0.020
+4MW    plan-1           S   0.020
+4MW    plan-2         C22   0.020
+4MW    plan-2         C23   0.020
+4MW    plan-2         C24   0.020
+4MW    plan-2         C25   0.020
+4MW    plan-2         C26   0.020
+4MW    plan-2         C27   0.020
+4MW    plan-2         C28   0.020
+4MW    plan-2          CL   0.020
+4MW    plan-2         H13   0.020
+4MW    plan-2         H14   0.020
+4MW    plan-2         H15   0.020
+4MW    plan-2         H16   0.020
+4MW    plan-3         C13   0.020
+4MW    plan-3         C14   0.020
+4MW    plan-3          C2   0.020
+4MW    plan-3          C3   0.020
+4MW    plan-3          C4   0.020
+4MW    plan-3          C5   0.020
+4MW    plan-3          C6   0.020
+4MW    plan-3          C7   0.020
+4MW    plan-3         H29   0.020
+4MW    plan-3         H30   0.020
+4MW    plan-3         H31   0.020
+4MW    plan-3          O1   0.020
+4MW    plan-4         C21   0.020
+4MW    plan-4         C30   0.020
+4MW    plan-4         C35   0.020
+4MW    plan-4         C36   0.020
+4MW    plan-4         C37   0.020
+4MW    plan-4          N5   0.020
+4MW    plan-4          N6   0.020
+4MW    plan-4          N7   0.020
+4MW    plan-5         C19   0.020
+4MW    plan-5         C20   0.020
+4MW    plan-5          N3   0.020
+4MW    plan-5          O6   0.020
+4MW    plan-6         C22   0.020
+4MW    plan-6         C23   0.020
+4MW    plan-6         C29   0.020
+4MW    plan-6          N4   0.020
+4MW    plan-7         C18   0.020
+4MW    plan-7         C19   0.020
+4MW    plan-7         H17   0.020
+4MW    plan-7          N3   0.020
+4MW    plan-8           C   0.020
+4MW    plan-8         C15   0.020
+4MW    plan-8         H26   0.020
+4MW    plan-8          N2   0.020
+4MW    plan-9           C   0.020
+4MW    plan-9          C1   0.020
+4MW    plan-9          N2   0.020
+4MW    plan-9           O   0.020
+4MW   plan-10         C13   0.020
+4MW   plan-10         C14   0.020
+4MW   plan-10           N   0.020
+4MW   plan-10          O5   0.020
+4MW   plan-11          C6   0.020
+4MW   plan-11          C7   0.020
+4MW   plan-11           N   0.020
+4MW   plan-11          O4   0.020
+4MW   plan-12         C10   0.020
+4MW   plan-12         C11   0.020
+4MW   plan-12          N1   0.020
+4MW   plan-12          O2   0.020
+4MW   plan-13         C10   0.020
+4MW   plan-13          C9   0.020
+4MW   plan-13         H37   0.020
+4MW   plan-13          N1   0.020
+4MW   plan-14          C8   0.020
+4MW   plan-14          C9   0.020
+4MW   plan-14          N1   0.020
+4MW   plan-14          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4MW           SMILES              ACDLabs 12.01                                                                                                                                                                                     O=C(NCCCCNC(COc1cccc3c1C(N(C2C(NC(CC2)=O)=O)C3=O)=O)=O)CC4N=C(c6c(n5c4nnc5C)sc(c6C)C)c7ccc(cc7)Cl
+4MW            InChI                InChI  1.03 InChI=1S/C38H37ClN8O7S/c1-19-20(2)55-38-31(19)33(22-9-11-23(39)12-10-22)42-25(34-45-44-21(3)46(34)38)17-29(49)40-15-4-5-16-41-30(50)18-54-27-8-6-7-24-32(27)37(53)47(36(24)52)26-13-14-28(48)43-35(26)51/h6-12,25-26H,4-5,13-18H2,1-3H3,(H,40,49)(H,41,50)(H,43,48,51)/t25-,26-/m0/s1
+4MW         InChIKey                InChI  1.03                                                                                                                                                                                                                                                           LKEGXJXRNBALBV-UIOOFZCWSA-N
+4MW SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                             Cc1sc2n3c(C)nnc3[C@H](CC(=O)NCCCCNC(=O)COc4cccc5C(=O)N([C@H]6CCC(=O)NC6=O)C(=O)c45)N=C(c7ccc(Cl)cc7)c2c1C
+4MW           SMILES               CACTVS 3.385                                                                                                                                                                               Cc1sc2n3c(C)nnc3[CH](CC(=O)NCCCCNC(=O)COc4cccc5C(=O)N([CH]6CCC(=O)NC6=O)C(=O)c45)N=C(c7ccc(Cl)cc7)c2c1C
+4MW SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                                                                                            Cc1c(sc-2c1C(=N[C@H](c3n2c(nn3)C)CC(=O)NCCCCNC(=O)COc4cccc5c4C(=O)N(C5=O)[C@H]6CCC(=O)NC6=O)c7ccc(cc7)Cl)C
+4MW           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                                                                                    Cc1c(sc-2c1C(=NC(c3n2c(nn3)C)CC(=O)NCCCCNC(=O)COc4cccc5c4C(=O)N(C5=O)C6CCC(=O)NC6=O)c7ccc(cc7)Cl)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4MW acedrg               243         "dictionary generator"                  
+4MW acedrg_database      11          "data source"                           
+4MW rdkit                2017.03.2   "Chemoinformatics tool"
+4MW refmac5              5.8.0238    "optimization tool"                     

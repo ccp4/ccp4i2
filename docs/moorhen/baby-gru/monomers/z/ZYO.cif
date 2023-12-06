@@ -1,0 +1,397 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZYO     ZYO      "(6S)-2-(3-chloro-4-fluorobenzyl)-8-ethyl-10-hydroxy-6-methyl-4-(5-methyl-1,1-dioxido-1,2,5-thiadiazolidin-2-yl)-7,8-dihydropyrazino[1',2':1,5]pyrrolo[2,3-d]pyridazine-1,9(2H,6H)-dione"     NON-POLYMER     60     36     .     
+#
+data_comp_ZYO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZYO     NE      N       NT      0       -40.618     31.670      -24.860     
+ZYO     NF      N       NR6     0       -38.504     28.348      -19.047     
+ZYO     NG      N       NT      0       -38.914     32.080      -23.170     
+ZYO     NH      N       NR6     0       -37.562     34.763      -21.150     
+ZYO     NI      N       NT      0       -38.283     30.739      -20.418     
+ZYO     CAA     C       CH3     0       -36.969     26.401      -18.737     
+ZYO     CAB     C       CH3     0       -37.672     29.023      -22.032     
+ZYO     CAC     C       CH3     0       -41.067     30.295      -25.075     
+ZYO     OAD     O       O       0       -37.391     29.216      -17.279     
+ZYO     OAE     O       O       0       -36.788     34.856      -19.009     
+ZYO     OAF     O       O       0       -41.293     31.661      -22.404     
+ZYO     OAG     O       O       0       -40.780     33.766      -23.465     
+ZYO     OAH     O       OH1     0       -36.884     32.230      -17.475     
+ZYO     FAI     F       F       0       -42.002     39.275      -21.751     
+ZYO     CLAJ    CL      CL      0       -41.378     38.373      -19.029     
+ZYO     CAK     C       CR16    0       -40.154     38.281      -22.827     
+ZYO     CAL     C       CR16    0       -38.996     37.518      -22.738     
+ZYO     CAM     C       CR16    0       -39.308     37.286      -20.376     
+ZYO     CAN     C       CH2     0       -38.359     26.961      -18.555     
+ZYO     CAO     C       CH2     0       -39.347     32.039      -25.520     
+ZYO     CAP     C       CH2     0       -38.245     31.911      -24.470     
+ZYO     CAQ     C       CH2     0       -37.301     36.189      -21.432     
+ZYO     CAR     C       CH2     0       -39.387     28.562      -20.209     
+ZYO     NAS     N       NRD6    0       -38.085     34.056      -22.193     
+ZYO     CAT     C       CR6     0       -37.900     29.350      -18.400     
+ZYO     CAU     C       CR6     0       -40.871     38.533      -21.679     
+ZYO     CAV     C       CR6     0       -38.566     37.009      -21.517     
+ZYO     CAW     C       CR6     0       -40.462     38.046      -20.462     
+ZYO     CAX     C       CR5     0       -37.390     31.898      -18.696     
+ZYO     CAY     C       CR6     0       -38.367     32.721      -22.066     
+ZYO     CAZ     C       CR56    0       -37.833     30.632      -19.103     
+ZYO     CBA     C       CR6     0       -37.268     34.181      -19.922     
+ZYO     CBB     C       CR56    0       -37.551     32.788      -19.774     
+ZYO     CBC     C       CR56    0       -38.101     32.055      -20.845     
+ZYO     CBD     C       CH1     0       -38.796     29.589      -21.178     
+ZYO     SBJ     S       S3      0       -40.533     32.367      -23.379     
+ZYO     HAA     H       H       0       -36.969     25.460      -18.514     
+ZYO     HAAA    H       H       0       -36.353     26.869      -18.157     
+ZYO     HAAB    H       H       0       -36.693     26.514      -19.657     
+ZYO     HAB     H       H       0       -38.008     28.297      -22.564     
+ZYO     HABA    H       H       0       -36.968     28.703      -21.463     
+ZYO     HABB    H       H       0       -37.330     29.710      -22.608     
+ZYO     HAC     H       H       0       -41.482     29.952      -24.268     
+ZYO     HACA    H       H       0       -40.311     29.731      -25.309     
+ZYO     HACB    H       H       0       -41.715     30.279      -25.799     
+ZYO     HOAH    H       H       0       -36.981     33.030      -17.173     
+ZYO     HAK     H       H       0       -40.447     38.621      -23.653     
+ZYO     HAL     H       H       0       -38.499     37.340      -23.519     
+ZYO     HAM     H       H       0       -39.022     36.950      -19.549     
+ZYO     HAN     H       H       0       -39.001     26.382      -19.025     
+ZYO     HANA    H       H       0       -38.591     26.941      -17.599     
+ZYO     HAO     H       H       0       -39.166     31.449      -26.283     
+ZYO     HAOA    H       H       0       -39.396     32.961      -25.851     
+ZYO     HAP     H       H       0       -37.813     31.033      -24.523     
+ZYO     HAPA    H       H       0       -37.562     32.603      -24.597     
+ZYO     HAQ     H       H       0       -36.817     36.252      -22.282     
+ZYO     HAQA    H       H       0       -36.723     36.563      -20.735     
+ZYO     HAR     H       H       0       -39.521     27.719      -20.687     
+ZYO     HARA    H       H       0       -40.259     28.880      -19.897     
+ZYO     HBD     H       H       0       -39.521     29.878      -21.769     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZYO          NE         CAC      SINGLE       n     1.458  0.0100     1.458  0.0100
+ZYO          NE         CAO      SINGLE       n     1.474  0.0135     1.474  0.0135
+ZYO          NE         SBJ      SINGLE       n     1.645  0.0137     1.645  0.0137
+ZYO          NF         CAN      SINGLE       n     1.473  0.0100     1.473  0.0100
+ZYO          NF         CAR      SINGLE       n     1.469  0.0100     1.469  0.0100
+ZYO          NF         CAT      SINGLE       n     1.304  0.0200     1.304  0.0200
+ZYO          NG         CAP      SINGLE       n     1.469  0.0100     1.469  0.0100
+ZYO          NG         CAY      SINGLE       n     1.380  0.0200     1.380  0.0200
+ZYO          NG         SBJ      SINGLE       n     1.660  0.0200     1.660  0.0200
+ZYO          NH         CAQ      SINGLE       n     1.472  0.0100     1.472  0.0100
+ZYO          NH         NAS      SINGLE       y     1.355  0.0135     1.355  0.0135
+ZYO          NH         CBA      SINGLE       y     1.382  0.0109     1.382  0.0109
+ZYO          NI         CAZ      SINGLE       y     1.390  0.0111     1.390  0.0111
+ZYO          NI         CBC      SINGLE       y     1.391  0.0100     1.391  0.0100
+ZYO          NI         CBD      SINGLE       n     1.469  0.0100     1.469  0.0100
+ZYO         CAA         CAN      SINGLE       n     1.508  0.0200     1.508  0.0200
+ZYO         CAB         CBD      SINGLE       n     1.521  0.0100     1.521  0.0100
+ZYO         OAD         CAT      DOUBLE       n     1.237  0.0100     1.237  0.0100
+ZYO         OAE         CBA      DOUBLE       n     1.231  0.0132     1.231  0.0132
+ZYO         OAF         SBJ      DOUBLE       n     1.423  0.0104     1.423  0.0104
+ZYO         OAG         SBJ      DOUBLE       n     1.423  0.0104     1.423  0.0104
+ZYO         OAH         CAX      SINGLE       n     1.362  0.0200     1.362  0.0200
+ZYO         FAI         CAU      SINGLE       n     1.355  0.0100     1.355  0.0100
+ZYO        CLAJ         CAW      SINGLE       n     1.732  0.0100     1.732  0.0100
+ZYO         CAK         CAL      DOUBLE       y     1.386  0.0101     1.386  0.0101
+ZYO         CAK         CAU      SINGLE       y     1.373  0.0103     1.373  0.0103
+ZYO         CAL         CAV      SINGLE       y     1.386  0.0100     1.386  0.0100
+ZYO         CAM         CAV      DOUBLE       y     1.385  0.0100     1.385  0.0100
+ZYO         CAM         CAW      SINGLE       y     1.380  0.0100     1.380  0.0100
+ZYO         CAO         CAP      SINGLE       n     1.520  0.0118     1.520  0.0118
+ZYO         CAQ         CAV      SINGLE       n     1.509  0.0100     1.509  0.0100
+ZYO         CAR         CBD      SINGLE       n     1.527  0.0200     1.527  0.0200
+ZYO         NAS         CAY      DOUBLE       y     1.353  0.0183     1.353  0.0183
+ZYO         CAT         CAZ      SINGLE       n     1.459  0.0100     1.459  0.0100
+ZYO         CAU         CAW      DOUBLE       y     1.369  0.0120     1.369  0.0120
+ZYO         CAX         CAZ      DOUBLE       y     1.403  0.0200     1.403  0.0200
+ZYO         CAX         CBB      SINGLE       y     1.414  0.0200     1.414  0.0200
+ZYO         CAY         CBC      SINGLE       y     1.400  0.0159     1.400  0.0159
+ZYO         CBA         CBB      SINGLE       y     1.427  0.0100     1.427  0.0100
+ZYO         CBB         CBC      DOUBLE       y     1.408  0.0100     1.408  0.0100
+ZYO         CAA         HAA      SINGLE       n     1.089  0.0100     0.967  0.0131
+ZYO         CAA        HAAA      SINGLE       n     1.089  0.0100     0.967  0.0131
+ZYO         CAA        HAAB      SINGLE       n     1.089  0.0100     0.967  0.0131
+ZYO         CAB         HAB      SINGLE       n     1.089  0.0100     0.960  0.0100
+ZYO         CAB        HABA      SINGLE       n     1.089  0.0100     0.960  0.0100
+ZYO         CAB        HABB      SINGLE       n     1.089  0.0100     0.960  0.0100
+ZYO         CAC         HAC      SINGLE       n     1.089  0.0100     0.971  0.0148
+ZYO         CAC        HACA      SINGLE       n     1.089  0.0100     0.971  0.0148
+ZYO         CAC        HACB      SINGLE       n     1.089  0.0100     0.971  0.0148
+ZYO         OAH        HOAH      SINGLE       n     0.966  0.0059     0.861  0.0200
+ZYO         CAK         HAK      SINGLE       n     1.082  0.0130     0.941  0.0159
+ZYO         CAL         HAL      SINGLE       n     1.082  0.0130     0.943  0.0173
+ZYO         CAM         HAM      SINGLE       n     1.082  0.0130     0.937  0.0118
+ZYO         CAN         HAN      SINGLE       n     1.089  0.0100     0.984  0.0191
+ZYO         CAN        HANA      SINGLE       n     1.089  0.0100     0.984  0.0191
+ZYO         CAO         HAO      SINGLE       n     1.089  0.0100     0.981  0.0178
+ZYO         CAO        HAOA      SINGLE       n     1.089  0.0100     0.981  0.0178
+ZYO         CAP         HAP      SINGLE       n     1.089  0.0100     0.980  0.0135
+ZYO         CAP        HAPA      SINGLE       n     1.089  0.0100     0.980  0.0135
+ZYO         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.980  0.0138
+ZYO         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.980  0.0138
+ZYO         CAR         HAR      SINGLE       n     1.089  0.0100     0.979  0.0148
+ZYO         CAR        HARA      SINGLE       n     1.089  0.0100     0.979  0.0148
+ZYO         CBD         HBD      SINGLE       n     1.089  0.0100     0.980  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZYO         CAC          NE         CAO     114.054    1.50
+ZYO         CAC          NE         SBJ     120.198    2.17
+ZYO         CAO          NE         SBJ     112.021    3.00
+ZYO         CAN          NF         CAR     117.461    1.97
+ZYO         CAN          NF         CAT     120.100    1.55
+ZYO         CAR          NF         CAT     122.439    2.23
+ZYO         CAP          NG         CAY     120.919    3.00
+ZYO         CAP          NG         SBJ     112.021    3.00
+ZYO         CAY          NG         SBJ     109.471    3.00
+ZYO         CAQ          NH         NAS     116.249    1.50
+ZYO         CAQ          NH         CBA     121.033    1.50
+ZYO         NAS          NH         CBA     122.717    1.50
+ZYO         CAZ          NI         CBC     107.892    1.50
+ZYO         CAZ          NI         CBD     123.427    1.66
+ZYO         CBC          NI         CBD     127.440    2.10
+ZYO         CAN         CAA         HAA     109.493    1.50
+ZYO         CAN         CAA        HAAA     109.493    1.50
+ZYO         CAN         CAA        HAAB     109.493    1.50
+ZYO         HAA         CAA        HAAA     109.417    1.50
+ZYO         HAA         CAA        HAAB     109.417    1.50
+ZYO        HAAA         CAA        HAAB     109.417    1.50
+ZYO         CBD         CAB         HAB     109.469    1.50
+ZYO         CBD         CAB        HABA     109.469    1.50
+ZYO         CBD         CAB        HABB     109.469    1.50
+ZYO         HAB         CAB        HABA     109.475    1.50
+ZYO         HAB         CAB        HABB     109.475    1.50
+ZYO        HABA         CAB        HABB     109.475    1.50
+ZYO          NE         CAC         HAC     109.505    1.50
+ZYO          NE         CAC        HACA     109.505    1.50
+ZYO          NE         CAC        HACB     109.505    1.50
+ZYO         HAC         CAC        HACA     109.470    1.50
+ZYO         HAC         CAC        HACB     109.470    1.50
+ZYO        HACA         CAC        HACB     109.470    1.50
+ZYO         CAX         OAH        HOAH     120.000    3.00
+ZYO         CAL         CAK         CAU     118.896    1.50
+ZYO         CAL         CAK         HAK     120.911    1.50
+ZYO         CAU         CAK         HAK     120.193    1.50
+ZYO         CAK         CAL         CAV     120.942    1.50
+ZYO         CAK         CAL         HAL     119.439    1.50
+ZYO         CAV         CAL         HAL     119.619    1.50
+ZYO         CAV         CAM         CAW     119.980    1.50
+ZYO         CAV         CAM         HAM     119.472    1.50
+ZYO         CAW         CAM         HAM     120.548    1.50
+ZYO          NF         CAN         CAA     113.695    1.50
+ZYO          NF         CAN         HAN     108.636    1.50
+ZYO          NF         CAN        HANA     108.636    1.50
+ZYO         CAA         CAN         HAN     109.296    1.50
+ZYO         CAA         CAN        HANA     109.296    1.50
+ZYO         HAN         CAN        HANA     107.955    1.50
+ZYO          NE         CAO         CAP     104.706    3.00
+ZYO          NE         CAO         HAO     110.931    1.50
+ZYO          NE         CAO        HAOA     110.931    1.50
+ZYO         CAP         CAO         HAO     111.183    1.50
+ZYO         CAP         CAO        HAOA     111.183    1.50
+ZYO         HAO         CAO        HAOA     109.055    1.50
+ZYO          NG         CAP         CAO     103.104    2.01
+ZYO          NG         CAP         HAP     110.984    1.50
+ZYO          NG         CAP        HAPA     110.984    1.50
+ZYO         CAO         CAP         HAP     111.281    1.50
+ZYO         CAO         CAP        HAPA     111.281    1.50
+ZYO         HAP         CAP        HAPA     109.083    1.50
+ZYO          NH         CAQ         CAV     111.935    1.50
+ZYO          NH         CAQ         HAQ     108.854    1.50
+ZYO          NH         CAQ        HAQA     108.854    1.50
+ZYO         CAV         CAQ         HAQ     109.470    1.50
+ZYO         CAV         CAQ        HAQA     109.470    1.50
+ZYO         HAQ         CAQ        HAQA     108.160    1.50
+ZYO          NF         CAR         CBD     110.160    1.50
+ZYO          NF         CAR         HAR     109.161    1.50
+ZYO          NF         CAR        HARA     109.161    1.50
+ZYO         CBD         CAR         HAR     109.072    1.50
+ZYO         CBD         CAR        HARA     109.072    1.50
+ZYO         HAR         CAR        HARA     108.200    1.50
+ZYO          NH         NAS         CAY     119.130    1.50
+ZYO          NF         CAT         OAD     123.181    1.50
+ZYO          NF         CAT         CAZ     114.154    2.30
+ZYO         OAD         CAT         CAZ     122.665    1.50
+ZYO         FAI         CAU         CAK     119.320    1.50
+ZYO         FAI         CAU         CAW     119.161    1.50
+ZYO         CAK         CAU         CAW     121.519    1.50
+ZYO         CAL         CAV         CAM     118.764    1.50
+ZYO         CAL         CAV         CAQ     120.558    1.50
+ZYO         CAM         CAV         CAQ     120.678    1.64
+ZYO        CLAJ         CAW         CAM     119.523    1.50
+ZYO        CLAJ         CAW         CAU     120.578    1.50
+ZYO         CAM         CAW         CAU     119.900    1.50
+ZYO         OAH         CAX         CAZ     127.148    3.00
+ZYO         OAH         CAX         CBB     125.480    3.00
+ZYO         CAZ         CAX         CBB     107.372    1.50
+ZYO          NG         CAY         NAS     118.184    1.62
+ZYO          NG         CAY         CBC     121.812    3.00
+ZYO         NAS         CAY         CBC     120.005    1.64
+ZYO          NI         CAZ         CAT     119.793    1.50
+ZYO          NI         CAZ         CAX     107.205    1.50
+ZYO         CAT         CAZ         CAX     133.002    1.56
+ZYO          NH         CBA         OAE     118.430    2.29
+ZYO          NH         CBA         CBB     117.978    2.15
+ZYO         OAE         CBA         CBB     123.592    1.50
+ZYO         CAX         CBB         CBA     133.308    2.09
+ZYO         CAX         CBB         CBC     106.464    2.91
+ZYO         CBA         CBB         CBC     120.228    1.63
+ZYO          NI         CBC         CAY     131.800    1.81
+ZYO          NI         CBC         CBB     108.258    1.50
+ZYO         CAY         CBC         CBB     119.942    1.72
+ZYO          NI         CBD         CAB     110.198    3.00
+ZYO          NI         CBD         CAR     106.882    2.39
+ZYO          NI         CBD         HBD     109.227    1.50
+ZYO         CAB         CBD         CAR     113.157    3.00
+ZYO         CAB         CBD         HBD     108.359    1.50
+ZYO         CAR         CBD         HBD     107.168    1.85
+ZYO          NE         SBJ          NG     109.471    3.00
+ZYO          NE         SBJ         OAF     111.354    1.50
+ZYO          NE         SBJ         OAG     111.354    1.50
+ZYO          NG         SBJ         OAF     109.850    1.50
+ZYO          NG         SBJ         OAG     109.850    1.50
+ZYO         OAF         SBJ         OAG     116.597    2.05
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZYO             sp3_sp3_2         CAP         CAO          NE         CAC     180.000    10.0     3
+ZYO            sp3_sp3_35         CAC          NE         SBJ         OAF     180.000    10.0     3
+ZYO            sp3_sp3_25         HAC         CAC          NE         CAO     180.000    10.0     3
+ZYO            sp2_sp2_13         CAZ         CAX         OAH        HOAH     180.000     5.0     2
+ZYO       const_sp2_sp2_1         CAU         CAK         CAL         CAV       0.000     5.0     2
+ZYO              const_58         CAL         CAK         CAU         FAI     180.000    10.0     2
+ZYO       const_sp2_sp2_6         CAK         CAL         CAV         CAQ     180.000     5.0     2
+ZYO              const_10         CAW         CAM         CAV         CAQ     180.000    10.0     2
+ZYO              const_14         CAV         CAM         CAW        CLAJ     180.000    10.0     2
+ZYO             sp3_sp3_7          NE         CAO         CAP          NG     -60.000    10.0     3
+ZYO            sp2_sp3_26         CAR          NF         CAN         CAA     -90.000    10.0     6
+ZYO            sp2_sp3_16         CAN          NF         CAR         CBD     180.000    10.0     6
+ZYO             sp2_sp2_8         OAD         CAT          NF         CAN       0.000     5.0     2
+ZYO            sp2_sp3_38         CAL         CAV         CAQ          NH     -90.000    10.0     6
+ZYO            sp3_sp3_17          NF         CAR         CBD         CAB      60.000    10.0     3
+ZYO              const_40          NG         CAY         NAS          NH     180.000    10.0     2
+ZYO             sp2_sp2_3         OAD         CAT         CAZ          NI     180.000     5.0     2
+ZYO              const_20         FAI         CAU         CAW        CLAJ       0.000    10.0     2
+ZYO              const_27         OAH         CAX         CAZ          NI     180.000    10.0     2
+ZYO              const_32         OAH         CAX         CBB         CBA       0.000    10.0     2
+ZYO              const_44          NG         CAY         CBC          NI       0.000    10.0     2
+ZYO             sp2_sp3_4         CAY          NG         CAP         CAO     180.000    10.0     6
+ZYO            sp2_sp2_11         NAS         CAY          NG         CAP       0.000     5.0     2
+ZYO             sp2_sp3_9         CAP          NG         SBJ         OAF    -120.000    10.0     6
+ZYO              const_48         OAE         CBA         CBB         CAX       0.000    10.0     2
+ZYO              const_33         CAX         CBB         CBC          NI       0.000    10.0     2
+ZYO            sp2_sp3_32         NAS          NH         CAQ         CAV     -90.000    10.0     6
+ZYO              const_38         CAY         NAS          NH         CAQ     180.000    10.0     2
+ZYO              const_52         OAE         CBA          NH         CAQ       0.000    10.0     2
+ZYO              const_22         CAT         CAZ          NI         CBC     180.000    10.0     2
+ZYO              const_55         CAY         CBC          NI         CAZ     180.000    10.0     2
+ZYO            sp2_sp3_20         CAZ          NI         CBD         CAB     120.000    10.0     6
+ZYO            sp3_sp3_37         HAA         CAA         CAN          NF     180.000    10.0     3
+ZYO            sp3_sp3_46         HAB         CAB         CBD          NI     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZYO    chir_1    NE    SBJ    CAO    CAC    negative
+ZYO    chir_2    CBD    NI    CAR    CAB    positive
+ZYO    chir_3    SBJ    OAF    OAG    NG    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZYO    plan-1         CAQ   0.020
+ZYO    plan-1         CAT   0.020
+ZYO    plan-1         CAX   0.020
+ZYO    plan-1         CAY   0.020
+ZYO    plan-1         CAZ   0.020
+ZYO    plan-1         CBA   0.020
+ZYO    plan-1         CBB   0.020
+ZYO    plan-1         CBC   0.020
+ZYO    plan-1         CBD   0.020
+ZYO    plan-1         NAS   0.020
+ZYO    plan-1          NG   0.020
+ZYO    plan-1          NH   0.020
+ZYO    plan-1          NI   0.020
+ZYO    plan-1         OAE   0.020
+ZYO    plan-1         OAH   0.020
+ZYO    plan-2         CAK   0.020
+ZYO    plan-2         CAL   0.020
+ZYO    plan-2         CAM   0.020
+ZYO    plan-2         CAQ   0.020
+ZYO    plan-2         CAU   0.020
+ZYO    plan-2         CAV   0.020
+ZYO    plan-2         CAW   0.020
+ZYO    plan-2        CLAJ   0.020
+ZYO    plan-2         FAI   0.020
+ZYO    plan-2         HAK   0.020
+ZYO    plan-2         HAL   0.020
+ZYO    plan-2         HAM   0.020
+ZYO    plan-3         CAN   0.020
+ZYO    plan-3         CAR   0.020
+ZYO    plan-3         CAT   0.020
+ZYO    plan-3          NF   0.020
+ZYO    plan-4         CAT   0.020
+ZYO    plan-4         CAZ   0.020
+ZYO    plan-4          NF   0.020
+ZYO    plan-4         OAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZYO           SMILES              ACDLabs 12.01                                                                                                                  O=S5(=O)N(C1=NN(C(=O)c3c1n2c(C(=O)N(CC)CC2C)c3O)Cc4ccc(F)c(Cl)c4)CCN5C
+ZYO SMILES_CANONICAL               CACTVS 3.370                                                                                                          CCN1C[C@H](C)n2c(c(O)c3C(=O)N(Cc4ccc(F)c(Cl)c4)N=C(N5CCN(C)[S]5(=O)=O)c23)C1=O
+ZYO           SMILES               CACTVS 3.370                                                                                                           CCN1C[CH](C)n2c(c(O)c3C(=O)N(Cc4ccc(F)c(Cl)c4)N=C(N5CCN(C)[S]5(=O)=O)c23)C1=O
+ZYO SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                          CCN1C[C@@H](n2c3c(c(c2C1=O)O)C(=O)N(N=C3N4CC[N@](S4(=O)=O)C)Cc5ccc(c(c5)Cl)F)C
+ZYO           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                  CCN1CC(n2c3c(c(c2C1=O)O)C(=O)N(N=C3N4CCN(S4(=O)=O)C)Cc5ccc(c(c5)Cl)F)C
+ZYO            InChI                InChI  1.03 InChI=1S/C22H24ClFN6O5S/c1-4-27-10-12(2)30-17-16(19(31)18(30)22(27)33)21(32)28(11-13-5-6-15(24)14(23)9-13)25-20(17)29-8-7-26(3)36(29,34)35/h5-6,9,12,31H,4,7-8,10-11H2,1-3H3/t12-/m0/s1
+ZYO         InChIKey                InChI  1.03                                                                                                                                                             DXTGTNDZQFNYNI-LBPRGKRZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZYO acedrg               243         "dictionary generator"                  
+ZYO acedrg_database      11          "data source"                           
+ZYO rdkit                2017.03.2   "Chemoinformatics tool"
+ZYO refmac5              5.8.0238    "optimization tool"                     

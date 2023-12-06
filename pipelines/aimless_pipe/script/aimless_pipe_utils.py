@@ -41,11 +41,11 @@ def displayFile(fileroot, parent, filenames, text, projectid=None, jobNumber=Non
         try:
           if "." in jobNumber:
             jobNumber = jobNumber.split(".")[0]
-          href = "/database/?getProjectJobFile?projectId="+projectid+"?fileName="+filename.split('/')[1]+"?jobNumber="+jobNumber+"?subJobNumber="+subJobNumber
+          href = "/database/getProjectJobFile?projectId="+projectid+"&fileName="+filename.split('/')[1]+"&jobNumber="+jobNumber+"&subJobNumber="+subJobNumber
         except Exception as err:
           href = "about:blank"
     else:
-        href = "/database/?getProjectJobFile?projectId="+projectid+"?fileName="+filename+"?jobNumber="+jobnumber
+        href = "/database/getProjectJobFile?projectId="+projectid+"&fileName="+filename+"&jobNumber="+jobnumber
     p.append(GenericElement('a',text,href=href))
     parent.append(p)
 
@@ -72,9 +72,9 @@ def displayFileList(fileroot, parent, items, box=True, projectid=None, jobNumber
       p = GenericElement('p')
       if len(filename.split('/')) > 1:
           subJobNumber = filename.split('/')[0][4:]
-          href = "/database/?getProjectJobFile?projectId="+projectid+"?fileName="+filename.split('/')[1]+"?jobNumber="+jobNumber+"?subJobNumber="+subJobNumber
+          href = "/database/getProjectJobFile?projectId="+projectid+"&fileName="+filename.split('/')[1]+"&jobNumber="+jobNumber+"&subJobNumber="+subJobNumber
       else:
-          href = "/database/?getProjectJobFile?projectId="+projectid+"?fileName="+filename+"?jobNumber="+jobnumber
+          href = "/database/getProjectJobFile?projectId="+projectid+"&fileName="+filename+"&jobNumber="+jobnumber
       p.append(GenericElement('a',text,href=href))
       nextDiv.append(p)
 

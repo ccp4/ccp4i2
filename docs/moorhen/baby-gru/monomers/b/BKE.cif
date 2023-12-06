@@ -1,0 +1,291 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BKE     BKE      7-(4-methoxyphenyl)-5-phenyl-3,7-dihydro-4H-pyrrolo[2,3-d]pyrimidin-4-one     NON-POLYMER     39     24     .     
+#
+data_comp_BKE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BKE     C       C       CH3     0       -35.074     -43.279     -7.849      
+BKE     N       N       NR5     0       -40.272     -40.995     -11.007     
+BKE     O       O       O2      0       -36.455     -43.118     -7.530      
+BKE     C1      C       CR6     0       -37.320     -42.586     -8.456      
+BKE     N1      N       NRD6    0       -42.092     -42.640     -10.747     
+BKE     O1      O       O       0       -44.174     -40.301     -13.410     
+BKE     C2      C       CR16    0       -36.992     -42.182     -9.750      
+BKE     N2      N       NR6     0       -44.001     -42.124     -12.044     
+BKE     C3      C       CR16    0       -37.966     -41.661     -10.584     
+BKE     C4      C       CR6     0       -39.270     -41.538     -10.139     
+BKE     C5      C       CR16    0       -39.603     -41.932     -8.856      
+BKE     C6      C       CR16    0       -38.634     -42.457     -8.017      
+BKE     C7      C       CR15    0       -40.119     -39.841     -11.741     
+BKE     C8      C       CR5     0       -41.244     -39.578     -12.477     
+BKE     C9      C       CR56    0       -42.180     -40.643     -12.191     
+BKE     C10     C       CR56    0       -41.537     -41.506     -11.271     
+BKE     C11     C       CR16    0       -43.309     -42.890     -11.167     
+BKE     C12     C       CR6     0       -43.484     -40.955     -12.611     
+BKE     C13     C       CR6     0       -41.429     -38.428     -13.381     
+BKE     C14     C       CR16    0       -42.559     -37.609     -13.292     
+BKE     C15     C       CR16    0       -42.724     -36.528     -14.147     
+BKE     C16     C       CR16    0       -41.765     -36.240     -15.097     
+BKE     C17     C       CR16    0       -40.639     -37.033     -15.198     
+BKE     C18     C       CR16    0       -40.469     -38.117     -14.348     
+BKE     H       H       H       0       -34.687     -42.413     -8.059      
+BKE     HA      H       H       0       -34.984     -43.870     -8.615      
+BKE     HB      H       H       0       -34.610     -43.664     -7.088      
+BKE     H2      H       H       0       -36.108     -42.262     -10.064     
+BKE     HN2     H       H       0       -44.803     -42.370     -12.265     
+BKE     H3      H       H       0       -37.740     -41.391     -11.454     
+BKE     H5      H       H       0       -40.489     -41.850     -8.554      
+BKE     H6      H       H       0       -38.866     -42.726     -7.145      
+BKE     H7      H       H       0       -39.348     -39.312     -11.737     
+BKE     H11     H       H       0       -43.732     -43.657     -10.837     
+BKE     H14     H       H       0       -43.220     -37.799     -12.648     
+BKE     H15     H       H       0       -43.493     -35.988     -14.076     
+BKE     H16     H       H       0       -41.878     -35.503     -15.676     
+BKE     H17     H       H       0       -39.982     -36.839     -15.846     
+BKE     H18     H       H       0       -39.698     -38.653     -14.425     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BKE           C           O      SINGLE       n     1.424  0.0117     1.424  0.0117
+BKE           N          C4      SINGLE       n     1.430  0.0100     1.430  0.0100
+BKE           N          C7      SINGLE       y     1.376  0.0100     1.376  0.0100
+BKE           N         C10      SINGLE       y     1.384  0.0174     1.384  0.0174
+BKE           O          C1      SINGLE       n     1.369  0.0100     1.369  0.0100
+BKE          C1          C2      DOUBLE       y     1.386  0.0109     1.386  0.0109
+BKE          C1          C6      SINGLE       y     1.386  0.0109     1.386  0.0109
+BKE          N1         C10      SINGLE       y     1.362  0.0100     1.362  0.0100
+BKE          N1         C11      DOUBLE       y     1.308  0.0100     1.308  0.0100
+BKE          O1         C12      DOUBLE       n     1.242  0.0112     1.242  0.0112
+BKE          C2          C3      SINGLE       y     1.381  0.0100     1.381  0.0100
+BKE          N2         C11      SINGLE       y     1.347  0.0180     1.347  0.0180
+BKE          N2         C12      SINGLE       y     1.395  0.0119     1.395  0.0119
+BKE          C3          C4      DOUBLE       y     1.380  0.0100     1.380  0.0100
+BKE          C4          C5      SINGLE       y     1.380  0.0100     1.380  0.0100
+BKE          C5          C6      DOUBLE       y     1.381  0.0100     1.381  0.0100
+BKE          C7          C8      DOUBLE       y     1.370  0.0109     1.370  0.0109
+BKE          C8          C9      SINGLE       y     1.446  0.0100     1.446  0.0100
+BKE          C8         C13      SINGLE       n     1.474  0.0100     1.474  0.0100
+BKE          C9         C10      DOUBLE       y     1.400  0.0182     1.400  0.0182
+BKE          C9         C12      SINGLE       y     1.400  0.0115     1.400  0.0115
+BKE         C13         C14      DOUBLE       y     1.395  0.0100     1.395  0.0100
+BKE         C13         C18      SINGLE       y     1.395  0.0100     1.395  0.0100
+BKE         C14         C15      SINGLE       y     1.384  0.0100     1.384  0.0100
+BKE         C15         C16      DOUBLE       y     1.376  0.0114     1.376  0.0114
+BKE         C16         C17      SINGLE       y     1.376  0.0124     1.376  0.0124
+BKE         C17         C18      DOUBLE       y     1.384  0.0100     1.384  0.0100
+BKE           C           H      SINGLE       n     1.089  0.0100     0.971  0.0157
+BKE           C          HA      SINGLE       n     1.089  0.0100     0.971  0.0157
+BKE           C          HB      SINGLE       n     1.089  0.0100     0.971  0.0157
+BKE          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0151
+BKE          N2         HN2      SINGLE       n     1.016  0.0100     0.868  0.0148
+BKE          C3          H3      SINGLE       n     1.082  0.0130     0.939  0.0148
+BKE          C5          H5      SINGLE       n     1.082  0.0130     0.939  0.0148
+BKE          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0151
+BKE          C7          H7      SINGLE       n     1.082  0.0130     0.935  0.0100
+BKE         C11         H11      SINGLE       n     1.082  0.0130     0.936  0.0100
+BKE         C14         H14      SINGLE       n     1.082  0.0130     0.942  0.0125
+BKE         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0180
+BKE         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0161
+BKE         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0180
+BKE         C18         H18      SINGLE       n     1.082  0.0130     0.942  0.0125
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BKE           O           C           H     109.428    1.50
+BKE           O           C          HA     109.428    1.50
+BKE           O           C          HB     109.428    1.50
+BKE           H           C          HA     109.509    1.50
+BKE           H           C          HB     109.509    1.50
+BKE          HA           C          HB     109.509    1.50
+BKE          C4           N          C7     124.676    1.50
+BKE          C4           N         C10     127.502    1.80
+BKE          C7           N         C10     107.822    1.50
+BKE           C           O          C1     117.529    1.50
+BKE           O          C1          C2     120.120    3.00
+BKE           O          C1          C6     120.120    3.00
+BKE          C2          C1          C6     119.760    1.50
+BKE         C10          N1         C11     113.413    1.50
+BKE          C1          C2          C3     119.859    1.50
+BKE          C1          C2          H2     120.098    1.50
+BKE          C3          C2          H2     120.046    1.50
+BKE         C11          N2         C12     123.688    1.50
+BKE         C11          N2         HN2     118.287    1.50
+BKE         C12          N2         HN2     118.026    1.86
+BKE          C2          C3          C4     120.009    1.50
+BKE          C2          C3          H3     119.941    1.50
+BKE          C4          C3          H3     120.050    1.50
+BKE           N          C4          C3     119.751    1.50
+BKE           N          C4          C5     119.751    1.50
+BKE          C3          C4          C5     120.497    1.50
+BKE          C4          C5          C6     120.009    1.50
+BKE          C4          C5          H5     120.050    1.50
+BKE          C6          C5          H5     119.941    1.50
+BKE          C1          C6          C5     119.859    1.50
+BKE          C1          C6          H6     120.098    1.50
+BKE          C5          C6          H6     120.046    1.50
+BKE           N          C7          C8     110.607    1.50
+BKE           N          C7          H7     124.390    1.50
+BKE          C8          C7          H7     125.005    1.62
+BKE          C7          C8          C9     106.686    1.50
+BKE          C7          C8         C13     126.278    2.03
+BKE          C9          C8         C13     127.036    2.23
+BKE          C8          C9         C10     106.664    1.50
+BKE          C8          C9         C12     134.518    1.59
+BKE         C10          C9         C12     118.817    1.50
+BKE           N         C10          N1     127.101    2.13
+BKE           N         C10          C9     108.220    1.50
+BKE          N1         C10          C9     124.679    1.50
+BKE          N1         C11          N2     125.256    1.50
+BKE          N1         C11         H11     117.394    1.50
+BKE          N2         C11         H11     117.350    1.50
+BKE          O1         C12          N2     119.783    1.50
+BKE          O1         C12          C9     126.070    1.50
+BKE          N2         C12          C9     114.147    1.50
+BKE          C8         C13         C14     121.037    1.50
+BKE          C8         C13         C18     121.037    1.50
+BKE         C14         C13         C18     117.926    1.50
+BKE         C13         C14         C15     120.832    1.50
+BKE         C13         C14         H14     119.455    1.50
+BKE         C15         C14         H14     119.713    1.50
+BKE         C14         C15         C16     120.285    1.50
+BKE         C14         C15         H15     119.757    1.50
+BKE         C16         C15         H15     119.958    1.50
+BKE         C15         C16         C17     119.840    1.50
+BKE         C15         C16         H16     120.080    1.50
+BKE         C17         C16         H16     120.080    1.50
+BKE         C16         C17         C18     120.285    1.50
+BKE         C16         C17         H17     119.958    1.50
+BKE         C18         C17         H17     119.757    1.50
+BKE         C13         C18         C17     120.832    1.50
+BKE         C13         C18         H18     119.455    1.50
+BKE         C17         C18         H18     119.713    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BKE             sp3_sp3_2           H           C           O          C1     -60.000    10.0     3
+BKE              const_67          C4          C5          C6          C1       0.000    10.0     2
+BKE              const_23           N          C7          C8          C9       0.000    10.0     2
+BKE              const_27          C7          C8          C9         C10       0.000    10.0     2
+BKE             sp2_sp2_7         C14         C13          C8          C7     180.000     5.0     2
+BKE       const_sp2_sp2_3           N         C10          C9          C8       0.000     5.0     2
+BKE              const_10          O1         C12          C9          C8       0.000    10.0     2
+BKE              const_33          C8         C13         C14         C15     180.000    10.0     2
+BKE              const_83          C8         C13         C18         C17     180.000    10.0     2
+BKE              const_35         C13         C14         C15         C16       0.000    10.0     2
+BKE              const_20          C8          C7           N          C4     180.000    10.0     2
+BKE              const_74          N1         C10           N          C4       0.000    10.0     2
+BKE             sp2_sp2_1          C3          C4           N          C7     180.000     5.0     2
+BKE              const_39         C14         C15         C16         C17       0.000    10.0     2
+BKE              const_43         C15         C16         C17         C18       0.000    10.0     2
+BKE              const_47         C16         C17         C18         C13       0.000    10.0     2
+BKE             sp2_sp2_5          C2          C1           O           C     180.000     5.0     2
+BKE              const_77           O          C1          C6          C5     180.000    10.0     2
+BKE              const_53           O          C1          C2          C3     180.000    10.0     2
+BKE       const_sp2_sp2_2           N         C10          N1         C11     180.000     5.0     2
+BKE              const_79          N2         C11          N1         C10       0.000    10.0     2
+BKE              const_55          C1          C2          C3          C4       0.000    10.0     2
+BKE              const_15          N1         C11          N2         C12       0.000    10.0     2
+BKE              const_13          O1         C12          N2         C11     180.000    10.0     2
+BKE              const_60          C2          C3          C4           N     180.000    10.0     2
+BKE              const_65           N          C4          C5          C6     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BKE    plan-1         C10   0.020
+BKE    plan-1         C11   0.020
+BKE    plan-1         C12   0.020
+BKE    plan-1         C13   0.020
+BKE    plan-1          C4   0.020
+BKE    plan-1          C7   0.020
+BKE    plan-1          C8   0.020
+BKE    plan-1          C9   0.020
+BKE    plan-1         H11   0.020
+BKE    plan-1          H7   0.020
+BKE    plan-1         HN2   0.020
+BKE    plan-1           N   0.020
+BKE    plan-1          N1   0.020
+BKE    plan-1          N2   0.020
+BKE    plan-1          O1   0.020
+BKE    plan-2          C1   0.020
+BKE    plan-2          C2   0.020
+BKE    plan-2          C3   0.020
+BKE    plan-2          C4   0.020
+BKE    plan-2          C5   0.020
+BKE    plan-2          C6   0.020
+BKE    plan-2          H2   0.020
+BKE    plan-2          H3   0.020
+BKE    plan-2          H5   0.020
+BKE    plan-2          H6   0.020
+BKE    plan-2           N   0.020
+BKE    plan-2           O   0.020
+BKE    plan-3         C13   0.020
+BKE    plan-3         C14   0.020
+BKE    plan-3         C15   0.020
+BKE    plan-3         C16   0.020
+BKE    plan-3         C17   0.020
+BKE    plan-3         C18   0.020
+BKE    plan-3          C8   0.020
+BKE    plan-3         H14   0.020
+BKE    plan-3         H15   0.020
+BKE    plan-3         H16   0.020
+BKE    plan-3         H17   0.020
+BKE    plan-3         H18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BKE           SMILES              ACDLabs 12.01                                                                                O=C1c2c(cn(c2N=CN1)c3ccc(OC)cc3)c4ccccc4
+BKE            InChI                InChI  1.03 InChI=1S/C19H15N3O2/c1-24-15-9-7-14(8-10-15)22-11-16(13-5-3-2-4-6-13)17-18(22)20-12-21-19(17)23/h2-12H,1H3,(H,20,21,23)
+BKE         InChIKey                InChI  1.03                                                                                             VAOBJTRTUSWVKW-UHFFFAOYSA-N
+BKE SMILES_CANONICAL               CACTVS 3.385                                                                                COc1ccc(cc1)n2cc(c3ccccc3)c4C(=O)NC=Nc24
+BKE           SMILES               CACTVS 3.385                                                                                COc1ccc(cc1)n2cc(c3ccccc3)c4C(=O)NC=Nc24
+BKE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                  COc1ccc(cc1)n2cc(c3c2N=CNC3=O)c4ccccc4
+BKE           SMILES "OpenEye OEToolkits" 1.7.6                                                                                  COc1ccc(cc1)n2cc(c3c2N=CNC3=O)c4ccccc4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BKE acedrg               243         "dictionary generator"                  
+BKE acedrg_database      11          "data source"                           
+BKE rdkit                2017.03.2   "Chemoinformatics tool"
+BKE refmac5              5.8.0238    "optimization tool"                     

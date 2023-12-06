@@ -1,0 +1,424 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DF3     DF3      N-[2-(3-{[2-(2,3-dihydro-1,4-benzodioxin-6-ylamino)-2-oxoethyl]sulfanyl}-1H-indol-1-yl)ethyl]-3-(trifluoromethyl)benzamide     NON-POLYMER     63     39     .     
+#
+data_comp_DF3
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DF3     OAA     O       O       0       20.432      -0.040      -26.337     
+DF3     OAB     O       O       0       21.872      2.302       -20.231     
+DF3     FAC     F       F       0       23.212      -4.350      -21.097     
+DF3     FAD     F       F       0       21.423      -3.607      -21.960     
+DF3     FAE     F       F       0       23.159      -3.835      -23.152     
+DF3     CAF     C       CR16    0       24.882      -0.357      -21.601     
+DF3     CAG     C       CR16    0       17.859      3.311       -23.697     
+DF3     CAH     C       CR16    0       17.794      3.885       -22.425     
+DF3     CAI     C       CR16    0       24.016      0.519       -20.965     
+DF3     CAJ     C       CR16    0       24.475      -1.644      -21.923     
+DF3     CAK     C       CR16    0       21.969      2.606       -25.832     
+DF3     CAL     C       CR16    0       22.065      3.977       -25.967     
+DF3     CAM     C       CR16    0       18.105      1.963       -23.859     
+DF3     CAN     C       CR16    0       17.974      3.133       -21.281     
+DF3     CAO     C       CR16    0       21.318      2.878       -23.513     
+DF3     CAP     C       CR16    0       22.312      -1.173      -20.968     
+DF3     CAQ     C       CR15    0       18.648      -0.427      -21.143     
+DF3     CAR     C       CH2     0       19.811      1.408       -18.523     
+DF3     CAS     C       CH2     0       21.998      6.903       -23.831     
+DF3     CAT     C       CH2     0       20.996      6.434       -22.833     
+DF3     CAU     C       CH2     0       18.458      0.964       -19.044     
+DF3     CAV     C       CH2     0       20.386      -1.546      -24.503     
+DF3     NAW     N       NH1     0       20.906      0.621       -19.080     
+DF3     NAX     N       NH1     0       21.485      0.623       -24.438     
+DF3     OAY     O       O2      0       21.899      6.162       -25.057     
+DF3     OAZ     O       O2      0       21.140      5.031       -22.558     
+DF3     SBA     S       S2      0       18.757      -1.444      -23.730     
+DF3     CBB     C       C       0       20.770      -0.247      -25.182     
+DF3     CBC     C       C       0       21.804      1.104       -19.952     
+DF3     CBD     C       CR6     0       21.581      2.031       -24.591     
+DF3     CBE     C       CR6     0       22.722      0.120       -20.633     
+DF3     CBF     C       CR6     0       23.182      -2.053      -21.608     
+DF3     CBG     C       CR66    0       21.795      4.800       -24.883     
+DF3     CBH     C       CR66    0       21.414      4.252       -23.661     
+DF3     CBI     C       CR5     0       18.560      -0.229      -22.498     
+DF3     CBJ     C       CR56    0       18.294      1.177       -22.717     
+DF3     CBK     C       CR56    0       18.225      1.770       -21.441     
+DF3     NBL     N       NR5     0       18.448      0.767       -20.493     
+DF3     CBM     C       CT      0       22.744      -3.445      -21.950     
+DF3     HAF     H       H       0       25.758      -0.075      -21.816     
+DF3     HAG     H       H       0       17.731      3.855       -24.458     
+DF3     HAH     H       H       0       17.623      4.807       -22.345     
+DF3     HAI     H       H       0       24.309      1.388       -20.754     
+DF3     HAJ     H       H       0       25.076      -2.231      -22.355     
+DF3     HAK     H       H       0       22.153      2.046       -26.567     
+DF3     HAL     H       H       0       22.318      4.353       -26.794     
+DF3     HAM     H       H       0       18.150      1.581       -24.722     
+DF3     HAN     H       H       0       17.929      3.524       -20.427     
+DF3     HAO     H       H       0       21.062      2.513       -22.690     
+DF3     HAP     H       H       0       21.436      -1.443      -20.746     
+DF3     HAQ     H       H       0       18.818      -1.246      -20.702     
+DF3     HAR     H       H       0       19.824      1.316       -17.542     
+DF3     HARA    H       H       0       19.940      2.362       -18.732     
+DF3     HAS     H       H       0       21.846      7.859       -24.015     
+DF3     HASA    H       H       0       22.902      6.792       -23.455     
+DF3     HAT     H       H       0       21.112      6.943       -21.998     
+DF3     HATA    H       H       0       20.091      6.605       -23.183     
+DF3     HAU     H       H       0       17.784      1.634       -18.814     
+DF3     HAUA    H       H       0       18.205      0.124       -18.612     
+DF3     HAV     H       H       0       20.379      -2.259      -25.169     
+DF3     HAVA    H       H       0       21.049      -1.768      -23.825     
+DF3     HNAW    H       H       0       20.984      -0.201      -18.798     
+DF3     HNAX    H       H       0       21.961      0.286       -23.787     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DF3         OAA         CBB      DOUBLE       n     1.221  0.0100     1.221  0.0100
+DF3         OAB         CBC      DOUBLE       n     1.230  0.0114     1.230  0.0114
+DF3         FAC         CBM      SINGLE       n     1.329  0.0183     1.329  0.0183
+DF3         FAD         CBM      SINGLE       n     1.329  0.0183     1.329  0.0183
+DF3         FAE         CBM      SINGLE       n     1.329  0.0183     1.329  0.0183
+DF3         CAF         CAI      DOUBLE       y     1.382  0.0100     1.382  0.0100
+DF3         CAF         CAJ      SINGLE       y     1.383  0.0105     1.383  0.0105
+DF3         CAG         CAM      DOUBLE       y     1.376  0.0100     1.376  0.0100
+DF3         CAG         CAH      SINGLE       y     1.394  0.0106     1.394  0.0106
+DF3         CAH         CAN      DOUBLE       y     1.376  0.0100     1.376  0.0100
+DF3         CAI         CBE      SINGLE       y     1.390  0.0100     1.390  0.0100
+DF3         CAJ         CBF      DOUBLE       y     1.388  0.0100     1.388  0.0100
+DF3         CAK         CAL      DOUBLE       y     1.377  0.0100     1.377  0.0100
+DF3         CAK         CBD      SINGLE       y     1.408  0.0200     1.408  0.0200
+DF3         CAL         CBG      SINGLE       y     1.383  0.0103     1.383  0.0103
+DF3         CAM         CBJ      SINGLE       y     1.396  0.0100     1.396  0.0100
+DF3         CAN         CBK      SINGLE       y     1.392  0.0100     1.392  0.0100
+DF3         CAO         CBD      DOUBLE       y     1.392  0.0100     1.392  0.0100
+DF3         CAO         CBH      SINGLE       y     1.382  0.0100     1.382  0.0100
+DF3         CAP         CBE      DOUBLE       y     1.393  0.0100     1.393  0.0100
+DF3         CAP         CBF      SINGLE       y     1.387  0.0100     1.387  0.0100
+DF3         CAQ         CBI      DOUBLE       y     1.372  0.0135     1.372  0.0135
+DF3         CAQ         NBL      SINGLE       y     1.372  0.0110     1.372  0.0110
+DF3         CAR         NAW      SINGLE       n     1.454  0.0100     1.454  0.0100
+DF3         CAR         CAU      SINGLE       n     1.510  0.0200     1.510  0.0200
+DF3         CAS         OAY      SINGLE       n     1.433  0.0100     1.433  0.0100
+DF3         CAS         CAT      SINGLE       n     1.484  0.0131     1.484  0.0131
+DF3         CAT         OAZ      SINGLE       n     1.433  0.0100     1.433  0.0100
+DF3         CAU         NBL      SINGLE       n     1.461  0.0100     1.461  0.0100
+DF3         CAV         CBB      SINGLE       n     1.513  0.0100     1.513  0.0100
+DF3         CAV         SBA      SINGLE       n     1.809  0.0191     1.809  0.0191
+DF3         NAW         CBC      SINGLE       n     1.333  0.0111     1.333  0.0111
+DF3         NAX         CBB      SINGLE       n     1.346  0.0100     1.346  0.0100
+DF3         NAX         CBD      SINGLE       n     1.416  0.0111     1.416  0.0111
+DF3         OAY         CBG      SINGLE       n     1.375  0.0100     1.375  0.0100
+DF3         OAZ         CBH      SINGLE       n     1.375  0.0100     1.375  0.0100
+DF3         SBA         CBI      SINGLE       n     1.744  0.0119     1.744  0.0119
+DF3         CBC         CBE      SINGLE       n     1.502  0.0100     1.502  0.0100
+DF3         CBF         CBM      SINGLE       n     1.494  0.0100     1.494  0.0100
+DF3         CBG         CBH      DOUBLE       y     1.388  0.0106     1.388  0.0106
+DF3         CBI         CBJ      SINGLE       y     1.450  0.0100     1.450  0.0100
+DF3         CBJ         CBK      DOUBLE       y     1.408  0.0100     1.408  0.0100
+DF3         CBK         NBL      SINGLE       y     1.395  0.0127     1.395  0.0127
+DF3         CAF         HAF      SINGLE       n     1.082  0.0130     0.945  0.0184
+DF3         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0181
+DF3         CAH         HAH      SINGLE       n     1.082  0.0130     0.941  0.0181
+DF3         CAI         HAI      SINGLE       n     1.082  0.0130     0.941  0.0168
+DF3         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.944  0.0174
+DF3         CAK         HAK      SINGLE       n     1.082  0.0130     0.942  0.0116
+DF3         CAL         HAL      SINGLE       n     1.082  0.0130     0.944  0.0200
+DF3         CAM         HAM      SINGLE       n     1.082  0.0130     0.945  0.0200
+DF3         CAN         HAN      SINGLE       n     1.082  0.0130     0.941  0.0184
+DF3         CAO         HAO      SINGLE       n     1.082  0.0130     0.937  0.0113
+DF3         CAP         HAP      SINGLE       n     1.082  0.0130     0.944  0.0147
+DF3         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.945  0.0191
+DF3         CAR         HAR      SINGLE       n     1.089  0.0100     0.986  0.0200
+DF3         CAR        HARA      SINGLE       n     1.089  0.0100     0.986  0.0200
+DF3         CAS         HAS      SINGLE       n     1.089  0.0100     0.985  0.0200
+DF3         CAS        HASA      SINGLE       n     1.089  0.0100     0.985  0.0200
+DF3         CAT         HAT      SINGLE       n     1.089  0.0100     0.985  0.0200
+DF3         CAT        HATA      SINGLE       n     1.089  0.0100     0.985  0.0200
+DF3         CAU         HAU      SINGLE       n     1.089  0.0100     0.978  0.0180
+DF3         CAU        HAUA      SINGLE       n     1.089  0.0100     0.978  0.0180
+DF3         CAV         HAV      SINGLE       n     1.089  0.0100     0.975  0.0124
+DF3         CAV        HAVA      SINGLE       n     1.089  0.0100     0.975  0.0124
+DF3         NAW        HNAW      SINGLE       n     1.016  0.0100     0.873  0.0200
+DF3         NAX        HNAX      SINGLE       n     1.016  0.0100     0.874  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DF3         CAI         CAF         CAJ     120.000    1.50
+DF3         CAI         CAF         HAF     120.000    1.50
+DF3         CAJ         CAF         HAF     120.000    1.50
+DF3         CAM         CAG         CAH     121.293    1.50
+DF3         CAM         CAG         HAG     119.430    1.50
+DF3         CAH         CAG         HAG     119.275    1.50
+DF3         CAG         CAH         CAN     121.707    1.50
+DF3         CAG         CAH         HAH     119.201    1.50
+DF3         CAN         CAH         HAH     119.092    1.50
+DF3         CAF         CAI         CBE     120.174    1.50
+DF3         CAF         CAI         HAI     119.839    1.50
+DF3         CBE         CAI         HAI     119.988    1.50
+DF3         CAF         CAJ         CBF     119.025    1.50
+DF3         CAF         CAJ         HAJ     120.268    1.50
+DF3         CBF         CAJ         HAJ     120.707    1.50
+DF3         CAL         CAK         CBD     120.199    1.50
+DF3         CAL         CAK         HAK     120.118    1.50
+DF3         CBD         CAK         HAK     119.684    1.50
+DF3         CAK         CAL         CBG     119.705    1.50
+DF3         CAK         CAL         HAL     120.115    1.50
+DF3         CBG         CAL         HAL     120.180    1.50
+DF3         CAG         CAM         CBJ     118.548    1.50
+DF3         CAG         CAM         HAM     120.708    1.50
+DF3         CBJ         CAM         HAM     120.737    1.50
+DF3         CAH         CAN         CBK     117.364    1.50
+DF3         CAH         CAN         HAN     121.401    1.50
+DF3         CBK         CAN         HAN     121.235    1.50
+DF3         CBD         CAO         CBH     120.363    1.50
+DF3         CBD         CAO         HAO     119.714    1.50
+DF3         CBH         CAO         HAO     119.922    1.50
+DF3         CBE         CAP         CBF     120.983    1.50
+DF3         CBE         CAP         HAP     118.960    1.50
+DF3         CBF         CAP         HAP     120.057    1.50
+DF3         CBI         CAQ         NBL     108.453    1.99
+DF3         CBI         CAQ         HAQ     127.187    1.74
+DF3         NBL         CAQ         HAQ     124.360    1.50
+DF3         NAW         CAR         CAU     111.870    1.57
+DF3         NAW         CAR         HAR     109.052    1.50
+DF3         NAW         CAR        HARA     109.052    1.50
+DF3         CAU         CAR         HAR     109.394    1.50
+DF3         CAU         CAR        HARA     109.394    1.50
+DF3         HAR         CAR        HARA     107.873    1.50
+DF3         OAY         CAS         CAT     110.782    1.50
+DF3         OAY         CAS         HAS     109.362    1.50
+DF3         OAY         CAS        HASA     109.362    1.50
+DF3         CAT         CAS         HAS     109.125    1.66
+DF3         CAT         CAS        HASA     109.125    1.66
+DF3         HAS         CAS        HASA     109.013    3.00
+DF3         CAS         CAT         OAZ     110.782    1.50
+DF3         CAS         CAT         HAT     109.125    1.66
+DF3         CAS         CAT        HATA     109.125    1.66
+DF3         OAZ         CAT         HAT     109.362    1.50
+DF3         OAZ         CAT        HATA     109.362    1.50
+DF3         HAT         CAT        HATA     109.013    3.00
+DF3         CAR         CAU         NBL     111.882    1.58
+DF3         CAR         CAU         HAU     109.892    3.00
+DF3         CAR         CAU        HAUA     109.892    3.00
+DF3         NBL         CAU         HAU     108.820    1.50
+DF3         NBL         CAU        HAUA     108.820    1.50
+DF3         HAU         CAU        HAUA     107.991    1.50
+DF3         CBB         CAV         SBA     111.968    3.00
+DF3         CBB         CAV         HAV     108.706    1.75
+DF3         CBB         CAV        HAVA     108.706    1.75
+DF3         SBA         CAV         HAV     109.066    1.50
+DF3         SBA         CAV        HAVA     109.066    1.50
+DF3         HAV         CAV        HAVA     108.284    1.50
+DF3         CAR         NAW         CBC     122.257    1.53
+DF3         CAR         NAW        HNAW     118.387    1.89
+DF3         CBC         NAW        HNAW     119.356    1.77
+DF3         CBB         NAX         CBD     127.194    2.00
+DF3         CBB         NAX        HNAX     116.488    1.50
+DF3         CBD         NAX        HNAX     116.318    2.05
+DF3         CAS         OAY         CBG     113.316    1.50
+DF3         CAT         OAZ         CBH     113.316    1.50
+DF3         CAV         SBA         CBI     120.000    3.00
+DF3         OAA         CBB         CAV     120.895    1.61
+DF3         OAA         CBB         NAX     123.921    1.50
+DF3         CAV         CBB         NAX     115.184    1.59
+DF3         OAB         CBC         NAW     122.164    1.50
+DF3         OAB         CBC         CBE     120.968    1.50
+DF3         NAW         CBC         CBE     116.868    1.50
+DF3         CAK         CBD         CAO     119.568    2.37
+DF3         CAK         CBD         NAX     120.190    3.00
+DF3         CAO         CBD         NAX     120.242    2.92
+DF3         CAI         CBE         CAP     119.334    1.50
+DF3         CAI         CBE         CBC     120.219    2.80
+DF3         CAP         CBE         CBC     120.447    2.64
+DF3         CAJ         CBF         CAP     120.484    1.50
+DF3         CAJ         CBF         CBM     119.869    1.50
+DF3         CAP         CBF         CBM     119.647    1.50
+DF3         CAL         CBG         OAY     118.141    1.50
+DF3         CAL         CBG         CBH     120.066    1.50
+DF3         OAY         CBG         CBH     121.793    1.50
+DF3         CAO         CBH         OAZ     117.230    1.50
+DF3         CAO         CBH         CBG     120.099    1.50
+DF3         OAZ         CBH         CBG     122.671    1.50
+DF3         CAQ         CBI         SBA     126.055    2.21
+DF3         CAQ         CBI         CBJ     107.890    1.50
+DF3         SBA         CBI         CBJ     126.055    2.21
+DF3         CAM         CBJ         CBI     133.412    1.50
+DF3         CAM         CBJ         CBK     119.376    1.50
+DF3         CBI         CBJ         CBK     107.212    1.50
+DF3         CAN         CBK         CBJ     121.721    1.50
+DF3         CAN         CBK         NBL     130.248    1.50
+DF3         CBJ         CBK         NBL     108.031    1.50
+DF3         CAQ         NBL         CAU     126.332    1.50
+DF3         CAQ         NBL         CBK     108.414    1.50
+DF3         CAU         NBL         CBK     125.253    1.70
+DF3         FAC         CBM         FAD     105.974    1.50
+DF3         FAC         CBM         FAE     105.974    1.50
+DF3         FAC         CBM         CBF     112.813    1.50
+DF3         FAD         CBM         FAE     105.974    1.50
+DF3         FAD         CBM         CBF     112.813    1.50
+DF3         FAE         CBM         CBF     112.813    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DF3              const_41         CBD         CAK         CAL         CBG       0.000    10.0     2
+DF3              const_82         CAL         CAK         CBD         NAX     180.000    10.0     2
+DF3              const_46         CAK         CAL         CBG         OAY     180.000    10.0     2
+DF3              const_26         CAG         CAM         CBJ         CBI     180.000    10.0     2
+DF3              const_33         CAH         CAN         CBK         CBJ       0.000    10.0     2
+DF3              const_58         CBH         CAO         CBD         NAX     180.000    10.0     2
+DF3              const_54         CBD         CAO         CBH         OAZ     180.000    10.0     2
+DF3              const_10         CBF         CAP         CBE         CBC     180.000    10.0     2
+DF3              const_14         CBE         CAP         CBF         CBM     180.000    10.0     2
+DF3              const_62         NBL         CAQ         CBI         SBA     180.000    10.0     2
+DF3              const_86         CBI         CAQ         NBL         CAU     180.000    10.0     2
+DF3             sp3_sp3_7         NAW         CAR         CAU         NBL     180.000    10.0     3
+DF3             sp2_sp3_2         CBC         NAW         CAR         CAU     120.000    10.0     6
+DF3            sp3_sp3_16         OAY         CAS         CAT         OAZ     180.000    10.0     3
+DF3             sp3_sp3_1         CAT         CAS         OAY         CBG      60.000    10.0     3
+DF3             sp3_sp3_4         CAS         CAT         OAZ         CBH      60.000    10.0     3
+DF3             sp2_sp3_8         CAQ         NBL         CAU         CAR     -90.000    10.0     6
+DF3            sp3_sp3_25         CBB         CAV         SBA         CBI     180.000    10.0     3
+DF3            sp2_sp3_14         OAA         CBB         CAV         SBA     120.000    10.0     6
+DF3             sp2_sp2_7         OAB         CBC         NAW         CAR       0.000     5.0     2
+DF3            sp2_sp2_11         OAA         CBB         NAX         CBD       0.000     5.0     2
+DF3            sp2_sp2_13         CAK         CBD         NAX         CBB     180.000     5.0     2
+DF3             sp2_sp2_2         CAL         CBG         OAY         CAS     180.000     5.0     2
+DF3             sp2_sp2_4         CAO         CBH         OAZ         CAT     180.000     5.0     2
+DF3            sp2_sp2_17         CAQ         CBI         SBA         CAV     180.000     5.0     2
+DF3            sp2_sp2_21         OAB         CBC         CBE         CAI       0.000     5.0     2
+DF3            sp2_sp3_19         CAJ         CBF         CBM         FAC     150.000    10.0     6
+DF3              const_49         CAL         CBG         CBH         CAO       0.000    10.0     2
+DF3              const_68         SBA         CBI         CBJ         CAM       0.000    10.0     2
+DF3              const_29         CAM         CBJ         CBK         CAN       0.000    10.0     2
+DF3              const_72         CAN         CBK         NBL         CAU       0.000    10.0     2
+DF3       const_sp2_sp2_1         CAJ         CAF         CAI         CBE       0.000     5.0     2
+DF3              const_73         CAI         CAF         CAJ         CBF       0.000    10.0     2
+DF3              const_21         CAH         CAG         CAM         CBJ       0.000    10.0     2
+DF3              const_77         CAM         CAG         CAH         CAN       0.000    10.0     2
+DF3              const_37         CAG         CAH         CAN         CBK       0.000    10.0     2
+DF3       const_sp2_sp2_6         CAF         CAI         CBE         CBC     180.000     5.0     2
+DF3              const_18         CAF         CAJ         CBF         CBM     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DF3    chir_1    CBM    FAC    FAD    FAE    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DF3    plan-1         CAG   0.020
+DF3    plan-1         CAH   0.020
+DF3    plan-1         CAM   0.020
+DF3    plan-1         CAN   0.020
+DF3    plan-1         CAQ   0.020
+DF3    plan-1         CAU   0.020
+DF3    plan-1         CBI   0.020
+DF3    plan-1         CBJ   0.020
+DF3    plan-1         CBK   0.020
+DF3    plan-1         HAG   0.020
+DF3    plan-1         HAH   0.020
+DF3    plan-1         HAM   0.020
+DF3    plan-1         HAN   0.020
+DF3    plan-1         HAQ   0.020
+DF3    plan-1         NBL   0.020
+DF3    plan-1         SBA   0.020
+DF3    plan-2         CAK   0.020
+DF3    plan-2         CAL   0.020
+DF3    plan-2         CAO   0.020
+DF3    plan-2         CBD   0.020
+DF3    plan-2         CBG   0.020
+DF3    plan-2         CBH   0.020
+DF3    plan-2         HAK   0.020
+DF3    plan-2         HAL   0.020
+DF3    plan-2         HAO   0.020
+DF3    plan-2         NAX   0.020
+DF3    plan-2         OAY   0.020
+DF3    plan-2         OAZ   0.020
+DF3    plan-3         CAF   0.020
+DF3    plan-3         CAI   0.020
+DF3    plan-3         CAJ   0.020
+DF3    plan-3         CAP   0.020
+DF3    plan-3         CBC   0.020
+DF3    plan-3         CBE   0.020
+DF3    plan-3         CBF   0.020
+DF3    plan-3         CBM   0.020
+DF3    plan-3         HAF   0.020
+DF3    plan-3         HAI   0.020
+DF3    plan-3         HAJ   0.020
+DF3    plan-3         HAP   0.020
+DF3    plan-4         CAR   0.020
+DF3    plan-4         CBC   0.020
+DF3    plan-4        HNAW   0.020
+DF3    plan-4         NAW   0.020
+DF3    plan-5         CBB   0.020
+DF3    plan-5         CBD   0.020
+DF3    plan-5        HNAX   0.020
+DF3    plan-5         NAX   0.020
+DF3    plan-6         CAV   0.020
+DF3    plan-6         CBB   0.020
+DF3    plan-6         NAX   0.020
+DF3    plan-6         OAA   0.020
+DF3    plan-7         CBC   0.020
+DF3    plan-7         CBE   0.020
+DF3    plan-7         NAW   0.020
+DF3    plan-7         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DF3           SMILES              ACDLabs 11.02                                                                                                                              FC(F)(F)c1cccc(c1)C(=O)NCCn5c2ccccc2c(SCC(=O)Nc3ccc4OCCOc4c3)c5
+DF3 SMILES_CANONICAL               CACTVS 3.352                                                                                                                              FC(F)(F)c1cccc(c1)C(=O)NCCn2cc(SCC(=O)Nc3ccc4OCCOc4c3)c5ccccc25
+DF3           SMILES               CACTVS 3.352                                                                                                                              FC(F)(F)c1cccc(c1)C(=O)NCCn2cc(SCC(=O)Nc3ccc4OCCOc4c3)c5ccccc25
+DF3 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                          c1ccc2c(c1)c(cn2CCNC(=O)c3cccc(c3)C(F)(F)F)SCC(=O)Nc4ccc5c(c4)OCCO5
+DF3           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                          c1ccc2c(c1)c(cn2CCNC(=O)c3cccc(c3)C(F)(F)F)SCC(=O)Nc4ccc5c(c4)OCCO5
+DF3            InChI                InChI  1.03 InChI=1S/C28H24F3N3O4S/c29-28(30,31)19-5-3-4-18(14-19)27(36)32-10-11-34-16-25(21-6-1-2-7-22(21)34)39-17-26(35)33-20-8-9-23-24(15-20)38-13-12-37-23/h1-9,14-16H,10-13,17H2,(H,32,36)(H,33,35)
+DF3         InChIKey                InChI  1.03                                                                                                                                                                  BNPQVUSGXCJYEF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DF3 acedrg               243         "dictionary generator"                  
+DF3 acedrg_database      11          "data source"                           
+DF3 rdkit                2017.03.2   "Chemoinformatics tool"
+DF3 refmac5              5.8.0238    "optimization tool"                     

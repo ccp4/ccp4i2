@@ -1,0 +1,264 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DZJ     DZJ      3-benzyl-8-chloro-2-hydroxy-4H-pyrimido[2,1-b][1,3]benzothiazol-4-one     NON-POLYMER     34     23     .     
+#
+data_comp_DZJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DZJ     C1      C       CR6     0       66.893      39.867      5.962       
+DZJ     C2      C       CR16    0       66.318      40.456      7.090       
+DZJ     C3      C       CR16    0       65.015      40.917      7.055       
+DZJ     O1      O       OH1     0       59.230      41.957      3.923       
+DZJ     O2      O       O       0       62.212      42.100      7.548       
+DZJ     C11     C       CH2     0       59.600      42.763      6.712       
+DZJ     C12     C       CR6     0       58.984      41.816      7.721       
+DZJ     C13     C       CR16    0       59.259      41.932      9.078       
+DZJ     C14     C       CR16    0       58.696      41.061      10.002      
+DZJ     C15     C       CR16    0       57.849      40.056      9.578       
+DZJ     C16     C       CR16    0       57.566      39.923      8.235       
+DZJ     C17     C       CR16    0       58.131      40.797      7.315       
+DZJ     C4      C       CR56    0       64.268      40.791      5.878       
+DZJ     C5      C       CR56    0       64.882      40.184      4.740       
+DZJ     C6      C       CR16    0       66.186      39.725      4.780       
+DZJ     N1      N       NR5     0       62.917      41.176      5.567       
+DZJ     C7      C       CR56    0       62.568      40.856      4.245       
+DZJ     S1      S       S2      0       63.834      40.129      3.450       
+DZJ     C8      C       CR6     0       61.929      41.811      6.387       
+DZJ     C9      C       CR6     0       60.666      42.094      5.859       
+DZJ     C10     C       CR6     0       60.423      41.729      4.526       
+DZJ     N2      N       NRD6    0       61.335      41.140      3.760       
+DZJ     CL1     CL      CL      0       68.542      39.299      6.050       
+DZJ     H1      H       H       0       66.815      40.542      7.877       
+DZJ     H2      H       H       0       64.637      41.312      7.819       
+DZJ     H11     H       H       0       58.509      41.624      4.255       
+DZJ     H3      H       H       0       60.001      43.523      7.190       
+DZJ     H4      H       H       0       58.890      43.118      6.134       
+DZJ     H5      H       H       0       59.837      42.617      9.376       
+DZJ     H6      H       H       0       58.892      41.156      10.920      
+DZJ     H7      H       H       0       57.465      39.464      10.205      
+DZJ     H8      H       H       0       56.988      39.238      7.940       
+DZJ     H9      H       H       0       57.933      40.700      6.397       
+DZJ     H10     H       H       0       66.581      39.327      4.025       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DZJ          C7          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+DZJ          C5          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+DZJ          C7          N2      DOUBLE       y     1.338  0.0200     1.338  0.0200
+DZJ         C10          N2      SINGLE       y     1.316  0.0184     1.316  0.0184
+DZJ          O1         C10      SINGLE       n     1.354  0.0164     1.354  0.0164
+DZJ          N1          C7      SINGLE       y     1.379  0.0182     1.379  0.0182
+DZJ          C5          C6      SINGLE       y     1.381  0.0100     1.381  0.0100
+DZJ          C1          C6      DOUBLE       y     1.385  0.0100     1.385  0.0100
+DZJ          C4          C5      DOUBLE       y     1.389  0.0200     1.389  0.0200
+DZJ          C9         C10      DOUBLE       y     1.395  0.0126     1.395  0.0126
+DZJ          C1         CL1      SINGLE       n     1.746  0.0100     1.746  0.0100
+DZJ          C4          N1      SINGLE       y     1.397  0.0173     1.397  0.0173
+DZJ          N1          C8      SINGLE       y     1.416  0.0162     1.416  0.0162
+DZJ          C1          C2      SINGLE       y     1.395  0.0100     1.395  0.0100
+DZJ          C3          C4      SINGLE       y     1.391  0.0100     1.391  0.0100
+DZJ          C8          C9      SINGLE       y     1.393  0.0100     1.393  0.0100
+DZJ         C11          C9      SINGLE       n     1.517  0.0100     1.517  0.0100
+DZJ          O2          C8      DOUBLE       n     1.229  0.0100     1.229  0.0100
+DZJ          C2          C3      DOUBLE       y     1.378  0.0100     1.378  0.0100
+DZJ         C11         C12      SINGLE       n     1.515  0.0100     1.515  0.0100
+DZJ         C12         C17      SINGLE       y     1.385  0.0100     1.385  0.0100
+DZJ         C16         C17      DOUBLE       y     1.386  0.0100     1.386  0.0100
+DZJ         C12         C13      DOUBLE       y     1.385  0.0100     1.385  0.0100
+DZJ         C15         C16      SINGLE       y     1.374  0.0127     1.374  0.0127
+DZJ         C13         C14      SINGLE       y     1.386  0.0100     1.386  0.0100
+DZJ         C14         C15      DOUBLE       y     1.376  0.0124     1.376  0.0124
+DZJ          C2          H1      SINGLE       n     1.082  0.0130     0.935  0.0100
+DZJ          C3          H2      SINGLE       n     1.082  0.0130     0.940  0.0122
+DZJ          O1         H11      SINGLE       n     0.966  0.0059     0.861  0.0200
+DZJ         C11          H3      SINGLE       n     1.089  0.0100     0.983  0.0146
+DZJ         C11          H4      SINGLE       n     1.089  0.0100     0.983  0.0146
+DZJ         C13          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+DZJ         C14          H6      SINGLE       n     1.082  0.0130     0.944  0.0175
+DZJ         C15          H7      SINGLE       n     1.082  0.0130     0.944  0.0161
+DZJ         C16          H8      SINGLE       n     1.082  0.0130     0.944  0.0175
+DZJ         C17          H9      SINGLE       n     1.082  0.0130     0.944  0.0174
+DZJ          C6         H10      SINGLE       n     1.082  0.0130     0.941  0.0170
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DZJ          C6          C1         CL1     119.067    1.50
+DZJ          C6          C1          C2     122.274    1.50
+DZJ         CL1          C1          C2     118.659    1.50
+DZJ          C1          C2          C3     120.211    1.50
+DZJ          C1          C2          H1     120.152    1.50
+DZJ          C3          C2          H1     119.637    1.50
+DZJ          C4          C3          C2     117.953    1.50
+DZJ          C4          C3          H2     121.082    1.50
+DZJ          C2          C3          H2     120.965    1.50
+DZJ         C10          O1         H11     120.000    3.00
+DZJ          C9         C11         C12     113.189    2.84
+DZJ          C9         C11          H3     108.909    1.50
+DZJ          C9         C11          H4     108.909    1.50
+DZJ         C12         C11          H3     108.797    1.50
+DZJ         C12         C11          H4     108.797    1.50
+DZJ          H3         C11          H4     107.770    1.50
+DZJ         C11         C12         C17     121.122    1.50
+DZJ         C11         C12         C13     121.122    1.50
+DZJ         C17         C12         C13     117.755    1.50
+DZJ         C12         C13         C14     120.989    1.50
+DZJ         C12         C13          H5     119.349    1.50
+DZJ         C14         C13          H5     119.662    1.50
+DZJ         C13         C14         C15     120.183    1.50
+DZJ         C13         C14          H6     119.863    1.50
+DZJ         C15         C14          H6     119.954    1.50
+DZJ         C16         C15         C14     119.900    1.50
+DZJ         C16         C15          H7     120.050    1.50
+DZJ         C14         C15          H7     120.050    1.50
+DZJ         C17         C16         C15     120.183    1.50
+DZJ         C17         C16          H8     119.863    1.50
+DZJ         C15         C16          H8     119.954    1.50
+DZJ         C12         C17         C16     120.989    1.50
+DZJ         C12         C17          H9     119.349    1.50
+DZJ         C16         C17          H9     119.662    1.50
+DZJ          C5          C4          N1     106.859    1.50
+DZJ          C5          C4          C3     119.994    1.74
+DZJ          N1          C4          C3     133.147    1.50
+DZJ          S1          C5          C6     130.652    3.00
+DZJ          S1          C5          C4     108.326    3.00
+DZJ          C6          C5          C4     121.022    2.16
+DZJ          C5          C6          C1     118.545    1.50
+DZJ          C5          C6         H10     120.707    1.50
+DZJ          C1          C6         H10     120.748    1.50
+DZJ          C7          N1          C4     108.163    1.50
+DZJ          C7          N1          C8     120.031    1.50
+DZJ          C4          N1          C8     131.806    2.41
+DZJ          S1          C7          N2     131.005    3.00
+DZJ          S1          C7          N1     108.326    3.00
+DZJ          N2          C7          N1     120.669    1.50
+DZJ          C7          S1          C5     108.326    3.00
+DZJ          N1          C8          C9     120.283    1.50
+DZJ          N1          C8          O2     118.323    2.08
+DZJ          C9          C8          O2     121.394    1.74
+DZJ         C10          C9          C8     118.224    1.50
+DZJ         C10          C9         C11     121.027    1.56
+DZJ          C8          C9         C11     120.750    1.50
+DZJ          N2         C10          O1     117.529    3.00
+DZJ          N2         C10          C9     122.749    1.50
+DZJ          O1         C10          C9     119.722    3.00
+DZJ          C7          N2         C10     118.045    2.19
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DZJ              const_71         CL1          C1          C2          C3     180.000    10.0     2
+DZJ              const_39         CL1          C1          C6          C5     180.000    10.0     2
+DZJ              const_21         C15         C16         C17         C12       0.000    10.0     2
+DZJ              const_45          N1          C4          C5          S1       0.000    10.0     2
+DZJ              const_61          C5          C4          N1          C7       0.000    10.0     2
+DZJ              const_43          S1          C5          C6          C1     180.000    10.0     2
+DZJ              const_58          C6          C5          S1          C7     180.000    10.0     2
+DZJ       const_sp2_sp2_1          S1          C7          N1          C4       0.000     5.0     2
+DZJ              const_67          O2          C8          N1          C7     180.000    10.0     2
+DZJ              const_60          N2          C7          S1          C5     180.000    10.0     2
+DZJ       const_sp2_sp2_6          S1          C7          N2         C10     180.000     5.0     2
+DZJ              const_16          O2          C8          C9         C11       0.000    10.0     2
+DZJ              const_12          O1         C10          C9         C11       0.000    10.0     2
+DZJ              const_53          C1          C2          C3          C4       0.000    10.0     2
+DZJ       const_sp2_sp2_8          O1         C10          N2          C7     180.000     5.0     2
+DZJ              const_49          C2          C3          C4          C5       0.000    10.0     2
+DZJ             sp2_sp2_1          N2         C10          O1         H11     180.000     5.0     2
+DZJ             sp2_sp3_2         C10          C9         C11         C12     -90.000    10.0     6
+DZJ             sp2_sp3_8         C17         C12         C11          C9     -90.000    10.0     6
+DZJ              const_19         C11         C12         C17         C16     180.000    10.0     2
+DZJ              const_75         C11         C12         C13         C14     180.000    10.0     2
+DZJ              const_33         C12         C13         C14         C15       0.000    10.0     2
+DZJ              const_29         C13         C14         C15         C16       0.000    10.0     2
+DZJ              const_25         C14         C15         C16         C17       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DZJ    plan-1          C1   0.020
+DZJ    plan-1         C10   0.020
+DZJ    plan-1         C11   0.020
+DZJ    plan-1          C2   0.020
+DZJ    plan-1          C3   0.020
+DZJ    plan-1          C4   0.020
+DZJ    plan-1          C5   0.020
+DZJ    plan-1          C6   0.020
+DZJ    plan-1          C7   0.020
+DZJ    plan-1          C8   0.020
+DZJ    plan-1          C9   0.020
+DZJ    plan-1         CL1   0.020
+DZJ    plan-1          H1   0.020
+DZJ    plan-1         H10   0.020
+DZJ    plan-1          H2   0.020
+DZJ    plan-1          N1   0.020
+DZJ    plan-1          N2   0.020
+DZJ    plan-1          O1   0.020
+DZJ    plan-1          O2   0.020
+DZJ    plan-1          S1   0.020
+DZJ    plan-2         C11   0.020
+DZJ    plan-2         C12   0.020
+DZJ    plan-2         C13   0.020
+DZJ    plan-2         C14   0.020
+DZJ    plan-2         C15   0.020
+DZJ    plan-2         C16   0.020
+DZJ    plan-2         C17   0.020
+DZJ    plan-2          H5   0.020
+DZJ    plan-2          H6   0.020
+DZJ    plan-2          H7   0.020
+DZJ    plan-2          H8   0.020
+DZJ    plan-2          H9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DZJ           SMILES              ACDLabs 12.01                                                                 c1(ccc2c(c1)SC=4N2C(=O)C(Cc3ccccc3)=C(O)N=4)Cl
+DZJ            InChI                InChI  1.03 InChI=1S/C17H11ClN2O2S/c18-11-6-7-13-14(9-11)23-17-19-15(21)12(16(22)20(13)17)8-10-4-2-1-3-5-10/h1-7,9,21H,8H2
+DZJ         InChIKey                InChI  1.03                                                                                    LTTZBQUWRGBLKU-UHFFFAOYSA-N
+DZJ SMILES_CANONICAL               CACTVS 3.385                                                                    OC1=C(Cc2ccccc2)C(=O)N3C(=N1)Sc4cc(Cl)ccc34
+DZJ           SMILES               CACTVS 3.385                                                                    OC1=C(Cc2ccccc2)C(=O)N3C(=N1)Sc4cc(Cl)ccc34
+DZJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                    c1ccc(cc1)CC2=C(N=C3N(C2=O)c4ccc(cc4S3)Cl)O
+DZJ           SMILES "OpenEye OEToolkits" 2.0.6                                                                    c1ccc(cc1)CC2=C(N=C3N(C2=O)c4ccc(cc4S3)Cl)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DZJ acedrg               243         "dictionary generator"                  
+DZJ acedrg_database      11          "data source"                           
+DZJ rdkit                2017.03.2   "Chemoinformatics tool"
+DZJ refmac5              5.8.0238    "optimization tool"                     

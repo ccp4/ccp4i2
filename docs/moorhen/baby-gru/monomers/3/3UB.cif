@@ -1,0 +1,270 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3UB     3UB      "propan-2-yl hydrogen (S)-[(1R)-1-{[(benzyloxy)carbonyl]amino}ethyl]phosphonate"     NON-POLYMER     39     20     .     
+#
+data_comp_3UB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3UB     O2P     O       O       0       0.964       47.245      34.712      
+3UB     P       P       P       0       1.321       47.147      33.255      
+3UB     C1      C       CH1     0       1.130       44.483      33.354      
+3UB     C2      C       CH3     0       1.345       43.460      32.259      
+3UB     C3      C       CH3     0       0.009       44.134      34.312      
+3UB     C4      C       CH1     0       0.419       48.436      32.321      
+3UB     C5      C       CH3     0       0.612       48.307      30.813      
+3UB     C6      C       C       0       0.113       50.842      32.835      
+3UB     C7      C       CH2     0       0.084       52.950      34.013      
+3UB     NC      N       NH1     0       0.884       49.736      32.782      
+3UB     O1C     O       O       0       -1.021      50.924      32.414      
+3UB     O1P     O       O2      0       0.779       45.756      32.709      
+3UB     O2C     O       O2      0       0.810       51.855      33.382      
+3UB     O3P     O       OP      -1      2.787       47.237      32.935      
+3UB     C71     C       CR6     0       0.039       54.175      33.141      
+3UB     C72     C       CR16    0       -0.440      55.370      33.659      
+3UB     C73     C       CR16    0       -0.491      56.516      32.875      
+3UB     C74     C       CR16    0       -0.062      56.479      31.564      
+3UB     C75     C       CR16    0       0.417       55.300      31.036      
+3UB     C76     C       CR16    0       0.469       54.153      31.818      
+3UB     H1      H       H       0       1.971       44.595      33.864      
+3UB     H2      H       H       0       0.774       43.671      31.498      
+3UB     H2A     H       H       0       1.126       42.570      32.589      
+3UB     H2B     H       H       0       2.277       43.479      31.978      
+3UB     H3      H       H       0       -0.847      44.368      33.910      
+3UB     H3A     H       H       0       0.124       44.633      35.140      
+3UB     H3B     H       H       0       0.026       43.180      34.506      
+3UB     H4      H       H       0       -0.547      48.349      32.512      
+3UB     H5      H       H       0       0.151       49.033      30.364      
+3UB     H5A     H       H       0       0.250       47.459      30.512      
+3UB     H5B     H       H       0       1.558       48.347      30.603      
+3UB     H7      H       H       0       0.530       53.177      34.856      
+3UB     H7A     H       H       0       -0.830      52.670      34.230      
+3UB     HNC     H       H       0       1.724       49.789      33.024      
+3UB     H72     H       H       0       -0.736      55.404      34.555      
+3UB     H73     H       H       0       -0.820      57.322      33.241      
+3UB     H74     H       H       0       -0.097      57.258      31.032      
+3UB     H75     H       H       0       0.711       55.271      30.139      
+3UB     H76     H       H       0       0.799       53.354      31.441      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3UB         O2P           P      DOUBLE       n     1.504  0.0133     1.504  0.0133
+3UB           P         O3P      SINGLE       n     1.504  0.0133     1.504  0.0133
+3UB          C1          C3      SINGLE       n     1.513  0.0100     1.513  0.0100
+3UB          C1          C2      SINGLE       n     1.513  0.0100     1.513  0.0100
+3UB           P          C4      SINGLE       n     1.827  0.0197     1.827  0.0197
+3UB          C4          NC      SINGLE       n     1.453  0.0100     1.453  0.0100
+3UB          C4          C5      SINGLE       n     1.524  0.0163     1.524  0.0163
+3UB          C6         O2C      SINGLE       n     1.341  0.0100     1.341  0.0100
+3UB          C6          NC      SINGLE       n     1.345  0.0108     1.345  0.0108
+3UB          C6         O1C      DOUBLE       n     1.210  0.0102     1.210  0.0102
+3UB           P         O1P      SINGLE       n     1.590  0.0138     1.590  0.0138
+3UB          C1         O1P      SINGLE       n     1.466  0.0197     1.466  0.0197
+3UB          C7         O2C      SINGLE       n     1.450  0.0125     1.450  0.0125
+3UB          C7         C71      SINGLE       n     1.501  0.0101     1.501  0.0101
+3UB         C71         C72      DOUBLE       y     1.383  0.0108     1.383  0.0108
+3UB         C72         C73      SINGLE       y     1.386  0.0100     1.386  0.0100
+3UB         C73         C74      DOUBLE       y     1.376  0.0124     1.376  0.0124
+3UB         C74         C75      SINGLE       y     1.374  0.0127     1.374  0.0127
+3UB         C75         C76      DOUBLE       y     1.386  0.0100     1.386  0.0100
+3UB         C71         C76      SINGLE       y     1.383  0.0108     1.383  0.0108
+3UB          C1          H1      SINGLE       n     1.089  0.0100     0.990  0.0148
+3UB          C2          H2      SINGLE       n     1.089  0.0100     0.974  0.0145
+3UB          C2         H2A      SINGLE       n     1.089  0.0100     0.974  0.0145
+3UB          C2         H2B      SINGLE       n     1.089  0.0100     0.974  0.0145
+3UB          C3          H3      SINGLE       n     1.089  0.0100     0.974  0.0145
+3UB          C3         H3A      SINGLE       n     1.089  0.0100     0.974  0.0145
+3UB          C3         H3B      SINGLE       n     1.089  0.0100     0.974  0.0145
+3UB          C4          H4      SINGLE       n     1.089  0.0100     0.988  0.0200
+3UB          C5          H5      SINGLE       n     1.089  0.0100     0.970  0.0110
+3UB          C5         H5A      SINGLE       n     1.089  0.0100     0.970  0.0110
+3UB          C5         H5B      SINGLE       n     1.089  0.0100     0.970  0.0110
+3UB          C7          H7      SINGLE       n     1.089  0.0100     0.980  0.0157
+3UB          C7         H7A      SINGLE       n     1.089  0.0100     0.980  0.0157
+3UB          NC         HNC      SINGLE       n     1.016  0.0100     0.873  0.0200
+3UB         C72         H72      SINGLE       n     1.082  0.0130     0.944  0.0174
+3UB         C73         H73      SINGLE       n     1.082  0.0130     0.944  0.0175
+3UB         C74         H74      SINGLE       n     1.082  0.0130     0.944  0.0161
+3UB         C75         H75      SINGLE       n     1.082  0.0130     0.944  0.0175
+3UB         C76         H76      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3UB         O2P           P         O3P     115.915    1.71
+3UB         O2P           P          C4     110.326    3.00
+3UB         O2P           P         O1P     108.773    3.00
+3UB         O3P           P          C4     110.326    3.00
+3UB         O3P           P         O1P     108.773    3.00
+3UB          C4           P         O1P     105.177    2.72
+3UB          C3          C1          C2     113.304    1.50
+3UB          C3          C1         O1P     107.621    1.50
+3UB          C3          C1          H1     109.427    1.50
+3UB          C2          C1         O1P     107.621    1.50
+3UB          C2          C1          H1     109.427    1.50
+3UB         O1P          C1          H1     109.195    1.50
+3UB          C1          C2          H2     109.476    1.50
+3UB          C1          C2         H2A     109.476    1.50
+3UB          C1          C2         H2B     109.476    1.50
+3UB          H2          C2         H2A     109.425    1.50
+3UB          H2          C2         H2B     109.425    1.50
+3UB         H2A          C2         H2B     109.425    1.50
+3UB          C1          C3          H3     109.476    1.50
+3UB          C1          C3         H3A     109.476    1.50
+3UB          C1          C3         H3B     109.476    1.50
+3UB          H3          C3         H3A     109.425    1.50
+3UB          H3          C3         H3B     109.425    1.50
+3UB         H3A          C3         H3B     109.425    1.50
+3UB           P          C4          NC     108.817    2.81
+3UB           P          C4          C5     111.410    2.87
+3UB           P          C4          H4     108.528    1.50
+3UB          NC          C4          C5     109.800    1.50
+3UB          NC          C4          H4     106.481    2.65
+3UB          C5          C4          H4     107.425    1.50
+3UB          C4          C5          H5     109.550    1.50
+3UB          C4          C5         H5A     109.550    1.50
+3UB          C4          C5         H5B     109.550    1.50
+3UB          H5          C5         H5A     109.500    1.50
+3UB          H5          C5         H5B     109.500    1.50
+3UB         H5A          C5         H5B     109.500    1.50
+3UB         O2C          C6          NC     110.480    1.50
+3UB         O2C          C6         O1C     124.418    1.50
+3UB          NC          C6         O1C     125.102    1.50
+3UB         O2C          C7         C71     109.508    2.22
+3UB         O2C          C7          H7     109.538    1.50
+3UB         O2C          C7         H7A     109.538    1.50
+3UB         C71          C7          H7     109.785    1.50
+3UB         C71          C7         H7A     109.785    1.50
+3UB          H7          C7         H7A     108.275    1.50
+3UB          C4          NC          C6     122.735    1.50
+3UB          C4          NC         HNC     117.950    2.87
+3UB          C6          NC         HNC     119.315    1.99
+3UB           P         O1P          C1     121.496    2.55
+3UB          C6         O2C          C7     115.730    1.50
+3UB          C7         C71         C72     120.651    1.50
+3UB          C7         C71         C76     120.651    1.50
+3UB         C72         C71         C76     118.697    1.50
+3UB         C71         C72         C73     120.514    1.50
+3UB         C71         C72         H72     119.732    1.50
+3UB         C73         C72         H72     119.754    1.50
+3UB         C72         C73         C74     120.186    1.50
+3UB         C72         C73         H73     119.862    1.50
+3UB         C74         C73         H73     119.952    1.50
+3UB         C73         C74         C75     119.903    1.50
+3UB         C73         C74         H74     120.048    1.50
+3UB         C75         C74         H74     120.048    1.50
+3UB         C74         C75         C76     120.186    1.50
+3UB         C74         C75         H75     119.952    1.50
+3UB         C76         C75         H75     119.862    1.50
+3UB         C75         C76         C71     120.514    1.50
+3UB         C75         C76         H76     119.754    1.50
+3UB         C71         C76         H76     119.732    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3UB       const_sp2_sp2_3          C7         C71         C72         C73     180.000     5.0     2
+3UB              const_23          C7         C71         C76         C75     180.000    10.0     2
+3UB       const_sp2_sp2_5         C71         C72         C73         C74       0.000     5.0     2
+3UB       const_sp2_sp2_9         C72         C73         C74         C75       0.000     5.0     2
+3UB              const_13         C73         C74         C75         C76       0.000    10.0     2
+3UB              const_17         C74         C75         C76         C71       0.000    10.0     2
+3UB            sp3_sp3_37          C1         O1P           P         O2P     180.000    10.0     3
+3UB            sp3_sp3_21          NC          C4           P         O2P      60.000    10.0     3
+3UB            sp3_sp3_40          C3          C1         O1P           P     180.000    10.0     3
+3UB            sp3_sp3_10          C3          C1          C2          H2     180.000    10.0     3
+3UB             sp3_sp3_1          C2          C1          C3          H3     180.000    10.0     3
+3UB            sp3_sp3_28           P          C4          C5          H5     180.000    10.0     3
+3UB             sp2_sp3_1          C6          NC          C4           P       0.000    10.0     6
+3UB             sp2_sp2_1          NC          C6         O2C          C7     180.000     5.0     2
+3UB             sp2_sp2_3         O2C          C6          NC          C4     180.000     5.0     2
+3UB            sp3_sp3_43         C71          C7         O2C          C6     180.000    10.0     3
+3UB             sp2_sp3_8         C72         C71          C7         O2C     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+3UB    chir_1    P    O1P    O3P    O2P    both
+3UB    chir_2    C4    P    NC    C5    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3UB    plan-1          C7   0.020
+3UB    plan-1         C71   0.020
+3UB    plan-1         C72   0.020
+3UB    plan-1         C73   0.020
+3UB    plan-1         C74   0.020
+3UB    plan-1         C75   0.020
+3UB    plan-1         C76   0.020
+3UB    plan-1         H72   0.020
+3UB    plan-1         H73   0.020
+3UB    plan-1         H74   0.020
+3UB    plan-1         H75   0.020
+3UB    plan-1         H76   0.020
+3UB    plan-2          C6   0.020
+3UB    plan-2          NC   0.020
+3UB    plan-2         O1C   0.020
+3UB    plan-2         O2C   0.020
+3UB    plan-3          C4   0.020
+3UB    plan-3          C6   0.020
+3UB    plan-3         HNC   0.020
+3UB    plan-3          NC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3UB           SMILES              ACDLabs 12.01                                                                                             O=P(OC(C)C)(O)C(NC(=O)OCc1ccccc1)C
+3UB            InChI                InChI  1.03 InChI=1S/C13H20NO5P/c1-10(2)19-20(16,17)11(3)14-13(15)18-9-12-7-5-4-6-8-12/h4-8,10-11H,9H2,1-3H3,(H,14,15)(H,16,17)/t11-/m1/s1
+3UB         InChIKey                InChI  1.03                                                                                                    DRLKMEFBZYZZJV-LLVKDONJSA-N
+3UB SMILES_CANONICAL               CACTVS 3.370                                                                                       CC(C)O[P](O)(=O)[C@H](C)NC(=O)OCc1ccccc1
+3UB           SMILES               CACTVS 3.370                                                                                        CC(C)O[P](O)(=O)[CH](C)NC(=O)OCc1ccccc1
+3UB SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                      C[C@H](NC(=O)OCc1ccccc1)[P@](=O)(O)OC(C)C
+3UB           SMILES "OpenEye OEToolkits" 1.7.2                                                                                             CC(C)OP(=O)(C(C)NC(=O)OCc1ccccc1)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3UB acedrg               243         "dictionary generator"                  
+3UB acedrg_database      11          "data source"                           
+3UB rdkit                2017.03.2   "Chemoinformatics tool"
+3UB refmac5              5.8.0238    "optimization tool"                     

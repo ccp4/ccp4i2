@@ -1,0 +1,289 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+I3N     I3N      "1-BENZYL-5-METHOXY-2-METHYL-1H-INDOL-3-YL)-ACETIC ACID"     NON-POLYMER     41     23     .     
+#
+data_comp_I3N
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+I3N     C1      C       CH3     0       59.725      25.817      45.946      
+I3N     O2      O       O2      0       59.359      26.556      47.110      
+I3N     C3      C       CR6     0       59.330      27.934      47.042      
+I3N     C4      C       CR16    0       58.888      28.659      45.949      
+I3N     C5      C       CR56    0       58.909      30.062      46.030      
+I3N     C6      C       CR56    0       59.365      30.690      47.209      
+I3N     C7      C       CR16    0       59.803      29.951      48.309      
+I3N     C8      C       CR16    0       59.777      28.582      48.212      
+I3N     N9      N       NT      0       59.278      32.060      47.022      
+I3N     C10     C       CR5     0       58.764      32.297      45.707      
+I3N     C11     C       CR5     0       58.536      31.098      45.102      
+I3N     C12     C       CH2     0       57.999      30.864      43.725      
+I3N     C13     C       C       0       56.516      30.508      43.728      
+I3N     O14     O       OC      -1      55.707      31.437      43.903      
+I3N     O15     O       O       0       56.213      29.313      43.558      
+I3N     C16     C       CH3     0       58.537      33.671      45.169      
+I3N     C17     C       CH2     0       59.668      33.043      48.034      
+I3N     C18     C       CR6     0       61.166      33.224      48.123      
+I3N     C19     C       CR16    0       61.881      33.708      47.039      
+I3N     C20     C       CR16    0       63.259      33.874      47.114      
+I3N     C21     C       CR16    0       63.931      33.555      48.276      
+I3N     C22     C       CR16    0       63.231      33.071      49.361      
+I3N     C23     C       CR16    0       61.854      32.905      49.285      
+I3N     H11     H       H       0       60.513      26.214      45.541      
+I3N     H12     H       H       0       58.991      25.833      45.310      
+I3N     H13     H       H       0       59.917      24.898      46.194      
+I3N     H4      H       H       0       58.585      28.226      45.167      
+I3N     H7      H       H       0       60.104      30.374      49.087      
+I3N     H8      H       H       0       60.068      28.062      48.943      
+I3N     H121    H       H       0       58.500      30.130      43.307      
+I3N     H122    H       H       0       58.132      31.666      43.179      
+I3N     H161    H       H       0       58.566      33.662      44.202      
+I3N     H162    H       H       0       59.217      34.275      45.498      
+I3N     H163    H       H       0       57.667      33.984      45.458      
+I3N     H171    H       H       0       59.328      32.749      48.904      
+I3N     H172    H       H       0       59.253      33.905      47.828      
+I3N     H19     H       H       0       61.429      33.928      46.241      
+I3N     H20     H       H       0       63.734      34.206      46.369      
+I3N     H21     H       H       0       64.867      33.668      48.328      
+I3N     H22     H       H       0       63.688      32.852      50.158      
+I3N     H23     H       H       0       61.382      32.573      50.033      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+I3N          C1          O2      SINGLE       n     1.424  0.0117     1.424  0.0117
+I3N          O2          C3      SINGLE       n     1.377  0.0100     1.377  0.0100
+I3N          C3          C4      DOUBLE       y     1.378  0.0100     1.378  0.0100
+I3N          C3          C8      SINGLE       y     1.406  0.0100     1.406  0.0100
+I3N          C4          C5      SINGLE       y     1.402  0.0100     1.402  0.0100
+I3N          C5          C6      DOUBLE       y     1.411  0.0100     1.411  0.0100
+I3N          C5         C11      SINGLE       y     1.442  0.0100     1.442  0.0100
+I3N          C6          C7      SINGLE       y     1.392  0.0100     1.392  0.0100
+I3N          C6          N9      SINGLE       y     1.385  0.0100     1.385  0.0100
+I3N          C7          C8      DOUBLE       y     1.369  0.0100     1.369  0.0100
+I3N          N9         C10      SINGLE       y     1.416  0.0200     1.416  0.0200
+I3N          N9         C17      SINGLE       n     1.462  0.0100     1.462  0.0100
+I3N         C10         C11      DOUBLE       y     1.359  0.0145     1.359  0.0145
+I3N         C10         C16      SINGLE       n     1.491  0.0100     1.491  0.0100
+I3N         C11         C12      SINGLE       n     1.496  0.0100     1.496  0.0100
+I3N         C12         C13      SINGLE       n     1.525  0.0126     1.525  0.0126
+I3N         C13         O14      SINGLE       n     1.244  0.0200     1.244  0.0200
+I3N         C13         O15      DOUBLE       n     1.244  0.0200     1.244  0.0200
+I3N         C17         C18      SINGLE       n     1.510  0.0100     1.510  0.0100
+I3N         C18         C19      DOUBLE       y     1.383  0.0100     1.383  0.0100
+I3N         C18         C23      SINGLE       y     1.383  0.0100     1.383  0.0100
+I3N         C19         C20      SINGLE       y     1.386  0.0100     1.386  0.0100
+I3N         C20         C21      DOUBLE       y     1.376  0.0124     1.376  0.0124
+I3N         C21         C22      SINGLE       y     1.374  0.0127     1.374  0.0127
+I3N         C22         C23      DOUBLE       y     1.386  0.0100     1.386  0.0100
+I3N          C1         H11      SINGLE       n     1.089  0.0100     0.971  0.0157
+I3N          C1         H12      SINGLE       n     1.089  0.0100     0.971  0.0157
+I3N          C1         H13      SINGLE       n     1.089  0.0100     0.971  0.0157
+I3N          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0200
+I3N          C7          H7      SINGLE       n     1.082  0.0130     0.935  0.0100
+I3N          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0200
+I3N         C12        H121      SINGLE       n     1.089  0.0100     0.982  0.0200
+I3N         C12        H122      SINGLE       n     1.089  0.0100     0.982  0.0200
+I3N         C16        H161      SINGLE       n     1.089  0.0100     0.968  0.0138
+I3N         C16        H162      SINGLE       n     1.089  0.0100     0.968  0.0138
+I3N         C16        H163      SINGLE       n     1.089  0.0100     0.968  0.0138
+I3N         C17        H171      SINGLE       n     1.089  0.0100     0.979  0.0121
+I3N         C17        H172      SINGLE       n     1.089  0.0100     0.979  0.0121
+I3N         C19         H19      SINGLE       n     1.082  0.0130     0.944  0.0174
+I3N         C20         H20      SINGLE       n     1.082  0.0130     0.944  0.0175
+I3N         C21         H21      SINGLE       n     1.082  0.0130     0.944  0.0161
+I3N         C22         H22      SINGLE       n     1.082  0.0130     0.944  0.0175
+I3N         C23         H23      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+I3N          O2          C1         H11     109.428    1.50
+I3N          O2          C1         H12     109.428    1.50
+I3N          O2          C1         H13     109.428    1.50
+I3N         H11          C1         H12     109.509    1.50
+I3N         H11          C1         H13     109.509    1.50
+I3N         H12          C1         H13     109.509    1.50
+I3N          C1          O2          C3     117.346    1.50
+I3N          O2          C3          C4     122.273    3.00
+I3N          O2          C3          C8     116.514    3.00
+I3N          C4          C3          C8     121.212    1.50
+I3N          C3          C4          C5     118.107    1.50
+I3N          C3          C4          H4     120.927    1.50
+I3N          C5          C4          H4     120.966    1.50
+I3N          C4          C5          C6     119.828    1.50
+I3N          C4          C5         C11     132.465    1.50
+I3N          C6          C5         C11     107.707    1.50
+I3N          C5          C6          C7     122.125    1.50
+I3N          C5          C6          N9     107.482    1.50
+I3N          C7          C6          N9     130.393    1.50
+I3N          C6          C7          C8     117.603    1.50
+I3N          C6          C7          H7     121.290    1.50
+I3N          C8          C7          H7     121.115    1.50
+I3N          C3          C8          C7     121.118    1.50
+I3N          C3          C8          H8     119.401    1.50
+I3N          C7          C8          H8     119.481    1.50
+I3N          C6          N9         C10     107.804    1.50
+I3N          C6          N9         C17     125.410    2.28
+I3N         C10          N9         C17     124.795    3.00
+I3N          N9         C10         C11     109.270    1.50
+I3N          N9         C10         C16     122.136    1.50
+I3N         C11         C10         C16     128.594    1.50
+I3N          C5         C11         C10     108.271    1.50
+I3N          C5         C11         C12     125.378    1.50
+I3N         C10         C11         C12     126.352    1.50
+I3N         C11         C12         C13     112.079    2.81
+I3N         C11         C12        H121     108.993    1.50
+I3N         C11         C12        H122     108.993    1.50
+I3N         C13         C12        H121     108.731    1.50
+I3N         C13         C12        H122     108.731    1.50
+I3N        H121         C12        H122     107.797    1.50
+I3N         C12         C13         O14     117.315    1.72
+I3N         C12         C13         O15     117.315    1.72
+I3N         O14         C13         O15     125.371    1.75
+I3N         C10         C16        H161     109.835    3.00
+I3N         C10         C16        H162     109.835    3.00
+I3N         C10         C16        H163     109.835    3.00
+I3N        H161         C16        H162     109.354    1.50
+I3N        H161         C16        H163     109.354    1.50
+I3N        H162         C16        H163     109.354    1.50
+I3N          N9         C17         C18     112.900    1.65
+I3N          N9         C17        H171     108.841    1.50
+I3N          N9         C17        H172     108.841    1.50
+I3N         C18         C17        H171     108.961    1.50
+I3N         C18         C17        H172     108.961    1.50
+I3N        H171         C17        H172     107.872    1.50
+I3N         C17         C18         C19     120.692    1.50
+I3N         C17         C18         C23     120.692    1.50
+I3N         C19         C18         C23     118.616    1.50
+I3N         C18         C19         C20     120.590    1.50
+I3N         C18         C19         H19     119.702    1.50
+I3N         C20         C19         H19     119.708    1.50
+I3N         C19         C20         C21     120.162    1.50
+I3N         C19         C20         H20     119.873    1.50
+I3N         C21         C20         H20     119.964    1.50
+I3N         C20         C21         C22     119.880    1.50
+I3N         C20         C21         H21     120.060    1.50
+I3N         C22         C21         H21     120.060    1.50
+I3N         C21         C22         C23     120.162    1.50
+I3N         C21         C22         H22     119.964    1.50
+I3N         C23         C22         H22     119.873    1.50
+I3N         C18         C23         C22     120.590    1.50
+I3N         C18         C23         H23     119.702    1.50
+I3N         C22         C23         H23     119.708    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+I3N             sp3_sp3_2         H11          C1          O2          C3     -60.000    10.0     3
+I3N            sp2_sp3_14          C5         C11         C12         C13     -90.000    10.0     6
+I3N            sp2_sp3_20         O14         C13         C12         C11     120.000    10.0     6
+I3N            sp2_sp3_26         C19         C18         C17          N9     -90.000    10.0     6
+I3N              const_19         C17         C18         C19         C20     180.000    10.0     2
+I3N              const_63         C17         C18         C23         C22     180.000    10.0     2
+I3N              const_21         C18         C19         C20         C21       0.000    10.0     2
+I3N              const_25         C19         C20         C21         C22       0.000    10.0     2
+I3N             sp2_sp2_1          C4          C3          O2          C1     180.000     5.0     2
+I3N              const_29         C20         C21         C22         C23       0.000    10.0     2
+I3N              const_33         C21         C22         C23         C18       0.000    10.0     2
+I3N              const_39          O2          C3          C4          C5     180.000    10.0     2
+I3N              const_55          O2          C3          C8          C7     180.000    10.0     2
+I3N              const_41          C3          C4          C5          C6       0.000    10.0     2
+I3N              const_60         C12         C11          C5          C4       0.000    10.0     2
+I3N       const_sp2_sp2_1          C4          C5          C6          C7       0.000     5.0     2
+I3N              const_45          C5          C6          C7          C8       0.000    10.0     2
+I3N       const_sp2_sp2_6          C5          C6          N9         C17     180.000     5.0     2
+I3N              const_49          C6          C7          C8          C3       0.000    10.0     2
+I3N             sp2_sp3_2          C6          N9         C17         C18     -90.000    10.0     6
+I3N              const_12         C16         C10          N9         C17       0.000    10.0     2
+I3N              const_16         C16         C10         C11         C12       0.000    10.0     2
+I3N             sp2_sp3_7          N9         C10         C16        H161     150.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+I3N    plan-1         C10   0.020
+I3N    plan-1         C11   0.020
+I3N    plan-1         C12   0.020
+I3N    plan-1         C16   0.020
+I3N    plan-1         C17   0.020
+I3N    plan-1          C3   0.020
+I3N    plan-1          C4   0.020
+I3N    plan-1          C5   0.020
+I3N    plan-1          C6   0.020
+I3N    plan-1          C7   0.020
+I3N    plan-1          C8   0.020
+I3N    plan-1          H4   0.020
+I3N    plan-1          H7   0.020
+I3N    plan-1          H8   0.020
+I3N    plan-1          N9   0.020
+I3N    plan-1          O2   0.020
+I3N    plan-2         C17   0.020
+I3N    plan-2         C18   0.020
+I3N    plan-2         C19   0.020
+I3N    plan-2         C20   0.020
+I3N    plan-2         C21   0.020
+I3N    plan-2         C22   0.020
+I3N    plan-2         C23   0.020
+I3N    plan-2         H19   0.020
+I3N    plan-2         H20   0.020
+I3N    plan-2         H21   0.020
+I3N    plan-2         H22   0.020
+I3N    plan-2         H23   0.020
+I3N    plan-3         C12   0.020
+I3N    plan-3         C13   0.020
+I3N    plan-3         O14   0.020
+I3N    plan-3         O15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+I3N           SMILES              ACDLabs 10.04                                                                                    O=C(O)Cc2c1cc(OC)ccc1n(c2C)Cc3ccccc3
+I3N SMILES_CANONICAL               CACTVS 3.341                                                                                  COc1ccc2n(Cc3ccccc3)c(C)c(CC(O)=O)c2c1
+I3N           SMILES               CACTVS 3.341                                                                                  COc1ccc2n(Cc3ccccc3)c(C)c(CC(O)=O)c2c1
+I3N SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                    Cc1c(c2cc(ccc2n1Cc3ccccc3)OC)CC(=O)O
+I3N           SMILES "OpenEye OEToolkits" 1.5.0                                                                                    Cc1c(c2cc(ccc2n1Cc3ccccc3)OC)CC(=O)O
+I3N            InChI                InChI  1.03 InChI=1S/C19H19NO3/c1-13-16(11-19(21)22)17-10-15(23-2)8-9-18(17)20(13)12-14-6-4-3-5-7-14/h3-10H,11-12H2,1-2H3,(H,21,22)
+I3N         InChIKey                InChI  1.03                                                                                             ZEKCBTQHDTUHRJ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+I3N acedrg               243         "dictionary generator"                  
+I3N acedrg_database      11          "data source"                           
+I3N rdkit                2017.03.2   "Chemoinformatics tool"
+I3N refmac5              5.8.0238    "optimization tool"                     

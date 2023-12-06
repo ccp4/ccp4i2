@@ -1,0 +1,409 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LUF     LUF      (5S)-4-[(3E,7E)-4,8-dimethyl-10-(2,6,6-trimethylcyclohex-1-en-1-yl)deca-3,7-dien-1-yl]-5-hydroxyfuran-2(5H)-one     NON-POLYMER     66     28     .     
+#
+data_comp_LUF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LUF     C4      C       CH2     0       -2.653      -20.511     21.555      
+LUF     C5      C       CH2     0       -4.112      -20.139     21.313      
+LUF     C6      C       CR6     0       -4.494      -20.049     19.854      
+LUF     C7      C       CH2     0       -4.078      -20.443     17.418      
+LUF     C8      C       CH3     0       -1.369      -19.078     18.260      
+LUF     C10     C       CH2     0       -4.586      -21.858     17.163      
+LUF     C13     C       C1      0       -6.690      -22.090     15.879      
+LUF     C15     C       CH2     0       -7.617      -22.282     14.716      
+LUF     C17     C       C       0       -8.363      -23.902     12.925      
+LUF     C20     C       CH2     0       -11.276     -22.581     11.323      
+LUF     C21     C       CH3     0       -7.461      -24.205     11.757      
+LUF     C22     C       CR5     0       -10.299     -21.557     10.836      
+LUF     C24     C       CR15    0       -9.495      -21.591     9.777       
+LUF     O3      O       O       0       -7.957      -19.941     8.891       
+LUF     C25     C       CR5     0       -8.758      -20.334     9.700       
+LUF     O1      O       O2      0       -9.109      -19.559     10.765      
+LUF     C23     C       CH1     0       -10.096     -20.247     11.558      
+LUF     O2      O       OH1     0       -9.602      -20.454     12.847      
+LUF     C18     C       CH2     0       -10.612     -23.907     11.677      
+LUF     C19     C       C1      0       -9.690      -23.790     12.859      
+LUF     C16     C       CH2     0       -7.652      -23.722     14.238      
+LUF     C12     C       C       0       -5.362      -21.973     15.877      
+LUF     C14     C       CH3     0       -4.512      -21.956     14.637      
+LUF     C3      C       CR6     0       -3.626      -20.205     18.847      
+LUF     C1      C       CT      0       -2.095      -20.144     19.108      
+LUF     C9      C       CH3     0       -1.483      -21.520     18.772      
+LUF     C11     C       CH3     0       -5.979      -19.825     19.672      
+LUF     C2      C       CH2     0       -1.765      -19.826     20.575      
+LUF     H1      H       H       0       -2.396      -20.252     22.465      
+LUF     H2      H       H       0       -2.545      -21.481     21.471      
+LUF     H3      H       H       0       -4.685      -20.807     21.740      
+LUF     H4      H       H       0       -4.296      -19.274     21.732      
+LUF     H6      H       H       0       -4.787      -19.808     17.199      
+LUF     H7      H       H       0       -3.339      -20.269     16.806      
+LUF     H8      H       H       0       -1.877      -18.251     18.274      
+LUF     H9      H       H       0       -1.285      -19.386     17.343      
+LUF     H10     H       H       0       -0.483      -18.917     18.623      
+LUF     H11     H       H       0       -5.157      -22.140     17.906      
+LUF     H12     H       H       0       -3.825      -22.472     17.122      
+LUF     H13     H       H       0       -7.113      -22.040     16.723      
+LUF     H14     H       H       0       -7.331      -21.707     13.977      
+LUF     H15     H       H       0       -8.520      -22.011     14.977      
+LUF     H16     H       H       0       -11.945     -22.734     10.629      
+LUF     H17     H       H       0       -11.733     -22.232     12.111      
+LUF     H18     H       H       0       -7.902      -23.974     10.925      
+LUF     H19     H       H       0       -7.243      -25.152     11.754      
+LUF     H20     H       H       0       -6.643      -23.688     11.837      
+LUF     H22     H       H       0       -9.409      -22.311     9.166       
+LUF     H24     H       H       0       -10.934     -19.737     11.592      
+LUF     H25     H       H       0       -10.267     -20.764     13.355      
+LUF     H26     H       H       0       -10.124     -24.233     10.897      
+LUF     H27     H       H       0       -11.313     -24.560     11.882      
+LUF     H28     H       H       0       -10.132     -23.608     13.675      
+LUF     H29     H       H       0       -8.101      -24.267     14.916      
+LUF     H30     H       H       0       -6.733      -24.051     14.156      
+LUF     H31     H       H       0       -5.027      -22.266     13.875      
+LUF     H32     H       H       0       -3.746      -22.539     14.761      
+LUF     H33     H       H       0       -4.202      -21.052     14.469      
+LUF     H35     H       H       0       -1.969      -22.217     19.243      
+LUF     H36     H       H       0       -0.551      -21.542     19.040      
+LUF     H37     H       H       0       -1.543      -21.681     17.816      
+LUF     H38     H       H       0       -6.429      -19.817     20.530      
+LUF     H39     H       H       0       -6.355      -20.531     19.126      
+LUF     H40     H       H       0       -6.125      -18.974     19.231      
+LUF     H41     H       H       0       -0.836      -20.075     20.758      
+LUF     H42     H       H       0       -1.842      -18.859     20.709      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LUF          O3         C25      DOUBLE       n     1.205  0.0100     1.205  0.0100
+LUF         C25          O1      SINGLE       n     1.362  0.0101     1.362  0.0101
+LUF         C24         C25      SINGLE       n     1.458  0.0100     1.458  0.0100
+LUF          O1         C23      SINGLE       n     1.441  0.0106     1.441  0.0106
+LUF         C22         C24      DOUBLE       n     1.331  0.0107     1.331  0.0107
+LUF         C22         C23      SINGLE       n     1.513  0.0182     1.513  0.0182
+LUF         C23          O2      SINGLE       n     1.395  0.0146     1.395  0.0146
+LUF         C20         C22      SINGLE       n     1.496  0.0100     1.496  0.0100
+LUF         C20         C18      SINGLE       n     1.523  0.0153     1.523  0.0153
+LUF         C18         C19      SINGLE       n     1.498  0.0141     1.498  0.0141
+LUF         C17         C21      SINGLE       n     1.499  0.0156     1.499  0.0156
+LUF         C17         C19      DOUBLE       n     1.330  0.0100     1.330  0.0100
+LUF         C17         C16      SINGLE       n     1.503  0.0104     1.503  0.0104
+LUF         C15         C16      SINGLE       n     1.516  0.0200     1.516  0.0200
+LUF         C13         C15      SINGLE       n     1.498  0.0141     1.498  0.0141
+LUF         C13         C12      DOUBLE       n     1.330  0.0100     1.330  0.0100
+LUF         C12         C14      SINGLE       n     1.499  0.0156     1.499  0.0156
+LUF         C10         C12      SINGLE       n     1.504  0.0100     1.504  0.0100
+LUF          C7         C10      SINGLE       n     1.523  0.0153     1.523  0.0153
+LUF          C8          C1      SINGLE       n     1.541  0.0100     1.541  0.0100
+LUF          C7          C3      SINGLE       n     1.512  0.0100     1.512  0.0100
+LUF          C1          C9      SINGLE       n     1.541  0.0100     1.541  0.0100
+LUF          C3          C1      SINGLE       n     1.535  0.0150     1.535  0.0150
+LUF          C1          C2      SINGLE       n     1.532  0.0100     1.532  0.0100
+LUF          C6          C3      DOUBLE       n     1.331  0.0100     1.331  0.0100
+LUF          C4          C2      SINGLE       n     1.492  0.0200     1.492  0.0200
+LUF          C4          C5      SINGLE       n     1.524  0.0139     1.524  0.0139
+LUF          C5          C6      SINGLE       n     1.506  0.0100     1.506  0.0100
+LUF          C6         C11      SINGLE       n     1.509  0.0100     1.509  0.0100
+LUF          C4          H1      SINGLE       n     1.089  0.0100     0.980  0.0113
+LUF          C4          H2      SINGLE       n     1.089  0.0100     0.980  0.0113
+LUF          C5          H3      SINGLE       n     1.089  0.0100     0.978  0.0148
+LUF          C5          H4      SINGLE       n     1.089  0.0100     0.978  0.0148
+LUF          C7          H6      SINGLE       n     1.089  0.0100     0.977  0.0157
+LUF          C7          H7      SINGLE       n     1.089  0.0100     0.977  0.0157
+LUF          C8          H8      SINGLE       n     1.089  0.0100     0.971  0.0163
+LUF          C8          H9      SINGLE       n     1.089  0.0100     0.971  0.0163
+LUF          C8         H10      SINGLE       n     1.089  0.0100     0.971  0.0163
+LUF         C10         H11      SINGLE       n     1.089  0.0100     0.979  0.0159
+LUF         C10         H12      SINGLE       n     1.089  0.0100     0.979  0.0159
+LUF         C13         H13      SINGLE       n     1.082  0.0130     0.945  0.0200
+LUF         C15         H14      SINGLE       n     1.089  0.0100     0.979  0.0159
+LUF         C15         H15      SINGLE       n     1.089  0.0100     0.979  0.0159
+LUF         C20         H16      SINGLE       n     1.089  0.0100     0.976  0.0187
+LUF         C20         H17      SINGLE       n     1.089  0.0100     0.976  0.0187
+LUF         C21         H18      SINGLE       n     1.089  0.0100     0.971  0.0140
+LUF         C21         H19      SINGLE       n     1.089  0.0100     0.971  0.0140
+LUF         C21         H20      SINGLE       n     1.089  0.0100     0.971  0.0140
+LUF         C24         H22      SINGLE       n     1.082  0.0130     0.949  0.0132
+LUF         C23         H24      SINGLE       n     1.089  0.0100     0.981  0.0100
+LUF          O2         H25      SINGLE       n     0.970  0.0120     0.893  0.0200
+LUF         C18         H26      SINGLE       n     1.089  0.0100     0.979  0.0159
+LUF         C18         H27      SINGLE       n     1.089  0.0100     0.979  0.0159
+LUF         C19         H28      SINGLE       n     1.082  0.0130     0.945  0.0200
+LUF         C16         H29      SINGLE       n     1.089  0.0100     0.979  0.0159
+LUF         C16         H30      SINGLE       n     1.089  0.0100     0.979  0.0159
+LUF         C14         H31      SINGLE       n     1.089  0.0100     0.971  0.0140
+LUF         C14         H32      SINGLE       n     1.089  0.0100     0.971  0.0140
+LUF         C14         H33      SINGLE       n     1.089  0.0100     0.971  0.0140
+LUF          C9         H35      SINGLE       n     1.089  0.0100     0.971  0.0163
+LUF          C9         H36      SINGLE       n     1.089  0.0100     0.971  0.0163
+LUF          C9         H37      SINGLE       n     1.089  0.0100     0.971  0.0163
+LUF         C11         H38      SINGLE       n     1.089  0.0100     0.969  0.0158
+LUF         C11         H39      SINGLE       n     1.089  0.0100     0.969  0.0158
+LUF         C11         H40      SINGLE       n     1.089  0.0100     0.969  0.0158
+LUF          C2         H41      SINGLE       n     1.089  0.0100     0.979  0.0103
+LUF          C2         H42      SINGLE       n     1.089  0.0100     0.979  0.0103
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LUF          C2          C4          C5     111.448    2.19
+LUF          C2          C4          H1     109.322    1.50
+LUF          C2          C4          H2     109.322    1.50
+LUF          C5          C4          H1     109.281    1.50
+LUF          C5          C4          H2     109.281    1.50
+LUF          H1          C4          H2     108.036    1.50
+LUF          C4          C5          C6     113.289    1.74
+LUF          C4          C5          H3     109.190    1.50
+LUF          C4          C5          H4     109.190    1.50
+LUF          C6          C5          H3     108.281    1.50
+LUF          C6          C5          H4     108.281    1.50
+LUF          H3          C5          H4     107.973    1.50
+LUF          C3          C6          C5     122.993    1.87
+LUF          C3          C6         C11     124.165    1.50
+LUF          C5          C6         C11     112.843    1.50
+LUF         C10          C7          C3     114.215    1.50
+LUF         C10          C7          H6     108.975    1.50
+LUF         C10          C7          H7     108.975    1.50
+LUF          C3          C7          H6     109.011    1.50
+LUF          C3          C7          H7     109.011    1.50
+LUF          H6          C7          H7     107.675    1.50
+LUF          C1          C8          H8     109.665    1.50
+LUF          C1          C8          H9     109.665    1.50
+LUF          C1          C8         H10     109.665    1.50
+LUF          H8          C8          H9     109.363    1.50
+LUF          H8          C8         H10     109.363    1.50
+LUF          H9          C8         H10     109.363    1.50
+LUF         C12         C10          C7     111.511    2.91
+LUF         C12         C10         H11     108.552    1.50
+LUF         C12         C10         H12     108.552    1.50
+LUF          C7         C10         H11     109.518    1.50
+LUF          C7         C10         H12     109.518    1.50
+LUF         H11         C10         H12     108.096    1.73
+LUF         C15         C13         C12     128.114    1.50
+LUF         C15         C13         H13     115.635    1.60
+LUF         C12         C13         H13     116.261    1.50
+LUF         C16         C15         C13     112.751    2.50
+LUF         C16         C15         H14     109.013    1.50
+LUF         C16         C15         H15     109.013    1.50
+LUF         C13         C15         H14     109.181    1.50
+LUF         C13         C15         H15     109.181    1.50
+LUF         H14         C15         H15     107.922    1.50
+LUF         C21         C17         C19     123.681    1.50
+LUF         C21         C17         C16     115.131    1.50
+LUF         C19         C17         C16     121.188    1.50
+LUF         C22         C20         C18     111.339    2.21
+LUF         C22         C20         H16     108.690    1.50
+LUF         C22         C20         H17     108.690    1.50
+LUF         C18         C20         H16     108.870    1.50
+LUF         C18         C20         H17     108.870    1.50
+LUF         H16         C20         H17     107.783    1.50
+LUF         C17         C21         H18     109.541    1.50
+LUF         C17         C21         H19     109.541    1.50
+LUF         C17         C21         H20     109.541    1.50
+LUF         H18         C21         H19     109.342    1.50
+LUF         H18         C21         H20     109.342    1.50
+LUF         H19         C21         H20     109.342    1.50
+LUF         C24         C22         C23     109.967    2.72
+LUF         C24         C22         C20     128.733    2.67
+LUF         C23         C22         C20     121.300    2.33
+LUF         C25         C24         C22     109.197    3.00
+LUF         C25         C24         H22     124.967    1.93
+LUF         C22         C24         H22     125.836    1.50
+LUF          O3         C25          O1     120.904    1.50
+LUF          O3         C25         C24     130.917    1.50
+LUF          O1         C25         C24     108.180    1.50
+LUF         C25          O1         C23     108.956    1.50
+LUF          O1         C23         C22     103.937    1.50
+LUF          O1         C23          O2     109.352    1.66
+LUF          O1         C23         H24     109.850    2.71
+LUF         C22         C23          O2     110.215    3.00
+LUF         C22         C23         H24     110.367    1.60
+LUF          O2         C23         H24     109.602    2.32
+LUF         C23          O2         H25     108.255    3.00
+LUF         C20         C18         C19     112.333    2.26
+LUF         C20         C18         H26     108.740    1.50
+LUF         C20         C18         H27     108.740    1.50
+LUF         C19         C18         H26     109.363    1.67
+LUF         C19         C18         H27     109.363    1.67
+LUF         H26         C18         H27     107.848    1.50
+LUF         C18         C19         C17     128.377    1.50
+LUF         C18         C19         H28     114.927    1.50
+LUF         C17         C19         H28     116.695    1.50
+LUF         C17         C16         C15     113.520    2.62
+LUF         C17         C16         H29     108.816    1.50
+LUF         C17         C16         H30     108.816    1.50
+LUF         C15         C16         H29     108.867    1.50
+LUF         C15         C16         H30     108.867    1.50
+LUF         H29         C16         H30     107.710    1.94
+LUF         C13         C12         C14     123.882    1.50
+LUF         C13         C12         C10     121.046    1.50
+LUF         C14         C12         C10     115.072    1.50
+LUF         C12         C14         H31     109.541    1.50
+LUF         C12         C14         H32     109.541    1.50
+LUF         C12         C14         H33     109.541    1.50
+LUF         H31         C14         H32     109.342    1.50
+LUF         H31         C14         H33     109.342    1.50
+LUF         H32         C14         H33     109.342    1.50
+LUF          C7          C3          C1     117.042    2.44
+LUF          C7          C3          C6     122.961    1.71
+LUF          C1          C3          C6     119.998    1.66
+LUF          C8          C1          C9     108.431    1.50
+LUF          C8          C1          C3     112.632    3.00
+LUF          C8          C1          C2     108.237    2.03
+LUF          C9          C1          C3     112.632    3.00
+LUF          C9          C1          C2     108.237    2.03
+LUF          C3          C1          C2     112.021    2.38
+LUF          C1          C9         H35     109.665    1.50
+LUF          C1          C9         H36     109.665    1.50
+LUF          C1          C9         H37     109.665    1.50
+LUF         H35          C9         H36     109.363    1.50
+LUF         H35          C9         H37     109.363    1.50
+LUF         H36          C9         H37     109.363    1.50
+LUF          C6         C11         H38     110.039    1.89
+LUF          C6         C11         H39     110.039    1.89
+LUF          C6         C11         H40     110.039    1.89
+LUF         H38         C11         H39     109.339    1.50
+LUF         H38         C11         H40     109.339    1.50
+LUF         H39         C11         H40     109.339    1.50
+LUF          C1          C2          C4     113.880    1.50
+LUF          C1          C2         H41     108.646    1.50
+LUF          C1          C2         H42     108.646    1.50
+LUF          C4          C2         H41     108.941    1.50
+LUF          C4          C2         H42     108.941    1.50
+LUF         H41          C2         H42     107.710    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LUF            sp3_sp3_70          C2          C4          C5          C6     180.000    10.0     3
+LUF             sp3_sp3_1          C1          C2          C4          C5      60.000    10.0     3
+LUF             sp2_sp2_7         C20         C22         C24         C25     180.000     5.0     2
+LUF            sp2_sp3_17         C20         C22         C23          O2     -60.000    10.0     6
+LUF            sp2_sp2_10         C22         C24         C25          O3     180.000     5.0     2
+LUF            sp2_sp2_14          O3         C25          O1         C23     180.000     5.0     2
+LUF            sp3_sp3_20          O2         C23          O1         C25      60.000    10.0     3
+LUF            sp3_sp3_22          O1         C23          O2         H25     180.000    10.0     3
+LUF            sp2_sp3_26         C17         C19         C18         C20     120.000    10.0     6
+LUF            sp2_sp3_10         C11          C6          C5          C4     180.000    10.0     6
+LUF            sp2_sp3_49         C13         C12         C14         H31       0.000    10.0     6
+LUF             sp2_sp3_6          C7          C3          C1          C8      60.000    10.0     6
+LUF            sp3_sp3_67          C8          C1          C9         H35     -60.000    10.0     3
+LUF            sp3_sp3_13          C8          C1          C2          C4     180.000    10.0     3
+LUF             sp2_sp2_4          C7          C3          C6         C11       0.000     5.0     2
+LUF            sp2_sp3_67          C3          C6         C11         H38     150.000    10.0     6
+LUF            sp2_sp3_62          C1          C3          C7         C10     -90.000    10.0     6
+LUF            sp3_sp3_43         C12         C10          C7          C3     180.000    10.0     3
+LUF            sp3_sp3_58          C9          C1          C8          H8     -60.000    10.0     3
+LUF            sp2_sp3_56         C13         C12         C10          C7     120.000    10.0     6
+LUF            sp2_sp2_21         C14         C12         C13         C15       0.000     5.0     2
+LUF            sp2_sp3_44         C12         C13         C15         C16     120.000    10.0     6
+LUF            sp3_sp3_34         C13         C15         C16         C17     180.000    10.0     3
+LUF            sp2_sp3_31         C19         C17         C21         H18       0.000    10.0     6
+LUF            sp2_sp2_17         C21         C17         C19         C18       0.000     5.0     2
+LUF            sp2_sp3_38         C21         C17         C16         C15     120.000    10.0     6
+LUF            sp2_sp3_20         C24         C22         C20         C18     -90.000    10.0     6
+LUF            sp3_sp3_25         C19         C18         C20         C22     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LUF    chir_1    C23    O1    O2    C22    positive
+LUF    chir_2    C1    C3    C2    C8    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LUF    plan-1         C11   0.020
+LUF    plan-1          C3   0.020
+LUF    plan-1          C5   0.020
+LUF    plan-1          C6   0.020
+LUF    plan-2         C12   0.020
+LUF    plan-2         C13   0.020
+LUF    plan-2         C15   0.020
+LUF    plan-2         H13   0.020
+LUF    plan-3         C16   0.020
+LUF    plan-3         C17   0.020
+LUF    plan-3         C19   0.020
+LUF    plan-3         C21   0.020
+LUF    plan-4         C20   0.020
+LUF    plan-4         C22   0.020
+LUF    plan-4         C23   0.020
+LUF    plan-4         C24   0.020
+LUF    plan-5         C22   0.020
+LUF    plan-5         C24   0.020
+LUF    plan-5         C25   0.020
+LUF    plan-5         H22   0.020
+LUF    plan-6         C24   0.020
+LUF    plan-6         C25   0.020
+LUF    plan-6          O1   0.020
+LUF    plan-6          O3   0.020
+LUF    plan-7         C17   0.020
+LUF    plan-7         C18   0.020
+LUF    plan-7         C19   0.020
+LUF    plan-7         H28   0.020
+LUF    plan-8         C10   0.020
+LUF    plan-8         C12   0.020
+LUF    plan-8         C13   0.020
+LUF    plan-8         C14   0.020
+LUF    plan-9          C1   0.020
+LUF    plan-9          C3   0.020
+LUF    plan-9          C6   0.020
+LUF    plan-9          C7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LUF           SMILES              ACDLabs 12.01                                                                                                            O=C1OC(O)C(=C1)CC/C=C(\C)CC\C=C(/C)CCC2=C(C)CCCC2(C)C
+LUF            InChI                InChI  1.03 InChI=1S/C25H38O3/c1-18(11-7-13-21-17-23(26)28-24(21)27)9-6-10-19(2)14-15-22-20(3)12-8-16-25(22,4)5/h10-11,17,24,27H,6-9,12-16H2,1-5H3/b18-11+,19-10+/t24-/m0/s1
+LUF         InChIKey                InChI  1.03                                                                                                                                      JPWPYTMXSXYUPG-XKILHPSWSA-N
+LUF SMILES_CANONICAL               CACTVS 3.370                                                                                                         C\C(CC\C=C(C)\CCC1=C(C)CCCC1(C)C)=C/CCC2=CC(=O)O[C@@H]2O
+LUF           SMILES               CACTVS 3.370                                                                                                               CC(CCC=C(C)CCC1=C(C)CCCC1(C)C)=CCCC2=CC(=O)O[CH]2O
+LUF SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                     CC1=C(C(CCC1)(C)C)CC/C(=C/CC/C(=C/CCC2=CC(=O)O[C@@H]2O)/C)/C
+LUF           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                CC1=C(C(CCC1)(C)C)CCC(=CCCC(=CCCC2=CC(=O)OC2O)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LUF acedrg               243         "dictionary generator"                  
+LUF acedrg_database      11          "data source"                           
+LUF rdkit                2017.03.2   "Chemoinformatics tool"
+LUF refmac5              5.8.0238    "optimization tool"                     

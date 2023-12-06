@@ -1,0 +1,215 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TCM     TCM      THIOCAMPHOR     NON-POLYMER     27     11     .     
+#
+data_comp_TCM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TCM     C1      C       CT      0       46.107      44.141      13.025      
+TCM     C2      C       CR56    0       46.899      45.457      13.118      
+TCM     C3      C       CH2     0       47.278      45.636      14.574      
+TCM     C4      C       CH1     0       46.652      44.388      15.212      
+TCM     C5      C       CH2     0       45.131      44.622      15.230      
+TCM     C6      C       CH2     0       44.752      44.512      13.727      
+TCM     C7      C       CT      0       46.839      43.284      14.119      
+TCM     C8      C       CH3     0       48.320      42.961      13.802      
+TCM     C9      C       CH3     0       46.131      41.952      14.463      
+TCM     C10     C       CH3     0       45.961      43.561      11.630      
+TCM     S2      S       S1      0       47.250      46.509      11.881      
+TCM     H31     H       H       0       46.898      46.462      14.942      
+TCM     H32     H       H       0       48.253      45.652      14.691      
+TCM     H4      H       H       0       47.034      44.150      16.093      
+TCM     H51     H       H       0       44.908      45.506      15.589      
+TCM     H52     H       H       0       44.671      43.942      15.765      
+TCM     H61     H       H       0       44.400      45.361      13.391      
+TCM     H62     H       H       0       44.081      43.816      13.584      
+TCM     H81     H       H       0       48.897      43.427      14.426      
+TCM     H82     H       H       0       48.537      43.241      12.897      
+TCM     H83     H       H       0       48.488      42.011      13.880      
+TCM     H91     H       H       0       45.946      41.921      15.416      
+TCM     H92     H       H       0       46.688      41.196      14.228      
+TCM     H93     H       H       0       45.295      41.879      13.977      
+TCM     H101    H       H       0       45.856      42.602      11.688      
+TCM     H102    H       H       0       46.746      43.763      11.104      
+TCM     H103    H       H       0       45.180      43.942      11.203      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TCM          C1          C2      SINGLE       n     1.529  0.0124     1.529  0.0124
+TCM          C1          C6      SINGLE       n     1.565  0.0118     1.565  0.0118
+TCM          C1          C7      SINGLE       n     1.560  0.0112     1.560  0.0112
+TCM          C1         C10      SINGLE       n     1.516  0.0104     1.516  0.0104
+TCM          C2          C3      SINGLE       n     1.514  0.0135     1.514  0.0135
+TCM          C2          S2      DOUBLE       n     1.657  0.0200     1.657  0.0200
+TCM          C3          C4      SINGLE       n     1.527  0.0137     1.527  0.0137
+TCM          C4          C5      SINGLE       n     1.531  0.0135     1.531  0.0135
+TCM          C4          C7      SINGLE       n     1.555  0.0125     1.555  0.0125
+TCM          C5          C6      SINGLE       n     1.552  0.0124     1.552  0.0124
+TCM          C7          C8      SINGLE       n     1.535  0.0105     1.535  0.0105
+TCM          C7          C9      SINGLE       n     1.535  0.0105     1.535  0.0105
+TCM          C3         H31      SINGLE       n     1.089  0.0100     0.982  0.0200
+TCM          C3         H32      SINGLE       n     1.089  0.0100     0.982  0.0200
+TCM          C4          H4      SINGLE       n     1.089  0.0100     0.989  0.0200
+TCM          C5         H51      SINGLE       n     1.089  0.0100     0.980  0.0200
+TCM          C5         H52      SINGLE       n     1.089  0.0100     0.980  0.0200
+TCM          C6         H61      SINGLE       n     1.089  0.0100     0.978  0.0143
+TCM          C6         H62      SINGLE       n     1.089  0.0100     0.978  0.0143
+TCM          C8         H81      SINGLE       n     1.089  0.0100     0.971  0.0193
+TCM          C8         H82      SINGLE       n     1.089  0.0100     0.971  0.0193
+TCM          C8         H83      SINGLE       n     1.089  0.0100     0.971  0.0193
+TCM          C9         H91      SINGLE       n     1.089  0.0100     0.971  0.0193
+TCM          C9         H92      SINGLE       n     1.089  0.0100     0.971  0.0193
+TCM          C9         H93      SINGLE       n     1.089  0.0100     0.971  0.0193
+TCM         C10        H101      SINGLE       n     1.089  0.0100     0.967  0.0100
+TCM         C10        H102      SINGLE       n     1.089  0.0100     0.967  0.0100
+TCM         C10        H103      SINGLE       n     1.089  0.0100     0.967  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TCM          C2          C1          C6     103.403    1.62
+TCM          C2          C1          C7      99.669    1.50
+TCM          C2          C1         C10     114.650    1.50
+TCM          C6          C1          C7     102.227    1.50
+TCM          C6          C1         C10     115.399    1.50
+TCM          C7          C1         C10     118.838    1.50
+TCM          C1          C2          C3     107.330    1.50
+TCM          C1          C2          S2     126.335    1.51
+TCM          C3          C2          S2     126.335    1.51
+TCM          C2          C3          C4     101.880    1.50
+TCM          C2          C3         H31     111.298    1.50
+TCM          C2          C3         H32     111.298    1.50
+TCM          C4          C3         H31     111.401    1.50
+TCM          C4          C3         H32     111.401    1.50
+TCM         H31          C3         H32     109.315    1.50
+TCM          C3          C4          C5     106.646    1.50
+TCM          C3          C4          C7     102.741    1.50
+TCM          C3          C4          H4     114.491    1.50
+TCM          C5          C4          C7     102.880    1.50
+TCM          C5          C4          H4     114.453    1.59
+TCM          C7          C4          H4     114.273    1.50
+TCM          C4          C5          C6     102.833    1.50
+TCM          C4          C5         H51     111.213    1.50
+TCM          C4          C5         H52     111.213    1.50
+TCM          C6          C5         H51     111.251    1.50
+TCM          C6          C5         H52     111.251    1.50
+TCM         H51          C5         H52     108.958    1.50
+TCM          C1          C6          C5     104.000    1.50
+TCM          C1          C6         H61     110.905    1.50
+TCM          C1          C6         H62     110.905    1.50
+TCM          C5          C6         H61     111.004    1.50
+TCM          C5          C6         H62     111.004    1.50
+TCM         H61          C6         H62     108.924    1.50
+TCM          C1          C7          C4      93.811    1.50
+TCM          C1          C7          C8     113.634    1.50
+TCM          C1          C7          C9     113.634    1.50
+TCM          C4          C7          C8     113.722    1.50
+TCM          C4          C7          C9     113.722    1.50
+TCM          C8          C7          C9     107.501    1.50
+TCM          C7          C8         H81     109.558    1.50
+TCM          C7          C8         H82     109.558    1.50
+TCM          C7          C8         H83     109.558    1.50
+TCM         H81          C8         H82     109.384    1.50
+TCM         H81          C8         H83     109.384    1.50
+TCM         H82          C8         H83     109.384    1.50
+TCM          C7          C9         H91     109.558    1.50
+TCM          C7          C9         H92     109.558    1.50
+TCM          C7          C9         H93     109.558    1.50
+TCM         H91          C9         H92     109.384    1.50
+TCM         H91          C9         H93     109.384    1.50
+TCM         H92          C9         H93     109.384    1.50
+TCM          C1         C10        H101     109.495    1.50
+TCM          C1         C10        H102     109.495    1.50
+TCM          C1         C10        H103     109.495    1.50
+TCM        H101         C10        H102     109.442    1.50
+TCM        H101         C10        H103     109.442    1.50
+TCM        H102         C10        H103     109.442    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TCM             sp2_sp3_6          S2          C2          C1         C10      60.000    10.0     6
+TCM            sp3_sp3_43         C10          C1          C6          C5     180.000    10.0     3
+TCM            sp3_sp3_54         C10          C1          C7          C8     180.000    10.0     3
+TCM            sp3_sp3_55          C2          C1         C10        H101     180.000    10.0     3
+TCM            sp2_sp3_10          S2          C2          C3          C4     180.000    10.0     6
+TCM             sp3_sp3_1          C2          C3          C4          C5      60.000    10.0     3
+TCM            sp3_sp3_10          C3          C4          C5          C6     -60.000    10.0     3
+TCM            sp3_sp3_29          C3          C4          C7          C8      60.000    10.0     3
+TCM            sp3_sp3_19          C4          C5          C6          C1      60.000    10.0     3
+TCM            sp3_sp3_70          C9          C7          C8         H81     -60.000    10.0     3
+TCM            sp3_sp3_79          C8          C7          C9         H91     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TCM    chir_1    C1    C2    C7    C6    negative
+TCM    chir_2    C4    C7    C3    C5    negative
+TCM    chir_3    C7    C1    C4    C8    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TCM    plan-1          C1   0.020
+TCM    plan-1          C2   0.020
+TCM    plan-1          C3   0.020
+TCM    plan-1          S2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TCM           SMILES              ACDLabs 10.04                                                        S=C1CC2CCC1(C)C2(C)C
+TCM SMILES_CANONICAL               CACTVS 3.341                                             CC1(C)[C@@H]2CC[C@@]1(C)C(=S)C2
+TCM           SMILES               CACTVS 3.341                                                 CC1(C)[CH]2CC[C]1(C)C(=S)C2
+TCM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                              CC1([C@@H]2CC[C@]1(C(=S)C2)C)C
+TCM           SMILES "OpenEye OEToolkits" 1.5.0                                                      CC1(C2CCC1(C(=S)C2)C)C
+TCM            InChI                InChI  1.03 InChI=1S/C10H16S/c1-9(2)7-4-5-10(9,3)8(11)6-7/h7H,4-6H2,1-3H3/t7-,10+/m1/s1
+TCM         InChIKey                InChI  1.03                                                 AAADKYXUTOBAGS-XCBNKYQSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TCM acedrg               243         "dictionary generator"                  
+TCM acedrg_database      11          "data source"                           
+TCM rdkit                2017.03.2   "Chemoinformatics tool"
+TCM refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,359 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GSX     GSX      "5'-CHLORO-N-{(3S)-1-[(1S)-1-METHYL-2-MORPHOLIN-4-YL-2-OXOETHYL]-2-OXOPYRROLIDIN-3-YL}-2,2'-BITHIOPHENE-5-SULFONAMIDE"     NON-POLYMER     53     31     .     
+#
+data_comp_GSX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GSX     CL1     CL      CL      0       14.253      7.857       26.413      
+GSX     C1      C       CR5     0       12.576      7.931       26.176      
+GSX     C2      C       CR15    0       11.586      7.662       27.064      
+GSX     C3      C       CR15    0       10.284      7.841       26.481      
+GSX     C4      C       CR5     0       10.359      8.245       25.158      
+GSX     C9      C       CR5     0       9.324       8.541       24.184      
+GSX     C8      C       CR15    0       9.398       9.068       22.904      
+GSX     C7      C       CR15    0       8.100       9.186       22.297      
+GSX     C6      C       CR5     0       7.092       8.746       23.141      
+GSX     S1      S       S3      0       5.379       8.699       22.830      
+GSX     O2      O       O       0       4.718       8.649       24.096      
+GSX     O1      O       O       0       5.094       9.774       21.933      
+GSX     N1      N       NT1     0       5.004       7.334       22.046      
+GSX     C12     C       CH1     0       5.122       6.009       22.640      
+GSX     C13     C       CH2     0       3.967       5.088       22.229      
+GSX     C14     C       CH2     0       4.616       3.906       21.513      
+GSX     C15     C       CR5     0       6.384       5.301       22.189      
+GSX     O3      O       O       0       7.534       5.688       22.402      
+GSX     N2      N       NR5     0       6.048       4.216       21.472      
+GSX     C16     C       CH1     0       7.017       3.394       20.702      
+GSX     C17     C       CH3     0       6.622       1.921       20.636      
+GSX     C18     C       C       0       7.238       3.940       19.290      
+GSX     O4      O       O       0       6.604       4.921       18.910      
+GSX     N3      N       NT      0       8.161       3.341       18.493      
+GSX     C19     C       CH2     0       8.154       3.675       17.057      
+GSX     C20     C       CH2     0       8.909       2.640       16.254      
+GSX     O5      O       O2      0       10.241      2.469       16.729      
+GSX     C22     C       CH2     0       10.233      2.073       18.097      
+GSX     C23     C       CH2     0       9.532       3.088       18.972      
+GSX     S3      S       S2      0       7.735       8.222       24.584      
+GSX     S6      S       S2      0       11.957      8.381       24.700      
+GSX     H2      H       H       0       11.728      7.390       27.955      
+GSX     H3      H       H       0       9.480       7.699       26.951      
+GSX     H8      H       H       0       10.197      9.321       22.475      
+GSX     H7      H       H       0       7.956       9.524       21.430      
+GSX     H1      H       H       0       5.213       7.367       21.223      
+GSX     H12     H       H       0       5.141       6.072       23.625      
+GSX     H131    H       H       0       3.466       4.783       23.016      
+GSX     H132    H       H       0       3.343       5.554       21.631      
+GSX     H141    H       H       0       4.259       3.807       20.606      
+GSX     H142    H       H       0       4.456       3.073       22.005      
+GSX     H16     H       H       0       7.869       3.439       21.197      
+GSX     H171    H       H       0       7.383       1.394       20.331      
+GSX     H172    H       H       0       5.881       1.808       20.015      
+GSX     H173    H       H       0       6.353       1.615       21.521      
+GSX     H191    H       H       0       7.232       3.718       16.733      
+GSX     H192    H       H       0       8.565       4.553       16.929      
+GSX     H201    H       H       0       8.938       2.919       15.315      
+GSX     H202    H       H       0       8.435       1.783       16.301      
+GSX     H221    H       H       0       11.158      1.968       18.405      
+GSX     H222    H       H       0       9.784       1.206       18.181      
+GSX     H231    H       H       0       9.511       2.752       19.888      
+GSX     H232    H       H       0       10.034      3.927       18.966      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GSX         CL1          C1      SINGLE       n     1.695  0.0100     1.695  0.0100
+GSX          C1          C2      DOUBLE       y     1.343  0.0200     1.343  0.0200
+GSX          C1          S6      SINGLE       y     1.695  0.0200     1.695  0.0200
+GSX          C2          C3      SINGLE       y     1.413  0.0154     1.413  0.0154
+GSX          C3          C4      DOUBLE       y     1.363  0.0200     1.363  0.0200
+GSX          C4          C9      SINGLE       n     1.449  0.0100     1.449  0.0100
+GSX          C4          S6      SINGLE       y     1.695  0.0200     1.695  0.0200
+GSX          C9          C8      DOUBLE       y     1.363  0.0200     1.363  0.0200
+GSX          C9          S3      SINGLE       y     1.695  0.0200     1.695  0.0200
+GSX          C8          C7      SINGLE       y     1.413  0.0154     1.413  0.0154
+GSX          C7          C6      DOUBLE       y     1.373  0.0200     1.373  0.0200
+GSX          C6          S1      SINGLE       n     1.740  0.0137     1.740  0.0137
+GSX          C6          S3      SINGLE       y     1.695  0.0200     1.695  0.0200
+GSX          S1          O2      DOUBLE       n     1.429  0.0100     1.429  0.0100
+GSX          S1          O1      DOUBLE       n     1.429  0.0100     1.429  0.0100
+GSX          S1          N1      SINGLE       n     1.616  0.0115     1.616  0.0115
+GSX          N1         C12      SINGLE       n     1.455  0.0100     1.455  0.0100
+GSX         C12         C13      SINGLE       n     1.532  0.0108     1.532  0.0108
+GSX         C12         C15      SINGLE       n     1.516  0.0163     1.516  0.0163
+GSX         C13         C14      SINGLE       n     1.522  0.0200     1.522  0.0200
+GSX         C14          N2      SINGLE       n     1.464  0.0100     1.464  0.0100
+GSX         C15          O3      DOUBLE       n     1.231  0.0121     1.231  0.0121
+GSX         C15          N2      SINGLE       n     1.342  0.0109     1.342  0.0109
+GSX          N2         C16      SINGLE       n     1.480  0.0100     1.480  0.0100
+GSX         C16         C17      SINGLE       n     1.524  0.0100     1.524  0.0100
+GSX         C16         C18      SINGLE       n     1.525  0.0100     1.525  0.0100
+GSX         C18          O4      DOUBLE       n     1.226  0.0100     1.226  0.0100
+GSX         C18          N3      SINGLE       n     1.349  0.0100     1.349  0.0100
+GSX          N3         C19      SINGLE       n     1.467  0.0100     1.467  0.0100
+GSX          N3         C23      SINGLE       n     1.467  0.0100     1.467  0.0100
+GSX         C19         C20      SINGLE       n     1.510  0.0111     1.510  0.0111
+GSX         C20          O5      SINGLE       n     1.423  0.0105     1.423  0.0105
+GSX          O5         C22      SINGLE       n     1.423  0.0105     1.423  0.0105
+GSX         C22         C23      SINGLE       n     1.510  0.0111     1.510  0.0111
+GSX          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0153
+GSX          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0154
+GSX          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0154
+GSX          C7          H7      SINGLE       n     1.082  0.0130     0.942  0.0153
+GSX          N1          H1      SINGLE       n     1.036  0.0160     0.848  0.0200
+GSX         C12         H12      SINGLE       n     1.089  0.0100     0.988  0.0200
+GSX         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0186
+GSX         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0186
+GSX         C14        H141      SINGLE       n     1.089  0.0100     0.980  0.0159
+GSX         C14        H142      SINGLE       n     1.089  0.0100     0.980  0.0159
+GSX         C16         H16      SINGLE       n     1.089  0.0100     0.989  0.0189
+GSX         C17        H171      SINGLE       n     1.089  0.0100     0.974  0.0103
+GSX         C17        H172      SINGLE       n     1.089  0.0100     0.974  0.0103
+GSX         C17        H173      SINGLE       n     1.089  0.0100     0.974  0.0103
+GSX         C19        H191      SINGLE       n     1.089  0.0100     0.978  0.0137
+GSX         C19        H192      SINGLE       n     1.089  0.0100     0.978  0.0137
+GSX         C20        H201      SINGLE       n     1.089  0.0100     0.980  0.0155
+GSX         C20        H202      SINGLE       n     1.089  0.0100     0.980  0.0155
+GSX         C22        H221      SINGLE       n     1.089  0.0100     0.980  0.0155
+GSX         C22        H222      SINGLE       n     1.089  0.0100     0.980  0.0155
+GSX         C23        H231      SINGLE       n     1.089  0.0100     0.978  0.0137
+GSX         C23        H232      SINGLE       n     1.089  0.0100     0.978  0.0137
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GSX         CL1          C1          C2     129.451    2.18
+GSX         CL1          C1          S6     122.191    3.00
+GSX          C2          C1          S6     108.358    3.00
+GSX          C1          C2          C3     107.395    1.50
+GSX          C1          C2          H2     126.667    1.50
+GSX          C3          C2          H2     125.937    1.50
+GSX          C2          C3          C4     107.531    1.50
+GSX          C2          C3          H3     125.850    1.50
+GSX          C4          C3          H3     126.619    1.50
+GSX          C3          C4          C9     131.892    2.30
+GSX          C3          C4          S6     108.358    3.00
+GSX          C9          C4          S6     119.750    3.00
+GSX          C4          C9          C8     131.921    2.30
+GSX          C4          C9          S3     119.779    3.00
+GSX          C8          C9          S3     108.301    3.00
+GSX          C9          C8          C7     107.474    1.50
+GSX          C9          C8          H8     126.647    1.50
+GSX          C7          C8          H8     125.879    1.50
+GSX          C8          C7          C6     107.624    1.50
+GSX          C8          C7          H7     125.942    1.50
+GSX          C6          C7          H7     126.434    1.50
+GSX          C7          C6          S1     129.129    2.00
+GSX          C7          C6          S3     108.301    3.00
+GSX          S1          C6          S3     122.571    3.00
+GSX          C6          S1          O2     107.103    1.50
+GSX          C6          S1          O1     107.103    1.50
+GSX          C6          S1          N1     109.471    3.00
+GSX          O2          S1          O1     119.673    1.50
+GSX          O2          S1          N1     106.864    1.61
+GSX          O1          S1          N1     106.864    1.61
+GSX          S1          N1         C12     121.862    1.91
+GSX          S1          N1          H1     112.257    3.00
+GSX         C12          N1          H1     113.764    3.00
+GSX          N1         C12         C13     113.888    3.00
+GSX          N1         C12         C15     111.491    2.69
+GSX          N1         C12         H12     110.514    2.74
+GSX         C13         C12         C15     104.009    1.83
+GSX         C13         C12         H12     109.017    1.50
+GSX         C15         C12         H12     108.995    2.52
+GSX         C12         C13         C14     104.124    1.50
+GSX         C12         C13        H131     111.538    1.50
+GSX         C12         C13        H132     111.538    1.50
+GSX         C14         C13        H131     111.290    1.50
+GSX         C14         C13        H132     111.290    1.50
+GSX        H131         C13        H132     108.877    1.50
+GSX         C13         C14          N2     103.784    1.50
+GSX         C13         C14        H141     111.265    1.50
+GSX         C13         C14        H142     111.265    1.50
+GSX          N2         C14        H141     110.941    1.50
+GSX          N2         C14        H142     110.941    1.50
+GSX        H141         C14        H142     108.998    1.50
+GSX         C12         C15          O3     125.938    1.50
+GSX         C12         C15          N2     108.521    1.71
+GSX          O3         C15          N2     125.541    1.50
+GSX         C14          N2         C15     113.568    1.50
+GSX         C14          N2         C16     121.615    1.87
+GSX         C15          N2         C16     124.817    2.04
+GSX          N2         C16         C17     110.974    2.01
+GSX          N2         C16         C18     111.972    1.92
+GSX          N2         C16         H16     106.548    1.50
+GSX         C17         C16         C18     109.725    1.50
+GSX         C17         C16         H16     107.297    1.50
+GSX         C18         C16         H16     108.494    1.50
+GSX         C16         C17        H171     109.570    1.50
+GSX         C16         C17        H172     109.570    1.50
+GSX         C16         C17        H173     109.570    1.50
+GSX        H171         C17        H172     109.433    1.50
+GSX        H171         C17        H173     109.433    1.50
+GSX        H172         C17        H173     109.433    1.50
+GSX         C16         C18          O4     121.024    1.61
+GSX         C16         C18          N3     117.248    1.50
+GSX          O4         C18          N3     121.728    1.50
+GSX         C18          N3         C19     122.719    2.99
+GSX         C18          N3         C23     122.719    2.99
+GSX         C19          N3         C23     112.457    1.50
+GSX          N3         C19         C20     110.066    1.50
+GSX          N3         C19        H191     109.327    1.50
+GSX          N3         C19        H192     109.327    1.50
+GSX         C20         C19        H191     109.668    1.50
+GSX         C20         C19        H192     109.668    1.50
+GSX        H191         C19        H192     108.316    1.50
+GSX         C19         C20          O5     111.652    1.50
+GSX         C19         C20        H201     109.301    1.50
+GSX         C19         C20        H202     109.301    1.50
+GSX          O5         C20        H201     109.195    1.50
+GSX          O5         C20        H202     109.195    1.50
+GSX        H201         C20        H202     108.175    1.50
+GSX         C20          O5         C22     109.829    1.50
+GSX          O5         C22         C23     111.652    1.50
+GSX          O5         C22        H221     109.195    1.50
+GSX          O5         C22        H222     109.195    1.50
+GSX         C23         C22        H221     109.301    1.50
+GSX         C23         C22        H222     109.301    1.50
+GSX        H221         C22        H222     108.175    1.50
+GSX          N3         C23         C22     110.066    1.50
+GSX          N3         C23        H231     109.327    1.50
+GSX          N3         C23        H232     109.327    1.50
+GSX         C22         C23        H231     109.668    1.50
+GSX         C22         C23        H232     109.668    1.50
+GSX        H231         C23        H232     108.316    1.50
+GSX          C9          S3          C6     108.301    3.00
+GSX          C1          S6          C4     108.358    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GSX            sp3_sp3_49         C13         C12          N1          S1     180.000    10.0     3
+GSX             sp3_sp3_4          N1         C12         C13         C14     -60.000    10.0     3
+GSX            sp2_sp3_23          O3         C15         C12          N1     -60.000    10.0     6
+GSX            sp3_sp3_10         C12         C13         C14          N2     -60.000    10.0     3
+GSX             sp2_sp3_4         C16          N2         C14         C13     180.000    10.0     6
+GSX             sp2_sp2_4          O3         C15          N2         C16       0.000     5.0     2
+GSX            sp2_sp3_25         C14          N2         C16         C17     150.000    10.0     6
+GSX            sp3_sp3_58         C18         C16         C17        H171      60.000    10.0     3
+GSX            sp2_sp3_32          O4         C18         C16         C17     120.000    10.0     6
+GSX       const_sp2_sp2_3         CL1          C1          C2          C3     180.000     5.0     2
+GSX              const_30         CL1          C1          S6          C4     180.000    10.0     2
+GSX             sp2_sp2_9         C16         C18          N3         C19     180.000     5.0     2
+GSX            sp2_sp3_10         C18          N3         C19         C20     180.000    10.0     6
+GSX            sp2_sp3_40         C18          N3         C23         C22     180.000    10.0     6
+GSX            sp3_sp3_19          N3         C19         C20          O5     -60.000    10.0     3
+GSX            sp3_sp3_28         C19         C20          O5         C22      60.000    10.0     3
+GSX            sp3_sp3_31         C23         C22          O5         C20     -60.000    10.0     3
+GSX            sp3_sp3_34          O5         C22         C23          N3      60.000    10.0     3
+GSX       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+GSX              const_10          C2          C3          C4          C9     180.000    10.0     2
+GSX              const_13          C3          C4          S6          C1       0.000    10.0     2
+GSX             sp2_sp2_5          C3          C4          C9          C8     180.000     5.0     2
+GSX              const_32          C4          C9          S3          C6     180.000    10.0     2
+GSX              const_16          C7          C8          C9          C4     180.000    10.0     2
+GSX              const_19          C6          C7          C8          C9       0.000    10.0     2
+GSX              const_25          S1          C6          C7          C8     180.000    10.0     2
+GSX              const_28          S1          C6          S3          C9     180.000    10.0     2
+GSX            sp2_sp3_13          C7          C6          S1          O2     150.000    10.0     6
+GSX            sp3_sp3_47         C12          N1          S1          O2     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GSX    chir_1    S1    O2    O1    N1    both
+GSX    chir_2    C12    N1    C15    C13    positive
+GSX    chir_3    C16    N2    C18    C17    positive
+GSX    chir_4    N1    S1    C12    H1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GSX    plan-1          C1   0.020
+GSX    plan-1          C2   0.020
+GSX    plan-1          C3   0.020
+GSX    plan-1          C4   0.020
+GSX    plan-1          C9   0.020
+GSX    plan-1         CL1   0.020
+GSX    plan-1          H2   0.020
+GSX    plan-1          H3   0.020
+GSX    plan-1          S6   0.020
+GSX    plan-2          C4   0.020
+GSX    plan-2          C6   0.020
+GSX    plan-2          C7   0.020
+GSX    plan-2          C8   0.020
+GSX    plan-2          C9   0.020
+GSX    plan-2          H7   0.020
+GSX    plan-2          H8   0.020
+GSX    plan-2          S1   0.020
+GSX    plan-2          S3   0.020
+GSX    plan-3         C12   0.020
+GSX    plan-3         C15   0.020
+GSX    plan-3          N2   0.020
+GSX    plan-3          O3   0.020
+GSX    plan-4         C14   0.020
+GSX    plan-4         C15   0.020
+GSX    plan-4         C16   0.020
+GSX    plan-4          N2   0.020
+GSX    plan-5         C16   0.020
+GSX    plan-5         C18   0.020
+GSX    plan-5          N3   0.020
+GSX    plan-5          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GSX           SMILES              ACDLabs 10.04                                                                                                      Clc4sc(c1sc(cc1)S(=O)(=O)NC3C(=O)N(C(C(=O)N2CCOCC2)C)CC3)cc4
+GSX SMILES_CANONICAL               CACTVS 3.341                                                                                              C[C@H](N1CC[C@H](N[S](=O)(=O)c2sc(cc2)c3sc(Cl)cc3)C1=O)C(=O)N4CCOCC4
+GSX           SMILES               CACTVS 3.341                                                                                                C[CH](N1CC[CH](N[S](=O)(=O)c2sc(cc2)c3sc(Cl)cc3)C1=O)C(=O)N4CCOCC4
+GSX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                              C[C@@H](C(=O)N1CCOCC1)N2CC[C@@H](C2=O)NS(=O)(=O)c3ccc(s3)c4ccc(s4)Cl
+GSX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                        CC(C(=O)N1CCOCC1)N2CCC(C2=O)NS(=O)(=O)c3ccc(s3)c4ccc(s4)Cl
+GSX            InChI                InChI  1.03 InChI=1S/C19H22ClN3O5S3/c1-12(18(24)22-8-10-28-11-9-22)23-7-6-13(19(23)25)21-31(26,27)17-5-3-15(30-17)14-2-4-16(20)29-14/h2-5,12-13,21H,6-11H2,1H3/t12-,13-/m0/s1
+GSX         InChIKey                InChI  1.03                                                                                                                                       NAHOZYBRUMVDSR-STQMWFEESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GSX acedrg               243         "dictionary generator"                  
+GSX acedrg_database      11          "data source"                           
+GSX rdkit                2017.03.2   "Chemoinformatics tool"
+GSX refmac5              5.8.0238    "optimization tool"                     

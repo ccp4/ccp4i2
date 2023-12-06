@@ -1,0 +1,267 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+41A     41A      5,5-dimethyl-2-morpholin-4-yl-5,6-dihydro-1,3-benzothiazol-7(4H)-one     NON-POLYMER     36     18     .     
+#
+data_comp_41A
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+41A     C01     C       CH3     0       24.105      64.094      17.316      
+41A     C02     C       CT      0       23.996      63.425      18.691      
+41A     C03     C       CH3     0       24.412      64.435      19.768      
+41A     C04     C       CH2     0       22.541      62.982      18.923      
+41A     C05     C       CR56    0       22.412      61.996      20.045      
+41A     C06     C       CR56    0       23.495      61.244      20.497      
+41A     C07     C       CR6     0       24.818      61.337      19.969      
+41A     C08     C       CH2     0       24.933      62.201      18.737      
+41A     O09     O       O       0       25.792      60.773      20.456      
+41A     S10     S       S2      0       22.949      60.275      21.731      
+41A     C11     C       CR5     0       21.348      60.802      21.695      
+41A     N12     N       NR6     0       20.347      60.300      22.545      
+41A     C13     C       CH2     0       20.557      59.285      23.592      
+41A     C14     C       CH2     0       19.824      59.659      24.858      
+41A     O15     O       O2      0       18.446      59.923      24.617      
+41A     C16     C       CH2     0       18.302      61.002      23.699      
+41A     C17     C       CH2     0       18.938      60.689      22.368      
+41A     N18     N       NRD5    0       21.218      61.733      20.714      
+41A     H01     H       H       0       24.101      63.421      16.617      
+41A     H01A    H       H       0       24.930      64.603      17.260      
+41A     H01B    H       H       0       23.353      64.694      17.181      
+41A     H03     H       H       0       25.379      64.522      19.784      
+41A     H03A    H       H       0       24.108      64.139      20.640      
+41A     H03B    H       H       0       24.020      65.302      19.575      
+41A     H04     H       H       0       21.985      63.769      19.113      
+41A     H04A    H       H       0       22.183      62.586      18.098      
+41A     H08     H       H       0       25.858      62.503      18.667      
+41A     H08A    H       H       0       24.756      61.635      17.962      
+41A     H13     H       H       0       20.232      58.420      23.271      
+41A     H13A    H       H       0       21.507      59.201      23.791      
+41A     H14     H       H       0       20.244      60.451      25.254      
+41A     H14A    H       H       0       19.901      58.922      25.500      
+41A     H16     H       H       0       18.714      61.808      24.075      
+41A     H16A    H       H       0       17.348      61.183      23.564      
+41A     H17     H       H       0       18.453      59.954      21.940      
+41A     H17A    H       H       0       18.877      61.475      21.791      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+41A         C01         C02      SINGLE       n     1.531  0.0100     1.531  0.0100
+41A         C02         C03      SINGLE       n     1.531  0.0100     1.531  0.0100
+41A         C02         C04      SINGLE       n     1.532  0.0100     1.532  0.0100
+41A         C02         C08      SINGLE       n     1.538  0.0100     1.538  0.0100
+41A         C04         C05      SINGLE       n     1.493  0.0100     1.493  0.0100
+41A         C05         C06      DOUBLE       y     1.385  0.0200     1.385  0.0200
+41A         C05         N18      SINGLE       y     1.385  0.0100     1.385  0.0100
+41A         C06         C07      SINGLE       n     1.426  0.0200     1.426  0.0200
+41A         C06         S10      SINGLE       y     1.695  0.0200     1.695  0.0200
+41A         C07         C08      SINGLE       n     1.508  0.0100     1.508  0.0100
+41A         C07         O09      DOUBLE       n     1.226  0.0100     1.226  0.0100
+41A         S10         C11      SINGLE       y     1.695  0.0200     1.695  0.0200
+41A         C11         N12      SINGLE       n     1.374  0.0200     1.374  0.0200
+41A         C11         N18      DOUBLE       y     1.328  0.0200     1.328  0.0200
+41A         N12         C13      SINGLE       n     1.464  0.0109     1.464  0.0109
+41A         N12         C17      SINGLE       n     1.464  0.0109     1.464  0.0109
+41A         C13         C14      SINGLE       n     1.507  0.0100     1.507  0.0100
+41A         C14         O15      SINGLE       n     1.423  0.0105     1.423  0.0105
+41A         O15         C16      SINGLE       n     1.423  0.0105     1.423  0.0105
+41A         C16         C17      SINGLE       n     1.507  0.0100     1.507  0.0100
+41A         C01         H01      SINGLE       n     1.089  0.0100     0.971  0.0171
+41A         C01        H01A      SINGLE       n     1.089  0.0100     0.971  0.0171
+41A         C01        H01B      SINGLE       n     1.089  0.0100     0.971  0.0171
+41A         C03         H03      SINGLE       n     1.089  0.0100     0.971  0.0171
+41A         C03        H03A      SINGLE       n     1.089  0.0100     0.971  0.0171
+41A         C03        H03B      SINGLE       n     1.089  0.0100     0.971  0.0171
+41A         C04         H04      SINGLE       n     1.089  0.0100     0.982  0.0125
+41A         C04        H04A      SINGLE       n     1.089  0.0100     0.982  0.0125
+41A         C08         H08      SINGLE       n     1.089  0.0100     0.976  0.0111
+41A         C08        H08A      SINGLE       n     1.089  0.0100     0.976  0.0111
+41A         C13         H13      SINGLE       n     1.089  0.0100     0.979  0.0200
+41A         C13        H13A      SINGLE       n     1.089  0.0100     0.979  0.0200
+41A         C14         H14      SINGLE       n     1.089  0.0100     0.980  0.0155
+41A         C14        H14A      SINGLE       n     1.089  0.0100     0.980  0.0155
+41A         C16         H16      SINGLE       n     1.089  0.0100     0.980  0.0155
+41A         C16        H16A      SINGLE       n     1.089  0.0100     0.980  0.0155
+41A         C17         H17      SINGLE       n     1.089  0.0100     0.979  0.0200
+41A         C17        H17A      SINGLE       n     1.089  0.0100     0.979  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+41A         C02         C01         H01     110.145    1.50
+41A         C02         C01        H01A     110.145    1.50
+41A         C02         C01        H01B     110.145    1.50
+41A         H01         C01        H01A     109.363    1.50
+41A         H01         C01        H01B     109.363    1.50
+41A        H01A         C01        H01B     109.363    1.50
+41A         C01         C02         C03     109.544    1.50
+41A         C01         C02         C04     109.585    1.50
+41A         C01         C02         C08     109.543    1.50
+41A         C03         C02         C04     109.585    1.50
+41A         C03         C02         C08     109.543    1.50
+41A         C04         C02         C08     108.945    1.50
+41A         C02         C03         H03     110.145    1.50
+41A         C02         C03        H03A     110.145    1.50
+41A         C02         C03        H03B     110.145    1.50
+41A         H03         C03        H03A     109.363    1.50
+41A         H03         C03        H03B     109.363    1.50
+41A        H03A         C03        H03B     109.363    1.50
+41A         C02         C04         C05     109.233    1.61
+41A         C02         C04         H04     109.807    1.50
+41A         C02         C04        H04A     109.807    1.50
+41A         C05         C04         H04     109.819    1.50
+41A         C05         C04        H04A     109.819    1.50
+41A         H04         C04        H04A     106.610    1.50
+41A         C04         C05         C06     125.186    2.35
+41A         C04         C05         N18     125.945    1.50
+41A         C06         C05         N18     108.870    2.33
+41A         C05         C06         C07     126.207    3.00
+41A         C05         C06         S10     108.052    3.00
+41A         C07         C06         S10     125.740    3.00
+41A         C06         C07         C08     114.804    1.86
+41A         C06         C07         O09     123.690    1.58
+41A         C08         C07         O09     121.506    1.50
+41A         C02         C08         C07     115.653    1.50
+41A         C02         C08         H08     109.211    1.50
+41A         C02         C08        H08A     109.211    1.50
+41A         C07         C08         H08     108.048    1.50
+41A         C07         C08        H08A     108.048    1.50
+41A         H08         C08        H08A     107.313    1.50
+41A         C06         S10         C11     108.052    3.00
+41A         S10         C11         N12     122.402    3.00
+41A         S10         C11         N18     108.052    3.00
+41A         N12         C11         N18     129.545    1.97
+41A         C11         N12         C13     123.234    3.00
+41A         C11         N12         C17     123.234    3.00
+41A         C13         N12         C17     113.533    1.57
+41A         N12         C13         C14     109.318    1.50
+41A         N12         C13         H13     109.654    1.50
+41A         N12         C13        H13A     109.654    1.50
+41A         C14         C13         H13     109.834    1.50
+41A         C14         C13        H13A     109.834    1.50
+41A         H13         C13        H13A     108.945    1.78
+41A         C13         C14         O15     111.463    1.50
+41A         C13         C14         H14     109.231    1.50
+41A         C13         C14        H14A     109.231    1.50
+41A         O15         C14         H14     109.195    1.50
+41A         O15         C14        H14A     109.195    1.50
+41A         H14         C14        H14A     108.175    1.50
+41A         C14         O15         C16     109.829    1.50
+41A         O15         C16         C17     111.463    1.50
+41A         O15         C16         H16     109.195    1.50
+41A         O15         C16        H16A     109.195    1.50
+41A         C17         C16         H16     109.231    1.50
+41A         C17         C16        H16A     109.231    1.50
+41A         H16         C16        H16A     108.175    1.50
+41A         N12         C17         C16     109.318    1.50
+41A         N12         C17         H17     109.654    1.50
+41A         N12         C17        H17A     109.654    1.50
+41A         C16         C17         H17     109.834    1.50
+41A         C16         C17        H17A     109.834    1.50
+41A         H17         C17        H17A     108.945    1.78
+41A         C05         N18         C11     106.974    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+41A            sp3_sp3_36         H01         C01         C02         C03      60.000    10.0     3
+41A             sp2_sp2_5         S10         C11         N12         C13     180.000     5.0     2
+41A       const_sp2_sp2_9         S10         C11         N18         C05       0.000     5.0     2
+41A            sp2_sp3_16         C11         N12         C13         C14     180.000    10.0     6
+41A            sp2_sp3_22         C11         N12         C17         C16     180.000    10.0     6
+41A            sp3_sp3_10         N12         C13         C14         O15     -60.000    10.0     3
+41A            sp3_sp3_19         C13         C14         O15         C16      60.000    10.0     3
+41A            sp3_sp3_22         C17         C16         O15         C14     -60.000    10.0     3
+41A            sp3_sp3_25         O15         C16         C17         N12      60.000    10.0     3
+41A            sp3_sp3_49         C01         C02         C03         H03     -60.000    10.0     3
+41A             sp3_sp3_4         C01         C02         C04         C05     -60.000    10.0     3
+41A            sp3_sp3_58         C01         C02         C08         C07     -60.000    10.0     3
+41A             sp2_sp3_1         C06         C05         C04         C02       0.000    10.0     6
+41A              const_12         C04         C05         N18         C11     180.000    10.0     2
+41A       const_sp2_sp2_1         C04         C05         C06         C07       0.000     5.0     2
+41A             sp2_sp2_2         C05         C06         C07         O09     180.000     5.0     2
+41A       const_sp2_sp2_5         C05         C06         S10         C11       0.000     5.0     2
+41A            sp2_sp3_10         O09         C07         C08         C02     180.000    10.0     6
+41A       const_sp2_sp2_8         N12         C11         S10         C06     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+41A    chir_1    C02    C08    C04    C01    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+41A    plan-1         C04   0.020
+41A    plan-1         C05   0.020
+41A    plan-1         C06   0.020
+41A    plan-1         C07   0.020
+41A    plan-1         C11   0.020
+41A    plan-1         N12   0.020
+41A    plan-1         N18   0.020
+41A    plan-1         S10   0.020
+41A    plan-2         C06   0.020
+41A    plan-2         C07   0.020
+41A    plan-2         C08   0.020
+41A    plan-2         O09   0.020
+41A    plan-3         C11   0.020
+41A    plan-3         C13   0.020
+41A    plan-3         C17   0.020
+41A    plan-3         N12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+41A           SMILES              ACDLabs 10.04                                                         O=C2c1sc(nc1CC(C2)(C)C)N3CCOCC3
+41A SMILES_CANONICAL               CACTVS 3.341                                                         CC1(C)CC(=O)c2sc(nc2C1)N3CCOCC3
+41A           SMILES               CACTVS 3.341                                                         CC1(C)CC(=O)c2sc(nc2C1)N3CCOCC3
+41A SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                       CC1(Cc2c(sc(n2)N3CCOCC3)C(=O)C1)C
+41A           SMILES "OpenEye OEToolkits" 1.5.0                                                       CC1(Cc2c(sc(n2)N3CCOCC3)C(=O)C1)C
+41A            InChI                InChI  1.03 InChI=1S/C13H18N2O2S/c1-13(2)7-9-11(10(16)8-13)18-12(14-9)15-3-5-17-6-4-15/h3-8H2,1-2H3
+41A         InChIKey                InChI  1.03                                                             DZXMARZBAUMWLK-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+41A acedrg               243         "dictionary generator"                  
+41A acedrg_database      11          "data source"                           
+41A rdkit                2017.03.2   "Chemoinformatics tool"
+41A refmac5              5.8.0238    "optimization tool"                     

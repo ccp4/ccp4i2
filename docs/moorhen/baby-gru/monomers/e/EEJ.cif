@@ -1,0 +1,501 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EEJ     EEJ      "methyl (4-{6-[(1S)-2-[(3R)-1-acetylpiperidin-3-yl]-1-({(2E)-3-[5-chloro-2-(1H-tetrazol-1-yl)phenyl]prop-2-enoyl}amino)ethyl]-3-chloropyridazin-4-yl}phenyl)carbamate"     NON-POLYMER     77     46     .     
+#
+data_comp_EEJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EEJ     C13     C       CR16    0       45.245      -20.281     31.666      
+EEJ     C17     C       CR16    0       44.793      -22.623     31.544      
+EEJ     C16     C       CR16    0       45.817      -22.877     32.442      
+EEJ     C15     C       CR6     0       46.569      -21.822     32.961      
+EEJ     C19     C       CR6     0       38.406      -15.468     27.632      
+EEJ     C20     C       CR16    0       38.063      -14.169     27.284      
+EEJ     C21     C       CR16    0       37.064      -13.503     27.979      
+EEJ     C22     C       CR6     0       36.410      -14.143     29.020      
+EEJ     C23     C       CR16    0       36.739      -15.432     29.374      
+EEJ     C24     C       CR6     0       37.745      -16.123     28.683      
+EEJ     C11     C       CR16    0       42.074      -21.375     30.534      
+EEJ     C12     C       CR6     0       44.488      -21.325     31.131      
+EEJ     C34     C       C       0       48.922      -21.741     33.737      
+EEJ     C27     C       CR15    0       39.536      -16.415     25.581      
+EEJ     CL1     CL      CL      0       35.156      -13.303     29.889      
+EEJ     CL2     CL      CL      0       45.192      -20.126     28.326      
+EEJ     N3      N       NH1     0       38.797      -20.216     29.827      
+EEJ     C4      C       CH1     0       39.608      -21.436     29.941      
+EEJ     C5      C       CR6     0       41.053      -21.136     29.628      
+EEJ     C6      C       CH2     0       39.051      -22.574     29.071      
+EEJ     N7      N       NRD6    0       41.317      -20.628     28.425      
+EEJ     N8      N       NRD6    0       42.593      -20.331     28.062      
+EEJ     C9      C       CR6     0       43.602      -20.541     28.897      
+EEJ     C10     C       CR6     0       43.383      -21.070     30.170      
+EEJ     C14     C       CR16    0       46.274      -20.518     32.563      
+EEJ     N18     N       NH1     0       47.612      -22.076     33.878      
+EEJ     N25     N       NR5     0       39.449      -16.113     26.877      
+EEJ     C26     C       C1      0       38.055      -17.489     29.107      
+EEJ     N28     N       NRD5    0       40.684      -16.988     25.337      
+EEJ     N29     N       NRD5    0       41.327      -17.028     26.535      
+EEJ     N30     N       NRD5    0       40.601      -16.500     27.463      
+EEJ     C31     C       C1      0       38.324      -17.897     30.358      
+EEJ     C32     C       C       0       38.831      -19.238     30.754      
+EEJ     O33     O       O       0       39.256      -19.441     31.892      
+EEJ     O35     O       O       0       49.420      -21.224     32.764      
+EEJ     O36     O       O2      0       49.603      -22.086     34.854      
+EEJ     C37     C       CH3     0       50.877      -21.440     35.070      
+EEJ     C38     C       CH1     0       39.828      -23.900     29.077      
+EEJ     C39     C       CH2     0       39.863      -24.554     30.458      
+EEJ     C40     C       CH2     0       40.584      -25.891     30.436      
+EEJ     C41     C       CH2     0       40.064      -26.791     29.331      
+EEJ     N42     N       NR6     0       40.109      -26.102     28.030      
+EEJ     C43     C       CH2     0       39.284      -24.882     28.063      
+EEJ     C44     C       C       0       40.795      -26.581     26.963      
+EEJ     O45     O       O       0       41.604      -27.495     27.086      
+EEJ     C46     C       CH3     0       40.590      -25.961     25.609      
+EEJ     H52     H       H       0       45.060      -19.394     31.404      
+EEJ     H55     H       H       0       44.294      -23.346     31.201      
+EEJ     H54     H       H       0       46.006      -23.762     32.703      
+EEJ     H57     H       H       0       38.510      -13.740     26.577      
+EEJ     H58     H       H       0       36.832      -12.624     27.744      
+EEJ     H59     H       H       0       36.287      -15.853     30.083      
+EEJ     H51     H       H       0       41.893      -21.735     31.386      
+EEJ     H61     H       H       0       38.865      -16.247     24.942      
+EEJ     H47     H       H       0       38.250      -20.188     29.141      
+EEJ     H48     H       H       0       39.568      -21.742     30.882      
+EEJ     H50     H       H       0       39.003      -22.258     28.144      
+EEJ     H49     H       H       0       38.133      -22.762     29.359      
+EEJ     H53     H       H       0       46.774      -19.798     32.907      
+EEJ     H56     H       H       0       47.390      -22.493     34.607      
+EEJ     H60     H       H       0       38.072      -18.137     28.425      
+EEJ     H62     H       H       0       38.177      -17.270     31.050      
+EEJ     H64     H       H       0       50.767      -20.477     35.022      
+EEJ     H63     H       H       0       51.505      -21.729     34.390      
+EEJ     H65     H       H       0       51.216      -21.683     35.946      
+EEJ     H66     H       H       0       40.760      -23.702     28.821      
+EEJ     H68     H       H       0       40.311      -23.961     31.081      
+EEJ     H67     H       H       0       38.954      -24.683     30.772      
+EEJ     H70     H       H       0       40.465      -26.335     31.293      
+EEJ     H69     H       H       0       41.536      -25.741     30.306      
+EEJ     H72     H       H       0       39.135      -27.043     29.529      
+EEJ     H71     H       H       0       40.600      -27.614     29.303      
+EEJ     H73     H       H       0       39.262      -24.453     27.183      
+EEJ     H74     H       H       0       38.364      -25.118     28.304      
+EEJ     H75     H       H       0       41.062      -26.476     24.940      
+EEJ     H77     H       H       0       40.928      -25.054     25.611      
+EEJ     H76     H       H       0       39.645      -25.950     25.395      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EEJ         C27         N28      DOUBLE       y     1.306  0.0100     1.306  0.0100
+EEJ         N28         N29      SINGLE       y     1.361  0.0121     1.361  0.0121
+EEJ         C27         N25      SINGLE       y     1.333  0.0100     1.333  0.0100
+EEJ         C44         C46      SINGLE       n     1.499  0.0131     1.499  0.0131
+EEJ         N29         N30      DOUBLE       y     1.291  0.0100     1.291  0.0100
+EEJ         N25         N30      SINGLE       y     1.349  0.0100     1.349  0.0100
+EEJ         C19         N25      SINGLE       n     1.438  0.0100     1.438  0.0100
+EEJ         C44         O45      DOUBLE       n     1.226  0.0100     1.226  0.0100
+EEJ         N42         C44      SINGLE       n     1.346  0.0100     1.346  0.0100
+EEJ         C19         C20      DOUBLE       y     1.383  0.0100     1.383  0.0100
+EEJ         C20         C21      SINGLE       y     1.383  0.0100     1.383  0.0100
+EEJ          N7          N8      DOUBLE       y     1.354  0.0100     1.354  0.0100
+EEJ          N8          C9      SINGLE       y     1.315  0.0129     1.315  0.0129
+EEJ         C19         C24      SINGLE       y     1.396  0.0100     1.396  0.0100
+EEJ         CL2          C9      SINGLE       n     1.739  0.0100     1.739  0.0100
+EEJ          C5          N7      SINGLE       y     1.322  0.0173     1.322  0.0173
+EEJ         N42         C43      SINGLE       n     1.466  0.0100     1.466  0.0100
+EEJ         C38         C43      SINGLE       n     1.511  0.0100     1.511  0.0100
+EEJ         C21         C22      DOUBLE       y     1.383  0.0100     1.383  0.0100
+EEJ          C9         C10      DOUBLE       y     1.390  0.0100     1.390  0.0100
+EEJ         C41         N42      SINGLE       n     1.465  0.0108     1.465  0.0108
+EEJ         C24         C26      SINGLE       n     1.462  0.0121     1.462  0.0121
+EEJ         C23         C24      DOUBLE       y     1.399  0.0102     1.399  0.0102
+EEJ          C6         C38      SINGLE       n     1.532  0.0111     1.532  0.0111
+EEJ          C4          C6      SINGLE       n     1.533  0.0100     1.533  0.0100
+EEJ         C26         C31      DOUBLE       n     1.327  0.0200     1.327  0.0200
+EEJ         C38         C39      SINGLE       n     1.526  0.0112     1.526  0.0112
+EEJ          C4          C5      SINGLE       n     1.508  0.0106     1.508  0.0106
+EEJ         C11          C5      DOUBLE       y     1.386  0.0100     1.386  0.0100
+EEJ         C22         C23      SINGLE       y     1.375  0.0100     1.375  0.0100
+EEJ         C22         CL1      SINGLE       n     1.742  0.0100     1.742  0.0100
+EEJ          N3          C4      SINGLE       n     1.465  0.0105     1.465  0.0105
+EEJ          N3         C32      SINGLE       n     1.341  0.0104     1.341  0.0104
+EEJ         C11         C10      SINGLE       y     1.391  0.0104     1.391  0.0104
+EEJ         C12         C10      SINGLE       n     1.487  0.0100     1.487  0.0100
+EEJ         C31         C32      SINGLE       n     1.479  0.0120     1.479  0.0120
+EEJ         C40         C41      SINGLE       n     1.515  0.0114     1.515  0.0114
+EEJ         C32         O33      DOUBLE       n     1.229  0.0129     1.229  0.0129
+EEJ         C39         C40      SINGLE       n     1.517  0.0103     1.517  0.0103
+EEJ         C13         C12      DOUBLE       y     1.392  0.0100     1.392  0.0100
+EEJ         C17         C12      SINGLE       y     1.392  0.0100     1.392  0.0100
+EEJ         C13         C14      SINGLE       y     1.382  0.0100     1.382  0.0100
+EEJ         C17         C16      DOUBLE       y     1.382  0.0100     1.382  0.0100
+EEJ         C15         C14      DOUBLE       y     1.392  0.0100     1.392  0.0100
+EEJ         C16         C15      SINGLE       y     1.392  0.0100     1.392  0.0100
+EEJ         C15         N18      SINGLE       n     1.411  0.0100     1.411  0.0100
+EEJ         C34         O35      DOUBLE       n     1.207  0.0101     1.207  0.0101
+EEJ         C34         N18      SINGLE       n     1.356  0.0111     1.356  0.0111
+EEJ         C34         O36      SINGLE       n     1.348  0.0108     1.348  0.0108
+EEJ         O36         C37      SINGLE       n     1.443  0.0101     1.443  0.0101
+EEJ         C13         H52      SINGLE       n     1.082  0.0130     0.943  0.0154
+EEJ         C17         H55      SINGLE       n     1.082  0.0130     0.943  0.0154
+EEJ         C16         H54      SINGLE       n     1.082  0.0130     0.942  0.0198
+EEJ         C20         H57      SINGLE       n     1.082  0.0130     0.940  0.0155
+EEJ         C21         H58      SINGLE       n     1.082  0.0130     0.939  0.0138
+EEJ         C23         H59      SINGLE       n     1.082  0.0130     0.940  0.0137
+EEJ         C11         H51      SINGLE       n     1.082  0.0130     0.942  0.0177
+EEJ         C27         H61      SINGLE       n     1.082  0.0130     0.942  0.0172
+EEJ          N3         H47      SINGLE       n     1.016  0.0100     0.881  0.0200
+EEJ          C4         H48      SINGLE       n     1.089  0.0100     0.990  0.0147
+EEJ          C6         H50      SINGLE       n     1.089  0.0100     0.981  0.0200
+EEJ          C6         H49      SINGLE       n     1.089  0.0100     0.981  0.0200
+EEJ         C14         H53      SINGLE       n     1.082  0.0130     0.942  0.0198
+EEJ         N18         H56      SINGLE       n     1.016  0.0100     0.867  0.0200
+EEJ         C26         H60      SINGLE       n     1.082  0.0130     0.945  0.0200
+EEJ         C31         H62      SINGLE       n     1.082  0.0130     0.945  0.0193
+EEJ         C37         H64      SINGLE       n     1.089  0.0100     0.970  0.0175
+EEJ         C37         H63      SINGLE       n     1.089  0.0100     0.970  0.0175
+EEJ         C37         H65      SINGLE       n     1.089  0.0100     0.970  0.0175
+EEJ         C38         H66      SINGLE       n     1.089  0.0100     0.988  0.0159
+EEJ         C39         H68      SINGLE       n     1.089  0.0100     0.970  0.0100
+EEJ         C39         H67      SINGLE       n     1.089  0.0100     0.970  0.0100
+EEJ         C40         H70      SINGLE       n     1.089  0.0100     0.973  0.0100
+EEJ         C40         H69      SINGLE       n     1.089  0.0100     0.973  0.0100
+EEJ         C41         H72      SINGLE       n     1.089  0.0100     0.983  0.0130
+EEJ         C41         H71      SINGLE       n     1.089  0.0100     0.983  0.0130
+EEJ         C43         H73      SINGLE       n     1.089  0.0100     0.980  0.0103
+EEJ         C43         H74      SINGLE       n     1.089  0.0100     0.980  0.0103
+EEJ         C46         H75      SINGLE       n     1.089  0.0100     0.968  0.0151
+EEJ         C46         H77      SINGLE       n     1.089  0.0100     0.968  0.0151
+EEJ         C46         H76      SINGLE       n     1.089  0.0100     0.968  0.0151
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EEJ         C12         C13         C14     121.464    1.50
+EEJ         C12         C13         H52     119.399    1.50
+EEJ         C14         C13         H52     119.137    1.50
+EEJ         C12         C17         C16     121.464    1.50
+EEJ         C12         C17         H55     119.399    1.50
+EEJ         C16         C17         H55     119.137    1.50
+EEJ         C17         C16         C15     120.110    1.50
+EEJ         C17         C16         H54     120.007    1.50
+EEJ         C15         C16         H54     119.884    1.50
+EEJ         C14         C15         C16     119.224    1.50
+EEJ         C14         C15         N18     120.388    3.00
+EEJ         C16         C15         N18     120.388    3.00
+EEJ         N25         C19         C20     118.755    1.50
+EEJ         N25         C19         C24     120.702    1.50
+EEJ         C20         C19         C24     120.543    1.50
+EEJ         C19         C20         C21     119.595    1.50
+EEJ         C19         C20         H57     120.137    1.50
+EEJ         C21         C20         H57     120.268    1.50
+EEJ         C20         C21         C22     119.598    1.50
+EEJ         C20         C21         H58     120.135    1.50
+EEJ         C22         C21         H58     120.266    1.50
+EEJ         C21         C22         C23     121.254    1.50
+EEJ         C21         C22         CL1     119.280    1.50
+EEJ         C23         C22         CL1     119.467    1.50
+EEJ         C24         C23         C22     120.377    1.50
+EEJ         C24         C23         H59     119.676    1.50
+EEJ         C22         C23         H59     119.947    1.50
+EEJ         C19         C24         C26     121.747    2.04
+EEJ         C19         C24         C23     118.632    1.50
+EEJ         C26         C24         C23     119.621    2.30
+EEJ          C5         C11         C10     120.059    1.50
+EEJ          C5         C11         H51     120.429    1.50
+EEJ         C10         C11         H51     119.512    1.50
+EEJ         C10         C12         C13     121.185    1.52
+EEJ         C10         C12         C17     121.185    1.52
+EEJ         C13         C12         C17     117.629    1.50
+EEJ         O35         C34         N18     126.310    1.50
+EEJ         O35         C34         O36     124.180    1.50
+EEJ         N18         C34         O36     109.510    1.50
+EEJ         N28         C27         N25     109.677    1.50
+EEJ         N28         C27         H61     125.346    1.50
+EEJ         N25         C27         H61     124.969    1.50
+EEJ          C4          N3         C32     121.667    1.50
+EEJ          C4          N3         H47     117.529    2.66
+EEJ         C32          N3         H47     120.804    3.00
+EEJ          C6          C4          C5     111.525    1.84
+EEJ          C6          C4          N3     111.253    1.50
+EEJ          C6          C4         H48     107.451    1.50
+EEJ          C5          C4          N3     112.551    2.18
+EEJ          C5          C4         H48     106.995    1.50
+EEJ          N3          C4         H48     107.647    1.50
+EEJ          N7          C5          C4     116.796    1.52
+EEJ          N7          C5         C11     121.628    1.50
+EEJ          C4          C5         C11     121.577    1.56
+EEJ         C38          C6          C4     113.198    2.74
+EEJ         C38          C6         H50     108.361    1.50
+EEJ         C38          C6         H49     108.361    1.50
+EEJ          C4          C6         H50     108.818    1.50
+EEJ          C4          C6         H49     108.818    1.50
+EEJ         H50          C6         H49     107.474    1.50
+EEJ          N8          N7          C5     120.070    1.50
+EEJ          N7          N8          C9     118.969    1.50
+EEJ          N8          C9         CL2     117.497    1.50
+EEJ          N8          C9         C10     120.648    1.50
+EEJ         CL2          C9         C10     121.854    1.50
+EEJ          C9         C10         C11     118.627    1.50
+EEJ          C9         C10         C12     121.653    1.50
+EEJ         C11         C10         C12     119.720    1.53
+EEJ         C13         C14         C15     120.110    1.50
+EEJ         C13         C14         H53     120.007    1.50
+EEJ         C15         C14         H53     119.884    1.50
+EEJ         C15         N18         C34     126.824    1.50
+EEJ         C15         N18         H56     116.703    1.63
+EEJ         C34         N18         H56     116.473    1.50
+EEJ         C27         N25         N30     107.581    1.50
+EEJ         C27         N25         C19     131.387    1.50
+EEJ         N30         N25         C19     121.032    1.50
+EEJ         C24         C26         C31     127.302    1.50
+EEJ         C24         C26         H60     116.203    1.50
+EEJ         C31         C26         H60     116.495    1.60
+EEJ         C27         N28         N29     105.404    1.50
+EEJ         N28         N29         N30     110.848    1.50
+EEJ         N29         N30         N25     106.498    1.50
+EEJ         C26         C31         C32     121.613    2.02
+EEJ         C26         C31         H62     119.447    1.90
+EEJ         C32         C31         H62     118.940    1.50
+EEJ          N3         C32         C31     115.058    1.50
+EEJ          N3         C32         O33     122.091    1.50
+EEJ         C31         C32         O33     122.851    1.50
+EEJ         C34         O36         C37     115.454    1.50
+EEJ         O36         C37         H64     109.384    1.50
+EEJ         O36         C37         H63     109.384    1.50
+EEJ         O36         C37         H65     109.384    1.50
+EEJ         H64         C37         H63     109.532    1.53
+EEJ         H64         C37         H65     109.532    1.53
+EEJ         H63         C37         H65     109.532    1.53
+EEJ         C43         C38          C6     112.291    2.45
+EEJ         C43         C38         C39     109.880    1.50
+EEJ         C43         C38         H66     107.832    1.50
+EEJ          C6         C38         C39     111.907    1.50
+EEJ          C6         C38         H66     107.292    1.50
+EEJ         C39         C38         H66     107.583    1.50
+EEJ         C38         C39         C40     112.072    1.50
+EEJ         C38         C39         H68     109.162    1.50
+EEJ         C38         C39         H67     109.162    1.50
+EEJ         C40         C39         H68     109.433    1.50
+EEJ         C40         C39         H67     109.433    1.50
+EEJ         H68         C39         H67     107.919    1.50
+EEJ         C41         C40         C39     111.801    1.55
+EEJ         C41         C40         H70     109.380    1.50
+EEJ         C41         C40         H69     109.380    1.50
+EEJ         C39         C40         H70     109.500    1.50
+EEJ         C39         C40         H69     109.500    1.50
+EEJ         H70         C40         H69     108.022    1.50
+EEJ         N42         C41         C40     110.568    1.50
+EEJ         N42         C41         H72     109.413    1.50
+EEJ         N42         C41         H71     109.413    1.50
+EEJ         C40         C41         H72     109.566    1.50
+EEJ         C40         C41         H71     109.566    1.50
+EEJ         H72         C41         H71     108.159    1.50
+EEJ         C44         N42         C43     123.498    3.00
+EEJ         C44         N42         C41     123.498    3.00
+EEJ         C43         N42         C41     113.005    1.50
+EEJ         N42         C43         C38     110.639    1.50
+EEJ         N42         C43         H73     109.531    1.50
+EEJ         N42         C43         H74     109.531    1.50
+EEJ         C38         C43         H73     109.290    1.50
+EEJ         C38         C43         H74     109.290    1.50
+EEJ         H73         C43         H74     107.931    1.50
+EEJ         C46         C44         O45     120.838    1.50
+EEJ         C46         C44         N42     118.222    1.50
+EEJ         O45         C44         N42     120.940    1.50
+EEJ         C44         C46         H75     109.694    1.50
+EEJ         C44         C46         H77     109.694    1.50
+EEJ         C44         C46         H76     109.694    1.50
+EEJ         H75         C46         H77     109.352    1.50
+EEJ         H75         C46         H76     109.352    1.50
+EEJ         H77         C46         H76     109.352    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EEJ              const_16         C10         C12         C13         C14     180.000    10.0     2
+EEJ              const_72         C12         C13         C14         C15       0.000    10.0     2
+EEJ       const_sp2_sp2_2         C10         C11          C5          C4     180.000     5.0     2
+EEJ              const_68          C9         C10         C11          C5       0.000    10.0     2
+EEJ            sp2_sp2_21          C9         C10         C12         C13     180.000     5.0     2
+EEJ            sp2_sp2_35         O35         C34         N18         C15       0.000     5.0     2
+EEJ            sp2_sp2_37         O35         C34         O36         C37     180.000     5.0     2
+EEJ              const_60         N28         C27         N25         N30       0.000    10.0     2
+EEJ              const_54         N25         C27         N28         N29       0.000    10.0     2
+EEJ            sp2_sp3_25         C32          N3          C4          C6       0.000    10.0     6
+EEJ            sp2_sp2_17         C31         C32          N3          C4     180.000     5.0     2
+EEJ            sp2_sp3_19          N7          C5          C4          C6     150.000    10.0     6
+EEJ            sp3_sp3_40          N3          C4          C6         C38      60.000    10.0     3
+EEJ       const_sp2_sp2_6          C4          C5          N7          N8     180.000     5.0     2
+EEJ            sp3_sp3_28         C43         C38          C6          C4     180.000    10.0     3
+EEJ              const_20         C10         C12         C17         C16     180.000    10.0     2
+EEJ              const_22         C15         C16         C17         C12       0.000    10.0     2
+EEJ       const_sp2_sp2_7          C5          N7          N8          C9       0.000     5.0     2
+EEJ       const_sp2_sp2_9         CL2          C9          N8          N7     180.000     5.0     2
+EEJ              const_11         C11         C10          C9         CL2     180.000    10.0     2
+EEJ              const_58         C27         N25         N30         N29       0.000    10.0     2
+EEJ            sp2_sp2_13         C24         C26         C31         C32     180.000     5.0     2
+EEJ              const_56         C27         N28         N29         N30       0.000    10.0     2
+EEJ              const_57         N28         N29         N30         N25       0.000    10.0     2
+EEJ              const_28         N18         C15         C16         C17     180.000    10.0     2
+EEJ            sp2_sp2_25         C26         C31         C32          N3     180.000     5.0     2
+EEJ            sp3_sp3_56         H64         C37         O36         C34     -60.000    10.0     3
+EEJ            sp3_sp3_49          C6         C38         C39         C40      60.000    10.0     3
+EEJ             sp3_sp3_4          C6         C38         C43         N42     -60.000    10.0     3
+EEJ            sp3_sp3_19         C38         C39         C40         C41      60.000    10.0     3
+EEJ            sp3_sp3_10         C39         C40         C41         N42     -60.000    10.0     3
+EEJ              const_31         C13         C14         C15         N18     180.000    10.0     2
+EEJ            sp2_sp2_29         C14         C15         N18         C34     180.000     5.0     2
+EEJ            sp2_sp3_10         C44         N42         C41         C40     180.000    10.0     6
+EEJ             sp2_sp3_4         C44         N42         C43         C38     180.000    10.0     6
+EEJ             sp2_sp2_5         C46         C44         N42         C43     180.000     5.0     2
+EEJ            sp2_sp3_13         O45         C44         C46         H75       0.000    10.0     6
+EEJ             sp2_sp2_1         C20         C19         N25         C27     180.000     5.0     2
+EEJ              const_36         N25         C19         C20         C21     180.000    10.0     2
+EEJ              const_67         N25         C19         C24         C26       0.000    10.0     2
+EEJ              const_38         C19         C20         C21         C22       0.000    10.0     2
+EEJ              const_43         C20         C21         C22         CL1     180.000    10.0     2
+EEJ              const_48         CL1         C22         C23         C24     180.000    10.0     2
+EEJ              const_51         C22         C23         C24         C26     180.000    10.0     2
+EEJ             sp2_sp2_9         C19         C24         C26         C31     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EEJ    chir_1    C4    N3    C5    C6    positive
+EEJ    chir_2    C38    C43    C6    C39    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EEJ    plan-1         C10   0.020
+EEJ    plan-1         C12   0.020
+EEJ    plan-1         C13   0.020
+EEJ    plan-1         C14   0.020
+EEJ    plan-1         C15   0.020
+EEJ    plan-1         C16   0.020
+EEJ    plan-1         C17   0.020
+EEJ    plan-1         H52   0.020
+EEJ    plan-1         H53   0.020
+EEJ    plan-1         H54   0.020
+EEJ    plan-1         H55   0.020
+EEJ    plan-1         N18   0.020
+EEJ    plan-2         C10   0.020
+EEJ    plan-2         C11   0.020
+EEJ    plan-2         C12   0.020
+EEJ    plan-2          C4   0.020
+EEJ    plan-2          C5   0.020
+EEJ    plan-2          C9   0.020
+EEJ    plan-2         CL2   0.020
+EEJ    plan-2         H51   0.020
+EEJ    plan-2          N7   0.020
+EEJ    plan-2          N8   0.020
+EEJ    plan-3         C19   0.020
+EEJ    plan-3         C27   0.020
+EEJ    plan-3         H61   0.020
+EEJ    plan-3         N25   0.020
+EEJ    plan-3         N28   0.020
+EEJ    plan-3         N29   0.020
+EEJ    plan-3         N30   0.020
+EEJ    plan-4         C19   0.020
+EEJ    plan-4         C20   0.020
+EEJ    plan-4         C21   0.020
+EEJ    plan-4         C22   0.020
+EEJ    plan-4         C23   0.020
+EEJ    plan-4         C24   0.020
+EEJ    plan-4         C26   0.020
+EEJ    plan-4         CL1   0.020
+EEJ    plan-4         H57   0.020
+EEJ    plan-4         H58   0.020
+EEJ    plan-4         H59   0.020
+EEJ    plan-4         N25   0.020
+EEJ    plan-5         C34   0.020
+EEJ    plan-5         N18   0.020
+EEJ    plan-5         O35   0.020
+EEJ    plan-5         O36   0.020
+EEJ    plan-6         C32   0.020
+EEJ    plan-6          C4   0.020
+EEJ    plan-6         H47   0.020
+EEJ    plan-6          N3   0.020
+EEJ    plan-7         C15   0.020
+EEJ    plan-7         C34   0.020
+EEJ    plan-7         H56   0.020
+EEJ    plan-7         N18   0.020
+EEJ    plan-8         C24   0.020
+EEJ    plan-8         C26   0.020
+EEJ    plan-8         C31   0.020
+EEJ    plan-8         H60   0.020
+EEJ    plan-9         C26   0.020
+EEJ    plan-9         C31   0.020
+EEJ    plan-9         C32   0.020
+EEJ    plan-9         H62   0.020
+EEJ   plan-10         C31   0.020
+EEJ   plan-10         C32   0.020
+EEJ   plan-10          N3   0.020
+EEJ   plan-10         O33   0.020
+EEJ   plan-11         C41   0.020
+EEJ   plan-11         C43   0.020
+EEJ   plan-11         C44   0.020
+EEJ   plan-11         N42   0.020
+EEJ   plan-12         C44   0.020
+EEJ   plan-12         C46   0.020
+EEJ   plan-12         N42   0.020
+EEJ   plan-12         O45   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EEJ           SMILES              ACDLabs 12.01                                                                                                                                                                          c1cc(ccc1c5cc(C(NC(\C=C\c2c(ccc(c2)Cl)n3cnnn3)=O)CC4CCCN(C4)C(=O)C)nnc5Cl)NC(OC)=O
+EEJ            InChI                InChI  1.03 InChI=1S/C31H31Cl2N9O4/c1-19(43)41-13-3-4-20(17-41)14-26(36-29(44)12-7-22-15-23(32)8-11-28(22)42-18-34-39-40-42)27-16-25(30(33)38-37-27)21-5-9-24(10-6-21)35-31(45)46-2/h5-12,15-16,18,20,26H,3-4,13-14,17H2,1-2H3,(H,35,45)(H,36,44)/b12-7+/t20-,26+/m1/s1
+EEJ         InChIKey                InChI  1.03                                                                                                                                                                                                                                 QCCGVMDYTWPPFU-BONIYOLGSA-N
+EEJ SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                    COC(=O)Nc1ccc(cc1)c2cc(nnc2Cl)[C@H](C[C@H]3CCCN(C3)C(C)=O)NC(=O)/C=C/c4cc(Cl)ccc4n5cnnn5
+EEJ           SMILES               CACTVS 3.385                                                                                                                                                                        COC(=O)Nc1ccc(cc1)c2cc(nnc2Cl)[CH](C[CH]3CCCN(C3)C(C)=O)NC(=O)C=Cc4cc(Cl)ccc4n5cnnn5
+EEJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                                CC(=O)N1CCC[C@@H](C1)C[C@@H](c2cc(c(nn2)Cl)c3ccc(cc3)NC(=O)OC)NC(=O)/C=C/c4cc(ccc4n5cnnn5)Cl
+EEJ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                            CC(=O)N1CCCC(C1)CC(c2cc(c(nn2)Cl)c3ccc(cc3)NC(=O)OC)NC(=O)C=Cc4cc(ccc4n5cnnn5)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EEJ acedrg               243         "dictionary generator"                  
+EEJ acedrg_database      11          "data source"                           
+EEJ rdkit                2017.03.2   "Chemoinformatics tool"
+EEJ refmac5              5.8.0238    "optimization tool"                     

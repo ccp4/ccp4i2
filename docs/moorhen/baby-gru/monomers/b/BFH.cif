@@ -1,0 +1,240 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BFH     BFH      "1-(carboxymethyl)-1H-benzo[g]indole-2-carboxylic acid"     NON-POLYMER     30     20     .     
+#
+data_comp_BFH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BFH     O1      O       OC      -1      7.191       74.689      27.616      
+BFH     C2      C       C       0       6.232       73.941      27.341      
+BFH     O3      O       O       0       6.048       73.363      26.250      
+BFH     C4      C       CH2     0       5.197       73.703      28.439      
+BFH     N5      N       NT      0       3.815       73.881      27.982      
+BFH     C6      C       CR5     0       2.951       72.796      27.618      
+BFH     C7      C       CR15    0       1.745       73.326      27.259      
+BFH     C8      C       CR56    0       1.793       74.733      27.421      
+BFH     C9      C       CR16    0       0.820       75.721      27.206      
+BFH     C10     C       CR16    0       1.120       77.023      27.440      
+BFH     C11     C       CR66    0       2.405       77.424      27.902      
+BFH     C12     C       CR16    0       2.680       78.790      28.135      
+BFH     C13     C       CR16    0       3.898       79.202      28.576      
+BFH     C14     C       CR16    0       4.913       78.262      28.811      
+BFH     C15     C       CR16    0       4.684       76.924      28.595      
+BFH     C16     C       CR66    0       3.429       76.451      28.136      
+BFH     C17     C       CR56    0       3.080       75.072      27.878      
+BFH     C18     C       C       0       3.232       71.349      27.527      
+BFH     O19     O       O       0       2.360       70.496      27.497      
+BFH     O20     O       OH1     0       4.525       71.067      27.332      
+BFH     H4      H       H       0       5.371       74.311      29.177      
+BFH     H4A     H       H       0       5.310       72.801      28.783      
+BFH     H7      H       H       0       0.992       72.830      26.960      
+BFH     H9      H       H       0       -0.041      75.481      26.899      
+BFH     H10     H       H       0       0.460       77.679      27.292      
+BFH     H12     H       H       0       2.003       79.429      27.980      
+BFH     H13     H       H       0       4.061       80.119      28.725      
+BFH     H14     H       H       0       5.758       78.551      29.118      
+BFH     H15     H       H       0       5.376       76.325      28.758      
+BFH     HO20    H       H       0       4.954       70.594      27.910      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BFH          O1          C2      SINGLE       n     1.247  0.0187     1.247  0.0187
+BFH          C2          O3      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BFH          C2          C4      SINGLE       n     1.527  0.0103     1.527  0.0103
+BFH          C4          N5      SINGLE       n     1.460  0.0111     1.460  0.0111
+BFH          N5          C6      SINGLE       y     1.409  0.0200     1.409  0.0200
+BFH          N5         C17      SINGLE       y     1.391  0.0100     1.391  0.0100
+BFH          C6          C7      DOUBLE       y     1.370  0.0100     1.370  0.0100
+BFH          C6         C18      SINGLE       n     1.471  0.0101     1.471  0.0101
+BFH          C7          C8      SINGLE       y     1.420  0.0100     1.420  0.0100
+BFH          C8          C9      SINGLE       y     1.400  0.0100     1.400  0.0100
+BFH          C8         C17      DOUBLE       y     1.395  0.0100     1.395  0.0100
+BFH          C9         C10      DOUBLE       y     1.358  0.0100     1.358  0.0100
+BFH         C10         C11      SINGLE       y     1.425  0.0100     1.425  0.0100
+BFH         C11         C16      DOUBLE       y     1.423  0.0100     1.423  0.0100
+BFH         C11         C12      SINGLE       y     1.409  0.0100     1.409  0.0100
+BFH         C12         C13      DOUBLE       y     1.358  0.0118     1.358  0.0118
+BFH         C13         C14      SINGLE       y     1.402  0.0131     1.402  0.0131
+BFH         C14         C15      DOUBLE       y     1.372  0.0100     1.372  0.0100
+BFH         C15         C16      SINGLE       y     1.409  0.0100     1.409  0.0100
+BFH         C16         C17      SINGLE       y     1.429  0.0100     1.429  0.0100
+BFH         C18         O19      DOUBLE       n     1.220  0.0138     1.220  0.0138
+BFH         C18         O20      SINGLE       n     1.338  0.0153     1.338  0.0153
+BFH          C4          H4      SINGLE       n     1.089  0.0100     0.976  0.0149
+BFH          C4         H4A      SINGLE       n     1.089  0.0100     0.976  0.0149
+BFH          C7          H7      SINGLE       n     1.082  0.0130     0.950  0.0100
+BFH          C9          H9      SINGLE       n     1.082  0.0130     0.945  0.0100
+BFH         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0100
+BFH         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0192
+BFH         C13         H13      SINGLE       n     1.082  0.0130     0.944  0.0184
+BFH         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0184
+BFH         C15         H15      SINGLE       n     1.082  0.0130     0.935  0.0112
+BFH         O20        HO20      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BFH          O1          C2          O3     125.852    1.50
+BFH          O1          C2          C4     117.068    1.50
+BFH          O3          C2          C4     117.068    1.50
+BFH          C2          C4          N5     112.849    2.16
+BFH          C2          C4          H4     108.899    1.50
+BFH          C2          C4         H4A     108.899    1.50
+BFH          N5          C4          H4     109.048    1.50
+BFH          N5          C4         H4A     109.048    1.50
+BFH          H4          C4         H4A     108.376    1.50
+BFH          C4          N5          C6     125.163    2.33
+BFH          C4          N5         C17     125.430    2.73
+BFH          C6          N5         C17     107.557    1.50
+BFH          N5          C6          C7     107.959    1.50
+BFH          N5          C6         C18     123.709    2.38
+BFH          C7          C6         C18     128.333    2.29
+BFH          C6          C7          C8     107.578    1.50
+BFH          C6          C7          H7     126.151    1.50
+BFH          C8          C7          H7     126.271    1.50
+BFH          C7          C8          C9     133.993    1.50
+BFH          C7          C8         C17     106.282    1.50
+BFH          C9          C8         C17     119.725    1.50
+BFH          C8          C9         C10     119.020    1.50
+BFH          C8          C9          H9     120.549    1.50
+BFH         C10          C9          H9     120.431    1.50
+BFH          C9         C10         C11     122.234    1.50
+BFH          C9         C10         H10     118.875    1.50
+BFH         C11         C10         H10     118.891    1.50
+BFH         C10         C11         C16     120.638    1.50
+BFH         C10         C11         C12     121.134    1.50
+BFH         C16         C11         C12     118.228    1.50
+BFH         C11         C12         C13     121.136    1.50
+BFH         C11         C12         H12     119.327    1.50
+BFH         C13         C12         H12     119.537    1.50
+BFH         C12         C13         C14     120.358    1.50
+BFH         C12         C13         H13     119.851    1.50
+BFH         C14         C13         H13     119.795    1.50
+BFH         C13         C14         C15     120.265    1.50
+BFH         C13         C14         H14     119.832    1.50
+BFH         C15         C14         H14     119.903    1.50
+BFH         C14         C15         C16     120.908    1.50
+BFH         C14         C15         H15     119.621    1.50
+BFH         C16         C15         H15     119.471    1.50
+BFH         C11         C16         C15     119.100    1.50
+BFH         C11         C16         C17     116.653    1.50
+BFH         C15         C16         C17     124.247    1.50
+BFH          N5         C17          C8     107.682    1.68
+BFH          N5         C17         C16     130.586    1.50
+BFH          C8         C17         C16     121.731    1.50
+BFH          C6         C18         O19     124.182    1.61
+BFH          C6         C18         O20     111.867    1.50
+BFH         O19         C18         O20     123.950    1.64
+BFH         C18         O20        HO20     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BFH              const_59         C10         C11         C12         C13     180.000    10.0     2
+BFH              const_14         C10         C11         C16         C15     180.000    10.0     2
+BFH              const_33         C11         C12         C13         C14       0.000    10.0     2
+BFH              const_29         C12         C13         C14         C15       0.000    10.0     2
+BFH              const_25         C13         C14         C15         C16       0.000    10.0     2
+BFH              const_21         C14         C15         C16         C11       0.000    10.0     2
+BFH              const_18         C11         C16         C17          N5     180.000    10.0     2
+BFH             sp2_sp2_6         O19         C18         O20        HO20       0.000     5.0     2
+BFH             sp2_sp3_2          O1          C2          C4          N5     120.000    10.0     6
+BFH             sp2_sp3_8          C6          N5          C4          C2     -90.000    10.0     6
+BFH              const_54          C8         C17          N5          C4     180.000    10.0     2
+BFH              const_40         C18          C6          N5          C4       0.000    10.0     2
+BFH             sp2_sp2_3         O19         C18          C6          N5       0.000     5.0     2
+BFH              const_43         C18          C6          C7          C8     180.000    10.0     2
+BFH              const_46          C6          C7          C8          C9     180.000    10.0     2
+BFH              const_49          N5         C17          C8          C7       0.000    10.0     2
+BFH       const_sp2_sp2_3          C7          C8          C9         C10     180.000     5.0     2
+BFH       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+BFH       const_sp2_sp2_9          C9         C10         C11         C16       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BFH    plan-1         C10   0.020
+BFH    plan-1         C11   0.020
+BFH    plan-1         C12   0.020
+BFH    plan-1         C13   0.020
+BFH    plan-1         C14   0.020
+BFH    plan-1         C15   0.020
+BFH    plan-1         C16   0.020
+BFH    plan-1         C17   0.020
+BFH    plan-1         C18   0.020
+BFH    plan-1          C4   0.020
+BFH    plan-1          C6   0.020
+BFH    plan-1          C7   0.020
+BFH    plan-1          C8   0.020
+BFH    plan-1          C9   0.020
+BFH    plan-1         H10   0.020
+BFH    plan-1         H12   0.020
+BFH    plan-1         H13   0.020
+BFH    plan-1         H14   0.020
+BFH    plan-1         H15   0.020
+BFH    plan-1          H7   0.020
+BFH    plan-1          H9   0.020
+BFH    plan-1          N5   0.020
+BFH    plan-2          C2   0.020
+BFH    plan-2          C4   0.020
+BFH    plan-2          O1   0.020
+BFH    plan-2          O3   0.020
+BFH    plan-3         C18   0.020
+BFH    plan-3          C6   0.020
+BFH    plan-3         O19   0.020
+BFH    plan-3         O20   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BFH           SMILES              ACDLabs 12.01                                                                          O=C(O)c3cc2c(c1ccccc1cc2)n3CC(=O)O
+BFH SMILES_CANONICAL               CACTVS 3.370                                                                          OC(=O)Cn1c(cc2ccc3ccccc3c12)C(O)=O
+BFH           SMILES               CACTVS 3.370                                                                          OC(=O)Cn1c(cc2ccc3ccccc3c12)C(O)=O
+BFH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                      c1ccc2c(c1)ccc3c2n(c(c3)C(=O)O)CC(=O)O
+BFH           SMILES "OpenEye OEToolkits" 1.7.0                                                                      c1ccc2c(c1)ccc3c2n(c(c3)C(=O)O)CC(=O)O
+BFH            InChI                InChI  1.03 InChI=1S/C15H11NO4/c17-13(18)8-16-12(15(19)20)7-10-6-5-9-3-1-2-4-11(9)14(10)16/h1-7H,8H2,(H,17,18)(H,19,20)
+BFH         InChIKey                InChI  1.03                                                                                 AKGLRHRNGGDMDM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BFH acedrg               243         "dictionary generator"                  
+BFH acedrg_database      11          "data source"                           
+BFH rdkit                2017.03.2   "Chemoinformatics tool"
+BFH refmac5              5.8.0238    "optimization tool"                     

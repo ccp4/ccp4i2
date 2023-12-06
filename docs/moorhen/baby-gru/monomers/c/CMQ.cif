@@ -1,0 +1,397 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CMQ     CMQ      N~2~-[(BENZYLOXY)CARBONYL]-N-[(1S,2S)-2-HYDROXY-1-(4-HYDROXYBENZYL)PROPYL]-L-LEUCINAMIDE     NON-POLYMER     63     31     .     
+#
+data_comp_CMQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CMQ     O2      O       O       0       51.728      43.936      10.596      
+CMQ     C1      C       C       0       50.587      44.189      10.920      
+CMQ     O1      O       O2      0       49.878      45.234      10.454      
+CMQ     C2      C       CH2     0       50.478      46.021      9.389       
+CMQ     C3      C       CR6     0       49.537      47.109      8.956       
+CMQ     C4      C       CR16    0       49.101      47.191      7.641       
+CMQ     C5      C       CR16    0       48.234      48.202      7.244       
+CMQ     C6      C       CR16    0       47.798      49.140      8.158       
+CMQ     C7      C       CR16    0       48.227      49.070      9.467       
+CMQ     C8      C       CR16    0       49.094      48.060      9.865       
+CMQ     N1      N       NH1     0       49.855      43.467      11.795      
+CMQ     C9      C       CH1     0       50.404      42.280      12.439      
+CMQ     C11     C       CH2     0       49.578      41.899      13.669      
+CMQ     C12     C       CH1     0       49.525      42.936      14.792      
+CMQ     C13     C       CH3     0       48.423      42.598      15.786      
+CMQ     C14     C       CH3     0       50.865      43.046      15.507      
+CMQ     C10     C       C       0       50.481      41.088      11.479      
+CMQ     O3      O       O       0       49.450      40.671      10.954      
+CMQ     N2      N       NH1     0       51.692      40.550      11.259      
+CMQ     C15     C       CH1     0       51.960      39.375      10.438      
+CMQ     C16     C       CH1     0       52.203      38.156      11.347      
+CMQ     O4      O       OH1     0       53.285      38.435      12.232      
+CMQ     C24     C       CH3     0       50.995      37.777      12.152      
+CMQ     C17     C       CH2     0       53.135      39.656      9.486       
+CMQ     C18     C       CR6     0       53.294      38.621      8.394       
+CMQ     C19     C       CR16    0       54.376      37.749      8.381       
+CMQ     C21     C       CR16    0       54.527      36.796      7.383       
+CMQ     C23     C       CR6     0       53.584      36.699      6.371       
+CMQ     O5      O       OH1     0       53.731      35.757      5.381       
+CMQ     C22     C       CR16    0       52.497      37.559      6.366       
+CMQ     C20     C       CR16    0       52.360      38.507      7.371       
+CMQ     H21A    H       H       0       50.686      45.439      8.628       
+CMQ     H22A    H       H       0       51.315      46.420      9.707       
+CMQ     H4      H       H       0       49.394      46.553      7.009       
+CMQ     H5      H       H       0       47.942      48.246      6.347       
+CMQ     H6      H       H       0       47.209      49.826      7.889       
+CMQ     H7      H       H       0       47.930      49.710      10.095      
+CMQ     H8      H       H       0       49.383      48.018      10.763      
+CMQ     HN1     H       H       0       49.034      43.720      11.974      
+CMQ     H9      H       H       0       51.322      42.490      12.746      
+CMQ     H111    H       H       0       49.939      41.068      14.037      
+CMQ     H112    H       H       0       48.662      41.715      13.378      
+CMQ     H12     H       H       0       49.317      43.816      14.393      
+CMQ     H131    H       H       0       48.402      43.270      16.489      
+CMQ     H132    H       H       0       48.596      41.724      16.177      
+CMQ     H133    H       H       0       47.565      42.583      15.326      
+CMQ     H141    H       H       0       51.519      43.449      14.911      
+CMQ     H142    H       H       0       51.168      42.159      15.768      
+CMQ     H143    H       H       0       50.765      43.601      16.300      
+CMQ     HN2     H       H       0       52.393      40.916      11.625      
+CMQ     H15     H       H       0       51.166      39.181      9.892       
+CMQ     H16     H       H       0       52.452      37.383      10.778      
+CMQ     HO4     H       H       0       53.655      37.709      12.467      
+CMQ     H241    H       H       0       51.144      36.913      12.576      
+CMQ     H242    H       H       0       50.218      37.721      11.568      
+CMQ     H243    H       H       0       50.836      38.451      12.838      
+CMQ     H171    H       H       0       53.965      39.701      10.007      
+CMQ     H172    H       H       0       52.998      40.534      9.069       
+CMQ     H19     H       H       0       55.024      37.805      9.064       
+CMQ     H21     H       H       0       55.270      36.214      7.392       
+CMQ     HO5     H       H       0       53.042      35.469      4.950       
+CMQ     H22     H       H       0       51.852      37.499      5.681       
+CMQ     H20     H       H       0       51.616      39.087      7.359       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CMQ          O2          C1      DOUBLE       n     1.210  0.0102     1.210  0.0102
+CMQ          C1          O1      SINGLE       n     1.341  0.0100     1.341  0.0100
+CMQ          C1          N1      SINGLE       n     1.344  0.0100     1.344  0.0100
+CMQ          O1          C2      SINGLE       n     1.450  0.0125     1.450  0.0125
+CMQ          C2          C3      SINGLE       n     1.501  0.0101     1.501  0.0101
+CMQ          C3          C4      DOUBLE       y     1.383  0.0108     1.383  0.0108
+CMQ          C3          C8      SINGLE       y     1.383  0.0108     1.383  0.0108
+CMQ          C4          C5      SINGLE       y     1.386  0.0100     1.386  0.0100
+CMQ          C5          C6      DOUBLE       y     1.376  0.0124     1.376  0.0124
+CMQ          C6          C7      SINGLE       y     1.374  0.0127     1.374  0.0127
+CMQ          C7          C8      DOUBLE       y     1.386  0.0100     1.386  0.0100
+CMQ          N1          C9      SINGLE       n     1.453  0.0115     1.453  0.0115
+CMQ          C9         C11      SINGLE       n     1.528  0.0100     1.528  0.0100
+CMQ          C9         C10      SINGLE       n     1.530  0.0100     1.530  0.0100
+CMQ         C11         C12      SINGLE       n     1.528  0.0105     1.528  0.0105
+CMQ         C12         C13      SINGLE       n     1.521  0.0151     1.521  0.0151
+CMQ         C12         C14      SINGLE       n     1.521  0.0151     1.521  0.0151
+CMQ         C10          O3      DOUBLE       n     1.229  0.0102     1.229  0.0102
+CMQ         C10          N2      SINGLE       n     1.337  0.0102     1.337  0.0102
+CMQ          N2         C15      SINGLE       n     1.455  0.0100     1.455  0.0100
+CMQ         C15         C16      SINGLE       n     1.538  0.0100     1.538  0.0100
+CMQ         C15         C17      SINGLE       n     1.536  0.0100     1.536  0.0100
+CMQ         C16          O4      SINGLE       n     1.424  0.0199     1.424  0.0199
+CMQ         C16         C24      SINGLE       n     1.501  0.0160     1.501  0.0160
+CMQ         C17         C18      SINGLE       n     1.512  0.0103     1.512  0.0103
+CMQ         C18         C19      DOUBLE       y     1.385  0.0110     1.385  0.0110
+CMQ         C18         C20      SINGLE       y     1.385  0.0110     1.385  0.0110
+CMQ         C19         C21      SINGLE       y     1.385  0.0100     1.385  0.0100
+CMQ         C21         C23      DOUBLE       y     1.383  0.0100     1.383  0.0100
+CMQ         C23          O5      SINGLE       n     1.374  0.0155     1.374  0.0155
+CMQ         C23         C22      SINGLE       y     1.383  0.0100     1.383  0.0100
+CMQ         C22         C20      DOUBLE       y     1.385  0.0100     1.385  0.0100
+CMQ          C2        H21A      SINGLE       n     1.089  0.0100     0.980  0.0157
+CMQ          C2        H22A      SINGLE       n     1.089  0.0100     0.980  0.0157
+CMQ          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+CMQ          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0175
+CMQ          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0161
+CMQ          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0175
+CMQ          C8          H8      SINGLE       n     1.082  0.0130     0.944  0.0174
+CMQ          N1         HN1      SINGLE       n     1.016  0.0100     0.875  0.0200
+CMQ          C9          H9      SINGLE       n     1.089  0.0100     0.991  0.0200
+CMQ         C11        H111      SINGLE       n     1.089  0.0100     0.978  0.0119
+CMQ         C11        H112      SINGLE       n     1.089  0.0100     0.978  0.0119
+CMQ         C12         H12      SINGLE       n     1.089  0.0100     0.989  0.0162
+CMQ         C13        H131      SINGLE       n     1.089  0.0100     0.973  0.0146
+CMQ         C13        H132      SINGLE       n     1.089  0.0100     0.973  0.0146
+CMQ         C13        H133      SINGLE       n     1.089  0.0100     0.973  0.0146
+CMQ         C14        H141      SINGLE       n     1.089  0.0100     0.973  0.0146
+CMQ         C14        H142      SINGLE       n     1.089  0.0100     0.973  0.0146
+CMQ         C14        H143      SINGLE       n     1.089  0.0100     0.973  0.0146
+CMQ          N2         HN2      SINGLE       n     1.016  0.0100     0.872  0.0200
+CMQ         C15         H15      SINGLE       n     1.089  0.0100     0.984  0.0181
+CMQ         C16         H16      SINGLE       n     1.089  0.0100     0.992  0.0184
+CMQ          O4         HO4      SINGLE       n     0.970  0.0120     0.848  0.0200
+CMQ         C24        H241      SINGLE       n     1.089  0.0100     0.974  0.0145
+CMQ         C24        H242      SINGLE       n     1.089  0.0100     0.974  0.0145
+CMQ         C24        H243      SINGLE       n     1.089  0.0100     0.974  0.0145
+CMQ         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0150
+CMQ         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0150
+CMQ         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0173
+CMQ         C21         H21      SINGLE       n     1.082  0.0130     0.943  0.0169
+CMQ          O5         HO5      SINGLE       n     0.966  0.0059     0.861  0.0200
+CMQ         C22         H22      SINGLE       n     1.082  0.0130     0.943  0.0169
+CMQ         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CMQ          O2          C1          O1     124.295    1.50
+CMQ          O2          C1          N1     124.890    1.50
+CMQ          O1          C1          N1     110.815    1.50
+CMQ          C1          O1          C2     115.730    1.50
+CMQ          O1          C2          C3     109.508    2.22
+CMQ          O1          C2        H21A     109.538    1.50
+CMQ          O1          C2        H22A     109.538    1.50
+CMQ          C3          C2        H21A     109.785    1.50
+CMQ          C3          C2        H22A     109.785    1.50
+CMQ        H21A          C2        H22A     108.275    1.50
+CMQ          C2          C3          C4     120.651    1.50
+CMQ          C2          C3          C8     120.651    1.50
+CMQ          C4          C3          C8     118.697    1.50
+CMQ          C3          C4          C5     120.514    1.50
+CMQ          C3          C4          H4     119.732    1.50
+CMQ          C5          C4          H4     119.754    1.50
+CMQ          C4          C5          C6     120.186    1.50
+CMQ          C4          C5          H5     119.862    1.50
+CMQ          C6          C5          H5     119.952    1.50
+CMQ          C5          C6          C7     119.903    1.50
+CMQ          C5          C6          H6     120.048    1.50
+CMQ          C7          C6          H6     120.048    1.50
+CMQ          C6          C7          C8     120.186    1.50
+CMQ          C6          C7          H7     119.952    1.50
+CMQ          C8          C7          H7     119.862    1.50
+CMQ          C3          C8          C7     120.514    1.50
+CMQ          C3          C8          H8     119.732    1.50
+CMQ          C7          C8          H8     119.754    1.50
+CMQ          C1          N1          C9     120.144    1.69
+CMQ          C1          N1         HN1     119.498    2.20
+CMQ          C9          N1         HN1     120.357    1.50
+CMQ          N1          C9         C11     110.590    1.68
+CMQ          N1          C9         C10     112.413    1.56
+CMQ          N1          C9          H9     108.337    1.50
+CMQ         C11          C9         C10     110.666    1.50
+CMQ         C11          C9          H9     108.275    1.50
+CMQ         C10          C9          H9     107.852    1.50
+CMQ          C9         C11         C12     115.210    1.50
+CMQ          C9         C11        H111     108.470    1.50
+CMQ          C9         C11        H112     108.470    1.50
+CMQ         C12         C11        H111     108.478    1.50
+CMQ         C12         C11        H112     108.478    1.50
+CMQ        H111         C11        H112     107.542    1.50
+CMQ         C11         C12         C13     110.880    1.50
+CMQ         C11         C12         C14     110.880    1.50
+CMQ         C11         C12         H12     108.053    1.50
+CMQ         C13         C12         C14     110.507    1.50
+CMQ         C13         C12         H12     108.052    1.50
+CMQ         C14         C12         H12     108.052    1.50
+CMQ         C12         C13        H131     109.488    1.50
+CMQ         C12         C13        H132     109.488    1.50
+CMQ         C12         C13        H133     109.488    1.50
+CMQ        H131         C13        H132     109.411    1.50
+CMQ        H131         C13        H133     109.411    1.50
+CMQ        H132         C13        H133     109.411    1.50
+CMQ         C12         C14        H141     109.488    1.50
+CMQ         C12         C14        H142     109.488    1.50
+CMQ         C12         C14        H143     109.488    1.50
+CMQ        H141         C14        H142     109.411    1.50
+CMQ        H141         C14        H143     109.411    1.50
+CMQ        H142         C14        H143     109.411    1.50
+CMQ          C9         C10          O3     120.345    1.50
+CMQ          C9         C10          N2     116.639    1.50
+CMQ          O3         C10          N2     123.016    1.50
+CMQ         C10          N2         C15     123.632    1.63
+CMQ         C10          N2         HN2     118.879    1.83
+CMQ         C15          N2         HN2     117.489    3.00
+CMQ          N2         C15         C16     109.748    1.50
+CMQ          N2         C15         C17     110.274    1.50
+CMQ          N2         C15         H15     108.194    1.50
+CMQ         C16         C15         C17     112.266    1.50
+CMQ         C16         C15         H15     107.639    1.50
+CMQ         C17         C15         H15     108.431    1.50
+CMQ         C15         C16          O4     109.040    1.72
+CMQ         C15         C16         C24     113.131    1.50
+CMQ         C15         C16         H16     108.500    1.50
+CMQ          O4         C16         C24     109.779    2.11
+CMQ          O4         C16         H16     108.878    1.50
+CMQ         C24         C16         H16     108.799    1.50
+CMQ         C16          O4         HO4     109.608    2.55
+CMQ         C16         C24        H241     109.564    1.50
+CMQ         C16         C24        H242     109.564    1.50
+CMQ         C16         C24        H243     109.564    1.50
+CMQ        H241         C24        H242     109.425    1.50
+CMQ        H241         C24        H243     109.425    1.50
+CMQ        H242         C24        H243     109.425    1.50
+CMQ         C15         C17         C18     113.215    1.50
+CMQ         C15         C17        H171     108.892    1.50
+CMQ         C15         C17        H172     108.892    1.50
+CMQ         C18         C17        H171     108.862    1.50
+CMQ         C18         C17        H172     108.862    1.50
+CMQ        H171         C17        H172     107.782    1.50
+CMQ         C17         C18         C19     121.083    1.50
+CMQ         C17         C18         C20     121.083    1.50
+CMQ         C19         C18         C20     117.834    1.50
+CMQ         C18         C19         C21     121.472    1.50
+CMQ         C18         C19         H19     119.317    1.50
+CMQ         C21         C19         H19     119.210    1.50
+CMQ         C19         C21         C23     119.825    1.50
+CMQ         C19         C21         H21     120.168    1.50
+CMQ         C23         C21         H21     120.006    1.50
+CMQ         C21         C23          O5     120.215    3.00
+CMQ         C21         C23         C22     119.571    1.50
+CMQ          O5         C23         C22     120.215    3.00
+CMQ         C23          O5         HO5     120.000    3.00
+CMQ         C23         C22         C20     119.825    1.50
+CMQ         C23         C22         H22     120.006    1.50
+CMQ         C20         C22         H22     120.168    1.50
+CMQ         C18         C20         C22     121.472    1.50
+CMQ         C18         C20         H20     119.317    1.50
+CMQ         C22         C20         H20     119.210    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CMQ             sp2_sp3_7          C1          N1          C9         C11       0.000    10.0     6
+CMQ             sp3_sp3_4         C12         C11          C9          N1     180.000    10.0     3
+CMQ            sp2_sp3_13          O3         C10          C9          N1       0.000    10.0     6
+CMQ            sp3_sp3_14          C9         C11         C12         C13     -60.000    10.0     3
+CMQ            sp3_sp3_22         C11         C12         C13        H131     180.000    10.0     3
+CMQ            sp3_sp3_34         C11         C12         C14        H141      60.000    10.0     3
+CMQ             sp2_sp2_7          C9         C10          N2         C15     180.000     5.0     2
+CMQ            sp2_sp3_19         C10          N2         C15         C16       0.000    10.0     6
+CMQ            sp3_sp3_40          N2         C15         C16          O4     180.000    10.0     3
+CMQ            sp3_sp3_49          N2         C15         C17         C18     180.000    10.0     3
+CMQ             sp2_sp2_5          O2          C1          N1          C9       0.000     5.0     2
+CMQ             sp2_sp2_1          O2          C1          O1          C2     180.000     5.0     2
+CMQ            sp3_sp3_58         C15         C16          O4         HO4     180.000    10.0     3
+CMQ            sp3_sp3_61         C15         C16         C24        H241     180.000    10.0     3
+CMQ            sp2_sp3_26         C19         C18         C17         C15     -90.000    10.0     6
+CMQ       const_sp2_sp2_3         C17         C18         C19         C21     180.000     5.0     2
+CMQ              const_47         C17         C18         C20         C22     180.000    10.0     2
+CMQ       const_sp2_sp2_5         C18         C19         C21         C23       0.000     5.0     2
+CMQ              const_10         C19         C21         C23          O5     180.000    10.0     2
+CMQ            sp2_sp2_11         C21         C23          O5         HO5     180.000     5.0     2
+CMQ              const_14         C20         C22         C23          O5     180.000    10.0     2
+CMQ              const_17         C18         C20         C22         C23       0.000    10.0     2
+CMQ             sp3_sp3_1          C3          C2          O1          C1     180.000    10.0     3
+CMQ             sp2_sp3_2          C4          C3          C2          O1     -90.000    10.0     6
+CMQ              const_23          C2          C3          C4          C5     180.000    10.0     2
+CMQ              const_43          C2          C3          C8          C7     180.000    10.0     2
+CMQ              const_25          C3          C4          C5          C6       0.000    10.0     2
+CMQ              const_29          C4          C5          C6          C7       0.000    10.0     2
+CMQ              const_33          C5          C6          C7          C8       0.000    10.0     2
+CMQ              const_37          C6          C7          C8          C3       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CMQ    chir_1    C9    N1    C10    C11    positive
+CMQ    chir_2    C12    C11    C13    C14    both
+CMQ    chir_3    C15    N2    C16    C17    positive
+CMQ    chir_4    C16    O4    C15    C24    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CMQ    plan-1         C17   0.020
+CMQ    plan-1         C18   0.020
+CMQ    plan-1         C19   0.020
+CMQ    plan-1         C20   0.020
+CMQ    plan-1         C21   0.020
+CMQ    plan-1         C22   0.020
+CMQ    plan-1         C23   0.020
+CMQ    plan-1         H19   0.020
+CMQ    plan-1         H20   0.020
+CMQ    plan-1         H21   0.020
+CMQ    plan-1         H22   0.020
+CMQ    plan-1          O5   0.020
+CMQ    plan-2          C2   0.020
+CMQ    plan-2          C3   0.020
+CMQ    plan-2          C4   0.020
+CMQ    plan-2          C5   0.020
+CMQ    plan-2          C6   0.020
+CMQ    plan-2          C7   0.020
+CMQ    plan-2          C8   0.020
+CMQ    plan-2          H4   0.020
+CMQ    plan-2          H5   0.020
+CMQ    plan-2          H6   0.020
+CMQ    plan-2          H7   0.020
+CMQ    plan-2          H8   0.020
+CMQ    plan-3          C1   0.020
+CMQ    plan-3          N1   0.020
+CMQ    plan-3          O1   0.020
+CMQ    plan-3          O2   0.020
+CMQ    plan-4          C1   0.020
+CMQ    plan-4          C9   0.020
+CMQ    plan-4         HN1   0.020
+CMQ    plan-4          N1   0.020
+CMQ    plan-5         C10   0.020
+CMQ    plan-5          C9   0.020
+CMQ    plan-5          N2   0.020
+CMQ    plan-5          O3   0.020
+CMQ    plan-6         C10   0.020
+CMQ    plan-6         C15   0.020
+CMQ    plan-6         HN2   0.020
+CMQ    plan-6          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CMQ           SMILES              ACDLabs 10.04                                                                                                                                         O=C(OCc1ccccc1)NC(C(=O)NC(Cc2ccc(O)cc2)C(O)C)CC(C)C
+CMQ SMILES_CANONICAL               CACTVS 3.341                                                                                                                            CC(C)C[C@H](NC(=O)OCc1ccccc1)C(=O)N[C@@H](Cc2ccc(O)cc2)[C@H](C)O
+CMQ           SMILES               CACTVS 3.341                                                                                                                                CC(C)C[CH](NC(=O)OCc1ccccc1)C(=O)N[CH](Cc2ccc(O)cc2)[CH](C)O
+CMQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                           CC(C)C[C@@H](C(=O)N[C@@H](Cc1ccc(cc1)O)[C@H](C)O)NC(=O)OCc2ccccc2
+CMQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                         CC(C)CC(C(=O)NC(Cc1ccc(cc1)O)C(C)O)NC(=O)OCc2ccccc2
+CMQ            InChI                InChI  1.03 InChI=1S/C24H32N2O5/c1-16(2)13-22(26-24(30)31-15-19-7-5-4-6-8-19)23(29)25-21(17(3)27)14-18-9-11-20(28)12-10-18/h4-12,16-17,21-22,27-28H,13-15H2,1-3H3,(H,25,29)(H,26,30)/t17-,21-,22-/m0/s1
+CMQ         InChIKey                InChI  1.03                                                                                                                                                                 ZUWYQZGBCBSHFK-HSQYWUDLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CMQ acedrg               243         "dictionary generator"                  
+CMQ acedrg_database      11          "data source"                           
+CMQ rdkit                2017.03.2   "Chemoinformatics tool"
+CMQ refmac5              5.8.0238    "optimization tool"                     

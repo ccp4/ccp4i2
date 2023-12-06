@@ -1,0 +1,147 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SPA     SPA      "THIOPHENEACETIC ACID"     NON-POLYMER     14     9     .     
+#
+data_comp_SPA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SPA     S1      S       S2      0       10.951      35.107      34.436      
+SPA     C2      C       CR5     0       11.926      36.277      33.764      
+SPA     C3      C       CR15    0       11.408      36.696      32.549      
+SPA     C4      C       CR15    0       10.188      36.004      32.222      
+SPA     C5      C       CR15    0       9.847       35.111      33.188      
+SPA     C6      C       CH2     0       13.149      36.702      34.499      
+SPA     C7      C       C       0       12.877      37.825      35.494      
+SPA     O1      O       O       0       12.558      38.935      35.029      
+SPA     O2      O       OC      -1      12.991      37.557      36.703      
+SPA     H3      H       H       0       11.802      37.353      32.000      
+SPA     H4      H       H       0       9.693       36.156      31.435      
+SPA     H5      H       H       0       9.096       34.543      33.199      
+SPA     H61     H       H       0       13.821      37.005      33.855      
+SPA     H62     H       H       0       13.519      35.934      34.981      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SPA          S1          C2      SINGLE       y     1.695  0.0200     1.695  0.0200
+SPA          S1          C5      SINGLE       y     1.695  0.0200     1.695  0.0200
+SPA          C2          C3      DOUBLE       y     1.373  0.0200     1.373  0.0200
+SPA          C2          C6      SINGLE       n     1.488  0.0103     1.488  0.0103
+SPA          C3          C4      SINGLE       y     1.417  0.0151     1.417  0.0151
+SPA          C4          C5      DOUBLE       y     1.343  0.0200     1.343  0.0200
+SPA          C6          C7      SINGLE       n     1.525  0.0126     1.525  0.0126
+SPA          C7          O1      DOUBLE       n     1.244  0.0200     1.244  0.0200
+SPA          C7          O2      SINGLE       n     1.244  0.0200     1.244  0.0200
+SPA          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0153
+SPA          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0153
+SPA          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0200
+SPA          C6         H61      SINGLE       n     1.089  0.0100     0.979  0.0162
+SPA          C6         H62      SINGLE       n     1.089  0.0100     0.979  0.0162
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SPA          C2          S1          C5     108.313    3.00
+SPA          S1          C2          C3     108.313    3.00
+SPA          S1          C2          C6     119.849    3.00
+SPA          C3          C2          C6     131.838    2.45
+SPA          C2          C3          C4     107.709    1.50
+SPA          C2          C3          H3     126.392    1.50
+SPA          C4          C3          H3     125.900    1.50
+SPA          C3          C4          C5     107.351    1.50
+SPA          C3          C4          H4     125.960    1.50
+SPA          C5          C4          H4     126.690    1.50
+SPA          S1          C5          C4     108.313    3.00
+SPA          S1          C5          H5     123.215    3.00
+SPA          C4          C5          H5     128.471    2.40
+SPA          C2          C6          C7     112.079    2.81
+SPA          C2          C6         H61     108.978    1.50
+SPA          C2          C6         H62     108.978    1.50
+SPA          C7          C6         H61     108.731    1.50
+SPA          C7          C6         H62     108.731    1.50
+SPA         H61          C6         H62     107.730    1.50
+SPA          C6          C7          O1     117.315    1.72
+SPA          C6          C7          O2     117.315    1.72
+SPA          O1          C7          O2     125.371    1.75
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SPA       const_sp2_sp2_2          C6          C2          S1          C5     180.000     5.0     2
+SPA              const_15          C4          C5          S1          C2       0.000    10.0     2
+SPA       const_sp2_sp2_5          C6          C2          C3          C4     180.000     5.0     2
+SPA             sp2_sp3_2          S1          C2          C6          C7     -90.000    10.0     6
+SPA       const_sp2_sp2_7          C2          C3          C4          C5       0.000     5.0     2
+SPA              const_11          C3          C4          C5          S1       0.000    10.0     2
+SPA             sp2_sp3_8          O1          C7          C6          C2     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SPA    plan-1          C2   0.020
+SPA    plan-1          C3   0.020
+SPA    plan-1          C4   0.020
+SPA    plan-1          C5   0.020
+SPA    plan-1          C6   0.020
+SPA    plan-1          H3   0.020
+SPA    plan-1          H4   0.020
+SPA    plan-1          H5   0.020
+SPA    plan-1          S1   0.020
+SPA    plan-2          C6   0.020
+SPA    plan-2          C7   0.020
+SPA    plan-2          O1   0.020
+SPA    plan-2          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SPA           SMILES              ACDLabs 10.04                                          O=C(O)Cc1sccc1
+SPA SMILES_CANONICAL               CACTVS 3.341                                          OC(=O)Cc1sccc1
+SPA           SMILES               CACTVS 3.341                                          OC(=O)Cc1sccc1
+SPA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                        c1cc(sc1)CC(=O)O
+SPA           SMILES "OpenEye OEToolkits" 1.5.0                                        c1cc(sc1)CC(=O)O
+SPA            InChI                InChI  1.03 InChI=1S/C6H6O2S/c7-6(8)4-5-2-1-3-9-5/h1-3H,4H2,(H,7,8)
+SPA         InChIKey                InChI  1.03                             SMJRBWINMFUUDS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SPA acedrg               243         "dictionary generator"                  
+SPA acedrg_database      11          "data source"                           
+SPA rdkit                2017.03.2   "Chemoinformatics tool"
+SPA refmac5              5.8.0238    "optimization tool"                     

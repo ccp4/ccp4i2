@@ -1,0 +1,184 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BKN     BKN      "ethyl 5-oxohexanoate"     NON-POLYMER     25     11     .     
+#
+data_comp_BKN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BKN     CAA     C       CH3     0       2.486       -31.702     9.628       
+BKN     CAE     C       CH2     0       1.975       -30.365     9.248       
+BKN     OAI     O       O2      0       2.854       -29.794     8.238       
+BKN     CAK     C       C       0       2.681       -30.128     6.956       
+BKN     OAD     O       O       0       1.975       -31.027     6.571       
+BKN     CAH     C       CH2     0       3.497       -29.252     6.044       
+BKN     CAF     C       CH2     0       2.756       -28.011     5.568       
+BKN     CAG     C       CH2     0       3.565       -27.215     4.553       
+BKN     CAJ     C       C       0       2.899       -25.976     4.022       
+BKN     OAC     O       O       0       1.778       -25.659     4.357       
+BKN     CAB     C       CH3     0       3.685       -25.160     3.064       
+BKN     H1      H       H       0       2.034       -32.005     10.432      
+BKN     H2      H       H       0       3.441       -31.649     9.796       
+BKN     H3      H       H       0       2.320       -32.332     8.908       
+BKN     H4      H       H       0       1.959       -29.782     10.035      
+BKN     H5      H       H       0       1.059       -30.439     8.904       
+BKN     H6      H       H       0       3.770       -29.776     5.262       
+BKN     H7      H       H       0       4.313       -28.973     6.512       
+BKN     H8      H       H       0       2.554       -27.437     6.336       
+BKN     H9      H       H       0       1.905       -28.277     5.160       
+BKN     H10     H       H       0       3.776       -27.800     3.795       
+BKN     H11     H       H       0       4.415       -26.954     4.968       
+BKN     H12     H       H       0       3.170       -24.380     2.800       
+BKN     H13     H       H       0       3.892       -25.690     2.278       
+BKN     H14     H       H       0       4.512       -24.871     3.484       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BKN         CAJ         CAB      SINGLE       n     1.483  0.0200     1.483  0.0200
+BKN         CAJ         OAC      DOUBLE       n     1.209  0.0200     1.209  0.0200
+BKN         CAG         CAJ      SINGLE       n     1.497  0.0200     1.497  0.0200
+BKN         CAF         CAG      SINGLE       n     1.521  0.0157     1.521  0.0157
+BKN         CAH         CAF      SINGLE       n     1.521  0.0157     1.521  0.0157
+BKN         CAK         CAH      SINGLE       n     1.503  0.0174     1.503  0.0174
+BKN         CAK         OAD      DOUBLE       n     1.203  0.0150     1.203  0.0150
+BKN         OAI         CAK      SINGLE       n     1.329  0.0116     1.329  0.0116
+BKN         CAE         OAI      SINGLE       n     1.451  0.0100     1.451  0.0100
+BKN         CAA         CAE      SINGLE       n     1.478  0.0200     1.478  0.0200
+BKN         CAA          H1      SINGLE       n     1.089  0.0100     0.971  0.0156
+BKN         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0156
+BKN         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0156
+BKN         CAE          H4      SINGLE       n     1.089  0.0100     0.980  0.0148
+BKN         CAE          H5      SINGLE       n     1.089  0.0100     0.980  0.0148
+BKN         CAH          H6      SINGLE       n     1.089  0.0100     0.981  0.0185
+BKN         CAH          H7      SINGLE       n     1.089  0.0100     0.981  0.0185
+BKN         CAF          H8      SINGLE       n     1.089  0.0100     0.980  0.0178
+BKN         CAF          H9      SINGLE       n     1.089  0.0100     0.980  0.0178
+BKN         CAG         H10      SINGLE       n     1.089  0.0100     0.981  0.0185
+BKN         CAG         H11      SINGLE       n     1.089  0.0100     0.981  0.0185
+BKN         CAB         H12      SINGLE       n     1.089  0.0100     0.971  0.0145
+BKN         CAB         H13      SINGLE       n     1.089  0.0100     0.971  0.0145
+BKN         CAB         H14      SINGLE       n     1.089  0.0100     0.971  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BKN         CAE         CAA          H1     109.517    1.50
+BKN         CAE         CAA          H2     109.517    1.50
+BKN         CAE         CAA          H3     109.517    1.50
+BKN          H1         CAA          H2     109.410    1.50
+BKN          H1         CAA          H3     109.410    1.50
+BKN          H2         CAA          H3     109.410    1.50
+BKN         OAI         CAE         CAA     108.459    2.39
+BKN         OAI         CAE          H4     109.826    1.50
+BKN         OAI         CAE          H5     109.826    1.50
+BKN         CAA         CAE          H4     110.009    1.50
+BKN         CAA         CAE          H5     110.009    1.50
+BKN          H4         CAE          H5     108.453    1.50
+BKN         CAK         OAI         CAE     116.497    1.50
+BKN         CAH         CAK         OAD     125.251    2.71
+BKN         CAH         CAK         OAI     111.516    1.50
+BKN         OAD         CAK         OAI     123.233    1.50
+BKN         CAF         CAH         CAK     113.365    1.50
+BKN         CAF         CAH          H6     108.815    1.50
+BKN         CAF         CAH          H7     108.815    1.50
+BKN         CAK         CAH          H6     108.883    1.50
+BKN         CAK         CAH          H7     108.883    1.50
+BKN          H6         CAH          H7     107.521    1.50
+BKN         CAG         CAF         CAH     112.061    1.52
+BKN         CAG         CAF          H8     108.724    1.50
+BKN         CAG         CAF          H9     108.724    1.50
+BKN         CAH         CAF          H8     109.164    1.50
+BKN         CAH         CAF          H9     109.164    1.50
+BKN          H8         CAF          H9     107.646    1.50
+BKN         CAJ         CAG         CAF     114.397    2.37
+BKN         CAJ         CAG         H10     108.742    1.50
+BKN         CAJ         CAG         H11     108.742    1.50
+BKN         CAF         CAG         H10     108.866    1.50
+BKN         CAF         CAG         H11     108.866    1.50
+BKN         H10         CAG         H11     107.764    1.50
+BKN         CAB         CAJ         OAC     121.774    1.50
+BKN         CAB         CAJ         CAG     116.808    1.50
+BKN         OAC         CAJ         CAG     121.417    1.50
+BKN         CAJ         CAB         H12     109.690    1.50
+BKN         CAJ         CAB         H13     109.690    1.50
+BKN         CAJ         CAB         H14     109.690    1.50
+BKN         H12         CAB         H13     109.400    1.50
+BKN         H12         CAB         H14     109.400    1.50
+BKN         H13         CAB         H14     109.400    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BKN            sp3_sp3_22          H1         CAA         CAE         OAI     180.000    10.0     3
+BKN            sp3_sp3_19         CAA         CAE         OAI         CAK     180.000    10.0     3
+BKN             sp2_sp2_1         CAH         CAK         OAI         CAE     180.000     5.0     2
+BKN            sp2_sp3_14         OAD         CAK         CAH         CAF     120.000    10.0     6
+BKN            sp3_sp3_10         CAG         CAF         CAH         CAK     180.000    10.0     3
+BKN             sp3_sp3_1         CAH         CAF         CAG         CAJ     180.000    10.0     3
+BKN             sp2_sp3_8         CAB         CAJ         CAG         CAF     120.000    10.0     6
+BKN             sp2_sp3_1         OAC         CAJ         CAB         H12       0.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BKN    plan-1         CAH   0.020
+BKN    plan-1         CAK   0.020
+BKN    plan-1         OAD   0.020
+BKN    plan-1         OAI   0.020
+BKN    plan-2         CAB   0.020
+BKN    plan-2         CAG   0.020
+BKN    plan-2         CAJ   0.020
+BKN    plan-2         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BKN            InChI                InChI  1.03 InChI=1S/C8H14O3/c1-3-11-8(10)6-4-5-7(2)9/h3-6H2,1-2H3
+BKN         InChIKey                InChI  1.03                            MGPSIDGTLFKDEY-UHFFFAOYSA-N
+BKN SMILES_CANONICAL               CACTVS 3.385                                      CCOC(=O)CCCC(C)=O
+BKN           SMILES               CACTVS 3.385                                      CCOC(=O)CCCC(C)=O
+BKN SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                      CCOC(=O)CCCC(=O)C
+BKN           SMILES "OpenEye OEToolkits" 2.0.6                                      CCOC(=O)CCCC(=O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BKN acedrg               243         "dictionary generator"                  
+BKN acedrg_database      11          "data source"                           
+BKN rdkit                2017.03.2   "Chemoinformatics tool"
+BKN refmac5              5.8.0238    "optimization tool"                     

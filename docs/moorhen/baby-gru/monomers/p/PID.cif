@@ -1,0 +1,586 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PID     PID      PERIDININ     NON-POLYMER     96     46     .     
+#
+data_comp_PID
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PID     C1      C       CT      0       59.335      87.458      28.573      
+PID     C2      C       CH2     0       60.612      88.166      28.941      
+PID     C3      C       CH1     0       60.404      89.589      29.433      
+PID     C4      C       CH2     0       59.488      90.357      28.495      
+PID     C5      C       CT      0       58.070      89.768      28.352      
+PID     C6      C       CT      0       58.084      88.221      28.315      
+PID     C7      C       C1      0       56.992      87.553      27.505      
+PID     C8      C       C1      0       55.709      87.425      27.890      
+PID     C9      C       CR5     0       54.714      86.672      27.253      
+PID     C10     C       CR5     0       54.699      86.156      25.869      
+PID     C11     C       CR15    0       53.492      86.277      27.815      
+PID     C12     C       CR5     0       52.705      85.610      26.821      
+PID     C13     C       C1      0       51.331      85.207      26.931      
+PID     C14     C       C       0       50.623      84.393      26.107      
+PID     C15     C       C1      0       49.247      84.319      26.245      
+PID     C16     C       C1      0       48.279      84.305      25.251      
+PID     C17     C       C1      0       46.893      84.301      25.321      
+PID     C18     C       C1      0       46.011      84.168      24.257      
+PID     C19     C       C1      0       44.624      84.221      24.293      
+PID     C20     C       C1      0       43.707      84.006      23.271      
+PID     C21     C       C       0       42.305      84.133      23.241      
+PID     C22     C       C1      0       41.506      83.589      22.119      
+PID     C23     C       CSP     0       40.203      83.503      22.128      
+PID     C24     C       CR6     0       38.901      83.459      22.063      
+PID     C25     C       CT      0       38.158      84.398      21.086      
+PID     C26     C       CH2     0       36.695      84.625      21.514      
+PID     C27     C       CH1     0       35.994      83.384      22.006      
+PID     C28     C       CH2     0       36.724      82.830      23.206      
+PID     C29     C       CT      0       38.146      82.389      22.884      
+PID     C30     C       C       0       33.537      83.343      21.782      
+PID     C31     C       CH3     0       32.303      83.913      22.394      
+PID     CM1     C       CH3     0       59.510      86.069      28.019      
+PID     CM2     C       CH3     0       57.486      90.403      27.082      
+PID     CM3     C       CH3     0       57.251      90.268      29.551      
+PID     CM4     C       CH3     0       51.254      83.569      25.009      
+PID     CM5     C       CH3     0       41.580      84.803      24.370      
+PID     CM6     C       CH3     0       38.848      85.772      21.017      
+PID     CM7     C       CH3     0       38.179      83.798      19.671      
+PID     CM8     C       CH3     0       38.856      82.019      24.179      
+PID     O1      O       O2      0       58.307      87.575      29.594      
+PID     O2      O       OH1     0       61.665      90.255      29.529      
+PID     O3      O       O       0       55.463      86.276      24.950      
+PID     O4      O       O2      0       53.543      85.386      25.727      
+PID     O5      O       OH1     0       38.001      81.200      22.073      
+PID     O6      O       O2      0       34.653      83.744      22.473      
+PID     O7      O       O       0       33.559      82.628      20.822      
+PID     H21     H       H       0       61.064      87.654      29.638      
+PID     H22A    H       H       0       61.197      88.182      28.160      
+PID     H3      H       H       0       59.996      89.560      30.332      
+PID     H41     H       H       0       59.901      90.382      27.605      
+PID     H42     H       H       0       59.411      91.283      28.811      
+PID     H7      H       H       0       57.241      87.173      26.678      
+PID     H8      H       H       0       55.447      87.853      28.688      
+PID     H11     H       H       0       53.235      86.431      28.712      
+PID     H13     H       H       0       50.868      85.559      27.672      
+PID     H15     H       H       0       48.916      84.296      27.128      
+PID     H16     H       H       0       48.621      84.286      24.373      
+PID     H17     H       H       0       46.511      84.391      26.179      
+PID     H18     H       H       0       46.400      84.021      23.410      
+PID     H19     H       H       0       44.264      84.434      25.136      
+PID     H20     H       H       0       44.104      83.700      22.472      
+PID     H22     H       H       0       41.974      83.285      21.350      
+PID     H261    H       H       0       36.192      84.990      20.746      
+PID     H262    H       H       0       36.676      85.303      22.232      
+PID     H27     H       H       0       35.954      82.700      21.283      
+PID     H281    H       H       0       36.219      82.061      23.563      
+PID     H282    H       H       0       36.755      83.523      23.909      
+PID     H311    H       H       0       32.541      84.542      23.095      
+PID     H312    H       H       0       31.769      83.196      22.773      
+PID     H313    H       H       0       31.787      84.372      21.712      
+PID     HM11    H       H       0       58.818      85.498      28.363      
+PID     HM12    H       H       0       60.368      85.723      28.279      
+PID     HM13    H       H       0       59.455      86.097      27.060      
+PID     HM21    H       H       0       57.887      89.996      26.296      
+PID     HM22    H       H       0       57.672      91.356      27.077      
+PID     HM23    H       H       0       56.525      90.268      27.059      
+PID     HM31    H       H       0       57.154      91.233      29.501      
+PID     HM32    H       H       0       57.701      90.036      30.378      
+PID     HM33    H       H       0       56.370      89.860      29.541      
+PID     HM41    H       H       0       52.082      83.181      25.329      
+PID     HM42    H       H       0       51.440      84.134      24.244      
+PID     HM43    H       H       0       50.653      82.857      24.742      
+PID     HM51    H       H       0       42.188      85.372      24.863      
+PID     HM52    H       H       0       41.216      84.131      24.965      
+PID     HM53    H       H       0       40.859      85.347      24.020      
+PID     HM61    H       H       0       38.260      86.410      20.582      
+PID     HM62    H       H       0       39.674      85.703      20.509      
+PID     HM63    H       H       0       39.048      86.084      21.915      
+PID     HM71    H       H       0       37.556      83.056      19.619      
+PID     HM72    H       H       0       39.073      83.480      19.464      
+PID     HM73    H       H       0       37.923      84.476      19.024      
+PID     HM81    H       H       0       38.255      81.506      24.744      
+PID     HM82    H       H       0       39.124      82.827      24.647      
+PID     HM83    H       H       0       39.642      81.484      23.980      
+PID     HO2     H       H       0       62.017      90.323      28.766      
+PID     HO5     H       H       0       37.715      80.561      22.555      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PID          C1          C2      SINGLE       n     1.501  0.0110     1.501  0.0110
+PID          C1          C6      SINGLE       n     1.477  0.0166     1.477  0.0166
+PID          C1         CM1      SINGLE       n     1.504  0.0100     1.504  0.0100
+PID          C1          O1      SINGLE       n     1.455  0.0103     1.455  0.0103
+PID          C2          C3      SINGLE       n     1.517  0.0108     1.517  0.0108
+PID          C3          C4      SINGLE       n     1.516  0.0124     1.516  0.0124
+PID          C3          O2      SINGLE       n     1.428  0.0123     1.428  0.0123
+PID          C4          C5      SINGLE       n     1.536  0.0100     1.536  0.0100
+PID          C5          C6      SINGLE       n     1.533  0.0125     1.533  0.0125
+PID          C5         CM2      SINGLE       n     1.532  0.0100     1.532  0.0100
+PID          C5         CM3      SINGLE       n     1.532  0.0100     1.532  0.0100
+PID          C6          C7      SINGLE       n     1.509  0.0148     1.509  0.0148
+PID          C6          O1      SINGLE       n     1.447  0.0120     1.447  0.0120
+PID          C7          C8      DOUBLE       n     1.340  0.0200     1.340  0.0200
+PID          C8          C9      SINGLE       n     1.396  0.0200     1.396  0.0200
+PID          C9         C10      SINGLE       n     1.479  0.0155     1.479  0.0155
+PID          C9         C11      DOUBLE       n     1.415  0.0200     1.415  0.0200
+PID         C10          O3      DOUBLE       n     1.201  0.0127     1.201  0.0127
+PID         C10          O4      SINGLE       n     1.394  0.0104     1.394  0.0104
+PID         C11         C12      SINGLE       n     1.434  0.0200     1.434  0.0200
+PID         C12         C13      DOUBLE       n     1.428  0.0200     1.428  0.0200
+PID         C12          O4      SINGLE       n     1.392  0.0117     1.392  0.0117
+PID         C13         C14      SINGLE       n     1.343  0.0200     1.343  0.0200
+PID         C14         C15      DOUBLE       n     1.375  0.0200     1.375  0.0200
+PID         C14         CM4      SINGLE       n     1.508  0.0100     1.508  0.0100
+PID         C15         C16      SINGLE       n     1.385  0.0200     1.385  0.0200
+PID         C16         C17      DOUBLE       n     1.391  0.0200     1.391  0.0200
+PID         C17         C18      SINGLE       n     1.391  0.0200     1.391  0.0200
+PID         C18         C19      DOUBLE       n     1.391  0.0200     1.391  0.0200
+PID         C19         C20      SINGLE       n     1.385  0.0200     1.385  0.0200
+PID         C20         C21      DOUBLE       n     1.398  0.0200     1.398  0.0200
+PID         C21         C22      SINGLE       n     1.471  0.0200     1.471  0.0200
+PID         C21         CM5      SINGLE       n     1.483  0.0200     1.483  0.0200
+PID         C22         C23      DOUBLE       n     1.305  0.0100     1.305  0.0100
+PID         C23         C24      DOUBLE       n     1.301  0.0100     1.301  0.0100
+PID         C24         C25      SINGLE       n     1.534  0.0100     1.534  0.0100
+PID         C24         C29      SINGLE       n     1.534  0.0100     1.534  0.0100
+PID         C25         C26      SINGLE       n     1.536  0.0100     1.536  0.0100
+PID         C25         CM6      SINGLE       n     1.535  0.0109     1.535  0.0109
+PID         C25         CM7      SINGLE       n     1.535  0.0109     1.535  0.0109
+PID         C26         C27      SINGLE       n     1.511  0.0139     1.511  0.0139
+PID         C27         C28      SINGLE       n     1.513  0.0100     1.513  0.0100
+PID         C27          O6      SINGLE       n     1.460  0.0100     1.460  0.0100
+PID         C28         C29      SINGLE       n     1.520  0.0100     1.520  0.0100
+PID         C29         CM8      SINGLE       n     1.519  0.0100     1.519  0.0100
+PID         C29          O5      SINGLE       n     1.445  0.0100     1.445  0.0100
+PID         C30         C31      SINGLE       n     1.490  0.0100     1.490  0.0100
+PID         C30          O6      SINGLE       n     1.350  0.0200     1.350  0.0200
+PID         C30          O7      DOUBLE       n     1.196  0.0100     1.196  0.0100
+PID          C2         H21      SINGLE       n     1.089  0.0100     0.976  0.0112
+PID          C2        H22A      SINGLE       n     1.089  0.0100     0.976  0.0112
+PID          C3          H3      SINGLE       n     1.089  0.0100     0.989  0.0181
+PID          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0147
+PID          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0147
+PID          C7          H7      SINGLE       n     1.082  0.0130     0.946  0.0200
+PID          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0200
+PID         C11         H11      SINGLE       n     1.082  0.0130     0.946  0.0153
+PID         C13         H13      SINGLE       n     1.082  0.0130     0.942  0.0152
+PID         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0196
+PID         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0196
+PID         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0196
+PID         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0196
+PID         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0196
+PID         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0196
+PID         C22         H22      SINGLE       n     1.082  0.0130     0.950  0.0100
+PID         C26        H261      SINGLE       n     1.089  0.0100     0.988  0.0100
+PID         C26        H262      SINGLE       n     1.089  0.0100     0.988  0.0100
+PID         C27         H27      SINGLE       n     1.089  0.0100     0.997  0.0100
+PID         C28        H281      SINGLE       n     1.089  0.0100     0.987  0.0100
+PID         C28        H282      SINGLE       n     1.089  0.0100     0.987  0.0100
+PID         C31        H311      SINGLE       n     1.089  0.0100     0.971  0.0140
+PID         C31        H312      SINGLE       n     1.089  0.0100     0.971  0.0140
+PID         C31        H313      SINGLE       n     1.089  0.0100     0.971  0.0140
+PID         CM1        HM11      SINGLE       n     1.089  0.0100     0.961  0.0100
+PID         CM1        HM12      SINGLE       n     1.089  0.0100     0.961  0.0100
+PID         CM1        HM13      SINGLE       n     1.089  0.0100     0.961  0.0100
+PID         CM2        HM21      SINGLE       n     1.089  0.0100     0.971  0.0171
+PID         CM2        HM22      SINGLE       n     1.089  0.0100     0.971  0.0171
+PID         CM2        HM23      SINGLE       n     1.089  0.0100     0.971  0.0171
+PID         CM3        HM31      SINGLE       n     1.089  0.0100     0.971  0.0171
+PID         CM3        HM32      SINGLE       n     1.089  0.0100     0.971  0.0171
+PID         CM3        HM33      SINGLE       n     1.089  0.0100     0.971  0.0171
+PID         CM4        HM41      SINGLE       n     1.089  0.0100     0.969  0.0177
+PID         CM4        HM42      SINGLE       n     1.089  0.0100     0.969  0.0177
+PID         CM4        HM43      SINGLE       n     1.089  0.0100     0.969  0.0177
+PID         CM5        HM51      SINGLE       n     1.089  0.0100     0.969  0.0177
+PID         CM5        HM52      SINGLE       n     1.089  0.0100     0.969  0.0177
+PID         CM5        HM53      SINGLE       n     1.089  0.0100     0.969  0.0177
+PID         CM6        HM61      SINGLE       n     1.089  0.0100     0.971  0.0163
+PID         CM6        HM62      SINGLE       n     1.089  0.0100     0.971  0.0163
+PID         CM6        HM63      SINGLE       n     1.089  0.0100     0.971  0.0163
+PID         CM7        HM71      SINGLE       n     1.089  0.0100     0.971  0.0163
+PID         CM7        HM72      SINGLE       n     1.089  0.0100     0.971  0.0163
+PID         CM7        HM73      SINGLE       n     1.089  0.0100     0.971  0.0163
+PID         CM8        HM81      SINGLE       n     1.089  0.0100     0.971  0.0163
+PID         CM8        HM82      SINGLE       n     1.089  0.0100     0.971  0.0163
+PID         CM8        HM83      SINGLE       n     1.089  0.0100     0.971  0.0163
+PID          O2         HO2      SINGLE       n     0.970  0.0120     0.841  0.0200
+PID          O5         HO5      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PID          C2          C1          C6     119.493    2.89
+PID          C2          C1         CM1     115.711    1.50
+PID          C2          C1          O1     113.027    1.50
+PID          C6          C1         CM1     119.984    1.83
+PID          C6          C1          O1      59.525    1.50
+PID         CM1          C1          O1     114.776    1.50
+PID          C1          C2          C3     111.906    2.44
+PID          C1          C2         H21     109.044    1.50
+PID          C1          C2        H22A     109.044    1.50
+PID          C3          C2         H21     109.154    1.50
+PID          C3          C2        H22A     109.154    1.50
+PID         H21          C2        H22A     107.919    1.50
+PID          C2          C3          C4     110.851    1.50
+PID          C2          C3          O2     109.700    2.02
+PID          C2          C3          H3     109.090    1.50
+PID          C4          C3          O2     109.687    1.93
+PID          C4          C3          H3     109.129    1.50
+PID          O2          C3          H3     108.790    1.50
+PID          C3          C4          C5     114.154    1.50
+PID          C3          C4         H41     109.270    1.50
+PID          C3          C4         H42     109.270    1.50
+PID          C5          C4         H41     108.400    1.50
+PID          C5          C4         H42     108.400    1.50
+PID         H41          C4         H42     108.019    1.50
+PID          C4          C5          C6     111.906    2.44
+PID          C4          C5         CM2     109.028    3.00
+PID          C4          C5         CM3     109.028    3.00
+PID          C6          C5         CM2     112.151    3.00
+PID          C6          C5         CM3     112.151    3.00
+PID         CM2          C5         CM3     109.605    1.50
+PID          C1          C6          C5     119.493    2.89
+PID          C1          C6          C7     118.623    1.91
+PID          C1          C6          O1      59.525    1.50
+PID          C5          C6          C7     115.541    2.76
+PID          C5          C6          O1     115.323    1.82
+PID          C7          C6          O1     115.167    2.61
+PID          C6          C7          C8     124.740    3.00
+PID          C6          C7          H7     117.647    1.50
+PID          C8          C7          H7     117.613    1.97
+PID          C7          C8          C9     125.959    2.38
+PID          C7          C8          H8     117.929    2.03
+PID          C9          C8          H8     116.112    1.50
+PID          C8          C9         C10     125.178    3.00
+PID          C8          C9         C11     126.160    1.50
+PID         C10          C9         C11     108.662    2.13
+PID          C9         C10          O3     132.296    1.50
+PID          C9         C10          O4     107.234    1.50
+PID          O3         C10          O4     120.470    1.50
+PID          C9         C11         C12     110.103    1.50
+PID          C9         C11         H11     124.488    1.50
+PID         C12         C11         H11     125.409    1.50
+PID         C11         C12         C13     129.093    3.00
+PID         C11         C12          O4     106.477    1.50
+PID         C13         C12          O4     124.430    3.00
+PID         C12         C13         C14     125.498    3.00
+PID         C12         C13         H13     117.369    2.05
+PID         C14         C13         H13     117.133    1.50
+PID         C13         C14         C15     121.368    3.00
+PID         C13         C14         CM4     121.381    3.00
+PID         C15         C14         CM4     117.251    1.98
+PID         C14         C15         C16     127.657    2.42
+PID         C14         C15         H15     116.539    1.90
+PID         C16         C15         H15     115.804    2.90
+PID         C15         C16         C17     131.161    3.00
+PID         C15         C16         H16     114.236    2.93
+PID         C17         C16         H16     114.602    1.85
+PID         C16         C17         C18     127.252    3.00
+PID         C16         C17         H17     116.374    1.85
+PID         C18         C17         H17     116.374    1.85
+PID         C17         C18         C19     127.252    3.00
+PID         C17         C18         H18     116.374    1.85
+PID         C19         C18         H18     116.374    1.85
+PID         C18         C19         C20     131.162    3.00
+PID         C18         C19         H19     114.603    1.85
+PID         C20         C19         H19     114.236    2.93
+PID         C19         C20         C21     128.593    1.85
+PID         C19         C20         H20     115.376    2.90
+PID         C21         C20         H20     116.030    1.50
+PID         C20         C21         C22     125.048    3.00
+PID         C20         C21         CM5     118.678    1.50
+PID         C22         C21         CM5     116.274    1.86
+PID         C21         C22         C23     121.444    2.85
+PID         C21         C22         H22     119.042    1.71
+PID         C23         C22         H22     119.514    1.50
+PID         C22         C23         C24     177.212    1.50
+PID         C23         C24         C25     121.146    1.50
+PID         C23         C24         C29     120.069    1.50
+PID         C25         C24         C29     118.785    1.50
+PID         C24         C25         C26     109.048    1.50
+PID         C24         C25         CM6     110.466    1.50
+PID         C24         C25         CM7     110.466    1.50
+PID         C26         C25         CM6     109.331    1.50
+PID         C26         C25         CM7     109.331    1.50
+PID         CM6         C25         CM7     108.431    1.50
+PID         C25         C26         C27     113.614    1.50
+PID         C25         C26        H261     108.850    1.50
+PID         C25         C26        H262     108.850    1.50
+PID         C27         C26        H261     108.867    1.50
+PID         C27         C26        H262     108.867    1.50
+PID        H261         C26        H262     107.757    1.50
+PID         C26         C27         C28     111.224    1.50
+PID         C26         C27          O6     108.654    2.12
+PID         C26         C27         H27     110.176    1.50
+PID         C28         C27          O6     106.318    1.50
+PID         C28         C27         H27     110.183    1.50
+PID          O6         C27         H27     110.216    1.50
+PID         C27         C28         C29     112.687    1.50
+PID         C27         C28        H281     109.034    1.50
+PID         C27         C28        H282     109.034    1.50
+PID         C29         C28        H281     109.065    1.50
+PID         C29         C28        H282     109.065    1.50
+PID        H281         C28        H282     107.908    1.50
+PID         C24         C29         C28     109.611    1.50
+PID         C24         C29         CM8     112.352    1.50
+PID         C24         C29          O5     109.540    1.50
+PID         C28         C29         CM8     110.458    1.50
+PID         C28         C29          O5     105.378    1.50
+PID         CM8         C29          O5     109.258    1.50
+PID         C31         C30          O6     110.975    1.50
+PID         C31         C30          O7     125.828    1.50
+PID          O6         C30          O7     123.197    1.50
+PID         C30         C31        H311     109.490    1.50
+PID         C30         C31        H312     109.490    1.50
+PID         C30         C31        H313     109.490    1.50
+PID        H311         C31        H312     109.424    1.50
+PID        H311         C31        H313     109.424    1.50
+PID        H312         C31        H313     109.424    1.50
+PID          C1         CM1        HM11     109.480    1.50
+PID          C1         CM1        HM12     109.480    1.50
+PID          C1         CM1        HM13     109.480    1.50
+PID        HM11         CM1        HM12     109.418    1.50
+PID        HM11         CM1        HM13     109.418    1.50
+PID        HM12         CM1        HM13     109.418    1.50
+PID          C5         CM2        HM21     109.461    1.50
+PID          C5         CM2        HM22     109.461    1.50
+PID          C5         CM2        HM23     109.461    1.50
+PID        HM21         CM2        HM22     109.056    1.50
+PID        HM21         CM2        HM23     109.056    1.50
+PID        HM22         CM2        HM23     109.056    1.50
+PID          C5         CM3        HM31     109.461    1.50
+PID          C5         CM3        HM32     109.461    1.50
+PID          C5         CM3        HM33     109.461    1.50
+PID        HM31         CM3        HM32     109.056    1.50
+PID        HM31         CM3        HM33     109.056    1.50
+PID        HM32         CM3        HM33     109.056    1.50
+PID         C14         CM4        HM41     109.619    1.50
+PID         C14         CM4        HM42     109.619    1.50
+PID         C14         CM4        HM43     109.619    1.50
+PID        HM41         CM4        HM42     109.342    1.50
+PID        HM41         CM4        HM43     109.342    1.50
+PID        HM42         CM4        HM43     109.342    1.50
+PID         C21         CM5        HM51     109.517    1.50
+PID         C21         CM5        HM52     109.517    1.50
+PID         C21         CM5        HM53     109.517    1.50
+PID        HM51         CM5        HM52     109.342    1.50
+PID        HM51         CM5        HM53     109.342    1.50
+PID        HM52         CM5        HM53     109.342    1.50
+PID         C25         CM6        HM61     109.665    1.50
+PID         C25         CM6        HM62     109.665    1.50
+PID         C25         CM6        HM63     109.665    1.50
+PID        HM61         CM6        HM62     109.363    1.50
+PID        HM61         CM6        HM63     109.363    1.50
+PID        HM62         CM6        HM63     109.363    1.50
+PID         C25         CM7        HM71     109.665    1.50
+PID         C25         CM7        HM72     109.665    1.50
+PID         C25         CM7        HM73     109.665    1.50
+PID        HM71         CM7        HM72     109.363    1.50
+PID        HM71         CM7        HM73     109.363    1.50
+PID        HM72         CM7        HM73     109.363    1.50
+PID         C29         CM8        HM81     109.485    1.50
+PID         C29         CM8        HM82     109.485    1.50
+PID         C29         CM8        HM83     109.485    1.50
+PID        HM81         CM8        HM82     109.376    1.50
+PID        HM81         CM8        HM83     109.376    1.50
+PID        HM82         CM8        HM83     109.376    1.50
+PID          C1          O1          C6      60.944    1.50
+PID          C3          O2         HO2     109.099    3.00
+PID         C10          O4         C12     107.524    1.50
+PID         C29          O5         HO5     108.475    1.87
+PID         C27          O6         C30     117.965    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PID             sp3_sp3_4         CM1          C1          C2          C3     -60.000    10.0     3
+PID            sp3_sp3_96          C2          C1         CM1        HM13      60.000    10.0     3
+PID           sp3_sp3_108          H3          C3          O2         HO2     -60.000    10.0     3
+PID            sp3_sp3_50         CM1          C1          C6          C7      60.000    10.0     3
+PID            sp2_sp2_10          C9         C11         C12         C13     180.000     5.0     2
+PID            sp2_sp2_28          O4         C12         C13         H13     180.000     5.0     2
+PID             sp2_sp2_8         C13         C12          O4         C10     180.000     5.0     2
+PID            sp2_sp2_32         H13         C13         C14         CM4     180.000     5.0     2
+PID            sp2_sp3_14         C13         C14         CM4        HM42     120.000    10.0     6
+PID            sp2_sp3_16         C15         C14         CM4        HM41     180.000    10.0     6
+PID            sp2_sp2_40         H15         C15         C16         H16     180.000     5.0     2
+PID            sp2_sp2_44         H16         C16         C17         H17     180.000     5.0     2
+PID            sp2_sp2_48         H17         C17         C18         H18     180.000     5.0     2
+PID            sp2_sp2_52         H18         C18         C19         H19     180.000     5.0     2
+PID            sp2_sp2_56         H19         C19         C20         H20     180.000     5.0     2
+PID            sp2_sp2_60         H20         C20         C21         CM5     180.000     5.0     2
+PID            sp3_sp3_11          C1          C2          C3          O2      60.000    10.0     3
+PID            sp2_sp3_20         C20         C21         CM5        HM52     120.000    10.0     6
+PID            sp2_sp3_22         C22         C21         CM5        HM51     180.000    10.0     6
+PID           other_tor_4         C22         C23         C24         C29     -90.000    10.0     1
+PID            sp2_sp3_26         C25         C24         C29         CM8     120.000    10.0     6
+PID            sp3_sp3_59         C24         C25         C26        H261      60.000    10.0     3
+PID           sp3_sp3_128         C26         C25         CM6        HM62     -60.000    10.0     3
+PID            sp3_sp3_63         CM6         C25         C26        H262      60.000    10.0     3
+PID           sp3_sp3_136         C24         C25         CM7        HM71     180.000    10.0     3
+PID           sp3_sp3_145         C26         C27          O6         C30     180.000    10.0     3
+PID            sp3_sp3_70        H261         C26         C27         C28     -60.000    10.0     3
+PID            sp3_sp3_81          O6         C27         C28        H282      60.000    10.0     3
+PID           sp3_sp3_148         C24         C29         CM8        HM81     180.000    10.0     3
+PID            sp3_sp3_88        H281         C28         C29         C24     -60.000    10.0     3
+PID           sp3_sp3_157         C24         C29          O5         HO5     180.000    10.0     3
+PID            sp2_sp3_33          O6         C30         C31        H313    -120.000    10.0     6
+PID            sp2_sp3_34          O7         C30         C31        H311     180.000    10.0     6
+PID            sp2_sp2_65          O4         C10          C9          C8     180.000     5.0     2
+PID            sp3_sp3_22          O2          C3          C4          C5     -60.000    10.0     3
+PID           sp3_sp3_109          C4          C5         CM2        HM21     180.000    10.0     3
+PID            sp3_sp3_29          C3          C4          C5         CM2      60.000    10.0     3
+PID           sp3_sp3_118          C6          C5         CM3        HM31     180.000    10.0     3
+PID             sp2_sp3_7          C8          C7          C6          C1       0.000    10.0     6
+PID            sp3_sp3_44         CM2          C5          C6          C7     -60.000    10.0     3
+PID             sp2_sp3_2         C29         C24         C25         CM7     120.000    10.0     6
+PID            sp2_sp3_10          H7          C7          C6          C1     180.000    10.0     6
+PID            sp2_sp2_16          H7          C7          C8          H8     180.000     5.0     2
+PID            sp2_sp2_20          H8          C8          C9         C11     180.000     5.0     2
+PID            sp2_sp2_25         C11         C12         C13         C14     180.000     5.0     2
+PID             sp2_sp2_4          O3         C10          C9          C8       0.000     5.0     2
+PID             sp2_sp2_6          O3         C10          O4         C12     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PID    chir_1    C1    O1    C6    C2    negative
+PID    chir_2    C3    O2    C2    C4    positive
+PID    chir_3    C5    C6    C4    CM2    both
+PID    chir_4    C6    O1    C1    C5    positive
+PID    chir_5    C25    C24    C26    CM6    both
+PID    chir_6    C27    O6    C28    C26    positive
+PID    chir_7    C29    O5    C24    C28    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PID    plan-1          C6   0.020
+PID    plan-1          C7   0.020
+PID    plan-1          C8   0.020
+PID    plan-1          H7   0.020
+PID    plan-2          C7   0.020
+PID    plan-2          C8   0.020
+PID    plan-2          C9   0.020
+PID    plan-2          H8   0.020
+PID    plan-3         C10   0.020
+PID    plan-3         C11   0.020
+PID    plan-3          C8   0.020
+PID    plan-3          C9   0.020
+PID    plan-4         C10   0.020
+PID    plan-4          C9   0.020
+PID    plan-4          O3   0.020
+PID    plan-4          O4   0.020
+PID    plan-5         C11   0.020
+PID    plan-5         C12   0.020
+PID    plan-5          C9   0.020
+PID    plan-5         H11   0.020
+PID    plan-6         C11   0.020
+PID    plan-6         C12   0.020
+PID    plan-6         C13   0.020
+PID    plan-6          O4   0.020
+PID    plan-7         C12   0.020
+PID    plan-7         C13   0.020
+PID    plan-7         C14   0.020
+PID    plan-7         H13   0.020
+PID    plan-8         C13   0.020
+PID    plan-8         C14   0.020
+PID    plan-8         C15   0.020
+PID    plan-8         CM4   0.020
+PID    plan-9         C14   0.020
+PID    plan-9         C15   0.020
+PID    plan-9         C16   0.020
+PID    plan-9         H15   0.020
+PID   plan-10         C15   0.020
+PID   plan-10         C16   0.020
+PID   plan-10         C17   0.020
+PID   plan-10         H16   0.020
+PID   plan-11         C16   0.020
+PID   plan-11         C17   0.020
+PID   plan-11         C18   0.020
+PID   plan-11         H17   0.020
+PID   plan-12         C17   0.020
+PID   plan-12         C18   0.020
+PID   plan-12         C19   0.020
+PID   plan-12         H18   0.020
+PID   plan-13         C18   0.020
+PID   plan-13         C19   0.020
+PID   plan-13         C20   0.020
+PID   plan-13         H19   0.020
+PID   plan-14         C19   0.020
+PID   plan-14         C20   0.020
+PID   plan-14         C21   0.020
+PID   plan-14         H20   0.020
+PID   plan-15         C20   0.020
+PID   plan-15         C21   0.020
+PID   plan-15         C22   0.020
+PID   plan-15         CM5   0.020
+PID   plan-16         C21   0.020
+PID   plan-16         C22   0.020
+PID   plan-16         C23   0.020
+PID   plan-16         H22   0.020
+PID   plan-17         C23   0.020
+PID   plan-17         C24   0.020
+PID   plan-17         C25   0.020
+PID   plan-17         C29   0.020
+PID   plan-18         C30   0.020
+PID   plan-18         C31   0.020
+PID   plan-18          O6   0.020
+PID   plan-18          O7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PID           SMILES              ACDLabs 10.04                                                                                                                                                                              O=C(OC4CC(\C(=C=C\C(=C\C=C\C=C\C=C(\C=C1/OC(=O)C(=C1)/C=C/C23OC3(C)CC(O)CC2(C)C)C)C)C(O)(C)C4)(C)C)C
+PID SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                   CC(=O)O[C@H]1CC(C)(C)[C](=[C@]=[CH]/C(C)=C/C=C/C=C/C=C(C)/C=C/2OC(=O)C(=C/2)/C=C/[C@@]34O[C@]3(C)C[C@@H](O)CC4(C)C)[C@](C)(O)C1
+PID           SMILES               CACTVS 3.341                                                                                                                                                                    CC(=O)O[CH]1CC(C)(C)[C](=[C]=[CH]C(C)=CC=CC=CC=C(C)C=C2OC(=O)C(=C2)C=C[C]34O[C]3(C)C[CH](O)CC4(C)C)[C](C)(O)C1
+PID SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                          CC(=C\C=C\C=C\C=C(/C)\C=C/1\C=C(C(=O)O1)\C=C\[C@]23C(C[C@@H](C[C@]2(O3)C)O)(C)C)C=C=C4C(C[C@@H](C[C@@]4(C)O)OC(=O)C)(C)C
+PID           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                       CC(=CC=CC=CC=C(C)C=C1C=C(C(=O)O1)C=CC23C(CC(CC2(O3)C)O)(C)C)C=C=C4C(CC(CC4(C)O)OC(=O)C)(C)C
+PID            InChI                InChI  1.03 InChI=1S/C39H50O7/c1-26(16-17-33-35(4,5)24-32(44-28(3)40)25-37(33,8)43)14-12-10-11-13-15-27(2)20-31-21-29(34(42)45-31)18-19-39-36(6,7)22-30(41)23-38(39,9)46-39/h10-16,18-21,30,32,41,43H,22-25H2,1-9H3/b12-10+,13-11+,19-18+,26-14+,27-15+,31-20-/t17-,30-,32-,37+,38+,39-/m0/s1
+PID         InChIKey                InChI  1.03                                                                                                                                                                                                                                                       UYRDHEJRPVSJFM-FROCQLDGSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PID acedrg               243         "dictionary generator"                  
+PID acedrg_database      11          "data source"                           
+PID rdkit                2017.03.2   "Chemoinformatics tool"
+PID refmac5              5.8.0238    "optimization tool"                     

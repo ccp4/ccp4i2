@@ -1,0 +1,328 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CZ7     CZ7      "({[(2R)-2-{[(4-ethyl-2,3-dioxo-3,4-dihydropyrazin-1(2H)-yl)carbonyl]amino}-2-(4-hydroxyphenyl)acetyl]amino}methyl)boronic acid"     NON-POLYMER     47     28     .     
+#
+data_comp_CZ7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CZ7     C       C       C       0       31.280      65.523      4.026       
+CZ7     N       N       NH1     0       31.158      67.814      4.946       
+CZ7     O       O       O       0       30.066      65.411      4.166       
+CZ7     CA      C       CH1     0       31.958      66.909      4.115       
+CZ7     CAA     C       CH3     0       27.109      71.921      9.035       
+CZ7     OAC     O       O       0       32.719      69.460      5.066       
+CZ7     OAD     O       O       0       27.265      71.196      5.918       
+CZ7     OAE     O       O       0       28.942      69.473      4.575       
+CZ7     OAF     O       OH1     0       32.875      69.027      -1.097      
+CZ7     OAG     O       OH1     0       30.420      62.208      5.825       
+CZ7     OAH     O       OH1     0       32.767      62.312      5.937       
+CZ7     CAI     C       CR16    0       33.720      68.072      0.927       
+CZ7     CAJ     C       CR16    0       31.364      68.439      0.666       
+CZ7     CAK     C       CR16    0       33.492      67.555      2.195       
+CZ7     CAL     C       CR16    0       31.149      67.921      1.936       
+CZ7     CAM     C       CH2     0       28.062      72.651      8.125       
+CZ7     CAN     C       CH2     0       31.660      63.104      3.794       
+CZ7     CAO     C       CR16    0       30.292      71.540      7.818       
+CZ7     CAP     C       CR16    0       31.133      70.672      7.142       
+CZ7     NAQ     N       NH1     0       32.107      64.490      3.814       
+CZ7     CAT     C       C       0       31.583      69.045      5.319       
+CZ7     CAU     C       CR6     0       28.448      71.017      6.267       
+CZ7     CAV     C       CR6     0       29.322      70.116      5.559       
+CZ7     CAW     C       CR6     0       32.653      68.516      0.160       
+CZ7     CAX     C       CR6     0       32.204      67.461      2.719       
+CZ7     BAY     B       B       0       31.612      62.515      5.252       
+CZ7     NBA     N       NR6     0       28.964      71.720      7.396       
+CZ7     NBB     N       NR6     0       30.660      69.954      6.019       
+CZ7     HN      H       H       0       30.378      67.547      5.228       
+CZ7     HA      H       H       0       32.838      66.788      4.557       
+CZ7     HAA     H       H       0       26.567      72.562      9.522       
+CZ7     HAAA    H       H       0       27.611      71.380      9.667       
+CZ7     HAAB    H       H       0       26.530      71.345      8.510       
+CZ7     HOAF    H       H       0       32.304      69.566      -1.453      
+CZ7     HOAG    H       H       0       29.902      61.812      5.284       
+CZ7     HOAH    H       H       0       33.397      62.068      5.427       
+CZ7     HAI     H       H       0       34.598      68.121      0.586       
+CZ7     HAJ     H       H       0       30.635      68.740      0.148       
+CZ7     HAK     H       H       0       34.225      67.256      2.708       
+CZ7     HAL     H       H       0       30.269      67.874      2.271       
+CZ7     HAM     H       H       0       28.602      73.267      8.653       
+CZ7     HAMA    H       H       0       27.558      73.183      7.482       
+CZ7     HAN     H       H       0       32.279      62.576      3.248       
+CZ7     HANA    H       H       0       30.772      63.048      3.382       
+CZ7     HAO     H       H       0       30.606      72.017      8.569       
+CZ7     HAP     H       H       0       32.026      70.553      7.426       
+CZ7     HNAQ    H       H       0       32.954      64.648      3.675       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CZ7           C           O      DOUBLE       n     1.226  0.0100     1.226  0.0100
+CZ7           C          CA      SINGLE       n     1.540  0.0125     1.540  0.0125
+CZ7           C         NAQ      SINGLE       n     1.335  0.0100     1.335  0.0100
+CZ7           N          CA      SINGLE       n     1.460  0.0129     1.460  0.0129
+CZ7           N         CAT      SINGLE       n     1.339  0.0200     1.339  0.0200
+CZ7          CA         CAX      SINGLE       n     1.520  0.0100     1.520  0.0100
+CZ7         CAA         CAM      SINGLE       n     1.506  0.0134     1.506  0.0134
+CZ7         OAC         CAT      DOUBLE       n     1.231  0.0162     1.231  0.0162
+CZ7         OAD         CAU      DOUBLE       n     1.242  0.0172     1.242  0.0172
+CZ7         OAE         CAV      DOUBLE       n     1.233  0.0126     1.233  0.0126
+CZ7         OAF         CAW      SINGLE       n     1.374  0.0155     1.374  0.0155
+CZ7         OAG         BAY      SINGLE       n     1.358  0.0116     1.358  0.0116
+CZ7         OAH         BAY      SINGLE       n     1.358  0.0116     1.358  0.0116
+CZ7         CAI         CAW      DOUBLE       y     1.383  0.0100     1.383  0.0100
+CZ7         CAI         CAK      SINGLE       y     1.385  0.0100     1.385  0.0100
+CZ7         CAJ         CAW      SINGLE       y     1.383  0.0100     1.383  0.0100
+CZ7         CAJ         CAL      DOUBLE       y     1.385  0.0100     1.385  0.0100
+CZ7         CAK         CAX      DOUBLE       y     1.389  0.0102     1.389  0.0102
+CZ7         CAL         CAX      SINGLE       y     1.389  0.0102     1.389  0.0102
+CZ7         CAM         NBA      SINGLE       n     1.483  0.0100     1.483  0.0100
+CZ7         CAN         NAQ      SINGLE       n     1.453  0.0115     1.453  0.0115
+CZ7         CAN         BAY      SINGLE       n     1.573  0.0200     1.573  0.0200
+CZ7         CAO         NBA      SINGLE       y     1.396  0.0164     1.396  0.0164
+CZ7         CAO         CAP      DOUBLE       y     1.380  0.0133     1.380  0.0133
+CZ7         CAP         NBB      SINGLE       y     1.398  0.0200     1.398  0.0200
+CZ7         CAT         NBB      SINGLE       n     1.457  0.0200     1.457  0.0200
+CZ7         CAU         CAV      SINGLE       y     1.431  0.0200     1.431  0.0200
+CZ7         CAU         NBA      SINGLE       y     1.402  0.0200     1.402  0.0200
+CZ7         CAV         NBB      SINGLE       y     1.406  0.0180     1.406  0.0180
+CZ7           N          HN      SINGLE       n     1.016  0.0100     0.871  0.0200
+CZ7          CA          HA      SINGLE       n     1.089  0.0100     0.992  0.0200
+CZ7         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0200
+CZ7         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0200
+CZ7         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0200
+CZ7         OAF        HOAF      SINGLE       n     0.966  0.0059     0.861  0.0200
+CZ7         OAG        HOAG      SINGLE       n     0.970  0.0120     0.847  0.0200
+CZ7         OAH        HOAH      SINGLE       n     0.970  0.0120     0.847  0.0200
+CZ7         CAI         HAI      SINGLE       n     1.082  0.0130     0.943  0.0169
+CZ7         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0169
+CZ7         CAK         HAK      SINGLE       n     1.082  0.0130     0.943  0.0173
+CZ7         CAL         HAL      SINGLE       n     1.082  0.0130     0.943  0.0173
+CZ7         CAM         HAM      SINGLE       n     1.089  0.0100     0.975  0.0200
+CZ7         CAM        HAMA      SINGLE       n     1.089  0.0100     0.975  0.0200
+CZ7         CAN         HAN      SINGLE       n     1.089  0.0100     0.980  0.0132
+CZ7         CAN        HANA      SINGLE       n     1.089  0.0100     0.980  0.0132
+CZ7         CAO         HAO      SINGLE       n     1.082  0.0130     0.944  0.0200
+CZ7         CAP         HAP      SINGLE       n     1.082  0.0130     0.944  0.0200
+CZ7         NAQ        HNAQ      SINGLE       n     1.016  0.0100     0.872  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CZ7           O           C          CA     121.118    1.50
+CZ7           O           C         NAQ     123.719    1.50
+CZ7          CA           C         NAQ     115.163    1.50
+CZ7          CA           N         CAT     122.192    1.61
+CZ7          CA           N          HN     119.242    1.50
+CZ7         CAT           N          HN     118.565    2.02
+CZ7           C          CA           N     109.904    2.48
+CZ7           C          CA         CAX     110.517    2.35
+CZ7           C          CA          HA     108.160    1.50
+CZ7           N          CA         CAX     113.090    1.50
+CZ7           N          CA          HA     108.583    1.50
+CZ7         CAX          CA          HA     108.370    1.59
+CZ7         CAM         CAA         HAA     109.639    1.67
+CZ7         CAM         CAA        HAAA     109.639    1.67
+CZ7         CAM         CAA        HAAB     109.639    1.67
+CZ7         HAA         CAA        HAAA     109.243    2.31
+CZ7         HAA         CAA        HAAB     109.243    2.31
+CZ7        HAAA         CAA        HAAB     109.243    2.31
+CZ7         CAW         OAF        HOAF     120.000    3.00
+CZ7         BAY         OAG        HOAG     111.858    3.00
+CZ7         BAY         OAH        HOAH     111.858    3.00
+CZ7         CAW         CAI         CAK     119.711    1.50
+CZ7         CAW         CAI         HAI     120.064    1.50
+CZ7         CAK         CAI         HAI     120.226    1.50
+CZ7         CAW         CAJ         CAL     119.711    1.50
+CZ7         CAW         CAJ         HAJ     120.064    1.50
+CZ7         CAL         CAJ         HAJ     120.226    1.50
+CZ7         CAI         CAK         CAX     121.447    1.50
+CZ7         CAI         CAK         HAK     119.150    1.50
+CZ7         CAX         CAK         HAK     119.404    1.50
+CZ7         CAJ         CAL         CAX     121.447    1.50
+CZ7         CAJ         CAL         HAL     119.150    1.50
+CZ7         CAX         CAL         HAL     119.404    1.50
+CZ7         CAA         CAM         NBA     112.051    1.50
+CZ7         CAA         CAM         HAM     109.451    1.50
+CZ7         CAA         CAM        HAMA     109.451    1.50
+CZ7         NBA         CAM         HAM     108.980    1.50
+CZ7         NBA         CAM        HAMA     108.980    1.50
+CZ7         HAM         CAM        HAMA     107.920    1.92
+CZ7         NAQ         CAN         BAY     109.471    3.00
+CZ7         NAQ         CAN         HAN     108.953    1.50
+CZ7         NAQ         CAN        HANA     108.953    1.50
+CZ7         BAY         CAN         HAN     109.347    1.86
+CZ7         BAY         CAN        HANA     109.347    1.86
+CZ7         HAN         CAN        HANA     107.863    1.50
+CZ7         NBA         CAO         CAP     119.566    2.98
+CZ7         NBA         CAO         HAO     119.626    1.50
+CZ7         CAP         CAO         HAO     120.808    1.50
+CZ7         CAO         CAP         NBB     119.076    3.00
+CZ7         CAO         CAP         HAP     121.033    1.50
+CZ7         NBB         CAP         HAP     119.891    1.50
+CZ7           C         NAQ         CAN     122.080    1.50
+CZ7           C         NAQ        HNAQ     119.012    1.94
+CZ7         CAN         NAQ        HNAQ     118.909    1.94
+CZ7           N         CAT         OAC     122.251    1.58
+CZ7           N         CAT         NBB     119.433    3.00
+CZ7         OAC         CAT         NBB     118.316    1.50
+CZ7         OAD         CAU         CAV     122.323    3.00
+CZ7         OAD         CAU         NBA     118.111    1.50
+CZ7         CAV         CAU         NBA     119.566    2.98
+CZ7         OAE         CAV         CAU     122.403    3.00
+CZ7         OAE         CAV         NBB     118.521    1.50
+CZ7         CAU         CAV         NBB     119.076    3.00
+CZ7         OAF         CAW         CAI     120.272    3.00
+CZ7         OAF         CAW         CAJ     120.272    3.00
+CZ7         CAI         CAW         CAJ     119.456    1.50
+CZ7          CA         CAX         CAK     120.885    1.50
+CZ7          CA         CAX         CAL     120.885    1.50
+CZ7         CAK         CAX         CAL     118.230    1.50
+CZ7         OAG         BAY         OAH     119.999    3.00
+CZ7         OAG         BAY         CAN     120.000    3.00
+CZ7         OAH         BAY         CAN     120.000    3.00
+CZ7         CAM         NBA         CAO     121.242    1.50
+CZ7         CAM         NBA         CAU     117.293    1.50
+CZ7         CAO         NBA         CAU     121.465    1.50
+CZ7         CAP         NBB         CAT     119.374    1.79
+CZ7         CAP         NBB         CAV     121.252    2.55
+CZ7         CAT         NBB         CAV     119.374    1.79
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CZ7             sp2_sp2_3           O           C         NAQ         CAN       0.000     5.0     2
+CZ7             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+CZ7            sp3_sp3_12         OAG         BAY         OAH        HOAH     180.000    10.0     3
+CZ7              const_41         CAW         CAI         CAK         CAX       0.000    10.0     2
+CZ7       const_sp2_sp2_2         CAK         CAI         CAW         OAF     180.000     5.0     2
+CZ7       const_sp2_sp2_9         CAW         CAJ         CAL         CAX       0.000     5.0     2
+CZ7       const_sp2_sp2_6         CAL         CAJ         CAW         OAF     180.000     5.0     2
+CZ7              const_18         CAI         CAK         CAX          CA     180.000    10.0     2
+CZ7              const_14         CAJ         CAL         CAX          CA     180.000    10.0     2
+CZ7            sp2_sp3_20         CAO         NBA         CAM         CAA     -90.000    10.0     6
+CZ7            sp2_sp3_26           C         NAQ         CAN         BAY     120.000    10.0     6
+CZ7            sp3_sp3_14         OAG         BAY         CAN         NAQ     180.000    10.0     3
+CZ7              const_45         NBA         CAO         CAP         NBB       0.000    10.0     2
+CZ7              const_22         CAP         CAO         NBA         CAM     180.000    10.0     2
+CZ7              const_38         CAO         CAP         NBB         CAT     180.000    10.0     2
+CZ7             sp2_sp2_7         OAC         CAT           N          CA       0.000     5.0     2
+CZ7             sp2_sp3_7         CAT           N          CA           C       0.000    10.0     6
+CZ7            sp2_sp2_11           N         CAT         NBB         CAP     180.000     5.0     2
+CZ7              const_32         OAD         CAU         CAV         OAE       0.000    10.0     2
+CZ7              const_28         OAD         CAU         NBA         CAM       0.000    10.0     2
+CZ7              const_36         OAE         CAV         NBB         CAT       0.000    10.0     2
+CZ7            sp2_sp3_13         CAK         CAX          CA           C     150.000    10.0     6
+CZ7             sp3_sp3_1         HAA         CAA         CAM         NBA     180.000    10.0     3
+CZ7             sp2_sp2_9         CAI         CAW         OAF        HOAF     180.000     5.0     2
+CZ7            sp3_sp3_10         OAH         BAY         OAG        HOAG     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CZ7    chir_1    CA    N    C    CAX    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CZ7    plan-1          CA   0.020
+CZ7    plan-1         CAI   0.020
+CZ7    plan-1         CAJ   0.020
+CZ7    plan-1         CAK   0.020
+CZ7    plan-1         CAL   0.020
+CZ7    plan-1         CAW   0.020
+CZ7    plan-1         CAX   0.020
+CZ7    plan-1         HAI   0.020
+CZ7    plan-1         HAJ   0.020
+CZ7    plan-1         HAK   0.020
+CZ7    plan-1         HAL   0.020
+CZ7    plan-1         OAF   0.020
+CZ7    plan-2         CAM   0.020
+CZ7    plan-2         CAO   0.020
+CZ7    plan-2         CAP   0.020
+CZ7    plan-2         CAT   0.020
+CZ7    plan-2         CAU   0.020
+CZ7    plan-2         CAV   0.020
+CZ7    plan-2         HAO   0.020
+CZ7    plan-2         HAP   0.020
+CZ7    plan-2         NBA   0.020
+CZ7    plan-2         NBB   0.020
+CZ7    plan-2         OAD   0.020
+CZ7    plan-2         OAE   0.020
+CZ7    plan-3           C   0.020
+CZ7    plan-3          CA   0.020
+CZ7    plan-3         NAQ   0.020
+CZ7    plan-3           O   0.020
+CZ7    plan-4          CA   0.020
+CZ7    plan-4         CAT   0.020
+CZ7    plan-4          HN   0.020
+CZ7    plan-4           N   0.020
+CZ7    plan-5           C   0.020
+CZ7    plan-5         CAN   0.020
+CZ7    plan-5        HNAQ   0.020
+CZ7    plan-5         NAQ   0.020
+CZ7    plan-6         CAT   0.020
+CZ7    plan-6           N   0.020
+CZ7    plan-6         NBB   0.020
+CZ7    plan-6         OAC   0.020
+CZ7    plan-7         BAY   0.020
+CZ7    plan-7         CAN   0.020
+CZ7    plan-7         OAG   0.020
+CZ7    plan-7         OAH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CZ7           SMILES              ACDLabs 12.01                                                                                                              O=C2C(=O)N(C=CN2C(=O)NC(c1ccc(O)cc1)C(=O)NCB(O)O)CC
+CZ7 SMILES_CANONICAL               CACTVS 3.370                                                                                                         CCN1C=CN(C(=O)N[C@@H](C(=O)NCB(O)O)c2ccc(O)cc2)C(=O)C1=O
+CZ7           SMILES               CACTVS 3.370                                                                                                           CCN1C=CN(C(=O)N[CH](C(=O)NCB(O)O)c2ccc(O)cc2)C(=O)C1=O
+CZ7 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                       B(CNC(=O)[C@@H](c1ccc(cc1)O)NC(=O)N2C=CN(C(=O)C2=O)CC)(O)O
+CZ7           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                            B(CNC(=O)C(c1ccc(cc1)O)NC(=O)N2C=CN(C(=O)C2=O)CC)(O)O
+CZ7            InChI                InChI  1.03 InChI=1S/C16H19BN4O7/c1-2-20-7-8-21(15(25)14(20)24)16(26)19-12(13(23)18-9-17(27)28)10-3-5-11(22)6-4-10/h3-8,12,22,27-28H,2,9H2,1H3,(H,18,23)(H,19,26)/t12-/m1/s1
+CZ7         InChIKey                InChI  1.03                                                                                                                                      VFZCHJQIIUDDPB-GFCCVEGCSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CZ7 acedrg               243         "dictionary generator"                  
+CZ7 acedrg_database      11          "data source"                           
+CZ7 rdkit                2017.03.2   "Chemoinformatics tool"
+CZ7 refmac5              5.8.0238    "optimization tool"                     

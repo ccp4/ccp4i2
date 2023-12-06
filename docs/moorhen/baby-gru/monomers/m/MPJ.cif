@@ -1,0 +1,165 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MPJ     MPJ      "(1-AMINO-3-METHYLSULFANYL-PROPYL)-PHOSPHINIC ACID"     NON-POLYMER     21     9     .     
+#
+data_comp_MPJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MPJ     N       N       NT2     0       20.305      -14.836     9.555       
+MPJ     CA      C       CH1     0       20.924      -13.700     8.851       
+MPJ     CB      C       CH2     0       22.300      -14.080     8.293       
+MPJ     CG      C       CH2     0       23.360      -14.313     9.357       
+MPJ     SD      S       S2      0       25.034      -14.439     8.677       
+MPJ     CE      C       CH3     0       25.953      -14.895     10.145      
+MPJ     O1      O       O       0       18.493      -12.651     8.038       
+MPJ     O2      O       OH1     0       19.684      -14.250     6.483       
+MPJ     P       P       P       0       19.837      -13.083     7.517       
+MPJ     H       H       H       0       20.325      -15.577     9.035       
+MPJ     HN2     H       H       0       20.762      -15.024     10.313      
+MPJ     HA      H       H       0       21.052      -12.974     9.507       
+MPJ     HB1     H       H       0       22.602      -13.364     7.696       
+MPJ     HB2     H       H       0       22.205      -14.894     7.756       
+MPJ     HG1     H       H       0       23.152      -15.140     9.840       
+MPJ     HG2     H       H       0       23.335      -13.573     10.001      
+MPJ     HE1     H       H       0       26.874      -15.063     9.908       
+MPJ     HE2     H       H       0       25.569      -15.693     10.530      
+MPJ     HE3     H       H       0       25.911      -14.176     10.787      
+MPJ     HO2     H       H       0       18.880      -14.414     6.310       
+MPJ     HP      H       H       0       20.444      -12.116     6.930       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MPJ           N          CA      SINGLE       n     1.473  0.0130     1.473  0.0130
+MPJ          CA          CB      SINGLE       n     1.532  0.0129     1.532  0.0129
+MPJ          CA           P      SINGLE       n     1.827  0.0197     1.827  0.0197
+MPJ          CB          CG      SINGLE       n     1.519  0.0200     1.519  0.0200
+MPJ          CG          SD      SINGLE       n     1.811  0.0200     1.811  0.0200
+MPJ          SD          CE      SINGLE       n     1.792  0.0100     1.792  0.0100
+MPJ          O1           P      DOUBLE       n     1.504  0.0125     1.504  0.0125
+MPJ          O2           P      SINGLE       n     1.566  0.0100     1.566  0.0100
+MPJ           N           H      SINGLE       n     1.036  0.0160     0.905  0.0200
+MPJ           N         HN2      SINGLE       n     1.036  0.0160     0.905  0.0200
+MPJ          CA          HA      SINGLE       n     1.089  0.0100     0.986  0.0200
+MPJ          CB         HB1      SINGLE       n     1.089  0.0100     0.980  0.0160
+MPJ          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0160
+MPJ          CG         HG1      SINGLE       n     1.089  0.0100     0.981  0.0122
+MPJ          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0122
+MPJ          CE         HE1      SINGLE       n     1.089  0.0100     0.965  0.0170
+MPJ          CE         HE2      SINGLE       n     1.089  0.0100     0.965  0.0170
+MPJ          CE         HE3      SINGLE       n     1.089  0.0100     0.965  0.0170
+MPJ          O2         HO2      SINGLE       n     0.970  0.0120     0.839  0.0200
+MPJ           P          HP      SINGLE       n     1.284  0.0200     1.284  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MPJ          CA           N           H     109.715    3.00
+MPJ          CA           N         HN2     109.715    3.00
+MPJ           H           N         HN2     107.163    3.00
+MPJ           N          CA          CB     110.463    2.65
+MPJ           N          CA           P     112.238    3.00
+MPJ           N          CA          HA     107.944    1.55
+MPJ          CB          CA           P     111.410    2.87
+MPJ          CB          CA          HA     108.236    1.50
+MPJ           P          CA          HA     108.528    1.50
+MPJ          CA          CB          CG     113.897    1.50
+MPJ          CA          CB         HB1     108.507    1.50
+MPJ          CA          CB         HB2     108.507    1.50
+MPJ          CG          CB         HB1     108.867    1.50
+MPJ          CG          CB         HB2     108.867    1.50
+MPJ         HB1          CB         HB2     107.715    1.50
+MPJ          CB          CG          SD     113.263    2.33
+MPJ          CB          CG         HG1     109.079    1.50
+MPJ          CB          CG         HG2     109.079    1.50
+MPJ          SD          CG         HG1     108.861    1.50
+MPJ          SD          CG         HG2     108.861    1.50
+MPJ         HG1          CG         HG2     107.939    1.50
+MPJ          CG          SD          CE     100.595    1.50
+MPJ          SD          CE         HE1     109.425    1.50
+MPJ          SD          CE         HE2     109.425    1.50
+MPJ          SD          CE         HE3     109.425    1.50
+MPJ         HE1          CE         HE2     109.509    1.50
+MPJ         HE1          CE         HE3     109.509    1.50
+MPJ         HE2          CE         HE3     109.509    1.50
+MPJ           P          O2         HO2     112.030    3.00
+MPJ          CA           P          O1     110.326    3.00
+MPJ          CA           P          O2     105.177    2.72
+MPJ          CA           P          HP     104.658    3.00
+MPJ          O1           P          O2     109.633    2.42
+MPJ          O1           P          HP     108.562    2.72
+MPJ          O2           P          HP     104.778    2.90
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MPJ             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+MPJ             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+MPJ            sp3_sp3_16           N          CA           P          O1     180.000    10.0     3
+MPJ            sp3_sp3_25          CA          CB          CG          SD     180.000    10.0     3
+MPJ            sp3_sp3_34          CB          CG          SD          CE     180.000    10.0     3
+MPJ            sp3_sp3_37         HE1          CE          SD          CG     180.000    10.0     3
+MPJ            sp3_sp3_40         HO2          O2           P          CA     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MPJ    chir_1    CA    P    N    CB    negative
+MPJ    chir_2    P    O2    O1    CA    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MPJ           SMILES              ACDLabs 10.04                                                             O=P(O)C(N)CCSC
+MPJ SMILES_CANONICAL               CACTVS 3.341                                                    CSCC[C@H](N)[P@@H](O)=O
+MPJ           SMILES               CACTVS 3.341                                                       CSCC[CH](N)[PH](O)=O
+MPJ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                     CSCC[C@H](N)[P@H](=O)O
+MPJ           SMILES "OpenEye OEToolkits" 1.5.0                                                             CSCCC(N)P(=O)O
+MPJ            InChI                InChI  1.03 InChI=1S/C4H12NO2PS/c1-9-3-2-4(5)8(6)7/h4,8H,2-3,5H2,1H3,(H,6,7)/t4-/m1/s1
+MPJ         InChIKey                InChI  1.03                                                CZRBNMUARBZMHQ-SCSAIBSYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MPJ acedrg               243         "dictionary generator"                  
+MPJ acedrg_database      11          "data source"                           
+MPJ rdkit                2017.03.2   "Chemoinformatics tool"
+MPJ refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,130 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PGR     PGR      R-1,2-PROPANEDIOL     NON-POLYMER     13     5     .     
+#
+data_comp_PGR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PGR     C1      C       CH2     0       55.562      21.635      12.745      
+PGR     C2      C       CH1     0       56.229      22.765      11.987      
+PGR     C3      C       CH3     0       56.761      23.829      12.913      
+PGR     O1      O       OH1     0       55.052      20.643      11.859      
+PGR     O2      O       OH1     0       57.283      22.233      11.181      
+PGR     H11     H       H       0       54.820      21.996      13.288      
+PGR     H12     H       H       0       56.216      21.218      13.357      
+PGR     H2      H       H       0       55.560      23.171      11.378      
+PGR     H31     H       H       0       57.704      23.990      12.724      
+PGR     H32     H       H       0       56.664      23.541      13.839      
+PGR     H33     H       H       0       56.261      24.654      12.778      
+PGR     HO1     H       H       0       54.708      20.024      12.322      
+PGR     HO2     H       H       0       57.866      21.857      11.672      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PGR          C1          C2      SINGLE       n     1.514  0.0100     1.514  0.0100
+PGR          C1          O1      SINGLE       n     1.425  0.0100     1.425  0.0100
+PGR          C2          C3      SINGLE       n     1.501  0.0160     1.501  0.0160
+PGR          C2          O2      SINGLE       n     1.424  0.0199     1.424  0.0199
+PGR          C1         H11      SINGLE       n     1.089  0.0100     0.988  0.0200
+PGR          C1         H12      SINGLE       n     1.089  0.0100     0.988  0.0200
+PGR          C2          H2      SINGLE       n     1.089  0.0100     0.992  0.0184
+PGR          C3         H31      SINGLE       n     1.089  0.0100     0.974  0.0145
+PGR          C3         H32      SINGLE       n     1.089  0.0100     0.974  0.0145
+PGR          C3         H33      SINGLE       n     1.089  0.0100     0.974  0.0145
+PGR          O1         HO1      SINGLE       n     0.970  0.0120     0.846  0.0200
+PGR          O2         HO2      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PGR          C2          C1          O1     111.469    1.50
+PGR          C2          C1         H11     109.582    1.50
+PGR          C2          C1         H12     109.582    1.50
+PGR          O1          C1         H11     109.268    1.50
+PGR          O1          C1         H12     109.268    1.50
+PGR         H11          C1         H12     108.313    1.50
+PGR          C1          C2          C3     111.415    1.74
+PGR          C1          C2          O2     109.314    1.96
+PGR          C1          C2          H2     108.656    1.50
+PGR          C3          C2          O2     109.686    2.24
+PGR          C3          C2          H2     109.344    1.50
+PGR          O2          C2          H2     108.183    1.96
+PGR          C2          C3         H31     109.508    1.50
+PGR          C2          C3         H32     109.508    1.50
+PGR          C2          C3         H33     109.508    1.50
+PGR         H31          C3         H32     109.425    1.50
+PGR         H31          C3         H33     109.425    1.50
+PGR         H32          C3         H33     109.425    1.50
+PGR          C1          O1         HO1     108.280    3.00
+PGR          C2          O2         HO2     109.265    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PGR             sp3_sp3_1          O1          C1          C2          C3     180.000    10.0     3
+PGR            sp3_sp3_10          C2          C1          O1         HO1     180.000    10.0     3
+PGR            sp3_sp3_13          C1          C2          C3         H31     180.000    10.0     3
+PGR            sp3_sp3_22          C1          C2          O2         HO2     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PGR    chir_1    C2    O2    C1    C3    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PGR           SMILES              ACDLabs 10.04                                            OCC(O)C
+PGR SMILES_CANONICAL               CACTVS 3.341                                       C[C@@H](O)CO
+PGR           SMILES               CACTVS 3.341                                         C[CH](O)CO
+PGR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                        C[C@H](CO)O
+PGR           SMILES "OpenEye OEToolkits" 1.5.0                                            CC(CO)O
+PGR            InChI                InChI  1.03 InChI=1S/C3H8O2/c1-3(5)2-4/h3-5H,2H2,1H3/t3-/m1/s1
+PGR         InChIKey                InChI  1.03                        DNIAPMSPPWPWGF-GSVOUGTGSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PGR acedrg               243         "dictionary generator"                  
+PGR acedrg_database      11          "data source"                           
+PGR rdkit                2017.03.2   "Chemoinformatics tool"
+PGR refmac5              5.8.0238    "optimization tool"                     

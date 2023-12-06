@@ -1,0 +1,376 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YCF     YCF      "(2E)-N-hydroxy-2-[1-(4-{[(4-{(1E)-1-[2-(N'-hydroxycarbamimidoyl)hydrazinylidene]ethyl}phenyl)carbamoyl]amino}phenyl)ethylidene]hydrazinecarboximidamide"     NON-POLYMER     56     32     .     
+#
+data_comp_YCF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YCF     NAA     N       NH1     0       46.495      23.069      -12.744     
+YCF     NAB     N       NH1     0       47.864      23.135      -14.572     
+YCF     NAC     N       NH1     0       47.583      21.091      -13.531     
+YCF     NAD     N       N       0       47.088      20.291      -12.518     
+YCF     NAE     N       NH1     0       45.103      16.313      -7.954      
+YCF     NAF     N       NH1     0       45.091      15.051      -6.029      
+YCF     NAG     N       N       0       47.093      12.165      -0.714      
+YCF     NAH     N       NH1     0       47.574      11.485      0.390       
+YCF     NAI     N       N       0       46.508      12.994      1.797       
+YCF     NAJ     N       NH2     0       47.762      11.231      2.669       
+YCF     CAK     C       C       0       47.277      22.427      -13.570     
+YCF     CAL     C       C       0       47.257      19.009      -12.512     
+YCF     CAM     C       CH3     0       47.946      18.215      -13.584     
+YCF     CAN     C       CR6     0       46.697      18.306      -11.318     
+YCF     CAO     C       CR16    0       47.404      17.277      -10.695     
+YCF     CAP     C       CR16    0       46.896      16.613      -9.593      
+YCF     CAQ     C       CR6     0       45.651      16.971      -9.074      
+YCF     CAR     C       CR16    0       44.930      17.997      -9.687      
+YCF     CAS     C       CR16    0       45.451      18.648      -10.791     
+YCF     CAT     C       C       0       45.733      16.025      -6.763      
+YCF     CAU     C       CR6     0       45.647      14.229      -5.026      
+YCF     CAV     C       CR16    0       46.889      13.612      -5.184      
+YCF     CAW     C       CR16    0       47.398      12.812      -4.178      
+YCF     CAX     C       CR6     0       46.695      12.593      -2.993      
+YCF     CAY     C       CR16    0       45.451      13.210      -2.853      
+YCF     CAZ     C       CR16    0       44.930      14.017      -3.848      
+YCF     CBA     C       C       0       47.254      11.719      -1.917      
+YCF     CBB     C       CH3     0       47.931      10.431      -2.286      
+YCF     CBC     C       C       0       47.262      11.933      1.642       
+YCF     OBD     O       O       0       46.759      16.583      -6.390      
+YCF     OBE     O       OH1     0       47.638      24.500      -14.714     
+YCF     OBF     O       OH1     0       46.281      13.295      3.166       
+YCF     HNAA    H       H       0       46.133      22.501      -12.106     
+YCF     HNAB    H       H       0       48.399      22.767      -15.159     
+YCF     HNAC    H       H       0       48.104      20.756      -14.139     
+YCF     HNAE    H       H       0       44.259      16.078      -8.031      
+YCF     HNAF    H       H       0       44.233      14.933      -6.180      
+YCF     HNAH    H       H       0       48.086      10.790      0.294       
+YCF     HNAJ    H       H       0       47.586      11.484      3.494       
+YCF     HNAD    H       H       0       48.265      10.520      2.528       
+YCF     HAM     H       H       0       47.768      17.271      -13.461     
+YCF     HAMA    H       H       0       48.902      18.370      -13.538     
+YCF     HAMB    H       H       0       47.618      18.490      -14.453     
+YCF     HAO     H       H       0       48.246      17.023      -11.031     
+YCF     HAP     H       H       0       47.392      15.922      -9.189      
+YCF     HAR     H       H       0       44.087      18.245      -9.348      
+YCF     HAS     H       H       0       44.951      19.338      -11.190     
+YCF     HAV     H       H       0       47.383      13.747      -5.975      
+YCF     HAW     H       H       0       48.238      12.406      -4.300      
+YCF     HAY     H       H       0       44.953      13.080      -2.065      
+YCF     HAZ     H       H       0       44.089      14.425      -3.731      
+YCF     HBB     H       H       0       47.748      10.216      -3.213      
+YCF     HBBA    H       H       0       47.598      9.716       -1.723      
+YCF     HBBB    H       H       0       48.888      10.520      -2.160      
+YCF     HOBE    H       H       0       46.869      24.601      -15.101     
+YCF     HOBF    H       H       0       45.578      13.735      3.399       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YCF         NAA         CAK      DOUBLE       n     1.301  0.0103     1.301  0.0103
+YCF         NAB         CAK      SINGLE       n     1.347  0.0191     1.347  0.0191
+YCF         NAB         OBE      SINGLE       n     1.389  0.0110     1.389  0.0110
+YCF         NAC         NAD      SINGLE       n     1.376  0.0100     1.376  0.0100
+YCF         NAC         CAK      SINGLE       n     1.347  0.0191     1.347  0.0191
+YCF         NAD         CAL      DOUBLE       n     1.287  0.0100     1.287  0.0100
+YCF         NAE         CAQ      SINGLE       n     1.407  0.0126     1.407  0.0126
+YCF         NAE         CAT      SINGLE       n     1.371  0.0114     1.371  0.0114
+YCF         NAF         CAT      SINGLE       n     1.371  0.0114     1.371  0.0114
+YCF         NAF         CAU      SINGLE       n     1.407  0.0126     1.407  0.0126
+YCF         NAG         NAH      SINGLE       n     1.376  0.0100     1.376  0.0100
+YCF         NAG         CBA      DOUBLE       n     1.287  0.0100     1.287  0.0100
+YCF         NAH         CBC      SINGLE       n     1.347  0.0191     1.347  0.0191
+YCF         NAI         CBC      DOUBLE       n     1.293  0.0200     1.293  0.0200
+YCF         NAI         OBF      SINGLE       n     1.415  0.0195     1.415  0.0195
+YCF         NAJ         CBC      SINGLE       n     1.330  0.0161     1.330  0.0161
+YCF         CAL         CAM      SINGLE       n     1.498  0.0100     1.498  0.0100
+YCF         CAL         CAN      SINGLE       n     1.486  0.0133     1.486  0.0133
+YCF         CAN         CAO      DOUBLE       y     1.389  0.0114     1.389  0.0114
+YCF         CAN         CAS      SINGLE       y     1.389  0.0114     1.389  0.0114
+YCF         CAO         CAP      SINGLE       y     1.379  0.0100     1.379  0.0100
+YCF         CAP         CAQ      DOUBLE       y     1.392  0.0100     1.392  0.0100
+YCF         CAQ         CAR      SINGLE       y     1.392  0.0100     1.392  0.0100
+YCF         CAR         CAS      DOUBLE       y     1.379  0.0100     1.379  0.0100
+YCF         CAT         OBD      DOUBLE       n     1.225  0.0102     1.225  0.0102
+YCF         CAU         CAV      DOUBLE       y     1.392  0.0100     1.392  0.0100
+YCF         CAU         CAZ      SINGLE       y     1.392  0.0100     1.392  0.0100
+YCF         CAV         CAW      SINGLE       y     1.379  0.0100     1.379  0.0100
+YCF         CAW         CAX      DOUBLE       y     1.389  0.0114     1.389  0.0114
+YCF         CAX         CAY      SINGLE       y     1.389  0.0114     1.389  0.0114
+YCF         CAX         CBA      SINGLE       n     1.486  0.0133     1.486  0.0133
+YCF         CAY         CAZ      DOUBLE       y     1.379  0.0100     1.379  0.0100
+YCF         CBA         CBB      SINGLE       n     1.498  0.0100     1.498  0.0100
+YCF         NAA        HNAA      SINGLE       n     1.016  0.0100     0.932  0.0200
+YCF         NAB        HNAB      SINGLE       n     1.016  0.0100     0.875  0.0200
+YCF         NAC        HNAC      SINGLE       n     1.016  0.0100     0.869  0.0200
+YCF         NAE        HNAE      SINGLE       n     1.016  0.0100     0.879  0.0200
+YCF         NAF        HNAF      SINGLE       n     1.016  0.0100     0.879  0.0200
+YCF         NAH        HNAH      SINGLE       n     1.016  0.0100     0.869  0.0200
+YCF         NAJ        HNAJ      SINGLE       n     1.016  0.0100     0.881  0.0200
+YCF         NAJ        HNAD      SINGLE       n     1.016  0.0100     0.881  0.0200
+YCF         CAM         HAM      SINGLE       n     1.089  0.0100     0.969  0.0177
+YCF         CAM        HAMA      SINGLE       n     1.089  0.0100     0.969  0.0177
+YCF         CAM        HAMB      SINGLE       n     1.089  0.0100     0.969  0.0177
+YCF         CAO         HAO      SINGLE       n     1.082  0.0130     0.941  0.0168
+YCF         CAP         HAP      SINGLE       n     1.082  0.0130     0.942  0.0198
+YCF         CAR         HAR      SINGLE       n     1.082  0.0130     0.942  0.0198
+YCF         CAS         HAS      SINGLE       n     1.082  0.0130     0.941  0.0168
+YCF         CAV         HAV      SINGLE       n     1.082  0.0130     0.942  0.0198
+YCF         CAW         HAW      SINGLE       n     1.082  0.0130     0.941  0.0168
+YCF         CAY         HAY      SINGLE       n     1.082  0.0130     0.941  0.0168
+YCF         CAZ         HAZ      SINGLE       n     1.082  0.0130     0.942  0.0198
+YCF         CBB         HBB      SINGLE       n     1.089  0.0100     0.969  0.0177
+YCF         CBB        HBBA      SINGLE       n     1.089  0.0100     0.969  0.0177
+YCF         CBB        HBBB      SINGLE       n     1.089  0.0100     0.969  0.0177
+YCF         OBE        HOBE      SINGLE       n     0.970  0.0120     0.867  0.0200
+YCF         OBF        HOBF      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YCF         CAK         NAA        HNAA     110.271    1.50
+YCF         CAK         NAB         OBE     120.038    2.14
+YCF         CAK         NAB        HNAB     122.269    2.12
+YCF         OBE         NAB        HNAB     117.693    3.00
+YCF         NAD         NAC         CAK     118.952    1.68
+YCF         NAD         NAC        HNAC     120.155    2.03
+YCF         CAK         NAC        HNAC     120.894    2.12
+YCF         NAC         NAD         CAL     118.552    1.58
+YCF         CAQ         NAE         CAT     126.621    1.86
+YCF         CAQ         NAE        HNAE     116.583    1.97
+YCF         CAT         NAE        HNAE     116.797    1.80
+YCF         CAT         NAF         CAU     126.621    1.86
+YCF         CAT         NAF        HNAF     116.797    1.80
+YCF         CAU         NAF        HNAF     116.583    1.97
+YCF         NAH         NAG         CBA     118.552    1.58
+YCF         NAG         NAH         CBC     118.952    1.68
+YCF         NAG         NAH        HNAH     120.155    2.03
+YCF         CBC         NAH        HNAH     120.894    2.12
+YCF         CBC         NAI         OBF     110.625    1.59
+YCF         CBC         NAJ        HNAJ     119.894    2.29
+YCF         CBC         NAJ        HNAD     119.894    2.29
+YCF        HNAJ         NAJ        HNAD     120.211    2.09
+YCF         NAA         CAK         NAB     121.265    3.00
+YCF         NAA         CAK         NAC     121.265    3.00
+YCF         NAB         CAK         NAC     117.469    3.00
+YCF         NAD         CAL         CAM     124.724    1.50
+YCF         NAD         CAL         CAN     115.273    2.19
+YCF         CAM         CAL         CAN     120.002    1.50
+YCF         CAL         CAM         HAM     109.538    1.50
+YCF         CAL         CAM        HAMA     109.538    1.50
+YCF         CAL         CAM        HAMB     109.538    1.50
+YCF         HAM         CAM        HAMA     109.392    1.50
+YCF         HAM         CAM        HAMB     109.392    1.50
+YCF        HAMA         CAM        HAMB     109.392    1.50
+YCF         CAL         CAN         CAO     120.842    1.50
+YCF         CAL         CAN         CAS     120.842    1.50
+YCF         CAO         CAN         CAS     118.316    1.50
+YCF         CAN         CAO         CAP     121.333    1.50
+YCF         CAN         CAO         HAO     119.486    1.50
+YCF         CAP         CAO         HAO     119.181    1.50
+YCF         CAO         CAP         CAQ     119.904    1.50
+YCF         CAO         CAP         HAP     120.148    1.50
+YCF         CAQ         CAP         HAP     119.948    1.50
+YCF         NAE         CAQ         CAP     120.395    3.00
+YCF         NAE         CAQ         CAR     120.395    3.00
+YCF         CAP         CAQ         CAR     119.210    1.50
+YCF         CAQ         CAR         CAS     119.904    1.50
+YCF         CAQ         CAR         HAR     119.948    1.50
+YCF         CAS         CAR         HAR     120.148    1.50
+YCF         CAN         CAS         CAR     121.333    1.50
+YCF         CAN         CAS         HAS     119.486    1.50
+YCF         CAR         CAS         HAS     119.181    1.50
+YCF         NAE         CAT         NAF     112.213    1.51
+YCF         NAE         CAT         OBD     123.894    1.50
+YCF         NAF         CAT         OBD     123.894    1.50
+YCF         NAF         CAU         CAV     120.395    3.00
+YCF         NAF         CAU         CAZ     120.395    3.00
+YCF         CAV         CAU         CAZ     119.210    1.50
+YCF         CAU         CAV         CAW     119.904    1.50
+YCF         CAU         CAV         HAV     119.948    1.50
+YCF         CAW         CAV         HAV     120.148    1.50
+YCF         CAV         CAW         CAX     121.333    1.50
+YCF         CAV         CAW         HAW     119.181    1.50
+YCF         CAX         CAW         HAW     119.486    1.50
+YCF         CAW         CAX         CAY     118.316    1.50
+YCF         CAW         CAX         CBA     120.842    1.50
+YCF         CAY         CAX         CBA     120.842    1.50
+YCF         CAX         CAY         CAZ     121.333    1.50
+YCF         CAX         CAY         HAY     119.486    1.50
+YCF         CAZ         CAY         HAY     119.181    1.50
+YCF         CAU         CAZ         CAY     119.904    1.50
+YCF         CAU         CAZ         HAZ     119.948    1.50
+YCF         CAY         CAZ         HAZ     120.148    1.50
+YCF         NAG         CBA         CAX     115.273    2.19
+YCF         NAG         CBA         CBB     124.724    1.50
+YCF         CAX         CBA         CBB     120.002    1.50
+YCF         CBA         CBB         HBB     109.538    1.50
+YCF         CBA         CBB        HBBA     109.538    1.50
+YCF         CBA         CBB        HBBB     109.538    1.50
+YCF         HBB         CBB        HBBA     109.392    1.50
+YCF         HBB         CBB        HBBB     109.392    1.50
+YCF        HBBA         CBB        HBBB     109.392    1.50
+YCF         NAH         CBC         NAI     120.364    3.00
+YCF         NAH         CBC         NAJ     116.568    3.00
+YCF         NAI         CBC         NAJ     123.068    2.82
+YCF         NAB         OBE        HOBE     107.689    3.00
+YCF         NAI         OBF        HOBF     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YCF             sp2_sp2_1         NAB         CAK         NAA        HNAA     180.000     5.0     2
+YCF             sp2_sp3_3         NAD         CAL         CAM         HAM       0.000    10.0     6
+YCF            sp2_sp2_48         NAD         CAL         CAN         CAO       0.000     5.0     2
+YCF       const_sp2_sp2_3         CAL         CAN         CAO         CAP     180.000     5.0     2
+YCF              const_43         CAL         CAN         CAS         CAR     180.000    10.0     2
+YCF       const_sp2_sp2_5         CAN         CAO         CAP         CAQ       0.000     5.0     2
+YCF              const_10         CAO         CAP         CAQ         NAE     180.000    10.0     2
+YCF              const_15         NAE         CAQ         CAR         CAS     180.000    10.0     2
+YCF              const_17         CAQ         CAR         CAS         CAN       0.000    10.0     2
+YCF             sp2_sp2_5         NAA         CAK         NAB         OBE       0.000     5.0     2
+YCF              const_23         NAF         CAU         CAV         CAW     180.000    10.0     2
+YCF              const_47         NAF         CAU         CAZ         CAY     180.000    10.0     2
+YCF              const_25         CAU         CAV         CAW         CAX       0.000    10.0     2
+YCF              const_30         CAV         CAW         CAX         CBA     180.000    10.0     2
+YCF              const_35         CBA         CAX         CAY         CAZ     180.000    10.0     2
+YCF            sp2_sp2_50         CAW         CAX         CBA         NAG     180.000     5.0     2
+YCF              const_37         CAX         CAY         CAZ         CAU       0.000    10.0     2
+YCF             sp2_sp3_9         NAG         CBA         CBB         HBB       0.000    10.0     6
+YCF            sp2_sp2_11         NAA         CAK         NAC         NAD       0.000     5.0     2
+YCF             sp2_sp2_7         CAK         NAC         NAD         CAL     180.000     5.0     2
+YCF            sp2_sp2_13         CAM         CAL         NAD         NAC     180.000     5.0     2
+YCF            sp2_sp2_15         CAP         CAQ         NAE         CAT     180.000     5.0     2
+YCF            sp2_sp2_19         NAF         CAT         NAE         CAQ     180.000     5.0     2
+YCF            sp2_sp2_23         NAE         CAT         NAF         CAU     180.000     5.0     2
+YCF            sp2_sp2_27         CAV         CAU         NAF         CAT     180.000     5.0     2
+YCF            sp2_sp2_34         CBB         CBA         NAG         NAH       0.000     5.0     2
+YCF            sp2_sp2_31         CBA         NAG         NAH         CBC     180.000     5.0     2
+YCF            sp2_sp2_37         NAI         CBC         NAH         NAG       0.000     5.0     2
+YCF            sp2_sp2_39         NAH         CBC         NAI         OBF     180.000     5.0     2
+YCF            sp2_sp2_41         CBC         NAI         OBF        HOBF     180.000     5.0     2
+YCF            sp2_sp2_42         NAH         CBC         NAJ        HNAJ     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YCF    plan-1         CAL   0.020
+YCF    plan-1         CAN   0.020
+YCF    plan-1         CAO   0.020
+YCF    plan-1         CAP   0.020
+YCF    plan-1         CAQ   0.020
+YCF    plan-1         CAR   0.020
+YCF    plan-1         CAS   0.020
+YCF    plan-1         HAO   0.020
+YCF    plan-1         HAP   0.020
+YCF    plan-1         HAR   0.020
+YCF    plan-1         HAS   0.020
+YCF    plan-1         NAE   0.020
+YCF    plan-2         CAU   0.020
+YCF    plan-2         CAV   0.020
+YCF    plan-2         CAW   0.020
+YCF    plan-2         CAX   0.020
+YCF    plan-2         CAY   0.020
+YCF    plan-2         CAZ   0.020
+YCF    plan-2         CBA   0.020
+YCF    plan-2         HAV   0.020
+YCF    plan-2         HAW   0.020
+YCF    plan-2         HAY   0.020
+YCF    plan-2         HAZ   0.020
+YCF    plan-2         NAF   0.020
+YCF    plan-3         CAK   0.020
+YCF    plan-3        HNAB   0.020
+YCF    plan-3         NAB   0.020
+YCF    plan-3         OBE   0.020
+YCF    plan-4         CAK   0.020
+YCF    plan-4        HNAC   0.020
+YCF    plan-4         NAC   0.020
+YCF    plan-4         NAD   0.020
+YCF    plan-5         CAQ   0.020
+YCF    plan-5         CAT   0.020
+YCF    plan-5        HNAE   0.020
+YCF    plan-5         NAE   0.020
+YCF    plan-6         CAT   0.020
+YCF    plan-6         CAU   0.020
+YCF    plan-6        HNAF   0.020
+YCF    plan-6         NAF   0.020
+YCF    plan-7         CBC   0.020
+YCF    plan-7        HNAH   0.020
+YCF    plan-7         NAG   0.020
+YCF    plan-7         NAH   0.020
+YCF    plan-8         CBC   0.020
+YCF    plan-8        HNAD   0.020
+YCF    plan-8        HNAJ   0.020
+YCF    plan-8         NAJ   0.020
+YCF    plan-9         CAK   0.020
+YCF    plan-9         NAA   0.020
+YCF    plan-9         NAB   0.020
+YCF    plan-9         NAC   0.020
+YCF   plan-10         CAL   0.020
+YCF   plan-10         CAM   0.020
+YCF   plan-10         CAN   0.020
+YCF   plan-10         NAD   0.020
+YCF   plan-11         CAT   0.020
+YCF   plan-11         NAE   0.020
+YCF   plan-11         NAF   0.020
+YCF   plan-11         OBD   0.020
+YCF   plan-12         CAX   0.020
+YCF   plan-12         CBA   0.020
+YCF   plan-12         CBB   0.020
+YCF   plan-12         NAG   0.020
+YCF   plan-13         CBC   0.020
+YCF   plan-13         NAH   0.020
+YCF   plan-13         NAI   0.020
+YCF   plan-13         NAJ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YCF           SMILES              ACDLabs 12.01                                                                                                                            O=C(Nc1ccc(cc1)\C(=N\NC(=N\O)\N)C)Nc2ccc(\C(=N\NC(=[N@H])NO)C)cc2
+YCF SMILES_CANONICAL               CACTVS 3.370                                                                                                                                CC(=N/N/C(N)=N/O)\c1ccc(NC(=O)Nc2ccc(cc2)C(/C)=N/NC(=N)NO)cc1
+YCF           SMILES               CACTVS 3.370                                                                                                                                      CC(=NNC(N)=NO)c1ccc(NC(=O)Nc2ccc(cc2)C(C)=NNC(=N)NO)cc1
+YCF SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                     "[H]/N=C(\N/N=C(\C)/c1ccc(cc1)NC(=O)Nc2ccc(cc2)/C(=N/N/C(=N/O)/N)/C)/NO"
+YCF           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                      CC(=NNC(=NO)N)c1ccc(cc1)NC(=O)Nc2ccc(cc2)C(=NNC(=N)NO)C
+YCF            InChI                InChI  1.03 InChI=1S/C19H24N10O3/c1-11(24-26-17(20)28-31)13-3-7-15(8-4-13)22-19(30)23-16-9-5-14(6-10-16)12(2)25-27-18(21)29-32/h3-10,31-32H,1-2H3,(H3,20,26,28)(H3,21,27,29)(H2,22,23,30)/b24-11+,25-12+
+YCF         InChIKey                InChI  1.03                                                                                                                                                                  VVGIJVMXIRYKIO-DHSUVYDUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YCF acedrg               243         "dictionary generator"                  
+YCF acedrg_database      11          "data source"                           
+YCF rdkit                2017.03.2   "Chemoinformatics tool"
+YCF refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,218 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BOL     BOL      2-iodo-N-phenylbenzamide     NON-POLYMER     26     16     .     
+#
+data_comp_BOL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BOL     I       I       I       0       -23.667     -27.548     59.003      
+BOL     N       N       NH1     0       -21.400     -24.449     61.350      
+BOL     O       O       O       0       -21.956     -25.044     59.229      
+BOL     C1      C       CR6     0       -24.448     -26.140     60.357      
+BOL     C2      C       CR6     0       -23.700     -25.062     60.835      
+BOL     C3      C       CR16    0       -24.315     -24.171     61.734      
+BOL     C4      C       CR16    0       -25.628     -24.365     62.142      
+BOL     C5      C       CR16    0       -26.353     -25.446     61.656      
+BOL     C6      C       CR16    0       -25.767     -26.332     60.764      
+BOL     C7      C       C       0       -22.280     -24.847     60.396      
+BOL     C8      C       CR6     0       -20.157     -23.800     61.157      
+BOL     C9      C       CR16    0       -19.976     -22.815     60.194      
+BOL     C10     C       CR16    0       -18.735     -22.210     60.044      
+BOL     C11     C       CR16    0       -17.676     -22.576     60.851      
+BOL     C12     C       CR16    0       -17.855     -23.551     61.810      
+BOL     C13     C       CR16    0       -19.090     -24.165     61.968      
+BOL     HN      H       H       0       -21.606     -24.628     62.184      
+BOL     H3      H       H       0       -23.829     -23.439     62.069      
+BOL     H4      H       H       0       -26.027     -23.763     62.748      
+BOL     H5      H       H       0       -27.246     -25.578     61.931      
+BOL     H6      H       H       0       -26.259     -27.068     60.433      
+BOL     H9      H       H       0       -20.693     -22.560     59.638      
+BOL     H10     H       H       0       -18.617     -21.543     59.387      
+BOL     H11     H       H       0       -16.835     -22.161     60.746      
+BOL     H12     H       H       0       -17.134     -23.804     62.363      
+BOL     H13     H       H       0       -19.205     -24.831     62.625      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BOL           I          C1      SINGLE       n     2.103  0.0100     2.103  0.0100
+BOL           N          C7      SINGLE       n     1.351  0.0126     1.351  0.0126
+BOL           N          C8      SINGLE       n     1.411  0.0105     1.411  0.0105
+BOL           O          C7      DOUBLE       n     1.226  0.0100     1.226  0.0100
+BOL          C1          C2      DOUBLE       y     1.389  0.0117     1.389  0.0117
+BOL          C1          C6      SINGLE       y     1.390  0.0100     1.390  0.0100
+BOL          C2          C3      SINGLE       y     1.400  0.0131     1.400  0.0131
+BOL          C2          C7      SINGLE       n     1.498  0.0104     1.498  0.0104
+BOL          C3          C4      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BOL          C4          C5      SINGLE       y     1.379  0.0192     1.379  0.0192
+BOL          C5          C6      DOUBLE       y     1.380  0.0150     1.380  0.0150
+BOL          C8          C9      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BOL          C8         C13      SINGLE       y     1.385  0.0100     1.385  0.0100
+BOL          C9         C10      SINGLE       y     1.385  0.0100     1.385  0.0100
+BOL         C10         C11      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BOL         C11         C12      SINGLE       y     1.376  0.0112     1.376  0.0112
+BOL         C12         C13      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BOL           N          HN      SINGLE       n     1.016  0.0100     0.876  0.0200
+BOL          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+BOL          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0180
+BOL          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0146
+BOL          C6          H6      SINGLE       n     1.082  0.0130     0.945  0.0136
+BOL          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0178
+BOL         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0172
+BOL         C11         H11      SINGLE       n     1.082  0.0130     0.944  0.0161
+BOL         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0172
+BOL         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0178
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BOL          C7           N          C8     126.750    1.50
+BOL          C7           N          HN     117.086    2.38
+BOL          C8           N          HN     116.164    1.66
+BOL           I          C1          C2     122.385    1.50
+BOL           I          C1          C6     116.905    1.50
+BOL          C2          C1          C6     120.710    1.50
+BOL          C1          C2          C3     118.583    1.50
+BOL          C1          C2          C7     121.533    2.22
+BOL          C3          C2          C7     119.884    2.89
+BOL          C2          C3          C4     120.794    1.50
+BOL          C2          C3          H3     119.577    1.50
+BOL          C4          C3          H3     119.621    1.50
+BOL          C3          C4          C5     120.099    1.50
+BOL          C3          C4          H4     119.907    1.50
+BOL          C5          C4          H4     119.998    1.50
+BOL          C4          C5          C6     120.072    1.50
+BOL          C4          C5          H5     120.077    1.50
+BOL          C6          C5          H5     119.851    1.50
+BOL          C1          C6          C5     119.746    1.50
+BOL          C1          C6          H6     119.988    1.50
+BOL          C5          C6          H6     120.266    1.50
+BOL           N          C7           O     123.170    1.50
+BOL           N          C7          C2     115.889    1.50
+BOL           O          C7          C2     120.941    1.50
+BOL           N          C8          C9     120.302    2.93
+BOL           N          C8         C13     120.302    2.93
+BOL          C9          C8         C13     119.396    1.50
+BOL          C8          C9         C10     119.830    1.50
+BOL          C8          C9          H9     120.019    1.50
+BOL         C10          C9          H9     120.151    1.50
+BOL          C9         C10         C11     120.518    1.50
+BOL          C9         C10         H10     119.600    1.50
+BOL         C11         C10         H10     119.882    1.50
+BOL         C10         C11         C12     119.909    1.50
+BOL         C10         C11         H11     120.046    1.50
+BOL         C12         C11         H11     120.046    1.50
+BOL         C11         C12         C13     120.518    1.50
+BOL         C11         C12         H12     119.882    1.50
+BOL         C13         C12         H12     119.600    1.50
+BOL          C8         C13         C12     119.830    1.50
+BOL          C8         C13         H13     120.019    1.50
+BOL         C12         C13         H13     120.151    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BOL       const_sp2_sp2_3           N          C8          C9         C10     180.000     5.0     2
+BOL              const_46         C12         C13          C8           N     180.000    10.0     2
+BOL       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+BOL       const_sp2_sp2_9          C9         C10         C11         C12       0.000     5.0     2
+BOL              const_13         C10         C11         C12         C13       0.000    10.0     2
+BOL              const_17         C11         C12         C13          C8       0.000    10.0     2
+BOL             sp2_sp2_5          C9          C8           N          C7     180.000     5.0     2
+BOL             sp2_sp2_3           O          C7           N          C8       0.000     5.0     2
+BOL              const_24           I          C1          C2          C7       0.000    10.0     2
+BOL              const_43           I          C1          C6          C5     180.000    10.0     2
+BOL              const_27          C7          C2          C3          C4     180.000    10.0     2
+BOL             sp2_sp2_9          C1          C2          C7           N     180.000     5.0     2
+BOL              const_29          C2          C3          C4          C5       0.000    10.0     2
+BOL              const_33          C3          C4          C5          C6       0.000    10.0     2
+BOL              const_37          C4          C5          C6          C1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BOL    plan-1         C10   0.020
+BOL    plan-1         C11   0.020
+BOL    plan-1         C12   0.020
+BOL    plan-1         C13   0.020
+BOL    plan-1          C8   0.020
+BOL    plan-1          C9   0.020
+BOL    plan-1         H10   0.020
+BOL    plan-1         H11   0.020
+BOL    plan-1         H12   0.020
+BOL    plan-1         H13   0.020
+BOL    plan-1          H9   0.020
+BOL    plan-1           N   0.020
+BOL    plan-2          C1   0.020
+BOL    plan-2          C2   0.020
+BOL    plan-2          C3   0.020
+BOL    plan-2          C4   0.020
+BOL    plan-2          C5   0.020
+BOL    plan-2          C6   0.020
+BOL    plan-2          C7   0.020
+BOL    plan-2          H3   0.020
+BOL    plan-2          H4   0.020
+BOL    plan-2          H5   0.020
+BOL    plan-2          H6   0.020
+BOL    plan-2           I   0.020
+BOL    plan-3          C7   0.020
+BOL    plan-3          C8   0.020
+BOL    plan-3          HN   0.020
+BOL    plan-3           N   0.020
+BOL    plan-4          C2   0.020
+BOL    plan-4          C7   0.020
+BOL    plan-4           N   0.020
+BOL    plan-4           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BOL SMILES_CANONICAL               CACTVS 3.352                                                          Ic1ccccc1C(=O)Nc2ccccc2
+BOL           SMILES               CACTVS 3.352                                                          Ic1ccccc1C(=O)Nc2ccccc2
+BOL SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                        c1ccc(cc1)NC(=O)c2ccccc2I
+BOL           SMILES "OpenEye OEToolkits" 1.7.0                                                        c1ccc(cc1)NC(=O)c2ccccc2I
+BOL            InChI                InChI  1.03 InChI=1S/C13H10INO/c14-12-9-5-4-8-11(12)13(16)15-10-6-2-1-3-7-10/h1-9H,(H,15,16)
+BOL         InChIKey                InChI  1.03                                                      LJOZMWRYMKECFF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BOL acedrg               243         "dictionary generator"                  
+BOL acedrg_database      11          "data source"                           
+BOL rdkit                2017.03.2   "Chemoinformatics tool"
+BOL refmac5              5.8.0238    "optimization tool"                     

@@ -226,23 +226,23 @@ class SubstituteLigand(CPluginScript):
         self.cootPlugin.container.inputData.DICT = self.dictToUse
         #coot_stepped_refine,coot_fit_residues,coot_script_lines
         self.cootPlugin.container.controlParameters.SCRIPT = '''#Script to fit lignad into density
-monomerMolNo = get_monomer('DRG')
-add_ligand_clear_ligands()
-set_ligand_search_protein_molecule(MolHandle_1)
-set_ligand_search_map_molecule(MapHandle_1)
-add_ligand_search_wiggly_ligand_molecule(monomerMolNo)
+monomerMolNo = coot.get_monomer('DRG')
+coot.add_ligand_clear_ligands()
+coot.set_ligand_search_protein_molecule(MolHandle_1)
+coot.set_ligand_search_map_molecule(MapHandle_1)
+coot.add_ligand_search_wiggly_ligand_molecule(monomerMolNo)
 #Execute search
 nToCopy = 0
-ligandsFound=execute_ligand_search()
+ligandsFound=coot.execute_ligand_search()
 if ligandsFound is not False:
     nToCopy = len(ligandsFound)
 #Check on ncs
-equivs = ncs_chain_ids(0)
+equivs = coot.ncs_chain_ids(0)
 if equivs is not False and len(equivs)>0:
     nToCopy = min(len(ligandsFound),len(equivs[0]))
 if nToCopy > 0:
     ligandsToCopy = ligandsFound[0:nToCopy]
-    merge_molecules(ligandsToCopy,0)
+    coot.merge_molecules(ligandsToCopy,0)
 
 write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
         self.connectSignal(self.cootPlugin,'finished',self.cootPlugin_finished)

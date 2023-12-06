@@ -1,0 +1,241 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZE7     ZE7      6-cyclohexylhexan-1-ol     NON-POLYMER     37     13     .     
+#
+data_comp_ZE7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZE7     O1      O       OH1     0       30.376      29.734      3.152       
+ZE7     C1      C       CH2     0       29.497      29.447      4.226       
+ZE7     C2      C       CH2     0       28.276      28.697      3.757       
+ZE7     C3      C       CH2     0       27.353      28.284      4.877       
+ZE7     C4      C       CH2     0       26.120      27.557      4.396       
+ZE7     C5      C       CH2     0       25.210      27.054      5.490       
+ZE7     C6      C       CH2     0       24.349      28.131      6.144       
+ZE7     C7      C       CH1     0       23.524      27.716      7.363       
+ZE7     C8      C       CH2     0       24.381      27.530      8.615       
+ZE7     C9      C       CH2     0       23.745      26.609      9.659       
+ZE7     C10     C       CH2     0       22.227      26.640      9.602       
+ZE7     C11     C       CH2     0       21.701      26.181      8.251       
+ZE7     C12     C       CH2     0       22.680      26.469      7.111       
+ZE7     H1O     H       H       0       29.999      30.288      2.636       
+ZE7     H11     H       H       0       29.219      30.287      4.650       
+ZE7     H12     H       H       0       29.970      28.909      4.896       
+ZE7     H21     H       H       0       28.566      27.897      3.271       
+ZE7     H22     H       H       0       27.781      29.264      3.129       
+ZE7     H31     H       H       0       27.076      29.083      5.374       
+ZE7     H32     H       H       0       27.842      27.701      5.496       
+ZE7     H41     H       H       0       26.401      26.792      3.850       
+ZE7     H42     H       H       0       25.607      28.161      3.818       
+ZE7     H51     H       H       0       25.758      26.625      6.180       
+ZE7     H52     H       H       0       24.621      26.368      5.110       
+ZE7     H61     H       H       0       23.734      28.480      5.464       
+ZE7     H62     H       H       0       24.938      28.868      6.412       
+ZE7     H71     H       H       0       22.901      28.454      7.547       
+ZE7     H81     H       H       0       25.250      27.163      8.360       
+ZE7     H82     H       H       0       24.540      28.405      9.021       
+ZE7     H91     H       H       0       24.040      26.886      10.554      
+ZE7     H92     H       H       0       24.056      25.690      9.511       
+ZE7     H101    H       H       0       21.915      27.554      9.778       
+ZE7     H102    H       H       0       21.866      26.058      10.305      
+ZE7     H111    H       H       0       20.850      26.635      8.066       
+ZE7     H112    H       H       0       21.524      25.216      8.286       
+ZE7     H121    H       H       0       23.269      25.697      6.996       
+ZE7     H122    H       H       0       22.177      26.586      6.281       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZE7          O1          C1      SINGLE       n     1.417  0.0200     1.417  0.0200
+ZE7          C1          C2      SINGLE       n     1.508  0.0200     1.508  0.0200
+ZE7          C2          C3      SINGLE       n     1.509  0.0200     1.509  0.0200
+ZE7          C3          C4      SINGLE       n     1.509  0.0200     1.509  0.0200
+ZE7          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+ZE7          C5          C6      SINGLE       n     1.520  0.0152     1.520  0.0152
+ZE7          C6          C7      SINGLE       n     1.524  0.0123     1.524  0.0123
+ZE7          C7          C8      SINGLE       n     1.524  0.0100     1.524  0.0100
+ZE7          C7         C12      SINGLE       n     1.524  0.0100     1.524  0.0100
+ZE7          C8          C9      SINGLE       n     1.527  0.0100     1.527  0.0100
+ZE7          C9         C10      SINGLE       n     1.516  0.0136     1.516  0.0136
+ZE7         C10         C11      SINGLE       n     1.516  0.0136     1.516  0.0136
+ZE7         C11         C12      SINGLE       n     1.527  0.0100     1.527  0.0100
+ZE7          O1         H1O      SINGLE       n     0.970  0.0120     0.846  0.0200
+ZE7          C1         H11      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZE7          C1         H12      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZE7          C2         H21      SINGLE       n     1.089  0.0100     0.980  0.0166
+ZE7          C2         H22      SINGLE       n     1.089  0.0100     0.980  0.0166
+ZE7          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0163
+ZE7          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0163
+ZE7          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+ZE7          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+ZE7          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0160
+ZE7          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0160
+ZE7          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0140
+ZE7          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0140
+ZE7          C7         H71      SINGLE       n     1.089  0.0100     0.983  0.0100
+ZE7          C8         H81      SINGLE       n     1.089  0.0100     0.978  0.0143
+ZE7          C8         H82      SINGLE       n     1.089  0.0100     0.978  0.0143
+ZE7          C9         H91      SINGLE       n     1.089  0.0100     0.982  0.0142
+ZE7          C9         H92      SINGLE       n     1.089  0.0100     0.982  0.0142
+ZE7         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0138
+ZE7         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0138
+ZE7         C11        H111      SINGLE       n     1.089  0.0100     0.982  0.0142
+ZE7         C11        H112      SINGLE       n     1.089  0.0100     0.982  0.0142
+ZE7         C12        H121      SINGLE       n     1.089  0.0100     0.978  0.0143
+ZE7         C12        H122      SINGLE       n     1.089  0.0100     0.978  0.0143
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZE7          C1          O1         H1O     108.576    2.78
+ZE7          O1          C1          C2     111.456    3.00
+ZE7          O1          C1         H11     109.258    1.50
+ZE7          O1          C1         H12     109.258    1.50
+ZE7          C2          C1         H11     109.269    1.50
+ZE7          C2          C1         H12     109.269    1.50
+ZE7         H11          C1         H12     108.120    1.50
+ZE7          C1          C2          C3     113.583    1.50
+ZE7          C1          C2         H21     108.717    1.50
+ZE7          C1          C2         H22     108.717    1.50
+ZE7          C3          C2         H21     108.944    1.50
+ZE7          C3          C2         H22     108.944    1.50
+ZE7         H21          C2         H22     107.788    1.50
+ZE7          C2          C3          C4     113.259    1.53
+ZE7          C2          C3         H31     108.902    1.50
+ZE7          C2          C3         H32     108.902    1.50
+ZE7          C4          C3         H31     108.698    1.50
+ZE7          C4          C3         H32     108.698    1.50
+ZE7         H31          C3         H32     107.646    1.50
+ZE7          C3          C4          C5     114.879    1.50
+ZE7          C3          C4         H41     108.698    1.50
+ZE7          C3          C4         H42     108.698    1.50
+ZE7          C5          C4         H41     108.551    1.50
+ZE7          C5          C4         H42     108.551    1.50
+ZE7         H41          C4         H42     107.646    1.50
+ZE7          C4          C5          C6     114.762    1.50
+ZE7          C4          C5         H51     108.694    1.50
+ZE7          C4          C5         H52     108.694    1.50
+ZE7          C6          C5         H51     108.665    1.50
+ZE7          C6          C5         H52     108.665    1.50
+ZE7         H51          C5         H52     107.673    1.50
+ZE7          C5          C6          C7     115.438    1.50
+ZE7          C5          C6         H61     108.345    1.50
+ZE7          C5          C6         H62     108.345    1.50
+ZE7          C7          C6         H61     108.473    1.50
+ZE7          C7          C6         H62     108.473    1.50
+ZE7         H61          C6         H62     107.696    1.50
+ZE7          C6          C7          C8     112.225    1.52
+ZE7          C6          C7         C12     112.225    1.52
+ZE7          C6          C7         H71     107.857    1.50
+ZE7          C8          C7         C12     109.635    1.50
+ZE7          C8          C7         H71     107.897    1.50
+ZE7         C12          C7         H71     107.897    1.50
+ZE7          C7          C8          C9     112.229    1.50
+ZE7          C7          C8         H81     109.293    1.50
+ZE7          C7          C8         H82     109.293    1.50
+ZE7          C9          C8         H81     109.267    1.50
+ZE7          C9          C8         H82     109.267    1.50
+ZE7         H81          C8         H82     107.919    1.50
+ZE7          C8          C9         C10     111.360    1.50
+ZE7          C8          C9         H91     109.388    1.50
+ZE7          C8          C9         H92     109.388    1.50
+ZE7         C10          C9         H91     109.386    1.50
+ZE7         C10          C9         H92     109.386    1.50
+ZE7         H91          C9         H92     108.036    1.50
+ZE7          C9         C10         C11     111.038    1.50
+ZE7          C9         C10        H101     109.386    1.50
+ZE7          C9         C10        H102     109.386    1.50
+ZE7         C11         C10        H101     109.386    1.50
+ZE7         C11         C10        H102     109.386    1.50
+ZE7        H101         C10        H102     108.036    1.50
+ZE7         C10         C11         C12     111.360    1.50
+ZE7         C10         C11        H111     109.386    1.50
+ZE7         C10         C11        H112     109.386    1.50
+ZE7         C12         C11        H111     109.388    1.50
+ZE7         C12         C11        H112     109.388    1.50
+ZE7        H111         C11        H112     108.036    1.50
+ZE7          C7         C12         C11     112.229    1.50
+ZE7          C7         C12        H121     109.293    1.50
+ZE7          C7         C12        H122     109.293    1.50
+ZE7         C11         C12        H121     109.267    1.50
+ZE7         C11         C12        H122     109.267    1.50
+ZE7        H121         C12        H122     107.919    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZE7            sp3_sp3_46          C2          C1          O1         H1O     180.000    10.0     3
+ZE7            sp3_sp3_28          C9         C10         C11         C12     -60.000    10.0     3
+ZE7            sp3_sp3_37         C10         C11         C12          C7      60.000    10.0     3
+ZE7            sp3_sp3_49          O1          C1          C2          C3     180.000    10.0     3
+ZE7            sp3_sp3_58          C1          C2          C3          C4     180.000    10.0     3
+ZE7            sp3_sp3_67          C2          C3          C4          C5     180.000    10.0     3
+ZE7            sp3_sp3_76          C3          C4          C5          C6     180.000    10.0     3
+ZE7            sp3_sp3_85          C4          C5          C6          C7     180.000    10.0     3
+ZE7            sp3_sp3_95          C5          C6          C7          C8     -60.000    10.0     3
+ZE7           sp3_sp3_104         C11         C12          C7          C6     -60.000    10.0     3
+ZE7             sp3_sp3_7          C6          C7          C8          C9     180.000    10.0     3
+ZE7            sp3_sp3_10          C7          C8          C9         C10     -60.000    10.0     3
+ZE7            sp3_sp3_19         C11         C10          C9          C8      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZE7    chir_1    C7    C6    C8    C12    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZE7           SMILES              ACDLabs 12.01                                                   OCCCCCCC1CCCCC1
+ZE7            InChI                InChI  1.03 InChI=1S/C12H24O/c13-11-7-2-1-4-8-12-9-5-3-6-10-12/h12-13H,1-11H2
+ZE7         InChIKey                InChI  1.03                                       SRWKSFRBHIWJSD-UHFFFAOYSA-N
+ZE7 SMILES_CANONICAL               CACTVS 3.370                                                   OCCCCCCC1CCCCC1
+ZE7           SMILES               CACTVS 3.370                                                   OCCCCCCC1CCCCC1
+ZE7 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                 C1CCC(CC1)CCCCCCO
+ZE7           SMILES "OpenEye OEToolkits" 1.7.6                                                 C1CCC(CC1)CCCCCCO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZE7 acedrg               243         "dictionary generator"                  
+ZE7 acedrg_database      11          "data source"                           
+ZE7 rdkit                2017.03.2   "Chemoinformatics tool"
+ZE7 refmac5              5.8.0238    "optimization tool"                     

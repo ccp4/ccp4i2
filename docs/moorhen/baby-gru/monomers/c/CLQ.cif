@@ -1,0 +1,315 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CLQ     CLQ      N4-(7-CHLORO-QUINOLIN-4-YL)-N1,N1-DIETHYL-PENTANE-1,4-DIAMINE     NON-POLYMER     48     22     .     
+#
+data_comp_CLQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CLQ     CL      CL      CL      0       38.519      15.844      17.941      
+CLQ     N1      N       NRD6    0       35.960      11.895      16.052      
+CLQ     C1      C       CR16    0       35.113      10.887      16.197      
+CLQ     C2      C       CR16    0       34.463      10.536      17.393      
+CLQ     C3      C       CR6     0       34.698      11.280      18.553      
+CLQ     C4      C       CR66    0       35.613      12.389      18.444      
+CLQ     C5      C       CR16    0       35.957      13.239      19.525      
+CLQ     C6      C       CR16    0       36.834      14.283      19.371      
+CLQ     C7      C       CR6     0       37.406      14.514      18.115      
+CLQ     C8      C       CR16    0       37.117      13.731      17.035      
+CLQ     C9      C       CR66    0       36.212      12.648      17.173      
+CLQ     N2      N       NH1     0       34.089      10.973      19.725      
+CLQ     C10     C       CH1     0       33.896      9.622       20.269      
+CLQ     C11     C       CH2     0       35.235      8.903       20.437      
+CLQ     C12     C       CH2     0       36.261      9.605       21.317      
+CLQ     C13     C       CH2     0       37.596      8.877       21.373      
+CLQ     N3      N       NT      0       37.509      7.491       21.919      
+CLQ     C14     C       CH2     0       37.738      6.420       20.906      
+CLQ     C15     C       CH3     0       37.284      5.046       21.340      
+CLQ     C16     C       CH2     0       38.258      7.278       23.193      
+CLQ     C17     C       CH3     0       39.763      7.247       23.048      
+CLQ     C18     C       CH3     0       33.134      9.679       21.582      
+CLQ     H11     H       H       0       34.926      10.355      15.432      
+CLQ     H21     H       H       0       33.868      9.796       17.412      
+CLQ     H51     H       H       0       35.571      13.086      20.379      
+CLQ     H61     H       H       0       37.051      14.841      20.108      
+CLQ     H81     H       H       0       37.519      13.908      16.193      
+CLQ     HN21    H       H       0       33.755      11.630      20.188      
+CLQ     H101    H       H       0       33.342      9.108       19.626      
+CLQ     H111    H       H       0       35.626      8.768       19.548      
+CLQ     H112    H       H       0       35.054      8.018       20.817      
+CLQ     H121    H       H       0       35.906      9.683       22.228      
+CLQ     H122    H       H       0       36.412      10.513      20.976      
+CLQ     H131    H       H       0       38.213      9.401       21.926      
+CLQ     H132    H       H       0       37.973      8.844       20.469      
+CLQ     H141    H       H       0       38.692      6.384       20.685      
+CLQ     H142    H       H       0       37.258      6.659       20.085      
+CLQ     H151    H       H       0       37.221      4.465       20.564      
+CLQ     H152    H       H       0       36.413      5.112       21.765      
+CLQ     H153    H       H       0       37.924      4.676       21.969      
+CLQ     H161    H       H       0       37.964      6.436       23.598      
+CLQ     H162    H       H       0       38.020      7.997       23.815      
+CLQ     H171    H       H       0       40.174      7.355       23.921      
+CLQ     H172    H       H       0       40.051      7.969       22.465      
+CLQ     H173    H       H       0       40.035      6.397       22.666      
+CLQ     H181    H       H       0       33.096      8.790       21.976      
+CLQ     H182    H       H       0       32.229      9.999       21.421      
+CLQ     H183    H       H       0       33.585      10.284      22.196      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CLQ          CL          C7      SINGLE       n     1.743  0.0100     1.743  0.0100
+CLQ          N1          C1      DOUBLE       y     1.323  0.0100     1.323  0.0100
+CLQ          N1          C9      SINGLE       y     1.372  0.0100     1.372  0.0100
+CLQ          C1          C2      SINGLE       y     1.404  0.0100     1.404  0.0100
+CLQ          C2          C3      DOUBLE       y     1.393  0.0100     1.393  0.0100
+CLQ          C3          C4      SINGLE       y     1.433  0.0100     1.433  0.0100
+CLQ          C3          N2      SINGLE       n     1.353  0.0100     1.353  0.0100
+CLQ          C4          C5      SINGLE       y     1.411  0.0100     1.411  0.0100
+CLQ          C4          C9      DOUBLE       y     1.421  0.0100     1.421  0.0100
+CLQ          C5          C6      DOUBLE       y     1.369  0.0100     1.369  0.0100
+CLQ          C6          C7      SINGLE       y     1.397  0.0100     1.397  0.0100
+CLQ          C7          C8      DOUBLE       y     1.362  0.0100     1.362  0.0100
+CLQ          C8          C9      SINGLE       y     1.415  0.0100     1.415  0.0100
+CLQ          N2         C10      SINGLE       n     1.465  0.0100     1.465  0.0100
+CLQ         C10         C11      SINGLE       n     1.527  0.0100     1.527  0.0100
+CLQ         C10         C18      SINGLE       n     1.518  0.0109     1.518  0.0109
+CLQ         C11         C12      SINGLE       n     1.520  0.0143     1.520  0.0143
+CLQ         C12         C13      SINGLE       n     1.522  0.0100     1.522  0.0100
+CLQ         C13          N3      SINGLE       n     1.475  0.0184     1.475  0.0184
+CLQ          N3         C14      SINGLE       n     1.479  0.0150     1.479  0.0150
+CLQ          N3         C16      SINGLE       n     1.479  0.0150     1.479  0.0150
+CLQ         C14         C15      SINGLE       n     1.508  0.0173     1.508  0.0173
+CLQ         C16         C17      SINGLE       n     1.508  0.0173     1.508  0.0173
+CLQ          C1         H11      SINGLE       n     1.082  0.0130     0.950  0.0100
+CLQ          C2         H21      SINGLE       n     1.082  0.0130     0.950  0.0100
+CLQ          C5         H51      SINGLE       n     1.082  0.0130     0.950  0.0100
+CLQ          C6         H61      SINGLE       n     1.082  0.0130     0.949  0.0100
+CLQ          C8         H81      SINGLE       n     1.082  0.0130     0.950  0.0100
+CLQ          N2        HN21      SINGLE       n     1.016  0.0100     0.870  0.0106
+CLQ         C10        H101      SINGLE       n     1.089  0.0100     0.992  0.0164
+CLQ         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0160
+CLQ         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0160
+CLQ         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0160
+CLQ         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0160
+CLQ         C13        H131      SINGLE       n     1.089  0.0100     0.980  0.0143
+CLQ         C13        H132      SINGLE       n     1.089  0.0100     0.980  0.0143
+CLQ         C14        H141      SINGLE       n     1.089  0.0100     0.980  0.0143
+CLQ         C14        H142      SINGLE       n     1.089  0.0100     0.980  0.0143
+CLQ         C15        H151      SINGLE       n     1.089  0.0100     0.971  0.0145
+CLQ         C15        H152      SINGLE       n     1.089  0.0100     0.971  0.0145
+CLQ         C15        H153      SINGLE       n     1.089  0.0100     0.971  0.0145
+CLQ         C16        H161      SINGLE       n     1.089  0.0100     0.980  0.0143
+CLQ         C16        H162      SINGLE       n     1.089  0.0100     0.980  0.0143
+CLQ         C17        H171      SINGLE       n     1.089  0.0100     0.971  0.0145
+CLQ         C17        H172      SINGLE       n     1.089  0.0100     0.971  0.0145
+CLQ         C17        H173      SINGLE       n     1.089  0.0100     0.971  0.0145
+CLQ         C18        H181      SINGLE       n     1.089  0.0100     0.973  0.0146
+CLQ         C18        H182      SINGLE       n     1.089  0.0100     0.973  0.0146
+CLQ         C18        H183      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CLQ          C1          N1          C9     116.743    1.50
+CLQ          N1          C1          C2     125.823    1.50
+CLQ          N1          C1         H11     117.386    1.50
+CLQ          C2          C1         H11     116.791    1.50
+CLQ          C1          C2          C3     119.444    1.50
+CLQ          C1          C2         H21     120.307    1.50
+CLQ          C3          C2         H21     120.249    1.50
+CLQ          C2          C3          C4     116.517    1.50
+CLQ          C2          C3          N2     122.334    1.50
+CLQ          C4          C3          N2     121.149    1.59
+CLQ          C3          C4          C5     123.278    1.55
+CLQ          C3          C4          C9     118.144    1.50
+CLQ          C5          C4          C9     118.578    1.50
+CLQ          C4          C5          C6     121.437    1.50
+CLQ          C4          C5         H51     119.273    1.50
+CLQ          C6          C5         H51     119.290    1.50
+CLQ          C5          C6          C7     118.956    1.50
+CLQ          C5          C6         H61     120.542    1.50
+CLQ          C7          C6         H61     120.502    1.50
+CLQ          CL          C7          C6     118.378    1.50
+CLQ          CL          C7          C8     119.537    1.50
+CLQ          C6          C7          C8     122.084    1.50
+CLQ          C7          C8          C9     119.691    1.50
+CLQ          C7          C8         H81     120.371    1.50
+CLQ          C9          C8         H81     119.938    1.50
+CLQ          N1          C9          C4     123.328    1.50
+CLQ          N1          C9          C8     117.418    1.50
+CLQ          C4          C9          C8     119.253    1.50
+CLQ          C3          N2         C10     125.338    1.50
+CLQ          C3          N2        HN21     117.881    3.00
+CLQ         C10          N2        HN21     116.781    2.52
+CLQ          N2         C10         C11     109.328    1.50
+CLQ          N2         C10         C18     109.840    1.50
+CLQ          N2         C10        H101     107.866    1.50
+CLQ         C11         C10         C18     110.927    1.50
+CLQ         C11         C10        H101     108.261    1.50
+CLQ         C18         C10        H101     107.403    1.50
+CLQ         C10         C11         C12     114.477    2.22
+CLQ         C10         C11        H111     108.329    1.50
+CLQ         C10         C11        H112     108.329    1.50
+CLQ         C12         C11        H111     108.775    1.50
+CLQ         C12         C11        H112     108.775    1.50
+CLQ        H111         C11        H112     107.844    1.50
+CLQ         C11         C12         C13     113.118    2.03
+CLQ         C11         C12        H121     109.262    1.50
+CLQ         C11         C12        H122     109.262    1.50
+CLQ         C13         C12        H121     108.945    1.50
+CLQ         C13         C12        H122     108.945    1.50
+CLQ        H121         C12        H122     107.927    1.57
+CLQ         C12         C13          N3     114.151    1.56
+CLQ         C12         C13        H131     108.873    1.50
+CLQ         C12         C13        H132     108.873    1.50
+CLQ          N3         C13        H131     108.838    1.50
+CLQ          N3         C13        H132     108.838    1.50
+CLQ        H131         C13        H132     107.673    1.50
+CLQ         C13          N3         C14     112.216    2.51
+CLQ         C13          N3         C16     112.216    2.51
+CLQ         C14          N3         C16     110.773    1.86
+CLQ          N3         C14         C15     113.741    1.57
+CLQ          N3         C14        H141     109.022    1.50
+CLQ          N3         C14        H142     109.022    1.50
+CLQ         C15         C14        H141     109.135    1.50
+CLQ         C15         C14        H142     109.135    1.50
+CLQ        H141         C14        H142     107.838    1.50
+CLQ         C14         C15        H151     109.529    1.50
+CLQ         C14         C15        H152     109.529    1.50
+CLQ         C14         C15        H153     109.529    1.50
+CLQ        H151         C15        H152     109.415    1.50
+CLQ        H151         C15        H153     109.415    1.50
+CLQ        H152         C15        H153     109.415    1.50
+CLQ          N3         C16         C17     113.741    1.57
+CLQ          N3         C16        H161     109.022    1.50
+CLQ          N3         C16        H162     109.022    1.50
+CLQ         C17         C16        H161     109.135    1.50
+CLQ         C17         C16        H162     109.135    1.50
+CLQ        H161         C16        H162     107.838    1.50
+CLQ         C16         C17        H171     109.529    1.50
+CLQ         C16         C17        H172     109.529    1.50
+CLQ         C16         C17        H173     109.529    1.50
+CLQ        H171         C17        H172     109.415    1.50
+CLQ        H171         C17        H173     109.415    1.50
+CLQ        H172         C17        H173     109.415    1.50
+CLQ         C10         C18        H181     109.592    1.50
+CLQ         C10         C18        H182     109.592    1.50
+CLQ         C10         C18        H183     109.592    1.50
+CLQ        H181         C18        H182     109.386    1.50
+CLQ        H181         C18        H183     109.386    1.50
+CLQ        H182         C18        H183     109.386    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CLQ             sp2_sp3_1          C3          N2         C10         C11       0.000    10.0     6
+CLQ             sp3_sp3_1          N2         C10         C11         C12     180.000    10.0     3
+CLQ            sp3_sp3_10          N2         C10         C18        H181     180.000    10.0     3
+CLQ            sp3_sp3_19         C10         C11         C12         C13     180.000    10.0     3
+CLQ            sp3_sp3_28         C11         C12         C13          N3     180.000    10.0     3
+CLQ            sp3_sp3_38         C12         C13          N3         C14     -60.000    10.0     3
+CLQ            sp3_sp3_43         C15         C14          N3         C13     180.000    10.0     3
+CLQ            sp3_sp3_50         C17         C16          N3         C13     -60.000    10.0     3
+CLQ            sp3_sp3_55          N3         C14         C15        H151     180.000    10.0     3
+CLQ            sp3_sp3_64          N3         C16         C17        H171     180.000    10.0     3
+CLQ              const_39          C4          C9          N1          C1       0.000    10.0     2
+CLQ       const_sp2_sp2_1          C2          C1          N1          C9       0.000     5.0     2
+CLQ       const_sp2_sp2_3          N1          C1          C2          C3       0.000     5.0     2
+CLQ       const_sp2_sp2_8          C1          C2          C3          N2     180.000     5.0     2
+CLQ             sp2_sp2_1          C2          C3          N2         C10     180.000     5.0     2
+CLQ              const_14          N2          C3          C4          C5       0.000    10.0     2
+CLQ              const_15          C3          C4          C9          N1       0.000    10.0     2
+CLQ              const_21          C3          C4          C5          C6     180.000    10.0     2
+CLQ              const_23          C4          C5          C6          C7       0.000    10.0     2
+CLQ              const_28          C5          C6          C7          CL     180.000    10.0     2
+CLQ              const_33          CL          C7          C8          C9     180.000    10.0     2
+CLQ              const_36          C7          C8          C9          N1     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CLQ    chir_1    C10    N2    C11    C18    negative
+CLQ    chir_2    N3    C13    C14    C16    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CLQ    plan-1          C1   0.020
+CLQ    plan-1          C2   0.020
+CLQ    plan-1          C3   0.020
+CLQ    plan-1          C4   0.020
+CLQ    plan-1          C5   0.020
+CLQ    plan-1          C6   0.020
+CLQ    plan-1          C7   0.020
+CLQ    plan-1          C8   0.020
+CLQ    plan-1          C9   0.020
+CLQ    plan-1          CL   0.020
+CLQ    plan-1         H11   0.020
+CLQ    plan-1         H21   0.020
+CLQ    plan-1         H51   0.020
+CLQ    plan-1         H61   0.020
+CLQ    plan-1         H81   0.020
+CLQ    plan-1          N1   0.020
+CLQ    plan-1          N2   0.020
+CLQ    plan-2         C10   0.020
+CLQ    plan-2          C3   0.020
+CLQ    plan-2        HN21   0.020
+CLQ    plan-2          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CLQ           SMILES              ACDLabs 10.04                                                                                                    Clc1cc2nccc(c2cc1)NC(C)CCCN(CC)CC
+CLQ SMILES_CANONICAL               CACTVS 3.341                                                                                               CCN(CC)CCC[C@@H](C)Nc1ccnc2cc(Cl)ccc12
+CLQ           SMILES               CACTVS 3.341                                                                                                 CCN(CC)CCC[CH](C)Nc1ccnc2cc(Cl)ccc12
+CLQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                               CCN(CC)CCC[C@@H](C)Nc1ccnc2c1ccc(c2)Cl
+CLQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                    CCN(CC)CCCC(C)Nc1ccnc2c1ccc(c2)Cl
+CLQ            InChI                InChI  1.03 InChI=1S/C18H26ClN3/c1-4-22(5-2)12-6-7-14(3)21-17-10-11-20-18-13-15(19)8-9-16(17)18/h8-11,13-14H,4-7,12H2,1-3H3,(H,20,21)/t14-/m1/s1
+CLQ         InChIKey                InChI  1.03                                                                                                          WHTVZRBIWZFKQO-CQSZACIVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CLQ acedrg               243         "dictionary generator"                  
+CLQ acedrg_database      11          "data source"                           
+CLQ rdkit                2017.03.2   "Chemoinformatics tool"
+CLQ refmac5              5.8.0238    "optimization tool"                     

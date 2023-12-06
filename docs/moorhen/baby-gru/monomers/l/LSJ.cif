@@ -1,0 +1,382 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LSJ     LSJ      N-{3-[(1Z)-1-(10-methoxydibenzo[b,e]oxepin-11(6H)-ylidene)propyl]phenyl}methanesulfonamide     NON-POLYMER     56     31     .     
+#
+data_comp_LSJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LSJ     C1      C       CH2     0       -24.240     41.288      -8.341      
+LSJ     O2      O       O2      0       -23.492     40.516      -7.375      
+LSJ     C3      C       CR6     0       -23.815     39.252      -6.916      
+LSJ     C4      C       CR6     0       -24.926     38.496      -7.359      
+LSJ     C5      C       CR16    0       -25.128     37.217      -6.824      
+LSJ     C6      C       CR16    0       -24.287     36.692      -5.875      
+LSJ     C7      C       CR16    0       -23.204     37.434      -5.445      
+LSJ     C8      C       CR16    0       -22.970     38.691      -5.957      
+LSJ     C9      C       C       0       -25.889     38.994      -8.388      
+LSJ     C10     C       C       0       -27.218     39.167      -8.174      
+LSJ     C11     C       CR6     0       -28.173     39.572      -9.258      
+LSJ     C12     C       CR16    0       -29.121     38.669      -9.731      
+LSJ     C13     C       CR16    0       -30.013     39.039      -10.725     
+LSJ     C14     C       CR16    0       -29.979     40.314      -11.256     
+LSJ     C15     C       CR6     0       -29.041     41.229      -10.795     
+LSJ     C16     C       CR16    0       -28.144     40.862      -9.787      
+LSJ     N17     N       NH1     0       -28.977     42.562      -11.315     
+LSJ     S18     S       S3      0       -29.422     43.042      -12.810     
+LSJ     O19     O       O       0       -28.799     42.154      -13.737     
+LSJ     O20     O       O       0       -30.845     43.140      -12.807     
+LSJ     C21     C       CH3     0       -28.760     44.645      -13.052     
+LSJ     C22     C       CH2     0       -27.874     38.960      -6.817      
+LSJ     C23     C       CH3     0       -28.992     39.950      -6.484      
+LSJ     C24     C       CR6     0       -25.210     39.382      -9.657      
+LSJ     C25     C       CR6     0       -24.400     40.518      -9.622      
+LSJ     C26     C       CR16    0       -23.738     40.917      -10.782     
+LSJ     C27     C       CR16    0       -23.879     40.200      -11.958     
+LSJ     C28     C       CR16    0       -24.676     39.072      -11.999     
+LSJ     C29     C       CR6     0       -25.350     38.652      -10.850     
+LSJ     O30     O       O2      0       -26.154     37.544      -10.785     
+LSJ     C31     C       CH3     0       -26.744     37.007      -11.968     
+LSJ     H1      H       H       0       -25.115     41.521      -7.972      
+LSJ     H1A     H       H       0       -23.762     42.122      -8.519      
+LSJ     H5      H       H       0       -25.869     36.712      -7.113      
+LSJ     H6      H       H       0       -24.446     35.831      -5.523      
+LSJ     H7      H       H       0       -22.619     37.079      -4.796      
+LSJ     H8      H       H       0       -22.227     39.183      -5.653      
+LSJ     H12     H       H       0       -29.152     37.798      -9.375      
+LSJ     H13     H       H       0       -30.646     38.420      -11.041     
+LSJ     H14     H       H       0       -30.590     40.556      -11.931     
+LSJ     H16     H       H       0       -27.510     41.481      -9.474      
+LSJ     HN17    H       H       0       -28.673     43.173      -10.786     
+LSJ     H21     H       H       0       -29.457     45.303      -12.912     
+LSJ     H21A    H       H       0       -28.421     44.717      -13.957     
+LSJ     H21B    H       H       0       -28.040     44.793      -12.421     
+LSJ     H22     H       H       0       -27.196     39.033      -6.112      
+LSJ     H22A    H       H       0       -28.247     38.051      -6.784      
+LSJ     H23     H       H       0       -29.143     39.955      -5.523      
+LSJ     H23A    H       H       0       -29.812     39.684      -6.936      
+LSJ     H23B    H       H       0       -28.736     40.844      -6.773      
+LSJ     H26     H       H       0       -23.191     41.685      -10.764     
+LSJ     H27     H       H       0       -23.429     40.480      -12.735     
+LSJ     H28     H       H       0       -24.763     38.594      -12.803     
+LSJ     H31     H       H       0       -26.054     36.599      -12.517     
+LSJ     H31A    H       H       0       -27.179     37.718      -12.467     
+LSJ     H31B    H       H       0       -27.401     36.335      -11.723     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LSJ          C1          O2      SINGLE       n     1.432  0.0146     1.432  0.0146
+LSJ          C1         C25      SINGLE       n     1.502  0.0100     1.502  0.0100
+LSJ          O2          C3      SINGLE       n     1.369  0.0100     1.369  0.0100
+LSJ          C3          C4      DOUBLE       y     1.397  0.0100     1.397  0.0100
+LSJ          C3          C8      SINGLE       y     1.388  0.0100     1.388  0.0100
+LSJ          C4          C5      SINGLE       y     1.395  0.0111     1.395  0.0111
+LSJ          C4          C9      SINGLE       n     1.491  0.0100     1.491  0.0100
+LSJ          C5          C6      DOUBLE       y     1.373  0.0108     1.373  0.0108
+LSJ          C6          C7      SINGLE       y     1.383  0.0123     1.383  0.0123
+LSJ          C7          C8      DOUBLE       y     1.375  0.0106     1.375  0.0106
+LSJ          C9         C10      DOUBLE       n     1.347  0.0100     1.347  0.0100
+LSJ          C9         C24      SINGLE       n     1.491  0.0100     1.491  0.0100
+LSJ         C10         C11      SINGLE       n     1.496  0.0100     1.496  0.0100
+LSJ         C10         C22      SINGLE       n     1.514  0.0100     1.514  0.0100
+LSJ         C11         C12      DOUBLE       y     1.390  0.0100     1.390  0.0100
+LSJ         C11         C16      SINGLE       y     1.389  0.0100     1.389  0.0100
+LSJ         C12         C13      SINGLE       y     1.384  0.0100     1.384  0.0100
+LSJ         C13         C14      DOUBLE       y     1.379  0.0100     1.379  0.0100
+LSJ         C14         C15      SINGLE       y     1.383  0.0100     1.383  0.0100
+LSJ         C15         C16      DOUBLE       y     1.393  0.0100     1.393  0.0100
+LSJ         C15         N17      SINGLE       n     1.422  0.0171     1.422  0.0171
+LSJ         N17         S18      SINGLE       n     1.629  0.0128     1.629  0.0128
+LSJ         S18         O19      DOUBLE       n     1.427  0.0100     1.427  0.0100
+LSJ         S18         O20      DOUBLE       n     1.427  0.0100     1.427  0.0100
+LSJ         S18         C21      SINGLE       n     1.750  0.0100     1.750  0.0100
+LSJ         C22         C23      SINGLE       n     1.526  0.0122     1.526  0.0122
+LSJ         C24         C25      DOUBLE       y     1.399  0.0100     1.399  0.0100
+LSJ         C24         C29      SINGLE       y     1.398  0.0100     1.398  0.0100
+LSJ         C25         C26      SINGLE       y     1.391  0.0100     1.391  0.0100
+LSJ         C26         C27      DOUBLE       y     1.382  0.0100     1.382  0.0100
+LSJ         C27         C28      SINGLE       y     1.377  0.0100     1.377  0.0100
+LSJ         C28         C29      DOUBLE       y     1.388  0.0100     1.388  0.0100
+LSJ         C29         O30      SINGLE       n     1.365  0.0100     1.365  0.0100
+LSJ         O30         C31      SINGLE       n     1.424  0.0117     1.424  0.0117
+LSJ          C1          H1      SINGLE       n     1.089  0.0100     0.978  0.0133
+LSJ          C1         H1A      SINGLE       n     1.089  0.0100     0.978  0.0133
+LSJ          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0168
+LSJ          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0180
+LSJ          C7          H7      SINGLE       n     1.082  0.0130     0.943  0.0183
+LSJ          C8          H8      SINGLE       n     1.082  0.0130     0.941  0.0179
+LSJ         C12         H12      SINGLE       n     1.082  0.0130     0.941  0.0168
+LSJ         C13         H13      SINGLE       n     1.082  0.0130     0.940  0.0164
+LSJ         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0178
+LSJ         C16         H16      SINGLE       n     1.082  0.0130     0.939  0.0130
+LSJ         N17        HN17      SINGLE       n     1.016  0.0100     0.863  0.0132
+LSJ         C21         H21      SINGLE       n     1.089  0.0100     0.969  0.0154
+LSJ         C21        H21A      SINGLE       n     1.089  0.0100     0.969  0.0154
+LSJ         C21        H21B      SINGLE       n     1.089  0.0100     0.969  0.0154
+LSJ         C22         H22      SINGLE       n     1.089  0.0100     0.983  0.0171
+LSJ         C22        H22A      SINGLE       n     1.089  0.0100     0.983  0.0171
+LSJ         C23         H23      SINGLE       n     1.089  0.0100     0.973  0.0141
+LSJ         C23        H23A      SINGLE       n     1.089  0.0100     0.973  0.0141
+LSJ         C23        H23B      SINGLE       n     1.089  0.0100     0.973  0.0141
+LSJ         C26         H26      SINGLE       n     1.082  0.0130     0.943  0.0173
+LSJ         C27         H27      SINGLE       n     1.082  0.0130     0.941  0.0152
+LSJ         C28         H28      SINGLE       n     1.082  0.0130     0.941  0.0179
+LSJ         C31         H31      SINGLE       n     1.089  0.0100     0.971  0.0157
+LSJ         C31        H31A      SINGLE       n     1.089  0.0100     0.971  0.0157
+LSJ         C31        H31B      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LSJ          O2          C1         C25     109.567    2.18
+LSJ          O2          C1          H1     109.697    1.50
+LSJ          O2          C1         H1A     109.697    1.50
+LSJ         C25          C1          H1     110.054    1.50
+LSJ         C25          C1         H1A     110.054    1.50
+LSJ          H1          C1         H1A     108.398    1.50
+LSJ          C1          O2          C3     118.066    1.50
+LSJ          O2          C3          C4     117.004    2.15
+LSJ          O2          C3          C8     123.294    1.58
+LSJ          C4          C3          C8     119.702    1.50
+LSJ          C3          C4          C5     118.558    1.50
+LSJ          C3          C4          C9     120.940    1.50
+LSJ          C5          C4          C9     120.502    1.50
+LSJ          C4          C5          C6     121.407    1.50
+LSJ          C4          C5          H5     119.138    1.50
+LSJ          C6          C5          H5     119.456    1.50
+LSJ          C5          C6          C7     120.119    1.50
+LSJ          C5          C6          H6     119.895    1.50
+LSJ          C7          C6          H6     119.986    1.50
+LSJ          C6          C7          C8     120.620    1.50
+LSJ          C6          C7          H7     119.875    1.50
+LSJ          C8          C7          H7     119.506    1.50
+LSJ          C3          C8          C7     119.595    1.50
+LSJ          C3          C8          H8     120.167    1.50
+LSJ          C7          C8          H8     120.238    1.50
+LSJ          C4          C9         C10     122.268    1.50
+LSJ          C4          C9         C24     115.464    1.99
+LSJ         C10          C9         C24     122.268    1.50
+LSJ          C9         C10         C11     123.178    1.50
+LSJ          C9         C10         C22     122.000    1.58
+LSJ         C11         C10         C22     114.823    1.50
+LSJ         C10         C11         C12     120.412    1.50
+LSJ         C10         C11         C16     120.414    1.50
+LSJ         C12         C11         C16     119.174    1.50
+LSJ         C11         C12         C13     120.886    1.50
+LSJ         C11         C12         H12     119.479    1.50
+LSJ         C13         C12         H12     119.635    1.50
+LSJ         C12         C13         C14     120.538    1.50
+LSJ         C12         C13         H13     119.827    1.50
+LSJ         C14         C13         H13     119.635    1.50
+LSJ         C13         C14         C15     119.747    1.50
+LSJ         C13         C14         H14     120.140    1.50
+LSJ         C15         C14         H14     120.113    1.50
+LSJ         C14         C15         C16     120.087    1.50
+LSJ         C14         C15         N17     119.956    2.41
+LSJ         C16         C15         N17     119.956    2.41
+LSJ         C11         C16         C15     119.568    1.50
+LSJ         C11         C16         H16     120.131    1.50
+LSJ         C15         C16         H16     120.301    1.50
+LSJ         C15         N17         S18     124.452    3.00
+LSJ         C15         N17        HN17     117.774    1.56
+LSJ         S18         N17        HN17     117.756    1.59
+LSJ         N17         S18         O19     106.966    1.72
+LSJ         N17         S18         O20     106.966    1.72
+LSJ         N17         S18         C21     106.714    1.50
+LSJ         O19         S18         O20     118.713    1.50
+LSJ         O19         S18         C21     108.412    1.50
+LSJ         O20         S18         C21     108.412    1.50
+LSJ         S18         C21         H21     109.254    1.50
+LSJ         S18         C21        H21A     109.254    1.50
+LSJ         S18         C21        H21B     109.254    1.50
+LSJ         H21         C21        H21A     109.614    1.50
+LSJ         H21         C21        H21B     109.614    1.50
+LSJ        H21A         C21        H21B     109.614    1.50
+LSJ         C10         C22         C23     113.296    1.50
+LSJ         C10         C22         H22     108.960    1.50
+LSJ         C10         C22        H22A     108.960    1.50
+LSJ         C23         C22         H22     108.663    1.50
+LSJ         C23         C22        H22A     108.663    1.50
+LSJ         H22         C22        H22A     108.208    1.50
+LSJ         C22         C23         H23     109.501    1.50
+LSJ         C22         C23        H23A     109.501    1.50
+LSJ         C22         C23        H23B     109.501    1.50
+LSJ         H23         C23        H23A     109.380    1.50
+LSJ         H23         C23        H23B     109.380    1.50
+LSJ        H23A         C23        H23B     109.380    1.50
+LSJ          C9         C24         C25     120.441    1.59
+LSJ          C9         C24         C29     120.276    1.50
+LSJ         C25         C24         C29     119.284    1.50
+LSJ          C1         C25         C24     121.865    1.50
+LSJ          C1         C25         C26     119.158    1.55
+LSJ         C24         C25         C26     118.977    1.50
+LSJ         C25         C26         C27     121.346    1.50
+LSJ         C25         C26         H26     119.097    1.50
+LSJ         C27         C26         H26     119.556    1.50
+LSJ         C26         C27         C28     120.455    1.50
+LSJ         C26         C27         H27     119.907    1.50
+LSJ         C28         C27         H27     119.629    1.50
+LSJ         C27         C28         C29     119.685    1.50
+LSJ         C27         C28         H28     120.193    1.50
+LSJ         C29         C28         H28     120.122    1.50
+LSJ         C24         C29         C28     120.263    1.50
+LSJ         C24         C29         O30     116.431    2.15
+LSJ         C28         C29         O30     123.307    1.50
+LSJ         C29         O30         C31     118.009    1.50
+LSJ         O30         C31         H31     109.428    1.50
+LSJ         O30         C31        H31A     109.428    1.50
+LSJ         O30         C31        H31B     109.428    1.50
+LSJ         H31         C31        H31A     109.509    1.50
+LSJ         H31         C31        H31B     109.509    1.50
+LSJ        H31A         C31        H31B     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LSJ             sp3_sp3_1         C25          C1          O2          C3     180.000    10.0     3
+LSJ             sp2_sp3_2         C24         C25          C1          O2     -90.000    10.0     6
+LSJ       const_sp2_sp2_3         C10         C11         C12         C13     180.000     5.0     2
+LSJ              const_67         C10         C11         C16         C15     180.000    10.0     2
+LSJ       const_sp2_sp2_5         C11         C12         C13         C14       0.000     5.0     2
+LSJ       const_sp2_sp2_9         C12         C13         C14         C15       0.000     5.0     2
+LSJ              const_14         C13         C14         C15         N17     180.000    10.0     2
+LSJ              const_19         N17         C15         C16         C11     180.000    10.0     2
+LSJ            sp2_sp2_19         C14         C15         N17         S18     180.000     5.0     2
+LSJ            sp2_sp3_14         C15         N17         S18         O19     120.000    10.0     6
+LSJ             sp3_sp3_6         H21         C21         S18         N17      60.000    10.0     3
+LSJ             sp2_sp2_1          C4          C3          O2          C1     180.000     5.0     2
+LSJ            sp3_sp3_13         C10         C22         C23         H23     180.000    10.0     3
+LSJ              const_24          C9         C24         C25          C1       0.000    10.0     2
+LSJ              const_72          C9         C24         C29         O30       0.000    10.0     2
+LSJ              const_27          C1         C25         C26         C27     180.000    10.0     2
+LSJ              const_29         C25         C26         C27         C28       0.000    10.0     2
+LSJ              const_33         C26         C27         C28         C29       0.000    10.0     2
+LSJ              const_38         C27         C28         C29         O30     180.000    10.0     2
+LSJ            sp2_sp2_23         C24         C29         O30         C31     180.000     5.0     2
+LSJ            sp3_sp3_23         H31         C31         O30         C29     -60.000    10.0     3
+LSJ              const_44          O2          C3          C4          C9       0.000    10.0     2
+LSJ              const_63          O2          C3          C8          C7     180.000    10.0     2
+LSJ              const_47          C9          C4          C5          C6     180.000    10.0     2
+LSJ             sp2_sp2_3          C3          C4          C9         C10     180.000     5.0     2
+LSJ              const_49          C4          C5          C6          C7       0.000    10.0     2
+LSJ              const_53          C5          C6          C7          C8       0.000    10.0     2
+LSJ              const_57          C6          C7          C8          C3       0.000    10.0     2
+LSJ            sp2_sp2_12         C25         C24          C9         C10       0.000     5.0     2
+LSJ             sp2_sp2_7         C22         C10          C9          C4     180.000     5.0     2
+LSJ            sp2_sp2_17          C9         C10         C11         C12       0.000     5.0     2
+LSJ             sp2_sp3_8          C9         C10         C22         C23     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LSJ    chir_1    S18    O19    O20    N17    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LSJ    plan-1         C10   0.020
+LSJ    plan-1         C11   0.020
+LSJ    plan-1         C12   0.020
+LSJ    plan-1         C13   0.020
+LSJ    plan-1         C14   0.020
+LSJ    plan-1         C15   0.020
+LSJ    plan-1         C16   0.020
+LSJ    plan-1         H12   0.020
+LSJ    plan-1         H13   0.020
+LSJ    plan-1         H14   0.020
+LSJ    plan-1         H16   0.020
+LSJ    plan-1         N17   0.020
+LSJ    plan-2          C1   0.020
+LSJ    plan-2         C24   0.020
+LSJ    plan-2         C25   0.020
+LSJ    plan-2         C26   0.020
+LSJ    plan-2         C27   0.020
+LSJ    plan-2         C28   0.020
+LSJ    plan-2         C29   0.020
+LSJ    plan-2          C9   0.020
+LSJ    plan-2         H26   0.020
+LSJ    plan-2         H27   0.020
+LSJ    plan-2         H28   0.020
+LSJ    plan-2         O30   0.020
+LSJ    plan-3          C3   0.020
+LSJ    plan-3          C4   0.020
+LSJ    plan-3          C5   0.020
+LSJ    plan-3          C6   0.020
+LSJ    plan-3          C7   0.020
+LSJ    plan-3          C8   0.020
+LSJ    plan-3          C9   0.020
+LSJ    plan-3          H5   0.020
+LSJ    plan-3          H6   0.020
+LSJ    plan-3          H7   0.020
+LSJ    plan-3          H8   0.020
+LSJ    plan-3          O2   0.020
+LSJ    plan-4         C10   0.020
+LSJ    plan-4         C24   0.020
+LSJ    plan-4          C4   0.020
+LSJ    plan-4          C9   0.020
+LSJ    plan-5         C10   0.020
+LSJ    plan-5         C11   0.020
+LSJ    plan-5         C22   0.020
+LSJ    plan-5          C9   0.020
+LSJ    plan-6         C15   0.020
+LSJ    plan-6        HN17   0.020
+LSJ    plan-6         N17   0.020
+LSJ    plan-6         S18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LSJ           SMILES              ACDLabs 12.01                                                                                            O=S(=O)(Nc1cccc(c1)/C(=C2/c4c(OCc3c2c(OC)ccc3)cccc4)CC)C
+LSJ            InChI                InChI  1.03 InChI=1S/C25H25NO4S/c1-4-20(17-9-7-11-19(15-17)26-31(3,27)28)25-21-12-5-6-13-22(21)30-16-18-10-8-14-23(29-2)24(18)25/h5-15,26H,4,16H2,1-3H3/b25-20-
+LSJ         InChIKey                InChI  1.03                                                                                                                         PHIKAOOZNGLKDI-QQTULTPQSA-N
+LSJ SMILES_CANONICAL               CACTVS 3.370                                                                                            CCC(\c1cccc(N[S](C)(=O)=O)c1)=C2/c3ccccc3OCc4cccc(OC)c24
+LSJ           SMILES               CACTVS 3.370                                                                                              CCC(c1cccc(N[S](C)(=O)=O)c1)=C2c3ccccc3OCc4cccc(OC)c24
+LSJ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                            CC/C(=C/1\c2ccccc2OCc3c1c(ccc3)OC)/c4cccc(c4)NS(=O)(=O)C
+LSJ           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                CCC(=C1c2ccccc2OCc3c1c(ccc3)OC)c4cccc(c4)NS(=O)(=O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LSJ acedrg               243         "dictionary generator"                  
+LSJ acedrg_database      11          "data source"                           
+LSJ rdkit                2017.03.2   "Chemoinformatics tool"
+LSJ refmac5              5.8.0238    "optimization tool"                     

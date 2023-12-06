@@ -1,0 +1,290 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PIU     PIU      1-{2-[4-(AMINOSULFONYL)PHENYL]ETHYL}-2,4,6-TRIMETHYLPYRIDINIUM     NON-POLYMER     42     21     .     
+#
+data_comp_PIU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PIU     S1      S       S3      0       -5.419      1.025       16.579      
+PIU     O1      O       O       0       -4.984      1.103       17.942      
+PIU     O2      O       O       0       -6.756      0.591       16.302      
+PIU     N1      N       NT2     0       -4.432      0.011       15.826      
+PIU     C1      C       CR16    0       -6.136      4.754       15.244      
+PIU     C3      C       CR16    0       -3.837      4.285       14.828      
+PIU     C4      C       CR16    0       -3.984      3.023       15.383      
+PIU     C6      C       CR16    0       -6.303      3.497       15.802      
+PIU     C2      C       CR6     0       -4.906      5.169       14.749      
+PIU     C5      C       CR6     0       -5.222      2.631       15.869      
+PIU     C15     C       CH2     0       -4.736      6.541       14.144      
+PIU     C16     C       CH2     0       -4.997      6.493       12.620      
+PIU     N2      N       NR6     1       -4.822      7.821       11.977      
+PIU     C7      C       CR16    0       -3.419      9.467       10.893      
+PIU     C9      C       CR16    0       -5.723      9.952       11.269      
+PIU     C10     C       CR6     0       -5.901      8.706       11.870      
+PIU     C11     C       CR6     0       -3.571      8.216       11.489      
+PIU     C8      C       CR6     0       -4.486      10.347      10.777      
+PIU     C12     C       CH3     0       -4.307      11.699      10.131      
+PIU     C13     C       CH3     0       -2.392      7.274       11.605      
+PIU     C14     C       CH3     0       -7.259      8.298       12.400      
+PIU     HN11    H       H       0       -4.792      -0.765      15.674      
+PIU     HN12    H       H       0       -3.632      0.000       16.165      
+PIU     H1      H       H       0       -6.874      5.339       15.200      
+PIU     H3      H       H       0       -2.994      4.547       14.498      
+PIU     H4      H       H       0       -3.250      2.438       15.428      
+PIU     H6      H       H       0       -7.142      3.233       16.132      
+PIU     H151    H       H       0       -3.825      6.863       14.312      
+PIU     H152    H       H       0       -5.362      7.166       14.566      
+PIU     H161    H       H       0       -5.903      6.163       12.465      
+PIU     H162    H       H       0       -4.389      5.844       12.216      
+PIU     H7      H       H       0       -2.575      9.726       10.562      
+PIU     H9      H       H       0       -6.454      10.543      11.195      
+PIU     H121    H       H       0       -5.130      11.958      9.685       
+PIU     H122    H       H       0       -3.588      11.655      9.479       
+PIU     H123    H       H       0       -4.087      12.357      10.810      
+PIU     H131    H       H       0       -1.585      7.726       11.311      
+PIU     H132    H       H       0       -2.540      6.494       11.046      
+PIU     H133    H       H       0       -2.280      6.996       12.529      
+PIU     H141    H       H       0       -7.871      9.050       12.338      
+PIU     H142    H       H       0       -7.183      8.028       13.329      
+PIU     H143    H       H       0       -7.607      7.561       11.873      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PIU          S1          O1      DOUBLE       n     1.433  0.0100     1.433  0.0100
+PIU          S1          O2      DOUBLE       n     1.433  0.0100     1.433  0.0100
+PIU          S1          N1      SINGLE       n     1.603  0.0110     1.603  0.0110
+PIU          S1          C5      SINGLE       n     1.766  0.0100     1.766  0.0100
+PIU          C1          C6      DOUBLE       y     1.382  0.0100     1.382  0.0100
+PIU          C1          C2      SINGLE       y     1.385  0.0110     1.385  0.0110
+PIU          C3          C4      SINGLE       y     1.382  0.0100     1.382  0.0100
+PIU          C3          C2      DOUBLE       y     1.385  0.0110     1.385  0.0110
+PIU          C4          C5      DOUBLE       y     1.383  0.0100     1.383  0.0100
+PIU          C6          C5      SINGLE       y     1.383  0.0100     1.383  0.0100
+PIU          C2         C15      SINGLE       n     1.509  0.0100     1.509  0.0100
+PIU         C15         C16      SINGLE       n     1.545  0.0200     1.545  0.0200
+PIU         C16          N2      SINGLE       n     1.476  0.0100     1.476  0.0100
+PIU          N2         C10      DOUBLE       y     1.384  0.0103     1.384  0.0103
+PIU          N2         C11      SINGLE       y     1.384  0.0103     1.384  0.0103
+PIU          C7         C11      DOUBLE       y     1.391  0.0104     1.391  0.0104
+PIU          C7          C8      SINGLE       y     1.388  0.0100     1.388  0.0100
+PIU          C9         C10      SINGLE       y     1.391  0.0104     1.391  0.0104
+PIU          C9          C8      DOUBLE       y     1.388  0.0100     1.388  0.0100
+PIU         C10         C14      SINGLE       n     1.507  0.0123     1.507  0.0123
+PIU         C11         C13      SINGLE       n     1.507  0.0123     1.507  0.0123
+PIU          C8         C12      SINGLE       n     1.509  0.0144     1.509  0.0144
+PIU          N1        HN11      SINGLE       n     1.036  0.0160     0.869  0.0200
+PIU          N1        HN12      SINGLE       n     1.036  0.0160     0.869  0.0200
+PIU          C1          H1      SINGLE       n     1.082  0.0130     0.943  0.0173
+PIU          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0173
+PIU          C4          H4      SINGLE       n     1.082  0.0130     0.940  0.0163
+PIU          C6          H6      SINGLE       n     1.082  0.0130     0.940  0.0163
+PIU         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0169
+PIU         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0169
+PIU         C16        H161      SINGLE       n     1.089  0.0100     0.980  0.0157
+PIU         C16        H162      SINGLE       n     1.089  0.0100     0.980  0.0157
+PIU          C7          H7      SINGLE       n     1.082  0.0130     0.943  0.0168
+PIU          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0168
+PIU         C12        H121      SINGLE       n     1.089  0.0100     0.971  0.0135
+PIU         C12        H122      SINGLE       n     1.089  0.0100     0.971  0.0135
+PIU         C12        H123      SINGLE       n     1.089  0.0100     0.971  0.0135
+PIU         C13        H131      SINGLE       n     1.089  0.0100     0.971  0.0138
+PIU         C13        H132      SINGLE       n     1.089  0.0100     0.971  0.0138
+PIU         C13        H133      SINGLE       n     1.089  0.0100     0.971  0.0138
+PIU         C14        H141      SINGLE       n     1.089  0.0100     0.971  0.0138
+PIU         C14        H142      SINGLE       n     1.089  0.0100     0.971  0.0138
+PIU         C14        H143      SINGLE       n     1.089  0.0100     0.971  0.0138
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PIU          O1          S1          O2     118.954    1.50
+PIU          O1          S1          N1     107.154    1.50
+PIU          O1          S1          C5     107.472    1.50
+PIU          O2          S1          N1     107.154    1.50
+PIU          O2          S1          C5     107.472    1.50
+PIU          N1          S1          C5     108.480    1.50
+PIU          S1          N1        HN11     113.070    3.00
+PIU          S1          N1        HN12     113.070    3.00
+PIU        HN11          N1        HN12     115.993    3.00
+PIU          C6          C1          C2     121.305    1.50
+PIU          C6          C1          H1     119.281    1.50
+PIU          C2          C1          H1     119.413    1.50
+PIU          C4          C3          C2     121.305    1.50
+PIU          C4          C3          H3     119.281    1.50
+PIU          C2          C3          H3     119.413    1.50
+PIU          C3          C4          C5     119.497    1.50
+PIU          C3          C4          H4     120.299    1.50
+PIU          C5          C4          H4     120.204    1.50
+PIU          C1          C6          C5     119.497    1.50
+PIU          C1          C6          H6     120.299    1.50
+PIU          C5          C6          H6     120.204    1.50
+PIU          C1          C2          C3     117.965    1.50
+PIU          C1          C2         C15     121.018    1.59
+PIU          C3          C2         C15     121.018    1.59
+PIU          S1          C5          C4     119.785    1.50
+PIU          S1          C5          C6     119.785    1.50
+PIU          C4          C5          C6     120.431    1.50
+PIU          C2         C15         C16     110.389    1.87
+PIU          C2         C15        H151     109.555    1.50
+PIU          C2         C15        H152     109.555    1.50
+PIU         C16         C15        H151     109.585    1.50
+PIU         C16         C15        H152     109.585    1.50
+PIU        H151         C15        H152     108.123    1.50
+PIU         C15         C16          N2     112.155    1.50
+PIU         C15         C16        H161     108.995    1.50
+PIU         C15         C16        H162     108.995    1.50
+PIU          N2         C16        H161     108.980    1.50
+PIU          N2         C16        H162     108.980    1.50
+PIU        H161         C16        H162     107.893    1.50
+PIU         C16          N2         C10     119.704    1.83
+PIU         C16          N2         C11     119.704    1.83
+PIU         C10          N2         C11     120.593    2.37
+PIU         C11          C7          C8     120.792    1.50
+PIU         C11          C7          H7     119.801    1.50
+PIU          C8          C7          H7     119.407    1.50
+PIU         C10          C9          C8     120.792    1.50
+PIU         C10          C9          H9     119.801    1.50
+PIU          C8          C9          H9     119.407    1.50
+PIU          N2         C10          C9     119.802    1.50
+PIU          N2         C10         C14     117.401    1.50
+PIU          C9         C10         C14     122.797    1.50
+PIU          N2         C11          C7     119.802    1.50
+PIU          N2         C11         C13     117.401    1.50
+PIU          C7         C11         C13     122.797    1.50
+PIU          C7          C8          C9     118.219    1.50
+PIU          C7          C8         C12     120.891    1.50
+PIU          C9          C8         C12     120.891    1.50
+PIU          C8         C12        H121     109.567    1.50
+PIU          C8         C12        H122     109.567    1.50
+PIU          C8         C12        H123     109.567    1.50
+PIU        H121         C12        H122     109.348    1.50
+PIU        H121         C12        H123     109.348    1.50
+PIU        H122         C12        H123     109.348    1.50
+PIU         C11         C13        H131     109.458    1.50
+PIU         C11         C13        H132     109.458    1.50
+PIU         C11         C13        H133     109.458    1.50
+PIU        H131         C13        H132     109.339    1.66
+PIU        H131         C13        H133     109.339    1.66
+PIU        H132         C13        H133     109.339    1.66
+PIU         C10         C14        H141     109.458    1.50
+PIU         C10         C14        H142     109.458    1.50
+PIU         C10         C14        H143     109.458    1.50
+PIU        H141         C14        H142     109.339    1.66
+PIU        H141         C14        H143     109.339    1.66
+PIU        H142         C14        H143     109.339    1.66
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PIU             sp3_sp3_2        HN11          N1          S1          O1     -60.000    10.0     3
+PIU             sp2_sp3_1          C4          C5          S1          O1     150.000    10.0     6
+PIU             sp3_sp3_7          C2         C15         C16          N2     180.000    10.0     3
+PIU            sp2_sp3_14         C10          N2         C16         C15     -90.000    10.0     6
+PIU       const_sp2_sp2_4         C14         C10          N2         C16       0.000     5.0     2
+PIU              const_48         C13         C11          N2         C16       0.000    10.0     2
+PIU              const_19         C13         C11          C7          C8     180.000    10.0     2
+PIU              const_14         C11          C7          C8         C12     180.000    10.0     2
+PIU       const_sp2_sp2_7         C14         C10          C9          C8     180.000     5.0     2
+PIU              const_11         C12          C8          C9         C10     180.000    10.0     2
+PIU            sp2_sp3_19          N2         C10         C14        H141     150.000    10.0     6
+PIU            sp2_sp3_25          N2         C11         C13        H131     150.000    10.0     6
+PIU            sp2_sp3_31          C7          C8         C12        H121     150.000    10.0     6
+PIU              const_21          C2          C1          C6          C5       0.000    10.0     2
+PIU              const_42          C6          C1          C2         C15     180.000    10.0     2
+PIU              const_33          C2          C3          C4          C5       0.000    10.0     2
+PIU              const_39         C15          C2          C3          C4     180.000    10.0     2
+PIU              const_30          C3          C4          C5          S1     180.000    10.0     2
+PIU              const_27          S1          C5          C6          C1     180.000    10.0     2
+PIU             sp2_sp3_8          C1          C2         C15         C16     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PIU    chir_1    S1    O1    O2    N1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PIU    plan-1         C10   0.020
+PIU    plan-1         C11   0.020
+PIU    plan-1         C12   0.020
+PIU    plan-1         C13   0.020
+PIU    plan-1         C14   0.020
+PIU    plan-1         C16   0.020
+PIU    plan-1          C7   0.020
+PIU    plan-1          C8   0.020
+PIU    plan-1          C9   0.020
+PIU    plan-1          H7   0.020
+PIU    plan-1          H9   0.020
+PIU    plan-1          N2   0.020
+PIU    plan-2          C1   0.020
+PIU    plan-2         C15   0.020
+PIU    plan-2          C2   0.020
+PIU    plan-2          C3   0.020
+PIU    plan-2          C4   0.020
+PIU    plan-2          C5   0.020
+PIU    plan-2          C6   0.020
+PIU    plan-2          H1   0.020
+PIU    plan-2          H3   0.020
+PIU    plan-2          H4   0.020
+PIU    plan-2          H6   0.020
+PIU    plan-2          S1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PIU           SMILES              ACDLabs 10.04                                                                                    O=S(=O)(N)c1ccc(cc1)CC[n+]2c(cc(cc2C)C)C
+PIU SMILES_CANONICAL               CACTVS 3.341                                                                                Cc1cc(C)[n+](CCc2ccc(cc2)[S](N)(=O)=O)c(C)c1
+PIU           SMILES               CACTVS 3.341                                                                                Cc1cc(C)[n+](CCc2ccc(cc2)[S](N)(=O)=O)c(C)c1
+PIU SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                  Cc1cc([n+](c(c1)C)CCc2ccc(cc2)S(=O)(=O)N)C
+PIU           SMILES "OpenEye OEToolkits" 1.5.0                                                                                  Cc1cc([n+](c(c1)C)CCc2ccc(cc2)S(=O)(=O)N)C
+PIU            InChI                InChI  1.03 InChI=1S/C16H21N2O2S/c1-12-10-13(2)18(14(3)11-12)9-8-15-4-6-16(7-5-15)21(17,19)20/h4-7,10-11H,8-9H2,1-3H3,(H2,17,19,20)/q+1
+PIU         InChIKey                InChI  1.03                                                                                                 UXBCHTZINZNVRG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PIU acedrg               243         "dictionary generator"                  
+PIU acedrg_database      11          "data source"                           
+PIU rdkit                2017.03.2   "Chemoinformatics tool"
+PIU refmac5              5.8.0238    "optimization tool"                     

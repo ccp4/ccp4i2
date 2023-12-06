@@ -1,0 +1,295 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EXS     EXS      (2R)-2,4-dihydroxy-N-[2-(7-hydroxy-1H-benzimidazol-2-yl)ethyl]-3,3-dimethylbutanamide     NON-POLYMER     43     22     .     
+#
+data_comp_EXS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EXS     C1      C       CR5     0       27.448      -8.231      31.601      
+EXS     C2      C       CH2     0       26.133      -7.557      31.704      
+EXS     C3      C       CH2     0       25.245      -8.134      32.798      
+EXS     C14     C       C       0       25.841      -10.370     33.680      
+EXS     C16     C       CH1     0       25.790      -11.876     33.452      
+EXS     C18     C       CT      0       24.589      -12.596     34.098      
+EXS     C19     C       CH3     0       23.266      -12.009     33.589      
+EXS     C20     C       CH2     0       24.607      -14.092     33.784      
+EXS     C21     C       CH3     0       24.644      -12.423     35.622      
+EXS     N4      N       NH1     0       25.217      -9.591      32.798      
+EXS     C5      C       CR16    0       31.697      -9.758      31.822      
+EXS     C6      C       CR16    0       31.145      -10.681     30.927      
+EXS     C7      C       CR16    0       29.828      -10.615     30.545      
+EXS     C8      C       CR56    0       29.041      -9.591      31.080      
+EXS     C9      C       CR56    0       29.574      -8.654      31.979      
+EXS     C10     C       CR6     0       30.928      -8.737      32.359      
+EXS     N11     N       NR5     0       28.533      -7.811      32.289      
+EXS     N12     N       NRD5    0       27.697      -9.297      30.866      
+EXS     O13     O       OH1     0       31.460      -7.826      33.239      
+EXS     O15     O       O       0       26.450      -9.939      34.659      
+EXS     O17     O       OH1     0       25.833      -12.137     32.052      
+EXS     O22     O       OH1     0       25.812      -14.731     34.190      
+EXS     H1      H       H       0       25.674      -7.633      30.853      
+EXS     H2      H       H       0       26.276      -6.614      31.879      
+EXS     H3      H       H       0       24.332      -7.806      32.668      
+EXS     H4      H       H       0       25.560      -7.811      33.666      
+EXS     H5      H       H       0       26.607      -12.256     33.857      
+EXS     H6      H       H       0       23.285      -11.947     32.619      
+EXS     H7      H       H       0       23.129      -11.122     33.965      
+EXS     H8      H       H       0       22.530      -12.585     33.858      
+EXS     H9      H       H       0       24.487      -14.224     32.815      
+EXS     H10     H       H       0       23.851      -14.527     34.242      
+EXS     H11     H       H       0       24.001      -13.021     36.042      
+EXS     H12     H       H       0       24.428      -11.505     35.860      
+EXS     H13     H       H       0       25.538      -12.637     35.942      
+EXS     H14     H       H       0       24.753      -9.979      32.169      
+EXS     H15     H       H       0       32.599      -9.825      32.065      
+EXS     H16     H       H       0       31.693      -11.364     30.578      
+EXS     H17     H       H       0       29.463      -11.238     29.944      
+EXS     H18     H       H       0       28.569      -7.121      32.835      
+EXS     H20     H       H       0       32.148      -8.034      33.712      
+EXS     H21     H       H       0       26.363      -12.783     31.898      
+EXS     H22     H       H       0       25.808      -15.528     33.905      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EXS          C8         N12      SINGLE       y     1.392  0.0100     1.392  0.0100
+EXS          C1         N12      DOUBLE       y     1.318  0.0100     1.318  0.0100
+EXS          C7          C8      DOUBLE       y     1.393  0.0100     1.393  0.0100
+EXS          C6          C7      SINGLE       y     1.371  0.0115     1.371  0.0115
+EXS          C8          C9      SINGLE       y     1.397  0.0100     1.397  0.0100
+EXS          C1          C2      SINGLE       n     1.481  0.0100     1.481  0.0100
+EXS          C2          C3      SINGLE       n     1.518  0.0160     1.518  0.0160
+EXS          C1         N11      SINGLE       y     1.351  0.0100     1.351  0.0100
+EXS         C16         O17      SINGLE       n     1.419  0.0162     1.419  0.0162
+EXS          C5          C6      DOUBLE       y     1.399  0.0100     1.399  0.0100
+EXS          C9         N11      SINGLE       y     1.375  0.0100     1.375  0.0100
+EXS          C9         C10      DOUBLE       y     1.404  0.0100     1.404  0.0100
+EXS          C3          N4      SINGLE       n     1.453  0.0100     1.453  0.0100
+EXS         C14          N4      SINGLE       n     1.326  0.0100     1.326  0.0100
+EXS          C5         C10      SINGLE       y     1.384  0.0100     1.384  0.0100
+EXS         C10         O13      SINGLE       n     1.374  0.0155     1.374  0.0155
+EXS         C14         C16      SINGLE       n     1.519  0.0108     1.519  0.0108
+EXS         C16         C18      SINGLE       n     1.532  0.0112     1.532  0.0112
+EXS         C14         O15      DOUBLE       n     1.229  0.0102     1.229  0.0102
+EXS         C20         O22      SINGLE       n     1.423  0.0111     1.423  0.0111
+EXS         C18         C20      SINGLE       n     1.525  0.0104     1.525  0.0104
+EXS         C18         C19      SINGLE       n     1.531  0.0109     1.531  0.0109
+EXS         C18         C21      SINGLE       n     1.531  0.0109     1.531  0.0109
+EXS          C2          H1      SINGLE       n     1.089  0.0100     0.970  0.0100
+EXS          C2          H2      SINGLE       n     1.089  0.0100     0.970  0.0100
+EXS          C3          H3      SINGLE       n     1.089  0.0100     0.979  0.0200
+EXS          C3          H4      SINGLE       n     1.089  0.0100     0.979  0.0200
+EXS         C16          H5      SINGLE       n     1.089  0.0100     0.988  0.0129
+EXS         C19          H6      SINGLE       n     1.089  0.0100     0.973  0.0146
+EXS         C19          H7      SINGLE       n     1.089  0.0100     0.973  0.0146
+EXS         C19          H8      SINGLE       n     1.089  0.0100     0.973  0.0146
+EXS         C20          H9      SINGLE       n     1.089  0.0100     0.985  0.0115
+EXS         C20         H10      SINGLE       n     1.089  0.0100     0.985  0.0115
+EXS         C21         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+EXS         C21         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+EXS         C21         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+EXS          N4         H14      SINGLE       n     1.016  0.0100     0.872  0.0200
+EXS          C5         H15      SINGLE       n     1.082  0.0130     0.937  0.0149
+EXS          C6         H16      SINGLE       n     1.082  0.0130     0.942  0.0176
+EXS          C7         H17      SINGLE       n     1.082  0.0130     0.940  0.0194
+EXS         N11         H18      SINGLE       n     1.016  0.0100     0.881  0.0200
+EXS         O13         H20      SINGLE       n     0.966  0.0059     0.861  0.0200
+EXS         O17         H21      SINGLE       n     0.970  0.0120     0.848  0.0200
+EXS         O22         H22      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EXS         N12          C1          C2     125.380    1.50
+EXS         N12          C1         N11     112.198    1.50
+EXS          C2          C1         N11     122.422    1.50
+EXS          C1          C2          C3     112.733    1.51
+EXS          C1          C2          H1     108.854    1.50
+EXS          C1          C2          H2     108.854    1.50
+EXS          C3          C2          H1     108.920    1.50
+EXS          C3          C2          H2     108.920    1.50
+EXS          H1          C2          H2     107.724    1.50
+EXS          C2          C3          N4     112.353    2.15
+EXS          C2          C3          H3     109.046    1.50
+EXS          C2          C3          H4     109.046    1.50
+EXS          N4          C3          H3     108.834    1.50
+EXS          N4          C3          H4     108.834    1.50
+EXS          H3          C3          H4     109.011    2.70
+EXS          N4         C14         C16     117.155    1.50
+EXS          N4         C14         O15     122.977    1.50
+EXS         C16         C14         O15     119.851    1.78
+EXS         O17         C16         C14     109.850    1.55
+EXS         O17         C16         C18     109.482    3.00
+EXS         O17         C16          H5     108.675    1.50
+EXS         C14         C16         C18     111.511    2.91
+EXS         C14         C16          H5     108.529    1.70
+EXS         C18         C16          H5     107.825    1.50
+EXS         C16         C18         C20     111.094    2.85
+EXS         C16         C18         C19     109.534    1.52
+EXS         C16         C18         C21     109.534    1.52
+EXS         C20         C18         C19     109.385    1.50
+EXS         C20         C18         C21     109.385    1.50
+EXS         C19         C18         C21     108.765    1.50
+EXS         C18         C19          H6     109.575    1.50
+EXS         C18         C19          H7     109.575    1.50
+EXS         C18         C19          H8     109.575    1.50
+EXS          H6         C19          H7     109.377    1.50
+EXS          H6         C19          H8     109.377    1.50
+EXS          H7         C19          H8     109.377    1.50
+EXS         O22         C20         C18     112.722    1.73
+EXS         O22         C20          H9     109.100    1.50
+EXS         O22         C20         H10     109.100    1.50
+EXS         C18         C20          H9     109.473    1.50
+EXS         C18         C20         H10     109.473    1.50
+EXS          H9         C20         H10     108.307    1.50
+EXS         C18         C21         H11     109.575    1.50
+EXS         C18         C21         H12     109.575    1.50
+EXS         C18         C21         H13     109.575    1.50
+EXS         H11         C21         H12     109.377    1.50
+EXS         H11         C21         H13     109.377    1.50
+EXS         H12         C21         H13     109.377    1.50
+EXS          C3          N4         C14     123.005    1.80
+EXS          C3          N4         H14     118.268    1.83
+EXS         C14          N4         H14     118.726    1.94
+EXS          C6          C5         C10     122.022    1.50
+EXS          C6          C5         H15     119.379    1.50
+EXS         C10          C5         H15     118.599    1.50
+EXS          C7          C6          C5     122.669    1.50
+EXS          C7          C6         H16     118.771    1.50
+EXS          C5          C6         H16     118.560    1.50
+EXS          C8          C7          C6     118.023    1.50
+EXS          C8          C7         H17     120.767    1.50
+EXS          C6          C7         H17     121.211    1.50
+EXS         N12          C8          C7     130.244    1.50
+EXS         N12          C8          C9     109.320    1.50
+EXS          C7          C8          C9     120.436    1.50
+EXS          C8          C9         N11     105.951    1.50
+EXS          C8          C9         C10     118.844    1.59
+EXS         N11          C9         C10     135.205    1.56
+EXS          C9         C10          C5     118.007    1.50
+EXS          C9         C10         O13     120.475    3.00
+EXS          C5         C10         O13     121.519    3.00
+EXS          C1         N11          C9     107.431    1.50
+EXS          C1         N11         H18     126.357    1.50
+EXS          C9         N11         H18     126.212    1.93
+EXS          C8         N12          C1     105.100    1.50
+EXS         C10         O13         H20     120.000    3.00
+EXS         C16         O17         H21     108.894    3.00
+EXS         C20         O22         H22     108.853    2.22
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EXS             sp2_sp3_2         N12          C1          C2          C3     -90.000    10.0     6
+EXS              const_31          C2          C1         N11          C9     180.000    10.0     2
+EXS              const_22          C2          C1         N12          C8     180.000    10.0     2
+EXS       const_sp2_sp2_1         C10          C5          C6          C7       0.000     5.0     2
+EXS              const_35         O13         C10          C5          C6     180.000    10.0     2
+EXS       const_sp2_sp2_5          C5          C6          C7          C8       0.000     5.0     2
+EXS              const_10          C6          C7          C8         N12     180.000    10.0     2
+EXS              const_13         N12          C8          C9         N11       0.000    10.0     2
+EXS              const_24          C7          C8         N12          C1     180.000    10.0     2
+EXS              const_19         O13         C10          C9          C8     180.000    10.0     2
+EXS              const_25          C8          C9         N11          C1       0.000    10.0     2
+EXS             sp2_sp2_5          C9         C10         O13         H20     180.000     5.0     2
+EXS             sp3_sp3_1          C1          C2          C3          N4     180.000    10.0     3
+EXS             sp2_sp3_8         C14          N4          C3          C2     120.000    10.0     6
+EXS            sp2_sp3_13          N4         C14         C16         O17       0.000    10.0     6
+EXS             sp2_sp2_1         C16         C14          N4          C3     180.000     5.0     2
+EXS            sp3_sp3_10         C14         C16         O17         H21     180.000    10.0     3
+EXS            sp3_sp3_14         O17         C16         C18         C20     -60.000    10.0     3
+EXS            sp3_sp3_37         C16         C18         C19          H6      60.000    10.0     3
+EXS            sp3_sp3_25         C16         C18         C20         O22     180.000    10.0     3
+EXS            sp3_sp3_43         C16         C18         C21         H11     180.000    10.0     3
+EXS            sp3_sp3_22         C18         C20         O22         H22     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EXS    chir_1    C16    O17    C14    C18    negative
+EXS    chir_2    C18    C16    C20    C19    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EXS    plan-1          C1   0.020
+EXS    plan-1         C10   0.020
+EXS    plan-1          C2   0.020
+EXS    plan-1          C5   0.020
+EXS    plan-1          C6   0.020
+EXS    plan-1          C7   0.020
+EXS    plan-1          C8   0.020
+EXS    plan-1          C9   0.020
+EXS    plan-1         H15   0.020
+EXS    plan-1         H16   0.020
+EXS    plan-1         H17   0.020
+EXS    plan-1         H18   0.020
+EXS    plan-1         N11   0.020
+EXS    plan-1         N12   0.020
+EXS    plan-1         O13   0.020
+EXS    plan-2         C14   0.020
+EXS    plan-2         C16   0.020
+EXS    plan-2          N4   0.020
+EXS    plan-2         O15   0.020
+EXS    plan-3         C14   0.020
+EXS    plan-3          C3   0.020
+EXS    plan-3         H14   0.020
+EXS    plan-3          N4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EXS           SMILES              ACDLabs 12.01                                                                                                     c2(nc1c(cccc1O)n2)CCNC(=O)C(C(C)(C)CO)O
+EXS            InChI                InChI  1.03 InChI=1S/C15H21N3O4/c1-15(2,8-19)13(21)14(22)16-7-6-11-17-9-4-3-5-10(20)12(9)18-11/h3-5,13,19-21H,6-8H2,1-2H3,(H,16,22)(H,17,18)/t13-/m0/s1
+EXS         InChIKey                InChI  1.03                                                                                                                 SKIDJNQZVCDYIE-ZDUSSCGKSA-N
+EXS SMILES_CANONICAL               CACTVS 3.385                                                                                               CC(C)(CO)[C@@H](O)C(=O)NCCc1[nH]c2c(O)cccc2n1
+EXS           SMILES               CACTVS 3.385                                                                                                 CC(C)(CO)[CH](O)C(=O)NCCc1[nH]c2c(O)cccc2n1
+EXS SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                CC(C)(CO)[C@H](C(=O)NCCc1[nH]c2c(n1)cccc2O)O
+EXS           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                    CC(C)(CO)C(C(=O)NCCc1[nH]c2c(n1)cccc2O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EXS acedrg               243         "dictionary generator"                  
+EXS acedrg_database      11          "data source"                           
+EXS rdkit                2017.03.2   "Chemoinformatics tool"
+EXS refmac5              5.8.0238    "optimization tool"                     

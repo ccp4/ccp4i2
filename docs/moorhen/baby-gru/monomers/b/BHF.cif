@@ -1,0 +1,268 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BHF     BHF      2-PHENYL-4H-BENZO[H]CHROMEN-4-ONE     NON-POLYMER     33     21     .     
+#
+data_comp_BHF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BHF     C8      C       CR16    0       3.771       16.920      21.846      
+BHF     C9      C       CR6     0       2.816       15.846      21.720      
+BHF     O2      O       O       0       2.879       14.833      22.429      
+BHF     C10     C       CR66    0       1.774       16.030      20.705      
+BHF     C11     C       CR16    0       0.761       15.055      20.466      
+BHF     C12     C       CR16    0       -0.184      15.256      19.525      
+BHF     C13     C       CR66    0       -0.198      16.450      18.740      
+BHF     C14     C       CR16    0       -1.184      16.679      17.746      
+BHF     C15     C       CR16    0       -1.192      17.820      17.001      
+BHF     C16     C       CR16    0       -0.212      18.808      17.203      
+BHF     C17     C       CR16    0       0.766       18.627      18.159      
+BHF     C18     C       CR66    0       0.800       17.452      18.949      
+BHF     C19     C       CR66    0       1.769       17.217      19.933      
+BHF     O1      O       O2      0       2.731       18.182      20.134      
+BHF     C7      C       CR6     0       3.711       18.026      21.079      
+BHF     C1      C       CR6     0       4.655       19.153      21.159      
+BHF     C2      C       CR16    0       6.032       18.927      21.228      
+BHF     C3      C       CR16    0       6.917       19.990      21.304      
+BHF     C4      C       CR16    0       6.448       21.288      21.313      
+BHF     C5      C       CR16    0       5.090       21.529      21.246      
+BHF     C6      C       CR16    0       4.196       20.473      21.171      
+BHF     H8      H       H       0       4.457       16.848      22.481      
+BHF     H11     H       H       0       0.751       14.253      20.977      
+BHF     H12     H       H       0       -0.852      14.595      19.379      
+BHF     H14     H       H       0       -1.848      16.025      17.599      
+BHF     H15     H       H       0       -1.858      17.948      16.345      
+BHF     H16     H       H       0       -0.223      19.596      16.684      
+BHF     H17     H       H       0       1.415       19.301      18.281      
+BHF     H2      H       H       0       6.360       18.050      21.222      
+BHF     H3      H       H       0       7.845       19.825      21.350      
+BHF     H4      H       H       0       7.054       22.009      21.365      
+BHF     H5      H       H       0       4.769       22.415      21.253      
+BHF     H6      H       H       0       3.277       20.646      21.125      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BHF          C8          C9      SINGLE       y     1.441  0.0100     1.441  0.0100
+BHF          C8          C7      DOUBLE       y     1.345  0.0100     1.345  0.0100
+BHF          C9          O2      DOUBLE       n     1.237  0.0100     1.237  0.0100
+BHF          C9         C10      SINGLE       y     1.461  0.0124     1.461  0.0124
+BHF         C10         C11      DOUBLE       y     1.422  0.0100     1.422  0.0100
+BHF         C10         C19      SINGLE       y     1.402  0.0144     1.402  0.0144
+BHF         C11         C12      SINGLE       y     1.346  0.0100     1.346  0.0100
+BHF         C12         C13      DOUBLE       y     1.426  0.0100     1.426  0.0100
+BHF         C13         C14      SINGLE       y     1.415  0.0100     1.415  0.0100
+BHF         C13         C18      SINGLE       y     1.421  0.0100     1.421  0.0100
+BHF         C14         C15      DOUBLE       y     1.358  0.0118     1.358  0.0118
+BHF         C15         C16      SINGLE       y     1.402  0.0131     1.402  0.0131
+BHF         C16         C17      DOUBLE       y     1.377  0.0100     1.377  0.0100
+BHF         C17         C18      SINGLE       y     1.411  0.0100     1.411  0.0100
+BHF         C18         C19      DOUBLE       y     1.392  0.0100     1.392  0.0100
+BHF         C19          O1      SINGLE       y     1.372  0.0100     1.372  0.0100
+BHF          O1          C7      SINGLE       y     1.366  0.0100     1.366  0.0100
+BHF          C7          C1      SINGLE       n     1.471  0.0100     1.471  0.0100
+BHF          C1          C2      DOUBLE       y     1.394  0.0100     1.394  0.0100
+BHF          C1          C6      SINGLE       y     1.394  0.0100     1.394  0.0100
+BHF          C2          C3      SINGLE       y     1.382  0.0100     1.382  0.0100
+BHF          C3          C4      DOUBLE       y     1.376  0.0114     1.376  0.0114
+BHF          C4          C5      SINGLE       y     1.376  0.0124     1.376  0.0124
+BHF          C5          C6      DOUBLE       y     1.382  0.0100     1.382  0.0100
+BHF          C8          H8      SINGLE       n     1.082  0.0130     0.938  0.0200
+BHF         C11         H11      SINGLE       n     1.082  0.0130     0.952  0.0141
+BHF         C12         H12      SINGLE       n     1.082  0.0130     0.951  0.0200
+BHF         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0192
+BHF         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0184
+BHF         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0184
+BHF         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0100
+BHF          C2          H2      SINGLE       n     1.082  0.0130     0.936  0.0121
+BHF          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0180
+BHF          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0161
+BHF          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0180
+BHF          C6          H6      SINGLE       n     1.082  0.0130     0.936  0.0121
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BHF          C9          C8          C7     122.444    1.50
+BHF          C9          C8          H8     118.908    1.50
+BHF          C7          C8          H8     118.648    1.50
+BHF          C8          C9          O2     121.959    1.50
+BHF          C8          C9         C10     116.166    1.50
+BHF          O2          C9         C10     121.875    1.50
+BHF          C9         C10         C11     121.911    1.50
+BHF          C9         C10         C19     119.343    1.50
+BHF         C11         C10         C19     118.745    1.50
+BHF         C10         C11         C12     120.877    1.50
+BHF         C10         C11         H11     119.442    1.50
+BHF         C12         C11         H11     119.681    1.50
+BHF         C11         C12         C13     120.788    1.50
+BHF         C11         C12         H12     119.826    1.50
+BHF         C13         C12         H12     119.385    1.50
+BHF         C12         C13         C14     122.391    1.50
+BHF         C12         C13         C18     119.738    1.50
+BHF         C14         C13         C18     117.871    1.50
+BHF         C13         C14         C15     121.017    1.50
+BHF         C13         C14         H14     119.313    1.50
+BHF         C15         C14         H14     119.670    1.50
+BHF         C14         C15         C16     120.323    1.50
+BHF         C14         C15         H15     119.867    1.50
+BHF         C16         C15         H15     119.811    1.50
+BHF         C15         C16         C17     120.265    1.50
+BHF         C15         C16         H16     119.888    1.50
+BHF         C17         C16         H16     119.848    1.50
+BHF         C16         C17         C18     121.017    1.50
+BHF         C16         C17         H17     119.161    1.50
+BHF         C18         C17         H17     119.822    1.50
+BHF         C13         C18         C17     119.508    1.50
+BHF         C13         C18         C19     117.947    1.50
+BHF         C17         C18         C19     122.545    1.50
+BHF         C10         C19         C18     121.904    1.50
+BHF         C10         C19          O1     120.675    1.50
+BHF         C18         C19          O1     117.420    1.50
+BHF         C19          O1          C7     120.117    1.50
+BHF          C8          C7          O1     121.254    1.50
+BHF          C8          C7          C1     124.726    1.68
+BHF          O1          C7          C1     114.020    1.50
+BHF          C7          C1          C2     120.766    1.50
+BHF          C7          C1          C6     120.766    1.50
+BHF          C2          C1          C6     118.469    1.50
+BHF          C1          C2          C3     120.483    1.50
+BHF          C1          C2          H2     119.774    1.50
+BHF          C3          C2          H2     119.743    1.50
+BHF          C2          C3          C4     120.301    1.50
+BHF          C2          C3          H3     119.798    1.50
+BHF          C4          C3          H3     119.901    1.50
+BHF          C3          C4          C5     119.964    1.50
+BHF          C3          C4          H4     120.018    1.50
+BHF          C5          C4          H4     120.018    1.50
+BHF          C4          C5          C6     120.301    1.50
+BHF          C4          C5          H5     119.901    1.50
+BHF          C6          C5          H5     119.798    1.50
+BHF          C1          C6          C5     120.483    1.50
+BHF          C1          C6          H6     119.774    1.50
+BHF          C5          C6          H6     119.743    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BHF              const_22          C7          C8          C9          O2     180.000    10.0     2
+BHF              const_77          O1          C7          C8          C9       0.000    10.0     2
+BHF              const_53         C16         C17         C18         C13       0.000    10.0     2
+BHF              const_17         C13         C18         C19         C10       0.000    10.0     2
+BHF              const_33         C10         C19          O1          C7       0.000    10.0     2
+BHF              const_35          C8          C7          O1         C19       0.000    10.0     2
+BHF             sp2_sp2_1          C2          C1          C7          C8     180.000     5.0     2
+BHF              const_59          C7          C1          C2          C3     180.000    10.0     2
+BHF              const_83          C7          C1          C6          C5     180.000    10.0     2
+BHF              const_61          C1          C2          C3          C4       0.000    10.0     2
+BHF              const_65          C2          C3          C4          C5       0.000    10.0     2
+BHF              const_69          C3          C4          C5          C6       0.000    10.0     2
+BHF              const_73          C4          C5          C6          C1       0.000    10.0     2
+BHF              const_28         C11         C10          C9          O2       0.000    10.0     2
+BHF              const_30          C9         C10         C19         C18     180.000    10.0     2
+BHF       const_sp2_sp2_3          C9         C10         C11         C12     180.000     5.0     2
+BHF       const_sp2_sp2_5         C10         C11         C12         C13       0.000     5.0     2
+BHF              const_10         C11         C12         C13         C14     180.000    10.0     2
+BHF              const_14         C12         C13         C18         C17     180.000    10.0     2
+BHF              const_39         C12         C13         C14         C15     180.000    10.0     2
+BHF              const_41         C13         C14         C15         C16       0.000    10.0     2
+BHF              const_45         C14         C15         C16         C17       0.000    10.0     2
+BHF              const_49         C15         C16         C17         C18       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BHF    plan-1          C1   0.020
+BHF    plan-1         C10   0.020
+BHF    plan-1         C11   0.020
+BHF    plan-1         C12   0.020
+BHF    plan-1         C13   0.020
+BHF    plan-1         C14   0.020
+BHF    plan-1         C17   0.020
+BHF    plan-1         C18   0.020
+BHF    plan-1         C19   0.020
+BHF    plan-1          C7   0.020
+BHF    plan-1          C8   0.020
+BHF    plan-1          C9   0.020
+BHF    plan-1         H11   0.020
+BHF    plan-1         H12   0.020
+BHF    plan-1          H8   0.020
+BHF    plan-1          O1   0.020
+BHF    plan-1          O2   0.020
+BHF    plan-2         C12   0.020
+BHF    plan-2         C13   0.020
+BHF    plan-2         C14   0.020
+BHF    plan-2         C15   0.020
+BHF    plan-2         C16   0.020
+BHF    plan-2         C17   0.020
+BHF    plan-2         C18   0.020
+BHF    plan-2         C19   0.020
+BHF    plan-2         H14   0.020
+BHF    plan-2         H15   0.020
+BHF    plan-2         H16   0.020
+BHF    plan-2         H17   0.020
+BHF    plan-3          C1   0.020
+BHF    plan-3          C2   0.020
+BHF    plan-3          C3   0.020
+BHF    plan-3          C4   0.020
+BHF    plan-3          C5   0.020
+BHF    plan-3          C6   0.020
+BHF    plan-3          C7   0.020
+BHF    plan-3          H2   0.020
+BHF    plan-3          H3   0.020
+BHF    plan-3          H4   0.020
+BHF    plan-3          H5   0.020
+BHF    plan-3          H6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BHF           SMILES              ACDLabs 10.04                                                         O=C1c4c(OC(=C1)c2ccccc2)c3ccccc3cc4
+BHF SMILES_CANONICAL               CACTVS 3.341                                                           O=C1C=C(Oc2c1ccc3ccccc23)c4ccccc4
+BHF           SMILES               CACTVS 3.341                                                           O=C1C=C(Oc2c1ccc3ccccc23)c4ccccc4
+BHF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                         c1ccc(cc1)C2=CC(=O)c3ccc4ccccc4c3O2
+BHF           SMILES "OpenEye OEToolkits" 1.5.0                                                         c1ccc(cc1)C2=CC(=O)c3ccc4ccccc4c3O2
+BHF            InChI                InChI  1.03 InChI=1S/C19H12O2/c20-17-12-18(14-7-2-1-3-8-14)21-19-15-9-5-4-6-13(15)10-11-16(17)19/h1-12H
+BHF         InChIKey                InChI  1.03                                                                 VFMMPHCGEFXGIP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BHF acedrg               243         "dictionary generator"                  
+BHF acedrg_database      11          "data source"                           
+BHF rdkit                2017.03.2   "Chemoinformatics tool"
+BHF refmac5              5.8.0238    "optimization tool"                     

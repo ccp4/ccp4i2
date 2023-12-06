@@ -1,0 +1,163 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TAY     TAY      2,2-dimethylpropanamide     NON-POLYMER     18     7     .     
+#
+data_comp_TAY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TAY     CAA     C       CH3     0       106.849     21.499      19.780      
+TAY     CAB     C       CH3     0       106.941     23.848      18.927      
+TAY     CAC     C       CH3     0       105.037     23.106      20.350      
+TAY     NAD     N       NH2     0       105.987     21.849      16.944      
+TAY     OAE     O       O       0       104.033     22.240      17.946      
+TAY     CAF     C       C       0       105.263     22.234      17.987      
+TAY     CAG     C       CT      0       106.015     22.671      19.252      
+TAY     HAA     H       H       0       106.293     20.703      19.840      
+TAY     HAAA    H       H       0       107.195     21.718      20.663      
+TAY     HAAB    H       H       0       107.593     21.328      19.177      
+TAY     HAB     H       H       0       106.438     24.539      18.461      
+TAY     HABA    H       H       0       107.672     23.545      18.362      
+TAY     HABB    H       H       0       107.303     24.215      19.753      
+TAY     HAC     H       H       0       104.473     23.826      20.019      
+TAY     HACA    H       H       0       105.536     23.419      21.124      
+TAY     HACB    H       H       0       104.481     22.351      20.609      
+TAY     HNAD    H       H       0       105.581     21.600      16.199      
+TAY     HNAA    H       H       0       106.871     21.828      16.979      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TAY         CAA         CAG      SINGLE       n     1.530  0.0127     1.530  0.0127
+TAY         CAB         CAG      SINGLE       n     1.530  0.0127     1.530  0.0127
+TAY         CAC         CAG      SINGLE       n     1.530  0.0127     1.530  0.0127
+TAY         NAD         CAF      SINGLE       n     1.323  0.0100     1.323  0.0100
+TAY         OAE         CAF      DOUBLE       n     1.229  0.0102     1.229  0.0102
+TAY         CAF         CAG      SINGLE       n     1.528  0.0100     1.528  0.0100
+TAY         CAA         HAA      SINGLE       n     1.089  0.0100     0.973  0.0141
+TAY         CAA        HAAA      SINGLE       n     1.089  0.0100     0.973  0.0141
+TAY         CAA        HAAB      SINGLE       n     1.089  0.0100     0.973  0.0141
+TAY         CAB         HAB      SINGLE       n     1.089  0.0100     0.973  0.0141
+TAY         CAB        HABA      SINGLE       n     1.089  0.0100     0.973  0.0141
+TAY         CAB        HABB      SINGLE       n     1.089  0.0100     0.973  0.0141
+TAY         CAC         HAC      SINGLE       n     1.089  0.0100     0.973  0.0141
+TAY         CAC        HACA      SINGLE       n     1.089  0.0100     0.973  0.0141
+TAY         CAC        HACB      SINGLE       n     1.089  0.0100     0.973  0.0141
+TAY         NAD        HNAD      SINGLE       n     1.016  0.0100     0.884  0.0200
+TAY         NAD        HNAA      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TAY         CAG         CAA         HAA     109.510    1.50
+TAY         CAG         CAA        HAAA     109.510    1.50
+TAY         CAG         CAA        HAAB     109.510    1.50
+TAY         HAA         CAA        HAAA     109.377    1.50
+TAY         HAA         CAA        HAAB     109.377    1.50
+TAY        HAAA         CAA        HAAB     109.377    1.50
+TAY         CAG         CAB         HAB     109.510    1.50
+TAY         CAG         CAB        HABA     109.510    1.50
+TAY         CAG         CAB        HABB     109.510    1.50
+TAY         HAB         CAB        HABA     109.377    1.50
+TAY         HAB         CAB        HABB     109.377    1.50
+TAY        HABA         CAB        HABB     109.377    1.50
+TAY         CAG         CAC         HAC     109.510    1.50
+TAY         CAG         CAC        HACA     109.510    1.50
+TAY         CAG         CAC        HACB     109.510    1.50
+TAY         HAC         CAC        HACA     109.377    1.50
+TAY         HAC         CAC        HACB     109.377    1.50
+TAY        HACA         CAC        HACB     109.377    1.50
+TAY         CAF         NAD        HNAD     119.958    1.85
+TAY         CAF         NAD        HNAA     119.958    1.85
+TAY        HNAD         NAD        HNAA     120.084    2.38
+TAY         NAD         CAF         OAE     122.788    1.50
+TAY         NAD         CAF         CAG     115.870    1.98
+TAY         OAE         CAF         CAG     121.342    1.78
+TAY         CAA         CAG         CAB     109.510    1.50
+TAY         CAA         CAG         CAC     109.510    1.50
+TAY         CAA         CAG         CAF     109.432    2.40
+TAY         CAB         CAG         CAC     109.510    1.50
+TAY         CAB         CAG         CAF     109.432    2.40
+TAY         CAC         CAG         CAF     109.432    2.40
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TAY             sp3_sp3_2         HAA         CAA         CAG         CAB     -60.000    10.0     3
+TAY            sp3_sp3_10         HAB         CAB         CAG         CAA     180.000    10.0     3
+TAY            sp3_sp3_20         HAC         CAC         CAG         CAA     -60.000    10.0     3
+TAY             sp2_sp2_3         OAE         CAF         NAD        HNAD       0.000     5.0     2
+TAY             sp2_sp3_2         NAD         CAF         CAG         CAA     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TAY    chir_1    CAG    CAF    CAA    CAB    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TAY    plan-1         CAF   0.020
+TAY    plan-1        HNAA   0.020
+TAY    plan-1        HNAD   0.020
+TAY    plan-1         NAD   0.020
+TAY    plan-2         CAF   0.020
+TAY    plan-2         CAG   0.020
+TAY    plan-2         NAD   0.020
+TAY    plan-2         OAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TAY SMILES_CANONICAL               CACTVS 3.352                                  CC(C)(C)C(N)=O
+TAY           SMILES               CACTVS 3.352                                  CC(C)(C)C(N)=O
+TAY SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                  CC(C)(C)C(=O)N
+TAY           SMILES "OpenEye OEToolkits" 1.7.0                                  CC(C)(C)C(=O)N
+TAY            InChI                InChI  1.03 InChI=1S/C5H11NO/c1-5(2,3)4(6)7/h1-3H3,(H2,6,7)
+TAY         InChIKey                InChI  1.03                     XIPFMBOWZXULIA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TAY acedrg               243         "dictionary generator"                  
+TAY acedrg_database      11          "data source"                           
+TAY rdkit                2017.03.2   "Chemoinformatics tool"
+TAY refmac5              5.8.0238    "optimization tool"                     

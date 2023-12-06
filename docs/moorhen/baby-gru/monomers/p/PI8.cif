@@ -1,0 +1,617 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PI8     PI8      "N-13-[(10S,13S)-9,12-DIOXO-10-(2-BUTYL)-2-OXA-8,11-DIAZABICYCLO [13.2.2] NONADECA-15,17,18-TRIENE] (2R)-BENZYL-(4S)-HYDROXY-5-AMINOPENTANOIC (1R)-HYDROXY-(2S)-INDANEAMIDE"     NON-POLYMER     105     51     .     
+#
+data_comp_PI8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PI8     N1      N       NH1     0       4.987       1.110       12.544      
+PI8     C2      C       CH1     0       4.732       0.589       11.209      
+PI8     C1      C       CH1     0       5.387       1.436       10.093      
+PI8     O1      O       OH1     0       5.515       2.789       10.520      
+PI8     C9      C       CH2     0       4.427       1.364       8.896       
+PI8     C3      C       CR56    0       3.269       0.567       10.824      
+PI8     C8      C       CR56    0       3.100       1.010       9.514       
+PI8     C4      C       CR16    0       2.179       0.182       11.594      
+PI8     C7      C       CR16    0       1.822       1.068       8.960       
+PI8     C5      C       CR16    0       0.908       0.245       11.032      
+PI8     C6      C       CR16    0       0.734       0.683       9.730       
+PI8     C11     C       CH1     0       6.262       1.663       14.550      
+PI8     C12     C       CH2     0       7.465       2.617       14.580      
+PI8     C13     C       CR6     0       7.400       3.720       13.549      
+PI8     C18     C       CR16    0       8.297       3.761       12.487      
+PI8     C14     C       CR16    0       6.437       4.718       13.638      
+PI8     C17     C       CR16    0       8.233       4.776       11.540      
+PI8     C15     C       CR16    0       6.375       5.732       12.690      
+PI8     C16     C       CR16    0       7.273       5.759       11.642      
+PI8     C10     C       C       0       6.165       0.994       13.186      
+PI8     O2      O       O       0       7.119       0.383       12.712      
+PI8     C19     C       CH2     0       6.337       0.614       15.675      
+PI8     O3      O       OH1     0       4.070       0.755       16.501      
+PI8     C20     C       CH1     0       5.051       -0.147      15.986      
+PI8     C21     C       CH2     0       5.249       -1.294      16.965      
+PI8     N2      N       NT1     0       4.022       -2.092      17.140      
+PI8     C22     C       CH1     0       4.251       -3.477      17.568      
+PI8     C23     C       CH2     0       2.987       -4.012      18.261      
+PI8     C24     C       CR6     0       3.083       -5.464      18.661      
+PI8     C25     C       CR16    0       3.816       -5.855      19.774      
+PI8     C26     C       CR16    0       3.920       -7.190      20.145      
+PI8     C29     C       CR16    0       2.463       -6.457      17.912      
+PI8     C28     C       CR16    0       2.557       -7.797      18.262      
+PI8     C27     C       CR6     0       3.290       -8.170      19.383      
+PI8     O6      O       O2      0       3.333       -9.516      19.657      
+PI8     C30     C       C       0       4.656       -4.390      16.399      
+PI8     O4      O       O       0       3.819       -4.713      15.557      
+PI8     N3      N       NH1     0       5.946       -4.765      16.350      
+PI8     C31     C       CH1     0       6.467       -5.751      15.410      
+PI8     C32     C       CH1     0       7.285       -5.106      14.268      
+PI8     C33     C       CH3     0       7.751       -6.167      13.272      
+PI8     C34     C       CH2     0       6.504       -3.981      13.575      
+PI8     C35     C       CH3     0       7.296       -3.196      12.552      
+PI8     C36     C       C       0       7.296       -6.777      16.187      
+PI8     O5      O       O       0       8.321       -6.419      16.765      
+PI8     N4      N       NH1     0       6.859       -8.044      16.203      
+PI8     C37     C       CH2     0       7.552       -9.146      16.863      
+PI8     C38     C       CH2     0       6.705       -10.404     16.975      
+PI8     C39     C       CH2     0       5.434       -10.240     17.791      
+PI8     C40     C       CH2     0       5.704       -9.923      19.247      
+PI8     C41     C       CH2     0       4.526       -10.131     20.172      
+PI8     HN11    H       H       0       4.324       1.523       12.942      
+PI8     H21     H       H       0       5.086       -0.325      11.161      
+PI8     H11     H       H       0       6.268       1.068       9.849       
+PI8     HO11    H       H       0       6.119       3.173       10.062      
+PI8     H91     H       H       0       4.713       0.680       8.259       
+PI8     H92     H       H       0       4.381       2.225       8.432       
+PI8     H41     H       H       0       2.299       -0.116      12.483      
+PI8     H71     H       H       0       1.702       1.366       8.073       
+PI8     H51     H       H       0       0.157       -0.013      11.543      
+PI8     H61     H       H       0       -0.135      0.720       9.363       
+PI8     H111    H       H       0       5.454       2.204       14.704      
+PI8     H121    H       H       0       8.285       2.097       14.439      
+PI8     H122    H       H       0       7.522       3.025       15.470      
+PI8     H181    H       H       0       8.958       3.091       12.409      
+PI8     H141    H       H       0       5.819       4.707       14.351      
+PI8     H171    H       H       0       8.849       4.791       10.825      
+PI8     H151    H       H       0       5.716       6.404       12.763      
+PI8     H161    H       H       0       7.230       6.448       10.999      
+PI8     H191    H       H       0       6.634       1.065       16.497      
+PI8     H192    H       H       0       7.034       -0.039      15.443      
+PI8     HO31    H       H       0       4.363       1.079       17.229      
+PI8     H201    H       H       0       4.693       -0.518      15.138      
+PI8     H211    H       H       0       5.523       -0.926      17.831      
+PI8     H212    H       H       0       5.974       -1.865      16.637      
+PI8     HN21    H       H       0       3.553       -2.113      16.384      
+PI8     H221    H       H       0       4.978       -3.482      18.231      
+PI8     H231    H       H       0       2.815       -3.474      19.063      
+PI8     H232    H       H       0       2.224       -3.898      17.657      
+PI8     H251    H       H       0       4.248       -5.199      20.295      
+PI8     H261    H       H       0       4.420       -7.428      20.907      
+PI8     H291    H       H       0       1.966       -6.216      17.148      
+PI8     H281    H       H       0       2.125       -8.453      17.740      
+PI8     HN31    H       H       0       6.511       -4.390      16.899      
+PI8     H311    H       H       0       5.697       -6.230      14.997      
+PI8     H321    H       H       0       8.092       -4.701      14.671      
+PI8     H331    H       H       0       8.071       -5.745      12.458      
+PI8     H332    H       H       0       7.007       -6.757      13.055      
+PI8     H333    H       H       0       8.473       -6.690      13.661      
+PI8     H341    H       H       0       6.183       -3.351      14.252      
+PI8     H342    H       H       0       5.719       -4.370      13.133      
+PI8     H351    H       H       0       6.920       -2.303      12.464      
+PI8     H352    H       H       0       7.256       -3.648      11.691      
+PI8     H353    H       H       0       8.223       -3.129      12.839      
+PI8     H41N    H       H       0       6.113       -8.232      15.793      
+PI8     H371    H       H       0       7.825       -8.859      17.760      
+PI8     H372    H       H       0       8.366       -9.354      16.356      
+PI8     H381    H       H       0       7.249       -11.112     17.380      
+PI8     H382    H       H       0       6.462       -10.699     16.071      
+PI8     H391    H       H       0       4.913       -11.070     17.736      
+PI8     H392    H       H       0       4.895       -9.522      17.399      
+PI8     H401    H       H       0       6.002       -8.992      19.316      
+PI8     H402    H       H       0       6.442       -10.488     19.555      
+PI8     H411    H       H       0       4.368       -11.091     20.283      
+PI8     H412    H       H       0       4.731       -9.759      21.053      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PI8          N1          C2      SINGLE       n     1.452  0.0100     1.452  0.0100
+PI8          N1         C10      SINGLE       n     1.342  0.0107     1.342  0.0107
+PI8          C2          C1      SINGLE       n     1.544  0.0100     1.544  0.0100
+PI8          C2          C3      SINGLE       n     1.512  0.0100     1.512  0.0100
+PI8          C1          O1      SINGLE       n     1.423  0.0106     1.423  0.0106
+PI8          C1          C9      SINGLE       n     1.536  0.0100     1.536  0.0100
+PI8          C9          C8      SINGLE       n     1.506  0.0100     1.506  0.0100
+PI8          C3          C8      DOUBLE       y     1.390  0.0100     1.390  0.0100
+PI8          C3          C4      SINGLE       y     1.385  0.0100     1.385  0.0100
+PI8          C8          C7      SINGLE       y     1.390  0.0100     1.390  0.0100
+PI8          C4          C5      DOUBLE       y     1.389  0.0100     1.389  0.0100
+PI8          C7          C6      DOUBLE       y     1.384  0.0100     1.384  0.0100
+PI8          C5          C6      SINGLE       y     1.382  0.0104     1.382  0.0104
+PI8         C11         C12      SINGLE       n     1.534  0.0100     1.534  0.0100
+PI8         C11         C10      SINGLE       n     1.518  0.0100     1.518  0.0100
+PI8         C11         C19      SINGLE       n     1.538  0.0116     1.538  0.0116
+PI8         C12         C13      SINGLE       n     1.509  0.0100     1.509  0.0100
+PI8         C13         C18      DOUBLE       y     1.385  0.0111     1.385  0.0111
+PI8         C13         C14      SINGLE       y     1.385  0.0111     1.385  0.0111
+PI8         C18         C17      SINGLE       y     1.386  0.0100     1.386  0.0100
+PI8         C14         C15      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PI8         C17         C16      DOUBLE       y     1.374  0.0127     1.374  0.0127
+PI8         C15         C16      SINGLE       y     1.376  0.0124     1.376  0.0124
+PI8         C10          O2      DOUBLE       n     1.227  0.0100     1.227  0.0100
+PI8         C19         C20      SINGLE       n     1.525  0.0100     1.525  0.0100
+PI8          O3         C20      SINGLE       n     1.424  0.0199     1.424  0.0199
+PI8         C20         C21      SINGLE       n     1.519  0.0100     1.519  0.0100
+PI8         C21          N2      SINGLE       n     1.466  0.0145     1.466  0.0145
+PI8          N2         C22      SINGLE       n     1.463  0.0132     1.463  0.0132
+PI8         C22         C23      SINGLE       n     1.535  0.0103     1.535  0.0103
+PI8         C22         C30      SINGLE       n     1.530  0.0124     1.530  0.0124
+PI8         C23         C24      SINGLE       n     1.508  0.0100     1.508  0.0100
+PI8         C24         C25      DOUBLE       y     1.385  0.0110     1.385  0.0110
+PI8         C24         C29      SINGLE       y     1.385  0.0110     1.385  0.0110
+PI8         C25         C26      SINGLE       y     1.385  0.0100     1.385  0.0100
+PI8         C26         C27      DOUBLE       y     1.386  0.0109     1.386  0.0109
+PI8         C29         C28      DOUBLE       y     1.385  0.0100     1.385  0.0100
+PI8         C28         C27      SINGLE       y     1.386  0.0109     1.386  0.0109
+PI8         C27          O6      SINGLE       n     1.369  0.0106     1.369  0.0106
+PI8          O6         C41      SINGLE       n     1.432  0.0101     1.432  0.0101
+PI8         C30          O4      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PI8         C30          N3      SINGLE       n     1.337  0.0100     1.337  0.0100
+PI8          N3         C31      SINGLE       n     1.453  0.0100     1.453  0.0100
+PI8         C31         C32      SINGLE       n     1.540  0.0100     1.540  0.0100
+PI8         C31         C36      SINGLE       n     1.527  0.0100     1.527  0.0100
+PI8         C32         C33      SINGLE       n     1.521  0.0135     1.521  0.0135
+PI8         C32         C34      SINGLE       n     1.531  0.0100     1.531  0.0100
+PI8         C34         C35      SINGLE       n     1.511  0.0200     1.511  0.0200
+PI8         C36          O5      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PI8         C36          N4      SINGLE       n     1.336  0.0104     1.336  0.0104
+PI8          N4         C37      SINGLE       n     1.456  0.0109     1.456  0.0109
+PI8         C37         C38      SINGLE       n     1.517  0.0143     1.517  0.0143
+PI8         C38         C39      SINGLE       n     1.514  0.0200     1.514  0.0200
+PI8         C39         C40      SINGLE       n     1.509  0.0200     1.509  0.0200
+PI8         C40         C41      SINGLE       n     1.506  0.0128     1.506  0.0128
+PI8          N1        HN11      SINGLE       n     1.016  0.0100     0.876  0.0157
+PI8          C2         H21      SINGLE       n     1.089  0.0100     0.982  0.0160
+PI8          C1         H11      SINGLE       n     1.089  0.0100     0.985  0.0181
+PI8          O1        HO11      SINGLE       n     0.970  0.0120     0.849  0.0200
+PI8          C9         H91      SINGLE       n     1.089  0.0100     0.978  0.0117
+PI8          C9         H92      SINGLE       n     1.089  0.0100     0.978  0.0117
+PI8          C4         H41      SINGLE       n     1.082  0.0130     0.945  0.0141
+PI8          C7         H71      SINGLE       n     1.082  0.0130     0.944  0.0145
+PI8          C5         H51      SINGLE       n     1.082  0.0130     0.944  0.0193
+PI8          C6         H61      SINGLE       n     1.082  0.0130     0.944  0.0193
+PI8         C11        H111      SINGLE       n     1.089  0.0100     0.985  0.0200
+PI8         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0169
+PI8         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0169
+PI8         C18        H181      SINGLE       n     1.082  0.0130     0.944  0.0174
+PI8         C14        H141      SINGLE       n     1.082  0.0130     0.944  0.0174
+PI8         C17        H171      SINGLE       n     1.082  0.0130     0.944  0.0175
+PI8         C15        H151      SINGLE       n     1.082  0.0130     0.944  0.0175
+PI8         C16        H161      SINGLE       n     1.082  0.0130     0.944  0.0161
+PI8         C19        H191      SINGLE       n     1.089  0.0100     0.983  0.0100
+PI8         C19        H192      SINGLE       n     1.089  0.0100     0.983  0.0100
+PI8          O3        HO31      SINGLE       n     0.970  0.0120     0.848  0.0200
+PI8         C20        H201      SINGLE       n     1.089  0.0100     0.992  0.0184
+PI8         C21        H211      SINGLE       n     1.089  0.0100     0.980  0.0143
+PI8         C21        H212      SINGLE       n     1.089  0.0100     0.980  0.0143
+PI8          N2        HN21      SINGLE       n     1.036  0.0160     0.888  0.0200
+PI8         C22        H221      SINGLE       n     1.089  0.0100     0.984  0.0149
+PI8         C23        H231      SINGLE       n     1.089  0.0100     0.980  0.0164
+PI8         C23        H232      SINGLE       n     1.089  0.0100     0.980  0.0164
+PI8         C25        H251      SINGLE       n     1.082  0.0130     0.943  0.0173
+PI8         C26        H261      SINGLE       n     1.082  0.0130     0.943  0.0169
+PI8         C29        H291      SINGLE       n     1.082  0.0130     0.943  0.0173
+PI8         C28        H281      SINGLE       n     1.082  0.0130     0.943  0.0169
+PI8          N3        HN31      SINGLE       n     1.016  0.0100     0.873  0.0200
+PI8         C31        H311      SINGLE       n     1.089  0.0100     0.998  0.0200
+PI8         C32        H321      SINGLE       n     1.089  0.0100     0.989  0.0175
+PI8         C33        H331      SINGLE       n     1.089  0.0100     0.973  0.0146
+PI8         C33        H332      SINGLE       n     1.089  0.0100     0.973  0.0146
+PI8         C33        H333      SINGLE       n     1.089  0.0100     0.973  0.0146
+PI8         C34        H341      SINGLE       n     1.089  0.0100     0.981  0.0160
+PI8         C34        H342      SINGLE       n     1.089  0.0100     0.981  0.0160
+PI8         C35        H351      SINGLE       n     1.089  0.0100     0.973  0.0157
+PI8         C35        H352      SINGLE       n     1.089  0.0100     0.973  0.0157
+PI8         C35        H353      SINGLE       n     1.089  0.0100     0.973  0.0157
+PI8          N4        H41N      SINGLE       n     1.016  0.0100     0.872  0.0200
+PI8         C37        H371      SINGLE       n     1.089  0.0100     0.981  0.0152
+PI8         C37        H372      SINGLE       n     1.089  0.0100     0.981  0.0152
+PI8         C38        H381      SINGLE       n     1.089  0.0100     0.981  0.0160
+PI8         C38        H382      SINGLE       n     1.089  0.0100     0.981  0.0160
+PI8         C39        H391      SINGLE       n     1.089  0.0100     0.981  0.0163
+PI8         C39        H392      SINGLE       n     1.089  0.0100     0.981  0.0163
+PI8         C40        H401      SINGLE       n     1.089  0.0100     0.980  0.0166
+PI8         C40        H402      SINGLE       n     1.089  0.0100     0.980  0.0166
+PI8         C41        H411      SINGLE       n     1.089  0.0100     0.979  0.0131
+PI8         C41        H412      SINGLE       n     1.089  0.0100     0.979  0.0131
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PI8          C2          N1         C10     123.153    1.92
+PI8          C2          N1        HN11     117.668    1.50
+PI8         C10          N1        HN11     119.179    1.50
+PI8          N1          C2          C1     112.360    2.19
+PI8          N1          C2          C3     114.441    1.50
+PI8          N1          C2         H21     108.374    1.94
+PI8          C1          C2          C3     102.900    1.50
+PI8          C1          C2         H21     108.933    1.50
+PI8          C3          C2         H21     109.170    1.50
+PI8          C2          C1          O1     109.128    1.88
+PI8          C2          C1          C9     104.443    2.26
+PI8          C2          C1         H11     110.992    1.50
+PI8          O1          C1          C9     110.702    2.65
+PI8          O1          C1         H11     110.704    1.50
+PI8          C9          C1         H11     110.718    1.50
+PI8          C1          O1        HO11     109.394    1.50
+PI8          C1          C9          C8     103.460    1.50
+PI8          C1          C9         H91     110.985    1.50
+PI8          C1          C9         H92     110.985    1.50
+PI8          C8          C9         H91     111.220    1.50
+PI8          C8          C9         H92     111.220    1.50
+PI8         H91          C9         H92     108.845    1.50
+PI8          C2          C3          C8     110.020    1.50
+PI8          C2          C3          C4     128.922    1.50
+PI8          C8          C3          C4     121.058    1.50
+PI8          C9          C8          C3     110.489    1.50
+PI8          C9          C8          C7     129.811    1.50
+PI8          C3          C8          C7     119.700    1.50
+PI8          C3          C4          C5     118.620    1.50
+PI8          C3          C4         H41     120.658    1.50
+PI8          C5          C4         H41     120.722    1.50
+PI8          C8          C7          C6     118.855    1.50
+PI8          C8          C7         H71     120.302    1.50
+PI8          C6          C7         H71     120.843    1.50
+PI8          C4          C5          C6     120.884    1.50
+PI8          C4          C5         H51     119.599    1.50
+PI8          C6          C5         H51     119.518    1.50
+PI8          C7          C6          C5     120.884    1.50
+PI8          C7          C6         H61     119.599    1.50
+PI8          C5          C6         H61     119.518    1.50
+PI8         C12         C11         C10     109.520    2.23
+PI8         C12         C11         C19     112.320    1.68
+PI8         C12         C11        H111     107.967    1.50
+PI8         C10         C11         C19     110.994    2.64
+PI8         C10         C11        H111     108.868    1.50
+PI8         C19         C11        H111     107.780    1.50
+PI8         C11         C12         C13     113.495    1.50
+PI8         C11         C12        H121     108.879    1.50
+PI8         C11         C12        H122     108.879    1.50
+PI8         C13         C12        H121     108.738    1.50
+PI8         C13         C12        H122     108.738    1.50
+PI8        H121         C12        H122     107.709    1.50
+PI8         C12         C13         C18     120.970    1.50
+PI8         C12         C13         C14     120.970    1.50
+PI8         C18         C13         C14     118.060    1.50
+PI8         C13         C18         C17     120.624    1.50
+PI8         C13         C18        H181     119.591    1.50
+PI8         C17         C18        H181     119.786    1.50
+PI8         C13         C14         C15     120.624    1.50
+PI8         C13         C14        H141     119.591    1.50
+PI8         C15         C14        H141     119.786    1.50
+PI8         C18         C17         C16     120.325    1.50
+PI8         C18         C17        H171     119.792    1.50
+PI8         C16         C17        H171     119.883    1.50
+PI8         C14         C15         C16     120.325    1.50
+PI8         C14         C15        H151     119.792    1.50
+PI8         C16         C15        H151     119.883    1.50
+PI8         C17         C16         C15     120.043    1.50
+PI8         C17         C16        H161     119.979    1.50
+PI8         C15         C16        H161     119.979    1.50
+PI8          N1         C10         C11     115.773    1.98
+PI8          N1         C10          O2     122.538    1.50
+PI8         C11         C10          O2     121.689    1.50
+PI8         C11         C19         C20     115.950    1.50
+PI8         C11         C19        H191     108.447    1.50
+PI8         C11         C19        H192     108.447    1.50
+PI8         C20         C19        H191     108.468    1.50
+PI8         C20         C19        H192     108.468    1.50
+PI8        H191         C19        H192     106.914    1.50
+PI8         C20          O3        HO31     107.580    2.18
+PI8         C19         C20          O3     109.024    2.32
+PI8         C19         C20         C21     113.883    1.50
+PI8         C19         C20        H201     108.603    1.50
+PI8          O3         C20         C21     109.290    2.07
+PI8          O3         C20        H201     107.665    2.30
+PI8         C21         C20        H201     108.552    1.50
+PI8         C20         C21          N2     110.916    1.50
+PI8         C20         C21        H211     108.846    1.50
+PI8         C20         C21        H212     108.846    1.50
+PI8          N2         C21        H211     109.402    1.50
+PI8          N2         C21        H212     109.402    1.50
+PI8        H211         C21        H212     107.997    1.50
+PI8         C21          N2         C22     112.615    2.70
+PI8         C21          N2        HN21     108.280    3.00
+PI8         C22          N2        HN21     106.958    3.00
+PI8          N2         C22         C23     109.450    1.50
+PI8          N2         C22         C30     112.148    1.50
+PI8          N2         C22        H221     108.712    1.50
+PI8         C23         C22         C30     110.507    1.62
+PI8         C23         C22        H221     108.341    1.50
+PI8         C30         C22        H221     108.179    1.50
+PI8         C22         C23         C24     113.550    1.83
+PI8         C22         C23        H231     108.810    1.50
+PI8         C22         C23        H232     108.810    1.50
+PI8         C24         C23        H231     108.862    1.50
+PI8         C24         C23        H232     108.862    1.50
+PI8        H231         C23        H232     107.782    1.50
+PI8         C23         C24         C25     121.080    1.50
+PI8         C23         C24         C29     121.080    1.50
+PI8         C25         C24         C29     117.841    1.50
+PI8         C24         C25         C26     121.479    1.50
+PI8         C24         C25        H251     119.314    1.50
+PI8         C26         C25        H251     119.207    1.50
+PI8         C25         C26         C27     119.690    1.50
+PI8         C25         C26        H261     120.174    1.50
+PI8         C27         C26        H261     120.137    1.50
+PI8         C24         C29         C28     121.479    1.50
+PI8         C24         C29        H291     119.314    1.50
+PI8         C28         C29        H291     119.207    1.50
+PI8         C29         C28         C27     119.690    1.50
+PI8         C29         C28        H281     120.174    1.50
+PI8         C27         C28        H281     120.137    1.50
+PI8         C26         C27         C28     119.823    1.50
+PI8         C26         C27          O6     120.089    3.00
+PI8         C28         C27          O6     120.089    3.00
+PI8         C27          O6         C41     118.103    1.50
+PI8         C22         C30          O4     120.806    1.50
+PI8         C22         C30          N3     115.931    1.80
+PI8          O4         C30          N3     123.263    1.50
+PI8         C30          N3         C31     121.131    1.96
+PI8         C30          N3        HN31     119.283    1.83
+PI8         C31          N3        HN31     119.586    1.91
+PI8          N3         C31         C32     111.326    1.52
+PI8          N3         C31         C36     111.248    2.09
+PI8          N3         C31        H311     107.651    1.50
+PI8         C32         C31         C36     111.419    1.50
+PI8         C32         C31        H311     108.069    1.50
+PI8         C36         C31        H311     107.690    1.50
+PI8         C31         C32         C33     111.023    1.92
+PI8         C31         C32         C34     110.508    1.50
+PI8         C31         C32        H321     107.540    1.50
+PI8         C33         C32         C34     111.775    1.50
+PI8         C33         C32        H321     107.601    1.50
+PI8         C34         C32        H321     107.402    1.50
+PI8         C32         C33        H331     109.662    1.50
+PI8         C32         C33        H332     109.662    1.50
+PI8         C32         C33        H333     109.662    1.50
+PI8        H331         C33        H332     109.411    1.50
+PI8        H331         C33        H333     109.411    1.50
+PI8        H332         C33        H333     109.411    1.50
+PI8         C32         C34         C35     113.965    1.50
+PI8         C32         C34        H341     108.703    1.50
+PI8         C32         C34        H342     108.703    1.50
+PI8         C35         C34        H341     108.717    1.50
+PI8         C35         C34        H342     108.717    1.50
+PI8        H341         C34        H342     107.862    1.50
+PI8         C34         C35        H351     109.566    1.50
+PI8         C34         C35        H352     109.566    1.50
+PI8         C34         C35        H353     109.566    1.50
+PI8        H351         C35        H352     109.380    1.50
+PI8        H351         C35        H353     109.380    1.50
+PI8        H352         C35        H353     109.380    1.50
+PI8         C31         C36          O5     120.606    1.50
+PI8         C31         C36          N4     116.428    1.50
+PI8          O5         C36          N4     122.966    1.50
+PI8         C36          N4         C37     124.137    2.65
+PI8         C36          N4        H41N     118.105    1.52
+PI8         C37          N4        H41N     117.758    1.90
+PI8          N4         C37         C38     112.624    1.50
+PI8          N4         C37        H371     108.979    1.50
+PI8          N4         C37        H372     108.979    1.50
+PI8         C38         C37        H371     109.197    1.51
+PI8         C38         C37        H372     109.197    1.51
+PI8        H371         C37        H372     107.877    1.50
+PI8         C37         C38         C39     113.159    3.00
+PI8         C37         C38        H381     108.956    1.50
+PI8         C37         C38        H382     108.956    1.50
+PI8         C39         C38        H381     109.041    1.50
+PI8         C39         C38        H382     109.041    1.50
+PI8        H381         C38        H382     107.927    1.57
+PI8         C38         C39         C40     112.593    1.77
+PI8         C38         C39        H391     108.806    1.50
+PI8         C38         C39        H392     108.806    1.50
+PI8         C40         C39        H391     108.902    1.50
+PI8         C40         C39        H392     108.902    1.50
+PI8        H391         C39        H392     107.646    1.50
+PI8         C39         C40         C41     113.147    2.01
+PI8         C39         C40        H401     108.944    1.50
+PI8         C39         C40        H402     108.944    1.50
+PI8         C41         C40        H401     108.916    1.50
+PI8         C41         C40        H402     108.916    1.50
+PI8        H401         C40        H402     107.788    1.50
+PI8          O6         C41         C40     107.985    2.03
+PI8          O6         C41        H411     109.943    1.50
+PI8          O6         C41        H412     109.943    1.50
+PI8         C40         C41        H411     110.162    1.50
+PI8         C40         C41        H412     110.162    1.50
+PI8        H411         C41        H412     108.474    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PI8             sp2_sp3_7         C10          N1          C2          C1       0.000    10.0     6
+PI8             sp2_sp2_1         C11         C10          N1          C2     180.000     5.0     2
+PI8            sp3_sp3_22         C10         C11         C12         C13     180.000    10.0     3
+PI8            sp2_sp3_19          N1         C10         C11         C12       0.000    10.0     6
+PI8            sp3_sp3_31         C12         C11         C19         C20     180.000    10.0     3
+PI8            sp2_sp3_26         C18         C13         C12         C11     -90.000    10.0     6
+PI8       const_sp2_sp2_3         C12         C13         C18         C17     180.000     5.0     2
+PI8              const_67         C12         C13         C14         C15     180.000    10.0     2
+PI8       const_sp2_sp2_5         C16         C17         C18         C13       0.000     5.0     2
+PI8              const_17         C13         C14         C15         C16       0.000    10.0     2
+PI8       const_sp2_sp2_9         C15         C16         C17         C18       0.000     5.0     2
+PI8              const_13         C14         C15         C16         C17       0.000    10.0     2
+PI8             sp3_sp3_5          O1          C1          C2          N1      60.000    10.0     3
+PI8            sp2_sp3_14          C8          C3          C2          N1     120.000    10.0     6
+PI8            sp3_sp3_40         C11         C19         C20          O3     180.000    10.0     3
+PI8            sp3_sp3_49         C19         C20          O3        HO31     180.000    10.0     3
+PI8            sp3_sp3_52         C19         C20         C21          N2     180.000    10.0     3
+PI8            sp3_sp3_61         C20         C21          N2         C22     180.000    10.0     3
+PI8            sp3_sp3_68         C23         C22          N2         C21     -60.000    10.0     3
+PI8            sp3_sp3_73          N2         C22         C23         C24     180.000    10.0     3
+PI8            sp2_sp3_31          O4         C30         C22          N2       0.000    10.0     6
+PI8            sp2_sp3_38         C25         C24         C23         C22     -90.000    10.0     6
+PI8              const_27         C23         C24         C25         C26     180.000    10.0     2
+PI8              const_71         C23         C24         C29         C28     180.000    10.0     2
+PI8              const_29         C24         C25         C26         C27       0.000    10.0     2
+PI8            sp3_sp3_19          C2          C1          O1        HO11     180.000    10.0     3
+PI8            sp3_sp3_13          O1          C1          C9          C8     180.000    10.0     3
+PI8              const_34         C25         C26         C27          O6     180.000    10.0     2
+PI8              const_41         C27         C28         C29         C24       0.000    10.0     2
+PI8              const_39          O6         C27         C28         C29     180.000    10.0     2
+PI8             sp2_sp2_5         C26         C27          O6         C41     180.000     5.0     2
+PI8            sp3_sp3_82         C40         C41          O6         C27     180.000    10.0     3
+PI8             sp2_sp2_7         C22         C30          N3         C31     180.000     5.0     2
+PI8            sp2_sp3_43         C30          N3         C31         C32       0.000    10.0     6
+PI8            sp3_sp3_85          N3         C31         C32         C33     180.000    10.0     3
+PI8            sp2_sp3_49          O5         C36         C31          N3       0.000    10.0     6
+PI8            sp3_sp3_94         C31         C32         C33        H331     180.000    10.0     3
+PI8           sp3_sp3_103         C31         C32         C34         C35     180.000    10.0     3
+PI8           sp3_sp3_112         C32         C34         C35        H351     180.000    10.0     3
+PI8            sp2_sp2_11         C31         C36          N4         C37     180.000     5.0     2
+PI8            sp2_sp3_56         C36          N4         C37         C38     120.000    10.0     6
+PI8           sp3_sp3_121          N4         C37         C38         C39     180.000    10.0     3
+PI8           sp3_sp3_130         C37         C38         C39         C40     180.000    10.0     3
+PI8           sp3_sp3_139         C38         C39         C40         C41     180.000    10.0     3
+PI8           sp3_sp3_148         C39         C40         C41          O6     180.000    10.0     3
+PI8             sp2_sp3_1          C3          C8          C9          C1       0.000    10.0     6
+PI8              const_21          C2          C3          C8          C9       0.000    10.0     2
+PI8              const_63          C2          C3          C4          C5     180.000    10.0     2
+PI8              const_46          C6          C7          C8          C9     180.000    10.0     2
+PI8              const_57          C3          C4          C5          C6       0.000    10.0     2
+PI8              const_49          C5          C6          C7          C8       0.000    10.0     2
+PI8              const_53          C4          C5          C6          C7       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PI8    chir_1    C2    N1    C1    C3    positive
+PI8    chir_2    C1    O1    C2    C9    negative
+PI8    chir_3    C11    C10    C19    C12    negative
+PI8    chir_4    C20    O3    C21    C19    positive
+PI8    chir_5    C22    N2    C30    C23    positive
+PI8    chir_6    C31    N3    C36    C32    positive
+PI8    chir_7    C32    C31    C34    C33    positive
+PI8    chir_8    N2    C22    C21    HN21    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PI8    plan-1          C2   0.020
+PI8    plan-1          C3   0.020
+PI8    plan-1          C4   0.020
+PI8    plan-1          C5   0.020
+PI8    plan-1          C6   0.020
+PI8    plan-1          C7   0.020
+PI8    plan-1          C8   0.020
+PI8    plan-1          C9   0.020
+PI8    plan-1         H41   0.020
+PI8    plan-1         H51   0.020
+PI8    plan-1         H61   0.020
+PI8    plan-1         H71   0.020
+PI8    plan-2         C12   0.020
+PI8    plan-2         C13   0.020
+PI8    plan-2         C14   0.020
+PI8    plan-2         C15   0.020
+PI8    plan-2         C16   0.020
+PI8    plan-2         C17   0.020
+PI8    plan-2         C18   0.020
+PI8    plan-2        H141   0.020
+PI8    plan-2        H151   0.020
+PI8    plan-2        H161   0.020
+PI8    plan-2        H171   0.020
+PI8    plan-2        H181   0.020
+PI8    plan-3         C23   0.020
+PI8    plan-3         C24   0.020
+PI8    plan-3         C25   0.020
+PI8    plan-3         C26   0.020
+PI8    plan-3         C27   0.020
+PI8    plan-3         C28   0.020
+PI8    plan-3         C29   0.020
+PI8    plan-3        H251   0.020
+PI8    plan-3        H261   0.020
+PI8    plan-3        H281   0.020
+PI8    plan-3        H291   0.020
+PI8    plan-3          O6   0.020
+PI8    plan-4         C10   0.020
+PI8    plan-4          C2   0.020
+PI8    plan-4        HN11   0.020
+PI8    plan-4          N1   0.020
+PI8    plan-5         C10   0.020
+PI8    plan-5         C11   0.020
+PI8    plan-5          N1   0.020
+PI8    plan-5          O2   0.020
+PI8    plan-6         C22   0.020
+PI8    plan-6         C30   0.020
+PI8    plan-6          N3   0.020
+PI8    plan-6          O4   0.020
+PI8    plan-7         C30   0.020
+PI8    plan-7         C31   0.020
+PI8    plan-7        HN31   0.020
+PI8    plan-7          N3   0.020
+PI8    plan-8         C31   0.020
+PI8    plan-8         C36   0.020
+PI8    plan-8          N4   0.020
+PI8    plan-8          O5   0.020
+PI8    plan-9         C36   0.020
+PI8    plan-9         C37   0.020
+PI8    plan-9        H41N   0.020
+PI8    plan-9          N4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PI8           SMILES              ACDLabs 10.04                                                                                                                                                                                                                                 O=C(NC2c1ccccc1CC2O)C(Cc3ccccc3)CC(O)CNC5C(=O)NC(C(=O)NCCCCCOc4ccc(cc4)C5)C(C)CC
+PI8 SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                                 CC[C@H](C)[C@@H]1NC(=O)[C@H](Cc2ccc(OCCCCCNC1=O)cc2)NC[C@@H](O)C[C@@H](Cc3ccccc3)C(=O)N[C@@H]4[C@H](O)Cc5ccccc45
+PI8           SMILES               CACTVS 3.341                                                                                                                                                                                                            CC[CH](C)[CH]1NC(=O)[CH](Cc2ccc(OCCCCCNC1=O)cc2)NC[CH](O)C[CH](Cc3ccccc3)C(=O)N[CH]4[CH](O)Cc5ccccc45
+PI8 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                   CC[C@H](C)[C@H]1C(=O)NCCCCCOc2ccc(cc2)C[C@@H](C(=O)N1)NC[C@H](C[C@@H](Cc3ccccc3)C(=O)N[C@H]4c5ccccc5C[C@H]4O)O
+PI8           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                                 CCC(C)C1C(=O)NCCCCCOc2ccc(cc2)CC(C(=O)N1)NCC(CC(Cc3ccccc3)C(=O)NC4c5ccccc5CC4O)O
+PI8            InChI                InChI  1.03 InChI=1S/C41H54N4O6/c1-3-27(2)37-41(50)42-20-10-5-11-21-51-33-18-16-29(17-19-33)23-35(40(49)44-37)43-26-32(46)24-31(22-28-12-6-4-7-13-28)39(48)45-38-34-15-9-8-14-30(34)25-36(38)47/h4,6-9,12-19,27,31-32,35-38,43,46-47H,3,5,10-11,20-26H2,1-2H3,(H,42,50)(H,44,49)(H,45,48)/t27-,31+,32-,35-,36+,37-,38-/m0/s1
+PI8         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                      ZXUOAWXMXWTRGE-ZKQACQBYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PI8 acedrg               243         "dictionary generator"                  
+PI8 acedrg_database      11          "data source"                           
+PI8 rdkit                2017.03.2   "Chemoinformatics tool"
+PI8 refmac5              5.8.0238    "optimization tool"                     

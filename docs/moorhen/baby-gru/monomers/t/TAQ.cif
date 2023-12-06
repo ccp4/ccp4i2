@@ -1,0 +1,199 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TAQ     TAQ      2,4,6-TRIAMINOQUINAZOLINE     NON-POLYMER     22     13     .     
+#
+data_comp_TAQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TAQ     C6      C       CR6     0       -6.005      -12.893     30.094      
+TAQ     N4      N       NH2     0       -6.853      -12.081     30.808      
+TAQ     C1      C       CR16    0       -6.536      -13.826     29.161      
+TAQ     C2      C       CR16    0       -5.713      -14.644     28.439      
+TAQ     C3      C       CR66    0       -4.312      -14.585     28.600      
+TAQ     N3      N       NRD6    0       -3.511      -15.421     27.859      
+TAQ     C8      C       CR6     0       -2.171      -15.334     28.042      
+TAQ     N2      N       NH2     0       -1.392      -16.147     27.322      
+TAQ     N1      N       NRD6    0       -1.567      -14.481     28.903      
+TAQ     C7      C       CR6     0       -2.317      -13.651     29.642      
+TAQ     C4      C       CR66    0       -3.763      -13.655     29.531      
+TAQ     C5      C       CR16    0       -4.638      -12.818     30.268      
+TAQ     NAA     N       NH2     0       -1.672      -12.824     30.481      
+TAQ     H4N1    H       H       0       -6.531      -11.499     31.380      
+TAQ     H4N2    H       H       0       -7.721      -12.141     30.696      
+TAQ     H1      H       H       0       -7.471      -13.878     29.042      
+TAQ     H2      H       H       0       -6.084      -15.254     27.828      
+TAQ     H2N1    H       H       0       -0.520      -16.120     27.420      
+TAQ     H2N2    H       H       0       -1.753      -16.709     26.750      
+TAQ     H5      H       H       0       -4.282      -12.203     30.883      
+TAQ     HAA1    H       H       0       -0.921      -13.084     30.861      
+TAQ     HAA2    H       H       0       -1.989      -12.020     30.637      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TAQ          C6          N4      SINGLE       n     1.372  0.0200     1.372  0.0200
+TAQ          C6          C1      DOUBLE       y     1.417  0.0114     1.417  0.0114
+TAQ          C6          C5      SINGLE       y     1.375  0.0100     1.375  0.0100
+TAQ          C1          C2      SINGLE       y     1.364  0.0100     1.364  0.0100
+TAQ          C2          C3      DOUBLE       y     1.410  0.0100     1.410  0.0100
+TAQ          C3          N3      SINGLE       y     1.372  0.0100     1.372  0.0100
+TAQ          C3          C4      SINGLE       y     1.421  0.0100     1.421  0.0100
+TAQ          N3          C8      DOUBLE       y     1.349  0.0118     1.349  0.0118
+TAQ          C8          N2      SINGLE       n     1.335  0.0101     1.335  0.0101
+TAQ          C8          N1      SINGLE       y     1.348  0.0113     1.348  0.0113
+TAQ          N1          C7      DOUBLE       y     1.335  0.0100     1.335  0.0100
+TAQ          C7          C4      SINGLE       y     1.443  0.0100     1.443  0.0100
+TAQ          C7         NAA      SINGLE       n     1.341  0.0100     1.341  0.0100
+TAQ          C4          C5      DOUBLE       y     1.412  0.0100     1.412  0.0100
+TAQ          N4        H4N1      SINGLE       n     1.016  0.0100     0.877  0.0200
+TAQ          N4        H4N2      SINGLE       n     1.016  0.0100     0.877  0.0200
+TAQ          C1          H1      SINGLE       n     1.082  0.0130     0.943  0.0100
+TAQ          C2          H2      SINGLE       n     1.082  0.0130     0.940  0.0115
+TAQ          N2        H2N1      SINGLE       n     1.016  0.0100     0.877  0.0200
+TAQ          N2        H2N2      SINGLE       n     1.016  0.0100     0.877  0.0200
+TAQ          C5          H5      SINGLE       n     1.082  0.0130     0.940  0.0120
+TAQ         NAA        HAA1      SINGLE       n     1.016  0.0100     0.880  0.0200
+TAQ         NAA        HAA2      SINGLE       n     1.016  0.0100     0.880  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TAQ          N4          C6          C1     120.125    1.50
+TAQ          N4          C6          C5     121.085    1.50
+TAQ          C1          C6          C5     118.790    1.50
+TAQ          C6          N4        H4N1     120.146    2.42
+TAQ          C6          N4        H4N2     120.146    2.42
+TAQ        H4N1          N4        H4N2     119.708    3.00
+TAQ          C6          C1          C2     120.738    1.50
+TAQ          C6          C1          H1     119.300    1.50
+TAQ          C2          C1          H1     119.962    1.50
+TAQ          C1          C2          C3     121.071    1.50
+TAQ          C1          C2          H2     119.437    1.50
+TAQ          C3          C2          H2     119.492    1.50
+TAQ          C2          C3          N3     119.097    1.50
+TAQ          C2          C3          C4     119.217    1.50
+TAQ          N3          C3          C4     121.686    1.50
+TAQ          C3          N3          C8     117.670    1.50
+TAQ          N3          C8          N2     117.725    1.50
+TAQ          N3          C8          N1     124.553    1.50
+TAQ          N2          C8          N1     117.722    1.50
+TAQ          C8          N2        H2N1     119.843    1.50
+TAQ          C8          N2        H2N2     119.843    1.50
+TAQ        H2N1          N2        H2N2     120.314    1.96
+TAQ          C8          N1          C7     118.283    1.50
+TAQ          N1          C7          C4     121.109    1.50
+TAQ          N1          C7         NAA     117.812    1.50
+TAQ          C4          C7         NAA     121.079    1.50
+TAQ          C3          C4          C7     116.699    1.50
+TAQ          C3          C4          C5     119.709    1.50
+TAQ          C7          C4          C5     123.592    1.72
+TAQ          C6          C5          C4     120.474    1.50
+TAQ          C6          C5          H5     120.016    1.50
+TAQ          C4          C5          H5     119.509    1.50
+TAQ          C7         NAA        HAA1     119.848    1.50
+TAQ          C7         NAA        HAA2     119.848    1.50
+TAQ        HAA1         NAA        HAA2     120.304    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TAQ             sp2_sp2_1          C1          C6          N4        H4N1     180.000     5.0     2
+TAQ              const_34          C4          C5          C6          N4     180.000    10.0     2
+TAQ       const_sp2_sp2_2          C2          C1          C6          N4     180.000     5.0     2
+TAQ              const_17          C3          C4          C5          C6       0.000    10.0     2
+TAQ       const_sp2_sp2_5          C6          C1          C2          C3       0.000     5.0     2
+TAQ              const_10          C1          C2          C3          N3     180.000    10.0     2
+TAQ              const_14          C2          C3          C4          C7     180.000    10.0     2
+TAQ              const_22          C2          C3          N3          C8     180.000    10.0     2
+TAQ              const_24          N2          C8          N3          C3     180.000    10.0     2
+TAQ             sp2_sp2_5          N3          C8          N2        H2N1     180.000     5.0     2
+TAQ              const_26          N2          C8          N1          C7     180.000    10.0     2
+TAQ              const_28         NAA          C7          N1          C8     180.000    10.0     2
+TAQ              const_30          C3          C4          C7         NAA     180.000    10.0     2
+TAQ            sp2_sp2_11          N1          C7         NAA        HAA1       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TAQ    plan-1          C1   0.020
+TAQ    plan-1          C2   0.020
+TAQ    plan-1          C3   0.020
+TAQ    plan-1          C4   0.020
+TAQ    plan-1          C5   0.020
+TAQ    plan-1          C6   0.020
+TAQ    plan-1          C7   0.020
+TAQ    plan-1          C8   0.020
+TAQ    plan-1          H1   0.020
+TAQ    plan-1          H2   0.020
+TAQ    plan-1          H5   0.020
+TAQ    plan-1          N1   0.020
+TAQ    plan-1          N2   0.020
+TAQ    plan-1          N3   0.020
+TAQ    plan-1          N4   0.020
+TAQ    plan-1         NAA   0.020
+TAQ    plan-2          C6   0.020
+TAQ    plan-2        H4N1   0.020
+TAQ    plan-2        H4N2   0.020
+TAQ    plan-2          N4   0.020
+TAQ    plan-3          C8   0.020
+TAQ    plan-3        H2N1   0.020
+TAQ    plan-3        H2N2   0.020
+TAQ    plan-3          N2   0.020
+TAQ    plan-4          C7   0.020
+TAQ    plan-4        HAA1   0.020
+TAQ    plan-4        HAA2   0.020
+TAQ    plan-4         NAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TAQ           SMILES              ACDLabs 10.04                                                       n2c1c(cc(cc1)N)c(nc2N)N
+TAQ SMILES_CANONICAL               CACTVS 3.341                                                         Nc1ccc2nc(N)nc(N)c2c1
+TAQ           SMILES               CACTVS 3.341                                                         Nc1ccc2nc(N)nc(N)c2c1
+TAQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                       c1cc2c(cc1N)c(nc(n2)N)N
+TAQ           SMILES "OpenEye OEToolkits" 1.5.0                                                       c1cc2c(cc1N)c(nc(n2)N)N
+TAQ            InChI                InChI  1.03 InChI=1S/C8H9N5/c9-4-1-2-6-5(3-4)7(10)13-8(11)12-6/h1-3H,9H2,(H4,10,11,12,13)
+TAQ         InChIKey                InChI  1.03                                                   LJBWEZVYRBKOCI-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TAQ acedrg               243         "dictionary generator"                  
+TAQ acedrg_database      11          "data source"                           
+TAQ rdkit                2017.03.2   "Chemoinformatics tool"
+TAQ refmac5              5.8.0238    "optimization tool"                     

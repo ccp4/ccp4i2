@@ -1,0 +1,394 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZPG     ZPG      (2S,5R,8R,11S,14S,17S,21R)-5,8,11,14,17-PENTAMETHYL-4,7,10,13,16,19-HEXAOXADOCOSANE-2,21-DIOL     NON-POLYMER     73     29     .     
+#
+data_comp_ZPG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZPG     O29     O       OH1     0       9.189       12.398      55.086      
+ZPG     C27     C       CH1     0       8.567       13.522      54.460      
+ZPG     C28     C       CH3     0       7.150       13.188      54.066      
+ZPG     C24     C       CH2     0       8.634       14.714      55.396      
+ZPG     O23     O       O2      0       8.312       15.901      54.678      
+ZPG     C22     C       CH1     0       8.107       17.056      55.513      
+ZPG     C26     C       CH3     0       6.663       17.136      55.942      
+ZPG     C21     C       CH2     0       8.538       18.278      54.723      
+ZPG     O20     O       O2      0       8.517       19.421      55.576      
+ZPG     C20     C       CH1     0       9.740       19.662      56.302      
+ZPG     C25     C       CH3     0       9.418       20.295      57.630      
+ZPG     C18     C       CH2     0       10.626      20.546      55.445      
+ZPG     O17     O       O2      0       9.985       21.798      55.217      
+ZPG     C15     C       CH1     0       10.672      22.653      54.285      
+ZPG     C16     C       CH3     0       10.171      22.393      52.889      
+ZPG     C14     C       CH2     0       10.428      24.085      54.725      
+ZPG     O13     O       O2      0       11.093      24.986      53.844      
+ZPG     C11     C       CH1     0       11.203      26.331      54.350      
+ZPG     C12     C       CH3     0       12.496      26.485      55.110      
+ZPG     C10     C       CH2     0       11.110      27.286      53.174      
+ZPG     O9      O       O2      0       12.149      27.015      52.238      
+ZPG     C7      C       CH1     0       12.158      27.885      51.088      
+ZPG     C8      C       CH3     0       13.526      28.495      50.926      
+ZPG     C6      C       CH2     0       11.753      27.063      49.879      
+ZPG     O5      O       O2      0       10.400      26.644      50.014      
+ZPG     C4      C       CH2     0       9.915       25.916      48.892      
+ZPG     C2      C       CH1     0       8.471       25.505      49.117      
+ZPG     C3      C       CH3     0       8.331       24.508      50.241      
+ZPG     O1      O       OH1     0       7.681       26.668      49.380      
+ZPG     HO29    H       H       0       8.806       12.221      55.823      
+ZPG     H27     H       H       0       9.088       13.737      53.643      
+ZPG     H281    H       H       0       6.541       13.867      54.407      
+ZPG     H282    H       H       0       6.902       12.320      54.432      
+ZPG     H283    H       H       0       7.085       13.157      53.095      
+ZPG     H241    H       H       0       9.539       14.789      55.769      
+ZPG     H242    H       H       0       8.001       14.588      56.135      
+ZPG     H22     H       H       0       8.683       16.983      56.318      
+ZPG     H261    H       H       0       6.247       17.932      55.565      
+ZPG     H262    H       H       0       6.618       17.180      56.914      
+ZPG     H263    H       H       0       6.184       16.346      55.633      
+ZPG     H211    H       H       0       7.923       18.417      53.972      
+ZPG     H212    H       H       0       9.441       18.138      54.364      
+ZPG     H20     H       H       0       10.209      18.801      56.459      
+ZPG     H251    H       H       0       10.094      20.962      57.850      
+ZPG     H252    H       H       0       9.406       19.608      58.321      
+ZPG     H253    H       H       0       8.544       20.724      57.587      
+ZPG     H181    H       H       0       10.801      20.103      54.587      
+ZPG     H182    H       H       0       11.483      20.692      55.901      
+ZPG     H15     H       H       0       11.647      22.472      54.325      
+ZPG     H161    H       H       0       9.451       23.014      52.676      
+ZPG     H162    H       H       0       9.839       21.480      52.825      
+ZPG     H163    H       H       0       10.901      22.515      52.255      
+ZPG     H141    H       H       0       10.763      24.206      55.639      
+ZPG     H142    H       H       0       9.465       24.270      54.719      
+ZPG     H11     H       H       0       10.442      26.514      54.962      
+ZPG     H121    H       H       0       12.939      27.312      54.846      
+ZPG     H122    H       H       0       13.082      25.731      54.918      
+ZPG     H123    H       H       0       12.308      26.512      56.065      
+ZPG     H101    H       H       0       11.190      28.209      53.498      
+ZPG     H102    H       H       0       10.238      27.183      52.737      
+ZPG     H7      H       H       0       11.491      28.610      51.212      
+ZPG     H81     H       H       0       13.920      28.208      50.082      
+ZPG     H82     H       H       0       14.101      28.215      51.661      
+ZPG     H83     H       H       0       13.449      29.466      50.931      
+ZPG     H61     H       H       0       12.335      26.277      49.804      
+ZPG     H62     H       H       0       11.850      27.604      49.066      
+ZPG     H41     H       H       0       10.466      25.116      48.756      
+ZPG     H42     H       H       0       9.974       26.476      48.088      
+ZPG     H2      H       H       0       8.130       25.096      48.280      
+ZPG     H31     H       H       0       7.754       24.873      50.936      
+ZPG     H32     H       H       0       9.207       24.310      50.621      
+ZPG     H33     H       H       0       7.938       23.687      49.896      
+ZPG     HO1     H       H       0       7.973       27.070      50.068      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZPG         O29         C27      SINGLE       n     1.424  0.0199     1.424  0.0199
+ZPG         C27         C28      SINGLE       n     1.501  0.0160     1.501  0.0160
+ZPG         C27         C24      SINGLE       n     1.516  0.0100     1.516  0.0100
+ZPG         C24         O23      SINGLE       n     1.422  0.0123     1.422  0.0123
+ZPG         O23         C22      SINGLE       n     1.436  0.0134     1.436  0.0134
+ZPG         C22         C26      SINGLE       n     1.501  0.0160     1.501  0.0160
+ZPG         C22         C21      SINGLE       n     1.516  0.0100     1.516  0.0100
+ZPG         C21         O20      SINGLE       n     1.422  0.0123     1.422  0.0123
+ZPG         O20         C20      SINGLE       n     1.436  0.0134     1.436  0.0134
+ZPG         C20         C25      SINGLE       n     1.501  0.0160     1.501  0.0160
+ZPG         C20         C18      SINGLE       n     1.516  0.0100     1.516  0.0100
+ZPG         C18         O17      SINGLE       n     1.422  0.0123     1.422  0.0123
+ZPG         O17         C15      SINGLE       n     1.436  0.0134     1.436  0.0134
+ZPG         C15         C16      SINGLE       n     1.501  0.0160     1.501  0.0160
+ZPG         C15         C14      SINGLE       n     1.516  0.0100     1.516  0.0100
+ZPG         C14         O13      SINGLE       n     1.422  0.0123     1.422  0.0123
+ZPG         O13         C11      SINGLE       n     1.436  0.0134     1.436  0.0134
+ZPG         C11         C12      SINGLE       n     1.501  0.0160     1.501  0.0160
+ZPG         C11         C10      SINGLE       n     1.516  0.0100     1.516  0.0100
+ZPG         C10          O9      SINGLE       n     1.422  0.0123     1.422  0.0123
+ZPG          O9          C7      SINGLE       n     1.436  0.0134     1.436  0.0134
+ZPG          C7          C8      SINGLE       n     1.501  0.0160     1.501  0.0160
+ZPG          C7          C6      SINGLE       n     1.516  0.0100     1.516  0.0100
+ZPG          C6          O5      SINGLE       n     1.422  0.0110     1.422  0.0110
+ZPG          O5          C4      SINGLE       n     1.422  0.0110     1.422  0.0110
+ZPG          C4          C2      SINGLE       n     1.516  0.0100     1.516  0.0100
+ZPG          C2          C3      SINGLE       n     1.501  0.0160     1.501  0.0160
+ZPG          C2          O1      SINGLE       n     1.424  0.0199     1.424  0.0199
+ZPG         O29        HO29      SINGLE       n     0.970  0.0120     0.848  0.0200
+ZPG         C27         H27      SINGLE       n     1.089  0.0100     0.992  0.0184
+ZPG         C28        H281      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C28        H282      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C28        H283      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C24        H241      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG         C24        H242      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG         C22         H22      SINGLE       n     1.089  0.0100     0.992  0.0184
+ZPG         C26        H261      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C26        H262      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C26        H263      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG         C20         H20      SINGLE       n     1.089  0.0100     0.992  0.0184
+ZPG         C25        H251      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C25        H252      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C25        H253      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C18        H181      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG         C18        H182      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG         C15         H15      SINGLE       n     1.089  0.0100     0.992  0.0184
+ZPG         C16        H161      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C16        H162      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C16        H163      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG         C11         H11      SINGLE       n     1.089  0.0100     0.992  0.0184
+ZPG         C12        H121      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C12        H122      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C12        H123      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG          C7          H7      SINGLE       n     1.089  0.0100     0.992  0.0184
+ZPG          C8         H81      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG          C8         H82      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG          C8         H83      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0174
+ZPG          C2          H2      SINGLE       n     1.089  0.0100     0.992  0.0184
+ZPG          C3         H31      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG          C3         H32      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG          C3         H33      SINGLE       n     1.089  0.0100     0.974  0.0145
+ZPG          O1         HO1      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZPG         C27         O29        HO29     109.265    3.00
+ZPG         O29         C27         C28     109.686    2.24
+ZPG         O29         C27         C24     109.314    1.96
+ZPG         O29         C27         H27     108.183    1.96
+ZPG         C28         C27         C24     111.415    1.74
+ZPG         C28         C27         H27     109.344    1.50
+ZPG         C24         C27         H27     108.656    1.50
+ZPG         C27         C28        H281     109.508    1.50
+ZPG         C27         C28        H282     109.508    1.50
+ZPG         C27         C28        H283     109.508    1.50
+ZPG        H281         C28        H282     109.425    1.50
+ZPG        H281         C28        H283     109.425    1.50
+ZPG        H282         C28        H283     109.425    1.50
+ZPG         C27         C24         O23     109.289    2.60
+ZPG         C27         C24        H241     109.582    1.50
+ZPG         C27         C24        H242     109.582    1.50
+ZPG         O23         C24        H241     109.668    1.50
+ZPG         O23         C24        H242     109.668    1.50
+ZPG        H241         C24        H242     108.601    1.50
+ZPG         C24         O23         C22     113.250    1.50
+ZPG         O23         C22         C26     108.917    2.95
+ZPG         O23         C22         C21     108.081    2.47
+ZPG         O23         C22         H22     108.915    1.50
+ZPG         C26         C22         C21     111.415    1.74
+ZPG         C26         C22         H22     109.344    1.50
+ZPG         C21         C22         H22     108.656    1.50
+ZPG         C22         C26        H261     109.508    1.50
+ZPG         C22         C26        H262     109.508    1.50
+ZPG         C22         C26        H263     109.508    1.50
+ZPG        H261         C26        H262     109.425    1.50
+ZPG        H261         C26        H263     109.425    1.50
+ZPG        H262         C26        H263     109.425    1.50
+ZPG         C22         C21         O20     109.289    2.60
+ZPG         C22         C21        H211     109.582    1.50
+ZPG         C22         C21        H212     109.582    1.50
+ZPG         O20         C21        H211     109.668    1.50
+ZPG         O20         C21        H212     109.668    1.50
+ZPG        H211         C21        H212     108.601    1.50
+ZPG         C21         O20         C20     113.250    1.50
+ZPG         O20         C20         C25     108.917    2.95
+ZPG         O20         C20         C18     108.081    2.47
+ZPG         O20         C20         H20     108.915    1.50
+ZPG         C25         C20         C18     111.415    1.74
+ZPG         C25         C20         H20     109.344    1.50
+ZPG         C18         C20         H20     108.656    1.50
+ZPG         C20         C25        H251     109.508    1.50
+ZPG         C20         C25        H252     109.508    1.50
+ZPG         C20         C25        H253     109.508    1.50
+ZPG        H251         C25        H252     109.425    1.50
+ZPG        H251         C25        H253     109.425    1.50
+ZPG        H252         C25        H253     109.425    1.50
+ZPG         C20         C18         O17     109.289    2.60
+ZPG         C20         C18        H181     109.582    1.50
+ZPG         C20         C18        H182     109.582    1.50
+ZPG         O17         C18        H181     109.668    1.50
+ZPG         O17         C18        H182     109.668    1.50
+ZPG        H181         C18        H182     108.601    1.50
+ZPG         C18         O17         C15     113.250    1.50
+ZPG         O17         C15         C16     108.917    2.95
+ZPG         O17         C15         C14     108.081    2.47
+ZPG         O17         C15         H15     108.915    1.50
+ZPG         C16         C15         C14     111.415    1.74
+ZPG         C16         C15         H15     109.344    1.50
+ZPG         C14         C15         H15     108.656    1.50
+ZPG         C15         C16        H161     109.508    1.50
+ZPG         C15         C16        H162     109.508    1.50
+ZPG         C15         C16        H163     109.508    1.50
+ZPG        H161         C16        H162     109.425    1.50
+ZPG        H161         C16        H163     109.425    1.50
+ZPG        H162         C16        H163     109.425    1.50
+ZPG         C15         C14         O13     109.289    2.60
+ZPG         C15         C14        H141     109.582    1.50
+ZPG         C15         C14        H142     109.582    1.50
+ZPG         O13         C14        H141     109.668    1.50
+ZPG         O13         C14        H142     109.668    1.50
+ZPG        H141         C14        H142     108.601    1.50
+ZPG         C14         O13         C11     113.250    1.50
+ZPG         O13         C11         C12     108.917    2.95
+ZPG         O13         C11         C10     108.081    2.47
+ZPG         O13         C11         H11     108.915    1.50
+ZPG         C12         C11         C10     111.415    1.74
+ZPG         C12         C11         H11     109.344    1.50
+ZPG         C10         C11         H11     108.656    1.50
+ZPG         C11         C12        H121     109.508    1.50
+ZPG         C11         C12        H122     109.508    1.50
+ZPG         C11         C12        H123     109.508    1.50
+ZPG        H121         C12        H122     109.425    1.50
+ZPG        H121         C12        H123     109.425    1.50
+ZPG        H122         C12        H123     109.425    1.50
+ZPG         C11         C10          O9     109.289    2.60
+ZPG         C11         C10        H101     109.582    1.50
+ZPG         C11         C10        H102     109.582    1.50
+ZPG          O9         C10        H101     109.668    1.50
+ZPG          O9         C10        H102     109.668    1.50
+ZPG        H101         C10        H102     108.601    1.50
+ZPG         C10          O9          C7     113.250    1.50
+ZPG          O9          C7          C8     108.917    2.95
+ZPG          O9          C7          C6     108.081    2.47
+ZPG          O9          C7          H7     108.915    1.50
+ZPG          C8          C7          C6     111.415    1.74
+ZPG          C8          C7          H7     109.344    1.50
+ZPG          C6          C7          H7     108.656    1.50
+ZPG          C7          C8         H81     109.508    1.50
+ZPG          C7          C8         H82     109.508    1.50
+ZPG          C7          C8         H83     109.508    1.50
+ZPG         H81          C8         H82     109.425    1.50
+ZPG         H81          C8         H83     109.425    1.50
+ZPG         H82          C8         H83     109.425    1.50
+ZPG          C7          C6          O5     109.289    2.60
+ZPG          C7          C6         H61     109.582    1.50
+ZPG          C7          C6         H62     109.582    1.50
+ZPG          O5          C6         H61     109.546    1.50
+ZPG          O5          C6         H62     109.546    1.50
+ZPG         H61          C6         H62     108.601    1.50
+ZPG          C6          O5          C4     113.198    3.00
+ZPG          O5          C4          C2     109.289    2.60
+ZPG          O5          C4         H41     109.546    1.50
+ZPG          O5          C4         H42     109.546    1.50
+ZPG          C2          C4         H41     109.582    1.50
+ZPG          C2          C4         H42     109.582    1.50
+ZPG         H41          C4         H42     108.601    1.50
+ZPG          C4          C2          C3     111.415    1.74
+ZPG          C4          C2          O1     109.314    1.96
+ZPG          C4          C2          H2     108.656    1.50
+ZPG          C3          C2          O1     109.686    2.24
+ZPG          C3          C2          H2     109.344    1.50
+ZPG          O1          C2          H2     108.183    1.96
+ZPG          C2          C3         H31     109.508    1.50
+ZPG          C2          C3         H32     109.508    1.50
+ZPG          C2          C3         H33     109.508    1.50
+ZPG         H31          C3         H32     109.425    1.50
+ZPG         H31          C3         H33     109.425    1.50
+ZPG         H32          C3         H33     109.425    1.50
+ZPG          C2          O1         HO1     109.265    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZPG             sp3_sp3_1         C28         C27         O29        HO29     180.000    10.0     3
+ZPG            sp3_sp3_70         C20         C18         O17         C15     180.000    10.0     3
+ZPG            sp3_sp3_73         C16         C15         O17         C18     180.000    10.0     3
+ZPG            sp3_sp3_76         O17         C15         C16        H161     180.000    10.0     3
+ZPG            sp3_sp3_85         O13         C14         C15         O17     180.000    10.0     3
+ZPG            sp3_sp3_94         C15         C14         O13         C11     180.000    10.0     3
+ZPG            sp3_sp3_97         C12         C11         O13         C14     180.000    10.0     3
+ZPG           sp3_sp3_100         O13         C11         C12        H121     180.000    10.0     3
+ZPG           sp3_sp3_109          O9         C10         C11         O13     180.000    10.0     3
+ZPG           sp3_sp3_118         C11         C10          O9          C7     180.000    10.0     3
+ZPG             sp3_sp3_4         O29         C27         C28        H281     180.000    10.0     3
+ZPG            sp3_sp3_13         O23         C24         C27         O29     180.000    10.0     3
+ZPG           sp3_sp3_121          C8          C7          O9         C10     180.000    10.0     3
+ZPG           sp3_sp3_124          O9          C7          C8         H81     180.000    10.0     3
+ZPG           sp3_sp3_133          O5          C6          C7          O9     180.000    10.0     3
+ZPG           sp3_sp3_142          C7          C6          O5          C4     180.000    10.0     3
+ZPG           sp3_sp3_145          C2          C4          O5          C6     180.000    10.0     3
+ZPG           sp3_sp3_148          C3          C2          C4          O5     180.000    10.0     3
+ZPG           sp3_sp3_157          C4          C2          C3         H31     180.000    10.0     3
+ZPG           sp3_sp3_166          C4          C2          O1         HO1     180.000    10.0     3
+ZPG            sp3_sp3_22         C27         C24         O23         C22     180.000    10.0     3
+ZPG            sp3_sp3_25         C26         C22         O23         C24     180.000    10.0     3
+ZPG            sp3_sp3_28         O23         C22         C26        H261     180.000    10.0     3
+ZPG            sp3_sp3_37         O20         C21         C22         O23     180.000    10.0     3
+ZPG            sp3_sp3_46         C22         C21         O20         C20     180.000    10.0     3
+ZPG            sp3_sp3_49         C25         C20         O20         C21     180.000    10.0     3
+ZPG            sp3_sp3_52         O20         C20         C25        H251     180.000    10.0     3
+ZPG            sp3_sp3_61         O17         C18         C20         O20     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZPG    chir_1    C27    O29    C24    C28    positive
+ZPG    chir_2    C22    O23    C21    C26    negative
+ZPG    chir_3    C20    O20    C18    C25    negative
+ZPG    chir_4    C15    O17    C14    C16    positive
+ZPG    chir_5    C11    O13    C10    C12    positive
+ZPG    chir_6    C7    O9    C6    C8    positive
+ZPG    chir_7    C2    O1    C4    C3    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZPG           SMILES              ACDLabs 10.04                                                                                                            O(CC(O)C)C(COC(C)COC(C)COC(C)COC(C)COCC(O)C)C
+ZPG SMILES_CANONICAL               CACTVS 3.341                                                                               C[C@@H](O)COC[C@H](C)OC[C@H](C)OC[C@H](C)OC[C@@H](C)OC[C@@H](C)OC[C@H](C)O
+ZPG           SMILES               CACTVS 3.341                                                                                         C[CH](O)COC[CH](C)OC[CH](C)OC[CH](C)OC[CH](C)OC[CH](C)OC[CH](C)O
+ZPG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                C[C@H](COC[C@H](C)OC[C@H](C)OC[C@H](C)OC[C@@H](C)OC[C@@H](C)OC[C@H](C)O)O
+ZPG           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                              CC(COCC(C)OCC(C)OCC(C)OCC(C)OCC(C)OCC(C)O)O
+ZPG            InChI                InChI  1.03 InChI=1S/C21H44O8/c1-15(22)8-24-10-17(3)26-12-19(5)28-14-21(7)29-13-20(6)27-11-18(4)25-9-16(2)23/h15-23H,8-14H2,1-7H3/t15-,16+,17+,18-,19+,20-,21+/m1/s1
+ZPG         InChIKey                InChI  1.03                                                                                                                              XGDXHSHOQKNIEW-YSPFXGIPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZPG acedrg               243         "dictionary generator"                  
+ZPG acedrg_database      11          "data source"                           
+ZPG rdkit                2017.03.2   "Chemoinformatics tool"
+ZPG refmac5              5.8.0238    "optimization tool"                     

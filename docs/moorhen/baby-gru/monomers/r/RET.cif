@@ -1,0 +1,335 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RET     RET      RETINAL     NON-POLYMER     49     21     .     
+#
+data_comp_RET
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RET     C1      C       CT      0       -5.396      12.499      52.547      
+RET     C2      C       CH2     0       -4.451      11.666      53.427      
+RET     C3      C       CH2     0       -3.747      12.456      54.479      
+RET     C4      C       CH2     0       -2.961      13.610      53.865      
+RET     C5      C       CR6     0       -3.664      14.315      52.735      
+RET     C6      C       CR6     0       -4.863      13.902      52.253      
+RET     C7      C       C1      0       -5.647      14.719      51.321      
+RET     C8      C       C1      0       -5.872      16.069      51.364      
+RET     C9      C       C       0       -6.396      16.856      50.328      
+RET     C10     C       C1      0       -7.198      17.988      50.633      
+RET     C11     C       C1      0       -7.975      18.792      49.804      
+RET     C12     C       C1      0       -8.959      19.686      50.221      
+RET     C13     C       C       0       -9.834      20.522      49.469      
+RET     C14     C       C1      0       -10.948     21.125      50.098      
+RET     C15     C       C1      0       -12.019     21.869      49.474      
+RET     O1      O       O       0       -12.948     22.378      50.069      
+RET     C16     C       CH3     0       -5.617      11.705      51.244      
+RET     C17     C       CH3     0       -6.745      12.593      53.286      
+RET     C18     C       CH3     0       -2.888      15.506      52.235      
+RET     C19     C       CH3     0       -6.076      16.574      48.898      
+RET     C20     C       CH3     0       -9.493      20.772      48.035      
+RET     H21     H       H       0       -4.964      10.954      53.856      
+RET     H22     H       H       0       -3.781      11.243      52.855      
+RET     H31     H       H       0       -3.134      11.871      54.970      
+RET     H32     H       H       0       -4.403      12.812      55.115      
+RET     H41     H       H       0       -2.108      13.271      53.528      
+RET     H42     H       H       0       -2.767      14.270      54.560      
+RET     H7      H       H       0       -6.030      14.269      50.594      
+RET     H8      H       H       0       -5.660      16.536      52.155      
+RET     H10     H       H       0       -7.214      18.246      51.540      
+RET     H11     H       H       0       -7.827      18.723      48.877      
+RET     H12     H       H       0       -9.047      19.738      51.159      
+RET     H14     H       H       0       -10.981     21.017      51.035      
+RET     H15     H       H       0       -11.998     21.954      48.518      
+RET     H161    H       H       0       -4.874      11.859      50.638      
+RET     H162    H       H       0       -6.442      11.993      50.820      
+RET     H163    H       H       0       -5.677      10.757      51.444      
+RET     H171    H       H       0       -7.290      13.300      52.904      
+RET     H172    H       H       0       -6.592      12.784      54.226      
+RET     H173    H       H       0       -7.220      11.750      53.206      
+RET     H181    H       H       0       -2.943      15.554      51.269      
+RET     H182    H       H       0       -1.956      15.430      52.494      
+RET     H183    H       H       0       -3.257      16.318      52.615      
+RET     H191    H       H       0       -5.926      17.407      48.426      
+RET     H192    H       H       0       -6.814      16.100      48.487      
+RET     H193    H       H       0       -5.275      16.031      48.844      
+RET     H201    H       H       0       -9.838      21.633      47.760      
+RET     H202    H       H       0       -9.884      20.078      47.482      
+RET     H203    H       H       0       -8.532      20.769      47.921      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RET          C1          C2      SINGLE       n     1.532  0.0100     1.532  0.0100
+RET          C1          C6      SINGLE       n     1.519  0.0100     1.519  0.0100
+RET          C1         C16      SINGLE       n     1.537  0.0100     1.537  0.0100
+RET          C1         C17      SINGLE       n     1.537  0.0100     1.537  0.0100
+RET          C2          C3      SINGLE       n     1.492  0.0200     1.492  0.0200
+RET          C3          C4      SINGLE       n     1.524  0.0139     1.524  0.0139
+RET          C4          C5      SINGLE       n     1.501  0.0100     1.501  0.0100
+RET          C5          C6      DOUBLE       n     1.347  0.0100     1.347  0.0100
+RET          C5         C18      SINGLE       n     1.504  0.0100     1.504  0.0100
+RET          C6          C7      SINGLE       n     1.442  0.0200     1.442  0.0200
+RET          C7          C8      DOUBLE       n     1.365  0.0200     1.365  0.0200
+RET          C8          C9      SINGLE       n     1.397  0.0200     1.397  0.0200
+RET          C9         C10      DOUBLE       n     1.408  0.0200     1.408  0.0200
+RET          C9         C19      SINGLE       n     1.483  0.0200     1.483  0.0200
+RET         C10         C11      SINGLE       n     1.385  0.0200     1.385  0.0200
+RET         C11         C12      DOUBLE       n     1.385  0.0200     1.385  0.0200
+RET         C12         C13      SINGLE       n     1.408  0.0200     1.408  0.0200
+RET         C13         C14      DOUBLE       n     1.397  0.0200     1.397  0.0200
+RET         C13         C20      SINGLE       n     1.483  0.0200     1.483  0.0200
+RET         C14         C15      SINGLE       n     1.438  0.0200     1.438  0.0200
+RET         C15          O1      DOUBLE       n     1.215  0.0106     1.215  0.0106
+RET          C2         H21      SINGLE       n     1.089  0.0100     0.977  0.0105
+RET          C2         H22      SINGLE       n     1.089  0.0100     0.977  0.0105
+RET          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0113
+RET          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0113
+RET          C4         H41      SINGLE       n     1.089  0.0100     0.978  0.0148
+RET          C4         H42      SINGLE       n     1.089  0.0100     0.978  0.0148
+RET          C7          H7      SINGLE       n     1.082  0.0130     0.938  0.0146
+RET          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0196
+RET         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0196
+RET         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0196
+RET         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0196
+RET         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0196
+RET         C15         H15      SINGLE       n     1.082  0.0130     0.962  0.0200
+RET         C16        H161      SINGLE       n     1.089  0.0100     0.971  0.0163
+RET         C16        H162      SINGLE       n     1.089  0.0100     0.971  0.0163
+RET         C16        H163      SINGLE       n     1.089  0.0100     0.971  0.0163
+RET         C17        H171      SINGLE       n     1.089  0.0100     0.971  0.0163
+RET         C17        H172      SINGLE       n     1.089  0.0100     0.971  0.0163
+RET         C17        H173      SINGLE       n     1.089  0.0100     0.971  0.0163
+RET         C18        H181      SINGLE       n     1.089  0.0100     0.969  0.0158
+RET         C18        H182      SINGLE       n     1.089  0.0100     0.969  0.0158
+RET         C18        H183      SINGLE       n     1.089  0.0100     0.969  0.0158
+RET         C19        H191      SINGLE       n     1.089  0.0100     0.969  0.0177
+RET         C19        H192      SINGLE       n     1.089  0.0100     0.969  0.0177
+RET         C19        H193      SINGLE       n     1.089  0.0100     0.969  0.0177
+RET         C20        H201      SINGLE       n     1.089  0.0100     0.969  0.0177
+RET         C20        H202      SINGLE       n     1.089  0.0100     0.969  0.0177
+RET         C20        H203      SINGLE       n     1.089  0.0100     0.969  0.0177
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RET          C2          C1          C6     112.021    2.38
+RET          C2          C1         C16     108.237    2.03
+RET          C2          C1         C17     108.237    2.03
+RET          C6          C1         C16     110.110    1.50
+RET          C6          C1         C17     110.110    1.50
+RET         C16          C1         C17     108.431    1.50
+RET          C1          C2          C3     113.880    1.50
+RET          C1          C2         H21     108.646    1.50
+RET          C1          C2         H22     108.646    1.50
+RET          C3          C2         H21     108.941    1.50
+RET          C3          C2         H22     108.941    1.50
+RET         H21          C2         H22     107.710    1.50
+RET          C2          C3          C4     111.448    2.19
+RET          C2          C3         H31     109.322    1.50
+RET          C2          C3         H32     109.322    1.50
+RET          C4          C3         H31     109.281    1.50
+RET          C4          C3         H32     109.281    1.50
+RET         H31          C3         H32     108.036    1.50
+RET          C3          C4          C5     113.289    1.74
+RET          C3          C4         H41     109.190    1.50
+RET          C3          C4         H42     109.190    1.50
+RET          C5          C4         H41     108.281    1.50
+RET          C5          C4         H42     108.281    1.50
+RET         H41          C4         H42     107.973    1.50
+RET          C4          C5          C6     121.531    1.95
+RET          C4          C5         C18     113.673    1.50
+RET          C6          C5         C18     124.797    1.50
+RET          C1          C6          C5     119.631    3.00
+RET          C1          C6          C7     119.411    3.00
+RET          C5          C6          C7     120.958    1.50
+RET          C6          C7          C8     126.680    1.50
+RET          C6          C7          H7     116.520    1.50
+RET          C8          C7          H7     116.800    1.66
+RET          C7          C8          C9     126.725    3.00
+RET          C7          C8          H8     118.267    2.25
+RET          C9          C8          H8     115.008    1.81
+RET          C8          C9         C10     122.650    3.00
+RET          C8          C9         C19     120.215    3.00
+RET         C10          C9         C19     117.135    1.50
+RET          C9         C10         C11     128.593    1.85
+RET          C9         C10         H10     116.030    1.50
+RET         C11         C10         H10     115.376    2.90
+RET         C10         C11         C12     128.131    3.00
+RET         C10         C11         H11     115.934    2.93
+RET         C12         C11         H11     115.934    2.93
+RET         C11         C12         C13     128.593    1.85
+RET         C11         C12         H12     115.376    2.90
+RET         C13         C12         H12     116.030    1.50
+RET         C12         C13         C14     122.650    3.00
+RET         C12         C13         C20     117.135    1.50
+RET         C14         C13         C20     120.215    3.00
+RET         C13         C14         C15     124.998    3.00
+RET         C13         C14         H14     116.016    1.81
+RET         C15         C14         H14     118.986    1.61
+RET         C14         C15          O1     125.129    1.73
+RET         C14         C15         H15     116.757    2.05
+RET          O1         C15         H15     118.106    1.50
+RET          C1         C16        H161     109.665    1.50
+RET          C1         C16        H162     109.665    1.50
+RET          C1         C16        H163     109.665    1.50
+RET        H161         C16        H162     109.363    1.50
+RET        H161         C16        H163     109.363    1.50
+RET        H162         C16        H163     109.363    1.50
+RET          C1         C17        H171     109.665    1.50
+RET          C1         C17        H172     109.665    1.50
+RET          C1         C17        H173     109.665    1.50
+RET        H171         C17        H172     109.363    1.50
+RET        H171         C17        H173     109.363    1.50
+RET        H172         C17        H173     109.363    1.50
+RET          C5         C18        H181     110.039    1.89
+RET          C5         C18        H182     110.039    1.89
+RET          C5         C18        H183     110.039    1.89
+RET        H181         C18        H182     109.339    1.50
+RET        H181         C18        H183     109.339    1.50
+RET        H182         C18        H183     109.339    1.50
+RET          C9         C19        H191     109.517    1.50
+RET          C9         C19        H192     109.517    1.50
+RET          C9         C19        H193     109.517    1.50
+RET        H191         C19        H192     109.342    1.50
+RET        H191         C19        H193     109.342    1.50
+RET        H192         C19        H193     109.342    1.50
+RET         C13         C20        H201     109.517    1.50
+RET         C13         C20        H202     109.517    1.50
+RET         C13         C20        H203     109.517    1.50
+RET        H201         C20        H202     109.342    1.50
+RET        H201         C20        H203     109.342    1.50
+RET        H202         C20        H203     109.342    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RET             sp3_sp3_4         C16          C1          C2          C3     -60.000    10.0     3
+RET            sp3_sp3_34         C17          C1         C16        H161     -60.000    10.0     3
+RET            sp3_sp3_43         C16          C1         C17        H171     -60.000    10.0     3
+RET            sp2_sp3_12          C7          C6          C1         C16      60.000    10.0     6
+RET            sp2_sp2_25         C10         C11         C12         C13     180.000     5.0     2
+RET            sp2_sp2_29         C11         C12         C13         C14     180.000     5.0     2
+RET            sp2_sp2_35         C12         C13         C14         C15       0.000     5.0     2
+RET            sp2_sp3_25         C12         C13         C20        H201       0.000    10.0     6
+RET            sp2_sp2_37         C13         C14         C15          O1     180.000     5.0     2
+RET            sp3_sp3_10          C1          C2          C3          C4     -60.000    10.0     3
+RET            sp3_sp3_19          C2          C3          C4          C5      60.000    10.0     3
+RET             sp2_sp3_4         C18          C5          C4          C3     180.000    10.0     6
+RET            sp2_sp3_13          C4          C5         C18        H181     150.000    10.0     6
+RET             sp2_sp2_4         C18          C5          C6          C7       0.000     5.0     2
+RET             sp2_sp2_5          C1          C6          C7          C8     180.000     5.0     2
+RET             sp2_sp2_9          C6          C7          C8          C9     180.000     5.0     2
+RET            sp2_sp2_13          C7          C8          C9         C10     180.000     5.0     2
+RET            sp2_sp3_19          C8          C9         C19        H191       0.000    10.0     6
+RET            sp2_sp2_17         C11         C10          C9          C8     180.000     5.0     2
+RET            sp2_sp2_21          C9         C10         C11         C12     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RET    chir_1    C1    C6    C2    C16    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RET    plan-1         C18   0.020
+RET    plan-1          C4   0.020
+RET    plan-1          C5   0.020
+RET    plan-1          C6   0.020
+RET    plan-2          C1   0.020
+RET    plan-2          C5   0.020
+RET    plan-2          C6   0.020
+RET    plan-2          C7   0.020
+RET    plan-3          C6   0.020
+RET    plan-3          C7   0.020
+RET    plan-3          C8   0.020
+RET    plan-3          H7   0.020
+RET    plan-4          C7   0.020
+RET    plan-4          C8   0.020
+RET    plan-4          C9   0.020
+RET    plan-4          H8   0.020
+RET    plan-5         C10   0.020
+RET    plan-5         C19   0.020
+RET    plan-5          C8   0.020
+RET    plan-5          C9   0.020
+RET    plan-6         C10   0.020
+RET    plan-6         C11   0.020
+RET    plan-6          C9   0.020
+RET    plan-6         H10   0.020
+RET    plan-7         C10   0.020
+RET    plan-7         C11   0.020
+RET    plan-7         C12   0.020
+RET    plan-7         H11   0.020
+RET    plan-8         C11   0.020
+RET    plan-8         C12   0.020
+RET    plan-8         C13   0.020
+RET    plan-8         H12   0.020
+RET    plan-9         C12   0.020
+RET    plan-9         C13   0.020
+RET    plan-9         C14   0.020
+RET    plan-9         C20   0.020
+RET   plan-10         C13   0.020
+RET   plan-10         C14   0.020
+RET   plan-10         C15   0.020
+RET   plan-10         H14   0.020
+RET   plan-11         C14   0.020
+RET   plan-11         C15   0.020
+RET   plan-11         H15   0.020
+RET   plan-11          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RET           SMILES              ACDLabs 12.01                                                                                            O=C\C=C(\C=C\C=C(\C=C\C1=C(C)CCCC1(C)C)C)C
+RET SMILES_CANONICAL               CACTVS 3.370                                                                                            CC(=C\C=O)/C=C/C=C(C)/C=C/C1=C(C)CCCC1(C)C
+RET           SMILES               CACTVS 3.370                                                                                                 CC(=CC=O)C=CC=C(C)C=CC1=C(C)CCCC1(C)C
+RET SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                        CC1=C(C(CCC1)(C)C)/C=C/C(=C/C=C/C(=C/C=O)/C)/C
+RET           SMILES "OpenEye OEToolkits" 1.7.0                                                                                               CC1=C(C(CCC1)(C)C)C=CC(=CC=CC(=CC=O)C)C
+RET            InChI                InChI  1.03 InChI=1S/C20H28O/c1-16(8-6-9-17(2)13-15-21)11-12-19-18(3)10-7-14-20(19,4)5/h6,8-9,11-13,15H,7,10,14H2,1-5H3/b9-6+,12-11+,16-8+,17-13+
+RET         InChIKey                InChI  1.03                                                                                                           NCYCYZXNIZJOKI-OVSJKPMPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RET acedrg               243         "dictionary generator"                  
+RET acedrg_database      11          "data source"                           
+RET rdkit                2017.03.2   "Chemoinformatics tool"
+RET refmac5              5.8.0238    "optimization tool"                     

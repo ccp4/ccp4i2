@@ -1,0 +1,191 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HID     HID      "(5-hydroxy-1H-indol-3-yl)acetic acid"     NON-POLYMER     22     14     .     
+#
+data_comp_HID
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HID     OAA     O       O       0       7.025       56.856      11.426      
+HID     OAB     O       OC      -1      8.065       55.487      12.815      
+HID     OAC     O       OH1     0       6.001       62.856      12.001      
+HID     CAD     C       CR16    0       8.376       62.765      11.649      
+HID     CAE     C       CR16    0       9.574       62.087      11.691      
+HID     CAF     C       CR15    0       10.072      58.698      12.784      
+HID     CAG     C       CR16    0       7.162       60.850      12.508      
+HID     CAH     C       CH2     0       7.805       57.747      13.478      
+HID     NAI     N       NR5     0       10.583      59.870      12.296      
+HID     CAJ     C       C       0       7.616       56.601      12.490      
+HID     CAK     C       CR6     0       7.177       62.148      12.056      
+HID     CAL     C       CR5     0       8.723       58.807      12.963      
+HID     CAM     C       CR56    0       9.562       60.771      12.149      
+HID     CAN     C       CR56    0       8.374       60.136      12.560      
+HID     HOAC    H       H       0       5.277       62.469      11.742      
+HID     HAD     H       H       0       8.358       63.657      11.344      
+HID     HAE     H       H       0       10.376      62.500      11.419      
+HID     HAF     H       H       0       10.586      57.926      12.968      
+HID     HAG     H       H       0       6.354       60.443      12.779      
+HID     HAH     H       H       0       8.167       57.387      14.317      
+HID     HAHA    H       H       0       6.929       58.147      13.673      
+HID     HNAI    H       H       0       11.427      60.018      12.109      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HID         OAA         CAJ      DOUBLE       n     1.244  0.0200     1.244  0.0200
+HID         OAB         CAJ      SINGLE       n     1.244  0.0200     1.244  0.0200
+HID         OAC         CAK      SINGLE       n     1.374  0.0155     1.374  0.0155
+HID         CAD         CAE      DOUBLE       y     1.373  0.0100     1.373  0.0100
+HID         CAD         CAK      SINGLE       y     1.405  0.0100     1.405  0.0100
+HID         CAE         CAM      SINGLE       y     1.391  0.0102     1.391  0.0102
+HID         CAF         NAI      SINGLE       y     1.369  0.0100     1.369  0.0100
+HID         CAF         CAL      DOUBLE       y     1.365  0.0100     1.365  0.0100
+HID         CAG         CAK      DOUBLE       y     1.365  0.0151     1.365  0.0151
+HID         CAG         CAN      SINGLE       y     1.404  0.0100     1.404  0.0100
+HID         CAH         CAJ      SINGLE       n     1.525  0.0126     1.525  0.0126
+HID         CAH         CAL      SINGLE       n     1.494  0.0100     1.494  0.0100
+HID         NAI         CAM      SINGLE       y     1.370  0.0100     1.370  0.0100
+HID         CAL         CAN      SINGLE       y     1.432  0.0100     1.432  0.0100
+HID         CAM         CAN      DOUBLE       y     1.406  0.0100     1.406  0.0100
+HID         OAC        HOAC      SINGLE       n     0.966  0.0059     0.861  0.0200
+HID         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0200
+HID         CAE         HAE      SINGLE       n     1.082  0.0130     0.942  0.0200
+HID         CAF         HAF      SINGLE       n     1.082  0.0130     0.945  0.0191
+HID         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0200
+HID         CAH         HAH      SINGLE       n     1.089  0.0100     0.982  0.0200
+HID         CAH        HAHA      SINGLE       n     1.089  0.0100     0.982  0.0200
+HID         NAI        HNAI      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HID         CAK         OAC        HOAC     120.000    3.00
+HID         CAE         CAD         CAK     120.881    1.50
+HID         CAE         CAD         HAD     119.588    1.50
+HID         CAK         CAD         HAD     119.531    1.50
+HID         CAD         CAE         CAM     117.798    1.50
+HID         CAD         CAE         HAE     121.100    1.50
+HID         CAM         CAE         HAE     121.102    1.50
+HID         NAI         CAF         CAL     110.404    1.50
+HID         NAI         CAF         HAF     124.437    1.50
+HID         CAL         CAF         HAF     125.159    1.59
+HID         CAK         CAG         CAN     118.662    1.50
+HID         CAK         CAG         HAG     120.791    1.50
+HID         CAN         CAG         HAG     120.547    1.50
+HID         CAJ         CAH         CAL     112.079    2.81
+HID         CAJ         CAH         HAH     108.731    1.50
+HID         CAJ         CAH        HAHA     108.731    1.50
+HID         CAL         CAH         HAH     108.953    1.50
+HID         CAL         CAH        HAHA     108.953    1.50
+HID         HAH         CAH        HAHA     107.797    1.50
+HID         CAF         NAI         CAM     109.042    1.50
+HID         CAF         NAI        HNAI     125.328    1.77
+HID         CAM         NAI        HNAI     125.630    1.60
+HID         OAA         CAJ         OAB     125.371    1.75
+HID         OAA         CAJ         CAH     117.315    1.72
+HID         OAB         CAJ         CAH     117.315    1.72
+HID         OAC         CAK         CAD     119.476    3.00
+HID         OAC         CAK         CAG     119.476    3.00
+HID         CAD         CAK         CAG     121.048    1.50
+HID         CAF         CAL         CAH     126.617    1.73
+HID         CAF         CAL         CAN     106.112    1.50
+HID         CAH         CAL         CAN     127.271    1.50
+HID         CAE         CAM         NAI     130.288    1.50
+HID         CAE         CAM         CAN     122.257    1.50
+HID         NAI         CAM         CAN     107.455    1.50
+HID         CAG         CAN         CAL     133.659    1.50
+HID         CAG         CAN         CAM     119.355    1.50
+HID         CAL         CAN         CAM     106.987    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HID              const_32         CAH         CAL         CAN         CAG       0.000    10.0     2
+HID       const_sp2_sp2_9         CAE         CAM         CAN         CAG       0.000     5.0     2
+HID             sp2_sp2_1         CAD         CAK         OAC        HOAC     180.000     5.0     2
+HID              const_34         CAE         CAD         CAK         OAC     180.000    10.0     2
+HID       const_sp2_sp2_1         CAK         CAD         CAE         CAM       0.000     5.0     2
+HID       const_sp2_sp2_6         CAD         CAE         CAM         NAI     180.000     5.0     2
+HID              const_38         NAI         CAF         CAL         CAH     180.000    10.0     2
+HID              const_21         CAL         CAF         NAI         CAM       0.000    10.0     2
+HID              const_18         CAN         CAG         CAK         OAC     180.000    10.0     2
+HID              const_14         CAK         CAG         CAN         CAL     180.000    10.0     2
+HID             sp2_sp3_8         CAF         CAL         CAH         CAJ     -90.000    10.0     6
+HID             sp2_sp3_2         OAA         CAJ         CAH         CAL     120.000    10.0     6
+HID              const_27         CAE         CAM         NAI         CAF     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HID    plan-1         CAD   0.020
+HID    plan-1         CAE   0.020
+HID    plan-1         CAF   0.020
+HID    plan-1         CAG   0.020
+HID    plan-1         CAH   0.020
+HID    plan-1         CAK   0.020
+HID    plan-1         CAL   0.020
+HID    plan-1         CAM   0.020
+HID    plan-1         CAN   0.020
+HID    plan-1         HAD   0.020
+HID    plan-1         HAE   0.020
+HID    plan-1         HAF   0.020
+HID    plan-1         HAG   0.020
+HID    plan-1        HNAI   0.020
+HID    plan-1         NAI   0.020
+HID    plan-1         OAC   0.020
+HID    plan-2         CAH   0.020
+HID    plan-2         CAJ   0.020
+HID    plan-2         OAA   0.020
+HID    plan-2         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HID SMILES_CANONICAL               CACTVS 3.352                                                            OC(=O)Cc1c[nH]c2ccc(O)cc12
+HID           SMILES               CACTVS 3.352                                                            OC(=O)Cc1c[nH]c2ccc(O)cc12
+HID SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                          c1cc2c(cc1O)c(c[nH]2)CC(=O)O
+HID           SMILES "OpenEye OEToolkits" 1.7.0                                                          c1cc2c(cc1O)c(c[nH]2)CC(=O)O
+HID            InChI                InChI  1.03 InChI=1S/C10H9NO3/c12-7-1-2-9-8(4-7)6(5-11-9)3-10(13)14/h1-2,4-5,11-12H,3H2,(H,13,14)
+HID         InChIKey                InChI  1.03                                                           DUUGKQCEGZLZNO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HID acedrg               243         "dictionary generator"                  
+HID acedrg_database      11          "data source"                           
+HID rdkit                2017.03.2   "Chemoinformatics tool"
+HID refmac5              5.8.0238    "optimization tool"                     

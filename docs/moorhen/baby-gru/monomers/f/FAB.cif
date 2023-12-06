@@ -1,0 +1,568 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FAB     FAB      "FLAVIN-ADENINE DINUCLEOTIDE-N5-ISOBUTYL KETONE"     NON-POLYMER     96     58     .     
+#
+data_comp_FAB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FAB     PA      P       P       0       150.755     77.575      27.610      
+FAB     O1A     O       O       0       150.486     76.157      27.993      
+FAB     O2A     O       OP      -1      152.142     78.102      27.775      
+FAB     O5B     O       O2      0       150.268     77.820      26.101      
+FAB     C5B     C       CH2     0       150.536     79.107      25.490      
+FAB     C4B     C       CH1     0       149.875     79.168      24.135      
+FAB     O4B     O       O2      0       150.050     80.499      23.586      
+FAB     C3B     C       CH1     0       150.438     78.223      23.066      
+FAB     O3B     O       OH1     0       149.433     77.863      22.126      
+FAB     C2B     C       CH1     0       151.544     79.078      22.443      
+FAB     O2B     O       OH1     0       151.878     78.682      21.130      
+FAB     C1B     C       CH1     0       150.896     80.460      22.458      
+FAB     N9A     N       NR5     0       151.847     81.562      22.566      
+FAB     C8A     C       CR15    0       152.723     81.786      23.600      
+FAB     N7A     N       NRD5    0       153.461     82.855      23.437      
+FAB     C5A     C       CR56    0       153.045     83.378      22.222      
+FAB     C6A     C       CR6     0       153.449     84.517      21.491      
+FAB     N6A     N       NH2     0       154.395     85.359      21.901      
+FAB     N1A     N       NRD6    0       152.829     84.755      20.305      
+FAB     C2A     C       CR16    0       151.876     83.902      19.899      
+FAB     N3A     N       NRD6    0       151.418     82.804      20.501      
+FAB     C4A     C       CR56    0       152.048     82.590      21.673      
+FAB     N1      N       NRD6    0       146.669     73.920      36.419      
+FAB     C2      C       CR6     0       145.453     73.732      36.996      
+FAB     O2      O       O       0       144.568     74.586      36.897      
+FAB     N3      N       NR6     0       145.158     72.609      37.695      
+FAB     C4      C       CR6     0       146.078     71.605      37.859      
+FAB     O4      O       O       0       145.767     70.611      38.500      
+FAB     C4X     C       CR66    0       147.418     71.813      37.227      
+FAB     N5      N       NR6     1       148.480     70.854      37.310      
+FAB     C5X     C       CR66    0       149.738     71.129      36.678      
+FAB     C6      C       CR16    0       150.818     70.191      36.745      
+FAB     C7      C       CR6     0       152.030     70.437      36.140      
+FAB     C7M     C       CH3     0       153.124     69.404      36.255      
+FAB     C8      C       CR6     0       152.217     71.664      35.432      
+FAB     C8M     C       CH3     0       153.528     71.983      34.754      
+FAB     C9      C       CR16    0       151.174     72.577      35.361      
+FAB     C9A     C       CR66    0       149.921     72.342      35.975      
+FAB     N10     N       NR6     0       148.863     73.272      35.903      
+FAB     C10     C       CR66    0       147.629     73.013      36.519      
+FAB     "C1'"   C       CH2     0       149.017     74.562      35.182      
+FAB     C2D     C       CH1     0       148.505     74.507      33.745      
+FAB     "O2'"   O       OH1     0       149.159     73.454      33.040      
+FAB     C3D     C       CH1     0       148.728     75.838      33.016      
+FAB     O3D     O       OH1     0       148.079     76.884      33.745      
+FAB     C4D     C       CH1     0       148.229     75.873      31.567      
+FAB     "O4'"   O       OH1     0       148.837     74.819      30.817      
+FAB     C5D     C       CH2     0       148.525     77.187      30.878      
+FAB     "O5'"   O       O2      0       147.982     77.182      29.529      
+FAB     P       P       P       0       148.152     78.487      28.610      
+FAB     O1P     O       O       0       147.502     78.221      27.292      
+FAB     O2P     O       OP      -1      147.726     79.685      29.393      
+FAB     O3P     O       O2      0       149.743     78.525      28.414      
+FAB     "C2'"   C       C       0       148.310     69.584      38.037      
+FAB     "O3'"   O       O       0       148.763     69.500      39.168      
+FAB     "C3'"   C       CH1     0       147.604     68.418      37.372      
+FAB     "C4'"   C       CH3     0       146.998     67.484      38.413      
+FAB     "C5'"   C       CH3     0       148.572     67.670      36.469      
+FAB     H51A    H       H       0       151.512     79.234      25.390      
+FAB     H52A    H       H       0       150.183     79.831      26.064      
+FAB     H4B     H       H       0       148.917     78.994      24.252      
+FAB     H3B     H       H       0       150.823     77.411      23.487      
+FAB     HO3A    H       H       0       149.728     77.234      21.638      
+FAB     H2B     H       H       0       152.354     79.064      23.017      
+FAB     HO2A    H       H       0       152.483     79.197      20.830      
+FAB     H1B     H       H       0       150.359     80.567      21.641      
+FAB     H8A     H       H       0       152.789     81.221      24.350      
+FAB     H61A    H       H       0       154.527     86.113      21.469      
+FAB     H62A    H       H       0       154.883     85.158      22.601      
+FAB     H2A     H       H       0       151.474     84.108      19.069      
+FAB     HN3     H       H       0       144.354     72.529      38.051      
+FAB     H6      H       H       0       150.710     69.381      37.210      
+FAB     HM71    H       H       0       153.740     69.479      35.510      
+FAB     HM72    H       H       0       152.730     68.516      36.252      
+FAB     HM73    H       H       0       153.607     69.535      37.088      
+FAB     HM81    H       H       0       153.508     72.886      34.399      
+FAB     HM82    H       H       0       153.678     71.356      34.028      
+FAB     HM83    H       H       0       154.252     71.908      35.397      
+FAB     H9      H       H       0       151.322     73.380      34.883      
+FAB     "H1'1"  H       H       0       149.947     74.834      35.179      
+FAB     "H1'2"  H       H       0       148.531     75.255      35.666      
+FAB     "H2'"   H       H       0       147.531     74.315      33.760      
+FAB     "HO2'"  H       H       0       148.641     73.147      32.443      
+FAB     H3D     H       H       0       149.703     76.025      33.010      
+FAB     "HO3'"  H       H       0       148.573     77.574      33.743      
+FAB     "H4'"   H       H       0       147.235     75.731      31.567      
+FAB     "HO4'"  H       H       0       148.460     74.722      30.064      
+FAB     "H5'1"  H       H       0       149.494     77.328      30.840      
+FAB     "H5'2"  H       H       0       148.126     77.925      31.383      
+FAB     "H3'"   H       H       0       146.866     68.771      36.809      
+FAB     "H4'1"  H       H       0       146.429     66.830      37.972      
+FAB     "H4'2"  H       H       0       146.467     68.000      39.045      
+FAB     "H4'3"  H       H       0       147.710     67.023      38.891      
+FAB     H51X    H       H       0       148.120     66.907      36.069      
+FAB     H52X    H       H       0       149.331     67.358      36.992      
+FAB     "H5'3"  H       H       0       148.886     68.264      35.766      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FAB          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+FAB          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+FAB          PA         O5B      SINGLE       n     1.604  0.0133     1.604  0.0133
+FAB          PA         O3P      SINGLE       n     1.604  0.0133     1.604  0.0133
+FAB         O5B         C5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+FAB         C5B         C4B      SINGLE       n     1.509  0.0100     1.509  0.0100
+FAB         C4B         O4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+FAB         C4B         C3B      SINGLE       n     1.535  0.0100     1.535  0.0100
+FAB         O4B         C1B      SINGLE       n     1.409  0.0100     1.409  0.0100
+FAB         C3B         O3B      SINGLE       n     1.422  0.0100     1.422  0.0100
+FAB         C3B         C2B      SINGLE       n     1.531  0.0100     1.531  0.0100
+FAB         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+FAB         C2B         C1B      SINGLE       n     1.525  0.0100     1.525  0.0100
+FAB         C1B         N9A      SINGLE       n     1.458  0.0100     1.458  0.0100
+FAB         N9A         C8A      SINGLE       y     1.372  0.0100     1.372  0.0100
+FAB         N9A         C4A      SINGLE       y     1.374  0.0101     1.374  0.0101
+FAB         C8A         N7A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+FAB         N7A         C5A      SINGLE       y     1.388  0.0100     1.388  0.0100
+FAB         C5A         C6A      SINGLE       y     1.408  0.0100     1.408  0.0100
+FAB         C5A         C4A      DOUBLE       y     1.381  0.0100     1.381  0.0100
+FAB         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+FAB         C6A         N1A      DOUBLE       y     1.354  0.0100     1.354  0.0100
+FAB         N1A         C2A      SINGLE       y     1.339  0.0100     1.339  0.0100
+FAB         C2A         N3A      DOUBLE       y     1.330  0.0100     1.330  0.0100
+FAB         N3A         C4A      SINGLE       y     1.343  0.0100     1.343  0.0100
+FAB          N1          C2      SINGLE       y     1.349  0.0188     1.349  0.0188
+FAB          N1         C10      DOUBLE       y     1.316  0.0100     1.316  0.0100
+FAB          C2          O2      DOUBLE       n     1.233  0.0164     1.233  0.0164
+FAB          C2          N3      SINGLE       y     1.354  0.0200     1.354  0.0200
+FAB          N3          C4      SINGLE       y     1.372  0.0117     1.372  0.0117
+FAB          C4          O4      DOUBLE       n     1.223  0.0119     1.223  0.0119
+FAB          C4         C4X      SINGLE       y     1.470  0.0166     1.470  0.0166
+FAB         C4X          N5      DOUBLE       y     1.404  0.0200     1.404  0.0200
+FAB         C4X         C10      SINGLE       y     1.400  0.0100     1.400  0.0100
+FAB          N5         C5X      SINGLE       y     1.404  0.0200     1.404  0.0200
+FAB          N5       "C2'"      SINGLE       n     1.455  0.0200     1.455  0.0200
+FAB         C5X          C6      SINGLE       y     1.416  0.0140     1.416  0.0140
+FAB         C5X         C9A      DOUBLE       y     1.404  0.0100     1.404  0.0100
+FAB          C6          C7      DOUBLE       y     1.376  0.0100     1.376  0.0100
+FAB          C7         C7M      SINGLE       n     1.507  0.0100     1.507  0.0100
+FAB          C7          C8      SINGLE       y     1.415  0.0183     1.415  0.0183
+FAB          C8         C8M      SINGLE       n     1.507  0.0100     1.507  0.0100
+FAB          C8          C9      DOUBLE       y     1.378  0.0152     1.378  0.0152
+FAB          C9         C9A      SINGLE       y     1.404  0.0100     1.404  0.0100
+FAB         C9A         N10      SINGLE       y     1.393  0.0100     1.393  0.0100
+FAB         N10         C10      SINGLE       y     1.383  0.0127     1.383  0.0127
+FAB         N10       "C1'"      SINGLE       n     1.474  0.0100     1.474  0.0100
+FAB       "C1'"         C2D      SINGLE       n     1.517  0.0189     1.517  0.0189
+FAB         C2D       "O2'"      SINGLE       n     1.424  0.0199     1.424  0.0199
+FAB         C2D         C3D      SINGLE       n     1.531  0.0100     1.531  0.0100
+FAB         C3D         O3D      SINGLE       n     1.424  0.0199     1.424  0.0199
+FAB         C3D         C4D      SINGLE       n     1.530  0.0100     1.530  0.0100
+FAB         C4D       "O4'"      SINGLE       n     1.429  0.0100     1.429  0.0100
+FAB         C4D         C5D      SINGLE       n     1.511  0.0100     1.511  0.0100
+FAB         C5D       "O5'"      SINGLE       n     1.454  0.0165     1.454  0.0165
+FAB       "O5'"           P      SINGLE       n     1.604  0.0133     1.604  0.0133
+FAB           P         O1P      DOUBLE       n     1.493  0.0122     1.493  0.0122
+FAB           P         O2P      SINGLE       n     1.493  0.0122     1.493  0.0122
+FAB           P         O3P      SINGLE       n     1.604  0.0133     1.604  0.0133
+FAB       "C2'"       "O3'"      DOUBLE       n     1.219  0.0140     1.219  0.0140
+FAB       "C2'"       "C3'"      SINGLE       n     1.514  0.0100     1.514  0.0100
+FAB       "C3'"       "C4'"      SINGLE       n     1.521  0.0155     1.521  0.0155
+FAB       "C3'"       "C5'"      SINGLE       n     1.521  0.0155     1.521  0.0155
+FAB         C5B        H51A      SINGLE       n     1.089  0.0100     0.989  0.0200
+FAB         C5B        H52A      SINGLE       n     1.089  0.0100     0.989  0.0200
+FAB         C4B         H4B      SINGLE       n     1.089  0.0100     0.981  0.0200
+FAB         C3B         H3B      SINGLE       n     1.089  0.0100     0.992  0.0200
+FAB         O3B        HO3A      SINGLE       n     0.970  0.0120     0.849  0.0200
+FAB         C2B         H2B      SINGLE       n     1.089  0.0100     0.994  0.0200
+FAB         O2B        HO2A      SINGLE       n     0.970  0.0120     0.849  0.0200
+FAB         C1B         H1B      SINGLE       n     1.089  0.0100     0.984  0.0200
+FAB         C8A         H8A      SINGLE       n     1.082  0.0130     0.942  0.0170
+FAB         N6A        H61A      SINGLE       n     1.016  0.0100     0.877  0.0200
+FAB         N6A        H62A      SINGLE       n     1.016  0.0100     0.877  0.0200
+FAB         C2A         H2A      SINGLE       n     1.082  0.0130     0.945  0.0200
+FAB          N3         HN3      SINGLE       n     1.016  0.0100     0.880  0.0200
+FAB          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0128
+FAB         C7M        HM71      SINGLE       n     1.089  0.0100     0.971  0.0135
+FAB         C7M        HM72      SINGLE       n     1.089  0.0100     0.971  0.0135
+FAB         C7M        HM73      SINGLE       n     1.089  0.0100     0.971  0.0135
+FAB         C8M        HM81      SINGLE       n     1.089  0.0100     0.971  0.0135
+FAB         C8M        HM82      SINGLE       n     1.089  0.0100     0.971  0.0135
+FAB         C8M        HM83      SINGLE       n     1.089  0.0100     0.971  0.0135
+FAB          C9          H9      SINGLE       n     1.082  0.0130     0.951  0.0154
+FAB       "C1'"      "H1'1"      SINGLE       n     1.089  0.0100     0.978  0.0200
+FAB       "C1'"      "H1'2"      SINGLE       n     1.089  0.0100     0.978  0.0200
+FAB         C2D       "H2'"      SINGLE       n     1.089  0.0100     0.992  0.0184
+FAB       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+FAB         C3D         H3D      SINGLE       n     1.089  0.0100     0.992  0.0184
+FAB         O3D      "HO3'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+FAB         C4D       "H4'"      SINGLE       n     1.089  0.0100     1.004  0.0200
+FAB       "O4'"      "HO4'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+FAB         C5D      "H5'1"      SINGLE       n     1.089  0.0100     0.980  0.0146
+FAB         C5D      "H5'2"      SINGLE       n     1.089  0.0100     0.980  0.0146
+FAB       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.993  0.0136
+FAB       "C4'"      "H4'1"      SINGLE       n     1.089  0.0100     0.973  0.0141
+FAB       "C4'"      "H4'2"      SINGLE       n     1.089  0.0100     0.973  0.0141
+FAB       "C4'"      "H4'3"      SINGLE       n     1.089  0.0100     0.973  0.0141
+FAB       "C5'"        H51X      SINGLE       n     1.089  0.0100     0.973  0.0141
+FAB       "C5'"        H52X      SINGLE       n     1.089  0.0100     0.973  0.0141
+FAB       "C5'"      "H5'3"      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FAB         O1A          PA         O2A     118.411    2.35
+FAB         O1A          PA         O5B     109.410    1.50
+FAB         O1A          PA         O3P     108.816    2.14
+FAB         O2A          PA         O5B     109.410    1.50
+FAB         O2A          PA         O3P     108.816    2.14
+FAB         O5B          PA         O3P     101.065    1.97
+FAB          PA         O5B         C5B     118.553    2.41
+FAB         O5B         C5B         C4B     109.342    1.50
+FAB         O5B         C5B        H51A     109.845    1.50
+FAB         O5B         C5B        H52A     109.845    1.50
+FAB         C4B         C5B        H51A     109.624    1.50
+FAB         C4B         C5B        H52A     109.624    1.50
+FAB        H51A         C5B        H52A     108.472    1.50
+FAB         C5B         C4B         O4B     109.123    1.50
+FAB         C5B         C4B         C3B     116.008    1.52
+FAB         C5B         C4B         H4B     108.268    1.50
+FAB         O4B         C4B         C3B     105.388    1.50
+FAB         O4B         C4B         H4B     108.947    1.50
+FAB         C3B         C4B         H4B     109.363    1.86
+FAB         C4B         O4B         C1B     109.903    1.50
+FAB         C4B         C3B         O3B     111.281    2.46
+FAB         C4B         C3B         C2B     102.602    1.50
+FAB         C4B         C3B         H3B     110.452    2.54
+FAB         O3B         C3B         C2B     111.581    2.83
+FAB         O3B         C3B         H3B     110.380    1.67
+FAB         C2B         C3B         H3B     110.504    1.75
+FAB         C3B         O3B        HO3A     108.744    3.00
+FAB         C3B         C2B         O2B     112.782    2.45
+FAB         C3B         C2B         C1B     101.239    1.50
+FAB         C3B         C2B         H2B     110.596    1.51
+FAB         O2B         C2B         C1B     111.715    2.69
+FAB         O2B         C2B         H2B     110.448    1.97
+FAB         C1B         C2B         H2B     110.636    1.70
+FAB         C2B         O2B        HO2A     109.103    2.13
+FAB         O4B         C1B         C2B     106.047    1.50
+FAB         O4B         C1B         N9A     108.477    1.50
+FAB         O4B         C1B         H1B     109.807    1.50
+FAB         C2B         C1B         N9A     113.824    1.50
+FAB         C2B         C1B         H1B     109.015    1.50
+FAB         N9A         C1B         H1B     109.561    1.50
+FAB         C1B         N9A         C8A     126.848    1.91
+FAB         C1B         N9A         C4A     127.459    1.80
+FAB         C8A         N9A         C4A     105.693    1.50
+FAB         N9A         C8A         N7A     113.469    1.50
+FAB         N9A         C8A         H8A     123.206    1.50
+FAB         N7A         C8A         H8A     123.326    1.50
+FAB         C8A         N7A         C5A     104.739    1.50
+FAB         N7A         C5A         C6A     132.250    1.50
+FAB         N7A         C5A         C4A     110.483    1.50
+FAB         C6A         C5A         C4A     117.267    1.50
+FAB         C5A         C6A         N6A     123.792    1.50
+FAB         C5A         C6A         N1A     117.409    1.50
+FAB         N6A         C6A         N1A     118.799    1.50
+FAB         C6A         N6A        H61A     119.723    1.50
+FAB         C6A         N6A        H62A     119.723    1.50
+FAB        H61A         N6A        H62A     120.554    1.88
+FAB         C6A         N1A         C2A     118.521    1.50
+FAB         N1A         C2A         N3A     129.332    1.50
+FAB         N1A         C2A         H2A     115.313    1.50
+FAB         N3A         C2A         H2A     115.355    1.50
+FAB         C2A         N3A         C4A     110.982    1.50
+FAB         N9A         C4A         C5A     105.616    1.50
+FAB         N9A         C4A         N3A     127.895    1.50
+FAB         C5A         C4A         N3A     126.489    1.50
+FAB          C2          N1         C10     118.658    1.50
+FAB          N1          C2          O2     120.914    1.50
+FAB          N1          C2          N3     122.010    2.18
+FAB          O2          C2          N3     117.076    1.50
+FAB          C2          N3          C4     122.087    1.50
+FAB          C2          N3         HN3     118.237    2.31
+FAB          C4          N3         HN3     119.676    1.50
+FAB          N3          C4          O4     120.181    1.50
+FAB          N3          C4         C4X     117.494    2.19
+FAB          O4          C4         C4X     122.325    1.54
+FAB          C4         C4X          N5     121.353    1.50
+FAB          C4         C4X         C10     118.863    1.50
+FAB          N5         C4X         C10     119.784    1.50
+FAB         C4X          N5         C5X     120.312    1.50
+FAB         C4X          N5       "C2'"     119.844    2.69
+FAB         C5X          N5       "C2'"     119.844    2.69
+FAB          N5         C5X          C6     120.673    1.50
+FAB          N5         C5X         C9A     119.708    1.50
+FAB          C6         C5X         C9A     119.619    1.50
+FAB         C5X          C6          C7     120.900    1.51
+FAB         C5X          C6          H6     119.634    1.64
+FAB          C7          C6          H6     119.466    1.50
+FAB          C6          C7         C7M     120.004    1.50
+FAB          C6          C7          C8     119.481    1.50
+FAB         C7M          C7          C8     120.515    1.50
+FAB          C7         C7M        HM71     109.535    1.50
+FAB          C7         C7M        HM72     109.535    1.50
+FAB          C7         C7M        HM73     109.535    1.50
+FAB        HM71         C7M        HM72     109.348    1.50
+FAB        HM71         C7M        HM73     109.348    1.50
+FAB        HM72         C7M        HM73     109.348    1.50
+FAB          C7          C8         C8M     120.515    1.50
+FAB          C7          C8          C9     119.481    1.50
+FAB         C8M          C8          C9     120.004    1.50
+FAB          C8         C8M        HM81     109.535    1.50
+FAB          C8         C8M        HM82     109.535    1.50
+FAB          C8         C8M        HM83     109.535    1.50
+FAB        HM81         C8M        HM82     109.348    1.50
+FAB        HM81         C8M        HM83     109.348    1.50
+FAB        HM82         C8M        HM83     109.348    1.50
+FAB          C8          C9         C9A     120.900    1.51
+FAB          C8          C9          H9     119.466    1.50
+FAB         C9A          C9          H9     119.634    1.64
+FAB         C5X         C9A          C9     119.619    1.50
+FAB         C5X         C9A         N10     119.801    1.50
+FAB          C9         C9A         N10     120.580    1.50
+FAB         C9A         N10         C10     120.640    1.50
+FAB         C9A         N10       "C1'"     119.742    1.50
+FAB         C10         N10       "C1'"     119.618    1.50
+FAB          N1         C10         C4X     120.888    1.50
+FAB          N1         C10         N10     119.358    1.50
+FAB         C4X         C10         N10     119.755    1.50
+FAB         N10       "C1'"         C2D     112.079    1.50
+FAB         N10       "C1'"      "H1'1"     108.897    1.50
+FAB         N10       "C1'"      "H1'2"     108.897    1.50
+FAB         C2D       "C1'"      "H1'1"     109.291    1.50
+FAB         C2D       "C1'"      "H1'2"     109.291    1.50
+FAB      "H1'1"       "C1'"      "H1'2"     107.893    1.50
+FAB       "C1'"         C2D       "O2'"     109.698    2.33
+FAB       "C1'"         C2D         C3D     110.999    2.33
+FAB       "C1'"         C2D       "H2'"     108.757    1.75
+FAB       "O2'"         C2D         C3D     109.320    2.01
+FAB       "O2'"         C2D       "H2'"     108.183    1.96
+FAB         C3D         C2D       "H2'"     108.450    1.83
+FAB         C2D       "O2'"      "HO2'"     109.265    3.00
+FAB         C2D         C3D         O3D     109.320    2.01
+FAB         C2D         C3D         C4D     113.695    2.13
+FAB         C2D         C3D         H3D     108.450    1.83
+FAB         O3D         C3D         C4D     109.164    1.97
+FAB         O3D         C3D         H3D     108.243    1.50
+FAB         C4D         C3D         H3D     108.336    1.50
+FAB         C3D         O3D      "HO3'"     108.564    3.00
+FAB         C3D         C4D       "O4'"     109.549    1.85
+FAB         C3D         C4D         C5D     112.503    1.50
+FAB         C3D         C4D       "H4'"     108.777    1.50
+FAB       "O4'"         C4D         C5D     109.314    1.96
+FAB       "O4'"         C4D       "H4'"     108.591    1.50
+FAB         C5D         C4D       "H4'"     108.656    1.50
+FAB         C4D       "O4'"      "HO4'"     111.202    3.00
+FAB         C4D         C5D       "O5'"     109.438    2.56
+FAB         C4D         C5D      "H5'1"     109.582    1.50
+FAB         C4D         C5D      "H5'2"     109.582    1.50
+FAB       "O5'"         C5D      "H5'1"     109.393    1.91
+FAB       "O5'"         C5D      "H5'2"     109.393    1.91
+FAB      "H5'1"         C5D      "H5'2"     108.319    1.50
+FAB         C5D       "O5'"           P     119.251    1.51
+FAB       "O5'"           P         O1P     107.912    2.57
+FAB       "O5'"           P         O2P     107.912    2.57
+FAB       "O5'"           P         O3P     101.065    1.97
+FAB         O1P           P         O2P     118.411    2.35
+FAB         O1P           P         O3P     108.816    2.14
+FAB         O2P           P         O3P     108.816    2.14
+FAB          PA         O3P           P     132.542    3.00
+FAB          N5       "C2'"       "O3'"     118.924    1.91
+FAB          N5       "C2'"       "C3'"     120.240    3.00
+FAB       "O3'"       "C2'"       "C3'"     120.836    2.07
+FAB       "C2'"       "C3'"       "C4'"     109.631    1.81
+FAB       "C2'"       "C3'"       "C5'"     109.631    1.81
+FAB       "C2'"       "C3'"       "H3'"     108.971    1.50
+FAB       "C4'"       "C3'"       "C5'"     111.057    1.50
+FAB       "C4'"       "C3'"       "H3'"     108.317    1.50
+FAB       "C5'"       "C3'"       "H3'"     108.317    1.50
+FAB       "C3'"       "C4'"      "H4'1"     109.579    1.50
+FAB       "C3'"       "C4'"      "H4'2"     109.579    1.50
+FAB       "C3'"       "C4'"      "H4'3"     109.579    1.50
+FAB      "H4'1"       "C4'"      "H4'2"     109.411    1.50
+FAB      "H4'1"       "C4'"      "H4'3"     109.411    1.50
+FAB      "H4'2"       "C4'"      "H4'3"     109.411    1.50
+FAB       "C3'"       "C5'"        H51X     109.579    1.50
+FAB       "C3'"       "C5'"        H52X     109.579    1.50
+FAB       "C3'"       "C5'"      "H5'3"     109.579    1.50
+FAB        H51X       "C5'"        H52X     109.411    1.50
+FAB        H51X       "C5'"      "H5'3"     109.411    1.50
+FAB        H52X       "C5'"      "H5'3"     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FAB            sp3_sp3_27         C5B         O5B          PA         O1A      60.000    10.0     3
+FAB            sp3_sp3_30           P         O3P          PA         O1A      60.000    10.0     3
+FAB             sp2_sp3_1         C8A         N9A         C1B         O4B     150.000    10.0     6
+FAB              const_52         N7A         C8A         N9A         C1B     180.000    10.0     2
+FAB              const_84         C5A         C4A         N9A         C1B     180.000    10.0     2
+FAB              const_55         N9A         C8A         N7A         C5A       0.000    10.0     2
+FAB              const_58         C6A         C5A         N7A         C8A     180.000    10.0     2
+FAB              const_42         N7A         C5A         C6A         N6A       0.000    10.0     2
+FAB              const_59         N9A         C4A         C5A         N7A       0.000    10.0     2
+FAB             sp2_sp2_1         C5A         C6A         N6A        H61A     180.000     5.0     2
+FAB              const_44         N6A         C6A         N1A         C2A     180.000    10.0     2
+FAB              const_45         N3A         C2A         N1A         C6A       0.000    10.0     2
+FAB              const_47         N1A         C2A         N3A         C4A       0.000    10.0     2
+FAB              const_50         N9A         C4A         N3A         C2A     180.000    10.0     2
+FAB       const_sp2_sp2_2          O2          C2          N1         C10     180.000     5.0     2
+FAB              const_87         C4X         C10          N1          C2       0.000    10.0     2
+FAB       const_sp2_sp2_5          O2          C2          N3          C4     180.000     5.0     2
+FAB       const_sp2_sp2_9          O4          C4          N3          C2     180.000     5.0     2
+FAB              const_14          O4          C4         C4X          N5       0.000    10.0     2
+FAB              const_22          C4         C4X          N5       "C2'"       0.000    10.0     2
+FAB              const_15          N1         C10         C4X          C4       0.000    10.0     2
+FAB              const_26          C6         C5X          N5       "C2'"       0.000    10.0     2
+FAB             sp2_sp2_7       "O3'"       "C2'"          N5         C4X       0.000     5.0     2
+FAB              const_65          N5         C5X          C6          C7     180.000    10.0     2
+FAB              const_28          N5         C5X         C9A          C9     180.000    10.0     2
+FAB              const_68         C5X          C6          C7         C7M     180.000    10.0     2
+FAB             sp2_sp3_7          C6          C7         C7M        HM71     150.000    10.0     6
+FAB              const_74         C7M          C7          C8         C8M       0.000    10.0     2
+FAB            sp2_sp3_13          C7          C8         C8M        HM81     150.000    10.0     6
+FAB              const_77         C8M          C8          C9         C9A     180.000    10.0     2
+FAB              const_79          C8          C9         C9A         C5X       0.000    10.0     2
+FAB              const_32         C5X         C9A         N10       "C1'"     180.000    10.0     2
+FAB              const_38          N1         C10         N10       "C1'"       0.000    10.0     2
+FAB            sp2_sp3_20         C9A         N10       "C1'"         C2D     -90.000    10.0     6
+FAB            sp3_sp3_31         C4B         C5B         O5B          PA     180.000    10.0     3
+FAB            sp3_sp3_58         N10       "C1'"         C2D       "O2'"     180.000    10.0     3
+FAB            sp3_sp3_67       "C1'"         C2D       "O2'"      "HO2'"     180.000    10.0     3
+FAB            sp3_sp3_70       "C1'"         C2D         C3D         O3D     180.000    10.0     3
+FAB            sp3_sp3_79         C2D         C3D         O3D      "HO3'"     180.000    10.0     3
+FAB            sp3_sp3_82         C2D         C3D         C4D       "O4'"     180.000    10.0     3
+FAB            sp3_sp3_91         C3D         C4D       "O4'"      "HO4'"     180.000    10.0     3
+FAB            sp3_sp3_94         C3D         C4D         C5D       "O5'"     180.000    10.0     3
+FAB           sp3_sp3_103         C4D         C5D       "O5'"           P     180.000    10.0     3
+FAB           sp3_sp3_108         C5D       "O5'"           P         O1P      60.000    10.0     3
+FAB           sp3_sp3_110          PA         O3P           P       "O5'"     -60.000    10.0     3
+FAB            sp3_sp3_34         O4B         C4B         C5B         O5B     180.000    10.0     3
+FAB            sp2_sp3_29       "O3'"       "C2'"       "C3'"       "C4'"     -60.000    10.0     6
+FAB           sp3_sp3_112       "C2'"       "C3'"       "C4'"      "H4'1"     180.000    10.0     3
+FAB           sp3_sp3_121       "C2'"       "C3'"       "C5'"        H51X     180.000    10.0     3
+FAB             sp3_sp3_2         C5B         C4B         O4B         C1B     -60.000    10.0     3
+FAB            sp3_sp3_47         O3B         C3B         C4B         C5B     180.000    10.0     3
+FAB             sp3_sp3_4         C2B         C1B         O4B         C4B     -60.000    10.0     3
+FAB            sp3_sp3_52         C4B         C3B         O3B        HO3A     180.000    10.0     3
+FAB            sp3_sp3_20         O2B         C2B         C3B         O3B     -60.000    10.0     3
+FAB            sp3_sp3_55         C3B         C2B         O2B        HO2A     180.000    10.0     3
+FAB             sp3_sp3_8         O4B         C1B         C2B         O2B     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FAB    chir_1    PA    O3P    O5B    O2A    both
+FAB    chir_2    C4B    O4B    C3B    C5B    negative
+FAB    chir_3    C3B    O3B    C4B    C2B    positive
+FAB    chir_4    C2B    O2B    C1B    C3B    negative
+FAB    chir_5    C1B    O4B    N9A    C2B    negative
+FAB    chir_6    C2D    "O2'"    C3D    "C1'"    positive
+FAB    chir_7    C3D    O3D    C4D    C2D    positive
+FAB    chir_8    C4D    "O4'"    C3D    C5D    negative
+FAB    chir_9    P    O3P    "O5'"    O2P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FAB    plan-1         C1B   0.020
+FAB    plan-1         C2A   0.020
+FAB    plan-1         C4A   0.020
+FAB    plan-1         C5A   0.020
+FAB    plan-1         C6A   0.020
+FAB    plan-1         C8A   0.020
+FAB    plan-1         H2A   0.020
+FAB    plan-1         H8A   0.020
+FAB    plan-1         N1A   0.020
+FAB    plan-1         N3A   0.020
+FAB    plan-1         N6A   0.020
+FAB    plan-1         N7A   0.020
+FAB    plan-1         N9A   0.020
+FAB    plan-2       "C1'"   0.020
+FAB    plan-2         C10   0.020
+FAB    plan-2          C2   0.020
+FAB    plan-2       "C2'"   0.020
+FAB    plan-2          C4   0.020
+FAB    plan-2         C4X   0.020
+FAB    plan-2         C5X   0.020
+FAB    plan-2          C6   0.020
+FAB    plan-2          C7   0.020
+FAB    plan-2         C7M   0.020
+FAB    plan-2          C8   0.020
+FAB    plan-2         C8M   0.020
+FAB    plan-2          C9   0.020
+FAB    plan-2         C9A   0.020
+FAB    plan-2          H6   0.020
+FAB    plan-2          H9   0.020
+FAB    plan-2         HN3   0.020
+FAB    plan-2          N1   0.020
+FAB    plan-2         N10   0.020
+FAB    plan-2          N3   0.020
+FAB    plan-2          N5   0.020
+FAB    plan-2          O2   0.020
+FAB    plan-2          O4   0.020
+FAB    plan-3         C6A   0.020
+FAB    plan-3        H61A   0.020
+FAB    plan-3        H62A   0.020
+FAB    plan-3         N6A   0.020
+FAB    plan-4       "C2'"   0.020
+FAB    plan-4       "C3'"   0.020
+FAB    plan-4          N5   0.020
+FAB    plan-4       "O3'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FAB            InChI                InChI  1.03 InChI=1S/C31H39N9O16P2/c1-12(2)29(47)40-16-6-14(4)13(3)5-15(16)38(27-21(40)28(46)37-31(48)36-27)7-17(41)22(43)18(42)8-53-57(49,50)56-58(51,52)54-9-19-23(44)24(45)30(55-19)39-11-35-20-25(32)33-10-34-26(20)39/h5-6,10-12,17-19,22-24,30,41-45H,7-9H2,1-4H3,(H4-,32,33,34,37,46,48,49,50,51,52)/t17-,18+,19+,22-,23+,24+,30+/m0/s1
+FAB         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                        VVZGWZAMSAFRNS-UYOVOMPXSA-N
+FAB SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                             CC(C)C(=O)[N+]1=C2C(=O)NC(=O)N=C2N(C[C@H](O)[C@H](O)[C@H](O)CO[P]([O-])(=O)O[P](O)(=O)OC[C@H]3O[C@H]([C@H](O)[C@@H]3O)n4cnc5c(N)ncnc45)c6cc(C)c(C)cc16
+FAB           SMILES               CACTVS 3.385                                                                                                                                                                                     CC(C)C(=O)[N+]1=C2C(=O)NC(=O)N=C2N(C[CH](O)[CH](O)[CH](O)CO[P]([O-])(=O)O[P](O)(=O)OC[CH]3O[CH]([CH](O)[CH]3O)n4cnc5c(N)ncnc45)c6cc(C)c(C)cc16
+FAB SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                                                                                                                            Cc1cc2c(cc1C)[N+](=C3C(=O)NC(=O)N=C3N2C[C@@H]([C@@H]([C@@H](COP(=O)([O-])O[P@](=O)(O)OC[C@@H]4[C@H]([C@H]([C@@H](O4)n5cnc6c5ncnc6N)O)O)O)O)O)C(=O)C(C)C
+FAB           SMILES "OpenEye OEToolkits" 1.7.5                                                                                                                                                                                                                Cc1cc2c(cc1C)[N+](=C3C(=O)NC(=O)N=C3N2CC(C(C(COP(=O)([O-])OP(=O)(O)OCC4C(C(C(O4)n5cnc6c5ncnc6N)O)O)O)O)O)C(=O)C(C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FAB acedrg               243         "dictionary generator"                  
+FAB acedrg_database      11          "data source"                           
+FAB rdkit                2017.03.2   "Chemoinformatics tool"
+FAB refmac5              5.8.0238    "optimization tool"                     

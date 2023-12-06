@@ -1,0 +1,396 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AK8     AK8      1-[3-methyl-4-({3-[2-(methylamino)pyrimidin-4-yl]pyridin-2-yl}oxy)phenyl]-3-[3-(trifluoromethyl)phenyl]urea     NON-POLYMER     57     36     .     
+#
+data_comp_AK8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AK8     N1      N       NRD6    0       64.398      30.431      5.064       
+AK8     N3      N       NRD6    0       66.494      26.268      5.655       
+AK8     C4      C       CR16    0       63.590      30.196      2.493       
+AK8     C5      C       CR6     0       65.801      28.480      5.011       
+AK8     C6      C       CR16    0       66.884      29.022      5.704       
+AK8     C7      C       CR16    0       67.765      28.188      6.362       
+AK8     C8      C       CR16    0       67.536      26.826      6.308       
+AK8     C10     C       CH3     0       63.860      33.032      6.238       
+AK8     C13     C       CR16    0       65.443      23.150      3.063       
+AK8     C15     C       CR16    0       63.197      23.127      3.907       
+AK8     C17     C       CH3     0       62.134      25.190      4.879       
+AK8     C20     C       CR16    0       65.675      17.245      4.591       
+AK8     C21     C       CR16    0       66.374      16.069      4.821       
+AK8     C22     C       CR16    0       66.741      15.246      3.768       
+AK8     C24     C       CR16    0       65.703      16.797      2.227       
+AK8     N4      N       NH1     0       63.084      32.337      5.227       
+AK8     C1      C       CR6     0       63.549      31.318      4.481       
+AK8     N2      N       NRD6    0       63.117      31.226      3.199       
+AK8     C3      C       CR16    0       64.470      29.254      2.997       
+AK8     C2      C       CR6     0       64.858      29.408      4.322       
+AK8     C9      C       CR6     0       65.640      27.071      5.012       
+AK8     O1      O       O2      0       64.586      26.517      4.336       
+AK8     C11     C       CR6     0       64.482      25.143      3.989       
+AK8     C16     C       CR6     0       63.294      24.474      4.247       
+AK8     C12     C       CR16    0       65.546      24.487      3.392       
+AK8     C14     C       CR6     0       64.266      22.456      3.313       
+AK8     N5      N       NH1     0       64.191      21.085      2.971       
+AK8     C18     C       C       0       64.995      20.082      3.469       
+AK8     O2      O       O       0       65.950      20.296      4.209       
+AK8     N6      N       NH1     0       64.629      18.817      3.061       
+AK8     C19     C       CR6     0       65.340      17.616      3.293       
+AK8     C23     C       CR6     0       66.400      15.609      2.469       
+AK8     C25     C       CT      0       66.792      14.736      1.318       
+AK8     F2      F       F       0       65.933      14.787      0.302       
+AK8     F3      F       F       0       67.974      15.064      0.809       
+AK8     F1      F       F       0       66.880      13.448      1.640       
+AK8     H4      H       H       0       63.310      30.108      1.589       
+AK8     H6      H       H       0       67.010      29.962      5.722       
+AK8     H7      H       H       0       68.502      28.538      6.833       
+AK8     H8      H       H       0       68.133      26.253      6.753       
+AK8     H10     H       H       0       64.352      32.393      6.776       
+AK8     H10A    H       H       0       63.262      33.537      6.811       
+AK8     H10B    H       H       0       64.483      33.639      5.809       
+AK8     H13     H       H       0       66.174      22.707      2.667       
+AK8     H15     H       H       0       62.394      22.665      4.081       
+AK8     H17     H       H       0       62.429      25.641      5.686       
+AK8     H17A    H       H       0       61.436      24.554      5.103       
+AK8     H17B    H       H       0       61.780      25.847      4.256       
+AK8     H20     H       H       0       65.433      17.798      5.315       
+AK8     H21     H       H       0       66.598      15.827      5.704       
+AK8     H22     H       H       0       67.215      14.448      3.941       
+AK8     H24     H       H       0       65.473      17.049      1.348       
+AK8     HN4     H       H       0       62.253      32.589      5.082       
+AK8     H3      H       H       0       64.781      28.543      2.475       
+AK8     H12     H       H       0       66.354      24.949      3.222       
+AK8     HN5     H       H       0       63.578      20.868      2.379       
+AK8     HN6     H       H       0       63.874      18.733      2.619       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AK8          N1          C1      DOUBLE       y     1.354  0.0100     1.354  0.0100
+AK8          N1          C2      SINGLE       y     1.341  0.0100     1.341  0.0100
+AK8          N3          C8      DOUBLE       y     1.345  0.0100     1.345  0.0100
+AK8          N3          C9      SINGLE       y     1.325  0.0125     1.325  0.0125
+AK8          C4          N2      DOUBLE       y     1.331  0.0100     1.331  0.0100
+AK8          C4          C3      SINGLE       y     1.381  0.0100     1.381  0.0100
+AK8          C5          C6      SINGLE       y     1.392  0.0100     1.392  0.0100
+AK8          C5          C2      SINGLE       n     1.489  0.0100     1.489  0.0100
+AK8          C5          C9      DOUBLE       y     1.407  0.0131     1.407  0.0131
+AK8          C6          C7      DOUBLE       y     1.379  0.0100     1.379  0.0100
+AK8          C7          C8      SINGLE       y     1.374  0.0152     1.374  0.0152
+AK8         C10          N4      SINGLE       n     1.448  0.0113     1.448  0.0113
+AK8         C13         C12      DOUBLE       y     1.379  0.0100     1.379  0.0100
+AK8         C13         C14      SINGLE       y     1.388  0.0100     1.388  0.0100
+AK8         C15         C16      SINGLE       y     1.386  0.0100     1.386  0.0100
+AK8         C15         C14      DOUBLE       y     1.391  0.0100     1.391  0.0100
+AK8         C17         C16      SINGLE       n     1.501  0.0100     1.501  0.0100
+AK8         C20         C21      DOUBLE       y     1.381  0.0144     1.381  0.0144
+AK8         C20         C19      SINGLE       y     1.388  0.0100     1.388  0.0100
+AK8         C21         C22      SINGLE       y     1.380  0.0131     1.380  0.0131
+AK8         C22         C23      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AK8         C24         C19      DOUBLE       y     1.388  0.0100     1.388  0.0100
+AK8         C24         C23      SINGLE       y     1.392  0.0100     1.392  0.0100
+AK8          N4          C1      SINGLE       n     1.341  0.0100     1.341  0.0100
+AK8          C1          N2      SINGLE       y     1.349  0.0115     1.349  0.0115
+AK8          C3          C2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AK8          C9          O1      SINGLE       n     1.362  0.0100     1.362  0.0100
+AK8          O1         C11      SINGLE       n     1.415  0.0100     1.415  0.0100
+AK8         C11         C16      DOUBLE       y     1.379  0.0100     1.379  0.0100
+AK8         C11         C12      SINGLE       y     1.379  0.0100     1.379  0.0100
+AK8         C14          N5      SINGLE       n     1.412  0.0105     1.412  0.0105
+AK8          N5         C18      SINGLE       n     1.371  0.0114     1.371  0.0114
+AK8         C18          O2      DOUBLE       n     1.225  0.0102     1.225  0.0102
+AK8         C18          N6      SINGLE       n     1.371  0.0114     1.371  0.0114
+AK8          N6         C19      SINGLE       n     1.412  0.0105     1.412  0.0105
+AK8         C23         C25      SINGLE       n     1.491  0.0100     1.491  0.0100
+AK8         C25          F2      SINGLE       n     1.329  0.0183     1.329  0.0183
+AK8         C25          F3      SINGLE       n     1.329  0.0183     1.329  0.0183
+AK8         C25          F1      SINGLE       n     1.329  0.0183     1.329  0.0183
+AK8          C4          H4      SINGLE       n     1.082  0.0130     0.950  0.0100
+AK8          C6          H6      SINGLE       n     1.082  0.0130     0.949  0.0145
+AK8          C7          H7      SINGLE       n     1.082  0.0130     0.942  0.0155
+AK8          C8          H8      SINGLE       n     1.082  0.0130     0.940  0.0133
+AK8         C10         H10      SINGLE       n     1.089  0.0100     0.970  0.0159
+AK8         C10        H10A      SINGLE       n     1.089  0.0100     0.970  0.0159
+AK8         C10        H10B      SINGLE       n     1.089  0.0100     0.970  0.0159
+AK8         C13         H13      SINGLE       n     1.082  0.0130     0.942  0.0170
+AK8         C15         H15      SINGLE       n     1.082  0.0130     0.942  0.0139
+AK8         C17         H17      SINGLE       n     1.089  0.0100     0.971  0.0135
+AK8         C17        H17A      SINGLE       n     1.089  0.0100     0.971  0.0135
+AK8         C17        H17B      SINGLE       n     1.089  0.0100     0.971  0.0135
+AK8         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0178
+AK8         C21         H21      SINGLE       n     1.082  0.0130     0.943  0.0185
+AK8         C22         H22      SINGLE       n     1.082  0.0130     0.944  0.0174
+AK8         C24         H24      SINGLE       n     1.082  0.0130     0.942  0.0139
+AK8          N4         HN4      SINGLE       n     1.016  0.0100     0.880  0.0200
+AK8          C3          H3      SINGLE       n     1.082  0.0130     0.935  0.0100
+AK8         C12         H12      SINGLE       n     1.082  0.0130     0.947  0.0200
+AK8          N5         HN5      SINGLE       n     1.016  0.0100     0.879  0.0200
+AK8          N6         HN6      SINGLE       n     1.016  0.0100     0.879  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AK8          C1          N1          C2     117.421    1.50
+AK8          C8          N3          C9     116.403    1.50
+AK8          N2          C4          C3     123.916    1.50
+AK8          N2          C4          H4     118.011    1.50
+AK8          C3          C4          H4     118.073    1.50
+AK8          C6          C5          C2     118.939    1.50
+AK8          C6          C5          C9     119.513    1.50
+AK8          C2          C5          C9     121.549    1.50
+AK8          C5          C6          C7     120.201    1.50
+AK8          C5          C6          H6     119.542    1.50
+AK8          C7          C6          H6     120.257    1.50
+AK8          C6          C7          C8     118.172    1.50
+AK8          C6          C7          H7     120.849    1.50
+AK8          C8          C7          H7     120.979    1.50
+AK8          N3          C8          C7     122.984    1.50
+AK8          N3          C8          H8     118.185    1.60
+AK8          C7          C8          H8     118.830    1.50
+AK8          N4         C10         H10     109.503    1.50
+AK8          N4         C10        H10A     109.503    1.50
+AK8          N4         C10        H10B     109.503    1.50
+AK8         H10         C10        H10A     109.396    1.50
+AK8         H10         C10        H10B     109.396    1.50
+AK8        H10A         C10        H10B     109.396    1.50
+AK8         C12         C13         C14     120.653    1.50
+AK8         C12         C13         H13     119.683    1.50
+AK8         C14         C13         H13     119.664    1.50
+AK8         C16         C15         C14     120.633    1.50
+AK8         C16         C15         H15     119.399    1.50
+AK8         C14         C15         H15     119.968    1.50
+AK8         C16         C17         H17     109.597    1.50
+AK8         C16         C17        H17A     109.597    1.50
+AK8         C16         C17        H17B     109.597    1.50
+AK8         H17         C17        H17A     109.348    1.50
+AK8         H17         C17        H17B     109.348    1.50
+AK8        H17A         C17        H17B     109.348    1.50
+AK8         C21         C20         C19     119.909    1.50
+AK8         C21         C20         H20     120.112    1.50
+AK8         C19         C20         H20     119.979    1.50
+AK8         C20         C21         C22     120.562    1.50
+AK8         C20         C21         H21     119.623    1.50
+AK8         C22         C21         H21     119.815    1.50
+AK8         C21         C22         C23     119.195    1.50
+AK8         C21         C22         H22     120.183    1.50
+AK8         C23         C22         H22     120.622    1.50
+AK8         C19         C24         C23     119.687    1.50
+AK8         C19         C24         H24     119.978    1.50
+AK8         C23         C24         H24     120.334    1.50
+AK8         C10          N4          C1     122.161    2.30
+AK8         C10          N4         HN4     119.707    1.66
+AK8          C1          N4         HN4     118.132    2.32
+AK8          N1          C1          N4     117.836    1.50
+AK8          N1          C1          N2     124.328    1.50
+AK8          N4          C1          N2     117.836    1.50
+AK8          C4          N2          C1     115.530    1.50
+AK8          C4          C3          C2     117.361    1.50
+AK8          C4          C3          H3     121.363    1.50
+AK8          C2          C3          H3     121.275    1.50
+AK8          N1          C2          C5     116.162    1.50
+AK8          N1          C2          C3     121.443    1.50
+AK8          C5          C2          C3     122.395    1.50
+AK8          N3          C9          C5     122.726    1.50
+AK8          N3          C9          O1     118.330    2.69
+AK8          C5          C9          O1     118.944    1.50
+AK8          C9          O1         C11     116.317    3.00
+AK8          O1         C11         C16     118.911    1.60
+AK8          O1         C11         C12     120.269    3.00
+AK8         C16         C11         C12     120.820    1.50
+AK8         C15         C16         C17     121.093    1.50
+AK8         C15         C16         C11     118.128    1.50
+AK8         C17         C16         C11     120.778    1.50
+AK8         C13         C12         C11     120.109    1.50
+AK8         C13         C12         H12     119.837    1.50
+AK8         C11         C12         H12     120.054    1.50
+AK8         C13         C14         C15     119.657    1.50
+AK8         C13         C14          N5     120.391    3.00
+AK8         C15         C14          N5     119.952    3.00
+AK8         C14          N5         C18     126.621    1.86
+AK8         C14          N5         HN5     116.583    1.97
+AK8         C18          N5         HN5     116.797    1.80
+AK8          N5         C18          O2     123.894    1.50
+AK8          N5         C18          N6     112.213    1.51
+AK8          O2         C18          N6     123.894    1.50
+AK8         C18          N6         C19     126.621    1.86
+AK8         C18          N6         HN6     116.797    1.80
+AK8         C19          N6         HN6     116.583    1.97
+AK8         C20         C19         C24     119.673    1.50
+AK8         C20         C19          N6     120.383    3.00
+AK8         C24         C19          N6     119.944    3.00
+AK8         C22         C23         C24     120.976    1.50
+AK8         C22         C23         C25     119.930    1.50
+AK8         C24         C23         C25     119.090    1.50
+AK8         C23         C25          F2     112.813    1.50
+AK8         C23         C25          F3     112.813    1.50
+AK8         C23         C25          F1     112.813    1.50
+AK8          F2         C25          F3     105.974    1.50
+AK8          F2         C25          F1     105.974    1.50
+AK8          F3         C25          F1     105.974    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AK8              const_42          N4          C1          N1          C2     180.000    10.0     2
+AK8              const_74          C5          C2          N1          C1     180.000    10.0     2
+AK8             sp2_sp3_7         C15         C16         C17         H17     150.000    10.0     6
+AK8              const_21         C19         C20         C21         C22       0.000    10.0     2
+AK8              const_83          N6         C19         C20         C21     180.000    10.0     2
+AK8              const_25         C20         C21         C22         C23       0.000    10.0     2
+AK8              const_30         C21         C22         C23         C25     180.000    10.0     2
+AK8              const_39          N6         C19         C24         C23     180.000    10.0     2
+AK8              const_35         C25         C23         C24         C19     180.000    10.0     2
+AK8             sp2_sp2_5          N1          C1          N4         C10     180.000     5.0     2
+AK8              const_44          N4          C1          N2          C4     180.000    10.0     2
+AK8              const_51          N1          C2          C3          C4       0.000    10.0     2
+AK8              const_76          O1          C9          N3          C8     180.000    10.0     2
+AK8              const_55          C7          C8          N3          C9       0.000    10.0     2
+AK8             sp2_sp2_9          N3          C9          O1         C11     180.000     5.0     2
+AK8            sp2_sp2_11         C16         C11          O1          C9     180.000     5.0     2
+AK8              const_12          O1         C11         C16         C17       0.000    10.0     2
+AK8       const_sp2_sp2_7          O1         C11         C12         C13     180.000     5.0     2
+AK8            sp2_sp2_13         C13         C14          N5         C18     180.000     5.0     2
+AK8            sp2_sp2_19          O2         C18          N5         C14       0.000     5.0     2
+AK8            sp2_sp2_21          N5         C18          N6         C19     180.000     5.0     2
+AK8            sp2_sp2_25         C20         C19          N6         C18     180.000     5.0     2
+AK8              const_45          C3          C4          N2          C1       0.000    10.0     2
+AK8              const_47          C2          C3          C4          N2       0.000    10.0     2
+AK8            sp2_sp3_13         C22         C23         C25          F2     150.000    10.0     6
+AK8             sp2_sp2_3          N1          C2          C5          C6       0.000     5.0     2
+AK8              const_70          C6          C5          C9          O1     180.000    10.0     2
+AK8              const_67          C2          C5          C6          C7     180.000    10.0     2
+AK8              const_61          C5          C6          C7          C8       0.000    10.0     2
+AK8              const_57          C6          C7          C8          N3       0.000    10.0     2
+AK8             sp2_sp3_1          C1          N4         C10         H10       0.000    10.0     6
+AK8       const_sp2_sp2_1         C11         C12         C13         C14       0.000     5.0     2
+AK8              const_78         C12         C13         C14          N5     180.000    10.0     2
+AK8              const_14         C14         C15         C16         C17     180.000    10.0     2
+AK8              const_19          N5         C14         C15         C16     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AK8    chir_1    C25    F2    F3    F1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AK8    plan-1          C1   0.020
+AK8    plan-1          C2   0.020
+AK8    plan-1          C3   0.020
+AK8    plan-1          C4   0.020
+AK8    plan-1          C5   0.020
+AK8    plan-1          H3   0.020
+AK8    plan-1          H4   0.020
+AK8    plan-1          N1   0.020
+AK8    plan-1          N2   0.020
+AK8    plan-1          N4   0.020
+AK8    plan-2         C19   0.020
+AK8    plan-2         C20   0.020
+AK8    plan-2         C21   0.020
+AK8    plan-2         C22   0.020
+AK8    plan-2         C23   0.020
+AK8    plan-2         C24   0.020
+AK8    plan-2         C25   0.020
+AK8    plan-2         H20   0.020
+AK8    plan-2         H21   0.020
+AK8    plan-2         H22   0.020
+AK8    plan-2         H24   0.020
+AK8    plan-2          N6   0.020
+AK8    plan-3          C2   0.020
+AK8    plan-3          C5   0.020
+AK8    plan-3          C6   0.020
+AK8    plan-3          C7   0.020
+AK8    plan-3          C8   0.020
+AK8    plan-3          C9   0.020
+AK8    plan-3          H6   0.020
+AK8    plan-3          H7   0.020
+AK8    plan-3          H8   0.020
+AK8    plan-3          N3   0.020
+AK8    plan-3          O1   0.020
+AK8    plan-4         C11   0.020
+AK8    plan-4         C12   0.020
+AK8    plan-4         C13   0.020
+AK8    plan-4         C14   0.020
+AK8    plan-4         C15   0.020
+AK8    plan-4         C16   0.020
+AK8    plan-4         C17   0.020
+AK8    plan-4         H12   0.020
+AK8    plan-4         H13   0.020
+AK8    plan-4         H15   0.020
+AK8    plan-4          N5   0.020
+AK8    plan-4          O1   0.020
+AK8    plan-5          C1   0.020
+AK8    plan-5         C10   0.020
+AK8    plan-5         HN4   0.020
+AK8    plan-5          N4   0.020
+AK8    plan-6         C14   0.020
+AK8    plan-6         C18   0.020
+AK8    plan-6         HN5   0.020
+AK8    plan-6          N5   0.020
+AK8    plan-7         C18   0.020
+AK8    plan-7          N5   0.020
+AK8    plan-7          N6   0.020
+AK8    plan-7          O2   0.020
+AK8    plan-8         C18   0.020
+AK8    plan-8         C19   0.020
+AK8    plan-8         HN6   0.020
+AK8    plan-8          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AK8           SMILES              ACDLabs 10.04                                                                                                                  FC(F)(F)c1cc(ccc1)NC(=O)Nc4ccc(Oc3ncccc3c2nc(ncc2)NC)c(c4)C
+AK8 SMILES_CANONICAL               CACTVS 3.341                                                                                                                    CNc1nccc(n1)c2cccnc2Oc3ccc(NC(=O)Nc4cccc(c4)C(F)(F)F)cc3C
+AK8           SMILES               CACTVS 3.341                                                                                                                    CNc1nccc(n1)c2cccnc2Oc3ccc(NC(=O)Nc4cccc(c4)C(F)(F)F)cc3C
+AK8 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                  Cc1cc(ccc1Oc2c(cccn2)c3ccnc(n3)NC)NC(=O)Nc4cccc(c4)C(F)(F)F
+AK8           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                  Cc1cc(ccc1Oc2c(cccn2)c3ccnc(n3)NC)NC(=O)Nc4cccc(c4)C(F)(F)F
+AK8            InChI                InChI  1.03 InChI=1S/C25H21F3N6O2/c1-15-13-18(33-24(35)32-17-6-3-5-16(14-17)25(26,27)28)8-9-21(15)36-22-19(7-4-11-30-22)20-10-12-31-23(29-2)34-20/h3-14H,1-2H3,(H,29,31,34)(H2,32,33,35)
+AK8         InChIKey                InChI  1.03                                                                                                                                                  INFGJUQNPPGDNS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AK8 acedrg               243         "dictionary generator"                  
+AK8 acedrg_database      11          "data source"                           
+AK8 rdkit                2017.03.2   "Chemoinformatics tool"
+AK8 refmac5              5.8.0238    "optimization tool"                     

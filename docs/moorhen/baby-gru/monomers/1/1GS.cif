@@ -1,0 +1,299 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+1GS     1GS      4-[2-(2-methylpropyl)-7-(trifluoromethyl)-2H-indazol-3-yl]benzene-1,3-diol     NON-POLYMER     42     25     .     
+#
+data_comp_1GS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+1GS     C01     C       CH3     0       23.039      15.544      3.994       
+1GS     C02     C       CH1     0       22.429      14.167      4.221       
+1GS     C03     C       CH3     0       22.177      13.443      2.906       
+1GS     C04     C       CH2     0       21.133      14.288      5.029       
+1GS     N01     N       NT      0       20.616      13.012      5.514       
+1GS     N02     N       NRD5    0       21.481      12.131      6.143       
+1GS     C05     C       CR56    0       20.709      11.067      6.479       
+1GS     C06     C       CR6     0       21.104      9.889       7.129       
+1GS     C07     C       CT      0       22.519      9.643       7.561       
+1GS     F01     F       F       0       22.897      8.377       7.401       
+1GS     F02     F       F       0       23.407      10.372      6.888       
+1GS     F03     F       F       0       22.717      9.923       8.846       
+1GS     C08     C       CR16    0       20.112      8.938       7.371       
+1GS     C09     C       CR16    0       18.785      9.134       6.985       
+1GS     C10     C       CR16    0       18.394      10.290      6.344       
+1GS     C11     C       CR56    0       19.358      11.277      6.082       
+1GS     C12     C       CR5     0       19.327      12.527      5.472       
+1GS     C13     C       CR6     0       18.156      13.207      4.893       
+1GS     C14     C       CR16    0       17.123      13.630      5.731       
+1GS     C15     C       CR16    0       16.006      14.265      5.212       
+1GS     C16     C       CR6     0       15.905      14.482      3.834       
+1GS     O01     O       OH1     0       14.799      15.112      3.315       
+1GS     C17     C       CR16    0       16.917      14.064      2.986       
+1GS     C18     C       CR6     0       18.038      13.425      3.506       
+1GS     O02     O       OH1     0       19.025      13.023      2.637       
+1GS     H1      H       H       0       22.352      16.228      4.073       
+1GS     H2      H       H       0       23.434      15.588      3.105       
+1GS     H3      H       H       0       23.731      15.706      4.659       
+1GS     H4      H       H       0       23.070      13.636      4.746       
+1GS     H5      H       H       0       23.016      13.344      2.422       
+1GS     H6      H       H       0       21.552      13.957      2.365       
+1GS     H7      H       H       0       21.803      12.562      3.081       
+1GS     H8      H       H       0       20.451      14.716      4.474       
+1GS     H9      H       H       0       21.291      14.869      5.802       
+1GS     H10     H       H       0       20.344      8.130       7.811       
+1GS     H11     H       H       0       18.147      8.466       7.166       
+1GS     H12     H       H       0       17.493      10.416      6.085       
+1GS     H13     H       H       0       17.185      13.488      6.660       
+1GS     H14     H       H       0       15.317      14.551      5.786       
+1GS     H15     H       H       0       14.259      15.542      3.830       
+1GS     H16     H       H       0       16.848      14.209      2.060       
+1GS     H17     H       H       0       19.211      12.186      2.554       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+1GS         C16         O01      SINGLE       n     1.374  0.0155     1.374  0.0155
+1GS         C16         C17      DOUBLE       y     1.382  0.0100     1.382  0.0100
+1GS         C15         C16      SINGLE       y     1.396  0.0100     1.396  0.0100
+1GS         C17         C18      SINGLE       y     1.387  0.0100     1.387  0.0100
+1GS         C14         C15      DOUBLE       y     1.382  0.0100     1.382  0.0100
+1GS         C18         O02      SINGLE       n     1.374  0.0155     1.374  0.0155
+1GS         C13         C18      DOUBLE       y     1.404  0.0100     1.404  0.0100
+1GS         C13         C14      SINGLE       y     1.392  0.0100     1.392  0.0100
+1GS         C12         C13      SINGLE       n     1.471  0.0100     1.471  0.0100
+1GS         C02         C03      SINGLE       n     1.521  0.0100     1.521  0.0100
+1GS         N01         C12      SINGLE       y     1.376  0.0176     1.376  0.0176
+1GS         C11         C12      DOUBLE       y     1.404  0.0200     1.404  0.0200
+1GS         C04         N01      SINGLE       n     1.454  0.0100     1.454  0.0100
+1GS         C02         C04      SINGLE       n     1.528  0.0100     1.528  0.0100
+1GS         C01         C02      SINGLE       n     1.521  0.0100     1.521  0.0100
+1GS         C10         C11      SINGLE       y     1.398  0.0164     1.398  0.0164
+1GS         C09         C10      DOUBLE       y     1.376  0.0100     1.376  0.0100
+1GS         N01         N02      SINGLE       y     1.375  0.0200     1.375  0.0200
+1GS         C05         C11      SINGLE       y     1.421  0.0100     1.421  0.0100
+1GS         C08         C09      SINGLE       y     1.392  0.0101     1.392  0.0101
+1GS         N02         C05      DOUBLE       y     1.353  0.0100     1.353  0.0100
+1GS         C05         C06      SINGLE       y     1.390  0.0138     1.390  0.0138
+1GS         C06         C08      DOUBLE       y     1.389  0.0100     1.389  0.0100
+1GS         C06         C07      SINGLE       n     1.496  0.0106     1.496  0.0106
+1GS         C07         F02      SINGLE       n     1.330  0.0180     1.330  0.0180
+1GS         C07         F03      SINGLE       n     1.330  0.0180     1.330  0.0180
+1GS         C07         F01      SINGLE       n     1.330  0.0180     1.330  0.0180
+1GS         C01          H1      SINGLE       n     1.089  0.0100     0.973  0.0146
+1GS         C01          H2      SINGLE       n     1.089  0.0100     0.973  0.0146
+1GS         C01          H3      SINGLE       n     1.089  0.0100     0.973  0.0146
+1GS         C02          H4      SINGLE       n     1.089  0.0100     0.986  0.0183
+1GS         C03          H5      SINGLE       n     1.089  0.0100     0.973  0.0146
+1GS         C03          H6      SINGLE       n     1.089  0.0100     0.973  0.0146
+1GS         C03          H7      SINGLE       n     1.089  0.0100     0.973  0.0146
+1GS         C04          H8      SINGLE       n     1.089  0.0100     0.980  0.0198
+1GS         C04          H9      SINGLE       n     1.089  0.0100     0.980  0.0198
+1GS         C08         H10      SINGLE       n     1.082  0.0130     0.948  0.0200
+1GS         C09         H11      SINGLE       n     1.082  0.0130     0.941  0.0128
+1GS         C10         H12      SINGLE       n     1.082  0.0130     0.945  0.0166
+1GS         C14         H13      SINGLE       n     1.082  0.0130     0.941  0.0147
+1GS         C15         H14      SINGLE       n     1.082  0.0130     0.941  0.0179
+1GS         O01         H15      SINGLE       n     0.966  0.0059     0.861  0.0200
+1GS         C17         H16      SINGLE       n     1.082  0.0130     0.939  0.0167
+1GS         O02         H17      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+1GS         C02         C01          H1     109.710    1.50
+1GS         C02         C01          H2     109.710    1.50
+1GS         C02         C01          H3     109.710    1.50
+1GS          H1         C01          H2     109.411    1.50
+1GS          H1         C01          H3     109.411    1.50
+1GS          H2         C01          H3     109.411    1.50
+1GS         C03         C02         C04     110.230    2.16
+1GS         C03         C02         C01     111.472    1.50
+1GS         C03         C02          H4     108.430    1.50
+1GS         C04         C02         C01     110.230    2.16
+1GS         C04         C02          H4     107.954    1.50
+1GS         C01         C02          H4     108.430    1.50
+1GS         C02         C03          H5     109.710    1.50
+1GS         C02         C03          H6     109.710    1.50
+1GS         C02         C03          H7     109.710    1.50
+1GS          H5         C03          H6     109.411    1.50
+1GS          H5         C03          H7     109.411    1.50
+1GS          H6         C03          H7     109.411    1.50
+1GS         N01         C04         C02     111.989    1.71
+1GS         N01         C04          H8     108.815    1.50
+1GS         N01         C04          H9     108.815    1.50
+1GS         C02         C04          H8     109.565    1.50
+1GS         C02         C04          H9     109.565    1.50
+1GS          H8         C04          H9     107.974    1.50
+1GS         C12         N01         C04     124.795    3.00
+1GS         C12         N01         N02     112.029    1.50
+1GS         C04         N01         N02     118.244    2.18
+1GS         N01         N02         C05     102.395    1.50
+1GS         C11         C05         N02     109.901    1.50
+1GS         C11         C05         C06     122.170    1.50
+1GS         N02         C05         C06     127.929    1.55
+1GS         C05         C06         C08     117.016    1.50
+1GS         C05         C06         C07     122.171    1.50
+1GS         C08         C06         C07     120.813    1.50
+1GS         C06         C07         F02     112.731    1.50
+1GS         C06         C07         F03     112.731    1.50
+1GS         C06         C07         F01     112.731    1.50
+1GS         F02         C07         F03     106.029    1.50
+1GS         F02         C07         F01     106.029    1.50
+1GS         F03         C07         F01     106.029    1.50
+1GS         C09         C08         C06     121.647    1.50
+1GS         C09         C08         H10     119.182    1.50
+1GS         C06         C08         H10     119.171    1.50
+1GS         C10         C09         C08     120.658    1.50
+1GS         C10         C09         H11     119.688    1.50
+1GS         C08         C09         H11     119.654    1.50
+1GS         C11         C10         C09     118.664    1.50
+1GS         C11         C10         H12     120.690    1.50
+1GS         C09         C10         H12     120.646    1.50
+1GS         C12         C11         C10     134.294    1.59
+1GS         C12         C11         C05     105.861    1.50
+1GS         C10         C11         C05     119.845    1.50
+1GS         C13         C12         N01     124.301    1.71
+1GS         C13         C12         C11     128.401    2.50
+1GS         N01         C12         C11     107.298    1.50
+1GS         C18         C13         C14     118.974    1.50
+1GS         C18         C13         C12     121.003    1.50
+1GS         C14         C13         C12     120.023    1.50
+1GS         C15         C14         C13     120.578    1.50
+1GS         C15         C14         H13     119.543    1.50
+1GS         C13         C14         H13     119.879    1.50
+1GS         C16         C15         C14     120.070    1.50
+1GS         C16         C15         H14     119.921    1.50
+1GS         C14         C15         H14     120.009    1.50
+1GS         O01         C16         C17     119.783    3.00
+1GS         O01         C16         C15     119.783    3.00
+1GS         C17         C16         C15     120.435    1.50
+1GS         C16         O01         H15     120.000    3.00
+1GS         C16         C17         C18     119.629    1.50
+1GS         C16         C17         H16     120.335    1.50
+1GS         C18         C17         H16     120.036    1.50
+1GS         C17         C18         O02     119.842    3.00
+1GS         C17         C18         C13     120.315    1.50
+1GS         O02         C18         C13     119.852    3.00
+1GS         C18         O02         H17     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+1GS            sp3_sp3_19          H1         C01         C02         C03     180.000    10.0     3
+1GS              const_13         C06         C08         C09         C10       0.000    10.0     2
+1GS       const_sp2_sp2_9         C08         C09         C10         C11       0.000     5.0     2
+1GS       const_sp2_sp2_6         C09         C10         C11         C12     180.000     5.0     2
+1GS              const_28         C10         C11         C12         C13       0.000    10.0     2
+1GS             sp2_sp2_5         N01         C12         C13         C18     180.000     5.0     2
+1GS              const_51         C18         C13         C14         C15       0.000    10.0     2
+1GS              const_32         C14         C13         C18         O02     180.000    10.0     2
+1GS              const_47         C13         C14         C15         C16       0.000    10.0     2
+1GS              const_44         C14         C15         C16         O01     180.000    10.0     2
+1GS             sp3_sp3_1         C04         C02         C03          H5     180.000    10.0     3
+1GS            sp3_sp3_13         C03         C02         C04         N01      60.000    10.0     3
+1GS             sp2_sp2_1         C17         C16         O01         H15     180.000     5.0     2
+1GS              const_41         O01         C16         C17         C18     180.000    10.0     2
+1GS              const_36         C16         C17         C18         O02     180.000    10.0     2
+1GS             sp2_sp2_3         C17         C18         O02         H17     180.000     5.0     2
+1GS             sp2_sp3_2         C12         N01         C04         C02     -90.000    10.0     6
+1GS              const_24         C13         C12         N01         C04       0.000    10.0     2
+1GS              const_56         C04         N01         N02         C05     180.000    10.0     2
+1GS              const_29         C11         C05         N02         N01       0.000    10.0     2
+1GS       const_sp2_sp2_1         N02         C05         C11         C12       0.000     5.0     2
+1GS              const_58         C11         C05         C06         C07     180.000    10.0     2
+1GS              const_19         C07         C06         C08         C09     180.000    10.0     2
+1GS             sp2_sp3_7         C05         C06         C07         F02     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+1GS    chir_1    C02    C04    C03    C01    both
+1GS    chir_2    C07    F02    F03    F01    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+1GS    plan-1         C04   0.020
+1GS    plan-1         C05   0.020
+1GS    plan-1         C06   0.020
+1GS    plan-1         C07   0.020
+1GS    plan-1         C08   0.020
+1GS    plan-1         C09   0.020
+1GS    plan-1         C10   0.020
+1GS    plan-1         C11   0.020
+1GS    plan-1         C12   0.020
+1GS    plan-1         C13   0.020
+1GS    plan-1         H10   0.020
+1GS    plan-1         H11   0.020
+1GS    plan-1         H12   0.020
+1GS    plan-1         N01   0.020
+1GS    plan-1         N02   0.020
+1GS    plan-2         C12   0.020
+1GS    plan-2         C13   0.020
+1GS    plan-2         C14   0.020
+1GS    plan-2         C15   0.020
+1GS    plan-2         C16   0.020
+1GS    plan-2         C17   0.020
+1GS    plan-2         C18   0.020
+1GS    plan-2         H13   0.020
+1GS    plan-2         H14   0.020
+1GS    plan-2         H16   0.020
+1GS    plan-2         O01   0.020
+1GS    plan-2         O02   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+1GS           SMILES              ACDLabs 12.01                                                                                FC(F)(F)c2cccc3c(c1ccc(O)cc1O)n(nc23)CC(C)C
+1GS            InChI                InChI  1.03 InChI=1S/C18H17F3N2O2/c1-10(2)9-23-17(12-7-6-11(24)8-15(12)25)13-4-3-5-14(16(13)22-23)18(19,20)21/h3-8,10,24-25H,9H2,1-2H3
+1GS         InChIKey                InChI  1.03                                                                                                XWMKKIQCFPTPKH-UHFFFAOYSA-N
+1GS SMILES_CANONICAL               CACTVS 3.370                                                                                  CC(C)Cn1nc2c(cccc2C(F)(F)F)c1c3ccc(O)cc3O
+1GS           SMILES               CACTVS 3.370                                                                                  CC(C)Cn1nc2c(cccc2C(F)(F)F)c1c3ccc(O)cc3O
+1GS SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                CC(C)Cn1c(c2cccc(c2n1)C(F)(F)F)c3ccc(cc3O)O
+1GS           SMILES "OpenEye OEToolkits" 1.7.6                                                                                CC(C)Cn1c(c2cccc(c2n1)C(F)(F)F)c3ccc(cc3O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+1GS acedrg               243         "dictionary generator"                  
+1GS acedrg_database      11          "data source"                           
+1GS rdkit                2017.03.2   "Chemoinformatics tool"
+1GS refmac5              5.8.0238    "optimization tool"                     

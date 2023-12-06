@@ -1,0 +1,342 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+0OT     0OT      2-({3-[(3,5-dibromo-2-ethoxybenzyl)amino]propyl}amino)quinolin-4(1H)-one     NON-POLYMER     51     28     .     
+#
+data_comp_0OT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+0OT     CAA     C       CH3     0       45.716      13.046      -7.414      
+0OT     CAL     C       CH2     0       45.127      14.235      -8.113      
+0OT     OAT     O       O2      0       43.914      14.595      -7.435      
+0OT     CAY     C       CR6     0       42.773      14.791      -8.171      
+0OT     CAV     C       CR6     0       42.605      15.971      -8.906      
+0OT     BR2     BR      BR      0       43.957      17.300      -8.887      
+0OT     CAI     C       CR16    0       41.457      16.191      -9.659      
+0OT     CAU     C       CR6     0       40.469      15.218      -9.669      
+0OT     BR1     BR      BR      0       38.894      15.503      -10.691     
+0OT     CAJ     C       CR16    0       40.620      14.047      -8.944      
+0OT     CAX     C       CR6     0       41.765      13.814      -8.186      
+0OT     CAP     C       CH2     0       41.907      12.529      -7.403      
+0OT     NAQ     N       NT1     0       42.738      11.529      -8.058      
+0OT     CAN     C       CH2     0       42.070      10.781      -9.129      
+0OT     CAM     C       CH2     0       43.034      10.382      -10.227     
+0OT     CAO     C       CH2     0       43.744      11.553      -10.883     
+0OT     NAR     N       NH1     0       42.836      12.396      -11.649     
+0OT     CAW     C       CR6     0       43.102      13.707      -12.065     
+0OT     CAK     C       CR16    0       44.400      14.287      -12.001     
+0OT     CAZ     C       CR6     0       44.629      15.638      -12.441     
+0OT     OAB     O       O       0       45.758      16.160      -12.389     
+0OT     CBB     C       CR66    0       43.467      16.368      -12.956     
+0OT     CAH     C       CR16    0       43.599      17.696      -13.410     
+0OT     CAF     C       CR16    0       42.511      18.378      -13.891     
+0OT     CAE     C       CR16    0       41.251      17.755      -13.934     
+0OT     CAG     C       CR16    0       41.093      16.462      -13.499     
+0OT     CBA     C       CR66    0       42.195      15.755      -13.006     
+0OT     NAS     N       NR6     0       42.040      14.449      -12.564     
+0OT     H1      H       H       0       46.678      13.034      -7.551      
+0OT     H2      H       H       0       45.331      12.232      -7.776      
+0OT     H3      H       H       0       45.528      13.097      -6.463      
+0OT     H4      H       H       0       44.944      14.018      -9.051      
+0OT     H5      H       H       0       45.756      14.984      -8.087      
+0OT     H6      H       H       0       41.355      16.981      -10.147     
+0OT     H7      H       H       0       39.940      13.400      -8.964      
+0OT     H8      H       H       0       41.014      12.149      -7.252      
+0OT     H9      H       H       0       42.292      12.733      -6.524      
+0OT     H10     H       H       0       43.033      10.968      -7.433      
+0OT     H12     H       H       0       41.351      11.325      -9.512      
+0OT     H13     H       H       0       41.664      9.975       -8.746      
+0OT     H14     H       H       0       42.541      9.885       -10.912     
+0OT     H15     H       H       0       43.704      9.775       -9.852      
+0OT     H16     H       H       0       44.440      11.215      -11.482     
+0OT     H17     H       H       0       44.180      12.097      -10.197     
+0OT     H18     H       H       0       42.064      12.055      -11.876     
+0OT     H19     H       H       0       45.125      13.789      -11.664     
+0OT     H21     H       H       0       44.439      18.121      -13.384     
+0OT     H22     H       H       0       42.607      19.267      -14.193     
+0OT     H23     H       H       0       40.508      18.228      -14.265     
+0OT     H24     H       H       0       40.245      16.053      -13.532     
+0OT     H11     H       H       0       41.232      14.081      -12.603     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+0OT         CAF         CAE      DOUBLE       y     1.401  0.0132     1.401  0.0132
+0OT         CAH         CAF      SINGLE       y     1.369  0.0100     1.369  0.0100
+0OT         CAE         CAG      SINGLE       y     1.370  0.0100     1.370  0.0100
+0OT         CBB         CAH      DOUBLE       y     1.405  0.0100     1.405  0.0100
+0OT         CAG         CBA      DOUBLE       y     1.394  0.0100     1.394  0.0100
+0OT         CBB         CBA      SINGLE       y     1.407  0.0100     1.407  0.0100
+0OT         CAZ         CBB      SINGLE       y     1.460  0.0100     1.460  0.0100
+0OT         CAZ         OAB      DOUBLE       n     1.243  0.0128     1.243  0.0128
+0OT         CBA         NAS      SINGLE       y     1.384  0.0100     1.384  0.0100
+0OT         CAK         CAZ      SINGLE       y     1.437  0.0109     1.437  0.0109
+0OT         CAW         NAS      SINGLE       y     1.380  0.0139     1.380  0.0139
+0OT         CAW         CAK      DOUBLE       y     1.405  0.0200     1.405  0.0200
+0OT         NAR         CAW      SINGLE       n     1.385  0.0200     1.385  0.0200
+0OT         CAO         NAR      SINGLE       n     1.454  0.0111     1.454  0.0111
+0OT         CAM         CAO      SINGLE       n     1.516  0.0135     1.516  0.0135
+0OT         CAN         CAM      SINGLE       n     1.512  0.0200     1.512  0.0200
+0OT         NAQ         CAN      SINGLE       n     1.465  0.0107     1.465  0.0107
+0OT         CAP         NAQ      SINGLE       n     1.454  0.0100     1.454  0.0100
+0OT         CAA         CAL      SINGLE       n     1.498  0.0164     1.498  0.0164
+0OT         CAL         OAT      SINGLE       n     1.432  0.0104     1.432  0.0104
+0OT         CAV         BR2      SINGLE       n     1.894  0.0143     1.894  0.0143
+0OT         OAT         CAY      SINGLE       n     1.368  0.0104     1.368  0.0104
+0OT         CAY         CAV      DOUBLE       y     1.392  0.0117     1.392  0.0117
+0OT         CAV         CAI      SINGLE       y     1.385  0.0170     1.385  0.0170
+0OT         CAY         CAX      SINGLE       y     1.396  0.0100     1.396  0.0100
+0OT         CAI         CAU      DOUBLE       y     1.384  0.0121     1.384  0.0121
+0OT         CAX         CAP      SINGLE       n     1.509  0.0100     1.509  0.0100
+0OT         CAJ         CAX      DOUBLE       y     1.387  0.0100     1.387  0.0100
+0OT         CAU         CAJ      SINGLE       y     1.381  0.0118     1.381  0.0118
+0OT         CAU         BR1      SINGLE       n     1.899  0.0100     1.899  0.0100
+0OT         CAA          H1      SINGLE       n     1.089  0.0100     0.971  0.0156
+0OT         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0156
+0OT         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0156
+0OT         CAL          H4      SINGLE       n     1.089  0.0100     0.979  0.0127
+0OT         CAL          H5      SINGLE       n     1.089  0.0100     0.979  0.0127
+0OT         CAI          H6      SINGLE       n     1.082  0.0130     0.934  0.0100
+0OT         CAJ          H7      SINGLE       n     1.082  0.0130     0.940  0.0154
+0OT         CAP          H8      SINGLE       n     1.089  0.0100     0.981  0.0172
+0OT         CAP          H9      SINGLE       n     1.089  0.0100     0.981  0.0172
+0OT         NAQ         H10      SINGLE       n     1.036  0.0160     0.890  0.0200
+0OT         CAN         H12      SINGLE       n     1.089  0.0100     0.980  0.0143
+0OT         CAN         H13      SINGLE       n     1.089  0.0100     0.980  0.0143
+0OT         CAM         H14      SINGLE       n     1.089  0.0100     0.979  0.0161
+0OT         CAM         H15      SINGLE       n     1.089  0.0100     0.979  0.0161
+0OT         CAO         H16      SINGLE       n     1.089  0.0100     0.979  0.0121
+0OT         CAO         H17      SINGLE       n     1.089  0.0100     0.979  0.0121
+0OT         NAR         H18      SINGLE       n     1.016  0.0100     0.873  0.0200
+0OT         CAK         H19      SINGLE       n     1.082  0.0130     0.942  0.0197
+0OT         CAH         H21      SINGLE       n     1.082  0.0130     0.942  0.0200
+0OT         CAF         H22      SINGLE       n     1.082  0.0130     0.944  0.0184
+0OT         CAE         H23      SINGLE       n     1.082  0.0130     0.941  0.0176
+0OT         CAG         H24      SINGLE       n     1.082  0.0130     0.942  0.0168
+0OT         NAS         H11      SINGLE       n     1.016  0.0100     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+0OT         CAL         CAA          H1     109.553    1.50
+0OT         CAL         CAA          H2     109.553    1.50
+0OT         CAL         CAA          H3     109.553    1.50
+0OT          H1         CAA          H2     109.410    1.50
+0OT          H1         CAA          H3     109.410    1.50
+0OT          H2         CAA          H3     109.410    1.50
+0OT         CAA         CAL         OAT     107.613    1.50
+0OT         CAA         CAL          H4     110.271    1.50
+0OT         CAA         CAL          H5     110.271    1.50
+0OT         OAT         CAL          H4     110.040    1.50
+0OT         OAT         CAL          H5     110.040    1.50
+0OT          H4         CAL          H5     108.599    1.50
+0OT         CAL         OAT         CAY     117.464    1.77
+0OT         OAT         CAY         CAV     120.112    2.06
+0OT         OAT         CAY         CAX     119.877    2.07
+0OT         CAV         CAY         CAX     120.011    1.50
+0OT         BR2         CAV         CAY     119.024    1.50
+0OT         BR2         CAV         CAI     119.380    1.50
+0OT         CAY         CAV         CAI     121.596    1.50
+0OT         CAV         CAI         CAU     119.079    1.50
+0OT         CAV         CAI          H6     120.327    1.50
+0OT         CAU         CAI          H6     120.594    1.50
+0OT         CAI         CAU         CAJ     120.882    1.50
+0OT         CAI         CAU         BR1     119.271    1.50
+0OT         CAJ         CAU         BR1     119.846    1.50
+0OT         CAX         CAJ         CAU     120.395    1.50
+0OT         CAX         CAJ          H7     119.732    1.50
+0OT         CAU         CAJ          H7     119.873    1.50
+0OT         CAY         CAX         CAP     120.774    1.50
+0OT         CAY         CAX         CAJ     118.037    1.50
+0OT         CAP         CAX         CAJ     121.189    1.50
+0OT         NAQ         CAP         CAX     113.604    2.23
+0OT         NAQ         CAP          H8     108.965    1.50
+0OT         NAQ         CAP          H9     108.965    1.50
+0OT         CAX         CAP          H8     108.972    1.50
+0OT         CAX         CAP          H9     108.972    1.50
+0OT          H8         CAP          H9     107.860    1.50
+0OT         CAN         NAQ         CAP     113.568    1.50
+0OT         CAN         NAQ         H10     110.028    3.00
+0OT         CAP         NAQ         H10     107.963    3.00
+0OT         CAM         CAN         NAQ     111.754    2.01
+0OT         CAM         CAN         H12     109.350    1.50
+0OT         CAM         CAN         H13     109.350    1.50
+0OT         NAQ         CAN         H12     108.882    1.50
+0OT         NAQ         CAN         H13     108.882    1.50
+0OT         H12         CAN         H13     107.877    1.50
+0OT         CAO         CAM         CAN     113.712    1.68
+0OT         CAO         CAM         H14     109.143    1.50
+0OT         CAO         CAM         H15     109.143    1.50
+0OT         CAN         CAM         H14     108.958    1.50
+0OT         CAN         CAM         H15     108.958    1.50
+0OT         H14         CAM         H15     107.594    1.73
+0OT         NAR         CAO         CAM     111.831    1.79
+0OT         NAR         CAO         H16     108.979    1.50
+0OT         NAR         CAO         H17     108.979    1.50
+0OT         CAM         CAO         H16     109.506    1.50
+0OT         CAM         CAO         H17     109.506    1.50
+0OT         H16         CAO         H17     107.909    1.50
+0OT         CAW         NAR         CAO     124.141    1.91
+0OT         CAW         NAR         H18     117.839    2.27
+0OT         CAO         NAR         H18     118.020    1.65
+0OT         NAS         CAW         CAK     120.403    1.64
+0OT         NAS         CAW         NAR     117.903    1.50
+0OT         CAK         CAW         NAR     121.694    2.08
+0OT         CAZ         CAK         CAW     120.633    1.50
+0OT         CAZ         CAK         H19     119.346    1.50
+0OT         CAW         CAK         H19     120.020    1.50
+0OT         CBB         CAZ         OAB     121.134    1.50
+0OT         CBB         CAZ         CAK     116.493    1.50
+0OT         OAB         CAZ         CAK     122.372    1.50
+0OT         CAH         CBB         CBA     119.176    1.50
+0OT         CAH         CBB         CAZ     119.694    1.50
+0OT         CBA         CBB         CAZ     121.129    1.50
+0OT         CAF         CAH         CBB     120.607    1.50
+0OT         CAF         CAH         H21     119.749    1.50
+0OT         CBB         CAH         H21     119.644    1.50
+0OT         CAE         CAF         CAH     120.228    1.50
+0OT         CAE         CAF         H22     119.858    1.50
+0OT         CAH         CAF         H22     119.914    1.50
+0OT         CAF         CAE         CAG     120.624    1.50
+0OT         CAF         CAE         H23     119.762    1.50
+0OT         CAG         CAE         H23     119.615    1.50
+0OT         CAE         CAG         CBA     119.309    1.50
+0OT         CAE         CAG         H24     120.336    1.50
+0OT         CBA         CAG         H24     120.354    1.50
+0OT         CAG         CBA         CBB     120.055    1.50
+0OT         CAG         CBA         NAS     120.248    1.50
+0OT         CBB         CBA         NAS     119.698    1.50
+0OT         CBA         NAS         CAW     121.643    1.50
+0OT         CBA         NAS         H11     118.796    1.72
+0OT         CAW         NAS         H11     119.562    2.03
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+0OT            sp3_sp3_31          H1         CAA         CAL         OAT     180.000    10.0     3
+0OT             sp2_sp3_8         CAY         CAX         CAP         NAQ     -90.000    10.0     6
+0OT            sp3_sp3_26         CAX         CAP         NAQ         CAN     -60.000    10.0     3
+0OT            sp3_sp3_19         CAM         CAN         NAQ         CAP     180.000    10.0     3
+0OT            sp3_sp3_10         CAO         CAM         CAN         NAQ     180.000    10.0     3
+0OT             sp3_sp3_1         CAN         CAM         CAO         NAR     180.000    10.0     3
+0OT             sp2_sp3_2         CAW         NAR         CAO         CAM     120.000    10.0     6
+0OT             sp2_sp2_1         NAS         CAW         NAR         CAO     180.000     5.0     2
+0OT              const_62         CAZ         CAK         CAW         NAR     180.000    10.0     2
+0OT              const_43         NAR         CAW         NAS         CBA     180.000    10.0     2
+0OT              const_58         CAW         CAK         CAZ         OAB     180.000    10.0     2
+0OT              const_56         OAB         CAZ         CBB         CAH       0.000    10.0     2
+0OT            sp3_sp3_40         CAA         CAL         OAT         CAY     180.000    10.0     3
+0OT       const_sp2_sp2_1         CAF         CAH         CBB         CBA       0.000     5.0     2
+0OT              const_49         CAG         CBA         CBB         CAH       0.000    10.0     2
+0OT       const_sp2_sp2_5         CAE         CAF         CAH         CBB       0.000     5.0     2
+0OT       const_sp2_sp2_9         CAG         CAE         CAF         CAH       0.000     5.0     2
+0OT              const_13         CAF         CAE         CAG         CBA       0.000    10.0     2
+0OT              const_17         CAE         CAG         CBA         CBB       0.000    10.0     2
+0OT              const_47         CAG         CBA         NAS         CAW     180.000    10.0     2
+0OT             sp2_sp2_5         CAV         CAY         OAT         CAL     180.000     5.0     2
+0OT              const_68         CAP         CAX         CAY         OAT       0.000    10.0     2
+0OT              const_24         BR2         CAV         CAY         OAT       0.000    10.0     2
+0OT              const_26         CAU         CAI         CAV         BR2     180.000    10.0     2
+0OT              const_30         CAV         CAI         CAU         BR1     180.000    10.0     2
+0OT              const_34         CAX         CAJ         CAU         BR1     180.000    10.0     2
+0OT              const_38         CAU         CAJ         CAX         CAP     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+0OT    chir_1    NAQ    CAP    CAN    H10    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+0OT    plan-1         CAE   0.020
+0OT    plan-1         CAF   0.020
+0OT    plan-1         CAG   0.020
+0OT    plan-1         CAH   0.020
+0OT    plan-1         CAK   0.020
+0OT    plan-1         CAW   0.020
+0OT    plan-1         CAZ   0.020
+0OT    plan-1         CBA   0.020
+0OT    plan-1         CBB   0.020
+0OT    plan-1         H11   0.020
+0OT    plan-1         H19   0.020
+0OT    plan-1         H21   0.020
+0OT    plan-1         H22   0.020
+0OT    plan-1         H23   0.020
+0OT    plan-1         H24   0.020
+0OT    plan-1         NAR   0.020
+0OT    plan-1         NAS   0.020
+0OT    plan-1         OAB   0.020
+0OT    plan-2         BR1   0.020
+0OT    plan-2         BR2   0.020
+0OT    plan-2         CAI   0.020
+0OT    plan-2         CAJ   0.020
+0OT    plan-2         CAP   0.020
+0OT    plan-2         CAU   0.020
+0OT    plan-2         CAV   0.020
+0OT    plan-2         CAX   0.020
+0OT    plan-2         CAY   0.020
+0OT    plan-2          H6   0.020
+0OT    plan-2          H7   0.020
+0OT    plan-2         OAT   0.020
+0OT    plan-3         CAO   0.020
+0OT    plan-3         CAW   0.020
+0OT    plan-3         H18   0.020
+0OT    plan-3         NAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+0OT           SMILES              ACDLabs 12.01                                                                                                              Brc1cc(c(OCC)c(Br)c1)CNCCCNC3=CC(=O)c2c(cccc2)N3
+0OT            InChI                InChI  1.03 InChI=1S/C21H23Br2N3O2/c1-2-28-21-14(10-15(22)11-17(21)23)13-24-8-5-9-25-20-12-19(27)16-6-3-4-7-18(16)26-20/h3-4,6-7,10-12,24H,2,5,8-9,13H2,1H3,(H2,25,26,27)
+0OT         InChIKey                InChI  1.03                                                                                                                                   IAGLKMDFSLVFID-UHFFFAOYSA-N
+0OT SMILES_CANONICAL               CACTVS 3.370                                                                                                                  CCOc1c(Br)cc(Br)cc1CNCCCNC2=CC(=O)c3ccccc3N2
+0OT           SMILES               CACTVS 3.370                                                                                                                  CCOc1c(Br)cc(Br)cc1CNCCCNC2=CC(=O)c3ccccc3N2
+0OT SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                  CCOc1c(cc(cc1Br)Br)CNCCCNC2=CC(=O)c3ccccc3N2
+0OT           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                  CCOc1c(cc(cc1Br)Br)CNCCCNC2=CC(=O)c3ccccc3N2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+0OT acedrg               243         "dictionary generator"                  
+0OT acedrg_database      11          "data source"                           
+0OT rdkit                2017.03.2   "Chemoinformatics tool"
+0OT refmac5              5.8.0238    "optimization tool"                     

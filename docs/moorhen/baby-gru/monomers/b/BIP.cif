@@ -1,0 +1,197 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BIP     BIP      "2-BENZYL-3-IODOPROPANOIC ACID"     NON-POLYMER     23     13     .     
+#
+data_comp_BIP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BIP     C1      C       C       0       21.242      29.693      15.381      
+BIP     O1      O       O       0       21.926      30.324      16.212      
+BIP     O2      O       OC      -1      21.626      28.647      14.818      
+BIP     C2      C       CH1     0       19.851      30.241      15.030      
+BIP     C3      C       CH2     0       18.824      29.101      14.912      
+BIP     I       I       I       0       16.796      29.821      14.811      
+BIP     C       C       CH2     0       19.893      31.148      13.788      
+BIP     "C1'"   C       CR6     0       20.219      30.450      12.488      
+BIP     "C2'"   C       CR16    0       21.537      30.283      12.077      
+BIP     "C3'"   C       CR16    0       21.834      29.645      10.879      
+BIP     "C4'"   C       CR16    0       20.817      29.178      10.071      
+BIP     "C5'"   C       CR16    0       19.505      29.344      10.460      
+BIP     "C6'"   C       CR16    0       19.207      29.981      11.659      
+BIP     H2      H       H       0       19.568      30.800      15.790      
+BIP     H31     H       H       0       18.908      28.513      15.692      
+BIP     H32     H       H       0       19.013      28.561      14.117      
+BIP     H1      H       H       0       20.565      31.847      13.938      
+BIP     H2A     H       H       0       19.026      31.594      13.691      
+BIP     "H2'"   H       H       0       22.238      30.598      12.625      
+BIP     "H3'"   H       H       0       22.733      29.534      10.615      
+BIP     "H4'"   H       H       0       21.018      28.747      9.256       
+BIP     "H5'"   H       H       0       18.807      29.026      9.911       
+BIP     "H6'"   H       H       0       18.306      30.089      11.919      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BIP          C1          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BIP          C1          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+BIP          C1          C2      SINGLE       n     1.533  0.0102     1.533  0.0102
+BIP          C2          C3      SINGLE       n     1.532  0.0133     1.532  0.0133
+BIP          C2           C      SINGLE       n     1.534  0.0100     1.534  0.0100
+BIP          C3           I      SINGLE       n     2.154  0.0100     2.154  0.0100
+BIP           C       "C1'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+BIP       "C1'"       "C2'"      DOUBLE       y     1.385  0.0111     1.385  0.0111
+BIP       "C1'"       "C6'"      SINGLE       y     1.385  0.0111     1.385  0.0111
+BIP       "C2'"       "C3'"      SINGLE       y     1.386  0.0100     1.386  0.0100
+BIP       "C3'"       "C4'"      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BIP       "C4'"       "C5'"      SINGLE       y     1.374  0.0127     1.374  0.0127
+BIP       "C5'"       "C6'"      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BIP          C2          H2      SINGLE       n     1.089  0.0100     0.985  0.0200
+BIP          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0108
+BIP          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0108
+BIP           C          H1      SINGLE       n     1.089  0.0100     0.981  0.0169
+BIP           C         H2A      SINGLE       n     1.089  0.0100     0.981  0.0169
+BIP       "C2'"       "H2'"      SINGLE       n     1.082  0.0130     0.944  0.0174
+BIP       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.944  0.0175
+BIP       "C4'"       "H4'"      SINGLE       n     1.082  0.0130     0.944  0.0161
+BIP       "C5'"       "H5'"      SINGLE       n     1.082  0.0130     0.944  0.0175
+BIP       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BIP          O1          C1          O2     123.899    1.50
+BIP          O1          C1          C2     118.051    1.50
+BIP          O2          C1          C2     118.051    1.50
+BIP          C1          C2          C3     110.920    1.69
+BIP          C1          C2           C     111.500    2.27
+BIP          C1          C2          H2     107.706    1.93
+BIP          C3          C2           C     111.385    1.50
+BIP          C3          C2          H2     107.425    1.50
+BIP           C          C2          H2     107.967    1.50
+BIP          C2          C3           I     111.242    2.56
+BIP          C2          C3         H31     109.550    1.50
+BIP          C2          C3         H32     109.550    1.50
+BIP           I          C3         H31     109.101    1.50
+BIP           I          C3         H32     109.101    1.50
+BIP         H31          C3         H32     107.865    1.50
+BIP          C2           C       "C1'"     113.495    1.50
+BIP          C2           C          H1     108.879    1.50
+BIP          C2           C         H2A     108.879    1.50
+BIP       "C1'"           C          H1     108.738    1.50
+BIP       "C1'"           C         H2A     108.738    1.50
+BIP          H1           C         H2A     107.709    1.50
+BIP           C       "C1'"       "C2'"     120.970    1.50
+BIP           C       "C1'"       "C6'"     120.970    1.50
+BIP       "C2'"       "C1'"       "C6'"     118.060    1.50
+BIP       "C1'"       "C2'"       "C3'"     120.624    1.50
+BIP       "C1'"       "C2'"       "H2'"     119.591    1.50
+BIP       "C3'"       "C2'"       "H2'"     119.786    1.50
+BIP       "C2'"       "C3'"       "C4'"     120.325    1.50
+BIP       "C2'"       "C3'"       "H3'"     119.792    1.50
+BIP       "C4'"       "C3'"       "H3'"     119.883    1.50
+BIP       "C3'"       "C4'"       "C5'"     120.043    1.50
+BIP       "C3'"       "C4'"       "H4'"     119.979    1.50
+BIP       "C5'"       "C4'"       "H4'"     119.979    1.50
+BIP       "C4'"       "C5'"       "C6'"     120.325    1.50
+BIP       "C4'"       "C5'"       "H5'"     119.883    1.50
+BIP       "C6'"       "C5'"       "H5'"     119.792    1.50
+BIP       "C1'"       "C6'"       "C5'"     120.624    1.50
+BIP       "C1'"       "C6'"       "H6'"     119.591    1.50
+BIP       "C5'"       "C6'"       "H6'"     119.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BIP             sp2_sp3_1          O1          C1          C2          C3       0.000    10.0     6
+BIP              const_13       "C3'"       "C4'"       "C5'"       "C6'"       0.000    10.0     2
+BIP              const_17       "C4'"       "C5'"       "C6'"       "C1'"       0.000    10.0     2
+BIP             sp3_sp3_1          C1          C2          C3           I     180.000    10.0     3
+BIP            sp3_sp3_10       "C1'"           C          C2          C1     180.000    10.0     3
+BIP             sp2_sp3_8       "C2'"       "C1'"           C          C2     -90.000    10.0     6
+BIP              const_23           C       "C1'"       "C6'"       "C5'"     180.000    10.0     2
+BIP       const_sp2_sp2_3           C       "C1'"       "C2'"       "C3'"     180.000     5.0     2
+BIP       const_sp2_sp2_5       "C1'"       "C2'"       "C3'"       "C4'"       0.000     5.0     2
+BIP       const_sp2_sp2_9       "C2'"       "C3'"       "C4'"       "C5'"       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BIP    chir_1    C2    C3    C1    C    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BIP    plan-1           C   0.020
+BIP    plan-1       "C1'"   0.020
+BIP    plan-1       "C2'"   0.020
+BIP    plan-1       "C3'"   0.020
+BIP    plan-1       "C4'"   0.020
+BIP    plan-1       "C5'"   0.020
+BIP    plan-1       "C6'"   0.020
+BIP    plan-1       "H2'"   0.020
+BIP    plan-1       "H3'"   0.020
+BIP    plan-1       "H4'"   0.020
+BIP    plan-1       "H5'"   0.020
+BIP    plan-1       "H6'"   0.020
+BIP    plan-2          C1   0.020
+BIP    plan-2          C2   0.020
+BIP    plan-2          O1   0.020
+BIP    plan-2          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BIP           SMILES              ACDLabs 10.04                                                                  O=C(O)C(CI)Cc1ccccc1
+BIP SMILES_CANONICAL               CACTVS 3.341                                                              OC(=O)[C@H](CI)Cc1ccccc1
+BIP           SMILES               CACTVS 3.341                                                               OC(=O)[CH](CI)Cc1ccccc1
+BIP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                           c1ccc(cc1)C[C@@H](CI)C(=O)O
+BIP           SMILES "OpenEye OEToolkits" 1.5.0                                                                c1ccc(cc1)CC(CI)C(=O)O
+BIP            InChI                InChI  1.03 InChI=1S/C10H11IO2/c11-7-9(10(12)13)6-8-4-2-1-3-5-8/h1-5,9H,6-7H2,(H,12,13)/t9-/m0/s1
+BIP         InChIKey                InChI  1.03                                                           CRYXPGIJLMKFPX-VIFPVBQESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BIP acedrg               243         "dictionary generator"                  
+BIP acedrg_database      11          "data source"                           
+BIP rdkit                2017.03.2   "Chemoinformatics tool"
+BIP refmac5              5.8.0238    "optimization tool"                     

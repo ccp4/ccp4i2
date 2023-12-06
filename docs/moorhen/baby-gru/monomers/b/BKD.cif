@@ -1,0 +1,338 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BKD     BKD      1-[1-(cyclopropylmethyl)-3-(1H-indol-4-yl)-1,4,6,7-tetrahydro-5H-pyrazolo[4,3-c]pyridin-5-yl]ethan-1-one     NON-POLYMER     47     25     .     
+#
+data_comp_BKD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BKD     C14     C       CH2     0       -8.580      17.426      13.765      
+BKD     C5      C       CH2     0       -4.846      15.840      17.422      
+BKD     C6      C       CH2     0       -5.191      16.999      16.504      
+BKD     C7      C       CR56    0       -6.310      17.767      17.118      
+BKD     C8      C       CR56    0       -6.677      17.685      18.425      
+BKD     C9      C       CR5     0       -7.740      18.547      18.587      
+BKD     C12     C       CH2     0       -7.144      19.106      15.118      
+BKD     C13     C       CH1     0       -8.439      18.754      14.437      
+BKD     C1      C       CH3     0       -3.428      16.637      20.914      
+BKD     C15     C       CH2     0       -8.483      18.668      12.944      
+BKD     C16     C       CR6     0       -8.542      18.862      19.794      
+BKD     C17     C       CR16    0       -8.909      17.828      20.666      
+BKD     C18     C       CR16    0       -9.662      18.092      21.813      
+BKD     C19     C       CR16    0       -10.075     19.372      22.134      
+BKD     C2      C       C       0       -3.486      16.326      19.445      
+BKD     C20     C       CR56    0       -9.715      20.407      21.272      
+BKD     C21     C       CR56    0       -8.954      20.179      20.106      
+BKD     C22     C       CR15    0       -8.775      21.451      19.475      
+BKD     C23     C       CR15    0       -9.412      22.371      20.253      
+BKD     C26     C       CH2     0       -5.981      16.782      19.398      
+BKD     N10     N       NRD5    0       -8.016      19.139      17.417      
+BKD     N11     N       NR5     0       -7.130      18.661      16.506      
+BKD     N24     N       NR5     0       -9.980      21.756      21.336      
+BKD     N4      N       NR6     0       -4.694      16.309      18.807      
+BKD     O3      O       O       0       -2.435      16.117      18.846      
+BKD     H1      H       H       0       -7.808      16.825      13.776      
+BKD     H2      H       H       0       -9.449      16.979      13.815      
+BKD     H3      H       H       0       -5.581      15.162      17.385      
+BKD     H4      H       H       0       -4.003      15.405      17.104      
+BKD     H5      H       H       0       -4.413      17.567      16.391      
+BKD     H6      H       H       0       -5.453      16.657      15.634      
+BKD     H7      H       H       0       -7.020      20.076      15.089      
+BKD     H8      H       H       0       -6.403      18.690      14.632      
+BKD     H9      H       H       0       -9.253      19.106      14.873      
+BKD     H10     H       H       0       -2.540      16.449      21.252      
+BKD     H11     H       H       0       -4.071      16.091      21.390      
+BKD     H12     H       H       0       -3.631      17.572      21.059      
+BKD     H13     H       H       0       -9.292      18.981      12.493      
+BKD     H14     H       H       0       -7.651      18.827      12.455      
+BKD     H15     H       H       0       -8.644      16.945      20.476      
+BKD     H16     H       H       0       -9.900      17.381      22.388      
+BKD     H17     H       H       0       -10.584     19.542      22.909      
+BKD     H18     H       H       0       -8.311      21.622      18.678      
+BKD     H19     H       H       0       -9.458      23.295      20.078      
+BKD     H20     H       H       0       -6.543      16.005      19.604      
+BKD     H21     H       H       0       -5.814      17.260      20.236      
+BKD     H25     H       H       0       -10.445     22.165      21.976      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BKD         C14         C15      SINGLE       n     1.491  0.0140     1.491  0.0140
+BKD         C13         C15      SINGLE       n     1.496  0.0101     1.496  0.0101
+BKD         C14         C13      SINGLE       n     1.496  0.0101     1.496  0.0101
+BKD         C12         C13      SINGLE       n     1.505  0.0117     1.505  0.0117
+BKD         C12         N11      SINGLE       n     1.457  0.0100     1.457  0.0100
+BKD          C6          C7      SINGLE       n     1.487  0.0100     1.487  0.0100
+BKD          C5          C6      SINGLE       n     1.513  0.0149     1.513  0.0149
+BKD          C7         N11      SINGLE       y     1.357  0.0100     1.357  0.0100
+BKD         N10         N11      SINGLE       y     1.355  0.0102     1.355  0.0102
+BKD          C7          C8      DOUBLE       y     1.361  0.0105     1.361  0.0105
+BKD          C5          N4      SINGLE       n     1.464  0.0100     1.464  0.0100
+BKD          C9         N10      DOUBLE       y     1.339  0.0100     1.339  0.0100
+BKD          C8          C9      SINGLE       y     1.383  0.0200     1.383  0.0200
+BKD          C8         C26      SINGLE       n     1.491  0.0152     1.491  0.0152
+BKD          C2          O3      DOUBLE       n     1.226  0.0100     1.226  0.0100
+BKD          C9         C16      SINGLE       n     1.481  0.0100     1.481  0.0100
+BKD          C2          N4      SINGLE       n     1.356  0.0100     1.356  0.0100
+BKD         C26          N4      SINGLE       n     1.471  0.0165     1.471  0.0165
+BKD          C1          C2      SINGLE       n     1.499  0.0131     1.499  0.0131
+BKD         C21         C22      SINGLE       y     1.431  0.0100     1.431  0.0100
+BKD         C22         C23      DOUBLE       y     1.363  0.0100     1.363  0.0100
+BKD         C16         C21      SINGLE       y     1.409  0.0128     1.409  0.0128
+BKD         C16         C17      DOUBLE       y     1.394  0.0127     1.394  0.0127
+BKD         C20         C21      DOUBLE       y     1.409  0.0100     1.409  0.0100
+BKD         C23         N24      SINGLE       y     1.369  0.0100     1.369  0.0100
+BKD         C17         C18      SINGLE       y     1.393  0.0100     1.393  0.0100
+BKD         C20         N24      SINGLE       y     1.377  0.0100     1.377  0.0100
+BKD         C19         C20      SINGLE       y     1.391  0.0100     1.391  0.0100
+BKD         C18         C19      DOUBLE       y     1.378  0.0100     1.378  0.0100
+BKD         C14          H1      SINGLE       n     1.089  0.0100     0.978  0.0171
+BKD         C14          H2      SINGLE       n     1.089  0.0100     0.978  0.0171
+BKD          C5          H3      SINGLE       n     1.089  0.0100     1.001  0.0164
+BKD          C5          H4      SINGLE       n     1.089  0.0100     1.001  0.0164
+BKD          C6          H5      SINGLE       n     1.089  0.0100     0.971  0.0200
+BKD          C6          H6      SINGLE       n     1.089  0.0100     0.971  0.0200
+BKD         C12          H7      SINGLE       n     1.089  0.0100     0.979  0.0150
+BKD         C12          H8      SINGLE       n     1.089  0.0100     0.979  0.0150
+BKD         C13          H9      SINGLE       n     1.089  0.0100     0.988  0.0138
+BKD          C1         H10      SINGLE       n     1.089  0.0100     0.968  0.0151
+BKD          C1         H11      SINGLE       n     1.089  0.0100     0.968  0.0151
+BKD          C1         H12      SINGLE       n     1.089  0.0100     0.968  0.0151
+BKD         C15         H13      SINGLE       n     1.089  0.0100     0.978  0.0171
+BKD         C15         H14      SINGLE       n     1.089  0.0100     0.978  0.0171
+BKD         C17         H15      SINGLE       n     1.082  0.0130     0.942  0.0177
+BKD         C18         H16      SINGLE       n     1.082  0.0130     0.945  0.0137
+BKD         C19         H17      SINGLE       n     1.082  0.0130     0.942  0.0188
+BKD         C22         H18      SINGLE       n     1.082  0.0130     0.938  0.0100
+BKD         C23         H19      SINGLE       n     1.082  0.0130     0.941  0.0154
+BKD         C26         H20      SINGLE       n     1.089  0.0100     0.981  0.0136
+BKD         C26         H21      SINGLE       n     1.089  0.0100     0.981  0.0136
+BKD         N24         H25      SINGLE       n     1.016  0.0100     0.890  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BKD         C15         C14         C13      60.067    1.50
+BKD         C15         C14          H1     117.759    1.50
+BKD         C15         C14          H2     117.759    1.50
+BKD         C13         C14          H1     117.752    1.50
+BKD         C13         C14          H2     117.752    1.50
+BKD          H1         C14          H2     114.868    1.50
+BKD          C6          C5          N4     110.295    1.50
+BKD          C6          C5          H3     109.548    1.50
+BKD          C6          C5          H4     109.548    1.50
+BKD          N4          C5          H3     109.531    1.50
+BKD          N4          C5          H4     109.531    1.50
+BKD          H3          C5          H4     108.732    1.61
+BKD          C7          C6          C5     107.976    1.50
+BKD          C7          C6          H5     110.082    1.50
+BKD          C7          C6          H6     110.082    1.50
+BKD          C5          C6          H5     109.298    1.50
+BKD          C5          C6          H6     109.298    1.50
+BKD          H5          C6          H6     108.255    1.50
+BKD          C6          C7         N11     126.660    1.77
+BKD          C6          C7          C8     125.432    1.68
+BKD         N11          C7          C8     107.907    1.96
+BKD          C7          C8          C9     107.314    1.51
+BKD          C7          C8         C26     122.457    1.52
+BKD          C9          C8         C26     130.229    2.34
+BKD         N10          C9          C8     110.092    1.50
+BKD         N10          C9         C16     119.872    2.33
+BKD          C8          C9         C16     130.036    2.48
+BKD         C13         C12         N11     109.471    3.00
+BKD         C13         C12          H7     108.803    1.50
+BKD         C13         C12          H8     108.803    1.50
+BKD         N11         C12          H7     108.915    1.50
+BKD         N11         C12          H8     108.915    1.50
+BKD          H7         C12          H8     107.814    1.50
+BKD         C15         C13         C14      59.938    1.50
+BKD         C15         C13         C12     119.049    1.50
+BKD         C15         C13          H9     115.552    1.50
+BKD         C14         C13         C12     119.049    1.50
+BKD         C14         C13          H9     115.552    1.50
+BKD         C12         C13          H9     114.605    1.50
+BKD          C2          C1         H10     109.694    1.50
+BKD          C2          C1         H11     109.694    1.50
+BKD          C2          C1         H12     109.694    1.50
+BKD         H10          C1         H11     109.352    1.50
+BKD         H10          C1         H12     109.352    1.50
+BKD         H11          C1         H12     109.352    1.50
+BKD         C14         C15         C13      60.067    1.50
+BKD         C14         C15         H13     117.759    1.50
+BKD         C14         C15         H14     117.759    1.50
+BKD         C13         C15         H13     117.752    1.50
+BKD         C13         C15         H14     117.752    1.50
+BKD         H13         C15         H14     114.868    1.50
+BKD          C9         C16         C21     121.706    2.05
+BKD          C9         C16         C17     119.584    1.61
+BKD         C21         C16         C17     118.709    1.74
+BKD         C16         C17         C18     120.256    1.50
+BKD         C16         C17         H15     119.809    1.50
+BKD         C18         C17         H15     119.935    1.50
+BKD         C17         C18         C19     121.022    1.50
+BKD         C17         C18         H16     119.848    1.50
+BKD         C19         C18         H16     119.130    1.50
+BKD         C20         C19         C18     117.347    1.50
+BKD         C20         C19         H17     121.157    1.50
+BKD         C18         C19         H17     121.497    1.50
+BKD          O3          C2          N4     121.669    1.50
+BKD          O3          C2          C1     120.231    1.50
+BKD          N4          C2          C1     118.100    1.50
+BKD         C21         C20         N24     107.390    1.50
+BKD         C21         C20         C19     122.255    1.50
+BKD         N24         C20         C19     130.355    1.50
+BKD         C22         C21         C16     132.599    3.00
+BKD         C22         C21         C20     106.990    1.50
+BKD         C16         C21         C20     120.411    2.03
+BKD         C21         C22         C23     106.803    1.50
+BKD         C21         C22         H18     126.787    1.50
+BKD         C23         C22         H18     126.409    1.50
+BKD         C22         C23         N24     109.979    1.50
+BKD         C22         C23         H19     125.443    1.67
+BKD         N24         C23         H19     124.587    1.59
+BKD          C8         C26          N4     108.722    1.50
+BKD          C8         C26         H20     110.691    1.50
+BKD          C8         C26         H21     110.691    1.50
+BKD          N4         C26         H20     109.353    1.50
+BKD          N4         C26         H21     109.353    1.50
+BKD         H20         C26         H21     108.071    1.50
+BKD         N11         N10          C9     106.278    1.50
+BKD         C12         N11          C7     129.291    1.82
+BKD         C12         N11         N10     122.300    1.60
+BKD          C7         N11         N10     108.410    1.50
+BKD         C23         N24         C20     108.828    1.50
+BKD         C23         N24         H25     125.429    2.15
+BKD         C20         N24         H25     125.743    1.60
+BKD          C5          N4          C2     122.769    3.00
+BKD          C5          N4         C26     114.772    1.50
+BKD          C2          N4         C26     122.459    2.86
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BKD            sp3_sp3_31         C12         C13         C14         C15      60.000    10.0     3
+BKD              const_54         C21         C20         N24         H25     180.000    10.0     2
+BKD       const_sp2_sp2_6         N24         C20         C21         C16     180.000     5.0     2
+BKD              const_19         H15         C17         C18         C19     180.000    10.0     2
+BKD              const_15         H16         C18         C19         C20     180.000    10.0     2
+BKD              const_11         H17         C19         C20         C21     180.000    10.0     2
+BKD            sp2_sp3_32          O3          C2          C1         H11     120.000    10.0     6
+BKD       const_sp2_sp2_7         C19         C20         C21         C22     180.000     5.0     2
+BKD              const_56         C19         C20         N24         H25       0.000    10.0     2
+BKD              const_25         C21         C22         C23         N24       0.000    10.0     2
+BKD              const_27         H18         C22         C23         N24     180.000    10.0     2
+BKD              const_31         H19         C23         N24         C20     180.000    10.0     2
+BKD            sp2_sp3_18          C2          N4         C26         H21      60.000    10.0     6
+BKD            sp3_sp3_21          N4          C5          C6          H6     -60.000    10.0     3
+BKD             sp2_sp2_1         C21         C16          C9          C8     180.000     5.0     2
+BKD              const_44         C16          C9         N10         N11     180.000    10.0     2
+BKD             sp2_sp3_6         N11          C7          C6          H6      60.000    10.0     6
+BKD              const_42          C9         N10         N11         C12     180.000    10.0     2
+BKD              const_36         N11          C7          C8          C9       0.000    10.0     2
+BKD             sp2_sp3_9          C7          C8         C26         H21    -120.000    10.0     6
+BKD              const_47         C26          C8          C9         N10     180.000    10.0     2
+BKD             sp2_sp2_5          C1          C2          N4          C5     180.000     5.0     2
+BKD              const_45          C7          C8          C9         N10       0.000    10.0     2
+BKD            sp2_sp3_23         N10         N11         C12         C13      90.000    10.0     6
+BKD            sp3_sp3_41          H7         C12         C13         C15     180.000    10.0     3
+BKD            sp3_sp3_11         C12         C13         C15         H13      60.000    10.0     3
+BKD            sp2_sp3_34          N4          C2          C1         H10     180.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BKD    chir_1    C13    C12    C15    C14    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BKD    plan-1         C16   0.020
+BKD    plan-1         C17   0.020
+BKD    plan-1         C18   0.020
+BKD    plan-1         C19   0.020
+BKD    plan-1         C20   0.020
+BKD    plan-1         C21   0.020
+BKD    plan-1         C22   0.020
+BKD    plan-1         C23   0.020
+BKD    plan-1          C9   0.020
+BKD    plan-1         H15   0.020
+BKD    plan-1         H16   0.020
+BKD    plan-1         H17   0.020
+BKD    plan-1         H18   0.020
+BKD    plan-1         H19   0.020
+BKD    plan-1         H25   0.020
+BKD    plan-1         N24   0.020
+BKD    plan-2         C12   0.020
+BKD    plan-2         C16   0.020
+BKD    plan-2         C26   0.020
+BKD    plan-2          C6   0.020
+BKD    plan-2          C7   0.020
+BKD    plan-2          C8   0.020
+BKD    plan-2          C9   0.020
+BKD    plan-2         N10   0.020
+BKD    plan-2         N11   0.020
+BKD    plan-3          C1   0.020
+BKD    plan-3          C2   0.020
+BKD    plan-3          N4   0.020
+BKD    plan-3          O3   0.020
+BKD    plan-4          C2   0.020
+BKD    plan-4         C26   0.020
+BKD    plan-4          C5   0.020
+BKD    plan-4          N4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BKD           SMILES              ACDLabs 12.01                                                                                         C5C(Cn4c1CCN(C(C)=O)Cc1c(c2c3c(ccc2)ncc3)n4)C5
+BKD            InChI                InChI  1.03 InChI=1S/C20H22N4O/c1-13(25)23-10-8-19-17(12-23)20(22-24(19)11-14-5-6-14)16-3-2-4-18-15(16)7-9-21-18/h2-4,7,9,14,21H,5-6,8,10-12H2,1H3
+BKD         InChIKey                InChI  1.03                                                                                                            MPXKOIKIRQBXKT-UHFFFAOYSA-N
+BKD SMILES_CANONICAL               CACTVS 3.385                                                                                          CC(=O)N1CCc2n(CC3CC3)nc(c2C1)c4cccc5[nH]ccc45
+BKD           SMILES               CACTVS 3.385                                                                                          CC(=O)N1CCc2n(CC3CC3)nc(c2C1)c4cccc5[nH]ccc45
+BKD SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                          CC(=O)N1CCc2c(c(nn2CC3CC3)c4cccc5c4cc[nH]5)C1
+BKD           SMILES "OpenEye OEToolkits" 2.0.6                                                                                          CC(=O)N1CCc2c(c(nn2CC3CC3)c4cccc5c4cc[nH]5)C1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BKD acedrg               243         "dictionary generator"                  
+BKD acedrg_database      11          "data source"                           
+BKD rdkit                2017.03.2   "Chemoinformatics tool"
+BKD refmac5              5.8.0238    "optimization tool"                     

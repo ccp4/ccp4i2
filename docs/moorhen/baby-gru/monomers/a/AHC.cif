@@ -1,0 +1,187 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AHC     AHC      "4-AMINOHYDROCINNAMIC ACID"     NON-POLYMER     22     12     .     
+#
+data_comp_AHC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AHC     CA      C       CH2     0       103.378     46.370      11.396      
+AHC     C       C       C       0       103.341     46.708      12.878      
+AHC     OT1     O       O       0       103.765     45.860      13.689      
+AHC     OT2     O       OC      -1      102.886     47.819      13.216      
+AHC     CB      C       CH2     0       102.006     46.266      10.750      
+AHC     CG      C       CR6     0       101.181     45.107      11.258      
+AHC     CD1     C       CR16    0       101.535     43.795      10.969      
+AHC     CD2     C       CR16    0       100.045     45.315      12.031      
+AHC     CE1     C       CR16    0       100.785     42.725      11.431      
+AHC     CE2     C       CR16    0       99.286      44.254      12.500      
+AHC     CZ      C       CR6     0       99.646      42.940      12.206      
+AHC     NH      N       NH2     0       98.897      41.882      12.668      
+AHC     HA1     H       H       0       103.848     45.524      11.284      
+AHC     HA2     H       H       0       103.894     47.060      10.938      
+AHC     HB1     H       H       0       102.121     46.169      9.780       
+AHC     HB2     H       H       0       101.517     47.101      10.910      
+AHC     HD1     H       H       0       102.302     43.628      10.446      
+AHC     HD2     H       H       0       99.783      46.196      12.242      
+AHC     HE1     H       H       0       101.043     41.843      11.223      
+AHC     HE2     H       H       0       98.519      44.417      13.022      
+AHC     HNH1    H       H       0       98.193      42.030      13.171      
+AHC     HNH2    H       H       0       99.124      41.060      12.460      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AHC          CA           C      SINGLE       n     1.519  0.0109     1.519  0.0109
+AHC          CA          CB      SINGLE       n     1.519  0.0161     1.519  0.0161
+AHC           C         OT1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+AHC           C         OT2      SINGLE       n     1.247  0.0187     1.247  0.0187
+AHC          CB          CG      SINGLE       n     1.510  0.0100     1.510  0.0100
+AHC          CG         CD1      DOUBLE       y     1.385  0.0110     1.385  0.0110
+AHC          CG         CD2      SINGLE       y     1.385  0.0110     1.385  0.0110
+AHC         CD1         CE1      SINGLE       y     1.383  0.0100     1.383  0.0100
+AHC         CD2         CE2      DOUBLE       y     1.383  0.0100     1.383  0.0100
+AHC         CE1          CZ      DOUBLE       y     1.390  0.0100     1.390  0.0100
+AHC         CE2          CZ      SINGLE       y     1.390  0.0100     1.390  0.0100
+AHC          CZ          NH      SINGLE       n     1.375  0.0178     1.375  0.0178
+AHC          CA         HA1      SINGLE       n     1.089  0.0100     0.975  0.0139
+AHC          CA         HA2      SINGLE       n     1.089  0.0100     0.975  0.0139
+AHC          CB         HB1      SINGLE       n     1.089  0.0100     0.981  0.0169
+AHC          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0169
+AHC         CD1         HD1      SINGLE       n     1.082  0.0130     0.943  0.0173
+AHC         CD2         HD2      SINGLE       n     1.082  0.0130     0.943  0.0173
+AHC         CE1         HE1      SINGLE       n     1.082  0.0130     0.942  0.0183
+AHC         CE2         HE2      SINGLE       n     1.082  0.0130     0.942  0.0183
+AHC          NH        HNH1      SINGLE       n     1.016  0.0100     0.877  0.0200
+AHC          NH        HNH2      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AHC           C          CA          CB     113.936    1.58
+AHC           C          CA         HA1     108.416    1.50
+AHC           C          CA         HA2     108.416    1.50
+AHC          CB          CA         HA1     109.117    1.50
+AHC          CB          CA         HA2     109.117    1.50
+AHC         HA1          CA         HA2     107.822    1.50
+AHC          CA           C         OT1     118.187    1.67
+AHC          CA           C         OT2     118.187    1.67
+AHC         OT1           C         OT2     123.625    1.50
+AHC          CA          CB          CG     113.580    2.23
+AHC          CA          CB         HB1     108.882    1.50
+AHC          CA          CB         HB2     108.882    1.50
+AHC          CG          CB         HB1     108.803    1.50
+AHC          CG          CB         HB2     108.803    1.50
+AHC         HB1          CB         HB2     107.745    1.50
+AHC          CB          CG         CD1     121.088    1.50
+AHC          CB          CG         CD2     121.088    1.50
+AHC         CD1          CG         CD2     117.825    1.50
+AHC          CG         CD1         CE1     121.421    1.50
+AHC          CG         CD1         HD1     119.333    1.50
+AHC         CE1         CD1         HD1     119.246    1.50
+AHC          CG         CD2         CE2     121.421    1.50
+AHC          CG         CD2         HD2     119.333    1.50
+AHC         CE2         CD2         HD2     119.246    1.50
+AHC         CD1         CE1          CZ     120.489    1.50
+AHC         CD1         CE1         HE1     120.043    1.50
+AHC          CZ         CE1         HE1     119.468    1.50
+AHC         CD2         CE2          CZ     120.489    1.50
+AHC         CD2         CE2         HE2     120.043    1.50
+AHC          CZ         CE2         HE2     119.468    1.50
+AHC         CE1          CZ         CE2     118.346    1.50
+AHC         CE1          CZ          NH     120.832    1.50
+AHC         CE2          CZ          NH     120.832    1.50
+AHC          CZ          NH        HNH1     119.811    2.73
+AHC          CZ          NH        HNH2     119.811    2.73
+AHC        HNH1          NH        HNH2     120.379    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AHC             sp2_sp3_2         OT1           C          CA          CB     120.000    10.0     6
+AHC             sp3_sp3_1           C          CA          CB          CG     180.000    10.0     3
+AHC             sp2_sp2_1         CE1          CZ          NH        HNH1     180.000     5.0     2
+AHC             sp2_sp3_8         CD1          CG          CB          CA     -90.000    10.0     6
+AHC       const_sp2_sp2_2         CE1         CD1          CG          CB     180.000     5.0     2
+AHC              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+AHC       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+AHC              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+AHC              const_10         CD1         CE1          CZ          NH     180.000    10.0     2
+AHC              const_14         CD2         CE2          CZ          NH     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AHC    plan-1          CB   0.020
+AHC    plan-1         CD1   0.020
+AHC    plan-1         CD2   0.020
+AHC    plan-1         CE1   0.020
+AHC    plan-1         CE2   0.020
+AHC    plan-1          CG   0.020
+AHC    plan-1          CZ   0.020
+AHC    plan-1         HD1   0.020
+AHC    plan-1         HD2   0.020
+AHC    plan-1         HE1   0.020
+AHC    plan-1         HE2   0.020
+AHC    plan-1          NH   0.020
+AHC    plan-2           C   0.020
+AHC    plan-2          CA   0.020
+AHC    plan-2         OT1   0.020
+AHC    plan-2         OT2   0.020
+AHC    plan-3          CZ   0.020
+AHC    plan-3        HNH1   0.020
+AHC    plan-3        HNH2   0.020
+AHC    plan-3          NH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AHC           SMILES              ACDLabs 10.04                                                          O=C(O)CCc1ccc(N)cc1
+AHC SMILES_CANONICAL               CACTVS 3.341                                                          Nc1ccc(CCC(O)=O)cc1
+AHC           SMILES               CACTVS 3.341                                                          Nc1ccc(CCC(O)=O)cc1
+AHC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                          c1cc(ccc1CCC(=O)O)N
+AHC           SMILES "OpenEye OEToolkits" 1.5.0                                                          c1cc(ccc1CCC(=O)O)N
+AHC            InChI                InChI  1.03 InChI=1S/C9H11NO2/c10-8-4-1-7(2-5-8)3-6-9(11)12/h1-2,4-5H,3,6,10H2,(H,11,12)
+AHC         InChIKey                InChI  1.03                                                  WXOHKMNWMKZMND-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AHC acedrg               243         "dictionary generator"                  
+AHC acedrg_database      11          "data source"                           
+AHC rdkit                2017.03.2   "Chemoinformatics tool"
+AHC refmac5              5.8.0238    "optimization tool"                     

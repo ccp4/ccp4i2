@@ -1,0 +1,253 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NIF     NIF      2-ethyl-7-piperazin-1-yl-5H-[1,3,4]thiadiazolo[3,2-a]pyrimidin-5-one     NON-POLYMER     33     18     .     
+#
+data_comp_NIF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NIF     C1      C       CR5     0       79.877      94.558      92.485      
+NIF     N1      N       NRD5    0       78.991      93.579      92.381      
+NIF     O1      O       O       0       77.702      91.079      92.367      
+NIF     S1      S       S2      0       81.382      94.001      92.937      
+NIF     C2      C       CR56    0       80.891      92.414      93.012      
+NIF     N2      N       NR5     0       79.555      92.335      92.681      
+NIF     C3      C       CR6     0       81.050      90.115      93.345      
+NIF     N3      N       NRD6    0       81.639      91.332      93.342      
+NIF     C4      C       CR16    0       79.680      89.959      93.010      
+NIF     N4      N       NT1     0       83.654      87.146      94.799      
+NIF     C5      C       CR6     0       78.890      91.096      92.668      
+NIF     N5      N       NR6     0       81.822      89.009      93.672      
+NIF     C6      C       CH2     0       79.623      95.996      92.235      
+NIF     C7      C       CH3     0       79.619      96.313      90.757      
+NIF     C8      C       CH2     0       83.103      88.731      93.019      
+NIF     C9      C       CH2     0       84.147      88.280      94.023      
+NIF     C10     C       CH2     0       82.464      87.536      95.551      
+NIF     C11     C       CH2     0       81.355      88.000      94.624      
+NIF     H4      H       H       0       79.279      89.106      93.016      
+NIF     HN4     H       H       0       84.289      86.867      95.362      
+NIF     H6      H       H       0       80.313      96.522      92.678      
+NIF     H6A     H       H       0       78.762      96.236      92.620      
+NIF     H7      H       H       0       79.348      97.237      90.623      
+NIF     H7A     H       H       0       78.995      95.723      90.299      
+NIF     H7B     H       H       0       80.513      96.182      90.394      
+NIF     H8      H       H       0       83.422      89.535      92.559      
+NIF     H8A     H       H       0       82.974      88.030      92.347      
+NIF     H9      H       H       0       84.365      89.026      94.631      
+NIF     H9A     H       H       0       84.972      88.021      93.549      
+NIF     H10     H       H       0       82.695      88.261      96.176      
+NIF     H10A    H       H       0       82.147      86.767      96.081      
+NIF     H11     H       H       0       81.003      87.231      94.129      
+NIF     H11A    H       H       0       80.623      88.373      95.161      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NIF          C1          N1      DOUBLE       y     1.308  0.0200     1.308  0.0200
+NIF          C1          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+NIF          C1          C6      SINGLE       n     1.481  0.0100     1.481  0.0100
+NIF          N1          N2      SINGLE       y     1.381  0.0125     1.381  0.0125
+NIF          O1          C5      DOUBLE       n     1.225  0.0107     1.225  0.0107
+NIF          S1          C2      SINGLE       y     1.695  0.0200     1.695  0.0200
+NIF          C2          N2      SINGLE       y     1.361  0.0134     1.361  0.0134
+NIF          C2          N3      DOUBLE       y     1.338  0.0200     1.338  0.0200
+NIF          N2          C5      SINGLE       y     1.399  0.0100     1.399  0.0100
+NIF          C3          N3      SINGLE       y     1.349  0.0100     1.349  0.0100
+NIF          C3          C4      DOUBLE       y     1.414  0.0200     1.414  0.0200
+NIF          C3          N5      SINGLE       n     1.368  0.0200     1.368  0.0200
+NIF          C4          C5      SINGLE       y     1.416  0.0200     1.416  0.0200
+NIF          N4          C9      SINGLE       n     1.460  0.0112     1.460  0.0112
+NIF          N4         C10      SINGLE       n     1.460  0.0112     1.460  0.0112
+NIF          N5          C8      SINGLE       n     1.458  0.0100     1.458  0.0100
+NIF          N5         C11      SINGLE       n     1.458  0.0100     1.458  0.0100
+NIF          C6          C7      SINGLE       n     1.510  0.0200     1.510  0.0200
+NIF          C8          C9      SINGLE       n     1.516  0.0100     1.516  0.0100
+NIF         C10         C11      SINGLE       n     1.516  0.0100     1.516  0.0100
+NIF          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0168
+NIF          N4         HN4      SINGLE       n     1.036  0.0160     0.893  0.0200
+NIF          C6          H6      SINGLE       n     1.089  0.0100     0.974  0.0100
+NIF          C6         H6A      SINGLE       n     1.089  0.0100     0.974  0.0100
+NIF          C7          H7      SINGLE       n     1.089  0.0100     0.973  0.0120
+NIF          C7         H7A      SINGLE       n     1.089  0.0100     0.973  0.0120
+NIF          C7         H7B      SINGLE       n     1.089  0.0100     0.973  0.0120
+NIF          C8          H8      SINGLE       n     1.089  0.0100     0.980  0.0193
+NIF          C8         H8A      SINGLE       n     1.089  0.0100     0.980  0.0193
+NIF          C9          H9      SINGLE       n     1.089  0.0100     0.986  0.0200
+NIF          C9         H9A      SINGLE       n     1.089  0.0100     0.986  0.0200
+NIF         C10         H10      SINGLE       n     1.089  0.0100     0.986  0.0200
+NIF         C10        H10A      SINGLE       n     1.089  0.0100     0.986  0.0200
+NIF         C11         H11      SINGLE       n     1.089  0.0100     0.980  0.0193
+NIF         C11        H11A      SINGLE       n     1.089  0.0100     0.980  0.0193
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NIF          N1          C1          S1     108.458    3.00
+NIF          N1          C1          C6     128.910    3.00
+NIF          S1          C1          C6     122.631    3.00
+NIF          C1          N1          N2     105.034    1.50
+NIF          C1          S1          C2     108.458    3.00
+NIF          S1          C2          N2     108.458    3.00
+NIF          S1          C2          N3     129.362    3.00
+NIF          N2          C2          N3     122.179    1.50
+NIF          N1          N2          C2     109.591    1.50
+NIF          N1          N2          C5     128.878    1.50
+NIF          C2          N2          C5     121.531    1.75
+NIF          N3          C3          C4     122.491    1.50
+NIF          N3          C3          N5     117.438    1.50
+NIF          C4          C3          N5     120.071    1.50
+NIF          C2          N3          C3     118.365    1.79
+NIF          C3          C4          C5     120.493    1.50
+NIF          C3          C4          H4     120.405    1.50
+NIF          C5          C4          H4     119.102    1.50
+NIF          C9          N4         C10     110.165    1.50
+NIF          C9          N4         HN4     109.673    3.00
+NIF         C10          N4         HN4     109.673    3.00
+NIF          O1          C5          N2     118.526    1.50
+NIF          O1          C5          C4     126.533    1.50
+NIF          N2          C5          C4     114.940    1.50
+NIF          C3          N5          C8     122.299    3.00
+NIF          C3          N5         C11     122.299    3.00
+NIF          C8          N5         C11     115.402    1.54
+NIF          C1          C6          C7     110.747    2.16
+NIF          C1          C6          H6     108.392    1.50
+NIF          C1          C6         H6A     108.392    1.50
+NIF          C7          C6          H6     108.959    1.50
+NIF          C7          C6         H6A     108.959    1.50
+NIF          H6          C6         H6A     107.724    1.50
+NIF          C6          C7          H7     109.517    1.50
+NIF          C6          C7         H7A     109.517    1.50
+NIF          C6          C7         H7B     109.517    1.50
+NIF          H7          C7         H7A     109.422    1.50
+NIF          H7          C7         H7B     109.422    1.50
+NIF         H7A          C7         H7B     109.422    1.50
+NIF          N5          C8          C9     110.454    1.50
+NIF          N5          C8          H8     109.309    1.50
+NIF          N5          C8         H8A     109.309    1.50
+NIF          C9          C8          H8     109.625    1.50
+NIF          C9          C8         H8A     109.625    1.50
+NIF          H8          C8         H8A     108.196    1.50
+NIF          N4          C9          C8     110.811    1.78
+NIF          N4          C9          H9     109.479    1.50
+NIF          N4          C9         H9A     109.479    1.50
+NIF          C8          C9          H9     109.527    1.50
+NIF          C8          C9         H9A     109.527    1.50
+NIF          H9          C9         H9A     108.060    1.50
+NIF          N4         C10         C11     110.811    1.78
+NIF          N4         C10         H10     109.479    1.50
+NIF          N4         C10        H10A     109.479    1.50
+NIF         C11         C10         H10     109.527    1.50
+NIF         C11         C10        H10A     109.527    1.50
+NIF         H10         C10        H10A     108.060    1.50
+NIF          N5         C11         C10     110.454    1.50
+NIF          N5         C11         H11     109.309    1.50
+NIF          N5         C11        H11A     109.309    1.50
+NIF         C10         C11         H11     109.625    1.50
+NIF         C10         C11        H11A     109.625    1.50
+NIF         H11         C11        H11A     108.196    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NIF       const_sp2_sp2_2          C6          C1          N1          N2     180.000     5.0     2
+NIF            sp2_sp3_14          N1          C1          C6          C7     -90.000    10.0     6
+NIF              const_26          C6          C1          S1          C2     180.000    10.0     2
+NIF             sp2_sp3_4          C3          N5          C8          C9     180.000    10.0     6
+NIF            sp2_sp3_10          C3          N5         C11         C10     180.000    10.0     6
+NIF            sp3_sp3_31          C1          C6          C7          H7     180.000    10.0     3
+NIF             sp3_sp3_7          N5          C8          C9          N4     -60.000    10.0     3
+NIF            sp3_sp3_16          N4         C10         C11          N5      60.000    10.0     3
+NIF       const_sp2_sp2_3          C1          N1          N2          C2       0.000     5.0     2
+NIF       const_sp2_sp2_9          N2          C2          S1          C1       0.000     5.0     2
+NIF       const_sp2_sp2_5          S1          C2          N2          N1       0.000     5.0     2
+NIF              const_28          S1          C2          N3          C3     180.000    10.0     2
+NIF              const_14          O1          C5          N2          N1       0.000    10.0     2
+NIF             sp2_sp2_3          N3          C3          N5          C8       0.000     5.0     2
+NIF              const_23          C4          C3          N3          C2       0.000    10.0     2
+NIF              const_19          N3          C3          C4          C5       0.000    10.0     2
+NIF              const_16          C3          C4          C5          O1     180.000    10.0     2
+NIF             sp3_sp3_1          C8          C9          N4         C10      60.000    10.0     3
+NIF            sp3_sp3_25         C11         C10          N4          C9     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NIF    chir_1    N4    C9    C10    HN4    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NIF    plan-1          C1   0.020
+NIF    plan-1          C2   0.020
+NIF    plan-1          C3   0.020
+NIF    plan-1          C4   0.020
+NIF    plan-1          C5   0.020
+NIF    plan-1          C6   0.020
+NIF    plan-1          H4   0.020
+NIF    plan-1          N1   0.020
+NIF    plan-1          N2   0.020
+NIF    plan-1          N3   0.020
+NIF    plan-1          N5   0.020
+NIF    plan-1          O1   0.020
+NIF    plan-1          S1   0.020
+NIF    plan-2         C11   0.020
+NIF    plan-2          C3   0.020
+NIF    plan-2          C8   0.020
+NIF    plan-2          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NIF           SMILES              ACDLabs 12.01                                                           O=C1C=C(N=C2SC(=NN12)CC)N3CCNCC3
+NIF SMILES_CANONICAL               CACTVS 3.370                                                           CCC1=NN2C(=O)C=C(N=C2S1)N3CCNCC3
+NIF           SMILES               CACTVS 3.370                                                           CCC1=NN2C(=O)C=C(N=C2S1)N3CCNCC3
+NIF SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                           CCC1=NN2C(=O)C=C(N=C2S1)N3CCNCC3
+NIF           SMILES "OpenEye OEToolkits" 1.7.0                                                           CCC1=NN2C(=O)C=C(N=C2S1)N3CCNCC3
+NIF            InChI                InChI  1.03 InChI=1S/C11H15N5OS/c1-2-9-14-16-10(17)7-8(13-11(16)18-9)15-5-3-12-4-6-15/h7,12H,2-6H2,1H3
+NIF         InChIKey                InChI  1.03                                                                WUYNDJNASMITGA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NIF acedrg               243         "dictionary generator"                  
+NIF acedrg_database      11          "data source"                           
+NIF rdkit                2017.03.2   "Chemoinformatics tool"
+NIF refmac5              5.8.0238    "optimization tool"                     

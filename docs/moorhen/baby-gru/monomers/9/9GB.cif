@@ -1,0 +1,193 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+9GB     9GB      "[(~{E})-3-methylhex-2-enyl] dihydrogen phosphate"     NON-POLYMER     25     12     .     
+#
+data_comp_9GB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+9GB     C2      C       C1      0       27.323      46.424      15.471      
+9GB     C4      C       CH3     0       27.165      48.874      14.956      
+9GB     C5      C       CH2     0       28.395      47.288      13.414      
+9GB     C6      C       CH2     0       29.806      47.769      13.522      
+9GB     O3A     O       O       0       22.836      47.320      17.113      
+9GB     PA      P       P       0       24.187      47.067      17.756      
+9GB     O1A     O       OP      -1      24.192      45.847      18.656      
+9GB     O2A     O       OP      -1      24.757      48.301      18.431      
+9GB     O1      O       O2      0       25.193      46.721      16.541      
+9GB     C1      C       CH2     0       26.574      46.454      16.771      
+9GB     C3      C       C       0       27.599      47.460      14.680      
+9GB     C7      C       CH3     0       30.658      46.945      14.469      
+9GB     H1      H       H       0       27.630      45.575      15.191      
+9GB     H2      H       H       0       26.519      48.893      15.678      
+9GB     H3      H       H       0       26.761      49.250      14.157      
+9GB     H4      H       H       0       27.938      49.407      15.204      
+9GB     H5      H       H       0       28.409      46.340      13.162      
+9GB     H6      H       H       0       27.955      47.784      12.691      
+9GB     H7      H       H       0       29.802      48.700      13.828      
+9GB     H8      H       H       0       30.215      47.751      12.632      
+9GB     H11     H       H       0       26.955      47.148      17.355      
+9GB     H12     H       H       0       26.672      45.589      17.228      
+9GB     H13     H       H       0       31.598      47.148      14.320      
+9GB     H14     H       H       0       30.502      45.999      14.307      
+9GB     H15     H       H       0       30.424      47.159      15.389      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+9GB          C5          C6      SINGLE       n     1.491  0.0200     1.491  0.0200
+9GB          C6          C7      SINGLE       n     1.515  0.0200     1.515  0.0200
+9GB          C5          C3      SINGLE       n     1.502  0.0126     1.502  0.0126
+9GB          C4          C3      SINGLE       n     1.499  0.0156     1.499  0.0156
+9GB          C2          C3      DOUBLE       n     1.329  0.0100     1.329  0.0100
+9GB          C2          C1      SINGLE       n     1.496  0.0200     1.496  0.0200
+9GB          O1          C1      SINGLE       n     1.425  0.0152     1.425  0.0152
+9GB          PA          O1      SINGLE       n     1.614  0.0178     1.614  0.0178
+9GB         O3A          PA      DOUBLE       n     1.517  0.0192     1.517  0.0192
+9GB          PA         O1A      SINGLE       n     1.517  0.0192     1.517  0.0192
+9GB          PA         O2A      SINGLE       n     1.517  0.0192     1.517  0.0192
+9GB          C2          H1      SINGLE       n     1.082  0.0130     0.945  0.0200
+9GB          C4          H2      SINGLE       n     1.089  0.0100     0.971  0.0140
+9GB          C4          H3      SINGLE       n     1.089  0.0100     0.971  0.0140
+9GB          C4          H4      SINGLE       n     1.089  0.0100     0.971  0.0140
+9GB          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0185
+9GB          C5          H6      SINGLE       n     1.089  0.0100     0.981  0.0185
+9GB          C6          H7      SINGLE       n     1.089  0.0100     0.980  0.0160
+9GB          C6          H8      SINGLE       n     1.089  0.0100     0.980  0.0160
+9GB          C1         H11      SINGLE       n     1.089  0.0100     0.983  0.0100
+9GB          C1         H12      SINGLE       n     1.089  0.0100     0.983  0.0100
+9GB          C7         H13      SINGLE       n     1.089  0.0100     0.973  0.0157
+9GB          C7         H14      SINGLE       n     1.089  0.0100     0.973  0.0157
+9GB          C7         H15      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+9GB          C3          C2          C1     124.396    3.00
+9GB          C3          C2          H1     117.563    1.50
+9GB          C1          C2          H1     118.040    2.26
+9GB          C3          C4          H2     109.541    1.50
+9GB          C3          C4          H3     109.541    1.50
+9GB          C3          C4          H4     109.541    1.50
+9GB          H2          C4          H3     109.342    1.50
+9GB          H2          C4          H4     109.342    1.50
+9GB          H3          C4          H4     109.342    1.50
+9GB          C6          C5          C3     113.243    1.53
+9GB          C6          C5          H5     108.213    1.50
+9GB          C6          C5          H6     108.213    1.50
+9GB          C3          C5          H5     108.816    1.50
+9GB          C3          C5          H6     108.816    1.50
+9GB          H5          C5          H6     107.710    1.94
+9GB          C5          C6          C7     113.072    2.41
+9GB          C5          C6          H7     108.965    1.50
+9GB          C5          C6          H8     108.965    1.50
+9GB          C7          C6          H7     108.918    1.50
+9GB          C7          C6          H8     108.918    1.50
+9GB          H7          C6          H8     107.763    1.50
+9GB          O1          PA         O3A     105.795    2.09
+9GB          O1          PA         O1A     105.795    2.09
+9GB          O1          PA         O2A     105.795    2.09
+9GB         O3A          PA         O1A     112.864    1.69
+9GB         O3A          PA         O2A     112.864    1.69
+9GB         O1A          PA         O2A     112.864    1.69
+9GB          C1          O1          PA     121.496    2.55
+9GB          C2          C1          O1     110.575    2.78
+9GB          C2          C1         H11     109.840    1.50
+9GB          C2          C1         H12     109.840    1.50
+9GB          O1          C1         H11     110.196    2.06
+9GB          O1          C1         H12     110.196    2.06
+9GB         H11          C1         H12     108.062    1.50
+9GB          C5          C3          C4     115.386    1.50
+9GB          C5          C3          C2     121.607    1.82
+9GB          C4          C3          C2     123.007    1.73
+9GB          C6          C7         H13     109.554    1.50
+9GB          C6          C7         H14     109.554    1.50
+9GB          C6          C7         H15     109.554    1.50
+9GB         H13          C7         H14     109.380    1.50
+9GB         H13          C7         H15     109.380    1.50
+9GB         H14          C7         H15     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+9GB             sp2_sp2_1          C1          C2          C3          C5     180.000     5.0     2
+9GB            sp2_sp3_14          C3          C2          C1          O1     120.000    10.0     6
+9GB             sp2_sp3_7          C5          C3          C4          H2       0.000    10.0     6
+9GB             sp2_sp3_2          C4          C3          C5          C6     120.000    10.0     6
+9GB             sp3_sp3_1          C3          C5          C6          C7     180.000    10.0     3
+9GB            sp3_sp3_10          C5          C6          C7         H13     180.000    10.0     3
+9GB            sp3_sp3_24          C1          O1          PA         O3A      60.000    10.0     3
+9GB            sp3_sp3_19          C2          C1          O1          PA     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+9GB    chir_1    PA    O1    O1A    O2A    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+9GB    plan-1          C1   0.020
+9GB    plan-1          C2   0.020
+9GB    plan-1          C3   0.020
+9GB    plan-1          H1   0.020
+9GB    plan-2          C2   0.020
+9GB    plan-2          C3   0.020
+9GB    plan-2          C4   0.020
+9GB    plan-2          C5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+9GB            InChI                InChI  1.03 InChI=1S/C7H15O4P/c1-3-4-7(2)5-6-11-12(8,9)10/h5H,3-4,6H2,1-2H3,(H2,8,9,10)/b7-5+
+9GB         InChIKey                InChI  1.03                                                       QFTXOINSFIOLQI-FNORWQNLSA-N
+9GB SMILES_CANONICAL               CACTVS 3.385                                                          CCCC(/C)=C/CO[P](O)(O)=O
+9GB           SMILES               CACTVS 3.385                                                            CCCC(C)=CCO[P](O)(O)=O
+9GB SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                           CCC/C(=C/COP(=O)(O)O)/C
+9GB           SMILES "OpenEye OEToolkits" 2.0.6                                                              CCCC(=CCOP(=O)(O)O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+9GB acedrg               243         "dictionary generator"                  
+9GB acedrg_database      11          "data source"                           
+9GB rdkit                2017.03.2   "Chemoinformatics tool"
+9GB refmac5              5.8.0238    "optimization tool"                     

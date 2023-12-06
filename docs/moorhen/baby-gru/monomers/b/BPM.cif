@@ -1,0 +1,252 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BPM     BPM      4-PHOSPHONOOXY-PHENYL-METHYL-[4-PHOSPHONOOXY]BENZEN     NON-POLYMER     33     23     .     
+#
+data_comp_BPM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BPM     C0      C       CH2     0       47.601      7.920       2.680       
+BPM     C1A     C       CR6     0       48.813      7.271       3.317       
+BPM     C2A     C       CR16    0       48.742      5.996       3.868       
+BPM     C3A     C       CR16    0       49.845      5.394       4.460       
+BPM     C5A     C       CR16    0       51.152      7.360       3.966       
+BPM     C6A     C       CR16    0       50.032      7.937       3.380       
+BPM     C4A     C       CR6     0       51.048      6.083       4.503       
+BPM     O1A     O       O2      0       52.110      5.399       5.122       
+BPM     PA      P       P       0       53.631      5.857       5.215       
+BPM     O2A     O       O       0       54.097      6.086       3.798       
+BPM     O3A     O       OP      -1      53.733      7.133       5.999       
+BPM     O4A     O       OP      -1      54.449      4.773       5.853       
+BPM     C1B     C       CR6     0       47.707      8.113       1.180       
+BPM     C2B     C       CR16    0       47.713      7.024       0.315       
+BPM     C3B     C       CR16    0       47.802      7.185       -1.061      
+BPM     C5B     C       CR16    0       47.875      9.576       -0.752      
+BPM     C6B     C       CR16    0       47.787      9.385       0.621       
+BPM     C4B     C       CR6     0       47.890      8.466       -1.586      
+BPM     O1B     O       O2      0       47.965      8.573       -2.984      
+BPM     PB      P       P       0       48.778      9.655       -3.819      
+BPM     O2B     O       O       0       47.840      10.819      -4.031      
+BPM     O3B     O       OP      -1      49.996      10.109      -3.070      
+BPM     O4B     O       OP      -1      49.159      9.056       -5.142      
+BPM     HC01    H       H       0       47.457      8.796       3.102       
+BPM     HC02    H       H       0       46.810      7.367       2.868       
+BPM     H2A     H       H       0       47.925      5.526       3.839       
+BPM     H3A     H       H       0       49.774      4.528       4.825       
+BPM     H5A     H       H       0       51.965      7.835       3.992       
+BPM     H6A     H       H       0       50.101      8.803       3.014       
+BPM     H2B     H       H       0       47.657      6.153       0.673       
+BPM     H3B     H       H       0       47.807      6.431       -1.628      
+BPM     H5B     H       H       0       47.930      10.448      -1.105      
+BPM     H6B     H       H       0       47.782      10.138      1.188       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BPM          C0         C1A      SINGLE       n     1.515  0.0100     1.515  0.0100
+BPM          C0         C1B      SINGLE       n     1.515  0.0100     1.515  0.0100
+BPM         C1A         C2A      DOUBLE       y     1.387  0.0100     1.387  0.0100
+BPM         C1A         C6A      SINGLE       y     1.387  0.0100     1.387  0.0100
+BPM         C2A         C3A      SINGLE       y     1.385  0.0100     1.385  0.0100
+BPM         C3A         C4A      DOUBLE       y     1.384  0.0100     1.384  0.0100
+BPM         C5A         C6A      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BPM         C5A         C4A      SINGLE       y     1.384  0.0100     1.384  0.0100
+BPM         C4A         O1A      SINGLE       n     1.398  0.0160     1.398  0.0160
+BPM         O1A          PA      SINGLE       n     1.592  0.0187     1.592  0.0187
+BPM          PA         O2A      DOUBLE       n     1.509  0.0200     1.509  0.0200
+BPM          PA         O3A      SINGLE       n     1.509  0.0200     1.509  0.0200
+BPM          PA         O4A      SINGLE       n     1.509  0.0200     1.509  0.0200
+BPM         C1B         C2B      DOUBLE       y     1.387  0.0100     1.387  0.0100
+BPM         C1B         C6B      SINGLE       y     1.387  0.0100     1.387  0.0100
+BPM         C2B         C3B      SINGLE       y     1.385  0.0100     1.385  0.0100
+BPM         C3B         C4B      DOUBLE       y     1.384  0.0100     1.384  0.0100
+BPM         C5B         C6B      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BPM         C5B         C4B      SINGLE       y     1.384  0.0100     1.384  0.0100
+BPM         C4B         O1B      SINGLE       n     1.398  0.0160     1.398  0.0160
+BPM         O1B          PB      SINGLE       n     1.592  0.0187     1.592  0.0187
+BPM          PB         O2B      DOUBLE       n     1.509  0.0200     1.509  0.0200
+BPM          PB         O3B      SINGLE       n     1.509  0.0200     1.509  0.0200
+BPM          PB         O4B      SINGLE       n     1.509  0.0200     1.509  0.0200
+BPM          C0        HC01      SINGLE       n     1.089  0.0100     0.983  0.0146
+BPM          C0        HC02      SINGLE       n     1.089  0.0100     0.983  0.0146
+BPM         C2A         H2A      SINGLE       n     1.082  0.0130     0.943  0.0173
+BPM         C3A         H3A      SINGLE       n     1.082  0.0130     0.943  0.0169
+BPM         C5A         H5A      SINGLE       n     1.082  0.0130     0.943  0.0169
+BPM         C6A         H6A      SINGLE       n     1.082  0.0130     0.943  0.0173
+BPM         C2B         H2B      SINGLE       n     1.082  0.0130     0.943  0.0173
+BPM         C3B         H3B      SINGLE       n     1.082  0.0130     0.943  0.0169
+BPM         C5B         H5B      SINGLE       n     1.082  0.0130     0.943  0.0169
+BPM         C6B         H6B      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BPM         C1A          C0         C1B     113.580    2.36
+BPM         C1A          C0        HC01     108.797    1.50
+BPM         C1A          C0        HC02     108.797    1.50
+BPM         C1B          C0        HC01     108.797    1.50
+BPM         C1B          C0        HC02     108.797    1.50
+BPM        HC01          C0        HC02     107.770    1.50
+BPM          C0         C1A         C2A     121.208    1.50
+BPM          C0         C1A         C6A     121.208    1.50
+BPM         C2A         C1A         C6A     117.584    1.50
+BPM         C1A         C2A         C3A     121.496    1.50
+BPM         C1A         C2A         H2A     119.246    1.50
+BPM         C3A         C2A         H2A     119.258    1.50
+BPM         C2A         C3A         C4A     118.975    1.50
+BPM         C2A         C3A         H3A     120.289    1.50
+BPM         C4A         C3A         H3A     120.737    1.50
+BPM         C6A         C5A         C4A     118.975    1.50
+BPM         C6A         C5A         H5A     120.289    1.50
+BPM         C4A         C5A         H5A     120.737    1.50
+BPM         C1A         C6A         C5A     121.496    1.50
+BPM         C1A         C6A         H6A     119.246    1.50
+BPM         C5A         C6A         H6A     119.258    1.50
+BPM         C3A         C4A         C5A     121.475    1.50
+BPM         C3A         C4A         O1A     119.263    3.00
+BPM         C5A         C4A         O1A     119.263    3.00
+BPM         C4A         O1A          PA     124.779    1.73
+BPM         O1A          PA         O2A     114.838    3.00
+BPM         O1A          PA         O3A     114.838    3.00
+BPM         O1A          PA         O4A     114.838    3.00
+BPM         O2A          PA         O3A     112.139    1.52
+BPM         O2A          PA         O4A     112.139    1.52
+BPM         O3A          PA         O4A     112.139    1.52
+BPM          C0         C1B         C2B     121.208    1.50
+BPM          C0         C1B         C6B     121.208    1.50
+BPM         C2B         C1B         C6B     117.584    1.50
+BPM         C1B         C2B         C3B     121.496    1.50
+BPM         C1B         C2B         H2B     119.246    1.50
+BPM         C3B         C2B         H2B     119.258    1.50
+BPM         C2B         C3B         C4B     118.975    1.50
+BPM         C2B         C3B         H3B     120.289    1.50
+BPM         C4B         C3B         H3B     120.737    1.50
+BPM         C6B         C5B         C4B     118.975    1.50
+BPM         C6B         C5B         H5B     120.289    1.50
+BPM         C4B         C5B         H5B     120.737    1.50
+BPM         C1B         C6B         C5B     121.496    1.50
+BPM         C1B         C6B         H6B     119.246    1.50
+BPM         C5B         C6B         H6B     119.258    1.50
+BPM         C3B         C4B         C5B     121.475    1.50
+BPM         C3B         C4B         O1B     119.263    3.00
+BPM         C5B         C4B         O1B     119.263    3.00
+BPM         C4B         O1B          PB     124.779    1.73
+BPM         O1B          PB         O2B     114.838    3.00
+BPM         O1B          PB         O3B     114.838    3.00
+BPM         O1B          PB         O4B     114.838    3.00
+BPM         O2B          PB         O3B     112.139    1.52
+BPM         O2B          PB         O4B     112.139    1.52
+BPM         O3B          PB         O4B     112.139    1.52
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BPM             sp2_sp3_2         C2A         C1A          C0         C1B     -90.000    10.0     6
+BPM             sp2_sp3_8         C2B         C1B          C0         C1A     -90.000    10.0     6
+BPM              const_23          C0         C1B         C2B         C3B     180.000    10.0     2
+BPM              const_47          C0         C1B         C6B         C5B     180.000    10.0     2
+BPM              const_25         C1B         C2B         C3B         C4B       0.000    10.0     2
+BPM              const_30         C2B         C3B         C4B         O1B     180.000    10.0     2
+BPM              const_37         C4B         C5B         C6B         C1B       0.000    10.0     2
+BPM              const_35         O1B         C4B         C5B         C6B     180.000    10.0     2
+BPM             sp2_sp2_3         C3B         C4B         O1B          PB     180.000     5.0     2
+BPM             sp3_sp3_4         O2B          PB         O1B         C4B     180.000    10.0     3
+BPM       const_sp2_sp2_3          C0         C1A         C2A         C3A     180.000     5.0     2
+BPM              const_43          C0         C1A         C6A         C5A     180.000    10.0     2
+BPM       const_sp2_sp2_5         C1A         C2A         C3A         C4A       0.000     5.0     2
+BPM              const_10         C2A         C3A         C4A         O1A     180.000    10.0     2
+BPM              const_17         C4A         C5A         C6A         C1A       0.000    10.0     2
+BPM              const_15         O1A         C4A         C5A         C6A     180.000    10.0     2
+BPM             sp2_sp2_1         C3A         C4A         O1A          PA     180.000     5.0     2
+BPM             sp3_sp3_1         O2A          PA         O1A         C4A     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BPM    chir_1    PA    O1A    O3A    O4A    both
+BPM    chir_2    PB    O1B    O3B    O4B    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BPM    plan-1          C0   0.020
+BPM    plan-1         C1B   0.020
+BPM    plan-1         C2B   0.020
+BPM    plan-1         C3B   0.020
+BPM    plan-1         C4B   0.020
+BPM    plan-1         C5B   0.020
+BPM    plan-1         C6B   0.020
+BPM    plan-1         H2B   0.020
+BPM    plan-1         H3B   0.020
+BPM    plan-1         H5B   0.020
+BPM    plan-1         H6B   0.020
+BPM    plan-1         O1B   0.020
+BPM    plan-2          C0   0.020
+BPM    plan-2         C1A   0.020
+BPM    plan-2         C2A   0.020
+BPM    plan-2         C3A   0.020
+BPM    plan-2         C4A   0.020
+BPM    plan-2         C5A   0.020
+BPM    plan-2         C6A   0.020
+BPM    plan-2         H2A   0.020
+BPM    plan-2         H3A   0.020
+BPM    plan-2         H5A   0.020
+BPM    plan-2         H6A   0.020
+BPM    plan-2         O1A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BPM           SMILES              ACDLabs 12.01                                                                                   O=P(O)(O)Oc1ccc(cc1)Cc2ccc(OP(=O)(O)O)cc2
+BPM            InChI                InChI  1.03 InChI=1S/C13H14O8P2/c14-22(15,16)20-12-5-1-10(2-6-12)9-11-3-7-13(8-4-11)21-23(17,18)19/h1-8H,9H2,(H2,14,15,16)(H2,17,18,19)
+BPM         InChIKey                InChI  1.03                                                                                                 LGSCVLKUKMBYNC-UHFFFAOYSA-N
+BPM SMILES_CANONICAL               CACTVS 3.370                                                                               O[P](O)(=O)Oc1ccc(Cc2ccc(O[P](O)(O)=O)cc2)cc1
+BPM           SMILES               CACTVS 3.370                                                                               O[P](O)(=O)Oc1ccc(Cc2ccc(O[P](O)(O)=O)cc2)cc1
+BPM SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                   c1cc(ccc1Cc2ccc(cc2)OP(=O)(O)O)OP(=O)(O)O
+BPM           SMILES "OpenEye OEToolkits" 1.7.6                                                                                   c1cc(ccc1Cc2ccc(cc2)OP(=O)(O)O)OP(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BPM acedrg               243         "dictionary generator"                  
+BPM acedrg_database      11          "data source"                           
+BPM rdkit                2017.03.2   "Chemoinformatics tool"
+BPM refmac5              5.8.0238    "optimization tool"                     

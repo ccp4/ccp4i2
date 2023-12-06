@@ -1,0 +1,249 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KRA     KRA      "KURASOIN A"     NON-POLYMER     33     19     .     
+#
+data_comp_KRA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KRA     C1      C       CR6     0       55.735      84.253      69.054      
+KRA     O1      O       OH1     0       56.929      84.829      69.415      
+KRA     C2      C       CR16    0       55.540      83.806      67.756      
+KRA     C3      C       CR16    0       54.331      83.225      67.398      
+KRA     C4      C       CR6     0       53.297      83.077      68.316      
+KRA     C5      C       CR16    0       53.513      83.531      69.613      
+KRA     C6      C       CR16    0       54.717      84.114      69.986      
+KRA     C7      C       CH2     0       51.985      82.443      67.919      
+KRA     C8      C       C       0       51.894      80.947      68.174      
+KRA     O2      O       O       0       52.870      80.379      68.644      
+KRA     C9      C       C       0       50.797      80.224      67.907      
+KRA     O3      O       O       0       50.803      79.025      68.146      
+KRA     C10     C       CH2     0       49.531      80.809      67.313      
+KRA     C11     C       CR6     0       49.609      81.016      65.819      
+KRA     C12     C       CR16    0       49.511      82.287      65.264      
+KRA     C13     C       CR16    0       49.580      82.469      63.888      
+KRA     C14     C       CR16    0       49.746      81.384      63.052      
+KRA     C15     C       CR16    0       49.843      80.118      63.586      
+KRA     C16     C       CR16    0       49.773      79.933      64.962      
+KRA     HO1     H       H       0       57.216      84.758      70.224      
+KRA     H2      H       H       0       56.229      83.898      67.118      
+KRA     H3      H       H       0       54.209      82.925      66.513      
+KRA     H5      H       H       0       52.827      83.441      70.254      
+KRA     H6      H       H       0       54.843      84.416      70.870      
+KRA     H71     H       H       0       51.836      82.611      66.971      
+KRA     H72     H       H       0       51.269      82.890      68.404      
+KRA     H101    H       H       0       49.332      81.660      67.743      
+KRA     H102    H       H       0       48.785      80.212      67.503      
+KRA     H12     H       H       0       49.398      83.035      65.828      
+KRA     H13     H       H       0       49.514      83.338      63.525      
+KRA     H14     H       H       0       49.793      81.509      62.117      
+KRA     H15     H       H       0       49.956      79.373      63.017      
+KRA     H16     H       H       0       49.840      79.063      65.321      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KRA          C1          O1      SINGLE       n     1.374  0.0155     1.374  0.0155
+KRA          C1          C2      DOUBLE       y     1.383  0.0100     1.383  0.0100
+KRA          C1          C6      SINGLE       y     1.383  0.0100     1.383  0.0100
+KRA          C2          C3      SINGLE       y     1.385  0.0100     1.385  0.0100
+KRA          C3          C4      DOUBLE       y     1.387  0.0100     1.387  0.0100
+KRA          C4          C5      SINGLE       y     1.387  0.0100     1.387  0.0100
+KRA          C4          C7      SINGLE       n     1.509  0.0107     1.509  0.0107
+KRA          C5          C6      DOUBLE       y     1.385  0.0100     1.385  0.0100
+KRA          C7          C8      SINGLE       n     1.506  0.0200     1.506  0.0200
+KRA          C8          O2      DOUBLE       n     1.220  0.0120     1.220  0.0120
+KRA          C8          C9      SINGLE       n     1.318  0.0200     1.318  0.0200
+KRA          C9          O3      DOUBLE       n     1.220  0.0120     1.220  0.0120
+KRA          C9         C10      SINGLE       n     1.506  0.0200     1.506  0.0200
+KRA         C10         C11      SINGLE       n     1.509  0.0107     1.509  0.0107
+KRA         C11         C12      DOUBLE       y     1.386  0.0100     1.386  0.0100
+KRA         C11         C16      SINGLE       y     1.386  0.0100     1.386  0.0100
+KRA         C12         C13      SINGLE       y     1.386  0.0100     1.386  0.0100
+KRA         C13         C14      DOUBLE       y     1.376  0.0124     1.376  0.0124
+KRA         C14         C15      SINGLE       y     1.374  0.0127     1.374  0.0127
+KRA         C15         C16      DOUBLE       y     1.386  0.0100     1.386  0.0100
+KRA          O1         HO1      SINGLE       n     0.966  0.0059     0.861  0.0200
+KRA          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0169
+KRA          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0173
+KRA          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0173
+KRA          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0169
+KRA          C7         H71      SINGLE       n     1.089  0.0100     0.974  0.0135
+KRA          C7         H72      SINGLE       n     1.089  0.0100     0.974  0.0135
+KRA         C10        H101      SINGLE       n     1.089  0.0100     0.974  0.0135
+KRA         C10        H102      SINGLE       n     1.089  0.0100     0.974  0.0135
+KRA         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0174
+KRA         C13         H13      SINGLE       n     1.082  0.0130     0.944  0.0175
+KRA         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0161
+KRA         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0175
+KRA         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KRA          O1          C1          C2     120.215    3.00
+KRA          O1          C1          C6     120.215    3.00
+KRA          C2          C1          C6     119.571    1.50
+KRA          C1          O1         HO1     120.000    3.00
+KRA          C1          C2          C3     119.825    1.50
+KRA          C1          C2          H2     120.006    1.50
+KRA          C3          C2          H2     120.168    1.50
+KRA          C2          C3          C4     121.472    1.50
+KRA          C2          C3          H3     119.210    1.50
+KRA          C4          C3          H3     119.317    1.50
+KRA          C3          C4          C5     117.834    1.50
+KRA          C3          C4          C7     121.083    1.50
+KRA          C5          C4          C7     121.083    1.50
+KRA          C4          C5          C6     121.472    1.50
+KRA          C4          C5          H5     119.317    1.50
+KRA          C6          C5          H5     119.210    1.50
+KRA          C1          C6          C5     119.825    1.50
+KRA          C1          C6          H6     120.006    1.50
+KRA          C5          C6          H6     120.168    1.50
+KRA          C4          C7          C8     112.680    2.23
+KRA          C4          C7         H71     108.562    1.50
+KRA          C4          C7         H72     108.562    1.50
+KRA          C8          C7         H71     109.038    1.50
+KRA          C8          C7         H72     109.038    1.50
+KRA         H71          C7         H72     107.501    2.92
+KRA          C7          C8          O2     118.444    1.50
+KRA          C7          C8          C9     122.899    1.86
+KRA          O2          C8          C9     118.657    3.00
+KRA          C8          C9          O3     118.657    3.00
+KRA          C8          C9         C10     122.899    1.86
+KRA          O3          C9         C10     118.444    1.50
+KRA          C9         C10         C11     112.680    2.23
+KRA          C9         C10        H101     109.038    1.50
+KRA          C9         C10        H102     109.038    1.50
+KRA         C11         C10        H101     108.562    1.50
+KRA         C11         C10        H102     108.562    1.50
+KRA        H101         C10        H102     107.501    2.92
+KRA         C10         C11         C12     120.970    1.50
+KRA         C10         C11         C16     120.970    1.50
+KRA         C12         C11         C16     118.060    1.50
+KRA         C11         C12         C13     120.624    1.50
+KRA         C11         C12         H12     119.591    1.50
+KRA         C13         C12         H12     119.786    1.50
+KRA         C12         C13         C14     120.325    1.50
+KRA         C12         C13         H13     119.792    1.50
+KRA         C14         C13         H13     119.883    1.50
+KRA         C13         C14         C15     120.043    1.50
+KRA         C13         C14         H14     119.979    1.50
+KRA         C15         C14         H14     119.979    1.50
+KRA         C14         C15         C16     120.325    1.50
+KRA         C14         C15         H15     119.883    1.50
+KRA         C16         C15         H15     119.792    1.50
+KRA         C11         C16         C15     120.624    1.50
+KRA         C11         C16         H16     119.591    1.50
+KRA         C15         C16         H16     119.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KRA             sp2_sp2_1          C2          C1          O1         HO1     180.000     5.0     2
+KRA              const_23          O1          C1          C2          C3     180.000    10.0     2
+KRA              const_43          O1          C1          C6          C5     180.000    10.0     2
+KRA            sp2_sp3_14          C8          C9         C10         C11     120.000    10.0     6
+KRA            sp2_sp3_20         C12         C11         C10          C9     -90.000    10.0     6
+KRA       const_sp2_sp2_3         C10         C11         C12         C13     180.000     5.0     2
+KRA              const_47         C10         C11         C16         C15     180.000    10.0     2
+KRA       const_sp2_sp2_5         C11         C12         C13         C14       0.000     5.0     2
+KRA       const_sp2_sp2_9         C12         C13         C14         C15       0.000     5.0     2
+KRA              const_13         C13         C14         C15         C16       0.000    10.0     2
+KRA              const_17         C14         C15         C16         C11       0.000    10.0     2
+KRA              const_25          C1          C2          C3          C4       0.000    10.0     2
+KRA              const_30          C2          C3          C4          C7     180.000    10.0     2
+KRA              const_35          C7          C4          C5          C6     180.000    10.0     2
+KRA             sp2_sp3_2          C3          C4          C7          C8     -90.000    10.0     6
+KRA              const_37          C4          C5          C6          C1       0.000    10.0     2
+KRA             sp2_sp3_8          O2          C8          C7          C4     120.000    10.0     6
+KRA             sp2_sp2_4          C7          C8          C9          O3       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KRA    plan-1          C1   0.020
+KRA    plan-1          C2   0.020
+KRA    plan-1          C3   0.020
+KRA    plan-1          C4   0.020
+KRA    plan-1          C5   0.020
+KRA    plan-1          C6   0.020
+KRA    plan-1          C7   0.020
+KRA    plan-1          H2   0.020
+KRA    plan-1          H3   0.020
+KRA    plan-1          H5   0.020
+KRA    plan-1          H6   0.020
+KRA    plan-1          O1   0.020
+KRA    plan-2         C10   0.020
+KRA    plan-2         C11   0.020
+KRA    plan-2         C12   0.020
+KRA    plan-2         C13   0.020
+KRA    plan-2         C14   0.020
+KRA    plan-2         C15   0.020
+KRA    plan-2         C16   0.020
+KRA    plan-2         H12   0.020
+KRA    plan-2         H13   0.020
+KRA    plan-2         H14   0.020
+KRA    plan-2         H15   0.020
+KRA    plan-2         H16   0.020
+KRA    plan-3          C7   0.020
+KRA    plan-3          C8   0.020
+KRA    plan-3          C9   0.020
+KRA    plan-3          O2   0.020
+KRA    plan-4         C10   0.020
+KRA    plan-4          C8   0.020
+KRA    plan-4          C9   0.020
+KRA    plan-4          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KRA           SMILES              ACDLabs 10.04                                                           O=C(C(=O)Cc1ccc(O)cc1)Cc2ccccc2
+KRA SMILES_CANONICAL               CACTVS 3.341                                                           Oc1ccc(CC(=O)C(=O)Cc2ccccc2)cc1
+KRA           SMILES               CACTVS 3.341                                                           Oc1ccc(CC(=O)C(=O)Cc2ccccc2)cc1
+KRA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                         c1ccc(cc1)CC(=O)C(=O)Cc2ccc(cc2)O
+KRA           SMILES "OpenEye OEToolkits" 1.5.0                                                         c1ccc(cc1)CC(=O)C(=O)Cc2ccc(cc2)O
+KRA            InChI                InChI  1.03 InChI=1S/C16H14O3/c17-14-8-6-13(7-9-14)11-16(19)15(18)10-12-4-2-1-3-5-12/h1-9,17H,10-11H2
+KRA         InChIKey                InChI  1.03                                                               PJJNUMKZYDTVRG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KRA acedrg               243         "dictionary generator"                  
+KRA acedrg_database      11          "data source"                           
+KRA rdkit                2017.03.2   "Chemoinformatics tool"
+KRA refmac5              5.8.0238    "optimization tool"                     

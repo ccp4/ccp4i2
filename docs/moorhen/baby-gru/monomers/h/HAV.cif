@@ -1,0 +1,181 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HAV     HAV      HYDROXYAMINOVALINE     NON-POLYMER     22     9     .     
+#
+data_comp_HAV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HAV     NA      N       NT3     1       -2.218      0.853       0.779       
+HAV     CA      C       CH1     0       -2.674      -0.541      0.477       
+HAV     CB      C       CH1     0       -2.480      -1.475      1.694       
+HAV     CG1     C       CH3     0       -3.011      -2.879      1.424       
+HAV     CG2     C       CH3     0       -3.101      -0.903      2.963       
+HAV     C       C       C       0       -1.892      -1.020      -0.747      
+HAV     O       O       O       0       -0.662      -1.017      -0.721      
+HAV     O1      O       OH1     0       -1.955      -1.861      -2.942      
+HAV     N       N       NH1     0       -2.596      -1.421      -1.790      
+HAV     HNA1    H       H       0       -2.066      1.323       0.011       
+HAV     HNA2    H       H       0       -1.448      0.833       1.265       
+HAV     HA3     H       H       0       -2.855      1.295       1.257       
+HAV     HA      H       H       0       -3.636      -0.517      0.262       
+HAV     HB      H       H       0       -1.506      -1.552      1.849       
+HAV     HG11    H       H       0       -3.090      -3.368      2.261       
+HAV     HG12    H       H       0       -2.398      -3.352      0.835       
+HAV     HG13    H       H       0       -3.885      -2.820      1.001       
+HAV     HG21    H       H       0       -4.030      -0.668      2.792       
+HAV     HG22    H       H       0       -2.612      -0.107      3.236       
+HAV     HG23    H       H       0       -3.061      -1.564      3.675       
+HAV     HO1     H       H       0       -1.688      -2.674      -2.807      
+HAV     HN      H       H       0       -3.471      -1.428      -1.797      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HAV          NA          CA      SINGLE       n     1.495  0.0100     1.495  0.0100
+HAV          CA          CB      SINGLE       n     1.542  0.0100     1.542  0.0100
+HAV          CA           C      SINGLE       n     1.526  0.0100     1.526  0.0100
+HAV          CB         CG1      SINGLE       n     1.521  0.0135     1.521  0.0135
+HAV          CB         CG2      SINGLE       n     1.521  0.0135     1.521  0.0135
+HAV           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+HAV           C           N      SINGLE       n     1.318  0.0100     1.318  0.0100
+HAV          O1           N      SINGLE       n     1.389  0.0110     1.389  0.0110
+HAV          NA        HNA1      SINGLE       n     1.036  0.0160     0.911  0.0200
+HAV          NA        HNA2      SINGLE       n     1.036  0.0160     0.911  0.0200
+HAV          NA         HA3      SINGLE       n     1.036  0.0160     0.911  0.0200
+HAV          CA          HA      SINGLE       n     1.089  0.0100     0.986  0.0200
+HAV          CB          HB      SINGLE       n     1.089  0.0100     0.989  0.0175
+HAV         CG1        HG11      SINGLE       n     1.089  0.0100     0.973  0.0146
+HAV         CG1        HG12      SINGLE       n     1.089  0.0100     0.973  0.0146
+HAV         CG1        HG13      SINGLE       n     1.089  0.0100     0.973  0.0146
+HAV         CG2        HG21      SINGLE       n     1.089  0.0100     0.973  0.0146
+HAV         CG2        HG22      SINGLE       n     1.089  0.0100     0.973  0.0146
+HAV         CG2        HG23      SINGLE       n     1.089  0.0100     0.973  0.0146
+HAV          O1         HO1      SINGLE       n     0.970  0.0120     0.867  0.0200
+HAV           N          HN      SINGLE       n     1.016  0.0100     0.875  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HAV          CA          NA        HNA1     110.239    2.72
+HAV          CA          NA        HNA2     110.239    2.72
+HAV          CA          NA         HA3     110.239    2.72
+HAV        HNA1          NA        HNA2     109.028    2.41
+HAV        HNA1          NA         HA3     109.028    2.41
+HAV        HNA2          NA         HA3     109.028    2.41
+HAV          NA          CA          CB     111.094    1.50
+HAV          NA          CA           C     107.575    1.50
+HAV          NA          CA          HA     109.056    1.50
+HAV          CB          CA           C     112.302    1.58
+HAV          CB          CA          HA     108.547    1.50
+HAV           C          CA          HA     109.286    1.50
+HAV          CA          CB         CG1     111.885    1.50
+HAV          CA          CB         CG2     111.885    1.50
+HAV          CA          CB          HB     107.339    1.50
+HAV         CG1          CB         CG2     110.676    1.50
+HAV         CG1          CB          HB     107.603    1.50
+HAV         CG2          CB          HB     107.603    1.50
+HAV          CB         CG1        HG11     109.507    1.50
+HAV          CB         CG1        HG12     109.507    1.50
+HAV          CB         CG1        HG13     109.507    1.50
+HAV        HG11         CG1        HG12     109.411    1.50
+HAV        HG11         CG1        HG13     109.411    1.50
+HAV        HG12         CG1        HG13     109.411    1.50
+HAV          CB         CG2        HG21     109.507    1.50
+HAV          CB         CG2        HG22     109.507    1.50
+HAV          CB         CG2        HG23     109.507    1.50
+HAV        HG21         CG2        HG22     109.411    1.50
+HAV        HG21         CG2        HG23     109.411    1.50
+HAV        HG22         CG2        HG23     109.411    1.50
+HAV          CA           C           O     120.334    1.50
+HAV          CA           C           N     116.161    1.98
+HAV           O           C           N     123.505    1.50
+HAV           N          O1         HO1     108.051    2.18
+HAV           C           N          O1     120.051    1.50
+HAV           C           N          HN     122.120    2.48
+HAV          O1           N          HN     117.829    2.59
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HAV             sp3_sp3_1          CB          CA          NA        HNA1     180.000    10.0     3
+HAV            sp3_sp3_11          NA          CA          CB         CG1     -60.000    10.0     3
+HAV             sp2_sp3_1           O           C          CA          NA       0.000    10.0     6
+HAV            sp3_sp3_19          CA          CB         CG1        HG11     180.000    10.0     3
+HAV            sp3_sp3_31          CA          CB         CG2        HG21      60.000    10.0     3
+HAV             sp2_sp2_1          CA           C           N          O1     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HAV    chir_1    CA    NA    C    CB    negative
+HAV    chir_2    CB    CA    CG1    CG2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HAV    plan-1           C   0.020
+HAV    plan-1          CA   0.020
+HAV    plan-1           N   0.020
+HAV    plan-1           O   0.020
+HAV    plan-2           C   0.020
+HAV    plan-2          HN   0.020
+HAV    plan-2           N   0.020
+HAV    plan-2          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HAV           SMILES              ACDLabs 10.04                                                          O=C(NO)C(N)C(C)C
+HAV SMILES_CANONICAL               CACTVS 3.341                                                     CC(C)[C@@H](N)C(=O)NO
+HAV           SMILES               CACTVS 3.341                                                       CC(C)[CH](N)C(=O)NO
+HAV SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                      CC(C)[C@H](C(=O)NO)N
+HAV           SMILES "OpenEye OEToolkits" 1.5.0                                                          CC(C)C(C(=O)NO)N
+HAV            InChI                InChI  1.03 InChI=1S/C5H12N2O2/c1-3(2)4(6)5(8)7-9/h3-4,9H,6H2,1-2H3,(H,7,8)/t4-/m1/s1
+HAV         InChIKey                InChI  1.03                                               USSBBYRBOWZYSB-SCSAIBSYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HAV acedrg               243         "dictionary generator"                  
+HAV acedrg_database      11          "data source"                           
+HAV rdkit                2017.03.2   "Chemoinformatics tool"
+HAV refmac5              5.8.0238    "optimization tool"                     

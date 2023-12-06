@@ -1,0 +1,231 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LLF     LLF      "(4-{(E)-[(2,2-DIFLUOROETHYL)IMINO]METHYL}-5-HYDROXY-6-METHYLPYRIDIN-3-YL)METHYL DIHYDROGEN PHOSPHATE"     NON-POLYMER     31     20     .     
+#
+data_comp_LLF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LLF     CBF     C       CH1     0       9.664       -1.749      43.384      
+LLF     CAF     C       CH2     0       9.209       -0.510      42.705      
+LLF     F1      F       F       0       10.937      -2.009      43.107      
+LLF     F2      F       F       0       9.602       -1.636      44.706      
+LLF     NF      N       N       0       7.927       -0.046      43.237      
+LLF     C4A     C       C1      0       6.862       -0.720      43.019      
+LLF     C4      C       CR6     0       5.529       -0.238      43.392      
+LLF     C3      C       CR6     0       5.272       0.222       44.704      
+LLF     O3      O       OH1     0       6.259       0.240       45.665      
+LLF     C2      C       CR6     0       3.982       0.675       45.039      
+LLF     C2A     C       CH3     0       3.679       1.172       46.417      
+LLF     N1      N       NRD6    0       3.006       0.668       44.130      
+LLF     C5      C       CR6     0       4.474       -0.234      42.457      
+LLF     C6      C       CR16    0       3.249       0.225       42.875      
+LLF     C5M     C       CH2     0       4.650       -0.710      41.040      
+LLF     O4P     O       O2      0       4.841       -2.159      41.001      
+LLF     P       P       P       0       5.092       -2.942      39.612      
+LLF     OP1     O       OP      -1      5.036       -4.419      39.954      
+LLF     OP2     O       OP      -1      3.972       -2.509      38.685      
+LLF     OP3     O       O       0       6.460       -2.500      39.130      
+LLF     HBF     H       H       0       9.109       -2.493      43.092      
+LLF     HAF1    H       H       0       9.118       -0.676      41.742      
+LLF     HAF2    H       H       0       9.881       0.196       42.826      
+LLF     H4A     H       H       0       6.935       -1.558      42.600      
+LLF     HO3     H       H       0       6.586       0.991       45.932      
+LLF     H2A1    H       H       0       2.725       1.330       46.507      
+LLF     H2A2    H       H       0       4.160       2.001       46.575      
+LLF     H2A3    H       H       0       3.958       0.509       47.070      
+LLF     H6      H       H       0       2.542       0.234       42.265      
+LLF     H5M1    H       H       0       5.430       -0.273      40.633      
+LLF     H5M2    H       H       0       3.859       -0.481      40.505      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LLF         CBF         CAF      SINGLE       n     1.478  0.0200     1.478  0.0200
+LLF         CBF          F1      SINGLE       n     1.328  0.0139     1.328  0.0139
+LLF         CBF          F2      SINGLE       n     1.328  0.0139     1.328  0.0139
+LLF         CAF          NF      SINGLE       n     1.460  0.0100     1.460  0.0100
+LLF          NF         C4A      DOUBLE       n     1.270  0.0174     1.270  0.0174
+LLF         C4A          C4      SINGLE       n     1.459  0.0148     1.459  0.0148
+LLF          C4          C3      DOUBLE       y     1.405  0.0115     1.405  0.0115
+LLF          C4          C5      SINGLE       y     1.403  0.0100     1.403  0.0100
+LLF          C3          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+LLF          C3          C2      SINGLE       y     1.400  0.0136     1.400  0.0136
+LLF          C2         C2A      SINGLE       n     1.494  0.0100     1.494  0.0100
+LLF          C2          N1      DOUBLE       y     1.330  0.0101     1.330  0.0101
+LLF          N1          C6      SINGLE       y     1.349  0.0100     1.349  0.0100
+LLF          C5          C6      DOUBLE       y     1.368  0.0100     1.368  0.0100
+LLF          C5         C5M      SINGLE       n     1.503  0.0100     1.503  0.0100
+LLF         C5M         O4P      SINGLE       n     1.462  0.0104     1.462  0.0104
+LLF         O4P           P      SINGLE       n     1.614  0.0178     1.614  0.0178
+LLF           P         OP1      SINGLE       n     1.517  0.0192     1.517  0.0192
+LLF           P         OP2      SINGLE       n     1.517  0.0192     1.517  0.0192
+LLF           P         OP3      DOUBLE       n     1.517  0.0192     1.517  0.0192
+LLF         CBF         HBF      SINGLE       n     1.089  0.0100     0.973  0.0148
+LLF         CAF        HAF1      SINGLE       n     1.089  0.0100     0.982  0.0103
+LLF         CAF        HAF2      SINGLE       n     1.089  0.0100     0.982  0.0103
+LLF         C4A         H4A      SINGLE       n     1.082  0.0130     0.939  0.0187
+LLF          O3         HO3      SINGLE       n     0.966  0.0059     0.861  0.0200
+LLF         C2A        H2A1      SINGLE       n     1.089  0.0100     0.971  0.0138
+LLF         C2A        H2A2      SINGLE       n     1.089  0.0100     0.971  0.0138
+LLF         C2A        H2A3      SINGLE       n     1.089  0.0100     0.971  0.0138
+LLF          C6          H6      SINGLE       n     1.082  0.0130     0.935  0.0200
+LLF         C5M        H5M1      SINGLE       n     1.089  0.0100     0.982  0.0107
+LLF         C5M        H5M2      SINGLE       n     1.089  0.0100     0.982  0.0107
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LLF         CAF         CBF          F1     111.793    1.50
+LLF         CAF         CBF          F2     111.793    1.50
+LLF         CAF         CBF         HBF     109.513    1.50
+LLF          F1         CBF          F2     106.200    1.50
+LLF          F1         CBF         HBF     110.164    1.50
+LLF          F2         CBF         HBF     110.164    1.50
+LLF         CBF         CAF          NF     109.508    2.50
+LLF         CBF         CAF        HAF1     109.891    1.50
+LLF         CBF         CAF        HAF2     109.891    1.50
+LLF          NF         CAF        HAF1     109.473    1.50
+LLF          NF         CAF        HAF2     109.473    1.50
+LLF        HAF1         CAF        HAF2     108.122    1.50
+LLF         CAF          NF         C4A     118.372    1.77
+LLF          NF         C4A          C4     122.438    1.52
+LLF          NF         C4A         H4A     118.729    1.50
+LLF          C4         C4A         H4A     118.833    1.50
+LLF         C4A          C4          C3     120.419    1.50
+LLF         C4A          C4          C5     120.602    2.10
+LLF          C3          C4          C5     118.980    1.50
+LLF          C4          C3          O3     120.157    3.00
+LLF          C4          C3          C2     119.687    1.50
+LLF          O3          C3          C2     120.157    3.00
+LLF          C3          O3         HO3     120.000    3.00
+LLF          C3          C2         C2A     120.589    1.50
+LLF          C3          C2          N1     120.420    1.50
+LLF         C2A          C2          N1     118.991    1.50
+LLF          C2         C2A        H2A1     109.484    1.50
+LLF          C2         C2A        H2A2     109.484    1.50
+LLF          C2         C2A        H2A3     109.484    1.50
+LLF        H2A1         C2A        H2A2     109.339    1.66
+LLF        H2A1         C2A        H2A3     109.339    1.66
+LLF        H2A2         C2A        H2A3     109.339    1.66
+LLF          C2          N1          C6     119.480    1.60
+LLF          C4          C5          C6     118.109    1.50
+LLF          C4          C5         C5M     121.832    1.50
+LLF          C6          C5         C5M     120.059    1.59
+LLF          N1          C6          C5     123.324    1.50
+LLF          N1          C6          H6     118.073    1.50
+LLF          C5          C6          H6     118.603    1.50
+LLF          C5         C5M         O4P     110.538    2.24
+LLF          C5         C5M        H5M1     109.800    1.50
+LLF          C5         C5M        H5M2     109.800    1.50
+LLF         O4P         C5M        H5M1     108.933    1.90
+LLF         O4P         C5M        H5M2     108.933    1.90
+LLF        H5M1         C5M        H5M2     108.248    1.50
+LLF         C5M         O4P           P     121.496    2.55
+LLF         O4P           P         OP1     105.808    2.07
+LLF         O4P           P         OP2     105.808    2.07
+LLF         O4P           P         OP3     105.808    2.07
+LLF         OP1           P         OP2     112.864    1.69
+LLF         OP1           P         OP3     112.864    1.69
+LLF         OP2           P         OP3     112.864    1.69
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LLF             sp3_sp3_2          NF         CAF         CBF          F1     -60.000    10.0     3
+LLF              const_11          C5          C6          N1          C2       0.000    10.0     2
+LLF              const_15         C5M          C5          C6          N1     180.000    10.0     2
+LLF            sp2_sp3_11          C4          C5         C5M         O4P     -90.000    10.0     6
+LLF            sp3_sp3_10          C5         C5M         O4P           P     180.000    10.0     3
+LLF            sp3_sp3_14         C5M         O4P           P         OP1     -60.000    10.0     3
+LLF             sp2_sp3_2         C4A          NF         CAF         CBF     120.000    10.0     6
+LLF             sp2_sp2_1          C4         C4A          NF         CAF     180.000     5.0     2
+LLF             sp2_sp2_3          C3          C4         C4A          NF     180.000     5.0     2
+LLF              const_20         C4A          C4          C5         C5M       0.000    10.0     2
+LLF       const_sp2_sp2_4          O3          C3          C4         C4A       0.000     5.0     2
+LLF             sp2_sp2_7          C4          C3          O3         HO3     180.000     5.0     2
+LLF       const_sp2_sp2_8         C2A          C2          C3          O3       0.000     5.0     2
+LLF             sp2_sp3_4          C3          C2         C2A        H2A1     150.000    10.0     6
+LLF              const_10         C2A          C2          N1          C6     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LLF    chir_1    CBF    F1    F2    CAF    both
+LLF    chir_2    P    O4P    OP1    OP2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LLF    plan-1          C2   0.020
+LLF    plan-1         C2A   0.020
+LLF    plan-1          C3   0.020
+LLF    plan-1          C4   0.020
+LLF    plan-1         C4A   0.020
+LLF    plan-1          C5   0.020
+LLF    plan-1         C5M   0.020
+LLF    plan-1          C6   0.020
+LLF    plan-1          H6   0.020
+LLF    plan-1          N1   0.020
+LLF    plan-1          O3   0.020
+LLF    plan-2          C4   0.020
+LLF    plan-2         C4A   0.020
+LLF    plan-2         H4A   0.020
+LLF    plan-2          NF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LLF           SMILES              ACDLabs 10.04                                                                                   FC(F)C/N=C/c1c(cnc(c1O)C)COP(=O)(O)O
+LLF SMILES_CANONICAL               CACTVS 3.341                                                                                   Cc1ncc(CO[P](O)(O)=O)c(C=NCC(F)F)c1O
+LLF           SMILES               CACTVS 3.341                                                                                   Cc1ncc(CO[P](O)(O)=O)c(C=NCC(F)F)c1O
+LLF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                   Cc1c(c(c(cn1)COP(=O)(O)O)C=NCC(F)F)O
+LLF           SMILES "OpenEye OEToolkits" 1.5.0                                                                                   Cc1c(c(c(cn1)COP(=O)(O)O)C=NCC(F)F)O
+LLF            InChI                InChI  1.03 InChI=1S/C10H13F2N2O5P/c1-6-10(15)8(3-13-4-9(11)12)7(2-14-6)5-19-20(16,17)18/h2-3,9,15H,4-5H2,1H3,(H2,16,17,18)/b13-3+
+LLF         InChIKey                InChI  1.03                                                                                            OXVHZSPVJUCFDH-QLKAYGNNSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LLF acedrg               243         "dictionary generator"                  
+LLF acedrg_database      11          "data source"                           
+LLF rdkit                2017.03.2   "Chemoinformatics tool"
+LLF refmac5              5.8.0238    "optimization tool"                     

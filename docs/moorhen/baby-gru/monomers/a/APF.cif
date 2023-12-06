@@ -1,0 +1,235 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+APF     APF      "1,1,1-TRIFLUORO-3-ACETAMIDO-4-PHENYL BUTAN-2-ONE(N-ACETYL-L-PHENYLALANYL TRIFLUOROMETHYL KETONE)"     NON-POLYMER     30     18     .     
+#
+data_comp_APF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+APF     CN2     C       CH3     0       30.924      3.286       38.226      
+APF     CN1     C       C       0       29.716      2.438       38.475      
+APF     ON1     O       O       0       29.661      1.691       39.451      
+APF     N3      N       NH1     0       28.710      2.542       37.593      
+APF     C3      C       CH1     0       27.455      1.799       37.690      
+APF     C2      C       C       0       27.040      1.280       36.309      
+APF     C1      C       CT      0       27.845      0.173       35.721      
+APF     C4      C       CH2     0       26.357      2.663       38.333      
+APF     O2      O       O       0       26.096      1.759       35.715      
+APF     F11     F       F       0       29.128      0.483       35.647      
+APF     F12     F       F       0       27.458      -0.140      34.495      
+APF     F13     F       F       0       27.762      -0.933      36.441      
+APF     CP1     C       CR6     0       26.660      3.084       39.750      
+APF     CP2     C       CR16    0       26.988      4.402       40.049      
+APF     CP3     C       CR16    0       27.269      4.786       41.355      
+APF     CP4     C       CR16    0       27.226      3.858       42.375      
+APF     CP5     C       CR16    0       26.904      2.547       42.094      
+APF     CP6     C       CR16    0       26.623      2.161       40.789      
+APF     HC21    H       H       0       30.693      4.039       37.659      
+APF     HC22    H       H       0       31.610      2.755       37.790      
+APF     HC23    H       H       0       31.267      3.617       39.072      
+APF     HN3     H       H       0       28.802      3.085       36.914      
+APF     H3      H       H       0       27.596      1.011       38.267      
+APF     H41     H       H       0       25.517      2.158       38.328      
+APF     H42     H       H       0       26.226      3.465       37.785      
+APF     HP2     H       H       0       27.020      5.043       39.357      
+APF     HP3     H       H       0       27.489      5.684       41.544      
+APF     HP4     H       H       0       27.417      4.119       43.262      
+APF     HP5     H       H       0       26.874      1.910       42.790      
+APF     HP6     H       H       0       26.403      1.262       40.605      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+APF         CN2         CN1      SINGLE       n     1.495  0.0100     1.495  0.0100
+APF         CN1         ON1      DOUBLE       n     1.229  0.0102     1.229  0.0102
+APF         CN1          N3      SINGLE       n     1.335  0.0100     1.335  0.0100
+APF          N3          C3      SINGLE       n     1.456  0.0100     1.456  0.0100
+APF          C3          C2      SINGLE       n     1.529  0.0100     1.529  0.0100
+APF          C3          C4      SINGLE       n     1.536  0.0102     1.536  0.0102
+APF          C2          C1      SINGLE       n     1.484  0.0200     1.484  0.0200
+APF          C2          O2      DOUBLE       n     1.209  0.0200     1.209  0.0200
+APF          C1         F11      SINGLE       n     1.322  0.0175     1.322  0.0175
+APF          C1         F12      SINGLE       n     1.322  0.0175     1.322  0.0175
+APF          C1         F13      SINGLE       n     1.322  0.0175     1.322  0.0175
+APF          C4         CP1      SINGLE       n     1.508  0.0100     1.508  0.0100
+APF         CP1         CP2      DOUBLE       y     1.385  0.0111     1.385  0.0111
+APF         CP1         CP6      SINGLE       y     1.385  0.0111     1.385  0.0111
+APF         CP2         CP3      SINGLE       y     1.386  0.0100     1.386  0.0100
+APF         CP3         CP4      DOUBLE       y     1.376  0.0124     1.376  0.0124
+APF         CP4         CP5      SINGLE       y     1.374  0.0127     1.374  0.0127
+APF         CP5         CP6      DOUBLE       y     1.386  0.0100     1.386  0.0100
+APF         CN2        HC21      SINGLE       n     1.089  0.0100     0.971  0.0140
+APF         CN2        HC22      SINGLE       n     1.089  0.0100     0.971  0.0140
+APF         CN2        HC23      SINGLE       n     1.089  0.0100     0.971  0.0140
+APF          N3         HN3      SINGLE       n     1.016  0.0100     0.873  0.0200
+APF          C3          H3      SINGLE       n     1.089  0.0100     0.987  0.0159
+APF          C4         H41      SINGLE       n     1.089  0.0100     0.980  0.0164
+APF          C4         H42      SINGLE       n     1.089  0.0100     0.980  0.0164
+APF         CP2         HP2      SINGLE       n     1.082  0.0130     0.944  0.0174
+APF         CP3         HP3      SINGLE       n     1.082  0.0130     0.944  0.0175
+APF         CP4         HP4      SINGLE       n     1.082  0.0130     0.944  0.0161
+APF         CP5         HP5      SINGLE       n     1.082  0.0130     0.944  0.0175
+APF         CP6         HP6      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+APF         CN1         CN2        HC21     109.678    1.50
+APF         CN1         CN2        HC22     109.678    1.50
+APF         CN1         CN2        HC23     109.678    1.50
+APF        HC21         CN2        HC22     109.365    1.50
+APF        HC21         CN2        HC23     109.365    1.50
+APF        HC22         CN2        HC23     109.365    1.50
+APF         CN2         CN1         ON1     121.913    1.50
+APF         CN2         CN1          N3     116.420    1.50
+APF         ON1         CN1          N3     121.667    1.50
+APF         CN1          N3          C3     121.834    1.76
+APF         CN1          N3         HN3     119.263    2.25
+APF          C3          N3         HN3     118.902    1.92
+APF          N3          C3          C2     111.249    2.34
+APF          N3          C3          C4     110.790    1.50
+APF          N3          C3          H3     108.161    1.50
+APF          C2          C3          C4     111.217    1.82
+APF          C2          C3          H3     107.798    1.50
+APF          C4          C3          H3     108.240    1.50
+APF          C3          C2          C1     117.694    1.50
+APF          C3          C2          O2     120.768    1.50
+APF          C1          C2          O2     121.539    1.76
+APF          C2          C1         F11     112.072    1.73
+APF          C2          C1         F12     112.072    1.73
+APF          C2          C1         F13     112.072    1.73
+APF         F11          C1         F12     106.822    1.50
+APF         F11          C1         F13     106.822    1.50
+APF         F12          C1         F13     106.822    1.50
+APF          C3          C4         CP1     113.420    1.89
+APF          C3          C4         H41     108.793    1.50
+APF          C3          C4         H42     108.793    1.50
+APF         CP1          C4         H41     108.862    1.50
+APF         CP1          C4         H42     108.862    1.50
+APF         H41          C4         H42     107.782    1.50
+APF          C4         CP1         CP2     120.970    1.50
+APF          C4         CP1         CP6     120.970    1.50
+APF         CP2         CP1         CP6     118.060    1.50
+APF         CP1         CP2         CP3     120.624    1.50
+APF         CP1         CP2         HP2     119.591    1.50
+APF         CP3         CP2         HP2     119.786    1.50
+APF         CP2         CP3         CP4     120.325    1.50
+APF         CP2         CP3         HP3     119.792    1.50
+APF         CP4         CP3         HP3     119.883    1.50
+APF         CP3         CP4         CP5     120.043    1.50
+APF         CP3         CP4         HP4     119.979    1.50
+APF         CP5         CP4         HP4     119.979    1.50
+APF         CP4         CP5         CP6     120.325    1.50
+APF         CP4         CP5         HP5     119.883    1.50
+APF         CP6         CP5         HP5     119.792    1.50
+APF         CP1         CP6         CP5     120.624    1.50
+APF         CP1         CP6         HP6     119.591    1.50
+APF         CP5         CP6         HP6     119.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+APF             sp2_sp3_1         ON1         CN1         CN2        HC21       0.000    10.0     6
+APF       const_sp2_sp2_3          C4         CP1         CP2         CP3     180.000     5.0     2
+APF              const_23          C4         CP1         CP6         CP5     180.000    10.0     2
+APF       const_sp2_sp2_5         CP1         CP2         CP3         CP4       0.000     5.0     2
+APF       const_sp2_sp2_9         CP2         CP3         CP4         CP5       0.000     5.0     2
+APF              const_13         CP3         CP4         CP5         CP6       0.000    10.0     2
+APF              const_17         CP4         CP5         CP6         CP1       0.000    10.0     2
+APF             sp2_sp2_1         CN2         CN1          N3          C3     180.000     5.0     2
+APF             sp2_sp3_7         CN1          N3          C3          C2       0.000    10.0     6
+APF            sp2_sp3_13          C1          C2          C3          N3       0.000    10.0     6
+APF             sp3_sp3_1          N3          C3          C4         CP1     180.000    10.0     3
+APF            sp2_sp3_19          C3          C2          C1         F11       0.000    10.0     6
+APF            sp2_sp3_26         CP2         CP1          C4          C3     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+APF    chir_1    C3    N3    C2    C4    positive
+APF    chir_2    C1    F11    F12    F13    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+APF    plan-1          C4   0.020
+APF    plan-1         CP1   0.020
+APF    plan-1         CP2   0.020
+APF    plan-1         CP3   0.020
+APF    plan-1         CP4   0.020
+APF    plan-1         CP5   0.020
+APF    plan-1         CP6   0.020
+APF    plan-1         HP2   0.020
+APF    plan-1         HP3   0.020
+APF    plan-1         HP4   0.020
+APF    plan-1         HP5   0.020
+APF    plan-1         HP6   0.020
+APF    plan-2         CN1   0.020
+APF    plan-2         CN2   0.020
+APF    plan-2          N3   0.020
+APF    plan-2         ON1   0.020
+APF    plan-3          C3   0.020
+APF    plan-3         CN1   0.020
+APF    plan-3         HN3   0.020
+APF    plan-3          N3   0.020
+APF    plan-4          C1   0.020
+APF    plan-4          C2   0.020
+APF    plan-4          C3   0.020
+APF    plan-4          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+APF           SMILES              ACDLabs 10.04                                                                           FC(F)(F)C(=O)C(NC(=O)C)Cc1ccccc1
+APF SMILES_CANONICAL               CACTVS 3.341                                                                      CC(=O)N[C@@H](Cc1ccccc1)C(=O)C(F)(F)F
+APF           SMILES               CACTVS 3.341                                                                        CC(=O)N[CH](Cc1ccccc1)C(=O)C(F)(F)F
+APF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                      CC(=O)N[C@@H](Cc1ccccc1)C(=O)C(F)(F)F
+APF           SMILES "OpenEye OEToolkits" 1.5.0                                                                           CC(=O)NC(Cc1ccccc1)C(=O)C(F)(F)F
+APF            InChI                InChI  1.03 InChI=1S/C12H12F3NO2/c1-8(17)16-10(11(18)12(13,14)15)7-9-5-3-2-4-6-9/h2-6,10H,7H2,1H3,(H,16,17)/t10-/m0/s1
+APF         InChIKey                InChI  1.03                                                                                JTIIYPHJIDENCW-JTQLQIEISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+APF acedrg               243         "dictionary generator"                  
+APF acedrg_database      11          "data source"                           
+APF rdkit                2017.03.2   "Chemoinformatics tool"
+APF refmac5              5.8.0238    "optimization tool"                     

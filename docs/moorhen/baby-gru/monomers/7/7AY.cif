@@ -1,0 +1,340 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+7AY     7AY      5-chloro-7-(2-(2-(2,4-dioxo-3,4-dihydropyrimidin-1(2H)-yl)ethoxy)phenoxy)-8-methyl-2-naphthonitrile     NON-POLYMER     50     32     .     
+#
+data_comp_7AY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+7AY     CAH     C       CR6     0       356.302     -30.343     144.914     
+7AY     CAI     C       CR66    0       355.664     -31.242     145.809     
+7AY     CAJ     C       CR66    0       355.897     -32.651     145.636     
+7AY     CAK     C       CR6     0       356.764     -33.105     144.571     
+7AY     CAL     C       CR6     0       357.355     -32.148     143.737     
+7AY     CAM     C       CR16    0       357.114     -30.784     143.913     
+7AY     CAY     C       CR16    0       354.810     -30.819     146.861     
+7AY     CAZ     C       CR16    0       354.220     -31.731     147.695     
+7AY     CBA     C       CR6     0       354.439     -33.109     147.538     
+7AY     CBB     C       CR16    0       355.264     -33.557     146.524     
+7AY     CBC     C       CSP     0       353.808     -34.049     148.427     
+7AY     NBD     N       NSP     0       353.243     -34.793     149.098     
+7AY     C0P     C       CR16    0       356.659     -35.033     140.305     
+7AY     C00     C       CR16    0       361.010     -31.319     140.728     
+7AY     C0D     C       CH2     0       359.297     -33.182     139.110     
+7AY     C0E     C       CH2     0       358.109     -33.963     138.609     
+7AY     C0K     C       CR6     0       358.540     -36.251     139.438     
+7AY     C0N     C       CR6     0       357.051     -37.259     141.135     
+7AY     C0O     C       CR16    0       356.288     -36.043     141.115     
+7AY     N0H     N       NR6     0       357.753     -35.105     139.479     
+7AY     N0M     N       NR6     0       358.138     -37.266     140.278     
+7AY     O0A     O       O2      0       358.191     -32.570     142.701     
+7AY     O0B     O       O2      0       358.853     -32.304     140.147     
+7AY     O0Q     O       O       0       359.526     -36.366     138.722     
+7AY     O0S     O       O       0       356.815     -38.249     141.828     
+7AY     C01     C       CR16    0       361.892     -30.912     141.725     
+7AY     C02     C       CR16    0       361.546     -31.054     143.047     
+7AY     C03     C       CR16    0       360.316     -31.609     143.393     
+7AY     C04     C       CR6     0       359.435     -32.012     142.412     
+7AY     C05     C       CR6     0       359.778     -31.873     141.061     
+7AY     C31     C       CH3     0       357.017     -34.582     144.378     
+7AY     CL1     CL      CL      0       356.064     -28.626     145.064     
+7AY     H1      H       H       0       357.523     -30.160     143.337     
+7AY     H2      H       H       0       354.643     -29.902     146.992     
+7AY     H3      H       H       0       353.655     -31.425     148.388     
+7AY     H4      H       H       0       355.405     -34.484     146.428     
+7AY     H5      H       H       0       356.150     -34.251     140.308     
+7AY     H6      H       H       0       361.249     -31.222     139.822     
+7AY     H7      H       H       0       359.689     -32.658     138.367     
+7AY     H8      H       H       0       359.989     -33.802     139.453     
+7AY     H9      H       H       0       358.305     -34.296     137.705     
+7AY     H10     H       H       0       357.338     -33.357     138.538     
+7AY     H11     H       H       0       355.537     -35.953     141.663     
+7AY     H12     H       H       0       358.636     -38.004     140.263     
+7AY     H13     H       H       0       362.725     -30.538     141.490     
+7AY     H14     H       H       0       362.141     -30.778     143.724     
+7AY     H15     H       H       0       360.085     -31.702     144.301     
+7AY     H16     H       H       0       357.418     -34.952     145.183     
+7AY     H17     H       H       0       357.616     -34.734     143.630     
+7AY     H18     H       H       0       356.174     -35.037     144.205     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+7AY         C0K         O0Q      DOUBLE       n     1.222  0.0104     1.222  0.0104
+7AY         C0D         C0E      SINGLE       n     1.504  0.0170     1.504  0.0170
+7AY         C0E         N0H      SINGLE       n     1.471  0.0138     1.471  0.0138
+7AY         C0K         N0H      SINGLE       y     1.383  0.0100     1.383  0.0100
+7AY         C0K         N0M      SINGLE       y     1.373  0.0104     1.373  0.0104
+7AY         C0D         O0B      SINGLE       n     1.427  0.0103     1.427  0.0103
+7AY         C0P         N0H      SINGLE       y     1.367  0.0110     1.367  0.0110
+7AY         C0N         N0M      SINGLE       y     1.381  0.0100     1.381  0.0100
+7AY         C0P         C0O      DOUBLE       y     1.343  0.0119     1.343  0.0119
+7AY         O0B         C05      SINGLE       n     1.367  0.0100     1.367  0.0100
+7AY         C0N         C0O      SINGLE       y     1.434  0.0100     1.434  0.0100
+7AY         C0N         O0S      DOUBLE       n     1.231  0.0100     1.231  0.0100
+7AY         C00         C05      DOUBLE       y     1.386  0.0100     1.386  0.0100
+7AY         C00         C01      SINGLE       y     1.390  0.0100     1.390  0.0100
+7AY         C04         C05      SINGLE       y     1.392  0.0100     1.392  0.0100
+7AY         C01         C02      DOUBLE       y     1.373  0.0107     1.373  0.0107
+7AY         O0A         C04      SINGLE       n     1.389  0.0100     1.389  0.0100
+7AY         C03         C04      DOUBLE       y     1.372  0.0100     1.372  0.0100
+7AY         C02         C03      SINGLE       y     1.390  0.0100     1.390  0.0100
+7AY         CAL         O0A      SINGLE       n     1.388  0.0129     1.388  0.0129
+7AY         CAL         CAM      SINGLE       y     1.387  0.0131     1.387  0.0131
+7AY         CAH         CAM      DOUBLE       y     1.359  0.0110     1.359  0.0110
+7AY         CAK         CAL      DOUBLE       y     1.392  0.0100     1.392  0.0100
+7AY         CAH         CL1      SINGLE       n     1.739  0.0101     1.739  0.0101
+7AY         CAH         CAI      SINGLE       y     1.414  0.0100     1.414  0.0100
+7AY         CAK         C31      SINGLE       n     1.504  0.0124     1.504  0.0124
+7AY         CAJ         CAK      SINGLE       y     1.429  0.0140     1.429  0.0140
+7AY         CAI         CAJ      DOUBLE       y     1.429  0.0115     1.429  0.0115
+7AY         CAI         CAY      SINGLE       y     1.415  0.0100     1.415  0.0100
+7AY         CAJ         CBB      SINGLE       y     1.410  0.0105     1.410  0.0105
+7AY         CAY         CAZ      DOUBLE       y     1.366  0.0125     1.366  0.0125
+7AY         CBA         CBB      DOUBLE       y     1.378  0.0100     1.378  0.0100
+7AY         CAZ         CBA      SINGLE       y     1.399  0.0124     1.399  0.0124
+7AY         CBA         CBC      SINGLE       n     1.440  0.0102     1.440  0.0102
+7AY         CBC         NBD      TRIPLE       n     1.149  0.0200     1.149  0.0200
+7AY         CAM          H1      SINGLE       n     1.082  0.0130     0.943  0.0168
+7AY         CAY          H2      SINGLE       n     1.082  0.0130     0.943  0.0175
+7AY         CAZ          H3      SINGLE       n     1.082  0.0130     0.945  0.0184
+7AY         CBB          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+7AY         C0P          H5      SINGLE       n     1.082  0.0130     0.933  0.0100
+7AY         C00          H6      SINGLE       n     1.082  0.0130     0.942  0.0174
+7AY         C0D          H7      SINGLE       n     1.089  0.0100     0.990  0.0100
+7AY         C0D          H8      SINGLE       n     1.089  0.0100     0.990  0.0100
+7AY         C0E          H9      SINGLE       n     1.089  0.0100     0.983  0.0100
+7AY         C0E         H10      SINGLE       n     1.089  0.0100     0.983  0.0100
+7AY         C0O         H11      SINGLE       n     1.082  0.0130     0.935  0.0100
+7AY         N0M         H12      SINGLE       n     1.016  0.0100     0.889  0.0200
+7AY         C01         H13      SINGLE       n     1.082  0.0130     0.943  0.0183
+7AY         C02         H14      SINGLE       n     1.082  0.0130     0.943  0.0183
+7AY         C03         H15      SINGLE       n     1.082  0.0130     0.942  0.0174
+7AY         C31         H16      SINGLE       n     1.089  0.0100     0.973  0.0200
+7AY         C31         H17      SINGLE       n     1.089  0.0100     0.973  0.0200
+7AY         C31         H18      SINGLE       n     1.089  0.0100     0.973  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+7AY         CAM         CAH         CL1     118.934    1.93
+7AY         CAM         CAH         CAI     121.522    1.50
+7AY         CL1         CAH         CAI     119.544    1.50
+7AY         CAH         CAI         CAJ     118.117    1.50
+7AY         CAH         CAI         CAY     122.590    1.50
+7AY         CAJ         CAI         CAY     119.293    1.50
+7AY         CAK         CAJ         CAI     119.653    1.50
+7AY         CAK         CAJ         CBB     121.054    1.50
+7AY         CAI         CAJ         CBB     119.293    1.50
+7AY         CAL         CAK         C31     120.973    1.50
+7AY         CAL         CAK         CAJ     118.992    1.50
+7AY         C31         CAK         CAJ     120.035    1.70
+7AY         O0A         CAL         CAM     119.999    3.00
+7AY         O0A         CAL         CAK     118.471    1.78
+7AY         CAM         CAL         CAK     121.529    1.50
+7AY         CAL         CAM         CAH     120.186    1.50
+7AY         CAL         CAM          H1     119.745    1.50
+7AY         CAH         CAM          H1     120.069    1.50
+7AY         CAI         CAY         CAZ     120.787    1.50
+7AY         CAI         CAY          H2     119.625    1.50
+7AY         CAZ         CAY          H2     119.588    1.50
+7AY         CAY         CAZ         CBA     120.934    1.50
+7AY         CAY         CAZ          H3     119.359    1.50
+7AY         CBA         CAZ          H3     119.707    1.50
+7AY         CBB         CBA         CAZ     118.990    1.50
+7AY         CBB         CBA         CBC     120.479    1.50
+7AY         CAZ         CBA         CBC     120.531    1.50
+7AY         CAJ         CBB         CBA     120.703    1.50
+7AY         CAJ         CBB          H4     119.601    1.50
+7AY         CBA         CBB          H4     119.697    1.50
+7AY         CBA         CBC         NBD     177.968    1.50
+7AY         N0H         C0P         C0O     122.666    1.50
+7AY         N0H         C0P          H5     118.649    1.50
+7AY         C0O         C0P          H5     118.685    1.50
+7AY         C05         C00         C01     120.251    1.50
+7AY         C05         C00          H6     119.730    1.50
+7AY         C01         C00          H6     120.019    1.50
+7AY         C0E         C0D         O0B     107.560    1.73
+7AY         C0E         C0D          H7     109.619    1.50
+7AY         C0E         C0D          H8     109.619    1.50
+7AY         O0B         C0D          H7     109.991    1.50
+7AY         O0B         C0D          H8     109.991    1.50
+7AY          H7         C0D          H8     108.319    1.50
+7AY         C0D         C0E         N0H     112.567    1.89
+7AY         C0D         C0E          H9     109.062    1.50
+7AY         C0D         C0E         H10     109.062    1.50
+7AY         N0H         C0E          H9     108.980    1.50
+7AY         N0H         C0E         H10     108.980    1.50
+7AY          H9         C0E         H10     107.833    1.50
+7AY         O0Q         C0K         N0H     122.932    1.50
+7AY         O0Q         C0K         N0M     122.187    1.50
+7AY         N0H         C0K         N0M     114.881    1.50
+7AY         N0M         C0N         C0O     114.483    1.50
+7AY         N0M         C0N         O0S     119.489    1.50
+7AY         C0O         C0N         O0S     126.028    1.50
+7AY         C0P         C0O         C0N     119.971    1.50
+7AY         C0P         C0O         H11     120.072    1.50
+7AY         C0N         C0O         H11     119.958    1.50
+7AY         C0E         N0H         C0K     118.165    1.50
+7AY         C0E         N0H         C0P     120.778    1.50
+7AY         C0K         N0H         C0P     121.057    1.50
+7AY         C0K         N0M         C0N     126.946    1.50
+7AY         C0K         N0M         H12     115.970    1.50
+7AY         C0N         N0M         H12     117.080    1.73
+7AY         C04         O0A         CAL     118.469    2.57
+7AY         C0D         O0B         C05     117.255    1.53
+7AY         C00         C01         C02     120.648    1.50
+7AY         C00         C01         H13     119.492    1.50
+7AY         C02         C01         H13     119.861    1.50
+7AY         C01         C02         C03     120.648    1.50
+7AY         C01         C02         H14     119.861    1.50
+7AY         C03         C02         H14     119.492    1.50
+7AY         C04         C03         C02     119.955    1.50
+7AY         C04         C03         H15     119.953    1.50
+7AY         C02         C03         H15     120.092    1.50
+7AY         C05         C04         O0A     117.867    2.02
+7AY         C05         C04         C03     119.680    1.50
+7AY         O0A         C04         C03     122.453    2.43
+7AY         O0B         C05         C00     124.866    1.50
+7AY         O0B         C05         C04     116.316    2.33
+7AY         C00         C05         C04     118.818    1.50
+7AY         CAK         C31         H16     109.749    1.50
+7AY         CAK         C31         H17     109.749    1.50
+7AY         CAK         C31         H18     109.749    1.50
+7AY         H16         C31         H17     109.180    1.50
+7AY         H16         C31         H18     109.180    1.50
+7AY         H17         C31         H18     109.180    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+7AY              const_87         CL1         CAH         CAI         CAJ     180.000    10.0     2
+7AY              const_43         CL1         CAH         CAM         CAL     180.000    10.0     2
+7AY              const_77         C0N         C0O         C0P         N0H       0.000    10.0     2
+7AY              const_22         C0O         C0P         N0H         C0E     180.000    10.0     2
+7AY              const_81         C05         C00         C01         C02       0.000    10.0     2
+7AY       const_sp2_sp2_2         C01         C00         C05         O0B     180.000     5.0     2
+7AY             sp3_sp3_1         O0B         C0D         C0E         N0H     180.000    10.0     3
+7AY            sp3_sp3_10         C0E         C0D         O0B         C05     180.000    10.0     3
+7AY             sp2_sp3_2         C0K         N0H         C0E         C0D     -90.000    10.0     6
+7AY              const_28         O0Q         C0K         N0H         C0E       0.000    10.0     2
+7AY              const_31         O0Q         C0K         N0M         C0N     180.000    10.0     2
+7AY              const_39         O0S         C0N         C0O         C0P     180.000    10.0     2
+7AY              const_35         O0S         C0N         N0M         C0K     180.000    10.0     2
+7AY              const_57         CAH         CAI         CAJ         CAK       0.000    10.0     2
+7AY              const_91         CAH         CAI         CAY         CAZ     180.000    10.0     2
+7AY             sp2_sp2_3         C05         C04         O0A         CAL     180.000     5.0     2
+7AY             sp2_sp2_1         C00         C05         O0B         C0D     180.000     5.0     2
+7AY              const_17         C00         C01         C02         C03       0.000    10.0     2
+7AY              const_13         C01         C02         C03         C04       0.000    10.0     2
+7AY              const_10         C02         C03         C04         O0A     180.000    10.0     2
+7AY       const_sp2_sp2_8         O0A         C04         C05         O0B       0.000     5.0     2
+7AY              const_54         CAI         CAJ         CAK         C31     180.000    10.0     2
+7AY              const_63         CAK         CAJ         CBB         CBA     180.000    10.0     2
+7AY             sp2_sp3_7         CAL         CAK         C31         H16     150.000    10.0     6
+7AY              const_52         C31         CAK         CAL         O0A       0.000    10.0     2
+7AY             sp2_sp2_5         CAM         CAL         O0A         C04     180.000     5.0     2
+7AY              const_47         O0A         CAL         CAM         CAH     180.000    10.0     2
+7AY              const_73         CAI         CAY         CAZ         CBA       0.000    10.0     2
+7AY              const_70         CAY         CAZ         CBA         CBC     180.000    10.0     2
+7AY           other_tor_1         NBD         CBC         CBA         CBB      90.000    10.0     1
+7AY              const_67         CBC         CBA         CBB         CAJ     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+7AY    plan-1         C31   0.020
+7AY    plan-1         CAH   0.020
+7AY    plan-1         CAI   0.020
+7AY    plan-1         CAJ   0.020
+7AY    plan-1         CAK   0.020
+7AY    plan-1         CAL   0.020
+7AY    plan-1         CAM   0.020
+7AY    plan-1         CAY   0.020
+7AY    plan-1         CAZ   0.020
+7AY    plan-1         CBA   0.020
+7AY    plan-1         CBB   0.020
+7AY    plan-1         CBC   0.020
+7AY    plan-1         CL1   0.020
+7AY    plan-1          H1   0.020
+7AY    plan-1          H2   0.020
+7AY    plan-1          H3   0.020
+7AY    plan-1          H4   0.020
+7AY    plan-1         O0A   0.020
+7AY    plan-2         C0E   0.020
+7AY    plan-2         C0K   0.020
+7AY    plan-2         C0N   0.020
+7AY    plan-2         C0O   0.020
+7AY    plan-2         C0P   0.020
+7AY    plan-2         H11   0.020
+7AY    plan-2         H12   0.020
+7AY    plan-2          H5   0.020
+7AY    plan-2         N0H   0.020
+7AY    plan-2         N0M   0.020
+7AY    plan-2         O0Q   0.020
+7AY    plan-2         O0S   0.020
+7AY    plan-3         C00   0.020
+7AY    plan-3         C01   0.020
+7AY    plan-3         C02   0.020
+7AY    plan-3         C03   0.020
+7AY    plan-3         C04   0.020
+7AY    plan-3         C05   0.020
+7AY    plan-3         H13   0.020
+7AY    plan-3         H14   0.020
+7AY    plan-3         H15   0.020
+7AY    plan-3          H6   0.020
+7AY    plan-3         O0A   0.020
+7AY    plan-3         O0B   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+7AY           SMILES              ACDLabs 12.01                                                                                                      c2(c1c(cc(cc1)C#N)c(C)c(c2)Oc4ccccc4OCCN3C=CC(=O)NC3=O)Cl
+7AY            InChI                InChI  1.03 InChI=1S/C24H18ClN3O4/c1-15-18-12-16(14-26)6-7-17(18)19(25)13-22(15)32-21-5-3-2-4-20(21)31-11-10-28-9-8-23(29)27-24(28)30/h2-9,12-13H,10-11H2,1H3,(H,27,29,30)
+7AY         InChIKey                InChI  1.03                                                                                                                                    KFUNYNPQHKSQRQ-UHFFFAOYSA-N
+7AY SMILES_CANONICAL               CACTVS 3.385                                                                                                          Cc1c(Oc2ccccc2OCCN3C=CC(=O)NC3=O)cc(Cl)c4ccc(cc14)C#N
+7AY           SMILES               CACTVS 3.385                                                                                                          Cc1c(Oc2ccccc2OCCN3C=CC(=O)NC3=O)cc(Cl)c4ccc(cc14)C#N
+7AY SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                            Cc1c2cc(ccc2c(cc1Oc3ccccc3OCCN4C=CC(=O)NC4=O)Cl)C#N
+7AY           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                            Cc1c2cc(ccc2c(cc1Oc3ccccc3OCCN4C=CC(=O)NC4=O)Cl)C#N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+7AY acedrg               243         "dictionary generator"                  
+7AY acedrg_database      11          "data source"                           
+7AY rdkit                2017.03.2   "Chemoinformatics tool"
+7AY refmac5              5.8.0238    "optimization tool"                     

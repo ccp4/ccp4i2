@@ -1,0 +1,605 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PEF     PEF      DI-PALMITOYL-3-SN-PHOSPHATIDYLETHANOLAMINE     NON-POLYMER     120     47     .     
+#
+data_comp_PEF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PEF     C2      C       CH1     0       19.756      51.221      47.524      
+PEF     C1      C       CH2     0       20.729      51.957      48.418      
+PEF     N       N       NT2     0       24.416      47.220      49.885      
+PEF     C3      C       CH2     0       20.424      50.669      46.281      
+PEF     C4      C       CH2     0       24.316      49.465      48.868      
+PEF     C5      C       CH2     0       25.191      48.321      49.310      
+PEF     C10     C       C       0       18.133      50.373      49.138      
+PEF     C11     C       CH2     0       17.553      49.102      49.703      
+PEF     C12     C       CH2     0       16.249      48.709      49.079      
+PEF     C13     C       CH2     0       15.688      47.423      49.664      
+PEF     C14     C       CH2     0       14.279      47.102      49.228      
+PEF     C15     C       CH2     0       13.706      45.856      49.858      
+PEF     C16     C       CH2     0       12.226      45.665      49.627      
+PEF     C17     C       CH2     0       11.867      45.239      48.225      
+PEF     C18     C       CH2     0       10.398      44.960      48.019      
+PEF     C19     C       CH2     0       10.037      44.554      46.611      
+PEF     C20     C       CH2     0       8.575       44.232      46.415      
+PEF     C21     C       CH2     0       8.223       43.774      45.020      
+PEF     C22     C       CH2     0       8.247       44.871      43.984      
+PEF     C23     C       CH2     0       7.678       44.472      42.642      
+PEF     C24     C       CH2     0       8.467       43.418      41.899      
+PEF     C25     C       CH3     0       7.916       42.017      42.031      
+PEF     C30     C       C       0       18.542      49.356      45.541      
+PEF     C31     C       CH2     0       19.147      47.995      45.819      
+PEF     C32     C       CH2     0       20.088      47.495      44.749      
+PEF     C33     C       CH2     0       19.400      47.127      43.435      
+PEF     C34     C       CH2     0       18.218      46.172      43.527      
+PEF     C35     C       CH2     0       18.444      44.906      44.333      
+PEF     C36     C       CH2     0       17.182      44.131      44.618      
+PEF     C37     C       CH2     0       16.386      44.662      45.793      
+PEF     C38     C       CH2     0       15.020      44.029      45.996      
+PEF     C39     C       CH2     0       14.032      44.199      44.855      
+PEF     C40     C       CH2     0       13.746      45.629      44.454      
+PEF     C41     C       CH2     0       12.664      45.771      43.412      
+PEF     C42     C       CH2     0       12.408      47.193      42.967      
+PEF     C43     C       CH2     0       11.806      47.317      41.587      
+PEF     C44     C       CH2     0       10.410      46.761      41.459      
+PEF     C45     C       CH3     0       9.765       47.050      40.125      
+PEF     O4      O       O       0       17.711      51.468      49.415      
+PEF     O5      O       O       0       17.359      49.573      45.558      
+PEF     O2      O       O2      0       19.178      50.138      48.317      
+PEF     O3      O       O2      0       19.447      50.302      45.273      
+PEF     O1P     O       O       0       23.767      52.482      48.991      
+PEF     O2P     O       OP      -1      22.395      51.951      51.140      
+PEF     O3P     O       O2      0       21.722      51.009      48.903      
+PEF     O4P     O       O2      0       23.806      50.184      50.027      
+PEF     P       P       P       0       22.946      51.523      49.807      
+PEF     H21     H       H       0       19.043      51.849      47.242      
+PEF     H11     H       H       0       20.253      52.359      49.175      
+PEF     H12     H       H       0       21.170      52.672      47.912      
+PEF     HN1     H       H       0       24.964      46.610      50.227      
+PEF     HN2     H       H       0       23.910      47.520      50.550      
+PEF     H31     H       H       0       20.972      49.887      46.513      
+PEF     H32     H       H       0       21.023      51.353      45.901      
+PEF     H41     H       H       0       23.562      49.121      48.334      
+PEF     H42     H       H       0       24.835      50.082      48.300      
+PEF     H51     H       H       0       25.698      47.987      48.541      
+PEF     H52     H       H       0       25.831      48.644      49.978      
+PEF     H112    H       H       0       17.419      49.216      50.668      
+PEF     H111    H       H       0       18.196      48.371      49.579      
+PEF     H122    H       H       0       16.374      48.590      48.114      
+PEF     H121    H       H       0       15.597      49.428      49.210      
+PEF     H132    H       H       0       15.706      47.490      50.642      
+PEF     H131    H       H       0       16.273      46.679      49.406      
+PEF     H142    H       H       0       14.268      46.995      48.252      
+PEF     H141    H       H       0       13.700      47.862      49.450      
+PEF     H152    H       H       0       13.871      45.888      50.824      
+PEF     H151    H       H       0       14.182      45.076      49.501      
+PEF     H162    H       H       0       11.765      46.507      49.828      
+PEF     H161    H       H       0       11.895      44.988      50.255      
+PEF     H172    H       H       0       12.375      44.430      48.002      
+PEF     H171    H       H       0       12.143      45.945      47.602      
+PEF     H182    H       H       0       9.889       45.764      48.255      
+PEF     H181    H       H       0       10.125      44.244      48.632      
+PEF     H192    H       H       0       10.568      43.768      46.364      
+PEF     H191    H       H       0       10.283      45.282      46.001      
+PEF     H202    H       H       0       8.046       45.030      46.627      
+PEF     H201    H       H       0       8.320       43.529      47.050      
+PEF     H212    H       H       0       7.327       43.377      45.037      
+PEF     H211    H       H       0       8.854       43.073      44.751      
+PEF     H222    H       H       0       9.174       45.164      43.857      
+PEF     H221    H       H       0       7.737       45.637      44.326      
+PEF     H232    H       H       0       7.622       45.273      42.078      
+PEF     H231    H       H       0       6.763       44.144      42.776      
+PEF     H242    H       H       0       9.393       43.426      42.228      
+PEF     H241    H       H       0       8.490       43.658      40.947      
+PEF     H252    H       H       0       8.493       41.394      41.555      
+PEF     H251    H       H       0       7.021       41.982      41.653      
+PEF     H253    H       H       0       7.879       41.768      42.971      
+PEF     H312    H       H       0       18.422      47.349      45.936      
+PEF     H311    H       H       0       19.632      48.029      46.670      
+PEF     H322    H       H       0       20.563      46.707      45.085      
+PEF     H321    H       H       0       20.761      48.182      44.564      
+PEF     H332    H       H       0       20.071      46.727      42.841      
+PEF     H331    H       H       0       19.092      47.955      43.009      
+PEF     H342    H       H       0       17.964      45.913      42.615      
+PEF     H341    H       H       0       17.457      46.656      43.912      
+PEF     H352    H       H       0       18.861      45.135      45.188      
+PEF     H351    H       H       0       19.066      44.327      43.844      
+PEF     H362    H       H       0       17.420      43.195      44.795      
+PEF     H361    H       H       0       16.621      44.148      43.815      
+PEF     H372    H       H       0       16.273      45.629      45.684      
+PEF     H371    H       H       0       16.913      44.522      46.609      
+PEF     H382    H       H       0       14.622      44.410      46.807      
+PEF     H381    H       H       0       15.146      43.069      46.155      
+PEF     H392    H       H       0       13.185      43.777      45.116      
+PEF     H391    H       H       0       14.369      43.715      44.072      
+PEF     H402    H       H       0       14.569      46.030      44.104      
+PEF     H401    H       H       0       13.484      46.134      45.252      
+PEF     H412    H       H       0       11.830      45.401      43.772      
+PEF     H411    H       H       0       12.912      45.236      42.628      
+PEF     H422    H       H       0       13.256      47.686      42.984      
+PEF     H421    H       H       0       11.804      47.620      43.612      
+PEF     H432    H       H       0       12.388      46.853      40.948      
+PEF     H431    H       H       0       11.788      48.265      41.337      
+PEF     H442    H       H       0       9.852       47.141      42.171      
+PEF     H441    H       H       0       10.444      45.788      41.591      
+PEF     H452    H       H       0       8.876       46.654      40.101      
+PEF     H451    H       H       0       10.307      46.670      39.412      
+PEF     H453    H       H       0       9.694       48.012      39.999      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PEF          C2          C1      SINGLE       n     1.512  0.0104     1.512  0.0104
+PEF          C2          C3      SINGLE       n     1.512  0.0104     1.512  0.0104
+PEF          C2          O2      SINGLE       n     1.454  0.0123     1.454  0.0123
+PEF          C1         O3P      SINGLE       n     1.454  0.0165     1.454  0.0165
+PEF           N          C5      SINGLE       n     1.464  0.0200     1.464  0.0200
+PEF          C3          O3      SINGLE       n     1.444  0.0100     1.444  0.0100
+PEF          C4          C5      SINGLE       n     1.506  0.0173     1.506  0.0173
+PEF          C4         O4P      SINGLE       n     1.454  0.0165     1.454  0.0165
+PEF         C10         C11      SINGLE       n     1.503  0.0174     1.503  0.0174
+PEF         C10          O4      DOUBLE       n     1.203  0.0150     1.203  0.0150
+PEF         C10          O2      SINGLE       n     1.342  0.0131     1.342  0.0131
+PEF         C11         C12      SINGLE       n     1.497  0.0200     1.497  0.0200
+PEF         C12         C13      SINGLE       n     1.519  0.0164     1.519  0.0164
+PEF         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C16         C17      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C17         C18      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C18         C19      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C19         C20      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C20         C21      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C21         C22      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C22         C23      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C23         C24      SINGLE       n     1.507  0.0200     1.507  0.0200
+PEF         C24         C25      SINGLE       n     1.510  0.0200     1.510  0.0200
+PEF         C30         C31      SINGLE       n     1.503  0.0174     1.503  0.0174
+PEF         C30          O5      DOUBLE       n     1.203  0.0150     1.203  0.0150
+PEF         C30          O3      SINGLE       n     1.329  0.0116     1.329  0.0116
+PEF         C31         C32      SINGLE       n     1.497  0.0200     1.497  0.0200
+PEF         C32         C33      SINGLE       n     1.519  0.0164     1.519  0.0164
+PEF         C33         C34      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C34         C35      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C35         C36      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C36         C37      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C37         C38      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C38         C39      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C39         C40      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C40         C41      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C41         C42      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C42         C43      SINGLE       n     1.509  0.0200     1.509  0.0200
+PEF         C43         C44      SINGLE       n     1.507  0.0200     1.507  0.0200
+PEF         C44         C45      SINGLE       n     1.510  0.0200     1.510  0.0200
+PEF         O1P           P      DOUBLE       n     1.504  0.0115     1.504  0.0115
+PEF         O2P           P      SINGLE       n     1.504  0.0115     1.504  0.0115
+PEF         O3P           P      SINGLE       n     1.606  0.0100     1.606  0.0100
+PEF         O4P           P      SINGLE       n     1.606  0.0100     1.606  0.0100
+PEF          C2         H21      SINGLE       n     1.089  0.0100     0.990  0.0148
+PEF          C1         H11      SINGLE       n     1.089  0.0100     0.980  0.0146
+PEF          C1         H12      SINGLE       n     1.089  0.0100     0.980  0.0146
+PEF           N         HN1      SINGLE       n     1.036  0.0160     0.888  0.0200
+PEF           N         HN2      SINGLE       n     1.036  0.0160     0.888  0.0200
+PEF          C3         H31      SINGLE       n     1.089  0.0100     0.985  0.0188
+PEF          C3         H32      SINGLE       n     1.089  0.0100     0.985  0.0188
+PEF          C4         H41      SINGLE       n     1.089  0.0100     0.986  0.0100
+PEF          C4         H42      SINGLE       n     1.089  0.0100     0.986  0.0100
+PEF          C5         H51      SINGLE       n     1.089  0.0100     0.980  0.0143
+PEF          C5         H52      SINGLE       n     1.089  0.0100     0.980  0.0143
+PEF         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0185
+PEF         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0185
+PEF         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0160
+PEF         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0160
+PEF         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C18        H182      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C18        H181      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C19        H192      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C19        H191      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C20        H202      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C20        H201      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C23        H232      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C23        H231      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C24        H242      SINGLE       n     1.089  0.0100     0.982  0.0155
+PEF         C24        H241      SINGLE       n     1.089  0.0100     0.982  0.0155
+PEF         C25        H252      SINGLE       n     1.089  0.0100     0.973  0.0157
+PEF         C25        H251      SINGLE       n     1.089  0.0100     0.973  0.0157
+PEF         C25        H253      SINGLE       n     1.089  0.0100     0.973  0.0157
+PEF         C31        H312      SINGLE       n     1.089  0.0100     0.981  0.0185
+PEF         C31        H311      SINGLE       n     1.089  0.0100     0.981  0.0185
+PEF         C32        H322      SINGLE       n     1.089  0.0100     0.980  0.0160
+PEF         C32        H321      SINGLE       n     1.089  0.0100     0.980  0.0160
+PEF         C33        H332      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C33        H331      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C34        H342      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C34        H341      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C35        H352      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C35        H351      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C36        H362      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C36        H361      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C37        H372      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C37        H371      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C38        H382      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C38        H381      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C39        H392      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C39        H391      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C40        H402      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C40        H401      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C41        H412      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C41        H411      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C42        H422      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C42        H421      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C43        H432      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C43        H431      SINGLE       n     1.089  0.0100     0.981  0.0163
+PEF         C44        H442      SINGLE       n     1.089  0.0100     0.982  0.0155
+PEF         C44        H441      SINGLE       n     1.089  0.0100     0.982  0.0155
+PEF         C45        H452      SINGLE       n     1.089  0.0100     0.973  0.0157
+PEF         C45        H451      SINGLE       n     1.089  0.0100     0.973  0.0157
+PEF         C45        H453      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PEF          C1          C2          C3     113.504    1.50
+PEF          C1          C2          O2     109.042    2.74
+PEF          C1          C2         H21     108.656    1.50
+PEF          C3          C2          O2     109.042    2.74
+PEF          C3          C2         H21     108.656    1.50
+PEF          O2          C2         H21     109.221    1.50
+PEF          C2          C1         O3P     109.438    2.56
+PEF          C2          C1         H11     109.582    1.50
+PEF          C2          C1         H12     109.582    1.50
+PEF         O3P          C1         H11     109.393    1.91
+PEF         O3P          C1         H12     109.393    1.91
+PEF         H11          C1         H12     108.319    1.50
+PEF          C5           N         HN1     109.962    3.00
+PEF          C5           N         HN2     109.962    3.00
+PEF         HN1           N         HN2     107.243    3.00
+PEF          C2          C3          O3     108.641    1.70
+PEF          C2          C3         H31     110.376    1.50
+PEF          C2          C3         H32     110.376    1.50
+PEF          O3          C3         H31     109.514    1.50
+PEF          O3          C3         H32     109.514    1.50
+PEF         H31          C3         H32     108.601    1.50
+PEF          C5          C4         O4P     109.643    2.62
+PEF          C5          C4         H41     109.705    1.50
+PEF          C5          C4         H42     109.705    1.50
+PEF         O4P          C4         H41     109.451    1.50
+PEF         O4P          C4         H42     109.451    1.50
+PEF         H41          C4         H42     107.889    1.50
+PEF           N          C5          C4     111.883    2.59
+PEF           N          C5         H51     108.870    1.50
+PEF           N          C5         H52     108.870    1.50
+PEF          C4          C5         H51     109.091    1.50
+PEF          C4          C5         H52     109.091    1.50
+PEF         H51          C5         H52     107.873    1.50
+PEF         C11         C10          O4     124.714    2.71
+PEF         C11         C10          O2     113.008    3.00
+PEF          O4         C10          O2     122.278    2.43
+PEF         C10         C11         C12     113.365    1.50
+PEF         C10         C11        H112     108.883    1.50
+PEF         C10         C11        H111     108.883    1.50
+PEF         C12         C11        H112     108.815    1.50
+PEF         C12         C11        H111     108.815    1.50
+PEF        H112         C11        H111     107.521    1.50
+PEF         C11         C12         C13     112.553    1.50
+PEF         C11         C12        H122     109.164    1.50
+PEF         C11         C12        H121     109.164    1.50
+PEF         C13         C12        H122     108.698    1.50
+PEF         C13         C12        H121     108.698    1.50
+PEF        H122         C12        H121     107.646    1.50
+PEF         C12         C13         C14     114.243    1.69
+PEF         C12         C13        H132     108.698    1.50
+PEF         C12         C13        H131     108.698    1.50
+PEF         C14         C13        H132     108.698    1.50
+PEF         C14         C13        H131     108.698    1.50
+PEF        H132         C13        H131     107.646    1.50
+PEF         C13         C14         C15     114.243    1.69
+PEF         C13         C14        H142     108.698    1.50
+PEF         C13         C14        H141     108.698    1.50
+PEF         C15         C14        H142     108.698    1.50
+PEF         C15         C14        H141     108.698    1.50
+PEF        H142         C14        H141     107.646    1.50
+PEF         C14         C15         C16     114.243    1.69
+PEF         C14         C15        H152     108.698    1.50
+PEF         C14         C15        H151     108.698    1.50
+PEF         C16         C15        H152     108.698    1.50
+PEF         C16         C15        H151     108.698    1.50
+PEF        H152         C15        H151     107.646    1.50
+PEF         C15         C16         C17     114.243    1.69
+PEF         C15         C16        H162     108.698    1.50
+PEF         C15         C16        H161     108.698    1.50
+PEF         C17         C16        H162     108.698    1.50
+PEF         C17         C16        H161     108.698    1.50
+PEF        H162         C16        H161     107.646    1.50
+PEF         C16         C17         C18     114.243    1.69
+PEF         C16         C17        H172     108.698    1.50
+PEF         C16         C17        H171     108.698    1.50
+PEF         C18         C17        H172     108.698    1.50
+PEF         C18         C17        H171     108.698    1.50
+PEF        H172         C17        H171     107.646    1.50
+PEF         C17         C18         C19     114.243    1.69
+PEF         C17         C18        H182     108.698    1.50
+PEF         C17         C18        H181     108.698    1.50
+PEF         C19         C18        H182     108.698    1.50
+PEF         C19         C18        H181     108.698    1.50
+PEF        H182         C18        H181     107.646    1.50
+PEF         C18         C19         C20     114.243    1.69
+PEF         C18         C19        H192     108.698    1.50
+PEF         C18         C19        H191     108.698    1.50
+PEF         C20         C19        H192     108.698    1.50
+PEF         C20         C19        H191     108.698    1.50
+PEF        H192         C19        H191     107.646    1.50
+PEF         C19         C20         C21     114.243    1.69
+PEF         C19         C20        H202     108.698    1.50
+PEF         C19         C20        H201     108.698    1.50
+PEF         C21         C20        H202     108.698    1.50
+PEF         C21         C20        H201     108.698    1.50
+PEF        H202         C20        H201     107.646    1.50
+PEF         C20         C21         C22     114.243    1.69
+PEF         C20         C21        H212     108.698    1.50
+PEF         C20         C21        H211     108.698    1.50
+PEF         C22         C21        H212     108.698    1.50
+PEF         C22         C21        H211     108.698    1.50
+PEF        H212         C21        H211     107.646    1.50
+PEF         C21         C22         C23     114.243    1.69
+PEF         C21         C22        H222     108.698    1.50
+PEF         C21         C22        H221     108.698    1.50
+PEF         C23         C22        H222     108.698    1.50
+PEF         C23         C22        H221     108.698    1.50
+PEF        H222         C22        H221     107.646    1.50
+PEF         C22         C23         C24     114.362    3.00
+PEF         C22         C23        H232     108.698    1.50
+PEF         C22         C23        H231     108.698    1.50
+PEF         C24         C23        H232     108.653    1.50
+PEF         C24         C23        H231     108.653    1.50
+PEF        H232         C23        H231     107.646    1.50
+PEF         C23         C24         C25     113.719    3.00
+PEF         C23         C24        H242     108.758    1.50
+PEF         C23         C24        H241     108.758    1.50
+PEF         C25         C24        H242     108.918    1.50
+PEF         C25         C24        H241     108.918    1.50
+PEF        H242         C24        H241     107.763    1.50
+PEF         C24         C25        H252     109.554    1.50
+PEF         C24         C25        H251     109.554    1.50
+PEF         C24         C25        H253     109.554    1.50
+PEF        H252         C25        H251     109.380    1.50
+PEF        H252         C25        H253     109.380    1.50
+PEF        H251         C25        H253     109.380    1.50
+PEF         C31         C30          O5     125.251    2.71
+PEF         C31         C30          O3     111.516    1.50
+PEF          O5         C30          O3     123.233    1.50
+PEF         C30         C31         C32     113.365    1.50
+PEF         C30         C31        H312     108.883    1.50
+PEF         C30         C31        H311     108.883    1.50
+PEF         C32         C31        H312     108.815    1.50
+PEF         C32         C31        H311     108.815    1.50
+PEF        H312         C31        H311     107.521    1.50
+PEF         C31         C32         C33     112.553    1.50
+PEF         C31         C32        H322     109.164    1.50
+PEF         C31         C32        H321     109.164    1.50
+PEF         C33         C32        H322     108.698    1.50
+PEF         C33         C32        H321     108.698    1.50
+PEF        H322         C32        H321     107.646    1.50
+PEF         C32         C33         C34     114.243    1.69
+PEF         C32         C33        H332     108.698    1.50
+PEF         C32         C33        H331     108.698    1.50
+PEF         C34         C33        H332     108.698    1.50
+PEF         C34         C33        H331     108.698    1.50
+PEF        H332         C33        H331     107.646    1.50
+PEF         C33         C34         C35     114.243    1.69
+PEF         C33         C34        H342     108.698    1.50
+PEF         C33         C34        H341     108.698    1.50
+PEF         C35         C34        H342     108.698    1.50
+PEF         C35         C34        H341     108.698    1.50
+PEF        H342         C34        H341     107.646    1.50
+PEF         C34         C35         C36     114.243    1.69
+PEF         C34         C35        H352     108.698    1.50
+PEF         C34         C35        H351     108.698    1.50
+PEF         C36         C35        H352     108.698    1.50
+PEF         C36         C35        H351     108.698    1.50
+PEF        H352         C35        H351     107.646    1.50
+PEF         C35         C36         C37     114.243    1.69
+PEF         C35         C36        H362     108.698    1.50
+PEF         C35         C36        H361     108.698    1.50
+PEF         C37         C36        H362     108.698    1.50
+PEF         C37         C36        H361     108.698    1.50
+PEF        H362         C36        H361     107.646    1.50
+PEF         C36         C37         C38     114.243    1.69
+PEF         C36         C37        H372     108.698    1.50
+PEF         C36         C37        H371     108.698    1.50
+PEF         C38         C37        H372     108.698    1.50
+PEF         C38         C37        H371     108.698    1.50
+PEF        H372         C37        H371     107.646    1.50
+PEF         C37         C38         C39     114.243    1.69
+PEF         C37         C38        H382     108.698    1.50
+PEF         C37         C38        H381     108.698    1.50
+PEF         C39         C38        H382     108.698    1.50
+PEF         C39         C38        H381     108.698    1.50
+PEF        H382         C38        H381     107.646    1.50
+PEF         C38         C39         C40     114.243    1.69
+PEF         C38         C39        H392     108.698    1.50
+PEF         C38         C39        H391     108.698    1.50
+PEF         C40         C39        H392     108.698    1.50
+PEF         C40         C39        H391     108.698    1.50
+PEF        H392         C39        H391     107.646    1.50
+PEF         C39         C40         C41     114.243    1.69
+PEF         C39         C40        H402     108.698    1.50
+PEF         C39         C40        H401     108.698    1.50
+PEF         C41         C40        H402     108.698    1.50
+PEF         C41         C40        H401     108.698    1.50
+PEF        H402         C40        H401     107.646    1.50
+PEF         C40         C41         C42     114.243    1.69
+PEF         C40         C41        H412     108.698    1.50
+PEF         C40         C41        H411     108.698    1.50
+PEF         C42         C41        H412     108.698    1.50
+PEF         C42         C41        H411     108.698    1.50
+PEF        H412         C41        H411     107.646    1.50
+PEF         C41         C42         C43     114.243    1.69
+PEF         C41         C42        H422     108.698    1.50
+PEF         C41         C42        H421     108.698    1.50
+PEF         C43         C42        H422     108.698    1.50
+PEF         C43         C42        H421     108.698    1.50
+PEF        H422         C42        H421     107.646    1.50
+PEF         C42         C43         C44     114.362    3.00
+PEF         C42         C43        H432     108.698    1.50
+PEF         C42         C43        H431     108.698    1.50
+PEF         C44         C43        H432     108.653    1.50
+PEF         C44         C43        H431     108.653    1.50
+PEF        H432         C43        H431     107.646    1.50
+PEF         C43         C44         C45     113.719    3.00
+PEF         C43         C44        H442     108.758    1.50
+PEF         C43         C44        H441     108.758    1.50
+PEF         C45         C44        H442     108.918    1.50
+PEF         C45         C44        H441     108.918    1.50
+PEF        H442         C44        H441     107.763    1.50
+PEF         C44         C45        H452     109.554    1.50
+PEF         C44         C45        H451     109.554    1.50
+PEF         C44         C45        H453     109.554    1.50
+PEF        H452         C45        H451     109.380    1.50
+PEF        H452         C45        H453     109.380    1.50
+PEF        H451         C45        H453     109.380    1.50
+PEF          C2          O2         C10     117.944    1.50
+PEF          C3          O3         C30     116.187    1.50
+PEF          C1         O3P           P     119.251    1.51
+PEF          C4         O4P           P     119.251    1.51
+PEF         O1P           P         O2P     119.782    1.83
+PEF         O1P           P         O3P     107.777    3.00
+PEF         O1P           P         O4P     107.777    3.00
+PEF         O2P           P         O3P     107.777    3.00
+PEF         O2P           P         O4P     107.777    3.00
+PEF         O3P           P         O4P     102.789    2.10
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PEF             sp3_sp3_1         O3P          C1          C2          C3     180.000    10.0     3
+PEF            sp3_sp3_10          C1          C2          C3          O3     180.000    10.0     3
+PEF            sp3_sp3_19          C1          C2          O2         C10     180.000    10.0     3
+PEF            sp3_sp3_73         C13         C14         C15         C16     180.000    10.0     3
+PEF            sp3_sp3_82         C14         C15         C16         C17     180.000    10.0     3
+PEF            sp3_sp3_91         C15         C16         C17         C18     180.000    10.0     3
+PEF           sp3_sp3_100         C16         C17         C18         C19     180.000    10.0     3
+PEF           sp3_sp3_109         C17         C18         C19         C20     180.000    10.0     3
+PEF           sp3_sp3_118         C18         C19         C20         C21     180.000    10.0     3
+PEF           sp3_sp3_127         C19         C20         C21         C22     180.000    10.0     3
+PEF           sp3_sp3_136         C20         C21         C22         C23     180.000    10.0     3
+PEF           sp3_sp3_145         C21         C22         C23         C24     180.000    10.0     3
+PEF           sp3_sp3_154         C22         C23         C24         C25     180.000    10.0     3
+PEF            sp3_sp3_22          C2          C1         O3P           P     180.000    10.0     3
+PEF           sp3_sp3_163         C23         C24         C25        H252     180.000    10.0     3
+PEF             sp2_sp3_8          O5         C30         C31         C32     120.000    10.0     6
+PEF             sp2_sp2_3         C31         C30          O3          C3     180.000     5.0     2
+PEF           sp3_sp3_172         C30         C31         C32         C33     180.000    10.0     3
+PEF           sp3_sp3_181         C31         C32         C33         C34     180.000    10.0     3
+PEF           sp3_sp3_190         C32         C33         C34         C35     180.000    10.0     3
+PEF           sp3_sp3_199         C33         C34         C35         C36     180.000    10.0     3
+PEF           sp3_sp3_208         C34         C35         C36         C37     180.000    10.0     3
+PEF           sp3_sp3_217         C35         C36         C37         C38     180.000    10.0     3
+PEF           sp3_sp3_226         C36         C37         C38         C39     180.000    10.0     3
+PEF            sp3_sp3_25          C4          C5           N         HN1     180.000    10.0     3
+PEF           sp3_sp3_235         C37         C38         C39         C40     180.000    10.0     3
+PEF           sp3_sp3_244         C38         C39         C40         C41     180.000    10.0     3
+PEF           sp3_sp3_253         C39         C40         C41         C42     180.000    10.0     3
+PEF           sp3_sp3_262         C40         C41         C42         C43     180.000    10.0     3
+PEF           sp3_sp3_271         C41         C42         C43         C44     180.000    10.0     3
+PEF           sp3_sp3_280         C42         C43         C44         C45     180.000    10.0     3
+PEF           sp3_sp3_289         C43         C44         C45        H452     180.000    10.0     3
+PEF            sp3_sp3_31          C2          C3          O3         C30     180.000    10.0     3
+PEF           sp3_sp3_300          C1         O3P           P         O1P      60.000    10.0     3
+PEF           sp3_sp3_303          C4         O4P           P         O1P      60.000    10.0     3
+PEF            sp3_sp3_43          C5          C4         O4P           P     180.000    10.0     3
+PEF            sp3_sp3_34         O4P          C4          C5           N     180.000    10.0     3
+PEF             sp2_sp2_1         C11         C10          O2          C2     180.000     5.0     2
+PEF             sp2_sp3_2          O4         C10         C11         C12     120.000    10.0     6
+PEF            sp3_sp3_46         C10         C11         C12         C13     180.000    10.0     3
+PEF            sp3_sp3_55         C11         C12         C13         C14     180.000    10.0     3
+PEF            sp3_sp3_64         C12         C13         C14         C15     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PEF    chir_1    C2    O2    C1    C3    negative
+PEF    chir_2    P    O3P    O4P    O2P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PEF    plan-1         C10   0.020
+PEF    plan-1         C11   0.020
+PEF    plan-1          O2   0.020
+PEF    plan-1          O4   0.020
+PEF    plan-2         C30   0.020
+PEF    plan-2         C31   0.020
+PEF    plan-2          O3   0.020
+PEF    plan-2          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PEF           SMILES              ACDLabs 10.04                                                                                                                                       O=C(OCC(OC(=O)CCCCCCCCCCCCCCC)COP(=O)(OCCN)O)CCCCCCCCCCCCCCC
+PEF SMILES_CANONICAL               CACTVS 3.341                                                                                                                                CCCCCCCCCCCCCCCC(=O)OC[C@H](CO[P@](O)(=O)OCCN)OC(=O)CCCCCCCCCCCCCCC
+PEF           SMILES               CACTVS 3.341                                                                                                                                  CCCCCCCCCCCCCCCC(=O)OC[CH](CO[P](O)(=O)OCCN)OC(=O)CCCCCCCCCCCCCCC
+PEF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                               CCCCCCCCCCCCCCCC(=O)OC[C@H](CO[P@@](=O)(O)OCCN)OC(=O)CCCCCCCCCCCCCCC
+PEF           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                       CCCCCCCCCCCCCCCC(=O)OCC(COP(=O)(O)OCCN)OC(=O)CCCCCCCCCCCCCCC
+PEF            InChI                InChI  1.03 InChI=1S/C37H74NO8P/c1-3-5-7-9-11-13-15-17-19-21-23-25-27-29-36(39)43-33-35(34-45-47(41,42)44-32-31-38)46-37(40)30-28-26-24-22-20-18-16-14-12-10-8-6-4-2/h35H,3-34,38H2,1-2H3,(H,41,42)/t35-/m1/s1
+PEF         InChIKey                InChI  1.03                                                                                                                                                                        SLKDGVPOSSLUAI-PGUFJCEWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PEF acedrg               243         "dictionary generator"                  
+PEF acedrg_database      11          "data source"                           
+PEF rdkit                2017.03.2   "Chemoinformatics tool"
+PEF refmac5              5.8.0238    "optimization tool"                     

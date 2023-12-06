@@ -1,0 +1,364 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EVZ     EVZ      "methyl 1-[4-[(2-azanyl-1,3-benzothiazol-6-yl)sulfanylmethyl]phenyl]carbonylpiperidine-4-carboxylate"     NON-POLYMER     53     30     .     
+#
+data_comp_EVZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EVZ     OAD     O       O       0       -67.009     -18.270     19.869      
+EVZ     CAC     C       C       0       -65.838     -17.984     19.917      
+EVZ     CAO     C       CR16    0       -58.506     -16.198     20.901      
+EVZ     CAK     C       C       0       -60.410     -19.324     19.902      
+EVZ     CAN     C       CR16    0       -59.399     -17.045     20.259      
+EVZ     CAU     C       CR16    0       -60.166     -15.411     23.902      
+EVZ     CBA     C       CR56    0       -61.749     -13.628     23.458      
+EVZ     CAT     C       CR6     0       -59.131     -14.486     23.815      
+EVZ     CBC     C       CR16    0       -59.405     -13.139     23.542      
+EVZ     CAR     C       CR6     0       -57.648     -16.677     21.878      
+EVZ     CAS     C       CH2     0       -56.674     -15.755     22.576      
+EVZ     CAQ     C       CR16    0       -57.706     -18.021     22.207      
+EVZ     CAM     C       CR6     0       -59.461     -18.388     20.600      
+EVZ     CAP     C       CR16    0       -58.598     -18.872     21.571      
+EVZ     CBB     C       CR16    0       -60.699     -12.706     23.367      
+EVZ     CAA     C       CH3     0       -66.327     -15.657     19.775      
+EVZ     OAB     O       O2      0       -65.371     -16.738     19.926      
+EVZ     CAE     C       CH1     0       -64.726     -19.000     19.978      
+EVZ     CAH     C       CH2     0       -63.814     -18.816     21.196      
+EVZ     CAI     C       CH2     0       -62.458     -18.221     20.839      
+EVZ     CAF     C       CH2     0       -63.903     -19.015     18.690      
+EVZ     CAG     C       CH2     0       -62.586     -19.737     18.888      
+EVZ     NAJ     N       NR6     0       -61.732     -19.070     19.882      
+EVZ     OAL     O       O       0       -59.922     -20.274     19.294      
+EVZ     SBD     S       S2      0       -57.454     -15.012     24.025      
+EVZ     CAV     C       CR56    0       -61.467     -14.968     23.725      
+EVZ     SAW     S       S2      0       -62.898     -15.812     23.774      
+EVZ     CAX     C       CR5     0       -63.843     -14.472     23.459      
+EVZ     NAY     N       NH2     0       -65.166     -14.534     23.372      
+EVZ     NAZ     N       NRD5    0       -63.121     -13.384     23.312      
+EVZ     H1      H       H       0       -58.480     -15.285     20.666      
+EVZ     H2      H       H       0       -59.974     -16.702     19.598      
+EVZ     H3      H       H       0       -59.976     -16.315     24.082      
+EVZ     H4      H       H       0       -58.696     -12.520     23.481      
+EVZ     H5      H       H       0       -56.390     -15.046     21.965      
+EVZ     H6      H       H       0       -55.882     -16.255     22.857      
+EVZ     H7      H       H       0       -57.130     -18.362     22.871      
+EVZ     H8      H       H       0       -58.621     -19.783     21.807      
+EVZ     H9      H       H       0       -60.876     -11.801     23.188      
+EVZ     H10     H       H       0       -66.958     -15.676     20.513      
+EVZ     H11     H       H       0       -66.804     -15.760     18.936      
+EVZ     H12     H       H       0       -65.855     -14.809     19.776      
+EVZ     H13     H       H       0       -65.153     -19.892     20.064      
+EVZ     H14     H       H       0       -64.252     -18.235     21.852      
+EVZ     H15     H       H       0       -63.672     -19.686     21.622      
+EVZ     H16     H       H       0       -61.935     -18.124     21.656      
+EVZ     H17     H       H       0       -62.581     -17.330     20.458      
+EVZ     H18     H       H       0       -63.728     -18.099     18.389      
+EVZ     H19     H       H       0       -64.411     -19.469     17.987      
+EVZ     H20     H       H       0       -62.119     -19.780     18.032      
+EVZ     H21     H       H       0       -62.761     -20.652     19.178      
+EVZ     H22     H       H       0       -65.592     -15.237     23.680      
+EVZ     H23     H       H       0       -65.610     -13.872     23.006      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EVZ         CAF         CAG      SINGLE       n     1.509  0.0198     1.509  0.0198
+EVZ         CAE         CAF      SINGLE       n     1.527  0.0100     1.527  0.0100
+EVZ         CAG         NAJ      SINGLE       n     1.462  0.0100     1.462  0.0100
+EVZ         CAK         OAL      DOUBLE       n     1.228  0.0115     1.228  0.0115
+EVZ         CAC         OAB      SINGLE       n     1.327  0.0100     1.327  0.0100
+EVZ         CAA         OAB      SINGLE       n     1.448  0.0108     1.448  0.0108
+EVZ         CAK         NAJ      SINGLE       n     1.337  0.0104     1.337  0.0104
+EVZ         CAK         CAM      SINGLE       n     1.502  0.0100     1.502  0.0100
+EVZ         CAI         NAJ      SINGLE       n     1.462  0.0100     1.462  0.0100
+EVZ         CAC         CAE      SINGLE       n     1.502  0.0123     1.502  0.0123
+EVZ         CAE         CAH      SINGLE       n     1.527  0.0100     1.527  0.0100
+EVZ         OAD         CAC      DOUBLE       n     1.203  0.0150     1.203  0.0150
+EVZ         CAN         CAM      SINGLE       y     1.383  0.0101     1.383  0.0101
+EVZ         CAO         CAN      DOUBLE       y     1.384  0.0100     1.384  0.0100
+EVZ         CAM         CAP      DOUBLE       y     1.383  0.0101     1.383  0.0101
+EVZ         CAH         CAI      SINGLE       n     1.509  0.0198     1.509  0.0198
+EVZ         CAO         CAR      SINGLE       y     1.377  0.0144     1.377  0.0144
+EVZ         CAQ         CAP      SINGLE       y     1.384  0.0100     1.384  0.0100
+EVZ         CAR         CAQ      DOUBLE       y     1.377  0.0144     1.377  0.0144
+EVZ         CAR         CAS      SINGLE       n     1.511  0.0186     1.511  0.0186
+EVZ         CBC         CBB      DOUBLE       y     1.371  0.0115     1.371  0.0115
+EVZ         CBA         CBB      SINGLE       y     1.396  0.0100     1.396  0.0100
+EVZ         CBA         NAZ      SINGLE       y     1.391  0.0100     1.391  0.0100
+EVZ         CAX         NAZ      DOUBLE       y     1.300  0.0172     1.300  0.0172
+EVZ         CAS         SBD      SINGLE       n     1.809  0.0191     1.809  0.0191
+EVZ         CAT         CBC      SINGLE       y     1.394  0.0173     1.394  0.0173
+EVZ         CBA         CAV      DOUBLE       y     1.385  0.0119     1.385  0.0119
+EVZ         CAX         NAY      SINGLE       n     1.328  0.0105     1.328  0.0105
+EVZ         SAW         CAX      SINGLE       y     1.695  0.0200     1.695  0.0200
+EVZ         CAU         CAT      DOUBLE       y     1.389  0.0110     1.389  0.0110
+EVZ         CAT         SBD      SINGLE       n     1.772  0.0127     1.772  0.0127
+EVZ         CAU         CAV      SINGLE       y     1.382  0.0123     1.382  0.0123
+EVZ         CAV         SAW      SINGLE       y     1.695  0.0200     1.695  0.0200
+EVZ         CAO          H1      SINGLE       n     1.082  0.0130     0.943  0.0173
+EVZ         CAN          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+EVZ         CAU          H3      SINGLE       n     1.082  0.0130     0.941  0.0170
+EVZ         CBC          H4      SINGLE       n     1.082  0.0130     0.943  0.0168
+EVZ         CAS          H5      SINGLE       n     1.089  0.0100     0.978  0.0100
+EVZ         CAS          H6      SINGLE       n     1.089  0.0100     0.978  0.0100
+EVZ         CAQ          H7      SINGLE       n     1.082  0.0130     0.943  0.0173
+EVZ         CAP          H8      SINGLE       n     1.082  0.0130     0.941  0.0168
+EVZ         CBB          H9      SINGLE       n     1.082  0.0130     0.940  0.0191
+EVZ         CAA         H10      SINGLE       n     1.089  0.0100     0.970  0.0175
+EVZ         CAA         H11      SINGLE       n     1.089  0.0100     0.970  0.0175
+EVZ         CAA         H12      SINGLE       n     1.089  0.0100     0.970  0.0175
+EVZ         CAE         H13      SINGLE       n     1.089  0.0100     0.993  0.0200
+EVZ         CAH         H14      SINGLE       n     1.089  0.0100     0.979  0.0136
+EVZ         CAH         H15      SINGLE       n     1.089  0.0100     0.979  0.0136
+EVZ         CAI         H16      SINGLE       n     1.089  0.0100     0.976  0.0118
+EVZ         CAI         H17      SINGLE       n     1.089  0.0100     0.976  0.0118
+EVZ         CAF         H18      SINGLE       n     1.089  0.0100     0.979  0.0136
+EVZ         CAF         H19      SINGLE       n     1.089  0.0100     0.979  0.0136
+EVZ         CAG         H20      SINGLE       n     1.089  0.0100     0.976  0.0118
+EVZ         CAG         H21      SINGLE       n     1.089  0.0100     0.976  0.0118
+EVZ         NAY         H22      SINGLE       n     1.016  0.0100     0.877  0.0200
+EVZ         NAY         H23      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EVZ         OAB         CAC         CAE     111.562    1.50
+EVZ         OAB         CAC         OAD     123.622    1.50
+EVZ         CAE         CAC         OAD     124.816    1.50
+EVZ         CAN         CAO         CAR     120.772    1.50
+EVZ         CAN         CAO          H1     119.592    1.50
+EVZ         CAR         CAO          H1     119.636    1.50
+EVZ         OAL         CAK         NAJ     122.185    1.50
+EVZ         OAL         CAK         CAM     119.218    1.50
+EVZ         NAJ         CAK         CAM     118.597    1.50
+EVZ         CAM         CAN         CAO     120.419    1.50
+EVZ         CAM         CAN          H2     119.896    1.50
+EVZ         CAO         CAN          H2     119.685    1.50
+EVZ         CAT         CAU         CAV     118.518    1.50
+EVZ         CAT         CAU          H3     120.003    1.50
+EVZ         CAV         CAU          H3     121.479    1.50
+EVZ         CBB         CBA         NAZ     129.820    1.50
+EVZ         CBB         CBA         CAV     121.090    1.92
+EVZ         NAZ         CBA         CAV     109.090    1.50
+EVZ         CBC         CAT         CAU     120.365    1.50
+EVZ         CBC         CAT         SBD     119.817    2.83
+EVZ         CAU         CAT         SBD     119.817    2.83
+EVZ         CBB         CBC         CAT     120.451    1.50
+EVZ         CBB         CBC          H4     119.551    1.50
+EVZ         CAT         CBC          H4     119.997    1.50
+EVZ         CAO         CAR         CAQ     118.422    1.50
+EVZ         CAO         CAR         CAS     120.789    1.50
+EVZ         CAQ         CAR         CAS     120.789    1.50
+EVZ         CAR         CAS         SBD     111.115    3.00
+EVZ         CAR         CAS          H5     109.784    1.50
+EVZ         CAR         CAS          H6     109.784    1.50
+EVZ         SBD         CAS          H5     109.066    1.50
+EVZ         SBD         CAS          H6     109.066    1.50
+EVZ          H5         CAS          H6     108.231    1.50
+EVZ         CAP         CAQ         CAR     120.772    1.50
+EVZ         CAP         CAQ          H7     119.592    1.50
+EVZ         CAR         CAQ          H7     119.636    1.50
+EVZ         CAK         CAM         CAN     120.402    1.91
+EVZ         CAK         CAM         CAP     120.402    1.91
+EVZ         CAN         CAM         CAP     119.196    1.50
+EVZ         CAM         CAP         CAQ     120.419    1.50
+EVZ         CAM         CAP          H8     119.896    1.50
+EVZ         CAQ         CAP          H8     119.685    1.50
+EVZ         CBC         CBB         CBA     118.486    1.50
+EVZ         CBC         CBB          H9     120.752    1.50
+EVZ         CBA         CBB          H9     120.762    1.50
+EVZ         OAB         CAA         H10     109.378    1.50
+EVZ         OAB         CAA         H11     109.378    1.50
+EVZ         OAB         CAA         H12     109.378    1.50
+EVZ         H10         CAA         H11     109.532    1.53
+EVZ         H10         CAA         H12     109.532    1.53
+EVZ         H11         CAA         H12     109.532    1.53
+EVZ         CAC         OAB         CAA     116.043    1.50
+EVZ         CAF         CAE         CAC     111.262    2.05
+EVZ         CAF         CAE         CAH     109.514    1.50
+EVZ         CAF         CAE         H13     108.051    1.50
+EVZ         CAC         CAE         CAH     111.262    2.05
+EVZ         CAC         CAE         H13     107.849    1.50
+EVZ         CAH         CAE         H13     108.051    1.50
+EVZ         CAE         CAH         CAI     111.231    1.50
+EVZ         CAE         CAH         H14     109.389    1.50
+EVZ         CAE         CAH         H15     109.389    1.50
+EVZ         CAI         CAH         H14     109.101    1.50
+EVZ         CAI         CAH         H15     109.101    1.50
+EVZ         H14         CAH         H15     107.890    1.50
+EVZ         NAJ         CAI         CAH     110.264    1.50
+EVZ         NAJ         CAI         H16     109.572    1.50
+EVZ         NAJ         CAI         H17     109.572    1.50
+EVZ         CAH         CAI         H16     109.668    1.50
+EVZ         CAH         CAI         H17     109.668    1.50
+EVZ         H16         CAI         H17     108.159    1.50
+EVZ         CAG         CAF         CAE     111.231    1.50
+EVZ         CAG         CAF         H18     109.101    1.50
+EVZ         CAG         CAF         H19     109.101    1.50
+EVZ         CAE         CAF         H18     109.389    1.50
+EVZ         CAE         CAF         H19     109.389    1.50
+EVZ         H18         CAF         H19     107.890    1.50
+EVZ         CAF         CAG         NAJ     110.264    1.50
+EVZ         CAF         CAG         H20     109.668    1.50
+EVZ         CAF         CAG         H21     109.668    1.50
+EVZ         NAJ         CAG         H20     109.572    1.50
+EVZ         NAJ         CAG         H21     109.572    1.50
+EVZ         H20         CAG         H21     108.159    1.50
+EVZ         CAG         NAJ         CAK     123.277    2.85
+EVZ         CAG         NAJ         CAI     113.445    1.50
+EVZ         CAK         NAJ         CAI     123.277    2.85
+EVZ         CAS         SBD         CAT     120.000    3.00
+EVZ         CBA         CAV         CAU     121.090    1.92
+EVZ         CBA         CAV         SAW     108.216    3.00
+EVZ         CAU         CAV         SAW     130.694    3.00
+EVZ         CAX         SAW         CAV     108.216    3.00
+EVZ         NAZ         CAX         NAY     126.822    2.12
+EVZ         NAZ         CAX         SAW     108.216    3.00
+EVZ         NAY         CAX         SAW     124.962    3.00
+EVZ         CAX         NAY         H22     119.811    1.50
+EVZ         CAX         NAY         H23     119.811    1.50
+EVZ         H22         NAY         H23     120.377    1.82
+EVZ         CBA         NAZ         CAX     106.262    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EVZ            sp3_sp3_41         CAR         CAS         SBD         CAT     180.000    10.0     3
+EVZ              const_13         CAM         CAP         CAQ         CAR       0.000    10.0     2
+EVZ              const_11         CAK         CAM         CAP         CAQ     180.000    10.0     2
+EVZ            sp3_sp3_29         H10         CAA         OAB         CAC     -60.000    10.0     3
+EVZ            sp3_sp3_35         CAC         CAE         CAH         CAI      60.000    10.0     3
+EVZ             sp3_sp3_7         CAC         CAE         CAF         CAG     180.000    10.0     3
+EVZ            sp3_sp3_19         CAE         CAH         CAI         NAJ      60.000    10.0     3
+EVZ            sp2_sp3_10         CAK         NAJ         CAI         CAH     180.000    10.0     6
+EVZ             sp2_sp2_2         OAD         CAC         OAB         CAA       0.000     5.0     2
+EVZ            sp2_sp3_14         OAB         CAC         CAE         CAF     120.000    10.0     6
+EVZ            sp3_sp3_10         CAE         CAF         CAG         NAJ     -60.000    10.0     3
+EVZ             sp2_sp3_4         CAK         NAJ         CAG         CAF     180.000    10.0     6
+EVZ              const_47         CBA         CAV         SAW         CAX       0.000    10.0     2
+EVZ              const_46         NAY         CAX         SAW         CAV     180.000    10.0     2
+EVZ            sp2_sp2_11         NAZ         CAX         NAY         H22     180.000     5.0     2
+EVZ              const_44         NAY         CAX         NAZ         CBA     180.000    10.0     2
+EVZ       const_sp2_sp2_1         CAM         CAN         CAO         CAR       0.000     5.0     2
+EVZ              const_50         CAN         CAO         CAR         CAS     180.000    10.0     2
+EVZ             sp2_sp2_9         OAL         CAK         CAM         CAN       0.000     5.0     2
+EVZ             sp2_sp2_5         OAL         CAK         NAJ         CAG       0.000     5.0     2
+EVZ       const_sp2_sp2_7         CAK         CAM         CAN         CAO     180.000     5.0     2
+EVZ              const_53         CAT         CAU         CAV         CBA       0.000    10.0     2
+EVZ              const_23         SBD         CAT         CAU         CAV     180.000    10.0     2
+EVZ              const_35         NAZ         CBA         CBB         CBC     180.000    10.0     2
+EVZ              const_37         CAU         CAV         CBA         CBB       0.000    10.0     2
+EVZ              const_42         CBB         CBA         NAZ         CAX     180.000    10.0     2
+EVZ            sp2_sp2_15         CBC         CAT         SBD         CAS     180.000     5.0     2
+EVZ              const_27         SBD         CAT         CBC         CBB     180.000    10.0     2
+EVZ              const_29         CBA         CBB         CBC         CAT       0.000    10.0     2
+EVZ            sp2_sp3_20         CAO         CAR         CAS         SBD     -90.000    10.0     6
+EVZ              const_18         CAP         CAQ         CAR         CAS     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EVZ    chir_1    CAE    CAC    CAF    CAH    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EVZ    plan-1         CAT   0.020
+EVZ    plan-1         CAU   0.020
+EVZ    plan-1         CAV   0.020
+EVZ    plan-1         CAX   0.020
+EVZ    plan-1         CBA   0.020
+EVZ    plan-1         CBB   0.020
+EVZ    plan-1         CBC   0.020
+EVZ    plan-1          H3   0.020
+EVZ    plan-1          H4   0.020
+EVZ    plan-1          H9   0.020
+EVZ    plan-1         NAY   0.020
+EVZ    plan-1         NAZ   0.020
+EVZ    plan-1         SAW   0.020
+EVZ    plan-1         SBD   0.020
+EVZ    plan-2         CAK   0.020
+EVZ    plan-2         CAM   0.020
+EVZ    plan-2         CAN   0.020
+EVZ    plan-2         CAO   0.020
+EVZ    plan-2         CAP   0.020
+EVZ    plan-2         CAQ   0.020
+EVZ    plan-2         CAR   0.020
+EVZ    plan-2         CAS   0.020
+EVZ    plan-2          H1   0.020
+EVZ    plan-2          H2   0.020
+EVZ    plan-2          H7   0.020
+EVZ    plan-2          H8   0.020
+EVZ    plan-3         CAC   0.020
+EVZ    plan-3         CAE   0.020
+EVZ    plan-3         OAB   0.020
+EVZ    plan-3         OAD   0.020
+EVZ    plan-4         CAK   0.020
+EVZ    plan-4         CAM   0.020
+EVZ    plan-4         NAJ   0.020
+EVZ    plan-4         OAL   0.020
+EVZ    plan-5         CAG   0.020
+EVZ    plan-5         CAI   0.020
+EVZ    plan-5         CAK   0.020
+EVZ    plan-5         NAJ   0.020
+EVZ    plan-6         CAX   0.020
+EVZ    plan-6         H22   0.020
+EVZ    plan-6         H23   0.020
+EVZ    plan-6         NAY   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EVZ            InChI                InChI  1.03 InChI=1S/C22H23N3O3S2/c1-28-21(27)16-8-10-25(11-9-16)20(26)15-4-2-14(3-5-15)13-29-17-6-7-18-19(12-17)30-22(23)24-18/h2-7,12,16H,8-11,13H2,1H3,(H2,23,24)
+EVZ         InChIKey                InChI  1.03                                                                                                                              PVFJNZMMPKRHCY-UHFFFAOYSA-N
+EVZ SMILES_CANONICAL               CACTVS 3.385                                                                                                       COC(=O)C1CCN(CC1)C(=O)c2ccc(CSc3ccc4nc(N)sc4c3)cc2
+EVZ           SMILES               CACTVS 3.385                                                                                                       COC(=O)C1CCN(CC1)C(=O)c2ccc(CSc3ccc4nc(N)sc4c3)cc2
+EVZ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                     COC(=O)C1CCN(CC1)C(=O)c2ccc(cc2)CSc3ccc4c(c3)sc(n4)N
+EVZ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                     COC(=O)C1CCN(CC1)C(=O)c2ccc(cc2)CSc3ccc4c(c3)sc(n4)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EVZ acedrg               243         "dictionary generator"                  
+EVZ acedrg_database      11          "data source"                           
+EVZ rdkit                2017.03.2   "Chemoinformatics tool"
+EVZ refmac5              5.8.0238    "optimization tool"                     

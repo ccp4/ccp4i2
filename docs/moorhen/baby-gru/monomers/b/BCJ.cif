@@ -1,0 +1,573 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BCJ     BCJ      (4~{S})-1-[1-[(2~{S})-3-[3-[3-[2-(4-methylpiperidin-1-yl)ethylsulfanyl]-4-(trifluoromethyl)phenyl]-5-methylsulfonyl-6,7-dihydro-4~{H}-pyrazolo[4,3-c]pyridin-1-yl]-2-oxidanyl-propyl]piperidin-4-yl]-4-oxidanyl-pyrrolidin-2-one     NON-POLYMER     99     50     .     
+#
+data_comp_BCJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BCJ     N1      N       NRD5    0       -4.297      -4.617      -12.259     
+BCJ     C2      C       CR5     0       -5.313      -4.533      -11.392     
+BCJ     C3      C       CR56    0       -6.424      -5.289      -11.824     
+BCJ     C4      C       CR56    0       -6.026      -5.842      -12.999     
+BCJ     N5      N       NT      0       -4.747      -5.436      -13.255     
+BCJ     C11     C       CH2     0       -6.890      -6.736      -13.811     
+BCJ     C10     C       CH3     0       -11.049     -5.433      -12.090     
+BCJ     C12     C       CH2     0       -8.333      -6.435      -13.444     
+BCJ     C14     C       CH2     0       -7.777      -5.505      -11.219     
+BCJ     C20     C       CR6     0       -5.170      -3.676      -10.201     
+BCJ     C22     C       CH2     0       -3.871      -5.717      -14.384     
+BCJ     C24     C       CH1     0       -3.969      -4.649      -15.477     
+BCJ     C28     C       CH2     0       -3.815      -3.211      -14.988     
+BCJ     C31     C       CR16    0       -4.134      -3.867      -9.291      
+BCJ     C32     C       CR16    0       -4.003      -3.036      -8.188      
+BCJ     C33     C       CR6     0       -4.896      -1.981      -7.965      
+BCJ     C34     C       CR6     0       -5.939      -1.787      -8.899      
+BCJ     C35     C       CR16    0       -6.059      -2.622      -10.005     
+BCJ     C42     C       CH2     0       -2.731      -1.850      -16.697     
+BCJ     C43     C       CH2     0       -2.946      -0.844      -17.821     
+BCJ     C44     C       CH1     0       -3.609      0.421       -17.289     
+BCJ     C45     C       CH2     0       -4.880      0.091       -16.518     
+BCJ     C46     C       CH2     0       -4.604      -0.952      -15.447     
+BCJ     C53     C       CT      0       -4.745      -1.086      -6.771      
+BCJ     C63     C       CH2     0       -7.017      0.839       -9.995      
+BCJ     C65     C       CH2     0       -5.676      1.533       -9.873      
+BCJ     C69     C       CH2     0       -4.612      1.596       -12.075     
+BCJ     C70     C       CH2     0       -4.333      2.434       -13.311     
+BCJ     C71     C       CH1     0       -3.565      3.705       -12.986     
+BCJ     C72     C       CH2     0       -4.270      4.447       -11.863     
+BCJ     C73     C       CH2     0       -4.546      3.556       -10.665     
+BCJ     C80     C       CH3     0       -3.379      4.587       -14.215     
+BCJ     C84     C       CH2     0       -3.131      2.741       -18.277     
+BCJ     C85     C       CH1     0       -3.782      3.555       -19.389     
+BCJ     C86     C       CH2     0       -4.581      2.562       -20.224     
+BCJ     C87     C       CR5     0       -4.631      1.300       -19.402     
+BCJ     F58     F       F       0       -4.362      0.144       -7.098      
+BCJ     F60     F       F       0       -5.878      -0.939      -6.093      
+BCJ     F62     F       F       0       -3.854      -1.513      -5.880      
+BCJ     N13     N       NT      0       -8.548      -6.508      -11.986     
+BCJ     N32     N       NT      0       -3.997      -2.175      -16.016     
+BCJ     N70     N       NT      0       -5.326      2.370       -11.048     
+BCJ     N85     N       NR5     0       -3.821      1.439       -18.330     
+BCJ     O10     O       O       0       -10.102     -6.727      -10.065     
+BCJ     O14     O       O       0       -10.542     -7.967      -12.129     
+BCJ     O28     O       OH1     0       -5.228      -4.787      -16.129     
+BCJ     O96     O       O       0       -5.295      0.299       -19.657     
+BCJ     O98     O       OH1     0       -2.774      4.157       -20.187     
+BCJ     S64     S       S2      0       -7.148      -0.494      -8.779      
+BCJ     S98     S       S3      0       -10.089     -6.771      -11.493     
+BCJ     H1      H       H       0       -6.750      -6.576      -14.758     
+BCJ     H2      H       H       0       -6.689      -7.667      -13.620     
+BCJ     H3      H       H       0       -10.464     -4.758      -12.459     
+BCJ     H4      H       H       0       -11.560     -5.056      -11.360     
+BCJ     H5      H       H       0       -11.651     -5.753      -12.776     
+BCJ     H6      H       H       0       -8.909      -7.071      -13.896     
+BCJ     H7      H       H       0       -8.564      -5.548      -13.761     
+BCJ     H8      H       H       0       -8.275      -4.661      -11.199     
+BCJ     H9      H       H       0       -7.679      -5.809      -10.293     
+BCJ     H10     H       H       0       -4.111      -6.588      -14.760     
+BCJ     H11     H       H       0       -2.948      -5.769      -14.064     
+BCJ     H12     H       H       0       -3.263      -4.823      -16.153     
+BCJ     H13     H       H       0       -2.926      -3.110      -14.587     
+BCJ     H14     H       H       0       -4.470      -3.053      -14.279     
+BCJ     H15     H       H       0       -3.524      -4.574      -9.420      
+BCJ     H16     H       H       0       -3.300      -3.192      -7.580      
+BCJ     H17     H       H       0       -6.756      -2.482      -10.623     
+BCJ     H18     H       H       0       -2.344      -2.665      -17.061     
+BCJ     H19     H       H       0       -2.103      -1.481      -16.051     
+BCJ     H20     H       H       0       -2.091      -0.620      -18.222     
+BCJ     H21     H       H       0       -3.504      -1.245      -18.507     
+BCJ     H22     H       H       0       -2.976      0.821       -16.638     
+BCJ     H23     H       H       0       -5.557      -0.247      -17.125     
+BCJ     H24     H       H       0       -5.225      0.897       -16.101     
+BCJ     H25     H       H       0       -5.441      -1.181      -15.006     
+BCJ     H26     H       H       0       -4.004      -0.579      -14.778     
+BCJ     H27     H       H       0       -7.121      0.468       -10.882     
+BCJ     H28     H       H       0       -7.735      1.470       -9.851      
+BCJ     H29     H       H       0       -4.982      0.858       -9.739      
+BCJ     H30     H       H       0       -5.698      2.090       -9.070      
+BCJ     H31     H       H       0       -5.147      0.822       -12.322     
+BCJ     H32     H       H       0       -3.770      1.274       -11.707     
+BCJ     H33     H       H       0       -3.817      1.902       -13.949     
+BCJ     H34     H       H       0       -5.182      2.671       -13.735     
+BCJ     H35     H       H       0       -2.673      3.444       -12.661     
+BCJ     H36     H       H       0       -5.117      4.805       -12.197     
+BCJ     H37     H       H       0       -3.716      5.202       -11.579     
+BCJ     H38     H       H       0       -5.037      4.063       -9.995      
+BCJ     H39     H       H       0       -3.704      3.271       -10.270     
+BCJ     H40     H       H       0       -2.890      5.389       -13.969     
+BCJ     H41     H       H       0       -4.247      4.837       -14.572     
+BCJ     H42     H       H       0       -2.880      4.101       -14.892     
+BCJ     H43     H       H       0       -2.170      2.636       -18.436     
+BCJ     H44     H       H       0       -3.265      3.174       -17.408     
+BCJ     H45     H       H       0       -4.374      4.245       -18.999     
+BCJ     H46     H       H       0       -4.143      2.392       -21.082     
+BCJ     H47     H       H       0       -5.485      2.896       -20.390     
+BCJ     H50     H       H       0       -5.214      -5.477      -16.621     
+BCJ     H51     H       H       0       -2.389      4.756       -19.725     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BCJ         C86         C87      SINGLE       n     1.506  0.0124     1.506  0.0124
+BCJ         C85         C86      SINGLE       n     1.524  0.0101     1.524  0.0101
+BCJ         C85         O98      SINGLE       n     1.419  0.0101     1.419  0.0101
+BCJ         C87         O96      DOUBLE       n     1.228  0.0100     1.228  0.0100
+BCJ         C87         N85      SINGLE       n     1.344  0.0123     1.344  0.0123
+BCJ         C84         C85      SINGLE       n     1.525  0.0138     1.525  0.0138
+BCJ         C84         N85      SINGLE       n     1.473  0.0117     1.473  0.0117
+BCJ         C44         N85      SINGLE       n     1.468  0.0100     1.468  0.0100
+BCJ         C43         C44      SINGLE       n     1.522  0.0112     1.522  0.0112
+BCJ         C42         C43      SINGLE       n     1.518  0.0183     1.518  0.0183
+BCJ         C44         C45      SINGLE       n     1.522  0.0112     1.522  0.0112
+BCJ         C42         N32      SINGLE       n     1.464  0.0160     1.464  0.0160
+BCJ         C45         C46      SINGLE       n     1.518  0.0183     1.518  0.0183
+BCJ         C46         N32      SINGLE       n     1.464  0.0160     1.464  0.0160
+BCJ         C28         N32      SINGLE       n     1.467  0.0106     1.467  0.0106
+BCJ         C24         O28      SINGLE       n     1.424  0.0199     1.424  0.0199
+BCJ         C24         C28      SINGLE       n     1.521  0.0128     1.521  0.0128
+BCJ         C22         C24      SINGLE       n     1.512  0.0200     1.512  0.0200
+BCJ         C11         C12      SINGLE       n     1.516  0.0115     1.516  0.0115
+BCJ          C4         C11      SINGLE       n     1.487  0.0100     1.487  0.0100
+BCJ          N5         C22      SINGLE       n     1.454  0.0100     1.454  0.0100
+BCJ         C12         N13      SINGLE       n     1.466  0.0113     1.466  0.0113
+BCJ         C71         C80      SINGLE       n     1.524  0.0100     1.524  0.0100
+BCJ         C71         C72      SINGLE       n     1.519  0.0100     1.519  0.0100
+BCJ         C70         C71      SINGLE       n     1.519  0.0100     1.519  0.0100
+BCJ          C4          N5      SINGLE       y     1.367  0.0104     1.367  0.0104
+BCJ          C3          C4      DOUBLE       y     1.361  0.0105     1.361  0.0105
+BCJ          N1          N5      SINGLE       y     1.366  0.0100     1.366  0.0100
+BCJ         C72         C73      SINGLE       n     1.517  0.0100     1.517  0.0100
+BCJ         O14         S98      DOUBLE       n     1.428  0.0100     1.428  0.0100
+BCJ         N13         S98      SINGLE       n     1.635  0.0101     1.635  0.0101
+BCJ         C14         N13      SINGLE       n     1.468  0.0116     1.468  0.0116
+BCJ         C10         S98      SINGLE       n     1.751  0.0100     1.751  0.0100
+BCJ         C73         N70      SINGLE       n     1.462  0.0143     1.462  0.0143
+BCJ          C3         C14      SINGLE       n     1.491  0.0152     1.491  0.0152
+BCJ          C2          C3      SINGLE       y     1.411  0.0100     1.411  0.0100
+BCJ         C69         C70      SINGLE       n     1.517  0.0100     1.517  0.0100
+BCJ         O10         S98      DOUBLE       n     1.428  0.0100     1.428  0.0100
+BCJ          N1          C2      DOUBLE       y     1.339  0.0100     1.339  0.0100
+BCJ         C69         N70      SINGLE       n     1.462  0.0143     1.462  0.0143
+BCJ          C2         C20      SINGLE       n     1.476  0.0100     1.476  0.0100
+BCJ         C65         N70      SINGLE       n     1.471  0.0185     1.471  0.0185
+BCJ         C63         C65      SINGLE       n     1.515  0.0100     1.515  0.0100
+BCJ         C20         C35      SINGLE       y     1.391  0.0100     1.391  0.0100
+BCJ         C20         C31      DOUBLE       y     1.390  0.0100     1.390  0.0100
+BCJ         C63         S64      SINGLE       n     1.809  0.0191     1.809  0.0191
+BCJ         C34         C35      DOUBLE       y     1.386  0.0144     1.386  0.0144
+BCJ         C31         C32      SINGLE       y     1.383  0.0100     1.383  0.0100
+BCJ         C34         S64      SINGLE       n     1.772  0.0127     1.772  0.0127
+BCJ         C33         C34      SINGLE       y     1.404  0.0112     1.404  0.0112
+BCJ         C32         C33      DOUBLE       y     1.392  0.0100     1.392  0.0100
+BCJ         C33         C53      SINGLE       n     1.495  0.0102     1.495  0.0102
+BCJ         C53         F58      SINGLE       n     1.329  0.0183     1.329  0.0183
+BCJ         C53         F60      SINGLE       n     1.329  0.0183     1.329  0.0183
+BCJ         C53         F62      SINGLE       n     1.329  0.0183     1.329  0.0183
+BCJ         C11          H1      SINGLE       n     1.089  0.0100     0.971  0.0200
+BCJ         C11          H2      SINGLE       n     1.089  0.0100     0.971  0.0200
+BCJ         C10          H3      SINGLE       n     1.089  0.0100     0.967  0.0126
+BCJ         C10          H4      SINGLE       n     1.089  0.0100     0.967  0.0126
+BCJ         C10          H5      SINGLE       n     1.089  0.0100     0.967  0.0126
+BCJ         C12          H6      SINGLE       n     1.089  0.0100     0.970  0.0100
+BCJ         C12          H7      SINGLE       n     1.089  0.0100     0.970  0.0100
+BCJ         C14          H8      SINGLE       n     1.089  0.0100     0.980  0.0174
+BCJ         C14          H9      SINGLE       n     1.089  0.0100     0.980  0.0174
+BCJ         C22         H10      SINGLE       n     1.089  0.0100     0.978  0.0180
+BCJ         C22         H11      SINGLE       n     1.089  0.0100     0.978  0.0180
+BCJ         C24         H12      SINGLE       n     1.089  0.0100     0.992  0.0184
+BCJ         C28         H13      SINGLE       n     1.089  0.0100     0.980  0.0112
+BCJ         C28         H14      SINGLE       n     1.089  0.0100     0.980  0.0112
+BCJ         C31         H15      SINGLE       n     1.082  0.0130     0.943  0.0200
+BCJ         C32         H16      SINGLE       n     1.082  0.0130     0.943  0.0173
+BCJ         C35         H17      SINGLE       n     1.082  0.0130     0.942  0.0177
+BCJ         C42         H18      SINGLE       n     1.089  0.0100     0.973  0.0129
+BCJ         C42         H19      SINGLE       n     1.089  0.0100     0.973  0.0129
+BCJ         C43         H20      SINGLE       n     1.089  0.0100     0.971  0.0100
+BCJ         C43         H21      SINGLE       n     1.089  0.0100     0.971  0.0100
+BCJ         C44         H22      SINGLE       n     1.089  0.0100     0.992  0.0107
+BCJ         C45         H23      SINGLE       n     1.089  0.0100     0.971  0.0100
+BCJ         C45         H24      SINGLE       n     1.089  0.0100     0.971  0.0100
+BCJ         C46         H25      SINGLE       n     1.089  0.0100     0.973  0.0129
+BCJ         C46         H26      SINGLE       n     1.089  0.0100     0.973  0.0129
+BCJ         C63         H27      SINGLE       n     1.089  0.0100     0.967  0.0183
+BCJ         C63         H28      SINGLE       n     1.089  0.0100     0.967  0.0183
+BCJ         C65         H29      SINGLE       n     1.089  0.0100     0.977  0.0152
+BCJ         C65         H30      SINGLE       n     1.089  0.0100     0.977  0.0152
+BCJ         C69         H31      SINGLE       n     1.089  0.0100     0.973  0.0129
+BCJ         C69         H32      SINGLE       n     1.089  0.0100     0.973  0.0129
+BCJ         C70         H33      SINGLE       n     1.089  0.0100     0.978  0.0101
+BCJ         C70         H34      SINGLE       n     1.089  0.0100     0.978  0.0101
+BCJ         C71         H35      SINGLE       n     1.089  0.0100     0.985  0.0132
+BCJ         C72         H36      SINGLE       n     1.089  0.0100     0.978  0.0101
+BCJ         C72         H37      SINGLE       n     1.089  0.0100     0.978  0.0101
+BCJ         C73         H38      SINGLE       n     1.089  0.0100     0.973  0.0129
+BCJ         C73         H39      SINGLE       n     1.089  0.0100     0.973  0.0129
+BCJ         C80         H40      SINGLE       n     1.089  0.0100     0.971  0.0171
+BCJ         C80         H41      SINGLE       n     1.089  0.0100     0.971  0.0171
+BCJ         C80         H42      SINGLE       n     1.089  0.0100     0.971  0.0171
+BCJ         C84         H43      SINGLE       n     1.089  0.0100     0.980  0.0135
+BCJ         C84         H44      SINGLE       n     1.089  0.0100     0.980  0.0135
+BCJ         C85         H45      SINGLE       n     1.089  0.0100     0.989  0.0200
+BCJ         C86         H46      SINGLE       n     1.089  0.0100     0.978  0.0102
+BCJ         C86         H47      SINGLE       n     1.089  0.0100     0.978  0.0102
+BCJ         O28         H50      SINGLE       n     0.970  0.0120     0.848  0.0200
+BCJ         O98         H51      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BCJ          N5          N1          C2     104.972    1.50
+BCJ          C3          C2          N1     111.183    1.50
+BCJ          C3          C2         C20     129.271    1.50
+BCJ          N1          C2         C20     119.546    1.50
+BCJ          C4          C3         C14     123.641    1.52
+BCJ          C4          C3          C2     104.946    1.55
+BCJ         C14          C3          C2     131.413    2.34
+BCJ         C11          C4          N5     126.385    1.83
+BCJ         C11          C4          C3     124.331    1.68
+BCJ          N5          C4          C3     109.285    1.82
+BCJ         C22          N5          C4     126.456    3.00
+BCJ         C22          N5          N1     118.244    2.18
+BCJ          C4          N5          N1     111.210    1.50
+BCJ         C12         C11          C4     107.976    1.50
+BCJ         C12         C11          H1     109.463    1.50
+BCJ         C12         C11          H2     109.463    1.50
+BCJ          C4         C11          H1     110.082    1.50
+BCJ          C4         C11          H2     110.082    1.50
+BCJ          H1         C11          H2     108.255    1.50
+BCJ         S98         C10          H3     109.337    1.50
+BCJ         S98         C10          H4     109.337    1.50
+BCJ         S98         C10          H5     109.337    1.50
+BCJ          H3         C10          H4     109.719    1.50
+BCJ          H3         C10          H5     109.719    1.50
+BCJ          H4         C10          H5     109.719    1.50
+BCJ         C11         C12         N13     110.691    1.50
+BCJ         C11         C12          H6     109.417    1.50
+BCJ         C11         C12          H7     109.417    1.50
+BCJ         N13         C12          H6     109.668    1.50
+BCJ         N13         C12          H7     109.668    1.50
+BCJ          H6         C12          H7     108.200    1.50
+BCJ         N13         C14          C3     108.451    1.50
+BCJ         N13         C14          H8     109.928    1.50
+BCJ         N13         C14          H9     109.928    1.50
+BCJ          C3         C14          H8     110.691    1.50
+BCJ          C3         C14          H9     110.691    1.50
+BCJ          H8         C14          H9     108.071    1.50
+BCJ          C2         C20         C35     120.478    1.50
+BCJ          C2         C20         C31     120.425    1.50
+BCJ         C35         C20         C31     119.098    1.50
+BCJ         C24         C22          N5     111.989    1.71
+BCJ         C24         C22         H10     109.255    1.50
+BCJ         C24         C22         H11     109.255    1.50
+BCJ          N5         C22         H10     108.815    1.50
+BCJ          N5         C22         H11     108.815    1.50
+BCJ         H10         C22         H11     107.991    1.50
+BCJ         O28         C24         C28     109.698    2.33
+BCJ         O28         C24         C22     109.670    2.62
+BCJ         O28         C24         H12     108.183    1.96
+BCJ         C28         C24         C22     113.113    2.58
+BCJ         C28         C24         H12     108.757    1.75
+BCJ         C22         C24         H12     108.989    1.50
+BCJ         N32         C28         C24     112.648    2.60
+BCJ         N32         C28         H13     108.913    1.50
+BCJ         N32         C28         H14     108.913    1.50
+BCJ         C24         C28         H13     109.194    1.50
+BCJ         C24         C28         H14     109.194    1.50
+BCJ         H13         C28         H14     107.868    1.50
+BCJ         C20         C31         C32     120.753    1.50
+BCJ         C20         C31         H15     119.541    1.50
+BCJ         C32         C31         H15     119.706    1.50
+BCJ         C31         C32         C33     121.028    1.50
+BCJ         C31         C32         H16     119.548    1.50
+BCJ         C33         C32         H16     119.424    1.50
+BCJ         C34         C33         C32     118.532    1.50
+BCJ         C34         C33         C53     121.414    1.50
+BCJ         C32         C33         C53     120.054    1.50
+BCJ         C35         C34         S64     119.875    2.83
+BCJ         C35         C34         C33     120.249    1.50
+BCJ         S64         C34         C33     119.875    2.83
+BCJ         C20         C35         C34     120.340    1.50
+BCJ         C20         C35         H17     119.790    1.50
+BCJ         C34         C35         H17     119.870    1.50
+BCJ         C43         C42         N32     111.082    1.50
+BCJ         C43         C42         H18     109.572    1.50
+BCJ         C43         C42         H19     109.572    1.50
+BCJ         N32         C42         H18     109.353    1.50
+BCJ         N32         C42         H19     109.353    1.50
+BCJ         H18         C42         H19     108.159    1.50
+BCJ         C44         C43         C42     110.937    1.50
+BCJ         C44         C43         H20     109.502    1.50
+BCJ         C44         C43         H21     109.502    1.50
+BCJ         C42         C43         H20     109.398    1.50
+BCJ         C42         C43         H21     109.398    1.50
+BCJ         H20         C43         H21     108.019    1.50
+BCJ         N85         C44         C43     112.302    1.57
+BCJ         N85         C44         C45     112.302    1.57
+BCJ         N85         C44         H22     106.721    1.50
+BCJ         C43         C44         C45     111.381    1.50
+BCJ         C43         C44         H22     107.561    1.50
+BCJ         C45         C44         H22     107.561    1.50
+BCJ         C44         C45         C46     110.937    1.50
+BCJ         C44         C45         H23     109.502    1.50
+BCJ         C44         C45         H24     109.502    1.50
+BCJ         C46         C45         H23     109.398    1.50
+BCJ         C46         C45         H24     109.398    1.50
+BCJ         H23         C45         H24     108.019    1.50
+BCJ         C45         C46         N32     111.082    1.50
+BCJ         C45         C46         H25     109.572    1.50
+BCJ         C45         C46         H26     109.572    1.50
+BCJ         N32         C46         H25     109.353    1.50
+BCJ         N32         C46         H26     109.353    1.50
+BCJ         H25         C46         H26     108.159    1.50
+BCJ         C33         C53         F58     113.129    1.50
+BCJ         C33         C53         F60     113.129    1.50
+BCJ         C33         C53         F62     113.129    1.50
+BCJ         F58         C53         F60     105.974    1.50
+BCJ         F58         C53         F62     105.974    1.50
+BCJ         F60         C53         F62     105.974    1.50
+BCJ         C65         C63         S64     112.239    3.00
+BCJ         C65         C63         H27     110.203    2.43
+BCJ         C65         C63         H28     110.203    2.43
+BCJ         S64         C63         H27     109.066    1.50
+BCJ         S64         C63         H28     109.066    1.50
+BCJ         H27         C63         H28     107.922    1.50
+BCJ         N70         C65         C63     113.565    1.79
+BCJ         N70         C65         H29     109.135    1.50
+BCJ         N70         C65         H30     109.135    1.50
+BCJ         C63         C65         H29     109.111    2.02
+BCJ         C63         C65         H30     109.111    2.02
+BCJ         H29         C65         H30     107.781    1.50
+BCJ         C70         C69         N70     111.082    1.50
+BCJ         C70         C69         H31     109.668    1.50
+BCJ         C70         C69         H32     109.668    1.50
+BCJ         N70         C69         H31     109.353    1.50
+BCJ         N70         C69         H32     109.353    1.50
+BCJ         H31         C69         H32     108.159    1.50
+BCJ         C71         C70         C69     112.337    1.50
+BCJ         C71         C70         H33     109.139    1.50
+BCJ         C71         C70         H34     109.139    1.50
+BCJ         C69         C70         H33     109.101    1.50
+BCJ         C69         C70         H34     109.101    1.50
+BCJ         H33         C70         H34     107.890    1.50
+BCJ         C80         C71         C72     111.853    1.50
+BCJ         C80         C71         C70     111.853    1.50
+BCJ         C80         C71         H35     108.049    1.50
+BCJ         C72         C71         C70     109.365    1.50
+BCJ         C72         C71         H35     107.894    1.50
+BCJ         C70         C71         H35     107.894    1.50
+BCJ         C71         C72         C73     112.337    1.50
+BCJ         C71         C72         H36     109.139    1.50
+BCJ         C71         C72         H37     109.139    1.50
+BCJ         C73         C72         H36     109.101    1.50
+BCJ         C73         C72         H37     109.101    1.50
+BCJ         H36         C72         H37     107.890    1.50
+BCJ         C72         C73         N70     111.082    1.50
+BCJ         C72         C73         H38     109.668    1.50
+BCJ         C72         C73         H39     109.668    1.50
+BCJ         N70         C73         H38     109.353    1.50
+BCJ         N70         C73         H39     109.353    1.50
+BCJ         H38         C73         H39     108.159    1.50
+BCJ         C71         C80         H40     109.597    1.50
+BCJ         C71         C80         H41     109.597    1.50
+BCJ         C71         C80         H42     109.597    1.50
+BCJ         H40         C80         H41     109.342    1.50
+BCJ         H40         C80         H42     109.342    1.50
+BCJ         H41         C80         H42     109.342    1.50
+BCJ         C85         C84         N85     102.354    1.84
+BCJ         C85         C84         H43     110.826    1.50
+BCJ         C85         C84         H44     110.826    1.50
+BCJ         N85         C84         H43     111.178    1.50
+BCJ         N85         C84         H44     111.178    1.50
+BCJ         H43         C84         H44     109.083    1.50
+BCJ         C86         C85         O98     110.518    2.79
+BCJ         C86         C85         C84     104.443    2.26
+BCJ         C86         C85         H45     111.244    1.50
+BCJ         O98         C85         C84     109.741    2.71
+BCJ         O98         C85         H45     110.852    1.50
+BCJ         C84         C85         H45     110.261    1.50
+BCJ         C87         C86         C85     103.525    1.50
+BCJ         C87         C86         H46     110.429    1.50
+BCJ         C87         C86         H47     110.429    1.50
+BCJ         C85         C86         H46     110.847    1.50
+BCJ         C85         C86         H47     110.847    1.50
+BCJ         H46         C86         H47     108.956    1.50
+BCJ         C86         C87         O96     127.305    1.50
+BCJ         C86         C87         N85     107.789    1.50
+BCJ         O96         C87         N85     124.906    1.50
+BCJ         C12         N13         S98     117.111    2.28
+BCJ         C12         N13         C14     111.118    1.85
+BCJ         S98         N13         C14     117.823    2.12
+BCJ         C42         N32         C46     109.788    1.50
+BCJ         C42         N32         C28     111.219    1.66
+BCJ         C46         N32         C28     111.219    1.66
+BCJ         C73         N70         C69     109.788    1.50
+BCJ         C73         N70         C65     111.219    1.66
+BCJ         C69         N70         C65     111.219    1.66
+BCJ         C87         N85         C84     112.046    2.00
+BCJ         C87         N85         C44     123.398    2.41
+BCJ         C84         N85         C44     124.556    2.50
+BCJ         C24         O28         H50     109.265    3.00
+BCJ         C85         O98         H51     108.359    1.75
+BCJ         C63         S64         C34     120.000    3.00
+BCJ         O14         S98         N13     106.878    1.50
+BCJ         O14         S98         C10     108.236    1.50
+BCJ         O14         S98         O10     118.311    1.50
+BCJ         N13         S98         C10     107.070    1.78
+BCJ         N13         S98         O10     106.878    1.50
+BCJ         C10         S98         O10     108.236    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BCJ              const_35          C3          C2          N1          N5       0.000    10.0     2
+BCJ              const_26          C2          N1          N5         C22     180.000    10.0     2
+BCJ           sp3_sp3_151          N5         C22         C24         O28     180.000    10.0     3
+BCJ           sp3_sp3_142         O28         C24         C28         N32     180.000    10.0     3
+BCJ           sp3_sp3_139         C28         C24         O28         H50     180.000    10.0     3
+BCJ           sp3_sp3_134         C24         C28         N32         C42     -60.000    10.0     3
+BCJ              const_21         C20         C31         C32         C33       0.000    10.0     2
+BCJ              const_18         C31         C32         C33         C53     180.000    10.0     2
+BCJ              const_16         C53         C33         C34         S64       0.000    10.0     2
+BCJ            sp2_sp3_37         C34         C33         C53         F58     150.000    10.0     6
+BCJ              const_11         S64         C34         C35         C20     180.000    10.0     2
+BCJ             sp2_sp2_9         C35         C34         S64         C63     180.000     5.0     2
+BCJ            sp3_sp3_22         N32         C42         C43         C44      60.000    10.0     3
+BCJ           sp3_sp3_128         C43         C42         N32         C28     -60.000    10.0     3
+BCJ            sp3_sp3_33         C42         C43         C44         N85     180.000    10.0     3
+BCJ              const_31          N1          C2          C3          C4       0.000    10.0     2
+BCJ             sp2_sp2_5          C3          C2         C20         C35     180.000     5.0     2
+BCJ            sp3_sp3_43         N85         C44         C45         C46     -60.000    10.0     3
+BCJ            sp2_sp3_20         C87         N85         C44         C43     -90.000    10.0     6
+BCJ            sp3_sp3_49         C44         C45         C46         N32     -60.000    10.0     3
+BCJ            sp3_sp3_59         C45         C46         N32         C28     180.000    10.0     3
+BCJ           sp3_sp3_196         S64         C63         C65         N70     180.000    10.0     3
+BCJ           sp3_sp3_205         C65         C63         S64         C34     180.000    10.0     3
+BCJ           sp3_sp3_191         C63         C65         N70         C73     -60.000    10.0     3
+BCJ            sp3_sp3_64         N70         C69         C70         C71      60.000    10.0     3
+BCJ           sp3_sp3_185         C70         C69         N70         C65     -60.000    10.0     3
+BCJ            sp3_sp3_74         C69         C70         C71         C80      60.000    10.0     3
+BCJ            sp3_sp3_88         C80         C71         C72         C73     180.000    10.0     3
+BCJ           sp3_sp3_163         C72         C71         C80         H40      60.000    10.0     3
+BCJ            sp3_sp3_91         C71         C72         C73         N70     -60.000    10.0     3
+BCJ       const_sp2_sp2_1         C14          C3          C4         C11       0.000     5.0     2
+BCJ            sp2_sp3_31          C4          C3         C14         N13       0.000    10.0     6
+BCJ           sp3_sp3_101         C72         C73         N70         C65     180.000    10.0     3
+BCJ           sp3_sp3_107         N85         C84         C85         O98     180.000    10.0     3
+BCJ            sp2_sp3_13         C87         N85         C84         C85       0.000    10.0     6
+BCJ           sp3_sp3_118         O98         C85         C86         C87     180.000    10.0     3
+BCJ           sp3_sp3_124         C86         C85         O98         H51     180.000    10.0     3
+BCJ            sp2_sp3_10         O96         C87         C86         C85     180.000    10.0     6
+BCJ             sp2_sp2_3         O96         C87         N85         C84     180.000     5.0     2
+BCJ           sp3_sp3_170         C12         N13         S98         O14     -60.000    10.0     3
+BCJ              const_30         C11          C4          N5         C22       0.000    10.0     2
+BCJ             sp2_sp3_4          N5          C4         C11         C12     180.000    10.0     6
+BCJ            sp2_sp3_26          C4          N5         C22         C24     -90.000    10.0     6
+BCJ             sp3_sp3_1          C4         C11         C12         N13      60.000    10.0     3
+BCJ           sp3_sp3_175          H3         C10         S98         O14     180.000    10.0     3
+BCJ            sp3_sp3_11         C11         C12         N13         S98      60.000    10.0     3
+BCJ            sp3_sp3_17          C3         C14         N13         S98     180.000    10.0     3
+BCJ              const_39          C2         C20         C31         C32     180.000    10.0     2
+BCJ       const_sp2_sp2_7          C2         C20         C35         C34     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BCJ    chir_1    C24    O28    C22    C28    positive
+BCJ    chir_2    C44    N85    C43    C45    both
+BCJ    chir_3    C53    F58    F60    F62    both
+BCJ    chir_4    C71    C72    C70    C80    both
+BCJ    chir_5    C85    O98    C84    C86    positive
+BCJ    chir_6    N13    S98    C14    C12    positive
+BCJ    chir_7    N32    C28    C42    C46    both
+BCJ    chir_8    N70    C65    C73    C69    both
+BCJ    chir_9    S98    O14    O10    N13    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BCJ    plan-1         C11   0.020
+BCJ    plan-1         C14   0.020
+BCJ    plan-1          C2   0.020
+BCJ    plan-1         C20   0.020
+BCJ    plan-1         C22   0.020
+BCJ    plan-1          C3   0.020
+BCJ    plan-1          C4   0.020
+BCJ    plan-1          N1   0.020
+BCJ    plan-1          N5   0.020
+BCJ    plan-2          C2   0.020
+BCJ    plan-2         C20   0.020
+BCJ    plan-2         C31   0.020
+BCJ    plan-2         C32   0.020
+BCJ    plan-2         C33   0.020
+BCJ    plan-2         C34   0.020
+BCJ    plan-2         C35   0.020
+BCJ    plan-2         C53   0.020
+BCJ    plan-2         H15   0.020
+BCJ    plan-2         H16   0.020
+BCJ    plan-2         H17   0.020
+BCJ    plan-2         S64   0.020
+BCJ    plan-3         C86   0.020
+BCJ    plan-3         C87   0.020
+BCJ    plan-3         N85   0.020
+BCJ    plan-3         O96   0.020
+BCJ    plan-4         C44   0.020
+BCJ    plan-4         C84   0.020
+BCJ    plan-4         C87   0.020
+BCJ    plan-4         N85   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BCJ            InChI                InChI  1.03 InChI=1S/C34H49F3N6O5S2/c1-23-5-10-39(11-6-23)15-16-49-31-17-24(3-4-29(31)34(35,36)37)33-28-22-41(50(2,47)48)14-9-30(28)43(38-33)21-27(45)19-40-12-7-25(8-13-40)42-20-26(44)18-32(42)46/h3-4,17,23,25-27,44-45H,5-16,18-22H2,1-2H3/t26-,27-/m0/s1
+BCJ         InChIKey                InChI  1.03                                                                                                                                                                                                                       CKJQVJQFVFWPOY-SVBPBHIXSA-N
+BCJ SMILES_CANONICAL               CACTVS 3.385                                                                                                                                      C[C@@H]1CCN(CCSc2cc(ccc2C(F)(F)F)c3nn(C[C@@H](O)CN4CC[C@H](CC4)N5C[C@@H](O)CC5=O)c6CCN(Cc36)[S](C)(=O)=O)CC1
+BCJ           SMILES               CACTVS 3.385                                                                                                                                             C[CH]1CCN(CCSc2cc(ccc2C(F)(F)F)c3nn(C[CH](O)CN4CC[CH](CC4)N5C[CH](O)CC5=O)c6CCN(Cc36)[S](C)(=O)=O)CC1
+BCJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                 CC1CCN(CC1)CCSc2cc(ccc2C(F)(F)F)c3c4c(n(n3)C[C@H](CN5CCC(CC5)N6C[C@H](CC6=O)O)O)CCN(C4)S(=O)(=O)C
+BCJ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                         CC1CCN(CC1)CCSc2cc(ccc2C(F)(F)F)c3c4c(n(n3)CC(CN5CCC(CC5)N6CC(CC6=O)O)O)CCN(C4)S(=O)(=O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BCJ acedrg               243         "dictionary generator"                  
+BCJ acedrg_database      11          "data source"                           
+BCJ rdkit                2017.03.2   "Chemoinformatics tool"
+BCJ refmac5              5.8.0238    "optimization tool"                     

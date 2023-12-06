@@ -85,7 +85,7 @@ class CWebPage(QtWebEngineWidgets.QWebEnginePage):
         isMRParseRe = (re.search('mrparse_i2.html', url.path()) is not None) or (re.search('mrparse_i2.html', url.query()) is not None)
         isDocx = (re.search('tabtest.docx', url.path()) is not None) or (re.search('tabtest.docx', url.query()) is not None)
         isReportFile = False
-        if url.path() == "/database/" and url.host() == "127.0.0.1" and url.query().find("fileName=report.html") > -1:
+        if url.path().startswith("/database/") and url.host() == "127.0.0.1" and url.query().find("fileName=report.html") > -1:
             isReportFile = True
         isIntfReport = isXiaReport or isDuiReport
         if (CCP4Modules.PREFERENCES().EXTERNAL_FILES_IN_EXTERNAL_BROWSER and not url.isLocalFile() and not isReportFile and not isPairefRep and not isMRParseRe) or  isDocx or isIntfReport:

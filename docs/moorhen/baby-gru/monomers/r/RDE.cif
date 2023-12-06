@@ -1,0 +1,308 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RDE     RDE      "2-(3-AMINO-2,5,6-TRIMETHOXYPHENYL)ETHYL 5-CHLORO-2,4-DIHYDROXYBENZOATE"     NON-POLYMER     47     27     .     
+#
+data_comp_RDE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RDE     CAC     C       CH3     0       13.282      7.165       1.209       
+RDE     OAP     O       O2      0       12.778      6.687       -0.037      
+RDE     CBA     C       CR6     0       12.573      5.334       -0.118      
+RDE     CAW     C       CR6     0       13.646      4.476       -0.440      
+RDE     OAN     O       O2      0       14.844      5.103       -0.667      
+RDE     CAA     C       CH3     0       16.060      4.403       -0.405      
+RDE     CAJ     C       CR16    0       13.428      3.109       -0.527      
+RDE     CAS     C       CR6     0       12.159      2.590       -0.284      
+RDE     NAD     N       NH2     0       11.937      1.222       -0.363      
+RDE     CAZ     C       CR6     0       11.089      3.447       0.044       
+RDE     OAO     O       O2      0       9.854       2.897       0.269       
+RDE     CAB     C       CH3     0       9.617       2.388       1.579       
+RDE     CAY     C       CR6     0       11.285      4.835       0.133       
+RDE     CAM     C       CH2     0       10.126      5.767       0.481       
+RDE     CAL     C       CH2     0       9.367       6.209       -0.737      
+RDE     OAQ     O       O2      0       8.280       7.070       -0.287      
+RDE     CAR     C       C       0       8.481       8.391       -0.191      
+RDE     OAE     O       O       0       9.568       8.907       -0.281      
+RDE     CAX     C       CR6     0       7.228       9.157       0.063       
+RDE     CAK     C       CR16    0       5.967       8.626       -0.241      
+RDE     CAV     C       CR6     0       4.823       9.355       0.005       
+RDE     CLAH    CL      CL      0       3.277       8.668       -0.381      
+RDE     CAT     C       CR6     0       4.881       10.634      0.556       
+RDE     OAF     O       OH1     0       3.732       11.351      0.795       
+RDE     CAI     C       CR16    0       6.126       11.177      0.862       
+RDE     CAU     C       CR6     0       7.285       10.449      0.620       
+RDE     OAG     O       OH1     0       8.485       11.039      0.943       
+RDE     HAC1    H       H       0       14.240      7.015       1.248       
+RDE     HAC2    H       H       0       12.850      6.696       1.942       
+RDE     HAC3    H       H       0       13.101      8.117       1.284       
+RDE     HAA1    H       H       0       16.196      3.727       -1.089      
+RDE     HAA2    H       H       0       16.010      3.976       0.466       
+RDE     HAA3    H       H       0       16.801      5.029       -0.417      
+RDE     HAJ1    H       H       0       14.135      2.527       -0.745      
+RDE     HAD     H       H       0       11.190      0.920       -0.709      
+RDE     HAC     H       H       0       12.545      0.664       -0.067      
+RDE     HAB1    H       H       0       9.720       3.103       2.229       
+RDE     HAB2    H       H       0       10.254      1.680       1.772       
+RDE     HAB3    H       H       0       8.714       2.034       1.628       
+RDE     HAM1    H       H       0       10.468      6.551       0.951       
+RDE     HAM2    H       H       0       9.515       5.307       1.089       
+RDE     HAL1    H       H       0       9.000       5.432       -1.201      
+RDE     HAL2    H       H       0       9.957       6.683       -1.354      
+RDE     HAK1    H       H       0       5.893       7.767       -0.614      
+RDE     HAA     H       H       0       3.767       12.113      1.197       
+RDE     HAI1    H       H       0       6.178       12.041      1.236       
+RDE     HAB     H       H       0       8.644       11.851      0.704       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RDE         CAC         OAP      SINGLE       n     1.424  0.0117     1.424  0.0117
+RDE         OAP         CBA      SINGLE       n     1.368  0.0100     1.368  0.0100
+RDE         CBA         CAW      DOUBLE       y     1.405  0.0100     1.405  0.0100
+RDE         CBA         CAY      SINGLE       y     1.395  0.0100     1.395  0.0100
+RDE         CAW         OAN      SINGLE       n     1.366  0.0100     1.366  0.0100
+RDE         CAW         CAJ      SINGLE       y     1.381  0.0100     1.381  0.0100
+RDE         OAN         CAA      SINGLE       n     1.424  0.0117     1.424  0.0117
+RDE         CAJ         CAS      DOUBLE       y     1.390  0.0100     1.390  0.0100
+RDE         CAS         NAD      SINGLE       n     1.386  0.0167     1.386  0.0167
+RDE         CAS         CAZ      SINGLE       y     1.403  0.0142     1.403  0.0142
+RDE         CAZ         OAO      SINGLE       n     1.368  0.0100     1.368  0.0100
+RDE         CAZ         CAY      DOUBLE       y     1.399  0.0100     1.399  0.0100
+RDE         OAO         CAB      SINGLE       n     1.424  0.0117     1.424  0.0117
+RDE         CAY         CAM      SINGLE       n     1.514  0.0200     1.514  0.0200
+RDE         CAM         CAL      SINGLE       n     1.501  0.0200     1.501  0.0200
+RDE         CAL         OAQ      SINGLE       n     1.454  0.0100     1.454  0.0100
+RDE         OAQ         CAR      SINGLE       n     1.332  0.0117     1.332  0.0117
+RDE         CAR         OAE      DOUBLE       n     1.204  0.0101     1.204  0.0101
+RDE         CAR         CAX      SINGLE       n     1.484  0.0106     1.484  0.0106
+RDE         CAX         CAK      DOUBLE       y     1.395  0.0100     1.395  0.0100
+RDE         CAX         CAU      SINGLE       y     1.401  0.0100     1.401  0.0100
+RDE         CAK         CAV      SINGLE       y     1.375  0.0100     1.375  0.0100
+RDE         CAV        CLAH      SINGLE       n     1.735  0.0100     1.735  0.0100
+RDE         CAV         CAT      DOUBLE       y     1.391  0.0100     1.391  0.0100
+RDE         CAT         OAF      SINGLE       n     1.374  0.0155     1.374  0.0155
+RDE         CAT         CAI      SINGLE       y     1.388  0.0100     1.388  0.0100
+RDE         CAI         CAU      DOUBLE       y     1.385  0.0100     1.385  0.0100
+RDE         CAU         OAG      SINGLE       n     1.374  0.0155     1.374  0.0155
+RDE         CAC        HAC1      SINGLE       n     1.089  0.0100     0.971  0.0157
+RDE         CAC        HAC2      SINGLE       n     1.089  0.0100     0.971  0.0157
+RDE         CAC        HAC3      SINGLE       n     1.089  0.0100     0.971  0.0157
+RDE         CAA        HAA1      SINGLE       n     1.089  0.0100     0.971  0.0157
+RDE         CAA        HAA2      SINGLE       n     1.089  0.0100     0.971  0.0157
+RDE         CAA        HAA3      SINGLE       n     1.089  0.0100     0.971  0.0157
+RDE         CAJ        HAJ1      SINGLE       n     1.082  0.0130     0.942  0.0200
+RDE         NAD         HAD      SINGLE       n     1.016  0.0100     0.877  0.0200
+RDE         NAD         HAC      SINGLE       n     1.016  0.0100     0.877  0.0200
+RDE         CAB        HAB1      SINGLE       n     1.089  0.0100     0.971  0.0157
+RDE         CAB        HAB2      SINGLE       n     1.089  0.0100     0.971  0.0157
+RDE         CAB        HAB3      SINGLE       n     1.089  0.0100     0.971  0.0157
+RDE         CAM        HAM1      SINGLE       n     1.089  0.0100     0.977  0.0121
+RDE         CAM        HAM2      SINGLE       n     1.089  0.0100     0.977  0.0121
+RDE         CAL        HAL1      SINGLE       n     1.089  0.0100     0.977  0.0100
+RDE         CAL        HAL2      SINGLE       n     1.089  0.0100     0.977  0.0100
+RDE         CAK        HAK1      SINGLE       n     1.082  0.0130     0.940  0.0137
+RDE         OAF         HAA      SINGLE       n     0.966  0.0059     0.861  0.0200
+RDE         CAI        HAI1      SINGLE       n     1.082  0.0130     0.943  0.0179
+RDE         OAG         HAB      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RDE         OAP         CAC        HAC1     109.428    1.50
+RDE         OAP         CAC        HAC2     109.428    1.50
+RDE         OAP         CAC        HAC3     109.428    1.50
+RDE        HAC1         CAC        HAC2     109.509    1.50
+RDE        HAC1         CAC        HAC3     109.509    1.50
+RDE        HAC2         CAC        HAC3     109.509    1.50
+RDE         CAC         OAP         CBA     114.628    1.85
+RDE         OAP         CBA         CAW     120.414    1.50
+RDE         OAP         CBA         CAY     118.375    2.07
+RDE         CAW         CBA         CAY     121.211    1.50
+RDE         CBA         CAW         OAN     115.515    1.50
+RDE         CBA         CAW         CAJ     119.693    1.50
+RDE         OAN         CAW         CAJ     124.792    1.50
+RDE         CAW         OAN         CAA     117.276    1.50
+RDE         OAN         CAA        HAA1     109.428    1.50
+RDE         OAN         CAA        HAA2     109.428    1.50
+RDE         OAN         CAA        HAA3     109.428    1.50
+RDE        HAA1         CAA        HAA2     109.509    1.50
+RDE        HAA1         CAA        HAA3     109.509    1.50
+RDE        HAA2         CAA        HAA3     109.509    1.50
+RDE         CAW         CAJ         CAS     119.710    1.50
+RDE         CAW         CAJ        HAJ1     120.180    1.50
+RDE         CAS         CAJ        HAJ1     120.110    1.50
+RDE         CAJ         CAS         NAD     120.455    1.50
+RDE         CAJ         CAS         CAZ     120.577    1.59
+RDE         NAD         CAS         CAZ     118.968    1.50
+RDE         CAS         NAD         HAD     119.866    1.50
+RDE         CAS         NAD         HAC     119.866    1.50
+RDE         HAD         NAD         HAC     120.268    3.00
+RDE         CAS         CAZ         OAO     118.993    2.40
+RDE         CAS         CAZ         CAY     120.895    1.50
+RDE         OAO         CAZ         CAY     120.111    2.07
+RDE         CAZ         OAO         CAB     115.550    1.83
+RDE         OAO         CAB        HAB1     109.428    1.50
+RDE         OAO         CAB        HAB2     109.428    1.50
+RDE         OAO         CAB        HAB3     109.428    1.50
+RDE        HAB1         CAB        HAB2     109.509    1.50
+RDE        HAB1         CAB        HAB3     109.509    1.50
+RDE        HAB2         CAB        HAB3     109.509    1.50
+RDE         CBA         CAY         CAZ     117.914    1.50
+RDE         CBA         CAY         CAM     121.043    1.68
+RDE         CAZ         CAY         CAM     121.043    1.68
+RDE         CAY         CAM         CAL     112.468    2.51
+RDE         CAY         CAM        HAM1     108.906    1.50
+RDE         CAY         CAM        HAM2     108.906    1.50
+RDE         CAL         CAM        HAM1     109.207    1.50
+RDE         CAL         CAM        HAM2     109.207    1.50
+RDE        HAM1         CAM        HAM2     107.679    1.50
+RDE         CAM         CAL         OAQ     107.560    1.73
+RDE         CAM         CAL        HAL1     110.081    1.50
+RDE         CAM         CAL        HAL2     110.081    1.50
+RDE         OAQ         CAL        HAL1     109.808    1.50
+RDE         OAQ         CAL        HAL2     109.808    1.50
+RDE        HAL1         CAL        HAL2     108.439    1.50
+RDE         CAL         OAQ         CAR     116.483    1.50
+RDE         OAQ         CAR         OAE     122.945    1.50
+RDE         OAQ         CAR         CAX     112.727    1.56
+RDE         OAE         CAR         CAX     124.328    1.79
+RDE         CAR         CAX         CAK     120.899    1.89
+RDE         CAR         CAX         CAU     120.379    1.50
+RDE         CAK         CAX         CAU     118.722    1.50
+RDE         CAX         CAK         CAV     120.434    1.50
+RDE         CAX         CAK        HAK1     119.845    1.50
+RDE         CAV         CAK        HAK1     119.721    1.50
+RDE         CAK         CAV        CLAH     119.414    1.50
+RDE         CAK         CAV         CAT     121.602    1.50
+RDE        CLAH         CAV         CAT     118.984    1.50
+RDE         CAV         CAT         OAF     120.590    3.00
+RDE         CAV         CAT         CAI     118.821    1.50
+RDE         OAF         CAT         CAI     120.590    3.00
+RDE         CAT         OAF         HAA     120.000    3.00
+RDE         CAT         CAI         CAU     119.713    1.50
+RDE         CAT         CAI        HAI1     119.800    1.50
+RDE         CAU         CAI        HAI1     120.486    1.50
+RDE         CAX         CAU         CAI     120.708    1.50
+RDE         CAX         CAU         OAG     119.646    3.00
+RDE         CAI         CAU         OAG     119.646    3.00
+RDE         CAU         OAG         HAB     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RDE             sp3_sp3_2        HAC1         CAC         OAP         CBA     -60.000    10.0     3
+RDE            sp3_sp3_10        HAB1         CAB         OAO         CAZ     -60.000    10.0     3
+RDE             sp2_sp3_2         CBA         CAY         CAM         CAL     -90.000    10.0     6
+RDE            sp3_sp3_13         OAQ         CAL         CAM         CAY     180.000    10.0     3
+RDE            sp3_sp3_22         CAM         CAL         OAQ         CAR     180.000    10.0     3
+RDE            sp2_sp2_11         OAE         CAR         OAQ         CAL     180.000     5.0     2
+RDE            sp2_sp2_13         OAQ         CAR         CAX         CAK     180.000     5.0     2
+RDE       const_sp2_sp2_2         CAV         CAK         CAX         CAR     180.000     5.0     2
+RDE              const_48         OAG         CAU         CAX         CAR       0.000    10.0     2
+RDE       const_sp2_sp2_6         CAX         CAK         CAV        CLAH     180.000     5.0     2
+RDE             sp2_sp2_1         CAW         CBA         OAP         CAC     180.000     5.0     2
+RDE              const_12         OAF         CAT         CAV        CLAH       0.000    10.0     2
+RDE            sp2_sp2_17         CAV         CAT         OAF         HAA     180.000     5.0     2
+RDE              const_14         CAU         CAI         CAT         OAF     180.000    10.0     2
+RDE              const_18         CAT         CAI         CAU         OAG     180.000    10.0     2
+RDE            sp2_sp2_19         CAX         CAU         OAG         HAB     180.000     5.0     2
+RDE              const_44         CAM         CAY         CBA         OAP       0.000    10.0     2
+RDE              const_24         OAN         CAW         CBA         OAP       0.000    10.0     2
+RDE             sp2_sp2_3         CBA         CAW         OAN         CAA     180.000     5.0     2
+RDE              const_26         CAS         CAJ         CAW         OAN     180.000    10.0     2
+RDE             sp3_sp3_6        HAA1         CAA         OAN         CAW     -60.000    10.0     3
+RDE              const_30         CAW         CAJ         CAS         NAD     180.000    10.0     2
+RDE             sp2_sp2_5         CAJ         CAS         NAD         HAD     180.000     5.0     2
+RDE              const_36         NAD         CAS         CAZ         OAO       0.000    10.0     2
+RDE             sp2_sp2_9         CAS         CAZ         OAO         CAB     180.000     5.0     2
+RDE              const_40         CAM         CAY         CAZ         OAO       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RDE    plan-1         CAJ   0.020
+RDE    plan-1         CAM   0.020
+RDE    plan-1         CAS   0.020
+RDE    plan-1         CAW   0.020
+RDE    plan-1         CAY   0.020
+RDE    plan-1         CAZ   0.020
+RDE    plan-1         CBA   0.020
+RDE    plan-1        HAJ1   0.020
+RDE    plan-1         NAD   0.020
+RDE    plan-1         OAN   0.020
+RDE    plan-1         OAO   0.020
+RDE    plan-1         OAP   0.020
+RDE    plan-2         CAI   0.020
+RDE    plan-2         CAK   0.020
+RDE    plan-2         CAR   0.020
+RDE    plan-2         CAT   0.020
+RDE    plan-2         CAU   0.020
+RDE    plan-2         CAV   0.020
+RDE    plan-2         CAX   0.020
+RDE    plan-2        CLAH   0.020
+RDE    plan-2        HAI1   0.020
+RDE    plan-2        HAK1   0.020
+RDE    plan-2         OAF   0.020
+RDE    plan-2         OAG   0.020
+RDE    plan-3         CAS   0.020
+RDE    plan-3         HAC   0.020
+RDE    plan-3         HAD   0.020
+RDE    plan-3         NAD   0.020
+RDE    plan-4         CAR   0.020
+RDE    plan-4         CAX   0.020
+RDE    plan-4         OAE   0.020
+RDE    plan-4         OAQ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RDE           SMILES              ACDLabs 10.04                                                                                  Clc1cc(c(O)cc1O)C(=O)OCCc2c(OC)c(N)cc(OC)c2OC
+RDE SMILES_CANONICAL               CACTVS 3.341                                                                                  COc1cc(N)c(OC)c(CCOC(=O)c2cc(Cl)c(O)cc2O)c1OC
+RDE           SMILES               CACTVS 3.341                                                                                  COc1cc(N)c(OC)c(CCOC(=O)c2cc(Cl)c(O)cc2O)c1OC
+RDE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                  COc1cc(c(c(c1OC)CCOC(=O)c2cc(c(cc2O)O)Cl)OC)N
+RDE           SMILES "OpenEye OEToolkits" 1.5.0                                                                                  COc1cc(c(c(c1OC)CCOC(=O)c2cc(c(cc2O)O)Cl)OC)N
+RDE            InChI                InChI  1.03 InChI=1S/C18H20ClNO7/c1-24-15-7-12(20)16(25-2)9(17(15)26-3)4-5-27-18(23)10-6-11(19)14(22)8-13(10)21/h6-8,21-22H,4-5,20H2,1-3H3
+RDE         InChIKey                InChI  1.03                                                                                                    DFYGLJKFZQGYPA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RDE acedrg               243         "dictionary generator"                  
+RDE acedrg_database      11          "data source"                           
+RDE rdkit                2017.03.2   "Chemoinformatics tool"
+RDE refmac5              5.8.0238    "optimization tool"                     

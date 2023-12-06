@@ -1,0 +1,251 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3GA     3GA      (3S)-3-[(2S)-2-amino-3-oxopropyl]piperidine-1-carboximidamide     NON-POLYMER     34     14     .     
+#
+data_comp_3GA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3GA     C2      C       CH2     0       12.888      -14.444     22.424      
+3GA     C3      C       CH2     0       12.998      -13.757     23.771      
+3GA     N       N       NT3     1       15.896      -11.361     19.948      
+3GA     CA      C       CH1     0       14.508      -11.370     19.405      
+3GA     C       C       C1      0       14.390      -10.351     18.312      
+3GA     O       O       O       0       14.939      -10.516     17.268      
+3GA     CB      C       CH2     0       13.482      -11.094     20.504      
+3GA     CZ      C       C       0       11.049      -12.386     24.561      
+3GA     NE      N       NR6     0       12.169      -12.540     23.790      
+3GA     C1      C       CH2     0       12.966      -13.463     21.266      
+3GA     CG      C       CH1     0       13.451      -12.074     21.685      
+3GA     CD      C       CH2     0       12.618      -11.519     22.825      
+3GA     NH1     N       NH2     1       10.371      -13.450     25.030      
+3GA     NH2     N       NH2     0       10.694      -11.174     24.928      
+3GA     H21     H       H       0       13.605      -15.097     22.340      
+3GA     H22     H       H       0       12.043      -14.924     22.380      
+3GA     H31     H       H       0       12.718      -14.376     24.479      
+3GA     H32     H       H       0       13.936      -13.518     23.943      
+3GA     H       H       H       0       16.060      -12.139     20.391      
+3GA     H2      H       H       0       16.002      -10.662     20.522      
+3GA     H4      H       H       0       16.499      -11.282     19.269      
+3GA     HA      H       H       0       14.326      -12.259     19.024      
+3GA     H3      H       H       0       13.871      -9.573      18.465      
+3GA     HB1     H       H       0       12.590      -11.083     20.095      
+3GA     HB2     H       H       0       13.648      -10.194     20.860      
+3GA     H11     H       H       0       12.089      -13.380     20.859      
+3GA     H12     H       H       0       13.569      -13.818     20.594      
+3GA     HG      H       H       0       14.379      -12.166     22.009      
+3GA     HD1     H       H       0       13.145      -10.842     23.299      
+3GA     HD2     H       H       0       11.833      -11.069     22.449      
+3GA     HN11    H       H       0       10.527      -14.261     24.738      
+3GA     HH12    H       H       0       9.759       -13.332     25.651      
+3GA     HN21    H       H       0       11.133      -10.458     24.664      
+3GA     HN22    H       H       0       9.994       -11.075     25.453      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3GA          C2          C3      SINGLE       n     1.515  0.0114     1.515  0.0114
+3GA          C2          C1      SINGLE       n     1.517  0.0103     1.517  0.0103
+3GA          C3          NE      SINGLE       n     1.467  0.0100     1.467  0.0100
+3GA           N          CA      SINGLE       n     1.488  0.0100     1.488  0.0100
+3GA          CA           C      SINGLE       n     1.498  0.0100     1.498  0.0100
+3GA          CA          CB      SINGLE       n     1.527  0.0109     1.527  0.0109
+3GA           C           O      DOUBLE       n     1.191  0.0200     1.191  0.0200
+3GA          CB          CG      SINGLE       n     1.532  0.0111     1.532  0.0111
+3GA          CZ          NE      SINGLE       n     1.333  0.0184     1.333  0.0184
+3GA          CZ         NH1      DOUBLE       n     1.329  0.0200     1.329  0.0200
+3GA          CZ         NH2      SINGLE       n     1.310  0.0100     1.310  0.0100
+3GA          NE          CD      SINGLE       n     1.466  0.0100     1.466  0.0100
+3GA          C1          CG      SINGLE       n     1.526  0.0112     1.526  0.0112
+3GA          CG          CD      SINGLE       n     1.511  0.0100     1.511  0.0100
+3GA          C2         H21      SINGLE       n     1.089  0.0100     0.973  0.0100
+3GA          C2         H22      SINGLE       n     1.089  0.0100     0.973  0.0100
+3GA          C3         H31      SINGLE       n     1.089  0.0100     0.983  0.0130
+3GA          C3         H32      SINGLE       n     1.089  0.0100     0.983  0.0130
+3GA           N           H      SINGLE       n     1.036  0.0160     0.911  0.0200
+3GA           N          H2      SINGLE       n     1.036  0.0160     0.911  0.0200
+3GA           N          H4      SINGLE       n     1.036  0.0160     0.911  0.0200
+3GA          CA          HA      SINGLE       n     1.089  0.0100     0.985  0.0200
+3GA           C          H3      SINGLE       n     1.082  0.0130     0.947  0.0200
+3GA          CB         HB1      SINGLE       n     1.089  0.0100     0.981  0.0200
+3GA          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0200
+3GA          C1         H11      SINGLE       n     1.089  0.0100     0.970  0.0100
+3GA          C1         H12      SINGLE       n     1.089  0.0100     0.970  0.0100
+3GA          CG          HG      SINGLE       n     1.089  0.0100     0.988  0.0159
+3GA          CD         HD1      SINGLE       n     1.089  0.0100     0.980  0.0103
+3GA          CD         HD2      SINGLE       n     1.089  0.0100     0.980  0.0103
+3GA         NH1        HN11      SINGLE       n     1.016  0.0100     0.879  0.0200
+3GA         NH1        HH12      SINGLE       n     1.016  0.0100     0.879  0.0200
+3GA         NH2        HN21      SINGLE       n     1.016  0.0100     0.881  0.0200
+3GA         NH2        HN22      SINGLE       n     1.016  0.0100     0.881  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3GA          C3          C2          C1     111.801    1.55
+3GA          C3          C2         H21     109.380    1.50
+3GA          C3          C2         H22     109.380    1.50
+3GA          C1          C2         H21     109.500    1.50
+3GA          C1          C2         H22     109.500    1.50
+3GA         H21          C2         H22     108.022    1.50
+3GA          C2          C3          NE     110.384    1.50
+3GA          C2          C3         H31     109.566    1.50
+3GA          C2          C3         H32     109.566    1.50
+3GA          NE          C3         H31     109.588    1.50
+3GA          NE          C3         H32     109.588    1.50
+3GA         H31          C3         H32     108.159    1.50
+3GA          CA           N           H     109.853    1.85
+3GA          CA           N          H2     109.853    1.85
+3GA          CA           N          H4     109.853    1.85
+3GA           H           N          H2     109.028    2.41
+3GA           H           N          H4     109.028    2.41
+3GA          H2           N          H4     109.028    2.41
+3GA           N          CA           C     109.415    1.50
+3GA           N          CA          CB     110.361    1.54
+3GA           N          CA          HA     108.444    1.50
+3GA           C          CA          CB     110.778    2.06
+3GA           C          CA          HA     108.585    1.50
+3GA          CB          CA          HA     108.236    1.50
+3GA          CA           C           O     120.549    1.50
+3GA          CA           C          H3     118.860    1.52
+3GA           O           C          H3     120.591    1.50
+3GA          CA          CB          CG     113.198    2.74
+3GA          CA          CB         HB1     108.507    1.50
+3GA          CA          CB         HB2     108.507    1.50
+3GA          CG          CB         HB1     108.361    1.50
+3GA          CG          CB         HB2     108.361    1.50
+3GA         HB1          CB         HB2     107.474    1.50
+3GA          NE          CZ         NH1     119.114    3.00
+3GA          NE          CZ         NH2     119.114    3.00
+3GA         NH1          CZ         NH2     121.772    1.50
+3GA          C3          NE          CZ     123.361    1.50
+3GA          C3          NE          CD     113.277    1.50
+3GA          CZ          NE          CD     123.361    1.50
+3GA          C2          C1          CG     112.072    1.50
+3GA          C2          C1         H11     109.433    1.50
+3GA          C2          C1         H12     109.433    1.50
+3GA          CG          C1         H11     109.162    1.50
+3GA          CG          C1         H12     109.162    1.50
+3GA         H11          C1         H12     107.919    1.50
+3GA          CB          CG          C1     111.907    1.50
+3GA          CB          CG          CD     112.291    2.45
+3GA          CB          CG          HG     107.292    1.50
+3GA          C1          CG          CD     109.880    1.50
+3GA          C1          CG          HG     107.583    1.50
+3GA          CD          CG          HG     107.832    1.50
+3GA          NE          CD          CG     110.639    1.50
+3GA          NE          CD         HD1     109.531    1.50
+3GA          NE          CD         HD2     109.531    1.50
+3GA          CG          CD         HD1     109.290    1.50
+3GA          CG          CD         HD2     109.290    1.50
+3GA         HD1          CD         HD2     107.931    1.50
+3GA          CZ         NH1        HN11     119.717    3.00
+3GA          CZ         NH1        HH12     119.717    3.00
+3GA        HN11         NH1        HH12     120.566    2.35
+3GA          CZ         NH2        HN21     119.717    3.00
+3GA          CZ         NH2        HN22     119.717    3.00
+3GA        HN21         NH2        HN22     120.566    2.35
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3GA             sp3_sp3_1          C1          C2          C3          NE      60.000    10.0     3
+3GA            sp3_sp3_28          CG          C1          C2          C3     180.000    10.0     3
+3GA            sp3_sp3_11          NE          CD          CG          CB      60.000    10.0     3
+3GA             sp2_sp3_4          CZ          NE          C3          C2     180.000    10.0     6
+3GA            sp3_sp3_37           C          CA           N           H     180.000    10.0     3
+3GA            sp2_sp3_13           O           C          CA           N       0.000    10.0     6
+3GA            sp3_sp3_46           N          CA          CB          CG     180.000    10.0     3
+3GA            sp3_sp3_55          CA          CB          CG          C1     180.000    10.0     3
+3GA             sp2_sp2_7         NH2          CZ         NH1        HN11       0.000     5.0     2
+3GA            sp2_sp2_11         NH1          CZ         NH2        HN21       0.000     5.0     2
+3GA             sp2_sp2_1         NH1          CZ          NE          C3     180.000     5.0     2
+3GA            sp2_sp3_10          CZ          NE          CD          CG     180.000    10.0     6
+3GA            sp3_sp3_20          C2          C1          CG          CB     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+3GA    chir_1    CA    N    C    CB    positive
+3GA    chir_2    CG    CD    CB    C1    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3GA    plan-1           C   0.020
+3GA    plan-1          CA   0.020
+3GA    plan-1          H3   0.020
+3GA    plan-1           O   0.020
+3GA    plan-2          CZ   0.020
+3GA    plan-2          NE   0.020
+3GA    plan-2         NH1   0.020
+3GA    plan-2         NH2   0.020
+3GA    plan-3          C3   0.020
+3GA    plan-3          CD   0.020
+3GA    plan-3          CZ   0.020
+3GA    plan-3          NE   0.020
+3GA    plan-4          CZ   0.020
+3GA    plan-4        HH12   0.020
+3GA    plan-4        HN11   0.020
+3GA    plan-4         NH1   0.020
+3GA    plan-5          CZ   0.020
+3GA    plan-5        HN21   0.020
+3GA    plan-5        HN22   0.020
+3GA    plan-5         NH2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3GA           SMILES              ACDLabs 12.01                                                                 O=CC(N)CC1CCCN(C(=[N@H])N)C1
+3GA SMILES_CANONICAL               CACTVS 3.370                                                           N[C@@H](C[C@@H]1CCCN(C1)C(N)=N)C=O
+3GA           SMILES               CACTVS 3.370                                                               N[CH](C[CH]1CCCN(C1)C(N)=N)C=O
+3GA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                    "[H]/N=C(\N)/N1CCC[C@H](C1)C[C@@H](C=O)N"
+3GA           SMILES "OpenEye OEToolkits" 1.7.0                                                                   C1CC(CN(C1)C(=N)N)CC(C=O)N
+3GA            InChI                InChI  1.03 InChI=1S/C9H18N4O/c10-8(6-14)4-7-2-1-3-13(5-7)9(11)12/h6-8H,1-5,10H2,(H3,11,12)/t7-,8-/m0/s1
+3GA         InChIKey                InChI  1.03                                                                  IRUHYIZUOLOUAT-YUMQZZPRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3GA acedrg               243         "dictionary generator"                  
+3GA acedrg_database      11          "data source"                           
+3GA rdkit                2017.03.2   "Chemoinformatics tool"
+3GA refmac5              5.8.0238    "optimization tool"                     

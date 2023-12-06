@@ -1,0 +1,621 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KXM     KXM      "[(2R,3S,4R,5R)-5-(6-amino-9H-purin-9-yl)-3,4-dihydroxytetrahydrofuran-2-yl]methyl (2R,3R,4R)-5-[(4aR)-7,8-dimethyl-2,4-dioxo-5-(2-phenylethyl)-3,4,4a,5-tetrahydrobenzo[g]pteridin-10(2H)-yl]-2,3,4-trihydroxypentyl dihydrogen diphosphate (non-preferred name)"     NON-POLYMER     102     61     .     
+#
+data_comp_KXM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KXM     C4      C       CR66    0       28.716      -48.024     14.354      
+KXM     C14     C       CR16    0       33.356      -50.354     13.862      
+KXM     C5      C       CR66    0       28.003      -49.273     14.320      
+KXM     C6      C       CR16    0       26.849      -49.397     13.533      
+KXM     C11     C       CR6     0       30.767      -51.342     13.504      
+KXM     C7      C       CR6     0       26.393      -48.339     12.783      
+KXM     C8      C       CH3     0       25.156      -48.498     11.938      
+KXM     C9      C       CH2     0       28.520      -51.731     14.585      
+KXM     C10     C       CH2     0       29.368      -51.875     13.317      
+KXM     C12     C       CR16    0       31.697      -52.041     14.266      
+KXM     C13     C       CR16    0       32.985      -51.549     14.443      
+KXM     N1      N       NR6     0       28.485      -50.348     15.110      
+KXM     N2      N       NR6     0       30.821      -50.962     17.717      
+KXM     C3      C       CR16    0       28.231      -46.953     13.591      
+KXM     N3      N       NRD6    0       31.144      -48.767     16.954      
+KXM     C1      C       CH3     0       26.620      -45.915     11.997      
+KXM     C15     C       CR16    0       32.445      -49.649     13.106      
+KXM     C16     C       CR16    0       31.157      -50.138     12.928      
+KXM     C17     C       CH1     0       28.995      -49.896     16.432      
+KXM     C18     C       CR6     0       29.497      -50.988     17.367      
+KXM     C19     C       CR6     0       31.598      -49.863     17.518      
+KXM     C2      C       CR6     0       27.105      -47.085     12.812      
+KXM     C20     C       CR66    0       30.075      -48.836     16.231      
+KXM     C21     C       CH2     0       30.893      -46.843     14.932      
+KXM     C22     C       CH1     0       30.583      -45.588     15.739      
+KXM     C23     C       CH1     0       31.465      -44.400     15.335      
+KXM     C24     C       CH1     0       31.391      -43.183     16.264      
+KXM     C25     C       CH2     0       29.980      -42.684     16.485      
+KXM     C26     C       CH2     0       26.114      -40.899     20.810      
+KXM     C27     C       CH1     0       25.793      -39.661     21.611      
+KXM     C28     C       CH1     0       23.686      -39.509     22.639      
+KXM     C29     C       CR15    0       22.294      -41.389     21.675      
+KXM     C30     C       CR56    0       20.314      -40.768     22.155      
+KXM     C31     C       CR6     0       18.926      -40.589     22.347      
+KXM     C32     C       CR16    0       19.454      -38.603     23.426      
+KXM     C33     C       CR56    0       21.157      -39.786     22.651      
+KXM     C34     C       CH1     0       24.608      -40.285     23.576      
+KXM     C35     C       CH1     0       25.980      -39.774     23.129      
+KXM     N4      N       NR6     0       29.883      -47.922     15.184      
+KXM     N5      N       NR5     0       22.433      -40.195     22.340      
+KXM     N6      N       NRD5    0       21.049      -41.772     21.544      
+KXM     N7      N       NH2     0       18.006      -41.453     21.923      
+KXM     N8      N       NRD6    0       18.521      -39.470     23.002      
+KXM     N9      N       NRD6    0       20.780      -38.669     23.302      
+KXM     O1      O       O       0       28.764      -51.838     17.830      
+KXM     O10     O       O       0       27.321      -43.539     20.131      
+KXM     O11     O       OP      -1      29.618      -42.400     20.139      
+KXM     O12     O       O2      0       27.548      -41.115     20.812      
+KXM     O13     O       O2      0       24.391      -39.333     21.430      
+KXM     O14     O       OH1     0       24.324      -40.001     24.929      
+KXM     O15     O       OH1     0       26.304      -38.512     23.698      
+KXM     O2      O       O       0       32.753      -49.891     17.870      
+KXM     O3      O       OH1     0       30.749      -45.863     17.131      
+KXM     O4      O       OH1     0       31.115      -43.985     14.017      
+KXM     O5      O       OH1     0       31.972      -43.512     17.528      
+KXM     O6      O       O2      0       30.010      -41.427     17.216      
+KXM     O7      O       OP      -1      28.938      -39.468     18.365      
+KXM     O8      O       O       0       27.881      -40.492     16.256      
+KXM     O9      O       O2      0       27.873      -41.753     18.443      
+KXM     P1      P       P       0       28.631      -40.670     17.534      
+KXM     P2      P       P       0       28.143      -42.310     19.923      
+KXM     H1      H       H       0       34.231      -50.021     13.982      
+KXM     H2      H       H       0       26.381      -50.212     13.509      
+KXM     H3      H       H       0       24.506      -47.818     12.179      
+KXM     H4      H       H       0       24.765      -49.375     12.081      
+KXM     H5      H       H       0       25.388      -48.402     11.000      
+KXM     H6      H       H       0       28.877      -52.339     15.268      
+KXM     H7      H       H       0       27.600      -52.017     14.387      
+KXM     H8      H       H       0       29.416      -52.822     13.069      
+KXM     H9      H       H       0       28.934      -51.396     12.580      
+KXM     H10     H       H       0       31.450      -52.859     14.666      
+KXM     H11     H       H       0       33.606      -52.035     14.961      
+KXM     H12     H       H       0       31.175      -51.685     18.082      
+KXM     H13     H       H       0       28.681      -46.128     13.596      
+KXM     H14     H       H       0       26.581      -46.165     11.059      
+KXM     H15     H       H       0       27.223      -45.162     12.101      
+KXM     H16     H       H       0       25.733      -45.657     12.295      
+KXM     H17     H       H       0       32.696      -48.831     12.707      
+KXM     H18     H       H       0       30.539      -49.649     12.409      
+KXM     H19     H       H       0       28.246      -49.457     16.900      
+KXM     H20     H       H       0       31.784      -47.162     15.165      
+KXM     H21     H       H       0       30.905      -46.624     13.982      
+KXM     H22     H       H       0       29.635      -45.342     15.588      
+KXM     H23     H       H       0       32.406      -44.713     15.316      
+KXM     H24     H       H       0       31.927      -42.440     15.856      
+KXM     H25     H       H       0       29.471      -43.345     16.998      
+KXM     H26     H       H       0       29.535      -42.551     15.623      
+KXM     H27     H       H       0       25.793      -40.786     19.882      
+KXM     H28     H       H       0       25.656      -41.680     21.208      
+KXM     H29     H       H       0       26.340      -38.922     21.269      
+KXM     H30     H       H       0       23.494      -38.631     23.038      
+KXM     H31     H       H       0       23.025      -41.886     21.350      
+KXM     H32     H       H       0       19.125      -37.840     23.876      
+KXM     H33     H       H       0       24.533      -41.261     23.411      
+KXM     H34     H       H       0       26.684      -40.440     23.342      
+KXM     H35     H       H       0       17.159      -41.317     22.111      
+KXM     H36     H       H       0       18.250      -42.156     21.457      
+KXM     H38     H       H       0       24.892      -40.395     25.421      
+KXM     H39     H       H       0       26.398      -38.606     24.536      
+KXM     H40     H       H       0       31.557      -46.068     17.290      
+KXM     H41     H       H       0       31.755      -43.527     13.700      
+KXM     H42     H       H       0       32.085      -42.819     18.003      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KXM         C14         C15      DOUBLE       y     1.374  0.0127     1.374  0.0127
+KXM         C14         C13      SINGLE       y     1.376  0.0124     1.376  0.0124
+KXM         C15         C16      SINGLE       y     1.386  0.0100     1.386  0.0100
+KXM         C12         C13      DOUBLE       y     1.386  0.0100     1.386  0.0100
+KXM         C11         C16      DOUBLE       y     1.385  0.0111     1.385  0.0111
+KXM         C11         C12      SINGLE       y     1.385  0.0111     1.385  0.0111
+KXM         C11         C10      SINGLE       n     1.508  0.0100     1.508  0.0100
+KXM          C9         C10      SINGLE       n     1.529  0.0159     1.529  0.0159
+KXM         C23          O4      SINGLE       n     1.424  0.0199     1.424  0.0199
+KXM         C21          N4      SINGLE       n     1.483  0.0144     1.483  0.0144
+KXM         C21         C22      SINGLE       n     1.517  0.0189     1.517  0.0189
+KXM          C5          N1      SINGLE       n     1.406  0.0200     1.406  0.0200
+KXM          C9          N1      SINGLE       n     1.473  0.0100     1.473  0.0100
+KXM          N1         C17      SINGLE       n     1.466  0.0200     1.466  0.0200
+KXM          C4          N4      SINGLE       n     1.414  0.0133     1.414  0.0133
+KXM         C20          N4      SINGLE       n     1.359  0.0200     1.359  0.0200
+KXM          C4          C5      SINGLE       y     1.410  0.0197     1.410  0.0197
+KXM          C5          C6      DOUBLE       y     1.399  0.0100     1.399  0.0100
+KXM          N3         C20      DOUBLE       n     1.287  0.0100     1.287  0.0100
+KXM          N3         C19      SINGLE       n     1.307  0.0137     1.307  0.0137
+KXM          C4          C3      DOUBLE       y     1.393  0.0100     1.393  0.0100
+KXM          C6          C7      SINGLE       y     1.370  0.0100     1.370  0.0100
+KXM         C17         C20      SINGLE       n     1.521  0.0100     1.521  0.0100
+KXM          C3          C2      SINGLE       y     1.370  0.0100     1.370  0.0100
+KXM          N2         C19      SINGLE       n     1.358  0.0100     1.358  0.0100
+KXM          N2         C18      SINGLE       n     1.363  0.0166     1.363  0.0166
+KXM         C19          O2      DOUBLE       n     1.207  0.0100     1.207  0.0100
+KXM          C7          C2      DOUBLE       y     1.437  0.0100     1.437  0.0100
+KXM          C7          C8      SINGLE       n     1.504  0.0100     1.504  0.0100
+KXM          C1          C2      SINGLE       n     1.504  0.0100     1.504  0.0100
+KXM         C17         C18      SINGLE       n     1.512  0.0152     1.512  0.0152
+KXM         C18          O1      DOUBLE       n     1.214  0.0100     1.214  0.0100
+KXM         C22         C23      SINGLE       n     1.531  0.0100     1.531  0.0100
+KXM         C23         C24      SINGLE       n     1.530  0.0100     1.530  0.0100
+KXM         C22          O3      SINGLE       n     1.424  0.0199     1.424  0.0199
+KXM          O8          P1      DOUBLE       n     1.493  0.0122     1.493  0.0122
+KXM         C24         C25      SINGLE       n     1.511  0.0100     1.511  0.0100
+KXM         C25          O6      SINGLE       n     1.454  0.0165     1.454  0.0165
+KXM         C24          O5      SINGLE       n     1.429  0.0100     1.429  0.0100
+KXM          O9          P1      SINGLE       n     1.604  0.0133     1.604  0.0133
+KXM          O9          P2      SINGLE       n     1.604  0.0133     1.604  0.0133
+KXM          O6          P1      SINGLE       n     1.604  0.0133     1.604  0.0133
+KXM          O7          P1      SINGLE       n     1.493  0.0122     1.493  0.0122
+KXM         O10          P2      DOUBLE       n     1.493  0.0122     1.493  0.0122
+KXM         O11          P2      SINGLE       n     1.493  0.0122     1.493  0.0122
+KXM         O12          P2      SINGLE       n     1.604  0.0133     1.604  0.0133
+KXM         C29          N6      DOUBLE       y     1.310  0.0100     1.310  0.0100
+KXM         C30          N6      SINGLE       y     1.388  0.0100     1.388  0.0100
+KXM         C26         O12      SINGLE       n     1.450  0.0166     1.450  0.0166
+KXM         C26         C27      SINGLE       n     1.509  0.0100     1.509  0.0100
+KXM         C29          N5      SINGLE       y     1.372  0.0100     1.372  0.0100
+KXM         C31          N7      SINGLE       n     1.330  0.0100     1.330  0.0100
+KXM         C30         C31      DOUBLE       y     1.408  0.0100     1.408  0.0100
+KXM         C30         C33      SINGLE       y     1.381  0.0100     1.381  0.0100
+KXM         C31          N8      SINGLE       y     1.354  0.0100     1.354  0.0100
+KXM         C27         O13      SINGLE       n     1.451  0.0100     1.451  0.0100
+KXM         C28         O13      SINGLE       n     1.409  0.0100     1.409  0.0100
+KXM         C33          N5      SINGLE       y     1.374  0.0101     1.374  0.0101
+KXM         C28          N5      SINGLE       n     1.458  0.0100     1.458  0.0100
+KXM         C27         C35      SINGLE       n     1.535  0.0100     1.535  0.0100
+KXM         C33          N9      DOUBLE       y     1.343  0.0100     1.343  0.0100
+KXM         C28         C34      SINGLE       n     1.525  0.0100     1.525  0.0100
+KXM         C34         C35      SINGLE       n     1.531  0.0100     1.531  0.0100
+KXM         C34         O14      SINGLE       n     1.411  0.0100     1.411  0.0100
+KXM         C35         O15      SINGLE       n     1.422  0.0100     1.422  0.0100
+KXM         C32          N8      DOUBLE       y     1.339  0.0100     1.339  0.0100
+KXM         C32          N9      SINGLE       y     1.330  0.0100     1.330  0.0100
+KXM         C14          H1      SINGLE       n     1.082  0.0130     0.944  0.0161
+KXM          C6          H2      SINGLE       n     1.082  0.0130     0.941  0.0127
+KXM          C8          H3      SINGLE       n     1.089  0.0100     0.971  0.0135
+KXM          C8          H4      SINGLE       n     1.089  0.0100     0.971  0.0135
+KXM          C8          H5      SINGLE       n     1.089  0.0100     0.971  0.0135
+KXM          C9          H6      SINGLE       n     1.089  0.0100     0.984  0.0111
+KXM          C9          H7      SINGLE       n     1.089  0.0100     0.984  0.0111
+KXM         C10          H8      SINGLE       n     1.089  0.0100     0.980  0.0128
+KXM         C10          H9      SINGLE       n     1.089  0.0100     0.980  0.0128
+KXM         C12         H10      SINGLE       n     1.082  0.0130     0.944  0.0174
+KXM         C13         H11      SINGLE       n     1.082  0.0130     0.944  0.0175
+KXM          N2         H12      SINGLE       n     1.016  0.0100     0.882  0.0200
+KXM          C3         H13      SINGLE       n     1.082  0.0130     0.941  0.0127
+KXM          C1         H14      SINGLE       n     1.089  0.0100     0.971  0.0135
+KXM          C1         H15      SINGLE       n     1.089  0.0100     0.971  0.0135
+KXM          C1         H16      SINGLE       n     1.089  0.0100     0.971  0.0135
+KXM         C15         H17      SINGLE       n     1.082  0.0130     0.944  0.0175
+KXM         C16         H18      SINGLE       n     1.082  0.0130     0.944  0.0174
+KXM         C17         H19      SINGLE       n     1.089  0.0100     0.986  0.0195
+KXM         C21         H20      SINGLE       n     1.089  0.0100     0.976  0.0163
+KXM         C21         H21      SINGLE       n     1.089  0.0100     0.976  0.0163
+KXM         C22         H22      SINGLE       n     1.089  0.0100     0.992  0.0184
+KXM         C23         H23      SINGLE       n     1.089  0.0100     0.992  0.0184
+KXM         C24         H24      SINGLE       n     1.089  0.0100     1.004  0.0200
+KXM         C25         H25      SINGLE       n     1.089  0.0100     0.980  0.0146
+KXM         C25         H26      SINGLE       n     1.089  0.0100     0.980  0.0146
+KXM         C26         H27      SINGLE       n     1.089  0.0100     0.989  0.0200
+KXM         C26         H28      SINGLE       n     1.089  0.0100     0.989  0.0200
+KXM         C27         H29      SINGLE       n     1.089  0.0100     0.981  0.0200
+KXM         C28         H30      SINGLE       n     1.089  0.0100     0.984  0.0200
+KXM         C29         H31      SINGLE       n     1.082  0.0130     0.942  0.0170
+KXM         C32         H32      SINGLE       n     1.082  0.0130     0.945  0.0200
+KXM         C34         H33      SINGLE       n     1.089  0.0100     0.994  0.0200
+KXM         C35         H34      SINGLE       n     1.089  0.0100     0.992  0.0200
+KXM          N7         H35      SINGLE       n     1.016  0.0100     0.877  0.0200
+KXM          N7         H36      SINGLE       n     1.016  0.0100     0.877  0.0200
+KXM         O14         H38      SINGLE       n     0.970  0.0120     0.849  0.0200
+KXM         O15         H39      SINGLE       n     0.970  0.0120     0.849  0.0200
+KXM          O3         H40      SINGLE       n     0.970  0.0120     0.848  0.0200
+KXM          O4         H41      SINGLE       n     0.970  0.0120     0.848  0.0200
+KXM          O5         H42      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KXM          N4          C4          C5     118.958    1.50
+KXM          N4          C4          C3     121.341    1.50
+KXM          C5          C4          C3     119.701    1.50
+KXM         C15         C14         C13     120.043    1.50
+KXM         C15         C14          H1     119.979    1.50
+KXM         C13         C14          H1     119.979    1.50
+KXM          N1          C5          C4     119.206    1.50
+KXM          N1          C5          C6     121.094    1.61
+KXM          C4          C5          C6     119.701    1.50
+KXM          C5          C6          C7     120.539    1.50
+KXM          C5          C6          H2     120.082    1.50
+KXM          C7          C6          H2     119.380    1.50
+KXM         C16         C11         C12     118.060    1.50
+KXM         C16         C11         C10     120.970    1.50
+KXM         C12         C11         C10     120.970    1.50
+KXM          C6          C7          C2     119.761    1.50
+KXM          C6          C7          C8     119.918    1.50
+KXM          C2          C7          C8     120.321    1.50
+KXM          C7          C8          H3     109.765    1.50
+KXM          C7          C8          H4     109.765    1.50
+KXM          C7          C8          H5     109.765    1.50
+KXM          H3          C8          H4     109.348    1.50
+KXM          H3          C8          H5     109.348    1.50
+KXM          H4          C8          H5     109.348    1.50
+KXM         C10          C9          N1     112.772    1.96
+KXM         C10          C9          H6     109.088    1.50
+KXM         C10          C9          H7     109.088    1.50
+KXM          N1          C9          H6     108.783    1.50
+KXM          N1          C9          H7     108.783    1.50
+KXM          H6          C9          H7     107.868    1.50
+KXM         C11         C10          C9     111.835    2.28
+KXM         C11         C10          H8     109.277    1.50
+KXM         C11         C10          H9     109.277    1.50
+KXM          C9         C10          H8     109.255    1.50
+KXM          C9         C10          H9     109.255    1.50
+KXM          H8         C10          H9     107.920    1.50
+KXM         C13         C12         C11     120.624    1.50
+KXM         C13         C12         H10     119.786    1.50
+KXM         C11         C12         H10     119.591    1.50
+KXM         C14         C13         C12     120.325    1.50
+KXM         C14         C13         H11     119.883    1.50
+KXM         C12         C13         H11     119.792    1.50
+KXM          C5          N1          C9     120.846    1.50
+KXM          C5          N1         C17     120.680    3.00
+KXM          C9          N1         C17     118.474    2.52
+KXM         C19          N2         C18     123.340    2.15
+KXM         C19          N2         H12     118.646    1.80
+KXM         C18          N2         H12     118.015    1.50
+KXM          C4          C3          C2     120.539    1.50
+KXM          C4          C3         H13     120.082    1.50
+KXM          C2          C3         H13     119.380    1.50
+KXM         C20          N3         C19     118.603    1.95
+KXM          C2          C1         H14     109.765    1.50
+KXM          C2          C1         H15     109.765    1.50
+KXM          C2          C1         H16     109.765    1.50
+KXM         H14          C1         H15     109.348    1.50
+KXM         H14          C1         H16     109.348    1.50
+KXM         H15          C1         H16     109.348    1.50
+KXM         C14         C15         C16     120.325    1.50
+KXM         C14         C15         H17     119.883    1.50
+KXM         C16         C15         H17     119.792    1.50
+KXM         C15         C16         C11     120.624    1.50
+KXM         C15         C16         H18     119.786    1.50
+KXM         C11         C16         H18     119.591    1.50
+KXM          N1         C17         C20     112.448    1.62
+KXM          N1         C17         C18     110.220    2.25
+KXM          N1         C17         H19     108.138    1.50
+KXM         C20         C17         C18     111.227    1.79
+KXM         C20         C17         H19     108.076    1.68
+KXM         C18         C17         H19     107.441    1.66
+KXM          N2         C18         C17     118.106    1.50
+KXM          N2         C18          O1     119.776    1.50
+KXM         C17         C18          O1     122.118    1.93
+KXM          N3         C19          N2     123.105    1.50
+KXM          N3         C19          O2     118.264    1.68
+KXM          N2         C19          O2     118.631    1.61
+KXM          C3          C2          C7     119.761    1.50
+KXM          C3          C2          C1     119.918    1.50
+KXM          C7          C2          C1     120.321    1.50
+KXM          N4         C20          N3     118.044    1.50
+KXM          N4         C20         C17     117.429    1.99
+KXM          N3         C20         C17     124.527    2.03
+KXM          N4         C21         C22     111.875    1.74
+KXM          N4         C21         H20     109.092    1.50
+KXM          N4         C21         H21     109.092    1.50
+KXM         C22         C21         H20     109.194    1.50
+KXM         C22         C21         H21     109.194    1.50
+KXM         H20         C21         H21     107.868    1.50
+KXM         C21         C22         C23     110.999    2.33
+KXM         C21         C22          O3     109.698    2.33
+KXM         C21         C22         H22     108.757    1.75
+KXM         C23         C22          O3     109.320    2.01
+KXM         C23         C22         H22     108.450    1.83
+KXM          O3         C22         H22     108.183    1.96
+KXM          O4         C23         C22     109.320    2.01
+KXM          O4         C23         C24     109.164    1.97
+KXM          O4         C23         H23     108.243    1.50
+KXM         C22         C23         C24     113.695    2.13
+KXM         C22         C23         H23     108.450    1.83
+KXM         C24         C23         H23     108.336    1.50
+KXM         C23         C24         C25     112.503    1.50
+KXM         C23         C24          O5     109.549    1.85
+KXM         C23         C24         H24     108.777    1.50
+KXM         C25         C24          O5     109.314    1.96
+KXM         C25         C24         H24     108.656    1.50
+KXM          O5         C24         H24     108.591    1.50
+KXM         C24         C25          O6     109.438    2.56
+KXM         C24         C25         H25     109.582    1.50
+KXM         C24         C25         H26     109.582    1.50
+KXM          O6         C25         H25     109.393    1.91
+KXM          O6         C25         H26     109.393    1.91
+KXM         H25         C25         H26     108.319    1.50
+KXM         O12         C26         C27     109.342    1.50
+KXM         O12         C26         H27     109.845    1.50
+KXM         O12         C26         H28     109.845    1.50
+KXM         C27         C26         H27     109.624    1.50
+KXM         C27         C26         H28     109.624    1.50
+KXM         H27         C26         H28     108.472    1.50
+KXM         C26         C27         O13     109.123    1.50
+KXM         C26         C27         C35     116.008    1.52
+KXM         C26         C27         H29     108.268    1.50
+KXM         O13         C27         C35     105.388    1.50
+KXM         O13         C27         H29     108.947    1.50
+KXM         C35         C27         H29     109.363    1.86
+KXM         O13         C28          N5     108.477    1.50
+KXM         O13         C28         C34     106.047    1.50
+KXM         O13         C28         H30     109.807    1.50
+KXM          N5         C28         C34     113.824    1.50
+KXM          N5         C28         H30     109.561    1.50
+KXM         C34         C28         H30     109.015    1.50
+KXM          N6         C29          N5     113.469    1.50
+KXM          N6         C29         H31     123.326    1.50
+KXM          N5         C29         H31     123.206    1.50
+KXM          N6         C30         C31     132.250    1.50
+KXM          N6         C30         C33     110.483    1.50
+KXM         C31         C30         C33     117.267    1.50
+KXM          N7         C31         C30     123.792    1.50
+KXM          N7         C31          N8     118.799    1.50
+KXM         C30         C31          N8     117.409    1.50
+KXM          N8         C32          N9     129.332    1.50
+KXM          N8         C32         H32     115.313    1.50
+KXM          N9         C32         H32     115.355    1.50
+KXM         C30         C33          N5     105.616    1.50
+KXM         C30         C33          N9     126.489    1.50
+KXM          N5         C33          N9     127.895    1.50
+KXM         C28         C34         C35     101.239    1.50
+KXM         C28         C34         O14     111.715    2.69
+KXM         C28         C34         H33     110.636    1.70
+KXM         C35         C34         O14     112.782    2.45
+KXM         C35         C34         H33     110.596    1.51
+KXM         O14         C34         H33     110.448    1.97
+KXM         C27         C35         C34     102.602    1.50
+KXM         C27         C35         O15     111.281    2.46
+KXM         C27         C35         H34     110.452    2.54
+KXM         C34         C35         O15     111.581    2.83
+KXM         C34         C35         H34     110.504    1.75
+KXM         O15         C35         H34     110.380    1.67
+KXM         C21          N4          C4     119.382    1.50
+KXM         C21          N4         C20     119.757    1.68
+KXM          C4          N4         C20     120.861    1.97
+KXM         C29          N5         C33     105.693    1.50
+KXM         C29          N5         C28     126.848    1.91
+KXM         C33          N5         C28     127.459    1.80
+KXM         C29          N6         C30     104.739    1.50
+KXM         C31          N7         H35     119.723    1.50
+KXM         C31          N7         H36     119.723    1.50
+KXM         H35          N7         H36     120.554    1.88
+KXM         C31          N8         C32     118.521    1.50
+KXM         C33          N9         C32     110.982    1.50
+KXM          P2         O12         C26     118.553    2.41
+KXM         C27         O13         C28     109.903    1.50
+KXM         C34         O14         H38     109.103    2.13
+KXM         C35         O15         H39     108.744    3.00
+KXM         C22          O3         H40     109.265    3.00
+KXM         C23          O4         H41     108.564    3.00
+KXM         C24          O5         H42     111.202    3.00
+KXM         C25          O6          P1     119.251    1.51
+KXM          P1          O9          P2     132.542    3.00
+KXM          O8          P1          O9     108.816    2.14
+KXM          O8          P1          O6     107.912    2.57
+KXM          O8          P1          O7     118.411    2.35
+KXM          O9          P1          O6     101.065    1.97
+KXM          O9          P1          O7     108.816    2.14
+KXM          O6          P1          O7     107.912    2.57
+KXM          O9          P2         O10     108.816    2.14
+KXM          O9          P2         O11     108.816    2.14
+KXM          O9          P2         O12     101.065    1.97
+KXM         O10          P2         O11     118.411    2.35
+KXM         O10          P2         O12     109.410    1.50
+KXM         O11          P2         O12     109.410    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KXM              const_70          C2          C3          C4          N4     180.000    10.0     2
+KXM              const_33          N4          C4          C5          N1       0.000    10.0     2
+KXM            sp2_sp2_10          C5          C4          N4         C21     180.000     5.0     2
+KXM            sp2_sp3_16          C9          N1         C17         C20     180.000    10.0     6
+KXM            sp2_sp2_23          O1         C18          N2         C19     180.000     5.0     2
+KXM             sp2_sp2_3          O2         C19          N2         C18     180.000     5.0     2
+KXM              const_51          C1          C2          C3          C4     180.000    10.0     2
+KXM             sp2_sp2_6          O2         C19          N3         C20     180.000     5.0     2
+KXM             sp2_sp2_8          N4         C20          N3         C19     180.000     5.0     2
+KXM            sp2_sp3_43          C3          C2          C1         H14     150.000    10.0     6
+KXM       const_sp2_sp2_5         C14         C15         C16         C11       0.000     5.0     2
+KXM            sp2_sp3_11          O1         C18         C17          N1     -60.000    10.0     6
+KXM             sp2_sp3_1          N4         C20         C17          N1       0.000    10.0     6
+KXM              const_65         C12         C13         C14         C15       0.000    10.0     2
+KXM       const_sp2_sp2_1         C13         C14         C15         C16       0.000     5.0     2
+KXM            sp2_sp2_16          N3         C20          N4         C21       0.000     5.0     2
+KXM            sp3_sp3_37          N4         C21         C22         C23     180.000    10.0     3
+KXM            sp2_sp3_26          C4          N4         C21         C22     -90.000    10.0     6
+KXM            sp3_sp3_46         C21         C22         C23          O4     180.000    10.0     3
+KXM            sp3_sp3_64         C21         C22          O3         H40     180.000    10.0     3
+KXM            sp3_sp3_55          O4         C23         C24         C25     180.000    10.0     3
+KXM            sp3_sp3_34         C22         C23          O4         H41     180.000    10.0     3
+KXM            sp3_sp3_67         C23         C24         C25          O6     180.000    10.0     3
+KXM            sp3_sp3_79         C23         C24          O5         H42     180.000    10.0     3
+KXM            sp3_sp3_76         C24         C25          O6          P1     180.000    10.0     3
+KXM            sp3_sp3_97         O12         C26         C27         O13     180.000    10.0     3
+KXM            sp3_sp3_94         C27         C26         O12          P2     180.000    10.0     3
+KXM           sp3_sp3_110         C26         C27         C35         O15     180.000    10.0     3
+KXM             sp3_sp3_2         C26         C27         O13         C28     -60.000    10.0     3
+KXM            sp2_sp2_18          C4          C5          N1          C9     180.000     5.0     2
+KXM              const_39          N1          C5          C6          C7     180.000    10.0     2
+KXM             sp3_sp3_8         O13         C28         C34         O14     180.000    10.0     3
+KXM            sp2_sp3_49         C29          N5         C28         O13     150.000    10.0     6
+KXM             sp3_sp3_5          N5         C28         O13         C27     180.000    10.0     3
+KXM              const_73          N6         C29          N5         C33       0.000    10.0     2
+KXM              const_21          N5         C29          N6         C30       0.000    10.0     2
+KXM              const_56          N6         C30         C31          N7       0.000    10.0     2
+KXM              const_25          N6         C30         C33          N5       0.000    10.0     2
+KXM              const_24         C31         C30          N6         C29     180.000    10.0     2
+KXM            sp2_sp2_25         C30         C31          N7         H35     180.000     5.0     2
+KXM              const_58          N7         C31          N8         C32     180.000    10.0     2
+KXM              const_59          N9         C32          N8         C31       0.000    10.0     2
+KXM              const_61          N8         C32          N9         C33       0.000    10.0     2
+KXM              const_29         C30         C33          N5         C29       0.000    10.0     2
+KXM              const_63         C30         C33          N9         C32       0.000    10.0     2
+KXM            sp3_sp3_20         O14         C34         C35         O15     -60.000    10.0     3
+KXM           sp3_sp3_115         C28         C34         O14         H38     180.000    10.0     3
+KXM           sp3_sp3_118         C27         C35         O15         H39     180.000    10.0     3
+KXM              const_42          C5          C6          C7          C8     180.000    10.0     2
+KXM            sp3_sp3_91         C26         O12          P2          O9     180.000    10.0     3
+KXM              const_11         C10         C11         C16         C15     180.000    10.0     2
+KXM            sp2_sp3_20         C16         C11         C10          C9     -90.000    10.0     6
+KXM              const_15         C10         C11         C12         C13     180.000    10.0     2
+KXM            sp3_sp3_90         C25          O6          P1          O8      60.000    10.0     3
+KXM            sp3_sp3_84          P2          O9          P1          O8      60.000    10.0     3
+KXM            sp3_sp3_87          P1          O9          P2         O10      60.000    10.0     3
+KXM              const_48          C1          C2          C7          C8       0.000    10.0     2
+KXM            sp2_sp3_37          C6          C7          C8          H3     150.000    10.0     6
+KXM            sp2_sp3_32          C5          N1          C9         C10     -90.000    10.0     6
+KXM            sp3_sp3_25         C11         C10          C9          N1     180.000    10.0     3
+KXM              const_17         C11         C12         C13         C14       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KXM    chir_1    C17    N1    C18    C20    negative
+KXM    chir_2    C22    O3    C23    C21    negative
+KXM    chir_3    C23    O4    C24    C22    negative
+KXM    chir_4    C24    O5    C23    C25    negative
+KXM    chir_5    C27    O13    C35    C26    negative
+KXM    chir_6    C28    O13    N5    C34    negative
+KXM    chir_7    C34    O14    C28    C35    negative
+KXM    chir_8    C35    O15    C27    C34    positive
+KXM    chir_9    P1    O9    O6    O7    both
+KXM    chir_10    P2    O9    O12    O11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KXM    plan-1         C28   0.020
+KXM    plan-1         C29   0.020
+KXM    plan-1         C30   0.020
+KXM    plan-1         C31   0.020
+KXM    plan-1         C32   0.020
+KXM    plan-1         C33   0.020
+KXM    plan-1         H31   0.020
+KXM    plan-1         H32   0.020
+KXM    plan-1          N5   0.020
+KXM    plan-1          N6   0.020
+KXM    plan-1          N7   0.020
+KXM    plan-1          N8   0.020
+KXM    plan-1          N9   0.020
+KXM    plan-2          C1   0.020
+KXM    plan-2          C2   0.020
+KXM    plan-2          C3   0.020
+KXM    plan-2          C4   0.020
+KXM    plan-2          C5   0.020
+KXM    plan-2          C6   0.020
+KXM    plan-2          C7   0.020
+KXM    plan-2          C8   0.020
+KXM    plan-2         H13   0.020
+KXM    plan-2          H2   0.020
+KXM    plan-2          N1   0.020
+KXM    plan-2          N4   0.020
+KXM    plan-3         C10   0.020
+KXM    plan-3         C11   0.020
+KXM    plan-3         C12   0.020
+KXM    plan-3         C13   0.020
+KXM    plan-3         C14   0.020
+KXM    plan-3         C15   0.020
+KXM    plan-3         C16   0.020
+KXM    plan-3          H1   0.020
+KXM    plan-3         H10   0.020
+KXM    plan-3         H11   0.020
+KXM    plan-3         H17   0.020
+KXM    plan-3         H18   0.020
+KXM    plan-4         C17   0.020
+KXM    plan-4          C5   0.020
+KXM    plan-4          C9   0.020
+KXM    plan-4          N1   0.020
+KXM    plan-5         C18   0.020
+KXM    plan-5         C19   0.020
+KXM    plan-5         H12   0.020
+KXM    plan-5          N2   0.020
+KXM    plan-6         C17   0.020
+KXM    plan-6         C18   0.020
+KXM    plan-6          N2   0.020
+KXM    plan-6          O1   0.020
+KXM    plan-7         C19   0.020
+KXM    plan-7          N2   0.020
+KXM    plan-7          N3   0.020
+KXM    plan-7          O2   0.020
+KXM    plan-8         C17   0.020
+KXM    plan-8         C20   0.020
+KXM    plan-8          N3   0.020
+KXM    plan-8          N4   0.020
+KXM    plan-9         C20   0.020
+KXM    plan-9         C21   0.020
+KXM    plan-9          C4   0.020
+KXM    plan-9          N4   0.020
+KXM   plan-10         C31   0.020
+KXM   plan-10         H35   0.020
+KXM   plan-10         H36   0.020
+KXM   plan-10          N7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KXM           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                                       c14cc(c(cc1N(CCc2ccccc2)C3C(NC(N=C3N4CC(O)C(C(O)COP(O)(=O)OP(=O)(O)OCC7C(C(C(n6cnc5c(ncnc56)N)O7)O)O)O)=O)=O)C)C
+KXM            InChI                InChI  1.03 InChI=1S/C35H43N9O15P2/c1-17-10-20-21(11-18(17)2)43(32-26(33(50)41-35(51)40-32)42(20)9-8-19-6-4-3-5-7-19)12-22(45)27(47)23(46)13-56-60(52,53)59-61(54,55)57-14-24-28(48)29(49)34(58-24)44-16-39-25-30(36)37-15-38-31(25)44/h3-7,10-11,15-16,22-24,26-29,34,45-49H,8-9,12-14H2,1-2H3,(H,52,53)(H,54,55)(H2,36,37,38)(H,41,50,51)/t22-,23-,24-,26-,27-,28-,29-,34-/m1/s1
+KXM         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                            IGCDLEVMDDLVJB-TUIVOLRASA-N
+KXM SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                                                    Cc1cc2N(CCc3ccccc3)[C@H]4C(=O)NC(=O)N=C4N(C[C@@H](O)[C@@H](O)[C@H](O)CO[P](O)(=O)O[P](O)(=O)OC[C@H]5O[C@H]([C@H](O)[C@@H]5O)n6cnc7c(N)ncnc67)c2cc1C
+KXM           SMILES               CACTVS 3.385                                                                                                                                                                                                                               Cc1cc2N(CCc3ccccc3)[CH]4C(=O)NC(=O)N=C4N(C[CH](O)[CH](O)[CH](O)CO[P](O)(=O)O[P](O)(=O)OC[CH]5O[CH]([CH](O)[CH]5O)n6cnc7c(N)ncnc67)c2cc1C
+KXM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                                                                                                                                       Cc1cc2c(cc1C)N(C3=NC(=O)NC(=O)[C@@H]3N2CCc4ccccc4)C[C@H]([C@H]([C@@H](COP(=O)(O)OP(=O)(O)OC[C@@H]5[C@H]([C@H]([C@@H](O5)n6cnc7c6ncnc7N)O)O)O)O)O
+KXM           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                                                                                                                                                           Cc1cc2c(cc1C)N(C3=NC(=O)NC(=O)C3N2CCc4ccccc4)CC(C(C(COP(=O)(O)OP(=O)(O)OCC5C(C(C(O5)n6cnc7c6ncnc7N)O)O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KXM acedrg               243         "dictionary generator"                  
+KXM acedrg_database      11          "data source"                           
+KXM rdkit                2017.03.2   "Chemoinformatics tool"
+KXM refmac5              5.8.0238    "optimization tool"                     

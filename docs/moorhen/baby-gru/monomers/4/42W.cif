@@ -1,0 +1,281 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+42W     42W      (E)-1-benzyl-5-((1-methyl-5-oxo-2-thioxoimidazolidin-4-ylidene)methyl)pyridin-2(1H)-one     NON-POLYMER     38     23     .     
+#
+data_comp_42W
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+42W     C10     C       CR16    0       -1.821      -33.071     -15.060     
+42W     C13     C       CR6     0       -0.751      -30.939     -14.785     
+42W     C15     C       CR5     0       3.930       -30.080     -14.222     
+42W     C01     C       CH3     0       4.456       -31.974     -12.656     
+42W     N01     N       NR5     0       3.554       -31.156     -13.465     
+42W     C02     C       CH2     0       -4.281      -30.609     -13.561     
+42W     C03     C       CR16    0       -5.541      -30.255     -15.712     
+42W     C04     C       CR16    0       -6.192      -29.439     -16.630     
+42W     C05     C       CR16    0       -6.295      -28.081     -16.399     
+42W     C06     C       CR16    0       -5.751      -27.537     -15.254     
+42W     C07     C       CR16    0       -5.101      -28.351     -14.335     
+42W     C08     C       CR6     0       -4.992      -29.720     -14.553     
+42W     N02     N       NR6     0       -3.050      -31.222     -14.127     
+42W     O01     O       O       0       -4.074      -33.254     -14.389     
+42W     C09     C       CR16    0       -0.725      -32.279     -15.187     
+42W     C11     C       CR6     0       -3.045      -32.569     -14.521     
+42W     C12     C       CR16    0       -1.927      -30.436     -14.266     
+42W     C14     C       C1      0       0.401       -30.067     -14.914     
+42W     O       O       O       0       1.574       -32.231     -13.013     
+42W     S       S       S1      0       5.468       -29.495     -14.376     
+42W     N       N       NR5     0       2.816       -29.586     -14.819     
+42W     C16     C       CR5     0       1.720       -30.355     -14.439     
+42W     C       C       CR5     0       2.204       -31.333     -13.587     
+42W     H1      H       H       0       -1.776      -33.959     -15.330     
+42W     H2      H       H       0       5.208       -32.259     -13.197     
+42W     H3      H       H       0       3.988       -32.755     -12.326     
+42W     H4      H       H       0       4.779       -31.453     -11.906     
+42W     H5      H       H       0       -4.897      -31.304     -13.259     
+42W     H6      H       H       0       -4.036      -30.077     -12.779     
+42W     H7      H       H       0       -5.475      -31.182     -15.877     
+42W     H8      H       H       0       -6.563      -29.814     -17.412     
+42W     H9      H       H       0       -6.737      -27.527     -17.022     
+42W     H10     H       H       0       -5.821      -26.610     -15.094     
+42W     H11     H       H       0       -4.732      -27.970     -13.555     
+42W     H12     H       H       0       0.071       -32.646     -15.547     
+42W     H13     H       H       0       -1.973      -29.547     -13.996     
+42W     H14     H       H       0       0.268       -29.239     -15.348     
+42W     H15     H       H       0       2.801       -28.899     -15.354     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+42W         C04         C05      SINGLE       y     1.376  0.0124     1.376  0.0124
+42W         C05         C06      DOUBLE       y     1.374  0.0127     1.374  0.0127
+42W         C03         C04      DOUBLE       y     1.386  0.0100     1.386  0.0100
+42W         C06         C07      SINGLE       y     1.386  0.0100     1.386  0.0100
+42W         C13         C14      SINGLE       n     1.449  0.0186     1.449  0.0186
+42W         C14         C16      DOUBLE       n     1.427  0.0200     1.427  0.0200
+42W         C03         C08      SINGLE       y     1.386  0.0100     1.386  0.0100
+42W         C13         C09      SINGLE       y     1.394  0.0127     1.394  0.0127
+42W         C10         C09      DOUBLE       y     1.354  0.0100     1.354  0.0100
+42W         C13         C12      DOUBLE       y     1.375  0.0200     1.375  0.0200
+42W           N         C16      SINGLE       y     1.394  0.0100     1.394  0.0100
+42W         C16           C      SINGLE       y     1.390  0.0200     1.390  0.0200
+42W         C10         C11      SINGLE       y     1.423  0.0100     1.423  0.0100
+42W         C07         C08      DOUBLE       y     1.386  0.0100     1.386  0.0100
+42W         C02         C08      SINGLE       n     1.509  0.0100     1.509  0.0100
+42W         C15           N      SINGLE       y     1.355  0.0131     1.355  0.0131
+42W         N02         C12      SINGLE       y     1.370  0.0200     1.370  0.0200
+42W         N02         C11      SINGLE       y     1.395  0.0100     1.395  0.0100
+42W         O01         C11      DOUBLE       n     1.240  0.0147     1.240  0.0147
+42W         C02         N02      SINGLE       n     1.473  0.0179     1.473  0.0179
+42W           O           C      DOUBLE       n     1.237  0.0126     1.237  0.0126
+42W         N01           C      SINGLE       y     1.362  0.0144     1.362  0.0144
+42W         C15         N01      SINGLE       y     1.362  0.0132     1.362  0.0132
+42W         C15           S      DOUBLE       n     1.650  0.0156     1.650  0.0156
+42W         C01         N01      SINGLE       n     1.458  0.0118     1.458  0.0118
+42W         C10          H1      SINGLE       n     1.082  0.0130     0.930  0.0100
+42W         C01          H2      SINGLE       n     1.089  0.0100     0.969  0.0162
+42W         C01          H3      SINGLE       n     1.089  0.0100     0.969  0.0162
+42W         C01          H4      SINGLE       n     1.089  0.0100     0.969  0.0162
+42W         C02          H5      SINGLE       n     1.089  0.0100     0.977  0.0114
+42W         C02          H6      SINGLE       n     1.089  0.0100     0.977  0.0114
+42W         C03          H7      SINGLE       n     1.082  0.0130     0.944  0.0174
+42W         C04          H8      SINGLE       n     1.082  0.0130     0.944  0.0175
+42W         C05          H9      SINGLE       n     1.082  0.0130     0.944  0.0161
+42W         C06         H10      SINGLE       n     1.082  0.0130     0.944  0.0175
+42W         C07         H11      SINGLE       n     1.082  0.0130     0.944  0.0174
+42W         C09         H12      SINGLE       n     1.082  0.0130     0.948  0.0155
+42W         C12         H13      SINGLE       n     1.082  0.0130     0.930  0.0100
+42W         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0200
+42W           N         H15      SINGLE       n     1.016  0.0100     0.870  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+42W         C09         C10         C11     120.547    1.50
+42W         C09         C10          H1     119.914    1.88
+42W         C11         C10          H1     119.539    1.50
+42W         C14         C13         C09     121.167    2.85
+42W         C14         C13         C12     120.366    2.75
+42W         C09         C13         C12     118.467    1.50
+42W           N         C15         N01     106.955    1.50
+42W           N         C15           S     127.262    1.50
+42W         N01         C15           S     125.783    1.50
+42W         N01         C01          H2     109.484    1.50
+42W         N01         C01          H3     109.484    1.50
+42W         N01         C01          H4     109.484    1.50
+42W          H2         C01          H3     109.448    1.52
+42W          H2         C01          H4     109.448    1.52
+42W          H3         C01          H4     109.448    1.52
+42W           C         N01         C15     108.787    1.95
+42W           C         N01         C01     125.607    1.50
+42W         C15         N01         C01     125.607    1.50
+42W         C08         C02         N02     113.143    1.57
+42W         C08         C02          H5     109.014    1.50
+42W         C08         C02          H6     109.014    1.50
+42W         N02         C02          H5     109.162    1.50
+42W         N02         C02          H6     109.162    1.50
+42W          H5         C02          H6     107.859    1.50
+42W         C04         C03         C08     120.573    1.50
+42W         C04         C03          H7     119.682    1.50
+42W         C08         C03          H7     119.745    1.50
+42W         C05         C04         C03     120.168    1.50
+42W         C05         C04          H8     119.961    1.50
+42W         C03         C04          H8     119.871    1.50
+42W         C04         C05         C06     119.886    1.50
+42W         C04         C05          H9     120.057    1.50
+42W         C06         C05          H9     120.057    1.50
+42W         C05         C06         C07     120.168    1.50
+42W         C05         C06         H10     119.961    1.50
+42W         C07         C06         H10     119.871    1.50
+42W         C06         C07         C08     120.573    1.50
+42W         C06         C07         H11     119.682    1.50
+42W         C08         C07         H11     119.745    1.50
+42W         C03         C08         C07     118.633    1.50
+42W         C03         C08         C02     120.684    1.50
+42W         C07         C08         C02     120.684    1.50
+42W         C12         N02         C11     121.958    1.50
+42W         C12         N02         C02     119.987    1.50
+42W         C11         N02         C02     118.055    1.50
+42W         C13         C09         C10     120.586    1.50
+42W         C13         C09         H12     119.998    1.50
+42W         C10         C09         H12     119.415    1.50
+42W         C10         C11         N02     116.578    1.50
+42W         C10         C11         O01     124.925    1.50
+42W         N02         C11         O01     118.496    1.50
+42W         C13         C12         N02     121.863    1.50
+42W         C13         C12         H13     119.867    2.33
+42W         N02         C12         H13     118.270    1.50
+42W         C13         C14         C16     123.987    3.00
+42W         C13         C14         H14     117.921    1.50
+42W         C16         C14         H14     118.092    1.50
+42W         C16           N         C15     108.532    1.50
+42W         C16           N         H15     126.436    2.32
+42W         C15           N         H15     125.032    1.50
+42W         C14         C16           N     123.626    3.00
+42W         C14         C16           C     129.171    3.00
+42W           N         C16           C     107.203    1.50
+42W         C16           C           O     128.235    1.50
+42W         C16           C         N01     108.524    1.50
+42W           O           C         N01     123.241    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+42W              const_21         C13         C09         C10         C11       0.000    10.0     2
+42W              const_62         C09         C10         C11         O01     180.000    10.0     2
+42W              const_18         C06         C07         C08         C02     180.000    10.0     2
+42W              const_40         O01         C11         N02         C02       0.000    10.0     2
+42W              const_34         C13         C12         N02         C02     180.000    10.0     2
+42W             sp2_sp2_5         C13         C14         C16           N     180.000     5.0     2
+42W              const_26         C10         C09         C13         C14     180.000    10.0     2
+42W              const_30         N02         C12         C13         C14     180.000    10.0     2
+42W             sp2_sp2_1         C09         C13         C14         C16     180.000     5.0     2
+42W              const_47         C14         C16           N         C15     180.000    10.0     2
+42W              const_52           O           C         C16         C14       0.000    10.0     2
+42W              const_43           S         C15           N         C16     180.000    10.0     2
+42W              const_68           S         C15         N01         C01       0.000    10.0     2
+42W            sp2_sp3_13           C         N01         C01          H2     150.000    10.0     6
+42W              const_56           O           C         N01         C01       0.000    10.0     2
+42W             sp2_sp3_2         C03         C08         C02         N02     -90.000    10.0     6
+42W             sp2_sp3_8         C12         N02         C02         C08     -90.000    10.0     6
+42W              const_58         C04         C03         C08         C02     180.000    10.0     2
+42W       const_sp2_sp2_1         C08         C03         C04         C05       0.000     5.0     2
+42W       const_sp2_sp2_5         C03         C04         C05         C06       0.000     5.0     2
+42W       const_sp2_sp2_9         C04         C05         C06         C07       0.000     5.0     2
+42W              const_13         C05         C06         C07         C08       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+42W    plan-1         C02   0.020
+42W    plan-1         C09   0.020
+42W    plan-1         C10   0.020
+42W    plan-1         C11   0.020
+42W    plan-1         C12   0.020
+42W    plan-1         C13   0.020
+42W    plan-1         C14   0.020
+42W    plan-1          H1   0.020
+42W    plan-1         H12   0.020
+42W    plan-1         H13   0.020
+42W    plan-1         N02   0.020
+42W    plan-1         O01   0.020
+42W    plan-2         C02   0.020
+42W    plan-2         C03   0.020
+42W    plan-2         C04   0.020
+42W    plan-2         C05   0.020
+42W    plan-2         C06   0.020
+42W    plan-2         C07   0.020
+42W    plan-2         C08   0.020
+42W    plan-2         H10   0.020
+42W    plan-2         H11   0.020
+42W    plan-2          H7   0.020
+42W    plan-2          H8   0.020
+42W    plan-2          H9   0.020
+42W    plan-3           C   0.020
+42W    plan-3         C01   0.020
+42W    plan-3         C14   0.020
+42W    plan-3         C15   0.020
+42W    plan-3         C16   0.020
+42W    plan-3         H15   0.020
+42W    plan-3           N   0.020
+42W    plan-3         N01   0.020
+42W    plan-3           O   0.020
+42W    plan-3           S   0.020
+42W    plan-4         C13   0.020
+42W    plan-4         C14   0.020
+42W    plan-4         C16   0.020
+42W    plan-4         H14   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+42W           SMILES              ACDLabs 12.01                                                                              C=2C(N(Cc1ccccc1)C=C(C=2)\C=C3\NC(N(C)C3=O)=S)=O
+42W            InChI                InChI  1.03 InChI=1S/C17H15N3O2S/c1-19-16(22)14(18-17(19)23)9-13-7-8-15(21)20(11-13)10-12-5-3-2-4-6-12/h2-9,11H,10H2,1H3,(H,18,23)/b14-9+
+42W         InChIKey                InChI  1.03                                                                                                   ORESZEYKAHLKRD-NTEUORMPSA-N
+42W SMILES_CANONICAL               CACTVS 3.385                                                                                 CN1C(=S)N/C(=C/C2=CN(Cc3ccccc3)C(=O)C=C2)C1=O
+42W           SMILES               CACTVS 3.385                                                                                   CN1C(=S)NC(=CC2=CN(Cc3ccccc3)C(=O)C=C2)C1=O
+42W SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                   CN1C(=O)C(=CC2=CN(C(=O)C=C2)Cc3ccccc3)NC1=S
+42W           SMILES "OpenEye OEToolkits" 2.0.4                                                                                   CN1C(=O)C(=CC2=CN(C(=O)C=C2)Cc3ccccc3)NC1=S
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+42W acedrg               243         "dictionary generator"                  
+42W acedrg_database      11          "data source"                           
+42W rdkit                2017.03.2   "Chemoinformatics tool"
+42W refmac5              5.8.0238    "optimization tool"                     

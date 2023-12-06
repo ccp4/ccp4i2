@@ -1,0 +1,199 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DJ6     DJ6      2,5-dichloro-N-(pyridin-3-yl)thiophene-3-carboxamide     NON-POLYMER     22     16     .     
+#
+data_comp_DJ6
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DJ6     C       C       CR16    0       87.334      66.009      14.100      
+DJ6     N       N       NRD6    0       85.750      66.551      12.396      
+DJ6     O       O       O       0       88.940      62.532      11.975      
+DJ6     S       S       S2      0       87.473      58.257      11.519      
+DJ6     CL      CL      CL      0       89.729      59.863      10.611      
+DJ6     C1      C       CR16    0       87.432      64.711      13.630      
+DJ6     N1      N       NH1     0       86.718      63.030      11.970      
+DJ6     CL1     CL      CL      0       84.885      57.786      12.765      
+DJ6     C2      C       CR6     0       86.676      64.331      12.522      
+DJ6     C3      C       CR16    0       85.850      65.294      11.942      
+DJ6     C4      C       CR16    0       86.487      66.891      13.460      
+DJ6     C5      C       C       0       87.773      62.159      11.953      
+DJ6     C6      C       CR5     0       87.420      60.730      11.914      
+DJ6     C7      C       CR15    0       86.187      60.175      12.464      
+DJ6     C8      C       CR5     0       86.121      58.846      12.295      
+DJ6     C9      C       CR5     0       88.215      59.739      11.364      
+DJ6     H       H       H       0       87.837      66.283      14.846      
+DJ6     H1      H       H       0       88.005      64.096      14.053      
+DJ6     HN1     H       H       0       85.984      62.770      11.568      
+DJ6     H3      H       H       0       85.328      65.045      11.184      
+DJ6     H4      H       H       0       86.422      67.773      13.785      
+DJ6     H7      H       H       0       85.519      60.693      12.879      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DJ6           C          C1      DOUBLE       y     1.379  0.0107     1.379  0.0107
+DJ6           C          C4      SINGLE       y     1.375  0.0134     1.375  0.0134
+DJ6           N          C3      SINGLE       y     1.337  0.0100     1.337  0.0100
+DJ6           N          C4      DOUBLE       y     1.336  0.0101     1.336  0.0101
+DJ6           O          C5      DOUBLE       n     1.225  0.0100     1.225  0.0100
+DJ6           S          C8      SINGLE       y     1.695  0.0200     1.695  0.0200
+DJ6           S          C9      SINGLE       y     1.695  0.0200     1.695  0.0200
+DJ6          CL          C9      SINGLE       n     1.695  0.0100     1.695  0.0100
+DJ6          C1          C2      SINGLE       y     1.388  0.0100     1.388  0.0100
+DJ6          N1          C2      SINGLE       n     1.410  0.0100     1.410  0.0100
+DJ6          N1          C5      SINGLE       n     1.360  0.0134     1.360  0.0134
+DJ6         CL1          C8      SINGLE       n     1.695  0.0100     1.695  0.0100
+DJ6          C2          C3      DOUBLE       y     1.391  0.0100     1.391  0.0100
+DJ6          C5          C6      SINGLE       n     1.467  0.0100     1.467  0.0100
+DJ6          C6          C7      SINGLE       y     1.431  0.0161     1.431  0.0161
+DJ6          C6          C9      DOUBLE       y     1.362  0.0200     1.362  0.0200
+DJ6          C7          C8      DOUBLE       y     1.336  0.0106     1.336  0.0106
+DJ6           C           H      SINGLE       n     1.082  0.0130     0.941  0.0154
+DJ6          C1          H1      SINGLE       n     1.082  0.0130     0.942  0.0186
+DJ6          N1         HN1      SINGLE       n     1.016  0.0100     0.874  0.0200
+DJ6          C3          H3      SINGLE       n     1.082  0.0130     0.953  0.0200
+DJ6          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0166
+DJ6          C7          H7      SINGLE       n     1.082  0.0130     0.942  0.0169
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DJ6          C1           C          C4     119.081    1.50
+DJ6          C1           C           H     120.299    1.50
+DJ6          C4           C           H     120.620    1.50
+DJ6          C3           N          C4     117.742    1.50
+DJ6          C8           S          C9     108.461    3.00
+DJ6           C          C1          C2     118.769    1.50
+DJ6           C          C1          H1     120.588    1.50
+DJ6          C2          C1          H1     120.643    1.50
+DJ6          C2          N1          C5     127.077    2.35
+DJ6          C2          N1         HN1     116.333    2.05
+DJ6          C5          N1         HN1     116.590    1.97
+DJ6          C1          C2          N1     121.116    3.00
+DJ6          C1          C2          C3     117.802    1.50
+DJ6          N1          C2          C3     121.083    3.00
+DJ6           N          C3          C2     123.346    1.50
+DJ6           N          C3          H3     118.293    1.50
+DJ6          C2          C3          H3     118.361    1.50
+DJ6           C          C4           N     123.262    1.50
+DJ6           C          C4          H4     118.596    1.50
+DJ6           N          C4          H4     118.142    1.50
+DJ6           O          C5          N1     123.411    1.50
+DJ6           O          C5          C6     121.928    1.50
+DJ6          N1          C5          C6     114.661    1.50
+DJ6          C5          C6          C7     126.494    2.80
+DJ6          C5          C6          C9     126.557    3.00
+DJ6          C7          C6          C9     106.949    1.50
+DJ6          C6          C7          C8     107.668    1.50
+DJ6          C6          C7          H7     125.785    1.50
+DJ6          C8          C7          H7     126.548    1.50
+DJ6           S          C8         CL1     122.140    3.00
+DJ6           S          C8          C7     108.461    3.00
+DJ6         CL1          C8          C7     129.399    2.18
+DJ6           S          C9          CL     122.486    3.00
+DJ6           S          C9          C6     108.461    3.00
+DJ6          CL          C9          C6     129.053    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DJ6              const_31          C1           C          C4           N       0.000    10.0     2
+DJ6       const_sp2_sp2_1          C4           C          C1          C2       0.000     5.0     2
+DJ6            sp2_sp2_11           O          C5          C6          C7       0.000     5.0     2
+DJ6              const_25          C5          C6          C7          C8     180.000    10.0     2
+DJ6              const_30          C5          C6          C9          CL       0.000    10.0     2
+DJ6              const_20          C6          C7          C8         CL1     180.000    10.0     2
+DJ6              const_15           C          C4           N          C3       0.000    10.0     2
+DJ6              const_13          C2          C3           N          C4       0.000    10.0     2
+DJ6              const_18         CL1          C8           S          C9     180.000    10.0     2
+DJ6              const_36          CL          C9           S          C8     180.000    10.0     2
+DJ6       const_sp2_sp2_6           C          C1          C2          N1     180.000     5.0     2
+DJ6             sp2_sp2_7           O          C5          N1          C2       0.000     5.0     2
+DJ6             sp2_sp2_1          C1          C2          N1          C5     180.000     5.0     2
+DJ6              const_11          N1          C2          C3           N     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DJ6    plan-1           C   0.020
+DJ6    plan-1          C1   0.020
+DJ6    plan-1          C2   0.020
+DJ6    plan-1          C3   0.020
+DJ6    plan-1          C4   0.020
+DJ6    plan-1           H   0.020
+DJ6    plan-1          H1   0.020
+DJ6    plan-1          H3   0.020
+DJ6    plan-1          H4   0.020
+DJ6    plan-1           N   0.020
+DJ6    plan-1          N1   0.020
+DJ6    plan-2          C5   0.020
+DJ6    plan-2          C6   0.020
+DJ6    plan-2          C7   0.020
+DJ6    plan-2          C8   0.020
+DJ6    plan-2          C9   0.020
+DJ6    plan-2          CL   0.020
+DJ6    plan-2         CL1   0.020
+DJ6    plan-2          H7   0.020
+DJ6    plan-2           S   0.020
+DJ6    plan-3          C2   0.020
+DJ6    plan-3          C5   0.020
+DJ6    plan-3         HN1   0.020
+DJ6    plan-3          N1   0.020
+DJ6    plan-4          C5   0.020
+DJ6    plan-4          C6   0.020
+DJ6    plan-4          N1   0.020
+DJ6    plan-4           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DJ6           SMILES              ACDLabs 12.01                                                     c2cc(NC(=O)c1cc(sc1Cl)Cl)cnc2
+DJ6            InChI                InChI  1.03 InChI=1S/C10H6Cl2N2OS/c11-8-4-7(9(12)16-8)10(15)14-6-2-1-3-13-5-6/h1-5H,(H,14,15)
+DJ6         InChIKey                InChI  1.03                                                       XUXVQIKOGRNZPD-UHFFFAOYSA-N
+DJ6 SMILES_CANONICAL               CACTVS 3.385                                                     Clc1sc(Cl)c(c1)C(=O)Nc2cccnc2
+DJ6           SMILES               CACTVS 3.385                                                     Clc1sc(Cl)c(c1)C(=O)Nc2cccnc2
+DJ6 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                     c1cc(cnc1)NC(=O)c2cc(sc2Cl)Cl
+DJ6           SMILES "OpenEye OEToolkits" 1.7.6                                                     c1cc(cnc1)NC(=O)c2cc(sc2Cl)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DJ6 acedrg               243         "dictionary generator"                  
+DJ6 acedrg_database      11          "data source"                           
+DJ6 rdkit                2017.03.2   "Chemoinformatics tool"
+DJ6 refmac5              5.8.0238    "optimization tool"                     

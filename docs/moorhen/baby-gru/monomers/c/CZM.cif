@@ -1,0 +1,319 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CZM     CZM      "'N,N'-BIS-(2-HYDROXY-3-METHYL-BENZYLIDENE)-BENZENE-1,2-DIAMINE'"     NON-POLYMER     46     26     .     
+#
+data_comp_CZM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CZM     OA      O       OH1     0       1.600       5.004       5.319       
+CZM     CA2     C       CR6     0       2.020       6.233       5.771       
+CZM     CA3     C       CR6     0       2.432       6.340       7.108       
+CZM     CA4     C       CR16    0       2.863       7.580       7.576       
+CZM     CA5     C       CR16    0       2.894       8.697       6.757       
+CZM     CA6     C       CR16    0       2.488       8.591       5.436       
+CZM     CA1     C       CR6     0       2.048       7.358       4.911       
+CZM     CA      C       C1      0       1.618       7.287       3.524       
+CZM     NA      N       N       0       1.982       6.348       2.736       
+CZM     CC1     C       CR6     0       1.588       6.336       1.376       
+CZM     CC6     C       CR16    0       2.278       7.053       0.392       
+CZM     CC5     C       CR16    0       1.873       7.025       -0.929      
+CZM     CC4     C       CR16    0       0.760       6.272       -1.298      
+CZM     CC3     C       CR16    0       0.065       5.557       -0.340      
+CZM     CC2     C       CR6     0       0.459       5.573       1.002       
+CZM     NB      N       N       0       -0.236      4.848       2.001       
+CZM     CB      C       C1      0       -0.217      3.569       2.026       
+CZM     CB1     C       CR6     0       -0.931      2.778       3.015       
+CZM     CB6     C       CR16    0       -1.330      1.467       2.677       
+CZM     CB5     C       CR16    0       -2.001      0.668       3.587       
+CZM     CB4     C       CR16    0       -2.281      1.156       4.853       
+CZM     CB3     C       CR6     0       -1.906      2.441       5.243       
+CZM     CB2     C       CR6     0       -1.225      3.251       4.321       
+CZM     OB      O       OH1     0       -0.863      4.517       4.722       
+CZM     CB7     C       CH3     0       -2.221      2.951       6.632       
+CZM     CA7     C       CH3     0       2.402       5.132       8.014       
+CZM     HOA     H       H       0       2.152       4.484       4.910       
+CZM     HA4     H       H       0       3.141       7.658       8.474       
+CZM     HA5     H       H       0       3.190       9.527       7.097       
+CZM     HA6     H       H       0       2.508       9.349       4.879       
+CZM     HA      H       H       0       1.050       7.965       3.198       
+CZM     HC6     H       H       0       3.030       7.562       0.639       
+CZM     HC5     H       H       0       2.351       7.515       -1.579      
+CZM     HC4     H       H       0       0.479       6.249       -2.199      
+CZM     HC3     H       H       0       -0.686      5.049       -0.590      
+CZM     HB      H       H       0       0.280       3.110       1.369       
+CZM     HB6     H       H       0       -1.139      1.135       1.817       
+CZM     HB5     H       H       0       -2.267      -0.206      3.347       
+CZM     HB4     H       H       0       -2.739      0.608       5.469       
+CZM     HOB     H       H       0       -1.426      5.165       4.658       
+CZM     HB71    H       H       0       -2.624      3.832       6.574       
+CZM     HB72    H       H       0       -1.402      3.005       7.151       
+CZM     HB73    H       H       0       -2.839      2.345       7.071       
+CZM     HA71    H       H       0       2.651       5.391       8.916       
+CZM     HA72    H       H       0       3.026       4.464       7.687       
+CZM     HA73    H       H       0       1.506       4.756       8.024       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CZM          OA         CA2      SINGLE       n     1.374  0.0155     1.374  0.0155
+CZM         CA2         CA3      DOUBLE       y     1.395  0.0108     1.395  0.0108
+CZM         CA2         CA1      SINGLE       y     1.406  0.0127     1.406  0.0127
+CZM         CA3         CA4      SINGLE       y     1.389  0.0104     1.389  0.0104
+CZM         CA3         CA7      SINGLE       n     1.505  0.0196     1.505  0.0196
+CZM         CA4         CA5      DOUBLE       y     1.383  0.0105     1.383  0.0105
+CZM         CA5         CA6      SINGLE       y     1.381  0.0162     1.381  0.0162
+CZM         CA6         CA1      DOUBLE       y     1.408  0.0108     1.408  0.0108
+CZM         CA1          CA      SINGLE       n     1.450  0.0101     1.450  0.0101
+CZM          CA          NA      DOUBLE       n     1.275  0.0118     1.275  0.0118
+CZM          NA         CC1      SINGLE       n     1.414  0.0100     1.414  0.0100
+CZM         CC1         CC6      DOUBLE       y     1.395  0.0100     1.395  0.0100
+CZM         CC1         CC2      SINGLE       y     1.405  0.0100     1.405  0.0100
+CZM         CC6         CC5      SINGLE       y     1.377  0.0142     1.377  0.0142
+CZM         CC5         CC4      DOUBLE       y     1.387  0.0176     1.387  0.0176
+CZM         CC4         CC3      SINGLE       y     1.377  0.0142     1.377  0.0142
+CZM         CC3         CC2      DOUBLE       y     1.395  0.0100     1.395  0.0100
+CZM         CC2          NB      SINGLE       n     1.414  0.0100     1.414  0.0100
+CZM          NB          CB      DOUBLE       n     1.275  0.0118     1.275  0.0118
+CZM          CB         CB1      SINGLE       n     1.450  0.0101     1.450  0.0101
+CZM         CB1         CB6      DOUBLE       y     1.408  0.0108     1.408  0.0108
+CZM         CB1         CB2      SINGLE       y     1.406  0.0127     1.406  0.0127
+CZM         CB6         CB5      SINGLE       y     1.381  0.0162     1.381  0.0162
+CZM         CB5         CB4      DOUBLE       y     1.383  0.0105     1.383  0.0105
+CZM         CB4         CB3      SINGLE       y     1.389  0.0104     1.389  0.0104
+CZM         CB3         CB2      DOUBLE       y     1.395  0.0108     1.395  0.0108
+CZM         CB3         CB7      SINGLE       n     1.505  0.0196     1.505  0.0196
+CZM         CB2          OB      SINGLE       n     1.374  0.0155     1.374  0.0155
+CZM          OA         HOA      SINGLE       n     0.966  0.0059     0.861  0.0200
+CZM         CA4         HA4      SINGLE       n     1.082  0.0130     0.943  0.0173
+CZM         CA5         HA5      SINGLE       n     1.082  0.0130     0.945  0.0184
+CZM         CA6         HA6      SINGLE       n     1.082  0.0130     0.941  0.0168
+CZM          CA          HA      SINGLE       n     1.082  0.0130     0.941  0.0200
+CZM         CC6         HC6      SINGLE       n     1.082  0.0130     0.941  0.0200
+CZM         CC5         HC5      SINGLE       n     1.082  0.0130     0.944  0.0200
+CZM         CC4         HC4      SINGLE       n     1.082  0.0130     0.944  0.0200
+CZM         CC3         HC3      SINGLE       n     1.082  0.0130     0.941  0.0200
+CZM          CB          HB      SINGLE       n     1.082  0.0130     0.941  0.0200
+CZM         CB6         HB6      SINGLE       n     1.082  0.0130     0.941  0.0168
+CZM         CB5         HB5      SINGLE       n     1.082  0.0130     0.945  0.0184
+CZM         CB4         HB4      SINGLE       n     1.082  0.0130     0.943  0.0173
+CZM          OB         HOB      SINGLE       n     0.966  0.0059     0.861  0.0200
+CZM         CB7        HB71      SINGLE       n     1.089  0.0100     0.971  0.0135
+CZM         CB7        HB72      SINGLE       n     1.089  0.0100     0.971  0.0135
+CZM         CB7        HB73      SINGLE       n     1.089  0.0100     0.971  0.0135
+CZM         CA7        HA71      SINGLE       n     1.089  0.0100     0.971  0.0135
+CZM         CA7        HA72      SINGLE       n     1.089  0.0100     0.971  0.0135
+CZM         CA7        HA73      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CZM         CA2          OA         HOA     120.000    3.00
+CZM          OA         CA2         CA3     119.840    3.00
+CZM          OA         CA2         CA1     119.840    3.00
+CZM         CA3         CA2         CA1     120.320    1.50
+CZM         CA2         CA3         CA4     117.988    1.50
+CZM         CA2         CA3         CA7     120.559    1.50
+CZM         CA4         CA3         CA7     121.453    1.50
+CZM         CA3         CA4         CA5     121.543    1.50
+CZM         CA3         CA4         HA4     119.004    1.50
+CZM         CA5         CA4         HA4     119.453    1.50
+CZM         CA4         CA5         CA6     120.077    1.50
+CZM         CA4         CA5         HA5     119.961    1.50
+CZM         CA6         CA5         HA5     119.961    1.50
+CZM         CA5         CA6         CA1     121.309    1.50
+CZM         CA5         CA6         HA6     119.538    1.50
+CZM         CA1         CA6         HA6     119.153    1.50
+CZM         CA2         CA1         CA6     118.763    1.50
+CZM         CA2         CA1          CA     121.352    1.50
+CZM         CA6         CA1          CA     119.885    1.50
+CZM         CA1          CA          NA     122.029    1.50
+CZM         CA1          CA          HA     118.784    1.50
+CZM          NA          CA          HA     119.187    1.50
+CZM          CA          NA         CC1     120.517    1.82
+CZM          NA         CC1         CC6     123.167    1.50
+CZM          NA         CC1         CC2     117.907    1.50
+CZM         CC6         CC1         CC2     118.927    1.50
+CZM         CC1         CC6         CC5     120.940    1.50
+CZM         CC1         CC6         HC6     119.178    1.50
+CZM         CC5         CC6         HC6     119.881    1.50
+CZM         CC6         CC5         CC4     120.133    1.50
+CZM         CC6         CC5         HC5     119.792    1.50
+CZM         CC4         CC5         HC5     120.075    1.50
+CZM         CC5         CC4         CC3     120.133    1.50
+CZM         CC5         CC4         HC4     120.075    1.50
+CZM         CC3         CC4         HC4     119.792    1.50
+CZM         CC4         CC3         CC2     120.940    1.50
+CZM         CC4         CC3         HC3     119.881    1.50
+CZM         CC2         CC3         HC3     119.178    1.50
+CZM         CC1         CC2         CC3     118.927    1.50
+CZM         CC1         CC2          NB     117.907    1.50
+CZM         CC3         CC2          NB     123.167    1.50
+CZM         CC2          NB          CB     120.517    1.82
+CZM          NB          CB         CB1     122.029    1.50
+CZM          NB          CB          HB     119.187    1.50
+CZM         CB1          CB          HB     118.784    1.50
+CZM          CB         CB1         CB6     119.885    1.50
+CZM          CB         CB1         CB2     121.352    1.50
+CZM         CB6         CB1         CB2     118.763    1.50
+CZM         CB1         CB6         CB5     121.309    1.50
+CZM         CB1         CB6         HB6     119.153    1.50
+CZM         CB5         CB6         HB6     119.538    1.50
+CZM         CB6         CB5         CB4     120.077    1.50
+CZM         CB6         CB5         HB5     119.961    1.50
+CZM         CB4         CB5         HB5     119.961    1.50
+CZM         CB5         CB4         CB3     121.543    1.50
+CZM         CB5         CB4         HB4     119.453    1.50
+CZM         CB3         CB4         HB4     119.004    1.50
+CZM         CB4         CB3         CB2     117.988    1.50
+CZM         CB4         CB3         CB7     121.453    1.50
+CZM         CB2         CB3         CB7     120.559    1.50
+CZM         CB1         CB2         CB3     120.320    1.50
+CZM         CB1         CB2          OB     119.840    3.00
+CZM         CB3         CB2          OB     119.840    3.00
+CZM         CB2          OB         HOB     120.000    3.00
+CZM         CB3         CB7        HB71     109.597    1.50
+CZM         CB3         CB7        HB72     109.597    1.50
+CZM         CB3         CB7        HB73     109.597    1.50
+CZM        HB71         CB7        HB72     109.348    1.50
+CZM        HB71         CB7        HB73     109.348    1.50
+CZM        HB72         CB7        HB73     109.348    1.50
+CZM         CA3         CA7        HA71     109.597    1.50
+CZM         CA3         CA7        HA72     109.597    1.50
+CZM         CA3         CA7        HA73     109.597    1.50
+CZM        HA71         CA7        HA72     109.348    1.50
+CZM        HA71         CA7        HA73     109.348    1.50
+CZM        HA72         CA7        HA73     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CZM             sp2_sp2_1         CA3         CA2          OA         HOA     180.000     5.0     2
+CZM              const_45         CC4         CC5         CC6         CC1       0.000    10.0     2
+CZM              const_49         CC3         CC4         CC5         CC6       0.000    10.0     2
+CZM              const_53         CC2         CC3         CC4         CC5       0.000    10.0     2
+CZM              const_59          NB         CC2         CC3         CC4     180.000    10.0     2
+CZM            sp2_sp2_11         CC1         CC2          NB          CB     180.000     5.0     2
+CZM            sp2_sp2_13         CB1          CB          NB         CC2     180.000     5.0     2
+CZM            sp2_sp2_15          NB          CB         CB1         CB6     180.000     5.0     2
+CZM              const_23          CB         CB1         CB6         CB5     180.000    10.0     2
+CZM              const_72          CB         CB1         CB2          OB       0.000    10.0     2
+CZM              const_25         CB4         CB5         CB6         CB1       0.000    10.0     2
+CZM              const_29         CB3         CB4         CB5         CB6       0.000    10.0     2
+CZM       const_sp2_sp2_4          OA         CA2         CA3         CA7       0.000     5.0     2
+CZM              const_64          CA         CA1         CA2          OA       0.000    10.0     2
+CZM              const_35         CB7         CB3         CB4         CB5     180.000    10.0     2
+CZM              const_40          OB         CB2         CB3         CB7       0.000    10.0     2
+CZM             sp2_sp3_7         CB4         CB3         CB7        HB71     150.000    10.0     6
+CZM            sp2_sp2_19         CB1         CB2          OB         HOB     180.000     5.0     2
+CZM             sp2_sp3_1         CA2         CA3         CA7        HA71     150.000    10.0     6
+CZM       const_sp2_sp2_7         CA7         CA3         CA4         CA5     180.000     5.0     2
+CZM       const_sp2_sp2_9         CA3         CA4         CA5         CA6       0.000     5.0     2
+CZM              const_13         CA4         CA5         CA6         CA1       0.000    10.0     2
+CZM              const_19          CA         CA1         CA6         CA5     180.000    10.0     2
+CZM             sp2_sp2_3          NA          CA         CA1         CA2     180.000     5.0     2
+CZM             sp2_sp2_7         CA1          CA          NA         CC1     180.000     5.0     2
+CZM             sp2_sp2_9         CC6         CC1          NA          CA     180.000     5.0     2
+CZM              const_43          NA         CC1         CC6         CC5     180.000    10.0     2
+CZM              const_68          NA         CC1         CC2          NB       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CZM    plan-1         CC1   0.020
+CZM    plan-1         CC2   0.020
+CZM    plan-1         CC3   0.020
+CZM    plan-1         CC4   0.020
+CZM    plan-1         CC5   0.020
+CZM    plan-1         CC6   0.020
+CZM    plan-1         HC3   0.020
+CZM    plan-1         HC4   0.020
+CZM    plan-1         HC5   0.020
+CZM    plan-1         HC6   0.020
+CZM    plan-1          NA   0.020
+CZM    plan-1          NB   0.020
+CZM    plan-2          CB   0.020
+CZM    plan-2         CB1   0.020
+CZM    plan-2         CB2   0.020
+CZM    plan-2         CB3   0.020
+CZM    plan-2         CB4   0.020
+CZM    plan-2         CB5   0.020
+CZM    plan-2         CB6   0.020
+CZM    plan-2         CB7   0.020
+CZM    plan-2         HB4   0.020
+CZM    plan-2         HB5   0.020
+CZM    plan-2         HB6   0.020
+CZM    plan-2          OB   0.020
+CZM    plan-3          CA   0.020
+CZM    plan-3         CA1   0.020
+CZM    plan-3         CA2   0.020
+CZM    plan-3         CA3   0.020
+CZM    plan-3         CA4   0.020
+CZM    plan-3         CA5   0.020
+CZM    plan-3         CA6   0.020
+CZM    plan-3         CA7   0.020
+CZM    plan-3         HA4   0.020
+CZM    plan-3         HA5   0.020
+CZM    plan-3         HA6   0.020
+CZM    plan-3          OA   0.020
+CZM    plan-4          CA   0.020
+CZM    plan-4         CA1   0.020
+CZM    plan-4          HA   0.020
+CZM    plan-4          NA   0.020
+CZM    plan-5          CB   0.020
+CZM    plan-5         CB1   0.020
+CZM    plan-5          HB   0.020
+CZM    plan-5          NB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CZM           SMILES              ACDLabs 10.04                                                                                           Oc3c(/C=N/c2ccccc2/N=C/c1cccc(c1O)C)cccc3C
+CZM SMILES_CANONICAL               CACTVS 3.341                                                                                               Cc1cccc(C=Nc2ccccc2N=Cc3cccc(C)c3O)c1O
+CZM           SMILES               CACTVS 3.341                                                                                               Cc1cccc(C=Nc2ccccc2N=Cc3cccc(C)c3O)c1O
+CZM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                           Cc1cccc(c1O)\C=N\c2ccccc2/N=C/c3cccc(c3O)C
+CZM           SMILES "OpenEye OEToolkits" 1.5.0                                                                                               Cc1cccc(c1O)C=Nc2ccccc2N=Cc3cccc(c3O)C
+CZM            InChI                InChI  1.03 InChI=1S/C22H20N2O2/c1-15-7-5-9-17(21(15)25)13-23-19-11-3-4-12-20(19)24-14-18-10-6-8-16(2)22(18)26/h3-14,25-26H,1-2H3/b23-13+,24-14+
+CZM         InChIKey                InChI  1.03                                                                                                          DNVUYVBRNCWGAK-RNIAWFEPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CZM acedrg               243         "dictionary generator"                  
+CZM acedrg_database      11          "data source"                           
+CZM rdkit                2017.03.2   "Chemoinformatics tool"
+CZM refmac5              5.8.0238    "optimization tool"                     

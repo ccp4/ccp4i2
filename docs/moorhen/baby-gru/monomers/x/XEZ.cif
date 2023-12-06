@@ -1,0 +1,239 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XEZ     XEZ      6-(1H-PYRAZOL-3-YL)-3-(1H-PYRAZOL-4-YL)IMIDAZO[1,2-A]PYRAZINE     NON-POLYMER     28     19     .     
+#
+data_comp_XEZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XEZ     CAC     C       CR15    0       12.902      -3.770      12.420      
+XEZ     NAH     N       NRD5    0       11.854      -4.484      12.798      
+XEZ     NAM     N       NR5     0       11.017      -4.521      11.737      
+XEZ     CAF     C       CR15    0       11.511      -3.848      10.700      
+XEZ     CAN     C       CR5     0       12.734      -3.340      11.091      
+XEZ     CAP     C       CR6     0       13.637      -2.548      10.313      
+XEZ     CAG     C       CR16    0       14.876      -2.076      10.807      
+XEZ     NAS     N       NT      0       15.720      -1.303      9.995       
+XEZ     NAI     N       NRD6    0       13.241      -2.264      9.049       
+XEZ     CAE     C       CR16    0       14.048      -1.517      8.254       
+XEZ     CAR     C       CR56    0       15.303      -1.022      8.712       
+XEZ     NAJ     N       NRD5    0       16.222      -0.271      8.059       
+XEZ     CAD     C       CR15    0       17.239      -0.084      8.974       
+XEZ     CAQ     C       CR5     0       16.967      -0.699      10.168      
+XEZ     CAO     C       CR5     0       17.783      -0.730      11.362      
+XEZ     CAB     C       CR15    0       17.922      -1.726      12.339      
+XEZ     CAA     C       CR15    0       18.817      -1.244      13.249      
+XEZ     NAL     N       NR5     0       19.186      -0.025      12.830      
+XEZ     NAK     N       NRD5    0       18.565      0.312       11.675      
+XEZ     HAC     H       H       0       13.637      -3.590      12.976      
+XEZ     HAM     H       H       0       10.233      -4.950      11.752      
+XEZ     HAF     H       H       0       11.100      -3.741      9.859       
+XEZ     HAG     H       H       0       15.145      -2.277      11.685      
+XEZ     HAE     H       H       0       13.761      -1.328      7.381       
+XEZ     HAD     H       H       0       18.019      0.417       8.770       
+XEZ     HAB     H       H       0       17.487      -2.561      12.366      
+XEZ     HAA     H       H       0       19.122      -1.684      14.031      
+XEZ     HAK     H       H       0       19.766      0.520       13.237      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XEZ         CAC         NAH      DOUBLE       y     1.323  0.0100     1.323  0.0100
+XEZ         CAC         CAN      SINGLE       y     1.407  0.0109     1.407  0.0109
+XEZ         NAH         NAM      SINGLE       y     1.350  0.0100     1.350  0.0100
+XEZ         NAM         CAF      SINGLE       y     1.331  0.0100     1.331  0.0100
+XEZ         CAF         CAN      DOUBLE       y     1.381  0.0100     1.381  0.0100
+XEZ         CAN         CAP      SINGLE       n     1.427  0.0100     1.427  0.0100
+XEZ         CAP         CAG      DOUBLE       y     1.397  0.0200     1.397  0.0200
+XEZ         CAP         NAI      SINGLE       y     1.339  0.0144     1.339  0.0144
+XEZ         CAG         NAS      SINGLE       y     1.400  0.0200     1.400  0.0200
+XEZ         NAS         CAR      SINGLE       y     1.380  0.0168     1.380  0.0168
+XEZ         NAS         CAQ      SINGLE       y     1.402  0.0125     1.402  0.0125
+XEZ         NAI         CAE      DOUBLE       y     1.338  0.0183     1.338  0.0183
+XEZ         CAE         CAR      SINGLE       y     1.414  0.0200     1.414  0.0200
+XEZ         CAR         NAJ      DOUBLE       y     1.345  0.0200     1.345  0.0200
+XEZ         NAJ         CAD      SINGLE       y     1.375  0.0145     1.375  0.0145
+XEZ         CAD         CAQ      DOUBLE       y     1.371  0.0104     1.371  0.0104
+XEZ         CAQ         CAO      SINGLE       n     1.446  0.0162     1.446  0.0162
+XEZ         CAO         CAB      SINGLE       y     1.404  0.0121     1.404  0.0121
+XEZ         CAO         NAK      DOUBLE       y     1.340  0.0100     1.340  0.0100
+XEZ         CAB         CAA      DOUBLE       y     1.366  0.0100     1.366  0.0100
+XEZ         CAA         NAL      SINGLE       y     1.340  0.0100     1.340  0.0100
+XEZ         NAL         NAK      SINGLE       y     1.352  0.0100     1.352  0.0100
+XEZ         CAC         HAC      SINGLE       n     1.082  0.0130     0.939  0.0167
+XEZ         NAM         HAM      SINGLE       n     1.016  0.0100     0.894  0.0200
+XEZ         CAF         HAF      SINGLE       n     1.082  0.0130     0.942  0.0200
+XEZ         CAG         HAG      SINGLE       n     1.082  0.0130     0.941  0.0200
+XEZ         CAE         HAE      SINGLE       n     1.082  0.0130     0.938  0.0128
+XEZ         CAD         HAD      SINGLE       n     1.082  0.0130     0.949  0.0200
+XEZ         CAB         HAB      SINGLE       n     1.082  0.0130     0.942  0.0169
+XEZ         CAA         HAA      SINGLE       n     1.082  0.0130     0.947  0.0135
+XEZ         NAL         HAK      SINGLE       n     1.016  0.0100     0.894  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XEZ         NAH         CAC         CAN     109.758    1.50
+XEZ         NAH         CAC         HAC     123.744    1.50
+XEZ         CAN         CAC         HAC     126.499    3.00
+XEZ         CAC         NAH         NAM     105.367    1.50
+XEZ         NAH         NAM         CAF     111.122    1.50
+XEZ         NAH         NAM         HAM     123.093    2.09
+XEZ         CAF         NAM         HAM     125.785    2.30
+XEZ         NAM         CAF         CAN     107.341    1.50
+XEZ         NAM         CAF         HAF     126.212    1.72
+XEZ         CAN         CAF         HAF     126.447    1.50
+XEZ         CAC         CAN         CAF     106.412    1.50
+XEZ         CAC         CAN         CAP     126.817    2.68
+XEZ         CAF         CAN         CAP     126.771    1.51
+XEZ         CAN         CAP         CAG     123.528    1.50
+XEZ         CAN         CAP         NAI     116.248    2.10
+XEZ         CAG         CAP         NAI     120.225    1.50
+XEZ         CAP         CAG         NAS     119.930    3.00
+XEZ         CAP         CAG         HAG     120.140    1.50
+XEZ         NAS         CAG         HAG     119.930    3.00
+XEZ         CAG         NAS         CAR     109.471    3.00
+XEZ         CAG         NAS         CAQ     125.931    2.87
+XEZ         CAR         NAS         CAQ     106.056    1.50
+XEZ         CAP         NAI         CAE     116.142    1.50
+XEZ         NAI         CAE         CAR     119.673    3.00
+XEZ         NAI         CAE         HAE     119.340    1.50
+XEZ         CAR         CAE         HAE     120.987    1.50
+XEZ         NAS         CAR         CAE     120.017    1.50
+XEZ         NAS         CAR         NAJ     110.467    1.50
+XEZ         CAE         CAR         NAJ     129.516    2.11
+XEZ         CAR         NAJ         CAD     103.357    1.50
+XEZ         NAJ         CAD         CAQ     111.478    1.50
+XEZ         NAJ         CAD         HAD     122.320    1.67
+XEZ         CAQ         CAD         HAD     126.202    3.00
+XEZ         NAS         CAQ         CAD     106.633    1.70
+XEZ         NAS         CAQ         CAO     126.317    3.00
+XEZ         CAD         CAQ         CAO     127.051    3.00
+XEZ         CAQ         CAO         CAB     130.277    3.00
+XEZ         CAQ         CAO         NAK     119.968    2.44
+XEZ         CAB         CAO         NAK     109.755    1.50
+XEZ         CAO         CAB         CAA     106.870    1.50
+XEZ         CAO         CAB         HAB     126.817    1.50
+XEZ         CAA         CAB         HAB     126.313    1.50
+XEZ         CAB         CAA         NAL     107.203    1.50
+XEZ         CAB         CAA         HAA     126.599    1.85
+XEZ         NAL         CAA         HAA     126.198    1.50
+XEZ         CAA         NAL         NAK     110.894    1.50
+XEZ         CAA         NAL         HAK     126.456    2.28
+XEZ         NAK         NAL         HAK     122.649    3.00
+XEZ         CAO         NAK         NAL     105.278    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XEZ              const_15         CAN         CAC         NAH         NAM       0.000    10.0     2
+XEZ              const_39         NAH         CAC         CAN         CAF       0.000    10.0     2
+XEZ              const_31         NAS         CAR         NAJ         CAD       0.000    10.0     2
+XEZ              const_33         CAQ         CAD         NAJ         CAR       0.000    10.0     2
+XEZ              const_35         NAJ         CAD         CAQ         NAS       0.000    10.0     2
+XEZ            sp2_sp2_21         CAB         CAO         CAQ         NAS     180.000     5.0     2
+XEZ       const_sp2_sp2_2         CAA         CAB         CAO         CAQ     180.000     5.0     2
+XEZ              const_48         CAQ         CAO         NAK         NAL     180.000    10.0     2
+XEZ       const_sp2_sp2_5         NAL         CAA         CAB         CAO       0.000     5.0     2
+XEZ       const_sp2_sp2_9         CAB         CAA         NAL         NAK       0.000     5.0     2
+XEZ              const_13         CAO         NAK         NAL         CAA       0.000    10.0     2
+XEZ              const_17         CAC         NAH         NAM         CAF       0.000    10.0     2
+XEZ              const_19         CAN         CAF         NAM         NAH       0.000    10.0     2
+XEZ              const_23         NAM         CAF         CAN         CAC       0.000    10.0     2
+XEZ            sp2_sp2_15         CAC         CAN         CAP         CAG     180.000     5.0     2
+XEZ             sp2_sp2_2         NAS         CAG         CAP         CAN     180.000     5.0     2
+XEZ            sp2_sp2_20         CAN         CAP         NAI         CAE     180.000     5.0     2
+XEZ             sp2_sp2_5         CAP         CAG         NAS         CAR       0.000     5.0     2
+XEZ              const_27         CAE         CAR         NAS         CAG       0.000    10.0     2
+XEZ              const_44         CAD         CAQ         NAS         CAG     180.000    10.0     2
+XEZ            sp2_sp2_13         CAR         CAE         NAI         CAP       0.000     5.0     2
+XEZ             sp2_sp2_9         NAI         CAE         CAR         NAS       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XEZ    plan-1         CAD   0.020
+XEZ    plan-1         CAE   0.020
+XEZ    plan-1         CAG   0.020
+XEZ    plan-1         CAN   0.020
+XEZ    plan-1         CAO   0.020
+XEZ    plan-1         CAP   0.020
+XEZ    plan-1         CAQ   0.020
+XEZ    plan-1         CAR   0.020
+XEZ    plan-1         HAD   0.020
+XEZ    plan-1         HAE   0.020
+XEZ    plan-1         HAG   0.020
+XEZ    plan-1         NAI   0.020
+XEZ    plan-1         NAJ   0.020
+XEZ    plan-1         NAS   0.020
+XEZ    plan-2         CAC   0.020
+XEZ    plan-2         CAF   0.020
+XEZ    plan-2         CAN   0.020
+XEZ    plan-2         CAP   0.020
+XEZ    plan-2         HAC   0.020
+XEZ    plan-2         HAF   0.020
+XEZ    plan-2         HAM   0.020
+XEZ    plan-2         NAH   0.020
+XEZ    plan-2         NAM   0.020
+XEZ    plan-3         CAA   0.020
+XEZ    plan-3         CAB   0.020
+XEZ    plan-3         CAO   0.020
+XEZ    plan-3         CAQ   0.020
+XEZ    plan-3         HAA   0.020
+XEZ    plan-3         HAB   0.020
+XEZ    plan-3         HAK   0.020
+XEZ    plan-3         NAK   0.020
+XEZ    plan-3         NAL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XEZ           SMILES              ACDLabs 10.04                                                                    n2c3n(c(c1nncc1)c2)cc(nc3)c4cnnc4
+XEZ SMILES_CANONICAL               CACTVS 3.352                                                              "[nH]1ccc(n1)c2cnc3cnc(cn23)c4c[nH]nc4"
+XEZ           SMILES               CACTVS 3.352                                                              "[nH]1ccc(n1)c2cnc3cnc(cn23)c4c[nH]nc4"
+XEZ SMILES_CANONICAL "OpenEye OEToolkits" 1.6.1                                                                  c1c[nH]nc1c2cnc3n2cc(nc3)c4c[nH]nc4
+XEZ           SMILES "OpenEye OEToolkits" 1.6.1                                                                  c1c[nH]nc1c2cnc3n2cc(nc3)c4c[nH]nc4
+XEZ            InChI                InChI  1.03 InChI=1S/C12H9N7/c1-2-15-18-9(1)11-5-14-12-6-13-10(7-19(11)12)8-3-16-17-4-8/h1-7H,(H,15,18)(H,16,17)
+XEZ         InChIKey                InChI  1.03                                                                          ALMSMDKNGFZAEU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XEZ acedrg               243         "dictionary generator"                  
+XEZ acedrg_database      11          "data source"                           
+XEZ rdkit                2017.03.2   "Chemoinformatics tool"
+XEZ refmac5              5.8.0238    "optimization tool"                     

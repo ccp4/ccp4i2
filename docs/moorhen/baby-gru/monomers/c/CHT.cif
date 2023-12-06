@@ -1,0 +1,165 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CHT     CHT      "CHOLINE ION"     NON-POLYMER     21     7     .     
+#
+data_comp_CHT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CHT     C4      C       CH2     0       65.958      82.030      11.151      
+CHT     C5      C       CH2     0       64.784      81.070      11.107      
+CHT     C6      C       CH3     0       62.406      80.534      11.318      
+CHT     C7      C       CH3     0       63.452      81.868      13.050      
+CHT     C8      C       CH3     0       63.042      82.826      10.845      
+CHT     O6      O       OH1     0       66.046      82.767      9.943       
+CHT     N1      N       NT      1       63.434      81.585      11.582      
+CHT     HC41    H       H       0       66.784      81.526      11.282      
+CHT     HC42    H       H       0       65.862      82.648      11.900      
+CHT     HC51    H       H       0       65.010      80.288      11.647      
+CHT     HC52    H       H       0       64.680      80.762      10.185      
+CHT     H61     H       H       0       61.545      80.838      11.642      
+CHT     H62     H       H       0       62.661      79.720      11.777      
+CHT     H63     H       H       0       62.356      80.371      10.364      
+CHT     H71     H       H       0       64.037      82.618      13.228      
+CHT     H72     H       H       0       63.773      81.084      13.520      
+CHT     H73     H       H       0       62.554      82.081      13.346      
+CHT     H81     H       H       0       62.125      83.050      11.061      
+CHT     H82     H       H       0       63.125      82.667      9.892       
+CHT     H83     H       H       0       63.625      83.555      11.107      
+CHT     HO6     H       H       0       66.347      82.264      9.333       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CHT          C4          C5      SINGLE       n     1.513  0.0106     1.513  0.0106
+CHT          C4          O6      SINGLE       n     1.417  0.0159     1.417  0.0159
+CHT          C5          N1      SINGLE       n     1.516  0.0100     1.516  0.0100
+CHT          C6          N1      SINGLE       n     1.488  0.0165     1.488  0.0165
+CHT          C7          N1      SINGLE       n     1.488  0.0165     1.488  0.0165
+CHT          C8          N1      SINGLE       n     1.488  0.0165     1.488  0.0165
+CHT          C4        HC41      SINGLE       n     1.089  0.0100     0.977  0.0146
+CHT          C4        HC42      SINGLE       n     1.089  0.0100     0.977  0.0146
+CHT          C5        HC51      SINGLE       n     1.089  0.0100     0.977  0.0167
+CHT          C5        HC52      SINGLE       n     1.089  0.0100     0.977  0.0167
+CHT          C6         H61      SINGLE       n     1.089  0.0100     0.969  0.0145
+CHT          C6         H62      SINGLE       n     1.089  0.0100     0.969  0.0145
+CHT          C6         H63      SINGLE       n     1.089  0.0100     0.969  0.0145
+CHT          C7         H71      SINGLE       n     1.089  0.0100     0.969  0.0145
+CHT          C7         H72      SINGLE       n     1.089  0.0100     0.969  0.0145
+CHT          C7         H73      SINGLE       n     1.089  0.0100     0.969  0.0145
+CHT          C8         H81      SINGLE       n     1.089  0.0100     0.969  0.0145
+CHT          C8         H82      SINGLE       n     1.089  0.0100     0.969  0.0145
+CHT          C8         H83      SINGLE       n     1.089  0.0100     0.969  0.0145
+CHT          O6         HO6      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CHT          C5          C4          O6     109.912    2.44
+CHT          C5          C4        HC41     109.672    1.50
+CHT          C5          C4        HC42     109.672    1.50
+CHT          O6          C4        HC41     109.500    1.50
+CHT          O6          C4        HC42     109.500    1.50
+CHT        HC41          C4        HC42     108.121    1.50
+CHT          C4          C5          N1     114.813    1.50
+CHT          C4          C5        HC51     108.340    1.50
+CHT          C4          C5        HC52     108.340    1.50
+CHT          N1          C5        HC51     107.825    1.61
+CHT          N1          C5        HC52     107.825    1.61
+CHT        HC51          C5        HC52     107.359    1.69
+CHT          N1          C6         H61     108.994    1.50
+CHT          N1          C6         H62     108.994    1.50
+CHT          N1          C6         H63     108.994    1.50
+CHT         H61          C6         H62     109.693    1.55
+CHT         H61          C6         H63     109.693    1.55
+CHT         H62          C6         H63     109.693    1.55
+CHT          N1          C7         H71     108.994    1.50
+CHT          N1          C7         H72     108.994    1.50
+CHT          N1          C7         H73     108.994    1.50
+CHT         H71          C7         H72     109.693    1.55
+CHT         H71          C7         H73     109.693    1.55
+CHT         H72          C7         H73     109.693    1.55
+CHT          N1          C8         H81     108.994    1.50
+CHT          N1          C8         H82     108.994    1.50
+CHT          N1          C8         H83     108.994    1.50
+CHT         H81          C8         H82     109.693    1.55
+CHT         H81          C8         H83     109.693    1.55
+CHT         H82          C8         H83     109.693    1.55
+CHT          C4          O6         HO6     109.054    3.00
+CHT          C5          N1          C6     109.961    1.74
+CHT          C5          N1          C7     109.961    1.74
+CHT          C5          N1          C8     109.961    1.74
+CHT          C6          N1          C7     109.041    1.50
+CHT          C6          N1          C8     109.041    1.50
+CHT          C7          N1          C8     109.041    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CHT             sp3_sp3_1          O6          C4          C5          N1     180.000    10.0     3
+CHT            sp3_sp3_10          C5          C4          O6         HO6     180.000    10.0     3
+CHT            sp3_sp3_14          C4          C5          N1          C6     -60.000    10.0     3
+CHT            sp3_sp3_22         H61          C6          N1          C5     180.000    10.0     3
+CHT            sp3_sp3_32         H71          C7          N1          C5     -60.000    10.0     3
+CHT            sp3_sp3_40         H81          C8          N1          C5     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CHT    chir_1    N1    C5    C6    C7    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CHT           SMILES              ACDLabs 10.04                                      OCC[N+](C)(C)C
+CHT SMILES_CANONICAL               CACTVS 3.341                                      C[N+](C)(C)CCO
+CHT           SMILES               CACTVS 3.341                                      C[N+](C)(C)CCO
+CHT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                      C[N+](C)(C)CCO
+CHT           SMILES "OpenEye OEToolkits" 1.5.0                                      C[N+](C)(C)CCO
+CHT            InChI                InChI  1.03 InChI=1S/C5H14NO/c1-6(2,3)4-5-7/h7H,4-5H2,1-3H3/q+1
+CHT         InChIKey                InChI  1.03                         OEYIOHPDSNJKLS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CHT acedrg               243         "dictionary generator"                  
+CHT acedrg_database      11          "data source"                           
+CHT rdkit                2017.03.2   "Chemoinformatics tool"
+CHT refmac5              5.8.0238    "optimization tool"                     

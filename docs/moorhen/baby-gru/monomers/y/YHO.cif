@@ -1,0 +1,169 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YHO     YHO      (1S,2S,3R,4R)-4-aminocyclopentane-1,2,3-triol     NON-POLYMER     20     9     .     
+#
+data_comp_YHO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YHO     O3      O       OH1     0       33.418      65.433      7.267       
+YHO     C3      C       CH1     0       32.919      66.629      7.850       
+YHO     C2      C       CH1     0       32.438      66.416      9.282       
+YHO     O2      O       OH1     0       33.344      65.639      10.053      
+YHO     C1      C       CH1     0       31.097      65.694      9.079       
+YHO     N1      N       NT2     0       31.193      64.232      9.085       
+YHO     C5      C       CH2     0       30.571      66.234      7.733       
+YHO     C4      C       CH1     0       31.656      67.136      7.156       
+YHO     O4      O       OH1     0       31.719      67.010      5.742       
+YHO     HO3     H       H       0       34.183      65.264      7.593       
+YHO     H3      H       H       0       33.615      67.329      7.831       
+YHO     H2      H       H       0       32.294      67.292      9.716       
+YHO     HO2     H       H       0       33.017      65.519      10.827      
+YHO     H1      H       H       0       30.472      65.976      9.791       
+YHO     HN1     H       H       0       30.392      63.886      8.903       
+YHO     HN1A    H       H       0       31.448      63.960      9.895       
+YHO     H5      H       H       0       29.750      66.737      7.871       
+YHO     H5A     H       H       0       30.381      65.498      7.125       
+YHO     H4      H       H       0       31.496      68.079      7.402       
+YHO     HO4     H       H       0       30.999      67.308      5.404       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YHO          O3          C3      SINGLE       n     1.420  0.0122     1.420  0.0122
+YHO          C3          C4      SINGLE       n     1.529  0.0127     1.529  0.0127
+YHO          C3          C2      SINGLE       n     1.529  0.0127     1.529  0.0127
+YHO          C2          C1      SINGLE       n     1.535  0.0122     1.535  0.0122
+YHO          C2          O2      SINGLE       n     1.420  0.0122     1.420  0.0122
+YHO          C1          C5      SINGLE       n     1.536  0.0147     1.536  0.0147
+YHO          C1          N1      SINGLE       n     1.464  0.0100     1.464  0.0100
+YHO          C5          C4      SINGLE       n     1.521  0.0137     1.521  0.0137
+YHO          C4          O4      SINGLE       n     1.420  0.0122     1.420  0.0122
+YHO          O3         HO3      SINGLE       n     0.970  0.0120     0.849  0.0200
+YHO          C3          H3      SINGLE       n     1.089  0.0100     0.988  0.0200
+YHO          C2          H2      SINGLE       n     1.089  0.0100     0.988  0.0200
+YHO          O2         HO2      SINGLE       n     0.970  0.0120     0.849  0.0200
+YHO          C1          H1      SINGLE       n     1.089  0.0100     0.989  0.0131
+YHO          N1         HN1      SINGLE       n     1.036  0.0160     0.892  0.0200
+YHO          N1        HN1A      SINGLE       n     1.036  0.0160     0.892  0.0200
+YHO          C5          H5      SINGLE       n     1.089  0.0100     0.973  0.0100
+YHO          C5         H5A      SINGLE       n     1.089  0.0100     0.973  0.0100
+YHO          C4          H4      SINGLE       n     1.089  0.0100     0.988  0.0200
+YHO          O4         HO4      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YHO          C3          O3         HO3     109.104    3.00
+YHO          O3          C3          C4     112.463    2.73
+YHO          O3          C3          C2     112.463    2.73
+YHO          O3          C3          H3     110.259    1.63
+YHO          C4          C3          C2     103.795    1.50
+YHO          C4          C3          H3     110.255    2.04
+YHO          C2          C3          H3     110.255    2.04
+YHO          C3          C2          C1     104.443    2.26
+YHO          C3          C2          O2     112.463    2.73
+YHO          C3          C2          H2     110.255    2.04
+YHO          C1          C2          O2     110.423    2.74
+YHO          C1          C2          H2     110.706    1.50
+YHO          O2          C2          H2     110.259    1.63
+YHO          C2          O2         HO2     109.104    3.00
+YHO          C2          C1          C5     103.793    1.50
+YHO          C2          C1          N1     113.888    3.00
+YHO          C2          C1          H1     109.421    1.65
+YHO          C5          C1          N1     113.888    3.00
+YHO          C5          C1          H1     108.708    1.50
+YHO          N1          C1          H1     110.241    2.42
+YHO          C1          N1         HN1     109.095    2.00
+YHO          C1          N1        HN1A     109.095    2.00
+YHO         HN1          N1        HN1A     108.865    3.00
+YHO          C1          C5          C4     104.332    2.45
+YHO          C1          C5          H5     110.783    1.50
+YHO          C1          C5         H5A     110.783    1.50
+YHO          C4          C5          H5     110.947    1.50
+YHO          C4          C5         H5A     110.947    1.50
+YHO          H5          C5         H5A     108.877    1.50
+YHO          C3          C4          C5     102.657    1.50
+YHO          C3          C4          O4     112.463    2.73
+YHO          C3          C4          H4     110.255    2.04
+YHO          C5          C4          O4     111.015    2.41
+YHO          C5          C4          H4     111.076    1.50
+YHO          O4          C4          H4     110.259    1.63
+YHO          C4          O4         HO4     109.104    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YHO            sp3_sp3_37          C4          C3          O3         HO3     180.000    10.0     3
+YHO            sp3_sp3_44          O2          C2          C3          O3     180.000    10.0     3
+YHO             sp3_sp3_5          O3          C3          C4          O4      60.000    10.0     3
+YHO            sp3_sp3_49          C3          C2          O2         HO2     180.000    10.0     3
+YHO            sp3_sp3_32          N1          C1          C2          O2     -60.000    10.0     3
+YHO            sp3_sp3_52          C2          C1          N1         HN1     180.000    10.0     3
+YHO            sp3_sp3_22          N1          C1          C5          C4     -60.000    10.0     3
+YHO            sp3_sp3_13          O4          C4          C5          C1     180.000    10.0     3
+YHO            sp3_sp3_58          C3          C4          O4         HO4     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+YHO    chir_1    C3    O3    C2    C4    positive
+YHO    chir_2    C2    O2    C3    C1    negative
+YHO    chir_3    C1    N1    C2    C5    negative
+YHO    chir_4    C4    O4    C3    C5    positive
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YHO           SMILES              ACDLabs 10.04                                                           OC1CC(N)C(O)C1O
+YHO SMILES_CANONICAL               CACTVS 3.341                                         N[C@@H]1C[C@H](O)[C@H](O)[C@@H]1O
+YHO           SMILES               CACTVS 3.341                                               N[CH]1C[CH](O)[CH](O)[CH]1O
+YHO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                         C1[C@H]([C@H]([C@H]([C@H]1O)O)O)N
+YHO           SMILES "OpenEye OEToolkits" 1.5.0                                                         C1C(C(C(C1O)O)O)N
+YHO            InChI                InChI  1.03 InChI=1S/C5H11NO3/c6-2-1-3(7)5(9)4(2)8/h2-5,7-9H,1,6H2/t2-,3+,4-,5+/m1/s1
+YHO         InChIKey                InChI  1.03                                               UUKWSEIZIMUXPU-LECHCGJUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YHO acedrg               243         "dictionary generator"                  
+YHO acedrg_database      11          "data source"                           
+YHO rdkit                2017.03.2   "Chemoinformatics tool"
+YHO refmac5              5.8.0238    "optimization tool"                     

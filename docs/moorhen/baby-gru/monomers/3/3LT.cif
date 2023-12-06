@@ -1,0 +1,505 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3LT     3LT      "(4R)-4-[[(2S)-2-[[(2R)-2-[(2R,3S,4R,5R,6R)-5-acetamido-2-(hydroxymethyl)-3,6-bis(oxidanyl)oxan-4-yl]oxypropanoyl]amino]propanoyl]amino]-5-azanyl-5-oxidanylidene-pentanoic acid"     NON-POLYMER     65     34     .     
+#
+data_comp_3LT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3LT     CAA     C       CH1     0       -1.157      5.200       -9.228      
+3LT     CAJ     C       CH1     0       -2.007      4.757       -10.422     
+3LT     CAI     C       CH1     0       -1.804      5.724       -11.586     
+3LT     CAG     C       CH1     0       -2.061      7.159       -11.141     
+3LT     CAD     C       CH1     0       -1.179      7.494       -9.938      
+3LT     CAE     C       CH2     0       -1.435      8.872       -9.366      
+3LT     CAL     C       C       0       -2.613      2.463       -11.160     
+3LT     CAN     C       CH3     0       -2.067      1.111       -11.509     
+3LT     CAP     C       CH1     0       -2.205      4.642       -13.744     
+3LT     CAR     C       C       0       -3.343      3.864       -14.402     
+3LT     CAQ     C       CH3     0       -1.596      5.632       -14.708     
+3LT     OAB     O       OH1     0       -1.425      4.372       -8.139      
+3LT     OAO     O       O2      0       -2.726      5.376       -12.624     
+3LT     OAH     O       OH1     0       -1.778      8.063       -12.207     
+3LT     OAC     O       O2      0       -1.432      6.549       -8.876      
+3LT     OAF     O       OH1     0       -2.778      9.014       -8.904      
+3LT     OAM     O       O       0       -3.817      2.697       -11.206     
+3LT     OAS     O       O       0       -3.177      3.414       -15.535     
+3LT     NAK     N       NH1     0       -1.710      3.388       -10.802     
+3LT     NAT     N       NH1     0       -4.479      3.731       -13.704     
+3LT     CAU     C       CH1     0       -5.687      3.101       -14.218     
+3LT     CAW     C       C       0       -6.742      4.184       -14.473     
+3LT     CAV     C       CH3     0       -6.191      2.037       -13.246     
+3LT     OAX     O       O       0       -7.801      4.183       -13.845     
+3LT     C       C       C       0       -8.612      5.909       -16.245     
+3LT     N       N       NH1     0       -6.407      5.119       -15.379     
+3LT     O       O       O       0       -9.611      5.925       -15.525     
+3LT     NBH     N       NH2     0       -8.647      5.573       -17.528     
+3LT     CA      C       CH1     0       -7.231      6.282       -15.687     
+3LT     CB      C       CH2     0       -7.352      7.235       -14.488     
+3LT     CD      C       C       0       -6.102      8.648       -12.764     
+3LT     CG      C       CH2     0       -6.009      7.710       -13.955     
+3LT     OE2     O       O       0       -6.265      8.150       -11.633     
+3LT     OE1     O       OC      -1      -6.009      9.874       -12.971     
+3LT     H1      H       H       0       -0.206      5.114       -9.467      
+3LT     H2      H       H       0       -2.953      4.823       -10.148     
+3LT     H3      H       H       0       -0.874      5.647       -11.917     
+3LT     H4      H       H       0       -3.013      7.250       -10.883     
+3LT     H5      H       H       0       -0.232      7.427       -10.209     
+3LT     H6      H       H       0       -1.257      9.548       -10.052     
+3LT     H7      H       H       0       -0.821      9.030       -8.619      
+3LT     H8      H       H       0       -1.320      1.210       -12.121     
+3LT     H9      H       H       0       -2.762      0.580       -11.931     
+3LT     H10     H       H       0       -1.766      0.664       -10.701     
+3LT     H11     H       H       0       -1.520      4.010       -13.440     
+3LT     H12     H       H       0       -2.290      5.997       -15.286     
+3LT     H13     H       H       0       -0.927      5.182       -15.253     
+3LT     H14     H       H       0       -1.174      6.357       -14.216     
+3LT     H15     H       H       0       -0.819      4.475       -7.557      
+3LT     H16     H       H       0       -0.974      7.991       -12.446     
+3LT     H17     H       H       0       -2.914      8.477       -8.261      
+3LT     H18     H       H       0       -0.868      3.143       -10.795     
+3LT     H19     H       H       0       -4.501      4.069       -12.898     
+3LT     H20     H       H       0       -5.489      2.662       -15.081     
+3LT     H22     H       H       0       -7.004      1.635       -13.595     
+3LT     H23     H       H       0       -6.377      2.444       -12.383     
+3LT     H24     H       H       0       -5.513      1.349       -13.137     
+3LT     H26     H       H       0       -5.641      5.034       -15.790     
+3LT     H28     H       H       0       -7.911      5.567       -18.018     
+3LT     H29     H       H       0       -9.418      5.349       -17.898     
+3LT     H30     H       H       0       -6.758      6.782       -16.401     
+3LT     H31     H       H       0       -7.837      6.788       -13.766     
+3LT     H32     H       H       0       -7.876      8.017       -14.761     
+3LT     H33     H       H       0       -5.526      8.169       -14.675     
+3LT     H34     H       H       0       -5.475      6.931       -13.691     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3LT           C         NBH      SINGLE       n     1.325  0.0100     1.325  0.0100
+3LT         CAW         OAX      DOUBLE       n     1.229  0.0102     1.229  0.0102
+3LT           C           O      DOUBLE       n     1.230  0.0100     1.230  0.0100
+3LT           C          CA      SINGLE       n     1.531  0.0100     1.531  0.0100
+3LT           N          CA      SINGLE       n     1.453  0.0100     1.453  0.0100
+3LT         CAW           N      SINGLE       n     1.337  0.0100     1.337  0.0100
+3LT          CA          CB      SINGLE       n     1.531  0.0110     1.531  0.0110
+3LT         CAU         CAW      SINGLE       n     1.530  0.0100     1.530  0.0100
+3LT         CAP         CAQ      SINGLE       n     1.507  0.0100     1.507  0.0100
+3LT         CAR         OAS      DOUBLE       n     1.229  0.0102     1.229  0.0102
+3LT         CAR         NAT      SINGLE       n     1.334  0.0100     1.334  0.0100
+3LT         CAP         CAR      SINGLE       n     1.523  0.0100     1.523  0.0100
+3LT         NAT         CAU      SINGLE       n     1.453  0.0100     1.453  0.0100
+3LT         CAU         CAV      SINGLE       n     1.525  0.0113     1.525  0.0113
+3LT          CB          CG      SINGLE       n     1.518  0.0153     1.518  0.0153
+3LT         CAP         OAO      SINGLE       n     1.432  0.0100     1.432  0.0100
+3LT          CD          CG      SINGLE       n     1.519  0.0109     1.519  0.0109
+3LT         CAI         OAO      SINGLE       n     1.428  0.0102     1.428  0.0102
+3LT         CAG         OAH      SINGLE       n     1.425  0.0100     1.425  0.0100
+3LT          CD         OE2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+3LT          CD         OE1      SINGLE       n     1.247  0.0187     1.247  0.0187
+3LT         CAI         CAG      SINGLE       n     1.522  0.0100     1.522  0.0100
+3LT         CAJ         CAI      SINGLE       n     1.525  0.0100     1.525  0.0100
+3LT         CAL         CAN      SINGLE       n     1.498  0.0100     1.498  0.0100
+3LT         CAG         CAD      SINGLE       n     1.525  0.0100     1.525  0.0100
+3LT         CAL         NAK      SINGLE       n     1.334  0.0119     1.334  0.0119
+3LT         CAL         OAM      DOUBLE       n     1.227  0.0100     1.227  0.0100
+3LT         CAJ         NAK      SINGLE       n     1.448  0.0100     1.448  0.0100
+3LT         CAA         CAJ      SINGLE       n     1.530  0.0100     1.530  0.0100
+3LT         CAD         CAE      SINGLE       n     1.511  0.0142     1.511  0.0142
+3LT         CAD         OAC      SINGLE       n     1.441  0.0100     1.441  0.0100
+3LT         CAE         OAF      SINGLE       n     1.426  0.0200     1.426  0.0200
+3LT         CAA         OAC      SINGLE       n     1.419  0.0100     1.419  0.0100
+3LT         CAA         OAB      SINGLE       n     1.394  0.0100     1.394  0.0100
+3LT         CAA          H1      SINGLE       n     1.089  0.0100     0.985  0.0100
+3LT         CAJ          H2      SINGLE       n     1.089  0.0100     0.987  0.0166
+3LT         CAI          H3      SINGLE       n     1.089  0.0100     0.989  0.0181
+3LT         CAG          H4      SINGLE       n     1.089  0.0100     0.991  0.0105
+3LT         CAD          H5      SINGLE       n     1.089  0.0100     0.988  0.0182
+3LT         CAE          H6      SINGLE       n     1.089  0.0100     0.980  0.0184
+3LT         CAE          H7      SINGLE       n     1.089  0.0100     0.980  0.0184
+3LT         CAN          H8      SINGLE       n     1.089  0.0100     0.971  0.0140
+3LT         CAN          H9      SINGLE       n     1.089  0.0100     0.971  0.0140
+3LT         CAN         H10      SINGLE       n     1.089  0.0100     0.971  0.0140
+3LT         CAP         H11      SINGLE       n     1.089  0.0100     0.980  0.0100
+3LT         CAQ         H12      SINGLE       n     1.089  0.0100     0.973  0.0141
+3LT         CAQ         H13      SINGLE       n     1.089  0.0100     0.973  0.0141
+3LT         CAQ         H14      SINGLE       n     1.089  0.0100     0.973  0.0141
+3LT         OAB         H15      SINGLE       n     0.970  0.0120     0.846  0.0200
+3LT         OAH         H16      SINGLE       n     0.970  0.0120     0.841  0.0200
+3LT         OAF         H17      SINGLE       n     0.970  0.0120     0.848  0.0200
+3LT         NAK         H18      SINGLE       n     1.016  0.0100     0.876  0.0200
+3LT         NAT         H19      SINGLE       n     1.016  0.0100     0.873  0.0200
+3LT         CAU         H20      SINGLE       n     1.089  0.0100     0.989  0.0200
+3LT         CAV         H22      SINGLE       n     1.089  0.0100     0.972  0.0152
+3LT         CAV         H23      SINGLE       n     1.089  0.0100     0.972  0.0152
+3LT         CAV         H24      SINGLE       n     1.089  0.0100     0.972  0.0152
+3LT           N         H26      SINGLE       n     1.016  0.0100     0.873  0.0200
+3LT         NBH         H28      SINGLE       n     1.016  0.0100     0.884  0.0200
+3LT         NBH         H29      SINGLE       n     1.016  0.0100     0.884  0.0200
+3LT          CA         H30      SINGLE       n     1.089  0.0100     0.991  0.0200
+3LT          CB         H31      SINGLE       n     1.089  0.0100     0.980  0.0178
+3LT          CB         H32      SINGLE       n     1.089  0.0100     0.980  0.0178
+3LT          CG         H33      SINGLE       n     1.089  0.0100     0.981  0.0185
+3LT          CG         H34      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3LT         CAJ         CAA         OAC     111.350    3.00
+3LT         CAJ         CAA         OAB     109.247    2.43
+3LT         CAJ         CAA          H1     108.848    1.50
+3LT         OAC         CAA         OAB     109.600    2.81
+3LT         OAC         CAA          H1     109.272    1.61
+3LT         OAB         CAA          H1     108.913    1.50
+3LT         CAI         CAJ         NAK     110.454    2.38
+3LT         CAI         CAJ         CAA     110.235    1.50
+3LT         CAI         CAJ          H2     107.258    1.68
+3LT         NAK         CAJ         CAA     111.780    3.00
+3LT         NAK         CAJ          H2     107.121    2.62
+3LT         CAA         CAJ          H2     107.511    1.55
+3LT         OAO         CAI         CAG     109.116    2.14
+3LT         OAO         CAI         CAJ     107.272    1.50
+3LT         OAO         CAI          H3     109.096    1.50
+3LT         CAG         CAI         CAJ     110.742    1.50
+3LT         CAG         CAI          H3     109.166    1.50
+3LT         CAJ         CAI          H3     108.987    1.50
+3LT         OAH         CAG         CAI     110.081    2.02
+3LT         OAH         CAG         CAD     109.072    2.07
+3LT         OAH         CAG          H4     109.194    1.50
+3LT         CAI         CAG         CAD     110.072    1.92
+3LT         CAI         CAG          H4     109.166    1.50
+3LT         CAD         CAG          H4     109.223    1.50
+3LT         CAG         CAD         CAE     112.996    1.59
+3LT         CAG         CAD         OAC     109.140    1.86
+3LT         CAG         CAD          H5     108.960    1.50
+3LT         CAE         CAD         OAC     106.879    1.50
+3LT         CAE         CAD          H5     109.269    1.50
+3LT         OAC         CAD          H5     109.134    1.50
+3LT         CAD         CAE         OAF     111.299    2.09
+3LT         CAD         CAE          H6     109.363    1.50
+3LT         CAD         CAE          H7     109.363    1.50
+3LT         OAF         CAE          H6     109.265    1.50
+3LT         OAF         CAE          H7     109.265    1.50
+3LT          H6         CAE          H7     108.155    1.50
+3LT         CAN         CAL         NAK     115.988    1.50
+3LT         CAN         CAL         OAM     122.067    1.50
+3LT         NAK         CAL         OAM     121.945    1.50
+3LT         CAL         CAN          H8     109.527    1.50
+3LT         CAL         CAN          H9     109.527    1.50
+3LT         CAL         CAN         H10     109.527    1.50
+3LT          H8         CAN          H9     109.365    1.50
+3LT          H8         CAN         H10     109.365    1.50
+3LT          H9         CAN         H10     109.365    1.50
+3LT         CAQ         CAP         CAR     110.885    1.50
+3LT         CAQ         CAP         OAO     107.456    1.50
+3LT         CAQ         CAP         H11     109.702    1.50
+3LT         CAR         CAP         OAO     107.846    2.10
+3LT         CAR         CAP         H11     109.194    1.50
+3LT         OAO         CAP         H11     109.427    1.50
+3LT         OAS         CAR         NAT     123.360    1.50
+3LT         OAS         CAR         CAP     120.053    2.12
+3LT         NAT         CAR         CAP     116.586    1.98
+3LT         CAP         CAQ         H12     109.468    1.50
+3LT         CAP         CAQ         H13     109.468    1.50
+3LT         CAP         CAQ         H14     109.468    1.50
+3LT         H12         CAQ         H13     109.425    1.50
+3LT         H12         CAQ         H14     109.425    1.50
+3LT         H13         CAQ         H14     109.425    1.50
+3LT         CAA         OAB         H15     109.112    2.54
+3LT         CAP         OAO         CAI     115.175    1.50
+3LT         CAG         OAH         H16     109.564    3.00
+3LT         CAD         OAC         CAA     113.152    1.70
+3LT         CAE         OAF         H17     109.472    2.41
+3LT         CAL         NAK         CAJ     123.083    2.48
+3LT         CAL         NAK         H18     118.617    2.66
+3LT         CAJ         NAK         H18     118.300    1.53
+3LT         CAR         NAT         CAU     121.949    1.76
+3LT         CAR         NAT         H19     118.839    1.94
+3LT         CAU         NAT         H19     119.213    1.50
+3LT         CAW         CAU         NAT     111.862    2.48
+3LT         CAW         CAU         CAV     110.119    1.50
+3LT         CAW         CAU         H20     107.902    1.50
+3LT         NAT         CAU         CAV     110.370    1.50
+3LT         NAT         CAU         H20     108.310    1.50
+3LT         CAV         CAU         H20     108.358    1.50
+3LT         OAX         CAW           N     122.954    1.50
+3LT         OAX         CAW         CAU     120.365    1.50
+3LT           N         CAW         CAU     116.681    1.56
+3LT         CAU         CAV         H22     109.620    1.50
+3LT         CAU         CAV         H23     109.620    1.50
+3LT         CAU         CAV         H24     109.620    1.50
+3LT         H22         CAV         H23     109.386    1.50
+3LT         H22         CAV         H24     109.386    1.50
+3LT         H23         CAV         H24     109.386    1.50
+3LT         NBH           C           O     123.732    1.50
+3LT         NBH           C          CA     115.746    1.60
+3LT           O           C          CA     120.522    1.50
+3LT          CA           N         CAW     121.028    1.58
+3LT          CA           N         H26     119.803    1.64
+3LT         CAW           N         H26     119.169    1.83
+3LT           C         NBH         H28     120.017    3.00
+3LT           C         NBH         H29     120.017    3.00
+3LT         H28         NBH         H29     119.966    2.38
+3LT           C          CA           N     111.106    2.53
+3LT           C          CA          CB     110.281    1.60
+3LT           C          CA         H30     108.061    1.50
+3LT           N          CA          CB     111.528    2.08
+3LT           N          CA         H30     107.954    1.50
+3LT          CB          CA         H30     108.242    1.50
+3LT          CA          CB          CG     113.079    1.50
+3LT          CA          CB         H31     108.827    1.50
+3LT          CA          CB         H32     108.827    1.50
+3LT          CG          CB         H31     108.890    1.50
+3LT          CG          CB         H32     108.890    1.50
+3LT         H31          CB         H32     107.844    1.50
+3LT          CG          CD         OE2     118.214    1.64
+3LT          CG          CD         OE1     118.214    1.64
+3LT         OE2          CD         OE1     123.571    1.50
+3LT          CB          CG          CD     114.629    2.24
+3LT          CB          CG         H33     108.906    1.50
+3LT          CB          CG         H34     108.906    1.50
+3LT          CD          CG         H33     108.404    1.50
+3LT          CD          CG         H34     108.404    1.50
+3LT         H33          CG         H34     107.521    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3LT                   nu0         CAD         OAC         CAA         CAJ     -64.908    10.0     3
+3LT                   nu1         OAC         CAA         CAJ         CAI      58.700    10.0     3
+3LT                   nu2         CAA         CAJ         CAI         CAG     -52.389    10.0     3
+3LT                   nu3         CAJ         CAI         CAG         CAD      51.695    10.0     3
+3LT                   nu4         CAI         CAG         CAD         OAC     -57.637    10.0     3
+3LT                   nu5         CAG         CAD         OAC         CAA      64.438    10.0     3
+3LT             sp2_sp2_1          CA           C         NBH         H28     180.000     5.0     2
+3LT             sp2_sp2_2          CA           C         NBH         H29       0.000     5.0     2
+3LT             sp2_sp2_3           O           C         NBH         H28       0.000     5.0     2
+3LT             sp2_sp2_4           O           C         NBH         H29     180.000     5.0     2
+3LT             sp2_sp3_1         NBH           C          CA           N       0.000    10.0     6
+3LT             sp2_sp3_2         NBH           C          CA          CB     120.000    10.0     6
+3LT             sp2_sp3_3         NBH           C          CA         H30    -120.000    10.0     6
+3LT             sp2_sp3_4           O           C          CA           N     180.000    10.0     6
+3LT             sp2_sp3_5           O           C          CA          CB     -60.000    10.0     6
+3LT             sp2_sp3_6           O           C          CA         H30      60.000    10.0     6
+3LT             sp2_sp3_7         CAW           N          CA           C       0.000    10.0     6
+3LT             sp2_sp3_8         CAW           N          CA          CB     120.000    10.0     6
+3LT             sp2_sp3_9         CAW           N          CA         H30    -120.000    10.0     6
+3LT            sp2_sp3_10         H26           N          CA           C     180.000    10.0     6
+3LT            sp2_sp3_11         H26           N          CA          CB     -60.000    10.0     6
+3LT            sp2_sp3_12         H26           N          CA         H30      60.000    10.0     6
+3LT             sp2_sp2_5         CAU         CAW           N          CA     180.000     5.0     2
+3LT             sp2_sp2_6         CAU         CAW           N         H26       0.000     5.0     2
+3LT             sp2_sp2_7         OAX         CAW           N          CA       0.000     5.0     2
+3LT             sp2_sp2_8         OAX         CAW           N         H26     180.000     5.0     2
+3LT            sp3_sp3_40           C          CA          CB          CG     180.000    10.0     3
+3LT            sp3_sp3_41           C          CA          CB         H31     -60.000    10.0     3
+3LT            sp3_sp3_42           C          CA          CB         H32      60.000    10.0     3
+3LT            sp3_sp3_43           N          CA          CB          CG      60.000    10.0     3
+3LT            sp3_sp3_44           N          CA          CB         H31     180.000    10.0     3
+3LT            sp3_sp3_45           N          CA          CB         H32     -60.000    10.0     3
+3LT            sp3_sp3_46         H30          CA          CB          CG     -60.000    10.0     3
+3LT            sp3_sp3_47         H30          CA          CB         H31      60.000    10.0     3
+3LT            sp3_sp3_48         H30          CA          CB         H32     180.000    10.0     3
+3LT            sp2_sp3_13         OAX         CAW         CAU         NAT       0.000    10.0     6
+3LT            sp2_sp3_14         OAX         CAW         CAU         CAV     120.000    10.0     6
+3LT            sp2_sp3_15         OAX         CAW         CAU         H20    -120.000    10.0     6
+3LT            sp2_sp3_16           N         CAW         CAU         NAT     180.000    10.0     6
+3LT            sp2_sp3_17           N         CAW         CAU         CAV     -60.000    10.0     6
+3LT            sp2_sp3_18           N         CAW         CAU         H20      60.000    10.0     6
+3LT            sp3_sp3_49         CAR         CAP         CAQ         H12     180.000    10.0     3
+3LT            sp3_sp3_50         CAR         CAP         CAQ         H13     -60.000    10.0     3
+3LT            sp3_sp3_51         CAR         CAP         CAQ         H14      60.000    10.0     3
+3LT            sp3_sp3_52         OAO         CAP         CAQ         H12      60.000    10.0     3
+3LT            sp3_sp3_53         OAO         CAP         CAQ         H13     180.000    10.0     3
+3LT            sp3_sp3_54         OAO         CAP         CAQ         H14     -60.000    10.0     3
+3LT            sp3_sp3_55         H11         CAP         CAQ         H12     -60.000    10.0     3
+3LT            sp3_sp3_56         H11         CAP         CAQ         H13      60.000    10.0     3
+3LT            sp3_sp3_57         H11         CAP         CAQ         H14     180.000    10.0     3
+3LT             sp2_sp2_9         CAP         CAR         NAT         CAU     180.000     5.0     2
+3LT            sp2_sp2_10         CAP         CAR         NAT         H19       0.000     5.0     2
+3LT            sp2_sp2_11         OAS         CAR         NAT         CAU       0.000     5.0     2
+3LT            sp2_sp2_12         OAS         CAR         NAT         H19     180.000     5.0     2
+3LT            sp2_sp3_19         OAS         CAR         CAP         CAQ       0.000    10.0     6
+3LT            sp2_sp3_20         OAS         CAR         CAP         OAO     120.000    10.0     6
+3LT            sp2_sp3_21         OAS         CAR         CAP         H11    -120.000    10.0     6
+3LT            sp2_sp3_22         NAT         CAR         CAP         CAQ     180.000    10.0     6
+3LT            sp2_sp3_23         NAT         CAR         CAP         OAO     -60.000    10.0     6
+3LT            sp2_sp3_24         NAT         CAR         CAP         H11      60.000    10.0     6
+3LT            sp2_sp3_25         CAR         NAT         CAU         CAW       0.000    10.0     6
+3LT            sp2_sp3_26         CAR         NAT         CAU         CAV     120.000    10.0     6
+3LT            sp2_sp3_27         CAR         NAT         CAU         H20    -120.000    10.0     6
+3LT            sp2_sp3_28         H19         NAT         CAU         CAW     180.000    10.0     6
+3LT            sp2_sp3_29         H19         NAT         CAU         CAV     -60.000    10.0     6
+3LT            sp2_sp3_30         H19         NAT         CAU         H20      60.000    10.0     6
+3LT            sp3_sp3_58         CAW         CAU         CAV         H22     180.000    10.0     3
+3LT            sp3_sp3_59         CAW         CAU         CAV         H23     -60.000    10.0     3
+3LT            sp3_sp3_60         CAW         CAU         CAV         H24      60.000    10.0     3
+3LT            sp3_sp3_61         NAT         CAU         CAV         H22      60.000    10.0     3
+3LT            sp3_sp3_62         NAT         CAU         CAV         H23     180.000    10.0     3
+3LT            sp3_sp3_63         NAT         CAU         CAV         H24     -60.000    10.0     3
+3LT            sp3_sp3_64         H20         CAU         CAV         H22     -60.000    10.0     3
+3LT            sp3_sp3_65         H20         CAU         CAV         H23      60.000    10.0     3
+3LT            sp3_sp3_66         H20         CAU         CAV         H24     180.000    10.0     3
+3LT            sp3_sp3_67          CA          CB          CG          CD     180.000    10.0     3
+3LT            sp3_sp3_68          CA          CB          CG         H33     -60.000    10.0     3
+3LT            sp3_sp3_69          CA          CB          CG         H34      60.000    10.0     3
+3LT            sp3_sp3_70         H31          CB          CG          CD      60.000    10.0     3
+3LT            sp3_sp3_71         H31          CB          CG         H33     180.000    10.0     3
+3LT            sp3_sp3_72         H31          CB          CG         H34     -60.000    10.0     3
+3LT            sp3_sp3_73         H32          CB          CG          CD     -60.000    10.0     3
+3LT            sp3_sp3_74         H32          CB          CG         H33      60.000    10.0     3
+3LT            sp3_sp3_75         H32          CB          CG         H34     180.000    10.0     3
+3LT            sp3_sp3_76         CAQ         CAP         OAO         CAI     180.000    10.0     3
+3LT            sp3_sp3_77         CAR         CAP         OAO         CAI      60.000    10.0     3
+3LT            sp3_sp3_78         H11         CAP         OAO         CAI     -60.000    10.0     3
+3LT            sp2_sp3_31         OE2          CD          CG         H33       0.000    10.0     6
+3LT            sp2_sp3_32         OE2          CD          CG          CB     120.000    10.0     6
+3LT            sp2_sp3_33         OE2          CD          CG         H34    -120.000    10.0     6
+3LT            sp2_sp3_34         OE1          CD          CG         H33     180.000    10.0     6
+3LT            sp2_sp3_35         OE1          CD          CG          CB     -60.000    10.0     6
+3LT            sp2_sp3_36         OE1          CD          CG         H34      60.000    10.0     6
+3LT            sp3_sp3_79         CAG         CAI         OAO         CAP     180.000    10.0     3
+3LT            sp3_sp3_80         CAJ         CAI         OAO         CAP      60.000    10.0     3
+3LT            sp3_sp3_81          H3         CAI         OAO         CAP     -60.000    10.0     3
+3LT            sp3_sp3_82         CAI         CAG         OAH         H16     180.000    10.0     3
+3LT            sp3_sp3_83         CAD         CAG         OAH         H16      60.000    10.0     3
+3LT            sp3_sp3_84          H4         CAG         OAH         H16     -60.000    10.0     3
+3LT            sp2_sp3_37         NAK         CAL         CAN          H8       0.000    10.0     6
+3LT            sp2_sp3_38         NAK         CAL         CAN          H9     120.000    10.0     6
+3LT            sp2_sp3_39         NAK         CAL         CAN         H10    -120.000    10.0     6
+3LT            sp2_sp3_40         OAM         CAL         CAN          H8     180.000    10.0     6
+3LT            sp2_sp3_41         OAM         CAL         CAN          H9     -60.000    10.0     6
+3LT            sp2_sp3_42         OAM         CAL         CAN         H10      60.000    10.0     6
+3LT            sp2_sp2_13         CAN         CAL         NAK         CAJ     180.000     5.0     2
+3LT            sp2_sp2_14         CAN         CAL         NAK         H18       0.000     5.0     2
+3LT            sp2_sp2_15         OAM         CAL         NAK         CAJ       0.000     5.0     2
+3LT            sp2_sp2_16         OAM         CAL         NAK         H18     180.000     5.0     2
+3LT            sp2_sp3_43         CAL         NAK         CAJ         CAI       0.000    10.0     6
+3LT            sp2_sp3_44         CAL         NAK         CAJ         CAA     120.000    10.0     6
+3LT            sp2_sp3_45         CAL         NAK         CAJ          H2    -120.000    10.0     6
+3LT            sp2_sp3_46         H18         NAK         CAJ         CAI     180.000    10.0     6
+3LT            sp2_sp3_47         H18         NAK         CAJ         CAA     -60.000    10.0     6
+3LT            sp2_sp3_48         H18         NAK         CAJ          H2      60.000    10.0     6
+3LT            sp3_sp3_85         CAG         CAD         CAE         OAF     180.000    10.0     3
+3LT            sp3_sp3_86         CAG         CAD         CAE          H6     -60.000    10.0     3
+3LT            sp3_sp3_87         CAG         CAD         CAE          H7      60.000    10.0     3
+3LT            sp3_sp3_88         OAC         CAD         CAE         OAF      60.000    10.0     3
+3LT            sp3_sp3_89         OAC         CAD         CAE          H6     180.000    10.0     3
+3LT            sp3_sp3_90         OAC         CAD         CAE          H7     -60.000    10.0     3
+3LT            sp3_sp3_91          H5         CAD         CAE         OAF     -60.000    10.0     3
+3LT            sp3_sp3_92          H5         CAD         CAE          H6      60.000    10.0     3
+3LT            sp3_sp3_93          H5         CAD         CAE          H7     180.000    10.0     3
+3LT            sp3_sp3_94         CAD         CAE         OAF         H17     180.000    10.0     3
+3LT            sp3_sp3_95          H6         CAE         OAF         H17      60.000    10.0     3
+3LT            sp3_sp3_96          H7         CAE         OAF         H17     -60.000    10.0     3
+3LT           sp3_sp3_100         CAJ         CAA         OAB         H15     180.000    10.0     3
+3LT           sp3_sp3_101         OAC         CAA         OAB         H15      60.000    10.0     3
+3LT           sp3_sp3_102          H1         CAA         OAB         H15     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+3LT    chir_1    CAA    OAC    OAB    CAJ    negative
+3LT    chir_2    CAJ    NAK    CAA    CAI    negative
+3LT    chir_3    CAI    OAO    CAG    CAJ    negative
+3LT    chir_4    CAG    OAH    CAD    CAI    positive
+3LT    chir_5    CAD    OAC    CAG    CAE    negative
+3LT    chir_6    CAP    OAO    CAR    CAQ    negative
+3LT    chir_7    CAU    NAT    CAW    CAV    positive
+3LT    chir_8    CA    N    C    CB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3LT    plan-1         CAL   0.020
+3LT    plan-1         CAN   0.020
+3LT    plan-1         NAK   0.020
+3LT    plan-1         OAM   0.020
+3LT    plan-2         CAP   0.020
+3LT    plan-2         CAR   0.020
+3LT    plan-2         NAT   0.020
+3LT    plan-2         OAS   0.020
+3LT    plan-3         CAJ   0.020
+3LT    plan-3         CAL   0.020
+3LT    plan-3         H18   0.020
+3LT    plan-3         NAK   0.020
+3LT    plan-4         CAR   0.020
+3LT    plan-4         CAU   0.020
+3LT    plan-4         H19   0.020
+3LT    plan-4         NAT   0.020
+3LT    plan-5         CAU   0.020
+3LT    plan-5         CAW   0.020
+3LT    plan-5           N   0.020
+3LT    plan-5         OAX   0.020
+3LT    plan-6           C   0.020
+3LT    plan-6          CA   0.020
+3LT    plan-6         NBH   0.020
+3LT    plan-6           O   0.020
+3LT    plan-7          CA   0.020
+3LT    plan-7         CAW   0.020
+3LT    plan-7         H26   0.020
+3LT    plan-7           N   0.020
+3LT    plan-8           C   0.020
+3LT    plan-8         H28   0.020
+3LT    plan-8         H29   0.020
+3LT    plan-8         NBH   0.020
+3LT    plan-9          CD   0.020
+3LT    plan-9          CG   0.020
+3LT    plan-9         OE1   0.020
+3LT    plan-9         OE2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3LT           SMILES              ACDLabs 12.01                                                                                                                                                                                   C1(OC(C(C(C1NC(=O)C)OC(C(NC(C)C(=O)NC(C(=O)N)CCC(=O)O)=O)C)O)CO)O
+3LT            InChI                InChI  1.03 InChI=1S/C19H32N4O11/c1-7(17(30)23-10(16(20)29)4-5-12(26)27)21-18(31)8(2)33-15-13(22-9(3)25)19(32)34-11(6-24)14(15)28/h7-8,10-11,13-15,19,24,28,32H,4-6H2,1-3H3,(H2,20,29)(H,21,31)(H,22,25)(H,23,30)(H,26,27)/t7-,8+,10+,11+,13+,14+,15+,19+/m0/s1
+3LT         InChIKey                InChI  1.03                                                                                                                                                                                                                         BSOQXXWZTUDTEL-ZUYCGGNHSA-N
+3LT SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                 C[C@H](NC(=O)[C@@H](C)O[C@H]1[C@H](O)[C@@H](CO)O[C@@H](O)[C@@H]1NC(C)=O)C(=O)N[C@H](CCC(O)=O)C(N)=O
+3LT           SMILES               CACTVS 3.385                                                                                                                                                             C[CH](NC(=O)[CH](C)O[CH]1[CH](O)[CH](CO)O[CH](O)[CH]1NC(C)=O)C(=O)N[CH](CCC(O)=O)C(N)=O
+3LT SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                                                                C[C@@H](C(=O)N[C@H](CCC(=O)O)C(=O)N)NC(=O)[C@@H](C)O[C@@H]1[C@H]([C@@H](O[C@@H]([C@H]1O)CO)O)NC(=O)C
+3LT           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                                                                                     CC(C(=O)NC(CCC(=O)O)C(=O)N)NC(=O)C(C)OC1C(C(OC(C1O)CO)O)NC(=O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3LT acedrg               243         "dictionary generator"                  
+3LT acedrg_database      11          "data source"                           
+3LT rdkit                2017.03.2   "Chemoinformatics tool"
+3LT refmac5              5.8.0238    "optimization tool"                     

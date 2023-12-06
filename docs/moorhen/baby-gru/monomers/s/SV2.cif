@@ -1,0 +1,288 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SV2     SV2      "[{2-[(guanine-9-yl)methyl]propane-1,3-diyl}bis(oxymethylene)]bis(phosphonic acid) "     NON-POLYMER     42     27     .     
+#
+data_comp_SV2
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SV2     OAE     O       OP      -1      -11.274     -17.305     -14.057     
+SV2     PAZ     P       P       0       -11.118     -16.140     -14.975     
+SV2     OAF     O       OP      -1      -11.312     -14.845     -14.264     
+SV2     OAC     O       O       0       -12.005     -16.256     -16.168     
+SV2     CAL     C       CH2     0       -9.409      -16.169     -15.579     
+SV2     OAR     O       O2      0       -9.256      -17.215     -16.526     
+SV2     CAJ     C       CH2     0       -7.965      -17.276     -17.112     
+SV2     CAX     C       CH1     0       -7.925      -18.401     -18.135     
+SV2     CAK     C       CH2     0       -6.483      -18.739     -18.488     
+SV2     OAS     O       O2      0       -5.873      -17.633     -19.140     
+SV2     CAM     C       CH2     0       -4.547      -17.886     -19.577     
+SV2     PBA     P       P       0       -3.834      -16.379     -20.290     
+SV2     OAG     O       OP      -1      -3.466      -15.493     -19.149     
+SV2     OAH     O       OP      -1      -2.636      -16.794     -21.075     
+SV2     OAD     O       O       0       -4.875      -15.757     -21.159     
+SV2     CAN     C       CH2     0       -8.770      -18.065     -19.364     
+SV2     N9      N       NR5     0       -8.792      -19.120     -20.376     
+SV2     C8      C       CR15    0       -8.184      -19.120     -21.587     
+SV2     N7      N       NRD5    0       -8.384      -20.215     -22.286     
+SV2     C5      C       CR56    0       -9.190      -21.007     -21.472     
+SV2     C4      C       CR56    0       -9.449      -20.331     -20.278     
+SV2     N3      N       NR6     0       -10.230     -20.927     -19.319     
+SV2     C2      C       CR6     0       -10.747     -22.175     -19.540     
+SV2     N2      N       NH2     0       -11.500     -22.720     -18.585     
+SV2     N1      N       NRD6    0       -10.517     -22.847     -20.671     
+SV2     C6      C       CR6     0       -9.733      -22.277     -21.661     
+SV2     O6      O       O       0       -9.548      -22.938     -22.693     
+SV2     H3      H       H       0       -8.805      -16.311     -14.820     
+SV2     H4      H       H       0       -9.204      -15.305     -15.995     
+SV2     H5      H       H       0       -7.294      -17.435     -16.415     
+SV2     H6      H       H       0       -7.761      -16.423     -17.552     
+SV2     H7      H       H       0       -8.321      -19.201     -17.710     
+SV2     H8      H       H       0       -6.460      -19.524     -19.076     
+SV2     H9      H       H       0       -5.985      -18.953     -17.671     
+SV2     H10     H       H       0       -4.546      -18.591     -20.259     
+SV2     H11     H       H       0       -3.992      -18.172     -18.822     
+SV2     H14     H       H       0       -8.425      -17.245     -19.771     
+SV2     H15     H       H       0       -9.688      -17.891     -19.075     
+SV2     H16     H       H       0       -7.664      -18.394     -21.898     
+SV2     H17     H       H       0       -10.401     -20.507     -18.558     
+SV2     H18     H       H       0       -12.192     -23.212     -18.804     
+SV2     H19     H       H       0       -11.299     -22.583     -17.742     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SV2          C6          O6      DOUBLE       n     1.239  0.0136     1.239  0.0136
+SV2          C8          N7      DOUBLE       y     1.312  0.0100     1.312  0.0100
+SV2          N7          C5      SINGLE       y     1.391  0.0100     1.391  0.0100
+SV2         PBA         OAD      DOUBLE       n     1.492  0.0200     1.492  0.0200
+SV2         PBA         OAG      SINGLE       n     1.492  0.0200     1.492  0.0200
+SV2          N9          C8      SINGLE       y     1.355  0.0146     1.355  0.0146
+SV2          C5          C6      SINGLE       y     1.391  0.0200     1.391  0.0200
+SV2          N1          C6      SINGLE       y     1.367  0.0200     1.367  0.0200
+SV2          C5          C4      DOUBLE       y     1.403  0.0200     1.403  0.0200
+SV2         PBA         OAH      SINGLE       n     1.492  0.0200     1.492  0.0200
+SV2         CAM         PBA      SINGLE       n     1.813  0.0200     1.813  0.0200
+SV2         OAS         CAM      SINGLE       n     1.418  0.0200     1.418  0.0200
+SV2         CAK         OAS      SINGLE       n     1.417  0.0200     1.417  0.0200
+SV2          C2          N1      DOUBLE       y     1.328  0.0100     1.328  0.0100
+SV2          N9          C4      SINGLE       y     1.385  0.0135     1.385  0.0135
+SV2         CAN          N9      SINGLE       n     1.462  0.0100     1.462  0.0100
+SV2          C4          N3      SINGLE       y     1.361  0.0200     1.361  0.0200
+SV2         CAX         CAK      SINGLE       n     1.520  0.0100     1.520  0.0100
+SV2         CAX         CAN      SINGLE       n     1.526  0.0110     1.526  0.0110
+SV2          N3          C2      SINGLE       y     1.362  0.0100     1.362  0.0100
+SV2          C2          N2      SINGLE       n     1.333  0.0100     1.333  0.0100
+SV2         CAJ         CAX      SINGLE       n     1.520  0.0100     1.520  0.0100
+SV2         OAR         CAJ      SINGLE       n     1.417  0.0200     1.417  0.0200
+SV2         CAL         OAR      SINGLE       n     1.418  0.0200     1.418  0.0200
+SV2         PAZ         CAL      SINGLE       n     1.813  0.0200     1.813  0.0200
+SV2         PAZ         OAC      DOUBLE       n     1.492  0.0200     1.492  0.0200
+SV2         OAE         PAZ      SINGLE       n     1.492  0.0200     1.492  0.0200
+SV2         PAZ         OAF      SINGLE       n     1.492  0.0200     1.492  0.0200
+SV2         CAL          H3      SINGLE       n     1.089  0.0100     0.980  0.0118
+SV2         CAL          H4      SINGLE       n     1.089  0.0100     0.980  0.0118
+SV2         CAJ          H5      SINGLE       n     1.089  0.0100     0.981  0.0174
+SV2         CAJ          H6      SINGLE       n     1.089  0.0100     0.981  0.0174
+SV2         CAX          H7      SINGLE       n     1.089  0.0100     0.989  0.0162
+SV2         CAK          H8      SINGLE       n     1.089  0.0100     0.981  0.0174
+SV2         CAK          H9      SINGLE       n     1.089  0.0100     0.981  0.0174
+SV2         CAM         H10      SINGLE       n     1.089  0.0100     0.980  0.0118
+SV2         CAM         H11      SINGLE       n     1.089  0.0100     0.980  0.0118
+SV2         CAN         H14      SINGLE       n     1.089  0.0100     0.978  0.0180
+SV2         CAN         H15      SINGLE       n     1.089  0.0100     0.978  0.0180
+SV2          C8         H16      SINGLE       n     1.082  0.0130     0.946  0.0200
+SV2          N3         H17      SINGLE       n     1.016  0.0100     0.885  0.0200
+SV2          N2         H18      SINGLE       n     1.016  0.0100     0.877  0.0200
+SV2          N2         H19      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SV2         CAL         PAZ         OAC     110.326    3.00
+SV2         CAL         PAZ         OAE     110.326    3.00
+SV2         CAL         PAZ         OAF     110.326    3.00
+SV2         OAC         PAZ         OAE     112.502    1.50
+SV2         OAC         PAZ         OAF     112.502    1.50
+SV2         OAE         PAZ         OAF     112.502    1.50
+SV2         OAR         CAL         PAZ     108.256    2.94
+SV2         OAR         CAL          H3     109.680    1.50
+SV2         OAR         CAL          H4     109.680    1.50
+SV2         PAZ         CAL          H3     108.528    1.50
+SV2         PAZ         CAL          H4     108.528    1.50
+SV2          H3         CAL          H4     108.552    1.71
+SV2         CAJ         OAR         CAL     113.200    3.00
+SV2         CAX         CAJ         OAR     109.310    1.52
+SV2         CAX         CAJ          H5     109.651    1.50
+SV2         CAX         CAJ          H6     109.651    1.50
+SV2         OAR         CAJ          H5     109.668    1.50
+SV2         OAR         CAJ          H6     109.668    1.50
+SV2          H5         CAJ          H6     108.408    1.50
+SV2         CAK         CAX         CAN     111.735    1.81
+SV2         CAK         CAX         CAJ     110.474    2.08
+SV2         CAK         CAX          H7     107.777    1.50
+SV2         CAN         CAX         CAJ     111.735    1.81
+SV2         CAN         CAX          H7     107.954    1.50
+SV2         CAJ         CAX          H7     107.777    1.50
+SV2         OAS         CAK         CAX     109.310    1.52
+SV2         OAS         CAK          H8     109.668    1.50
+SV2         OAS         CAK          H9     109.668    1.50
+SV2         CAX         CAK          H8     109.651    1.50
+SV2         CAX         CAK          H9     109.651    1.50
+SV2          H8         CAK          H9     108.408    1.50
+SV2         CAM         OAS         CAK     113.200    3.00
+SV2         PBA         CAM         OAS     108.256    2.94
+SV2         PBA         CAM         H10     108.528    1.50
+SV2         PBA         CAM         H11     108.528    1.50
+SV2         OAS         CAM         H10     109.680    1.50
+SV2         OAS         CAM         H11     109.680    1.50
+SV2         H10         CAM         H11     108.552    1.71
+SV2         OAD         PBA         OAG     112.502    1.50
+SV2         OAD         PBA         OAH     112.502    1.50
+SV2         OAD         PBA         CAM     110.326    3.00
+SV2         OAG         PBA         OAH     112.502    1.50
+SV2         OAG         PBA         CAM     110.326    3.00
+SV2         OAH         PBA         CAM     110.326    3.00
+SV2          N9         CAN         CAX     113.448    1.50
+SV2          N9         CAN         H14     108.820    1.50
+SV2          N9         CAN         H15     108.820    1.50
+SV2         CAX         CAN         H14     108.770    1.50
+SV2         CAX         CAN         H15     108.770    1.50
+SV2         H14         CAN         H15     107.954    1.50
+SV2          C8          N9          C4     106.839    1.50
+SV2          C8          N9         CAN     127.536    1.50
+SV2          C4          N9         CAN     125.624    2.02
+SV2          N7          C8          N9     113.855    1.50
+SV2          N7          C8         H16     123.338    1.50
+SV2          N9          C8         H16     122.807    1.50
+SV2          C8          N7          C5     103.865    1.50
+SV2          N7          C5          C6     130.432    1.89
+SV2          N7          C5          C4     108.955    1.50
+SV2          C6          C5          C4     120.613    1.50
+SV2          C5          C4          N9     106.485    1.50
+SV2          C5          C4          N3     120.059    1.50
+SV2          N9          C4          N3     133.456    1.50
+SV2          C4          N3          C2     119.469    1.50
+SV2          C4          N3         H17     120.497    1.50
+SV2          C2          N3         H17     120.033    1.95
+SV2          N1          C2          N3     121.064    1.50
+SV2          N1          C2          N2     120.408    1.50
+SV2          N3          C2          N2     118.528    1.50
+SV2          C2          N2         H18     119.700    2.06
+SV2          C2          N2         H19     119.700    2.06
+SV2         H18          N2         H19     120.601    1.96
+SV2          C6          N1          C2     118.438    1.50
+SV2          O6          C6          C5     122.487    1.50
+SV2          O6          C6          N1     117.157    1.50
+SV2          C5          C6          N1     120.356    1.68
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SV2             sp3_sp3_3         OAS         CAM         PBA         OAD      60.000    10.0     3
+SV2             sp2_sp3_2          C8          N9         CAN         CAX     -90.000    10.0     6
+SV2              const_18          N7          C8          N9         CAN     180.000    10.0     2
+SV2              const_30          C5          C4          N9         CAN     180.000    10.0     2
+SV2              const_21          N9          C8          N7          C5       0.000    10.0     2
+SV2              const_24          C6          C5          N7          C8     180.000    10.0     2
+SV2              const_25          N9          C4          C5          N7       0.000    10.0     2
+SV2       const_sp2_sp2_4          N7          C5          C6          O6       0.000     5.0     2
+SV2            sp3_sp3_51         OAR         CAL         PAZ         OAC      60.000    10.0     3
+SV2              const_13          C5          C4          N3          C2       0.000    10.0     2
+SV2              const_11          N2          C2          N3          C4     180.000    10.0     2
+SV2             sp2_sp2_3          N1          C2          N2         H18       0.000     5.0     2
+SV2       const_sp2_sp2_8          N2          C2          N1          C6     180.000     5.0     2
+SV2       const_sp2_sp2_6          O6          C6          N1          C2     180.000     5.0     2
+SV2            sp3_sp3_46         PAZ         CAL         OAR         CAJ     180.000    10.0     3
+SV2            sp3_sp3_43         CAX         CAJ         OAR         CAL     180.000    10.0     3
+SV2            sp3_sp3_34         OAR         CAJ         CAX         CAK     180.000    10.0     3
+SV2            sp3_sp3_26          N9         CAN         CAX         CAK     -60.000    10.0     3
+SV2            sp3_sp3_16         OAS         CAK         CAX         CAN     180.000    10.0     3
+SV2            sp3_sp3_13         CAX         CAK         OAS         CAM     180.000    10.0     3
+SV2            sp3_sp3_10         PBA         CAM         OAS         CAK     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SV2    chir_1    PAZ    OAE    OAF    OAC    both
+SV2    chir_2    CAX    CAK    CAJ    CAN    both
+SV2    chir_3    PBA    OAG    OAH    OAD    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SV2    plan-1          C2   0.020
+SV2    plan-1          C4   0.020
+SV2    plan-1          C5   0.020
+SV2    plan-1          C6   0.020
+SV2    plan-1          C8   0.020
+SV2    plan-1         CAN   0.020
+SV2    plan-1         H16   0.020
+SV2    plan-1         H17   0.020
+SV2    plan-1          N1   0.020
+SV2    plan-1          N2   0.020
+SV2    plan-1          N3   0.020
+SV2    plan-1          N7   0.020
+SV2    plan-1          N9   0.020
+SV2    plan-1          O6   0.020
+SV2    plan-2          C2   0.020
+SV2    plan-2         H18   0.020
+SV2    plan-2         H19   0.020
+SV2    plan-2          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SV2           SMILES              ACDLabs 12.01                                                                                                              O=P(O)(O)COCC(COCP(=O)(O)O)Cn1c2NC(=NC(=O)c2nc1)N
+SV2            InChI                InChI  1.03 InChI=1S/C11H19N5O9P2/c12-11-14-9-8(10(17)15-11)13-4-16(9)1-7(2-24-5-26(18,19)20)3-25-6-27(21,22)23/h4,7H,1-3,5-6H2,(H2,18,19,20)(H2,21,22,23)(H3,12,14,15,17)
+SV2         InChIKey                InChI  1.03                                                                                                                                    VGXYLSOVNUSSKA-UHFFFAOYSA-N
+SV2 SMILES_CANONICAL               CACTVS 3.370                                                                                                          NC1=NC(=O)c2ncn(CC(COC[P](O)(O)=O)COC[P](O)(O)=O)c2N1
+SV2           SMILES               CACTVS 3.370                                                                                                          NC1=NC(=O)c2ncn(CC(COC[P](O)(O)=O)COC[P](O)(O)=O)c2N1
+SV2 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                              c1nc2c(n1CC(COCP(=O)(O)O)COCP(=O)(O)O)NC(=NC2=O)N
+SV2           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                              c1nc2c(n1CC(COCP(=O)(O)O)COCP(=O)(O)O)NC(=NC2=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SV2 acedrg               243         "dictionary generator"                  
+SV2 acedrg_database      11          "data source"                           
+SV2 rdkit                2017.03.2   "Chemoinformatics tool"
+SV2 refmac5              5.8.0238    "optimization tool"                     

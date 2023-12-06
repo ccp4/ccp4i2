@@ -1,0 +1,635 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MDE     MDE      "5-MERCAPTOETHANOL-2-DECENOYL-COENZYME A"     NON-POLYMER     114     63     .     
+#
+data_comp_MDE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MDE     P1A     P       P       0       25.181      6.063       25.877      
+MDE     O1A     O       O       0       25.686      6.040       27.282      
+MDE     O2A     O       OP      -1      24.119      7.052       25.528      
+MDE     O5B     O       O2      0       26.421      6.238       24.871      
+MDE     C5B     C       CH2     0       26.283      5.852       23.477      
+MDE     C4B     C       CH1     0       27.235      6.665       22.634      
+MDE     O4B     O       O2      0       27.443      5.995       21.374      
+MDE     C1B     C       CH1     0       26.789      6.708       20.324      
+MDE     N9A     N       NR5     1       26.001      5.754       19.542      
+MDE     C4A     C       CR56    0       26.072      5.550       18.186      
+MDE     N3A     N       NRD6    0       26.877      6.187       17.297      
+MDE     C2A     C       CR16    0       26.689      5.746       16.055      
+MDE     N1A     N       NRD6    0       25.847      4.801       15.606      
+MDE     C6A     C       CR6     0       25.052      4.175       16.500      
+MDE     N6A     N       NH2     0       24.211      3.235       16.063      
+MDE     C5A     C       CR56    0       25.154      4.552       17.855      
+MDE     N7A     N       NR5     0       24.545      4.172       19.031      
+MDE     C8A     C       CR15    0       25.069      4.908       20.053      
+MDE     C2B     C       CH1     0       25.952      7.802       20.995      
+MDE     O2B     O       OH1     0       25.825      8.948       20.165      
+MDE     C3B     C       CH1     0       26.749      8.063       22.273      
+MDE     O3B     O       O2      0       27.852      8.944       22.041      
+MDE     P3B     P       P       0       28.214      9.907       23.291      
+MDE     O7B     O       OP      -1      27.089      10.921      23.393      
+MDE     O8B     O       OP      -1      28.304      9.029       24.525      
+MDE     O9B     O       O       0       29.542      10.560      22.957      
+MDE     O3A     O       O2      0       24.662      4.593       25.495      
+MDE     P2A     P       P       0       23.199      3.947       25.365      
+MDE     O4A     O       O       0       23.326      2.537       24.892      
+MDE     O5A     O       OP      -1      22.431      4.223       26.615      
+MDE     O6A     O       O2      0       22.564      4.824       24.181      
+MDE     CCP     C       CH2     0       21.122      4.857       24.019      
+MDE     CBP     C       CT      0       20.784      5.599       22.722      
+MDE     CDP     C       CH3     0       21.445      4.856       21.549      
+MDE     CEP     C       CH3     0       19.255      5.592       22.535      
+MDE     CAP     C       C       0       21.263      7.067       22.742      
+MDE     OAP     O       O       0       21.733      7.571       23.741      
+MDE     C9P     C       CH1     0       21.123      7.928       21.481      
+MDE     O9P     O       OH1     0       20.430      9.125       21.802      
+MDE     N8P     N       NT1     0       22.446      8.194       20.898      
+MDE     C7P     C       CH2     0       22.419      8.803       19.558      
+MDE     C6P     C       CH2     0       22.377      7.756       18.459      
+MDE     C5P     C       C       0       22.438      8.400       17.088      
+MDE     O5P     O       O       0       21.685      9.332       16.808      
+MDE     N4P     N       NH1     0       23.318      7.910       16.201      
+MDE     C3P     C       CH2     0       23.568      8.500       14.892      
+MDE     C2P     C       CH2     0       22.427      8.284       13.923      
+MDE     S1P     S       S2      0       22.657      6.896       12.794      
+MDE     "C1'"   C       C       0       24.040      6.759       11.702      
+MDE     "O1'"   O       O       0       25.013      7.462       11.856      
+MDE     "C2'"   C       C1      0       23.967      5.885       10.542      
+MDE     "C3'"   C       C1      0       22.936      5.097       10.252      
+MDE     "C4'"   C       CH2     0       22.627      4.468       8.930       
+MDE     "C5'"   C       CH1     0       21.153      4.099       8.775       
+MDE     SG      S       S2      0       20.534      4.419       7.072       
+MDE     CB      C       CH2     0       21.521      3.289       6.049       
+MDE     CB1     C       C1      0       20.822      1.992       5.795       
+MDE     OB1     O       O       0       19.797      1.946       5.190       
+MDE     "C6'"   C       CH2     0       20.842      2.662       9.175       
+MDE     "C7'"   C       CH2     0       20.989      2.359       10.650      
+MDE     "C8'"   C       CH2     0       20.586      0.982       11.117      
+MDE     "C9'"   C       CH2     0       20.540      0.824       12.617      
+MDE     C10     C       CH3     0       21.890      0.921       13.288      
+MDE     "H5'1"  H       H       0       25.354      6.009       23.172      
+MDE     "H5'2"  H       H       0       26.487      4.890       23.374      
+MDE     "H4'"   H       H       0       28.092      6.730       23.108      
+MDE     "H1'"   H       H       0       27.466      7.135       19.745      
+MDE     H4      H       H       0       27.226      6.156       15.395      
+MDE     HN61    H       H       0       23.546      2.975       16.573      
+MDE     HN62    H       H       0       24.327      2.879       15.269      
+MDE     HN7     H       H       0       23.905      3.542       19.126      
+MDE     H8      H       H       0       24.823      4.844       20.961      
+MDE     H1      H       H       0       25.056      7.459       21.230      
+MDE     H2      H       H       0       26.586      9.310       20.061      
+MDE     H3      H       H       0       26.152      8.415       22.974      
+MDE     H121    H       H       0       20.712      5.310       24.785      
+MDE     H122    H       H       0       20.775      3.941       23.985      
+MDE     H131    H       H       0       22.403      5.026       21.552      
+MDE     H132    H       H       0       21.070      5.164       20.706      
+MDE     H133    H       H       0       21.287      3.900       21.639      
+MDE     H141    H       H       0       18.892      6.469       22.754      
+MDE     H142    H       H       0       18.852      4.929       23.122      
+MDE     H143    H       H       0       19.030      5.378       21.614      
+MDE     H9      H       H       0       20.584      7.430       20.830      
+MDE     HO9     H       H       0       20.928      9.629       22.268      
+MDE     HN8     H       H       0       22.948      8.706       21.427      
+MDE     H71     H       H       0       23.220      9.358       19.438      
+MDE     H72     H       H       0       21.634      9.387       19.474      
+MDE     H61     H       H       0       21.556      7.240       18.532      
+MDE     H62     H       H       0       23.126      7.145       18.566      
+MDE     HN4     H       H       0       23.765      7.193       16.416      
+MDE     H31     H       H       0       24.387      8.112       14.517      
+MDE     H32     H       H       0       23.713      9.464       15.000      
+MDE     H21     H       H       0       22.309      9.098       13.395      
+MDE     H22     H       H       0       21.602      8.140       14.425      
+MDE     "H2'"   H       H       0       24.708      5.877       9.959       
+MDE     "H3'"   H       H       0       22.353      4.871       10.955      
+MDE     "H4'1"  H       H       0       23.173      3.661       8.823       
+MDE     "H4'2"  H       H       0       22.876      5.093       8.215       
+MDE     "H5'"   H       H       0       20.629      4.682       9.383       
+MDE     HB1     H       H       0       22.368      3.111       6.494       
+MDE     HB2     H       H       0       21.708      3.722       5.197       
+MDE     HB11    H       H       0       21.228      1.207       6.134       
+MDE     "H6'1"  H       H       0       21.437      2.065       8.674       
+MDE     "H6'2"  H       H       0       19.920      2.460       8.908       
+MDE     "H7'1"  H       H       0       20.458      3.020       11.144      
+MDE     "H7'2"  H       H       0       21.929      2.501       10.891      
+MDE     "H8'1"  H       H       0       21.220      0.328       10.752      
+MDE     "H8'2"  H       H       0       19.700      0.773       10.751      
+MDE     "H9'1"  H       H       0       20.143      -0.049      12.829      
+MDE     "H9'2"  H       H       0       19.951      1.517       12.988      
+MDE     H101    H       H       0       21.805      0.681       14.227      
+MDE     H102    H       H       0       22.225      1.832       13.216      
+MDE     H103    H       H       0       22.514      0.313       12.854      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MDE         P1A         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+MDE         P1A         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+MDE         P1A         O5B      SINGLE       n     1.604  0.0133     1.604  0.0133
+MDE         P1A         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+MDE         O5B         C5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+MDE         C5B         C4B      SINGLE       n     1.509  0.0100     1.509  0.0100
+MDE         C4B         O4B      SINGLE       n     1.443  0.0107     1.443  0.0107
+MDE         C4B         C3B      SINGLE       n     1.525  0.0133     1.525  0.0133
+MDE         O4B         C1B      SINGLE       n     1.426  0.0147     1.426  0.0147
+MDE         C1B         N9A      SINGLE       n     1.459  0.0149     1.459  0.0149
+MDE         C1B         C2B      SINGLE       n     1.530  0.0100     1.530  0.0100
+MDE         N9A         C4A      SINGLE       y     1.371  0.0104     1.371  0.0104
+MDE         N9A         C8A      DOUBLE       y     1.350  0.0165     1.350  0.0165
+MDE         C4A         N3A      DOUBLE       y     1.341  0.0185     1.341  0.0185
+MDE         C4A         C5A      SINGLE       y     1.395  0.0100     1.395  0.0100
+MDE         N3A         C2A      SINGLE       y     1.326  0.0100     1.326  0.0100
+MDE         C2A         N1A      DOUBLE       y     1.339  0.0100     1.339  0.0100
+MDE         N1A         C6A      SINGLE       y     1.346  0.0100     1.346  0.0100
+MDE         C6A         N6A      SINGLE       n     1.333  0.0135     1.333  0.0135
+MDE         C6A         C5A      DOUBLE       y     1.401  0.0167     1.401  0.0167
+MDE         C5A         N7A      SINGLE       y     1.379  0.0100     1.379  0.0100
+MDE         N7A         C8A      SINGLE       y     1.362  0.0142     1.362  0.0142
+MDE         C2B         O2B      SINGLE       n     1.419  0.0101     1.419  0.0101
+MDE         C2B         C3B      SINGLE       n     1.527  0.0100     1.527  0.0100
+MDE         C3B         O3B      SINGLE       n     1.425  0.0152     1.425  0.0152
+MDE         O3B         P3B      SINGLE       n     1.614  0.0178     1.614  0.0178
+MDE         P3B         O7B      SINGLE       n     1.517  0.0192     1.517  0.0192
+MDE         P3B         O8B      SINGLE       n     1.517  0.0192     1.517  0.0192
+MDE         P3B         O9B      DOUBLE       n     1.517  0.0192     1.517  0.0192
+MDE         O3A         P2A      SINGLE       n     1.604  0.0133     1.604  0.0133
+MDE         P2A         O4A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+MDE         P2A         O5A      SINGLE       n     1.493  0.0122     1.493  0.0122
+MDE         P2A         O6A      SINGLE       n     1.604  0.0133     1.604  0.0133
+MDE         O6A         CCP      SINGLE       n     1.447  0.0162     1.447  0.0162
+MDE         CCP         CBP      SINGLE       n     1.527  0.0100     1.527  0.0100
+MDE         CBP         CDP      SINGLE       n     1.530  0.0127     1.530  0.0127
+MDE         CBP         CEP      SINGLE       n     1.530  0.0127     1.530  0.0127
+MDE         CBP         CAP      SINGLE       n     1.530  0.0144     1.530  0.0144
+MDE         CAP         OAP      DOUBLE       n     1.209  0.0200     1.209  0.0200
+MDE         CAP         C9P      SINGLE       n     1.531  0.0100     1.531  0.0100
+MDE         C9P         O9P      SINGLE       n     1.419  0.0117     1.419  0.0117
+MDE         C9P         N8P      SINGLE       n     1.469  0.0137     1.469  0.0137
+MDE         N8P         C7P      SINGLE       n     1.471  0.0137     1.471  0.0137
+MDE         C7P         C6P      SINGLE       n     1.518  0.0129     1.518  0.0129
+MDE         C6P         C5P      SINGLE       n     1.514  0.0100     1.514  0.0100
+MDE         C5P         O5P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+MDE         C5P         N4P      SINGLE       n     1.337  0.0118     1.337  0.0118
+MDE         N4P         C3P      SINGLE       n     1.455  0.0100     1.455  0.0100
+MDE         C3P         C2P      SINGLE       n     1.510  0.0158     1.510  0.0158
+MDE         C2P         S1P      SINGLE       n     1.809  0.0191     1.809  0.0191
+MDE         S1P       "C1'"      SINGLE       n     1.762  0.0200     1.762  0.0200
+MDE       "C1'"       "O1'"      DOUBLE       n     1.211  0.0160     1.211  0.0160
+MDE       "C1'"       "C2'"      SINGLE       n     1.444  0.0200     1.444  0.0200
+MDE       "C2'"       "C3'"      DOUBLE       n     1.326  0.0157     1.326  0.0157
+MDE       "C3'"       "C4'"      SINGLE       n     1.498  0.0152     1.498  0.0152
+MDE       "C4'"       "C5'"      SINGLE       n     1.523  0.0116     1.523  0.0116
+MDE       "C5'"          SG      SINGLE       n     1.838  0.0107     1.838  0.0107
+MDE       "C5'"       "C6'"      SINGLE       n     1.522  0.0102     1.522  0.0102
+MDE          SG          CB      SINGLE       n     1.816  0.0116     1.816  0.0116
+MDE          CB         CB1      SINGLE       n     1.496  0.0200     1.496  0.0200
+MDE         CB1         OB1      DOUBLE       n     1.191  0.0200     1.191  0.0200
+MDE       "C6'"       "C7'"      SINGLE       n     1.509  0.0200     1.509  0.0200
+MDE       "C7'"       "C8'"      SINGLE       n     1.509  0.0200     1.509  0.0200
+MDE       "C8'"       "C9'"      SINGLE       n     1.507  0.0200     1.507  0.0200
+MDE       "C9'"         C10      SINGLE       n     1.510  0.0200     1.510  0.0200
+MDE         C5B      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+MDE         C5B      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+MDE         C4B       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+MDE         C1B       "H1'"      SINGLE       n     1.089  0.0100     0.989  0.0186
+MDE         C2A          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+MDE         N6A        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+MDE         N6A        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+MDE         N7A         HN7      SINGLE       n     1.016  0.0100     0.904  0.0200
+MDE         C8A          H8      SINGLE       n     1.082  0.0130     0.943  0.0184
+MDE         C2B          H1      SINGLE       n     1.089  0.0100     0.989  0.0200
+MDE         O2B          H2      SINGLE       n     0.970  0.0120     0.849  0.0200
+MDE         C3B          H3      SINGLE       n     1.089  0.0100     0.985  0.0119
+MDE         CCP        H121      SINGLE       n     1.089  0.0100     0.980  0.0143
+MDE         CCP        H122      SINGLE       n     1.089  0.0100     0.980  0.0143
+MDE         CDP        H131      SINGLE       n     1.089  0.0100     0.973  0.0141
+MDE         CDP        H132      SINGLE       n     1.089  0.0100     0.973  0.0141
+MDE         CDP        H133      SINGLE       n     1.089  0.0100     0.973  0.0141
+MDE         CEP        H141      SINGLE       n     1.089  0.0100     0.973  0.0141
+MDE         CEP        H142      SINGLE       n     1.089  0.0100     0.973  0.0141
+MDE         CEP        H143      SINGLE       n     1.089  0.0100     0.973  0.0141
+MDE         C9P          H9      SINGLE       n     1.089  0.0100     0.982  0.0171
+MDE         O9P         HO9      SINGLE       n     0.970  0.0120     0.848  0.0200
+MDE         N8P         HN8      SINGLE       n     1.036  0.0160     0.890  0.0200
+MDE         C7P         H71      SINGLE       n     1.089  0.0100     0.982  0.0143
+MDE         C7P         H72      SINGLE       n     1.089  0.0100     0.982  0.0143
+MDE         C6P         H61      SINGLE       n     1.089  0.0100     0.973  0.0156
+MDE         C6P         H62      SINGLE       n     1.089  0.0100     0.973  0.0156
+MDE         N4P         HN4      SINGLE       n     1.016  0.0100     0.872  0.0200
+MDE         C3P         H31      SINGLE       n     1.089  0.0100     0.981  0.0127
+MDE         C3P         H32      SINGLE       n     1.089  0.0100     0.981  0.0127
+MDE         C2P         H21      SINGLE       n     1.089  0.0100     0.978  0.0177
+MDE         C2P         H22      SINGLE       n     1.089  0.0100     0.978  0.0177
+MDE       "C2'"       "H2'"      SINGLE       n     1.082  0.0130     0.943  0.0200
+MDE       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.943  0.0181
+MDE       "C4'"      "H4'1"      SINGLE       n     1.089  0.0100     0.981  0.0185
+MDE       "C4'"      "H4'2"      SINGLE       n     1.089  0.0100     0.981  0.0185
+MDE       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.991  0.0193
+MDE          CB         HB1      SINGLE       n     1.089  0.0100     0.974  0.0194
+MDE          CB         HB2      SINGLE       n     1.089  0.0100     0.974  0.0194
+MDE         CB1        HB11      SINGLE       n     1.082  0.0130     0.947  0.0200
+MDE       "C6'"      "H6'1"      SINGLE       n     1.089  0.0100     0.981  0.0160
+MDE       "C6'"      "H6'2"      SINGLE       n     1.089  0.0100     0.981  0.0160
+MDE       "C7'"      "H7'1"      SINGLE       n     1.089  0.0100     0.981  0.0163
+MDE       "C7'"      "H7'2"      SINGLE       n     1.089  0.0100     0.981  0.0163
+MDE       "C8'"      "H8'1"      SINGLE       n     1.089  0.0100     0.981  0.0163
+MDE       "C8'"      "H8'2"      SINGLE       n     1.089  0.0100     0.981  0.0163
+MDE       "C9'"      "H9'1"      SINGLE       n     1.089  0.0100     0.982  0.0155
+MDE       "C9'"      "H9'2"      SINGLE       n     1.089  0.0100     0.982  0.0155
+MDE         C10        H101      SINGLE       n     1.089  0.0100     0.973  0.0157
+MDE         C10        H102      SINGLE       n     1.089  0.0100     0.973  0.0157
+MDE         C10        H103      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MDE         O1A         P1A         O2A     118.411    2.35
+MDE         O1A         P1A         O5B     109.410    1.50
+MDE         O1A         P1A         O3A     108.816    2.14
+MDE         O2A         P1A         O5B     109.410    1.50
+MDE         O2A         P1A         O3A     108.816    2.14
+MDE         O5B         P1A         O3A     101.065    1.97
+MDE         P1A         O5B         C5B     118.553    2.41
+MDE         O5B         C5B         C4B     109.342    1.50
+MDE         O5B         C5B      "H5'1"     109.845    1.50
+MDE         O5B         C5B      "H5'2"     109.845    1.50
+MDE         C4B         C5B      "H5'1"     109.624    1.50
+MDE         C4B         C5B      "H5'2"     109.624    1.50
+MDE      "H5'1"         C5B      "H5'2"     108.472    1.50
+MDE         C5B         C4B         O4B     109.123    1.50
+MDE         C5B         C4B         C3B     114.866    1.63
+MDE         C5B         C4B       "H4'"     108.268    1.50
+MDE         O4B         C4B         C3B     105.508    1.50
+MDE         O4B         C4B       "H4'"     108.947    1.50
+MDE         C3B         C4B       "H4'"     109.143    1.50
+MDE         C4B         O4B         C1B     109.903    1.50
+MDE         O4B         C1B         N9A     108.477    1.50
+MDE         O4B         C1B         C2B     106.047    1.50
+MDE         O4B         C1B       "H1'"     109.807    1.50
+MDE         N9A         C1B         C2B     113.824    1.50
+MDE         N9A         C1B       "H1'"     109.561    1.50
+MDE         C2B         C1B       "H1'"     109.015    1.50
+MDE         C1B         N9A         C4A     126.308    1.80
+MDE         C1B         N9A         C8A     125.356    1.50
+MDE         C4A         N9A         C8A     108.336    1.50
+MDE         N9A         C4A         N3A     126.921    1.50
+MDE         N9A         C4A         C5A     108.347    1.50
+MDE         N3A         C4A         C5A     124.732    1.50
+MDE         C4A         N3A         C2A     111.047    1.50
+MDE         N3A         C2A         N1A     129.397    1.50
+MDE         N3A         C2A          H4     115.323    1.50
+MDE         N1A         C2A          H4     115.280    1.50
+MDE         C2A         N1A         C6A     118.586    1.50
+MDE         N1A         C6A         N6A     118.516    1.50
+MDE         N1A         C6A         C5A     118.381    1.50
+MDE         N6A         C6A         C5A     123.102    1.50
+MDE         C6A         N6A        HN61     119.723    1.50
+MDE         C6A         N6A        HN62     119.723    1.50
+MDE        HN61         N6A        HN62     120.554    1.88
+MDE         C4A         C5A         C6A     117.856    1.50
+MDE         C4A         C5A         N7A     106.994    1.50
+MDE         C6A         C5A         N7A     135.150    1.50
+MDE         C5A         N7A         C8A     108.829    1.50
+MDE         C5A         N7A         HN7     126.457    1.50
+MDE         C8A         N7A         HN7     124.714    1.84
+MDE         N9A         C8A         N7A     107.495    2.12
+MDE         N9A         C8A          H8     126.179    1.50
+MDE         N7A         C8A          H8     126.326    1.61
+MDE         C1B         C2B         O2B     111.715    2.69
+MDE         C1B         C2B         C3B     101.388    1.50
+MDE         C1B         C2B          H1     110.636    1.70
+MDE         O2B         C2B         C3B     112.463    2.73
+MDE         O2B         C2B          H1     110.448    1.97
+MDE         C3B         C2B          H1     110.255    2.04
+MDE         C2B         O2B          H2     109.103    2.13
+MDE         C4B         C3B         C2B     102.352    1.50
+MDE         C4B         C3B         O3B     110.864    2.31
+MDE         C4B         C3B          H3     110.624    1.81
+MDE         C2B         C3B         O3B     110.766    3.00
+MDE         C2B         C3B          H3     110.255    2.04
+MDE         O3B         C3B          H3     110.343    1.64
+MDE         C3B         O3B         P3B     109.471    3.00
+MDE         O3B         P3B         O7B     106.518    3.00
+MDE         O3B         P3B         O8B     106.518    3.00
+MDE         O3B         P3B         O9B     106.518    3.00
+MDE         O7B         P3B         O8B     112.139    1.52
+MDE         O7B         P3B         O9B     112.139    1.52
+MDE         O8B         P3B         O9B     112.139    1.52
+MDE         P1A         O3A         P2A     132.542    3.00
+MDE         O3A         P2A         O4A     108.816    2.14
+MDE         O3A         P2A         O5A     108.816    2.14
+MDE         O3A         P2A         O6A     101.065    1.97
+MDE         O4A         P2A         O5A     118.411    2.35
+MDE         O4A         P2A         O6A     107.912    2.57
+MDE         O5A         P2A         O6A     107.912    2.57
+MDE         P2A         O6A         CCP     119.251    1.51
+MDE         O6A         CCP         CBP     107.408    1.50
+MDE         O6A         CCP        H121     109.739    1.50
+MDE         O6A         CCP        H122     109.739    1.50
+MDE         CBP         CCP        H121     110.086    1.50
+MDE         CBP         CCP        H122     110.086    1.50
+MDE        H121         CCP        H122     108.108    1.50
+MDE         CCP         CBP         CDP     109.340    1.50
+MDE         CCP         CBP         CEP     109.340    1.50
+MDE         CCP         CBP         CAP     111.511    2.91
+MDE         CDP         CBP         CEP     108.963    1.54
+MDE         CDP         CBP         CAP     109.115    2.17
+MDE         CEP         CBP         CAP     109.115    2.17
+MDE         CBP         CDP        H131     109.537    1.50
+MDE         CBP         CDP        H132     109.537    1.50
+MDE         CBP         CDP        H133     109.537    1.50
+MDE        H131         CDP        H132     109.377    1.50
+MDE        H131         CDP        H133     109.377    1.50
+MDE        H132         CDP        H133     109.377    1.50
+MDE         CBP         CEP        H141     109.537    1.50
+MDE         CBP         CEP        H142     109.537    1.50
+MDE         CBP         CEP        H143     109.537    1.50
+MDE        H141         CEP        H142     109.377    1.50
+MDE        H141         CEP        H143     109.377    1.50
+MDE        H142         CEP        H143     109.377    1.50
+MDE         CBP         CAP         OAP     122.007    1.50
+MDE         CBP         CAP         C9P     117.706    2.45
+MDE         OAP         CAP         C9P     120.287    1.50
+MDE         CAP         C9P         O9P     110.427    2.31
+MDE         CAP         C9P         N8P     112.134    2.59
+MDE         CAP         C9P          H9     107.162    1.80
+MDE         O9P         C9P         N8P     112.111    1.50
+MDE         O9P         C9P          H9     108.708    1.50
+MDE         N8P         C9P          H9     109.140    1.50
+MDE         C9P         O9P         HO9     109.159    3.00
+MDE         C9P         N8P         C7P     112.615    2.70
+MDE         C9P         N8P         HN8     111.861    3.00
+MDE         C7P         N8P         HN8     108.280    3.00
+MDE         N8P         C7P         C6P     111.576    2.24
+MDE         N8P         C7P         H71     109.402    1.50
+MDE         N8P         C7P         H72     109.402    1.50
+MDE         C6P         C7P         H71     108.971    1.50
+MDE         C6P         C7P         H72     108.971    1.50
+MDE         H71         C7P         H72     107.877    1.50
+MDE         C7P         C6P         C5P     112.120    2.79
+MDE         C7P         C6P         H61     109.432    1.50
+MDE         C7P         C6P         H62     109.432    1.50
+MDE         C5P         C6P         H61     108.945    1.50
+MDE         C5P         C6P         H62     108.945    1.50
+MDE         H61         C6P         H62     107.745    2.07
+MDE         C6P         C5P         O5P     120.987    1.50
+MDE         C6P         C5P         N4P     117.070    1.96
+MDE         O5P         C5P         N4P     121.943    1.50
+MDE         C5P         N4P         C3P     123.437    1.80
+MDE         C5P         N4P         HN4     117.862    2.10
+MDE         C3P         N4P         HN4     118.700    1.83
+MDE         N4P         C3P         C2P     112.117    1.54
+MDE         N4P         C3P         H31     109.102    1.50
+MDE         N4P         C3P         H32     109.102    1.50
+MDE         C2P         C3P         H31     109.038    1.50
+MDE         C2P         C3P         H32     109.038    1.50
+MDE         H31         C3P         H32     107.995    1.50
+MDE         C3P         C2P         S1P     112.239    3.00
+MDE         C3P         C2P         H21     108.964    1.50
+MDE         C3P         C2P         H22     108.964    1.50
+MDE         S1P         C2P         H21     109.066    1.50
+MDE         S1P         C2P         H22     109.066    1.50
+MDE         H21         C2P         H22     107.807    1.50
+MDE         C2P         S1P       "C1'"     120.000    3.00
+MDE         S1P       "C1'"       "O1'"     120.701    2.65
+MDE         S1P       "C1'"       "C2'"     118.936    3.00
+MDE       "O1'"       "C1'"       "C2'"     120.363    3.00
+MDE       "C1'"       "C2'"       "C3'"     123.616    2.45
+MDE       "C1'"       "C2'"       "H2'"     117.882    2.36
+MDE       "C3'"       "C2'"       "H2'"     118.502    2.29
+MDE       "C2'"       "C3'"       "C4'"     125.995    2.56
+MDE       "C2'"       "C3'"       "H3'"     117.280    2.02
+MDE       "C4'"       "C3'"       "H3'"     116.725    1.85
+MDE       "C3'"       "C4'"       "C5'"     113.692    1.88
+MDE       "C3'"       "C4'"      "H4'1"     109.013    1.50
+MDE       "C3'"       "C4'"      "H4'2"     109.013    1.50
+MDE       "C5'"       "C4'"      "H4'1"     108.757    1.50
+MDE       "C5'"       "C4'"      "H4'2"     108.757    1.50
+MDE      "H4'1"       "C4'"      "H4'2"     107.705    1.50
+MDE       "C4'"       "C5'"          SG     112.239    3.00
+MDE       "C4'"       "C5'"       "C6'"     113.883    1.50
+MDE       "C4'"       "C5'"       "H5'"     108.718    1.50
+MDE          SG       "C5'"       "C6'"     110.191    2.12
+MDE          SG       "C5'"       "H5'"     108.307    1.50
+MDE       "C6'"       "C5'"       "H5'"     107.920    1.50
+MDE       "C5'"          SG          CB     101.840    1.86
+MDE          SG          CB         CB1     111.968    3.00
+MDE          SG          CB         HB1     108.570    1.78
+MDE          SG          CB         HB2     108.570    1.78
+MDE         CB1          CB         HB1     108.906    1.50
+MDE         CB1          CB         HB2     108.906    1.50
+MDE         HB1          CB         HB2     108.193    1.80
+MDE          CB         CB1         OB1     121.495    2.70
+MDE          CB         CB1        HB11     117.279    3.00
+MDE         OB1         CB1        HB11     121.226    1.50
+MDE       "C5'"       "C6'"       "C7'"     115.074    1.99
+MDE       "C5'"       "C6'"      "H6'1"     108.188    1.50
+MDE       "C5'"       "C6'"      "H6'2"     108.188    1.50
+MDE       "C7'"       "C6'"      "H6'1"     108.271    1.50
+MDE       "C7'"       "C6'"      "H6'2"     108.271    1.50
+MDE      "H6'1"       "C6'"      "H6'2"     107.642    1.50
+MDE       "C6'"       "C7'"       "C8'"     117.281    1.50
+MDE       "C6'"       "C7'"      "H7'1"     108.013    1.50
+MDE       "C6'"       "C7'"      "H7'2"     108.013    1.50
+MDE       "C8'"       "C7'"      "H7'1"     108.698    1.50
+MDE       "C8'"       "C7'"      "H7'2"     108.698    1.50
+MDE      "H7'1"       "C7'"      "H7'2"     107.646    1.50
+MDE       "C7'"       "C8'"       "C9'"     114.362    3.00
+MDE       "C7'"       "C8'"      "H8'1"     108.698    1.50
+MDE       "C7'"       "C8'"      "H8'2"     108.698    1.50
+MDE       "C9'"       "C8'"      "H8'1"     108.653    1.50
+MDE       "C9'"       "C8'"      "H8'2"     108.653    1.50
+MDE      "H8'1"       "C8'"      "H8'2"     107.646    1.50
+MDE       "C8'"       "C9'"         C10     113.719    3.00
+MDE       "C8'"       "C9'"      "H9'1"     108.758    1.50
+MDE       "C8'"       "C9'"      "H9'2"     108.758    1.50
+MDE         C10       "C9'"      "H9'1"     108.918    1.50
+MDE         C10       "C9'"      "H9'2"     108.918    1.50
+MDE      "H9'1"       "C9'"      "H9'2"     107.763    1.50
+MDE       "C9'"         C10        H101     109.554    1.50
+MDE       "C9'"         C10        H102     109.554    1.50
+MDE       "C9'"         C10        H103     109.554    1.50
+MDE        H101         C10        H102     109.380    1.50
+MDE        H101         C10        H103     109.380    1.50
+MDE        H102         C10        H103     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MDE            sp3_sp3_30         P2A         O3A         P1A         O1A      60.000    10.0     3
+MDE            sp3_sp3_27         C5B         O5B         P1A         O1A      60.000    10.0     3
+MDE       const_sp2_sp2_3         N1A         C2A         N3A         C4A       0.000     5.0     2
+MDE       const_sp2_sp2_5         N3A         C2A         N1A         C6A       0.000     5.0     2
+MDE       const_sp2_sp2_8         N6A         C6A         N1A         C2A     180.000     5.0     2
+MDE             sp2_sp2_3         N1A         C6A         N6A        HN61       0.000     5.0     2
+MDE              const_10         C4A         C5A         C6A         N6A     180.000    10.0     2
+MDE              const_21         C4A         C5A         N7A         C8A       0.000    10.0     2
+MDE              const_25         N9A         C8A         N7A         C5A       0.000    10.0     2
+MDE            sp3_sp3_52         C1B         C2B         O2B          H2     180.000    10.0     3
+MDE            sp3_sp3_20         O2B         C2B         C3B         O3B     -60.000    10.0     3
+MDE            sp3_sp3_55         C4B         C3B         O3B         P3B     180.000    10.0     3
+MDE            sp3_sp3_59         C3B         O3B         P3B         O7B     -60.000    10.0     3
+MDE            sp3_sp3_63         P1A         O3A         P2A         O4A      60.000    10.0     3
+MDE            sp3_sp3_64         CCP         O6A         P2A         O3A     180.000    10.0     3
+MDE            sp3_sp3_67         CBP         CCP         O6A         P2A     180.000    10.0     3
+MDE            sp3_sp3_73         CDP         CBP         CCP         O6A      60.000    10.0     3
+MDE            sp3_sp3_79         CCP         CBP         CDP        H131     180.000    10.0     3
+MDE            sp3_sp3_91         CCP         CBP         CEP        H141      60.000    10.0     3
+MDE             sp2_sp3_8         OAP         CAP         CBP         CCP     120.000    10.0     6
+MDE            sp2_sp3_13         CBP         CAP         C9P         O9P       0.000    10.0     6
+MDE            sp3_sp3_97         CAP         C9P         O9P         HO9     180.000    10.0     3
+MDE           sp3_sp3_101         CAP         C9P         N8P         C7P     -60.000    10.0     3
+MDE           sp3_sp3_106         C6P         C7P         N8P         C9P     180.000    10.0     3
+MDE            sp3_sp3_31         C4B         C5B         O5B         P1A     180.000    10.0     3
+MDE           sp3_sp3_112         C5P         C6P         C7P         N8P     180.000    10.0     3
+MDE            sp2_sp3_20         O5P         C5P         C6P         C7P     120.000    10.0     6
+MDE             sp2_sp2_5         C6P         C5P         N4P         C3P     180.000     5.0     2
+MDE            sp2_sp3_26         C5P         N4P         C3P         C2P     120.000    10.0     6
+MDE           sp3_sp3_121         S1P         C2P         C3P         N4P     180.000    10.0     3
+MDE           sp3_sp3_130         C3P         C2P         S1P       "C1'"     180.000    10.0     3
+MDE             sp2_sp2_9       "O1'"       "C1'"         S1P         C2P     180.000     5.0     2
+MDE            sp2_sp2_11         S1P       "C1'"       "C2'"       "C3'"     180.000     5.0     2
+MDE            sp3_sp3_34         O4B         C4B         C5B         O5B     180.000    10.0     3
+MDE            sp2_sp2_15       "C1'"       "C2'"       "C3'"       "C4'"     180.000     5.0     2
+MDE            sp2_sp3_32       "C2'"       "C3'"       "C4'"       "C5'"     120.000    10.0     6
+MDE           sp3_sp3_133       "C3'"       "C4'"       "C5'"          SG     180.000    10.0     3
+MDE           sp3_sp3_142       "C4'"       "C5'"          SG          CB     180.000    10.0     3
+MDE           sp3_sp3_145       "C4'"       "C5'"       "C6'"       "C7'"     180.000    10.0     3
+MDE           sp3_sp3_154         CB1          CB          SG       "C5'"     180.000    10.0     3
+MDE            sp2_sp3_38         OB1         CB1          CB          SG     120.000    10.0     6
+MDE           sp3_sp3_157       "C5'"       "C6'"       "C7'"       "C8'"     180.000    10.0     3
+MDE           sp3_sp3_166       "C6'"       "C7'"       "C8'"       "C9'"     180.000    10.0     3
+MDE            sp3_sp3_47         O3B         C3B         C4B         C5B     180.000    10.0     3
+MDE             sp3_sp3_2         C5B         C4B         O4B         C1B     -60.000    10.0     3
+MDE           sp3_sp3_175       "C7'"       "C8'"       "C9'"         C10     180.000    10.0     3
+MDE           sp3_sp3_184        H101         C10       "C9'"       "C8'"     180.000    10.0     3
+MDE             sp3_sp3_5         N9A         C1B         O4B         C4B     180.000    10.0     3
+MDE             sp3_sp3_8         O4B         C1B         C2B         O2B     180.000    10.0     3
+MDE             sp2_sp3_1         C4A         N9A         C1B         O4B     150.000    10.0     6
+MDE              const_30         N7A         C8A         N9A         C1B     180.000    10.0     2
+MDE              const_16         N3A         C4A         N9A         C1B       0.000    10.0     2
+MDE       const_sp2_sp2_2         N9A         C4A         N3A         C2A     180.000     5.0     2
+MDE              const_18         N9A         C4A         C5A         C6A     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MDE    chir_1    P1A    O3A    O5B    O2A    both
+MDE    chir_2    C4B    O4B    C3B    C5B    negative
+MDE    chir_3    C1B    O4B    N9A    C2B    negative
+MDE    chir_4    C2B    O2B    C1B    C3B    negative
+MDE    chir_5    C3B    O3B    C4B    C2B    positive
+MDE    chir_6    P3B    O3B    O7B    O8B    both
+MDE    chir_7    P2A    O3A    O6A    O5A    both
+MDE    chir_8    CBP    CAP    CCP    CDP    both
+MDE    chir_9    C9P    O9P    N8P    CAP    negative
+MDE    chir_10    "C5'"    SG    "C4'"    "C6'"    positive
+MDE    chir_11    N8P    C9P    C7P    HN8    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MDE    plan-1         C1B   0.020
+MDE    plan-1         C2A   0.020
+MDE    plan-1         C4A   0.020
+MDE    plan-1         C5A   0.020
+MDE    plan-1         C6A   0.020
+MDE    plan-1         C8A   0.020
+MDE    plan-1          H4   0.020
+MDE    plan-1          H8   0.020
+MDE    plan-1         HN7   0.020
+MDE    plan-1         N1A   0.020
+MDE    plan-1         N3A   0.020
+MDE    plan-1         N6A   0.020
+MDE    plan-1         N7A   0.020
+MDE    plan-1         N9A   0.020
+MDE    plan-2         C6A   0.020
+MDE    plan-2        HN61   0.020
+MDE    plan-2        HN62   0.020
+MDE    plan-2         N6A   0.020
+MDE    plan-3         C9P   0.020
+MDE    plan-3         CAP   0.020
+MDE    plan-3         CBP   0.020
+MDE    plan-3         OAP   0.020
+MDE    plan-4         C5P   0.020
+MDE    plan-4         C6P   0.020
+MDE    plan-4         N4P   0.020
+MDE    plan-4         O5P   0.020
+MDE    plan-5         C3P   0.020
+MDE    plan-5         C5P   0.020
+MDE    plan-5         HN4   0.020
+MDE    plan-5         N4P   0.020
+MDE    plan-6       "C1'"   0.020
+MDE    plan-6       "C2'"   0.020
+MDE    plan-6       "O1'"   0.020
+MDE    plan-6         S1P   0.020
+MDE    plan-7       "C1'"   0.020
+MDE    plan-7       "C2'"   0.020
+MDE    plan-7       "C3'"   0.020
+MDE    plan-7       "H2'"   0.020
+MDE    plan-8       "C2'"   0.020
+MDE    plan-8       "C3'"   0.020
+MDE    plan-8       "C4'"   0.020
+MDE    plan-8       "H3'"   0.020
+MDE    plan-9          CB   0.020
+MDE    plan-9         CB1   0.020
+MDE    plan-9        HB11   0.020
+MDE    plan-9         OB1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MDE           SMILES              ACDLabs 10.04                                                                                                                                                                                                                                                           O=CCSC(CCCCC)C/C=C/C(=O)SCCNC(=O)CCNC(O)C(=O)C(C)(C)COP(=O)(O)OP(=O)(O)OCC3OC([n+]2cnc1c2ncnc1N)C(O)C3OP(=O)(O)O
+MDE SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                                                  CCCCC[C@@H](C/C=C/C(=O)SCCNC(=O)CCN[C@H](O)C(=O)C(C)(C)CO[P@@](O)(=O)O[P@@](O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O[P](O)(O)=O)[n+]2c[nH]c3c(N)ncnc23)SCC=O
+MDE           SMILES               CACTVS 3.341                                                                                                                                                                                                                                CCCCC[CH](CC=CC(=O)SCCNC(=O)CCN[CH](O)C(=O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O[P](O)(O)=O)[n+]2c[nH]c3c(N)ncnc23)SCC=O
+MDE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                         CCCCC[C@@H](C\C=C\C(=O)SCCNC(=O)CCNC(C(=O)C(C)(C)CO[P@](=O)(O)O[P@](=O)(O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)[n+]2c[nH]c3c2ncnc3N)O)OP(=O)(O)O)O)SCC=O
+MDE           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                                                        CCCCCC(CC=CC(=O)SCCNC(=O)CCNC(C(=O)C(C)(C)COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)[n+]2c[nH]c3c2ncnc3N)O)OP(=O)(O)O)O)SCC=O
+MDE            InChI                InChI  1.03 InChI=1S/C33H54N7O18P3S2/c1-4-5-6-8-21(62-16-14-41)9-7-10-24(43)63-15-13-35-23(42)11-12-36-31(46)28(45)33(2,3)18-55-61(52,53)58-60(50,51)54-17-22-27(57-59(47,48)49)26(44)32(56-22)40-20-39-25-29(34)37-19-38-30(25)40/h7,10,14,19-22,26-27,31-32,36,44,46H,4-6,8-9,11-13,15-18H2,1-3H3,(H7,34,35,37,38,42,47,48,49,50,51,52,53)/p+1/b10-7+/t21-,22+,26+,27+,31+,32+/m0/s1
+MDE         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                IJSMUHMCIYOVMM-UAQBTBCQSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MDE acedrg               243         "dictionary generator"                  
+MDE acedrg_database      11          "data source"                           
+MDE rdkit                2017.03.2   "Chemoinformatics tool"
+MDE refmac5              5.8.0238    "optimization tool"                     

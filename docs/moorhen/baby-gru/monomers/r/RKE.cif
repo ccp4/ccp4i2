@@ -1,0 +1,243 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RKE     RKE      (R)-ketamine     NON-POLYMER     32     16     .     
+#
+data_comp_RKE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RKE     CAA     C       CR16    0       45.554      -0.805      8.704       
+RKE     CAB     C       CR16    0       45.653      -2.083      9.208       
+RKE     CAC     C       CR16    0       45.541      0.288       9.562       
+RKE     CAD     C       CR16    0       45.741      -2.279      10.565      
+RKE     CAE     C       CR6     0       45.641      0.132       10.948      
+RKE     CAF     C       CR6     0       45.730      -1.189      11.425      
+RKE     CAG     C       CR6     0       46.088      2.622       11.213      
+RKE     CAH     C       CH2     0       45.131      3.763       10.953      
+RKE     CAI     C       CH2     0       43.696      3.535       11.428      
+RKE     CAJ     C       CH2     0       43.675      2.789       12.745      
+RKE     CAK     C       CH2     0       44.192      1.370       12.544      
+RKE     CAL     C       CT      0       45.619      1.333       11.921      
+RKE     CAM     C       CH3     0       46.725      2.051       14.134      
+RKE     NAN     N       NT1     0       46.611      1.116       13.004      
+RKE     OAO     O       O       0       47.240      2.707       10.850      
+RKE     CLAP    CL      CL      0       45.846      -1.554      13.126      
+RKE     HAA     H       H       0       45.493      -0.670      7.772       
+RKE     HAB     H       H       0       45.660      -2.821      8.627       
+RKE     HAC     H       H       0       45.472      1.144       9.196       
+RKE     HAD     H       H       0       45.809      -3.148      10.916      
+RKE     HAH     H       H       0       45.486      4.574       11.396      
+RKE     HAHA    H       H       0       45.117      3.941       9.979       
+RKE     HAI     H       H       0       43.207      3.020       10.753      
+RKE     HAIA    H       H       0       43.247      4.400       11.536      
+RKE     HAJ     H       H       0       42.758      2.759       13.092      
+RKE     HAJA    H       H       0       44.236      3.258       13.399      
+RKE     HAK     H       H       0       43.563      0.883       11.954      
+RKE     HAKA    H       H       0       44.206      0.903       13.416      
+RKE     HAM     H       H       0       47.445      1.756       14.724      
+RKE     HAMA    H       H       0       45.887      2.068       14.635      
+RKE     HAMB    H       H       0       46.927      2.949       13.806      
+RKE     HNAN    H       H       0       47.415      0.917       12.692      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RKE         CAA         CAB      DOUBLE       y     1.376  0.0106     1.376  0.0106
+RKE         CAA         CAC      SINGLE       y     1.386  0.0100     1.386  0.0100
+RKE         CAB         CAD      SINGLE       y     1.373  0.0113     1.373  0.0113
+RKE         CAC         CAE      DOUBLE       y     1.389  0.0100     1.389  0.0100
+RKE         CAD         CAF      DOUBLE       y     1.385  0.0100     1.385  0.0100
+RKE         CAE         CAF      SINGLE       y     1.397  0.0100     1.397  0.0100
+RKE         CAE         CAL      SINGLE       n     1.537  0.0100     1.537  0.0100
+RKE         CAF        CLAP      SINGLE       n     1.742  0.0100     1.742  0.0100
+RKE         CAG         CAH      SINGLE       n     1.505  0.0100     1.505  0.0100
+RKE         CAG         CAL      SINGLE       n     1.533  0.0107     1.533  0.0107
+RKE         CAG         OAO      DOUBLE       n     1.210  0.0100     1.210  0.0100
+RKE         CAH         CAI      SINGLE       n     1.528  0.0120     1.528  0.0120
+RKE         CAI         CAJ      SINGLE       n     1.517  0.0100     1.517  0.0100
+RKE         CAJ         CAK      SINGLE       n     1.525  0.0100     1.525  0.0100
+RKE         CAK         CAL      SINGLE       n     1.551  0.0100     1.551  0.0100
+RKE         CAL         NAN      SINGLE       n     1.473  0.0145     1.473  0.0145
+RKE         CAM         NAN      SINGLE       n     1.463  0.0141     1.463  0.0141
+RKE         CAA         HAA      SINGLE       n     1.082  0.0130     0.944  0.0175
+RKE         CAB         HAB      SINGLE       n     1.082  0.0130     0.939  0.0165
+RKE         CAC         HAC      SINGLE       n     1.082  0.0130     0.934  0.0100
+RKE         CAD         HAD      SINGLE       n     1.082  0.0130     0.939  0.0176
+RKE         CAH         HAH      SINGLE       n     1.089  0.0100     0.990  0.0100
+RKE         CAH        HAHA      SINGLE       n     1.089  0.0100     0.990  0.0100
+RKE         CAI         HAI      SINGLE       n     1.089  0.0100     0.980  0.0127
+RKE         CAI        HAIA      SINGLE       n     1.089  0.0100     0.980  0.0127
+RKE         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.981  0.0103
+RKE         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.981  0.0103
+RKE         CAK         HAK      SINGLE       n     1.089  0.0100     0.989  0.0200
+RKE         CAK        HAKA      SINGLE       n     1.089  0.0100     0.989  0.0200
+RKE         CAM         HAM      SINGLE       n     1.089  0.0100     0.977  0.0113
+RKE         CAM        HAMA      SINGLE       n     1.089  0.0100     0.977  0.0113
+RKE         CAM        HAMB      SINGLE       n     1.089  0.0100     0.977  0.0113
+RKE         NAN        HNAN      SINGLE       n     1.036  0.0160     0.882  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RKE         CAB         CAA         CAC     120.243    1.50
+RKE         CAB         CAA         HAA     119.965    1.50
+RKE         CAC         CAA         HAA     119.792    1.50
+RKE         CAA         CAB         CAD     120.245    1.50
+RKE         CAA         CAB         HAB     119.998    1.50
+RKE         CAD         CAB         HAB     119.756    1.50
+RKE         CAA         CAC         CAE     120.710    1.50
+RKE         CAA         CAC         HAC     119.775    1.50
+RKE         CAE         CAC         HAC     119.515    1.50
+RKE         CAB         CAD         CAF     119.933    1.50
+RKE         CAB         CAD         HAD     120.358    1.50
+RKE         CAF         CAD         HAD     119.709    1.50
+RKE         CAC         CAE         CAF     117.206    1.50
+RKE         CAC         CAE         CAL     121.397    2.67
+RKE         CAF         CAE         CAL     121.397    2.67
+RKE         CAD         CAF         CAE     121.664    1.50
+RKE         CAD         CAF        CLAP     117.411    1.50
+RKE         CAE         CAF        CLAP     120.925    1.50
+RKE         CAH         CAG         CAL     116.210    1.99
+RKE         CAH         CAG         OAO     122.594    1.50
+RKE         CAL         CAG         OAO     121.196    1.50
+RKE         CAG         CAH         CAI     111.579    1.67
+RKE         CAG         CAH         HAH     108.956    1.50
+RKE         CAG         CAH        HAHA     108.956    1.50
+RKE         CAI         CAH         HAH     109.402    1.57
+RKE         CAI         CAH        HAHA     109.402    1.57
+RKE         HAH         CAH        HAHA     107.998    1.50
+RKE         CAH         CAI         CAJ     111.044    1.50
+RKE         CAH         CAI         HAI     109.333    1.50
+RKE         CAH         CAI        HAIA     109.333    1.50
+RKE         CAJ         CAI         HAI     109.386    1.50
+RKE         CAJ         CAI        HAIA     109.386    1.50
+RKE         HAI         CAI        HAIA     108.036    1.50
+RKE         CAI         CAJ         CAK     111.169    1.50
+RKE         CAI         CAJ         HAJ     109.386    1.50
+RKE         CAI         CAJ        HAJA     109.386    1.50
+RKE         CAK         CAJ         HAJ     109.388    1.50
+RKE         CAK         CAJ        HAJA     109.388    1.50
+RKE         HAJ         CAJ        HAJA     108.036    1.50
+RKE         CAJ         CAK         CAL     111.124    1.57
+RKE         CAJ         CAK         HAK     109.388    1.50
+RKE         CAJ         CAK        HAKA     109.388    1.50
+RKE         CAL         CAK         HAK     109.094    1.50
+RKE         CAL         CAK        HAKA     109.094    1.50
+RKE         HAK         CAK        HAKA     108.019    1.50
+RKE         CAE         CAL         CAG     111.501    2.34
+RKE         CAE         CAL         CAK     112.164    2.36
+RKE         CAE         CAL         NAN     111.080    1.50
+RKE         CAG         CAL         CAK     112.021    2.38
+RKE         CAG         CAL         NAN     110.455    3.00
+RKE         CAK         CAL         NAN     111.865    2.42
+RKE         NAN         CAM         HAM     109.483    1.50
+RKE         NAN         CAM        HAMA     109.483    1.50
+RKE         NAN         CAM        HAMB     109.483    1.50
+RKE         HAM         CAM        HAMA     109.459    1.50
+RKE         HAM         CAM        HAMB     109.459    1.50
+RKE        HAMA         CAM        HAMB     109.459    1.50
+RKE         CAL         NAN         CAM     114.477    2.43
+RKE         CAL         NAN        HNAN     112.476    3.00
+RKE         CAM         NAN        HNAN     110.410    2.59
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RKE       const_sp2_sp2_1         CAC         CAA         CAB         CAD       0.000     5.0     2
+RKE              const_21         CAB         CAA         CAC         CAE       0.000    10.0     2
+RKE            sp3_sp3_30         CAJ         CAK         CAL         NAN     -60.000    10.0     3
+RKE            sp3_sp3_38         CAE         CAL         NAN         CAM     -60.000    10.0     3
+RKE            sp3_sp3_43         HAM         CAM         NAN         CAL     180.000    10.0     3
+RKE       const_sp2_sp2_5         CAA         CAB         CAD         CAF       0.000     5.0     2
+RKE              const_17         CAA         CAC         CAE         CAF       0.000    10.0     2
+RKE              const_10         CAB         CAD         CAF        CLAP     180.000    10.0     2
+RKE             sp2_sp3_9         CAC         CAE         CAL         NAN      30.000    10.0     6
+RKE              const_14         CAC         CAE         CAF        CLAP     180.000    10.0     2
+RKE            sp2_sp3_18         OAO         CAG         CAL         NAN      60.000    10.0     6
+RKE             sp2_sp3_4         OAO         CAG         CAH         CAI     180.000    10.0     6
+RKE             sp3_sp3_1         CAG         CAH         CAI         CAJ     -60.000    10.0     3
+RKE            sp3_sp3_10         CAH         CAI         CAJ         CAK      60.000    10.0     3
+RKE            sp3_sp3_19         CAI         CAJ         CAK         CAL     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RKE    chir_1    CAL    NAN    CAG    CAE    negative
+RKE    chir_2    NAN    CAL    CAM    HNAN    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RKE    plan-1         CAA   0.020
+RKE    plan-1         CAB   0.020
+RKE    plan-1         CAC   0.020
+RKE    plan-1         CAD   0.020
+RKE    plan-1         CAE   0.020
+RKE    plan-1         CAF   0.020
+RKE    plan-1         CAL   0.020
+RKE    plan-1        CLAP   0.020
+RKE    plan-1         HAA   0.020
+RKE    plan-1         HAB   0.020
+RKE    plan-1         HAC   0.020
+RKE    plan-1         HAD   0.020
+RKE    plan-2         CAG   0.020
+RKE    plan-2         CAH   0.020
+RKE    plan-2         CAL   0.020
+RKE    plan-2         OAO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RKE           SMILES              ACDLabs 12.01                                                                            Clc1c(cccc1)C2(NC)C(=O)CCCC2
+RKE SMILES_CANONICAL               CACTVS 3.370                                                                             CN[C@]1(CCCCC1=O)c2ccccc2Cl
+RKE           SMILES               CACTVS 3.370                                                                              CN[C]1(CCCCC1=O)c2ccccc2Cl
+RKE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                             CN[C@]1(CCCCC1=O)c2ccccc2Cl
+RKE           SMILES "OpenEye OEToolkits" 1.7.2                                                                                CNC1(CCCCC1=O)c2ccccc2Cl
+RKE            InChI                InChI  1.03 InChI=1S/C13H16ClNO/c1-15-13(9-5-4-8-12(13)16)10-6-2-3-7-11(10)14/h2-3,6-7,15H,4-5,8-9H2,1H3/t13-/m1/s1
+RKE         InChIKey                InChI  1.03                                                                             YQEZLKZALYSWHR-CYBMUJFWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RKE acedrg               243         "dictionary generator"                  
+RKE acedrg_database      11          "data source"                           
+RKE rdkit                2017.03.2   "Chemoinformatics tool"
+RKE refmac5              5.8.0238    "optimization tool"                     

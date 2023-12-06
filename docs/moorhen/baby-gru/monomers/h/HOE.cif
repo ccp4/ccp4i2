@@ -1,0 +1,396 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HOE     HOE      "2'-(4-HYDROXYPHENYL)-5-(4-METHYL-1-PIPERAZINYL)-2,5'-BI-BENZIMIDAZOLE"     NON-POLYMER     57     32     .     
+#
+data_comp_HOE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HOE     C1      C       CR16    0       9.050       20.780      11.971      
+HOE     C2      C       CR16    0       9.260       21.496      10.807      
+HOE     C3      C       CR6     0       8.389       22.512      10.414      
+HOE     C4      C       CR16    0       7.300       22.793      11.240      
+HOE     C5      C       CR16    0       7.081       22.084      12.407      
+HOE     C6      C       CR6     0       7.956       21.069      12.780      
+HOE     C7      C       CR5     0       8.614       23.281      9.181       
+HOE     C8      C       CR56    0       9.426       23.860      7.209       
+HOE     C9      C       CR16    0       10.072      24.004      5.989       
+HOE     C10     C       CR6     0       9.791       25.120      5.196       
+HOE     C11     C       CR16    0       8.871       26.072      5.657       
+HOE     C12     C       CR16    0       8.228       25.929      6.869       
+HOE     C13     C       CR56    0       8.507       24.811      7.656       
+HOE     C14     C       CR5     0       10.462      25.324      3.899       
+HOE     C15     C       CR56    0       11.854      25.088      2.199       
+HOE     C16     C       CR16    0       12.821      24.734      1.264       
+HOE     C17     C       CR6     0       12.925      25.479      0.083       
+HOE     C18     C       CR16    0       12.055      26.565      -0.131      
+HOE     C19     C       CR16    0       11.095      26.909      0.797       
+HOE     C20     C       CR56    0       10.993      26.165      1.975       
+HOE     C21     C       CH2     0       13.611      25.004      -2.304      
+HOE     C22     C       CH2     0       14.475      25.953      -3.106      
+HOE     C23     C       CH2     0       16.188      25.862      -1.346      
+HOE     C24     C       CH2     0       15.308      24.925      -0.548      
+HOE     C25     C       CH3     0       16.808      26.602      -3.626      
+HOE     N1      N       NR5     0       9.476       22.897      8.197       
+HOE     N2      N       NRD5    0       8.010       24.431      8.896       
+HOE     N3      N       NR5     0       11.499      24.574      3.429       
+HOE     N4      N       NRD5    0       10.129      26.298      3.054       
+HOE     N5      N       NR6     0       13.891      25.152      -0.869      
+HOE     N6      N       NT1     1       15.924      25.718      -2.812      
+HOE     O1      O       OH1     0       7.747       20.358      13.938      
+HOE     H1      H       H       0       9.647       20.095      12.217      
+HOE     H2      H       H       0       10.003      21.287      10.276      
+HOE     H4      H       H       0       6.700       23.473      11.003      
+HOE     H5      H       H       0       6.338       22.286      12.948      
+HOE     H9      H       H       0       10.688      23.364      5.692       
+HOE     H11     H       H       0       8.682       26.822      5.133       
+HOE     H12     H       H       0       7.611       26.575      7.162       
+HOE     H16     H       H       0       13.404      24.011      1.413       
+HOE     H18     H       H       0       12.123      27.066      -0.927      
+HOE     H19     H       H       0       10.516      27.636      0.642       
+HOE     H211    H       H       0       12.668      25.190      -2.482      
+HOE     H212    H       H       0       13.795      24.085      -2.579      
+HOE     H221    H       H       0       14.311      25.819      -4.058      
+HOE     H222    H       H       0       14.243      26.874      -2.882      
+HOE     H231    H       H       0       17.126      25.661      -1.164      
+HOE     H232    H       H       0       16.015      26.783      -1.074      
+HOE     H241    H       H       0       15.461      25.071      0.406       
+HOE     H242    H       H       0       15.544      24.000      -0.755      
+HOE     H251    H       H       0       17.393      27.108      -3.045      
+HOE     H252    H       H       0       16.270      27.214      -4.148      
+HOE     H253    H       H       0       17.342      26.059      -4.221      
+HOE     HN1     H       H       0       9.972       22.177      8.184       
+HOE     HN3     H       H       0       11.874      23.890      3.825       
+HOE     HN6     H       H       0       16.122      24.833      -3.051      
+HOE     HO1     H       H       0       6.968       20.342      14.303      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HOE          C1          C2      DOUBLE       y     1.379  0.0100     1.379  0.0100
+HOE          C1          C6      SINGLE       y     1.388  0.0100     1.388  0.0100
+HOE          C2          C3      SINGLE       y     1.389  0.0100     1.389  0.0100
+HOE          C3          C4      DOUBLE       y     1.389  0.0100     1.389  0.0100
+HOE          C3          C7      SINGLE       n     1.465  0.0100     1.465  0.0100
+HOE          C4          C5      SINGLE       y     1.379  0.0100     1.379  0.0100
+HOE          C5          C6      DOUBLE       y     1.388  0.0100     1.388  0.0100
+HOE          C6          O1      SINGLE       n     1.374  0.0155     1.374  0.0155
+HOE          C7          N1      SINGLE       y     1.358  0.0121     1.358  0.0121
+HOE          C7          N2      DOUBLE       y     1.327  0.0133     1.327  0.0133
+HOE          C8          C9      DOUBLE       y     1.387  0.0100     1.387  0.0100
+HOE          C8         C13      SINGLE       y     1.397  0.0100     1.397  0.0100
+HOE          C8          N1      SINGLE       y     1.380  0.0100     1.380  0.0100
+HOE          C9         C10      SINGLE       y     1.392  0.0100     1.392  0.0100
+HOE         C10         C11      DOUBLE       y     1.393  0.0100     1.393  0.0100
+HOE         C10         C14      SINGLE       n     1.466  0.0119     1.466  0.0119
+HOE         C11         C12      SINGLE       y     1.373  0.0102     1.373  0.0102
+HOE         C12         C13      DOUBLE       y     1.393  0.0100     1.393  0.0100
+HOE         C13          N2      SINGLE       y     1.390  0.0100     1.390  0.0100
+HOE         C14          N3      SINGLE       y     1.358  0.0121     1.358  0.0121
+HOE         C14          N4      DOUBLE       y     1.327  0.0133     1.327  0.0133
+HOE         C15         C16      DOUBLE       y     1.389  0.0100     1.389  0.0100
+HOE         C15         C20      SINGLE       y     1.397  0.0100     1.397  0.0100
+HOE         C15          N3      SINGLE       y     1.380  0.0100     1.380  0.0100
+HOE         C16         C17      SINGLE       y     1.395  0.0118     1.395  0.0118
+HOE         C17         C18      DOUBLE       y     1.396  0.0142     1.396  0.0142
+HOE         C17          N5      SINGLE       n     1.384  0.0200     1.384  0.0200
+HOE         C18         C19      SINGLE       y     1.371  0.0115     1.371  0.0115
+HOE         C19         C20      DOUBLE       y     1.393  0.0100     1.393  0.0100
+HOE         C20          N4      SINGLE       y     1.390  0.0100     1.390  0.0100
+HOE         C21         C22      SINGLE       n     1.511  0.0100     1.511  0.0100
+HOE         C21          N5      SINGLE       n     1.467  0.0100     1.467  0.0100
+HOE         C22          N6      SINGLE       n     1.494  0.0100     1.494  0.0100
+HOE         C23         C24      SINGLE       n     1.511  0.0100     1.511  0.0100
+HOE         C23          N6      SINGLE       n     1.494  0.0100     1.494  0.0100
+HOE         C24          N5      SINGLE       n     1.467  0.0100     1.467  0.0100
+HOE         C25          N6      SINGLE       n     1.488  0.0100     1.488  0.0100
+HOE          C1          H1      SINGLE       n     1.082  0.0130     0.941  0.0179
+HOE          C2          H2      SINGLE       n     1.082  0.0130     0.938  0.0131
+HOE          C4          H4      SINGLE       n     1.082  0.0130     0.938  0.0131
+HOE          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0179
+HOE          C9          H9      SINGLE       n     1.082  0.0130     0.937  0.0100
+HOE         C11         H11      SINGLE       n     1.082  0.0130     0.935  0.0100
+HOE         C12         H12      SINGLE       n     1.082  0.0130     0.940  0.0191
+HOE         C16         H16      SINGLE       n     1.082  0.0130     0.941  0.0170
+HOE         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0168
+HOE         C19         H19      SINGLE       n     1.082  0.0130     0.942  0.0200
+HOE         C21        H211      SINGLE       n     1.089  0.0100     0.977  0.0108
+HOE         C21        H212      SINGLE       n     1.089  0.0100     0.977  0.0108
+HOE         C22        H221      SINGLE       n     1.089  0.0100     0.976  0.0100
+HOE         C22        H222      SINGLE       n     1.089  0.0100     0.976  0.0100
+HOE         C23        H231      SINGLE       n     1.089  0.0100     0.976  0.0100
+HOE         C23        H232      SINGLE       n     1.089  0.0100     0.976  0.0100
+HOE         C24        H241      SINGLE       n     1.089  0.0100     0.977  0.0108
+HOE         C24        H242      SINGLE       n     1.089  0.0100     0.977  0.0108
+HOE         C25        H251      SINGLE       n     1.089  0.0100     0.967  0.0133
+HOE         C25        H252      SINGLE       n     1.089  0.0100     0.967  0.0133
+HOE         C25        H253      SINGLE       n     1.089  0.0100     0.967  0.0133
+HOE          N1         HN1      SINGLE       n     1.016  0.0100     0.876  0.0200
+HOE          N3         HN3      SINGLE       n     1.016  0.0100     0.876  0.0200
+HOE          N6         HN6      SINGLE       n     1.036  0.0160     0.938  0.0200
+HOE          O1         HO1      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HOE          C2          C1          C6     119.933    1.50
+HOE          C2          C1          H1     120.078    1.50
+HOE          C6          C1          H1     119.990    1.50
+HOE          C1          C2          C3     121.067    1.50
+HOE          C1          C2          H2     119.307    1.50
+HOE          C3          C2          H2     119.626    1.50
+HOE          C2          C3          C4     118.469    1.50
+HOE          C2          C3          C7     120.766    1.50
+HOE          C4          C3          C7     120.766    1.50
+HOE          C3          C4          C5     121.067    1.50
+HOE          C3          C4          H4     119.626    1.50
+HOE          C5          C4          H4     119.307    1.50
+HOE          C4          C5          C6     119.933    1.50
+HOE          C4          C5          H5     120.078    1.50
+HOE          C6          C5          H5     119.990    1.50
+HOE          C1          C6          C5     119.533    1.50
+HOE          C1          C6          O1     120.234    3.00
+HOE          C5          C6          O1     120.234    3.00
+HOE          C3          C7          N1     122.833    1.50
+HOE          C3          C7          N2     124.567    1.50
+HOE          N1          C7          N2     112.600    1.50
+HOE          C9          C8         C13     121.993    1.50
+HOE          C9          C8          N1     132.461    1.50
+HOE         C13          C8          N1     105.546    1.50
+HOE          C8          C9         C10     119.457    1.58
+HOE          C8          C9          H9     121.120    1.50
+HOE         C10          C9          H9     119.422    1.50
+HOE          C9         C10         C11     119.623    1.64
+HOE          C9         C10         C14     120.865    1.80
+HOE         C11         C10         C14     119.512    2.24
+HOE         C10         C11         C12     120.463    1.50
+HOE         C10         C11         H11     119.733    1.50
+HOE         C12         C11         H11     119.804    1.50
+HOE         C11         C12         C13     118.234    1.50
+HOE         C11         C12         H12     120.966    1.50
+HOE         C13         C12         H12     120.800    1.50
+HOE          C8         C13         C12     120.229    1.50
+HOE          C8         C13          N2     109.635    1.50
+HOE         C12         C13          N2     130.136    1.50
+HOE         C10         C14          N3     124.501    1.52
+HOE         C10         C14          N4     122.899    1.63
+HOE          N3         C14          N4     112.600    1.50
+HOE         C16         C15         C20     121.993    1.50
+HOE         C16         C15          N3     132.461    1.50
+HOE         C20         C15          N3     105.546    1.50
+HOE         C15         C16         C17     119.457    1.58
+HOE         C15         C16         H16     121.120    1.50
+HOE         C17         C16         H16     119.422    1.50
+HOE         C16         C17         C18     119.623    1.64
+HOE         C16         C17          N5     120.093    1.87
+HOE         C18         C17          N5     120.283    1.79
+HOE         C17         C18         C19     120.463    1.50
+HOE         C17         C18         H18     120.014    1.50
+HOE         C19         C18         H18     119.523    1.50
+HOE         C18         C19         C20     118.234    1.50
+HOE         C18         C19         H19     120.966    1.50
+HOE         C20         C19         H19     120.800    1.50
+HOE         C15         C20         C19     120.229    1.50
+HOE         C15         C20          N4     109.635    1.50
+HOE         C19         C20          N4     130.136    1.50
+HOE         C22         C21          N5     110.418    1.50
+HOE         C22         C21        H211     109.594    1.50
+HOE         C22         C21        H212     109.594    1.50
+HOE          N5         C21        H211     109.542    1.50
+HOE          N5         C21        H212     109.542    1.50
+HOE        H211         C21        H212     108.196    1.50
+HOE         C21         C22          N6     110.618    1.50
+HOE         C21         C22        H221     109.578    1.50
+HOE         C21         C22        H222     109.578    1.50
+HOE          N6         C22        H221     109.428    1.50
+HOE          N6         C22        H222     109.428    1.50
+HOE        H221         C22        H222     108.272    1.50
+HOE         C24         C23          N6     110.618    1.50
+HOE         C24         C23        H231     109.578    1.50
+HOE         C24         C23        H232     109.578    1.50
+HOE          N6         C23        H231     109.428    1.50
+HOE          N6         C23        H232     109.428    1.50
+HOE        H231         C23        H232     108.272    1.50
+HOE         C23         C24          N5     110.418    1.50
+HOE         C23         C24        H241     109.594    1.50
+HOE         C23         C24        H242     109.594    1.50
+HOE          N5         C24        H241     109.542    1.50
+HOE          N5         C24        H242     109.542    1.50
+HOE        H241         C24        H242     108.196    1.50
+HOE          N6         C25        H251     109.453    1.50
+HOE          N6         C25        H252     109.453    1.50
+HOE          N6         C25        H253     109.453    1.50
+HOE        H251         C25        H252     109.487    1.50
+HOE        H251         C25        H253     109.487    1.50
+HOE        H252         C25        H253     109.487    1.50
+HOE          C7          N1          C8     107.155    1.50
+HOE          C7          N1         HN1     126.568    1.56
+HOE          C8          N1         HN1     126.277    1.84
+HOE          C7          N2         C13     105.064    1.50
+HOE         C14          N3         C15     107.155    1.50
+HOE         C14          N3         HN3     126.568    1.56
+HOE         C15          N3         HN3     126.277    1.84
+HOE         C14          N4         C20     105.064    1.50
+HOE         C17          N5         C21     123.506    1.63
+HOE         C17          N5         C24     123.506    1.63
+HOE         C21          N5         C24     112.989    2.47
+HOE         C22          N6         C23     110.062    1.50
+HOE         C22          N6         C25     111.384    1.50
+HOE         C22          N6         HN6     108.115    2.29
+HOE         C23          N6         C25     111.384    1.50
+HOE         C23          N6         HN6     108.115    2.29
+HOE         C25          N6         HN6     107.395    1.77
+HOE          C6          O1         HO1     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HOE              const_69          C6          C1          C2          C3       0.000    10.0     2
+HOE              const_90          C2          C1          C6          O1     180.000    10.0     2
+HOE              const_13         C10         C11         C12         C13       0.000    10.0     2
+HOE              const_17         C11         C12         C13          C8       0.000    10.0     2
+HOE              const_33          C8         C13          N2          C7       0.000    10.0     2
+HOE              const_37         C10         C14          N3         C15     180.000    10.0     2
+HOE              const_96         C10         C14          N4         C20     180.000    10.0     2
+HOE              const_49         C20         C15         C16         C17       0.000    10.0     2
+HOE              const_43         C16         C15         C20         C19       0.000    10.0     2
+HOE              const_41         C16         C15          N3         C14     180.000    10.0     2
+HOE              const_53         C15         C16         C17         C18       0.000    10.0     2
+HOE              const_57         C16         C17         C18         C19       0.000    10.0     2
+HOE            sp2_sp2_11         C16         C17          N5         C21     180.000     5.0     2
+HOE              const_61         C17         C18         C19         C20       0.000    10.0     2
+HOE              const_65         C18         C19         C20         C15       0.000    10.0     2
+HOE              const_47         C15         C20          N4         C14       0.000    10.0     2
+HOE              const_73          C1          C2          C3          C4       0.000    10.0     2
+HOE             sp3_sp3_1          N5         C21         C22          N6      60.000    10.0     3
+HOE            sp2_sp3_10         C17          N5         C21         C22     180.000    10.0     6
+HOE            sp3_sp3_12         C21         C22          N6         C25     180.000    10.0     3
+HOE            sp3_sp3_28          N6         C23         C24          N5     -60.000    10.0     3
+HOE            sp3_sp3_20         C24         C23          N6         C25     180.000    10.0     3
+HOE             sp2_sp3_4         C17          N5         C24         C23     180.000    10.0     6
+HOE            sp3_sp3_38        H251         C25          N6         C22     -60.000    10.0     3
+HOE              const_77          C2          C3          C4          C5       0.000    10.0     2
+HOE             sp2_sp2_1          C2          C3          C7          N1     180.000     5.0     2
+HOE              const_81          C3          C4          C5          C6       0.000    10.0     2
+HOE              const_86          C4          C5          C6          O1     180.000    10.0     2
+HOE             sp2_sp2_5          C1          C6          O1         HO1     180.000     5.0     2
+HOE              const_23          C3          C7          N1          C8     180.000    10.0     2
+HOE              const_94          C3          C7          N2         C13     180.000    10.0     2
+HOE              const_29         C12         C13          C8          C9       0.000    10.0     2
+HOE              const_27          C9          C8          N1          C7     180.000    10.0     2
+HOE       const_sp2_sp2_1         C13          C8          C9         C10       0.000     5.0     2
+HOE       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+HOE       const_sp2_sp2_9          C9         C10         C11         C12       0.000     5.0     2
+HOE             sp2_sp2_7          C9         C10         C14          N3     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HOE    chir_1    N6    C22    C23    C25    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HOE    plan-1         C10   0.020
+HOE    plan-1         C11   0.020
+HOE    plan-1         C12   0.020
+HOE    plan-1         C13   0.020
+HOE    plan-1         C14   0.020
+HOE    plan-1          C3   0.020
+HOE    plan-1          C7   0.020
+HOE    plan-1          C8   0.020
+HOE    plan-1          C9   0.020
+HOE    plan-1         H11   0.020
+HOE    plan-1         H12   0.020
+HOE    plan-1          H9   0.020
+HOE    plan-1         HN1   0.020
+HOE    plan-1          N1   0.020
+HOE    plan-1          N2   0.020
+HOE    plan-2         C10   0.020
+HOE    plan-2         C14   0.020
+HOE    plan-2         C15   0.020
+HOE    plan-2         C16   0.020
+HOE    plan-2         C17   0.020
+HOE    plan-2         C18   0.020
+HOE    plan-2         C19   0.020
+HOE    plan-2         C20   0.020
+HOE    plan-2         H16   0.020
+HOE    plan-2         H18   0.020
+HOE    plan-2         H19   0.020
+HOE    plan-2         HN3   0.020
+HOE    plan-2          N3   0.020
+HOE    plan-2          N4   0.020
+HOE    plan-2          N5   0.020
+HOE    plan-3          C1   0.020
+HOE    plan-3          C2   0.020
+HOE    plan-3          C3   0.020
+HOE    plan-3          C4   0.020
+HOE    plan-3          C5   0.020
+HOE    plan-3          C6   0.020
+HOE    plan-3          C7   0.020
+HOE    plan-3          H1   0.020
+HOE    plan-3          H2   0.020
+HOE    plan-3          H4   0.020
+HOE    plan-3          H5   0.020
+HOE    plan-3          O1   0.020
+HOE    plan-4         C17   0.020
+HOE    plan-4         C21   0.020
+HOE    plan-4         C24   0.020
+HOE    plan-4          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HOE           SMILES              ACDLabs 10.04                                                                                                                     Oc1ccc(cc1)c3nc2ccc(cc2n3)c6nc4c(cc(cc4)N5CC[NH+](CC5)C)n6
+HOE SMILES_CANONICAL               CACTVS 3.341                                                                                                                 C[NH+]1CCN(CC1)c2ccc3nc([nH]c3c2)c4ccc5nc([nH]c5c4)c6ccc(O)cc6
+HOE           SMILES               CACTVS 3.341                                                                                                                 C[NH+]1CCN(CC1)c2ccc3nc([nH]c3c2)c4ccc5nc([nH]c5c4)c6ccc(O)cc6
+HOE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                             C[NH+]1CCN(CC1)c2ccc3c(c2)[nH]c(n3)c4ccc5c(c4)[nH]c(n5)c6ccc(cc6)O
+HOE           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                             C[NH+]1CCN(CC1)c2ccc3c(c2)[nH]c(n3)c4ccc5c(c4)[nH]c(n5)c6ccc(cc6)O
+HOE            InChI                InChI  1.03 InChI=1S/C25H24N6O/c1-30-10-12-31(13-11-30)18-5-9-21-23(15-18)29-25(27-21)17-4-8-20-22(14-17)28-24(26-20)16-2-6-19(32)7-3-16/h2-9,14-15,32H,10-13H2,1H3,(H,26,28)(H,27,29)/p+1
+HOE         InChIKey                InChI  1.03                                                                                                                                                    INAAIJLSXJJHOZ-UHFFFAOYSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HOE acedrg               243         "dictionary generator"                  
+HOE acedrg_database      11          "data source"                           
+HOE rdkit                2017.03.2   "Chemoinformatics tool"
+HOE refmac5              5.8.0238    "optimization tool"                     

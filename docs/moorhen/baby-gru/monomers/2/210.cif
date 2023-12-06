@@ -1,0 +1,162 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+210     210      PAMIDRONATE     NON-POLYMER     20     13     .     
+#
+data_comp_210
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+210     P1      P       P       0       15.564      76.069      23.895      
+210     O2      O       OP      -1      17.055      76.235      23.793      
+210     O3      O       OP      -1      15.191      74.710      24.419      
+210     O5      O       O       0       14.882      76.359      22.587      
+210     C7      C       CT      0       14.985      77.300      25.134      
+210     P8      P       P       0       15.929      77.221      26.716      
+210     O9      O       O       0       17.191      78.015      26.519      
+210     O10     O       OP      -1      16.223      75.775      27.003      
+210     O12     O       OP      -1      15.050      77.829      27.773      
+210     O14     O       OH1     0       13.593      77.001      25.373      
+210     C16     C       CH2     0       15.057      78.721      24.525      
+210     C19     C       CH2     0       14.534      79.878      25.361      
+210     N22     N       NT2     0       13.158      79.696      25.833      
+210     HO14    H       H       0       13.371      77.001      26.193      
+210     H161    H       H       0       14.575      78.714      23.673      
+210     H162    H       H       0       15.989      78.903      24.283      
+210     H191    H       H       0       14.572      80.696      24.825      
+210     H192    H       H       0       15.118      80.006      26.136      
+210     H221    H       H       0       12.817      80.465      26.117      
+210     H222    H       H       0       12.635      79.403      25.178      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+210          P1          O2      SINGLE       n     1.505  0.0200     1.505  0.0200
+210          P1          O3      SINGLE       n     1.505  0.0200     1.505  0.0200
+210          P1          O5      DOUBLE       n     1.505  0.0200     1.505  0.0200
+210          P1          C7      SINGLE       n     1.837  0.0200     1.837  0.0200
+210          C7          P8      SINGLE       n     1.837  0.0200     1.837  0.0200
+210          C7         O14      SINGLE       n     1.443  0.0100     1.443  0.0100
+210          C7         C16      SINGLE       n     1.544  0.0100     1.544  0.0100
+210          P8          O9      DOUBLE       n     1.505  0.0200     1.505  0.0200
+210          P8         O10      SINGLE       n     1.505  0.0200     1.505  0.0200
+210          P8         O12      SINGLE       n     1.505  0.0200     1.505  0.0200
+210         C16         C19      SINGLE       n     1.518  0.0116     1.518  0.0116
+210         C19         N22      SINGLE       n     1.466  0.0117     1.466  0.0117
+210         O14        HO14      SINGLE       n     0.970  0.0120     0.849  0.0200
+210         C16        H161      SINGLE       n     1.089  0.0100     0.980  0.0200
+210         C16        H162      SINGLE       n     1.089  0.0100     0.980  0.0200
+210         C19        H191      SINGLE       n     1.089  0.0100     0.979  0.0106
+210         C19        H192      SINGLE       n     1.089  0.0100     0.979  0.0106
+210         N22        H221      SINGLE       n     1.036  0.0160     0.888  0.0200
+210         N22        H222      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+210          O2          P1          O3     112.502    1.50
+210          O2          P1          O5     112.502    1.50
+210          O2          P1          C7     110.326    3.00
+210          O3          P1          O5     112.502    1.50
+210          O3          P1          C7     110.326    3.00
+210          O5          P1          C7     110.326    3.00
+210          P1          C7          P8     114.813    3.00
+210          P1          C7         O14     108.256    2.94
+210          P1          C7         C16     111.410    2.87
+210          P8          C7         O14     108.256    2.94
+210          P8          C7         C16     111.410    2.87
+210         O14          C7         C16     107.859    1.50
+210          C7          P8          O9     110.326    3.00
+210          C7          P8         O10     110.326    3.00
+210          C7          P8         O12     110.326    3.00
+210          O9          P8         O10     112.502    1.50
+210          O9          P8         O12     112.502    1.50
+210         O10          P8         O12     112.502    1.50
+210          C7         O14        HO14     112.250    3.00
+210          C7         C16         C19     116.408    1.76
+210          C7         C16        H161     108.398    2.72
+210          C7         C16        H162     108.398    2.72
+210         C19         C16        H161     108.805    1.50
+210         C19         C16        H162     108.805    1.50
+210        H161         C16        H162     105.423    3.00
+210         C16         C19         N22     113.282    2.68
+210         C16         C19        H191     109.099    1.50
+210         C16         C19        H192     109.099    1.50
+210         N22         C19        H191     108.763    1.50
+210         N22         C19        H192     108.763    1.50
+210        H191         C19        H192     107.806    1.50
+210         C19         N22        H221     110.839    3.00
+210         C19         N22        H222     110.839    3.00
+210        H221         N22        H222     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+210             sp3_sp3_4          P8          C7          P1          O2      60.000    10.0     3
+210            sp3_sp3_31          C7         C16         C19         N22     180.000    10.0     3
+210            sp3_sp3_40         C16         C19         N22        H221     180.000    10.0     3
+210            sp3_sp3_22         C19         C16          C7          P1     180.000    10.0     3
+210            sp3_sp3_12          P1          C7          P8          O9      60.000    10.0     3
+210            sp3_sp3_20          P1          C7         O14        HO14      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+210    chir_1    P1    O2    O3    O5    both
+210    chir_2    C7    P1    P8    O14    both
+210    chir_3    P8    O10    O12    O9    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+210           SMILES              ACDLabs 10.04                                                           O=P(O)(O)C(O)(CCN)P(=O)(O)O
+210 SMILES_CANONICAL               CACTVS 3.341                                                       NCCC(O)([P](O)(O)=O)[P](O)(O)=O
+210           SMILES               CACTVS 3.341                                                       NCCC(O)([P](O)(O)=O)[P](O)(O)=O
+210 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                         C(CN)C(O)(P(=O)(O)O)P(=O)(O)O
+210           SMILES "OpenEye OEToolkits" 1.5.0                                                         C(CN)C(O)(P(=O)(O)O)P(=O)(O)O
+210            InChI                InChI  1.03 InChI=1S/C3H11NO7P2/c4-2-1-3(5,12(6,7)8)13(9,10)11/h5H,1-2,4H2,(H2,6,7,8)(H2,9,10,11)
+210         InChIKey                InChI  1.03                                                           WRUUGTRCQOWXEG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+210 acedrg               243         "dictionary generator"                  
+210 acedrg_database      11          "data source"                           
+210 rdkit                2017.03.2   "Chemoinformatics tool"
+210 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,237 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IBP     IBP      IBUPROFEN     NON-POLYMER     32     15     .     
+#
+data_comp_IBP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IBP     C1      C       C       0       67.913      20.683      192.839     
+IBP     C2      C       CH2     0       68.343      23.232      186.812     
+IBP     C3      C       CH1     0       68.452      24.729      187.112     
+IBP     C4      C       CH3     0       68.291      25.547      185.841     
+IBP     C5      C       CH3     0       69.766      25.058      187.802     
+IBP     C6      C       CH1     0       67.963      19.813      191.570     
+IBP     C7      C       CH3     0       66.774      18.857      191.540     
+IBP     C8      C       CR6     0       68.062      20.703      190.333     
+IBP     C9      C       CR16    0       69.202      20.699      189.531     
+IBP     C10     C       CR16    0       69.291      21.507      188.407     
+IBP     C11     C       CR6     0       68.246      22.347      188.041     
+IBP     C12     C       CR16    0       67.108      22.353      188.839     
+IBP     C13     C       CR16    0       67.016      21.545      189.963     
+IBP     O1      O       OC      -1      68.939      20.746      193.539     
+IBP     O2      O       O       0       66.856      21.284      193.112     
+IBP     H21     H       H       0       69.127      22.962      186.288     
+IBP     H22     H       H       0       67.548      23.084      186.256     
+IBP     H31     H       H       0       67.715      24.974      187.726     
+IBP     H41     H       H       0       68.321      26.495      186.060     
+IBP     H42     H       H       0       67.438      25.337      185.425     
+IBP     H43     H       H       0       69.014      25.334      185.225     
+IBP     H51     H       H       0       70.497      24.617      187.335     
+IBP     H52     H       H       0       69.736      24.747      188.724     
+IBP     H53     H       H       0       69.907      26.021      187.790     
+IBP     H61     H       H       0       68.788      19.269      191.617     
+IBP     H71     H       H       0       66.857      18.259      190.776     
+IBP     H72     H       H       0       65.947      19.364      191.464     
+IBP     H73     H       H       0       66.757      18.334      192.359     
+IBP     H91     H       H       0       69.924      20.138      189.757     
+IBP     H101    H       H       0       70.073      21.486      187.882     
+IBP     H121    H       H       0       66.387      22.914      188.610     
+IBP     H131    H       H       0       66.234      21.567      190.487     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IBP          C1          C6      SINGLE       n     1.536  0.0146     1.536  0.0146
+IBP          C1          O1      SINGLE       n     1.244  0.0200     1.244  0.0200
+IBP          C1          O2      DOUBLE       n     1.244  0.0200     1.244  0.0200
+IBP          C2          C3      SINGLE       n     1.530  0.0100     1.530  0.0100
+IBP          C2         C11      SINGLE       n     1.517  0.0100     1.517  0.0100
+IBP          C3          C4      SINGLE       n     1.520  0.0105     1.520  0.0105
+IBP          C3          C5      SINGLE       n     1.520  0.0105     1.520  0.0105
+IBP          C6          C7      SINGLE       n     1.524  0.0129     1.524  0.0129
+IBP          C6          C8      SINGLE       n     1.525  0.0100     1.525  0.0100
+IBP          C8          C9      DOUBLE       y     1.389  0.0100     1.389  0.0100
+IBP          C8         C13      SINGLE       y     1.389  0.0100     1.389  0.0100
+IBP          C9         C10      SINGLE       y     1.384  0.0100     1.384  0.0100
+IBP         C10         C11      DOUBLE       y     1.385  0.0110     1.385  0.0110
+IBP         C11         C12      SINGLE       y     1.385  0.0110     1.385  0.0110
+IBP         C12         C13      DOUBLE       y     1.384  0.0100     1.384  0.0100
+IBP          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0150
+IBP          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0150
+IBP          C3         H31      SINGLE       n     1.089  0.0100     0.990  0.0200
+IBP          C4         H41      SINGLE       n     1.089  0.0100     0.973  0.0146
+IBP          C4         H42      SINGLE       n     1.089  0.0100     0.973  0.0146
+IBP          C4         H43      SINGLE       n     1.089  0.0100     0.973  0.0146
+IBP          C5         H51      SINGLE       n     1.089  0.0100     0.973  0.0146
+IBP          C5         H52      SINGLE       n     1.089  0.0100     0.973  0.0146
+IBP          C5         H53      SINGLE       n     1.089  0.0100     0.973  0.0146
+IBP          C6         H61      SINGLE       n     1.089  0.0100     0.989  0.0200
+IBP          C7         H71      SINGLE       n     1.089  0.0100     0.973  0.0160
+IBP          C7         H72      SINGLE       n     1.089  0.0100     0.973  0.0160
+IBP          C7         H73      SINGLE       n     1.089  0.0100     0.973  0.0160
+IBP          C9         H91      SINGLE       n     1.082  0.0130     0.942  0.0167
+IBP         C10        H101      SINGLE       n     1.082  0.0130     0.942  0.0167
+IBP         C12        H121      SINGLE       n     1.082  0.0130     0.942  0.0167
+IBP         C13        H131      SINGLE       n     1.082  0.0130     0.942  0.0167
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IBP          C6          C1          O1     118.127    1.82
+IBP          C6          C1          O2     118.127    1.82
+IBP          O1          C1          O2     123.747    1.63
+IBP          C3          C2         C11     114.426    1.50
+IBP          C3          C2         H21     108.467    1.50
+IBP          C3          C2         H22     108.467    1.50
+IBP         C11          C2         H21     108.738    1.50
+IBP         C11          C2         H22     108.738    1.50
+IBP         H21          C2         H22     107.709    1.50
+IBP          C2          C3          C4     110.980    1.50
+IBP          C2          C3          C5     110.980    1.50
+IBP          C2          C3         H31     108.159    1.50
+IBP          C4          C3          C5     110.724    1.50
+IBP          C4          C3         H31     107.921    2.39
+IBP          C5          C3         H31     107.921    2.39
+IBP          C3          C4         H41     109.354    1.85
+IBP          C3          C4         H42     109.354    1.85
+IBP          C3          C4         H43     109.354    1.85
+IBP         H41          C4         H42     109.411    1.50
+IBP         H41          C4         H43     109.411    1.50
+IBP         H42          C4         H43     109.411    1.50
+IBP          C3          C5         H51     109.354    1.85
+IBP          C3          C5         H52     109.354    1.85
+IBP          C3          C5         H53     109.354    1.85
+IBP         H51          C5         H52     109.411    1.50
+IBP         H51          C5         H53     109.411    1.50
+IBP         H52          C5         H53     109.411    1.50
+IBP          C1          C6          C7     109.576    1.81
+IBP          C1          C6          C8     109.412    1.97
+IBP          C1          C6         H61     107.741    1.50
+IBP          C7          C6          C8     113.442    1.50
+IBP          C7          C6         H61     108.269    1.50
+IBP          C8          C6         H61     107.835    1.52
+IBP          C6          C7         H71     109.546    1.53
+IBP          C6          C7         H72     109.546    1.53
+IBP          C6          C7         H73     109.546    1.53
+IBP         H71          C7         H72     109.411    1.50
+IBP         H71          C7         H73     109.411    1.50
+IBP         H72          C7         H73     109.411    1.50
+IBP          C6          C8          C9     121.046    1.50
+IBP          C6          C8         C13     121.045    1.50
+IBP          C9          C8         C13     117.909    1.50
+IBP          C8          C9         C10     121.106    1.50
+IBP          C8          C9         H91     119.366    1.50
+IBP         C10          C9         H91     119.528    1.50
+IBP          C9         C10         C11     121.021    1.50
+IBP          C9         C10        H101     119.564    1.50
+IBP         C11         C10        H101     119.415    1.50
+IBP          C2         C11         C10     121.082    1.50
+IBP          C2         C11         C12     121.082    1.50
+IBP         C10         C11         C12     117.836    1.50
+IBP         C11         C12         C13     121.021    1.50
+IBP         C11         C12        H121     119.415    1.50
+IBP         C13         C12        H121     119.564    1.50
+IBP          C8         C13         C12     121.106    1.50
+IBP          C8         C13        H131     119.366    1.50
+IBP         C12         C13        H131     119.528    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IBP             sp2_sp3_1          O1          C1          C6          C7       0.000    10.0     6
+IBP              const_15          C2         C11         C12         C13     180.000    10.0     2
+IBP              const_17         C11         C12         C13          C8       0.000    10.0     2
+IBP             sp2_sp3_8         C10         C11          C2          C3     -90.000    10.0     6
+IBP             sp3_sp3_2         C11          C2          C3          C4     -60.000    10.0     3
+IBP            sp3_sp3_10          C2          C3          C4         H41     180.000    10.0     3
+IBP            sp3_sp3_22          C2          C3          C5         H51      60.000    10.0     3
+IBP            sp3_sp3_28          C1          C6          C7         H71     180.000    10.0     3
+IBP            sp2_sp3_13          C9          C8          C6          C1     150.000    10.0     6
+IBP              const_22         C12         C13          C8          C6     180.000    10.0     2
+IBP       const_sp2_sp2_3          C6          C8          C9         C10     180.000     5.0     2
+IBP       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+IBP              const_10          C9         C10         C11          C2     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IBP    chir_1    C3    C2    C4    C5    both
+IBP    chir_2    C6    C1    C8    C7    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IBP    plan-1         C10   0.020
+IBP    plan-1         C11   0.020
+IBP    plan-1         C12   0.020
+IBP    plan-1         C13   0.020
+IBP    plan-1          C2   0.020
+IBP    plan-1          C6   0.020
+IBP    plan-1          C8   0.020
+IBP    plan-1          C9   0.020
+IBP    plan-1        H101   0.020
+IBP    plan-1        H121   0.020
+IBP    plan-1        H131   0.020
+IBP    plan-1         H91   0.020
+IBP    plan-2          C1   0.020
+IBP    plan-2          C6   0.020
+IBP    plan-2          O1   0.020
+IBP    plan-2          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IBP           SMILES              ACDLabs 10.04                                                                          O=C(O)C(c1ccc(cc1)CC(C)C)C
+IBP SMILES_CANONICAL               CACTVS 3.341                                                                      CC(C)Cc1ccc(cc1)[C@H](C)C(O)=O
+IBP           SMILES               CACTVS 3.341                                                                       CC(C)Cc1ccc(cc1)[CH](C)C(O)=O
+IBP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                      CC(C)Cc1ccc(cc1)[C@H](C)C(=O)O
+IBP           SMILES "OpenEye OEToolkits" 1.5.0                                                                          CC(C)Cc1ccc(cc1)C(C)C(=O)O
+IBP            InChI                InChI  1.03 InChI=1S/C13H18O2/c1-9(2)8-11-4-6-12(7-5-11)10(3)13(14)15/h4-7,9-10H,8H2,1-3H3,(H,14,15)/t10-/m0/s1
+IBP         InChIKey                InChI  1.03                                                                         HEFNNWSXXWATRW-JTQLQIEISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IBP acedrg               243         "dictionary generator"                  
+IBP acedrg_database      11          "data source"                           
+IBP rdkit                2017.03.2   "Chemoinformatics tool"
+IBP refmac5              5.8.0238    "optimization tool"                     

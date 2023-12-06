@@ -1,0 +1,345 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DNZ     DNZ      "(2~{R},3~{S})-3-azanyl-2-(4-chlorophenyl)-1-spiro[1,3-benzodioxole-2,4'-piperidine]-1'-yl-butan-1-one"     NON-POLYMER     50     27     .     
+#
+data_comp_DNZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DNZ     C10     C       CH1     0       31.762      388.319     35.221      
+DNZ     C13     C       CR6     0       32.731      390.448     36.267      
+DNZ     C15     C       CR16    0       32.595      392.871     36.422      
+DNZ     C16     C       CR6     0       32.182      392.761     37.731      
+DNZ     C18     C       CR16    0       32.032      391.530     38.329      
+DNZ     C19     C       CR16    0       32.303      390.378     37.591      
+DNZ     C21     C       CR56    0       40.184      388.986     34.578      
+DNZ     C22     C       CR56    0       40.538      389.434     35.838      
+DNZ     C24     C       CR16    0       41.837      389.740     36.165      
+DNZ     C25     C       CR16    0       42.789      389.573     35.153      
+DNZ     C26     C       CR16    0       42.434      389.125     33.895      
+DNZ     C27     C       CR16    0       41.106      388.818     33.576      
+DNZ     C1      C       CH2     0       37.258      390.195     35.723      
+DNZ     C2      C       CT      0       38.290      389.074     35.840      
+DNZ     C3      C       CH2     0       37.653      387.831     36.458      
+DNZ     C4      C       CH2     0       36.385      387.433     35.713      
+DNZ     N5      N       NR6     0       35.421      388.546     35.679      
+DNZ     C6      C       CH2     0       35.991      389.729     35.013      
+DNZ     C7      C       C       0       34.146      388.384     36.111      
+DNZ     O8      O       O       0       33.877      387.641     37.054      
+DNZ     C9      C       CH1     0       33.017      389.188     35.464      
+DNZ     N11     N       NT2     0       30.664      389.115     34.637      
+DNZ     C12     C       CH3     0       32.045      387.115     34.333      
+DNZ     C14     C       CR16    0       32.863      391.712     35.695      
+DNZ     CL      CL      CL      0       31.844      394.203     38.645      
+DNZ     O20     O       O2      0       38.824      388.756     34.524      
+DNZ     O23     O       O2      0       39.421      389.512     36.645      
+DNZ     H1      H       H       0       31.447      387.969     36.091      
+DNZ     H2      H       H       0       32.694      393.716     36.024      
+DNZ     H3      H       H       0       31.750      391.468     39.223      
+DNZ     H4      H       H       0       32.202      389.535     37.999      
+DNZ     H5      H       H       0       42.076      390.046     37.028      
+DNZ     H6      H       H       0       43.696      389.772     35.335      
+DNZ     H7      H       H       0       43.103      389.023     33.232      
+DNZ     H8      H       H       0       40.859      388.511     32.715      
+DNZ     H9      H       H       0       37.026      390.513     36.634      
+DNZ     H10     H       H       0       37.660      390.948     35.218      
+DNZ     H11     H       H       0       37.433      388.020     37.407      
+DNZ     H12     H       H       0       38.305      387.084     36.424      
+DNZ     H13     H       H       0       35.983      386.641     36.150      
+DNZ     H14     H       H       0       36.619      387.179     34.785      
+DNZ     H15     H       H       0       36.205      389.504     34.073      
+DNZ     H16     H       H       0       35.337      390.470     35.009      
+DNZ     H17     H       H       0       33.315      389.468     34.560      
+DNZ     H18     H       H       0       30.837      389.302     33.786      
+DNZ     H19     H       H       0       29.905      388.655     34.667      
+DNZ     H21     H       H       0       32.782      387.317     33.730      
+DNZ     H22     H       H       0       31.253      386.898     33.811      
+DNZ     H23     H       H       0       32.283      386.352     34.888      
+DNZ     H24     H       H       0       33.147      391.787     34.799      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DNZ         C26         C27      DOUBLE       y     1.396  0.0100     1.396  0.0100
+DNZ         C21         C27      SINGLE       y     1.368  0.0118     1.368  0.0118
+DNZ          N5          C6      SINGLE       n     1.465  0.0100     1.465  0.0100
+DNZ          C1          C6      SINGLE       n     1.522  0.0100     1.522  0.0100
+DNZ         C21         O20      SINGLE       n     1.380  0.0100     1.380  0.0100
+DNZ          C2         O20      SINGLE       n     1.455  0.0100     1.455  0.0100
+DNZ         C25         C26      SINGLE       y     1.378  0.0100     1.378  0.0100
+DNZ         C10         C12      SINGLE       n     1.520  0.0105     1.520  0.0105
+DNZ         C21         C22      DOUBLE       y     1.380  0.0100     1.380  0.0100
+DNZ          C4          N5      SINGLE       n     1.465  0.0100     1.465  0.0100
+DNZ          N5          C7      SINGLE       n     1.347  0.0100     1.347  0.0100
+DNZ         C10         N11      SINGLE       n     1.473  0.0130     1.473  0.0130
+DNZ          C1          C2      SINGLE       n     1.527  0.0134     1.527  0.0134
+DNZ         C10          C9      SINGLE       n     1.540  0.0128     1.540  0.0128
+DNZ          C7          C9      SINGLE       n     1.523  0.0100     1.523  0.0100
+DNZ         C13          C9      SINGLE       n     1.519  0.0100     1.519  0.0100
+DNZ          C3          C4      SINGLE       n     1.522  0.0100     1.522  0.0100
+DNZ          C2          C3      SINGLE       n     1.527  0.0134     1.527  0.0134
+DNZ          C2         O23      SINGLE       n     1.455  0.0100     1.455  0.0100
+DNZ         C13         C14      SINGLE       y     1.389  0.0100     1.389  0.0100
+DNZ         C15         C14      DOUBLE       y     1.380  0.0199     1.380  0.0199
+DNZ          C7          O8      DOUBLE       n     1.229  0.0100     1.229  0.0100
+DNZ         C24         C25      DOUBLE       y     1.396  0.0100     1.396  0.0100
+DNZ         C22         O23      SINGLE       n     1.380  0.0100     1.380  0.0100
+DNZ         C22         C24      SINGLE       y     1.368  0.0118     1.368  0.0118
+DNZ         C13         C19      DOUBLE       y     1.389  0.0100     1.389  0.0100
+DNZ         C15         C16      SINGLE       y     1.373  0.0107     1.373  0.0107
+DNZ         C18         C19      SINGLE       y     1.380  0.0199     1.380  0.0199
+DNZ         C16         C18      DOUBLE       y     1.373  0.0107     1.373  0.0107
+DNZ         C16          CL      SINGLE       n     1.741  0.0100     1.741  0.0100
+DNZ         C10          H1      SINGLE       n     1.089  0.0100     0.990  0.0141
+DNZ         C15          H2      SINGLE       n     1.082  0.0130     0.939  0.0176
+DNZ         C18          H3      SINGLE       n     1.082  0.0130     0.939  0.0176
+DNZ         C19          H4      SINGLE       n     1.082  0.0130     0.943  0.0173
+DNZ         C24          H5      SINGLE       n     1.082  0.0130     0.946  0.0113
+DNZ         C25          H6      SINGLE       n     1.082  0.0130     0.947  0.0172
+DNZ         C26          H7      SINGLE       n     1.082  0.0130     0.947  0.0172
+DNZ         C27          H8      SINGLE       n     1.082  0.0130     0.946  0.0113
+DNZ          C1          H9      SINGLE       n     1.089  0.0100     0.992  0.0182
+DNZ          C1         H10      SINGLE       n     1.089  0.0100     0.992  0.0182
+DNZ          C3         H11      SINGLE       n     1.089  0.0100     0.992  0.0182
+DNZ          C3         H12      SINGLE       n     1.089  0.0100     0.992  0.0182
+DNZ          C4         H13      SINGLE       n     1.089  0.0100     0.990  0.0100
+DNZ          C4         H14      SINGLE       n     1.089  0.0100     0.990  0.0100
+DNZ          C6         H15      SINGLE       n     1.089  0.0100     0.990  0.0100
+DNZ          C6         H16      SINGLE       n     1.089  0.0100     0.990  0.0100
+DNZ          C9         H17      SINGLE       n     1.089  0.0100     0.993  0.0114
+DNZ         N11         H18      SINGLE       n     1.036  0.0160     0.888  0.0200
+DNZ         N11         H19      SINGLE       n     1.036  0.0160     0.888  0.0200
+DNZ         C12         H21      SINGLE       n     1.089  0.0100     0.973  0.0146
+DNZ         C12         H22      SINGLE       n     1.089  0.0100     0.973  0.0146
+DNZ         C12         H23      SINGLE       n     1.089  0.0100     0.973  0.0146
+DNZ         C14         H24      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DNZ         C12         C10         N11     109.538    2.08
+DNZ         C12         C10          C9     111.094    2.85
+DNZ         C12         C10          H1     107.146    1.50
+DNZ         N11         C10          C9     111.883    2.59
+DNZ         N11         C10          H1     107.944    1.55
+DNZ          C9         C10          H1     108.608    1.50
+DNZ          C9         C13         C14     121.031    1.52
+DNZ          C9         C13         C19     121.031    1.52
+DNZ         C14         C13         C19     117.939    1.50
+DNZ         C14         C15         C16     119.055    1.50
+DNZ         C14         C15          H2     120.500    1.50
+DNZ         C16         C15          H2     120.445    1.50
+DNZ         C15         C16         C18     121.276    1.50
+DNZ         C15         C16          CL     119.362    1.50
+DNZ         C18         C16          CL     119.362    1.50
+DNZ         C19         C18         C16     119.055    1.50
+DNZ         C19         C18          H3     120.500    1.50
+DNZ         C16         C18          H3     120.445    1.50
+DNZ         C13         C19         C18     121.338    1.50
+DNZ         C13         C19          H4     119.313    1.50
+DNZ         C18         C19          H4     119.349    1.50
+DNZ         C27         C21         O20     127.738    1.50
+DNZ         C27         C21         C22     122.312    1.50
+DNZ         O20         C21         C22     109.950    1.50
+DNZ         C21         C22         O23     109.950    1.50
+DNZ         C21         C22         C24     122.312    1.50
+DNZ         O23         C22         C24     127.738    1.50
+DNZ         C25         C24         C22     116.172    1.50
+DNZ         C25         C24          H5     121.821    1.50
+DNZ         C22         C24          H5     122.007    1.50
+DNZ         C26         C25         C24     121.516    1.50
+DNZ         C26         C25          H6     119.334    1.50
+DNZ         C24         C25          H6     119.150    1.50
+DNZ         C27         C26         C25     121.516    1.50
+DNZ         C27         C26          H7     119.150    1.50
+DNZ         C25         C26          H7     119.334    1.50
+DNZ         C26         C27         C21     116.172    1.50
+DNZ         C26         C27          H8     121.821    1.50
+DNZ         C21         C27          H8     122.007    1.50
+DNZ          C6          C1          C2     111.476    2.14
+DNZ          C6          C1          H9     109.365    1.50
+DNZ          C6          C1         H10     109.365    1.50
+DNZ          C2          C1          H9     108.854    1.50
+DNZ          C2          C1         H10     108.854    1.50
+DNZ          H9          C1         H10     108.621    1.76
+DNZ         O20          C2          C1     109.504    1.50
+DNZ         O20          C2          C3     109.504    1.50
+DNZ         O20          C2         O23     105.675    1.50
+DNZ          C1          C2          C3     110.546    1.68
+DNZ          C1          C2         O23     109.504    1.50
+DNZ          C3          C2         O23     109.504    1.50
+DNZ          C4          C3          C2     111.476    2.14
+DNZ          C4          C3         H11     109.365    1.50
+DNZ          C4          C3         H12     109.365    1.50
+DNZ          C2          C3         H11     108.854    1.50
+DNZ          C2          C3         H12     108.854    1.50
+DNZ         H11          C3         H12     108.621    1.76
+DNZ          N5          C4          C3     110.063    1.50
+DNZ          N5          C4         H13     109.531    1.50
+DNZ          N5          C4         H14     109.531    1.50
+DNZ          C3          C4         H13     109.604    1.50
+DNZ          C3          C4         H14     109.604    1.50
+DNZ         H13          C4         H14     108.135    1.50
+DNZ          C6          N5          C4     113.005    1.50
+DNZ          C6          N5          C7     123.498    3.00
+DNZ          C4          N5          C7     123.498    3.00
+DNZ          N5          C6          C1     110.063    1.50
+DNZ          N5          C6         H15     109.531    1.50
+DNZ          N5          C6         H16     109.531    1.50
+DNZ          C1          C6         H15     109.604    1.50
+DNZ          C1          C6         H16     109.604    1.50
+DNZ         H15          C6         H16     108.135    1.50
+DNZ          N5          C7          C9     117.882    1.61
+DNZ          N5          C7          O8     122.114    1.50
+DNZ          C9          C7          O8     120.003    1.50
+DNZ         C10          C9          C7     111.511    2.91
+DNZ         C10          C9         C13     114.257    1.50
+DNZ         C10          C9         H17     106.586    1.50
+DNZ          C7          C9         C13     110.421    1.82
+DNZ          C7          C9         H17     108.615    1.50
+DNZ         C13          C9         H17     108.243    1.50
+DNZ         C10         N11         H18     109.715    3.00
+DNZ         C10         N11         H19     109.715    3.00
+DNZ         H18         N11         H19     107.559    3.00
+DNZ         C10         C12         H21     109.520    1.50
+DNZ         C10         C12         H22     109.520    1.50
+DNZ         C10         C12         H23     109.520    1.50
+DNZ         H21         C12         H22     109.386    1.50
+DNZ         H21         C12         H23     109.386    1.50
+DNZ         H22         C12         H23     109.386    1.50
+DNZ         C13         C14         C15     121.338    1.50
+DNZ         C13         C14         H24     119.313    1.50
+DNZ         C15         C14         H24     119.349    1.50
+DNZ         C21         O20          C2     106.693    1.50
+DNZ          C2         O23         C22     106.693    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DNZ            sp3_sp3_58         C12         C10          C9          C7     180.000    10.0     3
+DNZ            sp3_sp3_43         C12         C10         N11         H18     180.000    10.0     3
+DNZ            sp3_sp3_34         N11         C10         C12         H21     180.000    10.0     3
+DNZ              const_25         C25         C26         C27         C21       0.000    10.0     2
+DNZ            sp3_sp3_51          C6          C1          C2         O20      60.000    10.0     3
+DNZ             sp3_sp3_1          C2          C1          C6          N5      60.000    10.0     3
+DNZ            sp3_sp3_22         O20          C2          C3          C4     -60.000    10.0     3
+DNZ            sp3_sp3_30          C1          C2         O20         C21     180.000    10.0     3
+DNZ            sp3_sp3_31         O20          C2         O23         C22      60.000    10.0     3
+DNZ            sp3_sp3_10          C2          C3          C4          N5     -60.000    10.0     3
+DNZ            sp2_sp3_10          C7          N5          C4          C3     180.000    10.0     6
+DNZ             sp2_sp3_4          C7          N5          C6          C1     180.000    10.0     6
+DNZ             sp2_sp2_5          C9          C7          N5          C6     180.000     5.0     2
+DNZ            sp2_sp3_16          O8          C7          C9         C10     180.000    10.0     6
+DNZ            sp2_sp3_19         C14         C13          C9         C10     150.000    10.0     6
+DNZ       const_sp2_sp2_3          C9         C13         C14         C15     180.000     5.0     2
+DNZ              const_47          C9         C13         C19         C18     180.000    10.0     2
+DNZ       const_sp2_sp2_5         C13         C14         C15         C16       0.000     5.0     2
+DNZ              const_10         C14         C15         C16          CL     180.000    10.0     2
+DNZ              const_15          CL         C16         C18         C19     180.000    10.0     2
+DNZ              const_17         C16         C18         C19         C13       0.000    10.0     2
+DNZ              const_23         O20         C21         C27         C26     180.000    10.0     2
+DNZ             sp2_sp2_2         C27         C21         O20          C2     180.000     5.0     2
+DNZ              const_42         C27         C21         C22         O23     180.000    10.0     2
+DNZ             sp2_sp2_3         C21         C22         O23          C2       0.000     5.0     2
+DNZ              const_37         C21         C22         C24         C25       0.000    10.0     2
+DNZ              const_33         C22         C24         C25         C26       0.000    10.0     2
+DNZ              const_29         C24         C25         C26         C27       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DNZ    chir_1    C10    N11    C9    C12    positive
+DNZ    chir_2    C2    O20    O23    C1    both
+DNZ    chir_3    C9    C7    C10    C13    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DNZ    plan-1         C21   0.020
+DNZ    plan-1         C22   0.020
+DNZ    plan-1         C24   0.020
+DNZ    plan-1         C25   0.020
+DNZ    plan-1         C26   0.020
+DNZ    plan-1         C27   0.020
+DNZ    plan-1          H5   0.020
+DNZ    plan-1          H6   0.020
+DNZ    plan-1          H7   0.020
+DNZ    plan-1          H8   0.020
+DNZ    plan-1         O20   0.020
+DNZ    plan-1         O23   0.020
+DNZ    plan-2         C13   0.020
+DNZ    plan-2         C14   0.020
+DNZ    plan-2         C15   0.020
+DNZ    plan-2         C16   0.020
+DNZ    plan-2         C18   0.020
+DNZ    plan-2         C19   0.020
+DNZ    plan-2          C9   0.020
+DNZ    plan-2          CL   0.020
+DNZ    plan-2          H2   0.020
+DNZ    plan-2         H24   0.020
+DNZ    plan-2          H3   0.020
+DNZ    plan-2          H4   0.020
+DNZ    plan-3          C4   0.020
+DNZ    plan-3          C6   0.020
+DNZ    plan-3          C7   0.020
+DNZ    plan-3          N5   0.020
+DNZ    plan-4          C7   0.020
+DNZ    plan-4          C9   0.020
+DNZ    plan-4          N5   0.020
+DNZ    plan-4          O8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DNZ            InChI                InChI  1.03 InChI=1S/C21H23ClN2O3/c1-14(23)19(15-6-8-16(22)9-7-15)20(25)24-12-10-21(11-13-24)26-17-4-2-3-5-18(17)27-21/h2-9,14,19H,10-13,23H2,1H3/t14-,19-/m0/s1
+DNZ         InChIKey                InChI  1.03                                                                                                                          WRVOICVPIQQYTO-LIRRHRJNSA-N
+DNZ SMILES_CANONICAL               CACTVS 3.385                                                                                              C[C@H](N)[C@H](C(=O)N1CCC2(CC1)Oc3ccccc3O2)c4ccc(Cl)cc4
+DNZ           SMILES               CACTVS 3.385                                                                                                C[CH](N)[CH](C(=O)N1CCC2(CC1)Oc3ccccc3O2)c4ccc(Cl)cc4
+DNZ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                            C[C@@H]([C@@H](c1ccc(cc1)Cl)C(=O)N2CCC3(CC2)Oc4ccccc4O3)N
+DNZ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                      CC(C(c1ccc(cc1)Cl)C(=O)N2CCC3(CC2)Oc4ccccc4O3)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DNZ acedrg               243         "dictionary generator"                  
+DNZ acedrg_database      11          "data source"                           
+DNZ rdkit                2017.03.2   "Chemoinformatics tool"
+DNZ refmac5              5.8.0238    "optimization tool"                     

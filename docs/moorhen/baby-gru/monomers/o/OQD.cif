@@ -1,0 +1,533 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OQD     OQD      "(3R,3aS,6aR)-hexahydrofuro[2,3-b]furan-3-yl [(2S,4S,5S)-4-hydroxy-5-{[N-(methoxycarbonyl)-L-isoleucyl]amino}-1,6-diphenylhexan-2-yl]carbamate"     NON-POLYMER     89     44     .     
+#
+data_comp_OQD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OQD     C13     C       CR6     0       22.810      -3.674      14.410      
+OQD     C15     C       CR16    0       22.822      -6.084      14.232      
+OQD     C17     C       CR16    0       23.933      -5.033      16.063      
+OQD     C22     C       CH1     0       23.568      0.936       19.191      
+OQD     C24     C       CR16    0       18.051      -0.091      19.085      
+OQD     C26     C       CR16    0       18.049      1.098       21.170      
+OQD     C28     C       CR16    0       18.355      2.277       19.104      
+OQD     C02     C       CH1     0       19.611      0.357       16.346      
+OQD     C03     C       CH2     0       19.650      0.355       14.816      
+OQD     C04     C       CH2     0       18.368      1.085       16.874      
+OQD     C05     C       CH1     0       20.872      -0.284      14.169      
+OQD     C06     C       CH1     0       21.172      -1.731      14.605      
+OQD     C08     C       C       0       19.536      -3.493      15.248      
+OQD     C09     C       CH1     0       18.318      -4.314      14.820      
+OQD     C11     C       CH2     0       22.395      -2.319      13.881      
+OQD     C14     C       CR16    0       22.445      -4.838      13.745      
+OQD     C16     C       CR16    0       23.566      -6.178      15.390      
+OQD     C18     C       CR16    0       23.557      -3.786      15.577      
+OQD     C19     C       C       0       21.559      0.441       17.877      
+OQD     C23     C       CR6     0       18.254      1.092       18.383      
+OQD     C25     C       CR16    0       17.948      -0.087      20.471      
+OQD     C27     C       CR16    0       18.252      2.279       20.489      
+OQD     C30     C       C       0       19.117      -6.343      13.661      
+OQD     C31     C       CH1     0       17.116      -4.079      15.762      
+OQD     C34     C       CH3     0       19.700      -8.493      12.815      
+OQD     C35     C       CH2     0       24.853      1.654       18.818      
+OQD     C37     C       CH1     0       24.100      2.773       20.668      
+OQD     C38     C       CH1     0       23.289      1.470       20.597      
+OQD     C40     C       CH2     0       21.873      3.363       20.612      
+OQD     C41     C       CH2     0       21.879      1.917       20.989      
+OQD     C42     C       CH2     0       15.974      -5.073      15.500      
+OQD     C43     C       CH3     0       16.632      -2.634      15.698      
+OQD     C44     C       CH3     0       15.422      -5.062      14.087      
+OQD     N01     N       NH1     0       20.825      0.959       16.891      
+OQD     N07     N       NH1     0       20.000      -2.572      14.386      
+OQD     N29     N       NH1     0       18.697      -5.718      14.781      
+OQD     O10     O       OH1     0       20.670      -0.252      12.759      
+OQD     O12     O       O       0       20.050      -3.706      16.345      
+OQD     O20     O       O       0       21.376      -0.630      18.428      
+OQD     O21     O       O2      0       22.564      1.314       18.210      
+OQD     O32     O       O2      0       19.407      -7.629      13.936      
+OQD     O33     O       O       0       19.225      -5.822      12.571      
+OQD     O36     O       O2      0       24.737      2.941       19.425      
+OQD     O39     O       O2      0       23.190      3.822       20.909      
+OQD     H151    H       H       0       22.569      -6.866      13.768      
+OQD     H171    H       H       0       24.442      -5.094      16.855      
+OQD     H221    H       H       0       23.701      -0.040      19.222      
+OQD     H241    H       H       0       17.981      -0.905      18.613      
+OQD     H261    H       H       0       17.979      1.100       22.112      
+OQD     H281    H       H       0       18.494      3.091       18.645      
+OQD     H021    H       H       0       19.554      -0.582      16.647      
+OQD     H031    H       H       0       19.595      1.288       14.508      
+OQD     H032    H       H       0       18.849      -0.112      14.488      
+OQD     H041    H       H       0       17.570      0.655       16.500      
+OQD     H042    H       H       0       18.386      2.011       16.551      
+OQD     H051    H       H       0       21.665      0.274       14.383      
+OQD     H061    H       H       0       21.371      -1.709      15.567      
+OQD     H091    H       H       0       18.050      -4.022      13.906      
+OQD     H111    H       H       0       22.191      -2.402      12.925      
+OQD     H112    H       H       0       23.148      -1.697      13.974      
+OQD     H141    H       H       0       21.936      -4.781      12.951      
+OQD     H161    H       H       0       23.822      -7.025      15.721      
+OQD     H181    H       H       0       23.812      -3.006      16.043      
+OQD     H251    H       H       0       17.809      -0.898      20.934      
+OQD     H271    H       H       0       18.321      3.091       20.965      
+OQD     H311    H       H       0       17.432      -4.241      16.685      
+OQD     H342    H       H       0       20.491      -8.171      12.356      
+OQD     H343    H       H       0       18.947      -8.497      12.203      
+OQD     H341    H       H       0       19.859      -9.394      13.138      
+OQD     H351    H       H       0       25.626      1.179       19.166      
+OQD     H352    H       H       0       24.937      1.735       17.853      
+OQD     H371    H       H       0       24.767      2.728       21.391      
+OQD     H381    H       H       0       23.612      0.812       21.256      
+OQD     H401    H       H       0       21.211      3.856       21.132      
+OQD     H402    H       H       0       21.675      3.474       19.663      
+OQD     H411    H       H       0       21.732      1.802       21.951      
+OQD     H412    H       H       0       21.195      1.416       20.501      
+OQD     H422    H       H       0       15.240      -4.870      16.119      
+OQD     H421    H       H       0       16.288      -5.978      15.707      
+OQD     H431    H       H       0       15.723      -2.576      16.041      
+OQD     H433    H       H       0       16.647      -2.325      14.776      
+OQD     H432    H       H       0       17.213      -2.070      16.237      
+OQD     H442    H       H       0       14.646      -5.647      14.039      
+OQD     H443    H       H       0       16.101      -5.379      13.466      
+OQD     H441    H       H       0       15.158      -4.158      13.843      
+OQD     H011    H       H       0       21.070      1.714       16.525      
+OQD     H071    H       H       0       19.584      -2.449      13.630      
+OQD     H291    H       H       0       18.656      -6.180      15.525      
+OQD     H101    H       H       0       20.806      0.538       12.483      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OQD         C34         O32      SINGLE       n     1.443  0.0101     1.443  0.0101
+OQD         C30         O33      DOUBLE       n     1.210  0.0102     1.210  0.0102
+OQD         C30         O32      SINGLE       n     1.342  0.0100     1.342  0.0100
+OQD         C30         N29      SINGLE       n     1.344  0.0100     1.344  0.0100
+OQD         C42         C44      SINGLE       n     1.511  0.0200     1.511  0.0200
+OQD         C15         C14      DOUBLE       y     1.386  0.0100     1.386  0.0100
+OQD         C13         C14      SINGLE       y     1.385  0.0111     1.385  0.0111
+OQD         C05         O10      SINGLE       n     1.424  0.0199     1.424  0.0199
+OQD         C15         C16      SINGLE       y     1.376  0.0124     1.376  0.0124
+OQD         C09         N29      SINGLE       n     1.451  0.0100     1.451  0.0100
+OQD         C06         N07      SINGLE       n     1.455  0.0100     1.455  0.0100
+OQD         C08         N07      SINGLE       n     1.337  0.0102     1.337  0.0102
+OQD         C08         C09      SINGLE       n     1.527  0.0100     1.527  0.0100
+OQD         C09         C31      SINGLE       n     1.540  0.0100     1.540  0.0100
+OQD         C13         C11      SINGLE       n     1.512  0.0103     1.512  0.0103
+OQD         C06         C11      SINGLE       n     1.536  0.0100     1.536  0.0100
+OQD         C13         C18      DOUBLE       y     1.385  0.0111     1.385  0.0111
+OQD         C31         C42      SINGLE       n     1.531  0.0100     1.531  0.0100
+OQD         C17         C16      DOUBLE       y     1.374  0.0127     1.374  0.0127
+OQD         C05         C06      SINGLE       n     1.538  0.0100     1.538  0.0100
+OQD         C03         C05      SINGLE       n     1.518  0.0200     1.518  0.0200
+OQD         C08         O12      DOUBLE       n     1.229  0.0102     1.229  0.0102
+OQD         C31         C43      SINGLE       n     1.521  0.0135     1.521  0.0135
+OQD         C02         C03      SINGLE       n     1.530  0.0100     1.530  0.0100
+OQD         C17         C18      SINGLE       y     1.386  0.0100     1.386  0.0100
+OQD         C02         N01      SINGLE       n     1.457  0.0100     1.457  0.0100
+OQD         C02         C04      SINGLE       n     1.533  0.0100     1.533  0.0100
+OQD         C19         N01      SINGLE       n     1.329  0.0100     1.329  0.0100
+OQD         C04         C23      SINGLE       n     1.512  0.0103     1.512  0.0103
+OQD         C19         O21      SINGLE       n     1.366  0.0108     1.366  0.0108
+OQD         C19         O20      DOUBLE       n     1.216  0.0100     1.216  0.0100
+OQD         C22         O21      SINGLE       n     1.449  0.0100     1.449  0.0100
+OQD         C28         C23      SINGLE       y     1.385  0.0111     1.385  0.0111
+OQD         C24         C23      DOUBLE       y     1.385  0.0111     1.385  0.0111
+OQD         C35         O36      SINGLE       n     1.428  0.0115     1.428  0.0115
+OQD         C22         C35      SINGLE       n     1.520  0.0161     1.520  0.0161
+OQD         C37         O36      SINGLE       n     1.405  0.0155     1.405  0.0155
+OQD         C28         C27      DOUBLE       y     1.386  0.0100     1.386  0.0100
+OQD         C22         C38      SINGLE       n     1.527  0.0102     1.527  0.0102
+OQD         C40         O39      SINGLE       n     1.425  0.0104     1.425  0.0104
+OQD         C37         O39      SINGLE       n     1.406  0.0121     1.406  0.0121
+OQD         C40         C41      SINGLE       n     1.499  0.0191     1.499  0.0191
+OQD         C24         C25      SINGLE       y     1.386  0.0100     1.386  0.0100
+OQD         C37         C38      SINGLE       n     1.534  0.0111     1.534  0.0111
+OQD         C38         C41      SINGLE       n     1.530  0.0108     1.530  0.0108
+OQD         C26         C27      SINGLE       y     1.374  0.0127     1.374  0.0127
+OQD         C26         C25      DOUBLE       y     1.376  0.0124     1.376  0.0124
+OQD         C15        H151      SINGLE       n     1.082  0.0130     0.944  0.0175
+OQD         C17        H171      SINGLE       n     1.082  0.0130     0.944  0.0175
+OQD         C22        H221      SINGLE       n     1.089  0.0100     0.985  0.0180
+OQD         C24        H241      SINGLE       n     1.082  0.0130     0.944  0.0174
+OQD         C26        H261      SINGLE       n     1.082  0.0130     0.944  0.0161
+OQD         C28        H281      SINGLE       n     1.082  0.0130     0.944  0.0174
+OQD         C02        H021      SINGLE       n     1.089  0.0100     0.988  0.0127
+OQD         C03        H031      SINGLE       n     1.089  0.0100     0.984  0.0147
+OQD         C03        H032      SINGLE       n     1.089  0.0100     0.984  0.0147
+OQD         C04        H041      SINGLE       n     1.089  0.0100     0.981  0.0150
+OQD         C04        H042      SINGLE       n     1.089  0.0100     0.981  0.0150
+OQD         C05        H051      SINGLE       n     1.089  0.0100     0.992  0.0184
+OQD         C06        H061      SINGLE       n     1.089  0.0100     0.984  0.0181
+OQD         C09        H091      SINGLE       n     1.089  0.0100     0.998  0.0200
+OQD         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0150
+OQD         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0150
+OQD         C14        H141      SINGLE       n     1.082  0.0130     0.944  0.0174
+OQD         C16        H161      SINGLE       n     1.082  0.0130     0.944  0.0161
+OQD         C18        H181      SINGLE       n     1.082  0.0130     0.944  0.0174
+OQD         C25        H251      SINGLE       n     1.082  0.0130     0.944  0.0175
+OQD         C27        H271      SINGLE       n     1.082  0.0130     0.944  0.0175
+OQD         C31        H311      SINGLE       n     1.089  0.0100     0.989  0.0175
+OQD         C34        H342      SINGLE       n     1.089  0.0100     0.970  0.0175
+OQD         C34        H343      SINGLE       n     1.089  0.0100     0.970  0.0175
+OQD         C34        H341      SINGLE       n     1.089  0.0100     0.970  0.0175
+OQD         C35        H351      SINGLE       n     1.089  0.0100     0.972  0.0114
+OQD         C35        H352      SINGLE       n     1.089  0.0100     0.972  0.0114
+OQD         C37        H371      SINGLE       n     1.089  0.0100     0.985  0.0172
+OQD         C38        H381      SINGLE       n     1.089  0.0100     0.986  0.0200
+OQD         C40        H401      SINGLE       n     1.089  0.0100     0.975  0.0100
+OQD         C40        H402      SINGLE       n     1.089  0.0100     0.975  0.0100
+OQD         C41        H411      SINGLE       n     1.089  0.0100     0.980  0.0164
+OQD         C41        H412      SINGLE       n     1.089  0.0100     0.980  0.0164
+OQD         C42        H422      SINGLE       n     1.089  0.0100     0.981  0.0160
+OQD         C42        H421      SINGLE       n     1.089  0.0100     0.981  0.0160
+OQD         C43        H431      SINGLE       n     1.089  0.0100     0.973  0.0146
+OQD         C43        H433      SINGLE       n     1.089  0.0100     0.973  0.0146
+OQD         C43        H432      SINGLE       n     1.089  0.0100     0.973  0.0146
+OQD         C44        H442      SINGLE       n     1.089  0.0100     0.973  0.0157
+OQD         C44        H443      SINGLE       n     1.089  0.0100     0.973  0.0157
+OQD         C44        H441      SINGLE       n     1.089  0.0100     0.973  0.0157
+OQD         N01        H011      SINGLE       n     1.016  0.0100     0.872  0.0200
+OQD         N07        H071      SINGLE       n     1.016  0.0100     0.872  0.0200
+OQD         N29        H291      SINGLE       n     1.016  0.0100     0.875  0.0200
+OQD         O10        H101      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OQD         C14         C13         C11     120.970    1.50
+OQD         C14         C13         C18     118.060    1.50
+OQD         C11         C13         C18     120.970    1.50
+OQD         C14         C15         C16     120.325    1.50
+OQD         C14         C15        H151     119.792    1.50
+OQD         C16         C15        H151     119.883    1.50
+OQD         C16         C17         C18     120.325    1.50
+OQD         C16         C17        H171     119.883    1.50
+OQD         C18         C17        H171     119.792    1.50
+OQD         O21         C22         C35     107.632    1.50
+OQD         O21         C22         C38     109.761    3.00
+OQD         O21         C22        H221     110.994    1.56
+OQD         C35         C22         C38     103.933    1.82
+OQD         C35         C22        H221     111.691    1.57
+OQD         C38         C22        H221     109.923    1.50
+OQD         C23         C24         C25     120.624    1.50
+OQD         C23         C24        H241     119.591    1.50
+OQD         C25         C24        H241     119.786    1.50
+OQD         C27         C26         C25     120.043    1.50
+OQD         C27         C26        H261     119.979    1.50
+OQD         C25         C26        H261     119.979    1.50
+OQD         C23         C28         C27     120.624    1.50
+OQD         C23         C28        H281     119.591    1.50
+OQD         C27         C28        H281     119.786    1.50
+OQD         C03         C02         N01     110.353    1.50
+OQD         C03         C02         C04     111.939    1.50
+OQD         C03         C02        H021     107.815    1.50
+OQD         N01         C02         C04     110.274    1.50
+OQD         N01         C02        H021     108.194    1.50
+OQD         C04         C02        H021     107.624    1.50
+OQD         C05         C03         C02     115.661    1.50
+OQD         C05         C03        H031     108.468    1.50
+OQD         C05         C03        H032     108.468    1.50
+OQD         C02         C03        H031     108.489    1.50
+OQD         C02         C03        H032     108.489    1.50
+OQD        H031         C03        H032     107.824    1.50
+OQD         C02         C04         C23     113.636    1.50
+OQD         C02         C04        H041     108.825    1.50
+OQD         C02         C04        H042     108.825    1.50
+OQD         C23         C04        H041     108.862    1.50
+OQD         C23         C04        H042     108.862    1.50
+OQD        H041         C04        H042     107.782    1.50
+OQD         O10         C05         C06     109.040    1.72
+OQD         O10         C05         C03     109.024    2.32
+OQD         O10         C05        H051     108.700    1.50
+OQD         C06         C05         C03     114.793    1.69
+OQD         C06         C05        H051     108.500    1.50
+OQD         C03         C05        H051     108.603    1.50
+OQD         N07         C06         C11     110.274    1.50
+OQD         N07         C06         C05     109.748    1.50
+OQD         N07         C06        H061     108.194    1.50
+OQD         C11         C06         C05     112.266    1.50
+OQD         C11         C06        H061     108.431    1.50
+OQD         C05         C06        H061     107.639    1.50
+OQD         N07         C08         C09     116.668    1.50
+OQD         N07         C08         O12     122.945    1.50
+OQD         C09         C08         O12     120.387    1.50
+OQD         N29         C09         C08     111.106    2.53
+OQD         N29         C09         C31     111.159    1.50
+OQD         N29         C09        H091     108.475    1.50
+OQD         C08         C09         C31     111.419    1.50
+OQD         C08         C09        H091     107.690    1.50
+OQD         C31         C09        H091     108.069    1.50
+OQD         C13         C11         C06     113.215    1.50
+OQD         C13         C11        H111     108.862    1.50
+OQD         C13         C11        H112     108.862    1.50
+OQD         C06         C11        H111     108.892    1.50
+OQD         C06         C11        H112     108.892    1.50
+OQD        H111         C11        H112     107.782    1.50
+OQD         C15         C14         C13     120.624    1.50
+OQD         C15         C14        H141     119.786    1.50
+OQD         C13         C14        H141     119.591    1.50
+OQD         C15         C16         C17     120.043    1.50
+OQD         C15         C16        H161     119.979    1.50
+OQD         C17         C16        H161     119.979    1.50
+OQD         C13         C18         C17     120.624    1.50
+OQD         C13         C18        H181     119.591    1.50
+OQD         C17         C18        H181     119.786    1.50
+OQD         N01         C19         O21     109.725    1.50
+OQD         N01         C19         O20     126.608    1.50
+OQD         O21         C19         O20     123.666    1.58
+OQD         C04         C23         C28     120.970    1.50
+OQD         C04         C23         C24     120.970    1.50
+OQD         C28         C23         C24     118.060    1.50
+OQD         C24         C25         C26     120.325    1.50
+OQD         C24         C25        H251     119.792    1.50
+OQD         C26         C25        H251     119.883    1.50
+OQD         C28         C27         C26     120.325    1.50
+OQD         C28         C27        H271     119.792    1.50
+OQD         C26         C27        H271     119.883    1.50
+OQD         O33         C30         O32     124.970    1.50
+OQD         O33         C30         N29     124.782    1.50
+OQD         O32         C30         N29     110.248    1.50
+OQD         C09         C31         C42     110.508    1.50
+OQD         C09         C31         C43     111.023    1.92
+OQD         C09         C31        H311     107.540    1.50
+OQD         C42         C31         C43     111.775    1.50
+OQD         C42         C31        H311     107.402    1.50
+OQD         C43         C31        H311     107.601    1.50
+OQD         O32         C34        H342     109.384    1.50
+OQD         O32         C34        H343     109.384    1.50
+OQD         O32         C34        H341     109.384    1.50
+OQD        H342         C34        H343     109.532    1.53
+OQD        H342         C34        H341     109.532    1.53
+OQD        H343         C34        H341     109.532    1.53
+OQD         O36         C35         C22     105.158    1.50
+OQD         O36         C35        H351     110.615    1.50
+OQD         O36         C35        H352     110.615    1.50
+OQD         C22         C35        H351     110.668    1.50
+OQD         C22         C35        H352     110.668    1.50
+OQD        H351         C35        H352     108.924    1.50
+OQD         O36         C37         O39     111.281    1.50
+OQD         O36         C37         C38     107.233    1.50
+OQD         O36         C37        H371     110.879    1.50
+OQD         O39         C37         C38     107.233    1.50
+OQD         O39         C37        H371     110.879    1.50
+OQD         C38         C37        H371     111.464    1.84
+OQD         C22         C38         C37     104.424    1.81
+OQD         C22         C38         C41     116.412    3.00
+OQD         C22         C38        H381     109.366    2.07
+OQD         C37         C38         C41     104.424    1.81
+OQD         C37         C38        H381     111.975    2.66
+OQD         C41         C38        H381     109.658    2.16
+OQD         O39         C40         C41     105.099    1.50
+OQD         O39         C40        H401     110.765    1.50
+OQD         O39         C40        H402     110.765    1.50
+OQD         C41         C40        H401     110.956    1.50
+OQD         C41         C40        H402     110.956    1.50
+OQD        H401         C40        H402     108.953    1.50
+OQD         C40         C41         C38     103.933    1.82
+OQD         C40         C41        H411     111.126    1.50
+OQD         C40         C41        H412     111.126    1.50
+OQD         C38         C41        H411     110.793    1.50
+OQD         C38         C41        H412     110.793    1.50
+OQD        H411         C41        H412     108.883    1.55
+OQD         C44         C42         C31     113.965    1.50
+OQD         C44         C42        H422     108.717    1.50
+OQD         C44         C42        H421     108.717    1.50
+OQD         C31         C42        H422     108.703    1.50
+OQD         C31         C42        H421     108.703    1.50
+OQD        H422         C42        H421     107.862    1.50
+OQD         C31         C43        H431     109.662    1.50
+OQD         C31         C43        H433     109.662    1.50
+OQD         C31         C43        H432     109.662    1.50
+OQD        H431         C43        H433     109.411    1.50
+OQD        H431         C43        H432     109.411    1.50
+OQD        H433         C43        H432     109.411    1.50
+OQD         C42         C44        H442     109.566    1.50
+OQD         C42         C44        H443     109.566    1.50
+OQD         C42         C44        H441     109.566    1.50
+OQD        H442         C44        H443     109.380    1.50
+OQD        H442         C44        H441     109.380    1.50
+OQD        H443         C44        H441     109.380    1.50
+OQD         C02         N01         C19     122.427    2.35
+OQD         C02         N01        H011     118.136    3.00
+OQD         C19         N01        H011     119.438    1.50
+OQD         C06         N07         C08     123.632    1.63
+OQD         C06         N07        H071     117.489    3.00
+OQD         C08         N07        H071     118.879    1.83
+OQD         C30         N29         C09     121.531    1.68
+OQD         C30         N29        H291     119.228    2.20
+OQD         C09         N29        H291     119.240    1.50
+OQD         C05         O10        H101     108.640    2.32
+OQD         C19         O21         C22     116.687    1.81
+OQD         C34         O32         C30     115.328    1.50
+OQD         C35         O36         C37     107.499    1.99
+OQD         C40         O39         C37     107.499    1.99
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OQD            sp2_sp3_20         C14         C13         C11         C06     -90.000    10.0     6
+OQD       const_sp2_sp2_3         C11         C13         C14         C15     180.000     5.0     2
+OQD              const_43         C11         C13         C18         C17     180.000    10.0     2
+OQD            sp3_sp3_92         O10         C05         C06         N07     180.000    10.0     3
+OQD            sp3_sp3_62         C06         C05         O10        H101     180.000    10.0     3
+OQD            sp3_sp3_74         N07         C06         C11         C13     180.000    10.0     3
+OQD             sp2_sp3_7         C08         N07         C06         C11       0.000    10.0     6
+OQD            sp2_sp3_13         N07         C08         C09         N29       0.000    10.0     6
+OQD             sp2_sp2_7         C09         C08         N07         C06     180.000     5.0     2
+OQD            sp3_sp3_65         N29         C09         C31         C42     180.000    10.0     3
+OQD             sp2_sp3_1         C30         N29         C09         C08       0.000    10.0     6
+OQD            sp2_sp2_11         O21         C19         N01         C02     180.000     5.0     2
+OQD            sp2_sp2_15         N01         C19         O21         C22     180.000     5.0     2
+OQD       const_sp2_sp2_5         C13         C14         C15         C16       0.000     5.0     2
+OQD       const_sp2_sp2_9         C14         C15         C16         C17       0.000     5.0     2
+OQD             sp2_sp2_5         O33         C30         N29         C09       0.000     5.0     2
+OQD             sp2_sp2_1         O33         C30         O32         C34     180.000     5.0     2
+OQD            sp3_sp3_83         C09         C31         C42         C44     180.000    10.0     3
+OQD           sp3_sp3_110         C09         C31         C43        H431     180.000    10.0     3
+OQD            sp3_sp3_50        H342         C34         O32         C30     -60.000    10.0     3
+OQD            sp3_sp3_10         C22         C35         O36         C37     -60.000    10.0     3
+OQD            sp3_sp3_16         O36         C37         C38         C22     -60.000    10.0     3
+OQD            sp3_sp3_14         O39         C37         O36         C35     -60.000    10.0     3
+OQD            sp3_sp3_26         O36         C37         O39         C40     -60.000    10.0     3
+OQD            sp3_sp3_43         C22         C38         C41         C40     180.000    10.0     3
+OQD            sp3_sp3_31         O39         C40         C41         C38      60.000    10.0     3
+OQD            sp3_sp3_28         C41         C40         O39         C37     -60.000    10.0     3
+OQD              const_13         C15         C16         C17         C18       0.000    10.0     2
+OQD              const_17         C16         C17         C18         C13       0.000    10.0     2
+OQD            sp3_sp3_53         C31         C42         C44        H442     180.000    10.0     3
+OQD             sp3_sp3_4         O21         C22         C35         O36     -60.000    10.0     3
+OQD           sp3_sp3_143         O21         C22         C38         C37      60.000    10.0     3
+OQD           sp3_sp3_137         C35         C22         O21         C19     180.000    10.0     3
+OQD              const_23         C04         C23         C24         C25     180.000    10.0     2
+OQD              const_45         C23         C24         C25         C26       0.000    10.0     2
+OQD              const_37         C24         C25         C26         C27       0.000    10.0     2
+OQD              const_33         C25         C26         C27         C28       0.000    10.0     2
+OQD              const_27         C04         C23         C28         C27     180.000    10.0     2
+OQD              const_29         C26         C27         C28         C23       0.000    10.0     2
+OQD            sp2_sp3_25         C19         N01         C02         C03       0.000    10.0     6
+OQD           sp3_sp3_119         N01         C02         C03         C05     180.000    10.0     3
+OQD           sp3_sp3_128         C03         C02         C04         C23     180.000    10.0     3
+OQD           sp3_sp3_101         C02         C03         C05         O10     180.000    10.0     3
+OQD            sp2_sp3_32         C28         C23         C04         C02     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OQD    chir_1    C22    O21    C35    C38    negative
+OQD    chir_2    C02    N01    C03    C04    positive
+OQD    chir_3    C05    O10    C06    C03    positive
+OQD    chir_4    C06    N07    C05    C11    positive
+OQD    chir_5    C09    N29    C08    C31    positive
+OQD    chir_6    C31    C09    C42    C43    positive
+OQD    chir_7    C37    O36    O39    C38    negative
+OQD    chir_8    C38    C37    C22    C41    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OQD    plan-1         C11   0.020
+OQD    plan-1         C13   0.020
+OQD    plan-1         C14   0.020
+OQD    plan-1         C15   0.020
+OQD    plan-1         C16   0.020
+OQD    plan-1         C17   0.020
+OQD    plan-1         C18   0.020
+OQD    plan-1        H141   0.020
+OQD    plan-1        H151   0.020
+OQD    plan-1        H161   0.020
+OQD    plan-1        H171   0.020
+OQD    plan-1        H181   0.020
+OQD    plan-2         C04   0.020
+OQD    plan-2         C23   0.020
+OQD    plan-2         C24   0.020
+OQD    plan-2         C25   0.020
+OQD    plan-2         C26   0.020
+OQD    plan-2         C27   0.020
+OQD    plan-2         C28   0.020
+OQD    plan-2        H241   0.020
+OQD    plan-2        H251   0.020
+OQD    plan-2        H261   0.020
+OQD    plan-2        H271   0.020
+OQD    plan-2        H281   0.020
+OQD    plan-3         C08   0.020
+OQD    plan-3         C09   0.020
+OQD    plan-3         N07   0.020
+OQD    plan-3         O12   0.020
+OQD    plan-4         C19   0.020
+OQD    plan-4         N01   0.020
+OQD    plan-4         O20   0.020
+OQD    plan-4         O21   0.020
+OQD    plan-5         C30   0.020
+OQD    plan-5         N29   0.020
+OQD    plan-5         O32   0.020
+OQD    plan-5         O33   0.020
+OQD    plan-6         C02   0.020
+OQD    plan-6         C19   0.020
+OQD    plan-6        H011   0.020
+OQD    plan-6         N01   0.020
+OQD    plan-7         C06   0.020
+OQD    plan-7         C08   0.020
+OQD    plan-7        H071   0.020
+OQD    plan-7         N07   0.020
+OQD    plan-8         C09   0.020
+OQD    plan-8         C30   0.020
+OQD    plan-8        H291   0.020
+OQD    plan-8         N29   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OQD           SMILES              ACDLabs 12.01                                                                                                                                                                                          c1(ccccc1)CC(C(CC(NC(OC2C3C(OC2)OCC3)=O)Cc4ccccc4)O)NC(=O)C(C(C)CC)NC(OC)=O
+OQD            InChI                InChI  1.03 InChI=1S/C33H45N3O8/c1-4-21(2)29(36-32(39)41-3)30(38)35-26(18-23-13-9-6-10-14-23)27(37)19-24(17-22-11-7-5-8-12-22)34-33(40)44-28-20-43-31-25(28)15-16-42-31/h5-14,21,24-29,31,37H,4,15-20H2,1-3H3,(H,34,40)(H,35,38)(H,36,39)/t21-,24-,25-,26-,27-,28-,29-,31+/m0/s1
+OQD         InChIKey                InChI  1.03                                                                                                                                                                                                                                          ZTHXXPRDWPPMMG-BDOBJAQCSA-N
+OQD SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                           CC[C@H](C)[C@H](NC(=O)OC)C(=O)N[C@@H](Cc1ccccc1)[C@@H](O)C[C@H](Cc2ccccc2)NC(=O)O[C@H]3CO[C@H]4OCC[C@@H]34
+OQD           SMILES               CACTVS 3.385                                                                                                                                                                      CC[CH](C)[CH](NC(=O)OC)C(=O)N[CH](Cc1ccccc1)[CH](O)C[CH](Cc2ccccc2)NC(=O)O[CH]3CO[CH]4OCC[CH]34
+OQD SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                                                                           CC[C@H](C)[C@@H](C(=O)N[C@@H](Cc1ccccc1)[C@H](C[C@H](Cc2ccccc2)NC(=O)O[C@H]3CO[C@@H]4[C@H]3CCO4)O)NC(=O)OC
+OQD           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                                                                                              CCC(C)C(C(=O)NC(Cc1ccccc1)C(CC(Cc2ccccc2)NC(=O)OC3COC4C3CCO4)O)NC(=O)OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OQD acedrg               243         "dictionary generator"                  
+OQD acedrg_database      11          "data source"                           
+OQD rdkit                2017.03.2   "Chemoinformatics tool"
+OQD refmac5              5.8.0238    "optimization tool"                     

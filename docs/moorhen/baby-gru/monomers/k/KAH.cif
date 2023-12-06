@@ -1,0 +1,178 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KAH     KAH      "5-AMINO-4-HYDROXYHEXANOIC ACID"     NON-POLYMER     22     10     .     
+#
+data_comp_KAH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KAH     C4      C       CH1     0       19.880      24.514      16.616      
+KAH     C5      C       CH1     0       19.618      24.382      18.123      
+KAH     N5      N       NT2     0       18.693      25.429      18.603      
+KAH     C6      C       CH3     0       20.880      24.398      18.975      
+KAH     C3      C       CH2     0       20.787      25.672      16.204      
+KAH     C2      C       CH2     0       20.846      25.925      14.709      
+KAH     C1      C       C       0       21.650      27.150      14.307      
+KAH     O1      O       OC      -1      21.054      28.084      13.734      
+KAH     OH1     O       O       0       22.869      27.166      14.568      
+KAH     OXT     O       OH1     0       20.428      23.284      16.129      
+KAH     H4      H       H       0       19.003      24.649      16.173      
+KAH     H5      H       H       0       19.181      23.504      18.272      
+KAH     HN51    H       H       0       18.476      25.271      19.449      
+KAH     HN52    H       H       0       19.089      26.223      18.571      
+KAH     HC1     H       H       0       20.661      24.128      19.883      
+KAH     HC2     H       H       0       21.254      25.296      18.988      
+KAH     HC3     H       H       0       21.534      23.781      18.605      
+KAH     HC31    H       H       0       21.695      25.494      16.526      
+KAH     HC32    H       H       0       20.472      26.487      16.648      
+KAH     HC21    H       H       0       19.932      26.029      14.367      
+KAH     HC22    H       H       0       21.237      25.141      14.269      
+KAH     HXT     H       H       0       21.233      23.203      16.381      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KAH          C4          C5      SINGLE       n     1.532  0.0103     1.532  0.0103
+KAH          C4          C3      SINGLE       n     1.525  0.0100     1.525  0.0100
+KAH          C4         OXT      SINGLE       n     1.424  0.0199     1.424  0.0199
+KAH          C5          N5      SINGLE       n     1.476  0.0134     1.476  0.0134
+KAH          C5          C6      SINGLE       n     1.521  0.0100     1.521  0.0100
+KAH          C3          C2      SINGLE       n     1.518  0.0200     1.518  0.0200
+KAH          C2          C1      SINGLE       n     1.519  0.0109     1.519  0.0109
+KAH          C1          O1      SINGLE       n     1.247  0.0187     1.247  0.0187
+KAH          C1         OH1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+KAH          C4          H4      SINGLE       n     1.089  0.0100     0.992  0.0184
+KAH          C5          H5      SINGLE       n     1.089  0.0100     0.992  0.0135
+KAH          N5        HN51      SINGLE       n     1.036  0.0160     0.888  0.0200
+KAH          N5        HN52      SINGLE       n     1.036  0.0160     0.888  0.0200
+KAH          C6         HC1      SINGLE       n     1.089  0.0100     0.973  0.0146
+KAH          C6         HC2      SINGLE       n     1.089  0.0100     0.973  0.0146
+KAH          C6         HC3      SINGLE       n     1.089  0.0100     0.973  0.0146
+KAH          C3        HC31      SINGLE       n     1.089  0.0100     0.980  0.0160
+KAH          C3        HC32      SINGLE       n     1.089  0.0100     0.980  0.0160
+KAH          C2        HC21      SINGLE       n     1.089  0.0100     0.981  0.0185
+KAH          C2        HC22      SINGLE       n     1.089  0.0100     0.981  0.0185
+KAH         OXT         HXT      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KAH          C5          C4          C3     114.793    1.69
+KAH          C5          C4         OXT     109.040    1.72
+KAH          C5          C4          H4     108.500    1.50
+KAH          C3          C4         OXT     109.024    2.32
+KAH          C3          C4          H4     108.603    1.50
+KAH         OXT          C4          H4     108.700    1.50
+KAH          C4          C5          N5     111.883    2.59
+KAH          C4          C5          C6     112.094    1.73
+KAH          C4          C5          H5     107.639    1.50
+KAH          N5          C5          C6     109.538    2.08
+KAH          N5          C5          H5     107.944    1.55
+KAH          C6          C5          H5     107.146    1.50
+KAH          C5          N5        HN51     109.715    3.00
+KAH          C5          N5        HN52     109.715    3.00
+KAH        HN51          N5        HN52     107.559    3.00
+KAH          C5          C6         HC1     109.520    1.50
+KAH          C5          C6         HC2     109.520    1.50
+KAH          C5          C6         HC3     109.520    1.50
+KAH         HC1          C6         HC2     109.386    1.50
+KAH         HC1          C6         HC3     109.386    1.50
+KAH         HC2          C6         HC3     109.386    1.50
+KAH          C4          C3          C2     114.669    1.86
+KAH          C4          C3        HC31     108.468    1.50
+KAH          C4          C3        HC32     108.468    1.50
+KAH          C2          C3        HC31     108.675    1.50
+KAH          C2          C3        HC32     108.675    1.50
+KAH        HC31          C3        HC32     107.428    1.50
+KAH          C3          C2          C1     114.629    2.24
+KAH          C3          C2        HC21     108.934    1.50
+KAH          C3          C2        HC22     108.934    1.50
+KAH          C1          C2        HC21     108.404    1.50
+KAH          C1          C2        HC22     108.404    1.50
+KAH        HC21          C2        HC22     107.521    1.50
+KAH          C2          C1          O1     118.214    1.64
+KAH          C2          C1         OH1     118.214    1.64
+KAH          O1          C1         OH1     123.571    1.50
+KAH          C4         OXT         HXT     108.640    2.32
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KAH             sp3_sp3_1          C3          C4          C5          N5     180.000    10.0     3
+KAH            sp3_sp3_10          C2          C3          C4          C5     180.000    10.0     3
+KAH            sp3_sp3_19          C5          C4         OXT         HXT     180.000    10.0     3
+KAH            sp3_sp3_22          C4          C5          N5        HN51     180.000    10.0     3
+KAH            sp3_sp3_28          C4          C5          C6         HC1     180.000    10.0     3
+KAH            sp3_sp3_37          C1          C2          C3          C4     180.000    10.0     3
+KAH             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KAH    chir_1    C4    OXT    C5    C3    negative
+KAH    chir_2    C5    N5    C4    C6    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KAH    plan-1          C1   0.020
+KAH    plan-1          C2   0.020
+KAH    plan-1          O1   0.020
+KAH    plan-1         OH1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KAH           SMILES              ACDLabs 10.04                                                                 O=C(O)CCC(O)C(N)C
+KAH SMILES_CANONICAL               CACTVS 3.341                                                        C[C@@H](N)[C@H](O)CCC(O)=O
+KAH           SMILES               CACTVS 3.341                                                           C[CH](N)[CH](O)CCC(O)=O
+KAH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                        C[C@H]([C@@H](CCC(=O)O)O)N
+KAH           SMILES "OpenEye OEToolkits" 1.5.0                                                                 CC(C(CCC(=O)O)O)N
+KAH            InChI                InChI  1.03 InChI=1S/C6H13NO3/c1-4(7)5(8)2-3-6(9)10/h4-5,8H,2-3,7H2,1H3,(H,9,10)/t4-,5-/m1/s1
+KAH         InChIKey                InChI  1.03                                                       LUMVYMITQCJEGS-RFZPGFLSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KAH acedrg               243         "dictionary generator"                  
+KAH acedrg_database      11          "data source"                           
+KAH rdkit                2017.03.2   "Chemoinformatics tool"
+KAH refmac5              5.8.0238    "optimization tool"                     

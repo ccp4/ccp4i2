@@ -1,0 +1,175 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CXJ     CXJ      "(2S)-(3,5-difluorophenyl)(hydroxy)acetic acid"     NON-POLYMER     18     13     .     
+#
+data_comp_CXJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CXJ     C7      C       CR16    0       8.455       22.279      26.433      
+CXJ     C4      C       CR6     0       10.777      22.473      27.863      
+CXJ     C5      C       CR16    0       9.760       23.342      28.178      
+CXJ     C6      C       CR6     0       8.610       23.212      27.437      
+CXJ     C3      C       CR16    0       10.682      21.518      26.872      
+CXJ     C2      C       CR6     0       9.503       21.410      26.141      
+CXJ     C1      C       C       0       8.286       19.351      25.417      
+CXJ     F1      F       F       0       7.577       24.048      27.709      
+CXJ     F       F       F       0       11.934      22.562      28.567      
+CXJ     C       C       CH1     0       9.363       20.374      25.041      
+CXJ     O       O       OH1     0       9.055       20.989      23.800      
+CXJ     O1      O       OC      -1      8.674       18.276      25.906      
+CXJ     O2      O       O       0       7.098       19.664      25.208      
+CXJ     H5      H       H       0       7.635       22.218      25.937      
+CXJ     H4      H       H       0       9.847       23.989      28.861      
+CXJ     H3      H       H       0       11.417      20.928      26.683      
+CXJ     H1      H       H       0       10.236      19.886      24.947      
+CXJ     H       H       H       0       9.769       21.270      23.436      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CXJ           C           O      SINGLE       n     1.419  0.0121     1.419  0.0121
+CXJ          C1           C      SINGLE       n     1.526  0.0200     1.526  0.0200
+CXJ          C2           C      SINGLE       n     1.516  0.0100     1.516  0.0100
+CXJ          C1          O2      DOUBLE       n     1.244  0.0200     1.244  0.0200
+CXJ          C1          O1      SINGLE       n     1.244  0.0200     1.244  0.0200
+CXJ          C7          C2      DOUBLE       y     1.387  0.0100     1.387  0.0100
+CXJ          C3          C2      SINGLE       y     1.387  0.0100     1.387  0.0100
+CXJ          C7          C6      SINGLE       y     1.375  0.0100     1.375  0.0100
+CXJ          C4          C3      DOUBLE       y     1.375  0.0100     1.375  0.0100
+CXJ          C6          F1      SINGLE       n     1.357  0.0100     1.357  0.0100
+CXJ          C5          C6      DOUBLE       y     1.371  0.0101     1.371  0.0101
+CXJ          C4          C5      SINGLE       y     1.371  0.0101     1.371  0.0101
+CXJ          C4           F      SINGLE       n     1.357  0.0100     1.357  0.0100
+CXJ          C7          H5      SINGLE       n     1.082  0.0130     0.961  0.0200
+CXJ          C5          H4      SINGLE       n     1.082  0.0130     0.945  0.0182
+CXJ          C3          H3      SINGLE       n     1.082  0.0130     0.961  0.0200
+CXJ           C          H1      SINGLE       n     1.089  0.0100     1.005  0.0200
+CXJ           O           H      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CXJ          C2          C7          C6     119.254    1.50
+CXJ          C2          C7          H5     119.695    1.50
+CXJ          C6          C7          H5     121.051    1.50
+CXJ          C3          C4          C5     123.548    1.50
+CXJ          C3          C4           F     118.460    1.50
+CXJ          C5          C4           F     117.992    1.50
+CXJ          C6          C5          C4     115.874    1.50
+CXJ          C6          C5          H4     122.063    1.50
+CXJ          C4          C5          H4     122.063    1.50
+CXJ          C7          C6          F1     118.460    1.50
+CXJ          C7          C6          C5     123.548    1.50
+CXJ          F1          C6          C5     117.992    1.50
+CXJ          C2          C3          C4     119.254    1.50
+CXJ          C2          C3          H3     119.695    1.50
+CXJ          C4          C3          H3     121.051    1.50
+CXJ           C          C2          C7     120.740    1.50
+CXJ           C          C2          C3     120.740    1.50
+CXJ          C7          C2          C3     118.521    1.50
+CXJ           C          C1          O2     117.183    1.52
+CXJ           C          C1          O1     117.184    1.52
+CXJ          O2          C1          O1     125.634    1.50
+CXJ           O           C          C1     110.368    1.62
+CXJ           O           C          C2     111.231    1.77
+CXJ           O           C          H1     108.842    1.50
+CXJ          C1           C          C2     109.882    1.80
+CXJ          C1           C          H1     108.446    1.50
+CXJ          C2           C          H1     108.650    1.50
+CXJ           C           O           H     109.683    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CXJ              const_23          F1          C6          C7          C2     180.000    10.0     2
+CXJ       const_sp2_sp2_3           C          C2          C7          C6     180.000     5.0     2
+CXJ              const_15           F          C4          C5          C6     180.000    10.0     2
+CXJ              const_10          C2          C3          C4           F     180.000    10.0     2
+CXJ              const_18          C4          C5          C6          F1     180.000    10.0     2
+CXJ       const_sp2_sp2_7           C          C2          C3          C4     180.000     5.0     2
+CXJ             sp2_sp3_7          C7          C2           C           O     150.000    10.0     6
+CXJ             sp2_sp3_1          O2          C1           C           O       0.000    10.0     6
+CXJ             sp3_sp3_1          C1           C           O           H     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CXJ    chir_1    C    O    C1    C2    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CXJ    plan-1           C   0.020
+CXJ    plan-1          C2   0.020
+CXJ    plan-1          C3   0.020
+CXJ    plan-1          C4   0.020
+CXJ    plan-1          C5   0.020
+CXJ    plan-1          C6   0.020
+CXJ    plan-1          C7   0.020
+CXJ    plan-1           F   0.020
+CXJ    plan-1          F1   0.020
+CXJ    plan-1          H3   0.020
+CXJ    plan-1          H4   0.020
+CXJ    plan-1          H5   0.020
+CXJ    plan-2           C   0.020
+CXJ    plan-2          C1   0.020
+CXJ    plan-2          O1   0.020
+CXJ    plan-2          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CXJ           SMILES              ACDLabs 12.01                                                          c1c(cc(F)cc1C(C(O)=O)O)F
+CXJ            InChI                InChI  1.03 InChI=1S/C8H6F2O3/c9-5-1-4(2-6(10)3-5)7(11)8(12)13/h1-3,7,11H,(H,12,13)/t7-/m0/s1
+CXJ         InChIKey                InChI  1.03                                                       PHMLPPFFMSRWBK-ZETCQYMHSA-N
+CXJ SMILES_CANONICAL               CACTVS 3.385                                                      O[C@H](C(O)=O)c1cc(F)cc(F)c1
+CXJ           SMILES               CACTVS 3.385                                                       O[CH](C(O)=O)c1cc(F)cc(F)c1
+CXJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                     c1c(cc(cc1F)F)[C@@H](C(=O)O)O
+CXJ           SMILES "OpenEye OEToolkits" 2.0.6                                                          c1c(cc(cc1F)F)C(C(=O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CXJ acedrg               243         "dictionary generator"                  
+CXJ acedrg_database      11          "data source"                           
+CXJ rdkit                2017.03.2   "Chemoinformatics tool"
+CXJ refmac5              5.8.0238    "optimization tool"                     

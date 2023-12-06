@@ -1,0 +1,330 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DKD     DKD      "(2S)-2-(4-phenethylphenoxy)-3-phenyl-propanoic acid"     NON-POLYMER     47     26     .     
+#
+data_comp_DKD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DKD     CAK     C       CR16    0       17.134      61.836      16.942      
+DKD     CAG     C       CR16    0       16.681      61.958      15.634      
+DKD     CAD     C       CR16    0       17.522      61.672      14.580      
+DKD     CAH     C       CR16    0       18.815      61.265      14.828      
+DKD     CAL     C       CR16    0       19.270      61.142      16.134      
+DKD     CAX     C       CR6     0       18.435      61.427      17.208      
+DKD     CAS     C       CH2     0       18.929      61.293      18.628      
+DKD     CAZ     C       CH1     0       19.441      62.621      19.198      
+DKD     CAU     C       C       0       19.736      62.471      20.691      
+DKD     OAB     O       O       0       20.687      61.745      21.042      
+DKD     OAA     O       OC      -1      19.016      63.080      21.507      
+DKD     OAT     O       O2      0       20.633      62.974      18.461      
+DKD     CAY     C       CR6     0       21.141      64.261      18.505      
+DKD     CAP     C       CR16    0       22.280      64.440      17.726      
+DKD     CAN     C       CR16    0       22.900      65.681      17.675      
+DKD     CAO     C       CR16    0       20.640      65.343      19.230      
+DKD     CAM     C       CR16    0       21.277      66.575      19.165      
+DKD     CAW     C       CR6     0       22.413      66.767      18.390      
+DKD     CAR     C       CH2     0       23.098      68.113      18.328      
+DKD     CAQ     C       CH2     0       22.528      69.037      17.228      
+DKD     CAV     C       CR6     0       23.213      70.383      17.167      
+DKD     CAI     C       CR16    0       23.012      71.328      18.166      
+DKD     CAE     C       CR16    0       23.641      72.566      18.112      
+DKD     CAC     C       CR16    0       24.477      72.872      17.061      
+DKD     CAF     C       CR16    0       24.688      71.947      16.062      
+DKD     CAJ     C       CR16    0       24.060      70.708      16.113      
+DKD     HAK     H       H       0       16.552      62.033      17.659      
+DKD     HAG     H       H       0       15.794      62.237      15.467      
+DKD     HAD     H       H       0       17.213      61.755      13.691      
+DKD     HAH     H       H       0       19.394      61.068      14.108      
+DKD     HAL     H       H       0       20.157      60.863      16.297      
+DKD     HAS     H       H       0       19.655      60.633      18.655      
+DKD     HASA    H       H       0       18.197      60.963      19.192      
+DKD     HAZ     H       H       0       18.757      63.302      19.070      
+DKD     HAP     H       H       0       22.630      63.718      17.231      
+DKD     HAN     H       H       0       23.671      65.788      17.142      
+DKD     HAO     H       H       0       19.871      65.244      19.765      
+DKD     HAM     H       H       0       20.929      67.298      19.659      
+DKD     HAR     H       H       0       24.057      67.978      18.162      
+DKD     HARA    H       H       0       23.004      68.562      19.198      
+DKD     HAQ     H       H       0       21.569      69.172      17.395      
+DKD     HAQA    H       H       0       22.618      68.587      16.359      
+DKD     HAI     H       H       0       22.440      71.125      18.890      
+DKD     HAE     H       H       0       23.494      73.197      18.798      
+DKD     HAC     H       H       0       24.904      73.714      17.025      
+DKD     HAF     H       H       0       25.260      72.154      15.340      
+DKD     HAJ     H       H       0       24.210      70.079      15.425      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DKD         CAK         CAG      DOUBLE       y     1.386  0.0100     1.386  0.0100
+DKD         CAK         CAX      SINGLE       y     1.385  0.0111     1.385  0.0111
+DKD         CAG         CAD      SINGLE       y     1.374  0.0127     1.374  0.0127
+DKD         CAD         CAH      DOUBLE       y     1.374  0.0127     1.374  0.0127
+DKD         CAH         CAL      SINGLE       y     1.386  0.0100     1.386  0.0100
+DKD         CAL         CAX      DOUBLE       y     1.385  0.0111     1.385  0.0111
+DKD         CAX         CAS      SINGLE       n     1.509  0.0100     1.509  0.0100
+DKD         CAS         CAZ      SINGLE       n     1.531  0.0200     1.531  0.0200
+DKD         CAZ         CAU      SINGLE       n     1.526  0.0200     1.526  0.0200
+DKD         CAZ         OAT      SINGLE       n     1.434  0.0185     1.434  0.0185
+DKD         CAU         OAB      DOUBLE       n     1.247  0.0187     1.247  0.0187
+DKD         CAU         OAA      SINGLE       n     1.247  0.0187     1.247  0.0187
+DKD         OAT         CAY      SINGLE       n     1.378  0.0100     1.378  0.0100
+DKD         CAY         CAP      DOUBLE       y     1.386  0.0109     1.386  0.0109
+DKD         CAY         CAO      SINGLE       y     1.386  0.0109     1.386  0.0109
+DKD         CAP         CAN      SINGLE       y     1.385  0.0100     1.385  0.0100
+DKD         CAN         CAW      DOUBLE       y     1.385  0.0110     1.385  0.0110
+DKD         CAO         CAM      DOUBLE       y     1.385  0.0100     1.385  0.0100
+DKD         CAM         CAW      SINGLE       y     1.385  0.0110     1.385  0.0110
+DKD         CAW         CAR      SINGLE       n     1.511  0.0100     1.511  0.0100
+DKD         CAR         CAQ      SINGLE       n     1.546  0.0200     1.546  0.0200
+DKD         CAQ         CAV      SINGLE       n     1.511  0.0100     1.511  0.0100
+DKD         CAV         CAI      DOUBLE       y     1.385  0.0111     1.385  0.0111
+DKD         CAV         CAJ      SINGLE       y     1.385  0.0111     1.385  0.0111
+DKD         CAI         CAE      SINGLE       y     1.386  0.0100     1.386  0.0100
+DKD         CAE         CAC      DOUBLE       y     1.374  0.0127     1.374  0.0127
+DKD         CAC         CAF      SINGLE       y     1.374  0.0127     1.374  0.0127
+DKD         CAF         CAJ      DOUBLE       y     1.386  0.0100     1.386  0.0100
+DKD         CAK         HAK      SINGLE       n     1.082  0.0130     0.944  0.0174
+DKD         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0175
+DKD         CAD         HAD      SINGLE       n     1.082  0.0130     0.944  0.0161
+DKD         CAH         HAH      SINGLE       n     1.082  0.0130     0.944  0.0175
+DKD         CAL         HAL      SINGLE       n     1.082  0.0130     0.944  0.0174
+DKD         CAS         HAS      SINGLE       n     1.089  0.0100     0.981  0.0169
+DKD         CAS        HASA      SINGLE       n     1.089  0.0100     0.981  0.0169
+DKD         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.974  0.0160
+DKD         CAP         HAP      SINGLE       n     1.082  0.0130     0.943  0.0169
+DKD         CAN         HAN      SINGLE       n     1.082  0.0130     0.943  0.0173
+DKD         CAO         HAO      SINGLE       n     1.082  0.0130     0.943  0.0169
+DKD         CAM         HAM      SINGLE       n     1.082  0.0130     0.943  0.0173
+DKD         CAR         HAR      SINGLE       n     1.089  0.0100     0.983  0.0181
+DKD         CAR        HARA      SINGLE       n     1.089  0.0100     0.983  0.0181
+DKD         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.983  0.0181
+DKD         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.983  0.0181
+DKD         CAI         HAI      SINGLE       n     1.082  0.0130     0.944  0.0174
+DKD         CAE         HAE      SINGLE       n     1.082  0.0130     0.944  0.0175
+DKD         CAC         HAC      SINGLE       n     1.082  0.0130     0.944  0.0161
+DKD         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0175
+DKD         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DKD         CAG         CAK         CAX     120.624    1.50
+DKD         CAG         CAK         HAK     119.786    1.50
+DKD         CAX         CAK         HAK     119.591    1.50
+DKD         CAK         CAG         CAD     120.325    1.50
+DKD         CAK         CAG         HAG     119.792    1.50
+DKD         CAD         CAG         HAG     119.883    1.50
+DKD         CAG         CAD         CAH     120.043    1.50
+DKD         CAG         CAD         HAD     119.979    1.50
+DKD         CAH         CAD         HAD     119.979    1.50
+DKD         CAD         CAH         CAL     120.325    1.50
+DKD         CAD         CAH         HAH     119.883    1.50
+DKD         CAL         CAH         HAH     119.792    1.50
+DKD         CAH         CAL         CAX     120.624    1.50
+DKD         CAH         CAL         HAL     119.786    1.50
+DKD         CAX         CAL         HAL     119.591    1.50
+DKD         CAK         CAX         CAL     118.060    1.50
+DKD         CAK         CAX         CAS     120.970    1.50
+DKD         CAL         CAX         CAS     120.970    1.50
+DKD         CAX         CAS         CAZ     111.525    1.84
+DKD         CAX         CAS         HAS     108.813    1.50
+DKD         CAX         CAS        HASA     108.813    1.50
+DKD         CAZ         CAS         HAS     108.687    1.50
+DKD         CAZ         CAS        HASA     108.687    1.50
+DKD         HAS         CAS        HASA     107.755    1.50
+DKD         CAS         CAZ         CAU     111.511    2.91
+DKD         CAS         CAZ         OAT     107.754    2.90
+DKD         CAS         CAZ         HAZ     109.155    1.50
+DKD         CAU         CAZ         OAT     110.354    2.51
+DKD         CAU         CAZ         HAZ     109.227    1.50
+DKD         OAT         CAZ         HAZ     109.515    1.50
+DKD         CAZ         CAU         OAB     118.654    3.00
+DKD         CAZ         CAU         OAA     118.654    3.00
+DKD         OAB         CAU         OAA     122.692    1.50
+DKD         CAZ         OAT         CAY     117.287    1.50
+DKD         OAT         CAY         CAP     120.089    3.00
+DKD         OAT         CAY         CAO     120.089    3.00
+DKD         CAP         CAY         CAO     119.823    1.50
+DKD         CAY         CAP         CAN     119.690    1.50
+DKD         CAY         CAP         HAP     120.137    1.50
+DKD         CAN         CAP         HAP     120.174    1.50
+DKD         CAP         CAN         CAW     121.479    1.50
+DKD         CAP         CAN         HAN     119.207    1.50
+DKD         CAW         CAN         HAN     119.314    1.50
+DKD         CAY         CAO         CAM     119.690    1.50
+DKD         CAY         CAO         HAO     120.137    1.50
+DKD         CAM         CAO         HAO     120.174    1.50
+DKD         CAO         CAM         CAW     121.479    1.50
+DKD         CAO         CAM         HAM     119.207    1.50
+DKD         CAW         CAM         HAM     119.314    1.50
+DKD         CAN         CAW         CAM     117.841    1.50
+DKD         CAN         CAW         CAR     121.080    1.50
+DKD         CAM         CAW         CAR     121.080    1.50
+DKD         CAW         CAR         CAQ     113.191    1.54
+DKD         CAW         CAR         HAR     109.088    1.58
+DKD         CAW         CAR        HARA     109.088    1.58
+DKD         CAQ         CAR         HAR     108.746    1.50
+DKD         CAQ         CAR        HARA     108.746    1.50
+DKD         HAR         CAR        HARA     107.732    2.63
+DKD         CAR         CAQ         CAV     113.191    1.54
+DKD         CAR         CAQ         HAQ     108.746    1.50
+DKD         CAR         CAQ        HAQA     108.746    1.50
+DKD         CAV         CAQ         HAQ     109.088    1.58
+DKD         CAV         CAQ        HAQA     109.088    1.58
+DKD         HAQ         CAQ        HAQA     107.732    2.63
+DKD         CAQ         CAV         CAI     120.970    1.50
+DKD         CAQ         CAV         CAJ     120.970    1.50
+DKD         CAI         CAV         CAJ     118.060    1.50
+DKD         CAV         CAI         CAE     120.624    1.50
+DKD         CAV         CAI         HAI     119.591    1.50
+DKD         CAE         CAI         HAI     119.786    1.50
+DKD         CAI         CAE         CAC     120.325    1.50
+DKD         CAI         CAE         HAE     119.792    1.50
+DKD         CAC         CAE         HAE     119.883    1.50
+DKD         CAE         CAC         CAF     120.043    1.50
+DKD         CAE         CAC         HAC     119.979    1.50
+DKD         CAF         CAC         HAC     119.979    1.50
+DKD         CAC         CAF         CAJ     120.325    1.50
+DKD         CAC         CAF         HAF     119.883    1.50
+DKD         CAJ         CAF         HAF     119.792    1.50
+DKD         CAV         CAJ         CAF     120.624    1.50
+DKD         CAV         CAJ         HAJ     119.591    1.50
+DKD         CAF         CAJ         HAJ     119.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DKD              const_21         CAD         CAG         CAK         CAX       0.000    10.0     2
+DKD              const_62         CAG         CAK         CAX         CAS     180.000    10.0     2
+DKD             sp2_sp2_1         CAP         CAY         OAT         CAZ     180.000     5.0     2
+DKD              const_42         CAN         CAP         CAY         OAT     180.000    10.0     2
+DKD              const_66         CAM         CAO         CAY         OAT     180.000    10.0     2
+DKD              const_45         CAW         CAN         CAP         CAY       0.000    10.0     2
+DKD              const_50         CAP         CAN         CAW         CAR     180.000    10.0     2
+DKD              const_57         CAW         CAM         CAO         CAY       0.000    10.0     2
+DKD              const_54         CAO         CAM         CAW         CAR     180.000    10.0     2
+DKD            sp2_sp3_14         CAN         CAW         CAR         CAQ     -90.000    10.0     6
+DKD            sp3_sp3_13         CAV         CAQ         CAR         CAW     180.000    10.0     3
+DKD            sp2_sp3_20         CAI         CAV         CAQ         CAR     -90.000    10.0     6
+DKD              const_25         CAH         CAD         CAG         CAK       0.000    10.0     2
+DKD       const_sp2_sp2_2         CAE         CAI         CAV         CAQ     180.000     5.0     2
+DKD              const_70         CAF         CAJ         CAV         CAQ     180.000    10.0     2
+DKD       const_sp2_sp2_5         CAC         CAE         CAI         CAV       0.000     5.0     2
+DKD       const_sp2_sp2_9         CAF         CAC         CAE         CAI       0.000     5.0     2
+DKD              const_13         CAE         CAC         CAF         CAJ       0.000    10.0     2
+DKD              const_17         CAC         CAF         CAJ         CAV       0.000    10.0     2
+DKD              const_29         CAG         CAD         CAH         CAL       0.000    10.0     2
+DKD              const_33         CAD         CAH         CAL         CAX       0.000    10.0     2
+DKD              const_38         CAH         CAL         CAX         CAS     180.000    10.0     2
+DKD             sp2_sp3_2         CAK         CAX         CAS         CAZ     -90.000    10.0     6
+DKD             sp3_sp3_1         CAX         CAS         CAZ         CAU     180.000    10.0     3
+DKD            sp3_sp3_10         CAS         CAZ         OAT         CAY     180.000    10.0     3
+DKD             sp2_sp3_7         OAB         CAU         CAZ         CAS       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DKD    chir_1    CAZ    OAT    CAU    CAS    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DKD    plan-1         CAD   0.020
+DKD    plan-1         CAG   0.020
+DKD    plan-1         CAH   0.020
+DKD    plan-1         CAK   0.020
+DKD    plan-1         CAL   0.020
+DKD    plan-1         CAS   0.020
+DKD    plan-1         CAX   0.020
+DKD    plan-1         HAD   0.020
+DKD    plan-1         HAG   0.020
+DKD    plan-1         HAH   0.020
+DKD    plan-1         HAK   0.020
+DKD    plan-1         HAL   0.020
+DKD    plan-2         CAM   0.020
+DKD    plan-2         CAN   0.020
+DKD    plan-2         CAO   0.020
+DKD    plan-2         CAP   0.020
+DKD    plan-2         CAR   0.020
+DKD    plan-2         CAW   0.020
+DKD    plan-2         CAY   0.020
+DKD    plan-2         HAM   0.020
+DKD    plan-2         HAN   0.020
+DKD    plan-2         HAO   0.020
+DKD    plan-2         HAP   0.020
+DKD    plan-2         OAT   0.020
+DKD    plan-3         CAC   0.020
+DKD    plan-3         CAE   0.020
+DKD    plan-3         CAF   0.020
+DKD    plan-3         CAI   0.020
+DKD    plan-3         CAJ   0.020
+DKD    plan-3         CAQ   0.020
+DKD    plan-3         CAV   0.020
+DKD    plan-3         HAC   0.020
+DKD    plan-3         HAE   0.020
+DKD    plan-3         HAF   0.020
+DKD    plan-3         HAI   0.020
+DKD    plan-3         HAJ   0.020
+DKD    plan-4         CAU   0.020
+DKD    plan-4         CAZ   0.020
+DKD    plan-4         OAA   0.020
+DKD    plan-4         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DKD           SMILES              ACDLabs 10.04                                                                                                          O=C(O)C(Oc1ccc(cc1)CCc2ccccc2)Cc3ccccc3
+DKD SMILES_CANONICAL               CACTVS 3.341                                                                                                      OC(=O)[C@H](Cc1ccccc1)Oc2ccc(CCc3ccccc3)cc2
+DKD           SMILES               CACTVS 3.341                                                                                                       OC(=O)[CH](Cc1ccccc1)Oc2ccc(CCc3ccccc3)cc2
+DKD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                   c1ccc(cc1)CCc2ccc(cc2)O[C@@H](Cc3ccccc3)C(=O)O
+DKD           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                        c1ccc(cc1)CCc2ccc(cc2)OC(Cc3ccccc3)C(=O)O
+DKD            InChI                InChI  1.03 InChI=1S/C23H22O3/c24-23(25)22(17-20-9-5-2-6-10-20)26-21-15-13-19(14-16-21)12-11-18-7-3-1-4-8-18/h1-10,13-16,22H,11-12,17H2,(H,24,25)/t22-/m0/s1
+DKD         InChIKey                InChI  1.03                                                                                                                      XCJJDOWGIZSDKH-QFIPXVFZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DKD acedrg               243         "dictionary generator"                  
+DKD acedrg_database      11          "data source"                           
+DKD rdkit                2017.03.2   "Chemoinformatics tool"
+DKD refmac5              5.8.0238    "optimization tool"                     

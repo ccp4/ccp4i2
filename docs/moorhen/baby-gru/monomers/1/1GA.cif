@@ -1,0 +1,269 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+1GA     1GA      Geraniline     NON-POLYMER     38     17     .     
+#
+data_comp_1GA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+1GA     C01     C       CH3     0       37.987      14.808      18.561      
+1GA     C02     C       C       0       38.047      15.718      17.369      
+1GA     C03     C       C1      0       38.451      16.992      17.452      
+1GA     C04     C       CH2     0       39.802      17.461      17.941      
+1GA     C05     C       CR6     0       40.707      16.515      17.192      
+1GA     C06     C       CR16    0       40.787      16.619      15.809      
+1GA     C07     C       CR16    0       41.463      15.680      15.060      
+1GA     C08     C       CR6     0       42.062      14.597      15.704      
+1GA     N09     N       NT1     0       42.540      13.592      14.964      
+1GA     C10     C       CH2     0       41.556      12.589      14.589      
+1GA     C11     C       C       0       40.103      13.052      14.537      
+1GA     C12     C       C1      0       39.305      13.149      15.614      
+1GA     C13     C       CH2     0       37.865      13.628      15.728      
+1GA     C14     C       CH2     0       37.543      15.123      16.073      
+1GA     C15     C       CH3     0       39.622      13.451      13.168      
+1GA     C16     C       CR16    0       41.871      14.408      17.075      
+1GA     C17     C       CR16    0       41.190      15.365      17.802      
+1GA     H1      H       H       0       37.131      14.351      18.577      
+1GA     H2      H       H       0       38.089      15.328      19.375      
+1GA     H3      H       H       0       38.700      14.151      18.507      
+1GA     H5      H       H       0       37.836      17.658      17.181      
+1GA     H7      H       H       0       39.893      17.348      18.906      
+1GA     H8      H       H       0       39.972      18.388      17.688      
+1GA     H9      H       H       0       40.408      17.367      15.377      
+1GA     H10     H       H       0       41.539      15.779      14.126      
+1GA     H11     H       H       0       43.111      13.828      14.349      
+1GA     H12     H       H       0       41.617      11.851      15.230      
+1GA     H13     H       H       0       41.803      12.227      13.712      
+1GA     H15     H       H       0       39.680      12.848      16.426      
+1GA     H17     H       H       0       37.428      13.073      16.406      
+1GA     H18     H       H       0       37.419      13.425      14.882      
+1GA     H19     H       H       0       37.883      15.675      15.340      
+1GA     H20     H       H       0       36.570      15.227      16.060      
+1GA     H21     H       H       0       39.064      12.746      12.802      
+1GA     H22     H       H       0       40.380      13.601      12.580      
+1GA     H23     H       H       0       39.104      14.270      13.234      
+1GA     H24     H       H       0       42.226      13.648      17.503      
+1GA     H25     H       H       0       41.087      15.254      18.732      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+1GA         C11         C15      SINGLE       n     1.499  0.0156     1.499  0.0156
+1GA         C10         C11      SINGLE       n     1.506  0.0100     1.506  0.0100
+1GA         N09         C10      SINGLE       n     1.442  0.0100     1.442  0.0100
+1GA         C11         C12      DOUBLE       n     1.330  0.0100     1.330  0.0100
+1GA         C08         N09      SINGLE       n     1.381  0.0192     1.381  0.0192
+1GA         C07         C08      SINGLE       y     1.395  0.0124     1.395  0.0124
+1GA         C06         C07      DOUBLE       y     1.383  0.0100     1.383  0.0100
+1GA         C08         C16      DOUBLE       y     1.395  0.0124     1.395  0.0124
+1GA         C12         C13      SINGLE       n     1.498  0.0141     1.498  0.0141
+1GA         C13         C14      SINGLE       n     1.516  0.0200     1.516  0.0200
+1GA         C02         C14      SINGLE       n     1.503  0.0104     1.503  0.0104
+1GA         C05         C06      SINGLE       y     1.386  0.0100     1.386  0.0100
+1GA         C16         C17      SINGLE       y     1.383  0.0100     1.383  0.0100
+1GA         C02         C03      DOUBLE       n     1.326  0.0104     1.326  0.0104
+1GA         C03         C04      SINGLE       n     1.503  0.0103     1.503  0.0103
+1GA         C01         C02      SINGLE       n     1.499  0.0156     1.499  0.0156
+1GA         C05         C17      DOUBLE       y     1.386  0.0100     1.386  0.0100
+1GA         C04         C05      SINGLE       n     1.519  0.0100     1.519  0.0100
+1GA         C01          H1      SINGLE       n     1.089  0.0100     0.971  0.0140
+1GA         C01          H2      SINGLE       n     1.089  0.0100     0.971  0.0140
+1GA         C01          H3      SINGLE       n     1.089  0.0100     0.971  0.0140
+1GA         C03          H5      SINGLE       n     1.082  0.0130     0.947  0.0200
+1GA         C04          H7      SINGLE       n     1.089  0.0100     0.976  0.0140
+1GA         C04          H8      SINGLE       n     1.089  0.0100     0.976  0.0140
+1GA         C06          H9      SINGLE       n     1.082  0.0130     0.943  0.0173
+1GA         C07         H10      SINGLE       n     1.082  0.0130     0.942  0.0183
+1GA         N09         H11      SINGLE       n     1.016  0.0100     0.871  0.0200
+1GA         C10         H12      SINGLE       n     1.089  0.0100     0.980  0.0137
+1GA         C10         H13      SINGLE       n     1.089  0.0100     0.980  0.0137
+1GA         C12         H15      SINGLE       n     1.082  0.0130     0.945  0.0200
+1GA         C13         H17      SINGLE       n     1.089  0.0100     0.979  0.0159
+1GA         C13         H18      SINGLE       n     1.089  0.0100     0.979  0.0159
+1GA         C14         H19      SINGLE       n     1.089  0.0100     0.979  0.0159
+1GA         C14         H20      SINGLE       n     1.089  0.0100     0.979  0.0159
+1GA         C15         H21      SINGLE       n     1.089  0.0100     0.971  0.0140
+1GA         C15         H22      SINGLE       n     1.089  0.0100     0.971  0.0140
+1GA         C15         H23      SINGLE       n     1.089  0.0100     0.971  0.0140
+1GA         C16         H24      SINGLE       n     1.082  0.0130     0.942  0.0183
+1GA         C17         H25      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+1GA         C02         C01          H1     109.541    1.50
+1GA         C02         C01          H2     109.541    1.50
+1GA         C02         C01          H3     109.541    1.50
+1GA          H1         C01          H2     109.342    1.50
+1GA          H1         C01          H3     109.342    1.50
+1GA          H2         C01          H3     109.342    1.50
+1GA         C14         C02         C03     121.607    1.82
+1GA         C14         C02         C01     115.386    1.50
+1GA         C03         C02         C01     123.007    1.73
+1GA         C02         C03         C04     127.346    1.50
+1GA         C02         C03          H5     116.349    1.50
+1GA         C04         C03          H5     116.305    1.50
+1GA         C03         C04         C05     113.492    1.82
+1GA         C03         C04          H7     109.071    1.50
+1GA         C03         C04          H8     109.071    1.50
+1GA         C05         C04          H7     108.809    1.50
+1GA         C05         C04          H8     108.809    1.50
+1GA          H7         C04          H8     107.704    1.50
+1GA         C06         C05         C17     117.835    1.50
+1GA         C06         C05         C04     121.083    1.50
+1GA         C17         C05         C04     121.083    1.50
+1GA         C07         C06         C05     121.431    1.50
+1GA         C07         C06          H9     119.241    1.50
+1GA         C05         C06          H9     119.328    1.50
+1GA         C08         C07         C06     119.999    1.50
+1GA         C08         C07         H10     119.900    1.50
+1GA         C06         C07         H10     120.101    1.50
+1GA         N09         C08         C07     120.347    1.73
+1GA         N09         C08         C16     120.347    1.73
+1GA         C07         C08         C16     119.305    1.50
+1GA         C10         N09         C08     121.154    1.50
+1GA         C10         N09         H11     116.437    3.00
+1GA         C08         N09         H11     114.612    2.65
+1GA         C11         C10         N09     112.134    2.59
+1GA         C11         C10         H12     108.999    1.53
+1GA         C11         C10         H13     108.999    1.53
+1GA         N09         C10         H12     109.191    1.71
+1GA         N09         C10         H13     109.191    1.71
+1GA         H12         C10         H13     107.779    1.50
+1GA         C15         C11         C10     115.130    1.71
+1GA         C15         C11         C12     122.661    1.73
+1GA         C10         C11         C12     122.210    2.44
+1GA         C11         C12         C13     127.956    1.50
+1GA         C11         C12         H15     116.396    1.50
+1GA         C13         C12         H15     115.648    1.60
+1GA         C12         C13         C14     112.751    2.50
+1GA         C12         C13         H17     109.181    1.50
+1GA         C12         C13         H18     109.181    1.50
+1GA         C14         C13         H17     109.013    1.50
+1GA         C14         C13         H18     109.013    1.50
+1GA         H17         C13         H18     107.922    1.50
+1GA         C13         C14         C02     113.520    2.62
+1GA         C13         C14         H19     108.867    1.50
+1GA         C13         C14         H20     108.867    1.50
+1GA         C02         C14         H19     108.816    1.50
+1GA         C02         C14         H20     108.816    1.50
+1GA         H19         C14         H20     107.710    1.94
+1GA         C11         C15         H21     109.434    1.50
+1GA         C11         C15         H22     109.434    1.50
+1GA         C11         C15         H23     109.434    1.50
+1GA         H21         C15         H22     109.342    1.50
+1GA         H21         C15         H23     109.342    1.50
+1GA         H22         C15         H23     109.342    1.50
+1GA         C08         C16         C17     119.999    1.50
+1GA         C08         C16         H24     119.900    1.50
+1GA         C17         C16         H24     120.101    1.50
+1GA         C16         C17         C05     121.431    1.50
+1GA         C16         C17         H25     119.241    1.50
+1GA         C05         C17         H25     119.328    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+1GA            sp2_sp3_37         C14         C02         C01          H1       0.000    10.0     6
+1GA             sp2_sp2_3         C15         C11         C12         C13       0.000     5.0     2
+1GA             sp2_sp3_1         C10         C11         C15         H21       0.000    10.0     6
+1GA            sp2_sp3_20         C11         C12         C13         C14     120.000    10.0     6
+1GA             sp3_sp3_1         C12         C13         C14         C02     180.000    10.0     3
+1GA              const_17         C08         C16         C17         C05       0.000    10.0     2
+1GA            sp2_sp3_26         C03         C02         C14         C13     120.000    10.0     6
+1GA             sp2_sp2_9         C14         C02         C03         C04     180.000     5.0     2
+1GA            sp2_sp3_32         C02         C03         C04         C05     120.000    10.0     6
+1GA            sp2_sp3_44         C06         C05         C04         C03     -90.000    10.0     6
+1GA              const_23         C04         C05         C17         C16     180.000    10.0     2
+1GA       const_sp2_sp2_3         C04         C05         C06         C07     180.000     5.0     2
+1GA       const_sp2_sp2_5         C05         C06         C07         C08       0.000     5.0     2
+1GA              const_10         C06         C07         C08         N09     180.000    10.0     2
+1GA              const_15         N09         C08         C16         C17     180.000    10.0     2
+1GA             sp2_sp2_5         C07         C08         N09         C10     180.000     5.0     2
+1GA            sp2_sp3_14         C08         N09         C10         C11     120.000    10.0     6
+1GA             sp2_sp3_8         C15         C11         C10         N09     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+1GA    plan-1         C04   0.020
+1GA    plan-1         C05   0.020
+1GA    plan-1         C06   0.020
+1GA    plan-1         C07   0.020
+1GA    plan-1         C08   0.020
+1GA    plan-1         C16   0.020
+1GA    plan-1         C17   0.020
+1GA    plan-1         H10   0.020
+1GA    plan-1         H24   0.020
+1GA    plan-1         H25   0.020
+1GA    plan-1          H9   0.020
+1GA    plan-1         N09   0.020
+1GA    plan-2         C01   0.020
+1GA    plan-2         C02   0.020
+1GA    plan-2         C03   0.020
+1GA    plan-2         C14   0.020
+1GA    plan-3         C02   0.020
+1GA    plan-3         C03   0.020
+1GA    plan-3         C04   0.020
+1GA    plan-3          H5   0.020
+1GA    plan-4         C10   0.020
+1GA    plan-4         C11   0.020
+1GA    plan-4         C12   0.020
+1GA    plan-4         C15   0.020
+1GA    plan-5         C11   0.020
+1GA    plan-5         C12   0.020
+1GA    plan-5         C13   0.020
+1GA    plan-5         H15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+1GA           SMILES              ACDLabs 12.01                                                                                 C2=C(CCC=C(CNc1ccc(cc1)C2)C)C
+1GA            InChI                InChI  1.03 InChI=1S/C16H21N/c1-13-4-3-5-14(2)12-17-16-10-8-15(7-6-13)9-11-16/h5-6,8-11,17H,3-4,7,12H2,1-2H3/b13-6?,14-5+
+1GA         InChIKey                InChI  1.03                                                                                   QEYKICLOTYFCMW-QEKYNVLXSA-N
+1GA SMILES_CANONICAL               CACTVS 3.370                                                                               C\C1=C/Cc2ccc(NC\C(=C\CC1)C)cc2
+1GA           SMILES               CACTVS 3.370                                                                                   CC1=CCc2ccc(NCC(=CCC1)C)cc2
+1GA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                CC1=CCc2ccc(cc2)NC/C(=C/CC1)/C
+1GA           SMILES "OpenEye OEToolkits" 1.7.6                                                                                   CC1=CCc2ccc(cc2)NCC(=CCC1)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+1GA acedrg               243         "dictionary generator"                  
+1GA acedrg_database      11          "data source"                           
+1GA rdkit                2017.03.2   "Chemoinformatics tool"
+1GA refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,235 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XLO     XLO      "3-[(E)-2-(2-chloro-4-hydroxyphenyl)ethenyl]benzoic acid"     NON-POLYMER     29     19     .     
+#
+data_comp_XLO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XLO     C01     C       CR16    0       -19.748     1.549       -29.733     
+XLO     C02     C       CR16    0       -19.061     1.787       -28.555     
+XLO     C03     C       CR16    0       -19.487     1.209       -27.371     
+XLO     C04     C       CR6     0       -20.614     0.386       -27.341     
+XLO     C05     C       CR16    0       -21.296     0.152       -28.538     
+XLO     C06     C       CR6     0       -20.874     0.729       -29.736     
+XLO     C07     C       C       0       -21.632     0.463       -31.020     
+XLO     C08     C       C1      0       -21.099     -0.252      -26.105     
+XLO     C09     C       C1      0       -20.867     0.126       -24.847     
+XLO     C10     C       CR6     0       -21.356     -0.520      -23.619     
+XLO     C11     C       CR16    0       -21.437     -1.919      -23.528     
+XLO     C12     C       CR16    0       -21.892     -2.542      -22.380     
+XLO     C13     C       CR6     0       -22.278     -1.782      -21.285     
+XLO     C14     C       CR16    0       -22.209     -0.397      -21.337     
+XLO     C15     C       CR6     0       -21.752     0.220       -22.492     
+XLO     O01     O       OC      -1      -22.293     -0.590      -31.102     
+XLO     O02     O       O       0       -21.557     1.309       -31.934     
+XLO     O03     O       OH1     0       -22.729     -2.403      -20.145     
+XLO     CL1     CL      CL      0       -21.695     1.966       -22.483     
+XLO     H1      H       H       0       -19.451     1.944       -30.533     
+XLO     H2      H       H       0       -18.298     2.343       -28.559     
+XLO     H3      H       H       0       -19.012     1.377       -26.578     
+XLO     H4      H       H       0       -22.059     -0.406      -28.525     
+XLO     H5      H       H       0       -21.642     -1.020      -26.221     
+XLO     H6      H       H       0       -20.323     0.889       -24.723     
+XLO     H7      H       H       0       -21.178     -2.440      -24.265     
+XLO     H8      H       H       0       -21.940     -3.481      -22.340     
+XLO     H9      H       H       0       -22.471     0.122       -20.594     
+XLO     H11     H       H       0       -22.552     -2.066      -19.372     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XLO         C07         O02      DOUBLE       n     1.244  0.0200     1.244  0.0200
+XLO         C07         O01      SINGLE       n     1.244  0.0200     1.244  0.0200
+XLO         C06         C07      SINGLE       n     1.498  0.0200     1.498  0.0200
+XLO         C01         C06      DOUBLE       y     1.388  0.0100     1.388  0.0100
+XLO         C05         C06      SINGLE       y     1.389  0.0100     1.389  0.0100
+XLO         C01         C02      SINGLE       y     1.382  0.0100     1.382  0.0100
+XLO         C04         C05      DOUBLE       y     1.393  0.0100     1.393  0.0100
+XLO         C02         C03      DOUBLE       y     1.382  0.0100     1.382  0.0100
+XLO         C03         C04      SINGLE       y     1.391  0.0100     1.391  0.0100
+XLO         C04         C08      SINGLE       n     1.470  0.0108     1.470  0.0108
+XLO         C08         C09      DOUBLE       n     1.326  0.0177     1.326  0.0177
+XLO         C09         C10      SINGLE       n     1.468  0.0111     1.468  0.0111
+XLO         C10         C11      DOUBLE       y     1.398  0.0100     1.398  0.0100
+XLO         C11         C12      SINGLE       y     1.380  0.0100     1.380  0.0100
+XLO         C10         C15      SINGLE       y     1.398  0.0100     1.398  0.0100
+XLO         C12         C13      DOUBLE       y     1.386  0.0100     1.386  0.0100
+XLO         C15         CL1      SINGLE       n     1.746  0.0109     1.746  0.0109
+XLO         C14         C15      DOUBLE       y     1.384  0.0100     1.384  0.0100
+XLO         C13         C14      SINGLE       y     1.386  0.0100     1.386  0.0100
+XLO         C13         O03      SINGLE       n     1.374  0.0155     1.374  0.0155
+XLO         C01          H1      SINGLE       n     1.082  0.0130     0.941  0.0168
+XLO         C02          H2      SINGLE       n     1.082  0.0130     0.944  0.0134
+XLO         C03          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+XLO         C05          H4      SINGLE       n     1.082  0.0130     0.946  0.0200
+XLO         C08          H5      SINGLE       n     1.082  0.0130     0.948  0.0200
+XLO         C09          H6      SINGLE       n     1.082  0.0130     0.948  0.0200
+XLO         C11          H7      SINGLE       n     1.082  0.0130     0.939  0.0123
+XLO         C12          H8      SINGLE       n     1.082  0.0130     0.941  0.0179
+XLO         C14          H9      SINGLE       n     1.082  0.0130     0.943  0.0104
+XLO         O03         H11      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XLO         C06         C01         C02     120.227    1.50
+XLO         C06         C01          H1     119.937    1.50
+XLO         C02         C01          H1     119.836    1.50
+XLO         C01         C02         C03     120.181    1.50
+XLO         C01         C02          H2     119.907    1.50
+XLO         C03         C02          H2     119.907    1.50
+XLO         C02         C03         C04     121.015    1.50
+XLO         C02         C03          H3     119.609    1.50
+XLO         C04         C03          H3     119.376    1.50
+XLO         C05         C04         C03     118.468    1.50
+XLO         C05         C04         C08     120.581    2.37
+XLO         C03         C04         C08     120.951    2.07
+XLO         C06         C05         C04     120.720    1.50
+XLO         C06         C05          H4     120.014    1.50
+XLO         C04         C05          H4     119.266    1.50
+XLO         C07         C06         C01     120.383    1.50
+XLO         C07         C06         C05     120.224    1.50
+XLO         C01         C06         C05     119.393    1.50
+XLO         O02         C07         O01     124.418    1.50
+XLO         O02         C07         C06     117.791    1.50
+XLO         O01         C07         C06     117.791    1.50
+XLO         C04         C08         C09     126.568    1.76
+XLO         C04         C08          H5     116.565    1.50
+XLO         C09         C08          H5     116.867    1.50
+XLO         C08         C09         C10     126.938    2.22
+XLO         C08         C09          H6     116.850    1.50
+XLO         C10         C09          H6     116.211    1.50
+XLO         C09         C10         C11     121.305    2.30
+XLO         C09         C10         C15     122.057    1.50
+XLO         C11         C10         C15     116.639    1.50
+XLO         C10         C11         C12     120.848    1.50
+XLO         C10         C11          H7     119.368    1.50
+XLO         C12         C11          H7     119.784    1.50
+XLO         C11         C12         C13     120.167    1.50
+XLO         C11         C12          H8     119.997    1.50
+XLO         C13         C12          H8     119.835    1.50
+XLO         C12         C13         C14     121.048    1.50
+XLO         C12         C13         O03     119.476    3.00
+XLO         C14         C13         O03     119.476    3.00
+XLO         C15         C14         C13     119.690    1.50
+XLO         C15         C14          H9     120.042    1.50
+XLO         C13         C14          H9     120.268    1.50
+XLO         C10         C15         CL1     121.053    1.50
+XLO         C10         C15         C14     121.608    1.50
+XLO         CL1         C15         C14     117.339    1.50
+XLO         C13         O03         H11     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XLO              const_41         C06         C01         C02         C03       0.000    10.0     2
+XLO       const_sp2_sp2_2         C02         C01         C06         C07     180.000     5.0     2
+XLO              const_25         C10         C11         C12         C13       0.000    10.0     2
+XLO              const_30         C11         C12         C13         O03     180.000    10.0     2
+XLO              const_35         O03         C13         C14         C15     180.000    10.0     2
+XLO            sp2_sp2_17         C12         C13         O03         H11     180.000     5.0     2
+XLO              const_38         C13         C14         C15         CL1     180.000    10.0     2
+XLO              const_17         C01         C02         C03         C04       0.000    10.0     2
+XLO              const_14         C02         C03         C04         C08     180.000    10.0     2
+XLO              const_11         C08         C04         C05         C06     180.000    10.0     2
+XLO             sp2_sp2_5         C05         C04         C08         C09     180.000     5.0     2
+XLO       const_sp2_sp2_6         C04         C05         C06         C07     180.000     5.0     2
+XLO             sp2_sp2_1         C01         C06         C07         O02     180.000     5.0     2
+XLO             sp2_sp2_9         C04         C08         C09         C10     180.000     5.0     2
+XLO            sp2_sp2_13         C08         C09         C10         C11     180.000     5.0     2
+XLO              const_23         C09         C10         C11         C12     180.000    10.0     2
+XLO              const_48         C09         C10         C15         CL1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XLO    plan-1         C01   0.020
+XLO    plan-1         C02   0.020
+XLO    plan-1         C03   0.020
+XLO    plan-1         C04   0.020
+XLO    plan-1         C05   0.020
+XLO    plan-1         C06   0.020
+XLO    plan-1         C07   0.020
+XLO    plan-1         C08   0.020
+XLO    plan-1          H1   0.020
+XLO    plan-1          H2   0.020
+XLO    plan-1          H3   0.020
+XLO    plan-1          H4   0.020
+XLO    plan-2         C09   0.020
+XLO    plan-2         C10   0.020
+XLO    plan-2         C11   0.020
+XLO    plan-2         C12   0.020
+XLO    plan-2         C13   0.020
+XLO    plan-2         C14   0.020
+XLO    plan-2         C15   0.020
+XLO    plan-2         CL1   0.020
+XLO    plan-2          H7   0.020
+XLO    plan-2          H8   0.020
+XLO    plan-2          H9   0.020
+XLO    plan-2         O03   0.020
+XLO    plan-3         C06   0.020
+XLO    plan-3         C07   0.020
+XLO    plan-3         O01   0.020
+XLO    plan-3         O02   0.020
+XLO    plan-4         C04   0.020
+XLO    plan-4         C08   0.020
+XLO    plan-4         C09   0.020
+XLO    plan-4          H5   0.020
+XLO    plan-5         C08   0.020
+XLO    plan-5         C09   0.020
+XLO    plan-5         C10   0.020
+XLO    plan-5          H6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XLO           SMILES              ACDLabs 12.01                                                                c2ccc(\C=C\c1c(cc(cc1)O)Cl)cc2C(O)=O
+XLO            InChI                InChI  1.03 InChI=1S/C15H11ClO3/c16-14-9-13(17)7-6-11(14)5-4-10-2-1-3-12(8-10)15(18)19/h1-9,17H,(H,18,19)/b5-4+
+XLO         InChIKey                InChI  1.03                                                                         FFFUYAAIQHIBGO-SNAWJCMRSA-N
+XLO SMILES_CANONICAL               CACTVS 3.385                                                                Oc1ccc(/C=C/c2cccc(c2)C(O)=O)c(Cl)c1
+XLO           SMILES               CACTVS 3.385                                                                  Oc1ccc(C=Cc2cccc(c2)C(O)=O)c(Cl)c1
+XLO SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                c1cc(cc(c1)C(=O)O)/C=C/c2ccc(cc2Cl)O
+XLO           SMILES "OpenEye OEToolkits" 2.0.6                                                                  c1cc(cc(c1)C(=O)O)C=Cc2ccc(cc2Cl)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XLO acedrg               243         "dictionary generator"                  
+XLO acedrg_database      11          "data source"                           
+XLO rdkit                2017.03.2   "Chemoinformatics tool"
+XLO refmac5              5.8.0238    "optimization tool"                     

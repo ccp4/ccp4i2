@@ -1,0 +1,185 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+23F     23F      "(2Z)-2-AMINO-3-PHENYLACRYLIC ACID"     NON-POLYMER     20     12     .     
+#
+data_comp_23F
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+23F     N       N       NH2     0       25.589      16.662      4.378       
+23F     CA      C       C       0       26.805      16.167      4.732       
+23F     C       C       C       0       27.965      16.871      4.469       
+23F     OXT     O       OC      -1      29.069      16.435      4.810       
+23F     CB      C       C1      0       26.838      14.955      5.347       
+23F     CG      C       CR6     0       26.034      14.437      6.459       
+23F     CD1     C       CR16    0       25.538      15.268      7.467       
+23F     CD2     C       CR16    0       25.733      13.074      6.531       
+23F     CE1     C       CR16    0       24.776      14.754      8.506       
+23F     CE2     C       CR16    0       24.970      12.564      7.572       
+23F     CZ      C       CR16    0       24.493      13.404      8.558       
+23F     O       O       O       0       27.899      17.951      3.878       
+23F     H       H       H       0       24.848      16.201      4.544       
+23F     H2      H       H       0       25.528      17.453      3.979       
+23F     HB      H       H       0       27.468      14.345      4.992       
+23F     HD1     H       H       0       25.726      16.190      7.441       
+23F     HD2     H       H       0       26.054      12.494      5.863       
+23F     HE1     H       H       0       24.451      15.329      9.179       
+23F     HE2     H       H       0       24.778      11.642      7.606       
+23F     HZ      H       H       0       23.975      13.056      9.266       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+23F           N          CA      SINGLE       n     1.345  0.0200     1.345  0.0200
+23F          CA           C      SINGLE       n     1.361  0.0200     1.361  0.0200
+23F          CA          CB      DOUBLE       n     1.346  0.0200     1.346  0.0200
+23F           C         OXT      SINGLE       n     1.230  0.0200     1.230  0.0200
+23F           C           O      DOUBLE       n     1.230  0.0200     1.230  0.0200
+23F          CB          CG      SINGLE       n     1.466  0.0126     1.466  0.0126
+23F          CG         CD1      DOUBLE       y     1.394  0.0100     1.394  0.0100
+23F          CG         CD2      SINGLE       y     1.394  0.0100     1.394  0.0100
+23F         CD1         CE1      SINGLE       y     1.384  0.0100     1.384  0.0100
+23F         CD2         CE2      DOUBLE       y     1.384  0.0100     1.384  0.0100
+23F         CE1          CZ      DOUBLE       y     1.376  0.0114     1.376  0.0114
+23F         CE2          CZ      SINGLE       y     1.376  0.0114     1.376  0.0114
+23F           N           H      SINGLE       n     1.016  0.0100     0.887  0.0200
+23F           N          H2      SINGLE       n     1.016  0.0100     0.887  0.0200
+23F          CB          HB      SINGLE       n     1.082  0.0130     0.945  0.0200
+23F         CD1         HD1      SINGLE       n     1.082  0.0130     0.941  0.0168
+23F         CD2         HD2      SINGLE       n     1.082  0.0130     0.941  0.0168
+23F         CE1         HE1      SINGLE       n     1.082  0.0130     0.943  0.0180
+23F         CE2         HE2      SINGLE       n     1.082  0.0130     0.943  0.0180
+23F          CZ          HZ      SINGLE       n     1.082  0.0130     0.944  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+23F          CA           N           H     120.090    1.76
+23F          CA           N          H2     120.090    1.76
+23F           H           N          H2     119.819    2.06
+23F           N          CA           C     121.108    3.00
+23F           N          CA          CB     118.586    3.00
+23F           C          CA          CB     120.306    3.00
+23F          CA           C         OXT     119.840    3.00
+23F          CA           C           O     119.840    3.00
+23F         OXT           C           O     120.320    1.63
+23F          CA          CB          CG     129.861    1.60
+23F          CA          CB          HB     114.956    1.50
+23F          CG          CB          HB     115.183    1.50
+23F          CB          CG         CD1     121.141    3.00
+23F          CB          CG         CD2     121.141    3.00
+23F         CD1          CG         CD2     117.718    1.50
+23F          CG         CD1         CE1     120.956    1.50
+23F          CG         CD1         HD1     119.405    1.50
+23F         CE1         CD1         HD1     119.638    1.50
+23F          CG         CD2         CE2     120.956    1.50
+23F          CG         CD2         HD2     119.405    1.50
+23F         CE2         CD2         HD2     119.638    1.50
+23F         CD1         CE1          CZ     120.217    1.50
+23F         CD1         CE1         HE1     119.846    1.50
+23F          CZ         CE1         HE1     119.937    1.50
+23F         CD2         CE2          CZ     120.217    1.50
+23F         CD2         CE2         HE2     119.846    1.50
+23F          CZ         CE2         HE2     119.937    1.50
+23F         CE1          CZ         CE2     119.935    1.50
+23F         CE1          CZ          HZ     120.033    1.50
+23F         CE2          CZ          HZ     120.033    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+23F             sp2_sp2_1           C          CA           N           H     180.000     5.0     2
+23F             sp2_sp2_6         OXT           C          CA           N       0.000     5.0     2
+23F            sp2_sp2_11           N          CA          CB          CG       0.000     5.0     2
+23F            sp2_sp2_13          CA          CB          CG         CD1     180.000     5.0     2
+23F       const_sp2_sp2_2         CE1         CD1          CG          CB     180.000     5.0     2
+23F              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+23F       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+23F              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+23F       const_sp2_sp2_9         CD1         CE1          CZ         CE2       0.000     5.0     2
+23F              const_13         CD2         CE2          CZ         CE1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+23F    plan-1          CB   0.020
+23F    plan-1         CD1   0.020
+23F    plan-1         CD2   0.020
+23F    plan-1         CE1   0.020
+23F    plan-1         CE2   0.020
+23F    plan-1          CG   0.020
+23F    plan-1          CZ   0.020
+23F    plan-1         HD1   0.020
+23F    plan-1         HD2   0.020
+23F    plan-1         HE1   0.020
+23F    plan-1         HE2   0.020
+23F    plan-1          HZ   0.020
+23F    plan-2          CA   0.020
+23F    plan-2           H   0.020
+23F    plan-2          H2   0.020
+23F    plan-2           N   0.020
+23F    plan-3           C   0.020
+23F    plan-3          CA   0.020
+23F    plan-3          CB   0.020
+23F    plan-3           N   0.020
+23F    plan-4           C   0.020
+23F    plan-4          CA   0.020
+23F    plan-4           O   0.020
+23F    plan-4         OXT   0.020
+23F    plan-5          CA   0.020
+23F    plan-5          CB   0.020
+23F    plan-5          CG   0.020
+23F    plan-5          HB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+23F           SMILES              ACDLabs 10.04                                                    O=C(O)C(/N)=C/c1ccccc1
+23F SMILES_CANONICAL               CACTVS 3.341                                                    N\C(=C/c1ccccc1)C(O)=O
+23F           SMILES               CACTVS 3.341                                                      NC(=Cc1ccccc1)C(O)=O
+23F SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                 c1ccc(cc1)\C=C(\C(=O)O)/N
+23F           SMILES "OpenEye OEToolkits" 1.5.0                                                    c1ccc(cc1)C=C(C(=O)O)N
+23F            InChI                InChI  1.03 InChI=1S/C9H9NO2/c10-8(9(11)12)6-7-4-2-1-3-5-7/h1-6H,10H2,(H,11,12)/b8-6-
+23F         InChIKey                InChI  1.03                                               YWIQQKOKNPPGDO-VURMDHGXSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+23F acedrg               243         "dictionary generator"                  
+23F acedrg_database      11          "data source"                           
+23F rdkit                2017.03.2   "Chemoinformatics tool"
+23F refmac5              5.8.0238    "optimization tool"                     

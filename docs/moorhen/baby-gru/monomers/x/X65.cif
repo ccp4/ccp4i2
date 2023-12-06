@@ -1,0 +1,286 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+X65     X65      5-nitro-2-[(4-sulfamoylbenzyl)amino]benzamide     NON-POLYMER     38     24     .     
+#
+data_comp_X65
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+X65     C1      C       CR16    0       -38.445     -44.402     -10.874     
+X65     C2      C       CR16    0       -39.724     -44.310     -10.372     
+X65     C3      C       CR6     0       -40.727     -45.110     -10.919     
+X65     C4      C       CR16    0       -40.473     -46.001     -11.958     
+X65     C5      C       CR6     0       -39.184     -46.103     -12.477     
+X65     C6      C       CR6     0       -38.148     -45.295     -11.924     
+X65     N7      N       NH1     0       -36.878     -45.364     -12.406     
+X65     N8      N       N       1       -42.080     -45.013     -10.389     
+X65     O9      O       O       0       -42.964     -44.613     -11.130     
+X65     O10     O       OC      -1      -42.270     -45.336     -9.227      
+X65     C11     C       C       0       -38.935     -47.070     -13.596     
+X65     N12     N       NH2     0       -39.639     -46.934     -14.713     
+X65     O13     O       O       0       -38.090     -47.970     -13.469     
+X65     C14     C       CH2     0       -35.694     -45.482     -11.573     
+X65     C15     C       CR6     0       -35.806     -48.562     -8.572      
+X65     C16     C       CR16    0       -35.793     -47.228     -8.194      
+X65     C17     C       CR16    0       -35.758     -46.240     -9.166      
+X65     C18     C       CR6     0       -35.740     -46.564     -10.517     
+X65     C19     C       CR16    0       -35.752     -47.906     -10.877     
+X65     C20     C       CR16    0       -35.787     -48.904     -9.917      
+X65     S21     S       S3      0       -35.852     -49.821     -7.332      
+X65     O22     O       O       0       -35.406     -51.046     -7.928      
+X65     O23     O       O       0       -35.153     -49.322     -6.185      
+X65     N24     N       NT2     0       -37.377     -50.042     -6.892      
+X65     H1      H       H       0       -37.766     -43.867     -10.513     
+X65     H2      H       H       0       -39.913     -43.713     -9.670      
+X65     H4      H       H       0       -41.166     -46.533     -12.314     
+X65     HN7     H       H       0       -36.769     -45.309     -13.269     
+X65     H112    H       H       0       -40.242     -46.282     -14.800     
+X65     H212    H       H       0       -39.513     -47.498     -15.392     
+X65     H114    H       H       0       -35.541     -44.619     -11.133     
+X65     H214    H       H       0       -34.925     -45.651     -12.156     
+X65     H16     H       H       0       -35.808     -46.993     -7.284      
+X65     H17     H       H       0       -35.748     -45.335     -8.902      
+X65     H19     H       H       0       -35.738     -48.143     -11.790     
+X65     H20     H       H       0       -35.798     -49.807     -10.177     
+X65     H124    H       H       0       -37.690     -49.390     -6.410      
+X65     H224    H       H       0       -37.533     -50.843     -6.594      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+X65          C1          C2      DOUBLE       y     1.373  0.0100     1.373  0.0100
+X65          C3          N8      SINGLE       n     1.457  0.0200     1.457  0.0200
+X65          C2          C3      SINGLE       y     1.393  0.0100     1.393  0.0100
+X65          C3          C4      DOUBLE       y     1.390  0.0107     1.390  0.0107
+X65          C4          C5      SINGLE       y     1.389  0.0100     1.389  0.0100
+X65          C5          C6      DOUBLE       y     1.417  0.0107     1.417  0.0107
+X65          C1          C6      SINGLE       y     1.402  0.0118     1.402  0.0118
+X65          C6          N7      SINGLE       n     1.356  0.0115     1.356  0.0115
+X65          N7         C14      SINGLE       n     1.448  0.0127     1.448  0.0127
+X65          N8         O10      SINGLE       n     1.221  0.0162     1.221  0.0162
+X65          N8          O9      DOUBLE       n     1.221  0.0162     1.221  0.0162
+X65          C5         C11      SINGLE       n     1.497  0.0105     1.497  0.0105
+X65         C11         N12      SINGLE       n     1.326  0.0100     1.326  0.0100
+X65         C11         O13      DOUBLE       n     1.241  0.0105     1.241  0.0105
+X65         C14         C18      SINGLE       n     1.511  0.0100     1.511  0.0100
+X65         C15         C16      DOUBLE       y     1.383  0.0100     1.383  0.0100
+X65         C15         S21      SINGLE       n     1.766  0.0100     1.766  0.0100
+X65         C16         C17      SINGLE       y     1.382  0.0100     1.382  0.0100
+X65         C17         C18      DOUBLE       y     1.386  0.0100     1.386  0.0100
+X65         C18         C19      SINGLE       y     1.386  0.0100     1.386  0.0100
+X65         C19         C20      DOUBLE       y     1.382  0.0100     1.382  0.0100
+X65         C15         C20      SINGLE       y     1.383  0.0100     1.383  0.0100
+X65         S21         N24      SINGLE       n     1.603  0.0110     1.603  0.0110
+X65         S21         O23      DOUBLE       n     1.433  0.0100     1.433  0.0100
+X65         S21         O22      DOUBLE       n     1.433  0.0100     1.433  0.0100
+X65          C1          H1      SINGLE       n     1.082  0.0130     0.937  0.0104
+X65          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0200
+X65          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0184
+X65          N7         HN7      SINGLE       n     1.016  0.0100     0.871  0.0200
+X65         N12        H112      SINGLE       n     1.016  0.0100     0.891  0.0200
+X65         N12        H212      SINGLE       n     1.016  0.0100     0.891  0.0200
+X65         C14        H114      SINGLE       n     1.089  0.0100     0.980  0.0114
+X65         C14        H214      SINGLE       n     1.089  0.0100     0.980  0.0114
+X65         C16         H16      SINGLE       n     1.082  0.0130     0.940  0.0163
+X65         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0173
+X65         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0173
+X65         C20         H20      SINGLE       n     1.082  0.0130     0.940  0.0163
+X65         N24        H124      SINGLE       n     1.036  0.0160     0.869  0.0200
+X65         N24        H224      SINGLE       n     1.036  0.0160     0.869  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+X65          C2          C1          C6     120.221    1.50
+X65          C2          C1          H1     119.971    1.50
+X65          C6          C1          H1     119.809    1.50
+X65          C1          C2          C3     119.404    1.50
+X65          C1          C2          H2     119.938    1.50
+X65          C3          C2          H2     120.658    1.50
+X65          N8          C3          C2     118.841    1.50
+X65          N8          C3          C4     118.611    1.50
+X65          C2          C3          C4     122.548    1.50
+X65          C3          C4          C5     119.646    1.50
+X65          C3          C4          H4     120.600    1.50
+X65          C5          C4          H4     119.754    1.50
+X65          C4          C5          C6     118.612    1.50
+X65          C4          C5         C11     119.935    2.89
+X65          C6          C5         C11     121.453    1.50
+X65          C5          C6          C1     119.568    1.50
+X65          C5          C6          N7     120.410    1.50
+X65          C1          C6          N7     120.022    1.76
+X65          C6          N7         C14     123.176    1.76
+X65          C6          N7         HN7     118.085    2.04
+X65         C14          N7         HN7     118.739    1.50
+X65          C3          N8         O10     118.257    1.50
+X65          C3          N8          O9     118.257    1.50
+X65         O10          N8          O9     123.486    1.50
+X65          C5         C11         N12     117.954    1.50
+X65          C5         C11         O13     120.484    1.50
+X65         N12         C11         O13     121.562    1.50
+X65         C11         N12        H112     120.236    2.75
+X65         C11         N12        H212     120.236    2.75
+X65        H112         N12        H212     119.529    2.83
+X65          N7         C14         C18     114.235    2.06
+X65          N7         C14        H114     108.755    1.50
+X65          N7         C14        H214     108.755    1.50
+X65         C18         C14        H114     108.855    1.50
+X65         C18         C14        H214     108.855    1.50
+X65        H114         C14        H214     107.706    1.50
+X65         C16         C15         S21     119.762    1.50
+X65         C16         C15         C20     120.475    1.50
+X65         S21         C15         C20     119.757    1.50
+X65         C15         C16         C17     119.541    1.50
+X65         C15         C16         H16     120.182    1.50
+X65         C17         C16         H16     120.277    1.50
+X65         C16         C17         C18     120.930    1.50
+X65         C16         C17         H17     119.408    1.50
+X65         C18         C17         H17     119.662    1.50
+X65         C14         C18         C17     120.709    1.50
+X65         C14         C18         C19     120.709    1.50
+X65         C17         C18         C19     118.582    1.50
+X65         C18         C19         C20     120.930    1.50
+X65         C18         C19         H19     119.662    1.50
+X65         C20         C19         H19     119.408    1.50
+X65         C19         C20         C15     119.541    1.50
+X65         C19         C20         H20     120.277    1.50
+X65         C15         C20         H20     120.182    1.50
+X65         C15         S21         N24     108.480    1.50
+X65         C15         S21         O23     107.472    1.50
+X65         C15         S21         O22     107.472    1.50
+X65         N24         S21         O23     107.154    1.50
+X65         N24         S21         O22     107.154    1.50
+X65         O23         S21         O22     118.954    1.50
+X65         S21         N24        H124     113.070    3.00
+X65         S21         N24        H224     113.070    3.00
+X65        H124         N24        H224     115.993    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+X65              const_21          C6          C1          C2          C3       0.000    10.0     2
+X65              const_42          C2          C1          C6          N7     180.000    10.0     2
+X65            sp2_sp2_15         O13         C11         N12        H112       0.000     5.0     2
+X65             sp2_sp3_8         C17         C18         C14          N7     -90.000    10.0     6
+X65       const_sp2_sp2_3         S21         C15         C16         C17     180.000     5.0     2
+X65              const_47         S21         C15         C20         C19     180.000    10.0     2
+X65            sp2_sp3_15         C16         C15         S21         N24      30.000    10.0     6
+X65       const_sp2_sp2_5         C15         C16         C17         C18       0.000     5.0     2
+X65              const_10         C16         C17         C18         C14     180.000    10.0     2
+X65              const_15         C14         C18         C19         C20     180.000    10.0     2
+X65              const_17         C18         C19         C20         C15       0.000    10.0     2
+X65              const_26          C1          C2          C3          N8     180.000    10.0     2
+X65             sp3_sp3_2        H124         N24         S21         O23     -60.000    10.0     3
+X65              const_31          N8          C3          C4          C5     180.000    10.0     2
+X65             sp2_sp2_1          C2          C3          N8         O10     180.000     5.0     2
+X65              const_34          C3          C4          C5         C11     180.000    10.0     2
+X65             sp2_sp2_9         N12         C11          C5          C4     180.000     5.0     2
+X65              const_40         C11          C5          C6          N7       0.000    10.0     2
+X65             sp2_sp2_5          C5          C6          N7         C14     180.000     5.0     2
+X65             sp2_sp3_2          C6          N7         C14         C18     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+X65    chir_1    S21    O23    O22    N24    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+X65    plan-1          C1   0.020
+X65    plan-1         C11   0.020
+X65    plan-1          C2   0.020
+X65    plan-1          C3   0.020
+X65    plan-1          C4   0.020
+X65    plan-1          C5   0.020
+X65    plan-1          C6   0.020
+X65    plan-1          H1   0.020
+X65    plan-1          H2   0.020
+X65    plan-1          H4   0.020
+X65    plan-1          N7   0.020
+X65    plan-1          N8   0.020
+X65    plan-2         C14   0.020
+X65    plan-2         C15   0.020
+X65    plan-2         C16   0.020
+X65    plan-2         C17   0.020
+X65    plan-2         C18   0.020
+X65    plan-2         C19   0.020
+X65    plan-2         C20   0.020
+X65    plan-2         H16   0.020
+X65    plan-2         H17   0.020
+X65    plan-2         H19   0.020
+X65    plan-2         H20   0.020
+X65    plan-2         S21   0.020
+X65    plan-3         C14   0.020
+X65    plan-3          C6   0.020
+X65    plan-3         HN7   0.020
+X65    plan-3          N7   0.020
+X65    plan-4          C3   0.020
+X65    plan-4          N8   0.020
+X65    plan-4         O10   0.020
+X65    plan-4          O9   0.020
+X65    plan-5         C11   0.020
+X65    plan-5          C5   0.020
+X65    plan-5         N12   0.020
+X65    plan-5         O13   0.020
+X65    plan-6         C11   0.020
+X65    plan-6        H112   0.020
+X65    plan-6        H212   0.020
+X65    plan-6         N12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+X65           SMILES              ACDLabs 12.01                                                                             O=S(=O)(N)c1ccc(cc1)CNc2ccc([N+]([O-])=O)cc2C(=O)N
+X65 SMILES_CANONICAL               CACTVS 3.370                                                                           NC(=O)c1cc(ccc1NCc2ccc(cc2)[S](N)(=O)=O)[N+]([O-])=O
+X65           SMILES               CACTVS 3.370                                                                           NC(=O)c1cc(ccc1NCc2ccc(cc2)[S](N)(=O)=O)[N+]([O-])=O
+X65 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                             c1cc(ccc1CNc2ccc(cc2C(=O)N)[N+](=O)[O-])S(=O)(=O)N
+X65           SMILES "OpenEye OEToolkits" 1.7.0                                                                             c1cc(ccc1CNc2ccc(cc2C(=O)N)[N+](=O)[O-])S(=O)(=O)N
+X65            InChI                InChI  1.03 InChI=1S/C14H14N4O5S/c15-14(19)12-7-10(18(20)21)3-6-13(12)17-8-9-1-4-11(5-2-9)24(16,22)23/h1-7,17H,8H2,(H2,15,19)(H2,16,22,23)
+X65         InChIKey                InChI  1.03                                                                                                    CWGIVRBYIAXEMP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+X65 acedrg               243         "dictionary generator"                  
+X65 acedrg_database      11          "data source"                           
+X65 rdkit                2017.03.2   "Chemoinformatics tool"
+X65 refmac5              5.8.0238    "optimization tool"                     

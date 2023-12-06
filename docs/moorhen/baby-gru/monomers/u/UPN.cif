@@ -1,0 +1,543 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+UPN     UPN      "2-{[(2R,3R,4R,5R,6R)-3-(acetylamino)-2-{[(S)-{[(R)-{[(2R,3S,4R,5R)-5-(2,4-dioxo-3,4-dihydropyrimidin-1(2H)-yl)-3,4-dihydroxytetrahydrofuran-2-yl]methoxy}(hydroxy)phosphoryl]oxy}(hydroxy)phosphoryl]oxy}-5-hydroxy-6-(hydroxymethyl)tetrahydro-2H-pyran-4-yl]oxy}prop-2-enoic acid"     NON-POLYMER     70     44     .     
+#
+data_comp_UPN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+UPN     C1      C       CH1     0       154.029     69.608      191.781     
+UPN     O1      O       O2      0       153.086     70.646      191.660     
+UPN     C2      C       CH1     0       153.782     68.591      190.657     
+UPN     N2      N       NH1     0       153.701     69.198      189.340     
+UPN     C3      C       CH1     0       152.515     67.780      190.929     
+UPN     O3      O       O2      0       152.469     66.669      189.976     
+UPN     C4      C       CH1     0       152.514     67.200      192.338     
+UPN     O4      O       OH1     0       153.538     66.215      192.475     
+UPN     C5      C       CH1     0       152.724     68.316      193.359     
+UPN     O5      O       O2      0       153.955     69.014      193.071     
+UPN     C6      C       CH2     0       152.829     67.808      194.779     
+UPN     O6      O       OH1     0       152.658     68.862      195.723     
+UPN     C7      C       C       0       154.733     69.382      188.502     
+UPN     O7      O       O       0       155.880     69.052      188.788     
+UPN     C8      C       CH3     0       154.410     70.012      187.180     
+UPN     PA      P       P       0       153.677     72.817      195.074     
+UPN     PB      P       P       0       153.304     72.127      192.243     
+UPN     O1A     O       O       0       154.303     74.072      194.564     
+UPN     O1B     O       OP      -1      154.638     72.636      191.805     
+UPN     C1D     C       CH1     0       149.197     74.695      196.955     
+UPN     C1E     C       C       0       151.653     66.764      187.815     
+UPN     O1E     O       OC      -1      152.799     67.040      187.454     
+UPN     N1U     N       NR6     0       149.656     76.059      197.334     
+UPN     O2A     O       OP      -1      154.420     72.022      196.096     
+UPN     O2B     O       O       0       152.106     72.957      191.918     
+UPN     C2D     C       CH1     0       149.143     74.476      195.445     
+UPN     O2D     O       OH1     0       147.938     75.012      194.941     
+UPN     C2E     C       C       0       151.410     66.552      189.144     
+UPN     O2E     O       O       0       150.727     66.669      187.006     
+UPN     C2U     C       CR6     0       148.732     76.943      197.885     
+UPN     O2U     O       O       0       147.555     76.664      198.085     
+UPN     O3A     O       O2      0       153.341     71.865      193.827     
+UPN     C3D     C       CH1     0       149.225     72.944      195.365     
+UPN     O3D     O       OH1     0       147.948     72.316      195.401     
+UPN     C3E     C       C2      0       150.233     66.222      189.743     
+UPN     N3U     N       NR6     0       149.237     78.184      198.204     
+UPN     C4D     C       CH1     0       150.069     72.558      196.594     
+UPN     O4D     O       O2      0       150.111     73.737      197.440     
+UPN     C4U     C       CR6     0       150.536     78.629      198.032     
+UPN     O4U     O       O       0       150.834     79.775      198.369     
+UPN     C5D     C       CH2     0       151.476     72.093      196.309     
+UPN     O5D     O       O2      0       152.203     73.141      195.620     
+UPN     C5U     C       CR16    0       151.429     77.663      197.455     
+UPN     C6U     C       CR16    0       150.967     76.442      197.133     
+UPN     H1      H       H       0       154.935     69.984      191.661     
+UPN     H2      H       H       0       154.535     67.955      190.663     
+UPN     HN2     H       H       0       152.911     69.464      189.068     
+UPN     H3      H       H       0       151.737     68.360      190.819     
+UPN     H4      H       H       0       151.636     66.773      192.507     
+UPN     HO4     H       H       0       154.295     66.566      192.587     
+UPN     H5      H       H       0       151.968     68.949      193.300     
+UPN     H6      H       H       0       153.707     67.393      194.913     
+UPN     H6A     H       H       0       152.142     67.124      194.931     
+UPN     HO6     H       H       0       153.316     69.395      195.674     
+UPN     H8      H       H       0       153.724     70.689      187.296     
+UPN     H8A     H       H       0       154.089     69.331      186.566     
+UPN     H8B     H       H       0       155.209     70.424      186.814     
+UPN     H1D     H       H       0       148.315     74.512      197.343     
+UPN     H2D     H       H       0       149.915     74.884      195.007     
+UPN     HO2D    H       H       0       147.830     74.759      194.137     
+UPN     H3D     H       H       0       149.706     72.680      194.537     
+UPN     HO3D    H       H       0       147.537     72.544      196.107     
+UPN     H3E     H       H       0       150.211     66.096      190.691     
+UPN     H3EA    H       H       0       149.446     66.119      189.209     
+UPN     HN3U    H       H       0       148.655     78.757      198.559     
+UPN     H4D     H       H       0       149.610     71.842      197.085     
+UPN     H5D     H       H       0       151.448     71.280      195.746     
+UPN     H5DA    H       H       0       151.931     71.870      197.158     
+UPN     H5U     H       H       0       152.325     77.884      197.306     
+UPN     H6U     H       H       0       151.562     75.822      196.756     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+UPN          C1          C2      SINGLE       n     1.532  0.0100     1.532  0.0100
+UPN          C1          O1      SINGLE       n     1.403  0.0143     1.403  0.0143
+UPN          C1          O5      SINGLE       n     1.417  0.0109     1.417  0.0109
+UPN          O1          PB      SINGLE       n     1.604  0.0133     1.604  0.0133
+UPN          C2          N2      SINGLE       n     1.448  0.0100     1.448  0.0100
+UPN          C2          C3      SINGLE       n     1.526  0.0100     1.526  0.0100
+UPN          N2          C7      SINGLE       n     1.334  0.0119     1.334  0.0119
+UPN          C3          O3      SINGLE       n     1.457  0.0134     1.457  0.0134
+UPN          C3          C4      SINGLE       n     1.522  0.0100     1.522  0.0100
+UPN          O3         C2E      SINGLE       n     1.339  0.0174     1.339  0.0174
+UPN          C4          O4      SINGLE       n     1.425  0.0100     1.425  0.0100
+UPN          C4          C5      SINGLE       n     1.525  0.0100     1.525  0.0100
+UPN          C5          O5      SINGLE       n     1.441  0.0100     1.441  0.0100
+UPN          C5          C6      SINGLE       n     1.511  0.0142     1.511  0.0142
+UPN          C6          O6      SINGLE       n     1.426  0.0200     1.426  0.0200
+UPN          C7          C8      SINGLE       n     1.498  0.0100     1.498  0.0100
+UPN          C7          O7      DOUBLE       n     1.227  0.0100     1.227  0.0100
+UPN          PA         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+UPN          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+UPN          PA         O5D      SINGLE       n     1.604  0.0133     1.604  0.0133
+UPN          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+UPN          PB         O2B      DOUBLE       n     1.493  0.0122     1.493  0.0122
+UPN          PB         O1B      SINGLE       n     1.493  0.0122     1.493  0.0122
+UPN          PB         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+UPN         C1D         C2D      SINGLE       n     1.529  0.0100     1.529  0.0100
+UPN         C1D         N1U      SINGLE       n     1.476  0.0133     1.476  0.0133
+UPN         C1D         O4D      SINGLE       n     1.412  0.0100     1.412  0.0100
+UPN         C1E         O2E      DOUBLE       n     1.230  0.0200     1.230  0.0200
+UPN         C1E         O1E      SINGLE       n     1.230  0.0200     1.230  0.0200
+UPN         C1E         C2E      SINGLE       n     1.348  0.0200     1.348  0.0200
+UPN         N1U         C6U      SINGLE       y     1.375  0.0106     1.375  0.0106
+UPN         N1U         C2U      SINGLE       y     1.383  0.0100     1.383  0.0100
+UPN         C2D         O2D      SINGLE       n     1.412  0.0100     1.412  0.0100
+UPN         C2D         C3D      SINGLE       n     1.533  0.0109     1.533  0.0109
+UPN         C2E         C3E      DOUBLE       n     1.348  0.0200     1.348  0.0200
+UPN         C2U         N3U      SINGLE       y     1.372  0.0112     1.372  0.0112
+UPN         C2U         O2U      DOUBLE       n     1.224  0.0111     1.224  0.0111
+UPN         C3D         C4D      SINGLE       n     1.535  0.0100     1.535  0.0100
+UPN         C3D         O3D      SINGLE       n     1.422  0.0100     1.422  0.0100
+UPN         N3U         C4U      SINGLE       y     1.381  0.0100     1.381  0.0100
+UPN         C4D         C5D      SINGLE       n     1.509  0.0100     1.509  0.0100
+UPN         C4D         O4D      SINGLE       n     1.451  0.0111     1.451  0.0111
+UPN         C4U         C5U      SINGLE       y     1.434  0.0100     1.434  0.0100
+UPN         C4U         O4U      DOUBLE       n     1.231  0.0100     1.231  0.0100
+UPN         C5D         O5D      SINGLE       n     1.450  0.0166     1.450  0.0166
+UPN         C5U         C6U      DOUBLE       y     1.342  0.0100     1.342  0.0100
+UPN          C1          H1      SINGLE       n     1.089  0.0100     0.989  0.0153
+UPN          C2          H2      SINGLE       n     1.089  0.0100     0.987  0.0166
+UPN          N2         HN2      SINGLE       n     1.016  0.0100     0.876  0.0200
+UPN          C3          H3      SINGLE       n     1.089  0.0100     0.975  0.0200
+UPN          C4          H4      SINGLE       n     1.089  0.0100     0.991  0.0105
+UPN          O4         HO4      SINGLE       n     0.970  0.0120     0.841  0.0200
+UPN          C5          H5      SINGLE       n     1.089  0.0100     0.988  0.0182
+UPN          C6          H6      SINGLE       n     1.089  0.0100     0.980  0.0184
+UPN          C6         H6A      SINGLE       n     1.089  0.0100     0.980  0.0184
+UPN          O6         HO6      SINGLE       n     0.970  0.0120     0.848  0.0200
+UPN          C8          H8      SINGLE       n     1.089  0.0100     0.971  0.0140
+UPN          C8         H8A      SINGLE       n     1.089  0.0100     0.971  0.0140
+UPN          C8         H8B      SINGLE       n     1.089  0.0100     0.971  0.0140
+UPN         C1D         H1D      SINGLE       n     1.089  0.0100     0.981  0.0118
+UPN         C2D         H2D      SINGLE       n     1.089  0.0100     0.978  0.0200
+UPN         O2D        HO2D      SINGLE       n     0.970  0.0120     0.849  0.0200
+UPN         C3D         H3D      SINGLE       n     1.089  0.0100     0.992  0.0200
+UPN         O3D        HO3D      SINGLE       n     0.970  0.0120     0.849  0.0200
+UPN         C3E         H3E      SINGLE       n     1.082  0.0130     0.957  0.0200
+UPN         C3E        H3EA      SINGLE       n     1.082  0.0130     0.957  0.0200
+UPN         N3U        HN3U      SINGLE       n     1.016  0.0100     0.889  0.0200
+UPN         C4D         H4D      SINGLE       n     1.089  0.0100     0.981  0.0200
+UPN         C5D         H5D      SINGLE       n     1.089  0.0100     0.989  0.0200
+UPN         C5D        H5DA      SINGLE       n     1.089  0.0100     0.989  0.0200
+UPN         C5U         H5U      SINGLE       n     1.082  0.0130     0.935  0.0100
+UPN         C6U         H6U      SINGLE       n     1.082  0.0130     0.938  0.0107
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+UPN          C2          C1          O1     108.367    1.50
+UPN          C2          C1          O5     111.350    3.00
+UPN          C2          C1          H1     108.848    1.50
+UPN          O1          C1          O5     110.394    2.23
+UPN          O1          C1          H1     109.322    1.50
+UPN          O5          C1          H1     109.272    1.61
+UPN          C1          O1          PB     122.306    2.63
+UPN          C1          C2          N2     111.780    3.00
+UPN          C1          C2          C3     110.235    1.50
+UPN          C1          C2          H2     107.511    1.55
+UPN          N2          C2          C3     110.454    2.38
+UPN          N2          C2          H2     107.121    2.62
+UPN          C3          C2          H2     107.258    1.68
+UPN          C2          N2          C7     123.083    2.48
+UPN          C2          N2         HN2     118.300    1.53
+UPN          C7          N2         HN2     118.617    2.66
+UPN          C2          C3          O3     107.885    1.69
+UPN          C2          C3          C4     110.742    1.50
+UPN          C2          C3          H3     108.987    1.50
+UPN          O3          C3          C4     108.122    1.78
+UPN          O3          C3          H3     109.681    1.50
+UPN          C4          C3          H3     109.166    1.50
+UPN          C3          O3         C2E     117.637    1.50
+UPN          C3          C4          O4     110.081    2.02
+UPN          C3          C4          C5     110.072    1.92
+UPN          C3          C4          H4     109.166    1.50
+UPN          O4          C4          C5     109.072    2.07
+UPN          O4          C4          H4     109.194    1.50
+UPN          C5          C4          H4     109.223    1.50
+UPN          C4          O4         HO4     109.564    3.00
+UPN          C4          C5          O5     109.140    1.86
+UPN          C4          C5          C6     112.996    1.59
+UPN          C4          C5          H5     108.960    1.50
+UPN          O5          C5          C6     106.879    1.50
+UPN          O5          C5          H5     109.134    1.50
+UPN          C6          C5          H5     109.269    1.50
+UPN          C1          O5          C5     113.152    1.70
+UPN          C5          C6          O6     111.299    2.09
+UPN          C5          C6          H6     109.363    1.50
+UPN          C5          C6         H6A     109.363    1.50
+UPN          O6          C6          H6     109.265    1.50
+UPN          O6          C6         H6A     109.265    1.50
+UPN          H6          C6         H6A     108.155    1.50
+UPN          C6          O6         HO6     109.472    2.41
+UPN          N2          C7          C8     115.988    1.50
+UPN          N2          C7          O7     121.945    1.50
+UPN          C8          C7          O7     122.067    1.50
+UPN          C7          C8          H8     109.527    1.50
+UPN          C7          C8         H8A     109.527    1.50
+UPN          C7          C8         H8B     109.527    1.50
+UPN          H8          C8         H8A     109.365    1.50
+UPN          H8          C8         H8B     109.365    1.50
+UPN         H8A          C8         H8B     109.365    1.50
+UPN         O3A          PA         O1A     108.816    2.14
+UPN         O3A          PA         O5D     101.065    1.97
+UPN         O3A          PA         O2A     108.816    2.14
+UPN         O1A          PA         O5D     109.410    1.50
+UPN         O1A          PA         O2A     118.411    2.35
+UPN         O5D          PA         O2A     109.410    1.50
+UPN          O1          PB         O2B     108.530    2.45
+UPN          O1          PB         O1B     108.530    2.45
+UPN          O1          PB         O3A     101.077    2.30
+UPN         O2B          PB         O1B     116.964    2.85
+UPN         O2B          PB         O3A     108.570    2.41
+UPN         O1B          PB         O3A     108.570    2.41
+UPN         C2D         C1D         N1U     112.859    1.50
+UPN         C2D         C1D         O4D     106.825    1.50
+UPN         C2D         C1D         H1D     109.776    1.83
+UPN         N1U         C1D         O4D     108.667    1.50
+UPN         N1U         C1D         H1D     109.166    1.50
+UPN         O4D         C1D         H1D     109.327    1.50
+UPN         O2E         C1E         O1E     122.692    1.63
+UPN         O2E         C1E         C2E     118.654    3.00
+UPN         O1E         C1E         C2E     118.654    3.00
+UPN         C1D         N1U         C6U     121.471    1.52
+UPN         C1D         N1U         C2U     117.109    1.50
+UPN         C6U         N1U         C2U     121.419    1.50
+UPN         C1D         C2D         O2D     109.476    3.00
+UPN         C1D         C2D         C3D     101.269    1.50
+UPN         C1D         C2D         H2D     110.760    1.63
+UPN         O2D         C2D         C3D     112.861    2.52
+UPN         O2D         C2D         H2D     111.022    1.77
+UPN         C3D         C2D         H2D     110.799    1.82
+UPN         C2D         O2D        HO2D     109.449    1.85
+UPN          O3         C2E         C1E     116.262    3.00
+UPN          O3         C2E         C3E     116.262    3.00
+UPN         C1E         C2E         C3E     127.477    3.00
+UPN         N1U         C2U         N3U     114.848    1.50
+UPN         N1U         C2U         O2U     122.841    1.50
+UPN         N3U         C2U         O2U     122.311    1.50
+UPN          PA         O3A          PB     132.542    3.00
+UPN         C2D         C3D         C4D     102.071    1.50
+UPN         C2D         C3D         O3D     111.993    3.00
+UPN         C2D         C3D         H3D     110.108    1.66
+UPN         C4D         C3D         O3D     111.281    2.46
+UPN         C4D         C3D         H3D     110.452    2.54
+UPN         O3D         C3D         H3D     110.380    1.67
+UPN         C3D         O3D        HO3D     108.744    3.00
+UPN         C2E         C3E         H3E     119.183    2.19
+UPN         C2E         C3E        H3EA     119.183    2.19
+UPN         H3E         C3E        H3EA     121.634    1.50
+UPN         C2U         N3U         C4U     126.992    1.50
+UPN         C2U         N3U        HN3U     115.772    1.79
+UPN         C4U         N3U        HN3U     117.236    1.73
+UPN         C3D         C4D         C5D     116.008    1.52
+UPN         C3D         C4D         O4D     104.439    1.50
+UPN         C3D         C4D         H4D     109.363    1.86
+UPN         C5D         C4D         O4D     109.615    1.50
+UPN         C5D         C4D         H4D     108.268    1.50
+UPN         O4D         C4D         H4D     108.698    1.50
+UPN         C1D         O4D         C4D     109.578    1.50
+UPN         N3U         C4U         C5U     114.659    1.50
+UPN         N3U         C4U         O4U     119.401    1.50
+UPN         C5U         C4U         O4U     125.940    1.50
+UPN         C4D         C5D         O5D     109.342    1.50
+UPN         C4D         C5D         H5D     109.624    1.50
+UPN         C4D         C5D        H5DA     109.624    1.50
+UPN         O5D         C5D         H5D     109.845    1.50
+UPN         O5D         C5D        H5DA     109.845    1.50
+UPN         H5D         C5D        H5DA     108.472    1.50
+UPN          PA         O5D         C5D     118.553    2.41
+UPN         C4U         C5U         C6U     119.525    1.50
+UPN         C4U         C5U         H5U     120.151    1.50
+UPN         C6U         C5U         H5U     120.325    1.50
+UPN         N1U         C6U         C5U     122.557    1.50
+UPN         N1U         C6U         H6U     118.477    1.50
+UPN         C5U         C6U         H6U     118.966    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+UPN                   nu0          C5          O5          C1          C2     -62.408    10.0     3
+UPN                   nu1          O5          C1          C2          C3      55.793    10.0     3
+UPN                   nu2          C1          C2          C3          C4     -51.653    10.0     3
+UPN                   nu3          C2          C3          C4          C5      52.324    10.0     3
+UPN                   nu4          C3          C4          C5          O5     -58.370    10.0     3
+UPN                   nu5          C4          C5          O5          C1      64.210    10.0     3
+UPN            sp3_sp3_40         O4D         C1D         C2D         C3D      60.000    10.0     3
+UPN            sp3_sp3_41         O4D         C1D         C2D         O2D     180.000    10.0     3
+UPN            sp3_sp3_42         O4D         C1D         C2D         H2D     -60.000    10.0     3
+UPN            sp3_sp3_43         N1U         C1D         C2D         C3D     -60.000    10.0     3
+UPN            sp3_sp3_44         N1U         C1D         C2D         O2D      60.000    10.0     3
+UPN            sp3_sp3_45         N1U         C1D         C2D         H2D     180.000    10.0     3
+UPN            sp3_sp3_46         H1D         C1D         C2D         C3D     180.000    10.0     3
+UPN            sp3_sp3_47         H1D         C1D         C2D         O2D     -60.000    10.0     3
+UPN            sp3_sp3_48         H1D         C1D         C2D         H2D      60.000    10.0     3
+UPN            sp3_sp3_49         C1D         C2D         C3D         C4D     -60.000    10.0     3
+UPN            sp3_sp3_50         C1D         C2D         C3D         O3D      60.000    10.0     3
+UPN            sp3_sp3_51         C1D         C2D         C3D         H3D     180.000    10.0     3
+UPN            sp3_sp3_52         O2D         C2D         C3D         C4D     180.000    10.0     3
+UPN            sp3_sp3_53         O2D         C2D         C3D         O3D     -60.000    10.0     3
+UPN            sp3_sp3_54         O2D         C2D         C3D         H3D      60.000    10.0     3
+UPN            sp3_sp3_55         H2D         C2D         C3D         C4D      60.000    10.0     3
+UPN            sp3_sp3_56         H2D         C2D         C3D         O3D     180.000    10.0     3
+UPN            sp3_sp3_57         H2D         C2D         C3D         H3D     -60.000    10.0     3
+UPN            sp3_sp3_58         C2D         C3D         C4D         O4D      60.000    10.0     3
+UPN            sp3_sp3_59         C2D         C3D         C4D         C5D     180.000    10.0     3
+UPN            sp3_sp3_60         C2D         C3D         C4D         H4D     -60.000    10.0     3
+UPN            sp3_sp3_61         O3D         C3D         C4D         O4D     -60.000    10.0     3
+UPN            sp3_sp3_62         O3D         C3D         C4D         C5D      60.000    10.0     3
+UPN            sp3_sp3_63         O3D         C3D         C4D         H4D     180.000    10.0     3
+UPN            sp3_sp3_64         H3D         C3D         C4D         O4D     180.000    10.0     3
+UPN            sp3_sp3_65         H3D         C3D         C4D         C5D     -60.000    10.0     3
+UPN            sp3_sp3_66         H3D         C3D         C4D         H4D      60.000    10.0     3
+UPN            sp3_sp3_67         C3D         C4D         O4D         C1D     -60.000    10.0     3
+UPN            sp3_sp3_68         C5D         C4D         O4D         C1D     180.000    10.0     3
+UPN            sp3_sp3_69         H4D         C4D         O4D         C1D      60.000    10.0     3
+UPN       const_sp2_sp2_1         C5U         C6U         N1U         C2U       0.000     5.0     2
+UPN       const_sp2_sp2_2         C5U         C6U         N1U         C1D     180.000     5.0     2
+UPN       const_sp2_sp2_3         H6U         C6U         N1U         C2U     180.000     5.0     2
+UPN       const_sp2_sp2_4         H6U         C6U         N1U         C1D       0.000     5.0     2
+UPN       const_sp2_sp2_5         C4U         C5U         C6U         N1U       0.000     5.0     2
+UPN       const_sp2_sp2_6         C4U         C5U         C6U         H6U     180.000     5.0     2
+UPN       const_sp2_sp2_7         H5U         C5U         C6U         N1U     180.000     5.0     2
+UPN       const_sp2_sp2_8         H5U         C5U         C6U         H6U       0.000     5.0     2
+UPN       const_sp2_sp2_9         N3U         C4U         C5U         C6U       0.000     5.0     2
+UPN              const_10         N3U         C4U         C5U         H5U     180.000    10.0     2
+UPN              const_11         O4U         C4U         C5U         C6U     180.000    10.0     2
+UPN              const_12         O4U         C4U         C5U         H5U       0.000    10.0     2
+UPN              const_13         C5U         C4U         N3U         C2U       0.000    10.0     2
+UPN              const_14         C5U         C4U         N3U        HN3U     180.000    10.0     2
+UPN              const_15         O4U         C4U         N3U         C2U     180.000    10.0     2
+UPN              const_16         O4U         C4U         N3U        HN3U       0.000    10.0     2
+UPN              const_17         N1U         C2U         N3U         C4U       0.000    10.0     2
+UPN              const_18         N1U         C2U         N3U        HN3U     180.000    10.0     2
+UPN              const_19         O2U         C2U         N3U         C4U     180.000    10.0     2
+UPN              const_20         O2U         C2U         N3U        HN3U       0.000    10.0     2
+UPN            sp3_sp3_70          C2          C1          O1          PB     180.000    10.0     3
+UPN            sp3_sp3_71          O5          C1          O1          PB      60.000    10.0     3
+UPN            sp3_sp3_72          H1          C1          O1          PB     -60.000    10.0     3
+UPN            sp3_sp3_76          C1          O1          PB         O3A     180.000    10.0     3
+UPN            sp3_sp3_77          C1          O1          PB         O1B     -60.000    10.0     3
+UPN            sp3_sp3_78          C1          O1          PB         O2B      60.000    10.0     3
+UPN             sp2_sp3_1          C7          N2          C2          C1       0.000    10.0     6
+UPN             sp2_sp3_2          C7          N2          C2          C3     120.000    10.0     6
+UPN             sp2_sp3_3          C7          N2          C2          H2    -120.000    10.0     6
+UPN             sp2_sp3_4         HN2          N2          C2          C1     180.000    10.0     6
+UPN             sp2_sp3_5         HN2          N2          C2          C3     -60.000    10.0     6
+UPN             sp2_sp3_6         HN2          N2          C2          H2      60.000    10.0     6
+UPN             sp2_sp2_1          C8          C7          N2          C2     180.000     5.0     2
+UPN             sp2_sp2_2          C8          C7          N2         HN2       0.000     5.0     2
+UPN             sp2_sp2_3          O7          C7          N2          C2       0.000     5.0     2
+UPN             sp2_sp2_4          O7          C7          N2         HN2     180.000     5.0     2
+UPN            sp3_sp3_79          C2          C3          O3         C2E     180.000    10.0     3
+UPN            sp3_sp3_80          C4          C3          O3         C2E     -60.000    10.0     3
+UPN            sp3_sp3_81          H3          C3          O3         C2E      60.000    10.0     3
+UPN             sp2_sp2_5         C1E         C2E          O3          C3     180.000     5.0     2
+UPN             sp2_sp2_6         C3E         C2E          O3          C3       0.000     5.0     2
+UPN            sp3_sp3_82          C3          C4          O4         HO4     180.000    10.0     3
+UPN            sp3_sp3_83          C5          C4          O4         HO4      60.000    10.0     3
+UPN            sp3_sp3_84          H4          C4          O4         HO4     -60.000    10.0     3
+UPN            sp3_sp3_85          C4          C5          C6          O6     180.000    10.0     3
+UPN            sp3_sp3_86          C4          C5          C6          H6     -60.000    10.0     3
+UPN            sp3_sp3_87          C4          C5          C6         H6A      60.000    10.0     3
+UPN            sp3_sp3_88          O5          C5          C6          O6      60.000    10.0     3
+UPN            sp3_sp3_89          O5          C5          C6          H6     180.000    10.0     3
+UPN            sp3_sp3_90          O5          C5          C6         H6A     -60.000    10.0     3
+UPN            sp3_sp3_91          H5          C5          C6          O6     -60.000    10.0     3
+UPN            sp3_sp3_92          H5          C5          C6          H6      60.000    10.0     3
+UPN            sp3_sp3_93          H5          C5          C6         H6A     180.000    10.0     3
+UPN            sp3_sp3_94          C5          C6          O6         HO6     180.000    10.0     3
+UPN            sp3_sp3_95          H6          C6          O6         HO6      60.000    10.0     3
+UPN            sp3_sp3_96         H6A          C6          O6         HO6     -60.000    10.0     3
+UPN             sp2_sp3_7          N2          C7          C8          H8       0.000    10.0     6
+UPN             sp2_sp3_8          N2          C7          C8         H8A     120.000    10.0     6
+UPN             sp2_sp3_9          N2          C7          C8         H8B    -120.000    10.0     6
+UPN            sp2_sp3_10          O7          C7          C8          H8     180.000    10.0     6
+UPN            sp2_sp3_11          O7          C7          C8         H8A     -60.000    10.0     6
+UPN            sp2_sp3_12          O7          C7          C8         H8B      60.000    10.0     6
+UPN            sp3_sp3_97          PB         O3A          PA         O2A     180.000    10.0     3
+UPN            sp3_sp3_98          PB         O3A          PA         O5D     -60.000    10.0     3
+UPN            sp3_sp3_99          PB         O3A          PA         O1A      60.000    10.0     3
+UPN           sp3_sp3_100         C5D         O5D          PA         O3A     180.000    10.0     3
+UPN           sp3_sp3_101         C5D         O5D          PA         O2A     -60.000    10.0     3
+UPN           sp3_sp3_102         C5D         O5D          PA         O1A      60.000    10.0     3
+UPN           sp3_sp3_103          PA         O3A          PB         O1B     180.000    10.0     3
+UPN           sp3_sp3_104          PA         O3A          PB          O1     -60.000    10.0     3
+UPN           sp3_sp3_105          PA         O3A          PB         O2B      60.000    10.0     3
+UPN            sp2_sp3_13         C6U         N1U         C1D         C2D     150.000    10.0     6
+UPN            sp2_sp3_14         C6U         N1U         C1D         O4D     -90.000    10.0     6
+UPN            sp2_sp3_15         C6U         N1U         C1D         H1D      30.000    10.0     6
+UPN            sp2_sp3_16         C2U         N1U         C1D         C2D     -30.000    10.0     6
+UPN            sp2_sp3_17         C2U         N1U         C1D         O4D      90.000    10.0     6
+UPN            sp2_sp3_18         C2U         N1U         C1D         H1D    -150.000    10.0     6
+UPN           sp3_sp3_106         C2D         C1D         O4D         C4D     180.000    10.0     3
+UPN           sp3_sp3_107         N1U         C1D         O4D         C4D      60.000    10.0     3
+UPN           sp3_sp3_108         H1D         C1D         O4D         C4D     -60.000    10.0     3
+UPN             sp2_sp2_7         O2E         C1E         C2E          O3     180.000     5.0     2
+UPN             sp2_sp2_8         O2E         C1E         C2E         C3E       0.000     5.0     2
+UPN             sp2_sp2_9         O1E         C1E         C2E          O3       0.000     5.0     2
+UPN            sp2_sp2_10         O1E         C1E         C2E         C3E     180.000     5.0     2
+UPN              const_21         N3U         C2U         N1U         C6U       0.000    10.0     2
+UPN              const_22         N3U         C2U         N1U         C1D     180.000    10.0     2
+UPN              const_23         O2U         C2U         N1U         C6U     180.000    10.0     2
+UPN              const_24         O2U         C2U         N1U         C1D       0.000    10.0     2
+UPN           sp3_sp3_109         C1D         C2D         O2D        HO2D     180.000    10.0     3
+UPN           sp3_sp3_110         C3D         C2D         O2D        HO2D      60.000    10.0     3
+UPN           sp3_sp3_111         H2D         C2D         O2D        HO2D     -60.000    10.0     3
+UPN            sp2_sp2_11         C1E         C2E         C3E         H3E     180.000     5.0     2
+UPN            sp2_sp2_12         C1E         C2E         C3E        H3EA       0.000     5.0     2
+UPN            sp2_sp2_13          O3         C2E         C3E         H3E       0.000     5.0     2
+UPN            sp2_sp2_14          O3         C2E         C3E        H3EA     180.000     5.0     2
+UPN           sp3_sp3_112         C2D         C3D         O3D        HO3D     180.000    10.0     3
+UPN           sp3_sp3_113         C4D         C3D         O3D        HO3D      60.000    10.0     3
+UPN           sp3_sp3_114         H3D         C3D         O3D        HO3D     -60.000    10.0     3
+UPN           sp3_sp3_115         C3D         C4D         C5D         O5D     180.000    10.0     3
+UPN           sp3_sp3_116         C3D         C4D         C5D         H5D     -60.000    10.0     3
+UPN           sp3_sp3_117         C3D         C4D         C5D        H5DA      60.000    10.0     3
+UPN           sp3_sp3_118         O4D         C4D         C5D         O5D      60.000    10.0     3
+UPN           sp3_sp3_119         O4D         C4D         C5D         H5D     180.000    10.0     3
+UPN           sp3_sp3_120         O4D         C4D         C5D        H5DA     -60.000    10.0     3
+UPN           sp3_sp3_121         H4D         C4D         C5D         O5D     -60.000    10.0     3
+UPN           sp3_sp3_122         H4D         C4D         C5D         H5D      60.000    10.0     3
+UPN           sp3_sp3_123         H4D         C4D         C5D        H5DA     180.000    10.0     3
+UPN           sp3_sp3_124         C4D         C5D         O5D          PA     180.000    10.0     3
+UPN           sp3_sp3_125         H5D         C5D         O5D          PA      60.000    10.0     3
+UPN           sp3_sp3_126        H5DA         C5D         O5D          PA     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+UPN    chir_1    C1    O1    O5    C2    negative
+UPN    chir_2    C2    N2    C1    C3    negative
+UPN    chir_3    C3    O3    C4    C2    negative
+UPN    chir_4    C4    O4    C5    C3    negative
+UPN    chir_5    C5    O5    C4    C6    negative
+UPN    chir_6    PA    O3A    O5D    O2A    both
+UPN    chir_7    PB    O3A    O1    O1B    both
+UPN    chir_8    C1D    O4D    N1U    C2D    negative
+UPN    chir_9    C2D    O2D    C1D    C3D    negative
+UPN    chir_10    C3D    O3D    C4D    C2D    positive
+UPN    chir_11    C4D    O4D    C3D    C5D    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+UPN    plan-1         C1D   0.020
+UPN    plan-1         C2U   0.020
+UPN    plan-1         C4U   0.020
+UPN    plan-1         C5U   0.020
+UPN    plan-1         C6U   0.020
+UPN    plan-1         H5U   0.020
+UPN    plan-1         H6U   0.020
+UPN    plan-1        HN3U   0.020
+UPN    plan-1         N1U   0.020
+UPN    plan-1         N3U   0.020
+UPN    plan-1         O2U   0.020
+UPN    plan-1         O4U   0.020
+UPN    plan-2          C2   0.020
+UPN    plan-2          C7   0.020
+UPN    plan-2         HN2   0.020
+UPN    plan-2          N2   0.020
+UPN    plan-3          C7   0.020
+UPN    plan-3          C8   0.020
+UPN    plan-3          N2   0.020
+UPN    plan-3          O7   0.020
+UPN    plan-4         C1E   0.020
+UPN    plan-4         C2E   0.020
+UPN    plan-4         O1E   0.020
+UPN    plan-4         O2E   0.020
+UPN    plan-5         C1E   0.020
+UPN    plan-5         C2E   0.020
+UPN    plan-5         C3E   0.020
+UPN    plan-5          O3   0.020
+UPN    plan-6         C2E   0.020
+UPN    plan-6         C3E   0.020
+UPN    plan-6         H3E   0.020
+UPN    plan-6        H3EA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+UPN           SMILES              ACDLabs 12.01                                                                                                                                                                                                         O=C1C=CN(C(=O)N1)C2OC(C(O)C2O)COP(=O)(OP(=O)(OC3OC(C(O)C(O\C(=C)C(=O)O)C3NC(=O)C)CO)O)O
+UPN            InChI                InChI  1.03 InChI=1S/C20H29N3O19P2/c1-7(18(30)31)38-16-12(21-8(2)25)19(40-9(5-24)14(16)28)41-44(35,36)42-43(33,34)37-6-10-13(27)15(29)17(39-10)23-4-3-11(26)22-20(23)32/h3-4,9-10,12-17,19,24,27-29H,1,5-6H2,2H3,(H,21,25)(H,30,31)(H,33,34)(H,35,36)(H,22,26,32)/t9-,10-,12-,13-,14+,15-,16-,17-,19-/m1/s1
+UPN         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                     BEGZZYPUNCJHKP-ZDFMKFTCSA-N
+UPN SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                  CC(=O)N[C@H]1[C@H](O[C@H](CO)[C@H](O)[C@@H]1OC(=C)C(O)=O)O[P](O)(=O)O[P](O)(=O)OC[C@H]2O[C@H]([C@H](O)[C@@H]2O)N3C=CC(=O)NC3=O
+UPN           SMILES               CACTVS 3.370                                                                                                                                                                             CC(=O)N[CH]1[CH](O[CH](CO)[CH](O)[CH]1OC(=C)C(O)=O)O[P](O)(=O)O[P](O)(=O)OC[CH]2O[CH]([CH](O)[CH]2O)N3C=CC(=O)NC3=O
+UPN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                                                            CC(=O)N[C@@H]1[C@H]([C@H]([C@H](O[C@@H]1O[P@](=O)(O)O[P@](=O)(O)OC[C@@H]2[C@H]([C@H]([C@@H](O2)N3C=CC(=O)NC3=O)O)O)CO)O)OC(=C)C(=O)O
+UPN           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                                                                                                          CC(=O)NC1C(C(C(OC1OP(=O)(O)OP(=O)(O)OCC2C(C(C(O2)N3C=CC(=O)NC3=O)O)O)CO)O)OC(=C)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+UPN acedrg               243         "dictionary generator"                  
+UPN acedrg_database      11          "data source"                           
+UPN rdkit                2017.03.2   "Chemoinformatics tool"
+UPN refmac5              5.8.0238    "optimization tool"                     

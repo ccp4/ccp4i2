@@ -1,0 +1,539 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GTW     GTW      ~{N}-[(2~{S})-1-[[(2~{S})-1-[[(2~{S})-1-[4-(aminomethyl)phenyl]-4-methylsulfonyl-butan-2-yl]amino]-3-cyclohexyl-1-oxidanylidene-propan-2-yl]amino]-4-methyl-1-oxidanylidene-pentan-2-yl]-2-methyl-1,3-thiazole-5-carboxamide     NON-POLYMER     93     44     .     
+#
+data_comp_GTW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GTW     C4      C       CH3     0       55.950      -131.773    33.555      
+GTW     C6      C       CR5     0       59.057      -134.048    34.207      
+GTW     C7      C       C       0       60.368      -134.481    34.712      
+GTW     C10     C       C       0       62.148      -133.987    37.243      
+GTW     C13     C       C       0       62.692      -136.162    39.817      
+GTW     C15     C       CH1     0       63.997      -135.928    41.918      
+GTW     C17     C       CR6     0       64.216      -133.393    41.833      
+GTW     C20     C       CR6     0       64.154      -131.103    40.195      
+GTW     C21     C       CH2     0       64.121      -129.873    39.319      
+GTW     C24     C       CR16    0       65.307      -133.045    41.047      
+GTW     C26     C       CH2     0       62.677      -137.268    43.693      
+GTW     C28     C       CH3     0       62.671      -140.053    43.740      
+GTW     C3      C       CR5     0       57.008      -132.798    33.678      
+GTW     S5      S       S2      0       58.430      -132.529    34.511      
+GTW     N2      N       NRD5    0       56.996      -134.044    33.168      
+GTW     C1      C       CR15    0       58.136      -134.772    33.454      
+GTW     O44     O       O       0       60.594      -135.681    34.876      
+GTW     N8      N       NH1     0       61.257      -133.526    35.031      
+GTW     C9      C       CH1     0       62.488      -133.815    35.757      
+GTW     C40     C       CH2     0       63.533      -132.717    35.532      
+GTW     C41     C       CH1     0       64.858      -132.856    36.290      
+GTW     C42     C       CH3     0       65.526      -134.197    36.005      
+GTW     C43     C       CH3     0       65.805      -131.707    35.958      
+GTW     O39     O       O       0       62.082      -132.998    37.973      
+GTW     N11     N       NH1     0       61.923      -135.239    37.673      
+GTW     C12     C       CH1     0       61.517      -135.574    39.032      
+GTW     C32     C       CH2     0       60.326      -136.537    39.027      
+GTW     C33     C       CH1     0       59.123      -136.095    38.189      
+GTW     C38     C       CH2     0       58.080      -137.201    38.066      
+GTW     C37     C       CH2     0       56.891      -136.776    37.205      
+GTW     C36     C       CH2     0       56.250      -135.504    37.732      
+GTW     C35     C       CH2     0       57.271      -134.390    37.880      
+GTW     C34     C       CH2     0       58.464      -134.829    38.729      
+GTW     O31     O       O       0       63.465      -136.949    39.273      
+GTW     N14     N       NH1     0       62.795      -135.794    41.103      
+GTW     C25     C       CH2     0       63.925      -137.160    42.826      
+GTW     S27     S       S3      0       62.750      -138.660    44.801      
+GTW     O30     O       O       0       64.020      -138.654    45.455      
+GTW     O29     O       O       0       61.578      -138.641    45.617      
+GTW     C16     C       CH2     0       64.243      -134.631    42.702      
+GTW     C23     C       CR16    0       65.279      -131.915    40.242      
+GTW     N22     N       NT2     0       63.437      -130.115    38.045      
+GTW     C19     C       CR16    0       63.058      -131.451    40.975      
+GTW     C18     C       CR16    0       63.089      -132.581    41.779      
+GTW     H1      H       H       0       56.106      -131.064    34.197      
+GTW     H2      H       H       0       55.086      -132.176    33.727      
+GTW     H3      H       H       0       55.959      -131.402    32.660      
+GTW     H4      H       H       0       64.770      -136.050    41.315      
+GTW     H5      H       H       0       65.035      -129.568    39.111      
+GTW     H6      H       H       0       63.653      -129.134    39.771      
+GTW     H7      H       H       0       66.080      -133.584    41.064      
+GTW     H8      H       H       0       61.894      -137.357    43.120      
+GTW     H9      H       H       0       62.574      -136.453    44.215      
+GTW     H10     H       H       0       63.479      -140.096    43.206      
+GTW     H11     H       H       0       61.900      -139.968    43.157      
+GTW     H12     H       H       0       62.589      -140.858    44.274      
+GTW     H13     H       H       0       58.272      -135.665    33.161      
+GTW     H14     H       H       0       61.098      -132.699    34.799      
+GTW     H15     H       H       0       62.861      -134.667    35.420      
+GTW     H16     H       H       0       63.130      -131.859    35.775      
+GTW     H17     H       H       0       63.733      -132.680    34.575      
+GTW     H18     H       H       0       64.667      -132.812    37.259      
+GTW     H19     H       H       0       66.448      -134.173    36.315      
+GTW     H20     H       H       0       65.510      -134.370    35.048      
+GTW     H21     H       H       0       65.047      -134.904    36.471      
+GTW     H22     H       H       0       65.296      -130.939    35.644      
+GTW     H23     H       H       0       66.429      -131.985    35.264      
+GTW     H24     H       H       0       66.303      -131.458    36.756      
+GTW     H25     H       H       0       62.022      -135.899    37.109      
+GTW     H26     H       H       0       61.231      -134.746    39.491      
+GTW     H27     H       H       0       60.026      -136.666    39.952      
+GTW     H28     H       H       0       60.631      -137.408    38.694      
+GTW     H29     H       H       0       59.450      -135.898    37.284      
+GTW     H30     H       H       0       58.496      -137.993    37.672      
+GTW     H31     H       H       0       57.761      -137.442    38.959      
+GTW     H32     H       H       0       56.223      -137.496    37.194      
+GTW     H33     H       H       0       57.193      -136.629    36.282      
+GTW     H34     H       H       0       55.837      -135.684    38.604      
+GTW     H35     H       H       0       55.543      -135.217    37.116      
+GTW     H36     H       H       0       56.844      -133.611    38.298      
+GTW     H37     H       H       0       57.588      -134.120    36.991      
+GTW     H38     H       H       0       59.120      -134.104    38.751      
+GTW     H39     H       H       0       58.164      -134.988    39.646      
+GTW     H40     H       H       0       62.096      -135.460    41.505      
+GTW     H41     H       H       0       64.716      -137.153    43.405      
+GTW     H42     H       H       0       63.987      -137.958    42.258      
+GTW     H43     H       H       0       65.116      -134.689    43.145      
+GTW     H44     H       H       0       63.559      -134.543    43.398      
+GTW     H45     H       H       0       66.033      -131.697    39.721      
+GTW     H46     H       H       0       63.469      -129.268    37.583      
+GTW     H47     H       H       0       62.515      -130.272    38.286      
+GTW     H49     H       H       0       62.285      -130.913    40.958      
+GTW     H50     H       H       0       62.336      -132.800    42.300      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GTW          N2          C1      SINGLE       y     1.372  0.0107     1.372  0.0107
+GTW          C3          N2      DOUBLE       y     1.332  0.0200     1.332  0.0200
+GTW          C6          C1      DOUBLE       y     1.379  0.0196     1.379  0.0196
+GTW          C4          C3      SINGLE       n     1.478  0.0100     1.478  0.0100
+GTW          C3          S5      SINGLE       y     1.695  0.0200     1.695  0.0200
+GTW         C41         C42      SINGLE       n     1.521  0.0151     1.521  0.0151
+GTW          C6          S5      SINGLE       y     1.695  0.0200     1.695  0.0200
+GTW          C6          C7      SINGLE       n     1.467  0.0127     1.467  0.0127
+GTW          C7         O44      DOUBLE       n     1.231  0.0100     1.231  0.0100
+GTW          C7          N8      SINGLE       n     1.336  0.0103     1.336  0.0103
+GTW          N8          C9      SINGLE       n     1.454  0.0100     1.454  0.0100
+GTW         C40         C41      SINGLE       n     1.528  0.0105     1.528  0.0105
+GTW         C41         C43      SINGLE       n     1.521  0.0151     1.521  0.0151
+GTW          C9         C40      SINGLE       n     1.528  0.0100     1.528  0.0100
+GTW         C10          C9      SINGLE       n     1.530  0.0100     1.530  0.0100
+GTW         C10         O39      DOUBLE       n     1.229  0.0102     1.229  0.0102
+GTW         C10         N11      SINGLE       n     1.337  0.0100     1.337  0.0100
+GTW         N11         C12      SINGLE       n     1.453  0.0100     1.453  0.0100
+GTW         C36         C35      SINGLE       n     1.517  0.0112     1.517  0.0112
+GTW         C35         C34      SINGLE       n     1.527  0.0100     1.527  0.0100
+GTW         C37         C36      SINGLE       n     1.516  0.0136     1.516  0.0136
+GTW         C38         C37      SINGLE       n     1.527  0.0100     1.527  0.0100
+GTW         C33         C34      SINGLE       n     1.524  0.0100     1.524  0.0100
+GTW         C33         C38      SINGLE       n     1.524  0.0100     1.524  0.0100
+GTW         C32         C33      SINGLE       n     1.529  0.0100     1.529  0.0100
+GTW         C12         C32      SINGLE       n     1.530  0.0104     1.530  0.0104
+GTW         C13         C12      SINGLE       n     1.529  0.0100     1.529  0.0100
+GTW         C13         O31      DOUBLE       n     1.229  0.0102     1.229  0.0102
+GTW         C13         N14      SINGLE       n     1.337  0.0102     1.337  0.0102
+GTW         C21         N22      SINGLE       n     1.467  0.0144     1.467  0.0144
+GTW         C20         C21      SINGLE       n     1.510  0.0100     1.510  0.0100
+GTW         C20         C23      DOUBLE       y     1.386  0.0100     1.386  0.0100
+GTW         C24         C23      SINGLE       y     1.384  0.0100     1.384  0.0100
+GTW         C20         C19      SINGLE       y     1.386  0.0100     1.386  0.0100
+GTW         C17         C24      DOUBLE       y     1.385  0.0110     1.385  0.0110
+GTW         C15         N14      SINGLE       n     1.455  0.0100     1.455  0.0100
+GTW         C19         C18      DOUBLE       y     1.384  0.0100     1.384  0.0100
+GTW         C15         C16      SINGLE       n     1.533  0.0100     1.533  0.0100
+GTW         C15         C25      SINGLE       n     1.530  0.0100     1.530  0.0100
+GTW         C17         C18      SINGLE       y     1.385  0.0110     1.385  0.0110
+GTW         C17         C16      SINGLE       n     1.512  0.0103     1.512  0.0103
+GTW         C28         S27      SINGLE       n     1.752  0.0100     1.752  0.0100
+GTW         S27         O29      DOUBLE       n     1.429  0.0100     1.429  0.0100
+GTW         C26         C25      SINGLE       n     1.517  0.0200     1.517  0.0200
+GTW         C26         S27      SINGLE       n     1.779  0.0100     1.779  0.0100
+GTW         S27         O30      DOUBLE       n     1.429  0.0100     1.429  0.0100
+GTW          C4          H1      SINGLE       n     1.089  0.0100     0.969  0.0144
+GTW          C4          H2      SINGLE       n     1.089  0.0100     0.969  0.0144
+GTW          C4          H3      SINGLE       n     1.089  0.0100     0.969  0.0144
+GTW         C15          H4      SINGLE       n     1.089  0.0100     0.988  0.0127
+GTW         C21          H5      SINGLE       n     1.089  0.0100     0.985  0.0198
+GTW         C21          H6      SINGLE       n     1.089  0.0100     0.985  0.0198
+GTW         C24          H7      SINGLE       n     1.082  0.0130     0.942  0.0167
+GTW         C26          H8      SINGLE       n     1.089  0.0100     0.975  0.0200
+GTW         C26          H9      SINGLE       n     1.089  0.0100     0.975  0.0200
+GTW         C28         H10      SINGLE       n     1.089  0.0100     0.970  0.0152
+GTW         C28         H11      SINGLE       n     1.089  0.0100     0.970  0.0152
+GTW         C28         H12      SINGLE       n     1.089  0.0100     0.970  0.0152
+GTW          C1         H13      SINGLE       n     1.082  0.0130     0.949  0.0200
+GTW          N8         H14      SINGLE       n     1.016  0.0100     0.873  0.0101
+GTW          C9         H15      SINGLE       n     1.089  0.0100     0.991  0.0200
+GTW         C40         H16      SINGLE       n     1.089  0.0100     0.978  0.0119
+GTW         C40         H17      SINGLE       n     1.089  0.0100     0.978  0.0119
+GTW         C41         H18      SINGLE       n     1.089  0.0100     0.989  0.0162
+GTW         C42         H19      SINGLE       n     1.089  0.0100     0.973  0.0146
+GTW         C42         H20      SINGLE       n     1.089  0.0100     0.973  0.0146
+GTW         C42         H21      SINGLE       n     1.089  0.0100     0.973  0.0146
+GTW         C43         H22      SINGLE       n     1.089  0.0100     0.973  0.0146
+GTW         C43         H23      SINGLE       n     1.089  0.0100     0.973  0.0146
+GTW         C43         H24      SINGLE       n     1.089  0.0100     0.973  0.0146
+GTW         N11         H25      SINGLE       n     1.016  0.0100     0.873  0.0200
+GTW         C12         H26      SINGLE       n     1.089  0.0100     0.991  0.0200
+GTW         C32         H27      SINGLE       n     1.089  0.0100     0.981  0.0200
+GTW         C32         H28      SINGLE       n     1.089  0.0100     0.981  0.0200
+GTW         C33         H29      SINGLE       n     1.089  0.0100     0.983  0.0100
+GTW         C38         H30      SINGLE       n     1.089  0.0100     0.978  0.0143
+GTW         C38         H31      SINGLE       n     1.089  0.0100     0.978  0.0143
+GTW         C37         H32      SINGLE       n     1.089  0.0100     0.982  0.0142
+GTW         C37         H33      SINGLE       n     1.089  0.0100     0.982  0.0142
+GTW         C36         H34      SINGLE       n     1.089  0.0100     0.981  0.0138
+GTW         C36         H35      SINGLE       n     1.089  0.0100     0.981  0.0138
+GTW         C35         H36      SINGLE       n     1.089  0.0100     0.982  0.0142
+GTW         C35         H37      SINGLE       n     1.089  0.0100     0.982  0.0142
+GTW         C34         H38      SINGLE       n     1.089  0.0100     0.978  0.0143
+GTW         C34         H39      SINGLE       n     1.089  0.0100     0.978  0.0143
+GTW         N14         H40      SINGLE       n     1.016  0.0100     0.872  0.0200
+GTW         C25         H41      SINGLE       n     1.089  0.0100     0.981  0.0160
+GTW         C25         H42      SINGLE       n     1.089  0.0100     0.981  0.0160
+GTW         C16         H43      SINGLE       n     1.089  0.0100     0.981  0.0150
+GTW         C16         H44      SINGLE       n     1.089  0.0100     0.981  0.0150
+GTW         C23         H45      SINGLE       n     1.082  0.0130     0.942  0.0167
+GTW         N22         H46      SINGLE       n     1.036  0.0160     0.965  0.0200
+GTW         N22         H47      SINGLE       n     1.036  0.0160     0.965  0.0200
+GTW         C19         H49      SINGLE       n     1.082  0.0130     0.942  0.0167
+GTW         C18         H50      SINGLE       n     1.082  0.0130     0.942  0.0167
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GTW          C3          C4          H1     109.610    1.50
+GTW          C3          C4          H2     109.610    1.50
+GTW          C3          C4          H3     109.610    1.50
+GTW          H1          C4          H2     109.334    1.50
+GTW          H1          C4          H3     109.334    1.50
+GTW          H2          C4          H3     109.334    1.50
+GTW          C1          C6          S5     108.004    3.00
+GTW          C1          C6          C7     130.433    3.00
+GTW          S5          C6          C7     121.563    3.00
+GTW          C6          C7         O44     121.044    1.72
+GTW          C6          C7          N8     116.796    1.69
+GTW         O44          C7          N8     122.159    1.50
+GTW          C9         C10         O39     120.345    1.50
+GTW          C9         C10         N11     116.639    1.50
+GTW         O39         C10         N11     123.016    1.50
+GTW         C12         C13         O31     120.430    1.50
+GTW         C12         C13         N14     116.417    1.50
+GTW         O31         C13         N14     123.154    1.50
+GTW         N14         C15         C16     110.274    1.50
+GTW         N14         C15         C25     110.353    1.50
+GTW         N14         C15          H4     108.194    1.50
+GTW         C16         C15         C25     111.939    1.50
+GTW         C16         C15          H4     107.624    1.50
+GTW         C25         C15          H4     107.815    1.50
+GTW         C24         C17         C18     117.848    1.50
+GTW         C24         C17         C16     121.076    1.50
+GTW         C18         C17         C16     121.076    1.50
+GTW         C21         C20         C23     120.790    2.59
+GTW         C21         C20         C19     120.790    2.59
+GTW         C23         C20         C19     118.421    1.50
+GTW         N22         C21         C20     112.424    2.20
+GTW         N22         C21          H5     107.542    2.93
+GTW         N22         C21          H6     107.542    2.93
+GTW         C20         C21          H5     110.855    3.00
+GTW         C20         C21          H6     110.855    3.00
+GTW          H5         C21          H6     107.838    1.50
+GTW         C23         C24         C17     121.032    1.50
+GTW         C23         C24          H7     119.559    1.50
+GTW         C17         C24          H7     119.409    1.50
+GTW         C25         C26         S27     111.256    2.92
+GTW         C25         C26          H8     109.242    1.50
+GTW         C25         C26          H9     109.242    1.50
+GTW         S27         C26          H8     109.377    1.50
+GTW         S27         C26          H9     109.377    1.50
+GTW          H8         C26          H9     108.043    1.50
+GTW         S27         C28         H10     109.505    1.50
+GTW         S27         C28         H11     109.505    1.50
+GTW         S27         C28         H12     109.505    1.50
+GTW         H10         C28         H11     109.823    1.50
+GTW         H10         C28         H12     109.823    1.50
+GTW         H11         C28         H12     109.823    1.50
+GTW          N2          C3          C4     128.460    3.00
+GTW          N2          C3          S5     108.004    3.00
+GTW          C4          C3          S5     123.536    3.00
+GTW          C3          S5          C6     108.004    3.00
+GTW          C1          N2          C3     107.111    1.65
+GTW          N2          C1          C6     108.878    1.50
+GTW          N2          C1         H13     125.175    1.50
+GTW          C6          C1         H13     125.947    1.50
+GTW          C7          N8          C9     121.039    1.61
+GTW          C7          N8         H14     119.739    1.50
+GTW          C9          N8         H14     119.222    1.91
+GTW          N8          C9         C40     110.984    1.61
+GTW          N8          C9         C10     110.342    2.62
+GTW          N8          C9         H15     108.209    1.50
+GTW         C40          C9         C10     110.666    1.50
+GTW         C40          C9         H15     108.275    1.50
+GTW         C10          C9         H15     107.852    1.50
+GTW         C41         C40          C9     115.210    1.50
+GTW         C41         C40         H16     108.478    1.50
+GTW         C41         C40         H17     108.478    1.50
+GTW          C9         C40         H16     108.470    1.50
+GTW          C9         C40         H17     108.470    1.50
+GTW         H16         C40         H17     107.542    1.50
+GTW         C42         C41         C40     110.880    1.50
+GTW         C42         C41         C43     110.507    1.50
+GTW         C42         C41         H18     108.052    1.50
+GTW         C40         C41         C43     110.880    1.50
+GTW         C40         C41         H18     108.053    1.50
+GTW         C43         C41         H18     108.052    1.50
+GTW         C41         C42         H19     109.488    1.50
+GTW         C41         C42         H20     109.488    1.50
+GTW         C41         C42         H21     109.488    1.50
+GTW         H19         C42         H20     109.411    1.50
+GTW         H19         C42         H21     109.411    1.50
+GTW         H20         C42         H21     109.411    1.50
+GTW         C41         C43         H22     109.488    1.50
+GTW         C41         C43         H23     109.488    1.50
+GTW         C41         C43         H24     109.488    1.50
+GTW         H22         C43         H23     109.411    1.50
+GTW         H22         C43         H24     109.411    1.50
+GTW         H23         C43         H24     109.411    1.50
+GTW         C10         N11         C12     121.950    1.76
+GTW         C10         N11         H25     119.031    1.83
+GTW         C12         N11         H25     119.019    1.92
+GTW         N11         C12         C32     111.088    1.73
+GTW         N11         C12         C13     111.106    2.53
+GTW         N11         C12         H26     108.161    1.50
+GTW         C32         C12         C13     110.376    1.58
+GTW         C32         C12         H26     108.224    1.50
+GTW         C13         C12         H26     108.061    1.50
+GTW         C33         C32         C12     113.198    2.74
+GTW         C33         C32         H27     108.361    1.50
+GTW         C33         C32         H28     108.361    1.50
+GTW         C12         C32         H27     108.621    1.50
+GTW         C12         C32         H28     108.621    1.50
+GTW         H27         C32         H28     107.474    1.50
+GTW         C34         C33         C38     109.635    1.50
+GTW         C34         C33         C32     111.907    1.50
+GTW         C34         C33         H29     107.897    1.50
+GTW         C38         C33         C32     111.907    1.50
+GTW         C38         C33         H29     107.897    1.50
+GTW         C32         C33         H29     107.292    1.50
+GTW         C37         C38         C33     112.229    1.50
+GTW         C37         C38         H30     109.267    1.50
+GTW         C37         C38         H31     109.267    1.50
+GTW         C33         C38         H30     109.293    1.50
+GTW         C33         C38         H31     109.293    1.50
+GTW         H30         C38         H31     107.919    1.50
+GTW         C36         C37         C38     111.360    1.50
+GTW         C36         C37         H32     109.386    1.50
+GTW         C36         C37         H33     109.386    1.50
+GTW         C38         C37         H32     109.388    1.50
+GTW         C38         C37         H33     109.388    1.50
+GTW         H32         C37         H33     108.036    1.50
+GTW         C35         C36         C37     111.038    1.50
+GTW         C35         C36         H34     109.386    1.50
+GTW         C35         C36         H35     109.386    1.50
+GTW         C37         C36         H34     109.386    1.50
+GTW         C37         C36         H35     109.386    1.50
+GTW         H34         C36         H35     108.036    1.50
+GTW         C36         C35         C34     111.360    1.50
+GTW         C36         C35         H36     109.386    1.50
+GTW         C36         C35         H37     109.386    1.50
+GTW         C34         C35         H36     109.388    1.50
+GTW         C34         C35         H37     109.388    1.50
+GTW         H36         C35         H37     108.036    1.50
+GTW         C35         C34         C33     112.229    1.50
+GTW         C35         C34         H38     109.267    1.50
+GTW         C35         C34         H39     109.267    1.50
+GTW         C33         C34         H38     109.293    1.50
+GTW         C33         C34         H39     109.293    1.50
+GTW         H38         C34         H39     107.919    1.50
+GTW         C13         N14         C15     123.632    1.63
+GTW         C13         N14         H40     118.879    1.83
+GTW         C15         N14         H40     117.489    3.00
+GTW         C15         C25         C26     114.535    1.69
+GTW         C15         C25         H41     108.489    1.50
+GTW         C15         C25         H42     108.489    1.50
+GTW         C26         C25         H41     109.334    1.50
+GTW         C26         C25         H42     109.334    1.50
+GTW         H41         C25         H42     107.698    1.50
+GTW         C28         S27         O29     108.931    1.50
+GTW         C28         S27         C26     104.032    1.79
+GTW         C28         S27         O30     108.931    1.50
+GTW         O29         S27         C26     108.322    1.50
+GTW         O29         S27         O30     118.392    2.04
+GTW         C26         S27         O30     108.322    1.50
+GTW         C15         C16         C17     113.636    1.50
+GTW         C15         C16         H43     108.825    1.50
+GTW         C15         C16         H44     108.825    1.50
+GTW         C17         C16         H43     108.862    1.50
+GTW         C17         C16         H44     108.862    1.50
+GTW         H43         C16         H44     107.782    1.50
+GTW         C20         C23         C24     120.834    1.50
+GTW         C20         C23         H45     119.569    1.50
+GTW         C24         C23         H45     119.597    1.50
+GTW         C21         N22         H46     104.789    3.00
+GTW         C21         N22         H47     104.789    3.00
+GTW         H46         N22         H47     107.163    3.00
+GTW         C20         C19         C18     120.834    1.50
+GTW         C20         C19         H49     119.569    1.50
+GTW         C18         C19         H49     119.597    1.50
+GTW         C19         C18         C17     121.032    1.50
+GTW         C19         C18         H50     119.559    1.50
+GTW         C17         C18         H50     119.409    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GTW             sp2_sp3_1          N2          C3          C4          H1     150.000    10.0     6
+GTW           sp3_sp3_142         C15         C25         C26         S27     180.000    10.0     3
+GTW           sp3_sp3_153         C25         C26         S27         C28      60.000    10.0     3
+GTW           sp3_sp3_133         H10         C28         S27         O29     180.000    10.0     3
+GTW              const_30          C4          C3          S5          C6     180.000    10.0     2
+GTW              const_28          C4          C3          N2          C1     180.000    10.0     2
+GTW              const_25          C6          C1          N2          C3       0.000    10.0     2
+GTW             sp2_sp3_7          C7          N8          C9         C40       0.000    10.0     6
+GTW            sp3_sp3_73         C41         C40          C9          N8     180.000    10.0     3
+GTW            sp3_sp3_56          C9         C40         C41         C42     -60.000    10.0     3
+GTW              const_32          C7          C6          S5          C3     180.000    10.0     2
+GTW              const_22          N2          C1          C6          C7     180.000    10.0     2
+GTW             sp2_sp2_2          C1          C6          C7         O44       0.000     5.0     2
+GTW            sp3_sp3_46         C40         C41         C42         H19     180.000    10.0     3
+GTW            sp3_sp3_64         C42         C41         C43         H22     180.000    10.0     3
+GTW            sp2_sp3_19         C10         N11         C12         C32       0.000    10.0     6
+GTW           sp3_sp3_100         N11         C12         C32         C33     180.000    10.0     3
+GTW            sp3_sp3_92         C12         C32         C33         C34     -60.000    10.0     3
+GTW            sp3_sp3_85         C32         C33         C38         C37      60.000    10.0     3
+GTW             sp3_sp3_7         C32         C33         C34         C35     180.000    10.0     3
+GTW            sp3_sp3_37         C36         C37         C38         C33      60.000    10.0     3
+GTW            sp3_sp3_28         C35         C36         C37         C38     -60.000    10.0     3
+GTW             sp2_sp2_7         O44          C7          N8          C9       0.000     5.0     2
+GTW            sp3_sp3_19         C34         C35         C36         C37      60.000    10.0     3
+GTW            sp3_sp3_10         C33         C34         C35         C36     -60.000    10.0     3
+GTW            sp2_sp3_13         O39         C10          C9          N8       0.000    10.0     6
+GTW             sp2_sp2_9          C9         C10         N11         C12     180.000     5.0     2
+GTW              const_17         C17         C18         C19         C20       0.000    10.0     2
+GTW            sp2_sp3_25         O31         C13         C12         N11       0.000    10.0     6
+GTW            sp2_sp2_13         C12         C13         N14         C15     180.000     5.0     2
+GTW            sp2_sp3_37         C13         N14         C15         C16       0.000    10.0     6
+GTW           sp3_sp3_124         N14         C15         C25         C26     180.000    10.0     3
+GTW           sp3_sp3_115         N14         C15         C16         C17     180.000    10.0     3
+GTW            sp2_sp3_44         C24         C17         C16         C15     -90.000    10.0     6
+GTW              const_35         C16         C17         C18         C19     180.000    10.0     2
+GTW       const_sp2_sp2_3         C16         C17         C24         C23     180.000     5.0     2
+GTW              const_11         C21         C20         C23         C24     180.000    10.0     2
+GTW              const_14         C18         C19         C20         C21     180.000    10.0     2
+GTW            sp2_sp3_32         C23         C20         C21         N22     -90.000    10.0     6
+GTW           sp3_sp3_109         C20         C21         N22         H46     180.000    10.0     3
+GTW       const_sp2_sp2_5         C20         C23         C24         C17       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GTW    chir_1    C15    N14    C25    C16    positive
+GTW    chir_2    C9    N8    C10    C40    positive
+GTW    chir_3    C41    C40    C42    C43    both
+GTW    chir_4    C12    N11    C13    C32    positive
+GTW    chir_5    C33    C32    C34    C38    both
+GTW    chir_6    S27    O29    O30    C26    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GTW    plan-1          C1   0.020
+GTW    plan-1          C3   0.020
+GTW    plan-1          C4   0.020
+GTW    plan-1          C6   0.020
+GTW    plan-1          C7   0.020
+GTW    plan-1         H13   0.020
+GTW    plan-1          N2   0.020
+GTW    plan-1          S5   0.020
+GTW    plan-2         C16   0.020
+GTW    plan-2         C17   0.020
+GTW    plan-2         C18   0.020
+GTW    plan-2         C19   0.020
+GTW    plan-2         C20   0.020
+GTW    plan-2         C21   0.020
+GTW    plan-2         C23   0.020
+GTW    plan-2         C24   0.020
+GTW    plan-2         H45   0.020
+GTW    plan-2         H49   0.020
+GTW    plan-2         H50   0.020
+GTW    plan-2          H7   0.020
+GTW    plan-3          C6   0.020
+GTW    plan-3          C7   0.020
+GTW    plan-3          N8   0.020
+GTW    plan-3         O44   0.020
+GTW    plan-4         C10   0.020
+GTW    plan-4          C9   0.020
+GTW    plan-4         N11   0.020
+GTW    plan-4         O39   0.020
+GTW    plan-5         C12   0.020
+GTW    plan-5         C13   0.020
+GTW    plan-5         N14   0.020
+GTW    plan-5         O31   0.020
+GTW    plan-6          C7   0.020
+GTW    plan-6          C9   0.020
+GTW    plan-6         H14   0.020
+GTW    plan-6          N8   0.020
+GTW    plan-7         C10   0.020
+GTW    plan-7         C12   0.020
+GTW    plan-7         H25   0.020
+GTW    plan-7         N11   0.020
+GTW    plan-8         C13   0.020
+GTW    plan-8         C15   0.020
+GTW    plan-8         H40   0.020
+GTW    plan-8         N14   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GTW            InChI                InChI  1.03 InChI=1S/C32H49N5O5S2/c1-21(2)16-27(37-32(40)29-20-34-22(3)43-29)31(39)36-28(18-23-8-6-5-7-9-23)30(38)35-26(14-15-44(4,41)42)17-24-10-12-25(19-33)13-11-24/h10-13,20-21,23,26-28H,5-9,14-19,33H2,1-4H3,(H,35,38)(H,36,39)(H,37,40)/t26-,27+,28+/m1/s1
+GTW         InChIKey                InChI  1.03                                                                                                                                                                                                                           ZGJWOTGESBPCTA-PKTNWEFCSA-N
+GTW SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                          CC(C)C[C@H](NC(=O)c1sc(C)nc1)C(=O)N[C@@H](CC2CCCCC2)C(=O)N[C@H](CC[S](C)(=O)=O)Cc3ccc(CN)cc3
+GTW           SMILES               CACTVS 3.385                                                                                                                                                              CC(C)C[CH](NC(=O)c1sc(C)nc1)C(=O)N[CH](CC2CCCCC2)C(=O)N[CH](CC[S](C)(=O)=O)Cc3ccc(CN)cc3
+GTW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                           Cc1ncc(s1)C(=O)N[C@@H](CC(C)C)C(=O)N[C@@H](CC2CCCCC2)C(=O)N[C@H](CCS(=O)(=O)C)Cc3ccc(cc3)CN
+GTW           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                         Cc1ncc(s1)C(=O)NC(CC(C)C)C(=O)NC(CC2CCCCC2)C(=O)NC(CCS(=O)(=O)C)Cc3ccc(cc3)CN
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GTW acedrg               243         "dictionary generator"                  
+GTW acedrg_database      11          "data source"                           
+GTW rdkit                2017.03.2   "Chemoinformatics tool"
+GTW refmac5              5.8.0238    "optimization tool"                     

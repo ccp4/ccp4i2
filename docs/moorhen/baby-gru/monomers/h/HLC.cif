@@ -1,0 +1,266 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HLC     HLC      4-(4-chlorophenoxy)-N-[(3S)-2-oxotetrahydrofuran-3-yl]butanamide     NON-POLYMER     36     20     .     
+#
+data_comp_HLC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HLC     N1      N       NH1     0       41.000      53.812      13.852      
+HLC     C1      C       CR5     0       42.103      55.534      15.239      
+HLC     O1      O       O       0       41.424      56.508      15.406      
+HLC     C2      C       CH2     0       44.015      54.331      15.541      
+HLC     O2      O       O2      0       43.431      55.599      15.135      
+HLC     C3      C       CH2     0       42.928      53.299      15.366      
+HLC     O3      O       O2      0       36.670      54.658      12.099      
+HLC     C4      C       CH1     0       41.651      54.089      15.112      
+HLC     O4      O       O       0       40.340      51.721      14.397      
+HLC     C5      C       C       0       40.384      52.644      13.587      
+HLC     C6      C       CH2     0       39.727      52.517      12.230      
+HLC     C7      C       CH2     0       38.263      52.892      12.232      
+HLC     C8      C       CH2     0       38.046      54.376      12.389      
+HLC     C9      C       CR6     0       36.163      55.921      12.289      
+HLC     C10     C       CR16    0       36.921      57.067      12.529      
+HLC     C11     C       CR16    0       36.293      58.293      12.699      
+HLC     C12     C       CR6     0       34.920      58.371      12.625      
+HLC     C13     C       CR16    0       34.156      57.250      12.385      
+HLC     C14     C       CR16    0       34.778      56.021      12.214      
+HLC     CL1     CL      CL      0       34.137      59.912      12.839      
+HLC     H1      H       H       0       41.003      54.431      13.232      
+HLC     H2      H       H       0       44.308      54.382      16.478      
+HLC     H3      H       H       0       44.793      54.125      14.976      
+HLC     H4      H       H       0       42.843      52.740      16.184      
+HLC     H5      H       H       0       43.136      52.700      14.601      
+HLC     H6      H       H       0       41.011      53.899      15.838      
+HLC     H7      H       H       0       39.811      51.588      11.926      
+HLC     H8      H       H       0       40.200      53.085      11.586      
+HLC     H9      H       H       0       37.811      52.425      12.966      
+HLC     H10     H       H       0       37.853      52.598      11.392      
+HLC     H11     H       H       0       38.260      54.653      13.303      
+HLC     H12     H       H       0       38.625      54.868      11.771      
+HLC     H13     H       H       0       37.859      57.018      12.580      
+HLC     H14     H       H       0       36.803      59.064      12.863      
+HLC     H15     H       H       0       33.220      57.316      12.337      
+HLC     H16     H       H       0       34.257      55.254      12.050      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HLC          N1          C4      SINGLE       n     1.442  0.0100     1.442  0.0100
+HLC          N1          C5      SINGLE       n     1.342  0.0107     1.342  0.0107
+HLC          C1          O1      DOUBLE       n     1.199  0.0114     1.199  0.0114
+HLC          C1          O2      SINGLE       n     1.335  0.0100     1.335  0.0100
+HLC          C1          C4      SINGLE       n     1.518  0.0100     1.518  0.0100
+HLC          C2          O2      SINGLE       n     1.456  0.0100     1.456  0.0100
+HLC          C2          C3      SINGLE       n     1.508  0.0160     1.508  0.0160
+HLC          C3          C4      SINGLE       n     1.520  0.0111     1.520  0.0111
+HLC          O3          C8      SINGLE       n     1.432  0.0101     1.432  0.0101
+HLC          O3          C9      SINGLE       n     1.369  0.0106     1.369  0.0106
+HLC          O4          C5      DOUBLE       n     1.227  0.0100     1.227  0.0100
+HLC          C5          C6      SINGLE       n     1.506  0.0190     1.506  0.0190
+HLC          C6          C7      SINGLE       n     1.511  0.0117     1.511  0.0117
+HLC          C7          C8      SINGLE       n     1.507  0.0127     1.507  0.0127
+HLC          C9         C10      DOUBLE       y     1.386  0.0109     1.386  0.0109
+HLC          C9         C14      SINGLE       y     1.386  0.0109     1.386  0.0109
+HLC         C10         C11      SINGLE       y     1.384  0.0100     1.384  0.0100
+HLC         C11         C12      DOUBLE       y     1.375  0.0100     1.375  0.0100
+HLC         C12         C13      SINGLE       y     1.375  0.0100     1.375  0.0100
+HLC         C12         CL1      SINGLE       n     1.741  0.0100     1.741  0.0100
+HLC         C13         C14      DOUBLE       y     1.384  0.0100     1.384  0.0100
+HLC          N1          H1      SINGLE       n     1.016  0.0100     0.876  0.0106
+HLC          C2          H2      SINGLE       n     1.089  0.0100     0.983  0.0118
+HLC          C2          H3      SINGLE       n     1.089  0.0100     0.983  0.0118
+HLC          C3          H4      SINGLE       n     1.089  0.0100     0.994  0.0200
+HLC          C3          H5      SINGLE       n     1.089  0.0100     0.994  0.0200
+HLC          C4          H6      SINGLE       n     1.089  0.0100     0.987  0.0200
+HLC          C6          H7      SINGLE       n     1.089  0.0100     0.981  0.0185
+HLC          C6          H8      SINGLE       n     1.089  0.0100     0.981  0.0185
+HLC          C7          H9      SINGLE       n     1.089  0.0100     0.980  0.0160
+HLC          C7         H10      SINGLE       n     1.089  0.0100     0.980  0.0160
+HLC          C8         H11      SINGLE       n     1.089  0.0100     0.979  0.0131
+HLC          C8         H12      SINGLE       n     1.089  0.0100     0.979  0.0131
+HLC         C10         H13      SINGLE       n     1.082  0.0130     0.942  0.0200
+HLC         C11         H14      SINGLE       n     1.082  0.0130     0.939  0.0186
+HLC         C13         H15      SINGLE       n     1.082  0.0130     0.939  0.0186
+HLC         C14         H16      SINGLE       n     1.082  0.0130     0.942  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HLC          C4          N1          C5     122.414    1.92
+HLC          C4          N1          H1     119.145    1.50
+HLC          C5          N1          H1     118.441    1.50
+HLC          O1          C1          O2     122.323    1.50
+HLC          O1          C1          C4     128.076    1.50
+HLC          O2          C1          C4     109.602    1.50
+HLC          O2          C2          C3     105.831    1.50
+HLC          O2          C2          H2     109.230    2.87
+HLC          O2          C2          H3     109.230    2.87
+HLC          C3          C2          H2     110.960    1.50
+HLC          C3          C2          H3     110.960    1.50
+HLC          H2          C2          H3     108.637    1.50
+HLC          C1          O2          C2     110.225    1.50
+HLC          C2          C3          C4     104.443    2.26
+HLC          C2          C3          H4     111.107    1.50
+HLC          C2          C3          H5     111.107    1.50
+HLC          C4          C3          H4     111.538    1.50
+HLC          C4          C3          H5     111.538    1.50
+HLC          H4          C3          H5     108.862    1.50
+HLC          C8          O3          C9     118.103    1.50
+HLC          N1          C4          C1     112.784    1.71
+HLC          N1          C4          C3     115.151    1.50
+HLC          N1          C4          H6     108.491    1.50
+HLC          C1          C4          C3     102.605    1.51
+HLC          C1          C4          H6     108.696    1.61
+HLC          C3          C4          H6     109.017    1.50
+HLC          N1          C5          O4     122.436    1.50
+HLC          N1          C5          C6     115.813    2.12
+HLC          O4          C5          C6     121.750    1.50
+HLC          C5          C6          C7     113.485    1.67
+HLC          C5          C6          H7     108.894    1.50
+HLC          C5          C6          H8     108.894    1.50
+HLC          C7          C6          H7     108.790    1.50
+HLC          C7          C6          H8     108.790    1.50
+HLC          H7          C6          H8     107.846    1.50
+HLC          C6          C7          C8     112.125    1.80
+HLC          C6          C7          H9     109.140    1.50
+HLC          C6          C7         H10     109.140    1.50
+HLC          C8          C7          H9     108.916    1.50
+HLC          C8          C7         H10     108.916    1.50
+HLC          H9          C7         H10     107.788    1.50
+HLC          O3          C8          C7     107.985    2.03
+HLC          O3          C8         H11     109.943    1.50
+HLC          O3          C8         H12     109.943    1.50
+HLC          C7          C8         H11     110.162    1.50
+HLC          C7          C8         H12     110.162    1.50
+HLC         H11          C8         H12     108.474    1.50
+HLC          O3          C9         C10     120.036    3.00
+HLC          O3          C9         C14     120.036    3.00
+HLC         C10          C9         C14     119.928    1.50
+HLC          C9         C10         C11     119.810    1.50
+HLC          C9         C10         H13     120.258    1.50
+HLC         C11         C10         H13     119.933    1.50
+HLC         C10         C11         C12     119.548    1.50
+HLC         C10         C11         H14     120.148    1.50
+HLC         C12         C11         H14     120.304    1.50
+HLC         C11         C12         C13     121.356    1.50
+HLC         C11         C12         CL1     119.322    1.50
+HLC         C13         C12         CL1     119.322    1.50
+HLC         C12         C13         C14     119.548    1.50
+HLC         C12         C13         H15     120.304    1.50
+HLC         C14         C13         H15     120.148    1.50
+HLC          C9         C14         C13     119.810    1.50
+HLC          C9         C14         H16     120.258    1.50
+HLC         C13         C14         H16     119.933    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HLC             sp2_sp3_1          C5          N1          C4          C1       0.000    10.0     6
+HLC             sp2_sp2_5          O4          C5          N1          C4       0.000     5.0     2
+HLC            sp3_sp3_25          C5          C6          C7          C8     180.000    10.0     3
+HLC            sp3_sp3_34          C6          C7          C8          O3     180.000    10.0     3
+HLC       const_sp2_sp2_2         C11         C10          C9          O3     180.000     5.0     2
+HLC              const_22         C13         C14          C9          O3     180.000    10.0     2
+HLC       const_sp2_sp2_5          C9         C10         C11         C12       0.000     5.0     2
+HLC              const_10         C10         C11         C12         CL1     180.000    10.0     2
+HLC              const_15         CL1         C12         C13         C14     180.000    10.0     2
+HLC              const_17         C12         C13         C14          C9       0.000    10.0     2
+HLC             sp2_sp2_2          O1          C1          O2          C2     180.000     5.0     2
+HLC            sp2_sp3_11          O1          C1          C4          N1     -60.000    10.0     6
+HLC             sp3_sp3_1          C3          C2          O2          C1     -60.000    10.0     3
+HLC             sp3_sp3_4          O2          C2          C3          C4      60.000    10.0     3
+HLC            sp3_sp3_14          C2          C3          C4          N1      60.000    10.0     3
+HLC            sp3_sp3_22          C7          C8          O3          C9     180.000    10.0     3
+HLC             sp2_sp2_7         C10          C9          O3          C8     180.000     5.0     2
+HLC            sp2_sp3_14          N1          C5          C6          C7     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HLC    chir_1    C4    N1    C1    C3    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HLC    plan-1         C10   0.020
+HLC    plan-1         C11   0.020
+HLC    plan-1         C12   0.020
+HLC    plan-1         C13   0.020
+HLC    plan-1         C14   0.020
+HLC    plan-1          C9   0.020
+HLC    plan-1         CL1   0.020
+HLC    plan-1         H13   0.020
+HLC    plan-1         H14   0.020
+HLC    plan-1         H15   0.020
+HLC    plan-1         H16   0.020
+HLC    plan-1          O3   0.020
+HLC    plan-2          C4   0.020
+HLC    plan-2          C5   0.020
+HLC    plan-2          H1   0.020
+HLC    plan-2          N1   0.020
+HLC    plan-3          C1   0.020
+HLC    plan-3          C4   0.020
+HLC    plan-3          O1   0.020
+HLC    plan-3          O2   0.020
+HLC    plan-4          C5   0.020
+HLC    plan-4          C6   0.020
+HLC    plan-4          N1   0.020
+HLC    plan-4          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HLC           SMILES              ACDLabs 12.01                                                                                        O=C2OCCC2NC(=O)CCCOc1ccc(Cl)cc1
+HLC SMILES_CANONICAL               CACTVS 3.370                                                                                    Clc1ccc(OCCCC(=O)N[C@H]2CCOC2=O)cc1
+HLC           SMILES               CACTVS 3.370                                                                                     Clc1ccc(OCCCC(=O)N[CH]2CCOC2=O)cc1
+HLC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                    c1cc(ccc1OCCCC(=O)N[C@H]2CCOC2=O)Cl
+HLC           SMILES "OpenEye OEToolkits" 1.7.0                                                                                        c1cc(ccc1OCCCC(=O)NC2CCOC2=O)Cl
+HLC            InChI                InChI  1.03 InChI=1S/C14H16ClNO4/c15-10-3-5-11(6-4-10)19-8-1-2-13(17)16-12-7-9-20-14(12)18/h3-6,12H,1-2,7-9H2,(H,16,17)/t12-/m0/s1
+HLC         InChIKey                InChI  1.03                                                                                            BKVYYPQMGSVOHB-LBPRGKRZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HLC acedrg               243         "dictionary generator"                  
+HLC acedrg_database      11          "data source"                           
+HLC rdkit                2017.03.2   "Chemoinformatics tool"
+HLC refmac5              5.8.0238    "optimization tool"                     

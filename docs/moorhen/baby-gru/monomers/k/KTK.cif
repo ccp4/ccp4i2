@@ -1,0 +1,262 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KTK     KTK      4-[3-amino-4-(4-hydroxyphenyl)-1H-pyrazol-5-yl]benzene-1,3-diol     NON-POLYMER     34     21     .     
+#
+data_comp_KTK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KTK     CAO     C       CR16    0       -10.224     19.021      1.779       
+KTK     CAP     C       CR16    0       -10.653     20.283      1.401       
+KTK     CAQ     C       CR6     0       -12.012     20.547      1.264       
+KTK     OAT     O       OH1     0       -12.441     21.797      0.889       
+KTK     CAR     C       CR16    0       -12.935     19.535      1.509       
+KTK     CAS     C       CR16    0       -12.502     18.274      1.887       
+KTK     CAN     C       CR6     0       -11.140     17.996      2.029       
+KTK     CAJ     C       CR5     0       -10.677     16.654      2.432       
+KTK     CAK     C       CR5     0       -9.748      15.843      1.791       
+KTK     NAM     N       NH2     0       -9.056      16.087      0.651       
+KTK     NAL     N       NRD5    0       -9.590      14.706      2.460       
+KTK     NAA     N       NR5     0       -10.417     14.785      3.537       
+KTK     CAB     C       CR5     0       -11.096     15.951      3.555       
+KTK     CAC     C       CR6     0       -12.061     16.284      4.623       
+KTK     CAH     C       CR16    0       -11.974     17.525      5.273       
+KTK     CAG     C       CR16    0       -12.867     17.859      6.277       
+KTK     CAF     C       CR6     0       -13.864     16.954      6.654       
+KTK     OAI     O       OH1     0       -14.748     17.286      7.652       
+KTK     CAE     C       CR16    0       -13.965     15.723      6.026       
+KTK     CAD     C       CR6     0       -13.071     15.383      5.016       
+KTK     OAU     O       OH1     0       -13.208     14.151      4.419       
+KTK     H1      H       H       0       -9.304      18.853      1.869       
+KTK     H2      H       H       0       -10.024     20.963      1.236       
+KTK     H3      H       H       0       -11.930     22.307      0.418       
+KTK     H4      H       H       0       -13.855     19.708      1.418       
+KTK     H5      H       H       0       -13.134     17.599      2.051       
+KTK     H6      H       H       0       -8.419      15.537      0.397       
+KTK     H7      H       H       0       -9.245      16.796      0.167       
+KTK     H8      H       H       0       -10.485     14.128      4.138       
+KTK     H9      H       H       0       -11.304     18.136      5.020       
+KTK     H10     H       H       0       -12.802     18.694      6.707       
+KTK     H11     H       H       0       -14.993     18.105      7.754       
+KTK     H12     H       H       0       -14.635     15.117      6.280       
+KTK     H13     H       H       0       -13.475     14.096      3.602       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KTK         CAQ         OAT      SINGLE       n     1.374  0.0155     1.374  0.0155
+KTK         CAQ         CAR      DOUBLE       y     1.388  0.0100     1.388  0.0100
+KTK         CAR         CAS      SINGLE       y     1.382  0.0100     1.382  0.0100
+KTK         CAP         CAQ      SINGLE       y     1.388  0.0100     1.388  0.0100
+KTK         CAS         CAN      DOUBLE       y     1.393  0.0100     1.393  0.0100
+KTK         CAO         CAP      DOUBLE       y     1.382  0.0100     1.382  0.0100
+KTK         CAO         CAN      SINGLE       y     1.393  0.0100     1.393  0.0100
+KTK         CAN         CAJ      SINGLE       n     1.476  0.0100     1.476  0.0100
+KTK         CAJ         CAB      DOUBLE       y     1.391  0.0113     1.391  0.0113
+KTK         CAJ         CAK      SINGLE       y     1.386  0.0200     1.386  0.0200
+KTK         CAD         OAU      SINGLE       n     1.374  0.0155     1.374  0.0155
+KTK         CAE         CAD      DOUBLE       y     1.387  0.0100     1.387  0.0100
+KTK         CAF         CAE      SINGLE       y     1.382  0.0100     1.382  0.0100
+KTK         CAC         CAD      SINGLE       y     1.403  0.0100     1.403  0.0100
+KTK         CAB         CAC      SINGLE       n     1.476  0.0100     1.476  0.0100
+KTK         CAC         CAH      DOUBLE       y     1.400  0.0100     1.400  0.0100
+KTK         NAA         CAB      SINGLE       y     1.352  0.0100     1.352  0.0100
+KTK         CAK         NAM      SINGLE       n     1.355  0.0109     1.355  0.0109
+KTK         CAK         NAL      DOUBLE       y     1.325  0.0100     1.325  0.0100
+KTK         CAH         CAG      SINGLE       y     1.382  0.0100     1.382  0.0100
+KTK         CAG         CAF      DOUBLE       y     1.396  0.0100     1.396  0.0100
+KTK         CAF         OAI      SINGLE       n     1.374  0.0155     1.374  0.0155
+KTK         NAL         NAA      SINGLE       y     1.359  0.0100     1.359  0.0100
+KTK         CAO          H1      SINGLE       n     1.082  0.0130     0.940  0.0144
+KTK         CAP          H2      SINGLE       n     1.082  0.0130     0.941  0.0179
+KTK         OAT          H3      SINGLE       n     0.966  0.0059     0.861  0.0200
+KTK         CAR          H4      SINGLE       n     1.082  0.0130     0.941  0.0179
+KTK         CAS          H5      SINGLE       n     1.082  0.0130     0.940  0.0144
+KTK         NAM          H6      SINGLE       n     1.016  0.0100     0.879  0.0200
+KTK         NAM          H7      SINGLE       n     1.016  0.0100     0.879  0.0200
+KTK         NAA          H8      SINGLE       n     1.016  0.0100     0.892  0.0200
+KTK         CAH          H9      SINGLE       n     1.082  0.0130     0.941  0.0147
+KTK         CAG         H10      SINGLE       n     1.082  0.0130     0.941  0.0179
+KTK         OAI         H11      SINGLE       n     0.966  0.0059     0.861  0.0200
+KTK         CAE         H12      SINGLE       n     1.082  0.0130     0.939  0.0167
+KTK         OAU         H13      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KTK         CAP         CAO         CAN     120.841    1.50
+KTK         CAP         CAO          H1     119.467    1.50
+KTK         CAN         CAO          H1     119.693    1.50
+KTK         CAQ         CAP         CAO     120.129    1.50
+KTK         CAQ         CAP          H2     119.892    1.50
+KTK         CAO         CAP          H2     119.980    1.50
+KTK         OAT         CAQ         CAR     120.136    3.00
+KTK         OAT         CAQ         CAP     120.136    3.00
+KTK         CAR         CAQ         CAP     119.729    1.50
+KTK         CAQ         OAT          H3     120.000    3.00
+KTK         CAQ         CAR         CAS     120.129    1.50
+KTK         CAQ         CAR          H4     119.892    1.50
+KTK         CAS         CAR          H4     119.980    1.50
+KTK         CAR         CAS         CAN     120.841    1.50
+KTK         CAR         CAS          H5     119.467    1.50
+KTK         CAN         CAS          H5     119.693    1.50
+KTK         CAS         CAN         CAO     118.332    1.50
+KTK         CAS         CAN         CAJ     120.834    1.50
+KTK         CAO         CAN         CAJ     120.834    1.50
+KTK         CAN         CAJ         CAB     125.129    2.00
+KTK         CAN         CAJ         CAK     128.082    2.89
+KTK         CAB         CAJ         CAK     106.789    1.50
+KTK         CAJ         CAK         NAM     128.827    1.83
+KTK         CAJ         CAK         NAL     109.580    1.50
+KTK         NAM         CAK         NAL     121.592    2.14
+KTK         CAK         NAM          H6     119.959    1.50
+KTK         CAK         NAM          H7     119.959    1.50
+KTK          H6         NAM          H7     120.083    1.50
+KTK         CAK         NAL         NAA     104.880    1.50
+KTK         CAB         NAA         NAL     111.575    1.50
+KTK         CAB         NAA          H8     126.002    2.94
+KTK         NAL         NAA          H8     122.420    2.29
+KTK         CAJ         CAB         CAC     130.938    2.03
+KTK         CAJ         CAB         NAA     107.177    1.50
+KTK         CAC         CAB         NAA     121.886    1.50
+KTK         CAD         CAC         CAB     121.247    1.50
+KTK         CAD         CAC         CAH     118.974    1.50
+KTK         CAB         CAC         CAH     119.779    1.50
+KTK         CAC         CAH         CAG     120.578    1.50
+KTK         CAC         CAH          H9     119.599    1.50
+KTK         CAG         CAH          H9     119.823    1.50
+KTK         CAH         CAG         CAF     120.070    1.50
+KTK         CAH         CAG         H10     120.009    1.50
+KTK         CAF         CAG         H10     119.921    1.50
+KTK         CAE         CAF         CAG     120.435    1.50
+KTK         CAE         CAF         OAI     119.783    3.00
+KTK         CAG         CAF         OAI     119.783    3.00
+KTK         CAF         OAI         H11     120.000    3.00
+KTK         CAD         CAE         CAF     119.629    1.50
+KTK         CAD         CAE         H12     120.036    1.50
+KTK         CAF         CAE         H12     120.335    1.50
+KTK         OAU         CAD         CAE     119.842    3.00
+KTK         OAU         CAD         CAC     119.852    3.00
+KTK         CAE         CAD         CAC     120.315    1.50
+KTK         CAD         OAU         H13     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KTK              const_33         CAN         CAO         CAP         CAQ       0.000    10.0     2
+KTK              const_53         CAS         CAN         CAO         CAP       0.000    10.0     2
+KTK       const_sp2_sp2_9         CAB         NAA         NAL         CAK       0.000     5.0     2
+KTK       const_sp2_sp2_5         CAJ         CAB         NAA         NAL       0.000     5.0     2
+KTK             sp2_sp2_9         CAJ         CAB         CAC         CAD     180.000     5.0     2
+KTK              const_61         CAD         CAC         CAH         CAG       0.000    10.0     2
+KTK              const_16         CAB         CAC         CAD         OAU       0.000    10.0     2
+KTK              const_29         CAF         CAG         CAH         CAC       0.000    10.0     2
+KTK              const_27         OAI         CAF         CAG         CAH     180.000    10.0     2
+KTK            sp2_sp2_17         CAE         CAF         OAI         H11     180.000     5.0     2
+KTK              const_22         CAD         CAE         CAF         OAI     180.000    10.0     2
+KTK              const_19         OAU         CAD         CAE         CAF     180.000    10.0     2
+KTK             sp2_sp2_7         CAE         CAD         OAU         H13     180.000     5.0     2
+KTK              const_38         CAO         CAP         CAQ         OAT     180.000    10.0     2
+KTK             sp2_sp2_1         CAR         CAQ         OAT          H3     180.000     5.0     2
+KTK              const_43         OAT         CAQ         CAR         CAS     180.000    10.0     2
+KTK              const_45         CAQ         CAR         CAS         CAN       0.000    10.0     2
+KTK              const_49         CAO         CAN         CAS         CAR       0.000    10.0     2
+KTK             sp2_sp2_3         CAB         CAJ         CAN         CAS     180.000     5.0     2
+KTK       const_sp2_sp2_4         CAC         CAB         CAJ         CAN       0.000     5.0     2
+KTK              const_60         CAN         CAJ         CAK         NAM       0.000    10.0     2
+KTK              const_12         NAM         CAK         NAL         NAA     180.000    10.0     2
+KTK            sp2_sp2_13         CAJ         CAK         NAM          H6     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KTK    plan-1         CAJ   0.020
+KTK    plan-1         CAN   0.020
+KTK    plan-1         CAO   0.020
+KTK    plan-1         CAP   0.020
+KTK    plan-1         CAQ   0.020
+KTK    plan-1         CAR   0.020
+KTK    plan-1         CAS   0.020
+KTK    plan-1          H1   0.020
+KTK    plan-1          H2   0.020
+KTK    plan-1          H4   0.020
+KTK    plan-1          H5   0.020
+KTK    plan-1         OAT   0.020
+KTK    plan-2         CAB   0.020
+KTK    plan-2         CAC   0.020
+KTK    plan-2         CAJ   0.020
+KTK    plan-2         CAK   0.020
+KTK    plan-2         CAN   0.020
+KTK    plan-2          H8   0.020
+KTK    plan-2         NAA   0.020
+KTK    plan-2         NAL   0.020
+KTK    plan-2         NAM   0.020
+KTK    plan-3         CAB   0.020
+KTK    plan-3         CAC   0.020
+KTK    plan-3         CAD   0.020
+KTK    plan-3         CAE   0.020
+KTK    plan-3         CAF   0.020
+KTK    plan-3         CAG   0.020
+KTK    plan-3         CAH   0.020
+KTK    plan-3         H10   0.020
+KTK    plan-3         H12   0.020
+KTK    plan-3          H9   0.020
+KTK    plan-3         OAI   0.020
+KTK    plan-3         OAU   0.020
+KTK    plan-4         CAK   0.020
+KTK    plan-4          H6   0.020
+KTK    plan-4          H7   0.020
+KTK    plan-4         NAM   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KTK           SMILES              ACDLabs 12.01                                                                        Oc3ccc(c2c(c1ccc(O)cc1)c(nn2)N)c(O)c3
+KTK            InChI                InChI  1.03 InChI=1S/C15H13N3O3/c16-15-13(8-1-3-9(19)4-2-8)14(17-18-15)11-6-5-10(20)7-12(11)21/h1-7,19-21H,(H3,16,17,18)
+KTK         InChIKey                InChI  1.03                                                                                  QJXCNANYVSBOBZ-UHFFFAOYSA-N
+KTK SMILES_CANONICAL               CACTVS 3.370                                                                         Nc1n[nH]c(c2ccc(O)cc2O)c1c3ccc(O)cc3
+KTK           SMILES               CACTVS 3.370                                                                         Nc1n[nH]c(c2ccc(O)cc2O)c1c3ccc(O)cc3
+KTK SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                         c1cc(ccc1c2c([nH]nc2N)c3ccc(cc3O)O)O
+KTK           SMILES "OpenEye OEToolkits" 1.7.6                                                                         c1cc(ccc1c2c([nH]nc2N)c3ccc(cc3O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KTK acedrg               243         "dictionary generator"                  
+KTK acedrg_database      11          "data source"                           
+KTK rdkit                2017.03.2   "Chemoinformatics tool"
+KTK refmac5              5.8.0238    "optimization tool"                     

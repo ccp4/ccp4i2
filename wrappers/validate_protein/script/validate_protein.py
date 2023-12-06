@@ -35,7 +35,7 @@ import numpy as np
 from lxml import etree
 
 try:
-    from core import CCP4Utils, CCP4XtalData
+    from core import CCP4Utils
     from core.CCP4PluginScript import CPluginScript
 except ImportError:
     if 'CCP4' not in os.environ:
@@ -61,9 +61,9 @@ class validate_protein(CPluginScript):
         self.xml_root = etree.Element('Validate_geometry_CCP4i2')
 
         self.latest_model_path = str(self.container.inputData.XYZIN_1)
-        self.latest_reflections_path, _ = self.makeHklin([['F_SIGF_1', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], hklin='F_SIGF_1')
+        self.latest_reflections_path = str(self.container.inputData.F_SIGF_1)
         self.previous_model_path = str(self.container.inputData.XYZIN_2)
-        self.previous_reflections_path, _ = self.makeHklin([['F_SIGF_2', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], hklin='F_SIGF_2')
+        self.previous_reflections_path = str(self.container.inputData.F_SIGF_2)
 
         log_string += _print_and_return('\n\n######### Calculating metrics using Iris #########\n')
         try:

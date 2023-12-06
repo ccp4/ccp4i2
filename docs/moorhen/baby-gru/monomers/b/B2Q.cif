@@ -1,0 +1,342 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+B2Q     B2Q      (2S,3R,11bR)-3-butyl-9,10-dimethoxy-1,3,4,6,7,11b-hexahydro-2H-pyrido[2,1-a]isoquinolin-2-amine     NON-POLYMER     54     23     .     
+#
+data_comp_B2Q
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+B2Q     CA      C       CH3     0       65.100      77.311      75.397      
+B2Q     CB      C       CR6     0       66.857      75.644      75.541      
+B2Q     OB      O       O2      0       66.226      76.747      76.068      
+B2Q     CC      C       CR16    0       66.653      75.122      74.272      
+B2Q     CD      C       CR66    0       67.366      73.999      73.805      
+B2Q     CE      C       CH1     0       67.092      73.433      72.408      
+B2Q     CF      C       CR66    0       68.279      73.385      74.673      
+B2Q     CG      C       CH2     0       69.061      72.171      74.244      
+B2Q     CH      C       CH2     0       68.343      71.451      73.123      
+B2Q     NJ      N       NT      0       68.097      72.404      72.021      
+B2Q     CK      C       CH2     0       67.708      71.742      70.763      
+B2Q     CL      C       CH1     0       67.595      72.718      69.598      
+B2Q     CM      C       CH2     0       67.204      71.998      68.307      
+B2Q     CN      C       CH2     0       67.234      72.848      67.047      
+B2Q     CO      C       CH2     0       67.066      72.034      65.776      
+B2Q     CP      C       CH3     0       67.123      72.867      64.517      
+B2Q     CR      C       CH1     0       66.671      73.901      69.955      
+B2Q     NS      N       NT3     1       65.219      73.532      69.923      
+B2Q     CT      C       CH2     0       67.040      74.497      71.306      
+B2Q     CU      C       CR16    0       68.485      73.916      75.957      
+B2Q     CV      C       CR6     0       67.804      75.036      76.399      
+B2Q     OW      O       O2      0       67.917      75.614      77.641      
+B2Q     CZ      C       CH3     0       69.154      75.548      78.352      
+B2Q     HA      H       H       0       64.429      76.624      75.254      
+B2Q     HAA     H       H       0       65.382      77.674      74.541      
+B2Q     HAB     H       H       0       64.725      78.022      75.940      
+B2Q     HC      H       H       0       66.029      75.532      73.702      
+B2Q     HE      H       H       0       66.207      72.995      72.438      
+B2Q     HG      H       H       0       69.170      71.566      75.003      
+B2Q     HGA     H       H       0       69.949      72.443      73.941      
+B2Q     HH      H       H       0       67.491      71.097      73.443      
+B2Q     HHA     H       H       0       68.892      70.710      72.799      
+B2Q     HK      H       H       0       66.856      71.296      70.887      
+B2Q     HKA     H       H       0       68.366      71.065      70.540      
+B2Q     HL      H       H       0       68.494      73.099      69.447      
+B2Q     HM      H       H       0       66.300      71.631      68.413      
+B2Q     HMA     H       H       0       67.816      71.242      68.181      
+B2Q     HN      H       H       0       68.088      73.329      67.011      
+B2Q     HNA     H       H       0       66.517      73.516      67.098      
+B2Q     HO      H       H       0       66.203      71.567      65.810      
+B2Q     HOA     H       H       0       67.773      71.353      65.740      
+B2Q     HP      H       H       0       66.973      72.297      63.743      
+B2Q     HPA     H       H       0       67.998      73.287      64.444      
+B2Q     HPB     H       H       0       66.436      73.555      64.551      
+B2Q     HR      H       H       0       66.819      74.598      69.275      
+B2Q     HNS     H       H       0       64.728      74.161      70.337      
+B2Q     HNSA    H       H       0       65.090      72.745      70.334      
+B2Q     HS1     H       H       0       64.937      73.471      69.072      
+B2Q     HT      H       H       0       67.914      74.931      71.236      
+B2Q     HTA     H       H       0       66.386      75.185      71.536      
+B2Q     HU      H       H       0       69.111      73.497      76.524      
+B2Q     HZ      H       H       0       69.852      75.974      77.829      
+B2Q     HZA     H       H       0       69.389      74.620      78.516      
+B2Q     HZB     H       H       0       69.059      76.008      79.202      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+B2Q          CA          OB      SINGLE       n     1.424  0.0117     1.424  0.0117
+B2Q          CB          CC      DOUBLE       y     1.379  0.0100     1.379  0.0100
+B2Q          CB          OB      SINGLE       n     1.369  0.0100     1.369  0.0100
+B2Q          CB          CV      SINGLE       y     1.407  0.0104     1.407  0.0104
+B2Q          CC          CD      SINGLE       y     1.403  0.0100     1.403  0.0100
+B2Q          CD          CE      SINGLE       n     1.522  0.0100     1.522  0.0100
+B2Q          CD          CF      DOUBLE       y     1.395  0.0100     1.395  0.0100
+B2Q          CE          CT      SINGLE       n     1.528  0.0100     1.528  0.0100
+B2Q          CE          NJ      SINGLE       n     1.480  0.0119     1.480  0.0119
+B2Q          CF          CG      SINGLE       n     1.505  0.0100     1.505  0.0100
+B2Q          CF          CU      SINGLE       y     1.402  0.0100     1.402  0.0100
+B2Q          CG          CH      SINGLE       n     1.513  0.0100     1.513  0.0100
+B2Q          CH          NJ      SINGLE       n     1.476  0.0100     1.476  0.0100
+B2Q          NJ          CK      SINGLE       n     1.471  0.0100     1.471  0.0100
+B2Q          CK          CL      SINGLE       n     1.522  0.0100     1.522  0.0100
+B2Q          CL          CM      SINGLE       n     1.527  0.0118     1.527  0.0118
+B2Q          CL          CR      SINGLE       n     1.538  0.0101     1.538  0.0101
+B2Q          CM          CN      SINGLE       n     1.520  0.0152     1.520  0.0152
+B2Q          CN          CO      SINGLE       n     1.519  0.0200     1.519  0.0200
+B2Q          CO          CP      SINGLE       n     1.510  0.0200     1.510  0.0200
+B2Q          CR          NS      SINGLE       n     1.495  0.0100     1.495  0.0100
+B2Q          CR          CT      SINGLE       n     1.518  0.0100     1.518  0.0100
+B2Q          CU          CV      DOUBLE       y     1.377  0.0100     1.377  0.0100
+B2Q          CV          OW      SINGLE       n     1.369  0.0100     1.369  0.0100
+B2Q          OW          CZ      SINGLE       n     1.424  0.0117     1.424  0.0117
+B2Q          CA          HA      SINGLE       n     1.089  0.0100     0.971  0.0157
+B2Q          CA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+B2Q          CA         HAB      SINGLE       n     1.089  0.0100     0.971  0.0157
+B2Q          CC          HC      SINGLE       n     1.082  0.0130     0.942  0.0143
+B2Q          CE          HE      SINGLE       n     1.089  0.0100     0.988  0.0200
+B2Q          CG          HG      SINGLE       n     1.089  0.0100     0.977  0.0107
+B2Q          CG         HGA      SINGLE       n     1.089  0.0100     0.977  0.0107
+B2Q          CH          HH      SINGLE       n     1.089  0.0100     0.977  0.0122
+B2Q          CH         HHA      SINGLE       n     1.089  0.0100     0.977  0.0122
+B2Q          CK          HK      SINGLE       n     1.089  0.0100     0.970  0.0100
+B2Q          CK         HKA      SINGLE       n     1.089  0.0100     0.970  0.0100
+B2Q          CL          HL      SINGLE       n     1.089  0.0100     0.988  0.0159
+B2Q          CM          HM      SINGLE       n     1.089  0.0100     0.981  0.0140
+B2Q          CM         HMA      SINGLE       n     1.089  0.0100     0.981  0.0140
+B2Q          CN          HN      SINGLE       n     1.089  0.0100     0.981  0.0160
+B2Q          CN         HNA      SINGLE       n     1.089  0.0100     0.981  0.0160
+B2Q          CO          HO      SINGLE       n     1.089  0.0100     0.982  0.0155
+B2Q          CO         HOA      SINGLE       n     1.089  0.0100     0.982  0.0155
+B2Q          CP          HP      SINGLE       n     1.089  0.0100     0.973  0.0157
+B2Q          CP         HPA      SINGLE       n     1.089  0.0100     0.973  0.0157
+B2Q          CP         HPB      SINGLE       n     1.089  0.0100     0.973  0.0157
+B2Q          CR          HR      SINGLE       n     1.089  0.0100     0.985  0.0158
+B2Q          NS         HNS      SINGLE       n     1.036  0.0160     0.899  0.0200
+B2Q          NS        HNSA      SINGLE       n     1.036  0.0160     0.899  0.0200
+B2Q          NS         HS1      SINGLE       n     1.036  0.0160     0.899  0.0200
+B2Q          CT          HT      SINGLE       n     1.089  0.0100     0.979  0.0148
+B2Q          CT         HTA      SINGLE       n     1.089  0.0100     0.979  0.0148
+B2Q          CU          HU      SINGLE       n     1.082  0.0130     0.945  0.0164
+B2Q          CZ          HZ      SINGLE       n     1.089  0.0100     0.971  0.0157
+B2Q          CZ         HZA      SINGLE       n     1.089  0.0100     0.971  0.0157
+B2Q          CZ         HZB      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+B2Q          OB          CA          HA     109.428    1.50
+B2Q          OB          CA         HAA     109.428    1.50
+B2Q          OB          CA         HAB     109.428    1.50
+B2Q          HA          CA         HAA     109.509    1.50
+B2Q          HA          CA         HAB     109.509    1.50
+B2Q         HAA          CA         HAB     109.509    1.50
+B2Q          CC          CB          OB     124.779    1.50
+B2Q          CC          CB          CV     119.552    1.50
+B2Q          OB          CB          CV     115.669    1.50
+B2Q          CA          OB          CB     116.964    1.50
+B2Q          CB          CC          CD     121.172    1.50
+B2Q          CB          CC          HC     119.492    1.50
+B2Q          CD          CC          HC     119.336    1.50
+B2Q          CC          CD          CE     119.223    1.79
+B2Q          CC          CD          CF     119.056    1.50
+B2Q          CE          CD          CF     121.721    1.75
+B2Q          CD          CE          CT     112.177    1.50
+B2Q          CD          CE          NJ     110.816    1.93
+B2Q          CD          CE          HE     108.158    1.50
+B2Q          CT          CE          NJ     109.683    1.52
+B2Q          CT          CE          HE     108.129    1.50
+B2Q          NJ          CE          HE     108.501    1.50
+B2Q          CD          CF          CG     120.633    1.50
+B2Q          CD          CF          CU     119.410    1.50
+B2Q          CG          CF          CU     119.960    1.50
+B2Q          CF          CG          CH     110.168    1.50
+B2Q          CF          CG          HG     109.681    1.50
+B2Q          CF          CG         HGA     109.681    1.50
+B2Q          CH          CG          HG     109.581    1.50
+B2Q          CH          CG         HGA     109.581    1.50
+B2Q          HG          CG         HGA     108.287    1.50
+B2Q          CG          CH          NJ     109.385    1.50
+B2Q          CG          CH          HH     109.937    1.50
+B2Q          CG          CH         HHA     109.937    1.50
+B2Q          NJ          CH          HH     109.299    1.50
+B2Q          NJ          CH         HHA     109.299    1.50
+B2Q          HH          CH         HHA     108.826    1.50
+B2Q          CE          NJ          CH     109.916    1.66
+B2Q          CE          NJ          CK     109.916    1.66
+B2Q          CH          NJ          CK     112.206    2.62
+B2Q          NJ          CK          CL     113.052    1.50
+B2Q          NJ          CK          HK     109.299    1.50
+B2Q          NJ          CK         HKA     109.299    1.50
+B2Q          CL          CK          HK     109.055    1.50
+B2Q          CL          CK         HKA     109.055    1.50
+B2Q          HK          CK         HKA     107.838    1.50
+B2Q          CK          CL          CM     111.459    1.64
+B2Q          CK          CL          CR     111.124    1.57
+B2Q          CK          CL          HL     107.956    1.50
+B2Q          CM          CL          CR     112.163    1.78
+B2Q          CM          CL          HL     107.292    1.50
+B2Q          CR          CL          HL     107.221    1.50
+B2Q          CL          CM          CN     115.438    1.50
+B2Q          CL          CM          HM     108.361    1.50
+B2Q          CL          CM         HMA     108.361    1.50
+B2Q          CN          CM          HM     108.345    1.50
+B2Q          CN          CM         HMA     108.345    1.50
+B2Q          HM          CM         HMA     107.696    1.50
+B2Q          CM          CN          CO     112.823    1.50
+B2Q          CM          CN          HN     108.665    1.50
+B2Q          CM          CN         HNA     108.665    1.50
+B2Q          CO          CN          HN     109.042    1.50
+B2Q          CO          CN         HNA     109.042    1.50
+B2Q          HN          CN         HNA     107.673    1.50
+B2Q          CN          CO          CP     113.454    1.50
+B2Q          CN          CO          HO     108.809    1.50
+B2Q          CN          CO         HOA     108.809    1.50
+B2Q          CP          CO          HO     108.918    1.50
+B2Q          CP          CO         HOA     108.918    1.50
+B2Q          HO          CO         HOA     107.763    1.50
+B2Q          CO          CP          HP     109.554    1.50
+B2Q          CO          CP         HPA     109.554    1.50
+B2Q          CO          CP         HPB     109.554    1.50
+B2Q          HP          CP         HPA     109.380    1.50
+B2Q          HP          CP         HPB     109.380    1.50
+B2Q         HPA          CP         HPB     109.380    1.50
+B2Q          CL          CR          NS     111.645    1.50
+B2Q          CL          CR          CT     111.499    1.66
+B2Q          CL          CR          HR     107.221    1.50
+B2Q          NS          CR          CT     109.921    1.50
+B2Q          NS          CR          HR     107.932    1.50
+B2Q          CT          CR          HR     107.645    1.50
+B2Q          CR          NS         HNS     109.791    1.72
+B2Q          CR          NS        HNSA     109.791    1.72
+B2Q          CR          NS         HS1     109.791    1.72
+B2Q         HNS          NS        HNSA     109.122    2.58
+B2Q         HNS          NS         HS1     109.122    2.58
+B2Q        HNSA          NS         HS1     109.122    2.58
+B2Q          CE          CT          CR     112.392    2.23
+B2Q          CE          CT          HT     109.410    1.50
+B2Q          CE          CT         HTA     109.410    1.50
+B2Q          CR          CT          HT     109.313    1.50
+B2Q          CR          CT         HTA     109.313    1.50
+B2Q          HT          CT         HTA     107.853    1.50
+B2Q          CF          CU          CV     121.359    1.50
+B2Q          CF          CU          HU     119.246    1.50
+B2Q          CV          CU          HU     119.395    1.50
+B2Q          CB          CV          CU     119.452    1.50
+B2Q          CB          CV          OW     115.446    1.50
+B2Q          CU          CV          OW     125.102    1.50
+B2Q          CV          OW          CZ     116.964    1.50
+B2Q          OW          CZ          HZ     109.428    1.50
+B2Q          OW          CZ         HZA     109.428    1.50
+B2Q          OW          CZ         HZB     109.428    1.50
+B2Q          HZ          CZ         HZA     109.509    1.50
+B2Q          HZ          CZ         HZB     109.509    1.50
+B2Q         HZA          CZ         HZB     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+B2Q            sp3_sp3_65          HA          CA          OB          CB     -60.000    10.0     3
+B2Q            sp3_sp3_50          NJ          CK          CL          CM      60.000    10.0     3
+B2Q            sp3_sp3_68          CK          CL          CM          CN     180.000    10.0     3
+B2Q            sp3_sp3_44          CM          CL          CR          NS      60.000    10.0     3
+B2Q            sp3_sp3_77          CL          CM          CN          CO     180.000    10.0     3
+B2Q            sp3_sp3_86          CM          CN          CO          CP     180.000    10.0     3
+B2Q            sp3_sp3_95          CN          CO          CP          HP     180.000    10.0     3
+B2Q           sp3_sp3_104          CL          CR          NS         HNS     180.000    10.0     3
+B2Q            sp3_sp3_34          NS          CR          CT          CE     180.000    10.0     3
+B2Q              const_18          CF          CU          CV          OW     180.000    10.0     2
+B2Q             sp2_sp2_1          CC          CB          OB          CA     180.000     5.0     2
+B2Q              const_24          OB          CB          CV          OW       0.000    10.0     2
+B2Q       const_sp2_sp2_3          OB          CB          CC          CD     180.000     5.0     2
+B2Q             sp2_sp2_3          CB          CV          OW          CZ     180.000     5.0     2
+B2Q           sp3_sp3_114          HZ          CZ          OW          CV     -60.000    10.0     3
+B2Q       const_sp2_sp2_6          CB          CC          CD          CE     180.000     5.0     2
+B2Q             sp2_sp3_5          CC          CD          CE          CT     -60.000    10.0     6
+B2Q              const_10          CC          CD          CF          CG     180.000    10.0     2
+B2Q            sp3_sp3_25          CD          CE          CT          CR     -60.000    10.0     3
+B2Q             sp3_sp3_1          CD          CE          NJ          CH     -60.000    10.0     3
+B2Q              const_13          CD          CF          CU          CV       0.000    10.0     2
+B2Q             sp2_sp3_7          CD          CF          CG          CH       0.000    10.0     6
+B2Q            sp3_sp3_13          CF          CG          CH          NJ     -60.000    10.0     3
+B2Q             sp3_sp3_7          CG          CH          NJ          CE      60.000    10.0     3
+B2Q            sp3_sp3_58          CL          CK          NJ          CE      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+B2Q    chir_1    CE    NJ    CD    CT    negative
+B2Q    chir_2    NJ    CE    CK    CH    positive
+B2Q    chir_3    CL    CR    CK    CM    negative
+B2Q    chir_4    CR    NS    CL    CT    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+B2Q    plan-1          CB   0.020
+B2Q    plan-1          CC   0.020
+B2Q    plan-1          CD   0.020
+B2Q    plan-1          CE   0.020
+B2Q    plan-1          CF   0.020
+B2Q    plan-1          CG   0.020
+B2Q    plan-1          CU   0.020
+B2Q    plan-1          CV   0.020
+B2Q    plan-1          HC   0.020
+B2Q    plan-1          HU   0.020
+B2Q    plan-1          OB   0.020
+B2Q    plan-1          OW   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+B2Q SMILES_CANONICAL               CACTVS 3.352                                                                                                   CCCC[C@@H]1CN2CCc3cc(OC)c(OC)cc3[C@H]2C[C@@H]1N
+B2Q           SMILES               CACTVS 3.352                                                                                                        CCCC[CH]1CN2CCc3cc(OC)c(OC)cc3[CH]2C[CH]1N
+B2Q SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                               CCCC[C@@H]1C[N@@]2CCc3cc(c(cc3[C@H]2C[C@@H]1N)OC)OC
+B2Q           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                 CCCCC1CN2CCc3cc(c(cc3C2CC1N)OC)OC
+B2Q            InChI                InChI  1.03 InChI=1S/C19H30N2O2/c1-4-5-6-14-12-21-8-7-13-9-18(22-2)19(23-3)10-15(13)17(21)11-16(14)20/h9-10,14,16-17H,4-8,11-12,20H2,1-3H3/t14-,16+,17-/m1/s1
+B2Q         InChIKey                InChI  1.03                                                                                                                       IYTDSNSLAQHLJL-HYVNUMGLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+B2Q acedrg               243         "dictionary generator"                  
+B2Q acedrg_database      11          "data source"                           
+B2Q rdkit                2017.03.2   "Chemoinformatics tool"
+B2Q refmac5              5.8.0238    "optimization tool"                     

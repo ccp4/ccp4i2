@@ -1,0 +1,202 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PR7     PR7      1-[(2S)-2-carboxy-2-hydroxyethyl]-L-proline     NON-POLYMER     25     14     .     
+#
+data_comp_PR7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PR7     C       C       C       0       13.549      41.360      23.993      
+PR7     N       N       NT      0       11.212      40.949      24.795      
+PR7     O       O       O       0       13.196      41.605      22.852      
+PR7     CA      C       CH1     0       12.616      40.494      24.855      
+PR7     CB      C       CH2     0       12.532      39.061      24.314      
+PR7     CD      C       CH2     0       10.308      39.795      24.857      
+PR7     CG      C       CH2     0       11.206      38.567      24.848      
+PR7     CAB     C       CH2     0       10.818      42.148      25.547      
+PR7     CAC     C       CH1     0       11.268      42.301      27.024      
+PR7     CAD     C       C       0       11.039      41.053      27.889      
+PR7     OAE     O       O       0       9.857       40.769      28.169      
+PR7     OAF     O       OC      -1      12.045      40.417      28.270      
+PR7     OAG     O       OH1     0       12.628      42.715      27.065      
+PR7     O5      O       OC      -1      14.581      41.741      24.515      
+PR7     HA      H       H       0       12.934      40.484      25.790      
+PR7     HB      H       H       0       13.273      38.513      24.648      
+PR7     HBA     H       H       0       12.541      39.049      23.332      
+PR7     HD      H       H       0       9.710       39.794      24.077      
+PR7     HDA     H       H       0       9.761       39.825      25.671      
+PR7     HG      H       H       0       11.309      38.203      25.760      
+PR7     HGA     H       H       0       10.832      37.865      24.265      
+PR7     HAB     H       H       0       9.840       42.205      25.529      
+PR7     HABA    H       H       0       11.152      42.927      25.057      
+PR7     HAC     H       H       0       10.732      43.026      27.428      
+PR7     HOAG    H       H       0       12.793      43.038      27.831      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PR7           C          CA      SINGLE       n     1.536  0.0100     1.536  0.0100
+PR7           C          O5      SINGLE       n     1.218  0.0200     1.218  0.0200
+PR7           N          CD      SINGLE       n     1.465  0.0100     1.465  0.0100
+PR7           N         CAB      SINGLE       n     1.459  0.0112     1.459  0.0112
+PR7           C           O      DOUBLE       n     1.218  0.0200     1.218  0.0200
+PR7           N          CA      SINGLE       n     1.472  0.0140     1.472  0.0140
+PR7          CA          CB      SINGLE       n     1.534  0.0126     1.534  0.0126
+PR7          CB          CG      SINGLE       n     1.508  0.0200     1.508  0.0200
+PR7          CD          CG      SINGLE       n     1.519  0.0111     1.519  0.0111
+PR7         CAB         CAC      SINGLE       n     1.530  0.0200     1.530  0.0200
+PR7         CAC         OAG      SINGLE       n     1.419  0.0162     1.419  0.0162
+PR7         CAC         CAD      SINGLE       n     1.533  0.0100     1.533  0.0100
+PR7         CAD         OAE      DOUBLE       n     1.247  0.0187     1.247  0.0187
+PR7         CAD         OAF      SINGLE       n     1.247  0.0187     1.247  0.0187
+PR7          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0121
+PR7          CB          HB      SINGLE       n     1.089  0.0100     0.981  0.0193
+PR7          CB         HBA      SINGLE       n     1.089  0.0100     0.981  0.0193
+PR7          CD          HD      SINGLE       n     1.089  0.0100     0.983  0.0122
+PR7          CD         HDA      SINGLE       n     1.089  0.0100     0.983  0.0122
+PR7          CG          HG      SINGLE       n     1.089  0.0100     0.987  0.0200
+PR7          CG         HGA      SINGLE       n     1.089  0.0100     0.987  0.0200
+PR7         CAB         HAB      SINGLE       n     1.089  0.0100     0.979  0.0150
+PR7         CAB        HABA      SINGLE       n     1.089  0.0100     0.979  0.0150
+PR7         CAC         HAC      SINGLE       n     1.089  0.0100     0.988  0.0129
+PR7         OAG        HOAG      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PR7          CA           C          O5     117.066    2.02
+PR7          CA           C           O     117.066    2.02
+PR7          O5           C           O     125.868    1.50
+PR7          CD           N         CAB     114.607    1.50
+PR7          CD           N          CA     108.807    3.00
+PR7         CAB           N          CA     114.420    1.71
+PR7           C          CA           N     111.420    2.45
+PR7           C          CA          CB     110.031    2.42
+PR7           C          CA          HA     110.011    1.50
+PR7           N          CA          CB     104.326    1.64
+PR7           N          CA          HA     109.403    1.50
+PR7          CB          CA          HA     110.662    1.50
+PR7          CA          CB          CG     103.507    1.50
+PR7          CA          CB          HB     110.902    1.50
+PR7          CA          CB         HBA     110.902    1.50
+PR7          CG          CB          HB     110.886    1.50
+PR7          CG          CB         HBA     110.886    1.50
+PR7          HB          CB         HBA     108.922    1.50
+PR7           N          CD          CG     106.140    1.87
+PR7           N          CD          HD     110.377    1.50
+PR7           N          CD         HDA     110.377    1.50
+PR7          CG          CD          HD     111.171    1.50
+PR7          CG          CD         HDA     111.171    1.50
+PR7          HD          CD         HDA     108.998    1.50
+PR7          CB          CG          CD     104.327    2.00
+PR7          CB          CG          HG     110.864    1.50
+PR7          CB          CG         HGA     110.864    1.50
+PR7          CD          CG          HG     110.793    1.50
+PR7          CD          CG         HGA     110.793    1.50
+PR7          HG          CG         HGA     108.899    1.50
+PR7           N         CAB         CAC     111.175    2.43
+PR7           N         CAB         HAB     109.094    1.50
+PR7           N         CAB        HABA     109.094    1.50
+PR7         CAC         CAB         HAB     108.927    1.50
+PR7         CAC         CAB        HABA     108.927    1.50
+PR7         HAB         CAB        HABA     107.867    1.50
+PR7         CAB         CAC         OAG     109.928    1.50
+PR7         CAB         CAC         CAD     111.511    2.91
+PR7         CAB         CAC         HAC     109.435    1.50
+PR7         OAG         CAC         CAD     111.343    1.72
+PR7         OAG         CAC         HAC     108.675    1.50
+PR7         CAD         CAC         HAC     108.330    1.50
+PR7         CAC         CAD         OAE     117.167    1.52
+PR7         CAC         CAD         OAF     117.167    1.52
+PR7         OAE         CAD         OAF     125.666    1.50
+PR7         CAC         OAG        HOAG     108.894    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PR7             sp2_sp3_1          O5           C          CA           N       0.000    10.0     6
+PR7            sp3_sp3_43           C          CA           N         CAB     180.000    10.0     3
+PR7             sp3_sp3_2          CG          CD           N         CAB     180.000    10.0     3
+PR7            sp3_sp3_34         CAC         CAB           N          CD     180.000    10.0     3
+PR7            sp3_sp3_28           C          CA          CB          CG     180.000    10.0     3
+PR7            sp3_sp3_16          CA          CB          CG          CD      60.000    10.0     3
+PR7             sp3_sp3_7           N          CD          CG          CB     -60.000    10.0     3
+PR7            sp3_sp3_46           N         CAB         CAC         OAG     180.000    10.0     3
+PR7            sp3_sp3_55         CAB         CAC         OAG        HOAG     180.000    10.0     3
+PR7             sp2_sp3_7         OAE         CAD         CAC         CAB       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PR7    chir_1    N    CA    CAB    CD    positive
+PR7    chir_2    CA    N    C    CB    positive
+PR7    chir_3    CAC    OAG    CAD    CAB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PR7    plan-1           C   0.020
+PR7    plan-1          CA   0.020
+PR7    plan-1           O   0.020
+PR7    plan-1          O5   0.020
+PR7    plan-2         CAC   0.020
+PR7    plan-2         CAD   0.020
+PR7    plan-2         OAE   0.020
+PR7    plan-2         OAF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PR7           SMILES              ACDLabs 12.01                                                                           O=C(O)C(O)CN1C(C(=O)O)CCC1
+PR7 SMILES_CANONICAL               CACTVS 3.370                                                                    O[C@@H](CN1CCC[C@H]1C(O)=O)C(O)=O
+PR7           SMILES               CACTVS 3.370                                                                       O[CH](CN1CCC[CH]1C(O)=O)C(O)=O
+PR7 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                            C1C[C@H]([N@@](C1)C[C@@H](C(=O)O)O)C(=O)O
+PR7           SMILES "OpenEye OEToolkits" 1.7.0                                                                         C1CC(N(C1)CC(C(=O)O)O)C(=O)O
+PR7            InChI                InChI  1.03 InChI=1S/C8H13NO5/c10-6(8(13)14)4-9-3-1-2-5(9)7(11)12/h5-6,10H,1-4H2,(H,11,12)(H,13,14)/t5-,6-/m0/s1
+PR7         InChIKey                InChI  1.03                                                                          VWTJOUUXTYKUIB-WDSKDSINSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PR7 acedrg               243         "dictionary generator"                  
+PR7 acedrg_database      11          "data source"                           
+PR7 rdkit                2017.03.2   "Chemoinformatics tool"
+PR7 refmac5              5.8.0238    "optimization tool"                     

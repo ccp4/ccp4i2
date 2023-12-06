@@ -1,0 +1,196 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CTV     CTV      (2Z)-3,7-dimethylocta-2,6-dienenitrile     NON-POLYMER     26     11     .     
+#
+data_comp_CTV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CTV     C1      C       CH3     0       10.159      10.695      29.606      
+CTV     N1      N       NSP     0       7.451       14.808      34.604      
+CTV     C2      C       CH3     0       8.632       11.950      28.033      
+CTV     C3      C       C       0       9.193       11.832      29.423      
+CTV     C4      C       C1      0       8.868       12.664      30.403      
+CTV     C5      C       CH2     0       9.348       12.673      31.824      
+CTV     C6      C       CH2     0       8.578       11.712      32.709      
+CTV     C7      C       C       0       9.086       11.660      34.126      
+CTV     C8      C       C1      0       8.831       12.693      35.108      
+CTV     C9      C       CH3     0       9.896       10.447      34.467      
+CTV     C10     C       CSP     0       8.078       13.861      34.808      
+CTV     H1      H       H       0       9.975       10.242      30.445      
+CTV     H1A     H       H       0       11.067      11.039      29.619      
+CTV     H15     H       H       0       10.066      10.062      28.875      
+CTV     H2      H       H       0       7.972       12.662      28.001      
+CTV     H2A     H       H       0       8.211       11.112      27.781      
+CTV     H2B     H       H       0       9.349       12.150      27.410      
+CTV     H4      H       H       0       8.251       13.345      30.183      
+CTV     H5      H       H       0       9.258       13.578      32.185      
+CTV     H5A     H       H       0       10.298      12.436      31.846      
+CTV     H6      H       H       0       8.628       10.815      32.320      
+CTV     H6A     H       H       0       7.636       11.976      32.719      
+CTV     H8      H       H       0       9.187       12.577      35.991      
+CTV     H9      H       H       0       10.191      10.500      35.391      
+CTV     H9A     H       H       0       10.671      10.399      33.884      
+CTV     H9B     H       H       0       9.354       9.650       34.348      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CTV          C1          C3      SINGLE       n     1.499  0.0156     1.499  0.0156
+CTV          N1         C10      TRIPLE       n     1.149  0.0200     1.149  0.0200
+CTV          C2          C3      SINGLE       n     1.499  0.0156     1.499  0.0156
+CTV          C3          C4      DOUBLE       n     1.324  0.0100     1.324  0.0100
+CTV          C4          C5      SINGLE       n     1.498  0.0141     1.498  0.0141
+CTV          C5          C6      SINGLE       n     1.516  0.0200     1.516  0.0200
+CTV          C6          C7      SINGLE       n     1.505  0.0100     1.505  0.0100
+CTV          C7          C8      DOUBLE       n     1.442  0.0200     1.442  0.0200
+CTV          C7          C9      SINGLE       n     1.497  0.0172     1.497  0.0172
+CTV          C8         C10      SINGLE       n     1.421  0.0161     1.421  0.0161
+CTV          C1          H1      SINGLE       n     1.089  0.0100     0.971  0.0140
+CTV          C1         H1A      SINGLE       n     1.089  0.0100     0.971  0.0140
+CTV          C1         H15      SINGLE       n     1.089  0.0100     0.971  0.0140
+CTV          C2          H2      SINGLE       n     1.089  0.0100     0.971  0.0140
+CTV          C2         H2A      SINGLE       n     1.089  0.0100     0.971  0.0140
+CTV          C2         H2B      SINGLE       n     1.089  0.0100     0.971  0.0140
+CTV          C4          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+CTV          C5          H5      SINGLE       n     1.089  0.0100     0.979  0.0159
+CTV          C5         H5A      SINGLE       n     1.089  0.0100     0.979  0.0159
+CTV          C6          H6      SINGLE       n     1.089  0.0100     0.979  0.0159
+CTV          C6         H6A      SINGLE       n     1.089  0.0100     0.979  0.0159
+CTV          C8          H8      SINGLE       n     1.082  0.0130     0.959  0.0106
+CTV          C9          H9      SINGLE       n     1.089  0.0100     0.971  0.0140
+CTV          C9         H9A      SINGLE       n     1.089  0.0100     0.971  0.0140
+CTV          C9         H9B      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CTV          C3          C1          H1     109.600    1.50
+CTV          C3          C1         H1A     109.600    1.50
+CTV          C3          C1         H15     109.600    1.50
+CTV          H1          C1         H1A     109.342    1.50
+CTV          H1          C1         H15     109.342    1.50
+CTV         H1A          C1         H15     109.342    1.50
+CTV          C3          C2          H2     109.600    1.50
+CTV          C3          C2         H2A     109.600    1.50
+CTV          C3          C2         H2B     109.600    1.50
+CTV          H2          C2         H2A     109.342    1.50
+CTV          H2          C2         H2B     109.342    1.50
+CTV         H2A          C2         H2B     109.342    1.50
+CTV          C1          C3          C2     114.618    1.50
+CTV          C1          C3          C4     122.691    1.63
+CTV          C2          C3          C4     122.691    1.63
+CTV          C3          C4          C5     128.282    1.50
+CTV          C3          C4          H4     116.082    1.50
+CTV          C5          C4          H4     115.635    1.60
+CTV          C4          C5          C6     112.751    2.50
+CTV          C4          C5          H5     109.181    1.50
+CTV          C4          C5         H5A     109.181    1.50
+CTV          C6          C5          H5     109.013    1.50
+CTV          C6          C5         H5A     109.013    1.50
+CTV          H5          C5         H5A     107.922    1.50
+CTV          C5          C6          C7     113.520    2.62
+CTV          C5          C6          H6     108.867    1.50
+CTV          C5          C6         H6A     108.867    1.50
+CTV          C7          C6          H6     108.816    1.50
+CTV          C7          C6         H6A     108.816    1.50
+CTV          H6          C6         H6A     107.710    1.94
+CTV          C6          C7          C8     123.130    3.00
+CTV          C6          C7          C9     115.184    1.50
+CTV          C8          C7          C9     121.687    1.72
+CTV          C7          C8         C10     121.599    2.85
+CTV          C7          C8          H8     118.745    2.19
+CTV         C10          C8          H8     119.655    1.50
+CTV          C7          C9          H9     109.541    1.50
+CTV          C7          C9         H9A     109.541    1.50
+CTV          C7          C9         H9B     109.541    1.50
+CTV          H9          C9         H9A     109.342    1.50
+CTV          H9          C9         H9B     109.342    1.50
+CTV         H9A          C9         H9B     109.342    1.50
+CTV          N1         C10          C8     180.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CTV             sp2_sp3_1          C2          C3          C1          H1       0.000    10.0     6
+CTV             sp2_sp3_7          C1          C3          C2          H2       0.000    10.0     6
+CTV             sp2_sp2_1          C1          C3          C4          C5     180.000     5.0     2
+CTV            sp2_sp3_14          C3          C4          C5          C6     120.000    10.0     6
+CTV             sp3_sp3_1          C4          C5          C6          C7     180.000    10.0     3
+CTV            sp2_sp3_20          C8          C7          C6          C5     120.000    10.0     6
+CTV             sp2_sp2_5          C6          C7          C8         C10     180.000     5.0     2
+CTV            sp2_sp3_25          C6          C7          C9          H9       0.000    10.0     6
+CTV           other_tor_1          N1         C10          C8          C7      90.000    10.0     1
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CTV    plan-1          C1   0.020
+CTV    plan-1          C2   0.020
+CTV    plan-1          C3   0.020
+CTV    plan-1          C4   0.020
+CTV    plan-2          C3   0.020
+CTV    plan-2          C4   0.020
+CTV    plan-2          C5   0.020
+CTV    plan-2          H4   0.020
+CTV    plan-3          C6   0.020
+CTV    plan-3          C7   0.020
+CTV    plan-3          C8   0.020
+CTV    plan-3          C9   0.020
+CTV    plan-4         C10   0.020
+CTV    plan-4          C7   0.020
+CTV    plan-4          C8   0.020
+CTV    plan-4          H8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CTV           SMILES              ACDLabs 12.01                                             N#C\C=C(/CC/C=C(/C)C)C
+CTV SMILES_CANONICAL               CACTVS 3.370                                               CC(C)=CCC\C(C)=C/C#N
+CTV           SMILES               CACTVS 3.370                                                 CC(C)=CCCC(C)=CC#N
+CTV SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                              CC(=CCC/C(=C\C#N)/C)C
+CTV           SMILES "OpenEye OEToolkits" 1.7.2                                                 CC(=CCCC(=CC#N)C)C
+CTV            InChI                InChI  1.03 InChI=1S/C10H15N/c1-9(2)5-4-6-10(3)7-8-11/h5,7H,4,6H2,1-3H3/b10-7-
+CTV         InChIKey                InChI  1.03                                        HLCSDJLATUNSSI-YFHOEESVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CTV acedrg               243         "dictionary generator"                  
+CTV acedrg_database      11          "data source"                           
+CTV rdkit                2017.03.2   "Chemoinformatics tool"
+CTV refmac5              5.8.0238    "optimization tool"                     

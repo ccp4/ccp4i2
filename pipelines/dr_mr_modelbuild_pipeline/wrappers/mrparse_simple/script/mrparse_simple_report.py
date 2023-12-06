@@ -28,9 +28,9 @@ class mrparse_simple_report(Report):
             jobNumber = self.jobInfo.get("jobnumber", None)
 
             mrparseurl = (
-                "/database/?getProjectJobFile?projectId="
+                "/database/getProjectJobFile?projectId="
                 + projectid
-                + "?fileName=mrparse_0/mrparse.html?jobNumber="
+                + "&fileName=mrparse_0/mrparse.html?jobNumber="
                 + jobNumber
             )
 

@@ -1,0 +1,359 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PDY     PDY      N~7~-(4-ethoxyphenyl)-6-methyl-N~5~-[(3S)-piperidin-3-yl]pyrazolo[1,5-a]pyrimidine-5,7-diamine     NON-POLYMER     53     27     .     
+#
+data_comp_PDY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PDY     C25     C       CH2     0       60.705      142.862     98.595      
+PDY     C26     C       CH2     0       60.074      141.689     97.850      
+PDY     C23     C       CH2     0       59.080      142.185     96.817      
+PDY     N12     N       NT1     0       59.695      143.141     95.886      
+PDY     C22     C       CH2     0       60.218      144.311     96.603      
+PDY     C15     C       CH1     0       61.286      143.884     97.623      
+PDY     N10     N       NH1     0       61.832      145.036     98.344      
+PDY     C4      C       CR6     0       62.715      145.927     97.898      
+PDY     C3      C       CR6     0       63.014      147.109     98.671      
+PDY     C14     C       CH3     0       62.330      147.380     99.991      
+PDY     N6      N       NRD6    0       63.324      145.662     96.701      
+PDY     C5      C       CR56    0       64.227      146.572     96.276      
+PDY     C8      C       CR15    0       64.973      146.559     95.130      
+PDY     C11     C       CR15    0       65.745      147.719     95.163      
+PDY     N7      N       NRD5    0       65.509      148.435     96.267      
+PDY     N2      N       NT      0       64.570      147.711     96.943      
+PDY     C1      C       CR6     0       63.980      148.024     98.149      
+PDY     N9      N       NH1     0       64.346      149.153     98.810      
+PDY     C13     C       CR6     0       65.113      149.242     100.008     
+PDY     C17     C       CR16    0       65.232      150.466     100.659     
+PDY     C20     C       CR16    0       65.965      150.581     101.831     
+PDY     C18     C       CR16    0       65.736      148.128     100.566     
+PDY     C19     C       CR16    0       66.469      148.236     101.738     
+PDY     C16     C       CR6     0       66.585      149.461     102.382     
+PDY     O21     O       O2      0       67.343      149.450     103.528     
+PDY     C24     C       CH2     0       67.233      150.519     104.479     
+PDY     C27     C       CH3     0       67.999      150.126     105.708     
+PDY     H25     H       H       0       60.024      143.300     99.159      
+PDY     H25A    H       H       0       61.423      142.530     99.185      
+PDY     H26     H       H       0       60.774      141.166     97.400      
+PDY     H26A    H       H       0       59.611      141.101     98.488      
+PDY     H23     H       H       0       58.331      142.620     97.273      
+PDY     H23A    H       H       0       58.732      141.423     96.311      
+PDY     HN12    H       H       0       59.076      143.403     95.306      
+PDY     H22     H       H       0       59.483      144.765     97.066      
+PDY     H22A    H       H       0       60.610      144.938     95.960      
+PDY     H15     H       H       0       62.020      143.440     97.129      
+PDY     HN10    H       H       0       61.578      145.129     99.168      
+PDY     H14     H       H       0       62.479      148.294     100.267     
+PDY     H14A    H       H       0       62.680      146.780     100.666     
+PDY     H14B    H       H       0       61.376      147.236     99.898      
+PDY     H8      H       H       0       64.961      145.896     94.458      
+PDY     H11     H       H       0       66.360      147.975     94.494      
+PDY     HN9     H       H       0       64.082      149.913     98.455      
+PDY     H17     H       H       0       64.814      151.227     100.296     
+PDY     H20     H       H       0       66.037      151.421     102.252     
+PDY     H18     H       H       0       65.666      147.290     100.144     
+PDY     H19     H       H       0       66.888      147.474     102.099     
+PDY     H24     H       H       0       66.293      150.674     104.702     
+PDY     H24A    H       H       0       67.603      151.341     104.099     
+PDY     H27     H       H       0       68.879      150.537     105.686     
+PDY     H27A    H       H       0       68.095      149.160     105.744     
+PDY     H27B    H       H       0       67.523      150.431     106.497     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PDY         C25         C26      SINGLE       n     1.526  0.0100     1.526  0.0100
+PDY         C25         C15      SINGLE       n     1.523  0.0100     1.523  0.0100
+PDY         C26         C23      SINGLE       n     1.515  0.0100     1.515  0.0100
+PDY         C23         N12      SINGLE       n     1.467  0.0100     1.467  0.0100
+PDY         N12         C22      SINGLE       n     1.467  0.0111     1.467  0.0111
+PDY         C22         C15      SINGLE       n     1.535  0.0119     1.535  0.0119
+PDY         C15         N10      SINGLE       n     1.461  0.0100     1.461  0.0100
+PDY         N10          C4      SINGLE       n     1.321  0.0112     1.321  0.0112
+PDY          C4          C3      SINGLE       y     1.388  0.0200     1.388  0.0200
+PDY          C4          N6      DOUBLE       y     1.327  0.0200     1.327  0.0200
+PDY          C3         C14      SINGLE       n     1.505  0.0100     1.505  0.0100
+PDY          C3          C1      DOUBLE       y     1.404  0.0200     1.404  0.0200
+PDY          N6          C5      SINGLE       y     1.345  0.0116     1.345  0.0116
+PDY          C5          C8      DOUBLE       y     1.379  0.0200     1.379  0.0200
+PDY          C5          N2      SINGLE       y     1.372  0.0113     1.372  0.0113
+PDY          C8         C11      SINGLE       y     1.389  0.0100     1.389  0.0100
+PDY         C11          N7      DOUBLE       y     1.328  0.0128     1.328  0.0128
+PDY          N7          N2      SINGLE       y     1.366  0.0181     1.366  0.0181
+PDY          N2          C1      SINGLE       y     1.379  0.0122     1.379  0.0122
+PDY          C1          N9      SINGLE       n     1.350  0.0162     1.350  0.0162
+PDY          N9         C13      SINGLE       n     1.420  0.0100     1.420  0.0100
+PDY         C13         C17      DOUBLE       y     1.387  0.0100     1.387  0.0100
+PDY         C13         C18      SINGLE       y     1.387  0.0100     1.387  0.0100
+PDY         C17         C20      SINGLE       y     1.383  0.0100     1.383  0.0100
+PDY         C20         C16      DOUBLE       y     1.386  0.0109     1.386  0.0109
+PDY         C18         C19      DOUBLE       y     1.383  0.0100     1.383  0.0100
+PDY         C19         C16      SINGLE       y     1.386  0.0109     1.386  0.0109
+PDY         C16         O21      SINGLE       n     1.369  0.0106     1.369  0.0106
+PDY         O21         C24      SINGLE       n     1.432  0.0104     1.432  0.0104
+PDY         C24         C27      SINGLE       n     1.498  0.0164     1.498  0.0164
+PDY         C25         H25      SINGLE       n     1.089  0.0100     0.987  0.0100
+PDY         C25        H25A      SINGLE       n     1.089  0.0100     0.987  0.0100
+PDY         C26         H26      SINGLE       n     1.089  0.0100     0.983  0.0132
+PDY         C26        H26A      SINGLE       n     1.089  0.0100     0.983  0.0132
+PDY         C23         H23      SINGLE       n     1.089  0.0100     0.979  0.0126
+PDY         C23        H23A      SINGLE       n     1.089  0.0100     0.979  0.0126
+PDY         N12        HN12      SINGLE       n     1.036  0.0160     0.887  0.0200
+PDY         C22         H22      SINGLE       n     1.089  0.0100     0.980  0.0172
+PDY         C22        H22A      SINGLE       n     1.089  0.0100     0.980  0.0172
+PDY         C15         H15      SINGLE       n     1.089  0.0100     0.990  0.0147
+PDY         N10        HN10      SINGLE       n     1.016  0.0100     0.873  0.0200
+PDY         C14         H14      SINGLE       n     1.089  0.0100     0.969  0.0130
+PDY         C14        H14A      SINGLE       n     1.089  0.0100     0.969  0.0130
+PDY         C14        H14B      SINGLE       n     1.089  0.0100     0.969  0.0130
+PDY          C8          H8      SINGLE       n     1.082  0.0130     0.944  0.0104
+PDY         C11         H11      SINGLE       n     1.082  0.0130     0.944  0.0171
+PDY          N9         HN9      SINGLE       n     1.016  0.0100     0.879  0.0200
+PDY         C17         H17      SINGLE       n     1.082  0.0130     0.942  0.0170
+PDY         C20         H20      SINGLE       n     1.082  0.0130     0.942  0.0151
+PDY         C18         H18      SINGLE       n     1.082  0.0130     0.942  0.0170
+PDY         C19         H19      SINGLE       n     1.082  0.0130     0.942  0.0151
+PDY         C24         H24      SINGLE       n     1.089  0.0100     0.979  0.0127
+PDY         C24        H24A      SINGLE       n     1.089  0.0100     0.979  0.0127
+PDY         C27         H27      SINGLE       n     1.089  0.0100     0.971  0.0156
+PDY         C27        H27A      SINGLE       n     1.089  0.0100     0.971  0.0156
+PDY         C27        H27B      SINGLE       n     1.089  0.0100     0.971  0.0156
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PDY         C26         C25         C15     110.796    1.50
+PDY         C26         C25         H25     109.588    1.50
+PDY         C26         C25        H25A     109.588    1.50
+PDY         C15         C25         H25     109.341    1.50
+PDY         C15         C25        H25A     109.341    1.50
+PDY         H25         C25        H25A     108.076    1.50
+PDY         C25         C26         C23     110.340    1.50
+PDY         C25         C26         H26     109.460    1.50
+PDY         C25         C26        H26A     109.460    1.50
+PDY         C23         C26         H26     108.932    1.50
+PDY         C23         C26        H26A     108.932    1.50
+PDY         H26         C26        H26A     108.022    1.50
+PDY         C26         C23         N12     111.538    1.95
+PDY         C26         C23         H23     109.268    1.50
+PDY         C26         C23        H23A     109.268    1.50
+PDY         N12         C23         H23     109.046    1.50
+PDY         N12         C23        H23A     109.046    1.50
+PDY         H23         C23        H23A     108.210    1.50
+PDY         C23         N12         C22     110.415    1.50
+PDY         C23         N12        HN12     108.409    1.90
+PDY         C22         N12        HN12     109.383    3.00
+PDY         N12         C22         C15     110.258    1.51
+PDY         N12         C22         H22     109.326    1.50
+PDY         N12         C22        H22A     109.326    1.50
+PDY         C15         C22         H22     109.534    1.50
+PDY         C15         C22        H22A     109.534    1.50
+PDY         H22         C22        H22A     108.200    1.50
+PDY         C25         C15         C22     109.934    1.50
+PDY         C25         C15         N10     111.103    1.87
+PDY         C25         C15         H15     107.655    1.50
+PDY         C22         C15         N10     110.829    2.03
+PDY         C22         C15         H15     107.779    1.50
+PDY         N10         C15         H15     108.185    1.50
+PDY         C15         N10          C4     124.900    3.00
+PDY         C15         N10        HN10     118.746    1.72
+PDY          C4         N10        HN10     116.354    2.30
+PDY         N10          C4          C3     119.544    2.97
+PDY         N10          C4          N6     119.160    1.50
+PDY          C3          C4          N6     121.296    1.66
+PDY          C4          C3         C14     120.620    2.28
+PDY          C4          C3          C1     118.200    1.50
+PDY         C14          C3          C1     121.180    2.37
+PDY          C3         C14         H14     109.593    1.50
+PDY          C3         C14        H14A     109.593    1.50
+PDY          C3         C14        H14B     109.593    1.50
+PDY         H14         C14        H14A     109.339    1.50
+PDY         H14         C14        H14B     109.339    1.50
+PDY        H14A         C14        H14B     109.339    1.50
+PDY          C4          N6          C5     112.368    1.50
+PDY          N6          C5          C8     127.237    1.50
+PDY          N6          C5          N2     123.587    1.50
+PDY          C8          C5          N2     109.176    1.50
+PDY          C5          C8         C11     106.920    1.50
+PDY          C5          C8          H8     126.058    1.50
+PDY         C11          C8          H8     127.021    1.50
+PDY          C8         C11          N7     111.002    1.50
+PDY          C8         C11         H11     125.173    2.40
+PDY          N7         C11         H11     123.825    1.55
+PDY         C11          N7          N2     104.585    1.50
+PDY          C5          N2          N7     111.210    1.50
+PDY          C5          N2          C1     109.471    3.00
+PDY          N7          N2          C1     109.471    3.00
+PDY          C3          C1          N2     119.919    3.00
+PDY          C3          C1          N9     120.162    1.94
+PDY          N2          C1          N9     119.919    3.00
+PDY          C1          N9         C13     126.474    2.64
+PDY          C1          N9         HN9     116.767    2.17
+PDY         C13          N9         HN9     116.759    2.79
+PDY          N9         C13         C17     120.466    2.62
+PDY          N9         C13         C18     120.466    2.62
+PDY         C17         C13         C18     119.068    1.50
+PDY         C13         C17         C20     120.597    1.50
+PDY         C13         C17         H17     119.652    1.50
+PDY         C20         C17         H17     119.751    1.50
+PDY         C17         C20         C16     119.947    1.50
+PDY         C17         C20         H20     119.960    1.50
+PDY         C16         C20         H20     120.098    1.50
+PDY         C13         C18         C19     120.597    1.50
+PDY         C13         C18         H18     119.652    1.50
+PDY         C19         C18         H18     119.751    1.50
+PDY         C18         C19         C16     119.947    1.50
+PDY         C18         C19         H19     119.960    1.50
+PDY         C16         C19         H19     120.098    1.50
+PDY         C20         C16         C19     119.834    1.50
+PDY         C20         C16         O21     120.083    3.00
+PDY         C19         C16         O21     120.083    3.00
+PDY         C16         O21         C24     118.081    1.50
+PDY         O21         C24         C27     107.613    1.50
+PDY         O21         C24         H24     110.040    1.50
+PDY         O21         C24        H24A     110.040    1.50
+PDY         C27         C24         H24     110.271    1.50
+PDY         C27         C24        H24A     110.271    1.50
+PDY         H24         C24        H24A     108.599    1.50
+PDY         C24         C27         H27     109.553    1.50
+PDY         C24         C27        H27A     109.553    1.50
+PDY         C24         C27        H27B     109.553    1.50
+PDY         H27         C27        H27A     109.410    1.50
+PDY         H27         C27        H27B     109.410    1.50
+PDY        H27A         C27        H27B     109.410    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PDY             sp3_sp3_1         C15         C25         C26         C23      60.000    10.0     3
+PDY            sp3_sp3_43         N10         C15         C25         C26      60.000    10.0     3
+PDY            sp2_sp2_14          C8          C5          N6          C4     180.000     5.0     2
+PDY       const_sp2_sp2_3          N6          C5          C8         C11     180.000     5.0     2
+PDY              const_34          N6          C5          N2          N7     180.000    10.0     2
+PDY       const_sp2_sp2_5          N7         C11          C8          C5       0.000     5.0     2
+PDY       const_sp2_sp2_9          C8         C11          N7          N2       0.000     5.0     2
+PDY              const_11          C5          N2          N7         C11       0.000    10.0     2
+PDY            sp2_sp2_11          N9          C1          N2          C5     180.000     5.0     2
+PDY            sp2_sp2_21          C3          C1          N9         C13     180.000     5.0     2
+PDY            sp2_sp2_25         C17         C13          N9          C1     180.000     5.0     2
+PDY              const_15          N9         C13         C17         C20     180.000    10.0     2
+PDY              const_39          N9         C13         C18         C19     180.000    10.0     2
+PDY              const_17         C13         C17         C20         C16       0.000    10.0     2
+PDY            sp3_sp3_10         N12         C23         C26         C25     -60.000    10.0     3
+PDY              const_23         O21         C16         C20         C17     180.000    10.0     2
+PDY              const_29         C13         C18         C19         C16       0.000    10.0     2
+PDY              const_27         O21         C16         C19         C18     180.000    10.0     2
+PDY            sp2_sp2_29         C20         C16         O21         C24     180.000     5.0     2
+PDY            sp3_sp3_49         C27         C24         O21         C16     180.000    10.0     3
+PDY            sp3_sp3_52         O21         C24         C27         H27     180.000    10.0     3
+PDY            sp3_sp3_19         C26         C23         N12         C22      60.000    10.0     3
+PDY            sp3_sp3_25         C15         C22         N12         C23     -60.000    10.0     3
+PDY            sp3_sp3_34         N10         C15         C22         N12     -60.000    10.0     3
+PDY             sp2_sp3_1          C4         N10         C15         C25       0.000    10.0     6
+PDY            sp2_sp2_15          C3          C4         N10         C15     180.000     5.0     2
+PDY            sp2_sp2_20         N10          C4          N6          C5     180.000     5.0     2
+PDY             sp2_sp2_4         C14          C3          C4         N10       0.000     5.0     2
+PDY             sp2_sp2_8          N9          C1          C3         C14       0.000     5.0     2
+PDY             sp2_sp3_7          C4          C3         C14         H14     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PDY    chir_1    C15    N10    C22    C25    positive
+PDY    chir_2    N12    C22    C23    HN12    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PDY    plan-1          C1   0.020
+PDY    plan-1         C11   0.020
+PDY    plan-1         C14   0.020
+PDY    plan-1          C3   0.020
+PDY    plan-1          C4   0.020
+PDY    plan-1          C5   0.020
+PDY    plan-1          C8   0.020
+PDY    plan-1         H11   0.020
+PDY    plan-1          H8   0.020
+PDY    plan-1         N10   0.020
+PDY    plan-1          N2   0.020
+PDY    plan-1          N6   0.020
+PDY    plan-1          N7   0.020
+PDY    plan-1          N9   0.020
+PDY    plan-2         C13   0.020
+PDY    plan-2         C16   0.020
+PDY    plan-2         C17   0.020
+PDY    plan-2         C18   0.020
+PDY    plan-2         C19   0.020
+PDY    plan-2         C20   0.020
+PDY    plan-2         H17   0.020
+PDY    plan-2         H18   0.020
+PDY    plan-2         H19   0.020
+PDY    plan-2         H20   0.020
+PDY    plan-2          N9   0.020
+PDY    plan-2         O21   0.020
+PDY    plan-3         C15   0.020
+PDY    plan-3          C4   0.020
+PDY    plan-3        HN10   0.020
+PDY    plan-3         N10   0.020
+PDY    plan-4          C1   0.020
+PDY    plan-4         C13   0.020
+PDY    plan-4         HN9   0.020
+PDY    plan-4          N9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PDY           SMILES              ACDLabs 10.04                                                                                                                       n3c(NC1CCCNC1)c(c(Nc2ccc(OCC)cc2)n4nccc34)C
+PDY SMILES_CANONICAL               CACTVS 3.341                                                                                                                       CCOc1ccc(Nc2n3nccc3nc(N[C@H]4CCCNC4)c2C)cc1
+PDY           SMILES               CACTVS 3.341                                                                                                                        CCOc1ccc(Nc2n3nccc3nc(N[CH]4CCCNC4)c2C)cc1
+PDY SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                     CCOc1ccc(cc1)Nc2c(c(nc3n2ncc3)N[C@H]4CCCNC4)C
+PDY           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                         CCOc1ccc(cc1)Nc2c(c(nc3n2ncc3)NC4CCCNC4)C
+PDY            InChI                InChI  1.03 InChI=1S/C20H26N6O/c1-3-27-17-8-6-15(7-9-17)24-20-14(2)19(23-16-5-4-11-21-13-16)25-18-10-12-22-26(18)20/h6-10,12,16,21,24H,3-5,11,13H2,1-2H3,(H,23,25)/t16-/m0/s1
+PDY         InChIKey                InChI  1.03                                                                                                                                       WJOUGMPFYANZMI-INIZCTEOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PDY acedrg               243         "dictionary generator"                  
+PDY acedrg_database      11          "data source"                           
+PDY rdkit                2017.03.2   "Chemoinformatics tool"
+PDY refmac5              5.8.0238    "optimization tool"                     

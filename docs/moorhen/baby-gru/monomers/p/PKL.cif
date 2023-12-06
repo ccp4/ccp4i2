@@ -1,0 +1,322 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PKL     PKL      N-[2-(3-chlorophenyl)ethyl]-3-(4-methylphenyl)imidazo[2,1-b][1,3]thiazole-5-carboxamide     NON-POLYMER     45     27     .     
+#
+data_comp_PKL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PKL     C23     C       CR16    0       8.484       31.054      35.963      
+PKL     C4      C       CR16    0       10.194      30.025      30.517      
+PKL     C6      C       CR16    0       8.970       31.156      32.226      
+PKL     C22     C       CR16    0       9.143       29.883      36.303      
+PKL     C3      C       CR16    0       9.114       29.173      30.315      
+PKL     C7      C       CR16    0       7.895       30.299      32.014      
+PKL     C24     C       CR16    0       9.144       32.269      35.987      
+PKL     C27     C       CR16    0       11.141      31.130      36.700      
+PKL     C13     C       CR15    0       14.026      31.246      33.954      
+PKL     C5      C       CR6     0       10.131      31.021      31.480      
+PKL     C2      C       CR6     0       7.949       29.296      31.056      
+PKL     C21     C       CR6     0       10.481      29.906      36.679      
+PKL     C25     C       CR6     0       10.473      32.292      36.357      
+PKL     C14     C       CR5     0       12.844      30.702      33.509      
+PKL     C11     C       CR55    0       13.288      32.679      32.561      
+PKL     C9      C       CR15    0       11.334      33.083      30.998      
+PKL     C8      C       CR5     0       11.276      31.925      31.690      
+PKL     C16     C       C       0       12.233      29.418      33.902      
+PKL     C1      C       CH3     0       6.782       28.367      30.827      
+PKL     C20     C       CH2     0       11.210      28.632      37.045      
+PKL     C19     C       CH2     0       11.834      27.934      35.850      
+PKL     N15     N       NT      0       12.358      31.638      32.579      
+PKL     N12     N       NRD5    0       14.298      32.468      33.371      
+PKL     N18     N       NH1     0       12.643      28.846      35.043      
+PKL     O17     O       O       0       11.267      28.978      33.281      
+PKL     S10     S       S2      0       12.769      33.897      31.449      
+PKL     CL1     CL      CL      0       11.323      33.813      36.395      
+PKL     H1      H       H       0       7.576       31.023      35.712      
+PKL     H2      H       H       0       10.974      29.922      30.003      
+PKL     H3      H       H       0       8.910       31.828      32.880      
+PKL     H4      H       H       0       8.679       29.061      36.281      
+PKL     H5      H       H       0       9.174       28.499      29.658      
+PKL     H6      H       H       0       7.113       30.402      32.531      
+PKL     H7      H       H       0       8.696       33.064      35.757      
+PKL     H8      H       H       0       12.044      31.166      36.947      
+PKL     H9      H       H       0       14.598      30.841      34.592      
+PKL     H10     H       H       0       10.695      33.386      30.378      
+PKL     H11     H       H       0       6.014       28.673      31.335      
+PKL     H12     H       H       0       7.020       27.470      31.112      
+PKL     H13     H       H       0       6.558       28.355      29.882      
+PKL     H14     H       H       0       10.582      28.017      37.480      
+PKL     H15     H       H       0       11.916      28.843      37.693      
+PKL     H16     H       H       0       11.126      27.542      35.303      
+PKL     H17     H       H       0       12.403      27.207      36.169      
+PKL     H18     H       H       0       13.454      28.993      35.323      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PKL          C9         S10      SINGLE       y     1.734  0.0200     1.734  0.0200
+PKL          C9          C8      DOUBLE       y     1.347  0.0108     1.347  0.0108
+PKL          C4          C3      DOUBLE       y     1.386  0.0109     1.386  0.0109
+PKL          C3          C2      SINGLE       y     1.383  0.0109     1.383  0.0109
+PKL         C11         S10      SINGLE       y     1.739  0.0135     1.739  0.0135
+PKL          C2          C1      SINGLE       n     1.507  0.0176     1.507  0.0176
+PKL          C4          C5      SINGLE       y     1.383  0.0100     1.383  0.0100
+PKL          C7          C2      DOUBLE       y     1.383  0.0109     1.383  0.0109
+PKL          C5          C8      SINGLE       n     1.473  0.0100     1.473  0.0100
+PKL          C6          C5      DOUBLE       y     1.383  0.0100     1.383  0.0100
+PKL          C6          C7      SINGLE       y     1.386  0.0109     1.386  0.0109
+PKL          C8         N15      SINGLE       y     1.389  0.0194     1.389  0.0194
+PKL         C11         N15      SINGLE       y     1.395  0.0168     1.395  0.0168
+PKL         C11         N12      DOUBLE       y     1.313  0.0130     1.313  0.0130
+PKL         C14         N15      SINGLE       y     1.402  0.0125     1.402  0.0125
+PKL         C13         N12      SINGLE       y     1.376  0.0140     1.376  0.0140
+PKL         C13         C14      DOUBLE       y     1.371  0.0104     1.371  0.0104
+PKL         C14         C16      SINGLE       n     1.470  0.0108     1.470  0.0108
+PKL         C16         O17      DOUBLE       n     1.231  0.0100     1.231  0.0100
+PKL         C16         N18      SINGLE       n     1.333  0.0106     1.333  0.0106
+PKL         C19         N18      SINGLE       n     1.456  0.0123     1.456  0.0123
+PKL         C20         C19      SINGLE       n     1.510  0.0176     1.510  0.0176
+PKL         C23         C22      DOUBLE       y     1.382  0.0106     1.382  0.0106
+PKL         C22         C21      SINGLE       y     1.385  0.0110     1.385  0.0110
+PKL         C23         C24      SINGLE       y     1.378  0.0126     1.378  0.0126
+PKL         C21         C20      SINGLE       n     1.511  0.0100     1.511  0.0100
+PKL         C27         C21      DOUBLE       y     1.385  0.0109     1.385  0.0109
+PKL         C24         C25      DOUBLE       y     1.375  0.0126     1.375  0.0126
+PKL         C27         C25      SINGLE       y     1.379  0.0118     1.379  0.0118
+PKL         C25         CL1      SINGLE       n     1.742  0.0100     1.742  0.0100
+PKL         C23          H1      SINGLE       n     1.082  0.0130     0.943  0.0200
+PKL          C4          H2      SINGLE       n     1.082  0.0130     0.940  0.0100
+PKL          C6          H3      SINGLE       n     1.082  0.0130     0.940  0.0100
+PKL         C22          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+PKL          C3          H5      SINGLE       n     1.082  0.0130     0.943  0.0173
+PKL          C7          H6      SINGLE       n     1.082  0.0130     0.943  0.0173
+PKL         C24          H7      SINGLE       n     1.082  0.0130     0.941  0.0166
+PKL         C27          H8      SINGLE       n     1.082  0.0130     0.937  0.0118
+PKL         C13          H9      SINGLE       n     1.082  0.0130     0.949  0.0200
+PKL          C9         H10      SINGLE       n     1.082  0.0130     0.941  0.0178
+PKL          C1         H11      SINGLE       n     1.089  0.0100     0.971  0.0135
+PKL          C1         H12      SINGLE       n     1.089  0.0100     0.971  0.0135
+PKL          C1         H13      SINGLE       n     1.089  0.0100     0.971  0.0135
+PKL         C20         H14      SINGLE       n     1.089  0.0100     0.981  0.0158
+PKL         C20         H15      SINGLE       n     1.089  0.0100     0.981  0.0158
+PKL         C19         H16      SINGLE       n     1.089  0.0100     0.977  0.0160
+PKL         C19         H17      SINGLE       n     1.089  0.0100     0.977  0.0160
+PKL         N18         H18      SINGLE       n     1.016  0.0100     0.873  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PKL         C22         C23         C24     120.771    1.50
+PKL         C22         C23          H1     119.690    1.50
+PKL         C24         C23          H1     119.539    1.50
+PKL          C3          C4          C5     120.331    1.50
+PKL          C3          C4          H2     119.860    1.50
+PKL          C5          C4          H2     119.809    1.50
+PKL          C5          C6          C7     120.331    1.50
+PKL          C5          C6          H3     119.809    1.50
+PKL          C7          C6          H3     119.860    1.50
+PKL         C23         C22         C21     120.591    1.50
+PKL         C23         C22          H4     119.802    1.50
+PKL         C21         C22          H4     119.607    1.50
+PKL          C4          C3          C2     121.368    1.50
+PKL          C4          C3          H5     119.391    1.50
+PKL          C2          C3          H5     119.242    1.50
+PKL          C2          C7          C6     121.368    1.50
+PKL          C2          C7          H6     119.242    1.50
+PKL          C6          C7          H6     119.391    1.50
+PKL         C23         C24         C25     118.785    1.50
+PKL         C23         C24          H7     120.617    1.50
+PKL         C25         C24          H7     120.598    1.50
+PKL         C21         C27         C25     120.308    1.50
+PKL         C21         C27          H8     119.787    1.50
+PKL         C25         C27          H8     119.905    1.50
+PKL         N12         C13         C14     110.849    1.50
+PKL         N12         C13          H9     123.579    1.50
+PKL         C14         C13          H9     125.572    3.00
+PKL          C4          C5          C8     120.604    1.73
+PKL          C4          C5          C6     118.791    1.50
+PKL          C8          C5          C6     120.604    1.73
+PKL          C3          C2          C1     121.094    1.50
+PKL          C3          C2          C7     117.811    1.50
+PKL          C1          C2          C7     121.094    1.50
+PKL         C22         C21         C20     121.009    1.50
+PKL         C22         C21         C27     118.225    1.50
+PKL         C20         C21         C27     120.766    1.50
+PKL         C24         C25         C27     121.321    1.50
+PKL         C24         C25         CL1     119.246    1.50
+PKL         C27         C25         CL1     119.433    1.50
+PKL         N15         C14         C13     106.743    2.95
+PKL         N15         C14         C16     125.085    2.37
+PKL         C13         C14         C16     128.172    3.00
+PKL         S10         C11         N15     111.655    1.50
+PKL         S10         C11         N12     136.546    2.47
+PKL         N15         C11         N12     111.800    1.94
+PKL         S10          C9          C8     113.183    3.00
+PKL         S10          C9         H10     122.639    2.18
+PKL          C8          C9         H10     124.177    1.50
+PKL          C9          C8          C5     122.595    2.62
+PKL          C9          C8         N15     118.703    3.00
+PKL          C5          C8         N15     118.703    3.00
+PKL         C14         C16         O17     120.869    1.84
+PKL         C14         C16         N18     117.526    2.07
+PKL         O17         C16         N18     121.605    1.50
+PKL          C2          C1         H11     109.567    1.50
+PKL          C2          C1         H12     109.567    1.50
+PKL          C2          C1         H13     109.567    1.50
+PKL         H11          C1         H12     109.348    1.50
+PKL         H11          C1         H13     109.348    1.50
+PKL         H12          C1         H13     109.348    1.50
+PKL         C19         C20         C21     112.139    1.84
+PKL         C19         C20         H14     109.025    1.50
+PKL         C19         C20         H15     109.025    1.50
+PKL         C21         C20         H14     109.239    1.50
+PKL         C21         C20         H15     109.239    1.50
+PKL         H14         C20         H15     107.823    1.50
+PKL         N18         C19         C20     111.704    1.50
+PKL         N18         C19         H16     109.052    1.50
+PKL         N18         C19         H17     109.052    1.50
+PKL         C20         C19         H16     109.189    1.50
+PKL         C20         C19         H17     109.189    1.50
+PKL         H16         C19         H17     108.162    1.50
+PKL          C8         N15         C11     109.471    3.00
+PKL          C8         N15         C14     134.194    3.00
+PKL         C11         N15         C14     108.518    2.27
+PKL         C11         N12         C13     103.117    1.50
+PKL         C16         N18         C19     122.324    2.29
+PKL         C16         N18         H18     119.281    1.50
+PKL         C19         N18         H18     118.411    1.89
+PKL          C9         S10         C11     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PKL              const_13         C21         C22         C23         C24       0.000    10.0     2
+PKL              const_61         C22         C23         C24         C25       0.000    10.0     2
+PKL             sp2_sp3_1          C3          C2          C1         H11     150.000    10.0     6
+PKL            sp2_sp3_14         C22         C21         C20         C19     -90.000    10.0     6
+PKL            sp2_sp2_18         N15         C14         C16         O17       0.000     5.0     2
+PKL              const_12         C16         C14         N15          C8       0.000    10.0     2
+PKL       const_sp2_sp2_5         S10         C11         N15          C8       0.000     5.0     2
+PKL       const_sp2_sp2_4         S10         C11         N12         C13     180.000     5.0     2
+PKL             sp2_sp2_1         N15         C11         S10          C9       0.000     5.0     2
+PKL             sp2_sp2_7          C5          C8          C9         S10     180.000     5.0     2
+PKL             sp2_sp2_3          C8          C9         S10         C11       0.000     5.0     2
+PKL             sp2_sp2_9          C9          C8         N15         C11       0.000     5.0     2
+PKL            sp2_sp2_23         O17         C16         N18         C19       0.000     5.0     2
+PKL             sp3_sp3_1         N18         C19         C20         C21     180.000    10.0     3
+PKL              const_33          C2          C3          C4          C5       0.000    10.0     2
+PKL              const_54          C3          C4          C5          C8     180.000    10.0     2
+PKL             sp2_sp3_8         C16         N18         C19         C20     120.000    10.0     6
+PKL              const_45          C5          C6          C7          C2       0.000    10.0     2
+PKL              const_49          C4          C5          C6          C7       0.000    10.0     2
+PKL              const_19         C20         C21         C22         C23     180.000    10.0     2
+PKL              const_39          C1          C2          C3          C4     180.000    10.0     2
+PKL              const_43          C1          C2          C7          C6     180.000    10.0     2
+PKL              const_30         C23         C24         C25         CL1     180.000    10.0     2
+PKL              const_23         C20         C21         C27         C25     180.000    10.0     2
+PKL              const_27         CL1         C25         C27         C21     180.000    10.0     2
+PKL              const_58         N12         C13         C14         C16     180.000    10.0     2
+PKL       const_sp2_sp2_1         C14         C13         N12         C11       0.000     5.0     2
+PKL            sp2_sp2_13          C4          C5          C8          C9     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PKL    plan-1         C11   0.020
+PKL    plan-1         C13   0.020
+PKL    plan-1         C14   0.020
+PKL    plan-1         C16   0.020
+PKL    plan-1          C5   0.020
+PKL    plan-1          C8   0.020
+PKL    plan-1          C9   0.020
+PKL    plan-1         H10   0.020
+PKL    plan-1          H9   0.020
+PKL    plan-1         N12   0.020
+PKL    plan-1         N15   0.020
+PKL    plan-1         S10   0.020
+PKL    plan-2         C20   0.020
+PKL    plan-2         C21   0.020
+PKL    plan-2         C22   0.020
+PKL    plan-2         C23   0.020
+PKL    plan-2         C24   0.020
+PKL    plan-2         C25   0.020
+PKL    plan-2         C27   0.020
+PKL    plan-2         CL1   0.020
+PKL    plan-2          H1   0.020
+PKL    plan-2          H4   0.020
+PKL    plan-2          H7   0.020
+PKL    plan-2          H8   0.020
+PKL    plan-3          C1   0.020
+PKL    plan-3          C2   0.020
+PKL    plan-3          C3   0.020
+PKL    plan-3          C4   0.020
+PKL    plan-3          C5   0.020
+PKL    plan-3          C6   0.020
+PKL    plan-3          C7   0.020
+PKL    plan-3          C8   0.020
+PKL    plan-3          H2   0.020
+PKL    plan-3          H3   0.020
+PKL    plan-3          H5   0.020
+PKL    plan-3          H6   0.020
+PKL    plan-4         C14   0.020
+PKL    plan-4         C16   0.020
+PKL    plan-4         N18   0.020
+PKL    plan-4         O17   0.020
+PKL    plan-5         C16   0.020
+PKL    plan-5         C19   0.020
+PKL    plan-5         H18   0.020
+PKL    plan-5         N18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PKL           SMILES              ACDLabs 12.01                                                                                               Clc1cccc(c1)CCNC(=O)c3cnc4scc(c2ccc(cc2)C)n34
+PKL            InChI                InChI  1.03 InChI=1S/C21H18ClN3OS/c1-14-5-7-16(8-6-14)19-13-27-21-24-12-18(25(19)21)20(26)23-10-9-15-3-2-4-17(22)11-15/h2-8,11-13H,9-10H2,1H3,(H,23,26)
+PKL         InChIKey                InChI  1.03                                                                                                                 XLEXBEMTJAGGPY-UHFFFAOYSA-N
+PKL SMILES_CANONICAL               CACTVS 3.385                                                                                               Cc1ccc(cc1)c2csc3ncc(n23)C(=O)NCCc4cccc(Cl)c4
+PKL           SMILES               CACTVS 3.385                                                                                               Cc1ccc(cc1)c2csc3ncc(n23)C(=O)NCCc4cccc(Cl)c4
+PKL SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                               Cc1ccc(cc1)c2csc3n2c(cn3)C(=O)NCCc4cccc(c4)Cl
+PKL           SMILES "OpenEye OEToolkits" 1.9.2                                                                                               Cc1ccc(cc1)c2csc3n2c(cn3)C(=O)NCCc4cccc(c4)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PKL acedrg               243         "dictionary generator"                  
+PKL acedrg_database      11          "data source"                           
+PKL rdkit                2017.03.2   "Chemoinformatics tool"
+PKL refmac5              5.8.0238    "optimization tool"                     

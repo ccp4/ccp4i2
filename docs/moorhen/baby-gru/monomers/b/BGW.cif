@@ -1,0 +1,320 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BGW     BGW      "1-[[4-(1,3-benzothiazol-2-yloxy)phenyl]methyl]piperidine-4-carboxylic acid"     NON-POLYMER     45     26     .     
+#
+data_comp_BGW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BGW     C1      C       CH2     0       34.554      3.615       0.169       
+BGW     C2      C       CH2     0       33.851      2.403       -0.411      
+BGW     C11     C       CR16    0       30.052      0.403       0.002       
+BGW     C12     C       CR6     0       30.336      1.286       -1.036      
+BGW     C13     C       CR16    0       29.267      1.830       -1.743      
+BGW     C14     C       CR16    0       27.955      1.505       -1.424      
+BGW     C15     C       CR6     0       27.702      0.635       -0.384      
+BGW     C16     C       CH2     0       31.762      1.640       -1.387      
+BGW     C18     C       CR16    0       23.780      0.402       5.457       
+BGW     C19     C       CR16    0       24.961      1.106       5.705       
+BGW     C20     C       CR16    0       25.877      1.340       4.707       
+BGW     C21     C       CR16    0       23.503      -0.079      4.193       
+BGW     C22     C       CR56    0       24.423      0.154       3.181       
+BGW     C23     C       CR56    0       25.606      0.857       3.420       
+BGW     C25     C       CR5     0       25.850      0.395       1.155       
+BGW     N3      N       NT      0       32.389      2.564       -0.431      
+BGW     C4      C       CH2     0       31.962      3.958       -0.638      
+BGW     C5      C       CH2     0       32.977      4.771       -1.420      
+BGW     C6      C       CH1     0       34.318      4.869       -0.682      
+BGW     C7      C       C       0       34.418      6.143       0.158       
+BGW     O8      O       OC      -1      33.525      6.388       0.933       
+BGW     O9      O       O       0       35.386      6.852       0.016       
+BGW     C10     C       CR16    0       28.743      0.069       0.325       
+BGW     O17     O       O2      0       26.354      0.334       -0.120      
+BGW     N24     N       NRD5    0       26.381      0.976       2.261       
+BGW     S26     S       S2      0       24.382      -0.289      1.572       
+BGW     H1      H       H       0       34.231      3.767       1.078       
+BGW     H2      H       H       0       35.512      3.434       0.219       
+BGW     H3      H       H       0       34.174      2.247       -1.317      
+BGW     H4      H       H       0       34.074      1.620       0.121       
+BGW     H5      H       H       0       30.760      0.021       0.495       
+BGW     H6      H       H       0       29.433      2.431       -2.451      
+BGW     H7      H       H       0       27.244      1.883       -1.913      
+BGW     H8      H       H       0       31.782      2.043       -2.283      
+BGW     H9      H       H       0       32.288      0.811       -1.424      
+BGW     H10     H       H       0       23.168      0.254       6.158       
+BGW     H11     H       H       0       25.133      1.426       6.571       
+BGW     H12     H       H       0       26.670      1.815       4.881       
+BGW     H13     H       H       0       22.708      -0.553      4.024       
+BGW     H15     H       H       0       31.822      4.375       0.230       
+BGW     H16     H       H       0       31.112      3.976       -1.110      
+BGW     H17     H       H       0       32.619      5.666       -1.571      
+BGW     H18     H       H       0       33.116      4.357       -2.294      
+BGW     H19     H       H       0       35.038      4.910       -1.366      
+BGW     H21     H       H       0       28.571      -0.529      1.033       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BGW         C13         C14      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BGW         C12         C13      SINGLE       y     1.389  0.0100     1.389  0.0100
+BGW         C12         C16      SINGLE       n     1.509  0.0100     1.509  0.0100
+BGW         C16          N3      SINGLE       n     1.465  0.0100     1.465  0.0100
+BGW         C14         C15      SINGLE       y     1.375  0.0102     1.375  0.0102
+BGW          C2          N3      SINGLE       n     1.463  0.0100     1.463  0.0100
+BGW          C1          C2      SINGLE       n     1.515  0.0100     1.515  0.0100
+BGW         C11         C12      DOUBLE       y     1.389  0.0100     1.389  0.0100
+BGW          N3          C4      SINGLE       n     1.463  0.0100     1.463  0.0100
+BGW          C1          C6      SINGLE       n     1.529  0.0124     1.529  0.0124
+BGW         C15         O17      SINGLE       n     1.403  0.0100     1.403  0.0100
+BGW         C15         C10      DOUBLE       y     1.375  0.0102     1.375  0.0102
+BGW         C11         C10      SINGLE       y     1.385  0.0100     1.385  0.0100
+BGW          C4          C5      SINGLE       n     1.515  0.0100     1.515  0.0100
+BGW          C5          C6      SINGLE       n     1.529  0.0124     1.529  0.0124
+BGW         C25         O17      SINGLE       n     1.363  0.0174     1.363  0.0174
+BGW          C6          C7      SINGLE       n     1.525  0.0129     1.525  0.0129
+BGW         C25         N24      DOUBLE       y     1.339  0.0200     1.339  0.0200
+BGW         C25         S26      SINGLE       y     1.695  0.0200     1.695  0.0200
+BGW         C23         N24      SINGLE       y     1.391  0.0100     1.391  0.0100
+BGW          C7          O9      DOUBLE       n     1.207  0.0200     1.207  0.0200
+BGW          C7          O8      SINGLE       n     1.207  0.0200     1.207  0.0200
+BGW         C22         S26      SINGLE       y     1.695  0.0200     1.695  0.0200
+BGW         C20         C23      DOUBLE       y     1.396  0.0100     1.396  0.0100
+BGW         C22         C23      SINGLE       y     1.385  0.0119     1.385  0.0119
+BGW         C19         C20      SINGLE       y     1.371  0.0115     1.371  0.0115
+BGW         C21         C22      DOUBLE       y     1.382  0.0123     1.382  0.0123
+BGW         C18         C19      DOUBLE       y     1.395  0.0112     1.395  0.0112
+BGW         C18         C21      SINGLE       y     1.378  0.0108     1.378  0.0108
+BGW          C1          H1      SINGLE       n     1.089  0.0100     0.976  0.0107
+BGW          C1          H2      SINGLE       n     1.089  0.0100     0.976  0.0107
+BGW          C2          H3      SINGLE       n     1.089  0.0100     0.973  0.0129
+BGW          C2          H4      SINGLE       n     1.089  0.0100     0.973  0.0129
+BGW         C11          H5      SINGLE       n     1.082  0.0130     0.943  0.0173
+BGW         C13          H6      SINGLE       n     1.082  0.0130     0.943  0.0173
+BGW         C14          H7      SINGLE       n     1.082  0.0130     0.943  0.0169
+BGW         C16          H8      SINGLE       n     1.089  0.0100     0.982  0.0103
+BGW         C16          H9      SINGLE       n     1.089  0.0100     0.982  0.0103
+BGW         C18         H10      SINGLE       n     1.082  0.0130     0.942  0.0176
+BGW         C19         H11      SINGLE       n     1.082  0.0130     0.939  0.0159
+BGW         C20         H12      SINGLE       n     1.082  0.0130     0.940  0.0191
+BGW         C21         H13      SINGLE       n     1.082  0.0130     0.941  0.0170
+BGW          C4         H15      SINGLE       n     1.089  0.0100     0.973  0.0129
+BGW          C4         H16      SINGLE       n     1.089  0.0100     0.973  0.0129
+BGW          C5         H17      SINGLE       n     1.089  0.0100     0.976  0.0107
+BGW          C5         H18      SINGLE       n     1.089  0.0100     0.976  0.0107
+BGW          C6         H19      SINGLE       n     1.089  0.0100     0.993  0.0200
+BGW         C10         H21      SINGLE       n     1.082  0.0130     0.943  0.0169
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BGW          C2          C1          C6     111.231    1.50
+BGW          C2          C1          H1     109.101    1.50
+BGW          C2          C1          H2     109.101    1.50
+BGW          C6          C1          H1     109.389    1.50
+BGW          C6          C1          H2     109.389    1.50
+BGW          H1          C1          H2     107.890    1.50
+BGW          N3          C2          C1     110.972    1.50
+BGW          N3          C2          H3     109.373    1.50
+BGW          N3          C2          H4     109.373    1.50
+BGW          C1          C2          H3     109.668    1.50
+BGW          C1          C2          H4     109.668    1.50
+BGW          H3          C2          H4     108.159    1.50
+BGW         C12         C11         C10     121.020    1.50
+BGW         C12         C11          H5     119.639    1.50
+BGW         C10         C11          H5     119.341    1.50
+BGW         C13         C12         C16     120.953    1.50
+BGW         C13         C12         C11     118.094    1.50
+BGW         C16         C12         C11     120.953    1.50
+BGW         C14         C13         C12     121.020    1.50
+BGW         C14         C13          H6     119.341    1.50
+BGW         C12         C13          H6     119.639    1.50
+BGW         C13         C14         C15     119.452    1.50
+BGW         C13         C14          H7     120.055    1.50
+BGW         C15         C14          H7     120.493    1.50
+BGW         C14         C15         O17     119.518    3.00
+BGW         C14         C15         C10     120.963    1.50
+BGW         O17         C15         C10     119.518    3.00
+BGW         C12         C16          N3     113.287    1.50
+BGW         C12         C16          H8     109.108    1.50
+BGW         C12         C16          H9     109.108    1.50
+BGW          N3         C16          H8     108.958    1.50
+BGW          N3         C16          H9     108.958    1.50
+BGW          H8         C16          H9     107.841    1.50
+BGW         C19         C18         C21     120.956    1.50
+BGW         C19         C18         H10     119.506    1.50
+BGW         C21         C18         H10     119.539    1.50
+BGW         C20         C19         C18     121.524    1.50
+BGW         C20         C19         H11     119.184    1.50
+BGW         C18         C19         H11     119.292    1.50
+BGW         C23         C20         C19     117.961    1.50
+BGW         C23         C20         H12     120.885    1.50
+BGW         C19         C20         H12     121.153    1.50
+BGW         C22         C21         C18     118.428    1.50
+BGW         C22         C21         H13     120.920    1.50
+BGW         C18         C21         H13     120.653    1.50
+BGW         S26         C22         C23     108.294    3.00
+BGW         S26         C22         C21     131.140    3.00
+BGW         C23         C22         C21     120.566    1.92
+BGW         N24         C23         C20     130.266    1.50
+BGW         N24         C23         C22     109.168    1.50
+BGW         C20         C23         C22     120.566    1.92
+BGW         O17         C25         N24     126.109    3.00
+BGW         O17         C25         S26     125.597    3.00
+BGW         N24         C25         S26     108.294    3.00
+BGW         C16          N3          C2     110.624    1.50
+BGW         C16          N3          C4     110.624    1.50
+BGW          C2          N3          C4     109.879    1.50
+BGW          N3          C4          C5     110.972    1.50
+BGW          N3          C4         H15     109.373    1.50
+BGW          N3          C4         H16     109.373    1.50
+BGW          C5          C4         H15     109.668    1.50
+BGW          C5          C4         H16     109.668    1.50
+BGW         H15          C4         H16     108.159    1.50
+BGW          C4          C5          C6     111.231    1.50
+BGW          C4          C5         H17     109.101    1.50
+BGW          C4          C5         H18     109.101    1.50
+BGW          C6          C5         H17     109.389    1.50
+BGW          C6          C5         H18     109.389    1.50
+BGW         H17          C5         H18     107.890    1.50
+BGW          C1          C6          C5     109.514    1.50
+BGW          C1          C6          C7     111.628    2.30
+BGW          C1          C6         H19     108.051    1.50
+BGW          C5          C6          C7     111.628    2.30
+BGW          C5          C6         H19     108.051    1.50
+BGW          C7          C6         H19     107.416    1.50
+BGW          C6          C7          O9     118.298    1.50
+BGW          C6          C7          O8     118.298    1.50
+BGW          O9          C7          O8     123.403    1.50
+BGW         C15         C10         C11     119.452    1.50
+BGW         C15         C10         H21     120.493    1.50
+BGW         C11         C10         H21     120.055    1.50
+BGW         C15         O17         C25     117.708    1.73
+BGW         C25         N24         C23     105.950    2.14
+BGW         C25         S26         C22     108.294    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BGW             sp3_sp3_1          C6          C1          C2          N3      60.000    10.0     3
+BGW            sp3_sp3_48          C2          C1          C6          C7      60.000    10.0     3
+BGW              const_30         C19         C20         C23         N24     180.000    10.0     2
+BGW              const_38         C18         C21         C22         S26     180.000    10.0     2
+BGW              const_33         S26         C22         C23         N24       0.000    10.0     2
+BGW              const_41         C23         C22         S26         C25       0.000    10.0     2
+BGW              const_48         C20         C23         N24         C25     180.000    10.0     2
+BGW             sp2_sp2_3         N24         C25         O17         C15     180.000     5.0     2
+BGW              const_46         O17         C25         N24         C23     180.000    10.0     2
+BGW              const_44         O17         C25         S26         C22     180.000    10.0     2
+BGW            sp3_sp3_17          C5          C4          N3         C16     180.000    10.0     3
+BGW            sp3_sp3_22          N3          C4          C5          C6     -60.000    10.0     3
+BGW            sp3_sp3_32          C4          C5          C6          C7     180.000    10.0     3
+BGW             sp2_sp3_8          O9          C7          C6          C1     120.000    10.0     6
+BGW            sp3_sp3_11          C1          C2          N3         C16      60.000    10.0     3
+BGW              const_49         C15         C10         C11         C12       0.000    10.0     2
+BGW       const_sp2_sp2_2         C10         C11         C12         C16     180.000     5.0     2
+BGW       const_sp2_sp2_7         C16         C12         C13         C14     180.000     5.0     2
+BGW             sp2_sp3_2         C13         C12         C16          N3     -90.000    10.0     6
+BGW       const_sp2_sp2_9         C12         C13         C14         C15       0.000     5.0     2
+BGW              const_14         C13         C14         C15         O17     180.000    10.0     2
+BGW              const_18         C11         C10         C15         O17     180.000    10.0     2
+BGW             sp2_sp2_1         C14         C15         O17         C25     180.000     5.0     2
+BGW            sp3_sp3_41         C12         C16          N3          C2     -60.000    10.0     3
+BGW              const_53         C19         C18         C21         C22       0.000    10.0     2
+BGW              const_21         C21         C18         C19         C20       0.000    10.0     2
+BGW              const_25         C18         C19         C20         C23       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BGW    chir_1    N3    C16    C2    C4    both
+BGW    chir_2    C6    C7    C1    C5    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BGW    plan-1         C18   0.020
+BGW    plan-1         C19   0.020
+BGW    plan-1         C20   0.020
+BGW    plan-1         C21   0.020
+BGW    plan-1         C22   0.020
+BGW    plan-1         C23   0.020
+BGW    plan-1         C25   0.020
+BGW    plan-1         H10   0.020
+BGW    plan-1         H11   0.020
+BGW    plan-1         H12   0.020
+BGW    plan-1         H13   0.020
+BGW    plan-1         N24   0.020
+BGW    plan-1         O17   0.020
+BGW    plan-1         S26   0.020
+BGW    plan-2         C10   0.020
+BGW    plan-2         C11   0.020
+BGW    plan-2         C12   0.020
+BGW    plan-2         C13   0.020
+BGW    plan-2         C14   0.020
+BGW    plan-2         C15   0.020
+BGW    plan-2         C16   0.020
+BGW    plan-2         H21   0.020
+BGW    plan-2          H5   0.020
+BGW    plan-2          H6   0.020
+BGW    plan-2          H7   0.020
+BGW    plan-2         O17   0.020
+BGW    plan-3          C6   0.020
+BGW    plan-3          C7   0.020
+BGW    plan-3          O8   0.020
+BGW    plan-3          O9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BGW            InChI                InChI  1.03 InChI=1S/C20H20N2O3S/c23-19(24)15-9-11-22(12-10-15)13-14-5-7-16(8-6-14)25-20-21-17-3-1-2-4-18(17)26-20/h1-8,15H,9-13H2,(H,23,24)
+BGW         InChIKey                InChI  1.03                                                                                                      BUZBVOKDNAZIIM-UHFFFAOYSA-N
+BGW SMILES_CANONICAL               CACTVS 3.385                                                                                        OC(=O)C1CCN(CC1)Cc2ccc(Oc3sc4ccccc4n3)cc2
+BGW           SMILES               CACTVS 3.385                                                                                        OC(=O)C1CCN(CC1)Cc2ccc(Oc3sc4ccccc4n3)cc2
+BGW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                    c1ccc2c(c1)nc(s2)Oc3ccc(cc3)CN4CCC(CC4)C(=O)O
+BGW           SMILES "OpenEye OEToolkits" 2.0.6                                                                                    c1ccc2c(c1)nc(s2)Oc3ccc(cc3)CN4CCC(CC4)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BGW acedrg               243         "dictionary generator"                  
+BGW acedrg_database      11          "data source"                           
+BGW rdkit                2017.03.2   "Chemoinformatics tool"
+BGW refmac5              5.8.0238    "optimization tool"                     

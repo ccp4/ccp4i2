@@ -1,0 +1,198 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DVH     DVH      (1S,2S,4R)-4-ethenylcyclohexane-1,2-diol     NON-POLYMER     24     10     .     
+#
+data_comp_DVH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DVH     C1      C       CH1     0       90.672      78.401      25.383      
+DVH     C2      C       CH2     0       89.683      77.269      25.624      
+DVH     C3      C       CH2     0       90.125      76.376      26.783      
+DVH     C4      C       CH1     0       90.368      77.180      28.057      
+DVH     C5      C       CH2     0       91.358      78.320      27.800      
+DVH     C6      C       CH1     0       90.913      79.208      26.648      
+DVH     C7      C       C1      0       90.819      76.300      29.185      
+DVH     C8      C       C2      0       90.075      75.430      29.808      
+DVH     O1      O       OH1     0       91.903      77.849      24.912      
+DVH     O2      O       OH1     0       89.720      79.908      27.014      
+DVH     H1      H       H       0       90.306      79.002      24.690      
+DVH     H2      H       H       0       88.801      77.651      25.822      
+DVH     H3      H       H       0       89.607      76.731      24.806      
+DVH     H4      H       H       0       90.955      75.904      26.532      
+DVH     H5      H       H       0       89.428      75.698      26.953      
+DVH     H6      H       H       0       89.510      77.585      28.324      
+DVH     H7      H       H       0       92.252      77.938      27.593      
+DVH     H8      H       H       0       91.444      78.871      28.623      
+DVH     H9      H       H       0       91.625      79.872      26.463      
+DVH     H10     H       H       0       91.724      76.389      29.462      
+DVH     H11     H       H       0       90.439      74.911      30.514      
+DVH     H12     H       H       0       89.167      75.313      29.558      
+DVH     H13     H       H       0       92.404      78.470      24.647      
+DVH     H14     H       H       0       89.897      80.463      27.620      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DVH          C1          O1      SINGLE       n     1.429  0.0100     1.429  0.0100
+DVH          C1          C2      SINGLE       n     1.520  0.0100     1.520  0.0100
+DVH          C1          C6      SINGLE       n     1.518  0.0100     1.518  0.0100
+DVH          C2          C3      SINGLE       n     1.527  0.0100     1.527  0.0100
+DVH          C6          O2      SINGLE       n     1.431  0.0100     1.431  0.0100
+DVH          C5          C6      SINGLE       n     1.519  0.0100     1.519  0.0100
+DVH          C3          C4      SINGLE       n     1.522  0.0200     1.522  0.0200
+DVH          C4          C5      SINGLE       n     1.524  0.0200     1.524  0.0200
+DVH          C4          C7      SINGLE       n     1.499  0.0100     1.499  0.0100
+DVH          C7          C8      DOUBLE       n     1.303  0.0200     1.303  0.0200
+DVH          C1          H1      SINGLE       n     1.089  0.0100     0.988  0.0102
+DVH          C2          H2      SINGLE       n     1.089  0.0100     0.982  0.0117
+DVH          C2          H3      SINGLE       n     1.089  0.0100     0.982  0.0117
+DVH          C3          H4      SINGLE       n     1.089  0.0100     0.987  0.0192
+DVH          C3          H5      SINGLE       n     1.089  0.0100     0.987  0.0192
+DVH          C4          H6      SINGLE       n     1.089  0.0100     0.986  0.0149
+DVH          C5          H7      SINGLE       n     1.089  0.0100     0.994  0.0200
+DVH          C5          H8      SINGLE       n     1.089  0.0100     0.994  0.0200
+DVH          C6          H9      SINGLE       n     1.089  0.0100     0.990  0.0143
+DVH          C7         H10      SINGLE       n     1.082  0.0130     0.951  0.0200
+DVH          C8         H11      SINGLE       n     1.082  0.0130     0.949  0.0200
+DVH          C8         H12      SINGLE       n     1.082  0.0130     0.949  0.0200
+DVH          O1         H13      SINGLE       n     0.970  0.0120     0.841  0.0200
+DVH          O2         H14      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DVH          O1          C1          C2     108.917    1.92
+DVH          O1          C1          C6     110.047    1.58
+DVH          O1          C1          H1     108.933    1.50
+DVH          C2          C1          C6     111.121    1.50
+DVH          C2          C1          H1     109.032    1.50
+DVH          C6          C1          H1     108.747    1.50
+DVH          C1          C2          C3     111.244    1.50
+DVH          C1          C2          H2     109.071    1.50
+DVH          C1          C2          H3     109.071    1.50
+DVH          C3          C2          H2     109.556    1.50
+DVH          C3          C2          H3     109.556    1.50
+DVH          H2          C2          H3     108.174    1.50
+DVH          C2          C3          C4     111.526    1.50
+DVH          C2          C3          H4     109.119    1.50
+DVH          C2          C3          H5     109.119    1.50
+DVH          C4          C3          H4     109.206    1.50
+DVH          C4          C3          H5     109.206    1.50
+DVH          H4          C3          H5     107.919    1.50
+DVH          C3          C4          C5     110.554    1.50
+DVH          C3          C4          C7     111.737    1.50
+DVH          C3          C4          H6     107.842    1.50
+DVH          C5          C4          C7     111.737    1.50
+DVH          C5          C4          H6     107.687    1.74
+DVH          C7          C4          H6     107.650    1.50
+DVH          C6          C5          C4     111.124    1.57
+DVH          C6          C5          H7     109.270    1.50
+DVH          C6          C5          H8     109.270    1.50
+DVH          C4          C5          H7     109.320    1.50
+DVH          C4          C5          H8     109.320    1.50
+DVH          H7          C5          H8     108.001    1.50
+DVH          C1          C6          O2     110.047    1.58
+DVH          C1          C6          C5     111.121    1.50
+DVH          C1          C6          H9     108.747    1.50
+DVH          O2          C6          C5     109.687    1.93
+DVH          O2          C6          H9     108.933    1.50
+DVH          C5          C6          H9     109.129    1.50
+DVH          C4          C7          C8     125.488    1.50
+DVH          C4          C7         H10     116.718    1.50
+DVH          C8          C7         H10     117.793    1.50
+DVH          C7          C8         H11     120.162    1.50
+DVH          C7          C8         H12     120.162    1.50
+DVH         H11          C8         H12     119.676    2.33
+DVH          C1          O1         H13     109.387    3.00
+DVH          C6          O2         H14     109.387    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DVH             sp3_sp3_4          O1          C1          C2          C3     -60.000    10.0     3
+DVH            sp3_sp3_53          O1          C1          C6          O2     180.000    10.0     3
+DVH            sp3_sp3_46          C2          C1          O1         H13     180.000    10.0     3
+DVH            sp3_sp3_10          C1          C2          C3          C4     -60.000    10.0     3
+DVH            sp3_sp3_20          C2          C3          C4          C7     180.000    10.0     3
+DVH            sp3_sp3_31          C7          C4          C5          C6     180.000    10.0     3
+DVH             sp2_sp3_1          C8          C7          C4          C3       0.000    10.0     6
+DVH            sp3_sp3_38          C4          C5          C6          O2     180.000    10.0     3
+DVH            sp3_sp3_58          C1          C6          O2         H14     180.000    10.0     3
+DVH             sp2_sp2_1          C4          C7          C8         H11     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DVH    chir_1    C1    O1    C6    C2    positive
+DVH    chir_2    C4    C7    C5    C3    negative
+DVH    chir_3    C6    O2    C1    C5    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DVH    plan-1          C4   0.020
+DVH    plan-1          C7   0.020
+DVH    plan-1          C8   0.020
+DVH    plan-1         H10   0.020
+DVH    plan-2          C7   0.020
+DVH    plan-2          C8   0.020
+DVH    plan-2         H11   0.020
+DVH    plan-2         H12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DVH           SMILES              ACDLabs 12.01                                                        C1(CCC(\C=C)CC1O)O
+DVH            InChI                InChI  1.03 InChI=1S/C8H14O2/c1-2-6-3-4-7(9)8(10)5-6/h2,6-10H,1,3-5H2/t6-,7+,8+/m1/s1
+DVH         InChIKey                InChI  1.03                                               BSJHRRSHDADBTA-CSMHCCOUSA-N
+DVH SMILES_CANONICAL               CACTVS 3.385                                              O[C@H]1CC[C@H](C[C@@H]1O)C=C
+DVH           SMILES               CACTVS 3.385                                                  O[CH]1CC[CH](C[CH]1O)C=C
+DVH SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                           C=C[C@@H]1CC[C@@H]([C@H](C1)O)O
+DVH           SMILES "OpenEye OEToolkits" 2.0.6                                                         C=CC1CCC(C(C1)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DVH acedrg               243         "dictionary generator"                  
+DVH acedrg_database      11          "data source"                           
+DVH rdkit                2017.03.2   "Chemoinformatics tool"
+DVH refmac5              5.8.0238    "optimization tool"                     

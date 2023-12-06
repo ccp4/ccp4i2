@@ -1,0 +1,404 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AIZ     AIZ      "3-{6-[(2-CHLOROPHENYL)AMINO]-1H-INDAZOL-3-YL}-5-{[4-(DIMETHYLAMINO)BUTANOYL]AMINO}BENZOIC ACID"     NON-POLYMER     60     35     .     
+#
+data_comp_AIZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AIZ     C1      C       CR5     0       46.103      6.318       32.236      
+AIZ     C2      C       CR56    0       45.883      7.682       32.456      
+AIZ     C3      C       CR6     0       47.351      5.540       32.151      
+AIZ     N4      N       NRD5    0       44.936      5.704       32.058      
+AIZ     C5      C       CR56    0       44.489      7.860       32.416      
+AIZ     C6      C       CR16    0       46.713      8.785       32.693      
+AIZ     C7      C       CR16    0       47.450      4.275       32.734      
+AIZ     C8      C       CR16    0       48.453      6.069       31.471      
+AIZ     N9      N       NR5     0       43.960      6.641       32.174      
+AIZ     C10     C       CR16    0       43.899      9.112       32.603      
+AIZ     C11     C       CR16    0       46.149      10.019      32.881      
+AIZ     C12     C       CR6     0       48.641      3.551       32.641      
+AIZ     C13     C       CR6     0       49.642      5.355       31.371      
+AIZ     C14     C       CR6     0       44.757      10.189      32.842      
+AIZ     C15     C       CR16    0       49.732      4.096       31.955      
+AIZ     N16     N       NH1     0       48.737      2.266       33.230      
+AIZ     C17     C       C       0       50.814      5.938       30.641      
+AIZ     N18     N       NH1     0       44.250      11.492      33.039      
+AIZ     C19     C       C       0       49.719      1.786       34.033      
+AIZ     O20     O       OC      -1      51.149      7.103       30.920      
+AIZ     C21     C       CR6     0       43.030      11.889      33.621      
+AIZ     C22     C       CH2     0       49.693      0.290       34.259      
+AIZ     O23     O       O       0       50.565      2.501       34.555      
+AIZ     C24     C       CR6     0       42.291      12.942      33.077      
+AIZ     C25     C       CR16    0       42.537      11.240      34.767      
+AIZ     C26     C       CH2     0       50.133      -0.522      33.049      
+AIZ     C27     C       CR16    0       41.091      13.335      33.653      
+AIZ     CL28    CL      CL      0       42.863      13.774      31.667      
+AIZ     C29     C       CR16    0       41.336      11.643      35.329      
+AIZ     C30     C       CH2     0       50.255      -2.009      33.350      
+AIZ     C31     C       CR16    0       40.620      12.686      34.773      
+AIZ     N32     N       NT      0       50.718      -2.825      32.214      
+AIZ     C33     C       CH3     0       51.325      -4.082      32.673      
+AIZ     C34     C       CH3     0       49.621      -3.117      31.281      
+AIZ     O35     O       O       0       51.386      5.225       29.796      
+AIZ     H6      H       H       0       47.648      8.680       32.723      
+AIZ     H7      H       H       0       46.715      3.913       33.190      
+AIZ     H8      H       H       0       48.388      6.915       31.079      
+AIZ     HN9     H       H       0       43.114      6.426       32.092      
+AIZ     H10     H       H       0       42.970      9.222       32.576      
+AIZ     H11     H       H       0       46.705      10.762      33.040      
+AIZ     H15     H       H       0       50.531      3.607       31.894      
+AIZ     H16     H       H       0       48.076      1.722       33.050      
+AIZ     H18     H       H       0       44.760      12.141      32.760      
+AIZ     H221    H       H       0       48.783      0.023       34.509      
+AIZ     H222    H       H       0       50.282      0.078       35.014      
+AIZ     H25     H       H       0       43.018      10.532      35.148      
+AIZ     H261    H       H       0       51.000      -0.188      32.738      
+AIZ     H262    H       H       0       49.484      -0.394      32.327      
+AIZ     H27     H       H       0       40.603      14.043      33.276      
+AIZ     H29     H       H       0       41.009      11.203      36.096      
+AIZ     H301    H       H       0       49.383      -2.341      33.648      
+AIZ     H302    H       H       0       50.880      -2.119      34.098      
+AIZ     H31     H       H       0       39.808      12.955      35.159      
+AIZ     H331    H       H       0       51.577      -4.627      31.902      
+AIZ     H332    H       H       0       50.682      -4.574      33.221      
+AIZ     H333    H       H       0       52.122      -3.888      33.203      
+AIZ     H341    H       H       0       49.213      -2.282      30.980      
+AIZ     H342    H       H       0       48.947      -3.664      31.729      
+AIZ     H343    H       H       0       49.971      -3.602      30.508      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AIZ          C1          C2      SINGLE       y     1.400  0.0187     1.400  0.0187
+AIZ          C1          C3      SINGLE       n     1.471  0.0100     1.471  0.0100
+AIZ          C1          N4      DOUBLE       y     1.327  0.0100     1.327  0.0100
+AIZ          C2          C5      DOUBLE       y     1.406  0.0100     1.406  0.0100
+AIZ          C2          C6      SINGLE       y     1.398  0.0100     1.398  0.0100
+AIZ          C3          C7      DOUBLE       y     1.391  0.0100     1.391  0.0100
+AIZ          C3          C8      SINGLE       y     1.394  0.0100     1.394  0.0100
+AIZ          N4          N9      SINGLE       y     1.356  0.0100     1.356  0.0100
+AIZ          C5          N9      SINGLE       y     1.352  0.0101     1.352  0.0101
+AIZ          C5         C10      SINGLE       y     1.393  0.0100     1.393  0.0100
+AIZ          C6         C11      DOUBLE       y     1.366  0.0100     1.366  0.0100
+AIZ          C7         C12      SINGLE       y     1.393  0.0100     1.393  0.0100
+AIZ          C8         C13      DOUBLE       y     1.387  0.0100     1.387  0.0100
+AIZ         C10         C14      DOUBLE       y     1.390  0.0111     1.390  0.0111
+AIZ         C11         C14      SINGLE       y     1.395  0.0130     1.395  0.0130
+AIZ         C12         C15      DOUBLE       y     1.396  0.0100     1.396  0.0100
+AIZ         C12         N16      SINGLE       n     1.414  0.0100     1.414  0.0100
+AIZ         C13         C15      SINGLE       y     1.387  0.0100     1.387  0.0100
+AIZ         C13         C17      SINGLE       n     1.498  0.0200     1.498  0.0200
+AIZ         C14         N18      SINGLE       n     1.400  0.0200     1.400  0.0200
+AIZ         N16         C19      SINGLE       n     1.350  0.0120     1.350  0.0120
+AIZ         C17         O20      SINGLE       n     1.244  0.0200     1.244  0.0200
+AIZ         C17         O35      DOUBLE       n     1.244  0.0200     1.244  0.0200
+AIZ         N18         C21      SINGLE       n     1.400  0.0200     1.400  0.0200
+AIZ         C19         C22      SINGLE       n     1.510  0.0129     1.510  0.0129
+AIZ         C19         O23      DOUBLE       n     1.223  0.0143     1.223  0.0143
+AIZ         C21         C24      DOUBLE       y     1.392  0.0100     1.392  0.0100
+AIZ         C21         C25      SINGLE       y     1.398  0.0146     1.398  0.0146
+AIZ         C22         C26      SINGLE       n     1.521  0.0100     1.521  0.0100
+AIZ         C24         C27      SINGLE       y     1.383  0.0100     1.383  0.0100
+AIZ         C24        CL28      SINGLE       n     1.734  0.0100     1.734  0.0100
+AIZ         C25         C29      DOUBLE       y     1.383  0.0100     1.383  0.0100
+AIZ         C26         C30      SINGLE       n     1.517  0.0197     1.517  0.0197
+AIZ         C27         C31      DOUBLE       y     1.374  0.0100     1.374  0.0100
+AIZ         C29         C31      SINGLE       y     1.377  0.0126     1.377  0.0126
+AIZ         C30         N32      SINGLE       n     1.468  0.0114     1.468  0.0114
+AIZ         N32         C33      SINGLE       n     1.466  0.0117     1.466  0.0117
+AIZ         N32         C34      SINGLE       n     1.466  0.0117     1.466  0.0117
+AIZ          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0182
+AIZ          C7          H7      SINGLE       n     1.082  0.0130     0.937  0.0103
+AIZ          C8          H8      SINGLE       n     1.082  0.0130     0.935  0.0100
+AIZ          N9         HN9      SINGLE       n     1.016  0.0100     0.876  0.0200
+AIZ         C10         H10      SINGLE       n     1.082  0.0130     0.936  0.0159
+AIZ         C11         H11      SINGLE       n     1.082  0.0130     0.941  0.0184
+AIZ         C15         H15      SINGLE       n     1.082  0.0130     0.939  0.0130
+AIZ         N16         H16      SINGLE       n     1.016  0.0100     0.874  0.0200
+AIZ         N18         H18      SINGLE       n     1.016  0.0100     0.870  0.0200
+AIZ         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0185
+AIZ         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0185
+AIZ         C25         H25      SINGLE       n     1.082  0.0130     0.937  0.0124
+AIZ         C26        H261      SINGLE       n     1.089  0.0100     0.980  0.0160
+AIZ         C26        H262      SINGLE       n     1.089  0.0100     0.980  0.0160
+AIZ         C27         H27      SINGLE       n     1.082  0.0130     0.939  0.0138
+AIZ         C29         H29      SINGLE       n     1.082  0.0130     0.943  0.0172
+AIZ         C30        H301      SINGLE       n     1.089  0.0100     0.980  0.0143
+AIZ         C30        H302      SINGLE       n     1.089  0.0100     0.980  0.0143
+AIZ         C31         H31      SINGLE       n     1.082  0.0130     0.939  0.0165
+AIZ         C33        H331      SINGLE       n     1.089  0.0100     0.977  0.0113
+AIZ         C33        H332      SINGLE       n     1.089  0.0100     0.977  0.0113
+AIZ         C33        H333      SINGLE       n     1.089  0.0100     0.977  0.0113
+AIZ         C34        H341      SINGLE       n     1.089  0.0100     0.977  0.0113
+AIZ         C34        H342      SINGLE       n     1.089  0.0100     0.977  0.0113
+AIZ         C34        H343      SINGLE       n     1.089  0.0100     0.977  0.0113
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AIZ          C2          C1          C3     131.403    1.50
+AIZ          C2          C1          N4     109.359    1.50
+AIZ          C3          C1          N4     119.238    1.77
+AIZ          C1          C2          C5     107.227    2.91
+AIZ          C1          C2          C6     133.288    2.09
+AIZ          C5          C2          C6     119.485    1.50
+AIZ          C1          C3          C7     120.470    1.50
+AIZ          C1          C3          C8     120.470    1.50
+AIZ          C7          C3          C8     119.060    1.50
+AIZ          C1          N4          N9     106.155    1.50
+AIZ          C2          C5          N9     106.767    1.50
+AIZ          C2          C5         C10     121.830    1.50
+AIZ          N9          C5         C10     131.403    1.50
+AIZ          C2          C6         C11     119.173    1.50
+AIZ          C2          C6          H6     120.443    1.50
+AIZ         C11          C6          H6     120.383    1.50
+AIZ          C3          C7         C12     120.002    1.50
+AIZ          C3          C7          H7     119.808    1.50
+AIZ         C12          C7          H7     120.190    1.50
+AIZ          C3          C8         C13     120.529    1.50
+AIZ          C3          C8          H8     119.673    1.50
+AIZ         C13          C8          H8     119.794    1.50
+AIZ          N4          N9          C5     110.492    1.50
+AIZ          N4          N9         HN9     121.283    3.00
+AIZ          C5          N9         HN9     128.225    2.98
+AIZ          C5         C10         C14     116.846    1.50
+AIZ          C5         C10         H10     121.574    1.50
+AIZ         C14         C10         H10     121.580    1.50
+AIZ          C6         C11         C14     120.623    1.50
+AIZ          C6         C11         H11     119.530    1.50
+AIZ         C14         C11         H11     119.847    1.50
+AIZ          C7         C12         C15     120.416    2.01
+AIZ          C7         C12         N16     120.086    3.00
+AIZ         C15         C12         N16     119.498    3.00
+AIZ          C8         C13         C15     119.263    1.50
+AIZ          C8         C13         C17     120.379    1.50
+AIZ         C15         C13         C17     120.358    1.50
+AIZ         C10         C14         C11     122.043    2.27
+AIZ         C10         C14         N18     118.905    2.92
+AIZ         C11         C14         N18     119.052    2.70
+AIZ         C12         C15         C13     120.735    1.50
+AIZ         C12         C15         H15     119.321    1.50
+AIZ         C13         C15         H15     119.944    1.50
+AIZ         C12         N16         C19     127.481    1.50
+AIZ         C12         N16         H16     115.919    1.69
+AIZ         C19         N16         H16     116.600    1.57
+AIZ         C13         C17         O20     117.791    1.50
+AIZ         C13         C17         O35     117.791    1.50
+AIZ         O20         C17         O35     124.418    1.50
+AIZ         C14         N18         C21     126.603    2.45
+AIZ         C14         N18         H18     116.699    2.39
+AIZ         C21         N18         H18     116.699    2.39
+AIZ         N16         C19         C22     114.644    1.50
+AIZ         N16         C19         O23     123.054    1.50
+AIZ         C22         C19         O23     122.305    1.50
+AIZ         N18         C21         C24     120.885    1.50
+AIZ         N18         C21         C25     120.010    2.70
+AIZ         C24         C21         C25     119.105    1.81
+AIZ         C19         C22         C26     113.485    1.67
+AIZ         C19         C22        H221     108.910    1.50
+AIZ         C19         C22        H222     108.910    1.50
+AIZ         C26         C22        H221     109.180    1.50
+AIZ         C26         C22        H222     109.180    1.50
+AIZ        H221         C22        H222     107.846    1.50
+AIZ         C21         C24         C27     120.346    1.59
+AIZ         C21         C24        CL28     120.221    1.53
+AIZ         C27         C24        CL28     119.433    1.50
+AIZ         C21         C25         C29     120.094    1.50
+AIZ         C21         C25         H25     119.955    1.50
+AIZ         C29         C25         H25     119.951    1.50
+AIZ         C22         C26         C30     113.078    1.50
+AIZ         C22         C26        H261     109.037    1.50
+AIZ         C22         C26        H262     109.037    1.50
+AIZ         C30         C26        H261     108.945    1.50
+AIZ         C30         C26        H262     108.945    1.50
+AIZ        H261         C26        H262     107.927    1.57
+AIZ         C24         C27         C31     119.634    1.50
+AIZ         C24         C27         H27     119.960    1.50
+AIZ         C31         C27         H27     120.406    1.50
+AIZ         C25         C29         C31     120.524    1.50
+AIZ         C25         C29         H29     119.597    1.50
+AIZ         C31         C29         H29     119.879    1.50
+AIZ         C26         C30         N32     113.952    1.84
+AIZ         C26         C30        H301     108.873    1.50
+AIZ         C26         C30        H302     108.873    1.50
+AIZ         N32         C30        H301     108.882    1.50
+AIZ         N32         C30        H302     108.882    1.50
+AIZ        H301         C30        H302     107.673    1.50
+AIZ         C27         C31         C29     120.296    1.50
+AIZ         C27         C31         H31     119.731    1.50
+AIZ         C29         C31         H31     119.973    1.50
+AIZ         C30         N32         C33     110.729    1.50
+AIZ         C30         N32         C34     110.729    1.50
+AIZ         C33         N32         C34     109.730    1.50
+AIZ         N32         C33        H331     109.516    1.50
+AIZ         N32         C33        H332     109.516    1.50
+AIZ         N32         C33        H333     109.516    1.50
+AIZ        H331         C33        H332     109.408    1.50
+AIZ        H331         C33        H333     109.408    1.50
+AIZ        H332         C33        H333     109.408    1.50
+AIZ         N32         C34        H341     109.516    1.50
+AIZ         N32         C34        H342     109.516    1.50
+AIZ         N32         C34        H343     109.516    1.50
+AIZ        H341         C34        H342     109.408    1.50
+AIZ        H341         C34        H343     109.408    1.50
+AIZ        H342         C34        H343     109.408    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AIZ              const_43          C3          C1          C2          C5     180.000    10.0     2
+AIZ             sp2_sp2_1          C2          C1          C3          C7     180.000     5.0     2
+AIZ              const_71          C2          C1          N4          N9       0.000    10.0     2
+AIZ              const_14          C6         C11         C14         N18     180.000    10.0     2
+AIZ              const_31         N16         C12         C15         C13     180.000    10.0     2
+AIZ             sp2_sp2_5          C7         C12         N16         C19     180.000     5.0     2
+AIZ              const_35         C17         C13         C15         C12     180.000    10.0     2
+AIZ             sp2_sp2_9          C8         C13         C17         O20     180.000     5.0     2
+AIZ            sp2_sp2_13         C10         C14         N18         C21     180.000     5.0     2
+AIZ            sp2_sp2_17         C22         C19         N16         C12     180.000     5.0     2
+AIZ            sp2_sp2_21         C24         C21         N18         C14     180.000     5.0     2
+AIZ             sp2_sp3_2         N16         C19         C22         C26     120.000    10.0     6
+AIZ       const_sp2_sp2_1          C1          C2          C5          N9       0.000     5.0     2
+AIZ              const_75          C1          C2          C6         C11     180.000    10.0     2
+AIZ              const_54         N18         C21         C24        CL28       0.000    10.0     2
+AIZ              const_83         N18         C21         C25         C29     180.000    10.0     2
+AIZ             sp3_sp3_1         C19         C22         C26         C30     180.000    10.0     3
+AIZ              const_57        CL28         C24         C27         C31     180.000    10.0     2
+AIZ              const_67         C21         C25         C29         C31       0.000    10.0     2
+AIZ            sp3_sp3_10         C22         C26         C30         N32     180.000    10.0     3
+AIZ              const_59         C24         C27         C31         C29       0.000    10.0     2
+AIZ              const_63         C25         C29         C31         C27       0.000    10.0     2
+AIZ            sp3_sp3_20         C26         C30         N32         C33     -60.000    10.0     3
+AIZ              const_23          C1          C3          C7         C12     180.000    10.0     2
+AIZ              const_79          C1          C3          C8         C13     180.000    10.0     2
+AIZ            sp3_sp3_25        H331         C33         N32         C30     180.000    10.0     3
+AIZ            sp3_sp3_32        H341         C34         N32         C30     -60.000    10.0     3
+AIZ              const_49          C1          N4          N9          C5       0.000    10.0     2
+AIZ              const_45          C2          C5          N9          N4       0.000    10.0     2
+AIZ       const_sp2_sp2_5         C14         C10          C5          C2       0.000     5.0     2
+AIZ              const_17         C14         C11          C6          C2       0.000    10.0     2
+AIZ              const_27         N16         C12          C7          C3     180.000    10.0     2
+AIZ              const_39         C17         C13          C8          C3     180.000    10.0     2
+AIZ              const_10          C5         C10         C14         N18     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AIZ    chir_1    N32    C30    C33    C34    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AIZ    plan-1          C1   0.020
+AIZ    plan-1         C10   0.020
+AIZ    plan-1         C11   0.020
+AIZ    plan-1         C14   0.020
+AIZ    plan-1          C2   0.020
+AIZ    plan-1          C3   0.020
+AIZ    plan-1          C5   0.020
+AIZ    plan-1          C6   0.020
+AIZ    plan-1         H10   0.020
+AIZ    plan-1         H11   0.020
+AIZ    plan-1          H6   0.020
+AIZ    plan-1         HN9   0.020
+AIZ    plan-1         N18   0.020
+AIZ    plan-1          N4   0.020
+AIZ    plan-1          N9   0.020
+AIZ    plan-2          C1   0.020
+AIZ    plan-2         C12   0.020
+AIZ    plan-2         C13   0.020
+AIZ    plan-2         C15   0.020
+AIZ    plan-2         C17   0.020
+AIZ    plan-2          C3   0.020
+AIZ    plan-2          C7   0.020
+AIZ    plan-2          C8   0.020
+AIZ    plan-2         H15   0.020
+AIZ    plan-2          H7   0.020
+AIZ    plan-2          H8   0.020
+AIZ    plan-2         N16   0.020
+AIZ    plan-3         C21   0.020
+AIZ    plan-3         C24   0.020
+AIZ    plan-3         C25   0.020
+AIZ    plan-3         C27   0.020
+AIZ    plan-3         C29   0.020
+AIZ    plan-3         C31   0.020
+AIZ    plan-3        CL28   0.020
+AIZ    plan-3         H25   0.020
+AIZ    plan-3         H27   0.020
+AIZ    plan-3         H29   0.020
+AIZ    plan-3         H31   0.020
+AIZ    plan-3         N18   0.020
+AIZ    plan-4         C12   0.020
+AIZ    plan-4         C19   0.020
+AIZ    plan-4         H16   0.020
+AIZ    plan-4         N16   0.020
+AIZ    plan-5         C13   0.020
+AIZ    plan-5         C17   0.020
+AIZ    plan-5         O20   0.020
+AIZ    plan-5         O35   0.020
+AIZ    plan-6         C14   0.020
+AIZ    plan-6         C21   0.020
+AIZ    plan-6         H18   0.020
+AIZ    plan-6         N18   0.020
+AIZ    plan-7         C19   0.020
+AIZ    plan-7         C22   0.020
+AIZ    plan-7         N16   0.020
+AIZ    plan-7         O23   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AIZ           SMILES              ACDLabs 10.04                                                                                                                                            Clc1ccccc1Nc2ccc3c(c2)nnc3c4cc(C(=O)O)cc(NC(=O)CCCN(C)C)c4
+AIZ SMILES_CANONICAL               CACTVS 3.341                                                                                                                                         CN(C)CCCC(=O)Nc1cc(cc(c1)c2n[nH]c3cc(Nc4ccccc4Cl)ccc23)C(O)=O
+AIZ           SMILES               CACTVS 3.341                                                                                                                                         CN(C)CCCC(=O)Nc1cc(cc(c1)c2n[nH]c3cc(Nc4ccccc4Cl)ccc23)C(O)=O
+AIZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                         CN(C)CCCC(=O)Nc1cc(cc(c1)C(=O)O)c2c3ccc(cc3[nH]n2)Nc4ccccc4Cl
+AIZ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                         CN(C)CCCC(=O)Nc1cc(cc(c1)C(=O)O)c2c3ccc(cc3[nH]n2)Nc4ccccc4Cl
+AIZ            InChI                InChI  1.03 InChI=1S/C26H26ClN5O3/c1-32(2)11-5-8-24(33)29-19-13-16(12-17(14-19)26(34)35)25-20-10-9-18(15-23(20)30-31-25)28-22-7-4-3-6-21(22)27/h3-4,6-7,9-10,12-15,28H,5,8,11H2,1-2H3,(H,29,33)(H,30,31)(H,34,35)
+AIZ         InChIKey                InChI  1.03                                                                                                                                                                           QHYSKDAWIUFROA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AIZ acedrg               243         "dictionary generator"                  
+AIZ acedrg_database      11          "data source"                           
+AIZ rdkit                2017.03.2   "Chemoinformatics tool"
+AIZ refmac5              5.8.0238    "optimization tool"                     

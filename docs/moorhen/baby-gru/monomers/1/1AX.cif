@@ -1,0 +1,182 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+1AX     1AX      "(2R,2'R)-3,3'-oxydipropane-1,2-diol"     NON-POLYMER     25     11     .     
+#
+data_comp_1AX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+1AX     OAA     O       OH1     0       -36.298     -37.394     -4.268      
+1AX     CAE     C       CH2     0       -35.506     -37.389     -5.453      
+1AX     CAJ     C       CH1     0       -35.640     -36.084     -6.208      
+1AX     OAC     O       OH1     0       -34.682     -36.036     -7.263      
+1AX     CAG     C       CH2     0       -37.021     -35.870     -6.787      
+1AX     OAI     O       O2      0       -37.090     -34.593     -7.411      
+1AX     CAH     C       CH2     0       -38.342     -34.248     -7.997      
+1AX     CAK     C       CH1     0       -38.917     -33.034     -7.302      
+1AX     OAD     O       OH1     0       -39.048     -33.313     -5.908      
+1AX     CAF     C       CH2     0       -40.255     -32.604     -7.863      
+1AX     OAB     O       OH1     0       -40.145     -32.182     -9.220      
+1AX     H1      H       H       0       -36.222     -38.152     -3.901      
+1AX     H2      H       H       0       -35.791     -38.133     -6.037      
+1AX     H3      H       H       0       -34.559     -37.529     -5.212      
+1AX     H4      H       H       0       -35.450     -35.346     -5.580      
+1AX     H5      H       H       0       -33.915     -35.934     -6.916      
+1AX     H6      H       H       0       -37.690     -35.924     -6.072      
+1AX     H7      H       H       0       -37.212     -36.570     -7.448      
+1AX     H8      H       H       0       -38.970     -34.999     -7.919      
+1AX     H9      H       H       0       -38.212     -34.049     -8.949      
+1AX     H10     H       H       0       -38.284     -32.285     -7.411      
+1AX     H11     H       H       0       -38.275     -33.280     -5.561      
+1AX     H12     H       H       0       -40.612     -31.861     -7.319      
+1AX     H13     H       H       0       -40.888     -33.361     -7.808      
+1AX     H14     H       H       0       -39.670     -31.482     -9.243      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+1AX         CAF         OAB      SINGLE       n     1.425  0.0100     1.425  0.0100
+1AX         CAK         CAF      SINGLE       n     1.514  0.0105     1.514  0.0105
+1AX         OAI         CAH      SINGLE       n     1.422  0.0110     1.422  0.0110
+1AX         CAH         CAK      SINGLE       n     1.512  0.0104     1.512  0.0104
+1AX         CAG         OAI      SINGLE       n     1.422  0.0110     1.422  0.0110
+1AX         CAJ         OAC      SINGLE       n     1.427  0.0100     1.427  0.0100
+1AX         CAK         OAD      SINGLE       n     1.427  0.0100     1.427  0.0100
+1AX         CAJ         CAG      SINGLE       n     1.512  0.0104     1.512  0.0104
+1AX         CAE         CAJ      SINGLE       n     1.514  0.0105     1.514  0.0105
+1AX         OAA         CAE      SINGLE       n     1.425  0.0100     1.425  0.0100
+1AX         OAA          H1      SINGLE       n     0.970  0.0120     0.846  0.0200
+1AX         CAE          H2      SINGLE       n     1.089  0.0100     0.988  0.0200
+1AX         CAE          H3      SINGLE       n     1.089  0.0100     0.988  0.0200
+1AX         CAJ          H4      SINGLE       n     1.089  0.0100     0.987  0.0186
+1AX         OAC          H5      SINGLE       n     0.970  0.0120     0.848  0.0200
+1AX         CAG          H6      SINGLE       n     1.089  0.0100     0.981  0.0174
+1AX         CAG          H7      SINGLE       n     1.089  0.0100     0.981  0.0174
+1AX         CAH          H8      SINGLE       n     1.089  0.0100     0.981  0.0174
+1AX         CAH          H9      SINGLE       n     1.089  0.0100     0.981  0.0174
+1AX         CAK         H10      SINGLE       n     1.089  0.0100     0.987  0.0186
+1AX         OAD         H11      SINGLE       n     0.970  0.0120     0.848  0.0200
+1AX         CAF         H12      SINGLE       n     1.089  0.0100     0.988  0.0200
+1AX         CAF         H13      SINGLE       n     1.089  0.0100     0.988  0.0200
+1AX         OAB         H14      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+1AX         CAE         OAA          H1     108.280    3.00
+1AX         CAJ         CAE         OAA     111.586    1.51
+1AX         CAJ         CAE          H2     109.193    1.50
+1AX         CAJ         CAE          H3     109.193    1.50
+1AX         OAA         CAE          H2     109.268    1.50
+1AX         OAA         CAE          H3     109.268    1.50
+1AX          H2         CAE          H3     108.313    1.50
+1AX         OAC         CAJ         CAG     109.314    1.96
+1AX         OAC         CAJ         CAE     110.247    1.72
+1AX         OAC         CAJ          H4     108.721    1.50
+1AX         CAG         CAJ         CAE     113.504    1.50
+1AX         CAG         CAJ          H4     108.656    1.50
+1AX         CAE         CAJ          H4     108.441    1.50
+1AX         CAJ         OAC          H5     107.936    3.00
+1AX         OAI         CAG         CAJ     109.289    2.60
+1AX         OAI         CAG          H6     109.546    1.50
+1AX         OAI         CAG          H7     109.546    1.50
+1AX         CAJ         CAG          H6     109.582    1.50
+1AX         CAJ         CAG          H7     109.582    1.50
+1AX          H6         CAG          H7     108.601    1.50
+1AX         CAH         OAI         CAG     113.198    3.00
+1AX         OAI         CAH         CAK     109.289    2.60
+1AX         OAI         CAH          H8     109.546    1.50
+1AX         OAI         CAH          H9     109.546    1.50
+1AX         CAK         CAH          H8     109.582    1.50
+1AX         CAK         CAH          H9     109.582    1.50
+1AX          H8         CAH          H9     108.601    1.50
+1AX         CAF         CAK         CAH     113.504    1.50
+1AX         CAF         CAK         OAD     110.247    1.72
+1AX         CAF         CAK         H10     108.441    1.50
+1AX         CAH         CAK         OAD     109.314    1.96
+1AX         CAH         CAK         H10     108.656    1.50
+1AX         OAD         CAK         H10     108.721    1.50
+1AX         CAK         OAD         H11     107.936    3.00
+1AX         OAB         CAF         CAK     111.586    1.51
+1AX         OAB         CAF         H12     109.268    1.50
+1AX         OAB         CAF         H13     109.268    1.50
+1AX         CAK         CAF         H12     109.193    1.50
+1AX         CAK         CAF         H13     109.193    1.50
+1AX         H12         CAF         H13     108.313    1.50
+1AX         CAF         OAB         H14     108.280    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+1AX            sp3_sp3_52         CAJ         CAE         OAA          H1     180.000    10.0     3
+1AX            sp3_sp3_43         OAA         CAE         CAJ         OAC     180.000    10.0     3
+1AX            sp3_sp3_28         CAG         CAJ         OAC          H5     180.000    10.0     3
+1AX            sp3_sp3_34         OAI         CAG         CAJ         OAC     180.000    10.0     3
+1AX            sp3_sp3_25         CAJ         CAG         OAI         CAH     180.000    10.0     3
+1AX            sp3_sp3_13         CAK         CAH         OAI         CAG     180.000    10.0     3
+1AX            sp3_sp3_16         OAI         CAH         CAK         CAF     180.000    10.0     3
+1AX            sp3_sp3_31         CAF         CAK         OAD         H11     180.000    10.0     3
+1AX             sp3_sp3_4         OAB         CAF         CAK         CAH     180.000    10.0     3
+1AX             sp3_sp3_1         CAK         CAF         OAB         H14     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+1AX    chir_1    CAJ    OAC    CAG    CAE    negative
+1AX    chir_2    CAK    OAD    CAH    CAF    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+1AX           SMILES              ACDLabs 12.01                                                     OCC(O)COCC(O)CO
+1AX            InChI                InChI  1.03 InChI=1S/C6H14O5/c7-1-5(9)3-11-4-6(10)2-8/h5-10H,1-4H2/t5-,6-/m1/s1
+1AX         InChIKey                InChI  1.03                                         GPLRAVKSCUXZTP-PHDIDXHHSA-N
+1AX SMILES_CANONICAL               CACTVS 3.370                                            OC[C@@H](O)COC[C@H](O)CO
+1AX           SMILES               CACTVS 3.370                                               OC[CH](O)COC[CH](O)CO
+1AX SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                          C([C@H](COC[C@@H](CO)O)O)O
+1AX           SMILES "OpenEye OEToolkits" 1.7.6                                                   C(C(COCC(CO)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+1AX acedrg               243         "dictionary generator"                  
+1AX acedrg_database      11          "data source"                           
+1AX rdkit                2017.03.2   "Chemoinformatics tool"
+1AX refmac5              5.8.0238    "optimization tool"                     

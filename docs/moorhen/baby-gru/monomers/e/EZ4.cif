@@ -1,0 +1,174 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EZ4     EZ4      (2S,3R,4R)-2,3,4,5-tetrahydroxy-N-oxo-pentanamide     NON-POLYMER     21     12     .     
+#
+data_comp_EZ4
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EZ4     OAA     O       OH1     0       16.205      27.124      -7.695      
+EZ4     OAB     O       OH1     0       15.127      30.588      -8.263      
+EZ4     OAC     O       O       0       11.650      26.093      -6.082      
+EZ4     NAD     N       N       0       12.401      27.108      -6.291      
+EZ4     CAE     C       C       0       13.694      27.054      -6.217      
+EZ4     CAF     C       CH1     0       14.492      28.323      -6.490      
+EZ4     CAG     C       CH1     0       15.274      28.204      -7.801      
+EZ4     CAH     C       CH1     0       16.032      29.482      -8.206      
+EZ4     CAI     C       CH2     0       16.734      29.340      -9.541      
+EZ4     OAJ     O       OH1     0       17.325      30.569      -9.955      
+EZ4     OAK     O       O       0       14.311      26.028      -5.939      
+EZ4     OAL     O       OH1     0       15.399      28.577      -5.420      
+EZ4     HOAA    H       H       0       16.242      26.714      -8.438      
+EZ4     HOAB    H       H       0       15.544      31.323      -8.332      
+EZ4     HAF     H       H       0       13.853      29.085      -6.566      
+EZ4     HAG     H       H       0       14.625      27.985      -8.526      
+EZ4     HAH     H       H       0       16.729      29.677      -7.510      
+EZ4     HAI     H       H       0       16.081      29.046      -10.222     
+EZ4     HAIA    H       H       0       17.438      28.651      -9.469      
+EZ4     HOAJ    H       H       0       17.799      30.418      -10.640     
+EZ4     HOAL    H       H       0       15.507      29.416      -5.363      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EZ4         OAA         CAG      SINGLE       n     1.429  0.0100     1.429  0.0100
+EZ4         OAB         CAH      SINGLE       n     1.429  0.0100     1.429  0.0100
+EZ4         OAC         NAD      DOUBLE       n     1.276  0.0200     1.276  0.0200
+EZ4         NAD         CAE      SINGLE       n     1.288  0.0200     1.288  0.0200
+EZ4         CAE         OAK      DOUBLE       n     1.225  0.0199     1.225  0.0199
+EZ4         CAE         CAF      SINGLE       n     1.522  0.0102     1.522  0.0102
+EZ4         CAF         CAG      SINGLE       n     1.528  0.0125     1.528  0.0125
+EZ4         CAF         OAL      SINGLE       n     1.424  0.0153     1.424  0.0153
+EZ4         CAG         CAH      SINGLE       n     1.534  0.0163     1.534  0.0163
+EZ4         CAH         CAI      SINGLE       n     1.514  0.0100     1.514  0.0100
+EZ4         CAI         OAJ      SINGLE       n     1.425  0.0100     1.425  0.0100
+EZ4         OAA        HOAA      SINGLE       n     0.970  0.0120     0.848  0.0200
+EZ4         OAB        HOAB      SINGLE       n     0.970  0.0120     0.848  0.0200
+EZ4         CAF         HAF      SINGLE       n     1.089  0.0100     0.997  0.0100
+EZ4         CAG         HAG      SINGLE       n     1.089  0.0100     0.996  0.0200
+EZ4         CAH         HAH      SINGLE       n     1.089  0.0100     1.004  0.0200
+EZ4         CAI         HAI      SINGLE       n     1.089  0.0100     0.988  0.0200
+EZ4         CAI        HAIA      SINGLE       n     1.089  0.0100     0.988  0.0200
+EZ4         OAJ        HOAJ      SINGLE       n     0.970  0.0120     0.846  0.0200
+EZ4         OAL        HOAL      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EZ4         CAG         OAA        HOAA     108.564    3.00
+EZ4         CAH         OAB        HOAB     111.202    3.00
+EZ4         OAC         NAD         CAE     120.000    3.00
+EZ4         NAD         CAE         OAK     122.226    3.00
+EZ4         NAD         CAE         CAF     118.950    3.00
+EZ4         OAK         CAE         CAF     118.823    1.84
+EZ4         CAE         CAF         CAG     110.729    1.59
+EZ4         CAE         CAF         OAL     110.535    2.02
+EZ4         CAE         CAF         HAF     108.585    1.50
+EZ4         CAG         CAF         OAL     109.434    2.40
+EZ4         CAG         CAF         HAF     108.687    1.50
+EZ4         OAL         CAF         HAF     109.523    2.04
+EZ4         OAA         CAG         CAF     109.317    1.50
+EZ4         OAA         CAG         CAH     109.164    1.97
+EZ4         OAA         CAG         HAG     108.243    1.50
+EZ4         CAF         CAG         CAH     113.756    1.69
+EZ4         CAF         CAG         HAG     108.238    1.72
+EZ4         CAH         CAG         HAG     108.336    1.50
+EZ4         OAB         CAH         CAG     109.549    1.85
+EZ4         OAB         CAH         CAI     109.623    1.60
+EZ4         OAB         CAH         HAH     108.591    1.50
+EZ4         CAG         CAH         CAI     112.159    1.50
+EZ4         CAG         CAH         HAH     108.777    1.50
+EZ4         CAI         CAH         HAH     107.986    1.50
+EZ4         CAH         CAI         OAJ     111.364    1.50
+EZ4         CAH         CAI         HAI     109.234    1.50
+EZ4         CAH         CAI        HAIA     109.234    1.50
+EZ4         OAJ         CAI         HAI     109.268    1.50
+EZ4         OAJ         CAI        HAIA     109.268    1.50
+EZ4         HAI         CAI        HAIA     108.313    1.50
+EZ4         CAI         OAJ        HOAJ     108.280    3.00
+EZ4         CAF         OAL        HOAL     107.477    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EZ4             sp3_sp3_1         CAF         CAG         OAA        HOAA     180.000    10.0     3
+EZ4             sp3_sp3_4         CAG         CAH         OAB        HOAB     180.000    10.0     3
+EZ4             sp2_sp2_1         OAK         CAE         NAD         OAC     180.000     5.0     2
+EZ4             sp2_sp3_1         NAD         CAE         CAF         CAG       0.000    10.0     6
+EZ4            sp3_sp3_16         CAE         CAF         OAL        HOAL     180.000    10.0     3
+EZ4             sp3_sp3_7         CAE         CAF         CAG         OAA     180.000    10.0     3
+EZ4            sp3_sp3_19         OAA         CAG         CAH         OAB     180.000    10.0     3
+EZ4            sp3_sp3_28         OAB         CAH         CAI         OAJ     180.000    10.0     3
+EZ4            sp3_sp3_37         CAH         CAI         OAJ        HOAJ     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EZ4    chir_1    CAF    OAL    CAE    CAG    positive
+EZ4    chir_2    CAG    OAA    CAF    CAH    negative
+EZ4    chir_3    CAH    OAB    CAG    CAI    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EZ4    plan-1         CAE   0.020
+EZ4    plan-1         CAF   0.020
+EZ4    plan-1         NAD   0.020
+EZ4    plan-1         OAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EZ4           SMILES              ACDLabs 12.01                                                      O=NC(=O)C(O)C(O)C(O)CO
+EZ4 SMILES_CANONICAL               CACTVS 3.370                                        OC[C@@H](O)[C@@H](O)[C@H](O)C(=O)N=O
+EZ4           SMILES               CACTVS 3.370                                             OC[CH](O)[CH](O)[CH](O)C(=O)N=O
+EZ4 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                       C([C@H]([C@H]([C@@H](C(=O)N=O)O)O)O)O
+EZ4           SMILES "OpenEye OEToolkits" 1.7.0                                                    C(C(C(C(C(=O)N=O)O)O)O)O
+EZ4            InChI                InChI  1.03 InChI=1S/C5H9NO6/c7-1-2(8)3(9)4(10)5(11)6-12/h2-4,7-10H,1H2/t2-,3-,4+/m1/s1
+EZ4         InChIKey                InChI  1.03                                                 VIMQVNVKLDVNFU-JJYYJPOSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EZ4 acedrg               243         "dictionary generator"                  
+EZ4 acedrg_database      11          "data source"                           
+EZ4 rdkit                2017.03.2   "Chemoinformatics tool"
+EZ4 refmac5              5.8.0238    "optimization tool"                     

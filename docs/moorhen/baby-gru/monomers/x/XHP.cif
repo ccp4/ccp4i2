@@ -1,0 +1,187 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XHP     XHP      2-amino-6-methylidene-6,7-dihydropteridin-4(3H)-one     NON-POLYMER     20     13     .     
+#
+data_comp_XHP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XHP     N1      N       NRD6    0       -77.826     84.149      92.593      
+XHP     C2      C       CR6     0       -78.541     83.973      91.480      
+XHP     N2      N       NH2     0       -78.302     82.928      90.676      
+XHP     N3      N       NR6     0       -79.539     84.853      91.127      
+XHP     C4      C       CR6     0       -79.843     85.954      91.906      
+XHP     O4      O       O       0       -80.754     86.714      91.535      
+XHP     N5      N       NRD6    0       -79.368     87.250      93.901      
+XHP     C6      C       CR6     0       -78.641     87.406      95.024      
+XHP     C7      C       CH2     0       -77.541     86.477      95.453      
+XHP     N8      N       NRD6    0       -77.307     85.346      94.542      
+XHP     C9      C       CR66    0       -78.079     85.205      93.392      
+XHP     C10     C       CR66    0       -79.095     86.144      93.077      
+XHP     C6A     C       C2      0       -78.964     88.531      95.827      
+XHP     HN2     H       H       0       -78.791     82.804      89.959      
+XHP     HN2A    H       H       0       -77.655     82.367      90.869      
+XHP     HN3     H       H       0       -79.999     84.714      90.382      
+XHP     H7      H       H       0       -77.757     86.120      96.336      
+XHP     H5      H       H       0       -76.711     86.986      95.530      
+XHP     H6A     H       H       0       -78.486     88.687      96.627      
+XHP     H6AA    H       H       0       -79.654     89.119      95.558      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XHP          N1          C9      SINGLE       y     1.332  0.0175     1.332  0.0175
+XHP          N1          C2      DOUBLE       y     1.326  0.0125     1.326  0.0125
+XHP          C2          N2      SINGLE       n     1.337  0.0120     1.337  0.0120
+XHP          C2          N3      SINGLE       y     1.372  0.0100     1.372  0.0100
+XHP          N3          C4      SINGLE       y     1.379  0.0117     1.379  0.0117
+XHP          C4         C10      SINGLE       y     1.399  0.0107     1.399  0.0107
+XHP          C4          O4      DOUBLE       n     1.241  0.0136     1.241  0.0136
+XHP          N5          C6      SINGLE       n     1.333  0.0200     1.333  0.0200
+XHP          C6          C7      SINGLE       n     1.499  0.0102     1.499  0.0102
+XHP          C6         C6A      DOUBLE       n     1.418  0.0200     1.418  0.0200
+XHP          C7          N8      SINGLE       n     1.466  0.0142     1.466  0.0142
+XHP          N8          C9      DOUBLE       n     1.386  0.0200     1.386  0.0200
+XHP          N5         C10      DOUBLE       n     1.393  0.0178     1.393  0.0178
+XHP          C9         C10      SINGLE       y     1.412  0.0116     1.412  0.0116
+XHP          N2         HN2      SINGLE       n     1.016  0.0100     0.877  0.0200
+XHP          N2        HN2A      SINGLE       n     1.016  0.0100     0.877  0.0200
+XHP          N3         HN3      SINGLE       n     1.016  0.0100     0.886  0.0200
+XHP          C7          H7      SINGLE       n     1.089  0.0100     0.976  0.0194
+XHP          C7          H5      SINGLE       n     1.089  0.0100     0.976  0.0194
+XHP         C6A         H6A      SINGLE       n     1.082  0.0130     0.945  0.0200
+XHP         C6A        H6AA      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XHP          C9          N1          C2     118.624    1.50
+XHP          N1          C2          N2     120.782    1.50
+XHP          N1          C2          N3     121.209    1.50
+XHP          N2          C2          N3     118.010    1.50
+XHP          C2          N2         HN2     119.834    1.50
+XHP          C2          N2        HN2A     119.834    1.50
+XHP         HN2          N2        HN2A     120.331    1.96
+XHP          C2          N3          C4     122.007    1.50
+XHP          C2          N3         HN3     119.101    1.59
+XHP          C4          N3         HN3     118.892    1.86
+XHP          N3          C4         C10     118.206    1.50
+XHP          N3          C4          O4     118.483    1.50
+XHP         C10          C4          O4     123.311    1.50
+XHP          C6          N5         C10     117.434    1.57
+XHP          N5          C6          C7     123.625    3.00
+XHP          N5          C6         C6A     116.083    2.87
+XHP          C7          C6         C6A     120.292    3.00
+XHP          C6          C7          N8     113.884    2.10
+XHP          C6          C7          H7     108.678    1.50
+XHP          C6          C7          H5     108.678    1.50
+XHP          N8          C7          H7     108.158    1.74
+XHP          N8          C7          H5     108.158    1.74
+XHP          H7          C7          H5     107.829    1.50
+XHP          C7          N8          C9     120.000    3.00
+XHP          N1          C9          N8     117.562    2.77
+XHP          N1          C9         C10     120.805    1.50
+XHP          N8          C9         C10     121.633    1.55
+XHP          C4         C10          N5     118.853    1.50
+XHP          C4         C10          C9     119.149    1.50
+XHP          N5         C10          C9     121.998    1.55
+XHP          C6         C6A         H6A     119.729    2.27
+XHP          C6         C6A        H6AA     119.729    2.27
+XHP         H6A         C6A        H6AA     120.542    1.92
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XHP              const_20          N2          C2          N1          C9     180.000    10.0     2
+XHP       const_sp2_sp2_2          N8          C9          N1          C2     180.000     5.0     2
+XHP       const_sp2_sp2_3          C4         C10          C9          N1       0.000     5.0     2
+XHP             sp2_sp2_7          N1          C2          N2         HN2       0.000     5.0     2
+XHP              const_17          N2          C2          N3          C4     180.000    10.0     2
+XHP              const_13          O4          C4          N3          C2     180.000    10.0     2
+XHP              const_10          N5         C10          C4          O4       0.000    10.0     2
+XHP            sp2_sp2_14          C4         C10          N5          C6     180.000     5.0     2
+XHP             sp2_sp2_2         C6A          C6          N5         C10     180.000     5.0     2
+XHP            sp2_sp2_11          N5          C6         C6A         H6A       0.000     5.0     2
+XHP             sp2_sp3_4         C6A          C6          C7          N8     180.000    10.0     6
+XHP             sp2_sp3_7          C9          N8          C7          C6       0.000    10.0     6
+XHP             sp2_sp2_4          N1          C9          N8          C7     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XHP    plan-1         C10   0.020
+XHP    plan-1          C2   0.020
+XHP    plan-1          C4   0.020
+XHP    plan-1          C9   0.020
+XHP    plan-1         HN3   0.020
+XHP    plan-1          N1   0.020
+XHP    plan-1          N2   0.020
+XHP    plan-1          N3   0.020
+XHP    plan-1          N5   0.020
+XHP    plan-1          N8   0.020
+XHP    plan-1          O4   0.020
+XHP    plan-2          C2   0.020
+XHP    plan-2         HN2   0.020
+XHP    plan-2        HN2A   0.020
+XHP    plan-2          N2   0.020
+XHP    plan-3          C6   0.020
+XHP    plan-3         C6A   0.020
+XHP    plan-3          C7   0.020
+XHP    plan-3          N5   0.020
+XHP    plan-4          C6   0.020
+XHP    plan-4         C6A   0.020
+XHP    plan-4         H6A   0.020
+XHP    plan-4        H6AA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XHP           SMILES              ACDLabs 12.01                                                  O=C1C2=N\C(=C)CN=C2N=C(N)N1
+XHP            InChI                InChI  1.03 InChI=1S/C7H7N5O/c1-3-2-9-5-4(10-3)6(13)12-7(8)11-5/h1-2H2,(H3,8,9,11,12,13)
+XHP         InChIKey                InChI  1.03                                                  CHIXTMVYEYYHIG-UHFFFAOYSA-N
+XHP SMILES_CANONICAL               CACTVS 3.370                                                   NC1=NC2=NCC(=C)N=C2C(=O)N1
+XHP           SMILES               CACTVS 3.370                                                   NC1=NC2=NCC(=C)N=C2C(=O)N1
+XHP SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                 C=C1CN=C2C(=N1)C(=O)NC(=N2)N
+XHP           SMILES "OpenEye OEToolkits" 1.7.2                                                 C=C1CN=C2C(=N1)C(=O)NC(=N2)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XHP acedrg               243         "dictionary generator"                  
+XHP acedrg_database      11          "data source"                           
+XHP rdkit                2017.03.2   "Chemoinformatics tool"
+XHP refmac5              5.8.0238    "optimization tool"                     

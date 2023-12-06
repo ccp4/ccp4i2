@@ -1,0 +1,185 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+P24     P24      1-(AMINOETHYL)AMINO-4-AMINOBUTANE     NON-POLYMER     26     9     .     
+#
+data_comp_P24
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+P24     N1      N       NT2     0       7.528       22.218      -2.762      
+P24     C2      C       CH2     0       8.681       23.081      -3.008      
+P24     C3      C       CH2     0       9.153       23.776      -1.750      
+P24     N4      N       NT1     0       9.821       22.845      -0.840      
+P24     C5      C       CH2     0       11.253      22.700      -1.107      
+P24     C6      C       CH2     0       11.877      21.606      -0.256      
+P24     C7      C       CH2     0       13.337      21.359      -0.595      
+P24     C8      C       CH2     0       14.022      20.391      0.359       
+P24     N9      N       NT2     0       13.692      18.980      0.137       
+P24     HN11    H       H       0       7.333       21.766      -3.501      
+P24     HN12    H       H       0       7.730       21.622      -2.135      
+P24     H21     H       H       0       8.441       23.751      -3.675      
+P24     H22     H       H       0       9.409       22.543      -3.372      
+P24     H31     H       H       0       8.383       24.176      -1.293      
+P24     H32     H       H       0       9.767       24.502      -1.989      
+P24     HN4     H       H       0       9.722       23.147      0.001       
+P24     H51     H       H       0       11.705      23.550      -0.922      
+P24     H52     H       H       0       11.388      22.488      -2.054      
+P24     H61     H       H       0       11.374      20.774      -0.386      
+P24     H62     H       H       0       11.806      21.857      0.690       
+P24     H71     H       H       0       13.819      22.214      -0.574      
+P24     H72     H       H       0       13.398      20.999      -1.505      
+P24     H81     H       H       0       13.774      20.631      1.275       
+P24     H82     H       H       0       14.990      20.503      0.273       
+P24     HN91    H       H       0       14.129      18.660      -0.566      
+P24     HN92    H       H       0       12.824      18.879      -0.024      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+P24          N1          C2      SINGLE       n     1.461  0.0200     1.461  0.0200
+P24          C2          C3      SINGLE       n     1.512  0.0200     1.512  0.0200
+P24          C3          N4      SINGLE       n     1.462  0.0100     1.462  0.0100
+P24          N4          C5      SINGLE       n     1.463  0.0111     1.463  0.0111
+P24          C5          C6      SINGLE       n     1.521  0.0100     1.521  0.0100
+P24          C6          C7      SINGLE       n     1.519  0.0150     1.519  0.0150
+P24          C7          C8      SINGLE       n     1.521  0.0102     1.521  0.0102
+P24          C8          N9      SINGLE       n     1.466  0.0117     1.466  0.0117
+P24          N1        HN11      SINGLE       n     1.036  0.0160     0.888  0.0200
+P24          N1        HN12      SINGLE       n     1.036  0.0160     0.888  0.0200
+P24          C2         H21      SINGLE       n     1.089  0.0100     0.976  0.0131
+P24          C2         H22      SINGLE       n     1.089  0.0100     0.976  0.0131
+P24          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0143
+P24          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0143
+P24          N4         HN4      SINGLE       n     1.036  0.0160     0.899  0.0200
+P24          C5         H51      SINGLE       n     1.089  0.0100     0.980  0.0143
+P24          C5         H52      SINGLE       n     1.089  0.0100     0.980  0.0143
+P24          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0160
+P24          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0160
+P24          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0160
+P24          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0160
+P24          C8         H81      SINGLE       n     1.089  0.0100     0.979  0.0106
+P24          C8         H82      SINGLE       n     1.089  0.0100     0.979  0.0106
+P24          N9        HN91      SINGLE       n     1.036  0.0160     0.888  0.0200
+P24          N9        HN92      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+P24          C2          N1        HN11     109.540    3.00
+P24          C2          N1        HN12     109.540    3.00
+P24        HN11          N1        HN12     107.243    3.00
+P24          N1          C2          C3     111.522    3.00
+P24          N1          C2         H21     108.883    1.50
+P24          N1          C2         H22     108.883    1.50
+P24          C3          C2         H21     109.136    1.50
+P24          C3          C2         H22     109.136    1.50
+P24         H21          C2         H22     107.734    1.50
+P24          C2          C3          N4     111.556    2.19
+P24          C2          C3         H31     109.479    1.50
+P24          C2          C3         H32     109.479    1.50
+P24          N4          C3         H31     109.410    1.50
+P24          N4          C3         H32     109.410    1.50
+P24         H31          C3         H32     107.909    1.50
+P24          C3          N4          C5     112.742    1.50
+P24          C3          N4         HN4     108.452    3.00
+P24          C5          N4         HN4     108.180    3.00
+P24          N4          C5          C6     111.754    2.01
+P24          N4          C5         H51     109.338    1.50
+P24          N4          C5         H52     109.338    1.50
+P24          C6          C5         H51     109.197    1.51
+P24          C6          C5         H52     109.197    1.51
+P24         H51          C5         H52     107.877    1.50
+P24          C5          C6          C7     112.652    1.50
+P24          C5          C6         H61     108.956    1.50
+P24          C5          C6         H62     108.956    1.50
+P24          C7          C6         H61     108.999    1.50
+P24          C7          C6         H62     108.999    1.50
+P24         H61          C6         H62     107.927    1.57
+P24          C6          C7          C8     113.118    2.03
+P24          C6          C7         H71     108.999    1.50
+P24          C6          C7         H72     108.999    1.50
+P24          C8          C7         H71     108.630    1.50
+P24          C8          C7         H72     108.630    1.50
+P24         H71          C7         H72     107.927    1.57
+P24          C7          C8          N9     114.751    2.00
+P24          C7          C8         H81     108.627    1.50
+P24          C7          C8         H82     108.627    1.50
+P24          N9          C8         H81     108.763    1.50
+P24          N9          C8         H82     108.763    1.50
+P24         H81          C8         H82     107.806    1.50
+P24          C8          N9        HN91     110.839    3.00
+P24          C8          N9        HN92     110.839    3.00
+P24        HN91          N9        HN92     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+P24             sp3_sp3_1          C3          C2          N1        HN11     180.000    10.0     3
+P24             sp3_sp3_7          N1          C2          C3          N4     180.000    10.0     3
+P24            sp3_sp3_17          C2          C3          N4          C5     -60.000    10.0     3
+P24            sp3_sp3_22          C6          C5          N4          C3     180.000    10.0     3
+P24            sp3_sp3_28          N4          C5          C6          C7     180.000    10.0     3
+P24            sp3_sp3_37          C5          C6          C7          C8     180.000    10.0     3
+P24            sp3_sp3_46          C6          C7          C8          N9     180.000    10.0     3
+P24            sp3_sp3_55          C7          C8          N9        HN91     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+P24    chir_1    N4    C3    C5    HN4    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+P24           SMILES              ACDLabs 10.04                                     NCCCCNCCN
+P24 SMILES_CANONICAL               CACTVS 3.341                                     NCCCCNCCN
+P24           SMILES               CACTVS 3.341                                     NCCCCNCCN
+P24 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                   C(CCNCCN)CN
+P24           SMILES "OpenEye OEToolkits" 1.5.0                                   C(CCNCCN)CN
+P24            InChI                InChI  1.03 InChI=1S/C6H17N3/c7-3-1-2-5-9-6-4-8/h9H,1-8H2
+P24         InChIKey                InChI  1.03                   VRPPEXGZBZBARW-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+P24 acedrg               243         "dictionary generator"                  
+P24 acedrg_database      11          "data source"                           
+P24 rdkit                2017.03.2   "Chemoinformatics tool"
+P24 refmac5              5.8.0238    "optimization tool"                     

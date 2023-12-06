@@ -1,0 +1,337 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GYK     GYK      (8R)-5-(4-aminophenyl)-N,8-dimethyl-8,9-dihydro-2H,7H-[1,3]dioxolo[4,5-h][2,3]benzodiazepine-7-carboxamide     NON-POLYMER     46     26     .     
+#
+data_comp_GYK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GYK     C01     C       CH3     0       -36.863     16.796      50.218      
+GYK     C02     C       CH1     0       -37.874     15.805      49.650      
+GYK     C03     C       CH2     0       -37.170     14.786      48.737      
+GYK     C04     C       CR6     0       -36.473     15.433      47.563      
+GYK     C05     C       CR16    0       -35.075     15.398      47.474      
+GYK     C06     C       CR56    0       -34.475     16.008      46.403      
+GYK     C07     C       CR56    0       -35.211     16.656      45.432      
+GYK     C08     C       CR16    0       -36.572     16.721      45.491      
+GYK     C09     C       CR6     0       -37.213     16.114      46.581      
+GYK     C10     C       C       0       -38.680     16.148      46.671      
+GYK     N11     N       N       0       -39.305     16.671      47.680      
+GYK     N12     N       N       0       -39.026     16.562      49.033      
+GYK     C13     C       C       0       -39.868     17.265      49.899      
+GYK     O14     O       O       0       -39.878     17.008      51.114      
+GYK     N15     N       NH1     0       -40.709     18.208      49.403      
+GYK     C16     C       CH3     0       -41.641     18.973      50.199      
+GYK     C17     C       CR6     0       -39.490     15.635      45.523      
+GYK     C18     C       CR16    0       -39.050     14.547      44.751      
+GYK     C19     C       CR16    0       -39.799     14.085      43.684      
+GYK     C20     C       CR6     0       -41.014     14.692      43.345      
+GYK     C21     C       CR16    0       -41.454     15.779      44.108      
+GYK     C22     C       CR16    0       -40.707     16.244      45.174      
+GYK     N23     N       NH2     0       -41.758     14.231      42.284      
+GYK     O24     O       O2      0       -34.372     17.179      44.475      
+GYK     C25     C       CH2     0       -33.052     16.802      44.872      
+GYK     O26     O       O2      0       -33.133     16.090      46.108      
+GYK     H1      H       H       0       -36.756     17.541      49.602      
+GYK     H2      H       H       0       -36.004     16.355      50.343      
+GYK     H3      H       H       0       -37.180     17.129      51.075      
+GYK     H4      H       H       0       -38.217     15.285      50.426      
+GYK     H5      H       H       0       -36.511     14.290      49.268      
+GYK     H6      H       H       0       -37.831     14.139      48.407      
+GYK     H7      H       H       0       -34.566     14.958      48.132      
+GYK     H8      H       H       0       -37.069     17.164      44.824      
+GYK     H11     H       H       0       -40.679     18.387      48.531      
+GYK     H12     H       H       0       -41.262     19.185      51.068      
+GYK     H13     H       H       0       -42.461     18.470      50.333      
+GYK     H14     H       H       0       -41.859     19.805      49.749      
+GYK     H15     H       H       0       -38.239     14.119      44.958      
+GYK     H16     H       H       0       -39.494     13.351      43.178      
+GYK     H17     H       H       0       -42.269     16.197      43.889      
+GYK     H18     H       H       0       -41.024     16.978      45.670      
+GYK     H19     H       H       0       -41.364     13.802      41.629      
+GYK     H20     H       H       0       -42.624     14.368      42.267      
+GYK     H21     H       H       0       -32.497     17.600      44.983      
+GYK     H9      H       H       0       -32.647     16.234      44.186      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GYK         C20         N23      SINGLE       n     1.375  0.0178     1.375  0.0178
+GYK         C20         C21      DOUBLE       y     1.396  0.0103     1.396  0.0103
+GYK         C19         C20      SINGLE       y     1.396  0.0103     1.396  0.0103
+GYK         C21         C22      SINGLE       y     1.379  0.0100     1.379  0.0100
+GYK         C18         C19      DOUBLE       y     1.379  0.0100     1.379  0.0100
+GYK         O24         C25      SINGLE       n     1.428  0.0104     1.428  0.0104
+GYK         C07         O24      SINGLE       n     1.377  0.0100     1.377  0.0100
+GYK         C25         O26      SINGLE       n     1.428  0.0104     1.428  0.0104
+GYK         C17         C22      DOUBLE       y     1.399  0.0100     1.399  0.0100
+GYK         C17         C18      SINGLE       y     1.399  0.0100     1.399  0.0100
+GYK         C07         C08      DOUBLE       y     1.361  0.0100     1.361  0.0100
+GYK         C06         C07      SINGLE       y     1.379  0.0100     1.379  0.0100
+GYK         C08         C09      SINGLE       y     1.399  0.0100     1.399  0.0100
+GYK         C10         C17      SINGLE       n     1.486  0.0126     1.486  0.0126
+GYK         C06         O26      SINGLE       n     1.377  0.0100     1.377  0.0100
+GYK         C05         C06      DOUBLE       y     1.367  0.0100     1.367  0.0100
+GYK         C09         C10      SINGLE       n     1.469  0.0144     1.469  0.0144
+GYK         C04         C09      DOUBLE       y     1.403  0.0100     1.403  0.0100
+GYK         C10         N11      DOUBLE       n     1.293  0.0100     1.293  0.0100
+GYK         C04         C05      SINGLE       y     1.393  0.0119     1.393  0.0119
+GYK         C03         C04      SINGLE       n     1.512  0.0100     1.512  0.0100
+GYK         N11         N12      SINGLE       n     1.377  0.0100     1.377  0.0100
+GYK         C02         C03      SINGLE       n     1.538  0.0100     1.538  0.0100
+GYK         C02         N12      SINGLE       n     1.478  0.0171     1.478  0.0171
+GYK         N12         C13      SINGLE       n     1.349  0.0200     1.349  0.0200
+GYK         C13         N15      SINGLE       n     1.344  0.0130     1.344  0.0130
+GYK         N15         C16      SINGLE       n     1.443  0.0100     1.443  0.0100
+GYK         C01         C02      SINGLE       n     1.522  0.0100     1.522  0.0100
+GYK         C13         O14      DOUBLE       n     1.235  0.0158     1.235  0.0158
+GYK         C01          H1      SINGLE       n     1.089  0.0100     0.973  0.0146
+GYK         C01          H2      SINGLE       n     1.089  0.0100     0.973  0.0146
+GYK         C01          H3      SINGLE       n     1.089  0.0100     0.973  0.0146
+GYK         C02          H4      SINGLE       n     1.089  0.0100     0.996  0.0100
+GYK         C03          H5      SINGLE       n     1.089  0.0100     0.981  0.0150
+GYK         C03          H6      SINGLE       n     1.089  0.0100     0.981  0.0150
+GYK         C05          H7      SINGLE       n     1.082  0.0130     0.941  0.0105
+GYK         C08          H8      SINGLE       n     1.082  0.0130     0.942  0.0117
+GYK         N15         H11      SINGLE       n     1.016  0.0100     0.894  0.0200
+GYK         C16         H12      SINGLE       n     1.089  0.0100     0.971  0.0198
+GYK         C16         H13      SINGLE       n     1.089  0.0100     0.971  0.0198
+GYK         C16         H14      SINGLE       n     1.089  0.0100     0.971  0.0198
+GYK         C18         H15      SINGLE       n     1.082  0.0130     0.941  0.0168
+GYK         C19         H16      SINGLE       n     1.082  0.0130     0.942  0.0198
+GYK         C21         H17      SINGLE       n     1.082  0.0130     0.942  0.0198
+GYK         C22         H18      SINGLE       n     1.082  0.0130     0.941  0.0168
+GYK         N23         H19      SINGLE       n     1.016  0.0100     0.877  0.0200
+GYK         N23         H20      SINGLE       n     1.016  0.0100     0.877  0.0200
+GYK         C25         H21      SINGLE       n     1.089  0.0100     0.979  0.0146
+GYK         C25          H9      SINGLE       n     1.089  0.0100     0.979  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GYK         C02         C01          H1     109.520    1.50
+GYK         C02         C01          H2     109.520    1.50
+GYK         C02         C01          H3     109.520    1.50
+GYK          H1         C01          H2     109.386    1.50
+GYK          H1         C01          H3     109.386    1.50
+GYK          H2         C01          H3     109.386    1.50
+GYK         C03         C02         N12     111.308    2.28
+GYK         C03         C02         C01     111.385    1.50
+GYK         C03         C02          H4     107.624    1.50
+GYK         N12         C02         C01     111.308    2.28
+GYK         N12         C02          H4     109.172    1.50
+GYK         C01         C02          H4     107.146    1.50
+GYK         C04         C03         C02     113.565    1.50
+GYK         C04         C03          H5     108.906    1.50
+GYK         C04         C03          H6     108.906    1.50
+GYK         C02         C03          H5     108.839    1.50
+GYK         C02         C03          H6     108.839    1.50
+GYK          H5         C03          H6     107.782    1.50
+GYK         C09         C04         C05     118.923    1.50
+GYK         C09         C04         C03     121.823    2.21
+GYK         C05         C04         C03     119.254    1.64
+GYK         C06         C05         C04     118.197    1.50
+GYK         C06         C05          H7     121.353    1.50
+GYK         C04         C05          H7     120.450    1.50
+GYK         C07         C06         O26     109.808    1.50
+GYK         C07         C06         C05     122.155    1.50
+GYK         O26         C06         C05     128.037    1.50
+GYK         O24         C07         C08     128.037    1.50
+GYK         O24         C07         C06     109.808    1.50
+GYK         C08         C07         C06     122.155    1.50
+GYK         C07         C08         C09     117.977    1.50
+GYK         C07         C08          H8     121.183    1.50
+GYK         C09         C08          H8     120.840    1.50
+GYK         C08         C09         C10     119.776    1.72
+GYK         C08         C09         C04     120.592    1.50
+GYK         C10         C09         C04     119.632    1.50
+GYK         C17         C10         C09     119.835    2.15
+GYK         C17         C10         N11     120.082    3.00
+GYK         C09         C10         N11     120.082    3.00
+GYK         C10         N11         N12     116.639    2.12
+GYK         N11         N12         C02     120.036    2.85
+GYK         N11         N12         C13     118.660    1.56
+GYK         C02         N12         C13     121.304    2.35
+GYK         N12         C13         N15     116.578    3.00
+GYK         N12         C13         O14     121.929    1.98
+GYK         N15         C13         O14     121.493    1.50
+GYK         C13         N15         C16     123.258    2.20
+GYK         C13         N15         H11     118.320    1.50
+GYK         C16         N15         H11     118.422    1.50
+GYK         N15         C16         H12     110.997    1.85
+GYK         N15         C16         H13     110.997    1.85
+GYK         N15         C16         H14     110.997    1.85
+GYK         H12         C16         H13     109.279    1.79
+GYK         H12         C16         H14     109.279    1.79
+GYK         H13         C16         H14     109.279    1.79
+GYK         C22         C17         C18     118.887    1.50
+GYK         C22         C17         C10     120.556    1.50
+GYK         C18         C17         C10     120.556    1.50
+GYK         C19         C18         C17     120.737    1.50
+GYK         C19         C18         H15     119.416    1.50
+GYK         C17         C18         H15     119.847    1.50
+GYK         C20         C19         C18     120.590    1.50
+GYK         C20         C19         H16     119.417    1.50
+GYK         C18         C19         H16     119.993    1.50
+GYK         N23         C20         C21     120.771    1.50
+GYK         N23         C20         C19     120.771    1.50
+GYK         C21         C20         C19     118.457    1.50
+GYK         C20         C21         C22     120.590    1.50
+GYK         C20         C21         H17     119.417    1.50
+GYK         C22         C21         H17     119.993    1.50
+GYK         C21         C22         C17     120.737    1.50
+GYK         C21         C22         H18     119.416    1.50
+GYK         C17         C22         H18     119.847    1.50
+GYK         C20         N23         H19     119.811    2.73
+GYK         C20         N23         H20     119.811    2.73
+GYK         H19         N23         H20     120.379    3.00
+GYK         C25         O24         C07     105.409    1.50
+GYK         O24         C25         O26     108.187    1.50
+GYK         O24         C25         H21     109.983    1.50
+GYK         O24         C25          H9     109.983    1.50
+GYK         O26         C25         H21     109.983    1.50
+GYK         O26         C25          H9     109.983    1.50
+GYK         H21         C25          H9     108.633    1.82
+GYK         C25         O26         C06     105.409    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GYK            sp3_sp3_16          H1         C01         C02         C03     180.000    10.0     3
+GYK            sp2_sp2_19         C10         N11         N12         C02     180.000     5.0     2
+GYK            sp2_sp2_22         N15         C13         N12         N11       0.000     5.0     2
+GYK            sp2_sp2_25         N12         C13         N15         C16     180.000     5.0     2
+GYK            sp2_sp3_13         C13         N15         C16         H12       0.000    10.0     6
+GYK              const_43         C10         C17         C18         C19     180.000    10.0     2
+GYK              const_23         C10         C17         C22         C21     180.000    10.0     2
+GYK              const_37         C17         C18         C19         C20       0.000    10.0     2
+GYK              const_34         C18         C19         C20         N23     180.000    10.0     2
+GYK              const_31         N23         C20         C21         C22     180.000    10.0     2
+GYK             sp2_sp2_3         C21         C20         N23         H19     180.000     5.0     2
+GYK             sp2_sp3_7         N11         N12         C02         C03       0.000    10.0     6
+GYK             sp3_sp3_7         N12         C02         C03         C04     180.000    10.0     3
+GYK              const_25         C20         C21         C22         C17       0.000    10.0     2
+GYK             sp3_sp3_1         O26         C25         O24         C07      60.000    10.0     3
+GYK             sp3_sp3_4         O24         C25         O26         C06     -60.000    10.0     3
+GYK             sp2_sp3_2         C09         C04         C03         C02     -90.000    10.0     6
+GYK              const_47         C03         C04         C05         C06     180.000    10.0     2
+GYK       const_sp2_sp2_4         C03         C04         C09         C10       0.000     5.0     2
+GYK              const_17         C04         C05         C06         C07       0.000    10.0     2
+GYK            sp2_sp2_11         C07         C06         O26         C25       0.000     5.0     2
+GYK              const_13         O26         C06         C07         O24       0.000    10.0     2
+GYK             sp2_sp2_2         C08         C07         O24         C25     180.000     5.0     2
+GYK              const_11         O24         C07         C08         C09     180.000    10.0     2
+GYK       const_sp2_sp2_6         C07         C08         C09         C10     180.000     5.0     2
+GYK            sp2_sp2_14         C08         C09         C10         N11       0.000     5.0     2
+GYK            sp2_sp2_17         C17         C10         N11         N12     180.000     5.0     2
+GYK             sp2_sp2_9         N11         C10         C17         C22       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GYK    chir_1    C02    N12    C03    C01    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GYK    plan-1         C10   0.020
+GYK    plan-1         C17   0.020
+GYK    plan-1         C18   0.020
+GYK    plan-1         C19   0.020
+GYK    plan-1         C20   0.020
+GYK    plan-1         C21   0.020
+GYK    plan-1         C22   0.020
+GYK    plan-1         H15   0.020
+GYK    plan-1         H16   0.020
+GYK    plan-1         H17   0.020
+GYK    plan-1         H18   0.020
+GYK    plan-1         N23   0.020
+GYK    plan-2         C03   0.020
+GYK    plan-2         C04   0.020
+GYK    plan-2         C05   0.020
+GYK    plan-2         C06   0.020
+GYK    plan-2         C07   0.020
+GYK    plan-2         C08   0.020
+GYK    plan-2         C09   0.020
+GYK    plan-2         C10   0.020
+GYK    plan-2          H7   0.020
+GYK    plan-2          H8   0.020
+GYK    plan-2         O24   0.020
+GYK    plan-2         O26   0.020
+GYK    plan-3         C09   0.020
+GYK    plan-3         C10   0.020
+GYK    plan-3         C17   0.020
+GYK    plan-3         N11   0.020
+GYK    plan-4         C02   0.020
+GYK    plan-4         C13   0.020
+GYK    plan-4         N11   0.020
+GYK    plan-4         N12   0.020
+GYK    plan-5         C13   0.020
+GYK    plan-5         N12   0.020
+GYK    plan-5         N15   0.020
+GYK    plan-5         O14   0.020
+GYK    plan-6         C13   0.020
+GYK    plan-6         C16   0.020
+GYK    plan-6         H11   0.020
+GYK    plan-6         N15   0.020
+GYK    plan-7         C20   0.020
+GYK    plan-7         H19   0.020
+GYK    plan-7         H20   0.020
+GYK    plan-7         N23   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GYK           SMILES              ACDLabs 12.01                                                                                                            CC2Cc1cc4c(cc1C(=NN2C(=O)NC)c3ccc(cc3)N)OCO4
+GYK            InChI                InChI  1.03 InChI=1S/C19H20N4O3/c1-11-7-13-8-16-17(26-10-25-16)9-15(13)18(22-23(11)19(24)21-2)12-3-5-14(20)6-4-12/h3-6,8-9,11H,7,10,20H2,1-2H3,(H,21,24)/t11-/m1/s1
+GYK         InChIKey                InChI  1.03                                                                                                                             SMGACXZFVXKEAX-LLVKDONJSA-N
+GYK SMILES_CANONICAL               CACTVS 3.385                                                                                                          CNC(=O)N1N=C(c2ccc(N)cc2)c3cc4OCOc4cc3C[C@H]1C
+GYK           SMILES               CACTVS 3.385                                                                                                           CNC(=O)N1N=C(c2ccc(N)cc2)c3cc4OCOc4cc3C[CH]1C
+GYK SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                       C[C@@H]1Cc2cc3c(cc2C(=NN1C(=O)NC)c4ccc(cc4)N)OCO3
+GYK           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                            CC1Cc2cc3c(cc2C(=NN1C(=O)NC)c4ccc(cc4)N)OCO3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GYK acedrg               243         "dictionary generator"                  
+GYK acedrg_database      11          "data source"                           
+GYK rdkit                2017.03.2   "Chemoinformatics tool"
+GYK refmac5              5.8.0238    "optimization tool"                     

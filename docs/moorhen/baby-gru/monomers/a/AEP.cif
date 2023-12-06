@@ -1,0 +1,204 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AEP     AEP      "3-[(1-AMINO-2-CARBOXY-ETHYL)-HYDROXY-PHOSPHINOYL]-2-METHYL-PROPIONIC ACID"     NON-POLYMER     27     15     .     
+#
+data_comp_AEP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AEP     N       N       NT2     0       -1.119      4.910       2.202       
+AEP     C1      C       CH1     0       -0.683      3.536       1.900       
+AEP     C2      C       CH2     0       -0.307      3.384       0.424       
+AEP     C3      C       C       0       -1.460      3.637       -0.533      
+AEP     O1      O       O       0       -2.470      2.910       -0.444      
+AEP     O2      O       OC      -1      -1.346      4.560       -1.363      
+AEP     P       P       P       0       0.711       3.018       2.966       
+AEP     C4      C       CH2     0       1.128       1.269       2.712       
+AEP     C5      C       CH3     0       0.315       -1.097      2.318       
+AEP     C6      C       CH1     0       -0.077      0.311       2.779       
+AEP     C7      C       C       0       -0.674      0.274       4.191       
+AEP     O3      O       O       0       0.039       -0.158      5.118       
+AEP     O4      O       OC      -1      -1.844      0.677       4.343       
+AEP     O1P     O       O       0       0.433       3.319       4.395       
+AEP     O2P     O       OH1     0       1.944       3.828       2.465       
+AEP     HN1     H       H       0       -1.051      5.076       3.089       
+AEP     HN2     H       H       0       -1.992      5.012       1.983       
+AEP     H1      H       H       0       -1.446      2.937       2.080       
+AEP     H21     H       H       0       0.029       2.477       0.272       
+AEP     H22     H       H       0       0.415       4.010       0.213       
+AEP     H41     H       H       0       1.781       1.006       3.392       
+AEP     H42     H       H       0       1.555       1.179       1.836       
+AEP     H51     H       H       0       -0.458      -1.685      2.375       
+AEP     H52     H       H       0       1.025       -1.440      2.888       
+AEP     H53     H       H       0       0.628       -1.063      1.397       
+AEP     H6      H       H       0       -0.772      0.648       2.169       
+AEP     HOP2    H       H       0       2.303       4.275       3.077       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AEP           N          C1      SINGLE       n     1.473  0.0130     1.473  0.0130
+AEP          C1          C2      SINGLE       n     1.531  0.0110     1.531  0.0110
+AEP          C1           P      SINGLE       n     1.829  0.0200     1.829  0.0200
+AEP          C2          C3      SINGLE       n     1.519  0.0109     1.519  0.0109
+AEP          C3          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+AEP          C3          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+AEP           P          C4      SINGLE       n     1.814  0.0200     1.814  0.0200
+AEP           P         O1P      DOUBLE       n     1.485  0.0198     1.485  0.0198
+AEP           P         O2P      SINGLE       n     1.557  0.0168     1.557  0.0168
+AEP          C4          C6      SINGLE       n     1.540  0.0100     1.540  0.0100
+AEP          C5          C6      SINGLE       n     1.532  0.0131     1.532  0.0131
+AEP          C6          C7      SINGLE       n     1.533  0.0102     1.533  0.0102
+AEP          C7          O3      DOUBLE       n     1.247  0.0187     1.247  0.0187
+AEP          C7          O4      SINGLE       n     1.247  0.0187     1.247  0.0187
+AEP           N         HN1      SINGLE       n     1.036  0.0160     0.905  0.0200
+AEP           N         HN2      SINGLE       n     1.036  0.0160     0.905  0.0200
+AEP          C1          H1      SINGLE       n     1.089  0.0100     0.986  0.0200
+AEP          C2         H21      SINGLE       n     1.089  0.0100     0.979  0.0159
+AEP          C2         H22      SINGLE       n     1.089  0.0100     0.979  0.0159
+AEP          C4         H41      SINGLE       n     1.089  0.0100     0.979  0.0200
+AEP          C4         H42      SINGLE       n     1.089  0.0100     0.979  0.0200
+AEP          C5         H51      SINGLE       n     1.089  0.0100     0.973  0.0141
+AEP          C5         H52      SINGLE       n     1.089  0.0100     0.973  0.0141
+AEP          C5         H53      SINGLE       n     1.089  0.0100     0.973  0.0141
+AEP          C6          H6      SINGLE       n     1.089  0.0100     0.985  0.0200
+AEP         O2P        HOP2      SINGLE       n     0.970  0.0120     0.839  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AEP          C1           N         HN1     109.715    3.00
+AEP          C1           N         HN2     109.715    3.00
+AEP         HN1           N         HN2     107.163    3.00
+AEP           N          C1          C2     111.883    2.59
+AEP           N          C1           P     112.238    3.00
+AEP           N          C1          H1     107.944    1.55
+AEP          C2          C1           P     111.410    2.87
+AEP          C2          C1          H1     108.253    1.50
+AEP           P          C1          H1     108.528    1.50
+AEP          C1          C2          C3     113.398    1.64
+AEP          C1          C2         H21     108.870    1.50
+AEP          C1          C2         H22     108.870    1.50
+AEP          C3          C2         H21     108.416    1.50
+AEP          C3          C2         H22     108.416    1.50
+AEP         H21          C2         H22     107.705    1.50
+AEP          C2          C3          O1     118.187    1.67
+AEP          C2          C3          O2     118.187    1.67
+AEP          O1          C3          O2     123.625    1.50
+AEP          C1           P          C4     109.194    3.00
+AEP          C1           P         O1P     110.326    3.00
+AEP          C1           P         O2P     105.177    2.72
+AEP          C4           P         O1P     110.326    3.00
+AEP          C4           P         O2P     105.177    2.72
+AEP         O1P           P         O2P     110.226    3.00
+AEP           P          C4          C6     111.410    2.87
+AEP           P          C4         H41     107.633    1.97
+AEP           P          C4         H42     107.633    1.97
+AEP          C6          C4         H41     108.507    1.50
+AEP          C6          C4         H42     108.507    1.50
+AEP         H41          C4         H42     107.498    1.50
+AEP          C6          C5         H51     109.591    1.50
+AEP          C6          C5         H52     109.591    1.50
+AEP          C6          C5         H53     109.591    1.50
+AEP         H51          C5         H52     109.411    1.50
+AEP         H51          C5         H53     109.411    1.50
+AEP         H52          C5         H53     109.411    1.50
+AEP          C4          C6          C5     111.206    1.79
+AEP          C4          C6          C7     110.778    2.06
+AEP          C4          C6          H6     108.236    1.50
+AEP          C5          C6          C7     110.920    1.69
+AEP          C5          C6          H6     108.016    1.51
+AEP          C7          C6          H6     107.706    1.93
+AEP          C6          C7          O3     118.051    1.50
+AEP          C6          C7          O4     118.051    1.50
+AEP          O3          C7          O4     123.899    1.50
+AEP           P         O2P        HOP2     112.398    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AEP             sp3_sp3_1          C2          C1           N         HN1     180.000    10.0     3
+AEP             sp3_sp3_7           N          C1          C2          C3     180.000    10.0     3
+AEP            sp3_sp3_16           N          C1           P          C4     180.000    10.0     3
+AEP             sp2_sp3_2          O1          C3          C2          C1     120.000    10.0     6
+AEP            sp3_sp3_34        HOP2         O2P           P          C1     180.000    10.0     3
+AEP            sp3_sp3_25          C6          C4           P          C1     180.000    10.0     3
+AEP            sp3_sp3_37           P          C4          C6          C5     180.000    10.0     3
+AEP            sp3_sp3_46         H51          C5          C6          C4     180.000    10.0     3
+AEP             sp2_sp3_7          O3          C7          C6          C4       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AEP    chir_1    C1    P    N    C2    negative
+AEP    chir_2    P    O2P    O1P    C1    negative
+AEP    chir_3    C6    C4    C7    C5    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AEP    plan-1          C2   0.020
+AEP    plan-1          C3   0.020
+AEP    plan-1          O1   0.020
+AEP    plan-1          O2   0.020
+AEP    plan-2          C6   0.020
+AEP    plan-2          C7   0.020
+AEP    plan-2          O3   0.020
+AEP    plan-2          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AEP           SMILES              ACDLabs 10.04                                                                                    O=P(O)(CC(C(=O)O)C)C(N)CC(=O)O
+AEP SMILES_CANONICAL               CACTVS 3.341                                                                         C[C@H](C[P](O)(=O)[C@@H](N)CC(O)=O)C(O)=O
+AEP           SMILES               CACTVS 3.341                                                                            C[CH](C[P](O)(=O)[CH](N)CC(O)=O)C(O)=O
+AEP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                         C[C@H](C[P@](=O)([C@H](CC(=O)O)N)O)C(=O)O
+AEP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                    CC(CP(=O)(C(CC(=O)O)N)O)C(=O)O
+AEP            InChI                InChI  1.03 InChI=1S/C7H14NO6P/c1-4(7(11)12)3-15(13,14)5(8)2-6(9)10/h4-5H,2-3,8H2,1H3,(H,9,10)(H,11,12)(H,13,14)/t4-,5-/m1/s1
+AEP         InChIKey                InChI  1.03                                                                                       NJOTXUMMTTYQMQ-RFZPGFLSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AEP acedrg               243         "dictionary generator"                  
+AEP acedrg_database      11          "data source"                           
+AEP rdkit                2017.03.2   "Chemoinformatics tool"
+AEP refmac5              5.8.0238    "optimization tool"                     

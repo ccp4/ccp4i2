@@ -1,0 +1,542 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AKC     AKC      "2-ETHOXYETHYL (1S,2S)-3-{(2S)-4-[(3AS,8S,8AR)-2-OXO-3,3A,8,8A-TETRAHYDRO-2H-INDENO[1,2-D][1,3]OXAZOL-8-YL]-2-BENZYL-3-OXO-2,3-DIHYDRO-1H-PYRROL-2-YL}-1-BENZYL-2-HYDROXYPROPYLCARBAMATE"     NON-POLYMER     85     46     .     
+#
+data_comp_AKC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AKC     O01     O       O2      0       13.850      24.104      5.651       
+AKC     C02     C       C       0       13.837      22.906      6.267       
+AKC     O03     O       O       0       13.013      22.034      6.090       
+AKC     NP4     N       NH1     0       14.864      22.836      7.147       
+AKC     C05     C       CH1     0       15.409      21.625      7.769       
+AKC     C06     C       CH1     0       15.517      20.464      6.752       
+AKC     O07     O       OH1     0       14.263      19.765      6.665       
+AKC     C08     C       CH2     0       16.658      19.487      7.070       
+AKC     C09     C       CT      0       17.257      18.700      5.886       
+AKC     C10     C       CH2     0       16.184      18.054      4.970       
+AKC     C11     C       CR6     0       16.703      17.164      3.866       
+AKC     C12     C       CR16    0       16.947      15.813      4.095       
+AKC     C13     C       CR16    0       17.423      14.998      3.075       
+AKC     C14     C       CR16    0       17.656      15.521      1.819       
+AKC     C15     C       CR16    0       17.416      16.857      1.578       
+AKC     C16     C       CR16    0       16.939      17.675      2.594       
+AKC     C17     C       CR5     0       18.208      19.562      5.081       
+AKC     O18     O       O       0       17.881      20.579      4.480       
+AKC     C19     C       CH1     0       20.723      19.439      4.318       
+AKC     C20     C       CH1     0       21.157      18.568      3.109       
+AKC     C22     C       CH1     0       22.623      18.129      3.348       
+AKC     C23     C       CR56    0       23.017      18.773      4.653       
+AKC     C24     C       CR16    0       24.238      18.710      5.312       
+AKC     C25     C       CR16    0       24.386      19.388      6.519       
+AKC     C26     C       CR16    0       23.333      20.112      7.053       
+AKC     C27     C       CR16    0       22.111      20.175      6.395       
+AKC     C28     C       CR56    0       21.957      19.500      5.191       
+AKC     N29     N       NR5     0       18.190      17.681      6.373       
+AKC     C30     C       CR15    0       19.462      17.862      5.995       
+AKC     C35     C       CR5     0       19.526      18.964      5.098       
+AKC     C36     C       CH2     0       14.700      21.241      9.087       
+AKC     C37     C       CR6     0       13.205      21.477      9.161       
+AKC     C38     C       CR16    0       12.307      20.424      9.015       
+AKC     C39     C       CR16    0       10.937      20.637      9.097       
+AKC     C40     C       CR16    0       10.446      21.902      9.343       
+AKC     C41     C       CR16    0       11.320      22.954      9.506       
+AKC     C42     C       CR16    0       12.692      22.742      9.428       
+AKC     C44     C       CH2     0       12.839      24.393      4.656       
+AKC     C45     C       CH2     0       13.189      23.682      3.380       
+AKC     O46     O       O2      0       14.496      24.060      2.947       
+AKC     C47     C       CH2     0       15.493      23.043      3.041       
+AKC     C48     C       CH3     0       15.393      22.082      1.928       
+AKC     O49     O       O2      0       20.441      17.302      3.023       
+AKC     N50     N       NR5     0       22.517      16.679      3.409       
+AKC     C51     C       CR5     0       21.270      16.245      3.223       
+AKC     O52     O       O       0       20.859      15.106      3.217       
+AKC     HP4     H       H       0       15.257      23.577      7.393       
+AKC     H05     H       H       0       16.334      21.852      8.016       
+AKC     H06     H       H       0       15.684      20.859      5.860       
+AKC     H07     H       H       0       14.209      19.118      7.208       
+AKC     H081    H       H       0       16.340      18.838      7.732       
+AKC     H082    H       H       0       17.389      19.989      7.490       
+AKC     H101    H       H       0       15.657      18.770      4.561       
+AKC     H102    H       H       0       15.578      17.529      5.532       
+AKC     H12     H       H       0       16.791      15.449      4.951       
+AKC     H13     H       H       0       17.588      14.084      3.242       
+AKC     H14     H       H       0       17.979      14.966      1.127       
+AKC     H15     H       H       0       17.574      17.217      0.720       
+AKC     H16     H       H       0       16.778      18.590      2.422       
+AKC     H19     H       H       0       20.533      20.355      4.009       
+AKC     H20     H       H       0       21.066      19.076      2.267       
+AKC     H22     H       H       0       23.217      18.420      2.609       
+AKC     H24     H       H       0       24.958      18.215      4.946       
+AKC     H25     H       H       0       25.210      19.355      6.979       
+AKC     H26     H       H       0       23.447      20.566      7.872       
+AKC     H27     H       H       0       21.392      20.669      6.760       
+AKC     H29     H       H       0       17.944      17.011      6.869       
+AKC     H30     H       H       0       20.203      17.347      6.273       
+AKC     H361    H       H       0       15.123      21.742      9.816       
+AKC     H362    H       H       0       14.869      20.289      9.258       
+AKC     H38     H       H       0       12.633      19.555      8.847       
+AKC     H39     H       H       0       10.341      19.913      8.985       
+AKC     H40     H       H       0       9.514       22.046      9.400       
+AKC     H41     H       H       0       10.988      23.821      9.674       
+AKC     H42     H       H       0       13.283      23.470      9.535       
+AKC     H441    H       H       0       12.800      25.358      4.490       
+AKC     H442    H       H       0       11.954      24.104      4.965       
+AKC     H451    H       H       0       12.537      23.926      2.687       
+AKC     H452    H       H       0       13.134      22.711      3.513       
+AKC     H471    H       H       0       15.402      22.569      3.894       
+AKC     H472    H       H       0       16.378      23.466      3.026       
+AKC     H481    H       H       0       16.146      21.470      1.961       
+AKC     H482    H       H       0       15.405      22.562      1.084       
+AKC     H483    H       H       0       14.567      21.579      2.003       
+AKC     H50     H       H       0       23.185      16.150      3.550       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AKC         O01         C02      SINGLE       n     1.341  0.0101     1.341  0.0101
+AKC         O01         C44      SINGLE       n     1.443  0.0100     1.443  0.0100
+AKC         C02         O03      DOUBLE       n     1.210  0.0102     1.210  0.0102
+AKC         C02         NP4      SINGLE       n     1.340  0.0141     1.340  0.0141
+AKC         NP4         C05      SINGLE       n     1.457  0.0100     1.457  0.0100
+AKC         C05         C06      SINGLE       n     1.538  0.0100     1.538  0.0100
+AKC         C05         C36      SINGLE       n     1.536  0.0100     1.536  0.0100
+AKC         C06         O07      SINGLE       n     1.424  0.0199     1.424  0.0199
+AKC         C06         C08      SINGLE       n     1.524  0.0127     1.524  0.0127
+AKC         C08         C09      SINGLE       n     1.538  0.0100     1.538  0.0100
+AKC         C09         C10      SINGLE       n     1.547  0.0115     1.547  0.0115
+AKC         C09         C17      SINGLE       n     1.523  0.0192     1.523  0.0192
+AKC         C09         N29      SINGLE       n     1.462  0.0100     1.462  0.0100
+AKC         C10         C11      SINGLE       n     1.509  0.0100     1.509  0.0100
+AKC         C11         C12      DOUBLE       y     1.387  0.0100     1.387  0.0100
+AKC         C11         C16      SINGLE       y     1.387  0.0100     1.387  0.0100
+AKC         C12         C13      SINGLE       y     1.386  0.0100     1.386  0.0100
+AKC         C13         C14      DOUBLE       y     1.376  0.0124     1.376  0.0124
+AKC         C14         C15      SINGLE       y     1.374  0.0127     1.374  0.0127
+AKC         C15         C16      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AKC         C17         O18      DOUBLE       n     1.226  0.0150     1.226  0.0150
+AKC         C17         C35      SINGLE       n     1.466  0.0200     1.466  0.0200
+AKC         C19         C20      SINGLE       n     1.547  0.0100     1.547  0.0100
+AKC         C19         C28      SINGLE       n     1.514  0.0100     1.514  0.0100
+AKC         C19         C35      SINGLE       n     1.500  0.0178     1.500  0.0178
+AKC         C20         C22      SINGLE       n     1.547  0.0100     1.547  0.0100
+AKC         C20         O49      SINGLE       n     1.454  0.0112     1.454  0.0112
+AKC         C22         C23      SINGLE       n     1.508  0.0114     1.508  0.0114
+AKC         C22         N50      SINGLE       n     1.456  0.0100     1.456  0.0100
+AKC         C23         C24      DOUBLE       y     1.385  0.0100     1.385  0.0100
+AKC         C23         C28      SINGLE       y     1.392  0.0100     1.392  0.0100
+AKC         C24         C25      SINGLE       y     1.389  0.0100     1.389  0.0100
+AKC         C25         C26      DOUBLE       y     1.382  0.0104     1.382  0.0104
+AKC         C26         C27      SINGLE       y     1.386  0.0100     1.386  0.0100
+AKC         C27         C28      DOUBLE       y     1.385  0.0100     1.385  0.0100
+AKC         N29         C30      SINGLE       n     1.334  0.0104     1.334  0.0104
+AKC         C30         C35      DOUBLE       n     1.416  0.0200     1.416  0.0200
+AKC         C36         C37      SINGLE       n     1.512  0.0103     1.512  0.0103
+AKC         C37         C38      DOUBLE       y     1.385  0.0111     1.385  0.0111
+AKC         C37         C42      SINGLE       y     1.385  0.0111     1.385  0.0111
+AKC         C38         C39      SINGLE       y     1.386  0.0100     1.386  0.0100
+AKC         C39         C40      DOUBLE       y     1.376  0.0124     1.376  0.0124
+AKC         C40         C41      SINGLE       y     1.374  0.0127     1.374  0.0127
+AKC         C41         C42      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AKC         C44         C45      SINGLE       n     1.495  0.0138     1.495  0.0138
+AKC         C45         O46      SINGLE       n     1.423  0.0106     1.423  0.0106
+AKC         O46         C47      SINGLE       n     1.422  0.0115     1.422  0.0115
+AKC         C47         C48      SINGLE       n     1.469  0.0200     1.469  0.0200
+AKC         O49         C51      SINGLE       n     1.357  0.0104     1.357  0.0104
+AKC         N50         C51      SINGLE       n     1.334  0.0136     1.334  0.0136
+AKC         C51         O52      DOUBLE       n     1.210  0.0100     1.210  0.0100
+AKC         NP4         HP4      SINGLE       n     1.016  0.0100     0.872  0.0200
+AKC         C05         H05      SINGLE       n     1.089  0.0100     0.984  0.0181
+AKC         C06         H06      SINGLE       n     1.089  0.0100     0.992  0.0184
+AKC         O07         H07      SINGLE       n     0.970  0.0120     0.848  0.0200
+AKC         C08        H081      SINGLE       n     1.089  0.0100     0.981  0.0178
+AKC         C08        H082      SINGLE       n     1.089  0.0100     0.981  0.0178
+AKC         C10        H101      SINGLE       n     1.089  0.0100     0.979  0.0161
+AKC         C10        H102      SINGLE       n     1.089  0.0100     0.979  0.0161
+AKC         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0174
+AKC         C13         H13      SINGLE       n     1.082  0.0130     0.944  0.0175
+AKC         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0161
+AKC         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0175
+AKC         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0174
+AKC         C19         H19      SINGLE       n     1.089  0.0100     0.986  0.0189
+AKC         C20         H20      SINGLE       n     1.089  0.0100     0.988  0.0170
+AKC         C22         H22      SINGLE       n     1.089  0.0100     0.992  0.0154
+AKC         C24         H24      SINGLE       n     1.082  0.0130     0.947  0.0100
+AKC         C25         H25      SINGLE       n     1.082  0.0130     0.944  0.0193
+AKC         C26         H26      SINGLE       n     1.082  0.0130     0.944  0.0193
+AKC         C27         H27      SINGLE       n     1.082  0.0130     0.945  0.0149
+AKC         N29         H29      SINGLE       n     1.016  0.0100     0.869  0.0200
+AKC         C30         H30      SINGLE       n     1.082  0.0130     0.944  0.0187
+AKC         C36        H361      SINGLE       n     1.089  0.0100     0.981  0.0150
+AKC         C36        H362      SINGLE       n     1.089  0.0100     0.981  0.0150
+AKC         C38         H38      SINGLE       n     1.082  0.0130     0.944  0.0174
+AKC         C39         H39      SINGLE       n     1.082  0.0130     0.944  0.0175
+AKC         C40         H40      SINGLE       n     1.082  0.0130     0.944  0.0161
+AKC         C41         H41      SINGLE       n     1.082  0.0130     0.944  0.0175
+AKC         C42         H42      SINGLE       n     1.082  0.0130     0.944  0.0174
+AKC         C44        H441      SINGLE       n     1.089  0.0100     0.980  0.0146
+AKC         C44        H442      SINGLE       n     1.089  0.0100     0.980  0.0146
+AKC         C45        H451      SINGLE       n     1.089  0.0100     0.982  0.0175
+AKC         C45        H452      SINGLE       n     1.089  0.0100     0.982  0.0175
+AKC         C47        H471      SINGLE       n     1.089  0.0100     0.981  0.0174
+AKC         C47        H472      SINGLE       n     1.089  0.0100     0.981  0.0174
+AKC         C48        H481      SINGLE       n     1.089  0.0100     0.971  0.0156
+AKC         C48        H482      SINGLE       n     1.089  0.0100     0.971  0.0156
+AKC         C48        H483      SINGLE       n     1.089  0.0100     0.971  0.0156
+AKC         N50         H50      SINGLE       n     1.016  0.0100     0.863  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AKC         C02         O01         C44     115.826    1.50
+AKC         O01         C02         O03     125.039    1.50
+AKC         O01         C02         NP4     110.214    1.50
+AKC         O03         C02         NP4     124.747    1.50
+AKC         C02         NP4         C05     122.950    1.53
+AKC         C02         NP4         HP4     119.336    2.20
+AKC         C05         NP4         HP4     117.714    3.00
+AKC         NP4         C05         C06     109.748    1.50
+AKC         NP4         C05         C36     110.274    1.50
+AKC         NP4         C05         H05     108.194    1.50
+AKC         C06         C05         C36     112.266    1.50
+AKC         C06         C05         H05     107.639    1.50
+AKC         C36         C05         H05     108.431    1.50
+AKC         C05         C06         O07     109.040    1.72
+AKC         C05         C06         C08     111.094    2.85
+AKC         C05         C06         H06     108.500    1.50
+AKC         O07         C06         C08     109.182    2.31
+AKC         O07         C06         H06     108.183    1.96
+AKC         C08         C06         H06     109.195    1.50
+AKC         C06         O07         H07     109.265    3.00
+AKC         C06         C08         C09     112.518    2.73
+AKC         C06         C08        H081     108.465    1.50
+AKC         C06         C08        H082     108.465    1.50
+AKC         C09         C08        H081     108.106    1.50
+AKC         C09         C08        H082     108.106    1.50
+AKC        H081         C08        H082     107.535    1.50
+AKC         C08         C09         C10     111.127    1.91
+AKC         C08         C09         C17     110.323    1.50
+AKC         C08         C09         N29     110.800    1.53
+AKC         C10         C09         C17     109.923    2.24
+AKC         C10         C09         N29     109.797    2.76
+AKC         C17         C09         N29     100.410    1.50
+AKC         C09         C10         C11     115.171    1.50
+AKC         C09         C10        H101     108.340    1.50
+AKC         C09         C10        H102     108.340    1.50
+AKC         C11         C10        H101     108.558    1.50
+AKC         C11         C10        H102     108.558    1.50
+AKC        H101         C10        H102     107.540    1.50
+AKC         C10         C11         C12     120.843    1.50
+AKC         C10         C11         C16     120.843    1.50
+AKC         C12         C11         C16     118.314    1.50
+AKC         C11         C12         C13     120.452    1.50
+AKC         C11         C12         H12     119.704    1.50
+AKC         C13         C12         H12     119.844    1.50
+AKC         C12         C13         C14     120.355    1.50
+AKC         C12         C13         H13     119.777    1.50
+AKC         C14         C13         H13     119.868    1.50
+AKC         C13         C14         C15     120.073    1.50
+AKC         C13         C14         H14     119.964    1.50
+AKC         C15         C14         H14     119.964    1.50
+AKC         C14         C15         C16     120.355    1.50
+AKC         C14         C15         H15     119.868    1.50
+AKC         C16         C15         H15     119.777    1.50
+AKC         C11         C16         C15     120.452    1.50
+AKC         C11         C16         H16     119.704    1.50
+AKC         C15         C16         H16     119.844    1.50
+AKC         C09         C17         O18     123.413    1.50
+AKC         C09         C17         C35     110.979    1.50
+AKC         O18         C17         C35     125.607    1.50
+AKC         C20         C19         C28     103.416    1.50
+AKC         C20         C19         C35     114.587    3.00
+AKC         C20         C19         H19     110.225    1.62
+AKC         C28         C19         C35     112.772    3.00
+AKC         C28         C19         H19     108.173    1.53
+AKC         C35         C19         H19     108.320    1.50
+AKC         C19         C20         C22     104.802    1.87
+AKC         C19         C20         O49     110.437    2.83
+AKC         C19         C20         H20     110.691    1.64
+AKC         C22         C20         O49     103.355    1.50
+AKC         C22         C20         H20     111.561    1.50
+AKC         O49         C20         H20     110.924    1.82
+AKC         C20         C22         C23     103.490    1.50
+AKC         C20         C22         N50     103.067    1.50
+AKC         C20         C22         H22     111.688    1.50
+AKC         C23         C22         N50     114.346    2.35
+AKC         C23         C22         H22     111.318    1.50
+AKC         N50         C22         H22     111.574    1.50
+AKC         C22         C23         C24     128.610    1.50
+AKC         C22         C23         C28     110.839    1.50
+AKC         C24         C23         C28     120.551    1.50
+AKC         C23         C24         C25     118.714    1.50
+AKC         C23         C24         H24     120.591    1.50
+AKC         C25         C24         H24     120.695    1.50
+AKC         C24         C25         C26     120.664    1.50
+AKC         C24         C25         H25     119.771    1.50
+AKC         C26         C25         H25     119.565    1.50
+AKC         C25         C26         C27     120.932    1.50
+AKC         C25         C26         H26     119.493    1.50
+AKC         C27         C26         H26     119.574    1.50
+AKC         C26         C27         C28     118.998    1.50
+AKC         C26         C27         H27     120.686    1.50
+AKC         C28         C27         H27     120.315    1.50
+AKC         C19         C28         C23     111.966    3.00
+AKC         C19         C28         C27     127.893    2.31
+AKC         C23         C28         C27     120.141    1.50
+AKC         C09         N29         C30     113.060    1.50
+AKC         C09         N29         H29     123.600    1.50
+AKC         C30         N29         H29     123.340    1.96
+AKC         N29         C30         C35     107.691    1.57
+AKC         N29         C30         H30     126.615    1.50
+AKC         C35         C30         H30     125.694    1.60
+AKC         C17         C35         C19     125.231    3.00
+AKC         C17         C35         C30     109.537    3.00
+AKC         C19         C35         C30     125.231    3.00
+AKC         C05         C36         C37     113.215    1.50
+AKC         C05         C36        H361     108.892    1.50
+AKC         C05         C36        H362     108.892    1.50
+AKC         C37         C36        H361     108.862    1.50
+AKC         C37         C36        H362     108.862    1.50
+AKC        H361         C36        H362     107.782    1.50
+AKC         C36         C37         C38     120.970    1.50
+AKC         C36         C37         C42     120.970    1.50
+AKC         C38         C37         C42     118.060    1.50
+AKC         C37         C38         C39     120.624    1.50
+AKC         C37         C38         H38     119.591    1.50
+AKC         C39         C38         H38     119.786    1.50
+AKC         C38         C39         C40     120.325    1.50
+AKC         C38         C39         H39     119.792    1.50
+AKC         C40         C39         H39     119.883    1.50
+AKC         C39         C40         C41     120.043    1.50
+AKC         C39         C40         H40     119.979    1.50
+AKC         C41         C40         H40     119.979    1.50
+AKC         C40         C41         C42     120.325    1.50
+AKC         C40         C41         H41     119.883    1.50
+AKC         C42         C41         H41     119.792    1.50
+AKC         C37         C42         C41     120.624    1.50
+AKC         C37         C42         H42     119.591    1.50
+AKC         C41         C42         H42     119.786    1.50
+AKC         O01         C44         C45     107.331    1.50
+AKC         O01         C44        H441     110.247    1.50
+AKC         O01         C44        H442     110.247    1.50
+AKC         C45         C44        H441     109.729    1.50
+AKC         C45         C44        H442     109.729    1.50
+AKC        H441         C44        H442     108.274    1.50
+AKC         C44         C45         O46     109.613    1.74
+AKC         C44         C45        H451     109.729    1.50
+AKC         C44         C45        H452     109.729    1.50
+AKC         O46         C45        H451     109.691    1.50
+AKC         O46         C45        H452     109.691    1.50
+AKC        H451         C45        H452     108.274    1.50
+AKC         C45         O46         C47     112.948    1.50
+AKC         O46         C47         C48     110.435    3.00
+AKC         O46         C47        H471     109.448    1.50
+AKC         O46         C47        H472     109.448    1.50
+AKC         C48         C47        H471     110.009    1.50
+AKC         C48         C47        H472     110.009    1.50
+AKC        H471         C47        H472     108.453    1.50
+AKC         C47         C48        H481     109.517    1.50
+AKC         C47         C48        H482     109.517    1.50
+AKC         C47         C48        H483     109.517    1.50
+AKC        H481         C48        H482     109.410    1.50
+AKC        H481         C48        H483     109.410    1.50
+AKC        H482         C48        H483     109.410    1.50
+AKC         C20         O49         C51     110.042    2.00
+AKC         C22         N50         C51     112.710    1.50
+AKC         C22         N50         H50     124.096    1.97
+AKC         C51         N50         H50     123.194    3.00
+AKC         O49         C51         N50     109.304    1.50
+AKC         O49         C51         O52     121.847    1.50
+AKC         N50         C51         O52     128.848    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AKC            sp2_sp2_19         O03         C02         O01         C44     180.000     5.0     2
+AKC            sp3_sp3_19         C45         C44         O01         C02     180.000    10.0     3
+AKC       const_sp2_sp2_3         C10         C11         C12         C13     180.000     5.0     2
+AKC              const_67         C10         C11         C16         C15     180.000    10.0     2
+AKC       const_sp2_sp2_5         C11         C12         C13         C14       0.000     5.0     2
+AKC       const_sp2_sp2_9         C12         C13         C14         C15       0.000     5.0     2
+AKC              const_13         C13         C14         C15         C16       0.000    10.0     2
+AKC              const_17         C14         C15         C16         C11       0.000    10.0     2
+AKC             sp2_sp2_4         O18         C17         C35         C19       0.000     5.0     2
+AKC             sp3_sp3_1         C28         C19         C20         C22      60.000    10.0     3
+AKC            sp2_sp3_37         C23         C28         C19         C20       0.000    10.0     6
+AKC            sp2_sp3_43         C17         C35         C19         C20     150.000    10.0     6
+AKC            sp3_sp3_10         C19         C20         C22         C23     -60.000    10.0     3
+AKC            sp3_sp3_71         C19         C20         O49         C51     180.000    10.0     3
+AKC            sp2_sp2_21         O01         C02         NP4         C05     180.000     5.0     2
+AKC            sp2_sp3_10         C24         C23         C22         C20     180.000    10.0     6
+AKC            sp2_sp3_13         C51         N50         C22         C20       0.000    10.0     6
+AKC              const_27         C22         C23         C24         C25     180.000    10.0     2
+AKC              const_21         C22         C23         C28         C19       0.000    10.0     2
+AKC              const_29         C23         C24         C25         C26       0.000    10.0     2
+AKC              const_33         C24         C25         C26         C27       0.000    10.0     2
+AKC              const_37         C25         C26         C27         C28       0.000    10.0     2
+AKC              const_42         C26         C27         C28         C19     180.000    10.0     2
+AKC             sp2_sp2_9         C35         C30         N29         C09       0.000     5.0     2
+AKC             sp2_sp2_5         N29         C30         C35         C17       0.000     5.0     2
+AKC            sp2_sp3_50         C38         C37         C36         C05     -90.000    10.0     6
+AKC              const_47         C36         C37         C38         C39     180.000    10.0     2
+AKC              const_71         C36         C37         C42         C41     180.000    10.0     2
+AKC              const_49         C37         C38         C39         C40       0.000    10.0     2
+AKC              const_53         C38         C39         C40         C41       0.000    10.0     2
+AKC              const_57         C39         C40         C41         C42       0.000    10.0     2
+AKC              const_61         C40         C41         C42         C37       0.000    10.0     2
+AKC            sp3_sp3_73         O01         C44         C45         O46     180.000    10.0     3
+AKC            sp3_sp3_82         C44         C45         O46         C47     180.000    10.0     3
+AKC            sp3_sp3_85         C48         C47         O46         C45     180.000    10.0     3
+AKC            sp2_sp3_19         C02         NP4         C05         C06       0.000    10.0     6
+AKC            sp3_sp3_88         O46         C47         C48        H481     180.000    10.0     3
+AKC            sp2_sp2_18         O52         C51         O49         C20     180.000     5.0     2
+AKC            sp2_sp2_15         O52         C51         N50         C22     180.000     5.0     2
+AKC            sp3_sp3_31         NP4         C05         C36         C37     180.000    10.0     3
+AKC            sp3_sp3_22         NP4         C05         C06         O07     180.000    10.0     3
+AKC            sp3_sp3_40         C05         C06         O07         H07     180.000    10.0     3
+AKC            sp3_sp3_43         C05         C06         C08         C09     180.000    10.0     3
+AKC            sp3_sp3_52         C06         C08         C09         C10     180.000    10.0     3
+AKC             sp2_sp3_5         O18         C17         C09         C08     -60.000    10.0     6
+AKC            sp2_sp3_26         C30         N29         C09         C08     120.000    10.0     6
+AKC            sp3_sp3_61         C08         C09         C10         C11     180.000    10.0     3
+AKC            sp2_sp3_32         C12         C11         C10         C09     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AKC    chir_1    C05    NP4    C06    C36    positive
+AKC    chir_2    C06    O07    C05    C08    negative
+AKC    chir_3    C09    N29    C17    C08    positive
+AKC    chir_4    C19    C20    C35    C28    negative
+AKC    chir_5    C20    O49    C22    C19    positive
+AKC    chir_6    C22    N50    C20    C23    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AKC    plan-1         C10   0.020
+AKC    plan-1         C11   0.020
+AKC    plan-1         C12   0.020
+AKC    plan-1         C13   0.020
+AKC    plan-1         C14   0.020
+AKC    plan-1         C15   0.020
+AKC    plan-1         C16   0.020
+AKC    plan-1         H12   0.020
+AKC    plan-1         H13   0.020
+AKC    plan-1         H14   0.020
+AKC    plan-1         H15   0.020
+AKC    plan-1         H16   0.020
+AKC    plan-2         C19   0.020
+AKC    plan-2         C22   0.020
+AKC    plan-2         C23   0.020
+AKC    plan-2         C24   0.020
+AKC    plan-2         C25   0.020
+AKC    plan-2         C26   0.020
+AKC    plan-2         C27   0.020
+AKC    plan-2         C28   0.020
+AKC    plan-2         H24   0.020
+AKC    plan-2         H25   0.020
+AKC    plan-2         H26   0.020
+AKC    plan-2         H27   0.020
+AKC    plan-3         C36   0.020
+AKC    plan-3         C37   0.020
+AKC    plan-3         C38   0.020
+AKC    plan-3         C39   0.020
+AKC    plan-3         C40   0.020
+AKC    plan-3         C41   0.020
+AKC    plan-3         C42   0.020
+AKC    plan-3         H38   0.020
+AKC    plan-3         H39   0.020
+AKC    plan-3         H40   0.020
+AKC    plan-3         H41   0.020
+AKC    plan-3         H42   0.020
+AKC    plan-4         C02   0.020
+AKC    plan-4         NP4   0.020
+AKC    plan-4         O01   0.020
+AKC    plan-4         O03   0.020
+AKC    plan-5         C02   0.020
+AKC    plan-5         C05   0.020
+AKC    plan-5         HP4   0.020
+AKC    plan-5         NP4   0.020
+AKC    plan-6         C09   0.020
+AKC    plan-6         C17   0.020
+AKC    plan-6         C35   0.020
+AKC    plan-6         O18   0.020
+AKC    plan-7         C09   0.020
+AKC    plan-7         C30   0.020
+AKC    plan-7         H29   0.020
+AKC    plan-7         N29   0.020
+AKC    plan-8         C30   0.020
+AKC    plan-8         C35   0.020
+AKC    plan-8         H30   0.020
+AKC    plan-8         N29   0.020
+AKC    plan-9         C17   0.020
+AKC    plan-9         C19   0.020
+AKC    plan-9         C30   0.020
+AKC    plan-9         C35   0.020
+AKC   plan-10         C22   0.020
+AKC   plan-10         C51   0.020
+AKC   plan-10         H50   0.020
+AKC   plan-10         N50   0.020
+AKC   plan-11         C51   0.020
+AKC   plan-11         N50   0.020
+AKC   plan-11         O49   0.020
+AKC   plan-11         O52   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AKC           SMILES              ACDLabs 10.04                                                                                                                                                                                  O=C(OCCOCC)NC(Cc1ccccc1)C(O)CC2(NC=C(C2=O)C4c3c(cccc3)C5NC(=O)OC45)Cc6ccccc6
+AKC SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                        CCOCCOC(=O)N[C@@H](Cc1ccccc1)[C@@H](O)C[C@]2(Cc3ccccc3)NC=C([C@@H]4[C@@H]5OC(=O)N[C@@H]5c6ccccc46)C2=O
+AKC           SMILES               CACTVS 3.341                                                                                                                                                                   CCOCCOC(=O)N[CH](Cc1ccccc1)[CH](O)C[C]2(Cc3ccccc3)NC=C([CH]4[CH]5OC(=O)N[CH]5c6ccccc46)C2=O
+AKC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                         CCOCCOC(=O)N[C@@H](Cc1ccccc1)[C@H](C[C@]2(C(=O)C(=CN2)[C@H]3c4ccccc4[C@@H]5[C@H]3OC(=O)N5)Cc6ccccc6)O
+AKC           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                  CCOCCOC(=O)NC(Cc1ccccc1)C(CC2(C(=O)C(=CN2)C3c4ccccc4C5C3OC(=O)N5)Cc6ccccc6)O
+AKC            InChI                InChI  1.03 InChI=1S/C36H39N3O7/c1-2-44-17-18-45-34(42)38-28(19-23-11-5-3-6-12-23)29(40)21-36(20-24-13-7-4-8-14-24)33(41)27(22-37-36)30-25-15-9-10-16-26(25)31-32(30)46-35(43)39-31/h3-16,22,28-32,37,40H,2,17-21H2,1H3,(H,38,42)(H,39,43)/t28-,29-,30+,31+,32-,36-/m0/s1
+AKC         InChIKey                InChI  1.03                                                                                                                                                                                                                                   CGBRFCVAMLJVEA-ZGURCIGKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AKC acedrg               243         "dictionary generator"                  
+AKC acedrg_database      11          "data source"                           
+AKC rdkit                2017.03.2   "Chemoinformatics tool"
+AKC refmac5              5.8.0238    "optimization tool"                     

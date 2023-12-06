@@ -1,0 +1,204 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PTA     PTA      "[(1-AMINO-3-METHYL-BUTYL)-HYDROXY-PHOSPHINOYL]-ACETIC ACID"     NON-POLYMER     28     13     .     
+#
+data_comp_PTA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PTA     N       N       NT2     0       21.709      9.528       21.060      
+PTA     CA      C       CH1     0       23.142      9.871       21.015      
+PTA     CB      C       CH2     0       23.799      9.336       19.737      
+PTA     CG      C       CH1     0       23.736      7.822       19.530      
+PTA     CD1     C       CH3     0       24.167      7.448       18.120      
+PTA     CD2     C       CH3     0       24.583      7.084       20.556      
+PTA     P       P       P       0       23.414      11.678      21.142      
+PTA     O1P     O       O       0       22.862      12.385      19.958      
+PTA     O2P     O       OH1     0       24.958      11.869      21.231      
+PTA     CM      C       CH2     0       22.731      12.334      22.698      
+PTA     C       C       C       0       23.387      11.761      23.940      
+PTA     O       O       O       0       23.141      10.574      24.222      
+PTA     OXT     O       OC      -1      24.129      12.514      24.596      
+PTA     H       H       H       0       21.276      10.061      21.649      
+PTA     H2      H       H       0       21.608      8.678       21.354      
+PTA     HA      H       H       0       23.577      9.441       21.788      
+PTA     HB2     H       H       0       24.751      9.608       19.741      
+PTA     HB3     H       H       0       23.368      9.773       18.960      
+PTA     HG      H       H       0       22.796      7.537       19.646      
+PTA     HD11    H       H       0       24.089      6.486       18.000      
+PTA     HD12    H       H       0       25.091      7.718       17.981      
+PTA     HD13    H       H       0       23.597      7.902       17.475      
+PTA     HD21    H       H       0       24.655      6.147       20.305      
+PTA     HD22    H       H       0       24.165      7.153       21.432      
+PTA     HD23    H       H       0       25.471      7.480       20.590      
+PTA     HOP2    H       H       0       25.171      12.541      21.685      
+PTA     HM1     H       H       0       21.777      12.135      22.728      
+PTA     HM2     H       H       0       22.844      13.303      22.704      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PTA           N          CA      SINGLE       n     1.473  0.0130     1.473  0.0130
+PTA          CA          CB      SINGLE       n     1.532  0.0129     1.532  0.0129
+PTA          CA           P      SINGLE       n     1.829  0.0200     1.829  0.0200
+PTA          CB          CG      SINGLE       n     1.527  0.0131     1.527  0.0131
+PTA          CG         CD1      SINGLE       n     1.521  0.0151     1.521  0.0151
+PTA          CG         CD2      SINGLE       n     1.521  0.0151     1.521  0.0151
+PTA           P         O1P      DOUBLE       n     1.484  0.0155     1.484  0.0155
+PTA           P         O2P      SINGLE       n     1.557  0.0168     1.557  0.0168
+PTA           P          CM      SINGLE       n     1.822  0.0200     1.822  0.0200
+PTA          CM           C      SINGLE       n     1.517  0.0196     1.517  0.0196
+PTA           C           O      DOUBLE       n     1.244  0.0200     1.244  0.0200
+PTA           C         OXT      SINGLE       n     1.244  0.0200     1.244  0.0200
+PTA           N           H      SINGLE       n     1.036  0.0160     0.905  0.0200
+PTA           N          H2      SINGLE       n     1.036  0.0160     0.905  0.0200
+PTA          CA          HA      SINGLE       n     1.089  0.0100     0.986  0.0200
+PTA          CB         HB2      SINGLE       n     1.089  0.0100     0.990  0.0100
+PTA          CB         HB3      SINGLE       n     1.089  0.0100     0.990  0.0100
+PTA          CG          HG      SINGLE       n     1.089  0.0100     0.989  0.0162
+PTA         CD1        HD11      SINGLE       n     1.089  0.0100     0.973  0.0146
+PTA         CD1        HD12      SINGLE       n     1.089  0.0100     0.973  0.0146
+PTA         CD1        HD13      SINGLE       n     1.089  0.0100     0.973  0.0146
+PTA         CD2        HD21      SINGLE       n     1.089  0.0100     0.973  0.0146
+PTA         CD2        HD22      SINGLE       n     1.089  0.0100     0.973  0.0146
+PTA         CD2        HD23      SINGLE       n     1.089  0.0100     0.973  0.0146
+PTA         O2P        HOP2      SINGLE       n     0.970  0.0120     0.839  0.0200
+PTA          CM         HM1      SINGLE       n     1.089  0.0100     0.975  0.0200
+PTA          CM         HM2      SINGLE       n     1.089  0.0100     0.975  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PTA          CA           N           H     109.715    3.00
+PTA          CA           N          H2     109.715    3.00
+PTA           H           N          H2     107.163    3.00
+PTA           N          CA          CB     110.463    2.65
+PTA           N          CA           P     112.238    3.00
+PTA           N          CA          HA     107.944    1.55
+PTA          CB          CA           P     111.410    2.87
+PTA          CB          CA          HA     108.236    1.50
+PTA           P          CA          HA     108.528    1.50
+PTA          CA          CB          CG     115.330    1.50
+PTA          CA          CB         HB2     108.507    1.50
+PTA          CA          CB         HB3     108.507    1.50
+PTA          CG          CB         HB2     108.471    1.50
+PTA          CG          CB         HB3     108.471    1.50
+PTA         HB2          CB         HB3     107.715    1.50
+PTA          CB          CG         CD1     111.118    1.50
+PTA          CB          CG         CD2     111.118    1.50
+PTA          CB          CG          HG     107.675    1.50
+PTA         CD1          CG         CD2     110.507    1.50
+PTA         CD1          CG          HG     108.052    1.50
+PTA         CD2          CG          HG     108.052    1.50
+PTA          CG         CD1        HD11     109.488    1.50
+PTA          CG         CD1        HD12     109.488    1.50
+PTA          CG         CD1        HD13     109.488    1.50
+PTA        HD11         CD1        HD12     109.411    1.50
+PTA        HD11         CD1        HD13     109.411    1.50
+PTA        HD12         CD1        HD13     109.411    1.50
+PTA          CG         CD2        HD21     109.488    1.50
+PTA          CG         CD2        HD22     109.488    1.50
+PTA          CG         CD2        HD23     109.488    1.50
+PTA        HD21         CD2        HD22     109.411    1.50
+PTA        HD21         CD2        HD23     109.411    1.50
+PTA        HD22         CD2        HD23     109.411    1.50
+PTA          CA           P         O1P     110.326    3.00
+PTA          CA           P         O2P     105.177    2.72
+PTA          CA           P          CM     109.194    3.00
+PTA         O1P           P         O2P     110.226    3.00
+PTA         O1P           P          CM     110.326    3.00
+PTA         O2P           P          CM     105.177    2.72
+PTA           P         O2P        HOP2     112.398    3.00
+PTA           P          CM           C     113.247    3.00
+PTA           P          CM         HM1     108.528    1.50
+PTA           P          CM         HM2     108.528    1.50
+PTA           C          CM         HM1     108.627    1.50
+PTA           C          CM         HM2     108.627    1.50
+PTA         HM1          CM         HM2     108.296    2.31
+PTA          CM           C           O     117.429    2.33
+PTA          CM           C         OXT     117.429    2.33
+PTA           O           C         OXT     125.142    1.75
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PTA             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+PTA             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+PTA            sp3_sp3_16           N          CA           P         O1P     180.000    10.0     3
+PTA            sp3_sp3_25          CA          CB          CG         CD1     180.000    10.0     3
+PTA            sp3_sp3_34        HD11         CD1          CG          CB     180.000    10.0     3
+PTA            sp3_sp3_43        HD21         CD2          CG          CB     180.000    10.0     3
+PTA            sp3_sp3_52        HOP2         O2P           P          CA     180.000    10.0     3
+PTA            sp3_sp3_55           C          CM           P          CA     180.000    10.0     3
+PTA             sp2_sp3_2           O           C          CM           P     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PTA    chir_1    CA    P    N    CB    negative
+PTA    chir_2    P    O2P    O1P    CA    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PTA    plan-1           C   0.020
+PTA    plan-1          CM   0.020
+PTA    plan-1           O   0.020
+PTA    plan-1         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PTA           SMILES              ACDLabs 12.01                                                                         O=C(O)CP(=O)(O)C(N)CC(C)C
+PTA SMILES_CANONICAL               CACTVS 3.370                                                                   CC(C)C[C@H](N)[P](O)(=O)CC(O)=O
+PTA           SMILES               CACTVS 3.370                                                                    CC(C)C[CH](N)[P](O)(=O)CC(O)=O
+PTA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                 CC(C)C[C@H](N)[P@@](=O)(CC(=O)O)O
+PTA           SMILES "OpenEye OEToolkits" 1.7.0                                                                         CC(C)CC(N)P(=O)(CC(=O)O)O
+PTA            InChI                InChI  1.03 InChI=1S/C7H16NO4P/c1-5(2)3-6(8)13(11,12)4-7(9)10/h5-6H,3-4,8H2,1-2H3,(H,9,10)(H,11,12)/t6-/m1/s1
+PTA         InChIKey                InChI  1.03                                                                       QLKPCHBADCFRHB-ZCFIWIBFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PTA acedrg               243         "dictionary generator"                  
+PTA acedrg_database      11          "data source"                           
+PTA rdkit                2017.03.2   "Chemoinformatics tool"
+PTA refmac5              5.8.0238    "optimization tool"                     

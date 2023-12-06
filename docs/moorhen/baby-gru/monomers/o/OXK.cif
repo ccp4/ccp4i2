@@ -1,0 +1,500 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OXK     OXK      "OXALYL-COENZYME A"     NON-POLYMER     84     53     .     
+#
+data_comp_OXK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OXK     C8      C       CR15    0       81.924      -23.633     0.486       
+OXK     N9      N       NT      0       83.091      -24.267     0.856       
+OXK     C4      C       CR56    0       82.987      -24.508     2.202       
+OXK     C5      C       CR56    0       81.752      -24.019     2.583       
+OXK     N7      N       NRD5    0       81.094      -23.471     1.490       
+OXK     N3      N       NRD6    0       83.896      -25.105     2.996       
+OXK     C2      C       CR16    0       83.457      -25.179     4.254       
+OXK     N1      N       NRD6    0       82.293      -24.752     4.770       
+OXK     C6      C       CR6     0       81.397      -24.153     3.943       
+OXK     N6      N       NH2     0       80.243      -23.729     4.450       
+OXK     "C1'"   C       CH1     0       84.240      -24.602     0.005       
+OXK     "C2'"   C       CH1     0       83.892      -25.188     -1.361      
+OXK     "O2'"   O       OH1     0       83.695      -26.585     -1.289      
+OXK     "C3'"   C       CH1     0       85.113      -24.781     -2.193      
+OXK     "O3'"   O       O2      0       86.176      -25.733     -2.067      
+OXK     "C4'"   C       CH1     0       85.511      -23.435     -1.587      
+OXK     "O4'"   O       O2      0       84.944      -23.409     -0.251      
+OXK     "C5'"   C       CH2     0       85.041      -22.219     -2.349      
+OXK     "O5'"   O       O2      0       83.591      -22.206     -2.399      
+OXK     P1      P       P       0       82.828      -20.869     -2.853      
+OXK     O11     O       OP      -1      81.370      -21.156     -2.994      
+OXK     O12     O       O       0       83.242      -19.737     -1.972      
+OXK     O6      O       O2      0       83.449      -20.639     -4.314      
+OXK     P2      P       P       0       83.524      -19.347     -5.263      
+OXK     O21     O       OP      -1      83.751      -19.784     -6.672      
+OXK     O22     O       O       0       84.455      -18.349     -4.658      
+OXK     O7      O       O2      0       82.028      -18.781     -5.146      
+OXK     CPB     C       CH2     0       81.703      -17.499     -5.756      
+OXK     CPA     C       CT      0       80.194      -17.253     -5.682      
+OXK     CP7     C       CH1     0       79.693      -17.232     -4.223      
+OXK     CP9     C       CH3     0       79.895      -15.915     -6.372      
+OXK     CP8     C       CH3     0       79.478      -18.368     -6.458      
+OXK     OP3     O       OH1     0       80.396      -16.249     -3.470      
+OXK     CP6     C       C       0       78.194      -17.014     -4.057      
+OXK     OP2     O       O       0       77.451      -17.992     -3.989      
+OXK     NP2     N       NH1     0       77.753      -15.762     -3.992      
+OXK     CP5     C       CH2     0       76.343      -15.419     -3.840      
+OXK     CP4     C       CH2     0       76.094      -13.924     -3.881      
+OXK     CP3     C       C       0       74.618      -13.595     -3.758      
+OXK     OP1     O       O       0       73.805      -14.100     -4.531      
+OXK     NP1     N       NH1     0       74.241      -12.729     -2.803      
+OXK     CP2     C       CH2     0       72.854      -12.386     -2.515      
+OXK     CP1     C       CH2     0       72.261      -11.438     -3.537      
+OXK     S       S       S2      0       72.307      -9.704      -3.019      
+OXK     P3      P       P       0       87.128      -25.871     -3.372      
+OXK     O31     O       OP      -1      86.288      -26.514     -4.460      
+OXK     O32     O       O       0       87.587      -24.476     -3.755      
+OXK     O33     O       OP      -1      88.287      -26.754     -2.953      
+OXK     CM1     C       C       0       72.007      -8.430      -4.202      
+OXK     OM2     O       O       0       71.779      -8.719      -5.357      
+OXK     OM3     O       OC      -1      71.812      -6.116      -4.655      
+OXK     OM4     O       O       0       72.259      -6.707      -2.595      
+OXK     CM2     C       C       0       72.028      -6.955      -3.779      
+OXK     H8      H       H       0       81.728      -23.351     -0.391      
+OXK     H2      H       H       0       84.048      -25.588     4.867       
+OXK     H6N1    H       H       0       80.230      -23.337     5.234       
+OXK     H6N2    H       H       0       79.501      -23.843     3.996       
+OXK     "H1'"   H       H       0       84.826      -25.233     0.480       
+OXK     "H2'"   H       H       0       83.082      -24.756     -1.736      
+OXK     HA      H       H       0       84.426      -26.965     -1.082      
+OXK     "H3'"   H       H       0       84.848      -24.670     -3.136      
+OXK     "H4'"   H       H       0       86.489      -23.391     -1.516      
+OXK     "H5'1"  H       H       0       85.408      -22.241     -3.267      
+OXK     "H5'2"  H       H       0       85.369      -21.401     -1.900      
+OXK     HPB1    H       H       0       81.988      -17.499     -6.691      
+OXK     HPB2    H       H       0       82.179      -16.781     -5.295      
+OXK     HP7     H       H       0       79.900      -18.115     -3.832      
+OXK     HP91    H       H       0       80.247      -15.183     -5.838      
+OXK     HP92    H       H       0       78.935      -15.803     -6.480      
+OXK     HP93    H       H       0       80.317      -15.902     -7.249      
+OXK     HP81    H       H       0       79.461      -19.179     -5.921      
+OXK     HP82    H       H       0       79.952      -18.544     -7.290      
+OXK     HP83    H       H       0       78.566      -18.098     -6.662      
+OXK     HP3     H       H       0       80.362      -16.453     -2.648      
+OXK     HP2     H       H       0       78.333      -15.111     -4.042      
+OXK     HP51    H       H       0       76.019      -15.773     -2.986      
+OXK     HP52    H       H       0       75.833      -15.848     -4.558      
+OXK     HP41    H       H       0       76.429      -13.563     -4.720      
+OXK     HP42    H       H       0       76.584      -13.496     -3.158      
+OXK     HP1     H       H       0       74.862      -12.343     -2.329      
+OXK     HP21    H       H       0       72.806      -11.972     -1.627      
+OXK     HP22    H       H       0       72.318      -13.207     -2.493      
+OXK     HP11    H       H       0       71.332      -11.695     -3.701      
+OXK     HP12    H       H       0       72.747      -11.530     -4.380      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OXK          C8          N9      SINGLE       y     1.372  0.0200     1.372  0.0200
+OXK          N9          C4      SINGLE       y     1.372  0.0100     1.372  0.0100
+OXK          C4          C5      DOUBLE       y     1.381  0.0100     1.381  0.0100
+OXK          C8          N7      DOUBLE       y     1.310  0.0100     1.310  0.0100
+OXK          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+OXK          C4          N3      SINGLE       y     1.343  0.0100     1.343  0.0100
+OXK          N3          C2      DOUBLE       y     1.330  0.0100     1.330  0.0100
+OXK          C2          N1      SINGLE       y     1.339  0.0100     1.339  0.0100
+OXK          C5          C6      SINGLE       y     1.408  0.0100     1.408  0.0100
+OXK          N1          C6      DOUBLE       y     1.354  0.0100     1.354  0.0100
+OXK          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+OXK          N9       "C1'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+OXK       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+OXK       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+OXK       "C2'"       "C3'"      SINGLE       n     1.529  0.0125     1.529  0.0125
+OXK       "C3'"       "O3'"      SINGLE       n     1.425  0.0152     1.425  0.0152
+OXK       "C3'"       "C4'"      SINGLE       n     1.525  0.0133     1.525  0.0133
+OXK       "C1'"       "O4'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+OXK       "C4'"       "O4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+OXK       "C4'"       "C5'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+OXK       "C5'"       "O5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+OXK       "O5'"          P1      SINGLE       n     1.604  0.0133     1.604  0.0133
+OXK          P1         O11      SINGLE       n     1.493  0.0122     1.493  0.0122
+OXK          P1         O12      DOUBLE       n     1.493  0.0122     1.493  0.0122
+OXK          P1          O6      SINGLE       n     1.604  0.0133     1.604  0.0133
+OXK          O6          P2      SINGLE       n     1.604  0.0133     1.604  0.0133
+OXK          P2         O21      SINGLE       n     1.493  0.0122     1.493  0.0122
+OXK          P2         O22      DOUBLE       n     1.493  0.0122     1.493  0.0122
+OXK          P2          O7      SINGLE       n     1.604  0.0133     1.604  0.0133
+OXK          O7         CPB      SINGLE       n     1.454  0.0165     1.454  0.0165
+OXK         CPB         CPA      SINGLE       n     1.526  0.0108     1.526  0.0108
+OXK         CPA         CP7      SINGLE       n     1.532  0.0112     1.532  0.0112
+OXK         CPA         CP9      SINGLE       n     1.531  0.0109     1.531  0.0109
+OXK         CPA         CP8      SINGLE       n     1.531  0.0109     1.531  0.0109
+OXK         CP7         OP3      SINGLE       n     1.419  0.0162     1.419  0.0162
+OXK         CP7         CP6      SINGLE       n     1.519  0.0108     1.519  0.0108
+OXK         CP6         OP2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+OXK         CP6         NP2      SINGLE       n     1.326  0.0100     1.326  0.0100
+OXK         NP2         CP5      SINGLE       n     1.457  0.0100     1.457  0.0100
+OXK         CP5         CP4      SINGLE       n     1.513  0.0195     1.513  0.0195
+OXK         CP4         CP3      SINGLE       n     1.514  0.0100     1.514  0.0100
+OXK         CP3         OP1      DOUBLE       n     1.229  0.0102     1.229  0.0102
+OXK         CP3         NP1      SINGLE       n     1.337  0.0118     1.337  0.0118
+OXK         NP1         CP2      SINGLE       n     1.455  0.0100     1.455  0.0100
+OXK         CP2         CP1      SINGLE       n     1.510  0.0158     1.510  0.0158
+OXK         CP1           S      SINGLE       n     1.809  0.0191     1.809  0.0191
+OXK       "O3'"          P3      SINGLE       n     1.614  0.0178     1.614  0.0178
+OXK          P3         O31      SINGLE       n     1.517  0.0192     1.517  0.0192
+OXK          P3         O32      DOUBLE       n     1.517  0.0192     1.517  0.0192
+OXK          P3         O33      SINGLE       n     1.517  0.0192     1.517  0.0192
+OXK           S         CM1      SINGLE       n     1.762  0.0200     1.762  0.0200
+OXK         CM1         OM2      DOUBLE       n     1.211  0.0160     1.211  0.0160
+OXK         CM1         CM2      SINGLE       n     1.526  0.0200     1.526  0.0200
+OXK         OM3         CM2      SINGLE       n     1.230  0.0200     1.230  0.0200
+OXK         OM4         CM2      DOUBLE       n     1.230  0.0200     1.230  0.0200
+OXK          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+OXK          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+OXK          N6        H6N1      SINGLE       n     1.016  0.0100     0.877  0.0200
+OXK          N6        H6N2      SINGLE       n     1.016  0.0100     0.877  0.0200
+OXK       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+OXK       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+OXK       "O2'"          HA      SINGLE       n     0.970  0.0120     0.849  0.0200
+OXK       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.985  0.0119
+OXK       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+OXK       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+OXK       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+OXK         CPB        HPB1      SINGLE       n     1.089  0.0100     0.978  0.0102
+OXK         CPB        HPB2      SINGLE       n     1.089  0.0100     0.978  0.0102
+OXK         CP7         HP7      SINGLE       n     1.089  0.0100     0.988  0.0129
+OXK         CP9        HP91      SINGLE       n     1.089  0.0100     0.973  0.0146
+OXK         CP9        HP92      SINGLE       n     1.089  0.0100     0.973  0.0146
+OXK         CP9        HP93      SINGLE       n     1.089  0.0100     0.973  0.0146
+OXK         CP8        HP81      SINGLE       n     1.089  0.0100     0.973  0.0146
+OXK         CP8        HP82      SINGLE       n     1.089  0.0100     0.973  0.0146
+OXK         CP8        HP83      SINGLE       n     1.089  0.0100     0.973  0.0146
+OXK         OP3         HP3      SINGLE       n     0.970  0.0120     0.848  0.0200
+OXK         NP2         HP2      SINGLE       n     1.016  0.0100     0.872  0.0200
+OXK         CP5        HP51      SINGLE       n     1.089  0.0100     0.980  0.0159
+OXK         CP5        HP52      SINGLE       n     1.089  0.0100     0.980  0.0159
+OXK         CP4        HP41      SINGLE       n     1.089  0.0100     0.973  0.0156
+OXK         CP4        HP42      SINGLE       n     1.089  0.0100     0.973  0.0156
+OXK         NP1         HP1      SINGLE       n     1.016  0.0100     0.872  0.0200
+OXK         CP2        HP21      SINGLE       n     1.089  0.0100     0.981  0.0127
+OXK         CP2        HP22      SINGLE       n     1.089  0.0100     0.981  0.0127
+OXK         CP1        HP11      SINGLE       n     1.089  0.0100     0.978  0.0177
+OXK         CP1        HP12      SINGLE       n     1.089  0.0100     0.978  0.0177
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OXK          N9          C8          N7     112.130    1.94
+OXK          N9          C8          H8     124.701    2.19
+OXK          N7          C8          H8     123.170    1.50
+OXK          C8          N9          C4     107.594    1.50
+OXK          C8          N9       "C1'"     126.078    2.46
+OXK          C4          N9       "C1'"     125.158    1.54
+OXK          N9          C4          C5     107.666    1.69
+OXK          N9          C4          N3     125.845    1.50
+OXK          C5          C4          N3     126.489    1.50
+OXK          C4          C5          N7     110.588    1.50
+OXK          C4          C5          C6     117.267    1.50
+OXK          N7          C5          C6     132.145    1.50
+OXK          C8          N7          C5     103.927    1.50
+OXK          C4          N3          C2     110.982    1.50
+OXK          N3          C2          N1     129.332    1.50
+OXK          N3          C2          H2     115.355    1.50
+OXK          N1          C2          H2     115.313    1.50
+OXK          C2          N1          C6     118.521    1.50
+OXK          C5          C6          N1     117.409    1.50
+OXK          C5          C6          N6     123.792    1.50
+OXK          N1          C6          N6     118.799    1.50
+OXK          C6          N6        H6N1     119.723    1.50
+OXK          C6          N6        H6N2     119.723    1.50
+OXK        H6N1          N6        H6N2     120.554    1.88
+OXK          N9       "C1'"       "C2'"     113.752    2.20
+OXK          N9       "C1'"       "O4'"     108.167    1.51
+OXK          N9       "C1'"       "H1'"     109.246    1.50
+OXK       "C2'"       "C1'"       "O4'"     106.047    1.50
+OXK       "C2'"       "C1'"       "H1'"     109.015    1.50
+OXK       "O4'"       "C1'"       "H1'"     109.807    1.50
+OXK       "C1'"       "C2'"       "O2'"     111.715    2.69
+OXK       "C1'"       "C2'"       "C3'"     101.388    1.50
+OXK       "C1'"       "C2'"       "H2'"     110.636    1.70
+OXK       "O2'"       "C2'"       "C3'"     112.463    2.73
+OXK       "O2'"       "C2'"       "H2'"     110.448    1.97
+OXK       "C3'"       "C2'"       "H2'"     110.255    2.04
+OXK       "C2'"       "O2'"          HA     109.103    2.13
+OXK       "C2'"       "C3'"       "O3'"     110.766    3.00
+OXK       "C2'"       "C3'"       "C4'"     102.352    1.50
+OXK       "C2'"       "C3'"       "H3'"     110.255    2.04
+OXK       "O3'"       "C3'"       "C4'"     110.864    2.31
+OXK       "O3'"       "C3'"       "H3'"     110.343    1.64
+OXK       "C4'"       "C3'"       "H3'"     110.624    1.81
+OXK       "C3'"       "O3'"          P3     109.471    3.00
+OXK       "C3'"       "C4'"       "O4'"     105.508    1.50
+OXK       "C3'"       "C4'"       "C5'"     114.866    1.63
+OXK       "C3'"       "C4'"       "H4'"     109.143    1.50
+OXK       "O4'"       "C4'"       "C5'"     109.123    1.50
+OXK       "O4'"       "C4'"       "H4'"     108.947    1.50
+OXK       "C5'"       "C4'"       "H4'"     108.268    1.50
+OXK       "C1'"       "O4'"       "C4'"     109.903    1.50
+OXK       "C4'"       "C5'"       "O5'"     109.342    1.50
+OXK       "C4'"       "C5'"      "H5'1"     109.624    1.50
+OXK       "C4'"       "C5'"      "H5'2"     109.624    1.50
+OXK       "O5'"       "C5'"      "H5'1"     109.845    1.50
+OXK       "O5'"       "C5'"      "H5'2"     109.845    1.50
+OXK      "H5'1"       "C5'"      "H5'2"     108.472    1.50
+OXK       "C5'"       "O5'"          P1     118.553    2.41
+OXK       "O5'"          P1         O11     109.410    1.50
+OXK       "O5'"          P1         O12     109.410    1.50
+OXK       "O5'"          P1          O6     101.065    1.97
+OXK         O11          P1         O12     118.411    2.35
+OXK         O11          P1          O6     108.816    2.14
+OXK         O12          P1          O6     108.816    2.14
+OXK          P1          O6          P2     132.542    3.00
+OXK          O6          P2         O21     108.816    2.14
+OXK          O6          P2         O22     108.816    2.14
+OXK          O6          P2          O7     101.065    1.97
+OXK         O21          P2         O22     118.411    2.35
+OXK         O21          P2          O7     107.912    2.57
+OXK         O22          P2          O7     107.912    2.57
+OXK          P2          O7         CPB     119.251    1.51
+OXK          O7         CPB         CPA     108.435    1.69
+OXK          O7         CPB        HPB1     109.739    1.50
+OXK          O7         CPB        HPB2     109.739    1.50
+OXK         CPA         CPB        HPB1     109.473    1.50
+OXK         CPA         CPB        HPB2     109.473    1.50
+OXK        HPB1         CPB        HPB2     108.108    1.50
+OXK         CPB         CPA         CP7     111.094    2.85
+OXK         CPB         CPA         CP9     109.385    1.50
+OXK         CPB         CPA         CP8     109.385    1.50
+OXK         CP7         CPA         CP9     109.534    1.52
+OXK         CP7         CPA         CP8     109.534    1.52
+OXK         CP9         CPA         CP8     108.765    1.50
+OXK         CPA         CP7         OP3     109.482    3.00
+OXK         CPA         CP7         CP6     111.511    2.91
+OXK         CPA         CP7         HP7     107.825    1.50
+OXK         OP3         CP7         CP6     109.850    1.55
+OXK         OP3         CP7         HP7     108.675    1.50
+OXK         CP6         CP7         HP7     108.529    1.70
+OXK         CPA         CP9        HP91     109.575    1.50
+OXK         CPA         CP9        HP92     109.575    1.50
+OXK         CPA         CP9        HP93     109.575    1.50
+OXK        HP91         CP9        HP92     109.377    1.50
+OXK        HP91         CP9        HP93     109.377    1.50
+OXK        HP92         CP9        HP93     109.377    1.50
+OXK         CPA         CP8        HP81     109.575    1.50
+OXK         CPA         CP8        HP82     109.575    1.50
+OXK         CPA         CP8        HP83     109.575    1.50
+OXK        HP81         CP8        HP82     109.377    1.50
+OXK        HP81         CP8        HP83     109.377    1.50
+OXK        HP82         CP8        HP83     109.377    1.50
+OXK         CP7         OP3         HP3     108.894    3.00
+OXK         CP7         CP6         OP2     119.859    1.78
+OXK         CP7         CP6         NP2     117.147    1.50
+OXK         OP2         CP6         NP2     122.977    1.50
+OXK         CP6         NP2         CP5     122.964    1.80
+OXK         CP6         NP2         HP2     118.685    1.94
+OXK         CP5         NP2         HP2     118.351    1.90
+OXK         NP2         CP5         CP4     112.257    1.50
+OXK         NP2         CP5        HP51     108.979    1.50
+OXK         NP2         CP5        HP52     108.979    1.50
+OXK         CP4         CP5        HP51     108.971    1.50
+OXK         CP4         CP5        HP52     108.971    1.50
+OXK        HP51         CP5        HP52     107.877    1.50
+OXK         CP5         CP4         CP3     112.120    2.79
+OXK         CP5         CP4        HP41     109.432    1.50
+OXK         CP5         CP4        HP42     109.432    1.50
+OXK         CP3         CP4        HP41     108.945    1.50
+OXK         CP3         CP4        HP42     108.945    1.50
+OXK        HP41         CP4        HP42     107.745    2.07
+OXK         CP4         CP3         OP1     120.987    1.50
+OXK         CP4         CP3         NP1     117.070    1.96
+OXK         OP1         CP3         NP1     121.943    1.50
+OXK         CP3         NP1         CP2     123.437    1.80
+OXK         CP3         NP1         HP1     117.862    2.10
+OXK         CP2         NP1         HP1     118.700    1.83
+OXK         NP1         CP2         CP1     112.117    1.54
+OXK         NP1         CP2        HP21     109.102    1.50
+OXK         NP1         CP2        HP22     109.102    1.50
+OXK         CP1         CP2        HP21     109.038    1.50
+OXK         CP1         CP2        HP22     109.038    1.50
+OXK        HP21         CP2        HP22     107.995    1.50
+OXK         CP2         CP1           S     112.239    3.00
+OXK         CP2         CP1        HP11     108.964    1.50
+OXK         CP2         CP1        HP12     108.964    1.50
+OXK           S         CP1        HP11     109.066    1.50
+OXK           S         CP1        HP12     109.066    1.50
+OXK        HP11         CP1        HP12     107.807    1.50
+OXK         CP1           S         CM1     120.000    3.00
+OXK       "O3'"          P3         O31     106.518    3.00
+OXK       "O3'"          P3         O32     106.518    3.00
+OXK       "O3'"          P3         O33     106.518    3.00
+OXK         O31          P3         O32     112.139    1.52
+OXK         O31          P3         O33     112.139    1.52
+OXK         O32          P3         O33     112.139    1.52
+OXK           S         CM1         OM2     121.074    2.65
+OXK           S         CM1         CM2     119.310    3.00
+OXK         OM2         CM1         CM2     119.616    1.50
+OXK         CM1         CM2         OM3     117.091    2.00
+OXK         CM1         CM2         OM4     117.091    2.00
+OXK         OM3         CM2         OM4     125.818    1.63
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OXK              const_15          N7          C8          N9          C4       0.000    10.0     2
+OXK              const_25          N9          C8          N7          C5       0.000    10.0     2
+OXK             sp3_sp3_5          N9       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+OXK            sp3_sp3_38          N9       "C1'"       "O4'"       "C4'"      60.000    10.0     3
+OXK            sp3_sp3_31       "C1'"       "C2'"       "O2'"          HA     180.000    10.0     3
+OXK            sp3_sp3_14       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+OXK            sp3_sp3_34       "C2'"       "C3'"       "O3'"          P3     180.000    10.0     3
+OXK            sp3_sp3_23       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+OXK           sp3_sp3_128       "C3'"       "O3'"          P3         O31     -60.000    10.0     3
+OXK            sp3_sp3_29       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+OXK            sp3_sp3_40       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+OXK            sp3_sp3_49       "C4'"       "C5'"       "O5'"          P1     180.000    10.0     3
+OXK            sp3_sp3_53       "C5'"       "O5'"          P1         O11     -60.000    10.0     3
+OXK            sp3_sp3_56          P2          O6          P1       "O5'"     -60.000    10.0     3
+OXK             sp2_sp3_1          C8          N9       "C1'"       "C2'"     150.000    10.0     6
+OXK              const_19          C5          C4          N9          C8       0.000    10.0     2
+OXK            sp3_sp3_58          P1          O6          P2         O21     180.000    10.0     3
+OXK            sp3_sp3_61         CPB          O7          P2          O6     180.000    10.0     3
+OXK            sp3_sp3_64         CPA         CPB          O7          P2     180.000    10.0     3
+OXK            sp3_sp3_67         CP7         CPA         CPB          O7     180.000    10.0     3
+OXK            sp3_sp3_77         OP3         CP7         CPA         CPB     -60.000    10.0     3
+OXK            sp3_sp3_85        HP91         CP9         CPA         CPB     180.000    10.0     3
+OXK            sp3_sp3_95        HP81         CP8         CPA         CPB     -60.000    10.0     3
+OXK           sp3_sp3_103         CPA         CP7         OP3         HP3     180.000    10.0     3
+OXK             sp2_sp3_7         OP2         CP6         CP7         CPA       0.000    10.0     6
+OXK       const_sp2_sp2_1          N9          C4          C5          N7       0.000     5.0     2
+OXK              const_28          N9          C4          N3          C2     180.000    10.0     2
+OXK             sp2_sp2_5         CP7         CP6         NP2         CP5     180.000     5.0     2
+OXK            sp2_sp3_14         CP6         NP2         CP5         CP4     120.000    10.0     6
+OXK           sp3_sp3_106         CP3         CP4         CP5         NP2     180.000    10.0     3
+OXK            sp2_sp3_20         OP1         CP3         CP4         CP5     120.000    10.0     6
+OXK             sp2_sp2_9         CP4         CP3         NP1         CP2     180.000     5.0     2
+OXK              const_23          C4          C5          N7          C8       0.000    10.0     2
+OXK       const_sp2_sp2_6          C4          C5          C6          N6     180.000     5.0     2
+OXK            sp2_sp3_26         CP3         NP1         CP2         CP1     120.000    10.0     6
+OXK           sp3_sp3_115           S         CP1         CP2         NP1     180.000    10.0     3
+OXK           sp3_sp3_124         CP2         CP1           S         CM1     180.000    10.0     3
+OXK            sp2_sp2_13         OM2         CM1           S         CP1     180.000     5.0     2
+OXK            sp2_sp2_15           S         CM1         CM2         OM3     180.000     5.0     2
+OXK              const_13          N1          C2          N3          C4       0.000    10.0     2
+OXK              const_11          N3          C2          N1          C6       0.000    10.0     2
+OXK              const_10          N6          C6          N1          C2     180.000    10.0     2
+OXK             sp2_sp2_1          C5          C6          N6        H6N1     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OXK    chir_1    "C1'"    "O4'"    N9    "C2'"    negative
+OXK    chir_2    "C2'"    "O2'"    "C1'"    "C3'"    negative
+OXK    chir_3    "C3'"    "O3'"    "C4'"    "C2'"    positive
+OXK    chir_4    "C4'"    "O4'"    "C3'"    "C5'"    negative
+OXK    chir_5    P1    O6    "O5'"    O11    both
+OXK    chir_6    P2    O6    O7    O21    both
+OXK    chir_7    CPA    CP7    CPB    CP9    both
+OXK    chir_8    CP7    OP3    CP6    CPA    negative
+OXK    chir_9    P3    "O3'"    O31    O33    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OXK    plan-1       "C1'"   0.020
+OXK    plan-1          C2   0.020
+OXK    plan-1          C4   0.020
+OXK    plan-1          C5   0.020
+OXK    plan-1          C6   0.020
+OXK    plan-1          C8   0.020
+OXK    plan-1          H2   0.020
+OXK    plan-1          H8   0.020
+OXK    plan-1          N1   0.020
+OXK    plan-1          N3   0.020
+OXK    plan-1          N6   0.020
+OXK    plan-1          N7   0.020
+OXK    plan-1          N9   0.020
+OXK    plan-2          C6   0.020
+OXK    plan-2        H6N1   0.020
+OXK    plan-2        H6N2   0.020
+OXK    plan-2          N6   0.020
+OXK    plan-3         CP6   0.020
+OXK    plan-3         CP7   0.020
+OXK    plan-3         NP2   0.020
+OXK    plan-3         OP2   0.020
+OXK    plan-4         CP5   0.020
+OXK    plan-4         CP6   0.020
+OXK    plan-4         HP2   0.020
+OXK    plan-4         NP2   0.020
+OXK    plan-5         CP3   0.020
+OXK    plan-5         CP4   0.020
+OXK    plan-5         NP1   0.020
+OXK    plan-5         OP1   0.020
+OXK    plan-6         CP2   0.020
+OXK    plan-6         CP3   0.020
+OXK    plan-6         HP1   0.020
+OXK    plan-6         NP1   0.020
+OXK    plan-7         CM1   0.020
+OXK    plan-7         CM2   0.020
+OXK    plan-7         OM2   0.020
+OXK    plan-7           S   0.020
+OXK    plan-8         CM1   0.020
+OXK    plan-8         CM2   0.020
+OXK    plan-8         OM3   0.020
+OXK    plan-8         OM4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OXK           SMILES              ACDLabs 10.04                                                                                                                                                                                                                           O=C(O)C(=O)SCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(=O)(O)OP(=O)(O)OCC3OC(n2cnc1c(ncnc12)N)C(O)C3OP(=O)(O)O
+OXK SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                            CC(C)(CO[P@@](O)(=O)O[P@](O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O[P](O)(O)=O)n2cnc3c(N)ncnc23)[C@@H](O)C(=O)NCCC(=O)NCCSC(=O)C(O)=O
+OXK           SMILES               CACTVS 3.341                                                                                                                                                                                                      CC(C)(CO[P](O)(=O)O[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O[P](O)(O)=O)n2cnc3c(N)ncnc23)[CH](O)C(=O)NCCC(=O)NCCSC(=O)C(O)=O
+OXK SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                              CC(C)(CO[P@](=O)(O)O[P@@](=O)(O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)[C@H](C(=O)NCCC(=O)NCCSC(=O)C(=O)O)O
+OXK           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                           CC(C)(COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)C(C(=O)NCCC(=O)NCCSC(=O)C(=O)O)O
+OXK            InChI                InChI  1.03 InChI=1S/C23H36N7O19P3S/c1-23(2,16(33)19(34)26-4-3-12(31)25-5-6-53-22(37)21(35)36)8-46-52(43,44)49-51(41,42)45-7-11-15(48-50(38,39)40)14(32)20(47-11)30-10-29-13-17(24)27-9-28-18(13)30/h9-11,14-16,20,32-33H,3-8H2,1-2H3,(H,25,31)(H,26,34)(H,35,36)(H,41,42)(H,43,44)(H2,24,27,28)(H2,38,39,40)/t11-,14-,15-,16+,20-/m1/s1
+OXK         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                  QVXMZFTWJVBUHP-IBOSZNHHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OXK acedrg               243         "dictionary generator"                  
+OXK acedrg_database      11          "data source"                           
+OXK rdkit                2017.03.2   "Chemoinformatics tool"
+OXK refmac5              5.8.0238    "optimization tool"                     

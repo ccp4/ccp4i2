@@ -1,0 +1,361 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+7AM     7AM      "[[(2~{S})-2-[[6-(4-methylphenyl)thieno[2,3-d]pyrimidin-4-yl]amino]-3-phenyl-propanoyl]amino]phosphonic acid"     NON-POLYMER     51     32     .     
+#
+data_comp_7AM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+7AM     CAP     C       CR16    0       -2.626      69.787      40.197      
+7AM     CAQ     C       CR16    0       -1.337      69.728      40.703      
+7AM     CAR     C       CR6     0       -1.097      69.526      42.054      
+7AM     CAU     C       CH3     0       0.310       69.463      42.592      
+7AM     CAS     C       CR16    0       -2.194      69.383      42.892      
+7AM     CAT     C       CR16    0       -3.492      69.438      42.405      
+7AM     CAK     C       CR6     0       -3.728      69.646      41.044      
+7AM     CAD     C       CR5     0       -5.089      69.706      40.494      
+7AM     SAE     S       S2      0       -6.362      70.386      41.345      
+7AM     CAC     C       CR15    0       -5.494      69.259      39.282      
+7AM     C5      C       CR56    0       -6.892      69.483      39.055      
+7AM     C6      C       CR56    0       -7.507      70.120      40.168      
+7AM     N1      N       NRD6    0       -8.821      70.428      40.181      
+7AM     C2      C       CR16    0       -9.515      70.101      39.090      
+7AM     N3      N       NRD6    0       -9.035      69.498      37.990      
+7AM     C4      C       CR6     0       -7.717      69.176      37.944      
+7AM     N       N       NH1     0       -7.214      68.574      36.838      
+7AM     CA      C       CH1     0       -7.362      69.126      35.501      
+7AM     C       C       C       0       -7.477      67.979      34.489      
+7AM     O       O       O       0       -6.556      67.166      34.433      
+7AM     NAN     N       NH1     0       -8.592      67.937      33.724      
+7AM     PBC     P       P       0       -8.951      66.789      32.548      
+7AM     OBD     O       O       0       -8.104      67.061      31.333      
+7AM     OBF     O       OP      -1      -8.650      65.416      33.091      
+7AM     OBE     O       OP      -1      -10.410     66.891      32.190      
+7AM     CB      C       CH2     0       -6.155      70.016      35.154      
+7AM     CG      C       CR6     0       -5.918      71.167      36.102      
+7AM     CD1     C       CR16    0       -4.709      71.299      36.777      
+7AM     CE1     C       CR16    0       -4.495      72.353      37.656      
+7AM     CZ      C       CR16    0       -5.486      73.289      37.870      
+7AM     CE2     C       CR16    0       -6.691      73.172      37.208      
+7AM     CD2     C       CR16    0       -6.907      72.117      36.331      
+7AM     H1      H       H       0       -2.758      69.926      39.276      
+7AM     H2      H       H       0       -0.606      69.827      40.116      
+7AM     H3      H       H       0       0.296       69.547      43.559      
+7AM     H4      H       H       0       0.835       70.188      42.214      
+7AM     H5      H       H       0       0.714       68.614      42.348      
+7AM     H6      H       H       0       -2.054      69.244      43.814      
+7AM     H7      H       H       0       -4.214      69.337      42.999      
+7AM     H8      H       H       0       -4.924      68.852      38.653      
+7AM     H9      H       H       0       -10.426     70.311      39.091      
+7AM     H10     H       H       0       -6.776      67.828      36.937      
+7AM     H11     H       H       0       -8.185      69.667      35.454      
+7AM     H12     H       H       0       -9.183      68.548      33.837      
+7AM     H15     H       H       0       -6.288      70.378      34.253      
+7AM     H16     H       H       0       -5.352      69.455      35.129      
+7AM     H17     H       H       0       -4.026      70.662      36.639      
+7AM     H18     H       H       0       -3.669      72.430      38.106      
+7AM     H19     H       H       0       -5.339      74.007      38.465      
+7AM     H20     H       H       0       -7.371      73.811      37.352      
+7AM     H21     H       H       0       -7.735      72.043      35.882      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+7AM         PBC         OBD      DOUBLE       n     1.508  0.0200     1.508  0.0200
+7AM         PBC         OBE      SINGLE       n     1.508  0.0200     1.508  0.0200
+7AM         NAN         PBC      SINGLE       n     1.680  0.0200     1.680  0.0200
+7AM         PBC         OBF      SINGLE       n     1.508  0.0200     1.508  0.0200
+7AM         CE2         CD2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+7AM          CG         CD2      SINGLE       y     1.385  0.0111     1.385  0.0111
+7AM           C         NAN      SINGLE       n     1.350  0.0100     1.350  0.0100
+7AM          CZ         CE2      SINGLE       y     1.376  0.0124     1.376  0.0124
+7AM          CB          CG      SINGLE       n     1.508  0.0100     1.508  0.0100
+7AM          CA          CB      SINGLE       n     1.536  0.0102     1.536  0.0102
+7AM          CG         CD1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+7AM           C           O      DOUBLE       n     1.229  0.0107     1.229  0.0107
+7AM          CA           C      SINGLE       n     1.527  0.0137     1.527  0.0137
+7AM         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+7AM           N          CA      SINGLE       n     1.450  0.0100     1.450  0.0100
+7AM         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+7AM          C4           N      SINGLE       n     1.348  0.0172     1.348  0.0172
+7AM          N3          C4      DOUBLE       y     1.353  0.0100     1.353  0.0100
+7AM          C2          N3      SINGLE       y     1.339  0.0100     1.339  0.0100
+7AM          C5          C4      SINGLE       y     1.414  0.0103     1.414  0.0103
+7AM          N1          C2      DOUBLE       y     1.330  0.0100     1.330  0.0100
+7AM         CAC          C5      SINGLE       y     1.425  0.0100     1.425  0.0100
+7AM          C5          C6      DOUBLE       y     1.401  0.0200     1.401  0.0200
+7AM         CAD         CAC      DOUBLE       y     1.348  0.0100     1.348  0.0100
+7AM         CAP         CAQ      DOUBLE       y     1.383  0.0100     1.383  0.0100
+7AM         CAP         CAK      SINGLE       y     1.392  0.0100     1.392  0.0100
+7AM          C6          N1      SINGLE       y     1.338  0.0176     1.338  0.0176
+7AM         SAE          C6      SINGLE       y     1.695  0.0200     1.695  0.0200
+7AM         CAQ         CAR      SINGLE       y     1.383  0.0109     1.383  0.0109
+7AM         CAK         CAD      SINGLE       n     1.466  0.0100     1.466  0.0100
+7AM         CAD         SAE      SINGLE       y     1.695  0.0200     1.695  0.0200
+7AM         CAT         CAK      DOUBLE       y     1.392  0.0100     1.392  0.0100
+7AM         CAR         CAU      SINGLE       n     1.507  0.0176     1.507  0.0176
+7AM         CAR         CAS      DOUBLE       y     1.383  0.0109     1.383  0.0109
+7AM         CAS         CAT      SINGLE       y     1.383  0.0100     1.383  0.0100
+7AM         CAP          H1      SINGLE       n     1.082  0.0130     0.941  0.0147
+7AM         CAQ          H2      SINGLE       n     1.082  0.0130     0.943  0.0173
+7AM         CAU          H3      SINGLE       n     1.089  0.0100     0.971  0.0135
+7AM         CAU          H4      SINGLE       n     1.089  0.0100     0.971  0.0135
+7AM         CAU          H5      SINGLE       n     1.089  0.0100     0.971  0.0135
+7AM         CAS          H6      SINGLE       n     1.082  0.0130     0.943  0.0173
+7AM         CAT          H7      SINGLE       n     1.082  0.0130     0.941  0.0147
+7AM         CAC          H8      SINGLE       n     1.082  0.0130     0.941  0.0170
+7AM          C2          H9      SINGLE       n     1.082  0.0130     0.935  0.0100
+7AM           N         H10      SINGLE       n     1.016  0.0100     0.870  0.0200
+7AM          CA         H11      SINGLE       n     1.089  0.0100     0.987  0.0159
+7AM         NAN         H12      SINGLE       n     1.016  0.0100     0.859  0.0200
+7AM          CB         H15      SINGLE       n     1.089  0.0100     0.980  0.0164
+7AM          CB         H16      SINGLE       n     1.089  0.0100     0.980  0.0164
+7AM         CD1         H17      SINGLE       n     1.082  0.0130     0.944  0.0174
+7AM         CE1         H18      SINGLE       n     1.082  0.0130     0.944  0.0175
+7AM          CZ         H19      SINGLE       n     1.082  0.0130     0.944  0.0161
+7AM         CE2         H20      SINGLE       n     1.082  0.0130     0.944  0.0175
+7AM         CD2         H21      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+7AM         CAQ         CAP         CAK     120.361    1.50
+7AM         CAQ         CAP          H1     119.870    1.50
+7AM         CAK         CAP          H1     119.769    1.50
+7AM         CAP         CAQ         CAR     121.402    1.50
+7AM         CAP         CAQ          H2     119.338    1.50
+7AM         CAR         CAQ          H2     119.260    1.50
+7AM         CAQ         CAR         CAU     121.115    1.50
+7AM         CAQ         CAR         CAS     117.769    1.50
+7AM         CAU         CAR         CAS     121.115    1.50
+7AM         CAR         CAU          H3     109.567    1.50
+7AM         CAR         CAU          H4     109.567    1.50
+7AM         CAR         CAU          H5     109.567    1.50
+7AM          H3         CAU          H4     109.348    1.50
+7AM          H3         CAU          H5     109.348    1.50
+7AM          H4         CAU          H5     109.348    1.50
+7AM         CAR         CAS         CAT     121.402    1.50
+7AM         CAR         CAS          H6     119.260    1.50
+7AM         CAT         CAS          H6     119.338    1.50
+7AM         CAK         CAT         CAS     120.361    1.50
+7AM         CAK         CAT          H7     119.769    1.50
+7AM         CAS         CAT          H7     119.870    1.50
+7AM         CAP         CAK         CAD     120.647    1.80
+7AM         CAP         CAK         CAT     118.706    1.50
+7AM         CAD         CAK         CAT     120.647    1.80
+7AM         CAC         CAD         CAK     130.629    2.77
+7AM         CAC         CAD         SAE     108.436    3.00
+7AM         CAK         CAD         SAE     120.935    3.00
+7AM          C6         SAE         CAD     108.436    3.00
+7AM          C5         CAC         CAD     107.811    1.50
+7AM          C5         CAC          H8     125.715    1.50
+7AM         CAD         CAC          H8     126.474    1.56
+7AM          C4          C5         CAC     134.679    2.40
+7AM          C4          C5          C6     118.440    1.50
+7AM         CAC          C5          C6     106.881    1.50
+7AM          C5          C6          N1     122.412    2.68
+7AM          C5          C6         SAE     108.436    3.00
+7AM          N1          C6         SAE     129.152    3.00
+7AM          C2          N1          C6     115.778    1.50
+7AM          N3          C2          N1     126.299    1.50
+7AM          N3          C2          H9     116.831    1.50
+7AM          N1          C2          H9     116.871    1.50
+7AM          C4          N3          C2     118.322    1.50
+7AM           N          C4          N3     118.937    1.50
+7AM           N          C4          C5     122.314    2.29
+7AM          N3          C4          C5     118.749    1.50
+7AM          CA           N          C4     121.608    2.30
+7AM          CA           N         H10     119.214    1.50
+7AM          C4           N         H10     119.178    1.50
+7AM          CB          CA           C     110.540    1.53
+7AM          CB          CA           N     109.192    1.50
+7AM          CB          CA         H11     109.239    1.50
+7AM           C          CA           N     110.342    2.62
+7AM           C          CA         H11     107.980    1.50
+7AM           N          CA         H11     109.268    1.50
+7AM         NAN           C           O     124.948    1.50
+7AM         NAN           C          CA     115.783    1.52
+7AM           O           C          CA     119.269    2.87
+7AM         PBC         NAN           C     126.388    2.94
+7AM         PBC         NAN         H12     116.356    2.94
+7AM           C         NAN         H12     117.256    1.64
+7AM         OBD         PBC         OBE     111.149    3.00
+7AM         OBD         PBC         NAN     111.033    3.00
+7AM         OBD         PBC         OBF     111.149    3.00
+7AM         OBE         PBC         NAN     111.033    3.00
+7AM         OBE         PBC         OBF     111.149    3.00
+7AM         NAN         PBC         OBF     111.033    3.00
+7AM          CG          CB          CA     114.170    1.50
+7AM          CG          CB         H15     108.862    1.50
+7AM          CG          CB         H16     108.862    1.50
+7AM          CA          CB         H15     108.745    1.50
+7AM          CA          CB         H16     108.745    1.50
+7AM         H15          CB         H16     107.782    1.50
+7AM         CD2          CG          CB     120.970    1.50
+7AM         CD2          CG         CD1     118.060    1.50
+7AM          CB          CG         CD1     120.970    1.50
+7AM          CG         CD1         CE1     120.624    1.50
+7AM          CG         CD1         H17     119.591    1.50
+7AM         CE1         CD1         H17     119.786    1.50
+7AM          CZ         CE1         CD1     120.325    1.50
+7AM          CZ         CE1         H18     119.883    1.50
+7AM         CD1         CE1         H18     119.792    1.50
+7AM         CE2          CZ         CE1     120.043    1.50
+7AM         CE2          CZ         H19     119.979    1.50
+7AM         CE1          CZ         H19     119.979    1.50
+7AM         CD2         CE2          CZ     120.325    1.50
+7AM         CD2         CE2         H20     119.792    1.50
+7AM          CZ         CE2         H20     119.883    1.50
+7AM         CE2         CD2          CG     120.624    1.50
+7AM         CE2         CD2         H21     119.786    1.50
+7AM          CG         CD2         H21     119.591    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+7AM              const_27         CAK         CAP         CAQ         CAR       0.000    10.0     2
+7AM              const_73         CAD         CAK         CAP         CAQ     180.000    10.0     2
+7AM              const_21          C4          C5          C6          N1       0.000    10.0     2
+7AM       const_sp2_sp2_4           N          C4          C5         CAC       0.000     5.0     2
+7AM              const_11          C5          C6          N1          C2       0.000    10.0     2
+7AM       const_sp2_sp2_9          N3          C2          N1          C6       0.000     5.0     2
+7AM       const_sp2_sp2_7          N1          C2          N3          C4       0.000     5.0     2
+7AM       const_sp2_sp2_6           N          C4          N3          C2     180.000     5.0     2
+7AM             sp2_sp2_7          N3          C4           N          CA       0.000     5.0     2
+7AM            sp2_sp3_19          C4           N          CA          CB       0.000    10.0     6
+7AM            sp2_sp3_13         NAN           C          CA          CB       0.000    10.0     6
+7AM             sp3_sp3_1           C          CA          CB          CG     180.000    10.0     3
+7AM             sp2_sp2_3           O           C         NAN         PBC       0.000     5.0     2
+7AM              const_32         CAP         CAQ         CAR         CAU     180.000    10.0     2
+7AM             sp2_sp3_3           C         NAN         PBC         OBD    -120.000    10.0     6
+7AM             sp2_sp3_8         CD2          CG          CB          CA     -90.000    10.0     6
+7AM              const_68         CE1         CD1          CG          CB     180.000    10.0     2
+7AM              const_48         CE2         CD2          CG          CB     180.000    10.0     2
+7AM              const_63          CG         CD1         CE1          CZ       0.000    10.0     2
+7AM              const_59         CD1         CE1          CZ         CE2       0.000    10.0     2
+7AM              const_55         CD2         CE2          CZ         CE1       0.000    10.0     2
+7AM            sp2_sp3_25         CAQ         CAR         CAU          H3     150.000    10.0     6
+7AM              const_37         CAU         CAR         CAS         CAT     180.000    10.0     2
+7AM              const_51          CG         CD2         CE2          CZ       0.000    10.0     2
+7AM              const_39         CAR         CAS         CAT         CAK       0.000    10.0     2
+7AM              const_43         CAP         CAK         CAT         CAS       0.000    10.0     2
+7AM             sp2_sp2_9         CAC         CAD         CAK         CAP     180.000     5.0     2
+7AM              const_75         CAC         CAD         SAE          C6       0.000    10.0     2
+7AM              const_14          C5         CAC         CAD         CAK     180.000    10.0     2
+7AM              const_25          C5          C6         SAE         CAD       0.000    10.0     2
+7AM              const_19          C4          C5         CAC         CAD     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+7AM    chir_1    CA    N    C    CB    positive
+7AM    chir_2    PBC    OBE    OBF    OBD    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+7AM    plan-1          C2   0.020
+7AM    plan-1          C4   0.020
+7AM    plan-1          C5   0.020
+7AM    plan-1          C6   0.020
+7AM    plan-1         CAC   0.020
+7AM    plan-1         CAD   0.020
+7AM    plan-1         CAK   0.020
+7AM    plan-1          H8   0.020
+7AM    plan-1          H9   0.020
+7AM    plan-1           N   0.020
+7AM    plan-1          N1   0.020
+7AM    plan-1          N3   0.020
+7AM    plan-1         SAE   0.020
+7AM    plan-2         CAD   0.020
+7AM    plan-2         CAK   0.020
+7AM    plan-2         CAP   0.020
+7AM    plan-2         CAQ   0.020
+7AM    plan-2         CAR   0.020
+7AM    plan-2         CAS   0.020
+7AM    plan-2         CAT   0.020
+7AM    plan-2         CAU   0.020
+7AM    plan-2          H1   0.020
+7AM    plan-2          H2   0.020
+7AM    plan-2          H6   0.020
+7AM    plan-2          H7   0.020
+7AM    plan-3          CB   0.020
+7AM    plan-3         CD1   0.020
+7AM    plan-3         CD2   0.020
+7AM    plan-3         CE1   0.020
+7AM    plan-3         CE2   0.020
+7AM    plan-3          CG   0.020
+7AM    plan-3          CZ   0.020
+7AM    plan-3         H17   0.020
+7AM    plan-3         H18   0.020
+7AM    plan-3         H19   0.020
+7AM    plan-3         H20   0.020
+7AM    plan-3         H21   0.020
+7AM    plan-4          C4   0.020
+7AM    plan-4          CA   0.020
+7AM    plan-4         H10   0.020
+7AM    plan-4           N   0.020
+7AM    plan-5           C   0.020
+7AM    plan-5          CA   0.020
+7AM    plan-5         NAN   0.020
+7AM    plan-5           O   0.020
+7AM    plan-6           C   0.020
+7AM    plan-6         H12   0.020
+7AM    plan-6         NAN   0.020
+7AM    plan-6         PBC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+7AM            InChI                InChI  1.03 InChI=1S/C22H21N4O4PS/c1-14-7-9-16(10-8-14)19-12-17-20(23-13-24-22(17)32-19)25-18(21(27)26-31(28,29)30)11-15-5-3-2-4-6-15/h2-10,12-13,18H,11H2,1H3,(H,23,24,25)(H3,26,27,28,29,30)/t18-/m0/s1
+7AM         InChIKey                InChI  1.03                                                                                                                                                                   FWELKNKHGIBMRD-SFHVURJKSA-N
+7AM SMILES_CANONICAL               CACTVS 3.385                                                                                                                                 Cc1ccc(cc1)c2sc3ncnc(N[C@@H](Cc4ccccc4)C(=O)N[P](O)(O)=O)c3c2
+7AM           SMILES               CACTVS 3.385                                                                                                                                   Cc1ccc(cc1)c2sc3ncnc(N[CH](Cc4ccccc4)C(=O)N[P](O)(O)=O)c3c2
+7AM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                                                                                                   Cc1ccc(cc1)c2cc3c(ncnc3s2)N[C@@H](Cc4ccccc4)C(=O)NP(=O)(O)O
+7AM           SMILES "OpenEye OEToolkits" 2.0.5                                                                                                                                        Cc1ccc(cc1)c2cc3c(ncnc3s2)NC(Cc4ccccc4)C(=O)NP(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+7AM acedrg               243         "dictionary generator"                  
+7AM acedrg_database      11          "data source"                           
+7AM rdkit                2017.03.2   "Chemoinformatics tool"
+7AM refmac5              5.8.0238    "optimization tool"                     

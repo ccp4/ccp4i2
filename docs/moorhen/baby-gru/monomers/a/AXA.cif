@@ -1,0 +1,384 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AXA     AXA      (5S)-5-(2-amino-2-oxoethyl)-4-oxo-N-[(3-oxo-3,4-dihydro-2H-1,4-benzoxazin-6-yl)methyl]-3,4,5,6,7,8-hexahydro[1]benzothieno[2,3-d]pyrimidine-2-carboxamide     NON-POLYMER     55     33     .     
+#
+data_comp_AXA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AXA     CAH     C       CR16    0       9.037       -4.671      31.114      
+AXA     CAY     C       CR66    0       9.123       -3.291      31.008      
+AXA     N1      N       NR6     0       10.177      -2.566      31.599      
+AXA     CAV     C       CR6     0       10.331      -1.228      31.474      
+AXA     OAC     O       O       0       11.253      -0.630      32.015      
+AXA     CAM     C       CH2     0       9.322       -0.492      30.637      
+AXA     OAS     O       O2      0       8.187       -1.235      30.162      
+AXA     CAZ     C       CR66    0       8.146       -2.597      30.295      
+AXA     CAG     C       CR16    0       7.091       -3.275      29.696      
+AXA     CAF     C       CR16    0       7.016       -4.650      29.811      
+AXA     CAX     C       CR6     0       7.983       -5.369      30.520      
+AXA     CAL     C       CH2     0       7.890       -6.870      30.634      
+AXA     N2      N       NH1     0       8.298       -7.544      29.406      
+AXA     CAW     C       C       0       9.584       -7.690      29.044      
+AXA     OAD     O       O       0       10.521      -7.324      29.751      
+AXA     CBB     C       CR6     0       9.855       -8.308      27.696      
+AXA     N3      N       NRD6    0       8.847       -8.887      27.050      
+AXA     N4      N       NR6     0       11.117      -8.263      27.152      
+AXA     CBD     C       CR6     0       11.424      -8.814      25.909      
+AXA     OAE     O       O       0       12.582      -8.731      25.497      
+AXA     CBF     C       CR56    0       10.365      -9.435      25.208      
+AXA     CBC     C       CR56    0       10.324      -10.099     23.923      
+AXA     CBE     C       CR56    0       9.087       -9.437      25.842      
+AXA     SAT     S       S2      0       7.991       -10.213     24.853      
+AXA     CBA     C       CR56    0       9.068       -10.560     23.624      
+AXA     CAJ     C       CH2     0       8.621       -11.289     22.415      
+AXA     CAI     C       CH2     0       9.738       -11.285     21.371      
+AXA     CAK     C       CH2     0       11.129      -11.430     21.968      
+AXA     CBG     C       CH1     0       11.469      -10.296     22.954      
+AXA     CAN     C       CH2     0       11.835      -8.981      22.235      
+AXA     CAU     C       C       0       13.190      -8.992      21.563      
+AXA     OAB     O       O       0       13.293      -8.798      20.371      
+AXA     N5      N       NT3     1       14.400      -9.247      22.376      
+AXA     HAH     H       H       0       9.692       -5.149      31.592      
+AXA     HN1     H       H       0       10.773      -3.002      32.078      
+AXA     HAM     H       H       0       9.786       -0.123      29.865      
+AXA     HAMA    H       H       0       8.993       0.261       31.158      
+AXA     HAG     H       H       0       6.441       -2.801      29.222      
+AXA     HAF     H       H       0       6.302       -5.110      29.405      
+AXA     HAL     H       H       0       6.964       -7.115      30.840      
+AXA     HALA    H       H       0       8.452       -7.174      31.377      
+AXA     HN2     H       H       0       7.674       -7.870      28.884      
+AXA     HN4     H       H       0       11.764      -7.871      27.602      
+AXA     HAJ     H       H       0       7.822       -10.861     22.045      
+AXA     HAJA    H       H       0       8.391       -12.211     22.649      
+AXA     HAI     H       H       0       9.689       -10.442     20.857      
+AXA     HAIA    H       H       0       9.581       -12.029     20.738      
+AXA     HAK     H       H       0       11.791      -11.436     21.245      
+AXA     HAKA    H       H       0       11.186      -12.286     22.443      
+AXA     HBG     H       H       0       12.259      -10.586     23.476      
+AXA     HAN     H       H       0       11.822      -8.250      22.888      
+AXA     HANA    H       H       0       11.154      -8.785      21.560      
+AXA     HN5     H       H       0       15.132      -8.998      21.912      
+AXA     HN5A    H       H       0       14.439      -10.127     22.566      
+AXA     H6      H       H       0       14.340      -8.769      23.137      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AXA         CAH         CAY      DOUBLE       y     1.381  0.0118     1.381  0.0118
+AXA         CAH         CAX      SINGLE       y     1.383  0.0166     1.383  0.0166
+AXA         CAY          N1      SINGLE       n     1.409  0.0100     1.409  0.0100
+AXA         CAY         CAZ      SINGLE       y     1.391  0.0100     1.391  0.0100
+AXA          N1         CAV      SINGLE       n     1.347  0.0154     1.347  0.0154
+AXA         CAV         OAC      DOUBLE       n     1.225  0.0100     1.225  0.0100
+AXA         CAV         CAM      SINGLE       n     1.500  0.0100     1.500  0.0100
+AXA         CAM         OAS      SINGLE       n     1.417  0.0200     1.417  0.0200
+AXA         OAS         CAZ      SINGLE       n     1.365  0.0113     1.365  0.0113
+AXA         CAZ         CAG      DOUBLE       y     1.387  0.0100     1.387  0.0100
+AXA         CAG         CAF      SINGLE       y     1.379  0.0100     1.379  0.0100
+AXA         CAF         CAX      DOUBLE       y     1.392  0.0125     1.392  0.0125
+AXA         CAX         CAL      SINGLE       n     1.508  0.0100     1.508  0.0100
+AXA         CAL          N2      SINGLE       n     1.458  0.0100     1.458  0.0100
+AXA          N2         CAW      SINGLE       n     1.334  0.0145     1.334  0.0145
+AXA         CAW         OAD      DOUBLE       n     1.228  0.0115     1.228  0.0115
+AXA         CAW         CBB      SINGLE       n     1.488  0.0200     1.488  0.0200
+AXA         CBB          N3      DOUBLE       y     1.322  0.0146     1.322  0.0146
+AXA         CBB          N4      SINGLE       y     1.370  0.0100     1.370  0.0100
+AXA          N3         CBE      SINGLE       y     1.338  0.0176     1.338  0.0176
+AXA          N4         CBD      SINGLE       y     1.383  0.0165     1.383  0.0165
+AXA         CBD         OAE      DOUBLE       n     1.231  0.0132     1.231  0.0132
+AXA         CBD         CBF      SINGLE       y     1.406  0.0138     1.406  0.0138
+AXA         CBF         CBC      SINGLE       y     1.436  0.0112     1.436  0.0112
+AXA         CBF         CBE      DOUBLE       y     1.401  0.0200     1.401  0.0200
+AXA         CBC         CBA      DOUBLE       y     1.362  0.0156     1.362  0.0156
+AXA         CBC         CBG      SINGLE       n     1.508  0.0130     1.508  0.0130
+AXA         CBE         SAT      SINGLE       y     1.695  0.0200     1.695  0.0200
+AXA         SAT         CBA      SINGLE       y     1.695  0.0200     1.695  0.0200
+AXA         CBA         CAJ      SINGLE       n     1.480  0.0100     1.480  0.0100
+AXA         CAJ         CAI      SINGLE       n     1.521  0.0176     1.521  0.0176
+AXA         CAI         CAK      SINGLE       n     1.506  0.0200     1.506  0.0200
+AXA         CAK         CBG      SINGLE       n     1.530  0.0138     1.530  0.0138
+AXA         CBG         CAN      SINGLE       n     1.537  0.0154     1.537  0.0154
+AXA         CAN         CAU      SINGLE       n     1.512  0.0100     1.512  0.0100
+AXA         CAU         OAB      DOUBLE       n     1.210  0.0200     1.210  0.0200
+AXA         CAU          N5      SINGLE       n     1.477  0.0200     1.477  0.0200
+AXA         CAH         HAH      SINGLE       n     1.082  0.0130     0.941  0.0127
+AXA          N1         HN1      SINGLE       n     1.016  0.0100     0.880  0.0200
+AXA         CAM         HAM      SINGLE       n     1.089  0.0100     0.973  0.0100
+AXA         CAM        HAMA      SINGLE       n     1.089  0.0100     0.973  0.0100
+AXA         CAG         HAG      SINGLE       n     1.082  0.0130     0.934  0.0100
+AXA         CAF         HAF      SINGLE       n     1.082  0.0130     0.941  0.0100
+AXA         CAL         HAL      SINGLE       n     1.089  0.0100     0.980  0.0169
+AXA         CAL        HALA      SINGLE       n     1.089  0.0100     0.980  0.0169
+AXA          N2         HN2      SINGLE       n     1.016  0.0100     0.875  0.0200
+AXA          N4         HN4      SINGLE       n     1.016  0.0100     0.880  0.0200
+AXA         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.979  0.0169
+AXA         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.979  0.0169
+AXA         CAI         HAI      SINGLE       n     1.089  0.0100     0.989  0.0138
+AXA         CAI        HAIA      SINGLE       n     1.089  0.0100     0.989  0.0138
+AXA         CAK         HAK      SINGLE       n     1.089  0.0100     0.981  0.0170
+AXA         CAK        HAKA      SINGLE       n     1.089  0.0100     0.981  0.0170
+AXA         CBG         HBG      SINGLE       n     1.089  0.0100     0.990  0.0117
+AXA         CAN         HAN      SINGLE       n     1.089  0.0100     0.980  0.0150
+AXA         CAN        HANA      SINGLE       n     1.089  0.0100     0.980  0.0150
+AXA          N5         HN5      SINGLE       n     1.036  0.0160     0.901  0.0200
+AXA          N5        HN5A      SINGLE       n     1.036  0.0160     0.901  0.0200
+AXA          N5          H6      SINGLE       n     1.036  0.0160     0.901  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AXA         CAY         CAH         CAX     120.540    1.50
+AXA         CAY         CAH         HAH     120.180    1.50
+AXA         CAX         CAH         HAH     119.280    1.50
+AXA         CAH         CAY          N1     121.011    1.50
+AXA         CAH         CAY         CAZ     118.846    1.50
+AXA          N1         CAY         CAZ     120.143    1.86
+AXA         CAY          N1         CAV     124.368    1.50
+AXA         CAY          N1         HN1     118.365    2.27
+AXA         CAV          N1         HN1     117.268    1.63
+AXA          N1         CAV         OAC     121.728    1.50
+AXA          N1         CAV         CAM     117.425    1.63
+AXA         OAC         CAV         CAM     120.848    1.79
+AXA         CAV         CAM         OAS     114.760    3.00
+AXA         CAV         CAM         HAM     108.467    1.50
+AXA         CAV         CAM        HAMA     108.467    1.50
+AXA         OAS         CAM         HAM     108.647    1.50
+AXA         OAS         CAM        HAMA     108.647    1.50
+AXA         HAM         CAM        HAMA     107.558    1.50
+AXA         CAM         OAS         CAZ     114.751    2.95
+AXA         CAY         CAZ         OAS     121.742    1.74
+AXA         CAY         CAZ         CAG     120.966    1.50
+AXA         OAS         CAZ         CAG     117.292    1.65
+AXA         CAZ         CAG         CAF     119.806    1.50
+AXA         CAZ         CAG         HAG     119.811    1.50
+AXA         CAF         CAG         HAG     120.383    1.50
+AXA         CAG         CAF         CAX     121.152    1.50
+AXA         CAG         CAF         HAF     119.403    1.50
+AXA         CAX         CAF         HAF     119.445    1.50
+AXA         CAH         CAX         CAF     118.689    1.50
+AXA         CAH         CAX         CAL     120.612    1.50
+AXA         CAF         CAX         CAL     120.699    1.50
+AXA         CAX         CAL          N2     112.746    1.93
+AXA         CAX         CAL         HAL     109.005    1.50
+AXA         CAX         CAL        HALA     109.005    1.50
+AXA          N2         CAL         HAL     109.133    1.50
+AXA          N2         CAL        HALA     109.133    1.50
+AXA         HAL         CAL        HALA     107.860    1.50
+AXA         CAL          N2         CAW     122.226    1.50
+AXA         CAL          N2         HN2     118.799    1.50
+AXA         CAW          N2         HN2     118.975    1.99
+AXA          N2         CAW         OAD     122.982    1.50
+AXA          N2         CAW         CBB     116.885    2.33
+AXA         OAD         CAW         CBB     120.134    1.55
+AXA         CAW         CBB          N3     118.987    1.74
+AXA         CAW         CBB          N4     119.180    3.00
+AXA          N3         CBB          N4     121.833    1.50
+AXA         CBB          N3         CBE     117.372    1.79
+AXA         CBB          N4         CBD     122.631    1.50
+AXA         CBB          N4         HN4     118.862    1.58
+AXA         CBD          N4         HN4     118.506    1.86
+AXA          N4         CBD         OAE     118.906    1.50
+AXA          N4         CBD         CBF     116.086    1.76
+AXA         OAE         CBD         CBF     125.008    1.50
+AXA         CBD         CBF         CBC     132.865    1.50
+AXA         CBD         CBF         CBE     119.200    2.44
+AXA         CBC         CBF         CBE     107.935    1.50
+AXA         CBF         CBC         CBA     107.420    1.50
+AXA         CBF         CBC         CBG     129.012    2.65
+AXA         CBA         CBC         CBG     123.568    2.35
+AXA          N3         CBE         CBF     122.877    2.68
+AXA          N3         CBE         SAT     128.908    3.00
+AXA         CBF         CBE         SAT     108.215    3.00
+AXA         CBE         SAT         CBA     108.215    3.00
+AXA         CBC         CBA         SAT     108.215    3.00
+AXA         CBC         CBA         CAJ     129.647    1.50
+AXA         SAT         CBA         CAJ     122.138    3.00
+AXA         CBA         CAJ         CAI     109.233    1.61
+AXA         CBA         CAJ         HAJ     109.875    1.50
+AXA         CBA         CAJ        HAJA     109.875    1.50
+AXA         CAI         CAJ         HAJ     109.739    1.50
+AXA         CAI         CAJ        HAJA     109.739    1.50
+AXA         HAJ         CAJ        HAJA     108.071    1.50
+AXA         CAJ         CAI         CAK     112.309    2.44
+AXA         CAJ         CAI         HAI     109.015    1.50
+AXA         CAJ         CAI        HAIA     109.015    1.50
+AXA         CAK         CAI         HAI     109.388    1.50
+AXA         CAK         CAI        HAIA     109.388    1.50
+AXA         HAI         CAI        HAIA     107.960    1.50
+AXA         CAI         CAK         CBG     111.225    1.50
+AXA         CAI         CAK         HAK     109.388    1.50
+AXA         CAI         CAK        HAKA     109.388    1.50
+AXA         CBG         CAK         HAK     108.939    1.50
+AXA         CBG         CAK        HAKA     108.939    1.50
+AXA         HAK         CAK        HAKA     108.473    1.50
+AXA         CBC         CBG         CAK     108.713    1.50
+AXA         CBC         CBG         CAN     111.309    2.07
+AXA         CBC         CBG         HBG     107.766    1.50
+AXA         CAK         CBG         CAN     110.814    1.93
+AXA         CAK         CBG         HBG     107.458    1.50
+AXA         CAN         CBG         HBG     107.920    1.50
+AXA         CBG         CAN         CAU     113.355    2.65
+AXA         CBG         CAN         HAN     108.942    1.50
+AXA         CBG         CAN        HANA     108.942    1.50
+AXA         CAU         CAN         HAN     108.545    1.50
+AXA         CAU         CAN        HANA     108.545    1.50
+AXA         HAN         CAN        HANA     107.652    1.50
+AXA         CAN         CAU         OAB     120.866    1.64
+AXA         CAN         CAU          N5     119.567    3.00
+AXA         OAB         CAU          N5     119.567    3.00
+AXA         CAU          N5         HN5     107.481    3.00
+AXA         CAU          N5        HN5A     107.481    3.00
+AXA         CAU          N5          H6     107.481    3.00
+AXA         HN5          N5        HN5A     108.863    3.00
+AXA         HN5          N5          H6     108.863    3.00
+AXA        HN5A          N5          H6     108.863    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AXA       const_sp2_sp2_2         CAX         CAH         CAY          N1     180.000     5.0     2
+AXA              const_50         CAY         CAH         CAX         CAL     180.000    10.0     2
+AXA            sp2_sp3_14         CAH         CAX         CAL          N2     -90.000    10.0     6
+AXA            sp2_sp3_20         CAW          N2         CAL         CAX     120.000    10.0     6
+AXA            sp2_sp2_13         OAD         CAW          N2         CAL       0.000     5.0     2
+AXA            sp2_sp2_16          N2         CAW         CBB          N3       0.000     5.0     2
+AXA              const_34         CAW         CBB          N3         CBE     180.000    10.0     2
+AXA              const_55         CAW         CBB          N4         CBD     180.000    10.0     2
+AXA              const_35         CBF         CBE          N3         CBB       0.000    10.0     2
+AXA              const_47         OAE         CBD          N4         CBB     180.000    10.0     2
+AXA              const_44         OAE         CBD         CBF         CBC       0.000    10.0     2
+AXA             sp2_sp2_3         CAH         CAY          N1         CAV     180.000     5.0     2
+AXA       const_sp2_sp2_6         CAH         CAY         CAZ         OAS     180.000     5.0     2
+AXA              const_26         CBA         CBC         CBF         CBD     180.000    10.0     2
+AXA              const_37          N3         CBE         CBF         CBD       0.000    10.0     2
+AXA              const_21         SAT         CBA         CBC         CBF       0.000    10.0     2
+AXA            sp2_sp3_29         CBF         CBC         CBG         CAN     -60.000    10.0     6
+AXA              const_32          N3         CBE         SAT         CBA     180.000    10.0     2
+AXA              const_29         CBC         CBA         SAT         CBE       0.000    10.0     2
+AXA             sp2_sp3_1         CBC         CBA         CAJ         CAI       0.000    10.0     6
+AXA             sp3_sp3_1         CAK         CAI         CAJ         CBA      60.000    10.0     3
+AXA            sp3_sp3_10         CAJ         CAI         CAK         CBG     -60.000    10.0     3
+AXA            sp3_sp3_20         CAI         CAK         CBG         CAN     180.000    10.0     3
+AXA            sp3_sp3_31         CAU         CAN         CBG         CBC     180.000    10.0     3
+AXA            sp2_sp3_32         OAB         CAU         CAN         CBG     120.000    10.0     6
+AXA             sp2_sp2_7         OAC         CAV          N1         CAY     180.000     5.0     2
+AXA            sp2_sp3_37         CAN         CAU          N5         HN5       0.000    10.0     6
+AXA            sp2_sp3_10         OAC         CAV         CAM         OAS     180.000    10.0     6
+AXA            sp3_sp3_28         CAV         CAM         OAS         CAZ     -60.000    10.0     3
+AXA             sp2_sp2_9         CAY         CAZ         OAS         CAM       0.000     5.0     2
+AXA       const_sp2_sp2_9         CAF         CAG         CAZ         CAY       0.000     5.0     2
+AXA              const_13         CAX         CAF         CAG         CAZ       0.000    10.0     2
+AXA              const_18         CAG         CAF         CAX         CAL     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AXA    chir_1    CBG    CBC    CAN    CAK    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AXA    plan-1         CAJ   0.020
+AXA    plan-1         CAW   0.020
+AXA    plan-1         CBA   0.020
+AXA    plan-1         CBB   0.020
+AXA    plan-1         CBC   0.020
+AXA    plan-1         CBD   0.020
+AXA    plan-1         CBE   0.020
+AXA    plan-1         CBF   0.020
+AXA    plan-1         CBG   0.020
+AXA    plan-1         HN4   0.020
+AXA    plan-1          N3   0.020
+AXA    plan-1          N4   0.020
+AXA    plan-1         OAE   0.020
+AXA    plan-1         SAT   0.020
+AXA    plan-2         CAF   0.020
+AXA    plan-2         CAG   0.020
+AXA    plan-2         CAH   0.020
+AXA    plan-2         CAL   0.020
+AXA    plan-2         CAX   0.020
+AXA    plan-2         CAY   0.020
+AXA    plan-2         CAZ   0.020
+AXA    plan-2         HAF   0.020
+AXA    plan-2         HAG   0.020
+AXA    plan-2         HAH   0.020
+AXA    plan-2          N1   0.020
+AXA    plan-2         OAS   0.020
+AXA    plan-3         CAV   0.020
+AXA    plan-3         CAY   0.020
+AXA    plan-3         HN1   0.020
+AXA    plan-3          N1   0.020
+AXA    plan-4         CAM   0.020
+AXA    plan-4         CAV   0.020
+AXA    plan-4          N1   0.020
+AXA    plan-4         OAC   0.020
+AXA    plan-5         CAL   0.020
+AXA    plan-5         CAW   0.020
+AXA    plan-5         HN2   0.020
+AXA    plan-5          N2   0.020
+AXA    plan-6         CAW   0.020
+AXA    plan-6         CBB   0.020
+AXA    plan-6          N2   0.020
+AXA    plan-6         OAD   0.020
+AXA    plan-7         CAN   0.020
+AXA    plan-7         CAU   0.020
+AXA    plan-7          N5   0.020
+AXA    plan-7         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AXA           SMILES              ACDLabs 10.04                                                                                                                                        O=C1Nc2c(OC1)ccc(c2)CNC(=O)C3=Nc4sc5c(c4C(=O)N3)C(CC(=O)N)CCC5
+AXA SMILES_CANONICAL               CACTVS 3.341                                                                                                                                       NC(=O)C[C@@H]1CCCc2sc3N=C(NC(=O)c3c12)C(=O)NCc4ccc5OCC(=O)Nc5c4
+AXA           SMILES               CACTVS 3.341                                                                                                                                         NC(=O)C[CH]1CCCc2sc3N=C(NC(=O)c3c12)C(=O)NCc4ccc5OCC(=O)Nc5c4
+AXA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                    c1cc2c(cc1CNC(=O)C3=Nc4c(c5c(s4)CCC[C@H]5CC(=O)N)C(=O)N3)NC(=O)CO2
+AXA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                        c1cc2c(cc1CNC(=O)C3=Nc4c(c5c(s4)CCCC5CC(=O)N)C(=O)N3)NC(=O)CO2
+AXA            InChI                InChI  1.03 InChI=1S/C22H21N5O5S/c23-15(28)7-11-2-1-3-14-17(11)18-20(30)26-19(27-22(18)33-14)21(31)24-8-10-4-5-13-12(6-10)25-16(29)9-32-13/h4-6,11H,1-3,7-9H2,(H2,23,28)(H,24,31)(H,25,29)(H,26,27,30)/t11-/m0/s1
+AXA         InChIKey                InChI  1.03                                                                                                                                                                           ITADELAVAWJACR-NSHDSACASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AXA acedrg               243         "dictionary generator"                  
+AXA acedrg_database      11          "data source"                           
+AXA rdkit                2017.03.2   "Chemoinformatics tool"
+AXA refmac5              5.8.0238    "optimization tool"                     

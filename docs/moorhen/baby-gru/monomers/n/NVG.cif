@@ -1,0 +1,360 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NVG     NVG      4-AMINO-1-(5-{[3-(1H-BENZIMIDAZOL-2-YL)PROPANOYL]AMINO}-5-DEOXY-ALPHA-L-LYXOFURANOSYL)PYRIMIDIN-2(1H)-ONE     NON-POLYMER     52     30     .     
+#
+data_comp_NVG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NVG     OAC     O       O       0       13.563      -10.844     15.703      
+NVG     CAV     C       CR6     0       13.356      -9.837      16.399      
+NVG     NAO     N       NRD6    0       12.117      -9.279      16.476      
+NVG     CAT     C       CR6     0       11.898      -8.189      17.229      
+NVG     NAA     N       NH2     0       10.669      -7.690      17.264      
+NVG     CAF     C       CR16    0       12.955      -7.585      17.970      
+NVG     CAG     C       CR16    0       14.177      -8.142      17.889      
+NVG     NBD     N       NR6     0       14.412      -9.260      17.129      
+NVG     CBC     C       CH1     0       15.783      -9.850      17.055      
+NVG     OAS     O       O2      0       16.359      -9.869      18.346      
+NVG     CBA     C       CH1     0       16.723      -9.043      16.152      
+NVG     OAE     O       OH1     0       16.646      -9.526      14.827      
+NVG     CAZ     C       CH1     0       18.073      -9.312      16.826      
+NVG     OAD     O       OH1     0       18.621      -10.572     16.455      
+NVG     CBB     C       CH1     0       17.677      -9.274      18.301      
+NVG     CAN     C       CH2     0       18.598      -10.016     19.249      
+NVG     NAQ     N       NH1     0       18.549      -11.456     19.093      
+NVG     CAU     C       C       0       19.399      -12.295     19.705      
+NVG     OAB     O       O       0       20.319      -11.908     20.423      
+NVG     CAL     C       CH2     0       19.156      -13.770     19.489      
+NVG     CAM     C       CH2     0       17.922      -14.278     20.205      
+NVG     CAW     C       CR5     0       17.977      -14.086     21.679      
+NVG     NAR     N       NR5     0       17.140      -13.249     22.332      
+NVG     CAY     C       CR56    0       17.457      -13.300     23.672      
+NVG     CAK     C       CR16    0       16.931      -12.658     24.789      
+NVG     CAI     C       CR16    0       17.507      -12.953     26.008      
+NVG     CAH     C       CR16    0       18.571      -13.856     26.113      
+NVG     CAJ     C       CR16    0       19.089      -14.490     25.004      
+NVG     CAX     C       CR56    0       18.518      -14.203     23.762      
+NVG     NAP     N       NRD5    0       18.827      -14.683     22.492      
+NVG     HAA1    H       H       0       10.450      -7.112      17.887      
+NVG     HAA2    H       H       0       10.077      -7.937      16.664      
+NVG     HAF     H       H       0       12.808      -6.821      18.499      
+NVG     HAG     H       H       0       14.889      -7.766      18.364      
+NVG     HBC     H       H       0       15.731      -10.776     16.725      
+NVG     HBA     H       H       0       16.504      -8.091      16.189      
+NVG     HAE     H       H       0       17.257      -9.168      14.360      
+NVG     HAZ     H       H       0       18.711      -8.582      16.616      
+NVG     HAD     H       H       0       19.466      -10.537     16.533      
+NVG     HBB     H       H       0       17.611      -8.331      18.588      
+NVG     HAN1    H       H       0       18.350      -9.797      20.174      
+NVG     HAN2    H       H       0       19.521      -9.719      19.095      
+NVG     HAQ     H       H       0       17.914      -11.799     18.558      
+NVG     HAL1    H       H       0       19.940      -14.266     19.801      
+NVG     HAL2    H       H       0       19.065      -13.936     18.528      
+NVG     HAM1    H       H       0       17.812      -15.230     20.021      
+NVG     HAM2    H       H       0       17.136      -13.815     19.862      
+NVG     HAR     H       H       0       16.506      -12.761     21.964      
+NVG     HAK     H       H       0       16.219      -12.054     24.718      
+NVG     HAI     H       H       0       17.177      -12.538     26.785      
+NVG     HAH     H       H       0       18.940      -14.035     26.958      
+NVG     HAJ     H       H       0       19.804      -15.096     25.078      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NVG         OAC         CAV      DOUBLE       n     1.241  0.0100     1.241  0.0100
+NVG         CAV         NAO      SINGLE       y     1.355  0.0119     1.355  0.0119
+NVG         CAV         NBD      SINGLE       y     1.397  0.0100     1.397  0.0100
+NVG         NAO         CAT      DOUBLE       y     1.339  0.0110     1.339  0.0110
+NVG         CAT         NAA      SINGLE       n     1.325  0.0109     1.325  0.0109
+NVG         CAT         CAF      SINGLE       y     1.422  0.0123     1.422  0.0123
+NVG         CAF         CAG      DOUBLE       y     1.342  0.0100     1.342  0.0100
+NVG         CAG         NBD      SINGLE       y     1.364  0.0108     1.364  0.0108
+NVG         NBD         CBC      SINGLE       n     1.487  0.0100     1.487  0.0100
+NVG         CBC         OAS      SINGLE       n     1.411  0.0100     1.411  0.0100
+NVG         CBC         CBA      SINGLE       n     1.532  0.0100     1.532  0.0100
+NVG         OAS         CBB      SINGLE       n     1.446  0.0107     1.446  0.0107
+NVG         CBA         OAE      SINGLE       n     1.412  0.0100     1.412  0.0100
+NVG         CBA         CAZ      SINGLE       n     1.533  0.0109     1.533  0.0109
+NVG         CAZ         OAD      SINGLE       n     1.422  0.0100     1.422  0.0100
+NVG         CAZ         CBB      SINGLE       n     1.528  0.0117     1.528  0.0117
+NVG         CBB         CAN      SINGLE       n     1.514  0.0100     1.514  0.0100
+NVG         CAN         NAQ      SINGLE       n     1.447  0.0100     1.447  0.0100
+NVG         NAQ         CAU      SINGLE       n     1.338  0.0118     1.338  0.0118
+NVG         CAU         OAB      DOUBLE       n     1.229  0.0102     1.229  0.0102
+NVG         CAU         CAL      SINGLE       n     1.508  0.0116     1.508  0.0116
+NVG         CAL         CAM      SINGLE       n     1.511  0.0176     1.511  0.0176
+NVG         CAM         CAW      SINGLE       n     1.487  0.0100     1.487  0.0100
+NVG         CAW         NAR      SINGLE       y     1.351  0.0100     1.351  0.0100
+NVG         CAW         NAP      DOUBLE       y     1.318  0.0100     1.318  0.0100
+NVG         NAR         CAY      SINGLE       y     1.378  0.0100     1.378  0.0100
+NVG         CAY         CAK      DOUBLE       y     1.388  0.0100     1.388  0.0100
+NVG         CAY         CAX      SINGLE       y     1.393  0.0100     1.393  0.0100
+NVG         CAK         CAI      SINGLE       y     1.377  0.0100     1.377  0.0100
+NVG         CAI         CAH      DOUBLE       y     1.395  0.0112     1.395  0.0112
+NVG         CAH         CAJ      SINGLE       y     1.375  0.0100     1.375  0.0100
+NVG         CAJ         CAX      DOUBLE       y     1.393  0.0100     1.393  0.0100
+NVG         CAX         NAP      SINGLE       y     1.393  0.0100     1.393  0.0100
+NVG         NAA        HAA1      SINGLE       n     1.016  0.0100     0.877  0.0200
+NVG         NAA        HAA2      SINGLE       n     1.016  0.0100     0.877  0.0200
+NVG         CAF         HAF      SINGLE       n     1.082  0.0130     0.941  0.0174
+NVG         CAG         HAG      SINGLE       n     1.082  0.0130     0.935  0.0143
+NVG         CBC         HBC      SINGLE       n     1.089  0.0100     0.985  0.0100
+NVG         CBA         HBA      SINGLE       n     1.089  0.0100     0.978  0.0200
+NVG         OAE         HAE      SINGLE       n     0.970  0.0120     0.849  0.0200
+NVG         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.992  0.0200
+NVG         OAD         HAD      SINGLE       n     0.970  0.0120     0.849  0.0200
+NVG         CBB         HBB      SINGLE       n     1.089  0.0100     0.988  0.0100
+NVG         CAN        HAN1      SINGLE       n     1.089  0.0100     0.982  0.0110
+NVG         CAN        HAN2      SINGLE       n     1.089  0.0100     0.982  0.0110
+NVG         NAQ         HAQ      SINGLE       n     1.016  0.0100     0.897  0.0200
+NVG         CAL        HAL1      SINGLE       n     1.089  0.0100     0.979  0.0159
+NVG         CAL        HAL2      SINGLE       n     1.089  0.0100     0.979  0.0159
+NVG         CAM        HAM1      SINGLE       n     1.089  0.0100     0.975  0.0101
+NVG         CAM        HAM2      SINGLE       n     1.089  0.0100     0.975  0.0101
+NVG         NAR         HAR      SINGLE       n     1.016  0.0100     0.881  0.0200
+NVG         CAK         HAK      SINGLE       n     1.082  0.0130     0.936  0.0156
+NVG         CAI         HAI      SINGLE       n     1.082  0.0130     0.941  0.0181
+NVG         CAH         HAH      SINGLE       n     1.082  0.0130     0.939  0.0159
+NVG         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.940  0.0194
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NVG         OAC         CAV         NAO     122.363    1.50
+NVG         OAC         CAV         NBD     118.716    1.50
+NVG         NAO         CAV         NBD     118.927    1.50
+NVG         CAV         NAO         CAT     120.266    1.50
+NVG         NAO         CAT         NAA     117.855    1.50
+NVG         NAO         CAT         CAF     121.269    1.50
+NVG         NAA         CAT         CAF     120.876    1.50
+NVG         CAT         NAA        HAA1     119.818    1.59
+NVG         CAT         NAA        HAA2     119.818    1.59
+NVG        HAA1         NAA        HAA2     120.363    1.85
+NVG         CAT         CAF         CAG     117.808    1.50
+NVG         CAT         CAF         HAF     121.350    1.50
+NVG         CAG         CAF         HAF     120.848    1.50
+NVG         CAF         CAG         NBD     121.215    1.50
+NVG         CAF         CAG         HAG     120.275    1.75
+NVG         NBD         CAG         HAG     118.510    1.50
+NVG         CAV         NBD         CAG     120.510    1.50
+NVG         CAV         NBD         CBC     118.189    2.26
+NVG         CAG         NBD         CBC     121.301    1.52
+NVG         NBD         CBC         OAS     108.667    1.50
+NVG         NBD         CBC         CBA     112.859    1.50
+NVG         NBD         CBC         HBC     109.166    1.50
+NVG         OAS         CBC         CBA     106.825    1.50
+NVG         OAS         CBC         HBC     109.327    1.50
+NVG         CBA         CBC         HBC     109.776    1.83
+NVG         CBC         OAS         CBB     109.375    1.70
+NVG         CBC         CBA         OAE     109.476    3.00
+NVG         CBC         CBA         CAZ     101.269    1.50
+NVG         CBC         CBA         HBA     110.760    1.63
+NVG         OAE         CBA         CAZ     112.861    2.52
+NVG         OAE         CBA         HBA     111.022    1.77
+NVG         CAZ         CBA         HBA     110.799    1.82
+NVG         CBA         OAE         HAE     109.449    1.85
+NVG         CBA         CAZ         OAD     111.993    3.00
+NVG         CBA         CAZ         CBB     102.352    1.50
+NVG         CBA         CAZ         HAZ     110.108    1.66
+NVG         OAD         CAZ         CBB     110.985    2.41
+NVG         OAD         CAZ         HAZ     110.380    1.67
+NVG         CBB         CAZ         HAZ     110.624    1.81
+NVG         CAZ         OAD         HAD     108.744    3.00
+NVG         OAS         CBB         CAZ     105.508    1.50
+NVG         OAS         CBB         CAN     108.989    1.51
+NVG         OAS         CBB         HBB     109.115    1.50
+NVG         CAZ         CBB         CAN     115.298    1.50
+NVG         CAZ         CBB         HBB     109.143    1.50
+NVG         CAN         CBB         HBB     109.467    1.50
+NVG         CBB         CAN         NAQ     112.618    1.57
+NVG         CBB         CAN        HAN1     109.022    1.50
+NVG         CBB         CAN        HAN2     109.022    1.50
+NVG         NAQ         CAN        HAN1     108.315    1.50
+NVG         NAQ         CAN        HAN2     108.315    1.50
+NVG        HAN1         CAN        HAN2     108.479    1.50
+NVG         CAN         NAQ         CAU     122.965    1.78
+NVG         CAN         NAQ         HAQ     118.335    2.47
+NVG         CAU         NAQ         HAQ     118.700    1.94
+NVG         NAQ         CAU         OAB     122.609    1.50
+NVG         NAQ         CAU         CAL     116.143    1.50
+NVG         OAB         CAU         CAL     121.248    1.50
+NVG         CAU         CAL         CAM     112.333    2.26
+NVG         CAU         CAL        HAL1     108.929    1.50
+NVG         CAU         CAL        HAL2     108.929    1.50
+NVG         CAM         CAL        HAL1     109.544    1.50
+NVG         CAM         CAL        HAL2     109.544    1.50
+NVG        HAL1         CAL        HAL2     107.705    1.50
+NVG         CAL         CAM         CAW     112.733    1.51
+NVG         CAL         CAM        HAM1     109.247    1.50
+NVG         CAL         CAM        HAM2     109.247    1.50
+NVG         CAW         CAM        HAM1     108.453    1.50
+NVG         CAW         CAM        HAM2     108.453    1.50
+NVG        HAM1         CAM        HAM2     107.822    1.50
+NVG         CAM         CAW         NAR     122.587    1.50
+NVG         CAM         CAW         NAP     125.131    1.50
+NVG         NAR         CAW         NAP     112.282    1.50
+NVG         CAW         NAR         CAY     107.710    1.50
+NVG         CAW         NAR         HAR     125.973    1.50
+NVG         CAY         NAR         HAR     126.318    1.62
+NVG         NAR         CAY         CAK     132.484    1.50
+NVG         NAR         CAY         CAX     105.272    1.50
+NVG         CAK         CAY         CAX     122.244    1.50
+NVG         CAY         CAK         CAI     116.713    1.50
+NVG         CAY         CAK         HAK     121.713    1.50
+NVG         CAI         CAK         HAK     121.573    1.50
+NVG         CAK         CAI         CAH     121.628    1.50
+NVG         CAK         CAI         HAI     119.132    1.50
+NVG         CAH         CAI         HAI     119.240    1.50
+NVG         CAI         CAH         CAJ     121.628    1.50
+NVG         CAI         CAH         HAH     119.240    1.50
+NVG         CAJ         CAH         HAH     119.132    1.50
+NVG         CAH         CAJ         CAX     117.727    1.50
+NVG         CAH         CAJ         HAJ     121.359    1.50
+NVG         CAX         CAJ         HAJ     120.915    1.50
+NVG         CAY         CAX         CAJ     120.060    1.50
+NVG         CAY         CAX         NAP     109.552    1.50
+NVG         CAJ         CAX         NAP     130.388    1.50
+NVG         CAW         NAP         CAX     105.184    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NVG            sp3_sp3_34         CBC         CBA         OAE         HAE     180.000    10.0     3
+NVG            sp3_sp3_20         OAD         CAZ         CBA         OAE     -60.000    10.0     3
+NVG            sp3_sp3_37         CBA         CAZ         OAD         HAD     180.000    10.0     3
+NVG            sp3_sp3_11         OAD         CAZ         CBB         CAN      60.000    10.0     3
+NVG            sp3_sp3_40         NAQ         CAN         CBB         OAS     180.000    10.0     3
+NVG             sp2_sp3_8         CAU         NAQ         CAN         CBB     120.000    10.0     6
+NVG             sp2_sp2_7         OAB         CAU         NAQ         CAN       0.000     5.0     2
+NVG            sp2_sp3_14         NAQ         CAU         CAL         CAM     120.000    10.0     6
+NVG            sp3_sp3_49         CAU         CAL         CAM         CAW     180.000    10.0     3
+NVG       const_sp2_sp2_2         OAC         CAV         NAO         CAT     180.000     5.0     2
+NVG              const_53         OAC         CAV         NBD         CAG     180.000    10.0     2
+NVG            sp2_sp3_20         NAR         CAW         CAM         CAL     -90.000    10.0     6
+NVG              const_39         CAM         CAW         NAR         CAY     180.000    10.0     2
+NVG              const_56         CAM         CAW         NAP         CAX     180.000    10.0     2
+NVG              const_43         CAK         CAY         NAR         CAW     180.000    10.0     2
+NVG              const_18         CAI         CAK         CAY         NAR     180.000    10.0     2
+NVG              const_46         CAJ         CAX         CAY         NAR     180.000    10.0     2
+NVG              const_21         CAH         CAI         CAK         CAY       0.000    10.0     2
+NVG              const_25         CAJ         CAH         CAI         CAK       0.000    10.0     2
+NVG              const_29         CAI         CAH         CAJ         CAX       0.000    10.0     2
+NVG              const_33         CAH         CAJ         CAX         CAY       0.000    10.0     2
+NVG              const_49         CAY         CAX         NAP         CAW       0.000    10.0     2
+NVG       const_sp2_sp2_4         NAA         CAT         NAO         CAV     180.000     5.0     2
+NVG             sp2_sp2_3         NAO         CAT         NAA        HAA1       0.000     5.0     2
+NVG       const_sp2_sp2_6         CAG         CAF         CAT         NAA     180.000     5.0     2
+NVG       const_sp2_sp2_9         CAT         CAF         CAG         NBD       0.000     5.0     2
+NVG              const_13         CAF         CAG         NBD         CAV       0.000    10.0     2
+NVG             sp2_sp3_1         CAV         NBD         CBC         OAS     150.000    10.0     6
+NVG            sp3_sp3_29         OAE         CBA         CBC         NBD     180.000    10.0     3
+NVG             sp3_sp3_2         NBD         CBC         OAS         CBB     -60.000    10.0     3
+NVG             sp3_sp3_5         CAN         CBB         OAS         CBC     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NVG    chir_1    CBC    OAS    NBD    CBA    negative
+NVG    chir_2    CBA    OAE    CBC    CAZ    negative
+NVG    chir_3    CAZ    OAD    CBB    CBA    positive
+NVG    chir_4    CBB    OAS    CAZ    CAN    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NVG    plan-1         CAH   0.020
+NVG    plan-1         CAI   0.020
+NVG    plan-1         CAJ   0.020
+NVG    plan-1         CAK   0.020
+NVG    plan-1         CAM   0.020
+NVG    plan-1         CAW   0.020
+NVG    plan-1         CAX   0.020
+NVG    plan-1         CAY   0.020
+NVG    plan-1         HAH   0.020
+NVG    plan-1         HAI   0.020
+NVG    plan-1         HAJ   0.020
+NVG    plan-1         HAK   0.020
+NVG    plan-1         HAR   0.020
+NVG    plan-1         NAP   0.020
+NVG    plan-1         NAR   0.020
+NVG    plan-2         CAF   0.020
+NVG    plan-2         CAG   0.020
+NVG    plan-2         CAT   0.020
+NVG    plan-2         CAV   0.020
+NVG    plan-2         CBC   0.020
+NVG    plan-2         HAF   0.020
+NVG    plan-2         HAG   0.020
+NVG    plan-2         NAA   0.020
+NVG    plan-2         NAO   0.020
+NVG    plan-2         NBD   0.020
+NVG    plan-2         OAC   0.020
+NVG    plan-3         CAT   0.020
+NVG    plan-3        HAA1   0.020
+NVG    plan-3        HAA2   0.020
+NVG    plan-3         NAA   0.020
+NVG    plan-4         CAN   0.020
+NVG    plan-4         CAU   0.020
+NVG    plan-4         HAQ   0.020
+NVG    plan-4         NAQ   0.020
+NVG    plan-5         CAL   0.020
+NVG    plan-5         CAU   0.020
+NVG    plan-5         NAQ   0.020
+NVG    plan-5         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NVG           SMILES              ACDLabs 10.04                                                                                                                                                        O=C1N=C(N)C=CN1C2OC(C(O)C2O)CNC(=O)CCc3nc4ccccc4n3
+NVG SMILES_CANONICAL               CACTVS 3.341                                                                                                                                NC1=NC(=O)N(C=C1)[C@@H]2O[C@@H](CNC(=O)CCc3[nH]c4ccccc4n3)[C@@H](O)[C@H]2O
+NVG           SMILES               CACTVS 3.341                                                                                                                                       NC1=NC(=O)N(C=C1)[CH]2O[CH](CNC(=O)CCc3[nH]c4ccccc4n3)[CH](O)[CH]2O
+NVG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                              c1ccc2c(c1)[nH]c(n2)CCC(=O)NC[C@H]3[C@H]([C@H]([C@@H](O3)N4C=CC(=NC4=O)N)O)O
+NVG           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                               c1ccc2c(c1)[nH]c(n2)CCC(=O)NCC3C(C(C(O3)N4C=CC(=NC4=O)N)O)O
+NVG            InChI                InChI  1.03 InChI=1S/C19H22N6O5/c20-13-7-8-25(19(29)24-13)18-17(28)16(27)12(30-18)9-21-15(26)6-5-14-22-10-3-1-2-4-11(10)23-14/h1-4,7-8,12,16-18,27-28H,5-6,9H2,(H,21,26)(H,22,23)(H2,20,24,29)/t12-,16+,17+,18+/m0/s1
+NVG         InChIKey                InChI  1.03                                                                                                                                                                               IHRYIMVLMZNCKA-FCRVUTKVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NVG acedrg               243         "dictionary generator"                  
+NVG acedrg_database      11          "data source"                           
+NVG rdkit                2017.03.2   "Chemoinformatics tool"
+NVG refmac5              5.8.0238    "optimization tool"                     

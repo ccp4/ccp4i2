@@ -1,0 +1,493 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZOD     ZOD      "[(2R,3R,4R,5R)-5-[[[[(2R,3S,4R,5R)-5-(6-aminopurin-9-yl)-3,4-bis(oxidanyl)oxolan-2-yl]methoxy-oxidanyl-phosphoryl]oxy-oxidanyl-phosphoryl]oxymethyl]-2,4-bis(oxidanyl)oxolan-3-yl] ethanoate"     NON-POLYMER     62     39     .     
+#
+data_comp_ZOD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZOD     C01     C       CH3     0       -0.991      -63.762     -52.468     
+ZOD     C02     C       C       0       -0.643      -63.206     -53.806     
+ZOD     O03     O       O       0       0.469       -63.021     -54.211     
+ZOD     O04     O       O2      0       -1.760      -62.890     -54.508     
+ZOD     C05     C       CH1     0       -1.858      -63.146     -55.943     
+ZOD     C06     C       CH1     0       -1.201      -61.969     -56.676     
+ZOD     O07     O       OH1     0       -2.060      -60.889     -56.699     
+ZOD     O08     O       O2      0       -0.952      -62.443     -58.001     
+ZOD     C09     C       CH1     0       -1.113      -63.882     -58.063     
+ZOD     C10     C       CH2     0       -2.304      -64.205     -58.932     
+ZOD     O1B     O       O2      0       -2.136      -63.581     -60.232     
+ZOD     PB      P       P       0       -3.280      -63.756     -61.342     
+ZOD     O2B     O       O       0       -2.892      -63.010     -62.576     
+ZOD     O3B     O       OP      -1      -3.627      -65.203     -61.472     
+ZOD     O3A     O       O2      0       -4.508      -62.994     -60.646     
+ZOD     PA      P       P       0       -4.848      -61.442     -60.424     
+ZOD     O2A     O       OP      -1      -3.681      -60.788     -59.761     
+ZOD     O1A     O       O       0       -5.339      -60.869     -61.712     
+ZOD     "O5'"   O       O2      0       -6.065      -61.537     -59.383     
+ZOD     "C5'"   C       CH2     0       -7.270      -62.247     -59.773     
+ZOD     "C4'"   C       CH1     0       -8.325      -62.077     -58.707     
+ZOD     "O4'"   O       O2      0       -7.797      -62.545     -57.438     
+ZOD     "C1'"   C       CH1     0       -7.975      -61.561     -56.446     
+ZOD     N9      N       NR5     0       -6.863      -61.642     -55.505     
+ZOD     C8      C       CR15    0       -5.526      -61.638     -55.818     
+ZOD     N7      N       NRD5    0       -4.744      -61.721     -54.771     
+ZOD     C5      C       CR56    0       -5.617      -61.784     -53.695     
+ZOD     C6      C       CR6     0       -5.403      -61.884     -52.303     
+ZOD     N6      N       NH2     0       -4.196      -61.939     -51.745     
+ZOD     N1      N       NRD6    0       -6.496      -61.926     -51.498     
+ZOD     C2      C       CR16    0       -7.710      -61.870     -52.067     
+ZOD     N3      N       NRD6    0       -8.030      -61.775     -53.358     
+ZOD     C4      C       CR56    0       -6.929      -61.736     -54.134     
+ZOD     "C2'"   C       CH1     0       -8.060      -60.231     -57.188     
+ZOD     "O2'"   O       OH1     0       -8.745      -59.264     -56.422     
+ZOD     "C3'"   C       CH1     0       -8.809      -60.639     -58.462     
+ZOD     "O3'"   O       OH1     0       -10.224     -60.585     -58.313     
+ZOD     C38     C       CH1     0       -1.191      -64.361     -56.605     
+ZOD     O39     O       OH1     0       0.108       -64.743     -56.167     
+ZOD     H1      H       H       0       -1.843      -64.226     -52.517     
+ZOD     H10     H       H       0       -1.055      -63.038     -51.824     
+ZOD     H3      H       H       0       -0.301      -64.384     -52.187     
+ZOD     H4      H       H       0       -2.806      -63.150     -56.212     
+ZOD     H5      H       H       0       -0.338      -61.697     -56.278     
+ZOD     H6      H       H       0       -1.700      -60.243     -57.114     
+ZOD     H7      H       H       0       -0.282      -64.285     -58.506     
+ZOD     H11     H       H       0       -3.129      -63.870     -58.502     
+ZOD     H9      H       H       0       -2.381      -65.185     -59.038     
+ZOD     "H5'1"  H       H       0       -7.070      -63.209     -59.889     
+ZOD     "H5'2"  H       H       0       -7.606      -61.892     -60.632     
+ZOD     "H4'"   H       H       0       -9.094      -62.637     -58.952     
+ZOD     "H1'"   H       H       0       -8.823      -61.717     -55.973     
+ZOD     H8      H       H       0       -5.204      -61.580     -56.701     
+ZOD     HN61    H       H       0       -4.049      -61.528     -50.984     
+ZOD     HN62    H       H       0       -3.554      -62.385     -52.143     
+ZOD     H2      H       H       0       -8.441      -61.902     -51.468     
+ZOD     "H2'"   H       H       0       -7.150      -59.901     -57.414     
+ZOD     "HO2'"  H       H       0       -8.862      -58.568     -56.893     
+ZOD     "H3'"   H       H       0       -8.528      -60.062     -59.219     
+ZOD     "HO3'"  H       H       0       -10.473     -61.118     -57.701     
+ZOD     H24     H       H       0       -1.837      -65.184     -56.549     
+ZOD     H25     H       H       0       0.654       -64.101     -56.272     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZOD          PB         O2B      DOUBLE       n     1.493  0.0122     1.493  0.0122
+ZOD         O1B          PB      SINGLE       n     1.604  0.0133     1.604  0.0133
+ZOD         C10         O1B      SINGLE       n     1.450  0.0166     1.450  0.0166
+ZOD          PB         O3B      SINGLE       n     1.493  0.0122     1.493  0.0122
+ZOD       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+ZOD          PB         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+ZOD       "C4'"       "C3'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+ZOD       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+ZOD         C09         C10      SINGLE       n     1.509  0.0100     1.509  0.0100
+ZOD       "O5'"       "C5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+ZOD       "C5'"       "C4'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+ZOD         O08         C09      SINGLE       n     1.445  0.0110     1.445  0.0110
+ZOD         C09         C38      SINGLE       n     1.535  0.0100     1.535  0.0100
+ZOD          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+ZOD         O3A          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+ZOD       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+ZOD          PA       "O5'"      SINGLE       n     1.604  0.0133     1.604  0.0133
+ZOD       "C4'"       "O4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+ZOD         C06         O08      SINGLE       n     1.423  0.0192     1.423  0.0192
+ZOD         C38         O39      SINGLE       n     1.421  0.0100     1.421  0.0100
+ZOD       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+ZOD          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+ZOD         C05         C38      SINGLE       n     1.529  0.0125     1.529  0.0125
+ZOD         C05         C06      SINGLE       n     1.533  0.0105     1.533  0.0105
+ZOD         C06         O07      SINGLE       n     1.380  0.0200     1.380  0.0200
+ZOD       "O4'"       "C1'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+ZOD       "C1'"          N9      SINGLE       n     1.458  0.0100     1.458  0.0100
+ZOD         O04         C05      SINGLE       n     1.444  0.0137     1.444  0.0137
+ZOD         C01         C02      SINGLE       n     1.489  0.0100     1.489  0.0100
+ZOD          N9          C8      SINGLE       y     1.372  0.0100     1.372  0.0100
+ZOD          N9          C4      SINGLE       y     1.374  0.0101     1.374  0.0101
+ZOD         C02         O04      SINGLE       n     1.347  0.0146     1.347  0.0146
+ZOD         C02         O03      DOUBLE       n     1.197  0.0100     1.197  0.0100
+ZOD          C8          N7      DOUBLE       y     1.310  0.0100     1.310  0.0100
+ZOD          N3          C4      DOUBLE       y     1.343  0.0100     1.343  0.0100
+ZOD          C5          C4      SINGLE       y     1.381  0.0100     1.381  0.0100
+ZOD          C2          N3      SINGLE       y     1.330  0.0100     1.330  0.0100
+ZOD          N7          C5      SINGLE       y     1.388  0.0100     1.388  0.0100
+ZOD          C5          C6      DOUBLE       y     1.408  0.0100     1.408  0.0100
+ZOD          N1          C2      DOUBLE       y     1.339  0.0100     1.339  0.0100
+ZOD          C6          N1      SINGLE       y     1.354  0.0100     1.354  0.0100
+ZOD          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+ZOD         C01          H1      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZOD         C01         H10      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZOD         C01          H3      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZOD         C05          H4      SINGLE       n     1.089  0.0100     0.985  0.0119
+ZOD         C06          H5      SINGLE       n     1.089  0.0100     0.990  0.0166
+ZOD         O07          H6      SINGLE       n     0.970  0.0120     0.849  0.0200
+ZOD         C09          H7      SINGLE       n     1.089  0.0100     1.024  0.0200
+ZOD         C10         H11      SINGLE       n     1.089  0.0100     0.989  0.0200
+ZOD         C10          H9      SINGLE       n     1.089  0.0100     0.989  0.0200
+ZOD       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+ZOD       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+ZOD       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+ZOD       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+ZOD          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+ZOD          N6        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+ZOD          N6        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+ZOD          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+ZOD       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+ZOD       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+ZOD       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+ZOD       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+ZOD         C38         H24      SINGLE       n     1.089  0.0100     1.048  0.0200
+ZOD         O39         H25      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZOD         C02         C01          H1     109.529    1.50
+ZOD         C02         C01         H10     109.529    1.50
+ZOD         C02         C01          H3     109.529    1.50
+ZOD          H1         C01         H10     109.424    1.50
+ZOD          H1         C01          H3     109.424    1.50
+ZOD         H10         C01          H3     109.424    1.50
+ZOD         C01         C02         O04     111.156    1.50
+ZOD         C01         C02         O03     126.031    1.50
+ZOD         O04         C02         O03     122.813    1.50
+ZOD         C05         O04         C02     116.864    1.50
+ZOD         C38         C05         C06     104.443    2.26
+ZOD         C38         C05         O04     110.567    3.00
+ZOD         C38         C05          H4     110.255    2.04
+ZOD         C06         C05         O04     107.425    1.50
+ZOD         C06         C05          H4     110.947    3.00
+ZOD         O04         C05          H4     111.136    1.50
+ZOD         O08         C06         C05     104.988    1.50
+ZOD         O08         C06         O07     110.867    1.50
+ZOD         O08         C06          H5     109.510    2.59
+ZOD         C05         C06         O07     110.722    2.96
+ZOD         C05         C06          H5     112.713    2.29
+ZOD         O07         C06          H5     110.005    1.50
+ZOD         C06         O07          H6     109.854    2.80
+ZOD         C09         O08         C06     108.379    1.72
+ZOD         C10         C09         O08     109.123    1.50
+ZOD         C10         C09         C38     116.008    1.52
+ZOD         C10         C09          H7     108.268    1.50
+ZOD         O08         C09         C38     105.508    1.50
+ZOD         O08         C09          H7     109.199    2.08
+ZOD         C38         C09          H7     109.363    1.86
+ZOD         O1B         C10         C09     109.342    1.50
+ZOD         O1B         C10         H11     109.845    1.50
+ZOD         O1B         C10          H9     109.845    1.50
+ZOD         C09         C10         H11     109.624    1.50
+ZOD         C09         C10          H9     109.624    1.50
+ZOD         H11         C10          H9     108.472    1.50
+ZOD          PB         O1B         C10     118.553    2.41
+ZOD         O2B          PB         O1B     109.410    1.50
+ZOD         O2B          PB         O3B     118.411    2.35
+ZOD         O2B          PB         O3A     108.816    2.14
+ZOD         O1B          PB         O3B     109.410    1.50
+ZOD         O1B          PB         O3A     101.065    1.97
+ZOD         O3B          PB         O3A     108.816    2.14
+ZOD          PB         O3A          PA     132.542    3.00
+ZOD         O1A          PA         O3A     108.816    2.14
+ZOD         O1A          PA       "O5'"     109.410    1.50
+ZOD         O1A          PA         O2A     118.411    2.35
+ZOD         O3A          PA       "O5'"     101.065    1.97
+ZOD         O3A          PA         O2A     108.816    2.14
+ZOD       "O5'"          PA         O2A     109.410    1.50
+ZOD       "C5'"       "O5'"          PA     118.553    2.41
+ZOD       "O5'"       "C5'"       "C4'"     109.342    1.50
+ZOD       "O5'"       "C5'"      "H5'1"     109.845    1.50
+ZOD       "O5'"       "C5'"      "H5'2"     109.845    1.50
+ZOD       "C4'"       "C5'"      "H5'1"     109.624    1.50
+ZOD       "C4'"       "C5'"      "H5'2"     109.624    1.50
+ZOD      "H5'1"       "C5'"      "H5'2"     108.472    1.50
+ZOD       "C3'"       "C4'"       "C5'"     116.008    1.52
+ZOD       "C3'"       "C4'"       "O4'"     105.388    1.50
+ZOD       "C3'"       "C4'"       "H4'"     109.363    1.86
+ZOD       "C5'"       "C4'"       "O4'"     109.123    1.50
+ZOD       "C5'"       "C4'"       "H4'"     108.268    1.50
+ZOD       "O4'"       "C4'"       "H4'"     108.947    1.50
+ZOD       "C4'"       "O4'"       "C1'"     109.903    1.50
+ZOD       "C2'"       "C1'"       "O4'"     106.047    1.50
+ZOD       "C2'"       "C1'"          N9     113.824    1.50
+ZOD       "C2'"       "C1'"       "H1'"     109.015    1.50
+ZOD       "O4'"       "C1'"          N9     108.477    1.50
+ZOD       "O4'"       "C1'"       "H1'"     109.807    1.50
+ZOD          N9       "C1'"       "H1'"     109.561    1.50
+ZOD       "C1'"          N9          C8     126.848    1.91
+ZOD       "C1'"          N9          C4     127.459    1.80
+ZOD          C8          N9          C4     105.693    1.50
+ZOD          N9          C8          N7     113.469    1.50
+ZOD          N9          C8          H8     123.206    1.50
+ZOD          N7          C8          H8     123.326    1.50
+ZOD          C8          N7          C5     104.739    1.50
+ZOD          C4          C5          N7     110.486    1.50
+ZOD          C4          C5          C6     117.267    1.50
+ZOD          N7          C5          C6     132.247    1.50
+ZOD          C5          C6          N1     117.409    1.50
+ZOD          C5          C6          N6     123.792    1.50
+ZOD          N1          C6          N6     118.799    1.50
+ZOD          C6          N6        HN61     119.723    1.50
+ZOD          C6          N6        HN62     119.723    1.50
+ZOD        HN61          N6        HN62     120.554    1.88
+ZOD          C2          N1          C6     118.521    1.50
+ZOD          N3          C2          N1     129.332    1.50
+ZOD          N3          C2          H2     115.355    1.50
+ZOD          N1          C2          H2     115.313    1.50
+ZOD          C4          N3          C2     110.982    1.50
+ZOD          N9          C4          N3     127.895    1.50
+ZOD          N9          C4          C5     105.616    1.50
+ZOD          N3          C4          C5     126.489    1.50
+ZOD       "C3'"       "C2'"       "O2'"     112.782    2.45
+ZOD       "C3'"       "C2'"       "C1'"     101.239    1.50
+ZOD       "C3'"       "C2'"       "H2'"     110.596    1.51
+ZOD       "O2'"       "C2'"       "C1'"     111.715    2.69
+ZOD       "O2'"       "C2'"       "H2'"     110.448    1.97
+ZOD       "C1'"       "C2'"       "H2'"     110.636    1.70
+ZOD       "C2'"       "O2'"      "HO2'"     109.103    2.13
+ZOD       "O3'"       "C3'"       "C4'"     111.281    2.46
+ZOD       "O3'"       "C3'"       "C2'"     111.581    2.83
+ZOD       "O3'"       "C3'"       "H3'"     110.380    1.67
+ZOD       "C4'"       "C3'"       "C2'"     102.602    1.50
+ZOD       "C4'"       "C3'"       "H3'"     110.452    2.54
+ZOD       "C2'"       "C3'"       "H3'"     110.504    1.75
+ZOD       "C3'"       "O3'"      "HO3'"     108.744    3.00
+ZOD         C09         C38         O39     111.281    2.46
+ZOD         C09         C38         C05     102.352    1.50
+ZOD         C09         C38         H24     110.452    2.54
+ZOD         O39         C38         C05     112.463    2.73
+ZOD         O39         C38         H24     110.380    1.67
+ZOD         C05         C38         H24     110.255    2.04
+ZOD         C38         O39         H25     108.744    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZOD                   nu0         C09         O08         C06         C05     -13.377    10.0     3
+ZOD                   nu1         O08         C06         C05         C38      27.533    10.0     3
+ZOD                   nu2         C06         C05         C38         C09     -29.007    10.0     3
+ZOD                   nu3         C05         C38         C09         O08      22.712    10.0     3
+ZOD                   nu4         C38         C09         O08         C06      -6.079    10.0     3
+ZOD            sp3_sp3_25       "C2'"       "C3'"       "C4'"       "O4'"      60.000    10.0     3
+ZOD            sp3_sp3_26       "C2'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+ZOD            sp3_sp3_27       "C2'"       "C3'"       "C4'"       "H4'"     -60.000    10.0     3
+ZOD            sp3_sp3_28       "O3'"       "C3'"       "C4'"       "O4'"     -60.000    10.0     3
+ZOD            sp3_sp3_29       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+ZOD            sp3_sp3_30       "O3'"       "C3'"       "C4'"       "H4'"     180.000    10.0     3
+ZOD            sp3_sp3_31       "H3'"       "C3'"       "C4'"       "O4'"     180.000    10.0     3
+ZOD            sp3_sp3_32       "H3'"       "C3'"       "C4'"       "C5'"     -60.000    10.0     3
+ZOD            sp3_sp3_33       "H3'"       "C3'"       "C4'"       "H4'"      60.000    10.0     3
+ZOD            sp3_sp3_34       "C1'"       "C2'"       "C3'"       "C4'"     -60.000    10.0     3
+ZOD            sp3_sp3_35       "C1'"       "C2'"       "C3'"       "O3'"      60.000    10.0     3
+ZOD            sp3_sp3_36       "C1'"       "C2'"       "C3'"       "H3'"     180.000    10.0     3
+ZOD            sp3_sp3_37       "O2'"       "C2'"       "C3'"       "C4'"     180.000    10.0     3
+ZOD            sp3_sp3_38       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+ZOD            sp3_sp3_39       "O2'"       "C2'"       "C3'"       "H3'"      60.000    10.0     3
+ZOD            sp3_sp3_40       "H2'"       "C2'"       "C3'"       "C4'"      60.000    10.0     3
+ZOD            sp3_sp3_41       "H2'"       "C2'"       "C3'"       "O3'"     180.000    10.0     3
+ZOD            sp3_sp3_42       "H2'"       "C2'"       "C3'"       "H3'"     -60.000    10.0     3
+ZOD            sp3_sp3_43       "O4'"       "C1'"       "C2'"       "C3'"      60.000    10.0     3
+ZOD            sp3_sp3_44       "O4'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+ZOD            sp3_sp3_45       "O4'"       "C1'"       "C2'"       "H2'"     -60.000    10.0     3
+ZOD            sp3_sp3_46          N9       "C1'"       "C2'"       "C3'"     -60.000    10.0     3
+ZOD            sp3_sp3_47          N9       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+ZOD            sp3_sp3_48          N9       "C1'"       "C2'"       "H2'"     180.000    10.0     3
+ZOD            sp3_sp3_49       "H1'"       "C1'"       "C2'"       "C3'"     180.000    10.0     3
+ZOD            sp3_sp3_50       "H1'"       "C1'"       "C2'"       "O2'"     -60.000    10.0     3
+ZOD            sp3_sp3_51       "H1'"       "C1'"       "C2'"       "H2'"      60.000    10.0     3
+ZOD            sp3_sp3_52       "C2'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+ZOD            sp3_sp3_53          N9       "C1'"       "O4'"       "C4'"     180.000    10.0     3
+ZOD            sp3_sp3_54       "H1'"       "C1'"       "O4'"       "C4'"      60.000    10.0     3
+ZOD       const_sp2_sp2_1          N9          C4          C5          N7       0.000     5.0     2
+ZOD       const_sp2_sp2_2          N9          C4          C5          C6     180.000     5.0     2
+ZOD       const_sp2_sp2_3          N3          C4          C5          N7     180.000     5.0     2
+ZOD       const_sp2_sp2_4          N3          C4          C5          C6       0.000     5.0     2
+ZOD       const_sp2_sp2_5          C5          C4          N3          C2       0.000     5.0     2
+ZOD       const_sp2_sp2_6          N9          C4          N3          C2     180.000     5.0     2
+ZOD       const_sp2_sp2_7          N1          C2          N3          C4       0.000     5.0     2
+ZOD       const_sp2_sp2_8          H2          C2          N3          C4     180.000     5.0     2
+ZOD       const_sp2_sp2_9          N3          C2          N1          C6       0.000     5.0     2
+ZOD              const_10          H2          C2          N1          C6     180.000    10.0     2
+ZOD              const_11          C5          C6          N1          C2       0.000    10.0     2
+ZOD              const_12          N6          C6          N1          C2     180.000    10.0     2
+ZOD              const_13          N7          C8          N9          C4       0.000    10.0     2
+ZOD              const_14          N7          C8          N9       "C1'"     180.000    10.0     2
+ZOD              const_15          H8          C8          N9          C4     180.000    10.0     2
+ZOD              const_16          H8          C8          N9       "C1'"       0.000    10.0     2
+ZOD              const_17          N9          C8          N7          C5       0.000    10.0     2
+ZOD              const_18          H8          C8          N7          C5     180.000    10.0     2
+ZOD              const_19          C4          C5          N7          C8       0.000    10.0     2
+ZOD              const_20          C6          C5          N7          C8     180.000    10.0     2
+ZOD            sp3_sp3_55         C10         O1B          PB         O3A     180.000    10.0     3
+ZOD            sp3_sp3_56         C10         O1B          PB         O3B     -60.000    10.0     3
+ZOD            sp3_sp3_57         C10         O1B          PB         O2B      60.000    10.0     3
+ZOD            sp3_sp3_58         C09         C10         O1B          PB     180.000    10.0     3
+ZOD            sp3_sp3_59         H11         C10         O1B          PB      60.000    10.0     3
+ZOD            sp3_sp3_60          H9         C10         O1B          PB     -60.000    10.0     3
+ZOD            sp3_sp3_61       "C4'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+ZOD            sp3_sp3_62       "C2'"       "C3'"       "O3'"      "HO3'"      60.000    10.0     3
+ZOD            sp3_sp3_63       "H3'"       "C3'"       "O3'"      "HO3'"     -60.000    10.0     3
+ZOD            sp3_sp3_64          PA         O3A          PB         O3B     180.000    10.0     3
+ZOD            sp3_sp3_65          PA         O3A          PB         O1B     -60.000    10.0     3
+ZOD            sp3_sp3_66          PA         O3A          PB         O2B      60.000    10.0     3
+ZOD            sp3_sp3_67         O08         C09         C10         O1B     180.000    10.0     3
+ZOD            sp3_sp3_68         O08         C09         C10         H11     -60.000    10.0     3
+ZOD            sp3_sp3_69         O08         C09         C10          H9      60.000    10.0     3
+ZOD            sp3_sp3_70         C38         C09         C10         O1B      60.000    10.0     3
+ZOD            sp3_sp3_71         C38         C09         C10         H11     180.000    10.0     3
+ZOD            sp3_sp3_72         C38         C09         C10          H9     -60.000    10.0     3
+ZOD            sp3_sp3_73          H7         C09         C10         O1B     -60.000    10.0     3
+ZOD            sp3_sp3_74          H7         C09         C10         H11      60.000    10.0     3
+ZOD            sp3_sp3_75          H7         C09         C10          H9     180.000    10.0     3
+ZOD            sp3_sp3_76       "C4'"       "C5'"       "O5'"          PA     180.000    10.0     3
+ZOD            sp3_sp3_77      "H5'1"       "C5'"       "O5'"          PA      60.000    10.0     3
+ZOD            sp3_sp3_78      "H5'2"       "C5'"       "O5'"          PA     -60.000    10.0     3
+ZOD            sp3_sp3_79       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+ZOD            sp3_sp3_80       "C3'"       "C4'"       "C5'"      "H5'1"     -60.000    10.0     3
+ZOD            sp3_sp3_81       "C3'"       "C4'"       "C5'"      "H5'2"      60.000    10.0     3
+ZOD            sp3_sp3_82       "O4'"       "C4'"       "C5'"       "O5'"      60.000    10.0     3
+ZOD            sp3_sp3_83       "O4'"       "C4'"       "C5'"      "H5'1"     180.000    10.0     3
+ZOD            sp3_sp3_84       "O4'"       "C4'"       "C5'"      "H5'2"     -60.000    10.0     3
+ZOD            sp3_sp3_85       "H4'"       "C4'"       "C5'"       "O5'"     -60.000    10.0     3
+ZOD            sp3_sp3_86       "H4'"       "C4'"       "C5'"      "H5'1"      60.000    10.0     3
+ZOD            sp3_sp3_87       "H4'"       "C4'"       "C5'"      "H5'2"     180.000    10.0     3
+ZOD            sp3_sp3_88          PB         O3A          PA         O2A     180.000    10.0     3
+ZOD            sp3_sp3_89          PB         O3A          PA       "O5'"     -60.000    10.0     3
+ZOD            sp3_sp3_90          PB         O3A          PA         O1A      60.000    10.0     3
+ZOD            sp3_sp3_91       "C3'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+ZOD            sp3_sp3_92       "C1'"       "C2'"       "O2'"      "HO2'"      60.000    10.0     3
+ZOD            sp3_sp3_93       "H2'"       "C2'"       "O2'"      "HO2'"     -60.000    10.0     3
+ZOD            sp3_sp3_94       "C5'"       "O5'"          PA         O3A     180.000    10.0     3
+ZOD            sp3_sp3_95       "C5'"       "O5'"          PA         O2A     -60.000    10.0     3
+ZOD            sp3_sp3_96       "C5'"       "O5'"          PA         O1A      60.000    10.0     3
+ZOD            sp3_sp3_97       "C3'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+ZOD            sp3_sp3_98       "C5'"       "C4'"       "O4'"       "C1'"      60.000    10.0     3
+ZOD            sp3_sp3_99       "H4'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+ZOD           sp3_sp3_100         C09         C38         O39         H25     180.000    10.0     3
+ZOD           sp3_sp3_101         C05         C38         O39         H25      60.000    10.0     3
+ZOD           sp3_sp3_102         H24         C38         O39         H25     -60.000    10.0     3
+ZOD           sp3_sp3_112         O08         C06         O07          H6     180.000    10.0     3
+ZOD           sp3_sp3_113         C05         C06         O07          H6      60.000    10.0     3
+ZOD           sp3_sp3_114          H5         C06         O07          H6     -60.000    10.0     3
+ZOD             sp2_sp3_1          C8          N9       "C1'"       "C2'"     150.000    10.0     6
+ZOD             sp2_sp3_2          C8          N9       "C1'"       "O4'"     -90.000    10.0     6
+ZOD             sp2_sp3_3          C8          N9       "C1'"       "H1'"      30.000    10.0     6
+ZOD             sp2_sp3_4          C4          N9       "C1'"       "C2'"     -30.000    10.0     6
+ZOD             sp2_sp3_5          C4          N9       "C1'"       "O4'"      90.000    10.0     6
+ZOD             sp2_sp3_6          C4          N9       "C1'"       "H1'"    -150.000    10.0     6
+ZOD           sp3_sp3_115         C38         C05         O04         C02     180.000    10.0     3
+ZOD           sp3_sp3_116         C06         C05         O04         C02     -60.000    10.0     3
+ZOD           sp3_sp3_117          H4         C05         O04         C02      60.000    10.0     3
+ZOD             sp2_sp3_7         O04         C02         C01          H1       0.000    10.0     6
+ZOD             sp2_sp3_8         O04         C02         C01         H10     120.000    10.0     6
+ZOD             sp2_sp3_9         O04         C02         C01          H3    -120.000    10.0     6
+ZOD            sp2_sp3_10         O03         C02         C01          H1     180.000    10.0     6
+ZOD            sp2_sp3_11         O03         C02         C01         H10     -60.000    10.0     6
+ZOD            sp2_sp3_12         O03         C02         C01          H3      60.000    10.0     6
+ZOD              const_21          C5          C4          N9          C8       0.000    10.0     2
+ZOD              const_22          C5          C4          N9       "C1'"     180.000    10.0     2
+ZOD              const_23          N3          C4          N9          C8     180.000    10.0     2
+ZOD              const_24          N3          C4          N9       "C1'"       0.000    10.0     2
+ZOD             sp2_sp2_1         C01         C02         O04         C05     180.000     5.0     2
+ZOD             sp2_sp2_2         O03         C02         O04         C05       0.000     5.0     2
+ZOD              const_25          C4          C5          C6          N1       0.000    10.0     2
+ZOD              const_26          C4          C5          C6          N6     180.000    10.0     2
+ZOD              const_27          N7          C5          C6          N1     180.000    10.0     2
+ZOD              const_28          N7          C5          C6          N6       0.000    10.0     2
+ZOD             sp2_sp2_3          C5          C6          N6        HN61     180.000     5.0     2
+ZOD             sp2_sp2_4          C5          C6          N6        HN62       0.000     5.0     2
+ZOD             sp2_sp2_5          N1          C6          N6        HN61       0.000     5.0     2
+ZOD             sp2_sp2_6          N1          C6          N6        HN62     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZOD    chir_1    C05    O04    C06    C38    negative
+ZOD    chir_2    C06    O08    O07    C05    negative
+ZOD    chir_3    C09    O08    C38    C10    negative
+ZOD    chir_4    PB    O3A    O1B    O3B    both
+ZOD    chir_5    PA    O3A    "O5'"    O2A    both
+ZOD    chir_6    "C4'"    "O4'"    "C3'"    "C5'"    negative
+ZOD    chir_7    "C1'"    "O4'"    N9    "C2'"    negative
+ZOD    chir_8    "C2'"    "O2'"    "C1'"    "C3'"    negative
+ZOD    chir_9    "C3'"    "O3'"    "C4'"    "C2'"    positive
+ZOD    chir_10    C38    O39    C05    C09    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZOD    plan-1       "C1'"   0.020
+ZOD    plan-1          C2   0.020
+ZOD    plan-1          C4   0.020
+ZOD    plan-1          C5   0.020
+ZOD    plan-1          C6   0.020
+ZOD    plan-1          C8   0.020
+ZOD    plan-1          H2   0.020
+ZOD    plan-1          H8   0.020
+ZOD    plan-1          N1   0.020
+ZOD    plan-1          N3   0.020
+ZOD    plan-1          N6   0.020
+ZOD    plan-1          N7   0.020
+ZOD    plan-1          N9   0.020
+ZOD    plan-2         C01   0.020
+ZOD    plan-2         C02   0.020
+ZOD    plan-2         O03   0.020
+ZOD    plan-2         O04   0.020
+ZOD    plan-3          C6   0.020
+ZOD    plan-3        HN61   0.020
+ZOD    plan-3        HN62   0.020
+ZOD    plan-3          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZOD           SMILES              ACDLabs 12.01                                                                                                                                                                                   CC(=O)OC1C(O)OC(C1O)COP(OP(O)(=O)OCC4OC(n2cnc3c(N)ncnc23)C(O)C4O)(=O)O
+ZOD            InChI                InChI  1.03 InChI=1S/C17H25N5O15P2/c1-6(23)34-13-11(25)8(36-17(13)27)3-33-39(30,31)37-38(28,29)32-2-7-10(24)12(26)16(35-7)22-5-21-9-14(18)19-4-20-15(9)22/h4-5,7-8,10-13,16-17,24-27H,2-3H2,1H3,(H,28,29)(H,30,31)(H2,18,19,20)/t7-,8-,10-,11-,12-,13-,16-,17-/m1/s1
+ZOD         InChIKey                InChI  1.03                                                                                                                                                                                                                              BFNOPXRXIQJDHO-QJWJOKBXSA-N
+ZOD SMILES_CANONICAL               CACTVS 3.385                                                                                                                                              CC(=O)O[C@H]1[C@H](O)O[C@H](CO[P](O)(=O)O[P](O)(=O)OC[C@H]2O[C@H]([C@H](O)[C@@H]2O)n3cnc4c(N)ncnc34)[C@H]1O
+ZOD           SMILES               CACTVS 3.385                                                                                                                                                       CC(=O)O[CH]1[CH](O)O[CH](CO[P](O)(=O)O[P](O)(=O)OC[CH]2O[CH]([CH](O)[CH]2O)n3cnc4c(N)ncnc34)[CH]1O
+ZOD SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                                                               CC(=O)O[C@@H]1[C@@H]([C@H](O[C@H]1O)COP(=O)(O)OP(=O)(O)OC[C@@H]2[C@H]([C@H]([C@@H](O2)n3cnc4c3ncnc4N)O)O)O
+ZOD           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                                                                                   CC(=O)OC1C(C(OC1O)COP(=O)(O)OP(=O)(O)OCC2C(C(C(O2)n3cnc4c3ncnc4N)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZOD acedrg               243         "dictionary generator"                  
+ZOD acedrg_database      11          "data source"                           
+ZOD rdkit                2017.03.2   "Chemoinformatics tool"
+ZOD refmac5              5.8.0238    "optimization tool"                     

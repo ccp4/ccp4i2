@@ -1,0 +1,319 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+B29     B29      "[2-(3-DIBENZOFURAN-4-YL-PHENYL)-1-HYDROXY-1-PHOSPHONO-ETHYL]-PHOSPHONIC ACID"     NON-POLYMER     44     30     .     
+#
+data_comp_B29
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+B29     CAY     C       CR56    0       43.169      33.930      56.277      
+B29     CAP     C       CR16    0       43.986      32.803      56.393      
+B29     CAI     C       CR16    0       44.034      31.909      55.336      
+B29     CAH     C       CR16    0       43.283      32.127      54.176      
+B29     CAO     C       CR16    0       42.467      33.236      54.038      
+B29     CAX     C       CR56    0       42.436      34.111      55.105      
+B29     OAT     O       O2      0       41.683      35.271      55.148      
+B29     CBA     C       CR56    0       41.944      35.846      56.389      
+B29     CAZ     C       CR56    0       42.848      35.065      57.120      
+B29     CAQ     C       CR16    0       43.241      35.470      58.395      
+B29     CAK     C       CR16    0       42.715      36.646      58.898      
+B29     CAN     C       CR16    0       41.813      37.407      58.151      
+B29     CAW     C       CR6     0       41.390      37.040      56.860      
+B29     CAV     C       CR6     0       40.425      37.893      56.116      
+B29     CAR     C       CR16    0       40.558      39.283      56.080      
+B29     CAM     C       CR16    0       39.353      37.318      55.440      
+B29     CAJ     C       CR16    0       38.451      38.108      54.747      
+B29     CAL     C       CR16    0       38.608      39.485      54.728      
+B29     CAU     C       CR6     0       39.661      40.095      55.401      
+B29     CAS     C       CH2     0       39.834      41.597      55.379      
+B29     CBB     C       CT      0       39.307      42.367      56.606      
+B29     PBC     P       P       0       39.711      44.151      56.413      
+B29     OAD     O       O       0       38.793      44.678      55.345      
+B29     OAE     O       OP      -1      39.457      44.810      57.740      
+B29     OAA     O       OP      -1      41.155      44.267      56.010      
+B29     PBD     P       P       0       37.507      42.067      56.874      
+B29     OAF     O       O       0       36.850      42.062      55.523      
+B29     OAG     O       OP      -1      37.380      40.734      57.559      
+B29     OAB     O       OP      -1      36.984      43.180      57.738      
+B29     OAC     O       OH1     0       40.043      41.915      57.762      
+B29     HAP     H       H       0       44.497      32.650      57.177      
+B29     HAI     H       H       0       44.581      31.142      55.397      
+B29     HAH     H       H       0       43.333      31.503      53.471      
+B29     HAO     H       H       0       41.960      33.387      53.261      
+B29     HAQ     H       H       0       43.852      34.956      58.905      
+B29     HAK     H       H       0       42.968      36.939      59.760      
+B29     HAN     H       H       0       41.475      38.207      58.530      
+B29     HAR     H       H       0       41.275      39.691      56.538      
+B29     HAM     H       H       0       39.243      36.379      55.448      
+B29     HAJ     H       H       0       37.728      37.708      54.288      
+B29     HAL     H       H       0       37.989      40.017      54.255      
+B29     HAS1    H       H       0       39.385      41.949      54.582      
+B29     HAS2    H       H       0       40.789      41.790      55.283      
+B29     HOAC    H       H       0       39.731      41.193      58.082      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+B29         CAY         CAX      SINGLE       y     1.391  0.0100     1.391  0.0100
+B29         CAY         CAP      DOUBLE       y     1.393  0.0100     1.393  0.0100
+B29         CAY         CAZ      SINGLE       y     1.449  0.0100     1.449  0.0100
+B29         CAP         CAI      SINGLE       y     1.381  0.0100     1.381  0.0100
+B29         CAI         CAH      DOUBLE       y     1.395  0.0112     1.395  0.0112
+B29         CAH         CAO      SINGLE       y     1.380  0.0109     1.380  0.0109
+B29         CAO         CAX      DOUBLE       y     1.377  0.0100     1.377  0.0100
+B29         CAX         OAT      SINGLE       y     1.383  0.0100     1.383  0.0100
+B29         OAT         CBA      SINGLE       y     1.392  0.0100     1.392  0.0100
+B29         CBA         CAZ      DOUBLE       y     1.397  0.0100     1.397  0.0100
+B29         CBA         CAW      SINGLE       y     1.392  0.0100     1.392  0.0100
+B29         CAZ         CAQ      SINGLE       y     1.392  0.0100     1.392  0.0100
+B29         CAQ         CAK      DOUBLE       y     1.380  0.0100     1.380  0.0100
+B29         CAK         CAN      SINGLE       y     1.394  0.0100     1.394  0.0100
+B29         CAN         CAW      DOUBLE       y     1.402  0.0100     1.402  0.0100
+B29         CAW         CAV      SINGLE       n     1.485  0.0100     1.485  0.0100
+B29         CAV         CAM      SINGLE       y     1.388  0.0100     1.388  0.0100
+B29         CAV         CAR      DOUBLE       y     1.392  0.0100     1.392  0.0100
+B29         CAR         CAU      SINGLE       y     1.382  0.0100     1.382  0.0100
+B29         CAM         CAJ      DOUBLE       y     1.379  0.0184     1.379  0.0184
+B29         CAJ         CAL      SINGLE       y     1.383  0.0105     1.383  0.0105
+B29         CAL         CAU      DOUBLE       y     1.385  0.0110     1.385  0.0110
+B29         CAU         CAS      SINGLE       n     1.510  0.0100     1.510  0.0100
+B29         CAS         CBB      SINGLE       n     1.536  0.0118     1.536  0.0118
+B29         CBB         PBC      SINGLE       n     1.837  0.0200     1.837  0.0200
+B29         CBB         PBD      SINGLE       n     1.837  0.0200     1.837  0.0200
+B29         CBB         OAC      SINGLE       n     1.443  0.0100     1.443  0.0100
+B29         PBC         OAD      DOUBLE       n     1.505  0.0200     1.505  0.0200
+B29         PBC         OAA      SINGLE       n     1.505  0.0200     1.505  0.0200
+B29         PBC         OAE      SINGLE       n     1.505  0.0200     1.505  0.0200
+B29         PBD         OAF      DOUBLE       n     1.505  0.0200     1.505  0.0200
+B29         PBD         OAG      SINGLE       n     1.505  0.0200     1.505  0.0200
+B29         PBD         OAB      SINGLE       n     1.505  0.0200     1.505  0.0200
+B29         CAP         HAP      SINGLE       n     1.082  0.0130     0.948  0.0100
+B29         CAI         HAI      SINGLE       n     1.082  0.0130     0.944  0.0181
+B29         CAH         HAH      SINGLE       n     1.082  0.0130     0.943  0.0163
+B29         CAO         HAO      SINGLE       n     1.082  0.0130     0.940  0.0122
+B29         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.948  0.0100
+B29         CAK         HAK      SINGLE       n     1.082  0.0130     0.945  0.0100
+B29         CAN         HAN      SINGLE       n     1.082  0.0130     0.947  0.0100
+B29         CAR         HAR      SINGLE       n     1.082  0.0130     0.944  0.0200
+B29         CAM         HAM      SINGLE       n     1.082  0.0130     0.945  0.0170
+B29         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.945  0.0184
+B29         CAL         HAL      SINGLE       n     1.082  0.0130     0.944  0.0174
+B29         CAS        HAS1      SINGLE       n     1.089  0.0100     0.980  0.0131
+B29         CAS        HAS2      SINGLE       n     1.089  0.0100     0.980  0.0131
+B29         OAC        HOAC      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+B29         CAX         CAY         CAP     118.830    1.50
+B29         CAX         CAY         CAZ     105.573    1.50
+B29         CAP         CAY         CAZ     135.597    1.50
+B29         CAY         CAP         CAI     118.295    1.50
+B29         CAY         CAP         HAP     121.007    1.50
+B29         CAI         CAP         HAP     120.697    1.50
+B29         CAP         CAI         CAH     120.991    1.50
+B29         CAP         CAI         HAI     119.656    1.50
+B29         CAH         CAI         HAI     119.353    1.50
+B29         CAI         CAH         CAO     121.704    1.50
+B29         CAI         CAH         HAH     119.207    1.50
+B29         CAO         CAH         HAH     119.089    1.50
+B29         CAH         CAO         CAX     116.279    1.50
+B29         CAH         CAO         HAO     121.995    1.50
+B29         CAX         CAO         HAO     121.726    1.50
+B29         CAY         CAX         CAO     123.900    1.50
+B29         CAY         CAX         OAT     111.585    1.50
+B29         CAO         CAX         OAT     124.515    1.50
+B29         CAX         OAT         CBA     105.854    1.50
+B29         OAT         CBA         CAZ     111.077    1.50
+B29         OAT         CBA         CAW     125.100    1.50
+B29         CAZ         CBA         CAW     123.823    1.50
+B29         CAY         CAZ         CBA     105.912    1.50
+B29         CAY         CAZ         CAQ     134.262    1.50
+B29         CBA         CAZ         CAQ     119.826    1.50
+B29         CAZ         CAQ         CAK     118.180    1.50
+B29         CAZ         CAQ         HAQ     121.065    1.50
+B29         CAK         CAQ         HAQ     120.755    1.50
+B29         CAQ         CAK         CAN     121.028    1.50
+B29         CAQ         CAK         HAK     119.528    1.50
+B29         CAN         CAK         HAK     119.444    1.50
+B29         CAK         CAN         CAW     122.707    1.50
+B29         CAK         CAN         HAN     118.617    1.50
+B29         CAW         CAN         HAN     118.675    1.50
+B29         CBA         CAW         CAN     114.435    1.50
+B29         CBA         CAW         CAV     125.035    1.84
+B29         CAN         CAW         CAV     120.529    1.84
+B29         CAW         CAV         CAM     120.177    1.50
+B29         CAW         CAV         CAR     121.117    1.50
+B29         CAM         CAV         CAR     118.706    1.50
+B29         CAV         CAR         CAU     121.801    1.50
+B29         CAV         CAR         HAR     119.452    1.50
+B29         CAU         CAR         HAR     118.747    1.50
+B29         CAV         CAM         CAJ     121.015    1.50
+B29         CAV         CAM         HAM     119.478    1.50
+B29         CAJ         CAM         HAM     119.506    1.50
+B29         CAM         CAJ         CAL     120.176    1.50
+B29         CAM         CAJ         HAJ     119.906    1.50
+B29         CAL         CAJ         HAJ     119.918    1.50
+B29         CAJ         CAL         CAU     120.749    1.50
+B29         CAJ         CAL         HAL     119.723    1.50
+B29         CAU         CAL         HAL     119.528    1.50
+B29         CAR         CAU         CAL     117.553    1.50
+B29         CAR         CAU         CAS     121.224    1.50
+B29         CAL         CAU         CAS     121.224    1.50
+B29         CAU         CAS         CBB     115.699    1.50
+B29         CAU         CAS        HAS1     108.906    1.50
+B29         CAU         CAS        HAS2     108.906    1.50
+B29         CBB         CAS        HAS1     108.597    1.50
+B29         CBB         CAS        HAS2     108.597    1.50
+B29        HAS1         CAS        HAS2     107.735    1.50
+B29         CAS         CBB         PBC     111.410    2.87
+B29         CAS         CBB         PBD     111.410    2.87
+B29         CAS         CBB         OAC     108.069    2.19
+B29         PBC         CBB         PBD     114.813    3.00
+B29         PBC         CBB         OAC     108.256    2.94
+B29         PBD         CBB         OAC     108.256    2.94
+B29         CBB         PBC         OAD     110.326    3.00
+B29         CBB         PBC         OAA     110.326    3.00
+B29         CBB         PBC         OAE     110.326    3.00
+B29         OAD         PBC         OAA     112.502    1.50
+B29         OAD         PBC         OAE     112.502    1.50
+B29         OAA         PBC         OAE     112.502    1.50
+B29         CBB         PBD         OAF     110.326    3.00
+B29         CBB         PBD         OAG     110.326    3.00
+B29         CBB         PBD         OAB     110.326    3.00
+B29         OAF         PBD         OAG     112.502    1.50
+B29         OAF         PBD         OAB     112.502    1.50
+B29         OAG         PBD         OAB     112.502    1.50
+B29         CBB         OAC        HOAC     110.980    2.79
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+B29              const_65         CAI         CAP         CAY         CAX       0.000    10.0     2
+B29       const_sp2_sp2_1         CAO         CAX         CAY         CAP       0.000     5.0     2
+B29              const_69         CAX         CAY         CAZ         CBA       0.000    10.0     2
+B29              const_53         CAQ         CAK         CAN         CAW       0.000    10.0     2
+B29              const_57         CAK         CAN         CAW         CBA       0.000    10.0     2
+B29             sp2_sp2_1         CAM         CAV         CAW         CBA     180.000     5.0     2
+B29              const_78         CAU         CAR         CAV         CAW     180.000    10.0     2
+B29              const_22         CAJ         CAM         CAV         CAW     180.000    10.0     2
+B29              const_38         CAV         CAR         CAU         CAS     180.000    10.0     2
+B29              const_25         CAL         CAJ         CAM         CAV       0.000    10.0     2
+B29              const_29         CAM         CAJ         CAL         CAU       0.000    10.0     2
+B29              const_34         CAJ         CAL         CAU         CAS     180.000    10.0     2
+B29             sp2_sp3_2         CAR         CAU         CAS         CBB     -90.000    10.0     6
+B29             sp3_sp3_1         CAU         CAS         CBB         PBC     180.000    10.0     3
+B29              const_17         CAH         CAI         CAP         CAY       0.000    10.0     2
+B29            sp3_sp3_18         CAS         CBB         PBC         OAD     180.000    10.0     3
+B29            sp3_sp3_27         CAS         CBB         PBD         OAF     180.000    10.0     3
+B29            sp3_sp3_30         CAS         CBB         OAC        HOAC     -60.000    10.0     3
+B29              const_13         CAO         CAH         CAI         CAP       0.000    10.0     2
+B29       const_sp2_sp2_9         CAI         CAH         CAO         CAX       0.000     5.0     2
+B29       const_sp2_sp2_5         CAH         CAO         CAX         CAY       0.000     5.0     2
+B29              const_61         CAY         CAX         OAT         CBA       0.000    10.0     2
+B29              const_63         CAZ         CBA         OAT         CAX       0.000    10.0     2
+B29              const_74         CAN         CAW         CBA         OAT     180.000    10.0     2
+B29              const_41         CAY         CAZ         CBA         OAT       0.000    10.0     2
+B29              const_46         CAK         CAQ         CAZ         CAY     180.000    10.0     2
+B29              const_49         CAN         CAK         CAQ         CAZ       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+B29    chir_1    CBB    PBC    PBD    OAC    both
+B29    chir_2    PBC    OAA    OAE    OAD    both
+B29    chir_3    PBD    OAG    OAB    OAF    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+B29    plan-1         CAH   0.020
+B29    plan-1         CAI   0.020
+B29    plan-1         CAK   0.020
+B29    plan-1         CAN   0.020
+B29    plan-1         CAO   0.020
+B29    plan-1         CAP   0.020
+B29    plan-1         CAQ   0.020
+B29    plan-1         CAV   0.020
+B29    plan-1         CAW   0.020
+B29    plan-1         CAX   0.020
+B29    plan-1         CAY   0.020
+B29    plan-1         CAZ   0.020
+B29    plan-1         CBA   0.020
+B29    plan-1         HAH   0.020
+B29    plan-1         HAI   0.020
+B29    plan-1         HAK   0.020
+B29    plan-1         HAN   0.020
+B29    plan-1         HAO   0.020
+B29    plan-1         HAP   0.020
+B29    plan-1         HAQ   0.020
+B29    plan-1         OAT   0.020
+B29    plan-2         CAJ   0.020
+B29    plan-2         CAL   0.020
+B29    plan-2         CAM   0.020
+B29    plan-2         CAR   0.020
+B29    plan-2         CAS   0.020
+B29    plan-2         CAU   0.020
+B29    plan-2         CAV   0.020
+B29    plan-2         CAW   0.020
+B29    plan-2         HAJ   0.020
+B29    plan-2         HAL   0.020
+B29    plan-2         HAM   0.020
+B29    plan-2         HAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+B29           SMILES              ACDLabs 10.04                                                                                                    O=P(O)(O)C(O)(P(=O)(O)O)Cc4cccc(c2cccc1c3c(oc12)cccc3)c4
+B29 SMILES_CANONICAL               CACTVS 3.341                                                                                                  OC(Cc1cccc(c1)c2cccc3c2oc4ccccc34)([P](O)(O)=O)[P](O)(O)=O
+B29           SMILES               CACTVS 3.341                                                                                                  OC(Cc1cccc(c1)c2cccc3c2oc4ccccc34)([P](O)(O)=O)[P](O)(O)=O
+B29 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                  c1ccc2c(c1)c3cccc(c3o2)c4cccc(c4)CC(O)(P(=O)(O)O)P(=O)(O)O
+B29           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                  c1ccc2c(c1)c3cccc(c3o2)c4cccc(c4)CC(O)(P(=O)(O)O)P(=O)(O)O
+B29            InChI                InChI  1.03 InChI=1S/C20H18O8P2/c21-20(29(22,23)24,30(25,26)27)12-13-5-3-6-14(11-13)15-8-4-9-17-16-7-1-2-10-18(16)28-19(15)17/h1-11,21H,12H2,(H2,22,23,24)(H2,25,26,27)
+B29         InChIKey                InChI  1.03                                                                                                                                 BYVXAUZOTGITQZ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+B29 acedrg               243         "dictionary generator"                  
+B29 acedrg_database      11          "data source"                           
+B29 rdkit                2017.03.2   "Chemoinformatics tool"
+B29 refmac5              5.8.0238    "optimization tool"                     

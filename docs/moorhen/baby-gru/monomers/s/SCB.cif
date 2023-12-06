@@ -1,0 +1,352 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SCB     SCB      "2-CHLORO-5-(5-{(E)-[(2Z)-3-(2-METHOXYETHYL)-4-OXO-2-(PHENYLIMINO)-1,3-THIAZOLIDIN-5-YLIDENE]METHYL}-2-FURYL)BENZOIC ACID"     NON-POLYMER     51     33     .     
+#
+data_comp_SCB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SCB     C1      C       CH3     0       -87.294     62.446      193.977     
+SCB     O1      O       O2      0       -88.613     62.981      194.001     
+SCB     C2      C       CH2     0       -88.723     64.157      194.765     
+SCB     C3      C       CH2     0       -89.076     63.810      196.192     
+SCB     N1      N       NR5     0       -89.167     64.998      197.046     
+SCB     C4      C       CR5     0       -88.031     65.641      197.518     
+SCB     O2      O       O       0       -86.882     65.257      197.262     
+SCB     C5      C       CR5     0       -88.330     66.734      198.297     
+SCB     C6      C       C1      0       -87.422     67.661      198.968     
+SCB     C7      C       CR5     0       -86.137     68.102      198.452     
+SCB     C8      C       CR15    0       -85.715     68.333      197.191     
+SCB     C9      C       CR15    0       -84.365     68.737      197.269     
+SCB     C10     C       CR5     0       -84.020     68.729      198.580     
+SCB     O3      O       O2      0       -85.103     68.334      199.325     
+SCB     C11     C       CR6     0       -82.782     69.044      199.284     
+SCB     C12     C       CR16    0       -82.761     69.289      200.663     
+SCB     C13     C       CR16    0       -81.580     69.591      201.319     
+SCB     C14     C       CR6     0       -80.398     69.658      200.600     
+SCB     CL1     CL      CL      0       -78.951     70.042      201.482     
+SCB     C15     C       CR6     0       -80.376     69.424      199.225     
+SCB     C16     C       CR16    0       -81.574     69.120      198.578     
+SCB     C17     C       C       0       -79.113     69.488      198.417     
+SCB     O4      O       O       0       -78.681     68.425      197.937     
+SCB     O5      O       OC      -1      -78.576     70.602      198.276     
+SCB     S1      S       S2      0       -89.980     66.936      198.415     
+SCB     C18     C       CR5     0       -90.332     65.610      197.460     
+SCB     N2      N       N       0       -91.591     65.153      197.112     
+SCB     C19     C       CR6     0       -92.854     65.699      197.466     
+SCB     C20     C       CR16    0       -93.203     67.018      197.200     
+SCB     C21     C       CR16    0       -94.457     67.498      197.548     
+SCB     C22     C       CR16    0       -95.382     66.666      198.146     
+SCB     C23     C       CR16    0       -95.051     65.350      198.398     
+SCB     C24     C       CR16    0       -93.798     64.866      198.055     
+SCB     H11     H       H       0       -87.304     61.589      193.520     
+SCB     H12A    H       H       0       -86.974     62.322      194.885     
+SCB     H13A    H       H       0       -86.705     63.056      193.505     
+SCB     H21A    H       H       0       -89.431     64.714      194.376     
+SCB     H22A    H       H       0       -87.887     64.672      194.742     
+SCB     H31     H       H       0       -88.395     63.212      196.555     
+SCB     H32     H       H       0       -89.929     63.337      196.205     
+SCB     H6      H       H       0       -87.693     68.002      199.805     
+SCB     H8      H       H       0       -86.225     68.246      196.410     
+SCB     H9      H       H       0       -83.809     68.967      196.547     
+SCB     H12     H       H       0       -83.561     69.246      201.158     
+SCB     H13     H       H       0       -81.579     69.751      202.244     
+SCB     H16     H       H       0       -81.571     68.961      197.656     
+SCB     H20     H       H       0       -92.577     67.592      196.796     
+SCB     H21     H       H       0       -94.677     68.399      197.373     
+SCB     H22     H       H       0       -96.235     66.995      198.381     
+SCB     H23     H       H       0       -95.678     64.775      198.807     
+SCB     H24     H       H       0       -93.579     63.968      198.230     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SCB          C1          O1      SINGLE       n     1.415  0.0200     1.415  0.0200
+SCB          O1          C2      SINGLE       n     1.404  0.0100     1.404  0.0100
+SCB          C2          C3      SINGLE       n     1.511  0.0100     1.511  0.0100
+SCB          C3          N1      SINGLE       n     1.463  0.0100     1.463  0.0100
+SCB          N1          C4      SINGLE       y     1.362  0.0144     1.362  0.0144
+SCB          N1         C18      SINGLE       y     1.367  0.0133     1.367  0.0133
+SCB          C4          O2      DOUBLE       n     1.237  0.0126     1.237  0.0126
+SCB          C4          C5      SINGLE       y     1.362  0.0200     1.362  0.0200
+SCB          C5          C6      DOUBLE       n     1.454  0.0200     1.454  0.0200
+SCB          C5          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+SCB          C6          C7      SINGLE       n     1.447  0.0200     1.447  0.0200
+SCB          C7          C8      DOUBLE       y     1.350  0.0131     1.350  0.0131
+SCB          C7          O3      SINGLE       y     1.372  0.0132     1.372  0.0132
+SCB          C8          C9      SINGLE       y     1.411  0.0100     1.411  0.0100
+SCB          C9         C10      DOUBLE       y     1.356  0.0100     1.356  0.0100
+SCB         C10          O3      SINGLE       y     1.370  0.0100     1.370  0.0100
+SCB         C10         C11      SINGLE       n     1.455  0.0100     1.455  0.0100
+SCB         C11         C12      DOUBLE       y     1.395  0.0100     1.395  0.0100
+SCB         C11         C16      SINGLE       y     1.395  0.0100     1.395  0.0100
+SCB         C12         C13      SINGLE       y     1.382  0.0100     1.382  0.0100
+SCB         C13         C14      DOUBLE       y     1.383  0.0100     1.383  0.0100
+SCB         C14         CL1      SINGLE       n     1.737  0.0100     1.737  0.0100
+SCB         C14         C15      SINGLE       y     1.391  0.0104     1.391  0.0104
+SCB         C15         C16      DOUBLE       y     1.390  0.0100     1.390  0.0100
+SCB         C15         C17      SINGLE       n     1.498  0.0200     1.498  0.0200
+SCB         C17          O4      DOUBLE       n     1.244  0.0200     1.244  0.0200
+SCB         C17          O5      SINGLE       n     1.244  0.0200     1.244  0.0200
+SCB          S1         C18      SINGLE       y     1.695  0.0200     1.695  0.0200
+SCB         C18          N2      DOUBLE       n     1.368  0.0200     1.368  0.0200
+SCB          N2         C19      SINGLE       n     1.417  0.0150     1.417  0.0150
+SCB         C19         C20      DOUBLE       y     1.385  0.0100     1.385  0.0100
+SCB         C19         C24      SINGLE       y     1.385  0.0100     1.385  0.0100
+SCB         C20         C21      SINGLE       y     1.383  0.0100     1.383  0.0100
+SCB         C21         C22      DOUBLE       y     1.376  0.0124     1.376  0.0124
+SCB         C22         C23      SINGLE       y     1.377  0.0118     1.377  0.0118
+SCB         C23         C24      DOUBLE       y     1.383  0.0100     1.383  0.0100
+SCB          C1         H11      SINGLE       n     1.089  0.0100     0.971  0.0146
+SCB          C1        H12A      SINGLE       n     1.089  0.0100     0.971  0.0146
+SCB          C1        H13A      SINGLE       n     1.089  0.0100     0.971  0.0146
+SCB          C2        H21A      SINGLE       n     1.089  0.0100     0.981  0.0174
+SCB          C2        H22A      SINGLE       n     1.089  0.0100     0.981  0.0174
+SCB          C3         H31      SINGLE       n     1.089  0.0100     0.976  0.0114
+SCB          C3         H32      SINGLE       n     1.089  0.0100     0.976  0.0114
+SCB          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0200
+SCB          C8          H8      SINGLE       n     1.082  0.0130     0.937  0.0166
+SCB          C9          H9      SINGLE       n     1.082  0.0130     0.939  0.0104
+SCB         C12         H12      SINGLE       n     1.082  0.0130     0.942  0.0100
+SCB         C13         H13      SINGLE       n     1.082  0.0130     0.939  0.0155
+SCB         C16         H16      SINGLE       n     1.082  0.0130     0.935  0.0100
+SCB         C20         H20      SINGLE       n     1.082  0.0130     0.941  0.0200
+SCB         C21         H21      SINGLE       n     1.082  0.0130     0.944  0.0200
+SCB         C22         H22      SINGLE       n     1.082  0.0130     0.944  0.0161
+SCB         C23         H23      SINGLE       n     1.082  0.0130     0.944  0.0200
+SCB         C24         H24      SINGLE       n     1.082  0.0130     0.941  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SCB          O1          C1         H11     109.470    1.50
+SCB          O1          C1        H12A     109.470    1.50
+SCB          O1          C1        H13A     109.470    1.50
+SCB         H11          C1        H12A     109.532    1.53
+SCB         H11          C1        H13A     109.532    1.53
+SCB        H12A          C1        H13A     109.532    1.53
+SCB          C1          O1          C2     111.915    1.50
+SCB          O1          C2          C3     109.380    2.71
+SCB          O1          C2        H21A     108.947    2.53
+SCB          O1          C2        H22A     108.947    2.53
+SCB          C3          C2        H21A     109.918    1.68
+SCB          C3          C2        H22A     109.918    1.68
+SCB        H21A          C2        H22A     108.313    2.12
+SCB          C2          C3          N1     112.602    1.50
+SCB          C2          C3         H31     109.261    1.50
+SCB          C2          C3         H32     109.261    1.50
+SCB          N1          C3         H31     108.902    1.50
+SCB          N1          C3         H32     108.902    1.50
+SCB         H31          C3         H32     108.223    1.50
+SCB          C3          N1          C4     124.716    1.85
+SCB          C3          N1         C18     127.569    1.50
+SCB          C4          N1         C18     107.715    1.50
+SCB          N1          C4          O2     123.882    1.50
+SCB          N1          C4          C5     106.906    1.50
+SCB          O2          C4          C5     129.212    2.84
+SCB          C4          C5          C6     131.802    3.00
+SCB          C4          C5          S1     108.460    3.00
+SCB          C6          C5          S1     119.739    3.00
+SCB          C5          C6          C7     126.066    3.00
+SCB          C5          C6          H6     116.967    1.81
+SCB          C7          C6          H6     116.967    1.81
+SCB          C6          C7          C8     132.643    3.00
+SCB          C6          C7          O3     118.070    2.51
+SCB          C8          C7          O3     109.287    1.50
+SCB          C7          C8          C9     106.990    1.50
+SCB          C7          C8          H8     126.468    1.50
+SCB          C9          C8          H8     126.542    1.50
+SCB          C8          C9         C10     106.802    1.50
+SCB          C8          C9          H9     126.582    1.50
+SCB         C10          C9          H9     126.616    1.50
+SCB          C9         C10          O3     109.477    1.50
+SCB          C9         C10         C11     133.601    1.50
+SCB          O3         C10         C11     116.923    1.50
+SCB          C7          O3         C10     107.444    1.50
+SCB         C10         C11         C12     120.746    1.50
+SCB         C10         C11         C16     120.674    1.50
+SCB         C12         C11         C16     118.580    1.50
+SCB         C11         C12         C13     121.361    1.50
+SCB         C11         C12         H12     119.405    1.50
+SCB         C13         C12         H12     119.234    1.50
+SCB         C12         C13         C14     119.772    1.50
+SCB         C12         C13         H13     120.197    1.50
+SCB         C14         C13         H13     120.031    1.50
+SCB         C13         C14         CL1     117.270    1.50
+SCB         C13         C14         C15     121.494    1.50
+SCB         CL1         C14         C15     121.236    1.50
+SCB         C14         C15         C16     118.486    1.50
+SCB         C14         C15         C17     122.403    1.50
+SCB         C16         C15         C17     119.112    1.50
+SCB         C11         C16         C15     120.308    1.81
+SCB         C11         C16         H16     119.686    1.50
+SCB         C15         C16         H16     120.006    1.50
+SCB         C15         C17          O4     117.586    1.73
+SCB         C15         C17          O5     117.586    1.73
+SCB          O4         C17          O5     124.828    1.50
+SCB          C5          S1         C18     108.460    3.00
+SCB          N1         C18          S1     108.460    3.00
+SCB          N1         C18          N2     127.440    3.00
+SCB          S1         C18          N2     124.100    3.00
+SCB         C18          N2         C19     123.932    1.83
+SCB          N2         C19         C20     120.703    3.00
+SCB          N2         C19         C24     120.703    3.00
+SCB         C20         C19         C24     118.594    1.50
+SCB         C19         C20         C21     120.370    1.50
+SCB         C19         C20         H20     119.687    1.50
+SCB         C21         C20         H20     119.944    1.50
+SCB         C20         C21         C22     120.425    1.50
+SCB         C20         C21         H21     119.646    1.50
+SCB         C22         C21         H21     119.929    1.50
+SCB         C21         C22         C23     119.817    1.50
+SCB         C21         C22         H22     120.092    1.50
+SCB         C23         C22         H22     120.092    1.50
+SCB         C22         C23         C24     120.425    1.50
+SCB         C22         C23         H23     119.929    1.50
+SCB         C24         C23         H23     119.646    1.50
+SCB         C19         C24         C23     120.370    1.50
+SCB         C19         C24         H24     119.687    1.50
+SCB         C23         C24         H24     119.944    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SCB             sp3_sp3_1         H11          C1          O1          C2     180.000    10.0     3
+SCB       const_sp2_sp2_5          C7          C8          C9         C10       0.000     5.0     2
+SCB       const_sp2_sp2_9          O3         C10          C9          C8       0.000     5.0     2
+SCB              const_13          C9         C10          O3          C7       0.000    10.0     2
+SCB             sp2_sp2_9          C9         C10         C11         C12     180.000     5.0     2
+SCB              const_17         C10         C11         C12         C13     180.000    10.0     2
+SCB              const_75         C10         C11         C16         C15     180.000    10.0     2
+SCB              const_19         C11         C12         C13         C14       0.000    10.0     2
+SCB              const_24         C12         C13         C14         CL1     180.000    10.0     2
+SCB              const_30         CL1         C14         C15         C17       0.000    10.0     2
+SCB              const_33         C17         C15         C16         C11     180.000    10.0     2
+SCB            sp2_sp2_13         C14         C15         C17          O4     180.000     5.0     2
+SCB             sp3_sp3_4          C3          C2          O1          C1     180.000    10.0     3
+SCB              const_46          N2         C18          S1          C5     180.000    10.0     2
+SCB            sp2_sp2_17          N1         C18          N2         C19     180.000     5.0     2
+SCB            sp2_sp2_19         C20         C19          N2         C18     180.000     5.0     2
+SCB              const_49          N2         C19         C20         C21     180.000    10.0     2
+SCB              const_79          N2         C19         C24         C23     180.000    10.0     2
+SCB              const_51         C19         C20         C21         C22       0.000    10.0     2
+SCB              const_55         C20         C21         C22         C23       0.000    10.0     2
+SCB             sp3_sp3_7          O1          C2          C3          N1     180.000    10.0     3
+SCB              const_59         C21         C22         C23         C24       0.000    10.0     2
+SCB              const_63         C22         C23         C24         C19       0.000    10.0     2
+SCB             sp2_sp3_2          C4          N1          C3          C2     -90.000    10.0     6
+SCB              const_70          N2         C18          N1          C3       0.000    10.0     2
+SCB              const_38          O2          C4          N1          C3       0.000    10.0     2
+SCB              const_42          O2          C4          C5          C6       0.000    10.0     2
+SCB              const_44          C6          C5          S1         C18     180.000    10.0     2
+SCB             sp2_sp2_1          C4          C5          C6          C7     180.000     5.0     2
+SCB             sp2_sp2_5          C5          C6          C7          C8     180.000     5.0     2
+SCB       const_sp2_sp2_3          C6          C7          C8          C9     180.000     5.0     2
+SCB              const_72          C6          C7          O3         C10     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SCB    plan-1         C10   0.020
+SCB    plan-1         C11   0.020
+SCB    plan-1          C6   0.020
+SCB    plan-1          C7   0.020
+SCB    plan-1          C8   0.020
+SCB    plan-1          C9   0.020
+SCB    plan-1          H8   0.020
+SCB    plan-1          H9   0.020
+SCB    plan-1          O3   0.020
+SCB    plan-2         C10   0.020
+SCB    plan-2         C11   0.020
+SCB    plan-2         C12   0.020
+SCB    plan-2         C13   0.020
+SCB    plan-2         C14   0.020
+SCB    plan-2         C15   0.020
+SCB    plan-2         C16   0.020
+SCB    plan-2         C17   0.020
+SCB    plan-2         CL1   0.020
+SCB    plan-2         H12   0.020
+SCB    plan-2         H13   0.020
+SCB    plan-2         H16   0.020
+SCB    plan-3         C18   0.020
+SCB    plan-3          C3   0.020
+SCB    plan-3          C4   0.020
+SCB    plan-3          C5   0.020
+SCB    plan-3          C6   0.020
+SCB    plan-3          N1   0.020
+SCB    plan-3          N2   0.020
+SCB    plan-3          O2   0.020
+SCB    plan-3          S1   0.020
+SCB    plan-4         C19   0.020
+SCB    plan-4         C20   0.020
+SCB    plan-4         C21   0.020
+SCB    plan-4         C22   0.020
+SCB    plan-4         C23   0.020
+SCB    plan-4         C24   0.020
+SCB    plan-4         H20   0.020
+SCB    plan-4         H21   0.020
+SCB    plan-4         H22   0.020
+SCB    plan-4         H23   0.020
+SCB    plan-4         H24   0.020
+SCB    plan-4          N2   0.020
+SCB    plan-5          C5   0.020
+SCB    plan-5          C6   0.020
+SCB    plan-5          C7   0.020
+SCB    plan-5          H6   0.020
+SCB    plan-6         C15   0.020
+SCB    plan-6         C17   0.020
+SCB    plan-6          O4   0.020
+SCB    plan-6          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SCB           SMILES              ACDLabs 10.04                                                                                                                    Clc1ccc(cc1C(=O)O)c2oc(cc2)/C=C4/S/C(=N\c3ccccc3)N(C4=O)CCOC
+SCB SMILES_CANONICAL               CACTVS 3.341                                                                                                                    COCCN1C(=O)\C(SC1=Nc2ccccc2)=C/c3oc(cc3)c4ccc(Cl)c(c4)C(O)=O
+SCB           SMILES               CACTVS 3.341                                                                                                                      COCCN1C(=O)C(SC1=Nc2ccccc2)=Cc3oc(cc3)c4ccc(Cl)c(c4)C(O)=O
+SCB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                      COCCN1C(=O)C(=Cc2ccc(o2)c3ccc(c(c3)C(=O)O)Cl)SC1=Nc4ccccc4
+SCB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                      COCCN1C(=O)C(=Cc2ccc(o2)c3ccc(c(c3)C(=O)O)Cl)SC1=Nc4ccccc4
+SCB            InChI                InChI  1.03 InChI=1S/C24H19ClN2O5S/c1-31-12-11-27-22(28)21(33-24(27)26-16-5-3-2-4-6-16)14-17-8-10-20(32-17)15-7-9-19(25)18(13-15)23(29)30/h2-10,13-14H,11-12H2,1H3,(H,29,30)/b21-14+,26-24-
+SCB         InChIKey                InChI  1.03                                                                                                                                                     BLYOIVXXTIAFFL-QPVYCHHJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SCB acedrg               243         "dictionary generator"                  
+SCB acedrg_database      11          "data source"                           
+SCB rdkit                2017.03.2   "Chemoinformatics tool"
+SCB refmac5              5.8.0238    "optimization tool"                     

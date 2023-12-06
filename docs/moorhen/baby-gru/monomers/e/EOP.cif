@@ -1,0 +1,215 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EOP     EOP      "{ETHANE-1,2-DIYLBIS[IMINO(2-OXOETHANE-2,1-DIYL)]}BIS(PHOSPHONIC ACID)"     NON-POLYMER     28     18     .     
+#
+data_comp_EOP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EOP     OAD     O       OP      -1      45.099      29.829      18.562      
+EOP     PAR     P       P       0       44.657      31.000      17.728      
+EOP     OAH     O       OP      -1      43.512      31.728      18.377      
+EOP     OAG     O       O       0       45.804      31.932      17.447      
+EOP     CAL     C       CH2     0       44.066      30.353      16.137      
+EOP     CAP     C       C       0       42.611      29.975      16.161      
+EOP     OAB     O       O       0       41.770      30.686      15.605      
+EOP     NAN     N       NH1     0       42.309      28.845      16.814      
+EOP     CAJ     C       CH2     0       40.960      28.319      16.995      
+EOP     CAI     C       CH2     0       40.490      28.498      18.425      
+EOP     NAM     N       NH1     0       40.417      29.908      18.798      
+EOP     CAO     C       C       0       40.191      30.396      20.027      
+EOP     OAA     O       O       0       40.138      31.609      20.240      
+EOP     CAK     C       CH2     0       40.004      29.428      21.173      
+EOP     PAQ     P       P       0       41.545      29.022      22.047      
+EOP     OAF     O       OP      -1      41.829      30.153      22.997      
+EOP     OAE     O       OP      -1      42.646      28.879      21.032      
+EOP     OAC     O       O       0       41.319      27.733      22.789      
+EOP     HAL1    H       H       0       44.596      29.569      15.903      
+EOP     HAL2    H       H       0       44.206      31.035      15.454      
+EOP     HAN     H       H       0       42.964      28.383      17.160      
+EOP     HAJ1    H       H       0       40.955      27.366      16.772      
+EOP     HAJ2    H       H       0       40.337      28.770      16.390      
+EOP     HAI1    H       H       0       41.107      28.033      19.025      
+EOP     HAI2    H       H       0       39.606      28.091      18.528      
+EOP     HAM     H       H       0       40.526      30.491      18.156      
+EOP     HAK1    H       H       0       39.599      28.605      20.851      
+EOP     HAK2    H       H       0       39.386      29.824      21.815      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EOP         OAD         PAR      SINGLE       n     1.505  0.0200     1.505  0.0200
+EOP         PAR         OAH      SINGLE       n     1.505  0.0200     1.505  0.0200
+EOP         PAR         OAG      DOUBLE       n     1.505  0.0200     1.505  0.0200
+EOP         PAR         CAL      SINGLE       n     1.816  0.0200     1.816  0.0200
+EOP         CAL         CAP      SINGLE       n     1.501  0.0164     1.501  0.0164
+EOP         CAP         OAB      DOUBLE       n     1.232  0.0104     1.232  0.0104
+EOP         CAP         NAN      SINGLE       n     1.335  0.0100     1.335  0.0100
+EOP         NAN         CAJ      SINGLE       n     1.456  0.0100     1.456  0.0100
+EOP         CAJ         CAI      SINGLE       n     1.513  0.0183     1.513  0.0183
+EOP         CAI         NAM      SINGLE       n     1.456  0.0100     1.456  0.0100
+EOP         NAM         CAO      SINGLE       n     1.335  0.0100     1.335  0.0100
+EOP         CAO         OAA      DOUBLE       n     1.232  0.0104     1.232  0.0104
+EOP         CAO         CAK      SINGLE       n     1.501  0.0164     1.501  0.0164
+EOP         CAK         PAQ      SINGLE       n     1.816  0.0200     1.816  0.0200
+EOP         PAQ         OAF      SINGLE       n     1.505  0.0200     1.505  0.0200
+EOP         PAQ         OAE      SINGLE       n     1.505  0.0200     1.505  0.0200
+EOP         PAQ         OAC      DOUBLE       n     1.505  0.0200     1.505  0.0200
+EOP         CAL        HAL1      SINGLE       n     1.089  0.0100     0.975  0.0200
+EOP         CAL        HAL2      SINGLE       n     1.089  0.0100     0.975  0.0200
+EOP         NAN         HAN      SINGLE       n     1.016  0.0100     0.872  0.0200
+EOP         CAJ        HAJ1      SINGLE       n     1.089  0.0100     0.979  0.0148
+EOP         CAJ        HAJ2      SINGLE       n     1.089  0.0100     0.979  0.0148
+EOP         CAI        HAI1      SINGLE       n     1.089  0.0100     0.979  0.0148
+EOP         CAI        HAI2      SINGLE       n     1.089  0.0100     0.979  0.0148
+EOP         NAM         HAM      SINGLE       n     1.016  0.0100     0.872  0.0200
+EOP         CAK        HAK1      SINGLE       n     1.089  0.0100     0.975  0.0200
+EOP         CAK        HAK2      SINGLE       n     1.089  0.0100     0.975  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EOP         OAD         PAR         OAH     111.786    1.50
+EOP         OAD         PAR         OAG     111.786    1.50
+EOP         OAD         PAR         CAL     110.326    3.00
+EOP         OAH         PAR         OAG     111.786    1.50
+EOP         OAH         PAR         CAL     110.326    3.00
+EOP         OAG         PAR         CAL     110.326    3.00
+EOP         PAR         CAL         CAP     113.247    3.00
+EOP         PAR         CAL        HAL1     108.528    1.50
+EOP         PAR         CAL        HAL2     108.528    1.50
+EOP         CAP         CAL        HAL1     108.973    1.50
+EOP         CAP         CAL        HAL2     108.973    1.50
+EOP        HAL1         CAL        HAL2     108.296    2.31
+EOP         CAL         CAP         OAB     121.194    1.52
+EOP         CAL         CAP         NAN     116.009    1.54
+EOP         OAB         CAP         NAN     122.798    1.50
+EOP         CAP         NAN         CAJ     122.917    1.80
+EOP         CAP         NAN         HAN     118.637    1.94
+EOP         CAJ         NAN         HAN     118.446    2.02
+EOP         NAN         CAJ         CAI     111.385    1.50
+EOP         NAN         CAJ        HAJ1     109.265    1.50
+EOP         NAN         CAJ        HAJ2     109.265    1.50
+EOP         CAI         CAJ        HAJ1     109.342    1.50
+EOP         CAI         CAJ        HAJ2     109.342    1.50
+EOP        HAJ1         CAJ        HAJ2     107.909    1.50
+EOP         CAJ         CAI         NAM     111.385    1.50
+EOP         CAJ         CAI        HAI1     109.342    1.50
+EOP         CAJ         CAI        HAI2     109.342    1.50
+EOP         NAM         CAI        HAI1     109.265    1.50
+EOP         NAM         CAI        HAI2     109.265    1.50
+EOP        HAI1         CAI        HAI2     107.909    1.50
+EOP         CAI         NAM         CAO     122.917    1.80
+EOP         CAI         NAM         HAM     118.446    2.02
+EOP         CAO         NAM         HAM     118.637    1.94
+EOP         NAM         CAO         OAA     122.798    1.50
+EOP         NAM         CAO         CAK     116.009    1.54
+EOP         OAA         CAO         CAK     121.194    1.52
+EOP         CAO         CAK         PAQ     113.247    3.00
+EOP         CAO         CAK        HAK1     108.973    1.50
+EOP         CAO         CAK        HAK2     108.973    1.50
+EOP         PAQ         CAK        HAK1     108.528    1.50
+EOP         PAQ         CAK        HAK2     108.528    1.50
+EOP        HAK1         CAK        HAK2     108.296    2.31
+EOP         CAK         PAQ         OAF     110.326    3.00
+EOP         CAK         PAQ         OAE     110.326    3.00
+EOP         CAK         PAQ         OAC     110.326    3.00
+EOP         OAF         PAQ         OAE     111.786    1.50
+EOP         OAF         PAQ         OAC     111.786    1.50
+EOP         OAE         PAQ         OAC     111.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EOP             sp2_sp2_7         OAA         CAO         NAM         CAI       0.000     5.0     2
+EOP            sp2_sp3_20         NAM         CAO         CAK         PAQ     120.000    10.0     6
+EOP            sp3_sp3_19         CAO         CAK         PAQ         OAF     180.000    10.0     3
+EOP             sp3_sp3_1         CAP         CAL         PAR         OAD     180.000    10.0     3
+EOP             sp2_sp3_2         OAB         CAP         CAL         PAR     120.000    10.0     6
+EOP             sp2_sp2_1         CAL         CAP         NAN         CAJ     180.000     5.0     2
+EOP             sp2_sp3_8         CAP         NAN         CAJ         CAI     120.000    10.0     6
+EOP            sp3_sp3_10         NAM         CAI         CAJ         NAN     180.000    10.0     3
+EOP            sp2_sp3_14         CAO         NAM         CAI         CAJ     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EOP    chir_1    PAR    OAD    OAH    OAG    both
+EOP    chir_2    PAQ    OAF    OAE    OAC    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EOP    plan-1         CAL   0.020
+EOP    plan-1         CAP   0.020
+EOP    plan-1         NAN   0.020
+EOP    plan-1         OAB   0.020
+EOP    plan-2         CAJ   0.020
+EOP    plan-2         CAP   0.020
+EOP    plan-2         HAN   0.020
+EOP    plan-2         NAN   0.020
+EOP    plan-3         CAI   0.020
+EOP    plan-3         CAO   0.020
+EOP    plan-3         HAM   0.020
+EOP    plan-3         NAM   0.020
+EOP    plan-4         CAK   0.020
+EOP    plan-4         CAO   0.020
+EOP    plan-4         NAM   0.020
+EOP    plan-4         OAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EOP           SMILES              ACDLabs 10.04                                                                                  O=C(NCCNC(=O)CP(=O)(O)O)CP(=O)(O)O
+EOP SMILES_CANONICAL               CACTVS 3.341                                                                              O[P](O)(=O)CC(=O)NCCNC(=O)C[P](O)(O)=O
+EOP           SMILES               CACTVS 3.341                                                                              O[P](O)(=O)CC(=O)NCCNC(=O)C[P](O)(O)=O
+EOP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                C(CNC(=O)CP(=O)(O)O)NC(=O)CP(=O)(O)O
+EOP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                C(CNC(=O)CP(=O)(O)O)NC(=O)CP(=O)(O)O
+EOP            InChI                InChI  1.03 InChI=1S/C6H14N2O8P2/c9-5(3-17(11,12)13)7-1-2-8-6(10)4-18(14,15)16/h1-4H2,(H,7,9)(H,8,10)(H2,11,12,13)(H2,14,15,16)
+EOP         InChIKey                InChI  1.03                                                                                         RPUNQQORCLHWTD-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EOP acedrg               243         "dictionary generator"                  
+EOP acedrg_database      11          "data source"                           
+EOP rdkit                2017.03.2   "Chemoinformatics tool"
+EOP refmac5              5.8.0238    "optimization tool"                     

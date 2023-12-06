@@ -1,0 +1,398 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LPX     LPX      "(2S)-3-{[(R)-(2-aminoethoxy)(hydroxy)phosphoryl]oxy}-2-hydroxypropyl hexadecanoate"     NON-POLYMER     73     30     .     
+#
+data_comp_LPX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LPX     O7      O       O       0       45.064      1.251       29.969      
+LPX     C6      C       C       0       45.476      0.969       31.068      
+LPX     O6      O       O2      0       46.076      1.834       31.889      
+LPX     C5      C       CH2     0       46.272      3.191       31.426      
+LPX     C4      C       CH1     0       46.832      4.024       32.558      
+LPX     O5      O       OH1     0       46.891      5.387       32.141      
+LPX     C3      C       CH2     0       48.206      3.588       33.020      
+LPX     O1      O       O2      0       49.181      3.782       31.953      
+LPX     P1      P       P       0       50.543      4.582       32.249      
+LPX     O3      O       OP      -1      51.154      4.022       33.505      
+LPX     O2      O       O2      0       50.021      6.067       32.569      
+LPX     C1      C       CH2     0       50.980      7.129       32.842      
+LPX     C2      C       CH2     0       51.226      7.938       31.595      
+LPX     N1      N       NT2     0       52.321      8.895       31.760      
+LPX     O4      O       O       0       51.347      4.626       30.979      
+LPX     C7      C       CH2     0       45.380      -0.416      31.666      
+LPX     C8      C       CH2     0       44.860      -0.471      33.084      
+LPX     C9      C       CH2     0       43.403      -0.043      33.221      
+LPX     C10     C       CH2     0       43.028      0.437       34.604      
+LPX     C11     C       CH2     0       43.477      1.846       34.921      
+LPX     C12     C       CH2     0       42.496      2.926       34.522      
+LPX     C13     C       CH2     0       43.126      4.274       34.250      
+LPX     C14     C       CH2     0       43.827      4.890       35.438      
+LPX     C15     C       CH2     0       44.353      6.284       35.195      
+LPX     C16     C       CH2     0       45.221      6.821       36.308      
+LPX     C17     C       CH2     0       46.630      6.278       36.316      
+LPX     C18     C       CH2     0       47.520      6.882       37.374      
+LPX     C19     C       CH2     0       48.869      6.216       37.502      
+LPX     C20     C       CH2     0       49.805      6.486       36.353      
+LPX     C21     C       CH3     0       51.188      5.913       36.550      
+LPX     H5      H       H       0       45.412      3.573       31.133      
+LPX     H5A     H       H       0       46.897      3.196       30.665      
+LPX     H4      H       H       0       46.213      3.960       33.325      
+LPX     HO5     H       H       0       46.973      5.869       32.833      
+LPX     H3      H       H       0       48.185      2.642       33.273      
+LPX     H3A     H       H       0       48.464      4.110       33.808      
+LPX     H1      H       H       0       51.829      6.741       33.161      
+LPX     H1A     H       H       0       50.629      7.714       33.554      
+LPX     H2      H       H       0       50.408      8.425       31.361      
+LPX     H2A     H       H       0       51.440      7.333       30.855      
+LPX     HN1     H       H       0       52.353      9.442       31.061      
+LPX     HN1A    H       H       0       52.182      9.396       32.480      
+LPX     H7      H       H       0       46.270      -0.828      31.646      
+LPX     H7A     H       H       0       44.794      -0.962      31.099      
+LPX     H8      H       H       0       45.413      0.098       33.657      
+LPX     H8A     H       H       0       44.944      -1.389      33.416      
+LPX     H9      H       H       0       42.830      -0.805      32.989      
+LPX     H9A     H       H       0       43.213      0.674       32.582      
+LPX     H10     H       H       0       43.420      -0.173      35.265      
+LPX     H10A    H       H       0       42.053      0.389       34.699      
+LPX     H11     H       H       0       44.330      2.015       34.467      
+LPX     H11A    H       H       0       43.639      1.912       35.886      
+LPX     H12     H       H       0       41.834      3.028       35.238      
+LPX     H12A    H       H       0       42.019      2.635       33.716      
+LPX     H13     H       H       0       42.427      4.890       33.945      
+LPX     H13A    H       H       0       43.774      4.175       33.520      
+LPX     H14     H       H       0       44.578      4.314       35.696      
+LPX     H14A    H       H       0       43.202      4.917       36.193      
+LPX     H15     H       H       0       43.592      6.889       35.070      
+LPX     H15A    H       H       0       44.873      6.283       34.363      
+LPX     H16     H       H       0       44.797      6.609       37.167      
+LPX     H16A    H       H       0       45.261      7.798       36.231      
+LPX     H17     H       H       0       47.034      6.439       35.437      
+LPX     H17A    H       H       0       46.593      5.308       36.454      
+LPX     H18     H       H       0       47.061      6.829       38.239      
+LPX     H18A    H       H       0       47.656      7.831       37.167      
+LPX     H19     H       H       0       48.735      5.247       37.577      
+LPX     H19A    H       H       0       49.293      6.522       38.332      
+LPX     H20     H       H       0       49.878      7.458       36.227      
+LPX     H20A    H       H       0       49.418      6.107       35.534      
+LPX     H21     H       H       0       51.741      6.122       35.777      
+LPX     H21A    H       H       0       51.129      4.948       36.654      
+LPX     H21B    H       H       0       51.590      6.300       37.348      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LPX          O7          C6      DOUBLE       n     1.203  0.0150     1.203  0.0150
+LPX          C6          O6      SINGLE       n     1.329  0.0116     1.329  0.0116
+LPX          C6          C7      SINGLE       n     1.503  0.0174     1.503  0.0174
+LPX          O6          C5      SINGLE       n     1.444  0.0100     1.444  0.0100
+LPX          C5          C4      SINGLE       n     1.512  0.0104     1.512  0.0104
+LPX          C4          O5      SINGLE       n     1.427  0.0100     1.427  0.0100
+LPX          C4          C3      SINGLE       n     1.512  0.0104     1.512  0.0104
+LPX          C3          O1      SINGLE       n     1.454  0.0165     1.454  0.0165
+LPX          O1          P1      SINGLE       n     1.606  0.0100     1.606  0.0100
+LPX          P1          O3      SINGLE       n     1.504  0.0115     1.504  0.0115
+LPX          P1          O2      SINGLE       n     1.606  0.0100     1.606  0.0100
+LPX          P1          O4      DOUBLE       n     1.504  0.0115     1.504  0.0115
+LPX          O2          C1      SINGLE       n     1.454  0.0165     1.454  0.0165
+LPX          C1          C2      SINGLE       n     1.506  0.0173     1.506  0.0173
+LPX          C2          N1      SINGLE       n     1.464  0.0200     1.464  0.0200
+LPX          C7          C8      SINGLE       n     1.497  0.0200     1.497  0.0200
+LPX          C8          C9      SINGLE       n     1.519  0.0164     1.519  0.0164
+LPX          C9         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPX         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPX         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPX         C12         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPX         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPX         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPX         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPX         C16         C17      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPX         C17         C18      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPX         C18         C19      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPX         C19         C20      SINGLE       n     1.507  0.0200     1.507  0.0200
+LPX         C20         C21      SINGLE       n     1.510  0.0200     1.510  0.0200
+LPX          C5          H5      SINGLE       n     1.089  0.0100     0.985  0.0188
+LPX          C5         H5A      SINGLE       n     1.089  0.0100     0.985  0.0188
+LPX          C4          H4      SINGLE       n     1.089  0.0100     0.987  0.0186
+LPX          O5         HO5      SINGLE       n     0.970  0.0120     0.848  0.0200
+LPX          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0146
+LPX          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0146
+LPX          C1          H1      SINGLE       n     1.089  0.0100     0.986  0.0100
+LPX          C1         H1A      SINGLE       n     1.089  0.0100     0.986  0.0100
+LPX          C2          H2      SINGLE       n     1.089  0.0100     0.980  0.0143
+LPX          C2         H2A      SINGLE       n     1.089  0.0100     0.980  0.0143
+LPX          N1         HN1      SINGLE       n     1.036  0.0160     0.888  0.0200
+LPX          N1        HN1A      SINGLE       n     1.036  0.0160     0.888  0.0200
+LPX          C7          H7      SINGLE       n     1.089  0.0100     0.981  0.0185
+LPX          C7         H7A      SINGLE       n     1.089  0.0100     0.981  0.0185
+LPX          C8          H8      SINGLE       n     1.089  0.0100     0.980  0.0160
+LPX          C8         H8A      SINGLE       n     1.089  0.0100     0.980  0.0160
+LPX          C9          H9      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX          C9         H9A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C10         H10      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C10        H10A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C11         H11      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C11        H11A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C12         H12      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C12        H12A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C13         H13      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C13        H13A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C14         H14      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C14        H14A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C15         H15      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C15        H15A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C16         H16      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C16        H16A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C17         H17      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C17        H17A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C18         H18      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C18        H18A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C19         H19      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C19        H19A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPX         C20         H20      SINGLE       n     1.089  0.0100     0.982  0.0155
+LPX         C20        H20A      SINGLE       n     1.089  0.0100     0.982  0.0155
+LPX         C21         H21      SINGLE       n     1.089  0.0100     0.973  0.0157
+LPX         C21        H21A      SINGLE       n     1.089  0.0100     0.973  0.0157
+LPX         C21        H21B      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LPX          O7          C6          O6     123.233    1.50
+LPX          O7          C6          C7     125.251    2.71
+LPX          O6          C6          C7     111.516    1.50
+LPX          C6          O6          C5     116.187    1.50
+LPX          O6          C5          C4     108.641    1.70
+LPX          O6          C5          H5     109.514    1.50
+LPX          O6          C5         H5A     109.514    1.50
+LPX          C4          C5          H5     109.582    1.50
+LPX          C4          C5         H5A     109.582    1.50
+LPX          H5          C5         H5A     108.601    1.50
+LPX          C5          C4          O5     109.314    1.96
+LPX          C5          C4          C3     113.504    1.50
+LPX          C5          C4          H4     108.656    1.50
+LPX          O5          C4          C3     109.314    1.96
+LPX          O5          C4          H4     108.721    1.50
+LPX          C3          C4          H4     108.656    1.50
+LPX          C4          O5         HO5     107.936    3.00
+LPX          C4          C3          O1     109.438    2.56
+LPX          C4          C3          H3     109.582    1.50
+LPX          C4          C3         H3A     109.582    1.50
+LPX          O1          C3          H3     109.393    1.91
+LPX          O1          C3         H3A     109.393    1.91
+LPX          H3          C3         H3A     108.319    1.50
+LPX          C3          O1          P1     119.251    1.51
+LPX          O1          P1          O3     107.777    3.00
+LPX          O1          P1          O2     102.789    2.10
+LPX          O1          P1          O4     107.777    3.00
+LPX          O3          P1          O2     107.777    3.00
+LPX          O3          P1          O4     119.782    1.83
+LPX          O2          P1          O4     107.777    3.00
+LPX          P1          O2          C1     119.251    1.51
+LPX          O2          C1          C2     109.643    2.62
+LPX          O2          C1          H1     109.451    1.50
+LPX          O2          C1         H1A     109.451    1.50
+LPX          C2          C1          H1     109.705    1.50
+LPX          C2          C1         H1A     109.705    1.50
+LPX          H1          C1         H1A     107.889    1.50
+LPX          C1          C2          N1     111.883    2.59
+LPX          C1          C2          H2     109.091    1.50
+LPX          C1          C2         H2A     109.091    1.50
+LPX          N1          C2          H2     108.870    1.50
+LPX          N1          C2         H2A     108.870    1.50
+LPX          H2          C2         H2A     107.873    1.50
+LPX          C2          N1         HN1     109.962    3.00
+LPX          C2          N1        HN1A     109.962    3.00
+LPX         HN1          N1        HN1A     107.243    3.00
+LPX          C6          C7          C8     113.365    1.50
+LPX          C6          C7          H7     108.883    1.50
+LPX          C6          C7         H7A     108.883    1.50
+LPX          C8          C7          H7     108.815    1.50
+LPX          C8          C7         H7A     108.815    1.50
+LPX          H7          C7         H7A     107.521    1.50
+LPX          C7          C8          C9     112.553    1.50
+LPX          C7          C8          H8     109.164    1.50
+LPX          C7          C8         H8A     109.164    1.50
+LPX          C9          C8          H8     108.698    1.50
+LPX          C9          C8         H8A     108.698    1.50
+LPX          H8          C8         H8A     107.646    1.50
+LPX          C8          C9         C10     114.243    1.69
+LPX          C8          C9          H9     108.698    1.50
+LPX          C8          C9         H9A     108.698    1.50
+LPX         C10          C9          H9     108.698    1.50
+LPX         C10          C9         H9A     108.698    1.50
+LPX          H9          C9         H9A     107.646    1.50
+LPX          C9         C10         C11     114.243    1.69
+LPX          C9         C10         H10     108.698    1.50
+LPX          C9         C10        H10A     108.698    1.50
+LPX         C11         C10         H10     108.698    1.50
+LPX         C11         C10        H10A     108.698    1.50
+LPX         H10         C10        H10A     107.646    1.50
+LPX         C10         C11         C12     114.243    1.69
+LPX         C10         C11         H11     108.698    1.50
+LPX         C10         C11        H11A     108.698    1.50
+LPX         C12         C11         H11     108.698    1.50
+LPX         C12         C11        H11A     108.698    1.50
+LPX         H11         C11        H11A     107.646    1.50
+LPX         C11         C12         C13     114.243    1.69
+LPX         C11         C12         H12     108.698    1.50
+LPX         C11         C12        H12A     108.698    1.50
+LPX         C13         C12         H12     108.698    1.50
+LPX         C13         C12        H12A     108.698    1.50
+LPX         H12         C12        H12A     107.646    1.50
+LPX         C12         C13         C14     114.243    1.69
+LPX         C12         C13         H13     108.698    1.50
+LPX         C12         C13        H13A     108.698    1.50
+LPX         C14         C13         H13     108.698    1.50
+LPX         C14         C13        H13A     108.698    1.50
+LPX         H13         C13        H13A     107.646    1.50
+LPX         C13         C14         C15     114.243    1.69
+LPX         C13         C14         H14     108.698    1.50
+LPX         C13         C14        H14A     108.698    1.50
+LPX         C15         C14         H14     108.698    1.50
+LPX         C15         C14        H14A     108.698    1.50
+LPX         H14         C14        H14A     107.646    1.50
+LPX         C14         C15         C16     114.243    1.69
+LPX         C14         C15         H15     108.698    1.50
+LPX         C14         C15        H15A     108.698    1.50
+LPX         C16         C15         H15     108.698    1.50
+LPX         C16         C15        H15A     108.698    1.50
+LPX         H15         C15        H15A     107.646    1.50
+LPX         C15         C16         C17     114.243    1.69
+LPX         C15         C16         H16     108.698    1.50
+LPX         C15         C16        H16A     108.698    1.50
+LPX         C17         C16         H16     108.698    1.50
+LPX         C17         C16        H16A     108.698    1.50
+LPX         H16         C16        H16A     107.646    1.50
+LPX         C16         C17         C18     114.243    1.69
+LPX         C16         C17         H17     108.698    1.50
+LPX         C16         C17        H17A     108.698    1.50
+LPX         C18         C17         H17     108.698    1.50
+LPX         C18         C17        H17A     108.698    1.50
+LPX         H17         C17        H17A     107.646    1.50
+LPX         C17         C18         C19     114.243    1.69
+LPX         C17         C18         H18     108.698    1.50
+LPX         C17         C18        H18A     108.698    1.50
+LPX         C19         C18         H18     108.698    1.50
+LPX         C19         C18        H18A     108.698    1.50
+LPX         H18         C18        H18A     107.646    1.50
+LPX         C18         C19         C20     114.362    3.00
+LPX         C18         C19         H19     108.698    1.50
+LPX         C18         C19        H19A     108.698    1.50
+LPX         C20         C19         H19     108.653    1.50
+LPX         C20         C19        H19A     108.653    1.50
+LPX         H19         C19        H19A     107.646    1.50
+LPX         C19         C20         C21     113.719    3.00
+LPX         C19         C20         H20     108.758    1.50
+LPX         C19         C20        H20A     108.758    1.50
+LPX         C21         C20         H20     108.918    1.50
+LPX         C21         C20        H20A     108.918    1.50
+LPX         H20         C20        H20A     107.763    1.50
+LPX         C20         C21         H21     109.554    1.50
+LPX         C20         C21        H21A     109.554    1.50
+LPX         C20         C21        H21B     109.554    1.50
+LPX         H21         C21        H21A     109.380    1.50
+LPX         H21         C21        H21B     109.380    1.50
+LPX        H21A         C21        H21B     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LPX            sp3_sp3_34          C2          C1          O2          P1     180.000    10.0     3
+LPX            sp3_sp3_37          O2          C1          C2          N1     180.000    10.0     3
+LPX            sp3_sp3_46          C1          C2          N1         HN1     180.000    10.0     3
+LPX            sp3_sp3_52          C6          C7          C8          C9     180.000    10.0     3
+LPX            sp3_sp3_61          C7          C8          C9         C10     180.000    10.0     3
+LPX            sp3_sp3_70         C11         C10          C9          C8     180.000    10.0     3
+LPX            sp3_sp3_79          C9         C10         C11         C12     180.000    10.0     3
+LPX            sp3_sp3_88         C10         C11         C12         C13     180.000    10.0     3
+LPX             sp2_sp3_2          O7          C6          C7          C8     120.000    10.0     6
+LPX             sp2_sp2_1          O7          C6          O6          C5     180.000     5.0     2
+LPX            sp3_sp3_97         C11         C12         C13         C14     180.000    10.0     3
+LPX           sp3_sp3_106         C12         C13         C14         C15     180.000    10.0     3
+LPX           sp3_sp3_115         C13         C14         C15         C16     180.000    10.0     3
+LPX           sp3_sp3_124         C14         C15         C16         C17     180.000    10.0     3
+LPX           sp3_sp3_133         C15         C16         C17         C18     180.000    10.0     3
+LPX           sp3_sp3_142         C16         C17         C18         C19     180.000    10.0     3
+LPX           sp3_sp3_151         C17         C18         C19         C20     180.000    10.0     3
+LPX           sp3_sp3_160         C18         C19         C20         C21     180.000    10.0     3
+LPX           sp3_sp3_169         C19         C20         C21         H21     180.000    10.0     3
+LPX             sp3_sp3_1          C4          C5          O6          C6     180.000    10.0     3
+LPX             sp3_sp3_4          O5          C4          C5          O6     180.000    10.0     3
+LPX            sp3_sp3_13          C5          C4          O5         HO5     180.000    10.0     3
+LPX            sp3_sp3_16          O1          C3          C4          C5     180.000    10.0     3
+LPX            sp3_sp3_25          C4          C3          O1          P1     180.000    10.0     3
+LPX            sp3_sp3_28          C3          O1          P1          O3     180.000    10.0     3
+LPX            sp3_sp3_31          C1          O2          P1          O1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LPX    chir_1    C4    O5    C3    C5    positive
+LPX    chir_2    P1    O1    O2    O3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LPX    plan-1          C6   0.020
+LPX    plan-1          C7   0.020
+LPX    plan-1          O6   0.020
+LPX    plan-1          O7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LPX           SMILES              ACDLabs 10.04                                                                                                         O=C(OCC(O)COP(=O)(OCCN)O)CCCCCCCCCCCCCCC
+LPX SMILES_CANONICAL               CACTVS 3.341                                                                                                 CCCCCCCCCCCCCCCC(=O)OC[C@H](O)CO[P@@](O)(=O)OCCN
+LPX           SMILES               CACTVS 3.341                                                                                                    CCCCCCCCCCCCCCCC(=O)OC[CH](O)CO[P](O)(=O)OCCN
+LPX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                 CCCCCCCCCCCCCCCC(=O)OC[C@@H](CO[P@](=O)(O)OCCN)O
+LPX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                         CCCCCCCCCCCCCCCC(=O)OCC(COP(=O)(O)OCCN)O
+LPX            InChI                InChI  1.03 InChI=1S/C21H44NO7P/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-21(24)27-18-20(23)19-29-30(25,26)28-17-16-22/h20,23H,2-19,22H2,1H3,(H,25,26)/t20-/m0/s1
+LPX         InChIKey                InChI  1.03                                                                                                                      YVYMBNSKXOXSKW-FQEVSTJZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LPX acedrg               243         "dictionary generator"                  
+LPX acedrg_database      11          "data source"                           
+LPX rdkit                2017.03.2   "Chemoinformatics tool"
+LPX refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,383 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SUV     SUV      "[(7R)-4-(5-chloro-1,3-benzoxazol-2-yl)-7-methyl-1,4-diazepan-1-yl][5-methyl-2-(2H-1,2,3-triazol-2-yl)phenyl]methanone"     NON-POLYMER     55     32     .     
+#
+data_comp_SUV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SUV     C1      C       CR5     0       51.025      6.945       55.051      
+SUV     N1      N       N       0       51.885      5.866       54.676      
+SUV     O1      O       O2      0       50.161      7.507       54.123      
+SUV     CL1     CL      CL      0       47.854      11.485      57.697      
+SUV     N2      N       NRD5    0       50.954      7.512       56.227      
+SUV     O2      O       O       0       55.381      8.121       54.093      
+SUV     C3      C       CR56    0       49.983      8.519       56.109      
+SUV     N3      N       N       0       54.154      6.384       53.309      
+SUV     C4      C       CR16    0       49.479      9.442       57.018      
+SUV     N4      N       NR5     0       54.869      8.123       50.476      
+SUV     C5      C       CR6     0       48.506      10.315      56.577      
+SUV     N5      N       NRD5    0       54.515      7.218       49.559      
+SUV     C6      C       CR16    0       48.024      10.296      55.264      
+SUV     N6      N       NRD5    0       56.190      8.215       50.650      
+SUV     C7      C       CR16    0       48.525      9.375       54.358      
+SUV     C8      C       CR56    0       49.498      8.510       54.814      
+SUV     C11     C       CH2     0       51.883      5.344       53.301      
+SUV     C12     C       CH2     0       53.077      5.802       52.479      
+SUV     C14     C       CH1     0       54.898      5.378       54.123      
+SUV     C15     C       CH2     0       54.019      4.530       55.058      
+SUV     C16     C       CH2     0       52.812      5.264       55.648      
+SUV     C17     C       C       0       54.470      7.703       53.377      
+SUV     C19     C       CR6     0       53.707      8.713       52.562      
+SUV     C20     C       CR6     0       53.924      8.919       51.192      
+SUV     C21     C       CR16    0       53.192      9.882       50.507      
+SUV     C22     C       CR16    0       52.265      10.657      51.187      
+SUV     C23     C       CR6     0       52.035      10.497      52.554      
+SUV     C24     C       CR16    0       52.770      9.525       53.227      
+SUV     C27     C       CR15    0       55.668      6.705       49.132      
+SUV     C28     C       CR15    0       56.703      7.319       49.807      
+SUV     C29     C       CH3     0       51.023      11.353      53.273      
+SUV     C30     C       CH3     0       55.771      4.489       53.258      
+SUV     H1      H       H       0       49.792      9.464       57.896      
+SUV     H2      H       H       0       47.357      10.909      54.997      
+SUV     H3      H       H       0       48.214      9.346       53.468      
+SUV     H4      H       H       0       51.871      4.366       53.333      
+SUV     H5      H       H       0       51.063      5.624       52.848      
+SUV     H6      H       H       0       53.432      5.034       51.985      
+SUV     H7      H       H       0       52.771      6.452       51.818      
+SUV     H8      H       H       0       55.521      5.876       54.706      
+SUV     H9      H       H       0       54.581      4.214       55.800      
+SUV     H10     H       H       0       53.708      3.733       54.574      
+SUV     H11     H       H       0       52.308      4.635       56.204      
+SUV     H12     H       H       0       53.145      5.971       56.239      
+SUV     H13     H       H       0       53.329      10.008      49.586      
+SUV     H14     H       H       0       51.777      11.310      50.713      
+SUV     H15     H       H       0       52.626      9.405       54.153      
+SUV     H16     H       H       0       55.743      6.031       48.475      
+SUV     H17     H       H       0       57.625      7.150       49.701      
+SUV     H18     H       H       0       50.969      11.086      54.205      
+SUV     H19     H       H       0       50.152      11.246      52.857      
+SUV     H20     H       H       0       51.290      12.285      53.221      
+SUV     H21     H       H       0       56.457      4.073       53.808      
+SUV     H22     H       H       0       56.194      5.026       52.566      
+SUV     H23     H       H       0       55.228      3.797       52.842      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SUV          N5         C27      DOUBLE       y     1.333  0.0100     1.333  0.0100
+SUV         C27         C28      SINGLE       y     1.380  0.0196     1.380  0.0196
+SUV          N4          N5      SINGLE       y     1.336  0.0100     1.336  0.0100
+SUV          N6         C28      DOUBLE       y     1.333  0.0100     1.333  0.0100
+SUV          N4          N6      SINGLE       y     1.336  0.0100     1.336  0.0100
+SUV          N4         C20      SINGLE       n     1.427  0.0100     1.427  0.0100
+SUV         C20         C21      DOUBLE       y     1.386  0.0100     1.386  0.0100
+SUV         C21         C22      SINGLE       y     1.383  0.0100     1.383  0.0100
+SUV         C19         C20      SINGLE       y     1.396  0.0100     1.396  0.0100
+SUV         C22         C23      DOUBLE       y     1.392  0.0104     1.392  0.0104
+SUV          N3         C12      SINGLE       n     1.470  0.0100     1.470  0.0100
+SUV         C11         C12      SINGLE       n     1.519  0.0100     1.519  0.0100
+SUV         C17         C19      SINGLE       n     1.502  0.0100     1.502  0.0100
+SUV         C19         C24      DOUBLE       y     1.400  0.0127     1.400  0.0127
+SUV         C23         C24      SINGLE       y     1.388  0.0100     1.388  0.0100
+SUV         C23         C29      SINGLE       n     1.508  0.0107     1.508  0.0107
+SUV         C14         C30      SINGLE       n     1.514  0.0111     1.514  0.0111
+SUV          N3         C17      SINGLE       n     1.344  0.0100     1.344  0.0100
+SUV          N3         C14      SINGLE       n     1.483  0.0100     1.483  0.0100
+SUV          O2         C17      DOUBLE       n     1.230  0.0114     1.230  0.0114
+SUV          N1         C11      SINGLE       n     1.465  0.0107     1.465  0.0107
+SUV          C7          C8      DOUBLE       y     1.375  0.0100     1.375  0.0100
+SUV          C6          C7      SINGLE       y     1.382  0.0100     1.382  0.0100
+SUV          O1          C8      SINGLE       y     1.388  0.0132     1.388  0.0132
+SUV          C1          O1      SINGLE       y     1.386  0.0100     1.386  0.0100
+SUV         C14         C15      SINGLE       n     1.528  0.0145     1.528  0.0145
+SUV          C3          C8      SINGLE       y     1.379  0.0102     1.379  0.0102
+SUV          C5          C6      DOUBLE       y     1.395  0.0100     1.395  0.0100
+SUV          C1          N1      SINGLE       n     1.409  0.0200     1.409  0.0200
+SUV          N1         C16      SINGLE       n     1.465  0.0107     1.465  0.0107
+SUV          C1          N2      DOUBLE       y     1.305  0.0162     1.305  0.0162
+SUV         C15         C16      SINGLE       n     1.512  0.0200     1.512  0.0200
+SUV          N2          C3      SINGLE       y     1.404  0.0141     1.404  0.0141
+SUV          C3          C4      DOUBLE       y     1.387  0.0103     1.387  0.0103
+SUV          C4          C5      SINGLE       y     1.377  0.0100     1.377  0.0100
+SUV         CL1          C5      SINGLE       n     1.746  0.0100     1.746  0.0100
+SUV          C4          H1      SINGLE       n     1.082  0.0130     0.932  0.0200
+SUV          C6          H2      SINGLE       n     1.082  0.0130     0.944  0.0101
+SUV          C7          H3      SINGLE       n     1.082  0.0130     0.943  0.0135
+SUV         C11          H4      SINGLE       n     1.089  0.0100     0.979  0.0121
+SUV         C11          H5      SINGLE       n     1.089  0.0100     0.979  0.0121
+SUV         C12          H6      SINGLE       n     1.089  0.0100     0.981  0.0152
+SUV         C12          H7      SINGLE       n     1.089  0.0100     0.981  0.0152
+SUV         C14          H8      SINGLE       n     1.089  0.0100     0.989  0.0122
+SUV         C15          H9      SINGLE       n     1.089  0.0100     0.983  0.0200
+SUV         C15         H10      SINGLE       n     1.089  0.0100     0.983  0.0200
+SUV         C16         H11      SINGLE       n     1.089  0.0100     0.979  0.0121
+SUV         C16         H12      SINGLE       n     1.089  0.0100     0.979  0.0121
+SUV         C21         H13      SINGLE       n     1.082  0.0130     0.940  0.0155
+SUV         C22         H14      SINGLE       n     1.082  0.0130     0.943  0.0173
+SUV         C24         H15      SINGLE       n     1.082  0.0130     0.944  0.0147
+SUV         C27         H16      SINGLE       n     1.082  0.0130     0.944  0.0171
+SUV         C28         H17      SINGLE       n     1.082  0.0130     0.944  0.0171
+SUV         C29         H18      SINGLE       n     1.089  0.0100     0.971  0.0135
+SUV         C29         H19      SINGLE       n     1.089  0.0100     0.971  0.0135
+SUV         C29         H20      SINGLE       n     1.089  0.0100     0.971  0.0135
+SUV         C30         H21      SINGLE       n     1.089  0.0100     0.973  0.0146
+SUV         C30         H22      SINGLE       n     1.089  0.0100     0.973  0.0146
+SUV         C30         H23      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SUV          O1          C1          N1     120.275    1.55
+SUV          O1          C1          N2     113.843    1.50
+SUV          N1          C1          N2     125.883    2.98
+SUV         C11          N1          C1     121.106    2.32
+SUV         C11          N1         C16     117.788    1.50
+SUV          C1          N1         C16     121.106    2.32
+SUV          C8          O1          C1     104.270    1.50
+SUV          C1          N2          C3     105.899    1.50
+SUV          C8          C3          N2     108.379    1.50
+SUV          C8          C3          C4     119.547    1.50
+SUV          N2          C3          C4     132.073    1.50
+SUV         C12          N3         C17     121.447    3.00
+SUV         C12          N3         C14     117.062    2.02
+SUV         C17          N3         C14     121.491    1.68
+SUV          C3          C4          C5     118.014    1.50
+SUV          C3          C4          H1     120.570    1.50
+SUV          C5          C4          H1     121.416    1.50
+SUV          N5          N4          N6     113.489    1.50
+SUV          N5          N4         C20     123.255    1.50
+SUV          N6          N4         C20     123.255    1.50
+SUV          C6          C5          C4     122.765    1.50
+SUV          C6          C5         CL1     118.646    1.50
+SUV          C4          C5         CL1     118.589    1.50
+SUV         C27          N5          N4     104.553    1.50
+SUV          C7          C6          C5     119.722    1.50
+SUV          C7          C6          H2     120.188    1.50
+SUV          C5          C6          H2     120.090    1.50
+SUV         C28          N6          N4     104.553    1.50
+SUV          C8          C7          C6     116.573    1.50
+SUV          C8          C7          H3     122.000    1.50
+SUV          C6          C7          H3     121.427    1.50
+SUV          C7          C8          O1     129.012    1.50
+SUV          C7          C8          C3     123.379    1.50
+SUV          O1          C8          C3     107.609    1.50
+SUV         C12         C11          N1     113.811    1.63
+SUV         C12         C11          H4     109.260    1.50
+SUV         C12         C11          H5     109.260    1.50
+SUV          N1         C11          H4     108.883    1.50
+SUV          N1         C11          H5     108.883    1.50
+SUV          H4         C11          H5     107.790    1.50
+SUV          N3         C12         C11     111.308    2.28
+SUV          N3         C12          H6     108.944    1.50
+SUV          N3         C12          H7     108.944    1.50
+SUV         C11         C12          H6     109.201    1.50
+SUV         C11         C12          H7     109.201    1.50
+SUV          H6         C12          H7     107.844    1.50
+SUV         C30         C14          N3     111.793    1.50
+SUV         C30         C14         C15     110.573    1.63
+SUV         C30         C14          H8     106.907    1.50
+SUV          N3         C14         C15     111.308    2.28
+SUV          N3         C14          H8     106.628    1.50
+SUV         C15         C14          H8     107.815    1.50
+SUV         C14         C15         C16     113.189    1.50
+SUV         C14         C15          H9     108.489    1.50
+SUV         C14         C15         H10     108.489    1.50
+SUV         C16         C15          H9     108.829    1.50
+SUV         C16         C15         H10     108.829    1.50
+SUV          H9         C15         H10     107.469    1.50
+SUV          N1         C16         C15     113.520    1.60
+SUV          N1         C16         H11     108.883    1.50
+SUV          N1         C16         H12     108.883    1.50
+SUV         C15         C16         H11     109.077    1.50
+SUV         C15         C16         H12     109.077    1.50
+SUV         H11         C16         H12     107.790    1.50
+SUV         C19         C17          N3     117.816    1.50
+SUV         C19         C17          O2     120.165    1.50
+SUV          N3         C17          O2     122.018    1.50
+SUV         C20         C19         C17     122.009    2.04
+SUV         C20         C19         C24     118.952    1.50
+SUV         C17         C19         C24     119.040    2.89
+SUV          N4         C20         C21     119.633    1.50
+SUV          N4         C20         C19     120.142    1.50
+SUV         C21         C20         C19     120.225    1.50
+SUV         C20         C21         C22     119.609    1.50
+SUV         C20         C21         H13     120.114    1.50
+SUV         C22         C21         H13     120.277    1.50
+SUV         C21         C22         C23     121.674    1.50
+SUV         C21         C22         H14     119.178    1.50
+SUV         C23         C22         H14     119.148    1.50
+SUV         C22         C23         C24     117.917    1.50
+SUV         C22         C23         C29     121.054    1.50
+SUV         C24         C23         C29     121.020    1.50
+SUV         C19         C24         C23     121.632    1.50
+SUV         C19         C24         H15     119.540    1.50
+SUV         C23         C24         H15     118.828    1.50
+SUV          N5         C27         C28     108.702    1.50
+SUV          N5         C27         H16     124.527    1.83
+SUV         C28         C27         H16     126.770    1.50
+SUV         C27         C28          N6     108.702    1.50
+SUV         C27         C28         H17     126.770    1.50
+SUV          N6         C28         H17     124.527    1.83
+SUV         C23         C29         H18     109.567    1.50
+SUV         C23         C29         H19     109.567    1.50
+SUV         C23         C29         H20     109.567    1.50
+SUV         H18         C29         H19     109.348    1.50
+SUV         H18         C29         H20     109.348    1.50
+SUV         H19         C29         H20     109.348    1.50
+SUV         C14         C30         H21     109.475    1.50
+SUV         C14         C30         H22     109.475    1.50
+SUV         C14         C30         H23     109.475    1.50
+SUV         H21         C30         H22     109.386    1.50
+SUV         H21         C30         H23     109.386    1.50
+SUV         H22         C30         H23     109.386    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SUV            sp2_sp2_13          O1          C1          N1         C11     180.000     5.0     2
+SUV              const_22          N1          C1          O1          C8     180.000    10.0     2
+SUV              const_64          N1          C1          N2          C3     180.000    10.0     2
+SUV              const_51         CL1          C5          C6          C7     180.000    10.0     2
+SUV              const_33         C28         C27          N5          N4       0.000    10.0     2
+SUV              const_45          C5          C6          C7          C8       0.000    10.0     2
+SUV              const_39         C27         C28          N6          N4       0.000    10.0     2
+SUV              const_42          C6          C7          C8          O1     180.000    10.0     2
+SUV             sp3_sp3_1          N1         C11         C12          N3     180.000    10.0     3
+SUV            sp3_sp3_19         C30         C14         C15         C16     180.000    10.0     3
+SUV            sp3_sp3_10          N3         C14         C30         H21     180.000    10.0     3
+SUV            sp3_sp3_28         C14         C15         C16          N1     180.000    10.0     3
+SUV            sp2_sp3_23         C16          N1         C11         C12     -60.000    10.0     6
+SUV            sp2_sp3_26         C11          N1         C16         C15     120.000    10.0     6
+SUV             sp2_sp2_5          N3         C17         C19         C20     180.000     5.0     2
+SUV       const_sp2_sp2_4         C17         C19         C20          N4       0.000     5.0     2
+SUV              const_61         C17         C19         C24         C23     180.000    10.0     2
+SUV       const_sp2_sp2_7          N4         C20         C21         C22     180.000     5.0     2
+SUV       const_sp2_sp2_9         C20         C21         C22         C23       0.000     5.0     2
+SUV              const_14         C21         C22         C23         C29     180.000    10.0     2
+SUV              const_19         C29         C23         C24         C19     180.000    10.0     2
+SUV             sp2_sp3_7         C22         C23         C29         H18     150.000    10.0     6
+SUV              const_35          N5         C27         C28          N6       0.000    10.0     2
+SUV              const_24          C7          C8          O1          C1     180.000    10.0     2
+SUV              const_29          C8          C3          N2          C1       0.000    10.0     2
+SUV              const_26          N2          C3          C8          C7     180.000    10.0     2
+SUV              const_65          C8          C3          C4          C5       0.000    10.0     2
+SUV             sp2_sp3_2         C17          N3         C12         C11     120.000    10.0     6
+SUV            sp2_sp3_13         C12          N3         C14         C30       0.000    10.0     6
+SUV            sp2_sp2_11          O2         C17          N3         C12       0.000     5.0     2
+SUV              const_54          C3          C4          C5         CL1     180.000    10.0     2
+SUV              const_31          N6          N4          N5         C27       0.000    10.0     2
+SUV              const_57          N5          N4          N6         C28       0.000    10.0     2
+SUV             sp2_sp2_1         C21         C20          N4          N5     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SUV    chir_1    C14    N3    C15    C30    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SUV    plan-1          C1   0.020
+SUV    plan-1          C3   0.020
+SUV    plan-1          C4   0.020
+SUV    plan-1          C5   0.020
+SUV    plan-1          C6   0.020
+SUV    plan-1          C7   0.020
+SUV    plan-1          C8   0.020
+SUV    plan-1         CL1   0.020
+SUV    plan-1          H1   0.020
+SUV    plan-1          H2   0.020
+SUV    plan-1          H3   0.020
+SUV    plan-1          N1   0.020
+SUV    plan-1          N2   0.020
+SUV    plan-1          O1   0.020
+SUV    plan-2         C20   0.020
+SUV    plan-2         C27   0.020
+SUV    plan-2         C28   0.020
+SUV    plan-2         H16   0.020
+SUV    plan-2         H17   0.020
+SUV    plan-2          N4   0.020
+SUV    plan-2          N5   0.020
+SUV    plan-2          N6   0.020
+SUV    plan-3         C17   0.020
+SUV    plan-3         C19   0.020
+SUV    plan-3         C20   0.020
+SUV    plan-3         C21   0.020
+SUV    plan-3         C22   0.020
+SUV    plan-3         C23   0.020
+SUV    plan-3         C24   0.020
+SUV    plan-3         C29   0.020
+SUV    plan-3         H13   0.020
+SUV    plan-3         H14   0.020
+SUV    plan-3         H15   0.020
+SUV    plan-3          N4   0.020
+SUV    plan-4          C1   0.020
+SUV    plan-4         C11   0.020
+SUV    plan-4         C16   0.020
+SUV    plan-4          N1   0.020
+SUV    plan-5         C12   0.020
+SUV    plan-5         C14   0.020
+SUV    plan-5         C17   0.020
+SUV    plan-5          N3   0.020
+SUV    plan-6         C17   0.020
+SUV    plan-6         C19   0.020
+SUV    plan-6          N3   0.020
+SUV    plan-6          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SUV           SMILES              ACDLabs 12.01                                                                                                                     O=C(c2cc(ccc2n1nccn1)C)N5C(C)CCN(c3nc4cc(Cl)ccc4o3)CC5
+SUV            InChI                InChI  1.03 InChI=1S/C23H23ClN6O2/c1-15-3-5-20(30-25-8-9-26-30)18(13-15)22(31)29-12-11-28(10-7-16(29)2)23-27-19-14-17(24)4-6-21(19)32-23/h3-6,8-9,13-14,16H,7,10-12H2,1-2H3/t16-/m1/s1
+SUV         InChIKey                InChI  1.03                                                                                                                                                JYTNQNCOQXFQPK-MRXNPFEDSA-N
+SUV SMILES_CANONICAL               CACTVS 3.385                                                                                                                  C[C@@H]1CCN(CCN1C(=O)c2cc(C)ccc2n3nccn3)c4oc5ccc(Cl)cc5n4
+SUV           SMILES               CACTVS 3.385                                                                                                                    C[CH]1CCN(CCN1C(=O)c2cc(C)ccc2n3nccn3)c4oc5ccc(Cl)cc5n4
+SUV SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                 Cc1ccc(c(c1)C(=O)N2CCN(CC[C@H]2C)c3nc4cc(ccc4o3)Cl)n5nccn5
+SUV           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                     Cc1ccc(c(c1)C(=O)N2CCN(CCC2C)c3nc4cc(ccc4o3)Cl)n5nccn5
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SUV acedrg               243         "dictionary generator"                  
+SUV acedrg_database      11          "data source"                           
+SUV rdkit                2017.03.2   "Chemoinformatics tool"
+SUV refmac5              5.8.0238    "optimization tool"                     

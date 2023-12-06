@@ -1,0 +1,291 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AAP     AAP      ALPHA-(2,6-DICHLOROPHENYL)-ALPHA-(2-ACETYL-5-METHYLANILINO)ACETAMIDE     NON-POLYMER     39     23     .     
+#
+data_comp_AAP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AAP     C       C       C       0       1.597       -39.724     21.695      
+AAP     CA      C       CH1     0       1.649       -38.283     22.264      
+AAP     O       O       O       0       0.902       -39.999     20.715      
+AAP     N       N       NH2     0       2.332       -40.626     22.321      
+AAP     C1      C       CR6     0       0.645       -37.348     21.593      
+AAP     C2      C       CR6     0       0.867       -36.848     20.305      
+AAP     C3      C       CR16    0       -0.032      -35.995     19.675      
+AAP     C4      C       CR16    0       -1.183      -35.616     20.334      
+AAP     C5      C       CR16    0       -1.443      -36.080     21.607      
+AAP     C6      C       CR6     0       -0.537      -36.935     22.225      
+AAP     CL2     CL      CL      0       2.303       -37.294     19.417      
+AAP     CL6     CL      CL      0       -0.939      -37.480     23.837      
+AAP     "N'"    N       NH1     0       3.009       -37.766     22.244      
+AAP     "C1'"   C       CR6     0       3.423       -36.545     22.832      
+AAP     "C2'"   C       CR6     0       4.684       -35.958     22.486      
+AAP     "C3'"   C       CR16    0       5.051       -34.749     23.104      
+AAP     "C4'"   C       CR16    0       4.219       -34.136     24.027      
+AAP     "C5'"   C       CR6     0       2.995       -34.688     24.381      
+AAP     "C6'"   C       CR16    0       2.610       -35.881     23.791      
+AAP     "C'"    C       C       0       5.632       -36.559     21.507      
+AAP     "O'"    O       O       0       5.288       -36.828     20.367      
+AAP     "CM'"   C       CH3     0       7.040       -36.825     21.936      
+AAP     CM5     C       CH3     0       2.101       -34.012     25.385      
+AAP     HA      H       H       0       1.390       -38.366     23.211      
+AAP     HN1     H       H       0       2.339       -41.464     22.037      
+AAP     HN2     H       H       0       2.817       -40.395     23.024      
+AAP     H3      H       H       0       0.145       -35.679     18.809      
+AAP     H4      H       H       0       -1.795      -35.038     19.913      
+AAP     H5      H       H       0       -2.227      -35.822     22.055      
+AAP     "HN'"   H       H       0       3.623       -38.249     21.858      
+AAP     "H3'"   H       H       0       5.876       -34.351     22.883      
+AAP     "H4'"   H       H       0       4.488       -33.325     24.426      
+AAP     "H6'"   H       H       0       1.780       -36.253     24.030      
+AAP     "HM'1"  H       H       0       7.098       -36.803     22.905      
+AAP     "HM'2"  H       H       0       7.627       -36.148     21.564      
+AAP     "HM'3"  H       H       0       7.318       -37.699     21.619      
+AAP     HM51    H       H       0       1.172       -34.151     25.139      
+AAP     HM52    H       H       0       2.290       -33.059     25.400      
+AAP     HM53    H       H       0       2.260       -34.386     26.266      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AAP           C          CA      SINGLE       n     1.542  0.0129     1.542  0.0129
+AAP           C           O      DOUBLE       n     1.231  0.0100     1.231  0.0100
+AAP           C           N      SINGLE       n     1.320  0.0100     1.320  0.0100
+AAP          CA          C1      SINGLE       n     1.520  0.0100     1.520  0.0100
+AAP          CA        "N'"      SINGLE       n     1.448  0.0100     1.448  0.0100
+AAP          C1          C2      DOUBLE       y     1.392  0.0100     1.392  0.0100
+AAP          C1          C6      SINGLE       y     1.392  0.0100     1.392  0.0100
+AAP          C2          C3      SINGLE       y     1.387  0.0100     1.387  0.0100
+AAP          C2         CL2      SINGLE       n     1.746  0.0134     1.746  0.0134
+AAP          C3          C4      DOUBLE       y     1.376  0.0140     1.376  0.0140
+AAP          C4          C5      SINGLE       y     1.376  0.0140     1.376  0.0140
+AAP          C5          C6      DOUBLE       y     1.387  0.0100     1.387  0.0100
+AAP          C6         CL6      SINGLE       n     1.746  0.0134     1.746  0.0134
+AAP        "N'"       "C1'"      SINGLE       n     1.378  0.0200     1.378  0.0200
+AAP       "C1'"       "C2'"      DOUBLE       y     1.424  0.0100     1.424  0.0100
+AAP       "C1'"       "C6'"      SINGLE       y     1.413  0.0107     1.413  0.0107
+AAP       "C2'"       "C3'"      SINGLE       y     1.400  0.0131     1.400  0.0131
+AAP       "C2'"        "C'"      SINGLE       n     1.487  0.0100     1.487  0.0100
+AAP       "C3'"       "C4'"      DOUBLE       y     1.384  0.0100     1.384  0.0100
+AAP       "C4'"       "C5'"      SINGLE       y     1.386  0.0100     1.386  0.0100
+AAP       "C5'"       "C6'"      DOUBLE       y     1.383  0.0100     1.383  0.0100
+AAP       "C5'"         CM5      SINGLE       n     1.505  0.0143     1.505  0.0143
+AAP        "C'"        "O'"      DOUBLE       n     1.222  0.0126     1.222  0.0126
+AAP        "C'"       "CM'"      SINGLE       n     1.496  0.0103     1.496  0.0103
+AAP          CA          HA      SINGLE       n     1.089  0.0100     0.992  0.0200
+AAP           N         HN1      SINGLE       n     1.016  0.0100     0.884  0.0200
+AAP           N         HN2      SINGLE       n     1.016  0.0100     0.884  0.0200
+AAP          C3          H3      SINGLE       n     1.082  0.0130     0.939  0.0176
+AAP          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0131
+AAP          C5          H5      SINGLE       n     1.082  0.0130     0.939  0.0176
+AAP        "N'"       "HN'"      SINGLE       n     1.016  0.0100     0.873  0.0200
+AAP       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.941  0.0168
+AAP       "C4'"       "H4'"      SINGLE       n     1.082  0.0130     0.943  0.0173
+AAP       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.942  0.0139
+AAP       "CM'"      "HM'1"      SINGLE       n     1.089  0.0100     0.970  0.0200
+AAP       "CM'"      "HM'2"      SINGLE       n     1.089  0.0100     0.970  0.0200
+AAP       "CM'"      "HM'3"      SINGLE       n     1.089  0.0100     0.970  0.0200
+AAP         CM5        HM51      SINGLE       n     1.089  0.0100     0.971  0.0135
+AAP         CM5        HM52      SINGLE       n     1.089  0.0100     0.971  0.0135
+AAP         CM5        HM53      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AAP          CA           C           O     120.545    1.50
+AAP          CA           C           N     116.431    1.50
+AAP           O           C           N     123.023    1.50
+AAP           C          CA          C1     111.340    2.24
+AAP           C          CA        "N'"     111.249    2.34
+AAP           C          CA          HA     107.080    1.56
+AAP          C1          CA        "N'"     111.654    2.58
+AAP          C1          CA          HA     107.138    1.51
+AAP        "N'"          CA          HA     107.948    1.50
+AAP           C           N         HN1     119.958    2.17
+AAP           C           N         HN2     119.958    2.17
+AAP         HN1           N         HN2     120.083    2.38
+AAP          CA          C1          C2     121.649    1.83
+AAP          CA          C1          C6     121.649    1.83
+AAP          C2          C1          C6     116.702    1.50
+AAP          C1          C2          C3     121.918    1.50
+AAP          C1          C2         CL2     119.905    1.50
+AAP          C3          C2         CL2     118.177    1.50
+AAP          C2          C3          C4     119.429    1.50
+AAP          C2          C3          H3     120.172    1.50
+AAP          C4          C3          H3     120.398    1.50
+AAP          C3          C4          C5     120.604    1.50
+AAP          C3          C4          H4     119.698    1.50
+AAP          C5          C4          H4     119.698    1.50
+AAP          C4          C5          C6     119.429    1.50
+AAP          C4          C5          H5     120.398    1.50
+AAP          C6          C5          H5     120.172    1.50
+AAP          C1          C6          C5     121.918    1.50
+AAP          C1          C6         CL6     119.905    1.50
+AAP          C5          C6         CL6     118.177    1.50
+AAP          CA        "N'"       "C1'"     121.671    2.30
+AAP          CA        "N'"       "HN'"     119.677    1.67
+AAP       "C1'"        "N'"       "HN'"     118.652    2.04
+AAP        "N'"       "C1'"       "C2'"     120.090    1.50
+AAP        "N'"       "C1'"       "C6'"     119.702    1.76
+AAP       "C2'"       "C1'"       "C6'"     120.208    2.02
+AAP       "C1'"       "C2'"       "C3'"     118.391    1.50
+AAP       "C1'"       "C2'"        "C'"     122.262    1.50
+AAP       "C3'"       "C2'"        "C'"     119.346    1.50
+AAP       "C2'"       "C3'"       "C4'"     120.509    1.50
+AAP       "C2'"       "C3'"       "H3'"     119.473    1.50
+AAP       "C4'"       "C3'"       "H3'"     120.018    1.50
+AAP       "C3'"       "C4'"       "C5'"     121.310    1.50
+AAP       "C3'"       "C4'"       "H4'"     119.476    1.50
+AAP       "C5'"       "C4'"       "H4'"     119.214    1.50
+AAP       "C4'"       "C5'"       "C6'"     118.158    1.50
+AAP       "C4'"       "C5'"         CM5     121.251    1.50
+AAP       "C6'"       "C5'"         CM5     120.591    1.50
+AAP       "C1'"       "C6'"       "C5'"     121.424    1.50
+AAP       "C1'"       "C6'"       "H6'"     119.115    1.50
+AAP       "C5'"       "C6'"       "H6'"     119.462    1.50
+AAP       "C2'"        "C'"        "O'"     121.392    1.50
+AAP       "C2'"        "C'"       "CM'"     118.812    1.50
+AAP        "O'"        "C'"       "CM'"     119.797    1.50
+AAP        "C'"       "CM'"      "HM'1"     109.610    1.50
+AAP        "C'"       "CM'"      "HM'2"     109.610    1.50
+AAP        "C'"       "CM'"      "HM'3"     109.610    1.50
+AAP      "HM'1"       "CM'"      "HM'2"     109.315    1.55
+AAP      "HM'1"       "CM'"      "HM'3"     109.315    1.55
+AAP      "HM'2"       "CM'"      "HM'3"     109.315    1.55
+AAP       "C5'"         CM5        HM51     109.567    1.50
+AAP       "C5'"         CM5        HM52     109.567    1.50
+AAP       "C5'"         CM5        HM53     109.567    1.50
+AAP        HM51         CM5        HM52     109.348    1.50
+AAP        HM51         CM5        HM53     109.348    1.50
+AAP        HM52         CM5        HM53     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AAP             sp2_sp3_2           O           C          CA        "N'"     120.000    10.0     6
+AAP             sp2_sp2_1          CA           C           N         HN1     180.000     5.0     2
+AAP             sp2_sp2_5       "C2'"       "C1'"        "N'"          CA     180.000     5.0     2
+AAP       const_sp2_sp2_4        "N'"       "C1'"       "C2'"        "C'"       0.000     5.0     2
+AAP              const_47        "N'"       "C1'"       "C6'"       "C5'"     180.000    10.0     2
+AAP       const_sp2_sp2_7        "C'"       "C2'"       "C3'"       "C4'"     180.000     5.0     2
+AAP            sp2_sp2_11        "O'"        "C'"       "C2'"       "C1'"       0.000     5.0     2
+AAP       const_sp2_sp2_9       "C2'"       "C3'"       "C4'"       "C5'"       0.000     5.0     2
+AAP              const_14       "C3'"       "C4'"       "C5'"         CM5     180.000    10.0     2
+AAP              const_19         CM5       "C5'"       "C6'"       "C1'"     180.000    10.0     2
+AAP            sp2_sp3_19       "C4'"       "C5'"         CM5        HM51     150.000    10.0     6
+AAP            sp2_sp3_28        "O'"        "C'"       "CM'"      "HM'1"     180.000    10.0     6
+AAP            sp2_sp3_13       "C1'"        "N'"          CA           C       0.000    10.0     6
+AAP             sp2_sp3_7          C2          C1          CA           C     150.000    10.0     6
+AAP              const_24          CA          C1          C2         CL2       0.000    10.0     2
+AAP              const_44          CA          C1          C6         CL6       0.000    10.0     2
+AAP              const_27         CL2          C2          C3          C4     180.000    10.0     2
+AAP              const_29          C2          C3          C4          C5       0.000    10.0     2
+AAP              const_33          C3          C4          C5          C6       0.000    10.0     2
+AAP              const_38          C4          C5          C6         CL6     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AAP    chir_1    CA    "N'"    C    C1    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AAP    plan-1        "C'"   0.020
+AAP    plan-1       "C1'"   0.020
+AAP    plan-1       "C2'"   0.020
+AAP    plan-1       "C3'"   0.020
+AAP    plan-1       "C4'"   0.020
+AAP    plan-1       "C5'"   0.020
+AAP    plan-1       "C6'"   0.020
+AAP    plan-1         CM5   0.020
+AAP    plan-1       "H3'"   0.020
+AAP    plan-1       "H4'"   0.020
+AAP    plan-1       "H6'"   0.020
+AAP    plan-1        "N'"   0.020
+AAP    plan-2          C1   0.020
+AAP    plan-2          C2   0.020
+AAP    plan-2          C3   0.020
+AAP    plan-2          C4   0.020
+AAP    plan-2          C5   0.020
+AAP    plan-2          C6   0.020
+AAP    plan-2          CA   0.020
+AAP    plan-2         CL2   0.020
+AAP    plan-2         CL6   0.020
+AAP    plan-2          H3   0.020
+AAP    plan-2          H4   0.020
+AAP    plan-2          H5   0.020
+AAP    plan-3           C   0.020
+AAP    plan-3          CA   0.020
+AAP    plan-3           N   0.020
+AAP    plan-3           O   0.020
+AAP    plan-4           C   0.020
+AAP    plan-4         HN1   0.020
+AAP    plan-4         HN2   0.020
+AAP    plan-4           N   0.020
+AAP    plan-5       "C1'"   0.020
+AAP    plan-5          CA   0.020
+AAP    plan-5       "HN'"   0.020
+AAP    plan-5        "N'"   0.020
+AAP    plan-6        "C'"   0.020
+AAP    plan-6       "C2'"   0.020
+AAP    plan-6       "CM'"   0.020
+AAP    plan-6        "O'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AAP           SMILES              ACDLabs 10.04                                                                                        Clc1cccc(Cl)c1C(Nc2cc(ccc2C(=O)C)C)C(=O)N
+AAP SMILES_CANONICAL               CACTVS 3.341                                                                                    CC(=O)c1ccc(C)cc1N[C@H](C(N)=O)c2c(Cl)cccc2Cl
+AAP           SMILES               CACTVS 3.341                                                                                     CC(=O)c1ccc(C)cc1N[CH](C(N)=O)c2c(Cl)cccc2Cl
+AAP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                 Cc1ccc(c(c1)N[C@@H](c2c(cccc2Cl)Cl)C(=O)N)C(=O)C
+AAP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                      Cc1ccc(c(c1)NC(c2c(cccc2Cl)Cl)C(=O)N)C(=O)C
+AAP            InChI                InChI  1.03 InChI=1S/C17H16Cl2N2O2/c1-9-6-7-11(10(2)22)14(8-9)21-16(17(20)23)15-12(18)4-3-5-13(15)19/h3-8,16,21H,1-2H3,(H2,20,23)/t16-/m0/s1
+AAP         InChIKey                InChI  1.03                                                                                                      CJPLEFFCVDQQFZ-INIZCTEOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AAP acedrg               243         "dictionary generator"                  
+AAP acedrg_database      11          "data source"                           
+AAP rdkit                2017.03.2   "Chemoinformatics tool"
+AAP refmac5              5.8.0238    "optimization tool"                     

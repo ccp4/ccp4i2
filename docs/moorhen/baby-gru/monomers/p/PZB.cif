@@ -1,0 +1,250 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PZB     PZB      4-(4-phenoxy-1H-pyrazol-3-yl)benzene-1,3-diol     NON-POLYMER     32     20     .     
+#
+data_comp_PZB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PZB     CAF     C       CR16    0       -9.571      -18.470     -0.734      
+PZB     CAD     C       CR16    0       -8.664      -19.242     -0.020      
+PZB     CAC     C       CR16    0       -8.412      -20.548     -0.392      
+PZB     CAE     C       CR16    0       -9.064      -21.086     -1.484      
+PZB     CAG     C       CR16    0       -9.969      -20.322     -2.208      
+PZB     CAQ     C       CR6     0       -10.208     -19.011     -1.837      
+PZB     OAN     O       O2      0       -11.140     -18.297     -2.587      
+PZB     CAR     C       CR5     0       -10.838     -17.044     -3.094      
+PZB     CAJ     C       CR15    0       -9.693      -16.289     -3.144      
+PZB     NAM     N       NR5     0       -9.997      -15.137     -3.760      
+PZB     NAL     N       NRD5    0       -11.303     -15.106     -4.123      
+PZB     CAT     C       CR5     0       -11.812     -16.275     -3.708      
+PZB     CAS     C       CR6     0       -13.238     -16.542     -3.968      
+PZB     CAI     C       CR16    0       -13.612     -17.754     -4.564      
+PZB     CAH     C       CR16    0       -14.945     -18.034     -4.816      
+PZB     CAO     C       CR6     0       -15.931     -17.103     -4.472      
+PZB     OAA     O       OH1     0       -17.252     -17.383     -4.724      
+PZB     CAK     C       CR16    0       -15.581     -15.899     -3.880      
+PZB     CAP     C       CR6     0       -14.244     -15.614     -3.624      
+PZB     OAB     O       OH1     0       -13.925     -14.413     -3.037      
+PZB     H1      H       H       0       -9.736      -17.580     -0.475      
+PZB     H2      H       H       0       -8.222      -18.871     0.725       
+PZB     H3      H       H       0       -7.796      -21.070     0.098       
+PZB     H4      H       H       0       -8.894      -21.977     -1.742      
+PZB     H5      H       H       0       -10.410     -20.695     -2.952      
+PZB     H6      H       H       0       -8.841      -16.523     -2.806      
+PZB     H7      H       H       0       -9.430      -14.468     -3.923      
+PZB     H8      H       H       0       -12.951     -18.382     -4.795      
+PZB     H9      H       H       0       -15.188     -18.849     -5.218      
+PZB     H10     H       H       0       -17.864     -17.090     -4.195      
+PZB     H11     H       H       0       -16.245     -15.276     -3.651      
+PZB     H12     H       H       0       -13.551     -14.398     -2.261      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PZB         CAO         OAA      SINGLE       n     1.374  0.0155     1.374  0.0155
+PZB         CAH         CAO      SINGLE       y     1.396  0.0100     1.396  0.0100
+PZB         CAO         CAK      DOUBLE       y     1.382  0.0100     1.382  0.0100
+PZB         CAI         CAH      DOUBLE       y     1.382  0.0100     1.382  0.0100
+PZB         CAK         CAP      SINGLE       y     1.387  0.0100     1.387  0.0100
+PZB         CAS         CAI      SINGLE       y     1.398  0.0100     1.398  0.0100
+PZB         CAS         CAP      DOUBLE       y     1.405  0.0100     1.405  0.0100
+PZB         CAP         OAB      SINGLE       n     1.374  0.0155     1.374  0.0155
+PZB         CAT         CAS      SINGLE       n     1.473  0.0100     1.473  0.0100
+PZB         NAL         CAT      DOUBLE       y     1.342  0.0100     1.342  0.0100
+PZB         NAM         NAL      SINGLE       y     1.354  0.0100     1.354  0.0100
+PZB         CAR         CAT      SINGLE       y     1.399  0.0200     1.399  0.0200
+PZB         CAJ         NAM      SINGLE       y     1.338  0.0100     1.338  0.0100
+PZB         CAR         CAJ      DOUBLE       y     1.372  0.0135     1.372  0.0135
+PZB         OAN         CAR      SINGLE       n     1.381  0.0100     1.381  0.0100
+PZB         CAQ         OAN      SINGLE       n     1.390  0.0100     1.390  0.0100
+PZB         CAG         CAQ      SINGLE       y     1.380  0.0100     1.380  0.0100
+PZB         CAE         CAG      DOUBLE       y     1.385  0.0100     1.385  0.0100
+PZB         CAF         CAQ      DOUBLE       y     1.380  0.0100     1.380  0.0100
+PZB         CAC         CAE      SINGLE       y     1.375  0.0126     1.375  0.0126
+PZB         CAF         CAD      SINGLE       y     1.385  0.0100     1.385  0.0100
+PZB         CAD         CAC      DOUBLE       y     1.375  0.0126     1.375  0.0126
+PZB         CAF          H1      SINGLE       n     1.082  0.0130     0.942  0.0163
+PZB         CAD          H2      SINGLE       n     1.082  0.0130     0.943  0.0183
+PZB         CAC          H3      SINGLE       n     1.082  0.0130     0.944  0.0161
+PZB         CAE          H4      SINGLE       n     1.082  0.0130     0.943  0.0183
+PZB         CAG          H5      SINGLE       n     1.082  0.0130     0.942  0.0163
+PZB         CAJ          H6      SINGLE       n     1.082  0.0130     0.945  0.0191
+PZB         NAM          H7      SINGLE       n     1.016  0.0100     0.892  0.0200
+PZB         CAI          H8      SINGLE       n     1.082  0.0130     0.941  0.0147
+PZB         CAH          H9      SINGLE       n     1.082  0.0130     0.941  0.0179
+PZB         OAA         H10      SINGLE       n     0.966  0.0059     0.861  0.0200
+PZB         CAK         H11      SINGLE       n     1.082  0.0130     0.939  0.0167
+PZB         OAB         H12      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PZB         CAQ         CAF         CAD     119.570    1.50
+PZB         CAQ         CAF          H1     120.418    1.50
+PZB         CAD         CAF          H1     120.012    1.50
+PZB         CAF         CAD         CAC     120.215    1.50
+PZB         CAF         CAD          H2     119.708    1.50
+PZB         CAC         CAD          H2     120.077    1.50
+PZB         CAE         CAC         CAD     119.432    1.50
+PZB         CAE         CAC          H3     120.284    1.50
+PZB         CAD         CAC          H3     120.284    1.50
+PZB         CAG         CAE         CAC     120.215    1.50
+PZB         CAG         CAE          H4     119.708    1.50
+PZB         CAC         CAE          H4     120.077    1.50
+PZB         CAQ         CAG         CAE     119.570    1.50
+PZB         CAQ         CAG          H5     120.418    1.50
+PZB         CAE         CAG          H5     120.012    1.50
+PZB         OAN         CAQ         CAG     119.501    3.00
+PZB         OAN         CAQ         CAF     119.501    3.00
+PZB         CAG         CAQ         CAF     120.998    1.50
+PZB         CAR         OAN         CAQ     117.553    1.72
+PZB         CAT         CAR         CAJ     108.201    3.00
+PZB         CAT         CAR         OAN     122.893    3.00
+PZB         CAJ         CAR         OAN     128.906    3.00
+PZB         NAM         CAJ         CAR     106.246    2.30
+PZB         NAM         CAJ          H6     126.181    1.72
+PZB         CAR         CAJ          H6     127.574    1.50
+PZB         NAL         NAM         CAJ     109.583    1.50
+PZB         NAL         NAM          H7     123.837    2.17
+PZB         CAJ         NAM          H7     126.581    2.30
+PZB         CAT         NAL         NAM     104.327    1.50
+PZB         CAS         CAT         NAL     117.250    1.50
+PZB         CAS         CAT         CAR     131.107    2.53
+PZB         NAL         CAT         CAR     111.643    3.00
+PZB         CAI         CAS         CAP     118.974    1.50
+PZB         CAI         CAS         CAT     119.820    1.50
+PZB         CAP         CAS         CAT     121.207    1.50
+PZB         CAH         CAI         CAS     120.578    1.50
+PZB         CAH         CAI          H8     119.823    1.50
+PZB         CAS         CAI          H8     119.599    1.50
+PZB         CAO         CAH         CAI     120.070    1.50
+PZB         CAO         CAH          H9     119.921    1.50
+PZB         CAI         CAH          H9     120.009    1.50
+PZB         OAA         CAO         CAH     119.783    3.00
+PZB         OAA         CAO         CAK     119.783    3.00
+PZB         CAH         CAO         CAK     120.435    1.50
+PZB         CAO         OAA         H10     120.000    3.00
+PZB         CAO         CAK         CAP     119.629    1.50
+PZB         CAO         CAK         H11     120.335    1.50
+PZB         CAP         CAK         H11     120.036    1.50
+PZB         CAK         CAP         CAS     120.305    1.50
+PZB         CAK         CAP         OAB     119.852    3.00
+PZB         CAS         CAP         OAB     119.852    3.00
+PZB         CAP         OAB         H12     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PZB              const_61         CAC         CAD         CAF         CAQ       0.000    10.0     2
+PZB       const_sp2_sp2_2         CAD         CAF         CAQ         OAN     180.000     5.0     2
+PZB              const_46         CAS         CAT         NAL         NAM     180.000    10.0     2
+PZB             sp2_sp2_6         CAI         CAS         CAT         NAL       0.000     5.0     2
+PZB              const_21         CAH         CAI         CAS         CAP       0.000    10.0     2
+PZB              const_55         OAB         CAP         CAS         CAI     180.000    10.0     2
+PZB              const_25         CAO         CAH         CAI         CAS       0.000    10.0     2
+PZB              const_30         CAI         CAH         CAO         OAA     180.000    10.0     2
+PZB             sp2_sp2_1         CAH         CAO         OAA         H10     180.000     5.0     2
+PZB              const_34         CAP         CAK         CAO         OAA     180.000    10.0     2
+PZB              const_38         CAO         CAK         CAP         OAB     180.000    10.0     2
+PZB             sp2_sp2_3         CAK         CAP         OAB         H12     180.000     5.0     2
+PZB              const_17         CAE         CAC         CAD         CAF       0.000    10.0     2
+PZB              const_13         CAD         CAC         CAE         CAG       0.000    10.0     2
+PZB       const_sp2_sp2_9         CAC         CAE         CAG         CAQ       0.000     5.0     2
+PZB       const_sp2_sp2_6         CAE         CAG         CAQ         OAN     180.000     5.0     2
+PZB            sp2_sp2_11         CAG         CAQ         OAN         CAR     180.000     5.0     2
+PZB             sp2_sp2_9         CAT         CAR         OAN         CAQ     180.000     5.0     2
+PZB              const_44         OAN         CAR         CAT         CAS       0.000    10.0     2
+PZB              const_58         NAM         CAJ         CAR         OAN     180.000    10.0     2
+PZB              const_49         CAR         CAJ         NAM         NAL       0.000    10.0     2
+PZB              const_47         CAT         NAL         NAM         CAJ       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PZB    plan-1         CAC   0.020
+PZB    plan-1         CAD   0.020
+PZB    plan-1         CAE   0.020
+PZB    plan-1         CAF   0.020
+PZB    plan-1         CAG   0.020
+PZB    plan-1         CAQ   0.020
+PZB    plan-1          H1   0.020
+PZB    plan-1          H2   0.020
+PZB    plan-1          H3   0.020
+PZB    plan-1          H4   0.020
+PZB    plan-1          H5   0.020
+PZB    plan-1         OAN   0.020
+PZB    plan-2         CAJ   0.020
+PZB    plan-2         CAR   0.020
+PZB    plan-2         CAS   0.020
+PZB    plan-2         CAT   0.020
+PZB    plan-2          H6   0.020
+PZB    plan-2          H7   0.020
+PZB    plan-2         NAL   0.020
+PZB    plan-2         NAM   0.020
+PZB    plan-2         OAN   0.020
+PZB    plan-3         CAH   0.020
+PZB    plan-3         CAI   0.020
+PZB    plan-3         CAK   0.020
+PZB    plan-3         CAO   0.020
+PZB    plan-3         CAP   0.020
+PZB    plan-3         CAS   0.020
+PZB    plan-3         CAT   0.020
+PZB    plan-3         H11   0.020
+PZB    plan-3          H8   0.020
+PZB    plan-3          H9   0.020
+PZB    plan-3         OAA   0.020
+PZB    plan-3         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PZB           SMILES              ACDLabs 12.01                                                                         Oc3cc(O)c(c2nncc2Oc1ccccc1)cc3
+PZB            InChI                InChI  1.03 InChI=1S/C15H12N2O3/c18-10-6-7-12(13(19)8-10)15-14(9-16-17-15)20-11-4-2-1-3-5-11/h1-9,18-19H,(H,16,17)
+PZB         InChIKey                InChI  1.03                                                                            WUNNLMRNOJZGQB-UHFFFAOYSA-N
+PZB SMILES_CANONICAL               CACTVS 3.370                                                                      Oc1ccc(c(O)c1)c2n[nH]cc2Oc3ccccc3
+PZB           SMILES               CACTVS 3.370                                                                      Oc1ccc(c(O)c1)c2n[nH]cc2Oc3ccccc3
+PZB SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                      c1ccc(cc1)Oc2c[nH]nc2c3ccc(cc3O)O
+PZB           SMILES "OpenEye OEToolkits" 1.7.6                                                                      c1ccc(cc1)Oc2c[nH]nc2c3ccc(cc3O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PZB acedrg               243         "dictionary generator"                  
+PZB acedrg_database      11          "data source"                           
+PZB rdkit                2017.03.2   "Chemoinformatics tool"
+PZB refmac5              5.8.0238    "optimization tool"                     

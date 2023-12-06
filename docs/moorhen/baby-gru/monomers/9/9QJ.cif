@@ -1,0 +1,281 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+9QJ     9QJ      "(1S,3S,4E)-3-({3-hydroxy-2-methyl-5-[(phosphonooxy)methyl]pyridin-4-yl}methyl)-4-iminocyclopentane-1-carboxylic acid"     NON-POLYMER     40     24     .     
+#
+data_comp_9QJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+9QJ     C4A     C       CH2     0       56.413      48.563      16.085      
+9QJ     CGF     C       CH1     0       55.488      49.765      15.845      
+9QJ     CDF     C       CR5     0       55.922      50.581      14.641      
+9QJ     NF      N       NH1     0       57.066      51.113      14.447      
+9QJ     CEF     C       CH2     0       54.761      50.678      13.687      
+9QJ     CAF     C       CH1     0       53.533      50.488      14.584      
+9QJ     CF      C       C       0       52.266      50.165      13.796      
+9QJ     O1F     O       O       0       52.043      50.798      12.777      
+9QJ     O2F     O       OC      -1      51.524      49.296      14.223      
+9QJ     CBF     C       CH2     0       54.007      49.411      15.566      
+9QJ     C4      C       CR6     0       55.947      47.615      17.173      
+9QJ     C3      C       CR6     0       56.026      48.035      18.513      
+9QJ     O3      O       OH1     0       56.514      49.279      18.847      
+9QJ     C2      C       CR6     0       55.603      47.178      19.548      
+9QJ     C2A     C       CH3     0       55.679      47.612      20.980      
+9QJ     N1      N       NRD6    0       55.126      45.964      19.269      
+9QJ     C6      C       CR16    0       55.046      45.548      17.993      
+9QJ     C5      C       CR6     0       55.437      46.323      16.905      
+9QJ     C5A     C       CH2     0       55.314      45.770      15.515      
+9QJ     O4P     O       O2      0       56.628      45.417      14.981      
+9QJ     P       P       P       0       56.811      44.899      13.463      
+9QJ     O2P     O       OP      -1      55.857      43.729      13.308      
+9QJ     O3P     O       OP      -1      58.268      44.492      13.338      
+9QJ     O1P     O       O       0       56.450      46.076      12.578      
+9QJ     H1      H       H       0       57.307      48.908      16.334      
+9QJ     H2      H       H       0       56.513      48.074      15.237      
+9QJ     H3      H       H       0       55.525      50.317      16.662      
+9QJ     H4      H       H       0       57.612      50.955      15.128      
+9QJ     H5      H       H       0       54.809      49.979      13.004      
+9QJ     H6      H       H       0       54.743      51.551      13.246      
+9QJ     H7      H       H       0       53.381      51.324      15.093      
+9QJ     H9      H       H       0       53.489      49.436      16.372      
+9QJ     H10     H       H       0       53.928      48.540      15.176      
+9QJ     H11     H       H       0       57.257      49.350      19.275      
+9QJ     H12     H       H       0       55.340      46.907      21.556      
+9QJ     H13     H       H       0       55.146      48.414      21.105      
+9QJ     H14     H       H       0       56.603      47.801      21.213      
+9QJ     H15     H       H       0       54.705      44.687      17.833      
+9QJ     H16     H       H       0       54.893      46.431      14.924      
+9QJ     H17     H       H       0       54.750      44.966      15.522      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+9QJ          CF         O1F      DOUBLE       n     1.218  0.0200     1.218  0.0200
+9QJ           P         O1P      DOUBLE       n     1.517  0.0192     1.517  0.0192
+9QJ           P         O2P      SINGLE       n     1.517  0.0192     1.517  0.0192
+9QJ           P         O3P      SINGLE       n     1.517  0.0192     1.517  0.0192
+9QJ         O4P           P      SINGLE       n     1.614  0.0178     1.614  0.0178
+9QJ          CF         O2F      SINGLE       n     1.218  0.0200     1.218  0.0200
+9QJ         CAF          CF      SINGLE       n     1.523  0.0139     1.523  0.0139
+9QJ         CDF         CEF      SINGLE       n     1.506  0.0108     1.506  0.0108
+9QJ         CEF         CAF      SINGLE       n     1.535  0.0177     1.535  0.0177
+9QJ         CDF          NF      DOUBLE       n     1.272  0.0198     1.272  0.0198
+9QJ         CGF         CDF      SINGLE       n     1.513  0.0137     1.513  0.0137
+9QJ         CAF         CBF      SINGLE       n     1.533  0.0100     1.533  0.0100
+9QJ         C5A         O4P      SINGLE       n     1.462  0.0104     1.462  0.0104
+9QJ         CGF         CBF      SINGLE       n     1.545  0.0147     1.545  0.0147
+9QJ          C5         C5A      SINGLE       n     1.498  0.0100     1.498  0.0100
+9QJ         C4A         CGF      SINGLE       n     1.533  0.0100     1.533  0.0100
+9QJ         C4A          C4      SINGLE       n     1.511  0.0100     1.511  0.0100
+9QJ          C4          C5      SINGLE       y     1.403  0.0108     1.403  0.0108
+9QJ          C6          C5      DOUBLE       y     1.383  0.0136     1.383  0.0136
+9QJ          C4          C3      DOUBLE       y     1.399  0.0100     1.399  0.0100
+9QJ          N1          C6      SINGLE       y     1.342  0.0100     1.342  0.0100
+9QJ          C3          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+9QJ          C3          C2      SINGLE       y     1.400  0.0136     1.400  0.0136
+9QJ          C2          N1      DOUBLE       y     1.331  0.0100     1.331  0.0100
+9QJ          C2         C2A      SINGLE       n     1.497  0.0100     1.497  0.0100
+9QJ         C4A          H1      SINGLE       n     1.089  0.0100     0.990  0.0200
+9QJ         C4A          H2      SINGLE       n     1.089  0.0100     0.990  0.0200
+9QJ         CGF          H3      SINGLE       n     1.089  0.0100     0.988  0.0150
+9QJ          NF          H4      SINGLE       n     1.016  0.0100     0.887  0.0200
+9QJ         CEF          H5      SINGLE       n     1.089  0.0100     0.978  0.0150
+9QJ         CEF          H6      SINGLE       n     1.089  0.0100     0.978  0.0150
+9QJ         CAF          H7      SINGLE       n     1.089  0.0100     0.990  0.0170
+9QJ         CBF          H9      SINGLE       n     1.089  0.0100     0.959  0.0129
+9QJ         CBF         H10      SINGLE       n     1.089  0.0100     0.959  0.0129
+9QJ          O3         H11      SINGLE       n     0.966  0.0059     0.861  0.0200
+9QJ         C2A         H12      SINGLE       n     1.089  0.0100     0.971  0.0138
+9QJ         C2A         H13      SINGLE       n     1.089  0.0100     0.971  0.0138
+9QJ         C2A         H14      SINGLE       n     1.089  0.0100     0.971  0.0138
+9QJ          C6         H15      SINGLE       n     1.082  0.0130     0.940  0.0200
+9QJ         C5A         H16      SINGLE       n     1.089  0.0100     0.982  0.0107
+9QJ         C5A         H17      SINGLE       n     1.089  0.0100     0.982  0.0107
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+9QJ         CGF         C4A          C4     113.003    2.79
+9QJ         CGF         C4A          H1     108.666    1.50
+9QJ         CGF         C4A          H2     108.666    1.50
+9QJ          C4         C4A          H1     108.894    1.50
+9QJ          C4         C4A          H2     108.894    1.50
+9QJ          H1         C4A          H2     108.010    1.50
+9QJ         CDF         CGF         CBF     104.009    1.83
+9QJ         CDF         CGF         C4A     111.539    2.78
+9QJ         CDF         CGF          H3     110.367    1.60
+9QJ         CBF         CGF         C4A     113.745    2.48
+9QJ         CBF         CGF          H3     108.512    2.53
+9QJ         C4A         CGF          H3     105.835    2.89
+9QJ         CEF         CDF          NF     125.959    3.00
+9QJ         CEF         CDF         CGF     108.081    1.62
+9QJ          NF         CDF         CGF     125.959    3.00
+9QJ         CDF          NF          H4     110.235    2.27
+9QJ         CDF         CEF         CAF     104.009    1.83
+9QJ         CDF         CEF          H5     110.946    1.50
+9QJ         CDF         CEF          H6     110.946    1.50
+9QJ         CAF         CEF          H5     111.022    1.50
+9QJ         CAF         CEF          H6     111.022    1.50
+9QJ          H5         CEF          H6     108.871    1.50
+9QJ          CF         CAF         CEF     112.424    2.46
+9QJ          CF         CAF         CBF     115.385    2.25
+9QJ          CF         CAF          H7     108.881    1.63
+9QJ         CEF         CAF         CBF     104.443    2.26
+9QJ         CEF         CAF          H7     108.916    1.50
+9QJ         CBF         CAF          H7     108.610    1.91
+9QJ         O1F          CF         O2F     123.733    1.50
+9QJ         O1F          CF         CAF     118.131    1.50
+9QJ         O2F          CF         CAF     118.131    1.50
+9QJ         CAF         CBF         CGF     104.443    2.26
+9QJ         CAF         CBF          H9     110.667    1.50
+9QJ         CAF         CBF         H10     110.667    1.50
+9QJ         CGF         CBF          H9     111.069    1.50
+9QJ         CGF         CBF         H10     111.069    1.50
+9QJ          H9         CBF         H10     108.718    1.50
+9QJ         C4A          C4          C5     121.140    1.94
+9QJ         C4A          C4          C3     119.824    1.66
+9QJ          C5          C4          C3     119.036    1.50
+9QJ          C4          C3          O3     120.067    3.00
+9QJ          C4          C3          C2     119.866    1.50
+9QJ          O3          C3          C2     120.067    3.00
+9QJ          C3          O3         H11     120.000    3.00
+9QJ          C3          C2          N1     120.416    1.50
+9QJ          C3          C2         C2A     120.591    1.50
+9QJ          N1          C2         C2A     118.993    1.50
+9QJ          C2         C2A         H12     109.484    1.50
+9QJ          C2         C2A         H13     109.484    1.50
+9QJ          C2         C2A         H14     109.484    1.50
+9QJ         H12         C2A         H13     109.339    1.66
+9QJ         H12         C2A         H14     109.339    1.66
+9QJ         H13         C2A         H14     109.339    1.66
+9QJ          C6          N1          C2     119.476    1.60
+9QJ          C5          C6          N1     123.320    1.50
+9QJ          C5          C6         H15     118.605    1.50
+9QJ          N1          C6         H15     118.075    1.50
+9QJ         C5A          C5          C4     121.186    1.51
+9QJ         C5A          C5          C6     120.930    1.59
+9QJ          C4          C5          C6     117.885    1.50
+9QJ         O4P         C5A          C5     110.538    2.24
+9QJ         O4P         C5A         H16     108.933    1.90
+9QJ         O4P         C5A         H17     108.933    1.90
+9QJ          C5         C5A         H16     109.800    1.50
+9QJ          C5         C5A         H17     109.800    1.50
+9QJ         H16         C5A         H17     108.248    1.50
+9QJ           P         O4P         C5A     121.496    2.55
+9QJ         O1P           P         O2P     112.864    1.69
+9QJ         O1P           P         O3P     112.864    1.69
+9QJ         O1P           P         O4P     105.808    2.07
+9QJ         O2P           P         O3P     112.864    1.69
+9QJ         O2P           P         O4P     105.808    2.07
+9QJ         O3P           P         O4P     105.808    2.07
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+9QJ            sp3_sp3_34          C4         C4A         CGF         CDF     180.000    10.0     3
+9QJ            sp2_sp3_26          C5          C4         C4A         CGF     -90.000    10.0     6
+9QJ              const_20          O3          C3          C4         C4A       0.000    10.0     2
+9QJ       const_sp2_sp2_4         C4A          C4          C5         C5A       0.000     5.0     2
+9QJ             sp2_sp2_3          C4          C3          O3         H11     180.000     5.0     2
+9QJ              const_16         C2A          C2          C3          O3       0.000    10.0     2
+9QJ            sp2_sp3_31          C3          C2         C2A         H12     150.000    10.0     6
+9QJ              const_12         C2A          C2          N1          C6     180.000    10.0     2
+9QJ       const_sp2_sp2_9          C5          C6          N1          C2       0.000     5.0     2
+9QJ       const_sp2_sp2_7         C5A          C5          C6          N1     180.000     5.0     2
+9QJ            sp2_sp3_20          C4          C5         C5A         O4P     -90.000    10.0     6
+9QJ            sp3_sp3_22          C5         C5A         O4P           P     180.000    10.0     3
+9QJ            sp3_sp3_21         C5A         O4P           P         O1P      60.000    10.0     3
+9QJ             sp2_sp3_5          NF         CDF         CGF         C4A     -60.000    10.0     6
+9QJ            sp3_sp3_26         CAF         CBF         CGF         C4A     -60.000    10.0     3
+9QJ             sp2_sp2_1         CEF         CDF          NF          H4     180.000     5.0     2
+9QJ            sp2_sp3_10          NF         CDF         CEF         CAF     180.000    10.0     6
+9QJ             sp3_sp3_4          CF         CAF         CEF         CDF     -60.000    10.0     3
+9QJ            sp2_sp3_13         O1F          CF         CAF         CEF       0.000    10.0     6
+9QJ            sp3_sp3_13          CF         CAF         CBF         CGF     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+9QJ    chir_1    CGF    CDF    C4A    CBF    positive
+9QJ    chir_2    CAF    CF    CEF    CBF    positive
+9QJ    chir_3    P    O4P    O2P    O3P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+9QJ    plan-1          C2   0.020
+9QJ    plan-1         C2A   0.020
+9QJ    plan-1          C3   0.020
+9QJ    plan-1          C4   0.020
+9QJ    plan-1         C4A   0.020
+9QJ    plan-1          C5   0.020
+9QJ    plan-1         C5A   0.020
+9QJ    plan-1          C6   0.020
+9QJ    plan-1         H15   0.020
+9QJ    plan-1          N1   0.020
+9QJ    plan-1          O3   0.020
+9QJ    plan-2         CDF   0.020
+9QJ    plan-2         CEF   0.020
+9QJ    plan-2         CGF   0.020
+9QJ    plan-2          NF   0.020
+9QJ    plan-3         CAF   0.020
+9QJ    plan-3          CF   0.020
+9QJ    plan-3         O1F   0.020
+9QJ    plan-3         O2F   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+9QJ           SMILES              ACDLabs 12.01                                                                                                               C(c1c(O)c(C)ncc1COP(O)(O)=O)C2\C(=N)CC(C2)C(O)=O
+9QJ            InChI                InChI  1.03 InChI=1S/C14H19N2O7P/c1-7-13(17)11(10(5-16-7)6-23-24(20,21)22)3-8-2-9(14(18)19)4-12(8)15/h5,8-9,15,17H,2-4,6H2,1H3,(H,18,19)(H2,20,21,22)/b15-12+/t8-,9-/m0/s1
+9QJ         InChIKey                InChI  1.03                                                                                                                                    CTOWFYUCLIAQOJ-QEPOKVMRSA-N
+9QJ SMILES_CANONICAL               CACTVS 3.385                                                                                                        Cc1ncc(CO[P](O)(O)=O)c(C[C@@H]2C[C@@H](CC2=N)C(O)=O)c1O
+9QJ           SMILES               CACTVS 3.385                                                                                                            Cc1ncc(CO[P](O)(O)=O)c(C[CH]2C[CH](CC2=N)C(O)=O)c1O
+9QJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                    "[H]/N=C/1\C[C@H](C[C@H]1Cc2c(cnc(c2O)C)COP(=O)(O)O)C(=O)O"
+9QJ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                  Cc1c(c(c(cn1)COP(=O)(O)O)CC2CC(CC2=N)C(=O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+9QJ acedrg               243         "dictionary generator"                  
+9QJ acedrg_database      11          "data source"                           
+9QJ rdkit                2017.03.2   "Chemoinformatics tool"
+9QJ refmac5              5.8.0238    "optimization tool"                     

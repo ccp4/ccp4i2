@@ -1,0 +1,319 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DAX     DAX      5-BROMO-N[2-(DIMETHYLAMINO)ETHYL]-9-AMINOACRIDINE-4-CARBOXAMIDE     NON-POLYMER     45     24     .     
+#
+data_comp_DAX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DAX     C1      C       CR16    0       11.970      -9.140      20.000      
+DAX     C2      C       CR16    0       12.125      -9.272      21.349      
+DAX     C3      C       CR16    0       11.355      -8.491      22.234      
+DAX     C4      C       CR6     0       10.449      -7.563      21.771      
+DAX     C5      C       CR6     0       8.205       -5.391      17.946      
+DAX     C6      C       CR16    0       8.037       -5.246      16.591      
+DAX     C7      C       CR16    0       8.787       -6.017      15.685      
+DAX     C8      C       CR16    0       9.698       -6.925      16.139      
+DAX     C9      C       CR6     0       10.864      -8.064      18.034      
+DAX     N9      N       NH2     0       11.607      -8.827      17.159      
+DAX     N10     N       NR6     1       9.338       -6.497      19.826      
+DAX     C11     C       CR66    0       11.040      -8.215      19.447      
+DAX     C12     C       CR66    0       10.255      -7.409      20.339      
+DAX     C13     C       CR66    0       9.914       -7.117      17.533      
+DAX     C14     C       CR66    0       9.151       -6.333      18.461      
+DAX     CD1     C       C       0       9.655       -6.768      22.788      
+DAX     OD1     O       O       0       8.457       -7.030      22.897      
+DAX     ND1     N       NH1     0       10.232      -5.825      23.542      
+DAX     BR      BR      BR      0       7.160       -4.319      19.094      
+DAX     CD2     C       CH2     0       11.636      -5.444      23.459      
+DAX     CD3     C       CH2     0       12.035      -4.374      24.459      
+DAX     ND2     N       NT1     1       12.103      -4.870      25.873      
+DAX     CD7     C       CH3     0       13.392      -5.566      26.160      
+DAX     CD8     C       CH3     0       11.871      -3.775      26.861      
+DAX     H1      H       H       0       12.490      -9.674      19.422      
+DAX     H2      H       H       0       12.748      -9.893      21.691      
+DAX     H3      H       H       0       11.480      -8.591      23.158      
+DAX     H6      H       H       0       7.392       -4.604      16.253      
+DAX     H7      H       H       0       8.659       -5.905      14.755      
+DAX     H8      H       H       0       10.193      -7.433      15.518      
+DAX     H91     H       H       0       12.134      -8.435      16.578      
+DAX     H92     H       H       0       11.549      -9.701      17.186      
+DAX     H10     H       H       0       8.865       -6.010      20.383      
+DAX     HD1     H       H       0       9.736       -5.404      24.126      
+DAX     HD21    H       H       0       11.823      -5.117      22.556      
+DAX     HD22    H       H       0       12.191      -6.234      23.613      
+DAX     HD31    H       H       0       11.388      -3.643      24.409      
+DAX     HD32    H       H       0       12.909      -4.016      24.206      
+DAX     HD2     H       H       0       11.433      -5.482      25.991      
+DAX     HD71    H       H       0       13.384      -5.892      27.073      
+DAX     HD72    H       H       0       14.125      -4.944      26.043      
+DAX     HD73    H       H       0       13.498      -6.312      25.552      
+DAX     HD81    H       H       0       10.982      -3.411      26.733      
+DAX     HD82    H       H       0       12.530      -3.079      26.728      
+DAX     HD83    H       H       0       11.949      -4.131      27.759      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DAX          C1          C2      DOUBLE       y     1.361  0.0115     1.361  0.0115
+DAX          C1         C11      SINGLE       y     1.418  0.0111     1.418  0.0111
+DAX          C2          C3      SINGLE       y     1.406  0.0100     1.406  0.0100
+DAX          C3          C4      DOUBLE       y     1.372  0.0100     1.372  0.0100
+DAX          C4         C12      SINGLE       y     1.438  0.0142     1.438  0.0142
+DAX          C4         CD1      SINGLE       n     1.511  0.0100     1.511  0.0100
+DAX          C5          C6      SINGLE       y     1.357  0.0189     1.357  0.0189
+DAX          C5         C14      DOUBLE       y     1.410  0.0162     1.410  0.0162
+DAX          C5          BR      SINGLE       n     1.885  0.0102     1.885  0.0102
+DAX          C6          C7      DOUBLE       y     1.402  0.0100     1.402  0.0100
+DAX          C7          C8      SINGLE       y     1.361  0.0115     1.361  0.0115
+DAX          C8         C13      DOUBLE       y     1.418  0.0111     1.418  0.0111
+DAX          C9          N9      SINGLE       n     1.370  0.0200     1.370  0.0200
+DAX          C9         C11      DOUBLE       y     1.425  0.0132     1.425  0.0132
+DAX          C9         C13      SINGLE       y     1.425  0.0132     1.425  0.0132
+DAX         N10         C12      DOUBLE       y     1.376  0.0146     1.376  0.0146
+DAX         N10         C14      SINGLE       y     1.378  0.0112     1.378  0.0112
+DAX         C11         C12      SINGLE       y     1.425  0.0132     1.425  0.0132
+DAX         C13         C14      SINGLE       y     1.425  0.0134     1.425  0.0134
+DAX         CD1         OD1      DOUBLE       n     1.230  0.0114     1.230  0.0114
+DAX         CD1         ND1      SINGLE       n     1.332  0.0109     1.332  0.0109
+DAX         ND1         CD2      SINGLE       n     1.453  0.0100     1.453  0.0100
+DAX         CD2         CD3      SINGLE       n     1.512  0.0195     1.512  0.0195
+DAX         CD3         ND2      SINGLE       n     1.496  0.0118     1.496  0.0118
+DAX         ND2         CD7      SINGLE       n     1.488  0.0200     1.488  0.0200
+DAX         ND2         CD8      SINGLE       n     1.488  0.0200     1.488  0.0200
+DAX          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0178
+DAX          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0158
+DAX          C3          H3      SINGLE       n     1.082  0.0130     0.938  0.0129
+DAX          C6          H6      SINGLE       n     1.082  0.0130     0.971  0.0200
+DAX          C7          H7      SINGLE       n     1.082  0.0130     0.945  0.0100
+DAX          C8          H8      SINGLE       n     1.082  0.0130     0.944  0.0178
+DAX          N9         H91      SINGLE       n     1.016  0.0100     0.877  0.0200
+DAX          N9         H92      SINGLE       n     1.016  0.0100     0.877  0.0200
+DAX         N10         H10      SINGLE       n     1.016  0.0100     0.885  0.0200
+DAX         ND1         HD1      SINGLE       n     1.016  0.0100     0.873  0.0200
+DAX         CD2        HD21      SINGLE       n     1.089  0.0100     0.979  0.0148
+DAX         CD2        HD22      SINGLE       n     1.089  0.0100     0.979  0.0148
+DAX         CD3        HD31      SINGLE       n     1.089  0.0100     0.977  0.0139
+DAX         CD3        HD32      SINGLE       n     1.089  0.0100     0.977  0.0139
+DAX         ND2         HD2      SINGLE       n     1.036  0.0160     0.915  0.0200
+DAX         CD7        HD71      SINGLE       n     1.089  0.0100     0.969  0.0145
+DAX         CD7        HD72      SINGLE       n     1.089  0.0100     0.969  0.0145
+DAX         CD7        HD73      SINGLE       n     1.089  0.0100     0.969  0.0145
+DAX         CD8        HD81      SINGLE       n     1.089  0.0100     0.969  0.0145
+DAX         CD8        HD82      SINGLE       n     1.089  0.0100     0.969  0.0145
+DAX         CD8        HD83      SINGLE       n     1.089  0.0100     0.969  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DAX          C2          C1         C11     121.199    1.50
+DAX          C2          C1          H1     119.647    1.50
+DAX         C11          C1          H1     119.154    1.50
+DAX          C1          C2          C3     119.872    1.50
+DAX          C1          C2          H2     120.038    1.50
+DAX          C3          C2          H2     120.090    1.50
+DAX          C2          C3          C4     120.791    1.50
+DAX          C2          C3          H3     119.553    1.50
+DAX          C4          C3          H3     119.656    1.50
+DAX          C3          C4         C12     119.617    1.50
+DAX          C3          C4         CD1     119.078    1.66
+DAX         C12          C4         CD1     121.305    1.86
+DAX          C6          C5         C14     120.342    1.50
+DAX          C6          C5          BR     119.692    1.50
+DAX         C14          C5          BR     119.967    2.10
+DAX          C5          C6          C7     119.975    1.50
+DAX          C5          C6          H6     120.045    1.50
+DAX          C7          C6          H6     119.980    1.50
+DAX          C6          C7          C8     119.943    1.50
+DAX          C6          C7          H7     120.023    1.50
+DAX          C8          C7          H7     120.034    1.50
+DAX          C7          C8         C13     121.239    1.50
+DAX          C7          C8          H8     119.624    1.50
+DAX         C13          C8          H8     119.132    1.50
+DAX          N9          C9         C11     119.802    2.05
+DAX          N9          C9         C13     119.802    2.05
+DAX         C11          C9         C13     120.396    1.80
+DAX          C9          N9         H91     119.816    2.26
+DAX          C9          N9         H92     119.816    2.26
+DAX         H91          N9         H92     120.368    2.83
+DAX         C12         N10         C14     120.922    1.50
+DAX         C12         N10         H10     119.539    1.50
+DAX         C14         N10         H10     119.539    1.50
+DAX          C1         C11          C9     121.521    1.50
+DAX          C1         C11         C12     119.112    1.50
+DAX          C9         C11         C12     119.367    1.50
+DAX          C4         C12         N10     120.617    1.50
+DAX          C4         C12         C11     119.409    1.50
+DAX         N10         C12         C11     119.974    1.50
+DAX          C8         C13          C9     121.485    1.50
+DAX          C8         C13         C14     119.148    1.50
+DAX          C9         C13         C14     119.367    1.50
+DAX          C5         C14         N10     120.667    1.50
+DAX          C5         C14         C13     119.359    1.50
+DAX         N10         C14         C13     119.974    1.50
+DAX          C4         CD1         OD1     120.214    2.07
+DAX          C4         CD1         ND1     117.197    2.27
+DAX         OD1         CD1         ND1     122.589    1.50
+DAX         CD1         ND1         CD2     122.323    1.53
+DAX         CD1         ND1         HD1     119.166    1.82
+DAX         CD2         ND1         HD1     118.511    1.89
+DAX         ND1         CD2         CD3     114.126    2.15
+DAX         ND1         CD2        HD21     108.997    1.50
+DAX         ND1         CD2        HD22     108.997    1.50
+DAX         CD3         CD2        HD21     108.952    1.50
+DAX         CD3         CD2        HD22     108.952    1.50
+DAX        HD21         CD2        HD22     107.909    1.50
+DAX         CD2         CD3         ND2     113.108    1.80
+DAX         CD2         CD3        HD31     108.947    1.50
+DAX         CD2         CD3        HD32     108.947    1.50
+DAX         ND2         CD3        HD31     108.799    1.50
+DAX         ND2         CD3        HD32     108.799    1.50
+DAX        HD31         CD3        HD32     107.884    1.50
+DAX         CD3         ND2         CD7     111.577    1.59
+DAX         CD3         ND2         CD8     111.577    1.59
+DAX         CD3         ND2         HD2     107.874    2.17
+DAX         CD7         ND2         CD8     110.669    1.50
+DAX         CD7         ND2         HD2     107.482    2.76
+DAX         CD8         ND2         HD2     107.482    2.76
+DAX         ND2         CD7        HD71     109.277    1.50
+DAX         ND2         CD7        HD72     109.277    1.50
+DAX         ND2         CD7        HD73     109.277    1.50
+DAX        HD71         CD7        HD72     109.608    1.50
+DAX        HD71         CD7        HD73     109.608    1.50
+DAX        HD72         CD7        HD73     109.608    1.50
+DAX         ND2         CD8        HD81     109.277    1.50
+DAX         ND2         CD8        HD82     109.277    1.50
+DAX         ND2         CD8        HD83     109.277    1.50
+DAX        HD81         CD8        HD82     109.608    1.50
+DAX        HD81         CD8        HD83     109.608    1.50
+DAX        HD82         CD8        HD83     109.608    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DAX              const_21         C11          C1          C2          C3       0.000    10.0     2
+DAX              const_54          C2          C1         C11          C9     180.000    10.0     2
+DAX              const_11          C4         C12         N10         C14     180.000    10.0     2
+DAX              const_15          C5         C14         N10         C12     180.000    10.0     2
+DAX       const_sp2_sp2_5          C1         C11         C12          C4       0.000     5.0     2
+DAX              const_17          C8         C13         C14          C5       0.000    10.0     2
+DAX            sp2_sp2_11         OD1         CD1         ND1         CD2       0.000     5.0     2
+DAX             sp2_sp3_2         CD1         ND1         CD2         CD3     120.000    10.0     6
+DAX             sp3_sp3_1         ND1         CD2         CD3         ND2     180.000    10.0     3
+DAX              const_25          C1          C2          C3          C4       0.000    10.0     2
+DAX            sp3_sp3_11         CD2         CD3         ND2         CD7     -60.000    10.0     3
+DAX            sp3_sp3_19        HD71         CD7         ND2         CD3     180.000    10.0     3
+DAX            sp3_sp3_29        HD81         CD8         ND2         CD3     -60.000    10.0     3
+DAX              const_30          C2          C3          C4         CD1     180.000    10.0     2
+DAX              const_36         N10         C12          C4         CD1       0.000    10.0     2
+DAX             sp2_sp2_2          C3          C4         CD1         OD1       0.000     5.0     2
+DAX              const_60         N10         C14          C5          BR       0.000    10.0     2
+DAX              const_39          BR          C5          C6          C7     180.000    10.0     2
+DAX              const_41          C5          C6          C7          C8       0.000    10.0     2
+DAX              const_45          C6          C7          C8         C13       0.000    10.0     2
+DAX              const_51          C9         C13          C8          C7     180.000    10.0     2
+DAX       const_sp2_sp2_4          C1         C11          C9          N9       0.000     5.0     2
+DAX              const_64          C8         C13          C9          N9       0.000    10.0     2
+DAX             sp2_sp2_5         C11          C9          N9         H91     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DAX    chir_1    ND2    CD3    CD7    CD8    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DAX    plan-1          BR   0.020
+DAX    plan-1          C1   0.020
+DAX    plan-1         C11   0.020
+DAX    plan-1         C12   0.020
+DAX    plan-1         C13   0.020
+DAX    plan-1         C14   0.020
+DAX    plan-1          C2   0.020
+DAX    plan-1          C3   0.020
+DAX    plan-1          C4   0.020
+DAX    plan-1          C5   0.020
+DAX    plan-1          C6   0.020
+DAX    plan-1          C7   0.020
+DAX    plan-1          C8   0.020
+DAX    plan-1          C9   0.020
+DAX    plan-1         CD1   0.020
+DAX    plan-1          H1   0.020
+DAX    plan-1         H10   0.020
+DAX    plan-1          H2   0.020
+DAX    plan-1          H3   0.020
+DAX    plan-1          H6   0.020
+DAX    plan-1          H7   0.020
+DAX    plan-1          H8   0.020
+DAX    plan-1         N10   0.020
+DAX    plan-1          N9   0.020
+DAX    plan-2          C9   0.020
+DAX    plan-2         H91   0.020
+DAX    plan-2         H92   0.020
+DAX    plan-2          N9   0.020
+DAX    plan-3          C4   0.020
+DAX    plan-3         CD1   0.020
+DAX    plan-3         ND1   0.020
+DAX    plan-3         OD1   0.020
+DAX    plan-4         CD1   0.020
+DAX    plan-4         CD2   0.020
+DAX    plan-4         HD1   0.020
+DAX    plan-4         ND1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DAX           SMILES              ACDLabs 10.04                                                                                       O=C(NCC[NH+](C)C)c1c3c(ccc1)c(c2cccc(Br)c2[nH+]3)N
+DAX SMILES_CANONICAL               CACTVS 3.341                                                                                         C[NH+](C)CCNC(=O)c1cccc2c(N)c3cccc(Br)c3[nH+]c12
+DAX           SMILES               CACTVS 3.341                                                                                         C[NH+](C)CCNC(=O)c1cccc2c(N)c3cccc(Br)c3[nH+]c12
+DAX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                           C[NH+](C)CCNC(=O)c1cccc2c1[nH+]c3c(c2N)cccc3Br
+DAX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                           C[NH+](C)CCNC(=O)c1cccc2c1[nH+]c3c(c2N)cccc3Br
+DAX            InChI                InChI  1.03 InChI=1S/C18H19BrN4O/c1-23(2)10-9-21-18(24)13-7-3-5-11-15(20)12-6-4-8-14(19)17(12)22-16(11)13/h3-8H,9-10H2,1-2H3,(H2,20,22)(H,21,24)/p+2
+DAX         InChIKey                InChI  1.03                                                                                                              NROQPXQSDDINMC-UHFFFAOYSA-P
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DAX acedrg               243         "dictionary generator"                  
+DAX acedrg_database      11          "data source"                           
+DAX rdkit                2017.03.2   "Chemoinformatics tool"
+DAX refmac5              5.8.0238    "optimization tool"                     

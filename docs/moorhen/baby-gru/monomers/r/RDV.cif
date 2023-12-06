@@ -1,0 +1,260 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RDV     RDV      3-cyclopentyl-1-(piperazin-1-yl)propan-1-one     NON-POLYMER     37     15     .     
+#
+data_comp_RDV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RDV     C4      C       CH2     0       32.246      8.211       63.525      
+RDV     C5      C       CH2     0       29.905      7.844       62.568      
+RDV     C6      C       CH2     0       29.868      8.915       61.479      
+RDV     N1      N       NT1     0       29.597      4.749       58.733      
+RDV     C7      C       C       0       28.993      8.549       60.292      
+RDV     C8      C       CH2     0       28.382      6.868       58.577      
+RDV     C9      C       CH2     0       28.283      5.380       58.839      
+RDV     C10     C       CH2     0       30.540      5.367       59.664      
+RDV     C11     C       CH2     0       30.647      6.854       59.401      
+RDV     O       O       O       0       27.961      9.183       60.097      
+RDV     C3      C       CH1     0       30.743      8.224       63.791      
+RDV     C2      C       CH2     0       30.551      7.276       64.970      
+RDV     C1      C       CH2     0       31.816      7.423       65.802      
+RDV     C       C       CH2     0       32.895      7.914       64.874      
+RDV     N       N       NR6     0       29.328      7.489       59.513      
+RDV     H1      H       H       0       32.478      7.515       62.868      
+RDV     H2      H       H       0       32.545      9.084       63.180      
+RDV     H3      H       H       0       30.262      7.015       62.191      
+RDV     H4      H       H       0       28.988      7.664       62.865      
+RDV     H5      H       H       0       30.782      9.090       61.172      
+RDV     H6      H       H       0       29.530      9.746       61.876      
+RDV     H7      H       H       0       29.527      3.877       58.912      
+RDV     H9      H       H       0       27.495      7.270       58.668      
+RDV     H10     H       H       0       28.689      7.018       57.661      
+RDV     H11     H       H       0       27.668      4.971       58.186      
+RDV     H12     H       H       0       27.916      5.228       59.741      
+RDV     H13     H       H       0       31.427      4.949       59.561      
+RDV     H14     H       H       0       30.236      5.217       60.589      
+RDV     H15     H       H       0       30.997      6.999       58.499      
+RDV     H16     H       H       0       31.275      7.248       60.032      
+RDV     H17     H       H       0       30.478      9.138       64.071      
+RDV     H18     H       H       0       30.444      6.348       64.658      
+RDV     H19     H       H       0       29.757      7.529       65.495      
+RDV     H20     H       H       0       32.070      6.560       66.196      
+RDV     H21     H       H       0       31.674      8.065       66.532      
+RDV     H22     H       H       0       33.312      8.726       65.237      
+RDV     H23     H       H       0       33.593      7.231       64.773      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RDV          N1          C9      SINGLE       n     1.460  0.0112     1.460  0.0112
+RDV          N1         C10      SINGLE       n     1.460  0.0112     1.460  0.0112
+RDV          C8          C9      SINGLE       n     1.512  0.0100     1.512  0.0100
+RDV          C8           N      SINGLE       n     1.462  0.0100     1.462  0.0100
+RDV         C10         C11      SINGLE       n     1.512  0.0100     1.512  0.0100
+RDV         C11           N      SINGLE       n     1.462  0.0100     1.462  0.0100
+RDV          C7           N      SINGLE       n     1.346  0.0100     1.346  0.0100
+RDV          C7           O      DOUBLE       n     1.226  0.0100     1.226  0.0100
+RDV          C6          C7      SINGLE       n     1.507  0.0192     1.507  0.0192
+RDV          C5          C6      SINGLE       n     1.528  0.0100     1.528  0.0100
+RDV          C5          C3      SINGLE       n     1.530  0.0100     1.530  0.0100
+RDV          C4          C3      SINGLE       n     1.526  0.0100     1.526  0.0100
+RDV          C4           C      SINGLE       n     1.523  0.0200     1.523  0.0200
+RDV          C3          C2      SINGLE       n     1.526  0.0100     1.526  0.0100
+RDV          C1           C      SINGLE       n     1.503  0.0200     1.503  0.0200
+RDV          C2          C1      SINGLE       n     1.523  0.0200     1.523  0.0200
+RDV          C4          H1      SINGLE       n     1.089  0.0100     0.985  0.0118
+RDV          C4          H2      SINGLE       n     1.089  0.0100     0.985  0.0118
+RDV          C5          H3      SINGLE       n     1.089  0.0100     0.980  0.0191
+RDV          C5          H4      SINGLE       n     1.089  0.0100     0.980  0.0191
+RDV          C6          H5      SINGLE       n     1.089  0.0100     0.981  0.0185
+RDV          C6          H6      SINGLE       n     1.089  0.0100     0.981  0.0185
+RDV          N1          H7      SINGLE       n     1.036  0.0160     0.893  0.0200
+RDV          C8          H9      SINGLE       n     1.089  0.0100     0.978  0.0161
+RDV          C8         H10      SINGLE       n     1.089  0.0100     0.978  0.0161
+RDV          C9         H11      SINGLE       n     1.089  0.0100     0.986  0.0200
+RDV          C9         H12      SINGLE       n     1.089  0.0100     0.986  0.0200
+RDV         C10         H13      SINGLE       n     1.089  0.0100     0.986  0.0200
+RDV         C10         H14      SINGLE       n     1.089  0.0100     0.986  0.0200
+RDV         C11         H15      SINGLE       n     1.089  0.0100     0.978  0.0161
+RDV         C11         H16      SINGLE       n     1.089  0.0100     0.978  0.0161
+RDV          C3         H17      SINGLE       n     1.089  0.0100     0.992  0.0133
+RDV          C2         H18      SINGLE       n     1.089  0.0100     0.985  0.0118
+RDV          C2         H19      SINGLE       n     1.089  0.0100     0.985  0.0118
+RDV          C1         H20      SINGLE       n     1.089  0.0100     0.982  0.0145
+RDV          C1         H21      SINGLE       n     1.089  0.0100     0.982  0.0145
+RDV           C         H22      SINGLE       n     1.089  0.0100     0.982  0.0145
+RDV           C         H23      SINGLE       n     1.089  0.0100     0.982  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RDV          C3          C4           C     105.018    1.50
+RDV          C3          C4          H1     110.689    1.50
+RDV          C3          C4          H2     110.689    1.50
+RDV           C          C4          H1     110.744    1.50
+RDV           C          C4          H2     110.744    1.50
+RDV          H1          C4          H2     108.821    1.50
+RDV          C6          C5          C3     113.850    1.72
+RDV          C6          C5          H3     108.716    1.50
+RDV          C6          C5          H4     108.716    1.50
+RDV          C3          C5          H3     108.408    1.50
+RDV          C3          C5          H4     108.408    1.50
+RDV          H3          C5          H4     107.607    1.50
+RDV          C7          C6          C5     113.547    2.22
+RDV          C7          C6          H5     109.227    1.50
+RDV          C7          C6          H6     109.227    1.50
+RDV          C5          C6          H5     108.756    1.50
+RDV          C5          C6          H6     108.756    1.50
+RDV          H5          C6          H6     107.705    1.50
+RDV          C9          N1         C10     110.165    1.50
+RDV          C9          N1          H7     109.673    3.00
+RDV         C10          N1          H7     109.673    3.00
+RDV           N          C7           O     121.417    1.50
+RDV           N          C7          C6     117.537    1.61
+RDV           O          C7          C6     121.046    1.50
+RDV          C9          C8           N     110.222    1.50
+RDV          C9          C8          H9     109.627    1.50
+RDV          C9          C8         H10     109.627    1.50
+RDV           N          C8          H9     109.471    1.50
+RDV           N          C8         H10     109.471    1.50
+RDV          H9          C8         H10     108.187    1.50
+RDV          N1          C9          C8     110.456    1.63
+RDV          N1          C9         H11     109.479    1.50
+RDV          N1          C9         H12     109.479    1.50
+RDV          C8          C9         H11     109.542    1.50
+RDV          C8          C9         H12     109.542    1.50
+RDV         H11          C9         H12     108.060    1.50
+RDV          N1         C10         C11     110.456    1.63
+RDV          N1         C10         H13     109.479    1.50
+RDV          N1         C10         H14     109.479    1.50
+RDV         C11         C10         H13     109.542    1.50
+RDV         C11         C10         H14     109.542    1.50
+RDV         H13         C10         H14     108.060    1.50
+RDV         C10         C11           N     110.222    1.50
+RDV         C10         C11         H15     109.627    1.50
+RDV         C10         C11         H16     109.627    1.50
+RDV           N         C11         H15     109.471    1.50
+RDV           N         C11         H16     109.471    1.50
+RDV         H15         C11         H16     108.187    1.50
+RDV          C5          C3          C4     113.255    1.62
+RDV          C5          C3          C2     113.255    1.62
+RDV          C5          C3         H17     107.814    1.50
+RDV          C4          C3          C2     104.276    2.97
+RDV          C4          C3         H17     108.453    1.91
+RDV          C2          C3         H17     108.453    1.91
+RDV          C3          C2          C1     105.018    1.50
+RDV          C3          C2         H18     110.689    1.50
+RDV          C3          C2         H19     110.689    1.50
+RDV          C1          C2         H18     110.744    1.50
+RDV          C1          C2         H19     110.744    1.50
+RDV         H18          C2         H19     108.821    1.50
+RDV           C          C1          C2     106.544    3.00
+RDV           C          C1         H20     110.679    1.50
+RDV           C          C1         H21     110.679    1.50
+RDV          C2          C1         H20     110.704    1.50
+RDV          C2          C1         H21     110.704    1.50
+RDV         H20          C1         H21     108.634    1.62
+RDV          C4           C          C1     106.544    3.00
+RDV          C4           C         H22     110.704    1.50
+RDV          C4           C         H23     110.704    1.50
+RDV          C1           C         H22     110.679    1.50
+RDV          C1           C         H23     110.679    1.50
+RDV         H22           C         H23     108.634    1.62
+RDV          C8           N         C11     112.790    1.50
+RDV          C8           N          C7     123.605    3.00
+RDV         C11           N          C7     123.605    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RDV            sp3_sp3_31          C5          C3          C4           C     180.000    10.0     3
+RDV            sp3_sp3_85          C1           C          C4          C3     180.000    10.0     3
+RDV            sp3_sp3_35          C1          C2          C3          C5      60.000    10.0     3
+RDV            sp3_sp3_43           C          C1          C2          C3      60.000    10.0     3
+RDV            sp3_sp3_52          C4           C          C1          C2     -60.000    10.0     3
+RDV            sp3_sp3_79          C4          C3          C5          C6      60.000    10.0     3
+RDV            sp3_sp3_67          C3          C5          C6          C7     180.000    10.0     3
+RDV            sp2_sp3_17           O          C7          C6          C5     -60.000    10.0     6
+RDV             sp3_sp3_1          C8          C9          N1         C10      60.000    10.0     3
+RDV            sp3_sp3_61         C11         C10          N1          C9     180.000    10.0     3
+RDV             sp2_sp2_3           O          C7           N          C8       0.000     5.0     2
+RDV             sp2_sp3_4          C7           N          C8          C9     180.000    10.0     6
+RDV             sp3_sp3_7           N          C8          C9          N1     -60.000    10.0     3
+RDV            sp3_sp3_16          N1         C10         C11           N      60.000    10.0     3
+RDV            sp2_sp3_10          C7           N         C11         C10     180.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RDV    chir_1    C3    C5    C4    C2    both
+RDV    chir_2    N1    C9    C10    H7    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RDV    plan-1          C6   0.020
+RDV    plan-1          C7   0.020
+RDV    plan-1           N   0.020
+RDV    plan-1           O   0.020
+RDV    plan-2         C11   0.020
+RDV    plan-2          C7   0.020
+RDV    plan-2          C8   0.020
+RDV    plan-2           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RDV           SMILES              ACDLabs 12.01                                                     C2C(CCC(=O)N1CCNCC1)CCC2
+RDV            InChI                InChI  1.03 InChI=1S/C12H22N2O/c15-12(14-9-7-13-8-10-14)6-5-11-3-1-2-4-11/h11,13H,1-10H2
+RDV         InChIKey                InChI  1.03                                                  PUCYMVZANVWWKV-UHFFFAOYSA-N
+RDV SMILES_CANONICAL               CACTVS 3.385                                                       O=C(CCC1CCCC1)N2CCNCC2
+RDV           SMILES               CACTVS 3.385                                                       O=C(CCC1CCCC1)N2CCNCC2
+RDV SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                     C1CCC(C1)CCC(=O)N2CCNCC2
+RDV           SMILES "OpenEye OEToolkits" 2.0.6                                                     C1CCC(C1)CCC(=O)N2CCNCC2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RDV acedrg               243         "dictionary generator"                  
+RDV acedrg_database      11          "data source"                           
+RDV rdkit                2017.03.2   "Chemoinformatics tool"
+RDV refmac5              5.8.0238    "optimization tool"                     

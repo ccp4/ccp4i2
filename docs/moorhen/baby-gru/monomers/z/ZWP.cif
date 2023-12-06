@@ -1,0 +1,336 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZWP     ZWP      3-{[2-(2-methylbut-3-en-2-yl)-1H-indol-3-yl]methyl}-8H-pyrrolo[1,2-a]pyrazin-5-ium-1-olate     NON-POLYMER     46     25     .     
+#
+data_comp_ZWP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZWP     C1      C       CR16    0       3.609       52.303      38.468      
+ZWP     C10     C       CT      0       1.356       48.242      40.621      
+ZWP     C11     C       CH3     0       1.094       48.085      42.135      
+ZWP     C12     C       CH3     0       0.001       48.089      39.897      
+ZWP     C13     C       C1      0       2.247       47.067      40.238      
+ZWP     C14     C       C2      0       3.459       46.837      40.655      
+ZWP     C15     C       CH2     0       2.673       49.228      37.816      
+ZWP     C16     C       CR6     0       3.970       48.460      37.704      
+ZWP     C18     C       CR6     0       4.962       46.389      37.275      
+ZWP     C19     C       CR56    0       6.234       46.942      37.459      
+ZWP     C2      C       CR56    0       2.976       51.353      39.288      
+ZWP     C21     C       CR16    0       5.217       49.067      37.896      
+ZWP     C22     C       CH2     0       7.602       46.345      37.387      
+ZWP     C23     C       CR15    0       8.456       47.500      37.778      
+ZWP     C24     C       CR15    0       7.705       48.636      37.913      
+ZWP     C3      C       CR56    0       2.660       51.702      40.614      
+ZWP     C4      C       CR16    0       2.954       52.961      41.143      
+ZWP     C5      C       CR16    0       3.576       53.869      40.312      
+ZWP     C6      C       CR16    0       3.901       53.547      38.990      
+ZWP     C7      C       CR5     0       2.534       49.997      39.098      
+ZWP     C8      C       CR5     0       1.979       49.575      40.278      
+ZWP     N17     N       NRD6    0       3.865       47.154      37.397      
+ZWP     N20     N       NR5     1       6.355       48.290      37.773      
+ZWP     N9      N       NR5     0       2.056       50.613      41.192      
+ZWP     O25     O       OC      -1      4.769       45.218      36.999      
+ZWP     H1      H       H       0       3.832       52.092      37.575      
+ZWP     H2      H       H       0       1.918       48.281      42.634      
+ZWP     H3      H       H       0       0.808       47.164      42.328      
+ZWP     H4      H       H       0       0.388       48.709      42.413      
+ZWP     H5      H       H       0       -0.518      48.920      39.990      
+ZWP     H6      H       H       0       -0.503      47.345      40.295      
+ZWP     H7      H       H       0       0.151       47.905      38.946      
+ZWP     H8      H       H       0       1.872       46.440      39.635      
+ZWP     H9      H       H       0       3.928       46.069      40.352      
+ZWP     H10     H       H       0       3.877       47.435      41.263      
+ZWP     H11     H       H       0       1.922       48.607      37.733      
+ZWP     H12     H       H       0       2.617       49.860      37.070      
+ZWP     H13     H       H       0       5.280       49.983      38.108      
+ZWP     H14     H       H       0       7.701       45.598      38.015      
+ZWP     H22     H       H       0       7.812       46.035      36.480      
+ZWP     H15     H       H       0       9.387       47.447      37.912      
+ZWP     H16     H       H       0       8.048       49.499      38.073      
+ZWP     H17     H       H       0       2.735       53.178      42.033      
+ZWP     H18     H       H       0       3.785       54.725      40.643      
+ZWP     H19     H       H       0       4.326       54.192      38.448      
+ZWP     H21     H       H       0       1.764       50.586      42.024      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZWP         C18         O25      SINGLE       n     1.218  0.0185     1.218  0.0185
+ZWP         C18         N17      DOUBLE       y     1.334  0.0126     1.334  0.0126
+ZWP         C16         N17      SINGLE       y     1.339  0.0100     1.339  0.0100
+ZWP         C18         C19      SINGLE       y     1.395  0.0167     1.395  0.0167
+ZWP         C15         C16      SINGLE       n     1.510  0.0100     1.510  0.0100
+ZWP         C15          C7      SINGLE       n     1.498  0.0100     1.498  0.0100
+ZWP         C16         C21      DOUBLE       y     1.389  0.0150     1.389  0.0150
+ZWP         C19         C22      SINGLE       n     1.499  0.0100     1.499  0.0100
+ZWP         C19         N20      DOUBLE       y     1.392  0.0185     1.392  0.0185
+ZWP         C22         C23      SINGLE       n     1.491  0.0200     1.491  0.0200
+ZWP          C1          C6      DOUBLE       y     1.377  0.0100     1.377  0.0100
+ZWP          C1          C2      SINGLE       y     1.402  0.0100     1.402  0.0100
+ZWP         C21         N20      SINGLE       y     1.381  0.0123     1.381  0.0123
+ZWP         C24         N20      SINGLE       n     1.392  0.0156     1.392  0.0156
+ZWP          C5          C6      SINGLE       y     1.395  0.0112     1.395  0.0112
+ZWP         C23         C24      DOUBLE       n     1.353  0.0200     1.353  0.0200
+ZWP          C2          C7      SINGLE       y     1.440  0.0100     1.440  0.0100
+ZWP          C7          C8      DOUBLE       y     1.360  0.0119     1.360  0.0119
+ZWP          C2          C3      DOUBLE       y     1.408  0.0100     1.408  0.0100
+ZWP         C13         C14      DOUBLE       n     1.299  0.0200     1.299  0.0200
+ZWP         C10         C13      SINGLE       n     1.519  0.0147     1.519  0.0147
+ZWP          C4          C5      DOUBLE       y     1.376  0.0100     1.376  0.0100
+ZWP         C10          C8      SINGLE       n     1.498  0.0124     1.498  0.0124
+ZWP          C8          N9      SINGLE       y     1.377  0.0112     1.377  0.0112
+ZWP          C3          C4      SINGLE       y     1.393  0.0100     1.393  0.0100
+ZWP          C3          N9      SINGLE       y     1.374  0.0100     1.374  0.0100
+ZWP         C10         C12      SINGLE       n     1.542  0.0100     1.542  0.0100
+ZWP         C10         C11      SINGLE       n     1.542  0.0100     1.542  0.0100
+ZWP          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0200
+ZWP         C11          H2      SINGLE       n     1.089  0.0100     0.983  0.0200
+ZWP         C11          H3      SINGLE       n     1.089  0.0100     0.983  0.0200
+ZWP         C11          H4      SINGLE       n     1.089  0.0100     0.983  0.0200
+ZWP         C12          H5      SINGLE       n     1.089  0.0100     0.983  0.0200
+ZWP         C12          H6      SINGLE       n     1.089  0.0100     0.983  0.0200
+ZWP         C12          H7      SINGLE       n     1.089  0.0100     0.983  0.0200
+ZWP         C13          H8      SINGLE       n     1.082  0.0130     0.947  0.0200
+ZWP         C14          H9      SINGLE       n     1.082  0.0130     0.949  0.0200
+ZWP         C14         H10      SINGLE       n     1.082  0.0130     0.949  0.0200
+ZWP         C15         H11      SINGLE       n     1.089  0.0100     0.979  0.0129
+ZWP         C15         H12      SINGLE       n     1.089  0.0100     0.979  0.0129
+ZWP         C21         H13      SINGLE       n     1.082  0.0130     0.943  0.0169
+ZWP         C22         H14      SINGLE       n     1.089  0.0100     0.981  0.0152
+ZWP         C22         H22      SINGLE       n     1.089  0.0100     0.981  0.0152
+ZWP         C23         H15      SINGLE       n     1.082  0.0130     0.942  0.0200
+ZWP         C24         H16      SINGLE       n     1.082  0.0130     0.943  0.0168
+ZWP          C4         H17      SINGLE       n     1.082  0.0130     0.942  0.0188
+ZWP          C5         H18      SINGLE       n     1.082  0.0130     0.941  0.0181
+ZWP          C6         H19      SINGLE       n     1.082  0.0130     0.944  0.0181
+ZWP          N9         H21      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZWP          C6          C1          C2     118.817    1.50
+ZWP          C6          C1          H1     120.678    1.50
+ZWP          C2          C1          H1     120.505    1.50
+ZWP         C13         C10          C8     112.079    2.81
+ZWP         C13         C10         C12     107.959    2.15
+ZWP         C13         C10         C11     107.959    2.15
+ZWP          C8         C10         C12     110.207    2.01
+ZWP          C8         C10         C11     110.207    2.01
+ZWP         C12         C10         C11     108.642    1.50
+ZWP         C10         C11          H2     109.465    1.50
+ZWP         C10         C11          H3     109.465    1.50
+ZWP         C10         C11          H4     109.465    1.50
+ZWP          H2         C11          H3     109.335    1.50
+ZWP          H2         C11          H4     109.335    1.50
+ZWP          H3         C11          H4     109.335    1.50
+ZWP         C10         C12          H5     109.465    1.50
+ZWP         C10         C12          H6     109.465    1.50
+ZWP         C10         C12          H7     109.465    1.50
+ZWP          H5         C12          H6     109.335    1.50
+ZWP          H5         C12          H7     109.335    1.50
+ZWP          H6         C12          H7     109.335    1.50
+ZWP         C14         C13         C10     126.909    1.50
+ZWP         C14         C13          H8     117.493    1.95
+ZWP         C10         C13          H8     115.598    2.04
+ZWP         C13         C14          H9     120.095    1.86
+ZWP         C13         C14         H10     120.095    1.86
+ZWP          H9         C14         H10     119.809    2.15
+ZWP         C16         C15          C7     111.894    2.22
+ZWP         C16         C15         H11     108.988    1.50
+ZWP         C16         C15         H12     108.988    1.50
+ZWP          C7         C15         H11     108.643    1.50
+ZWP          C7         C15         H12     108.643    1.50
+ZWP         H11         C15         H12     107.867    1.50
+ZWP         N17         C16         C15     116.585    1.50
+ZWP         N17         C16         C21     121.146    1.50
+ZWP         C15         C16         C21     122.269    1.87
+ZWP         O25         C18         N17     116.106    1.50
+ZWP         O25         C18         C19     123.682    1.50
+ZWP         N17         C18         C19     120.212    1.99
+ZWP         C18         C19         C22     130.349    2.17
+ZWP         C18         C19         N20     120.147    1.50
+ZWP         C22         C19         N20     109.504    1.50
+ZWP          C1          C2          C7     134.088    1.50
+ZWP          C1          C2          C3     118.706    1.50
+ZWP          C7          C2          C3     107.206    1.50
+ZWP         C16         C21         N20     118.884    2.91
+ZWP         C16         C21         H13     120.496    1.50
+ZWP         N20         C21         H13     120.620    1.50
+ZWP         C19         C22         C23     103.018    1.50
+ZWP         C19         C22         H14     111.278    1.50
+ZWP         C19         C22         H22     111.278    1.50
+ZWP         C23         C22         H14     111.213    1.50
+ZWP         C23         C22         H22     111.213    1.50
+ZWP         H14         C22         H22     108.929    1.80
+ZWP         C22         C23         C24     109.916    1.83
+ZWP         C22         C23         H15     124.569    1.50
+ZWP         C24         C23         H15     125.515    1.50
+ZWP         N20         C24         C23     106.796    1.50
+ZWP         N20         C24         H16     127.201    1.50
+ZWP         C23         C24         H16     126.004    1.50
+ZWP          C2          C3          C4     122.250    1.50
+ZWP          C2          C3          N9     107.514    1.50
+ZWP          C4          C3          N9     130.236    1.50
+ZWP          C5          C4          C3     117.385    1.50
+ZWP          C5          C4         H17     121.477    1.50
+ZWP          C3          C4         H17     121.137    1.50
+ZWP          C6          C5          C4     121.628    1.50
+ZWP          C6          C5         H18     119.240    1.50
+ZWP          C4          C5         H18     119.132    1.50
+ZWP          C1          C6          C5     121.212    1.50
+ZWP          C1          C6         H19     119.471    1.50
+ZWP          C5          C6         H19     119.316    1.50
+ZWP         C15          C7          C2     126.033    1.50
+ZWP         C15          C7          C8     126.463    1.50
+ZWP          C2          C7          C8     107.505    1.50
+ZWP          C7          C8         C10     128.890    3.00
+ZWP          C7          C8          N9     108.712    1.50
+ZWP         C10          C8          N9     122.397    1.69
+ZWP         C18         N17         C16     118.885    1.50
+ZWP         C19         N20         C21     120.725    1.79
+ZWP         C19         N20         C24     109.477    1.50
+ZWP         C21         N20         C24     129.798    2.26
+ZWP          C8          N9          C3     109.063    1.50
+ZWP          C8          N9         H21     125.378    1.50
+ZWP          C3          N9         H21     125.560    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZWP              const_58          C6          C1          C2          C7     180.000    10.0     2
+ZWP              const_17          C2          C1          C6          C5       0.000    10.0     2
+ZWP              const_33          C1          C2          C3          C4       0.000    10.0     2
+ZWP              const_40          C1          C2          C7         C15       0.000    10.0     2
+ZWP              const_13         C16         C21         N20         C19       0.000    10.0     2
+ZWP             sp2_sp3_7         C24         C23         C22         C19       0.000    10.0     6
+ZWP             sp2_sp2_1         C22         C23         C24         N20       0.000     5.0     2
+ZWP             sp2_sp2_5         C23         C24         N20         C19       0.000     5.0     2
+ZWP              const_29          C2          C3          C4          C5       0.000    10.0     2
+ZWP              const_49          C2          C3          N9          C8       0.000    10.0     2
+ZWP              const_25          C3          C4          C5          C6       0.000    10.0     2
+ZWP              const_21          C4          C5          C6          C1       0.000    10.0     2
+ZWP              const_44         C15          C7          C8         C10       0.000    10.0     2
+ZWP            sp3_sp3_13         C13         C10         C11          H2      60.000    10.0     3
+ZWP            sp2_sp3_32          C7          C8         C10         C13     -90.000    10.0     6
+ZWP             sp3_sp3_1         C13         C10         C12          H5     180.000    10.0     3
+ZWP            sp2_sp3_26         C14         C13         C10         C12     120.000    10.0     6
+ZWP              const_47         C10          C8          N9          C3     180.000    10.0     2
+ZWP             sp2_sp2_9         C10         C13         C14          H9     180.000     5.0     2
+ZWP            sp2_sp3_20          C2          C7         C15         C16     -90.000    10.0     6
+ZWP            sp2_sp3_14         N17         C16         C15          C7     -90.000    10.0     6
+ZWP              const_55         C15         C16         C21         N20     180.000    10.0     2
+ZWP       const_sp2_sp2_2         C15         C16         N17         C18     180.000     5.0     2
+ZWP       const_sp2_sp2_4         O25         C18         N17         C16     180.000     5.0     2
+ZWP       const_sp2_sp2_8         O25         C18         C19         C22       0.000     5.0     2
+ZWP             sp2_sp3_4         C18         C19         C22         C23     180.000    10.0     6
+ZWP       const_sp2_sp2_9         C18         C19         N20         C21       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZWP    chir_1    C10    C8    C13    C12    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZWP    plan-1          C1   0.020
+ZWP    plan-1         C10   0.020
+ZWP    plan-1         C15   0.020
+ZWP    plan-1          C2   0.020
+ZWP    plan-1          C3   0.020
+ZWP    plan-1          C4   0.020
+ZWP    plan-1          C5   0.020
+ZWP    plan-1          C6   0.020
+ZWP    plan-1          C7   0.020
+ZWP    plan-1          C8   0.020
+ZWP    plan-1          H1   0.020
+ZWP    plan-1         H17   0.020
+ZWP    plan-1         H18   0.020
+ZWP    plan-1         H19   0.020
+ZWP    plan-1         H21   0.020
+ZWP    plan-1          N9   0.020
+ZWP    plan-2         C15   0.020
+ZWP    plan-2         C16   0.020
+ZWP    plan-2         C18   0.020
+ZWP    plan-2         C19   0.020
+ZWP    plan-2         C21   0.020
+ZWP    plan-2         C22   0.020
+ZWP    plan-2         C24   0.020
+ZWP    plan-2         H13   0.020
+ZWP    plan-2         N17   0.020
+ZWP    plan-2         N20   0.020
+ZWP    plan-2         O25   0.020
+ZWP    plan-3         C10   0.020
+ZWP    plan-3         C13   0.020
+ZWP    plan-3         C14   0.020
+ZWP    plan-3          H8   0.020
+ZWP    plan-4         C13   0.020
+ZWP    plan-4         C14   0.020
+ZWP    plan-4         H10   0.020
+ZWP    plan-4          H9   0.020
+ZWP    plan-5         C22   0.020
+ZWP    plan-5         C23   0.020
+ZWP    plan-5         C24   0.020
+ZWP    plan-5         H15   0.020
+ZWP    plan-6         C23   0.020
+ZWP    plan-6         C24   0.020
+ZWP    plan-6         H16   0.020
+ZWP    plan-6         N20   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZWP           SMILES              ACDLabs 12.01                                                                           c1cccc4c1c(Cc2c[n+]3c(c(n2)[O-])CC=C3)c(C(C)(C)\C=C)n4
+ZWP            InChI                InChI  1.03 InChI=1S/C21H21N3O/c1-4-21(2,3)19-16(15-8-5-6-9-17(15)23-19)12-14-13-24-11-7-10-18(24)20(25)22-14/h4-9,11,13,23H,1,10,12H2,2-3H3
+ZWP         InChIKey                InChI  1.03                                                                                                      DUPBTPHDPVCZPP-UHFFFAOYSA-N
+ZWP SMILES_CANONICAL               CACTVS 3.385                                                                               CC(C)(C=C)c1[nH]c2ccccc2c1Cc3c[n+]4C=CCc4c([O-])n3
+ZWP           SMILES               CACTVS 3.385                                                                               CC(C)(C=C)c1[nH]c2ccccc2c1Cc3c[n+]4C=CCc4c([O-])n3
+ZWP SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                           CC(C)(C=C)c1c(c2ccccc2[nH]1)Cc3c[n+]4c(c(n3)[O-])CC=C4
+ZWP           SMILES "OpenEye OEToolkits" 2.0.6                                                                           CC(C)(C=C)c1c(c2ccccc2[nH]1)Cc3c[n+]4c(c(n3)[O-])CC=C4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZWP acedrg               243         "dictionary generator"                  
+ZWP acedrg_database      11          "data source"                           
+ZWP rdkit                2017.03.2   "Chemoinformatics tool"
+ZWP refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,312 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JTU     JTU      "6-bromo-2-{4-[(2R)-butan-2-yl]phenyl}-3-methylquinoline-4-carboxylic acid"     NON-POLYMER     44     25     .     
+#
+data_comp_JTU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JTU     C1      C       CH3     0       -33.114     -7.282      -0.415      
+JTU     C2      C       CH2     0       -32.590     -6.823      0.933       
+JTU     C3      C       CH1     0       -31.530     -7.751      1.537       
+JTU     C4      C       CH3     0       -30.927     -7.119      2.793       
+JTU     C5      C       CR6     0       -32.071     -9.149      1.803       
+JTU     C8      C       CR16    0       -33.178     -9.347      2.628       
+JTU     C9      C       CR16    0       -33.669     -10.620     2.868       
+JTU     C6      C       CR16    0       -31.464     -10.271     1.239       
+JTU     C7      C       CR16    0       -31.953     -11.544     1.485       
+JTU     C10     C       CR6     0       -33.060     -11.742     2.308       
+JTU     C11     C       CR6     0       -33.584     -13.112     2.564       
+JTU     N1      N       NRD6    0       -34.036     -13.742     1.485       
+JTU     C12     C       CR66    0       -34.542     -15.012     1.600       
+JTU     C13     C       CR16    0       -35.015     -15.648     0.429       
+JTU     C14     C       CR16    0       -35.530     -16.908     0.476       
+JTU     C15     C       CR6     0       -35.593     -17.589     1.702       
+JTU     BR1     BR      BR      0       -36.317     -19.348     1.730       
+JTU     C16     C       CR16    0       -35.150     -17.023     2.864       
+JTU     C17     C       CR66    0       -34.607     -15.707     2.846       
+JTU     C18     C       CR6     0       -34.116     -15.027     4.011       
+JTU     C19     C       C       0       -34.160     -15.710     5.361       
+JTU     O1      O       O       0       -33.356     -16.638     5.563       
+JTU     O2      O       OC      -1      -34.998     -15.302     6.185       
+JTU     C20     C       CR6     0       -33.593     -13.712     3.868       
+JTU     C21     C       CH3     0       -33.063     -12.948     5.072       
+JTU     H1      H       H       0       -33.551     -6.538      -0.865      
+JTU     H2      H       H       0       -33.755     -8.003      -0.288      
+JTU     H3      H       H       0       -32.375     -7.600      -0.962      
+JTU     H4      H       H       0       -33.340     -6.749      1.557       
+JTU     H5      H       H       0       -32.197     -5.931      0.830       
+JTU     H6      H       H       0       -30.800     -7.831      0.868       
+JTU     H7      H       H       0       -30.676     -7.817      3.425       
+JTU     H8      H       H       0       -31.580     -6.528      3.209       
+JTU     H9      H       H       0       -30.137     -6.607      2.550       
+JTU     H10     H       H       0       -33.604     -8.603      3.021       
+JTU     H11     H       H       0       -34.418     -10.729     3.429       
+JTU     H12     H       H       0       -30.712     -10.163     0.681       
+JTU     H13     H       H       0       -31.528     -12.287     1.091       
+JTU     H14     H       H       0       -34.974     -15.195     -0.388      
+JTU     H15     H       H       0       -35.840     -17.319     -0.308      
+JTU     H16     H       H       0       -35.204     -17.503     3.673       
+JTU     H18     H       H       0       -32.904     -13.549     5.815       
+JTU     H19     H       H       0       -33.711     -12.275     5.338       
+JTU     H20     H       H       0       -32.227     -12.512     4.840       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JTU          C1          C2      SINGLE       n     1.515  0.0200     1.515  0.0200
+JTU         C13         C14      DOUBLE       y     1.359  0.0100     1.359  0.0100
+JTU         C12         C13      SINGLE       y     1.410  0.0100     1.410  0.0100
+JTU         C14         C15      SINGLE       y     1.400  0.0107     1.400  0.0107
+JTU          C2          C3      SINGLE       n     1.527  0.0153     1.527  0.0153
+JTU          C6          C7      SINGLE       y     1.382  0.0100     1.382  0.0100
+JTU          C5          C6      DOUBLE       y     1.390  0.0100     1.390  0.0100
+JTU          C7         C10      DOUBLE       y     1.391  0.0100     1.391  0.0100
+JTU          C3          C5      SINGLE       n     1.520  0.0100     1.520  0.0100
+JTU          C3          C4      SINGLE       n     1.527  0.0115     1.527  0.0115
+JTU          N1         C12      DOUBLE       y     1.369  0.0100     1.369  0.0100
+JTU         C11          N1      SINGLE       y     1.324  0.0100     1.324  0.0100
+JTU         C12         C17      SINGLE       y     1.423  0.0100     1.423  0.0100
+JTU         C15         BR1      SINGLE       n     1.902  0.0100     1.902  0.0100
+JTU         C15         C16      DOUBLE       y     1.362  0.0111     1.362  0.0111
+JTU          C5          C8      SINGLE       y     1.390  0.0100     1.390  0.0100
+JTU         C10         C11      SINGLE       n     1.486  0.0100     1.486  0.0100
+JTU          C9         C10      SINGLE       y     1.391  0.0100     1.391  0.0100
+JTU         C11         C20      DOUBLE       y     1.423  0.0119     1.423  0.0119
+JTU          C8          C9      DOUBLE       y     1.382  0.0100     1.382  0.0100
+JTU         C16         C17      SINGLE       y     1.417  0.0100     1.417  0.0100
+JTU         C17         C18      DOUBLE       y     1.429  0.0100     1.429  0.0100
+JTU         C18         C20      SINGLE       y     1.400  0.0152     1.400  0.0152
+JTU         C20         C21      SINGLE       n     1.515  0.0100     1.515  0.0100
+JTU         C18         C19      SINGLE       n     1.509  0.0121     1.509  0.0121
+JTU         C19          O1      DOUBLE       n     1.244  0.0200     1.244  0.0200
+JTU         C19          O2      SINGLE       n     1.244  0.0200     1.244  0.0200
+JTU          C1          H1      SINGLE       n     1.089  0.0100     0.973  0.0157
+JTU          C1          H2      SINGLE       n     1.089  0.0100     0.973  0.0157
+JTU          C1          H3      SINGLE       n     1.089  0.0100     0.973  0.0157
+JTU          C2          H4      SINGLE       n     1.089  0.0100     0.980  0.0160
+JTU          C2          H5      SINGLE       n     1.089  0.0100     0.980  0.0160
+JTU          C3          H6      SINGLE       n     1.089  0.0100     0.993  0.0142
+JTU          C4          H7      SINGLE       n     1.089  0.0100     0.973  0.0141
+JTU          C4          H8      SINGLE       n     1.089  0.0100     0.973  0.0141
+JTU          C4          H9      SINGLE       n     1.089  0.0100     0.973  0.0141
+JTU          C8         H10      SINGLE       n     1.082  0.0130     0.943  0.0173
+JTU          C9         H11      SINGLE       n     1.082  0.0130     0.942  0.0141
+JTU          C6         H12      SINGLE       n     1.082  0.0130     0.943  0.0173
+JTU          C7         H13      SINGLE       n     1.082  0.0130     0.942  0.0141
+JTU         C13         H14      SINGLE       n     1.082  0.0130     0.935  0.0100
+JTU         C14         H15      SINGLE       n     1.082  0.0130     0.938  0.0104
+JTU         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0127
+JTU         C21         H18      SINGLE       n     1.089  0.0100     0.971  0.0135
+JTU         C21         H19      SINGLE       n     1.089  0.0100     0.971  0.0135
+JTU         C21         H20      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JTU          C2          C1          H1     109.619    1.50
+JTU          C2          C1          H2     109.619    1.50
+JTU          C2          C1          H3     109.619    1.50
+JTU          H1          C1          H2     109.380    1.50
+JTU          H1          C1          H3     109.380    1.50
+JTU          H2          C1          H3     109.380    1.50
+JTU          C1          C2          C3     112.740    3.00
+JTU          C1          C2          H4     108.958    1.50
+JTU          C1          C2          H5     108.958    1.50
+JTU          C3          C2          H4     108.655    1.68
+JTU          C3          C2          H5     108.655    1.68
+JTU          H4          C2          H5     108.011    1.50
+JTU          C2          C3          C5     111.511    1.50
+JTU          C2          C3          C4     109.454    3.00
+JTU          C2          C3          H6     107.249    1.50
+JTU          C5          C3          C4     111.728    1.50
+JTU          C5          C3          H6     107.644    1.50
+JTU          C4          C3          H6     107.554    1.50
+JTU          C3          C4          H7     109.461    1.50
+JTU          C3          C4          H8     109.461    1.50
+JTU          C3          C4          H9     109.461    1.50
+JTU          H7          C4          H8     109.411    1.50
+JTU          H7          C4          H9     109.411    1.50
+JTU          H8          C4          H9     109.411    1.50
+JTU          C6          C5          C3     120.968    2.12
+JTU          C6          C5          C8     118.064    1.50
+JTU          C3          C5          C8     120.968    2.12
+JTU          C5          C8          C9     120.670    1.50
+JTU          C5          C8         H10     119.626    1.50
+JTU          C9          C8         H10     119.704    1.50
+JTU         C10          C9          C8     121.066    1.50
+JTU         C10          C9         H11     119.543    1.50
+JTU          C8          C9         H11     119.391    1.50
+JTU          C7          C6          C5     120.670    1.50
+JTU          C7          C6         H12     119.704    1.50
+JTU          C5          C6         H12     119.626    1.50
+JTU          C6          C7         C10     121.066    1.50
+JTU          C6          C7         H13     119.391    1.50
+JTU         C10          C7         H13     119.543    1.50
+JTU          C7         C10         C11     120.769    1.50
+JTU          C7         C10          C9     118.462    1.50
+JTU         C11         C10          C9     120.769    1.50
+JTU          N1         C11         C10     116.264    1.50
+JTU          N1         C11         C20     121.902    1.50
+JTU         C10         C11         C20     121.834    1.79
+JTU         C12          N1         C11     117.984    1.50
+JTU         C13         C12          N1     118.273    1.50
+JTU         C13         C12         C17     119.227    1.50
+JTU          N1         C12         C17     122.500    1.50
+JTU         C14         C13         C12     120.620    1.50
+JTU         C14         C13         H14     119.766    1.50
+JTU         C12         C13         H14     119.605    1.50
+JTU         C13         C14         C15     119.526    1.50
+JTU         C13         C14         H15     120.171    1.50
+JTU         C15         C14         H15     120.302    1.50
+JTU         C14         C15         BR1     118.654    1.50
+JTU         C14         C15         C16     121.671    1.50
+JTU         BR1         C15         C16     119.675    1.50
+JTU         C15         C16         C17     119.708    1.50
+JTU         C15         C16         H16     120.573    1.50
+JTU         C17         C16         H16     119.719    1.50
+JTU         C12         C17         C16     119.255    1.50
+JTU         C12         C17         C18     118.371    1.50
+JTU         C16         C17         C18     122.374    1.50
+JTU         C17         C18         C20     119.861    1.50
+JTU         C17         C18         C19     120.239    1.76
+JTU         C20         C18         C19     119.899    2.15
+JTU         C18         C19          O1     117.531    1.50
+JTU         C18         C19          O2     117.531    1.50
+JTU          O1         C19          O2     124.939    1.50
+JTU         C11         C20         C18     119.382    1.50
+JTU         C11         C20         C21     120.801    1.50
+JTU         C18         C20         C21     119.818    1.50
+JTU         C20         C21         H18     109.580    1.50
+JTU         C20         C21         H19     109.580    1.50
+JTU         C20         C21         H20     109.580    1.50
+JTU         H18         C21         H19     109.348    1.50
+JTU         H18         C21         H20     109.348    1.50
+JTU         H19         C21         H20     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JTU             sp3_sp3_1          H1          C1          C2          C3     180.000    10.0     3
+JTU              const_22         C10         C11          N1         C12     180.000    10.0     2
+JTU              const_62          N1         C11         C20         C21     180.000    10.0     2
+JTU              const_24         C13         C12          N1         C11     180.000    10.0     2
+JTU              const_39          N1         C12         C13         C14     180.000    10.0     2
+JTU              const_25         C13         C12         C17         C16       0.000    10.0     2
+JTU              const_41         C12         C13         C14         C15       0.000    10.0     2
+JTU              const_46         C13         C14         C15         BR1     180.000    10.0     2
+JTU              const_51         BR1         C15         C16         C17     180.000    10.0     2
+JTU              const_53         C15         C16         C17         C12       0.000    10.0     2
+JTU              const_30         C12         C17         C18         C19     180.000    10.0     2
+JTU             sp2_sp2_5         C17         C18         C19          O1     180.000     5.0     2
+JTU              const_36         C19         C18         C20         C21       0.000    10.0     2
+JTU            sp3_sp3_11          C1          C2          C3          C4     -60.000    10.0     3
+JTU             sp2_sp3_7         C11         C20         C21         H18     150.000    10.0     6
+JTU            sp3_sp3_19          C2          C3          C4          H7     180.000    10.0     3
+JTU             sp2_sp3_1          C6          C5          C3          C2     150.000    10.0     6
+JTU              const_59          C3          C5          C8          C9     180.000    10.0     2
+JTU       const_sp2_sp2_3          C3          C5          C6          C7     180.000     5.0     2
+JTU              const_17          C5          C8          C9         C10       0.000    10.0     2
+JTU              const_13          C7         C10          C9          C8       0.000    10.0     2
+JTU       const_sp2_sp2_5          C5          C6          C7         C10       0.000     5.0     2
+JTU              const_11         C11         C10          C7          C6     180.000    10.0     2
+JTU             sp2_sp2_2          C7         C10         C11          N1       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JTU    chir_1    C3    C5    C2    C4    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JTU    plan-1         BR1   0.020
+JTU    plan-1         C10   0.020
+JTU    plan-1         C11   0.020
+JTU    plan-1         C12   0.020
+JTU    plan-1         C13   0.020
+JTU    plan-1         C14   0.020
+JTU    plan-1         C15   0.020
+JTU    plan-1         C16   0.020
+JTU    plan-1         C17   0.020
+JTU    plan-1         C18   0.020
+JTU    plan-1         C19   0.020
+JTU    plan-1         C20   0.020
+JTU    plan-1         C21   0.020
+JTU    plan-1         H14   0.020
+JTU    plan-1         H15   0.020
+JTU    plan-1         H16   0.020
+JTU    plan-1          N1   0.020
+JTU    plan-2         C10   0.020
+JTU    plan-2         C11   0.020
+JTU    plan-2          C3   0.020
+JTU    plan-2          C5   0.020
+JTU    plan-2          C6   0.020
+JTU    plan-2          C7   0.020
+JTU    plan-2          C8   0.020
+JTU    plan-2          C9   0.020
+JTU    plan-2         H10   0.020
+JTU    plan-2         H11   0.020
+JTU    plan-2         H12   0.020
+JTU    plan-2         H13   0.020
+JTU    plan-3         C18   0.020
+JTU    plan-3         C19   0.020
+JTU    plan-3          O1   0.020
+JTU    plan-3          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JTU           SMILES              ACDLabs 12.01                                                                                            O=C(O)c1c3cc(Br)ccc3nc(c1C)c2ccc(cc2)C(C)CC
+JTU            InChI                InChI  1.03 InChI=1S/C21H20BrNO2/c1-4-12(2)14-5-7-15(8-6-14)20-13(3)19(21(24)25)17-11-16(22)9-10-18(17)23-20/h5-12H,4H2,1-3H3,(H,24,25)/t12-/m1/s1
+JTU         InChIKey                InChI  1.03                                                                                                            YMJMVVCOCCXSSD-GFCCVEGCSA-N
+JTU SMILES_CANONICAL               CACTVS 3.370                                                                                       CC[C@@H](C)c1ccc(cc1)c2nc3ccc(Br)cc3c(C(O)=O)c2C
+JTU           SMILES               CACTVS 3.370                                                                                         CC[CH](C)c1ccc(cc1)c2nc3ccc(Br)cc3c(C(O)=O)c2C
+JTU SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                     CC[C@@H](C)c1ccc(cc1)c2c(c(c3cc(ccc3n2)Br)C(=O)O)C
+JTU           SMILES "OpenEye OEToolkits" 1.7.6                                                                                          CCC(C)c1ccc(cc1)c2c(c(c3cc(ccc3n2)Br)C(=O)O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JTU acedrg               243         "dictionary generator"                  
+JTU acedrg_database      11          "data source"                           
+JTU rdkit                2017.03.2   "Chemoinformatics tool"
+JTU refmac5              5.8.0238    "optimization tool"                     

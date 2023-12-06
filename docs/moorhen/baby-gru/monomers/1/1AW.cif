@@ -1,0 +1,347 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+1AW     1AW      1-[1-(3-aminophenyl)-3-tert-butyl-1H-pyrazol-5-yl]-3-phenylurea     NON-POLYMER     49     26     .     
+#
+data_comp_1AW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+1AW     CBB     C       CR16    0       -11.232     37.816      -4.238      
+1AW     CBA     C       CR16    0       -11.804     36.628      -4.673      
+1AW     CAN     C       CR16    0       -11.050     35.475      -4.745      
+1AW     CAI     C       CR16    0       -9.718      35.505      -4.382      
+1AW     CAL     C       CR16    0       -9.136      36.686      -3.942      
+1AW     CAX     C       CR6     0       -9.893      37.850      -3.873      
+1AW     NAS     N       NH1     0       -9.334      39.069      -3.434      
+1AW     CAU     C       C       0       -8.150      39.619      -3.853      
+1AW     OAE     O       O       0       -7.486      39.182      -4.786      
+1AW     NAT     N       NH1     0       -7.753      40.726      -3.124      
+1AW     CAZ     C       CR5     0       -6.739      41.616      -3.457      
+1AW     CAQ     C       CR15    0       -6.329      42.009      -4.712      
+1AW     CAY     C       CR5     0       -5.270      42.910      -4.504      
+1AW     CBD     C       CT      0       -4.466      43.637      -5.562      
+1AW     CAB     C       CH3     0       -5.363      44.646      -6.280      
+1AW     CAC     C       CH3     0       -3.274      44.379      -4.953      
+1AW     CAA     C       CH3     0       -3.942      42.625      -6.582      
+1AW     NAR     N       NRD5    0       -5.032      43.082      -3.210      
+1AW     NBC     N       NR5     0       -5.946      42.275      -2.566      
+1AW     CAW     C       CR6     0       -5.947      42.236      -1.141      
+1AW     CAP     C       CR16    0       -5.940      41.006      -0.496      
+1AW     CAK     C       CR16    0       -5.956      43.424      -0.423      
+1AW     CAH     C       CR16    0       -5.956      43.384      0.959       
+1AW     CAJ     C       CR16    0       -5.950      42.172      1.627       
+1AW     CAV     C       CR6     0       -5.942      40.978      0.904       
+1AW     NAD     N       NH2     0       -5.936      39.767      1.568       
+1AW     HBB     H       H       0       -11.753     38.601      -4.192      
+1AW     HBA     H       H       0       -12.713     36.611      -4.921      
+1AW     HAN     H       H       0       -11.442     34.669      -5.041      
+1AW     HAI     H       H       0       -9.200      34.719      -4.429      
+1AW     HAL     H       H       0       -8.225      36.701      -3.698      
+1AW     HNAS    H       H       0       -9.806      39.518      -2.843      
+1AW     HNAT    H       H       0       -8.172      40.885      -2.368      
+1AW     HAQ     H       H       0       -6.678      41.726      -5.540      
+1AW     HAB     H       H       0       -5.832      45.193      -5.625      
+1AW     HABA    H       H       0       -6.013      44.175      -6.829      
+1AW     HABB    H       H       0       -4.820      45.220      -6.848      
+1AW     HAC     H       H       0       -2.715      43.755      -4.457      
+1AW     HACA    H       H       0       -3.591      45.077      -4.354      
+1AW     HACB    H       H       0       -2.746      44.784      -5.663      
+1AW     HAA     H       H       0       -3.430      41.935      -6.125      
+1AW     HAAA    H       H       0       -3.368      43.077      -7.225      
+1AW     HAAB    H       H       0       -4.688      42.213      -7.051      
+1AW     HAP     H       H       0       -5.936      40.203      -0.981      
+1AW     HAK     H       H       0       -5.960      44.250      -0.873      
+1AW     HAH     H       H       0       -5.962      44.193      1.452       
+1AW     HAJ     H       H       0       -5.951      42.148      2.569       
+1AW     HNAD    H       H       0       -5.570      39.707      2.363       
+1AW     HNAA    H       H       0       -6.300      39.063      1.193       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+1AW         CBB         CAX      DOUBLE       y     1.385  0.0100     1.385  0.0100
+1AW         CBB         CBA      SINGLE       y     1.385  0.0100     1.385  0.0100
+1AW         CBA         CAN      DOUBLE       y     1.376  0.0112     1.376  0.0112
+1AW         CAN         CAI      SINGLE       y     1.376  0.0124     1.376  0.0124
+1AW         CAI         CAL      DOUBLE       y     1.385  0.0100     1.385  0.0100
+1AW         CAL         CAX      SINGLE       y     1.385  0.0100     1.385  0.0100
+1AW         CAX         NAS      SINGLE       n     1.407  0.0126     1.407  0.0126
+1AW         NAS         CAU      SINGLE       n     1.366  0.0100     1.366  0.0100
+1AW         CAU         OAE      DOUBLE       n     1.224  0.0100     1.224  0.0100
+1AW         CAU         NAT      SINGLE       n     1.372  0.0133     1.372  0.0133
+1AW         NAT         CAZ      SINGLE       n     1.387  0.0100     1.387  0.0100
+1AW         CAZ         CAQ      DOUBLE       y     1.375  0.0200     1.375  0.0200
+1AW         CAZ         NBC      SINGLE       y     1.361  0.0118     1.361  0.0118
+1AW         CAQ         CAY      SINGLE       y     1.406  0.0100     1.406  0.0100
+1AW         CAY         CBD      SINGLE       n     1.510  0.0100     1.510  0.0100
+1AW         CAY         NAR      DOUBLE       y     1.325  0.0100     1.325  0.0100
+1AW         CBD         CAB      SINGLE       n     1.529  0.0100     1.529  0.0100
+1AW         CBD         CAA      SINGLE       n     1.529  0.0100     1.529  0.0100
+1AW         CBD         CAC      SINGLE       n     1.529  0.0100     1.529  0.0100
+1AW         NAR         NBC      SINGLE       y     1.379  0.0100     1.379  0.0100
+1AW         NBC         CAW      SINGLE       n     1.423  0.0100     1.423  0.0100
+1AW         CAW         CAK      SINGLE       y     1.383  0.0100     1.383  0.0100
+1AW         CAW         CAP      DOUBLE       y     1.383  0.0100     1.383  0.0100
+1AW         CAP         CAV      SINGLE       y     1.396  0.0102     1.396  0.0102
+1AW         CAK         CAH      DOUBLE       y     1.379  0.0100     1.379  0.0100
+1AW         CAH         CAJ      SINGLE       y     1.383  0.0100     1.383  0.0100
+1AW         CAJ         CAV      DOUBLE       y     1.393  0.0100     1.393  0.0100
+1AW         CAV         NAD      SINGLE       n     1.381  0.0128     1.381  0.0128
+1AW         CBB         HBB      SINGLE       n     1.082  0.0130     0.943  0.0178
+1AW         CBA         HBA      SINGLE       n     1.082  0.0130     0.943  0.0172
+1AW         CAN         HAN      SINGLE       n     1.082  0.0130     0.944  0.0161
+1AW         CAI         HAI      SINGLE       n     1.082  0.0130     0.943  0.0172
+1AW         CAL         HAL      SINGLE       n     1.082  0.0130     0.943  0.0178
+1AW         NAS        HNAS      SINGLE       n     1.016  0.0100     0.879  0.0200
+1AW         NAT        HNAT      SINGLE       n     1.016  0.0100     0.878  0.0200
+1AW         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.942  0.0153
+1AW         CAB         HAB      SINGLE       n     1.089  0.0100     0.973  0.0141
+1AW         CAB        HABA      SINGLE       n     1.089  0.0100     0.973  0.0141
+1AW         CAB        HABB      SINGLE       n     1.089  0.0100     0.973  0.0141
+1AW         CAC         HAC      SINGLE       n     1.089  0.0100     0.973  0.0141
+1AW         CAC        HACA      SINGLE       n     1.089  0.0100     0.973  0.0141
+1AW         CAC        HACB      SINGLE       n     1.089  0.0100     0.973  0.0141
+1AW         CAA         HAA      SINGLE       n     1.089  0.0100     0.973  0.0141
+1AW         CAA        HAAA      SINGLE       n     1.089  0.0100     0.973  0.0141
+1AW         CAA        HAAB      SINGLE       n     1.089  0.0100     0.973  0.0141
+1AW         CAP         HAP      SINGLE       n     1.082  0.0130     0.938  0.0129
+1AW         CAK         HAK      SINGLE       n     1.082  0.0130     0.941  0.0130
+1AW         CAH         HAH      SINGLE       n     1.082  0.0130     0.947  0.0200
+1AW         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0178
+1AW         NAD        HNAD      SINGLE       n     1.016  0.0100     0.877  0.0200
+1AW         NAD        HNAA      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+1AW         CAX         CBB         CBA     119.830    1.50
+1AW         CAX         CBB         HBB     120.019    1.50
+1AW         CBA         CBB         HBB     120.151    1.50
+1AW         CBB         CBA         CAN     120.518    1.50
+1AW         CBB         CBA         HBA     119.600    1.50
+1AW         CAN         CBA         HBA     119.882    1.50
+1AW         CBA         CAN         CAI     119.909    1.50
+1AW         CBA         CAN         HAN     120.046    1.50
+1AW         CAI         CAN         HAN     120.046    1.50
+1AW         CAN         CAI         CAL     120.518    1.50
+1AW         CAN         CAI         HAI     119.882    1.50
+1AW         CAL         CAI         HAI     119.600    1.50
+1AW         CAI         CAL         CAX     119.830    1.50
+1AW         CAI         CAL         HAL     120.151    1.50
+1AW         CAX         CAL         HAL     120.019    1.50
+1AW         CBB         CAX         CAL     119.396    1.50
+1AW         CBB         CAX         NAS     120.302    3.00
+1AW         CAL         CAX         NAS     120.302    3.00
+1AW         CAX         NAS         CAU     126.001    1.50
+1AW         CAX         NAS        HNAS     116.873    1.97
+1AW         CAU         NAS        HNAS     117.126    1.50
+1AW         NAS         CAU         OAE     124.596    1.50
+1AW         NAS         CAU         NAT     112.925    1.50
+1AW         OAE         CAU         NAT     122.479    1.50
+1AW         CAU         NAT         CAZ     125.565    2.23
+1AW         CAU         NAT        HNAT     117.060    1.50
+1AW         CAZ         NAT        HNAT     117.375    2.82
+1AW         NAT         CAZ         CAQ     128.509    3.00
+1AW         NAT         CAZ         NBC     124.695    1.89
+1AW         CAQ         CAZ         NBC     106.796    1.50
+1AW         CAZ         CAQ         CAY     105.285    1.50
+1AW         CAZ         CAQ         HAQ     127.510    1.50
+1AW         CAY         CAQ         HAQ     127.200    1.50
+1AW         CAQ         CAY         CBD     128.047    1.50
+1AW         CAQ         CAY         NAR     111.525    1.50
+1AW         CBD         CAY         NAR     120.428    1.50
+1AW         CAY         CBD         CAB     109.601    1.50
+1AW         CAY         CBD         CAA     109.601    1.50
+1AW         CAY         CBD         CAC     109.601    1.50
+1AW         CAB         CBD         CAA     109.134    1.50
+1AW         CAB         CBD         CAC     109.134    1.50
+1AW         CAA         CBD         CAC     109.134    1.50
+1AW         CBD         CAB         HAB     109.656    1.50
+1AW         CBD         CAB        HABA     109.656    1.50
+1AW         CBD         CAB        HABB     109.656    1.50
+1AW         HAB         CAB        HABA     109.335    1.50
+1AW         HAB         CAB        HABB     109.335    1.50
+1AW        HABA         CAB        HABB     109.335    1.50
+1AW         CBD         CAC         HAC     109.656    1.50
+1AW         CBD         CAC        HACA     109.656    1.50
+1AW         CBD         CAC        HACB     109.656    1.50
+1AW         HAC         CAC        HACA     109.335    1.50
+1AW         HAC         CAC        HACB     109.335    1.50
+1AW        HACA         CAC        HACB     109.335    1.50
+1AW         CBD         CAA         HAA     109.656    1.50
+1AW         CBD         CAA        HAAA     109.656    1.50
+1AW         CBD         CAA        HAAB     109.656    1.50
+1AW         HAA         CAA        HAAA     109.335    1.50
+1AW         HAA         CAA        HAAB     109.335    1.50
+1AW        HAAA         CAA        HAAB     109.335    1.50
+1AW         CAY         NAR         NBC     104.739    1.50
+1AW         CAZ         NBC         NAR     111.660    1.50
+1AW         CAZ         NBC         CAW     129.399    1.50
+1AW         NAR         NBC         CAW     118.942    1.50
+1AW         NBC         CAW         CAK     119.727    1.50
+1AW         NBC         CAW         CAP     119.483    1.50
+1AW         CAK         CAW         CAP     120.790    1.50
+1AW         CAW         CAP         CAV     118.226    1.50
+1AW         CAW         CAP         HAP     121.482    1.50
+1AW         CAV         CAP         HAP     120.291    1.50
+1AW         CAW         CAK         CAH     119.235    1.50
+1AW         CAW         CAK         HAK     120.316    1.50
+1AW         CAH         CAK         HAK     120.448    1.50
+1AW         CAK         CAH         CAJ     120.860    1.50
+1AW         CAK         CAH         HAH     119.547    1.50
+1AW         CAJ         CAH         HAH     119.594    1.50
+1AW         CAH         CAJ         CAV     120.642    1.50
+1AW         CAH         CAJ         HAJ     119.933    1.50
+1AW         CAV         CAJ         HAJ     119.425    1.50
+1AW         CAP         CAV         CAJ     120.248    2.01
+1AW         CAP         CAV         NAD     119.750    1.50
+1AW         CAJ         CAV         NAD     120.003    1.50
+1AW         CAV         NAD        HNAD     119.811    2.73
+1AW         CAV         NAD        HNAA     119.811    2.73
+1AW        HNAD         NAD        HNAA     120.379    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+1AW              const_53         CAN         CBA         CBB         CAX       0.000    10.0     2
+1AW              const_23         NAS         CAX         CBB         CBA     180.000    10.0     2
+1AW              const_42         CAY         CAQ         CAZ         NAT     180.000    10.0     2
+1AW              const_59         NAT         CAZ         NBC         NAR     180.000    10.0     2
+1AW              const_46         CAZ         CAQ         CAY         CBD     180.000    10.0     2
+1AW             sp2_sp3_2         CAQ         CAY         CBD         CAB     -90.000    10.0     6
+1AW              const_50         CBD         CAY         NAR         NBC     180.000    10.0     2
+1AW             sp3_sp3_2         HAB         CAB         CBD         CAA     -60.000    10.0     3
+1AW            sp3_sp3_20         HAC         CAC         CBD         CAB     -60.000    10.0     3
+1AW            sp3_sp3_10         HAA         CAA         CBD         CAB     180.000    10.0     3
+1AW              const_51         CAY         NAR         NBC         CAZ       0.000    10.0     2
+1AW            sp2_sp2_17         CAK         CAW         NBC         CAZ     180.000     5.0     2
+1AW              const_62         CAV         CAP         CAW         NBC     180.000    10.0     2
+1AW       const_sp2_sp2_2         CAH         CAK         CAW         NBC     180.000     5.0     2
+1AW              const_37         CAI         CAN         CBA         CBB       0.000    10.0     2
+1AW              const_18         CAW         CAP         CAV         NAD     180.000    10.0     2
+1AW       const_sp2_sp2_5         CAJ         CAH         CAK         CAW       0.000     5.0     2
+1AW       const_sp2_sp2_9         CAK         CAH         CAJ         CAV       0.000     5.0     2
+1AW              const_14         CAH         CAJ         CAV         NAD     180.000    10.0     2
+1AW            sp2_sp2_21         CAP         CAV         NAD        HNAD     180.000     5.0     2
+1AW              const_33         CAL         CAI         CAN         CBA       0.000    10.0     2
+1AW              const_29         CAN         CAI         CAL         CAX       0.000    10.0     2
+1AW              const_26         CAI         CAL         CAX         NAS     180.000    10.0     2
+1AW             sp2_sp2_1         CBB         CAX         NAS         CAU     180.000     5.0     2
+1AW             sp2_sp2_7         OAE         CAU         NAS         CAX       0.000     5.0     2
+1AW             sp2_sp2_9         NAS         CAU         NAT         CAZ     180.000     5.0     2
+1AW            sp2_sp2_13         CAQ         CAZ         NAT         CAU     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+1AW    chir_1    CBD    CAY    CAB    CAA    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+1AW    plan-1         CAI   0.020
+1AW    plan-1         CAL   0.020
+1AW    plan-1         CAN   0.020
+1AW    plan-1         CAX   0.020
+1AW    plan-1         CBA   0.020
+1AW    plan-1         CBB   0.020
+1AW    plan-1         HAI   0.020
+1AW    plan-1         HAL   0.020
+1AW    plan-1         HAN   0.020
+1AW    plan-1         HBA   0.020
+1AW    plan-1         HBB   0.020
+1AW    plan-1         NAS   0.020
+1AW    plan-2         CAQ   0.020
+1AW    plan-2         CAW   0.020
+1AW    plan-2         CAY   0.020
+1AW    plan-2         CAZ   0.020
+1AW    plan-2         CBD   0.020
+1AW    plan-2         HAQ   0.020
+1AW    plan-2         NAR   0.020
+1AW    plan-2         NAT   0.020
+1AW    plan-2         NBC   0.020
+1AW    plan-3         CAH   0.020
+1AW    plan-3         CAJ   0.020
+1AW    plan-3         CAK   0.020
+1AW    plan-3         CAP   0.020
+1AW    plan-3         CAV   0.020
+1AW    plan-3         CAW   0.020
+1AW    plan-3         HAH   0.020
+1AW    plan-3         HAJ   0.020
+1AW    plan-3         HAK   0.020
+1AW    plan-3         HAP   0.020
+1AW    plan-3         NAD   0.020
+1AW    plan-3         NBC   0.020
+1AW    plan-4         CAU   0.020
+1AW    plan-4         CAX   0.020
+1AW    plan-4        HNAS   0.020
+1AW    plan-4         NAS   0.020
+1AW    plan-5         CAU   0.020
+1AW    plan-5         NAS   0.020
+1AW    plan-5         NAT   0.020
+1AW    plan-5         OAE   0.020
+1AW    plan-6         CAU   0.020
+1AW    plan-6         CAZ   0.020
+1AW    plan-6        HNAT   0.020
+1AW    plan-6         NAT   0.020
+1AW    plan-7         CAV   0.020
+1AW    plan-7        HNAA   0.020
+1AW    plan-7        HNAD   0.020
+1AW    plan-7         NAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+1AW           SMILES              ACDLabs 10.04                                                                                       O=C(Nc1ccccc1)Nc3cc(nn3c2cc(ccc2)N)C(C)(C)C
+1AW SMILES_CANONICAL               CACTVS 3.341                                                                                     CC(C)(C)c1cc(NC(=O)Nc2ccccc2)n(n1)c3cccc(N)c3
+1AW           SMILES               CACTVS 3.341                                                                                     CC(C)(C)c1cc(NC(=O)Nc2ccccc2)n(n1)c3cccc(N)c3
+1AW SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                     CC(C)(C)c1cc(n(n1)c2cccc(c2)N)NC(=O)Nc3ccccc3
+1AW           SMILES "OpenEye OEToolkits" 1.5.0                                                                                     CC(C)(C)c1cc(n(n1)c2cccc(c2)N)NC(=O)Nc3ccccc3
+1AW            InChI                InChI  1.03 InChI=1S/C20H23N5O/c1-20(2,3)17-13-18(23-19(26)22-15-9-5-4-6-10-15)25(24-17)16-11-7-8-14(21)12-16/h4-13H,21H2,1-3H3,(H2,22,23,26)
+1AW         InChIKey                InChI  1.03                                                                                                       DHNYNLNKNQJSHF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+1AW acedrg               243         "dictionary generator"                  
+1AW acedrg_database      11          "data source"                           
+1AW rdkit                2017.03.2   "Chemoinformatics tool"
+1AW refmac5              5.8.0238    "optimization tool"                     

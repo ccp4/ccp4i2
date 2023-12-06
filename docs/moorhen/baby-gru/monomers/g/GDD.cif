@@ -1,0 +1,491 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GDD     GDD      "GUANOSINE-5'-DIPHOSPHATE-ALPHA-D-MANNOSE"     NON-POLYMER     62     39     .     
+#
+data_comp_GDD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GDD     N2      N       NH2     0       12.599      41.829      8.154       
+GDD     C2      C       CR6     0       12.166      43.096      8.204       
+GDD     N1      N       NR6     0       10.864      43.293      8.609       
+GDD     N3      N       NRD6    0       12.989      44.095      7.869       
+GDD     C4      C       CR56    0       12.399      45.315      7.972       
+GDD     C5      C       CR56    0       11.109      45.602      8.366       
+GDD     C6      C       CR6     0       10.236      44.539      8.722       
+GDD     O6      O       O       0       9.057       44.613      9.097       
+GDD     N7      N       NRD5    0       10.885      46.975      8.340       
+GDD     C8      C       CR15    0       12.025      47.487      7.936       
+GDD     N9      N       NT      0       12.977      46.529      7.692       
+GDD     "C1'"   C       CH1     0       14.354      46.793      7.237       
+GDD     "C2'"   C       CH1     0       15.375      46.886      8.365       
+GDD     "O2'"   O       OH1     0       15.348      48.158      8.976       
+GDD     "C3'"   C       CH1     0       16.678      46.601      7.609       
+GDD     "O3'"   O       OH1     0       17.250      47.770      7.032       
+GDD     "C4'"   C       CH1     0       16.239      45.597      6.531       
+GDD     "O4'"   O       O2      0       14.800      45.746      6.407       
+GDD     "C5'"   C       CH2     0       16.565      44.148      6.807       
+GDD     "O5'"   O       O2      0       16.038      43.772      8.106       
+GDD     PA      P       P       0       16.142      42.249      8.603       
+GDD     O1A     O       O       0       15.800      41.330      7.477       
+GDD     O2A     O       OP      -1      15.385      42.096      9.881       
+GDD     O3A     O       O2      0       17.710      42.130      8.925       
+GDD     PB      P       P       0       18.995      41.634      8.101       
+GDD     O2B     O       OP      -1      18.668      41.576      6.645       
+GDD     O3B     O       O       0       20.175      42.453      8.509       
+GDD     O1B     O       O2      0       19.183      40.140      8.663       
+GDD     C11     C       CH1     0       18.290      39.079      8.429       
+GDD     O51     O       O2      0       18.972      37.928      7.947       
+GDD     C51     C       CH1     0       19.948      37.349      8.854       
+GDD     C61     C       CH2     0       20.563      36.170      8.134       
+GDD     O6A     O       OH1     0       21.208      36.575      6.927       
+GDD     C21     C       CH1     0       17.563      38.767      9.738       
+GDD     O21     O       OH1     0       16.445      37.916      9.486       
+GDD     C31     C       CH1     0       18.522      38.148      10.757      
+GDD     O31     O       OH1     0       17.799      37.748      11.922      
+GDD     C41     C       CH1     0       19.268      36.958      10.167      
+GDD     O41     O       OH1     0       20.253      36.502      11.090      
+GDD     H2N1    H       H       0       13.086      41.561      7.475       
+GDD     H2N2    H       H       0       12.394      41.271      8.799       
+GDD     H1      H       H       0       10.373      42.570      8.819       
+GDD     H8      H       H       0       12.161      48.413      7.826       
+GDD     "H1'"   H       H       0       14.365      47.638      6.733       
+GDD     "H2'"   H       H       0       15.206      46.180      9.044       
+GDD     HA      H       H       0       15.995      48.219      9.522       
+GDD     "H3'"   H       H       0       17.334      46.170      8.216       
+GDD     HB      H       H       0       16.723      48.104      6.456       
+GDD     "H4'"   H       H       0       16.655      45.841      5.676       
+GDD     "H5'1"  H       H       0       17.545      44.022      6.794       
+GDD     "H5'2"  H       H       0       16.166      43.580      6.103       
+GDD     H11     H       H       0       17.626      39.356      7.751       
+GDD     H51     H       H       0       20.654      38.014      9.045       
+GDD     H611    H       H       0       19.863      35.518      7.923       
+GDD     H612    H       H       0       21.218      35.736      8.719       
+GDD     H6A     H       H       0       21.859      37.085      7.112       
+GDD     H21     H       H       0       17.223      39.613      10.115      
+GDD     HC      H       H       0       16.687      37.250      9.032       
+GDD     H31     H       H       0       19.187      38.834      11.020      
+GDD     HD      H       H       0       17.231      37.163      11.712      
+GDD     H41     H       H       0       18.625      36.230      9.994       
+GDD     HE      H       H       0       19.876      36.166      11.762      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GDD          N2          C2      SINGLE       n     1.340  0.0101     1.340  0.0101
+GDD          C2          N1      SINGLE       y     1.374  0.0100     1.374  0.0100
+GDD          C2          N3      DOUBLE       y     1.333  0.0104     1.333  0.0104
+GDD          N1          C6      SINGLE       y     1.396  0.0107     1.396  0.0107
+GDD          N3          C4      SINGLE       y     1.355  0.0100     1.355  0.0100
+GDD          C4          C5      DOUBLE       y     1.377  0.0100     1.377  0.0100
+GDD          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+GDD          C5          C6      SINGLE       y     1.417  0.0103     1.417  0.0103
+GDD          C5          N7      SINGLE       y     1.390  0.0100     1.390  0.0100
+GDD          C6          O6      DOUBLE       n     1.239  0.0100     1.239  0.0100
+GDD          N7          C8      DOUBLE       y     1.312  0.0100     1.312  0.0100
+GDD          C8          N9      SINGLE       y     1.372  0.0200     1.372  0.0200
+GDD          N9       "C1'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+GDD       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+GDD       "C1'"       "O4'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+GDD       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+GDD       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+GDD       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+GDD       "C3'"       "C4'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+GDD       "C4'"       "O4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+GDD       "C4'"       "C5'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+GDD       "C5'"       "O5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+GDD       "O5'"          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+GDD          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+GDD          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+GDD          PA         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+GDD         O3A          PB      SINGLE       n     1.604  0.0133     1.604  0.0133
+GDD          PB         O2B      SINGLE       n     1.493  0.0122     1.493  0.0122
+GDD          PB         O3B      DOUBLE       n     1.493  0.0122     1.493  0.0122
+GDD          PB         O1B      SINGLE       n     1.604  0.0133     1.604  0.0133
+GDD         O1B         C11      SINGLE       n     1.403  0.0143     1.403  0.0143
+GDD         C11         O51      SINGLE       n     1.417  0.0109     1.417  0.0109
+GDD         C11         C21      SINGLE       n     1.522  0.0165     1.522  0.0165
+GDD         O51         C51      SINGLE       n     1.440  0.0195     1.440  0.0195
+GDD         C51         C61      SINGLE       n     1.511  0.0142     1.511  0.0142
+GDD         C51         C41      SINGLE       n     1.524  0.0200     1.524  0.0200
+GDD         C61         O6A      SINGLE       n     1.426  0.0200     1.426  0.0200
+GDD         C21         O21      SINGLE       n     1.425  0.0112     1.425  0.0112
+GDD         C21         C31      SINGLE       n     1.519  0.0200     1.519  0.0200
+GDD         C31         O31      SINGLE       n     1.427  0.0138     1.427  0.0138
+GDD         C31         C41      SINGLE       n     1.520  0.0158     1.520  0.0158
+GDD         C41         O41      SINGLE       n     1.425  0.0176     1.425  0.0176
+GDD          N2        H2N1      SINGLE       n     1.016  0.0100     0.877  0.0200
+GDD          N2        H2N2      SINGLE       n     1.016  0.0100     0.877  0.0200
+GDD          N1          H1      SINGLE       n     1.016  0.0100     0.897  0.0200
+GDD          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+GDD       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+GDD       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+GDD       "O2'"          HA      SINGLE       n     0.970  0.0120     0.849  0.0200
+GDD       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+GDD       "O3'"          HB      SINGLE       n     0.970  0.0120     0.849  0.0200
+GDD       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+GDD       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+GDD       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+GDD         C11         H11      SINGLE       n     1.089  0.0100     0.989  0.0153
+GDD         C51         H51      SINGLE       n     1.089  0.0100     0.988  0.0182
+GDD         C61        H611      SINGLE       n     1.089  0.0100     0.980  0.0184
+GDD         C61        H612      SINGLE       n     1.089  0.0100     0.980  0.0184
+GDD         O6A         H6A      SINGLE       n     0.970  0.0120     0.848  0.0200
+GDD         C21         H21      SINGLE       n     1.089  0.0100     0.987  0.0140
+GDD         O21          HC      SINGLE       n     0.970  0.0120     0.841  0.0200
+GDD         C31         H31      SINGLE       n     1.089  0.0100     0.991  0.0121
+GDD         O31          HD      SINGLE       n     0.970  0.0120     0.841  0.0200
+GDD         C41         H41      SINGLE       n     1.089  0.0100     0.986  0.0131
+GDD         O41          HE      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GDD          C2          N2        H2N1     119.868    1.50
+GDD          C2          N2        H2N2     119.868    1.50
+GDD        H2N1          N2        H2N2     120.263    1.96
+GDD          N2          C2          N1     116.576    1.50
+GDD          N2          C2          N3     119.821    1.50
+GDD          N1          C2          N3     123.602    1.50
+GDD          C2          N1          C6     125.351    1.50
+GDD          C2          N1          H1     117.677    2.71
+GDD          C6          N1          H1     116.978    2.44
+GDD          C2          N3          C4     112.066    1.50
+GDD          N3          C4          C5     128.211    1.50
+GDD          N3          C4          N9     124.984    1.50
+GDD          C5          C4          N9     106.805    1.69
+GDD          C4          C5          C6     119.397    1.50
+GDD          C4          C5          N7     110.629    1.50
+GDD          C6          C5          N7     129.975    1.50
+GDD          N1          C6          C5     111.367    1.50
+GDD          N1          C6          O6     120.389    1.50
+GDD          C5          C6          O6     128.244    1.50
+GDD          C5          N7          C8     103.927    1.50
+GDD          N7          C8          N9     112.130    1.94
+GDD          N7          C8          H8     123.170    1.50
+GDD          N9          C8          H8     124.701    2.19
+GDD          C4          N9          C8     107.594    1.50
+GDD          C4          N9       "C1'"     125.158    1.54
+GDD          C8          N9       "C1'"     126.078    2.46
+GDD          N9       "C1'"       "C2'"     113.752    2.20
+GDD          N9       "C1'"       "O4'"     108.167    1.51
+GDD          N9       "C1'"       "H1'"     109.246    1.50
+GDD       "C2'"       "C1'"       "O4'"     106.047    1.50
+GDD       "C2'"       "C1'"       "H1'"     109.015    1.50
+GDD       "O4'"       "C1'"       "H1'"     109.807    1.50
+GDD       "C1'"       "C2'"       "O2'"     111.715    2.69
+GDD       "C1'"       "C2'"       "C3'"     101.239    1.50
+GDD       "C1'"       "C2'"       "H2'"     110.636    1.70
+GDD       "O2'"       "C2'"       "C3'"     112.782    2.45
+GDD       "O2'"       "C2'"       "H2'"     110.448    1.97
+GDD       "C3'"       "C2'"       "H2'"     110.596    1.51
+GDD       "C2'"       "O2'"          HA     109.103    2.13
+GDD       "C2'"       "C3'"       "O3'"     111.581    2.83
+GDD       "C2'"       "C3'"       "C4'"     102.602    1.50
+GDD       "C2'"       "C3'"       "H3'"     110.504    1.75
+GDD       "O3'"       "C3'"       "C4'"     111.281    2.46
+GDD       "O3'"       "C3'"       "H3'"     110.380    1.67
+GDD       "C4'"       "C3'"       "H3'"     110.452    2.54
+GDD       "C3'"       "O3'"          HB     108.744    3.00
+GDD       "C3'"       "C4'"       "O4'"     105.388    1.50
+GDD       "C3'"       "C4'"       "C5'"     116.008    1.52
+GDD       "C3'"       "C4'"       "H4'"     109.363    1.86
+GDD       "O4'"       "C4'"       "C5'"     109.123    1.50
+GDD       "O4'"       "C4'"       "H4'"     108.947    1.50
+GDD       "C5'"       "C4'"       "H4'"     108.268    1.50
+GDD       "C1'"       "O4'"       "C4'"     109.903    1.50
+GDD       "C4'"       "C5'"       "O5'"     109.342    1.50
+GDD       "C4'"       "C5'"      "H5'1"     109.624    1.50
+GDD       "C4'"       "C5'"      "H5'2"     109.624    1.50
+GDD       "O5'"       "C5'"      "H5'1"     109.845    1.50
+GDD       "O5'"       "C5'"      "H5'2"     109.845    1.50
+GDD      "H5'1"       "C5'"      "H5'2"     108.472    1.50
+GDD       "C5'"       "O5'"          PA     118.553    2.41
+GDD       "O5'"          PA         O1A     109.410    1.50
+GDD       "O5'"          PA         O2A     109.410    1.50
+GDD       "O5'"          PA         O3A     101.065    1.97
+GDD         O1A          PA         O2A     118.411    2.35
+GDD         O1A          PA         O3A     108.816    2.14
+GDD         O2A          PA         O3A     108.816    2.14
+GDD          PA         O3A          PB     132.542    3.00
+GDD         O3A          PB         O2B     108.570    2.41
+GDD         O3A          PB         O3B     108.570    2.41
+GDD         O3A          PB         O1B     101.077    2.30
+GDD         O2B          PB         O3B     116.964    2.85
+GDD         O2B          PB         O1B     108.530    2.45
+GDD         O3B          PB         O1B     108.530    2.45
+GDD          PB         O1B         C11     122.306    2.63
+GDD         O1B         C11         O51     110.394    2.23
+GDD         O1B         C11         C21     108.240    1.70
+GDD         O1B         C11         H11     109.322    1.50
+GDD         O51         C11         C21     110.164    1.50
+GDD         O51         C11         H11     109.272    1.61
+GDD         C21         C11         H11     109.599    1.50
+GDD         C11         O51         C51     113.152    1.70
+GDD         O51         C51         C61     106.879    1.50
+GDD         O51         C51         C41     109.140    1.86
+GDD         O51         C51         H51     109.134    1.50
+GDD         C61         C51         C41     112.996    1.59
+GDD         C61         C51         H51     109.269    1.50
+GDD         C41         C51         H51     108.960    1.50
+GDD         C51         C61         O6A     111.299    2.09
+GDD         C51         C61        H611     109.363    1.50
+GDD         C51         C61        H612     109.363    1.50
+GDD         O6A         C61        H611     109.265    1.50
+GDD         O6A         C61        H612     109.265    1.50
+GDD        H611         C61        H612     108.155    1.50
+GDD         C61         O6A         H6A     109.472    2.41
+GDD         C11         C21         O21     109.976    1.78
+GDD         C11         C21         C31     110.229    1.69
+GDD         C11         C21         H21     108.925    1.50
+GDD         O21         C21         C31     111.053    2.62
+GDD         O21         C21         H21     108.551    1.50
+GDD         C31         C21         H21     108.505    1.50
+GDD         C21         O21          HC     109.126    2.06
+GDD         C21         C31         O31     109.587    2.09
+GDD         C21         C31         C41     110.687    1.67
+GDD         C21         C31         H31     108.712    1.50
+GDD         O31         C31         C41     110.243    1.88
+GDD         O31         C31         H31     108.767    1.50
+GDD         C41         C31         H31     108.653    1.50
+GDD         C31         O31          HD     108.895    2.41
+GDD         C51         C41         C31     110.272    1.76
+GDD         C51         C41         O41     109.072    2.07
+GDD         C51         C41         H41     109.223    1.50
+GDD         C31         C41         O41     110.101    1.97
+GDD         C31         C41         H41     109.032    1.50
+GDD         O41         C41         H41     109.194    1.50
+GDD         C41         O41          HE     109.564    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GDD                   nu0         C51         O51         C11         C21     -62.420    10.0     3
+GDD                   nu1         O51         C11         C21         C31      56.164    10.0     3
+GDD                   nu2         C11         C21         C31         C41     -51.708    10.0     3
+GDD                   nu3         C21         C31         C41         C51      51.768    10.0     3
+GDD                   nu4         C31         C41         C51         O51     -56.881    10.0     3
+GDD                   nu5         C41         C51         O51         C11      63.019    10.0     3
+GDD             sp3_sp3_1       "O4'"       "C1'"       "C2'"       "C3'"      60.000    10.0     3
+GDD             sp3_sp3_2       "O4'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+GDD             sp3_sp3_3       "O4'"       "C1'"       "C2'"       "H2'"     -60.000    10.0     3
+GDD             sp3_sp3_4          N9       "C1'"       "C2'"       "C3'"     -60.000    10.0     3
+GDD             sp3_sp3_5          N9       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+GDD             sp3_sp3_6          N9       "C1'"       "C2'"       "H2'"     180.000    10.0     3
+GDD             sp3_sp3_7       "H1'"       "C1'"       "C2'"       "C3'"     180.000    10.0     3
+GDD             sp3_sp3_8       "H1'"       "C1'"       "C2'"       "O2'"     -60.000    10.0     3
+GDD             sp3_sp3_9       "H1'"       "C1'"       "C2'"       "H2'"      60.000    10.0     3
+GDD            sp3_sp3_10       "C1'"       "C2'"       "C3'"       "C4'"     -60.000    10.0     3
+GDD            sp3_sp3_11       "C1'"       "C2'"       "C3'"       "O3'"      60.000    10.0     3
+GDD            sp3_sp3_12       "C1'"       "C2'"       "C3'"       "H3'"     180.000    10.0     3
+GDD            sp3_sp3_13       "O2'"       "C2'"       "C3'"       "C4'"     180.000    10.0     3
+GDD            sp3_sp3_14       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+GDD            sp3_sp3_15       "O2'"       "C2'"       "C3'"       "H3'"      60.000    10.0     3
+GDD            sp3_sp3_16       "H2'"       "C2'"       "C3'"       "C4'"      60.000    10.0     3
+GDD            sp3_sp3_17       "H2'"       "C2'"       "C3'"       "O3'"     180.000    10.0     3
+GDD            sp3_sp3_18       "H2'"       "C2'"       "C3'"       "H3'"     -60.000    10.0     3
+GDD            sp3_sp3_19       "C2'"       "C3'"       "C4'"       "O4'"      60.000    10.0     3
+GDD            sp3_sp3_20       "C2'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+GDD            sp3_sp3_21       "C2'"       "C3'"       "C4'"       "H4'"     -60.000    10.0     3
+GDD            sp3_sp3_22       "O3'"       "C3'"       "C4'"       "O4'"     -60.000    10.0     3
+GDD            sp3_sp3_23       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+GDD            sp3_sp3_24       "O3'"       "C3'"       "C4'"       "H4'"     180.000    10.0     3
+GDD            sp3_sp3_25       "H3'"       "C3'"       "C4'"       "O4'"     180.000    10.0     3
+GDD            sp3_sp3_26       "H3'"       "C3'"       "C4'"       "C5'"     -60.000    10.0     3
+GDD            sp3_sp3_27       "H3'"       "C3'"       "C4'"       "H4'"      60.000    10.0     3
+GDD            sp3_sp3_28       "C3'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+GDD            sp3_sp3_29       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+GDD            sp3_sp3_30       "H4'"       "C4'"       "O4'"       "C1'"      60.000    10.0     3
+GDD       const_sp2_sp2_1          N3          C2          N1          C6       0.000     5.0     2
+GDD       const_sp2_sp2_2          N3          C2          N1          H1     180.000     5.0     2
+GDD       const_sp2_sp2_3          N2          C2          N1          C6     180.000     5.0     2
+GDD       const_sp2_sp2_4          N2          C2          N1          H1       0.000     5.0     2
+GDD       const_sp2_sp2_5          C5          C6          N1          C2       0.000     5.0     2
+GDD       const_sp2_sp2_6          C5          C6          N1          H1     180.000     5.0     2
+GDD       const_sp2_sp2_7          O6          C6          N1          C2     180.000     5.0     2
+GDD       const_sp2_sp2_8          O6          C6          N1          H1       0.000     5.0     2
+GDD       const_sp2_sp2_9          C4          C5          C6          N1       0.000     5.0     2
+GDD              const_10          C4          C5          C6          O6     180.000    10.0     2
+GDD              const_11          N7          C5          C6          N1     180.000    10.0     2
+GDD              const_12          N7          C5          C6          O6       0.000    10.0     2
+GDD              const_13          N3          C4          C5          C6       0.000    10.0     2
+GDD              const_14          N3          C4          C5          N7     180.000    10.0     2
+GDD              const_15          N9          C4          C5          C6     180.000    10.0     2
+GDD              const_16          N9          C4          C5          N7       0.000    10.0     2
+GDD              const_17          C5          C4          N3          C2       0.000    10.0     2
+GDD              const_18          N9          C4          N3          C2     180.000    10.0     2
+GDD              const_19          C4          C5          N7          C8       0.000    10.0     2
+GDD              const_20          C6          C5          N7          C8     180.000    10.0     2
+GDD              const_21          N9          C8          N7          C5       0.000    10.0     2
+GDD              const_22          H8          C8          N7          C5     180.000    10.0     2
+GDD              const_23          N7          C8          N9          C4       0.000    10.0     2
+GDD              const_24          N7          C8          N9       "C1'"     180.000    10.0     2
+GDD              const_25          H8          C8          N9          C4     180.000    10.0     2
+GDD              const_26          H8          C8          N9       "C1'"       0.000    10.0     2
+GDD             sp2_sp2_1          N1          C2          N2        H2N1     180.000     5.0     2
+GDD             sp2_sp2_2          N1          C2          N2        H2N2       0.000     5.0     2
+GDD             sp2_sp2_3          N3          C2          N2        H2N1       0.000     5.0     2
+GDD             sp2_sp2_4          N3          C2          N2        H2N2     180.000     5.0     2
+GDD              const_27          N1          C2          N3          C4       0.000    10.0     2
+GDD              const_28          N2          C2          N3          C4     180.000    10.0     2
+GDD              const_29          C5          C4          N9          C8       0.000    10.0     2
+GDD              const_30          C5          C4          N9       "C1'"     180.000    10.0     2
+GDD              const_31          N3          C4          N9          C8     180.000    10.0     2
+GDD              const_32          N3          C4          N9       "C1'"       0.000    10.0     2
+GDD             sp2_sp3_1          C4          N9       "C1'"       "C2'"     150.000    10.0     6
+GDD             sp2_sp3_2          C4          N9       "C1'"       "O4'"     -90.000    10.0     6
+GDD             sp2_sp3_3          C4          N9       "C1'"       "H1'"      30.000    10.0     6
+GDD             sp2_sp3_4          C8          N9       "C1'"       "C2'"     -30.000    10.0     6
+GDD             sp2_sp3_5          C8          N9       "C1'"       "O4'"      90.000    10.0     6
+GDD             sp2_sp3_6          C8          N9       "C1'"       "H1'"    -150.000    10.0     6
+GDD            sp3_sp3_64       "C2'"       "C1'"       "O4'"       "C4'"     180.000    10.0     3
+GDD            sp3_sp3_65          N9       "C1'"       "O4'"       "C4'"      60.000    10.0     3
+GDD            sp3_sp3_66       "H1'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+GDD            sp3_sp3_67       "C1'"       "C2'"       "O2'"          HA     180.000    10.0     3
+GDD            sp3_sp3_68       "C3'"       "C2'"       "O2'"          HA      60.000    10.0     3
+GDD            sp3_sp3_69       "H2'"       "C2'"       "O2'"          HA     -60.000    10.0     3
+GDD            sp3_sp3_70       "C2'"       "C3'"       "O3'"          HB     180.000    10.0     3
+GDD            sp3_sp3_71       "C4'"       "C3'"       "O3'"          HB      60.000    10.0     3
+GDD            sp3_sp3_72       "H3'"       "C3'"       "O3'"          HB     -60.000    10.0     3
+GDD            sp3_sp3_73       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+GDD            sp3_sp3_74       "C3'"       "C4'"       "C5'"      "H5'1"     -60.000    10.0     3
+GDD            sp3_sp3_75       "C3'"       "C4'"       "C5'"      "H5'2"      60.000    10.0     3
+GDD            sp3_sp3_76       "O4'"       "C4'"       "C5'"       "O5'"      60.000    10.0     3
+GDD            sp3_sp3_77       "O4'"       "C4'"       "C5'"      "H5'1"     180.000    10.0     3
+GDD            sp3_sp3_78       "O4'"       "C4'"       "C5'"      "H5'2"     -60.000    10.0     3
+GDD            sp3_sp3_79       "H4'"       "C4'"       "C5'"       "O5'"     -60.000    10.0     3
+GDD            sp3_sp3_80       "H4'"       "C4'"       "C5'"      "H5'1"      60.000    10.0     3
+GDD            sp3_sp3_81       "H4'"       "C4'"       "C5'"      "H5'2"     180.000    10.0     3
+GDD            sp3_sp3_82       "C4'"       "C5'"       "O5'"          PA     180.000    10.0     3
+GDD            sp3_sp3_83      "H5'1"       "C5'"       "O5'"          PA      60.000    10.0     3
+GDD            sp3_sp3_84      "H5'2"       "C5'"       "O5'"          PA     -60.000    10.0     3
+GDD            sp3_sp3_85       "C5'"       "O5'"          PA         O3A     180.000    10.0     3
+GDD            sp3_sp3_86       "C5'"       "O5'"          PA         O2A     -60.000    10.0     3
+GDD            sp3_sp3_87       "C5'"       "O5'"          PA         O1A      60.000    10.0     3
+GDD            sp3_sp3_88          PB         O3A          PA         O2A     180.000    10.0     3
+GDD            sp3_sp3_89          PB         O3A          PA       "O5'"     -60.000    10.0     3
+GDD            sp3_sp3_90          PB         O3A          PA         O1A      60.000    10.0     3
+GDD            sp3_sp3_91          PA         O3A          PB         O2B     180.000    10.0     3
+GDD            sp3_sp3_92          PA         O3A          PB         O1B     -60.000    10.0     3
+GDD            sp3_sp3_93          PA         O3A          PB         O3B      60.000    10.0     3
+GDD            sp3_sp3_94         C11         O1B          PB         O3A     180.000    10.0     3
+GDD            sp3_sp3_95         C11         O1B          PB         O2B     -60.000    10.0     3
+GDD            sp3_sp3_96         C11         O1B          PB         O3B      60.000    10.0     3
+GDD            sp3_sp3_97         O51         C11         O1B          PB     180.000    10.0     3
+GDD            sp3_sp3_98         C21         C11         O1B          PB      60.000    10.0     3
+GDD            sp3_sp3_99         H11         C11         O1B          PB     -60.000    10.0     3
+GDD           sp3_sp3_109         O51         C51         C61         O6A     180.000    10.0     3
+GDD           sp3_sp3_110         O51         C51         C61        H611     -60.000    10.0     3
+GDD           sp3_sp3_111         O51         C51         C61        H612      60.000    10.0     3
+GDD           sp3_sp3_112         C41         C51         C61         O6A      60.000    10.0     3
+GDD           sp3_sp3_113         C41         C51         C61        H611     180.000    10.0     3
+GDD           sp3_sp3_114         C41         C51         C61        H612     -60.000    10.0     3
+GDD           sp3_sp3_115         H51         C51         C61         O6A     -60.000    10.0     3
+GDD           sp3_sp3_116         H51         C51         C61        H611      60.000    10.0     3
+GDD           sp3_sp3_117         H51         C51         C61        H612     180.000    10.0     3
+GDD           sp3_sp3_118         C51         C61         O6A         H6A     180.000    10.0     3
+GDD           sp3_sp3_119        H611         C61         O6A         H6A      60.000    10.0     3
+GDD           sp3_sp3_120        H612         C61         O6A         H6A     -60.000    10.0     3
+GDD           sp3_sp3_121         C11         C21         O21          HC     180.000    10.0     3
+GDD           sp3_sp3_122         C31         C21         O21          HC      60.000    10.0     3
+GDD           sp3_sp3_123         H21         C21         O21          HC     -60.000    10.0     3
+GDD           sp3_sp3_124         C21         C31         O31          HD     180.000    10.0     3
+GDD           sp3_sp3_125         C41         C31         O31          HD      60.000    10.0     3
+GDD           sp3_sp3_126         H31         C31         O31          HD     -60.000    10.0     3
+GDD           sp3_sp3_127         C51         C41         O41          HE     180.000    10.0     3
+GDD           sp3_sp3_128         C31         C41         O41          HE      60.000    10.0     3
+GDD           sp3_sp3_129         H41         C41         O41          HE     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GDD    chir_1    "C1'"    "O4'"    N9    "C2'"    negative
+GDD    chir_2    "C2'"    "O2'"    "C1'"    "C3'"    negative
+GDD    chir_3    "C3'"    "O3'"    "C4'"    "C2'"    positive
+GDD    chir_4    "C4'"    "O4'"    "C3'"    "C5'"    negative
+GDD    chir_5    PA    O3A    "O5'"    O2A    both
+GDD    chir_6    PB    O3A    O1B    O2B    both
+GDD    chir_7    C11    O1B    O51    C21    negative
+GDD    chir_8    C51    O51    C41    C61    negative
+GDD    chir_9    C21    O21    C11    C31    positive
+GDD    chir_10    C31    O31    C21    C41    positive
+GDD    chir_11    C41    O41    C51    C31    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GDD    plan-1       "C1'"   0.020
+GDD    plan-1          C2   0.020
+GDD    plan-1          C4   0.020
+GDD    plan-1          C5   0.020
+GDD    plan-1          C6   0.020
+GDD    plan-1          C8   0.020
+GDD    plan-1          H1   0.020
+GDD    plan-1          H8   0.020
+GDD    plan-1          N1   0.020
+GDD    plan-1          N2   0.020
+GDD    plan-1          N3   0.020
+GDD    plan-1          N7   0.020
+GDD    plan-1          N9   0.020
+GDD    plan-1          O6   0.020
+GDD    plan-2          C2   0.020
+GDD    plan-2        H2N1   0.020
+GDD    plan-2        H2N2   0.020
+GDD    plan-2          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GDD           SMILES              ACDLabs 10.04                                                                                                                                                                             O=P(OC1OC(C(O)C(O)C1O)CO)(O)OP(=O)(O)OCC4OC(n2c3N=C(N)NC(=O)c3nc2)C(O)C4O
+GDD SMILES_CANONICAL               CACTVS 3.341                                                                                                                             NC1=Nc2n(cnc2C(=O)N1)[C@@H]3O[C@H](CO[P@@](O)(=O)O[P@@](O)(=O)O[C@H]4O[C@H](CO)[C@@H](O)[C@H](O)[C@@H]4O)[C@@H](O)[C@H]3O
+GDD           SMILES               CACTVS 3.341                                                                                                                                              NC1=Nc2n(cnc2C(=O)N1)[CH]3O[CH](CO[P](O)(=O)O[P](O)(=O)O[CH]4O[CH](CO)[CH](O)[CH](O)[CH]4O)[CH](O)[CH]3O
+GDD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                           c1nc2c(n1[C@H]3[C@@H]([C@@H]([C@H](O3)CO[P@](=O)(O)O[P@](=O)(O)O[C@@H]4[C@H]([C@H]([C@@H]([C@H](O4)CO)O)O)O)O)O)N=C(NC2=O)N
+GDD           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                         c1nc2c(n1C3C(C(C(O3)COP(=O)(O)OP(=O)(O)OC4C(C(C(C(O4)CO)O)O)O)O)O)N=C(NC2=O)N
+GDD            InChI                InChI  1.03 InChI=1S/C16H25N5O16P2/c17-16-19-12-6(13(28)20-16)18-3-21(12)14-10(26)8(24)5(34-14)2-33-38(29,30)37-39(31,32)36-15-11(27)9(25)7(23)4(1-22)35-15/h3-5,7-11,14-15,22-27H,1-2H2,(H,29,30)(H,31,32)(H3,17,19,20,28)/t4-,5-,7-,8-,9+,10-,11+,14-,15-/m1/s1
+GDD         InChIKey                InChI  1.03                                                                                                                                                                                                                           MVMSCBBUIHUTGJ-GDJBGNAASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GDD acedrg               243         "dictionary generator"                  
+GDD acedrg_database      11          "data source"                           
+GDD rdkit                2017.03.2   "Chemoinformatics tool"
+GDD refmac5              5.8.0238    "optimization tool"                     

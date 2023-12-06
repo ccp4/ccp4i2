@@ -1,0 +1,438 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EHA     EHA      "(5-{3-[(6-BENZOYL-1-PROPYL-2-NAPHTHYL)OXY]PROPOXY}-1H-INDOL-1-YL)ACETIC ACID"     NON-POLYMER     69     39     .     
+#
+data_comp_EHA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EHA     CAN     C       CR16    0       5.785       -5.330      45.172      
+EHA     CAO     C       CR16    0       5.831       -5.173      46.550      
+EHA     CAP     C       CR16    0       6.012       -6.268      47.370      
+EHA     CAQ     C       CR16    0       6.149       -7.527      46.818      
+EHA     CAR     C       CR16    0       6.105       -7.693      45.441      
+EHA     CAL     C       CR6     0       5.923       -6.595      44.603      
+EHA     CAK     C       C       0       5.877       -6.787      43.125      
+EHA     OAM     O       O       0       5.197       -7.692      42.658      
+EHA     CAH     C       CR6     0       6.651       -5.904      42.203      
+EHA     CAG     C       CR16    0       7.879       -5.402      42.564      
+EHA     CAI     C       CR16    0       6.134       -5.584      40.925      
+EHA     CAJ     C       CR16    0       6.825       -4.786      40.058      
+EHA     CAD     C       CR66    0       8.099       -4.239      40.399      
+EHA     CAE     C       CR6     0       8.881       -3.382      39.528      
+EHA     CBK     C       CH2     0       8.351       -3.024      38.153      
+EHA     CBL     C       CH2     0       8.477       -4.133      37.125      
+EHA     CBM     C       CH3     0       8.032       -3.701      35.740      
+EHA     CAC     C       CR66    0       8.622       -4.568      41.694      
+EHA     CAB     C       CR16    0       9.879       -4.053      42.080      
+EHA     CAA     C       CR16    0       10.604      -3.256      41.261      
+EHA     CAF     C       CR6     0       10.115      -2.924      39.975      
+EHA     OBJ     O       O2      0       10.817      -2.104      39.120      
+EHA     CBI     C       CH2     0       12.251      -2.001      39.116      
+EHA     CBH     C       CH2     0       12.871      -3.252      38.540      
+EHA     CBG     C       CH2     0       12.604      -3.398      37.063      
+EHA     OBF     O       O2      0       13.301      -4.551      36.567      
+EHA     CAS     C       CR6     0       12.605      -5.601      36.019      
+EHA     CAX     C       CR16    0       12.915      -6.878      36.444      
+EHA     CAT     C       CR16    0       11.622      -5.380      35.029      
+EHA     CAU     C       CR16    0       10.919      -6.418      34.470      
+EHA     CAV     C       CR56    0       11.218      -7.712      34.896      
+EHA     CAW     C       CR56    0       12.207      -7.958      35.876      
+EHA     CBA     C       CR15    0       12.253      -9.375      36.072      
+EHA     CAZ     C       CR15    0       11.333      -9.934      35.246      
+EHA     N       N       NT      0       10.694      -8.936      34.515      
+EHA     CA      C       CH2     0       9.638       -9.187      33.534      
+EHA     C       C       C       0       9.966       -10.310     32.552      
+EHA     O       O       OC      -1      9.342       -11.382     32.688      
+EHA     OXT     O       O       0       10.831      -10.074     31.687      
+EHA     HAN     H       H       0       5.662       -4.578      44.620      
+EHA     HAO     H       H       0       5.738       -4.313      46.927      
+EHA     HAP     H       H       0       6.043       -6.158      48.307      
+EHA     HAQ     H       H       0       6.272       -8.275      47.378      
+EHA     HAR     H       H       0       6.198       -8.554      45.072      
+EHA     HAG     H       H       0       8.237       -5.608      43.410      
+EHA     HAI     H       H       0       5.295       -5.928      40.664      
+EHA     HAJ     H       H       0       6.443       -4.594      39.216      
+EHA     HBK1    H       H       0       8.828       -2.230      37.812      
+EHA     HBK2    H       H       0       7.398       -2.773      38.230      
+EHA     HBL1    H       H       0       7.936       -4.900      37.408      
+EHA     HBL2    H       H       0       9.412       -4.426      37.082      
+EHA     HBM1    H       H       0       8.168       -4.431      35.111      
+EHA     HBM2    H       H       0       8.552       -2.930      35.456      
+EHA     HBM3    H       H       0       7.088       -3.464      35.760      
+EHA     HAB     H       H       0       10.222      -4.269      42.929      
+EHA     HAA     H       H       0       11.431      -2.934      41.555      
+EHA     HBI1    H       H       0       12.586      -1.848      40.022      
+EHA     HBI2    H       H       0       12.514      -1.231      38.571      
+EHA     HBH1    H       H       0       12.515      -4.038      39.009      
+EHA     HBH2    H       H       0       13.843      -3.219      38.684      
+EHA     HBG1    H       H       0       12.915      -2.599      36.590      
+EHA     HBG2    H       H       0       11.640      -3.483      36.913      
+EHA     HAX     H       H       0       13.587      -7.024      37.108      
+EHA     HAT     H       H       0       11.431      -4.498      34.757      
+EHA     HAU     H       H       0       10.264      -6.261      33.821      
+EHA     HBA     H       H       0       12.817      -9.835      36.665      
+EHA     HAZ     H       H       0       11.153      -10.843     35.168      
+EHA     HA1     H       H       0       9.475       -8.370      33.027      
+EHA     HA2     H       H       0       8.817       -9.418      34.009      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EHA         CAN         CAO      DOUBLE       y     1.384  0.0100     1.384  0.0100
+EHA         CAN         CAL      SINGLE       y     1.390  0.0100     1.390  0.0100
+EHA         CAO         CAP      SINGLE       y     1.376  0.0114     1.376  0.0114
+EHA         CAP         CAQ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+EHA         CAQ         CAR      SINGLE       y     1.384  0.0100     1.384  0.0100
+EHA         CAR         CAL      DOUBLE       y     1.390  0.0100     1.390  0.0100
+EHA         CAL         CAK      SINGLE       n     1.488  0.0100     1.488  0.0100
+EHA         CAK         OAM      DOUBLE       n     1.224  0.0110     1.224  0.0110
+EHA         CAK         CAH      SINGLE       n     1.489  0.0100     1.489  0.0100
+EHA         CAH         CAG      DOUBLE       y     1.371  0.0100     1.371  0.0100
+EHA         CAH         CAI      SINGLE       y     1.412  0.0100     1.412  0.0100
+EHA         CAG         CAC      SINGLE       y     1.413  0.0114     1.413  0.0114
+EHA         CAI         CAJ      DOUBLE       y     1.361  0.0100     1.361  0.0100
+EHA         CAJ         CAD      SINGLE       y     1.419  0.0100     1.419  0.0100
+EHA         CAD         CAE      SINGLE       y     1.429  0.0140     1.429  0.0140
+EHA         CAD         CAC      DOUBLE       y     1.429  0.0100     1.429  0.0100
+EHA         CAE         CBK      SINGLE       n     1.510  0.0100     1.510  0.0100
+EHA         CAE         CAF      DOUBLE       y     1.377  0.0100     1.377  0.0100
+EHA         CBK         CBL      SINGLE       n     1.517  0.0100     1.517  0.0100
+EHA         CBL         CBM      SINGLE       n     1.517  0.0200     1.517  0.0200
+EHA         CAC         CAB      SINGLE       y     1.413  0.0108     1.413  0.0108
+EHA         CAB         CAA      DOUBLE       y     1.351  0.0115     1.351  0.0115
+EHA         CAA         CAF      SINGLE       y     1.405  0.0114     1.405  0.0114
+EHA         CAF         OBJ      SINGLE       n     1.368  0.0103     1.368  0.0103
+EHA         OBJ         CBI      SINGLE       n     1.432  0.0101     1.432  0.0101
+EHA         CBI         CBH      SINGLE       n     1.509  0.0115     1.509  0.0115
+EHA         CBH         CBG      SINGLE       n     1.509  0.0115     1.509  0.0115
+EHA         CBG         OBF      SINGLE       n     1.432  0.0101     1.432  0.0101
+EHA         OBF         CAS      SINGLE       n     1.369  0.0102     1.369  0.0102
+EHA         CAS         CAX      DOUBLE       y     1.376  0.0100     1.376  0.0100
+EHA         CAS         CAT      SINGLE       y     1.406  0.0100     1.406  0.0100
+EHA         CAX         CAW      SINGLE       y     1.407  0.0100     1.407  0.0100
+EHA         CAT         CAU      DOUBLE       y     1.369  0.0100     1.369  0.0100
+EHA         CAU         CAV      SINGLE       y     1.392  0.0100     1.392  0.0100
+EHA         CAV         CAW      DOUBLE       y     1.412  0.0100     1.412  0.0100
+EHA         CAV           N      SINGLE       y     1.385  0.0100     1.385  0.0100
+EHA         CAW         CBA      SINGLE       y     1.431  0.0100     1.431  0.0100
+EHA         CBA         CAZ      DOUBLE       y     1.356  0.0149     1.356  0.0149
+EHA         CAZ           N      SINGLE       y     1.390  0.0166     1.390  0.0166
+EHA           N          CA      SINGLE       n     1.461  0.0100     1.461  0.0100
+EHA          CA           C      SINGLE       n     1.527  0.0103     1.527  0.0103
+EHA           C           O      SINGLE       n     1.247  0.0187     1.247  0.0187
+EHA           C         OXT      DOUBLE       n     1.247  0.0187     1.247  0.0187
+EHA         CAN         HAN      SINGLE       n     1.082  0.0130     0.941  0.0168
+EHA         CAO         HAO      SINGLE       n     1.082  0.0130     0.943  0.0180
+EHA         CAP         HAP      SINGLE       n     1.082  0.0130     0.944  0.0161
+EHA         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.943  0.0180
+EHA         CAR         HAR      SINGLE       n     1.082  0.0130     0.941  0.0168
+EHA         CAG         HAG      SINGLE       n     1.082  0.0130     0.942  0.0163
+EHA         CAI         HAI      SINGLE       n     1.082  0.0130     0.944  0.0200
+EHA         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.946  0.0100
+EHA         CBK        HBK1      SINGLE       n     1.089  0.0100     0.990  0.0200
+EHA         CBK        HBK2      SINGLE       n     1.089  0.0100     0.990  0.0200
+EHA         CBL        HBL1      SINGLE       n     1.089  0.0100     0.981  0.0200
+EHA         CBL        HBL2      SINGLE       n     1.089  0.0100     0.981  0.0200
+EHA         CBM        HBM1      SINGLE       n     1.089  0.0100     0.973  0.0157
+EHA         CBM        HBM2      SINGLE       n     1.089  0.0100     0.973  0.0157
+EHA         CBM        HBM3      SINGLE       n     1.089  0.0100     0.973  0.0157
+EHA         CAB         HAB      SINGLE       n     1.082  0.0130     0.941  0.0145
+EHA         CAA         HAA      SINGLE       n     1.082  0.0130     0.937  0.0138
+EHA         CBI        HBI1      SINGLE       n     1.089  0.0100     0.979  0.0131
+EHA         CBI        HBI2      SINGLE       n     1.089  0.0100     0.979  0.0131
+EHA         CBH        HBH1      SINGLE       n     1.089  0.0100     0.983  0.0175
+EHA         CBH        HBH2      SINGLE       n     1.089  0.0100     0.983  0.0175
+EHA         CBG        HBG1      SINGLE       n     1.089  0.0100     0.979  0.0131
+EHA         CBG        HBG2      SINGLE       n     1.089  0.0100     0.979  0.0131
+EHA         CAX         HAX      SINGLE       n     1.082  0.0130     0.957  0.0200
+EHA         CAT         HAT      SINGLE       n     1.082  0.0130     0.943  0.0200
+EHA         CAU         HAU      SINGLE       n     1.082  0.0130     0.935  0.0100
+EHA         CBA         HBA      SINGLE       n     1.082  0.0130     0.939  0.0147
+EHA         CAZ         HAZ      SINGLE       n     1.082  0.0130     0.930  0.0100
+EHA          CA         HA1      SINGLE       n     1.089  0.0100     0.976  0.0149
+EHA          CA         HA2      SINGLE       n     1.089  0.0100     0.976  0.0149
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EHA         CAO         CAN         CAL     120.306    1.50
+EHA         CAO         CAN         HAN     119.803    1.50
+EHA         CAL         CAN         HAN     119.891    1.50
+EHA         CAN         CAO         CAP     120.223    1.50
+EHA         CAN         CAO         HAO     119.843    1.50
+EHA         CAP         CAO         HAO     119.934    1.50
+EHA         CAO         CAP         CAQ     119.940    1.50
+EHA         CAO         CAP         HAP     120.030    1.50
+EHA         CAQ         CAP         HAP     120.030    1.50
+EHA         CAP         CAQ         CAR     120.223    1.50
+EHA         CAP         CAQ         HAQ     119.934    1.50
+EHA         CAR         CAQ         HAQ     119.843    1.50
+EHA         CAQ         CAR         CAL     120.306    1.50
+EHA         CAQ         CAR         HAR     119.803    1.50
+EHA         CAL         CAR         HAR     119.891    1.50
+EHA         CAN         CAL         CAR     119.002    1.50
+EHA         CAN         CAL         CAK     120.499    2.06
+EHA         CAR         CAL         CAK     120.499    2.06
+EHA         CAL         CAK         OAM     120.157    1.50
+EHA         CAL         CAK         CAH     120.130    1.72
+EHA         OAM         CAK         CAH     119.713    1.50
+EHA         CAK         CAH         CAG     120.217    1.63
+EHA         CAK         CAH         CAI     120.179    2.12
+EHA         CAG         CAH         CAI     119.604    1.50
+EHA         CAH         CAG         CAC     121.539    1.50
+EHA         CAH         CAG         HAG     119.421    1.50
+EHA         CAC         CAG         HAG     119.040    1.50
+EHA         CAH         CAI         CAJ     120.892    1.50
+EHA         CAH         CAI         HAI     119.593    1.50
+EHA         CAJ         CAI         HAI     119.516    1.50
+EHA         CAI         CAJ         CAD     120.927    1.50
+EHA         CAI         CAJ         HAJ     119.629    1.50
+EHA         CAD         CAJ         HAJ     119.444    1.50
+EHA         CAJ         CAD         CAE     122.889    1.50
+EHA         CAJ         CAD         CAC     117.785    1.50
+EHA         CAE         CAD         CAC     119.326    1.50
+EHA         CAD         CAE         CBK     119.583    1.50
+EHA         CAD         CAE         CAF     118.951    1.50
+EHA         CBK         CAE         CAF     121.466    2.48
+EHA         CAE         CBK         CBL     114.780    2.08
+EHA         CAE         CBK        HBK1     108.847    1.50
+EHA         CAE         CBK        HBK2     108.847    1.50
+EHA         CBL         CBK        HBK1     108.684    1.50
+EHA         CBL         CBK        HBK2     108.684    1.50
+EHA        HBK1         CBK        HBK2     107.627    1.50
+EHA         CBK         CBL         CBM     112.548    1.50
+EHA         CBK         CBL        HBL1     109.079    1.50
+EHA         CBK         CBL        HBL2     109.079    1.50
+EHA         CBM         CBL        HBL1     108.952    1.50
+EHA         CBM         CBL        HBL2     108.952    1.50
+EHA        HBL1         CBL        HBL2     107.816    1.50
+EHA         CBL         CBM        HBM1     109.589    1.50
+EHA         CBL         CBM        HBM2     109.589    1.50
+EHA         CBL         CBM        HBM3     109.589    1.50
+EHA        HBM1         CBM        HBM2     109.380    1.50
+EHA        HBM1         CBM        HBM3     109.380    1.50
+EHA        HBM2         CBM        HBM3     109.380    1.50
+EHA         CAG         CAC         CAD     119.253    1.50
+EHA         CAG         CAC         CAB     121.371    1.50
+EHA         CAD         CAC         CAB     119.376    1.50
+EHA         CAC         CAB         CAA     121.510    1.50
+EHA         CAC         CAB         HAB     119.275    1.50
+EHA         CAA         CAB         HAB     119.215    1.50
+EHA         CAB         CAA         CAF     119.350    1.50
+EHA         CAB         CAA         HAA     120.177    1.50
+EHA         CAF         CAA         HAA     120.473    1.50
+EHA         CAE         CAF         CAA     121.488    1.50
+EHA         CAE         CAF         OBJ     117.064    2.52
+EHA         CAA         CAF         OBJ     121.448    1.50
+EHA         CAF         OBJ         CBI     117.464    1.77
+EHA         OBJ         CBI         CBH     108.249    2.48
+EHA         OBJ         CBI        HBI1     109.943    1.50
+EHA         OBJ         CBI        HBI2     109.943    1.50
+EHA         CBH         CBI        HBI1     110.171    1.50
+EHA         CBH         CBI        HBI2     110.171    1.50
+EHA        HBI1         CBI        HBI2     108.474    1.50
+EHA         CBI         CBH         CBG     113.502    2.05
+EHA         CBI         CBH        HBH1     108.820    1.50
+EHA         CBI         CBH        HBH2     108.820    1.50
+EHA         CBG         CBH        HBH1     108.820    1.50
+EHA         CBG         CBH        HBH2     108.820    1.50
+EHA        HBH1         CBH        HBH2     108.411    3.00
+EHA         CBH         CBG         OBF     108.249    2.48
+EHA         CBH         CBG        HBG1     110.171    1.50
+EHA         CBH         CBG        HBG2     110.171    1.50
+EHA         OBF         CBG        HBG1     109.943    1.50
+EHA         OBF         CBG        HBG2     109.943    1.50
+EHA        HBG1         CBG        HBG2     108.474    1.50
+EHA         CBG         OBF         CAS     117.464    1.77
+EHA         OBF         CAS         CAX     120.061    3.00
+EHA         OBF         CAS         CAT     118.694    3.00
+EHA         CAX         CAS         CAT     121.246    1.50
+EHA         CAS         CAX         CAW     117.914    1.50
+EHA         CAS         CAX         HAX     120.982    1.50
+EHA         CAW         CAX         HAX     121.104    1.50
+EHA         CAS         CAT         CAU     121.151    1.50
+EHA         CAS         CAT         HAT     119.385    1.50
+EHA         CAU         CAT         HAT     119.464    1.50
+EHA         CAT         CAU         CAV     117.644    1.50
+EHA         CAT         CAU         HAU     121.090    1.50
+EHA         CAV         CAU         HAU     121.266    1.50
+EHA         CAU         CAV         CAW     121.996    1.50
+EHA         CAU         CAV           N     130.457    1.50
+EHA         CAW         CAV           N     107.546    1.50
+EHA         CAX         CAW         CAV     120.049    1.50
+EHA         CAX         CAW         CBA     133.113    1.50
+EHA         CAV         CAW         CBA     106.838    1.50
+EHA         CAW         CBA         CAZ     107.637    1.50
+EHA         CAW         CBA         HBA     126.229    1.50
+EHA         CAZ         CBA         HBA     126.135    1.50
+EHA         CBA         CAZ           N     109.638    1.50
+EHA         CBA         CAZ         HAZ     125.842    1.50
+EHA           N         CAZ         HAZ     124.520    1.74
+EHA         CAV           N         CAZ     108.355    1.50
+EHA         CAV           N          CA     125.430    2.73
+EHA         CAZ           N          CA     121.985    2.29
+EHA           N          CA           C     112.849    2.16
+EHA           N          CA         HA1     109.048    1.50
+EHA           N          CA         HA2     109.048    1.50
+EHA           C          CA         HA1     108.899    1.50
+EHA           C          CA         HA2     108.899    1.50
+EHA         HA1          CA         HA2     108.376    1.50
+EHA          CA           C           O     117.074    1.50
+EHA          CA           C         OXT     117.068    1.50
+EHA           O           C         OXT     125.846    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EHA              const_41         CAL         CAN         CAO         CAP       0.000    10.0     2
+EHA              const_95         CAK         CAL         CAN         CAO     180.000    10.0     2
+EHA              const_37         CAH         CAI         CAJ         CAD       0.000    10.0     2
+EHA              const_35         CAE         CAD         CAJ         CAI     180.000    10.0     2
+EHA       const_sp2_sp2_4         CAJ         CAD         CAE         CBK       0.000     5.0     2
+EHA              const_29         CAG         CAC         CAD         CAJ       0.000    10.0     2
+EHA             sp2_sp3_2         CAD         CAE         CBK         CBL     -90.000    10.0     6
+EHA       const_sp2_sp2_8         CBK         CAE         CAF         OBJ       0.000     5.0     2
+EHA             sp3_sp3_1         CAE         CBK         CBL         CBM     180.000    10.0     3
+EHA            sp3_sp3_10         CBK         CBL         CBM        HBM1     180.000    10.0     3
+EHA              const_18         CAA         CAB         CAC         CAG     180.000    10.0     2
+EHA              const_13         CAF         CAA         CAB         CAC       0.000    10.0     2
+EHA              const_10         CAB         CAA         CAF         OBJ     180.000    10.0     2
+EHA              const_45         CAN         CAO         CAP         CAQ       0.000    10.0     2
+EHA             sp2_sp2_9         CAE         CAF         OBJ         CBI     180.000     5.0     2
+EHA            sp3_sp3_19         CBH         CBI         OBJ         CAF     180.000    10.0     3
+EHA            sp3_sp3_22         CBG         CBH         CBI         OBJ     180.000    10.0     3
+EHA            sp3_sp3_31         OBF         CBG         CBH         CBI     180.000    10.0     3
+EHA            sp3_sp3_40         CBH         CBG         OBF         CAS     180.000    10.0     3
+EHA            sp2_sp2_11         CAX         CAS         OBF         CBG     180.000     5.0     2
+EHA              const_63         OBF         CAS         CAX         CAW     180.000    10.0     2
+EHA             const_103         OBF         CAS         CAT         CAU     180.000    10.0     2
+EHA              const_65         CAV         CAW         CAX         CAS       0.000    10.0     2
+EHA              const_77         CAS         CAT         CAU         CAV       0.000    10.0     2
+EHA              const_73         CAT         CAU         CAV         CAW       0.000    10.0     2
+EHA              const_49         CAO         CAP         CAQ         CAR       0.000    10.0     2
+EHA              const_69         CAU         CAV         CAW         CAX       0.000    10.0     2
+EHA             const_108         CAU         CAV           N          CA       0.000    10.0     2
+EHA              const_83         CAX         CAW         CBA         CAZ     180.000    10.0     2
+EHA              const_85           N         CAZ         CBA         CAW       0.000    10.0     2
+EHA              const_90         CBA         CAZ           N          CA     180.000    10.0     2
+EHA             sp2_sp3_8         CAV           N          CA           C     -90.000    10.0     6
+EHA            sp2_sp3_14           O           C          CA           N     120.000    10.0     6
+EHA              const_53         CAP         CAQ         CAR         CAL       0.000    10.0     2
+EHA              const_59         CAK         CAL         CAR         CAQ     180.000    10.0     2
+EHA             sp2_sp2_3         OAM         CAK         CAL         CAN       0.000     5.0     2
+EHA             sp2_sp2_6         CAG         CAH         CAK         OAM       0.000     5.0     2
+EHA              const_99         CAK         CAH         CAI         CAJ     180.000    10.0     2
+EHA              const_22         CAC         CAG         CAH         CAK     180.000    10.0     2
+EHA              const_25         CAD         CAC         CAG         CAH       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EHA    plan-1         CAA   0.020
+EHA    plan-1         CAB   0.020
+EHA    plan-1         CAC   0.020
+EHA    plan-1         CAD   0.020
+EHA    plan-1         CAE   0.020
+EHA    plan-1         CAF   0.020
+EHA    plan-1         CAG   0.020
+EHA    plan-1         CAH   0.020
+EHA    plan-1         CAI   0.020
+EHA    plan-1         CAJ   0.020
+EHA    plan-1         CAK   0.020
+EHA    plan-1         CBK   0.020
+EHA    plan-1         HAA   0.020
+EHA    plan-1         HAB   0.020
+EHA    plan-1         HAG   0.020
+EHA    plan-1         HAI   0.020
+EHA    plan-1         HAJ   0.020
+EHA    plan-1         OBJ   0.020
+EHA    plan-2          CA   0.020
+EHA    plan-2         CAS   0.020
+EHA    plan-2         CAT   0.020
+EHA    plan-2         CAU   0.020
+EHA    plan-2         CAV   0.020
+EHA    plan-2         CAW   0.020
+EHA    plan-2         CAX   0.020
+EHA    plan-2         CAZ   0.020
+EHA    plan-2         CBA   0.020
+EHA    plan-2         HAT   0.020
+EHA    plan-2         HAU   0.020
+EHA    plan-2         HAX   0.020
+EHA    plan-2         HAZ   0.020
+EHA    plan-2         HBA   0.020
+EHA    plan-2           N   0.020
+EHA    plan-2         OBF   0.020
+EHA    plan-3         CAK   0.020
+EHA    plan-3         CAL   0.020
+EHA    plan-3         CAN   0.020
+EHA    plan-3         CAO   0.020
+EHA    plan-3         CAP   0.020
+EHA    plan-3         CAQ   0.020
+EHA    plan-3         CAR   0.020
+EHA    plan-3         HAN   0.020
+EHA    plan-3         HAO   0.020
+EHA    plan-3         HAP   0.020
+EHA    plan-3         HAQ   0.020
+EHA    plan-3         HAR   0.020
+EHA    plan-4         CAH   0.020
+EHA    plan-4         CAK   0.020
+EHA    plan-4         CAL   0.020
+EHA    plan-4         OAM   0.020
+EHA    plan-5           C   0.020
+EHA    plan-5          CA   0.020
+EHA    plan-5           O   0.020
+EHA    plan-5         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EHA           SMILES              ACDLabs 10.04                                                                                                                                O=C(c1ccccc1)c5cc4ccc(OCCCOc2cc3c(cc2)n(cc3)CC(=O)O)c(c4cc5)CCC
+EHA SMILES_CANONICAL               CACTVS 3.341                                                                                                                                  CCCc1c(OCCCOc2ccc3n(CC(O)=O)ccc3c2)ccc4cc(ccc14)C(=O)c5ccccc5
+EHA           SMILES               CACTVS 3.341                                                                                                                                  CCCc1c(OCCCOc2ccc3n(CC(O)=O)ccc3c2)ccc4cc(ccc14)C(=O)c5ccccc5
+EHA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                    CCCc1c2ccc(cc2ccc1OCCCOc3ccc4c(c3)ccn4CC(=O)O)C(=O)c5ccccc5
+EHA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                    CCCc1c2ccc(cc2ccc1OCCCOc3ccc4c(c3)ccn4CC(=O)O)C(=O)c5ccccc5
+EHA            InChI                InChI  1.03 InChI=1S/C33H31NO5/c1-2-7-29-28-13-10-26(33(37)23-8-4-3-5-9-23)20-24(28)11-15-31(29)39-19-6-18-38-27-12-14-30-25(21-27)16-17-34(30)22-32(35)36/h3-5,8-17,20-21H,2,6-7,18-19,22H2,1H3,(H,35,36)
+EHA         InChIKey                InChI  1.03                                                                                                                                                                    ZXWVCCFKIRBLDP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EHA acedrg               243         "dictionary generator"                  
+EHA acedrg_database      11          "data source"                           
+EHA rdkit                2017.03.2   "Chemoinformatics tool"
+EHA refmac5              5.8.0238    "optimization tool"                     

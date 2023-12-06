@@ -1,0 +1,189 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8K5     8K5      "[azanyl-[(4-chlorophenyl)methylsulfanyl]methylidene]azanium"     NON-POLYMER     22     12     .     
+#
+data_comp_8K5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8K5     C4      C       CR16    0       -14.777     25.676      -24.123     
+8K5     C5      C       CR6     0       -15.634     24.665      -24.498     
+8K5     C6      C       CR16    0       -15.550     24.083      -25.743     
+8K5     N1      N       NH2     0       -10.192     26.660      -25.098     
+8K5     C7      C       CR16    0       -14.577     24.528      -26.637     
+8K5     CL      CL      CL      0       -16.847     24.114      -23.377     
+8K5     C3      C       CR16    0       -13.808     26.113      -25.024     
+8K5     C2      C       CR6     0       -13.699     25.550      -26.291     
+8K5     C1      C       CH2     0       -12.646     26.020      -27.255     
+8K5     S       S       S2      0       -11.133     25.061      -27.012     
+8K5     C       C       C       0       -9.982      25.526      -25.756     
+8K5     N       N       NH2     1       -8.961      24.737      -25.541     
+8K5     H7      H       H       0       -14.845     26.065      -23.271     
+8K5     H8      H       H       0       -16.141     23.395      -25.987     
+8K5     H2      H       H       0       -10.887     27.161      -25.294     
+8K5     H3      H       H       0       -9.634      26.910      -24.468     
+8K5     H9      H       H       0       -14.516     24.131      -27.490     
+8K5     H6      H       H       0       -13.219     26.805      -24.771     
+8K5     H4      H       H       0       -12.459     26.966      -27.109     
+8K5     H5      H       H       0       -12.960     25.905      -28.173     
+8K5     H       H       H       0       -8.865      24.001      -26.014     
+8K5     H1      H       H       0       -8.372      24.941      -24.921     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8K5          C1           S      SINGLE       n     1.809  0.0191     1.809  0.0191
+8K5           S           C      SINGLE       n     1.762  0.0200     1.762  0.0200
+8K5          C2          C1      SINGLE       n     1.503  0.0100     1.503  0.0100
+8K5           C           N      DOUBLE       n     1.307  0.0100     1.307  0.0100
+8K5          N1           C      SINGLE       n     1.325  0.0172     1.325  0.0172
+8K5          C7          C2      DOUBLE       y     1.388  0.0100     1.388  0.0100
+8K5          C3          C2      SINGLE       y     1.388  0.0100     1.388  0.0100
+8K5          C6          C7      SINGLE       y     1.380  0.0199     1.380  0.0199
+8K5          C4          C3      DOUBLE       y     1.380  0.0199     1.380  0.0199
+8K5          C5          C6      DOUBLE       y     1.373  0.0107     1.373  0.0107
+8K5          C4          C5      SINGLE       y     1.373  0.0107     1.373  0.0107
+8K5          C5          CL      SINGLE       n     1.741  0.0100     1.741  0.0100
+8K5          C4          H7      SINGLE       n     1.082  0.0130     0.939  0.0176
+8K5          C6          H8      SINGLE       n     1.082  0.0130     0.939  0.0176
+8K5          N1          H2      SINGLE       n     1.016  0.0100     0.878  0.0200
+8K5          N1          H3      SINGLE       n     1.016  0.0100     0.878  0.0200
+8K5          C7          H9      SINGLE       n     1.082  0.0130     0.943  0.0173
+8K5          C3          H6      SINGLE       n     1.082  0.0130     0.943  0.0173
+8K5          C1          H4      SINGLE       n     1.089  0.0100     0.976  0.0100
+8K5          C1          H5      SINGLE       n     1.089  0.0100     0.976  0.0100
+8K5           N           H      SINGLE       n     1.016  0.0100     0.879  0.0200
+8K5           N          H1      SINGLE       n     1.016  0.0100     0.879  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8K5          C3          C4          C5     119.031    1.50
+8K5          C3          C4          H7     120.512    1.50
+8K5          C5          C4          H7     120.457    1.50
+8K5          C6          C5          C4     121.245    1.50
+8K5          C6          C5          CL     119.382    1.50
+8K5          C4          C5          CL     119.382    1.50
+8K5          C7          C6          C5     119.031    1.50
+8K5          C7          C6          H8     120.512    1.50
+8K5          C5          C6          H8     120.457    1.50
+8K5           C          N1          H2     119.923    1.50
+8K5           C          N1          H3     119.923    1.50
+8K5          H2          N1          H3     120.154    1.51
+8K5          C2          C7          C6     121.114    1.50
+8K5          C2          C7          H9     119.529    1.50
+8K5          C6          C7          H9     119.358    1.50
+8K5          C2          C3          C4     121.114    1.50
+8K5          C2          C3          H6     119.529    1.50
+8K5          C4          C3          H6     119.358    1.50
+8K5          C1          C2          C7     120.771    1.50
+8K5          C1          C2          C3     120.767    1.50
+8K5          C7          C2          C3     118.457    1.50
+8K5           S          C1          C2     111.115    3.00
+8K5           S          C1          H4     109.066    1.50
+8K5           S          C1          H5     109.066    1.50
+8K5          C2          C1          H4     109.511    1.50
+8K5          C2          C1          H5     109.511    1.50
+8K5          H4          C1          H5     108.075    1.50
+8K5          C1           S           C     120.000    3.00
+8K5           S           C           N     117.923    3.00
+8K5           S           C          N1     117.923    3.00
+8K5           N           C          N1     124.154    1.50
+8K5           C           N           H     119.923    1.50
+8K5           C           N          H1     119.923    1.50
+8K5           H           N          H1     120.154    1.51
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8K5              const_22          C3          C4          C5          CL     180.000    10.0     2
+8K5       const_sp2_sp2_1          C2          C3          C4          C5       0.000     5.0     2
+8K5             sp2_sp2_5           S           C           N           H       0.000     5.0     2
+8K5              const_19          CL          C5          C6          C7     180.000    10.0     2
+8K5              const_13          C5          C6          C7          C2       0.000    10.0     2
+8K5             sp2_sp2_9           S           C          N1          H2       0.000     5.0     2
+8K5              const_11          C1          C2          C7          C6     180.000    10.0     2
+8K5       const_sp2_sp2_7          C1          C2          C3          C4     180.000     5.0     2
+8K5             sp2_sp3_2          C7          C2          C1           S     -90.000    10.0     6
+8K5             sp3_sp3_1          C2          C1           S           C     180.000    10.0     3
+8K5             sp2_sp2_1           N           C           S          C1     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8K5    plan-1          C1   0.020
+8K5    plan-1          C2   0.020
+8K5    plan-1          C3   0.020
+8K5    plan-1          C4   0.020
+8K5    plan-1          C5   0.020
+8K5    plan-1          C6   0.020
+8K5    plan-1          C7   0.020
+8K5    plan-1          CL   0.020
+8K5    plan-1          H6   0.020
+8K5    plan-1          H7   0.020
+8K5    plan-1          H8   0.020
+8K5    plan-1          H9   0.020
+8K5    plan-2           C   0.020
+8K5    plan-2          H2   0.020
+8K5    plan-2          H3   0.020
+8K5    plan-2          N1   0.020
+8K5    plan-3           C   0.020
+8K5    plan-3           N   0.020
+8K5    plan-3          N1   0.020
+8K5    plan-3           S   0.020
+8K5    plan-4           C   0.020
+8K5    plan-4           H   0.020
+8K5    plan-4          H1   0.020
+8K5    plan-4           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8K5            InChI                InChI  1.03 InChI=1S/C8H9ClN2S/c9-7-3-1-6(2-4-7)5-12-8(10)11/h1-4H,5H2,(H3,10,11)/p+1
+8K5         InChIKey                InChI  1.03                                               YOCWIHYZDHPSHD-UHFFFAOYSA-O
+8K5 SMILES_CANONICAL               CACTVS 3.385                                                 NC(=[NH2+])SCc1ccc(Cl)cc1
+8K5           SMILES               CACTVS 3.385                                                 NC(=[NH2+])SCc1ccc(Cl)cc1
+8K5 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                 c1cc(ccc1CSC(=[NH2+])N)Cl
+8K5           SMILES "OpenEye OEToolkits" 2.0.6                                                 c1cc(ccc1CSC(=[NH2+])N)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8K5 acedrg               243         "dictionary generator"                  
+8K5 acedrg_database      11          "data source"                           
+8K5 rdkit                2017.03.2   "Chemoinformatics tool"
+8K5 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,323 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+WHA     WHA      4-{[4-amino-6-(5-chloro-1H,3H-benzo[de]isochromen-6-yl)-1,3,5-triazin-2-yl]sulfanyl}butanamide     NON-POLYMER     46     28     .     
+#
+data_comp_WHA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+WHA     C4      C       CR66    0       -25.211     22.863      -23.886     
+WHA     C14     C       CR6     0       -26.505     22.492      -20.341     
+WHA     C5      C       CR16    0       -26.254     22.327      -24.609     
+WHA     C6      C       CR16    0       -27.407     21.832      -23.955     
+WHA     C11     C       CR16    0       -24.280     23.530      -20.329     
+WHA     C7      C       CR16    0       -27.509     21.876      -22.591     
+WHA     C8      C       CR66    0       -26.456     22.419      -21.789     
+WHA     C9      C       C       0       -25.298     22.913      -22.455     
+WHA     C10     C       CR66    0       -24.210     23.474      -21.705     
+WHA     C12     C       CR6     0       -25.387     23.059      -19.639     
+WHA     C3      C       CH2     0       -23.971     23.394      -24.553     
+WHA     C1      C       CH2     0       -23.009     23.984      -22.455     
+WHA     O2      O       O2      0       -23.349     24.435      -23.779     
+WHA     CL1     CL      CL      0       -25.383     23.172      -17.906     
+WHA     C15     C       CR6     0       -27.680     21.994      -19.579     
+WHA     N16     N       NRD6    0       -27.975     20.689      -19.666     
+WHA     N17     N       NRD6    0       -28.381     22.877      -18.850     
+WHA     C18     C       CR6     0       -29.444     22.356      -18.174     
+WHA     N19     N       NH2     0       -30.177     23.184      -17.425     
+WHA     N22     N       NRD6    0       -29.804     21.054      -18.221     
+WHA     C23     C       CR6     0       -29.034     20.265      -18.981     
+WHA     S24     S       S2      0       -29.454     18.549      -19.094     
+WHA     C25     C       CH2     0       -30.564     18.055      -20.437     
+WHA     C26     C       CH2     0       -31.860     18.845      -20.416     
+WHA     C27     C       CH2     0       -32.860     18.285      -19.425     
+WHA     C28     C       C       0       -34.161     19.050      -19.401     
+WHA     O29     O       O       0       -35.164     18.619      -19.965     
+WHA     N30     N       NH2     0       -34.156     20.199      -18.742     
+WHA     H1      H       H       0       -26.194     22.294      -25.547     
+WHA     H2      H       H       0       -28.122     21.465      -24.469     
+WHA     H3      H       H       0       -23.554     23.900      -19.853     
+WHA     H4      H       H       0       -28.288     21.541      -22.180     
+WHA     H5      H       H       0       -24.203     23.745      -25.436     
+WHA     H6      H       H       0       -23.333     22.663      -24.679     
+WHA     H7      H       H       0       -22.342     23.272      -22.520     
+WHA     H8      H       H       0       -22.609     24.725      -21.957     
+WHA     H9      H       H       0       -30.670     22.864      -16.773     
+WHA     H10     H       H       0       -30.164     24.047      -17.586     
+WHA     H11     H       H       0       -30.760     17.104      -20.351     
+WHA     H12     H       H       0       -30.111     18.198      -21.289     
+WHA     H13     H       H       0       -32.258     18.835      -21.309     
+WHA     H14     H       H       0       -31.669     19.775      -20.183     
+WHA     H15     H       H       0       -32.461     18.301      -18.529     
+WHA     H16     H       H       0       -33.043     17.349      -19.655     
+WHA     H17     H       H       0       -34.894     20.685      -18.694     
+WHA     H18     H       H       0       -33.417     20.485      -18.349     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+WHA          C3          O2      SINGLE       n     1.435  0.0100     1.435  0.0100
+WHA          C4          C3      SINGLE       n     1.502  0.0104     1.502  0.0104
+WHA          C1          O2      SINGLE       n     1.435  0.0100     1.435  0.0100
+WHA          C4          C5      DOUBLE       y     1.376  0.0100     1.376  0.0100
+WHA          C5          C6      SINGLE       y     1.411  0.0100     1.411  0.0100
+WHA          C4          C9      SINGLE       y     1.431  0.0121     1.431  0.0121
+WHA          C6          C7      DOUBLE       y     1.362  0.0124     1.362  0.0124
+WHA         C10          C1      SINGLE       n     1.502  0.0104     1.502  0.0104
+WHA         C28         O29      DOUBLE       n     1.229  0.0102     1.229  0.0102
+WHA          C9         C10      DOUBLE       y     1.431  0.0121     1.431  0.0121
+WHA          C8          C9      SINGLE       y     1.420  0.0100     1.420  0.0100
+WHA         C11         C10      SINGLE       y     1.376  0.0100     1.376  0.0100
+WHA          C7          C8      SINGLE       y     1.416  0.0140     1.416  0.0140
+WHA         C28         N30      SINGLE       n     1.323  0.0100     1.323  0.0100
+WHA         C27         C28      SINGLE       n     1.509  0.0100     1.509  0.0100
+WHA         C14          C8      DOUBLE       y     1.426  0.0168     1.426  0.0168
+WHA         C26         C27      SINGLE       n     1.514  0.0200     1.514  0.0200
+WHA         C25         C26      SINGLE       n     1.517  0.0125     1.517  0.0125
+WHA         C11         C12      DOUBLE       y     1.380  0.0122     1.380  0.0122
+WHA         C14         C12      SINGLE       y     1.412  0.0185     1.412  0.0185
+WHA         C14         C15      SINGLE       n     1.482  0.0104     1.482  0.0104
+WHA         S24         C25      SINGLE       n     1.809  0.0191     1.809  0.0191
+WHA         C12         CL1      SINGLE       n     1.734  0.0137     1.734  0.0137
+WHA         C15         N16      DOUBLE       y     1.336  0.0100     1.336  0.0100
+WHA         N16         C23      SINGLE       y     1.329  0.0100     1.329  0.0100
+WHA         C15         N17      SINGLE       y     1.336  0.0100     1.336  0.0100
+WHA         C23         S24      SINGLE       n     1.772  0.0127     1.772  0.0127
+WHA         N22         C23      DOUBLE       y     1.337  0.0100     1.337  0.0100
+WHA         N17         C18      DOUBLE       y     1.357  0.0100     1.357  0.0100
+WHA         C18         N22      SINGLE       y     1.348  0.0101     1.348  0.0101
+WHA         C18         N19      SINGLE       n     1.334  0.0100     1.334  0.0100
+WHA          C5          H1      SINGLE       n     1.082  0.0130     0.940  0.0172
+WHA          C6          H2      SINGLE       n     1.082  0.0130     0.953  0.0200
+WHA         C11          H3      SINGLE       n     1.082  0.0130     0.943  0.0181
+WHA          C7          H4      SINGLE       n     1.082  0.0130     0.944  0.0114
+WHA          C3          H5      SINGLE       n     1.089  0.0100     0.978  0.0104
+WHA          C3          H6      SINGLE       n     1.089  0.0100     0.978  0.0104
+WHA          C1          H7      SINGLE       n     1.089  0.0100     0.978  0.0104
+WHA          C1          H8      SINGLE       n     1.089  0.0100     0.978  0.0104
+WHA         N19          H9      SINGLE       n     1.016  0.0100     0.877  0.0200
+WHA         N19         H10      SINGLE       n     1.016  0.0100     0.877  0.0200
+WHA         C25         H11      SINGLE       n     1.089  0.0100     0.975  0.0143
+WHA         C25         H12      SINGLE       n     1.089  0.0100     0.975  0.0143
+WHA         C26         H13      SINGLE       n     1.089  0.0100     0.978  0.0151
+WHA         C26         H14      SINGLE       n     1.089  0.0100     0.978  0.0151
+WHA         C27         H15      SINGLE       n     1.089  0.0100     0.981  0.0185
+WHA         C27         H16      SINGLE       n     1.089  0.0100     0.981  0.0185
+WHA         N30         H17      SINGLE       n     1.016  0.0100     0.884  0.0200
+WHA         N30         H18      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+WHA          C3          C4          C5     121.320    1.93
+WHA          C3          C4          C9     119.182    1.50
+WHA          C5          C4          C9     119.497    1.50
+WHA          C8         C14         C12     119.990    1.50
+WHA          C8         C14         C15     120.121    1.70
+WHA         C12         C14         C15     119.889    1.50
+WHA          C4          C5          C6     120.656    1.50
+WHA          C4          C5          H1     119.241    1.50
+WHA          C6          C5          H1     120.103    1.50
+WHA          C5          C6          C7     120.146    1.50
+WHA          C5          C6          H2     120.031    1.50
+WHA          C7          C6          H2     119.823    1.50
+WHA         C10         C11         C12     120.618    1.50
+WHA         C10         C11          H3     119.176    1.50
+WHA         C12         C11          H3     120.206    1.50
+WHA          C6          C7          C8     120.865    1.50
+WHA          C6          C7          H4     119.678    1.50
+WHA          C8          C7          H4     119.457    1.50
+WHA          C9          C8          C7     118.954    1.50
+WHA          C9          C8         C14     119.571    1.50
+WHA          C7          C8         C14     121.475    1.50
+WHA          C4          C9         C10     120.276    2.32
+WHA          C4          C9          C8     119.881    1.50
+WHA         C10          C9          C8     119.843    1.50
+WHA          C1         C10          C9     119.202    1.50
+WHA          C1         C10         C11     121.339    1.93
+WHA          C9         C10         C11     119.459    1.50
+WHA         C11         C12         C14     120.520    1.50
+WHA         C11         C12         CL1     119.217    1.50
+WHA         C14         C12         CL1     120.264    1.50
+WHA          O2          C3          C4     111.454    1.83
+WHA          O2          C3          H5     109.249    1.50
+WHA          O2          C3          H6     109.249    1.50
+WHA          C4          C3          H5     109.418    1.50
+WHA          C4          C3          H6     109.418    1.50
+WHA          H5          C3          H6     107.969    1.50
+WHA          O2          C1         C10     111.454    1.83
+WHA          O2          C1          H7     109.249    1.50
+WHA          O2          C1          H8     109.249    1.50
+WHA         C10          C1          H7     109.418    1.50
+WHA         C10          C1          H8     109.418    1.50
+WHA          H7          C1          H8     107.969    1.50
+WHA          C3          O2          C1     110.430    1.50
+WHA         C14         C15         N16     118.064    1.50
+WHA         C14         C15         N17     118.064    1.50
+WHA         N16         C15         N17     123.872    1.50
+WHA         C15         N16         C23     117.080    1.50
+WHA         C15         N17         C18     113.591    1.50
+WHA         N17         C18         N22     123.842    1.50
+WHA         N17         C18         N19     117.982    1.50
+WHA         N22         C18         N19     118.176    1.50
+WHA         C18         N19          H9     119.826    1.50
+WHA         C18         N19         H10     119.826    1.50
+WHA          H9         N19         H10     120.348    1.96
+WHA         C23         N22         C18     116.432    1.50
+WHA         N16         C23         S24     117.408    3.00
+WHA         N16         C23         N22     125.183    1.50
+WHA         S24         C23         N22     117.408    3.00
+WHA         C25         S24         C23     120.000    3.00
+WHA         C26         C25         S24     112.239    3.00
+WHA         C26         C25         H11     109.599    1.50
+WHA         C26         C25         H12     109.599    1.50
+WHA         S24         C25         H11     109.066    1.50
+WHA         S24         C25         H12     109.066    1.50
+WHA         H11         C25         H12     108.532    1.88
+WHA         C27         C26         C25     112.303    1.50
+WHA         C27         C26         H13     108.915    1.50
+WHA         C27         C26         H14     108.915    1.50
+WHA         C25         C26         H13     109.237    1.50
+WHA         C25         C26         H14     109.237    1.50
+WHA         H13         C26         H14     107.852    1.50
+WHA         C28         C27         C26     112.984    1.82
+WHA         C28         C27         H15     109.082    1.50
+WHA         C28         C27         H16     109.082    1.50
+WHA         C26         C27         H15     108.844    1.50
+WHA         C26         C27         H16     108.844    1.50
+WHA         H15         C27         H16     107.846    1.50
+WHA         O29         C28         N30     122.470    1.50
+WHA         O29         C28         C27     121.405    1.50
+WHA         N30         C28         C27     116.125    1.50
+WHA         C28         N30         H17     120.022    1.65
+WHA         C28         N30         H18     120.022    1.65
+WHA         H17         N30         H18     119.956    2.38
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+WHA             sp2_sp3_4          C5          C4          C3          O2     180.000    10.0     6
+WHA              const_33          C3          C4          C5          C6     180.000    10.0     2
+WHA              const_47          C3          C4          C9         C10       0.000    10.0     2
+WHA             sp3_sp3_1          C4          C3          O2          C1     -60.000    10.0     3
+WHA             sp3_sp3_4         C10          C1          O2          C3      60.000    10.0     3
+WHA              const_22         C14         C15         N16         C23     180.000    10.0     2
+WHA              const_56         C14         C15         N17         C18     180.000    10.0     2
+WHA              const_24         S24         C23         N16         C15     180.000    10.0     2
+WHA              const_30         N19         C18         N17         C15     180.000    10.0     2
+WHA            sp2_sp2_11         N17         C18         N19          H9     180.000     5.0     2
+WHA              const_28         N19         C18         N22         C23     180.000    10.0     2
+WHA              const_26         S24         C23         N22         C18     180.000    10.0     2
+WHA             sp2_sp2_5          C8         C14         C15         N16     180.000     5.0     2
+WHA       const_sp2_sp2_1         C12         C14          C8          C9       0.000     5.0     2
+WHA              const_53         CL1         C12         C14          C8     180.000    10.0     2
+WHA             sp2_sp2_9         N16         C23         S24         C25     180.000     5.0     2
+WHA            sp3_sp3_25         C26         C25         S24         C23     180.000    10.0     3
+WHA            sp3_sp3_16         S24         C25         C26         C27     180.000    10.0     3
+WHA             sp3_sp3_7         C25         C26         C27         C28     180.000    10.0     3
+WHA            sp2_sp3_14         O29         C28         C27         C26     120.000    10.0     6
+WHA             sp2_sp2_3         O29         C28         N30         H17       0.000     5.0     2
+WHA              const_35          C4          C5          C6          C7       0.000    10.0     2
+WHA              const_39          C5          C6          C7          C8       0.000    10.0     2
+WHA              const_15          C1         C10         C11         C12     180.000    10.0     2
+WHA              const_18         C10         C11         C12         CL1     180.000    10.0     2
+WHA              const_43          C6          C7          C8          C9       0.000    10.0     2
+WHA       const_sp2_sp2_5          C7          C8          C9          C4       0.000     5.0     2
+WHA       const_sp2_sp2_9          C1         C10          C9          C4       0.000     5.0     2
+WHA             sp2_sp3_7          C9         C10          C1          O2       0.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+WHA    plan-1          C1   0.020
+WHA    plan-1         C10   0.020
+WHA    plan-1         C11   0.020
+WHA    plan-1         C12   0.020
+WHA    plan-1         C14   0.020
+WHA    plan-1         C15   0.020
+WHA    plan-1          C3   0.020
+WHA    plan-1          C4   0.020
+WHA    plan-1          C5   0.020
+WHA    plan-1          C6   0.020
+WHA    plan-1          C7   0.020
+WHA    plan-1          C8   0.020
+WHA    plan-1          C9   0.020
+WHA    plan-1         CL1   0.020
+WHA    plan-1          H1   0.020
+WHA    plan-1          H2   0.020
+WHA    plan-1          H3   0.020
+WHA    plan-1          H4   0.020
+WHA    plan-2         C14   0.020
+WHA    plan-2         C15   0.020
+WHA    plan-2         C18   0.020
+WHA    plan-2         C23   0.020
+WHA    plan-2         N16   0.020
+WHA    plan-2         N17   0.020
+WHA    plan-2         N19   0.020
+WHA    plan-2         N22   0.020
+WHA    plan-2         S24   0.020
+WHA    plan-3         C18   0.020
+WHA    plan-3         H10   0.020
+WHA    plan-3          H9   0.020
+WHA    plan-3         N19   0.020
+WHA    plan-4         C27   0.020
+WHA    plan-4         C28   0.020
+WHA    plan-4         N30   0.020
+WHA    plan-4         O29   0.020
+WHA    plan-5         C28   0.020
+WHA    plan-5         H17   0.020
+WHA    plan-5         H18   0.020
+WHA    plan-5         N30   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+WHA           SMILES              ACDLabs 12.01                                                                                                                  O=C(N)CCCSc1nc(nc(n1)c3c2cccc4c2c(cc3Cl)COC4)N
+WHA            InChI                InChI  1.03 InChI=1S/C19H18ClN5O2S/c20-13-7-11-9-27-8-10-3-1-4-12(15(10)11)16(13)17-23-18(22)25-19(24-17)28-6-2-5-14(21)26/h1,3-4,7H,2,5-6,8-9H2,(H2,21,26)(H2,22,23,24,25)
+WHA         InChIKey                InChI  1.03                                                                                                                                     VIGHQZSTZWNWFA-UHFFFAOYSA-N
+WHA SMILES_CANONICAL               CACTVS 3.385                                                                                                                  NC(=O)CCCSc1nc(N)nc(n1)c2c(Cl)cc3COCc4cccc2c34
+WHA           SMILES               CACTVS 3.385                                                                                                                  NC(=O)CCCSc1nc(N)nc(n1)c2c(Cl)cc3COCc4cccc2c34
+WHA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                              c1cc2c3c(c1)c(c(cc3COC2)Cl)c4nc(nc(n4)SCCCC(=O)N)N
+WHA           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                              c1cc2c3c(c1)c(c(cc3COC2)Cl)c4nc(nc(n4)SCCCC(=O)N)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+WHA acedrg               243         "dictionary generator"                  
+WHA acedrg_database      11          "data source"                           
+WHA rdkit                2017.03.2   "Chemoinformatics tool"
+WHA refmac5              5.8.0238    "optimization tool"                     

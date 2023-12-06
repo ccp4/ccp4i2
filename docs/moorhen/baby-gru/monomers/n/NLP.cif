@@ -1,0 +1,170 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NLP     NLP      "(1-AMINO-PENTYL)-PHOSPHONIC ACID"     NON-POLYMER     22     10     .     
+#
+data_comp_NLP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NLP     N       N       NT2     0       20.523      -15.306     8.808       
+NLP     CA      C       CH1     0       20.849      -13.875     8.678       
+NLP     CB      C       CH2     0       22.271      -13.704     8.135       
+NLP     CG      C       CH2     0       23.369      -14.181     9.077       
+NLP     CD      C       CH2     0       24.767      -13.928     8.575       
+NLP     CE      C       CH3     0       25.845      -14.414     9.514       
+NLP     P       P       P       0       19.650      -12.996     7.627       
+NLP     O1      O       O       0       18.292      -13.351     8.132       
+NLP     O2      O       OP      -1      19.861      -13.472     6.230       
+NLP     O3      O       OP      -1      19.928      -11.538     7.763       
+NLP     HN1     H       H       0       19.632      -15.411     8.934       
+NLP     HN2     H       H       0       20.934      -15.649     9.537       
+NLP     HA      H       H       0       20.818      -13.478     9.580       
+NLP     HB1     H       H       0       22.416      -12.755     7.938       
+NLP     HB2     H       H       0       22.343      -14.198     7.292       
+NLP     HG1     H       H       0       23.259      -15.144     9.228       
+NLP     HG2     H       H       0       23.260      -13.731     9.942       
+NLP     HD1     H       H       0       24.881      -12.963     8.432       
+NLP     HD2     H       H       0       24.876      -14.374     7.707       
+NLP     HE1     H       H       0       26.719      -14.220     9.135       
+NLP     HE2     H       H       0       25.755      -15.375     9.643       
+NLP     HE3     H       H       0       25.757      -13.964     10.372      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NLP           N          CA      SINGLE       n     1.473  0.0130     1.473  0.0130
+NLP          CA          CB      SINGLE       n     1.532  0.0129     1.532  0.0129
+NLP          CA           P      SINGLE       n     1.820  0.0200     1.820  0.0200
+NLP          CB          CG      SINGLE       n     1.523  0.0117     1.523  0.0117
+NLP          CG          CD      SINGLE       n     1.507  0.0200     1.507  0.0200
+NLP          CD          CE      SINGLE       n     1.510  0.0200     1.510  0.0200
+NLP           P          O1      DOUBLE       n     1.492  0.0200     1.492  0.0200
+NLP           P          O2      SINGLE       n     1.492  0.0200     1.492  0.0200
+NLP           P          O3      SINGLE       n     1.492  0.0200     1.492  0.0200
+NLP           N         HN1      SINGLE       n     1.036  0.0160     0.905  0.0200
+NLP           N         HN2      SINGLE       n     1.036  0.0160     0.905  0.0200
+NLP          CA          HA      SINGLE       n     1.089  0.0100     0.986  0.0200
+NLP          CB         HB1      SINGLE       n     1.089  0.0100     0.980  0.0160
+NLP          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0160
+NLP          CG         HG1      SINGLE       n     1.089  0.0100     0.981  0.0163
+NLP          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0163
+NLP          CD         HD1      SINGLE       n     1.089  0.0100     0.982  0.0155
+NLP          CD         HD2      SINGLE       n     1.089  0.0100     0.982  0.0155
+NLP          CE         HE1      SINGLE       n     1.089  0.0100     0.973  0.0157
+NLP          CE         HE2      SINGLE       n     1.089  0.0100     0.973  0.0157
+NLP          CE         HE3      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NLP          CA           N         HN1     109.715    3.00
+NLP          CA           N         HN2     109.715    3.00
+NLP         HN1           N         HN2     107.163    3.00
+NLP           N          CA          CB     110.463    2.65
+NLP           N          CA           P     112.238    3.00
+NLP           N          CA          HA     107.944    1.55
+NLP          CB          CA           P     111.410    2.87
+NLP          CB          CA          HA     108.236    1.50
+NLP           P          CA          HA     108.528    1.50
+NLP          CA          CB          CG     114.535    1.69
+NLP          CA          CB         HB1     108.507    1.50
+NLP          CA          CB         HB2     108.507    1.50
+NLP          CG          CB         HB1     108.801    1.50
+NLP          CG          CB         HB2     108.801    1.50
+NLP         HB1          CB         HB2     107.715    1.50
+NLP          CB          CG          CD     114.183    2.57
+NLP          CB          CG         HG1     108.801    1.50
+NLP          CB          CG         HG2     108.801    1.50
+NLP          CD          CG         HG1     108.653    1.50
+NLP          CD          CG         HG2     108.653    1.50
+NLP         HG1          CG         HG2     107.646    1.50
+NLP          CG          CD          CE     113.719    3.00
+NLP          CG          CD         HD1     108.758    1.50
+NLP          CG          CD         HD2     108.758    1.50
+NLP          CE          CD         HD1     108.918    1.50
+NLP          CE          CD         HD2     108.918    1.50
+NLP         HD1          CD         HD2     107.763    1.50
+NLP          CD          CE         HE1     109.554    1.50
+NLP          CD          CE         HE2     109.554    1.50
+NLP          CD          CE         HE3     109.554    1.50
+NLP         HE1          CE         HE2     109.380    1.50
+NLP         HE1          CE         HE3     109.380    1.50
+NLP         HE2          CE         HE3     109.380    1.50
+NLP          CA           P          O1     110.326    3.00
+NLP          CA           P          O2     110.326    3.00
+NLP          CA           P          O3     110.326    3.00
+NLP          O1           P          O2     112.502    1.50
+NLP          O1           P          O3     112.502    1.50
+NLP          O2           P          O3     112.502    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NLP             sp3_sp3_1          CB          CA           N         HN1     180.000    10.0     3
+NLP             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+NLP            sp3_sp3_18           N          CA           P          O1      60.000    10.0     3
+NLP            sp3_sp3_25          CA          CB          CG          CD     180.000    10.0     3
+NLP            sp3_sp3_34          CE          CD          CG          CB     180.000    10.0     3
+NLP            sp3_sp3_43          CG          CD          CE         HE1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NLP    chir_1    CA    P    N    CB    negative
+NLP    chir_2    P    O2    O3    O1    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NLP           SMILES              ACDLabs 10.04                                                             O=P(O)(O)C(N)CCCC
+NLP SMILES_CANONICAL               CACTVS 3.341                                                       CCCC[C@H](N)[P](O)(O)=O
+NLP           SMILES               CACTVS 3.341                                                        CCCC[CH](N)[P](O)(O)=O
+NLP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                         CCCC[C@H](N)P(=O)(O)O
+NLP           SMILES "OpenEye OEToolkits" 1.5.0                                                             CCCCC(N)P(=O)(O)O
+NLP            InChI                InChI  1.03 InChI=1S/C5H14NO3P/c1-2-3-4-5(6)10(7,8)9/h5H,2-4,6H2,1H3,(H2,7,8,9)/t5-/m1/s1
+NLP         InChIKey                InChI  1.03                                                   NXTPDFMZKSLVRK-RXMQYKEDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NLP acedrg               243         "dictionary generator"                  
+NLP acedrg_database      11          "data source"                           
+NLP rdkit                2017.03.2   "Chemoinformatics tool"
+NLP refmac5              5.8.0238    "optimization tool"                     

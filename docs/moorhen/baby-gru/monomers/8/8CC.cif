@@ -1,0 +1,216 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8CC     8CC      N-methyl-4-pyridin-4-yl-1H-pyrrole-2-carboxamide     NON-POLYMER     26     15     .     
+#
+data_comp_8CC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8CC     C10     C       CR6     0       -8.229      -10.861     11.109      
+8CC     C15     C       CR16    0       -9.012      -9.848      11.664      
+8CC     C01     C       CH3     0       -3.399      -15.873     11.959      
+8CC     N02     N       NH1     0       -4.468      -14.893     11.874      
+8CC     C03     C       C       0       -5.220      -14.538     12.919      
+8CC     O04     O       O       0       -5.066      -15.026     14.041      
+8CC     C05     C       CR5     0       -6.259      -13.528     12.692      
+8CC     C06     C       CR15    0       -6.484      -12.655     11.648      
+8CC     C07     C       CR5     0       -7.612      -11.911     11.942      
+8CC     C08     C       CR15    0       -8.064      -12.342     13.170      
+8CC     N09     N       NR5     0       -7.247      -13.309     13.615      
+8CC     C11     C       CR16    0       -8.059      -10.836     9.724       
+8CC     C12     C       CR16    0       -8.657      -9.833      8.983       
+8CC     N13     N       NRD6    0       -9.406      -8.862      9.513       
+8CC     C14     C       CR16    0       -9.569      -8.888      10.838      
+8CC     H1      H       H       0       -9.160      -9.815      12.592      
+8CC     H2      H       H       0       -3.095      -15.966     12.876      
+8CC     H3      H       H       0       -2.654      -15.584     11.407      
+8CC     H4      H       H       0       -3.721      -16.731     11.638      
+8CC     H5      H       H       0       -4.615      -14.538     11.104      
+8CC     H6      H       H       0       -5.965      -12.578     10.867      
+8CC     H7      H       H       0       -8.818      -12.012     13.624      
+8CC     H8      H       H       0       -7.338      -13.754     14.411      
+8CC     H9      H       H       0       -7.542      -11.495     9.297       
+8CC     H10     H       H       0       -8.529      -9.833      8.047       
+8CC     H11     H       H       0       -10.095     -8.210      11.233      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8CC         C12         N13      DOUBLE       y     1.332  0.0107     1.332  0.0107
+8CC         C11         C12      SINGLE       y     1.380  0.0100     1.380  0.0100
+8CC         N13         C14      SINGLE       y     1.332  0.0107     1.332  0.0107
+8CC         C10         C11      DOUBLE       y     1.391  0.0100     1.391  0.0100
+8CC         C15         C14      DOUBLE       y     1.380  0.0100     1.380  0.0100
+8CC         C10         C15      SINGLE       y     1.391  0.0100     1.391  0.0100
+8CC         C10         C07      SINGLE       n     1.473  0.0100     1.473  0.0100
+8CC         C06         C07      SINGLE       y     1.386  0.0200     1.386  0.0200
+8CC         C05         C06      DOUBLE       y     1.376  0.0162     1.376  0.0162
+8CC         C01         N02      SINGLE       n     1.448  0.0100     1.448  0.0100
+8CC         N02         C03      SINGLE       n     1.324  0.0129     1.324  0.0129
+8CC         C07         C08      DOUBLE       y     1.378  0.0132     1.378  0.0132
+8CC         C03         C05      SINGLE       n     1.461  0.0116     1.461  0.0116
+8CC         C05         N09      SINGLE       y     1.368  0.0100     1.368  0.0100
+8CC         C03         O04      DOUBLE       n     1.231  0.0100     1.231  0.0100
+8CC         C08         N09      SINGLE       y     1.341  0.0133     1.341  0.0133
+8CC         C15          H1      SINGLE       n     1.082  0.0130     0.940  0.0106
+8CC         C01          H2      SINGLE       n     1.089  0.0100     0.971  0.0198
+8CC         C01          H3      SINGLE       n     1.089  0.0100     0.971  0.0198
+8CC         C01          H4      SINGLE       n     1.089  0.0100     0.971  0.0198
+8CC         N02          H5      SINGLE       n     1.016  0.0100     0.860  0.0100
+8CC         C06          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+8CC         C08          H7      SINGLE       n     1.082  0.0130     0.940  0.0115
+8CC         N09          H8      SINGLE       n     1.016  0.0100     0.916  0.0200
+8CC         C11          H9      SINGLE       n     1.082  0.0130     0.940  0.0106
+8CC         C12         H10      SINGLE       n     1.082  0.0130     0.945  0.0200
+8CC         C14         H11      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8CC         C11         C10         C15     116.812    1.50
+8CC         C11         C10         C07     121.594    1.50
+8CC         C15         C10         C07     121.594    1.50
+8CC         C14         C15         C10     119.474    1.50
+8CC         C14         C15          H1     120.248    1.50
+8CC         C10         C15          H1     120.278    1.50
+8CC         N02         C01          H2     109.483    1.50
+8CC         N02         C01          H3     109.483    1.50
+8CC         N02         C01          H4     109.483    1.50
+8CC          H2         C01          H3     109.279    1.79
+8CC          H2         C01          H4     109.279    1.79
+8CC          H3         C01          H4     109.279    1.79
+8CC         C01         N02         C03     121.101    1.96
+8CC         C01         N02          H5     118.818    1.50
+8CC         C03         N02          H5     120.081    1.50
+8CC         N02         C03         C05     117.032    1.50
+8CC         N02         C03         O04     122.018    1.50
+8CC         C05         C03         O04     120.950    1.50
+8CC         C06         C05         C03     131.912    2.26
+8CC         C06         C05         N09     107.018    1.50
+8CC         C03         C05         N09     121.070    1.69
+8CC         C07         C06         C05     108.142    1.50
+8CC         C07         C06          H6     125.688    1.50
+8CC         C05         C06          H6     126.170    1.50
+8CC         C10         C07         C06     127.029    1.62
+8CC         C10         C07         C08     125.565    1.77
+8CC         C06         C07         C08     107.406    1.58
+8CC         C07         C08         N09     108.652    1.50
+8CC         C07         C08          H7     125.767    1.51
+8CC         N09         C08          H7     125.580    1.72
+8CC         C05         N09         C08     108.782    1.50
+8CC         C05         N09          H8     125.396    1.50
+8CC         C08         N09          H8     125.822    1.94
+8CC         C12         C11         C10     119.474    1.50
+8CC         C12         C11          H9     120.248    1.50
+8CC         C10         C11          H9     120.278    1.50
+8CC         N13         C12         C11     123.900    1.50
+8CC         N13         C12         H10     117.934    1.50
+8CC         C11         C12         H10     118.166    1.50
+8CC         C12         N13         C14     116.440    1.50
+8CC         N13         C14         C15     123.900    1.50
+8CC         N13         C14         H11     117.934    1.50
+8CC         C15         C14         H11     118.166    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8CC              const_33         C11         C10         C15         C14       0.000    10.0     2
+8CC              const_17         C15         C10         C11         C12       0.000    10.0     2
+8CC             sp2_sp2_1         C06         C07         C10         C11     180.000     5.0     2
+8CC              const_21         C10         C11         C12         N13       0.000    10.0     2
+8CC              const_25         C11         C12         N13         C14       0.000    10.0     2
+8CC              const_27         C15         C14         N13         C12       0.000    10.0     2
+8CC              const_29         N13         C14         C15         C10       0.000    10.0     2
+8CC             sp2_sp3_1         C03         N02         C01          H2       0.000    10.0     6
+8CC             sp2_sp2_7         O04         C03         N02         C01       0.000     5.0     2
+8CC             sp2_sp2_9         N02         C03         C05         C06     180.000     5.0     2
+8CC              const_39         C03         C05         N09         C08     180.000    10.0     2
+8CC       const_sp2_sp2_3         C03         C05         C06         C07     180.000     5.0     2
+8CC       const_sp2_sp2_6         C05         C06         C07         C10     180.000     5.0     2
+8CC              const_11         C10         C07         C08         N09     180.000    10.0     2
+8CC              const_13         C07         C08         N09         C05       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8CC    plan-1         C07   0.020
+8CC    plan-1         C10   0.020
+8CC    plan-1         C11   0.020
+8CC    plan-1         C12   0.020
+8CC    plan-1         C14   0.020
+8CC    plan-1         C15   0.020
+8CC    plan-1          H1   0.020
+8CC    plan-1         H10   0.020
+8CC    plan-1         H11   0.020
+8CC    plan-1          H9   0.020
+8CC    plan-1         N13   0.020
+8CC    plan-2         C03   0.020
+8CC    plan-2         C05   0.020
+8CC    plan-2         C06   0.020
+8CC    plan-2         C07   0.020
+8CC    plan-2         C08   0.020
+8CC    plan-2         C10   0.020
+8CC    plan-2          H6   0.020
+8CC    plan-2          H7   0.020
+8CC    plan-2          H8   0.020
+8CC    plan-2         N09   0.020
+8CC    plan-3         C01   0.020
+8CC    plan-3         C03   0.020
+8CC    plan-3          H5   0.020
+8CC    plan-3         N02   0.020
+8CC    plan-4         C03   0.020
+8CC    plan-4         C05   0.020
+8CC    plan-4         N02   0.020
+8CC    plan-4         O04   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8CC            InChI                InChI  1.03 InChI=1S/C11H11N3O/c1-12-11(15)10-6-9(7-14-10)8-2-4-13-5-3-8/h2-7,14H,1H3,(H,12,15)
+8CC         InChIKey                InChI  1.03                                                         CUQAMHMOOUOTLK-UHFFFAOYSA-N
+8CC SMILES_CANONICAL               CACTVS 3.385                                                         CNC(=O)c1[nH]cc(c1)c2ccncc2
+8CC           SMILES               CACTVS 3.385                                                         CNC(=O)c1[nH]cc(c1)c2ccncc2
+8CC SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                         CNC(=O)c1cc(c[nH]1)c2ccncc2
+8CC           SMILES "OpenEye OEToolkits" 2.0.6                                                         CNC(=O)c1cc(c[nH]1)c2ccncc2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8CC acedrg               243         "dictionary generator"                  
+8CC acedrg_database      11          "data source"                           
+8CC rdkit                2017.03.2   "Chemoinformatics tool"
+8CC refmac5              5.8.0238    "optimization tool"                     

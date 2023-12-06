@@ -1,0 +1,206 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+UNV     UNV      "6,7-dihydro-5H-cyclopenta[b]pyridine-6,6-diylbis(phosphonic acid)"     NON-POLYMER     24     17     .     
+#
+data_comp_UNV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+UNV     N1      N       NRD6    0       13.261      31.583      -9.749      
+UNV     C2      C       CR16    0       15.096      30.468      -7.993      
+UNV     C3      C       CR56    0       15.105      31.831      -8.273      
+UNV     C4      C       CR16    0       14.144      29.675      -8.617      
+UNV     C5      C       CR16    0       13.245      30.264      -9.486      
+UNV     C6      C       CR56    0       14.190      32.338      -9.138      
+UNV     C7      C       CH2     0       16.012      32.907      -7.742      
+UNV     C10     C       CH2     0       14.351      33.822      -9.311      
+UNV     P11     P       P       0       15.609      35.649      -7.596      
+UNV     C14     C       CT      0       15.712      34.139      -8.639      
+UNV     P17     P       P       0       17.041      34.343      -9.890      
+UNV     O18     O       OP      -1      16.935      35.826      -6.910      
+UNV     O19     O       OP      -1      14.512      35.426      -6.592      
+UNV     O20     O       O       0       15.291      36.826      -8.477      
+UNV     O21     O       OP      -1      17.029      33.103      -10.741     
+UNV     O22     O       OP      -1      18.353      34.490      -9.170      
+UNV     O23     O       O       0       16.736      35.565      -10.714     
+UNV     H2      H       H       0       15.726      30.099      -7.394      
+UNV     H4      H       H       0       14.110      28.751      -8.453      
+UNV     H5      H       H       0       12.600      29.723      -9.908      
+UNV     H7      H       H       0       16.955      32.637      -7.812      
+UNV     H7A     H       H       0       15.812      33.097      -6.798      
+UNV     H10     H       H       0       13.617      34.308      -8.872      
+UNV     H10A    H       H       0       14.362      34.065      -10.264     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+UNV          N1          C5      DOUBLE       y     1.341  0.0100     1.341  0.0100
+UNV          N1          C6      SINGLE       y     1.340  0.0100     1.340  0.0100
+UNV          C2          C4      DOUBLE       y     1.384  0.0100     1.384  0.0100
+UNV          C2          C3      SINGLE       y     1.387  0.0100     1.387  0.0100
+UNV          C3          C6      DOUBLE       y     1.347  0.0200     1.347  0.0200
+UNV          C3          C7      SINGLE       n     1.505  0.0100     1.505  0.0100
+UNV          C4          C5      SINGLE       y     1.379  0.0100     1.379  0.0100
+UNV          C6         C10      SINGLE       n     1.502  0.0100     1.502  0.0100
+UNV          C7         C14      SINGLE       n     1.550  0.0100     1.550  0.0100
+UNV         C10         C14      SINGLE       n     1.550  0.0100     1.550  0.0100
+UNV         P11         O20      DOUBLE       n     1.507  0.0200     1.507  0.0200
+UNV         P11         C14      SINGLE       n     1.831  0.0200     1.831  0.0200
+UNV         P11         O18      SINGLE       n     1.507  0.0200     1.507  0.0200
+UNV         P11         O19      SINGLE       n     1.507  0.0200     1.507  0.0200
+UNV         C14         P17      SINGLE       n     1.831  0.0200     1.831  0.0200
+UNV         P17         O23      DOUBLE       n     1.507  0.0200     1.507  0.0200
+UNV         P17         O21      SINGLE       n     1.507  0.0200     1.507  0.0200
+UNV         P17         O22      SINGLE       n     1.507  0.0200     1.507  0.0200
+UNV          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0189
+UNV          C4          H4      SINGLE       n     1.082  0.0130     0.939  0.0123
+UNV          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0156
+UNV          C7          H7      SINGLE       n     1.089  0.0100     0.984  0.0191
+UNV          C7         H7A      SINGLE       n     1.089  0.0100     0.984  0.0191
+UNV         C10         H10      SINGLE       n     1.089  0.0100     0.984  0.0191
+UNV         C10        H10A      SINGLE       n     1.089  0.0100     0.984  0.0191
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+UNV          C5          N1          C6     117.680    1.67
+UNV          C4          C2          C3     118.171    1.50
+UNV          C4          C2          H2     121.345    1.50
+UNV          C3          C2          H2     120.483    1.50
+UNV          C2          C3          C6     119.403    1.50
+UNV          C2          C3          C7     129.486    1.78
+UNV          C6          C3          C7     111.111    1.50
+UNV          C2          C4          C5     119.277    1.50
+UNV          C2          C4          H4     120.451    1.50
+UNV          C5          C4          H4     120.272    1.50
+UNV          N1          C5          C4     122.328    1.50
+UNV          N1          C5          H5     118.864    1.50
+UNV          C4          C5          H5     118.808    1.50
+UNV          N1          C6          C3     123.142    1.50
+UNV          N1          C6         C10     125.242    1.50
+UNV          C3          C6         C10     111.616    1.65
+UNV          C3          C7         C14     103.577    1.50
+UNV          C3          C7          H7     111.158    1.50
+UNV          C3          C7         H7A     111.158    1.50
+UNV         C14          C7          H7     110.997    1.50
+UNV         C14          C7         H7A     110.997    1.50
+UNV          H7          C7         H7A     108.769    1.50
+UNV          C6         C10         C14     103.611    1.51
+UNV          C6         C10         H10     111.107    1.50
+UNV          C6         C10        H10A     111.107    1.50
+UNV         C14         C10         H10     110.997    1.50
+UNV         C14         C10        H10A     110.997    1.50
+UNV         H10         C10        H10A     108.769    1.50
+UNV         O20         P11         C14     112.322    3.00
+UNV         O20         P11         O18     112.897    2.03
+UNV         O20         P11         O19     112.897    2.03
+UNV         C14         P11         O18     112.322    3.00
+UNV         C14         P11         O19     112.322    3.00
+UNV         O18         P11         O19     112.897    2.03
+UNV          C7         C14         C10     104.885    1.50
+UNV          C7         C14         P11     112.971    2.91
+UNV          C7         C14         P17     112.971    2.91
+UNV         C10         C14         P11     112.971    2.91
+UNV         C10         C14         P17     112.971    2.91
+UNV         P11         C14         P17     109.471    3.00
+UNV         C14         P17         O23     112.322    3.00
+UNV         C14         P17         O21     112.322    3.00
+UNV         C14         P17         O22     112.322    3.00
+UNV         O23         P17         O21     112.897    2.03
+UNV         O23         P17         O22     112.897    2.03
+UNV         O21         P17         O22     112.897    2.03
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+UNV       const_sp2_sp2_5          C4          C5          N1          C6       0.000     5.0     2
+UNV              const_19          C3          C6          N1          C5       0.000    10.0     2
+UNV              const_15          C4          C2          C3          C6       0.000    10.0     2
+UNV              const_11          C3          C2          C4          C5       0.000    10.0     2
+UNV       const_sp2_sp2_1          C2          C3          C6          N1       0.000     5.0     2
+UNV            sp2_sp3_10          C2          C3          C7         C14     180.000    10.0     6
+UNV       const_sp2_sp2_7          C2          C4          C5          N1       0.000     5.0     2
+UNV             sp2_sp3_4          N1          C6         C10         C14     180.000    10.0     6
+UNV            sp3_sp3_13         P11         C14          C7          C3     180.000    10.0     3
+UNV             sp3_sp3_3          C6         C10         C14         P11     -60.000    10.0     3
+UNV            sp3_sp3_24         P17         C14         P11         O20     -60.000    10.0     3
+UNV            sp3_sp3_30         P11         C14         P17         O23      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+UNV    chir_1    P11    O18    O19    O20    both
+UNV    chir_2    C14    P11    P17    C10    both
+UNV    chir_3    P17    O21    O22    O23    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+UNV    plan-1         C10   0.020
+UNV    plan-1          C2   0.020
+UNV    plan-1          C3   0.020
+UNV    plan-1          C4   0.020
+UNV    plan-1          C5   0.020
+UNV    plan-1          C6   0.020
+UNV    plan-1          C7   0.020
+UNV    plan-1          H2   0.020
+UNV    plan-1          H4   0.020
+UNV    plan-1          H5   0.020
+UNV    plan-1          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+UNV           SMILES              ACDLabs 12.01                                                                         O=P(O)(O)C2(Cc1cccnc1C2)P(=O)(O)O
+UNV SMILES_CANONICAL               CACTVS 3.370                                                                     O[P](O)(=O)C1(Cc2cccnc2C1)[P](O)(O)=O
+UNV           SMILES               CACTVS 3.370                                                                     O[P](O)(=O)C1(Cc2cccnc2C1)[P](O)(O)=O
+UNV SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                     c1cc2c(nc1)CC(C2)(P(=O)(O)O)P(=O)(O)O
+UNV           SMILES "OpenEye OEToolkits" 1.7.2                                                                     c1cc2c(nc1)CC(C2)(P(=O)(O)O)P(=O)(O)O
+UNV            InChI                InChI  1.03 InChI=1S/C8H11NO6P2/c10-16(11,12)8(17(13,14)15)4-6-2-1-3-9-7(6)5-8/h1-3H,4-5H2,(H2,10,11,12)(H2,13,14,15)
+UNV         InChIKey                InChI  1.03                                                                               BKUBDCZNHKIXPI-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+UNV acedrg               243         "dictionary generator"                  
+UNV acedrg_database      11          "data source"                           
+UNV rdkit                2017.03.2   "Chemoinformatics tool"
+UNV refmac5              5.8.0238    "optimization tool"                     

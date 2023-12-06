@@ -1,0 +1,349 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EET     EET      "(5~{Z},11~{Z},14~{R},15~{R})-14,15-bis(oxidanyl)icosa-5,8,11-trienoic acid"     NON-POLYMER     57     24     .     
+#
+data_comp_EET
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EET     O4      O       OC      -1      21.850      29.287      -33.062     
+EET     C20     C       C       0       22.590      29.364      -34.062     
+EET     O3      O       O       0       23.558      30.145      -34.145     
+EET     C19     C       CH2     0       22.296      28.457      -35.245     
+EET     C18     C       CH2     0       23.239      27.271      -35.386     
+EET     C17     C       CH2     0       22.937      26.172      -34.376     
+EET     C16     C       C1      0       23.800      24.959      -34.543     
+EET     C15     C       C1      0       23.796      23.892      -33.765     
+EET     C14     C       CH2     0       22.925      23.688      -32.562     
+EET     C13     C       C1      0       23.292      24.560      -31.398     
+EET     C12     C       C1      0       22.584      24.721      -30.298     
+EET     C11     C       CH2     0       21.278      24.052      -29.986     
+EET     C10     C       C1      0       21.393      22.569      -29.800     
+EET     C9      C       C1      0       22.012      21.959      -28.805     
+EET     C8      C       CH2     0       22.696      22.637      -27.657     
+EET     C7      C       CH1     0       23.133      21.699      -26.529     
+EET     O2      O       OH1     0       24.087      22.395      -25.714     
+EET     C6      C       CH1     0       22.018      21.170      -25.625     
+EET     C5      C       CH2     0       21.130      22.217      -24.952     
+EET     C4      C       CH2     0       20.131      21.718      -23.927     
+EET     C3      C       CH2     0       20.704      20.989      -22.730     
+EET     C2      C       CH2     0       21.712      21.765      -21.919     
+EET     C1      C       CH3     0       22.108      21.078      -20.634     
+EET     O1      O       OH1     0       21.180      20.291      -26.373     
+EET     H2      H       H       0       22.339      28.994      -36.065     
+EET     H3      H       H       0       21.378      28.122      -35.158     
+EET     H4      H       H       0       24.162      27.574      -35.261     
+EET     H5      H       H       0       23.164      26.902      -36.291     
+EET     H6      H       H       0       21.995      25.907      -34.467     
+EET     H7      H       H       0       23.065      26.530      -33.470     
+EET     H8      H       H       0       24.401      24.958      -35.272     
+EET     H9      H       H       0       24.394      23.191      -33.981     
+EET     H10     H       H       0       22.976      22.743      -32.284     
+EET     H11     H       H       0       21.987      23.861      -32.810     
+EET     H12     H       H       0       24.108      25.037      -31.464     
+EET     H14     H       H       0       22.927      25.311      -29.641     
+EET     H16     H       H       0       20.639      24.237      -30.714     
+EET     H17     H       H       0       20.899      24.451      -29.167     
+EET     H18     H       H       0       20.983      22.025      -30.457     
+EET     H19     H       H       0       22.026      21.015      -28.828     
+EET     H20     H       H       0       22.114      23.331      -27.288     
+EET     H21     H       H       0       23.495      23.090      -28.001     
+EET     H22     H       H       0       23.594      20.916      -26.930     
+EET     H23     H       H       0       24.506      21.830      -25.239     
+EET     H24     H       H       0       22.450      20.634      -24.913     
+EET     H25     H       H       0       20.630      22.686      -25.653     
+EET     H26     H       H       0       21.711      22.880      -24.522     
+EET     H27     H       H       0       19.502      21.118      -24.381     
+EET     H28     H       H       0       19.616      22.487      -23.602     
+EET     H29     H       H       0       21.126      20.161      -23.041     
+EET     H30     H       H       0       19.963      20.736      -22.139     
+EET     H31     H       H       0       21.335      22.646      -21.706     
+EET     H32     H       H       0       22.516      21.907      -22.464     
+EET     H33     H       H       0       22.732      21.640      -20.143     
+EET     H34     H       H       0       22.532      20.226      -20.837     
+EET     H35     H       H       0       21.316      20.923      -20.090     
+EET     H36     H       H       0       20.870      19.696      -25.853     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EET         C19         C18      SINGLE       n     1.521  0.0157     1.521  0.0157
+EET         C18         C17      SINGLE       n     1.523  0.0175     1.523  0.0175
+EET         C20         C19      SINGLE       n     1.519  0.0109     1.519  0.0109
+EET         C17         C16      SINGLE       n     1.497  0.0127     1.497  0.0127
+EET         C16         C15      DOUBLE       n     1.320  0.0157     1.320  0.0157
+EET         C20          O3      DOUBLE       n     1.247  0.0187     1.247  0.0187
+EET          O4         C20      SINGLE       n     1.247  0.0187     1.247  0.0187
+EET         C15         C14      SINGLE       n     1.498  0.0200     1.498  0.0200
+EET         C14         C13      SINGLE       n     1.498  0.0200     1.498  0.0200
+EET         C13         C12      DOUBLE       n     1.317  0.0200     1.317  0.0200
+EET         C11         C10      SINGLE       n     1.498  0.0200     1.498  0.0200
+EET         C10          C9      DOUBLE       n     1.320  0.0157     1.320  0.0157
+EET         C12         C11      SINGLE       n     1.498  0.0200     1.498  0.0200
+EET          C9          C8      SINGLE       n     1.498  0.0100     1.498  0.0100
+EET          C8          C7      SINGLE       n     1.526  0.0118     1.526  0.0118
+EET          C7          C6      SINGLE       n     1.526  0.0100     1.526  0.0100
+EET          C7          O2      SINGLE       n     1.435  0.0100     1.435  0.0100
+EET          C6          C5      SINGLE       n     1.526  0.0100     1.526  0.0100
+EET          C5          C4      SINGLE       n     1.509  0.0200     1.509  0.0200
+EET          C4          C3      SINGLE       n     1.509  0.0200     1.509  0.0200
+EET          C3          C2      SINGLE       n     1.507  0.0200     1.507  0.0200
+EET          C2          C1      SINGLE       n     1.510  0.0200     1.510  0.0200
+EET          C6          O1      SINGLE       n     1.424  0.0199     1.424  0.0199
+EET         C19          H2      SINGLE       n     1.089  0.0100     0.981  0.0185
+EET         C19          H3      SINGLE       n     1.089  0.0100     0.981  0.0185
+EET         C18          H4      SINGLE       n     1.089  0.0100     0.980  0.0178
+EET         C18          H5      SINGLE       n     1.089  0.0100     0.980  0.0178
+EET         C17          H6      SINGLE       n     1.089  0.0100     0.983  0.0180
+EET         C17          H7      SINGLE       n     1.089  0.0100     0.983  0.0180
+EET         C16          H8      SINGLE       n     1.082  0.0130     0.945  0.0200
+EET         C15          H9      SINGLE       n     1.082  0.0130     0.947  0.0200
+EET         C14         H10      SINGLE       n     1.089  0.0100     0.986  0.0100
+EET         C14         H11      SINGLE       n     1.089  0.0100     0.986  0.0100
+EET         C13         H12      SINGLE       n     1.082  0.0130     0.947  0.0200
+EET         C12         H14      SINGLE       n     1.082  0.0130     0.947  0.0200
+EET         C11         H16      SINGLE       n     1.089  0.0100     0.986  0.0100
+EET         C11         H17      SINGLE       n     1.089  0.0100     0.986  0.0100
+EET         C10         H18      SINGLE       n     1.082  0.0130     0.947  0.0200
+EET          C9         H19      SINGLE       n     1.082  0.0130     0.945  0.0200
+EET          C8         H20      SINGLE       n     1.089  0.0100     0.981  0.0185
+EET          C8         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+EET          C7         H22      SINGLE       n     1.089  0.0100     0.993  0.0100
+EET          O2         H23      SINGLE       n     0.970  0.0120     0.848  0.0200
+EET          C6         H24      SINGLE       n     1.089  0.0100     0.992  0.0184
+EET          C5         H25      SINGLE       n     1.089  0.0100     0.981  0.0160
+EET          C5         H26      SINGLE       n     1.089  0.0100     0.981  0.0160
+EET          C4         H27      SINGLE       n     1.089  0.0100     0.981  0.0163
+EET          C4         H28      SINGLE       n     1.089  0.0100     0.981  0.0163
+EET          C3         H29      SINGLE       n     1.089  0.0100     0.981  0.0163
+EET          C3         H30      SINGLE       n     1.089  0.0100     0.981  0.0163
+EET          C2         H31      SINGLE       n     1.089  0.0100     0.982  0.0155
+EET          C2         H32      SINGLE       n     1.089  0.0100     0.982  0.0155
+EET          C1         H33      SINGLE       n     1.089  0.0100     0.973  0.0157
+EET          C1         H34      SINGLE       n     1.089  0.0100     0.973  0.0157
+EET          C1         H35      SINGLE       n     1.089  0.0100     0.973  0.0157
+EET          O1         H36      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EET         C19         C20          O3     118.214    1.64
+EET         C19         C20          O4     118.214    1.64
+EET          O3         C20          O4     123.571    1.50
+EET         C18         C19         C20     114.612    2.19
+EET         C18         C19          H2     108.815    1.50
+EET         C18         C19          H3     108.815    1.50
+EET         C20         C19          H2     108.404    1.50
+EET         C20         C19          H3     108.404    1.50
+EET          H2         C19          H3     107.521    1.50
+EET         C19         C18         C17     112.061    1.52
+EET         C19         C18          H4     109.164    1.50
+EET         C19         C18          H5     109.164    1.50
+EET         C17         C18          H4     108.805    1.50
+EET         C17         C18          H5     108.805    1.50
+EET          H4         C18          H5     107.646    1.50
+EET         C18         C17         C16     113.226    1.94
+EET         C18         C17          H6     108.819    1.50
+EET         C18         C17          H7     108.819    1.50
+EET         C16         C17          H6     108.886    1.50
+EET         C16         C17          H7     108.886    1.50
+EET          H6         C17          H7     107.922    1.50
+EET         C17         C16         C15     125.684    3.00
+EET         C17         C16          H8     117.007    1.61
+EET         C15         C16          H8     117.310    2.16
+EET         C16         C15         C14     125.699    1.66
+EET         C16         C15          H9     117.527    2.16
+EET         C14         C15          H9     116.773    1.62
+EET         C15         C14         C13     114.535    3.00
+EET         C15         C14         H10     109.415    1.72
+EET         C15         C14         H11     109.415    1.72
+EET         C13         C14         H10     109.415    1.72
+EET         C13         C14         H11     109.415    1.72
+EET         H10         C14         H11     107.005    1.50
+EET         C14         C13         C12     125.699    1.66
+EET         C14         C13         H12     116.773    1.62
+EET         C12         C13         H12     117.527    2.16
+EET         C13         C12         C11     125.699    1.66
+EET         C13         C12         H14     117.527    2.16
+EET         C11         C12         H14     116.773    1.62
+EET         C10         C11         C12     114.535    3.00
+EET         C10         C11         H16     109.415    1.72
+EET         C10         C11         H17     109.415    1.72
+EET         C12         C11         H16     109.415    1.72
+EET         C12         C11         H17     109.415    1.72
+EET         H16         C11         H17     107.005    1.50
+EET         C11         C10          C9     125.699    1.66
+EET         C11         C10         H18     116.773    1.62
+EET          C9         C10         H18     117.527    2.16
+EET         C10          C9          C8     125.436    1.50
+EET         C10          C9         H19     116.932    2.16
+EET          C8          C9         H19     117.632    1.96
+EET          C9          C8          C7     113.751    2.05
+EET          C9          C8         H20     109.879    2.65
+EET          C9          C8         H21     109.879    2.65
+EET          C7          C8         H20     108.544    1.56
+EET          C7          C8         H21     108.544    1.56
+EET         H20          C8         H21     107.440    1.74
+EET          C8          C7          C6     112.748    1.86
+EET          C8          C7          O2     108.747    2.04
+EET          C8          C7         H22     108.825    1.50
+EET          C6          C7          O2     108.767    1.60
+EET          C6          C7         H22     108.017    1.50
+EET          O2          C7         H22     107.870    1.50
+EET          C7          O2         H23     108.815    1.50
+EET          C7          C6          C5     115.541    1.50
+EET          C7          C6          O1     108.767    1.60
+EET          C7          C6         H24     108.017    1.50
+EET          C5          C6          O1     108.325    1.59
+EET          C5          C6         H24     108.287    1.50
+EET          O1          C6         H24     107.870    1.50
+EET          C6          C5          C4     116.150    2.74
+EET          C6          C5         H25     108.389    1.50
+EET          C6          C5         H26     108.389    1.50
+EET          C4          C5         H25     108.572    1.50
+EET          C4          C5         H26     108.572    1.50
+EET         H25          C5         H26     107.428    1.50
+EET          C5          C4          C3     114.776    2.10
+EET          C5          C4         H27     108.597    1.50
+EET          C5          C4         H28     108.597    1.50
+EET          C3          C4         H27     108.698    1.50
+EET          C3          C4         H28     108.698    1.50
+EET         H27          C4         H28     107.646    1.50
+EET          C4          C3          C2     114.362    3.00
+EET          C4          C3         H29     108.698    1.50
+EET          C4          C3         H30     108.698    1.50
+EET          C2          C3         H29     108.653    1.50
+EET          C2          C3         H30     108.653    1.50
+EET         H29          C3         H30     107.646    1.50
+EET          C3          C2          C1     113.719    3.00
+EET          C3          C2         H31     108.758    1.50
+EET          C3          C2         H32     108.758    1.50
+EET          C1          C2         H31     108.918    1.50
+EET          C1          C2         H32     108.918    1.50
+EET         H31          C2         H32     107.763    1.50
+EET          C2          C1         H33     109.554    1.50
+EET          C2          C1         H34     109.554    1.50
+EET          C2          C1         H35     109.554    1.50
+EET         H33          C1         H34     109.380    1.50
+EET         H33          C1         H35     109.380    1.50
+EET         H34          C1         H35     109.380    1.50
+EET          C6          O1         H36     108.815    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EET            sp2_sp3_32         C13         C12         C11         C10     120.000    10.0     6
+EET            sp2_sp3_26          C9         C10         C11         C12     120.000    10.0     6
+EET             sp2_sp2_9         C11         C10          C9          C8     180.000     5.0     2
+EET            sp2_sp3_38         C10          C9          C8          C7     120.000    10.0     6
+EET            sp3_sp3_19          C6          C7          C8          C9     180.000    10.0     3
+EET            sp3_sp3_37          C8          C7          O2         H23     180.000    10.0     3
+EET            sp3_sp3_28          C5          C6          C7          C8     180.000    10.0     3
+EET            sp3_sp3_40          C4          C5          C6          C7     180.000    10.0     3
+EET            sp3_sp3_85          C7          C6          O1         H36     180.000    10.0     3
+EET            sp3_sp3_49          C3          C4          C5          C6     180.000    10.0     3
+EET            sp3_sp3_58          C2          C3          C4          C5     180.000    10.0     3
+EET             sp2_sp3_2          O3         C20         C19         C18     120.000    10.0     6
+EET            sp3_sp3_67          C1          C2          C3          C4     180.000    10.0     3
+EET            sp3_sp3_76         H33          C1          C2          C3     180.000    10.0     3
+EET             sp3_sp3_1         C17         C18         C19         C20     180.000    10.0     3
+EET            sp3_sp3_10         C16         C17         C18         C19     180.000    10.0     3
+EET             sp2_sp3_8         C15         C16         C17         C18     120.000    10.0     6
+EET             sp2_sp2_1         C14         C15         C16         C17     180.000     5.0     2
+EET            sp2_sp3_14         C16         C15         C14         C13     120.000    10.0     6
+EET            sp2_sp3_20         C12         C13         C14         C15     120.000    10.0     6
+EET             sp2_sp2_5         C11         C12         C13         C14     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EET    chir_1    C7    O2    C6    C8    negative
+EET    chir_2    C6    O1    C7    C5    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EET    plan-1         C19   0.020
+EET    plan-1         C20   0.020
+EET    plan-1          O3   0.020
+EET    plan-1          O4   0.020
+EET    plan-2         C15   0.020
+EET    plan-2         C16   0.020
+EET    plan-2         C17   0.020
+EET    plan-2          H8   0.020
+EET    plan-3         C14   0.020
+EET    plan-3         C15   0.020
+EET    plan-3         C16   0.020
+EET    plan-3          H9   0.020
+EET    plan-4         C12   0.020
+EET    plan-4         C13   0.020
+EET    plan-4         C14   0.020
+EET    plan-4         H12   0.020
+EET    plan-5         C11   0.020
+EET    plan-5         C12   0.020
+EET    plan-5         C13   0.020
+EET    plan-5         H14   0.020
+EET    plan-6         C10   0.020
+EET    plan-6         C11   0.020
+EET    plan-6          C9   0.020
+EET    plan-6         H18   0.020
+EET    plan-7         C10   0.020
+EET    plan-7          C8   0.020
+EET    plan-7          C9   0.020
+EET    plan-7         H19   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EET            InChI                InChI  1.03 InChI=1S/C20H34O4/c1-2-3-12-15-18(21)19(22)16-13-10-8-6-4-5-7-9-11-14-17-20(23)24/h4,6-7,9-10,13,18-19,21-22H,2-3,5,8,11-12,14-17H2,1H3,(H,23,24)/b6-4-,9-7-,13-10-/t18-,19-/m1/s1
+EET         InChIKey                InChI  1.03                                                                                                                                                        SYAWGTIVOGUZMM-JHIAIUNDSA-N
+EET SMILES_CANONICAL               CACTVS 3.385                                                                                                                                  CCCCC[C@@H](O)[C@H](O)C\C=C/C/C=C\C\C=C/CCCC(O)=O
+EET           SMILES               CACTVS 3.385                                                                                                                                           CCCCC[CH](O)[CH](O)CC=CCC=CCC=CCCCC(O)=O
+EET SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                                                                                                    CCCCC[C@H]([C@@H](C/C=C\CC=CC/C=C\CCCC(=O)O)O)O
+EET           SMILES "OpenEye OEToolkits" 2.0.5                                                                                                                                                 CCCCCC(C(CC=CCC=CCC=CCCCC(=O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EET acedrg               243         "dictionary generator"                  
+EET acedrg_database      11          "data source"                           
+EET rdkit                2017.03.2   "Chemoinformatics tool"
+EET refmac5              5.8.0238    "optimization tool"                     

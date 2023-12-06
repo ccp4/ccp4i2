@@ -1,0 +1,325 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4HX     4HX      (4R)-4-(HYDROXY{N~5~-[IMINO(NITROAMINO)METHYL]-L-ORNITHYL}AMINO)-L-PROLINAMIDE     NON-POLYMER     48     24     .     
+#
+data_comp_4HX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4HX     NO      N       N       1       11.284      0.162       61.290      
+4HX     O2      O       OC      -1      11.403      0.660       62.402      
+4HX     O3      O       O       0       10.636      -0.848      61.047      
+4HX     N       N       NT3     1       16.660      -0.979      56.500      
+4HX     CA      C       CH1     0       16.235      0.319       57.092      
+4HX     C       C       C       0       17.459      1.221       57.229      
+4HX     O       O       O       0       18.394      0.854       57.935      
+4HX     CB      C       CH2     0       15.566      0.089       58.450      
+4HX     CG      C       CH2     0       14.965      1.326       59.109      
+4HX     CD      C       CH2     0       13.823      1.965       58.335      
+4HX     NE      N       NH1     0       12.734      1.038       58.040      
+4HX     CZ      C       C       0       11.928      0.446       58.929      
+4HX     NH1     N       NH1     0       11.955      0.826       60.251      
+4HX     NH2     N       NH2     1       11.061      -0.463      58.514      
+4HX     "N1'"   N       NH2     0       17.503      7.726       55.683      
+4HX     "N2'"   N       N       0       17.490      2.411       56.534      
+4HX     "O2'"   O       OH1     0       16.540      2.684       55.581      
+4HX     "N'"    N       NT1     0       19.145      4.535       54.777      
+4HX     "CA'"   C       CH1     0       18.100      5.404       55.353      
+4HX     "C'"    C       C       0       18.463      6.888       55.325      
+4HX     "O'"    O       O       0       19.585      7.267       54.990      
+4HX     "CB'"   C       CH2     0       17.937      4.896       56.794      
+4HX     "CG'"   C       CH1     0       18.513      3.468       56.788      
+4HX     "CD'"   C       CH2     0       19.604      3.504       55.717      
+4HX     HN1     H       H       0       15.936      -1.525      56.411      
+4HX     HN2     H       H       0       17.272      -1.384      57.041      
+4HX     H3      H       H       0       17.031      -0.842      55.679      
+4HX     HA      H       H       0       15.592      0.740       56.486      
+4HX     HB1     H       H       0       16.231      -0.292      59.060      
+4HX     HB2     H       H       0       14.858      -0.578      58.335      
+4HX     HG1     H       H       0       15.668      1.997       59.236      
+4HX     HG2     H       H       0       14.638      1.078       59.999      
+4HX     HD1     H       H       0       14.172      2.323       57.491      
+4HX     HD2     H       H       0       13.470      2.721       58.851      
+4HX     HNE     H       H       0       12.591      0.855       57.199      
+4HX     HNH1    H       H       0       12.387      1.539       60.498      
+4HX     HNH2    H       H       0       10.521      -0.852      59.085      
+4HX     HH3     H       H       0       11.024      -0.683      57.664      
+4HX     "H1'1"  H       H       0       17.655      8.595       55.687      
+4HX     "H1'2"  H       H       0       16.710      7.419       55.917      
+4HX     "HO2'"  H       H       0       16.961      2.711       54.798      
+4HX     "HN'"   H       H       0       19.858      5.005       54.527      
+4HX     "HA'"   H       H       0       17.259      5.264       54.851      
+4HX     "HB'1"  H       H       0       16.993      4.887       57.053      
+4HX     "HB'2"  H       H       0       18.431      5.462       57.423      
+4HX     "HG'"   H       H       0       18.944      3.307       57.664      
+4HX     "HD'1"  H       H       0       20.474      3.751       56.098      
+4HX     "HD'2"  H       H       0       19.689      2.639       55.261      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4HX          NO         NH1      SINGLE       n     1.382  0.0200     1.382  0.0200
+4HX          NO          O3      DOUBLE       n     1.223  0.0117     1.223  0.0117
+4HX          NO          O2      SINGLE       n     1.223  0.0117     1.223  0.0117
+4HX           N          CA      SINGLE       n     1.488  0.0100     1.488  0.0100
+4HX          CA           C      SINGLE       n     1.516  0.0149     1.516  0.0149
+4HX          CA          CB      SINGLE       n     1.530  0.0100     1.530  0.0100
+4HX           C       "N2'"      SINGLE       n     1.354  0.0174     1.354  0.0174
+4HX           C           O      DOUBLE       n     1.227  0.0100     1.227  0.0100
+4HX          CB          CG      SINGLE       n     1.522  0.0100     1.522  0.0100
+4HX          CG          CD      SINGLE       n     1.517  0.0143     1.517  0.0143
+4HX          CD          NE      SINGLE       n     1.456  0.0136     1.456  0.0136
+4HX          NE          CZ      SINGLE       n     1.331  0.0100     1.331  0.0100
+4HX          CZ         NH2      DOUBLE       n     1.318  0.0103     1.318  0.0103
+4HX          CZ         NH1      SINGLE       n     1.360  0.0138     1.360  0.0138
+4HX       "N1'"        "C'"      SINGLE       n     1.323  0.0100     1.323  0.0100
+4HX       "N2'"       "O2'"      SINGLE       n     1.366  0.0200     1.366  0.0200
+4HX       "N2'"       "CG'"      SINGLE       n     1.476  0.0200     1.476  0.0200
+4HX        "N'"       "CA'"      SINGLE       n     1.468  0.0148     1.468  0.0148
+4HX        "N'"       "CD'"      SINGLE       n     1.468  0.0152     1.468  0.0152
+4HX       "CA'"        "C'"      SINGLE       n     1.523  0.0117     1.523  0.0117
+4HX       "CA'"       "CB'"      SINGLE       n     1.534  0.0126     1.534  0.0126
+4HX        "C'"        "O'"      DOUBLE       n     1.229  0.0140     1.229  0.0140
+4HX       "CB'"       "CG'"      SINGLE       n     1.539  0.0163     1.539  0.0163
+4HX       "CG'"       "CD'"      SINGLE       n     1.531  0.0175     1.531  0.0175
+4HX           N         HN1      SINGLE       n     1.036  0.0160     0.911  0.0200
+4HX           N         HN2      SINGLE       n     1.036  0.0160     0.911  0.0200
+4HX           N          H3      SINGLE       n     1.036  0.0160     0.911  0.0200
+4HX          CA          HA      SINGLE       n     1.089  0.0100     0.985  0.0200
+4HX          CB         HB1      SINGLE       n     1.089  0.0100     0.980  0.0160
+4HX          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0160
+4HX          CG         HG1      SINGLE       n     1.089  0.0100     0.981  0.0160
+4HX          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0160
+4HX          CD         HD1      SINGLE       n     1.089  0.0100     0.981  0.0152
+4HX          CD         HD2      SINGLE       n     1.089  0.0100     0.981  0.0152
+4HX          NE         HNE      SINGLE       n     1.016  0.0100     0.872  0.0200
+4HX         NH1        HNH1      SINGLE       n     1.016  0.0100     0.873  0.0200
+4HX         NH2        HNH2      SINGLE       n     1.016  0.0100     0.879  0.0200
+4HX         NH2         HH3      SINGLE       n     1.016  0.0100     0.879  0.0200
+4HX       "N1'"      "H1'1"      SINGLE       n     1.016  0.0100     0.881  0.0200
+4HX       "N1'"      "H1'2"      SINGLE       n     1.016  0.0100     0.881  0.0200
+4HX       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.889  0.0200
+4HX        "N'"       "HN'"      SINGLE       n     1.036  0.0160     0.887  0.0200
+4HX       "CA'"       "HA'"      SINGLE       n     1.089  0.0100     0.990  0.0121
+4HX       "CB'"      "HB'1"      SINGLE       n     1.089  0.0100     0.979  0.0108
+4HX       "CB'"      "HB'2"      SINGLE       n     1.089  0.0100     0.979  0.0108
+4HX       "CG'"       "HG'"      SINGLE       n     1.089  0.0100     0.990  0.0173
+4HX       "CD'"      "HD'1"      SINGLE       n     1.089  0.0100     0.981  0.0178
+4HX       "CD'"      "HD'2"      SINGLE       n     1.089  0.0100     0.981  0.0178
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4HX         NH1          NO          O3     117.244    2.62
+4HX         NH1          NO          O2     117.244    2.62
+4HX          O3          NO          O2     125.512    1.50
+4HX          CA           N         HN1     109.708    3.00
+4HX          CA           N         HN2     109.708    3.00
+4HX          CA           N          H3     109.708    3.00
+4HX         HN1           N         HN2     109.028    2.41
+4HX         HN1           N          H3     109.028    2.41
+4HX         HN2           N          H3     109.028    2.41
+4HX           N          CA           C     109.935    2.65
+4HX           N          CA          CB     110.928    1.50
+4HX           N          CA          HA     109.157    1.50
+4HX           C          CA          CB     110.994    2.64
+4HX           C          CA          HA     108.362    1.50
+4HX          CB          CA          HA     110.060    2.25
+4HX          CA           C       "N2'"     115.993    1.98
+4HX          CA           C           O     121.072    1.62
+4HX       "N2'"           C           O     122.935    1.98
+4HX          CA          CB          CG     114.586    1.50
+4HX          CA          CB         HB1     108.644    1.50
+4HX          CA          CB         HB2     108.644    1.50
+4HX          CG          CB         HB1     108.775    1.50
+4HX          CG          CB         HB2     108.775    1.50
+4HX         HB1          CB         HB2     107.844    1.50
+4HX          CB          CG          CD     112.387    3.00
+4HX          CB          CG         HG1     109.262    1.50
+4HX          CB          CG         HG2     109.262    1.50
+4HX          CD          CG         HG1     108.956    1.50
+4HX          CD          CG         HG2     108.956    1.50
+4HX         HG1          CG         HG2     107.927    1.57
+4HX          CG          CD          NE     112.382    2.90
+4HX          CG          CD         HD1     109.197    1.51
+4HX          CG          CD         HD2     109.197    1.51
+4HX          NE          CD         HD1     109.183    1.50
+4HX          NE          CD         HD2     109.183    1.50
+4HX         HD1          CD         HD2     107.877    1.50
+4HX          CD          NE          CZ     124.700    1.50
+4HX          CD          NE         HNE     117.853    1.50
+4HX          CZ          NE         HNE     117.447    2.01
+4HX          NE          CZ         NH2     121.011    1.50
+4HX          NE          CZ         NH1     118.447    3.00
+4HX         NH2          CZ         NH1     120.542    1.50
+4HX          NO         NH1          CZ     121.082    2.43
+4HX          NO         NH1        HNH1     117.398    1.88
+4HX          CZ         NH1        HNH1     121.520    1.50
+4HX          CZ         NH2        HNH2     119.866    1.61
+4HX          CZ         NH2         HH3     119.866    1.61
+4HX        HNH2         NH2         HH3     120.267    2.09
+4HX        "C'"       "N1'"      "H1'1"     120.023    1.53
+4HX        "C'"       "N1'"      "H1'2"     120.023    1.53
+4HX      "H1'1"       "N1'"      "H1'2"     119.955    1.93
+4HX           C       "N2'"       "O2'"     118.248    2.14
+4HX           C       "N2'"       "CG'"     122.099    1.92
+4HX       "O2'"       "N2'"       "CG'"     119.653    3.00
+4HX       "N2'"       "O2'"      "HO2'"     106.835    3.00
+4HX       "CA'"        "N'"       "CD'"     109.056    3.00
+4HX       "CA'"        "N'"       "HN'"     109.307    3.00
+4HX       "CD'"        "N'"       "HN'"     107.738    2.27
+4HX        "N'"       "CA'"        "C'"     111.420    2.45
+4HX        "N'"       "CA'"       "CB'"     103.430    2.23
+4HX        "N'"       "CA'"       "HA'"     109.296    1.50
+4HX        "C'"       "CA'"       "CB'"     111.469    1.50
+4HX        "C'"       "CA'"       "HA'"     109.935    1.50
+4HX       "CB'"       "CA'"       "HA'"     110.393    1.50
+4HX       "N1'"        "C'"       "CA'"     115.870    1.65
+4HX       "N1'"        "C'"        "O'"     122.822    1.50
+4HX       "CA'"        "C'"        "O'"     121.308    1.50
+4HX       "CA'"       "CB'"       "CG'"     104.443    2.26
+4HX       "CA'"       "CB'"      "HB'1"     110.853    1.50
+4HX       "CA'"       "CB'"      "HB'2"     110.853    1.50
+4HX       "CG'"       "CB'"      "HB'1"     110.783    1.50
+4HX       "CG'"       "CB'"      "HB'2"     110.783    1.50
+4HX      "HB'1"       "CB'"      "HB'2"     109.052    1.50
+4HX       "N2'"       "CG'"       "CB'"     112.360    2.19
+4HX       "N2'"       "CG'"       "CD'"     112.360    2.19
+4HX       "N2'"       "CG'"       "HG'"     108.828    1.83
+4HX       "CB'"       "CG'"       "CD'"     104.443    2.26
+4HX       "CB'"       "CG'"       "HG'"     108.708    1.50
+4HX       "CD'"       "CG'"       "HG'"     108.495    1.50
+4HX        "N'"       "CD'"       "CG'"     103.104    2.01
+4HX        "N'"       "CD'"      "HD'1"     110.393    1.50
+4HX        "N'"       "CD'"      "HD'2"     110.393    1.50
+4HX       "CG'"       "CD'"      "HD'1"     111.532    1.50
+4HX       "CG'"       "CD'"      "HD'2"     111.532    1.50
+4HX      "HD'1"       "CD'"      "HD'2"     109.055    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4HX             sp2_sp2_1          CZ         NH1          NO          O3     180.000     5.0     2
+4HX            sp2_sp2_11         NH2          CZ          NE          CD       0.000     5.0     2
+4HX            sp2_sp2_17          NE          CZ         NH1          NO     180.000     5.0     2
+4HX            sp2_sp2_13          NE          CZ         NH2        HNH2     180.000     5.0     2
+4HX            sp2_sp2_23        "O'"        "C'"       "N1'"      "H1'1"       0.000     5.0     2
+4HX            sp2_sp3_15           C       "N2'"       "CG'"       "CB'"       0.000    10.0     6
+4HX             sp3_sp3_3        "C'"       "CA'"        "N'"       "CD'"     -60.000    10.0     3
+4HX            sp3_sp3_70       "CG'"       "CD'"        "N'"       "CA'"     180.000    10.0     3
+4HX            sp2_sp3_21       "N1'"        "C'"       "CA'"        "N'"       0.000    10.0     6
+4HX            sp3_sp3_10        "C'"       "CA'"       "CB'"       "CG'"     180.000    10.0     3
+4HX            sp3_sp3_17       "CA'"       "CB'"       "CG'"       "N2'"     180.000    10.0     3
+4HX            sp3_sp3_26        "N'"       "CD'"       "CG'"       "N2'"      60.000    10.0     3
+4HX            sp3_sp3_34           C          CA           N         HN1     180.000    10.0     3
+4HX             sp2_sp3_1       "N2'"           C          CA           N       0.000    10.0     6
+4HX            sp3_sp3_43           N          CA          CB          CG     180.000    10.0     3
+4HX             sp2_sp2_6          CA           C       "N2'"       "O2'"       0.000     5.0     2
+4HX            sp3_sp3_52          CA          CB          CG          CD     180.000    10.0     3
+4HX            sp3_sp3_61          NE          CD          CG          CB     180.000    10.0     3
+4HX             sp2_sp3_8          CZ          NE          CD          CG     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+4HX    chir_1    CA    N    C    CB    positive
+4HX    chir_2    "CA'"    "N'"    "C'"    "CB'"    positive
+4HX    chir_3    "CG'"    "N2'"    "CD'"    "CB'"    negative
+4HX    chir_4    "N'"    "CA'"    "CD'"    "HN'"    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4HX    plan-1         NH1   0.020
+4HX    plan-1          NO   0.020
+4HX    plan-1          O2   0.020
+4HX    plan-1          O3   0.020
+4HX    plan-2           C   0.020
+4HX    plan-2          CA   0.020
+4HX    plan-2       "N2'"   0.020
+4HX    plan-2           O   0.020
+4HX    plan-3          CD   0.020
+4HX    plan-3          CZ   0.020
+4HX    plan-3         HNE   0.020
+4HX    plan-3          NE   0.020
+4HX    plan-4          CZ   0.020
+4HX    plan-4          NE   0.020
+4HX    plan-4         NH1   0.020
+4HX    plan-4         NH2   0.020
+4HX    plan-5          CZ   0.020
+4HX    plan-5        HNH1   0.020
+4HX    plan-5         NH1   0.020
+4HX    plan-5          NO   0.020
+4HX    plan-6          CZ   0.020
+4HX    plan-6         HH3   0.020
+4HX    plan-6        HNH2   0.020
+4HX    plan-6         NH2   0.020
+4HX    plan-7        "C'"   0.020
+4HX    plan-7      "H1'1"   0.020
+4HX    plan-7      "H1'2"   0.020
+4HX    plan-7       "N1'"   0.020
+4HX    plan-8           C   0.020
+4HX    plan-8       "CG'"   0.020
+4HX    plan-8       "N2'"   0.020
+4HX    plan-8       "O2'"   0.020
+4HX    plan-9        "C'"   0.020
+4HX    plan-9       "CA'"   0.020
+4HX    plan-9       "N1'"   0.020
+4HX    plan-9        "O'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4HX           SMILES              ACDLabs 10.04                                                                                             O=C(N)C1NCC(N(O)C(=O)C(N)CCCNC(=[N@H])N[N+]([O-])=O)C1
+4HX SMILES_CANONICAL               CACTVS 3.341                                                                                   N[C@@H](CCCNC(=N)N[N+]([O-])=O)C(=O)N(O)[C@H]1CN[C@@H](C1)C(N)=O
+4HX           SMILES               CACTVS 3.341                                                                                        N[CH](CCCNC(=N)N[N+]([O-])=O)C(=O)N(O)[CH]1CN[CH](C1)C(N)=O
+4HX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                           "[H]/N=C(/NCCC[C@@H](C(=O)N([C@@H]1C[C@H](NC1)C(=O)N)O)N)\N[N+](=O)[O-]"
+4HX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                            "[H]N=C(NCCCC(C(=O)N(C1CC(NC1)C(=O)N)O)N)N[N+](=O)[O-]"
+4HX            InChI                InChI  1.03 InChI=1S/C11H22N8O5/c12-7(2-1-3-15-11(14)17-19(23)24)10(21)18(22)6-4-8(9(13)20)16-5-6/h6-8,16,22H,1-5,12H2,(H2,13,20)(H3,14,15,17)/t6-,7+,8+/m1/s1
+4HX         InChIKey                InChI  1.03                                                                                                                        CTHMJCQUZVLLJU-CSMHCCOUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4HX acedrg               243         "dictionary generator"                  
+4HX acedrg_database      11          "data source"                           
+4HX rdkit                2017.03.2   "Chemoinformatics tool"
+4HX refmac5              5.8.0238    "optimization tool"                     

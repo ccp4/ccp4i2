@@ -1,0 +1,196 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MVH     MVH      "methyl [4-(methylamino)-4-oxidanylidene-but-2-en-2-yl] hydrogen phosphate"     NON-POLYMER     24     13     .     
+#
+data_comp_MVH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MVH     OAI     O       OP      -1      -22.963     36.067      -4.749      
+MVH     PAN     P       P       0       -23.524     35.415      -5.969      
+MVH     OAJ     O       O2      0       -22.407     34.426      -6.555      
+MVH     CAC     C       CH3     0       -21.144     34.969      -6.988      
+MVH     OAF     O       O       0       -23.965     36.280      -7.103      
+MVH     OAK     O       O2      0       -24.698     34.369      -5.590      
+MVH     CAM     C       C       0       -24.824     33.644      -4.445      
+MVH     CAD     C       CH3     0       -26.265     33.501      -4.082      
+MVH     CAG     C       C1      0       -23.735     33.089      -3.772      
+MVH     CAL     C       C       0       -23.670     32.346      -2.482      
+MVH     OAE     O       O       0       -24.659     32.184      -1.769      
+MVH     NAH     N       NH1     0       -22.452     31.867      -2.164      
+MVH     CAA     C       CH3     0       -22.204     31.052      -0.985      
+MVH     H2      H       H       0       -20.599     34.259      -7.361      
+MVH     H3      H       H       0       -20.685     35.365      -6.231      
+MVH     H4      H       H       0       -21.299     35.647      -7.664      
+MVH     H6      H       H       0       -26.393     32.706      -3.543      
+MVH     H7      H       H       0       -26.797     33.425      -4.892      
+MVH     H8      H       H       0       -26.554     34.281      -3.581      
+MVH     H9      H       H       0       -22.894     33.190      -4.213      
+MVH     H11     H       H       0       -21.770     32.056      -2.679      
+MVH     H12     H       H       0       -22.944     30.439      -0.845      
+MVH     H13     H       H       0       -22.106     31.625      -0.208      
+MVH     H14     H       H       0       -21.387     30.541      -1.112      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MVH         OAJ         CAC      SINGLE       n     1.441  0.0103     1.441  0.0103
+MVH         PAN         OAJ      SINGLE       n     1.604  0.0133     1.604  0.0133
+MVH         PAN         OAF      DOUBLE       n     1.493  0.0122     1.493  0.0122
+MVH         PAN         OAK      SINGLE       n     1.617  0.0158     1.617  0.0158
+MVH         OAI         PAN      SINGLE       n     1.493  0.0122     1.493  0.0122
+MVH         OAK         CAM      SINGLE       n     1.351  0.0200     1.351  0.0200
+MVH         CAM         CAD      SINGLE       n     1.490  0.0114     1.490  0.0114
+MVH         CAM         CAG      DOUBLE       n     1.375  0.0200     1.375  0.0200
+MVH         CAG         CAL      SINGLE       n     1.471  0.0197     1.471  0.0197
+MVH         CAL         OAE      DOUBLE       n     1.229  0.0129     1.229  0.0129
+MVH         CAL         NAH      SINGLE       n     1.336  0.0134     1.336  0.0134
+MVH         NAH         CAA      SINGLE       n     1.452  0.0100     1.452  0.0100
+MVH         CAC          H2      SINGLE       n     1.089  0.0100     0.970  0.0164
+MVH         CAC          H3      SINGLE       n     1.089  0.0100     0.970  0.0164
+MVH         CAC          H4      SINGLE       n     1.089  0.0100     0.970  0.0164
+MVH         CAD          H6      SINGLE       n     1.089  0.0100     0.971  0.0145
+MVH         CAD          H7      SINGLE       n     1.089  0.0100     0.971  0.0145
+MVH         CAD          H8      SINGLE       n     1.089  0.0100     0.971  0.0145
+MVH         CAG          H9      SINGLE       n     1.082  0.0130     0.957  0.0200
+MVH         NAH         H11      SINGLE       n     1.016  0.0100     0.875  0.0200
+MVH         CAA         H12      SINGLE       n     1.089  0.0100     0.971  0.0198
+MVH         CAA         H13      SINGLE       n     1.089  0.0100     0.971  0.0198
+MVH         CAA         H14      SINGLE       n     1.089  0.0100     0.971  0.0198
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MVH         OAJ         PAN         OAF     108.578    2.76
+MVH         OAJ         PAN         OAK     104.460    3.00
+MVH         OAJ         PAN         OAI     108.578    2.76
+MVH         OAF         PAN         OAK     112.304    3.00
+MVH         OAF         PAN         OAI     119.782    1.83
+MVH         OAK         PAN         OAI     112.304    3.00
+MVH         CAC         OAJ         PAN     118.893    1.50
+MVH         OAJ         CAC          H2     109.470    1.50
+MVH         OAJ         CAC          H3     109.470    1.50
+MVH         OAJ         CAC          H4     109.470    1.50
+MVH          H2         CAC          H3     109.458    1.50
+MVH          H2         CAC          H4     109.458    1.50
+MVH          H3         CAC          H4     109.458    1.50
+MVH         PAN         OAK         CAM     122.808    2.93
+MVH         OAK         CAM         CAD     114.521    3.00
+MVH         OAK         CAM         CAG     123.010    3.00
+MVH         CAD         CAM         CAG     122.474    3.00
+MVH         CAM         CAD          H6     109.558    1.50
+MVH         CAM         CAD          H7     109.558    1.50
+MVH         CAM         CAD          H8     109.558    1.50
+MVH          H6         CAD          H7     109.400    1.50
+MVH          H6         CAD          H8     109.400    1.50
+MVH          H7         CAD          H8     109.400    1.50
+MVH         CAM         CAG         CAL     127.021    2.58
+MVH         CAM         CAG          H9     116.211    1.50
+MVH         CAL         CAG          H9     116.768    2.14
+MVH         CAG         CAL         OAE     122.111    1.50
+MVH         CAG         CAL         NAH     114.791    1.50
+MVH         OAE         CAL         NAH     123.098    1.83
+MVH         CAL         NAH         CAA     122.170    1.50
+MVH         CAL         NAH         H11     119.095    2.08
+MVH         CAA         NAH         H11     118.735    1.58
+MVH         NAH         CAA         H12     109.480    1.50
+MVH         NAH         CAA         H13     109.480    1.50
+MVH         NAH         CAA         H14     109.480    1.50
+MVH         H12         CAA         H13     109.279    1.79
+MVH         H12         CAA         H14     109.279    1.79
+MVH         H13         CAA         H14     109.279    1.79
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MVH             sp2_sp3_7         CAL         NAH         CAA         H12       0.000    10.0     6
+MVH             sp3_sp3_6         CAC         OAJ         PAN         OAF      60.000    10.0     3
+MVH             sp3_sp3_7         OAJ         PAN         OAK         CAM     180.000    10.0     3
+MVH             sp3_sp3_1          H2         CAC         OAJ         PAN     180.000    10.0     3
+MVH             sp2_sp2_1         CAD         CAM         OAK         PAN     180.000     5.0     2
+MVH             sp2_sp3_1         OAK         CAM         CAD          H6       0.000    10.0     6
+MVH             sp2_sp2_3         CAL         CAG         CAM         OAK     180.000     5.0     2
+MVH             sp2_sp2_8         CAM         CAG         CAL         OAE       0.000     5.0     2
+MVH            sp2_sp2_11         CAG         CAL         NAH         CAA     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MVH    chir_1    PAN    OAK    OAJ    OAI    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MVH    plan-1         CAD   0.020
+MVH    plan-1         CAG   0.020
+MVH    plan-1         CAM   0.020
+MVH    plan-1         OAK   0.020
+MVH    plan-2         CAG   0.020
+MVH    plan-2         CAL   0.020
+MVH    plan-2         CAM   0.020
+MVH    plan-2          H9   0.020
+MVH    plan-3         CAG   0.020
+MVH    plan-3         CAL   0.020
+MVH    plan-3         NAH   0.020
+MVH    plan-3         OAE   0.020
+MVH    plan-4         CAA   0.020
+MVH    plan-4         CAL   0.020
+MVH    plan-4         H11   0.020
+MVH    plan-4         NAH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MVH           SMILES              ACDLabs 12.01                                                        O=P(OC)(O\C(=C/C(=O)NC)C)O
+MVH            InChI                InChI  1.03 InChI=1S/C6H12NO5P/c1-5(4-6(8)7-2)12-13(9,10)11-3/h4H,1-3H3,(H,7,8)(H,9,10)/b5-4+
+MVH         InChIKey                InChI  1.03                                                       SBZAFHSOQLENTI-SNAWJCMRSA-N
+MVH SMILES_CANONICAL               CACTVS 3.370                                                      CNC(=O)/C=C(C)/O[P](O)(=O)OC
+MVH           SMILES               CACTVS 3.370                                                        CNC(=O)C=C(C)O[P](O)(=O)OC
+MVH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                          CC(=CC(=O)NC)OP(=O)(O)OC
+MVH           SMILES "OpenEye OEToolkits" 1.7.6                                                          CC(=CC(=O)NC)OP(=O)(O)OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MVH acedrg               243         "dictionary generator"                  
+MVH acedrg_database      11          "data source"                           
+MVH rdkit                2017.03.2   "Chemoinformatics tool"
+MVH refmac5              5.8.0238    "optimization tool"                     

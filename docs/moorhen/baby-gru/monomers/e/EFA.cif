@@ -1,0 +1,255 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EFA     EFA      "5'-deoxy-2-ethynyl-5'-fluoroadenosine"     NON-POLYMER     33     21     .     
+#
+data_comp_EFA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EFA     N1      N       NRD6    0       19.755      49.099      -0.891      
+EFA     C2      C       CR6     0       20.094      49.931      0.107       
+EFA     N3      N       NRD6    0       20.961      49.635      1.083       
+EFA     C4      C       CR56    0       21.505      48.405      1.017       
+EFA     C5      C       CR56    0       21.230      47.472      0.040       
+EFA     C6      C       CR6     0       20.305      47.858      -0.955      
+EFA     N6      N       NH2     0       19.943      47.062      -1.960      
+EFA     N7      N       NRD5    0       21.959      46.312      0.269       
+EFA     C8      C       CR15    0       22.648      46.562      1.361       
+EFA     N9      N       NT      0       22.413      47.828      1.862       
+EFA     "C1'"   C       CH1     0       22.990      48.456      3.052       
+EFA     "C2'"   C       CH1     0       22.203      48.179      4.330       
+EFA     "O2'"   O       OH1     0       22.326      49.245      5.246       
+EFA     "C3'"   C       CH1     0       22.871      46.890      4.814       
+EFA     "O3'"   O       OH1     0       22.711      46.680      6.211       
+EFA     "C4'"   C       CH1     0       24.332      47.155      4.462       
+EFA     "O4'"   O       O2      0       24.290      47.944      3.251       
+EFA     "C5'"   C       CH2     0       25.162      45.924      4.229       
+EFA     "F5'"   F       F       0       26.413      46.247      3.922       
+EFA     CAA     C       CSP     0       18.988      52.300      0.237       
+EFA     CAF     C       CSP     0       19.483      51.232      0.128       
+EFA     HN6     H       H       0       20.552      46.605      -2.395      
+EFA     HN6A    H       H       0       19.096      47.001      -2.182      
+EFA     H8      H       H       0       23.237      45.938      1.749       
+EFA     "H1'"   H       H       0       23.037      49.429      2.911       
+EFA     "H2'"   H       H       0       21.245      48.016      4.120       
+EFA     "HO2'"  H       H       0       21.818      49.101      5.911       
+EFA     "H3'"   H       H       0       22.527      46.110      4.307       
+EFA     "HO3'"  H       H       0       23.117      45.967      6.429       
+EFA     "H4'"   H       H       0       24.745      47.691      5.182       
+EFA     "H5'"   H       H       0       24.775      45.411      3.500       
+EFA     "H5'A"  H       H       0       25.160      45.381      5.037       
+EFA     HAA     H       H       0       18.621      53.166      -0.034      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EFA          N1          C2      DOUBLE       y     1.331  0.0124     1.331  0.0124
+EFA          N1          C6      SINGLE       y     1.350  0.0115     1.350  0.0115
+EFA          C2          N3      SINGLE       y     1.331  0.0124     1.331  0.0124
+EFA          C2         CAF      SINGLE       n     1.437  0.0100     1.437  0.0100
+EFA          N3          C4      DOUBLE       y     1.344  0.0127     1.344  0.0127
+EFA          C4          C5      SINGLE       y     1.383  0.0100     1.383  0.0100
+EFA          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+EFA          C5          C6      DOUBLE       y     1.409  0.0100     1.409  0.0100
+EFA          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+EFA          C6          N6      SINGLE       n     1.332  0.0100     1.332  0.0100
+EFA          N7          C8      DOUBLE       y     1.310  0.0100     1.310  0.0100
+EFA          C8          N9      SINGLE       y     1.372  0.0200     1.372  0.0200
+EFA          N9       "C1'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+EFA       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+EFA       "C1'"       "O4'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+EFA       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+EFA       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+EFA       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+EFA       "C3'"       "C4'"      SINGLE       n     1.528  0.0117     1.528  0.0117
+EFA       "C4'"       "O4'"      SINGLE       n     1.446  0.0100     1.446  0.0100
+EFA       "C4'"       "C5'"      SINGLE       n     1.502  0.0160     1.502  0.0160
+EFA       "C5'"       "F5'"      SINGLE       n     1.328  0.0139     1.328  0.0139
+EFA         CAA         CAF      TRIPLE       n     1.177  0.0144     1.177  0.0144
+EFA          N6         HN6      SINGLE       n     1.016  0.0100     0.877  0.0200
+EFA          N6        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+EFA          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+EFA       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+EFA       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+EFA       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+EFA       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+EFA       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+EFA       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.989  0.0197
+EFA       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.973  0.0148
+EFA       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.973  0.0148
+EFA         CAA         HAA      SINGLE       n     1.048  0.0100     0.940  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EFA          C2          N1          C6     118.337    1.50
+EFA          N1          C2          N3     124.053    1.50
+EFA          N1          C2         CAF     117.973    1.50
+EFA          N3          C2         CAF     117.973    1.50
+EFA          C2          N3          C4     116.025    1.50
+EFA          N3          C4          C5     125.466    1.50
+EFA          N3          C4          N9     126.356    1.50
+EFA          C5          C4          N9     108.178    1.69
+EFA          C4          C5          C6     117.482    1.50
+EFA          C4          C5          N7     110.480    1.50
+EFA          C6          C5          N7     132.038    1.50
+EFA          N1          C6          C5     118.636    1.50
+EFA          N1          C6          N6     118.115    1.50
+EFA          C5          C6          N6     123.249    1.50
+EFA          C6          N6         HN6     119.723    1.50
+EFA          C6          N6        HN6A     119.723    1.50
+EFA         HN6          N6        HN6A     120.554    1.88
+EFA          C5          N7          C8     103.927    1.50
+EFA          N7          C8          N9     112.130    1.94
+EFA          N7          C8          H8     123.170    1.50
+EFA          N9          C8          H8     124.701    2.19
+EFA          C4          N9          C8     107.594    1.50
+EFA          C4          N9       "C1'"     125.158    1.54
+EFA          C8          N9       "C1'"     126.078    2.46
+EFA          N9       "C1'"       "C2'"     113.752    2.20
+EFA          N9       "C1'"       "O4'"     108.167    1.51
+EFA          N9       "C1'"       "H1'"     109.246    1.50
+EFA       "C2'"       "C1'"       "O4'"     106.047    1.50
+EFA       "C2'"       "C1'"       "H1'"     109.015    1.50
+EFA       "O4'"       "C1'"       "H1'"     109.807    1.50
+EFA       "C1'"       "C2'"       "O2'"     111.715    2.69
+EFA       "C1'"       "C2'"       "C3'"     101.239    1.50
+EFA       "C1'"       "C2'"       "H2'"     110.636    1.70
+EFA       "O2'"       "C2'"       "C3'"     112.782    2.45
+EFA       "O2'"       "C2'"       "H2'"     110.448    1.97
+EFA       "C3'"       "C2'"       "H2'"     110.596    1.51
+EFA       "C2'"       "O2'"      "HO2'"     109.103    2.13
+EFA       "C2'"       "C3'"       "O3'"     111.581    2.83
+EFA       "C2'"       "C3'"       "C4'"     102.352    1.50
+EFA       "C2'"       "C3'"       "H3'"     110.504    1.75
+EFA       "O3'"       "C3'"       "C4'"     110.985    2.41
+EFA       "O3'"       "C3'"       "H3'"     110.380    1.67
+EFA       "C4'"       "C3'"       "H3'"     110.624    1.81
+EFA       "C3'"       "O3'"      "HO3'"     108.744    3.00
+EFA       "C3'"       "C4'"       "O4'"     105.508    1.50
+EFA       "C3'"       "C4'"       "C5'"     115.026    1.50
+EFA       "C3'"       "C4'"       "H4'"     109.143    1.50
+EFA       "O4'"       "C4'"       "C5'"     109.455    1.50
+EFA       "O4'"       "C4'"       "H4'"     109.115    1.50
+EFA       "C5'"       "C4'"       "H4'"     109.150    1.50
+EFA       "C1'"       "O4'"       "C4'"     109.426    1.50
+EFA       "C4'"       "C5'"       "F5'"     111.433    1.79
+EFA       "C4'"       "C5'"       "H5'"     109.466    1.50
+EFA       "C4'"       "C5'"      "H5'A"     109.466    1.50
+EFA       "F5'"       "C5'"       "H5'"     109.569    1.50
+EFA       "F5'"       "C5'"      "H5'A"     109.569    1.50
+EFA       "H5'"       "C5'"      "H5'A"     109.401    1.50
+EFA         CAF         CAA         HAA     180.000    3.00
+EFA          C2         CAF         CAA     180.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EFA       const_sp2_sp2_2         CAF          C2          N1          C6     180.000     5.0     2
+EFA              const_24          N6          C6          N1          C2     180.000    10.0     2
+EFA             sp3_sp3_5          N9       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+EFA            sp3_sp3_32          N9       "C1'"       "O4'"       "C4'"      60.000    10.0     3
+EFA            sp3_sp3_34       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+EFA            sp3_sp3_14       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+EFA            sp3_sp3_37       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+EFA            sp3_sp3_23       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+EFA            sp3_sp3_29       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+EFA            sp3_sp3_40       "C3'"       "C4'"       "C5'"       "F5'"     180.000    10.0     3
+EFA           other_tor_3         HAA         CAA         CAF          C2     180.000    10.0     1
+EFA       const_sp2_sp2_4         CAF          C2          N3          C4     180.000     5.0     2
+EFA           other_tor_1         CAA         CAF          C2          N1      90.000    10.0     1
+EFA       const_sp2_sp2_5          C5          C4          N3          C2       0.000     5.0     2
+EFA       const_sp2_sp2_7          N3          C4          C5          C6       0.000     5.0     2
+EFA              const_27          N3          C4          N9          C8     180.000    10.0     2
+EFA              const_12          C4          C5          C6          N6     180.000    10.0     2
+EFA              const_15          C4          C5          N7          C8       0.000    10.0     2
+EFA             sp2_sp2_3          N1          C6          N6         HN6       0.000     5.0     2
+EFA              const_17          N9          C8          N7          C5       0.000    10.0     2
+EFA              const_19          N7          C8          N9          C4       0.000    10.0     2
+EFA             sp2_sp3_1          C4          N9       "C1'"       "C2'"     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EFA    chir_1    "C1'"    "O4'"    N9    "C2'"    negative
+EFA    chir_2    "C2'"    "O2'"    "C1'"    "C3'"    negative
+EFA    chir_3    "C3'"    "O3'"    "C4'"    "C2'"    positive
+EFA    chir_4    "C4'"    "O4'"    "C5'"    "C3'"    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EFA    plan-1       "C1'"   0.020
+EFA    plan-1          C2   0.020
+EFA    plan-1          C4   0.020
+EFA    plan-1          C5   0.020
+EFA    plan-1          C6   0.020
+EFA    plan-1          C8   0.020
+EFA    plan-1         CAF   0.020
+EFA    plan-1          H8   0.020
+EFA    plan-1          N1   0.020
+EFA    plan-1          N3   0.020
+EFA    plan-1          N6   0.020
+EFA    plan-1          N7   0.020
+EFA    plan-1          N9   0.020
+EFA    plan-2          C6   0.020
+EFA    plan-2         HN6   0.020
+EFA    plan-2        HN6A   0.020
+EFA    plan-2          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EFA           SMILES              ACDLabs 12.01                                                                                                          FCC3OC(n2cnc1c(nc(C#C)nc12)N)C(O)C3O
+EFA            InChI                InChI  1.03 InChI=1S/C12H12FN5O3/c1-2-6-16-10(14)7-11(17-6)18(4-15-7)12-9(20)8(19)5(3-13)21-12/h1,4-5,8-9,12,19-20H,3H2,(H2,14,16,17)/t5-,8-,9-,12-/m1/s1
+EFA         InChIKey                InChI  1.03                                                                                                                   QQEYBKXSSQIJRJ-JJNLEZRASA-N
+EFA SMILES_CANONICAL               CACTVS 3.385                                                                                        Nc1nc(nc2n(cnc12)[C@@H]3O[C@H](CF)[C@@H](O)[C@H]3O)C#C
+EFA           SMILES               CACTVS 3.385                                                                                              Nc1nc(nc2n(cnc12)[CH]3O[CH](CF)[CH](O)[CH]3O)C#C
+EFA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                    C#Cc1nc(c2c(n1)n(cn2)[C@H]3[C@@H]([C@@H]([C@H](O3)CF)O)O)N
+EFA           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                      C#Cc1nc(c2c(n1)n(cn2)C3C(C(C(O3)CF)O)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EFA acedrg               243         "dictionary generator"                  
+EFA acedrg_database      11          "data source"                           
+EFA rdkit                2017.03.2   "Chemoinformatics tool"
+EFA refmac5              5.8.0238    "optimization tool"                     

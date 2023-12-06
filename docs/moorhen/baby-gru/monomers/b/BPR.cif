@@ -1,0 +1,242 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BPR     BPR      (2R)-N-[(2R)-2-(DIHYDROXYBORYL)-1-L-PROLYLPYRROLIDIN-2-YL]-N-[(5R)-5-(DIHYDROXYBORYL)-1-L-PROLYLPYRROLIDIN-2-YL]-L-PROLINAMIDE     NON-POLYMER     32     15     .     
+#
+data_comp_BPR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BPR     N       N       NT1     0       -5.879      19.601      6.429       
+BPR     CA      C       CH1     0       -6.981      19.177      5.543       
+BPR     C       C       C       0       -6.498      18.454      4.288       
+BPR     O       O       O       0       -5.327      18.562      3.925       
+BPR     CB      C       CH2     0       -7.681      20.493      5.163       
+BPR     CG      C       CH2     0       -6.599      21.531      5.299       
+BPR     CD      C       CH2     0       -5.803      21.065      6.498       
+BPR     O1      O       OH1     0       -7.679      18.842      0.714       
+BPR     N1      N       NR5     0       -7.384      17.713      3.591       
+BPR     C1      C       CH2     0       -8.809      17.493      3.898       
+BPR     C2      C       CH1     0       -6.978      17.007      2.370       
+BPR     C3      C       CH2     0       -8.178      16.097      2.064       
+BPR     C4      C       CH2     0       -9.353      16.833      2.650       
+BPR     O2      O       OH1     0       -5.420      18.190      0.708       
+BPR     B       B       B       0       -6.678      18.067      1.205       
+BPR     HN      H       H       0       -5.090      19.324      6.125       
+BPR     HA      H       H       0       -7.597      18.605      6.065       
+BPR     HB1     H       H       0       -8.425      20.681      5.773       
+BPR     HB2     H       H       0       -8.024      20.462      4.243       
+BPR     HG1     H       H       0       -6.981      22.419      5.455       
+BPR     HG2     H       H       0       -6.038      21.562      4.497       
+BPR     HD1     H       H       0       -4.878      21.370      6.444       
+BPR     HD2     H       H       0       -6.196      21.395      7.327       
+BPR     HO1     H       H       0       -8.110      19.178      1.328       
+BPR     H11     H       H       0       -8.914      16.903      4.690       
+BPR     H12     H       H       0       -9.272      18.353      4.074       
+BPR     H2      H       H       0       -6.174      16.460      2.542       
+BPR     H31     H       H       0       -8.068      15.216      2.486       
+BPR     H32     H       H       0       -8.288      15.975      1.094       
+BPR     H41     H       H       0       -9.685      17.488      2.035       
+BPR     H42     H       H       0       -10.060     16.225      2.868       
+BPR     HO2     H       H       0       -5.093      17.449      0.570       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BPR           N          CA      SINGLE       n     1.468  0.0148     1.468  0.0148
+BPR           N          CD      SINGLE       n     1.468  0.0152     1.468  0.0152
+BPR          CA           C      SINGLE       n     1.517  0.0137     1.517  0.0137
+BPR          CA          CB      SINGLE       n     1.534  0.0126     1.534  0.0126
+BPR           C           O      DOUBLE       n     1.229  0.0108     1.229  0.0108
+BPR           C          N1      SINGLE       n     1.343  0.0100     1.343  0.0100
+BPR          CB          CG      SINGLE       n     1.508  0.0200     1.508  0.0200
+BPR          CG          CD      SINGLE       n     1.515  0.0118     1.515  0.0118
+BPR          O1           B      SINGLE       n     1.358  0.0116     1.358  0.0116
+BPR          N1          C1      SINGLE       n     1.471  0.0104     1.471  0.0104
+BPR          N1          C2      SINGLE       n     1.465  0.0100     1.465  0.0100
+BPR          C1          C4      SINGLE       n     1.514  0.0149     1.514  0.0149
+BPR          C2          C3      SINGLE       n     1.537  0.0132     1.537  0.0132
+BPR          C2           B      SINGLE       n     1.603  0.0182     1.603  0.0182
+BPR          C3          C4      SINGLE       n     1.509  0.0200     1.509  0.0200
+BPR          O2           B      SINGLE       n     1.358  0.0116     1.358  0.0116
+BPR           N          HN      SINGLE       n     1.036  0.0160     0.887  0.0200
+BPR          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0121
+BPR          CB         HB1      SINGLE       n     1.089  0.0100     0.981  0.0193
+BPR          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0193
+BPR          CG         HG1      SINGLE       n     1.089  0.0100     0.979  0.0132
+BPR          CG         HG2      SINGLE       n     1.089  0.0100     0.979  0.0132
+BPR          CD         HD1      SINGLE       n     1.089  0.0100     0.975  0.0100
+BPR          CD         HD2      SINGLE       n     1.089  0.0100     0.975  0.0100
+BPR          O1         HO1      SINGLE       n     0.970  0.0120     0.821  0.0200
+BPR          C1         H11      SINGLE       n     1.089  0.0100     0.993  0.0200
+BPR          C1         H12      SINGLE       n     1.089  0.0100     0.993  0.0200
+BPR          C2          H2      SINGLE       n     1.089  0.0100     0.987  0.0103
+BPR          C3         H31      SINGLE       n     1.089  0.0100     0.983  0.0154
+BPR          C3         H32      SINGLE       n     1.089  0.0100     0.983  0.0154
+BPR          C4         H41      SINGLE       n     1.089  0.0100     0.958  0.0144
+BPR          C4         H42      SINGLE       n     1.089  0.0100     0.958  0.0144
+BPR          O2         HO2      SINGLE       n     0.970  0.0120     0.821  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BPR          CA           N          CD     109.056    3.00
+BPR          CA           N          HN     109.307    3.00
+BPR          CD           N          HN     106.136    2.25
+BPR           N          CA           C     111.420    2.45
+BPR           N          CA          CB     103.430    2.23
+BPR           N          CA          HA     109.296    1.50
+BPR           C          CA          CB     110.246    1.50
+BPR           C          CA          HA     111.169    1.50
+BPR          CB          CA          HA     110.393    1.50
+BPR          CA           C           O     120.921    1.50
+BPR          CA           C          N1     117.672    1.50
+BPR           O           C          N1     121.408    1.50
+BPR          CA          CB          CG     103.507    1.50
+BPR          CA          CB         HB1     110.853    1.50
+BPR          CA          CB         HB2     110.853    1.50
+BPR          CG          CB         HB1     110.886    1.50
+BPR          CG          CB         HB2     110.886    1.50
+BPR         HB1          CB         HB2     108.922    1.50
+BPR          CB          CG          CD     104.503    1.95
+BPR          CB          CG         HG1     110.864    1.50
+BPR          CB          CG         HG2     110.864    1.50
+BPR          CD          CG         HG1     110.804    1.50
+BPR          CD          CG         HG2     110.804    1.50
+BPR         HG1          CG         HG2     108.899    1.50
+BPR           N          CD          CG     105.071    2.33
+BPR           N          CD         HD1     110.738    1.50
+BPR           N          CD         HD2     110.738    1.50
+BPR          CG          CD         HD1     110.867    1.50
+BPR          CG          CD         HD2     110.867    1.50
+BPR         HD1          CD         HD2     108.731    1.50
+BPR           B          O1         HO1     110.397    3.00
+BPR           C          N1          C1     126.255    3.00
+BPR           C          N1          C2     121.378    3.00
+BPR          C1          N1          C2     112.367    1.50
+BPR          N1          C1          C4     103.334    1.50
+BPR          N1          C1         H11     111.006    1.50
+BPR          N1          C1         H12     111.006    1.50
+BPR          C4          C1         H11     111.171    1.50
+BPR          C4          C1         H12     111.171    1.50
+BPR         H11          C1         H12     108.998    1.50
+BPR          N1          C2          C3     102.981    1.50
+BPR          N1          C2           B     109.471    3.00
+BPR          N1          C2          H2     110.081    1.50
+BPR          C3          C2           B     112.913    2.62
+BPR          C3          C2          H2     110.154    1.52
+BPR           B          C2          H2     109.471    3.00
+BPR          C2          C3          C4     103.843    1.50
+BPR          C2          C3         H31     110.819    1.50
+BPR          C2          C3         H32     110.819    1.50
+BPR          C4          C3         H31     110.839    1.50
+BPR          C4          C3         H32     110.839    1.50
+BPR         H31          C3         H32     108.877    1.50
+BPR          C1          C4          C3     104.503    1.95
+BPR          C1          C4         H41     110.793    1.50
+BPR          C1          C4         H42     110.793    1.50
+BPR          C3          C4         H41     110.839    1.50
+BPR          C3          C4         H42     110.839    1.50
+BPR         H41          C4         H42     108.899    1.50
+BPR           B          O2         HO2     110.397    3.00
+BPR          O1           B          C2     120.001    3.00
+BPR          O1           B          O2     119.998    3.00
+BPR          C2           B          O2     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BPR            sp3_sp3_30           C          CA           N          CD     -60.000    10.0     3
+BPR            sp3_sp3_61          CG          CD           N          CA     180.000    10.0     3
+BPR            sp3_sp3_22           B          C2          C3          C4     180.000    10.0     3
+BPR            sp3_sp3_69          O1           B          C2          N1     180.000    10.0     3
+BPR            sp3_sp3_10          C2          C3          C4          C1      60.000    10.0     3
+BPR            sp3_sp3_75          O1           B          O2         HO2     180.000    10.0     3
+BPR             sp2_sp3_7           O           C          CA           N       0.000    10.0     6
+BPR            sp3_sp3_37           C          CA          CB          CG     180.000    10.0     3
+BPR             sp2_sp2_3           O           C          N1          C1       0.000     5.0     2
+BPR            sp3_sp3_43          CA          CB          CG          CD      60.000    10.0     3
+BPR            sp3_sp3_52           N          CD          CG          CB     -60.000    10.0     3
+BPR            sp3_sp3_68          O2           B          O1         HO1      60.000    10.0     3
+BPR            sp2_sp3_17           C          N1          C2           B     -60.000    10.0     6
+BPR             sp2_sp3_4           C          N1          C1          C4     180.000    10.0     6
+BPR             sp3_sp3_1          N1          C1          C4          C3     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BPR    chir_1    CA    N    C    CB    positive
+BPR    chir_2    C2    N1    C3    B    negative
+BPR    chir_3    N    CA    CD    HN    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BPR    plan-1           C   0.020
+BPR    plan-1          CA   0.020
+BPR    plan-1          N1   0.020
+BPR    plan-1           O   0.020
+BPR    plan-2           C   0.020
+BPR    plan-2          C1   0.020
+BPR    plan-2          C2   0.020
+BPR    plan-2          N1   0.020
+BPR    plan-3           B   0.020
+BPR    plan-3          C2   0.020
+BPR    plan-3          O1   0.020
+BPR    plan-3          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BPR           SMILES              ACDLabs 10.04                                                                      O=C(N1C(B(O)O)CCC1)C2NCCC2
+BPR SMILES_CANONICAL               CACTVS 3.341                                                              OB(O)[C@@H]1CCCN1C(=O)[C@@H]2CCCN2
+BPR           SMILES               CACTVS 3.341                                                                  OB(O)[CH]1CCCN1C(=O)[CH]2CCCN2
+BPR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                            B([C@@H]1CCCN1C(=O)[C@@H]2CCCN2)(O)O
+BPR           SMILES "OpenEye OEToolkits" 1.5.0                                                                      B(C1CCCN1C(=O)C2CCCN2)(O)O
+BPR            InChI                InChI  1.03 InChI=1S/C9H17BN2O3/c13-9(7-3-1-5-11-7)12-6-2-4-8(12)10(14)15/h7-8,11,14-15H,1-6H2/t7-,8-/m0/s1
+BPR         InChIKey                InChI  1.03                                                                     XSBZZZGVAIXJLD-YUMQZZPRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BPR acedrg               243         "dictionary generator"                  
+BPR acedrg_database      11          "data source"                           
+BPR rdkit                2017.03.2   "Chemoinformatics tool"
+BPR refmac5              5.8.0238    "optimization tool"                     

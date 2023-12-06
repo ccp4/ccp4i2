@@ -1,0 +1,357 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JJZ     JJZ      4-[2-(anthracen-9-ylmethylidene)hydrazino]-N-(3-chlorophenyl)-4-oxobutanamide     NON-POLYMER     51     31     .     
+#
+data_comp_JJZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JJZ     CAA     C       CR16    0       5.417       -34.158     -10.772     
+JJZ     CAB     C       CR16    0       6.150       -33.964     -11.928     
+JJZ     CAC     C       CR16    0       7.218       -33.082     -11.954     
+JJZ     OAD     O       O       0       9.827       -32.093     -9.010      
+JJZ     OAE     O       O       0       12.635      -28.424     -11.101     
+JJZ     CLAF    CL      CL      0       4.859       -33.681     -8.175      
+JJZ     CAG     C       CR6     0       5.769       -33.453     -9.640      
+JJZ     CAH     C       CR16    0       6.830       -32.559     -9.633      
+JJZ     CAI     C       CR6     0       7.564       -32.379     -10.805     
+JJZ     NAJ     N       NH1     0       8.657       -31.480     -10.858     
+JJZ     CAK     C       C       0       9.682       -31.355     -9.976      
+JJZ     CAL     C       CH2     0       10.663      -30.244     -10.272     
+JJZ     CAM     C       CH2     0       11.852      -30.708     -11.065     
+JJZ     CAN     C       C       0       12.785      -29.588     -11.470     
+JJZ     NAO     N       NH1     0       13.788      -29.884     -12.321     
+JJZ     NAP     N       N       0       14.099      -31.193     -12.631     
+JJZ     CAQ     C       C1      0       14.908      -31.405     -13.595     
+JJZ     CAR     C       CR16    0       18.737      -33.358     -13.509     
+JJZ     CAS     C       CR16    0       17.520      -32.733     -13.535     
+JJZ     CAT     C       CR66    0       16.373      -33.333     -14.153     
+JJZ     CAU     C       CR6     0       15.092      -32.727     -14.208     
+JJZ     CAV     C       CR66    0       14.008      -33.392     -14.839     
+JJZ     CAW     C       CR16    0       12.680      -32.857     -14.943     
+JJZ     CAX     C       CR16    0       11.669      -33.540     -15.562     
+JJZ     CAY     C       CR16    0       18.904      -34.625     -14.094     
+JJZ     CAZ     C       CR16    0       17.854      -35.247     -14.696     
+JJZ     CBA     C       CR66    0       16.564      -34.634     -14.749     
+JJZ     CBB     C       CR16    0       15.491      -35.272     -15.364     
+JJZ     CBC     C       CR66    0       14.227      -34.693     -15.427     
+JJZ     CBD     C       CR16    0       13.139      -35.367     -16.065     
+JJZ     CBE     C       CR16    0       11.902      -34.805     -16.128     
+JJZ     HAA     H       H       0       4.692       -34.758     -10.758     
+JJZ     HAB     H       H       0       5.922       -34.437     -12.704     
+JJZ     HAC     H       H       0       7.711       -32.958     -12.749     
+JJZ     HAH     H       H       0       7.056       -32.090     -8.849      
+JJZ     HNAJ    H       H       0       8.670       -30.954     -11.556     
+JJZ     HAL     H       H       0       10.977      -29.867     -9.425      
+JJZ     HALA    H       H       0       10.208      -29.531     -10.765     
+JJZ     HAM     H       H       0       11.531      -31.162     -11.871     
+JJZ     HAMA    H       H       0       12.351      -31.360     -10.532     
+JJZ     HNAO    H       H       0       14.248      -29.232     -12.672     
+JJZ     HAQ     H       H       0       15.428      -30.693     -13.940     
+JJZ     HAR     H       H       0       19.472      -32.935     -13.094     
+JJZ     HAS     H       H       0       17.438      -31.883     -13.135     
+JJZ     HAW     H       H       0       12.492      -32.011     -14.574     
+JJZ     HAX     H       H       0       10.808      -33.157     -15.611     
+JJZ     HAY     H       H       0       19.749      -35.046     -14.069     
+JJZ     HAZ     H       H       0       17.977      -36.098     -15.086     
+JJZ     HBB     H       H       0       15.624      -36.124     -15.752     
+JJZ     HBD     H       H       0       13.285      -36.217     -16.448     
+JJZ     HBE     H       H       0       11.197      -35.266     -16.554     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JJZ         CAA         CAB      DOUBLE       y     1.377  0.0128     1.377  0.0128
+JJZ         CAA         CAG      SINGLE       y     1.376  0.0105     1.376  0.0105
+JJZ         CAB         CAC      SINGLE       y     1.382  0.0105     1.382  0.0105
+JJZ         CAC         CAI      DOUBLE       y     1.387  0.0102     1.387  0.0102
+JJZ         OAD         CAK      DOUBLE       n     1.223  0.0143     1.223  0.0143
+JJZ         OAE         CAN      DOUBLE       n     1.229  0.0107     1.229  0.0107
+JJZ        CLAF         CAG      SINGLE       n     1.740  0.0100     1.740  0.0100
+JJZ         CAG         CAH      DOUBLE       y     1.382  0.0119     1.382  0.0119
+JJZ         CAH         CAI      SINGLE       y     1.389  0.0111     1.389  0.0111
+JJZ         CAI         NAJ      SINGLE       n     1.414  0.0100     1.414  0.0100
+JJZ         NAJ         CAK      SINGLE       n     1.350  0.0120     1.350  0.0120
+JJZ         CAK         CAL      SINGLE       n     1.509  0.0100     1.509  0.0100
+JJZ         CAL         CAM      SINGLE       n     1.499  0.0200     1.499  0.0200
+JJZ         CAM         CAN      SINGLE       n     1.506  0.0120     1.506  0.0120
+JJZ         CAN         NAO      SINGLE       n     1.344  0.0100     1.344  0.0100
+JJZ         NAO         NAP      SINGLE       n     1.376  0.0100     1.376  0.0100
+JJZ         NAP         CAQ      DOUBLE       n     1.273  0.0100     1.273  0.0100
+JJZ         CAQ         CAU      SINGLE       n     1.465  0.0100     1.465  0.0100
+JJZ         CAR         CAS      DOUBLE       y     1.365  0.0100     1.365  0.0100
+JJZ         CAR         CAY      SINGLE       y     1.402  0.0131     1.402  0.0131
+JJZ         CAS         CAT      SINGLE       y     1.427  0.0100     1.427  0.0100
+JJZ         CAT         CAU      DOUBLE       y     1.408  0.0100     1.408  0.0100
+JJZ         CAT         CBA      SINGLE       y     1.436  0.0100     1.436  0.0100
+JJZ         CAU         CAV      SINGLE       y     1.408  0.0100     1.408  0.0100
+JJZ         CAV         CAW      DOUBLE       y     1.427  0.0100     1.427  0.0100
+JJZ         CAV         CBC      SINGLE       y     1.436  0.0100     1.436  0.0100
+JJZ         CAW         CAX      SINGLE       y     1.365  0.0100     1.365  0.0100
+JJZ         CAX         CBE      DOUBLE       y     1.402  0.0131     1.402  0.0131
+JJZ         CAY         CAZ      DOUBLE       y     1.358  0.0118     1.358  0.0118
+JJZ         CAZ         CBA      SINGLE       y     1.427  0.0100     1.427  0.0100
+JJZ         CBA         CBB      DOUBLE       y     1.391  0.0100     1.391  0.0100
+JJZ         CBB         CBC      SINGLE       y     1.391  0.0100     1.391  0.0100
+JJZ         CBC         CBD      DOUBLE       y     1.427  0.0100     1.427  0.0100
+JJZ         CBD         CBE      SINGLE       y     1.358  0.0118     1.358  0.0118
+JJZ         CAA         HAA      SINGLE       n     1.082  0.0130     0.941  0.0166
+JJZ         CAB         HAB      SINGLE       n     1.082  0.0130     0.937  0.0130
+JJZ         CAC         HAC      SINGLE       n     1.082  0.0130     0.943  0.0178
+JJZ         CAH         HAH      SINGLE       n     1.082  0.0130     0.941  0.0172
+JJZ         NAJ        HNAJ      SINGLE       n     1.016  0.0100     0.874  0.0200
+JJZ         CAL         HAL      SINGLE       n     1.089  0.0100     0.979  0.0159
+JJZ         CAL        HALA      SINGLE       n     1.089  0.0100     0.979  0.0159
+JJZ         CAM         HAM      SINGLE       n     1.089  0.0100     0.979  0.0159
+JJZ         CAM        HAMA      SINGLE       n     1.089  0.0100     0.979  0.0159
+JJZ         NAO        HNAO      SINGLE       n     1.016  0.0100     0.869  0.0200
+JJZ         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.946  0.0200
+JJZ         CAR         HAR      SINGLE       n     1.082  0.0130     0.944  0.0184
+JJZ         CAS         HAS      SINGLE       n     1.082  0.0130     0.944  0.0160
+JJZ         CAW         HAW      SINGLE       n     1.082  0.0130     0.944  0.0160
+JJZ         CAX         HAX      SINGLE       n     1.082  0.0130     0.944  0.0184
+JJZ         CAY         HAY      SINGLE       n     1.082  0.0130     0.944  0.0184
+JJZ         CAZ         HAZ      SINGLE       n     1.082  0.0130     0.944  0.0192
+JJZ         CBB         HBB      SINGLE       n     1.082  0.0130     0.945  0.0200
+JJZ         CBD         HBD      SINGLE       n     1.082  0.0130     0.944  0.0192
+JJZ         CBE         HBE      SINGLE       n     1.082  0.0130     0.944  0.0184
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JJZ         CAB         CAA         CAG     118.687    1.50
+JJZ         CAB         CAA         HAA     120.666    1.50
+JJZ         CAG         CAA         HAA     120.647    1.50
+JJZ         CAA         CAB         CAC     120.950    1.50
+JJZ         CAA         CAB         HAB     119.545    1.50
+JJZ         CAC         CAB         HAB     119.505    1.50
+JJZ         CAB         CAC         CAI     119.833    1.50
+JJZ         CAB         CAC         HAC     120.150    1.50
+JJZ         CAI         CAC         HAC     120.017    1.50
+JJZ         CAA         CAG        CLAF     119.302    1.50
+JJZ         CAA         CAG         CAH     122.009    1.50
+JJZ        CLAF         CAG         CAH     118.689    1.50
+JJZ         CAG         CAH         CAI     118.553    1.50
+JJZ         CAG         CAH         HAH     120.717    1.50
+JJZ         CAI         CAH         HAH     120.730    1.50
+JJZ         CAC         CAI         CAH     119.967    1.50
+JJZ         CAC         CAI         NAJ     119.880    3.00
+JJZ         CAH         CAI         NAJ     120.154    3.00
+JJZ         CAI         NAJ         CAK     127.481    1.50
+JJZ         CAI         NAJ        HNAJ     115.919    1.69
+JJZ         CAK         NAJ        HNAJ     116.600    1.57
+JJZ         OAD         CAK         NAJ     123.052    1.50
+JJZ         OAD         CAK         CAL     122.305    1.50
+JJZ         NAJ         CAK         CAL     114.645    1.50
+JJZ         CAK         CAL         CAM     113.384    1.50
+JJZ         CAK         CAL         HAL     108.910    1.50
+JJZ         CAK         CAL        HALA     108.910    1.50
+JJZ         CAM         CAL         HAL     108.933    1.50
+JJZ         CAM         CAL        HALA     108.933    1.50
+JJZ         HAL         CAL        HALA     107.846    1.50
+JJZ         CAL         CAM         CAN     112.246    1.56
+JJZ         CAL         CAM         HAM     108.933    1.50
+JJZ         CAL         CAM        HAMA     108.933    1.50
+JJZ         CAN         CAM         HAM     108.877    1.50
+JJZ         CAN         CAM        HAMA     108.877    1.50
+JJZ         HAM         CAM        HAMA     107.846    1.50
+JJZ         OAE         CAN         CAM     123.272    1.50
+JJZ         OAE         CAN         NAO     119.937    1.50
+JJZ         CAM         CAN         NAO     116.791    1.75
+JJZ         CAN         NAO         NAP     120.626    1.50
+JJZ         CAN         NAO        HNAO     119.431    1.50
+JJZ         NAP         NAO        HNAO     119.943    1.50
+JJZ         NAO         NAP         CAQ     115.826    1.51
+JJZ         NAP         CAQ         CAU     123.329    1.75
+JJZ         NAP         CAQ         HAQ     119.356    1.50
+JJZ         CAU         CAQ         HAQ     117.315    1.50
+JJZ         CAS         CAR         CAY     120.390    1.50
+JJZ         CAS         CAR         HAR     119.833    1.50
+JJZ         CAY         CAR         HAR     119.777    1.50
+JJZ         CAR         CAS         CAT     121.477    1.50
+JJZ         CAR         CAS         HAS     119.441    1.50
+JJZ         CAT         CAS         HAS     119.081    1.50
+JJZ         CAS         CAT         CAU     123.208    1.50
+JJZ         CAS         CAT         CBA     117.433    1.50
+JJZ         CAU         CAT         CBA     119.358    1.50
+JJZ         CAQ         CAU         CAT     119.807    2.99
+JJZ         CAQ         CAU         CAV     119.807    2.99
+JJZ         CAT         CAU         CAV     120.386    1.50
+JJZ         CAU         CAV         CAW     123.208    1.50
+JJZ         CAU         CAV         CBC     119.358    1.50
+JJZ         CAW         CAV         CBC     117.433    1.50
+JJZ         CAV         CAW         CAX     121.477    1.50
+JJZ         CAV         CAW         HAW     119.081    1.50
+JJZ         CAX         CAW         HAW     119.441    1.50
+JJZ         CAW         CAX         CBE     120.390    1.50
+JJZ         CAW         CAX         HAX     119.833    1.50
+JJZ         CBE         CAX         HAX     119.777    1.50
+JJZ         CAR         CAY         CAZ     120.390    1.50
+JJZ         CAR         CAY         HAY     119.777    1.50
+JJZ         CAZ         CAY         HAY     119.833    1.50
+JJZ         CAY         CAZ         CBA     121.228    1.50
+JJZ         CAY         CAZ         HAZ     119.584    1.50
+JJZ         CBA         CAZ         HAZ     119.188    1.50
+JJZ         CAT         CBA         CAZ     119.080    1.50
+JJZ         CAT         CBA         CBB     119.445    1.50
+JJZ         CAZ         CBA         CBB     121.475    1.50
+JJZ         CBA         CBB         CBC     122.008    1.50
+JJZ         CBA         CBB         HBB     118.996    1.50
+JJZ         CBC         CBB         HBB     118.996    1.50
+JJZ         CAV         CBC         CBB     119.445    1.50
+JJZ         CAV         CBC         CBD     119.080    1.50
+JJZ         CBB         CBC         CBD     121.475    1.50
+JJZ         CBC         CBD         CBE     121.228    1.50
+JJZ         CBC         CBD         HBD     119.188    1.50
+JJZ         CBE         CBD         HBD     119.584    1.50
+JJZ         CAX         CBE         CBD     120.390    1.50
+JJZ         CAX         CBE         HBE     119.777    1.50
+JJZ         CBD         CBE         HBE     119.833    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JJZ       const_sp2_sp2_1         CAG         CAA         CAB         CAC       0.000     5.0     2
+JJZ              const_82         CAB         CAA         CAG        CLAF     180.000    10.0     2
+JJZ             sp2_sp3_2         OAD         CAK         CAL         CAM     120.000    10.0     6
+JJZ             sp3_sp3_1         CAK         CAL         CAM         CAN     180.000    10.0     3
+JJZ             sp2_sp3_8         OAE         CAN         CAM         CAL     120.000    10.0     6
+JJZ            sp2_sp2_11         OAE         CAN         NAO         NAP       0.000     5.0     2
+JJZ            sp2_sp2_13         CAN         NAO         NAP         CAQ     180.000     5.0     2
+JJZ            sp2_sp2_15         CAU         CAQ         NAP         NAO     180.000     5.0     2
+JJZ            sp2_sp2_17         NAP         CAQ         CAU         CAT     180.000     5.0     2
+JJZ              const_21         CAY         CAR         CAS         CAT       0.000    10.0     2
+JJZ              const_85         CAS         CAR         CAY         CAZ       0.000    10.0     2
+JJZ              const_26         CAR         CAS         CAT         CAU     180.000    10.0     2
+JJZ              const_44         CAS         CAT         CAU         CAQ       0.000    10.0     2
+JJZ              const_29         CAS         CAT         CBA         CAZ       0.000    10.0     2
+JJZ       const_sp2_sp2_5         CAA         CAB         CAC         CAI       0.000     5.0     2
+JJZ              const_48         CAQ         CAU         CAV         CAW       0.000    10.0     2
+JJZ              const_63         CAU         CAV         CAW         CAX     180.000    10.0     2
+JJZ              const_49         CAU         CAV         CBC         CBB       0.000    10.0     2
+JJZ              const_65         CAV         CAW         CAX         CBE       0.000    10.0     2
+JJZ              const_69         CAW         CAX         CBE         CBD       0.000    10.0     2
+JJZ              const_37         CAR         CAY         CAZ         CBA       0.000    10.0     2
+JJZ              const_33         CAY         CAZ         CBA         CAT       0.000    10.0     2
+JJZ              const_57         CAT         CBA         CBB         CBC       0.000    10.0     2
+JJZ              const_53         CBA         CBB         CBC         CAV       0.000    10.0     2
+JJZ              const_77         CAV         CBC         CBD         CBE       0.000    10.0     2
+JJZ              const_73         CBC         CBD         CBE         CAX       0.000    10.0     2
+JJZ              const_10         CAB         CAC         CAI         NAJ     180.000    10.0     2
+JJZ              const_19        CLAF         CAG         CAH         CAI     180.000    10.0     2
+JJZ              const_14         CAG         CAH         CAI         NAJ     180.000    10.0     2
+JJZ             sp2_sp2_1         CAC         CAI         NAJ         CAK     180.000     5.0     2
+JJZ             sp2_sp2_7         OAD         CAK         NAJ         CAI       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JJZ    plan-1         CAQ   0.020
+JJZ    plan-1         CAR   0.020
+JJZ    plan-1         CAS   0.020
+JJZ    plan-1         CAT   0.020
+JJZ    plan-1         CAU   0.020
+JJZ    plan-1         CAV   0.020
+JJZ    plan-1         CAW   0.020
+JJZ    plan-1         CAX   0.020
+JJZ    plan-1         CAY   0.020
+JJZ    plan-1         CAZ   0.020
+JJZ    plan-1         CBA   0.020
+JJZ    plan-1         CBB   0.020
+JJZ    plan-1         CBC   0.020
+JJZ    plan-1         CBD   0.020
+JJZ    plan-1         CBE   0.020
+JJZ    plan-1         HAR   0.020
+JJZ    plan-1         HAS   0.020
+JJZ    plan-1         HAW   0.020
+JJZ    plan-1         HAX   0.020
+JJZ    plan-1         HAY   0.020
+JJZ    plan-1         HAZ   0.020
+JJZ    plan-1         HBB   0.020
+JJZ    plan-1         HBD   0.020
+JJZ    plan-1         HBE   0.020
+JJZ    plan-2         CAA   0.020
+JJZ    plan-2         CAB   0.020
+JJZ    plan-2         CAC   0.020
+JJZ    plan-2         CAG   0.020
+JJZ    plan-2         CAH   0.020
+JJZ    plan-2         CAI   0.020
+JJZ    plan-2        CLAF   0.020
+JJZ    plan-2         HAA   0.020
+JJZ    plan-2         HAB   0.020
+JJZ    plan-2         HAC   0.020
+JJZ    plan-2         HAH   0.020
+JJZ    plan-2         NAJ   0.020
+JJZ    plan-3         CAI   0.020
+JJZ    plan-3         CAK   0.020
+JJZ    plan-3        HNAJ   0.020
+JJZ    plan-3         NAJ   0.020
+JJZ    plan-4         CAK   0.020
+JJZ    plan-4         CAL   0.020
+JJZ    plan-4         NAJ   0.020
+JJZ    plan-4         OAD   0.020
+JJZ    plan-5         CAM   0.020
+JJZ    plan-5         CAN   0.020
+JJZ    plan-5         NAO   0.020
+JJZ    plan-5         OAE   0.020
+JJZ    plan-6         CAN   0.020
+JJZ    plan-6        HNAO   0.020
+JJZ    plan-6         NAO   0.020
+JJZ    plan-6         NAP   0.020
+JJZ    plan-7         CAQ   0.020
+JJZ    plan-7         CAU   0.020
+JJZ    plan-7         HAQ   0.020
+JJZ    plan-7         NAP   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JJZ           SMILES              ACDLabs 12.01                                                                                                                    Clc4cc(NC(=O)CCC(=O)N/N=C/c3c1ccccc1cc2ccccc23)ccc4
+JJZ SMILES_CANONICAL               CACTVS 3.370                                                                                                                    Clc1cccc(NC(=O)CCC(=O)N\N=C\c2c3ccccc3cc4ccccc24)c1
+JJZ           SMILES               CACTVS 3.370                                                                                                                      Clc1cccc(NC(=O)CCC(=O)NN=Cc2c3ccccc3cc4ccccc24)c1
+JJZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                    c1ccc2c(c1)cc3ccccc3c2C=NNC(=O)CCC(=O)Nc4cccc(c4)Cl
+JJZ           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                    c1ccc2c(c1)cc3ccccc3c2C=NNC(=O)CCC(=O)Nc4cccc(c4)Cl
+JJZ            InChI                InChI  1.03 InChI=1S/C25H20ClN3O2/c26-19-8-5-9-20(15-19)28-24(30)12-13-25(31)29-27-16-23-21-10-3-1-6-17(21)14-18-7-2-4-11-22(18)23/h1-11,14-16H,12-13H2,(H,28,30)(H,29,31)/b27-16+
+JJZ         InChIKey                InChI  1.03                                                                                                                                            OJLFRDWWYAPUAJ-JVWAILMASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JJZ acedrg               243         "dictionary generator"                  
+JJZ acedrg_database      11          "data source"                           
+JJZ rdkit                2017.03.2   "Chemoinformatics tool"
+JJZ refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,221 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ARM     ARM      DEOXY-METHYL-ARGININE     NON-POLYMER     29     12     .     
+#
+data_comp_ARM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ARM     N       N       NT2     0       36.134      13.204      144.763     
+ARM     CA      C       CH1     0       34.994      12.653      145.499     
+ARM     CB      C       CH2     0       33.971      12.031      144.543     
+ARM     CG      C       CH2     0       33.249      13.045      143.666     
+ARM     CD      C       CH2     0       32.228      12.398      142.748     
+ARM     NE      N       NH1     0       31.546      13.364      141.891     
+ARM     CZ      C       C       0       30.611      13.075      140.982     
+ARM     NH1     N       NH2     1       30.211      11.825      140.783     
+ARM     NH2     N       NH2     0       30.070      14.048      140.265     
+ARM     C       C       C       0       35.439      11.644      146.559     
+ARM     O       O       O       0       35.149      11.802      147.723     
+ARM     CM      C       CH3     0       36.233      10.473      146.109     
+ARM     H       H       H       0       36.801      13.420      145.332     
+ARM     H2      H       H       0       35.887      13.965      144.347     
+ARM     HA      H       H       0       34.548      13.400      145.971     
+ARM     HB2     H       H       0       33.306      11.541      145.071     
+ARM     HB3     H       H       0       34.432      11.387      143.967     
+ARM     HG2     H       H       0       33.907      13.526      143.120     
+ARM     HG3     H       H       0       32.794      13.700      144.237     
+ARM     HD2     H       H       0       31.562      11.926      143.292     
+ARM     HD3     H       H       0       32.680      11.733      142.185     
+ARM     HE      H       H       0       31.771      14.203      141.981     
+ARM     HH1     H       H       0       29.595      11.652      140.180     
+ARM     HH2     H       H       0       30.552      11.165      141.247     
+ARM     HH21    H       H       0       29.452      13.863      139.665     
+ARM     HH22    H       H       0       30.324      14.884      140.385     
+ARM     HM1     H       H       0       36.495      9.942       146.879     
+ARM     HM2     H       H       0       37.028      10.779      145.643     
+ARM     HM3     H       H       0       35.697      9.928       145.509     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ARM           N          CA      SINGLE       n     1.463  0.0141     1.463  0.0141
+ARM          CA          CB      SINGLE       n     1.530  0.0137     1.530  0.0137
+ARM          CA           C      SINGLE       n     1.529  0.0100     1.529  0.0100
+ARM          CB          CG      SINGLE       n     1.522  0.0100     1.522  0.0100
+ARM          CG          CD      SINGLE       n     1.517  0.0143     1.517  0.0143
+ARM          CD          NE      SINGLE       n     1.456  0.0136     1.456  0.0136
+ARM          NE          CZ      SINGLE       n     1.328  0.0112     1.328  0.0112
+ARM          CZ         NH1      DOUBLE       n     1.322  0.0100     1.322  0.0100
+ARM          CZ         NH2      SINGLE       n     1.321  0.0100     1.321  0.0100
+ARM           C           O      DOUBLE       n     1.209  0.0200     1.209  0.0200
+ARM           C          CM      SINGLE       n     1.483  0.0200     1.483  0.0200
+ARM           N           H      SINGLE       n     1.036  0.0160     0.902  0.0200
+ARM           N          H2      SINGLE       n     1.036  0.0160     0.902  0.0200
+ARM          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0200
+ARM          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0160
+ARM          CB         HB3      SINGLE       n     1.089  0.0100     0.980  0.0160
+ARM          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0160
+ARM          CG         HG3      SINGLE       n     1.089  0.0100     0.981  0.0160
+ARM          CD         HD2      SINGLE       n     1.089  0.0100     0.981  0.0152
+ARM          CD         HD3      SINGLE       n     1.089  0.0100     0.981  0.0152
+ARM          NE          HE      SINGLE       n     1.016  0.0100     0.872  0.0200
+ARM         NH1         HH1      SINGLE       n     1.016  0.0100     0.879  0.0200
+ARM         NH1         HH2      SINGLE       n     1.016  0.0100     0.879  0.0200
+ARM         NH2        HH21      SINGLE       n     1.016  0.0100     0.881  0.0200
+ARM         NH2        HH22      SINGLE       n     1.016  0.0100     0.881  0.0200
+ARM          CM         HM1      SINGLE       n     1.089  0.0100     0.971  0.0145
+ARM          CM         HM2      SINGLE       n     1.089  0.0100     0.971  0.0145
+ARM          CM         HM3      SINGLE       n     1.089  0.0100     0.971  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ARM          CA           N           H     109.453    3.00
+ARM          CA           N          H2     109.453    3.00
+ARM           H           N          H2     107.559    3.00
+ARM           N          CA          CB     111.883    2.59
+ARM           N          CA           C     112.134    2.59
+ARM           N          CA          HA     108.372    1.54
+ARM          CB          CA           C     111.407    1.50
+ARM          CB          CA          HA     108.223    1.50
+ARM           C          CA          HA     107.798    1.50
+ARM          CA          CB          CG     113.702    1.73
+ARM          CA          CB         HB2     108.562    1.50
+ARM          CA          CB         HB3     108.562    1.50
+ARM          CG          CB         HB2     108.775    1.50
+ARM          CG          CB         HB3     108.775    1.50
+ARM         HB2          CB         HB3     107.844    1.50
+ARM          CB          CG          CD     112.387    3.00
+ARM          CB          CG         HG2     109.262    1.50
+ARM          CB          CG         HG3     109.262    1.50
+ARM          CD          CG         HG2     108.956    1.50
+ARM          CD          CG         HG3     108.956    1.50
+ARM         HG2          CG         HG3     107.927    1.57
+ARM          CG          CD          NE     112.382    2.90
+ARM          CG          CD         HD2     109.197    1.51
+ARM          CG          CD         HD3     109.197    1.51
+ARM          NE          CD         HD2     109.183    1.50
+ARM          NE          CD         HD3     109.183    1.50
+ARM         HD2          CD         HD3     107.877    1.50
+ARM          CD          NE          CZ     124.510    1.50
+ARM          CD          NE          HE     117.883    1.50
+ARM          CZ          NE          HE     117.606    1.50
+ARM          NE          CZ         NH1     120.052    1.50
+ARM          NE          CZ         NH2     120.052    1.50
+ARM         NH1          CZ         NH2     119.896    1.50
+ARM          CZ         NH1         HH1     119.855    2.01
+ARM          CZ         NH1         HH2     119.855    2.01
+ARM         HH1         NH1         HH2     120.290    2.09
+ARM          CZ         NH2        HH21     119.855    2.01
+ARM          CZ         NH2        HH22     119.855    2.01
+ARM        HH21         NH2        HH22     120.290    2.09
+ARM          CA           C           O     120.762    1.50
+ARM          CA           C          CM     117.688    1.50
+ARM           O           C          CM     121.550    1.81
+ARM           C          CM         HM1     109.518    1.50
+ARM           C          CM         HM2     109.518    1.50
+ARM           C          CM         HM3     109.518    1.50
+ARM         HM1          CM         HM2     109.400    1.50
+ARM         HM1          CM         HM3     109.400    1.50
+ARM         HM2          CM         HM3     109.400    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ARM             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+ARM             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+ARM             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+ARM            sp3_sp3_16          CA          CB          CG          CD     180.000    10.0     3
+ARM            sp3_sp3_25          NE          CD          CG          CB     180.000    10.0     3
+ARM             sp2_sp3_8          CZ          NE          CD          CG     120.000    10.0     6
+ARM             sp2_sp2_1         NH1          CZ          NE          CD     180.000     5.0     2
+ARM             sp2_sp2_5          NE          CZ         NH1         HH1     180.000     5.0     2
+ARM             sp2_sp2_9          NE          CZ         NH2        HH21     180.000     5.0     2
+ARM            sp2_sp3_13          CA           C          CM         HM1       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ARM    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ARM    plan-1          CD   0.020
+ARM    plan-1          CZ   0.020
+ARM    plan-1          HE   0.020
+ARM    plan-1          NE   0.020
+ARM    plan-2          CZ   0.020
+ARM    plan-2          NE   0.020
+ARM    plan-2         NH1   0.020
+ARM    plan-2         NH2   0.020
+ARM    plan-3          CZ   0.020
+ARM    plan-3         HH1   0.020
+ARM    plan-3         HH2   0.020
+ARM    plan-3         NH1   0.020
+ARM    plan-4          CZ   0.020
+ARM    plan-4        HH21   0.020
+ARM    plan-4        HH22   0.020
+ARM    plan-4         NH2   0.020
+ARM    plan-5           C   0.020
+ARM    plan-5          CA   0.020
+ARM    plan-5          CM   0.020
+ARM    plan-5           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ARM           SMILES              ACDLabs 10.04                                                             O=C(C)C(N)CCCNC(=[N@H])N
+ARM SMILES_CANONICAL               CACTVS 3.341                                                            CC(=O)[C@@H](N)CCCNC(N)=N
+ARM           SMILES               CACTVS 3.341                                                              CC(=O)[CH](N)CCCNC(N)=N
+ARM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                             CC(=O)[C@H](CCCNC(=N)N)N
+ARM           SMILES "OpenEye OEToolkits" 1.5.0                                                                 CC(=O)C(CCCNC(=N)N)N
+ARM            InChI                InChI  1.03 InChI=1S/C7H16N4O/c1-5(12)6(8)3-2-4-11-7(9)10/h6H,2-4,8H2,1H3,(H4,9,10,11)/t6-/m0/s1
+ARM         InChIKey                InChI  1.03                                                          GCCQNSQKSSOQIR-LURJTMIESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ARM acedrg               243         "dictionary generator"                  
+ARM acedrg_database      11          "data source"                           
+ARM rdkit                2017.03.2   "Chemoinformatics tool"
+ARM refmac5              5.8.0238    "optimization tool"                     

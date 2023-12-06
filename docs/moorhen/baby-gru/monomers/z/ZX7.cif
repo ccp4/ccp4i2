@@ -1,0 +1,310 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZX7     ZX7      N-{[(2R,3R,4R,5R,6S)-3,4,5-trihydroxy-6-methylpiperidin-2-yl]methyl}-1H-indole-2-carboxamide     NON-POLYMER     44     23     .     
+#
+data_comp_ZX7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZX7     OAD     O       OH1     0       -3.325      26.073      24.221      
+ZX7     CAV     C       CH1     0       -1.938      26.380      24.328      
+ZX7     CAW     C       CH1     0       -1.593      27.507      23.351      
+ZX7     OAE     O       OH1     0       -1.686      27.023      22.010      
+ZX7     CAU     C       CH1     0       -0.197      28.080      23.605      
+ZX7     OAC     O       OH1     0       0.817       27.168      23.189      
+ZX7     CAS     C       CH1     0       0.038       28.412      25.086      
+ZX7     CAA     C       CH3     0       1.445       28.920      25.377      
+ZX7     NAM     N       NT1     0       -0.266      27.243      25.930      
+ZX7     CAT     C       CH1     0       -1.641      26.731      25.792      
+ZX7     CAK     C       CH2     0       -1.842      25.513      26.709      
+ZX7     NAL     N       NH1     0       -1.766      25.798      28.133      
+ZX7     CAO     C       C       0       -1.736      24.821      29.051      
+ZX7     OAB     O       O       0       -1.834      23.632      28.744      
+ZX7     CAP     C       CR5     0       -1.562      25.182      30.466      
+ZX7     CAJ     C       CR15    0       -1.897      24.435      31.566      
+ZX7     CAQ     C       CR56    0       -1.523      25.174      32.714      
+ZX7     CAH     C       CR16    0       -1.607      24.960      34.104      
+ZX7     CAF     C       CR16    0       -1.128      25.924      34.960      
+ZX7     CAG     C       CR16    0       -0.563      27.107      34.474      
+ZX7     CAI     C       CR16    0       -0.462      27.356      33.120      
+ZX7     CAR     C       CR56    0       -0.945      26.382      32.247      
+ZX7     NAN     N       NR5     0       -0.974      26.359      30.878      
+ZX7     HOAD    H       H       0       -3.770      26.759      24.424      
+ZX7     HAV     H       H       0       -1.405      25.590      24.092      
+ZX7     HAW     H       H       0       -2.254      28.235      23.461      
+ZX7     HOAE    H       H       0       -1.106      26.425      21.886      
+ZX7     HAU     H       H       0       -0.114      28.915      23.095      
+ZX7     HOAC    H       H       0       0.747       26.453      23.624      
+ZX7     HAS     H       H       0       -0.590      29.133      25.331      
+ZX7     HAA     H       H       0       2.000       28.185      25.686      
+ZX7     HAAA    H       H       0       1.408       29.605      26.063      
+ZX7     HAAB    H       H       0       1.831       29.296      24.568      
+ZX7     HNAM    H       H       0       -0.120      27.468      26.803      
+ZX7     HAT     H       H       0       -2.272      27.434      26.081      
+ZX7     HAK     H       H       0       -1.156      24.845      26.492      
+ZX7     HAKA    H       H       0       -2.718      25.115      26.527      
+ZX7     HNAL    H       H       0       -1.767      26.629      28.386      
+ZX7     HAJ     H       H       0       -2.308      23.585      31.562      
+ZX7     HAH     H       H       0       -1.987      24.166      34.440      
+ZX7     HAF     H       H       0       -1.182      25.787      35.893      
+ZX7     HAG     H       H       0       -0.244      27.749      35.083      
+ZX7     HAI     H       H       0       -0.080      28.154      32.796      
+ZX7     HNAN    H       H       0       -0.670      27.000      30.350      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZX7         OAD         CAV      SINGLE       n     1.423  0.0100     1.423  0.0100
+ZX7         CAV         CAW      SINGLE       n     1.521  0.0165     1.521  0.0165
+ZX7         CAV         CAT      SINGLE       n     1.530  0.0100     1.530  0.0100
+ZX7         CAW         OAE      SINGLE       n     1.427  0.0125     1.427  0.0125
+ZX7         CAW         CAU      SINGLE       n     1.521  0.0165     1.521  0.0165
+ZX7         CAU         OAC      SINGLE       n     1.423  0.0100     1.423  0.0100
+ZX7         CAU         CAS      SINGLE       n     1.530  0.0133     1.530  0.0133
+ZX7         CAS         CAA      SINGLE       n     1.523  0.0100     1.523  0.0100
+ZX7         CAS         NAM      SINGLE       n     1.471  0.0108     1.471  0.0108
+ZX7         NAM         CAT      SINGLE       n     1.471  0.0108     1.471  0.0108
+ZX7         CAT         CAK      SINGLE       n     1.536  0.0100     1.536  0.0100
+ZX7         CAK         NAL      SINGLE       n     1.451  0.0100     1.451  0.0100
+ZX7         NAL         CAO      SINGLE       n     1.335  0.0108     1.335  0.0108
+ZX7         CAO         OAB      DOUBLE       n     1.231  0.0100     1.231  0.0100
+ZX7         CAO         CAP      SINGLE       n     1.466  0.0100     1.466  0.0100
+ZX7         CAP         CAJ      DOUBLE       y     1.371  0.0100     1.371  0.0100
+ZX7         CAP         NAN      SINGLE       y     1.377  0.0100     1.377  0.0100
+ZX7         CAJ         CAQ      SINGLE       y     1.417  0.0100     1.417  0.0100
+ZX7         CAQ         CAH      DOUBLE       y     1.405  0.0100     1.405  0.0100
+ZX7         CAQ         CAR      SINGLE       y     1.415  0.0100     1.415  0.0100
+ZX7         CAH         CAF      SINGLE       y     1.373  0.0100     1.373  0.0100
+ZX7         CAF         CAG      DOUBLE       y     1.394  0.0106     1.394  0.0106
+ZX7         CAG         CAI      SINGLE       y     1.376  0.0100     1.376  0.0100
+ZX7         CAI         CAR      DOUBLE       y     1.391  0.0100     1.391  0.0100
+ZX7         CAR         NAN      SINGLE       y     1.369  0.0100     1.369  0.0100
+ZX7         OAD        HOAD      SINGLE       n     0.970  0.0120     0.841  0.0200
+ZX7         CAV         HAV      SINGLE       n     1.089  0.0100     0.982  0.0200
+ZX7         CAW         HAW      SINGLE       n     1.089  0.0100     0.990  0.0140
+ZX7         OAE        HOAE      SINGLE       n     0.970  0.0120     0.841  0.0200
+ZX7         CAU         HAU      SINGLE       n     1.089  0.0100     0.982  0.0200
+ZX7         OAC        HOAC      SINGLE       n     0.970  0.0120     0.841  0.0200
+ZX7         CAS         HAS      SINGLE       n     1.089  0.0100     0.987  0.0115
+ZX7         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0171
+ZX7         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0171
+ZX7         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0171
+ZX7         NAM        HNAM      SINGLE       n     1.036  0.0160     0.913  0.0200
+ZX7         CAT         HAT      SINGLE       n     1.089  0.0100     0.987  0.0115
+ZX7         CAK         HAK      SINGLE       n     1.089  0.0100     0.981  0.0200
+ZX7         CAK        HAKA      SINGLE       n     1.089  0.0100     0.981  0.0200
+ZX7         NAL        HNAL      SINGLE       n     1.016  0.0100     0.870  0.0200
+ZX7         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.944  0.0200
+ZX7         CAH         HAH      SINGLE       n     1.082  0.0130     0.942  0.0151
+ZX7         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0181
+ZX7         CAG         HAG      SINGLE       n     1.082  0.0130     0.941  0.0181
+ZX7         CAI         HAI      SINGLE       n     1.082  0.0130     0.942  0.0188
+ZX7         NAN        HNAN      SINGLE       n     1.016  0.0100     0.885  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZX7         CAV         OAD        HOAD     105.772    3.00
+ZX7         OAD         CAV         CAW     110.081    2.02
+ZX7         OAD         CAV         CAT     107.407    1.50
+ZX7         OAD         CAV         HAV     110.494    1.50
+ZX7         CAW         CAV         CAT     112.745    1.50
+ZX7         CAW         CAV         HAV     109.166    1.50
+ZX7         CAT         CAV         HAV     108.784    1.50
+ZX7         CAV         CAW         OAE     110.081    2.02
+ZX7         CAV         CAW         CAU     110.796    1.54
+ZX7         CAV         CAW         HAW     109.166    1.50
+ZX7         OAE         CAW         CAU     110.081    2.02
+ZX7         OAE         CAW         HAW     108.767    1.50
+ZX7         CAU         CAW         HAW     109.166    1.50
+ZX7         CAW         OAE        HOAE     108.895    2.41
+ZX7         CAW         CAU         OAC     110.081    2.02
+ZX7         CAW         CAU         CAS     112.745    1.50
+ZX7         CAW         CAU         HAU     109.166    1.50
+ZX7         OAC         CAU         CAS     107.407    1.50
+ZX7         OAC         CAU         HAU     110.494    1.50
+ZX7         CAS         CAU         HAU     108.784    1.50
+ZX7         CAU         OAC        HOAC     105.772    3.00
+ZX7         CAU         CAS         CAA     113.228    1.84
+ZX7         CAU         CAS         NAM     109.992    1.50
+ZX7         CAU         CAS         HAS     107.957    1.50
+ZX7         CAA         CAS         NAM     110.146    1.50
+ZX7         CAA         CAS         HAS     107.784    1.50
+ZX7         NAM         CAS         HAS     108.362    1.55
+ZX7         CAS         CAA         HAA     109.555    1.50
+ZX7         CAS         CAA        HAAA     109.555    1.50
+ZX7         CAS         CAA        HAAB     109.555    1.50
+ZX7         HAA         CAA        HAAA     109.356    1.50
+ZX7         HAA         CAA        HAAB     109.356    1.50
+ZX7        HAAA         CAA        HAAB     109.356    1.50
+ZX7         CAS         NAM         CAT     112.955    2.18
+ZX7         CAS         NAM        HNAM     108.853    2.50
+ZX7         CAT         NAM        HNAM     108.853    2.50
+ZX7         CAV         CAT         NAM     109.992    1.50
+ZX7         CAV         CAT         CAK     111.163    2.25
+ZX7         CAV         CAT         HAT     107.957    1.50
+ZX7         NAM         CAT         CAK     110.171    2.97
+ZX7         NAM         CAT         HAT     108.362    1.55
+ZX7         CAK         CAT         HAT     107.347    1.50
+ZX7         CAT         CAK         NAL     112.102    2.36
+ZX7         CAT         CAK         HAK     109.024    1.50
+ZX7         CAT         CAK        HAKA     109.024    1.50
+ZX7         NAL         CAK         HAK     108.469    1.50
+ZX7         NAL         CAK        HAKA     108.469    1.50
+ZX7         HAK         CAK        HAKA     108.244    1.51
+ZX7         CAK         NAL         CAO     122.405    1.94
+ZX7         CAK         NAL        HNAL     118.651    2.12
+ZX7         CAO         NAL        HNAL     118.944    1.50
+ZX7         NAL         CAO         OAB     122.629    1.50
+ZX7         NAL         CAO         CAP     116.637    1.50
+ZX7         OAB         CAO         CAP     120.734    1.50
+ZX7         CAO         CAP         CAJ     131.411    2.58
+ZX7         CAO         CAP         NAN     118.980    2.61
+ZX7         CAJ         CAP         NAN     109.609    1.50
+ZX7         CAP         CAJ         CAQ     107.250    1.50
+ZX7         CAP         CAJ         HAJ     126.539    1.50
+ZX7         CAQ         CAJ         HAJ     126.211    1.50
+ZX7         CAJ         CAQ         CAH     134.933    1.50
+ZX7         CAJ         CAQ         CAR     106.588    1.50
+ZX7         CAH         CAQ         CAR     118.479    1.50
+ZX7         CAQ         CAH         CAF     118.959    1.50
+ZX7         CAQ         CAH         HAH     120.394    1.50
+ZX7         CAF         CAH         HAH     120.647    1.50
+ZX7         CAH         CAF         CAG     121.243    1.50
+ZX7         CAH         CAF         HAF     119.456    1.50
+ZX7         CAG         CAF         HAF     119.301    1.50
+ZX7         CAF         CAG         CAI     121.659    1.50
+ZX7         CAF         CAG         HAG     119.225    1.50
+ZX7         CAI         CAG         HAG     119.116    1.50
+ZX7         CAG         CAI         CAR     117.421    1.50
+ZX7         CAG         CAI         HAI     121.457    1.50
+ZX7         CAR         CAI         HAI     121.117    1.50
+ZX7         CAQ         CAR         CAI     122.244    1.50
+ZX7         CAQ         CAR         NAN     107.759    1.50
+ZX7         CAI         CAR         NAN     129.997    1.50
+ZX7         CAP         NAN         CAR     108.793    1.50
+ZX7         CAP         NAN        HNAN     125.727    1.50
+ZX7         CAR         NAN        HNAN     125.480    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZX7            sp3_sp3_40         CAW         CAV         OAD        HOAD     180.000    10.0     3
+ZX7             sp2_sp3_2         CAO         NAL         CAK         CAT     120.000    10.0     6
+ZX7             sp2_sp2_3         OAB         CAO         NAL         CAK       0.000     5.0     2
+ZX7             sp2_sp2_5         NAL         CAO         CAP         CAJ     180.000     5.0     2
+ZX7              const_22         CAQ         CAJ         CAP         CAO     180.000    10.0     2
+ZX7              const_39         CAO         CAP         NAN         CAR     180.000    10.0     2
+ZX7              const_26         CAP         CAJ         CAQ         CAH     180.000    10.0     2
+ZX7       const_sp2_sp2_2         CAF         CAH         CAQ         CAJ     180.000     5.0     2
+ZX7              const_30         CAJ         CAQ         CAR         CAI     180.000    10.0     2
+ZX7       const_sp2_sp2_5         CAG         CAF         CAH         CAQ       0.000     5.0     2
+ZX7       const_sp2_sp2_9         CAH         CAF         CAG         CAI       0.000     5.0     2
+ZX7              const_13         CAF         CAG         CAI         CAR       0.000    10.0     2
+ZX7             sp3_sp3_5         OAD         CAV         CAW         OAE      60.000    10.0     3
+ZX7            sp3_sp3_47         CAK         CAT         CAV         OAD     180.000    10.0     3
+ZX7              const_17         CAG         CAI         CAR         CAQ       0.000    10.0     2
+ZX7              const_33         CAQ         CAR         NAN         CAP       0.000    10.0     2
+ZX7            sp3_sp3_52         CAV         CAW         OAE        HOAE     180.000    10.0     3
+ZX7            sp3_sp3_14         OAC         CAU         CAW         OAE     -60.000    10.0     3
+ZX7            sp3_sp3_55         CAW         CAU         OAC        HOAC     180.000    10.0     3
+ZX7            sp3_sp3_23         CAA         CAS         CAU         OAC      60.000    10.0     3
+ZX7            sp3_sp3_58         HAA         CAA         CAS         CAU     180.000    10.0     3
+ZX7            sp3_sp3_30         CAA         CAS         NAM         CAT     180.000    10.0     3
+ZX7            sp3_sp3_36         CAK         CAT         NAM         CAS     -60.000    10.0     3
+ZX7            sp3_sp3_67         NAL         CAK         CAT         CAV     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZX7    chir_1    CAV    OAD    CAW    CAT    negative
+ZX7    chir_2    CAW    OAE    CAV    CAU    negative
+ZX7    chir_3    CAU    OAC    CAW    CAS    negative
+ZX7    chir_4    CAS    NAM    CAU    CAA    positive
+ZX7    chir_5    CAT    NAM    CAV    CAK    negative
+ZX7    chir_6    NAM    CAT    CAS    HNAM    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZX7    plan-1         CAF   0.020
+ZX7    plan-1         CAG   0.020
+ZX7    plan-1         CAH   0.020
+ZX7    plan-1         CAI   0.020
+ZX7    plan-1         CAJ   0.020
+ZX7    plan-1         CAO   0.020
+ZX7    plan-1         CAP   0.020
+ZX7    plan-1         CAQ   0.020
+ZX7    plan-1         CAR   0.020
+ZX7    plan-1         HAF   0.020
+ZX7    plan-1         HAG   0.020
+ZX7    plan-1         HAH   0.020
+ZX7    plan-1         HAI   0.020
+ZX7    plan-1         HAJ   0.020
+ZX7    plan-1        HNAN   0.020
+ZX7    plan-1         NAN   0.020
+ZX7    plan-2         CAK   0.020
+ZX7    plan-2         CAO   0.020
+ZX7    plan-2        HNAL   0.020
+ZX7    plan-2         NAL   0.020
+ZX7    plan-3         CAO   0.020
+ZX7    plan-3         CAP   0.020
+ZX7    plan-3         NAL   0.020
+ZX7    plan-3         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZX7           SMILES              ACDLabs 10.04                                                                                                                  O=C(NCC1NC(C(O)C(O)C1O)C)c3cc2ccccc2n3
+ZX7 SMILES_CANONICAL               CACTVS 3.341                                                                                        C[C@@H]1N[C@H](CNC(=O)c2[nH]c3ccccc3c2)[C@@H](O)[C@H](O)[C@@H]1O
+ZX7           SMILES               CACTVS 3.341                                                                                                C[CH]1N[CH](CNC(=O)c2[nH]c3ccccc3c2)[CH](O)[CH](O)[CH]1O
+ZX7 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                        C[C@H]1[C@H]([C@H]([C@@H]([C@H](N1)CNC(=O)c2cc3ccccc3[nH]2)O)O)O
+ZX7           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                             CC1C(C(C(C(N1)CNC(=O)c2cc3ccccc3[nH]2)O)O)O
+ZX7            InChI                InChI  1.03 InChI=1S/C16H21N3O4/c1-8-13(20)15(22)14(21)12(18-8)7-17-16(23)11-6-9-4-2-3-5-10(9)19-11/h2-6,8,12-15,18-22H,7H2,1H3,(H,17,23)/t8-,12+,13+,14+,15+/m0/s1
+ZX7         InChIKey                InChI  1.03                                                                                                                             VHAWVXPAMQXIGT-LMYWXWJPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZX7 acedrg               243         "dictionary generator"                  
+ZX7 acedrg_database      11          "data source"                           
+ZX7 rdkit                2017.03.2   "Chemoinformatics tool"
+ZX7 refmac5              5.8.0238    "optimization tool"                     

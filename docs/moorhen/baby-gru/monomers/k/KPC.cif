@@ -1,0 +1,173 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KPC     KPC      (2-[2-KETOPROPYLTHIO]ETHANESULFONATE     NON-POLYMER     21     11     .     
+#
+data_comp_KPC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KPC     CAK     C       CH3     0       25.133      -3.166      10.929      
+KPC     CAJ     C       C       0       24.942      -2.049      11.897      
+KPC     OAC     O       O       0       24.178      -1.143      11.658      
+KPC     CAI     C       CH2     0       25.717      -2.063      13.186      
+KPC     SAH     S       S2      0       24.673      -2.371      14.640      
+KPC     CAG     C       CH2     0       24.137      -4.079      14.355      
+KPC     CAF     C       CH2     0       22.733      -4.179      13.785      
+KPC     SAE     S       S3      0       22.270      -5.838      13.371      
+KPC     OAD     O       O       0       23.231      -6.309      12.416      
+KPC     OAL     O       OH1     0       22.441      -6.597      14.711      
+KPC     OAB     O       O       0       20.884      -5.799      13.000      
+KPC     HAK1    H       H       0       25.748      -3.822      11.295      
+KPC     HAK2    H       H       0       25.493      -2.815      10.099      
+KPC     HAK3    H       H       0       24.278      -3.591      10.754      
+KPC     HAI1    H       H       0       26.155      -1.199      13.292      
+KPC     HAI2    H       H       0       26.404      -2.751      13.139      
+KPC     HAG1    H       H       0       24.177      -4.563      15.208      
+KPC     HAG2    H       H       0       24.771      -4.505      13.739      
+KPC     HAF1    H       H       0       22.678      -3.624      12.975      
+KPC     HAF2    H       H       0       22.096      -3.827      14.445      
+KPC     HAL1    H       H       0       21.877      -7.176      14.783      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KPC         CAK         CAJ      SINGLE       n     1.483  0.0200     1.483  0.0200
+KPC         CAJ         OAC      DOUBLE       n     1.209  0.0200     1.209  0.0200
+KPC         CAJ         CAI      SINGLE       n     1.502  0.0114     1.502  0.0114
+KPC         CAI         SAH      SINGLE       n     1.816  0.0116     1.816  0.0116
+KPC         SAH         CAG      SINGLE       n     1.813  0.0125     1.813  0.0125
+KPC         CAG         CAF      SINGLE       n     1.519  0.0176     1.519  0.0176
+KPC         CAF         SAE      SINGLE       n     1.771  0.0119     1.771  0.0119
+KPC         SAE         OAD      DOUBLE       n     1.435  0.0100     1.435  0.0100
+KPC         SAE         OAL      SINGLE       n     1.549  0.0200     1.549  0.0200
+KPC         SAE         OAB      DOUBLE       n     1.435  0.0100     1.435  0.0100
+KPC         CAK        HAK1      SINGLE       n     1.089  0.0100     0.971  0.0145
+KPC         CAK        HAK2      SINGLE       n     1.089  0.0100     0.971  0.0145
+KPC         CAK        HAK3      SINGLE       n     1.089  0.0100     0.971  0.0145
+KPC         CAI        HAI1      SINGLE       n     1.089  0.0100     0.974  0.0194
+KPC         CAI        HAI2      SINGLE       n     1.089  0.0100     0.974  0.0194
+KPC         CAG        HAG1      SINGLE       n     1.089  0.0100     0.981  0.0122
+KPC         CAG        HAG2      SINGLE       n     1.089  0.0100     0.981  0.0122
+KPC         CAF        HAF1      SINGLE       n     1.089  0.0100     0.983  0.0113
+KPC         CAF        HAF2      SINGLE       n     1.089  0.0100     0.983  0.0113
+KPC         OAL        HAL1      SINGLE       n     0.970  0.0120     0.811  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KPC         CAJ         CAK        HAK1     109.479    1.50
+KPC         CAJ         CAK        HAK2     109.479    1.50
+KPC         CAJ         CAK        HAK3     109.479    1.50
+KPC        HAK1         CAK        HAK2     109.400    1.50
+KPC        HAK1         CAK        HAK3     109.400    1.50
+KPC        HAK2         CAK        HAK3     109.400    1.50
+KPC         CAK         CAJ         OAC     121.926    1.81
+KPC         CAK         CAJ         CAI     117.133    2.45
+KPC         OAC         CAJ         CAI     120.942    1.66
+KPC         CAJ         CAI         SAH     111.968    3.00
+KPC         CAJ         CAI        HAI1     108.328    1.50
+KPC         CAJ         CAI        HAI2     108.328    1.50
+KPC         SAH         CAI        HAI1     108.570    1.78
+KPC         SAH         CAI        HAI2     108.570    1.78
+KPC        HAI1         CAI        HAI2     108.193    1.80
+KPC         CAI         SAH         CAG     101.660    1.50
+KPC         SAH         CAG         CAF     113.315    2.50
+KPC         SAH         CAG        HAG1     108.460    1.50
+KPC         SAH         CAG        HAG2     108.460    1.50
+KPC         CAF         CAG        HAG1     109.410    1.50
+KPC         CAF         CAG        HAG2     109.410    1.50
+KPC        HAG1         CAG        HAG2     107.803    1.50
+KPC         CAG         CAF         SAE     113.041    1.50
+KPC         CAG         CAF        HAF1     108.957    1.50
+KPC         CAG         CAF        HAF2     108.957    1.50
+KPC         SAE         CAF        HAF1     108.904    1.50
+KPC         SAE         CAF        HAF2     108.904    1.50
+KPC        HAF1         CAF        HAF2     108.483    1.91
+KPC         CAF         SAE         OAD     106.916    1.50
+KPC         CAF         SAE         OAL     103.568    2.80
+KPC         CAF         SAE         OAB     106.916    1.50
+KPC         OAD         SAE         OAL     110.306    2.80
+KPC         OAD         SAE         OAB     119.289    2.60
+KPC         OAL         SAE         OAB     110.306    2.80
+KPC         SAE         OAL        HAL1     110.371    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KPC             sp2_sp3_1         OAC         CAJ         CAK        HAK1       0.000    10.0     6
+KPC             sp2_sp3_8         CAK         CAJ         CAI         SAH     120.000    10.0     6
+KPC             sp3_sp3_1         CAJ         CAI         SAH         CAG     180.000    10.0     3
+KPC             sp3_sp3_4         CAF         CAG         SAH         CAI     180.000    10.0     3
+KPC             sp3_sp3_7         SAE         CAF         CAG         SAH     180.000    10.0     3
+KPC            sp3_sp3_16         CAG         CAF         SAE         OAD     180.000    10.0     3
+KPC            sp3_sp3_27        HAL1         OAL         SAE         CAF      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KPC    chir_1    SAE    OAD    OAB    OAL    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KPC    plan-1         CAI   0.020
+KPC    plan-1         CAJ   0.020
+KPC    plan-1         CAK   0.020
+KPC    plan-1         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KPC           SMILES              ACDLabs 10.04                                             O=S(=O)(O)CCSCC(=O)C
+KPC SMILES_CANONICAL               CACTVS 3.341                                           CC(=O)CSCC[S](O)(=O)=O
+KPC           SMILES               CACTVS 3.341                                           CC(=O)CSCC[S](O)(=O)=O
+KPC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                             CC(=O)CSCCS(=O)(=O)O
+KPC           SMILES "OpenEye OEToolkits" 1.5.0                                             CC(=O)CSCCS(=O)(=O)O
+KPC            InChI                InChI  1.03 InChI=1S/C5H10O4S2/c1-5(6)4-10-2-3-11(7,8)9/h2-4H2,1H3,(H,7,8,9)
+KPC         InChIKey                InChI  1.03                                      CRNXHFXAXBWIRH-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KPC acedrg               243         "dictionary generator"                  
+KPC acedrg_database      11          "data source"                           
+KPC rdkit                2017.03.2   "Chemoinformatics tool"
+KPC refmac5              5.8.0238    "optimization tool"                     

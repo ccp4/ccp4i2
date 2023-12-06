@@ -1,0 +1,439 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TDX     TDX      "THYMIDINE-5'-DIPHOSPHO-BETA-D-XYLOSE"     NON-POLYMER     56     34     .     
+#
+data_comp_TDX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TDX     O4      O       O       0       -18.863     -10.847     72.414      
+TDX     C4      C       CR6     0       -19.471     -9.779      72.288      
+TDX     N3      N       NR6     0       -20.225     -9.287      73.340      
+TDX     C2      C       CR6     0       -20.959     -8.123      73.369      
+TDX     O2      O       O       0       -21.590     -7.790      74.366      
+TDX     C5      C       CR6     0       -19.470     -8.958      71.094      
+TDX     C5M     C       CH3     0       -18.678     -9.416      69.905      
+TDX     C6      C       CR16    0       -20.183     -7.814      71.107      
+TDX     N1      N       NR6     0       -20.928     -7.382      72.195      
+TDX     C1B     C       CH1     0       -21.684     -6.098      72.132      
+TDX     C2B     C       CH2     0       -20.825     -4.860      72.338      
+TDX     C3B     C       CH1     0       -21.594     -3.785      71.583      
+TDX     O3B     O       OH1     0       -22.551     -3.156      72.433      
+TDX     O4B     O       O2      0       -22.255     -5.957      70.837      
+TDX     C4B     C       CH1     0       -22.278     -4.562      70.456      
+TDX     C5B     C       CH2     0       -21.640     -4.398      69.097      
+TDX     O5B     O       O2      0       -20.269     -4.869      69.147      
+TDX     PA      P       P       0       -19.378     -4.838      67.813      
+TDX     O1A     O       O       0       -20.176     -5.370      66.668      
+TDX     O2A     O       OP      -1      -18.048     -5.456      68.092      
+TDX     O3A     O       O2      0       -19.179     -3.259      67.613      
+TDX     PB      P       P       0       -18.274     -2.177      68.376      
+TDX     O1B     O       O       0       -18.237     -2.511      69.830      
+TDX     O2B     O       OP      -1      -18.727     -0.808      67.988      
+TDX     "O1'"   O       O2      0       -16.828     -2.459      67.737      
+TDX     "C1'"   C       CH1     0       -16.523     -2.220      66.385      
+TDX     "O5'"   O       O2      0       -16.363     -0.830      66.123      
+TDX     "C5'"   C       CH2     0       -15.267     -0.224      66.825      
+TDX     "C2'"   C       CH1     0       -15.246     -2.986      66.028      
+TDX     "O2'"   O       OH1     0       -15.394     -4.366      66.350      
+TDX     "C3'"   C       CH1     0       -14.041     -2.389      66.747      
+TDX     "O3'"   O       OH1     0       -12.852     -3.046      66.313      
+TDX     "C4'"   C       CH1     0       -13.949     -0.893      66.475      
+TDX     "O4'"   O       OH1     0       -12.903     -0.308      67.255      
+TDX     H3      H       H       0       -20.245     -9.773      74.091      
+TDX     H5M1    H       H       0       -18.816     -8.806      69.162      
+TDX     H5M2    H       H       0       -18.966     -10.307     69.645      
+TDX     H5M3    H       H       0       -17.734     -9.438      70.131      
+TDX     H6      H       H       0       -20.181     -7.277      70.325      
+TDX     H1B     H       H       0       -22.419     -6.103      72.803      
+TDX     "H2'1"  H       H       0       -20.745     -4.639      73.292      
+TDX     "H2'2"  H       H       0       -19.926     -4.986      71.964      
+TDX     H3B     H       H       0       -20.973     -3.112      71.212      
+TDX     "HO3'"  H       H       0       -23.113     -3.728      72.714      
+TDX     H4B     H       H       0       -23.219     -4.270      70.388      
+TDX     "H5'1"  H       H       0       -21.659     -3.445      68.834      
+TDX     "H5'2"  H       H       0       -22.150     -4.918      68.428      
+TDX     "H1'"   H       H       0       -17.266     -2.560      65.828      
+TDX     H5B     H       H       0       -15.416     -0.288      67.786      
+TDX     H5D     H       H       0       -15.217     0.721       66.585      
+TDX     "H2'"   H       H       0       -15.094     -2.909      65.056      
+TDX     "HO2'"  H       H       0       -15.943     -4.716      65.818      
+TDX     "H3'"   H       H       0       -14.146     -2.531      67.719      
+TDX     HO3A    H       H       0       -12.853     -3.833      66.607      
+TDX     "H4'"   H       H       0       -13.757     -0.748      65.511      
+TDX     "HO4'"  H       H       0       -12.166     -0.602      66.976      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TDX          O4          C4      DOUBLE       n     1.234  0.0141     1.234  0.0141
+TDX          C4          N3      SINGLE       y     1.383  0.0100     1.383  0.0100
+TDX          C4          C5      SINGLE       y     1.446  0.0100     1.446  0.0100
+TDX          N3          C2      SINGLE       y     1.373  0.0100     1.373  0.0100
+TDX          C2          O2      DOUBLE       n     1.224  0.0111     1.224  0.0111
+TDX          C2          N1      SINGLE       y     1.379  0.0100     1.379  0.0100
+TDX          C5         C5M      SINGLE       n     1.500  0.0100     1.500  0.0100
+TDX          C5          C6      DOUBLE       y     1.343  0.0112     1.343  0.0112
+TDX          C6          N1      SINGLE       y     1.380  0.0107     1.380  0.0107
+TDX          N1         C1B      SINGLE       n     1.477  0.0139     1.477  0.0139
+TDX         C1B         C2B      SINGLE       n     1.523  0.0130     1.523  0.0130
+TDX         C1B         O4B      SINGLE       n     1.422  0.0100     1.422  0.0100
+TDX         C2B         C3B      SINGLE       n     1.522  0.0100     1.522  0.0100
+TDX         C3B         O3B      SINGLE       n     1.424  0.0100     1.424  0.0100
+TDX         C3B         C4B      SINGLE       n     1.526  0.0115     1.526  0.0115
+TDX         O4B         C4B      SINGLE       n     1.445  0.0100     1.445  0.0100
+TDX         C4B         C5B      SINGLE       n     1.509  0.0100     1.509  0.0100
+TDX         C5B         O5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+TDX         O5B          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+TDX          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+TDX          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+TDX          PA         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+TDX         O3A          PB      SINGLE       n     1.604  0.0133     1.604  0.0133
+TDX          PB         O1B      DOUBLE       n     1.493  0.0122     1.493  0.0122
+TDX          PB         O2B      SINGLE       n     1.493  0.0122     1.493  0.0122
+TDX          PB       "O1'"      SINGLE       n     1.604  0.0133     1.604  0.0133
+TDX       "O1'"       "C1'"      SINGLE       n     1.403  0.0143     1.403  0.0143
+TDX       "C1'"       "O5'"      SINGLE       n     1.417  0.0112     1.417  0.0112
+TDX       "C1'"       "C2'"      SINGLE       n     1.522  0.0165     1.522  0.0165
+TDX       "O5'"       "C5'"      SINGLE       n     1.432  0.0100     1.432  0.0100
+TDX       "C5'"       "C4'"      SINGLE       n     1.517  0.0100     1.517  0.0100
+TDX       "C2'"       "O2'"      SINGLE       n     1.425  0.0112     1.425  0.0112
+TDX       "C2'"       "C3'"      SINGLE       n     1.523  0.0100     1.523  0.0100
+TDX       "C3'"       "O3'"      SINGLE       n     1.426  0.0100     1.426  0.0100
+TDX       "C3'"       "C4'"      SINGLE       n     1.523  0.0100     1.523  0.0100
+TDX       "C4'"       "O4'"      SINGLE       n     1.430  0.0100     1.430  0.0100
+TDX          N3          H3      SINGLE       n     1.016  0.0100     0.893  0.0200
+TDX         C5M        H5M1      SINGLE       n     1.089  0.0100     0.971  0.0135
+TDX         C5M        H5M2      SINGLE       n     1.089  0.0100     0.971  0.0135
+TDX         C5M        H5M3      SINGLE       n     1.089  0.0100     0.971  0.0135
+TDX          C6          H6      SINGLE       n     1.082  0.0130     0.951  0.0200
+TDX         C1B         H1B      SINGLE       n     1.089  0.0100     0.996  0.0200
+TDX         C2B      "H2'1"      SINGLE       n     1.089  0.0100     0.982  0.0200
+TDX         C2B      "H2'2"      SINGLE       n     1.089  0.0100     0.982  0.0200
+TDX         C3B         H3B      SINGLE       n     1.089  0.0100     0.988  0.0189
+TDX         O3B      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+TDX         C4B         H4B      SINGLE       n     1.089  0.0100     0.987  0.0170
+TDX         C5B      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+TDX         C5B      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+TDX       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.989  0.0153
+TDX       "C5'"         H5B      SINGLE       n     1.089  0.0100     0.976  0.0186
+TDX       "C5'"         H5D      SINGLE       n     1.089  0.0100     0.976  0.0186
+TDX       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.987  0.0140
+TDX       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.841  0.0200
+TDX       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.988  0.0166
+TDX       "O3'"        HO3A      SINGLE       n     0.970  0.0120     0.841  0.0200
+TDX       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.993  0.0111
+TDX       "O4'"      "HO4'"      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TDX          O4          C4          N3     119.787    1.50
+TDX          O4          C4          C5     124.948    1.50
+TDX          N3          C4          C5     115.265    1.50
+TDX          C4          N3          C2     127.106    1.50
+TDX          C4          N3          H3     117.311    1.81
+TDX          C2          N3          H3     115.584    1.79
+TDX          N3          C2          O2     122.342    1.50
+TDX          N3          C2          N1     114.786    1.50
+TDX          O2          C2          N1     122.872    1.50
+TDX          C4          C5         C5M     118.650    1.50
+TDX          C4          C5          C6     118.305    1.50
+TDX         C5M          C5          C6     123.045    1.50
+TDX          C5         C5M        H5M1     109.652    1.50
+TDX          C5         C5M        H5M2     109.652    1.50
+TDX          C5         C5M        H5M3     109.652    1.50
+TDX        H5M1         C5M        H5M2     109.348    1.50
+TDX        H5M1         C5M        H5M3     109.348    1.50
+TDX        H5M2         C5M        H5M3     109.348    1.50
+TDX          C5          C6          N1     123.296    1.50
+TDX          C5          C6          H6     118.779    1.68
+TDX          N1          C6          H6     117.926    1.56
+TDX          C2          N1          C6     121.243    1.50
+TDX          C2          N1         C1B     118.265    1.50
+TDX          C6          N1         C1B     120.492    1.50
+TDX          N1         C1B         C2B     114.268    1.50
+TDX          N1         C1B         O4B     107.584    1.50
+TDX          N1         C1B         H1B     109.342    1.50
+TDX         C2B         C1B         O4B     106.308    1.50
+TDX         C2B         C1B         H1B     109.741    1.50
+TDX         O4B         C1B         H1B     109.550    1.50
+TDX         C1B         C2B         C3B     102.834    1.50
+TDX         C1B         C2B      "H2'1"     111.187    1.50
+TDX         C1B         C2B      "H2'2"     111.187    1.50
+TDX         C3B         C2B      "H2'1"     111.310    1.50
+TDX         C3B         C2B      "H2'2"     111.310    1.50
+TDX      "H2'1"         C2B      "H2'2"     108.952    1.50
+TDX         C2B         C3B         O3B     110.636    2.59
+TDX         C2B         C3B         C4B     102.800    1.50
+TDX         C2B         C3B         H3B     110.862    1.50
+TDX         O3B         C3B         C4B     110.527    2.37
+TDX         O3B         C3B         H3B     110.713    1.50
+TDX         C4B         C3B         H3B     110.775    1.50
+TDX         C3B         O3B      "HO3'"     109.026    2.38
+TDX         C1B         O4B         C4B     109.692    1.50
+TDX         C3B         C4B         O4B     105.770    1.50
+TDX         C3B         C4B         C5B     114.866    1.63
+TDX         C3B         C4B         H4B     109.069    1.50
+TDX         O4B         C4B         C5B     109.615    1.50
+TDX         O4B         C4B         H4B     108.698    1.50
+TDX         C5B         C4B         H4B     108.268    1.50
+TDX         C4B         C5B         O5B     109.342    1.50
+TDX         C4B         C5B      "H5'1"     109.624    1.50
+TDX         C4B         C5B      "H5'2"     109.624    1.50
+TDX         O5B         C5B      "H5'1"     109.845    1.50
+TDX         O5B         C5B      "H5'2"     109.845    1.50
+TDX      "H5'1"         C5B      "H5'2"     108.472    1.50
+TDX         C5B         O5B          PA     118.553    2.41
+TDX         O5B          PA         O1A     109.410    1.50
+TDX         O5B          PA         O2A     109.410    1.50
+TDX         O5B          PA         O3A     101.065    1.97
+TDX         O1A          PA         O2A     118.411    2.35
+TDX         O1A          PA         O3A     108.816    2.14
+TDX         O2A          PA         O3A     108.816    2.14
+TDX          PA         O3A          PB     132.542    3.00
+TDX         O3A          PB         O1B     108.570    2.41
+TDX         O3A          PB         O2B     108.570    2.41
+TDX         O3A          PB       "O1'"     101.077    2.30
+TDX         O1B          PB         O2B     116.964    2.85
+TDX         O1B          PB       "O1'"     108.530    2.45
+TDX         O2B          PB       "O1'"     108.530    2.45
+TDX          PB       "O1'"       "C1'"     122.306    2.63
+TDX       "O1'"       "C1'"       "O5'"     110.394    2.23
+TDX       "O1'"       "C1'"       "C2'"     108.240    1.70
+TDX       "O1'"       "C1'"       "H1'"     109.322    1.50
+TDX       "O5'"       "C1'"       "C2'"     110.164    1.50
+TDX       "O5'"       "C1'"       "H1'"     109.272    1.61
+TDX       "C2'"       "C1'"       "H1'"     109.599    1.50
+TDX       "C1'"       "O5'"       "C5'"     111.784    1.50
+TDX       "O5'"       "C5'"       "C4'"     110.778    1.50
+TDX       "O5'"       "C5'"         H5B     109.418    1.50
+TDX       "O5'"       "C5'"         H5D     109.418    1.50
+TDX       "C4'"       "C5'"         H5B     109.325    1.50
+TDX       "C4'"       "C5'"         H5D     109.325    1.50
+TDX         H5B       "C5'"         H5D     108.602    1.50
+TDX       "C1'"       "C2'"       "O2'"     109.976    1.78
+TDX       "C1'"       "C2'"       "C3'"     110.229    1.69
+TDX       "C1'"       "C2'"       "H2'"     108.925    1.50
+TDX       "O2'"       "C2'"       "C3'"     111.053    2.62
+TDX       "O2'"       "C2'"       "H2'"     108.551    1.50
+TDX       "C3'"       "C2'"       "H2'"     108.505    1.50
+TDX       "C2'"       "O2'"      "HO2'"     109.126    2.06
+TDX       "C2'"       "C3'"       "O3'"     109.587    2.09
+TDX       "C2'"       "C3'"       "C4'"     110.186    1.50
+TDX       "C2'"       "C3'"       "H3'"     108.712    1.50
+TDX       "O3'"       "C3'"       "C4'"     110.343    1.72
+TDX       "O3'"       "C3'"       "H3'"     108.767    1.50
+TDX       "C4'"       "C3'"       "H3'"     108.724    1.50
+TDX       "C3'"       "O3'"        HO3A     108.895    2.41
+TDX       "C5'"       "C4'"       "C3'"     109.602    1.50
+TDX       "C5'"       "C4'"       "O4'"     109.124    1.50
+TDX       "C5'"       "C4'"       "H4'"     108.994    1.50
+TDX       "C3'"       "C4'"       "O4'"     110.286    1.81
+TDX       "C3'"       "C4'"       "H4'"     109.054    1.50
+TDX       "O4'"       "C4'"       "H4'"     109.069    1.50
+TDX       "C4'"       "O4'"      "HO4'"     108.463    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TDX                   nu0       "C5'"       "O5'"       "C1'"       "C2'"     -62.193    10.0     3
+TDX                   nu1       "O5'"       "C1'"       "C2'"       "C3'"      56.250    10.0     3
+TDX                   nu2       "C1'"       "C2'"       "C3'"       "C4'"     -51.158    10.0     3
+TDX                   nu3       "C2'"       "C3'"       "C4'"       "C5'"      51.471    10.0     3
+TDX                   nu4       "C3'"       "C4'"       "C5'"       "O5'"     -57.892    10.0     3
+TDX                   nu5       "C4'"       "C5'"       "O5'"       "C1'"      63.490    10.0     3
+TDX            sp3_sp3_34         O4B         C1B         C2B         C3B      60.000    10.0     3
+TDX            sp3_sp3_35         O4B         C1B         C2B      "H2'1"     180.000    10.0     3
+TDX            sp3_sp3_36         O4B         C1B         C2B      "H2'2"     -60.000    10.0     3
+TDX            sp3_sp3_37          N1         C1B         C2B         C3B     -60.000    10.0     3
+TDX            sp3_sp3_38          N1         C1B         C2B      "H2'1"      60.000    10.0     3
+TDX            sp3_sp3_39          N1         C1B         C2B      "H2'2"     180.000    10.0     3
+TDX            sp3_sp3_40         H1B         C1B         C2B         C3B     180.000    10.0     3
+TDX            sp3_sp3_41         H1B         C1B         C2B      "H2'1"     -60.000    10.0     3
+TDX            sp3_sp3_42         H1B         C1B         C2B      "H2'2"      60.000    10.0     3
+TDX            sp3_sp3_43         C1B         C2B         C3B         C4B     -60.000    10.0     3
+TDX            sp3_sp3_44         C1B         C2B         C3B         O3B      60.000    10.0     3
+TDX            sp3_sp3_45         C1B         C2B         C3B         H3B     180.000    10.0     3
+TDX            sp3_sp3_46      "H2'1"         C2B         C3B         C4B     180.000    10.0     3
+TDX            sp3_sp3_47      "H2'1"         C2B         C3B         O3B     -60.000    10.0     3
+TDX            sp3_sp3_48      "H2'1"         C2B         C3B         H3B      60.000    10.0     3
+TDX            sp3_sp3_49      "H2'2"         C2B         C3B         C4B      60.000    10.0     3
+TDX            sp3_sp3_50      "H2'2"         C2B         C3B         O3B     180.000    10.0     3
+TDX            sp3_sp3_51      "H2'2"         C2B         C3B         H3B     -60.000    10.0     3
+TDX            sp3_sp3_52         C2B         C3B         C4B         O4B      60.000    10.0     3
+TDX            sp3_sp3_53         C2B         C3B         C4B         C5B     180.000    10.0     3
+TDX            sp3_sp3_54         C2B         C3B         C4B         H4B     -60.000    10.0     3
+TDX            sp3_sp3_55         O3B         C3B         C4B         O4B     -60.000    10.0     3
+TDX            sp3_sp3_56         O3B         C3B         C4B         C5B      60.000    10.0     3
+TDX            sp3_sp3_57         O3B         C3B         C4B         H4B     180.000    10.0     3
+TDX            sp3_sp3_58         H3B         C3B         C4B         O4B     180.000    10.0     3
+TDX            sp3_sp3_59         H3B         C3B         C4B         C5B     -60.000    10.0     3
+TDX            sp3_sp3_60         H3B         C3B         C4B         H4B      60.000    10.0     3
+TDX            sp3_sp3_61         C3B         C4B         O4B         C1B     -60.000    10.0     3
+TDX            sp3_sp3_62         C5B         C4B         O4B         C1B     180.000    10.0     3
+TDX            sp3_sp3_63         H4B         C4B         O4B         C1B      60.000    10.0     3
+TDX       const_sp2_sp2_1          C5          C4          N3          C2       0.000     5.0     2
+TDX       const_sp2_sp2_2          C5          C4          N3          H3     180.000     5.0     2
+TDX       const_sp2_sp2_3          O4          C4          N3          C2     180.000     5.0     2
+TDX       const_sp2_sp2_4          O4          C4          N3          H3       0.000     5.0     2
+TDX       const_sp2_sp2_5          N1          C2          N3          C4       0.000     5.0     2
+TDX       const_sp2_sp2_6          N1          C2          N3          H3     180.000     5.0     2
+TDX       const_sp2_sp2_7          O2          C2          N3          C4     180.000     5.0     2
+TDX       const_sp2_sp2_8          O2          C2          N3          H3       0.000     5.0     2
+TDX       const_sp2_sp2_9          N3          C2          N1          C6       0.000     5.0     2
+TDX              const_10          N3          C2          N1         C1B     180.000    10.0     2
+TDX              const_11          O2          C2          N1          C6     180.000    10.0     2
+TDX              const_12          O2          C2          N1         C1B       0.000    10.0     2
+TDX              const_13          C5          C6          N1          C2       0.000    10.0     2
+TDX              const_14          C5          C6          N1         C1B     180.000    10.0     2
+TDX              const_15          H6          C6          N1          C2     180.000    10.0     2
+TDX              const_16          H6          C6          N1         C1B       0.000    10.0     2
+TDX              const_17          C4          C5          C6          N1       0.000    10.0     2
+TDX              const_18          C4          C5          C6          H6     180.000    10.0     2
+TDX              const_19         C5M          C5          C6          N1     180.000    10.0     2
+TDX              const_20         C5M          C5          C6          H6       0.000    10.0     2
+TDX              const_21          N3          C4          C5          C6       0.000    10.0     2
+TDX              const_22          N3          C4          C5         C5M     180.000    10.0     2
+TDX              const_23          O4          C4          C5          C6     180.000    10.0     2
+TDX              const_24          O4          C4          C5         C5M       0.000    10.0     2
+TDX             sp2_sp3_1          C4          C5         C5M        H5M1     150.000    10.0     6
+TDX             sp2_sp3_2          C4          C5         C5M        H5M2     -90.000    10.0     6
+TDX             sp2_sp3_3          C4          C5         C5M        H5M3      30.000    10.0     6
+TDX             sp2_sp3_4          C6          C5         C5M        H5M1     -30.000    10.0     6
+TDX             sp2_sp3_5          C6          C5         C5M        H5M2      90.000    10.0     6
+TDX             sp2_sp3_6          C6          C5         C5M        H5M3    -150.000    10.0     6
+TDX             sp2_sp3_7          C2          N1         C1B         C2B     150.000    10.0     6
+TDX             sp2_sp3_8          C2          N1         C1B         O4B     -90.000    10.0     6
+TDX             sp2_sp3_9          C2          N1         C1B         H1B      30.000    10.0     6
+TDX            sp2_sp3_10          C6          N1         C1B         C2B     -30.000    10.0     6
+TDX            sp2_sp3_11          C6          N1         C1B         O4B      90.000    10.0     6
+TDX            sp2_sp3_12          C6          N1         C1B         H1B    -150.000    10.0     6
+TDX            sp3_sp3_64         C2B         C1B         O4B         C4B     180.000    10.0     3
+TDX            sp3_sp3_65          N1         C1B         O4B         C4B      60.000    10.0     3
+TDX            sp3_sp3_66         H1B         C1B         O4B         C4B     -60.000    10.0     3
+TDX            sp3_sp3_67         C2B         C3B         O3B      "HO3'"     180.000    10.0     3
+TDX            sp3_sp3_68         C4B         C3B         O3B      "HO3'"      60.000    10.0     3
+TDX            sp3_sp3_69         H3B         C3B         O3B      "HO3'"     -60.000    10.0     3
+TDX            sp3_sp3_70         C3B         C4B         C5B         O5B     180.000    10.0     3
+TDX            sp3_sp3_71         C3B         C4B         C5B      "H5'1"     -60.000    10.0     3
+TDX            sp3_sp3_72         C3B         C4B         C5B      "H5'2"      60.000    10.0     3
+TDX            sp3_sp3_73         O4B         C4B         C5B         O5B      60.000    10.0     3
+TDX            sp3_sp3_74         O4B         C4B         C5B      "H5'1"     180.000    10.0     3
+TDX            sp3_sp3_75         O4B         C4B         C5B      "H5'2"     -60.000    10.0     3
+TDX            sp3_sp3_76         H4B         C4B         C5B         O5B     -60.000    10.0     3
+TDX            sp3_sp3_77         H4B         C4B         C5B      "H5'1"      60.000    10.0     3
+TDX            sp3_sp3_78         H4B         C4B         C5B      "H5'2"     180.000    10.0     3
+TDX            sp3_sp3_79         C4B         C5B         O5B          PA     180.000    10.0     3
+TDX            sp3_sp3_80      "H5'1"         C5B         O5B          PA      60.000    10.0     3
+TDX            sp3_sp3_81      "H5'2"         C5B         O5B          PA     -60.000    10.0     3
+TDX            sp3_sp3_82         C5B         O5B          PA         O3A     180.000    10.0     3
+TDX            sp3_sp3_83         C5B         O5B          PA         O2A     -60.000    10.0     3
+TDX            sp3_sp3_84         C5B         O5B          PA         O1A      60.000    10.0     3
+TDX            sp3_sp3_85          PB         O3A          PA         O2A     180.000    10.0     3
+TDX            sp3_sp3_86          PB         O3A          PA         O5B     -60.000    10.0     3
+TDX            sp3_sp3_87          PB         O3A          PA         O1A      60.000    10.0     3
+TDX            sp3_sp3_88          PA         O3A          PB         O2B     180.000    10.0     3
+TDX            sp3_sp3_89          PA         O3A          PB       "O1'"     -60.000    10.0     3
+TDX            sp3_sp3_90          PA         O3A          PB         O1B      60.000    10.0     3
+TDX            sp3_sp3_91       "C1'"       "O1'"          PB         O3A     180.000    10.0     3
+TDX            sp3_sp3_92       "C1'"       "O1'"          PB         O2B     -60.000    10.0     3
+TDX            sp3_sp3_93       "C1'"       "O1'"          PB         O1B      60.000    10.0     3
+TDX            sp3_sp3_94       "O5'"       "C1'"       "O1'"          PB     180.000    10.0     3
+TDX            sp3_sp3_95       "C2'"       "C1'"       "O1'"          PB      60.000    10.0     3
+TDX            sp3_sp3_96       "H1'"       "C1'"       "O1'"          PB     -60.000    10.0     3
+TDX           sp3_sp3_106       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+TDX           sp3_sp3_107       "C3'"       "C2'"       "O2'"      "HO2'"      60.000    10.0     3
+TDX           sp3_sp3_108       "H2'"       "C2'"       "O2'"      "HO2'"     -60.000    10.0     3
+TDX           sp3_sp3_109       "C2'"       "C3'"       "O3'"        HO3A     180.000    10.0     3
+TDX           sp3_sp3_110       "C4'"       "C3'"       "O3'"        HO3A      60.000    10.0     3
+TDX           sp3_sp3_111       "H3'"       "C3'"       "O3'"        HO3A     -60.000    10.0     3
+TDX           sp3_sp3_112       "C5'"       "C4'"       "O4'"      "HO4'"     180.000    10.0     3
+TDX           sp3_sp3_113       "C3'"       "C4'"       "O4'"      "HO4'"      60.000    10.0     3
+TDX           sp3_sp3_114       "H4'"       "C4'"       "O4'"      "HO4'"     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TDX    chir_1    C1B    O4B    N1    C2B    negative
+TDX    chir_2    C3B    O3B    C4B    C2B    positive
+TDX    chir_3    C4B    O4B    C3B    C5B    negative
+TDX    chir_4    PA    O3A    O5B    O2A    both
+TDX    chir_5    PB    O3A    "O1'"    O2B    both
+TDX    chir_6    "C1'"    "O1'"    "O5'"    "C2'"    negative
+TDX    chir_7    "C2'"    "O2'"    "C1'"    "C3'"    negative
+TDX    chir_8    "C3'"    "O3'"    "C2'"    "C4'"    positive
+TDX    chir_9    "C4'"    "O4'"    "C3'"    "C5'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TDX    plan-1         C1B   0.020
+TDX    plan-1          C2   0.020
+TDX    plan-1          C4   0.020
+TDX    plan-1          C5   0.020
+TDX    plan-1         C5M   0.020
+TDX    plan-1          C6   0.020
+TDX    plan-1          H3   0.020
+TDX    plan-1          H6   0.020
+TDX    plan-1          N1   0.020
+TDX    plan-1          N3   0.020
+TDX    plan-1          O2   0.020
+TDX    plan-1          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TDX           SMILES              ACDLabs 10.04                                                                                                                                                           O=P(OC1OCC(O)C(O)C1O)(O)OP(=O)(O)OCC3OC(N2C=C(C(=O)NC2=O)C)CC3O
+TDX SMILES_CANONICAL               CACTVS 3.341                                                                                                                   CC1=CN([C@H]2C[C@H](O)[C@@H](CO[P@@](O)(=O)O[P@@](O)(=O)O[C@H]3OC[C@@H](O)[C@H](O)[C@H]3O)O2)C(=O)NC1=O
+TDX           SMILES               CACTVS 3.341                                                                                                                                CC1=CN([CH]2C[CH](O)[CH](CO[P](O)(=O)O[P](O)(=O)O[CH]3OC[CH](O)[CH](O)[CH]3O)O2)C(=O)NC1=O
+TDX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                 CC1=CN(C(=O)NC1=O)[C@H]2C[C@@H]([C@H](O2)CO[P@](=O)(O)O[P@](=O)(O)O[C@@H]3[C@@H]([C@H]([C@@H](CO3)O)O)O)O
+TDX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                       CC1=CN(C(=O)NC1=O)C2CC(C(O2)COP(=O)(O)OP(=O)(O)OC3C(C(C(CO3)O)O)O)O
+TDX            InChI                InChI  1.03 InChI=1S/C15H24N2O15P2/c1-6-3-17(15(23)16-13(6)22)10-2-7(18)9(30-10)5-29-33(24,25)32-34(26,27)31-14-12(21)11(20)8(19)4-28-14/h3,7-12,14,18-21H,2,4-5H2,1H3,(H,24,25)(H,26,27)(H,16,22,23)/t7-,8+,9+,10+,11-,12+,14+/m0/s1
+TDX         InChIKey                InChI  1.03                                                                                                                                                                                               AJUADKZRQSBUAK-KDGZBOQCSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TDX acedrg               243         "dictionary generator"                  
+TDX acedrg_database      11          "data source"                           
+TDX rdkit                2017.03.2   "Chemoinformatics tool"
+TDX refmac5              5.8.0238    "optimization tool"                     

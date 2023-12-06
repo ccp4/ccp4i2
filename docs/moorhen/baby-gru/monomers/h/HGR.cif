@@ -1,0 +1,550 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HGR     HGR      "Hygromycin A"     NON-POLYMER     65     36     .     
+#
+data_comp_HGR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HGR     C1      C       CR16    0       56.438      120.523     114.530     
+HGR     C2      C       CR6     0       55.040      120.109     114.409     
+HGR     C3      C       CR6     0       54.252      120.588     113.245     
+HGR     C4      C       CR16    0       54.835      121.494     112.357     
+HGR     C5      C       CH2     0       56.140      122.040     112.602     
+HGR     C6      C       CR6     0       57.026      121.393     113.662     
+HGR     O8      O       O2      0       64.045      120.995     117.459     
+HGR     C10     C       CH1     0       51.954      120.561     112.177     
+HGR     O11     O       OH1     0       62.619      119.248     112.422     
+HGR     C12     C       C1      0       58.454      121.643     113.848     
+HGR     C13     C       CH3     0       50.029      123.043     115.591     
+HGR     C15     C       C       0       60.779      122.381     113.257     
+HGR     C16     C       CH3     0       58.745      123.735     112.507     
+HGR     C17     C       CH1     0       62.860      121.161     113.884     
+HGR     C19     C       CH1     0       63.471      121.662     115.198     
+HGR     C23     C       CH2     0       65.103      120.061     117.308     
+HGR     O1      O       O2      0       51.728      121.939     112.410     
+HGR     C7      C       CH1     0       50.567      122.149     113.215     
+HGR     C8      C       CH1     0       50.142      120.751     113.662     
+HGR     C9      C       CH1     0       50.621      119.879     112.499     
+HGR     O2      O       OH1     0       48.741      120.678     113.855     
+HGR     C11     C       C       0       50.888      123.103     114.362     
+HGR     O3      O       O2      0       52.966      120.085     113.081     
+HGR     O4      O       O       0       54.484      119.320     115.229     
+HGR     O5      O       OH1     0       50.710      118.513     112.851     
+HGR     O6      O       O       0       51.797      123.894     114.276     
+HGR     C14     C       C       0       59.314      122.534     113.229     
+HGR     O7      O       O       0       61.453      123.242     112.687     
+HGR     C18     C       CH1     0       63.137      120.758     116.381     
+HGR     C20     C       CH1     0       63.244      119.706     113.622     
+HGR     C21     C       CH1     0       62.847      118.772     114.773     
+HGR     C22     C       CH1     0       63.348      119.269     116.127     
+HGR     N1      N       NH1     0       61.406      121.356     113.855     
+HGR     O10     O       OH1     0       63.017      122.991     115.489     
+HGR     O12     O       OH1     0       63.373      117.459     114.536     
+HGR     O9      O       O2      0       64.766      119.171     116.258     
+HGR     H1      H       H       0       56.950      120.154     115.224     
+HGR     H2      H       H       0       54.366      121.771     111.586     
+HGR     H3      H       H       0       56.005      122.982     112.835     
+HGR     H4      H       H       0       56.613      122.028     111.745     
+HGR     H5      H       H       0       52.238      120.424     111.228     
+HGR     H6      H       H       0       62.951      119.657     111.766     
+HGR     H7      H       H       0       58.873      121.049     114.436     
+HGR     H8      H       H       0       49.106      122.927     115.334     
+HGR     H9      H       H       0       50.123      123.864     116.089     
+HGR     H10     H       H       0       50.306      122.300     116.141     
+HGR     H11     H       H       0       59.414      124.428     112.422     
+HGR     H12     H       H       0       57.998      124.089     113.008     
+HGR     H13     H       H       0       58.446      123.473     111.624     
+HGR     H14     H       H       0       63.269      121.691     113.156     
+HGR     H15     H       H       0       64.445      121.690     115.090     
+HGR     H16     H       H       0       65.950      120.536     117.095     
+HGR     H17     H       H       0       65.238      119.557     118.154     
+HGR     H18     H       H       0       49.858      122.554     112.661     
+HGR     H19     H       H       0       50.618      120.499     114.491     
+HGR     H20     H       H       0       49.979      119.967     111.711     
+HGR     H21     H       H       0       48.536      119.880     114.061     
+HGR     H22     H       H       0       51.262      118.412     113.488     
+HGR     H23     H       H       0       62.212      120.924     116.678     
+HGR     H24     H       H       0       64.224      119.656     113.502     
+HGR     H25     H       H       0       61.869      118.708     114.806     
+HGR     H26     H       H       0       62.916      118.748     116.844     
+HGR     H27     H       H       0       60.928      120.764     114.248     
+HGR     H28     H       H       0       63.551      123.359     116.025     
+HGR     H29     H       H       0       62.935      117.087     113.921     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HGR         C10          O1      SINGLE       n     1.413  0.0127     1.413  0.0127
+HGR         C10          C9      SINGLE       n     1.532  0.0126     1.532  0.0126
+HGR         C10          O3      SINGLE       n     1.435  0.0102     1.435  0.0102
+HGR          O1          C7      SINGLE       n     1.425  0.0101     1.425  0.0101
+HGR         C16         C14      SINGLE       n     1.508  0.0100     1.508  0.0100
+HGR          C4          C5      SINGLE       n     1.429  0.0200     1.429  0.0200
+HGR          C3          C4      DOUBLE       n     1.395  0.0200     1.395  0.0200
+HGR         C15          O7      DOUBLE       n     1.229  0.0129     1.229  0.0129
+HGR          C5          C6      SINGLE       n     1.496  0.0200     1.496  0.0200
+HGR          C9          O5      SINGLE       n     1.413  0.0100     1.413  0.0100
+HGR          C8          C9      SINGLE       n     1.533  0.0100     1.533  0.0100
+HGR         C15         C14      SINGLE       n     1.420  0.0200     1.420  0.0200
+HGR         C12         C14      DOUBLE       n     1.344  0.0200     1.344  0.0200
+HGR         O11         C20      SINGLE       n     1.428  0.0123     1.428  0.0123
+HGR          C3          O3      SINGLE       n     1.377  0.0200     1.377  0.0200
+HGR          C2          C3      SINGLE       n     1.484  0.0128     1.484  0.0128
+HGR         C15          N1      SINGLE       n     1.332  0.0100     1.332  0.0100
+HGR          C6         C12      SINGLE       n     1.427  0.0200     1.427  0.0200
+HGR          C1          C6      DOUBLE       n     1.346  0.0139     1.346  0.0139
+HGR          C7          C8      SINGLE       n     1.526  0.0151     1.526  0.0151
+HGR          C7         C11      SINGLE       n     1.521  0.0118     1.521  0.0118
+HGR          C1          C2      SINGLE       n     1.449  0.0200     1.449  0.0200
+HGR          C2          O4      DOUBLE       n     1.265  0.0200     1.265  0.0200
+HGR         C17          N1      SINGLE       n     1.461  0.0100     1.461  0.0100
+HGR          C8          O2      SINGLE       n     1.416  0.0100     1.416  0.0100
+HGR         C17         C20      SINGLE       n     1.525  0.0100     1.525  0.0100
+HGR         C17         C19      SINGLE       n     1.531  0.0100     1.531  0.0100
+HGR         C20         C21      SINGLE       n     1.533  0.0114     1.533  0.0114
+HGR         C11          O6      DOUBLE       n     1.207  0.0100     1.207  0.0100
+HGR         C13         C11      SINGLE       n     1.499  0.0100     1.499  0.0100
+HGR         C21         O12      SINGLE       n     1.434  0.0141     1.434  0.0141
+HGR         C21         C22      SINGLE       n     1.522  0.0138     1.522  0.0138
+HGR         C19         O10      SINGLE       n     1.434  0.0141     1.434  0.0141
+HGR         C19         C18      SINGLE       n     1.522  0.0138     1.522  0.0138
+HGR         C18         C22      SINGLE       n     1.526  0.0100     1.526  0.0100
+HGR         C22          O9      SINGLE       n     1.429  0.0100     1.429  0.0100
+HGR          O8         C18      SINGLE       n     1.429  0.0100     1.429  0.0100
+HGR         C23          O9      SINGLE       n     1.415  0.0100     1.415  0.0100
+HGR          O8         C23      SINGLE       n     1.415  0.0100     1.415  0.0100
+HGR          C1          H1      SINGLE       n     1.082  0.0130     0.937  0.0153
+HGR          C4          H2      SINGLE       n     1.082  0.0130     0.944  0.0144
+HGR          C5          H3      SINGLE       n     1.089  0.0100     0.980  0.0113
+HGR          C5          H4      SINGLE       n     1.089  0.0100     0.980  0.0113
+HGR         C10          H5      SINGLE       n     1.089  0.0100     1.000  0.0200
+HGR         O11          H6      SINGLE       n     0.970  0.0120     0.841  0.0200
+HGR         C12          H7      SINGLE       n     1.082  0.0130     0.938  0.0146
+HGR         C13          H8      SINGLE       n     1.089  0.0100     0.965  0.0130
+HGR         C13          H9      SINGLE       n     1.089  0.0100     0.965  0.0130
+HGR         C13         H10      SINGLE       n     1.089  0.0100     0.965  0.0130
+HGR         C16         H11      SINGLE       n     1.089  0.0100     0.969  0.0177
+HGR         C16         H12      SINGLE       n     1.089  0.0100     0.969  0.0177
+HGR         C16         H13      SINGLE       n     1.089  0.0100     0.969  0.0177
+HGR         C17         H14      SINGLE       n     1.089  0.0100     0.990  0.0147
+HGR         C19         H15      SINGLE       n     1.089  0.0100     0.981  0.0200
+HGR         C23         H16      SINGLE       n     1.089  0.0100     0.994  0.0115
+HGR         C23         H17      SINGLE       n     1.089  0.0100     0.994  0.0115
+HGR          C7         H18      SINGLE       n     1.089  0.0100     0.987  0.0200
+HGR          C8         H19      SINGLE       n     1.089  0.0100     0.988  0.0200
+HGR          C9         H20      SINGLE       n     1.089  0.0100     1.020  0.0200
+HGR          O2         H21      SINGLE       n     0.970  0.0120     0.849  0.0200
+HGR          O5         H22      SINGLE       n     0.970  0.0120     0.849  0.0200
+HGR         C18         H23      SINGLE       n     1.089  0.0100     0.986  0.0115
+HGR         C20         H24      SINGLE       n     1.089  0.0100     0.989  0.0181
+HGR         C21         H25      SINGLE       n     1.089  0.0100     0.981  0.0200
+HGR         C22         H26      SINGLE       n     1.089  0.0100     0.986  0.0115
+HGR          N1         H27      SINGLE       n     1.016  0.0100     0.866  0.0200
+HGR         O10         H28      SINGLE       n     0.970  0.0120     0.841  0.0200
+HGR         O12         H29      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HGR          C6          C1          C2     120.724    1.50
+HGR          C6          C1          H1     119.699    1.50
+HGR          C2          C1          H1     119.577    1.50
+HGR          C3          C2          C1     118.248    1.50
+HGR          C3          C2          O4     118.494    2.23
+HGR          C1          C2          O4     123.258    1.50
+HGR          C4          C3          O3     119.991    3.00
+HGR          C4          C3          C2     120.510    1.50
+HGR          O3          C3          C2     119.500    2.70
+HGR          C5          C4          C3     121.281    3.00
+HGR          C5          C4          H2     118.927    1.70
+HGR          C3          C4          H2     119.791    1.59
+HGR          C4          C5          C6     114.356    2.46
+HGR          C4          C5          H3     108.815    3.00
+HGR          C4          C5          H4     108.815    3.00
+HGR          C6          C5          H3     108.993    1.50
+HGR          C6          C5          H4     108.993    1.50
+HGR          H3          C5          H4     106.630    2.58
+HGR          C5          C6         C12     123.465    3.00
+HGR          C5          C6          C1     117.261    1.50
+HGR         C12          C6          C1     119.275    1.74
+HGR         C18          O8         C23     105.502    1.50
+HGR          O1         C10          C9     104.988    1.50
+HGR          O1         C10          O3     108.822    1.80
+HGR          O1         C10          H5     109.510    2.59
+HGR          C9         C10          O3     109.403    2.79
+HGR          C9         C10          H5     112.713    2.29
+HGR          O3         C10          H5     110.637    1.50
+HGR         C20         O11          H6     109.099    3.00
+HGR         C14         C12          C6     125.882    2.77
+HGR         C14         C12          H7     116.706    1.50
+HGR          C6         C12          H7     117.412    1.50
+HGR         C11         C13          H8     109.501    1.50
+HGR         C11         C13          H9     109.501    1.50
+HGR         C11         C13         H10     109.501    1.50
+HGR          H8         C13          H9     109.408    1.50
+HGR          H8         C13         H10     109.408    1.50
+HGR          H9         C13         H10     109.408    1.50
+HGR          O7         C15         C14     119.385    1.99
+HGR          O7         C15          N1     122.883    2.42
+HGR         C14         C15          N1     117.732    3.00
+HGR         C14         C16         H11     109.619    1.50
+HGR         C14         C16         H12     109.619    1.50
+HGR         C14         C16         H13     109.619    1.50
+HGR         H11         C16         H12     109.342    1.50
+HGR         H11         C16         H13     109.342    1.50
+HGR         H12         C16         H13     109.342    1.50
+HGR          N1         C17         C20     110.454    2.38
+HGR          N1         C17         C19     110.565    2.00
+HGR          N1         C17         H14     108.143    1.50
+HGR         C20         C17         C19     111.641    2.54
+HGR         C20         C17         H14     107.258    1.68
+HGR         C19         C17         H14     107.253    1.50
+HGR         C17         C19         O10     110.652    2.09
+HGR         C17         C19         C18     111.476    2.14
+HGR         C17         C19         H15     108.832    1.50
+HGR         O10         C19         C18     110.151    2.59
+HGR         O10         C19         H15     108.720    1.50
+HGR         C18         C19         H15     109.051    1.50
+HGR          O9         C23          O8     106.974    1.64
+HGR          O9         C23         H16     110.522    1.50
+HGR          O9         C23         H17     110.522    1.50
+HGR          O8         C23         H16     110.522    1.50
+HGR          O8         C23         H17     110.522    1.50
+HGR         H16         C23         H17     108.632    1.80
+HGR         C10          O1          C7     108.166    2.62
+HGR          O1          C7          C8     105.220    1.50
+HGR          O1          C7         C11     110.288    2.01
+HGR          O1          C7         H18     110.296    2.27
+HGR          C8          C7         C11     112.424    2.46
+HGR          C8          C7         H18     110.407    1.50
+HGR         C11          C7         H18     108.994    1.50
+HGR          C9          C8          C7     104.443    2.26
+HGR          C9          C8          O2     112.463    2.73
+HGR          C9          C8         H19     110.255    2.04
+HGR          C7          C8          O2     110.722    2.96
+HGR          C7          C8         H19     109.969    1.50
+HGR          O2          C8         H19     110.380    1.67
+HGR         C10          C9          O5     114.767    2.06
+HGR         C10          C9          C8     101.476    1.50
+HGR         C10          C9         H20     110.947    3.00
+HGR          O5          C9          C8     112.463    2.73
+HGR          O5          C9         H20     108.546    1.50
+HGR          C8          C9         H20     110.255    2.04
+HGR          C8          O2         H21     108.744    3.00
+HGR          C7         C11          O6     121.000    1.50
+HGR          C7         C11         C13     117.466    2.11
+HGR          O6         C11         C13     121.534    1.50
+HGR         C10          O3          C3     120.000    3.00
+HGR          C9          O5         H22     110.011    1.50
+HGR         C16         C14         C15     120.004    3.00
+HGR         C16         C14         C12     120.004    3.00
+HGR         C15         C14         C12     119.991    3.00
+HGR         C19         C18         C22     113.290    1.58
+HGR         C19         C18          O8     111.271    2.19
+HGR         C19         C18         H23     109.653    1.50
+HGR         C22         C18          O8     102.936    1.50
+HGR         C22         C18         H23     109.969    1.50
+HGR          O8         C18         H23     109.776    1.50
+HGR         O11         C20         C17     110.124    1.87
+HGR         O11         C20         C21     109.571    2.33
+HGR         O11         C20         H24     108.790    1.50
+HGR         C17         C20         C21     110.991    2.40
+HGR         C17         C20         H24     108.987    1.50
+HGR         C21         C20         H24     108.836    1.50
+HGR         C20         C21         O12     110.544    1.78
+HGR         C20         C21         C22     109.344    3.00
+HGR         C20         C21         H25     109.114    1.50
+HGR         O12         C21         C22     110.151    2.59
+HGR         O12         C21         H25     108.720    1.50
+HGR         C22         C21         H25     109.051    1.50
+HGR         C21         C22         C18     113.290    1.58
+HGR         C21         C22          O9     111.271    2.19
+HGR         C21         C22         H26     109.653    1.50
+HGR         C18         C22          O9     102.936    1.50
+HGR         C18         C22         H26     109.969    1.50
+HGR          O9         C22         H26     109.776    1.50
+HGR         C15          N1         C17     123.443    1.50
+HGR         C15          N1         H27     117.755    1.50
+HGR         C17          N1         H27     118.802    2.07
+HGR         C19         O10         H28     109.523    3.00
+HGR         C21         O12         H29     109.523    3.00
+HGR         C22          O9         C23     105.502    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HGR                   nu0          C7          O1         C10          C9      15.119    10.0     3
+HGR                   nu1          O1         C10          C9          C8     -30.283    10.0     3
+HGR                   nu2         C10          C9          C8          C7      31.562    10.0     3
+HGR                   nu3          C9          C8          C7          O1     -24.551    10.0     3
+HGR                   nu4          C8          C7          O1         C10       6.134    10.0     3
+HGR            sp3_sp3_25         C19         C17         C20         C21      60.000    10.0     3
+HGR            sp3_sp3_26         C19         C17         C20         O11     180.000    10.0     3
+HGR            sp3_sp3_27         C19         C17         C20         H24     -60.000    10.0     3
+HGR            sp3_sp3_28          N1         C17         C20         C21     -60.000    10.0     3
+HGR            sp3_sp3_29          N1         C17         C20         O11      60.000    10.0     3
+HGR            sp3_sp3_30          N1         C17         C20         H24     180.000    10.0     3
+HGR            sp3_sp3_31         H14         C17         C20         C21     180.000    10.0     3
+HGR            sp3_sp3_32         H14         C17         C20         O11     -60.000    10.0     3
+HGR            sp3_sp3_33         H14         C17         C20         H24      60.000    10.0     3
+HGR            sp3_sp3_34         C17         C20         C21         C22     -60.000    10.0     3
+HGR            sp3_sp3_35         C17         C20         C21         O12      60.000    10.0     3
+HGR            sp3_sp3_36         C17         C20         C21         H25     180.000    10.0     3
+HGR            sp3_sp3_37         O11         C20         C21         C22     180.000    10.0     3
+HGR            sp3_sp3_38         O11         C20         C21         O12     -60.000    10.0     3
+HGR            sp3_sp3_39         O11         C20         C21         H25      60.000    10.0     3
+HGR            sp3_sp3_40         H24         C20         C21         C22      60.000    10.0     3
+HGR            sp3_sp3_41         H24         C20         C21         O12     180.000    10.0     3
+HGR            sp3_sp3_42         H24         C20         C21         H25     -60.000    10.0     3
+HGR            sp3_sp3_43         C20         C21         C22         C18      60.000    10.0     3
+HGR            sp3_sp3_44         C20         C21         C22          O9     180.000    10.0     3
+HGR            sp3_sp3_45         C20         C21         C22         H26     -60.000    10.0     3
+HGR            sp3_sp3_46         O12         C21         C22         C18     -60.000    10.0     3
+HGR            sp3_sp3_47         O12         C21         C22          O9      60.000    10.0     3
+HGR            sp3_sp3_48         O12         C21         C22         H26     180.000    10.0     3
+HGR            sp3_sp3_49         H25         C21         C22         C18     180.000    10.0     3
+HGR            sp3_sp3_50         H25         C21         C22          O9     -60.000    10.0     3
+HGR            sp3_sp3_51         H25         C21         C22         H26      60.000    10.0     3
+HGR            sp3_sp3_52         C19         C18         C22         C21     -60.000    10.0     3
+HGR            sp3_sp3_53         C19         C18         C22          O9      60.000    10.0     3
+HGR            sp3_sp3_54         C19         C18         C22         H26     180.000    10.0     3
+HGR            sp3_sp3_55          O8         C18         C22         C21     180.000    10.0     3
+HGR            sp3_sp3_56          O8         C18         C22          O9     -60.000    10.0     3
+HGR            sp3_sp3_57          O8         C18         C22         H26      60.000    10.0     3
+HGR            sp3_sp3_58         H23         C18         C22         C21      60.000    10.0     3
+HGR            sp3_sp3_59         H23         C18         C22          O9     180.000    10.0     3
+HGR            sp3_sp3_60         H23         C18         C22         H26     -60.000    10.0     3
+HGR            sp3_sp3_61         C22         C18         C19         C17      60.000    10.0     3
+HGR            sp3_sp3_62         C22         C18         C19         O10     180.000    10.0     3
+HGR            sp3_sp3_63         C22         C18         C19         H15     -60.000    10.0     3
+HGR            sp3_sp3_64          O8         C18         C19         C17     -60.000    10.0     3
+HGR            sp3_sp3_65          O8         C18         C19         O10      60.000    10.0     3
+HGR            sp3_sp3_66          O8         C18         C19         H15     180.000    10.0     3
+HGR            sp3_sp3_67         H23         C18         C19         C17     180.000    10.0     3
+HGR            sp3_sp3_68         H23         C18         C19         O10     -60.000    10.0     3
+HGR            sp3_sp3_69         H23         C18         C19         H15      60.000    10.0     3
+HGR            sp3_sp3_70         C22         C18          O8         C23      60.000    10.0     3
+HGR            sp3_sp3_71         C19         C18          O8         C23     -60.000    10.0     3
+HGR            sp3_sp3_72         H23         C18          O8         C23     180.000    10.0     3
+HGR            sp3_sp3_73         C18         C22          O9         C23      60.000    10.0     3
+HGR            sp3_sp3_74         C21         C22          O9         C23     -60.000    10.0     3
+HGR            sp3_sp3_75         H26         C22          O9         C23     180.000    10.0     3
+HGR            sp3_sp3_76          O8         C23          O9         C22     -60.000    10.0     3
+HGR            sp3_sp3_77         H16         C23          O9         C22     180.000    10.0     3
+HGR            sp3_sp3_78         H17         C23          O9         C22      60.000    10.0     3
+HGR             sp2_sp2_1          C2          C1          C6          C5       0.000     5.0     2
+HGR             sp2_sp2_2          C2          C1          C6         C12     180.000     5.0     2
+HGR             sp2_sp2_3          H1          C1          C6          C5     180.000     5.0     2
+HGR             sp2_sp2_4          H1          C1          C6         C12       0.000     5.0     2
+HGR             sp2_sp3_1          C1          C6          C5          C4       0.000    10.0     6
+HGR             sp2_sp3_2          C1          C6          C5          H3     120.000    10.0     6
+HGR             sp2_sp3_3          C1          C6          C5          H4    -120.000    10.0     6
+HGR             sp2_sp3_4         C12          C6          C5          C4     180.000    10.0     6
+HGR             sp2_sp3_5         C12          C6          C5          H3     -60.000    10.0     6
+HGR             sp2_sp3_6         C12          C6          C5          H4      60.000    10.0     6
+HGR             sp2_sp3_7          C3          C4          C5          C6       0.000    10.0     6
+HGR             sp2_sp3_8          C3          C4          C5          H3     120.000    10.0     6
+HGR             sp2_sp3_9          C3          C4          C5          H4    -120.000    10.0     6
+HGR            sp2_sp3_10          H2          C4          C5          C6     180.000    10.0     6
+HGR            sp2_sp3_11          H2          C4          C5          H3     -60.000    10.0     6
+HGR            sp2_sp3_12          H2          C4          C5          H4      60.000    10.0     6
+HGR             sp2_sp2_5          C2          C3          C4          C5       0.000     5.0     2
+HGR             sp2_sp2_6          C2          C3          C4          H2     180.000     5.0     2
+HGR             sp2_sp2_7          O3          C3          C4          C5     180.000     5.0     2
+HGR             sp2_sp2_8          O3          C3          C4          H2       0.000     5.0     2
+HGR             sp2_sp2_9          C1          C2          C3          C4       0.000     5.0     2
+HGR            sp2_sp2_10          C1          C2          C3          O3     180.000     5.0     2
+HGR            sp2_sp2_11          O4          C2          C3          C4     180.000     5.0     2
+HGR            sp2_sp2_12          O4          C2          C3          O3       0.000     5.0     2
+HGR            sp3_sp3_88          O1         C10          O3          C3     180.000    10.0     3
+HGR            sp3_sp3_89          C9         C10          O3          C3     -60.000    10.0     3
+HGR            sp3_sp3_90          H5         C10          O3          C3      60.000    10.0     3
+HGR            sp2_sp3_13         C15         C14         C16         H11       0.000    10.0     6
+HGR            sp2_sp3_14         C15         C14         C16         H12     120.000    10.0     6
+HGR            sp2_sp3_15         C15         C14         C16         H13    -120.000    10.0     6
+HGR            sp2_sp3_16         C12         C14         C16         H11     180.000    10.0     6
+HGR            sp2_sp3_17         C12         C14         C16         H12     -60.000    10.0     6
+HGR            sp2_sp3_18         C12         C14         C16         H13      60.000    10.0     6
+HGR            sp3_sp3_91         C10          C9          O5         H22     180.000    10.0     3
+HGR            sp3_sp3_92          C8          C9          O5         H22      60.000    10.0     3
+HGR            sp3_sp3_93         H20          C9          O5         H22     -60.000    10.0     3
+HGR            sp2_sp2_13         C12         C14         C15          N1     180.000     5.0     2
+HGR            sp2_sp2_14         C12         C14         C15          O7       0.000     5.0     2
+HGR            sp2_sp2_15         C16         C14         C15          N1       0.000     5.0     2
+HGR            sp2_sp2_16         C16         C14         C15          O7     180.000     5.0     2
+HGR            sp2_sp2_17          C6         C12         C14         C15     180.000     5.0     2
+HGR            sp2_sp2_18          C6         C12         C14         C16       0.000     5.0     2
+HGR            sp2_sp2_19          H7         C12         C14         C15       0.000     5.0     2
+HGR            sp2_sp2_20          H7         C12         C14         C16     180.000     5.0     2
+HGR            sp3_sp3_94         C17         C20         O11          H6     180.000    10.0     3
+HGR            sp3_sp3_95         C21         C20         O11          H6      60.000    10.0     3
+HGR            sp3_sp3_96         H24         C20         O11          H6     -60.000    10.0     3
+HGR            sp2_sp2_21          C4          C3          O3         C10     180.000     5.0     2
+HGR            sp2_sp2_22          C2          C3          O3         C10       0.000     5.0     2
+HGR            sp2_sp2_23         C14         C15          N1         C17     180.000     5.0     2
+HGR            sp2_sp2_24         C14         C15          N1         H27       0.000     5.0     2
+HGR            sp2_sp2_25          O7         C15          N1         C17       0.000     5.0     2
+HGR            sp2_sp2_26          O7         C15          N1         H27     180.000     5.0     2
+HGR            sp2_sp2_27         C14         C12          C6          C5     180.000     5.0     2
+HGR            sp2_sp2_28         C14         C12          C6          C1       0.000     5.0     2
+HGR            sp2_sp2_29          H7         C12          C6          C5       0.000     5.0     2
+HGR            sp2_sp2_30          H7         C12          C6          C1     180.000     5.0     2
+HGR            sp2_sp3_19          O6         C11          C7          O1       0.000    10.0     6
+HGR            sp2_sp3_20          O6         C11          C7          C8     120.000    10.0     6
+HGR            sp2_sp3_21          O6         C11          C7         H18    -120.000    10.0     6
+HGR            sp2_sp3_22         C13         C11          C7          O1     180.000    10.0     6
+HGR            sp2_sp3_23         C13         C11          C7          C8     -60.000    10.0     6
+HGR            sp2_sp3_24         C13         C11          C7         H18      60.000    10.0     6
+HGR            sp2_sp2_31          C6          C1          C2          C3       0.000     5.0     2
+HGR            sp2_sp2_32          C6          C1          C2          O4     180.000     5.0     2
+HGR            sp2_sp2_33          H1          C1          C2          C3     180.000     5.0     2
+HGR            sp2_sp2_34          H1          C1          C2          O4       0.000     5.0     2
+HGR            sp2_sp3_25         C15          N1         C17         C20       0.000    10.0     6
+HGR            sp2_sp3_26         C15          N1         C17         C19     120.000    10.0     6
+HGR            sp2_sp3_27         C15          N1         C17         H14    -120.000    10.0     6
+HGR            sp2_sp3_28         H27          N1         C17         C20     180.000    10.0     6
+HGR            sp2_sp3_29         H27          N1         C17         C19     -60.000    10.0     6
+HGR            sp2_sp3_30         H27          N1         C17         H14      60.000    10.0     6
+HGR            sp3_sp3_97          C9          C8          O2         H21     180.000    10.0     3
+HGR            sp3_sp3_98          C7          C8          O2         H21      60.000    10.0     3
+HGR            sp3_sp3_99         H19          C8          O2         H21     -60.000    10.0     3
+HGR           sp3_sp3_100         C20         C17         C19         C18     180.000    10.0     3
+HGR           sp3_sp3_101         C20         C17         C19         O10     -60.000    10.0     3
+HGR           sp3_sp3_102         C20         C17         C19         H15      60.000    10.0     3
+HGR           sp3_sp3_103          N1         C17         C19         C18      60.000    10.0     3
+HGR           sp3_sp3_104          N1         C17         C19         O10     180.000    10.0     3
+HGR           sp3_sp3_105          N1         C17         C19         H15     -60.000    10.0     3
+HGR           sp3_sp3_106         H14         C17         C19         C18     -60.000    10.0     3
+HGR           sp3_sp3_107         H14         C17         C19         O10      60.000    10.0     3
+HGR           sp3_sp3_108         H14         C17         C19         H15     180.000    10.0     3
+HGR            sp2_sp3_31          C7         C11         C13          H8       0.000    10.0     6
+HGR            sp2_sp3_32          C7         C11         C13          H9     120.000    10.0     6
+HGR            sp2_sp3_33          C7         C11         C13         H10    -120.000    10.0     6
+HGR            sp2_sp3_34          O6         C11         C13          H8     180.000    10.0     6
+HGR            sp2_sp3_35          O6         C11         C13          H9     -60.000    10.0     6
+HGR            sp2_sp3_36          O6         C11         C13         H10      60.000    10.0     6
+HGR           sp3_sp3_109         C20         C21         O12         H29     180.000    10.0     3
+HGR           sp3_sp3_110         C22         C21         O12         H29      60.000    10.0     3
+HGR           sp3_sp3_111         H25         C21         O12         H29     -60.000    10.0     3
+HGR           sp3_sp3_112         C17         C19         O10         H28     180.000    10.0     3
+HGR           sp3_sp3_113         C18         C19         O10         H28      60.000    10.0     3
+HGR           sp3_sp3_114         H15         C19         O10         H28     -60.000    10.0     3
+HGR           sp3_sp3_115          O9         C23          O8         C18     180.000    10.0     3
+HGR           sp3_sp3_116         H16         C23          O8         C18      60.000    10.0     3
+HGR           sp3_sp3_117         H17         C23          O8         C18     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HGR    chir_1    C10    O3    O1    C9    positive
+HGR    chir_2    C17    N1    C19    C20    negative
+HGR    chir_3    C19    O10    C18    C17    negative
+HGR    chir_4    C7    O1    C11    C8    positive
+HGR    chir_5    C8    O2    C7    C9    positive
+HGR    chir_6    C9    O5    C10    C8    positive
+HGR    chir_7    C18    O8    C22    C19    positive
+HGR    chir_8    C20    O11    C21    C17    positive
+HGR    chir_9    C21    O12    C22    C20    negative
+HGR    chir_10    C22    O9    C18    C21    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HGR    plan-1          C1   0.020
+HGR    plan-1          C2   0.020
+HGR    plan-1          C6   0.020
+HGR    plan-1          H1   0.020
+HGR    plan-2          C1   0.020
+HGR    plan-2          C2   0.020
+HGR    plan-2          C3   0.020
+HGR    plan-2          O4   0.020
+HGR    plan-3          C2   0.020
+HGR    plan-3          C3   0.020
+HGR    plan-3          C4   0.020
+HGR    plan-3          O3   0.020
+HGR    plan-4          C3   0.020
+HGR    plan-4          C4   0.020
+HGR    plan-4          C5   0.020
+HGR    plan-4          H2   0.020
+HGR    plan-5          C1   0.020
+HGR    plan-5         C12   0.020
+HGR    plan-5          C5   0.020
+HGR    plan-5          C6   0.020
+HGR    plan-6         C12   0.020
+HGR    plan-6         C14   0.020
+HGR    plan-6          C6   0.020
+HGR    plan-6          H7   0.020
+HGR    plan-7         C14   0.020
+HGR    plan-7         C15   0.020
+HGR    plan-7          N1   0.020
+HGR    plan-7          O7   0.020
+HGR    plan-8         C11   0.020
+HGR    plan-8         C13   0.020
+HGR    plan-8          C7   0.020
+HGR    plan-8          O6   0.020
+HGR    plan-9         C12   0.020
+HGR    plan-9         C14   0.020
+HGR    plan-9         C15   0.020
+HGR    plan-9         C16   0.020
+HGR   plan-10         C15   0.020
+HGR   plan-10         C17   0.020
+HGR   plan-10         H27   0.020
+HGR   plan-10          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HGR           SMILES              ACDLabs 12.01                                                                                                                                                         C=1C(=O)C(=CCC=1[C@H]=C(C(NC3C(O)C(C2C(OCO2)C3O)O)=O)C)OC4OC(C(O)C4O)C(C)=O
+HGR            InChI                InChI  1.03 InChI=1S/C23H29NO12/c1-8(22(32)24-13-14(27)16(29)21-20(15(13)28)33-7-34-21)5-10-3-4-12(11(26)6-10)35-23-18(31)17(30)19(36-23)9(2)25/h4-6,13-21,23,27-31H,3,7H2,1-2H3,(H,24,32)/b8-5+/t13-,14+,15-,16-,17+,18+,19-,20+,21-,23-/m1/s1
+HGR         InChIKey                InChI  1.03                                                                                                                                                                                                         LDTRVHIISSLXOQ-IIHALWDASA-N
+HGR SMILES_CANONICAL               CACTVS 3.385                                                                                                                  CC(=O)[C@H]1O[C@@H](OC2=CCC(=CC2=O)/C=C(C)/C(=O)N[C@@H]3[C@H](O)[C@@H](O)[C@H]4OCO[C@H]4[C@@H]3O)[C@@H](O)[C@@H]1O
+HGR           SMILES               CACTVS 3.385                                                                                                                                    CC(=O)[CH]1O[CH](OC2=CCC(=CC2=O)C=C(C)C(=O)N[CH]3[CH](O)[CH](O)[CH]4OCO[CH]4[CH]3O)[CH](O)[CH]1O
+HGR SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                            C/C(=C\C1=CC(=O)C(=CC1)O[C@H]2[C@H]([C@@H]([C@H](O2)C(=O)C)O)O)/C(=O)N[C@@H]3[C@@H]([C@H]([C@@H]4[C@H]([C@@H]3O)OCO4)O)O
+HGR           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                                                            CC(=CC1=CC(=O)C(=CC1)OC2C(C(C(O2)C(=O)C)O)O)C(=O)NC3C(C(C4C(C3O)OCO4)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HGR acedrg               243         "dictionary generator"                  
+HGR acedrg_database      11          "data source"                           
+HGR rdkit                2017.03.2   "Chemoinformatics tool"
+HGR refmac5              5.8.0238    "optimization tool"                     

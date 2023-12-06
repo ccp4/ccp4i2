@@ -1,0 +1,192 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PHA     PHA      PHENYLALANINAL     NON-POLYMER     22     11     .     
+#
+data_comp_PHA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PHA     N       N       NT2     0       -14.888     21.848      24.038      
+PHA     CA      C       CH1     0       -15.162     21.086      25.262      
+PHA     C       C       C1      0       -13.883     20.523      25.909      
+PHA     O       O       O       0       -13.909     20.102      27.023      
+PHA     CB      C       CH2     0       -16.113     19.916      24.975      
+PHA     CG      C       CR6     0       -17.469     20.345      24.471      
+PHA     CD1     C       CR16    0       -18.381     20.958      25.323      
+PHA     CD2     C       CR16    0       -17.838     20.140      23.146      
+PHA     CE1     C       CR16    0       -19.630     21.354      24.861      
+PHA     CE2     C       CR16    0       -19.087     20.537      22.686      
+PHA     CZ      C       CR16    0       -19.982     21.144      23.544      
+PHA     H       H       H       0       -15.544     22.452      23.905      
+PHA     H2      H       H       0       -14.116     22.307      24.125      
+PHA     HA      H       H       0       -15.596     21.685      25.911      
+PHA     HC      H       H       0       -13.076     20.512      25.415      
+PHA     HB2     H       H       0       -16.232     19.398      25.799      
+PHA     HB3     H       H       0       -15.697     19.327      24.311      
+PHA     HD1     H       H       0       -18.148     21.105      26.226      
+PHA     HD2     H       H       0       -17.232     19.726      22.553      
+PHA     HE1     H       H       0       -20.240     21.769      25.451      
+PHA     HE2     H       H       0       -19.324     20.391      21.784      
+PHA     HZ      H       H       0       -20.831     21.413      23.231      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PHA           N          CA      SINGLE       n     1.466  0.0118     1.466  0.0118
+PHA          CA           C      SINGLE       n     1.539  0.0100     1.539  0.0100
+PHA          CA          CB      SINGLE       n     1.535  0.0103     1.535  0.0103
+PHA           C           O      DOUBLE       n     1.191  0.0200     1.191  0.0200
+PHA          CB          CG      SINGLE       n     1.508  0.0100     1.508  0.0100
+PHA          CG         CD1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+PHA          CG         CD2      SINGLE       y     1.385  0.0111     1.385  0.0111
+PHA         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+PHA         CD2         CE2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PHA         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PHA         CE2          CZ      SINGLE       y     1.376  0.0124     1.376  0.0124
+PHA           N           H      SINGLE       n     1.036  0.0160     0.902  0.0200
+PHA           N          H2      SINGLE       n     1.036  0.0160     0.902  0.0200
+PHA          CA          HA      SINGLE       n     1.089  0.0100     0.984  0.0149
+PHA           C          HC      SINGLE       n     1.082  0.0130     0.947  0.0200
+PHA          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0164
+PHA          CB         HB3      SINGLE       n     1.089  0.0100     0.980  0.0164
+PHA         CD1         HD1      SINGLE       n     1.082  0.0130     0.944  0.0174
+PHA         CD2         HD2      SINGLE       n     1.082  0.0130     0.944  0.0174
+PHA         CE1         HE1      SINGLE       n     1.082  0.0130     0.944  0.0175
+PHA         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+PHA          CZ          HZ      SINGLE       n     1.082  0.0130     0.944  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PHA          CA           N           H     109.453    3.00
+PHA          CA           N          H2     109.453    3.00
+PHA           H           N          H2     107.559    3.00
+PHA           N          CA           C     112.134    2.59
+PHA           N          CA          CB     110.386    2.27
+PHA           N          CA          HA     108.372    1.54
+PHA           C          CA          CB     108.756    3.00
+PHA           C          CA          HA     108.186    1.50
+PHA          CB          CA          HA     108.240    1.50
+PHA          CA           C           O     120.289    1.60
+PHA          CA           C          HC     119.547    2.53
+PHA           O           C          HC     120.163    1.50
+PHA          CA          CB          CG     113.420    1.89
+PHA          CA          CB         HB2     108.793    1.50
+PHA          CA          CB         HB3     108.793    1.50
+PHA          CG          CB         HB2     108.862    1.50
+PHA          CG          CB         HB3     108.862    1.50
+PHA         HB2          CB         HB3     107.782    1.50
+PHA          CB          CG         CD1     120.970    1.50
+PHA          CB          CG         CD2     120.970    1.50
+PHA         CD1          CG         CD2     118.060    1.50
+PHA          CG         CD1         CE1     120.624    1.50
+PHA          CG         CD1         HD1     119.591    1.50
+PHA         CE1         CD1         HD1     119.786    1.50
+PHA          CG         CD2         CE2     120.624    1.50
+PHA          CG         CD2         HD2     119.591    1.50
+PHA         CE2         CD2         HD2     119.786    1.50
+PHA         CD1         CE1          CZ     120.325    1.50
+PHA         CD1         CE1         HE1     119.792    1.50
+PHA          CZ         CE1         HE1     119.883    1.50
+PHA         CD2         CE2          CZ     120.325    1.50
+PHA         CD2         CE2         HE2     119.792    1.50
+PHA          CZ         CE2         HE2     119.883    1.50
+PHA         CE1          CZ         CE2     120.043    1.50
+PHA         CE1          CZ          HZ     119.979    1.50
+PHA         CE2          CZ          HZ     119.979    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PHA             sp3_sp3_1           C          CA           N           H     180.000    10.0     3
+PHA             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+PHA             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+PHA             sp2_sp3_8         CD1          CG          CB          CA     -90.000    10.0     6
+PHA       const_sp2_sp2_2         CE1         CD1          CG          CB     180.000     5.0     2
+PHA              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+PHA       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+PHA              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+PHA       const_sp2_sp2_9         CD1         CE1          CZ         CE2       0.000     5.0     2
+PHA              const_13         CD2         CE2          CZ         CE1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PHA    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PHA    plan-1          CB   0.020
+PHA    plan-1         CD1   0.020
+PHA    plan-1         CD2   0.020
+PHA    plan-1         CE1   0.020
+PHA    plan-1         CE2   0.020
+PHA    plan-1          CG   0.020
+PHA    plan-1          CZ   0.020
+PHA    plan-1         HD1   0.020
+PHA    plan-1         HD2   0.020
+PHA    plan-1         HE1   0.020
+PHA    plan-1         HE2   0.020
+PHA    plan-1          HZ   0.020
+PHA    plan-2           C   0.020
+PHA    plan-2          CA   0.020
+PHA    plan-2          HC   0.020
+PHA    plan-2           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PHA           SMILES              ACDLabs 10.04                                                       O=CC(N)Cc1ccccc1
+PHA SMILES_CANONICAL               CACTVS 3.341                                                  N[C@@H](Cc1ccccc1)C=O
+PHA           SMILES               CACTVS 3.341                                                    N[CH](Cc1ccccc1)C=O
+PHA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                c1ccc(cc1)C[C@@H](C=O)N
+PHA           SMILES "OpenEye OEToolkits" 1.5.0                                                     c1ccc(cc1)CC(C=O)N
+PHA            InChI                InChI  1.03 InChI=1S/C9H11NO/c10-9(7-11)6-8-4-2-1-3-5-8/h1-5,7,9H,6,10H2/t9-/m0/s1
+PHA         InChIKey                InChI  1.03                                            CQIUZHAQYHXKRY-VIFPVBQESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PHA acedrg               243         "dictionary generator"                  
+PHA acedrg_database      11          "data source"                           
+PHA rdkit                2017.03.2   "Chemoinformatics tool"
+PHA refmac5              5.8.0238    "optimization tool"                     

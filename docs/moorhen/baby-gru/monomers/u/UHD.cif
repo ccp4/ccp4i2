@@ -1,0 +1,310 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+UHD     UHD      6-HYDROXY-5-UNDECYL-1,3-BENZOTHIAZOLE-4,7-DIONE     NON-POLYMER     48     23     .     
+#
+data_comp_UHD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+UHD     C2      C       CR15    0       68.306      55.082      171.645     
+UHD     N3      N       NRD5    0       69.047      55.508      170.599     
+UHD     C4      C       CR56    0       69.505      54.443      169.828     
+UHD     C7      C       CR56    0       69.101      53.141      170.296     
+UHD     C7A     C       CR6     0       69.492      51.963      169.609     
+UHD     O7      O       O       0       69.149      50.831      170.003     
+UHD     C6      C       CR6     0       70.292      52.066      168.425     
+UHD     O6      O       OH1     0       70.612      50.909      167.780     
+UHD     C4A     C       CR6     0       70.309      54.514      168.653     
+UHD     O4      O       O       0       70.663      55.594      168.204     
+UHD     C5      C       CR6     0       70.720      53.269      167.956     
+UHD     C8      C       CH2     0       71.581      53.352      166.717     
+UHD     C9      C       CH2     0       70.779      53.477      165.432     
+UHD     C10     C       CH2     0       71.618      53.497      164.161     
+UHD     C11     C       CH2     0       72.404      54.765      163.940     
+UHD     C12     C       CH2     0       73.101      54.835      162.604     
+UHD     C13     C       CH2     0       73.913      56.089      162.393     
+UHD     C14     C       CH2     0       74.619      56.151      161.061     
+UHD     C15     C       CH2     0       75.448      57.397      160.854     
+UHD     C16     C       CH2     0       76.089      57.507      159.486     
+UHD     C17     C       CH2     0       75.371      58.409      158.512     
+UHD     C18     C       CH3     0       74.015      57.896      158.089     
+UHD     S1      S       S2      0       68.186      53.408      171.663     
+UHD     H2      H       H       0       67.899      55.622      172.293     
+UHD     HO6     H       H       0       70.309      50.759      166.988     
+UHD     H81     H       H       0       72.148      52.552      166.656     
+UHD     H82     H       H       0       72.179      54.127      166.788     
+UHD     H91     H       H       0       70.252      54.302      165.472     
+UHD     H92     H       H       0       70.151      52.726      165.381     
+UHD     H101    H       H       0       71.022      53.360      163.393     
+UHD     H102    H       H       0       72.243      52.741      164.189     
+UHD     H111    H       H       0       73.076      54.847      164.651     
+UHD     H112    H       H       0       71.795      55.530      164.018     
+UHD     H121    H       H       0       72.427      54.774      161.894     
+UHD     H122    H       H       0       73.695      54.059      162.518     
+UHD     H131    H       H       0       74.582      56.155      163.107     
+UHD     H132    H       H       0       73.319      56.866      162.470     
+UHD     H141    H       H       0       73.949      56.096      160.347     
+UHD     H142    H       H       0       75.204      55.367      160.979     
+UHD     H151    H       H       0       76.156      57.417      161.533     
+UHD     H152    H       H       0       74.876      58.181      161.000     
+UHD     H161    H       H       0       76.149      56.610      159.093     
+UHD     H162    H       H       0       77.005      57.839      159.599     
+UHD     H171    H       H       0       75.931      58.518      157.713     
+UHD     H172    H       H       0       75.262      59.294      158.924     
+UHD     H181    H       H       0       73.652      58.471      157.393     
+UHD     H182    H       H       0       73.413      57.896      158.854     
+UHD     H183    H       H       0       74.102      56.989      157.747     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+UHD          C2          N3      DOUBLE       y     1.331  0.0200     1.331  0.0200
+UHD          C2          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+UHD          N3          C4      SINGLE       y     1.383  0.0109     1.383  0.0109
+UHD          C4          C7      DOUBLE       y     1.432  0.0200     1.432  0.0200
+UHD          C4         C4A      SINGLE       n     1.412  0.0200     1.412  0.0200
+UHD          C7         C7A      SINGLE       n     1.412  0.0200     1.412  0.0200
+UHD          C7          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+UHD         C7A          O7      DOUBLE       n     1.243  0.0200     1.243  0.0200
+UHD         C7A          C6      SINGLE       n     1.412  0.0200     1.412  0.0200
+UHD          C6          O6      SINGLE       n     1.355  0.0200     1.355  0.0200
+UHD          C6          C5      DOUBLE       n     1.351  0.0100     1.351  0.0100
+UHD         C4A          O4      DOUBLE       n     1.222  0.0100     1.222  0.0100
+UHD         C4A          C5      SINGLE       n     1.454  0.0200     1.454  0.0200
+UHD          C5          C8      SINGLE       n     1.507  0.0100     1.507  0.0100
+UHD          C8          C9      SINGLE       n     1.520  0.0104     1.520  0.0104
+UHD          C9         C10      SINGLE       n     1.523  0.0122     1.523  0.0122
+UHD         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+UHD         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+UHD         C12         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+UHD         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+UHD         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+UHD         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+UHD         C16         C17      SINGLE       n     1.507  0.0200     1.507  0.0200
+UHD         C17         C18      SINGLE       n     1.510  0.0200     1.510  0.0200
+UHD          C2          H2      SINGLE       n     1.082  0.0130     0.937  0.0100
+UHD          O6         HO6      SINGLE       n     0.966  0.0059     0.861  0.0200
+UHD          C8         H81      SINGLE       n     1.089  0.0100     0.982  0.0127
+UHD          C8         H82      SINGLE       n     1.089  0.0100     0.982  0.0127
+UHD          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0160
+UHD          C9         H92      SINGLE       n     1.089  0.0100     0.980  0.0160
+UHD         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0163
+UHD         C17        H171      SINGLE       n     1.089  0.0100     0.982  0.0155
+UHD         C17        H172      SINGLE       n     1.089  0.0100     0.982  0.0155
+UHD         C18        H181      SINGLE       n     1.089  0.0100     0.973  0.0157
+UHD         C18        H182      SINGLE       n     1.089  0.0100     0.973  0.0157
+UHD         C18        H183      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+UHD          N3          C2          S1     108.052    3.00
+UHD          N3          C2          H2     127.034    1.50
+UHD          S1          C2          H2     124.914    3.00
+UHD          C2          N3          C4     106.974    1.50
+UHD          N3          C4          C7     108.870    2.33
+UHD          N3          C4         C4A     130.921    3.00
+UHD          C7          C4         C4A     120.209    3.00
+UHD          C4          C7         C7A     120.209    3.00
+UHD          C4          C7          S1     108.052    3.00
+UHD         C7A          C7          S1     131.739    3.00
+UHD          C7         C7A          O7     122.336    1.58
+UHD          C7         C7A          C6     119.590    1.50
+UHD          O7         C7A          C6     118.073    2.74
+UHD         C7A          C6          O6     119.451    3.00
+UHD         C7A          C6          C5     121.099    1.52
+UHD          O6          C6          C5     119.451    3.00
+UHD          C6          O6         HO6     120.000    3.00
+UHD          C4         C4A          O4     121.691    1.58
+UHD          C4         C4A          C5     119.590    1.50
+UHD          O4         C4A          C5     118.719    1.87
+UHD          C6          C5         C4A     119.303    1.51
+UHD          C6          C5          C8     120.507    2.25
+UHD         C4A          C5          C8     120.190    1.58
+UHD          C5          C8          C9     113.676    2.28
+UHD          C5          C8         H81     108.898    1.50
+UHD          C5          C8         H82     108.898    1.50
+UHD          C9          C8         H81     108.550    1.50
+UHD          C9          C8         H82     108.550    1.50
+UHD         H81          C8         H82     107.675    1.50
+UHD          C8          C9         C10     114.513    1.98
+UHD          C8          C9         H91     108.652    1.50
+UHD          C8          C9         H92     108.652    1.50
+UHD         C10          C9         H91     108.694    1.50
+UHD         C10          C9         H92     108.694    1.50
+UHD         H91          C9         H92     107.673    1.50
+UHD          C9         C10         C11     114.879    1.50
+UHD          C9         C10        H101     108.551    1.50
+UHD          C9         C10        H102     108.551    1.50
+UHD         C11         C10        H101     108.698    1.50
+UHD         C11         C10        H102     108.698    1.50
+UHD        H101         C10        H102     107.646    1.50
+UHD         C10         C11         C12     114.243    1.69
+UHD         C10         C11        H111     108.698    1.50
+UHD         C10         C11        H112     108.698    1.50
+UHD         C12         C11        H111     108.698    1.50
+UHD         C12         C11        H112     108.698    1.50
+UHD        H111         C11        H112     107.646    1.50
+UHD         C11         C12         C13     114.243    1.69
+UHD         C11         C12        H121     108.698    1.50
+UHD         C11         C12        H122     108.698    1.50
+UHD         C13         C12        H121     108.698    1.50
+UHD         C13         C12        H122     108.698    1.50
+UHD        H121         C12        H122     107.646    1.50
+UHD         C12         C13         C14     114.243    1.69
+UHD         C12         C13        H131     108.698    1.50
+UHD         C12         C13        H132     108.698    1.50
+UHD         C14         C13        H131     108.698    1.50
+UHD         C14         C13        H132     108.698    1.50
+UHD        H131         C13        H132     107.646    1.50
+UHD         C13         C14         C15     114.243    1.69
+UHD         C13         C14        H141     108.698    1.50
+UHD         C13         C14        H142     108.698    1.50
+UHD         C15         C14        H141     108.698    1.50
+UHD         C15         C14        H142     108.698    1.50
+UHD        H141         C14        H142     107.646    1.50
+UHD         C14         C15         C16     114.243    1.69
+UHD         C14         C15        H151     108.698    1.50
+UHD         C14         C15        H152     108.698    1.50
+UHD         C16         C15        H151     108.698    1.50
+UHD         C16         C15        H152     108.698    1.50
+UHD        H151         C15        H152     107.646    1.50
+UHD         C15         C16         C17     114.362    3.00
+UHD         C15         C16        H161     108.698    1.50
+UHD         C15         C16        H162     108.698    1.50
+UHD         C17         C16        H161     108.653    1.50
+UHD         C17         C16        H162     108.653    1.50
+UHD        H161         C16        H162     107.646    1.50
+UHD         C16         C17         C18     113.719    3.00
+UHD         C16         C17        H171     108.758    1.50
+UHD         C16         C17        H172     108.758    1.50
+UHD         C18         C17        H171     108.918    1.50
+UHD         C18         C17        H172     108.918    1.50
+UHD        H171         C17        H172     107.763    1.50
+UHD         C17         C18        H181     109.554    1.50
+UHD         C17         C18        H182     109.554    1.50
+UHD         C17         C18        H183     109.554    1.50
+UHD        H181         C18        H182     109.380    1.50
+UHD        H181         C18        H183     109.380    1.50
+UHD        H182         C18        H183     109.380    1.50
+UHD          C2          S1          C7     108.052    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+UHD       const_sp2_sp2_1          S1          C2          N3          C4       0.000     5.0     2
+UHD              const_11          N3          C2          S1          C7       0.000    10.0     2
+UHD             sp2_sp3_2          C6          C5          C8          C9     -90.000    10.0     6
+UHD             sp3_sp3_1          C5          C8          C9         C10     180.000    10.0     3
+UHD            sp3_sp3_10         C11         C10          C9          C8     180.000    10.0     3
+UHD            sp3_sp3_19          C9         C10         C11         C12     180.000    10.0     3
+UHD            sp3_sp3_28         C10         C11         C12         C13     180.000    10.0     3
+UHD            sp3_sp3_37         C11         C12         C13         C14     180.000    10.0     3
+UHD            sp3_sp3_46         C12         C13         C14         C15     180.000    10.0     3
+UHD            sp3_sp3_55         C13         C14         C15         C16     180.000    10.0     3
+UHD            sp3_sp3_64         C14         C15         C16         C17     180.000    10.0     3
+UHD            sp3_sp3_73         C15         C16         C17         C18     180.000    10.0     3
+UHD       const_sp2_sp2_3          C7          C4          N3          C2       0.000     5.0     2
+UHD            sp3_sp3_82         C16         C17         C18        H181     180.000    10.0     3
+UHD       const_sp2_sp2_6          N3          C4          C7         C7A     180.000     5.0     2
+UHD            sp2_sp2_20          N3          C4         C4A          O4       0.000     5.0     2
+UHD       const_sp2_sp2_9          C4          C7          S1          C2       0.000     5.0     2
+UHD             sp2_sp2_2          C4          C7         C7A          O7     180.000     5.0     2
+UHD             sp2_sp2_8          O6          C6         C7A          O7       0.000     5.0     2
+UHD            sp2_sp2_12          C8          C5          C6          O6       0.000     5.0     2
+UHD            sp2_sp2_21         C7A          C6          O6         HO6     180.000     5.0     2
+UHD            sp2_sp2_16          O4         C4A          C5          C8       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+UHD    plan-1          C2   0.020
+UHD    plan-1          C4   0.020
+UHD    plan-1         C4A   0.020
+UHD    plan-1          C7   0.020
+UHD    plan-1         C7A   0.020
+UHD    plan-1          H2   0.020
+UHD    plan-1          N3   0.020
+UHD    plan-1          S1   0.020
+UHD    plan-2          C6   0.020
+UHD    plan-2          C7   0.020
+UHD    plan-2         C7A   0.020
+UHD    plan-2          O7   0.020
+UHD    plan-3          C5   0.020
+UHD    plan-3          C6   0.020
+UHD    plan-3         C7A   0.020
+UHD    plan-3          O6   0.020
+UHD    plan-4          C4   0.020
+UHD    plan-4         C4A   0.020
+UHD    plan-4          C5   0.020
+UHD    plan-4          O4   0.020
+UHD    plan-5         C4A   0.020
+UHD    plan-5          C5   0.020
+UHD    plan-5          C6   0.020
+UHD    plan-5          C8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+UHD           SMILES              ACDLabs 10.04                                                                        O=C2c1scnc1C(=O)C(=C2O)CCCCCCCCCCC
+UHD SMILES_CANONICAL               CACTVS 3.341                                                                        CCCCCCCCCCCC1=C(O)C(=O)c2scnc2C1=O
+UHD           SMILES               CACTVS 3.341                                                                        CCCCCCCCCCCC1=C(O)C(=O)c2scnc2C1=O
+UHD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                      CCCCCCCCCCCC1=C(C(=O)c2c(ncs2)C1=O)O
+UHD           SMILES "OpenEye OEToolkits" 1.5.0                                                                      CCCCCCCCCCCC1=C(C(=O)c2c(ncs2)C1=O)O
+UHD            InChI                InChI  1.03 InChI=1S/C18H25NO3S/c1-2-3-4-5-6-7-8-9-10-11-13-15(20)14-18(23-12-19-14)17(22)16(13)21/h12,21H,2-11H2,1H3
+UHD         InChIKey                InChI  1.03                                                                               QCWGBMWYLYKEIU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+UHD acedrg               243         "dictionary generator"                  
+UHD acedrg_database      11          "data source"                           
+UHD rdkit                2017.03.2   "Chemoinformatics tool"
+UHD refmac5              5.8.0238    "optimization tool"                     

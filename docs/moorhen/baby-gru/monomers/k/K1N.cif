@@ -1,0 +1,567 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+K1N     K1N      "(3~{S},7~{R},10~{R},13~{S})-4-[(3~{S},6~{R},8~{a}~{S})-1'-[(2~{S})-2-acetamido-3-(2-chlorophenyl)propanoyl]-5-oxidanylidene-spiro[1,2,3,8~{a}-tetrahydroindolizine-6,2'-pyrrolidine]-3-yl]carbonyl-2-oxidanylidene-1,4-diazatricyclo[8.3.0.0^{3,7}]tridec-8-ene-13-carboxylic acid"     NON-POLYMER     87     48     .     
+#
+data_comp_K1N
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+K1N     CAM     C       CH3     0       23.197      23.657      26.309      
+K1N     CAS     C       CH2     0       26.593      23.898      19.227      
+K1N     CAU     C       CR6     0       27.456      26.062      20.176      
+K1N     CAK     C       C       0       23.049      24.141      24.900      
+K1N     CAQ     C       CH2     0       24.788      23.684      20.735      
+K1N     CAR     C       CH2     0       25.568      22.879      19.717      
+K1N     CAT     C       CT      0       27.047      24.629      20.511      
+K1N     N       N       NH1     0       24.084      24.822      24.385      
+K1N     CA      C       CH1     0       24.092      25.398      23.048      
+K1N     C       C       C       0       25.510      25.278      22.468      
+K1N     O       O       O       0       26.426      25.802      23.102      
+K1N     CB      C       CH2     0       23.703      26.888      23.121      
+K1N     CG      C       CR6     0       22.278      27.132      23.561      
+K1N     CD1     C       CR6     0       21.191      26.959      22.699      
+K1N     CD2     C       CR16    0       21.985      27.539      24.864      
+K1N     CE1     C       CR16    0       19.885      27.182      23.111      
+K1N     CE2     C       CR16    0       20.684      27.764      25.283      
+K1N     CZ      C       CR16    0       19.638      27.584      24.405      
+K1N     CAX     C       CR16    0       28.135      23.819      21.197      
+K1N     CAY     C       CR16    0       29.414      24.141      21.108      
+K1N     CAZ     C       CH1     0       29.853      25.365      20.350      
+K1N     CBA     C       CH2     0       30.923      26.165      21.054      
+K1N     CBB     C       CH2     0       30.819      27.535      20.401      
+K1N     CBC     C       CH1     0       29.317      27.721      20.109      
+K1N     CBD     C       C       0       29.075      28.391      18.752      
+K1N     CBG     C       CH1     0       29.387      30.402      17.319      
+K1N     CBH     C       C       0       30.455      29.883      16.359      
+K1N     CBK     C       CH1     0       31.690      30.226      14.255      
+K1N     CBL     C       C       0       32.929      31.061      14.600      
+K1N     CBN     C       CH2     0       31.114      30.603      12.886      
+K1N     CBO     C       CH2     0       30.158      31.740      13.189      
+K1N     CBP     C       CH1     0       29.580      31.420      14.577      
+K1N     CBQ     C       C1      0       29.341      32.684      15.366      
+K1N     CBR     C       C1      0       29.386      32.864      16.679      
+K1N     CBS     C       CH1     0       29.799      31.853      17.700      
+K1N     CBT     C       CH2     0       29.194      32.016      19.095      
+K1N     CBU     C       CH2     0       29.495      30.675      19.734      
+K1N     NAP     N       NR5     0       25.796      24.590      21.322      
+K1N     NAW     N       NR5     0       28.775      26.352      20.199      
+K1N     NBF     N       NR5     0       29.338      29.716      18.620      
+K1N     NBJ     N       NR5     0       30.567      30.497      15.158      
+K1N     OAL     O       O       0       22.018      23.931      24.264      
+K1N     OAV     O       O       0       26.602      26.897      19.944      
+K1N     OBE     O       O       0       28.706      27.716      17.792      
+K1N     OBI     O       O       0       31.234      28.993      16.701      
+K1N     OBM     O       O       0       32.769      32.246      14.845      
+K1N     CL1     CL      CL      0       21.440      26.449      21.046      
+K1N     O1      O       OC      -1      33.997      30.474      14.606      
+K1N     HAM     H       H       0       23.798      24.241      26.799      
+K1N     HZL     H       H       0       23.557      22.755      26.307      
+K1N     HZM     H       H       0       22.329      23.654      26.744      
+K1N     HAS     H       H       0       27.354      23.455      18.795      
+K1N     HZP     H       H       0       26.188      24.528      18.594      
+K1N     HZN     H       H       0       24.401      23.104      21.435      
+K1N     HAQ     H       H       0       24.062      24.208      20.318      
+K1N     HZO     H       H       0       24.987      22.571      18.993      
+K1N     HAR     H       H       0       25.996      22.104      20.135      
+K1N     H       H       H       0       24.797      24.931      24.881      
+K1N     HA      H       H       0       23.453      24.930      22.477      
+K1N     HB2     H       H       0       23.842      27.296      22.241      
+K1N     HB1     H       H       0       24.306      27.337      23.751      
+K1N     HD2     H       H       0       22.694      27.664      25.473      
+K1N     HE1     H       H       0       19.174      27.058      22.510      
+K1N     HE2     H       H       0       20.515      28.040      26.170      
+K1N     HZ      H       H       0       18.755      27.736      24.686      
+K1N     HAX     H       H       0       27.862      23.065      21.700      
+K1N     HAY     H       H       0       30.079      23.601      21.522      
+K1N     HAZ     H       H       0       30.181      25.102      19.462      
+K1N     HZQ     H       H       0       30.749      26.220      22.014      
+K1N     HBA     H       H       0       31.807      25.775      20.912      
+K1N     HZR     H       H       0       31.352      27.561      19.560      
+K1N     HBB     H       H       0       31.149      28.242      21.018      
+K1N     HBC     H       H       0       28.920      28.276      20.828      
+K1N     HBG     H       H       0       28.493      30.408      16.904      
+K1N     HBK     H       H       0       31.920      29.267      14.271      
+K1N     HZS     H       H       0       31.822      30.895      12.272      
+K1N     HBN     H       H       0       30.638      29.844      12.485      
+K1N     HBO     H       H       0       29.444      31.781      12.517      
+K1N     HZT     H       H       0       30.634      32.598      13.197      
+K1N     HBP     H       H       0       28.719      30.947      14.471      
+K1N     HBQ     H       H       0       29.128      33.456      14.860      
+K1N     HBR     H       H       0       29.132      33.718      17.004      
+K1N     HBS     H       H       0       30.785      31.881      17.794      
+K1N     HBT     H       H       0       28.230      32.180      19.044      
+K1N     HZU     H       H       0       29.624      32.749      19.582      
+K1N     HBU     H       H       0       28.858      30.487      20.458      
+K1N     HZV     H       H       0       30.410      30.649      20.093      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+K1N         CBN         CBO      SINGLE       n     1.518  0.0200     1.518  0.0200
+K1N         CBK         CBN      SINGLE       n     1.533  0.0100     1.533  0.0100
+K1N         CBO         CBP      SINGLE       n     1.533  0.0100     1.533  0.0100
+K1N         CBK         CBL      SINGLE       n     1.527  0.0175     1.527  0.0175
+K1N         CBL         OBM      DOUBLE       n     1.218  0.0200     1.218  0.0200
+K1N         CBK         NBJ      SINGLE       n     1.464  0.0100     1.464  0.0100
+K1N         CBP         NBJ      SINGLE       n     1.464  0.0100     1.464  0.0100
+K1N         CBP         CBQ      SINGLE       n     1.504  0.0101     1.504  0.0101
+K1N         CBH         NBJ      SINGLE       n     1.346  0.0100     1.346  0.0100
+K1N         CBQ         CBR      DOUBLE       n     1.318  0.0200     1.318  0.0200
+K1N         CBH         OBI      DOUBLE       n     1.229  0.0108     1.229  0.0108
+K1N         CBG         CBH      SINGLE       n     1.522  0.0108     1.522  0.0108
+K1N         CBR         CBS      SINGLE       n     1.496  0.0100     1.496  0.0100
+K1N         CBG         CBS      SINGLE       n     1.558  0.0153     1.558  0.0153
+K1N         CBG         NBF      SINGLE       n     1.463  0.0100     1.463  0.0100
+K1N         CBS         CBT      SINGLE       n     1.539  0.0155     1.539  0.0155
+K1N         CBD         OBE      DOUBLE       n     1.229  0.0108     1.229  0.0108
+K1N         CBD         NBF      SINGLE       n     1.347  0.0100     1.347  0.0100
+K1N         CBU         NBF      SINGLE       n     1.473  0.0100     1.473  0.0100
+K1N         CBC         CBD      SINGLE       n     1.505  0.0196     1.505  0.0196
+K1N         CBT         CBU      SINGLE       n     1.522  0.0200     1.522  0.0200
+K1N         CAS         CAR      SINGLE       n     1.527  0.0103     1.527  0.0103
+K1N         CAS         CAT      SINGLE       n     1.544  0.0100     1.544  0.0100
+K1N         CAQ         CAR      SINGLE       n     1.515  0.0100     1.515  0.0100
+K1N         CAQ         NAP      SINGLE       n     1.473  0.0117     1.473  0.0117
+K1N         CAU         OAV      DOUBLE       n     1.215  0.0100     1.215  0.0100
+K1N         CBC         NAW      SINGLE       n     1.464  0.0149     1.464  0.0149
+K1N         CBB         CBC      SINGLE       n     1.540  0.0100     1.540  0.0100
+K1N         CAU         NAW      SINGLE       n     1.342  0.0100     1.342  0.0100
+K1N         CAU         CAT      SINGLE       n     1.516  0.0117     1.516  0.0117
+K1N         CAZ         NAW      SINGLE       n     1.464  0.0149     1.464  0.0149
+K1N         CAT         NAP      SINGLE       n     1.478  0.0148     1.478  0.0148
+K1N         CAT         CAX      SINGLE       n     1.516  0.0117     1.516  0.0117
+K1N         CBA         CBB      SINGLE       n     1.524  0.0195     1.524  0.0195
+K1N         CD1         CL1      SINGLE       n     1.746  0.0134     1.746  0.0134
+K1N         CAY         CAZ      SINGLE       n     1.505  0.0104     1.505  0.0104
+K1N         CAZ         CBA      SINGLE       n     1.515  0.0200     1.515  0.0200
+K1N           C         NAP      SINGLE       n     1.346  0.0136     1.346  0.0136
+K1N         CAX         CAY      DOUBLE       n     1.322  0.0100     1.322  0.0100
+K1N          CA           C      SINGLE       n     1.525  0.0130     1.525  0.0130
+K1N           C           O      DOUBLE       n     1.230  0.0100     1.230  0.0100
+K1N         CD1         CE1      DOUBLE       y     1.384  0.0100     1.384  0.0100
+K1N          CG         CD1      SINGLE       y     1.390  0.0100     1.390  0.0100
+K1N         CE1          CZ      SINGLE       y     1.373  0.0113     1.373  0.0113
+K1N          CA          CB      SINGLE       n     1.540  0.0100     1.540  0.0100
+K1N           N          CA      SINGLE       n     1.451  0.0100     1.451  0.0100
+K1N         CAK         OAL      DOUBLE       n     1.229  0.0102     1.229  0.0102
+K1N          CB          CG      SINGLE       n     1.509  0.0100     1.509  0.0100
+K1N          CG         CD2      DOUBLE       y     1.392  0.0100     1.392  0.0100
+K1N         CAK           N      SINGLE       n     1.335  0.0100     1.335  0.0100
+K1N         CAM         CAK      SINGLE       n     1.495  0.0100     1.495  0.0100
+K1N         CE2          CZ      DOUBLE       y     1.376  0.0106     1.376  0.0106
+K1N         CD2         CE2      SINGLE       y     1.382  0.0103     1.382  0.0103
+K1N         CBL          O1      SINGLE       n     1.218  0.0200     1.218  0.0200
+K1N         CAM         HAM      SINGLE       n     1.089  0.0100     0.971  0.0140
+K1N         CAM         HZL      SINGLE       n     1.089  0.0100     0.971  0.0140
+K1N         CAM         HZM      SINGLE       n     1.089  0.0100     0.971  0.0140
+K1N         CAS         HAS      SINGLE       n     1.089  0.0100     0.980  0.0130
+K1N         CAS         HZP      SINGLE       n     1.089  0.0100     0.980  0.0130
+K1N         CAQ         HZN      SINGLE       n     1.089  0.0100     0.988  0.0200
+K1N         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.988  0.0200
+K1N         CAR         HZO      SINGLE       n     1.089  0.0100     0.979  0.0161
+K1N         CAR         HAR      SINGLE       n     1.089  0.0100     0.979  0.0161
+K1N           N           H      SINGLE       n     1.016  0.0100     0.873  0.0200
+K1N          CA          HA      SINGLE       n     1.089  0.0100     0.979  0.0120
+K1N          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0164
+K1N          CB         HB1      SINGLE       n     1.089  0.0100     0.980  0.0164
+K1N         CD2         HD2      SINGLE       n     1.082  0.0130     0.943  0.0173
+K1N         CE1         HE1      SINGLE       n     1.082  0.0130     0.939  0.0176
+K1N         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+K1N          CZ          HZ      SINGLE       n     1.082  0.0130     0.939  0.0165
+K1N         CAX         HAX      SINGLE       n     1.082  0.0130     0.947  0.0200
+K1N         CAY         HAY      SINGLE       n     1.082  0.0130     0.951  0.0200
+K1N         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.982  0.0189
+K1N         CBA         HZQ      SINGLE       n     1.089  0.0100     0.977  0.0100
+K1N         CBA         HBA      SINGLE       n     1.089  0.0100     0.977  0.0100
+K1N         CBB         HZR      SINGLE       n     1.089  0.0100     0.995  0.0100
+K1N         CBB         HBB      SINGLE       n     1.089  0.0100     0.995  0.0100
+K1N         CBC         HBC      SINGLE       n     1.089  0.0100     0.994  0.0174
+K1N         CBG         HBG      SINGLE       n     1.089  0.0100     0.986  0.0171
+K1N         CBK         HBK      SINGLE       n     1.089  0.0100     0.986  0.0200
+K1N         CBN         HZS      SINGLE       n     1.089  0.0100     0.981  0.0193
+K1N         CBN         HBN      SINGLE       n     1.089  0.0100     0.981  0.0193
+K1N         CBO         HBO      SINGLE       n     1.089  0.0100     0.981  0.0193
+K1N         CBO         HZT      SINGLE       n     1.089  0.0100     0.981  0.0193
+K1N         CBP         HBP      SINGLE       n     1.089  0.0100     0.988  0.0200
+K1N         CBQ         HBQ      SINGLE       n     1.082  0.0130     0.948  0.0200
+K1N         CBR         HBR      SINGLE       n     1.082  0.0130     0.948  0.0200
+K1N         CBS         HBS      SINGLE       n     1.089  0.0100     0.990  0.0170
+K1N         CBT         HBT      SINGLE       n     1.089  0.0100     0.979  0.0148
+K1N         CBT         HZU      SINGLE       n     1.089  0.0100     0.979  0.0148
+K1N         CBU         HBU      SINGLE       n     1.089  0.0100     0.983  0.0111
+K1N         CBU         HZV      SINGLE       n     1.089  0.0100     0.983  0.0111
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+K1N         CAK         CAM         HAM     109.678    1.50
+K1N         CAK         CAM         HZL     109.678    1.50
+K1N         CAK         CAM         HZM     109.678    1.50
+K1N         HAM         CAM         HZL     109.365    1.50
+K1N         HAM         CAM         HZM     109.365    1.50
+K1N         HZL         CAM         HZM     109.365    1.50
+K1N         CAR         CAS         CAT     104.052    1.50
+K1N         CAR         CAS         HAS     110.868    1.50
+K1N         CAR         CAS         HZP     110.868    1.50
+K1N         CAT         CAS         HAS     110.186    1.50
+K1N         CAT         CAS         HZP     110.186    1.50
+K1N         HAS         CAS         HZP     108.865    1.50
+K1N         OAV         CAU         NAW     123.400    1.50
+K1N         OAV         CAU         CAT     120.951    1.50
+K1N         NAW         CAU         CAT     115.649    1.62
+K1N         OAL         CAK           N     121.667    1.50
+K1N         OAL         CAK         CAM     121.913    1.50
+K1N           N         CAK         CAM     116.420    1.50
+K1N         CAR         CAQ         NAP     103.837    1.50
+K1N         CAR         CAQ         HZN     112.099    1.79
+K1N         CAR         CAQ         HAQ     112.099    1.79
+K1N         NAP         CAQ         HZN     109.923    1.50
+K1N         NAP         CAQ         HAQ     109.923    1.50
+K1N         HZN         CAQ         HAQ     108.629    1.50
+K1N         CAS         CAR         CAQ     102.189    1.50
+K1N         CAS         CAR         HZO     111.791    1.50
+K1N         CAS         CAR         HAR     111.791    1.50
+K1N         CAQ         CAR         HZO     110.937    1.50
+K1N         CAQ         CAR         HAR     110.937    1.50
+K1N         HZO         CAR         HAR     108.941    1.50
+K1N         CAS         CAT         CAU     112.868    3.00
+K1N         CAS         CAT         NAP     101.507    1.54
+K1N         CAS         CAT         CAX     112.868    3.00
+K1N         CAU         CAT         NAP     111.073    1.50
+K1N         CAU         CAT         CAX     112.190    2.26
+K1N         NAP         CAT         CAX     111.073    1.50
+K1N          CA           N         CAK     121.922    1.76
+K1N          CA           N           H     118.727    1.50
+K1N         CAK           N           H     119.351    2.25
+K1N           C          CA          CB     109.416    1.50
+K1N           C          CA           N     109.025    1.50
+K1N           C          CA          HA     109.397    1.50
+K1N          CB          CA           N     109.854    1.50
+K1N          CB          CA          HA     109.570    1.50
+K1N           N          CA          HA     109.610    1.50
+K1N         NAP           C          CA     119.142    1.90
+K1N         NAP           C           O     120.339    1.50
+K1N          CA           C           O     120.534    1.84
+K1N          CA          CB          CG     113.420    1.89
+K1N          CA          CB         HB2     108.823    1.50
+K1N          CA          CB         HB1     108.823    1.50
+K1N          CG          CB         HB2     108.906    1.50
+K1N          CG          CB         HB1     108.906    1.50
+K1N         HB2          CB         HB1     107.782    1.50
+K1N         CD1          CG          CB     120.961    2.85
+K1N         CD1          CG         CD2     116.784    1.50
+K1N          CB          CG         CD2     122.255    1.50
+K1N         CL1         CD1         CE1     118.253    1.50
+K1N         CL1         CD1          CG     119.959    1.50
+K1N         CE1         CD1          CG     121.788    1.50
+K1N          CG         CD2         CE2     121.479    1.50
+K1N          CG         CD2         HD2     119.029    1.50
+K1N         CE2         CD2         HD2     119.492    1.50
+K1N         CD1         CE1          CZ     119.453    1.50
+K1N         CD1         CE1         HE1     120.161    1.50
+K1N          CZ         CE1         HE1     120.387    1.50
+K1N          CZ         CE2         CD2     120.199    1.50
+K1N          CZ         CE2         HE2     119.946    1.50
+K1N         CD2         CE2         HE2     119.855    1.50
+K1N         CE1          CZ         CE2     120.297    1.50
+K1N         CE1          CZ          HZ     119.731    1.50
+K1N         CE2          CZ          HZ     119.972    1.50
+K1N         CAT         CAX         CAY     121.639    3.00
+K1N         CAT         CAX         HAX     117.438    2.11
+K1N         CAY         CAX         HAX     120.923    3.00
+K1N         CAZ         CAY         CAX     121.281    1.50
+K1N         CAZ         CAY         HAY     118.422    1.50
+K1N         CAX         CAY         HAY     120.296    3.00
+K1N         NAW         CAZ         CAY     112.082    2.12
+K1N         NAW         CAZ         CBA     102.305    1.50
+K1N         NAW         CAZ         HAZ     109.205    1.50
+K1N         CAY         CAZ         CBA     114.616    3.00
+K1N         CAY         CAZ         HAZ     108.934    2.43
+K1N         CBA         CAZ         HAZ     108.698    1.99
+K1N         CBB         CBA         CAZ     103.225    1.58
+K1N         CBB         CBA         HZQ     110.933    1.50
+K1N         CBB         CBA         HBA     110.933    1.50
+K1N         CAZ         CBA         HZQ     111.079    1.50
+K1N         CAZ         CBA         HBA     111.079    1.50
+K1N         HZQ         CBA         HBA     108.964    1.50
+K1N         CBC         CBB         CBA     104.392    1.50
+K1N         CBC         CBB         HZR     110.802    1.50
+K1N         CBC         CBB         HBB     110.802    1.50
+K1N         CBA         CBB         HZR     110.644    1.50
+K1N         CBA         CBB         HBB     110.644    1.50
+K1N         HZR         CBB         HBB     109.233    1.50
+K1N         CBD         CBC         NAW     110.802    1.81
+K1N         CBD         CBC         CBB     112.756    1.50
+K1N         CBD         CBC         HBC     109.646    1.50
+K1N         NAW         CBC         CBB     103.211    1.71
+K1N         NAW         CBC         HBC     110.729    1.50
+K1N         CBB         CBC         HBC     109.315    1.50
+K1N         OBE         CBD         NBF     121.477    1.50
+K1N         OBE         CBD         CBC     120.341    1.50
+K1N         NBF         CBD         CBC     118.182    1.50
+K1N         CBH         CBG         CBS     112.424    2.46
+K1N         CBH         CBG         NBF     110.603    1.50
+K1N         CBH         CBG         HBG     111.169    1.50
+K1N         CBS         CBG         NBF     102.354    1.84
+K1N         CBS         CBG         HBG     109.197    1.50
+K1N         NBF         CBG         HBG     110.172    1.50
+K1N         NBJ         CBH         OBI     121.408    1.50
+K1N         NBJ         CBH         CBG     117.672    1.50
+K1N         OBI         CBH         CBG     120.921    1.50
+K1N         CBN         CBK         CBL     110.031    2.42
+K1N         CBN         CBK         NBJ     102.944    1.50
+K1N         CBN         CBK         HBK     110.662    1.50
+K1N         CBL         CBK         NBJ     111.417    2.02
+K1N         CBL         CBK         HBK     110.011    1.50
+K1N         NBJ         CBK         HBK     110.172    1.50
+K1N         CBK         CBL         OBM     117.066    2.02
+K1N         CBK         CBL          O1     117.066    2.02
+K1N         OBM         CBL          O1     125.868    1.50
+K1N         CBO         CBN         CBK     103.550    1.50
+K1N         CBO         CBN         HZS     110.811    1.50
+K1N         CBO         CBN         HBN     110.811    1.50
+K1N         CBK         CBN         HZS     110.902    1.50
+K1N         CBK         CBN         HBN     110.902    1.50
+K1N         HZS         CBN         HBN     108.922    1.50
+K1N         CBN         CBO         CBP     103.507    1.50
+K1N         CBN         CBO         HBO     110.811    1.50
+K1N         CBN         CBO         HZT     110.811    1.50
+K1N         CBP         CBO         HBO     110.853    1.50
+K1N         CBP         CBO         HZT     110.853    1.50
+K1N         HBO         CBO         HZT     108.922    1.50
+K1N         CBO         CBP         NBJ     102.944    1.50
+K1N         CBO         CBP         CBQ     113.112    1.50
+K1N         CBO         CBP         HBP     110.393    1.50
+K1N         NBJ         CBP         CBQ     111.347    2.06
+K1N         NBJ         CBP         HBP     110.172    1.50
+K1N         CBQ         CBP         HBP     109.754    1.50
+K1N         CBP         CBQ         CBR     124.186    3.00
+K1N         CBP         CBQ         HBQ     117.873    1.50
+K1N         CBR         CBQ         HBQ     117.941    1.82
+K1N         CBQ         CBR         CBS     124.339    3.00
+K1N         CBQ         CBR         HBR     118.095    1.82
+K1N         CBS         CBR         HBR     117.566    1.50
+K1N         CBR         CBS         CBG     112.424    2.46
+K1N         CBR         CBS         CBT     114.057    2.22
+K1N         CBR         CBS         HBS     108.957    1.50
+K1N         CBG         CBS         CBT     104.443    2.26
+K1N         CBG         CBS         HBS     107.775    2.12
+K1N         CBT         CBS         HBS     108.610    1.91
+K1N         CBS         CBT         CBU     104.455    1.77
+K1N         CBS         CBT         HBT     110.667    1.50
+K1N         CBS         CBT         HZU     110.667    1.50
+K1N         CBU         CBT         HBT     110.978    1.50
+K1N         CBU         CBT         HZU     110.978    1.50
+K1N         HBT         CBT         HZU     108.940    1.50
+K1N         NBF         CBU         CBT     103.334    1.50
+K1N         NBF         CBU         HBU     110.669    1.50
+K1N         NBF         CBU         HZV     110.669    1.50
+K1N         CBT         CBU         HBU     110.946    1.50
+K1N         CBT         CBU         HZV     110.946    1.50
+K1N         HBU         CBU         HZV     108.998    1.50
+K1N         CAQ         NAP         CAT     113.302    1.50
+K1N         CAQ         NAP           C     118.006    1.50
+K1N         CAT         NAP           C     128.691    3.00
+K1N         CBC         NAW         CAU     123.880    2.05
+K1N         CBC         NAW         CAZ     112.075    1.52
+K1N         CAU         NAW         CAZ     124.045    2.06
+K1N         CBG         NBF         CBD     121.040    3.00
+K1N         CBG         NBF         CBU     112.533    1.50
+K1N         CBD         NBF         CBU     126.426    3.00
+K1N         CBK         NBJ         CBP     114.277    1.77
+K1N         CBK         NBJ         CBH     122.861    3.00
+K1N         CBP         NBJ         CBH     122.861    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+K1N           sp2_sp3_115         OAL         CAK         CAM         HAM       0.000    10.0     6
+K1N           sp2_sp3_110         CD1          CG          CB          CA     -90.000    10.0     6
+K1N       const_sp2_sp2_4         CL1         CD1          CG          CB       0.000     5.0     2
+K1N              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+K1N       const_sp2_sp2_7         CL1         CD1         CE1          CZ     180.000     5.0     2
+K1N              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+K1N       const_sp2_sp2_9         CD1         CE1          CZ         CE2       0.000     5.0     2
+K1N              const_13         CD2         CE2          CZ         CE1       0.000    10.0     2
+K1N             sp2_sp2_5         CAT         CAX         CAY         CAZ       0.000     5.0     2
+K1N            sp2_sp3_19         CAX         CAY         CAZ         NAW       0.000    10.0     6
+K1N             sp3_sp3_1         CAQ         CAR         CAS         CAT      60.000    10.0     3
+K1N            sp3_sp3_92         CAR         CAS         CAT         CAU     -60.000    10.0     3
+K1N           sp3_sp3_100         NAW         CAZ         CBA         CBB     180.000    10.0     3
+K1N            sp2_sp3_14         CBC         NAW         CAZ         CAY     120.000    10.0     6
+K1N            sp3_sp3_28         CAZ         CBA         CBB         CBC     -60.000    10.0     3
+K1N            sp3_sp3_20         CBA         CBB         CBC         CBD     180.000    10.0     3
+K1N            sp2_sp3_85         OBE         CBD         CBC         NAW       0.000    10.0     6
+K1N            sp2_sp3_35         CAU         NAW         CBC         CBD     -60.000    10.0     6
+K1N            sp2_sp2_19         OBE         CBD         NBF         CBG       0.000     5.0     2
+K1N            sp2_sp3_70         OBI         CBH         CBG         CBS     180.000    10.0     6
+K1N            sp3_sp3_41         CBH         CBG         CBS         CBR      60.000    10.0     3
+K1N            sp2_sp3_83         CBD         NBF         CBG         CBH     -60.000    10.0     6
+K1N            sp2_sp2_11         OBI         CBH         NBJ         CBK       0.000     5.0     2
+K1N            sp2_sp3_49         OBM         CBL         CBK         CBN       0.000    10.0     6
+K1N            sp3_sp3_67         CBL         CBK         CBN         CBO     -60.000    10.0     3
+K1N            sp2_sp3_59         CBH         NBJ         CBK         CBL     -60.000    10.0     6
+K1N            sp3_sp3_73         CBK         CBN         CBO         CBP     -60.000    10.0     3
+K1N             sp2_sp2_4         OAV         CAU         NAW         CBC       0.000     5.0     2
+K1N            sp2_sp3_95         OAV         CAU         CAT         CAS     -60.000    10.0     6
+K1N            sp3_sp3_83         CBN         CBO         CBP         CBQ     180.000    10.0     3
+K1N            sp2_sp3_61         CBR         CBQ         CBP         CBO       0.000    10.0     6
+K1N            sp2_sp3_47         CBH         NBJ         CBP         CBQ     -60.000    10.0     6
+K1N            sp2_sp2_13         CBP         CBQ         CBR         CBS     180.000     5.0     2
+K1N            sp2_sp3_73         CBQ         CBR         CBS         CBG       0.000    10.0     6
+K1N            sp3_sp3_49         CBR         CBS         CBT         CBU     180.000    10.0     3
+K1N            sp3_sp3_55         CBS         CBT         CBU         NBF      60.000    10.0     3
+K1N            sp2_sp3_40         CBD         NBF         CBU         CBT     180.000    10.0     6
+K1N            sp2_sp2_27         OAL         CAK           N          CA       0.000     5.0     2
+K1N             sp2_sp3_4           C         NAP         CAQ         CAR     180.000    10.0     6
+K1N            sp3_sp3_10         NAP         CAQ         CAR         CAS     -60.000    10.0     3
+K1N            sp2_sp3_26         CAY         CAX         CAT         CAS     120.000    10.0     6
+K1N            sp2_sp3_10           C         NAP         CAT         CAS     180.000    10.0     6
+K1N           sp2_sp3_103         CAK           N          CA           C       0.000    10.0     6
+K1N           sp3_sp3_109           C          CA          CB          CG     180.000    10.0     3
+K1N           sp2_sp3_100           O           C          CA          CB     180.000    10.0     6
+K1N            sp2_sp2_21          CA           C         NAP         CAQ     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+K1N    chir_1    CAT    NAP    CAU    CAX    negative
+K1N    chir_2    CA    N    C    CB    positive
+K1N    chir_3    CAZ    NAW    CAY    CBA    positive
+K1N    chir_4    CBC    NAW    CBD    CBB    positive
+K1N    chir_5    CBG    NBF    CBH    CBS    positive
+K1N    chir_6    CBK    NBJ    CBL    CBN    positive
+K1N    chir_7    CBP    NBJ    CBQ    CBO    negative
+K1N    chir_8    CBS    CBG    CBR    CBT    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+K1N    plan-1          CB   0.020
+K1N    plan-1         CD1   0.020
+K1N    plan-1         CD2   0.020
+K1N    plan-1         CE1   0.020
+K1N    plan-1         CE2   0.020
+K1N    plan-1          CG   0.020
+K1N    plan-1         CL1   0.020
+K1N    plan-1          CZ   0.020
+K1N    plan-1         HD2   0.020
+K1N    plan-1         HE1   0.020
+K1N    plan-1         HE2   0.020
+K1N    plan-1          HZ   0.020
+K1N    plan-2         CAT   0.020
+K1N    plan-2         CAU   0.020
+K1N    plan-2         NAW   0.020
+K1N    plan-2         OAV   0.020
+K1N    plan-3         CAK   0.020
+K1N    plan-3         CAM   0.020
+K1N    plan-3           N   0.020
+K1N    plan-3         OAL   0.020
+K1N    plan-4          CA   0.020
+K1N    plan-4         CAK   0.020
+K1N    plan-4           H   0.020
+K1N    plan-4           N   0.020
+K1N    plan-5           C   0.020
+K1N    plan-5          CA   0.020
+K1N    plan-5         NAP   0.020
+K1N    plan-5           O   0.020
+K1N    plan-6         CAT   0.020
+K1N    plan-6         CAX   0.020
+K1N    plan-6         CAY   0.020
+K1N    plan-6         HAX   0.020
+K1N    plan-7         CAX   0.020
+K1N    plan-7         CAY   0.020
+K1N    plan-7         CAZ   0.020
+K1N    plan-7         HAY   0.020
+K1N    plan-8         CBC   0.020
+K1N    plan-8         CBD   0.020
+K1N    plan-8         NBF   0.020
+K1N    plan-8         OBE   0.020
+K1N    plan-9         CBG   0.020
+K1N    plan-9         CBH   0.020
+K1N    plan-9         NBJ   0.020
+K1N    plan-9         OBI   0.020
+K1N   plan-10         CBK   0.020
+K1N   plan-10         CBL   0.020
+K1N   plan-10          O1   0.020
+K1N   plan-10         OBM   0.020
+K1N   plan-11         CBP   0.020
+K1N   plan-11         CBQ   0.020
+K1N   plan-11         CBR   0.020
+K1N   plan-11         HBQ   0.020
+K1N   plan-12         CBQ   0.020
+K1N   plan-12         CBR   0.020
+K1N   plan-12         CBS   0.020
+K1N   plan-12         HBR   0.020
+K1N   plan-13           C   0.020
+K1N   plan-13         CAQ   0.020
+K1N   plan-13         CAT   0.020
+K1N   plan-13         NAP   0.020
+K1N   plan-14         CAU   0.020
+K1N   plan-14         CAZ   0.020
+K1N   plan-14         CBC   0.020
+K1N   plan-14         NAW   0.020
+K1N   plan-15         CBD   0.020
+K1N   plan-15         CBG   0.020
+K1N   plan-15         CBU   0.020
+K1N   plan-15         NBF   0.020
+K1N   plan-16         CBH   0.020
+K1N   plan-16         CBK   0.020
+K1N   plan-16         CBP   0.020
+K1N   plan-16         NBJ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+K1N            InChI                InChI  1.03 InChI=1S/C35H40ClN5O7/c1-20(42)37-26(19-22-5-2-3-6-25(22)36)30(43)39-17-4-15-35(39)16-13-24-9-11-27(41(24)34(35)48)31(44)38-18-14-21-7-8-23-10-12-28(33(46)47)40(23)32(45)29(21)38/h2-3,5-8,13,16,21,23-24,26-29H,4,9-12,14-15,17-19H2,1H3,(H,37,42)(H,46,47)/t21-,23-,24-,26-,27-,28-,29-,35+/m0/s1
+K1N         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                          AYDUPBNKBXOHLZ-QHVDBZGRSA-N
+K1N SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                           CC(=O)N[C@@H](Cc1ccccc1Cl)C(=O)N2CCC[C@]23C=C[C@@H]4CC[C@H](N4C3=O)C(=O)N5CC[C@@H]6C=C[C@H]7CC[C@H](N7C(=O)[C@@H]56)C(O)=O
+K1N           SMILES               CACTVS 3.385                                                                                                                                                                                       CC(=O)N[CH](Cc1ccccc1Cl)C(=O)N2CCC[C]23C=C[CH]4CC[CH](N4C3=O)C(=O)N5CC[CH]6C=C[CH]7CC[CH](N7C(=O)[CH]56)C(O)=O
+K1N SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                                                                                             CC(=O)N[C@@H](Cc1ccccc1Cl)C(=O)N2CCC[C@]23C=C[C@@H]4CC[C@H](N4C3=O)C(=O)N5CC[C@H]6[C@H]5C(=O)N7[C@H](CC[C@H]7C(=O)O)C=C6
+K1N           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                                                                                                              CC(=O)NC(Cc1ccccc1Cl)C(=O)N2CCCC23C=CC4CCC(N4C3=O)C(=O)N5CCC6C5C(=O)N7C(CCC7C(=O)O)C=C6
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+K1N acedrg               243         "dictionary generator"                  
+K1N acedrg_database      11          "data source"                           
+K1N rdkit                2017.03.2   "Chemoinformatics tool"
+K1N refmac5              5.8.0238    "optimization tool"                     

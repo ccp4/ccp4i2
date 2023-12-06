@@ -1,0 +1,619 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+J3W     J3W      "methyl ~{N}-[(2~{S})-3,3-dimethyl-1-[2-[3-[(3~{R},6~{S},10~{Z})-3-oxidanyl-4,7-bis(oxidanylidene)-6-propan-2-yl-5,8-diazabicyclo[11.2.2]heptadeca-1(16),10,13(17),14-tetraen-3-yl]propyl]-2-[(4-thiophen-2-ylphenyl)methyl]hydrazinyl]-1-oxidanylidene-butan-2-yl]carbamate"     NON-POLYMER     105     52     .     
+#
+data_comp_J3W
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+J3W     CAR     C       CR16    0       8.715       25.287      2.166       
+J3W     CAT     C       CR16    0       10.074      25.433      2.404       
+J3W     CBS     C       CR6     0       10.896      24.326      2.569       
+J3W     CBF     C       CH2     0       12.375      24.484      2.834       
+J3W     CAU     C       CR16    0       10.313      23.067      2.493       
+J3W     CAS     C       CR16    0       8.954       22.919      2.254       
+J3W     CBQ     C       CR6     0       8.130       24.027      2.087       
+J3W     CBB     C       CH2     0       6.641       23.867      1.828       
+J3W     CAM     C       C1      0       5.940       22.950      2.790       
+J3W     CAL     C       C1      0       5.803       23.124      4.107       
+J3W     CAZ     C       CH2     0       6.323       24.269      4.904       
+J3W     NBH     N       NH1     0       7.669       24.057      5.416       
+J3W     C       C       C       0       8.326       25.002      6.097       
+J3W     O       O       O       0       7.862       26.125      6.294       
+J3W     CA      C       CH1     0       9.707       24.633      6.647       
+J3W     CB      C       CH1     0       9.915       25.155      8.102       
+J3W     CG1     C       CH3     0       11.323      24.867      8.613       
+J3W     CG2     C       CH3     0       8.870       24.583      9.055       
+J3W     N       N       NH1     0       10.741      25.125      5.743       
+J3W     CBP     C       C       0       11.780      24.399      5.322       
+J3W     OAJ     O       O       0       12.029      23.270      5.737       
+J3W     CCA     C       CT      0       12.689      25.044      4.246       
+J3W     OAK     O       OH1     0       12.539      26.456      4.289       
+J3W     CBD     C       CH2     0       14.175      24.759      4.540       
+J3W     CBA     C       CH2     0       14.745      25.330      5.833       
+J3W     CBC     C       CH2     0       16.152      24.835      6.134       
+J3W     NBY     N       NT      0       16.199      23.542      6.835       
+J3W     NBK     N       NH1     0       16.336      22.471      5.916       
+J3W     CBO     C       C       0       15.436      21.489      5.892       
+J3W     OAI     O       O       0       14.369      21.551      6.495       
+J3W     CBX     C       CH1     0       15.785      20.236      5.075       
+J3W     CBZ     C       CT      0       15.148      20.183      3.647       
+J3W     CAD     C       CH3     0       15.692      21.329      2.787       
+J3W     CAE     C       CH3     0       15.514      18.857      2.969       
+J3W     CAF     C       CH3     0       13.620      20.291      3.696       
+J3W     NBI     N       NH1     0       15.434      19.066      5.875       
+J3W     CBM     C       C       0       16.321      18.105      6.211       
+J3W     OAG     O       O       0       17.490      18.088      5.886       
+J3W     OBL     O       O2      0       15.715      17.168      6.963       
+J3W     CAA     C       CH3     0       16.548      16.119      7.507       
+J3W     CBE     C       CH2     0       17.190      23.418      7.924       
+J3W     CXQ     C       CR6     0       17.071      22.098      8.649       
+J3W     CXV     C       CR16    0       18.036      21.110      8.497       
+J3W     CXW     C       CR16    0       17.913      19.888      9.141       
+J3W     CXP     C       CR16    0       15.961      21.827      9.438       
+J3W     CXR     C       CR16    0       15.829      20.609      10.087      
+J3W     CXA     C       CR6     0       16.807      19.624      9.952       
+J3W     CXY     C       CR15    0       15.788      16.335      11.463      
+J3W     CXZ     C       CR15    0       15.543      17.519      10.686      
+J3W     CXT     C       CR5     0       16.653      18.337      10.634      
+J3W     SAI     S       S2      0       17.908      17.668      11.502      
+J3W     CXG     C       CR15    0       17.053      16.313      11.956      
+J3W     H1      H       H       0       8.179       26.054      2.057       
+J3W     H2      H       H       0       10.446      26.297      2.454       
+J3W     H3      H       H       0       12.811      23.611      2.730       
+J3W     H4      H       H       0       12.755      25.086      2.159       
+J3W     H5      H       H       0       10.850      22.300      2.603       
+J3W     H6      H       H       0       8.584       22.054      2.205       
+J3W     H7      H       H       0       6.517       23.524      0.923       
+J3W     H8      H       H       0       6.218       24.745      1.871       
+J3W     H9      H       H       0       5.555       22.166      2.421       
+J3W     H10     H       H       0       5.331       22.456      4.581       
+J3W     H11     H       H       0       5.719       24.427      5.658       
+J3W     H12     H       H       0       6.316       25.074      4.348       
+J3W     H13     H       H       0       8.062       23.291      5.265       
+J3W     H14     H       H       0       9.763       23.638      6.679       
+J3W     H15     H       H       0       9.802       26.137      8.089       
+J3W     H16     H       H       0       11.967      25.391      8.107       
+J3W     H17     H       H       0       11.520      23.920      8.505       
+J3W     H18     H       H       0       11.386      25.105      9.554       
+J3W     H19     H       H       0       9.175       24.673      9.974       
+J3W     H20     H       H       0       8.729       23.641      8.853       
+J3W     H21     H       H       0       8.032       25.065      8.948       
+J3W     H22     H       H       0       10.678      25.953      5.467       
+J3W     H23     H       H       0       13.020      26.829      3.696       
+J3W     H24     H       H       0       14.702      25.114      3.787       
+J3W     H25     H       H       0       14.305      23.783      4.545       
+J3W     H26     H       H       0       14.161      25.085      6.581       
+J3W     H27     H       H       0       14.762      26.308      5.769       
+J3W     H28     H       H       0       16.606      25.509      6.683       
+J3W     H29     H       H       0       16.646      24.761      5.290       
+J3W     H30     H       H       0       17.012      22.460      5.366       
+J3W     H31     H       H       0       16.765      20.237      4.936       
+J3W     H32     H       H       0       16.664      21.333      2.825       
+J3W     H33     H       H       0       15.353      22.179      3.118       
+J3W     H34     H       H       0       15.407      21.210      1.864       
+J3W     H35     H       H       0       16.470      18.698      3.060       
+J3W     H36     H       H       0       15.282      18.896      2.025       
+J3W     H37     H       H       0       15.025      18.129      3.389       
+J3W     H38     H       H       0       13.267      19.668      4.354       
+J3W     H39     H       H       0       13.251      20.075      2.821       
+J3W     H40     H       H       0       13.361      21.197      3.937       
+J3W     H41     H       H       0       14.606      18.992      6.155       
+J3W     H42     H       H       0       17.244      16.510      8.058       
+J3W     H43     H       H       0       16.951      15.616      6.781       
+J3W     H44     H       H       0       16.004      15.525      8.047       
+J3W     H45     H       H       0       17.058      24.150      8.564       
+J3W     H46     H       H       0       18.092      23.506      7.549       
+J3W     H47     H       H       0       18.791      21.274      7.955       
+J3W     H48     H       H       0       18.582      19.235      9.034       
+J3W     H49     H       H       0       15.293      22.483      9.543       
+J3W     H50     H       H       0       15.076      20.447      10.626      
+J3W     H51     H       H       0       15.146      15.661      11.607      
+J3W     H53     H       H       0       14.722      17.707      10.265      
+J3W     H56     H       H       0       17.445      15.644      12.492      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+J3W         CBQ         CBB      SINGLE       n     1.519  0.0100     1.519  0.0100
+J3W         CBB         CAM      SINGLE       n     1.497  0.0194     1.497  0.0194
+J3W         CAR         CBQ      DOUBLE       y     1.387  0.0100     1.387  0.0100
+J3W         CAR         CAT      SINGLE       y     1.384  0.0100     1.384  0.0100
+J3W         CAS         CBQ      SINGLE       y     1.387  0.0100     1.387  0.0100
+J3W         CAT         CBS      DOUBLE       y     1.385  0.0110     1.385  0.0110
+J3W         CBZ         CAE      SINGLE       n     1.531  0.0109     1.531  0.0109
+J3W         CAM         CAL      DOUBLE       n     1.334  0.0101     1.334  0.0101
+J3W         CAU         CAS      DOUBLE       y     1.384  0.0100     1.384  0.0100
+J3W         CBZ         CAD      SINGLE       n     1.531  0.0109     1.531  0.0109
+J3W         CBS         CAU      SINGLE       y     1.385  0.0110     1.385  0.0110
+J3W         CBS         CBF      SINGLE       n     1.509  0.0100     1.509  0.0100
+J3W         CBF         CCA      SINGLE       n     1.547  0.0100     1.547  0.0100
+J3W         CBZ         CAF      SINGLE       n     1.531  0.0109     1.531  0.0109
+J3W         CBX         CBZ      SINGLE       n     1.559  0.0100     1.559  0.0100
+J3W         CAL         CAZ      SINGLE       n     1.487  0.0100     1.487  0.0100
+J3W         CCA         OAK      SINGLE       n     1.418  0.0121     1.418  0.0121
+J3W         CAZ         NBH      SINGLE       n     1.454  0.0100     1.454  0.0100
+J3W         CCA         CBD      SINGLE       n     1.536  0.0100     1.536  0.0100
+J3W         CBP         CCA      SINGLE       n     1.533  0.0146     1.533  0.0146
+J3W         CBX         NBI      SINGLE       n     1.453  0.0114     1.453  0.0114
+J3W         CBO         CBX      SINGLE       n     1.532  0.0100     1.532  0.0100
+J3W         CBD         CBA      SINGLE       n     1.522  0.0100     1.522  0.0100
+J3W         CBM         OAG      DOUBLE       n     1.210  0.0102     1.210  0.0102
+J3W           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+J3W         NBH           C      SINGLE       n     1.333  0.0100     1.333  0.0100
+J3W           N         CBP      SINGLE       n     1.327  0.0100     1.327  0.0100
+J3W         CBP         OAJ      DOUBLE       n     1.226  0.0136     1.226  0.0136
+J3W          CA           N      SINGLE       n     1.453  0.0100     1.453  0.0100
+J3W         NBI         CBM      SINGLE       n     1.344  0.0100     1.344  0.0100
+J3W           C          CA      SINGLE       n     1.527  0.0100     1.527  0.0100
+J3W         CBO         OAI      DOUBLE       n     1.226  0.0101     1.226  0.0101
+J3W         NBK         CBO      SINGLE       n     1.328  0.0100     1.328  0.0100
+J3W         CBM         OBL      SINGLE       n     1.342  0.0100     1.342  0.0100
+J3W         NBY         NBK      SINGLE       n     1.413  0.0100     1.413  0.0100
+J3W          CA          CB      SINGLE       n     1.544  0.0188     1.544  0.0188
+J3W         CBA         CBC      SINGLE       n     1.521  0.0100     1.521  0.0100
+J3W         OBL         CAA      SINGLE       n     1.443  0.0101     1.443  0.0101
+J3W         CBC         NBY      SINGLE       n     1.468  0.0100     1.468  0.0100
+J3W         NBY         CBE      SINGLE       n     1.474  0.0100     1.474  0.0100
+J3W          CB         CG2      SINGLE       n     1.521  0.0135     1.521  0.0135
+J3W          CB         CG1      SINGLE       n     1.521  0.0135     1.521  0.0135
+J3W         CBE         CXQ      SINGLE       n     1.509  0.0100     1.509  0.0100
+J3W         CXQ         CXV      DOUBLE       y     1.385  0.0100     1.385  0.0100
+J3W         CXQ         CXP      SINGLE       y     1.385  0.0100     1.385  0.0100
+J3W         CXV         CXW      SINGLE       y     1.383  0.0100     1.383  0.0100
+J3W         CXP         CXR      DOUBLE       y     1.383  0.0100     1.383  0.0100
+J3W         CXW         CXA      DOUBLE       y     1.392  0.0100     1.392  0.0100
+J3W         CXT         SAI      SINGLE       y     1.695  0.0200     1.695  0.0200
+J3W         SAI         CXG      SINGLE       y     1.695  0.0200     1.695  0.0200
+J3W         CXR         CXA      SINGLE       y     1.392  0.0100     1.392  0.0100
+J3W         CXA         CXT      SINGLE       n     1.464  0.0100     1.464  0.0100
+J3W         CXZ         CXT      DOUBLE       y     1.363  0.0200     1.363  0.0200
+J3W         CXY         CXG      DOUBLE       y     1.343  0.0200     1.343  0.0200
+J3W         CXY         CXZ      SINGLE       y     1.413  0.0154     1.413  0.0154
+J3W         CAR          H1      SINGLE       n     1.082  0.0130     0.942  0.0167
+J3W         CAT          H2      SINGLE       n     1.082  0.0130     0.942  0.0167
+J3W         CBF          H3      SINGLE       n     1.089  0.0100     0.981  0.0169
+J3W         CBF          H4      SINGLE       n     1.089  0.0100     0.981  0.0169
+J3W         CAU          H5      SINGLE       n     1.082  0.0130     0.942  0.0167
+J3W         CAS          H6      SINGLE       n     1.082  0.0130     0.942  0.0167
+J3W         CBB          H7      SINGLE       n     1.089  0.0100     0.976  0.0140
+J3W         CBB          H8      SINGLE       n     1.089  0.0100     0.976  0.0140
+J3W         CAM          H9      SINGLE       n     1.082  0.0130     0.948  0.0127
+J3W         CAL         H10      SINGLE       n     1.082  0.0130     0.945  0.0200
+J3W         CAZ         H11      SINGLE       n     1.089  0.0100     0.979  0.0113
+J3W         CAZ         H12      SINGLE       n     1.089  0.0100     0.979  0.0113
+J3W         NBH         H13      SINGLE       n     1.016  0.0100     0.873  0.0200
+J3W          CA         H14      SINGLE       n     1.089  0.0100     0.998  0.0200
+J3W          CB         H15      SINGLE       n     1.089  0.0100     0.989  0.0175
+J3W         CG1         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         CG1         H17      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         CG1         H18      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         CG2         H19      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         CG2         H20      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         CG2         H21      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W           N         H22      SINGLE       n     1.016  0.0100     0.873  0.0200
+J3W         OAK         H23      SINGLE       n     0.970  0.0120     0.848  0.0200
+J3W         CBD         H24      SINGLE       n     1.089  0.0100     0.985  0.0134
+J3W         CBD         H25      SINGLE       n     1.089  0.0100     0.985  0.0134
+J3W         CBA         H26      SINGLE       n     1.089  0.0100     0.981  0.0160
+J3W         CBA         H27      SINGLE       n     1.089  0.0100     0.981  0.0160
+J3W         CBC         H28      SINGLE       n     1.089  0.0100     0.980  0.0143
+J3W         CBC         H29      SINGLE       n     1.089  0.0100     0.980  0.0143
+J3W         NBK         H30      SINGLE       n     1.016  0.0100     0.871  0.0200
+J3W         CBX         H31      SINGLE       n     1.089  0.0100     0.991  0.0200
+J3W         CAD         H32      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         CAD         H33      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         CAD         H34      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         CAE         H35      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         CAE         H36      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         CAE         H37      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         CAF         H38      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         CAF         H39      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         CAF         H40      SINGLE       n     1.089  0.0100     0.973  0.0146
+J3W         NBI         H41      SINGLE       n     1.016  0.0100     0.875  0.0200
+J3W         CAA         H42      SINGLE       n     1.089  0.0100     0.970  0.0175
+J3W         CAA         H43      SINGLE       n     1.089  0.0100     0.970  0.0175
+J3W         CAA         H44      SINGLE       n     1.089  0.0100     0.970  0.0175
+J3W         CBE         H45      SINGLE       n     1.089  0.0100     0.981  0.0172
+J3W         CBE         H46      SINGLE       n     1.089  0.0100     0.981  0.0172
+J3W         CXV         H47      SINGLE       n     1.082  0.0130     0.943  0.0173
+J3W         CXW         H48      SINGLE       n     1.082  0.0130     0.941  0.0147
+J3W         CXP         H49      SINGLE       n     1.082  0.0130     0.943  0.0173
+J3W         CXR         H50      SINGLE       n     1.082  0.0130     0.941  0.0147
+J3W         CXY         H51      SINGLE       n     1.082  0.0130     0.942  0.0153
+J3W         CXZ         H53      SINGLE       n     1.082  0.0130     0.942  0.0154
+J3W         CXG         H56      SINGLE       n     1.082  0.0130     0.942  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+J3W         CBQ         CAR         CAT     121.062    1.50
+J3W         CBQ         CAR          H1     119.394    1.50
+J3W         CAT         CAR          H1     119.544    1.50
+J3W         CAR         CAT         CBS     121.062    1.50
+J3W         CAR         CAT          H2     119.544    1.50
+J3W         CBS         CAT          H2     119.394    1.50
+J3W         CAT         CBS         CAU     117.877    1.50
+J3W         CAT         CBS         CBF     121.061    1.50
+J3W         CAU         CBS         CBF     121.061    1.50
+J3W         CBS         CBF         CCA     111.525    1.84
+J3W         CBS         CBF          H3     108.807    1.50
+J3W         CBS         CBF          H4     108.807    1.50
+J3W         CCA         CBF          H3     108.889    1.50
+J3W         CCA         CBF          H4     108.889    1.50
+J3W          H3         CBF          H4     107.661    1.50
+J3W         CAS         CAU         CBS     121.062    1.50
+J3W         CAS         CAU          H5     119.544    1.50
+J3W         CBS         CAU          H5     119.394    1.50
+J3W         CBQ         CAS         CAU     121.062    1.50
+J3W         CBQ         CAS          H6     119.394    1.50
+J3W         CAU         CAS          H6     119.544    1.50
+J3W         CBB         CBQ         CAR     121.061    1.50
+J3W         CBB         CBQ         CAS     121.061    1.50
+J3W         CAR         CBQ         CAS     117.877    1.50
+J3W         CBQ         CBB         CAM     113.674    2.24
+J3W         CBQ         CBB          H7     108.809    1.50
+J3W         CBQ         CBB          H8     108.809    1.50
+J3W         CAM         CBB          H7     108.851    1.50
+J3W         CAM         CBB          H8     108.851    1.50
+J3W          H7         CBB          H8     107.704    1.50
+J3W         CBB         CAM         CAL     125.768    1.98
+J3W         CBB         CAM          H9     116.920    1.50
+J3W         CAL         CAM          H9     117.312    1.78
+J3W         CAM         CAL         CAZ     125.571    1.50
+J3W         CAM         CAL         H10     117.398    1.78
+J3W         CAZ         CAL         H10     117.030    1.50
+J3W         CAL         CAZ         NBH     113.621    2.46
+J3W         CAL         CAZ         H11     109.153    1.50
+J3W         CAL         CAZ         H12     109.153    1.50
+J3W         NBH         CAZ         H11     109.232    1.50
+J3W         NBH         CAZ         H12     109.232    1.50
+J3W         H11         CAZ         H12     107.869    1.50
+J3W         CAZ         NBH           C     121.716    1.54
+J3W         CAZ         NBH         H13     119.301    1.62
+J3W           C         NBH         H13     118.983    1.52
+J3W           O           C         NBH     122.966    1.50
+J3W           O           C          CA     120.606    1.50
+J3W         NBH           C          CA     116.428    1.50
+J3W           N          CA           C     111.248    2.09
+J3W           N          CA          CB     110.867    1.63
+J3W           N          CA         H14     107.651    1.50
+J3W           C          CA          CB     111.464    1.50
+J3W           C          CA         H14     107.690    1.50
+J3W          CB          CA         H14     107.774    1.50
+J3W          CA          CB         CG2     111.317    1.50
+J3W          CA          CB         CG1     111.317    1.50
+J3W          CA          CB         H15     107.640    1.50
+J3W         CG2          CB         CG1     110.676    1.50
+J3W         CG2          CB         H15     107.603    1.50
+J3W         CG1          CB         H15     107.603    1.50
+J3W          CB         CG1         H16     109.507    1.50
+J3W          CB         CG1         H17     109.507    1.50
+J3W          CB         CG1         H18     109.507    1.50
+J3W         H16         CG1         H17     109.411    1.50
+J3W         H16         CG1         H18     109.411    1.50
+J3W         H17         CG1         H18     109.411    1.50
+J3W          CB         CG2         H19     109.507    1.50
+J3W          CB         CG2         H20     109.507    1.50
+J3W          CB         CG2         H21     109.507    1.50
+J3W         H19         CG2         H20     109.411    1.50
+J3W         H19         CG2         H21     109.411    1.50
+J3W         H20         CG2         H21     109.411    1.50
+J3W         CBP           N          CA     121.909    1.76
+J3W         CBP           N         H22     118.792    1.94
+J3W          CA           N         H22     119.285    1.91
+J3W         CCA         CBP           N     116.269    1.50
+J3W         CCA         CBP         OAJ     120.468    1.50
+J3W           N         CBP         OAJ     123.263    1.50
+J3W         CBF         CCA         OAK     111.851    1.50
+J3W         CBF         CCA         CBD     111.094    2.85
+J3W         CBF         CCA         CBP     111.511    2.91
+J3W         OAK         CCA         CBD     106.921    2.88
+J3W         OAK         CCA         CBP     109.044    2.29
+J3W         CBD         CCA         CBP     109.633    1.65
+J3W         CCA         OAK         H23     109.172    2.84
+J3W         CCA         CBD         CBA     111.094    2.85
+J3W         CCA         CBD         H24     108.172    1.50
+J3W         CCA         CBD         H25     108.172    1.50
+J3W         CBA         CBD         H24     108.801    1.50
+J3W         CBA         CBD         H25     108.801    1.50
+J3W         H24         CBD         H25     107.452    1.50
+J3W         CBD         CBA         CBC     113.118    2.03
+J3W         CBD         CBA         H26     108.801    1.50
+J3W         CBD         CBA         H27     108.801    1.50
+J3W         CBC         CBA         H26     108.700    1.50
+J3W         CBC         CBA         H27     108.700    1.50
+J3W         H26         CBA         H27     107.927    1.57
+J3W         CBA         CBC         NBY     114.414    1.50
+J3W         CBA         CBC         H28     108.808    1.50
+J3W         CBA         CBC         H29     108.808    1.50
+J3W         NBY         CBC         H28     108.783    1.50
+J3W         NBY         CBC         H29     108.783    1.50
+J3W         H28         CBC         H29     107.873    1.50
+J3W         NBK         NBY         CBC     109.794    1.50
+J3W         NBK         NBY         CBE     110.229    1.50
+J3W         CBC         NBY         CBE     114.848    2.03
+J3W         CBO         NBK         NBY     119.838    1.50
+J3W         CBO         NBK         H30     119.928    2.41
+J3W         NBY         NBK         H30     120.234    2.39
+J3W         CBX         CBO         OAI     120.394    1.50
+J3W         CBX         CBO         NBK     116.713    1.50
+J3W         OAI         CBO         NBK     122.893    1.50
+J3W         CBZ         CBX         NBI     111.308    2.28
+J3W         CBZ         CBX         CBO     111.511    2.91
+J3W         CBZ         CBX         H31     106.840    1.50
+J3W         NBI         CBX         CBO     111.106    2.53
+J3W         NBI         CBX         H31     108.161    1.50
+J3W         CBO         CBX         H31     108.061    1.50
+J3W         CAE         CBZ         CAD     108.477    1.50
+J3W         CAE         CBZ         CAF     108.477    1.50
+J3W         CAE         CBZ         CBX     109.638    1.92
+J3W         CAD         CBZ         CAF     108.477    1.50
+J3W         CAD         CBZ         CBX     109.638    1.92
+J3W         CAF         CBZ         CBX     109.638    1.92
+J3W         CBZ         CAD         H32     109.547    1.50
+J3W         CBZ         CAD         H33     109.547    1.50
+J3W         CBZ         CAD         H34     109.547    1.50
+J3W         H32         CAD         H33     109.377    1.50
+J3W         H32         CAD         H34     109.377    1.50
+J3W         H33         CAD         H34     109.377    1.50
+J3W         CBZ         CAE         H35     109.547    1.50
+J3W         CBZ         CAE         H36     109.547    1.50
+J3W         CBZ         CAE         H37     109.547    1.50
+J3W         H35         CAE         H36     109.377    1.50
+J3W         H35         CAE         H37     109.377    1.50
+J3W         H36         CAE         H37     109.377    1.50
+J3W         CBZ         CAF         H38     109.547    1.50
+J3W         CBZ         CAF         H39     109.547    1.50
+J3W         CBZ         CAF         H40     109.547    1.50
+J3W         H38         CAF         H39     109.377    1.50
+J3W         H38         CAF         H40     109.377    1.50
+J3W         H39         CAF         H40     109.377    1.50
+J3W         CBX         NBI         CBM     120.995    1.63
+J3W         CBX         NBI         H41     119.380    1.92
+J3W         CBM         NBI         H41     119.625    2.20
+J3W         OAG         CBM         NBI     124.782    1.50
+J3W         OAG         CBM         OBL     124.970    1.50
+J3W         NBI         CBM         OBL     110.248    1.50
+J3W         CBM         OBL         CAA     115.328    1.50
+J3W         OBL         CAA         H42     109.384    1.50
+J3W         OBL         CAA         H43     109.384    1.50
+J3W         OBL         CAA         H44     109.384    1.50
+J3W         H42         CAA         H43     109.532    1.53
+J3W         H42         CAA         H44     109.532    1.53
+J3W         H43         CAA         H44     109.532    1.53
+J3W         NBY         CBE         CXQ     112.075    1.86
+J3W         NBY         CBE         H45     108.951    1.50
+J3W         NBY         CBE         H46     108.951    1.50
+J3W         CXQ         CBE         H45     109.172    1.50
+J3W         CXQ         CBE         H46     109.172    1.50
+J3W         H45         CBE         H46     107.748    1.50
+J3W         CBE         CXQ         CXV     120.771    1.50
+J3W         CBE         CXQ         CXP     120.771    1.50
+J3W         CXV         CXQ         CXP     118.458    1.50
+J3W         CXQ         CXV         CXW     120.805    1.50
+J3W         CXQ         CXV         H47     119.676    1.50
+J3W         CXW         CXV         H47     119.520    1.50
+J3W         CXV         CXW         CXA     120.529    1.50
+J3W         CXV         CXW         H48     119.786    1.50
+J3W         CXA         CXW         H48     119.685    1.50
+J3W         CXQ         CXP         CXR     120.805    1.50
+J3W         CXQ         CXP         H49     119.676    1.50
+J3W         CXR         CXP         H49     119.520    1.50
+J3W         CXP         CXR         CXA     120.529    1.50
+J3W         CXP         CXR         H50     119.786    1.50
+J3W         CXA         CXR         H50     119.685    1.50
+J3W         CXW         CXA         CXR     118.874    1.50
+J3W         CXW         CXA         CXT     120.563    1.61
+J3W         CXR         CXA         CXT     120.563    1.61
+J3W         CXG         CXY         CXZ     107.395    1.50
+J3W         CXG         CXY         H51     126.667    1.50
+J3W         CXZ         CXY         H51     125.937    1.50
+J3W         CXT         CXZ         CXY     107.531    1.50
+J3W         CXT         CXZ         H53     126.619    1.50
+J3W         CXY         CXZ         H53     125.850    1.50
+J3W         SAI         CXT         CXA     120.564    3.00
+J3W         SAI         CXT         CXZ     108.358    3.00
+J3W         CXA         CXT         CXZ     131.079    2.36
+J3W         CXT         SAI         CXG     108.358    3.00
+J3W         SAI         CXG         CXY     108.358    3.00
+J3W         SAI         CXG         H56     123.193    3.00
+J3W         CXY         CXG         H56     128.449    2.40
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+J3W              const_53         CBQ         CAR         CAT         CBS       0.000    10.0     2
+J3W       const_sp2_sp2_2         CAT         CAR         CBQ         CBB     180.000     5.0     2
+J3W            sp2_sp3_26           C         NBH         CAZ         CAL     120.000    10.0     6
+J3W             sp2_sp2_7           O           C         NBH         CAZ       0.000     5.0     2
+J3W            sp2_sp3_55           O           C          CA           N       0.000    10.0     6
+J3W            sp3_sp3_68           N          CA          CB         CG2     -60.000    10.0     3
+J3W            sp2_sp3_49         CBP           N          CA           C       0.000    10.0     6
+J3W           sp3_sp3_113          CA          CB         CG1         H16      60.000    10.0     3
+J3W           sp3_sp3_101          CA          CB         CG2         H19     180.000    10.0     3
+J3W             sp2_sp2_9         CCA         CBP           N          CA     180.000     5.0     2
+J3W            sp2_sp3_31           N         CBP         CCA         CBF       0.000    10.0     6
+J3W              const_18         CAR         CAT         CBS         CBF     180.000    10.0     2
+J3W            sp3_sp3_46         CBF         CCA         OAK         H23     180.000    10.0     3
+J3W            sp3_sp3_49         CBA         CBD         CCA         CBF     180.000    10.0     3
+J3W            sp3_sp3_58         CBC         CBA         CBD         CCA     180.000    10.0     3
+J3W            sp3_sp3_76         CBD         CBA         CBC         NBY     180.000    10.0     3
+J3W            sp3_sp3_89         CBA         CBC         NBY         NBK     180.000    10.0     3
+J3W            sp2_sp3_61         CBO         NBK         NBY         CBC       0.000    10.0     6
+J3W            sp3_sp3_95         CXQ         CBE         NBY         NBK     180.000    10.0     3
+J3W            sp2_sp2_17         CBX         CBO         NBK         NBY     180.000     5.0     2
+J3W            sp2_sp3_43         OAI         CBO         CBX         CBZ       0.000    10.0     6
+J3W            sp2_sp3_14         CAT         CBS         CBF         CCA     -90.000    10.0     6
+J3W              const_14         CAS         CAU         CBS         CBF     180.000    10.0     2
+J3W            sp3_sp3_38         NBI         CBX         CBZ         CAE     -60.000    10.0     3
+J3W            sp2_sp3_37         CBM         NBI         CBX         CBZ       0.000    10.0     6
+J3W            sp3_sp3_10         H32         CAD         CBZ         CAE     180.000    10.0     3
+J3W             sp3_sp3_2         H35         CAE         CBZ         CAD     -60.000    10.0     3
+J3W            sp3_sp3_29         H38         CAF         CBZ         CAE     -60.000    10.0     3
+J3W            sp2_sp2_15         OAG         CBM         NBI         CBX       0.000     5.0     2
+J3W            sp2_sp2_21         OAG         CBM         OBL         CAA     180.000     5.0     2
+J3W            sp3_sp3_86         H42         CAA         OBL         CBM     -60.000    10.0     3
+J3W            sp3_sp3_19         CBS         CBF         CCA         OAK     180.000    10.0     3
+J3W            sp2_sp3_66         CXV         CXQ         CBE         NBY     -90.000    10.0     6
+J3W              const_23         CBE         CXQ         CXV         CXW     180.000    10.0     2
+J3W              const_58         CXR         CXP         CXQ         CBE     180.000    10.0     2
+J3W              const_25         CXQ         CXV         CXW         CXA       0.000    10.0     2
+J3W              const_29         CXR         CXA         CXW         CXV       0.000    10.0     2
+J3W              const_37         CXQ         CXP         CXR         CXA       0.000    10.0     2
+J3W              const_33         CXW         CXA         CXR         CXP       0.000    10.0     2
+J3W            sp2_sp2_24         CXW         CXA         CXT         SAI       0.000     5.0     2
+J3W              const_61         CXG         CXY         CXZ         CXT       0.000    10.0     2
+J3W              const_41         SAI         CXG         CXY         CXZ       0.000    10.0     2
+J3W              const_49         SAI         CXT         CXZ         CXY       0.000    10.0     2
+J3W              const_48         CXA         CXT         SAI         CXG     180.000    10.0     2
+J3W       const_sp2_sp2_9         CBQ         CAS         CAU         CBS       0.000     5.0     2
+J3W              const_45         CXY         CXG         SAI         CXT       0.000    10.0     2
+J3W       const_sp2_sp2_6         CAU         CAS         CBQ         CBB     180.000     5.0     2
+J3W             sp2_sp3_2         CAR         CBQ         CBB         CAM     -90.000    10.0     6
+J3W             sp2_sp3_8         CAL         CAM         CBB         CBQ     120.000    10.0     6
+J3W             sp2_sp2_1         CAZ         CAL         CAM         CBB     180.000     5.0     2
+J3W            sp2_sp3_20         CAM         CAL         CAZ         NBH     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+J3W    chir_1    CA    N    C    CB    positive
+J3W    chir_2    CB    CA    CG2    CG1    both
+J3W    chir_3    CCA    OAK    CBP    CBF    negative
+J3W    chir_4    NBY    NBK    CBE    CBC    negative
+J3W    chir_5    CBX    NBI    CBO    CBZ    positive
+J3W    chir_6    CBZ    CBX    CAE    CAD    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+J3W    plan-1         CAR   0.020
+J3W    plan-1         CAS   0.020
+J3W    plan-1         CAT   0.020
+J3W    plan-1         CAU   0.020
+J3W    plan-1         CBB   0.020
+J3W    plan-1         CBF   0.020
+J3W    plan-1         CBQ   0.020
+J3W    plan-1         CBS   0.020
+J3W    plan-1          H1   0.020
+J3W    plan-1          H2   0.020
+J3W    plan-1          H5   0.020
+J3W    plan-1          H6   0.020
+J3W    plan-2         CBE   0.020
+J3W    plan-2         CXA   0.020
+J3W    plan-2         CXP   0.020
+J3W    plan-2         CXQ   0.020
+J3W    plan-2         CXR   0.020
+J3W    plan-2         CXT   0.020
+J3W    plan-2         CXV   0.020
+J3W    plan-2         CXW   0.020
+J3W    plan-2         H47   0.020
+J3W    plan-2         H48   0.020
+J3W    plan-2         H49   0.020
+J3W    plan-2         H50   0.020
+J3W    plan-3         CXA   0.020
+J3W    plan-3         CXG   0.020
+J3W    plan-3         CXT   0.020
+J3W    plan-3         CXY   0.020
+J3W    plan-3         CXZ   0.020
+J3W    plan-3         H51   0.020
+J3W    plan-3         H53   0.020
+J3W    plan-3         H56   0.020
+J3W    plan-3         SAI   0.020
+J3W    plan-4         CAL   0.020
+J3W    plan-4         CAM   0.020
+J3W    plan-4         CBB   0.020
+J3W    plan-4          H9   0.020
+J3W    plan-5         CAL   0.020
+J3W    plan-5         CAM   0.020
+J3W    plan-5         CAZ   0.020
+J3W    plan-5         H10   0.020
+J3W    plan-6           C   0.020
+J3W    plan-6         CAZ   0.020
+J3W    plan-6         H13   0.020
+J3W    plan-6         NBH   0.020
+J3W    plan-7           C   0.020
+J3W    plan-7          CA   0.020
+J3W    plan-7         NBH   0.020
+J3W    plan-7           O   0.020
+J3W    plan-8          CA   0.020
+J3W    plan-8         CBP   0.020
+J3W    plan-8         H22   0.020
+J3W    plan-8           N   0.020
+J3W    plan-9         CBP   0.020
+J3W    plan-9         CCA   0.020
+J3W    plan-9           N   0.020
+J3W    plan-9         OAJ   0.020
+J3W   plan-10         CBO   0.020
+J3W   plan-10         H30   0.020
+J3W   plan-10         NBK   0.020
+J3W   plan-10         NBY   0.020
+J3W   plan-11         CBO   0.020
+J3W   plan-11         CBX   0.020
+J3W   plan-11         NBK   0.020
+J3W   plan-11         OAI   0.020
+J3W   plan-12         CBM   0.020
+J3W   plan-12         CBX   0.020
+J3W   plan-12         H41   0.020
+J3W   plan-12         NBI   0.020
+J3W   plan-13         CBM   0.020
+J3W   plan-13         NBI   0.020
+J3W   plan-13         OAG   0.020
+J3W   plan-13         OBL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+J3W            InChI                InChI  1.03 InChI=1S/C40H53N5O6S/c1-27(2)33-35(46)41-22-8-7-11-28-13-15-29(16-14-28)25-40(50,37(48)42-33)21-10-23-45(44-36(47)34(39(3,4)5)43-38(49)51-6)26-30-17-19-31(20-18-30)32-12-9-24-52-32/h7-9,12-20,24,27,33-34,50H,10-11,21-23,25-26H2,1-6H3,(H,41,46)(H,42,48)(H,43,49)(H,44,47)/b8-7-/t33-,34+,40+/m0/s1
+J3W         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                             NERZJFGHXSDKOR-SDGWMEQNSA-N
+J3W SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                                COC(=O)N[C@H](C(=O)NN(CCC[C@@]1(O)Cc2ccc(C\C=C/CNC(=O)[C@@H](NC1=O)C(C)C)cc2)Cc3ccc(cc3)c4sccc4)C(C)(C)C
+J3W           SMILES               CACTVS 3.385                                                                                                                                                                                                       COC(=O)N[CH](C(=O)NN(CCC[C]1(O)Cc2ccc(CC=CCNC(=O)[CH](NC1=O)C(C)C)cc2)Cc3ccc(cc3)c4sccc4)C(C)(C)C
+J3W SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                               CC(C)[C@H]1C(=O)NC/C=C\Cc2ccc(cc2)C[C@@](C(=O)N1)(CCCN(Cc3ccc(cc3)c4cccs4)NC(=O)[C@H](C(C)(C)C)NC(=O)OC)O
+J3W           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                                             CC(C)C1C(=O)NCC=CCc2ccc(cc2)CC(C(=O)N1)(CCCN(Cc3ccc(cc3)c4cccs4)NC(=O)C(C(C)(C)C)NC(=O)OC)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+J3W acedrg               243         "dictionary generator"                  
+J3W acedrg_database      11          "data source"                           
+J3W rdkit                2017.03.2   "Chemoinformatics tool"
+J3W refmac5              5.8.0238    "optimization tool"                     

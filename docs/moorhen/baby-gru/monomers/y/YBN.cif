@@ -1,0 +1,347 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YBN     YBN      "3-methoxybenzyl 3-(piperidin-4-yloxy)-1-benzothiophene-2-carboxylate"     NON-POLYMER     51     28     .     
+#
+data_comp_YBN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YBN     C       C       CH3     0       11.354      22.001      30.070      
+YBN     N       N       NT1     0       11.604      21.911      34.992      
+YBN     O       O       O2      0       12.213      23.134      30.202      
+YBN     S       S       S2      0       17.663      23.528      34.687      
+YBN     C1      C       CR6     0       12.104      23.949      31.305      
+YBN     O1      O       O2      0       15.480      25.274      33.803      
+YBN     C2      C       CR16    0       10.917      24.149      32.009      
+YBN     O2      O       O       0       14.225      24.953      35.662      
+YBN     C3      C       CR16    0       10.909      25.001      33.102      
+YBN     O3      O       O2      0       14.720      22.208      36.792      
+YBN     C4      C       CR16    0       12.065      25.660      33.490      
+YBN     C5      C       CR6     0       13.253      25.471      32.791      
+YBN     C6      C       CH2     0       14.513      26.184      33.208      
+YBN     C7      C       C       0       15.159      24.648      34.954      
+YBN     C8      C       CR5     0       16.112      23.584      35.316      
+YBN     C9      C       CR56    0       18.138      22.131      35.464      
+YBN     C10     C       CR16    0       19.358      21.473      35.418      
+YBN     C11     C       CR16    0       19.515      20.312      36.149      
+YBN     C12     C       CR16    0       18.470      19.800      36.925      
+YBN     C13     C       CR16    0       17.248      20.435      36.988      
+YBN     C14     C       CR56    0       17.050      21.620      36.258      
+YBN     C15     C       CR5     0       15.886      22.480      36.144      
+YBN     C16     C       CH1     0       13.876      21.024      36.580      
+YBN     C17     C       CH2     0       12.531      21.330      37.203      
+YBN     C18     C       CH2     0       11.759      22.345      36.388      
+YBN     C19     C       CH2     0       12.906      21.665      34.353      
+YBN     C20     C       CH2     0       13.715      20.640      35.119      
+YBN     C21     C       CR16    0       13.259      24.617      31.699      
+YBN     H       H       H       0       10.458      22.300      29.845      
+YBN     HA      H       H       0       11.332      21.509      30.907      
+YBN     HB      H       H       0       11.688      21.424      29.364      
+YBN     HN      H       H       0       11.139      21.152      34.983      
+YBN     H2      H       H       0       10.127      23.708      31.751      
+YBN     H3      H       H       0       10.110      25.135      33.581      
+YBN     H4      H       H       0       12.047      26.237      34.237      
+YBN     H6      H       H       0       14.915      26.611      32.423      
+YBN     H6A     H       H       0       14.293      26.892      33.850      
+YBN     H10     H       H       0       20.067      21.810      34.899      
+YBN     H11     H       H       0       20.340      19.856      36.125      
+YBN     H12     H       H       0       18.605      19.004      37.414      
+YBN     H13     H       H       0       16.555      20.079      37.515      
+YBN     H16     H       H       0       14.279      20.264      37.062      
+YBN     H17     H       H       0       12.668      21.678      38.120      
+YBN     H17A    H       H       0       12.006      20.493      37.271      
+YBN     H18     H       H       0       12.235      23.213      36.407      
+YBN     H18A    H       H       0       10.863      22.474      36.788      
+YBN     H19     H       H       0       13.410      22.514      34.306      
+YBN     H19A    H       H       0       12.757      21.341      33.429      
+YBN     H20     H       H       0       13.260      19.763      35.067      
+YBN     H20A    H       H       0       14.606      20.540      34.699      
+YBN     H21     H       H       0       14.060      24.483      31.215      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YBN           C           O      SINGLE       n     1.424  0.0117     1.424  0.0117
+YBN           N         C18      SINGLE       n     1.469  0.0100     1.469  0.0100
+YBN           N         C19      SINGLE       n     1.469  0.0100     1.469  0.0100
+YBN           O          C1      SINGLE       n     1.372  0.0100     1.372  0.0100
+YBN           S          C8      SINGLE       y     1.695  0.0200     1.695  0.0200
+YBN           S          C9      SINGLE       y     1.695  0.0200     1.695  0.0200
+YBN          C1          C2      DOUBLE       y     1.386  0.0109     1.386  0.0109
+YBN          C1         C21      SINGLE       y     1.386  0.0100     1.386  0.0100
+YBN          O1          C6      SINGLE       n     1.450  0.0100     1.450  0.0100
+YBN          O1          C7      SINGLE       n     1.340  0.0127     1.340  0.0127
+YBN          C2          C3      SINGLE       y     1.382  0.0111     1.382  0.0111
+YBN          O2          C7      DOUBLE       n     1.209  0.0115     1.209  0.0115
+YBN          C3          C4      DOUBLE       y     1.382  0.0119     1.382  0.0119
+YBN          O3         C15      SINGLE       n     1.355  0.0200     1.355  0.0200
+YBN          O3         C16      SINGLE       n     1.459  0.0155     1.459  0.0155
+YBN          C4          C5      SINGLE       y     1.388  0.0100     1.388  0.0100
+YBN          C5          C6      SINGLE       n     1.504  0.0100     1.504  0.0100
+YBN          C5         C21      DOUBLE       y     1.382  0.0100     1.382  0.0100
+YBN          C7          C8      SINGLE       n     1.468  0.0173     1.468  0.0173
+YBN          C8         C15      DOUBLE       y     1.385  0.0200     1.385  0.0200
+YBN          C9         C10      DOUBLE       y     1.382  0.0123     1.382  0.0123
+YBN          C9         C14      SINGLE       y     1.414  0.0200     1.414  0.0200
+YBN         C10         C11      SINGLE       y     1.378  0.0108     1.378  0.0108
+YBN         C11         C12      DOUBLE       y     1.395  0.0112     1.395  0.0112
+YBN         C12         C13      SINGLE       y     1.376  0.0100     1.376  0.0100
+YBN         C13         C14      DOUBLE       y     1.401  0.0100     1.401  0.0100
+YBN         C14         C15      SINGLE       y     1.414  0.0200     1.414  0.0200
+YBN         C16         C17      SINGLE       n     1.511  0.0126     1.511  0.0126
+YBN         C16         C20      SINGLE       n     1.511  0.0126     1.511  0.0126
+YBN         C17         C18      SINGLE       n     1.510  0.0144     1.510  0.0144
+YBN         C19         C20      SINGLE       n     1.510  0.0144     1.510  0.0144
+YBN           C           H      SINGLE       n     1.089  0.0100     0.971  0.0157
+YBN           C          HA      SINGLE       n     1.089  0.0100     0.971  0.0157
+YBN           C          HB      SINGLE       n     1.089  0.0100     0.971  0.0157
+YBN           N          HN      SINGLE       n     1.036  0.0160     0.890  0.0200
+YBN          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0163
+YBN          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0152
+YBN          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+YBN          C6          H6      SINGLE       n     1.089  0.0100     0.980  0.0157
+YBN          C6         H6A      SINGLE       n     1.089  0.0100     0.980  0.0157
+YBN         C10         H10      SINGLE       n     1.082  0.0130     0.941  0.0170
+YBN         C11         H11      SINGLE       n     1.082  0.0130     0.942  0.0176
+YBN         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0181
+YBN         C13         H13      SINGLE       n     1.082  0.0130     0.942  0.0182
+YBN         C16         H16      SINGLE       n     1.089  0.0100     0.987  0.0166
+YBN         C17         H17      SINGLE       n     1.089  0.0100     0.990  0.0100
+YBN         C17        H17A      SINGLE       n     1.089  0.0100     0.990  0.0100
+YBN         C18         H18      SINGLE       n     1.089  0.0100     0.990  0.0100
+YBN         C18        H18A      SINGLE       n     1.089  0.0100     0.990  0.0100
+YBN         C19         H19      SINGLE       n     1.089  0.0100     0.990  0.0100
+YBN         C19        H19A      SINGLE       n     1.089  0.0100     0.990  0.0100
+YBN         C20         H20      SINGLE       n     1.089  0.0100     0.990  0.0100
+YBN         C20        H20A      SINGLE       n     1.089  0.0100     0.990  0.0100
+YBN         C21         H21      SINGLE       n     1.082  0.0130     0.945  0.0164
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YBN           O           C           H     109.428    1.50
+YBN           O           C          HA     109.428    1.50
+YBN           O           C          HB     109.428    1.50
+YBN           H           C          HA     109.509    1.50
+YBN           H           C          HB     109.509    1.50
+YBN          HA           C          HB     109.509    1.50
+YBN         C18           N         C19     111.207    1.50
+YBN         C18           N          HN     108.409    1.90
+YBN         C19           N          HN     108.409    1.90
+YBN           C           O          C1     117.529    1.50
+YBN          C8           S          C9     108.395    3.00
+YBN           O          C1          C2     119.922    3.00
+YBN           O          C1         C21     120.044    3.00
+YBN          C2          C1         C21     120.035    1.50
+YBN          C6          O1          C7     116.058    1.50
+YBN          C1          C2          C3     119.224    1.50
+YBN          C1          C2          H2     120.353    1.50
+YBN          C3          C2          H2     120.423    1.50
+YBN          C2          C3          C4     120.380    1.50
+YBN          C2          C3          H3     119.671    1.50
+YBN          C4          C3          H3     119.949    1.50
+YBN         C15          O3         C16     120.000    3.00
+YBN          C3          C4          C5     120.471    1.50
+YBN          C3          C4          H4     119.776    1.50
+YBN          C5          C4          H4     119.754    1.50
+YBN          C4          C5          C6     120.906    1.50
+YBN          C4          C5         C21     119.082    1.50
+YBN          C6          C5         C21     120.013    1.52
+YBN          O1          C6          C5     109.091    2.22
+YBN          O1          C6          H6     109.850    1.50
+YBN          O1          C6         H6A     109.850    1.50
+YBN          C5          C6          H6     109.785    1.50
+YBN          C5          C6         H6A     109.785    1.50
+YBN          H6          C6         H6A     108.275    1.50
+YBN          O1          C7          O2     123.611    1.50
+YBN          O1          C7          C8     112.450    1.50
+YBN          O2          C7          C8     123.940    1.69
+YBN           S          C8          C7     119.729    3.00
+YBN           S          C8         C15     108.395    3.00
+YBN          C7          C8         C15     131.876    2.97
+YBN           S          C9         C10     131.008    3.00
+YBN           S          C9         C14     108.395    3.00
+YBN         C10          C9         C14     120.597    1.99
+YBN          C9         C10         C11     118.340    1.50
+YBN          C9         C10         H10     120.964    1.50
+YBN         C11         C10         H10     120.697    1.50
+YBN         C10         C11         C12     120.867    1.50
+YBN         C10         C11         H11     119.583    1.50
+YBN         C12         C11         H11     119.550    1.50
+YBN         C11         C12         C13     121.019    1.50
+YBN         C11         C12         H12     119.413    1.50
+YBN         C13         C12         H12     119.568    1.50
+YBN         C12         C13         C14     118.793    1.50
+YBN         C12         C13         H13     120.582    1.50
+YBN         C14         C13         H13     120.625    1.50
+YBN          C9         C14         C13     120.384    1.84
+YBN          C9         C14         C15     107.024    1.50
+YBN         C13         C14         C15     132.593    1.58
+YBN          O3         C15          C8     128.983    2.86
+YBN          O3         C15         C14     123.226    3.00
+YBN          C8         C15         C14     107.791    1.50
+YBN          O3         C16         C17     108.636    2.58
+YBN          O3         C16         C20     108.636    2.58
+YBN          O3         C16         H16     109.196    2.19
+YBN         C17         C16         C20     110.953    1.50
+YBN         C17         C16         H16     109.129    1.50
+YBN         C20         C16         H16     109.129    1.50
+YBN         C16         C17         C18     111.257    1.50
+YBN         C16         C17         H17     109.270    1.50
+YBN         C16         C17        H17A     109.270    1.50
+YBN         C18         C17         H17     109.562    1.50
+YBN         C18         C17        H17A     109.562    1.50
+YBN         H17         C17        H17A     108.000    1.50
+YBN           N         C18         C17     111.116    1.92
+YBN           N         C18         H18     109.046    1.50
+YBN           N         C18        H18A     109.046    1.50
+YBN         C17         C18         H18     109.271    1.50
+YBN         C17         C18        H18A     109.271    1.50
+YBN         H18         C18        H18A     108.210    1.50
+YBN           N         C19         C20     111.116    1.92
+YBN           N         C19         H19     109.046    1.50
+YBN           N         C19        H19A     109.046    1.50
+YBN         C20         C19         H19     109.271    1.50
+YBN         C20         C19        H19A     109.271    1.50
+YBN         H19         C19        H19A     108.210    1.50
+YBN         C16         C20         C19     111.257    1.50
+YBN         C16         C20         H20     109.270    1.50
+YBN         C16         C20        H20A     109.270    1.50
+YBN         C19         C20         H20     109.562    1.50
+YBN         C19         C20        H20A     109.562    1.50
+YBN         H20         C20        H20A     108.000    1.50
+YBN          C1         C21          C5     120.809    1.50
+YBN          C1         C21         H21     119.463    1.50
+YBN          C5         C21         H21     119.728    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YBN            sp3_sp3_44           H           C           O          C1     -60.000    10.0     3
+YBN              const_48          C3          C4          C5          C6     180.000    10.0     2
+YBN             sp2_sp3_2          C4          C5          C6          O1     -90.000    10.0     6
+YBN              const_52          C1         C21          C5          C6     180.000    10.0     2
+YBN             sp2_sp2_8          O1          C7          C8           S       0.000     5.0     2
+YBN              const_26          O3         C15          C8          C7       0.000    10.0     2
+YBN       const_sp2_sp2_2         C11         C10          C9           S     180.000     5.0     2
+YBN              const_32         C13         C14          C9           S     180.000    10.0     2
+YBN       const_sp2_sp2_5          C9         C10         C11         C12       0.000     5.0     2
+YBN       const_sp2_sp2_9         C10         C11         C12         C13       0.000     5.0     2
+YBN              const_13         C11         C12         C13         C14       0.000    10.0     2
+YBN              const_17         C12         C13         C14          C9       0.000    10.0     2
+YBN             sp3_sp3_1         C17         C18           N         C19      60.000    10.0     3
+YBN            sp3_sp3_47         C20         C19           N         C18     180.000    10.0     3
+YBN              const_28          C9         C14         C15          O3     180.000    10.0     2
+YBN            sp3_sp3_22          O3         C16         C17         C18     180.000    10.0     3
+YBN            sp3_sp3_28          O3         C16         C20         C19     180.000    10.0     3
+YBN             sp3_sp3_7         C16         C17         C18           N     -60.000    10.0     3
+YBN            sp3_sp3_34           N         C19         C20         C16      60.000    10.0     3
+YBN             sp2_sp2_1          C2          C1           O           C     180.000     5.0     2
+YBN              const_22          C7          C8           S          C9     180.000    10.0     2
+YBN              const_56         C10          C9           S          C8     180.000    10.0     2
+YBN              const_59           O          C1         C21          C5     180.000    10.0     2
+YBN              const_37           O          C1          C2          C3     180.000    10.0     2
+YBN            sp3_sp3_53          C5          C6          O1          C7     180.000    10.0     3
+YBN             sp2_sp2_3          O2          C7          O1          C6     180.000     5.0     2
+YBN              const_39          C1          C2          C3          C4       0.000    10.0     2
+YBN              const_43          C2          C3          C4          C5       0.000    10.0     2
+YBN             sp2_sp2_5          C8         C15          O3         C16     180.000     5.0     2
+YBN            sp3_sp3_56         C17         C16          O3         C15     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+YBN    chir_1    C16    O3    C17    C20    both
+YBN    chir_2    N    C18    C19    HN    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YBN    plan-1         C10   0.020
+YBN    plan-1         C11   0.020
+YBN    plan-1         C12   0.020
+YBN    plan-1         C13   0.020
+YBN    plan-1         C14   0.020
+YBN    plan-1         C15   0.020
+YBN    plan-1          C7   0.020
+YBN    plan-1          C8   0.020
+YBN    plan-1          C9   0.020
+YBN    plan-1         H10   0.020
+YBN    plan-1         H11   0.020
+YBN    plan-1         H12   0.020
+YBN    plan-1         H13   0.020
+YBN    plan-1          O3   0.020
+YBN    plan-1           S   0.020
+YBN    plan-2          C1   0.020
+YBN    plan-2          C2   0.020
+YBN    plan-2         C21   0.020
+YBN    plan-2          C3   0.020
+YBN    plan-2          C4   0.020
+YBN    plan-2          C5   0.020
+YBN    plan-2          C6   0.020
+YBN    plan-2          H2   0.020
+YBN    plan-2         H21   0.020
+YBN    plan-2          H3   0.020
+YBN    plan-2          H4   0.020
+YBN    plan-2           O   0.020
+YBN    plan-3          C7   0.020
+YBN    plan-3          C8   0.020
+YBN    plan-3          O1   0.020
+YBN    plan-3          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YBN           SMILES              ACDLabs 12.01                                                                                                O=C(OCc1cccc(OC)c1)c4sc2ccccc2c4OC3CCNCC3
+YBN            InChI                InChI  1.03 InChI=1S/C22H23NO4S/c1-25-17-6-4-5-15(13-17)14-26-22(24)21-20(27-16-9-11-23-12-10-16)18-7-2-3-8-19(18)28-21/h2-8,13,16,23H,9-12,14H2,1H3
+YBN         InChIKey                InChI  1.03                                                                                                              GEVWCNOQZDSSIG-UHFFFAOYSA-N
+YBN SMILES_CANONICAL               CACTVS 3.370                                                                                                COc1cccc(COC(=O)c2sc3ccccc3c2OC4CCNCC4)c1
+YBN           SMILES               CACTVS 3.370                                                                                                COc1cccc(COC(=O)c2sc3ccccc3c2OC4CCNCC4)c1
+YBN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                              COc1cccc(c1)COC(=O)c2c(c3ccccc3s2)OC4CCNCC4
+YBN           SMILES "OpenEye OEToolkits" 1.7.6                                                                                              COc1cccc(c1)COC(=O)c2c(c3ccccc3s2)OC4CCNCC4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YBN acedrg               243         "dictionary generator"                  
+YBN acedrg_database      11          "data source"                           
+YBN rdkit                2017.03.2   "Chemoinformatics tool"
+YBN refmac5              5.8.0238    "optimization tool"                     

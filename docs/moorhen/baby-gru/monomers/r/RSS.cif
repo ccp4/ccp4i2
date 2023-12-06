@@ -1,0 +1,414 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RSS     RSS      "5-METHYL-3-(9-OXO-1,8-DIAZA-TRICYCLO[10.6.1.013,18]NONADECA-12(19),13,15,17-TETRAEN-10-YLCARBAMOYL)-HEXANOIC ACID"     NON-POLYMER     66     32     .     
+#
+data_comp_RSS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RSS     C1      C       C       0       11.483      44.579      65.793      
+RSS     O1      O       O       0       11.349      44.355      64.573      
+RSS     O2      O       OC      -1      12.474      45.154      66.286      
+RSS     C2      C       CH2     0       10.376      44.128      66.731      
+RSS     C3      C       CH1     0       9.416       45.258      67.154      
+RSS     C4      C       C       0       8.598       44.818      68.367      
+RSS     O3      O       O       0       7.885       43.818      68.295      
+RSS     N2      N       NH1     0       8.694       45.565      69.475      
+RSS     C5      C       CH1     0       7.850       45.348      70.645      
+RSS     C6      C       C       0       6.434       45.874      70.394      
+RSS     O4      O       O       0       6.267       46.928      69.781      
+RSS     N3      N       NH1     0       5.420       45.142      70.873      
+RSS     C7      C       CH2     0       4.024       45.564      70.871      
+RSS     C8      C       CH2     0       3.129       44.681      71.726      
+RSS     C9      C       CH2     0       3.526       44.577      73.191      
+RSS     C10     C       CH2     0       3.328       45.843      73.997      
+RSS     C11     C       CH2     0       3.777       45.721      75.444      
+RSS     C12     C       CH2     0       5.145       46.334      75.715      
+RSS     N4      N       NR5     0       6.187       45.817      74.832      
+RSS     C13     C       CH2     0       8.479       45.657      65.996      
+RSS     C14     C       CH1     0       7.487       46.800      66.263      
+RSS     C15     C       CH3     0       8.210       48.098      66.596      
+RSS     C16     C       CH3     0       6.563       47.001      65.072      
+RSS     C17     C       CH2     0       8.449       46.006      71.903      
+RSS     C18     C       CR5     0       7.666       45.679      73.140      
+RSS     C19     C       CR15    0       6.705       46.454      73.731      
+RSS     C20     C       CR56    0       7.750       44.465      73.907      
+RSS     C21     C       CR56    0       6.817       44.581      74.963      
+RSS     C22     C       CR16    0       8.525       43.296      73.814      
+RSS     C23     C       CR16    0       6.641       43.575      75.915      
+RSS     C24     C       CR16    0       8.350       42.303      74.757      
+RSS     C25     C       CR16    0       7.420       42.443      75.791      
+RSS     H21     H       H       0       10.785      43.744      67.525      
+RSS     H22A    H       H       0       9.866       43.426      66.293      
+RSS     H3      H       H       0       9.955       46.045      67.395      
+RSS     HN2     H       H       0       9.286       46.206      69.506      
+RSS     H5      H       H       0       7.796       44.377      70.809      
+RSS     HN3     H       H       0       5.597       44.352      71.195      
+RSS     H71     H       H       0       3.693       45.556      69.947      
+RSS     H72     H       H       0       3.972       46.487      71.198      
+RSS     H81     H       H       0       3.124       43.779      71.340      
+RSS     H82     H       H       0       2.213       45.027      71.675      
+RSS     H91     H       H       0       4.468       44.315      73.247      
+RSS     H92     H       H       0       2.998       43.862      73.605      
+RSS     H101    H       H       0       2.376       46.080      73.980      
+RSS     H102    H       H       0       3.823       46.573      73.568      
+RSS     H111    H       H       0       3.801       44.772      75.693      
+RSS     H112    H       H       0       3.115       46.163      76.018      
+RSS     H121    H       H       0       5.397       46.154      76.643      
+RSS     H122    H       H       0       5.087       47.304      75.604      
+RSS     H131    H       H       0       7.964       44.865      65.736      
+RSS     H132    H       H       0       9.031       45.913      65.228      
+RSS     H14     H       H       0       6.927       46.555      67.039      
+RSS     H151    H       H       0       7.573       48.834      66.597      
+RSS     H152    H       H       0       8.898       48.267      65.929      
+RSS     H153    H       H       0       8.621       48.025      67.475      
+RSS     H161    H       H       0       6.087       46.173      64.887      
+RSS     H162    H       H       0       7.088       47.253      64.292      
+RSS     H163    H       H       0       5.923       47.706      65.273      
+RSS     H171    H       H       0       8.465       46.977      71.779      
+RSS     H172    H       H       0       9.372       45.700      72.015      
+RSS     H19     H       H       0       6.438       47.308      73.427      
+RSS     H22     H       H       0       9.155       43.194      73.118      
+RSS     H23     H       H       0       6.016       43.667      76.613      
+RSS     H24     H       H       0       8.867       41.515      74.703      
+RSS     H25     H       H       0       7.323       41.749      76.419      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RSS          C1          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+RSS          C1          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+RSS          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+RSS          C2          C3      SINGLE       n     1.539  0.0136     1.539  0.0136
+RSS          C3          C4      SINGLE       n     1.525  0.0100     1.525  0.0100
+RSS          C3         C13      SINGLE       n     1.538  0.0116     1.538  0.0116
+RSS          C4          O3      DOUBLE       n     1.229  0.0102     1.229  0.0102
+RSS          C4          N2      SINGLE       n     1.334  0.0100     1.334  0.0100
+RSS          N2          C5      SINGLE       n     1.456  0.0100     1.456  0.0100
+RSS          C5          C6      SINGLE       n     1.526  0.0118     1.526  0.0118
+RSS          C5         C17      SINGLE       n     1.539  0.0100     1.539  0.0100
+RSS          C6          O4      DOUBLE       n     1.229  0.0102     1.229  0.0102
+RSS          C6          N3      SINGLE       n     1.336  0.0104     1.336  0.0104
+RSS          N3          C7      SINGLE       n     1.456  0.0109     1.456  0.0109
+RSS          C7          C8      SINGLE       n     1.517  0.0143     1.517  0.0143
+RSS          C8          C9      SINGLE       n     1.514  0.0200     1.514  0.0200
+RSS          C9         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+RSS         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+RSS         C11         C12      SINGLE       n     1.518  0.0169     1.518  0.0169
+RSS         C12          N4      SINGLE       n     1.460  0.0100     1.460  0.0100
+RSS          N4         C19      SINGLE       y     1.372  0.0110     1.372  0.0110
+RSS          N4         C21      SINGLE       y     1.395  0.0127     1.395  0.0127
+RSS         C13         C14      SINGLE       n     1.534  0.0100     1.534  0.0100
+RSS         C14         C15      SINGLE       n     1.521  0.0151     1.521  0.0151
+RSS         C14         C16      SINGLE       n     1.521  0.0151     1.521  0.0151
+RSS         C17         C18      SINGLE       n     1.499  0.0100     1.499  0.0100
+RSS         C18         C19      DOUBLE       y     1.367  0.0112     1.367  0.0112
+RSS         C18         C20      SINGLE       y     1.439  0.0100     1.439  0.0100
+RSS         C20         C21      DOUBLE       y     1.413  0.0100     1.413  0.0100
+RSS         C20         C22      SINGLE       y     1.402  0.0100     1.402  0.0100
+RSS         C21         C23      SINGLE       y     1.393  0.0100     1.393  0.0100
+RSS         C22         C24      DOUBLE       y     1.377  0.0100     1.377  0.0100
+RSS         C23         C25      DOUBLE       y     1.376  0.0100     1.376  0.0100
+RSS         C24         C25      SINGLE       y     1.394  0.0106     1.394  0.0106
+RSS          C2         H21      SINGLE       n     1.089  0.0100     0.972  0.0128
+RSS          C2        H22A      SINGLE       n     1.089  0.0100     0.972  0.0128
+RSS          C3          H3      SINGLE       n     1.089  0.0100     0.985  0.0200
+RSS          N2         HN2      SINGLE       n     1.016  0.0100     0.873  0.0200
+RSS          C5          H5      SINGLE       n     1.089  0.0100     0.987  0.0159
+RSS          N3         HN3      SINGLE       n     1.016  0.0100     0.872  0.0200
+RSS          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0152
+RSS          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0152
+RSS          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0160
+RSS          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0160
+RSS          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0163
+RSS          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0163
+RSS         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0163
+RSS         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0163
+RSS         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0160
+RSS         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0160
+RSS         C12        H121      SINGLE       n     1.089  0.0100     0.978  0.0180
+RSS         C12        H122      SINGLE       n     1.089  0.0100     0.978  0.0180
+RSS         C13        H131      SINGLE       n     1.089  0.0100     0.980  0.0160
+RSS         C13        H132      SINGLE       n     1.089  0.0100     0.980  0.0160
+RSS         C14         H14      SINGLE       n     1.089  0.0100     0.989  0.0162
+RSS         C15        H151      SINGLE       n     1.089  0.0100     0.973  0.0146
+RSS         C15        H152      SINGLE       n     1.089  0.0100     0.973  0.0146
+RSS         C15        H153      SINGLE       n     1.089  0.0100     0.973  0.0146
+RSS         C16        H161      SINGLE       n     1.089  0.0100     0.973  0.0146
+RSS         C16        H162      SINGLE       n     1.089  0.0100     0.973  0.0146
+RSS         C16        H163      SINGLE       n     1.089  0.0100     0.973  0.0146
+RSS         C17        H171      SINGLE       n     1.089  0.0100     0.979  0.0197
+RSS         C17        H172      SINGLE       n     1.089  0.0100     0.979  0.0197
+RSS         C19         H19      SINGLE       n     1.082  0.0130     0.945  0.0191
+RSS         C22         H22      SINGLE       n     1.082  0.0130     0.944  0.0200
+RSS         C23         H23      SINGLE       n     1.082  0.0130     0.941  0.0184
+RSS         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0181
+RSS         C25         H25      SINGLE       n     1.082  0.0130     0.941  0.0181
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RSS          O1          C1          O2     123.742    1.50
+RSS          O1          C1          C2     118.129    1.68
+RSS          O2          C1          C2     118.129    1.68
+RSS          C1          C2          C3     113.398    1.64
+RSS          C1          C2         H21     108.462    1.50
+RSS          C1          C2        H22A     108.462    1.50
+RSS          C3          C2         H21     108.942    1.50
+RSS          C3          C2        H22A     108.942    1.50
+RSS         H21          C2        H22A     107.639    1.50
+RSS          C2          C3          C4     110.441    2.25
+RSS          C2          C3         C13     111.094    2.85
+RSS          C2          C3          H3     108.361    1.50
+RSS          C4          C3         C13     110.094    2.47
+RSS          C4          C3          H3     108.369    1.50
+RSS         C13          C3          H3     107.780    1.50
+RSS          C3          C4          O3     121.196    1.75
+RSS          C3          C4          N2     116.228    1.50
+RSS          O3          C4          N2     122.576    1.50
+RSS          C4          N2          C5     122.007    1.76
+RSS          C4          N2         HN2     118.918    2.34
+RSS          C5          N2         HN2     119.075    1.92
+RSS          N2          C5          C6     111.106    2.53
+RSS          N2          C5         C17     110.975    1.50
+RSS          N2          C5          H5     108.161    1.50
+RSS          C6          C5         C17     110.540    1.53
+RSS          C6          C5          H5     108.061    1.50
+RSS         C17          C5          H5     108.480    1.50
+RSS          C5          C6          O4     120.496    1.50
+RSS          C5          C6          N3     116.483    1.50
+RSS          O4          C6          N3     123.021    1.50
+RSS          C6          N3          C7     124.137    2.65
+RSS          C6          N3         HN3     118.105    1.52
+RSS          C7          N3         HN3     117.758    1.90
+RSS          N3          C7          C8     112.624    1.50
+RSS          N3          C7         H71     108.979    1.50
+RSS          N3          C7         H72     108.979    1.50
+RSS          C8          C7         H71     109.197    1.51
+RSS          C8          C7         H72     109.197    1.51
+RSS         H71          C7         H72     107.877    1.50
+RSS          C7          C8          C9     113.159    3.00
+RSS          C7          C8         H81     108.956    1.50
+RSS          C7          C8         H82     108.956    1.50
+RSS          C9          C8         H81     109.041    1.50
+RSS          C9          C8         H82     109.041    1.50
+RSS         H81          C8         H82     107.927    1.57
+RSS          C8          C9         C10     113.853    2.32
+RSS          C8          C9         H91     108.806    1.50
+RSS          C8          C9         H92     108.806    1.50
+RSS         C10          C9         H91     108.698    1.50
+RSS         C10          C9         H92     108.698    1.50
+RSS         H91          C9         H92     107.646    1.50
+RSS          C9         C10         C11     113.355    1.50
+RSS          C9         C10        H101     108.698    1.50
+RSS          C9         C10        H102     108.698    1.50
+RSS         C11         C10        H101     108.846    1.50
+RSS         C11         C10        H102     108.846    1.50
+RSS        H101         C10        H102     107.646    1.50
+RSS         C10         C11         C12     112.575    1.89
+RSS         C10         C11        H111     108.980    1.50
+RSS         C10         C11        H112     108.980    1.50
+RSS         C12         C11        H111     108.983    1.50
+RSS         C12         C11        H112     108.983    1.50
+RSS        H111         C11        H112     107.897    1.50
+RSS         C11         C12          N4     112.914    1.50
+RSS         C11         C12        H121     109.079    1.50
+RSS         C11         C12        H122     109.079    1.50
+RSS          N4         C12        H121     108.984    1.50
+RSS          N4         C12        H122     108.984    1.50
+RSS        H121         C12        H122     107.797    1.50
+RSS         C12          N4         C19     126.334    1.50
+RSS         C12          N4         C21     125.255    1.70
+RSS         C19          N4         C21     108.411    1.50
+RSS          C3         C13         C14     115.572    1.50
+RSS          C3         C13        H131     108.249    1.50
+RSS          C3         C13        H132     108.249    1.50
+RSS         C14         C13        H131     108.194    1.50
+RSS         C14         C13        H132     108.194    1.50
+RSS        H131         C13        H132     107.599    1.50
+RSS         C13         C14         C15     111.049    1.51
+RSS         C13         C14         C16     111.049    1.51
+RSS         C13         C14         H14     108.023    1.50
+RSS         C15         C14         C16     110.507    1.50
+RSS         C15         C14         H14     108.052    1.50
+RSS         C16         C14         H14     108.052    1.50
+RSS         C14         C15        H151     109.488    1.50
+RSS         C14         C15        H152     109.488    1.50
+RSS         C14         C15        H153     109.488    1.50
+RSS        H151         C15        H152     109.411    1.50
+RSS        H151         C15        H153     109.411    1.50
+RSS        H152         C15        H153     109.411    1.50
+RSS         C14         C16        H161     109.488    1.50
+RSS         C14         C16        H162     109.488    1.50
+RSS         C14         C16        H163     109.488    1.50
+RSS        H161         C16        H162     109.411    1.50
+RSS        H161         C16        H163     109.411    1.50
+RSS        H162         C16        H163     109.411    1.50
+RSS          C5         C17         C18     112.993    1.87
+RSS          C5         C17        H171     108.816    1.50
+RSS          C5         C17        H172     108.816    1.50
+RSS         C18         C17        H171     109.029    1.50
+RSS         C18         C17        H172     109.029    1.50
+RSS        H171         C17        H172     107.759    1.50
+RSS         C17         C18         C19     127.011    1.57
+RSS         C17         C18         C20     126.501    1.50
+RSS         C19         C18         C20     106.489    1.50
+RSS          N4         C19         C18     109.849    1.50
+RSS          N4         C19         H19     125.079    1.50
+RSS         C18         C19         H19     125.072    1.50
+RSS         C18         C20         C21     107.259    1.50
+RSS         C18         C20         C22     133.980    1.50
+RSS         C21         C20         C22     118.761    1.50
+RSS          N4         C21         C20     107.992    1.50
+RSS          N4         C21         C23     129.769    1.50
+RSS         C20         C21         C23     122.239    1.50
+RSS         C20         C22         C24     118.831    1.50
+RSS         C20         C22         H22     120.498    1.50
+RSS         C24         C22         H22     120.670    1.50
+RSS         C21         C23         C25     117.300    1.50
+RSS         C21         C23         H23     121.267    1.50
+RSS         C25         C23         H23     121.433    1.50
+RSS         C22         C24         C25     121.227    1.50
+RSS         C22         C24         H24     119.464    1.50
+RSS         C25         C24         H24     119.309    1.50
+RSS         C23         C25         C24     121.643    1.50
+RSS         C23         C25         H25     119.124    1.50
+RSS         C24         C25         H25     119.233    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RSS             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+RSS            sp2_sp3_26          C6          N3          C7          C8     120.000    10.0     6
+RSS            sp3_sp3_28          N3          C7          C8          C9     180.000    10.0     3
+RSS            sp3_sp3_37          C7          C8          C9         C10     180.000    10.0     3
+RSS            sp3_sp3_46         C11         C10          C9          C8     180.000    10.0     3
+RSS            sp3_sp3_55          C9         C10         C11         C12     180.000    10.0     3
+RSS            sp3_sp3_64         C10         C11         C12          N4     180.000    10.0     3
+RSS            sp2_sp3_32         C19          N4         C12         C11     -90.000    10.0     6
+RSS       const_sp2_sp2_2         C18         C19          N4         C12     180.000     5.0     2
+RSS              const_34         C20         C21          N4         C12     180.000    10.0     2
+RSS            sp3_sp3_74          C3         C13         C14         C15     -60.000    10.0     3
+RSS            sp3_sp3_82         C13         C14         C15        H151     180.000    10.0     3
+RSS            sp3_sp3_94         C13         C14         C16        H161      60.000    10.0     3
+RSS            sp2_sp3_38         C19         C18         C17          C5     -90.000    10.0     6
+RSS       const_sp2_sp2_7         C17         C18         C19          N4     180.000     5.0     2
+RSS              const_11         C17         C18         C20         C21     180.000    10.0     2
+RSS              const_13         C18         C20         C21          N4       0.000    10.0     2
+RSS              const_39         C18         C20         C22         C24     180.000    10.0     2
+RSS              const_19          N4         C21         C23         C25     180.000    10.0     2
+RSS              const_29         C20         C22         C24         C25       0.000    10.0     2
+RSS              const_21         C21         C23         C25         C24       0.000    10.0     2
+RSS              const_25         C22         C24         C25         C23       0.000    10.0     2
+RSS             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+RSS            sp3_sp3_10         C14         C13          C3          C2     180.000    10.0     3
+RSS             sp2_sp3_7          O3          C4          C3          C2       0.000    10.0     6
+RSS             sp2_sp2_1          C3          C4          N2          C5     180.000     5.0     2
+RSS            sp2_sp3_13          C4          N2          C5          C6       0.000    10.0     6
+RSS            sp3_sp3_19         C18         C17          C5          N2     180.000    10.0     3
+RSS            sp2_sp3_19          O4          C6          C5          N2       0.000    10.0     6
+RSS             sp2_sp2_5          C5          C6          N3          C7     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RSS    chir_1    C3    C4    C2    C13    negative
+RSS    chir_2    C5    N2    C6    C17    positive
+RSS    chir_3    C14    C13    C15    C16    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RSS    plan-1         C12   0.020
+RSS    plan-1         C17   0.020
+RSS    plan-1         C18   0.020
+RSS    plan-1         C19   0.020
+RSS    plan-1         C20   0.020
+RSS    plan-1         C21   0.020
+RSS    plan-1         C22   0.020
+RSS    plan-1         C23   0.020
+RSS    plan-1         C24   0.020
+RSS    plan-1         C25   0.020
+RSS    plan-1         H19   0.020
+RSS    plan-1         H22   0.020
+RSS    plan-1         H23   0.020
+RSS    plan-1         H24   0.020
+RSS    plan-1         H25   0.020
+RSS    plan-1          N4   0.020
+RSS    plan-2          C1   0.020
+RSS    plan-2          C2   0.020
+RSS    plan-2          O1   0.020
+RSS    plan-2          O2   0.020
+RSS    plan-3          C3   0.020
+RSS    plan-3          C4   0.020
+RSS    plan-3          N2   0.020
+RSS    plan-3          O3   0.020
+RSS    plan-4          C4   0.020
+RSS    plan-4          C5   0.020
+RSS    plan-4         HN2   0.020
+RSS    plan-4          N2   0.020
+RSS    plan-5          C5   0.020
+RSS    plan-5          C6   0.020
+RSS    plan-5          N3   0.020
+RSS    plan-5          O4   0.020
+RSS    plan-6          C6   0.020
+RSS    plan-6          C7   0.020
+RSS    plan-6         HN3   0.020
+RSS    plan-6          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RSS           SMILES              ACDLabs 10.04                                                                                                                                                     O=C(O)CC(C(=O)NC3C(=O)NCCCCCCn2c1ccccc1c(c2)C3)CC(C)C
+RSS SMILES_CANONICAL               CACTVS 3.341                                                                                                                                               CC(C)C[C@H](CC(O)=O)C(=O)N[C@H]1Cc2cn(CCCCCCNC1=O)c3ccccc23
+RSS           SMILES               CACTVS 3.341                                                                                                                                                 CC(C)C[CH](CC(O)=O)C(=O)N[CH]1Cc2cn(CCCCCCNC1=O)c3ccccc23
+RSS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                               CC(C)C[C@H](CC(=O)O)C(=O)N[C@H]1Cc2cn(c3c2cccc3)CCCCCCNC1=O
+RSS           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                       CC(C)CC(CC(=O)O)C(=O)NC1Cc2cn(c3c2cccc3)CCCCCCNC1=O
+RSS            InChI                InChI  1.03 InChI=1S/C25H35N3O4/c1-17(2)13-18(15-23(29)30)24(31)27-21-14-19-16-28(22-10-6-5-9-20(19)22)12-8-4-3-7-11-26-25(21)32/h5-6,9-10,16-18,21H,3-4,7-8,11-15H2,1-2H3,(H,26,32)(H,27,31)(H,29,30)/t18-,21+/m1/s1
+RSS         InChIKey                InChI  1.03                                                                                                                                                                               AKWKBACKRMYPRV-NQIIRXRSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RSS acedrg               243         "dictionary generator"                  
+RSS acedrg_database      11          "data source"                           
+RSS rdkit                2017.03.2   "Chemoinformatics tool"
+RSS refmac5              5.8.0238    "optimization tool"                     

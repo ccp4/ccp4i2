@@ -1,0 +1,472 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+WIN     WIN      "methyl (5beta,7alpha,9beta,10alpha,11alpha,12alpha,13beta,15alpha)-15-{[(2E)-3,4-dimethylpent-2-enoyl]oxy}-3,11,12-trihydroxy-2,16-dioxo-13,20-epoxypicras-3-en-21-oate"     NON-POLYMER     75     39     .     
+#
+data_comp_WIN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+WIN     C1D     C       CH3     0       62.051      125.535     92.474      
+WIN     C2C     C       CH1     0       63.441      126.071     92.793      
+WIN     C1E     C       CH3     0       64.283      126.191     91.522      
+WIN     C1V     C       C       0       64.125      125.296     93.909      
+WIN     C1B     C       CH3     0       64.554      126.107     95.102      
+WIN     C1N     C       C1      0       64.358      123.988     93.737      
+WIN     C1W     C       C       0       64.768      122.957     94.706      
+WIN     O1G     O       O       0       65.107      121.838     94.392      
+WIN     O1T     O       O2      0       64.713      123.380     95.980      
+WIN     C2F     C       CH1     0       65.424      122.661     97.033      
+WIN     C2K     C       CH1     0       64.673      122.869     98.358      
+WIN     C2M     C       CT      0       65.429      122.310     99.606      
+WIN     C1O     C       CH2     0       64.382      122.805     100.618     
+WIN     O1S     O       O2      0       63.101      122.530     100.023     
+WIN     C2L     C       CT      0       63.304      122.216     98.632      
+WIN     C2A     C       C       0       62.150      122.862     97.859      
+WIN     O1J     O       O       0       61.455      122.261     97.085      
+WIN     O1R     O       O2      0       62.003      124.144     98.149      
+WIN     C1A     C       CH3     0       61.314      124.978     97.182      
+WIN     C2E     C       CH1     0       63.258      120.675     98.498      
+WIN     O1M     O       OH1     0       63.348      120.320     97.114      
+WIN     C2D     C       CH1     0       64.324      119.967     99.347      
+WIN     O1L     O       OH1     0       63.715      119.601     100.594     
+WIN     C2J     C       CH1     0       65.654      120.756     99.518      
+WIN     C2I     C       CT      0       66.710      120.201     100.608     
+WIN     C1F     C       CH3     0       66.218      120.210     102.079     
+WIN     C1P     C       CH2     0       67.045      118.739     100.220     
+WIN     C1X     C       CR6     0       68.247      118.158     100.918     
+WIN     O1H     O       O       0       68.350      116.947     101.091     
+WIN     C2B     C       CR6     0       69.305      119.070     101.372     
+WIN     O1K     O       OH1     0       70.407      118.508     101.943     
+WIN     C1Y     C       CR6     0       69.184      120.411     101.286     
+WIN     C1C     C       CH3     0       70.197      121.303     101.957     
+WIN     C2H     C       CH1     0       68.039      121.012     100.467     
+WIN     C1Q     C       CH2     0       67.808      122.524     100.627     
+WIN     C2G     C       CH1     0       66.781      123.058     99.659      
+WIN     O1U     O       O2      0       67.466      123.065     98.361      
+WIN     C1Z     C       CR6     0       66.849      123.162     97.170      
+WIN     O1I     O       O       0       67.466      123.640     96.250      
+WIN     H1D     H       H       0       61.599      126.139     91.860      
+WIN     H1DA    H       H       0       61.531      125.463     93.293      
+WIN     H1DB    H       H       0       62.123      124.656     92.062      
+WIN     H2C     H       H       0       63.306      126.995     93.120      
+WIN     H1E     H       H       0       65.199      125.919     91.703      
+WIN     H1EA    H       H       0       64.280      127.115     91.216      
+WIN     H1EB    H       H       0       63.914      125.623     90.823      
+WIN     H1B     H       H       0       65.421      125.801     95.411      
+WIN     H1BA    H       H       0       63.905      126.004     95.817      
+WIN     H1BB    H       H       0       64.620      127.045     94.864      
+WIN     H1N     H       H       0       64.238      123.688     92.851      
+WIN     H2F     H       H       0       65.456      121.702     96.833      
+WIN     H2K     H       H       0       64.572      123.850     98.458      
+WIN     H1O     H       H       0       64.465      122.338     101.472     
+WIN     H1OA    H       H       0       64.480      123.767     100.776     
+WIN     H1A     H       H       0       60.377      124.729     97.151      
+WIN     H1AA    H       H       0       61.711      124.857     96.305      
+WIN     H1AB    H       H       0       61.392      125.908     97.447      
+WIN     H2E     H       H       0       62.365      120.378     98.816      
+WIN     HO1M    H       H       0       64.039      119.888     96.911      
+WIN     H2D     H       H       0       64.543      119.129     98.888      
+WIN     HO1L    H       H       0       63.319      120.247     100.958     
+WIN     H2J     H       H       0       66.120      120.586     98.671      
+WIN     H1F     H       H       0       66.828      120.731     102.635     
+WIN     H1FA    H       H       0       66.173      119.297     102.427     
+WIN     H1FB    H       H       0       65.342      120.602     102.132     
+WIN     H1P     H       H       0       66.269      118.173     100.413     
+WIN     H1PA    H       H       0       67.204      118.697     99.254      
+WIN     H35     H       H       0       70.500      118.516     102.799     
+WIN     H1C     H       H       0       69.850      122.195     102.069     
+WIN     H1CA    H       H       0       71.002      121.337     101.418     
+WIN     H36     H       H       0       70.414      120.943     102.830     
+WIN     H2H     H       H       0       68.309      120.893     99.530      
+WIN     H1Q     H       H       0       68.646      122.999     100.472     
+WIN     H1QA    H       H       0       67.524      122.715     101.541     
+WIN     H2G     H       H       0       66.591      123.998     99.899      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+WIN         C1D         C2C      SINGLE       n     1.521  0.0173     1.521  0.0173
+WIN         C2C         C1V      SINGLE       n     1.516  0.0100     1.516  0.0100
+WIN         C2C         C1E      SINGLE       n     1.521  0.0173     1.521  0.0173
+WIN         C1V         C1B      SINGLE       n     1.501  0.0100     1.501  0.0100
+WIN         C1V         C1N      DOUBLE       n     1.328  0.0125     1.328  0.0125
+WIN         C1N         C1W      SINGLE       n     1.466  0.0113     1.466  0.0113
+WIN         C1W         O1T      SINGLE       n     1.338  0.0100     1.338  0.0100
+WIN         C1W         O1G      DOUBLE       n     1.207  0.0162     1.207  0.0162
+WIN         O1T         C2F      SINGLE       n     1.455  0.0100     1.455  0.0100
+WIN         C2F         C1Z      SINGLE       n     1.515  0.0100     1.515  0.0100
+WIN         C2F         C2K      SINGLE       n     1.532  0.0107     1.532  0.0107
+WIN         C2K         C2M      SINGLE       n     1.555  0.0125     1.555  0.0125
+WIN         C2M         C1O      SINGLE       n     1.534  0.0135     1.534  0.0135
+WIN         C2M         C2G      SINGLE       n     1.540  0.0131     1.540  0.0131
+WIN         C1O         O1S      SINGLE       n     1.430  0.0159     1.430  0.0159
+WIN         C2K         C2L      SINGLE       n     1.538  0.0100     1.538  0.0100
+WIN         O1S         C2L      SINGLE       n     1.438  0.0100     1.438  0.0100
+WIN         C2L         C2A      SINGLE       n     1.527  0.0100     1.527  0.0100
+WIN         C2A         O1J      DOUBLE       n     1.195  0.0170     1.195  0.0170
+WIN         C2A         O1R      SINGLE       n     1.319  0.0100     1.319  0.0100
+WIN         O1R         C1A      SINGLE       n     1.448  0.0108     1.448  0.0108
+WIN         C2L         C2E      SINGLE       n     1.530  0.0157     1.530  0.0157
+WIN         C2E         C2D      SINGLE       n     1.524  0.0103     1.524  0.0103
+WIN         C2E         O1M      SINGLE       n     1.427  0.0100     1.427  0.0100
+WIN         C2D         O1L      SINGLE       n     1.432  0.0119     1.432  0.0119
+WIN         C2D         C2J      SINGLE       n     1.536  0.0130     1.536  0.0130
+WIN         C2M         C2J      SINGLE       n     1.551  0.0132     1.551  0.0132
+WIN         C2J         C2I      SINGLE       n     1.570  0.0174     1.570  0.0174
+WIN         C2I         C2H      SINGLE       n     1.556  0.0100     1.556  0.0100
+WIN         C2I         C1F      SINGLE       n     1.541  0.0100     1.541  0.0100
+WIN         C2I         C1P      SINGLE       n     1.542  0.0101     1.542  0.0101
+WIN         C1P         C1X      SINGLE       n     1.503  0.0100     1.503  0.0100
+WIN         C1X         C2B      SINGLE       n     1.465  0.0100     1.465  0.0100
+WIN         C1X         O1H      DOUBLE       n     1.227  0.0100     1.227  0.0100
+WIN         C2B         C1Y      DOUBLE       n     1.343  0.0100     1.343  0.0100
+WIN         C2B         O1K      SINGLE       n     1.355  0.0200     1.355  0.0200
+WIN         C1Y         C1C      SINGLE       n     1.500  0.0100     1.500  0.0100
+WIN         C1Y         C2H      SINGLE       n     1.517  0.0100     1.517  0.0100
+WIN         C2H         C1Q      SINGLE       n     1.529  0.0124     1.529  0.0124
+WIN         C1Q         C2G      SINGLE       n     1.508  0.0100     1.508  0.0100
+WIN         C2G         O1U      SINGLE       n     1.460  0.0124     1.460  0.0124
+WIN         O1U         C1Z      SINGLE       n     1.342  0.0112     1.342  0.0112
+WIN         C1Z         O1I      DOUBLE       n     1.206  0.0100     1.206  0.0100
+WIN         C1D         H1D      SINGLE       n     1.089  0.0100     0.973  0.0141
+WIN         C1D        H1DA      SINGLE       n     1.089  0.0100     0.973  0.0141
+WIN         C1D        H1DB      SINGLE       n     1.089  0.0100     0.973  0.0141
+WIN         C2C         H2C      SINGLE       n     1.089  0.0100     0.990  0.0142
+WIN         C1E         H1E      SINGLE       n     1.089  0.0100     0.973  0.0141
+WIN         C1E        H1EA      SINGLE       n     1.089  0.0100     0.973  0.0141
+WIN         C1E        H1EB      SINGLE       n     1.089  0.0100     0.973  0.0141
+WIN         C1B         H1B      SINGLE       n     1.089  0.0100     0.971  0.0140
+WIN         C1B        H1BA      SINGLE       n     1.089  0.0100     0.971  0.0140
+WIN         C1B        H1BB      SINGLE       n     1.089  0.0100     0.971  0.0140
+WIN         C1N         H1N      SINGLE       n     1.082  0.0130     0.943  0.0200
+WIN         C2F         H2F      SINGLE       n     1.089  0.0100     0.989  0.0200
+WIN         C2K         H2K      SINGLE       n     1.089  0.0100     0.990  0.0133
+WIN         C1O         H1O      SINGLE       n     1.089  0.0100     0.980  0.0115
+WIN         C1O        H1OA      SINGLE       n     1.089  0.0100     0.980  0.0115
+WIN         C1A         H1A      SINGLE       n     1.089  0.0100     0.970  0.0175
+WIN         C1A        H1AA      SINGLE       n     1.089  0.0100     0.970  0.0175
+WIN         C1A        H1AB      SINGLE       n     1.089  0.0100     0.970  0.0175
+WIN         C2E         H2E      SINGLE       n     1.089  0.0100     0.993  0.0100
+WIN         O1M        HO1M      SINGLE       n     0.970  0.0120     0.841  0.0200
+WIN         C2D         H2D      SINGLE       n     1.089  0.0100     0.981  0.0197
+WIN         O1L        HO1L      SINGLE       n     0.970  0.0120     0.841  0.0200
+WIN         C2J         H2J      SINGLE       n     1.089  0.0100     0.986  0.0177
+WIN         C1F         H1F      SINGLE       n     1.089  0.0100     0.978  0.0200
+WIN         C1F        H1FA      SINGLE       n     1.089  0.0100     0.978  0.0200
+WIN         C1F        H1FB      SINGLE       n     1.089  0.0100     0.978  0.0200
+WIN         C1P         H1P      SINGLE       n     1.089  0.0100     0.980  0.0114
+WIN         C1P        H1PA      SINGLE       n     1.089  0.0100     0.980  0.0114
+WIN         O1K         H35      SINGLE       n     0.966  0.0059     0.861  0.0200
+WIN         C1C         H1C      SINGLE       n     1.089  0.0100     0.969  0.0158
+WIN         C1C        H1CA      SINGLE       n     1.089  0.0100     0.969  0.0158
+WIN         C1C         H36      SINGLE       n     1.089  0.0100     0.969  0.0158
+WIN         C2H         H2H      SINGLE       n     1.089  0.0100     0.983  0.0200
+WIN         C1Q         H1Q      SINGLE       n     1.089  0.0100     0.976  0.0100
+WIN         C1Q        H1QA      SINGLE       n     1.089  0.0100     0.976  0.0100
+WIN         C2G         H2G      SINGLE       n     1.089  0.0100     0.989  0.0188
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+WIN         C2C         C1D         H1D     109.885    1.50
+WIN         C2C         C1D        H1DA     109.885    1.50
+WIN         C2C         C1D        H1DB     109.885    1.50
+WIN         H1D         C1D        H1DA     109.411    1.50
+WIN         H1D         C1D        H1DB     109.411    1.50
+WIN        H1DA         C1D        H1DB     109.411    1.50
+WIN         C1D         C2C         C1V     113.470    2.24
+WIN         C1D         C2C         C1E     110.887    1.50
+WIN         C1D         C2C         H2C     106.909    1.50
+WIN         C1V         C2C         C1E     113.470    2.24
+WIN         C1V         C2C         H2C     106.962    1.50
+WIN         C1E         C2C         H2C     106.909    1.50
+WIN         C2C         C1E         H1E     109.885    1.50
+WIN         C2C         C1E        H1EA     109.885    1.50
+WIN         C2C         C1E        H1EB     109.885    1.50
+WIN         H1E         C1E        H1EA     109.411    1.50
+WIN         H1E         C1E        H1EB     109.411    1.50
+WIN        H1EA         C1E        H1EB     109.411    1.50
+WIN         C2C         C1V         C1B     115.632    1.79
+WIN         C2C         C1V         C1N     122.063    3.00
+WIN         C1B         C1V         C1N     122.305    2.49
+WIN         C1V         C1B         H1B     109.836    1.50
+WIN         C1V         C1B        H1BA     109.836    1.50
+WIN         C1V         C1B        H1BB     109.836    1.50
+WIN         H1B         C1B        H1BA     109.342    1.50
+WIN         H1B         C1B        H1BB     109.342    1.50
+WIN        H1BA         C1B        H1BB     109.342    1.50
+WIN         C1V         C1N         C1W     124.604    3.00
+WIN         C1V         C1N         H1N     116.715    1.50
+WIN         C1W         C1N         H1N     118.669    1.50
+WIN         C1N         C1W         O1T     111.239    1.70
+WIN         C1N         C1W         O1G     125.528    1.50
+WIN         O1T         C1W         O1G     123.234    1.73
+WIN         C1W         O1T         C2F     117.637    1.50
+WIN         O1T         C2F         C1Z     108.913    2.22
+WIN         O1T         C2F         C2K     108.666    2.87
+WIN         O1T         C2F         H2F     108.950    1.67
+WIN         C1Z         C2F         C2K     111.435    2.48
+WIN         C1Z         C2F         H2F     107.960    1.50
+WIN         C2K         C2F         H2F     108.029    1.50
+WIN         C2F         C2K         C2M     111.516    1.81
+WIN         C2F         C2K         C2L     113.374    3.00
+WIN         C2F         C2K         H2K     107.569    1.50
+WIN         C2M         C2K         C2L     103.503    2.92
+WIN         C2M         C2K         H2K     109.965    2.02
+WIN         C2L         C2K         H2K     109.478    2.08
+WIN         C2K         C2M         C1O     101.910    2.21
+WIN         C2K         C2M         C2G     111.634    3.00
+WIN         C2K         C2M         C2J     111.634    3.00
+WIN         C1O         C2M         C2G     112.492    1.84
+WIN         C1O         C2M         C2J     114.725    2.68
+WIN         C2G         C2M         C2J     108.969    3.00
+WIN         C2M         C1O         O1S     106.347    1.50
+WIN         C2M         C1O         H1O     110.592    1.50
+WIN         C2M         C1O        H1OA     110.592    1.50
+WIN         O1S         C1O         H1O     110.459    1.50
+WIN         O1S         C1O        H1OA     110.459    1.50
+WIN         H1O         C1O        H1OA     109.507    1.82
+WIN         C1O         O1S         C2L     107.900    1.78
+WIN         C2K         C2L         O1S     104.126    1.50
+WIN         C2K         C2L         C2A     112.680    3.00
+WIN         C2K         C2L         C2E     112.981    2.67
+WIN         O1S         C2L         C2A     107.024    1.50
+WIN         O1S         C2L         C2E     109.996    2.10
+WIN         C2A         C2L         C2E     110.045    2.33
+WIN         C2L         C2A         O1J     123.612    1.77
+WIN         C2L         C2A         O1R     112.151    1.50
+WIN         O1J         C2A         O1R     124.237    1.50
+WIN         C2A         O1R         C1A     116.132    1.50
+WIN         O1R         C1A         H1A     109.401    1.50
+WIN         O1R         C1A        H1AA     109.401    1.50
+WIN         O1R         C1A        H1AB     109.401    1.50
+WIN         H1A         C1A        H1AA     109.532    1.53
+WIN         H1A         C1A        H1AB     109.532    1.53
+WIN        H1AA         C1A        H1AB     109.532    1.53
+WIN         C2L         C2E         C2D     111.476    2.14
+WIN         C2L         C2E         O1M     108.353    2.32
+WIN         C2L         C2E         H2E     108.794    1.50
+WIN         C2D         C2E         O1M     107.676    3.00
+WIN         C2D         C2E         H2E     109.200    1.50
+WIN         O1M         C2E         H2E     108.720    1.50
+WIN         C2E         O1M        HO1M     109.523    3.00
+WIN         C2E         C2D         O1L     109.968    2.23
+WIN         C2E         C2D         C2J     112.300    1.85
+WIN         C2E         C2D         H2D     107.775    1.50
+WIN         O1L         C2D         C2J     110.094    2.29
+WIN         O1L         C2D         H2D     108.343    1.50
+WIN         C2J         C2D         H2D     108.533    1.50
+WIN         C2D         O1L        HO1L     109.708    3.00
+WIN         C2D         C2J         C2M     112.831    3.00
+WIN         C2D         C2J         C2I     116.459    1.76
+WIN         C2D         C2J         H2J     106.447    1.65
+WIN         C2M         C2J         C2I     109.908    1.60
+WIN         C2M         C2J         H2J     109.300    1.50
+WIN         C2I         C2J         H2J     105.514    1.50
+WIN         C2J         C2I         C2H     107.038    1.50
+WIN         C2J         C2I         C1F     111.879    1.77
+WIN         C2J         C2I         C1P     108.871    1.50
+WIN         C2H         C2I         C1F     110.584    1.76
+WIN         C2H         C2I         C1P     107.544    1.50
+WIN         C1F         C2I         C1P     107.832    1.50
+WIN         C2I         C1F         H1F     109.565    1.50
+WIN         C2I         C1F        H1FA     109.565    1.50
+WIN         C2I         C1F        H1FB     109.565    1.50
+WIN         H1F         C1F        H1FA     109.398    1.50
+WIN         H1F         C1F        H1FB     109.398    1.50
+WIN        H1FA         C1F        H1FB     109.398    1.50
+WIN         C2I         C1P         C1X     112.869    1.50
+WIN         C2I         C1P         H1P     109.184    1.50
+WIN         C2I         C1P        H1PA     109.184    1.50
+WIN         C1X         C1P         H1P     109.042    1.50
+WIN         C1X         C1P        H1PA     109.042    1.50
+WIN         H1P         C1P        H1PA     107.951    1.50
+WIN         C1P         C1X         C2B     117.309    1.50
+WIN         C1P         C1X         O1H     121.741    1.50
+WIN         C2B         C1X         O1H     120.950    1.50
+WIN         C1X         C2B         C1Y     121.313    1.50
+WIN         C1X         C2B         O1K     119.343    3.00
+WIN         C1Y         C2B         O1K     119.343    3.00
+WIN         C2B         O1K         H35     120.000    3.00
+WIN         C2B         C1Y         C1C     122.043    1.97
+WIN         C2B         C1Y         C2H     120.898    3.00
+WIN         C1C         C1Y         C2H     117.059    1.50
+WIN         C1Y         C1C         H1C     109.469    1.50
+WIN         C1Y         C1C        H1CA     109.469    1.50
+WIN         C1Y         C1C         H36     109.469    1.50
+WIN         H1C         C1C        H1CA     109.402    1.50
+WIN         H1C         C1C         H36     109.402    1.50
+WIN        H1CA         C1C         H36     109.402    1.50
+WIN         C2I         C2H         C1Y     113.234    1.50
+WIN         C2I         C2H         C1Q     112.773    1.53
+WIN         C2I         C2H         H2H     106.199    1.50
+WIN         C1Y         C2H         C1Q     113.794    1.50
+WIN         C1Y         C2H         H2H     106.672    1.50
+WIN         C1Q         C2H         H2H     106.257    1.50
+WIN         C2H         C1Q         C2G     111.518    2.44
+WIN         C2H         C1Q         H1Q     109.550    1.50
+WIN         C2H         C1Q        H1QA     109.550    1.50
+WIN         C2G         C1Q         H1Q     109.662    1.50
+WIN         C2G         C1Q        H1QA     109.662    1.50
+WIN         H1Q         C1Q        H1QA     107.942    1.50
+WIN         C2M         C2G         C1Q     116.237    1.50
+WIN         C2M         C2G         O1U     110.686    2.05
+WIN         C2M         C2G         H2G     107.916    1.50
+WIN         C1Q         C2G         O1U     106.977    2.20
+WIN         C1Q         C2G         H2G     108.886    1.50
+WIN         O1U         C2G         H2G     108.213    1.50
+WIN         C2G         O1U         C1Z     120.304    2.69
+WIN         C2F         C1Z         O1U     119.728    1.82
+WIN         C2F         C1Z         O1I     122.141    1.70
+WIN         O1U         C1Z         O1I     118.131    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+WIN           sp3_sp3_109         H1D         C1D         C2C         C1V     180.000    10.0     3
+WIN             sp3_sp3_2         C2F         C2K         C2M         C1O     180.000    10.0     3
+WIN           sp3_sp3_143         C2F         C2K         C2L         C2A     180.000    10.0     3
+WIN            sp3_sp3_10         O1S         C1O         C2M         C2K     -60.000    10.0     3
+WIN            sp3_sp3_73         C2D         C2J         C2M         C2K     -60.000    10.0     3
+WIN            sp3_sp3_35         C1Q         C2G         C2M         C2K     180.000    10.0     3
+WIN            sp3_sp3_19         C2M         C1O         O1S         C2L      60.000    10.0     3
+WIN            sp3_sp3_23         C2A         C2L         O1S         C1O     180.000    10.0     3
+WIN            sp2_sp3_31         O1J         C2A         C2L         C2K       0.000    10.0     6
+WIN           sp3_sp3_105         O1M         C2E         C2L         C2A     180.000    10.0     3
+WIN            sp2_sp2_22         O1J         C2A         O1R         C1A       0.000     5.0     2
+WIN           sp3_sp3_149         H1A         C1A         O1R         C2A     -60.000    10.0     3
+WIN           sp3_sp3_152         C2L         C2E         O1M        HO1M     180.000    10.0     3
+WIN            sp3_sp3_95         O1L         C2D         C2E         O1M     -60.000    10.0     3
+WIN           sp3_sp3_118         H1E         C1E         C2C         C1D     180.000    10.0     3
+WIN            sp2_sp3_20         C1B         C1V         C2C         C1D     120.000    10.0     6
+WIN           sp3_sp3_155         C2E         C2D         O1L        HO1L     180.000    10.0     3
+WIN            sp3_sp3_85         O1L         C2D         C2J         C2M     -60.000    10.0     3
+WIN            sp3_sp3_65         C1F         C2I         C2J         C2D      60.000    10.0     3
+WIN           sp3_sp3_158         H1F         C1F         C2I         C2J     180.000    10.0     3
+WIN           sp3_sp3_169         C1X         C1P         C2I         C1F      60.000    10.0     3
+WIN            sp3_sp3_27         C1Y         C2H         C2I         C1F     -60.000    10.0     3
+WIN            sp2_sp3_10         O1H         C1X         C1P         C2I     180.000    10.0     6
+WIN             sp2_sp2_8         O1H         C1X         C2B         O1K       0.000     5.0     2
+WIN            sp2_sp2_23         C1X         C2B         O1K         H35     180.000     5.0     2
+WIN             sp2_sp2_4         C1C         C1Y         C2B         O1K       0.000     5.0     2
+WIN            sp2_sp3_37         C2B         C1Y         C1C         H1C     150.000    10.0     6
+WIN             sp2_sp3_4         C1C         C1Y         C2H         C2I     180.000    10.0     6
+WIN            sp3_sp3_52         C2G         C1Q         C2H         C2I      60.000    10.0     3
+WIN            sp3_sp3_43         C2H         C1Q         C2G         C2M     -60.000    10.0     3
+WIN            sp3_sp3_70         C2M         C2G         O1U         C1Z      60.000    10.0     3
+WIN            sp2_sp2_10         O1I         C1Z         O1U         C2G     180.000     5.0     2
+WIN            sp2_sp3_25         C2C         C1V         C1B         H1B       0.000    10.0     6
+WIN            sp2_sp2_11         C1W         C1N         C1V         C2C     180.000     5.0     2
+WIN            sp2_sp2_15         C1V         C1N         C1W         O1T     180.000     5.0     2
+WIN            sp2_sp2_19         C1N         C1W         O1T         C2F     180.000     5.0     2
+WIN           sp3_sp3_127         C1Z         C2F         O1T         C1W     180.000    10.0     3
+WIN           sp3_sp3_133         O1T         C2F         C2K         C2M      60.000    10.0     3
+WIN            sp2_sp3_17         O1I         C1Z         C2F         O1T     -60.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+WIN    chir_1    C2C    C1V    C1D    C1E    both
+WIN    chir_2    C2F    O1T    C1Z    C2K    negative
+WIN    chir_3    C2K    C2L    C2F    C2M    positive
+WIN    chir_4    C2M    C2G    C1O    C2K    negative
+WIN    chir_5    C2L    O1S    C2A    C2E    positive
+WIN    chir_6    C2E    O1M    C2L    C2D    positive
+WIN    chir_7    C2D    O1L    C2E    C2J    negative
+WIN    chir_8    C2J    C2D    C2M    C2I    negative
+WIN    chir_9    C2I    C2J    C2H    C1P    positive
+WIN    chir_10    C2H    C1Y    C2I    C1Q    negative
+WIN    chir_11    C2G    O1U    C2M    C1Q    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+WIN    plan-1         C1B   0.020
+WIN    plan-1         C1N   0.020
+WIN    plan-1         C1V   0.020
+WIN    plan-1         C2C   0.020
+WIN    plan-2         C1N   0.020
+WIN    plan-2         C1V   0.020
+WIN    plan-2         C1W   0.020
+WIN    plan-2         H1N   0.020
+WIN    plan-3         C1N   0.020
+WIN    plan-3         C1W   0.020
+WIN    plan-3         O1G   0.020
+WIN    plan-3         O1T   0.020
+WIN    plan-4         C2A   0.020
+WIN    plan-4         C2L   0.020
+WIN    plan-4         O1J   0.020
+WIN    plan-4         O1R   0.020
+WIN    plan-5         C1P   0.020
+WIN    plan-5         C1X   0.020
+WIN    plan-5         C2B   0.020
+WIN    plan-5         O1H   0.020
+WIN    plan-6         C1X   0.020
+WIN    plan-6         C1Y   0.020
+WIN    plan-6         C2B   0.020
+WIN    plan-6         O1K   0.020
+WIN    plan-7         C1C   0.020
+WIN    plan-7         C1Y   0.020
+WIN    plan-7         C2B   0.020
+WIN    plan-7         C2H   0.020
+WIN    plan-8         C1Z   0.020
+WIN    plan-8         C2F   0.020
+WIN    plan-8         O1I   0.020
+WIN    plan-8         O1U   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+WIN           SMILES              ACDLabs 12.01                                                                                                                                                            O=C(OC)C15OCC24C1C(OC(=O)\C=C(/C)C(C)C)C(=O)OC2CC3C(=C(O)C(=O)CC3(C)C4C(O)C5O)C
+WIN SMILES_CANONICAL               CACTVS 3.370                                                                                                               COC(=O)[C@@]12OC[C@@]34[C@@H](C[C@H]5C(=C(O)C(=O)C[C@]5(C)[C@H]3[C@@H](O)[C@@H]1O)C)OC(=O)[C@H](OC(=O)\C=C(C)\C(C)C)[C@@H]24
+WIN           SMILES               CACTVS 3.370                                                                                                                                 COC(=O)[C]12OC[C]34[CH](C[CH]5C(=C(O)C(=O)C[C]5(C)[CH]3[CH](O)[CH]1O)C)OC(=O)[CH](OC(=O)C=C(C)C(C)C)[CH]24
+WIN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                              CC1=C(C(=O)C[C@]2([C@H]1C[C@@H]3[C@]45[C@@H]2[C@H]([C@@H]([C@]([C@@H]4[C@H](C(=O)O3)OC(=O)/C=C(\C)/C(C)C)(OC5)C(=O)OC)O)O)C)O
+WIN           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                          CC1=C(C(=O)CC2(C1CC3C45C2C(C(C(C4C(C(=O)O3)OC(=O)C=C(C)C(C)C)(OC5)C(=O)OC)O)O)C)O
+WIN            InChI                InChI  1.03 InChI=1S/C28H36O11/c1-11(2)12(3)7-17(30)39-20-22-27-10-37-28(22,25(35)36-6)23(33)19(32)21(27)26(5)9-15(29)18(31)13(4)14(26)8-16(27)38-24(20)34/h7,11,14,16,19-23,31-33H,8-10H2,1-6H3/b12-7+/t14-,16+,19+,20+,21+,22+,23-,26-,27+,28-/m0/s1
+WIN         InChIKey                InChI  1.03                                                                                                                                                                                                                IRQXZTBHNKVIRL-GOTQHHPNSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+WIN acedrg               243         "dictionary generator"                  
+WIN acedrg_database      11          "data source"                           
+WIN rdkit                2017.03.2   "Chemoinformatics tool"
+WIN refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,163 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PYJ     PYJ      PHENYLETHANE     NON-POLYMER     18     8     .     
+#
+data_comp_PYJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PYJ     CB      C       CH2     0       7.834       29.795      9.559       
+PYJ     CX      C       CH3     0       7.709       28.989      8.286       
+PYJ     CG      C       CR6     0       9.042       30.710      9.625       
+PYJ     CD1     C       CR16    0       9.112       31.851      8.834       
+PYJ     CD2     C       CR16    0       10.107      30.429      10.474      
+PYJ     CE1     C       CR16    0       10.217      32.691      8.891       
+PYJ     CE2     C       CR16    0       11.212      31.270      10.531      
+PYJ     CZ      C       CR16    0       11.266      32.399      9.740       
+PYJ     HCB1    H       H       0       7.867       29.175      10.318      
+PYJ     HCB2    H       H       0       7.025       30.342      9.662       
+PYJ     HCX1    H       H       0       7.721       28.041      8.500       
+PYJ     HCX2    H       H       0       8.450       29.194      7.690       
+PYJ     HCX3    H       H       0       6.871       29.209      7.844       
+PYJ     HCD1    H       H       0       8.398       32.057      8.251       
+PYJ     HCD2    H       H       0       10.078      29.659      11.019      
+PYJ     HCE1    H       H       0       10.250      33.462      8.349       
+PYJ     HCE2    H       H       0       11.928      31.067      11.112      
+PYJ     HCZ1    H       H       0       12.017      32.970      9.778       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PYJ          CB          CX      SINGLE       n     1.508  0.0200     1.508  0.0200
+PYJ          CB          CG      SINGLE       n     1.516  0.0100     1.516  0.0100
+PYJ          CG         CD1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+PYJ          CG         CD2      SINGLE       y     1.385  0.0111     1.385  0.0111
+PYJ         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+PYJ         CD2         CE2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PYJ         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PYJ         CE2          CZ      SINGLE       y     1.376  0.0124     1.376  0.0124
+PYJ          CB        HCB1      SINGLE       n     1.089  0.0100     0.981  0.0138
+PYJ          CB        HCB2      SINGLE       n     1.089  0.0100     0.981  0.0138
+PYJ          CX        HCX1      SINGLE       n     1.089  0.0100     0.972  0.0140
+PYJ          CX        HCX2      SINGLE       n     1.089  0.0100     0.972  0.0140
+PYJ          CX        HCX3      SINGLE       n     1.089  0.0100     0.972  0.0140
+PYJ         CD1        HCD1      SINGLE       n     1.082  0.0130     0.944  0.0174
+PYJ         CD2        HCD2      SINGLE       n     1.082  0.0130     0.944  0.0174
+PYJ         CE1        HCE1      SINGLE       n     1.082  0.0130     0.944  0.0175
+PYJ         CE2        HCE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+PYJ          CZ        HCZ1      SINGLE       n     1.082  0.0130     0.944  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PYJ          CX          CB          CG     114.128    2.82
+PYJ          CX          CB        HCB1     108.760    1.50
+PYJ          CX          CB        HCB2     108.760    1.50
+PYJ          CG          CB        HCB1     108.725    1.50
+PYJ          CG          CB        HCB2     108.725    1.50
+PYJ        HCB1          CB        HCB2     107.696    1.50
+PYJ          CB          CX        HCX1     109.522    1.50
+PYJ          CB          CX        HCX2     109.522    1.50
+PYJ          CB          CX        HCX3     109.522    1.50
+PYJ        HCX1          CX        HCX2     109.417    1.50
+PYJ        HCX1          CX        HCX3     109.417    1.50
+PYJ        HCX2          CX        HCX3     109.417    1.50
+PYJ          CB          CG         CD1     120.970    1.50
+PYJ          CB          CG         CD2     120.970    1.50
+PYJ         CD1          CG         CD2     118.060    1.50
+PYJ          CG         CD1         CE1     120.624    1.50
+PYJ          CG         CD1        HCD1     119.591    1.50
+PYJ         CE1         CD1        HCD1     119.786    1.50
+PYJ          CG         CD2         CE2     120.624    1.50
+PYJ          CG         CD2        HCD2     119.591    1.50
+PYJ         CE2         CD2        HCD2     119.786    1.50
+PYJ         CD1         CE1          CZ     120.325    1.50
+PYJ         CD1         CE1        HCE1     119.792    1.50
+PYJ          CZ         CE1        HCE1     119.883    1.50
+PYJ         CD2         CE2          CZ     120.325    1.50
+PYJ         CD2         CE2        HCE2     119.792    1.50
+PYJ          CZ         CE2        HCE2     119.883    1.50
+PYJ         CE1          CZ         CE2     120.043    1.50
+PYJ         CE1          CZ        HCZ1     119.979    1.50
+PYJ         CE2          CZ        HCZ1     119.979    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PYJ             sp3_sp3_1          CG          CB          CX        HCX1     180.000    10.0     3
+PYJ             sp2_sp3_2         CD1          CG          CB          CX     -90.000    10.0     6
+PYJ       const_sp2_sp2_2         CE1         CD1          CG          CB     180.000     5.0     2
+PYJ              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+PYJ       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+PYJ              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+PYJ       const_sp2_sp2_9         CD1         CE1          CZ         CE2       0.000     5.0     2
+PYJ              const_13         CD2         CE2          CZ         CE1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PYJ    plan-1          CB   0.020
+PYJ    plan-1         CD1   0.020
+PYJ    plan-1         CD2   0.020
+PYJ    plan-1         CE1   0.020
+PYJ    plan-1         CE2   0.020
+PYJ    plan-1          CG   0.020
+PYJ    plan-1          CZ   0.020
+PYJ    plan-1        HCD1   0.020
+PYJ    plan-1        HCD2   0.020
+PYJ    plan-1        HCE1   0.020
+PYJ    plan-1        HCE2   0.020
+PYJ    plan-1        HCZ1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PYJ           SMILES              ACDLabs 12.01                                      c1ccccc1CC
+PYJ            InChI                InChI  1.03 InChI=1S/C8H10/c1-2-8-6-4-3-5-7-8/h3-7H,2H2,1H3
+PYJ         InChIKey                InChI  1.03                     YNQLUTRBYVCPMQ-UHFFFAOYSA-N
+PYJ SMILES_CANONICAL               CACTVS 3.385                                      CCc1ccccc1
+PYJ           SMILES               CACTVS 3.385                                      CCc1ccccc1
+PYJ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                      CCc1ccccc1
+PYJ           SMILES "OpenEye OEToolkits" 1.7.6                                      CCc1ccccc1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PYJ acedrg               243         "dictionary generator"                  
+PYJ acedrg_database      11          "data source"                           
+PYJ rdkit                2017.03.2   "Chemoinformatics tool"
+PYJ refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,283 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MCF     MCF      (8R)-3-(5-S-methyl-5-thio-beta-D-ribofuranosyl)-3,6,7,8-tetrahydroimidazo[4,5-d][1,3]diazepin-8-ol     NON-POLYMER     39     21     .     
+#
+data_comp_MCF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MCF     O8      O       OH1     0       -8.454      23.916      -12.006     
+MCF     C8      C       CH1     0       -7.219      24.501      -12.405     
+MCF     C7      C       CH2     0       -6.568      23.597      -13.446     
+MCF     N6      N       NH1     0       -6.331      22.240      -12.967     
+MCF     C5      C       C1      0       -5.488      21.967      -11.975     
+MCF     N4      N       N       0       -4.743      22.848      -11.365     
+MCF     C10     C       CR5     0       -5.276      23.983      -10.777     
+MCF     C9      C       CR5     0       -6.343      24.728      -11.213     
+MCF     N1      N       NRD5    0       -6.547      25.765      -10.373     
+MCF     C2      C       CR15    0       -5.620      25.677      -9.440      
+MCF     N3      N       NT      0       -4.805      24.603      -9.644      
+MCF     C1S     C       CH1     0       -3.687      24.248      -8.762      
+MCF     C2S     C       CH1     0       -4.073      23.284      -7.636      
+MCF     O2S     O       OH1     0       -3.430      23.657      -6.435      
+MCF     O4S     O       O2      0       -2.654      23.631      -9.521      
+MCF     C4S     C       CH1     0       -2.330      22.347      -8.944      
+MCF     C3S     C       CH1     0       -3.587      21.938      -8.182      
+MCF     O3S     O       OH1     0       -3.282      21.011      -7.148      
+MCF     C5S     C       CH2     0       -1.907      21.393      -10.036     
+MCF     S5S     S       S2      0       -1.183      19.852      -9.423      
+MCF     C6S     C       CH3     0       -2.481      18.689      -9.833      
+MCF     HO8     H       H       0       -8.935      24.520      -11.657     
+MCF     H8      H       H       0       -7.412      25.378      -12.819     
+MCF     H7      H       H       0       -7.139      23.558      -14.229     
+MCF     H7A     H       H       0       -5.723      23.987      -13.717     
+MCF     HN6     H       H       0       -6.760      21.584      -13.349     
+MCF     H5      H       H       0       -5.424      21.072      -11.692     
+MCF     H2      H       H       0       -5.532      26.283      -8.723      
+MCF     H1S     H       H       0       -3.337      25.081      -8.366      
+MCF     H2S     H       H       0       -5.058      23.269      -7.504      
+MCF     HO2S    H       H       0       -3.656      23.118      -5.820      
+MCF     H4S     H       H       0       -1.584      22.457      -8.304      
+MCF     H3S     H       H       0       -4.259      21.553      -8.802      
+MCF     HO3S    H       H       0       -2.986      20.296      -7.496      
+MCF     H5S     H       H       0       -1.268      21.833      -10.592     
+MCF     H5SA    H       H       0       -2.670      21.182      -10.567     
+MCF     H6S     H       H       0       -2.284      17.831      -9.437      
+MCF     H6SA    H       H       0       -2.539      18.593      -10.792     
+MCF     H6SB    H       H       0       -3.324      19.012      -9.492      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MCF          O8          C8      SINGLE       n     1.423  0.0113     1.423  0.0113
+MCF          C8          C7      SINGLE       n     1.524  0.0114     1.524  0.0114
+MCF          C8          C9      SINGLE       n     1.495  0.0100     1.495  0.0100
+MCF          C7          N6      SINGLE       n     1.458  0.0107     1.458  0.0107
+MCF          N6          C5      SINGLE       n     1.328  0.0100     1.328  0.0100
+MCF          C5          N4      DOUBLE       n     1.302  0.0122     1.302  0.0122
+MCF          N4         C10      SINGLE       n     1.373  0.0200     1.373  0.0200
+MCF         C10          C9      DOUBLE       y     1.358  0.0182     1.358  0.0182
+MCF         C10          N3      SINGLE       y     1.373  0.0129     1.373  0.0129
+MCF          C9          N1      SINGLE       y     1.339  0.0200     1.339  0.0200
+MCF          N1          C2      DOUBLE       y     1.318  0.0100     1.318  0.0100
+MCF          C2          N3      SINGLE       y     1.372  0.0188     1.372  0.0188
+MCF          N3         C1S      SINGLE       n     1.457  0.0175     1.457  0.0175
+MCF         C1S         O4S      SINGLE       n     1.418  0.0128     1.418  0.0128
+MCF         C1S         C2S      SINGLE       n     1.529  0.0100     1.529  0.0100
+MCF         C2S         C3S      SINGLE       n     1.531  0.0100     1.531  0.0100
+MCF         C2S         O2S      SINGLE       n     1.411  0.0100     1.411  0.0100
+MCF         O4S         C4S      SINGLE       n     1.446  0.0100     1.446  0.0100
+MCF         C4S         C5S      SINGLE       n     1.510  0.0135     1.510  0.0135
+MCF         C4S         C3S      SINGLE       n     1.528  0.0117     1.528  0.0117
+MCF         C3S         O3S      SINGLE       n     1.422  0.0100     1.422  0.0100
+MCF         C5S         S5S      SINGLE       n     1.810  0.0169     1.810  0.0169
+MCF         S5S         C6S      SINGLE       n     1.791  0.0125     1.791  0.0125
+MCF          O8         HO8      SINGLE       n     0.970  0.0120     0.848  0.0200
+MCF          C8          H8      SINGLE       n     1.089  0.0100     0.989  0.0200
+MCF          C7          H7      SINGLE       n     1.089  0.0100     0.970  0.0100
+MCF          C7         H7A      SINGLE       n     1.089  0.0100     0.970  0.0100
+MCF          N6         HN6      SINGLE       n     1.016  0.0100     0.872  0.0200
+MCF          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0147
+MCF          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0110
+MCF         C1S         H1S      SINGLE       n     1.089  0.0100     0.986  0.0200
+MCF         C2S         H2S      SINGLE       n     1.089  0.0100     0.994  0.0200
+MCF         O2S        HO2S      SINGLE       n     0.970  0.0120     0.849  0.0200
+MCF         C4S         H4S      SINGLE       n     1.089  0.0100     0.989  0.0197
+MCF         C3S         H3S      SINGLE       n     1.089  0.0100     0.992  0.0200
+MCF         O3S        HO3S      SINGLE       n     0.970  0.0120     0.849  0.0200
+MCF         C5S         H5S      SINGLE       n     1.089  0.0100     0.954  0.0200
+MCF         C5S        H5SA      SINGLE       n     1.089  0.0100     0.954  0.0200
+MCF         C6S         H6S      SINGLE       n     1.089  0.0100     0.965  0.0170
+MCF         C6S        H6SA      SINGLE       n     1.089  0.0100     0.965  0.0170
+MCF         C6S        H6SB      SINGLE       n     1.089  0.0100     0.965  0.0170
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MCF          C8          O8         HO8     108.265    2.79
+MCF          O8          C8          C7     108.727    2.41
+MCF          O8          C8          C9     110.433    2.37
+MCF          O8          C8          H8     108.145    1.50
+MCF          C7          C8          C9     110.747    2.16
+MCF          C7          C8          H8     108.806    1.50
+MCF          C9          C8          H8     108.146    1.50
+MCF          C8          C7          N6     114.244    1.50
+MCF          C8          C7          H7     109.171    1.50
+MCF          C8          C7         H7A     109.171    1.50
+MCF          N6          C7          H7     109.102    1.50
+MCF          N6          C7         H7A     109.102    1.50
+MCF          H7          C7         H7A     107.873    1.50
+MCF          C7          N6          C5     122.201    1.62
+MCF          C7          N6         HN6     118.673    1.83
+MCF          C5          N6         HN6     119.126    1.50
+MCF          N6          C5          N4     123.036    3.00
+MCF          N6          C5          H5     118.443    2.15
+MCF          N4          C5          H5     118.521    2.29
+MCF          C5          N4         C10     119.023    2.20
+MCF          N4         C10          C9     126.719    3.00
+MCF          N4         C10          N3     125.247    3.00
+MCF          C9         C10          N3     108.035    2.05
+MCF          C8          C9         C10     127.719    3.00
+MCF          C8          C9          N1     123.105    1.77
+MCF         C10          C9          N1     109.176    1.50
+MCF          C9          N1          C2     105.203    1.50
+MCF          N1          C2          N3     111.693    1.94
+MCF          N1          C2          H2     124.042    1.50
+MCF          N3          C2          H2     124.265    2.19
+MCF         C10          N3          C2     108.641    1.96
+MCF         C10          N3         C1S     126.078    2.46
+MCF          C2          N3         C1S     126.078    2.46
+MCF          N3         C1S         O4S     108.240    1.50
+MCF          N3         C1S         C2S     113.752    2.20
+MCF          N3         C1S         H1S     108.756    1.83
+MCF         O4S         C1S         C2S     106.416    1.50
+MCF         O4S         C1S         H1S     109.409    1.50
+MCF         C2S         C1S         H1S     109.319    1.50
+MCF         C1S         C2S         C3S     101.388    1.50
+MCF         C1S         C2S         O2S     110.491    2.76
+MCF         C1S         C2S         H2S     111.050    1.62
+MCF         C3S         C2S         O2S     112.782    2.45
+MCF         C3S         C2S         H2S     110.596    1.51
+MCF         O2S         C2S         H2S     110.448    1.97
+MCF         C2S         O2S        HO2S     109.103    2.13
+MCF         C1S         O4S         C4S     109.426    1.50
+MCF         O4S         C4S         C5S     109.275    1.50
+MCF         O4S         C4S         C3S     105.508    1.50
+MCF         O4S         C4S         H4S     109.115    1.50
+MCF         C5S         C4S         C3S     114.880    1.64
+MCF         C5S         C4S         H4S     109.000    1.62
+MCF         C3S         C4S         H4S     109.143    1.50
+MCF         C2S         C3S         C4S     102.352    1.50
+MCF         C2S         C3S         O3S     111.581    2.83
+MCF         C2S         C3S         H3S     110.504    1.75
+MCF         C4S         C3S         O3S     110.985    2.41
+MCF         C4S         C3S         H3S     110.624    1.81
+MCF         O3S         C3S         H3S     110.380    1.67
+MCF         C3S         O3S        HO3S     108.744    3.00
+MCF         C4S         C5S         S5S     113.180    3.00
+MCF         C4S         C5S         H5S     108.376    1.50
+MCF         C4S         C5S        H5SA     108.376    1.50
+MCF         S5S         C5S         H5S     108.574    1.50
+MCF         S5S         C5S        H5SA     108.574    1.50
+MCF         H5S         C5S        H5SA     108.127    1.50
+MCF         C5S         S5S         C6S     100.622    1.50
+MCF         S5S         C6S         H6S     109.663    1.50
+MCF         S5S         C6S        H6SA     109.663    1.50
+MCF         S5S         C6S        H6SB     109.663    1.50
+MCF         H6S         C6S        H6SA     109.509    1.50
+MCF         H6S         C6S        H6SB     109.509    1.50
+MCF        H6SA         C6S        H6SB     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MCF            sp3_sp3_25          C7          C8          O8         HO8     180.000    10.0     3
+MCF            sp2_sp3_13         C10          N3         C1S         O4S     150.000    10.0     6
+MCF            sp3_sp3_41          N3         C1S         C2S         O2S     180.000    10.0     3
+MCF             sp3_sp3_2          N3         C1S         O4S         C4S     -60.000    10.0     3
+MCF            sp3_sp3_46         C1S         C2S         O2S        HO2S     180.000    10.0     3
+MCF            sp3_sp3_20         O2S         C2S         C3S         O3S     -60.000    10.0     3
+MCF             sp3_sp3_5         C5S         C4S         O4S         C1S     180.000    10.0     3
+MCF            sp3_sp3_11         O3S         C3S         C4S         C5S      60.000    10.0     3
+MCF            sp3_sp3_49         O4S         C4S         C5S         S5S     180.000    10.0     3
+MCF            sp3_sp3_58         C2S         C3S         O3S        HO3S     180.000    10.0     3
+MCF            sp3_sp3_61         C4S         C5S         S5S         C6S     180.000    10.0     3
+MCF            sp3_sp3_64         H6S         C6S         S5S         C5S     180.000    10.0     3
+MCF            sp3_sp3_28          N6          C7          C8          O8     180.000    10.0     3
+MCF             sp2_sp3_1         C10          C9          C8          O8     150.000    10.0     6
+MCF             sp2_sp3_8          C5          N6          C7          C8     120.000    10.0     6
+MCF             sp2_sp2_1          N4          C5          N6          C7     180.000     5.0     2
+MCF             sp2_sp2_5          N6          C5          N4         C10     180.000     5.0     2
+MCF             sp2_sp2_7          C9         C10          N4          C5     180.000     5.0     2
+MCF              const_15          N4         C10          N3          C2     180.000    10.0     2
+MCF       const_sp2_sp2_4          N4         C10          C9          C8       0.000     5.0     2
+MCF       const_sp2_sp2_6          C8          C9          N1          C2     180.000     5.0     2
+MCF       const_sp2_sp2_7          N3          C2          N1          C9       0.000     5.0     2
+MCF       const_sp2_sp2_9          N1          C2          N3         C10       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MCF    chir_1    C8    O8    C9    C7    negative
+MCF    chir_2    C1S    O4S    N3    C2S    negative
+MCF    chir_3    C2S    O2S    C1S    C3S    negative
+MCF    chir_4    C4S    O4S    C5S    C3S    positive
+MCF    chir_5    C3S    O3S    C4S    C2S    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MCF    plan-1         C10   0.020
+MCF    plan-1         C1S   0.020
+MCF    plan-1          C2   0.020
+MCF    plan-1          C8   0.020
+MCF    plan-1          C9   0.020
+MCF    plan-1          H2   0.020
+MCF    plan-1          N1   0.020
+MCF    plan-1          N3   0.020
+MCF    plan-1          N4   0.020
+MCF    plan-2          C5   0.020
+MCF    plan-2          C7   0.020
+MCF    plan-2         HN6   0.020
+MCF    plan-2          N6   0.020
+MCF    plan-3          C5   0.020
+MCF    plan-3          H5   0.020
+MCF    plan-3          N4   0.020
+MCF    plan-3          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MCF           SMILES              ACDLabs 10.04                                                                                                               n2c1c(N=CNCC1O)n(c2)C3OC(C(O)C3O)CSC
+MCF SMILES_CANONICAL               CACTVS 3.341                                                                                            CSC[C@H]1O[C@H]([C@H](O)[C@@H]1O)n2cnc3[C@H](O)CNC=Nc23
+MCF           SMILES               CACTVS 3.341                                                                                                  CSC[CH]1O[CH]([CH](O)[CH]1O)n2cnc3[CH](O)CNC=Nc23
+MCF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                           CSC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2N=CNC[C@H]3O)O)O
+MCF           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                 CSCC1C(C(C(O1)n2cnc3c2N=CNCC3O)O)O
+MCF            InChI                InChI  1.03 InChI=1S/C12H18N4O4S/c1-21-3-7-9(18)10(19)12(20-7)16-5-15-8-6(17)2-13-4-14-11(8)16/h4-7,9-10,12,17-19H,2-3H2,1H3,(H,13,14)/t6-,7-,9-,10-,12-/m1/s1
+MCF         InChIKey                InChI  1.03                                                                                                                        QLPPCUVJNCMYFD-SANHVUMCSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MCF acedrg               243         "dictionary generator"                  
+MCF acedrg_database      11          "data source"                           
+MCF rdkit                2017.03.2   "Chemoinformatics tool"
+MCF refmac5              5.8.0238    "optimization tool"                     

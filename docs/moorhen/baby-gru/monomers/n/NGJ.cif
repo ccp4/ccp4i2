@@ -1,0 +1,211 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NGJ     NGJ      5-amino-3-ethylisoquinolin-1(2H)-one     NON-POLYMER     26     14     .     
+#
+data_comp_NGJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NGJ     CAL     C       CH2     0       -54.588     -42.466     18.722      
+NGJ     CAI     C       CR6     0       -54.837     -42.618     17.239      
+NGJ     CAH     C       CR16    0       -55.733     -43.530     16.778      
+NGJ     CAE     C       CR66    0       -55.978     -43.684     15.372      
+NGJ     CAD     C       CR6     0       -56.918     -44.638     14.862      
+NGJ     NAM     N       NH2     0       -57.655     -45.480     15.727      
+NGJ     CAC     C       CR16    0       -57.102     -44.731     13.497      
+NGJ     CAB     C       CR16    0       -56.386     -43.909     12.610      
+NGJ     CAA     C       CR16    0       -55.485     -42.994     13.078      
+NGJ     CAF     C       CR66    0       -55.261     -42.859     14.456      
+NGJ     CAG     C       CR6     0       -54.302     -41.885     14.976      
+NGJ     OAK     O       O       0       -53.639     -41.132     14.259      
+NGJ     NAJ     N       NR6     0       -54.148     -41.826     16.348      
+NGJ     CAN     C       CH3     0       -53.581     -41.403     19.143      
+NGJ     HAL1    H       H       0       -54.284     -43.330     19.069      
+NGJ     HAL2    H       H       0       -55.444     -42.266     19.155      
+NGJ     HAH     H       H       0       -56.206     -44.075     17.397      
+NGJ     HAM1    H       H       0       -57.658     -46.342     15.604      
+NGJ     HAM2    H       H       0       -58.110     -45.141     16.388      
+NGJ     HAC     H       H       0       -57.722     -45.359     13.157      
+NGJ     HAB     H       H       0       -56.530     -43.992     11.678      
+NGJ     HAA     H       H       0       -55.015     -42.452     12.468      
+NGJ     HAJ     H       H       0       -53.569     -41.238     16.651      
+NGJ     HAN1    H       H       0       -53.514     -41.390     20.112      
+NGJ     HAN2    H       H       0       -53.876     -40.532     18.830      
+NGJ     HAN3    H       H       0       -52.710     -41.609     18.763      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NGJ         CAL         CAI      SINGLE       n     1.504  0.0100     1.504  0.0100
+NGJ         CAL         CAN      SINGLE       n     1.515  0.0192     1.515  0.0192
+NGJ         CAI         CAH      DOUBLE       y     1.353  0.0115     1.353  0.0115
+NGJ         CAI         NAJ      SINGLE       y     1.366  0.0100     1.366  0.0100
+NGJ         CAH         CAE      SINGLE       y     1.433  0.0100     1.433  0.0100
+NGJ         CAE         CAD      DOUBLE       y     1.428  0.0104     1.428  0.0104
+NGJ         CAE         CAF      SINGLE       y     1.420  0.0132     1.420  0.0132
+NGJ         CAD         NAM      SINGLE       n     1.414  0.0100     1.414  0.0100
+NGJ         CAD         CAC      SINGLE       y     1.378  0.0105     1.378  0.0105
+NGJ         CAC         CAB      DOUBLE       y     1.403  0.0100     1.403  0.0100
+NGJ         CAB         CAA      SINGLE       y     1.361  0.0115     1.361  0.0115
+NGJ         CAA         CAF      DOUBLE       y     1.396  0.0101     1.396  0.0101
+NGJ         CAF         CAG      SINGLE       y     1.459  0.0100     1.459  0.0100
+NGJ         CAG         OAK      DOUBLE       n     1.232  0.0104     1.232  0.0104
+NGJ         CAG         NAJ      SINGLE       y     1.376  0.0104     1.376  0.0104
+NGJ         CAL        HAL1      SINGLE       n     1.089  0.0100     0.980  0.0119
+NGJ         CAL        HAL2      SINGLE       n     1.089  0.0100     0.980  0.0119
+NGJ         CAH         HAH      SINGLE       n     1.082  0.0130     0.950  0.0100
+NGJ         NAM        HAM1      SINGLE       n     1.016  0.0100     0.871  0.0200
+NGJ         NAM        HAM2      SINGLE       n     1.016  0.0100     0.871  0.0200
+NGJ         CAC         HAC      SINGLE       n     1.082  0.0130     0.946  0.0200
+NGJ         CAB         HAB      SINGLE       n     1.082  0.0130     0.947  0.0200
+NGJ         CAA         HAA      SINGLE       n     1.082  0.0130     0.942  0.0200
+NGJ         NAJ         HAJ      SINGLE       n     1.016  0.0100     0.886  0.0200
+NGJ         CAN        HAN1      SINGLE       n     1.089  0.0100     0.972  0.0140
+NGJ         CAN        HAN2      SINGLE       n     1.089  0.0100     0.972  0.0140
+NGJ         CAN        HAN3      SINGLE       n     1.089  0.0100     0.972  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NGJ         CAI         CAL         CAN     113.288    1.53
+NGJ         CAI         CAL        HAL1     108.894    1.50
+NGJ         CAI         CAL        HAL2     108.894    1.50
+NGJ         CAN         CAL        HAL1     108.961    1.50
+NGJ         CAN         CAL        HAL2     108.961    1.50
+NGJ        HAL1         CAL        HAL2     107.833    1.50
+NGJ         CAL         CAI         CAH     123.477    1.50
+NGJ         CAL         CAI         NAJ     116.481    1.95
+NGJ         CAH         CAI         NAJ     120.041    1.50
+NGJ         CAI         CAH         CAE     120.527    1.50
+NGJ         CAI         CAH         HAH     119.971    1.50
+NGJ         CAE         CAH         HAH     119.502    1.50
+NGJ         CAH         CAE         CAD     121.151    1.55
+NGJ         CAH         CAE         CAF     119.650    1.50
+NGJ         CAD         CAE         CAF     119.200    1.50
+NGJ         CAE         CAD         NAM     119.933    2.30
+NGJ         CAE         CAD         CAC     119.731    1.50
+NGJ         NAM         CAD         CAC     120.336    1.80
+NGJ         CAD         NAM        HAM1     120.319    1.50
+NGJ         CAD         NAM        HAM2     120.319    1.50
+NGJ        HAM1         NAM        HAM2     119.362    2.24
+NGJ         CAD         CAC         CAB     121.378    1.50
+NGJ         CAD         CAC         HAC     119.069    1.51
+NGJ         CAB         CAC         HAC     119.553    1.50
+NGJ         CAC         CAB         CAA     120.568    1.50
+NGJ         CAC         CAB         HAB     119.582    1.50
+NGJ         CAA         CAB         HAB     119.851    1.50
+NGJ         CAB         CAA         CAF     119.945    1.50
+NGJ         CAB         CAA         HAA     119.923    1.50
+NGJ         CAF         CAA         HAA     120.133    1.50
+NGJ         CAE         CAF         CAA     119.177    1.50
+NGJ         CAE         CAF         CAG     120.252    1.50
+NGJ         CAA         CAF         CAG     120.571    1.50
+NGJ         CAF         CAG         OAK     123.421    1.50
+NGJ         CAF         CAG         NAJ     116.631    1.50
+NGJ         OAK         CAG         NAJ     119.948    1.50
+NGJ         CAI         NAJ         CAG     122.900    1.67
+NGJ         CAI         NAJ         HAJ     119.269    2.27
+NGJ         CAG         NAJ         HAJ     117.832    1.50
+NGJ         CAL         CAN        HAN1     109.510    1.50
+NGJ         CAL         CAN        HAN2     109.510    1.50
+NGJ         CAL         CAN        HAN3     109.510    1.50
+NGJ        HAN1         CAN        HAN2     109.417    1.50
+NGJ        HAN1         CAN        HAN3     109.417    1.50
+NGJ        HAN2         CAN        HAN3     109.417    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NGJ             sp2_sp3_2         CAH         CAI         CAL         CAN     -90.000    10.0     6
+NGJ             sp3_sp3_1         CAI         CAL         CAN        HAN1     180.000    10.0     3
+NGJ              const_39         OAK         CAG         NAJ         CAI     180.000    10.0     2
+NGJ              const_43         CAL         CAI         NAJ         CAG     180.000    10.0     2
+NGJ              const_22         CAE         CAH         CAI         CAL     180.000    10.0     2
+NGJ              const_27         CAD         CAE         CAH         CAI     180.000    10.0     2
+NGJ       const_sp2_sp2_4         NAM         CAD         CAE         CAH       0.000     5.0     2
+NGJ              const_30         CAH         CAE         CAF         CAA     180.000    10.0     2
+NGJ             sp2_sp2_1         CAE         CAD         NAM        HAM1     180.000     5.0     2
+NGJ       const_sp2_sp2_6         CAB         CAC         CAD         NAM     180.000     5.0     2
+NGJ       const_sp2_sp2_9         CAA         CAB         CAC         CAD       0.000     5.0     2
+NGJ              const_13         CAF         CAA         CAB         CAC       0.000    10.0     2
+NGJ              const_17         CAB         CAA         CAF         CAE       0.000    10.0     2
+NGJ              const_34         CAE         CAF         CAG         OAK     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NGJ    plan-1         CAA   0.020
+NGJ    plan-1         CAB   0.020
+NGJ    plan-1         CAC   0.020
+NGJ    plan-1         CAD   0.020
+NGJ    plan-1         CAE   0.020
+NGJ    plan-1         CAF   0.020
+NGJ    plan-1         CAG   0.020
+NGJ    plan-1         CAH   0.020
+NGJ    plan-1         CAI   0.020
+NGJ    plan-1         CAL   0.020
+NGJ    plan-1         HAA   0.020
+NGJ    plan-1         HAB   0.020
+NGJ    plan-1         HAC   0.020
+NGJ    plan-1         HAH   0.020
+NGJ    plan-1         HAJ   0.020
+NGJ    plan-1         NAJ   0.020
+NGJ    plan-1         NAM   0.020
+NGJ    plan-1         OAK   0.020
+NGJ    plan-2         CAD   0.020
+NGJ    plan-2        HAM1   0.020
+NGJ    plan-2        HAM2   0.020
+NGJ    plan-2         NAM   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NGJ           SMILES              ACDLabs 12.01                                                            O=C1c2cccc(c2C=C(N1)CC)N
+NGJ            InChI                InChI  1.03 InChI=1S/C11H12N2O/c1-2-7-6-9-8(11(14)13-7)4-3-5-10(9)12/h3-6H,2,12H2,1H3,(H,13,14)
+NGJ         InChIKey                InChI  1.03                                                         RCAAJXYONDUGJS-UHFFFAOYSA-N
+NGJ SMILES_CANONICAL               CACTVS 3.385                                                            CCC1=Cc2c(N)cccc2C(=O)N1
+NGJ           SMILES               CACTVS 3.385                                                            CCC1=Cc2c(N)cccc2C(=O)N1
+NGJ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                            CCC1=Cc2c(cccc2N)C(=O)N1
+NGJ           SMILES "OpenEye OEToolkits" 1.7.6                                                            CCC1=Cc2c(cccc2N)C(=O)N1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NGJ acedrg               243         "dictionary generator"                  
+NGJ acedrg_database      11          "data source"                           
+NGJ rdkit                2017.03.2   "Chemoinformatics tool"
+NGJ refmac5              5.8.0238    "optimization tool"                     

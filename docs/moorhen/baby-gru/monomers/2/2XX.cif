@@ -1,0 +1,182 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+2XX     2XX      (2R)-2-ethyl-4-hydroxy-5-methylfuran-3(2H)-one     NON-POLYMER     20     10     .     
+#
+data_comp_2XX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+2XX     OAC     O       O       0       -30.039     27.812      -3.780      
+2XX     CAH     C       CR5     0       -30.913     27.120      -3.269      
+2XX     CAI     C       CR5     0       -30.755     25.860      -2.575      
+2XX     OAD     O       OH1     0       -29.592     25.190      -2.356      
+2XX     CAG     C       CR5     0       -32.009     25.476      -2.182      
+2XX     CAB     C       CH3     0       -32.455     24.274      -1.435      
+2XX     OAF     O       O2      0       -32.971     26.354      -2.546      
+2XX     CAJ     C       CH1     0       -32.363     27.458      -3.265      
+2XX     CAE     C       CH2     0       -32.969     27.530      -4.655      
+2XX     CAA     C       CH3     0       -32.632     28.803      -5.403      
+2XX     H1      H       H       0       -29.608     24.394      -2.029      
+2XX     H2      H       H       0       -33.407     24.326      -1.278      
+2XX     H3      H       H       0       -31.991     24.230      -0.590      
+2XX     H4      H       H       0       -32.257     23.483      -1.953      
+2XX     H5      H       H       0       -32.517     28.303      -2.780      
+2XX     H6      H       H       0       -33.944     27.458      -4.576      
+2XX     H7      H       H       0       -32.653     26.762      -5.178      
+2XX     H8      H       H       0       -33.213     28.882      -6.180      
+2XX     H9      H       H       0       -31.703     28.773      -5.691      
+2XX     H10     H       H       0       -32.767     29.567      -4.815      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+2XX         CAE         CAA      SINGLE       n     1.514  0.0200     1.514  0.0200
+2XX         CAJ         CAE      SINGLE       n     1.517  0.0116     1.517  0.0116
+2XX         OAC         CAH      DOUBLE       n     1.226  0.0150     1.226  0.0150
+2XX         CAH         CAJ      SINGLE       n     1.496  0.0167     1.496  0.0167
+2XX         CAH         CAI      SINGLE       n     1.451  0.0154     1.451  0.0154
+2XX         OAF         CAJ      SINGLE       n     1.451  0.0100     1.451  0.0100
+2XX         CAI         OAD      SINGLE       n     1.360  0.0200     1.360  0.0200
+2XX         CAI         CAG      DOUBLE       n     1.366  0.0119     1.366  0.0119
+2XX         CAG         OAF      SINGLE       n     1.349  0.0108     1.349  0.0108
+2XX         CAG         CAB      SINGLE       n     1.483  0.0100     1.483  0.0100
+2XX         OAD          H1      SINGLE       n     0.966  0.0059     0.861  0.0200
+2XX         CAB          H2      SINGLE       n     1.089  0.0100     0.966  0.0100
+2XX         CAB          H3      SINGLE       n     1.089  0.0100     0.966  0.0100
+2XX         CAB          H4      SINGLE       n     1.089  0.0100     0.966  0.0100
+2XX         CAJ          H5      SINGLE       n     1.089  0.0100     0.986  0.0100
+2XX         CAE          H6      SINGLE       n     1.089  0.0100     0.981  0.0178
+2XX         CAE          H7      SINGLE       n     1.089  0.0100     0.981  0.0178
+2XX         CAA          H8      SINGLE       n     1.089  0.0100     0.973  0.0146
+2XX         CAA          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+2XX         CAA         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+2XX         OAC         CAH         CAJ     123.001    1.68
+2XX         OAC         CAH         CAI     126.342    1.77
+2XX         CAJ         CAH         CAI     110.657    2.72
+2XX         CAH         CAI         OAD     125.979    3.00
+2XX         CAH         CAI         CAG     108.041    3.00
+2XX         OAD         CAI         CAG     125.979    3.00
+2XX         CAI         OAD          H1     120.000    3.00
+2XX         CAI         CAG         OAF     112.258    2.48
+2XX         CAI         CAG         CAB     130.975    2.04
+2XX         OAF         CAG         CAB     116.767    1.50
+2XX         CAG         CAB          H2     109.470    1.50
+2XX         CAG         CAB          H3     109.470    1.50
+2XX         CAG         CAB          H4     109.470    1.50
+2XX          H2         CAB          H3     109.473    1.50
+2XX          H2         CAB          H4     109.473    1.50
+2XX          H3         CAB          H4     109.473    1.50
+2XX         CAJ         OAF         CAG     108.743    2.23
+2XX         CAE         CAJ         CAH     111.539    2.78
+2XX         CAE         CAJ         OAF     108.496    1.50
+2XX         CAE         CAJ          H5     109.912    1.50
+2XX         CAH         CAJ         OAF     104.922    1.50
+2XX         CAH         CAJ          H5     110.009    1.50
+2XX         OAF         CAJ          H5     109.648    1.50
+2XX         CAA         CAE         CAJ     112.518    2.73
+2XX         CAA         CAE          H6     108.574    1.50
+2XX         CAA         CAE          H7     108.574    1.50
+2XX         CAJ         CAE          H6     108.439    1.50
+2XX         CAJ         CAE          H7     108.439    1.50
+2XX          H6         CAE          H7     107.535    1.50
+2XX         CAE         CAA          H8     108.621    3.00
+2XX         CAE         CAA          H9     108.621    3.00
+2XX         CAE         CAA         H10     108.621    3.00
+2XX          H8         CAA          H9     109.441    1.50
+2XX          H8         CAA         H10     109.441    1.50
+2XX          H9         CAA         H10     109.441    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+2XX            sp2_sp2_10         OAC         CAH         CAI         OAD       0.000     5.0     2
+2XX             sp2_sp3_5         OAC         CAH         CAJ         CAE     -60.000    10.0     6
+2XX            sp2_sp2_11         CAH         CAI         OAD          H1     180.000     5.0     2
+2XX             sp2_sp2_6         CAB         CAG         CAI         OAD       0.000     5.0     2
+2XX             sp2_sp3_7         CAI         CAG         CAB          H2     150.000    10.0     6
+2XX             sp2_sp2_2         CAB         CAG         OAF         CAJ     180.000     5.0     2
+2XX             sp3_sp3_2         CAE         CAJ         OAF         CAG      60.000    10.0     3
+2XX            sp3_sp3_13         CAA         CAE         CAJ         CAH     180.000    10.0     3
+2XX             sp3_sp3_4          H8         CAA         CAE         CAJ     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+2XX    chir_1    CAJ    OAF    CAH    CAE    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+2XX    plan-1         CAH   0.020
+2XX    plan-1         CAI   0.020
+2XX    plan-1         CAJ   0.020
+2XX    plan-1         OAC   0.020
+2XX    plan-2         CAG   0.020
+2XX    plan-2         CAH   0.020
+2XX    plan-2         CAI   0.020
+2XX    plan-2         OAD   0.020
+2XX    plan-3         CAB   0.020
+2XX    plan-3         CAG   0.020
+2XX    plan-3         CAI   0.020
+2XX    plan-3         OAF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+2XX           SMILES              ACDLabs 12.01                                                 O=C1C(O)=C(OC1CC)C
+2XX            InChI                InChI  1.03 InChI=1S/C7H10O3/c1-3-5-7(9)6(8)4(2)10-5/h5,8H,3H2,1-2H3/t5-/m1/s1
+2XX         InChIKey                InChI  1.03                                        GWCRPYGYVRXVLI-RXMQYKEDSA-N
+2XX SMILES_CANONICAL               CACTVS 3.370                                             CC[C@H]1OC(=C(O)C1=O)C
+2XX           SMILES               CACTVS 3.370                                              CC[CH]1OC(=C(O)C1=O)C
+2XX SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                          CC[C@@H]1C(=O)C(=C(O1)C)O
+2XX           SMILES "OpenEye OEToolkits" 1.7.6                                               CCC1C(=O)C(=C(O1)C)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+2XX acedrg               243         "dictionary generator"                  
+2XX acedrg_database      11          "data source"                           
+2XX rdkit                2017.03.2   "Chemoinformatics tool"
+2XX refmac5              5.8.0238    "optimization tool"                     

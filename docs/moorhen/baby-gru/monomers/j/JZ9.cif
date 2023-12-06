@@ -1,0 +1,176 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JZ9     JZ9      4,5,6,7-tetrahydro-1H-indole     NON-POLYMER     20     9     .     
+#
+data_comp_JZ9
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JZ9     CAA     C       CR15    0       -21.911     24.963      -1.777      
+JZ9     CAB     C       CR15    0       -21.597     26.225      -2.185      
+JZ9     CAC     C       CH2     0       -22.344     27.159      -5.876      
+JZ9     CAD     C       CH2     0       -23.531     26.237      -5.931      
+JZ9     CAE     C       CH2     0       -22.014     27.562      -4.434      
+JZ9     CAF     C       CH2     0       -23.321     24.924      -5.172      
+JZ9     NAG     N       NR5     0       -22.577     24.324      -2.803      
+JZ9     CAH     C       CR56    0       -22.081     26.378      -3.512      
+JZ9     CAI     C       CR56    0       -22.679     25.201      -3.858      
+JZ9     HAA     H       H       0       -21.706     24.589      -0.933      
+JZ9     HAB     H       H       0       -21.144     26.869      -1.681      
+JZ9     HAC     H       H       0       -21.562     26.704      -6.282      
+JZ9     HACA    H       H       0       -22.538     27.969      -6.412      
+JZ9     HAD     H       H       0       -24.316     26.699      -5.548      
+JZ9     HADA    H       H       0       -23.732     26.026      -6.875      
+JZ9     HAE     H       H       0       -22.655     28.253      -4.132      
+JZ9     HAEA    H       H       0       -21.105     27.954      -4.403      
+JZ9     HAF     H       H       0       -22.752     24.312      -5.703      
+JZ9     HAFA    H       H       0       -24.188     24.467      -5.035      
+JZ9     HNAG    H       H       0       -22.885     23.500      -2.789      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JZ9         CAA         CAB      DOUBLE       y     1.363  0.0131     1.363  0.0131
+JZ9         CAA         NAG      SINGLE       y     1.379  0.0100     1.379  0.0100
+JZ9         CAB         CAH      SINGLE       y     1.422  0.0114     1.422  0.0114
+JZ9         CAC         CAD      SINGLE       n     1.494  0.0200     1.494  0.0200
+JZ9         CAC         CAE      SINGLE       n     1.530  0.0100     1.530  0.0100
+JZ9         CAD         CAF      SINGLE       n     1.521  0.0188     1.521  0.0188
+JZ9         CAE         CAH      SINGLE       n     1.500  0.0100     1.500  0.0100
+JZ9         CAF         CAI      SINGLE       n     1.487  0.0100     1.487  0.0100
+JZ9         NAG         CAI      SINGLE       y     1.375  0.0115     1.375  0.0115
+JZ9         CAH         CAI      DOUBLE       y     1.365  0.0114     1.365  0.0114
+JZ9         CAA         HAA      SINGLE       n     1.082  0.0130     0.945  0.0191
+JZ9         CAB         HAB      SINGLE       n     1.082  0.0130     0.934  0.0100
+JZ9         CAC         HAC      SINGLE       n     1.089  0.0100     0.991  0.0137
+JZ9         CAC        HACA      SINGLE       n     1.089  0.0100     0.991  0.0137
+JZ9         CAD         HAD      SINGLE       n     1.089  0.0100     0.988  0.0146
+JZ9         CAD        HADA      SINGLE       n     1.089  0.0100     0.988  0.0146
+JZ9         CAE         HAE      SINGLE       n     1.089  0.0100     0.990  0.0116
+JZ9         CAE        HAEA      SINGLE       n     1.089  0.0100     0.990  0.0116
+JZ9         CAF         HAF      SINGLE       n     1.089  0.0100     0.990  0.0100
+JZ9         CAF        HAFA      SINGLE       n     1.089  0.0100     0.990  0.0100
+JZ9         NAG        HNAG      SINGLE       n     1.016  0.0100     0.880  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JZ9         CAB         CAA         NAG     108.172    1.50
+JZ9         CAB         CAA         HAA     125.841    1.50
+JZ9         NAG         CAA         HAA     125.987    1.50
+JZ9         CAA         CAB         CAH     107.736    1.50
+JZ9         CAA         CAB         HAB     125.888    1.50
+JZ9         CAH         CAB         HAB     126.376    1.50
+JZ9         CAD         CAC         CAE     110.898    1.50
+JZ9         CAD         CAC         HAC     109.066    1.50
+JZ9         CAD         CAC        HACA     109.066    1.50
+JZ9         CAE         CAC         HAC     109.610    1.51
+JZ9         CAE         CAC        HACA     109.610    1.51
+JZ9         HAC         CAC        HACA     107.960    1.50
+JZ9         CAC         CAD         CAF     112.309    2.44
+JZ9         CAC         CAD         HAD     109.066    1.50
+JZ9         CAC         CAD        HADA     109.066    1.50
+JZ9         CAF         CAD         HAD     108.610    2.54
+JZ9         CAF         CAD        HADA     108.610    2.54
+JZ9         HAD         CAD        HADA     107.960    1.50
+JZ9         CAC         CAE         CAH     110.474    1.50
+JZ9         CAC         CAE         HAE     109.544    1.50
+JZ9         CAC         CAE        HAEA     109.544    1.50
+JZ9         CAH         CAE         HAE     109.627    1.50
+JZ9         CAH         CAE        HAEA     109.627    1.50
+JZ9         HAE         CAE        HAEA     108.067    1.50
+JZ9         CAD         CAF         CAI     109.066    1.50
+JZ9         CAD         CAF         HAF     110.244    1.50
+JZ9         CAD         CAF        HAFA     110.244    1.50
+JZ9         CAI         CAF         HAF     110.082    1.50
+JZ9         CAI         CAF        HAFA     110.082    1.50
+JZ9         HAF         CAF        HAFA     107.380    2.72
+JZ9         CAA         NAG         CAI     107.722    1.50
+JZ9         CAA         NAG        HNAG     126.408    1.50
+JZ9         CAI         NAG        HNAG     125.870    1.73
+JZ9         CAB         CAH         CAE     129.470    2.42
+JZ9         CAB         CAH         CAI     107.522    1.50
+JZ9         CAE         CAH         CAI     123.008    1.68
+JZ9         CAF         CAI         NAG     126.002    1.50
+JZ9         CAF         CAI         CAH     125.149    1.68
+JZ9         NAG         CAI         CAH     108.849    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JZ9       const_sp2_sp2_1         NAG         CAA         CAB         CAH       0.000     5.0     2
+JZ9              const_17         CAB         CAA         NAG         CAI       0.000    10.0     2
+JZ9       const_sp2_sp2_6         CAA         CAB         CAH         CAE     180.000     5.0     2
+JZ9             sp3_sp3_1         CAE         CAC         CAD         CAF      60.000    10.0     3
+JZ9            sp3_sp3_19         CAD         CAC         CAE         CAH     180.000    10.0     3
+JZ9            sp3_sp3_10         CAC         CAD         CAF         CAI     -60.000    10.0     3
+JZ9            sp2_sp3_10         CAB         CAH         CAE         CAC     180.000    10.0     6
+JZ9             sp2_sp3_4         NAG         CAI         CAF         CAD     180.000    10.0     6
+JZ9              const_15         CAF         CAI         NAG         CAA     180.000    10.0     2
+JZ9              const_10         CAB         CAH         CAI         CAF     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JZ9    plan-1         CAA   0.020
+JZ9    plan-1         CAB   0.020
+JZ9    plan-1         CAE   0.020
+JZ9    plan-1         CAF   0.020
+JZ9    plan-1         CAH   0.020
+JZ9    plan-1         CAI   0.020
+JZ9    plan-1         HAA   0.020
+JZ9    plan-1         HAB   0.020
+JZ9    plan-1        HNAG   0.020
+JZ9    plan-1         NAG   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JZ9 SMILES_CANONICAL               CACTVS 3.352                                     C1CCc2cc[nH]c2C1
+JZ9           SMILES               CACTVS 3.352                                     C1CCc2cc[nH]c2C1
+JZ9 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                     c1c[nH]c2c1CCCC2
+JZ9           SMILES "OpenEye OEToolkits" 1.7.0                                     c1c[nH]c2c1CCCC2
+JZ9            InChI                InChI  1.03 InChI=1S/C8H11N/c1-2-4-8-7(3-1)5-6-9-8/h5-6,9H,1-4H2
+JZ9         InChIKey                InChI  1.03                          KQBVVLOYXDVATK-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JZ9 acedrg               243         "dictionary generator"                  
+JZ9 acedrg_database      11          "data source"                           
+JZ9 rdkit                2017.03.2   "Chemoinformatics tool"
+JZ9 refmac5              5.8.0238    "optimization tool"                     

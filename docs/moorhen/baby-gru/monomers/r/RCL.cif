@@ -1,0 +1,323 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RCL     RCL      "RICINOLEIC ACID"     NON-POLYMER     54     21     .     
+#
+data_comp_RCL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RCL     O1      O       OC      -1      22.387      44.455      20.871      
+RCL     C1      C       C       0       23.273      43.629      20.574      
+RCL     O2      O       O       0       24.453      43.945      20.319      
+RCL     C2      C       CH2     0       22.896      42.159      20.520      
+RCL     C3      C       CH2     0       23.151      41.403      21.788      
+RCL     C4      C       CH2     0       22.638      39.974      21.737      
+RCL     C5      C       CH2     0       23.502      39.031      20.935      
+RCL     C6      C       CH2     0       22.997      37.609      20.894      
+RCL     C7      C       CH2     0       23.210      36.833      22.187      
+RCL     C8      C       CH2     0       22.827      35.388      22.109      
+RCL     C9      C       C1      0       23.034      34.658      23.399      
+RCL     C10     C       C1      0       24.192      34.409      23.954      
+RCL     C11     C       CH2     0       24.397      33.710      25.262      
+RCL     C12     C       CH1     0       23.933      34.523      26.465      
+RCL     O12     O       OH1     0       24.650      35.757      26.478      
+RCL     C13     C       CH2     0       24.105      33.820      27.802      
+RCL     C14     C       CH2     0       23.203      32.632      28.030      
+RCL     C15     C       CH2     0       23.203      32.099      29.444      
+RCL     C16     C       CH2     0       24.529      31.526      29.902      
+RCL     C17     C       CH2     0       25.364      32.453      30.750      
+RCL     C18     C       CH3     0       26.697      31.869      31.152      
+RCL     H21     H       H       0       23.400      41.737      19.792      
+RCL     H22     H       H       0       21.943      42.093      20.297      
+RCL     H31     H       H       0       22.718      41.868      22.534      
+RCL     H32     H       H       0       24.115      41.387      21.966      
+RCL     H41     H       H       0       21.735      39.976      21.353      
+RCL     H42     H       H       0       22.569      39.633      22.654      
+RCL     H51     H       H       0       24.406      39.032      21.316      
+RCL     H52     H       H       0       23.567      39.368      20.016      
+RCL     H61     H       H       0       23.450      37.135      20.165      
+RCL     H62     H       H       0       22.037      37.623      20.690      
+RCL     H71     H       H       0       22.686      37.259      22.898      
+RCL     H72     H       H       0       24.155      36.896      22.438      
+RCL     H81     H       H       0       23.363      34.955      21.407      
+RCL     H82     H       H       0       21.881      35.323      21.853      
+RCL     H9      H       H       0       22.261      34.352      23.848      
+RCL     H10     H       H       0       24.961      34.697      23.485      
+RCL     H111    H       H       0       25.350      33.499      25.365      
+RCL     H112    H       H       0       23.914      32.857      25.245      
+RCL     H12     H       H       0       22.967      34.724      26.341      
+RCL     HO12    H       H       0       24.252      36.301      26.992      
+RCL     H131    H       H       0       23.947      34.473      28.517      
+RCL     H132    H       H       0       25.037      33.523      27.877      
+RCL     H141    H       H       0       23.477      31.912      27.423      
+RCL     H142    H       H       0       22.286      32.887      27.792      
+RCL     H151    H       H       0       22.520      31.399      29.514      
+RCL     H152    H       H       0       22.946      32.824      30.052      
+RCL     H161    H       H       0       25.052      31.271      29.112      
+RCL     H162    H       H       0       24.354      30.709      30.415      
+RCL     H171    H       H       0       24.859      32.680      31.561      
+RCL     H172    H       H       0       25.519      33.284      30.252      
+RCL     H181    H       H       0       27.180      32.509      31.704      
+RCL     H182    H       H       0       27.220      31.671      30.356      
+RCL     H183    H       H       0       26.555      31.050      31.658      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RCL          O1          C1      SINGLE       n     1.247  0.0187     1.247  0.0187
+RCL          C1          O2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+RCL          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+RCL          C2          C3      SINGLE       n     1.497  0.0200     1.497  0.0200
+RCL          C3          C4      SINGLE       n     1.519  0.0164     1.519  0.0164
+RCL          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+RCL          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+RCL          C6          C7      SINGLE       n     1.523  0.0117     1.523  0.0117
+RCL          C7          C8      SINGLE       n     1.497  0.0200     1.497  0.0200
+RCL          C8          C9      SINGLE       n     1.497  0.0127     1.497  0.0127
+RCL          C9         C10      DOUBLE       n     1.308  0.0200     1.308  0.0200
+RCL         C10         C11      SINGLE       n     1.498  0.0100     1.498  0.0100
+RCL         C11         C12      SINGLE       n     1.522  0.0138     1.522  0.0138
+RCL         C12         O12      SINGLE       n     1.426  0.0179     1.426  0.0179
+RCL         C12         C13      SINGLE       n     1.520  0.0169     1.520  0.0169
+RCL         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+RCL         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+RCL         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+RCL         C16         C17      SINGLE       n     1.507  0.0200     1.507  0.0200
+RCL         C17         C18      SINGLE       n     1.510  0.0200     1.510  0.0200
+RCL          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+RCL          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+RCL          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0160
+RCL          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0160
+RCL          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+RCL          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+RCL          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0163
+RCL          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0163
+RCL          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+RCL          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+RCL          C7         H71      SINGLE       n     1.089  0.0100     0.980  0.0160
+RCL          C7         H72      SINGLE       n     1.089  0.0100     0.980  0.0160
+RCL          C8         H81      SINGLE       n     1.089  0.0100     0.983  0.0180
+RCL          C8         H82      SINGLE       n     1.089  0.0100     0.983  0.0180
+RCL          C9          H9      SINGLE       n     1.082  0.0130     0.945  0.0200
+RCL         C10         H10      SINGLE       n     1.082  0.0130     0.945  0.0200
+RCL         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0185
+RCL         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0185
+RCL         C12         H12      SINGLE       n     1.089  0.0100     0.995  0.0200
+RCL         O12        HO12      SINGLE       n     0.970  0.0120     0.848  0.0200
+RCL         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0160
+RCL         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0160
+RCL         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0163
+RCL         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0163
+RCL         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0163
+RCL         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0163
+RCL         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0163
+RCL         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0163
+RCL         C17        H171      SINGLE       n     1.089  0.0100     0.982  0.0155
+RCL         C17        H172      SINGLE       n     1.089  0.0100     0.982  0.0155
+RCL         C18        H181      SINGLE       n     1.089  0.0100     0.973  0.0157
+RCL         C18        H182      SINGLE       n     1.089  0.0100     0.973  0.0157
+RCL         C18        H183      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RCL          O1          C1          O2     123.571    1.50
+RCL          O1          C1          C2     118.214    1.64
+RCL          O2          C1          C2     118.214    1.64
+RCL          C1          C2          C3     114.612    2.19
+RCL          C1          C2         H21     108.404    1.50
+RCL          C1          C2         H22     108.404    1.50
+RCL          C3          C2         H21     108.815    1.50
+RCL          C3          C2         H22     108.815    1.50
+RCL         H21          C2         H22     107.521    1.50
+RCL          C2          C3          C4     112.553    1.50
+RCL          C2          C3         H31     109.164    1.50
+RCL          C2          C3         H32     109.164    1.50
+RCL          C4          C3         H31     108.698    1.50
+RCL          C4          C3         H32     108.698    1.50
+RCL         H31          C3         H32     107.646    1.50
+RCL          C3          C4          C5     114.243    1.69
+RCL          C3          C4         H41     108.698    1.50
+RCL          C3          C4         H42     108.698    1.50
+RCL          C5          C4         H41     108.698    1.50
+RCL          C5          C4         H42     108.698    1.50
+RCL         H41          C4         H42     107.646    1.50
+RCL          C4          C5          C6     114.243    1.69
+RCL          C4          C5         H51     108.698    1.50
+RCL          C4          C5         H52     108.698    1.50
+RCL          C6          C5         H51     108.698    1.50
+RCL          C6          C5         H52     108.698    1.50
+RCL         H51          C5         H52     107.646    1.50
+RCL          C5          C6          C7     114.243    1.69
+RCL          C5          C6         H61     108.698    1.50
+RCL          C5          C6         H62     108.698    1.50
+RCL          C7          C6         H61     108.698    1.50
+RCL          C7          C6         H62     108.698    1.50
+RCL         H61          C6         H62     107.646    1.50
+RCL          C6          C7          C8     114.266    1.80
+RCL          C6          C7         H71     108.698    1.50
+RCL          C6          C7         H72     108.698    1.50
+RCL          C8          C7         H71     108.805    1.50
+RCL          C8          C7         H72     108.805    1.50
+RCL         H71          C7         H72     107.646    1.50
+RCL          C7          C8          C9     113.226    1.94
+RCL          C7          C8         H81     108.819    1.50
+RCL          C7          C8         H82     108.819    1.50
+RCL          C9          C8         H81     108.886    1.50
+RCL          C9          C8         H82     108.886    1.50
+RCL         H81          C8         H82     107.922    1.50
+RCL          C8          C9         C10     125.684    3.00
+RCL          C8          C9          H9     117.007    1.61
+RCL         C10          C9          H9     117.310    2.16
+RCL          C9         C10         C11     125.436    1.50
+RCL          C9         C10         H10     116.932    2.16
+RCL         C11         C10         H10     117.632    1.96
+RCL         C10         C11         C12     113.751    2.05
+RCL         C10         C11        H111     109.879    2.65
+RCL         C10         C11        H112     109.879    2.65
+RCL         C12         C11        H111     109.404    1.50
+RCL         C12         C11        H112     109.404    1.50
+RCL        H111         C11        H112     107.440    1.74
+RCL         C11         C12         O12     107.868    2.29
+RCL         C11         C12         C13     114.304    1.50
+RCL         C11         C12         H12     107.674    2.07
+RCL         O12         C12         C13     109.904    2.15
+RCL         O12         C12         H12     108.270    1.50
+RCL         C13         C12         H12     108.124    1.50
+RCL         C12         O12        HO12     108.921    2.24
+RCL         C12         C13         C14     115.351    1.65
+RCL         C12         C13        H131     108.478    1.50
+RCL         C12         C13        H132     108.478    1.50
+RCL         C14         C13        H131     108.572    1.50
+RCL         C14         C13        H132     108.572    1.50
+RCL        H131         C13        H132     107.428    1.50
+RCL         C13         C14         C15     114.776    2.10
+RCL         C13         C14        H141     108.597    1.50
+RCL         C13         C14        H142     108.597    1.50
+RCL         C15         C14        H141     108.698    1.50
+RCL         C15         C14        H142     108.698    1.50
+RCL        H141         C14        H142     107.646    1.50
+RCL         C14         C15         C16     114.243    1.69
+RCL         C14         C15        H151     108.698    1.50
+RCL         C14         C15        H152     108.698    1.50
+RCL         C16         C15        H151     108.698    1.50
+RCL         C16         C15        H152     108.698    1.50
+RCL        H151         C15        H152     107.646    1.50
+RCL         C15         C16         C17     114.362    3.00
+RCL         C15         C16        H161     108.698    1.50
+RCL         C15         C16        H162     108.698    1.50
+RCL         C17         C16        H161     108.653    1.50
+RCL         C17         C16        H162     108.653    1.50
+RCL        H161         C16        H162     107.646    1.50
+RCL         C16         C17         C18     113.719    3.00
+RCL         C16         C17        H171     108.758    1.50
+RCL         C16         C17        H172     108.758    1.50
+RCL         C18         C17        H171     108.918    1.50
+RCL         C18         C17        H172     108.918    1.50
+RCL        H171         C17        H172     107.763    1.50
+RCL         C17         C18        H181     109.554    1.50
+RCL         C17         C18        H182     109.554    1.50
+RCL         C17         C18        H183     109.554    1.50
+RCL        H181         C18        H182     109.380    1.50
+RCL        H181         C18        H183     109.380    1.50
+RCL        H182         C18        H183     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RCL             sp2_sp2_1         C11         C10          C9          C8     180.000     5.0     2
+RCL            sp2_sp3_14          C9         C10         C11         C12     120.000    10.0     6
+RCL            sp3_sp3_55         C10         C11         C12         O12     180.000    10.0     3
+RCL            sp3_sp3_64         C11         C12         O12        HO12     180.000    10.0     3
+RCL            sp3_sp3_67         C11         C12         C13         C14     180.000    10.0     3
+RCL            sp3_sp3_76         C12         C13         C14         C15     180.000    10.0     3
+RCL            sp3_sp3_85         C13         C14         C15         C16     180.000    10.0     3
+RCL            sp3_sp3_94         C14         C15         C16         C17     180.000    10.0     3
+RCL           sp3_sp3_103         C15         C16         C17         C18     180.000    10.0     3
+RCL           sp3_sp3_112         C16         C17         C18        H181     180.000    10.0     3
+RCL             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+RCL             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+RCL            sp3_sp3_10          C2          C3          C4          C5     180.000    10.0     3
+RCL            sp3_sp3_19          C3          C4          C5          C6     180.000    10.0     3
+RCL            sp3_sp3_28          C4          C5          C6          C7     180.000    10.0     3
+RCL            sp3_sp3_37          C5          C6          C7          C8     180.000    10.0     3
+RCL            sp3_sp3_46          C6          C7          C8          C9     180.000    10.0     3
+RCL             sp2_sp3_8         C10          C9          C8          C7     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RCL    chir_1    C12    O12    C11    C13    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RCL    plan-1          C1   0.020
+RCL    plan-1          C2   0.020
+RCL    plan-1          O1   0.020
+RCL    plan-1          O2   0.020
+RCL    plan-2         C10   0.020
+RCL    plan-2          C8   0.020
+RCL    plan-2          C9   0.020
+RCL    plan-2          H9   0.020
+RCL    plan-3         C10   0.020
+RCL    plan-3         C11   0.020
+RCL    plan-3          C9   0.020
+RCL    plan-3         H10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RCL           SMILES              ACDLabs 10.04                                                                                                           O=C(O)CCCCCCC/C=C/CC(O)CCCCCC
+RCL SMILES_CANONICAL               CACTVS 3.341                                                                                                      CCCCCC[C@@H](O)C/C=C/CCCCCCCC(O)=O
+RCL           SMILES               CACTVS 3.341                                                                                                          CCCCCC[CH](O)CC=CCCCCCCCC(O)=O
+RCL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                       CCCCCC[C@H](C\C=C\CCCCCCCC(=O)O)O
+RCL           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                             CCCCCCC(CC=CCCCCCCCC(=O)O)O
+RCL            InChI                InChI  1.03 InChI=1S/C18H34O3/c1-2-3-4-11-14-17(19)15-12-9-7-5-6-8-10-13-16-18(20)21/h9,12,17,19H,2-8,10-11,13-16H2,1H3,(H,20,21)/b12-9+/t17-/m1/s1
+RCL         InChIKey                InChI  1.03                                                                                                             WBHHMMIMDMUBKC-XLNAKTSKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RCL acedrg               243         "dictionary generator"                  
+RCL acedrg_database      11          "data source"                           
+RCL rdkit                2017.03.2   "Chemoinformatics tool"
+RCL refmac5              5.8.0238    "optimization tool"                     

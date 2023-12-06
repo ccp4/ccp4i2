@@ -1,0 +1,338 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XTZ     XTZ      4-{[(2-amino-4-oxo-3,4,7,8-tetrahydropteridin-6-yl)methyl]amino}-N-(1,3-thiazol-2-yl)benzenesulfonamide     NON-POLYMER     45     29     .     
+#
+data_comp_XTZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XTZ     O3      O       O       0       -79.195     85.964      92.055      
+XTZ     C16     C       CR6     0       -78.361     85.086      92.332      
+XTZ     N2      N       NR6     0       -78.165     84.051      91.436      
+XTZ     C3      C       CR66    0       -77.593     85.079      93.514      
+XTZ     N4      N       NRD6    0       -77.755     86.114      94.461      
+XTZ     C4      C       CR6     0       -77.027     86.047      95.590      
+XTZ     C15     C       CH2     0       -75.996     84.991      95.901      
+XTZ     N8      N       NR6     0       -75.889     83.968      94.868      
+XTZ     C2      C       CR66    0       -76.661     84.010      93.721      
+XTZ     N3      N       NRD6    0       -76.519     83.012      92.785      
+XTZ     C1      C       CR6     0       -77.258     83.041      91.673      
+XTZ     N1      N       NH2     0       -77.132     82.078      90.751      
+XTZ     C5      C       CH2     0       -77.272     87.112      96.632      
+XTZ     N5      N       NH1     0       -76.802     88.426      96.234      
+XTZ     C6      C       CR6     0       -77.611     89.532      96.158      
+XTZ     C14     C       CR16    0       -77.541     90.369      95.038      
+XTZ     C13     C       CR16    0       -78.343     91.492      94.951      
+XTZ     C9      C       CR6     0       -79.225     91.801      95.983      
+XTZ     C8      C       CR16    0       -79.300     90.979      97.104      
+XTZ     C7      C       CR16    0       -78.495     89.858      97.196      
+XTZ     S1      S       S3      0       -80.237     93.233      95.860      
+XTZ     O1      O       O       0       -81.252     93.167      96.861      
+XTZ     O2      O       O       0       -80.603     93.397      94.491      
+XTZ     N6      N       NH1     0       -79.293     94.510      96.236      
+XTZ     C10     C       CR5     0       -78.660     94.675      97.484      
+XTZ     S2      S       S2      0       -77.690     95.993      97.808      
+XTZ     C12     C       CR15    0       -77.341     95.507      99.358      
+XTZ     C11     C       CR15    0       -77.991     94.305      99.621      
+XTZ     N7      N       NRD5    0       -78.739     93.846      98.543      
+XTZ     H15     H       H       0       -78.640     84.040      90.687      
+XTZ     H1      H       H       0       -76.230     84.567      96.752      
+XTZ     H16     H       H       0       -75.127     85.427      96.015      
+XTZ     H17     H       H       0       -75.320     83.322      94.995      
+XTZ     H3      H       H       0       -76.476     81.498      90.812      
+XTZ     H4      H       H       0       -77.705     82.025      90.089      
+XTZ     H5      H       H       0       -76.820     86.859      97.461      
+XTZ     H6      H       H       0       -78.230     87.155      96.819      
+XTZ     H7      H       H       0       -75.969     88.515      96.033      
+XTZ     H8      H       H       0       -76.946     90.162      94.338      
+XTZ     H9      H       H       0       -78.292     92.046      94.192      
+XTZ     H10     H       H       0       -79.891     91.185      97.805      
+XTZ     H11     H       H       0       -78.550     89.304      97.955      
+XTZ     H12     H       H       0       -79.170     95.127      95.632      
+XTZ     H13     H       H       0       -76.783     96.008      99.928      
+XTZ     H14     H       H       0       -77.938     93.842      100.440     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XTZ          C1          N1      SINGLE       n     1.337  0.0120     1.337  0.0120
+XTZ          N2          C1      SINGLE       y     1.372  0.0100     1.372  0.0100
+XTZ         C16          N2      SINGLE       y     1.379  0.0117     1.379  0.0117
+XTZ          N3          C1      DOUBLE       y     1.325  0.0134     1.325  0.0134
+XTZ          O3         C16      DOUBLE       n     1.241  0.0136     1.241  0.0136
+XTZ         C16          C3      SINGLE       y     1.405  0.0144     1.405  0.0144
+XTZ          C2          N3      SINGLE       y     1.358  0.0194     1.358  0.0194
+XTZ          C3          C2      DOUBLE       y     1.422  0.0200     1.422  0.0200
+XTZ          C3          N4      SINGLE       n     1.406  0.0161     1.406  0.0161
+XTZ          N8          C2      SINGLE       n     1.378  0.0162     1.378  0.0162
+XTZ          N4          C4      DOUBLE       n     1.333  0.0200     1.333  0.0200
+XTZ         C15          N8      SINGLE       n     1.454  0.0102     1.454  0.0102
+XTZ          S1          O2      DOUBLE       n     1.427  0.0100     1.427  0.0100
+XTZ         C14         C13      DOUBLE       y     1.380  0.0100     1.380  0.0100
+XTZ          C6         C14      SINGLE       y     1.395  0.0124     1.395  0.0124
+XTZ         C13          C9      SINGLE       y     1.388  0.0100     1.388  0.0100
+XTZ          C4         C15      SINGLE       n     1.494  0.0200     1.494  0.0200
+XTZ          C4          C5      SINGLE       n     1.510  0.0100     1.510  0.0100
+XTZ          N5          C6      SINGLE       n     1.367  0.0141     1.367  0.0141
+XTZ          C5          N5      SINGLE       n     1.448  0.0109     1.448  0.0109
+XTZ          C9          S1      SINGLE       n     1.756  0.0100     1.756  0.0100
+XTZ          S1          N6      SINGLE       n     1.630  0.0116     1.630  0.0116
+XTZ          S1          O1      DOUBLE       n     1.427  0.0100     1.427  0.0100
+XTZ          C6          C7      DOUBLE       y     1.395  0.0124     1.395  0.0124
+XTZ          C9          C8      DOUBLE       y     1.388  0.0100     1.388  0.0100
+XTZ          N6         C10      SINGLE       n     1.402  0.0200     1.402  0.0200
+XTZ          C8          C7      SINGLE       y     1.380  0.0100     1.380  0.0100
+XTZ         C10          S2      SINGLE       y     1.695  0.0200     1.695  0.0200
+XTZ         C10          N7      DOUBLE       y     1.335  0.0145     1.335  0.0145
+XTZ          S2         C12      SINGLE       y     1.695  0.0200     1.695  0.0200
+XTZ         C11          N7      SINGLE       y     1.371  0.0139     1.371  0.0139
+XTZ         C12         C11      DOUBLE       y     1.380  0.0196     1.380  0.0196
+XTZ          N2         H15      SINGLE       n     1.016  0.0100     0.886  0.0200
+XTZ         C15          H1      SINGLE       n     1.089  0.0100     0.979  0.0200
+XTZ         C15         H16      SINGLE       n     1.089  0.0100     0.979  0.0200
+XTZ          N8         H17      SINGLE       n     1.016  0.0100     0.870  0.0200
+XTZ          N1          H3      SINGLE       n     1.016  0.0100     0.877  0.0200
+XTZ          N1          H4      SINGLE       n     1.016  0.0100     0.877  0.0200
+XTZ          C5          H5      SINGLE       n     1.089  0.0100     0.977  0.0104
+XTZ          C5          H6      SINGLE       n     1.089  0.0100     0.977  0.0104
+XTZ          N5          H7      SINGLE       n     1.016  0.0100     0.862  0.0100
+XTZ         C14          H8      SINGLE       n     1.082  0.0130     0.941  0.0200
+XTZ         C13          H9      SINGLE       n     1.082  0.0130     0.941  0.0197
+XTZ          C8         H10      SINGLE       n     1.082  0.0130     0.941  0.0197
+XTZ          C7         H11      SINGLE       n     1.082  0.0130     0.941  0.0200
+XTZ          N6         H12      SINGLE       n     1.016  0.0100     0.873  0.0200
+XTZ         C12         H13      SINGLE       n     1.082  0.0130     0.942  0.0200
+XTZ         C11         H14      SINGLE       n     1.082  0.0130     0.942  0.0176
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XTZ          N2         C16          O3     118.406    1.50
+XTZ          N2         C16          C3     118.361    1.50
+XTZ          O3         C16          C3     123.233    1.50
+XTZ          C1          N2         C16     122.162    1.50
+XTZ          C1          N2         H15     119.023    1.59
+XTZ         C16          N2         H15     118.815    1.86
+XTZ         C16          C3          C2     119.304    1.50
+XTZ         C16          C3          N4     118.776    1.50
+XTZ          C2          C3          N4     121.920    1.55
+XTZ          C3          N4          C4     117.434    1.57
+XTZ          N4          C4         C15     125.198    3.00
+XTZ          N4          C4          C5     117.605    2.43
+XTZ         C15          C4          C5     117.197    2.44
+XTZ          N8         C15          C4     111.725    2.77
+XTZ          N8         C15          H1     109.346    1.50
+XTZ          N8         C15         H16     109.346    1.50
+XTZ          C4         C15          H1     108.678    1.50
+XTZ          C4         C15         H16     108.678    1.50
+XTZ          H1         C15         H16     107.773    1.50
+XTZ          C2          N8         C15     121.146    3.00
+XTZ          C2          N8         H17     120.705    2.40
+XTZ         C15          N8         H17     118.149    3.00
+XTZ          N3          C2          C3     120.351    1.50
+XTZ          N3          C2          N8     118.480    1.73
+XTZ          C3          C2          N8     121.169    1.50
+XTZ          C1          N3          C2     118.459    1.50
+XTZ          N1          C1          N2     117.932    1.50
+XTZ          N1          C1          N3     120.704    1.50
+XTZ          N2          C1          N3     121.363    1.50
+XTZ          C1          N1          H3     119.834    1.50
+XTZ          C1          N1          H4     119.834    1.50
+XTZ          H3          N1          H4     120.331    1.96
+XTZ          C4          C5          N5     113.550    1.91
+XTZ          C4          C5          H5     109.369    1.50
+XTZ          C4          C5          H6     109.369    1.50
+XTZ          N5          C5          H5     108.818    1.50
+XTZ          N5          C5          H6     108.818    1.50
+XTZ          H5          C5          H6     107.945    1.50
+XTZ          C6          N5          C5     122.572    1.50
+XTZ          C6          N5          H7     118.788    1.50
+XTZ          C5          N5          H7     118.640    1.50
+XTZ         C14          C6          N5     120.326    2.16
+XTZ         C14          C6          C7     119.348    1.50
+XTZ          N5          C6          C7     120.326    2.16
+XTZ         C13         C14          C6     120.206    1.50
+XTZ         C13         C14          H8     120.004    1.50
+XTZ          C6         C14          H8     119.790    1.50
+XTZ         C14         C13          C9     119.948    1.50
+XTZ         C14         C13          H9     119.880    1.50
+XTZ          C9         C13          H9     120.172    1.50
+XTZ         C13          C9          S1     119.828    1.50
+XTZ         C13          C9          C8     120.344    1.50
+XTZ          S1          C9          C8     119.828    1.50
+XTZ          C9          C8          C7     119.948    1.50
+XTZ          C9          C8         H10     120.172    1.50
+XTZ          C7          C8         H10     119.880    1.50
+XTZ          C6          C7          C8     120.206    1.50
+XTZ          C6          C7         H11     119.790    1.50
+XTZ          C8          C7         H11     120.004    1.50
+XTZ          O2          S1          C9     108.201    1.50
+XTZ          O2          S1          N6     106.736    1.93
+XTZ          O2          S1          O1     120.098    1.50
+XTZ          C9          S1          N6     106.775    1.50
+XTZ          C9          S1          O1     108.201    1.50
+XTZ          N6          S1          O1     106.736    1.93
+XTZ          S1          N6         C10     122.438    2.29
+XTZ          S1          N6         H12     118.722    1.50
+XTZ         C10          N6         H12     118.840    2.44
+XTZ          N6         C10          S2     124.642    3.00
+XTZ          N6         C10          N7     126.890    2.98
+XTZ          S2         C10          N7     108.467    3.00
+XTZ         C10          S2         C12     108.467    3.00
+XTZ          S2         C12         C11     108.467    3.00
+XTZ          S2         C12         H13     122.899    3.00
+XTZ         C11         C12         H13     128.633    1.50
+XTZ          N7         C11         C12     109.059    1.50
+XTZ          N7         C11         H14     124.783    1.50
+XTZ         C12         C11         H14     126.158    1.50
+XTZ         C10          N7         C11     105.539    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XTZ             sp2_sp2_7          N2          C1          N1          H3     180.000     5.0     2
+XTZ            sp2_sp3_20          C6          N5          C5          C4     120.000    10.0     6
+XTZ            sp2_sp2_13         C14          C6          N5          C5     180.000     5.0     2
+XTZ              const_12         C13         C14          C6          N5     180.000    10.0     2
+XTZ              const_53          N5          C6          C7          C8     180.000    10.0     2
+XTZ              const_15          C9         C13         C14          C6       0.000    10.0     2
+XTZ              const_20         C14         C13          C9          S1     180.000    10.0     2
+XTZ              const_24          C7          C8          C9          S1     180.000    10.0     2
+XTZ            sp2_sp3_25         C13          C9          S1          O2     150.000    10.0     6
+XTZ              const_27          C6          C7          C8          C9       0.000    10.0     2
+XTZ              const_37          O3         C16          N2          C1     180.000    10.0     2
+XTZ              const_49          O3         C16          C3          C2     180.000    10.0     2
+XTZ            sp2_sp3_32         C10          N6          S1          O2     120.000    10.0     6
+XTZ            sp2_sp2_17          S2         C10          N6          S1     180.000     5.0     2
+XTZ       const_sp2_sp2_2          N6         C10          S2         C12     180.000     5.0     2
+XTZ              const_56          N6         C10          N7         C11     180.000    10.0     2
+XTZ       const_sp2_sp2_3         C11         C12          S2         C10       0.000     5.0     2
+XTZ       const_sp2_sp2_5          N7         C11         C12          S2       0.000     5.0     2
+XTZ       const_sp2_sp2_9         C12         C11          N7         C10       0.000     5.0     2
+XTZ              const_41          N1          C1          N2         C16     180.000    10.0     2
+XTZ            sp2_sp2_12         C16          C3          N4          C4     180.000     5.0     2
+XTZ              const_31          N3          C2          C3         C16       0.000    10.0     2
+XTZ             sp2_sp2_6          C5          C4          N4          C3     180.000     5.0     2
+XTZ            sp2_sp3_14          N4          C4          C5          N5     -90.000    10.0     6
+XTZ            sp2_sp3_10          C5          C4         C15          N8     180.000    10.0     6
+XTZ             sp2_sp3_1          C2          N8         C15          C4       0.000    10.0     6
+XTZ             sp2_sp2_3          N3          C2          N8         C15     180.000     5.0     2
+XTZ              const_45          C3          C2          N3          C1       0.000    10.0     2
+XTZ              const_44          N1          C1          N3          C2     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+XTZ    chir_1    S1    O2    O1    N6    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XTZ    plan-1          C1   0.020
+XTZ    plan-1         C16   0.020
+XTZ    plan-1          C2   0.020
+XTZ    plan-1          C3   0.020
+XTZ    plan-1         H15   0.020
+XTZ    plan-1          N1   0.020
+XTZ    plan-1          N2   0.020
+XTZ    plan-1          N3   0.020
+XTZ    plan-1          N4   0.020
+XTZ    plan-1          N8   0.020
+XTZ    plan-1          O3   0.020
+XTZ    plan-2         C13   0.020
+XTZ    plan-2         C14   0.020
+XTZ    plan-2          C6   0.020
+XTZ    plan-2          C7   0.020
+XTZ    plan-2          C8   0.020
+XTZ    plan-2          C9   0.020
+XTZ    plan-2         H10   0.020
+XTZ    plan-2         H11   0.020
+XTZ    plan-2          H8   0.020
+XTZ    plan-2          H9   0.020
+XTZ    plan-2          N5   0.020
+XTZ    plan-2          S1   0.020
+XTZ    plan-3         C10   0.020
+XTZ    plan-3         C11   0.020
+XTZ    plan-3         C12   0.020
+XTZ    plan-3         H13   0.020
+XTZ    plan-3         H14   0.020
+XTZ    plan-3          N6   0.020
+XTZ    plan-3          N7   0.020
+XTZ    plan-3          S2   0.020
+XTZ    plan-4         C15   0.020
+XTZ    plan-4          C4   0.020
+XTZ    plan-4          C5   0.020
+XTZ    plan-4          N4   0.020
+XTZ    plan-5         C15   0.020
+XTZ    plan-5          C2   0.020
+XTZ    plan-5         H17   0.020
+XTZ    plan-5          N8   0.020
+XTZ    plan-6          C1   0.020
+XTZ    plan-6          H3   0.020
+XTZ    plan-6          H4   0.020
+XTZ    plan-6          N1   0.020
+XTZ    plan-7          C5   0.020
+XTZ    plan-7          C6   0.020
+XTZ    plan-7          H7   0.020
+XTZ    plan-7          N5   0.020
+XTZ    plan-8         C10   0.020
+XTZ    plan-8         H12   0.020
+XTZ    plan-8          N6   0.020
+XTZ    plan-8          S1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XTZ           SMILES              ACDLabs 12.01                                                                                                       O=S(=O)(Nc1nccs1)c4ccc(NCC3=NC2=C(N=C(N)NC2=O)NC3)cc4
+XTZ            InChI                InChI  1.03 InChI=1S/C16H16N8O3S2/c17-15-22-13-12(14(25)23-15)21-10(8-20-13)7-19-9-1-3-11(4-2-9)29(26,27)24-16-18-5-6-28-16/h1-6,19H,7-8H2,(H,18,24)(H4,17,20,22,23,25)
+XTZ         InChIKey                InChI  1.03                                                                                                                                 XKJZNFKQXDBJHJ-UHFFFAOYSA-N
+XTZ SMILES_CANONICAL               CACTVS 3.370                                                                                                   NC1=NC2=C(N=C(CNc3ccc(cc3)[S](=O)(=O)Nc4sccn4)CN2)C(=O)N1
+XTZ           SMILES               CACTVS 3.370                                                                                                   NC1=NC2=C(N=C(CNc3ccc(cc3)[S](=O)(=O)Nc4sccn4)CN2)C(=O)N1
+XTZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                       c1cc(ccc1NCC2=NC3=C(NC2)N=C(NC3=O)N)S(=O)(=O)Nc4nccs4
+XTZ           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                       c1cc(ccc1NCC2=NC3=C(NC2)N=C(NC3=O)N)S(=O)(=O)Nc4nccs4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XTZ acedrg               243         "dictionary generator"                  
+XTZ acedrg_database      11          "data source"                           
+XTZ rdkit                2017.03.2   "Chemoinformatics tool"
+XTZ refmac5              5.8.0238    "optimization tool"                     

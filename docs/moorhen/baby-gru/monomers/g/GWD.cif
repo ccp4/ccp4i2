@@ -1,0 +1,245 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GWD     GWD      (3E)-3-[(3,5-dibromo-4-hydroxyphenyl)methylidene]-5-iodo-1,3-dihydro-2H-indol-2-one     NON-POLYMER     29     21     .     
+#
+data_comp_GWD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GWD     CAH     C       CR16    0       42.434      71.766      129.421     
+GWD     CAO     C       CR6     0       42.909      72.164      130.655     
+GWD     BRAC    BR      BR      0       44.748      71.958      131.045     
+GWD     CAM     C       CR6     0       42.074      72.716      131.635     
+GWD     OAB     O       OH1     0       42.559      73.109      132.861     
+GWD     CAP     C       CR6     0       40.720      72.849      131.302     
+GWD     BRAD    BR      BR      0       39.541      73.589      132.583     
+GWD     CAI     C       CR16    0       40.222      72.459      130.075     
+GWD     CAQ     C       CR6     0       41.076      71.907      129.116     
+GWD     CAF     C       C1      0       40.550      71.498      127.810     
+GWD     CAS     C       CR5     0       39.806      72.207      126.947     
+GWD     CAU     C       CR56    0       39.515      73.632      126.799     
+GWD     CAK     C       CR16    0       39.913      74.767      127.500     
+GWD     CAN     C       CR6     0       39.439      76.008      127.088     
+GWD     IAE     I       I       0       40.017      77.736      128.114     
+GWD     CAG     C       CR16    0       38.575      76.119      125.989     
+GWD     CAJ     C       CR16    0       38.166      74.985      125.278     
+GWD     CAT     C       CR56    0       38.646      73.760      125.699     
+GWD     NAL     N       NR5     0       38.387      72.496      125.160     
+GWD     CAR     C       CR5     0       39.043      71.523      125.843     
+GWD     OAA     O       O       0       38.999      70.318      125.589     
+GWD     HAH     H       H       0       43.022      71.400      128.788     
+GWD     HOAB    H       H       0       42.639      73.946      133.044     
+GWD     HAI     H       H       0       39.309      72.563      129.886     
+GWD     HAF     H       H       0       40.771      70.626      127.544     
+GWD     HAK     H       H       0       40.495      74.692      128.239     
+GWD     HAG     H       H       0       38.258      76.971      125.717     
+GWD     HAJ     H       H       0       37.586      75.054      124.540     
+GWD     HNAL    H       H       0       37.870      72.349      124.472     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GWD         CAH         CAQ      DOUBLE       y     1.395  0.0100     1.395  0.0100
+GWD         CAH         CAO      SINGLE       y     1.378  0.0100     1.378  0.0100
+GWD         CAO         CAM      DOUBLE       y     1.393  0.0125     1.393  0.0125
+GWD         CAO        BRAC      SINGLE       n     1.891  0.0108     1.891  0.0108
+GWD         CAM         CAP      SINGLE       y     1.393  0.0125     1.393  0.0125
+GWD         CAM         OAB      SINGLE       n     1.374  0.0155     1.374  0.0155
+GWD         CAP         CAI      DOUBLE       y     1.378  0.0100     1.378  0.0100
+GWD         CAP        BRAD      SINGLE       n     1.891  0.0108     1.891  0.0108
+GWD         CAI         CAQ      SINGLE       y     1.395  0.0100     1.395  0.0100
+GWD         CAQ         CAF      SINGLE       n     1.467  0.0100     1.467  0.0100
+GWD         CAF         CAS      DOUBLE       n     1.341  0.0102     1.341  0.0102
+GWD         CAS         CAR      SINGLE       n     1.505  0.0100     1.505  0.0100
+GWD         CAS         CAU      SINGLE       n     1.462  0.0100     1.462  0.0100
+GWD         CAU         CAT      SINGLE       y     1.405  0.0100     1.405  0.0100
+GWD         CAU         CAK      DOUBLE       y     1.388  0.0100     1.388  0.0100
+GWD         CAK         CAN      SINGLE       y     1.388  0.0100     1.388  0.0100
+GWD         CAN         CAG      DOUBLE       y     1.391  0.0200     1.391  0.0200
+GWD         CAN         IAE      SINGLE       n     2.091  0.0100     2.091  0.0100
+GWD         CAG         CAJ      SINGLE       y     1.385  0.0200     1.385  0.0200
+GWD         CAJ         CAT      DOUBLE       y     1.378  0.0100     1.378  0.0100
+GWD         CAT         NAL      SINGLE       n     1.398  0.0100     1.398  0.0100
+GWD         NAL         CAR      SINGLE       n     1.357  0.0100     1.357  0.0100
+GWD         CAR         OAA      DOUBLE       n     1.232  0.0100     1.232  0.0100
+GWD         CAH         HAH      SINGLE       n     1.082  0.0130     0.938  0.0122
+GWD         OAB        HOAB      SINGLE       n     0.966  0.0059     0.861  0.0200
+GWD         CAI         HAI      SINGLE       n     1.082  0.0130     0.938  0.0122
+GWD         CAF         HAF      SINGLE       n     1.082  0.0130     0.938  0.0101
+GWD         CAK         HAK      SINGLE       n     1.082  0.0130     0.944  0.0183
+GWD         CAG         HAG      SINGLE       n     1.082  0.0130     0.949  0.0100
+GWD         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.941  0.0171
+GWD         NAL        HNAL      SINGLE       n     1.016  0.0100     0.873  0.0106
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GWD         CAQ         CAH         CAO     120.108    1.50
+GWD         CAQ         CAH         HAH     120.030    1.50
+GWD         CAO         CAH         HAH     119.862    1.50
+GWD         CAH         CAO         CAM     122.169    1.50
+GWD         CAH         CAO        BRAC     119.352    1.50
+GWD         CAM         CAO        BRAC     118.479    1.50
+GWD         CAO         CAM         CAP     116.310    1.50
+GWD         CAO         CAM         OAB     121.845    3.00
+GWD         CAP         CAM         OAB     121.845    3.00
+GWD         CAM         OAB        HOAB     120.000    3.00
+GWD         CAM         CAP         CAI     122.169    1.50
+GWD         CAM         CAP        BRAD     118.479    1.50
+GWD         CAI         CAP        BRAD     119.352    1.50
+GWD         CAP         CAI         CAQ     120.108    1.50
+GWD         CAP         CAI         HAI     119.862    1.50
+GWD         CAQ         CAI         HAI     120.030    1.50
+GWD         CAH         CAQ         CAI     119.136    1.50
+GWD         CAH         CAQ         CAF     120.432    2.98
+GWD         CAI         CAQ         CAF     120.432    2.98
+GWD         CAQ         CAF         CAS     129.707    2.80
+GWD         CAQ         CAF         HAF     114.924    1.50
+GWD         CAS         CAF         HAF     115.368    1.50
+GWD         CAF         CAS         CAR     119.729    1.50
+GWD         CAF         CAS         CAU     134.783    2.95
+GWD         CAR         CAS         CAU     105.488    1.50
+GWD         CAS         CAU         CAT     106.939    1.50
+GWD         CAS         CAU         CAK     133.543    1.70
+GWD         CAT         CAU         CAK     119.519    1.50
+GWD         CAU         CAK         CAN     118.560    1.50
+GWD         CAU         CAK         HAK     120.525    1.50
+GWD         CAN         CAK         HAK     120.915    1.50
+GWD         CAK         CAN         CAG     120.972    1.50
+GWD         CAK         CAN         IAE     119.804    1.50
+GWD         CAG         CAN         IAE     119.224    1.50
+GWD         CAN         CAG         CAJ     121.126    1.50
+GWD         CAN         CAG         HAG     119.953    1.50
+GWD         CAJ         CAG         HAG     118.921    1.50
+GWD         CAG         CAJ         CAT     117.463    1.50
+GWD         CAG         CAJ         HAJ     121.359    1.50
+GWD         CAT         CAJ         HAJ     121.178    1.50
+GWD         CAU         CAT         CAJ     122.359    1.50
+GWD         CAU         CAT         NAL     109.410    1.50
+GWD         CAJ         CAT         NAL     128.231    1.50
+GWD         CAT         NAL         CAR     111.346    1.50
+GWD         CAT         NAL        HNAL     124.410    1.50
+GWD         CAR         NAL        HNAL     124.244    1.50
+GWD         CAS         CAR         NAL     106.817    1.50
+GWD         CAS         CAR         OAA     127.598    1.50
+GWD         NAL         CAR         OAA     125.585    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GWD              const_42         CAQ         CAH         CAO        BRAC     180.000    10.0     2
+GWD              const_22         CAO         CAH         CAQ         CAF     180.000    10.0     2
+GWD            sp2_sp2_25         CAF         CAS         CAU         CAT     180.000     5.0     2
+GWD             sp2_sp2_4         OAA         CAR         CAS         CAF       0.000     5.0     2
+GWD              const_46         CAN         CAK         CAU         CAS     180.000    10.0     2
+GWD       const_sp2_sp2_2         CAJ         CAT         CAU         CAS     180.000     5.0     2
+GWD              const_18         CAU         CAK         CAN         IAE     180.000    10.0     2
+GWD              const_14         CAJ         CAG         CAN         IAE     180.000    10.0     2
+GWD       const_sp2_sp2_9         CAN         CAG         CAJ         CAT       0.000     5.0     2
+GWD       const_sp2_sp2_5         CAG         CAJ         CAT         CAU       0.000     5.0     2
+GWD             sp2_sp2_9         CAU         CAT         NAL         CAR       0.000     5.0     2
+GWD             sp2_sp2_7         OAA         CAR         NAL         CAT     180.000     5.0     2
+GWD              const_40         OAB         CAM         CAO        BRAC       0.000    10.0     2
+GWD            sp2_sp2_13         CAO         CAM         OAB        HOAB     180.000     5.0     2
+GWD              const_36         OAB         CAM         CAP        BRAD       0.000    10.0     2
+GWD              const_30         CAQ         CAI         CAP        BRAD     180.000    10.0     2
+GWD              const_26         CAP         CAI         CAQ         CAF     180.000    10.0     2
+GWD            sp2_sp2_15         CAS         CAF         CAQ         CAH     180.000     5.0     2
+GWD            sp2_sp2_19         CAQ         CAF         CAS         CAR     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GWD    plan-1        BRAC   0.020
+GWD    plan-1        BRAD   0.020
+GWD    plan-1         CAF   0.020
+GWD    plan-1         CAH   0.020
+GWD    plan-1         CAI   0.020
+GWD    plan-1         CAM   0.020
+GWD    plan-1         CAO   0.020
+GWD    plan-1         CAP   0.020
+GWD    plan-1         CAQ   0.020
+GWD    plan-1         HAH   0.020
+GWD    plan-1         HAI   0.020
+GWD    plan-1         OAB   0.020
+GWD    plan-2         CAG   0.020
+GWD    plan-2         CAJ   0.020
+GWD    plan-2         CAK   0.020
+GWD    plan-2         CAN   0.020
+GWD    plan-2         CAS   0.020
+GWD    plan-2         CAT   0.020
+GWD    plan-2         CAU   0.020
+GWD    plan-2         HAG   0.020
+GWD    plan-2         HAJ   0.020
+GWD    plan-2         HAK   0.020
+GWD    plan-2         IAE   0.020
+GWD    plan-2         NAL   0.020
+GWD    plan-3         CAF   0.020
+GWD    plan-3         CAQ   0.020
+GWD    plan-3         CAS   0.020
+GWD    plan-3         HAF   0.020
+GWD    plan-4         CAF   0.020
+GWD    plan-4         CAR   0.020
+GWD    plan-4         CAS   0.020
+GWD    plan-4         CAU   0.020
+GWD    plan-5         CAR   0.020
+GWD    plan-5         CAT   0.020
+GWD    plan-5        HNAL   0.020
+GWD    plan-5         NAL   0.020
+GWD    plan-6         CAR   0.020
+GWD    plan-6         CAS   0.020
+GWD    plan-6         NAL   0.020
+GWD    plan-6         OAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GWD           SMILES              ACDLabs 10.04                                                                        Brc1cc(cc(Br)c1O)\C=C3/c2cc(I)ccc2NC3=O
+GWD SMILES_CANONICAL               CACTVS 3.341                                                                     Oc1c(Br)cc(cc1Br)\C=C/2C(=O)Nc3ccc(I)cc/23
+GWD           SMILES               CACTVS 3.341                                                                        Oc1c(Br)cc(cc1Br)C=C2C(=O)Nc3ccc(I)cc23
+GWD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                 c1cc2c(cc1I)/C(=C\c3cc(c(c(c3)Br)O)Br)/C(=O)N2
+GWD           SMILES "OpenEye OEToolkits" 1.5.0                                                                    c1cc2c(cc1I)C(=Cc3cc(c(c(c3)Br)O)Br)C(=O)N2
+GWD            InChI                InChI  1.03 InChI=1S/C15H8Br2INO2/c16-11-4-7(5-12(17)14(11)20)3-10-9-6-8(18)1-2-13(9)19-15(10)21/h1-6,20H,(H,19,21)/b10-3+
+GWD         InChIKey                InChI  1.03                                                                                    LMXYVLFTZRPNRV-XCVCLJGOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GWD acedrg               243         "dictionary generator"                  
+GWD acedrg_database      11          "data source"                           
+GWD rdkit                2017.03.2   "Chemoinformatics tool"
+GWD refmac5              5.8.0238    "optimization tool"                     

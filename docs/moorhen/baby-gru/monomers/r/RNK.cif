@@ -1,0 +1,225 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RNK     RNK      4-chloranyl-2-methyl-5-[(3-methylthiophen-2-yl)methylamino]pyridazin-3-one     NON-POLYMER     29     17     .     
+#
+data_comp_RNK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RNK     C17     C       CR6     0       25.358      50.624      -0.774      
+RNK     C22     C       CH3     0       24.579      47.386      1.768       
+RNK     C26     C       CR6     0       23.772      48.997      0.063       
+RNK     C28     C       CR6     0       24.067      50.070      -0.765      
+RNK     C01     C       CH3     0       30.118      51.507      -1.774      
+RNK     C05     C       CR5     0       29.125      50.884      -2.710      
+RNK     C06     C       CR15    0       29.479      49.870      -3.673      
+RNK     C08     C       CR15    0       28.407      49.466      -4.403      
+RNK     S10     S       S2      0       27.018      50.272      -3.955      
+RNK     C11     C       CR5     0       27.742      51.197      -2.771      
+RNK     C12     C       CH2     0       26.952      52.175      -1.975      
+RNK     N15     N       NH1     0       25.628      51.704      -1.612      
+RNK     C18     C       CR16    0       26.338      50.056      0.089       
+RNK     N20     N       NRD6    0       26.069      49.047      0.869       
+RNK     N21     N       NR6     0       24.798      48.520      0.859       
+RNK     O27     O       O       0       22.652      48.455      0.121       
+RNK     CL2     CL      CL      0       22.808      50.701      -1.782      
+RNK     H1      H       H       0       25.397      47.169      2.222       
+RNK     H2      H       H       0       24.283      46.625      1.263       
+RNK     H3      H       H       0       23.908      47.621      2.414       
+RNK     H4      H       H       0       29.775      52.351      -1.442      
+RNK     H5      H       H       0       30.954      51.666      -2.243      
+RNK     H6      H       H       0       30.281      50.911      -1.026      
+RNK     H7      H       H       0       30.353      49.536      -3.776      
+RNK     H8      H       H       0       28.396      48.818      -5.087      
+RNK     H9      H       H       0       26.861      52.995      -2.491      
+RNK     H10     H       H       0       27.442      52.391      -1.164      
+RNK     H11     H       H       0       24.944      52.135      -1.942      
+RNK     H12     H       H       0       27.209      50.408      0.104       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RNK         C08         S10      SINGLE       y     1.695  0.0200     1.695  0.0200
+RNK         C06         C08      DOUBLE       y     1.343  0.0200     1.343  0.0200
+RNK         S10         C11      SINGLE       y     1.695  0.0200     1.695  0.0200
+RNK         C05         C06      SINGLE       y     1.430  0.0113     1.430  0.0113
+RNK         C05         C11      DOUBLE       y     1.402  0.0200     1.402  0.0200
+RNK         C11         C12      SINGLE       n     1.486  0.0105     1.486  0.0105
+RNK         C01         C05      SINGLE       n     1.499  0.0100     1.499  0.0100
+RNK         C12         N15      SINGLE       n     1.448  0.0109     1.448  0.0109
+RNK         C28         CL2      SINGLE       n     1.737  0.0106     1.737  0.0106
+RNK         C17         N15      SINGLE       n     1.374  0.0200     1.374  0.0200
+RNK         C17         C28      DOUBLE       y     1.398  0.0118     1.398  0.0118
+RNK         C17         C18      SINGLE       y     1.405  0.0184     1.405  0.0184
+RNK         C26         C28      SINGLE       y     1.379  0.0142     1.379  0.0142
+RNK         C26         O27      DOUBLE       n     1.242  0.0172     1.242  0.0172
+RNK         C26         N21      SINGLE       y     1.376  0.0111     1.376  0.0111
+RNK         C18         N20      DOUBLE       y     1.300  0.0100     1.300  0.0100
+RNK         N20         N21      SINGLE       y     1.367  0.0138     1.367  0.0138
+RNK         C22         N21      SINGLE       n     1.467  0.0100     1.467  0.0100
+RNK         C22          H1      SINGLE       n     1.089  0.0100     0.960  0.0100
+RNK         C22          H2      SINGLE       n     1.089  0.0100     0.960  0.0100
+RNK         C22          H3      SINGLE       n     1.089  0.0100     0.960  0.0100
+RNK         C01          H4      SINGLE       n     1.089  0.0100     0.971  0.0172
+RNK         C01          H5      SINGLE       n     1.089  0.0100     0.971  0.0172
+RNK         C01          H6      SINGLE       n     1.089  0.0100     0.971  0.0172
+RNK         C06          H7      SINGLE       n     1.082  0.0130     0.942  0.0153
+RNK         C08          H8      SINGLE       n     1.082  0.0130     0.942  0.0200
+RNK         C12          H9      SINGLE       n     1.089  0.0100     0.973  0.0180
+RNK         C12         H10      SINGLE       n     1.089  0.0100     0.973  0.0180
+RNK         N15         H11      SINGLE       n     1.016  0.0100     0.872  0.0200
+RNK         C18         H12      SINGLE       n     1.082  0.0130     0.940  0.0178
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RNK         N15         C17         C28     119.864    2.08
+RNK         N15         C17         C18     121.516    1.50
+RNK         C28         C17         C18     118.620    1.50
+RNK         N21         C22          H1     109.455    1.50
+RNK         N21         C22          H2     109.455    1.50
+RNK         N21         C22          H3     109.455    1.50
+RNK          H1         C22          H2     109.480    1.50
+RNK          H1         C22          H3     109.480    1.50
+RNK          H2         C22          H3     109.480    1.50
+RNK         C28         C26         O27     123.997    1.50
+RNK         C28         C26         N21     117.052    1.50
+RNK         O27         C26         N21     118.951    1.50
+RNK         CL2         C28         C17     121.354    1.53
+RNK         CL2         C28         C26     118.494    1.50
+RNK         C17         C28         C26     120.152    1.50
+RNK         C05         C01          H4     109.729    1.50
+RNK         C05         C01          H5     109.729    1.50
+RNK         C05         C01          H6     109.729    1.50
+RNK          H4         C01          H5     109.190    1.68
+RNK          H4         C01          H6     109.190    1.68
+RNK          H5         C01          H6     109.190    1.68
+RNK         C06         C05         C11     106.983    1.50
+RNK         C06         C05         C01     124.786    1.50
+RNK         C11         C05         C01     128.231    2.46
+RNK         C08         C06         C05     107.934    1.50
+RNK         C08         C06          H7     126.655    1.50
+RNK         C05         C06          H7     125.411    1.50
+RNK         S10         C08         C06     108.361    3.00
+RNK         S10         C08          H8     123.192    3.00
+RNK         C06         C08          H8     128.447    2.40
+RNK         C08         S10         C11     108.361    3.00
+RNK         S10         C11         C05     108.361    3.00
+RNK         S10         C11         C12     121.268    3.00
+RNK         C05         C11         C12     130.371    3.00
+RNK         C11         C12         N15     112.107    2.16
+RNK         C11         C12          H9     108.978    1.50
+RNK         C11         C12         H10     108.978    1.50
+RNK         N15         C12          H9     109.106    1.55
+RNK         N15         C12         H10     109.106    1.55
+RNK          H9         C12         H10     107.966    1.50
+RNK         C12         N15         C17     123.832    1.50
+RNK         C12         N15         H11     118.351    1.79
+RNK         C17         N15         H11     117.818    2.04
+RNK         C17         C18         N20     121.794    1.50
+RNK         C17         C18         H12     119.609    1.50
+RNK         N20         C18         H12     118.596    1.50
+RNK         C18         N20         N21     118.216    1.50
+RNK         C26         N21         N20     124.166    1.50
+RNK         C26         N21         C22     120.343    1.50
+RNK         N20         N21         C22     115.491    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RNK             sp2_sp2_1         C28         C17         N15         C12     180.000     5.0     2
+RNK              const_35         N15         C17         C18         N20     180.000    10.0     2
+RNK              const_16         N15         C17         C28         CL2       0.000    10.0     2
+RNK            sp2_sp3_14         C17         N15         C12         C11     120.000    10.0     6
+RNK              const_27         C17         C18         N20         N21       0.000    10.0     2
+RNK              const_26         C18         N20         N21         C22     180.000    10.0     2
+RNK            sp2_sp3_19         C26         N21         C22          H1     150.000    10.0     6
+RNK              const_24         O27         C26         N21         C22       0.000    10.0     2
+RNK              const_20         O27         C26         C28         CL2       0.000    10.0     2
+RNK             sp2_sp3_7         C06         C05         C01          H4     150.000    10.0     6
+RNK       const_sp2_sp2_3         C01         C05         C06         C08     180.000     5.0     2
+RNK              const_32         C01         C05         C11         C12       0.000    10.0     2
+RNK       const_sp2_sp2_5         C05         C06         C08         S10       0.000     5.0     2
+RNK       const_sp2_sp2_9         C06         C08         S10         C11       0.000     5.0     2
+RNK              const_12         C12         C11         S10         C08     180.000    10.0     2
+RNK             sp2_sp3_2         S10         C11         C12         N15     -90.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RNK    plan-1         C17   0.020
+RNK    plan-1         C18   0.020
+RNK    plan-1         C22   0.020
+RNK    plan-1         C26   0.020
+RNK    plan-1         C28   0.020
+RNK    plan-1         CL2   0.020
+RNK    plan-1         H12   0.020
+RNK    plan-1         N15   0.020
+RNK    plan-1         N20   0.020
+RNK    plan-1         N21   0.020
+RNK    plan-1         O27   0.020
+RNK    plan-2         C01   0.020
+RNK    plan-2         C05   0.020
+RNK    plan-2         C06   0.020
+RNK    plan-2         C08   0.020
+RNK    plan-2         C11   0.020
+RNK    plan-2         C12   0.020
+RNK    plan-2          H7   0.020
+RNK    plan-2          H8   0.020
+RNK    plan-2         S10   0.020
+RNK    plan-3         C12   0.020
+RNK    plan-3         C17   0.020
+RNK    plan-3         H11   0.020
+RNK    plan-3         N15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RNK            InChI                InChI  1.03 InChI=1S/C11H12ClN3OS/c1-7-3-4-17-9(7)6-13-8-5-14-15(2)11(16)10(8)12/h3-5,13H,6H2,1-2H3
+RNK         InChIKey                InChI  1.03                                                             UTXFLBKLCRBXBW-UHFFFAOYSA-N
+RNK SMILES_CANONICAL               CACTVS 3.385                                                           CN1N=CC(=C(Cl)C1=O)NCc2sccc2C
+RNK           SMILES               CACTVS 3.385                                                           CN1N=CC(=C(Cl)C1=O)NCc2sccc2C
+RNK SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                         Cc1ccsc1CNC2=C(C(=O)N(N=C2)C)Cl
+RNK           SMILES "OpenEye OEToolkits" 2.0.6                                                         Cc1ccsc1CNC2=C(C(=O)N(N=C2)C)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RNK acedrg               243         "dictionary generator"                  
+RNK acedrg_database      11          "data source"                           
+RNK rdkit                2017.03.2   "Chemoinformatics tool"
+RNK refmac5              5.8.0238    "optimization tool"                     

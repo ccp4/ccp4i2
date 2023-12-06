@@ -1,0 +1,375 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GRG     GRG      "GERANYLGERANYL DIPHOSPHATE"     NON-POLYMER     62     29     .     
+#
+data_comp_GRG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GRG     C20     C       CH3     0       35.194      84.212      64.532      
+GRG     C19     C       CH3     0       36.207      84.540      66.813      
+GRG     C18     C       C       0       36.113      85.030      65.394      
+GRG     C17     C       C1      0       36.781      86.081      64.934      
+GRG     C16     C       CH2     0       37.701      87.009      65.672      
+GRG     C14     C       CH3     0       36.774      89.110      62.949      
+GRG     C13     C       C       0       37.127      89.133      64.411      
+GRG     C15     C       CH2     0       38.202      88.163      64.821      
+GRG     C12     C       C1      0       36.548      89.929      65.309      
+GRG     C11     C       CH2     0       35.452      90.931      65.100      
+GRG     C9      C       CH2     0       35.056      91.668      66.365      
+GRG     C8      C       C       0       33.973      92.683      66.121      
+GRG     C10     C       CH3     0       32.609      92.287      66.613      
+GRG     C7      C       C1      0       34.249      93.835      65.512      
+GRG     C6      C       CH2     0       33.309      94.927      65.097      
+GRG     C5      C       CH2     0       32.619      94.611      63.784      
+GRG     C3      C       C       0       31.590      95.631      63.379      
+GRG     C4      C       CH3     0       32.159      96.948      62.928      
+GRG     C2      C       C1      0       30.285      95.363      63.433      
+GRG     C1      C       CH2     0       29.167      96.285      63.048      
+GRG     O1      O       O2      0       27.912      95.643      63.260      
+GRG     PA      P       P       0       26.570      96.316      62.692      
+GRG     O1A     O       OP      -1      26.711      96.484      61.215      
+GRG     O3A     O       O2      0       26.616      97.758      63.395      
+GRG     O2A     O       O       0       25.401      95.552      63.221      
+GRG     PB      P       P       0       25.774      99.116      63.167      
+GRG     O1B     O       OP      -1      24.334      98.692      63.016      
+GRG     O2B     O       OP      -1      26.331      99.745      61.914      
+GRG     O3B     O       O       0       26.007      99.960      64.397      
+GRG     H201    H       H       0       35.129      84.606      63.647      
+GRG     H202    H       H       0       34.311      84.183      64.936      
+GRG     H203    H       H       0       35.540      83.308      64.456      
+GRG     H191    H       H       0       36.816      85.097      67.322      
+GRG     H192    H       H       0       36.531      83.625      66.819      
+GRG     H193    H       H       0       35.328      84.571      67.225      
+GRG     H17     H       H       0       36.669      86.271      64.015      
+GRG     H161    H       H       0       38.471      86.501      65.998      
+GRG     H162    H       H       0       37.231      87.371      66.450      
+GRG     H141    H       H       0       36.180      89.847      62.737      
+GRG     H142    H       H       0       36.333      88.272      62.736      
+GRG     H143    H       H       0       37.583      89.190      62.418      
+GRG     H151    H       H       0       38.630      87.800      64.018      
+GRG     H152    H       H       0       38.888      88.650      65.324      
+GRG     H12     H       H       0       36.867      89.856      66.197      
+GRG     H111    H       H       0       34.665      90.471      64.743      
+GRG     H112    H       H       0       35.743      91.586      64.433      
+GRG     HC91    H       H       0       35.842      92.123      66.729      
+GRG     HC92    H       H       0       34.747      91.019      67.030      
+GRG     H101    H       H       0       31.927      92.813      66.166      
+GRG     H102    H       H       0       32.553      92.437      67.571      
+GRG     H103    H       H       0       32.459      91.345      66.427      
+GRG     HC7     H       H       0       35.159      93.992      65.312      
+GRG     HC61    H       H       0       33.808      95.764      65.003      
+GRG     HC62    H       H       0       32.632      95.055      65.793      
+GRG     HC51    H       H       0       32.192      93.732      63.855      
+GRG     HC52    H       H       0       33.296      94.551      63.080      
+GRG     HC41    H       H       0       31.501      97.437      62.410      
+GRG     HC42    H       H       0       32.944      96.790      62.378      
+GRG     HC43    H       H       0       32.413      97.473      63.704      
+GRG     HC2     H       H       0       30.033      94.508      63.748      
+GRG     HC11    H       H       0       29.260      96.537      62.102      
+GRG     HC12    H       H       0       29.218      97.107      63.585      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GRG         C20         C18      SINGLE       n     1.499  0.0156     1.499  0.0156
+GRG         C19         C18      SINGLE       n     1.499  0.0156     1.499  0.0156
+GRG         C18         C17      DOUBLE       n     1.324  0.0100     1.324  0.0100
+GRG         C17         C16      SINGLE       n     1.498  0.0141     1.498  0.0141
+GRG         C16         C15      SINGLE       n     1.516  0.0200     1.516  0.0200
+GRG         C14         C13      SINGLE       n     1.499  0.0156     1.499  0.0156
+GRG         C13         C15      SINGLE       n     1.503  0.0104     1.503  0.0104
+GRG         C13         C12      DOUBLE       n     1.330  0.0100     1.330  0.0100
+GRG         C12         C11      SINGLE       n     1.498  0.0141     1.498  0.0141
+GRG         C11          C9      SINGLE       n     1.516  0.0200     1.516  0.0200
+GRG          C9          C8      SINGLE       n     1.503  0.0104     1.503  0.0104
+GRG          C8         C10      SINGLE       n     1.499  0.0156     1.499  0.0156
+GRG          C8          C7      DOUBLE       n     1.330  0.0100     1.330  0.0100
+GRG          C7          C6      SINGLE       n     1.498  0.0141     1.498  0.0141
+GRG          C6          C5      SINGLE       n     1.516  0.0200     1.516  0.0200
+GRG          C5          C3      SINGLE       n     1.503  0.0104     1.503  0.0104
+GRG          C3          C4      SINGLE       n     1.499  0.0156     1.499  0.0156
+GRG          C3          C2      DOUBLE       n     1.329  0.0100     1.329  0.0100
+GRG          C2          C1      SINGLE       n     1.496  0.0200     1.496  0.0200
+GRG          C1          O1      SINGLE       n     1.425  0.0152     1.425  0.0152
+GRG          O1          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+GRG          PA         O1A      SINGLE       n     1.493  0.0122     1.493  0.0122
+GRG          PA         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+GRG          PA         O2A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+GRG         O3A          PB      SINGLE       n     1.614  0.0178     1.614  0.0178
+GRG          PB         O1B      SINGLE       n     1.509  0.0200     1.509  0.0200
+GRG          PB         O2B      SINGLE       n     1.509  0.0200     1.509  0.0200
+GRG          PB         O3B      DOUBLE       n     1.509  0.0200     1.509  0.0200
+GRG         C20        H201      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG         C20        H202      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG         C20        H203      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG         C19        H191      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG         C19        H192      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG         C19        H193      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG         C17         H17      SINGLE       n     1.082  0.0130     0.945  0.0200
+GRG         C16        H161      SINGLE       n     1.089  0.0100     0.979  0.0159
+GRG         C16        H162      SINGLE       n     1.089  0.0100     0.979  0.0159
+GRG         C14        H141      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG         C14        H142      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG         C14        H143      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG         C15        H151      SINGLE       n     1.089  0.0100     0.979  0.0159
+GRG         C15        H152      SINGLE       n     1.089  0.0100     0.979  0.0159
+GRG         C12         H12      SINGLE       n     1.082  0.0130     0.945  0.0200
+GRG         C11        H111      SINGLE       n     1.089  0.0100     0.979  0.0159
+GRG         C11        H112      SINGLE       n     1.089  0.0100     0.979  0.0159
+GRG          C9        HC91      SINGLE       n     1.089  0.0100     0.979  0.0159
+GRG          C9        HC92      SINGLE       n     1.089  0.0100     0.979  0.0159
+GRG         C10        H101      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG         C10        H102      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG         C10        H103      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG          C7         HC7      SINGLE       n     1.082  0.0130     0.945  0.0200
+GRG          C6        HC61      SINGLE       n     1.089  0.0100     0.979  0.0159
+GRG          C6        HC62      SINGLE       n     1.089  0.0100     0.979  0.0159
+GRG          C5        HC51      SINGLE       n     1.089  0.0100     0.979  0.0159
+GRG          C5        HC52      SINGLE       n     1.089  0.0100     0.979  0.0159
+GRG          C4        HC41      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG          C4        HC42      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG          C4        HC43      SINGLE       n     1.089  0.0100     0.971  0.0140
+GRG          C2         HC2      SINGLE       n     1.082  0.0130     0.945  0.0200
+GRG          C1        HC11      SINGLE       n     1.089  0.0100     0.983  0.0100
+GRG          C1        HC12      SINGLE       n     1.089  0.0100     0.983  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GRG         C18         C20        H201     109.600    1.50
+GRG         C18         C20        H202     109.600    1.50
+GRG         C18         C20        H203     109.600    1.50
+GRG        H201         C20        H202     109.342    1.50
+GRG        H201         C20        H203     109.342    1.50
+GRG        H202         C20        H203     109.342    1.50
+GRG         C18         C19        H191     109.600    1.50
+GRG         C18         C19        H192     109.600    1.50
+GRG         C18         C19        H193     109.600    1.50
+GRG        H191         C19        H192     109.342    1.50
+GRG        H191         C19        H193     109.342    1.50
+GRG        H192         C19        H193     109.342    1.50
+GRG         C20         C18         C19     114.618    1.50
+GRG         C20         C18         C17     122.691    1.63
+GRG         C19         C18         C17     122.691    1.63
+GRG         C18         C17         C16     128.282    1.50
+GRG         C18         C17         H17     116.082    1.50
+GRG         C16         C17         H17     115.635    1.60
+GRG         C17         C16         C15     112.751    2.50
+GRG         C17         C16        H161     109.181    1.50
+GRG         C17         C16        H162     109.181    1.50
+GRG         C15         C16        H161     109.013    1.50
+GRG         C15         C16        H162     109.013    1.50
+GRG        H161         C16        H162     107.922    1.50
+GRG         C13         C14        H141     109.541    1.50
+GRG         C13         C14        H142     109.541    1.50
+GRG         C13         C14        H143     109.541    1.50
+GRG        H141         C14        H142     109.342    1.50
+GRG        H141         C14        H143     109.342    1.50
+GRG        H142         C14        H143     109.342    1.50
+GRG         C14         C13         C15     115.131    1.50
+GRG         C14         C13         C12     123.681    1.50
+GRG         C15         C13         C12     121.188    1.50
+GRG         C16         C15         C13     113.520    2.62
+GRG         C16         C15        H151     108.867    1.50
+GRG         C16         C15        H152     108.867    1.50
+GRG         C13         C15        H151     108.816    1.50
+GRG         C13         C15        H152     108.816    1.50
+GRG        H151         C15        H152     107.710    1.94
+GRG         C13         C12         C11     128.114    1.50
+GRG         C13         C12         H12     116.261    1.50
+GRG         C11         C12         H12     115.635    1.60
+GRG         C12         C11          C9     112.751    2.50
+GRG         C12         C11        H111     109.181    1.50
+GRG         C12         C11        H112     109.181    1.50
+GRG          C9         C11        H111     109.013    1.50
+GRG          C9         C11        H112     109.013    1.50
+GRG        H111         C11        H112     107.922    1.50
+GRG         C11          C9          C8     113.520    2.62
+GRG         C11          C9        HC91     108.867    1.50
+GRG         C11          C9        HC92     108.867    1.50
+GRG          C8          C9        HC91     108.816    1.50
+GRG          C8          C9        HC92     108.816    1.50
+GRG        HC91          C9        HC92     107.710    1.94
+GRG          C9          C8         C10     115.131    1.50
+GRG          C9          C8          C7     121.188    1.50
+GRG         C10          C8          C7     123.681    1.50
+GRG          C8         C10        H101     109.541    1.50
+GRG          C8         C10        H102     109.541    1.50
+GRG          C8         C10        H103     109.541    1.50
+GRG        H101         C10        H102     109.342    1.50
+GRG        H101         C10        H103     109.342    1.50
+GRG        H102         C10        H103     109.342    1.50
+GRG          C8          C7          C6     128.114    1.50
+GRG          C8          C7         HC7     116.261    1.50
+GRG          C6          C7         HC7     115.635    1.60
+GRG          C7          C6          C5     112.751    2.50
+GRG          C7          C6        HC61     109.181    1.50
+GRG          C7          C6        HC62     109.181    1.50
+GRG          C5          C6        HC61     109.013    1.50
+GRG          C5          C6        HC62     109.013    1.50
+GRG        HC61          C6        HC62     107.922    1.50
+GRG          C6          C5          C3     113.520    2.62
+GRG          C6          C5        HC51     108.867    1.50
+GRG          C6          C5        HC52     108.867    1.50
+GRG          C3          C5        HC51     108.816    1.50
+GRG          C3          C5        HC52     108.816    1.50
+GRG        HC51          C5        HC52     107.710    1.94
+GRG          C5          C3          C4     115.386    1.50
+GRG          C5          C3          C2     121.607    1.82
+GRG          C4          C3          C2     123.007    1.73
+GRG          C3          C4        HC41     109.541    1.50
+GRG          C3          C4        HC42     109.541    1.50
+GRG          C3          C4        HC43     109.541    1.50
+GRG        HC41          C4        HC42     109.342    1.50
+GRG        HC41          C4        HC43     109.342    1.50
+GRG        HC42          C4        HC43     109.342    1.50
+GRG          C3          C2          C1     124.396    3.00
+GRG          C3          C2         HC2     117.563    1.50
+GRG          C1          C2         HC2     118.040    2.26
+GRG          C2          C1          O1     110.575    2.78
+GRG          C2          C1        HC11     109.840    1.50
+GRG          C2          C1        HC12     109.840    1.50
+GRG          O1          C1        HC11     110.196    2.06
+GRG          O1          C1        HC12     110.196    2.06
+GRG        HC11          C1        HC12     108.062    1.50
+GRG          C1          O1          PA     119.313    1.50
+GRG          O1          PA         O1A     107.912    2.57
+GRG          O1          PA         O3A     101.065    1.97
+GRG          O1          PA         O2A     107.912    2.57
+GRG         O1A          PA         O3A     108.816    2.14
+GRG         O1A          PA         O2A     118.411    2.35
+GRG         O3A          PA         O2A     108.816    2.14
+GRG          PA         O3A          PB     132.584    3.00
+GRG         O3A          PB         O1B     105.965    2.38
+GRG         O3A          PB         O2B     105.965    2.38
+GRG         O3A          PB         O3B     105.965    2.38
+GRG         O1B          PB         O2B     112.716    1.50
+GRG         O1B          PB         O3B     112.716    1.50
+GRG         O2B          PB         O3B     112.716    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GRG             sp2_sp3_1         C19         C18         C20        H201       0.000    10.0     6
+GRG            sp2_sp3_38         C10          C8          C9         C11     120.000    10.0     6
+GRG            sp2_sp3_43          C9          C8         C10        H101       0.000    10.0     6
+GRG             sp2_sp2_9          C6          C7          C8          C9     180.000     5.0     2
+GRG            sp2_sp3_50          C8          C7          C6          C5     120.000    10.0     6
+GRG            sp3_sp3_19          C3          C5          C6          C7     180.000    10.0     3
+GRG            sp2_sp3_56          C4          C3          C5          C6     120.000    10.0     6
+GRG            sp2_sp3_61          C5          C3          C4        HC41       0.000    10.0     6
+GRG            sp2_sp2_13          C1          C2          C3          C5     180.000     5.0     2
+GRG            sp2_sp3_68          C3          C2          C1          O1     120.000    10.0     6
+GRG            sp3_sp3_28          C2          C1          O1          PA     180.000    10.0     3
+GRG             sp2_sp3_7         C20         C18         C19        H191       0.000    10.0     6
+GRG            sp3_sp3_32          C1          O1          PA         O1A     -60.000    10.0     3
+GRG            sp3_sp3_35          PB         O3A          PA          O1     -60.000    10.0     3
+GRG            sp3_sp3_38          PA         O3A          PB         O1B     -60.000    10.0     3
+GRG             sp2_sp2_1         C16         C17         C18         C20     180.000     5.0     2
+GRG            sp2_sp3_14         C18         C17         C16         C15     120.000    10.0     6
+GRG             sp3_sp3_1         C13         C15         C16         C17     180.000    10.0     3
+GRG            sp2_sp3_19         C15         C13         C14        H141       0.000    10.0     6
+GRG            sp2_sp3_26         C14         C13         C15         C16     120.000    10.0     6
+GRG             sp2_sp2_6         C11         C12         C13         C14       0.000     5.0     2
+GRG            sp2_sp3_32         C13         C12         C11          C9     120.000    10.0     6
+GRG            sp3_sp3_10         C12         C11          C9          C8     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GRG    chir_1    PA    O3A    O1    O1A    both
+GRG    chir_2    PB    O3A    O1B    O2B    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GRG    plan-1         C17   0.020
+GRG    plan-1         C18   0.020
+GRG    plan-1         C19   0.020
+GRG    plan-1         C20   0.020
+GRG    plan-2         C16   0.020
+GRG    plan-2         C17   0.020
+GRG    plan-2         C18   0.020
+GRG    plan-2         H17   0.020
+GRG    plan-3         C12   0.020
+GRG    plan-3         C13   0.020
+GRG    plan-3         C14   0.020
+GRG    plan-3         C15   0.020
+GRG    plan-4         C11   0.020
+GRG    plan-4         C12   0.020
+GRG    plan-4         C13   0.020
+GRG    plan-4         H12   0.020
+GRG    plan-5         C10   0.020
+GRG    plan-5          C7   0.020
+GRG    plan-5          C8   0.020
+GRG    plan-5          C9   0.020
+GRG    plan-6          C6   0.020
+GRG    plan-6          C7   0.020
+GRG    plan-6          C8   0.020
+GRG    plan-6         HC7   0.020
+GRG    plan-7          C2   0.020
+GRG    plan-7          C3   0.020
+GRG    plan-7          C4   0.020
+GRG    plan-7          C5   0.020
+GRG    plan-8          C1   0.020
+GRG    plan-8          C2   0.020
+GRG    plan-8          C3   0.020
+GRG    plan-8         HC2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GRG           SMILES              ACDLabs 10.04                                                                                                                          O=P(O)(O)OP(=O)(O)OC/C=C(/CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)C)C
+GRG            InChI                InChI  1.03 InChI=1S/C20H36O7P2/c1-17(2)9-6-10-18(3)11-7-12-19(4)13-8-14-20(5)15-16-26-29(24,25)27-28(21,22)23/h9,11,13,15H,6-8,10,12,14,16H2,1-5H3,(H,24,25)(H2,21,22,23)/b18-11+,19-13+,20-15+
+GRG         InChIKey                InChI  1.03                                                                                                                                                          OINNEUNVOZHBOX-QIRCYJPOSA-N
+GRG SMILES_CANONICAL               CACTVS 3.385                                                                                                                        CC(C)=CCCC(/C)=C/CC\C(C)=C\CC\C(C)=C\CO[P](O)(=O)O[P](O)(O)=O
+GRG           SMILES               CACTVS 3.385                                                                                                                              CC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCO[P](O)(=O)O[P](O)(O)=O
+GRG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                                                                      CC(=CCC/C(=C/CC/C(=C/CC/C(=C/CO[P@](=O)(O)OP(=O)(O)O)/C)/C)/C)C
+GRG           SMILES "OpenEye OEToolkits" 1.7.5                                                                                                                                  CC(=CCCC(=CCCC(=CCCC(=CCOP(=O)(O)OP(=O)(O)O)C)C)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GRG acedrg               243         "dictionary generator"                  
+GRG acedrg_database      11          "data source"                           
+GRG rdkit                2017.03.2   "Chemoinformatics tool"
+GRG refmac5              5.8.0238    "optimization tool"                     

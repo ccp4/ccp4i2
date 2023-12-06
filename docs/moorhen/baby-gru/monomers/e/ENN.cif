@@ -1,0 +1,242 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ENN     ENN      ~{N}-butyl-2,4-bis(chloranyl)-5-sulfamoyl-benzamide     NON-POLYMER     33     19     .     
+#
+data_comp_ENN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ENN     C5      C       CR16    0       20.541      1.213       -16.103     
+ENN     C4      C       CR6     0       19.800      0.105       -16.536     
+ENN     C6      C       CR6     0       20.650      2.368       -16.880     
+ENN     C2      C       CR16    0       19.254      1.321       -18.559     
+ENN     O14     O       O       0       19.338      -1.009      -14.487     
+ENN     C13     C       C       0       19.715      -1.106      -15.655     
+ENN     N15     N       NH1     0       20.045      -2.281      -16.203     
+ENN     C16     C       CH2     0       19.917      -3.540      -15.481     
+ENN     C17     C       CH2     0       20.136      -4.750      -16.373     
+ENN     C18     C       CH2     0       19.055      -4.920      -17.432     
+ENN     C19     C       CH3     0       17.738      -5.401      -16.869     
+ENN     C3      C       CR6     0       19.158      0.183       -17.768     
+ENN     CL1     CL      CL      0       18.216      -1.142      -18.382     
+ENN     C1      C       CR6     0       19.995      2.404       -18.114     
+ENN     CL2     CL      CL      0       20.072      3.792       -19.148     
+ENN     S7      S       S3      0       21.608      3.725       -16.269     
+ENN     O9      O       O       0       22.742      3.858       -17.133     
+ENN     O10     O       O       0       20.713      4.836       -16.127     
+ENN     N8      N       NT2     0       22.169      3.388       -14.805     
+ENN     H1      H       H       0       20.972      1.175       -15.280     
+ENN     H2      H       H       0       18.823      1.358       -19.382     
+ENN     H3      H       H       0       20.360      -2.300      -17.019     
+ENN     H4      H       H       0       19.022      -3.591      -15.082     
+ENN     H5      H       H       0       20.572      -3.556      -14.751     
+ENN     H6      H       H       0       20.166      -5.554      -15.811     
+ENN     H7      H       H       0       21.008      -4.662      -16.814     
+ENN     H8      H       H       0       19.367      -5.564      -18.105     
+ENN     H9      H       H       0       18.912      -4.061      -17.886     
+ENN     H10     H       H       0       17.154      -5.676      -17.596     
+ENN     H11     H       H       0       17.315      -4.681      -16.369     
+ENN     H12     H       H       0       17.894      -6.157      -16.276     
+ENN     H13     H       H       0       22.162      4.074       -14.272     
+ENN     H14     H       H       0       22.904      2.925       -14.821     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ENN          C1         CL2      SINGLE       n     1.732  0.0100     1.732  0.0100
+ENN          C3         CL1      SINGLE       n     1.737  0.0100     1.737  0.0100
+ENN          C2          C1      DOUBLE       y     1.383  0.0100     1.383  0.0100
+ENN          C2          C3      SINGLE       y     1.388  0.0100     1.388  0.0100
+ENN          C6          C1      SINGLE       y     1.393  0.0100     1.393  0.0100
+ENN          C4          C3      DOUBLE       y     1.387  0.0100     1.387  0.0100
+ENN          C5          C6      DOUBLE       y     1.389  0.0100     1.389  0.0100
+ENN          C6          S7      SINGLE       n     1.768  0.0100     1.768  0.0100
+ENN          C5          C4      SINGLE       y     1.396  0.0100     1.396  0.0100
+ENN          C4         C13      SINGLE       n     1.498  0.0100     1.498  0.0100
+ENN         C17         C18      SINGLE       n     1.520  0.0176     1.520  0.0176
+ENN         C18         C19      SINGLE       n     1.510  0.0200     1.510  0.0200
+ENN          S7          O9      DOUBLE       n     1.433  0.0100     1.433  0.0100
+ENN         C13         N15      SINGLE       n     1.333  0.0111     1.333  0.0111
+ENN         N15         C16      SINGLE       n     1.455  0.0100     1.455  0.0100
+ENN         C16         C17      SINGLE       n     1.517  0.0143     1.517  0.0143
+ENN         O14         C13      DOUBLE       n     1.230  0.0114     1.230  0.0114
+ENN          S7         O10      DOUBLE       n     1.433  0.0100     1.433  0.0100
+ENN          S7          N8      SINGLE       n     1.603  0.0110     1.603  0.0110
+ENN          C5          H1      SINGLE       n     1.082  0.0130     0.930  0.0100
+ENN          C2          H2      SINGLE       n     1.082  0.0130     0.930  0.0100
+ENN         N15          H3      SINGLE       n     1.016  0.0100     0.873  0.0200
+ENN         C16          H4      SINGLE       n     1.089  0.0100     0.981  0.0152
+ENN         C16          H5      SINGLE       n     1.089  0.0100     0.981  0.0152
+ENN         C17          H6      SINGLE       n     1.089  0.0100     0.981  0.0160
+ENN         C17          H7      SINGLE       n     1.089  0.0100     0.981  0.0160
+ENN         C18          H8      SINGLE       n     1.089  0.0100     0.982  0.0155
+ENN         C18          H9      SINGLE       n     1.089  0.0100     0.982  0.0155
+ENN         C19         H10      SINGLE       n     1.089  0.0100     0.973  0.0157
+ENN         C19         H11      SINGLE       n     1.089  0.0100     0.973  0.0157
+ENN         C19         H12      SINGLE       n     1.089  0.0100     0.973  0.0157
+ENN          N8         H13      SINGLE       n     1.036  0.0160     0.869  0.0200
+ENN          N8         H14      SINGLE       n     1.036  0.0160     0.869  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ENN          C6          C5          C4     120.733    1.50
+ENN          C6          C5          H1     119.455    1.50
+ENN          C4          C5          H1     119.812    1.50
+ENN          C3          C4          C5     118.155    1.50
+ENN          C3          C4         C13     122.111    1.90
+ENN          C5          C4         C13     119.735    2.89
+ENN          C1          C6          C5     118.221    1.50
+ENN          C1          C6          S7     123.236    1.50
+ENN          C5          C6          S7     118.543    1.50
+ENN          C1          C2          C3     120.144    1.50
+ENN          C1          C2          H2     119.790    1.50
+ENN          C3          C2          H2     120.066    1.50
+ENN          C4         C13         N15     116.603    1.50
+ENN          C4         C13         O14     121.497    1.50
+ENN         N15         C13         O14     121.899    1.50
+ENN         C13         N15         C16     121.796    1.50
+ENN         C13         N15          H3     119.379    1.77
+ENN         C16         N15          H3     118.813    1.50
+ENN         N15         C16         C17     112.199    1.50
+ENN         N15         C16          H4     109.020    1.50
+ENN         N15         C16          H5     109.020    1.50
+ENN         C17         C16          H4     109.197    1.51
+ENN         C17         C16          H5     109.197    1.51
+ENN          H4         C16          H5     107.877    1.50
+ENN         C18         C17         C16     112.919    1.70
+ENN         C18         C17          H6     109.463    1.50
+ENN         C18         C17          H7     109.463    1.50
+ENN         C16         C17          H6     108.956    1.50
+ENN         C16         C17          H7     108.956    1.50
+ENN          H6         C17          H7     107.927    1.57
+ENN         C17         C18         C19     112.927    1.64
+ENN         C17         C18          H8     108.966    1.50
+ENN         C17         C18          H9     108.966    1.50
+ENN         C19         C18          H8     108.918    1.50
+ENN         C19         C18          H9     108.918    1.50
+ENN          H8         C18          H9     107.763    1.50
+ENN         C18         C19         H10     109.554    1.50
+ENN         C18         C19         H11     109.554    1.50
+ENN         C18         C19         H12     109.554    1.50
+ENN         H10         C19         H11     109.380    1.50
+ENN         H10         C19         H12     109.380    1.50
+ENN         H11         C19         H12     109.380    1.50
+ENN         CL1          C3          C2     117.380    1.50
+ENN         CL1          C3          C4     120.827    1.50
+ENN          C2          C3          C4     121.793    1.50
+ENN         CL2          C1          C2     117.484    1.50
+ENN         CL2          C1          C6     121.562    1.50
+ENN          C2          C1          C6     120.954    1.50
+ENN          C6          S7          O9     107.073    1.50
+ENN          C6          S7         O10     107.073    1.50
+ENN          C6          S7          N8     108.184    1.98
+ENN          O9          S7         O10     118.954    1.50
+ENN          O9          S7          N8     107.154    1.50
+ENN         O10          S7          N8     107.154    1.50
+ENN          S7          N8         H13     113.070    3.00
+ENN          S7          N8         H14     113.070    3.00
+ENN         H13          N8         H14     115.993    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ENN              const_23         C13          C4          C5          C6     180.000    10.0     2
+ENN       const_sp2_sp2_2          C4          C5          C6          S7     180.000     5.0     2
+ENN            sp3_sp3_29         H13          N8          S7          O9     -60.000    10.0     3
+ENN              const_20         CL1          C3          C4         C13       0.000    10.0     2
+ENN             sp2_sp2_1         N15         C13          C4          C3     180.000     5.0     2
+ENN       const_sp2_sp2_8         CL2          C1          C6          S7       0.000     5.0     2
+ENN             sp2_sp3_1          C1          C6          S7          O9     150.000    10.0     6
+ENN              const_14          C1          C2          C3         CL1     180.000    10.0     2
+ENN              const_11         CL2          C1          C2          C3     180.000    10.0     2
+ENN             sp2_sp2_7         O14         C13         N15         C16       0.000     5.0     2
+ENN             sp2_sp3_8         C13         N15         C16         C17     120.000    10.0     6
+ENN            sp3_sp3_19         N15         C16         C17         C18     180.000    10.0     3
+ENN             sp3_sp3_1         C16         C17         C18         C19     180.000    10.0     3
+ENN            sp3_sp3_10         C17         C18         C19         H10     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ENN    chir_1    S7    O9    O10    N8    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ENN    plan-1          C1   0.020
+ENN    plan-1         C13   0.020
+ENN    plan-1          C2   0.020
+ENN    plan-1          C3   0.020
+ENN    plan-1          C4   0.020
+ENN    plan-1          C5   0.020
+ENN    plan-1          C6   0.020
+ENN    plan-1         CL1   0.020
+ENN    plan-1         CL2   0.020
+ENN    plan-1          H1   0.020
+ENN    plan-1          H2   0.020
+ENN    plan-1          S7   0.020
+ENN    plan-2         C13   0.020
+ENN    plan-2          C4   0.020
+ENN    plan-2         N15   0.020
+ENN    plan-2         O14   0.020
+ENN    plan-3         C13   0.020
+ENN    plan-3         C16   0.020
+ENN    plan-3          H3   0.020
+ENN    plan-3         N15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ENN            InChI                InChI  1.03 InChI=1S/C11H14Cl2N2O3S/c1-2-3-4-15-11(16)7-5-10(19(14,17)18)9(13)6-8(7)12/h5-6H,2-4H2,1H3,(H,15,16)(H2,14,17,18)
+ENN         InChIKey                InChI  1.03                                                                                       KRIUYRKSVUBELV-UHFFFAOYSA-N
+ENN SMILES_CANONICAL               CACTVS 3.385                                                                            CCCCNC(=O)c1cc(c(Cl)cc1Cl)[S](N)(=O)=O
+ENN           SMILES               CACTVS 3.385                                                                            CCCCNC(=O)c1cc(c(Cl)cc1Cl)[S](N)(=O)=O
+ENN SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                              CCCCNC(=O)c1cc(c(cc1Cl)Cl)S(=O)(=O)N
+ENN           SMILES "OpenEye OEToolkits" 2.0.6                                                                              CCCCNC(=O)c1cc(c(cc1Cl)Cl)S(=O)(=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ENN acedrg               243         "dictionary generator"                  
+ENN acedrg_database      11          "data source"                           
+ENN rdkit                2017.03.2   "Chemoinformatics tool"
+ENN refmac5              5.8.0238    "optimization tool"                     

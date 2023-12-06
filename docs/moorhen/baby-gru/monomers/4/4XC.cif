@@ -1,0 +1,266 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4XC     4XC      3-(8-amino-3,4-dihydroisoquinolin-2(1H)-yl)-N-methylpropanamide     NON-POLYMER     36     17     .     
+#
+data_comp_4XC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4XC     CAJ     C       CH2     0       12.268      -6.597      0.742       
+4XC     CAH     C       CH2     0       12.780      -5.220      0.375       
+4XC     CAO     C       CR66    0       11.840      -4.484      -0.548      
+4XC     CAF     C       CR16    0       12.291      -3.349      -1.230      
+4XC     CAD     C       CR16    0       11.448      -2.659      -2.074      
+4XC     CAE     C       CR16    0       10.151      -3.077      -2.255      
+4XC     CAN     C       CR6     0       9.676       -4.195      -1.591      
+4XC     NAB     N       NH2     0       8.377       -4.594      -1.788      
+4XC     CAP     C       CR66    0       10.516      -4.913      -0.719      
+4XC     CAK     C       CH2     0       10.015      -6.145      0.014       
+4XC     NAQ     N       NT      0       10.865      -6.536      1.164       
+4XC     CAI     C       CH2     0       10.430      -7.776      1.830       
+4XC     CAG     C       CH2     0       10.753      -7.774      3.316       
+4XC     CAM     C       C       0       10.321      -9.031      4.045       
+4XC     OAC     O       O       0       9.917       -10.019     3.433       
+4XC     NAL     N       NH1     0       10.411      -8.993      5.375       
+4XC     CAA     C       CH3     0       10.075      -10.109     6.242       
+4XC     H1      H       H       0       12.351      -7.195      -0.031      
+4XC     H2      H       H       0       12.815      -6.965      1.467       
+4XC     H3      H       H       0       12.904      -4.695      1.191       
+4XC     H4      H       H       0       13.652      -5.306      -0.059      
+4XC     H5      H       H       0       13.182      -3.057      -1.110      
+4XC     H6      H       H       0       11.757      -1.900      -2.531      
+4XC     H7      H       H       0       9.576       -2.600      -2.836      
+4XC     H8      H       H       0       8.206       -5.388      -2.125      
+4XC     H9      H       H       0       7.714       -4.055      -1.577      
+4XC     H10     H       H       0       9.968       -6.887      -0.610      
+4XC     H11     H       H       0       9.115       -5.978      0.335       
+4XC     H13     H       H       0       10.867      -8.539      1.404       
+4XC     H14     H       H       0       9.465       -7.882      1.714       
+4XC     H15     H       H       0       10.316      -7.000      3.736       
+4XC     H16     H       H       0       11.723      -7.663      3.433       
+4XC     H17     H       H       0       10.689      -8.256      5.752       
+4XC     H18     H       H       0       9.334       -10.613     5.866       
+4XC     H19     H       H       0       9.819       -9.772      7.116       
+4XC     H20     H       H       0       10.847      -10.690     6.336       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4XC         CAD         CAE      DOUBLE       y     1.373  0.0151     1.373  0.0151
+4XC         CAE         CAN      SINGLE       y     1.381  0.0100     1.381  0.0100
+4XC         CAF         CAD      SINGLE       y     1.377  0.0100     1.377  0.0100
+4XC         CAN         NAB      SINGLE       n     1.370  0.0200     1.370  0.0200
+4XC         CAN         CAP      DOUBLE       y     1.400  0.0100     1.400  0.0100
+4XC         CAO         CAF      DOUBLE       y     1.395  0.0100     1.395  0.0100
+4XC         CAO         CAP      SINGLE       y     1.391  0.0100     1.391  0.0100
+4XC         CAP         CAK      SINGLE       n     1.511  0.0125     1.511  0.0125
+4XC         CAH         CAO      SINGLE       n     1.506  0.0100     1.506  0.0100
+4XC         CAK         NAQ      SINGLE       n     1.475  0.0170     1.475  0.0170
+4XC         CAJ         CAH      SINGLE       n     1.513  0.0145     1.513  0.0145
+4XC         CAJ         NAQ      SINGLE       n     1.460  0.0164     1.460  0.0164
+4XC         NAQ         CAI      SINGLE       n     1.468  0.0120     1.468  0.0120
+4XC         CAI         CAG      SINGLE       n     1.516  0.0178     1.516  0.0178
+4XC         CAG         CAM      SINGLE       n     1.514  0.0100     1.514  0.0100
+4XC         CAM         OAC      DOUBLE       n     1.229  0.0102     1.229  0.0102
+4XC         CAM         NAL      SINGLE       n     1.329  0.0100     1.329  0.0100
+4XC         NAL         CAA      SINGLE       n     1.450  0.0100     1.450  0.0100
+4XC         CAJ          H1      SINGLE       n     1.089  0.0100     0.980  0.0143
+4XC         CAJ          H2      SINGLE       n     1.089  0.0100     0.980  0.0143
+4XC         CAH          H3      SINGLE       n     1.089  0.0100     0.978  0.0172
+4XC         CAH          H4      SINGLE       n     1.089  0.0100     0.978  0.0172
+4XC         CAF          H5      SINGLE       n     1.082  0.0130     0.946  0.0179
+4XC         CAD          H6      SINGLE       n     1.082  0.0130     0.938  0.0100
+4XC         CAE          H7      SINGLE       n     1.082  0.0130     0.947  0.0100
+4XC         NAB          H8      SINGLE       n     1.016  0.0100     0.880  0.0200
+4XC         NAB          H9      SINGLE       n     1.016  0.0100     0.880  0.0200
+4XC         CAK         H10      SINGLE       n     1.089  0.0100     0.970  0.0100
+4XC         CAK         H11      SINGLE       n     1.089  0.0100     0.970  0.0100
+4XC         CAI         H13      SINGLE       n     1.089  0.0100     0.977  0.0100
+4XC         CAI         H14      SINGLE       n     1.089  0.0100     0.977  0.0100
+4XC         CAG         H15      SINGLE       n     1.089  0.0100     0.983  0.0105
+4XC         CAG         H16      SINGLE       n     1.089  0.0100     0.983  0.0105
+4XC         NAL         H17      SINGLE       n     1.016  0.0100     0.872  0.0200
+4XC         CAA         H18      SINGLE       n     1.089  0.0100     0.971  0.0198
+4XC         CAA         H19      SINGLE       n     1.089  0.0100     0.971  0.0198
+4XC         CAA         H20      SINGLE       n     1.089  0.0100     0.971  0.0198
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4XC         CAH         CAJ         NAQ     111.144    1.62
+4XC         CAH         CAJ          H1     109.593    1.50
+4XC         CAH         CAJ          H2     109.593    1.50
+4XC         NAQ         CAJ          H1     109.490    1.50
+4XC         NAQ         CAJ          H2     109.490    1.50
+4XC          H1         CAJ          H2     108.037    1.50
+4XC         CAO         CAH         CAJ     111.249    1.50
+4XC         CAO         CAH          H3     109.345    1.50
+4XC         CAO         CAH          H4     109.345    1.50
+4XC         CAJ         CAH          H3     109.435    1.50
+4XC         CAJ         CAH          H4     109.435    1.50
+4XC          H3         CAH          H4     107.965    1.50
+4XC         CAF         CAO         CAP     119.093    1.50
+4XC         CAF         CAO         CAH     120.868    1.63
+4XC         CAP         CAO         CAH     120.040    1.50
+4XC         CAD         CAF         CAO     120.653    1.50
+4XC         CAD         CAF          H5     119.885    1.50
+4XC         CAO         CAF          H5     119.463    1.50
+4XC         CAE         CAD         CAF     121.168    1.50
+4XC         CAE         CAD          H6     119.113    1.50
+4XC         CAF         CAD          H6     119.720    1.50
+4XC         CAD         CAE         CAN     120.852    1.50
+4XC         CAD         CAE          H7     119.825    1.50
+4XC         CAN         CAE          H7     119.323    1.50
+4XC         CAE         CAN         NAB     120.195    1.50
+4XC         CAE         CAN         CAP     119.719    2.04
+4XC         NAB         CAN         CAP     120.086    1.50
+4XC         CAN         NAB          H8     120.027    1.50
+4XC         CAN         NAB          H9     120.027    1.50
+4XC          H8         NAB          H9     119.947    2.44
+4XC         CAN         CAP         CAO     118.516    1.50
+4XC         CAN         CAP         CAK     121.630    1.50
+4XC         CAO         CAP         CAK     119.853    2.13
+4XC         CAP         CAK         NAQ     112.474    1.50
+4XC         CAP         CAK         H10     109.233    1.50
+4XC         CAP         CAK         H11     109.233    1.50
+4XC         NAQ         CAK         H10     109.216    1.50
+4XC         NAQ         CAK         H11     109.216    1.50
+4XC         H10         CAK         H11     107.777    1.50
+4XC         CAK         NAQ         CAJ     109.469    1.50
+4XC         CAK         NAQ         CAI     113.254    1.54
+4XC         CAJ         NAQ         CAI     111.219    1.66
+4XC         NAQ         CAI         CAG     112.194    1.50
+4XC         NAQ         CAI         H13     108.913    1.50
+4XC         NAQ         CAI         H14     108.913    1.50
+4XC         CAG         CAI         H13     109.287    1.50
+4XC         CAG         CAI         H14     109.287    1.50
+4XC         H13         CAI         H14     107.831    1.50
+4XC         CAI         CAG         CAM     112.333    2.26
+4XC         CAI         CAG         H15     109.274    1.50
+4XC         CAI         CAG         H16     109.274    1.50
+4XC         CAM         CAG         H15     108.929    1.50
+4XC         CAM         CAG         H16     108.929    1.50
+4XC         H15         CAG         H16     107.705    1.50
+4XC         CAG         CAM         OAC     121.392    1.50
+4XC         CAG         CAM         NAL     116.287    1.50
+4XC         OAC         CAM         NAL     122.320    1.50
+4XC         CAM         NAL         CAA     122.714    1.50
+4XC         CAM         NAL         H17     118.811    1.50
+4XC         CAA         NAL         H17     118.475    1.58
+4XC         NAL         CAA         H18     109.480    1.50
+4XC         NAL         CAA         H19     109.480    1.50
+4XC         NAL         CAA         H20     109.480    1.50
+4XC         H18         CAA         H19     109.279    1.79
+4XC         H18         CAA         H20     109.279    1.79
+4XC         H19         CAA         H20     109.279    1.79
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4XC             sp3_sp3_1         CAO         CAH         CAJ         NAQ      60.000    10.0     3
+4XC            sp3_sp3_17         CAH         CAJ         NAQ         CAI     -60.000    10.0     3
+4XC            sp3_sp3_22         CAG         CAI         NAQ         CAK     180.000    10.0     3
+4XC            sp3_sp3_28         CAM         CAG         CAI         NAQ     180.000    10.0     3
+4XC            sp2_sp3_14         OAC         CAM         CAG         CAI     120.000    10.0     6
+4XC             sp2_sp2_5         CAG         CAM         NAL         CAA     180.000     5.0     2
+4XC            sp2_sp3_19         CAM         NAL         CAA         H18       0.000    10.0     6
+4XC             sp2_sp3_4         CAF         CAO         CAH         CAJ     180.000    10.0     6
+4XC       const_sp2_sp2_1         CAD         CAF         CAO         CAP       0.000     5.0     2
+4XC              const_21         CAF         CAO         CAP         CAN       0.000    10.0     2
+4XC       const_sp2_sp2_5         CAE         CAD         CAF         CAO       0.000     5.0     2
+4XC       const_sp2_sp2_9         CAF         CAD         CAE         CAN       0.000     5.0     2
+4XC              const_14         CAD         CAE         CAN         NAB     180.000    10.0     2
+4XC             sp2_sp2_1         CAE         CAN         NAB          H8     180.000     5.0     2
+4XC              const_19         NAB         CAN         CAP         CAO     180.000    10.0     2
+4XC            sp2_sp3_10         CAN         CAP         CAK         NAQ     180.000    10.0     6
+4XC            sp3_sp3_11         CAP         CAK         NAQ         CAI     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+4XC    chir_1    NAQ    CAK    CAI    CAJ    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4XC    plan-1         CAD   0.020
+4XC    plan-1         CAE   0.020
+4XC    plan-1         CAF   0.020
+4XC    plan-1         CAH   0.020
+4XC    plan-1         CAK   0.020
+4XC    plan-1         CAN   0.020
+4XC    plan-1         CAO   0.020
+4XC    plan-1         CAP   0.020
+4XC    plan-1          H5   0.020
+4XC    plan-1          H6   0.020
+4XC    plan-1          H7   0.020
+4XC    plan-1         NAB   0.020
+4XC    plan-2         CAN   0.020
+4XC    plan-2          H8   0.020
+4XC    plan-2          H9   0.020
+4XC    plan-2         NAB   0.020
+4XC    plan-3         CAG   0.020
+4XC    plan-3         CAM   0.020
+4XC    plan-3         NAL   0.020
+4XC    plan-3         OAC   0.020
+4XC    plan-4         CAA   0.020
+4XC    plan-4         CAM   0.020
+4XC    plan-4         H17   0.020
+4XC    plan-4         NAL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4XC           SMILES              ACDLabs 12.01                                                                     C1N(Cc2c(C1)cccc2N)CCC(NC)=O
+4XC            InChI                InChI  1.03 InChI=1S/C13H19N3O/c1-15-13(17)6-8-16-7-5-10-3-2-4-12(14)11(10)9-16/h2-4H,5-9,14H2,1H3,(H,15,17)
+4XC         InChIKey                InChI  1.03                                                                      RZXHZFVCPWDPAP-UHFFFAOYSA-N
+4XC SMILES_CANONICAL               CACTVS 3.385                                                                       CNC(=O)CCN1CCc2cccc(N)c2C1
+4XC           SMILES               CACTVS 3.385                                                                       CNC(=O)CCN1CCc2cccc(N)c2C1
+4XC SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                       CNC(=O)CCN1CCc2cccc(c2C1)N
+4XC           SMILES "OpenEye OEToolkits" 1.9.2                                                                       CNC(=O)CCN1CCc2cccc(c2C1)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4XC acedrg               243         "dictionary generator"                  
+4XC acedrg_database      11          "data source"                           
+4XC rdkit                2017.03.2   "Chemoinformatics tool"
+4XC refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,184 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+L3B     L3B      5-(2-methylphenyl)-3H-1,2,4-triazole-3-thione     NON-POLYMER     20     13     .     
+#
+data_comp_L3B
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+L3B     S6      S       S1      0       20.860      26.966      -0.401      
+L3B     C1      C       CR5     0       20.013      26.879      1.006       
+L3B     N5      N       NRD5    0       19.866      27.846      1.869       
+L3B     C4      C       CR5     0       18.784      27.504      2.628       
+L3B     N3      N       NRD5    0       18.457      26.237      2.368       
+L3B     N2      N       NRD5    0       19.365      25.822      1.451       
+L3B     C7      C       CR6     0       18.101      28.387      3.587       
+L3B     C12     C       CR16    0       18.064      28.024      4.935       
+L3B     C11     C       CR16    0       17.431      28.823      5.876       
+L3B     C10     C       CR16    0       16.823      29.998      5.484       
+L3B     C9      C       CR16    0       16.847      30.373      4.154       
+L3B     C8      C       CR6     0       17.481      29.582      3.179       
+L3B     C13     C       CH3     0       17.479      30.038      1.739       
+L3B     H12     H       H       0       18.480      27.220      5.209       
+L3B     H11     H       H       0       17.418      28.562      6.782       
+L3B     H10     H       H       0       16.391      30.544      6.122       
+L3B     H9      H       H       0       16.429      31.177      3.893       
+L3B     H133    H       H       0       16.981      30.867      1.656       
+L3B     H132    H       H       0       17.064      29.358      1.184       
+L3B     H131    H       H       0       18.392      30.181      1.443       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+L3B          S6          C1      DOUBLE       n     1.645  0.0143     1.645  0.0143
+L3B          C1          N2      SINGLE       n     1.315  0.0200     1.315  0.0200
+L3B          C1          N5      SINGLE       n     1.301  0.0200     1.301  0.0200
+L3B          N3          N2      DOUBLE       n     1.357  0.0112     1.357  0.0112
+L3B          C8         C13      SINGLE       n     1.508  0.0100     1.508  0.0100
+L3B          N5          C4      DOUBLE       n     1.365  0.0200     1.365  0.0200
+L3B          C4          N3      SINGLE       n     1.334  0.0100     1.334  0.0100
+L3B          C4          C7      SINGLE       n     1.470  0.0100     1.470  0.0100
+L3B          C7          C8      SINGLE       y     1.400  0.0100     1.400  0.0100
+L3B          C9          C8      DOUBLE       y     1.395  0.0162     1.395  0.0162
+L3B          C7         C12      DOUBLE       y     1.392  0.0100     1.392  0.0100
+L3B         C10          C9      SINGLE       y     1.379  0.0108     1.379  0.0108
+L3B         C12         C11      SINGLE       y     1.384  0.0100     1.384  0.0100
+L3B         C11         C10      DOUBLE       y     1.376  0.0124     1.376  0.0124
+L3B         C12         H12      SINGLE       n     1.082  0.0130     0.945  0.0100
+L3B         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0180
+L3B         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0175
+L3B          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0173
+L3B         C13        H133      SINGLE       n     1.089  0.0100     0.971  0.0135
+L3B         C13        H132      SINGLE       n     1.089  0.0100     0.971  0.0135
+L3B         C13        H131      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+L3B          S6          C1          N2     125.838    1.83
+L3B          S6          C1          N5     125.838    1.83
+L3B          N2          C1          N5     108.324    3.00
+L3B          C1          N5          C4     106.158    3.00
+L3B          N5          C4          N3     109.452    1.50
+L3B          N5          C4          C7     124.856    2.15
+L3B          N3          C4          C7     125.691    1.50
+L3B          N2          N3          C4     107.578    3.00
+L3B          C1          N2          N3     108.487    1.57
+L3B          C4          C7          C8     120.862    1.66
+L3B          C4          C7         C12     119.748    1.50
+L3B          C8          C7         C12     119.390    1.61
+L3B          C7         C12         C11     120.920    1.50
+L3B          C7         C12         H12     119.358    1.50
+L3B         C11         C12         H12     119.721    1.50
+L3B         C12         C11         C10     119.879    1.50
+L3B         C12         C11         H11     119.977    1.50
+L3B         C10         C11         H11     120.144    1.50
+L3B          C9         C10         C11     119.791    1.50
+L3B          C9         C10         H10     120.059    1.50
+L3B         C11         C10         H10     120.150    1.50
+L3B          C8          C9         C10     121.379    1.50
+L3B          C8          C9          H9     119.065    1.50
+L3B         C10          C9          H9     119.556    1.50
+L3B         C13          C8          C7     121.808    1.50
+L3B         C13          C8          C9     119.552    1.50
+L3B          C7          C8          C9     118.640    1.50
+L3B          C8         C13        H133     109.525    1.50
+L3B          C8         C13        H132     109.525    1.50
+L3B          C8         C13        H131     109.525    1.50
+L3B        H133         C13        H132     109.348    1.50
+L3B        H133         C13        H131     109.348    1.50
+L3B        H132         C13        H131     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+L3B       const_sp2_sp2_7         C13          C8          C9         C10     180.000     5.0     2
+L3B             sp2_sp3_1          C7          C8         C13        H133     150.000    10.0     6
+L3B             sp2_sp2_9          S6          C1          N5          C4     180.000     5.0     2
+L3B             sp2_sp2_2          S6          C1          N2          N3     180.000     5.0     2
+L3B             sp2_sp2_6          N3          C4          N5          C1       0.000     5.0     2
+L3B             sp2_sp2_4          N5          C4          N3          N2       0.000     5.0     2
+L3B            sp2_sp2_10          N5          C4          C7          C8     180.000     5.0     2
+L3B             sp2_sp2_3          C1          N2          N3          C4       0.000     5.0     2
+L3B       const_sp2_sp2_4          C4          C7          C8         C13       0.000     5.0     2
+L3B              const_22         C11         C12          C7          C4     180.000    10.0     2
+L3B              const_17         C10         C11         C12          C7       0.000    10.0     2
+L3B              const_13          C9         C10         C11         C12       0.000    10.0     2
+L3B       const_sp2_sp2_9         C11         C10          C9          C8       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+L3B    plan-1         C10   0.020
+L3B    plan-1         C11   0.020
+L3B    plan-1         C12   0.020
+L3B    plan-1         C13   0.020
+L3B    plan-1          C4   0.020
+L3B    plan-1          C7   0.020
+L3B    plan-1          C8   0.020
+L3B    plan-1          C9   0.020
+L3B    plan-1         H10   0.020
+L3B    plan-1         H11   0.020
+L3B    plan-1         H12   0.020
+L3B    plan-1          H9   0.020
+L3B    plan-2          C1   0.020
+L3B    plan-2          N2   0.020
+L3B    plan-2          N5   0.020
+L3B    plan-2          S6   0.020
+L3B    plan-3          C4   0.020
+L3B    plan-3          C7   0.020
+L3B    plan-3          N3   0.020
+L3B    plan-3          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+L3B           SMILES              ACDLabs 12.01                                        S=C1N=NC(=N1)c2ccccc2C
+L3B            InChI                InChI  1.03 InChI=1S/C9H7N3S/c1-6-4-2-3-5-7(6)8-10-9(13)12-11-8/h2-5H,1H3
+L3B         InChIKey                InChI  1.03                                   DEADBTNDSDWXDC-UHFFFAOYSA-N
+L3B SMILES_CANONICAL               CACTVS 3.385                                        Cc1ccccc1C2=NC(=S)N=N2
+L3B           SMILES               CACTVS 3.385                                        Cc1ccccc1C2=NC(=S)N=N2
+L3B SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                        Cc1ccccc1C2=NC(=S)N=N2
+L3B           SMILES "OpenEye OEToolkits" 1.9.2                                        Cc1ccccc1C2=NC(=S)N=N2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+L3B acedrg               243         "dictionary generator"                  
+L3B acedrg_database      11          "data source"                           
+L3B rdkit                2017.03.2   "Chemoinformatics tool"
+L3B refmac5              5.8.0238    "optimization tool"                     

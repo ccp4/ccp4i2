@@ -1,0 +1,339 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+G9L     G9L      8-fluoro-2-(3-piperidin-1-ylpropanoyl)-1,3,4,5-tetrahydrobenzo[c][1,6]naphthyridin-6(2H)-one     NON-POLYMER     50     26     .     
+#
+data_comp_G9L
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+G9L     N11     N       NT      0       16.073      57.830      2.477       
+G9L     N12     N       NR6     0       19.237      56.793      5.688       
+G9L     N13     N       NR6     0       20.953      58.618      9.131       
+G9L     OAA     O       O       0       18.907      54.901      4.484       
+G9L     OAB     O       O       0       21.029      60.200      10.717      
+G9L     FAC     F       F       0       17.893      63.859      9.074       
+G9L     CAD     C       CR16    0       17.800      62.205      7.394       
+G9L     CAE     C       CR16    0       18.201      60.985      6.906       
+G9L     CAF     C       CR16    0       19.182      61.922      9.349       
+G9L     CAG     C       CH2     0       14.190      59.670      1.222       
+G9L     CAH     C       CH2     0       14.162      58.177      0.950       
+G9L     CAI     C       CH2     0       15.575      60.103      1.662       
+G9L     CAJ     C       CH2     0       18.168      56.885      3.423       
+G9L     CAK     C       CH2     0       20.956      56.809      7.462       
+G9L     CAL     C       CH2     0       14.713      57.390      2.128       
+G9L     CAM     C       CH2     0       16.069      59.258      2.821       
+G9L     CAN     C       CH2     0       16.661      57.017      3.561       
+G9L     CAO     C       CH2     0       19.816      56.053      6.823       
+G9L     CAP     C       CH2     0       19.090      58.295      5.846       
+G9L     CAR     C       C       0       18.809      56.122      4.575       
+G9L     CAS     C       CR6     0       18.305      62.646      8.612       
+G9L     CAT     C       CR66    0       20.487      58.147      7.929       
+G9L     CAU     C       CR66    0       19.562      58.873      7.160       
+G9L     CAV     C       CR6     0       20.565      59.842      9.641       
+G9L     CAW     C       CR66    0       19.122      60.165      7.626       
+G9L     CAX     C       CR66    0       19.619      60.653      8.875       
+G9L     HN13    H       H       0       21.527      58.134      9.602       
+G9L     HAD     H       H       0       17.196      62.726      6.909       
+G9L     HAE     H       H       0       17.859      60.691      6.085       
+G9L     HAF     H       H       0       19.504      62.253      10.171      
+G9L     HAG     H       H       0       13.936      60.156      0.409       
+G9L     HAGA    H       H       0       13.538      59.888      1.922       
+G9L     HAH     H       H       0       13.240      57.895      0.775       
+G9L     HAHA    H       H       0       14.695      57.982      0.152       
+G9L     HAI     H       H       0       15.551      61.045      1.933       
+G9L     HAIA    H       H       0       16.198      60.020      0.910       
+G9L     HAJ     H       H       0       18.559      57.768      3.345       
+G9L     HAJA    H       H       0       18.358      56.414      2.596       
+G9L     HAK     H       H       0       21.680      56.935      6.817       
+G9L     HAKA    H       H       0       21.304      56.307      8.226       
+G9L     HAL     H       H       0       14.130      57.508      2.898       
+G9L     HALA    H       H       0       14.727      56.444      1.901       
+G9L     HAM     H       H       0       16.970      59.534      3.062       
+G9L     HAMA    H       H       0       15.493      59.402      3.592       
+G9L     HAN     H       H       0       16.265      56.124      3.551       
+G9L     HANA    H       H       0       16.451      57.425      4.424       
+G9L     HAO     H       H       0       19.120      55.894      7.490       
+G9L     HAOA    H       H       0       20.145      55.183      6.527       
+G9L     HAP     H       H       0       18.147      58.519      5.731       
+G9L     HAPA    H       H       0       19.586      58.738      5.129       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+G9L         N11         CAM      SINGLE       n     1.462  0.0143     1.462  0.0143
+G9L         N11         CAL      SINGLE       n     1.462  0.0143     1.462  0.0143
+G9L         N11         CAN      SINGLE       n     1.468  0.0141     1.468  0.0141
+G9L         N12         CAR      SINGLE       n     1.356  0.0100     1.356  0.0100
+G9L         N12         CAO      SINGLE       n     1.463  0.0100     1.463  0.0100
+G9L         N12         CAP      SINGLE       n     1.473  0.0184     1.473  0.0184
+G9L         N13         CAT      SINGLE       y     1.366  0.0129     1.366  0.0129
+G9L         N13         CAV      SINGLE       y     1.375  0.0124     1.375  0.0124
+G9L         OAA         CAR      DOUBLE       n     1.226  0.0100     1.226  0.0100
+G9L         OAB         CAV      DOUBLE       n     1.223  0.0119     1.223  0.0119
+G9L         FAC         CAS      SINGLE       n     1.362  0.0100     1.362  0.0100
+G9L         CAD         CAE      SINGLE       y     1.370  0.0100     1.370  0.0100
+G9L         CAD         CAS      DOUBLE       y     1.386  0.0151     1.386  0.0151
+G9L         CAE         CAW      DOUBLE       y     1.419  0.0100     1.419  0.0100
+G9L         CAF         CAX      DOUBLE       y     1.418  0.0115     1.418  0.0115
+G9L         CAF         CAS      SINGLE       y     1.354  0.0100     1.354  0.0100
+G9L         CAG         CAI      SINGLE       n     1.515  0.0113     1.515  0.0113
+G9L         CAG         CAH      SINGLE       n     1.515  0.0113     1.515  0.0113
+G9L         CAH         CAL      SINGLE       n     1.513  0.0163     1.513  0.0163
+G9L         CAI         CAM      SINGLE       n     1.513  0.0163     1.513  0.0163
+G9L         CAJ         CAN      SINGLE       n     1.516  0.0172     1.516  0.0172
+G9L         CAJ         CAR      SINGLE       n     1.507  0.0192     1.507  0.0192
+G9L         CAK         CAO      SINGLE       n     1.513  0.0154     1.513  0.0154
+G9L         CAK         CAT      SINGLE       n     1.500  0.0130     1.500  0.0130
+G9L         CAP         CAU      SINGLE       n     1.502  0.0100     1.502  0.0100
+G9L         CAT         CAU      DOUBLE       y     1.403  0.0129     1.403  0.0129
+G9L         CAU         CAW      SINGLE       y     1.433  0.0100     1.433  0.0100
+G9L         CAV         CAX      SINGLE       y     1.458  0.0100     1.458  0.0100
+G9L         CAW         CAX      SINGLE       y     1.422  0.0100     1.422  0.0100
+G9L         N13        HN13      SINGLE       n     1.016  0.0100     0.885  0.0200
+G9L         CAD         HAD      SINGLE       n     1.082  0.0130     0.934  0.0100
+G9L         CAE         HAE      SINGLE       n     1.082  0.0130     0.941  0.0190
+G9L         CAF         HAF      SINGLE       n     1.082  0.0130     0.943  0.0200
+G9L         CAG         HAG      SINGLE       n     1.089  0.0100     0.981  0.0121
+G9L         CAG        HAGA      SINGLE       n     1.089  0.0100     0.981  0.0121
+G9L         CAH         HAH      SINGLE       n     1.089  0.0100     0.980  0.0120
+G9L         CAH        HAHA      SINGLE       n     1.089  0.0100     0.980  0.0120
+G9L         CAI         HAI      SINGLE       n     1.089  0.0100     0.980  0.0120
+G9L         CAI        HAIA      SINGLE       n     1.089  0.0100     0.980  0.0120
+G9L         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.970  0.0100
+G9L         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.970  0.0100
+G9L         CAK         HAK      SINGLE       n     1.089  0.0100     0.978  0.0165
+G9L         CAK        HAKA      SINGLE       n     1.089  0.0100     0.978  0.0165
+G9L         CAL         HAL      SINGLE       n     1.089  0.0100     0.973  0.0129
+G9L         CAL        HALA      SINGLE       n     1.089  0.0100     0.973  0.0129
+G9L         CAM         HAM      SINGLE       n     1.089  0.0100     0.973  0.0129
+G9L         CAM        HAMA      SINGLE       n     1.089  0.0100     0.973  0.0129
+G9L         CAN         HAN      SINGLE       n     1.089  0.0100     0.977  0.0100
+G9L         CAN        HANA      SINGLE       n     1.089  0.0100     0.977  0.0100
+G9L         CAO         HAO      SINGLE       n     1.089  0.0100     0.977  0.0156
+G9L         CAO        HAOA      SINGLE       n     1.089  0.0100     0.977  0.0156
+G9L         CAP         HAP      SINGLE       n     1.089  0.0100     0.978  0.0140
+G9L         CAP        HAPA      SINGLE       n     1.089  0.0100     0.978  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+G9L         CAM         N11         CAL     109.788    1.50
+G9L         CAM         N11         CAN     110.653    1.50
+G9L         CAL         N11         CAN     110.653    1.50
+G9L         CAR         N12         CAO     122.769    3.00
+G9L         CAR         N12         CAP     122.459    2.86
+G9L         CAO         N12         CAP     114.772    1.50
+G9L         CAT         N13         CAV     121.061    1.90
+G9L         CAT         N13        HN13     120.070    1.73
+G9L         CAV         N13        HN13     118.870    2.15
+G9L         CAE         CAD         CAS     118.852    1.50
+G9L         CAE         CAD         HAD     120.117    1.50
+G9L         CAS         CAD         HAD     121.032    1.50
+G9L         CAD         CAE         CAW     120.571    1.50
+G9L         CAD         CAE         HAE     119.889    1.50
+G9L         CAW         CAE         HAE     119.540    1.50
+G9L         CAX         CAF         CAS     119.806    1.50
+G9L         CAX         CAF         HAF     119.584    1.50
+G9L         CAS         CAF         HAF     120.610    1.50
+G9L         CAI         CAG         CAH     110.168    1.50
+G9L         CAI         CAG         HAG     109.613    1.50
+G9L         CAI         CAG        HAGA     109.613    1.50
+G9L         CAH         CAG         HAG     109.613    1.50
+G9L         CAH         CAG        HAGA     109.613    1.50
+G9L         HAG         CAG        HAGA     108.036    1.50
+G9L         CAG         CAH         CAL     111.021    1.50
+G9L         CAG         CAH         HAH     109.453    1.50
+G9L         CAG         CAH        HAHA     109.453    1.50
+G9L         CAL         CAH         HAH     109.380    1.50
+G9L         CAL         CAH        HAHA     109.380    1.50
+G9L         HAH         CAH        HAHA     108.022    1.50
+G9L         CAG         CAI         CAM     111.021    1.50
+G9L         CAG         CAI         HAI     109.453    1.50
+G9L         CAG         CAI        HAIA     109.453    1.50
+G9L         CAM         CAI         HAI     109.380    1.50
+G9L         CAM         CAI        HAIA     109.380    1.50
+G9L         HAI         CAI        HAIA     108.022    1.50
+G9L         CAN         CAJ         CAR     112.881    1.57
+G9L         CAN         CAJ         HAJ     108.904    1.50
+G9L         CAN         CAJ        HAJA     108.904    1.50
+G9L         CAR         CAJ         HAJ     109.227    1.50
+G9L         CAR         CAJ        HAJA     109.227    1.50
+G9L         HAJ         CAJ        HAJA     107.705    1.50
+G9L         CAO         CAK         CAT     111.337    1.50
+G9L         CAO         CAK         HAK     109.445    1.50
+G9L         CAO         CAK        HAKA     109.445    1.50
+G9L         CAT         CAK         HAK     108.207    1.50
+G9L         CAT         CAK        HAKA     108.207    1.50
+G9L         HAK         CAK        HAKA     107.873    1.50
+G9L         N11         CAL         CAH     111.218    1.50
+G9L         N11         CAL         HAL     109.353    1.50
+G9L         N11         CAL        HALA     109.353    1.50
+G9L         CAH         CAL         HAL     109.566    1.50
+G9L         CAH         CAL        HALA     109.566    1.50
+G9L         HAL         CAL        HALA     108.159    1.50
+G9L         N11         CAM         CAI     111.218    1.50
+G9L         N11         CAM         HAM     109.353    1.50
+G9L         N11         CAM        HAMA     109.353    1.50
+G9L         CAI         CAM         HAM     109.566    1.50
+G9L         CAI         CAM        HAMA     109.566    1.50
+G9L         HAM         CAM        HAMA     108.159    1.50
+G9L         N11         CAN         CAJ     112.194    1.50
+G9L         N11         CAN         HAN     108.728    1.50
+G9L         N11         CAN        HANA     108.728    1.50
+G9L         CAJ         CAN         HAN     109.150    1.50
+G9L         CAJ         CAN        HANA     109.150    1.50
+G9L         HAN         CAN        HANA     107.831    1.50
+G9L         N12         CAO         CAK     110.003    1.50
+G9L         N12         CAO         HAO     109.531    1.50
+G9L         N12         CAO        HAOA     109.531    1.50
+G9L         CAK         CAO         HAO     109.708    1.50
+G9L         CAK         CAO        HAOA     109.708    1.50
+G9L         HAO         CAO        HAOA     108.037    1.50
+G9L         N12         CAP         CAU     111.107    1.58
+G9L         N12         CAP         HAP     109.329    1.50
+G9L         N12         CAP        HAPA     109.329    1.50
+G9L         CAU         CAP         HAP     108.867    1.50
+G9L         CAU         CAP        HAPA     108.867    1.50
+G9L         HAP         CAP        HAPA     107.808    1.50
+G9L         N12         CAR         OAA     121.652    1.50
+G9L         N12         CAR         CAJ     117.420    1.61
+G9L         OAA         CAR         CAJ     120.929    1.50
+G9L         FAC         CAS         CAD     117.866    1.50
+G9L         FAC         CAS         CAF     118.964    1.50
+G9L         CAD         CAS         CAF     123.170    1.50
+G9L         N13         CAT         CAK     117.617    1.50
+G9L         N13         CAT         CAU     120.556    1.68
+G9L         CAK         CAT         CAU     121.827    1.50
+G9L         CAP         CAU         CAT     119.997    2.19
+G9L         CAP         CAU         CAW     119.784    1.50
+G9L         CAT         CAU         CAW     120.219    1.50
+G9L         N13         CAV         OAB     119.007    1.67
+G9L         N13         CAV         CAX     118.266    2.19
+G9L         OAB         CAV         CAX     122.727    1.50
+G9L         CAE         CAW         CAU     121.490    1.50
+G9L         CAE         CAW         CAX     118.429    1.50
+G9L         CAU         CAW         CAX     120.081    1.50
+G9L         CAF         CAX         CAV     121.010    1.50
+G9L         CAF         CAX         CAW     119.172    1.50
+G9L         CAV         CAX         CAW     119.817    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+G9L            sp3_sp3_53         CAH         CAL         N11         CAN     -60.000    10.0     3
+G9L             sp3_sp3_2         CAI         CAM         N11         CAN     180.000    10.0     3
+G9L            sp3_sp3_59         CAJ         CAN         N11         CAM     -60.000    10.0     3
+G9L            sp3_sp3_34         CAG         CAH         CAL         N11      60.000    10.0     3
+G9L             sp3_sp3_7         CAG         CAI         CAM         N11     -60.000    10.0     3
+G9L            sp3_sp3_64         CAR         CAJ         CAN         N11     180.000    10.0     3
+G9L            sp2_sp3_29         OAA         CAR         CAJ         CAN     -60.000    10.0     6
+G9L            sp3_sp3_43         CAT         CAK         CAO         N12     -60.000    10.0     3
+G9L            sp2_sp3_10         N13         CAT         CAK         CAO     180.000    10.0     6
+G9L            sp2_sp3_13         CAT         CAU         CAP         N12       0.000    10.0     6
+G9L             sp2_sp3_4         CAR         N12         CAO         CAK     180.000    10.0     6
+G9L            sp2_sp3_22         CAR         N12         CAP         CAU     180.000    10.0     6
+G9L             sp2_sp2_3         OAA         CAR         N12         CAO       0.000     5.0     2
+G9L              const_22         N13         CAT         CAU         CAP     180.000    10.0     2
+G9L              const_32         CAP         CAU         CAW         CAE       0.000    10.0     2
+G9L              const_36         OAB         CAV         CAX         CAF       0.000    10.0     2
+G9L       const_sp2_sp2_9         CAE         CAW         CAX         CAF       0.000     5.0     2
+G9L              const_27         CAK         CAT         N13         CAV     180.000    10.0     2
+G9L              const_39         OAB         CAV         N13         CAT     180.000    10.0     2
+G9L              const_42         CAE         CAD         CAS         FAC     180.000    10.0     2
+G9L       const_sp2_sp2_1         CAS         CAD         CAE         CAW       0.000     5.0     2
+G9L       const_sp2_sp2_6         CAD         CAE         CAW         CAU     180.000     5.0     2
+G9L              const_18         CAX         CAF         CAS         FAC     180.000    10.0     2
+G9L              const_14         CAS         CAF         CAX         CAV     180.000    10.0     2
+G9L            sp3_sp3_25         CAI         CAG         CAH         CAL     -60.000    10.0     3
+G9L            sp3_sp3_16         CAH         CAG         CAI         CAM      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+G9L    chir_1    N11    CAN    CAM    CAL    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+G9L    plan-1         CAD   0.020
+G9L    plan-1         CAE   0.020
+G9L    plan-1         CAF   0.020
+G9L    plan-1         CAK   0.020
+G9L    plan-1         CAP   0.020
+G9L    plan-1         CAS   0.020
+G9L    plan-1         CAT   0.020
+G9L    plan-1         CAU   0.020
+G9L    plan-1         CAV   0.020
+G9L    plan-1         CAW   0.020
+G9L    plan-1         CAX   0.020
+G9L    plan-1         FAC   0.020
+G9L    plan-1         HAD   0.020
+G9L    plan-1         HAE   0.020
+G9L    plan-1         HAF   0.020
+G9L    plan-1        HN13   0.020
+G9L    plan-1         N13   0.020
+G9L    plan-1         OAB   0.020
+G9L    plan-2         CAO   0.020
+G9L    plan-2         CAP   0.020
+G9L    plan-2         CAR   0.020
+G9L    plan-2         N12   0.020
+G9L    plan-3         CAJ   0.020
+G9L    plan-3         CAR   0.020
+G9L    plan-3         N12   0.020
+G9L    plan-3         OAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+G9L SMILES_CANONICAL               CACTVS 3.352                                                                                           Fc1ccc2C3=C(CCN(C3)C(=O)CCN4CCCCC4)NC(=O)c2c1
+G9L           SMILES               CACTVS 3.352                                                                                           Fc1ccc2C3=C(CCN(C3)C(=O)CCN4CCCCC4)NC(=O)c2c1
+G9L SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                           c1cc2c(cc1F)C(=O)NC3=C2CN(CC3)C(=O)CCN4CCCCC4
+G9L           SMILES "OpenEye OEToolkits" 1.7.0                                                                                           c1cc2c(cc1F)C(=O)NC3=C2CN(CC3)C(=O)CCN4CCCCC4
+G9L            InChI                InChI  1.03 InChI=1S/C20H24FN3O2/c21-14-4-5-15-16(12-14)20(26)22-18-6-11-24(13-17(15)18)19(25)7-10-23-8-2-1-3-9-23/h4-5,12H,1-3,6-11,13H2,(H,22,26)
+G9L         InChIKey                InChI  1.03                                                                                                             CTOQXIXQHAILCA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+G9L acedrg               243         "dictionary generator"                  
+G9L acedrg_database      11          "data source"                           
+G9L rdkit                2017.03.2   "Chemoinformatics tool"
+G9L refmac5              5.8.0238    "optimization tool"                     

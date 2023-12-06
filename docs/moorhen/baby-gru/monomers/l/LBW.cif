@@ -1,0 +1,523 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LBW     LBW      "3-[2-[(Z)-[5-[(Z)-(4-ethenyl-3-methyl-5-oxidanylidene-pyrrol-2-ylidene)methyl]-3-(3-hydroxy-3-oxopropyl)-4-methyl-pyrrol-1-ium-2-ylidene]methyl]-5-[(Z)-[(3E,4R)-3-ethylidene-4-methyl-5-oxidanylidene-pyrrolidin-2-ylidene]methyl]-4-methyl-1H-pyrrol-3-yl]propanoic acid"     NON-POLYMER     78     43     .     
+#
+data_comp_LBW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LBW     C1A     C       CR5     0       -8.080      15.590      4.416       
+LBW     C1B     C       CR5     0       -8.062      18.230      7.883       
+LBW     O1B     O       O       0       -11.605     23.375      10.201      
+LBW     C1C     C       CR5     0       -12.460     18.119      8.254       
+LBW     O1C     O       OC      -1      -15.411     21.141      7.979       
+LBW     C1D     C       CR5     0       -14.649     17.291      4.363       
+LBW     C2A     C       CH1     0       -6.671      15.017      4.574       
+LBW     C2B     C       CR5     0       -7.993      19.551      8.435       
+LBW     O2B     O       OC      -1      -10.231     24.483      8.890       
+LBW     C2C     C       CR5     0       -13.841     18.024      8.618       
+LBW     O2C     O       O       0       -16.953     20.153      9.196       
+LBW     C2D     C       CR5     0       -14.804     16.810      3.019       
+LBW     C3A     C       CR5     0       -6.084      15.946      5.613       
+LBW     C3B     C       CR5     0       -9.241      19.862      8.928       
+LBW     C3C     C       CR5     0       -14.503     17.431      7.587       
+LBW     C3D     C       CR5     0       -15.696     17.697      2.350       
+LBW     C4A     C       CR5     0       -7.133      16.698      6.175       
+LBW     C4B     C       CR5     0       -10.099     18.740      8.689       
+LBW     C4C     C       CR5     0       -13.569     17.222      6.529       
+LBW     C4D     C       CR5     0       -16.084     18.724      3.345       
+LBW     CAA     C       C1      0       -4.786      15.979      5.941       
+LBW     CAB     C       CH2     0       -9.673      21.135      9.602       
+LBW     CAC     C       CH2     0       -14.426     18.503      9.916       
+LBW     CAD     C       C1      0       -16.139     17.646      1.024       
+LBW     CBA     C       CH3     0       -3.721      15.088      5.382       
+LBW     CBB     C       CH2     0       -10.324     22.120      8.640       
+LBW     CBC     C       CH2     0       -14.701     20.011      9.947       
+LBW     CBD     C       C2      0       -17.376     17.801      0.632       
+LBW     CGB     C       C       0       -10.752     23.423      9.292       
+LBW     CGC     C       C       0       -15.768     20.469      8.967       
+LBW     CHB     C       C1      0       -7.060      17.506      7.280       
+LBW     CHC     C       C1      0       -11.446     18.621      9.015       
+LBW     CHD     C       C1      0       -13.852     16.716      5.304       
+LBW     CMA     C       CH3     0       -6.674      13.533      4.976       
+LBW     CMB     C       CH3     0       -6.763      20.404      8.452       
+LBW     CMC     C       CH3     0       -15.967     17.096      7.579       
+LBW     CMD     C       CH3     0       -14.150     15.605      2.405       
+LBW     N_A     N       NR5     0       -8.262      16.517      5.386       
+LBW     O_A     O       O       0       -8.897      15.273      3.571       
+LBW     N_B     N       NR5     0       -9.346      17.785      8.058       
+LBW     N_C     N       NR5     1       -12.339     17.619      6.983       
+LBW     N_D     N       NR5     0       -15.449     18.424      4.529       
+LBW     O_D     O       O       0       -16.832     19.676      3.171       
+LBW     H2A     H       H       0       -6.183      15.124      3.724       
+LBW     HAA1    H       H       0       -4.508      16.634      6.580       
+LBW     HAB1    H       H       0       -8.898      21.560      10.023      
+LBW     HAB2    H       H       0       -10.309     20.918      10.316      
+LBW     HAC1    H       H       0       -13.806     18.280      10.645      
+LBW     HAC2    H       H       0       -15.268     18.024      10.087      
+LBW     HAD1    H       H       0       -15.481     17.485      0.368       
+LBW     HBA1    H       H       0       -3.963      14.794      4.491       
+LBW     HBA2    H       H       0       -3.605      14.318      5.960       
+LBW     HBA3    H       H       0       -2.885      15.577      5.333       
+LBW     HBB1    H       H       0       -11.117     21.704      8.232       
+LBW     HBB2    H       H       0       -9.698      22.330      7.912       
+LBW     HBC1    H       H       0       -13.871     20.489      9.746       
+LBW     HBC2    H       H       0       -14.981     20.264      10.850      
+LBW     HBD1    H       H       0       -17.582     17.814      -0.293      
+LBW     HBD2    H       H       0       -18.068     17.901      1.272       
+LBW     HHB1    H       H       0       -6.207      17.578      7.701       
+LBW     HHC1    H       H       0       -11.678     18.933      9.875       
+LBW     HHD1    H       H       0       -13.458     15.887      5.086       
+LBW     HMA1    H       H       0       -6.376      13.440      5.902       
+LBW     HMA2    H       H       0       -6.069      13.037      4.390       
+LBW     HMA3    H       H       0       -7.577      13.168      4.889       
+LBW     HMB1    H       H       0       -6.930      21.226      8.936       
+LBW     HMB2    H       H       0       -6.504      20.620      7.541       
+LBW     HMB3    H       H       0       -6.038      19.924      8.883       
+LBW     HMC1    H       H       0       -16.192     16.612      6.768       
+LBW     HMC2    H       H       0       -16.487     17.915      7.619       
+LBW     HMC3    H       H       0       -16.177     16.544      8.350       
+LBW     HMD1    H       H       0       -14.477     15.476      1.500       
+LBW     HMD2    H       H       0       -14.358     14.819      2.936       
+LBW     HMD3    H       H       0       -13.188     15.734      2.384       
+LBW     HAD     H       H       0       -9.021      16.952      5.487       
+LBW     HAE     H       H       0       -9.643      17.001      7.802       
+LBW     HAF     H       H       0       -11.594     17.562      6.526       
+LBW     HAG     H       H       0       -15.543     18.887      5.275       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LBW         C1A         C2A      SINGLE       n     1.534  0.0119     1.534  0.0119
+LBW         C1A         N_A      SINGLE       n     1.355  0.0151     1.355  0.0151
+LBW         C1B         C2B      DOUBLE       y     1.433  0.0100     1.433  0.0100
+LBW         C1C         C2C      SINGLE       n     1.423  0.0200     1.423  0.0200
+LBW         C1C         CHC      DOUBLE       n     1.356  0.0200     1.356  0.0200
+LBW         O1C         CGC      SINGLE       n     1.247  0.0187     1.247  0.0187
+LBW         C1D         CHD      DOUBLE       n     1.352  0.0200     1.352  0.0200
+LBW         C2A         C3A      SINGLE       n     1.512  0.0132     1.512  0.0132
+LBW         C2B         C3B      SINGLE       y     1.374  0.0100     1.374  0.0100
+LBW         C2B         CMB      SINGLE       n     1.495  0.0100     1.495  0.0100
+LBW         C2C         CAC      SINGLE       n     1.501  0.0100     1.501  0.0100
+LBW         C1D         C2D      SINGLE       n     1.423  0.0200     1.423  0.0200
+LBW         C3A         C4A      SINGLE       n     1.379  0.0200     1.379  0.0200
+LBW         C3A         CAA      DOUBLE       n     1.326  0.0156     1.326  0.0156
+LBW         C3B         CAB      SINGLE       n     1.502  0.0100     1.502  0.0100
+LBW         C2C         C3C      DOUBLE       n     1.359  0.0100     1.359  0.0100
+LBW         C2D         C3D      DOUBLE       n     1.427  0.0200     1.427  0.0200
+LBW         C3D         C4D      SINGLE       n     1.494  0.0200     1.494  0.0200
+LBW         C4A         CHB      DOUBLE       n     1.357  0.0200     1.357  0.0200
+LBW         C3B         C4B      DOUBLE       y     1.429  0.0198     1.429  0.0198
+LBW         C4B         CHC      SINGLE       n     1.391  0.0139     1.391  0.0139
+LBW         C3C         C4C      SINGLE       n     1.423  0.0200     1.423  0.0200
+LBW         C4C         N_C      DOUBLE       n     1.371  0.0140     1.371  0.0140
+LBW         C4D         N_D      SINGLE       n     1.377  0.0125     1.377  0.0125
+LBW         C3D         CAD      SINGLE       n     1.396  0.0200     1.396  0.0200
+LBW         CAA         CBA      SINGLE       n     1.495  0.0100     1.495  0.0100
+LBW         CAB         CBB      SINGLE       n     1.524  0.0100     1.524  0.0100
+LBW         CBB         CGB      SINGLE       n     1.519  0.0109     1.519  0.0109
+LBW         CAC         CBC      SINGLE       n     1.532  0.0136     1.532  0.0136
+LBW         CAD         CBD      DOUBLE       n     1.305  0.0200     1.305  0.0200
+LBW         O1B         CGB      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LBW         O2B         CGB      SINGLE       n     1.247  0.0187     1.247  0.0187
+LBW         O2C         CGC      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LBW         CBC         CGC      SINGLE       n     1.519  0.0109     1.519  0.0109
+LBW         C1B         CHB      SINGLE       n     1.375  0.0146     1.375  0.0146
+LBW         C4C         CHD      SINGLE       n     1.352  0.0200     1.352  0.0200
+LBW         C2A         CMA      SINGLE       n     1.528  0.0200     1.528  0.0200
+LBW         C3C         CMC      SINGLE       n     1.501  0.0100     1.501  0.0100
+LBW         C2D         CMD      SINGLE       n     1.501  0.0100     1.501  0.0100
+LBW         C4A         N_A      SINGLE       n     1.379  0.0147     1.379  0.0147
+LBW         C1A         O_A      DOUBLE       n     1.217  0.0100     1.217  0.0100
+LBW         C1B         N_B      SINGLE       y     1.372  0.0100     1.372  0.0100
+LBW         C4B         N_B      SINGLE       y     1.372  0.0100     1.372  0.0100
+LBW         C1C         N_C      SINGLE       n     1.371  0.0140     1.371  0.0140
+LBW         C1D         N_D      SINGLE       n     1.380  0.0200     1.380  0.0200
+LBW         C4D         O_D      DOUBLE       n     1.223  0.0129     1.223  0.0129
+LBW         C2A         H2A      SINGLE       n     1.089  0.0100     0.986  0.0162
+LBW         CAA        HAA1      SINGLE       n     1.082  0.0130     0.960  0.0200
+LBW         CAB        HAB1      SINGLE       n     1.089  0.0100     0.980  0.0120
+LBW         CAB        HAB2      SINGLE       n     1.089  0.0100     0.980  0.0120
+LBW         CAC        HAC1      SINGLE       n     1.089  0.0100     0.983  0.0120
+LBW         CAC        HAC2      SINGLE       n     1.089  0.0100     0.983  0.0120
+LBW         CAD        HAD1      SINGLE       n     1.082  0.0130     0.943  0.0200
+LBW         CBA        HBA1      SINGLE       n     1.089  0.0100     0.970  0.0135
+LBW         CBA        HBA2      SINGLE       n     1.089  0.0100     0.970  0.0135
+LBW         CBA        HBA3      SINGLE       n     1.089  0.0100     0.970  0.0135
+LBW         CBB        HBB1      SINGLE       n     1.089  0.0100     0.983  0.0139
+LBW         CBB        HBB2      SINGLE       n     1.089  0.0100     0.983  0.0139
+LBW         CBC        HBC1      SINGLE       n     1.089  0.0100     0.979  0.0100
+LBW         CBC        HBC2      SINGLE       n     1.089  0.0100     0.979  0.0100
+LBW         CBD        HBD1      SINGLE       n     1.082  0.0130     0.948  0.0200
+LBW         CBD        HBD2      SINGLE       n     1.082  0.0130     0.948  0.0200
+LBW         CHB        HHB1      SINGLE       n     1.082  0.0130     0.957  0.0200
+LBW         CHC        HHC1      SINGLE       n     1.082  0.0130     0.944  0.0100
+LBW         CHD        HHD1      SINGLE       n     1.082  0.0130     0.944  0.0103
+LBW         CMA        HMA1      SINGLE       n     1.089  0.0100     0.977  0.0200
+LBW         CMA        HMA2      SINGLE       n     1.089  0.0100     0.977  0.0200
+LBW         CMA        HMA3      SINGLE       n     1.089  0.0100     0.977  0.0200
+LBW         CMB        HMB1      SINGLE       n     1.089  0.0100     0.971  0.0172
+LBW         CMB        HMB2      SINGLE       n     1.089  0.0100     0.971  0.0172
+LBW         CMB        HMB3      SINGLE       n     1.089  0.0100     0.971  0.0172
+LBW         CMC        HMC1      SINGLE       n     1.089  0.0100     0.971  0.0114
+LBW         CMC        HMC2      SINGLE       n     1.089  0.0100     0.971  0.0114
+LBW         CMC        HMC3      SINGLE       n     1.089  0.0100     0.971  0.0114
+LBW         CMD        HMD1      SINGLE       n     1.089  0.0100     0.971  0.0114
+LBW         CMD        HMD2      SINGLE       n     1.089  0.0100     0.971  0.0114
+LBW         CMD        HMD3      SINGLE       n     1.089  0.0100     0.971  0.0114
+LBW         N_A         HAD      SINGLE       n     1.016  0.0100     0.881  0.0200
+LBW         N_B         HAE      SINGLE       n     1.016  0.0100     0.876  0.0200
+LBW         N_C         HAF      SINGLE       n     1.016  0.0100     0.876  0.0200
+LBW         N_D         HAG      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LBW         C2A         C1A         N_A     107.695    1.50
+LBW         C2A         C1A         O_A     126.422    1.50
+LBW         N_A         C1A         O_A     125.883    1.50
+LBW         C2B         C1B         CHB     127.828    2.44
+LBW         C2B         C1B         N_B     107.334    1.50
+LBW         CHB         C1B         N_B     124.838    1.50
+LBW         C2C         C1C         CHC     125.220    2.81
+LBW         C2C         C1C         N_C     107.477    1.50
+LBW         CHC         C1C         N_C     127.304    2.14
+LBW         CHD         C1D         C2D     125.128    2.81
+LBW         CHD         C1D         N_D     127.212    2.14
+LBW         C2D         C1D         N_D     107.660    1.50
+LBW         C1A         C2A         C3A     102.792    1.88
+LBW         C1A         C2A         CMA     111.539    2.78
+LBW         C1A         C2A         H2A     109.228    1.50
+LBW         C3A         C2A         CMA     113.850    1.50
+LBW         C3A         C2A         H2A     109.520    1.50
+LBW         CMA         C2A         H2A     109.362    1.50
+LBW         C1B         C2B         C3B     107.720    1.50
+LBW         C1B         C2B         CMB     125.421    1.50
+LBW         C3B         C2B         CMB     126.859    1.50
+LBW         C1C         C2C         CAC     124.802    1.90
+LBW         C1C         C2C         C3C     107.967    1.50
+LBW         CAC         C2C         C3C     127.231    1.50
+LBW         C1D         C2D         C3D     107.528    2.60
+LBW         C1D         C2D         CMD     127.364    2.66
+LBW         C3D         C2D         CMD     125.108    1.95
+LBW         C2A         C3A         C4A     109.646    2.72
+LBW         C2A         C3A         CAA     125.034    3.00
+LBW         C4A         C3A         CAA     125.320    3.00
+LBW         C2B         C3B         CAB     126.983    1.50
+LBW         C2B         C3B         C4B     107.750    1.50
+LBW         CAB         C3B         C4B     125.267    1.65
+LBW         C2C         C3C         C4C     107.967    1.50
+LBW         C2C         C3C         CMC     125.197    2.04
+LBW         C4C         C3C         CMC     126.836    2.66
+LBW         C2D         C3D         C4D     107.980    2.03
+LBW         C2D         C3D         CAD     126.908    2.28
+LBW         C4D         C3D         CAD     125.111    3.00
+LBW         C3A         C4A         CHB     125.661    1.50
+LBW         C3A         C4A         N_A     106.332    1.57
+LBW         CHB         C4A         N_A     128.007    2.14
+LBW         C3B         C4B         CHC     127.286    1.50
+LBW         C3B         C4B         N_B     106.823    1.50
+LBW         CHC         C4B         N_B     125.890    1.50
+LBW         C3C         C4C         N_C     107.477    1.50
+LBW         C3C         C4C         CHD     125.220    2.81
+LBW         N_C         C4C         CHD     127.304    2.14
+LBW         C3D         C4D         N_D     108.094    1.50
+LBW         C3D         C4D         O_D     126.846    2.75
+LBW         N_D         C4D         O_D     125.060    1.50
+LBW         C3A         CAA         CBA     123.635    3.00
+LBW         C3A         CAA        HAA1     118.110    1.54
+LBW         CBA         CAA        HAA1     118.255    1.50
+LBW         C3B         CAB         CBB     113.075    2.06
+LBW         C3B         CAB        HAB1     109.262    1.50
+LBW         C3B         CAB        HAB2     109.262    1.50
+LBW         CBB         CAB        HAB1     109.247    1.50
+LBW         CBB         CAB        HAB2     109.247    1.50
+LBW        HAB1         CAB        HAB2     107.581    1.50
+LBW         C2C         CAC         CBC     113.666    2.17
+LBW         C2C         CAC        HAC1     108.819    1.50
+LBW         C2C         CAC        HAC2     108.819    1.50
+LBW         CBC         CAC        HAC1     108.842    1.50
+LBW         CBC         CAC        HAC2     108.842    1.50
+LBW        HAC1         CAC        HAC2     107.783    1.50
+LBW         C3D         CAD         CBD     125.100    3.00
+LBW         C3D         CAD        HAD1     116.460    1.50
+LBW         CBD         CAD        HAD1     118.440    2.08
+LBW         CAA         CBA        HBA1     109.554    1.50
+LBW         CAA         CBA        HBA2     109.554    1.50
+LBW         CAA         CBA        HBA3     109.554    1.50
+LBW        HBA1         CBA        HBA2     109.194    3.00
+LBW        HBA1         CBA        HBA3     109.194    3.00
+LBW        HBA2         CBA        HBA3     109.194    3.00
+LBW         CAB         CBB         CGB     113.936    1.58
+LBW         CAB         CBB        HBB1     109.544    1.50
+LBW         CAB         CBB        HBB2     109.544    1.50
+LBW         CGB         CBB        HBB1     108.416    1.50
+LBW         CGB         CBB        HBB2     108.416    1.50
+LBW        HBB1         CBB        HBB2     107.356    1.50
+LBW         CAC         CBC         CGC     113.936    1.58
+LBW         CAC         CBC        HBC1     108.891    1.50
+LBW         CAC         CBC        HBC2     108.891    1.50
+LBW         CGC         CBC        HBC1     108.416    1.50
+LBW         CGC         CBC        HBC2     108.416    1.50
+LBW        HBC1         CBC        HBC2     107.765    1.50
+LBW         CAD         CBD        HBD1     120.031    1.50
+LBW         CAD         CBD        HBD2     120.031    1.50
+LBW        HBD1         CBD        HBD2     119.939    1.50
+LBW         CBB         CGB         O1B     118.187    1.67
+LBW         CBB         CGB         O2B     118.187    1.67
+LBW         O1B         CGB         O2B     123.625    1.50
+LBW         O1C         CGC         O2C     123.625    1.50
+LBW         O1C         CGC         CBC     118.187    1.67
+LBW         O2C         CGC         CBC     118.187    1.67
+LBW         C4A         CHB         C1B     129.136    3.00
+LBW         C4A         CHB        HHB1     115.876    1.50
+LBW         C1B         CHB        HHB1     114.988    1.52
+LBW         C1C         CHC         C4B     129.136    3.00
+LBW         C1C         CHC        HHC1     115.876    1.50
+LBW         C4B         CHC        HHC1     114.988    1.52
+LBW         C1D         CHD         C4C     125.853    2.13
+LBW         C1D         CHD        HHD1     117.073    1.50
+LBW         C4C         CHD        HHD1     117.073    1.50
+LBW         C2A         CMA        HMA1     109.472    1.50
+LBW         C2A         CMA        HMA2     109.472    1.50
+LBW         C2A         CMA        HMA3     109.472    1.50
+LBW        HMA1         CMA        HMA2     109.347    1.50
+LBW        HMA1         CMA        HMA3     109.347    1.50
+LBW        HMA2         CMA        HMA3     109.347    1.50
+LBW         C2B         CMB        HMB1     109.746    1.50
+LBW         C2B         CMB        HMB2     109.746    1.50
+LBW         C2B         CMB        HMB3     109.746    1.50
+LBW        HMB1         CMB        HMB2     109.190    1.68
+LBW        HMB1         CMB        HMB3     109.190    1.68
+LBW        HMB2         CMB        HMB3     109.190    1.68
+LBW         C3C         CMC        HMC1     109.468    1.50
+LBW         C3C         CMC        HMC2     109.468    1.50
+LBW         C3C         CMC        HMC3     109.468    1.50
+LBW        HMC1         CMC        HMC2     109.364    1.50
+LBW        HMC1         CMC        HMC3     109.364    1.50
+LBW        HMC2         CMC        HMC3     109.364    1.50
+LBW         C2D         CMD        HMD1     109.468    1.50
+LBW         C2D         CMD        HMD2     109.468    1.50
+LBW         C2D         CMD        HMD3     109.468    1.50
+LBW        HMD1         CMD        HMD2     109.364    1.50
+LBW        HMD1         CMD        HMD3     109.364    1.50
+LBW        HMD2         CMD        HMD3     109.364    1.50
+LBW         C1A         N_A         C4A     110.638    1.50
+LBW         C1A         N_A         HAD     123.987    2.60
+LBW         C4A         N_A         HAD     125.375    2.37
+LBW         C1B         N_B         C4B     110.372    1.50
+LBW         C1B         N_B         HAE     124.814    3.00
+LBW         C4B         N_B         HAE     124.814    3.00
+LBW         C4C         N_C         C1C     109.113    1.98
+LBW         C4C         N_C         HAF     125.444    2.37
+LBW         C1C         N_C         HAF     125.444    2.37
+LBW         C4D         N_D         C1D     108.738    1.50
+LBW         C4D         N_D         HAG     124.943    2.00
+LBW         C1D         N_D         HAG     126.319    2.37
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LBW            sp2_sp2_43         O_A         C1A         N_A         C4A     180.000     5.0     2
+LBW             sp2_sp3_5         O_A         C1A         C2A         CMA     -60.000    10.0     6
+LBW            sp2_sp2_32         CMD         C2D         C3D         CAD       0.000     5.0     2
+LBW            sp2_sp3_55         C1D         C2D         CMD        HMD1     150.000    10.0     6
+LBW             sp2_sp2_4         CAA         C3A         C4A         CHB       0.000     5.0     2
+LBW            sp2_sp2_53         C2A         C3A         CAA         CBA     180.000     5.0     2
+LBW              const_12         CAB         C3B         C4B         CHC       0.000    10.0     2
+LBW            sp2_sp3_26         C2B         C3B         CAB         CBB     -90.000    10.0     6
+LBW            sp2_sp2_20         CMC         C3C         C4C         CHD       0.000     5.0     2
+LBW            sp2_sp3_49         C2C         C3C         CMC        HMC1     150.000    10.0     6
+LBW            sp2_sp2_36         CAD         C3D         C4D         O_D       0.000     5.0     2
+LBW            sp2_sp2_65         C2D         C3D         CAD         CBD     180.000     5.0     2
+LBW            sp2_sp2_57         C3A         C4A         CHB         C1B     180.000     5.0     2
+LBW             sp2_sp2_7         CHB         C4A         N_A         C1A     180.000     5.0     2
+LBW            sp2_sp2_61         C3B         C4B         CHC         C1C     180.000     5.0     2
+LBW              const_15         CHC         C4B         N_B         C1B     180.000    10.0     2
+LBW            sp2_sp2_77         C3C         C4C         CHD         C1D     180.000     5.0     2
+LBW            sp2_sp2_23         CHD         C4C         N_C         C1C     180.000     5.0     2
+LBW            sp2_sp2_39         O_D         C4D         N_D         C1D     180.000     5.0     2
+LBW            sp2_sp2_73         C2B         C1B         CHB         C4A     180.000     5.0     2
+LBW              const_19         CHB         C1B         N_B         C4B     180.000    10.0     2
+LBW       const_sp2_sp2_4         CHB         C1B         C2B         CMB       0.000     5.0     2
+LBW            sp2_sp3_31         C3A         CAA         CBA        HBA1       0.000    10.0     6
+LBW             sp3_sp3_1         C3B         CAB         CBB         CGB     180.000    10.0     3
+LBW            sp3_sp3_10         C2C         CAC         CBC         CGC     180.000    10.0     3
+LBW            sp2_sp2_69         C3D         CAD         CBD        HBD1     180.000     5.0     2
+LBW            sp2_sp3_38         O1B         CGB         CBB         CAB     120.000    10.0     6
+LBW            sp2_sp3_44         O1C         CGC         CBC         CAC     120.000    10.0     6
+LBW            sp2_sp2_45         C2C         C1C         CHC         C4B     180.000     5.0     2
+LBW            sp2_sp2_83         CHC         C1C         N_C         C4C     180.000     5.0     2
+LBW            sp2_sp2_12         CHC         C1C         C2C         CAC       0.000     5.0     2
+LBW            sp2_sp2_28         CHD         C1D         C2D         CMD       0.000     5.0     2
+LBW            sp2_sp2_49         C2D         C1D         CHD         C4C     180.000     5.0     2
+LBW            sp2_sp2_87         CHD         C1D         N_D         C4D     180.000     5.0     2
+LBW            sp2_sp3_11         CAA         C3A         C2A         CMA     -60.000    10.0     6
+LBW            sp3_sp3_19         C1A         C2A         CMA        HMA1     180.000    10.0     3
+LBW       const_sp2_sp2_8         CMB         C2B         C3B         CAB       0.000     5.0     2
+LBW            sp2_sp3_13         C1B         C2B         CMB        HMB1     150.000    10.0     6
+LBW            sp2_sp2_16         CAC         C2C         C3C         CMC       0.000     5.0     2
+LBW            sp2_sp3_20         C1C         C2C         CAC         CBC     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LBW    chir_1    C2A    C1A    C3A    CMA    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LBW    plan-1         C1B   0.020
+LBW    plan-1         C2B   0.020
+LBW    plan-1         C3B   0.020
+LBW    plan-1         C4B   0.020
+LBW    plan-1         CAB   0.020
+LBW    plan-1         CHB   0.020
+LBW    plan-1         CHC   0.020
+LBW    plan-1         CMB   0.020
+LBW    plan-1         HAE   0.020
+LBW    plan-1         N_B   0.020
+LBW    plan-2         C1A   0.020
+LBW    plan-2         C2A   0.020
+LBW    plan-2         N_A   0.020
+LBW    plan-2         O_A   0.020
+LBW    plan-3         C1C   0.020
+LBW    plan-3         C2C   0.020
+LBW    plan-3         CHC   0.020
+LBW    plan-3         N_C   0.020
+LBW    plan-4         C1D   0.020
+LBW    plan-4         C2D   0.020
+LBW    plan-4         CHD   0.020
+LBW    plan-4         N_D   0.020
+LBW    plan-5         C1C   0.020
+LBW    plan-5         C2C   0.020
+LBW    plan-5         C3C   0.020
+LBW    plan-5         CAC   0.020
+LBW    plan-6         C1D   0.020
+LBW    plan-6         C2D   0.020
+LBW    plan-6         C3D   0.020
+LBW    plan-6         CMD   0.020
+LBW    plan-7         C2A   0.020
+LBW    plan-7         C3A   0.020
+LBW    plan-7         C4A   0.020
+LBW    plan-7         CAA   0.020
+LBW    plan-8         C2C   0.020
+LBW    plan-8         C3C   0.020
+LBW    plan-8         C4C   0.020
+LBW    plan-8         CMC   0.020
+LBW    plan-9         C2D   0.020
+LBW    plan-9         C3D   0.020
+LBW    plan-9         C4D   0.020
+LBW    plan-9         CAD   0.020
+LBW   plan-10         C3A   0.020
+LBW   plan-10         C4A   0.020
+LBW   plan-10         CHB   0.020
+LBW   plan-10         N_A   0.020
+LBW   plan-11         C3C   0.020
+LBW   plan-11         C4C   0.020
+LBW   plan-11         CHD   0.020
+LBW   plan-11         N_C   0.020
+LBW   plan-12         C3D   0.020
+LBW   plan-12         C4D   0.020
+LBW   plan-12         N_D   0.020
+LBW   plan-12         O_D   0.020
+LBW   plan-13         C3A   0.020
+LBW   plan-13         CAA   0.020
+LBW   plan-13         CBA   0.020
+LBW   plan-13        HAA1   0.020
+LBW   plan-14         C3D   0.020
+LBW   plan-14         CAD   0.020
+LBW   plan-14         CBD   0.020
+LBW   plan-14        HAD1   0.020
+LBW   plan-15         CAD   0.020
+LBW   plan-15         CBD   0.020
+LBW   plan-15        HBD1   0.020
+LBW   plan-15        HBD2   0.020
+LBW   plan-16         CBB   0.020
+LBW   plan-16         CGB   0.020
+LBW   plan-16         O1B   0.020
+LBW   plan-16         O2B   0.020
+LBW   plan-17         CBC   0.020
+LBW   plan-17         CGC   0.020
+LBW   plan-17         O1C   0.020
+LBW   plan-17         O2C   0.020
+LBW   plan-18         C1B   0.020
+LBW   plan-18         C4A   0.020
+LBW   plan-18         CHB   0.020
+LBW   plan-18        HHB1   0.020
+LBW   plan-19         C1C   0.020
+LBW   plan-19         C4B   0.020
+LBW   plan-19         CHC   0.020
+LBW   plan-19        HHC1   0.020
+LBW   plan-20         C1D   0.020
+LBW   plan-20         C4C   0.020
+LBW   plan-20         CHD   0.020
+LBW   plan-20        HHD1   0.020
+LBW   plan-21         C1A   0.020
+LBW   plan-21         C4A   0.020
+LBW   plan-21         HAD   0.020
+LBW   plan-21         N_A   0.020
+LBW   plan-22         C1C   0.020
+LBW   plan-22         C4C   0.020
+LBW   plan-22         HAF   0.020
+LBW   plan-22         N_C   0.020
+LBW   plan-23         C1D   0.020
+LBW   plan-23         C4D   0.020
+LBW   plan-23         HAG   0.020
+LBW   plan-23         N_D   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LBW            InChI                InChI  1.03 InChI=1S/C33H36N4O6/c1-7-20-19(6)32(42)37-27(20)14-25-18(5)23(10-12-31(40)41)29(35-25)15-28-22(9-11-30(38)39)17(4)24(34-28)13-26-16(3)21(8-2)33(43)36-26/h7-8,13-15,19,35H,2,9-12H2,1,3-6H3,(H,36,43)(H,37,42)(H,38,39)(H,40,41)/p+1/b20-7+,26-13-,27-14-,28-15-/t19-/m1/s1
+LBW         InChIKey                InChI  1.03                                                                                                                                                                                                                                                 DKMLMZVDTGOEGU-UAWLBFNISA-O
+LBW SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                   C/C=C/1[C@@H](C)C(=O)NC/1=C/c2[nH]c(/C=C/3[NH+]=C(/C=C/4NC(=O)C(=C/4C)C=C)C(=C/3CCC(O)=O)C)c(CCC(O)=O)c2C
+LBW           SMILES               CACTVS 3.370                                                                                                                                                                               CC=C1[CH](C)C(=O)NC1=Cc2[nH]c(C=C3[NH+]=C(C=C4NC(=O)C(=C4C)C=C)C(=C3CCC(O)=O)C)c(CCC(O)=O)c2C
+LBW SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                             C/C=C/1\[C@H](C(=O)N\C1=C/c2c(c(c([nH]2)/C=C\3/C(=C(C(=[NH+]3)/C=C\4/C(=C(C(=O)N4)C=C)C)C)CCC(=O)O)CCC(=O)O)C)C
+LBW           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                            CC=C1C(C(=O)NC1=Cc2c(c(c([nH]2)C=C3C(=C(C(=[NH+]3)C=C4C(=C(C(=O)N4)C=C)C)C)CCC(=O)O)CCC(=O)O)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LBW acedrg               243         "dictionary generator"                  
+LBW acedrg_database      11          "data source"                           
+LBW rdkit                2017.03.2   "Chemoinformatics tool"
+LBW refmac5              5.8.0238    "optimization tool"                     

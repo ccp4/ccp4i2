@@ -99,14 +99,14 @@ def getMenuIcon(parent, name, size=None):
     # Execute a reload if HD icon required (96x96) and has a non-HD pixmap loaded
     reloadHD = False
     if staticIconMap.get(name):
-        if staticIconMap.get(name).availableSizes()[0].width() < 96 and size == "HD":
+        if staticIconMap.get(name).availableSizes()[0].width() < 96 and size is "HD":
             reloadHD= True
     # Return & cache icons for the GUI (used for the task icons)
     if staticIconMap.get(name) and not reloadHD:
         return staticIconMap[name]
     else:
         pixFile = TASKMANAGER().searchIconFile(name)
-        if size == "HD":
+        if size is "HD":
             pixFile = os.path.splitext(pixFile)[0] + "_96" + os.path.splitext(pixFile)[1]
             if not os.path.isfile(pixFile): # fallback in case no _96 file.
                 pixFile = TASKMANAGER().searchIconFile(name)
@@ -3823,6 +3823,7 @@ CCP4I2 3D View
         
     @QtCore.Slot('QUrl')
     def handleNavigationRequest(self,url):
+        print("Helloooo")
         # Intercept navigation requests and open links in another window 
         print('CReportView.handleNavigationRequest',str(url.toLocalFile()),str(url.fragment()))
         sys.stdout.flush()
@@ -3989,7 +3990,7 @@ CCP4I2 3D View
                 else:
                     if os.path.basename(reportFile) == "report.html":
                         #FIXME - This causes server problems if we view sub jobs.
-                        url = QtCore.QUrl("http://127.0.0.1:43434/database/?getProjectJobFile?projectId="+openJob.projectid+"?fileName="+os.path.basename(reportFile)+"?jobNumber="+openJob.jobnumber)
+                        url = QtCore.QUrl("http://127.0.0.1:43434/database/getProjectJobFileName?projectId="+openJob.projectid+"&fileName="+os.path.basename(reportFile)+"&jobNumber="+openJob.jobnumber)
                         #print(url)
                     else:
                         url =  QtCore.QUrl.fromLocalFile(reportFile)

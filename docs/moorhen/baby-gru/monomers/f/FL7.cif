@@ -1,0 +1,341 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FL7     FL7      Flurazepam     NON-POLYMER     50     27     .     
+#
+data_comp_FL7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FL7     C       C       C       0       -92.430     -49.889     -66.624     
+FL7     N       N       N       0       -90.622     -50.371     -68.240     
+FL7     O       O       O       0       -93.624     -50.143     -66.627     
+FL7     CL      CL      CL      0       -86.301     -47.482     -64.839     
+FL7     CA      C       CH2     0       -91.741     -49.485     -67.909     
+FL7     C13     C       C       0       -89.541     -50.496     -67.546     
+FL7     FAA     F       F       0       -88.653     -50.860     -70.234     
+FL7     CAC     C       CR16    0       -87.146     -52.543     -69.661     
+FL7     CAD     C       CR6     0       -88.101     -51.633     -69.270     
+FL7     CAE     C       CR6     0       -88.507     -51.487     -67.951     
+FL7     CAJ     C       CR16    0       -86.562     -53.344     -68.703     
+FL7     CAK     C       CR16    0       -86.932     -53.232     -67.378     
+FL7     CAL     C       CR16    0       -87.893     -52.313     -67.000     
+FL7     CAM     C       CR16    0       -90.076     -48.642     -64.257     
+FL7     CAN     C       CR6     0       -90.340     -49.463     -65.360     
+FL7     NAO     N       N       0       -91.640     -50.068     -65.504     
+FL7     CAP     C       CH2     0       -92.143     -50.890     -64.372     
+FL7     CAQ     C       CH2     0       -91.786     -52.359     -64.520     
+FL7     NAR     N       NT      0       -92.432     -52.997     -65.709     
+FL7     CAS     C       CH2     0       -93.484     -53.973     -65.313     
+FL7     CAT     C       CH3     0       -94.711     -53.331     -64.712     
+FL7     CAU     C       CR16    0       -88.842     -48.044     -64.094     
+FL7     CAV     C       CR6     0       -89.329     -49.662     -66.328     
+FL7     CAW     C       CH2     0       -91.442     -53.598     -66.648     
+FL7     CAX     C       CH3     0       -91.920     -53.655     -68.079     
+FL7     CAY     C       CR6     0       -87.855     -48.242     -65.043     
+FL7     CAZ     C       CR16    0       -88.088     -49.032     -66.146     
+FL7     HA      H       H       0       -92.399     -49.518     -68.640     
+FL7     HAA     H       H       0       -91.419     -48.558     -67.828     
+FL7     HAC     H       H       0       -86.896     -52.615     -70.565     
+FL7     HAJ     H       H       0       -85.907     -53.971     -68.957     
+FL7     HAK     H       H       0       -86.529     -53.784     -66.728     
+FL7     HAL     H       H       0       -88.140     -52.247     -66.095     
+FL7     HAM     H       H       0       -90.749     -48.506     -63.605     
+FL7     HAP     H       H       0       -93.117     -50.812     -64.302     
+FL7     HAPA    H       H       0       -91.768     -50.571     -63.526     
+FL7     HAQ     H       H       0       -92.063     -52.826     -63.705     
+FL7     HAQA    H       H       0       -90.812     -52.437     -64.584     
+FL7     HAS     H       H       0       -93.107     -54.607     -64.667     
+FL7     HASA    H       H       0       -93.757     -54.487     -66.101     
+FL7     HAT     H       H       0       -95.415     -53.995     -64.627     
+FL7     HATA    H       H       0       -95.015     -52.611     -65.288     
+FL7     HATB    H       H       0       -94.497     -52.975     -63.835     
+FL7     HAU     H       H       0       -88.676     -47.504     -63.344     
+FL7     HAW     H       H       0       -91.228     -54.507     -66.348     
+FL7     HAWA    H       H       0       -90.613     -53.078     -66.625     
+FL7     HAX     H       H       0       -91.183     -53.909     -68.657     
+FL7     HAXA    H       H       0       -92.252     -52.782     -68.345     
+FL7     HAXB    H       H       0       -92.633     -54.309     -68.160     
+FL7     HAZ     H       H       0       -87.407     -49.155     -66.782     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FL7           C           O      DOUBLE       n     1.220  0.0113     1.220  0.0113
+FL7           C          CA      SINGLE       n     1.508  0.0117     1.508  0.0117
+FL7           C         NAO      SINGLE       n     1.359  0.0158     1.359  0.0158
+FL7           N          CA      SINGLE       n     1.462  0.0103     1.462  0.0103
+FL7           N         C13      DOUBLE       n     1.286  0.0100     1.286  0.0100
+FL7          CL         CAY      SINGLE       n     1.742  0.0100     1.742  0.0100
+FL7         C13         CAE      SINGLE       n     1.483  0.0100     1.483  0.0100
+FL7         C13         CAV      SINGLE       n     1.486  0.0100     1.486  0.0100
+FL7         FAA         CAD      SINGLE       n     1.353  0.0100     1.353  0.0100
+FL7         CAC         CAD      DOUBLE       y     1.372  0.0108     1.372  0.0108
+FL7         CAC         CAJ      SINGLE       y     1.373  0.0120     1.373  0.0120
+FL7         CAD         CAE      SINGLE       y     1.380  0.0100     1.380  0.0100
+FL7         CAE         CAL      DOUBLE       y     1.395  0.0113     1.395  0.0113
+FL7         CAJ         CAK      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FL7         CAK         CAL      SINGLE       y     1.379  0.0100     1.379  0.0100
+FL7         CAM         CAN      SINGLE       y     1.393  0.0100     1.393  0.0100
+FL7         CAM         CAU      DOUBLE       y     1.376  0.0100     1.376  0.0100
+FL7         CAN         NAO      SINGLE       n     1.433  0.0101     1.433  0.0101
+FL7         CAN         CAV      DOUBLE       y     1.405  0.0100     1.405  0.0100
+FL7         NAO         CAP      SINGLE       n     1.475  0.0120     1.475  0.0120
+FL7         CAP         CAQ      SINGLE       n     1.516  0.0162     1.516  0.0162
+FL7         CAQ         NAR      SINGLE       n     1.471  0.0177     1.471  0.0177
+FL7         NAR         CAS      SINGLE       n     1.479  0.0150     1.479  0.0150
+FL7         NAR         CAW      SINGLE       n     1.479  0.0150     1.479  0.0150
+FL7         CAS         CAT      SINGLE       n     1.508  0.0173     1.508  0.0173
+FL7         CAU         CAY      SINGLE       y     1.383  0.0100     1.383  0.0100
+FL7         CAV         CAZ      SINGLE       y     1.398  0.0104     1.398  0.0104
+FL7         CAW         CAX      SINGLE       n     1.508  0.0173     1.508  0.0173
+FL7         CAY         CAZ      DOUBLE       y     1.375  0.0100     1.375  0.0100
+FL7          CA          HA      SINGLE       n     1.089  0.0100     0.984  0.0185
+FL7          CA         HAA      SINGLE       n     1.089  0.0100     0.984  0.0185
+FL7         CAC         HAC      SINGLE       n     1.082  0.0130     0.941  0.0154
+FL7         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.941  0.0200
+FL7         CAK         HAK      SINGLE       n     1.082  0.0130     0.943  0.0180
+FL7         CAL         HAL      SINGLE       n     1.082  0.0130     0.941  0.0168
+FL7         CAM         HAM      SINGLE       n     1.082  0.0130     0.948  0.0200
+FL7         CAP         HAP      SINGLE       n     1.089  0.0100     0.980  0.0127
+FL7         CAP        HAPA      SINGLE       n     1.089  0.0100     0.980  0.0127
+FL7         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.980  0.0143
+FL7         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.980  0.0143
+FL7         CAS         HAS      SINGLE       n     1.089  0.0100     0.980  0.0143
+FL7         CAS        HASA      SINGLE       n     1.089  0.0100     0.980  0.0143
+FL7         CAT         HAT      SINGLE       n     1.089  0.0100     0.971  0.0145
+FL7         CAT        HATA      SINGLE       n     1.089  0.0100     0.971  0.0145
+FL7         CAT        HATB      SINGLE       n     1.089  0.0100     0.971  0.0145
+FL7         CAU         HAU      SINGLE       n     1.082  0.0130     0.939  0.0138
+FL7         CAW         HAW      SINGLE       n     1.089  0.0100     0.980  0.0143
+FL7         CAW        HAWA      SINGLE       n     1.089  0.0100     0.980  0.0143
+FL7         CAX         HAX      SINGLE       n     1.089  0.0100     0.971  0.0145
+FL7         CAX        HAXA      SINGLE       n     1.089  0.0100     0.971  0.0145
+FL7         CAX        HAXB      SINGLE       n     1.089  0.0100     0.971  0.0145
+FL7         CAZ         HAZ      SINGLE       n     1.082  0.0130     0.940  0.0137
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FL7           O           C          CA     121.435    1.50
+FL7           O           C         NAO     121.874    1.50
+FL7          CA           C         NAO     116.690    1.50
+FL7          CA           N         C13     119.132    2.76
+FL7           C          CA           N     112.077    1.94
+FL7           C          CA          HA     108.830    1.50
+FL7           C          CA         HAA     108.830    1.50
+FL7           N          CA          HA     109.222    1.50
+FL7           N          CA         HAA     109.222    1.50
+FL7          HA          CA         HAA     108.549    1.50
+FL7           N         C13         CAE     120.544    3.00
+FL7           N         C13         CAV     120.544    3.00
+FL7         CAE         C13         CAV     118.913    2.15
+FL7         CAD         CAC         CAJ     118.351    1.50
+FL7         CAD         CAC         HAC     120.703    1.50
+FL7         CAJ         CAC         HAC     120.946    1.50
+FL7         FAA         CAD         CAC     117.982    1.50
+FL7         FAA         CAD         CAE     119.164    1.50
+FL7         CAC         CAD         CAE     122.854    1.50
+FL7         C13         CAE         CAD     121.112    1.72
+FL7         C13         CAE         CAL     121.091    1.50
+FL7         CAD         CAE         CAL     117.797    1.50
+FL7         CAC         CAJ         CAK     120.234    1.50
+FL7         CAC         CAJ         HAJ     119.726    1.50
+FL7         CAK         CAJ         HAJ     120.040    1.50
+FL7         CAJ         CAK         CAL     120.179    1.50
+FL7         CAJ         CAK         HAK     119.956    1.50
+FL7         CAL         CAK         HAK     119.865    1.50
+FL7         CAE         CAL         CAK     120.585    1.50
+FL7         CAE         CAL         HAL     119.708    1.50
+FL7         CAK         CAL         HAL     119.707    1.50
+FL7         CAN         CAM         CAU     120.216    1.50
+FL7         CAN         CAM         HAM     119.719    1.50
+FL7         CAU         CAM         HAM     120.065    1.50
+FL7         CAM         CAN         NAO     119.676    1.50
+FL7         CAM         CAN         CAV     119.139    1.50
+FL7         NAO         CAN         CAV     121.177    1.50
+FL7           C         NAO         CAN     122.834    1.50
+FL7           C         NAO         CAP     119.675    2.52
+FL7         CAN         NAO         CAP     117.490    1.50
+FL7         NAO         CAP         CAQ     111.308    2.28
+FL7         NAO         CAP         HAP     109.587    1.50
+FL7         NAO         CAP        HAPA     109.587    1.50
+FL7         CAQ         CAP         HAP     108.658    1.50
+FL7         CAQ         CAP        HAPA     108.658    1.50
+FL7         HAP         CAP        HAPA     107.732    1.50
+FL7         CAP         CAQ         NAR     112.547    2.56
+FL7         CAP         CAQ         HAQ     108.890    1.50
+FL7         CAP         CAQ        HAQA     108.890    1.50
+FL7         NAR         CAQ         HAQ     109.110    1.50
+FL7         NAR         CAQ        HAQA     109.110    1.50
+FL7         HAQ         CAQ        HAQA     107.844    1.50
+FL7         CAQ         NAR         CAS     110.672    1.50
+FL7         CAQ         NAR         CAW     110.672    1.50
+FL7         CAS         NAR         CAW     110.773    1.86
+FL7         NAR         CAS         CAT     113.741    1.57
+FL7         NAR         CAS         HAS     109.022    1.50
+FL7         NAR         CAS        HASA     109.022    1.50
+FL7         CAT         CAS         HAS     109.135    1.50
+FL7         CAT         CAS        HASA     109.135    1.50
+FL7         HAS         CAS        HASA     107.838    1.50
+FL7         CAS         CAT         HAT     109.529    1.50
+FL7         CAS         CAT        HATA     109.529    1.50
+FL7         CAS         CAT        HATB     109.529    1.50
+FL7         HAT         CAT        HATA     109.415    1.50
+FL7         HAT         CAT        HATB     109.415    1.50
+FL7        HATA         CAT        HATB     109.415    1.50
+FL7         CAM         CAU         CAY     119.623    1.50
+FL7         CAM         CAU         HAU     120.119    1.50
+FL7         CAY         CAU         HAU     120.258    1.50
+FL7         C13         CAV         CAN     122.570    1.64
+FL7         C13         CAV         CAZ     118.822    1.50
+FL7         CAN         CAV         CAZ     118.608    1.50
+FL7         NAR         CAW         CAX     113.741    1.57
+FL7         NAR         CAW         HAW     109.022    1.50
+FL7         NAR         CAW        HAWA     109.022    1.50
+FL7         CAX         CAW         HAW     109.135    1.50
+FL7         CAX         CAW        HAWA     109.135    1.50
+FL7         HAW         CAW        HAWA     107.838    1.50
+FL7         CAW         CAX         HAX     109.529    1.50
+FL7         CAW         CAX        HAXA     109.529    1.50
+FL7         CAW         CAX        HAXB     109.529    1.50
+FL7         HAX         CAX        HAXA     109.415    1.50
+FL7         HAX         CAX        HAXB     109.415    1.50
+FL7        HAXA         CAX        HAXB     109.415    1.50
+FL7          CL         CAY         CAU     119.232    1.50
+FL7          CL         CAY         CAZ     119.419    1.50
+FL7         CAU         CAY         CAZ     121.349    1.50
+FL7         CAV         CAZ         CAY     121.065    1.50
+FL7         CAV         CAZ         HAZ     119.263    1.50
+FL7         CAY         CAZ         HAZ     119.672    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FL7             sp2_sp2_3           O           C         NAO         CAP       0.000     5.0     2
+FL7             sp2_sp3_2           O           C          CA           N     120.000    10.0     6
+FL7              const_17         CAC         CAJ         CAK         CAL       0.000    10.0     2
+FL7              const_13         CAJ         CAK         CAL         CAE       0.000    10.0     2
+FL7              const_22         CAU         CAM         CAN         NAO     180.000    10.0     2
+FL7              const_45         CAN         CAM         CAU         CAY       0.000    10.0     2
+FL7            sp2_sp2_16         CAM         CAN         NAO           C       0.000     5.0     2
+FL7              const_28         NAO         CAN         CAV         C13       0.000    10.0     2
+FL7            sp2_sp3_11           C         NAO         CAP         CAQ     120.000    10.0     6
+FL7             sp3_sp3_1         NAO         CAP         CAQ         NAR     180.000    10.0     3
+FL7            sp3_sp3_11         CAP         CAQ         NAR         CAS     -60.000    10.0     3
+FL7            sp3_sp3_16         CAT         CAS         NAR         CAQ     180.000    10.0     3
+FL7            sp3_sp3_23         CAX         CAW         NAR         CAQ     -60.000    10.0     3
+FL7            sp3_sp3_28         NAR         CAS         CAT         HAT     180.000    10.0     3
+FL7             sp2_sp3_8         C13           N          CA           C     120.000    10.0     6
+FL7             sp2_sp2_5         CAE         C13           N          CA     180.000     5.0     2
+FL7              const_38         CAM         CAU         CAY          CL     180.000    10.0     2
+FL7              const_31         C13         CAV         CAZ         CAY     180.000    10.0     2
+FL7            sp3_sp3_37         NAR         CAW         CAX         HAX     180.000    10.0     3
+FL7              const_35          CL         CAY         CAZ         CAV     180.000    10.0     2
+FL7            sp2_sp2_13           N         C13         CAV         CAN       0.000     5.0     2
+FL7             sp2_sp2_9           N         C13         CAE         CAD       0.000     5.0     2
+FL7              const_41         CAD         CAC         CAJ         CAK       0.000    10.0     2
+FL7       const_sp2_sp2_2         CAJ         CAC         CAD         FAA     180.000     5.0     2
+FL7       const_sp2_sp2_8         FAA         CAD         CAE         C13       0.000     5.0     2
+FL7              const_11         C13         CAE         CAL         CAK     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FL7    chir_1    NAR    CAQ    CAS    CAW    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FL7    plan-1         C13   0.020
+FL7    plan-1         CAC   0.020
+FL7    plan-1         CAD   0.020
+FL7    plan-1         CAE   0.020
+FL7    plan-1         CAJ   0.020
+FL7    plan-1         CAK   0.020
+FL7    plan-1         CAL   0.020
+FL7    plan-1         FAA   0.020
+FL7    plan-1         HAC   0.020
+FL7    plan-1         HAJ   0.020
+FL7    plan-1         HAK   0.020
+FL7    plan-1         HAL   0.020
+FL7    plan-2         C13   0.020
+FL7    plan-2         CAM   0.020
+FL7    plan-2         CAN   0.020
+FL7    plan-2         CAU   0.020
+FL7    plan-2         CAV   0.020
+FL7    plan-2         CAY   0.020
+FL7    plan-2         CAZ   0.020
+FL7    plan-2          CL   0.020
+FL7    plan-2         HAM   0.020
+FL7    plan-2         HAU   0.020
+FL7    plan-2         HAZ   0.020
+FL7    plan-2         NAO   0.020
+FL7    plan-3           C   0.020
+FL7    plan-3          CA   0.020
+FL7    plan-3         NAO   0.020
+FL7    plan-3           O   0.020
+FL7    plan-4         C13   0.020
+FL7    plan-4         CAE   0.020
+FL7    plan-4         CAV   0.020
+FL7    plan-4           N   0.020
+FL7    plan-5           C   0.020
+FL7    plan-5         CAN   0.020
+FL7    plan-5         CAP   0.020
+FL7    plan-5         NAO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FL7           SMILES              ACDLabs 12.01                                                                                           Fc3ccccc3C2=NCC(=O)N(c1ccc(Cl)cc12)CCN(CC)CC
+FL7            InChI                InChI  1.03 InChI=1S/C21H23ClFN3O/c1-3-25(4-2)11-12-26-19-10-9-15(22)13-17(19)21(24-14-20(26)27)16-7-5-6-8-18(16)23/h5-10,13H,3-4,11-12,14H2,1-2H3
+FL7         InChIKey                InChI  1.03                                                                                                            SAADBVWGJQAEFS-UHFFFAOYSA-N
+FL7 SMILES_CANONICAL               CACTVS 3.370                                                                                           CCN(CC)CCN1C(=O)CN=C(c2ccccc2F)c3cc(Cl)ccc13
+FL7           SMILES               CACTVS 3.370                                                                                           CCN(CC)CCN1C(=O)CN=C(c2ccccc2F)c3cc(Cl)ccc13
+FL7 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                             CCN(CC)CCN1c2ccc(cc2C(=NCC1=O)c3ccccc3F)Cl
+FL7           SMILES "OpenEye OEToolkits" 1.7.6                                                                                             CCN(CC)CCN1c2ccc(cc2C(=NCC1=O)c3ccccc3F)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FL7 acedrg               243         "dictionary generator"                  
+FL7 acedrg_database      11          "data source"                           
+FL7 rdkit                2017.03.2   "Chemoinformatics tool"
+FL7 refmac5              5.8.0238    "optimization tool"                     

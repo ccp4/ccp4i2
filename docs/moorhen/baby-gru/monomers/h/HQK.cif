@@ -1,0 +1,320 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HQK     HQK      Pyridaben     NON-POLYMER     49     24     .     
+#
+data_comp_HQK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HQK     C1      C       CT      0       -65.016     8.676       296.468     
+HQK     C2      C       CH3     0       -66.509     8.992       296.651     
+HQK     C3      C       CH3     0       -64.630     7.641       297.534     
+HQK     N       N       NR6     0       -60.568     9.329       300.484     
+HQK     C       C       CH3     0       -64.839     8.036       295.082     
+HQK     O       O       O       0       -58.289     9.462       300.234     
+HQK     C10     C       CH2     0       -61.484     13.364      297.007     
+HQK     C11     C       CR6     0       -60.826     11.843      299.467     
+HQK     C12     C       CR6     0       -59.556     11.273      299.578     
+HQK     C13     C       CR6     0       -59.407     9.997       300.103     
+HQK     C14     C       CR16    0       -61.940     11.092      299.863     
+HQK     C15     C       CT      0       -60.547     7.927       301.057     
+HQK     C16     C       CH3     0       -59.773     7.870       302.374     
+HQK     C17     C       CH3     0       -59.936     6.927       300.077     
+HQK     C18     C       CH3     0       -61.943     7.385       301.369     
+HQK     C4      C       CR6     0       -64.111     9.918       296.601     
+HQK     C5      C       CR16    0       -64.583     11.167      297.014     
+HQK     C6      C       CR16    0       -63.747     12.267      297.136     
+HQK     C7      C       CR6     0       -62.396     12.170      296.834     
+HQK     C8      C       CR16    0       -61.901     10.931      296.445     
+HQK     C9      C       CR16    0       -62.744     9.835       296.329     
+HQK     N1      N       NRD6    0       -61.821     9.890       300.352     
+HQK     S       S       S2      0       -61.046     13.455      298.765     
+HQK     CL      CL      CL      0       -58.131     12.141      299.092     
+HQK     H1      H       H       0       -66.780     9.677       296.015     
+HQK     H2      H       H       0       -66.668     9.309       297.557     
+HQK     H3      H       H       0       -67.035     8.188       296.500     
+HQK     H4      H       H       0       -64.579     8.074       298.404     
+HQK     H5      H       H       0       -63.765     7.253       297.318     
+HQK     H6      H       H       0       -65.301     6.937       297.564     
+HQK     H7      H       H       0       -64.852     8.731       294.401     
+HQK     H8      H       H       0       -65.562     7.407       294.913     
+HQK     H9      H       H       0       -63.989     7.565       295.043     
+HQK     H10     H       H       0       -61.939     14.186      296.736     
+HQK     H11     H       H       0       -60.673     13.257      296.471     
+HQK     H12     H       H       0       -62.801     11.459      299.775     
+HQK     H13     H       H       0       -60.012     8.634       302.928     
+HQK     H14     H       H       0       -58.817     7.892       302.203     
+HQK     H15     H       H       0       -59.983     7.052       302.856     
+HQK     H16     H       H       0       -60.302     7.073       299.188     
+HQK     H17     H       H       0       -60.134     6.016       300.355     
+HQK     H18     H       H       0       -58.971     7.035       300.042     
+HQK     H19     H       H       0       -62.384     7.952       302.026     
+HQK     H20     H       H       0       -61.881     6.484       301.730     
+HQK     H21     H       H       0       -62.479     7.355       300.556     
+HQK     H22     H       H       0       -65.494     11.276      297.213     
+HQK     H23     H       H       0       -64.104     13.093      297.413     
+HQK     H24     H       H       0       -60.984     10.835      296.251     
+HQK     H25     H       H       0       -62.382     9.010       296.052     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HQK          C1           C      SINGLE       n     1.532  0.0112     1.532  0.0112
+HQK          C8          C9      SINGLE       y     1.384  0.0100     1.384  0.0100
+HQK          C4          C9      DOUBLE       y     1.389  0.0100     1.389  0.0100
+HQK          C7          C8      DOUBLE       y     1.387  0.0100     1.387  0.0100
+HQK          C1          C4      SINGLE       n     1.533  0.0100     1.533  0.0100
+HQK          C1          C2      SINGLE       n     1.532  0.0112     1.532  0.0112
+HQK          C1          C3      SINGLE       n     1.532  0.0112     1.532  0.0112
+HQK          C4          C5      SINGLE       y     1.389  0.0100     1.389  0.0100
+HQK         C10          C7      SINGLE       n     1.511  0.0186     1.511  0.0186
+HQK          C6          C7      SINGLE       y     1.387  0.0100     1.387  0.0100
+HQK         C10           S      SINGLE       n     1.809  0.0191     1.809  0.0191
+HQK          C5          C6      DOUBLE       y     1.384  0.0100     1.384  0.0100
+HQK         C11           S      SINGLE       n     1.772  0.0127     1.772  0.0127
+HQK         C11         C14      SINGLE       y     1.393  0.0190     1.393  0.0190
+HQK         C14          N1      DOUBLE       y     1.301  0.0100     1.301  0.0100
+HQK         C11         C12      DOUBLE       y     1.392  0.0143     1.392  0.0143
+HQK           N          N1      SINGLE       y     1.367  0.0138     1.367  0.0138
+HQK         C12          CL      SINGLE       n     1.737  0.0106     1.737  0.0106
+HQK         C12         C13      SINGLE       y     1.379  0.0142     1.379  0.0142
+HQK           N         C13      SINGLE       y     1.376  0.0111     1.376  0.0111
+HQK           N         C15      SINGLE       n     1.472  0.0188     1.472  0.0188
+HQK           O         C13      DOUBLE       n     1.242  0.0172     1.242  0.0172
+HQK         C15         C17      SINGLE       n     1.524  0.0101     1.524  0.0101
+HQK         C15         C18      SINGLE       n     1.524  0.0101     1.524  0.0101
+HQK         C15         C16      SINGLE       n     1.524  0.0101     1.524  0.0101
+HQK          C2          H1      SINGLE       n     1.089  0.0100     0.973  0.0141
+HQK          C2          H2      SINGLE       n     1.089  0.0100     0.973  0.0141
+HQK          C2          H3      SINGLE       n     1.089  0.0100     0.973  0.0141
+HQK          C3          H4      SINGLE       n     1.089  0.0100     0.973  0.0141
+HQK          C3          H5      SINGLE       n     1.089  0.0100     0.973  0.0141
+HQK          C3          H6      SINGLE       n     1.089  0.0100     0.973  0.0141
+HQK           C          H7      SINGLE       n     1.089  0.0100     0.973  0.0141
+HQK           C          H8      SINGLE       n     1.089  0.0100     0.973  0.0141
+HQK           C          H9      SINGLE       n     1.089  0.0100     0.973  0.0141
+HQK         C10         H10      SINGLE       n     1.089  0.0100     0.978  0.0100
+HQK         C10         H11      SINGLE       n     1.089  0.0100     0.978  0.0100
+HQK         C14         H12      SINGLE       n     1.082  0.0130     0.940  0.0178
+HQK         C16         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+HQK         C16         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+HQK         C16         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+HQK         C17         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+HQK         C17         H17      SINGLE       n     1.089  0.0100     0.973  0.0146
+HQK         C17         H18      SINGLE       n     1.089  0.0100     0.973  0.0146
+HQK         C18         H19      SINGLE       n     1.089  0.0100     0.973  0.0146
+HQK         C18         H20      SINGLE       n     1.089  0.0100     0.973  0.0146
+HQK         C18         H21      SINGLE       n     1.089  0.0100     0.973  0.0146
+HQK          C5         H22      SINGLE       n     1.082  0.0130     0.942  0.0167
+HQK          C6         H23      SINGLE       n     1.082  0.0130     0.942  0.0167
+HQK          C8         H24      SINGLE       n     1.082  0.0130     0.942  0.0167
+HQK          C9         H25      SINGLE       n     1.082  0.0130     0.942  0.0167
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HQK           C          C1          C4     110.353    1.57
+HQK           C          C1          C2     108.339    1.50
+HQK           C          C1          C3     108.339    1.50
+HQK          C4          C1          C2     110.353    1.57
+HQK          C4          C1          C3     110.353    1.57
+HQK          C2          C1          C3     108.339    1.50
+HQK          C1          C2          H1     109.561    1.50
+HQK          C1          C2          H2     109.561    1.50
+HQK          C1          C2          H3     109.561    1.50
+HQK          H1          C2          H2     109.375    1.50
+HQK          H1          C2          H3     109.375    1.50
+HQK          H2          C2          H3     109.375    1.50
+HQK          C1          C3          H4     109.561    1.50
+HQK          C1          C3          H5     109.561    1.50
+HQK          C1          C3          H6     109.561    1.50
+HQK          H4          C3          H5     109.375    1.50
+HQK          H4          C3          H6     109.375    1.50
+HQK          H5          C3          H6     109.375    1.50
+HQK          N1           N         C13     124.218    1.50
+HQK          N1           N         C15     115.917    1.50
+HQK         C13           N         C15     119.866    1.83
+HQK          C1           C          H7     109.561    1.50
+HQK          C1           C          H8     109.561    1.50
+HQK          C1           C          H9     109.561    1.50
+HQK          H7           C          H8     109.375    1.50
+HQK          H7           C          H9     109.375    1.50
+HQK          H8           C          H9     109.375    1.50
+HQK          C7         C10           S     111.115    3.00
+HQK          C7         C10         H10     109.784    1.50
+HQK          C7         C10         H11     109.784    1.50
+HQK           S         C10         H10     109.066    1.50
+HQK           S         C10         H11     109.066    1.50
+HQK         H10         C10         H11     108.231    1.50
+HQK           S         C11         C14     120.582    2.83
+HQK           S         C11         C12     120.582    2.83
+HQK         C14         C11         C12     118.837    1.53
+HQK         C11         C12          CL     121.433    1.50
+HQK         C11         C12         C13     119.926    1.50
+HQK          CL         C12         C13     118.641    1.50
+HQK         C12         C13           N     117.104    1.50
+HQK         C12         C13           O     123.971    1.50
+HQK           N         C13           O     118.925    1.50
+HQK         C11         C14          N1     121.647    1.50
+HQK         C11         C14         H12     119.627    1.50
+HQK          N1         C14         H12     118.725    1.50
+HQK           N         C15         C17     112.079    1.50
+HQK           N         C15         C18     112.079    1.50
+HQK           N         C15         C16     112.079    1.50
+HQK         C17         C15         C18     109.199    2.44
+HQK         C17         C15         C16     109.199    2.44
+HQK         C18         C15         C16     109.199    2.44
+HQK         C15         C16         H13     109.459    1.50
+HQK         C15         C16         H14     109.459    1.50
+HQK         C15         C16         H15     109.459    1.50
+HQK         H13         C16         H14     108.604    1.78
+HQK         H13         C16         H15     108.604    1.78
+HQK         H14         C16         H15     108.604    1.78
+HQK         C15         C17         H16     109.459    1.50
+HQK         C15         C17         H17     109.459    1.50
+HQK         C15         C17         H18     109.459    1.50
+HQK         H16         C17         H17     108.604    1.78
+HQK         H16         C17         H18     108.604    1.78
+HQK         H17         C17         H18     108.604    1.78
+HQK         C15         C18         H19     109.459    1.50
+HQK         C15         C18         H20     109.459    1.50
+HQK         C15         C18         H21     109.459    1.50
+HQK         H19         C18         H20     108.604    1.78
+HQK         H19         C18         H21     108.604    1.78
+HQK         H20         C18         H21     108.604    1.78
+HQK          C9          C4          C1     121.571    1.50
+HQK          C9          C4          C5     116.858    1.50
+HQK          C1          C4          C5     121.571    1.50
+HQK          C4          C5          C6     121.641    1.50
+HQK          C4          C5         H22     119.002    1.50
+HQK          C6          C5         H22     119.357    1.50
+HQK          C7          C6          C5     120.736    1.50
+HQK          C7          C6         H23     119.654    1.50
+HQK          C5          C6         H23     119.610    1.50
+HQK          C8          C7         C10     120.807    1.50
+HQK          C8          C7          C6     118.386    1.50
+HQK         C10          C7          C6     120.807    1.50
+HQK          C9          C8          C7     120.736    1.50
+HQK          C9          C8         H24     119.610    1.50
+HQK          C7          C8         H24     119.654    1.50
+HQK          C8          C9          C4     121.641    1.50
+HQK          C8          C9         H25     119.357    1.50
+HQK          C4          C9         H25     119.002    1.50
+HQK         C14          N1           N     118.269    1.50
+HQK         C10           S         C11     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HQK            sp3_sp3_10           C          C1          C2          H1     180.000    10.0     3
+HQK             sp2_sp3_2          C9          C4          C1           C     -90.000    10.0     6
+HQK            sp3_sp3_22           C          C1          C3          H4      60.000    10.0     3
+HQK             sp3_sp3_2          H7           C          C1          C2     -60.000    10.0     3
+HQK       const_sp2_sp2_3         C11         C14          N1           N       0.000     5.0     2
+HQK            sp3_sp3_52         C17         C15         C16         H13      60.000    10.0     3
+HQK            sp3_sp3_34         C18         C15         C17         H16      60.000    10.0     3
+HQK            sp3_sp3_40         C17         C15         C18         H19     180.000    10.0     3
+HQK              const_39          C1          C4          C5          C6     180.000    10.0     2
+HQK              const_19          C1          C4          C9          C8     180.000    10.0     2
+HQK              const_33          C4          C5          C6          C7       0.000    10.0     2
+HQK              const_30          C5          C6          C7         C10     180.000    10.0     2
+HQK              const_27         C10          C7          C8          C9     180.000    10.0     2
+HQK              const_21          C7          C8          C9          C4       0.000    10.0     2
+HQK            sp2_sp3_14          N1           N         C15         C17     -90.000    10.0     6
+HQK       const_sp2_sp2_2         C15           N          N1         C14     180.000     5.0     2
+HQK              const_44           O         C13           N         C15       0.000    10.0     2
+HQK             sp2_sp3_8          C8          C7         C10           S     -90.000    10.0     6
+HQK            sp3_sp3_28          C7         C10           S         C11     180.000    10.0     3
+HQK       const_sp2_sp2_7           S         C11         C14          N1     180.000     5.0     2
+HQK             sp2_sp2_1         C14         C11           S         C10     180.000     5.0     2
+HQK              const_12           S         C11         C12          CL       0.000    10.0     2
+HQK              const_16          CL         C12         C13           O       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HQK    chir_1    C1    C4    C    C2    both
+HQK    chir_2    C15    N    C17    C18    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HQK    plan-1         C11   0.020
+HQK    plan-1         C12   0.020
+HQK    plan-1         C13   0.020
+HQK    plan-1         C14   0.020
+HQK    plan-1         C15   0.020
+HQK    plan-1          CL   0.020
+HQK    plan-1         H12   0.020
+HQK    plan-1           N   0.020
+HQK    plan-1          N1   0.020
+HQK    plan-1           O   0.020
+HQK    plan-1           S   0.020
+HQK    plan-2          C1   0.020
+HQK    plan-2         C10   0.020
+HQK    plan-2          C4   0.020
+HQK    plan-2          C5   0.020
+HQK    plan-2          C6   0.020
+HQK    plan-2          C7   0.020
+HQK    plan-2          C8   0.020
+HQK    plan-2          C9   0.020
+HQK    plan-2         H22   0.020
+HQK    plan-2         H23   0.020
+HQK    plan-2         H24   0.020
+HQK    plan-2         H25   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HQK            InChI                InChI  1.03 InChI=1S/C19H25ClN2OS/c1-18(2,3)14-9-7-13(8-10-14)12-24-15-11-21-22(19(4,5)6)17(23)16(15)20/h7-11H,12H2,1-6H3
+HQK         InChIKey                InChI  1.03                                                                                   DWFZBUWUXWZWKD-UHFFFAOYSA-N
+HQK SMILES_CANONICAL               CACTVS 3.385                                                                CC(C)(C)N1N=CC(=C(Cl)C1=O)SCc2ccc(cc2)C(C)(C)C
+HQK           SMILES               CACTVS 3.385                                                                CC(C)(C)N1N=CC(=C(Cl)C1=O)SCc2ccc(cc2)C(C)(C)C
+HQK SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                              CC(C)(C)c1ccc(cc1)CSC2=C(C(=O)N(N=C2)C(C)(C)C)Cl
+HQK           SMILES "OpenEye OEToolkits" 2.0.6                                                              CC(C)(C)c1ccc(cc1)CSC2=C(C(=O)N(N=C2)C(C)(C)C)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HQK acedrg               243         "dictionary generator"                  
+HQK acedrg_database      11          "data source"                           
+HQK rdkit                2017.03.2   "Chemoinformatics tool"
+HQK refmac5              5.8.0238    "optimization tool"                     

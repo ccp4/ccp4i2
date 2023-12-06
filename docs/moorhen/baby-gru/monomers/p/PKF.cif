@@ -1,0 +1,607 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PKF     PKF      CARBOBENZOXY-PRO-LYS-PHE-Y(PO2)-ALA-PRO-OME     NON-POLYMER     104     52     .     
+#
+data_comp_PKF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PKF     C1      C       C       0       18.889      14.732      23.439      
+PKF     O1      O       O       0       17.978      15.244      22.817      
+PKF     O2      O       O2      0       19.362      13.491      23.238      
+PKF     C2      C       CH2     0       18.794      12.697      22.154      
+PKF     C3      C       CR6     0       17.470      12.122      22.575      
+PKF     C4      C       CR16    0       16.320      12.375      21.840      
+PKF     C5      C       CR16    0       17.377      11.330      23.710      
+PKF     C6      C       CR16    0       15.098      11.843      22.234      
+PKF     C7      C       CR16    0       16.155      10.799      24.104      
+PKF     C8      C       CR16    0       15.017      11.055      23.365      
+PKF     N1      N       NR5     0       19.537      15.341      24.450      
+PKF     C9      C       CH2     0       20.668      14.776      25.189      
+PKF     C10     C       CH1     0       19.146      16.655      24.954      
+PKF     C11     C       CH2     0       19.837      16.721      26.321      
+PKF     C12     C       CH2     0       21.072      15.875      26.146      
+PKF     C13     C       C       0       19.606      17.784      24.028      
+PKF     O3      O       O       0       20.806      17.974      23.827      
+PKF     N2      N       NH1     0       18.639      18.543      23.479      
+PKF     C14     C       CH2     0       17.234      17.771      20.700      
+PKF     C15     C       CH1     0       18.917      19.691      22.626      
+PKF     C16     C       CH2     0       17.717      20.043      21.743      
+PKF     C17     C       CH2     0       17.616      19.217      20.467      
+PKF     C18     C       C       0       19.331      20.891      23.486      
+PKF     O4      O       O       0       18.524      21.377      24.277      
+PKF     C19     C       CH2     0       16.771      17.071      19.440      
+PKF     N3      N       NT3     1       16.532      15.627      19.671      
+PKF     N20     N       NT1     0       21.242      25.353      23.660      
+PKF     O5      O       OH1     0       19.488      23.998      22.440      
+PKF     O6      O       O       0       21.858      23.759      21.662      
+PKF     C21     C       C       0       22.147      27.680      23.858      
+PKF     C22     C       CR16    0       23.401      19.938      24.900      
+PKF     C23     C       CR16    0       23.556      18.851      25.751      
+PKF     C24     C       CR16    0       23.068      18.905      27.041      
+PKF     N4      N       NH1     0       20.582      21.361      23.324      
+PKF     C25     C       CH1     0       21.131      22.532      23.992      
+PKF     C26     C       CH2     0       22.586      22.278      24.410      
+PKF     C27     C       CR6     0       22.759      21.094      25.331      
+PKF     C28     C       CH1     0       21.614      26.581      22.933      
+PKF     C29     C       CH3     0       20.383      27.089      22.195      
+PKF     O7      O       O       0       21.814      27.704      25.042      
+PKF     C30     C       CR16    0       22.272      21.131      26.633      
+PKF     C31     C       CR16    0       22.427      20.042      27.482      
+PKF     P1      P       P       0       20.987      23.949      22.860      
+PKF     C32     C       CH3     0       22.552      31.306      26.698      
+PKF     O8      O       O2      0       21.905      30.681      25.561      
+PKF     N5      N       NR5     0       22.972      28.612      23.348      
+PKF     C33     C       CH2     0       23.447      28.689      21.952      
+PKF     C34     C       CH1     0       23.527      29.715      24.149      
+PKF     C35     C       CH2     0       24.711      30.196      23.303      
+PKF     C36     C       CH2     0       24.254      29.966      21.891      
+PKF     C37     C       C       0       22.504      30.815      24.382      
+PKF     O9      O       O       0       22.257      31.692      23.606      
+PKF     H22A    H       H       0       19.411      11.967      21.935      
+PKF     H21     H       H       0       18.684      13.250      21.351      
+PKF     H4      H       H       0       16.367      12.912      21.065      
+PKF     H5      H       H       0       18.151      11.151      24.220      
+PKF     H6      H       H       0       14.323      12.020      21.726      
+PKF     H7      H       H       0       16.103      10.261      24.878      
+PKF     H8      H       H       0       14.187      10.694      23.632      
+PKF     H92     H       H       0       20.398      13.968      25.675      
+PKF     H91     H       H       0       21.404      14.551      24.582      
+PKF     H10     H       H       0       18.167      16.692      25.073      
+PKF     H112    H       H       0       19.258      16.354      27.023      
+PKF     H111    H       H       0       20.074      17.645      26.554      
+PKF     H122    H       H       0       21.807      16.406      25.774      
+PKF     H121    H       H       0       21.358      15.499      27.004      
+PKF     H2      H       H       0       17.810      18.339      23.642      
+PKF     H142    H       H       0       16.516      17.733      21.367      
+PKF     H141    H       H       0       18.008      17.291      21.063      
+PKF     H15     H       H       0       19.673      19.460      22.029      
+PKF     H162    H       H       0       17.774      20.989      21.492      
+PKF     H161    H       H       0       16.893      19.923      22.260      
+PKF     H172    H       H       0       16.949      19.629      19.879      
+PKF     H171    H       H       0       18.480      19.246      20.003      
+PKF     H192    H       H       0       17.446      17.174      18.742      
+PKF     H191    H       H       0       15.945      17.483      19.123      
+PKF     H33     H       H       0       16.294      15.226      18.894      
+PKF     H32     H       H       0       15.867      15.519      20.278      
+PKF     H31A    H       H       0       17.288      15.238      19.987      
+PKF     H20     H       H       0       20.688      25.527      24.298      
+PKF     H5O     H       H       0       19.297      23.416      21.868      
+PKF     H22     H       H       0       23.738      19.893      24.019      
+PKF     H23     H       H       0       23.995      18.073      25.445      
+PKF     H24     H       H       0       23.173      18.166      27.618      
+PKF     H4N1    H       H       0       21.123      20.945      22.780      
+PKF     H25     H       H       0       20.608      22.722      24.805      
+PKF     H262    H       H       0       22.928      23.080      24.859      
+PKF     H261    H       H       0       23.125      22.137      23.602      
+PKF     H28     H       H       0       22.314      26.339      22.280      
+PKF     H293    H       H       0       20.524      28.007      21.908      
+PKF     H292    H       H       0       19.612      27.053      22.786      
+PKF     H291    H       H       0       20.217      26.532      21.416      
+PKF     H30     H       H       0       21.832      21.907      26.942      
+PKF     H31     H       H       0       22.093      20.083      28.364      
+PKF     H323    H       H       0       22.901      32.175      26.441      
+PKF     H322    H       H       0       23.279      30.741      27.003      
+PKF     H321    H       H       0       21.906      31.416      27.413      
+PKF     H332    H       H       0       24.004      27.914      21.731      
+PKF     H331    H       H       0       22.694      28.723      21.328      
+PKF     H34     H       H       0       23.845      29.378      25.012      
+PKF     H352    H       H       0       25.518      29.673      23.500      
+PKF     H351    H       H       0       24.900      31.146      23.462      
+PKF     H362    H       H       0       23.702      30.711      21.576      
+PKF     H361    H       H       0       25.020      29.863      21.290      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PKF          C1          O1      DOUBLE       n     1.211  0.0138     1.211  0.0138
+PKF          C1          O2      SINGLE       n     1.334  0.0121     1.334  0.0121
+PKF          C1          N1      SINGLE       n     1.339  0.0109     1.339  0.0109
+PKF          O2          C2      SINGLE       n     1.454  0.0101     1.454  0.0101
+PKF          C2          C3      SINGLE       n     1.501  0.0101     1.501  0.0101
+PKF          C3          C4      DOUBLE       y     1.383  0.0108     1.383  0.0108
+PKF          C3          C5      SINGLE       y     1.383  0.0108     1.383  0.0108
+PKF          C4          C6      SINGLE       y     1.386  0.0100     1.386  0.0100
+PKF          C5          C7      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PKF          C6          C8      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PKF          C7          C8      SINGLE       y     1.376  0.0124     1.376  0.0124
+PKF          N1          C9      SINGLE       n     1.461  0.0100     1.461  0.0100
+PKF          N1         C10      SINGLE       n     1.459  0.0100     1.459  0.0100
+PKF          C9         C12      SINGLE       n     1.512  0.0163     1.512  0.0163
+PKF         C10         C11      SINGLE       n     1.533  0.0100     1.533  0.0100
+PKF         C10         C13      SINGLE       n     1.525  0.0113     1.525  0.0113
+PKF         C11         C12      SINGLE       n     1.508  0.0200     1.508  0.0200
+PKF         C13          O3      DOUBLE       n     1.231  0.0100     1.231  0.0100
+PKF         C13          N2      SINGLE       n     1.337  0.0122     1.337  0.0122
+PKF          N2         C15      SINGLE       n     1.453  0.0100     1.453  0.0100
+PKF         C14         C17      SINGLE       n     1.514  0.0200     1.514  0.0200
+PKF         C14         C19      SINGLE       n     1.514  0.0111     1.514  0.0111
+PKF         C15         C16      SINGLE       n     1.528  0.0100     1.528  0.0100
+PKF         C15         C18      SINGLE       n     1.530  0.0100     1.530  0.0100
+PKF         C16         C17      SINGLE       n     1.523  0.0114     1.523  0.0114
+PKF         C18          O4      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PKF         C18          N4      SINGLE       n     1.341  0.0100     1.341  0.0100
+PKF         C19          N3      SINGLE       n     1.482  0.0123     1.482  0.0123
+PKF         N20         C28      SINGLE       n     1.473  0.0124     1.473  0.0124
+PKF         N20          P1      SINGLE       n     1.634  0.0168     1.634  0.0168
+PKF          O5          P1      SINGLE       n     1.557  0.0167     1.557  0.0167
+PKF          O6          P1      DOUBLE       n     1.493  0.0199     1.493  0.0199
+PKF         C21         C28      SINGLE       n     1.528  0.0100     1.528  0.0100
+PKF         C21          O7      DOUBLE       n     1.227  0.0149     1.227  0.0149
+PKF         C21          N5      SINGLE       n     1.337  0.0100     1.337  0.0100
+PKF         C22         C23      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PKF         C22         C27      SINGLE       y     1.385  0.0111     1.385  0.0111
+PKF         C23         C24      SINGLE       y     1.376  0.0124     1.376  0.0124
+PKF         C24         C31      DOUBLE       y     1.374  0.0127     1.374  0.0127
+PKF          N4         C25      SINGLE       n     1.453  0.0100     1.453  0.0100
+PKF         C25         C26      SINGLE       n     1.534  0.0100     1.534  0.0100
+PKF         C25          P1      SINGLE       n     1.818  0.0172     1.818  0.0172
+PKF         C26         C27      SINGLE       n     1.509  0.0100     1.509  0.0100
+PKF         C27         C30      DOUBLE       y     1.385  0.0111     1.385  0.0111
+PKF         C28         C29      SINGLE       n     1.519  0.0151     1.519  0.0151
+PKF         C30         C31      SINGLE       y     1.386  0.0100     1.386  0.0100
+PKF         C32          O8      SINGLE       n     1.448  0.0108     1.448  0.0108
+PKF          O8         C37      SINGLE       n     1.328  0.0115     1.328  0.0115
+PKF          N5         C33      SINGLE       n     1.472  0.0100     1.472  0.0100
+PKF          N5         C34      SINGLE       n     1.468  0.0100     1.468  0.0100
+PKF         C33         C36      SINGLE       n     1.512  0.0163     1.512  0.0163
+PKF         C34         C35      SINGLE       n     1.533  0.0100     1.533  0.0100
+PKF         C34         C37      SINGLE       n     1.514  0.0130     1.514  0.0130
+PKF         C35         C36      SINGLE       n     1.508  0.0200     1.508  0.0200
+PKF         C37          O9      DOUBLE       n     1.196  0.0100     1.196  0.0100
+PKF          C2        H22A      SINGLE       n     1.089  0.0100     0.980  0.0157
+PKF          C2         H21      SINGLE       n     1.089  0.0100     0.980  0.0157
+PKF          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+PKF          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+PKF          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0175
+PKF          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0175
+PKF          C8          H8      SINGLE       n     1.082  0.0130     0.944  0.0161
+PKF          C9         H92      SINGLE       n     1.089  0.0100     0.980  0.0200
+PKF          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0200
+PKF         C10         H10      SINGLE       n     1.089  0.0100     0.987  0.0200
+PKF         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0200
+PKF         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0200
+PKF         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0200
+PKF         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0200
+PKF          N2          H2      SINGLE       n     1.016  0.0100     0.869  0.0200
+PKF         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0160
+PKF         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0160
+PKF         C15         H15      SINGLE       n     1.089  0.0100     0.991  0.0200
+PKF         C16        H162      SINGLE       n     1.089  0.0100     0.980  0.0160
+PKF         C16        H161      SINGLE       n     1.089  0.0100     0.980  0.0160
+PKF         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKF         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKF         C19        H192      SINGLE       n     1.089  0.0100     0.976  0.0165
+PKF         C19        H191      SINGLE       n     1.089  0.0100     0.976  0.0165
+PKF          N3         H33      SINGLE       n     1.036  0.0160     0.907  0.0200
+PKF          N3         H32      SINGLE       n     1.036  0.0160     0.907  0.0200
+PKF          N3        H31A      SINGLE       n     1.036  0.0160     0.907  0.0200
+PKF         N20         H20      SINGLE       n     1.036  0.0160     0.863  0.0200
+PKF          O5         H5O      SINGLE       n     0.970  0.0120     0.839  0.0200
+PKF         C22         H22      SINGLE       n     1.082  0.0130     0.944  0.0174
+PKF         C23         H23      SINGLE       n     1.082  0.0130     0.944  0.0175
+PKF         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0161
+PKF          N4        H4N1      SINGLE       n     1.016  0.0100     0.873  0.0200
+PKF         C25         H25      SINGLE       n     1.089  0.0100     0.986  0.0200
+PKF         C26        H262      SINGLE       n     1.089  0.0100     0.981  0.0169
+PKF         C26        H261      SINGLE       n     1.089  0.0100     0.981  0.0169
+PKF         C28         H28      SINGLE       n     1.089  0.0100     0.990  0.0200
+PKF         C29        H293      SINGLE       n     1.089  0.0100     0.972  0.0152
+PKF         C29        H292      SINGLE       n     1.089  0.0100     0.972  0.0152
+PKF         C29        H291      SINGLE       n     1.089  0.0100     0.972  0.0152
+PKF         C30         H30      SINGLE       n     1.082  0.0130     0.944  0.0174
+PKF         C31         H31      SINGLE       n     1.082  0.0130     0.944  0.0175
+PKF         C32        H323      SINGLE       n     1.089  0.0100     0.970  0.0175
+PKF         C32        H322      SINGLE       n     1.089  0.0100     0.970  0.0175
+PKF         C32        H321      SINGLE       n     1.089  0.0100     0.970  0.0175
+PKF         C33        H332      SINGLE       n     1.089  0.0100     0.980  0.0200
+PKF         C33        H331      SINGLE       n     1.089  0.0100     0.980  0.0200
+PKF         C34         H34      SINGLE       n     1.089  0.0100     0.979  0.0200
+PKF         C35        H352      SINGLE       n     1.089  0.0100     0.981  0.0200
+PKF         C35        H351      SINGLE       n     1.089  0.0100     0.981  0.0200
+PKF         C36        H362      SINGLE       n     1.089  0.0100     0.980  0.0200
+PKF         C36        H361      SINGLE       n     1.089  0.0100     0.980  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PKF          O1          C1          O2     124.833    1.50
+PKF          O1          C1          N1     124.367    1.50
+PKF          O2          C1          N1     110.799    1.50
+PKF          C1          O2          C2     115.510    1.50
+PKF          O2          C2          C3     109.106    2.23
+PKF          O2          C2        H22A     109.477    1.61
+PKF          O2          C2         H21     109.477    1.61
+PKF          C3          C2        H22A     109.785    1.50
+PKF          C3          C2         H21     109.785    1.50
+PKF        H22A          C2         H21     108.275    1.50
+PKF          C2          C3          C4     120.651    1.50
+PKF          C2          C3          C5     120.651    1.50
+PKF          C4          C3          C5     118.697    1.50
+PKF          C3          C4          C6     120.514    1.50
+PKF          C3          C4          H4     119.732    1.50
+PKF          C6          C4          H4     119.754    1.50
+PKF          C3          C5          C7     120.514    1.50
+PKF          C3          C5          H5     119.732    1.50
+PKF          C7          C5          H5     119.754    1.50
+PKF          C4          C6          C8     120.186    1.50
+PKF          C4          C6          H6     119.862    1.50
+PKF          C8          C6          H6     119.952    1.50
+PKF          C5          C7          C8     120.186    1.50
+PKF          C5          C7          H7     119.862    1.50
+PKF          C8          C7          H7     119.952    1.50
+PKF          C6          C8          C7     119.903    1.50
+PKF          C6          C8          H8     120.048    1.50
+PKF          C7          C8          H8     120.048    1.50
+PKF          C1          N1          C9     124.107    2.47
+PKF          C1          N1         C10     123.280    2.33
+PKF          C9          N1         C10     112.614    1.50
+PKF          N1          C9         C12     103.097    1.50
+PKF          N1          C9         H92     110.844    1.50
+PKF          N1          C9         H91     110.844    1.50
+PKF         C12          C9         H92     111.171    1.50
+PKF         C12          C9         H91     111.171    1.50
+PKF         H92          C9         H91     108.998    1.50
+PKF          N1         C10         C11     102.948    1.50
+PKF          N1         C10         C13     111.278    1.96
+PKF          N1         C10         H10     110.248    1.50
+PKF         C11         C10         C13     111.268    1.50
+PKF         C11         C10         H10     110.282    1.50
+PKF         C13         C10         H10     109.755    1.50
+PKF         C10         C11         C12     103.507    1.50
+PKF         C10         C11        H112     110.824    1.50
+PKF         C10         C11        H111     110.824    1.50
+PKF         C12         C11        H112     110.886    1.50
+PKF         C12         C11        H111     110.886    1.50
+PKF        H112         C11        H111     108.922    1.50
+PKF          C9         C12         C11     104.327    2.00
+PKF          C9         C12        H122     110.793    1.50
+PKF          C9         C12        H121     110.793    1.50
+PKF         C11         C12        H122     110.864    1.50
+PKF         C11         C12        H121     110.864    1.50
+PKF        H122         C12        H121     108.899    1.50
+PKF         C10         C13          O3     120.913    1.50
+PKF         C10         C13          N2     115.978    1.58
+PKF          O3         C13          N2     123.109    1.50
+PKF         C13          N2         C15     122.130    1.52
+PKF         C13          N2          H2     118.679    2.92
+PKF         C15          N2          H2     119.191    1.91
+PKF         C17         C14         C19     113.073    1.98
+PKF         C17         C14        H142     109.041    1.50
+PKF         C17         C14        H141     109.041    1.50
+PKF         C19         C14        H142     108.889    1.50
+PKF         C19         C14        H141     108.889    1.50
+PKF        H142         C14        H141     107.927    1.57
+PKF          N2         C15         C16     110.984    1.61
+PKF          N2         C15         C18     110.342    2.62
+PKF          N2         C15         H15     108.209    1.50
+PKF         C16         C15         C18     111.390    2.17
+PKF         C16         C15         H15     108.242    1.50
+PKF         C18         C15         H15     107.852    1.50
+PKF         C15         C16         C17     113.702    1.73
+PKF         C15         C16        H162     108.827    1.50
+PKF         C15         C16        H161     108.827    1.50
+PKF         C17         C16        H162     108.650    1.50
+PKF         C17         C16        H161     108.650    1.50
+PKF        H162         C16        H161     107.844    1.50
+PKF         C14         C17         C16     113.328    2.00
+PKF         C14         C17        H172     108.806    1.50
+PKF         C14         C17        H171     108.806    1.50
+PKF         C16         C17        H172     108.601    1.50
+PKF         C16         C17        H171     108.601    1.50
+PKF        H172         C17        H171     107.646    1.50
+PKF         C15         C18          O4     120.540    1.50
+PKF         C15         C18          N4     116.463    1.50
+PKF          O4         C18          N4     122.977    1.50
+PKF         C14         C19          N3     111.734    1.84
+PKF         C14         C19        H192     109.576    1.50
+PKF         C14         C19        H191     109.576    1.50
+PKF          N3         C19        H192     108.989    1.50
+PKF          N3         C19        H191     108.989    1.50
+PKF        H192         C19        H191     108.067    1.50
+PKF         C19          N3         H33     109.775    1.81
+PKF         C19          N3         H32     109.775    1.81
+PKF         C19          N3        H31A     109.775    1.81
+PKF         H33          N3         H32     109.021    2.83
+PKF         H33          N3        H31A     109.021    2.83
+PKF         H32          N3        H31A     109.021    2.83
+PKF         C28         N20          P1     120.863    2.69
+PKF         C28         N20         H20     110.942    3.00
+PKF          P1         N20         H20     115.833    3.00
+PKF          P1          O5         H5O     112.398    3.00
+PKF         C28         C21          O7     121.242    1.50
+PKF         C28         C21          N5     117.407    1.50
+PKF          O7         C21          N5     121.351    1.50
+PKF         C23         C22         C27     120.624    1.50
+PKF         C23         C22         H22     119.786    1.50
+PKF         C27         C22         H22     119.591    1.50
+PKF         C22         C23         C24     120.325    1.50
+PKF         C22         C23         H23     119.792    1.50
+PKF         C24         C23         H23     119.883    1.50
+PKF         C23         C24         C31     120.043    1.50
+PKF         C23         C24         H24     119.979    1.50
+PKF         C31         C24         H24     119.979    1.50
+PKF         C18          N4         C25     123.657    1.62
+PKF         C18          N4        H4N1     118.647    1.94
+PKF         C25          N4        H4N1     117.696    2.87
+PKF          N4         C25         C26     110.142    1.50
+PKF          N4         C25          P1     108.817    2.81
+PKF          N4         C25         H25     106.481    2.65
+PKF         C26         C25          P1     111.410    2.87
+PKF         C26         C25         H25     108.202    1.50
+PKF          P1         C25         H25     108.528    1.50
+PKF         C25         C26         C27     113.900    1.50
+PKF         C25         C26        H262     108.744    1.50
+PKF         C25         C26        H261     108.744    1.50
+PKF         C27         C26        H262     108.906    1.50
+PKF         C27         C26        H261     108.906    1.50
+PKF        H262         C26        H261     107.735    1.50
+PKF         C22         C27         C26     120.970    1.50
+PKF         C22         C27         C30     118.060    1.50
+PKF         C26         C27         C30     120.970    1.50
+PKF         N20         C28         C21     112.134    2.59
+PKF         N20         C28         C29     108.411    1.50
+PKF         N20         C28         H28     107.936    1.50
+PKF         C21         C28         C29     109.225    1.50
+PKF         C21         C28         H28     108.476    1.50
+PKF         C29         C28         H28     109.346    1.50
+PKF         C28         C29        H293     109.652    1.50
+PKF         C28         C29        H292     109.652    1.50
+PKF         C28         C29        H291     109.652    1.50
+PKF        H293         C29        H292     109.386    1.50
+PKF        H293         C29        H291     109.386    1.50
+PKF        H292         C29        H291     109.386    1.50
+PKF         C27         C30         C31     120.624    1.50
+PKF         C27         C30         H30     119.591    1.50
+PKF         C31         C30         H30     119.786    1.50
+PKF         C24         C31         C30     120.325    1.50
+PKF         C24         C31         H31     119.883    1.50
+PKF         C30         C31         H31     119.792    1.50
+PKF         N20          P1          O5     104.521    3.00
+PKF         N20          P1          O6     113.406    3.00
+PKF         N20          P1         C25     108.355    3.00
+PKF          O5          P1          O6     110.226    3.00
+PKF          O5          P1         C25     105.177    2.72
+PKF          O6          P1         C25     110.326    3.00
+PKF          O8         C32        H323     109.361    1.50
+PKF          O8         C32        H322     109.361    1.50
+PKF          O8         C32        H321     109.361    1.50
+PKF        H323         C32        H322     109.532    1.53
+PKF        H323         C32        H321     109.532    1.53
+PKF        H322         C32        H321     109.532    1.53
+PKF         C32          O8         C37     116.103    1.50
+PKF         C21          N5         C33     124.403    3.00
+PKF         C21          N5         C34     124.768    3.00
+PKF         C33          N5         C34     110.829    1.50
+PKF          N5         C33         C36     103.293    1.50
+PKF          N5         C33        H332     111.063    1.50
+PKF          N5         C33        H331     111.063    1.50
+PKF         C36         C33        H332     111.171    1.50
+PKF         C36         C33        H331     111.171    1.50
+PKF        H332         C33        H331     108.998    1.50
+PKF          N5         C34         C35     102.601    1.50
+PKF          N5         C34         C37     111.727    1.53
+PKF          N5         C34         H34     110.316    1.50
+PKF         C35         C34         C37     111.235    1.50
+PKF         C35         C34         H34     110.662    1.50
+PKF         C37         C34         H34     109.502    1.50
+PKF         C34         C35         C36     103.507    1.50
+PKF         C34         C35        H352     110.902    1.50
+PKF         C34         C35        H351     110.902    1.50
+PKF         C36         C35        H352     110.886    1.50
+PKF         C36         C35        H351     110.886    1.50
+PKF        H352         C35        H351     108.922    1.50
+PKF         C33         C36         C35     104.327    2.00
+PKF         C33         C36        H362     110.793    1.50
+PKF         C33         C36        H361     110.793    1.50
+PKF         C35         C36        H362     110.864    1.50
+PKF         C35         C36        H361     110.864    1.50
+PKF        H362         C36        H361     108.899    1.50
+PKF          O8         C37         C34     111.302    1.58
+PKF          O8         C37          O9     124.289    1.50
+PKF         C34         C37          O9     124.409    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PKF             sp2_sp2_5          O1          C1          N1          C9       0.000     5.0     2
+PKF             sp2_sp2_1          O1          C1          O2          C2     180.000     5.0     2
+PKF             sp2_sp3_4          C1          N1          C9         C12     180.000    10.0     6
+PKF            sp2_sp3_23          C1          N1         C10         C13     -60.000    10.0     6
+PKF             sp3_sp3_1         C11         C12          C9          N1     -60.000    10.0     3
+PKF            sp3_sp3_22         C13         C10         C11         C12     180.000    10.0     3
+PKF            sp2_sp3_25          O3         C13         C10          N1       0.000    10.0     6
+PKF            sp3_sp3_10         C10         C11         C12          C9      60.000    10.0     3
+PKF             sp2_sp2_9          O3         C13          N2         C15       0.000     5.0     2
+PKF            sp2_sp3_31         C13          N2         C15         C16       0.000    10.0     6
+PKF            sp3_sp3_58         C19         C14         C17         C16     180.000    10.0     3
+PKF            sp3_sp3_67         C17         C14         C19          N3     180.000    10.0     3
+PKF            sp3_sp3_76          N2         C15         C16         C17     180.000    10.0     3
+PKF            sp2_sp3_37          O4         C18         C15          N2       0.000    10.0     6
+PKF            sp3_sp3_85         C15         C16         C17         C14     180.000    10.0     3
+PKF            sp2_sp2_11         C15         C18          N4         C25     180.000     5.0     2
+PKF            sp3_sp3_94         C14         C19          N3         H33     180.000    10.0     3
+PKF           sp3_sp3_103         C21         C28         N20          P1     180.000    10.0     3
+PKF           sp3_sp3_112         C28         N20          P1          O5      60.000    10.0     3
+PKF           sp3_sp3_115         H5O          O5          P1         N20     180.000    10.0     3
+PKF            sp2_sp3_43          O7         C21         C28         N20       0.000    10.0     6
+PKF            sp2_sp2_15         C28         C21          N5         C33     180.000     5.0     2
+PKF            sp3_sp3_55          C3          C2          O2          C1     180.000    10.0     3
+PKF       const_sp2_sp2_1         C27         C22         C23         C24       0.000     5.0     2
+PKF              const_46         C23         C22         C27         C26     180.000    10.0     2
+PKF       const_sp2_sp2_5         C22         C23         C24         C31       0.000     5.0     2
+PKF       const_sp2_sp2_9         C23         C24         C31         C30       0.000     5.0     2
+PKF            sp2_sp3_49         C18          N4         C25         C26       0.000    10.0     6
+PKF           sp3_sp3_118          N4         C25         C26         C27     180.000    10.0     3
+PKF           sp3_sp3_127          N4         C25          P1         N20     180.000    10.0     3
+PKF            sp2_sp3_56         C22         C27         C26         C25     -90.000    10.0     6
+PKF              const_19         C26         C27         C30         C31     180.000    10.0     2
+PKF           sp3_sp3_136         N20         C28         C29        H293     180.000    10.0     3
+PKF            sp2_sp3_14          C4          C3          C2          O2     -90.000    10.0     6
+PKF              const_13         C27         C30         C31         C24       0.000    10.0     2
+PKF           sp3_sp3_146        H323         C32          O8         C37     -60.000    10.0     3
+PKF            sp2_sp2_20          O9         C37          O8         C32       0.000     5.0     2
+PKF            sp2_sp3_10         C21          N5         C33         C36     180.000    10.0     6
+PKF            sp2_sp3_65         C21          N5         C34         C37     -60.000    10.0     6
+PKF            sp3_sp3_28          N5         C33         C36         C35     -60.000    10.0     3
+PKF            sp3_sp3_49         C37         C34         C35         C36     180.000    10.0     3
+PKF            sp2_sp3_67          O8         C37         C34          N5       0.000    10.0     6
+PKF            sp3_sp3_37         C34         C35         C36         C33      60.000    10.0     3
+PKF              const_23          C2          C3          C4          C6     180.000    10.0     2
+PKF              const_43          C2          C3          C5          C7     180.000    10.0     2
+PKF              const_25          C3          C4          C6          C8       0.000    10.0     2
+PKF              const_37          C3          C5          C7          C8       0.000    10.0     2
+PKF              const_29          C4          C6          C8          C7       0.000    10.0     2
+PKF              const_33          C5          C7          C8          C6       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PKF    chir_1    C10    N1    C13    C11    positive
+PKF    chir_2    C15    N2    C18    C16    positive
+PKF    chir_3    C25    P1    N4    C26    negative
+PKF    chir_4    C28    N20    C21    C29    positive
+PKF    chir_5    P1    O5    O6    N20    negative
+PKF    chir_6    C34    N5    C37    C35    positive
+PKF    chir_7    N20    P1    C28    H20    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PKF    plan-1         C22   0.020
+PKF    plan-1         C23   0.020
+PKF    plan-1         C24   0.020
+PKF    plan-1         C26   0.020
+PKF    plan-1         C27   0.020
+PKF    plan-1         C30   0.020
+PKF    plan-1         C31   0.020
+PKF    plan-1         H22   0.020
+PKF    plan-1         H23   0.020
+PKF    plan-1         H24   0.020
+PKF    plan-1         H30   0.020
+PKF    plan-1         H31   0.020
+PKF    plan-2          C2   0.020
+PKF    plan-2          C3   0.020
+PKF    plan-2          C4   0.020
+PKF    plan-2          C5   0.020
+PKF    plan-2          C6   0.020
+PKF    plan-2          C7   0.020
+PKF    plan-2          C8   0.020
+PKF    plan-2          H4   0.020
+PKF    plan-2          H5   0.020
+PKF    plan-2          H6   0.020
+PKF    plan-2          H7   0.020
+PKF    plan-2          H8   0.020
+PKF    plan-3          C1   0.020
+PKF    plan-3          N1   0.020
+PKF    plan-3          O1   0.020
+PKF    plan-3          O2   0.020
+PKF    plan-4          C1   0.020
+PKF    plan-4         C10   0.020
+PKF    plan-4          C9   0.020
+PKF    plan-4          N1   0.020
+PKF    plan-5         C10   0.020
+PKF    plan-5         C13   0.020
+PKF    plan-5          N2   0.020
+PKF    plan-5          O3   0.020
+PKF    plan-6         C13   0.020
+PKF    plan-6         C15   0.020
+PKF    plan-6          H2   0.020
+PKF    plan-6          N2   0.020
+PKF    plan-7         C15   0.020
+PKF    plan-7         C18   0.020
+PKF    plan-7          N4   0.020
+PKF    plan-7          O4   0.020
+PKF    plan-8         C21   0.020
+PKF    plan-8         C28   0.020
+PKF    plan-8          N5   0.020
+PKF    plan-8          O7   0.020
+PKF    plan-9         C18   0.020
+PKF    plan-9         C25   0.020
+PKF    plan-9        H4N1   0.020
+PKF    plan-9          N4   0.020
+PKF   plan-10         C21   0.020
+PKF   plan-10         C33   0.020
+PKF   plan-10         C34   0.020
+PKF   plan-10          N5   0.020
+PKF   plan-11         C34   0.020
+PKF   plan-11         C37   0.020
+PKF   plan-11          O8   0.020
+PKF   plan-11          O9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PKF           SMILES              ACDLabs 10.04                                                                                                                                                                                                O=C(NC(C(=O)NC(Cc1ccccc1)P(=O)(O)NC(C(=O)N2C(C(=O)OC)CCC2)C)CCCC[NH3+])C4N(C(=O)OCc3ccccc3)CCC4
+PKF SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                          COC(=O)[C@@H]1CCCN1C(=O)[C@H](C)N[P@@](O)(=O)[C@H](Cc2ccccc2)NC(=O)[C@H](CCCC[NH3+])NC(=O)[C@@H]3CCCN3C(=O)OCc4ccccc4
+PKF           SMILES               CACTVS 3.341                                                                                                                                                                                   COC(=O)[CH]1CCCN1C(=O)[CH](C)N[P](O)(=O)[CH](Cc2ccccc2)NC(=O)[CH](CCCC[NH3+])NC(=O)[CH]3CCCN3C(=O)OCc4ccccc4
+PKF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                          C[C@@H](C(=O)N1CCC[C@H]1C(=O)OC)N[P@@](=O)([C@H](Cc2ccccc2)NC(=O)[C@H](CCCC[NH3+])NC(=O)[C@@H]3CCCN3C(=O)OCc4ccccc4)O
+PKF           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                    CC(C(=O)N1CCCC1C(=O)OC)NP(=O)(C(Cc2ccccc2)NC(=O)C(CCCC[NH3+])NC(=O)C3CCCN3C(=O)OCc4ccccc4)O
+PKF            InChI                InChI  1.03 InChI=1S/C36H51N6O9P/c1-25(34(45)41-21-12-19-30(41)35(46)50-2)40-52(48,49)31(23-26-13-5-3-6-14-26)39-32(43)28(17-9-10-20-37)38-33(44)29-18-11-22-42(29)36(47)51-24-27-15-7-4-8-16-27/h3-8,13-16,25,28-31H,9-12,17-24,37H2,1-2H3,(H,38,44)(H,39,43)(H2,40,48,49)/p+1/t25-,28-,29-,30-,31+/m0/s1
+PKF         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                    JVJRALIDWYDPLY-HEPRJOMSSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PKF acedrg               243         "dictionary generator"                  
+PKF acedrg_database      11          "data source"                           
+PKF rdkit                2017.03.2   "Chemoinformatics tool"
+PKF refmac5              5.8.0238    "optimization tool"                     

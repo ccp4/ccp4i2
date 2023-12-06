@@ -1,0 +1,329 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HZY     HZY      6-(sulfamoyloxy)-2-[(3,4,5-trimethoxyphenyl)methyl]isoquinolin-2-ium     NON-POLYMER     49     28     .     
+#
+data_comp_HZY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HZY     CAZ     C       CH3     0       -1.638      12.264      10.880      
+HZY     OAW     O       O2      0       -2.722      11.520      10.324      
+HZY     CAN     C       CR6     0       -3.799      11.235      11.124      
+HZY     CAM     C       CR16    0       -3.715      10.830      12.456      
+HZY     CAO     C       CR6     0       -5.052      11.360      10.507      
+HZY     OAX     O       O2      0       -5.139      11.762      9.189       
+HZY     CBA     C       CH3     0       -5.352      10.720      8.238       
+HZY     CAP     C       CR6     0       -6.213      11.087      11.246      
+HZY     OAY     O       O2      0       -7.395      11.238      10.572      
+HZY     CBB     C       CH3     0       -8.254      10.103      10.482      
+HZY     CAQ     C       CR16    0       -6.115      10.689      12.577      
+HZY     CAL     C       CR6     0       -4.869      10.549      13.189      
+HZY     CAK     C       CH2     0       -4.769      10.130      14.642      
+HZY     NAI     N       NR6     1       -4.620      8.675       14.842      
+HZY     CAJ     C       CR16    0       -3.347      8.116       14.672      
+HZY     CAH     C       CR16    0       -5.707      7.920       15.210      
+HZY     CAG     C       CR16    0       -5.575      6.574       15.412      
+HZY     CAE     C       CR66    0       -4.317      5.939       15.252      
+HZY     CAD     C       CR16    0       -4.155      4.543       15.458      
+HZY     CAF     C       CR66    0       -3.192      6.718       14.878      
+HZY     CAA     C       CR16    0       -1.935      6.093       14.716      
+HZY     CAB     C       CR16    0       -1.797      4.738       14.918      
+HZY     CAC     C       CR6     0       -2.925      3.978       15.281      
+HZY     OAR     O       O2      0       -2.698      2.577       15.488      
+HZY     SAS     S       S3      0       -3.850      1.457       15.415      
+HZY     OAT     O       O       0       -4.546      1.534       16.644      
+HZY     OAU     O       O       0       -4.544      1.660       14.200      
+HZY     NAV     N       NT2     0       -3.045      0.075       15.347      
+HZY     H1      H       H       0       -1.124      11.690      11.472      
+HZY     H2      H       H       0       -1.984      13.020      11.382      
+HZY     H3      H       H       0       -1.067      12.585      10.164      
+HZY     H4      H       H       0       -2.871      10.742      12.871      
+HZY     H5      H       H       0       -6.306      10.569      8.135       
+HZY     H6      H       H       0       -4.925      9.901       8.540       
+HZY     H7      H       H       0       -4.974      10.984      7.384       
+HZY     H8      H       H       0       -8.616      9.901       11.360      
+HZY     H9      H       H       0       -7.751      9.339       10.154      
+HZY     H10     H       H       0       -8.982      10.297      9.869       
+HZY     H11     H       H       0       -6.899      10.504      13.071      
+HZY     H12     H       H       0       -5.569      10.439      15.114      
+HZY     H13     H       H       0       -3.998      10.580      15.044      
+HZY     H14     H       H       0       -2.615      8.655       14.424      
+HZY     H15     H       H       0       -6.545      8.338       15.318      
+HZY     H16     H       H       0       -6.346      6.053       15.666      
+HZY     H17     H       H       0       -4.897      4.022       15.705      
+HZY     H18     H       H       0       -1.186      6.599       14.469      
+HZY     H19     H       H       0       -0.957      4.328       14.808      
+HZY     H20     H       H       0       -3.509      -0.573      15.007      
+HZY     H21     H       H       0       -2.628      -0.113      16.083      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HZY         OAX         CBA      SINGLE       n     1.424  0.0117     1.424  0.0117
+HZY         CAO         OAX      SINGLE       n     1.377  0.0100     1.377  0.0100
+HZY         OAY         CBB      SINGLE       n     1.424  0.0117     1.424  0.0117
+HZY         CAP         OAY      SINGLE       n     1.368  0.0100     1.368  0.0100
+HZY         CAO         CAP      SINGLE       y     1.397  0.0100     1.397  0.0100
+HZY         CAN         CAO      DOUBLE       y     1.397  0.0100     1.397  0.0100
+HZY         CAP         CAQ      DOUBLE       y     1.389  0.0100     1.389  0.0100
+HZY         OAW         CAN      SINGLE       n     1.368  0.0100     1.368  0.0100
+HZY         CAZ         OAW      SINGLE       n     1.424  0.0117     1.424  0.0117
+HZY         CAN         CAM      SINGLE       y     1.389  0.0100     1.389  0.0100
+HZY         CAQ         CAL      SINGLE       y     1.392  0.0100     1.392  0.0100
+HZY         CAM         CAL      DOUBLE       y     1.392  0.0100     1.392  0.0100
+HZY         CAL         CAK      SINGLE       n     1.515  0.0100     1.515  0.0100
+HZY         CAK         NAI      SINGLE       n     1.475  0.0100     1.475  0.0100
+HZY         NAI         CAJ      DOUBLE       y     1.386  0.0199     1.386  0.0199
+HZY         NAI         CAH      SINGLE       y     1.367  0.0113     1.367  0.0113
+HZY         CAJ         CAF      SINGLE       y     1.415  0.0155     1.415  0.0155
+HZY         CAF         CAA      DOUBLE       y     1.411  0.0100     1.411  0.0100
+HZY         CAA         CAB      SINGLE       y     1.373  0.0100     1.373  0.0100
+HZY         CAE         CAF      SINGLE       y     1.415  0.0100     1.415  0.0100
+HZY         CAH         CAG      DOUBLE       y     1.362  0.0129     1.362  0.0129
+HZY         CAB         CAC      DOUBLE       y     1.401  0.0114     1.401  0.0114
+HZY         CAG         CAE      SINGLE       y     1.415  0.0105     1.415  0.0105
+HZY         CAE         CAD      DOUBLE       y     1.417  0.0100     1.417  0.0100
+HZY         CAD         CAC      SINGLE       y     1.357  0.0100     1.357  0.0100
+HZY         CAC         OAR      SINGLE       n     1.420  0.0157     1.420  0.0157
+HZY         OAR         SAS      SINGLE       n     1.597  0.0200     1.597  0.0200
+HZY         SAS         NAV      SINGLE       n     1.601  0.0186     1.601  0.0186
+HZY         SAS         OAU      DOUBLE       n     1.414  0.0100     1.414  0.0100
+HZY         SAS         OAT      DOUBLE       n     1.414  0.0100     1.414  0.0100
+HZY         CAZ          H1      SINGLE       n     1.089  0.0100     0.971  0.0157
+HZY         CAZ          H2      SINGLE       n     1.089  0.0100     0.971  0.0157
+HZY         CAZ          H3      SINGLE       n     1.089  0.0100     0.971  0.0157
+HZY         CAM          H4      SINGLE       n     1.082  0.0130     0.945  0.0164
+HZY         CBA          H5      SINGLE       n     1.089  0.0100     0.971  0.0157
+HZY         CBA          H6      SINGLE       n     1.089  0.0100     0.971  0.0157
+HZY         CBA          H7      SINGLE       n     1.089  0.0100     0.971  0.0157
+HZY         CBB          H8      SINGLE       n     1.089  0.0100     0.971  0.0157
+HZY         CBB          H9      SINGLE       n     1.089  0.0100     0.971  0.0157
+HZY         CBB         H10      SINGLE       n     1.089  0.0100     0.971  0.0157
+HZY         CAQ         H11      SINGLE       n     1.082  0.0130     0.945  0.0164
+HZY         CAK         H12      SINGLE       n     1.089  0.0100     0.979  0.0161
+HZY         CAK         H13      SINGLE       n     1.089  0.0100     0.979  0.0161
+HZY         CAJ         H14      SINGLE       n     1.082  0.0130     0.943  0.0169
+HZY         CAH         H15      SINGLE       n     1.082  0.0130     0.943  0.0169
+HZY         CAG         H16      SINGLE       n     1.082  0.0130     0.965  0.0200
+HZY         CAD         H17      SINGLE       n     1.082  0.0130     0.942  0.0157
+HZY         CAA         H18      SINGLE       n     1.082  0.0130     0.937  0.0126
+HZY         CAB         H19      SINGLE       n     1.082  0.0130     0.941  0.0131
+HZY         NAV         H20      SINGLE       n     1.036  0.0160     0.867  0.0200
+HZY         NAV         H21      SINGLE       n     1.036  0.0160     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HZY         OAW         CAZ          H1     109.428    1.50
+HZY         OAW         CAZ          H2     109.428    1.50
+HZY         OAW         CAZ          H3     109.428    1.50
+HZY          H1         CAZ          H2     109.509    1.50
+HZY          H1         CAZ          H3     109.509    1.50
+HZY          H2         CAZ          H3     109.509    1.50
+HZY         CAN         OAW         CAZ     117.276    1.50
+HZY         CAO         CAN         OAW     115.078    1.50
+HZY         CAO         CAN         CAM     120.288    1.50
+HZY         OAW         CAN         CAM     124.634    1.50
+HZY         CAN         CAM         CAL     120.410    1.50
+HZY         CAN         CAM          H4     120.005    1.50
+HZY         CAL         CAM          H4     119.585    1.50
+HZY         OAX         CAO         CAP     120.080    1.50
+HZY         OAX         CAO         CAN     120.080    1.50
+HZY         CAP         CAO         CAN     119.839    1.50
+HZY         CBA         OAX         CAO     114.431    1.50
+HZY         OAX         CBA          H5     109.428    1.50
+HZY         OAX         CBA          H6     109.428    1.50
+HZY         OAX         CBA          H7     109.428    1.50
+HZY          H5         CBA          H6     109.509    1.50
+HZY          H5         CBA          H7     109.509    1.50
+HZY          H6         CBA          H7     109.509    1.50
+HZY         OAY         CAP         CAO     115.078    1.50
+HZY         OAY         CAP         CAQ     124.634    1.50
+HZY         CAO         CAP         CAQ     120.288    1.50
+HZY         CBB         OAY         CAP     117.276    1.50
+HZY         OAY         CBB          H8     109.428    1.50
+HZY         OAY         CBB          H9     109.428    1.50
+HZY         OAY         CBB         H10     109.428    1.50
+HZY          H8         CBB          H9     109.509    1.50
+HZY          H8         CBB         H10     109.509    1.50
+HZY          H9         CBB         H10     109.509    1.50
+HZY         CAP         CAQ         CAL     120.410    1.50
+HZY         CAP         CAQ         H11     120.005    1.50
+HZY         CAL         CAQ         H11     119.585    1.50
+HZY         CAQ         CAL         CAM     118.765    1.50
+HZY         CAQ         CAL         CAK     120.617    1.53
+HZY         CAM         CAL         CAK     120.617    1.53
+HZY         CAL         CAK         NAI     113.143    1.57
+HZY         CAL         CAK         H12     109.014    1.50
+HZY         CAL         CAK         H13     109.014    1.50
+HZY         NAI         CAK         H12     108.883    1.50
+HZY         NAI         CAK         H13     108.883    1.50
+HZY         H12         CAK         H13     107.859    1.50
+HZY         CAK         NAI         CAJ     118.104    1.77
+HZY         CAK         NAI         CAH     119.551    1.50
+HZY         CAJ         NAI         CAH     122.346    2.20
+HZY         NAI         CAJ         CAF     118.370    1.50
+HZY         NAI         CAJ         H14     120.631    1.50
+HZY         CAF         CAJ         H14     121.000    1.50
+HZY         NAI         CAH         CAG     120.081    2.98
+HZY         NAI         CAH         H15     119.368    1.50
+HZY         CAG         CAH         H15     120.551    1.50
+HZY         CAH         CAG         CAE     120.541    1.50
+HZY         CAH         CAG         H16     119.636    1.50
+HZY         CAE         CAG         H16     119.823    1.50
+HZY         CAF         CAE         CAG     119.274    1.50
+HZY         CAF         CAE         CAD     119.024    1.50
+HZY         CAG         CAE         CAD     121.702    1.50
+HZY         CAE         CAD         CAC     119.094    1.50
+HZY         CAE         CAD         H17     120.237    1.50
+HZY         CAC         CAD         H17     120.669    1.50
+HZY         CAJ         CAF         CAA     120.537    1.50
+HZY         CAJ         CAF         CAE     119.388    1.50
+HZY         CAA         CAF         CAE     120.074    2.03
+HZY         CAF         CAA         CAB     120.518    1.50
+HZY         CAF         CAA         H18     120.119    1.50
+HZY         CAB         CAA         H18     119.363    1.50
+HZY         CAA         CAB         CAC     118.708    1.50
+HZY         CAA         CAB         H19     120.384    1.50
+HZY         CAC         CAB         H19     120.908    1.50
+HZY         CAB         CAC         CAD     122.581    1.50
+HZY         CAB         CAC         OAR     118.288    1.80
+HZY         CAD         CAC         OAR     119.131    1.94
+HZY         CAC         OAR         SAS     119.564    1.78
+HZY         OAR         SAS         NAV     104.512    2.36
+HZY         OAR         SAS         OAU     106.358    2.60
+HZY         OAR         SAS         OAT     106.358    2.60
+HZY         NAV         SAS         OAU     109.712    1.50
+HZY         NAV         SAS         OAT     109.712    1.50
+HZY         OAU         SAS         OAT     119.897    1.50
+HZY         SAS         NAV         H20     113.192    3.00
+HZY         SAS         NAV         H21     113.192    3.00
+HZY         H20         NAV         H21     115.347    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HZY            sp3_sp3_10          H1         CAZ         OAW         CAN     -60.000    10.0     3
+HZY              const_51         CAK         CAL         CAQ         CAP     180.000    10.0     2
+HZY             sp2_sp3_2         CAQ         CAL         CAK         NAI     -90.000    10.0     6
+HZY             sp2_sp3_8         CAJ         NAI         CAK         CAL     -90.000    10.0     6
+HZY              const_22         CAF         CAJ         NAI         CAK     180.000    10.0     2
+HZY              const_62         CAG         CAH         NAI         CAK     180.000    10.0     2
+HZY              const_27         CAA         CAF         CAJ         NAI     180.000    10.0     2
+HZY              const_33         CAE         CAG         CAH         NAI       0.000    10.0     2
+HZY              const_29         CAF         CAE         CAG         CAH       0.000    10.0     2
+HZY              const_65         CAC         CAD         CAE         CAF       0.000    10.0     2
+HZY       const_sp2_sp2_1         CAG         CAE         CAF         CAJ       0.000     5.0     2
+HZY              const_19         OAR         CAC         CAD         CAE     180.000    10.0     2
+HZY       const_sp2_sp2_6         CAB         CAA         CAF         CAJ     180.000     5.0     2
+HZY             sp2_sp2_5         CAO         CAN         OAW         CAZ     180.000     5.0     2
+HZY       const_sp2_sp2_9         CAF         CAA         CAB         CAC       0.000     5.0     2
+HZY              const_14         CAA         CAB         CAC         OAR     180.000    10.0     2
+HZY             sp2_sp2_7         CAB         CAC         OAR         SAS     180.000     5.0     2
+HZY            sp3_sp3_13         NAV         SAS         OAR         CAC      90.000    10.0     3
+HZY            sp3_sp3_18         H20         NAV         SAS         OAR      60.000    10.0     3
+HZY              const_58         CAL         CAM         CAN         OAW     180.000    10.0     2
+HZY              const_40         OAW         CAN         CAO         OAX       0.000    10.0     2
+HZY              const_55         CAK         CAL         CAM         CAN     180.000    10.0     2
+HZY             sp2_sp2_1         CAP         CAO         OAX         CBA     180.000     5.0     2
+HZY              const_44         OAX         CAO         CAP         OAY       0.000    10.0     2
+HZY             sp3_sp3_2          H5         CBA         OAX         CAO     -60.000    10.0     3
+HZY              const_47         OAY         CAP         CAQ         CAL     180.000    10.0     2
+HZY             sp2_sp2_3         CAO         CAP         OAY         CBB     180.000     5.0     2
+HZY             sp3_sp3_6          H8         CBB         OAY         CAP     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HZY    chir_1    SAS    OAU    OAT    OAR    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HZY    plan-1         CAA   0.020
+HZY    plan-1         CAB   0.020
+HZY    plan-1         CAC   0.020
+HZY    plan-1         CAD   0.020
+HZY    plan-1         CAE   0.020
+HZY    plan-1         CAF   0.020
+HZY    plan-1         CAG   0.020
+HZY    plan-1         CAH   0.020
+HZY    plan-1         CAJ   0.020
+HZY    plan-1         CAK   0.020
+HZY    plan-1         H14   0.020
+HZY    plan-1         H15   0.020
+HZY    plan-1         H16   0.020
+HZY    plan-1         H17   0.020
+HZY    plan-1         H18   0.020
+HZY    plan-1         H19   0.020
+HZY    plan-1         NAI   0.020
+HZY    plan-1         OAR   0.020
+HZY    plan-2         CAK   0.020
+HZY    plan-2         CAL   0.020
+HZY    plan-2         CAM   0.020
+HZY    plan-2         CAN   0.020
+HZY    plan-2         CAO   0.020
+HZY    plan-2         CAP   0.020
+HZY    plan-2         CAQ   0.020
+HZY    plan-2         H11   0.020
+HZY    plan-2          H4   0.020
+HZY    plan-2         OAW   0.020
+HZY    plan-2         OAX   0.020
+HZY    plan-2         OAY   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HZY           SMILES              ACDLabs 12.01                                                                                              COc1cc(cc(c1OC)OC)C[n+]2cc3c(cc2)cc(cc3)OS(=O)(=O)N
+HZY            InChI                InChI  1.03 InChI=1S/C19H21N2O6S/c1-24-17-8-13(9-18(25-2)19(17)26-3)11-21-7-6-14-10-16(27-28(20,22)23)5-4-15(14)12-21/h4-10,12H,11H2,1-3H3,(H2,20,22,23)/q+1
+HZY         InChIKey                InChI  1.03                                                                                                                      NINGXBBUHSHWQA-UHFFFAOYSA-N
+HZY SMILES_CANONICAL               CACTVS 3.385                                                                                              COc1cc(C[n+]2ccc3cc(O[S](N)(=O)=O)ccc3c2)cc(OC)c1OC
+HZY           SMILES               CACTVS 3.385                                                                                              COc1cc(C[n+]2ccc3cc(O[S](N)(=O)=O)ccc3c2)cc(OC)c1OC
+HZY SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                COc1cc(cc(c1OC)OC)C[n+]2ccc3cc(ccc3c2)OS(=O)(=O)N
+HZY           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                COc1cc(cc(c1OC)OC)C[n+]2ccc3cc(ccc3c2)OS(=O)(=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HZY acedrg               243         "dictionary generator"                  
+HZY acedrg_database      11          "data source"                           
+HZY rdkit                2017.03.2   "Chemoinformatics tool"
+HZY refmac5              5.8.0238    "optimization tool"                     

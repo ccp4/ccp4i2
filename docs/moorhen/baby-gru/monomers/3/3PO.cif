@@ -1,0 +1,132 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3PO     3PO      TRIPHOSPHATE     NON-POLYMER     13     13     .     
+#
+data_comp_3PO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3PO     PG      P       P       0       34.556      36.393      -21.470     
+3PO     O1G     O       O       0       33.251      37.151      -21.500     
+3PO     O2G     O       OP      -1      34.760      35.635      -20.181     
+3PO     O3G     O       OP      -1      34.757      35.531      -22.692     
+3PO     PB      P       P       0       36.397      38.417      -20.385     
+3PO     O1B     O       O       0       37.423      37.602      -19.669     
+3PO     O2B     O       OP      -1      35.318      39.095      -19.607     
+3PO     O3B     O       O2      0       35.720      37.510      -21.517     
+3PO     PA      P       P       0       36.633      40.530      -22.425     
+3PO     O1A     O       O       0       36.708      39.767      -23.725     
+3PO     O2A     O       OP      -1      35.219      40.900      -22.047     
+3PO     O3A     O       O2      0       37.147      39.511      -21.282     
+3PO     "O5'"   O       OP      -1      37.574      41.708      -22.384     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3PO          PG         O1G      DOUBLE       n     1.509  0.0200     1.509  0.0200
+3PO          PG         O2G      SINGLE       n     1.509  0.0200     1.509  0.0200
+3PO          PG         O3G      SINGLE       n     1.509  0.0200     1.509  0.0200
+3PO          PG         O3B      SINGLE       n     1.614  0.0178     1.614  0.0178
+3PO          PB         O1B      DOUBLE       n     1.493  0.0157     1.493  0.0157
+3PO          PB         O2B      SINGLE       n     1.493  0.0157     1.493  0.0157
+3PO          PB         O3B      SINGLE       n     1.601  0.0114     1.601  0.0114
+3PO          PB         O3A      SINGLE       n     1.601  0.0114     1.601  0.0114
+3PO          PA         O1A      DOUBLE       n     1.509  0.0200     1.509  0.0200
+3PO          PA         O2A      SINGLE       n     1.509  0.0200     1.509  0.0200
+3PO          PA         O3A      SINGLE       n     1.614  0.0178     1.614  0.0178
+3PO          PA       "O5'"      SINGLE       n     1.509  0.0200     1.509  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3PO         O1G          PG         O2G     112.716    1.50
+3PO         O1G          PG         O3G     112.716    1.50
+3PO         O1G          PG         O3B     105.965    2.38
+3PO         O2G          PG         O3G     112.716    1.50
+3PO         O2G          PG         O3B     105.965    2.38
+3PO         O3G          PG         O3B     105.965    2.38
+3PO         O1B          PB         O2B     119.630    1.50
+3PO         O1B          PB         O3B     108.678    2.29
+3PO         O1B          PB         O3A     108.678    2.29
+3PO         O2B          PB         O3B     108.678    2.29
+3PO         O2B          PB         O3A     108.678    2.29
+3PO         O3B          PB         O3A     100.890    2.10
+3PO          PG         O3B          PB     132.584    3.00
+3PO         O1A          PA         O2A     112.716    1.50
+3PO         O1A          PA         O3A     105.965    2.38
+3PO         O1A          PA       "O5'"     112.716    1.50
+3PO         O2A          PA         O3A     105.965    2.38
+3PO         O2A          PA       "O5'"     112.716    1.50
+3PO         O3A          PA       "O5'"     105.965    2.38
+3PO          PB         O3A          PA     132.584    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3PO             sp3_sp3_3          PB         O3B          PG         O1G      60.000    10.0     3
+3PO             sp3_sp3_9          PA         O3A          PB         O1B      60.000    10.0     3
+3PO             sp3_sp3_6          PG         O3B          PB         O1B      60.000    10.0     3
+3PO            sp3_sp3_12          PB         O3A          PA         O1A      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+3PO    chir_1    PG    O3B    O2G    O3G    both
+3PO    chir_2    PB    O3B    O3A    O2B    both
+3PO    chir_3    PA    O3A    O2A    "O5'"    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3PO           SMILES              ACDLabs 10.04                                                 O=P(OP(=O)(O)OP(=O)(O)O)(O)O
+3PO SMILES_CANONICAL               CACTVS 3.341                                           O[P](O)(=O)O[P](O)(=O)O[P](O)(O)=O
+3PO           SMILES               CACTVS 3.341                                           O[P](O)(=O)O[P](O)(=O)O[P](O)(O)=O
+3PO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                 OP(=O)(O)OP(=O)(O)OP(=O)(O)O
+3PO           SMILES "OpenEye OEToolkits" 1.5.0                                                 OP(=O)(O)OP(=O)(O)OP(=O)(O)O
+3PO            InChI                InChI  1.03 InChI=1S/H5O10P3/c1-11(2,3)9-13(7,8)10-12(4,5)6/h(H,7,8)(H2,1,2,3)(H2,4,5,6)
+3PO         InChIKey                InChI  1.03                                                  UNXRWKVEANCORM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3PO acedrg               243         "dictionary generator"                  
+3PO acedrg_database      11          "data source"                           
+3PO rdkit                2017.03.2   "Chemoinformatics tool"
+3PO refmac5              5.8.0238    "optimization tool"                     

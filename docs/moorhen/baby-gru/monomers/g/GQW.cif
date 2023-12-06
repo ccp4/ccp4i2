@@ -1,0 +1,266 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GQW     GQW      ~{N}-[2-chloranyl-5-(oxidanylcarbamoyl)phenyl]-1-benzothiophene-7-carboxamide     NON-POLYMER     34     23     .     
+#
+data_comp_GQW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GQW     C1      C       CR6     0       45.735      33.475      85.502      
+GQW     C2      C       CR16    0       45.227      33.934      84.288      
+GQW     C3      C       CR16    0       44.393      35.041      84.237      
+GQW     C4      C       CR6     0       44.068      35.707      85.407      
+GQW     C5      C       CR6     0       44.567      35.272      86.639      
+GQW     C6      C       C       0       44.562      37.244      88.128      
+GQW     C7      C       CR6     0       43.886      37.912      89.295      
+GQW     N1      N       NH1     0       44.255      35.951      87.836      
+GQW     C8      C       CR16    0       42.630      37.488      89.760      
+GQW     N       N       NH1     0       46.359      31.274      84.762      
+GQW     C       C       C       0       46.644      32.285      85.575      
+GQW     O       O       O       0       47.614      32.271      86.346      
+GQW     C10     C       CR16    0       42.547      39.177      91.492      
+GQW     C11     C       CR56    0       43.797      39.676      91.088      
+GQW     C12     C       CR15    0       44.564      40.776      91.624      
+GQW     C13     C       CR15    0       45.719      40.952      90.970      
+GQW     C14     C       CR56    0       44.477      39.046      89.979      
+GQW     C15     C       CR16    0       45.410      34.154      86.675      
+GQW     C9      C       CR16    0       41.988      38.103      90.833      
+GQW     O1      O       OH1     0       47.199      30.167      84.696      
+GQW     O2      O       O       0       45.354      37.886      87.442      
+GQW     S       S       S2      0       45.919      39.850      89.742      
+GQW     CL      CL      CL      0       43.022      37.087      85.305      
+GQW     H1      H       H       0       45.442      33.483      83.491      
+GQW     H2      H       H       0       44.047      35.340      83.415      
+GQW     H3      H       H       0       43.871      35.472      88.457      
+GQW     H4      H       H       0       42.206      36.757      89.341      
+GQW     H5      H       H       0       45.654      31.216      84.239      
+GQW     H6      H       H       0       42.092      39.577      92.214      
+GQW     H7      H       H       0       44.280      41.304      92.351      
+GQW     H8      H       H       0       46.375      41.605      91.145      
+GQW     H9      H       H       0       45.754      33.858      87.502      
+GQW     H10     H       H       0       41.146      37.778      91.114      
+GQW     H11     H       H       0       46.977      29.643      85.349      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GQW          C2          C3      SINGLE       y     1.384  0.0100     1.384  0.0100
+GQW          C3          C4      DOUBLE       y     1.382  0.0100     1.382  0.0100
+GQW          C1          C2      DOUBLE       y     1.389  0.0100     1.389  0.0100
+GQW          C4          CL      SINGLE       n     1.734  0.0100     1.734  0.0100
+GQW          C4          C5      SINGLE       y     1.392  0.0100     1.392  0.0100
+GQW           N          O1      SINGLE       n     1.390  0.0100     1.390  0.0100
+GQW           N           C      SINGLE       n     1.325  0.0100     1.325  0.0100
+GQW          C1           C      SINGLE       n     1.495  0.0106     1.495  0.0106
+GQW          C1         C15      SINGLE       y     1.390  0.0100     1.390  0.0100
+GQW           C           O      DOUBLE       n     1.238  0.0100     1.238  0.0100
+GQW          C5         C15      DOUBLE       y     1.394  0.0127     1.394  0.0127
+GQW          C5          N1      SINGLE       n     1.406  0.0115     1.406  0.0115
+GQW          C6          O2      DOUBLE       n     1.228  0.0106     1.228  0.0106
+GQW          C6          N1      SINGLE       n     1.351  0.0125     1.351  0.0125
+GQW          C6          C7      SINGLE       n     1.497  0.0103     1.497  0.0103
+GQW          C7          C8      DOUBLE       y     1.396  0.0126     1.396  0.0126
+GQW          C7         C14      SINGLE       y     1.423  0.0200     1.423  0.0200
+GQW         C14           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+GQW         C13           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+GQW          C8          C9      SINGLE       y     1.391  0.0100     1.391  0.0100
+GQW         C11         C14      DOUBLE       y     1.414  0.0200     1.414  0.0200
+GQW         C10          C9      DOUBLE       y     1.376  0.0100     1.376  0.0100
+GQW         C12         C13      DOUBLE       y     1.334  0.0111     1.334  0.0111
+GQW         C10         C11      SINGLE       y     1.401  0.0100     1.401  0.0100
+GQW         C11         C12      SINGLE       y     1.432  0.0110     1.432  0.0110
+GQW          C2          H1      SINGLE       n     1.082  0.0130     0.941  0.0168
+GQW          C3          H2      SINGLE       n     1.082  0.0130     0.940  0.0158
+GQW          N1          H3      SINGLE       n     1.016  0.0100     0.876  0.0200
+GQW          C8          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+GQW           N          H5      SINGLE       n     1.016  0.0100     0.880  0.0200
+GQW         C10          H6      SINGLE       n     1.082  0.0130     0.942  0.0182
+GQW         C12          H7      SINGLE       n     1.082  0.0130     0.942  0.0149
+GQW         C13          H8      SINGLE       n     1.082  0.0130     0.942  0.0200
+GQW         C15          H9      SINGLE       n     1.082  0.0130     0.943  0.0190
+GQW          C9         H10      SINGLE       n     1.082  0.0130     0.945  0.0100
+GQW          O1         H11      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GQW          C2          C1           C     120.268    2.89
+GQW          C2          C1         C15     119.464    1.50
+GQW           C          C1         C15     120.268    2.89
+GQW          C3          C2          C1     120.830    1.50
+GQW          C3          C2          H1     119.425    1.50
+GQW          C1          C2          H1     119.745    1.50
+GQW          C2          C3          C4     119.319    1.50
+GQW          C2          C3          H2     120.581    1.50
+GQW          C4          C3          H2     120.100    1.50
+GQW          C3          C4          CL     119.025    1.50
+GQW          C3          C4          C5     121.152    1.50
+GQW          CL          C4          C5     119.824    1.50
+GQW          C4          C5         C15     119.094    1.81
+GQW          C4          C5          N1     119.767    1.50
+GQW         C15          C5          N1     121.139    3.00
+GQW          O2          C6          N1     123.574    1.50
+GQW          O2          C6          C7     120.406    1.52
+GQW          N1          C6          C7     116.020    2.16
+GQW          C6          C7          C8     119.721    2.75
+GQW          C6          C7         C14     122.325    2.66
+GQW          C8          C7         C14     117.954    2.04
+GQW          C5          N1          C6     126.650    2.29
+GQW          C5          N1          H3     116.759    1.98
+GQW          C6          N1          H3     116.591    2.27
+GQW          C7          C8          C9     121.714    1.50
+GQW          C7          C8          H4     119.203    1.50
+GQW          C9          C8          H4     119.083    1.50
+GQW          O1           N           C     120.186    1.50
+GQW          O1           N          H5     115.154    3.00
+GQW           C           N          H5     124.661    3.00
+GQW           N           C          C1     115.502    1.50
+GQW           N           C           O     122.932    1.50
+GQW          C1           C           O     121.566    1.50
+GQW          C9         C10         C11     118.860    1.50
+GQW          C9         C10          H6     120.548    1.50
+GQW         C11         C10          H6     120.592    1.50
+GQW         C14         C11         C10     120.451    1.84
+GQW         C14         C11         C12     107.250    1.50
+GQW         C10         C11         C12     132.299    1.50
+GQW         C13         C12         C11     107.596    1.50
+GQW         C13         C12          H7     126.594    1.50
+GQW         C11         C12          H7     125.810    1.50
+GQW           S         C13         C12     108.385    3.00
+GQW           S         C13          H8     123.180    3.00
+GQW         C12         C13          H8     128.436    2.40
+GQW          C7         C14           S     131.449    3.00
+GQW          C7         C14         C11     120.167    2.83
+GQW           S         C14         C11     108.385    3.00
+GQW          C1         C15          C5     120.141    1.50
+GQW          C1         C15          H9     120.138    1.50
+GQW          C5         C15          H9     119.721    1.50
+GQW          C8          C9         C10     120.854    1.50
+GQW          C8          C9         H10     119.556    1.50
+GQW         C10          C9         H10     119.590    1.50
+GQW           N          O1         H11     106.924    3.00
+GQW         C14           S         C13     108.385    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GQW              const_31           C          C1          C2          C3     180.000    10.0     2
+GQW             sp2_sp2_5           N           C          C1          C2     180.000     5.0     2
+GQW              const_51           C          C1         C15          C5     180.000    10.0     2
+GQW              const_13          C9         C10         C11         C14       0.000    10.0     2
+GQW       const_sp2_sp2_9         C11         C10          C9          C8       0.000     5.0     2
+GQW              const_57         C14         C11         C12         C13       0.000    10.0     2
+GQW              const_17         C10         C11         C14          C7       0.000    10.0     2
+GQW              const_25         C11         C12         C13           S       0.000    10.0     2
+GQW              const_23         C12         C13           S         C14       0.000    10.0     2
+GQW              const_22          C7         C14           S         C13     180.000    10.0     2
+GQW              const_33          C1          C2          C3          C4       0.000    10.0     2
+GQW              const_38          C2          C3          C4          CL     180.000    10.0     2
+GQW              const_44          CL          C4          C5          N1       0.000    10.0     2
+GQW              const_46          C1         C15          C5          N1     180.000    10.0     2
+GQW             sp2_sp2_9          C4          C5          N1          C6     180.000     5.0     2
+GQW            sp2_sp2_19          O2          C6          C7          C8       0.000     5.0     2
+GQW            sp2_sp2_15          O2          C6          N1          C5       0.000     5.0     2
+GQW              const_56           S         C14          C7          C6       0.000    10.0     2
+GQW       const_sp2_sp2_3          C6          C7          C8          C9     180.000     5.0     2
+GQW       const_sp2_sp2_5          C7          C8          C9         C10       0.000     5.0     2
+GQW             sp2_sp2_3           O           C           N          O1       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GQW    plan-1         C10   0.020
+GQW    plan-1         C11   0.020
+GQW    plan-1         C12   0.020
+GQW    plan-1         C13   0.020
+GQW    plan-1         C14   0.020
+GQW    plan-1          C6   0.020
+GQW    plan-1          C7   0.020
+GQW    plan-1          C8   0.020
+GQW    plan-1          C9   0.020
+GQW    plan-1         H10   0.020
+GQW    plan-1          H4   0.020
+GQW    plan-1          H6   0.020
+GQW    plan-1          H7   0.020
+GQW    plan-1          H8   0.020
+GQW    plan-1           S   0.020
+GQW    plan-2           C   0.020
+GQW    plan-2          C1   0.020
+GQW    plan-2         C15   0.020
+GQW    plan-2          C2   0.020
+GQW    plan-2          C3   0.020
+GQW    plan-2          C4   0.020
+GQW    plan-2          C5   0.020
+GQW    plan-2          CL   0.020
+GQW    plan-2          H1   0.020
+GQW    plan-2          H2   0.020
+GQW    plan-2          H9   0.020
+GQW    plan-2          N1   0.020
+GQW    plan-3          C6   0.020
+GQW    plan-3          C7   0.020
+GQW    plan-3          N1   0.020
+GQW    plan-3          O2   0.020
+GQW    plan-4          C5   0.020
+GQW    plan-4          C6   0.020
+GQW    plan-4          H3   0.020
+GQW    plan-4          N1   0.020
+GQW    plan-5           C   0.020
+GQW    plan-5          H5   0.020
+GQW    plan-5           N   0.020
+GQW    plan-5          O1   0.020
+GQW    plan-6           C   0.020
+GQW    plan-6          C1   0.020
+GQW    plan-6           N   0.020
+GQW    plan-6           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GQW            InChI                InChI  1.03 InChI=1S/C16H11ClN2O3S/c17-12-5-4-10(15(20)19-22)8-13(12)18-16(21)11-3-1-2-9-6-7-23-14(9)11/h1-8,22H,(H,18,21)(H,19,20)
+GQW         InChIKey                InChI  1.03                                                                                             FRUVCGVXUWSDQY-UHFFFAOYSA-N
+GQW SMILES_CANONICAL               CACTVS 3.385                                                                                ONC(=O)c1ccc(Cl)c(NC(=O)c2cccc3ccsc23)c1
+GQW           SMILES               CACTVS 3.385                                                                                ONC(=O)c1ccc(Cl)c(NC(=O)c2cccc3ccsc23)c1
+GQW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                c1cc2ccsc2c(c1)C(=O)Nc3cc(ccc3Cl)C(=O)NO
+GQW           SMILES "OpenEye OEToolkits" 2.0.6                                                                                c1cc2ccsc2c(c1)C(=O)Nc3cc(ccc3Cl)C(=O)NO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GQW acedrg               243         "dictionary generator"                  
+GQW acedrg_database      11          "data source"                           
+GQW rdkit                2017.03.2   "Chemoinformatics tool"
+GQW refmac5              5.8.0238    "optimization tool"                     

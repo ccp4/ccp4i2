@@ -1,0 +1,265 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DET     DET      UNDECYLAMINE-N,N-DIMETHYL-N-OXIDE     NON-POLYMER     44     15     .     
+#
+data_comp_DET
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DET     N       N       NT      1       76.126      2.482       43.762      
+DET     O       O       OC      -1      77.278      1.691       43.590      
+DET     CM1     C       CH3     0       75.716      2.403       45.192      
+DET     CM2     C       CH3     0       76.464      3.894       43.410      
+DET     C1      C       CH2     0       75.025      1.948       42.882      
+DET     C2      C       CH2     0       75.346      1.867       41.400      
+DET     C3      C       CH2     0       74.270      1.143       40.619      
+DET     C4      C       CH2     0       74.538      1.073       39.136      
+DET     C5      C       CH2     0       73.475      0.351       38.345      
+DET     C6      C       CH2     0       73.748      0.286       36.862      
+DET     C7      C       CH2     0       72.680      -0.422      36.065      
+DET     C8      C       CH2     0       73.018      -0.606      34.605      
+DET     C9      C       CH2     0       72.980      0.667       33.795      
+DET     C10     C       CH2     0       73.185      0.468       32.315      
+DET     C11     C       CH3     0       73.155      1.752       31.522      
+DET     HM11    H       H       0       76.448      2.697       45.755      
+DET     HM12    H       H       0       75.487      1.487       45.412      
+DET     HM13    H       H       0       74.946      2.973       45.338      
+DET     HM21    H       H       0       75.650      4.417       43.359      
+DET     HM22    H       H       0       76.916      3.915       42.553      
+DET     HM23    H       H       0       77.046      4.268       44.089      
+DET     H11     H       H       0       74.239      2.515       42.995      
+DET     H12     H       H       0       74.788      1.054       43.192      
+DET     H21     H       H       0       76.197      1.399       41.271      
+DET     H22     H       H       0       75.443      2.773       41.036      
+DET     H31     H       H       0       73.412      1.597       40.764      
+DET     H32     H       H       0       74.186      0.230       40.968      
+DET     H41     H       H       0       75.397      0.622       38.993      
+DET     H42     H       H       0       74.621      1.987       38.789      
+DET     H51     H       H       0       72.616      0.802       38.487      
+DET     H52     H       H       0       73.392      -0.563      38.690      
+DET     H61     H       H       0       74.603      -0.173      36.720      
+DET     H62     H       H       0       73.841      1.200       36.519      
+DET     H71     H       H       0       71.846      0.089       36.133      
+DET     H72     H       H       0       72.522      -1.304      36.464      
+DET     H81     H       H       0       72.385      -1.246      34.215      
+DET     H82     H       H       0       73.915      -0.996      34.537      
+DET     H91     H       H       0       73.675      1.273       34.129      
+DET     H92     H       H       0       72.112      1.103       33.935      
+DET     H101    H       H       0       72.485      -0.131      31.977      
+DET     H102    H       H       0       74.051      0.026       32.174      
+DET     H111    H       H       0       73.293      1.556       30.579      
+DET     H112    H       H       0       73.861      2.345       31.835      
+DET     H113    H       H       0       72.293      2.187       31.639      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DET           N           O      SINGLE       n     1.408  0.0200     1.408  0.0200
+DET           N         CM1      SINGLE       n     1.488  0.0183     1.488  0.0183
+DET           N         CM2      SINGLE       n     1.488  0.0183     1.488  0.0183
+DET           N          C1      SINGLE       n     1.502  0.0132     1.502  0.0132
+DET          C1          C2      SINGLE       n     1.516  0.0105     1.516  0.0105
+DET          C2          C3      SINGLE       n     1.514  0.0200     1.514  0.0200
+DET          C3          C4      SINGLE       n     1.509  0.0200     1.509  0.0200
+DET          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+DET          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+DET          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+DET          C7          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+DET          C8          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+DET          C9         C10      SINGLE       n     1.507  0.0200     1.507  0.0200
+DET         C10         C11      SINGLE       n     1.510  0.0200     1.510  0.0200
+DET         CM1        HM11      SINGLE       n     1.089  0.0100     0.969  0.0145
+DET         CM1        HM12      SINGLE       n     1.089  0.0100     0.969  0.0145
+DET         CM1        HM13      SINGLE       n     1.089  0.0100     0.969  0.0145
+DET         CM2        HM21      SINGLE       n     1.089  0.0100     0.969  0.0145
+DET         CM2        HM22      SINGLE       n     1.089  0.0100     0.969  0.0145
+DET         CM2        HM23      SINGLE       n     1.089  0.0100     0.969  0.0145
+DET          C1         H11      SINGLE       n     1.089  0.0100     0.976  0.0165
+DET          C1         H12      SINGLE       n     1.089  0.0100     0.976  0.0165
+DET          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0160
+DET          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0160
+DET          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0163
+DET         C10        H101      SINGLE       n     1.089  0.0100     0.982  0.0155
+DET         C10        H102      SINGLE       n     1.089  0.0100     0.982  0.0155
+DET         C11        H111      SINGLE       n     1.089  0.0100     0.973  0.0157
+DET         C11        H112      SINGLE       n     1.089  0.0100     0.973  0.0157
+DET         C11        H113      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DET           O           N         CM1     109.251    1.50
+DET           O           N         CM2     109.251    1.50
+DET           O           N          C1     109.251    1.50
+DET         CM1           N         CM2     110.773    1.50
+DET         CM1           N          C1     111.483    1.83
+DET         CM2           N          C1     111.483    1.83
+DET           N         CM1        HM11     109.312    1.50
+DET           N         CM1        HM12     109.312    1.50
+DET           N         CM1        HM13     109.312    1.50
+DET        HM11         CM1        HM12     109.462    1.50
+DET        HM11         CM1        HM13     109.462    1.50
+DET        HM12         CM1        HM13     109.462    1.50
+DET           N         CM2        HM21     109.312    1.50
+DET           N         CM2        HM22     109.312    1.50
+DET           N         CM2        HM23     109.312    1.50
+DET        HM21         CM2        HM22     109.462    1.50
+DET        HM21         CM2        HM23     109.462    1.50
+DET        HM22         CM2        HM23     109.462    1.50
+DET           N          C1          C2     112.889    2.20
+DET           N          C1         H11     108.731    1.50
+DET           N          C1         H12     108.731    1.50
+DET          C2          C1         H11     108.698    1.50
+DET          C2          C1         H12     108.698    1.50
+DET         H11          C1         H12     107.788    1.50
+DET          C1          C2          C3     112.753    2.24
+DET          C1          C2         H21     109.435    1.50
+DET          C1          C2         H22     109.435    1.50
+DET          C3          C2         H21     109.041    1.50
+DET          C3          C2         H22     109.041    1.50
+DET         H21          C2         H22     107.927    1.57
+DET          C2          C3          C4     113.853    2.32
+DET          C2          C3         H31     108.806    1.50
+DET          C2          C3         H32     108.806    1.50
+DET          C4          C3         H31     108.698    1.50
+DET          C4          C3         H32     108.698    1.50
+DET         H31          C3         H32     107.646    1.50
+DET          C3          C4          C5     114.243    1.69
+DET          C3          C4         H41     108.698    1.50
+DET          C3          C4         H42     108.698    1.50
+DET          C5          C4         H41     108.698    1.50
+DET          C5          C4         H42     108.698    1.50
+DET         H41          C4         H42     107.646    1.50
+DET          C4          C5          C6     114.243    1.69
+DET          C4          C5         H51     108.698    1.50
+DET          C4          C5         H52     108.698    1.50
+DET          C6          C5         H51     108.698    1.50
+DET          C6          C5         H52     108.698    1.50
+DET         H51          C5         H52     107.646    1.50
+DET          C5          C6          C7     114.243    1.69
+DET          C5          C6         H61     108.698    1.50
+DET          C5          C6         H62     108.698    1.50
+DET          C7          C6         H61     108.698    1.50
+DET          C7          C6         H62     108.698    1.50
+DET         H61          C6         H62     107.646    1.50
+DET          C6          C7          C8     114.243    1.69
+DET          C6          C7         H71     108.698    1.50
+DET          C6          C7         H72     108.698    1.50
+DET          C8          C7         H71     108.698    1.50
+DET          C8          C7         H72     108.698    1.50
+DET         H71          C7         H72     107.646    1.50
+DET          C7          C8          C9     114.243    1.69
+DET          C7          C8         H81     108.698    1.50
+DET          C7          C8         H82     108.698    1.50
+DET          C9          C8         H81     108.698    1.50
+DET          C9          C8         H82     108.698    1.50
+DET         H81          C8         H82     107.646    1.50
+DET          C8          C9         C10     114.362    3.00
+DET          C8          C9         H91     108.698    1.50
+DET          C8          C9         H92     108.698    1.50
+DET         C10          C9         H91     108.653    1.50
+DET         C10          C9         H92     108.653    1.50
+DET         H91          C9         H92     107.646    1.50
+DET          C9         C10         C11     113.719    3.00
+DET          C9         C10        H101     108.758    1.50
+DET          C9         C10        H102     108.758    1.50
+DET         C11         C10        H101     108.918    1.50
+DET         C11         C10        H102     108.918    1.50
+DET        H101         C10        H102     107.763    1.50
+DET         C10         C11        H111     109.554    1.50
+DET         C10         C11        H112     109.554    1.50
+DET         C10         C11        H113     109.554    1.50
+DET        H111         C11        H112     109.380    1.50
+DET        H111         C11        H113     109.380    1.50
+DET        H112         C11        H113     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DET             sp3_sp3_2        HM11         CM1           N           O     -60.000    10.0     3
+DET            sp3_sp3_10        HM21         CM2           N           O     180.000    10.0     3
+DET            sp3_sp3_19          C2          C1           N           O     180.000    10.0     3
+DET            sp3_sp3_82          C6          C7          C8          C9     180.000    10.0     3
+DET            sp3_sp3_91          C7          C8          C9         C10     180.000    10.0     3
+DET           sp3_sp3_100         C11         C10          C9          C8     180.000    10.0     3
+DET           sp3_sp3_109          C9         C10         C11        H111     180.000    10.0     3
+DET            sp3_sp3_28           N          C1          C2          C3     180.000    10.0     3
+DET            sp3_sp3_37          C1          C2          C3          C4     180.000    10.0     3
+DET            sp3_sp3_46          C2          C3          C4          C5     180.000    10.0     3
+DET            sp3_sp3_55          C3          C4          C5          C6     180.000    10.0     3
+DET            sp3_sp3_64          C4          C5          C6          C7     180.000    10.0     3
+DET            sp3_sp3_73          C5          C6          C7          C8     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DET    chir_1    N    O    C1    CM1    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DET           SMILES              ACDLabs 10.04                                          "[O-][N+](CCCCCCCCCCC)(C)C"
+DET SMILES_CANONICAL               CACTVS 3.341                                            CCCCCCCCCCC[N+](C)(C)[O-]
+DET           SMILES               CACTVS 3.341                                            CCCCCCCCCCC[N+](C)(C)[O-]
+DET SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                            CCCCCCCCCCC[N+](C)(C)[O-]
+DET           SMILES "OpenEye OEToolkits" 1.5.0                                            CCCCCCCCCCC[N+](C)(C)[O-]
+DET            InChI                InChI  1.03 InChI=1S/C13H29NO/c1-4-5-6-7-8-9-10-11-12-13-14(2,3)15/h4-13H2,1-3H3
+DET         InChIKey                InChI  1.03                                          OZHBUVQCJMARBN-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DET acedrg               243         "dictionary generator"                  
+DET acedrg_database      11          "data source"                           
+DET rdkit                2017.03.2   "Chemoinformatics tool"
+DET refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,146 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+60P     60P      "3-methylthiophene-2-carboxylic acid"     NON-POLYMER     14     9     .     
+#
+data_comp_60P
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+60P     S01     S       S2      0       -16.177     3.199       -11.543     
+60P     C02     C       CR5     0       -17.000     2.093       -12.482     
+60P     C03     C       CR5     0       -17.225     2.667       -13.733     
+60P     C04     C       CR15    0       -16.703     4.000       -13.856     
+60P     C05     C       CR15    0       -16.102     4.399       -12.705     
+60P     C06     C       CH3     0       -17.933     2.007       -14.876     
+60P     C07     C       C       0       -17.355     0.779       -11.940     
+60P     O08     O       O       0       -17.071     -0.212      -12.587     
+60P     O09     O       OC      -1      -17.919     0.729       -10.863     
+60P     H041    H       H       0       -16.775     4.521       -14.637     
+60P     H051    H       H       0       -15.686     5.227       -12.533     
+60P     H061    H       H       0       -18.315     1.163       -14.588     
+60P     H062    H       H       0       -17.306     1.843       -15.599     
+60P     H063    H       H       0       -18.645     2.584       -15.197     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+60P         C03         C06      SINGLE       n     1.497  0.0100     1.497  0.0100
+60P         C03         C04      SINGLE       y     1.407  0.0187     1.407  0.0187
+60P         C04         C05      DOUBLE       y     1.343  0.0200     1.343  0.0200
+60P         C02         C03      DOUBLE       y     1.380  0.0200     1.380  0.0200
+60P         S01         C05      SINGLE       y     1.695  0.0200     1.695  0.0200
+60P         C07         O08      DOUBLE       n     1.217  0.0200     1.217  0.0200
+60P         C02         C07      SINGLE       n     1.463  0.0200     1.463  0.0200
+60P         S01         C02      SINGLE       y     1.695  0.0200     1.695  0.0200
+60P         C07         O09      SINGLE       n     1.217  0.0200     1.217  0.0200
+60P         C04        H041      SINGLE       n     1.082  0.0130     0.942  0.0153
+60P         C05        H051      SINGLE       n     1.082  0.0130     0.942  0.0200
+60P         C06        H061      SINGLE       n     1.089  0.0100     0.971  0.0172
+60P         C06        H062      SINGLE       n     1.089  0.0100     0.971  0.0172
+60P         C06        H063      SINGLE       n     1.089  0.0100     0.971  0.0172
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+60P         C05         S01         C02     108.128    3.00
+60P         C03         C02         C07     130.371    3.00
+60P         C03         C02         S01     108.128    3.00
+60P         C07         C02         S01     121.501    3.00
+60P         C06         C03         C04     123.301    1.50
+60P         C06         C03         C02     128.783    2.27
+60P         C04         C03         C02     107.916    2.27
+60P         C03         C04         C05     107.701    1.50
+60P         C03         C04        H041     125.528    1.50
+60P         C05         C04        H041     126.771    1.50
+60P         C04         C05         S01     108.128    3.00
+60P         C04         C05        H051     128.564    2.40
+60P         S01         C05        H051     123.308    3.00
+60P         C03         C06        H061     109.729    1.50
+60P         C03         C06        H062     109.729    1.50
+60P         C03         C06        H063     109.729    1.50
+60P        H061         C06        H062     109.190    1.68
+60P        H061         C06        H063     109.190    1.68
+60P        H062         C06        H063     109.190    1.68
+60P         O08         C07         C02     118.485    3.00
+60P         O08         C07         O09     123.030    1.50
+60P         C02         C07         O09     118.485    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+60P              const_16         C07         C02         S01         C05     180.000    10.0     2
+60P       const_sp2_sp2_1         C04         C05         S01         C02       0.000     5.0     2
+60P              const_14         C07         C02         C03         C06       0.000    10.0     2
+60P             sp2_sp2_1         C03         C02         C07         O08     180.000     5.0     2
+60P       const_sp2_sp2_9         C06         C03         C04         C05     180.000     5.0     2
+60P             sp2_sp3_1         C04         C03         C06        H061     150.000    10.0     6
+60P       const_sp2_sp2_3         C03         C04         C05         S01       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+60P    plan-1         C02   0.020
+60P    plan-1         C03   0.020
+60P    plan-1         C04   0.020
+60P    plan-1         C05   0.020
+60P    plan-1         C06   0.020
+60P    plan-1         C07   0.020
+60P    plan-1        H041   0.020
+60P    plan-1        H051   0.020
+60P    plan-1         S01   0.020
+60P    plan-2         C02   0.020
+60P    plan-2         C07   0.020
+60P    plan-2         O08   0.020
+60P    plan-2         O09   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+60P            InChI                InChI  1.03 InChI=1S/C6H6O2S/c1-4-2-3-9-5(4)6(7)8/h2-3H,1H3,(H,7,8)
+60P         InChIKey                InChI  1.03                             IFLKEBSJTZGCJG-UHFFFAOYSA-N
+60P SMILES_CANONICAL               CACTVS 3.385                                          Cc1ccsc1C(O)=O
+60P           SMILES               CACTVS 3.385                                          Cc1ccsc1C(O)=O
+60P SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                          Cc1ccsc1C(=O)O
+60P           SMILES "OpenEye OEToolkits" 2.0.4                                          Cc1ccsc1C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+60P acedrg               243         "dictionary generator"                  
+60P acedrg_database      11          "data source"                           
+60P rdkit                2017.03.2   "Chemoinformatics tool"
+60P refmac5              5.8.0238    "optimization tool"                     

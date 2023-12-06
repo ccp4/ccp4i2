@@ -1,0 +1,213 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NCT     NCT      (S)-3-(1-METHYLPYRROLIDIN-2-YL)PYRIDINE     NON-POLYMER     26     12     .     
+#
+data_comp_NCT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NCT     N1      N       NRD6    0       14.801      10.621      39.371      
+NCT     C1      C       CR16    0       15.058      11.230      40.546      
+NCT     C2      C       CR6     0       15.933      12.302      40.668      
+NCT     C3      C       CR16    0       16.563      12.753      39.514      
+NCT     C4      C       CR16    0       16.314      12.145      38.304      
+NCT     C5      C       CR16    0       15.431      11.087      38.273      
+NCT     N2      N       NT      0       17.634      13.194      42.296      
+NCT     C6      C       CH1     0       16.196      12.958      42.009      
+NCT     C7      C       CH2     0       15.615      14.377      42.133      
+NCT     C8      C       CH2     0       16.443      14.998      43.250      
+NCT     C9      C       CH2     0       17.845      14.467      42.997      
+NCT     C10     C       CH3     0       18.396      12.073      42.837      
+NCT     HC1     H       H       0       14.620      10.909      41.322      
+NCT     HC3     H       H       0       17.163      13.479      39.565      
+NCT     HC4     H       H       0       16.737      12.445      37.518      
+NCT     HC5     H       H       0       15.257      10.668      37.448      
+NCT     HC6     H       H       0       15.818      12.395      42.728      
+NCT     HC71    H       H       0       14.659      14.349      42.372      
+NCT     HC72    H       H       0       15.722      14.878      41.290      
+NCT     HC81    H       H       0       16.114      14.714      44.136      
+NCT     HC82    H       H       0       16.425      15.983      43.201      
+NCT     HC91    H       H       0       18.358      15.089      42.435      
+NCT     HC92    H       H       0       18.327      14.337      43.843      
+NCT     H101    H       H       0       18.032      11.239      42.496      
+NCT     H102    H       H       0       18.342      12.073      43.807      
+NCT     H103    H       H       0       19.325      12.152      42.565      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NCT          N1          C1      DOUBLE       y     1.343  0.0100     1.343  0.0100
+NCT          N1          C5      SINGLE       y     1.338  0.0156     1.338  0.0156
+NCT          C1          C2      SINGLE       y     1.385  0.0100     1.385  0.0100
+NCT          C2          C3      DOUBLE       y     1.387  0.0100     1.387  0.0100
+NCT          C2          C6      SINGLE       n     1.514  0.0139     1.514  0.0139
+NCT          C3          C4      SINGLE       y     1.375  0.0100     1.375  0.0100
+NCT          C4          C5      DOUBLE       y     1.368  0.0200     1.368  0.0200
+NCT          N2          C6      SINGLE       n     1.485  0.0123     1.485  0.0123
+NCT          N2          C9      SINGLE       n     1.465  0.0100     1.465  0.0100
+NCT          N2         C10      SINGLE       n     1.457  0.0100     1.457  0.0100
+NCT          C6          C7      SINGLE       n     1.539  0.0100     1.539  0.0100
+NCT          C7          C8      SINGLE       n     1.523  0.0100     1.523  0.0100
+NCT          C8          C9      SINGLE       n     1.519  0.0111     1.519  0.0111
+NCT          C1         HC1      SINGLE       n     1.082  0.0130     0.947  0.0113
+NCT          C3         HC3      SINGLE       n     1.082  0.0130     0.943  0.0164
+NCT          C4         HC4      SINGLE       n     1.082  0.0130     0.942  0.0124
+NCT          C5         HC5      SINGLE       n     1.082  0.0130     0.942  0.0166
+NCT          C6         HC6      SINGLE       n     1.089  0.0100     0.988  0.0131
+NCT          C7        HC71      SINGLE       n     1.089  0.0100     0.986  0.0100
+NCT          C7        HC72      SINGLE       n     1.089  0.0100     0.986  0.0100
+NCT          C8        HC81      SINGLE       n     1.089  0.0100     0.987  0.0200
+NCT          C8        HC82      SINGLE       n     1.089  0.0100     0.987  0.0200
+NCT          C9        HC91      SINGLE       n     1.089  0.0100     0.983  0.0122
+NCT          C9        HC92      SINGLE       n     1.089  0.0100     0.983  0.0122
+NCT         C10        H101      SINGLE       n     1.089  0.0100     0.971  0.0148
+NCT         C10        H102      SINGLE       n     1.089  0.0100     0.971  0.0148
+NCT         C10        H103      SINGLE       n     1.089  0.0100     0.971  0.0148
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NCT          C1          N1          C5     116.890    1.50
+NCT          N1          C1          C2     122.744    1.50
+NCT          N1          C1         HC1     118.473    1.50
+NCT          C2          C1         HC1     118.784    1.50
+NCT          C1          C2          C3     117.766    1.50
+NCT          C1          C2          C6     121.197    1.78
+NCT          C3          C2          C6     121.037    1.59
+NCT          C2          C3          C4     120.547    1.50
+NCT          C2          C3         HC3     119.406    1.50
+NCT          C4          C3         HC3     120.047    1.50
+NCT          C3          C4          C5     118.799    1.50
+NCT          C3          C4         HC4     120.542    1.50
+NCT          C5          C4         HC4     120.659    1.50
+NCT          N1          C5          C4     123.256    1.50
+NCT          N1          C5         HC5     118.145    1.50
+NCT          C4          C5         HC5     118.599    1.50
+NCT          C6          N2          C9     110.850    2.78
+NCT          C6          N2         C10     116.441    3.00
+NCT          C9          N2         C10     112.674    1.64
+NCT          C2          C6          N2     114.176    1.63
+NCT          C2          C6          C7     113.884    1.85
+NCT          C2          C6         HC6     109.229    1.50
+NCT          N2          C6          C7     101.965    1.50
+NCT          N2          C6         HC6     108.702    1.50
+NCT          C7          C6         HC6     108.847    1.50
+NCT          C6          C7          C8     103.404    1.50
+NCT          C6          C7        HC71     110.910    1.50
+NCT          C6          C7        HC72     110.910    1.50
+NCT          C8          C7        HC71     111.031    1.50
+NCT          C8          C7        HC72     111.031    1.50
+NCT        HC71          C7        HC72     108.960    1.50
+NCT          C7          C8          C9     103.361    1.50
+NCT          C7          C8        HC81     111.005    1.50
+NCT          C7          C8        HC82     111.005    1.50
+NCT          C9          C8        HC81     110.793    1.50
+NCT          C9          C8        HC82     110.793    1.50
+NCT        HC81          C8        HC82     108.899    1.50
+NCT          N2          C9          C8     104.312    1.50
+NCT          N2          C9        HC91     110.819    1.50
+NCT          N2          C9        HC92     110.819    1.50
+NCT          C8          C9        HC91     111.171    1.50
+NCT          C8          C9        HC92     111.171    1.50
+NCT        HC91          C9        HC92     108.998    1.50
+NCT          N2         C10        H101     109.549    1.50
+NCT          N2         C10        H102     109.549    1.50
+NCT          N2         C10        H103     109.549    1.50
+NCT        H101         C10        H102     109.462    1.50
+NCT        H101         C10        H103     109.462    1.50
+NCT        H102         C10        H103     109.462    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NCT       const_sp2_sp2_1          C2          C1          N1          C5       0.000     5.0     2
+NCT              const_19          C4          C5          N1          C1       0.000    10.0     2
+NCT       const_sp2_sp2_3          N1          C1          C2          C3       0.000     5.0     2
+NCT       const_sp2_sp2_7          C1          C2          C3          C4       0.000     5.0     2
+NCT             sp2_sp3_1          C1          C2          C6          N2     150.000    10.0     6
+NCT              const_11          C2          C3          C4          C5       0.000    10.0     2
+NCT              const_15          C3          C4          C5          N1       0.000    10.0     2
+NCT            sp3_sp3_35          C8          C9          N2         C10     -60.000    10.0     3
+NCT            sp3_sp3_40        H101         C10          N2          C6     180.000    10.0     3
+NCT             sp3_sp3_4          C2          C6          N2         C10      60.000    10.0     3
+NCT            sp3_sp3_10          C2          C6          C7          C8     180.000    10.0     3
+NCT            sp3_sp3_16          C6          C7          C8          C9      60.000    10.0     3
+NCT            sp3_sp3_25          C7          C8          C9          N2     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NCT    chir_1    C6    N2    C2    C7    positive
+NCT    chir_2    N2    C6    C9    C10    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NCT    plan-1          C1   0.020
+NCT    plan-1          C2   0.020
+NCT    plan-1          C3   0.020
+NCT    plan-1          C4   0.020
+NCT    plan-1          C5   0.020
+NCT    plan-1          C6   0.020
+NCT    plan-1         HC1   0.020
+NCT    plan-1         HC3   0.020
+NCT    plan-1         HC4   0.020
+NCT    plan-1         HC5   0.020
+NCT    plan-1          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NCT           SMILES              ACDLabs 10.04                                                                   n1cc(ccc1)C2N(C)CCC2
+NCT SMILES_CANONICAL               CACTVS 3.341                                                                   CN1CCC[C@H]1c2cccnc2
+NCT           SMILES               CACTVS 3.341                                                                    CN1CCC[CH]1c2cccnc2
+NCT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                               C[N@@]1CCC[C@H]1c2cccnc2
+NCT           SMILES "OpenEye OEToolkits" 1.5.0                                                                       CN1CCCC1c2cccnc2
+NCT            InChI                InChI  1.03 InChI=1S/C10H14N2/c1-12-7-3-5-10(12)9-4-2-6-11-8-9/h2,4,6,8,10H,3,5,7H2,1H3/t10-/m0/s1
+NCT         InChIKey                InChI  1.03                                                            SNICXCGAKADSCV-JTQLQIEISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NCT acedrg               243         "dictionary generator"                  
+NCT acedrg_database      11          "data source"                           
+NCT rdkit                2017.03.2   "Chemoinformatics tool"
+NCT refmac5              5.8.0238    "optimization tool"                     

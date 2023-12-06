@@ -1,0 +1,171 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GV9     GV9      "3-(acetylamino)thiophene-2-carboxylic acid"     NON-POLYMER     18     12     .     
+#
+data_comp_GV9
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GV9     O11     O       O       0       -13.884     -1.757      -1.272      
+GV9     C10     C       C       0       -12.873     -1.724      -1.949      
+GV9     C12     C       CH3     0       -12.474     -2.856      -2.853      
+GV9     N9      N       NH1     0       -12.023     -0.661      -1.937      
+GV9     C3      C       CR5     0       -12.371     0.636       -1.522      
+GV9     C4      C       CR15    0       -13.468     1.359       -2.050      
+GV9     C5      C       CR15    0       -13.582     2.587       -1.476      
+GV9     S1      S       S2      0       -12.391     2.844       -0.335      
+GV9     C2      C       CR5     0       -11.673     1.356       -0.543      
+GV9     C6      C       C       0       -10.497     1.023       0.264       
+GV9     O7      O       O       0       -10.489     -0.039      0.859       
+GV9     O8      O       OC      -1      -9.573      1.814       0.307       
+GV9     H12     H       H       0       -11.507     -2.946      -2.861      
+GV9     H12A    H       H       0       -12.790     -2.678      -3.753      
+GV9     H12B    H       H       0       -12.870     -3.682      -2.530      
+GV9     HN9     H       H       0       -11.190     -0.784      -2.200      
+GV9     H4      H       H       0       -14.046     1.028       -2.716      
+GV9     H5      H       H       0       -14.230     3.245       -1.662      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GV9         O11         C10      DOUBLE       n     1.216  0.0126     1.216  0.0126
+GV9         C10         C12      SINGLE       n     1.501  0.0100     1.501  0.0100
+GV9         C10          N9      SINGLE       n     1.354  0.0137     1.354  0.0137
+GV9          N9          C3      SINGLE       n     1.405  0.0100     1.405  0.0100
+GV9          C3          C4      SINGLE       y     1.378  0.0200     1.378  0.0200
+GV9          C3          C2      DOUBLE       y     1.389  0.0200     1.389  0.0200
+GV9          C4          C5      DOUBLE       y     1.343  0.0200     1.343  0.0200
+GV9          C5          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+GV9          S1          C2      SINGLE       y     1.695  0.0200     1.695  0.0200
+GV9          C2          C6      SINGLE       n     1.463  0.0200     1.463  0.0200
+GV9          C6          O7      DOUBLE       n     1.217  0.0200     1.217  0.0200
+GV9          C6          O8      SINGLE       n     1.217  0.0200     1.217  0.0200
+GV9         C12         H12      SINGLE       n     1.089  0.0100     0.971  0.0140
+GV9         C12        H12A      SINGLE       n     1.089  0.0100     0.971  0.0140
+GV9         C12        H12B      SINGLE       n     1.089  0.0100     0.971  0.0140
+GV9          N9         HN9      SINGLE       n     1.016  0.0100     0.882  0.0165
+GV9          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0153
+GV9          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GV9         O11         C10         C12     122.875    1.50
+GV9         O11         C10          N9     122.263    1.50
+GV9         C12         C10          N9     114.862    1.50
+GV9         C10         C12         H12     109.454    1.50
+GV9         C10         C12        H12A     109.454    1.50
+GV9         C10         C12        H12B     109.454    1.50
+GV9         H12         C12        H12A     109.365    1.50
+GV9         H12         C12        H12B     109.365    1.50
+GV9        H12A         C12        H12B     109.365    1.50
+GV9         C10          N9          C3     123.703    2.13
+GV9         C10          N9         HN9     118.276    1.66
+GV9          C3          N9         HN9     118.021    2.72
+GV9          N9          C3          C4     126.113    3.00
+GV9          N9          C3          C2     126.800    2.73
+GV9          C4          C3          C2     107.087    1.62
+GV9          C3          C4          C5     107.633    1.50
+GV9          C3          C4          H4     125.979    1.50
+GV9          C5          C4          H4     126.387    1.50
+GV9          C4          C5          S1     108.427    3.00
+GV9          C4          C5          H5     128.415    2.40
+GV9          S1          C5          H5     123.159    3.00
+GV9          C5          S1          C2     108.427    3.00
+GV9          C3          C2          S1     108.427    3.00
+GV9          C3          C2          C6     132.577    2.44
+GV9          S1          C2          C6     118.996    3.00
+GV9          C2          C6          O7     118.485    3.00
+GV9          C2          C6          O8     118.485    3.00
+GV9          O7          C6          O8     123.030    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GV9             sp2_sp3_1         O11         C10         C12         H12       0.000    10.0     6
+GV9             sp2_sp2_3         O11         C10          N9          C3       0.000     5.0     2
+GV9             sp2_sp2_5          C4          C3          N9         C10     180.000     5.0     2
+GV9       const_sp2_sp2_3          N9          C3          C4          C5     180.000     5.0     2
+GV9              const_16          C6          C2          C3          N9       0.000    10.0     2
+GV9       const_sp2_sp2_5          C3          C4          C5          S1       0.000     5.0     2
+GV9       const_sp2_sp2_9          C4          C5          S1          C2       0.000     5.0     2
+GV9              const_12          C6          C2          S1          C5     180.000    10.0     2
+GV9             sp2_sp2_9          C3          C2          C6          O7     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GV9    plan-1          C2   0.020
+GV9    plan-1          C3   0.020
+GV9    plan-1          C4   0.020
+GV9    plan-1          C5   0.020
+GV9    plan-1          C6   0.020
+GV9    plan-1          H4   0.020
+GV9    plan-1          H5   0.020
+GV9    plan-1          N9   0.020
+GV9    plan-1          S1   0.020
+GV9    plan-2         C10   0.020
+GV9    plan-2         C12   0.020
+GV9    plan-2          N9   0.020
+GV9    plan-2         O11   0.020
+GV9    plan-3         C10   0.020
+GV9    plan-3          C3   0.020
+GV9    plan-3         HN9   0.020
+GV9    plan-3          N9   0.020
+GV9    plan-4          C2   0.020
+GV9    plan-4          C6   0.020
+GV9    plan-4          O7   0.020
+GV9    plan-4          O8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GV9           SMILES              ACDLabs 10.04                                                     O=C(Nc1c(scc1)C(=O)O)C
+GV9 SMILES_CANONICAL               CACTVS 3.341                                                       CC(=O)Nc1ccsc1C(O)=O
+GV9           SMILES               CACTVS 3.341                                                       CC(=O)Nc1ccsc1C(O)=O
+GV9 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                       CC(=O)Nc1ccsc1C(=O)O
+GV9           SMILES "OpenEye OEToolkits" 1.5.0                                                       CC(=O)Nc1ccsc1C(=O)O
+GV9            InChI                InChI  1.03 InChI=1S/C7H7NO3S/c1-4(9)8-5-2-3-12-6(5)7(10)11/h2-3H,1H3,(H,8,9)(H,10,11)
+GV9         InChIKey                InChI  1.03                                                LLKLTQJOEPWBOE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GV9 acedrg               243         "dictionary generator"                  
+GV9 acedrg_database      11          "data source"                           
+GV9 rdkit                2017.03.2   "Chemoinformatics tool"
+GV9 refmac5              5.8.0238    "optimization tool"                     

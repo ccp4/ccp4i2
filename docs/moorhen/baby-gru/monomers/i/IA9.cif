@@ -1,0 +1,332 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IA9     IA9      2-chloro-4-fluoro-3-methyl-N-[2-(4-methylpiperazin-1-yl)-5-nitrophenyl]benzamide     NON-POLYMER     48     28     .     
+#
+data_comp_IA9
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IA9     CLG     CL      CL      0       7.981       25.784      -2.397      
+IA9     CAX     C       CR6     0       8.417       27.421      -2.003      
+IA9     CAS     C       CR6     0       7.401       28.351      -1.762      
+IA9     CAA     C       CH3     0       5.947       27.938      -1.849      
+IA9     CAT     C       CR6     0       7.760       29.654      -1.446      
+IA9     FAF     F       F       0       6.801       30.580      -1.207      
+IA9     CAH     C       CR16    0       9.070       30.056      -1.364      
+IA9     CAJ     C       CR16    0       10.070      29.128      -1.609      
+IA9     CAW     C       CR6     0       9.766       27.795      -1.920      
+IA9     CAR     C       C       0       10.892      26.830      -2.187      
+IA9     OAC     O       O       0       10.851      26.081      -3.158      
+IA9     NAQ     N       NH1     0       11.947      26.868      -1.326      
+IA9     CAV     C       CR6     0       13.204      26.212      -1.470      
+IA9     CAL     C       CR16    0       13.855      26.231      -2.711      
+IA9     CAU     C       CR6     0       15.079      25.573      -2.829      
+IA9     NBB     N       N       1       15.763      25.582      -4.117      
+IA9     OAE     O       O       0       15.193      25.088      -5.078      
+IA9     OAD     O       OC      -1      16.875      26.082      -4.177      
+IA9     CAI     C       CR16    0       15.666      24.914      -1.749      
+IA9     CAK     C       CR16    0       15.020      24.906      -0.535      
+IA9     CAY     C       CR6     0       13.786      25.544      -0.363      
+IA9     NBA     N       NT      0       13.148      25.532      0.894       
+IA9     CAO     C       CH2     0       12.005      24.651      1.147       
+IA9     CAM     C       CH2     0       11.121      25.236      2.227       
+IA9     NAZ     N       NT      0       11.876      25.474      3.462       
+IA9     CAB     C       CH3     0       11.018      25.995      4.533       
+IA9     CAN     C       CH2     0       13.009      26.365      3.193       
+IA9     CAP     C       CH2     0       13.909      25.795      2.120       
+IA9     H1      H       H       0       5.760       27.597      -2.739      
+IA9     H2      H       H       0       5.369       28.697      -1.673      
+IA9     H3      H       H       0       5.768       27.243      -1.195      
+IA9     H4      H       H       0       9.281       30.940      -1.150      
+IA9     H5      H       H       0       10.989      29.401      -1.551      
+IA9     H6      H       H       0       11.854      27.342      -0.595      
+IA9     H7      H       H       0       13.464      26.670      -3.446      
+IA9     H8      H       H       0       16.494      24.478      -1.843      
+IA9     H9      H       H       0       15.409      24.464      0.199       
+IA9     H10     H       H       0       11.486      24.540      0.323       
+IA9     H11     H       H       0       12.326      23.769      1.428       
+IA9     H12     H       H       0       10.384      24.620      2.409       
+IA9     H13     H       H       0       10.740      26.080      1.911       
+IA9     H15     H       H       0       11.366      26.847      4.858       
+IA9     H16     H       H       0       11.000      25.356      5.269       
+IA9     H17     H       H       0       10.110      26.128      4.202       
+IA9     H18     H       H       0       13.526      26.492      4.014       
+IA9     H19     H       H       0       12.675      27.239      2.906       
+IA9     H20     H       H       0       14.633      26.429      1.930       
+IA9     H21     H       H       0       14.311      24.961      2.441       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IA9         NBB         OAE      DOUBLE       n     1.221  0.0162     1.221  0.0162
+IA9         NBB         OAD      SINGLE       n     1.221  0.0162     1.221  0.0162
+IA9         CAU         NBB      SINGLE       n     1.457  0.0200     1.457  0.0200
+IA9         CAR         OAC      DOUBLE       n     1.226  0.0100     1.226  0.0100
+IA9         CAL         CAU      DOUBLE       y     1.394  0.0127     1.394  0.0127
+IA9         CAU         CAI      SINGLE       y     1.393  0.0100     1.393  0.0100
+IA9         CAV         CAL      SINGLE       y     1.394  0.0127     1.394  0.0127
+IA9         CAH         CAJ      DOUBLE       y     1.383  0.0100     1.383  0.0100
+IA9         CAJ         CAW      SINGLE       y     1.396  0.0100     1.396  0.0100
+IA9         CAW         CAR      SINGLE       n     1.501  0.0100     1.501  0.0100
+IA9         CAR         NAQ      SINGLE       n     1.351  0.0126     1.351  0.0126
+IA9         CAT         CAH      SINGLE       y     1.371  0.0108     1.371  0.0108
+IA9         CAX         CAW      DOUBLE       y     1.392  0.0100     1.392  0.0100
+IA9         CAT         FAF      SINGLE       n     1.354  0.0100     1.354  0.0100
+IA9         CAS         CAT      DOUBLE       y     1.383  0.0103     1.383  0.0103
+IA9         CAX         CAS      SINGLE       y     1.391  0.0101     1.391  0.0101
+IA9         CLG         CAX      SINGLE       n     1.734  0.0137     1.734  0.0137
+IA9         CAI         CAK      DOUBLE       y     1.371  0.0100     1.371  0.0100
+IA9         CAS         CAA      SINGLE       n     1.507  0.0128     1.507  0.0128
+IA9         NAQ         CAV      SINGLE       n     1.413  0.0145     1.413  0.0145
+IA9         CAV         CAY      DOUBLE       y     1.410  0.0100     1.410  0.0100
+IA9         CAK         CAY      SINGLE       y     1.393  0.0100     1.393  0.0100
+IA9         CAY         NBA      SINGLE       n     1.399  0.0192     1.399  0.0192
+IA9         NBA         CAO      SINGLE       n     1.464  0.0100     1.464  0.0100
+IA9         NBA         CAP      SINGLE       n     1.464  0.0100     1.464  0.0100
+IA9         CAO         CAM      SINGLE       n     1.511  0.0100     1.511  0.0100
+IA9         CAM         NAZ      SINGLE       n     1.462  0.0100     1.462  0.0100
+IA9         CAN         CAP      SINGLE       n     1.511  0.0100     1.511  0.0100
+IA9         NAZ         CAN      SINGLE       n     1.462  0.0100     1.462  0.0100
+IA9         NAZ         CAB      SINGLE       n     1.462  0.0100     1.462  0.0100
+IA9         CAA          H1      SINGLE       n     1.089  0.0100     0.971  0.0135
+IA9         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0135
+IA9         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0135
+IA9         CAH          H4      SINGLE       n     1.082  0.0130     0.934  0.0100
+IA9         CAJ          H5      SINGLE       n     1.082  0.0130     0.961  0.0200
+IA9         NAQ          H6      SINGLE       n     1.016  0.0100     0.876  0.0200
+IA9         CAL          H7      SINGLE       n     1.082  0.0130     0.941  0.0105
+IA9         CAI          H8      SINGLE       n     1.082  0.0130     0.941  0.0200
+IA9         CAK          H9      SINGLE       n     1.082  0.0130     0.941  0.0150
+IA9         CAO         H10      SINGLE       n     1.089  0.0100     0.980  0.0187
+IA9         CAO         H11      SINGLE       n     1.089  0.0100     0.980  0.0187
+IA9         CAM         H12      SINGLE       n     1.089  0.0100     0.978  0.0109
+IA9         CAM         H13      SINGLE       n     1.089  0.0100     0.978  0.0109
+IA9         CAB         H15      SINGLE       n     1.089  0.0100     0.975  0.0100
+IA9         CAB         H16      SINGLE       n     1.089  0.0100     0.975  0.0100
+IA9         CAB         H17      SINGLE       n     1.089  0.0100     0.975  0.0100
+IA9         CAN         H18      SINGLE       n     1.089  0.0100     0.978  0.0109
+IA9         CAN         H19      SINGLE       n     1.089  0.0100     0.978  0.0109
+IA9         CAP         H20      SINGLE       n     1.089  0.0100     0.980  0.0187
+IA9         CAP         H21      SINGLE       n     1.089  0.0100     0.980  0.0187
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IA9         CAW         CAX         CAS     120.407    1.50
+IA9         CAW         CAX         CLG     120.067    1.50
+IA9         CAS         CAX         CLG     119.526    1.50
+IA9         CAT         CAS         CAX     119.113    1.74
+IA9         CAT         CAS         CAA     120.359    1.50
+IA9         CAX         CAS         CAA     120.528    1.70
+IA9         CAS         CAA          H1     109.580    1.50
+IA9         CAS         CAA          H2     109.580    1.50
+IA9         CAS         CAA          H3     109.580    1.50
+IA9          H1         CAA          H2     109.348    1.50
+IA9          H1         CAA          H3     109.348    1.50
+IA9          H2         CAA          H3     109.348    1.50
+IA9         CAH         CAT         FAF     118.060    1.50
+IA9         CAH         CAT         CAS     123.035    1.50
+IA9         FAF         CAT         CAS     118.906    1.50
+IA9         CAJ         CAH         CAT     118.752    1.50
+IA9         CAJ         CAH          H4     120.732    1.50
+IA9         CAT         CAH          H4     120.516    1.50
+IA9         CAH         CAJ         CAW     120.549    1.50
+IA9         CAH         CAJ          H5     119.720    1.50
+IA9         CAW         CAJ          H5     119.731    1.50
+IA9         CAJ         CAW         CAR     119.674    1.50
+IA9         CAJ         CAW         CAX     118.145    1.50
+IA9         CAR         CAW         CAX     122.181    1.50
+IA9         OAC         CAR         CAW     121.235    1.50
+IA9         OAC         CAR         NAQ     123.471    1.50
+IA9         CAW         CAR         NAQ     115.294    1.50
+IA9         CAR         NAQ         CAV     126.658    2.29
+IA9         CAR         NAQ          H6     117.054    2.38
+IA9         CAV         NAQ          H6     116.288    2.05
+IA9         CAL         CAV         NAQ     119.636    3.00
+IA9         CAL         CAV         CAY     121.180    1.50
+IA9         NAQ         CAV         CAY     119.184    2.04
+IA9         CAU         CAL         CAV     118.800    1.76
+IA9         CAU         CAL          H7     121.236    1.50
+IA9         CAV         CAL          H7     119.965    1.50
+IA9         NBB         CAU         CAL     118.534    1.50
+IA9         NBB         CAU         CAI     119.026    1.50
+IA9         CAL         CAU         CAI     122.441    1.50
+IA9         OAE         NBB         OAD     123.486    1.50
+IA9         OAE         NBB         CAU     118.257    1.50
+IA9         OAD         NBB         CAU     118.257    1.50
+IA9         CAU         CAI         CAK     119.214    1.50
+IA9         CAU         CAI          H8     120.831    1.50
+IA9         CAK         CAI          H8     119.954    1.50
+IA9         CAI         CAK         CAY     120.196    1.50
+IA9         CAI         CAK          H9     120.438    1.50
+IA9         CAY         CAK          H9     119.366    2.95
+IA9         CAV         CAY         CAK     118.170    2.56
+IA9         CAV         CAY         NBA     121.184    2.60
+IA9         CAK         CAY         NBA     120.646    1.50
+IA9         CAY         NBA         CAO     119.116    1.50
+IA9         CAY         NBA         CAP     119.116    1.50
+IA9         CAO         NBA         CAP     110.693    1.50
+IA9         NBA         CAO         CAM     110.635    1.50
+IA9         NBA         CAO         H10     109.558    1.50
+IA9         NBA         CAO         H11     109.558    1.50
+IA9         CAM         CAO         H10     109.514    1.50
+IA9         CAM         CAO         H11     109.514    1.50
+IA9         H10         CAO         H11     108.196    1.50
+IA9         CAO         CAM         NAZ     110.838    1.50
+IA9         CAO         CAM         H12     109.482    1.50
+IA9         CAO         CAM         H13     109.482    1.50
+IA9         NAZ         CAM         H12     109.480    1.50
+IA9         NAZ         CAM         H13     109.480    1.50
+IA9         H12         CAM         H13     108.187    1.50
+IA9         CAM         NAZ         CAN     109.130    1.50
+IA9         CAM         NAZ         CAB     110.746    1.50
+IA9         CAN         NAZ         CAB     110.746    1.50
+IA9         NAZ         CAB         H15     109.526    1.50
+IA9         NAZ         CAB         H16     109.526    1.50
+IA9         NAZ         CAB         H17     109.526    1.50
+IA9         H15         CAB         H16     109.428    1.50
+IA9         H15         CAB         H17     109.428    1.50
+IA9         H16         CAB         H17     109.428    1.50
+IA9         CAP         CAN         NAZ     110.838    1.50
+IA9         CAP         CAN         H18     109.482    1.50
+IA9         CAP         CAN         H19     109.482    1.50
+IA9         NAZ         CAN         H18     109.480    1.50
+IA9         NAZ         CAN         H19     109.480    1.50
+IA9         H18         CAN         H19     108.187    1.50
+IA9         NBA         CAP         CAN     110.635    1.50
+IA9         NBA         CAP         H20     109.558    1.50
+IA9         NBA         CAP         H21     109.558    1.50
+IA9         CAN         CAP         H20     109.514    1.50
+IA9         CAN         CAP         H21     109.514    1.50
+IA9         H20         CAP         H21     108.196    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IA9            sp2_sp2_13         CAL         CAV         NAQ         CAR     180.000     5.0     2
+IA9              const_22         CAU         CAL         CAV         NAQ     180.000    10.0     2
+IA9              const_47         NAQ         CAV         CAY         CAK     180.000    10.0     2
+IA9              const_26         CAV         CAL         CAU         NBB     180.000    10.0     2
+IA9             sp2_sp2_1         CAL         CAU         NBB         OAE     180.000     5.0     2
+IA9              const_30         CAK         CAI         CAU         NBB     180.000    10.0     2
+IA9              const_33         CAU         CAI         CAK         CAY       0.000    10.0     2
+IA9              const_37         CAI         CAK         CAY         CAV       0.000    10.0     2
+IA9              const_44         CAA         CAS         CAX         CLG       0.000    10.0     2
+IA9       const_sp2_sp2_4         CAR         CAW         CAX         CLG       0.000     5.0     2
+IA9            sp2_sp2_17         CAV         CAY         NBA         CAO     180.000     5.0     2
+IA9             sp2_sp3_4         CAY         NBA         CAO         CAM     180.000    10.0     6
+IA9            sp2_sp3_16         CAY         NBA         CAP         CAN     180.000    10.0     6
+IA9             sp3_sp3_1         NAZ         CAM         CAO         NBA     -60.000    10.0     3
+IA9            sp3_sp3_11         CAO         CAM         NAZ         CAB     180.000    10.0     3
+IA9            sp3_sp3_32         H15         CAB         NAZ         CAM     -60.000    10.0     3
+IA9            sp3_sp3_17         CAP         CAN         NAZ         CAB      60.000    10.0     3
+IA9            sp3_sp3_22         NAZ         CAN         CAP         NBA      60.000    10.0     3
+IA9             sp2_sp3_7         CAT         CAS         CAA          H1     150.000    10.0     6
+IA9              const_20         CAA         CAS         CAT         FAF       0.000    10.0     2
+IA9              const_14         CAJ         CAH         CAT         FAF     180.000    10.0     2
+IA9       const_sp2_sp2_9         CAT         CAH         CAJ         CAW       0.000     5.0     2
+IA9       const_sp2_sp2_6         CAH         CAJ         CAW         CAR     180.000     5.0     2
+IA9             sp2_sp2_7         OAC         CAR         CAW         CAJ       0.000     5.0     2
+IA9            sp2_sp2_11         OAC         CAR         NAQ         CAV       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IA9    chir_1    NAZ    CAM    CAN    CAB    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IA9    plan-1         CAI   0.020
+IA9    plan-1         CAK   0.020
+IA9    plan-1         CAL   0.020
+IA9    plan-1         CAU   0.020
+IA9    plan-1         CAV   0.020
+IA9    plan-1         CAY   0.020
+IA9    plan-1          H7   0.020
+IA9    plan-1          H8   0.020
+IA9    plan-1          H9   0.020
+IA9    plan-1         NAQ   0.020
+IA9    plan-1         NBA   0.020
+IA9    plan-1         NBB   0.020
+IA9    plan-2         CAA   0.020
+IA9    plan-2         CAH   0.020
+IA9    plan-2         CAJ   0.020
+IA9    plan-2         CAR   0.020
+IA9    plan-2         CAS   0.020
+IA9    plan-2         CAT   0.020
+IA9    plan-2         CAW   0.020
+IA9    plan-2         CAX   0.020
+IA9    plan-2         CLG   0.020
+IA9    plan-2         FAF   0.020
+IA9    plan-2          H4   0.020
+IA9    plan-2          H5   0.020
+IA9    plan-3         CAR   0.020
+IA9    plan-3         CAW   0.020
+IA9    plan-3         NAQ   0.020
+IA9    plan-3         OAC   0.020
+IA9    plan-4         CAR   0.020
+IA9    plan-4         CAV   0.020
+IA9    plan-4          H6   0.020
+IA9    plan-4         NAQ   0.020
+IA9    plan-5         CAU   0.020
+IA9    plan-5         NBB   0.020
+IA9    plan-5         OAD   0.020
+IA9    plan-5         OAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IA9           SMILES              ACDLabs 12.01                                                                                        Fc1ccc(c(Cl)c1C)C(=O)Nc3c(N2CCN(C)CC2)ccc(N(=O)=O)c3
+IA9            InChI                InChI  1.03 InChI=1S/C19H20ClFN4O3/c1-12-15(21)5-4-14(18(12)20)19(26)22-16-11-13(25(27)28)3-6-17(16)24-9-7-23(2)8-10-24/h3-6,11H,7-10H2,1-2H3,(H,22,26)
+IA9         InChIKey                InChI  1.03                                                                                                                 QHWMIGPLLWYRIR-UHFFFAOYSA-N
+IA9 SMILES_CANONICAL               CACTVS 3.370                                                                                        CN1CCN(CC1)c2ccc(cc2NC(=O)c3ccc(F)c(C)c3Cl)[N](=O)=O
+IA9           SMILES               CACTVS 3.370                                                                                        CN1CCN(CC1)c2ccc(cc2NC(=O)c3ccc(F)c(C)c3Cl)[N](=O)=O
+IA9 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                          Cc1c(ccc(c1Cl)C(=O)Nc2cc(ccc2N3CCN(CC3)C)N(=O)=O)F
+IA9           SMILES "OpenEye OEToolkits" 1.7.6                                                                                          Cc1c(ccc(c1Cl)C(=O)Nc2cc(ccc2N3CCN(CC3)C)N(=O)=O)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IA9 acedrg               243         "dictionary generator"                  
+IA9 acedrg_database      11          "data source"                           
+IA9 rdkit                2017.03.2   "Chemoinformatics tool"
+IA9 refmac5              5.8.0238    "optimization tool"                     

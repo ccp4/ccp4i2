@@ -1,0 +1,225 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GNR     GNR      2-(3,4-DIHYDRO-3-OXO-2H-BENZO[B][1,4]THIAZIN-2-YL)-N-HYDROXYACETAMIDE     NON-POLYMER     26     16     .     
+#
+data_comp_GNR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GNR     OAM     O       O       0       56.176      52.343      37.674      
+GNR     CAH     C       CR6     0       56.151      51.327      36.989      
+GNR     NAG     N       NR6     0       57.064      51.156      35.982      
+GNR     CAD     C       CR66    0       57.168      50.059      35.097      
+GNR     CAC     C       CR16    0       58.367      49.809      34.429      
+GNR     CAB     C       CR16    0       58.468      48.740      33.553      
+GNR     CAA     C       CR16    0       57.384      47.911      33.321      
+GNR     CAF     C       CR16    0       56.190      48.150      33.969      
+GNR     CAE     C       CR66    0       56.067      49.229      34.843      
+GNR     SAJ     S       S2      0       54.564      49.523      35.685      
+GNR     CAI     C       CH1     0       55.121      50.240      37.250      
+GNR     CAK     C       CH2     0       53.887      50.709      38.044      
+GNR     CAL     C       C       0       52.937      49.596      38.422      
+GNR     OAN     O       O       0       53.320      48.661      39.123      
+GNR     NAO     N       NH1     0       51.699      49.684      37.958      
+GNR     OAP     O       OH1     0       50.768      48.696      38.252      
+GNR     HAG     H       H       0       57.650      51.805      35.871      
+GNR     HAC     H       H       0       59.116      50.372      34.580      
+GNR     HAB     H       H       0       59.284      48.579      33.110      
+GNR     HAA     H       H       0       57.461      47.187      32.724      
+GNR     HAF     H       H       0       55.458      47.597      33.819      
+GNR     HAI     H       H       0       55.548      49.520      37.787      
+GNR     HAK1    H       H       0       53.411      51.378      37.511      
+GNR     HAK2    H       H       0       54.194      51.143      38.868      
+GNR     HAO     H       H       0       51.423      50.350      37.460      
+GNR     HAP     H       H       0       50.918      48.021      37.728      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GNR         OAM         CAH      DOUBLE       n     1.225  0.0100     1.225  0.0100
+GNR         CAH         NAG      SINGLE       n     1.347  0.0154     1.347  0.0154
+GNR         CAH         CAI      SINGLE       n     1.506  0.0140     1.506  0.0140
+GNR         NAG         CAD      SINGLE       n     1.400  0.0139     1.400  0.0139
+GNR         CAD         CAC      SINGLE       y     1.391  0.0100     1.391  0.0100
+GNR         CAD         CAE      DOUBLE       y     1.398  0.0100     1.398  0.0100
+GNR         CAC         CAB      DOUBLE       y     1.382  0.0100     1.382  0.0100
+GNR         CAB         CAA      SINGLE       y     1.381  0.0105     1.381  0.0105
+GNR         CAA         CAF      DOUBLE       y     1.376  0.0100     1.376  0.0100
+GNR         CAF         CAE      SINGLE       y     1.391  0.0100     1.391  0.0100
+GNR         CAE         SAJ      SINGLE       n     1.757  0.0131     1.757  0.0131
+GNR         SAJ         CAI      SINGLE       n     1.812  0.0175     1.812  0.0175
+GNR         CAI         CAK      SINGLE       n     1.535  0.0135     1.535  0.0135
+GNR         CAK         CAL      SINGLE       n     1.508  0.0100     1.508  0.0100
+GNR         CAL         OAN      DOUBLE       n     1.229  0.0102     1.229  0.0102
+GNR         CAL         NAO      SINGLE       n     1.322  0.0100     1.322  0.0100
+GNR         NAO         OAP      SINGLE       n     1.389  0.0110     1.389  0.0110
+GNR         NAG         HAG      SINGLE       n     1.016  0.0100     0.880  0.0200
+GNR         CAC         HAC      SINGLE       n     1.082  0.0130     0.949  0.0116
+GNR         CAB         HAB      SINGLE       n     1.082  0.0130     0.942  0.0177
+GNR         CAA         HAA      SINGLE       n     1.082  0.0130     0.942  0.0176
+GNR         CAF         HAF      SINGLE       n     1.082  0.0130     0.930  0.0100
+GNR         CAI         HAI      SINGLE       n     1.089  0.0100     0.994  0.0139
+GNR         CAK        HAK1      SINGLE       n     1.089  0.0100     0.980  0.0150
+GNR         CAK        HAK2      SINGLE       n     1.089  0.0100     0.980  0.0150
+GNR         NAO         HAO      SINGLE       n     1.016  0.0100     0.875  0.0200
+GNR         OAP         HAP      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GNR         OAM         CAH         NAG     121.402    1.50
+GNR         OAM         CAH         CAI     121.499    1.74
+GNR         NAG         CAH         CAI     117.099    1.63
+GNR         CAH         NAG         CAD     124.368    1.50
+GNR         CAH         NAG         HAG     117.268    1.63
+GNR         CAD         NAG         HAG     118.365    2.27
+GNR         NAG         CAD         CAC     120.376    1.50
+GNR         NAG         CAD         CAE     120.314    1.50
+GNR         CAC         CAD         CAE     119.310    1.50
+GNR         CAD         CAC         CAB     120.002    1.50
+GNR         CAD         CAC         HAC     119.880    1.50
+GNR         CAB         CAC         HAC     120.118    1.50
+GNR         CAC         CAB         CAA     120.698    1.50
+GNR         CAC         CAB         HAB     119.470    1.50
+GNR         CAA         CAB         HAB     119.832    1.50
+GNR         CAB         CAA         CAF     119.870    1.50
+GNR         CAB         CAA         HAA     120.039    1.50
+GNR         CAF         CAA         HAA     120.090    1.50
+GNR         CAA         CAF         CAE     120.722    1.50
+GNR         CAA         CAF         HAF     119.957    1.50
+GNR         CAE         CAF         HAF     119.322    1.50
+GNR         CAD         CAE         CAF     119.398    1.50
+GNR         CAD         CAE         SAJ     122.179    2.21
+GNR         CAF         CAE         SAJ     118.423    2.20
+GNR         CAE         SAJ         CAI     120.000    3.00
+GNR         CAH         CAI         SAJ     111.432    2.83
+GNR         CAH         CAI         CAK     110.115    2.66
+GNR         CAH         CAI         HAI     108.678    1.50
+GNR         SAJ         CAI         CAK     107.685    3.00
+GNR         SAJ         CAI         HAI     108.338    1.74
+GNR         CAK         CAI         HAI     106.820    2.21
+GNR         CAI         CAK         CAL     113.355    2.65
+GNR         CAI         CAK        HAK1     108.194    1.50
+GNR         CAI         CAK        HAK2     108.194    1.50
+GNR         CAL         CAK        HAK1     108.385    1.50
+GNR         CAL         CAK        HAK2     108.385    1.50
+GNR        HAK1         CAK        HAK2     107.652    1.50
+GNR         CAK         CAL         OAN     121.279    1.50
+GNR         CAK         CAL         NAO     115.722    1.98
+GNR         OAN         CAL         NAO     122.999    1.50
+GNR         CAL         NAO         OAP     120.051    1.50
+GNR         CAL         NAO         HAO     122.120    2.48
+GNR         OAP         NAO         HAO     117.829    2.59
+GNR         NAO         OAP         HAP     108.051    2.18
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GNR             sp3_sp3_4         CAH         CAI         CAK         CAL     180.000    10.0     3
+GNR             sp2_sp3_8         OAN         CAL         CAK         CAI     120.000    10.0     6
+GNR            sp2_sp2_11         CAK         CAL         NAO         OAP     180.000     5.0     2
+GNR             sp2_sp3_5         OAM         CAH         CAI         CAK     -60.000    10.0     6
+GNR             sp2_sp2_3         OAM         CAH         NAG         CAD     180.000     5.0     2
+GNR             sp2_sp2_7         CAC         CAD         NAG         CAH     180.000     5.0     2
+GNR       const_sp2_sp2_2         CAB         CAC         CAD         NAG     180.000     5.0     2
+GNR              const_22         NAG         CAD         CAE         CAF     180.000    10.0     2
+GNR       const_sp2_sp2_5         CAA         CAB         CAC         CAD       0.000     5.0     2
+GNR       const_sp2_sp2_9         CAF         CAA         CAB         CAC       0.000     5.0     2
+GNR              const_13         CAB         CAA         CAF         CAE       0.000    10.0     2
+GNR              const_17         CAD         CAE         CAF         CAA       0.000    10.0     2
+GNR             sp2_sp2_9         CAD         CAE         SAJ         CAI       0.000     5.0     2
+GNR             sp3_sp3_2         CAK         CAI         SAJ         CAE     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GNR    chir_1    CAI    SAJ    CAH    CAK    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GNR    plan-1         CAA   0.020
+GNR    plan-1         CAB   0.020
+GNR    plan-1         CAC   0.020
+GNR    plan-1         CAD   0.020
+GNR    plan-1         CAE   0.020
+GNR    plan-1         CAF   0.020
+GNR    plan-1         HAA   0.020
+GNR    plan-1         HAB   0.020
+GNR    plan-1         HAC   0.020
+GNR    plan-1         HAF   0.020
+GNR    plan-1         NAG   0.020
+GNR    plan-1         SAJ   0.020
+GNR    plan-2         CAH   0.020
+GNR    plan-2         CAI   0.020
+GNR    plan-2         NAG   0.020
+GNR    plan-2         OAM   0.020
+GNR    plan-3         CAD   0.020
+GNR    plan-3         CAH   0.020
+GNR    plan-3         HAG   0.020
+GNR    plan-3         NAG   0.020
+GNR    plan-4         CAK   0.020
+GNR    plan-4         CAL   0.020
+GNR    plan-4         NAO   0.020
+GNR    plan-4         OAN   0.020
+GNR    plan-5         CAL   0.020
+GNR    plan-5         HAO   0.020
+GNR    plan-5         NAO   0.020
+GNR    plan-5         OAP   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GNR           SMILES              ACDLabs 10.04                                                                                   O=C1Nc2c(SC1CC(=O)NO)cccc2
+GNR SMILES_CANONICAL               CACTVS 3.341                                                                                 ONC(=O)C[C@H]1Sc2ccccc2NC1=O
+GNR           SMILES               CACTVS 3.341                                                                                  ONC(=O)C[CH]1Sc2ccccc2NC1=O
+GNR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                           c1ccc2c(c1)NC(=O)[C@H](S2)CC(=O)NO
+GNR           SMILES "OpenEye OEToolkits" 1.5.0                                                                               c1ccc2c(c1)NC(=O)C(S2)CC(=O)NO
+GNR            InChI                InChI  1.03 InChI=1S/C10H10N2O3S/c13-9(12-15)5-8-10(14)11-6-3-1-2-4-7(6)16-8/h1-4,8,15H,5H2,(H,11,14)(H,12,13)/t8-/m1/s1
+GNR         InChIKey                InChI  1.03                                                                                  UKDWCJNGBPZOBU-MRVPVSSYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GNR acedrg               243         "dictionary generator"                  
+GNR acedrg_database      11          "data source"                           
+GNR rdkit                2017.03.2   "Chemoinformatics tool"
+GNR refmac5              5.8.0238    "optimization tool"                     

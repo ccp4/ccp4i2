@@ -1,0 +1,307 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FJZ     FJZ      N-cyclohexyl-4-(1H-imidazol-5-yl)piperidine-1-carbothioamide     NON-POLYMER     44     20     .     
+#
+data_comp_FJZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FJZ     C1      C       CR15    0       -28.925     1.669       -7.749      
+FJZ     N1      N       NRD5    0       -28.628     2.084       -6.477      
+FJZ     S1      S       S1      0       -24.767     -0.921      -14.016     
+FJZ     C2      C       CR15    0       -27.329     2.290       -6.457      
+FJZ     N2      N       NR5     0       -26.779     2.026       -7.650      
+FJZ     C3      C       CR5     0       -27.787     1.626       -8.493      
+FJZ     N3      N       NR6     0       -26.189     0.691       -12.434     
+FJZ     C4      C       CH1     0       -27.601     1.236       -9.933      
+FJZ     N4      N       NH1     0       -24.391     1.673       -13.569     
+FJZ     C5      C       CH2     0       -27.015     2.345       -10.781     
+FJZ     C6      C       CH2     0       -26.742     0.000       -10.112     
+FJZ     C7      C       CH2     0       -26.974     1.930       -12.241     
+FJZ     C8      C       CH2     0       -26.671     -0.412      -11.573     
+FJZ     C9      C       C       0       -25.140     0.568       -13.302     
+FJZ     C10     C       CH1     0       -23.479     1.819       -14.711     
+FJZ     C11     C       CH2     0       -24.261     2.124       -15.979     
+FJZ     C12     C       CH2     0       -22.417     2.877       -14.443     
+FJZ     C13     C       CH2     0       -24.855     3.531       -15.939     
+FJZ     C14     C       CH2     0       -22.991     4.295       -14.458     
+FJZ     C15     C       CH2     0       -23.775     4.574       -15.728     
+FJZ     H1      H       H       0       -29.788     1.447       -8.055      
+FJZ     H2      H       H       0       -26.848     2.581       -5.708      
+FJZ     HN2     H       H       0       -25.922     2.095       -7.867      
+FJZ     H4      H       H       0       -28.498     1.028       -10.297     
+FJZ     HN4     H       H       0       -24.400     2.326       -12.988     
+FJZ     H5      H       H       0       -27.569     3.160       -10.686     
+FJZ     H5A     H       H       0       -26.097     2.547       -10.470     
+FJZ     H6      H       H       0       -27.124     -0.743      -9.581      
+FJZ     H6A     H       H       0       -25.828     0.187       -9.781      
+FJZ     H7      H       H       0       -27.887     1.779       -12.549     
+FJZ     H7A     H       H       0       -26.601     2.659       -12.770     
+FJZ     H8      H       H       0       -26.079     -1.183      -11.646     
+FJZ     H8A     H       H       0       -27.559     -0.688      -11.869     
+FJZ     H10     H       H       0       -23.006     0.963       -14.845     
+FJZ     H11     H       H       0       -23.666     2.043       -16.755     
+FJZ     H11A    H       H       0       -24.984     1.468       -16.081     
+FJZ     H12     H       H       0       -21.715     2.806       -15.126     
+FJZ     H12A    H       H       0       -22.005     2.705       -13.570     
+FJZ     H13     H       H       0       -25.510     3.587       -15.209     
+FJZ     H13A    H       H       0       -25.323     3.712       -16.783     
+FJZ     H14     H       H       0       -22.255     4.941       -14.384     
+FJZ     H14A    H       H       0       -23.578     4.417       -13.681     
+FJZ     H15     H       H       0       -24.186     5.463       -15.669     
+FJZ     H15A    H       H       0       -23.164     4.572       -16.495     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FJZ          C1          N1      SINGLE       y     1.370  0.0133     1.370  0.0133
+FJZ          C1          C3      DOUBLE       y     1.363  0.0119     1.363  0.0119
+FJZ          N1          C2      DOUBLE       y     1.313  0.0100     1.313  0.0100
+FJZ          S1          C9      DOUBLE       n     1.679  0.0173     1.679  0.0173
+FJZ          C2          N2      SINGLE       y     1.338  0.0142     1.338  0.0142
+FJZ          N2          C3      SINGLE       y     1.375  0.0100     1.375  0.0100
+FJZ          C3          C4      SINGLE       n     1.503  0.0100     1.503  0.0100
+FJZ          N3          C7      SINGLE       n     1.470  0.0100     1.470  0.0100
+FJZ          N3          C8      SINGLE       n     1.470  0.0100     1.470  0.0100
+FJZ          N3          C9      SINGLE       n     1.341  0.0149     1.341  0.0149
+FJZ          C4          C5      SINGLE       n     1.518  0.0168     1.518  0.0168
+FJZ          C4          C6      SINGLE       n     1.518  0.0168     1.518  0.0168
+FJZ          N4          C9      SINGLE       n     1.325  0.0200     1.325  0.0200
+FJZ          N4         C10      SINGLE       n     1.463  0.0100     1.463  0.0100
+FJZ          C5          C7      SINGLE       n     1.517  0.0100     1.517  0.0100
+FJZ          C6          C8      SINGLE       n     1.517  0.0100     1.517  0.0100
+FJZ         C10         C11      SINGLE       n     1.518  0.0108     1.518  0.0108
+FJZ         C10         C12      SINGLE       n     1.518  0.0108     1.518  0.0108
+FJZ         C11         C13      SINGLE       n     1.527  0.0100     1.527  0.0100
+FJZ         C12         C14      SINGLE       n     1.527  0.0100     1.527  0.0100
+FJZ         C13         C15      SINGLE       n     1.516  0.0136     1.516  0.0136
+FJZ         C14         C15      SINGLE       n     1.516  0.0136     1.516  0.0136
+FJZ          C1          H1      SINGLE       n     1.082  0.0130     0.942  0.0176
+FJZ          C2          H2      SINGLE       n     1.082  0.0130     0.937  0.0200
+FJZ          N2         HN2      SINGLE       n     1.016  0.0100     0.887  0.0200
+FJZ          C4          H4      SINGLE       n     1.089  0.0100     0.990  0.0127
+FJZ          N4         HN4      SINGLE       n     1.016  0.0100     0.876  0.0200
+FJZ          C5          H5      SINGLE       n     1.089  0.0100     0.990  0.0100
+FJZ          C5         H5A      SINGLE       n     1.089  0.0100     0.990  0.0100
+FJZ          C6          H6      SINGLE       n     1.089  0.0100     0.990  0.0100
+FJZ          C6         H6A      SINGLE       n     1.089  0.0100     0.990  0.0100
+FJZ          C7          H7      SINGLE       n     1.089  0.0100     0.976  0.0118
+FJZ          C7         H7A      SINGLE       n     1.089  0.0100     0.976  0.0118
+FJZ          C8          H8      SINGLE       n     1.089  0.0100     0.976  0.0118
+FJZ          C8         H8A      SINGLE       n     1.089  0.0100     0.976  0.0118
+FJZ         C10         H10      SINGLE       n     1.089  0.0100     0.989  0.0155
+FJZ         C11         H11      SINGLE       n     1.089  0.0100     0.981  0.0121
+FJZ         C11        H11A      SINGLE       n     1.089  0.0100     0.981  0.0121
+FJZ         C12         H12      SINGLE       n     1.089  0.0100     0.981  0.0121
+FJZ         C12        H12A      SINGLE       n     1.089  0.0100     0.981  0.0121
+FJZ         C13         H13      SINGLE       n     1.089  0.0100     0.982  0.0131
+FJZ         C13        H13A      SINGLE       n     1.089  0.0100     0.982  0.0131
+FJZ         C14         H14      SINGLE       n     1.089  0.0100     0.982  0.0131
+FJZ         C14        H14A      SINGLE       n     1.089  0.0100     0.982  0.0131
+FJZ         C15         H15      SINGLE       n     1.089  0.0100     0.981  0.0138
+FJZ         C15        H15A      SINGLE       n     1.089  0.0100     0.981  0.0138
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FJZ          N1          C1          C3     109.811    1.50
+FJZ          N1          C1          H1     124.837    1.50
+FJZ          C3          C1          H1     125.353    2.51
+FJZ          C1          N1          C2     105.348    1.50
+FJZ          N1          C2          N2     110.641    1.50
+FJZ          N1          C2          H2     124.915    1.50
+FJZ          N2          C2          H2     124.444    1.50
+FJZ          C2          N2          C3     107.879    2.04
+FJZ          C2          N2         HN2     126.686    2.70
+FJZ          C3          N2         HN2     125.434    1.76
+FJZ          C1          C3          N2     106.321    1.50
+FJZ          C1          C3          C4     130.038    3.00
+FJZ          N2          C3          C4     123.641    2.89
+FJZ          C7          N3          C8     112.887    1.50
+FJZ          C7          N3          C9     123.557    1.82
+FJZ          C8          N3          C9     123.557    1.82
+FJZ          C3          C4          C5     112.379    1.50
+FJZ          C3          C4          C6     112.379    1.50
+FJZ          C3          C4          H4     107.266    1.50
+FJZ          C5          C4          C6     110.119    1.94
+FJZ          C5          C4          H4     107.498    1.50
+FJZ          C6          C4          H4     107.498    1.50
+FJZ          C9          N4         C10     123.245    1.63
+FJZ          C9          N4         HN4     118.583    2.02
+FJZ         C10          N4         HN4     118.172    2.07
+FJZ          C4          C5          C7     111.509    1.50
+FJZ          C4          C5          H5     109.230    1.50
+FJZ          C4          C5         H5A     109.230    1.50
+FJZ          C7          C5          H5     109.157    1.50
+FJZ          C7          C5         H5A     109.157    1.50
+FJZ          H5          C5         H5A     108.430    1.50
+FJZ          C4          C6          C8     111.509    1.50
+FJZ          C4          C6          H6     109.230    1.50
+FJZ          C4          C6         H6A     109.230    1.50
+FJZ          C8          C6          H6     109.157    1.50
+FJZ          C8          C6         H6A     109.157    1.50
+FJZ          H6          C6         H6A     108.430    1.50
+FJZ          N3          C7          C5     110.373    1.50
+FJZ          N3          C7          H7     109.555    1.50
+FJZ          N3          C7         H7A     109.555    1.50
+FJZ          C5          C7          H7     109.284    1.50
+FJZ          C5          C7         H7A     109.284    1.50
+FJZ          H7          C7         H7A     108.159    1.50
+FJZ          N3          C8          C6     110.373    1.50
+FJZ          N3          C8          H8     109.555    1.50
+FJZ          N3          C8         H8A     109.555    1.50
+FJZ          C6          C8          H8     109.284    1.50
+FJZ          C6          C8         H8A     109.284    1.50
+FJZ          H8          C8         H8A     108.159    1.50
+FJZ          S1          C9          N3     122.497    1.52
+FJZ          S1          C9          N4     121.789    1.73
+FJZ          N3          C9          N4     115.714    3.00
+FJZ          N4         C10         C11     110.528    1.50
+FJZ          N4         C10         C12     110.528    1.50
+FJZ          N4         C10         H10     108.143    1.50
+FJZ         C11         C10         C12     110.870    1.50
+FJZ         C11         C10         H10     108.306    1.50
+FJZ         C12         C10         H10     108.306    1.50
+FJZ         C10         C11         C13     110.796    1.50
+FJZ         C10         C11         H11     109.338    1.50
+FJZ         C10         C11        H11A     109.338    1.50
+FJZ         C13         C11         H11     109.472    1.50
+FJZ         C13         C11        H11A     109.472    1.50
+FJZ         H11         C11        H11A     108.076    1.50
+FJZ         C10         C12         C14     110.796    1.50
+FJZ         C10         C12         H12     109.338    1.50
+FJZ         C10         C12        H12A     109.338    1.50
+FJZ         C14         C12         H12     109.472    1.50
+FJZ         C14         C12        H12A     109.472    1.50
+FJZ         H12         C12        H12A     108.076    1.50
+FJZ         C11         C13         C15     111.328    1.50
+FJZ         C11         C13         H13     109.340    1.50
+FJZ         C11         C13        H13A     109.340    1.50
+FJZ         C15         C13         H13     109.386    1.50
+FJZ         C15         C13        H13A     109.386    1.50
+FJZ         H13         C13        H13A     108.036    1.50
+FJZ         C12         C14         C15     111.328    1.50
+FJZ         C12         C14         H14     109.340    1.50
+FJZ         C12         C14        H14A     109.340    1.50
+FJZ         C15         C14         H14     109.386    1.50
+FJZ         C15         C14        H14A     109.386    1.50
+FJZ         H14         C14        H14A     108.036    1.50
+FJZ         C13         C15         C14     111.038    1.50
+FJZ         C13         C15         H15     109.386    1.50
+FJZ         C13         C15        H15A     109.386    1.50
+FJZ         C14         C15         H15     109.386    1.50
+FJZ         C14         C15        H15A     109.386    1.50
+FJZ         H15         C15        H15A     108.036    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FJZ       const_sp2_sp2_1          C3          C1          N1          C2       0.000     5.0     2
+FJZ              const_13          N1          C1          C3          N2       0.000    10.0     2
+FJZ            sp3_sp3_73          C4          C6          C8          N3      60.000    10.0     3
+FJZ             sp3_sp3_7          N4         C10         C11         C13     180.000    10.0     3
+FJZ            sp3_sp3_85          N4         C10         C12         C14      60.000    10.0     3
+FJZ            sp3_sp3_10         C10         C11         C13         C15     -60.000    10.0     3
+FJZ            sp3_sp3_37         C10         C12         C14         C15      60.000    10.0     3
+FJZ            sp3_sp3_19         C11         C13         C15         C14      60.000    10.0     3
+FJZ            sp3_sp3_28         C12         C14         C15         C13     -60.000    10.0     3
+FJZ       const_sp2_sp2_3          N2          C2          N1          C1       0.000     5.0     2
+FJZ       const_sp2_sp2_5          N1          C2          N2          C3       0.000     5.0     2
+FJZ       const_sp2_sp2_9          C1          C3          N2          C2       0.000     5.0     2
+FJZ             sp2_sp3_8          C1          C3          C4          C5     -90.000    10.0     6
+FJZ             sp2_sp3_4          C9          N3          C7          C5     180.000    10.0     6
+FJZ            sp2_sp3_16          C9          N3          C8          C6     180.000    10.0     6
+FJZ             sp2_sp2_3          S1          C9          N3          C7       0.000     5.0     2
+FJZ            sp3_sp3_67          C3          C4          C6          C8     180.000    10.0     3
+FJZ            sp3_sp3_61          C3          C4          C5          C7     180.000    10.0     3
+FJZ             sp2_sp2_7          S1          C9          N4         C10       0.000     5.0     2
+FJZ            sp2_sp3_20          C9          N4         C10         C11     120.000    10.0     6
+FJZ            sp3_sp3_46          C4          C5          C7          N3     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FJZ    chir_1    C4    C3    C5    C6    both
+FJZ    chir_2    C10    N4    C11    C12    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FJZ    plan-1          C1   0.020
+FJZ    plan-1          C2   0.020
+FJZ    plan-1          C3   0.020
+FJZ    plan-1          C4   0.020
+FJZ    plan-1          H1   0.020
+FJZ    plan-1          H2   0.020
+FJZ    plan-1         HN2   0.020
+FJZ    plan-1          N1   0.020
+FJZ    plan-1          N2   0.020
+FJZ    plan-2          C7   0.020
+FJZ    plan-2          C8   0.020
+FJZ    plan-2          C9   0.020
+FJZ    plan-2          N3   0.020
+FJZ    plan-3         C10   0.020
+FJZ    plan-3          C9   0.020
+FJZ    plan-3         HN4   0.020
+FJZ    plan-3          N4   0.020
+FJZ    plan-4          C9   0.020
+FJZ    plan-4          N3   0.020
+FJZ    plan-4          N4   0.020
+FJZ    plan-4          S1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FJZ           SMILES              ACDLabs 12.01                                                                                  S=C(NC1CCCCC1)N3CCC(c2cncn2)CC3
+FJZ SMILES_CANONICAL               CACTVS 3.370                                                                               S=C(NC1CCCCC1)N2CCC(CC2)c3[nH]cnc3
+FJZ           SMILES               CACTVS 3.370                                                                               S=C(NC1CCCCC1)N2CCC(CC2)c3[nH]cnc3
+FJZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                             c1c([nH]cn1)C2CCN(CC2)C(=S)NC3CCCCC3
+FJZ           SMILES "OpenEye OEToolkits" 1.7.0                                                                             c1c([nH]cn1)C2CCN(CC2)C(=S)NC3CCCCC3
+FJZ            InChI                InChI  1.03 InChI=1S/C15H24N4S/c20-15(18-13-4-2-1-3-5-13)19-8-6-12(7-9-19)14-10-16-11-17-14/h10-13H,1-9H2,(H,16,17)(H,18,20)
+FJZ         InChIKey                InChI  1.03                                                                                      QKDDJDBFONZGBW-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FJZ acedrg               243         "dictionary generator"                  
+FJZ acedrg_database      11          "data source"                           
+FJZ rdkit                2017.03.2   "Chemoinformatics tool"
+FJZ refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,241 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+38T     38T      5-methyluridine     NON-POLYMER     32     18     .     
+#
+data_comp_38T
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+38T     OAC     O       O       0       28.586      44.360      -12.465     
+38T     CAM     C       CR6     0       27.473      44.450      -11.959     
+38T     NAI     N       NR6     0       26.502      43.503      -12.194     
+38T     CAL     C       CR6     0       25.211      43.480      -11.692     
+38T     OAB     O       O       0       24.451      42.554      -11.999     
+38T     CAK     C       CR6     0       24.868      44.587      -10.823     
+38T     CAA     C       CH3     0       23.489      44.644      -10.233     
+38T     CAG     C       CR16    0       25.806      45.523      -10.584     
+38T     NAR     N       NR6     0       27.092      45.482      -11.116     
+38T     "C1'"   C       CH1     0       28.081      46.555      -10.814     
+38T     "O4'"   O       O2      0       27.995      46.905      -9.447      
+38T     "C4'"   C       CH1     0       27.961      48.348      -9.324      
+38T     "C5'"   C       CH2     0       27.276      48.745      -8.035      
+38T     "O5'"   O       OH1     0       25.995      48.141      -7.912      
+38T     "C3'"   C       CH1     0       27.254      48.794      -10.609     
+38T     "O3'"   O       OH1     0       27.530      50.158      -10.900     
+38T     "C2'"   C       CH1     0       27.846      47.825      -11.642     
+38T     "O2'"   O       OH1     0       29.075      48.272      -12.175     
+38T     H1      H       H       0       26.742      42.831      -12.734     
+38T     H2      H       H       0       23.483      45.248      -9.473      
+38T     H3      H       H       0       23.221      43.758      -9.940      
+38T     H4      H       H       0       22.861      44.964      -10.902     
+38T     H5      H       H       0       25.581      46.251      -10.015     
+38T     H6      H       H       0       28.987      46.223      -10.986     
+38T     H7      H       H       0       28.882      48.687      -9.320      
+38T     H8      H       H       0       27.178      49.720      -8.008      
+38T     H9      H       H       0       27.835      48.474      -7.275      
+38T     H10     H       H       0       25.539      48.574      -7.343      
+38T     H11     H       H       0       26.275      48.651      -10.533     
+38T     H12     H       H       0       27.204      50.641      -10.283     
+38T     H13     H       H       0       27.202      47.655      -12.358     
+38T     H14     H       H       0       29.310      47.761      -12.811     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+38T         OAC         CAM      DOUBLE       n     1.224  0.0111     1.224  0.0111
+38T         CAM         NAI      SINGLE       y     1.373  0.0100     1.373  0.0100
+38T         NAI         CAL      SINGLE       y     1.383  0.0100     1.383  0.0100
+38T         CAL         OAB      DOUBLE       n     1.234  0.0141     1.234  0.0141
+38T         CAM         NAR      SINGLE       y     1.376  0.0100     1.376  0.0100
+38T       "C2'"       "O2'"      SINGLE       n     1.412  0.0100     1.412  0.0100
+38T       "C3'"       "C2'"      SINGLE       n     1.533  0.0109     1.533  0.0109
+38T       "C1'"       "C2'"      SINGLE       n     1.529  0.0100     1.529  0.0100
+38T         CAL         CAK      SINGLE       y     1.446  0.0100     1.446  0.0100
+38T       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+38T         NAR       "C1'"      SINGLE       n     1.476  0.0133     1.476  0.0133
+38T         CAG         NAR      SINGLE       y     1.386  0.0100     1.386  0.0100
+38T       "C4'"       "C3'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+38T       "C1'"       "O4'"      SINGLE       n     1.412  0.0100     1.412  0.0100
+38T         CAK         CAG      DOUBLE       y     1.343  0.0112     1.343  0.0112
+38T         CAK         CAA      SINGLE       n     1.500  0.0100     1.500  0.0100
+38T       "O4'"       "C4'"      SINGLE       n     1.451  0.0111     1.451  0.0111
+38T       "C4'"       "C5'"      SINGLE       n     1.511  0.0177     1.511  0.0177
+38T       "C5'"       "O5'"      SINGLE       n     1.421  0.0131     1.421  0.0131
+38T         NAI          H1      SINGLE       n     1.016  0.0100     0.893  0.0200
+38T         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0135
+38T         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0135
+38T         CAA          H4      SINGLE       n     1.089  0.0100     0.971  0.0135
+38T         CAG          H5      SINGLE       n     1.082  0.0130     0.951  0.0200
+38T       "C1'"          H6      SINGLE       n     1.089  0.0100     0.981  0.0118
+38T       "C4'"          H7      SINGLE       n     1.089  0.0100     0.981  0.0200
+38T       "C5'"          H8      SINGLE       n     1.089  0.0100     0.981  0.0200
+38T       "C5'"          H9      SINGLE       n     1.089  0.0100     0.981  0.0200
+38T       "O5'"         H10      SINGLE       n     0.970  0.0120     0.848  0.0200
+38T       "C3'"         H11      SINGLE       n     1.089  0.0100     0.992  0.0200
+38T       "O3'"         H12      SINGLE       n     0.970  0.0120     0.849  0.0200
+38T       "C2'"         H13      SINGLE       n     1.089  0.0100     0.978  0.0200
+38T       "O2'"         H14      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+38T         OAC         CAM         NAI     122.342    1.50
+38T         OAC         CAM         NAR     122.872    1.50
+38T         NAI         CAM         NAR     114.786    1.50
+38T         CAM         NAI         CAL     127.106    1.50
+38T         CAM         NAI          H1     115.584    1.79
+38T         CAL         NAI          H1     117.311    1.81
+38T         NAI         CAL         OAB     119.787    1.50
+38T         NAI         CAL         CAK     115.265    1.50
+38T         OAB         CAL         CAK     124.948    1.50
+38T         CAL         CAK         CAG     118.305    1.50
+38T         CAL         CAK         CAA     118.650    1.50
+38T         CAG         CAK         CAA     123.045    1.50
+38T         CAK         CAA          H2     109.652    1.50
+38T         CAK         CAA          H3     109.652    1.50
+38T         CAK         CAA          H4     109.652    1.50
+38T          H2         CAA          H3     109.348    1.50
+38T          H2         CAA          H4     109.348    1.50
+38T          H3         CAA          H4     109.348    1.50
+38T         NAR         CAG         CAK     123.296    1.50
+38T         NAR         CAG          H5     117.926    1.56
+38T         CAK         CAG          H5     118.779    1.68
+38T         CAM         NAR       "C1'"     117.446    1.50
+38T         CAM         NAR         CAG     121.243    1.50
+38T       "C1'"         NAR         CAG     121.311    1.50
+38T       "C2'"       "C1'"         NAR     112.859    1.50
+38T       "C2'"       "C1'"       "O4'"     106.825    1.50
+38T       "C2'"       "C1'"          H6     109.776    1.83
+38T         NAR       "C1'"       "O4'"     108.667    1.50
+38T         NAR       "C1'"          H6     109.166    1.50
+38T       "O4'"       "C1'"          H6     109.327    1.50
+38T       "C1'"       "O4'"       "C4'"     109.578    1.50
+38T       "C3'"       "C4'"       "O4'"     104.439    1.50
+38T       "C3'"       "C4'"       "C5'"     114.598    1.97
+38T       "C3'"       "C4'"          H7     109.363    1.86
+38T       "O4'"       "C4'"       "C5'"     109.573    1.50
+38T       "O4'"       "C4'"          H7     108.698    1.50
+38T       "C5'"       "C4'"          H7     109.037    1.87
+38T       "C4'"       "C5'"       "O5'"     111.279    1.98
+38T       "C4'"       "C5'"          H8     109.326    2.00
+38T       "C4'"       "C5'"          H9     109.326    2.00
+38T       "O5'"       "C5'"          H8     109.280    1.50
+38T       "O5'"       "C5'"          H9     109.280    1.50
+38T          H8       "C5'"          H9     108.248    2.26
+38T       "C5'"       "O5'"         H10     109.007    3.00
+38T       "C2'"       "C3'"       "O3'"     111.993    3.00
+38T       "C2'"       "C3'"       "C4'"     102.071    1.50
+38T       "C2'"       "C3'"         H11     110.108    1.66
+38T       "O3'"       "C3'"       "C4'"     111.281    2.46
+38T       "O3'"       "C3'"         H11     110.380    1.67
+38T       "C4'"       "C3'"         H11     110.452    2.54
+38T       "C3'"       "O3'"         H12     108.744    3.00
+38T       "O2'"       "C2'"       "C3'"     112.861    2.52
+38T       "O2'"       "C2'"       "C1'"     109.476    3.00
+38T       "O2'"       "C2'"         H13     111.022    1.77
+38T       "C3'"       "C2'"       "C1'"     101.269    1.50
+38T       "C3'"       "C2'"         H13     110.799    1.82
+38T       "C1'"       "C2'"         H13     110.760    1.63
+38T       "C2'"       "O2'"         H14     109.449    1.85
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+38T            sp3_sp3_29       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+38T            sp3_sp3_40       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+38T            sp3_sp3_23       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+38T            sp3_sp3_49       "C4'"       "C5'"       "O5'"         H10     180.000    10.0     3
+38T            sp3_sp3_34       "C2'"       "C3'"       "O3'"         H12     180.000    10.0     3
+38T            sp3_sp3_14       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+38T            sp3_sp3_31       "C3'"       "C2'"       "O2'"         H14     180.000    10.0     3
+38T       const_sp2_sp2_3         OAC         CAM         NAI         CAL     180.000     5.0     2
+38T              const_24         OAC         CAM         NAR       "C1'"       0.000    10.0     2
+38T       const_sp2_sp2_7         OAB         CAL         NAI         CAM     180.000     5.0     2
+38T              const_12         CAA         CAK         CAL         OAB       0.000    10.0     2
+38T             sp2_sp3_7         CAL         CAK         CAA          H2     150.000    10.0     6
+38T              const_14         NAR         CAG         CAK         CAA     180.000    10.0     2
+38T              const_17         CAK         CAG         NAR         CAM       0.000    10.0     2
+38T             sp2_sp3_1         CAM         NAR       "C1'"       "C2'"     150.000    10.0     6
+38T            sp3_sp3_37       "C2'"       "C1'"       "O4'"       "C4'"     180.000    10.0     3
+38T             sp3_sp3_5         NAR       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+38T    chir_1    "C1'"    "O4'"    NAR    "C2'"    negative
+38T    chir_2    "C4'"    "O4'"    "C3'"    "C5'"    negative
+38T    chir_3    "C3'"    "O3'"    "C4'"    "C2'"    positive
+38T    chir_4    "C2'"    "O2'"    "C1'"    "C3'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+38T    plan-1       "C1'"   0.020
+38T    plan-1         CAA   0.020
+38T    plan-1         CAG   0.020
+38T    plan-1         CAK   0.020
+38T    plan-1         CAL   0.020
+38T    plan-1         CAM   0.020
+38T    plan-1          H1   0.020
+38T    plan-1          H5   0.020
+38T    plan-1         NAI   0.020
+38T    plan-1         NAR   0.020
+38T    plan-1         OAB   0.020
+38T    plan-1         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+38T           SMILES              ACDLabs 12.01                                                                                             O=C1NC(=O)N(C=C1C)C2OC(C(O)C2O)CO
+38T            InChI                InChI  1.03 InChI=1S/C10H14N2O6/c1-4-2-12(10(17)11-8(4)16)9-7(15)6(14)5(3-13)18-9/h2,5-7,9,13-15H,3H2,1H3,(H,11,16,17)/t5-,6-,7-,9-/m1/s1
+38T         InChIKey                InChI  1.03                                                                                                   DWRXFEITVBNRMK-JXOAFFINSA-N
+38T SMILES_CANONICAL               CACTVS 3.385                                                                           CC1=CN([C@@H]2O[C@H](CO)[C@@H](O)[C@H]2O)C(=O)NC1=O
+38T           SMILES               CACTVS 3.385                                                                                 CC1=CN([CH]2O[CH](CO)[CH](O)[CH]2O)C(=O)NC1=O
+38T SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                         CC1=CN(C(=O)NC1=O)[C@H]2[C@@H]([C@@H]([C@H](O2)CO)O)O
+38T           SMILES "OpenEye OEToolkits" 1.7.6                                                                                           CC1=CN(C(=O)NC1=O)C2C(C(C(O2)CO)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+38T acedrg               243         "dictionary generator"                  
+38T acedrg_database      11          "data source"                           
+38T rdkit                2017.03.2   "Chemoinformatics tool"
+38T refmac5              5.8.0238    "optimization tool"                     

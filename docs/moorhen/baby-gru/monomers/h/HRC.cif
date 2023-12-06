@@ -1,0 +1,255 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HRC     HRC      N-(4-hydroxy-2,6-dimethylphenyl)benzenesulfonamide     NON-POLYMER     34     19     .     
+#
+data_comp_HRC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HRC     O1      O       O       0       -0.777      45.299      57.364      
+HRC     S       S       S3      0       0.356       45.008      56.541      
+HRC     O2      O       O       0       1.342       46.024      56.336      
+HRC     C9      C       CR6     0       1.164       43.581      57.178      
+HRC     C14     C       CR16    0       2.464       43.302      56.784      
+HRC     C13     C       CR16    0       3.100       42.177      57.286      
+HRC     C12     C       CR16    0       2.451       41.343      58.170      
+HRC     C11     C       CR16    0       1.157       41.627      58.560      
+HRC     C10     C       CR16    0       0.504       42.746      58.068      
+HRC     N       N       NT1     0       -0.229      44.629      55.067      
+HRC     C1      C       CR6     0       0.235       43.567      54.226      
+HRC     C6      C       CR6     0       1.322       43.807      53.374      
+HRC     C7      C       CH3     0       2.024       45.142      53.314      
+HRC     C2      C       CR6     0       -0.402      42.318      54.265      
+HRC     C8      C       CH3     0       -1.577      42.011      55.163      
+HRC     C3      C       CR16    0       0.075       41.306      53.432      
+HRC     C4      C       CR6     0       1.153       41.521      52.581      
+HRC     O3      O       OH1     0       1.607       40.510      51.768      
+HRC     C5      C       CR16    0       1.769       42.767      52.558      
+HRC     H1      H       H       0       2.910       43.867      56.180      
+HRC     H2      H       H       0       3.981       41.983      57.022      
+HRC     H3      H       H       0       2.889       40.578      58.509      
+HRC     H4      H       H       0       0.715       41.057      59.162      
+HRC     H5      H       H       0       -0.377      42.934      58.336      
+HRC     H6      H       H       0       -1.029      44.893      54.954      
+HRC     H7      H       H       0       1.367       45.857      53.312      
+HRC     H8      H       H       0       2.558       45.197      52.505      
+HRC     H9      H       H       0       2.603       45.239      54.087      
+HRC     H10     H       H       0       -1.832      42.798      55.668      
+HRC     H11     H       H       0       -1.334      41.301      55.780      
+HRC     H12     H       H       0       -2.329      41.721      54.622      
+HRC     H13     H       H       0       -0.345      40.460      53.450      
+HRC     H14     H       H       0       1.569       39.693      52.036      
+HRC     H15     H       H       0       2.502       42.916      51.980      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HRC          C4          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+HRC          C4          C5      SINGLE       y     1.388  0.0100     1.388  0.0100
+HRC          C3          C4      DOUBLE       y     1.388  0.0100     1.388  0.0100
+HRC          C6          C5      DOUBLE       y     1.391  0.0100     1.391  0.0100
+HRC          C2          C3      SINGLE       y     1.391  0.0100     1.391  0.0100
+HRC          C6          C7      SINGLE       n     1.507  0.0100     1.507  0.0100
+HRC          C1          C6      SINGLE       y     1.395  0.0100     1.395  0.0100
+HRC          C1          C2      DOUBLE       y     1.395  0.0100     1.395  0.0100
+HRC          C2          C8      SINGLE       n     1.507  0.0100     1.507  0.0100
+HRC           N          C1      SINGLE       n     1.430  0.0105     1.430  0.0105
+HRC           S           N      SINGLE       n     1.629  0.0110     1.629  0.0110
+HRC           S          O2      DOUBLE       n     1.430  0.0100     1.430  0.0100
+HRC          O1           S      DOUBLE       n     1.430  0.0100     1.430  0.0100
+HRC           S          C9      SINGLE       n     1.757  0.0100     1.757  0.0100
+HRC          C9         C14      DOUBLE       y     1.382  0.0100     1.382  0.0100
+HRC         C14         C13      SINGLE       y     1.383  0.0100     1.383  0.0100
+HRC          C9         C10      SINGLE       y     1.382  0.0100     1.382  0.0100
+HRC         C13         C12      DOUBLE       y     1.374  0.0123     1.374  0.0123
+HRC         C11         C10      DOUBLE       y     1.383  0.0100     1.383  0.0100
+HRC         C12         C11      SINGLE       y     1.376  0.0124     1.376  0.0124
+HRC         C14          H1      SINGLE       n     1.082  0.0130     0.940  0.0163
+HRC         C13          H2      SINGLE       n     1.082  0.0130     0.940  0.0176
+HRC         C12          H3      SINGLE       n     1.082  0.0130     0.944  0.0161
+HRC         C11          H4      SINGLE       n     1.082  0.0130     0.940  0.0176
+HRC         C10          H5      SINGLE       n     1.082  0.0130     0.940  0.0163
+HRC           N          H6      SINGLE       n     1.016  0.0100     0.849  0.0200
+HRC          C7          H7      SINGLE       n     1.089  0.0100     0.971  0.0135
+HRC          C7          H8      SINGLE       n     1.089  0.0100     0.971  0.0135
+HRC          C7          H9      SINGLE       n     1.089  0.0100     0.971  0.0135
+HRC          C8         H10      SINGLE       n     1.089  0.0100     0.971  0.0135
+HRC          C8         H11      SINGLE       n     1.089  0.0100     0.971  0.0135
+HRC          C8         H12      SINGLE       n     1.089  0.0100     0.971  0.0135
+HRC          C3         H13      SINGLE       n     1.082  0.0130     0.945  0.0164
+HRC          O3         H14      SINGLE       n     0.966  0.0059     0.861  0.0200
+HRC          C5         H15      SINGLE       n     1.082  0.0130     0.945  0.0164
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HRC           N           S          O2     106.703    1.87
+HRC           N           S          O1     106.703    1.87
+HRC           N           S          C9     107.052    1.50
+HRC          O2           S          O1     119.445    1.50
+HRC          O2           S          C9     108.260    1.50
+HRC          O1           S          C9     108.260    1.50
+HRC           S          C9         C14     119.703    1.50
+HRC           S          C9         C10     119.703    1.50
+HRC         C14          C9         C10     120.594    1.50
+HRC          C9         C14         C13     119.119    1.50
+HRC          C9         C14          H1     120.450    1.50
+HRC         C13         C14          H1     120.431    1.50
+HRC         C14         C13         C12     120.529    1.50
+HRC         C14         C13          H2     119.635    1.50
+HRC         C12         C13          H2     119.836    1.50
+HRC         C13         C12         C11     120.111    1.50
+HRC         C13         C12          H3     119.945    1.50
+HRC         C11         C12          H3     119.945    1.50
+HRC         C10         C11         C12     120.529    1.50
+HRC         C10         C11          H4     119.635    1.50
+HRC         C12         C11          H4     119.836    1.50
+HRC          C9         C10         C11     119.119    1.50
+HRC          C9         C10          H5     120.450    1.50
+HRC         C11         C10          H5     120.431    1.50
+HRC          C1           N           S     122.365    2.68
+HRC          C1           N          H6     115.556    2.88
+HRC           S           N          H6     110.982    3.00
+HRC          C6          C1          C2     121.642    1.50
+HRC          C6          C1           N     119.179    1.50
+HRC          C2          C1           N     119.179    1.50
+HRC          C5          C6          C7     119.498    1.50
+HRC          C5          C6          C1     118.340    1.50
+HRC          C7          C6          C1     122.162    1.50
+HRC          C6          C7          H7     109.584    1.50
+HRC          C6          C7          H8     109.584    1.50
+HRC          C6          C7          H9     109.584    1.50
+HRC          H7          C7          H8     109.348    1.50
+HRC          H7          C7          H9     109.348    1.50
+HRC          H8          C7          H9     109.348    1.50
+HRC          C3          C2          C1     118.340    1.50
+HRC          C3          C2          C8     119.498    1.50
+HRC          C1          C2          C8     122.162    1.50
+HRC          C2          C8         H10     109.584    1.50
+HRC          C2          C8         H11     109.584    1.50
+HRC          C2          C8         H12     109.584    1.50
+HRC         H10          C8         H11     109.348    1.50
+HRC         H10          C8         H12     109.348    1.50
+HRC         H11          C8         H12     109.348    1.50
+HRC          C4          C3          C2     121.017    1.50
+HRC          C4          C3         H13     119.796    1.50
+HRC          C2          C3         H13     119.187    1.50
+HRC          O3          C4          C5     120.178    3.00
+HRC          O3          C4          C3     120.178    3.00
+HRC          C5          C4          C3     119.644    1.50
+HRC          C4          O3         H14     120.000    3.00
+HRC          C4          C5          C6     121.017    1.50
+HRC          C4          C5         H15     119.796    1.50
+HRC          C6          C5         H15     119.187    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HRC              const_24           N          C1          C6          C7       0.000    10.0     2
+HRC              const_44           N          C1          C2          C8       0.000    10.0     2
+HRC             sp2_sp3_1          C5          C6          C7          H7     150.000    10.0     6
+HRC              const_26          C4          C5          C6          C7     180.000    10.0     2
+HRC             sp2_sp3_7          C3          C2          C8         H10     150.000    10.0     6
+HRC              const_39          C8          C2          C3          C4     180.000    10.0     2
+HRC              const_34          C2          C3          C4          O3     180.000    10.0     2
+HRC             sp2_sp2_1          C5          C4          O3         H14     180.000     5.0     2
+HRC              const_31          O3          C4          C5          C6     180.000    10.0     2
+HRC            sp2_sp3_21         C14          C9           S           N      30.000    10.0     6
+HRC            sp2_sp3_14          C1           N           S          O2     120.000    10.0     6
+HRC       const_sp2_sp2_2         C13         C14          C9           S     180.000     5.0     2
+HRC              const_46         C11         C10          C9           S     180.000    10.0     2
+HRC       const_sp2_sp2_5         C12         C13         C14          C9       0.000     5.0     2
+HRC       const_sp2_sp2_9         C11         C12         C13         C14       0.000     5.0     2
+HRC              const_13         C10         C11         C12         C13       0.000    10.0     2
+HRC              const_17          C9         C10         C11         C12       0.000    10.0     2
+HRC             sp2_sp2_3          C6          C1           N           S     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HRC    chir_1    S    O2    O1    N    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HRC    plan-1          C1   0.020
+HRC    plan-1          C2   0.020
+HRC    plan-1          C3   0.020
+HRC    plan-1          C4   0.020
+HRC    plan-1          C5   0.020
+HRC    plan-1          C6   0.020
+HRC    plan-1          C7   0.020
+HRC    plan-1          C8   0.020
+HRC    plan-1         H13   0.020
+HRC    plan-1         H15   0.020
+HRC    plan-1           N   0.020
+HRC    plan-1          O3   0.020
+HRC    plan-2         C10   0.020
+HRC    plan-2         C11   0.020
+HRC    plan-2         C12   0.020
+HRC    plan-2         C13   0.020
+HRC    plan-2         C14   0.020
+HRC    plan-2          C9   0.020
+HRC    plan-2          H1   0.020
+HRC    plan-2          H2   0.020
+HRC    plan-2          H3   0.020
+HRC    plan-2          H4   0.020
+HRC    plan-2          H5   0.020
+HRC    plan-2           S   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HRC           SMILES              ACDLabs 12.01                                                            O=S(=O)(Nc1c(cc(O)cc1C)C)c2ccccc2
+HRC            InChI                InChI  1.03 InChI=1S/C14H15NO3S/c1-10-8-12(16)9-11(2)14(10)15-19(17,18)13-6-4-3-5-7-13/h3-9,15-16H,1-2H3
+HRC         InChIKey                InChI  1.03                                                                  GLDVWHQVGHPIFH-UHFFFAOYSA-N
+HRC SMILES_CANONICAL               CACTVS 3.370                                                          Cc1cc(O)cc(C)c1N[S](=O)(=O)c2ccccc2
+HRC           SMILES               CACTVS 3.370                                                          Cc1cc(O)cc(C)c1N[S](=O)(=O)c2ccccc2
+HRC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                            Cc1cc(cc(c1NS(=O)(=O)c2ccccc2)C)O
+HRC           SMILES "OpenEye OEToolkits" 1.7.6                                                            Cc1cc(cc(c1NS(=O)(=O)c2ccccc2)C)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HRC acedrg               243         "dictionary generator"                  
+HRC acedrg_database      11          "data source"                           
+HRC rdkit                2017.03.2   "Chemoinformatics tool"
+HRC refmac5              5.8.0238    "optimization tool"                     

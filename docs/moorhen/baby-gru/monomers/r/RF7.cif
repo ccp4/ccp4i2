@@ -1,0 +1,239 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RF7     RF7      "{(2R)-4-[hydroxy(methyl)amino]-4-oxo-2-phenylbutyl}phosphonic acid"     NON-POLYMER     32     18     .     
+#
+data_comp_RF7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RF7     O6      O       OP      -1      0.161       14.860      23.258      
+RF7     P4      P       P       0       -0.533      14.172      22.130      
+RF7     O5      O       OP      -1      -1.731      13.421      22.604      
+RF7     O7      O       O       0       -0.890      15.133      21.047      
+RF7     C1      C       CH2     0       0.612       12.978      21.399      
+RF7     C2      C       CH1     0       1.475       12.230      22.434      
+RF7     C3      C       CH2     0       2.575       11.372      21.777      
+RF7     C8      C       C       0       3.673       12.193      21.135      
+RF7     N9      N       N       0       3.814       12.210      19.772      
+RF7     O10     O       OH1     0       4.862       12.892      19.208      
+RF7     C11     C       CH3     0       3.014       11.582      18.724      
+RF7     O12     O       O       0       4.434       12.824      21.843      
+RF7     C13     C       CR6     0       0.626       11.385      23.370      
+RF7     C15     C       CR16    0       -0.128      10.321      22.876      
+RF7     C16     C       CR16    0       -0.904      9.545       23.727      
+RF7     C18     C       CR16    0       -0.936      9.817       25.080      
+RF7     C17     C       CR16    0       -0.194      10.865      25.586      
+RF7     C14     C       CR16    0       0.584       11.646      24.740      
+RF7     H3      H       H       0       1.203       13.444      20.775      
+RF7     H4      H       H       0       0.107       12.320      20.880      
+RF7     H5      H       H       0       1.931       12.913      22.981      
+RF7     H6      H       H       0       2.163       10.775      21.113      
+RF7     H7      H       H       0       2.981       10.801      22.469      
+RF7     H8      H       H       0       4.638       13.733      19.196      
+RF7     H9      H       H       0       2.112       11.421      19.041      
+RF7     H10     H       H       0       3.425       10.737      18.467      
+RF7     H11     H       H       0       2.978       12.172      17.948      
+RF7     H12     H       H       0       -0.112      10.129      21.952      
+RF7     H13     H       H       0       -1.411      8.829       23.379      
+RF7     H14     H       H       0       -1.464      9.288       25.657      
+RF7     H15     H       H       0       -0.215      11.052      26.511      
+RF7     H16     H       H       0       1.088       12.360      25.095      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RF7          N9         C11      SINGLE       n     1.456  0.0100     1.456  0.0100
+RF7          N9         O10      SINGLE       n     1.366  0.0200     1.366  0.0200
+RF7          C8          N9      SINGLE       n     1.340  0.0196     1.340  0.0196
+RF7          C8         O12      DOUBLE       n     1.215  0.0100     1.215  0.0100
+RF7          C3          C8      SINGLE       n     1.508  0.0116     1.508  0.0116
+RF7          P4          O7      DOUBLE       n     1.492  0.0200     1.492  0.0200
+RF7          P4          C1      SINGLE       n     1.803  0.0200     1.803  0.0200
+RF7          C1          C2      SINGLE       n     1.529  0.0200     1.529  0.0200
+RF7          C2          C3      SINGLE       n     1.539  0.0100     1.539  0.0100
+RF7          P4          O5      SINGLE       n     1.492  0.0200     1.492  0.0200
+RF7          O6          P4      SINGLE       n     1.492  0.0200     1.492  0.0200
+RF7          C2         C13      SINGLE       n     1.518  0.0100     1.518  0.0100
+RF7         C13         C15      DOUBLE       y     1.390  0.0100     1.390  0.0100
+RF7         C15         C16      SINGLE       y     1.386  0.0100     1.386  0.0100
+RF7         C13         C14      SINGLE       y     1.390  0.0100     1.390  0.0100
+RF7         C16         C18      DOUBLE       y     1.376  0.0124     1.376  0.0124
+RF7         C17         C14      DOUBLE       y     1.386  0.0100     1.386  0.0100
+RF7         C18         C17      SINGLE       y     1.376  0.0124     1.376  0.0124
+RF7          C1          H3      SINGLE       n     1.089  0.0100     0.979  0.0200
+RF7          C1          H4      SINGLE       n     1.089  0.0100     0.979  0.0200
+RF7          C2          H5      SINGLE       n     1.089  0.0100     0.987  0.0102
+RF7          C3          H6      SINGLE       n     1.089  0.0100     0.985  0.0100
+RF7          C3          H7      SINGLE       n     1.089  0.0100     0.985  0.0100
+RF7         O10          H8      SINGLE       n     0.970  0.0120     0.871  0.0200
+RF7         C11          H9      SINGLE       n     1.089  0.0100     0.974  0.0200
+RF7         C11         H10      SINGLE       n     1.089  0.0100     0.974  0.0200
+RF7         C11         H11      SINGLE       n     1.089  0.0100     0.974  0.0200
+RF7         C15         H12      SINGLE       n     1.082  0.0130     0.944  0.0174
+RF7         C16         H13      SINGLE       n     1.082  0.0130     0.944  0.0175
+RF7         C18         H14      SINGLE       n     1.082  0.0130     0.944  0.0161
+RF7         C17         H15      SINGLE       n     1.082  0.0130     0.944  0.0175
+RF7         C14         H16      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RF7          O7          P4          C1     108.625    3.00
+RF7          O7          P4          O5     111.786    1.50
+RF7          O7          P4          O6     111.786    1.50
+RF7          C1          P4          O5     108.625    3.00
+RF7          C1          P4          O6     108.625    3.00
+RF7          O5          P4          O6     111.786    1.50
+RF7          P4          C1          C2     111.410    2.87
+RF7          P4          C1          H3     109.545    1.50
+RF7          P4          C1          H4     109.545    1.50
+RF7          C2          C1          H3     108.677    1.50
+RF7          C2          C1          H4     108.677    1.50
+RF7          H3          C1          H4     107.498    1.50
+RF7          C1          C2          C3     111.212    3.00
+RF7          C1          C2         C13     111.955    2.06
+RF7          C1          C2          H5     107.552    1.50
+RF7          C3          C2         C13     111.746    1.75
+RF7          C3          C2          H5     107.657    1.50
+RF7         C13          C2          H5     107.644    1.50
+RF7          C8          C3          C2     112.596    1.96
+RF7          C8          C3          H6     108.929    1.50
+RF7          C8          C3          H7     108.929    1.50
+RF7          C2          C3          H6     108.980    1.50
+RF7          C2          C3          H7     108.980    1.50
+RF7          H6          C3          H7     107.705    1.50
+RF7          N9          C8         O12     122.824    1.98
+RF7          N9          C8          C3     115.882    1.98
+RF7         O12          C8          C3     121.294    1.50
+RF7         C11          N9         O10     114.417    3.00
+RF7         C11          N9          C8     124.436    2.35
+RF7         O10          N9          C8     121.147    2.14
+RF7          N9         O10          H8     106.835    3.00
+RF7          N9         C11          H9     109.486    1.50
+RF7          N9         C11         H10     109.486    1.50
+RF7          N9         C11         H11     109.486    1.50
+RF7          H9         C11         H10     109.595    1.50
+RF7          H9         C11         H11     109.595    1.50
+RF7         H10         C11         H11     109.595    1.50
+RF7          C2         C13         C15     120.902    1.50
+RF7          C2         C13         C14     120.902    1.50
+RF7         C15         C13         C14     118.196    1.50
+RF7         C13         C15         C16     120.460    1.50
+RF7         C13         C15         H12     119.666    1.50
+RF7         C16         C15         H12     119.874    1.50
+RF7         C15         C16         C18     120.389    1.50
+RF7         C15         C16         H13     119.760    1.50
+RF7         C18         C16         H13     119.851    1.50
+RF7         C16         C18         C17     120.107    1.50
+RF7         C16         C18         H14     119.947    1.50
+RF7         C17         C18         H14     119.947    1.50
+RF7         C14         C17         C18     120.389    1.50
+RF7         C14         C17         H15     119.760    1.50
+RF7         C18         C17         H15     119.851    1.50
+RF7         C13         C14         C17     120.460    1.50
+RF7         C13         C14         H16     119.666    1.50
+RF7         C17         C14         H16     119.874    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RF7       const_sp2_sp2_3          C2         C13         C15         C16     180.000     5.0     2
+RF7              const_23          C2         C13         C14         C17     180.000    10.0     2
+RF7       const_sp2_sp2_5         C13         C15         C16         C18       0.000     5.0     2
+RF7       const_sp2_sp2_9         C15         C16         C18         C17       0.000     5.0     2
+RF7              const_13         C14         C17         C18         C16       0.000    10.0     2
+RF7              const_17         C13         C14         C17         C18       0.000    10.0     2
+RF7             sp3_sp3_3          C2          C1          P4          O7      60.000    10.0     3
+RF7            sp3_sp3_10          P4          C1          C2          C3     180.000    10.0     3
+RF7            sp2_sp3_15         C15         C13          C2          C1     150.000    10.0     6
+RF7            sp3_sp3_19          C1          C2          C3          C8     180.000    10.0     3
+RF7            sp2_sp3_10          N9          C8          C3          C2     120.000    10.0     6
+RF7             sp2_sp2_3         O12          C8          N9         C11       0.000     5.0     2
+RF7             sp2_sp3_1         O10          N9         C11          H9       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RF7    chir_1    P4    O5    O6    O7    both
+RF7    chir_2    C2    C1    C13    C3    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RF7    plan-1         C13   0.020
+RF7    plan-1         C14   0.020
+RF7    plan-1         C15   0.020
+RF7    plan-1         C16   0.020
+RF7    plan-1         C17   0.020
+RF7    plan-1         C18   0.020
+RF7    plan-1          C2   0.020
+RF7    plan-1         H12   0.020
+RF7    plan-1         H13   0.020
+RF7    plan-1         H14   0.020
+RF7    plan-1         H15   0.020
+RF7    plan-1         H16   0.020
+RF7    plan-2          C3   0.020
+RF7    plan-2          C8   0.020
+RF7    plan-2          N9   0.020
+RF7    plan-2         O12   0.020
+RF7    plan-3         C11   0.020
+RF7    plan-3          C8   0.020
+RF7    plan-3          N9   0.020
+RF7    plan-3         O10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RF7           SMILES              ACDLabs 12.01                                                                                   O=P(O)(O)CC(c1ccccc1)CC(=O)N(O)C
+RF7            InChI                InChI  1.03 InChI=1S/C11H16NO5P/c1-12(14)11(13)7-10(8-18(15,16)17)9-5-3-2-4-6-9/h2-6,10,14H,7-8H2,1H3,(H2,15,16,17)/t10-/m0/s1
+RF7         InChIKey                InChI  1.03                                                                                        RGWBBKVQKPJVGW-JTQLQIEISA-N
+RF7 SMILES_CANONICAL               CACTVS 3.385                                                                            CN(O)C(=O)C[C@@H](C[P](O)(O)=O)c1ccccc1
+RF7           SMILES               CACTVS 3.385                                                                              CN(O)C(=O)C[CH](C[P](O)(O)=O)c1ccccc1
+RF7 SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                              CN(C(=O)C[C@@H](CP(=O)(O)O)c1ccccc1)O
+RF7           SMILES "OpenEye OEToolkits" 1.9.2                                                                                   CN(C(=O)CC(CP(=O)(O)O)c1ccccc1)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RF7 acedrg               243         "dictionary generator"                  
+RF7 acedrg_database      11          "data source"                           
+RF7 rdkit                2017.03.2   "Chemoinformatics tool"
+RF7 refmac5              5.8.0238    "optimization tool"                     

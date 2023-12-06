@@ -1,0 +1,512 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+WPI     WPI      1,4-bis[(4E)-5-(3,4,5-trimethoxyphenyl)pent-4-en-1-yl]-1,4-diazepane     NON-POLYMER     89     41     .     
+#
+data_comp_WPI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+WPI     C1      C       CR6     0       21.150      4.091       52.580      
+WPI     C2      C       CR6     0       22.015      3.623       53.585      
+WPI     C3      C       CR6     0       21.669      4.884       51.539      
+WPI     O4      O       O2      0       19.794      3.835       52.656      
+WPI     C5      C       CR16    0       23.362      3.903       53.524      
+WPI     O6      O       O2      0       21.434      2.884       54.579      
+WPI     C7      C       CR16    0       23.024      5.141       51.483      
+WPI     O8      O       O2      0       20.779      5.297       50.579      
+WPI     C9      C       CH3     0       19.370      2.492       52.425      
+WPI     C10     C       CR6     0       23.888      4.662       52.475      
+WPI     C11     C       CH3     0       21.984      1.598       54.863      
+WPI     C12     C       CH3     0       19.673      6.137       50.919      
+WPI     C13     C       C1      0       25.332      4.949       52.424      
+WPI     C14     C       C1      0       26.316      4.118       52.730      
+WPI     C16     C       CH2     0       27.763      4.460       52.891      
+WPI     C18     C       CH2     0       28.064      5.365       54.115      
+WPI     C19     C       CH2     0       29.444      6.035       54.065      
+WPI     N20     N       NT      0       30.628      5.152       54.333      
+WPI     C21     C       CH2     0       31.016      4.273       53.199      
+WPI     C22     C       CH2     0       30.532      4.432       55.632      
+WPI     C23     C       CH2     0       32.514      4.197       52.953      
+WPI     C24     C       CH2     0       31.856      4.033       56.251      
+WPI     N25     N       NT      0       33.381      4.209       54.166      
+WPI     C26     C       CH2     0       32.863      3.384       55.306      
+WPI     C27     C       CH2     0       33.869      5.571       54.554      
+WPI     C28     C       CH2     0       34.956      5.577       55.619      
+WPI     C29     C       CH2     0       35.601      6.969       55.813      
+WPI     C30     C       C1      0       36.742      6.952       56.778      
+WPI     C31     C       C1      0       37.955      6.506       56.507      
+WPI     C33     C       CR6     0       39.085      6.372       57.438      
+WPI     C35     C       CR16    0       39.335      7.342       58.411      
+WPI     C36     C       CR16    0       39.934      5.269       57.344      
+WPI     C37     C       CR6     0       40.395      7.218       59.289      
+WPI     C38     C       CR6     0       41.007      5.134       58.199      
+WPI     C39     C       CR6     0       41.253      6.095       59.197      
+WPI     O40     O       O2      0       40.681      8.153       60.250      
+WPI     O41     O       O2      0       41.888      4.082       58.192      
+WPI     O42     O       O2      0       42.372      5.876       59.994      
+WPI     C43     C       CH3     0       39.628      8.933       60.822      
+WPI     C44     C       CH3     0       42.080      3.328       56.995      
+WPI     C45     C       CH3     0       42.606      6.592       61.208      
+WPI     H1      H       H       0       23.935      3.577       54.196      
+WPI     H2      H       H       0       23.371      5.652       50.772      
+WPI     H3      H       H       0       19.136      2.081       53.274      
+WPI     H4      H       H       0       20.083      1.983       52.006      
+WPI     H5      H       H       0       18.592      2.496       51.845      
+WPI     H6      H       H       0       22.729      1.696       55.478      
+WPI     H7      H       H       0       22.297      1.184       54.040      
+WPI     H8      H       H       0       21.302      1.037       55.266      
+WPI     H9      H       H       0       19.781      6.488       51.819      
+WPI     H10     H       H       0       18.852      5.619       50.871      
+WPI     H11     H       H       0       19.624      6.875       50.289      
+WPI     H12     H       H       0       25.572      5.820       52.142      
+WPI     H14     H       H       0       26.083      3.212       52.860      
+WPI     H16     H       H       0       28.075      4.913       52.077      
+WPI     H17     H       H       0       28.273      3.625       52.983      
+WPI     H18     H       H       0       27.991      4.834       54.934      
+WPI     H19     H       H       0       27.383      6.067       54.163      
+WPI     H20     H       H       0       29.452      6.761       54.724      
+WPI     H21     H       H       0       29.555      6.449       53.184      
+WPI     H23     H       H       0       30.682      3.366       53.362      
+WPI     H24     H       H       0       30.588      4.596       52.379      
+WPI     H25     H       H       0       29.989      3.626       55.508      
+WPI     H26     H       H       0       30.057      5.004       56.271      
+WPI     H27     H       H       0       32.767      4.945       52.373      
+WPI     H28     H       H       0       32.698      3.374       52.454      
+WPI     H29     H       H       0       31.675      3.405       56.980      
+WPI     H30     H       H       0       32.263      4.824       56.656      
+WPI     H32     H       H       0       32.452      2.574       54.936      
+WPI     H33     H       H       0       33.630      3.090       55.840      
+WPI     H34     H       H       0       33.114      6.106       54.872      
+WPI     H35     H       H       0       34.223      6.015       53.756      
+WPI     H36     H       H       0       35.649      4.932       55.365      
+WPI     H37     H       H       0       34.571      5.282       56.470      
+WPI     H38     H       H       0       34.917      7.596       56.137      
+WPI     H39     H       H       0       35.923      7.296       54.943      
+WPI     H40     H       H       0       36.581      7.282       57.647      
+WPI     H42     H       H       0       38.126      6.243       55.614      
+WPI     H44     H       H       0       38.763      8.086       58.470      
+WPI     H45     H       H       0       39.768      4.616       56.688      
+WPI     H46     H       H       0       38.869      8.362       61.027      
+WPI     H47     H       H       0       39.357      9.620       60.191      
+WPI     H48     H       H       0       39.946      9.352       61.638      
+WPI     H49     H       H       0       42.226      3.931       56.248      
+WPI     H50     H       H       0       41.291      2.786       56.824      
+WPI     H51     H       H       0       42.852      2.749       57.099      
+WPI     H52     H       H       0       43.333      6.164       61.690      
+WPI     H53     H       H       0       41.809      6.579       61.761      
+WPI     H54     H       H       0       42.859      7.507       61.006      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+WPI          O8         C12      SINGLE       n     1.424  0.0117     1.424  0.0117
+WPI          C3          O8      SINGLE       n     1.366  0.0100     1.366  0.0100
+WPI          C3          C7      SINGLE       y     1.374  0.0100     1.374  0.0100
+WPI          C7         C10      DOUBLE       y     1.396  0.0100     1.396  0.0100
+WPI          C1          C3      DOUBLE       y     1.397  0.0100     1.397  0.0100
+WPI         C10         C13      SINGLE       n     1.470  0.0132     1.470  0.0132
+WPI         C13         C14      DOUBLE       n     1.321  0.0145     1.321  0.0145
+WPI          C5         C10      SINGLE       y     1.396  0.0100     1.396  0.0100
+WPI          C1          O4      SINGLE       n     1.377  0.0100     1.377  0.0100
+WPI          C1          C2      SINGLE       y     1.397  0.0100     1.397  0.0100
+WPI          O4          C9      SINGLE       n     1.424  0.0117     1.424  0.0117
+WPI          C2          C5      DOUBLE       y     1.374  0.0100     1.374  0.0100
+WPI          C2          O6      SINGLE       n     1.366  0.0100     1.366  0.0100
+WPI         C14         C16      SINGLE       n     1.495  0.0105     1.495  0.0105
+WPI         C21         C23      SINGLE       n     1.512  0.0200     1.512  0.0200
+WPI         N20         C21      SINGLE       n     1.471  0.0177     1.471  0.0177
+WPI         C16         C18      SINGLE       n     1.548  0.0200     1.548  0.0200
+WPI         C23         N25      SINGLE       n     1.471  0.0177     1.471  0.0177
+WPI         C18         C19      SINGLE       n     1.517  0.0197     1.517  0.0197
+WPI         C19         N20      SINGLE       n     1.475  0.0184     1.475  0.0184
+WPI         N20         C22      SINGLE       n     1.475  0.0184     1.475  0.0184
+WPI          O6         C11      SINGLE       n     1.424  0.0117     1.424  0.0117
+WPI         N25         C27      SINGLE       n     1.475  0.0184     1.475  0.0184
+WPI         N25         C26      SINGLE       n     1.475  0.0184     1.475  0.0184
+WPI         C27         C28      SINGLE       n     1.517  0.0197     1.517  0.0197
+WPI         C22         C24      SINGLE       n     1.512  0.0200     1.512  0.0200
+WPI         C24         C26      SINGLE       n     1.512  0.0200     1.512  0.0200
+WPI         C28         C29      SINGLE       n     1.548  0.0200     1.548  0.0200
+WPI         C29         C30      SINGLE       n     1.495  0.0105     1.495  0.0105
+WPI         C31         C33      SINGLE       n     1.470  0.0132     1.470  0.0132
+WPI         C30         C31      DOUBLE       n     1.321  0.0145     1.321  0.0145
+WPI         C33         C36      SINGLE       y     1.396  0.0100     1.396  0.0100
+WPI         C36         C38      DOUBLE       y     1.374  0.0100     1.374  0.0100
+WPI         O41         C44      SINGLE       n     1.424  0.0117     1.424  0.0117
+WPI         C38         O41      SINGLE       n     1.366  0.0100     1.366  0.0100
+WPI         C33         C35      DOUBLE       y     1.396  0.0100     1.396  0.0100
+WPI         C38         C39      SINGLE       y     1.397  0.0100     1.397  0.0100
+WPI         C35         C37      SINGLE       y     1.374  0.0100     1.374  0.0100
+WPI         C37         C39      DOUBLE       y     1.397  0.0100     1.397  0.0100
+WPI         C39         O42      SINGLE       n     1.377  0.0100     1.377  0.0100
+WPI         C37         O40      SINGLE       n     1.366  0.0100     1.366  0.0100
+WPI         O42         C45      SINGLE       n     1.424  0.0117     1.424  0.0117
+WPI         O40         C43      SINGLE       n     1.424  0.0117     1.424  0.0117
+WPI          C5          H1      SINGLE       n     1.082  0.0130     0.941  0.0168
+WPI          C7          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+WPI          C9          H3      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI          C9          H4      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI          C9          H5      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C11          H6      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C11          H7      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C11          H8      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C12          H9      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C12         H10      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C12         H11      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C13         H12      SINGLE       n     1.082  0.0130     0.946  0.0187
+WPI         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0181
+WPI         C16         H16      SINGLE       n     1.089  0.0100     0.983  0.0180
+WPI         C16         H17      SINGLE       n     1.089  0.0100     0.983  0.0180
+WPI         C18         H18      SINGLE       n     1.089  0.0100     0.980  0.0160
+WPI         C18         H19      SINGLE       n     1.089  0.0100     0.980  0.0160
+WPI         C19         H20      SINGLE       n     1.089  0.0100     0.980  0.0143
+WPI         C19         H21      SINGLE       n     1.089  0.0100     0.980  0.0143
+WPI         C21         H23      SINGLE       n     1.089  0.0100     0.980  0.0143
+WPI         C21         H24      SINGLE       n     1.089  0.0100     0.980  0.0143
+WPI         C22         H25      SINGLE       n     1.089  0.0100     0.980  0.0143
+WPI         C22         H26      SINGLE       n     1.089  0.0100     0.980  0.0143
+WPI         C23         H27      SINGLE       n     1.089  0.0100     0.980  0.0143
+WPI         C23         H28      SINGLE       n     1.089  0.0100     0.980  0.0143
+WPI         C24         H29      SINGLE       n     1.089  0.0100     0.979  0.0161
+WPI         C24         H30      SINGLE       n     1.089  0.0100     0.979  0.0161
+WPI         C26         H32      SINGLE       n     1.089  0.0100     0.980  0.0143
+WPI         C26         H33      SINGLE       n     1.089  0.0100     0.980  0.0143
+WPI         C27         H34      SINGLE       n     1.089  0.0100     0.980  0.0143
+WPI         C27         H35      SINGLE       n     1.089  0.0100     0.980  0.0143
+WPI         C28         H36      SINGLE       n     1.089  0.0100     0.980  0.0160
+WPI         C28         H37      SINGLE       n     1.089  0.0100     0.980  0.0160
+WPI         C29         H38      SINGLE       n     1.089  0.0100     0.983  0.0180
+WPI         C29         H39      SINGLE       n     1.089  0.0100     0.983  0.0180
+WPI         C30         H40      SINGLE       n     1.082  0.0130     0.944  0.0181
+WPI         C31         H42      SINGLE       n     1.082  0.0130     0.946  0.0187
+WPI         C35         H44      SINGLE       n     1.082  0.0130     0.941  0.0168
+WPI         C36         H45      SINGLE       n     1.082  0.0130     0.941  0.0168
+WPI         C43         H46      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C43         H47      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C43         H48      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C44         H49      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C44         H50      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C44         H51      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C45         H52      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C45         H53      SINGLE       n     1.089  0.0100     0.971  0.0157
+WPI         C45         H54      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+WPI          C3          C1          O4     120.233    1.50
+WPI          C3          C1          C2     119.535    1.50
+WPI          O4          C1          C2     120.233    1.50
+WPI          C1          C2          C5     119.983    1.50
+WPI          C1          C2          O6     115.231    1.50
+WPI          C5          C2          O6     124.786    1.50
+WPI          O8          C3          C7     124.786    1.50
+WPI          O8          C3          C1     115.231    1.50
+WPI          C7          C3          C1     119.983    1.50
+WPI          C1          O4          C9     114.431    1.50
+WPI         C10          C5          C2     120.482    1.50
+WPI         C10          C5          H1     119.798    1.50
+WPI          C2          C5          H1     119.719    1.50
+WPI          C2          O6         C11     117.276    1.50
+WPI          C3          C7         C10     120.482    1.50
+WPI          C3          C7          H2     119.719    1.50
+WPI         C10          C7          H2     119.798    1.50
+WPI         C12          O8          C3     117.276    1.50
+WPI          O4          C9          H3     109.428    1.50
+WPI          O4          C9          H4     109.428    1.50
+WPI          O4          C9          H5     109.428    1.50
+WPI          H3          C9          H4     109.509    1.50
+WPI          H3          C9          H5     109.509    1.50
+WPI          H4          C9          H5     109.509    1.50
+WPI          C7         C10         C13     120.233    1.93
+WPI          C7         C10          C5     119.535    1.50
+WPI         C13         C10          C5     120.233    1.93
+WPI          O6         C11          H6     109.428    1.50
+WPI          O6         C11          H7     109.428    1.50
+WPI          O6         C11          H8     109.428    1.50
+WPI          H6         C11          H7     109.509    1.50
+WPI          H6         C11          H8     109.509    1.50
+WPI          H7         C11          H8     109.509    1.50
+WPI          O8         C12          H9     109.428    1.50
+WPI          O8         C12         H10     109.428    1.50
+WPI          O8         C12         H11     109.428    1.50
+WPI          H9         C12         H10     109.509    1.50
+WPI          H9         C12         H11     109.509    1.50
+WPI         H10         C12         H11     109.509    1.50
+WPI         C10         C13         C14     126.740    1.50
+WPI         C10         C13         H12     115.988    1.50
+WPI         C14         C13         H12     117.273    1.86
+WPI         C13         C14         C16     125.696    3.00
+WPI         C13         C14         H14     117.230    1.82
+WPI         C16         C14         H14     117.074    2.23
+WPI         C14         C16         C18     113.769    2.23
+WPI         C14         C16         H16     109.094    1.50
+WPI         C14         C16         H17     109.094    1.50
+WPI         C18         C16         H16     109.034    1.50
+WPI         C18         C16         H17     109.034    1.50
+WPI         H16         C16         H17     107.922    1.50
+WPI         C16         C18         C19     113.078    1.50
+WPI         C16         C18         H18     109.436    1.50
+WPI         C16         C18         H19     109.436    1.50
+WPI         C19         C18         H18     108.945    1.50
+WPI         C19         C18         H19     108.945    1.50
+WPI         H18         C18         H19     107.927    1.57
+WPI         C18         C19         N20     114.151    1.56
+WPI         C18         C19         H20     108.873    1.50
+WPI         C18         C19         H21     108.873    1.50
+WPI         N20         C19         H20     108.838    1.50
+WPI         N20         C19         H21     108.838    1.50
+WPI         H20         C19         H21     107.673    1.50
+WPI         C21         N20         C19     111.238    1.96
+WPI         C21         N20         C22     111.238    1.96
+WPI         C19         N20         C22     111.410    1.50
+WPI         C23         C21         N20     113.220    1.92
+WPI         C23         C21         H23     108.926    1.50
+WPI         C23         C21         H24     108.926    1.50
+WPI         N20         C21         H23     109.110    1.50
+WPI         N20         C21         H24     109.110    1.50
+WPI         H23         C21         H24     107.844    1.50
+WPI         N20         C22         C24     113.979    2.15
+WPI         N20         C22         H25     108.838    1.50
+WPI         N20         C22         H26     108.838    1.50
+WPI         C24         C22         H25     108.842    1.50
+WPI         C24         C22         H26     108.842    1.50
+WPI         H25         C22         H26     107.673    1.50
+WPI         C21         C23         N25     113.220    1.92
+WPI         C21         C23         H27     108.926    1.50
+WPI         C21         C23         H28     108.926    1.50
+WPI         N25         C23         H27     109.110    1.50
+WPI         N25         C23         H28     109.110    1.50
+WPI         H27         C23         H28     107.844    1.50
+WPI         C22         C24         C26     113.114    2.45
+WPI         C22         C24         H29     108.861    1.50
+WPI         C22         C24         H30     108.861    1.50
+WPI         C26         C24         H29     108.861    1.50
+WPI         C26         C24         H30     108.861    1.50
+WPI         H29         C24         H30     107.594    1.73
+WPI         C23         N25         C27     111.238    1.96
+WPI         C23         N25         C26     111.238    1.96
+WPI         C27         N25         C26     111.410    1.50
+WPI         N25         C26         C24     113.979    2.15
+WPI         N25         C26         H32     108.838    1.50
+WPI         N25         C26         H33     108.838    1.50
+WPI         C24         C26         H32     108.842    1.50
+WPI         C24         C26         H33     108.842    1.50
+WPI         H32         C26         H33     107.673    1.50
+WPI         N25         C27         C28     114.151    1.56
+WPI         N25         C27         H34     108.838    1.50
+WPI         N25         C27         H35     108.838    1.50
+WPI         C28         C27         H34     108.873    1.50
+WPI         C28         C27         H35     108.873    1.50
+WPI         H34         C27         H35     107.673    1.50
+WPI         C27         C28         C29     113.078    1.50
+WPI         C27         C28         H36     108.945    1.50
+WPI         C27         C28         H37     108.945    1.50
+WPI         C29         C28         H36     109.436    1.50
+WPI         C29         C28         H37     109.436    1.50
+WPI         H36         C28         H37     107.927    1.57
+WPI         C28         C29         C30     113.769    2.23
+WPI         C28         C29         H38     109.034    1.50
+WPI         C28         C29         H39     109.034    1.50
+WPI         C30         C29         H38     109.094    1.50
+WPI         C30         C29         H39     109.094    1.50
+WPI         H38         C29         H39     107.922    1.50
+WPI         C29         C30         C31     125.696    3.00
+WPI         C29         C30         H40     117.074    2.23
+WPI         C31         C30         H40     117.230    1.82
+WPI         C33         C31         C30     126.740    1.50
+WPI         C33         C31         H42     115.988    1.50
+WPI         C30         C31         H42     117.273    1.86
+WPI         C31         C33         C36     120.233    1.93
+WPI         C31         C33         C35     120.233    1.93
+WPI         C36         C33         C35     119.535    1.50
+WPI         C33         C35         C37     120.482    1.50
+WPI         C33         C35         H44     119.798    1.50
+WPI         C37         C35         H44     119.719    1.50
+WPI         C33         C36         C38     120.482    1.50
+WPI         C33         C36         H45     119.798    1.50
+WPI         C38         C36         H45     119.719    1.50
+WPI         C35         C37         C39     119.983    1.50
+WPI         C35         C37         O40     124.786    1.50
+WPI         C39         C37         O40     115.231    1.50
+WPI         C36         C38         O41     124.786    1.50
+WPI         C36         C38         C39     119.983    1.50
+WPI         O41         C38         C39     115.231    1.50
+WPI         C38         C39         C37     119.535    1.50
+WPI         C38         C39         O42     120.233    1.50
+WPI         C37         C39         O42     120.233    1.50
+WPI         C37         O40         C43     117.276    1.50
+WPI         C44         O41         C38     117.276    1.50
+WPI         C39         O42         C45     114.431    1.50
+WPI         O40         C43         H46     109.428    1.50
+WPI         O40         C43         H47     109.428    1.50
+WPI         O40         C43         H48     109.428    1.50
+WPI         H46         C43         H47     109.509    1.50
+WPI         H46         C43         H48     109.509    1.50
+WPI         H47         C43         H48     109.509    1.50
+WPI         O41         C44         H49     109.428    1.50
+WPI         O41         C44         H50     109.428    1.50
+WPI         O41         C44         H51     109.428    1.50
+WPI         H49         C44         H50     109.509    1.50
+WPI         H49         C44         H51     109.509    1.50
+WPI         H50         C44         H51     109.509    1.50
+WPI         O42         C45         H52     109.428    1.50
+WPI         O42         C45         H53     109.428    1.50
+WPI         O42         C45         H54     109.428    1.50
+WPI         H52         C45         H53     109.509    1.50
+WPI         H52         C45         H54     109.509    1.50
+WPI         H53         C45         H54     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+WPI              const_44          O4          C1          C2          O6       0.000    10.0     2
+WPI       const_sp2_sp2_4          O4          C1          C3          O8       0.000     5.0     2
+WPI            sp2_sp2_11          C3          C1          O4          C9     180.000     5.0     2
+WPI             sp2_sp2_7         C10         C13         C14         C16     180.000     5.0     2
+WPI             sp2_sp3_2         C13         C14         C16         C18     120.000    10.0     6
+WPI            sp3_sp3_24         C14         C16         C18         C19     180.000    10.0     3
+WPI            sp3_sp3_39         C16         C18         C19         N20     180.000    10.0     3
+WPI            sp3_sp3_48         C18         C19         N20         C21     180.000    10.0     3
+WPI            sp3_sp3_18         C23         C21         N20         C19     180.000    10.0     3
+WPI            sp3_sp3_54         C24         C22         N20         C21     180.000    10.0     3
+WPI             sp3_sp3_9         N20         C21         C23         N25     180.000    10.0     3
+WPI            sp3_sp3_85         N20         C22         C24         C26     180.000    10.0     3
+WPI              const_19          O6          C2          C5         C10     180.000    10.0     2
+WPI            sp2_sp2_13          C1          C2          O6         C11     180.000     5.0     2
+WPI            sp3_sp3_33         C21         C23         N25         C27     180.000    10.0     3
+WPI            sp3_sp3_94         C22         C24         C26         N25     180.000    10.0     3
+WPI            sp3_sp3_70         C24         C26         N25         C23     180.000    10.0     3
+WPI            sp3_sp3_64         C28         C27         N25         C23     180.000    10.0     3
+WPI            sp3_sp3_76         N25         C27         C28         C29     180.000    10.0     3
+WPI           sp3_sp3_103         C27         C28         C29         C30     180.000    10.0     3
+WPI             sp2_sp3_8         C31         C30         C29         C28     120.000    10.0     6
+WPI            sp2_sp2_19         C29         C30         C31         C33     180.000     5.0     2
+WPI            sp2_sp2_15         C30         C31         C33         C36     180.000     5.0     2
+WPI              const_47         C31         C33         C35         C37     180.000    10.0     2
+WPI              const_23         C31         C33         C36         C38     180.000    10.0     2
+WPI       const_sp2_sp2_7          O8          C3          C7         C10     180.000     5.0     2
+WPI             sp2_sp2_1          C7          C3          O8         C12     180.000     5.0     2
+WPI              const_38         C33         C35         C37         O40     180.000    10.0     2
+WPI              const_26         C33         C36         C38         O41     180.000    10.0     2
+WPI              const_36         O40         C37         C39         O42       0.000    10.0     2
+WPI            sp2_sp2_27         C35         C37         O40         C43     180.000     5.0     2
+WPI              const_32         O41         C38         C39         O42       0.000    10.0     2
+WPI            sp2_sp2_23         C36         C38         O41         C44     180.000     5.0     2
+WPI            sp2_sp2_25         C38         C39         O42         C45     180.000     5.0     2
+WPI           sp3_sp3_121         H46         C43         O40         C37     -60.000    10.0     3
+WPI           sp3_sp3_113         H49         C44         O41         C38     -60.000    10.0     3
+WPI           sp3_sp3_117         H52         C45         O42         C39     -60.000    10.0     3
+WPI             sp3_sp3_6          H3          C9          O4          C1     -60.000    10.0     3
+WPI              const_15         C13         C10          C5          C2     180.000    10.0     2
+WPI            sp3_sp3_61          H6         C11          O6          C2     -60.000    10.0     3
+WPI              const_11         C13         C10          C7          C3     180.000    10.0     2
+WPI             sp3_sp3_2          H9         C12          O8          C3     -60.000    10.0     3
+WPI             sp2_sp2_3          C7         C10         C13         C14     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+WPI    chir_1    N20    C21    C22    C19    positive
+WPI    chir_2    N25    C23    C26    C27    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+WPI    plan-1          C1   0.020
+WPI    plan-1         C10   0.020
+WPI    plan-1         C13   0.020
+WPI    plan-1          C2   0.020
+WPI    plan-1          C3   0.020
+WPI    plan-1          C5   0.020
+WPI    plan-1          C7   0.020
+WPI    plan-1          H1   0.020
+WPI    plan-1          H2   0.020
+WPI    plan-1          O4   0.020
+WPI    plan-1          O6   0.020
+WPI    plan-1          O8   0.020
+WPI    plan-2         C31   0.020
+WPI    plan-2         C33   0.020
+WPI    plan-2         C35   0.020
+WPI    plan-2         C36   0.020
+WPI    plan-2         C37   0.020
+WPI    plan-2         C38   0.020
+WPI    plan-2         C39   0.020
+WPI    plan-2         H44   0.020
+WPI    plan-2         H45   0.020
+WPI    plan-2         O40   0.020
+WPI    plan-2         O41   0.020
+WPI    plan-2         O42   0.020
+WPI    plan-3         C10   0.020
+WPI    plan-3         C13   0.020
+WPI    plan-3         C14   0.020
+WPI    plan-3         H12   0.020
+WPI    plan-4         C13   0.020
+WPI    plan-4         C14   0.020
+WPI    plan-4         C16   0.020
+WPI    plan-4         H14   0.020
+WPI    plan-5         C29   0.020
+WPI    plan-5         C30   0.020
+WPI    plan-5         C31   0.020
+WPI    plan-5         H40   0.020
+WPI    plan-6         C30   0.020
+WPI    plan-6         C31   0.020
+WPI    plan-6         C33   0.020
+WPI    plan-6         H42   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+WPI           SMILES              ACDLabs 12.01                                                                                                                                      O(c1cc(cc(OC)c1OC)\C=C/CCCN3CCCN(CCC\C=C\c2cc(OC)c(OC)c(OC)c2)CC3)C
+WPI            InChI                InChI  1.03 InChI=1S/C33H48N2O6/c1-36-28-22-26(23-29(37-2)32(28)40-5)14-9-7-11-16-34-18-13-19-35(21-20-34)17-12-8-10-15-27-24-30(38-3)33(41-6)31(25-27)39-4/h9-10,14-15,22-25H,7-8,11-13,16-21H2,1-6H3/b14-9+,15-10+
+WPI         InChIKey                InChI  1.03                                                                                                                                                                              JXXCDAKRSXICGM-AOEKMSOUSA-N
+WPI SMILES_CANONICAL               CACTVS 3.370                                                                                                                                        COc1cc(\C=C\CCCN2CCCN(CCC/C=C/c3cc(OC)c(OC)c(OC)c3)CC2)cc(OC)c1OC
+WPI           SMILES               CACTVS 3.370                                                                                                                                            COc1cc(C=CCCCN2CCCN(CCCC=Cc3cc(OC)c(OC)c(OC)c3)CC2)cc(OC)c1OC
+WPI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                          COc1cc(cc(c1OC)OC)C=CCCCN2CCCN(CC2)CCC/C=C/c3cc(c(c(c3)OC)OC)OC
+WPI           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                            COc1cc(cc(c1OC)OC)C=CCCCN2CCCN(CC2)CCCC=Cc3cc(c(c(c3)OC)OC)OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+WPI acedrg               243         "dictionary generator"                  
+WPI acedrg_database      11          "data source"                           
+WPI rdkit                2017.03.2   "Chemoinformatics tool"
+WPI refmac5              5.8.0238    "optimization tool"                     

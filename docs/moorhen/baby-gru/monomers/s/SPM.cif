@@ -1,0 +1,246 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SPM     SPM      SPERMINE     NON-POLYMER     40     14     .     
+#
+data_comp_SPM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SPM     N1      N       NT2     0       -1.247      5.536       24.990      
+SPM     C2      C       CH2     0       -1.608      4.192       25.450      
+SPM     C3      C       CH2     0       -1.789      3.234       24.307      
+SPM     C4      C       CH2     0       -2.215      1.848       24.738      
+SPM     N5      N       NT1     0       -2.247      0.920       23.607      
+SPM     C6      C       CH2     0       -2.674      -0.434      23.962      
+SPM     C7      C       CH2     0       -2.716      -1.350      22.748      
+SPM     C8      C       CH2     0       -3.022      -2.792      23.116      
+SPM     C9      C       CH2     0       -3.024      -3.717      21.908      
+SPM     N10     N       NT1     0       -3.434      -5.081      22.251      
+SPM     C11     C       CH2     0       -2.459      -5.851      23.025      
+SPM     C12     C       CH2     0       -2.822      -7.318      23.071      
+SPM     C13     C       CH2     0       -1.816      -8.166      23.796      
+SPM     N14     N       NT2     0       -1.742      -7.834      25.222      
+SPM     HN11    H       H       0       -1.023      6.055       25.675      
+SPM     HN12    H       H       0       -0.548      5.507       24.443      
+SPM     H21     H       H       0       -2.438      4.245       25.965      
+SPM     H22     H       H       0       -0.905      3.861       26.045      
+SPM     H31     H       H       0       -0.947      3.165       23.813      
+SPM     H32     H       H       0       -2.461      3.594       23.693      
+SPM     H41     H       H       0       -3.105      1.894       25.145      
+SPM     H42     H       H       0       -1.591      1.513       25.415      
+SPM     HN5     H       H       0       -2.820      1.243       22.994      
+SPM     H61     H       H       0       -3.564      -0.397      24.369      
+SPM     H62     H       H       0       -2.055      -0.806      24.624      
+SPM     H71     H       H       0       -1.850      -1.313      22.289      
+SPM     H72     H       H       0       -3.403      -1.025      22.127      
+SPM     H81     H       H       0       -3.900      -2.831      23.551      
+SPM     H82     H       H       0       -2.351      -3.105      23.759      
+SPM     H91     H       H       0       -2.126      -3.737      21.517      
+SPM     H92     H       H       0       -3.636      -3.358      21.231      
+SPM     HN0     H       H       0       -4.201      -5.043      22.719      
+SPM     H111    H       H       0       -2.419      -5.499      23.939      
+SPM     H112    H       H       0       -1.571      -5.750      22.624      
+SPM     H121    H       H       0       -2.916      -7.649      22.155      
+SPM     H122    H       H       0       -3.693      -7.415      23.508      
+SPM     H131    H       H       0       -0.932      -8.038      23.394      
+SPM     H132    H       H       0       -2.056      -9.110      23.702      
+SPM     HN41    H       H       0       -1.386      -8.503      25.684      
+SPM     HN42    H       H       0       -1.230      -7.121      25.354      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SPM          N1          C2      SINGLE       n     1.466  0.0117     1.466  0.0117
+SPM          C2          C3      SINGLE       n     1.502  0.0191     1.502  0.0191
+SPM          C3          C4      SINGLE       n     1.512  0.0200     1.512  0.0200
+SPM          C4          N5      SINGLE       n     1.463  0.0111     1.463  0.0111
+SPM          N5          C6      SINGLE       n     1.463  0.0111     1.463  0.0111
+SPM          C6          C7      SINGLE       n     1.521  0.0100     1.521  0.0100
+SPM          C7          C8      SINGLE       n     1.519  0.0150     1.519  0.0150
+SPM          C8          C9      SINGLE       n     1.521  0.0100     1.521  0.0100
+SPM          C9         N10      SINGLE       n     1.463  0.0111     1.463  0.0111
+SPM         N10         C11      SINGLE       n     1.463  0.0111     1.463  0.0111
+SPM         C11         C12      SINGLE       n     1.512  0.0200     1.512  0.0200
+SPM         C12         C13      SINGLE       n     1.502  0.0191     1.502  0.0191
+SPM         C13         N14      SINGLE       n     1.466  0.0117     1.466  0.0117
+SPM          N1        HN11      SINGLE       n     1.036  0.0160     0.888  0.0200
+SPM          N1        HN12      SINGLE       n     1.036  0.0160     0.888  0.0200
+SPM          C2         H21      SINGLE       n     1.089  0.0100     0.979  0.0106
+SPM          C2         H22      SINGLE       n     1.089  0.0100     0.979  0.0106
+SPM          C3         H31      SINGLE       n     1.089  0.0100     0.979  0.0161
+SPM          C3         H32      SINGLE       n     1.089  0.0100     0.979  0.0161
+SPM          C4         H41      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPM          C4         H42      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPM          N5         HN5      SINGLE       n     1.036  0.0160     0.899  0.0200
+SPM          C6         H61      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPM          C6         H62      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPM          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0160
+SPM          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0160
+SPM          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0160
+SPM          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0160
+SPM          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPM          C9         H92      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPM         N10         HN0      SINGLE       n     1.036  0.0160     0.899  0.0200
+SPM         C11        H111      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPM         C11        H112      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPM         C12        H121      SINGLE       n     1.089  0.0100     0.979  0.0161
+SPM         C12        H122      SINGLE       n     1.089  0.0100     0.979  0.0161
+SPM         C13        H131      SINGLE       n     1.089  0.0100     0.979  0.0106
+SPM         C13        H132      SINGLE       n     1.089  0.0100     0.979  0.0106
+SPM         N14        HN41      SINGLE       n     1.036  0.0160     0.888  0.0200
+SPM         N14        HN42      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SPM          C2          N1        HN11     110.839    3.00
+SPM          C2          N1        HN12     110.839    3.00
+SPM        HN11          N1        HN12     107.243    3.00
+SPM          N1          C2          C3     111.621    2.46
+SPM          N1          C2         H21     108.763    1.50
+SPM          N1          C2         H22     108.763    1.50
+SPM          C3          C2         H21     109.330    1.50
+SPM          C3          C2         H22     109.330    1.50
+SPM         H21          C2         H22     107.806    1.50
+SPM          C2          C3          C4     114.005    1.96
+SPM          C2          C3         H31     109.108    1.50
+SPM          C2          C3         H32     109.108    1.50
+SPM          C4          C3         H31     108.958    1.50
+SPM          C4          C3         H32     108.958    1.50
+SPM         H31          C3         H32     107.594    1.73
+SPM          C3          C4          N5     111.530    1.50
+SPM          C3          C4         H41     109.350    1.50
+SPM          C3          C4         H42     109.350    1.50
+SPM          N5          C4         H41     109.338    1.50
+SPM          N5          C4         H42     109.338    1.50
+SPM         H41          C4         H42     107.877    1.50
+SPM          C4          N5          C6     114.187    2.61
+SPM          C4          N5         HN5     108.180    3.00
+SPM          C6          N5         HN5     108.180    3.00
+SPM          N5          C6          C7     111.754    2.01
+SPM          N5          C6         H61     109.338    1.50
+SPM          N5          C6         H62     109.338    1.50
+SPM          C7          C6         H61     109.197    1.51
+SPM          C7          C6         H62     109.197    1.51
+SPM         H61          C6         H62     107.877    1.50
+SPM          C6          C7          C8     112.652    1.50
+SPM          C6          C7         H71     108.956    1.50
+SPM          C6          C7         H72     108.956    1.50
+SPM          C8          C7         H71     108.999    1.50
+SPM          C8          C7         H72     108.999    1.50
+SPM         H71          C7         H72     107.927    1.57
+SPM          C7          C8          C9     112.652    1.50
+SPM          C7          C8         H81     108.999    1.50
+SPM          C7          C8         H82     108.999    1.50
+SPM          C9          C8         H81     108.956    1.50
+SPM          C9          C8         H82     108.956    1.50
+SPM         H81          C8         H82     107.927    1.57
+SPM          C8          C9         N10     111.754    2.01
+SPM          C8          C9         H91     109.197    1.51
+SPM          C8          C9         H92     109.197    1.51
+SPM         N10          C9         H91     109.338    1.50
+SPM         N10          C9         H92     109.338    1.50
+SPM         H91          C9         H92     107.877    1.50
+SPM          C9         N10         C11     114.187    2.61
+SPM          C9         N10         HN0     108.180    3.00
+SPM         C11         N10         HN0     108.180    3.00
+SPM         N10         C11         C12     111.530    1.50
+SPM         N10         C11        H111     109.338    1.50
+SPM         N10         C11        H112     109.338    1.50
+SPM         C12         C11        H111     109.350    1.50
+SPM         C12         C11        H112     109.350    1.50
+SPM        H111         C11        H112     107.877    1.50
+SPM         C11         C12         C13     114.005    1.96
+SPM         C11         C12        H121     108.958    1.50
+SPM         C11         C12        H122     108.958    1.50
+SPM         C13         C12        H121     109.108    1.50
+SPM         C13         C12        H122     109.108    1.50
+SPM        H121         C12        H122     107.594    1.73
+SPM         C12         C13         N14     111.621    2.46
+SPM         C12         C13        H131     109.330    1.50
+SPM         C12         C13        H132     109.330    1.50
+SPM         N14         C13        H131     108.763    1.50
+SPM         N14         C13        H132     108.763    1.50
+SPM        H131         C13        H132     107.806    1.50
+SPM         C13         N14        HN41     110.839    3.00
+SPM         C13         N14        HN42     110.839    3.00
+SPM        HN41         N14        HN42     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SPM             sp3_sp3_1          C3          C2          N1        HN11     180.000    10.0     3
+SPM            sp3_sp3_76         N10         C11         C12         C13     180.000    10.0     3
+SPM            sp3_sp3_85         C11         C12         C13         N14     180.000    10.0     3
+SPM            sp3_sp3_94         C12         C13         N14        HN41     180.000    10.0     3
+SPM             sp3_sp3_7          N1          C2          C3          C4     180.000    10.0     3
+SPM            sp3_sp3_16          C2          C3          C4          N5     180.000    10.0     3
+SPM            sp3_sp3_26          C3          C4          N5          C6     -60.000    10.0     3
+SPM            sp3_sp3_31          C7          C6          N5          C4     180.000    10.0     3
+SPM            sp3_sp3_37          N5          C6          C7          C8     180.000    10.0     3
+SPM            sp3_sp3_46          C6          C7          C8          C9     180.000    10.0     3
+SPM            sp3_sp3_55          C7          C8          C9         N10     180.000    10.0     3
+SPM            sp3_sp3_64          C8          C9         N10         C11     180.000    10.0     3
+SPM            sp3_sp3_71         C12         C11         N10          C9     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SPM    chir_1    N5    C4    C6    HN5    both
+SPM    chir_2    N10    C11    C9    HN0    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SPM           SMILES              ACDLabs 10.04                                                     NCCCNCCCCNCCCN
+SPM SMILES_CANONICAL               CACTVS 3.341                                                     NCCCNCCCCNCCCN
+SPM           SMILES               CACTVS 3.341                                                     NCCCNCCCCNCCCN
+SPM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                   C(CCNCCCN)CNCCCN
+SPM           SMILES "OpenEye OEToolkits" 1.5.0                                                   C(CCNCCCN)CNCCCN
+SPM            InChI                InChI  1.03 InChI=1S/C10H26N4/c11-5-3-9-13-7-1-2-8-14-10-4-6-12/h13-14H,1-12H2
+SPM         InChIKey                InChI  1.03                                        PFNFFQXMRSDOHW-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SPM acedrg               243         "dictionary generator"                  
+SPM acedrg_database      11          "data source"                           
+SPM rdkit                2017.03.2   "Chemoinformatics tool"
+SPM refmac5              5.8.0238    "optimization tool"                     

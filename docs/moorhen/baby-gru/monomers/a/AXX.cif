@@ -1,0 +1,266 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AXX     AXX      2-[(CYCLOPROPYLCARBONYL)AMINO]-4,5,6,7-TETRAHYDRO-1-BENZOTHIOPHENE-3-CARBOXAMIDE     NON-POLYMER     35     18     .     
+#
+data_comp_AXX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AXX     O5      O       O       0       19.100      -12.063     -3.924      
+AXX     C4      C       C       0       19.376      -11.206     -3.092      
+AXX     C2      C       CH1     0       18.444      -10.839     -2.011      
+AXX     C3      C       CH2     0       17.107      -10.270     -2.406      
+AXX     C1      C       CH2     0       18.119      -9.382      -1.807      
+AXX     N6      N       NH1     0       20.567      -10.535     -3.069      
+AXX     C7      C       CR5     0       21.547      -10.510     -4.036      
+AXX     S11     S       S2      0       21.251      -10.364     -5.675      
+AXX     C10     C       CR56    0       22.852      -10.398     -6.147      
+AXX     C18     C       CH2     0       23.254      -10.312     -7.566      
+AXX     C17     C       CH2     0       24.753      -10.019     -7.639      
+AXX     C16     C       CH2     0       25.576      -10.844     -6.662      
+AXX     C15     C       CH2     0       25.166      -10.569     -5.210      
+AXX     C9      C       CR56    0       23.674      -10.522     -5.065      
+AXX     C8      C       CR5     0       22.937      -10.581     -3.837      
+AXX     C12     C       C       0       23.554      -10.707     -2.522      
+AXX     O13     O       O       0       23.245      -11.620     -1.775      
+AXX     N14     N       NT3     1       24.567      -9.718      -2.090      
+AXX     H2      H       H       0       18.466      -11.407     -1.210      
+AXX     H31     H       H       0       16.922      -10.169     -3.356      
+AXX     H32     H       H       0       16.336      -10.509     -1.863      
+AXX     H11     H       H       0       18.557      -8.737      -2.388      
+AXX     H12     H       H       0       17.971      -9.077      -0.895      
+AXX     HN6     H       H       0       20.754      -10.063     -2.352      
+AXX     H181    H       H       0       23.058      -11.156     -8.022      
+AXX     H182    H       H       0       22.754      -9.600      -8.015      
+AXX     H171    H       H       0       24.901      -9.059      -7.453      
+AXX     H172    H       H       0       25.070      -10.201     -8.558      
+AXX     H161    H       H       0       26.535      -10.627     -6.782      
+AXX     H162    H       H       0       25.452      -11.806     -6.866      
+AXX     H151    H       H       0       25.552      -9.706      -4.918      
+AXX     H152    H       H       0       25.531      -11.280     -4.626      
+AXX     H141    H       H       0       24.560      -9.662      -1.191      
+AXX     H142    H       H       0       24.367      -8.915      -2.448      
+AXX     H143    H       H       0       25.376      -9.991      -2.377      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AXX          O5          C4      DOUBLE       n     1.225  0.0100     1.225  0.0100
+AXX          C4          N6      SINGLE       n     1.358  0.0138     1.358  0.0138
+AXX          C4          C2      SINGLE       n     1.472  0.0100     1.472  0.0100
+AXX          C2          C3      SINGLE       n     1.505  0.0106     1.505  0.0106
+AXX          C2          C1      SINGLE       n     1.505  0.0106     1.505  0.0106
+AXX          C3          C1      SINGLE       n     1.476  0.0137     1.476  0.0137
+AXX          N6          C7      SINGLE       n     1.374  0.0100     1.374  0.0100
+AXX          C7         S11      SINGLE       y     1.695  0.0200     1.695  0.0200
+AXX          C7          C8      DOUBLE       y     1.389  0.0200     1.389  0.0200
+AXX         S11         C10      SINGLE       y     1.695  0.0200     1.695  0.0200
+AXX         C10         C18      SINGLE       n     1.476  0.0100     1.476  0.0100
+AXX         C10          C9      DOUBLE       y     1.347  0.0200     1.347  0.0200
+AXX         C18         C17      SINGLE       n     1.521  0.0176     1.521  0.0176
+AXX         C17         C16      SINGLE       n     1.511  0.0200     1.511  0.0200
+AXX         C16         C15      SINGLE       n     1.530  0.0100     1.530  0.0100
+AXX         C15          C9      SINGLE       n     1.497  0.0100     1.497  0.0100
+AXX          C9          C8      SINGLE       y     1.398  0.0200     1.398  0.0200
+AXX          C8         C12      SINGLE       n     1.456  0.0177     1.456  0.0177
+AXX         C12         N14      SINGLE       n     1.477  0.0200     1.477  0.0200
+AXX         C12         O13      DOUBLE       n     1.219  0.0140     1.219  0.0140
+AXX          C2          H2      SINGLE       n     1.089  0.0100     0.982  0.0185
+AXX          C3         H31      SINGLE       n     1.089  0.0100     0.973  0.0200
+AXX          C3         H32      SINGLE       n     1.089  0.0100     0.973  0.0200
+AXX          C1         H11      SINGLE       n     1.089  0.0100     0.973  0.0200
+AXX          C1         H12      SINGLE       n     1.089  0.0100     0.973  0.0200
+AXX          N6         HN6      SINGLE       n     1.016  0.0100     0.878  0.0200
+AXX         C18        H181      SINGLE       n     1.089  0.0100     0.979  0.0169
+AXX         C18        H182      SINGLE       n     1.089  0.0100     0.979  0.0169
+AXX         C17        H171      SINGLE       n     1.089  0.0100     0.989  0.0138
+AXX         C17        H172      SINGLE       n     1.089  0.0100     0.989  0.0138
+AXX         C16        H161      SINGLE       n     1.089  0.0100     0.991  0.0137
+AXX         C16        H162      SINGLE       n     1.089  0.0100     0.991  0.0137
+AXX         C15        H151      SINGLE       n     1.089  0.0100     0.990  0.0116
+AXX         C15        H152      SINGLE       n     1.089  0.0100     0.990  0.0116
+AXX         N14        H141      SINGLE       n     1.036  0.0160     0.901  0.0200
+AXX         N14        H142      SINGLE       n     1.036  0.0160     0.901  0.0200
+AXX         N14        H143      SINGLE       n     1.036  0.0160     0.901  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AXX          O5          C4          N6     123.120    1.50
+AXX          O5          C4          C2     122.731    1.50
+AXX          N6          C4          C2     114.149    1.50
+AXX          C4          C2          C3     117.574    1.59
+AXX          C4          C2          C1     117.574    1.59
+AXX          C4          C2          H2     115.904    1.65
+AXX          C3          C2          C1      58.261    1.50
+AXX          C3          C2          H2     116.898    1.50
+AXX          C1          C2          H2     116.898    1.50
+AXX          C2          C3          C1      60.870    1.50
+AXX          C2          C3         H31     117.683    1.50
+AXX          C2          C3         H32     117.683    1.50
+AXX          C1          C3         H31     117.759    1.50
+AXX          C1          C3         H32     117.759    1.50
+AXX         H31          C3         H32     114.868    1.50
+AXX          C2          C1          C3      60.870    1.50
+AXX          C2          C1         H11     117.683    1.50
+AXX          C2          C1         H12     117.683    1.50
+AXX          C3          C1         H11     117.759    1.50
+AXX          C3          C1         H12     117.759    1.50
+AXX         H11          C1         H12     114.868    1.50
+AXX          C4          N6          C7     125.152    2.96
+AXX          C4          N6         HN6     118.063    2.44
+AXX          C7          N6         HN6     116.784    2.55
+AXX          N6          C7         S11     123.307    3.00
+AXX          N6          C7          C8     128.537    2.72
+AXX         S11          C7          C8     108.156    3.00
+AXX          C7         S11         C10     108.156    3.00
+AXX         S11         C10         C18     123.171    3.00
+AXX         S11         C10          C9     108.156    3.00
+AXX         C18         C10          C9     128.673    2.02
+AXX         C10         C18         C17     108.123    1.50
+AXX         C10         C18        H181     109.983    1.50
+AXX         C10         C18        H182     109.983    1.50
+AXX         C17         C18        H181     109.739    1.50
+AXX         C17         C18        H182     109.739    1.50
+AXX        H181         C18        H182     108.071    1.50
+AXX         C18         C17         C16     112.309    2.44
+AXX         C18         C17        H171     109.015    1.50
+AXX         C18         C17        H172     109.015    1.50
+AXX         C16         C17        H171     109.066    1.50
+AXX         C16         C17        H172     109.066    1.50
+AXX        H171         C17        H172     107.960    1.50
+AXX         C17         C16         C15     110.898    1.50
+AXX         C17         C16        H161     109.066    1.50
+AXX         C17         C16        H162     109.066    1.50
+AXX         C15         C16        H161     109.610    1.51
+AXX         C15         C16        H162     109.610    1.51
+AXX        H161         C16        H162     107.960    1.50
+AXX         C16         C15          C9     110.474    1.50
+AXX         C16         C15        H151     109.544    1.50
+AXX         C16         C15        H152     109.544    1.50
+AXX          C9         C15        H151     109.627    1.50
+AXX          C9         C15        H152     109.627    1.50
+AXX        H151         C15        H152     108.067    1.50
+AXX         C10          C9         C15     123.410    1.50
+AXX         C10          C9          C8     107.627    1.55
+AXX         C15          C9          C8     128.963    2.05
+AXX          C7          C8          C9     107.906    1.50
+AXX          C7          C8         C12     125.102    3.00
+AXX          C9          C8         C12     126.992    3.00
+AXX          C8         C12         N14     119.602    3.00
+AXX          C8         C12         O13     120.797    1.80
+AXX         N14         C12         O13     119.602    3.00
+AXX         C12         N14        H141     107.481    3.00
+AXX         C12         N14        H142     107.481    3.00
+AXX         C12         N14        H143     107.481    3.00
+AXX        H141         N14        H142     108.863    3.00
+AXX        H141         N14        H143     108.863    3.00
+AXX        H142         N14        H143     108.863    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AXX            sp3_sp3_10         C15         C16         C17         C18      60.000    10.0     3
+AXX            sp3_sp3_19          C9         C15         C16         C17     -60.000    10.0     3
+AXX             sp2_sp3_7         C10          C9         C15         C16       0.000    10.0     6
+AXX              const_11         C12          C8          C9         C10     180.000    10.0     2
+AXX            sp2_sp2_12         O13         C12          C8          C9     180.000     5.0     2
+AXX            sp2_sp3_22          C9         C10         C18        H182     180.000    10.0     6
+AXX            sp2_sp3_16          N6          C4          C2          C1     180.000    10.0     6
+AXX            sp2_sp3_13          O5          C4          C2          C1       0.000    10.0     6
+AXX            sp3_sp3_28          C4          C2          C3          C1      60.000    10.0     3
+AXX            sp3_sp3_50         H11          C1          C2          C4     180.000    10.0     3
+AXX              const_14         S11          C7          C8         C12     180.000    10.0     2
+AXX            sp2_sp2_11         O13         C12          C8          C7       0.000     5.0     2
+AXX       const_sp2_sp2_2          N6          C7         S11         C10     180.000     5.0     2
+AXX       const_sp2_sp2_4         C18         C10         S11          C7     180.000     5.0     2
+AXX       const_sp2_sp2_6         S11         C10          C9         C15     180.000     5.0     2
+AXX             sp2_sp3_4         S11         C10         C18         C17     180.000    10.0     6
+AXX             sp3_sp3_1         C16         C17         C18         C10     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AXX    chir_1    C2    C4    C3    C1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AXX    plan-1         C10   0.020
+AXX    plan-1         C12   0.020
+AXX    plan-1         C15   0.020
+AXX    plan-1         C18   0.020
+AXX    plan-1          C7   0.020
+AXX    plan-1          C8   0.020
+AXX    plan-1          C9   0.020
+AXX    plan-1          N6   0.020
+AXX    plan-1         S11   0.020
+AXX    plan-2          C2   0.020
+AXX    plan-2          C4   0.020
+AXX    plan-2          N6   0.020
+AXX    plan-2          O5   0.020
+AXX    plan-3          C4   0.020
+AXX    plan-3          C7   0.020
+AXX    plan-3         HN6   0.020
+AXX    plan-3          N6   0.020
+AXX    plan-4         C12   0.020
+AXX    plan-4          C8   0.020
+AXX    plan-4         N14   0.020
+AXX    plan-4         O13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AXX           SMILES              ACDLabs 10.04                                                                        O=C(c1c3c(sc1NC(=O)C2CC2)CCCC3)N
+AXX SMILES_CANONICAL               CACTVS 3.341                                                                        NC(=O)c1c(NC(=O)C2CC2)sc3CCCCc13
+AXX           SMILES               CACTVS 3.341                                                                        NC(=O)c1c(NC(=O)C2CC2)sc3CCCCc13
+AXX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                    C1CCc2c(c(c(s2)NC(=O)C3CC3)C(=O)N)C1
+AXX           SMILES "OpenEye OEToolkits" 1.5.0                                                                    C1CCc2c(c(c(s2)NC(=O)C3CC3)C(=O)N)C1
+AXX            InChI                InChI  1.03 InChI=1S/C13H16N2O2S/c14-11(16)10-8-3-1-2-4-9(8)18-13(10)15-12(17)7-5-6-7/h7H,1-6H2,(H2,14,16)(H,15,17)
+AXX         InChIKey                InChI  1.03                                                                             VATFNEMGBRWLHI-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AXX acedrg               243         "dictionary generator"                  
+AXX acedrg_database      11          "data source"                           
+AXX rdkit                2017.03.2   "Chemoinformatics tool"
+AXX refmac5              5.8.0238    "optimization tool"                     

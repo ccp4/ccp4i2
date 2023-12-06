@@ -1,0 +1,297 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CPU     CPU      "N-CYCLOHEXYL-N'-(PROPYL)PHENYL UREA"     NON-POLYMER     43     19     .     
+#
+data_comp_CPU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CPU     C1      C       CR16    0       -39.230     -60.488     -55.100     
+CPU     C2      C       CR16    0       -37.911     -60.764     -54.763     
+CPU     C3      C       CR16    0       -37.371     -62.006     -55.033     
+CPU     C4      C       CR16    0       -38.147     -62.971     -55.639     
+CPU     C5      C       CR16    0       -39.466     -62.697     -55.977     
+CPU     C6      C       CR6     0       -40.024     -61.451     -55.714     
+CPU     N1      N       NH1     0       -44.806     -61.545     -54.249     
+CPU     C7      C       CH2     0       -41.459     -61.153     -56.077     
+CPU     C8      C       CH2     0       -42.447     -61.497     -54.965     
+CPU     C9      C       CH2     0       -43.889     -61.184     -55.326     
+CPU     C10     C       C       0       -46.136     -61.294     -54.255     
+CPU     O1      O       O       0       -46.832     -61.576     -53.260     
+CPU     N2      N       NH1     0       -46.684     -60.749     -55.392     
+CPU     C11     C       CH1     0       -48.107     -60.416     -55.504     
+CPU     C12     C       CH2     0       -48.519     -60.263     -56.960     
+CPU     C13     C       CH2     0       -50.005     -59.921     -57.073     
+CPU     C14     C       CH2     0       -50.353     -58.677     -56.274     
+CPU     C15     C       CH2     0       -49.915     -58.809     -54.826     
+CPU     C16     C       CH2     0       -48.430     -59.156     -54.717     
+CPU     H1      H       H       0       -39.593     -59.637     -54.913     
+CPU     H2      H       H       0       -37.383     -60.101     -54.348     
+CPU     H3      H       H       0       -36.475     -62.193     -54.804     
+CPU     H4      H       H       0       -37.781     -63.821     -55.825     
+CPU     H5      H       H       0       -39.991     -63.363     -56.392     
+CPU     HN1     H       H       0       -44.473     -61.952     -53.551     
+CPU     H72     H       H       0       -41.696     -61.664     -56.881     
+CPU     H71     H       H       0       -41.542     -60.199     -56.291     
+CPU     H82     H       H       0       -42.209     -60.987     -54.154     
+CPU     H81     H       H       0       -42.377     -62.459     -54.757     
+CPU     H92     H       H       0       -43.973     -60.225     -55.517     
+CPU     H91     H       H       0       -44.133     -61.677     -56.139     
+CPU     HN2     H       H       0       -46.176     -60.598     -56.083     
+CPU     H11     H       H       0       -48.627     -61.163     -55.118     
+CPU     H121    H       H       0       -47.987     -59.551     -57.375     
+CPU     H122    H       H       0       -48.337     -61.099     -57.439     
+CPU     H131    H       H       0       -50.537     -60.678     -56.744     
+CPU     H132    H       H       0       -50.233     -59.776     -58.016     
+CPU     H141    H       H       0       -51.322     -58.529     -56.308     
+CPU     H142    H       H       0       -49.913     -57.898     -56.677     
+CPU     H151    H       H       0       -50.445     -59.510     -54.389     
+CPU     H152    H       H       0       -50.086     -57.963     -54.357     
+CPU     H161    H       H       0       -47.894     -58.411     -55.063     
+CPU     H162    H       H       0       -48.195     -59.290     -53.775     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CPU          C1          C2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+CPU          C1          C6      SINGLE       y     1.385  0.0111     1.385  0.0111
+CPU          C2          C3      SINGLE       y     1.376  0.0124     1.376  0.0124
+CPU          C3          C4      DOUBLE       y     1.374  0.0127     1.374  0.0127
+CPU          C4          C5      SINGLE       y     1.386  0.0100     1.386  0.0100
+CPU          C5          C6      DOUBLE       y     1.385  0.0111     1.385  0.0111
+CPU          C6          C7      SINGLE       n     1.510  0.0100     1.510  0.0100
+CPU          N1          C9      SINGLE       n     1.453  0.0133     1.453  0.0133
+CPU          N1         C10      SINGLE       n     1.331  0.0163     1.331  0.0163
+CPU          C7          C8      SINGLE       n     1.527  0.0100     1.527  0.0100
+CPU          C8          C9      SINGLE       n     1.518  0.0100     1.518  0.0100
+CPU         C10          O1      DOUBLE       n     1.243  0.0179     1.243  0.0179
+CPU         C10          N2      SINGLE       n     1.344  0.0200     1.344  0.0200
+CPU          N2         C11      SINGLE       n     1.463  0.0100     1.463  0.0100
+CPU         C11         C12      SINGLE       n     1.518  0.0108     1.518  0.0108
+CPU         C11         C16      SINGLE       n     1.518  0.0108     1.518  0.0108
+CPU         C12         C13      SINGLE       n     1.527  0.0100     1.527  0.0100
+CPU         C13         C14      SINGLE       n     1.516  0.0136     1.516  0.0136
+CPU         C14         C15      SINGLE       n     1.515  0.0126     1.515  0.0126
+CPU         C15         C16      SINGLE       n     1.527  0.0100     1.527  0.0100
+CPU          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0174
+CPU          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0175
+CPU          C3          H3      SINGLE       n     1.082  0.0130     0.944  0.0161
+CPU          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0175
+CPU          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+CPU          N1         HN1      SINGLE       n     1.016  0.0100     0.872  0.0200
+CPU          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0150
+CPU          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0150
+CPU          C8         H82      SINGLE       n     1.089  0.0100     0.987  0.0200
+CPU          C8         H81      SINGLE       n     1.089  0.0100     0.987  0.0200
+CPU          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0152
+CPU          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0152
+CPU          N2         HN2      SINGLE       n     1.016  0.0100     0.877  0.0200
+CPU         C11         H11      SINGLE       n     1.089  0.0100     0.989  0.0155
+CPU         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0121
+CPU         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0121
+CPU         C13        H131      SINGLE       n     1.089  0.0100     0.982  0.0131
+CPU         C13        H132      SINGLE       n     1.089  0.0100     0.982  0.0131
+CPU         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0138
+CPU         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0138
+CPU         C15        H151      SINGLE       n     1.089  0.0100     0.982  0.0131
+CPU         C15        H152      SINGLE       n     1.089  0.0100     0.982  0.0131
+CPU         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0121
+CPU         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0121
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CPU          C2          C1          C6     120.624    1.50
+CPU          C2          C1          H1     119.786    1.50
+CPU          C6          C1          H1     119.591    1.50
+CPU          C1          C2          C3     120.325    1.50
+CPU          C1          C2          H2     119.792    1.50
+CPU          C3          C2          H2     119.883    1.50
+CPU          C2          C3          C4     120.043    1.50
+CPU          C2          C3          H3     119.979    1.50
+CPU          C4          C3          H3     119.979    1.50
+CPU          C3          C4          C5     120.325    1.50
+CPU          C3          C4          H4     119.883    1.50
+CPU          C5          C4          H4     119.792    1.50
+CPU          C4          C5          C6     120.624    1.50
+CPU          C4          C5          H5     119.786    1.50
+CPU          C6          C5          H5     119.591    1.50
+CPU          C1          C6          C5     118.060    1.50
+CPU          C1          C6          C7     120.970    1.50
+CPU          C5          C6          C7     120.970    1.50
+CPU          C9          N1         C10     121.416    1.50
+CPU          C9          N1         HN1     119.273    1.50
+CPU         C10          N1         HN1     119.311    1.50
+CPU          C6          C7          C8     113.678    2.12
+CPU          C6          C7         H72     108.803    1.50
+CPU          C6          C7         H71     108.803    1.50
+CPU          C8          C7         H72     108.731    1.50
+CPU          C8          C7         H71     108.731    1.50
+CPU         H72          C7         H71     107.745    1.50
+CPU          C7          C8          C9     112.944    1.60
+CPU          C7          C8         H82     109.311    1.50
+CPU          C7          C8         H81     109.311    1.50
+CPU          C9          C8         H82     108.852    1.50
+CPU          C9          C8         H81     108.852    1.50
+CPU         H82          C8         H81     108.509    1.50
+CPU          N1          C9          C8     112.309    1.89
+CPU          N1          C9         H92     109.194    1.50
+CPU          N1          C9         H91     109.194    1.50
+CPU          C8          C9         H92     109.430    1.50
+CPU          C8          C9         H91     109.430    1.50
+CPU         H92          C9         H91     107.877    1.50
+CPU          N1         C10          O1     122.334    1.50
+CPU          N1         C10          N2     114.506    1.50
+CPU          O1         C10          N2     123.161    1.53
+CPU         C10          N2         C11     122.752    1.54
+CPU         C10          N2         HN2     118.600    1.50
+CPU         C11          N2         HN2     118.647    1.50
+CPU          N2         C11         C12     110.632    1.50
+CPU          N2         C11         C16     110.632    1.50
+CPU          N2         C11         H11     107.871    1.50
+CPU         C12         C11         C16     110.870    1.50
+CPU         C12         C11         H11     108.306    1.50
+CPU         C16         C11         H11     108.306    1.50
+CPU         C11         C12         C13     110.796    1.50
+CPU         C11         C12        H121     109.338    1.50
+CPU         C11         C12        H122     109.338    1.50
+CPU         C13         C12        H121     109.472    1.50
+CPU         C13         C12        H122     109.472    1.50
+CPU        H121         C12        H122     108.076    1.50
+CPU         C12         C13         C14     111.328    1.50
+CPU         C12         C13        H131     109.340    1.50
+CPU         C12         C13        H132     109.340    1.50
+CPU         C14         C13        H131     109.386    1.50
+CPU         C14         C13        H132     109.386    1.50
+CPU        H131         C13        H132     108.036    1.50
+CPU         C13         C14         C15     111.038    1.50
+CPU         C13         C14        H141     109.386    1.50
+CPU         C13         C14        H142     109.386    1.50
+CPU         C15         C14        H141     109.386    1.50
+CPU         C15         C14        H142     109.386    1.50
+CPU        H141         C14        H142     108.036    1.50
+CPU         C14         C15         C16     111.328    1.50
+CPU         C14         C15        H151     109.386    1.50
+CPU         C14         C15        H152     109.386    1.50
+CPU         C16         C15        H151     109.340    1.50
+CPU         C16         C15        H152     109.340    1.50
+CPU        H151         C15        H152     108.036    1.50
+CPU         C11         C16         C15     110.796    1.50
+CPU         C11         C16        H161     109.338    1.50
+CPU         C11         C16        H162     109.338    1.50
+CPU         C15         C16        H161     109.472    1.50
+CPU         C15         C16        H162     109.472    1.50
+CPU        H161         C16        H162     108.076    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CPU       const_sp2_sp2_1          C6          C1          C2          C3       0.000     5.0     2
+CPU              const_22          C2          C1          C6          C7     180.000    10.0     2
+CPU             sp2_sp2_5          N1         C10          N2         C11     180.000     5.0     2
+CPU            sp2_sp3_14         C10          N2         C11         C12     120.000    10.0     6
+CPU             sp3_sp3_7          N2         C11         C12         C13     180.000    10.0     3
+CPU            sp3_sp3_67          N2         C11         C16         C15      60.000    10.0     3
+CPU            sp3_sp3_10         C11         C12         C13         C14     -60.000    10.0     3
+CPU            sp3_sp3_19         C12         C13         C14         C15      60.000    10.0     3
+CPU            sp3_sp3_28         C13         C14         C15         C16     -60.000    10.0     3
+CPU            sp3_sp3_37         C14         C15         C16         C11      60.000    10.0     3
+CPU       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+CPU       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+CPU              const_13          C3          C4          C5          C6       0.000    10.0     2
+CPU              const_18          C4          C5          C6          C7     180.000    10.0     2
+CPU             sp2_sp3_2          C1          C6          C7          C8     -90.000    10.0     6
+CPU             sp2_sp2_3          O1         C10          N1          C9       0.000     5.0     2
+CPU             sp2_sp3_8         C10          N1          C9          C8     120.000    10.0     6
+CPU            sp3_sp3_46          C6          C7          C8          C9     180.000    10.0     3
+CPU            sp3_sp3_55          C7          C8          C9          N1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CPU    chir_1    C11    N2    C12    C16    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CPU    plan-1          C1   0.020
+CPU    plan-1          C2   0.020
+CPU    plan-1          C3   0.020
+CPU    plan-1          C4   0.020
+CPU    plan-1          C5   0.020
+CPU    plan-1          C6   0.020
+CPU    plan-1          C7   0.020
+CPU    plan-1          H1   0.020
+CPU    plan-1          H2   0.020
+CPU    plan-1          H3   0.020
+CPU    plan-1          H4   0.020
+CPU    plan-1          H5   0.020
+CPU    plan-2         C10   0.020
+CPU    plan-2          C9   0.020
+CPU    plan-2         HN1   0.020
+CPU    plan-2          N1   0.020
+CPU    plan-3         C10   0.020
+CPU    plan-3          N1   0.020
+CPU    plan-3          N2   0.020
+CPU    plan-3          O1   0.020
+CPU    plan-4         C10   0.020
+CPU    plan-4         C11   0.020
+CPU    plan-4         HN2   0.020
+CPU    plan-4          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CPU           SMILES              ACDLabs 10.04                                                                                           O=C(NC1CCCCC1)NCCCc2ccccc2
+CPU SMILES_CANONICAL               CACTVS 3.341                                                                                           O=C(NCCCc1ccccc1)NC2CCCCC2
+CPU           SMILES               CACTVS 3.341                                                                                           O=C(NCCCc1ccccc1)NC2CCCCC2
+CPU SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                         c1ccc(cc1)CCCNC(=O)NC2CCCCC2
+CPU           SMILES "OpenEye OEToolkits" 1.5.0                                                                                         c1ccc(cc1)CCCNC(=O)NC2CCCCC2
+CPU            InChI                InChI  1.03 InChI=1S/C16H24N2O/c19-16(18-15-11-5-2-6-12-15)17-13-7-10-14-8-3-1-4-9-14/h1,3-4,8-9,15H,2,5-7,10-13H2,(H2,17,18,19)
+CPU         InChIKey                InChI  1.03                                                                                          HBTZVNKXMFGOOJ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CPU acedrg               243         "dictionary generator"                  
+CPU acedrg_database      11          "data source"                           
+CPU rdkit                2017.03.2   "Chemoinformatics tool"
+CPU refmac5              5.8.0238    "optimization tool"                     

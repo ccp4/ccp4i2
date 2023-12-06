@@ -1,0 +1,256 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NX2     NX2      3-[(3,4-dichlorobenzyl)sulfanyl]-N-(methylsulfonyl)thiophene-2-carboxamide     NON-POLYMER     33     22     .     
+#
+data_comp_NX2
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NX2     C1      C       CR5     0       19.142      31.662      62.764      
+NX2     C2      C       CR15    0       18.254      31.815      63.860      
+NX2     C3      C       CR15    0       18.849      32.385      64.936      
+NX2     S4      S       S2      0       20.452      32.716      64.588      
+NX2     C5      C       CR5     0       20.437      32.128      63.021      
+NX2     S6      S       S2      0       18.647      30.957      61.246      
+NX2     C7      C       CH2     0       18.790      29.173      60.991      
+NX2     C8      C       CR6     0       18.501      28.802      59.561      
+NX2     C9      C       CR16    0       19.516      28.344      58.729      
+NX2     C10     C       CR16    0       16.932      28.571      57.737      
+NX2     C11     C       CR16    0       17.214      28.909      59.051      
+NX2     C12     C       CR6     0       19.240      28.003      57.414      
+NX2     C13     C       CR6     0       17.947      28.116      56.916      
+NX2     CL14    CL      CL      0       17.580      27.697      55.278      
+NX2     CL15    CL      CL      0       20.531      27.438      56.411      
+NX2     C16     C       C       0       21.649      32.165      62.187      
+NX2     N17     N       NH1     0       22.805      31.858      62.793      
+NX2     O18     O       O       0       21.569      32.471      60.996      
+NX2     S19     S       S3      0       24.280      31.838      62.087      
+NX2     C20     C       CH3     0       24.296      30.447      61.018      
+NX2     O21     O       O       0       24.410      33.018      61.287      
+NX2     O22     O       O       0       25.235      31.603      63.126      
+NX2     H2      H       H       0       17.350      31.549      63.842      
+NX2     H3      H       H       0       18.464      32.585      65.772      
+NX2     H7      H       H       0       18.161      28.718      61.581      
+NX2     H7A     H       H       0       19.691      28.890      61.232      
+NX2     H9      H       H       0       20.389      28.265      59.059      
+NX2     H10     H       H       0       16.058      28.648      57.403      
+NX2     H11     H       H       0       16.518      29.219      59.607      
+NX2     HN17    H       H       0       22.784      31.648      63.642      
+NX2     H20     H       H       0       25.117      29.950      61.151      
+NX2     H20A    H       H       0       24.245      30.749      60.098      
+NX2     H20B    H       H       0       23.536      29.880      61.217      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NX2          C1          S6      SINGLE       n     1.744  0.0119     1.744  0.0119
+NX2          C1          C5      DOUBLE       y     1.385  0.0200     1.385  0.0200
+NX2          C1          C2      SINGLE       y     1.388  0.0200     1.388  0.0200
+NX2          C2          C3      DOUBLE       y     1.343  0.0200     1.343  0.0200
+NX2          C3          S4      SINGLE       y     1.695  0.0200     1.695  0.0200
+NX2          S4          C5      SINGLE       y     1.695  0.0200     1.695  0.0200
+NX2          C5         C16      SINGLE       n     1.467  0.0127     1.467  0.0127
+NX2          S6          C7      SINGLE       n     1.809  0.0191     1.809  0.0191
+NX2          C7          C8      SINGLE       n     1.504  0.0100     1.504  0.0100
+NX2          C8         C11      SINGLE       y     1.385  0.0109     1.385  0.0109
+NX2          C8          C9      DOUBLE       y     1.385  0.0106     1.385  0.0106
+NX2          C9         C12      SINGLE       y     1.382  0.0100     1.382  0.0100
+NX2         C10         C13      SINGLE       y     1.380  0.0100     1.380  0.0100
+NX2         C10         C11      DOUBLE       y     1.382  0.0100     1.382  0.0100
+NX2         C12         C13      DOUBLE       y     1.386  0.0100     1.386  0.0100
+NX2         C12        CL15      SINGLE       n     1.729  0.0117     1.729  0.0117
+NX2         C13        CL14      SINGLE       n     1.730  0.0100     1.730  0.0100
+NX2         C16         O18      DOUBLE       n     1.231  0.0100     1.231  0.0100
+NX2         C16         N17      SINGLE       n     1.335  0.0109     1.335  0.0109
+NX2         N17         S19      SINGLE       n     1.630  0.0157     1.630  0.0157
+NX2         S19         O21      DOUBLE       n     1.431  0.0100     1.431  0.0100
+NX2         S19         C20      SINGLE       n     1.754  0.0100     1.754  0.0100
+NX2         S19         O22      DOUBLE       n     1.431  0.0100     1.431  0.0100
+NX2          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0153
+NX2          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0200
+NX2          C7          H7      SINGLE       n     1.089  0.0100     0.975  0.0100
+NX2          C7         H7A      SINGLE       n     1.089  0.0100     0.975  0.0100
+NX2          C9          H9      SINGLE       n     1.082  0.0130     0.937  0.0118
+NX2         C10         H10      SINGLE       n     1.082  0.0130     0.939  0.0109
+NX2         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0173
+NX2         N17        HN17      SINGLE       n     1.016  0.0100     0.873  0.0200
+NX2         C20         H20      SINGLE       n     1.089  0.0100     0.969  0.0154
+NX2         C20        H20A      SINGLE       n     1.089  0.0100     0.969  0.0154
+NX2         C20        H20B      SINGLE       n     1.089  0.0100     0.969  0.0154
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NX2          S6          C1          C5     126.063    2.21
+NX2          S6          C1          C2     126.063    2.21
+NX2          C5          C1          C2     107.873    2.27
+NX2          C1          C2          C3     107.873    2.27
+NX2          C1          C2          H2     126.083    1.50
+NX2          C3          C2          H2     126.044    1.50
+NX2          C2          C3          S4     108.085    3.00
+NX2          C2          C3          H3     128.586    2.40
+NX2          S4          C3          H3     123.330    3.00
+NX2          C3          S4          C5     108.085    3.00
+NX2          C1          C5          S4     108.085    3.00
+NX2          C1          C5         C16     130.961    2.35
+NX2          S4          C5         C16     120.954    3.00
+NX2          C1          S6          C7     120.000    3.00
+NX2          S6          C7          C8     111.115    3.00
+NX2          S6          C7          H7     109.066    1.50
+NX2          S6          C7         H7A     109.066    1.50
+NX2          C8          C7          H7     109.787    1.50
+NX2          C8          C7         H7A     109.787    1.50
+NX2          H7          C7         H7A     108.294    1.50
+NX2          C7          C8         C11     120.675    1.50
+NX2          C7          C8          C9     120.528    1.50
+NX2         C11          C8          C9     118.801    1.50
+NX2          C8          C9         C12     120.017    1.50
+NX2          C8          C9          H9     119.852    1.50
+NX2         C12          C9          H9     120.131    1.50
+NX2         C13         C10         C11     119.679    1.50
+NX2         C13         C10         H10     119.916    1.50
+NX2         C11         C10         H10     120.404    1.50
+NX2          C8         C11         C10     121.329    1.50
+NX2          C8         C11         H11     119.421    1.50
+NX2         C10         C11         H11     119.250    1.50
+NX2          C9         C12         C13     120.253    1.50
+NX2          C9         C12        CL15     118.927    1.50
+NX2         C13         C12        CL15     120.820    1.50
+NX2         C10         C13         C12     119.920    1.50
+NX2         C10         C13        CL14     119.103    1.50
+NX2         C12         C13        CL14     120.977    1.50
+NX2          C5         C16         O18     120.681    1.72
+NX2          C5         C16         N17     116.433    1.69
+NX2         O18         C16         N17     122.886    1.50
+NX2         C16         N17         S19     122.854    2.63
+NX2         C16         N17        HN17     118.981    2.17
+NX2         S19         N17        HN17     118.166    2.40
+NX2         N17         S19         O21     107.140    1.97
+NX2         N17         S19         C20     106.086    1.77
+NX2         N17         S19         O22     107.140    1.97
+NX2         O21         S19         C20     107.962    1.50
+NX2         O21         S19         O22     118.941    1.50
+NX2         C20         S19         O22     107.962    1.50
+NX2         S19         C20         H20     109.353    1.50
+NX2         S19         C20        H20A     109.353    1.50
+NX2         S19         C20        H20B     109.353    1.50
+NX2         H20         C20        H20A     109.614    1.50
+NX2         H20         C20        H20B     109.614    1.50
+NX2        H20A         C20        H20B     109.614    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NX2              const_35          S6          C1          C2          C3     180.000    10.0     2
+NX2              const_24          S6          C1          C5         C16       0.000    10.0     2
+NX2             sp2_sp2_1          C5          C1          S6          C7     180.000     5.0     2
+NX2              const_16        CL15         C12         C13        CL14       0.000    10.0     2
+NX2             sp2_sp2_9         O18         C16         N17         S19       0.000     5.0     2
+NX2             sp2_sp3_8         C16         N17         S19         O21     120.000    10.0     6
+NX2             sp3_sp3_6         H20         C20         S19         N17      60.000    10.0     3
+NX2              const_29          C1          C2          C3          S4       0.000    10.0     2
+NX2              const_27          C2          C3          S4          C5       0.000    10.0     2
+NX2              const_26         C16          C5          S4          C3     180.000    10.0     2
+NX2             sp2_sp2_5         O18         C16          C5          C1       0.000     5.0     2
+NX2             sp3_sp3_1          C8          C7          S6          C1     180.000    10.0     3
+NX2             sp2_sp3_2         C11          C8          C7          S6     -90.000    10.0     6
+NX2       const_sp2_sp2_2         C10         C11          C8          C7     180.000     5.0     2
+NX2              const_39          C7          C8          C9         C12     180.000    10.0     2
+NX2              const_19        CL15         C12          C9          C8     180.000    10.0     2
+NX2       const_sp2_sp2_5         C13         C10         C11          C8       0.000     5.0     2
+NX2              const_10         C11         C10         C13        CL14     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NX2    chir_1    S19    O21    O22    N17    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NX2    plan-1          C1   0.020
+NX2    plan-1         C16   0.020
+NX2    plan-1          C2   0.020
+NX2    plan-1          C3   0.020
+NX2    plan-1          C5   0.020
+NX2    plan-1          H2   0.020
+NX2    plan-1          H3   0.020
+NX2    plan-1          S4   0.020
+NX2    plan-1          S6   0.020
+NX2    plan-2         C10   0.020
+NX2    plan-2         C11   0.020
+NX2    plan-2         C12   0.020
+NX2    plan-2         C13   0.020
+NX2    plan-2          C7   0.020
+NX2    plan-2          C8   0.020
+NX2    plan-2          C9   0.020
+NX2    plan-2        CL14   0.020
+NX2    plan-2        CL15   0.020
+NX2    plan-2         H10   0.020
+NX2    plan-2         H11   0.020
+NX2    plan-2          H9   0.020
+NX2    plan-3         C16   0.020
+NX2    plan-3          C5   0.020
+NX2    plan-3         N17   0.020
+NX2    plan-3         O18   0.020
+NX2    plan-4         C16   0.020
+NX2    plan-4        HN17   0.020
+NX2    plan-4         N17   0.020
+NX2    plan-4         S19   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NX2           SMILES              ACDLabs 12.01                                                                      O=S(=O)(NC(=O)c2sccc2SCc1cc(Cl)c(Cl)cc1)C
+NX2 SMILES_CANONICAL               CACTVS 3.370                                                                    C[S](=O)(=O)NC(=O)c1sccc1SCc2ccc(Cl)c(Cl)c2
+NX2           SMILES               CACTVS 3.370                                                                    C[S](=O)(=O)NC(=O)c1sccc1SCc2ccc(Cl)c(Cl)c2
+NX2 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                    CS(=O)(=O)NC(=O)c1c(ccs1)SCc2ccc(c(c2)Cl)Cl
+NX2           SMILES "OpenEye OEToolkits" 1.7.0                                                                    CS(=O)(=O)NC(=O)c1c(ccs1)SCc2ccc(c(c2)Cl)Cl
+NX2            InChI                InChI  1.03 InChI=1S/C13H11Cl2NO3S3/c1-22(18,19)16-13(17)12-11(4-5-20-12)21-7-8-2-3-9(14)10(15)6-8/h2-6H,7H2,1H3,(H,16,17)
+NX2         InChIKey                InChI  1.03                                                                                    WUCGCEYWGIIVMD-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NX2 acedrg               243         "dictionary generator"                  
+NX2 acedrg_database      11          "data source"                           
+NX2 rdkit                2017.03.2   "Chemoinformatics tool"
+NX2 refmac5              5.8.0238    "optimization tool"                     

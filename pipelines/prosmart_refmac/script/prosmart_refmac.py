@@ -346,9 +346,9 @@ class prosmart_refmac(CPluginScript):
         fphiinList[-1].set(self.firstRefmac.container.outputData.FPHIOUT)
         #coot_stepped_refine,coot_fit_residues,coot_script_lines
         if self.container.controlParameters.ADD_WATERS:
-            cootPlugin.container.controlParameters.SCRIPT = '''set_ligand_water_to_protein_distance_limits(2.2, 3.3)
-execute_find_waters_real(MapHandle_1,MolHandle_1,0,1.3)
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
+            cootPlugin.container.controlParameters.SCRIPT = '''coot.set_ligand_water_to_protein_distance_limits(2.2, 3.3)
+coot.execute_find_waters_real(MapHandle_1,MolHandle_1,0,1.3)
+coot.write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
 '''
         """
         rso = self.container.controlParameters.REFPRO_COOT_REALSPACE_OPERATION.__str__()

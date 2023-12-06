@@ -1,0 +1,432 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DVD     DVD      N-[2-(hydroxymethyl)-3-{5-[(5-methyl-4,5,6,7-tetrahydropyrazolo[1,5-a]pyrazin-2-yl)amino]-6-oxo-1,6-dihydropyridazin-3-yl}phenyl]-1-benzothiophene-2-carboxamide     NON-POLYMER     63     38     .     
+#
+data_comp_DVD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DVD     C4      C       CH2     0       96.379      113.247     -18.150     
+DVD     C6      C       CR56    0       94.514      111.558     -18.126     
+DVD     C11     C       CR6     0       95.893      109.808     -13.931     
+DVD     C7      C       CR15    0       94.120      110.568     -17.269     
+DVD     C8      C       CR5     0       95.020      110.577     -16.201     
+DVD     C12     C       CR16    0       96.246      111.043     -13.376     
+DVD     C13     C       CR6     0       97.081      111.074     -12.261     
+DVD     N2      N       NT      0       94.404      113.452     -19.615     
+DVD     C3      C       CH2     0       95.863      113.597     -19.531     
+DVD     C1      C       CH3     0       93.898      113.995     -20.873     
+DVD     C17     C       CR6     0       96.384      108.626     -13.365     
+DVD     C19     C       CR6     0       97.525      112.358     -11.645     
+DVD     C20     C       CR16    0       98.120      113.312     -12.475     
+DVD     C21     C       CR16    0       98.556      114.531     -11.984     
+DVD     C22     C       CR16    0       98.399      114.824     -10.642     
+DVD     C23     C       CR6     0       97.802      113.897     -9.797      
+DVD     C24     C       CR6     0       97.349      112.645     -10.269     
+DVD     C25     C       CH2     0       96.706      111.643     -9.332      
+DVD     C28     C       C       0       98.696      114.373     -7.542      
+DVD     C30     C       CR5     0       98.385      115.081     -6.284      
+DVD     C31     C       CR15    0       97.202      115.489     -5.731      
+DVD     C32     C       CR56    0       97.385      116.145     -4.467      
+DVD     C33     C       CR16    0       96.440      116.705     -3.590      
+DVD     C34     C       CR16    0       96.868      117.288     -2.415      
+DVD     C35     C       CR16    0       98.225      117.333     -2.080      
+DVD     C36     C       CR16    0       99.183      116.793     -2.916      
+DVD     C37     C       CR56    0       98.774      116.201     -4.102      
+DVD     C39     C       CH2     0       93.983      112.059     -19.436     
+DVD     N10     N       NH1     0       95.039      109.758     -15.066     
+DVD     N14     N       NRD6    0       97.556      109.957     -11.751     
+DVD     N15     N       NR6     0       97.201      108.767     -12.283     
+DVD     N27     N       NH1     0       97.675      114.237     -8.431      
+DVD     N5      N       NR5     0       95.612      112.138     -17.597     
+DVD     N9      N       NRD5    0       95.926      111.532     -16.407     
+DVD     O18     O       O       0       96.130      107.480     -13.773     
+DVD     O26     O       OH1     0       97.636      110.659     -8.903      
+DVD     O29     O       O       0       99.829      113.932     -7.742      
+DVD     S38     S       S2      0       99.675      115.479     -5.292      
+DVD     H1      H       H       0       97.324      112.999     -18.208     
+DVD     H2      H       H       0       96.298      114.028     -17.566     
+DVD     H3      H       H       0       93.381      109.995     -17.385     
+DVD     H4      H       H       0       95.925      111.840     -13.748     
+DVD     H6      H       H       0       96.113      114.521     -19.743     
+DVD     H7      H       H       0       96.285      113.010     -20.193     
+DVD     H8      H       H       0       94.105      114.947     -20.925     
+DVD     H9      H       H       0       92.932      113.872     -20.919     
+DVD     H10     H       H       0       94.319      113.532     -21.621     
+DVD     H11     H       H       0       98.229      113.117     -13.390     
+DVD     H12     H       H       0       98.957      115.157     -12.559     
+DVD     H13     H       H       0       98.694      115.650     -10.300     
+DVD     H14     H       H       0       95.958      111.199     -9.779      
+DVD     H15     H       H       0       96.345      112.099     -8.547      
+DVD     H17     H       H       0       96.360      115.360     -6.129      
+DVD     H18     H       H       0       95.523      116.682     -3.802      
+DVD     H19     H       H       0       96.234      117.665     -1.826      
+DVD     H20     H       H       0       98.489      117.737     -1.271      
+DVD     H21     H       H       0       100.094     116.827     -2.683      
+DVD     H22     H       H       0       93.012      112.007     -19.448     
+DVD     H23     H       H       0       94.326      111.519     -20.168     
+DVD     H24     H       H       0       94.433      109.127     -15.066     
+DVD     H16     H       H       0       97.545      108.024     -11.883     
+DVD     H25     H       H       0       96.861      114.357     -8.143      
+DVD     H26     H       H       0       97.353      110.309     -8.182      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DVD          N2          C1      SINGLE       n     1.460  0.0100     1.460  0.0100
+DVD          N2         C39      SINGLE       n     1.461  0.0130     1.461  0.0130
+DVD          N2          C3      SINGLE       n     1.464  0.0104     1.464  0.0104
+DVD          C6         C39      SINGLE       n     1.499  0.0106     1.499  0.0106
+DVD          C4          C3      SINGLE       n     1.511  0.0100     1.511  0.0100
+DVD          C6          N5      SINGLE       y     1.349  0.0100     1.349  0.0100
+DVD          C6          C7      DOUBLE       y     1.371  0.0200     1.371  0.0200
+DVD          C4          N5      SINGLE       n     1.455  0.0104     1.455  0.0104
+DVD          N5          N9      SINGLE       y     1.369  0.0178     1.369  0.0178
+DVD          C7          C8      SINGLE       y     1.398  0.0100     1.398  0.0100
+DVD          C8          N9      DOUBLE       y     1.330  0.0100     1.330  0.0100
+DVD          C8         N10      SINGLE       n     1.392  0.0150     1.392  0.0150
+DVD         C11         N10      SINGLE       n     1.414  0.0144     1.414  0.0144
+DVD         C11         C12      DOUBLE       y     1.394  0.0127     1.394  0.0127
+DVD         C11         C17      SINGLE       y     1.395  0.0145     1.395  0.0145
+DVD         C12         C13      SINGLE       y     1.387  0.0138     1.387  0.0138
+DVD         C17         O18      DOUBLE       n     1.242  0.0172     1.242  0.0172
+DVD         C17         N15      SINGLE       y     1.359  0.0102     1.359  0.0102
+DVD         C20         C21      DOUBLE       y     1.384  0.0100     1.384  0.0100
+DVD         C19         C20      SINGLE       y     1.392  0.0100     1.392  0.0100
+DVD         C13         C19      SINGLE       n     1.487  0.0100     1.487  0.0100
+DVD         C13         N14      DOUBLE       y     1.311  0.0100     1.311  0.0100
+DVD         C21         C22      SINGLE       y     1.383  0.0100     1.383  0.0100
+DVD         N14         N15      SINGLE       y     1.346  0.0100     1.346  0.0100
+DVD         C19         C24      DOUBLE       y     1.404  0.0100     1.404  0.0100
+DVD         C22         C23      DOUBLE       y     1.387  0.0100     1.387  0.0100
+DVD         C23         C24      SINGLE       y     1.402  0.0100     1.402  0.0100
+DVD         C24         C25      SINGLE       n     1.510  0.0100     1.510  0.0100
+DVD         C23         N27      SINGLE       n     1.412  0.0103     1.412  0.0103
+DVD         C25         O26      SINGLE       n     1.420  0.0138     1.420  0.0138
+DVD         C28         N27      SINGLE       n     1.356  0.0102     1.356  0.0102
+DVD         C28         O29      DOUBLE       n     1.229  0.0124     1.229  0.0124
+DVD         C28         C30      SINGLE       n     1.469  0.0113     1.469  0.0113
+DVD         C30         C31      DOUBLE       y     1.353  0.0144     1.353  0.0144
+DVD         C30         S38      SINGLE       y     1.695  0.0200     1.695  0.0200
+DVD         C31         C32      SINGLE       y     1.425  0.0100     1.425  0.0100
+DVD         C37         S38      SINGLE       y     1.695  0.0200     1.695  0.0200
+DVD         C32         C37      DOUBLE       y     1.414  0.0200     1.414  0.0200
+DVD         C32         C33      SINGLE       y     1.401  0.0100     1.401  0.0100
+DVD         C36         C37      SINGLE       y     1.382  0.0123     1.382  0.0123
+DVD         C33         C34      DOUBLE       y     1.376  0.0100     1.376  0.0100
+DVD         C35         C36      DOUBLE       y     1.378  0.0108     1.378  0.0108
+DVD         C34         C35      SINGLE       y     1.395  0.0112     1.395  0.0112
+DVD          C4          H1      SINGLE       n     1.089  0.0100     0.979  0.0153
+DVD          C4          H2      SINGLE       n     1.089  0.0100     0.979  0.0153
+DVD          C7          H3      SINGLE       n     1.082  0.0130     0.942  0.0198
+DVD         C12          H4      SINGLE       n     1.082  0.0130     0.937  0.0122
+DVD          C3          H6      SINGLE       n     1.089  0.0100     0.980  0.0172
+DVD          C3          H7      SINGLE       n     1.089  0.0100     0.980  0.0172
+DVD          C1          H8      SINGLE       n     1.089  0.0100     0.975  0.0100
+DVD          C1          H9      SINGLE       n     1.089  0.0100     0.975  0.0100
+DVD          C1         H10      SINGLE       n     1.089  0.0100     0.975  0.0100
+DVD         C20         H11      SINGLE       n     1.082  0.0130     0.942  0.0141
+DVD         C21         H12      SINGLE       n     1.082  0.0130     0.940  0.0164
+DVD         C22         H13      SINGLE       n     1.082  0.0130     0.942  0.0183
+DVD         C25         H14      SINGLE       n     1.089  0.0100     0.979  0.0179
+DVD         C25         H15      SINGLE       n     1.089  0.0100     0.979  0.0179
+DVD         C31         H17      SINGLE       n     1.082  0.0130     0.941  0.0170
+DVD         C33         H18      SINGLE       n     1.082  0.0130     0.942  0.0182
+DVD         C34         H19      SINGLE       n     1.082  0.0130     0.944  0.0181
+DVD         C35         H20      SINGLE       n     1.082  0.0130     0.942  0.0176
+DVD         C36         H21      SINGLE       n     1.082  0.0130     0.941  0.0170
+DVD         C39         H22      SINGLE       n     1.089  0.0100     0.972  0.0100
+DVD         C39         H23      SINGLE       n     1.089  0.0100     0.972  0.0100
+DVD         N10         H24      SINGLE       n     1.016  0.0100     0.875  0.0200
+DVD         N15         H16      SINGLE       n     1.016  0.0100     0.910  0.0200
+DVD         N27         H25      SINGLE       n     1.016  0.0100     0.874  0.0200
+DVD         O26         H26      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DVD          C3          C4          N5     108.748    1.59
+DVD          C3          C4          H1     109.501    1.50
+DVD          C3          C4          H2     109.501    1.50
+DVD          N5          C4          H1     109.777    1.50
+DVD          N5          C4          H2     109.777    1.50
+DVD          H1          C4          H2     108.604    1.50
+DVD         C39          C6          N5     119.889    1.50
+DVD         C39          C6          C7     132.259    2.34
+DVD          N5          C6          C7     107.852    1.50
+DVD         N10         C11         C12     119.829    2.40
+DVD         N10         C11         C17     119.370    2.92
+DVD         C12         C11         C17     120.801    1.50
+DVD          C6          C7          C8     107.627    1.50
+DVD          C6          C7          H3     125.721    1.50
+DVD          C8          C7          H3     126.653    1.56
+DVD          C7          C8          N9     109.788    1.50
+DVD          C7          C8         N10     128.605    3.00
+DVD          N9          C8         N10     121.607    3.00
+DVD         C11         C12         C13     118.456    1.50
+DVD         C11         C12          H4     120.644    1.50
+DVD         C13         C12          H4     120.900    1.50
+DVD         C12         C13         C19     123.264    1.50
+DVD         C12         C13         N14     120.096    1.50
+DVD         C19         C13         N14     116.640    1.50
+DVD          C1          N2         C39     110.842    1.50
+DVD          C1          N2          C3     110.690    1.50
+DVD         C39          N2          C3     111.118    1.85
+DVD          N2          C3          C4     110.691    1.50
+DVD          N2          C3          H6     109.490    1.50
+DVD          N2          C3          H7     109.490    1.50
+DVD          C4          C3          H6     109.499    1.50
+DVD          C4          C3          H7     109.499    1.50
+DVD          H6          C3          H7     108.200    1.50
+DVD          N2          C1          H8     109.590    1.50
+DVD          N2          C1          H9     109.590    1.50
+DVD          N2          C1         H10     109.590    1.50
+DVD          H8          C1          H9     109.428    1.50
+DVD          H8          C1         H10     109.428    1.50
+DVD          H9          C1         H10     109.428    1.50
+DVD         C11         C17         O18     123.723    2.00
+DVD         C11         C17         N15     118.458    3.00
+DVD         O18         C17         N15     117.820    1.50
+DVD         C20         C19         C13     120.541    1.50
+DVD         C20         C19         C24     119.171    1.50
+DVD         C13         C19         C24     120.289    1.50
+DVD         C21         C20         C19     121.298    1.50
+DVD         C21         C20         H11     119.639    1.50
+DVD         C19         C20         H11     119.063    1.50
+DVD         C20         C21         C22     120.362    1.50
+DVD         C20         C21         H12     119.909    1.50
+DVD         C22         C21         H12     119.730    1.50
+DVD         C21         C22         C23     120.208    1.50
+DVD         C21         C22         H13     120.034    1.50
+DVD         C23         C22         H13     119.758    1.50
+DVD         C22         C23         C24     120.646    1.78
+DVD         C22         C23         N27     120.488    3.00
+DVD         C24         C23         N27     118.866    1.50
+DVD         C19         C24         C23     118.315    2.70
+DVD         C19         C24         C25     120.407    1.53
+DVD         C23         C24         C25     121.278    1.62
+DVD         C24         C25         O26     111.937    1.71
+DVD         C24         C25         H14     109.800    1.50
+DVD         C24         C25         H15     109.800    1.50
+DVD         O26         C25         H14     109.107    1.50
+DVD         O26         C25         H15     109.107    1.50
+DVD         H14         C25         H15     107.986    1.50
+DVD         N27         C28         O29     124.297    1.50
+DVD         N27         C28         C30     114.856    1.50
+DVD         O29         C28         C30     120.847    1.72
+DVD         C28         C30         C31     131.855    3.00
+DVD         C28         C30         S38     119.793    3.00
+DVD         C31         C30         S38     108.352    3.00
+DVD         C30         C31         C32     107.727    1.50
+DVD         C30         C31         H17     126.516    1.56
+DVD         C32         C31         H17     125.757    1.50
+DVD         C31         C32         C37     107.217    1.50
+DVD         C31         C32         C33     132.399    1.50
+DVD         C37         C32         C33     120.384    1.84
+DVD         C32         C33         C34     118.793    1.50
+DVD         C32         C33         H18     120.625    1.50
+DVD         C34         C33         H18     120.582    1.50
+DVD         C33         C34         C35     121.019    1.50
+DVD         C33         C34         H19     119.568    1.50
+DVD         C35         C34         H19     119.413    1.50
+DVD         C36         C35         C34     120.867    1.50
+DVD         C36         C35         H20     119.583    1.50
+DVD         C34         C35         H20     119.550    1.50
+DVD         C37         C36         C35     118.340    1.50
+DVD         C37         C36         H21     120.964    1.50
+DVD         C35         C36         H21     120.697    1.50
+DVD         S38         C37         C32     108.352    3.00
+DVD         S38         C37         C36     131.051    3.00
+DVD         C32         C37         C36     120.597    1.99
+DVD          N2         C39          C6     108.451    1.50
+DVD          N2         C39         H22     109.325    1.50
+DVD          N2         C39         H23     109.325    1.50
+DVD          C6         C39         H22     110.075    1.50
+DVD          C6         C39         H23     110.075    1.50
+DVD         H22         C39         H23     108.071    1.50
+DVD          C8         N10         C11     128.646    2.57
+DVD          C8         N10         H24     114.617    1.50
+DVD         C11         N10         H24     116.737    2.03
+DVD         C13         N14         N15     117.940    2.94
+DVD         C17         N15         N14     124.249    1.50
+DVD         C17         N15         H16     119.214    2.15
+DVD         N14         N15         H16     116.537    1.70
+DVD         C23         N27         C28     127.170    2.35
+DVD         C23         N27         H25     116.427    2.05
+DVD         C28         N27         H25     116.403    1.98
+DVD          C6          N5          C4     127.654    1.85
+DVD          C6          N5          N9     108.695    2.05
+DVD          C4          N5          N9     123.651    2.58
+DVD          N5          N9          C8     106.038    1.50
+DVD         C25         O26         H26     108.716    3.00
+DVD         C30         S38         C37     108.352    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DVD             sp2_sp3_7          C6          N5          C4          C3       0.000    10.0     6
+DVD             sp3_sp3_1          N2          C3          C4          N5      60.000    10.0     3
+DVD              const_15         O18         C17         N15         N14     180.000    10.0     2
+DVD              const_19         C13         C19         C20         C21     180.000    10.0     2
+DVD              const_88         C20         C19         C24         C25     180.000    10.0     2
+DVD              const_21         C19         C20         C21         C22       0.000    10.0     2
+DVD              const_25         C20         C21         C22         C23       0.000    10.0     2
+DVD              const_30         C21         C22         C23         N27     180.000    10.0     2
+DVD              const_36         N27         C23         C24         C25       0.000    10.0     2
+DVD            sp2_sp2_13         C22         C23         N27         C28     180.000     5.0     2
+DVD            sp2_sp3_14         C19         C24         C25         O26     -90.000    10.0     6
+DVD            sp3_sp3_28         C24         C25         O26         H26     180.000    10.0     3
+DVD            sp2_sp2_21         N27         C28         C30         C31     180.000     5.0     2
+DVD            sp2_sp2_19         O29         C28         N27         C23       0.000     5.0     2
+DVD              const_39         C28         C30         C31         C32     180.000    10.0     2
+DVD              const_92         C28         C30         S38         C37     180.000    10.0     2
+DVD             sp2_sp3_1          N5          C6         C39          N2       0.000    10.0     6
+DVD              const_81         C39          C6          C7          C8     180.000    10.0     2
+DVD              const_67         C39          C6          N5          C4       0.000    10.0     2
+DVD              const_41         C30         C31         C32         C37       0.000    10.0     2
+DVD              const_95         C31         C32         C33         C34     180.000    10.0     2
+DVD              const_45         C31         C32         C37         S38       0.000    10.0     2
+DVD              const_63         C32         C33         C34         C35       0.000    10.0     2
+DVD              const_59         C33         C34         C35         C36       0.000    10.0     2
+DVD              const_55         C34         C35         C36         C37       0.000    10.0     2
+DVD              const_52         C35         C36         C37         S38     180.000    10.0     2
+DVD              const_49         C32         C37         S38         C30       0.000    10.0     2
+DVD              const_11         C13         N14         N15         C17       0.000    10.0     2
+DVD              const_86         N10         C11         C17         O18       0.000    10.0     2
+DVD             sp2_sp2_5         C12         C11         N10          C8     180.000     5.0     2
+DVD       const_sp2_sp2_3         N10         C11         C12         C13     180.000     5.0     2
+DVD              const_71          C6          N5          N9          C8       0.000    10.0     2
+DVD              const_76          C6          C7          C8         N10     180.000    10.0     2
+DVD             sp2_sp2_1          C7          C8         N10         C11     180.000     5.0     2
+DVD              const_74         N10          C8          N9          N5     180.000    10.0     2
+DVD       const_sp2_sp2_6         C11         C12         C13         C19     180.000     5.0     2
+DVD             sp2_sp2_9         C12         C13         C19         C20     180.000     5.0     2
+DVD       const_sp2_sp2_9         C12         C13         N14         N15       0.000     5.0     2
+DVD            sp3_sp3_17          C6         C39          N2          C1     180.000    10.0     3
+DVD            sp3_sp3_11          C4          C3          N2          C1      60.000    10.0     3
+DVD            sp3_sp3_22          H8          C1          N2         C39     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DVD    chir_1    N2    C39    C3    C1    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DVD    plan-1         C28   0.020
+DVD    plan-1         C30   0.020
+DVD    plan-1         C31   0.020
+DVD    plan-1         C32   0.020
+DVD    plan-1         C33   0.020
+DVD    plan-1         C34   0.020
+DVD    plan-1         C35   0.020
+DVD    plan-1         C36   0.020
+DVD    plan-1         C37   0.020
+DVD    plan-1         H17   0.020
+DVD    plan-1         H18   0.020
+DVD    plan-1         H19   0.020
+DVD    plan-1         H20   0.020
+DVD    plan-1         H21   0.020
+DVD    plan-1         S38   0.020
+DVD    plan-2         C11   0.020
+DVD    plan-2         C12   0.020
+DVD    plan-2         C13   0.020
+DVD    plan-2         C17   0.020
+DVD    plan-2         C19   0.020
+DVD    plan-2         H16   0.020
+DVD    plan-2          H4   0.020
+DVD    plan-2         N10   0.020
+DVD    plan-2         N14   0.020
+DVD    plan-2         N15   0.020
+DVD    plan-2         O18   0.020
+DVD    plan-3         C13   0.020
+DVD    plan-3         C19   0.020
+DVD    plan-3         C20   0.020
+DVD    plan-3         C21   0.020
+DVD    plan-3         C22   0.020
+DVD    plan-3         C23   0.020
+DVD    plan-3         C24   0.020
+DVD    plan-3         C25   0.020
+DVD    plan-3         H11   0.020
+DVD    plan-3         H12   0.020
+DVD    plan-3         H13   0.020
+DVD    plan-3         N27   0.020
+DVD    plan-4         C39   0.020
+DVD    plan-4          C4   0.020
+DVD    plan-4          C6   0.020
+DVD    plan-4          C7   0.020
+DVD    plan-4          C8   0.020
+DVD    plan-4          H3   0.020
+DVD    plan-4         N10   0.020
+DVD    plan-4          N5   0.020
+DVD    plan-4          N9   0.020
+DVD    plan-5         C28   0.020
+DVD    plan-5         C30   0.020
+DVD    plan-5         N27   0.020
+DVD    plan-5         O29   0.020
+DVD    plan-6         C11   0.020
+DVD    plan-6          C8   0.020
+DVD    plan-6         H24   0.020
+DVD    plan-6         N10   0.020
+DVD    plan-7         C23   0.020
+DVD    plan-7         C28   0.020
+DVD    plan-7         H25   0.020
+DVD    plan-7         N27   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DVD           SMILES              ACDLabs 12.01                                                                                                                                          C6n5c(cc(NC4=CC(c1c(c(ccc1)NC(c3cc2c(cccc2)s3)=O)CO)=NNC4=O)n5)CN(C6)C
+DVD            InChI                InChI  1.03 InChI=1S/C27H25N7O3S/c1-33-9-10-34-17(14-33)12-25(32-34)28-22-13-21(30-31-26(22)36)18-6-4-7-20(19(18)15-35)29-27(37)24-11-16-5-2-3-8-23(16)38-24/h2-8,11-13,35H,9-10,14-15H2,1H3,(H,29,37)(H,31,36)(H,28,30,32)
+DVD         InChIKey                InChI  1.03                                                                                                                                                                                     OVVJBKJSJVGGOF-UHFFFAOYSA-N
+DVD SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                  CN1CCn2nc(NC3=CC(=NNC3=O)c4cccc(NC(=O)c5sc6ccccc6c5)c4CO)cc2C1
+DVD           SMILES               CACTVS 3.385                                                                                                                                                  CN1CCn2nc(NC3=CC(=NNC3=O)c4cccc(NC(=O)c5sc6ccccc6c5)c4CO)cc2C1
+DVD SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                CN1CCn2c(cc(n2)NC3=CC(=NNC3=O)c4cccc(c4CO)NC(=O)c5cc6ccccc6s5)C1
+DVD           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                CN1CCn2c(cc(n2)NC3=CC(=NNC3=O)c4cccc(c4CO)NC(=O)c5cc6ccccc6s5)C1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DVD acedrg               243         "dictionary generator"                  
+DVD acedrg_database      11          "data source"                           
+DVD rdkit                2017.03.2   "Chemoinformatics tool"
+DVD refmac5              5.8.0238    "optimization tool"                     

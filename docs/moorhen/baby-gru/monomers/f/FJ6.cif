@@ -1,0 +1,367 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FJ6     FJ6      N-{3-[2,4-dihydroxy-5-(propan-2-yl)phenyl]-4-(4-methoxyphenyl)-1,2-oxazol-5-yl}cyclopropanecarboxamide     NON-POLYMER     54     30     .     
+#
+data_comp_FJ6
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FJ6     C01     C       CR6     0       1.616       -34.138     -24.936     
+FJ6     C02     C       CR16    0       0.420       -33.787     -24.297     
+FJ6     C03     C       CR6     0       0.405       -32.952     -23.185     
+FJ6     C04     C       CR6     0       1.625       -32.452     -22.703     
+FJ6     C05     C       CR16    0       2.825       -32.786     -23.321     
+FJ6     C06     C       CR6     0       2.828       -33.627     -24.428     
+FJ6     O07     O       OH1     0       4.033       -33.936     -25.014     
+FJ6     O08     O       OH1     0       1.695       -31.616     -21.613     
+FJ6     C09     C       CH1     0       -0.932      -32.608     -22.529     
+FJ6     C10     C       CR5     0       1.590       -35.043     -26.106     
+FJ6     C11     C       CH3     0       -1.836      -31.783     -23.449     
+FJ6     C12     C       CH3     0       -1.659      -33.864     -22.046     
+FJ6     N13     N       NRD5    0       2.410       -34.838     -27.106     
+FJ6     O14     O       O2      0       2.177       -35.861     -28.068     
+FJ6     C15     C       CR5     0       1.208       -36.667     -27.603     
+FJ6     C16     C       CR5     0       0.809       -36.188     -26.362     
+FJ6     C17     C       CR6     0       -0.238      -36.791     -25.510     
+FJ6     C18     C       CR16    0       0.025       -37.129     -24.181     
+FJ6     C19     C       CR16    0       -0.954      -37.696     -23.381     
+FJ6     C20     C       CR6     0       -2.228      -37.934     -23.896     
+FJ6     C21     C       CR16    0       -2.499      -37.605     -25.219     
+FJ6     C22     C       CR16    0       -1.516      -37.038     -26.014     
+FJ6     O23     O       O2      0       -3.274      -38.497     -23.206     
+FJ6     C24     C       CH3     0       -3.240      -38.555     -21.780     
+FJ6     N25     N       NH1     0       0.785       -37.752     -28.337     
+FJ6     C26     C       C       0       0.496       -39.029     -27.945     
+FJ6     O27     O       O       0       -0.333      -39.717     -28.529     
+FJ6     C28     C       CH1     0       1.244       -39.521     -26.769     
+FJ6     C29     C       CH2     0       1.274       -41.002     -26.494     
+FJ6     C30     C       CH2     0       0.440       -40.129     -25.650     
+FJ6     H1      H       H       0       -0.398      -34.126     -24.623     
+FJ6     H2      H       H       0       3.635       -32.445     -22.989     
+FJ6     H3      H       H       0       4.316       -34.750     -25.014     
+FJ6     H4      H       H       0       2.311       -31.729     -21.021     
+FJ6     H5      H       H       0       -0.746      -32.053     -21.727     
+FJ6     H6      H       H       0       -1.326      -31.466     -24.215     
+FJ6     H7      H       H       0       -2.184      -31.019     -22.958     
+FJ6     H8      H       H       0       -2.578      -32.330     -23.762     
+FJ6     H9      H       H       0       -1.058      -34.396     -21.496     
+FJ6     H10     H       H       0       -1.947      -34.391     -22.812     
+FJ6     H11     H       H       0       -2.436      -33.608     -21.520     
+FJ6     H12     H       H       0       0.879       -36.971     -23.822     
+FJ6     H13     H       H       0       -0.753      -37.916     -22.490     
+FJ6     H14     H       H       0       -3.355      -37.765     -25.576     
+FJ6     H15     H       H       0       -1.714      -36.818     -26.907     
+FJ6     H16     H       H       0       -3.059      -37.670     -21.423     
+FJ6     H17     H       H       0       -2.542      -39.168     -21.498     
+FJ6     H18     H       H       0       -4.098      -38.868     -21.450     
+FJ6     H19     H       H       0       0.690       -37.587     -29.194     
+FJ6     H20     H       H       0       2.045       -39.014     -26.518     
+FJ6     H21     H       H       0       0.822       -41.592     -27.121     
+FJ6     H22     H       H       0       2.085       -41.370     -26.101     
+FJ6     H23     H       H       0       -0.525      -40.179     -25.762     
+FJ6     H24     H       H       0       0.737       -39.962     -24.738     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FJ6         C26         O27      DOUBLE       n     1.225  0.0100     1.225  0.0100
+FJ6         C15         N25      SINGLE       n     1.364  0.0192     1.364  0.0192
+FJ6         N25         C26      SINGLE       n     1.358  0.0138     1.358  0.0138
+FJ6         O14         C15      SINGLE       y     1.344  0.0100     1.344  0.0100
+FJ6         N13         O14      SINGLE       y     1.421  0.0143     1.421  0.0143
+FJ6         C15         C16      DOUBLE       y     1.389  0.0200     1.389  0.0200
+FJ6         C26         C28      SINGLE       n     1.472  0.0100     1.472  0.0100
+FJ6         C10         N13      DOUBLE       y     1.308  0.0100     1.308  0.0100
+FJ6         C28         C29      SINGLE       n     1.505  0.0106     1.505  0.0106
+FJ6         C28         C30      SINGLE       n     1.505  0.0106     1.505  0.0106
+FJ6         C10         C16      SINGLE       y     1.403  0.0200     1.403  0.0200
+FJ6         C16         C17      SINGLE       n     1.478  0.0100     1.478  0.0100
+FJ6         C29         C30      SINGLE       n     1.476  0.0137     1.476  0.0137
+FJ6         C01         C10      SINGLE       n     1.476  0.0100     1.476  0.0100
+FJ6         C17         C22      SINGLE       y     1.393  0.0100     1.393  0.0100
+FJ6         C21         C22      DOUBLE       y     1.382  0.0100     1.382  0.0100
+FJ6         C17         C18      DOUBLE       y     1.393  0.0100     1.393  0.0100
+FJ6         C01         C02      DOUBLE       y     1.397  0.0100     1.397  0.0100
+FJ6         C01         C06      SINGLE       y     1.405  0.0100     1.405  0.0100
+FJ6         C20         C21      SINGLE       y     1.386  0.0109     1.386  0.0109
+FJ6         C06         O07      SINGLE       n     1.374  0.0155     1.374  0.0155
+FJ6         C02         C03      SINGLE       y     1.387  0.0100     1.387  0.0100
+FJ6         C05         C06      DOUBLE       y     1.387  0.0100     1.387  0.0100
+FJ6         C18         C19      SINGLE       y     1.382  0.0100     1.382  0.0100
+FJ6         C09         C11      SINGLE       n     1.527  0.0115     1.527  0.0115
+FJ6         C19         C20      DOUBLE       y     1.386  0.0109     1.386  0.0109
+FJ6         C20         O23      SINGLE       n     1.369  0.0100     1.369  0.0100
+FJ6         C03         C09      SINGLE       n     1.523  0.0127     1.523  0.0127
+FJ6         C03         C04      DOUBLE       y     1.397  0.0100     1.397  0.0100
+FJ6         C09         C12      SINGLE       n     1.527  0.0115     1.527  0.0115
+FJ6         C04         C05      SINGLE       y     1.387  0.0100     1.387  0.0100
+FJ6         C04         O08      SINGLE       n     1.374  0.0155     1.374  0.0155
+FJ6         O23         C24      SINGLE       n     1.424  0.0117     1.424  0.0117
+FJ6         C02          H1      SINGLE       n     1.082  0.0130     0.946  0.0200
+FJ6         C05          H2      SINGLE       n     1.082  0.0130     0.939  0.0186
+FJ6         O07          H3      SINGLE       n     0.966  0.0059     0.861  0.0200
+FJ6         O08          H4      SINGLE       n     0.966  0.0059     0.861  0.0200
+FJ6         C09          H5      SINGLE       n     1.089  0.0100     0.994  0.0142
+FJ6         C11          H6      SINGLE       n     1.089  0.0100     0.973  0.0141
+FJ6         C11          H7      SINGLE       n     1.089  0.0100     0.973  0.0141
+FJ6         C11          H8      SINGLE       n     1.089  0.0100     0.973  0.0141
+FJ6         C12          H9      SINGLE       n     1.089  0.0100     0.973  0.0141
+FJ6         C12         H10      SINGLE       n     1.089  0.0100     0.973  0.0141
+FJ6         C12         H11      SINGLE       n     1.089  0.0100     0.973  0.0141
+FJ6         C18         H12      SINGLE       n     1.082  0.0130     0.940  0.0144
+FJ6         C19         H13      SINGLE       n     1.082  0.0130     0.941  0.0179
+FJ6         C21         H14      SINGLE       n     1.082  0.0130     0.941  0.0179
+FJ6         C22         H15      SINGLE       n     1.082  0.0130     0.940  0.0144
+FJ6         C24         H16      SINGLE       n     1.089  0.0100     0.971  0.0157
+FJ6         C24         H17      SINGLE       n     1.089  0.0100     0.971  0.0157
+FJ6         C24         H18      SINGLE       n     1.089  0.0100     0.971  0.0157
+FJ6         N25         H19      SINGLE       n     1.016  0.0100     0.878  0.0200
+FJ6         C28         H20      SINGLE       n     1.089  0.0100     0.982  0.0185
+FJ6         C29         H21      SINGLE       n     1.089  0.0100     0.973  0.0200
+FJ6         C29         H22      SINGLE       n     1.089  0.0100     0.973  0.0200
+FJ6         C30         H23      SINGLE       n     1.089  0.0100     0.973  0.0200
+FJ6         C30         H24      SINGLE       n     1.089  0.0100     0.973  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FJ6         C10         C01         C02     119.769    1.50
+FJ6         C10         C01         C06     121.156    1.50
+FJ6         C02         C01         C06     119.075    1.50
+FJ6         C01         C02         C03     121.144    1.50
+FJ6         C01         C02          H1     119.631    1.50
+FJ6         C03         C02          H1     119.225    1.50
+FJ6         C02         C03         C09     120.132    1.50
+FJ6         C02         C03         C04     118.769    1.50
+FJ6         C09         C03         C04     121.099    1.50
+FJ6         C03         C04         C05     120.866    1.50
+FJ6         C03         C04         O08     119.567    3.00
+FJ6         C05         C04         O08     119.567    3.00
+FJ6         C06         C05         C04     119.730    1.50
+FJ6         C06         C05          H2     120.123    1.50
+FJ6         C04         C05          H2     120.147    1.50
+FJ6         C01         C06         O07     119.792    3.00
+FJ6         C01         C06         C05     120.417    1.50
+FJ6         O07         C06         C05     119.792    3.00
+FJ6         C06         O07          H3     120.000    3.00
+FJ6         C04         O08          H4     120.000    3.00
+FJ6         C11         C09         C03     111.836    1.68
+FJ6         C11         C09         C12     110.194    1.50
+FJ6         C11         C09          H5     107.649    1.50
+FJ6         C03         C09         C12     111.836    1.68
+FJ6         C03         C09          H5     107.451    1.50
+FJ6         C12         C09          H5     107.649    1.50
+FJ6         N13         C10         C16     109.632    1.50
+FJ6         N13         C10         C01     120.017    1.57
+FJ6         C16         C10         C01     130.351    1.50
+FJ6         C09         C11          H6     109.530    1.50
+FJ6         C09         C11          H7     109.530    1.50
+FJ6         C09         C11          H8     109.530    1.50
+FJ6          H6         C11          H7     109.411    1.50
+FJ6          H6         C11          H8     109.411    1.50
+FJ6          H7         C11          H8     109.411    1.50
+FJ6         C09         C12          H9     109.530    1.50
+FJ6         C09         C12         H10     109.530    1.50
+FJ6         C09         C12         H11     109.530    1.50
+FJ6          H9         C12         H10     109.411    1.50
+FJ6          H9         C12         H11     109.411    1.50
+FJ6         H10         C12         H11     109.411    1.50
+FJ6         O14         N13         C10     106.268    1.50
+FJ6         C15         O14         N13     107.654    1.50
+FJ6         N25         C15         O14     121.386    1.55
+FJ6         N25         C15         C16     129.976    2.72
+FJ6         O14         C15         C16     108.639    1.50
+FJ6         C15         C16         C10     107.807    2.27
+FJ6         C15         C16         C17     125.510    2.89
+FJ6         C10         C16         C17     126.683    2.80
+FJ6         C16         C17         C22     120.841    1.50
+FJ6         C16         C17         C18     120.841    1.50
+FJ6         C22         C17         C18     118.318    1.50
+FJ6         C17         C18         C19     120.826    1.50
+FJ6         C17         C18         H12     119.700    1.50
+FJ6         C19         C18         H12     119.474    1.50
+FJ6         C18         C19         C20     120.035    1.50
+FJ6         C18         C19         H13     119.964    1.50
+FJ6         C20         C19         H13     120.001    1.50
+FJ6         C21         C20         C19     119.960    1.50
+FJ6         C21         C20         O23     120.020    3.00
+FJ6         C19         C20         O23     120.020    3.00
+FJ6         C22         C21         C20     120.035    1.50
+FJ6         C22         C21         H14     119.964    1.50
+FJ6         C20         C21         H14     120.001    1.50
+FJ6         C17         C22         C21     120.826    1.50
+FJ6         C17         C22         H15     119.700    1.50
+FJ6         C21         C22         H15     119.474    1.50
+FJ6         C20         O23         C24     117.529    1.50
+FJ6         O23         C24         H16     109.428    1.50
+FJ6         O23         C24         H17     109.428    1.50
+FJ6         O23         C24         H18     109.428    1.50
+FJ6         H16         C24         H17     109.509    1.50
+FJ6         H16         C24         H18     109.509    1.50
+FJ6         H17         C24         H18     109.509    1.50
+FJ6         C15         N25         C26     125.152    2.96
+FJ6         C15         N25         H19     116.784    2.55
+FJ6         C26         N25         H19     118.063    2.44
+FJ6         O27         C26         N25     123.120    1.50
+FJ6         O27         C26         C28     122.731    1.50
+FJ6         N25         C26         C28     114.149    1.50
+FJ6         C26         C28         C29     117.574    1.59
+FJ6         C26         C28         C30     117.574    1.59
+FJ6         C26         C28         H20     115.904    1.65
+FJ6         C29         C28         C30      58.261    1.50
+FJ6         C29         C28         H20     116.898    1.50
+FJ6         C30         C28         H20     116.898    1.50
+FJ6         C28         C29         C30      60.870    1.50
+FJ6         C28         C29         H21     117.683    1.50
+FJ6         C28         C29         H22     117.683    1.50
+FJ6         C30         C29         H21     117.759    1.50
+FJ6         C30         C29         H22     117.759    1.50
+FJ6         H21         C29         H22     114.868    1.50
+FJ6         C28         C30         C29      60.870    1.50
+FJ6         C28         C30         H23     117.683    1.50
+FJ6         C28         C30         H24     117.683    1.50
+FJ6         C29         C30         H23     117.759    1.50
+FJ6         C29         C30         H24     117.759    1.50
+FJ6         H23         C30         H24     114.868    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FJ6       const_sp2_sp2_3         C10         C01         C02         C03     180.000     5.0     2
+FJ6            sp3_sp3_28         C03         C09         C11          H6     180.000    10.0     3
+FJ6              const_54         C22         C17         C18         C19       0.000    10.0     2
+FJ6              const_23         C10         N13         O14         C15       0.000    10.0     2
+FJ6              const_25         N25         C15         O14         N13     180.000    10.0     2
+FJ6              const_28         N25         C15         C16         C10     180.000    10.0     2
+FJ6             sp2_sp2_5         C28         C26         N25         C15     180.000     5.0     2
+FJ6            sp2_sp2_12         C10         C16         C17         C18     180.000     5.0     2
+FJ6              const_59         C02         C01         C06         O07     180.000    10.0     2
+FJ6              const_32         C16         C17         C22         C21     180.000    10.0     2
+FJ6              const_46         C17         C18         C19         C20       0.000    10.0     2
+FJ6              const_43         C18         C19         C20         O23     180.000    10.0     2
+FJ6              const_40         O23         C20         C21         C22     180.000    10.0     2
+FJ6             sp2_sp3_8         C02         C03         C09         C11     -90.000    10.0     6
+FJ6       const_sp2_sp2_6         C01         C02         C03         C09     180.000     5.0     2
+FJ6              const_34         C20         C21         C22         C17       0.000    10.0     2
+FJ6            sp3_sp3_47         H16         C24         O23         C20     -60.000    10.0     3
+FJ6             sp2_sp3_1         O27         C26         C28         C30       0.000    10.0     6
+FJ6             sp2_sp3_4         N25         C26         C28         C30     180.000    10.0     6
+FJ6             sp3_sp3_1         C26         C28         C29         C30      60.000    10.0     3
+FJ6            sp3_sp3_25         H20         C28         C30         C29     -60.000    10.0     3
+FJ6              const_12         C09         C03         C04         O08       0.000    10.0     2
+FJ6            sp2_sp3_11         C04         C03         C09         C11      90.000    10.0     6
+FJ6              const_15         O08         C04         C05         C06     180.000    10.0     2
+FJ6            sp3_sp3_47         H16         C24         O23         C20     -60.000    10.0     3
+FJ6              const_18         C04         C05         C06         O07     180.000    10.0     2
+FJ6            sp3_sp3_29         C03         C09         C11          H7     -60.000    10.0     3
+FJ6            sp3_sp3_34          H5         C09         C11          H6     -60.000    10.0     3
+FJ6            sp3_sp3_40         C03         C09         C12          H9      60.000    10.0     3
+FJ6              const_21         C16         C10         N13         O14       0.000    10.0     2
+FJ6              const_53         C01         C10         C16         C17       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FJ6    chir_1    C09    C03    C11    C12    both
+FJ6    chir_2    C28    C26    C29    C30    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FJ6    plan-1         C01   0.020
+FJ6    plan-1         C02   0.020
+FJ6    plan-1         C03   0.020
+FJ6    plan-1         C04   0.020
+FJ6    plan-1         C05   0.020
+FJ6    plan-1         C06   0.020
+FJ6    plan-1         C09   0.020
+FJ6    plan-1         C10   0.020
+FJ6    plan-1          H1   0.020
+FJ6    plan-1          H2   0.020
+FJ6    plan-1         O07   0.020
+FJ6    plan-1         O08   0.020
+FJ6    plan-2         C01   0.020
+FJ6    plan-2         C10   0.020
+FJ6    plan-2         C15   0.020
+FJ6    plan-2         C16   0.020
+FJ6    plan-2         C17   0.020
+FJ6    plan-2         N13   0.020
+FJ6    plan-2         N25   0.020
+FJ6    plan-2         O14   0.020
+FJ6    plan-3         C16   0.020
+FJ6    plan-3         C17   0.020
+FJ6    plan-3         C18   0.020
+FJ6    plan-3         C19   0.020
+FJ6    plan-3         C20   0.020
+FJ6    plan-3         C21   0.020
+FJ6    plan-3         C22   0.020
+FJ6    plan-3         H12   0.020
+FJ6    plan-3         H13   0.020
+FJ6    plan-3         H14   0.020
+FJ6    plan-3         H15   0.020
+FJ6    plan-3         O23   0.020
+FJ6    plan-4         C15   0.020
+FJ6    plan-4         C26   0.020
+FJ6    plan-4         H19   0.020
+FJ6    plan-4         N25   0.020
+FJ6    plan-5         C26   0.020
+FJ6    plan-5         C28   0.020
+FJ6    plan-5         N25   0.020
+FJ6    plan-5         O27   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FJ6           SMILES              ACDLabs 12.01                                                                                                   O=C(Nc2onc(c1c(O)cc(O)c(c1)C(C)C)c2c3ccc(OC)cc3)C4CC4
+FJ6            InChI                InChI  1.03 InChI=1S/C23H24N2O5/c1-12(2)16-10-17(19(27)11-18(16)26)21-20(13-6-8-15(29-3)9-7-13)23(30-25-21)24-22(28)14-4-5-14/h6-12,14,26-27H,4-5H2,1-3H3,(H,24,28)
+FJ6         InChIKey                InChI  1.03                                                                                                                             AVNWJTBEPNSVIJ-UHFFFAOYSA-N
+FJ6 SMILES_CANONICAL               CACTVS 3.385                                                                                                     COc1ccc(cc1)c2c(NC(=O)C3CC3)onc2c4cc(C(C)C)c(O)cc4O
+FJ6           SMILES               CACTVS 3.385                                                                                                     COc1ccc(cc1)c2c(NC(=O)C3CC3)onc2c4cc(C(C)C)c(O)cc4O
+FJ6 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                   CC(C)c1cc(c(cc1O)O)c2c(c(on2)NC(=O)C3CC3)c4ccc(cc4)OC
+FJ6           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                   CC(C)c1cc(c(cc1O)O)c2c(c(on2)NC(=O)C3CC3)c4ccc(cc4)OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FJ6 acedrg               243         "dictionary generator"                  
+FJ6 acedrg_database      11          "data source"                           
+FJ6 rdkit                2017.03.2   "Chemoinformatics tool"
+FJ6 refmac5              5.8.0238    "optimization tool"                     

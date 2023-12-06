@@ -1,0 +1,379 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3JV     3JV      (4R)-1-(3,3-dimethylbutanoyl)-4-hydroxy-N-[3-methyl-4-(1,3-thiazol-5-yl)benzyl]-L-prolinamide     NON-POLYMER     58     29     .     
+#
+data_comp_3JV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3JV     CAB     C       CH3     0       11.271      51.593      92.789      
+3JV     CBC     C       CT      0       12.620      52.163      93.245      
+3JV     CAC     C       CH3     0       13.733      51.554      92.383      
+3JV     CAD     C       CH3     0       12.851      51.771      94.711      
+3JV     CAN     C       CH2     0       12.617      53.710      93.124      
+3JV     CAT     C       C       0       12.334      54.278      91.744      
+3JV     OAE     O       O       0       11.166      54.488      91.419      
+3JV     N       N       NR5     0       13.339      54.488      90.866      
+3JV     CD2     C       CH2     0       14.780      54.592      91.156      
+3JV     CG      C       CH1     0       15.282      55.505      90.048      
+3JV     OD1     O       OH1     0       15.022      56.863      90.372      
+3JV     CB      C       CH2     0       14.438      55.090      88.855      
+3JV     CA      C       CH1     0       13.064      54.718      89.441      
+3JV     C       C       C       0       12.492      53.479      88.754      
+3JV     O       O       O       0       13.043      52.385      88.884      
+3JV     NAR     N       NH1     0       11.383      53.672      88.031      
+3JV     CAM     C       CH2     0       10.709      52.579      87.334      
+3JV     CAW     C       CR6     0       11.453      52.113      86.108      
+3JV     CAL     C       CR16    0       12.129      50.896      86.102      
+3JV     CAV     C       CR6     0       12.827      50.443      84.983      
+3JV     CAA     C       CH3     0       13.535      49.114      85.043      
+3JV     CAH     C       CR16    0       11.486      52.893      84.961      
+3JV     CAI     C       CR16    0       12.171      52.468      83.834      
+3JV     CAY     C       CR6     0       12.849      51.247      83.825      
+3JV     CAX     C       CR5     0       13.564      50.827      82.616      
+3JV     SAS     S       S2      0       14.812      51.779      82.064      
+3JV     CAJ     C       CR15    0       15.148      50.796      80.758      
+3JV     NAQ     N       NRD5    0       14.317      49.727      80.718      
+3JV     CAK     C       CR15    0       13.415      49.743      81.767      
+3JV     H1      H       H       0       10.550      52.136      93.151      
+3JV     H2      H       H       0       11.178      50.679      93.110      
+3JV     H3      H       H       0       11.223      51.599      91.817      
+3JV     H4      H       H       0       13.751      50.589      92.507      
+3JV     H5      H       H       0       14.591      51.930      92.646      
+3JV     H6      H       H       0       13.569      51.751      91.445      
+3JV     H7      H       H       0       13.439      52.420      95.137      
+3JV     H8      H       H       0       13.260      50.890      94.758      
+3JV     H9      H       H       0       11.999      51.755      95.183      
+3JV     H10     H       H       0       13.481      54.038      93.441      
+3JV     H11     H       H       0       11.934      54.050      93.739      
+3JV     H12     H       H       0       14.946      54.998      92.047      
+3JV     H13     H       H       0       15.222      53.701      91.116      
+3JV     H14     H       H       0       16.259      55.359      89.875      
+3JV     H15     H       H       0       15.722      57.194      90.720      
+3JV     H16     H       H       0       14.851      54.314      88.390      
+3JV     H17     H       H       0       14.351      55.841      88.210      
+3JV     H18     H       H       0       12.442      55.480      89.338      
+3JV     H19     H       H       0       11.036      54.470      87.958      
+3JV     H20     H       H       0       9.815       52.880      87.067      
+3JV     H21     H       H       0       10.598      51.826      87.951      
+3JV     H22     H       H       0       12.113      50.360      86.879      
+3JV     H23     H       H       0       13.428      48.719      85.924      
+3JV     H24     H       H       0       14.481      49.239      84.864      
+3JV     H25     H       H       0       13.160      48.515      84.377      
+3JV     H26     H       H       0       11.035      53.722      84.946      
+3JV     H27     H       H       0       12.181      53.010      83.064      
+3JV     H28     H       H       0       15.834      50.989      80.149      
+3JV     H29     H       H       0       12.759      49.070      81.896      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3JV         CAJ         NAQ      DOUBLE       y     1.347  0.0132     1.347  0.0132
+3JV         NAQ         CAK      SINGLE       y     1.372  0.0107     1.372  0.0107
+3JV         SAS         CAJ      SINGLE       y     1.695  0.0200     1.695  0.0200
+3JV         CAX         CAK      DOUBLE       y     1.371  0.0200     1.371  0.0200
+3JV         CAX         SAS      SINGLE       y     1.695  0.0200     1.695  0.0200
+3JV         CAY         CAX      SINGLE       n     1.464  0.0100     1.464  0.0100
+3JV         CAV         CAY      SINGLE       y     1.402  0.0100     1.402  0.0100
+3JV         CAI         CAY      DOUBLE       y     1.392  0.0100     1.392  0.0100
+3JV         CAV         CAA      SINGLE       n     1.505  0.0100     1.505  0.0100
+3JV         CAL         CAV      DOUBLE       y     1.390  0.0100     1.390  0.0100
+3JV         CAH         CAI      SINGLE       y     1.383  0.0100     1.383  0.0100
+3JV         CAW         CAL      SINGLE       y     1.389  0.0100     1.389  0.0100
+3JV         CAW         CAH      DOUBLE       y     1.386  0.0100     1.386  0.0100
+3JV         CAM         CAW      SINGLE       n     1.507  0.0100     1.507  0.0100
+3JV         NAR         CAM      SINGLE       n     1.455  0.0191     1.455  0.0191
+3JV           C         NAR      SINGLE       n     1.332  0.0100     1.332  0.0100
+3JV          CB          CA      SINGLE       n     1.536  0.0100     1.536  0.0100
+3JV          CG          CB      SINGLE       n     1.520  0.0100     1.520  0.0100
+3JV           C           O      DOUBLE       n     1.231  0.0100     1.231  0.0100
+3JV          CA           C      SINGLE       n     1.524  0.0100     1.524  0.0100
+3JV           N          CA      SINGLE       n     1.463  0.0100     1.463  0.0100
+3JV          CG         OD1      SINGLE       n     1.420  0.0118     1.420  0.0118
+3JV         CD2          CG      SINGLE       n     1.522  0.0100     1.522  0.0100
+3JV           N         CD2      SINGLE       n     1.472  0.0100     1.472  0.0100
+3JV         CAT           N      SINGLE       n     1.342  0.0100     1.342  0.0100
+3JV         CAT         OAE      DOUBLE       n     1.227  0.0149     1.227  0.0149
+3JV         CAN         CAT      SINGLE       n     1.504  0.0184     1.504  0.0184
+3JV         CBC         CAC      SINGLE       n     1.531  0.0109     1.531  0.0109
+3JV         CBC         CAN      SINGLE       n     1.541  0.0159     1.541  0.0159
+3JV         CAB         CBC      SINGLE       n     1.531  0.0109     1.531  0.0109
+3JV         CBC         CAD      SINGLE       n     1.531  0.0109     1.531  0.0109
+3JV         CAB          H1      SINGLE       n     1.089  0.0100     0.973  0.0146
+3JV         CAB          H2      SINGLE       n     1.089  0.0100     0.973  0.0146
+3JV         CAB          H3      SINGLE       n     1.089  0.0100     0.973  0.0146
+3JV         CAC          H4      SINGLE       n     1.089  0.0100     0.973  0.0146
+3JV         CAC          H5      SINGLE       n     1.089  0.0100     0.973  0.0146
+3JV         CAC          H6      SINGLE       n     1.089  0.0100     0.973  0.0146
+3JV         CAD          H7      SINGLE       n     1.089  0.0100     0.973  0.0146
+3JV         CAD          H8      SINGLE       n     1.089  0.0100     0.973  0.0146
+3JV         CAD          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+3JV         CAN         H10      SINGLE       n     1.089  0.0100     0.980  0.0160
+3JV         CAN         H11      SINGLE       n     1.089  0.0100     0.980  0.0160
+3JV         CD2         H12      SINGLE       n     1.089  0.0100     0.995  0.0200
+3JV         CD2         H13      SINGLE       n     1.089  0.0100     0.995  0.0200
+3JV          CG         H14      SINGLE       n     1.089  0.0100     1.003  0.0200
+3JV         OD1         H15      SINGLE       n     0.970  0.0120     0.849  0.0200
+3JV          CB         H16      SINGLE       n     1.089  0.0100     0.994  0.0200
+3JV          CB         H17      SINGLE       n     1.089  0.0100     0.994  0.0200
+3JV          CA         H18      SINGLE       n     1.089  0.0100     0.989  0.0105
+3JV         NAR         H19      SINGLE       n     1.016  0.0100     0.873  0.0200
+3JV         CAM         H20      SINGLE       n     1.089  0.0100     0.980  0.0169
+3JV         CAM         H21      SINGLE       n     1.089  0.0100     0.980  0.0169
+3JV         CAL         H22      SINGLE       n     1.082  0.0130     0.944  0.0155
+3JV         CAA         H23      SINGLE       n     1.089  0.0100     0.971  0.0135
+3JV         CAA         H24      SINGLE       n     1.089  0.0100     0.971  0.0135
+3JV         CAA         H25      SINGLE       n     1.089  0.0100     0.971  0.0135
+3JV         CAH         H26      SINGLE       n     1.082  0.0130     0.943  0.0173
+3JV         CAI         H27      SINGLE       n     1.082  0.0130     0.941  0.0147
+3JV         CAJ         H28      SINGLE       n     1.082  0.0130     0.937  0.0100
+3JV         CAK         H29      SINGLE       n     1.082  0.0130     0.949  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3JV         CBC         CAB          H1     109.509    1.50
+3JV         CBC         CAB          H2     109.509    1.50
+3JV         CBC         CAB          H3     109.509    1.50
+3JV          H1         CAB          H2     109.377    1.50
+3JV          H1         CAB          H3     109.377    1.50
+3JV          H2         CAB          H3     109.377    1.50
+3JV         CAC         CBC         CAN     109.439    2.00
+3JV         CAC         CBC         CAB     108.674    1.50
+3JV         CAC         CBC         CAD     108.674    1.50
+3JV         CAN         CBC         CAB     109.439    2.00
+3JV         CAN         CBC         CAD     109.439    2.00
+3JV         CAB         CBC         CAD     108.674    1.50
+3JV         CBC         CAC          H4     109.509    1.50
+3JV         CBC         CAC          H5     109.509    1.50
+3JV         CBC         CAC          H6     109.509    1.50
+3JV          H4         CAC          H5     109.377    1.50
+3JV          H4         CAC          H6     109.377    1.50
+3JV          H5         CAC          H6     109.377    1.50
+3JV         CBC         CAD          H7     109.509    1.50
+3JV         CBC         CAD          H8     109.509    1.50
+3JV         CBC         CAD          H9     109.509    1.50
+3JV          H7         CAD          H8     109.377    1.50
+3JV          H7         CAD          H9     109.377    1.50
+3JV          H8         CAD          H9     109.377    1.50
+3JV         CAT         CAN         CBC     111.511    2.91
+3JV         CAT         CAN         H10     108.699    1.50
+3JV         CAT         CAN         H11     108.699    1.50
+3JV         CBC         CAN         H10     107.886    1.50
+3JV         CBC         CAN         H11     107.886    1.50
+3JV         H10         CAN         H11     107.739    1.50
+3JV           N         CAT         OAE     120.645    1.54
+3JV           N         CAT         CAN     118.302    1.96
+3JV         OAE         CAT         CAN     121.054    1.66
+3JV          CA           N         CD2     112.636    1.50
+3JV          CA           N         CAT     120.918    3.00
+3JV         CD2           N         CAT     126.446    3.00
+3JV          CG         CD2           N     103.056    1.50
+3JV          CG         CD2         H12     111.058    1.50
+3JV          CG         CD2         H13     111.058    1.50
+3JV           N         CD2         H12     111.119    1.50
+3JV           N         CD2         H13     111.119    1.50
+3JV         H12         CD2         H13     108.952    1.50
+3JV          CB          CG         OD1     109.789    1.93
+3JV          CB          CG         CD2     103.430    1.50
+3JV          CB          CG         H14     111.491    1.54
+3JV         OD1          CG         CD2     110.264    2.19
+3JV         OD1          CG         H14     110.852    1.50
+3JV         CD2          CG         H14     111.046    1.50
+3JV          CG         OD1         H15     108.359    1.75
+3JV          CA          CB          CG     104.630    1.72
+3JV          CA          CB         H16     110.835    1.50
+3JV          CA          CB         H17     110.835    1.50
+3JV          CG          CB         H16     110.841    1.50
+3JV          CG          CB         H17     110.841    1.50
+3JV         H16          CB         H17     109.113    1.50
+3JV          CB          CA           C     111.469    1.50
+3JV          CB          CA           N     102.944    1.50
+3JV          CB          CA         H18     110.351    1.50
+3JV           C          CA           N     112.246    1.50
+3JV           C          CA         H18     109.755    1.50
+3JV           N          CA         H18     110.260    1.50
+3JV         NAR           C           O     123.767    1.50
+3JV         NAR           C          CA     115.131    1.50
+3JV           O           C          CA     121.102    1.50
+3JV         CAM         NAR           C     121.597    1.50
+3JV         CAM         NAR         H19     118.764    2.16
+3JV           C         NAR         H19     119.639    3.00
+3JV         CAW         CAM         NAR     113.086    1.80
+3JV         CAW         CAM         H20     109.073    1.50
+3JV         CAW         CAM         H21     109.073    1.50
+3JV         NAR         CAM         H20     108.896    1.50
+3JV         NAR         CAM         H21     108.896    1.50
+3JV         H20         CAM         H21     107.860    1.50
+3JV         CAL         CAW         CAH     118.670    1.50
+3JV         CAL         CAW         CAM     120.596    1.50
+3JV         CAH         CAW         CAM     120.734    1.50
+3JV         CAV         CAL         CAW     121.869    1.50
+3JV         CAV         CAL         H22     118.948    1.50
+3JV         CAW         CAL         H22     119.183    1.50
+3JV         CAY         CAV         CAA     121.525    1.50
+3JV         CAY         CAV         CAL     118.927    1.50
+3JV         CAA         CAV         CAL     119.548    1.50
+3JV         CAV         CAA         H23     109.688    1.50
+3JV         CAV         CAA         H24     109.688    1.50
+3JV         CAV         CAA         H25     109.688    1.50
+3JV         H23         CAA         H24     109.348    1.50
+3JV         H23         CAA         H25     109.348    1.50
+3JV         H24         CAA         H25     109.348    1.50
+3JV         CAI         CAH         CAW     120.870    1.50
+3JV         CAI         CAH         H26     119.487    1.50
+3JV         CAW         CAH         H26     119.643    1.50
+3JV         CAY         CAI         CAH     120.594    1.50
+3JV         CAY         CAI         H27     119.652    1.50
+3JV         CAH         CAI         H27     119.753    1.50
+3JV         CAX         CAY         CAV     120.434    1.90
+3JV         CAX         CAY         CAI     120.496    1.61
+3JV         CAV         CAY         CAI     119.070    1.50
+3JV         CAK         CAX         SAS     108.299    3.00
+3JV         CAK         CAX         CAY     132.824    2.57
+3JV         SAS         CAX         CAY     118.877    3.00
+3JV         CAJ         SAS         CAX     108.299    3.00
+3JV         NAQ         CAJ         SAS     108.299    3.00
+3JV         NAQ         CAJ         H28     126.910    1.50
+3JV         SAS         CAJ         H28     124.791    3.00
+3JV         CAJ         NAQ         CAK     105.471    1.50
+3JV         NAQ         CAK         CAX     109.632    1.50
+3JV         NAQ         CAK         H29     124.403    1.50
+3JV         CAX         CAK         H29     125.965    2.15
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3JV            sp3_sp3_49          H1         CAB         CBC         CAC     180.000    10.0     3
+3JV             sp3_sp3_4           C          CA          CB          CG     180.000    10.0     3
+3JV            sp2_sp3_25         NAR           C          CA          CB       0.000    10.0     6
+3JV             sp2_sp2_7           O           C         NAR         CAM       0.000     5.0     2
+3JV            sp2_sp3_20           C         NAR         CAM         CAW     120.000    10.0     6
+3JV            sp2_sp3_14         CAL         CAW         CAM         NAR     -90.000    10.0     6
+3JV       const_sp2_sp2_2         CAV         CAL         CAW         CAM     180.000     5.0     2
+3JV              const_34         CAI         CAH         CAW         CAM     180.000    10.0     2
+3JV       const_sp2_sp2_6         CAW         CAL         CAV         CAA     180.000     5.0     2
+3JV             sp2_sp3_7         CAY         CAV         CAA         H23     150.000    10.0     6
+3JV              const_12         CAA         CAV         CAY         CAX       0.000    10.0     2
+3JV            sp3_sp3_31          H4         CAC         CBC         CAN     180.000    10.0     3
+3JV            sp3_sp3_59          H7         CAD         CBC         CAC     -60.000    10.0     3
+3JV            sp3_sp3_41         CAT         CAN         CBC         CAC     -60.000    10.0     3
+3JV              const_17         CAW         CAH         CAI         CAY       0.000    10.0     2
+3JV              const_14         CAH         CAI         CAY         CAX     180.000    10.0     2
+3JV             sp2_sp2_1         CAK         CAX         CAY         CAV     180.000     5.0     2
+3JV              const_31         CAK         CAX         SAS         CAJ       0.000    10.0     2
+3JV              const_21         NAQ         CAK         CAX         SAS       0.000    10.0     2
+3JV              const_29         NAQ         CAJ         SAS         CAX       0.000    10.0     2
+3JV              const_27         SAS         CAJ         NAQ         CAK       0.000    10.0     2
+3JV              const_25         CAX         CAK         NAQ         CAJ       0.000    10.0     2
+3JV            sp2_sp3_41         OAE         CAT         CAN         CBC     -60.000    10.0     6
+3JV            sp2_sp2_11         OAE         CAT           N          CA       0.000     5.0     2
+3JV             sp2_sp3_5         CAT           N          CA           C     -60.000    10.0     6
+3JV            sp2_sp3_34         CAT           N         CD2          CG     180.000    10.0     6
+3JV            sp3_sp3_20           N         CD2          CG         OD1      60.000    10.0     3
+3JV            sp3_sp3_28          CB          CG         OD1         H15     180.000    10.0     3
+3JV            sp3_sp3_11          CA          CB          CG         OD1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+3JV    chir_1    CBC    CAN    CAC    CAB    both
+3JV    chir_2    CG    OD1    CD2    CB    negative
+3JV    chir_3    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3JV    plan-1         CAA   0.020
+3JV    plan-1         CAH   0.020
+3JV    plan-1         CAI   0.020
+3JV    plan-1         CAL   0.020
+3JV    plan-1         CAM   0.020
+3JV    plan-1         CAV   0.020
+3JV    plan-1         CAW   0.020
+3JV    plan-1         CAX   0.020
+3JV    plan-1         CAY   0.020
+3JV    plan-1         H22   0.020
+3JV    plan-1         H26   0.020
+3JV    plan-1         H27   0.020
+3JV    plan-2         CAJ   0.020
+3JV    plan-2         CAK   0.020
+3JV    plan-2         CAX   0.020
+3JV    plan-2         CAY   0.020
+3JV    plan-2         H28   0.020
+3JV    plan-2         H29   0.020
+3JV    plan-2         NAQ   0.020
+3JV    plan-2         SAS   0.020
+3JV    plan-3         CAN   0.020
+3JV    plan-3         CAT   0.020
+3JV    plan-3           N   0.020
+3JV    plan-3         OAE   0.020
+3JV    plan-4          CA   0.020
+3JV    plan-4         CAT   0.020
+3JV    plan-4         CD2   0.020
+3JV    plan-4           N   0.020
+3JV    plan-5           C   0.020
+3JV    plan-5          CA   0.020
+3JV    plan-5         NAR   0.020
+3JV    plan-5           O   0.020
+3JV    plan-6           C   0.020
+3JV    plan-6         CAM   0.020
+3JV    plan-6         H19   0.020
+3JV    plan-6         NAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3JV           SMILES              ACDLabs 12.01                                                                                                                        O=C(N1CC(O)CC1C(=O)NCc3cc(c(c2scnc2)cc3)C)CC(C)(C)C
+3JV            InChI                InChI  1.03 InChI=1S/C22H29N3O3S/c1-14-7-15(5-6-17(14)19-11-23-13-29-19)10-24-21(28)18-8-16(26)12-25(18)20(27)9-22(2,3)4/h5-7,11,13,16,18,26H,8-10,12H2,1-4H3,(H,24,28)/t16-,18+/m1/s1
+3JV         InChIKey                InChI  1.03                                                                                                                                                QBAUKFDDQIMOAJ-AEFFLSMTSA-N
+3JV SMILES_CANONICAL               CACTVS 3.385                                                                                                                Cc1cc(CNC(=O)[C@@H]2C[C@@H](O)CN2C(=O)CC(C)(C)C)ccc1c3scnc3
+3JV           SMILES               CACTVS 3.385                                                                                                                    Cc1cc(CNC(=O)[CH]2C[CH](O)CN2C(=O)CC(C)(C)C)ccc1c3scnc3
+3JV SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                                 Cc1cc(ccc1c2cncs2)CNC(=O)[C@@H]3C[C@H](CN3C(=O)CC(C)(C)C)O
+3JV           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                          Cc1cc(ccc1c2cncs2)CNC(=O)C3CC(CN3C(=O)CC(C)(C)C)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3JV acedrg               243         "dictionary generator"                  
+3JV acedrg_database      11          "data source"                           
+3JV rdkit                2017.03.2   "Chemoinformatics tool"
+3JV refmac5              5.8.0238    "optimization tool"                     

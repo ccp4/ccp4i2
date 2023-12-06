@@ -1,0 +1,220 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+V21     V21      3-methylthiobenzimidazo[1,2-c][1,2,3]thiadiazol-7-sulfonamide     NON-POLYMER     26     18     .     
+#
+data_comp_V21
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+V21     O12     O       O       0       -5.564      1.518       18.175      
+V21     S9      S       S3      0       -5.680      1.033       16.832      
+V21     O11     O       O       0       -6.974      0.656       16.344      
+V21     N10     N       NT2     0       -4.744      -0.264      16.721      
+V21     C8      C       CR6     0       -5.035      2.275       15.752      
+V21     C13     C       CR16    0       -3.646      2.346       15.498      
+V21     C1      C       CR16    0       -3.116      3.305       14.661      
+V21     C7      C       CR16    0       -5.886      3.189       15.148      
+V21     C6      C       CR56    0       -5.352      4.150       14.308      
+V21     C2      C       CR56    0       -3.970      4.225       14.051      
+V21     N5      N       NT      0       -5.893      5.189       13.560      
+V21     S15     S       S2      0       -7.041      6.911       12.356      
+V21     N14     N       NRD5    0       -7.178      5.644       13.382      
+V21     C16     C       CR5     0       -5.334      6.935       12.092      
+V21     C4      C       CR55    0       -4.882      5.830       12.906      
+V21     N3      N       NRD5    0       -3.674      5.280       13.170      
+V21     S17     S       S2      0       -4.425      8.038       11.088      
+V21     C18     C       CH3     0       -5.276      9.354       10.183      
+V21     HN10    H       H       0       -5.160      -1.001      16.918      
+V21     HN1A    H       H       0       -3.966      -0.155      17.091      
+V21     H13     H       H       0       -3.063      1.727       15.907      
+V21     H1      H       H       0       -2.190      3.338       14.502      
+V21     H7      H       H       0       -6.811      3.143       15.317      
+V21     H18     H       H       0       -5.398      10.117      10.768      
+V21     H18A    H       H       0       -6.139      9.031       9.885       
+V21     H18B    H       H       0       -4.742      9.613       9.418       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+V21         O12          S9      DOUBLE       n     1.433  0.0100     1.433  0.0100
+V21          S9         O11      DOUBLE       n     1.433  0.0100     1.433  0.0100
+V21          S9         N10      SINGLE       n     1.603  0.0110     1.603  0.0110
+V21          S9          C8      SINGLE       n     1.767  0.0100     1.767  0.0100
+V21          C8         C13      DOUBLE       y     1.398  0.0166     1.398  0.0166
+V21          C8          C7      SINGLE       y     1.384  0.0100     1.384  0.0100
+V21         C13          C1      SINGLE       y     1.371  0.0115     1.371  0.0115
+V21          C1          C2      DOUBLE       y     1.392  0.0100     1.392  0.0100
+V21          C7          C6      DOUBLE       y     1.383  0.0100     1.383  0.0100
+V21          C6          C2      SINGLE       y     1.405  0.0100     1.405  0.0100
+V21          C6          N5      SINGLE       y     1.413  0.0200     1.413  0.0200
+V21          C2          N3      SINGLE       y     1.397  0.0116     1.397  0.0116
+V21          N5         N14      SINGLE       y     1.373  0.0100     1.373  0.0100
+V21          N5          C4      SINGLE       y     1.380  0.0200     1.380  0.0200
+V21         S15         N14      DOUBLE       y     1.635  0.0200     1.635  0.0200
+V21         S15         C16      DOUBLE       y     1.734  0.0200     1.734  0.0200
+V21         C16          C4      SINGLE       y     1.449  0.0200     1.449  0.0200
+V21         C16         S17      SINGLE       n     1.746  0.0119     1.746  0.0119
+V21          C4          N3      DOUBLE       y     1.345  0.0200     1.345  0.0200
+V21         S17         C18      SINGLE       n     1.809  0.0191     1.809  0.0191
+V21         N10        HN10      SINGLE       n     1.036  0.0160     0.869  0.0200
+V21         N10        HN1A      SINGLE       n     1.036  0.0160     0.869  0.0200
+V21         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0168
+V21          C1          H1      SINGLE       n     1.082  0.0130     0.940  0.0191
+V21          C7          H7      SINGLE       n     1.082  0.0130     0.941  0.0170
+V21         C18         H18      SINGLE       n     1.089  0.0100     0.969  0.0156
+V21         C18        H18A      SINGLE       n     1.089  0.0100     0.969  0.0156
+V21         C18        H18B      SINGLE       n     1.089  0.0100     0.969  0.0156
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+V21         O12          S9         O11     118.954    1.50
+V21         O12          S9         N10     107.154    1.50
+V21         O12          S9          C8     108.022    1.50
+V21         O11          S9         N10     107.154    1.50
+V21         O11          S9          C8     108.022    1.50
+V21         N10          S9          C8     108.348    1.50
+V21          S9         N10        HN10     113.070    3.00
+V21          S9         N10        HN1A     113.070    3.00
+V21        HN10         N10        HN1A     115.993    3.00
+V21          S9          C8         C13     120.376    1.50
+V21          S9          C8          C7     120.427    1.50
+V21         C13          C8          C7     119.196    1.74
+V21          C8         C13          C1     120.528    1.50
+V21          C8         C13         H13     120.196    1.50
+V21          C1         C13         H13     119.276    1.50
+V21         C13          C1          C2     118.575    1.50
+V21         C13          C1          H1     120.712    1.50
+V21          C2          C1          H1     120.714    1.50
+V21          C8          C7          C6     119.660    1.50
+V21          C8          C7          H7     119.183    1.50
+V21          C6          C7          H7     121.157    1.50
+V21          C7          C6          C2     122.397    1.50
+V21          C7          C6          N5     129.367    3.00
+V21          C2          C6          N5     108.237    2.01
+V21          C1          C2          C6     119.644    1.50
+V21          C1          C2          N3     129.546    1.50
+V21          C6          C2          N3     110.810    1.50
+V21          C6          N5         N14     109.471    3.00
+V21          C6          N5          C4     108.209    1.50
+V21         N14          N5          C4     109.471    3.00
+V21         N14         S15         C16     120.000    3.00
+V21          N5         N14         S15     120.000    3.00
+V21         S15         C16          C4     115.196    3.00
+V21         S15         C16         S17     122.060    2.57
+V21          C4         C16         S17     122.744    3.00
+V21          N5          C4         C16     121.399    3.00
+V21          N5          C4          N3     113.279    1.94
+V21         C16          C4          N3     125.323    2.99
+V21          C2          N3          C4     103.397    1.50
+V21         C16         S17         C18     120.000    3.00
+V21         S17         C18         H18     109.066    1.50
+V21         S17         C18        H18A     109.066    1.50
+V21         S17         C18        H18B     109.066    1.50
+V21         H18         C18        H18A     109.437    1.50
+V21         H18         C18        H18B     109.437    1.50
+V21        H18A         C18        H18B     109.437    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+V21             sp2_sp2_2         S15         N14          N5          C6     180.000     5.0     2
+V21              const_26         C16          C4          N5          C6     180.000    10.0     2
+V21             sp2_sp2_3          N5         N14         S15         C16       0.000     5.0     2
+V21             sp2_sp2_5         S17         C16         S15         N14     180.000     5.0     2
+V21             sp2_sp2_8         S17         C16          C4          N5     180.000     5.0     2
+V21            sp2_sp2_10         S15         C16         S17         C18     180.000     5.0     2
+V21              const_23          N5          C4          N3          C2       0.000    10.0     2
+V21             sp3_sp3_8         H18         C18         S17         C16     -60.000    10.0     3
+V21             sp3_sp3_2        HN10         N10          S9         O12     -60.000    10.0     3
+V21             sp2_sp3_1         C13          C8          S9         O12     150.000    10.0     6
+V21       const_sp2_sp2_2          C1         C13          C8          S9     180.000     5.0     2
+V21              const_30          C6          C7          C8          S9     180.000    10.0     2
+V21       const_sp2_sp2_5          C2          C1         C13          C8       0.000     5.0     2
+V21       const_sp2_sp2_9         C13          C1          C2          C6       0.000     5.0     2
+V21              const_17          C2          C6          C7          C8       0.000    10.0     2
+V21              const_36          C7          C6          N5         N14       0.000    10.0     2
+V21              const_13          C1          C2          C6          C7       0.000    10.0     2
+V21              const_22          C1          C2          N3          C4     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+V21    chir_1    S9    O12    O11    N10    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+V21    plan-1          C1   0.020
+V21    plan-1         C13   0.020
+V21    plan-1         C16   0.020
+V21    plan-1          C2   0.020
+V21    plan-1          C4   0.020
+V21    plan-1          C6   0.020
+V21    plan-1          C7   0.020
+V21    plan-1          C8   0.020
+V21    plan-1          H1   0.020
+V21    plan-1         H13   0.020
+V21    plan-1          H7   0.020
+V21    plan-1         N14   0.020
+V21    plan-1          N3   0.020
+V21    plan-1          N5   0.020
+V21    plan-1         S15   0.020
+V21    plan-1         S17   0.020
+V21    plan-1          S9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+V21 SMILES_CANONICAL               CACTVS 3.341                                                          CSC1=[S]=Nn2c3cc(ccc3nc12)[S](N)(=O)=O
+V21           SMILES               CACTVS 3.341                                                          CSC1=[S]=Nn2c3cc(ccc3nc12)[S](N)(=O)=O
+V21 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                              CSC1=S=Nn2c1nc3c2cc(cc3)S(=O)(=O)N
+V21           SMILES "OpenEye OEToolkits" 1.5.0                                                              CSC1=S=Nn2c1nc3c2cc(cc3)S(=O)(=O)N
+V21            InChI                InChI  1.03 InChI=1S/C9H8N4O2S3/c1-16-9-8-11-6-3-2-5(18(10,14)15)4-7(6)13(8)12-17-9/h2-4H,1H3,(H2,10,14,15)
+V21         InChIKey                InChI  1.03                                                                     RQMLRBLXFGMTFD-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+V21 acedrg               243         "dictionary generator"                  
+V21 acedrg_database      11          "data source"                           
+V21 rdkit                2017.03.2   "Chemoinformatics tool"
+V21 refmac5              5.8.0238    "optimization tool"                     

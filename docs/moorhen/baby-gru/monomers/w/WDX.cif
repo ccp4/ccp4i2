@@ -1,0 +1,302 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+WDX     WDX      "[4-(2-hydroxyethyl)piperidin-1-yl](5-methyl-1H-indol-2-yl)methanone"     NON-POLYMER     43     21     .     
+#
+data_comp_WDX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+WDX     C14     C       CR16    0       27.197      -6.958      23.665      
+WDX     C10     C       CR16    0       26.104      -6.258      23.197      
+WDX     C12     C       CR16    0       26.240      -9.081      23.028      
+WDX     C11     C       CR15    0       23.902      -8.811      21.920      
+WDX     C8      C       CR56    0       25.110      -8.402      22.540      
+WDX     C15     C       CR6     0       27.285      -8.357      23.591      
+WDX     C7      C       CR56    0       25.059      -6.989      22.633      
+WDX     C13     C       CR5     0       23.148      -7.660      21.671      
+WDX     C16     C       C       0       21.860      -7.571      21.034      
+WDX     C3      C       CH2     0       19.242      -9.472      22.550      
+WDX     C5      C       CH2     0       18.639      -8.827      20.238      
+WDX     C2      C       CH2     0       20.707      -9.498      22.151      
+WDX     C6      C       CH2     0       20.105      -8.884      19.856      
+WDX     C4      C       CH1     0       18.320      -9.788      21.377      
+WDX     C17     C       CH3     0       28.508      -9.062      24.121      
+WDX     C19     C       CH2     0       16.845      -9.751      21.766      
+WDX     C20     C       CH2     0       15.908      -10.407     20.771      
+WDX     N9      N       NR5     0       23.870      -6.566      22.096      
+WDX     N1      N       NR6     0       20.968      -8.597      21.015      
+WDX     O18     O       O       0       21.665      -6.567      20.340      
+WDX     O21     O       OH1     0       14.586      -10.513     21.270      
+WDX     H1      H       H       0       27.907      -6.484      24.047      
+WDX     H2      H       H       0       26.063      -5.319      23.256      
+WDX     H3      H       H       0       26.289      -10.022     22.972      
+WDX     H4      H       H       0       23.648      -9.699      21.727      
+WDX     H5      H       H       0       19.091      -10.125     23.260      
+WDX     H6      H       H       0       19.021      -8.588      22.902      
+WDX     H7      H       H       0       18.094      -9.056      19.460      
+WDX     H8      H       H       0       18.411      -7.917      20.510      
+WDX     H9      H       H       0       21.253      -9.232      22.923      
+WDX     H10     H       H       0       20.961      -10.414     21.903      
+WDX     H11     H       H       0       20.279      -8.241      19.133      
+WDX     H12     H       H       0       20.315      -9.781      19.514      
+WDX     H13     H       H       0       18.520      -10.698     21.071      
+WDX     H14     H       H       0       29.296      -8.524      23.942      
+WDX     H15     H       H       0       28.600      -9.925      23.684      
+WDX     H16     H       H       0       28.418      -9.194      25.078      
+WDX     H17     H       H       0       16.578      -8.813      21.877      
+WDX     H18     H       H       0       16.743      -10.197     22.633      
+WDX     H19     H       H       0       16.244      -11.302     20.554      
+WDX     H20     H       H       0       15.898      -9.880      19.943      
+WDX     H21     H       H       0       23.603      -5.724      22.037      
+WDX     H22     H       H       0       14.047      -10.638     20.630      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+WDX          C5          C6      SINGLE       n     1.516  0.0100     1.516  0.0100
+WDX          C6          N1      SINGLE       n     1.466  0.0100     1.466  0.0100
+WDX         C16         O18      DOUBLE       n     1.235  0.0100     1.235  0.0100
+WDX          C5          C4      SINGLE       n     1.524  0.0100     1.524  0.0100
+WDX         C16          N1      SINGLE       n     1.352  0.0100     1.352  0.0100
+WDX          C2          N1      SINGLE       n     1.466  0.0100     1.466  0.0100
+WDX         C13         C16      SINGLE       n     1.429  0.0200     1.429  0.0200
+WDX          C4         C19      SINGLE       n     1.526  0.0113     1.526  0.0113
+WDX          C3          C4      SINGLE       n     1.524  0.0100     1.524  0.0100
+WDX         C11         C13      DOUBLE       y     1.402  0.0200     1.402  0.0200
+WDX         C13          N9      SINGLE       y     1.377  0.0100     1.377  0.0100
+WDX          C3          C2      SINGLE       n     1.516  0.0100     1.516  0.0100
+WDX         C19         C20      SINGLE       n     1.515  0.0142     1.515  0.0142
+WDX         C20         O21      SINGLE       n     1.417  0.0200     1.417  0.0200
+WDX         C11          C8      SINGLE       y     1.420  0.0100     1.420  0.0100
+WDX          C7          N9      SINGLE       y     1.369  0.0100     1.369  0.0100
+WDX          C8          C7      DOUBLE       y     1.414  0.0100     1.414  0.0100
+WDX         C12          C8      SINGLE       y     1.402  0.0100     1.402  0.0100
+WDX         C10          C7      SINGLE       y     1.392  0.0100     1.392  0.0100
+WDX         C12         C15      DOUBLE       y     1.386  0.0100     1.386  0.0100
+WDX         C14         C10      DOUBLE       y     1.376  0.0100     1.376  0.0100
+WDX         C14         C15      SINGLE       y     1.388  0.0200     1.388  0.0200
+WDX         C15         C17      SINGLE       n     1.508  0.0100     1.508  0.0100
+WDX         C14          H1      SINGLE       n     1.082  0.0130     0.935  0.0103
+WDX         C10          H2      SINGLE       n     1.082  0.0130     0.941  0.0184
+WDX         C12          H3      SINGLE       n     1.082  0.0130     0.944  0.0100
+WDX         C11          H4      SINGLE       n     1.082  0.0130     0.944  0.0200
+WDX          C3          H5      SINGLE       n     1.089  0.0100     0.977  0.0102
+WDX          C3          H6      SINGLE       n     1.089  0.0100     0.977  0.0102
+WDX          C5          H7      SINGLE       n     1.089  0.0100     0.977  0.0102
+WDX          C5          H8      SINGLE       n     1.089  0.0100     0.977  0.0102
+WDX          C2          H9      SINGLE       n     1.089  0.0100     0.983  0.0147
+WDX          C2         H10      SINGLE       n     1.089  0.0100     0.983  0.0147
+WDX          C6         H11      SINGLE       n     1.089  0.0100     0.983  0.0147
+WDX          C6         H12      SINGLE       n     1.089  0.0100     0.983  0.0147
+WDX          C4         H13      SINGLE       n     1.089  0.0100     0.981  0.0100
+WDX         C17         H14      SINGLE       n     1.089  0.0100     0.971  0.0135
+WDX         C17         H15      SINGLE       n     1.089  0.0100     0.971  0.0135
+WDX         C17         H16      SINGLE       n     1.089  0.0100     0.971  0.0135
+WDX         C19         H17      SINGLE       n     1.089  0.0100     0.981  0.0140
+WDX         C19         H18      SINGLE       n     1.089  0.0100     0.981  0.0140
+WDX         C20         H19      SINGLE       n     1.089  0.0100     0.981  0.0174
+WDX         C20         H20      SINGLE       n     1.089  0.0100     0.981  0.0174
+WDX          N9         H21      SINGLE       n     1.016  0.0100     0.885  0.0200
+WDX         O21         H22      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+WDX         C10         C14         C15     122.433    1.50
+WDX         C10         C14          H1     118.905    1.50
+WDX         C15         C14          H1     118.671    1.50
+WDX          C7         C10         C14     117.704    1.50
+WDX          C7         C10          H2     121.051    1.50
+WDX         C14         C10          H2     121.245    1.50
+WDX          C8         C12         C15     119.239    1.50
+WDX          C8         C12          H3     120.315    1.50
+WDX         C15         C12          H3     120.445    1.50
+WDX         C13         C11          C8     107.799    1.50
+WDX         C13         C11          H4     126.173    1.50
+WDX          C8         C11          H4     126.028    1.50
+WDX         C11          C8          C7     106.642    1.50
+WDX         C11          C8         C12     134.195    1.50
+WDX          C7          C8         C12     119.163    1.50
+WDX         C12         C15         C14     119.373    1.50
+WDX         C12         C15         C17     120.688    1.50
+WDX         C14         C15         C17     119.939    1.50
+WDX          N9          C7          C8     107.813    1.50
+WDX          N9          C7         C10     130.109    1.50
+WDX          C8          C7         C10     122.078    1.50
+WDX         C16         C13         C11     128.323    3.00
+WDX         C16         C13          N9     122.779    3.00
+WDX         C11         C13          N9     108.898    1.50
+WDX         O18         C16          N1     120.021    1.50
+WDX         O18         C16         C13     118.375    1.84
+WDX          N1         C16         C13     121.604    3.00
+WDX          C4          C3          C2     112.062    1.50
+WDX          C4          C3          H5     109.093    1.50
+WDX          C4          C3          H6     109.093    1.50
+WDX          C2          C3          H5     109.101    1.50
+WDX          C2          C3          H6     109.101    1.50
+WDX          H5          C3          H6     107.890    1.50
+WDX          C6          C5          C4     112.062    1.50
+WDX          C6          C5          H7     109.101    1.50
+WDX          C6          C5          H8     109.101    1.50
+WDX          C4          C5          H7     109.093    1.50
+WDX          C4          C5          H8     109.093    1.50
+WDX          H7          C5          H8     107.890    1.50
+WDX          N1          C2          C3     110.373    1.50
+WDX          N1          C2          H9     109.531    1.50
+WDX          N1          C2         H10     109.531    1.50
+WDX          C3          C2          H9     109.668    1.50
+WDX          C3          C2         H10     109.668    1.50
+WDX          H9          C2         H10     108.159    1.50
+WDX          C5          C6          N1     110.373    1.50
+WDX          C5          C6         H11     109.668    1.50
+WDX          C5          C6         H12     109.668    1.50
+WDX          N1          C6         H11     109.531    1.50
+WDX          N1          C6         H12     109.531    1.50
+WDX         H11          C6         H12     108.159    1.50
+WDX          C5          C4         C19     111.907    1.50
+WDX          C5          C4          C3     109.024    1.50
+WDX          C5          C4         H13     107.879    1.50
+WDX         C19          C4          C3     111.907    1.50
+WDX         C19          C4         H13     107.292    1.50
+WDX          C3          C4         H13     107.879    1.50
+WDX         C15         C17         H14     109.472    1.50
+WDX         C15         C17         H15     109.472    1.50
+WDX         C15         C17         H16     109.472    1.50
+WDX         H14         C17         H15     109.348    1.50
+WDX         H14         C17         H16     109.348    1.50
+WDX         H15         C17         H16     109.348    1.50
+WDX          C4         C19         C20     114.999    1.50
+WDX          C4         C19         H17     108.361    1.50
+WDX          C4         C19         H18     108.361    1.50
+WDX         C20         C19         H17     108.697    1.50
+WDX         C20         C19         H18     108.697    1.50
+WDX         H17         C19         H18     107.859    1.50
+WDX         C19         C20         O21     112.169    1.80
+WDX         C19         C20         H19     109.166    1.50
+WDX         C19         C20         H20     109.166    1.50
+WDX         O21         C20         H19     109.223    1.50
+WDX         O21         C20         H20     109.223    1.50
+WDX         H19         C20         H20     107.915    1.50
+WDX         C13          N9          C7     108.847    1.50
+WDX         C13          N9         H21     125.439    2.15
+WDX          C7          N9         H21     125.714    1.50
+WDX          C6          N1         C16     123.368    3.00
+WDX          C6          N1          C2     113.263    1.50
+WDX         C16          N1          C2     123.368    3.00
+WDX         C20         O21         H22     109.891    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+WDX       const_sp2_sp2_1          C7         C10         C14         C15       0.000     5.0     2
+WDX              const_38         C10         C14         C15         C17     180.000    10.0     2
+WDX            sp3_sp3_19          C4          C5          C6          N1      60.000    10.0     3
+WDX            sp3_sp3_16         C19          C4          C5          C6      60.000    10.0     3
+WDX            sp2_sp3_10         C16          N1          C2          C3     180.000    10.0     6
+WDX             sp2_sp3_4         C16          N1          C6          C5     180.000    10.0     6
+WDX            sp3_sp3_29         C20         C19          C4          C5     -60.000    10.0     3
+WDX            sp3_sp3_46          C4         C19         C20         O21     180.000    10.0     3
+WDX            sp3_sp3_55         C19         C20         O21         H22     180.000    10.0     3
+WDX       const_sp2_sp2_6         C14         C10          C7          N9     180.000     5.0     2
+WDX              const_14         C15         C12          C8         C11     180.000    10.0     2
+WDX              const_18          C8         C12         C15         C17     180.000    10.0     2
+WDX              const_33         C13         C11          C8          C7       0.000    10.0     2
+WDX              const_22          C8         C11         C13         C16     180.000    10.0     2
+WDX       const_sp2_sp2_9          N9          C7          C8         C11       0.000     5.0     2
+WDX            sp2_sp3_13         C12         C15         C17         H14     150.000    10.0     6
+WDX              const_29          C8          C7          N9         C13       0.000    10.0     2
+WDX              const_27         C16         C13          N9          C7     180.000    10.0     2
+WDX             sp2_sp2_6         C11         C13         C16         O18       0.000     5.0     2
+WDX             sp2_sp2_3         O18         C16          N1          C6       0.000     5.0     2
+WDX            sp3_sp3_37          N1          C2          C3          C4     180.000    10.0     3
+WDX             sp3_sp3_2          C2          C3          C4         C19     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+WDX    chir_1    C4    C19    C5    C3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+WDX    plan-1         C10   0.020
+WDX    plan-1         C11   0.020
+WDX    plan-1         C12   0.020
+WDX    plan-1         C13   0.020
+WDX    plan-1         C14   0.020
+WDX    plan-1         C15   0.020
+WDX    plan-1         C16   0.020
+WDX    plan-1         C17   0.020
+WDX    plan-1          C7   0.020
+WDX    plan-1          C8   0.020
+WDX    plan-1          H1   0.020
+WDX    plan-1          H2   0.020
+WDX    plan-1         H21   0.020
+WDX    plan-1          H3   0.020
+WDX    plan-1          H4   0.020
+WDX    plan-1          N9   0.020
+WDX    plan-2         C13   0.020
+WDX    plan-2         C16   0.020
+WDX    plan-2          N1   0.020
+WDX    plan-2         O18   0.020
+WDX    plan-3         C16   0.020
+WDX    plan-3          C2   0.020
+WDX    plan-3          C6   0.020
+WDX    plan-3          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+WDX           SMILES              ACDLabs 12.01                                                                                 O=C(c2cc1cc(ccc1n2)C)N3CCC(CCO)CC3
+WDX            InChI                InChI  1.03 InChI=1S/C17H22N2O2/c1-12-2-3-15-14(10-12)11-16(18-15)17(21)19-7-4-13(5-8-19)6-9-20/h2-3,10-11,13,18,20H,4-9H2,1H3
+WDX         InChIKey                InChI  1.03                                                                                        HBSLSZOJAXYBQI-UHFFFAOYSA-N
+WDX SMILES_CANONICAL               CACTVS 3.385                                                                              Cc1ccc2[nH]c(cc2c1)C(=O)N3CCC(CCO)CC3
+WDX           SMILES               CACTVS 3.385                                                                              Cc1ccc2[nH]c(cc2c1)C(=O)N3CCC(CCO)CC3
+WDX SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                            Cc1ccc2c(c1)cc([nH]2)C(=O)N3CCC(CC3)CCO
+WDX           SMILES "OpenEye OEToolkits" 1.9.2                                                                            Cc1ccc2c(c1)cc([nH]2)C(=O)N3CCC(CC3)CCO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+WDX acedrg               243         "dictionary generator"                  
+WDX acedrg_database      11          "data source"                           
+WDX rdkit                2017.03.2   "Chemoinformatics tool"
+WDX refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,920 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FEE     FEE      N-{(1S,2S,3R)-1-[(alpha-D-galactopyranosyloxy)methyl]-2,3-dihydroxyoctyl}tetracosanamide     NON-POLYMER     126     49     .     
+#
+data_comp_FEE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FEE     N2      N       NH1     0       -12.108     -4.394      -36.787     
+FEE     C3      C       CH1     0       -13.302     -3.978      -38.900     
+FEE     C4      C       CH1     0       -14.034     -2.733      -38.339     
+FEE     C5      C       CH2     0       -13.266     -1.413      -38.421     
+FEE     C6      C       CH2     0       -13.942     -0.187      -37.842     
+FEE     C7      C       CH2     0       -14.282     -0.249      -36.366     
+FEE     C8      C       CH2     0       -13.128     -0.502      -35.420     
+FEE     C9      C       CH3     0       -12.012     0.517       -35.486     
+FEE     C1      C       CH2     0       -11.320     -5.582      -38.777     
+FEE     CAX     C       CH3     0       -6.809      -5.788      -33.918     
+FEE     CAW     C       CH2     0       -5.630      -5.879      -32.973     
+FEE     CAV     C       CH2     0       -5.107      -7.278      -32.755     
+FEE     CAU     C       CH2     0       -4.081      -7.400      -31.655     
+FEE     CAT     C       CH2     0       -2.743      -6.782      -31.983     
+FEE     CAS     C       CH2     0       -1.706      -6.929      -30.894     
+FEE     CAR     C       CH2     0       -0.360      -6.327      -31.228     
+FEE     CAQ     C       CH2     0       -0.364      -4.821      -31.325     
+FEE     CAP     C       CH2     0       1.005       -4.190      -31.387     
+FEE     CAO     C       CH2     0       0.996       -2.679      -31.309     
+FEE     CAN     C       CH2     0       0.391       -1.984      -32.512     
+FEE     CAM     C       CH2     0       -1.068      -1.608      -32.359     
+FEE     CAL     C       CH2     0       -1.306      -0.253      -31.733     
+FEE     CAK     C       CH2     0       -2.660      -0.099      -31.078     
+FEE     CAJ     C       CH2     0       -3.827      -0.152      -32.037     
+FEE     CAI     C       CH2     0       -5.167      0.127       -31.400     
+FEE     CAH     C       CH2     0       -6.349      -0.251      -32.259     
+FEE     CAG     C       CH2     0       -7.688      -0.068      -31.588     
+FEE     CAF     C       CH2     0       -8.867      -0.475      -32.437     
+FEE     CAE     C       CH2     0       -9.135      -1.960      -32.454     
+FEE     CAD     C       CH2     0       -10.286     -2.372      -33.340     
+FEE     CAC     C       CH2     0       -10.478     -3.877      -33.449     
+FEE     CAB     C       CH2     0       -11.540     -4.289      -34.433     
+FEE     CAA     C       C       0       -11.139     -4.145      -35.890     
+FEE     OAA     O       O       0       -10.001     -3.820      -36.227     
+FEE     C2      C       CH1     0       -11.947     -4.307      -38.243     
+FEE     O3      O       OH1     0       -13.130     -3.819      -40.312     
+FEE     O4      O       OH1     0       -15.273     -2.572      -39.029     
+FEE     O1A     O       O2      0       -12.074     -6.730      -38.341     
+FEE     C1A     C       CH1     0       -11.387     -7.951      -38.432     
+FEE     O6A     O       O2      0       -10.443     -8.043      -37.370     
+FEE     C5M     C       CH1     0       -11.013     -8.074      -36.032     
+FEE     C6A     C       CH2     0       -9.857      -8.108      -35.056     
+FEE     O5A     O       OH1     0       -8.959      -9.184      -35.326     
+FEE     C4A     C       CH1     0       -11.953     -9.274      -35.906     
+FEE     O4A     O       OH1     0       -11.209     -10.485     -36.030     
+FEE     C3A     C       CH1     0       -13.022     -9.202      -36.987     
+FEE     O3A     O       OH1     0       -13.864     -10.353     -36.929     
+FEE     C2A     C       CH1     0       -12.392     -9.100      -38.373     
+FEE     O2A     O       OH1     0       -13.395     -8.929      -39.371     
+FEE     HN2     H       H       0       -12.896     -4.631      -36.493     
+FEE     H3      H       H       0       -13.900     -4.760      -38.777     
+FEE     H4      H       H       0       -14.246     -2.906      -37.387     
+FEE     H5      H       H       0       -13.072     -1.235      -39.365     
+FEE     H5A     H       H       0       -12.406     -1.529      -37.968     
+FEE     H6      H       H       0       -14.771     -0.027      -38.342     
+FEE     H6A     H       H       0       -13.358     0.586       -37.994     
+FEE     H7      H       H       0       -14.949     -0.955      -36.232     
+FEE     H7A     H       H       0       -14.703     0.600       -36.112     
+FEE     H8      H       H       0       -12.755     -1.390      -35.611     
+FEE     H8A     H       H       0       -13.478     -0.522      -34.502     
+FEE     H9      H       H       0       -12.323     1.316       -35.947     
+FEE     H9A     H       H       0       -11.255     0.141       -35.969     
+FEE     H9B     H       H       0       -11.733     0.754       -34.585     
+FEE     H1      H       H       0       -10.398     -5.649      -38.453     
+FEE     H1A     H       H       0       -11.298     -5.560      -39.754     
+FEE     HAX     H       H       0       -6.971      -6.656      -34.327     
+FEE     HAXA    H       H       0       -6.618      -5.134      -34.613     
+FEE     HAXB    H       H       0       -7.600      -5.512      -33.424     
+FEE     HAW     H       H       0       -5.894      -5.505      -32.104     
+FEE     HAWA    H       H       0       -4.901      -5.324      -33.326     
+FEE     HAV     H       H       0       -4.708      -7.597      -33.593     
+FEE     HAVA    H       H       0       -5.864      -7.866      -32.545     
+FEE     HAU     H       H       0       -3.947      -8.351      -31.454     
+FEE     HAUA    H       H       0       -4.435      -6.972      -30.846     
+FEE     HAT     H       H       0       -2.876      -5.828      -32.165     
+FEE     HATA    H       H       0       -2.399      -7.195      -32.803     
+FEE     HAS     H       H       0       -1.584      -7.883      -30.703     
+FEE     HASA    H       H       0       -2.045      -6.504      -30.077     
+FEE     HAR     H       H       0       -0.054      -6.696      -32.083     
+FEE     HARA    H       H       0       0.284       -6.596      -30.539     
+FEE     HAQ     H       H       0       -0.841      -4.458      -30.548     
+FEE     HAQA    H       H       0       -0.864      -4.561      -32.128     
+FEE     HAP     H       H       0       1.439       -4.460      -32.225     
+FEE     HAPA    H       H       0       1.546       -4.539      -30.647     
+FEE     HAO     H       H       0       1.920       -2.367      -31.201     
+FEE     HAOA    H       H       0       0.499       -2.410      -30.507     
+FEE     HAN     H       H       0       0.481       -2.569      -33.294     
+FEE     HANA    H       H       0       0.906       -1.169      -32.694     
+FEE     HAM     H       H       0       -1.513      -2.287      -31.811     
+FEE     HAMA    H       H       0       -1.489      -1.621      -33.245     
+FEE     HAL     H       H       0       -1.212      0.434       -32.426     
+FEE     HALA    H       H       0       -0.612      -0.092      -31.059     
+FEE     HAK     H       H       0       -2.683      0.759       -30.604     
+FEE     HAKA    H       H       0       -2.770      -0.810      -30.411     
+FEE     HAJ     H       H       0       -3.857      -1.042      -32.449     
+FEE     HAJA    H       H       0       -3.676      0.502       -32.752     
+FEE     HAI     H       H       0       -5.223      1.084       -31.192     
+FEE     HAIA    H       H       0       -5.222      -0.366      -30.554     
+FEE     HAH     H       H       0       -6.256      -1.191      -32.524     
+FEE     HAHA    H       H       0       -6.330      0.291       -33.076     
+FEE     HAG     H       H       0       -7.789      0.876       -31.340     
+FEE     HAGA    H       H       0       -7.700      -0.595      -30.760     
+FEE     HAF     H       H       0       -8.711      -0.173      -33.357     
+FEE     HAFA    H       H       0       -9.668      -0.015      -32.105     
+FEE     HAE     H       H       0       -9.322      -2.256      -31.538     
+FEE     HAEA    H       H       0       -8.325      -2.422      -32.757     
+FEE     HAD     H       H       0       -10.137     -2.005      -34.237     
+FEE     HADA    H       H       0       -11.111     -1.975      -32.989     
+FEE     HAC     H       H       0       -10.719     -4.225      -32.565     
+FEE     HACA    H       H       0       -9.626      -4.288      -33.705     
+FEE     HAB     H       H       0       -12.342     -3.746      -34.273     
+FEE     HABA    H       H       0       -11.778     -5.225      -34.264     
+FEE     H2      H       H       0       -11.336     -3.555      -38.441     
+FEE     HO3     H       H       0       -12.514     -3.259      -40.472     
+FEE     HO4     H       H       0       -15.117     -2.448      -39.854     
+FEE     H1AA    H       H       0       -10.912     -7.994      -39.278     
+FEE     H5M     H       H       0       -11.533     -7.249      -35.880     
+FEE     H6AA    H       H       0       -10.206     -8.202      -34.145     
+FEE     H6AB    H       H       0       -9.367      -7.260      -35.106     
+FEE     HO5A    H       H       0       -8.591      -9.062      -36.080     
+FEE     H4A     H       H       0       -12.389     -9.252      -35.022     
+FEE     HO4A    H       H       0       -11.690     -11.136     -35.802     
+FEE     H3A     H       H       0       -13.576     -8.396      -36.830     
+FEE     HO3A    H       H       0       -14.532     -10.227     -37.424     
+FEE     H2A     H       H       0       -11.911     -9.942      -38.560     
+FEE     HO2A    H       H       0       -13.048     -9.026      -40.131     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FEE          N2         CAA      SINGLE       n     1.339  0.0121     1.339  0.0121
+FEE          N2          C2      SINGLE       n     1.464  0.0100     1.464  0.0100
+FEE          C3          C4      SINGLE       n     1.535  0.0200     1.535  0.0200
+FEE          C3          C2      SINGLE       n     1.537  0.0100     1.537  0.0100
+FEE          C3          O3      SINGLE       n     1.424  0.0199     1.424  0.0199
+FEE          C4          C5      SINGLE       n     1.526  0.0100     1.526  0.0100
+FEE          C4          O4      SINGLE       n     1.424  0.0199     1.424  0.0199
+FEE          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE          C7          C8      SINGLE       n     1.507  0.0200     1.507  0.0200
+FEE          C8          C9      SINGLE       n     1.510  0.0200     1.510  0.0200
+FEE          C1          C2      SINGLE       n     1.515  0.0117     1.515  0.0117
+FEE          C1         O1A      SINGLE       n     1.439  0.0100     1.439  0.0100
+FEE         CAX         CAW      SINGLE       n     1.510  0.0200     1.510  0.0200
+FEE         CAW         CAV      SINGLE       n     1.507  0.0200     1.507  0.0200
+FEE         CAV         CAU      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAU         CAT      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAT         CAS      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAS         CAR      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAR         CAQ      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAQ         CAP      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAP         CAO      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAO         CAN      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAN         CAM      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAM         CAL      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAL         CAK      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAK         CAJ      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAJ         CAI      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAI         CAH      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAH         CAG      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAG         CAF      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAF         CAE      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAE         CAD      SINGLE       n     1.509  0.0200     1.509  0.0200
+FEE         CAD         CAC      SINGLE       n     1.519  0.0164     1.519  0.0164
+FEE         CAC         CAB      SINGLE       n     1.497  0.0200     1.497  0.0200
+FEE         CAB         CAA      SINGLE       n     1.514  0.0100     1.514  0.0100
+FEE         CAA         OAA      DOUBLE       n     1.229  0.0102     1.229  0.0102
+FEE         O1A         C1A      SINGLE       n     1.399  0.0118     1.399  0.0118
+FEE         C1A         O6A      SINGLE       n     1.415  0.0124     1.415  0.0124
+FEE         C1A         C2A      SINGLE       n     1.523  0.0106     1.523  0.0106
+FEE         O6A         C5M      SINGLE       n     1.440  0.0195     1.440  0.0195
+FEE         C5M         C6A      SINGLE       n     1.511  0.0142     1.511  0.0142
+FEE         C5M         C4A      SINGLE       n     1.524  0.0200     1.524  0.0200
+FEE         C6A         O5A      SINGLE       n     1.426  0.0200     1.426  0.0200
+FEE         C4A         O4A      SINGLE       n     1.425  0.0176     1.425  0.0176
+FEE         C4A         C3A      SINGLE       n     1.520  0.0158     1.520  0.0158
+FEE         C3A         O3A      SINGLE       n     1.427  0.0138     1.427  0.0138
+FEE         C3A         C2A      SINGLE       n     1.519  0.0200     1.519  0.0200
+FEE         C2A         O2A      SINGLE       n     1.425  0.0112     1.425  0.0112
+FEE          N2         HN2      SINGLE       n     1.016  0.0100     0.872  0.0200
+FEE          C3          H3      SINGLE       n     1.089  0.0100     0.992  0.0184
+FEE          C4          H4      SINGLE       n     1.089  0.0100     0.992  0.0184
+FEE          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0160
+FEE          C5         H5A      SINGLE       n     1.089  0.0100     0.981  0.0160
+FEE          C6          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE          C6         H6A      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE          C7          H7      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE          C7         H7A      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE          C8          H8      SINGLE       n     1.089  0.0100     0.982  0.0155
+FEE          C8         H8A      SINGLE       n     1.089  0.0100     0.982  0.0155
+FEE          C9          H9      SINGLE       n     1.089  0.0100     0.973  0.0157
+FEE          C9         H9A      SINGLE       n     1.089  0.0100     0.973  0.0157
+FEE          C9         H9B      SINGLE       n     1.089  0.0100     0.973  0.0157
+FEE          C1          H1      SINGLE       n     1.089  0.0100     0.979  0.0200
+FEE          C1         H1A      SINGLE       n     1.089  0.0100     0.979  0.0200
+FEE         CAX         HAX      SINGLE       n     1.089  0.0100     0.973  0.0157
+FEE         CAX        HAXA      SINGLE       n     1.089  0.0100     0.973  0.0157
+FEE         CAX        HAXB      SINGLE       n     1.089  0.0100     0.973  0.0157
+FEE         CAW         HAW      SINGLE       n     1.089  0.0100     0.982  0.0155
+FEE         CAW        HAWA      SINGLE       n     1.089  0.0100     0.982  0.0155
+FEE         CAV         HAV      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAV        HAVA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAU         HAU      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAU        HAUA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAT         HAT      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAT        HATA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAS         HAS      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAS        HASA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAR         HAR      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAR        HARA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAP         HAP      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAP        HAPA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAO         HAO      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAO        HAOA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAN         HAN      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAN        HANA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAM         HAM      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAM        HAMA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAL         HAL      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAL        HALA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAK         HAK      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAK        HAKA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAI         HAI      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAI        HAIA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAH         HAH      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAH        HAHA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAG         HAG      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAG        HAGA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAF         HAF      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAF        HAFA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAE         HAE      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAE        HAEA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAD         HAD      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAD        HADA      SINGLE       n     1.089  0.0100     0.981  0.0163
+FEE         CAC         HAC      SINGLE       n     1.089  0.0100     0.980  0.0160
+FEE         CAC        HACA      SINGLE       n     1.089  0.0100     0.980  0.0160
+FEE         CAB         HAB      SINGLE       n     1.089  0.0100     0.981  0.0185
+FEE         CAB        HABA      SINGLE       n     1.089  0.0100     0.981  0.0185
+FEE          C2          H2      SINGLE       n     1.089  0.0100     0.989  0.0122
+FEE          O3         HO3      SINGLE       n     0.970  0.0120     0.848  0.0200
+FEE          O4         HO4      SINGLE       n     0.970  0.0120     0.848  0.0200
+FEE         C1A        H1AA      SINGLE       n     1.089  0.0100     0.971  0.0193
+FEE         C5M         H5M      SINGLE       n     1.089  0.0100     0.988  0.0182
+FEE         C6A        H6AA      SINGLE       n     1.089  0.0100     0.980  0.0184
+FEE         C6A        H6AB      SINGLE       n     1.089  0.0100     0.980  0.0184
+FEE         O5A        HO5A      SINGLE       n     0.970  0.0120     0.848  0.0200
+FEE         C4A         H4A      SINGLE       n     1.089  0.0100     0.986  0.0131
+FEE         O4A        HO4A      SINGLE       n     0.970  0.0120     0.841  0.0200
+FEE         C3A         H3A      SINGLE       n     1.089  0.0100     0.991  0.0121
+FEE         O3A        HO3A      SINGLE       n     0.970  0.0120     0.841  0.0200
+FEE         C2A         H2A      SINGLE       n     1.089  0.0100     0.987  0.0140
+FEE         O2A        HO2A      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FEE         CAA          N2          C2     123.741    1.63
+FEE         CAA          N2         HN2     118.656    1.50
+FEE          C2          N2         HN2     117.592    3.00
+FEE          C4          C3          C2     115.018    1.61
+FEE          C4          C3          O3     109.320    2.01
+FEE          C4          C3          H3     108.450    1.83
+FEE          C2          C3          O3     109.040    1.72
+FEE          C2          C3          H3     108.500    1.50
+FEE          O3          C3          H3     108.081    2.87
+FEE          C3          C4          C5     115.002    1.95
+FEE          C3          C4          O4     109.320    2.01
+FEE          C3          C4          H4     108.450    1.83
+FEE          C5          C4          O4     108.325    1.59
+FEE          C5          C4          H4     108.287    1.50
+FEE          O4          C4          H4     107.870    1.50
+FEE          C4          C5          C6     116.150    2.74
+FEE          C4          C5          H5     108.389    1.50
+FEE          C4          C5         H5A     108.389    1.50
+FEE          C6          C5          H5     108.572    1.50
+FEE          C6          C5         H5A     108.572    1.50
+FEE          H5          C5         H5A     107.428    1.50
+FEE          C5          C6          C7     114.776    2.10
+FEE          C5          C6          H6     108.597    1.50
+FEE          C5          C6         H6A     108.597    1.50
+FEE          C7          C6          H6     108.698    1.50
+FEE          C7          C6         H6A     108.698    1.50
+FEE          H6          C6         H6A     107.646    1.50
+FEE          C6          C7          C8     114.362    3.00
+FEE          C6          C7          H7     108.698    1.50
+FEE          C6          C7         H7A     108.698    1.50
+FEE          C8          C7          H7     108.653    1.50
+FEE          C8          C7         H7A     108.653    1.50
+FEE          H7          C7         H7A     107.646    1.50
+FEE          C7          C8          C9     113.719    3.00
+FEE          C7          C8          H8     108.758    1.50
+FEE          C7          C8         H8A     108.758    1.50
+FEE          C9          C8          H8     108.918    1.50
+FEE          C9          C8         H8A     108.918    1.50
+FEE          H8          C8         H8A     107.763    1.50
+FEE          C8          C9          H9     109.554    1.50
+FEE          C8          C9         H9A     109.554    1.50
+FEE          C8          C9         H9B     109.554    1.50
+FEE          H9          C9         H9A     109.380    1.50
+FEE          H9          C9         H9B     109.380    1.50
+FEE         H9A          C9         H9B     109.380    1.50
+FEE          C2          C1         O1A     109.482    3.00
+FEE          C2          C1          H1     109.865    1.50
+FEE          C2          C1         H1A     109.865    1.50
+FEE         O1A          C1          H1     109.586    1.50
+FEE         O1A          C1         H1A     109.586    1.50
+FEE          H1          C1         H1A     108.500    1.50
+FEE         CAW         CAX         HAX     109.554    1.50
+FEE         CAW         CAX        HAXA     109.554    1.50
+FEE         CAW         CAX        HAXB     109.554    1.50
+FEE         HAX         CAX        HAXA     109.380    1.50
+FEE         HAX         CAX        HAXB     109.380    1.50
+FEE        HAXA         CAX        HAXB     109.380    1.50
+FEE         CAX         CAW         CAV     113.719    3.00
+FEE         CAX         CAW         HAW     108.918    1.50
+FEE         CAX         CAW        HAWA     108.918    1.50
+FEE         CAV         CAW         HAW     108.758    1.50
+FEE         CAV         CAW        HAWA     108.758    1.50
+FEE         HAW         CAW        HAWA     107.763    1.50
+FEE         CAW         CAV         CAU     114.362    3.00
+FEE         CAW         CAV         HAV     108.653    1.50
+FEE         CAW         CAV        HAVA     108.653    1.50
+FEE         CAU         CAV         HAV     108.698    1.50
+FEE         CAU         CAV        HAVA     108.698    1.50
+FEE         HAV         CAV        HAVA     107.646    1.50
+FEE         CAV         CAU         CAT     114.243    1.69
+FEE         CAV         CAU         HAU     108.698    1.50
+FEE         CAV         CAU        HAUA     108.698    1.50
+FEE         CAT         CAU         HAU     108.698    1.50
+FEE         CAT         CAU        HAUA     108.698    1.50
+FEE         HAU         CAU        HAUA     107.646    1.50
+FEE         CAU         CAT         CAS     114.243    1.69
+FEE         CAU         CAT         HAT     108.698    1.50
+FEE         CAU         CAT        HATA     108.698    1.50
+FEE         CAS         CAT         HAT     108.698    1.50
+FEE         CAS         CAT        HATA     108.698    1.50
+FEE         HAT         CAT        HATA     107.646    1.50
+FEE         CAT         CAS         CAR     114.243    1.69
+FEE         CAT         CAS         HAS     108.698    1.50
+FEE         CAT         CAS        HASA     108.698    1.50
+FEE         CAR         CAS         HAS     108.698    1.50
+FEE         CAR         CAS        HASA     108.698    1.50
+FEE         HAS         CAS        HASA     107.646    1.50
+FEE         CAS         CAR         CAQ     114.243    1.69
+FEE         CAS         CAR         HAR     108.698    1.50
+FEE         CAS         CAR        HARA     108.698    1.50
+FEE         CAQ         CAR         HAR     108.698    1.50
+FEE         CAQ         CAR        HARA     108.698    1.50
+FEE         HAR         CAR        HARA     107.646    1.50
+FEE         CAR         CAQ         CAP     114.243    1.69
+FEE         CAR         CAQ         HAQ     108.698    1.50
+FEE         CAR         CAQ        HAQA     108.698    1.50
+FEE         CAP         CAQ         HAQ     108.698    1.50
+FEE         CAP         CAQ        HAQA     108.698    1.50
+FEE         HAQ         CAQ        HAQA     107.646    1.50
+FEE         CAQ         CAP         CAO     114.243    1.69
+FEE         CAQ         CAP         HAP     108.698    1.50
+FEE         CAQ         CAP        HAPA     108.698    1.50
+FEE         CAO         CAP         HAP     108.698    1.50
+FEE         CAO         CAP        HAPA     108.698    1.50
+FEE         HAP         CAP        HAPA     107.646    1.50
+FEE         CAP         CAO         CAN     114.243    1.69
+FEE         CAP         CAO         HAO     108.698    1.50
+FEE         CAP         CAO        HAOA     108.698    1.50
+FEE         CAN         CAO         HAO     108.698    1.50
+FEE         CAN         CAO        HAOA     108.698    1.50
+FEE         HAO         CAO        HAOA     107.646    1.50
+FEE         CAO         CAN         CAM     114.243    1.69
+FEE         CAO         CAN         HAN     108.698    1.50
+FEE         CAO         CAN        HANA     108.698    1.50
+FEE         CAM         CAN         HAN     108.698    1.50
+FEE         CAM         CAN        HANA     108.698    1.50
+FEE         HAN         CAN        HANA     107.646    1.50
+FEE         CAN         CAM         CAL     114.243    1.69
+FEE         CAN         CAM         HAM     108.698    1.50
+FEE         CAN         CAM        HAMA     108.698    1.50
+FEE         CAL         CAM         HAM     108.698    1.50
+FEE         CAL         CAM        HAMA     108.698    1.50
+FEE         HAM         CAM        HAMA     107.646    1.50
+FEE         CAM         CAL         CAK     114.243    1.69
+FEE         CAM         CAL         HAL     108.698    1.50
+FEE         CAM         CAL        HALA     108.698    1.50
+FEE         CAK         CAL         HAL     108.698    1.50
+FEE         CAK         CAL        HALA     108.698    1.50
+FEE         HAL         CAL        HALA     107.646    1.50
+FEE         CAL         CAK         CAJ     114.243    1.69
+FEE         CAL         CAK         HAK     108.698    1.50
+FEE         CAL         CAK        HAKA     108.698    1.50
+FEE         CAJ         CAK         HAK     108.698    1.50
+FEE         CAJ         CAK        HAKA     108.698    1.50
+FEE         HAK         CAK        HAKA     107.646    1.50
+FEE         CAK         CAJ         CAI     114.243    1.69
+FEE         CAK         CAJ         HAJ     108.698    1.50
+FEE         CAK         CAJ        HAJA     108.698    1.50
+FEE         CAI         CAJ         HAJ     108.698    1.50
+FEE         CAI         CAJ        HAJA     108.698    1.50
+FEE         HAJ         CAJ        HAJA     107.646    1.50
+FEE         CAJ         CAI         CAH     114.243    1.69
+FEE         CAJ         CAI         HAI     108.698    1.50
+FEE         CAJ         CAI        HAIA     108.698    1.50
+FEE         CAH         CAI         HAI     108.698    1.50
+FEE         CAH         CAI        HAIA     108.698    1.50
+FEE         HAI         CAI        HAIA     107.646    1.50
+FEE         CAI         CAH         CAG     114.243    1.69
+FEE         CAI         CAH         HAH     108.698    1.50
+FEE         CAI         CAH        HAHA     108.698    1.50
+FEE         CAG         CAH         HAH     108.698    1.50
+FEE         CAG         CAH        HAHA     108.698    1.50
+FEE         HAH         CAH        HAHA     107.646    1.50
+FEE         CAH         CAG         CAF     114.243    1.69
+FEE         CAH         CAG         HAG     108.698    1.50
+FEE         CAH         CAG        HAGA     108.698    1.50
+FEE         CAF         CAG         HAG     108.698    1.50
+FEE         CAF         CAG        HAGA     108.698    1.50
+FEE         HAG         CAG        HAGA     107.646    1.50
+FEE         CAG         CAF         CAE     114.243    1.69
+FEE         CAG         CAF         HAF     108.698    1.50
+FEE         CAG         CAF        HAFA     108.698    1.50
+FEE         CAE         CAF         HAF     108.698    1.50
+FEE         CAE         CAF        HAFA     108.698    1.50
+FEE         HAF         CAF        HAFA     107.646    1.50
+FEE         CAF         CAE         CAD     114.243    1.69
+FEE         CAF         CAE         HAE     108.698    1.50
+FEE         CAF         CAE        HAEA     108.698    1.50
+FEE         CAD         CAE         HAE     108.698    1.50
+FEE         CAD         CAE        HAEA     108.698    1.50
+FEE         HAE         CAE        HAEA     107.646    1.50
+FEE         CAE         CAD         CAC     114.243    1.69
+FEE         CAE         CAD         HAD     108.698    1.50
+FEE         CAE         CAD        HADA     108.698    1.50
+FEE         CAC         CAD         HAD     108.698    1.50
+FEE         CAC         CAD        HADA     108.698    1.50
+FEE         HAD         CAD        HADA     107.646    1.50
+FEE         CAD         CAC         CAB     113.472    1.51
+FEE         CAD         CAC         HAC     108.698    1.50
+FEE         CAD         CAC        HACA     108.698    1.50
+FEE         CAB         CAC         HAC     108.795    1.50
+FEE         CAB         CAC        HACA     108.795    1.50
+FEE         HAC         CAC        HACA     107.646    1.50
+FEE         CAC         CAB         CAA     112.836    1.50
+FEE         CAC         CAB         HAB     108.897    1.50
+FEE         CAC         CAB        HABA     108.897    1.50
+FEE         CAA         CAB         HAB     108.930    1.50
+FEE         CAA         CAB        HABA     108.930    1.50
+FEE         HAB         CAB        HABA     107.846    1.50
+FEE          N2         CAA         CAB     116.136    1.50
+FEE          N2         CAA         OAA     122.033    1.50
+FEE         CAB         CAA         OAA     121.831    1.50
+FEE          N2          C2          C3     109.748    1.50
+FEE          N2          C2          C1     111.308    2.28
+FEE          N2          C2          H2     108.194    1.50
+FEE          C3          C2          C1     111.094    2.85
+FEE          C3          C2          H2     107.639    1.50
+FEE          C1          C2          H2     108.763    1.50
+FEE          C3          O3         HO3     108.522    3.00
+FEE          C4          O4         HO4     108.815    1.50
+FEE          C1         O1A         C1A     113.687    1.50
+FEE         O1A         C1A         O6A     108.518    1.66
+FEE         O1A         C1A         C2A     108.855    1.50
+FEE         O1A         C1A        H1AA     109.834    1.50
+FEE         O6A         C1A         C2A     110.404    1.50
+FEE         O6A         C1A        H1AA     109.385    1.50
+FEE         C2A         C1A        H1AA     109.511    1.50
+FEE         C1A         O6A         C5M     112.999    1.58
+FEE         O6A         C5M         C6A     106.879    1.50
+FEE         O6A         C5M         C4A     109.140    1.86
+FEE         O6A         C5M         H5M     109.134    1.50
+FEE         C6A         C5M         C4A     112.996    1.59
+FEE         C6A         C5M         H5M     109.269    1.50
+FEE         C4A         C5M         H5M     108.960    1.50
+FEE         C5M         C6A         O5A     111.299    2.09
+FEE         C5M         C6A        H6AA     109.363    1.50
+FEE         C5M         C6A        H6AB     109.363    1.50
+FEE         O5A         C6A        H6AA     109.265    1.50
+FEE         O5A         C6A        H6AB     109.265    1.50
+FEE        H6AA         C6A        H6AB     108.155    1.50
+FEE         C6A         O5A        HO5A     109.472    2.41
+FEE         C5M         C4A         O4A     109.072    2.07
+FEE         C5M         C4A         C3A     110.272    1.76
+FEE         C5M         C4A         H4A     109.223    1.50
+FEE         O4A         C4A         C3A     110.101    1.97
+FEE         O4A         C4A         H4A     109.194    1.50
+FEE         C3A         C4A         H4A     109.032    1.50
+FEE         C4A         O4A        HO4A     109.564    3.00
+FEE         C4A         C3A         O3A     110.243    1.88
+FEE         C4A         C3A         C2A     110.687    1.67
+FEE         C4A         C3A         H3A     108.653    1.50
+FEE         O3A         C3A         C2A     109.587    2.09
+FEE         O3A         C3A         H3A     108.767    1.50
+FEE         C2A         C3A         H3A     108.712    1.50
+FEE         C3A         O3A        HO3A     108.895    2.41
+FEE         C1A         C2A         C3A     110.084    1.50
+FEE         C1A         C2A         O2A     110.083    1.70
+FEE         C1A         C2A         H2A     108.545    1.50
+FEE         C3A         C2A         O2A     111.053    2.62
+FEE         C3A         C2A         H2A     108.505    1.50
+FEE         O2A         C2A         H2A     108.551    1.50
+FEE         C2A         O2A        HO2A     109.126    2.06
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FEE                   nu0         C5M         O6A         C1A         C2A     -61.781    10.0     3
+FEE                   nu1         O6A         C1A         C2A         C3A      54.717    10.0     3
+FEE                   nu2         C1A         C2A         C3A         C4A     -50.921    10.0     3
+FEE                   nu3         C2A         C3A         C4A         C5M      52.476    10.0     3
+FEE                   nu4         C3A         C4A         C5M         O6A     -59.577    10.0     3
+FEE                   nu5         C4A         C5M         O6A         C1A      65.040    10.0     3
+FEE             sp2_sp2_1         CAB         CAA          N2          C2     180.000     5.0     2
+FEE             sp2_sp2_2         CAB         CAA          N2         HN2       0.000     5.0     2
+FEE             sp2_sp2_3         OAA         CAA          N2          C2       0.000     5.0     2
+FEE             sp2_sp2_4         OAA         CAA          N2         HN2     180.000     5.0     2
+FEE             sp2_sp3_1         CAA          N2          C2          C3       0.000    10.0     6
+FEE             sp2_sp3_2         CAA          N2          C2          C1     120.000    10.0     6
+FEE             sp2_sp3_3         CAA          N2          C2          H2    -120.000    10.0     6
+FEE             sp2_sp3_4         HN2          N2          C2          C3     180.000    10.0     6
+FEE             sp2_sp3_5         HN2          N2          C2          C1     -60.000    10.0     6
+FEE             sp2_sp3_6         HN2          N2          C2          H2      60.000    10.0     6
+FEE            sp3_sp3_34          C2          C3          C4          C5     180.000    10.0     3
+FEE            sp3_sp3_35          C2          C3          C4          O4     -60.000    10.0     3
+FEE            sp3_sp3_36          C2          C3          C4          H4      60.000    10.0     3
+FEE            sp3_sp3_37          O3          C3          C4          C5      60.000    10.0     3
+FEE            sp3_sp3_38          O3          C3          C4          O4     180.000    10.0     3
+FEE            sp3_sp3_39          O3          C3          C4          H4     -60.000    10.0     3
+FEE            sp3_sp3_40          H3          C3          C4          C5     -60.000    10.0     3
+FEE            sp3_sp3_41          H3          C3          C4          O4      60.000    10.0     3
+FEE            sp3_sp3_42          H3          C3          C4          H4     180.000    10.0     3
+FEE            sp3_sp3_43          N2          C2          C3          C4     180.000    10.0     3
+FEE            sp3_sp3_44          N2          C2          C3          O3     -60.000    10.0     3
+FEE            sp3_sp3_45          N2          C2          C3          H3      60.000    10.0     3
+FEE            sp3_sp3_46          C1          C2          C3          C4      60.000    10.0     3
+FEE            sp3_sp3_47          C1          C2          C3          O3     180.000    10.0     3
+FEE            sp3_sp3_48          C1          C2          C3          H3     -60.000    10.0     3
+FEE            sp3_sp3_49          H2          C2          C3          C4     -60.000    10.0     3
+FEE            sp3_sp3_50          H2          C2          C3          O3      60.000    10.0     3
+FEE            sp3_sp3_51          H2          C2          C3          H3     180.000    10.0     3
+FEE            sp3_sp3_52          C4          C3          O3         HO3     180.000    10.0     3
+FEE            sp3_sp3_53          C2          C3          O3         HO3      60.000    10.0     3
+FEE            sp3_sp3_54          H3          C3          O3         HO3     -60.000    10.0     3
+FEE            sp3_sp3_55          C3          C4          C5          C6     180.000    10.0     3
+FEE            sp3_sp3_56          C3          C4          C5          H5     -60.000    10.0     3
+FEE            sp3_sp3_57          C3          C4          C5         H5A      60.000    10.0     3
+FEE            sp3_sp3_58          O4          C4          C5          C6      60.000    10.0     3
+FEE            sp3_sp3_59          O4          C4          C5          H5     180.000    10.0     3
+FEE            sp3_sp3_60          O4          C4          C5         H5A     -60.000    10.0     3
+FEE            sp3_sp3_61          H4          C4          C5          C6     -60.000    10.0     3
+FEE            sp3_sp3_62          H4          C4          C5          H5      60.000    10.0     3
+FEE            sp3_sp3_63          H4          C4          C5         H5A     180.000    10.0     3
+FEE            sp3_sp3_64          C3          C4          O4         HO4     180.000    10.0     3
+FEE            sp3_sp3_65          C5          C4          O4         HO4      60.000    10.0     3
+FEE            sp3_sp3_66          H4          C4          O4         HO4     -60.000    10.0     3
+FEE            sp3_sp3_67          C4          C5          C6          C7     180.000    10.0     3
+FEE            sp3_sp3_68          C4          C5          C6          H6     -60.000    10.0     3
+FEE            sp3_sp3_69          C4          C5          C6         H6A      60.000    10.0     3
+FEE            sp3_sp3_70          H5          C5          C6          C7      60.000    10.0     3
+FEE            sp3_sp3_71          H5          C5          C6          H6     180.000    10.0     3
+FEE            sp3_sp3_72          H5          C5          C6         H6A     -60.000    10.0     3
+FEE            sp3_sp3_73         H5A          C5          C6          C7     -60.000    10.0     3
+FEE            sp3_sp3_74         H5A          C5          C6          H6      60.000    10.0     3
+FEE            sp3_sp3_75         H5A          C5          C6         H6A     180.000    10.0     3
+FEE            sp3_sp3_76          C5          C6          C7          C8     180.000    10.0     3
+FEE            sp3_sp3_77          C5          C6          C7          H7     -60.000    10.0     3
+FEE            sp3_sp3_78          C5          C6          C7         H7A      60.000    10.0     3
+FEE            sp3_sp3_79          H6          C6          C7          C8      60.000    10.0     3
+FEE            sp3_sp3_80          H6          C6          C7          H7     180.000    10.0     3
+FEE            sp3_sp3_81          H6          C6          C7         H7A     -60.000    10.0     3
+FEE            sp3_sp3_82         H6A          C6          C7          C8     -60.000    10.0     3
+FEE            sp3_sp3_83         H6A          C6          C7          H7      60.000    10.0     3
+FEE            sp3_sp3_84         H6A          C6          C7         H7A     180.000    10.0     3
+FEE            sp3_sp3_85          C6          C7          C8          C9     180.000    10.0     3
+FEE            sp3_sp3_86          C6          C7          C8          H8     -60.000    10.0     3
+FEE            sp3_sp3_87          C6          C7          C8         H8A      60.000    10.0     3
+FEE            sp3_sp3_88          H7          C7          C8          C9      60.000    10.0     3
+FEE            sp3_sp3_89          H7          C7          C8          H8     180.000    10.0     3
+FEE            sp3_sp3_90          H7          C7          C8         H8A     -60.000    10.0     3
+FEE            sp3_sp3_91         H7A          C7          C8          C9     -60.000    10.0     3
+FEE            sp3_sp3_92         H7A          C7          C8          H8      60.000    10.0     3
+FEE            sp3_sp3_93         H7A          C7          C8         H8A     180.000    10.0     3
+FEE            sp3_sp3_94          C7          C8          C9          H9     180.000    10.0     3
+FEE            sp3_sp3_95          C7          C8          C9         H9A     -60.000    10.0     3
+FEE            sp3_sp3_96          C7          C8          C9         H9B      60.000    10.0     3
+FEE            sp3_sp3_97          H8          C8          C9          H9      60.000    10.0     3
+FEE            sp3_sp3_98          H8          C8          C9         H9A     180.000    10.0     3
+FEE            sp3_sp3_99          H8          C8          C9         H9B     -60.000    10.0     3
+FEE           sp3_sp3_100         H8A          C8          C9          H9     -60.000    10.0     3
+FEE           sp3_sp3_101         H8A          C8          C9         H9A      60.000    10.0     3
+FEE           sp3_sp3_102         H8A          C8          C9         H9B     180.000    10.0     3
+FEE           sp3_sp3_103         O1A          C1          C2          N2     180.000    10.0     3
+FEE           sp3_sp3_104         O1A          C1          C2          C3     -60.000    10.0     3
+FEE           sp3_sp3_105         O1A          C1          C2          H2      60.000    10.0     3
+FEE           sp3_sp3_106          H1          C1          C2          N2      60.000    10.0     3
+FEE           sp3_sp3_107          H1          C1          C2          C3     180.000    10.0     3
+FEE           sp3_sp3_108          H1          C1          C2          H2     -60.000    10.0     3
+FEE           sp3_sp3_109         H1A          C1          C2          N2     -60.000    10.0     3
+FEE           sp3_sp3_110         H1A          C1          C2          C3      60.000    10.0     3
+FEE           sp3_sp3_111         H1A          C1          C2          H2     180.000    10.0     3
+FEE           sp3_sp3_112          C2          C1         O1A         C1A     180.000    10.0     3
+FEE           sp3_sp3_113          H1          C1         O1A         C1A      60.000    10.0     3
+FEE           sp3_sp3_114         H1A          C1         O1A         C1A     -60.000    10.0     3
+FEE           sp3_sp3_115         CAV         CAW         CAX         HAX     180.000    10.0     3
+FEE           sp3_sp3_116         CAV         CAW         CAX        HAXA     -60.000    10.0     3
+FEE           sp3_sp3_117         CAV         CAW         CAX        HAXB      60.000    10.0     3
+FEE           sp3_sp3_118         HAW         CAW         CAX         HAX      60.000    10.0     3
+FEE           sp3_sp3_119         HAW         CAW         CAX        HAXA     180.000    10.0     3
+FEE           sp3_sp3_120         HAW         CAW         CAX        HAXB     -60.000    10.0     3
+FEE           sp3_sp3_121        HAWA         CAW         CAX         HAX     -60.000    10.0     3
+FEE           sp3_sp3_122        HAWA         CAW         CAX        HAXA      60.000    10.0     3
+FEE           sp3_sp3_123        HAWA         CAW         CAX        HAXB     180.000    10.0     3
+FEE           sp3_sp3_124         CAU         CAV         CAW         CAX     180.000    10.0     3
+FEE           sp3_sp3_125         CAU         CAV         CAW         HAW     -60.000    10.0     3
+FEE           sp3_sp3_126         CAU         CAV         CAW        HAWA      60.000    10.0     3
+FEE           sp3_sp3_127         HAV         CAV         CAW         CAX      60.000    10.0     3
+FEE           sp3_sp3_128         HAV         CAV         CAW         HAW     180.000    10.0     3
+FEE           sp3_sp3_129         HAV         CAV         CAW        HAWA     -60.000    10.0     3
+FEE           sp3_sp3_130        HAVA         CAV         CAW         CAX     -60.000    10.0     3
+FEE           sp3_sp3_131        HAVA         CAV         CAW         HAW      60.000    10.0     3
+FEE           sp3_sp3_132        HAVA         CAV         CAW        HAWA     180.000    10.0     3
+FEE           sp3_sp3_133         CAT         CAU         CAV         CAW     180.000    10.0     3
+FEE           sp3_sp3_134         CAT         CAU         CAV         HAV     -60.000    10.0     3
+FEE           sp3_sp3_135         CAT         CAU         CAV        HAVA      60.000    10.0     3
+FEE           sp3_sp3_136         HAU         CAU         CAV         CAW      60.000    10.0     3
+FEE           sp3_sp3_137         HAU         CAU         CAV         HAV     180.000    10.0     3
+FEE           sp3_sp3_138         HAU         CAU         CAV        HAVA     -60.000    10.0     3
+FEE           sp3_sp3_139        HAUA         CAU         CAV         CAW     -60.000    10.0     3
+FEE           sp3_sp3_140        HAUA         CAU         CAV         HAV      60.000    10.0     3
+FEE           sp3_sp3_141        HAUA         CAU         CAV        HAVA     180.000    10.0     3
+FEE           sp3_sp3_142         CAS         CAT         CAU         CAV     180.000    10.0     3
+FEE           sp3_sp3_143         CAS         CAT         CAU         HAU     -60.000    10.0     3
+FEE           sp3_sp3_144         CAS         CAT         CAU        HAUA      60.000    10.0     3
+FEE           sp3_sp3_145         HAT         CAT         CAU         CAV      60.000    10.0     3
+FEE           sp3_sp3_146         HAT         CAT         CAU         HAU     180.000    10.0     3
+FEE           sp3_sp3_147         HAT         CAT         CAU        HAUA     -60.000    10.0     3
+FEE           sp3_sp3_148        HATA         CAT         CAU         CAV     -60.000    10.0     3
+FEE           sp3_sp3_149        HATA         CAT         CAU         HAU      60.000    10.0     3
+FEE           sp3_sp3_150        HATA         CAT         CAU        HAUA     180.000    10.0     3
+FEE           sp3_sp3_151         CAR         CAS         CAT         CAU     180.000    10.0     3
+FEE           sp3_sp3_152         CAR         CAS         CAT         HAT     -60.000    10.0     3
+FEE           sp3_sp3_153         CAR         CAS         CAT        HATA      60.000    10.0     3
+FEE           sp3_sp3_154         HAS         CAS         CAT         CAU      60.000    10.0     3
+FEE           sp3_sp3_155         HAS         CAS         CAT         HAT     180.000    10.0     3
+FEE           sp3_sp3_156         HAS         CAS         CAT        HATA     -60.000    10.0     3
+FEE           sp3_sp3_157        HASA         CAS         CAT         CAU     -60.000    10.0     3
+FEE           sp3_sp3_158        HASA         CAS         CAT         HAT      60.000    10.0     3
+FEE           sp3_sp3_159        HASA         CAS         CAT        HATA     180.000    10.0     3
+FEE           sp3_sp3_160         CAQ         CAR         CAS         CAT     180.000    10.0     3
+FEE           sp3_sp3_161         CAQ         CAR         CAS         HAS     -60.000    10.0     3
+FEE           sp3_sp3_162         CAQ         CAR         CAS        HASA      60.000    10.0     3
+FEE           sp3_sp3_163         HAR         CAR         CAS         CAT      60.000    10.0     3
+FEE           sp3_sp3_164         HAR         CAR         CAS         HAS     180.000    10.0     3
+FEE           sp3_sp3_165         HAR         CAR         CAS        HASA     -60.000    10.0     3
+FEE           sp3_sp3_166        HARA         CAR         CAS         CAT     -60.000    10.0     3
+FEE           sp3_sp3_167        HARA         CAR         CAS         HAS      60.000    10.0     3
+FEE           sp3_sp3_168        HARA         CAR         CAS        HASA     180.000    10.0     3
+FEE           sp3_sp3_169         CAP         CAQ         CAR         CAS     180.000    10.0     3
+FEE           sp3_sp3_170         CAP         CAQ         CAR         HAR     -60.000    10.0     3
+FEE           sp3_sp3_171         CAP         CAQ         CAR        HARA      60.000    10.0     3
+FEE           sp3_sp3_172         HAQ         CAQ         CAR         CAS      60.000    10.0     3
+FEE           sp3_sp3_173         HAQ         CAQ         CAR         HAR     180.000    10.0     3
+FEE           sp3_sp3_174         HAQ         CAQ         CAR        HARA     -60.000    10.0     3
+FEE           sp3_sp3_175        HAQA         CAQ         CAR         CAS     -60.000    10.0     3
+FEE           sp3_sp3_176        HAQA         CAQ         CAR         HAR      60.000    10.0     3
+FEE           sp3_sp3_177        HAQA         CAQ         CAR        HARA     180.000    10.0     3
+FEE           sp3_sp3_178         CAO         CAP         CAQ         CAR     180.000    10.0     3
+FEE           sp3_sp3_179         CAO         CAP         CAQ         HAQ     -60.000    10.0     3
+FEE           sp3_sp3_180         CAO         CAP         CAQ        HAQA      60.000    10.0     3
+FEE           sp3_sp3_181         HAP         CAP         CAQ         CAR      60.000    10.0     3
+FEE           sp3_sp3_182         HAP         CAP         CAQ         HAQ     180.000    10.0     3
+FEE           sp3_sp3_183         HAP         CAP         CAQ        HAQA     -60.000    10.0     3
+FEE           sp3_sp3_184        HAPA         CAP         CAQ         CAR     -60.000    10.0     3
+FEE           sp3_sp3_185        HAPA         CAP         CAQ         HAQ      60.000    10.0     3
+FEE           sp3_sp3_186        HAPA         CAP         CAQ        HAQA     180.000    10.0     3
+FEE           sp3_sp3_187         CAN         CAO         CAP         CAQ     180.000    10.0     3
+FEE           sp3_sp3_188         CAN         CAO         CAP         HAP     -60.000    10.0     3
+FEE           sp3_sp3_189         CAN         CAO         CAP        HAPA      60.000    10.0     3
+FEE           sp3_sp3_190         HAO         CAO         CAP         CAQ      60.000    10.0     3
+FEE           sp3_sp3_191         HAO         CAO         CAP         HAP     180.000    10.0     3
+FEE           sp3_sp3_192         HAO         CAO         CAP        HAPA     -60.000    10.0     3
+FEE           sp3_sp3_193        HAOA         CAO         CAP         CAQ     -60.000    10.0     3
+FEE           sp3_sp3_194        HAOA         CAO         CAP         HAP      60.000    10.0     3
+FEE           sp3_sp3_195        HAOA         CAO         CAP        HAPA     180.000    10.0     3
+FEE           sp3_sp3_196         CAM         CAN         CAO         CAP     180.000    10.0     3
+FEE           sp3_sp3_197         CAM         CAN         CAO         HAO     -60.000    10.0     3
+FEE           sp3_sp3_198         CAM         CAN         CAO        HAOA      60.000    10.0     3
+FEE           sp3_sp3_199         HAN         CAN         CAO         CAP      60.000    10.0     3
+FEE           sp3_sp3_200         HAN         CAN         CAO         HAO     180.000    10.0     3
+FEE           sp3_sp3_201         HAN         CAN         CAO        HAOA     -60.000    10.0     3
+FEE           sp3_sp3_202        HANA         CAN         CAO         CAP     -60.000    10.0     3
+FEE           sp3_sp3_203        HANA         CAN         CAO         HAO      60.000    10.0     3
+FEE           sp3_sp3_204        HANA         CAN         CAO        HAOA     180.000    10.0     3
+FEE           sp3_sp3_205         CAL         CAM         CAN         CAO     180.000    10.0     3
+FEE           sp3_sp3_206         CAL         CAM         CAN         HAN     -60.000    10.0     3
+FEE           sp3_sp3_207         CAL         CAM         CAN        HANA      60.000    10.0     3
+FEE           sp3_sp3_208         HAM         CAM         CAN         CAO      60.000    10.0     3
+FEE           sp3_sp3_209         HAM         CAM         CAN         HAN     180.000    10.0     3
+FEE           sp3_sp3_210         HAM         CAM         CAN        HANA     -60.000    10.0     3
+FEE           sp3_sp3_211        HAMA         CAM         CAN         CAO     -60.000    10.0     3
+FEE           sp3_sp3_212        HAMA         CAM         CAN         HAN      60.000    10.0     3
+FEE           sp3_sp3_213        HAMA         CAM         CAN        HANA     180.000    10.0     3
+FEE           sp3_sp3_214         CAK         CAL         CAM         CAN     180.000    10.0     3
+FEE           sp3_sp3_215         CAK         CAL         CAM         HAM     -60.000    10.0     3
+FEE           sp3_sp3_216         CAK         CAL         CAM        HAMA      60.000    10.0     3
+FEE           sp3_sp3_217         HAL         CAL         CAM         CAN      60.000    10.0     3
+FEE           sp3_sp3_218         HAL         CAL         CAM         HAM     180.000    10.0     3
+FEE           sp3_sp3_219         HAL         CAL         CAM        HAMA     -60.000    10.0     3
+FEE           sp3_sp3_220        HALA         CAL         CAM         CAN     -60.000    10.0     3
+FEE           sp3_sp3_221        HALA         CAL         CAM         HAM      60.000    10.0     3
+FEE           sp3_sp3_222        HALA         CAL         CAM        HAMA     180.000    10.0     3
+FEE           sp3_sp3_223         CAJ         CAK         CAL         CAM     180.000    10.0     3
+FEE           sp3_sp3_224         CAJ         CAK         CAL         HAL     -60.000    10.0     3
+FEE           sp3_sp3_225         CAJ         CAK         CAL        HALA      60.000    10.0     3
+FEE           sp3_sp3_226         HAK         CAK         CAL         CAM      60.000    10.0     3
+FEE           sp3_sp3_227         HAK         CAK         CAL         HAL     180.000    10.0     3
+FEE           sp3_sp3_228         HAK         CAK         CAL        HALA     -60.000    10.0     3
+FEE           sp3_sp3_229        HAKA         CAK         CAL         CAM     -60.000    10.0     3
+FEE           sp3_sp3_230        HAKA         CAK         CAL         HAL      60.000    10.0     3
+FEE           sp3_sp3_231        HAKA         CAK         CAL        HALA     180.000    10.0     3
+FEE           sp3_sp3_232         CAI         CAJ         CAK         CAL     180.000    10.0     3
+FEE           sp3_sp3_233         CAI         CAJ         CAK         HAK     -60.000    10.0     3
+FEE           sp3_sp3_234         CAI         CAJ         CAK        HAKA      60.000    10.0     3
+FEE           sp3_sp3_235         HAJ         CAJ         CAK         CAL      60.000    10.0     3
+FEE           sp3_sp3_236         HAJ         CAJ         CAK         HAK     180.000    10.0     3
+FEE           sp3_sp3_237         HAJ         CAJ         CAK        HAKA     -60.000    10.0     3
+FEE           sp3_sp3_238        HAJA         CAJ         CAK         CAL     -60.000    10.0     3
+FEE           sp3_sp3_239        HAJA         CAJ         CAK         HAK      60.000    10.0     3
+FEE           sp3_sp3_240        HAJA         CAJ         CAK        HAKA     180.000    10.0     3
+FEE           sp3_sp3_241         CAH         CAI         CAJ         CAK     180.000    10.0     3
+FEE           sp3_sp3_242         CAH         CAI         CAJ         HAJ     -60.000    10.0     3
+FEE           sp3_sp3_243         CAH         CAI         CAJ        HAJA      60.000    10.0     3
+FEE           sp3_sp3_244         HAI         CAI         CAJ         CAK      60.000    10.0     3
+FEE           sp3_sp3_245         HAI         CAI         CAJ         HAJ     180.000    10.0     3
+FEE           sp3_sp3_246         HAI         CAI         CAJ        HAJA     -60.000    10.0     3
+FEE           sp3_sp3_247        HAIA         CAI         CAJ         CAK     -60.000    10.0     3
+FEE           sp3_sp3_248        HAIA         CAI         CAJ         HAJ      60.000    10.0     3
+FEE           sp3_sp3_249        HAIA         CAI         CAJ        HAJA     180.000    10.0     3
+FEE           sp3_sp3_250         CAG         CAH         CAI         CAJ     180.000    10.0     3
+FEE           sp3_sp3_251         CAG         CAH         CAI         HAI     -60.000    10.0     3
+FEE           sp3_sp3_252         CAG         CAH         CAI        HAIA      60.000    10.0     3
+FEE           sp3_sp3_253         HAH         CAH         CAI         CAJ      60.000    10.0     3
+FEE           sp3_sp3_254         HAH         CAH         CAI         HAI     180.000    10.0     3
+FEE           sp3_sp3_255         HAH         CAH         CAI        HAIA     -60.000    10.0     3
+FEE           sp3_sp3_256        HAHA         CAH         CAI         CAJ     -60.000    10.0     3
+FEE           sp3_sp3_257        HAHA         CAH         CAI         HAI      60.000    10.0     3
+FEE           sp3_sp3_258        HAHA         CAH         CAI        HAIA     180.000    10.0     3
+FEE           sp3_sp3_259         CAF         CAG         CAH         CAI     180.000    10.0     3
+FEE           sp3_sp3_260         CAF         CAG         CAH         HAH     -60.000    10.0     3
+FEE           sp3_sp3_261         CAF         CAG         CAH        HAHA      60.000    10.0     3
+FEE           sp3_sp3_262         HAG         CAG         CAH         CAI      60.000    10.0     3
+FEE           sp3_sp3_263         HAG         CAG         CAH         HAH     180.000    10.0     3
+FEE           sp3_sp3_264         HAG         CAG         CAH        HAHA     -60.000    10.0     3
+FEE           sp3_sp3_265        HAGA         CAG         CAH         CAI     -60.000    10.0     3
+FEE           sp3_sp3_266        HAGA         CAG         CAH         HAH      60.000    10.0     3
+FEE           sp3_sp3_267        HAGA         CAG         CAH        HAHA     180.000    10.0     3
+FEE           sp3_sp3_268         CAE         CAF         CAG         CAH     180.000    10.0     3
+FEE           sp3_sp3_269         CAE         CAF         CAG         HAG     -60.000    10.0     3
+FEE           sp3_sp3_270         CAE         CAF         CAG        HAGA      60.000    10.0     3
+FEE           sp3_sp3_271         HAF         CAF         CAG         CAH      60.000    10.0     3
+FEE           sp3_sp3_272         HAF         CAF         CAG         HAG     180.000    10.0     3
+FEE           sp3_sp3_273         HAF         CAF         CAG        HAGA     -60.000    10.0     3
+FEE           sp3_sp3_274        HAFA         CAF         CAG         CAH     -60.000    10.0     3
+FEE           sp3_sp3_275        HAFA         CAF         CAG         HAG      60.000    10.0     3
+FEE           sp3_sp3_276        HAFA         CAF         CAG        HAGA     180.000    10.0     3
+FEE           sp3_sp3_277         CAD         CAE         CAF         CAG     180.000    10.0     3
+FEE           sp3_sp3_278         CAD         CAE         CAF         HAF     -60.000    10.0     3
+FEE           sp3_sp3_279         CAD         CAE         CAF        HAFA      60.000    10.0     3
+FEE           sp3_sp3_280         HAE         CAE         CAF         CAG      60.000    10.0     3
+FEE           sp3_sp3_281         HAE         CAE         CAF         HAF     180.000    10.0     3
+FEE           sp3_sp3_282         HAE         CAE         CAF        HAFA     -60.000    10.0     3
+FEE           sp3_sp3_283        HAEA         CAE         CAF         CAG     -60.000    10.0     3
+FEE           sp3_sp3_284        HAEA         CAE         CAF         HAF      60.000    10.0     3
+FEE           sp3_sp3_285        HAEA         CAE         CAF        HAFA     180.000    10.0     3
+FEE           sp3_sp3_286         CAC         CAD         CAE         CAF     180.000    10.0     3
+FEE           sp3_sp3_287         CAC         CAD         CAE         HAE     -60.000    10.0     3
+FEE           sp3_sp3_288         CAC         CAD         CAE        HAEA      60.000    10.0     3
+FEE           sp3_sp3_289         HAD         CAD         CAE         CAF      60.000    10.0     3
+FEE           sp3_sp3_290         HAD         CAD         CAE         HAE     180.000    10.0     3
+FEE           sp3_sp3_291         HAD         CAD         CAE        HAEA     -60.000    10.0     3
+FEE           sp3_sp3_292        HADA         CAD         CAE         CAF     -60.000    10.0     3
+FEE           sp3_sp3_293        HADA         CAD         CAE         HAE      60.000    10.0     3
+FEE           sp3_sp3_294        HADA         CAD         CAE        HAEA     180.000    10.0     3
+FEE           sp3_sp3_295         CAB         CAC         CAD         CAE     180.000    10.0     3
+FEE           sp3_sp3_296         CAB         CAC         CAD         HAD     -60.000    10.0     3
+FEE           sp3_sp3_297         CAB         CAC         CAD        HADA      60.000    10.0     3
+FEE           sp3_sp3_298         HAC         CAC         CAD         CAE      60.000    10.0     3
+FEE           sp3_sp3_299         HAC         CAC         CAD         HAD     180.000    10.0     3
+FEE           sp3_sp3_300         HAC         CAC         CAD        HADA     -60.000    10.0     3
+FEE           sp3_sp3_301        HACA         CAC         CAD         CAE     -60.000    10.0     3
+FEE           sp3_sp3_302        HACA         CAC         CAD         HAD      60.000    10.0     3
+FEE           sp3_sp3_303        HACA         CAC         CAD        HADA     180.000    10.0     3
+FEE           sp3_sp3_304         CAA         CAB         CAC         CAD     180.000    10.0     3
+FEE           sp3_sp3_305         CAA         CAB         CAC         HAC     -60.000    10.0     3
+FEE           sp3_sp3_306         CAA         CAB         CAC        HACA      60.000    10.0     3
+FEE           sp3_sp3_307         HAB         CAB         CAC         CAD      60.000    10.0     3
+FEE           sp3_sp3_308         HAB         CAB         CAC         HAC     180.000    10.0     3
+FEE           sp3_sp3_309         HAB         CAB         CAC        HACA     -60.000    10.0     3
+FEE           sp3_sp3_310        HABA         CAB         CAC         CAD     -60.000    10.0     3
+FEE           sp3_sp3_311        HABA         CAB         CAC         HAC      60.000    10.0     3
+FEE           sp3_sp3_312        HABA         CAB         CAC        HACA     180.000    10.0     3
+FEE             sp2_sp3_7          N2         CAA         CAB         HAB       0.000    10.0     6
+FEE             sp2_sp3_8          N2         CAA         CAB         CAC     120.000    10.0     6
+FEE             sp2_sp3_9          N2         CAA         CAB        HABA    -120.000    10.0     6
+FEE            sp2_sp3_10         OAA         CAA         CAB         HAB     180.000    10.0     6
+FEE            sp2_sp3_11         OAA         CAA         CAB         CAC     -60.000    10.0     6
+FEE            sp2_sp3_12         OAA         CAA         CAB        HABA      60.000    10.0     6
+FEE           sp3_sp3_313         O6A         C1A         O1A          C1     180.000    10.0     3
+FEE           sp3_sp3_314         C2A         C1A         O1A          C1      60.000    10.0     3
+FEE           sp3_sp3_315        H1AA         C1A         O1A          C1     -60.000    10.0     3
+FEE           sp3_sp3_325         O6A         C5M         C6A         O5A     180.000    10.0     3
+FEE           sp3_sp3_326         O6A         C5M         C6A        H6AA     -60.000    10.0     3
+FEE           sp3_sp3_327         O6A         C5M         C6A        H6AB      60.000    10.0     3
+FEE           sp3_sp3_328         C4A         C5M         C6A         O5A      60.000    10.0     3
+FEE           sp3_sp3_329         C4A         C5M         C6A        H6AA     180.000    10.0     3
+FEE           sp3_sp3_330         C4A         C5M         C6A        H6AB     -60.000    10.0     3
+FEE           sp3_sp3_331         H5M         C5M         C6A         O5A     -60.000    10.0     3
+FEE           sp3_sp3_332         H5M         C5M         C6A        H6AA      60.000    10.0     3
+FEE           sp3_sp3_333         H5M         C5M         C6A        H6AB     180.000    10.0     3
+FEE           sp3_sp3_334         C5M         C6A         O5A        HO5A     180.000    10.0     3
+FEE           sp3_sp3_335        H6AA         C6A         O5A        HO5A      60.000    10.0     3
+FEE           sp3_sp3_336        H6AB         C6A         O5A        HO5A     -60.000    10.0     3
+FEE           sp3_sp3_337         C5M         C4A         O4A        HO4A     180.000    10.0     3
+FEE           sp3_sp3_338         C3A         C4A         O4A        HO4A      60.000    10.0     3
+FEE           sp3_sp3_339         H4A         C4A         O4A        HO4A     -60.000    10.0     3
+FEE           sp3_sp3_340         C4A         C3A         O3A        HO3A     180.000    10.0     3
+FEE           sp3_sp3_341         C2A         C3A         O3A        HO3A      60.000    10.0     3
+FEE           sp3_sp3_342         H3A         C3A         O3A        HO3A     -60.000    10.0     3
+FEE           sp3_sp3_343         C1A         C2A         O2A        HO2A     180.000    10.0     3
+FEE           sp3_sp3_344         C3A         C2A         O2A        HO2A      60.000    10.0     3
+FEE           sp3_sp3_345         H2A         C2A         O2A        HO2A     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FEE    chir_1    C3    O3    C4    C2    positive
+FEE    chir_2    C4    O4    C3    C5    negative
+FEE    chir_3    C2    N2    C3    C1    positive
+FEE    chir_4    C1A    O6A    O1A    C2A    positive
+FEE    chir_5    C5M    O6A    C4A    C6A    negative
+FEE    chir_6    C4A    O4A    C5M    C3A    negative
+FEE    chir_7    C3A    O3A    C2A    C4A    positive
+FEE    chir_8    C2A    O2A    C1A    C3A    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FEE    plan-1          C2   0.020
+FEE    plan-1         CAA   0.020
+FEE    plan-1         HN2   0.020
+FEE    plan-1          N2   0.020
+FEE    plan-2         CAA   0.020
+FEE    plan-2         CAB   0.020
+FEE    plan-2          N2   0.020
+FEE    plan-2         OAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FEE           SMILES              ACDLabs 10.04                                                                                                                                                                                       O=C(NC(COC1OC(C(O)C(O)C1O)CO)C(O)C(O)CCCCC)CCCCCCCCCCCCCCCCCCCCCCC
+FEE SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                      CCCCCCCCCCCCCCCCCCCCCCCC(=O)N[C@@H](CO[C@H]1O[C@H](CO)[C@H](O)[C@H](O)[C@H]1O)[C@H](O)[C@H](O)CCCCC
+FEE           SMILES               CACTVS 3.341                                                                                                                                                               CCCCCCCCCCCCCCCCCCCCCCCC(=O)N[CH](CO[CH]1O[CH](CO)[CH](O)[CH](O)[CH]1O)[CH](O)[CH](O)CCCCC
+FEE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                CCCCCCCCCCCCCCCCCCCCCCCC(=O)N[C@@H](CO[C@@H]1[C@@H]([C@H]([C@H]([C@H](O1)CO)O)O)O)[C@@H]([C@@H](CCCCC)O)O
+FEE           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                     CCCCCCCCCCCCCCCCCCCCCCCC(=O)NC(COC1C(C(C(C(O1)CO)O)O)O)C(C(CCCCC)O)O
+FEE            InChI                InChI  1.03 InChI=1S/C39H77NO9/c1-3-5-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-26-28-34(43)40-31(35(44)32(42)27-25-6-4-2)30-48-39-38(47)37(46)36(45)33(29-41)49-39/h31-33,35-39,41-42,44-47H,3-30H2,1-2H3,(H,40,43)/t31-,32+,33+,35-,36-,37-,38+,39-/m0/s1
+FEE         InChIKey                InChI  1.03                                                                                                                                                                                                                              MPKIDHIOYNMFES-CLTBVUQJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FEE acedrg               243         "dictionary generator"                  
+FEE acedrg_database      11          "data source"                           
+FEE rdkit                2017.03.2   "Chemoinformatics tool"
+FEE refmac5              5.8.0238    "optimization tool"                     

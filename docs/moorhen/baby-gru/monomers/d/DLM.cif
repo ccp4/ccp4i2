@@ -1,0 +1,250 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DLM     DLM      3,5,7-trihydroxy-2-(3,4,5-trihydroxyphenyl)chromenium     NON-POLYMER     33     22     .     
+#
+data_comp_DLM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DLM     O12     O       O2      1       3.015       -4.234      15.094      
+DLM     C11     C       CR6     0       1.953       -3.547      15.620      
+DLM     C14     C       CR6     0       0.744       -3.530      14.763      
+DLM     C15     C       CR16    0       0.069       -2.331      14.502      
+DLM     C1      C       CR16    0       6.644       -4.605      17.075      
+DLM     C2      C       CR6     0       5.638       -3.893      17.694      
+DLM     O21     O       OH1     0       -1.709      -1.132      13.463      
+DLM     O22     O       OH1     0       -1.307      -5.886      12.838      
+DLM     C3      C       CR66    0       4.370       -3.733      17.061      
+DLM     C18     C       CR6     0       -0.857      -4.707      13.386      
+DLM     C19     C       CR16    0       0.270       -4.716      14.191      
+DLM     C17     C       CR6     0       -1.531      -3.509      13.134      
+DLM     O24     O       OH1     0       -2.650      -3.501      12.334      
+DLM     C16     C       CR6     0       -1.060      -2.321      13.700      
+DLM     C10     C       CR6     0       2.070       -2.941      16.874      
+DLM     O27     O       OH1     0       1.024       -2.246      17.434      
+DLM     C9      C       CR16    0       3.260       -3.025      17.595      
+DLM     C4      C       CR66    0       4.204       -4.335      15.782      
+DLM     C5      C       CR16    0       5.229       -5.061      15.150      
+DLM     C6      C       CR6     0       6.425       -5.181      15.808      
+DLM     O29     O       OH1     0       7.439       -5.887      15.206      
+DLM     O30     O       OH1     0       5.842       -3.327      18.930      
+DLM     H1      H       H       0       0.380       -1.514      14.885      
+DLM     H2      H       H       0       7.486       -4.706      17.505      
+DLM     H3      H       H       0       -1.764      -0.539      14.085      
+DLM     H4      H       H       0       -0.750      -6.511      12.636      
+DLM     H5      H       H       0       0.722       -5.541      14.357      
+DLM     H6      H       H       0       -3.301      -2.964      12.506      
+DLM     H7      H       H       0       0.848       -2.333      18.272      
+DLM     H8      H       H       0       3.328       -2.611      18.439      
+DLM     H9      H       H       0       5.097       -5.453      14.301      
+DLM     H10     H       H       0       8.238       -5.869      15.529      
+DLM     H11     H       H       0       5.767       -2.475      19.031      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DLM         O22         C18      SINGLE       n     1.374  0.0155     1.374  0.0155
+DLM         C17         O24      SINGLE       n     1.374  0.0155     1.374  0.0155
+DLM         C18         C17      DOUBLE       y     1.393  0.0100     1.393  0.0100
+DLM         C18         C19      SINGLE       y     1.381  0.0100     1.381  0.0100
+DLM         C17         C16      SINGLE       y     1.393  0.0100     1.393  0.0100
+DLM         C14         C19      DOUBLE       y     1.397  0.0100     1.397  0.0100
+DLM         O21         C16      SINGLE       n     1.374  0.0155     1.374  0.0155
+DLM         C15         C16      DOUBLE       y     1.381  0.0100     1.381  0.0100
+DLM         C14         C15      SINGLE       y     1.397  0.0100     1.397  0.0100
+DLM         C11         C14      SINGLE       n     1.480  0.0100     1.480  0.0100
+DLM         O12         C11      DOUBLE       y     1.366  0.0100     1.366  0.0100
+DLM         O12          C4      SINGLE       y     1.376  0.0100     1.376  0.0100
+DLM          C4          C5      DOUBLE       y     1.400  0.0178     1.400  0.0178
+DLM          C5          C6      SINGLE       y     1.366  0.0100     1.366  0.0100
+DLM         C11         C10      SINGLE       y     1.374  0.0200     1.374  0.0200
+DLM          C6         O29      SINGLE       n     1.374  0.0155     1.374  0.0155
+DLM          C3          C4      SINGLE       y     1.418  0.0180     1.418  0.0180
+DLM          C1          C6      DOUBLE       y     1.402  0.0106     1.402  0.0106
+DLM         C10         O27      SINGLE       n     1.374  0.0155     1.374  0.0155
+DLM         C10          C9      DOUBLE       y     1.377  0.0200     1.377  0.0200
+DLM          C3          C9      SINGLE       y     1.417  0.0111     1.417  0.0111
+DLM          C2          C3      DOUBLE       y     1.422  0.0100     1.422  0.0100
+DLM          C1          C2      SINGLE       y     1.374  0.0100     1.374  0.0100
+DLM          C2         O30      SINGLE       n     1.374  0.0155     1.374  0.0155
+DLM         C15          H1      SINGLE       n     1.082  0.0130     0.955  0.0200
+DLM          C1          H2      SINGLE       n     1.082  0.0130     0.951  0.0200
+DLM         O21          H3      SINGLE       n     0.966  0.0059     0.861  0.0200
+DLM         O22          H4      SINGLE       n     0.966  0.0059     0.861  0.0200
+DLM         C19          H5      SINGLE       n     1.082  0.0130     0.955  0.0200
+DLM         O24          H6      SINGLE       n     0.966  0.0059     0.861  0.0200
+DLM         O27          H7      SINGLE       n     0.966  0.0059     0.861  0.0200
+DLM          C9          H8      SINGLE       n     1.082  0.0130     0.942  0.0140
+DLM          C5          H9      SINGLE       n     1.082  0.0130     0.944  0.0183
+DLM         O29         H10      SINGLE       n     0.966  0.0059     0.861  0.0200
+DLM         O30         H11      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DLM         C11         O12          C4     120.796    1.50
+DLM         C14         C11         O12     115.242    1.50
+DLM         C14         C11         C10     124.984    1.79
+DLM         O12         C11         C10     119.774    1.50
+DLM         C19         C14         C15     119.441    1.50
+DLM         C19         C14         C11     120.279    1.50
+DLM         C15         C14         C11     120.279    1.50
+DLM         C16         C15         C14     120.515    1.50
+DLM         C16         C15          H1     119.461    1.50
+DLM         C14         C15          H1     120.024    1.50
+DLM          C6          C1          C2     119.327    1.50
+DLM          C6          C1          H2     120.408    1.50
+DLM          C2          C1          H2     120.265    1.50
+DLM          C3          C2          C1     120.497    1.50
+DLM          C3          C2         O30     118.134    2.50
+DLM          C1          C2         O30     121.370    3.00
+DLM         C16         O21          H3     120.000    3.00
+DLM         C18         O22          H4     120.000    3.00
+DLM          C4          C3          C9     117.663    1.50
+DLM          C4          C3          C2     117.810    1.50
+DLM          C9          C3          C2     124.526    1.50
+DLM         O22         C18         C17     119.985    3.00
+DLM         O22         C18         C19     119.985    3.00
+DLM         C17         C18         C19     120.029    1.50
+DLM         C18         C19         C14     120.515    1.50
+DLM         C18         C19          H5     119.461    1.50
+DLM         C14         C19          H5     120.024    1.50
+DLM         O24         C17         C18     120.265    3.00
+DLM         O24         C17         C16     120.265    3.00
+DLM         C18         C17         C16     119.470    1.50
+DLM         C17         O24          H6     120.000    3.00
+DLM         C17         C16         O21     119.985    3.00
+DLM         C17         C16         C15     120.029    1.50
+DLM         O21         C16         C15     119.985    3.00
+DLM         C11         C10         O27     119.837    3.00
+DLM         C11         C10          C9     120.327    1.50
+DLM         O27         C10          C9     119.837    3.00
+DLM         C10         O27          H7     120.000    3.00
+DLM         C10          C9          C3     119.824    1.50
+DLM         C10          C9          H8     120.145    1.50
+DLM          C3          C9          H8     120.032    1.50
+DLM         O12          C4          C5     115.302    1.51
+DLM         O12          C4          C3     121.616    1.50
+DLM          C5          C4          C3     123.082    1.50
+DLM          C4          C5          C6     117.857    1.50
+DLM          C4          C5          H9     121.053    1.50
+DLM          C6          C5          H9     121.089    1.50
+DLM          C5          C6         O29     119.287    3.00
+DLM          C5          C6          C1     121.427    1.50
+DLM         O29          C6          C1     119.287    3.00
+DLM          C6         O29         H10     120.000    3.00
+DLM          C2         O30         H11     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DLM       const_sp2_sp2_2         C14         C11         O12          C4     180.000     5.0     2
+DLM              const_60          C5          C4         O12         C11     180.000    10.0     2
+DLM             sp2_sp2_3         C18         C17         O24          H6     180.000     5.0     2
+DLM              const_34         O21         C16         C17         O24       0.000    10.0     2
+DLM            sp2_sp2_13         C11         C10         O27          H7     180.000     5.0     2
+DLM       const_sp2_sp2_9         O27         C10          C9          C3     180.000     5.0     2
+DLM              const_49         O12          C4          C5          C6     180.000    10.0     2
+DLM              const_44          C4          C5          C6         O29     180.000    10.0     2
+DLM            sp2_sp2_11          C5          C6         O29         H10     180.000     5.0     2
+DLM       const_sp2_sp2_6         O27         C10         C11         C14       0.000     5.0     2
+DLM             sp2_sp2_9         O12         C11         C14         C19       0.000     5.0     2
+DLM              const_19         C15         C14         C19         C18       0.000    10.0     2
+DLM              const_55         C19         C14         C15         C16       0.000    10.0     2
+DLM              const_36         C14         C15         C16         O21     180.000    10.0     2
+DLM              const_40          C2          C1          C6         O29     180.000    10.0     2
+DLM              const_62          C6          C1          C2         O30     180.000    10.0     2
+DLM            sp2_sp2_15          C3          C2         O30         H11     180.000     5.0     2
+DLM              const_53         O30          C2          C3          C4     180.000    10.0     2
+DLM             sp2_sp2_5         C17         C16         O21          H3     180.000     5.0     2
+DLM             sp2_sp2_1         C17         C18         O22          H4     180.000     5.0     2
+DLM              const_11          C4          C3          C9         C10       0.000    10.0     2
+DLM              const_15          C9          C3          C4         O12       0.000    10.0     2
+DLM              const_25         O22         C18         C19         C14     180.000    10.0     2
+DLM              const_30         O24         C17         C18         O22       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DLM    plan-1          C1   0.020
+DLM    plan-1         C10   0.020
+DLM    plan-1         C11   0.020
+DLM    plan-1         C14   0.020
+DLM    plan-1          C2   0.020
+DLM    plan-1          C3   0.020
+DLM    plan-1          C4   0.020
+DLM    plan-1          C5   0.020
+DLM    plan-1          C6   0.020
+DLM    plan-1          C9   0.020
+DLM    plan-1          H2   0.020
+DLM    plan-1          H8   0.020
+DLM    plan-1          H9   0.020
+DLM    plan-1         O12   0.020
+DLM    plan-1         O27   0.020
+DLM    plan-1         O29   0.020
+DLM    plan-1         O30   0.020
+DLM    plan-2         C11   0.020
+DLM    plan-2         C14   0.020
+DLM    plan-2         C15   0.020
+DLM    plan-2         C16   0.020
+DLM    plan-2         C17   0.020
+DLM    plan-2         C18   0.020
+DLM    plan-2         C19   0.020
+DLM    plan-2          H1   0.020
+DLM    plan-2          H5   0.020
+DLM    plan-2         O21   0.020
+DLM    plan-2         O22   0.020
+DLM    plan-2         O24   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DLM           SMILES              ACDLabs 12.01                                                                             Oc1cc(cc(O)c1O)c3[o+]c2cc(O)cc(O)c2cc3O
+DLM            InChI                InChI  1.03 InChI=1S/C15H10O7/c16-7-3-9(17)8-5-12(20)15(22-13(8)4-7)6-1-10(18)14(21)11(19)2-6/h1-5H,(H5-,16,17,18,19,20,21)/p+1
+DLM         InChIKey                InChI  1.03                                                                                         JKHRCGUTYDNCLE-UHFFFAOYSA-O
+DLM SMILES_CANONICAL               CACTVS 3.385                                                                         Oc1cc(O)c2cc(O)c([o+]c2c1)c3cc(O)c(O)c(O)c3
+DLM           SMILES               CACTVS 3.385                                                                         Oc1cc(O)c2cc(O)c([o+]c2c1)c3cc(O)c(O)c(O)c3
+DLM SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                         c1c(cc(c(c1O)O)O)c2c(cc3c(cc(cc3[o+]2)O)O)O
+DLM           SMILES "OpenEye OEToolkits" 1.7.6                                                                         c1c(cc(c(c1O)O)O)c2c(cc3c(cc(cc3[o+]2)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DLM acedrg               243         "dictionary generator"                  
+DLM acedrg_database      11          "data source"                           
+DLM rdkit                2017.03.2   "Chemoinformatics tool"
+DLM refmac5              5.8.0238    "optimization tool"                     

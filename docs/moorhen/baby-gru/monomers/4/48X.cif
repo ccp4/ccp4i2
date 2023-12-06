@@ -1,0 +1,143 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+48X     48X      "3-(phosphonooxy)propanoic acid"     NON-POLYMER     14     10     .     
+#
+data_comp_48X
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+48X     P       P       P       0       7.301       -1.666      -33.003     
+48X     O1      O       OC      -1      9.085       -2.251      -27.772     
+48X     O2      O       O       0       7.462       -0.769      -27.780     
+48X     O4P     O       OP      -1      8.517       -0.918      -33.518     
+48X     O2P     O       OP      -1      6.336       -0.773      -32.247     
+48X     O3P     O       O       0       6.620       -2.493      -34.078     
+48X     O1P     O       O2      0       7.864       -2.728      -31.922     
+48X     C3      C       CH2     0       8.491       -2.242      -30.708     
+48X     C2      C       CH2     0       7.523       -2.346      -29.561     
+48X     C1      C       C       0       8.063       -1.743      -28.275     
+48X     H4      H       H       0       8.767       -1.308      -30.819     
+48X     H5      H       H       0       9.288       -2.776      -30.509     
+48X     H6      H       H       0       7.318       -3.292      -29.405     
+48X     H7      H       H       0       6.692       -1.884      -29.804     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+48X           P         O3P      DOUBLE       n     1.517  0.0192     1.517  0.0192
+48X           P         O4P      SINGLE       n     1.517  0.0192     1.517  0.0192
+48X           P         O2P      SINGLE       n     1.517  0.0192     1.517  0.0192
+48X           P         O1P      SINGLE       n     1.614  0.0178     1.614  0.0178
+48X         O1P          C3      SINGLE       n     1.447  0.0162     1.447  0.0162
+48X          C3          C2      SINGLE       n     1.504  0.0200     1.504  0.0200
+48X          C2          C1      SINGLE       n     1.519  0.0109     1.519  0.0109
+48X          O2          C1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+48X          O1          C1      SINGLE       n     1.247  0.0187     1.247  0.0187
+48X          C3          H4      SINGLE       n     1.089  0.0100     0.980  0.0143
+48X          C3          H5      SINGLE       n     1.089  0.0100     0.980  0.0143
+48X          C2          H6      SINGLE       n     1.089  0.0100     0.981  0.0185
+48X          C2          H7      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+48X         O3P           P         O4P     112.864    1.69
+48X         O3P           P         O2P     112.864    1.69
+48X         O3P           P         O1P     105.795    2.09
+48X         O4P           P         O2P     112.864    1.69
+48X         O4P           P         O1P     105.795    2.09
+48X         O2P           P         O1P     105.795    2.09
+48X           P         O1P          C3     118.671    1.50
+48X         O1P          C3          C2     109.643    2.62
+48X         O1P          C3          H4     109.902    1.50
+48X         O1P          C3          H5     109.902    1.50
+48X          C2          C3          H4     109.480    1.94
+48X          C2          C3          H5     109.480    1.94
+48X          H4          C3          H5     108.388    1.50
+48X          C3          C2          C1     111.511    2.91
+48X          C3          C2          H6     108.485    1.50
+48X          C3          C2          H7     108.485    1.50
+48X          C1          C2          H6     108.416    1.50
+48X          C1          C2          H7     108.416    1.50
+48X          H6          C2          H7     108.097    1.58
+48X          C2          C1          O2     118.187    1.67
+48X          C2          C1          O1     118.187    1.67
+48X          O2          C1          O1     123.625    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+48X             sp3_sp3_3          C3         O1P           P         O3P      60.000    10.0     3
+48X             sp3_sp3_4          C2          C3         O1P           P     180.000    10.0     3
+48X             sp3_sp3_7          C1          C2          C3         O1P     180.000    10.0     3
+48X             sp2_sp3_2          O2          C1          C2          C3     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+48X    chir_1    P    O1P    O4P    O2P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+48X    plan-1          C1   0.020
+48X    plan-1          C2   0.020
+48X    plan-1          O1   0.020
+48X    plan-1          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+48X           SMILES              ACDLabs 12.01                                              O=P(OCCC(=O)O)(O)O
+48X            InChI                InChI  1.03 InChI=1S/C3H7O6P/c4-3(5)1-2-9-10(6,7)8/h1-2H2,(H,4,5)(H2,6,7,8)
+48X         InChIKey                InChI  1.03                                     QMMAAPSPIPKBBV-UHFFFAOYSA-N
+48X SMILES_CANONICAL               CACTVS 3.385                                            OC(=O)CCO[P](O)(O)=O
+48X           SMILES               CACTVS 3.385                                            OC(=O)CCO[P](O)(O)=O
+48X SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                            C(COP(=O)(O)O)C(=O)O
+48X           SMILES "OpenEye OEToolkits" 1.9.2                                            C(COP(=O)(O)O)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+48X acedrg               243         "dictionary generator"                  
+48X acedrg_database      11          "data source"                           
+48X rdkit                2017.03.2   "Chemoinformatics tool"
+48X refmac5              5.8.0238    "optimization tool"                     

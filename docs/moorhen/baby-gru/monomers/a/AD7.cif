@@ -1,0 +1,516 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AD7     AD7      "octyl 3-amino-3-deoxy-2-O-(2,6-dideoxy-alpha-L-lyxo-hexopyranosyl)-beta-D-galactopyranoside"     NON-POLYMER     68     29     .     
+#
+data_comp_AD7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AD7     CBA     C       CH2     0       13.134      -6.951      -9.210      
+AD7     CAZ     C       CH2     0       11.914      -7.826      -9.062      
+AD7     CAY     C       CH2     0       10.956      -7.373      -7.987      
+AD7     CAX     C       CH2     0       9.805       -8.318      -7.742      
+AD7     CAW     C       CH2     0       8.983       -7.957      -6.527      
+AD7     CAV     C       CH2     0       7.975       -9.005      -6.171      
+AD7     OAK     O       O2      0       8.651       -10.128     -5.574      
+AD7     CAJ     C       CH1     0       8.472       -11.357     -6.225      
+AD7     OAS     O       O2      0       7.135       -11.789     -6.033      
+AD7     CAR     C       CH1     0       6.832       -13.045     -6.684      
+AD7     CAT     C       CH2     0       5.349       -13.281     -6.511      
+AD7     OAU     O       OH1     0       4.585       -12.432     -7.366      
+AD7     CAP     C       CH1     0       7.700       -14.163     -6.087      
+AD7     OAQ     O       OH1     0       7.323       -14.407     -4.729      
+AD7     CAN     C       CH1     0       9.179       -13.772     -6.166      
+AD7     NAO     N       NT2     0       10.031      -14.772     -5.506      
+AD7     CAL     C       CH1     0       9.440       -12.365     -5.620      
+AD7     OAM     O       O2      0       10.791      -12.007     -5.961      
+AD7     CAA     C       CH1     0       11.767      -12.045     -4.944      
+AD7     CAB     C       CH2     0       13.133      -12.072     -5.597      
+AD7     OAI     O       O2      0       11.623      -10.928     -4.055      
+AD7     CAE     C       CH1     0       11.895      -9.634      -4.648      
+AD7     CAF     C       CH3     0       11.627      -8.597      -3.581      
+AD7     CAD     C       CH1     0       13.326      -9.607      -5.173      
+AD7     OAH     O       OH1     0       14.242      -9.774      -4.096      
+AD7     CAC     C       CH1     0       13.505      -10.721     -6.194      
+AD7     OAG     O       OH1     0       14.861      -10.757     -6.645      
+AD7     C19     C       CH2     0       14.091      -7.393      -10.290     
+AD7     C20     C       CH3     0       15.313      -6.513      -10.444     
+AD7     HBA     H       H       0       13.614      -6.933      -8.354      
+AD7     HBAA    H       H       0       12.842      -6.035      -9.406      
+AD7     HAZ     H       H       0       12.205      -8.740      -8.859      
+AD7     HAZA    H       H       0       11.437      -7.848      -9.919      
+AD7     HAY     H       H       0       10.595      -6.496      -8.237      
+AD7     HAYA    H       H       0       11.454      -7.261      -7.149      
+AD7     HAX     H       H       0       10.159      -9.226      -7.631      
+AD7     HAXA    H       H       0       9.223       -8.319      -8.532      
+AD7     HAW     H       H       0       8.517       -7.112      -6.697      
+AD7     HAWA    H       H       0       9.583       -7.822      -5.764      
+AD7     HAV     H       H       0       7.487       -9.286      -6.974      
+AD7     HAVA    H       H       0       7.327       -8.641      -5.534      
+AD7     HAJ     H       H       0       8.653       -11.264     -7.178      
+AD7     HAR     H       H       0       7.034       -12.966     -7.643      
+AD7     HAT     H       H       0       5.099       -13.110     -5.579      
+AD7     HATA    H       H       0       5.142       -14.217     -6.716      
+AD7     HOAU    H       H       0       4.589       -11.643     -7.056      
+AD7     HAP     H       H       0       7.563       -14.995     -6.605      
+AD7     HOAQ    H       H       0       7.310       -13.688     -4.291      
+AD7     HAN     H       H       0       9.423       -13.761     -7.115      
+AD7     HNAO    H       H       0       9.818       -14.816     -4.644      
+AD7     HNAA    H       H       0       9.890       -15.568     -5.875      
+AD7     HAL     H       H       0       9.327       -12.372     -4.637      
+AD7     HAA     H       H       0       11.652      -12.877     -4.422      
+AD7     HAB     H       H       0       13.816      -12.331     -4.916      
+AD7     HABA    H       H       0       13.138      -12.764     -6.318      
+AD7     HAE     H       H       0       11.274      -9.484      -5.403      
+AD7     HAF     H       H       0       12.123      -7.787      -3.784      
+AD7     HAFA    H       H       0       11.907      -8.938      -2.716      
+AD7     HAFB    H       H       0       10.677      -8.395      -3.557      
+AD7     HAD     H       H       0       13.487      -8.757      -5.599      
+AD7     HOAH    H       H       0       15.023      -9.613      -4.364      
+AD7     HAC     H       H       0       12.921      -10.542     -6.966      
+AD7     HOAG    H       H       0       15.028      -10.059     -7.084      
+AD7     H35     H       H       0       13.609      -7.415      -11.145     
+AD7     H36     H       H       0       14.385      -8.308      -10.091     
+AD7     H37     H       H       0       15.284      -5.789      -9.794      
+AD7     H38     H       H       0       15.333      -6.139      -11.342     
+AD7     H39     H       H       0       16.116      -7.044      -10.299     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AD7         CBA         CAZ      SINGLE       n     1.509  0.0200     1.509  0.0200
+AD7         CBA         C19      SINGLE       n     1.507  0.0200     1.507  0.0200
+AD7         CAZ         CAY      SINGLE       n     1.509  0.0200     1.509  0.0200
+AD7         CAY         CAX      SINGLE       n     1.509  0.0200     1.509  0.0200
+AD7         CAX         CAW      SINGLE       n     1.509  0.0200     1.509  0.0200
+AD7         CAW         CAV      SINGLE       n     1.497  0.0200     1.497  0.0200
+AD7         CAV         OAK      SINGLE       n     1.437  0.0100     1.437  0.0100
+AD7         OAK         CAJ      SINGLE       n     1.399  0.0118     1.399  0.0118
+AD7         CAJ         OAS      SINGLE       n     1.415  0.0124     1.415  0.0124
+AD7         CAJ         CAL      SINGLE       n     1.521  0.0111     1.521  0.0111
+AD7         OAS         CAR      SINGLE       n     1.439  0.0187     1.439  0.0187
+AD7         CAR         CAT      SINGLE       n     1.511  0.0100     1.511  0.0100
+AD7         CAR         CAP      SINGLE       n     1.525  0.0186     1.525  0.0186
+AD7         CAT         OAU      SINGLE       n     1.426  0.0200     1.426  0.0200
+AD7         CAP         OAQ      SINGLE       n     1.428  0.0123     1.428  0.0123
+AD7         CAP         CAN      SINGLE       n     1.529  0.0115     1.529  0.0115
+AD7         CAN         NAO      SINGLE       n     1.470  0.0100     1.470  0.0100
+AD7         CAN         CAL      SINGLE       n     1.529  0.0115     1.529  0.0115
+AD7         CAL         OAM      SINGLE       n     1.436  0.0105     1.436  0.0105
+AD7         OAM         CAA      SINGLE       n     1.406  0.0151     1.406  0.0151
+AD7         CAA         CAB      SINGLE       n     1.507  0.0154     1.507  0.0154
+AD7         CAA         OAI      SINGLE       n     1.422  0.0172     1.422  0.0172
+AD7         CAB         CAC      SINGLE       n     1.523  0.0100     1.523  0.0100
+AD7         OAI         CAE      SINGLE       n     1.444  0.0117     1.444  0.0117
+AD7         CAE         CAF      SINGLE       n     1.510  0.0100     1.510  0.0100
+AD7         CAE         CAD      SINGLE       n     1.524  0.0101     1.524  0.0101
+AD7         CAD         OAH      SINGLE       n     1.423  0.0100     1.423  0.0100
+AD7         CAD         CAC      SINGLE       n     1.521  0.0100     1.521  0.0100
+AD7         CAC         OAG      SINGLE       n     1.429  0.0100     1.429  0.0100
+AD7         C19         C20      SINGLE       n     1.510  0.0200     1.510  0.0200
+AD7         CBA         HBA      SINGLE       n     1.089  0.0100     0.981  0.0163
+AD7         CBA        HBAA      SINGLE       n     1.089  0.0100     0.981  0.0163
+AD7         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.981  0.0163
+AD7         CAZ        HAZA      SINGLE       n     1.089  0.0100     0.981  0.0163
+AD7         CAY         HAY      SINGLE       n     1.089  0.0100     0.981  0.0163
+AD7         CAY        HAYA      SINGLE       n     1.089  0.0100     0.981  0.0163
+AD7         CAX         HAX      SINGLE       n     1.089  0.0100     0.981  0.0163
+AD7         CAX        HAXA      SINGLE       n     1.089  0.0100     0.981  0.0163
+AD7         CAW         HAW      SINGLE       n     1.089  0.0100     0.980  0.0166
+AD7         CAW        HAWA      SINGLE       n     1.089  0.0100     0.980  0.0166
+AD7         CAV         HAV      SINGLE       n     1.089  0.0100     0.979  0.0200
+AD7         CAV        HAVA      SINGLE       n     1.089  0.0100     0.979  0.0200
+AD7         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.974  0.0190
+AD7         CAR         HAR      SINGLE       n     1.089  0.0100     0.983  0.0200
+AD7         CAT         HAT      SINGLE       n     1.089  0.0100     0.980  0.0184
+AD7         CAT        HATA      SINGLE       n     1.089  0.0100     0.980  0.0184
+AD7         OAU        HOAU      SINGLE       n     0.970  0.0120     0.848  0.0200
+AD7         CAP         HAP      SINGLE       n     1.089  0.0100     0.989  0.0181
+AD7         OAQ        HOAQ      SINGLE       n     0.970  0.0120     0.841  0.0200
+AD7         CAN         HAN      SINGLE       n     1.089  0.0100     0.980  0.0200
+AD7         NAO        HNAO      SINGLE       n     1.036  0.0160     0.889  0.0200
+AD7         NAO        HNAA      SINGLE       n     1.036  0.0160     0.889  0.0200
+AD7         CAL         HAL      SINGLE       n     1.089  0.0100     0.989  0.0181
+AD7         CAA         HAA      SINGLE       n     1.089  0.0100     0.989  0.0183
+AD7         CAB         HAB      SINGLE       n     1.089  0.0100     0.999  0.0200
+AD7         CAB        HABA      SINGLE       n     1.089  0.0100     0.999  0.0200
+AD7         CAE         HAE      SINGLE       n     1.089  0.0100     0.989  0.0117
+AD7         CAF         HAF      SINGLE       n     1.089  0.0100     0.971  0.0171
+AD7         CAF        HAFA      SINGLE       n     1.089  0.0100     0.971  0.0171
+AD7         CAF        HAFB      SINGLE       n     1.089  0.0100     0.971  0.0171
+AD7         CAD         HAD      SINGLE       n     1.089  0.0100     0.965  0.0200
+AD7         OAH        HOAH      SINGLE       n     0.970  0.0120     0.841  0.0200
+AD7         CAC         HAC      SINGLE       n     1.089  0.0100     0.984  0.0100
+AD7         OAG        HOAG      SINGLE       n     0.970  0.0120     0.841  0.0200
+AD7         C19         H35      SINGLE       n     1.089  0.0100     0.982  0.0155
+AD7         C19         H36      SINGLE       n     1.089  0.0100     0.982  0.0155
+AD7         C20         H37      SINGLE       n     1.089  0.0100     0.973  0.0157
+AD7         C20         H38      SINGLE       n     1.089  0.0100     0.973  0.0157
+AD7         C20         H39      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AD7         CAZ         CBA         C19     114.362    3.00
+AD7         CAZ         CBA         HBA     108.698    1.50
+AD7         CAZ         CBA        HBAA     108.698    1.50
+AD7         C19         CBA         HBA     108.653    1.50
+AD7         C19         CBA        HBAA     108.653    1.50
+AD7         HBA         CBA        HBAA     107.646    1.50
+AD7         CBA         CAZ         CAY     114.243    1.69
+AD7         CBA         CAZ         HAZ     108.698    1.50
+AD7         CBA         CAZ        HAZA     108.698    1.50
+AD7         CAY         CAZ         HAZ     108.698    1.50
+AD7         CAY         CAZ        HAZA     108.698    1.50
+AD7         HAZ         CAZ        HAZA     107.646    1.50
+AD7         CAZ         CAY         CAX     114.243    1.69
+AD7         CAZ         CAY         HAY     108.698    1.50
+AD7         CAZ         CAY        HAYA     108.698    1.50
+AD7         CAX         CAY         HAY     108.698    1.50
+AD7         CAX         CAY        HAYA     108.698    1.50
+AD7         HAY         CAY        HAYA     107.646    1.50
+AD7         CAY         CAX         CAW     113.259    1.53
+AD7         CAY         CAX         HAX     108.698    1.50
+AD7         CAY         CAX        HAXA     108.698    1.50
+AD7         CAW         CAX         HAX     108.902    1.50
+AD7         CAW         CAX        HAXA     108.902    1.50
+AD7         HAX         CAX        HAXA     107.646    1.50
+AD7         CAX         CAW         CAV     112.740    1.50
+AD7         CAX         CAW         HAW     108.944    1.50
+AD7         CAX         CAW        HAWA     108.944    1.50
+AD7         CAV         CAW         HAW     108.815    1.50
+AD7         CAV         CAW        HAWA     108.815    1.50
+AD7         HAW         CAW        HAWA     107.788    1.50
+AD7         CAW         CAV         OAK     109.508    2.51
+AD7         CAW         CAV         HAV     110.103    1.50
+AD7         CAW         CAV        HAVA     110.103    1.50
+AD7         OAK         CAV         HAV     109.567    1.50
+AD7         OAK         CAV        HAVA     109.567    1.50
+AD7         HAV         CAV        HAVA     108.316    1.50
+AD7         CAV         OAK         CAJ     113.687    1.50
+AD7         OAK         CAJ         OAS     108.518    1.66
+AD7         OAK         CAJ         CAL     108.249    1.50
+AD7         OAK         CAJ         HAJ     109.834    1.50
+AD7         OAS         CAJ         CAL     110.164    1.50
+AD7         OAS         CAJ         HAJ     109.385    1.50
+AD7         CAL         CAJ         HAJ     109.599    1.50
+AD7         CAJ         OAS         CAR     112.999    1.58
+AD7         OAS         CAR         CAT     106.879    1.50
+AD7         OAS         CAR         CAP     109.378    1.54
+AD7         OAS         CAR         HAR     109.134    1.50
+AD7         CAT         CAR         CAP     113.127    1.52
+AD7         CAT         CAR         HAR     109.269    1.50
+AD7         CAP         CAR         HAR     108.898    1.50
+AD7         CAR         CAT         OAU     111.299    2.09
+AD7         CAR         CAT         HAT     109.363    1.50
+AD7         CAR         CAT        HATA     109.363    1.50
+AD7         OAU         CAT         HAT     109.265    1.50
+AD7         OAU         CAT        HATA     109.265    1.50
+AD7         HAT         CAT        HATA     108.155    1.50
+AD7         CAT         OAU        HOAU     109.472    2.41
+AD7         CAR         CAP         OAQ     109.153    2.02
+AD7         CAR         CAP         CAN     109.627    1.81
+AD7         CAR         CAP         HAP     109.550    1.50
+AD7         OAQ         CAP         CAN     110.124    1.87
+AD7         OAQ         CAP         HAP     108.790    1.50
+AD7         CAN         CAP         HAP     108.987    1.50
+AD7         CAP         OAQ        HOAQ     109.099    3.00
+AD7         CAP         CAN         NAO     111.315    2.25
+AD7         CAP         CAN         CAL     111.932    2.44
+AD7         CAP         CAN         HAN     107.258    1.68
+AD7         NAO         CAN         CAL     111.315    2.25
+AD7         NAO         CAN         HAN     107.474    1.50
+AD7         CAL         CAN         HAN     107.258    1.68
+AD7         CAN         NAO        HNAO     109.341    3.00
+AD7         CAN         NAO        HNAA     109.341    3.00
+AD7        HNAO         NAO        HNAA     108.673    3.00
+AD7         CAJ         CAL         CAN     111.124    1.57
+AD7         CAJ         CAL         OAM     108.696    2.48
+AD7         CAJ         CAL         HAL     108.925    1.50
+AD7         CAN         CAL         OAM     107.272    1.50
+AD7         CAN         CAL         HAL     108.987    1.50
+AD7         OAM         CAL         HAL     109.522    1.50
+AD7         CAL         OAM         CAA     117.169    1.96
+AD7         OAM         CAA         CAB     108.296    1.50
+AD7         OAM         CAA         OAI     110.325    1.95
+AD7         OAM         CAA         HAA     109.322    1.50
+AD7         CAB         CAA         OAI     111.005    1.50
+AD7         CAB         CAA         HAA     109.482    1.68
+AD7         OAI         CAA         HAA     109.272    1.61
+AD7         CAA         CAB         CAC     111.124    1.57
+AD7         CAA         CAB         HAB     109.160    1.50
+AD7         CAA         CAB        HABA     109.160    1.50
+AD7         CAC         CAB         HAB     109.270    1.50
+AD7         CAC         CAB        HABA     109.270    1.50
+AD7         HAB         CAB        HABA     108.019    1.50
+AD7         CAA         OAI         CAE     113.097    1.50
+AD7         OAI         CAE         CAF     106.787    1.50
+AD7         OAI         CAE         CAD     109.213    1.50
+AD7         OAI         CAE         HAE     109.141    1.50
+AD7         CAF         CAE         CAD     113.299    1.50
+AD7         CAF         CAE         HAE     109.193    1.50
+AD7         CAD         CAE         HAE     108.992    1.50
+AD7         CAE         CAF         HAF     109.468    1.50
+AD7         CAE         CAF        HAFA     109.468    1.50
+AD7         CAE         CAF        HAFB     109.468    1.50
+AD7         HAF         CAF        HAFA     109.383    1.59
+AD7         HAF         CAF        HAFB     109.383    1.59
+AD7        HAFA         CAF        HAFB     109.383    1.59
+AD7         CAE         CAD         OAH     109.789    1.62
+AD7         CAE         CAD         CAC     110.072    1.92
+AD7         CAE         CAD         HAD     108.901    1.50
+AD7         OAH         CAD         CAC     110.081    2.02
+AD7         OAH         CAD         HAD     109.194    1.50
+AD7         CAC         CAD         HAD     109.166    1.50
+AD7         CAD         OAH        HOAH     109.564    3.00
+AD7         CAB         CAC         CAD     111.121    1.50
+AD7         CAB         CAC         OAG     109.687    1.93
+AD7         CAB         CAC         HAC     109.129    1.50
+AD7         CAD         CAC         OAG     110.081    2.02
+AD7         CAD         CAC         HAC     109.166    1.50
+AD7         OAG         CAC         HAC     108.933    1.50
+AD7         CAC         OAG        HOAG     109.387    3.00
+AD7         CBA         C19         C20     113.719    3.00
+AD7         CBA         C19         H35     108.758    1.50
+AD7         CBA         C19         H36     108.758    1.50
+AD7         C20         C19         H35     108.918    1.50
+AD7         C20         C19         H36     108.918    1.50
+AD7         H35         C19         H36     107.763    1.50
+AD7         C19         C20         H37     109.554    1.50
+AD7         C19         C20         H38     109.554    1.50
+AD7         C19         C20         H39     109.554    1.50
+AD7         H37         C20         H38     109.380    1.50
+AD7         H37         C20         H39     109.380    1.50
+AD7         H38         C20         H39     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AD7                   nu0         CAE         OAI         CAA         CAB      60.242    10.0     3
+AD7                   nu1         OAI         CAA         CAB         CAC     -53.947    10.0     3
+AD7                   nu2         CAA         CAB         CAC         CAD      51.204    10.0     3
+AD7                   nu3         CAB         CAC         CAD         CAE     -52.929    10.0     3
+AD7                   nu4         CAC         CAD         CAE         OAI      59.027    10.0     3
+AD7                   nu5         CAD         CAE         OAI         CAA     -63.419    10.0     3
+AD7            sp3_sp3_40         CAL         CAJ         OAS         CAR      60.000    10.0     3
+AD7            sp3_sp3_41         OAK         CAJ         OAS         CAR     -60.000    10.0     3
+AD7            sp3_sp3_42         HAJ         CAJ         OAS         CAR     180.000    10.0     3
+AD7            sp3_sp3_43         CAP         CAR         OAS         CAJ     -60.000    10.0     3
+AD7            sp3_sp3_44         CAT         CAR         OAS         CAJ      60.000    10.0     3
+AD7            sp3_sp3_45         HAR         CAR         OAS         CAJ     180.000    10.0     3
+AD7            sp3_sp3_46         CAN         CAP         CAR         OAS      60.000    10.0     3
+AD7            sp3_sp3_47         CAN         CAP         CAR         CAT     180.000    10.0     3
+AD7            sp3_sp3_48         CAN         CAP         CAR         HAR     -60.000    10.0     3
+AD7            sp3_sp3_49         OAQ         CAP         CAR         OAS     180.000    10.0     3
+AD7            sp3_sp3_50         OAQ         CAP         CAR         CAT     -60.000    10.0     3
+AD7            sp3_sp3_51         OAQ         CAP         CAR         HAR      60.000    10.0     3
+AD7            sp3_sp3_52         HAP         CAP         CAR         OAS     -60.000    10.0     3
+AD7            sp3_sp3_53         HAP         CAP         CAR         CAT      60.000    10.0     3
+AD7            sp3_sp3_54         HAP         CAP         CAR         HAR     180.000    10.0     3
+AD7            sp3_sp3_55         CAL         CAN         CAP         CAR     -60.000    10.0     3
+AD7            sp3_sp3_56         CAL         CAN         CAP         OAQ      60.000    10.0     3
+AD7            sp3_sp3_57         CAL         CAN         CAP         HAP     180.000    10.0     3
+AD7            sp3_sp3_58         NAO         CAN         CAP         CAR      60.000    10.0     3
+AD7            sp3_sp3_59         NAO         CAN         CAP         OAQ     180.000    10.0     3
+AD7            sp3_sp3_60         NAO         CAN         CAP         HAP     -60.000    10.0     3
+AD7            sp3_sp3_61         HAN         CAN         CAP         CAR     180.000    10.0     3
+AD7            sp3_sp3_62         HAN         CAN         CAP         OAQ     -60.000    10.0     3
+AD7            sp3_sp3_63         HAN         CAN         CAP         HAP      60.000    10.0     3
+AD7            sp3_sp3_64         CAJ         CAL         CAN         CAP      60.000    10.0     3
+AD7            sp3_sp3_65         CAJ         CAL         CAN         NAO     180.000    10.0     3
+AD7            sp3_sp3_66         CAJ         CAL         CAN         HAN     -60.000    10.0     3
+AD7            sp3_sp3_67         OAM         CAL         CAN         CAP     180.000    10.0     3
+AD7            sp3_sp3_68         OAM         CAL         CAN         NAO     -60.000    10.0     3
+AD7            sp3_sp3_69         OAM         CAL         CAN         HAN      60.000    10.0     3
+AD7            sp3_sp3_70         HAL         CAL         CAN         CAP     -60.000    10.0     3
+AD7            sp3_sp3_71         HAL         CAL         CAN         NAO      60.000    10.0     3
+AD7            sp3_sp3_72         HAL         CAL         CAN         HAN     180.000    10.0     3
+AD7            sp3_sp3_73         CAY         CAZ         CBA         C19     180.000    10.0     3
+AD7            sp3_sp3_74         CAY         CAZ         CBA         HBA     -60.000    10.0     3
+AD7            sp3_sp3_75         CAY         CAZ         CBA        HBAA      60.000    10.0     3
+AD7            sp3_sp3_76         HAZ         CAZ         CBA         C19      60.000    10.0     3
+AD7            sp3_sp3_77         HAZ         CAZ         CBA         HBA     180.000    10.0     3
+AD7            sp3_sp3_78         HAZ         CAZ         CBA        HBAA     -60.000    10.0     3
+AD7            sp3_sp3_79        HAZA         CAZ         CBA         C19     -60.000    10.0     3
+AD7            sp3_sp3_80        HAZA         CAZ         CBA         HBA      60.000    10.0     3
+AD7            sp3_sp3_81        HAZA         CAZ         CBA        HBAA     180.000    10.0     3
+AD7            sp3_sp3_82         C20         C19         CBA         CAZ     180.000    10.0     3
+AD7            sp3_sp3_83         C20         C19         CBA         HBA     -60.000    10.0     3
+AD7            sp3_sp3_84         C20         C19         CBA        HBAA      60.000    10.0     3
+AD7            sp3_sp3_85         H35         C19         CBA         CAZ      60.000    10.0     3
+AD7            sp3_sp3_86         H35         C19         CBA         HBA     180.000    10.0     3
+AD7            sp3_sp3_87         H35         C19         CBA        HBAA     -60.000    10.0     3
+AD7            sp3_sp3_88         H36         C19         CBA         CAZ     -60.000    10.0     3
+AD7            sp3_sp3_89         H36         C19         CBA         HBA      60.000    10.0     3
+AD7            sp3_sp3_90         H36         C19         CBA        HBAA     180.000    10.0     3
+AD7            sp3_sp3_91         CAX         CAY         CAZ         CBA     180.000    10.0     3
+AD7            sp3_sp3_92         CAX         CAY         CAZ         HAZ     -60.000    10.0     3
+AD7            sp3_sp3_93         CAX         CAY         CAZ        HAZA      60.000    10.0     3
+AD7            sp3_sp3_94         HAY         CAY         CAZ         CBA      60.000    10.0     3
+AD7            sp3_sp3_95         HAY         CAY         CAZ         HAZ     180.000    10.0     3
+AD7            sp3_sp3_96         HAY         CAY         CAZ        HAZA     -60.000    10.0     3
+AD7            sp3_sp3_97        HAYA         CAY         CAZ         CBA     -60.000    10.0     3
+AD7            sp3_sp3_98        HAYA         CAY         CAZ         HAZ      60.000    10.0     3
+AD7            sp3_sp3_99        HAYA         CAY         CAZ        HAZA     180.000    10.0     3
+AD7           sp3_sp3_100         CAW         CAX         CAY         CAZ     180.000    10.0     3
+AD7           sp3_sp3_101         CAW         CAX         CAY         HAY     -60.000    10.0     3
+AD7           sp3_sp3_102         CAW         CAX         CAY        HAYA      60.000    10.0     3
+AD7           sp3_sp3_103         HAX         CAX         CAY         CAZ      60.000    10.0     3
+AD7           sp3_sp3_104         HAX         CAX         CAY         HAY     180.000    10.0     3
+AD7           sp3_sp3_105         HAX         CAX         CAY        HAYA     -60.000    10.0     3
+AD7           sp3_sp3_106        HAXA         CAX         CAY         CAZ     -60.000    10.0     3
+AD7           sp3_sp3_107        HAXA         CAX         CAY         HAY      60.000    10.0     3
+AD7           sp3_sp3_108        HAXA         CAX         CAY        HAYA     180.000    10.0     3
+AD7           sp3_sp3_109         CAV         CAW         CAX         CAY     180.000    10.0     3
+AD7           sp3_sp3_110         CAV         CAW         CAX         HAX     -60.000    10.0     3
+AD7           sp3_sp3_111         CAV         CAW         CAX        HAXA      60.000    10.0     3
+AD7           sp3_sp3_112         HAW         CAW         CAX         CAY      60.000    10.0     3
+AD7           sp3_sp3_113         HAW         CAW         CAX         HAX     180.000    10.0     3
+AD7           sp3_sp3_114         HAW         CAW         CAX        HAXA     -60.000    10.0     3
+AD7           sp3_sp3_115        HAWA         CAW         CAX         CAY     -60.000    10.0     3
+AD7           sp3_sp3_116        HAWA         CAW         CAX         HAX      60.000    10.0     3
+AD7           sp3_sp3_117        HAWA         CAW         CAX        HAXA     180.000    10.0     3
+AD7           sp3_sp3_118         OAK         CAV         CAW         CAX     180.000    10.0     3
+AD7           sp3_sp3_119         OAK         CAV         CAW         HAW     -60.000    10.0     3
+AD7           sp3_sp3_120         OAK         CAV         CAW        HAWA      60.000    10.0     3
+AD7           sp3_sp3_121         HAV         CAV         CAW         CAX      60.000    10.0     3
+AD7           sp3_sp3_122         HAV         CAV         CAW         HAW     180.000    10.0     3
+AD7           sp3_sp3_123         HAV         CAV         CAW        HAWA     -60.000    10.0     3
+AD7           sp3_sp3_124        HAVA         CAV         CAW         CAX     -60.000    10.0     3
+AD7           sp3_sp3_125        HAVA         CAV         CAW         HAW      60.000    10.0     3
+AD7           sp3_sp3_126        HAVA         CAV         CAW        HAWA     180.000    10.0     3
+AD7           sp3_sp3_127         CAW         CAV         OAK         CAJ     180.000    10.0     3
+AD7           sp3_sp3_128         HAV         CAV         OAK         CAJ      60.000    10.0     3
+AD7           sp3_sp3_129        HAVA         CAV         OAK         CAJ     -60.000    10.0     3
+AD7           sp3_sp3_130         OAS         CAJ         OAK         CAV     180.000    10.0     3
+AD7           sp3_sp3_131         CAL         CAJ         OAK         CAV      60.000    10.0     3
+AD7           sp3_sp3_132         HAJ         CAJ         OAK         CAV     -60.000    10.0     3
+AD7           sp3_sp3_133         OAS         CAJ         CAL         CAN     -60.000    10.0     3
+AD7           sp3_sp3_134         OAS         CAJ         CAL         OAM      60.000    10.0     3
+AD7           sp3_sp3_135         OAS         CAJ         CAL         HAL     180.000    10.0     3
+AD7           sp3_sp3_136         OAK         CAJ         CAL         CAN      60.000    10.0     3
+AD7           sp3_sp3_137         OAK         CAJ         CAL         OAM     180.000    10.0     3
+AD7           sp3_sp3_138         OAK         CAJ         CAL         HAL     -60.000    10.0     3
+AD7           sp3_sp3_139         HAJ         CAJ         CAL         CAN     180.000    10.0     3
+AD7           sp3_sp3_140         HAJ         CAJ         CAL         OAM     -60.000    10.0     3
+AD7           sp3_sp3_141         HAJ         CAJ         CAL         HAL      60.000    10.0     3
+AD7           sp3_sp3_142         OAS         CAR         CAT         OAU     180.000    10.0     3
+AD7           sp3_sp3_143         OAS         CAR         CAT         HAT     -60.000    10.0     3
+AD7           sp3_sp3_144         OAS         CAR         CAT        HATA      60.000    10.0     3
+AD7           sp3_sp3_145         CAP         CAR         CAT         OAU      60.000    10.0     3
+AD7           sp3_sp3_146         CAP         CAR         CAT         HAT     180.000    10.0     3
+AD7           sp3_sp3_147         CAP         CAR         CAT        HATA     -60.000    10.0     3
+AD7           sp3_sp3_148         HAR         CAR         CAT         OAU     -60.000    10.0     3
+AD7           sp3_sp3_149         HAR         CAR         CAT         HAT      60.000    10.0     3
+AD7           sp3_sp3_150         HAR         CAR         CAT        HATA     180.000    10.0     3
+AD7           sp3_sp3_151         CAR         CAT         OAU        HOAU     180.000    10.0     3
+AD7           sp3_sp3_152         HAT         CAT         OAU        HOAU      60.000    10.0     3
+AD7           sp3_sp3_153        HATA         CAT         OAU        HOAU     -60.000    10.0     3
+AD7           sp3_sp3_154         CAR         CAP         OAQ        HOAQ     180.000    10.0     3
+AD7           sp3_sp3_155         CAN         CAP         OAQ        HOAQ      60.000    10.0     3
+AD7           sp3_sp3_156         HAP         CAP         OAQ        HOAQ     -60.000    10.0     3
+AD7           sp3_sp3_157         CAP         CAN         NAO        HNAO     180.000    10.0     3
+AD7           sp3_sp3_158         CAP         CAN         NAO        HNAA     -60.000    10.0     3
+AD7           sp3_sp3_159         CAL         CAN         NAO        HNAO      60.000    10.0     3
+AD7           sp3_sp3_160         CAL         CAN         NAO        HNAA     180.000    10.0     3
+AD7           sp3_sp3_161         HAN         CAN         NAO        HNAO     -60.000    10.0     3
+AD7           sp3_sp3_162         HAN         CAN         NAO        HNAA      60.000    10.0     3
+AD7           sp3_sp3_163         CAJ         CAL         OAM         CAA     180.000    10.0     3
+AD7           sp3_sp3_164         CAN         CAL         OAM         CAA      60.000    10.0     3
+AD7           sp3_sp3_165         HAL         CAL         OAM         CAA     -60.000    10.0     3
+AD7           sp3_sp3_166         CAB         CAA         OAM         CAL     180.000    10.0     3
+AD7           sp3_sp3_167         OAI         CAA         OAM         CAL      60.000    10.0     3
+AD7           sp3_sp3_168         HAA         CAA         OAM         CAL     -60.000    10.0     3
+AD7           sp3_sp3_172         OAI         CAE         CAF         HAF     180.000    10.0     3
+AD7           sp3_sp3_173         OAI         CAE         CAF        HAFA     -60.000    10.0     3
+AD7           sp3_sp3_174         OAI         CAE         CAF        HAFB      60.000    10.0     3
+AD7           sp3_sp3_175         CAD         CAE         CAF         HAF      60.000    10.0     3
+AD7           sp3_sp3_176         CAD         CAE         CAF        HAFA     180.000    10.0     3
+AD7           sp3_sp3_177         CAD         CAE         CAF        HAFB     -60.000    10.0     3
+AD7           sp3_sp3_178         HAE         CAE         CAF         HAF     -60.000    10.0     3
+AD7           sp3_sp3_179         HAE         CAE         CAF        HAFA      60.000    10.0     3
+AD7           sp3_sp3_180         HAE         CAE         CAF        HAFB     180.000    10.0     3
+AD7           sp3_sp3_181         CAE         CAD         OAH        HOAH     180.000    10.0     3
+AD7           sp3_sp3_182         CAC         CAD         OAH        HOAH      60.000    10.0     3
+AD7           sp3_sp3_183         HAD         CAD         OAH        HOAH     -60.000    10.0     3
+AD7           sp3_sp3_184         CAB         CAC         OAG        HOAG     180.000    10.0     3
+AD7           sp3_sp3_185         CAD         CAC         OAG        HOAG      60.000    10.0     3
+AD7           sp3_sp3_186         HAC         CAC         OAG        HOAG     -60.000    10.0     3
+AD7           sp3_sp3_187         CBA         C19         C20         H37     180.000    10.0     3
+AD7           sp3_sp3_188         CBA         C19         C20         H38     -60.000    10.0     3
+AD7           sp3_sp3_189         CBA         C19         C20         H39      60.000    10.0     3
+AD7           sp3_sp3_190         H35         C19         C20         H37      60.000    10.0     3
+AD7           sp3_sp3_191         H35         C19         C20         H38     180.000    10.0     3
+AD7           sp3_sp3_192         H35         C19         C20         H39     -60.000    10.0     3
+AD7           sp3_sp3_193         H36         C19         C20         H37     -60.000    10.0     3
+AD7           sp3_sp3_194         H36         C19         C20         H38      60.000    10.0     3
+AD7           sp3_sp3_195         H36         C19         C20         H39     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AD7    chir_1    CAJ    OAS    OAK    CAL    negative
+AD7    chir_2    CAR    OAS    CAP    CAT    negative
+AD7    chir_3    CAP    OAQ    CAR    CAN    negative
+AD7    chir_4    CAN    NAO    CAL    CAP    positive
+AD7    chir_5    CAL    OAM    CAJ    CAN    negative
+AD7    chir_6    CAA    OAM    OAI    CAB    positive
+AD7    chir_7    CAE    OAI    CAD    CAF    positive
+AD7    chir_8    CAD    OAH    CAE    CAC    positive
+AD7    chir_9    CAC    OAG    CAD    CAB    positive
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AD7           SMILES              ACDLabs 10.04                                                                                                                                  O(CCCCCCCC)C2OC(C(O)C(N)C2OC1OC(C)C(O)C(O)C1)CO
+AD7 SMILES_CANONICAL               CACTVS 3.341                                                                                               CCCCCCCCO[C@@H]1O[C@H](CO)[C@H](O)[C@H](N)[C@H]1O[C@H]2C[C@H](O)[C@H](O)[C@H](C)O2
+AD7           SMILES               CACTVS 3.341                                                                                                         CCCCCCCCO[CH]1O[CH](CO)[CH](O)[CH](N)[CH]1O[CH]2C[CH](O)[CH](O)[CH](C)O2
+AD7 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                          CCCCCCCCO[C@H]1[C@@H]([C@H]([C@H]([C@H](O1)CO)O)N)O[C@H]2C[C@@H]([C@@H]([C@@H](O2)C)O)O
+AD7           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                  CCCCCCCCOC1C(C(C(C(O1)CO)O)N)OC2CC(C(C(O2)C)O)O
+AD7            InChI                InChI  1.03 InChI=1S/C20H39NO8/c1-3-4-5-6-7-8-9-26-20-19(16(21)18(25)14(11-22)28-20)29-15-10-13(23)17(24)12(2)27-15/h12-20,22-25H,3-11,21H2,1-2H3/t12-,13-,14+,15-,16-,17+,18-,19+,20+/m0/s1
+AD7         InChIKey                InChI  1.03                                                                                                                                                      GHTLMVRROQXELT-HTYYFBMYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AD7 acedrg               243         "dictionary generator"                  
+AD7 acedrg_database      11          "data source"                           
+AD7 rdkit                2017.03.2   "Chemoinformatics tool"
+AD7 refmac5              5.8.0238    "optimization tool"                     

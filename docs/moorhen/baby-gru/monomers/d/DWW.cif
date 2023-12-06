@@ -1,0 +1,359 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DWW     DWW      "[2-({4-[(5Z)-5-(3,4-dichlorobenzylidene)-4-oxo-4,5-dihydro-1,3-thiazol-2-yl]piperazin-1-yl}methyl)phenyl]boronic acid"     NON-POLYMER     51     31     .     
+#
+data_comp_DWW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DWW     CBB     C       CR6     0       5.344       1.059       -1.019      
+DWW     CAV     C       CH2     0       4.607       -0.205      -1.395      
+DWW     NAS     N       NT      0       3.617       -0.628      -0.394      
+DWW     CAT     C       CH2     0       3.188       -2.013      -0.608      
+DWW     CAU     C       CH2     0       2.260       -2.472      0.494       
+DWW     CAR     C       CH2     0       2.436       0.239       -0.388      
+DWW     CAQ     C       CH2     0       1.506       -0.136      0.741       
+DWW     NAP     N       NR6     0       1.120       -1.555      0.664       
+DWW     CAJ     C       CR5     0       -0.143      -1.983      0.808       
+DWW     SAI     S       S2      0       -1.577      -1.029      1.019       
+DWW     NAK     N       NRD5    0       -0.561      -3.229      0.868       
+DWW     CAL     C       CR5     0       -1.754      -3.378      0.187       
+DWW     OAO     O       O       0       -2.089      -4.378      -0.442      
+DWW     CAH     C       CR5     0       -2.661      -2.194      0.380       
+DWW     CAG     C       C1      0       -3.968      -2.100      0.074       
+DWW     CAF     C       CR6     0       -4.805      -0.952      -0.236      
+DWW     CAA     C       CR16    0       -4.866      0.161       0.609       
+DWW     CAB     C       CR6     0       -5.673      1.236       0.293       
+DWW     CLN     CL      CL      0       -5.711      2.593       1.364       
+DWW     CAC     C       CR6     0       -6.442      1.222       -0.868      
+DWW     CLM     CL      CL      0       -7.460      2.559       -1.280      
+DWW     CAD     C       CR16    0       -6.398      0.125       -1.714      
+DWW     CAE     C       CR16    0       -5.586      -0.953      -1.395      
+DWW     C1      C       CR16    0       5.056       2.248       -1.694      
+DWW     C2      C       CR16    0       5.712       3.427       -1.371      
+DWW     C3      C       CR16    0       6.665       3.433       -0.365      
+DWW     C4      C       CR16    0       6.955       2.257       0.312       
+DWW     C5      C       CR6     0       6.310       1.046       0.013       
+DWW     B1      B       B       0       6.724       -0.220      0.848       
+DWW     O1      O       OH1     0       8.037       -0.539      1.004       
+DWW     O2      O       OH1     0       5.784       -1.009      1.434       
+DWW     H4      H       H       0       5.265       -0.923      -1.518      
+DWW     H5      H       H       0       4.151       -0.071      -2.255      
+DWW     H7      H       H       0       2.730       -2.084      -1.469      
+DWW     H8      H       H       0       3.971       -2.599      -0.631      
+DWW     H9      H       H       0       2.752       -2.519      1.329       
+DWW     H10     H       H       0       1.937       -3.362      0.284       
+DWW     H11     H       H       0       1.964       0.157       -1.241      
+DWW     H12     H       H       0       2.708       1.172       -0.281      
+DWW     H13     H       H       0       0.718       0.427       0.701       
+DWW     H14     H       H       0       1.948       0.023       1.589       
+DWW     H15     H       H       0       -4.419      -2.921      0.058       
+DWW     H17     H       H       0       -4.350      0.180       1.396       
+DWW     H24     H       H       0       -6.917      0.116       -2.498      
+DWW     H25     H       H       0       -5.557      -1.697      -1.971      
+DWW     H1      H       H       0       4.408       2.248       -2.379      
+DWW     H2      H       H       0       5.510       4.224       -1.836      
+DWW     H3      H       H       0       7.116       4.236       -0.140      
+DWW     H6      H       H       0       7.608       2.274       0.998       
+DWW     H16     H       H       0       8.491       -0.384      0.328       
+DWW     H18     H       H       0       5.720       -1.752      1.073       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DWW         CBB         CAV      SINGLE       n     1.509  0.0100     1.509  0.0100
+DWW         CAV         NAS      SINGLE       n     1.465  0.0100     1.465  0.0100
+DWW         NAS         CAT      SINGLE       n     1.462  0.0100     1.462  0.0100
+DWW         NAS         CAR      SINGLE       n     1.462  0.0100     1.462  0.0100
+DWW         CAT         CAU      SINGLE       n     1.509  0.0100     1.509  0.0100
+DWW         CAU         NAP      SINGLE       n     1.466  0.0100     1.466  0.0100
+DWW         CAR         CAQ      SINGLE       n     1.509  0.0100     1.509  0.0100
+DWW         CAQ         NAP      SINGLE       n     1.466  0.0100     1.466  0.0100
+DWW         NAP         CAJ      SINGLE       n     1.333  0.0100     1.333  0.0100
+DWW         CAJ         SAI      SINGLE       n     1.734  0.0200     1.734  0.0200
+DWW         CAJ         NAK      DOUBLE       n     1.304  0.0155     1.304  0.0155
+DWW         SAI         CAH      SINGLE       n     1.734  0.0200     1.734  0.0200
+DWW         NAK         CAL      SINGLE       n     1.363  0.0192     1.363  0.0192
+DWW         CAL         OAO      DOUBLE       n     1.228  0.0100     1.228  0.0100
+DWW         CAL         CAH      SINGLE       n     1.503  0.0100     1.503  0.0100
+DWW         CAH         CAG      DOUBLE       n     1.345  0.0100     1.345  0.0100
+DWW         CAG         CAF      SINGLE       n     1.453  0.0100     1.453  0.0100
+DWW         CAF         CAA      DOUBLE       y     1.395  0.0100     1.395  0.0100
+DWW         CAF         CAE      SINGLE       y     1.395  0.0100     1.395  0.0100
+DWW         CAA         CAB      SINGLE       y     1.377  0.0105     1.377  0.0105
+DWW         CAB         CAC      DOUBLE       y     1.387  0.0100     1.387  0.0100
+DWW         CAC         CAD      SINGLE       y     1.382  0.0100     1.382  0.0100
+DWW         CAD         CAE      DOUBLE       y     1.384  0.0100     1.384  0.0100
+DWW         CAB         CLN      SINGLE       n     1.729  0.0100     1.729  0.0100
+DWW         CAC         CLM      SINGLE       n     1.730  0.0100     1.730  0.0100
+DWW         CBB          C1      DOUBLE       y     1.392  0.0100     1.392  0.0100
+DWW          C1          C2      SINGLE       y     1.384  0.0100     1.384  0.0100
+DWW          C2          C3      DOUBLE       y     1.383  0.0100     1.383  0.0100
+DWW          C3          C4      SINGLE       y     1.385  0.0100     1.385  0.0100
+DWW          C4          C5      DOUBLE       y     1.401  0.0100     1.401  0.0100
+DWW         CBB          C5      SINGLE       y     1.409  0.0101     1.409  0.0101
+DWW          C5          B1      SINGLE       n     1.571  0.0110     1.571  0.0110
+DWW          B1          O1      SINGLE       n     1.360  0.0112     1.360  0.0112
+DWW          B1          O2      SINGLE       n     1.360  0.0112     1.360  0.0112
+DWW         CAV          H4      SINGLE       n     1.089  0.0100     0.982  0.0103
+DWW         CAV          H5      SINGLE       n     1.089  0.0100     0.982  0.0103
+DWW         CAT          H7      SINGLE       n     1.089  0.0100     0.978  0.0109
+DWW         CAT          H8      SINGLE       n     1.089  0.0100     0.978  0.0109
+DWW         CAU          H9      SINGLE       n     1.089  0.0100     0.970  0.0100
+DWW         CAU         H10      SINGLE       n     1.089  0.0100     0.970  0.0100
+DWW         CAR         H11      SINGLE       n     1.089  0.0100     0.978  0.0109
+DWW         CAR         H12      SINGLE       n     1.089  0.0100     0.978  0.0109
+DWW         CAQ         H13      SINGLE       n     1.089  0.0100     0.970  0.0100
+DWW         CAQ         H14      SINGLE       n     1.089  0.0100     0.970  0.0100
+DWW         CAG         H15      SINGLE       n     1.082  0.0130     0.937  0.0100
+DWW         CAA         H17      SINGLE       n     1.082  0.0130     0.941  0.0132
+DWW         CAD         H24      SINGLE       n     1.082  0.0130     0.941  0.0134
+DWW         CAE         H25      SINGLE       n     1.082  0.0130     0.941  0.0168
+DWW          C1          H1      SINGLE       n     1.082  0.0130     0.943  0.0173
+DWW          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0175
+DWW          C3          H3      SINGLE       n     1.082  0.0130     0.948  0.0167
+DWW          C4          H6      SINGLE       n     1.082  0.0130     0.947  0.0126
+DWW          O1         H16      SINGLE       n     0.970  0.0120     0.829  0.0200
+DWW          O2         H18      SINGLE       n     0.970  0.0120     0.829  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DWW         CAV         CBB          C1     119.531    1.50
+DWW         CAV         CBB          C5     120.505    1.88
+DWW          C1         CBB          C5     119.964    1.50
+DWW         CBB         CAV         NAS     113.178    1.54
+DWW         CBB         CAV          H4     109.072    1.50
+DWW         CBB         CAV          H5     109.072    1.50
+DWW         NAS         CAV          H4     108.958    1.50
+DWW         NAS         CAV          H5     108.958    1.50
+DWW          H4         CAV          H5     107.841    1.50
+DWW         CAV         NAS         CAT     111.092    1.50
+DWW         CAV         NAS         CAR     111.092    1.50
+DWW         CAT         NAS         CAR     109.260    1.50
+DWW         NAS         CAT         CAU     110.760    1.50
+DWW         NAS         CAT          H7     109.507    1.50
+DWW         NAS         CAT          H8     109.507    1.50
+DWW         CAU         CAT          H7     109.482    1.50
+DWW         CAU         CAT          H8     109.482    1.50
+DWW          H7         CAT          H8     108.187    1.50
+DWW         CAT         CAU         NAP     110.420    1.50
+DWW         CAT         CAU          H9     109.656    1.50
+DWW         CAT         CAU         H10     109.656    1.50
+DWW         NAP         CAU          H9     109.135    1.50
+DWW         NAP         CAU         H10     109.135    1.50
+DWW          H9         CAU         H10     108.431    1.50
+DWW         NAS         CAR         CAQ     110.760    1.50
+DWW         NAS         CAR         H11     109.507    1.50
+DWW         NAS         CAR         H12     109.507    1.50
+DWW         CAQ         CAR         H11     109.482    1.50
+DWW         CAQ         CAR         H12     109.482    1.50
+DWW         H11         CAR         H12     108.187    1.50
+DWW         CAR         CAQ         NAP     110.420    1.50
+DWW         CAR         CAQ         H13     109.656    1.50
+DWW         CAR         CAQ         H14     109.656    1.50
+DWW         NAP         CAQ         H13     109.135    1.50
+DWW         NAP         CAQ         H14     109.135    1.50
+DWW         H13         CAQ         H14     108.431    1.50
+DWW         CAU         NAP         CAQ     114.444    1.52
+DWW         CAU         NAP         CAJ     122.778    1.50
+DWW         CAQ         NAP         CAJ     122.778    1.50
+DWW         NAP         CAJ         SAI     125.862    2.42
+DWW         NAP         CAJ         NAK     127.160    1.98
+DWW         SAI         CAJ         NAK     106.979    2.21
+DWW         CAJ         SAI         CAH     106.979    3.00
+DWW         CAJ         NAK         CAL     107.955    1.51
+DWW         NAK         CAL         OAO     125.568    1.50
+DWW         NAK         CAL         CAH     111.109    1.50
+DWW         OAO         CAL         CAH     123.323    1.50
+DWW         SAI         CAH         CAL     106.979    3.00
+DWW         SAI         CAH         CAG     126.013    3.00
+DWW         CAL         CAH         CAG     127.008    1.50
+DWW         CAH         CAG         CAF     130.922    1.50
+DWW         CAH         CAG         H15     114.511    1.50
+DWW         CAF         CAG         H15     114.567    1.50
+DWW         CAG         CAF         CAA     120.465    2.98
+DWW         CAG         CAF         CAE     120.465    3.00
+DWW         CAA         CAF         CAE     119.070    1.50
+DWW         CAF         CAA         CAB     120.230    1.50
+DWW         CAF         CAA         H17     119.922    1.50
+DWW         CAB         CAA         H17     119.848    1.50
+DWW         CAA         CAB         CAC     120.071    1.50
+DWW         CAA         CAB         CLN     119.018    1.50
+DWW         CAC         CAB         CLN     120.911    1.50
+DWW         CAB         CAC         CAD     119.738    1.50
+DWW         CAB         CAC         CLM     121.068    1.50
+DWW         CAD         CAC         CLM     119.194    1.50
+DWW         CAC         CAD         CAE     119.497    1.50
+DWW         CAC         CAD         H24     120.007    1.50
+DWW         CAE         CAD         H24     120.495    1.50
+DWW         CAF         CAE         CAD     121.394    1.50
+DWW         CAF         CAE         H25     119.264    1.50
+DWW         CAD         CAE         H25     119.342    1.50
+DWW         CBB          C1          C2     120.610    1.50
+DWW         CBB          C1          H1     119.519    1.50
+DWW          C2          C1          H1     119.872    1.50
+DWW          C1          C2          C3     119.852    1.50
+DWW          C1          C2          H2     120.028    1.50
+DWW          C3          C2          H2     120.119    1.50
+DWW          C2          C3          C4     119.955    1.50
+DWW          C2          C3          H3     120.084    1.50
+DWW          C4          C3          H3     119.961    1.50
+DWW          C3          C4          C5     122.196    1.50
+DWW          C3          C4          H6     118.788    1.50
+DWW          C5          C4          H6     119.016    1.50
+DWW          C4          C5         CBB     117.423    1.50
+DWW          C4          C5          B1     117.889    1.68
+DWW         CBB          C5          B1     124.688    2.66
+DWW          C5          B1          O1     120.422    3.00
+DWW          C5          B1          O2     120.422    3.00
+DWW          O1          B1          O2     119.156    2.69
+DWW          B1          O1         H16     112.760    3.00
+DWW          B1          O2         H18     112.760    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DWW            sp2_sp3_14          C1         CBB         CAV         NAS     -90.000    10.0     6
+DWW       const_sp2_sp2_2          C2          C1         CBB         CAV     180.000     5.0     2
+DWW              const_48          B1          C5         CBB         CAV       0.000    10.0     2
+DWW            sp2_sp2_10         OAO         CAL         NAK         CAJ     180.000     5.0     2
+DWW             sp2_sp2_8         CAG         CAH         CAL         OAO       0.000     5.0     2
+DWW            sp2_sp2_18         CAF         CAG         CAH         SAI       0.000     5.0     2
+DWW            sp2_sp2_21         CAA         CAF         CAG         CAH     180.000     5.0     2
+DWW              const_22         CAB         CAA         CAF         CAG     180.000    10.0     2
+DWW              const_42         CAD         CAE         CAF         CAG     180.000    10.0     2
+DWW              const_26         CAF         CAA         CAB         CLN     180.000    10.0     2
+DWW              const_32         CLN         CAB         CAC         CLM       0.000    10.0     2
+DWW              const_35         CLM         CAC         CAD         CAE     180.000    10.0     2
+DWW            sp3_sp3_26         CBB         CAV         NAS         CAT     -60.000    10.0     3
+DWW              const_37         CAC         CAD         CAE         CAF       0.000    10.0     2
+DWW       const_sp2_sp2_5         CBB          C1          C2          C3       0.000     5.0     2
+DWW       const_sp2_sp2_9          C1          C2          C3          C4       0.000     5.0     2
+DWW              const_13          C2          C3          C4          C5       0.000    10.0     2
+DWW              const_18          C3          C4          C5          B1     180.000    10.0     2
+DWW            sp2_sp2_25          O1          B1          C5          C4     180.000     5.0     2
+DWW             sp3_sp3_2         CAU         CAT         NAS         CAV     180.000    10.0     3
+DWW            sp3_sp3_32         CAQ         CAR         NAS         CAV     -60.000    10.0     3
+DWW             sp3_sp3_7         NAS         CAT         CAU         NAP     -60.000    10.0     3
+DWW             sp2_sp3_1         CAQ         NAP         CAU         CAT       0.000    10.0     6
+DWW            sp3_sp3_16         NAP         CAQ         CAR         NAS      60.000    10.0     3
+DWW             sp2_sp3_7         CAU         NAP         CAQ         CAR       0.000    10.0     6
+DWW            sp2_sp2_11         SAI         CAJ         NAP         CAU     180.000     5.0     2
+DWW            sp2_sp2_16         NAP         CAJ         NAK         CAL     180.000     5.0     2
+DWW             sp2_sp2_2         NAP         CAJ         SAI         CAH     180.000     5.0     2
+DWW             sp2_sp2_4         CAG         CAH         SAI         CAJ     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DWW    chir_1    NAS    CAT    CAR    CAV    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DWW    plan-1          B1   0.020
+DWW    plan-1          C1   0.020
+DWW    plan-1          C2   0.020
+DWW    plan-1          C3   0.020
+DWW    plan-1          C4   0.020
+DWW    plan-1          C5   0.020
+DWW    plan-1         CAV   0.020
+DWW    plan-1         CBB   0.020
+DWW    plan-1          H1   0.020
+DWW    plan-1          H2   0.020
+DWW    plan-1          H3   0.020
+DWW    plan-1          H6   0.020
+DWW    plan-2         CAA   0.020
+DWW    plan-2         CAB   0.020
+DWW    plan-2         CAC   0.020
+DWW    plan-2         CAD   0.020
+DWW    plan-2         CAE   0.020
+DWW    plan-2         CAF   0.020
+DWW    plan-2         CAG   0.020
+DWW    plan-2         CLM   0.020
+DWW    plan-2         CLN   0.020
+DWW    plan-2         H17   0.020
+DWW    plan-2         H24   0.020
+DWW    plan-2         H25   0.020
+DWW    plan-3         CAJ   0.020
+DWW    plan-3         CAQ   0.020
+DWW    plan-3         CAU   0.020
+DWW    plan-3         NAP   0.020
+DWW    plan-4         CAJ   0.020
+DWW    plan-4         NAK   0.020
+DWW    plan-4         NAP   0.020
+DWW    plan-4         SAI   0.020
+DWW    plan-5         CAH   0.020
+DWW    plan-5         CAL   0.020
+DWW    plan-5         NAK   0.020
+DWW    plan-5         OAO   0.020
+DWW    plan-6         CAG   0.020
+DWW    plan-6         CAH   0.020
+DWW    plan-6         CAL   0.020
+DWW    plan-6         SAI   0.020
+DWW    plan-7         CAF   0.020
+DWW    plan-7         CAG   0.020
+DWW    plan-7         CAH   0.020
+DWW    plan-7         H15   0.020
+DWW    plan-8          B1   0.020
+DWW    plan-8          C5   0.020
+DWW    plan-8          O1   0.020
+DWW    plan-8          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DWW           SMILES              ACDLabs 12.01                                                                                                        Clc1ccc(cc1Cl)\C=C2/SC(=NC2=O)N4CCN(Cc3ccccc3B(O)O)CC4
+DWW            InChI                InChI  1.03 InChI=1S/C21H20BCl2N3O3S/c23-17-6-5-14(11-18(17)24)12-19-20(28)25-21(31-19)27-9-7-26(8-10-27)13-15-3-1-2-4-16(15)22(29)30/h1-6,11-12,29-30H,7-10,13H2/b19-12-
+DWW         InChIKey                InChI  1.03                                                                                                                                   GILNVXHIMLZKLO-UNOMPAQXSA-N
+DWW SMILES_CANONICAL               CACTVS 3.370                                                                                                    OB(O)c1ccccc1CN2CCN(CC2)C3=NC(=O)C(/S3)=C/c4ccc(Cl)c(Cl)c4
+DWW           SMILES               CACTVS 3.370                                                                                                      OB(O)c1ccccc1CN2CCN(CC2)C3=NC(=O)C(S3)=Cc4ccc(Cl)c(Cl)c4
+DWW SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                 B(c1ccccc1CN2CCN(CC2)C3=NC(=O)/C(=C/c4ccc(c(c4)Cl)Cl)/S3)(O)O
+DWW           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                    B(c1ccccc1CN2CCN(CC2)C3=NC(=O)C(=Cc4ccc(c(c4)Cl)Cl)S3)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DWW acedrg               243         "dictionary generator"                  
+DWW acedrg_database      11          "data source"                           
+DWW rdkit                2017.03.2   "Chemoinformatics tool"
+DWW refmac5              5.8.0238    "optimization tool"                     

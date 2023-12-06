@@ -1,0 +1,213 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IUU     IUU      "4-Amino-N-(3-chloro-4-fluorophenyl)-N'-hydroxy-1,2,5-oxadiazole-3-carboxamidine"     NON-POLYMER     25     18     .     
+#
+data_comp_IUU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IUU     FAR     F       F       0       -8.554      32.030      -32.203     
+IUU     CAL     C       CR6     0       -9.886      31.806      -32.312     
+IUU     CAM     C       CR6     0       -10.336     30.518      -32.479     
+IUU     CL      CL      CL      0       -9.213      29.204      -32.548     
+IUU     CAK     C       CR16    0       -10.755     32.872      -32.254     
+IUU     CAJ     C       CR16    0       -12.120     32.637      -32.366     
+IUU     CAI     C       CR6     0       -12.602     31.338      -32.541     
+IUU     CAN     C       CR16    0       -11.702     30.273      -32.589     
+IUU     NAH     N       NH1     0       -14.005     31.153      -32.644     
+IUU     CAG     C       C       0       -14.740     30.287      -33.397     
+IUU     NAO     N       N       0       -15.843     29.782      -32.947     
+IUU     OAP     O       OH1     0       -16.530     28.983      -33.900     
+IUU     CAA     C       CR5     0       -14.186     29.999      -34.729     
+IUU     CAB     C       CR5     0       -13.798     28.743      -35.318     
+IUU     NAF     N       NH2     0       -13.883     27.511      -34.767     
+IUU     NAC     N       NRD5    0       -13.347     28.965      -36.528     
+IUU     OAD     O       O2      0       -13.431     30.351      -36.712     
+IUU     NAE     N       NRD5    0       -13.947     30.955      -35.589     
+IUU     H1      H       H       0       -10.425     33.747      -32.139     
+IUU     H2      H       H       0       -12.722     33.357      -32.327     
+IUU     H3      H       H       0       -12.013     29.392      -32.707     
+IUU     H4      H       H       0       -14.481     31.688      -32.137     
+IUU     H5      H       H       0       -17.367     28.809      -33.793     
+IUU     H6      H       H       0       -13.623     26.806      -35.223     
+IUU     H7      H       H       0       -14.201     27.416      -33.953     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IUU         NAC         OAD      SINGLE       y     1.402  0.0100     1.402  0.0100
+IUU         OAD         NAE      SINGLE       y     1.376  0.0100     1.376  0.0100
+IUU         CAB         NAC      DOUBLE       y     1.310  0.0100     1.310  0.0100
+IUU         CAA         NAE      DOUBLE       y     1.307  0.0100     1.307  0.0100
+IUU         CAA         CAB      SINGLE       y     1.432  0.0200     1.432  0.0200
+IUU         CAB         NAF      SINGLE       n     1.352  0.0100     1.352  0.0100
+IUU         CAG         CAA      SINGLE       n     1.467  0.0100     1.467  0.0100
+IUU         NAO         OAP      SINGLE       n     1.415  0.0195     1.415  0.0195
+IUU         CAG         NAO      DOUBLE       n     1.289  0.0100     1.289  0.0100
+IUU         NAH         CAG      SINGLE       n     1.357  0.0118     1.357  0.0118
+IUU         CAI         NAH      SINGLE       n     1.415  0.0105     1.415  0.0105
+IUU         CAJ         CAI      DOUBLE       y     1.393  0.0100     1.393  0.0100
+IUU         CAI         CAN      SINGLE       y     1.392  0.0100     1.392  0.0100
+IUU         CAK         CAJ      SINGLE       y     1.386  0.0100     1.386  0.0100
+IUU         CAM         CAN      DOUBLE       y     1.386  0.0113     1.386  0.0113
+IUU         CAL         CAK      DOUBLE       y     1.373  0.0103     1.373  0.0103
+IUU         CAL         CAM      SINGLE       y     1.369  0.0120     1.369  0.0120
+IUU         CAM          CL      SINGLE       n     1.730  0.0100     1.730  0.0100
+IUU         FAR         CAL      SINGLE       n     1.355  0.0100     1.355  0.0100
+IUU         CAK          H1      SINGLE       n     1.082  0.0130     0.942  0.0102
+IUU         CAJ          H2      SINGLE       n     1.082  0.0130     0.939  0.0128
+IUU         CAN          H3      SINGLE       n     1.082  0.0130     0.942  0.0118
+IUU         NAH          H4      SINGLE       n     1.016  0.0100     0.876  0.0200
+IUU         OAP          H5      SINGLE       n     0.966  0.0059     0.861  0.0200
+IUU         NAF          H6      SINGLE       n     1.016  0.0100     0.879  0.0200
+IUU         NAF          H7      SINGLE       n     1.016  0.0100     0.879  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IUU         CAK         CAL         CAM     121.493    1.50
+IUU         CAK         CAL         FAR     119.333    1.50
+IUU         CAM         CAL         FAR     119.174    1.50
+IUU         CAN         CAM         CAL     119.558    1.50
+IUU         CAN         CAM          CL     120.091    1.50
+IUU         CAL         CAM          CL     120.352    1.50
+IUU         CAJ         CAK         CAL     118.870    1.50
+IUU         CAJ         CAK          H1     120.816    1.50
+IUU         CAL         CAK          H1     120.314    1.50
+IUU         CAI         CAJ         CAK     120.386    1.50
+IUU         CAI         CAJ          H2     119.838    1.50
+IUU         CAK         CAJ          H2     119.776    1.50
+IUU         NAH         CAI         CAJ     119.983    3.00
+IUU         NAH         CAI         CAN     119.983    3.00
+IUU         CAJ         CAI         CAN     120.033    1.50
+IUU         CAI         CAN         CAM     119.661    1.50
+IUU         CAI         CAN          H3     120.377    1.50
+IUU         CAM         CAN          H3     119.963    1.50
+IUU         CAG         NAH         CAI     127.188    2.78
+IUU         CAG         NAH          H4     116.406    2.17
+IUU         CAI         NAH          H4     116.407    2.05
+IUU         CAA         CAG         NAO     121.321    3.00
+IUU         CAA         CAG         NAH     115.798    2.93
+IUU         NAO         CAG         NAH     122.881    1.50
+IUU         OAP         NAO         CAG     110.625    1.59
+IUU         NAO         OAP          H5     120.000    3.00
+IUU         NAE         CAA         CAB     108.441    1.50
+IUU         NAE         CAA         CAG     121.678    1.50
+IUU         CAB         CAA         CAG     129.881    3.00
+IUU         NAC         CAB         CAA     108.441    1.50
+IUU         NAC         CAB         NAF     123.640    1.50
+IUU         CAA         CAB         NAF     127.919    2.73
+IUU         CAB         NAF          H6     119.959    1.50
+IUU         CAB         NAF          H7     119.959    1.50
+IUU          H6         NAF          H7     120.083    1.50
+IUU         OAD         NAC         CAB     105.741    1.50
+IUU         NAC         OAD         NAE     110.856    1.50
+IUU         OAD         NAE         CAA     106.522    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IUU             sp2_sp2_9         CAG         NAO         OAP          H5     180.000     5.0     2
+IUU              const_30         CAG         CAA         CAB         NAF       0.000    10.0     2
+IUU       const_sp2_sp2_2         CAG         CAA         NAE         OAD     180.000     5.0     2
+IUU             sp2_sp2_3         NAC         CAB         NAF          H6       0.000     5.0     2
+IUU       const_sp2_sp2_6         NAF         CAB         NAC         OAD     180.000     5.0     2
+IUU       const_sp2_sp2_4         CAB         NAC         OAD         NAE       0.000     5.0     2
+IUU       const_sp2_sp2_3         CAA         NAE         OAD         NAC       0.000     5.0     2
+IUU              const_34         FAR         CAL         CAM          CL       0.000    10.0     2
+IUU       const_sp2_sp2_8         CAJ         CAK         CAL         FAR     180.000     5.0     2
+IUU              const_25          CL         CAM         CAN         CAI     180.000    10.0     2
+IUU              const_11         CAI         CAJ         CAK         CAL       0.000    10.0     2
+IUU              const_17         NAH         CAI         CAJ         CAK     180.000    10.0     2
+IUU              const_21         NAH         CAI         CAN         CAM     180.000    10.0     2
+IUU            sp2_sp2_16         CAJ         CAI         NAH         CAG     180.000     5.0     2
+IUU            sp2_sp2_14         NAO         CAG         NAH         CAI       0.000     5.0     2
+IUU            sp2_sp2_11         NAH         CAG         NAO         OAP       0.000     5.0     2
+IUU             sp2_sp2_8         NAE         CAA         CAG         NAO     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IUU    plan-1         CAA   0.020
+IUU    plan-1         CAB   0.020
+IUU    plan-1         CAG   0.020
+IUU    plan-1         NAC   0.020
+IUU    plan-1         NAE   0.020
+IUU    plan-1         NAF   0.020
+IUU    plan-1         OAD   0.020
+IUU    plan-2         CAI   0.020
+IUU    plan-2         CAJ   0.020
+IUU    plan-2         CAK   0.020
+IUU    plan-2         CAL   0.020
+IUU    plan-2         CAM   0.020
+IUU    plan-2         CAN   0.020
+IUU    plan-2          CL   0.020
+IUU    plan-2         FAR   0.020
+IUU    plan-2          H1   0.020
+IUU    plan-2          H2   0.020
+IUU    plan-2          H3   0.020
+IUU    plan-2         NAH   0.020
+IUU    plan-3         CAG   0.020
+IUU    plan-3         CAI   0.020
+IUU    plan-3          H4   0.020
+IUU    plan-3         NAH   0.020
+IUU    plan-4         CAA   0.020
+IUU    plan-4         CAG   0.020
+IUU    plan-4         NAH   0.020
+IUU    plan-4         NAO   0.020
+IUU    plan-5         CAB   0.020
+IUU    plan-5          H6   0.020
+IUU    plan-5          H7   0.020
+IUU    plan-5         NAF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IUU            InChI                InChI  1.03 InChI=1S/C9H7ClFN5O2/c10-5-3-4(1-2-6(5)11)13-9(14-17)7-8(12)16-18-15-7/h1-3,17H,(H2,12,16)(H,13,14)
+IUU         InChIKey                InChI  1.03                                                                         HGXSLPIXNPASGZ-UHFFFAOYSA-N
+IUU SMILES_CANONICAL               CACTVS 3.385                                                                    Nc1nonc1C(/Nc2ccc(F)c(Cl)c2)=N\O
+IUU           SMILES               CACTVS 3.385                                                                      Nc1nonc1C(Nc2ccc(F)c(Cl)c2)=NO
+IUU SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                 c1cc(c(cc1N/C(=N/O)/c2c(non2)N)Cl)F
+IUU           SMILES "OpenEye OEToolkits" 2.0.6                                                                    c1cc(c(cc1NC(=NO)c2c(non2)N)Cl)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IUU acedrg               243         "dictionary generator"                  
+IUU acedrg_database      11          "data source"                           
+IUU rdkit                2017.03.2   "Chemoinformatics tool"
+IUU refmac5              5.8.0238    "optimization tool"                     

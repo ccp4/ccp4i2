@@ -1,0 +1,332 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CGS     CGS      "N-HYDROXY-2(R)-[[(4-METHOXYPHENYL)SULFONYL](3-PICOLYL)AMINO]-3-METHYLBUTANAMIDE HYDROCHLORIDE"     NON-POLYMER     50     27     .     
+#
+data_comp_CGS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CGS     N1      N       NT      0       3.373       -4.076      0.414       
+CGS     CC      C       CH2     0       3.274       -5.420      1.044       
+CGS     CA      C       CH1     0       2.142       -3.599      -0.267      
+CGS     S4      S       S3      0       4.829       -3.565      -0.142      
+CGS     C5      C       CR6     0       3.930       -5.570      2.415       
+CGS     CD      C       CR16    0       4.261       -4.482      3.222       
+CGS     CE      C       CR16    0       4.859       -4.685      4.457       
+CGS     CZ      C       CR16    0       5.108       -5.979      4.864       
+CGS     N11     N       NRD6    0       4.801       -7.055      4.117       
+CGS     CY      C       CR16    0       4.224       -6.831      2.921       
+CGS     C17     C       CR6     0       4.973       -4.004      -1.847      
+CGS     CE2     C       CR16    0       5.003       -5.345      -2.208      
+CGS     CD2     C       CR16    0       5.126       -5.704      -3.539      
+CGS     C20     C       CR6     0       5.221       -4.727      -4.523      
+CGS     CD1     C       CR16    0       5.205       -3.382      -4.158      
+CGS     CE1     C       CR16    0       5.082       -3.023      -2.827      
+CGS     O27     O       O2      0       5.352       -5.180      -5.813      
+CGS     COM     C       CH3     0       4.871       -4.383      -6.895      
+CGS     O32     O       O       0       5.852       -4.294      0.544       
+CGS     O33     O       O       0       4.827       -2.137      -0.046      
+CGS     C34     C       C       0       1.653       -4.497      -1.407      
+CGS     N35     N       NH1     0       1.837       -4.032      -2.630      
+CGS     CB      C       CH1     0       0.982       -3.274      0.707       
+CGS     CG2     C       CH3     0       -0.166      -2.559      -0.005      
+CGS     CG1     C       CH3     0       1.466       -2.464      1.906       
+CGS     O47     O       O       0       1.095       -5.567      -1.168      
+CGS     O48     O       OH1     0       1.425       -4.774      -3.731      
+CGS     HC1     H       H       0       3.679       -6.066      0.429       
+CGS     HC2     H       H       0       2.331       -5.660      1.129       
+CGS     HA      H       H       0       2.394       -2.734      -0.673      
+CGS     HD      H       H       0       4.089       -3.605      2.927       
+CGS     HE      H       H       0       5.088       -3.955      5.008       
+CGS     HZ      H       H       0       5.511       -6.120      5.703       
+CGS     HY      H       H       0       4.006       -7.577      2.392       
+CGS     HE2     H       H       0       4.937       -6.011      -1.552      
+CGS     HD2     H       H       0       5.142       -6.610      -3.777      
+CGS     HD1     H       H       0       5.273       -2.713      -4.811      
+CGS     HE1     H       H       0       5.067       -2.115      -2.594      
+CGS     HOM1    H       H       0       5.463       -3.624      -7.024      
+CGS     HOM2    H       H       0       3.976       -4.066      -6.694      
+CGS     HOM3    H       H       0       4.851       -4.918      -7.705      
+CGS     H49     H       H       0       2.211       -3.259      -2.798      
+CGS     HB      H       H       0       0.627       -4.130      1.052       
+CGS     HG21    H       H       0       -0.742      -2.125      0.647       
+CGS     HG22    H       H       0       -0.691      -3.205      -0.509      
+CGS     HG23    H       H       0       0.193       -1.891      -0.613      
+CGS     HG11    H       H       0       2.118       -1.805      1.611       
+CGS     HG12    H       H       0       1.878       -3.060      2.552       
+CGS     HG13    H       H       0       0.716       -2.010      2.327       
+CGS     H50     H       H       0       2.056       -5.335      -3.928      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CGS          N1          CC      SINGLE       n     1.478  0.0100     1.478  0.0100
+CGS          N1          CA      SINGLE       n     1.473  0.0100     1.473  0.0100
+CGS          N1          S4      SINGLE       n     1.631  0.0100     1.631  0.0100
+CGS          CC          C5      SINGLE       n     1.521  0.0111     1.521  0.0111
+CGS          CA         C34      SINGLE       n     1.524  0.0100     1.524  0.0100
+CGS          CA          CB      SINGLE       n     1.543  0.0100     1.543  0.0100
+CGS          S4         C17      SINGLE       n     1.763  0.0100     1.763  0.0100
+CGS          S4         O32      DOUBLE       n     1.431  0.0100     1.431  0.0100
+CGS          S4         O33      DOUBLE       n     1.431  0.0100     1.431  0.0100
+CGS          C5          CD      DOUBLE       y     1.380  0.0155     1.380  0.0155
+CGS          C5          CY      SINGLE       y     1.378  0.0171     1.378  0.0171
+CGS          CD          CE      SINGLE       y     1.375  0.0185     1.375  0.0185
+CGS          CE          CZ      DOUBLE       y     1.368  0.0200     1.368  0.0200
+CGS          CZ         N11      SINGLE       y     1.338  0.0156     1.338  0.0156
+CGS         N11          CY      DOUBLE       y     1.342  0.0117     1.342  0.0117
+CGS         C17         CE2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+CGS         C17         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+CGS         CE2         CD2      SINGLE       y     1.380  0.0100     1.380  0.0100
+CGS         CD2         C20      DOUBLE       y     1.386  0.0109     1.386  0.0109
+CGS         C20         CD1      SINGLE       y     1.386  0.0109     1.386  0.0109
+CGS         C20         O27      SINGLE       n     1.369  0.0100     1.369  0.0100
+CGS         CD1         CE1      DOUBLE       y     1.380  0.0100     1.380  0.0100
+CGS         O27         COM      SINGLE       n     1.424  0.0117     1.424  0.0117
+CGS         C34         N35      SINGLE       n     1.318  0.0100     1.318  0.0100
+CGS         C34         O47      DOUBLE       n     1.229  0.0102     1.229  0.0102
+CGS         N35         O48      SINGLE       n     1.389  0.0110     1.389  0.0110
+CGS          CB         CG2      SINGLE       n     1.521  0.0135     1.521  0.0135
+CGS          CB         CG1      SINGLE       n     1.521  0.0135     1.521  0.0135
+CGS          CC         HC1      SINGLE       n     1.089  0.0100     0.981  0.0172
+CGS          CC         HC2      SINGLE       n     1.089  0.0100     0.981  0.0172
+CGS          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0200
+CGS          CD          HD      SINGLE       n     1.082  0.0130     0.943  0.0173
+CGS          CE          HE      SINGLE       n     1.082  0.0130     0.942  0.0124
+CGS          CZ          HZ      SINGLE       n     1.082  0.0130     0.942  0.0166
+CGS          CY          HY      SINGLE       n     1.082  0.0130     0.940  0.0200
+CGS         CE2         HE2      SINGLE       n     1.082  0.0130     0.939  0.0200
+CGS         CD2         HD2      SINGLE       n     1.082  0.0130     0.937  0.0102
+CGS         CD1         HD1      SINGLE       n     1.082  0.0130     0.937  0.0102
+CGS         CE1         HE1      SINGLE       n     1.082  0.0130     0.939  0.0200
+CGS         COM        HOM1      SINGLE       n     1.089  0.0100     0.971  0.0157
+CGS         COM        HOM2      SINGLE       n     1.089  0.0100     0.971  0.0157
+CGS         COM        HOM3      SINGLE       n     1.089  0.0100     0.971  0.0157
+CGS         N35         H49      SINGLE       n     1.016  0.0100     0.875  0.0200
+CGS          CB          HB      SINGLE       n     1.089  0.0100     0.989  0.0175
+CGS         CG2        HG21      SINGLE       n     1.089  0.0100     0.973  0.0146
+CGS         CG2        HG22      SINGLE       n     1.089  0.0100     0.973  0.0146
+CGS         CG2        HG23      SINGLE       n     1.089  0.0100     0.973  0.0146
+CGS         CG1        HG11      SINGLE       n     1.089  0.0100     0.973  0.0146
+CGS         CG1        HG12      SINGLE       n     1.089  0.0100     0.973  0.0146
+CGS         CG1        HG13      SINGLE       n     1.089  0.0100     0.973  0.0146
+CGS         O48         H50      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CGS          CC          N1          CA     113.817    1.54
+CGS          CC          N1          S4     118.124    1.68
+CGS          CA          N1          S4     118.768    3.00
+CGS          N1          CC          C5     112.039    1.91
+CGS          N1          CC         HC1     108.433    1.50
+CGS          N1          CC         HC2     108.433    1.50
+CGS          C5          CC         HC1     109.779    1.55
+CGS          C5          CC         HC2     109.779    1.55
+CGS         HC1          CC         HC2     107.859    1.50
+CGS          N1          CA         C34     114.685    3.00
+CGS          N1          CA          CB     112.772    1.50
+CGS          N1          CA          HA     106.510    1.50
+CGS         C34          CA          CB     111.330    1.50
+CGS         C34          CA          HA     108.061    1.50
+CGS          CB          CA          HA     107.847    1.50
+CGS          N1          S4         C17     107.174    1.69
+CGS          N1          S4         O32     106.979    1.50
+CGS          N1          S4         O33     106.979    1.50
+CGS         C17          S4         O32     107.820    1.50
+CGS         C17          S4         O33     107.820    1.50
+CGS         O32          S4         O33     119.635    1.50
+CGS          CC          C5          CD     121.370    1.50
+CGS          CC          C5          CY     121.593    1.50
+CGS          CD          C5          CY     117.038    1.50
+CGS          C5          CD          CE     119.978    1.83
+CGS          C5          CD          HD     119.917    1.50
+CGS          CE          CD          HD     120.105    1.50
+CGS          CD          CE          CZ     118.535    1.50
+CGS          CD          CE          HE     120.734    1.50
+CGS          CZ          CE          HE     120.722    1.50
+CGS          CE          CZ         N11     123.287    1.50
+CGS          CE          CZ          HZ     118.584    1.50
+CGS         N11          CZ          HZ     118.129    1.50
+CGS          CZ         N11          CY     117.026    1.50
+CGS          C5          CY         N11     124.145    1.50
+CGS          C5          CY          HY     117.934    1.50
+CGS         N11          CY          HY     117.921    1.50
+CGS          S4         C17         CE2     119.838    1.50
+CGS          S4         C17         CE1     119.838    1.50
+CGS         CE2         C17         CE1     120.325    1.50
+CGS         C17         CE2         CD2     120.012    1.50
+CGS         C17         CE2         HE2     120.218    1.50
+CGS         CD2         CE2         HE2     119.770    1.50
+CGS         CE2         CD2         C20     119.912    1.50
+CGS         CE2         CD2         HD2     119.982    1.50
+CGS         C20         CD2         HD2     120.098    1.50
+CGS         CD2         C20         CD1     119.841    1.50
+CGS         CD2         C20         O27     120.080    3.00
+CGS         CD1         C20         O27     120.080    3.00
+CGS         C20         CD1         CE1     119.912    1.50
+CGS         C20         CD1         HD1     120.098    1.50
+CGS         CE1         CD1         HD1     119.982    1.50
+CGS         C17         CE1         CD1     120.012    1.50
+CGS         C17         CE1         HE1     120.218    1.50
+CGS         CD1         CE1         HE1     119.770    1.50
+CGS         C20         O27         COM     117.529    1.50
+CGS         O27         COM        HOM1     109.428    1.50
+CGS         O27         COM        HOM2     109.428    1.50
+CGS         O27         COM        HOM3     109.428    1.50
+CGS        HOM1         COM        HOM2     109.509    1.50
+CGS        HOM1         COM        HOM3     109.509    1.50
+CGS        HOM2         COM        HOM3     109.509    1.50
+CGS          CA         C34         N35     115.173    1.50
+CGS          CA         C34         O47     120.878    1.50
+CGS         N35         C34         O47     123.949    1.50
+CGS         C34         N35         O48     120.051    1.50
+CGS         C34         N35         H49     122.120    2.48
+CGS         O48         N35         H49     117.829    2.59
+CGS          CA          CB         CG2     111.173    1.50
+CGS          CA          CB         CG1     111.173    1.50
+CGS          CA          CB          HB     107.639    1.50
+CGS         CG2          CB         CG1     110.676    1.50
+CGS         CG2          CB          HB     107.603    1.50
+CGS         CG1          CB          HB     107.603    1.50
+CGS          CB         CG2        HG21     109.507    1.50
+CGS          CB         CG2        HG22     109.507    1.50
+CGS          CB         CG2        HG23     109.507    1.50
+CGS        HG21         CG2        HG22     109.411    1.50
+CGS        HG21         CG2        HG23     109.411    1.50
+CGS        HG22         CG2        HG23     109.411    1.50
+CGS          CB         CG1        HG11     109.507    1.50
+CGS          CB         CG1        HG12     109.507    1.50
+CGS          CB         CG1        HG13     109.507    1.50
+CGS        HG11         CG1        HG12     109.411    1.50
+CGS        HG11         CG1        HG13     109.411    1.50
+CGS        HG12         CG1        HG13     109.411    1.50
+CGS         N35         O48         H50     108.051    2.18
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CGS             sp3_sp3_1          C5          CC          N1          CA     180.000    10.0     3
+CGS             sp3_sp3_7         C34          CA          N1          CC     180.000    10.0     3
+CGS            sp3_sp3_14          CC          N1          S4         O32     -60.000    10.0     3
+CGS       const_sp2_sp2_3          S4         C17         CE2         CD2     180.000     5.0     2
+CGS              const_43          S4         C17         CE1         CD1     180.000    10.0     2
+CGS       const_sp2_sp2_5         C20         CD2         CE2         C17       0.000     5.0     2
+CGS              const_11         O27         C20         CD2         CE2     180.000    10.0     2
+CGS              const_15         O27         C20         CD1         CE1     180.000    10.0     2
+CGS             sp2_sp2_1         CD2         C20         O27         COM     180.000     5.0     2
+CGS              const_17         C20         CD1         CE1         C17       0.000    10.0     2
+CGS            sp3_sp3_29        HOM1         COM         O27         C20     -60.000    10.0     3
+CGS             sp2_sp3_2          CD          C5          CC          N1     -90.000    10.0     6
+CGS             sp2_sp2_3          CA         C34         N35         O48     180.000     5.0     2
+CGS            sp3_sp3_32          CA          CB         CG2        HG21     180.000    10.0     3
+CGS            sp3_sp3_44          CA          CB         CG1        HG11      60.000    10.0     3
+CGS             sp2_sp3_7         N35         C34          CA          N1       0.000    10.0     6
+CGS            sp3_sp3_20          N1          CA          CB         CG2     -60.000    10.0     3
+CGS            sp2_sp3_15         CE2         C17          S4          N1      30.000    10.0     6
+CGS              const_23          CC          C5          CD          CE     180.000    10.0     2
+CGS              const_39          CC          C5          CY         N11     180.000    10.0     2
+CGS              const_25          C5          CD          CE          CZ       0.000    10.0     2
+CGS              const_29          CD          CE          CZ         N11       0.000    10.0     2
+CGS              const_33          CE          CZ         N11          CY       0.000    10.0     2
+CGS              const_35          C5          CY         N11          CZ       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CGS    chir_1    N1    S4    CA    CC    negative
+CGS    chir_2    CA    N1    C34    CB    negative
+CGS    chir_3    S4    O32    O33    N1    both
+CGS    chir_4    CB    CA    CG2    CG1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CGS    plan-1         C17   0.020
+CGS    plan-1         C20   0.020
+CGS    plan-1         CD1   0.020
+CGS    plan-1         CD2   0.020
+CGS    plan-1         CE1   0.020
+CGS    plan-1         CE2   0.020
+CGS    plan-1         HD1   0.020
+CGS    plan-1         HD2   0.020
+CGS    plan-1         HE1   0.020
+CGS    plan-1         HE2   0.020
+CGS    plan-1         O27   0.020
+CGS    plan-1          S4   0.020
+CGS    plan-2          C5   0.020
+CGS    plan-2          CC   0.020
+CGS    plan-2          CD   0.020
+CGS    plan-2          CE   0.020
+CGS    plan-2          CY   0.020
+CGS    plan-2          CZ   0.020
+CGS    plan-2          HD   0.020
+CGS    plan-2          HE   0.020
+CGS    plan-2          HY   0.020
+CGS    plan-2          HZ   0.020
+CGS    plan-2         N11   0.020
+CGS    plan-3         C34   0.020
+CGS    plan-3          CA   0.020
+CGS    plan-3         N35   0.020
+CGS    plan-3         O47   0.020
+CGS    plan-4         C34   0.020
+CGS    plan-4         H49   0.020
+CGS    plan-4         N35   0.020
+CGS    plan-4         O48   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CGS           SMILES              ACDLabs 10.04                                                                                                    O=C(NO)C(N(S(=O)(=O)c1ccc(OC)cc1)Cc2cccnc2)C(C)C
+CGS SMILES_CANONICAL               CACTVS 3.341                                                                                              COc1ccc(cc1)[S](=O)(=O)N(Cc2cccnc2)[C@H](C(C)C)C(=O)NO
+CGS           SMILES               CACTVS 3.341                                                                                               COc1ccc(cc1)[S](=O)(=O)N(Cc2cccnc2)[CH](C(C)C)C(=O)NO
+CGS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                            CC(C)[C@H](C(=O)NO)[N@@](Cc1cccnc1)S(=O)(=O)c2ccc(cc2)OC
+CGS           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                    CC(C)C(C(=O)NO)N(Cc1cccnc1)S(=O)(=O)c2ccc(cc2)OC
+CGS            InChI                InChI  1.03 InChI=1S/C18H23N3O5S/c1-13(2)17(18(22)20-23)21(12-14-5-4-10-19-11-14)27(24,25)16-8-6-15(26-3)7-9-16/h4-11,13,17,23H,12H2,1-3H3,(H,20,22)/t17-/m1/s1
+CGS         InChIKey                InChI  1.03                                                                                                                         BSIZUMJRKYHEBR-QGZVFWFLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CGS acedrg               243         "dictionary generator"                  
+CGS acedrg_database      11          "data source"                           
+CGS rdkit                2017.03.2   "Chemoinformatics tool"
+CGS refmac5              5.8.0238    "optimization tool"                     

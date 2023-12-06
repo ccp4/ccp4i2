@@ -1,0 +1,197 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MHT     MHT      (3S)-3-(methylsulfanyl)-1-azabicyclo[2.2.2]octane     NON-POLYMER     25     10     .     
+#
+data_comp_MHT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MHT     N1      N       NT      0       66.261      140.019     88.759      
+MHT     C2      C       CH2     0       66.048      139.100     89.896      
+MHT     C3      C       CH1     0       67.357      138.389     90.295      
+MHT     S3      S       S2      0       67.141      136.575     90.422      
+MHT     C4      C       CH1     0       68.448      138.773     89.291      
+MHT     C5      C       CH2     0       68.006      138.469     87.854      
+MHT     C6      C       CH2     0       66.692      139.230     87.580      
+MHT     C7      C       CH2     0       67.329      140.989     89.109      
+MHT     C8      C       CH2     0       68.670      140.285     89.409      
+MHT     CM      C       CH3     0       68.479      136.089     91.517      
+MHT     H2      H       H       0       65.718      139.606     90.669      
+MHT     H2A     H       H       0       65.374      138.429     89.653      
+MHT     H3      H       H       0       67.615      138.721     91.190      
+MHT     H4      H       H       0       69.279      138.280     89.512      
+MHT     H5      H       H       0       67.870      137.504     87.736      
+MHT     H5A     H       H       0       68.701      138.762     87.224      
+MHT     H6      H       H       0       65.991      138.589     87.344      
+MHT     H6A     H       H       0       66.820      139.829     86.816      
+MHT     H7      H       H       0       67.055      141.506     89.893      
+MHT     H7A     H       H       0       67.455      141.616     88.367      
+MHT     H8      H       H       0       69.357      140.574     88.768      
+MHT     H8A     H       H       0       68.975      140.509     90.317      
+MHT     HM      H       H       0       68.111      135.688     92.315      
+MHT     HMA     H       H       0       68.997      136.868     91.758      
+MHT     HMB     H       H       0       69.047      135.450     91.068      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MHT          N1          C6      SINGLE       n     1.475  0.0138     1.475  0.0138
+MHT          N1          C7      SINGLE       n     1.475  0.0138     1.475  0.0138
+MHT          N1          C2      SINGLE       n     1.472  0.0119     1.472  0.0119
+MHT          C2          C3      SINGLE       n     1.529  0.0165     1.529  0.0165
+MHT          C3          C4      SINGLE       n     1.527  0.0108     1.527  0.0108
+MHT          C3          S3      SINGLE       n     1.829  0.0100     1.829  0.0100
+MHT          S3          CM      SINGLE       n     1.796  0.0157     1.796  0.0157
+MHT          C4          C5      SINGLE       n     1.530  0.0100     1.530  0.0100
+MHT          C4          C8      SINGLE       n     1.530  0.0100     1.530  0.0100
+MHT          C5          C6      SINGLE       n     1.540  0.0100     1.540  0.0100
+MHT          C7          C8      SINGLE       n     1.540  0.0100     1.540  0.0100
+MHT          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0152
+MHT          C2         H2A      SINGLE       n     1.089  0.0100     0.981  0.0152
+MHT          C3          H3      SINGLE       n     1.089  0.0100     0.989  0.0188
+MHT          C4          H4      SINGLE       n     1.089  0.0100     0.992  0.0166
+MHT          C5          H5      SINGLE       n     1.089  0.0100     0.983  0.0199
+MHT          C5         H5A      SINGLE       n     1.089  0.0100     0.983  0.0199
+MHT          C6          H6      SINGLE       n     1.089  0.0100     0.979  0.0102
+MHT          C6         H6A      SINGLE       n     1.089  0.0100     0.979  0.0102
+MHT          C7          H7      SINGLE       n     1.089  0.0100     0.979  0.0102
+MHT          C7         H7A      SINGLE       n     1.089  0.0100     0.979  0.0102
+MHT          C8          H8      SINGLE       n     1.089  0.0100     0.983  0.0199
+MHT          C8         H8A      SINGLE       n     1.089  0.0100     0.983  0.0199
+MHT          CM          HM      SINGLE       n     1.089  0.0100     0.966  0.0169
+MHT          CM         HMA      SINGLE       n     1.089  0.0100     0.966  0.0169
+MHT          CM         HMB      SINGLE       n     1.089  0.0100     0.966  0.0169
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MHT          C6          N1          C7     108.632    1.50
+MHT          C6          N1          C2     108.632    1.50
+MHT          C7          N1          C2     108.632    1.50
+MHT          N1          C2          C3     110.807    1.50
+MHT          N1          C2          H2     109.341    1.50
+MHT          N1          C2         H2A     109.341    1.50
+MHT          C3          C2          H2     108.380    1.95
+MHT          C3          C2         H2A     108.380    1.95
+MHT          H2          C2         H2A     108.278    1.50
+MHT          C2          C3          C4     109.121    1.55
+MHT          C2          C3          S3     110.397    2.66
+MHT          C2          C3          H3     108.380    1.95
+MHT          C4          C3          S3     110.451    3.00
+MHT          C4          C3          H3     109.366    1.50
+MHT          S3          C3          H3     107.997    1.50
+MHT          C3          S3          CM     102.288    3.00
+MHT          C3          C4          C5     108.940    2.20
+MHT          C3          C4          C8     108.940    2.20
+MHT          C3          C4          H4     108.096    2.21
+MHT          C5          C4          C8     108.677    1.50
+MHT          C5          C4          H4     110.188    1.50
+MHT          C8          C4          H4     110.188    1.50
+MHT          C4          C5          C6     108.062    1.50
+MHT          C4          C5          H5     109.837    1.50
+MHT          C4          C5         H5A     109.837    1.50
+MHT          C6          C5          H5     110.069    1.50
+MHT          C6          C5         H5A     110.069    1.50
+MHT          H5          C5         H5A     108.463    1.50
+MHT          N1          C6          C5     110.553    3.00
+MHT          N1          C6          H6     109.604    1.50
+MHT          N1          C6         H6A     109.604    1.50
+MHT          C5          C6          H6     109.367    1.50
+MHT          C5          C6         H6A     109.367    1.50
+MHT          H6          C6         H6A     107.990    1.50
+MHT          N1          C7          C8     110.553    3.00
+MHT          N1          C7          H7     109.604    1.50
+MHT          N1          C7         H7A     109.604    1.50
+MHT          C8          C7          H7     109.367    1.50
+MHT          C8          C7         H7A     109.367    1.50
+MHT          H7          C7         H7A     107.990    1.50
+MHT          C4          C8          C7     108.062    1.50
+MHT          C4          C8          H8     109.837    1.50
+MHT          C4          C8         H8A     109.837    1.50
+MHT          C7          C8          H8     110.069    1.50
+MHT          C7          C8         H8A     110.069    1.50
+MHT          H8          C8         H8A     108.463    1.50
+MHT          S3          CM          HM     109.478    1.50
+MHT          S3          CM         HMA     109.478    1.50
+MHT          S3          CM         HMB     109.478    1.50
+MHT          HM          CM         HMA     109.484    1.50
+MHT          HM          CM         HMB     109.484    1.50
+MHT         HMA          CM         HMB     109.484    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MHT            sp3_sp3_67          C3          C2          N1          C6     180.000    10.0     3
+MHT             sp3_sp3_1          C5          C6          N1          C7      60.000    10.0     3
+MHT            sp3_sp3_43          C8          C7          N1          C6      60.000    10.0     3
+MHT            sp3_sp3_35          N1          C2          C3          S3     180.000    10.0     3
+MHT            sp3_sp3_73          C2          C3          S3          CM     180.000    10.0     3
+MHT            sp3_sp3_28          S3          C3          C4          C5     180.000    10.0     3
+MHT            sp3_sp3_76          HM          CM          S3          C3     180.000    10.0     3
+MHT            sp3_sp3_16          C3          C4          C5          C6      60.000    10.0     3
+MHT            sp3_sp3_58          C3          C4          C8          C7      60.000    10.0     3
+MHT             sp3_sp3_7          C4          C5          C6          N1     -60.000    10.0     3
+MHT            sp3_sp3_49          N1          C7          C8          C4     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MHT    chir_1    N1    C2    C6    C7    both
+MHT    chir_2    C3    S3    C2    C4    positive
+MHT    chir_3    C4    C3    C5    C8    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MHT           SMILES              ACDLabs 12.01                                                   S(C2C1CCN(CC1)C2)C
+MHT            InChI                InChI  1.03 InChI=1S/C8H15NS/c1-10-8-6-9-4-2-7(8)3-5-9/h7-8H,2-6H2,1H3/t8-/m1/s1
+MHT         InChIKey                InChI  1.03                                          VJFXSWNDOLSMOC-MRVPVSSYSA-N
+MHT SMILES_CANONICAL               CACTVS 3.385                                                  CS[C@@H]1CN2CCC1CC2
+MHT           SMILES               CACTVS 3.385                                                    CS[CH]1CN2CCC1CC2
+MHT SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                  CS[C@@H]1CN2CCC1CC2
+MHT           SMILES "OpenEye OEToolkits" 1.7.6                                                       CSC1CN2CCC1CC2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MHT acedrg               243         "dictionary generator"                  
+MHT acedrg_database      11          "data source"                           
+MHT rdkit                2017.03.2   "Chemoinformatics tool"
+MHT refmac5              5.8.0238    "optimization tool"                     

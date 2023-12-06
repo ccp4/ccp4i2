@@ -1,0 +1,305 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LMC     LMC      (2E,4E,6E)-3-methyl-6-(1,3,3-trimethyl-1,3-dihydro-2H-indol-2-ylidene)hexa-2,4-dienal     NON-POLYMER     41     20     .     
+#
+data_comp_LMC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LMC     C18     C       C1      0       32.353      -16.638     6.161       
+LMC     C17     C       C1      0       33.648      -17.042     6.675       
+LMC     C16     C       C       0       34.530      -18.040     6.188       
+LMC     C20     C       CH3     0       34.111      -19.075     5.190       
+LMC     C15     C       C1      0       35.865      -18.114     6.695       
+LMC     C14     C       C1      0       36.951      -18.939     6.341       
+LMC     C13     C       C1      0       38.229      -18.933     6.853       
+LMC     C8      C       CR5     0       39.316      -19.726     6.416       
+LMC     C7      C       CT      0       39.485      -20.471     5.092       
+LMC     C11     C       CH3     0       38.500      -21.652     4.960       
+LMC     C10     C       CH3     0       39.351      -19.512     3.895       
+LMC     C2      C       CR56    0       40.907      -20.968     5.203       
+LMC     C3      C       CR56    0       41.419      -20.636     6.448       
+LMC     N9      N       NR5     0       40.428      -19.939     7.177       
+LMC     C12     C       CH3     0       40.633      -19.490     8.554       
+LMC     C1      C       CR16    0       41.695      -21.661     4.292       
+LMC     C6      C       CR16    0       42.993      -22.006     4.652       
+LMC     C5      C       CR16    0       43.495      -21.667     5.894       
+LMC     C4      C       CR16    0       42.727      -20.973     6.821       
+LMC     O1      O       O       0       31.819      -17.042     5.147       
+LMC     H18     H       H       0       31.880      -15.984     6.684       
+LMC     H17     H       H       0       33.959      -16.594     7.444       
+LMC     H20     H       H       0       33.152      -19.190     5.218       
+LMC     H20A    H       H       0       34.531      -19.921     5.398       
+LMC     H21     H       H       0       34.376      -18.794     4.301       
+LMC     H15     H       H       0       36.058      -17.506     7.390       
+LMC     H14     H       H       0       36.786      -19.572     5.663       
+LMC     H13     H       H       0       38.390      -18.323     7.553       
+LMC     H11     H       H       0       38.984      -22.469     4.756       
+LMC     H11A    H       H       0       37.867      -21.473     4.245       
+LMC     H11B    H       H       0       38.011      -21.770     5.792       
+LMC     H10     H       H       0       40.013      -18.806     3.970       
+LMC     H10A    H       H       0       38.462      -19.122     3.890       
+LMC     H10B    H       H       0       39.493      -20.003     3.070       
+LMC     H12     H       H       0       41.292      -20.052     8.991       
+LMC     H12A    H       H       0       39.797      -19.546     9.044       
+LMC     H12B    H       H       0       40.944      -18.570     8.550       
+LMC     H1      H       H       0       41.352      -21.894     3.444       
+LMC     H6      H       H       0       43.538      -22.477     4.041       
+LMC     H5      H       H       0       44.377      -21.909     6.118       
+LMC     H4      H       H       0       43.071      -20.743     7.666       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LMC         C18         C17      SINGLE       n     1.438  0.0200     1.438  0.0200
+LMC         C18          O1      DOUBLE       n     1.215  0.0106     1.215  0.0106
+LMC         C17         C16      DOUBLE       n     1.397  0.0200     1.397  0.0200
+LMC         C16         C15      SINGLE       n     1.408  0.0200     1.408  0.0200
+LMC         C16         C20      SINGLE       n     1.483  0.0200     1.483  0.0200
+LMC         C15         C14      DOUBLE       n     1.400  0.0200     1.400  0.0200
+LMC         C14         C13      SINGLE       n     1.369  0.0200     1.369  0.0200
+LMC         C13          C8      DOUBLE       n     1.394  0.0200     1.394  0.0200
+LMC          C8          N9      SINGLE       n     1.342  0.0200     1.342  0.0200
+LMC          C8          C7      SINGLE       n     1.523  0.0129     1.523  0.0129
+LMC          C7          C2      SINGLE       n     1.510  0.0138     1.510  0.0138
+LMC          C7         C11      SINGLE       n     1.539  0.0100     1.539  0.0100
+LMC          C7         C10      SINGLE       n     1.539  0.0100     1.539  0.0100
+LMC          C2          C3      DOUBLE       y     1.384  0.0100     1.384  0.0100
+LMC          C3          C4      SINGLE       y     1.385  0.0179     1.385  0.0179
+LMC          C3          N9      SINGLE       n     1.411  0.0100     1.411  0.0100
+LMC          N9         C12      SINGLE       n     1.459  0.0100     1.459  0.0100
+LMC          C2          C1      SINGLE       y     1.383  0.0129     1.383  0.0129
+LMC          C1          C6      DOUBLE       y     1.388  0.0100     1.388  0.0100
+LMC          C6          C5      SINGLE       y     1.380  0.0100     1.380  0.0100
+LMC          C5          C4      DOUBLE       y     1.386  0.0100     1.386  0.0100
+LMC         C18         H18      SINGLE       n     1.082  0.0130     0.962  0.0200
+LMC         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0196
+LMC         C20         H20      SINGLE       n     1.089  0.0100     0.969  0.0177
+LMC         C20        H20A      SINGLE       n     1.089  0.0100     0.969  0.0177
+LMC         C20         H21      SINGLE       n     1.089  0.0100     0.969  0.0177
+LMC         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0196
+LMC         C14         H14      SINGLE       n     1.082  0.0130     0.949  0.0200
+LMC         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0153
+LMC         C11         H11      SINGLE       n     1.089  0.0100     0.971  0.0190
+LMC         C11        H11A      SINGLE       n     1.089  0.0100     0.971  0.0190
+LMC         C11        H11B      SINGLE       n     1.089  0.0100     0.971  0.0190
+LMC         C10         H10      SINGLE       n     1.089  0.0100     0.971  0.0190
+LMC         C10        H10A      SINGLE       n     1.089  0.0100     0.971  0.0190
+LMC         C10        H10B      SINGLE       n     1.089  0.0100     0.971  0.0190
+LMC         C12         H12      SINGLE       n     1.089  0.0100     0.971  0.0162
+LMC         C12        H12A      SINGLE       n     1.089  0.0100     0.971  0.0162
+LMC         C12        H12B      SINGLE       n     1.089  0.0100     0.971  0.0162
+LMC          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0114
+LMC          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0193
+LMC          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0173
+LMC          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LMC         C17         C18          O1     125.129    1.73
+LMC         C17         C18         H18     116.757    2.05
+LMC          O1         C18         H18     118.106    1.50
+LMC         C18         C17         C16     124.998    3.00
+LMC         C18         C17         H17     118.986    1.61
+LMC         C16         C17         H17     116.016    1.81
+LMC         C17         C16         C15     122.650    3.00
+LMC         C17         C16         C20     120.215    3.00
+LMC         C15         C16         C20     117.135    1.50
+LMC         C16         C20         H20     109.517    1.50
+LMC         C16         C20        H20A     109.517    1.50
+LMC         C16         C20         H21     109.517    1.50
+LMC         H20         C20        H20A     109.342    1.50
+LMC         H20         C20         H21     109.342    1.50
+LMC        H20A         C20         H21     109.342    1.50
+LMC         C16         C15         C14     128.731    2.66
+LMC         C16         C15         H15     115.291    1.50
+LMC         C14         C15         H15     115.978    2.10
+LMC         C15         C14         C13     128.594    2.58
+LMC         C15         C14         H14     115.919    2.10
+LMC         C13         C14         H14     115.487    2.31
+LMC         C14         C13          C8     125.695    1.50
+LMC         C14         C13         H13     117.167    2.78
+LMC          C8         C13         H13     117.138    1.50
+LMC         C13          C8          N9     121.818    1.50
+LMC         C13          C8          C7     129.409    1.50
+LMC          N9          C8          C7     108.773    1.50
+LMC          C8          C7          C2     101.232    1.50
+LMC          C8          C7         C11     111.841    1.50
+LMC          C8          C7         C10     111.841    1.50
+LMC          C2          C7         C11     110.940    1.50
+LMC          C2          C7         C10     110.940    1.50
+LMC         C11          C7         C10     110.853    1.50
+LMC          C7         C11         H11     109.504    1.50
+LMC          C7         C11        H11A     109.504    1.50
+LMC          C7         C11        H11B     109.504    1.50
+LMC         H11         C11        H11A     109.527    3.00
+LMC         H11         C11        H11B     109.527    3.00
+LMC        H11A         C11        H11B     109.527    3.00
+LMC          C7         C10         H10     109.504    1.50
+LMC          C7         C10        H10A     109.504    1.50
+LMC          C7         C10        H10B     109.504    1.50
+LMC         H10         C10        H10A     109.527    3.00
+LMC         H10         C10        H10B     109.527    3.00
+LMC        H10A         C10        H10B     109.527    3.00
+LMC          C7          C2          C3     109.421    1.50
+LMC          C7          C2          C1     130.974    1.50
+LMC          C3          C2          C1     119.605    1.50
+LMC          C2          C3          C4     122.139    1.50
+LMC          C2          C3          N9     109.000    1.50
+LMC          C4          C3          N9     128.862    1.50
+LMC          C8          N9          C3     111.817    1.50
+LMC          C8          N9         C12     125.561    1.50
+LMC          C3          N9         C12     122.623    1.50
+LMC          N9         C12         H12     109.439    1.50
+LMC          N9         C12        H12A     109.439    1.50
+LMC          N9         C12        H12B     109.439    1.50
+LMC         H12         C12        H12A     109.459    1.50
+LMC         H12         C12        H12B     109.459    1.50
+LMC        H12A         C12        H12B     109.459    1.50
+LMC          C2          C1          C6     118.616    1.50
+LMC          C2          C1          H1     120.552    1.50
+LMC          C6          C1          H1     120.832    1.50
+LMC          C1          C6          C5     120.890    1.50
+LMC          C1          C6          H6     119.596    1.50
+LMC          C5          C6          H6     119.515    1.50
+LMC          C6          C5          C4     121.579    1.50
+LMC          C6          C5          H5     119.338    1.50
+LMC          C4          C5          H5     119.083    1.50
+LMC          C3          C4          C5     117.172    1.50
+LMC          C3          C4          H4     121.297    1.50
+LMC          C5          C4          H4     121.532    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LMC             sp2_sp2_9         C16         C17         C18          O1     180.000     5.0     2
+LMC       const_sp2_sp2_2          C7          C2          C3          C4     180.000     5.0     2
+LMC              const_22          C6          C1          C2          C7     180.000    10.0     2
+LMC             sp2_sp2_6          C2          C3          N9         C12     180.000     5.0     2
+LMC       const_sp2_sp2_5          C2          C3          C4          C5       0.000     5.0     2
+LMC            sp2_sp3_19          C8          N9         C12         H12     150.000    10.0     6
+LMC              const_17          C2          C1          C6          C5       0.000    10.0     2
+LMC              const_13          C4          C5          C6          C1       0.000    10.0     2
+LMC       const_sp2_sp2_9          C3          C4          C5          C6       0.000     5.0     2
+LMC            sp2_sp2_15         C15         C16         C17         C18       0.000     5.0     2
+LMC             sp2_sp3_7         C17         C16         C20         H20       0.000    10.0     6
+LMC            sp2_sp2_17         C14         C15         C16         C17     180.000     5.0     2
+LMC            sp2_sp2_21         C13         C14         C15         C16     180.000     5.0     2
+LMC            sp2_sp2_25          C8         C13         C14         C15     180.000     5.0     2
+LMC            sp2_sp2_30         C14         C13          C8          N9       0.000     5.0     2
+LMC             sp2_sp2_4         C13          C8          N9         C12       0.000     5.0     2
+LMC            sp2_sp3_18         C13          C8          C7         C11      60.000    10.0     6
+LMC            sp3_sp3_12         H10         C10          C7         C11      60.000    10.0     3
+LMC             sp2_sp3_2          C3          C2          C7         C11     120.000    10.0     6
+LMC             sp3_sp3_3         H11         C11          C7         C10      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LMC    chir_1    C7    C8    C2    C11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LMC    plan-1          C1   0.020
+LMC    plan-1          C2   0.020
+LMC    plan-1          C3   0.020
+LMC    plan-1          C4   0.020
+LMC    plan-1          C5   0.020
+LMC    plan-1          C6   0.020
+LMC    plan-1          C7   0.020
+LMC    plan-1          H1   0.020
+LMC    plan-1          H4   0.020
+LMC    plan-1          H5   0.020
+LMC    plan-1          H6   0.020
+LMC    plan-1          N9   0.020
+LMC    plan-2         C17   0.020
+LMC    plan-2         C18   0.020
+LMC    plan-2         H18   0.020
+LMC    plan-2          O1   0.020
+LMC    plan-3         C16   0.020
+LMC    plan-3         C17   0.020
+LMC    plan-3         C18   0.020
+LMC    plan-3         H17   0.020
+LMC    plan-4         C15   0.020
+LMC    plan-4         C16   0.020
+LMC    plan-4         C17   0.020
+LMC    plan-4         C20   0.020
+LMC    plan-5         C14   0.020
+LMC    plan-5         C15   0.020
+LMC    plan-5         C16   0.020
+LMC    plan-5         H15   0.020
+LMC    plan-6         C13   0.020
+LMC    plan-6         C14   0.020
+LMC    plan-6         C15   0.020
+LMC    plan-6         H14   0.020
+LMC    plan-7         C13   0.020
+LMC    plan-7         C14   0.020
+LMC    plan-7          C8   0.020
+LMC    plan-7         H13   0.020
+LMC    plan-8         C13   0.020
+LMC    plan-8          C7   0.020
+LMC    plan-8          C8   0.020
+LMC    plan-8          N9   0.020
+LMC    plan-9         C12   0.020
+LMC    plan-9          C3   0.020
+LMC    plan-9          C8   0.020
+LMC    plan-9          N9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LMC           SMILES              ACDLabs 10.04                                                                       O=C\C=C(\C=C\C=C2\N(c1ccccc1C2(C)C)C)C
+LMC SMILES_CANONICAL               CACTVS 3.341                                                                      CN1c2ccccc2C(C)(C)/C1=C\C=C\C(/C)=C/C=O
+LMC           SMILES               CACTVS 3.341                                                                           CN1c2ccccc2C(C)(C)C1=CC=CC(C)=CC=O
+LMC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                     C/C(=C\C=O)/C=C/C=C/1\C(c2ccccc2N1C)(C)C
+LMC           SMILES "OpenEye OEToolkits" 1.5.0                                                                           CC(=CC=O)C=CC=C1C(c2ccccc2N1C)(C)C
+LMC            InChI                InChI  1.03 InChI=1S/C18H21NO/c1-14(12-13-20)8-7-11-17-18(2,3)15-9-5-6-10-16(15)19(17)4/h5-13H,1-4H3/b8-7+,14-12+,17-11+
+LMC         InChIKey                InChI  1.03                                                                                  UGINWNVBXWWHCS-RZZAMGAFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LMC acedrg               243         "dictionary generator"                  
+LMC acedrg_database      11          "data source"                           
+LMC rdkit                2017.03.2   "Chemoinformatics tool"
+LMC refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,335 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GVB     GVB      (3R,4S)-1-(3,4-DIMETHOXYPHENYL)-3-(3-METHYLPHENYL)PIPERIDIN-4-AMINE     NON-POLYMER     50     24     .     
+#
+data_comp_GVB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GVB     C29     C       CH3     0       52.169      52.815      28.934      
+GVB     O26     O       O2      0       52.088      51.813      29.948      
+GVB     C6      C       CR6     0       51.126      51.895      30.920      
+GVB     C7      C       CR16    0       50.163      52.895      31.035      
+GVB     C8      C       CR16    0       49.243      52.860      32.070      
+GVB     C5      C       CR6     0       51.157      50.845      31.871      
+GVB     O25     O       O2      0       52.130      49.900      31.673      
+GVB     C28     C       CH3     0       52.471      48.986      32.714      
+GVB     C4      C       CR16    0       50.224      50.817      32.899      
+GVB     C3      C       CR6     0       49.259      51.828      33.015      
+GVB     N2      N       NR6     0       48.322      51.823      34.039      
+GVB     C9      C       CH2     0       48.733      51.825      35.453      
+GVB     C1      C       CH2     0       46.853      51.891      33.801      
+GVB     C22     C       CH2     0       46.104      50.826      34.581      
+GVB     C19     C       CH1     0       46.488      50.835      36.057      
+GVB     N20     N       NT2     0       45.913      52.006      36.739      
+GVB     C10     C       CH1     0       48.018      50.725      36.225      
+GVB     C11     C       CR6     0       48.439      50.602      37.680      
+GVB     C12     C       CR16    0       48.523      51.720      38.506      
+GVB     C13     C       CR16    0       48.904      51.594      39.835      
+GVB     C14     C       CR16    0       49.202      50.345      40.351      
+GVB     C16     C       CR6     0       49.126      49.206      39.556      
+GVB     C17     C       CR16    0       48.740      49.355      38.222      
+GVB     C30     C       CH3     0       49.451      47.845      40.122      
+GVB     H293    H       H       0       52.319      53.682      29.346      
+GVB     H291    H       H       0       51.340      52.833      28.429      
+GVB     H292    H       H       0       52.907      52.609      28.337      
+GVB     H7      H       H       0       50.133      53.601      30.413      
+GVB     H8      H       H       0       48.601      53.539      32.139      
+GVB     H281    H       H       0       51.730      48.377      32.866      
+GVB     H282    H       H       0       52.661      49.477      33.530      
+GVB     H283    H       H       0       53.256      48.479      32.452      
+GVB     H4      H       H       0       50.237      50.119      33.535      
+GVB     H9C1    H       H       0       49.702      51.688      35.522      
+GVB     H9C2    H       H       0       48.518      52.694      35.848      
+GVB     H1C1    H       H       0       46.675      51.773      32.834      
+GVB     H1C2    H       H       0       46.524      52.786      34.065      
+GVB     H221    H       H       0       46.304      49.942      34.200      
+GVB     H222    H       H       0       45.137      50.980      34.497      
+GVB     H19     H       H       0       46.085      50.034      36.462      
+GVB     H201    H       H       0       45.028      52.003      36.658      
+GVB     H202    H       H       0       46.226      52.770      36.416      
+GVB     H10     H       H       0       48.278      49.878      35.784      
+GVB     H12     H       H       0       48.318      52.574      38.159      
+GVB     H13     H       H       0       48.959      52.360      40.386      
+GVB     H14     H       H       0       49.461      50.262      41.255      
+GVB     H17     H       H       0       48.685      48.587      37.673      
+GVB     H301    H       H       0       49.350      47.169      39.432      
+GVB     H302    H       H       0       48.849      47.647      40.857      
+GVB     H303    H       H       0       50.367      47.839      40.446      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GVB         C29         O26      SINGLE       n     1.424  0.0117     1.424  0.0117
+GVB         O26          C6      SINGLE       n     1.364  0.0100     1.364  0.0100
+GVB          C6          C7      DOUBLE       y     1.386  0.0100     1.386  0.0100
+GVB          C7          C8      SINGLE       y     1.384  0.0100     1.384  0.0100
+GVB          C6          C5      SINGLE       y     1.408  0.0100     1.408  0.0100
+GVB          C5         O25      SINGLE       n     1.363  0.0100     1.363  0.0100
+GVB         O25         C28      SINGLE       n     1.424  0.0117     1.424  0.0117
+GVB          C5          C4      DOUBLE       y     1.379  0.0100     1.379  0.0100
+GVB          C8          C3      DOUBLE       y     1.398  0.0124     1.398  0.0124
+GVB          C4          C3      SINGLE       y     1.398  0.0122     1.398  0.0122
+GVB          C3          N2      SINGLE       n     1.379  0.0200     1.379  0.0200
+GVB          N2          C9      SINGLE       n     1.469  0.0100     1.469  0.0100
+GVB          N2          C1      SINGLE       n     1.475  0.0200     1.475  0.0200
+GVB          C1         C22      SINGLE       n     1.512  0.0143     1.512  0.0143
+GVB         C22         C19      SINGLE       n     1.523  0.0115     1.523  0.0115
+GVB         C19         N20      SINGLE       n     1.470  0.0107     1.470  0.0107
+GVB          C9         C10      SINGLE       n     1.519  0.0100     1.519  0.0100
+GVB         C19         C10      SINGLE       n     1.540  0.0125     1.540  0.0125
+GVB         C10         C11      SINGLE       n     1.515  0.0100     1.515  0.0100
+GVB         C11         C12      DOUBLE       y     1.387  0.0100     1.387  0.0100
+GVB         C12         C13      SINGLE       y     1.386  0.0100     1.386  0.0100
+GVB         C13         C14      DOUBLE       y     1.382  0.0100     1.382  0.0100
+GVB         C14         C16      SINGLE       y     1.386  0.0122     1.386  0.0122
+GVB         C11         C17      SINGLE       y     1.387  0.0100     1.387  0.0100
+GVB         C16         C17      DOUBLE       y     1.391  0.0100     1.391  0.0100
+GVB         C16         C30      SINGLE       n     1.506  0.0200     1.506  0.0200
+GVB         C29        H293      SINGLE       n     1.089  0.0100     0.971  0.0157
+GVB         C29        H291      SINGLE       n     1.089  0.0100     0.971  0.0157
+GVB         C29        H292      SINGLE       n     1.089  0.0100     0.971  0.0157
+GVB          C7          H7      SINGLE       n     1.082  0.0130     0.943  0.0200
+GVB          C8          H8      SINGLE       n     1.082  0.0130     0.937  0.0116
+GVB         C28        H281      SINGLE       n     1.089  0.0100     0.971  0.0157
+GVB         C28        H282      SINGLE       n     1.089  0.0100     0.971  0.0157
+GVB         C28        H283      SINGLE       n     1.089  0.0100     0.971  0.0157
+GVB          C4          H4      SINGLE       n     1.082  0.0130     0.945  0.0102
+GVB          C9        H9C1      SINGLE       n     1.089  0.0100     0.980  0.0153
+GVB          C9        H9C2      SINGLE       n     1.089  0.0100     0.980  0.0153
+GVB          C1        H1C1      SINGLE       n     1.089  0.0100     0.990  0.0100
+GVB          C1        H1C2      SINGLE       n     1.089  0.0100     0.990  0.0100
+GVB         C22        H221      SINGLE       n     1.089  0.0100     0.983  0.0100
+GVB         C22        H222      SINGLE       n     1.089  0.0100     0.983  0.0100
+GVB         C19         H19      SINGLE       n     1.089  0.0100     0.984  0.0150
+GVB         N20        H201      SINGLE       n     1.036  0.0160     0.889  0.0200
+GVB         N20        H202      SINGLE       n     1.036  0.0160     0.889  0.0200
+GVB         C10         H10      SINGLE       n     1.089  0.0100     0.990  0.0169
+GVB         C12         H12      SINGLE       n     1.082  0.0130     0.946  0.0200
+GVB         C13         H13      SINGLE       n     1.082  0.0130     0.945  0.0132
+GVB         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0174
+GVB         C17         H17      SINGLE       n     1.082  0.0130     0.946  0.0100
+GVB         C30        H301      SINGLE       n     1.089  0.0100     0.971  0.0135
+GVB         C30        H302      SINGLE       n     1.089  0.0100     0.971  0.0135
+GVB         C30        H303      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GVB         O26         C29        H293     109.428    1.50
+GVB         O26         C29        H291     109.428    1.50
+GVB         O26         C29        H292     109.428    1.50
+GVB        H293         C29        H291     109.509    1.50
+GVB        H293         C29        H292     109.509    1.50
+GVB        H291         C29        H292     109.509    1.50
+GVB         C29         O26          C6     117.276    1.50
+GVB         O26          C6          C7     125.108    1.50
+GVB         O26          C6          C5     115.391    1.50
+GVB          C7          C6          C5     119.500    1.50
+GVB          C6          C7          C8     119.884    1.50
+GVB          C6          C7          H7     120.020    1.50
+GVB          C8          C7          H7     120.096    1.50
+GVB          C7          C8          C3     121.199    1.50
+GVB          C7          C8          H8     119.340    1.50
+GVB          C3          C8          H8     119.462    1.50
+GVB          C6          C5         O25     117.001    1.50
+GVB          C6          C5          C4     120.081    1.50
+GVB         O25          C5          C4     122.918    3.00
+GVB          C5         O25         C28     117.276    1.50
+GVB         O25         C28        H281     109.428    1.50
+GVB         O25         C28        H282     109.428    1.50
+GVB         O25         C28        H283     109.428    1.50
+GVB        H281         C28        H282     109.509    1.50
+GVB        H281         C28        H283     109.509    1.50
+GVB        H282         C28        H283     109.509    1.50
+GVB          C5          C4          C3     120.030    1.50
+GVB          C5          C4          H4     120.084    1.50
+GVB          C3          C4          H4     119.886    1.50
+GVB          C8          C3          C4     119.306    1.81
+GVB          C8          C3          N2     120.099    1.52
+GVB          C4          C3          N2     120.596    1.79
+GVB          C3          N2          C9     120.758    3.00
+GVB          C3          N2          C1     124.282    1.63
+GVB          C9          N2          C1     114.960    2.92
+GVB          N2          C9         C10     110.160    1.50
+GVB          N2          C9        H9C1     109.337    1.50
+GVB          N2          C9        H9C2     109.337    1.50
+GVB         C10          C9        H9C1     109.072    1.50
+GVB         C10          C9        H9C2     109.072    1.50
+GVB        H9C1          C9        H9C2     108.200    1.50
+GVB          N2          C1         C22     110.478    1.50
+GVB          N2          C1        H1C1     109.189    1.50
+GVB          N2          C1        H1C2     109.189    1.50
+GVB         C22          C1        H1C1     109.565    1.50
+GVB         C22          C1        H1C2     109.565    1.50
+GVB        H1C1          C1        H1C2     108.202    1.50
+GVB          C1         C22         C19     110.647    1.50
+GVB          C1         C22        H221     109.491    1.50
+GVB          C1         C22        H222     109.491    1.50
+GVB         C19         C22        H221     109.341    1.50
+GVB         C19         C22        H222     109.341    1.50
+GVB        H221         C22        H222     108.048    1.50
+GVB         C22         C19         N20     110.671    1.99
+GVB         C22         C19         C10     111.320    1.50
+GVB         C22         C19         H19     107.655    1.50
+GVB         N20         C19         C10     111.865    2.42
+GVB         N20         C19         H19     108.113    1.50
+GVB         C10         C19         H19     108.398    1.50
+GVB         C19         N20        H201     109.984    3.00
+GVB         C19         N20        H202     109.984    3.00
+GVB        H201         N20        H202     108.673    3.00
+GVB          C9         C10         C19     111.124    1.57
+GVB          C9         C10         C11     112.623    2.06
+GVB          C9         C10         H10     107.168    1.85
+GVB         C19         C10         C11     112.635    1.50
+GVB         C19         C10         H10     106.795    1.50
+GVB         C11         C10         H10     107.017    1.50
+GVB         C10         C11         C12     120.676    1.53
+GVB         C10         C11         C17     120.676    1.53
+GVB         C12         C11         C17     118.649    1.50
+GVB         C11         C12         C13     120.928    1.50
+GVB         C11         C12         H12     119.395    1.50
+GVB         C13         C12         H12     119.678    1.50
+GVB         C12         C13         C14     120.180    1.50
+GVB         C12         C13         H13     119.869    1.50
+GVB         C14         C13         H13     119.951    1.50
+GVB         C13         C14         C16     121.092    1.50
+GVB         C13         C14         H14     119.607    1.50
+GVB         C16         C14         H14     119.300    1.50
+GVB         C14         C16         C17     117.956    1.50
+GVB         C14         C16         C30     121.186    1.50
+GVB         C17         C16         C30     120.858    1.50
+GVB         C11         C17         C16     121.195    1.50
+GVB         C11         C17         H17     119.484    1.50
+GVB         C16         C17         H17     119.322    1.50
+GVB         C16         C30        H301     109.567    1.50
+GVB         C16         C30        H302     109.567    1.50
+GVB         C16         C30        H303     109.567    1.50
+GVB        H301         C30        H302     109.348    1.50
+GVB        H301         C30        H303     109.348    1.50
+GVB        H302         C30        H303     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GVB            sp3_sp3_38        H293         C29         O26          C6     -60.000    10.0     3
+GVB             sp2_sp3_4          C3          N2          C9         C10     180.000    10.0     6
+GVB            sp2_sp3_10          C3          N2          C1         C22     180.000    10.0     6
+GVB             sp3_sp3_1         C19         C10          C9          N2     -60.000    10.0     3
+GVB            sp3_sp3_28          N2          C1         C22         C19      60.000    10.0     3
+GVB            sp3_sp3_22         N20         C19         C22          C1     180.000    10.0     3
+GVB            sp3_sp3_45         C22         C19         N20        H201     180.000    10.0     3
+GVB            sp3_sp3_11          C9         C10         C19         N20     180.000    10.0     3
+GVB            sp2_sp3_13         C12         C11         C10          C9     150.000    10.0     6
+GVB       const_sp2_sp2_3         C10         C11         C12         C13     180.000     5.0     2
+GVB              const_47         C10         C11         C17         C16     180.000    10.0     2
+GVB       const_sp2_sp2_5         C11         C12         C13         C14       0.000     5.0     2
+GVB       const_sp2_sp2_9         C12         C13         C14         C16       0.000     5.0     2
+GVB             sp2_sp2_1          C7          C6         O26         C29     180.000     5.0     2
+GVB              const_14         C13         C14         C16         C30     180.000    10.0     2
+GVB              const_19         C30         C16         C17         C11     180.000    10.0     2
+GVB            sp2_sp3_19         C14         C16         C30        H301     150.000    10.0     6
+GVB              const_23         O26          C6          C7          C8     180.000    10.0     2
+GVB              const_44         O25          C5          C6         O26       0.000    10.0     2
+GVB              const_25          C6          C7          C8          C3       0.000    10.0     2
+GVB              const_29          C4          C3          C8          C7       0.000    10.0     2
+GVB             sp2_sp2_3          C6          C5         O25         C28     180.000     5.0     2
+GVB              const_38          C3          C4          C5         O25     180.000    10.0     2
+GVB            sp3_sp3_42        H281         C28         O25          C5     -60.000    10.0     3
+GVB              const_33          C8          C3          C4          C5       0.000    10.0     2
+GVB             sp2_sp2_5          C8          C3          N2          C9     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GVB    chir_1    C19    N20    C10    C22    positive
+GVB    chir_2    C10    C19    C9    C11    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GVB    plan-1         C10   0.020
+GVB    plan-1         C11   0.020
+GVB    plan-1         C12   0.020
+GVB    plan-1         C13   0.020
+GVB    plan-1         C14   0.020
+GVB    plan-1         C16   0.020
+GVB    plan-1         C17   0.020
+GVB    plan-1         C30   0.020
+GVB    plan-1         H12   0.020
+GVB    plan-1         H13   0.020
+GVB    plan-1         H14   0.020
+GVB    plan-1         H17   0.020
+GVB    plan-2          C3   0.020
+GVB    plan-2          C4   0.020
+GVB    plan-2          C5   0.020
+GVB    plan-2          C6   0.020
+GVB    plan-2          C7   0.020
+GVB    plan-2          C8   0.020
+GVB    plan-2          H4   0.020
+GVB    plan-2          H7   0.020
+GVB    plan-2          H8   0.020
+GVB    plan-2          N2   0.020
+GVB    plan-2         O25   0.020
+GVB    plan-2         O26   0.020
+GVB    plan-3          C1   0.020
+GVB    plan-3          C3   0.020
+GVB    plan-3          C9   0.020
+GVB    plan-3          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GVB           SMILES              ACDLabs 10.04                                                                                                       O(c1c(OC)cc(cc1)N3CCC(N)C(c2cccc(c2)C)C3)C
+GVB SMILES_CANONICAL               CACTVS 3.341                                                                                                  COc1ccc(cc1OC)N2CC[C@H](N)[C@@H](C2)c3cccc(C)c3
+GVB           SMILES               CACTVS 3.341                                                                                                     COc1ccc(cc1OC)N2CC[CH](N)[CH](C2)c3cccc(C)c3
+GVB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                             Cc1cccc(c1)[C@@H]2C[N@@](CC[C@@H]2N)c3ccc(c(c3)OC)OC
+GVB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                           Cc1cccc(c1)C2CN(CCC2N)c3ccc(c(c3)OC)OC
+GVB            InChI                InChI  1.03 InChI=1S/C20H26N2O2/c1-14-5-4-6-15(11-14)17-13-22(10-9-18(17)21)16-7-8-19(23-2)20(12-16)24-3/h4-8,11-12,17-18H,9-10,13,21H2,1-3H3/t17-,18-/m0/s1
+GVB         InChIKey                InChI  1.03                                                                                                                      DQJXBZGPJVSWFI-ROUUACIJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GVB acedrg               243         "dictionary generator"                  
+GVB acedrg_database      11          "data source"                           
+GVB rdkit                2017.03.2   "Chemoinformatics tool"
+GVB refmac5              5.8.0238    "optimization tool"                     

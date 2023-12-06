@@ -1,0 +1,421 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EBW     EBW      4-(5-{4-[DIMETHYL(PROP-2-ENYL)AMMONIO]PHENYL}-3-OXOPENTYL)-N,N-DIMETHYL-N-PROP-2-ENYLBENZENAMINIUM     NON-POLYMER     68     30     .     
+#
+data_comp_EBW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EBW     C1      C       C       0       3.600       63.186      68.663      
+EBW     C2      C       CH2     0       4.694       62.849      69.642      
+EBW     C5      C       CH2     0       3.694       64.500      67.934      
+EBW     C6      C       CH2     0       4.616       63.612      70.959      
+EBW     C7      C       CR6     0       3.336       63.361      71.720      
+EBW     C8      C       CR16    0       3.084       62.135      72.317      
+EBW     C9      C       CR16    0       1.908       61.891      73.015      
+EBW     C10     C       CR6     0       0.945       62.886      73.132      
+EBW     C11     C       CR16    0       1.184       64.116      72.536      
+EBW     N1      N       NT      1       4.135       69.519      63.701      
+EBW     N2      N       NT      1       -0.361      62.684      73.878      
+EBW     C12     C       CR16    0       2.364       64.343      71.841      
+EBW     C13     C       CH2     0       3.729       64.362      66.420      
+EBW     C14     C       CR6     0       3.850       65.690      65.711      
+EBW     C15     C       CR16    0       2.788       66.580      65.671      
+EBW     C16     C       CR16    0       2.890       67.804      65.024      
+EBW     C17     C       CR6     0       4.069       68.170      64.392      
+EBW     C18     C       CR16    0       5.143       67.288      64.426      
+EBW     C19     C       CR16    0       5.026       66.068      65.078      
+EBW     C20     C       CH3     0       5.485       69.821      63.093      
+EBW     C21     C       CH3     0       3.148       69.564      62.563      
+EBW     C22     C       CH2     0       3.788       70.652      64.636      
+EBW     C23     C       C1      0       4.573       70.644      65.915      
+EBW     C24     C       CH2     0       -0.557      63.707      74.971      
+EBW     C25     C       CH3     0       -0.491      61.313      74.502      
+EBW     C26     C       CH3     0       -1.517      62.820      72.920      
+EBW     C27     C       C1      0       0.589       63.792      75.936      
+EBW     C28     C       C2      0       1.441       64.765      76.016      
+EBW     C29     C       C2      0       4.117       70.306      67.081      
+EBW     O1      O       O       0       2.678       62.429      68.470      
+EBW     H22     H       H       0       5.556       63.035      69.218      
+EBW     H21     H       H       0       4.657       61.889      69.829      
+EBW     H52     H       H       0       4.502       64.966      68.231      
+EBW     H51     H       H       0       2.925       65.050      68.187      
+EBW     H62     H       H       0       4.696       64.573      70.779      
+EBW     H61     H       H       0       5.374       63.352      71.525      
+EBW     H8      H       H       0       3.727       61.449      72.249      
+EBW     H9      H       H       0       1.780       61.048      73.405      
+EBW     H11     H       H       0       0.545       64.804      72.599      
+EBW     H12     H       H       0       2.507       65.186      71.444      
+EBW     H132    H       H       0       2.909       63.917      66.118      
+EBW     H131    H       H       0       4.488       63.795      66.165      
+EBW     H15     H       H       0       1.977       66.349      66.093      
+EBW     H16     H       H       0       2.148       68.383      65.014      
+EBW     H18     H       H       0       5.956       67.504      64.011      
+EBW     H19     H       H       0       5.764       65.482      65.090      
+EBW     H203    H       H       0       5.692       69.158      62.414      
+EBW     H202    H       H       0       6.169       69.806      63.783      
+EBW     H201    H       H       0       5.467       70.701      62.682      
+EBW     H213    H       H       0       2.250       69.424      62.899      
+EBW     H212    H       H       0       3.366       68.867      61.922      
+EBW     H211    H       H       0       3.196       70.431      62.127      
+EBW     H222    H       H       0       2.836       70.606      64.858      
+EBW     H221    H       H       0       3.947       71.505      64.181      
+EBW     H23     H       H       0       5.479       70.907      65.864      
+EBW     H242    H       H       0       -1.369      63.487      75.472      
+EBW     H241    H       H       0       -0.686      64.589      74.568      
+EBW     H253    H       H       0       0.240       61.160      75.122      
+EBW     H252    H       H       0       -0.475      60.637      73.805      
+EBW     H251    H       H       0       -1.334      61.253      74.981      
+EBW     H263    H       H       0       -1.387      62.215      72.171      
+EBW     H262    H       H       0       -1.568      63.732      72.593      
+EBW     H261    H       H       0       -2.346      62.598      73.375      
+EBW     H27     H       H       0       0.696       63.071      76.538      
+EBW     H282    H       H       0       2.139       64.737      76.659      
+EBW     H281    H       H       0       1.371       65.510      75.432      
+EBW     H292    H       H       0       4.685       70.328      67.841      
+EBW     H291    H       H       0       3.213       70.034      67.179      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EBW          C1          C2      SINGLE       n     1.505  0.0103     1.505  0.0103
+EBW          C1          C5      SINGLE       n     1.505  0.0103     1.505  0.0103
+EBW          C1          O1      DOUBLE       n     1.209  0.0200     1.209  0.0200
+EBW          C2          C6      SINGLE       n     1.521  0.0172     1.521  0.0172
+EBW          C5         C13      SINGLE       n     1.521  0.0172     1.521  0.0172
+EBW          C6          C7      SINGLE       n     1.510  0.0100     1.510  0.0100
+EBW          C7          C8      DOUBLE       y     1.385  0.0110     1.385  0.0110
+EBW          C7         C12      SINGLE       y     1.385  0.0110     1.385  0.0110
+EBW          C8          C9      SINGLE       y     1.385  0.0100     1.385  0.0100
+EBW          C9         C10      DOUBLE       y     1.379  0.0100     1.379  0.0100
+EBW         C10         C11      SINGLE       y     1.379  0.0100     1.379  0.0100
+EBW         C10          N2      SINGLE       n     1.500  0.0108     1.500  0.0108
+EBW         C11         C12      DOUBLE       y     1.385  0.0100     1.385  0.0100
+EBW          N1         C17      SINGLE       n     1.500  0.0108     1.500  0.0108
+EBW          N1         C20      SINGLE       n     1.501  0.0123     1.501  0.0123
+EBW          N1         C21      SINGLE       n     1.501  0.0123     1.501  0.0123
+EBW          N1         C22      SINGLE       n     1.493  0.0153     1.493  0.0153
+EBW          N2         C24      SINGLE       n     1.493  0.0153     1.493  0.0153
+EBW          N2         C25      SINGLE       n     1.501  0.0123     1.501  0.0123
+EBW          N2         C26      SINGLE       n     1.501  0.0123     1.501  0.0123
+EBW         C13         C14      SINGLE       n     1.510  0.0100     1.510  0.0100
+EBW         C14         C15      DOUBLE       y     1.385  0.0110     1.385  0.0110
+EBW         C14         C19      SINGLE       y     1.385  0.0110     1.385  0.0110
+EBW         C15         C16      SINGLE       y     1.385  0.0100     1.385  0.0100
+EBW         C16         C17      DOUBLE       y     1.379  0.0100     1.379  0.0100
+EBW         C17         C18      SINGLE       y     1.379  0.0100     1.379  0.0100
+EBW         C18         C19      DOUBLE       y     1.385  0.0100     1.385  0.0100
+EBW         C22         C23      SINGLE       n     1.496  0.0167     1.496  0.0167
+EBW         C23         C29      DOUBLE       n     1.296  0.0200     1.296  0.0200
+EBW         C24         C27      SINGLE       n     1.496  0.0167     1.496  0.0167
+EBW         C27         C28      DOUBLE       n     1.296  0.0200     1.296  0.0200
+EBW          C2         H22      SINGLE       n     1.089  0.0100     0.979  0.0159
+EBW          C2         H21      SINGLE       n     1.089  0.0100     0.979  0.0159
+EBW          C5         H52      SINGLE       n     1.089  0.0100     0.979  0.0159
+EBW          C5         H51      SINGLE       n     1.089  0.0100     0.979  0.0159
+EBW          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0169
+EBW          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0169
+EBW          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0173
+EBW          C9          H9      SINGLE       n     1.082  0.0130     0.942  0.0183
+EBW         C11         H11      SINGLE       n     1.082  0.0130     0.942  0.0183
+EBW         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0173
+EBW         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0169
+EBW         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0169
+EBW         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0173
+EBW         C16         H16      SINGLE       n     1.082  0.0130     0.942  0.0183
+EBW         C18         H18      SINGLE       n     1.082  0.0130     0.942  0.0183
+EBW         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0173
+EBW         C20        H203      SINGLE       n     1.089  0.0100     0.971  0.0189
+EBW         C20        H202      SINGLE       n     1.089  0.0100     0.971  0.0189
+EBW         C20        H201      SINGLE       n     1.089  0.0100     0.971  0.0189
+EBW         C21        H213      SINGLE       n     1.089  0.0100     0.971  0.0189
+EBW         C21        H212      SINGLE       n     1.089  0.0100     0.971  0.0189
+EBW         C21        H211      SINGLE       n     1.089  0.0100     0.971  0.0189
+EBW         C22        H222      SINGLE       n     1.089  0.0100     0.979  0.0191
+EBW         C22        H221      SINGLE       n     1.089  0.0100     0.979  0.0191
+EBW         C23         H23      SINGLE       n     1.082  0.0130     0.945  0.0200
+EBW         C24        H242      SINGLE       n     1.089  0.0100     0.979  0.0191
+EBW         C24        H241      SINGLE       n     1.089  0.0100     0.979  0.0191
+EBW         C25        H253      SINGLE       n     1.089  0.0100     0.971  0.0189
+EBW         C25        H252      SINGLE       n     1.089  0.0100     0.971  0.0189
+EBW         C25        H251      SINGLE       n     1.089  0.0100     0.971  0.0189
+EBW         C26        H263      SINGLE       n     1.089  0.0100     0.971  0.0189
+EBW         C26        H262      SINGLE       n     1.089  0.0100     0.971  0.0189
+EBW         C26        H261      SINGLE       n     1.089  0.0100     0.971  0.0189
+EBW         C27         H27      SINGLE       n     1.082  0.0130     0.945  0.0200
+EBW         C28        H282      SINGLE       n     1.082  0.0130     0.949  0.0200
+EBW         C28        H281      SINGLE       n     1.082  0.0130     0.949  0.0200
+EBW         C29        H292      SINGLE       n     1.082  0.0130     0.949  0.0200
+EBW         C29        H291      SINGLE       n     1.082  0.0130     0.949  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EBW          C2          C1          C5     117.463    1.50
+EBW          C2          C1          O1     121.268    1.50
+EBW          C5          C1          O1     121.268    1.50
+EBW          C1          C2          C6     113.978    1.72
+EBW          C1          C2         H22     108.499    1.50
+EBW          C1          C2         H21     108.499    1.50
+EBW          C6          C2         H22     109.072    1.50
+EBW          C6          C2         H21     109.072    1.50
+EBW         H22          C2         H21     107.678    1.50
+EBW          C1          C5         C13     113.978    1.72
+EBW          C1          C5         H52     108.499    1.50
+EBW          C1          C5         H51     108.499    1.50
+EBW         C13          C5         H52     109.072    1.50
+EBW         C13          C5         H51     109.072    1.50
+EBW         H52          C5         H51     107.678    1.50
+EBW          C2          C6          C7     113.063    1.84
+EBW          C2          C6         H62     109.183    1.50
+EBW          C2          C6         H61     109.183    1.50
+EBW          C7          C6         H62     108.803    1.50
+EBW          C7          C6         H61     108.803    1.50
+EBW         H62          C6         H61     107.745    1.50
+EBW          C6          C7          C8     121.093    1.50
+EBW          C6          C7         C12     121.093    1.50
+EBW          C8          C7         C12     117.813    1.50
+EBW          C7          C8          C9     121.409    1.50
+EBW          C7          C8          H8     119.339    1.50
+EBW          C9          C8          H8     119.252    1.50
+EBW          C8          C9         C10     119.642    1.50
+EBW          C8          C9          H9     120.077    1.50
+EBW         C10          C9          H9     120.280    1.50
+EBW          C9         C10         C11     120.084    1.50
+EBW          C9         C10          N2     119.958    1.73
+EBW         C11         C10          N2     119.958    1.73
+EBW         C10         C11         C12     119.642    1.50
+EBW         C10         C11         H11     120.280    1.50
+EBW         C12         C11         H11     120.077    1.50
+EBW         C17          N1         C20     110.769    1.50
+EBW         C17          N1         C21     110.769    1.50
+EBW         C17          N1         C22     111.852    2.16
+EBW         C20          N1         C21     108.146    1.50
+EBW         C20          N1         C22     110.351    2.60
+EBW         C21          N1         C22     110.351    2.60
+EBW         C10          N2         C24     111.852    2.16
+EBW         C10          N2         C25     110.769    1.50
+EBW         C10          N2         C26     110.769    1.50
+EBW         C24          N2         C25     110.351    2.60
+EBW         C24          N2         C26     110.351    2.60
+EBW         C25          N2         C26     108.146    1.50
+EBW          C7         C12         C11     121.409    1.50
+EBW          C7         C12         H12     119.339    1.50
+EBW         C11         C12         H12     119.252    1.50
+EBW          C5         C13         C14     113.063    1.84
+EBW          C5         C13        H132     109.183    1.50
+EBW          C5         C13        H131     109.183    1.50
+EBW         C14         C13        H132     108.803    1.50
+EBW         C14         C13        H131     108.803    1.50
+EBW        H132         C13        H131     107.745    1.50
+EBW         C13         C14         C15     121.093    1.50
+EBW         C13         C14         C19     121.093    1.50
+EBW         C15         C14         C19     117.813    1.50
+EBW         C14         C15         C16     121.409    1.50
+EBW         C14         C15         H15     119.339    1.50
+EBW         C16         C15         H15     119.252    1.50
+EBW         C15         C16         C17     119.642    1.50
+EBW         C15         C16         H16     120.077    1.50
+EBW         C17         C16         H16     120.280    1.50
+EBW          N1         C17         C16     119.958    1.73
+EBW          N1         C17         C18     119.958    1.73
+EBW         C16         C17         C18     120.084    1.50
+EBW         C17         C18         C19     119.642    1.50
+EBW         C17         C18         H18     120.280    1.50
+EBW         C19         C18         H18     120.077    1.50
+EBW         C14         C19         C18     121.409    1.50
+EBW         C14         C19         H19     119.339    1.50
+EBW         C18         C19         H19     119.252    1.50
+EBW          N1         C20        H203     109.358    1.50
+EBW          N1         C20        H202     109.358    1.50
+EBW          N1         C20        H201     109.358    1.50
+EBW        H203         C20        H202     109.580    1.50
+EBW        H203         C20        H201     109.580    1.50
+EBW        H202         C20        H201     109.580    1.50
+EBW          N1         C21        H213     109.358    1.50
+EBW          N1         C21        H212     109.358    1.50
+EBW          N1         C21        H211     109.358    1.50
+EBW        H213         C21        H212     109.580    1.50
+EBW        H213         C21        H211     109.580    1.50
+EBW        H212         C21        H211     109.580    1.50
+EBW          N1         C22         C23     109.935    2.65
+EBW          N1         C22        H222     108.765    1.50
+EBW          N1         C22        H221     108.765    1.50
+EBW         C23         C22        H222     108.618    1.85
+EBW         C23         C22        H221     108.618    1.85
+EBW        H222         C22        H221     108.451    1.87
+EBW         C22         C23         C29     125.614    2.76
+EBW         C22         C23         H23     117.016    1.96
+EBW         C29         C23         H23     117.369    2.02
+EBW          N2         C24         C27     109.935    2.65
+EBW          N2         C24        H242     108.765    1.50
+EBW          N2         C24        H241     108.765    1.50
+EBW         C27         C24        H242     108.618    1.85
+EBW         C27         C24        H241     108.618    1.85
+EBW        H242         C24        H241     108.451    1.87
+EBW          N2         C25        H253     109.358    1.50
+EBW          N2         C25        H252     109.358    1.50
+EBW          N2         C25        H251     109.358    1.50
+EBW        H253         C25        H252     109.580    1.50
+EBW        H253         C25        H251     109.580    1.50
+EBW        H252         C25        H251     109.580    1.50
+EBW          N2         C26        H263     109.358    1.50
+EBW          N2         C26        H262     109.358    1.50
+EBW          N2         C26        H261     109.358    1.50
+EBW        H263         C26        H262     109.580    1.50
+EBW        H263         C26        H261     109.580    1.50
+EBW        H262         C26        H261     109.580    1.50
+EBW         C24         C27         C28     125.614    2.76
+EBW         C24         C27         H27     117.016    1.96
+EBW         C28         C27         H27     117.369    2.02
+EBW         C27         C28        H282     120.175    1.50
+EBW         C27         C28        H281     120.175    1.50
+EBW        H282         C28        H281     119.650    2.15
+EBW         C23         C29        H292     120.175    1.50
+EBW         C23         C29        H291     120.175    1.50
+EBW        H292         C29        H291     119.650    2.15
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EBW             sp2_sp3_2          C5          C1          C2          C6     120.000    10.0     6
+EBW             sp2_sp3_8          C2          C1          C5         C13     120.000    10.0     6
+EBW            sp3_sp3_47         C27         C24          N2         C25     -60.000    10.0     3
+EBW            sp3_sp3_55        H253         C25          N2         C24     180.000    10.0     3
+EBW            sp3_sp3_65        H263         C26          N2         C24     -60.000    10.0     3
+EBW            sp2_sp3_32         C15         C14         C13          C5     -90.000    10.0     6
+EBW              const_23         C13         C14         C15         C16     180.000    10.0     2
+EBW              const_47         C13         C14         C19         C18     180.000    10.0     2
+EBW              const_25         C14         C15         C16         C17       0.000    10.0     2
+EBW              const_30         C15         C16         C17          N1     180.000    10.0     2
+EBW              const_35          N1         C17         C18         C19     180.000    10.0     2
+EBW              const_37         C17         C18         C19         C14       0.000    10.0     2
+EBW             sp3_sp3_1          C1          C2          C6          C7     180.000    10.0     3
+EBW            sp2_sp3_38         C29         C23         C22          N1     120.000    10.0     6
+EBW             sp2_sp2_1         C22         C23         C29        H292     180.000     5.0     2
+EBW            sp2_sp3_44         C28         C27         C24          N2     120.000    10.0     6
+EBW             sp2_sp2_5         C24         C27         C28        H282     180.000     5.0     2
+EBW            sp3_sp3_10         C14         C13          C5          C1     180.000    10.0     3
+EBW            sp2_sp3_14          C8          C7          C6          C2     -90.000    10.0     6
+EBW              const_42         C11         C12          C7          C6     180.000    10.0     2
+EBW       const_sp2_sp2_3          C6          C7          C8          C9     180.000     5.0     2
+EBW       const_sp2_sp2_5          C7          C8          C9         C10       0.000     5.0     2
+EBW              const_11          N2         C10          C9          C8     180.000    10.0     2
+EBW            sp2_sp3_20          C9         C10          N2         C24     -90.000    10.0     6
+EBW              const_15          N2         C10         C11         C12     180.000    10.0     2
+EBW              const_17         C10         C11         C12          C7       0.000    10.0     2
+EBW            sp2_sp3_25         C16         C17          N1         C20     150.000    10.0     6
+EBW            sp3_sp3_21        H203         C20          N1         C21      60.000    10.0     3
+EBW            sp3_sp3_30        H213         C21          N1         C20      60.000    10.0     3
+EBW            sp3_sp3_38         C23         C22          N1         C20     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EBW    chir_1    N1    C17    C22    C20    both
+EBW    chir_2    N2    C10    C24    C25    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EBW    plan-1         C10   0.020
+EBW    plan-1         C11   0.020
+EBW    plan-1         C12   0.020
+EBW    plan-1          C6   0.020
+EBW    plan-1          C7   0.020
+EBW    plan-1          C8   0.020
+EBW    plan-1          C9   0.020
+EBW    plan-1         H11   0.020
+EBW    plan-1         H12   0.020
+EBW    plan-1          H8   0.020
+EBW    plan-1          H9   0.020
+EBW    plan-1          N2   0.020
+EBW    plan-2         C13   0.020
+EBW    plan-2         C14   0.020
+EBW    plan-2         C15   0.020
+EBW    plan-2         C16   0.020
+EBW    plan-2         C17   0.020
+EBW    plan-2         C18   0.020
+EBW    plan-2         C19   0.020
+EBW    plan-2         H15   0.020
+EBW    plan-2         H16   0.020
+EBW    plan-2         H18   0.020
+EBW    plan-2         H19   0.020
+EBW    plan-2          N1   0.020
+EBW    plan-3          C1   0.020
+EBW    plan-3          C2   0.020
+EBW    plan-3          C5   0.020
+EBW    plan-3          O1   0.020
+EBW    plan-4         C22   0.020
+EBW    plan-4         C23   0.020
+EBW    plan-4         C29   0.020
+EBW    plan-4         H23   0.020
+EBW    plan-5         C24   0.020
+EBW    plan-5         C27   0.020
+EBW    plan-5         C28   0.020
+EBW    plan-5         H27   0.020
+EBW    plan-6         C27   0.020
+EBW    plan-6         C28   0.020
+EBW    plan-6        H281   0.020
+EBW    plan-6        H282   0.020
+EBW    plan-7         C23   0.020
+EBW    plan-7         C29   0.020
+EBW    plan-7        H291   0.020
+EBW    plan-7        H292   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EBW           SMILES              ACDLabs 10.04                                                                                         O=C(CCc1ccc(cc1)[N+](C\C=C)(C)C)CCc2ccc(cc2)[N+](C)(C\C=C)C
+EBW SMILES_CANONICAL               CACTVS 3.341                                                                                           C[N+](C)(CC=C)c1ccc(CCC(=O)CCc2ccc(cc2)[N+](C)(C)CC=C)cc1
+EBW           SMILES               CACTVS 3.341                                                                                           C[N+](C)(CC=C)c1ccc(CCC(=O)CCc2ccc(cc2)[N+](C)(C)CC=C)cc1
+EBW SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                           C[N+](C)(CC=C)c1ccc(cc1)CCC(=O)CCc2ccc(cc2)[N+](C)(C)CC=C
+EBW           SMILES "OpenEye OEToolkits" 1.5.0                                                                                           C[N+](C)(CC=C)c1ccc(cc1)CCC(=O)CCc2ccc(cc2)[N+](C)(C)CC=C
+EBW            InChI                InChI  1.03 InChI=1S/C27H38N2O/c1-7-21-28(3,4)25-15-9-23(10-16-25)13-19-27(30)20-14-24-11-17-26(18-12-24)29(5,6)22-8-2/h7-12,15-18H,1-2,13-14,19-22H2,3-6H3/q+2
+EBW         InChIKey                InChI  1.03                                                                                                                         ZAEXMNKDGJNLTA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EBW acedrg               243         "dictionary generator"                  
+EBW acedrg_database      11          "data source"                           
+EBW rdkit                2017.03.2   "Chemoinformatics tool"
+EBW refmac5              5.8.0238    "optimization tool"                     

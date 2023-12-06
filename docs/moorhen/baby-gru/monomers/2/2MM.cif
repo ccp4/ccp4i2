@@ -1,0 +1,191 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+2MM     2MM      N,N-dimethyl-L-methionine     NON-POLYMER     25     11     .     
+#
+data_comp_2MM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+2MM     CE      C       CH3     0       24.252      34.369      -47.570     
+2MM     SD      S       S2      0       24.709      32.891      -48.474     
+2MM     CG      C       CH2     0       23.077      32.299      -48.990     
+2MM     CB      C       CH2     0       23.158      31.124      -49.950     
+2MM     CA      C       CH1     0       21.795      30.486      -50.257     
+2MM     C       C       C       0       20.931      31.409      -51.141     
+2MM     O       O       O       0       21.442      31.875      -52.182     
+2MM     N       N       NT      0       21.932      29.110      -50.779     
+2MM     CN2     C       CH3     0       22.535      28.977      -52.103     
+2MM     CN1     C       CH3     0       20.722      28.299      -50.689     
+2MM     OXT     O       OC      -1      19.766      31.630      -50.752     
+2MM     HE      H       H       0       25.049      34.847      -47.311     
+2MM     HEA     H       H       0       23.753      34.122      -46.782     
+2MM     HEB     H       H       0       23.707      34.933      -48.133     
+2MM     HG      H       H       0       22.596      33.038      -49.421     
+2MM     HGA     H       H       0       22.571      32.032      -48.194     
+2MM     HB      H       H       0       23.741      30.440      -49.564     
+2MM     HBA     H       H       0       23.567      31.423      -50.785     
+2MM     HA      H       H       0       21.324      30.394      -49.391     
+2MM     HN2     H       H       0       22.779      28.043      -52.255     
+2MM     HN2A    H       H       0       23.336      29.531      -52.165     
+2MM     HN2B    H       H       0       21.894      29.257      -52.786     
+2MM     HN1     H       H       0       20.052      28.639      -51.314     
+2MM     HN1A    H       H       0       20.366      28.336      -49.780     
+2MM     HN1B    H       H       0       20.933      27.371      -50.914     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+2MM          CE          SD      SINGLE       n     1.792  0.0100     1.792  0.0100
+2MM          SD          CG      SINGLE       n     1.811  0.0200     1.811  0.0200
+2MM          CG          CB      SINGLE       n     1.517  0.0200     1.517  0.0200
+2MM          CB          CA      SINGLE       n     1.530  0.0137     1.530  0.0137
+2MM          CA           C      SINGLE       n     1.539  0.0100     1.539  0.0100
+2MM          CA           N      SINGLE       n     1.471  0.0100     1.471  0.0100
+2MM           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+2MM           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+2MM           N         CN2      SINGLE       n     1.457  0.0100     1.457  0.0100
+2MM           N         CN1      SINGLE       n     1.457  0.0100     1.457  0.0100
+2MM          CE          HE      SINGLE       n     1.089  0.0100     0.965  0.0170
+2MM          CE         HEA      SINGLE       n     1.089  0.0100     0.965  0.0170
+2MM          CE         HEB      SINGLE       n     1.089  0.0100     0.965  0.0170
+2MM          CG          HG      SINGLE       n     1.089  0.0100     0.981  0.0122
+2MM          CG         HGA      SINGLE       n     1.089  0.0100     0.981  0.0122
+2MM          CB          HB      SINGLE       n     1.089  0.0100     0.978  0.0200
+2MM          CB         HBA      SINGLE       n     1.089  0.0100     0.978  0.0200
+2MM          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0200
+2MM         CN2         HN2      SINGLE       n     1.089  0.0100     0.977  0.0113
+2MM         CN2        HN2A      SINGLE       n     1.089  0.0100     0.977  0.0113
+2MM         CN2        HN2B      SINGLE       n     1.089  0.0100     0.977  0.0113
+2MM         CN1         HN1      SINGLE       n     1.089  0.0100     0.977  0.0113
+2MM         CN1        HN1A      SINGLE       n     1.089  0.0100     0.977  0.0113
+2MM         CN1        HN1B      SINGLE       n     1.089  0.0100     0.977  0.0113
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+2MM          SD          CE          HE     109.425    1.50
+2MM          SD          CE         HEA     109.425    1.50
+2MM          SD          CE         HEB     109.425    1.50
+2MM          HE          CE         HEA     109.509    1.50
+2MM          HE          CE         HEB     109.509    1.50
+2MM         HEA          CE         HEB     109.509    1.50
+2MM          CE          SD          CG     100.595    1.50
+2MM          SD          CG          CB     112.576    2.44
+2MM          SD          CG          HG     108.861    1.50
+2MM          SD          CG         HGA     108.861    1.50
+2MM          CB          CG          HG     109.206    1.50
+2MM          CB          CG         HGA     109.206    1.50
+2MM          HG          CG         HGA     107.939    1.50
+2MM          CG          CB          CA     113.307    1.50
+2MM          CG          CB          HB     108.955    1.50
+2MM          CG          CB         HBA     108.955    1.50
+2MM          CA          CB          HB     108.562    1.50
+2MM          CA          CB         HBA     108.562    1.50
+2MM          HB          CB         HBA     107.698    1.50
+2MM          CB          CA           C     110.328    1.98
+2MM          CB          CA           N     111.883    2.59
+2MM          CB          CA          HA     108.223    1.50
+2MM           C          CA           N     112.134    2.59
+2MM           C          CA          HA     108.169    1.50
+2MM           N          CA          HA     106.450    1.50
+2MM          CA           C           O     117.226    1.56
+2MM          CA           C         OXT     117.226    1.56
+2MM           O           C         OXT     125.548    1.50
+2MM          CA           N         CN2     114.187    1.50
+2MM          CA           N         CN1     114.187    1.50
+2MM         CN2           N         CN1     110.464    1.50
+2MM           N         CN2         HN2     109.522    1.50
+2MM           N         CN2        HN2A     109.522    1.50
+2MM           N         CN2        HN2B     109.522    1.50
+2MM         HN2         CN2        HN2A     109.408    1.50
+2MM         HN2         CN2        HN2B     109.408    1.50
+2MM        HN2A         CN2        HN2B     109.408    1.50
+2MM           N         CN1         HN1     109.522    1.50
+2MM           N         CN1        HN1A     109.522    1.50
+2MM           N         CN1        HN1B     109.522    1.50
+2MM         HN1         CN1        HN1A     109.408    1.50
+2MM         HN1         CN1        HN1B     109.408    1.50
+2MM        HN1A         CN1        HN1B     109.408    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+2MM             sp3_sp3_1          HE          CE          SD          CG     180.000    10.0     3
+2MM             sp3_sp3_4          CB          CG          SD          CE     180.000    10.0     3
+2MM             sp3_sp3_7          CA          CB          CG          SD     180.000    10.0     3
+2MM            sp3_sp3_16           C          CA          CB          CG     180.000    10.0     3
+2MM             sp2_sp3_1           O           C          CA          CB       0.000    10.0     6
+2MM            sp3_sp3_26          CB          CA           N         CN2     -60.000    10.0     3
+2MM            sp3_sp3_31         HN2         CN2           N          CA     180.000    10.0     3
+2MM            sp3_sp3_38         HN1         CN1           N          CA     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+2MM    chir_1    CA    N    C    CB    positive
+2MM    chir_2    N    CA    CN2    CN1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+2MM    plan-1           C   0.020
+2MM    plan-1          CA   0.020
+2MM    plan-1           O   0.020
+2MM    plan-1         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+2MM           SMILES              ACDLabs 10.04                                                             O=C(O)C(N(C)C)CCSC
+2MM SMILES_CANONICAL               CACTVS 3.341                                                         CSCC[C@H](N(C)C)C(O)=O
+2MM           SMILES               CACTVS 3.341                                                          CSCC[CH](N(C)C)C(O)=O
+2MM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                        CN(C)[C@@H](CCSC)C(=O)O
+2MM           SMILES "OpenEye OEToolkits" 1.5.0                                                             CN(C)C(CCSC)C(=O)O
+2MM            InChI                InChI  1.03 InChI=1S/C7H15NO2S/c1-8(2)6(7(9)10)4-5-11-3/h6H,4-5H2,1-3H3,(H,9,10)/t6-/m0/s1
+2MM         InChIKey                InChI  1.03                                                    FLEXUHXAXRFRAU-LURJTMIESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+2MM acedrg               243         "dictionary generator"                  
+2MM acedrg_database      11          "data source"                           
+2MM rdkit                2017.03.2   "Chemoinformatics tool"
+2MM refmac5              5.8.0238    "optimization tool"                     

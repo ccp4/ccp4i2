@@ -1,0 +1,208 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JBB     JBB      "3-(thiophen-2-ylsulfanylmethyl)benzoic acid"     NON-POLYMER     25     16     .     
+#
+data_comp_JBB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JBB     C10     C       CR5     0       -13.690     -10.485     25.035      
+JBB     C13     C       CR15    0       -13.902     -10.755     22.716      
+JBB     C15     C       CR16    0       -11.698     -9.699      29.682      
+JBB     O01     O       O       0       -11.176     -10.895     32.316      
+JBB     C02     C       C       0       -11.764     -9.806      32.187      
+JBB     C03     C       CR6     0       -11.570     -9.051      30.907      
+JBB     C04     C       CR16    0       -11.260     -7.697      30.928      
+JBB     C05     C       CR16    0       -11.082     -7.006      29.741      
+JBB     C06     C       CR16    0       -11.212     -7.663      28.526      
+JBB     C07     C       CR6     0       -11.524     -9.014      28.486      
+JBB     C08     C       CH2     0       -11.660     -9.730      27.170      
+JBB     S09     S       S2      0       -13.379     -9.821      26.618      
+JBB     S11     S       S2      0       -14.218     -12.051     24.841      
+JBB     C12     C       CR15    0       -14.283     -11.976     23.176      
+JBB     C14     C       CR15    0       -13.550     -9.871      23.796      
+JBB     O16     O       OC      -1      -12.502     -9.300      33.052      
+JBB     H1      H       H       0       -13.870     -10.511     21.807      
+JBB     H2      H       H       0       -11.908     -10.619     29.660      
+JBB     H3      H       H       0       -11.171     -7.248      31.750      
+JBB     H4      H       H       0       -10.872     -6.085      29.759      
+JBB     H5      H       H       0       -11.089     -7.186      27.720      
+JBB     H6      H       H       0       -11.309     -10.636     27.255      
+JBB     H7      H       H       0       -11.136     -9.266      26.491      
+JBB     H8      H       H       0       -14.557     -12.717     22.664      
+JBB     H9      H       H       0       -13.261     -8.982      23.682      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JBB         C13         C12      DOUBLE       y     1.343  0.0200     1.343  0.0200
+JBB         C13         C14      SINGLE       y     1.417  0.0151     1.417  0.0151
+JBB         S11         C12      SINGLE       y     1.695  0.0200     1.695  0.0200
+JBB         C10         C14      DOUBLE       y     1.385  0.0125     1.385  0.0125
+JBB         C10         S11      SINGLE       y     1.695  0.0200     1.695  0.0200
+JBB         C10         S09      SINGLE       n     1.744  0.0119     1.744  0.0119
+JBB         C08         S09      SINGLE       n     1.809  0.0191     1.809  0.0191
+JBB         C07         C08      SINGLE       n     1.504  0.0100     1.504  0.0100
+JBB         C06         C07      SINGLE       y     1.384  0.0100     1.384  0.0100
+JBB         C05         C06      DOUBLE       y     1.383  0.0105     1.383  0.0105
+JBB         C15         C07      DOUBLE       y     1.385  0.0100     1.385  0.0100
+JBB         C04         C05      SINGLE       y     1.382  0.0100     1.382  0.0100
+JBB         C15         C03      SINGLE       y     1.388  0.0100     1.388  0.0100
+JBB         C03         C04      DOUBLE       y     1.386  0.0100     1.386  0.0100
+JBB         C02         C03      SINGLE       n     1.498  0.0200     1.498  0.0200
+JBB         O01         C02      DOUBLE       n     1.244  0.0200     1.244  0.0200
+JBB         C02         O16      SINGLE       n     1.244  0.0200     1.244  0.0200
+JBB         C13          H1      SINGLE       n     1.082  0.0130     0.942  0.0153
+JBB         C15          H2      SINGLE       n     1.082  0.0130     0.944  0.0147
+JBB         C04          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+JBB         C05          H4      SINGLE       n     1.082  0.0130     0.945  0.0184
+JBB         C06          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+JBB         C08          H6      SINGLE       n     1.089  0.0100     0.975  0.0100
+JBB         C08          H7      SINGLE       n     1.089  0.0100     0.975  0.0100
+JBB         C12          H8      SINGLE       n     1.082  0.0130     0.942  0.0200
+JBB         C14          H9      SINGLE       n     1.082  0.0130     0.942  0.0153
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JBB         C14         C10         S11     108.418    3.00
+JBB         C14         C10         S09     129.232    2.21
+JBB         S11         C10         S09     122.349    3.00
+JBB         C12         C13         C14     107.456    1.50
+JBB         C12         C13          H1     126.637    1.50
+JBB         C14         C13          H1     125.907    1.50
+JBB         C07         C15         C03     121.122    1.50
+JBB         C07         C15          H2     119.232    1.50
+JBB         C03         C15          H2     119.646    1.50
+JBB         C03         C02         O01     117.791    1.50
+JBB         C03         C02         O16     117.791    1.50
+JBB         O01         C02         O16     124.418    1.50
+JBB         C15         C03         C04     119.355    1.50
+JBB         C15         C03         C02     120.243    1.50
+JBB         C04         C03         C02     120.402    1.50
+JBB         C05         C04         C03     120.189    1.50
+JBB         C05         C04          H3     119.855    1.50
+JBB         C03         C04          H3     119.956    1.50
+JBB         C06         C05         C04     120.138    1.50
+JBB         C06         C05          H4     119.931    1.50
+JBB         C04         C05          H4     119.931    1.50
+JBB         C07         C06         C05     120.375    1.50
+JBB         C07         C06          H5     119.812    1.50
+JBB         C05         C06          H5     119.813    1.50
+JBB         C08         C07         C06     120.649    1.50
+JBB         C08         C07         C15     120.530    1.50
+JBB         C06         C07         C15     118.821    1.50
+JBB         S09         C08         C07     111.115    3.00
+JBB         S09         C08          H6     109.066    1.50
+JBB         S09         C08          H7     109.066    1.50
+JBB         C07         C08          H6     109.787    1.50
+JBB         C07         C08          H7     109.787    1.50
+JBB          H6         C08          H7     108.294    1.50
+JBB         C10         S09         C08     120.000    3.00
+JBB         C12         S11         C10     108.418    3.00
+JBB         C13         C12         S11     108.418    3.00
+JBB         C13         C12          H8     128.419    2.40
+JBB         S11         C12          H8     123.163    3.00
+JBB         C13         C14         C10     107.289    1.50
+JBB         C13         C14          H9     125.455    1.50
+JBB         C10         C14          H9     127.256    2.63
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JBB             sp2_sp2_1         C14         C10         S09         C08     180.000     5.0     2
+JBB              const_36         S09         C10         S11         C12     180.000    10.0     2
+JBB              const_23         S09         C10         C14         C13     180.000    10.0     2
+JBB             sp3_sp3_1         C07         C08         S09         C10     180.000    10.0     3
+JBB              const_33         C13         C12         S11         C10       0.000    10.0     2
+JBB              const_29         S11         C12         C13         C14       0.000    10.0     2
+JBB              const_25         C12         C13         C14         C10       0.000    10.0     2
+JBB              const_39         C02         C03         C15         C07     180.000    10.0     2
+JBB       const_sp2_sp2_3         C08         C07         C15         C03     180.000     5.0     2
+JBB             sp2_sp2_3         O01         C02         C03         C15     180.000     5.0     2
+JBB              const_19         C02         C03         C04         C05     180.000    10.0     2
+JBB              const_13         C03         C04         C05         C06       0.000    10.0     2
+JBB       const_sp2_sp2_9         C04         C05         C06         C07       0.000     5.0     2
+JBB       const_sp2_sp2_6         C05         C06         C07         C08     180.000     5.0     2
+JBB             sp2_sp3_2         C06         C07         C08         S09     -90.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JBB    plan-1         C10   0.020
+JBB    plan-1         C12   0.020
+JBB    plan-1         C13   0.020
+JBB    plan-1         C14   0.020
+JBB    plan-1          H1   0.020
+JBB    plan-1          H8   0.020
+JBB    plan-1          H9   0.020
+JBB    plan-1         S09   0.020
+JBB    plan-1         S11   0.020
+JBB    plan-2         C02   0.020
+JBB    plan-2         C03   0.020
+JBB    plan-2         C04   0.020
+JBB    plan-2         C05   0.020
+JBB    plan-2         C06   0.020
+JBB    plan-2         C07   0.020
+JBB    plan-2         C08   0.020
+JBB    plan-2         C15   0.020
+JBB    plan-2          H2   0.020
+JBB    plan-2          H3   0.020
+JBB    plan-2          H4   0.020
+JBB    plan-2          H5   0.020
+JBB    plan-3         C02   0.020
+JBB    plan-3         C03   0.020
+JBB    plan-3         O01   0.020
+JBB    plan-3         O16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JBB            InChI                InChI  1.03 InChI=1S/C12H10O2S2/c13-12(14)10-4-1-3-9(7-10)8-16-11-5-2-6-15-11/h1-7H,8H2,(H,13,14)
+JBB         InChIKey                InChI  1.03                                                           WSMPZJFCOIZVQR-UHFFFAOYSA-N
+JBB SMILES_CANONICAL               CACTVS 3.385                                                             OC(=O)c1cccc(CSc2sccc2)c1
+JBB           SMILES               CACTVS 3.385                                                             OC(=O)c1cccc(CSc2sccc2)c1
+JBB SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                           c1cc(cc(c1)C(=O)O)CSc2cccs2
+JBB           SMILES "OpenEye OEToolkits" 2.0.7                                                           c1cc(cc(c1)C(=O)O)CSc2cccs2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JBB acedrg               243         "dictionary generator"                  
+JBB acedrg_database      11          "data source"                           
+JBB rdkit                2017.03.2   "Chemoinformatics tool"
+JBB refmac5              5.8.0238    "optimization tool"                     

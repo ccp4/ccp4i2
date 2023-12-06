@@ -1,0 +1,220 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+9XG     9XG      3-methyl-N-phenylaniline     NON-POLYMER     27     14     .     
+#
+data_comp_9XG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+9XG     CAA     C       CH3     0       3.079       1.258       3.930       
+9XG     CAB     C       CR16    0       3.005       -1.152      -2.888      
+9XG     CAC     C       CR16    0       2.122       -0.466      -2.079      
+9XG     CAD     C       CR16    0       3.591       -2.313      -2.429      
+9XG     CAE     C       CR16    0       0.663       -1.657      4.214       
+9XG     CAF     C       CR16    0       1.362       -0.494      4.497       
+9XG     CAG     C       CR16    0       1.819       -0.937      -0.809      
+9XG     CAH     C       CR16    0       3.298       -2.794      -1.160      
+9XG     CAI     C       CR16    0       0.912       -2.358      3.043       
+9XG     CAJ     C       CR16    0       2.566       -0.725      2.438       
+9XG     CAL     C       CR6     0       2.320       -0.006      3.623       
+9XG     CAM     C       CR6     0       2.410       -2.107      -0.336      
+9XG     CAN     C       CR6     0       1.866       -1.894      2.141       
+9XG     NAK     N       NH1     0       2.122       -2.611      0.947       
+9XG     HAB     H       H       0       2.453       1.986       4.076       
+9XG     HAC     H       H       0       3.662       1.481       3.185       
+9XG     HAA     H       H       0       3.615       1.130       4.729       
+9XG     HAD     H       H       0       3.206       -0.828      -3.751      
+9XG     HAE     H       H       0       1.719       0.328       -2.390      
+9XG     HAF     H       H       0       4.195       -2.784      -2.979      
+9XG     HAG     H       H       0       0.014       -1.975      4.820       
+9XG     HAH     H       H       0       1.184       -0.026      5.297       
+9XG     HAI     H       H       0       1.215       -0.462      -0.263      
+9XG     HAJ     H       H       0       3.703       -3.588      -0.852      
+9XG     HAK     H       H       0       0.433       -3.149      2.854       
+9XG     HAL     H       H       0       3.214       -0.406      1.832       
+9XG     HAM     H       H       0       2.096       -3.478      1.016       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+9XG         CAB         CAC      DOUBLE       y     1.376  0.0112     1.376  0.0112
+9XG         CAB         CAD      SINGLE       y     1.376  0.0112     1.376  0.0112
+9XG         CAC         CAG      SINGLE       y     1.385  0.0100     1.385  0.0100
+9XG         CAD         CAH      DOUBLE       y     1.385  0.0100     1.385  0.0100
+9XG         CAG         CAM      DOUBLE       y     1.388  0.0100     1.388  0.0100
+9XG         CAH         CAM      SINGLE       y     1.388  0.0100     1.388  0.0100
+9XG         CAM         NAK      SINGLE       n     1.403  0.0147     1.403  0.0147
+9XG         CAN         NAK      SINGLE       n     1.411  0.0161     1.411  0.0161
+9XG         CAJ         CAN      DOUBLE       y     1.390  0.0100     1.390  0.0100
+9XG         CAI         CAN      SINGLE       y     1.389  0.0100     1.389  0.0100
+9XG         CAJ         CAL      SINGLE       y     1.393  0.0192     1.393  0.0192
+9XG         CAE         CAI      DOUBLE       y     1.381  0.0144     1.381  0.0144
+9XG         CAA         CAL      SINGLE       n     1.505  0.0143     1.505  0.0143
+9XG         CAF         CAL      DOUBLE       y     1.382  0.0114     1.382  0.0114
+9XG         CAE         CAF      SINGLE       y     1.380  0.0131     1.380  0.0131
+9XG         CAA         HAB      SINGLE       n     1.089  0.0100     0.971  0.0135
+9XG         CAA         HAC      SINGLE       n     1.089  0.0100     0.971  0.0135
+9XG         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0135
+9XG         CAB         HAD      SINGLE       n     1.082  0.0130     0.944  0.0161
+9XG         CAC         HAE      SINGLE       n     1.082  0.0130     0.943  0.0172
+9XG         CAD         HAF      SINGLE       n     1.082  0.0130     0.943  0.0172
+9XG         CAE         HAG      SINGLE       n     1.082  0.0130     0.943  0.0185
+9XG         CAF         HAH      SINGLE       n     1.082  0.0130     0.944  0.0174
+9XG         CAG         HAI      SINGLE       n     1.082  0.0130     0.943  0.0178
+9XG         CAH         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0178
+9XG         CAI         HAK      SINGLE       n     1.082  0.0130     0.943  0.0178
+9XG         CAJ         HAL      SINGLE       n     1.082  0.0130     0.942  0.0139
+9XG         NAK         HAM      SINGLE       n     1.016  0.0100     0.870  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+9XG         CAL         CAA         HAB     109.567    1.50
+9XG         CAL         CAA         HAC     109.567    1.50
+9XG         CAL         CAA         HAA     109.567    1.50
+9XG         HAB         CAA         HAC     109.348    1.50
+9XG         HAB         CAA         HAA     109.348    1.50
+9XG         HAC         CAA         HAA     109.348    1.50
+9XG         CAC         CAB         CAD     119.948    1.50
+9XG         CAC         CAB         HAD     120.026    1.50
+9XG         CAD         CAB         HAD     120.026    1.50
+9XG         CAB         CAC         CAG     120.556    1.50
+9XG         CAB         CAC         HAE     119.863    1.50
+9XG         CAG         CAC         HAE     119.581    1.50
+9XG         CAB         CAD         CAH     120.556    1.50
+9XG         CAB         CAD         HAF     119.863    1.50
+9XG         CAH         CAD         HAF     119.581    1.50
+9XG         CAI         CAE         CAF     120.420    1.50
+9XG         CAI         CAE         HAG     119.694    1.50
+9XG         CAF         CAE         HAG     119.886    1.50
+9XG         CAL         CAF         CAE     121.070    1.50
+9XG         CAL         CAF         HAH     119.314    1.50
+9XG         CAE         CAF         HAH     119.621    1.50
+9XG         CAC         CAG         CAM     120.035    1.50
+9XG         CAC         CAG         HAI     120.108    1.50
+9XG         CAM         CAG         HAI     119.858    1.50
+9XG         CAD         CAH         CAM     120.035    1.50
+9XG         CAD         CAH         HAJ     120.108    1.50
+9XG         CAM         CAH         HAJ     119.858    1.50
+9XG         CAN         CAI         CAE     119.932    1.50
+9XG         CAN         CAI         HAK     119.909    1.50
+9XG         CAE         CAI         HAK     120.159    1.50
+9XG         CAN         CAJ         CAL     121.231    1.50
+9XG         CAN         CAJ         HAL     119.433    1.50
+9XG         CAL         CAJ         HAL     119.336    1.50
+9XG         CAJ         CAL         CAA     120.579    1.50
+9XG         CAJ         CAL         CAF     118.182    1.50
+9XG         CAA         CAL         CAF     121.239    1.50
+9XG         CAG         CAM         CAH     118.870    1.50
+9XG         CAG         CAM         NAK     120.565    2.22
+9XG         CAH         CAM         NAK     120.565    2.22
+9XG         NAK         CAN         CAJ     119.966    1.80
+9XG         NAK         CAN         CAI     120.875    2.22
+9XG         CAJ         CAN         CAI     119.159    1.50
+9XG         CAM         NAK         CAN     127.229    1.73
+9XG         CAM         NAK         HAM     116.386    2.23
+9XG         CAN         NAK         HAM     116.386    2.23
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+9XG             sp2_sp3_1         CAJ         CAL         CAA         HAB     150.000    10.0     6
+9XG             sp2_sp2_1         CAG         CAM         NAK         CAN     180.000     5.0     2
+9XG             sp2_sp2_5         CAJ         CAN         NAK         CAM     180.000     5.0     2
+9XG       const_sp2_sp2_1         CAD         CAB         CAC         CAG       0.000     5.0     2
+9XG              const_41         CAC         CAB         CAD         CAH       0.000    10.0     2
+9XG       const_sp2_sp2_5         CAB         CAC         CAG         CAM       0.000     5.0     2
+9XG              const_17         CAB         CAD         CAH         CAM       0.000    10.0     2
+9XG              const_45         CAI         CAE         CAF         CAL       0.000    10.0     2
+9XG              const_21         CAF         CAE         CAI         CAN       0.000    10.0     2
+9XG              const_38         CAE         CAF         CAL         CAA     180.000    10.0     2
+9XG              const_10         CAC         CAG         CAM         NAK     180.000    10.0     2
+9XG              const_14         CAD         CAH         CAM         NAK     180.000    10.0     2
+9XG              const_26         CAE         CAI         CAN         NAK     180.000    10.0     2
+9XG              const_34         CAN         CAJ         CAL         CAA     180.000    10.0     2
+9XG              const_30         CAL         CAJ         CAN         NAK     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+9XG    plan-1         CAA   0.020
+9XG    plan-1         CAE   0.020
+9XG    plan-1         CAF   0.020
+9XG    plan-1         CAI   0.020
+9XG    plan-1         CAJ   0.020
+9XG    plan-1         CAL   0.020
+9XG    plan-1         CAN   0.020
+9XG    plan-1         HAG   0.020
+9XG    plan-1         HAH   0.020
+9XG    plan-1         HAK   0.020
+9XG    plan-1         HAL   0.020
+9XG    plan-1         NAK   0.020
+9XG    plan-2         CAB   0.020
+9XG    plan-2         CAC   0.020
+9XG    plan-2         CAD   0.020
+9XG    plan-2         CAG   0.020
+9XG    plan-2         CAH   0.020
+9XG    plan-2         CAM   0.020
+9XG    plan-2         HAD   0.020
+9XG    plan-2         HAE   0.020
+9XG    plan-2         HAF   0.020
+9XG    plan-2         HAI   0.020
+9XG    plan-2         HAJ   0.020
+9XG    plan-2         NAK   0.020
+9XG    plan-3         CAM   0.020
+9XG    plan-3         CAN   0.020
+9XG    plan-3         HAM   0.020
+9XG    plan-3         NAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+9XG           SMILES              ACDLabs 12.01                                                   Cc1cccc(c1)Nc2ccccc2
+9XG            InChI                InChI  1.03 InChI=1S/C13H13N/c1-11-6-5-9-13(10-11)14-12-7-3-2-4-8-12/h2-10,14H,1H3
+9XG         InChIKey                InChI  1.03                                            TWPMMLHBHPYSMT-UHFFFAOYSA-N
+9XG SMILES_CANONICAL               CACTVS 3.385                                                   Cc1cccc(Nc2ccccc2)c1
+9XG           SMILES               CACTVS 3.385                                                   Cc1cccc(Nc2ccccc2)c1
+9XG SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                   Cc1cccc(c1)Nc2ccccc2
+9XG           SMILES "OpenEye OEToolkits" 2.0.6                                                   Cc1cccc(c1)Nc2ccccc2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+9XG acedrg               243         "dictionary generator"                  
+9XG acedrg_database      11          "data source"                           
+9XG rdkit                2017.03.2   "Chemoinformatics tool"
+9XG refmac5              5.8.0238    "optimization tool"                     

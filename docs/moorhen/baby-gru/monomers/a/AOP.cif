@@ -1,0 +1,190 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AOP     AOP      PENTYLOXYAMINO-ACETALDEHYDE     NON-POLYMER     25     10     .     
+#
+data_comp_AOP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AOP     O1      O       O       0       7.403       32.918      20.524      
+AOP     C1      C       C1      0       7.716       33.923      21.081      
+AOP     C2      C       CH2     0       9.173       34.345      21.254      
+AOP     N3      N       NT1     0       9.859       33.575      22.299      
+AOP     O4      O       O2      0       11.281      33.856      22.266      
+AOP     C5      C       CH2     0       11.994      32.848      21.517      
+AOP     C6      C       CH2     0       13.438      33.233      21.313      
+AOP     C7      C       CH2     0       13.633      34.235      20.202      
+AOP     C8      C       CH2     0       15.054      34.725      20.071      
+AOP     C9      C       CH3     0       16.027      33.704      19.521      
+AOP     H1      H       H       0       7.078       34.517      21.449      
+AOP     H21     H       H       0       9.201       35.289      21.482      
+AOP     H22     H       H       0       9.638       34.225      20.410      
+AOP     HN3     H       H       0       9.732       32.677      22.207      
+AOP     H51     H       H       0       11.556      32.728      20.647      
+AOP     H52     H       H       0       11.947      31.997      22.003      
+AOP     H61     H       H       0       13.957      32.427      21.110      
+AOP     H62     H       H       0       13.788      33.611      22.147      
+AOP     H71     H       H       0       13.047      35.005      20.361      
+AOP     H72     H       H       0       13.362      33.825      19.352      
+AOP     H81     H       H       0       15.367      35.014      20.956      
+AOP     H82     H       H       0       15.060      35.513      19.484      
+AOP     H91     H       H       0       16.423      34.042      18.700      
+AOP     H92     H       H       0       15.560      32.870      19.335      
+AOP     H93     H       H       0       16.729      33.540      20.174      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AOP          O1          C1      DOUBLE       n     1.191  0.0200     1.191  0.0200
+AOP          C1          C2      SINGLE       n     1.526  0.0198     1.526  0.0198
+AOP          C2          N3      SINGLE       n     1.467  0.0138     1.467  0.0138
+AOP          N3          O4      SINGLE       n     1.443  0.0142     1.443  0.0142
+AOP          O4          C5      SINGLE       n     1.442  0.0100     1.442  0.0100
+AOP          C5          C6      SINGLE       n     1.507  0.0200     1.507  0.0200
+AOP          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+AOP          C7          C8      SINGLE       n     1.507  0.0200     1.507  0.0200
+AOP          C8          C9      SINGLE       n     1.510  0.0200     1.510  0.0200
+AOP          C1          H1      SINGLE       n     1.082  0.0130     0.947  0.0200
+AOP          C2         H21      SINGLE       n     1.089  0.0100     0.971  0.0200
+AOP          C2         H22      SINGLE       n     1.089  0.0100     0.971  0.0200
+AOP          N3         HN3      SINGLE       n     1.036  0.0160     0.909  0.0200
+AOP          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0174
+AOP          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0174
+AOP          C6         H61      SINGLE       n     1.089  0.0100     0.980  0.0166
+AOP          C6         H62      SINGLE       n     1.089  0.0100     0.980  0.0166
+AOP          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0163
+AOP          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0163
+AOP          C8         H81      SINGLE       n     1.089  0.0100     0.982  0.0155
+AOP          C8         H82      SINGLE       n     1.089  0.0100     0.982  0.0155
+AOP          C9         H91      SINGLE       n     1.089  0.0100     0.973  0.0157
+AOP          C9         H92      SINGLE       n     1.089  0.0100     0.973  0.0157
+AOP          C9         H93      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AOP          O1          C1          C2     122.539    1.72
+AOP          O1          C1          H1     122.298    1.50
+AOP          C2          C1          H1     115.163    1.50
+AOP          C1          C2          N3     112.134    2.59
+AOP          C1          C2         H21     108.731    1.50
+AOP          C1          C2         H22     108.731    1.50
+AOP          N3          C2         H21     109.140    1.50
+AOP          N3          C2         H22     109.140    1.50
+AOP         H21          C2         H22     107.908    1.50
+AOP          C2          N3          O4     108.492    3.00
+AOP          C2          N3         HN3     111.861    3.00
+AOP          O4          N3         HN3     104.778    3.00
+AOP          N3          O4          C5     109.509    1.50
+AOP          O4          C5          C6     112.029    2.95
+AOP          O4          C5         H51     109.064    1.50
+AOP          O4          C5         H52     109.064    1.50
+AOP          C6          C5         H51     109.949    1.50
+AOP          C6          C5         H52     109.949    1.50
+AOP         H51          C5         H52     108.308    1.50
+AOP          C5          C6          C7     112.914    1.69
+AOP          C5          C6         H61     108.982    1.50
+AOP          C5          C6         H62     108.982    1.50
+AOP          C7          C6         H61     108.944    1.50
+AOP          C7          C6         H62     108.944    1.50
+AOP         H61          C6         H62     107.788    1.50
+AOP          C6          C7          C8     113.560    1.83
+AOP          C6          C7         H71     108.902    1.50
+AOP          C6          C7         H72     108.902    1.50
+AOP          C8          C7         H71     108.653    1.50
+AOP          C8          C7         H72     108.653    1.50
+AOP         H71          C7         H72     107.646    1.50
+AOP          C7          C8          C9     113.719    3.00
+AOP          C7          C8         H81     108.758    1.50
+AOP          C7          C8         H82     108.758    1.50
+AOP          C9          C8         H81     108.918    1.50
+AOP          C9          C8         H82     108.918    1.50
+AOP         H81          C8         H82     107.763    1.50
+AOP          C8          C9         H91     109.554    1.50
+AOP          C8          C9         H92     109.554    1.50
+AOP          C8          C9         H93     109.554    1.50
+AOP         H91          C9         H92     109.380    1.50
+AOP         H91          C9         H93     109.380    1.50
+AOP         H92          C9         H93     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AOP             sp2_sp3_2          O1          C1          C2          N3     120.000    10.0     6
+AOP             sp3_sp3_1          C1          C2          N3          O4     180.000    10.0     3
+AOP             sp3_sp3_8          C2          N3          O4          C5      60.000    10.0     3
+AOP             sp3_sp3_9          C6          C5          O4          N3     180.000    10.0     3
+AOP            sp3_sp3_12          O4          C5          C6          C7     180.000    10.0     3
+AOP            sp3_sp3_21          C5          C6          C7          C8     180.000    10.0     3
+AOP            sp3_sp3_30          C6          C7          C8          C9     180.000    10.0     3
+AOP            sp3_sp3_39          C7          C8          C9         H91     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AOP    chir_1    N3    O4    C2    HN3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AOP    plan-1          C1   0.020
+AOP    plan-1          C2   0.020
+AOP    plan-1          H1   0.020
+AOP    plan-1          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AOP           SMILES              ACDLabs 10.04                                               O=CCNOCCCCC
+AOP SMILES_CANONICAL               CACTVS 3.341                                               CCCCCONCC=O
+AOP           SMILES               CACTVS 3.341                                               CCCCCONCC=O
+AOP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                               CCCCCONCC=O
+AOP           SMILES "OpenEye OEToolkits" 1.5.0                                               CCCCCONCC=O
+AOP            InChI                InChI  1.03 InChI=1S/C7H15NO2/c1-2-3-4-7-10-8-5-6-9/h6,8H,2-5,7H2,1H3
+AOP         InChIKey                InChI  1.03                               PKNNPRVGISCRDL-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AOP acedrg               243         "dictionary generator"                  
+AOP acedrg_database      11          "data source"                           
+AOP rdkit                2017.03.2   "Chemoinformatics tool"
+AOP refmac5              5.8.0238    "optimization tool"                     

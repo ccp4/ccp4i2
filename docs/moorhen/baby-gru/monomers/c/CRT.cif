@@ -1,0 +1,617 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CRT     CRT      SPIRILLOXANTHIN     NON-POLYMER     104     44     .     
+#
+data_comp_CRT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CRT     C1M     C       CH3     0       1.464       -3.257      45.937      
+CRT     O1      O       O2      0       1.418       -2.388      47.068      
+CRT     C1      C       CT      0       2.272       -2.555      48.225      
+CRT     C2      C       CH3     0       3.731       -2.672      47.798      
+CRT     C3      C       CH3     0       1.806       -3.787      48.993      
+CRT     C4      C       CH2     0       2.082       -1.301      49.095      
+CRT     C5      C       C1      0       2.386       0.005       48.428      
+CRT     C6      C       C1      0       1.565       1.050       48.319      
+CRT     C7      C       C       0       1.754       2.239       47.558      
+CRT     C8      C       CH3     0       2.857       2.295       46.540      
+CRT     C9      C       C1      0       0.960       3.396       47.793      
+CRT     C10     C       C1      0       0.999       4.652       47.194      
+CRT     C11     C       C1      0       0.280       5.793       47.527      
+CRT     C12     C       C       0       0.282       7.076       46.921      
+CRT     C13     C       CH3     0       0.930       7.251       45.582      
+CRT     C14     C       C1      0       -0.252      8.208       47.590      
+CRT     C15     C       C1      0       -0.244      9.553       47.238      
+CRT     C16     C       C1      0       -0.731      10.613      47.987      
+CRT     C17     C       C       0       -0.744      12.007      47.713      
+CRT     C18     C       CH3     0       -0.324      12.496      46.363      
+CRT     C19     C       C1      0       -1.126      12.937      48.712      
+CRT     C20     C       C1      0       -1.087      14.330      48.735      
+CRT     C21     C       C1      0       -1.498      15.205      49.735      
+CRT     C22     C       C1      0       -2.127      14.920      50.942      
+CRT     C23     C       C       0       -2.445      15.741      52.050      
+CRT     C24     C       CH3     0       -2.118      17.201      52.012      
+CRT     C25     C       C1      0       -3.088      15.191      53.188      
+CRT     C26     C       C1      0       -3.284      15.717      54.453      
+CRT     C27     C       C1      0       -4.016      15.146      55.484      
+CRT     C28     C       C       0       -4.177      15.565      56.825      
+CRT     C29     C       CH3     0       -3.265      16.616      57.376      
+CRT     C30     C       C1      0       -5.202      15.033      57.648      
+CRT     C31     C       C1      0       -5.664      15.463      58.884      
+CRT     C32     C       C1      0       -6.680      14.917      59.659      
+CRT     C33     C       C       0       -7.258      15.383      60.869      
+CRT     C34     C       CH3     0       -6.684      16.606      61.528      
+CRT     C35     C       C1      0       -8.360      14.708      61.467      
+CRT     C36     C       C1      0       -9.164      15.129      62.443      
+CRT     C37     C       CH2     0       -10.227     14.315      63.120      
+CRT     C38     C       CT      0       -11.179     15.082      64.053      
+CRT     C39     C       CH3     0       -12.254     14.136      64.569      
+CRT     C40     C       CH3     0       -10.392     15.715      65.195      
+CRT     O2      O       O2      0       -11.810     16.120      63.268      
+CRT     C2M     C       CH3     0       -12.708     17.091      63.813      
+CRT     H1M1    H       H       0       0.668       -3.122      45.398      
+CRT     H1M2    H       H       0       1.500       -4.181      46.231      
+CRT     H1M3    H       H       0       2.250       -3.055      45.404      
+CRT     H21A    H       H       0       4.306       -2.533      48.569      
+CRT     H22A    H       H       0       3.927       -1.999      47.124      
+CRT     H23     H       H       0       3.896       -3.555      47.427      
+CRT     H31A    H       H       0       2.032       -3.690      49.934      
+CRT     H32A    H       H       0       2.241       -4.580      48.638      
+CRT     H33     H       H       0       0.843       -3.881      48.902      
+CRT     H41     H       H       0       2.654       -1.389      49.887      
+CRT     H42     H       H       0       1.153       -1.285      49.409      
+CRT     H5      H       H       0       3.257       0.100       48.084      
+CRT     H6      H       H       0       0.756       1.002       48.801      
+CRT     H81     H       H       0       2.612       2.887       45.817      
+CRT     H82     H       H       0       3.016       1.412       46.177      
+CRT     H83     H       H       0       3.668       2.620       46.959      
+CRT     H9      H       H       0       0.298       3.311       48.459      
+CRT     H10     H       H       0       1.598       4.752       46.482      
+CRT     H11     H       H       0       -0.295      5.689       48.267      
+CRT     H131    H       H       0       0.496       7.965       45.095      
+CRT     H132    H       H       0       0.852       6.433       45.071      
+CRT     H133    H       H       0       1.868       7.467       45.701      
+CRT     H14     H       H       0       -0.687      8.032       48.409      
+CRT     H15     H       H       0       0.149       9.774       46.415      
+CRT     H16     H       H       0       -1.114      10.353      48.809      
+CRT     H181    H       H       0       -0.745      13.345      46.174      
+CRT     H182    H       H       0       -0.591      11.857      45.687      
+CRT     H183    H       H       0       0.639       12.601      46.343      
+CRT     H19     H       H       0       -1.461      12.559      49.506      
+CRT     H20     H       H       0       -0.720      14.751      47.978      
+CRT     H21     H       H       0       -1.317      16.112      49.558      
+CRT     H22     H       H       0       -2.391      14.020      51.019      
+CRT     H241    H       H       0       -2.712      17.687      52.602      
+CRT     H242    H       H       0       -2.227      17.538      51.112      
+CRT     H243    H       H       0       -1.202      17.335      52.297      
+CRT     H25     H       H       0       -3.450      14.328      53.078      
+CRT     H26     H       H       0       -2.879      16.547      54.630      
+CRT     H27     H       H       0       -4.473      14.357      55.243      
+CRT     H291    H       H       0       -3.123      16.465      58.322      
+CRT     H292    H       H       0       -3.662      17.490      57.247      
+CRT     H293    H       H       0       -2.410      16.581      56.923      
+CRT     H30     H       H       0       -5.642      14.269      57.313      
+CRT     H31     H       H       0       -5.247      16.230      59.227      
+CRT     H32     H       H       0       -7.032      14.110      59.319      
+CRT     H341    H       H       0       -6.892      16.604      62.472      
+CRT     H342    H       H       0       -7.058      17.400      61.118      
+CRT     H343    H       H       0       -5.722      16.613      61.423      
+CRT     H35     H       H       0       -8.538      13.847      61.126      
+CRT     H36     H       H       0       -9.090      16.029      62.708      
+CRT     H371    H       H       0       -9.793      13.608      63.644      
+CRT     H372    H       H       0       -10.768     13.872      62.432      
+CRT     H391    H       H       0       -12.887     13.944      63.856      
+CRT     H392    H       H       0       -12.724     14.548      65.313      
+CRT     H393    H       H       0       -11.842     13.307      64.866      
+CRT     H401    H       H       0       -9.920      16.499      64.868      
+CRT     H402    H       H       0       -9.751      15.073      65.543      
+CRT     H403    H       H       0       -11.001     15.981      65.904      
+CRT     H2M1    H       H       0       -12.283     17.964      63.801      
+CRT     H2M2    H       H       0       -12.941     16.860      64.727      
+CRT     H2M3    H       H       0       -13.515     17.119      63.273      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CRT         C1M          O1      SINGLE       n     1.417  0.0200     1.417  0.0200
+CRT          O1          C1      SINGLE       n     1.440  0.0151     1.440  0.0151
+CRT          C1          C2      SINGLE       n     1.522  0.0104     1.522  0.0104
+CRT          C1          C3      SINGLE       n     1.522  0.0104     1.522  0.0104
+CRT          C1          C4      SINGLE       n     1.536  0.0100     1.536  0.0100
+CRT          C4          C5      SINGLE       n     1.498  0.0152     1.498  0.0152
+CRT          C5          C6      DOUBLE       n     1.331  0.0100     1.331  0.0100
+CRT          C6          C7      SINGLE       n     1.408  0.0200     1.408  0.0200
+CRT          C7          C8      SINGLE       n     1.483  0.0200     1.483  0.0200
+CRT          C7          C9      DOUBLE       n     1.408  0.0200     1.408  0.0200
+CRT          C9         C10      SINGLE       n     1.385  0.0200     1.385  0.0200
+CRT         C10         C11      DOUBLE       n     1.385  0.0200     1.385  0.0200
+CRT         C11         C12      SINGLE       n     1.408  0.0200     1.408  0.0200
+CRT         C12         C13      SINGLE       n     1.483  0.0200     1.483  0.0200
+CRT         C12         C14      DOUBLE       n     1.408  0.0200     1.408  0.0200
+CRT         C14         C15      SINGLE       n     1.385  0.0200     1.385  0.0200
+CRT         C15         C16      DOUBLE       n     1.385  0.0200     1.385  0.0200
+CRT         C16         C17      SINGLE       n     1.408  0.0200     1.408  0.0200
+CRT         C17         C18      SINGLE       n     1.483  0.0200     1.483  0.0200
+CRT         C17         C19      DOUBLE       n     1.408  0.0200     1.408  0.0200
+CRT         C19         C20      SINGLE       n     1.385  0.0200     1.385  0.0200
+CRT         C20         C21      DOUBLE       n     1.391  0.0200     1.391  0.0200
+CRT         C21         C22      SINGLE       n     1.385  0.0200     1.385  0.0200
+CRT         C22         C23      DOUBLE       n     1.408  0.0200     1.408  0.0200
+CRT         C23         C24      SINGLE       n     1.483  0.0200     1.483  0.0200
+CRT         C23         C25      SINGLE       n     1.408  0.0200     1.408  0.0200
+CRT         C25         C26      DOUBLE       n     1.385  0.0200     1.385  0.0200
+CRT         C26         C27      SINGLE       n     1.385  0.0200     1.385  0.0200
+CRT         C27         C28      DOUBLE       n     1.408  0.0200     1.408  0.0200
+CRT         C28         C29      SINGLE       n     1.483  0.0200     1.483  0.0200
+CRT         C28         C30      SINGLE       n     1.408  0.0200     1.408  0.0200
+CRT         C30         C31      DOUBLE       n     1.385  0.0200     1.385  0.0200
+CRT         C31         C32      SINGLE       n     1.385  0.0200     1.385  0.0200
+CRT         C32         C33      DOUBLE       n     1.408  0.0200     1.408  0.0200
+CRT         C33         C34      SINGLE       n     1.483  0.0200     1.483  0.0200
+CRT         C33         C35      SINGLE       n     1.408  0.0200     1.408  0.0200
+CRT         C35         C36      DOUBLE       n     1.331  0.0100     1.331  0.0100
+CRT         C36         C37      SINGLE       n     1.498  0.0152     1.498  0.0152
+CRT         C37         C38      SINGLE       n     1.536  0.0100     1.536  0.0100
+CRT         C38         C39      SINGLE       n     1.522  0.0104     1.522  0.0104
+CRT         C38         C40      SINGLE       n     1.522  0.0104     1.522  0.0104
+CRT         C38          O2      SINGLE       n     1.440  0.0151     1.440  0.0151
+CRT          O2         C2M      SINGLE       n     1.417  0.0200     1.417  0.0200
+CRT         C1M        H1M1      SINGLE       n     1.089  0.0100     0.971  0.0146
+CRT         C1M        H1M2      SINGLE       n     1.089  0.0100     0.971  0.0146
+CRT         C1M        H1M3      SINGLE       n     1.089  0.0100     0.971  0.0146
+CRT          C2        H21A      SINGLE       n     1.089  0.0100     0.972  0.0148
+CRT          C2        H22A      SINGLE       n     1.089  0.0100     0.972  0.0148
+CRT          C2         H23      SINGLE       n     1.089  0.0100     0.972  0.0148
+CRT          C3        H31A      SINGLE       n     1.089  0.0100     0.972  0.0148
+CRT          C3        H32A      SINGLE       n     1.089  0.0100     0.972  0.0148
+CRT          C3         H33      SINGLE       n     1.089  0.0100     0.972  0.0148
+CRT          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0185
+CRT          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0185
+CRT          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0181
+CRT          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0200
+CRT          C8         H81      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT          C8         H82      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT          C8         H83      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C13        H131      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C13        H132      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C13        H133      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C18        H181      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C18        H182      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C18        H183      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C21         H21      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C22         H22      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C24        H241      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C24        H242      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C24        H243      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C25         H25      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C26         H26      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C27         H27      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C29        H291      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C29        H292      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C29        H293      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C30         H30      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C31         H31      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C32         H32      SINGLE       n     1.082  0.0130     0.943  0.0196
+CRT         C34        H341      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C34        H342      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C34        H343      SINGLE       n     1.089  0.0100     0.969  0.0177
+CRT         C35         H35      SINGLE       n     1.082  0.0130     0.943  0.0200
+CRT         C36         H36      SINGLE       n     1.082  0.0130     0.943  0.0181
+CRT         C37        H371      SINGLE       n     1.089  0.0100     0.981  0.0185
+CRT         C37        H372      SINGLE       n     1.089  0.0100     0.981  0.0185
+CRT         C39        H391      SINGLE       n     1.089  0.0100     0.972  0.0148
+CRT         C39        H392      SINGLE       n     1.089  0.0100     0.972  0.0148
+CRT         C39        H393      SINGLE       n     1.089  0.0100     0.972  0.0148
+CRT         C40        H401      SINGLE       n     1.089  0.0100     0.972  0.0148
+CRT         C40        H402      SINGLE       n     1.089  0.0100     0.972  0.0148
+CRT         C40        H403      SINGLE       n     1.089  0.0100     0.972  0.0148
+CRT         C2M        H2M1      SINGLE       n     1.089  0.0100     0.971  0.0146
+CRT         C2M        H2M2      SINGLE       n     1.089  0.0100     0.971  0.0146
+CRT         C2M        H2M3      SINGLE       n     1.089  0.0100     0.971  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CRT          O1         C1M        H1M1     109.488    1.50
+CRT          O1         C1M        H1M2     109.488    1.50
+CRT          O1         C1M        H1M3     109.488    1.50
+CRT        H1M1         C1M        H1M2     109.532    1.53
+CRT        H1M1         C1M        H1M3     109.532    1.53
+CRT        H1M2         C1M        H1M3     109.532    1.53
+CRT         C1M          O1          C1     118.218    2.45
+CRT          O1          C1          C2     107.859    3.00
+CRT          O1          C1          C3     107.859    3.00
+CRT          O1          C1          C4     109.482    3.00
+CRT          C2          C1          C3     111.521    1.50
+CRT          C2          C1          C4     110.358    1.75
+CRT          C3          C1          C4     110.358    1.75
+CRT          C1          C2        H21A     109.489    1.50
+CRT          C1          C2        H22A     109.489    1.50
+CRT          C1          C2         H23     109.489    1.50
+CRT        H21A          C2        H22A     109.441    1.50
+CRT        H21A          C2         H23     109.441    1.50
+CRT        H22A          C2         H23     109.441    1.50
+CRT          C1          C3        H31A     109.489    1.50
+CRT          C1          C3        H32A     109.489    1.50
+CRT          C1          C3         H33     109.489    1.50
+CRT        H31A          C3        H32A     109.441    1.50
+CRT        H31A          C3         H33     109.441    1.50
+CRT        H32A          C3         H33     109.441    1.50
+CRT          C1          C4          C5     116.061    1.50
+CRT          C1          C4         H41     108.458    1.50
+CRT          C1          C4         H42     108.458    1.50
+CRT          C5          C4         H41     109.013    1.50
+CRT          C5          C4         H42     109.013    1.50
+CRT         H41          C4         H42     107.459    1.50
+CRT          C4          C5          C6     125.995    2.56
+CRT          C4          C5          H5     116.725    1.85
+CRT          C6          C5          H5     117.280    2.02
+CRT          C5          C6          C7     125.259    3.00
+CRT          C5          C6          H6     118.518    2.29
+CRT          C7          C6          H6     116.222    1.50
+CRT          C6          C7          C8     118.162    1.50
+CRT          C6          C7          C9     123.676    3.00
+CRT          C8          C7          C9     118.162    1.50
+CRT          C7          C8         H81     109.517    1.50
+CRT          C7          C8         H82     109.517    1.50
+CRT          C7          C8         H83     109.517    1.50
+CRT         H81          C8         H82     109.342    1.50
+CRT         H81          C8         H83     109.342    1.50
+CRT         H82          C8         H83     109.342    1.50
+CRT          C7          C9         C10     128.593    1.85
+CRT          C7          C9          H9     116.030    1.50
+CRT         C10          C9          H9     115.376    2.90
+CRT          C9         C10         C11     128.131    3.00
+CRT          C9         C10         H10     115.934    2.93
+CRT         C11         C10         H10     115.934    2.93
+CRT         C10         C11         C12     128.593    1.85
+CRT         C10         C11         H11     115.376    2.90
+CRT         C12         C11         H11     116.030    1.50
+CRT         C11         C12         C13     118.162    1.50
+CRT         C11         C12         C14     123.676    3.00
+CRT         C13         C12         C14     118.162    1.50
+CRT         C12         C13        H131     109.517    1.50
+CRT         C12         C13        H132     109.517    1.50
+CRT         C12         C13        H133     109.517    1.50
+CRT        H131         C13        H132     109.342    1.50
+CRT        H131         C13        H133     109.342    1.50
+CRT        H132         C13        H133     109.342    1.50
+CRT         C12         C14         C15     128.593    1.85
+CRT         C12         C14         H14     116.030    1.50
+CRT         C15         C14         H14     115.376    2.90
+CRT         C14         C15         C16     128.131    3.00
+CRT         C14         C15         H15     115.934    2.93
+CRT         C16         C15         H15     115.934    2.93
+CRT         C15         C16         C17     128.593    1.85
+CRT         C15         C16         H16     115.376    2.90
+CRT         C17         C16         H16     116.030    1.50
+CRT         C16         C17         C18     118.162    1.50
+CRT         C16         C17         C19     123.676    3.00
+CRT         C18         C17         C19     118.162    1.50
+CRT         C17         C18        H181     109.517    1.50
+CRT         C17         C18        H182     109.517    1.50
+CRT         C17         C18        H183     109.517    1.50
+CRT        H181         C18        H182     109.342    1.50
+CRT        H181         C18        H183     109.342    1.50
+CRT        H182         C18        H183     109.342    1.50
+CRT         C17         C19         C20     128.593    1.85
+CRT         C17         C19         H19     116.030    1.50
+CRT         C20         C19         H19     115.376    2.90
+CRT         C19         C20         C21     131.161    3.00
+CRT         C19         C20         H20     114.236    2.93
+CRT         C21         C20         H20     114.602    1.85
+CRT         C20         C21         C22     131.162    3.00
+CRT         C20         C21         H21     114.603    1.85
+CRT         C22         C21         H21     114.236    2.93
+CRT         C21         C22         C23     128.593    1.85
+CRT         C21         C22         H22     115.376    2.90
+CRT         C23         C22         H22     116.030    1.50
+CRT         C22         C23         C24     118.162    1.50
+CRT         C22         C23         C25     123.676    3.00
+CRT         C24         C23         C25     118.162    1.50
+CRT         C23         C24        H241     109.517    1.50
+CRT         C23         C24        H242     109.517    1.50
+CRT         C23         C24        H243     109.517    1.50
+CRT        H241         C24        H242     109.342    1.50
+CRT        H241         C24        H243     109.342    1.50
+CRT        H242         C24        H243     109.342    1.50
+CRT         C23         C25         C26     128.593    1.85
+CRT         C23         C25         H25     116.030    1.50
+CRT         C26         C25         H25     115.376    2.90
+CRT         C25         C26         C27     128.131    3.00
+CRT         C25         C26         H26     115.934    2.93
+CRT         C27         C26         H26     115.934    2.93
+CRT         C26         C27         C28     128.593    1.85
+CRT         C26         C27         H27     115.376    2.90
+CRT         C28         C27         H27     116.030    1.50
+CRT         C27         C28         C29     118.162    1.50
+CRT         C27         C28         C30     123.676    3.00
+CRT         C29         C28         C30     118.162    1.50
+CRT         C28         C29        H291     109.517    1.50
+CRT         C28         C29        H292     109.517    1.50
+CRT         C28         C29        H293     109.517    1.50
+CRT        H291         C29        H292     109.342    1.50
+CRT        H291         C29        H293     109.342    1.50
+CRT        H292         C29        H293     109.342    1.50
+CRT         C28         C30         C31     128.593    1.85
+CRT         C28         C30         H30     116.030    1.50
+CRT         C31         C30         H30     115.376    2.90
+CRT         C30         C31         C32     128.131    3.00
+CRT         C30         C31         H31     115.934    2.93
+CRT         C32         C31         H31     115.934    2.93
+CRT         C31         C32         C33     128.593    1.85
+CRT         C31         C32         H32     115.376    2.90
+CRT         C33         C32         H32     116.030    1.50
+CRT         C32         C33         C34     118.162    1.50
+CRT         C32         C33         C35     123.676    3.00
+CRT         C34         C33         C35     118.162    1.50
+CRT         C33         C34        H341     109.517    1.50
+CRT         C33         C34        H342     109.517    1.50
+CRT         C33         C34        H343     109.517    1.50
+CRT        H341         C34        H342     109.342    1.50
+CRT        H341         C34        H343     109.342    1.50
+CRT        H342         C34        H343     109.342    1.50
+CRT         C33         C35         C36     125.259    3.00
+CRT         C33         C35         H35     116.222    1.50
+CRT         C36         C35         H35     118.518    2.29
+CRT         C35         C36         C37     125.995    2.56
+CRT         C35         C36         H36     117.280    2.02
+CRT         C37         C36         H36     116.725    1.85
+CRT         C36         C37         C38     116.061    1.50
+CRT         C36         C37        H371     109.013    1.50
+CRT         C36         C37        H372     109.013    1.50
+CRT         C38         C37        H371     108.458    1.50
+CRT         C38         C37        H372     108.458    1.50
+CRT        H371         C37        H372     107.459    1.50
+CRT         C37         C38         C39     110.358    1.75
+CRT         C37         C38         C40     110.358    1.75
+CRT         C37         C38          O2     109.482    3.00
+CRT         C39         C38         C40     111.521    1.50
+CRT         C39         C38          O2     107.859    3.00
+CRT         C40         C38          O2     107.859    3.00
+CRT         C38         C39        H391     109.489    1.50
+CRT         C38         C39        H392     109.489    1.50
+CRT         C38         C39        H393     109.489    1.50
+CRT        H391         C39        H392     109.441    1.50
+CRT        H391         C39        H393     109.441    1.50
+CRT        H392         C39        H393     109.441    1.50
+CRT         C38         C40        H401     109.489    1.50
+CRT         C38         C40        H402     109.489    1.50
+CRT         C38         C40        H403     109.489    1.50
+CRT        H401         C40        H402     109.441    1.50
+CRT        H401         C40        H403     109.441    1.50
+CRT        H402         C40        H403     109.441    1.50
+CRT         C38          O2         C2M     118.218    2.45
+CRT          O2         C2M        H2M1     109.488    1.50
+CRT          O2         C2M        H2M2     109.488    1.50
+CRT          O2         C2M        H2M3     109.488    1.50
+CRT        H2M1         C2M        H2M2     109.532    1.53
+CRT        H2M1         C2M        H2M3     109.532    1.53
+CRT        H2M2         C2M        H2M3     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CRT             sp3_sp3_1        H1M1         C1M          O1          C1     180.000    10.0     3
+CRT            sp2_sp2_13         C11         C10          C9          C7     180.000     5.0     2
+CRT            sp2_sp2_17          C9         C10         C11         C12     180.000     5.0     2
+CRT            sp2_sp2_22         C10         C11         C12         C13       0.000     5.0     2
+CRT            sp2_sp3_13         C11         C12         C13        H131       0.000    10.0     6
+CRT            sp2_sp2_27         C11         C12         C14         C15       0.000     5.0     2
+CRT            sp2_sp2_29         C12         C14         C15         C16     180.000     5.0     2
+CRT            sp2_sp2_33         C14         C15         C16         C17     180.000     5.0     2
+CRT            sp2_sp2_38         C15         C16         C17         C18       0.000     5.0     2
+CRT            sp2_sp3_19         C16         C17         C18        H181       0.000    10.0     6
+CRT            sp2_sp2_43         C16         C17         C19         C20       0.000     5.0     2
+CRT             sp3_sp3_4          C2          C1          O1         C1M     180.000    10.0     3
+CRT            sp2_sp2_45         C17         C19         C20         C21     180.000     5.0     2
+CRT            sp2_sp2_49         C19         C20         C21         C22     180.000     5.0     2
+CRT            sp2_sp2_53         C20         C21         C22         C23     180.000     5.0     2
+CRT            sp2_sp2_58         C21         C22         C23         C24       0.000     5.0     2
+CRT            sp2_sp3_25         C22         C23         C24        H241       0.000    10.0     6
+CRT            sp2_sp2_63         C22         C23         C25         C26       0.000     5.0     2
+CRT            sp2_sp2_65         C23         C25         C26         C27     180.000     5.0     2
+CRT            sp2_sp2_69         C25         C26         C27         C28     180.000     5.0     2
+CRT            sp2_sp2_74         C26         C27         C28         C29       0.000     5.0     2
+CRT            sp2_sp3_31         C27         C28         C29        H291       0.000    10.0     6
+CRT            sp2_sp2_79         C27         C28         C30         C31       0.000     5.0     2
+CRT            sp3_sp3_10          O1          C1          C2        H21A      60.000    10.0     3
+CRT            sp3_sp3_16          O1          C1          C3        H31A     180.000    10.0     3
+CRT            sp3_sp3_25          O1          C1          C4          C5     180.000    10.0     3
+CRT            sp2_sp2_81         C28         C30         C31         C32     180.000     5.0     2
+CRT            sp2_sp2_85         C30         C31         C32         C33     180.000     5.0     2
+CRT            sp2_sp2_90         C31         C32         C33         C34       0.000     5.0     2
+CRT            sp2_sp3_37         C32         C33         C34        H341       0.000    10.0     6
+CRT            sp2_sp2_95         C32         C33         C35         C36       0.000     5.0     2
+CRT            sp2_sp2_97         C33         C35         C36         C37     180.000     5.0     2
+CRT            sp2_sp3_44         C35         C36         C37         C38     120.000    10.0     6
+CRT            sp3_sp3_35         C36         C37         C38         C39     -60.000    10.0     3
+CRT            sp3_sp3_43         C37         C38         C39        H391     180.000    10.0     3
+CRT            sp3_sp3_55         C37         C38         C40        H401      60.000    10.0     3
+CRT            sp3_sp3_62         C37         C38          O2         C2M      60.000    10.0     3
+CRT            sp3_sp3_64        H2M1         C2M          O2         C38     180.000    10.0     3
+CRT             sp2_sp3_2          C6          C5          C4          C1     120.000    10.0     6
+CRT             sp2_sp2_1          C4          C5          C6          C7     180.000     5.0     2
+CRT             sp2_sp2_6          C5          C6          C7          C8       0.000     5.0     2
+CRT            sp2_sp2_11          C6          C7          C9         C10       0.000     5.0     2
+CRT             sp2_sp3_7          C6          C7          C8         H81       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CRT    chir_1    C1    O1    C4    C2    both
+CRT    chir_2    C38    O2    C37    C39    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CRT    plan-1          C4   0.020
+CRT    plan-1          C5   0.020
+CRT    plan-1          C6   0.020
+CRT    plan-1          H5   0.020
+CRT    plan-2          C5   0.020
+CRT    plan-2          C6   0.020
+CRT    plan-2          C7   0.020
+CRT    plan-2          H6   0.020
+CRT    plan-3          C6   0.020
+CRT    plan-3          C7   0.020
+CRT    plan-3          C8   0.020
+CRT    plan-3          C9   0.020
+CRT    plan-4         C10   0.020
+CRT    plan-4          C7   0.020
+CRT    plan-4          C9   0.020
+CRT    plan-4          H9   0.020
+CRT    plan-5         C10   0.020
+CRT    plan-5         C11   0.020
+CRT    plan-5          C9   0.020
+CRT    plan-5         H10   0.020
+CRT    plan-6         C10   0.020
+CRT    plan-6         C11   0.020
+CRT    plan-6         C12   0.020
+CRT    plan-6         H11   0.020
+CRT    plan-7         C11   0.020
+CRT    plan-7         C12   0.020
+CRT    plan-7         C13   0.020
+CRT    plan-7         C14   0.020
+CRT    plan-8         C12   0.020
+CRT    plan-8         C14   0.020
+CRT    plan-8         C15   0.020
+CRT    plan-8         H14   0.020
+CRT    plan-9         C14   0.020
+CRT    plan-9         C15   0.020
+CRT    plan-9         C16   0.020
+CRT    plan-9         H15   0.020
+CRT   plan-10         C15   0.020
+CRT   plan-10         C16   0.020
+CRT   plan-10         C17   0.020
+CRT   plan-10         H16   0.020
+CRT   plan-11         C16   0.020
+CRT   plan-11         C17   0.020
+CRT   plan-11         C18   0.020
+CRT   plan-11         C19   0.020
+CRT   plan-12         C17   0.020
+CRT   plan-12         C19   0.020
+CRT   plan-12         C20   0.020
+CRT   plan-12         H19   0.020
+CRT   plan-13         C19   0.020
+CRT   plan-13         C20   0.020
+CRT   plan-13         C21   0.020
+CRT   plan-13         H20   0.020
+CRT   plan-14         C20   0.020
+CRT   plan-14         C21   0.020
+CRT   plan-14         C22   0.020
+CRT   plan-14         H21   0.020
+CRT   plan-15         C21   0.020
+CRT   plan-15         C22   0.020
+CRT   plan-15         C23   0.020
+CRT   plan-15         H22   0.020
+CRT   plan-16         C22   0.020
+CRT   plan-16         C23   0.020
+CRT   plan-16         C24   0.020
+CRT   plan-16         C25   0.020
+CRT   plan-17         C23   0.020
+CRT   plan-17         C25   0.020
+CRT   plan-17         C26   0.020
+CRT   plan-17         H25   0.020
+CRT   plan-18         C25   0.020
+CRT   plan-18         C26   0.020
+CRT   plan-18         C27   0.020
+CRT   plan-18         H26   0.020
+CRT   plan-19         C26   0.020
+CRT   plan-19         C27   0.020
+CRT   plan-19         C28   0.020
+CRT   plan-19         H27   0.020
+CRT   plan-20         C27   0.020
+CRT   plan-20         C28   0.020
+CRT   plan-20         C29   0.020
+CRT   plan-20         C30   0.020
+CRT   plan-21         C28   0.020
+CRT   plan-21         C30   0.020
+CRT   plan-21         C31   0.020
+CRT   plan-21         H30   0.020
+CRT   plan-22         C30   0.020
+CRT   plan-22         C31   0.020
+CRT   plan-22         C32   0.020
+CRT   plan-22         H31   0.020
+CRT   plan-23         C31   0.020
+CRT   plan-23         C32   0.020
+CRT   plan-23         C33   0.020
+CRT   plan-23         H32   0.020
+CRT   plan-24         C32   0.020
+CRT   plan-24         C33   0.020
+CRT   plan-24         C34   0.020
+CRT   plan-24         C35   0.020
+CRT   plan-25         C33   0.020
+CRT   plan-25         C35   0.020
+CRT   plan-25         C36   0.020
+CRT   plan-25         H35   0.020
+CRT   plan-26         C35   0.020
+CRT   plan-26         C36   0.020
+CRT   plan-26         C37   0.020
+CRT   plan-26         H36   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CRT           SMILES              ACDLabs 10.04                                                                                                                                                                    O(C)C(C)(C)C/C=C/C(=C/C=C/C(=C/C=C/C(=C/C=C\C=C(\C=C\C=C(\C=C\C=C(\C=C\CC(OC)(C)C)C)C)C)C)C)C
+CRT SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                      COC(C)(C)C\C=C\C(C)=C\C=C\C(C)=C\C=C\C(C)=C\C=C/C=C(C)/C=C/C=C(C)/C=C/C=C(C)/C=C/CC(C)(C)OC
+CRT           SMILES               CACTVS 3.341                                                                                                                                                                                    COC(C)(C)CC=CC(C)=CC=CC(C)=CC=CC(C)=CC=CC=C(C)C=CC=C(C)C=CC=C(C)C=CCC(C)(C)OC
+CRT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                 C/C(=C\C=C\C(=C\C=C\C(=C\C=C/C=C(\C)/C=C/C=C(\C)/C=C/C=C(\C)/C=C/CC(C)(C)OC)\C)\C)/C=CCC(C)(C)OC
+CRT           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                    CC(=CC=CC(=CC=CC(=CC=CC=C(C)C=CC=C(C)C=CC=C(C)C=CCC(C)(C)OC)C)C)C=CCC(C)(C)OC
+CRT            InChI                InChI  1.03 InChI=1S/C42H60O2/c1-35(23-15-25-37(3)27-17-29-39(5)31-19-33-41(7,8)43-11)21-13-14-22-36(2)24-16-26-38(4)28-18-30-40(6)32-20-34-42(9,10)44-12/h13-32H,33-34H2,1-12H3/b14-13-,23-15+,24-16+,27-17+,28-18+,31-19+,32-20+,35-21+,36-22+,37-25+,38-26+,39-29+,40-30+
+CRT         InChIKey                InChI  1.03                                                                                                                                                                                                                                      VAZQBTJCYODOSV-RISZBRKMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CRT acedrg               243         "dictionary generator"                  
+CRT acedrg_database      11          "data source"                           
+CRT rdkit                2017.03.2   "Chemoinformatics tool"
+CRT refmac5              5.8.0238    "optimization tool"                     

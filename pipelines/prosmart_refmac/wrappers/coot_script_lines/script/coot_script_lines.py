@@ -34,16 +34,17 @@ class coot_script_lines(CPluginScript):
     
         cootScriptPath = os.path.join(self.workDirectory,'script.py')
         
-        if self.container.inputData.DICT.isSet():
-            self.appendCommandLine(['--dictionary',self.container.inputData.DICT.fullPath.__str__()])
-        self.appendCommandLine(['--no-state-script','--no-graphics','--python','--script',cootScriptPath])
+        #if self.container.inputData.DICT.isSet():
+            #self.appendCommandLine(['--dictionary',self.container.inputData.DICT.fullPath.__str__()])
+        self.appendCommandLine(['--no-state-script','--script',cootScriptPath])
 
         cootScript = open(cootScriptPath,"w")
+        cootScript.write('import coot\n')
         
         i = 1
         for XYZIN in self.container.inputData.XYZIN:
           if XYZIN.exists():
-            cootScript.write ("MolHandle_"+str(i)+"=read_pdb(r'"+str(XYZIN.fullPath)+"')\n\n")
+            cootScript.write ("MolHandle_"+str(i)+"=coot.read_pdb(r'"+str(XYZIN.fullPath)+"')\n\n")
             i += 1
           else: pass
             #print '\n\n ** Non-file :[' + str(i)+ ']'+str(XYZIN.fullPath)
@@ -51,7 +52,7 @@ class coot_script_lines(CPluginScript):
         i = 1
         for FPHIIN in self.container.inputData.FPHIIN:
           if FPHIIN.exists():
-            cootScript.write ("MapHandle_"+str(i)+"=make_and_draw_map(r'" + str(FPHIIN.fullPath)+"', 'F', 'PHI', 'PHI', 0, 0)\n\n")
+            cootScript.write ("MapHandle_"+str(i)+"=coot.make_and_draw_map(r'" + str(FPHIIN.fullPath)+"', 'F', 'PHI', 'PHI', 0, 0)\n\n")
             i += 1
           else: pass
             #print '\n\n ** Non-file :[' +str(i)+ ']'+ str(FPHIIN.fullPath)
@@ -59,7 +60,7 @@ class coot_script_lines(CPluginScript):
         i = 1
         for DELFPHIIN in self.container.inputData.DELFPHIIN:
           if DELFPHIIN.exists():
-            cootScript.write ("DifmapHandle_"+str(i)+"=make_and_draw_map(r'" + str(DELFPHIIN.fullPath)+"', 'F', 'PHI', 'PHI', 0, 1)\n\n")
+            cootScript.write ("DifmapHandle_"+str(i)+"=coot.make_and_draw_map(r'" + str(DELFPHIIN.fullPath)+"', 'F', 'PHI', 'PHI', 0, 1)\n\n")
             i += 1
           else: pass
             #print '\n\n ** Non-file :[' +str(i)+ ']'+str(DELFPHIIN.fullPath)
@@ -72,10 +73,10 @@ class coot_script_lines(CPluginScript):
             cootScript.write ('try:\n')
             for scriptLine in scriptLines:
                 cootScript.write('    '+scriptLine+'\n')
-            cootScript.write('except:\n    coot_real_exit(0)\n')
+            cootScript.write('except:\n    coot.coot_real_exit(0)\n')
             cootScript.write ('\n')
           
-        cootScript.write("coot_real_exit(0)\n")
+        cootScript.write("coot.coot_real_exit(0)\n")
         cootScript.close()
         
         return CPluginScript.SUCCEEDED

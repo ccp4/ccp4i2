@@ -1,0 +1,201 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GXM     GXM      "(2Z)-2-hydroxy-4-(2-nitrophenyl)-4-oxobut-2-enoic acid"     NON-POLYMER     23     17     .     
+#
+data_comp_GXM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GXM     C10     C       CR6     0       33.249      76.708      62.188      
+GXM     C15     C       CR16    0       33.311      74.476      63.083      
+GXM     C17     C       CR16    0       35.310      75.784      63.022      
+GXM     C02     C       C       0       35.379      78.123      62.114      
+GXM     C03     C       C1      0       36.166      78.762      63.166      
+GXM     C04     C       C       0       36.918      79.906      62.974      
+GXM     C05     C       C       0       37.735      80.567      63.931      
+GXM     C09     C       CR6     0       34.632      76.857      62.444      
+GXM     C14     C       CR16    0       32.595      75.516      62.510      
+GXM     C16     C       CR16    0       34.661      74.607      63.339      
+GXM     N11     N       N       1       32.454      77.773      61.587      
+GXM     O01     O       O       0       35.335      78.591      60.972      
+GXM     O06     O       O       0       38.343      81.580      63.577      
+GXM     O07     O       OC      -1      37.799      80.098      65.069      
+GXM     O08     O       OH1     0       36.895      80.495      61.701      
+GXM     O12     O       OC      -1      32.107      77.649      60.423      
+GXM     O13     O       O       0       32.171      78.742      62.275      
+GXM     H1      H       H       0       32.869      73.672      63.300      
+GXM     H2      H       H       0       36.230      75.868      63.198      
+GXM     H3      H       H       0       36.179      78.397      64.032      
+GXM     H4      H       H       0       31.675      75.417      62.340      
+GXM     H5      H       H       0       35.140      73.895      63.729      
+GXM     H7      H       H       0       37.633      80.645      61.283      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GXM         N11         O12      SINGLE       n     1.221  0.0162     1.221  0.0162
+GXM         N11         O13      DOUBLE       n     1.221  0.0162     1.221  0.0162
+GXM         C10         N11      SINGLE       n     1.457  0.0200     1.457  0.0200
+GXM         C02         O01      DOUBLE       n     1.233  0.0156     1.233  0.0156
+GXM         C10         C14      DOUBLE       y     1.380  0.0192     1.380  0.0192
+GXM         C10         C09      SINGLE       y     1.405  0.0138     1.405  0.0138
+GXM         C04         O08      SINGLE       n     1.395  0.0200     1.395  0.0200
+GXM         C15         C14      SINGLE       y     1.382  0.0100     1.382  0.0100
+GXM         C02         C09      SINGLE       n     1.506  0.0100     1.506  0.0100
+GXM         C02         C03      SINGLE       n     1.445  0.0200     1.445  0.0200
+GXM         C17         C09      DOUBLE       y     1.392  0.0100     1.392  0.0100
+GXM         C15         C16      DOUBLE       y     1.376  0.0124     1.376  0.0124
+GXM         C05         O06      DOUBLE       n     1.230  0.0200     1.230  0.0200
+GXM         C03         C04      DOUBLE       n     1.374  0.0118     1.374  0.0118
+GXM         C04         C05      SINGLE       n     1.403  0.0200     1.403  0.0200
+GXM         C17         C16      SINGLE       y     1.378  0.0104     1.378  0.0104
+GXM         C05         O07      SINGLE       n     1.230  0.0200     1.230  0.0200
+GXM         C15          H1      SINGLE       n     1.082  0.0130     0.943  0.0172
+GXM         C17          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+GXM         C03          H3      SINGLE       n     1.082  0.0130     0.940  0.0178
+GXM         C14          H4      SINGLE       n     1.082  0.0130     0.941  0.0200
+GXM         C16          H5      SINGLE       n     1.082  0.0130     0.943  0.0180
+GXM         O08          H7      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GXM         N11         C10         C14     117.991    1.50
+GXM         N11         C10         C09     121.798    1.50
+GXM         C14         C10         C09     120.211    2.02
+GXM         C14         C15         C16     120.433    1.50
+GXM         C14         C15          H1     119.642    1.50
+GXM         C16         C15          H1     119.925    1.50
+GXM         C09         C17         C16     121.836    1.50
+GXM         C09         C17          H2     118.787    1.50
+GXM         C16         C17          H2     119.377    1.50
+GXM         O01         C02         C09     120.512    1.50
+GXM         O01         C02         C03     120.417    1.50
+GXM         C09         C02         C03     119.071    1.50
+GXM         C02         C03         C04     121.819    1.50
+GXM         C02         C03          H3     121.075    1.50
+GXM         C04         C03          H3     117.105    2.13
+GXM         O08         C04         C03     116.262    3.00
+GXM         O08         C04         C05     116.262    3.00
+GXM         C03         C04         C05     127.477    3.00
+GXM         O06         C05         C04     117.738    3.00
+GXM         O06         C05         O07     124.523    1.63
+GXM         C04         C05         O07     117.738    3.00
+GXM         C10         C09         C02     121.319    1.99
+GXM         C10         C09         C17     118.395    1.50
+GXM         C02         C09         C17     120.286    1.88
+GXM         C10         C14         C15     119.017    1.50
+GXM         C10         C14          H4     120.639    1.50
+GXM         C15         C14          H4     120.344    1.50
+GXM         C15         C16         C17     120.101    1.50
+GXM         C15         C16          H5     119.998    1.50
+GXM         C17         C16          H5     119.907    1.50
+GXM         O12         N11         O13     123.502    1.50
+GXM         O12         N11         C10     118.249    1.50
+GXM         O13         N11         C10     118.249    1.50
+GXM         C04         O08          H7     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GXM             sp2_sp2_1         C14         C10         N11         O12     180.000     5.0     2
+GXM              const_24         C02         C09         C10         N11       0.000    10.0     2
+GXM       const_sp2_sp2_3         N11         C10         C14         C15     180.000     5.0     2
+GXM       const_sp2_sp2_5         C10         C14         C15         C16       0.000     5.0     2
+GXM       const_sp2_sp2_9         C14         C15         C16         C17       0.000     5.0     2
+GXM              const_19         C02         C09         C17         C16     180.000    10.0     2
+GXM              const_13         C15         C16         C17         C09       0.000    10.0     2
+GXM            sp2_sp2_13         O01         C02         C03         C04       0.000     5.0     2
+GXM             sp2_sp2_9         O01         C02         C09         C10       0.000     5.0     2
+GXM            sp2_sp2_16         C02         C03         C04         O08       0.000     5.0     2
+GXM             sp2_sp2_5         C03         C04         O08          H7     180.000     5.0     2
+GXM            sp2_sp2_21         O08         C04         C05         O06       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GXM    plan-1         C02   0.020
+GXM    plan-1         C09   0.020
+GXM    plan-1         C10   0.020
+GXM    plan-1         C14   0.020
+GXM    plan-1         C15   0.020
+GXM    plan-1         C16   0.020
+GXM    plan-1         C17   0.020
+GXM    plan-1          H1   0.020
+GXM    plan-1          H2   0.020
+GXM    plan-1          H4   0.020
+GXM    plan-1          H5   0.020
+GXM    plan-1         N11   0.020
+GXM    plan-2         C02   0.020
+GXM    plan-2         C03   0.020
+GXM    plan-2         C09   0.020
+GXM    plan-2         O01   0.020
+GXM    plan-3         C02   0.020
+GXM    plan-3         C03   0.020
+GXM    plan-3         C04   0.020
+GXM    plan-3          H3   0.020
+GXM    plan-4         C03   0.020
+GXM    plan-4         C04   0.020
+GXM    plan-4         C05   0.020
+GXM    plan-4         O08   0.020
+GXM    plan-5         C04   0.020
+GXM    plan-5         C05   0.020
+GXM    plan-5         O06   0.020
+GXM    plan-5         O07   0.020
+GXM    plan-6         C10   0.020
+GXM    plan-6         N11   0.020
+GXM    plan-6         O12   0.020
+GXM    plan-6         O13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GXM           SMILES              ACDLabs 12.01                                             c1(ccccc1C([C@H]=C(C(O)=O)O)=O)[N+]([O-])=O
+GXM            InChI                InChI  1.03 InChI=1S/C10H7NO6/c12-8(5-9(13)10(14)15)6-3-1-2-4-7(6)11(16)17/h1-5,13H,(H,14,15)/b9-5-
+GXM         InChIKey                InChI  1.03                                                             APXXDBVLXHIFHL-UITAMQMPSA-N
+GXM SMILES_CANONICAL               CACTVS 3.385                                                 OC(=O)\C(O)=C\C(=O)c1ccccc1[N+]([O-])=O
+GXM           SMILES               CACTVS 3.385                                                   OC(=O)C(O)=CC(=O)c1ccccc1[N+]([O-])=O
+GXM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                            c1ccc(c(c1)C(=O)/C=C(/C(=O)O)\O)[N+](=O)[O-]
+GXM           SMILES "OpenEye OEToolkits" 2.0.6                                               c1ccc(c(c1)C(=O)C=C(C(=O)O)O)[N+](=O)[O-]
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GXM acedrg               243         "dictionary generator"                  
+GXM acedrg_database      11          "data source"                           
+GXM rdkit                2017.03.2   "Chemoinformatics tool"
+GXM refmac5              5.8.0238    "optimization tool"                     

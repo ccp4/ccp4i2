@@ -1,0 +1,162 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4AY     4AY      "4-(bromomethyl)benzoic acid"     NON-POLYMER     17     11     .     
+#
+data_comp_4AY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4AY     C4      C       CR6     0       -12.930     -2.653      -8.028      
+4AY     C5      C       CR16    0       -13.450     -2.557      -9.312      
+4AY     C6      C       CR16    0       -13.011     -1.565      -10.178     
+4AY     C7      C       C       0       -13.405     -3.724      -7.093      
+4AY     O1      O       OC      -1      -13.714     -3.389      -5.936      
+4AY     O       O       O       0       -13.462     -4.890      -7.526      
+4AY     C3      C       CR16    0       -11.966     -1.741      -7.619      
+4AY     C2      C       CR16    0       -11.524     -0.748      -8.480      
+4AY     C1      C       CR6     0       -12.042     -0.649      -9.771      
+4AY     C       C       CH2     0       -11.567     0.422       -10.703     
+4AY     BR1     BR      BR      0       -10.020     -0.194      -11.754     
+4AY     H1      H       H       0       -14.104     -3.169      -9.599      
+4AY     H2      H       H       0       -13.372     -1.511      -11.048     
+4AY     H4      H       H       0       -11.608     -1.797      -6.751      
+4AY     H5      H       H       0       -10.868     -0.136      -8.190      
+4AY     H6      H       H       0       -11.313     1.216       -10.187     
+4AY     H7      H       H       0       -12.294     0.672       -11.311     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4AY          C1           C      SINGLE       n     1.497  0.0100     1.497  0.0100
+4AY          C6          C1      DOUBLE       y     1.391  0.0100     1.391  0.0100
+4AY          C5          C6      SINGLE       y     1.384  0.0100     1.384  0.0100
+4AY          C2          C1      SINGLE       y     1.391  0.0100     1.391  0.0100
+4AY          C4          C5      DOUBLE       y     1.385  0.0100     1.385  0.0100
+4AY          C3          C2      DOUBLE       y     1.383  0.0100     1.383  0.0100
+4AY          C4          C3      SINGLE       y     1.385  0.0100     1.385  0.0100
+4AY          C4          C7      SINGLE       n     1.498  0.0200     1.498  0.0200
+4AY          C7           O      DOUBLE       n     1.244  0.0200     1.244  0.0200
+4AY          C7          O1      SINGLE       n     1.244  0.0200     1.244  0.0200
+4AY           C         BR1      SINGLE       n     1.970  0.0120     1.970  0.0120
+4AY          C5          H1      SINGLE       n     1.082  0.0130     0.941  0.0168
+4AY          C6          H2      SINGLE       n     1.082  0.0130     0.943  0.0173
+4AY          C3          H4      SINGLE       n     1.082  0.0130     0.941  0.0168
+4AY          C2          H5      SINGLE       n     1.082  0.0130     0.943  0.0173
+4AY           C          H6      SINGLE       n     1.089  0.0100     0.980  0.0122
+4AY           C          H7      SINGLE       n     1.089  0.0100     0.980  0.0122
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4AY          C5          C4          C3     119.143    1.50
+4AY          C5          C4          C7     120.428    1.50
+4AY          C3          C4          C7     120.428    1.50
+4AY          C6          C5          C4     120.520    1.50
+4AY          C6          C5          H1     119.667    1.50
+4AY          C4          C5          H1     119.813    1.50
+4AY          C1          C6          C5     120.453    1.50
+4AY          C1          C6          H2     119.841    1.50
+4AY          C5          C6          H2     119.706    1.50
+4AY          C4          C7           O     117.791    1.50
+4AY          C4          C7          O1     117.791    1.50
+4AY           O          C7          O1     124.418    1.50
+4AY          C2          C3          C4     120.520    1.50
+4AY          C2          C3          H4     119.667    1.50
+4AY          C4          C3          H4     119.813    1.50
+4AY          C1          C2          C3     120.453    1.50
+4AY          C1          C2          H5     119.841    1.50
+4AY          C3          C2          H5     119.706    1.50
+4AY           C          C1          C6     120.544    1.50
+4AY           C          C1          C2     120.544    1.50
+4AY          C6          C1          C2     118.911    1.50
+4AY          C1           C         BR1     110.901    1.50
+4AY          C1           C          H6     109.465    1.50
+4AY          C1           C          H7     109.465    1.50
+4AY         BR1           C          H6     109.126    2.95
+4AY         BR1           C          H7     109.126    2.95
+4AY          H6           C          H7     108.181    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4AY       const_sp2_sp2_3          C7          C4          C5          C6     180.000     5.0     2
+4AY             sp2_sp2_1          C5          C4          C7           O     180.000     5.0     2
+4AY              const_22          C2          C3          C4          C7     180.000    10.0     2
+4AY       const_sp2_sp2_5          C4          C5          C6          C1       0.000     5.0     2
+4AY              const_11           C          C1          C6          C5     180.000    10.0     2
+4AY              const_17          C1          C2          C3          C4       0.000    10.0     2
+4AY              const_15           C          C1          C2          C3     180.000    10.0     2
+4AY             sp2_sp3_2          C6          C1           C         BR1     -90.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4AY    plan-1           C   0.020
+4AY    plan-1          C1   0.020
+4AY    plan-1          C2   0.020
+4AY    plan-1          C3   0.020
+4AY    plan-1          C4   0.020
+4AY    plan-1          C5   0.020
+4AY    plan-1          C6   0.020
+4AY    plan-1          C7   0.020
+4AY    plan-1          H1   0.020
+4AY    plan-1          H2   0.020
+4AY    plan-1          H4   0.020
+4AY    plan-1          H5   0.020
+4AY    plan-2          C4   0.020
+4AY    plan-2          C7   0.020
+4AY    plan-2           O   0.020
+4AY    plan-2          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4AY           SMILES              ACDLabs 12.01                                              BrCc1ccc(C(=O)O)cc1
+4AY            InChI                InChI  1.03 InChI=1S/C8H7BrO2/c9-5-6-1-3-7(4-2-6)8(10)11/h1-4H,5H2,(H,10,11)
+4AY         InChIKey                InChI  1.03                                      CQQSQBRPAJSTFB-UHFFFAOYSA-N
+4AY SMILES_CANONICAL               CACTVS 3.385                                              OC(=O)c1ccc(CBr)cc1
+4AY           SMILES               CACTVS 3.385                                              OC(=O)c1ccc(CBr)cc1
+4AY SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                              c1cc(ccc1CBr)C(=O)O
+4AY           SMILES "OpenEye OEToolkits" 1.9.2                                              c1cc(ccc1CBr)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4AY acedrg               243         "dictionary generator"                  
+4AY acedrg_database      11          "data source"                           
+4AY rdkit                2017.03.2   "Chemoinformatics tool"
+4AY refmac5              5.8.0238    "optimization tool"                     

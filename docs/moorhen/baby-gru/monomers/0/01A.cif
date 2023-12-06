@@ -1,0 +1,559 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+01A     01A      "4-Chlorophenacyl-coenzyme A"     NON-POLYMER     95     58     .     
+#
+data_comp_01A
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+01A     O7A     O       OP      -1      25.115      34.758      83.367      
+01A     P3A     P       P       0       24.714      34.329      81.969      
+01A     O9A     O       OP      -1      24.094      35.467      81.181      
+01A     O8A     O       O       0       25.868      33.683      81.223      
+01A     "O3A'"  O       O2      0       23.558      33.210      82.161      
+01A     "C3A'"  C       CH1     0       23.164      32.529      80.965      
+01A     "C2A'"  C       CH1     0       23.945      31.230      80.740      
+01A     "O2A'"  O       OH1     0       24.324      30.587      81.939      
+01A     "C1A'"  C       CH1     0       22.958      30.385      79.931      
+01A     N9A     N       NT      0       23.239      30.383      78.491      
+01A     C4A     C       CR56    0       23.960      29.432      77.819      
+01A     C5A     C       CR56    0       23.979      29.830      76.496      
+01A     C6A     C       CR6     0       24.668      29.001      75.584      
+01A     N6A     N       NH2     0       24.768      29.260      74.282      
+01A     N1A     N       NRD6    0       25.257      27.880      76.075      
+01A     C2A     C       CR16    0       25.154      27.624      77.390      
+01A     N3A     N       NRD6    0       24.534      28.329      78.337      
+01A     N7A     N       NRD5    0       23.279      31.020      76.344      
+01A     C8A     C       CR15    0       22.859      31.317      77.552      
+01A     "O4A'"  O       O2      0       21.669      30.921      80.140      
+01A     "C4A'"  C       CH1     0       21.739      32.014      81.089      
+01A     "C5A'"  C       CH2     0       20.650      33.020      80.799      
+01A     "O5A'"  O       O2      0       20.641      33.341      79.381      
+01A     P1A     P       P       0       19.247      33.526      78.606      
+01A     O1A     O       O       0       19.507      34.085      77.247      
+01A     O2A     O       OP      -1      18.280      34.244      79.489      
+01A     O3A     O       O2      0       18.771      32.001      78.453      
+01A     P2A     P       P       0       17.374      31.339      78.022      
+01A     O4A     O       O       0       16.849      32.044      76.815      
+01A     O5A     O       OP      -1      16.498      31.221      79.226      
+01A     O6A     O       O2      0       17.837      29.865      77.586      
+01A     CCP     C       CH2     0       18.623      29.697      76.370      
+01A     CBP     C       CT      0       19.251      28.300      76.311      
+01A     CDP     C       CH3     0       18.143      27.237      76.296      
+01A     CEP     C       CH3     0       20.129      28.075      77.551      
+01A     CAP     C       CH1     0       20.092      28.182      75.024      
+01A     OAP     O       OH1     0       21.090      29.199      74.987      
+01A     C9P     C       C       0       20.762      26.834      74.783      
+01A     O9P     O       O       0       20.170      25.977      74.129      
+01A     N8P     N       NH1     0       21.974      26.652      75.302      
+01A     C7P     C       CH2     0       22.799      25.473      75.065      
+01A     C6P     C       CH2     0       23.486      25.521      73.716      
+01A     C5P     C       C       0       24.577      24.477      73.575      
+01A     O5P     O       O       0       24.281      23.295      73.405      
+01A     N4P     N       NH1     0       25.853      24.889      73.643      
+01A     C3P     C       CH2     0       27.003      24.008      73.490      
+01A     C2P     C       CH2     0       27.209      23.569      72.046      
+01A     S1P     S       S2      0       28.621      22.451      71.846      
+01A     C1      C       CH2     0       29.813      23.497      70.964      
+01A     C       C       C       0       30.448      24.582      71.803      
+01A     O2      O       O       0       30.438      25.735      71.426      
+01A     "C1'"   C       CR6     0       31.092      24.202      73.092      
+01A     C6      C       CR16    0       31.011      25.058      74.191      
+01A     C5      C       CR16    0       31.607      24.730      75.400      
+01A     C2      C       CR16    0       31.797      23.006      73.237      
+01A     C3      C       CR16    0       32.394      22.669      74.444      
+01A     C4      C       CR6     0       32.292      23.537      75.511      
+01A     CL4A    CL      CL      0       33.041      23.119      77.026      
+01A     "H3A'"  H       H       0       23.247      33.118      80.179      
+01A     "H2A'"  H       H       0       24.756      31.423      80.197      
+01A     H2AA    H       H       0       23.633      30.385      82.390      
+01A     "H1A'"  H       H       0       22.984      29.460      80.265      
+01A     HN6A    H       H       0       25.411      28.892      73.811      
+01A     HN6B    H       H       0       24.191      29.799      73.900      
+01A     H2A     H       H       0       25.580      26.833      77.684      
+01A     H8A     H       H       0       22.349      32.085      77.743      
+01A     "H4A'"  H       H       0       21.601      31.661      81.994      
+01A     "H5A'"  H       H       0       20.812      33.841      81.326      
+01A     H5AA    H       H       0       19.776      32.644      81.069      
+01A     HCP     H       H       0       19.326      30.375      76.344      
+01A     HCPA    H       H       0       18.050      29.827      75.588      
+01A     HDP     H       H       0       17.708      27.233      75.426      
+01A     HDPA    H       H       0       17.484      27.435      76.983      
+01A     HDPB    H       H       0       18.527      26.360      76.469      
+01A     HEP     H       H       0       20.851      28.726      77.566      
+01A     HEPA    H       H       0       20.505      27.178      77.532      
+01A     HEPB    H       H       0       19.592      28.173      78.356      
+01A     HAP     H       H       0       19.476      28.339      74.267      
+01A     HOAP    H       H       0       21.301      29.351      74.179      
+01A     HN8P    H       H       0       22.300      27.275      75.818      
+01A     H7P     H       H       0       22.241      24.669      75.114      
+01A     H7PA    H       H       0       23.478      25.412      75.769      
+01A     H6P     H       H       0       23.868      26.405      73.580      
+01A     H6PA    H       H       0       22.826      25.379      73.015      
+01A     HN4P    H       H       0       26.005      25.734      73.793      
+01A     H3P     H       H       0       26.879      23.214      74.053      
+01A     H3PA    H       H       0       27.808      24.475      73.800      
+01A     H2P     H       H       0       27.349      24.365      71.486      
+01A     H2PA    H       H       0       26.396      23.116      71.729      
+01A     H1      H       H       0       29.355      23.914      70.204      
+01A     H1A     H       H       0       30.522      22.924      70.604      
+01A     H6      H       H       0       30.544      25.871      74.114      
+01A     H5      H       H       0       31.545      25.310      76.134      
+01A     H2      H       H       0       31.867      22.414      72.510      
+01A     H3      H       H       0       32.863      21.862      74.533      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+01A         O7A         P3A      SINGLE       n     1.517  0.0192     1.517  0.0192
+01A         P3A         O8A      DOUBLE       n     1.517  0.0192     1.517  0.0192
+01A         P3A         O9A      SINGLE       n     1.517  0.0192     1.517  0.0192
+01A         P3A      "O3A'"      SINGLE       n     1.614  0.0178     1.614  0.0178
+01A      "O3A'"      "C3A'"      SINGLE       n     1.425  0.0152     1.425  0.0152
+01A      "C3A'"      "C2A'"      SINGLE       n     1.529  0.0125     1.529  0.0125
+01A      "C3A'"      "C4A'"      SINGLE       n     1.525  0.0133     1.525  0.0133
+01A      "C2A'"      "O2A'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+01A      "C2A'"      "C1A'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+01A      "C1A'"         N9A      SINGLE       n     1.458  0.0200     1.458  0.0200
+01A      "C1A'"      "O4A'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+01A         N9A         C8A      SINGLE       y     1.372  0.0200     1.372  0.0200
+01A         N9A         C4A      SINGLE       y     1.372  0.0100     1.372  0.0100
+01A         C4A         C5A      SINGLE       y     1.381  0.0100     1.381  0.0100
+01A         C4A         N3A      DOUBLE       y     1.343  0.0100     1.343  0.0100
+01A         C5A         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+01A         C5A         C6A      DOUBLE       y     1.408  0.0100     1.408  0.0100
+01A         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+01A         C6A         N1A      SINGLE       y     1.354  0.0100     1.354  0.0100
+01A         N1A         C2A      DOUBLE       y     1.339  0.0100     1.339  0.0100
+01A         C2A         N3A      SINGLE       y     1.330  0.0100     1.330  0.0100
+01A         N7A         C8A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+01A      "O4A'"      "C4A'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+01A      "C4A'"      "C5A'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+01A      "C5A'"      "O5A'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+01A      "O5A'"         P1A      SINGLE       n     1.604  0.0133     1.604  0.0133
+01A         P1A         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+01A         P1A         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+01A         P1A         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+01A         O3A         P2A      SINGLE       n     1.604  0.0133     1.604  0.0133
+01A         P2A         O4A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+01A         P2A         O6A      SINGLE       n     1.604  0.0133     1.604  0.0133
+01A         P2A         O5A      SINGLE       n     1.493  0.0122     1.493  0.0122
+01A         O6A         CCP      SINGLE       n     1.454  0.0165     1.454  0.0165
+01A         CCP         CBP      SINGLE       n     1.526  0.0108     1.526  0.0108
+01A         CBP         CAP      SINGLE       n     1.532  0.0112     1.532  0.0112
+01A         CBP         CDP      SINGLE       n     1.531  0.0109     1.531  0.0109
+01A         CBP         CEP      SINGLE       n     1.531  0.0109     1.531  0.0109
+01A         CAP         C9P      SINGLE       n     1.519  0.0108     1.519  0.0108
+01A         CAP         OAP      SINGLE       n     1.419  0.0162     1.419  0.0162
+01A         C9P         O9P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+01A         C9P         N8P      SINGLE       n     1.326  0.0100     1.326  0.0100
+01A         N8P         C7P      SINGLE       n     1.457  0.0100     1.457  0.0100
+01A         C7P         C6P      SINGLE       n     1.513  0.0195     1.513  0.0195
+01A         C6P         C5P      SINGLE       n     1.514  0.0100     1.514  0.0100
+01A         C5P         O5P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+01A         C5P         N4P      SINGLE       n     1.337  0.0118     1.337  0.0118
+01A         N4P         C3P      SINGLE       n     1.455  0.0100     1.455  0.0100
+01A         C3P         C2P      SINGLE       n     1.523  0.0100     1.523  0.0100
+01A         C2P         S1P      SINGLE       n     1.813  0.0122     1.813  0.0122
+01A         S1P          C1      SINGLE       n     1.814  0.0124     1.814  0.0124
+01A          C1           C      SINGLE       n     1.509  0.0112     1.509  0.0112
+01A           C       "C1'"      SINGLE       n     1.487  0.0100     1.487  0.0100
+01A           C          O2      DOUBLE       n     1.212  0.0100     1.212  0.0100
+01A       "C1'"          C2      SINGLE       y     1.391  0.0100     1.391  0.0100
+01A       "C1'"          C6      DOUBLE       y     1.391  0.0100     1.391  0.0100
+01A          C6          C5      SINGLE       y     1.384  0.0100     1.384  0.0100
+01A          C5          C4      DOUBLE       y     1.376  0.0100     1.376  0.0100
+01A          C2          C3      DOUBLE       y     1.384  0.0100     1.384  0.0100
+01A          C3          C4      SINGLE       y     1.376  0.0100     1.376  0.0100
+01A          C4        CL4A      SINGLE       n     1.741  0.0100     1.741  0.0100
+01A      "C3A'"      "H3A'"      SINGLE       n     1.089  0.0100     0.985  0.0119
+01A      "C2A'"      "H2A'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+01A      "O2A'"        H2AA      SINGLE       n     0.970  0.0120     0.849  0.0200
+01A      "C1A'"      "H1A'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+01A         N6A        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+01A         N6A        HN6B      SINGLE       n     1.016  0.0100     0.877  0.0200
+01A         C2A         H2A      SINGLE       n     1.082  0.0130     0.945  0.0200
+01A         C8A         H8A      SINGLE       n     1.082  0.0130     0.942  0.0170
+01A      "C4A'"      "H4A'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+01A      "C5A'"      "H5A'"      SINGLE       n     1.089  0.0100     0.989  0.0200
+01A      "C5A'"        H5AA      SINGLE       n     1.089  0.0100     0.989  0.0200
+01A         CCP         HCP      SINGLE       n     1.089  0.0100     0.978  0.0102
+01A         CCP        HCPA      SINGLE       n     1.089  0.0100     0.978  0.0102
+01A         CDP         HDP      SINGLE       n     1.089  0.0100     0.973  0.0146
+01A         CDP        HDPA      SINGLE       n     1.089  0.0100     0.973  0.0146
+01A         CDP        HDPB      SINGLE       n     1.089  0.0100     0.973  0.0146
+01A         CEP         HEP      SINGLE       n     1.089  0.0100     0.973  0.0146
+01A         CEP        HEPA      SINGLE       n     1.089  0.0100     0.973  0.0146
+01A         CEP        HEPB      SINGLE       n     1.089  0.0100     0.973  0.0146
+01A         CAP         HAP      SINGLE       n     1.089  0.0100     0.988  0.0129
+01A         OAP        HOAP      SINGLE       n     0.970  0.0120     0.848  0.0200
+01A         N8P        HN8P      SINGLE       n     1.016  0.0100     0.872  0.0200
+01A         C7P         H7P      SINGLE       n     1.089  0.0100     0.980  0.0159
+01A         C7P        H7PA      SINGLE       n     1.089  0.0100     0.980  0.0159
+01A         C6P         H6P      SINGLE       n     1.089  0.0100     0.973  0.0156
+01A         C6P        H6PA      SINGLE       n     1.089  0.0100     0.973  0.0156
+01A         N4P        HN4P      SINGLE       n     1.016  0.0100     0.872  0.0200
+01A         C3P         H3P      SINGLE       n     1.089  0.0100     0.981  0.0127
+01A         C3P        H3PA      SINGLE       n     1.089  0.0100     0.981  0.0127
+01A         C2P         H2P      SINGLE       n     1.089  0.0100     0.983  0.0124
+01A         C2P        H2PA      SINGLE       n     1.089  0.0100     0.983  0.0124
+01A          C1          H1      SINGLE       n     1.089  0.0100     0.980  0.0156
+01A          C1         H1A      SINGLE       n     1.089  0.0100     0.980  0.0156
+01A          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+01A          C5          H5      SINGLE       n     1.082  0.0130     0.938  0.0140
+01A          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+01A          C3          H3      SINGLE       n     1.082  0.0130     0.938  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+01A         O7A         P3A         O8A     112.139    1.52
+01A         O7A         P3A         O9A     112.139    1.52
+01A         O7A         P3A      "O3A'"     106.518    3.00
+01A         O8A         P3A         O9A     112.139    1.52
+01A         O8A         P3A      "O3A'"     106.518    3.00
+01A         O9A         P3A      "O3A'"     106.518    3.00
+01A         P3A      "O3A'"      "C3A'"     109.471    3.00
+01A      "O3A'"      "C3A'"      "C2A'"     110.766    3.00
+01A      "O3A'"      "C3A'"      "C4A'"     110.864    2.31
+01A      "O3A'"      "C3A'"      "H3A'"     110.343    1.64
+01A      "C2A'"      "C3A'"      "C4A'"     102.352    1.50
+01A      "C2A'"      "C3A'"      "H3A'"     110.255    2.04
+01A      "C4A'"      "C3A'"      "H3A'"     110.624    1.81
+01A      "C3A'"      "C2A'"      "O2A'"     112.463    2.73
+01A      "C3A'"      "C2A'"      "C1A'"     101.388    1.50
+01A      "C3A'"      "C2A'"      "H2A'"     110.255    2.04
+01A      "O2A'"      "C2A'"      "C1A'"     111.715    2.69
+01A      "O2A'"      "C2A'"      "H2A'"     110.448    1.97
+01A      "C1A'"      "C2A'"      "H2A'"     110.636    1.70
+01A      "C2A'"      "O2A'"        H2AA     109.103    2.13
+01A      "C2A'"      "C1A'"         N9A     113.752    2.20
+01A      "C2A'"      "C1A'"      "O4A'"     106.047    1.50
+01A      "C2A'"      "C1A'"      "H1A'"     109.015    1.50
+01A         N9A      "C1A'"      "O4A'"     108.167    1.51
+01A         N9A      "C1A'"      "H1A'"     109.246    1.50
+01A      "O4A'"      "C1A'"      "H1A'"     109.807    1.50
+01A      "C1A'"         N9A         C8A     126.078    2.46
+01A      "C1A'"         N9A         C4A     125.158    1.54
+01A         C8A         N9A         C4A     107.594    1.50
+01A         N9A         C4A         C5A     107.666    1.69
+01A         N9A         C4A         N3A     125.845    1.50
+01A         C5A         C4A         N3A     126.489    1.50
+01A         C4A         C5A         N7A     110.588    1.50
+01A         C4A         C5A         C6A     117.267    1.50
+01A         N7A         C5A         C6A     132.145    1.50
+01A         C5A         C6A         N6A     123.792    1.50
+01A         C5A         C6A         N1A     117.409    1.50
+01A         N6A         C6A         N1A     118.799    1.50
+01A         C6A         N6A        HN6A     119.723    1.50
+01A         C6A         N6A        HN6B     119.723    1.50
+01A        HN6A         N6A        HN6B     120.554    1.88
+01A         C6A         N1A         C2A     118.521    1.50
+01A         N1A         C2A         N3A     129.332    1.50
+01A         N1A         C2A         H2A     115.313    1.50
+01A         N3A         C2A         H2A     115.355    1.50
+01A         C4A         N3A         C2A     110.982    1.50
+01A         C5A         N7A         C8A     103.927    1.50
+01A         N9A         C8A         N7A     112.130    1.94
+01A         N9A         C8A         H8A     124.701    2.19
+01A         N7A         C8A         H8A     123.170    1.50
+01A      "C1A'"      "O4A'"      "C4A'"     109.903    1.50
+01A      "C3A'"      "C4A'"      "O4A'"     105.508    1.50
+01A      "C3A'"      "C4A'"      "C5A'"     114.866    1.63
+01A      "C3A'"      "C4A'"      "H4A'"     109.143    1.50
+01A      "O4A'"      "C4A'"      "C5A'"     109.123    1.50
+01A      "O4A'"      "C4A'"      "H4A'"     108.947    1.50
+01A      "C5A'"      "C4A'"      "H4A'"     108.268    1.50
+01A      "C4A'"      "C5A'"      "O5A'"     109.342    1.50
+01A      "C4A'"      "C5A'"      "H5A'"     109.624    1.50
+01A      "C4A'"      "C5A'"        H5AA     109.624    1.50
+01A      "O5A'"      "C5A'"      "H5A'"     109.845    1.50
+01A      "O5A'"      "C5A'"        H5AA     109.845    1.50
+01A      "H5A'"      "C5A'"        H5AA     108.472    1.50
+01A      "C5A'"      "O5A'"         P1A     118.553    2.41
+01A      "O5A'"         P1A         O1A     109.410    1.50
+01A      "O5A'"         P1A         O2A     109.410    1.50
+01A      "O5A'"         P1A         O3A     101.065    1.97
+01A         O1A         P1A         O2A     118.411    2.35
+01A         O1A         P1A         O3A     108.816    2.14
+01A         O2A         P1A         O3A     108.816    2.14
+01A         P1A         O3A         P2A     132.542    3.00
+01A         O3A         P2A         O4A     108.816    2.14
+01A         O3A         P2A         O6A     101.065    1.97
+01A         O3A         P2A         O5A     108.816    2.14
+01A         O4A         P2A         O6A     107.912    2.57
+01A         O4A         P2A         O5A     118.411    2.35
+01A         O6A         P2A         O5A     107.912    2.57
+01A         P2A         O6A         CCP     119.251    1.51
+01A         O6A         CCP         CBP     108.435    1.69
+01A         O6A         CCP         HCP     109.739    1.50
+01A         O6A         CCP        HCPA     109.739    1.50
+01A         CBP         CCP         HCP     109.473    1.50
+01A         CBP         CCP        HCPA     109.473    1.50
+01A         HCP         CCP        HCPA     108.108    1.50
+01A         CCP         CBP         CAP     111.094    2.85
+01A         CCP         CBP         CDP     109.385    1.50
+01A         CCP         CBP         CEP     109.385    1.50
+01A         CAP         CBP         CDP     109.534    1.52
+01A         CAP         CBP         CEP     109.534    1.52
+01A         CDP         CBP         CEP     108.765    1.50
+01A         CBP         CDP         HDP     109.575    1.50
+01A         CBP         CDP        HDPA     109.575    1.50
+01A         CBP         CDP        HDPB     109.575    1.50
+01A         HDP         CDP        HDPA     109.377    1.50
+01A         HDP         CDP        HDPB     109.377    1.50
+01A        HDPA         CDP        HDPB     109.377    1.50
+01A         CBP         CEP         HEP     109.575    1.50
+01A         CBP         CEP        HEPA     109.575    1.50
+01A         CBP         CEP        HEPB     109.575    1.50
+01A         HEP         CEP        HEPA     109.377    1.50
+01A         HEP         CEP        HEPB     109.377    1.50
+01A        HEPA         CEP        HEPB     109.377    1.50
+01A         CBP         CAP         C9P     111.511    2.91
+01A         CBP         CAP         OAP     109.482    3.00
+01A         CBP         CAP         HAP     107.825    1.50
+01A         C9P         CAP         OAP     109.850    1.55
+01A         C9P         CAP         HAP     108.529    1.70
+01A         OAP         CAP         HAP     108.675    1.50
+01A         CAP         OAP        HOAP     108.894    3.00
+01A         CAP         C9P         O9P     119.859    1.78
+01A         CAP         C9P         N8P     117.147    1.50
+01A         O9P         C9P         N8P     122.977    1.50
+01A         C9P         N8P         C7P     122.964    1.80
+01A         C9P         N8P        HN8P     118.685    1.94
+01A         C7P         N8P        HN8P     118.351    1.90
+01A         N8P         C7P         C6P     112.257    1.50
+01A         N8P         C7P         H7P     108.979    1.50
+01A         N8P         C7P        H7PA     108.979    1.50
+01A         C6P         C7P         H7P     108.971    1.50
+01A         C6P         C7P        H7PA     108.971    1.50
+01A         H7P         C7P        H7PA     107.877    1.50
+01A         C7P         C6P         C5P     112.120    2.79
+01A         C7P         C6P         H6P     109.432    1.50
+01A         C7P         C6P        H6PA     109.432    1.50
+01A         C5P         C6P         H6P     108.945    1.50
+01A         C5P         C6P        H6PA     108.945    1.50
+01A         H6P         C6P        H6PA     107.745    2.07
+01A         C6P         C5P         O5P     120.987    1.50
+01A         C6P         C5P         N4P     117.070    1.96
+01A         O5P         C5P         N4P     121.943    1.50
+01A         C5P         N4P         C3P     123.437    1.80
+01A         C5P         N4P        HN4P     117.862    2.10
+01A         C3P         N4P        HN4P     118.700    1.83
+01A         N4P         C3P         C2P     112.117    1.54
+01A         N4P         C3P         H3P     109.102    1.50
+01A         N4P         C3P        H3PA     109.102    1.50
+01A         C2P         C3P         H3P     109.038    1.50
+01A         C2P         C3P        H3PA     109.038    1.50
+01A         H3P         C3P        H3PA     107.995    1.50
+01A         C3P         C2P         S1P     113.178    2.37
+01A         C3P         C2P         H2P     108.964    1.50
+01A         C3P         C2P        H2PA     108.964    1.50
+01A         S1P         C2P         H2P     108.905    1.50
+01A         S1P         C2P        H2PA     108.905    1.50
+01A         H2P         C2P        H2PA     107.807    1.50
+01A         C2P         S1P          C1     101.925    1.66
+01A         S1P          C1           C     111.968    3.00
+01A         S1P          C1          H1     108.570    1.78
+01A         S1P          C1         H1A     108.570    1.78
+01A           C          C1          H1     108.787    1.50
+01A           C          C1         H1A     108.787    1.50
+01A          H1          C1         H1A     107.716    1.50
+01A          C1           C       "C1'"     117.732    1.50
+01A          C1           C          O2     120.973    1.50
+01A       "C1'"           C          O2     121.295    1.50
+01A           C       "C1'"          C2     120.665    2.23
+01A           C       "C1'"          C6     120.665    2.23
+01A          C2       "C1'"          C6     118.670    1.50
+01A       "C1'"          C6          C5     120.920    1.50
+01A       "C1'"          C6          H6     119.651    1.50
+01A          C5          C6          H6     119.429    1.50
+01A          C6          C5          C4     119.090    1.50
+01A          C6          C5          H5     120.483    1.50
+01A          C4          C5          H5     120.427    1.50
+01A       "C1'"          C2          C3     120.920    1.50
+01A       "C1'"          C2          H2     119.651    1.50
+01A          C3          C2          H2     119.429    1.50
+01A          C2          C3          C4     119.090    1.50
+01A          C2          C3          H3     120.483    1.50
+01A          C4          C3          H3     120.427    1.50
+01A          C5          C4          C3     121.311    1.50
+01A          C5          C4        CL4A     119.344    1.50
+01A          C3          C4        CL4A     119.344    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+01A              const_21         N9A         C4A         C5A         N7A       0.000    10.0     2
+01A              const_48         N9A         C4A         N3A         C2A     180.000    10.0     2
+01A              const_26         C4A         C5A         C6A         N6A     180.000    10.0     2
+01A              const_41         C4A         C5A         N7A         C8A       0.000    10.0     2
+01A             sp2_sp2_1         C5A         C6A         N6A        HN6A     180.000     5.0     2
+01A              const_30         N6A         C6A         N1A         C2A     180.000    10.0     2
+01A              const_31         N3A         C2A         N1A         C6A       0.000    10.0     2
+01A              const_33         N1A         C2A         N3A         C4A       0.000    10.0     2
+01A              const_39         N9A         C8A         N7A         C5A       0.000    10.0     2
+01A            sp3_sp3_23      "C5A'"      "C4A'"      "O4A'"      "C1A'"     180.000    10.0     3
+01A            sp3_sp3_26      "C3A'"      "O3A'"         P3A         O7A     -60.000    10.0     3
+01A            sp3_sp3_43      "C3A'"      "C4A'"      "C5A'"      "O5A'"     180.000    10.0     3
+01A            sp3_sp3_52      "C4A'"      "C5A'"      "O5A'"         P1A     180.000    10.0     3
+01A            sp3_sp3_57      "C5A'"      "O5A'"         P1A         O1A      60.000    10.0     3
+01A            sp3_sp3_59         P2A         O3A         P1A      "O5A'"     -60.000    10.0     3
+01A            sp3_sp3_63         P1A         O3A         P2A         O4A      60.000    10.0     3
+01A            sp3_sp3_64         CCP         O6A         P2A         O3A     180.000    10.0     3
+01A            sp3_sp3_67         CBP         CCP         O6A         P2A     180.000    10.0     3
+01A            sp3_sp3_70         CAP         CBP         CCP         O6A     180.000    10.0     3
+01A            sp3_sp3_88         CCP         CBP         CDP         HDP     180.000    10.0     3
+01A           sp3_sp3_100         CCP         CBP         CEP         HEP      60.000    10.0     3
+01A            sp3_sp3_80         C9P         CAP         CBP         CCP     -60.000    10.0     3
+01A           sp3_sp3_106         CBP         CAP         OAP        HOAP     180.000    10.0     3
+01A             sp2_sp3_7         O9P         C9P         CAP         CBP       0.000    10.0     6
+01A             sp2_sp2_5         CAP         C9P         N8P         C7P     180.000     5.0     2
+01A            sp2_sp3_14         C9P         N8P         C7P         C6P     120.000    10.0     6
+01A           sp3_sp3_109         C5P         C6P         C7P         N8P     180.000    10.0     3
+01A            sp2_sp3_20         O5P         C5P         C6P         C7P     120.000    10.0     6
+01A             sp2_sp2_9         C6P         C5P         N4P         C3P     180.000     5.0     2
+01A            sp2_sp3_26         C5P         N4P         C3P         C2P     120.000    10.0     6
+01A           sp3_sp3_118         S1P         C2P         C3P         N4P     180.000    10.0     3
+01A           sp3_sp3_127         C3P         C2P         S1P          C1     180.000    10.0     3
+01A           sp3_sp3_130           C          C1         S1P         C2P     180.000    10.0     3
+01A            sp2_sp3_35          O2           C          C1         S1P     -60.000    10.0     6
+01A            sp2_sp2_13          C1           C       "C1'"          C2     180.000     5.0     2
+01A            sp3_sp3_28      "C2A'"      "C3A'"      "O3A'"         P3A     180.000    10.0     3
+01A              const_51           C       "C1'"          C6          C5     180.000    10.0     2
+01A       const_sp2_sp2_3           C       "C1'"          C2          C3     180.000     5.0     2
+01A              const_17          C4          C5          C6       "C1'"       0.000    10.0     2
+01A              const_15        CL4A          C4          C5          C6     180.000    10.0     2
+01A       const_sp2_sp2_5       "C1'"          C2          C3          C4       0.000     5.0     2
+01A              const_10          C2          C3          C4        CL4A     180.000    10.0     2
+01A            sp3_sp3_35      "O3A'"      "C3A'"      "C4A'"      "C5A'"     180.000    10.0     3
+01A             sp3_sp3_5      "O2A'"      "C2A'"      "C3A'"      "O3A'"      60.000    10.0     3
+01A            sp3_sp3_40      "C3A'"      "C2A'"      "O2A'"        H2AA     180.000    10.0     3
+01A            sp3_sp3_14         N9A      "C1A'"      "C2A'"      "O2A'"     -60.000    10.0     3
+01A            sp3_sp3_19      "C2A'"      "C1A'"      "O4A'"      "C4A'"      60.000    10.0     3
+01A             sp2_sp3_1         C8A         N9A      "C1A'"      "C2A'"     150.000    10.0     6
+01A              const_44         C5A         C4A         N9A      "C1A'"     180.000    10.0     2
+01A              const_36         N7A         C8A         N9A      "C1A'"     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+01A    chir_1    P3A    "O3A'"    O7A    O9A    both
+01A    chir_2    "C3A'"    "O3A'"    "C4A'"    "C2A'"    positive
+01A    chir_3    "C2A'"    "O2A'"    "C1A'"    "C3A'"    negative
+01A    chir_4    "C1A'"    "O4A'"    N9A    "C2A'"    negative
+01A    chir_5    "C4A'"    "O4A'"    "C3A'"    "C5A'"    negative
+01A    chir_6    P1A    O3A    "O5A'"    O2A    both
+01A    chir_7    P2A    O3A    O6A    O5A    both
+01A    chir_8    CBP    CAP    CCP    CDP    both
+01A    chir_9    CAP    OAP    C9P    CBP    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+01A    plan-1      "C1A'"   0.020
+01A    plan-1         C2A   0.020
+01A    plan-1         C4A   0.020
+01A    plan-1         C5A   0.020
+01A    plan-1         C6A   0.020
+01A    plan-1         C8A   0.020
+01A    plan-1         H2A   0.020
+01A    plan-1         H8A   0.020
+01A    plan-1         N1A   0.020
+01A    plan-1         N3A   0.020
+01A    plan-1         N6A   0.020
+01A    plan-1         N7A   0.020
+01A    plan-1         N9A   0.020
+01A    plan-2           C   0.020
+01A    plan-2       "C1'"   0.020
+01A    plan-2          C2   0.020
+01A    plan-2          C3   0.020
+01A    plan-2          C4   0.020
+01A    plan-2          C5   0.020
+01A    plan-2          C6   0.020
+01A    plan-2        CL4A   0.020
+01A    plan-2          H2   0.020
+01A    plan-2          H3   0.020
+01A    plan-2          H5   0.020
+01A    plan-2          H6   0.020
+01A    plan-3         C6A   0.020
+01A    plan-3        HN6A   0.020
+01A    plan-3        HN6B   0.020
+01A    plan-3         N6A   0.020
+01A    plan-4         C9P   0.020
+01A    plan-4         CAP   0.020
+01A    plan-4         N8P   0.020
+01A    plan-4         O9P   0.020
+01A    plan-5         C7P   0.020
+01A    plan-5         C9P   0.020
+01A    plan-5        HN8P   0.020
+01A    plan-5         N8P   0.020
+01A    plan-6         C5P   0.020
+01A    plan-6         C6P   0.020
+01A    plan-6         N4P   0.020
+01A    plan-6         O5P   0.020
+01A    plan-7         C3P   0.020
+01A    plan-7         C5P   0.020
+01A    plan-7        HN4P   0.020
+01A    plan-7         N4P   0.020
+01A    plan-8           C   0.020
+01A    plan-8          C1   0.020
+01A    plan-8       "C1'"   0.020
+01A    plan-8          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+01A           SMILES              ACDLabs 10.04                                                                                                                                                                                                                                        Clc1ccc(cc1)C(=O)CSCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(=O)(O)OP(=O)(O)OCC4OC(n3cnc2c(ncnc23)N)C(O)C4OP(=O)(O)O
+01A SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                                          CC(C)(CO[P@](O)(=O)O[P@](O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O[P](O)(O)=O)n2cnc3c(N)ncnc23)[C@@H](O)C(=O)NCCC(=O)NCCSCC(=O)c4ccc(Cl)cc4
+01A           SMILES               CACTVS 3.341                                                                                                                                                                                                                   CC(C)(CO[P](O)(=O)O[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O[P](O)(O)=O)n2cnc3c(N)ncnc23)[CH](O)C(=O)NCCC(=O)NCCSCC(=O)c4ccc(Cl)cc4
+01A SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                          CC(C)(CO[P@@](=O)(O)O[P@@](=O)(O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)[C@H](C(=O)NCCC(=O)NCCSCC(=O)c4ccc(cc4)Cl)O
+01A           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                                        CC(C)(COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)C(C(=O)NCCC(=O)NCCSCC(=O)c4ccc(cc4)Cl)O
+01A            InChI                InChI  1.03 InChI=1S/C29H41ClN7O17P3S/c1-29(2,24(41)27(42)33-8-7-20(39)32-9-10-58-12-18(38)16-3-5-17(30)6-4-16)13-51-57(48,49)54-56(46,47)50-11-19-23(53-55(43,44)45)22(40)28(52-19)37-15-36-21-25(31)34-14-35-26(21)37/h3-6,14-15,19,22-24,28,40-41H,7-13H2,1-2H3,(H,32,39)(H,33,42)(H,46,47)(H,48,49)(H2,31,34,35)(H2,43,44,45)/t19-,22-,23-,24+,28-/m1/s1
+01A         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                      JKZHFXZXNBMAGG-VXAHOBLNSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+01A acedrg               243         "dictionary generator"                  
+01A acedrg_database      11          "data source"                           
+01A rdkit                2017.03.2   "Chemoinformatics tool"
+01A refmac5              5.8.0238    "optimization tool"                     

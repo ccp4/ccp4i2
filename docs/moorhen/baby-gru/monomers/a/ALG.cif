@@ -1,0 +1,178 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ALG     ALG      "4-carbamimidamidobutanoic acid"     NON-POLYMER     21     10     .     
+#
+data_comp_ALG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ALG     C       C       C       0       14.104      38.844      6.667       
+ALG     O       O       O       0       13.477      39.887      6.937       
+ALG     CA      C       CH2     0       15.032      38.269      7.725       
+ALG     CB      C       CH2     0       14.348      37.796      8.991       
+ALG     CD      C       CH2     0       13.779      36.393      8.879       
+ALG     NE      N       NH1     0       12.592      36.322      8.032       
+ALG     CZ      C       C       0       11.369      36.762      8.345       
+ALG     NH1     N       NH2     1       11.109      37.307      9.527       
+ALG     NH2     N       NH2     0       10.392      36.661      7.456       
+ALG     OXT     O       OC      -1      14.012      38.246      5.577       
+ALG     HA1     H       H       0       15.690      38.956      7.962       
+ALG     HA2     H       H       0       15.523      37.518      7.328       
+ALG     HB1     H       H       0       13.624      38.417      9.214       
+ALG     HB2     H       H       0       14.994      37.816      9.728       
+ALG     HD1     H       H       0       13.556      36.064      9.776       
+ALG     HD2     H       H       0       14.467      35.799      8.511       
+ALG     HNE     H       H       0       12.693      35.954      7.247       
+ALG     HH1     H       H       0       10.298      37.598      9.706       
+ALG     HH2     H       H       0       11.728      37.377      10.140      
+ALG     HH21    H       H       0       9.583       36.947      7.654       
+ALG     HH22    H       H       0       10.547      36.308      6.663       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ALG           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+ALG           C          CA      SINGLE       n     1.519  0.0109     1.519  0.0109
+ALG           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+ALG          CA          CB      SINGLE       n     1.510  0.0200     1.510  0.0200
+ALG          CB          CD      SINGLE       n     1.512  0.0200     1.512  0.0200
+ALG          CD          NE      SINGLE       n     1.456  0.0136     1.456  0.0136
+ALG          NE          CZ      SINGLE       n     1.328  0.0112     1.328  0.0112
+ALG          CZ         NH1      DOUBLE       n     1.322  0.0100     1.322  0.0100
+ALG          CZ         NH2      SINGLE       n     1.321  0.0100     1.321  0.0100
+ALG          CA         HA1      SINGLE       n     1.089  0.0100     0.981  0.0185
+ALG          CA         HA2      SINGLE       n     1.089  0.0100     0.981  0.0185
+ALG          CB         HB1      SINGLE       n     1.089  0.0100     0.980  0.0160
+ALG          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0160
+ALG          CD         HD1      SINGLE       n     1.089  0.0100     0.981  0.0152
+ALG          CD         HD2      SINGLE       n     1.089  0.0100     0.981  0.0152
+ALG          NE         HNE      SINGLE       n     1.016  0.0100     0.872  0.0200
+ALG         NH1         HH1      SINGLE       n     1.016  0.0100     0.879  0.0200
+ALG         NH1         HH2      SINGLE       n     1.016  0.0100     0.879  0.0200
+ALG         NH2        HH21      SINGLE       n     1.016  0.0100     0.881  0.0200
+ALG         NH2        HH22      SINGLE       n     1.016  0.0100     0.881  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ALG           O           C          CA     118.214    1.64
+ALG           O           C         OXT     123.571    1.50
+ALG          CA           C         OXT     118.214    1.64
+ALG           C          CA          CB     114.629    2.24
+ALG           C          CA         HA1     108.404    1.50
+ALG           C          CA         HA2     108.404    1.50
+ALG          CB          CA         HA1     108.817    1.50
+ALG          CB          CA         HA2     108.817    1.50
+ALG         HA1          CA         HA2     107.521    1.50
+ALG          CA          CB          CD     112.850    1.50
+ALG          CA          CB         HB1     109.179    1.50
+ALG          CA          CB         HB2     109.179    1.50
+ALG          CD          CB         HB1     108.956    1.50
+ALG          CD          CB         HB2     108.956    1.50
+ALG         HB1          CB         HB2     107.927    1.57
+ALG          CB          CD          NE     112.382    2.90
+ALG          CB          CD         HD1     109.197    1.51
+ALG          CB          CD         HD2     109.197    1.51
+ALG          NE          CD         HD1     109.183    1.50
+ALG          NE          CD         HD2     109.183    1.50
+ALG         HD1          CD         HD2     107.877    1.50
+ALG          CD          NE          CZ     124.510    1.50
+ALG          CD          NE         HNE     117.883    1.50
+ALG          CZ          NE         HNE     117.606    1.50
+ALG          NE          CZ         NH1     120.052    1.50
+ALG          NE          CZ         NH2     120.052    1.50
+ALG         NH1          CZ         NH2     119.896    1.50
+ALG          CZ         NH1         HH1     119.855    2.01
+ALG          CZ         NH1         HH2     119.855    2.01
+ALG         HH1         NH1         HH2     120.290    2.09
+ALG          CZ         NH2        HH21     119.855    2.01
+ALG          CZ         NH2        HH22     119.855    2.01
+ALG        HH21         NH2        HH22     120.290    2.09
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ALG             sp2_sp3_2           O           C          CA          CB     120.000    10.0     6
+ALG             sp3_sp3_1           C          CA          CB          CD     180.000    10.0     3
+ALG            sp3_sp3_10          CA          CB          CD          NE     180.000    10.0     3
+ALG             sp2_sp3_8          CZ          NE          CD          CB     120.000    10.0     6
+ALG             sp2_sp2_1         NH1          CZ          NE          CD     180.000     5.0     2
+ALG             sp2_sp2_5          NE          CZ         NH1         HH1     180.000     5.0     2
+ALG             sp2_sp2_9          NE          CZ         NH2        HH21     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ALG    plan-1           C   0.020
+ALG    plan-1          CA   0.020
+ALG    plan-1           O   0.020
+ALG    plan-1         OXT   0.020
+ALG    plan-2          CD   0.020
+ALG    plan-2          CZ   0.020
+ALG    plan-2         HNE   0.020
+ALG    plan-2          NE   0.020
+ALG    plan-3          CZ   0.020
+ALG    plan-3          NE   0.020
+ALG    plan-3         NH1   0.020
+ALG    plan-3         NH2   0.020
+ALG    plan-4          CZ   0.020
+ALG    plan-4         HH1   0.020
+ALG    plan-4         HH2   0.020
+ALG    plan-4         NH1   0.020
+ALG    plan-5          CZ   0.020
+ALG    plan-5        HH21   0.020
+ALG    plan-5        HH22   0.020
+ALG    plan-5         NH2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ALG           SMILES              ACDLabs 12.01                                               O=C(O)CCCNC(=[N@H])N
+ALG SMILES_CANONICAL               CACTVS 3.370                                                   NC(=N)NCCCC(O)=O
+ALG           SMILES               CACTVS 3.370                                                   NC(=N)NCCCC(O)=O
+ALG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                           "[H]/N=C(\N)/NCCCC(=O)O"
+ALG           SMILES "OpenEye OEToolkits" 1.7.0                                                 C(CC(=O)O)CNC(=N)N
+ALG            InChI                InChI  1.03 InChI=1S/C5H11N3O2/c6-5(7)8-3-1-2-4(9)10/h1-3H2,(H,9,10)(H4,6,7,8)
+ALG         InChIKey                InChI  1.03                                        TUHVEAJXIMEOSA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ALG acedrg               243         "dictionary generator"                  
+ALG acedrg_database      11          "data source"                           
+ALG rdkit                2017.03.2   "Chemoinformatics tool"
+ALG refmac5              5.8.0238    "optimization tool"                     

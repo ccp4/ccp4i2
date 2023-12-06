@@ -1,0 +1,256 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BQV     BQV      N-(methylsulfonyl)-3-{[(thiophen-2-yl)sulfanyl]methyl}benzamide     NON-POLYMER     33     20     .     
+#
+data_comp_BQV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BQV     C14     C       CR15    0       -23.182     7.264       -47.720     
+BQV     C15     C       CR15    0       -22.459     7.955       -46.685     
+BQV     C16     C       CR15    0       -22.824     7.522       -45.449     
+BQV     C18     C       CR16    0       -27.551     5.119       -50.772     
+BQV     C19     C       CR16    0       -28.347     4.269       -51.526     
+BQV     C20     C       CR16    0       -29.182     3.358       -50.899     
+BQV     C02     C       C       0       -30.141     2.293       -48.845     
+BQV     C05     C       CH3     0       -33.245     1.593       -47.529     
+BQV     C08     C       CR6     0       -29.232     3.293       -49.508     
+BQV     C09     C       CR16    0       -28.418     4.151       -48.764     
+BQV     C10     C       CR6     0       -27.576     5.064       -49.386     
+BQV     C11     C       CH2     0       -26.726     5.996       -48.566     
+BQV     C13     C       CR5     0       -24.065     6.326       -47.199     
+BQV     N03     N       NH1     0       -30.766     2.679       -47.722     
+BQV     O01     O       O       0       -30.283     1.181       -49.305     
+BQV     O06     O       O       0       -31.873     2.470       -45.528     
+BQV     O07     O       O       0       -31.094     0.436       -46.675     
+BQV     S04     S       S3      0       -31.684     1.739       -46.744     
+BQV     S12     S       S2      0       -25.153     5.267       -48.058     
+BQV     S17     S       S2      0       -23.990     6.332       -45.536     
+BQV     H1      H       H       0       -23.070     7.423       -48.642     
+BQV     H2      H       H       0       -21.815     8.622       -46.849     
+BQV     H3      H       H       0       -22.493     7.821       -44.620     
+BQV     H4      H       H       0       -26.985     5.738       -51.206     
+BQV     H5      H       H       0       -28.319     4.311       -52.469     
+BQV     H6      H       H       0       -29.719     2.783       -51.416     
+BQV     H7      H       H       0       -33.363     0.685       -47.844     
+BQV     H8      H       H       0       -33.286     2.206       -48.278     
+BQV     H9      H       H       0       -33.945     1.810       -46.893     
+BQV     H10     H       H       0       -28.443     4.117       -47.821     
+BQV     H11     H       H       0       -27.218     6.260       -47.767     
+BQV     H12     H       H       0       -26.542     6.802       -49.083     
+BQV     H13     H       H       0       -30.711     3.516       -47.481     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BQV         C19         C20      SINGLE       y     1.382  0.0100     1.382  0.0100
+BQV         C18         C19      DOUBLE       y     1.383  0.0105     1.383  0.0105
+BQV         C20         C08      DOUBLE       y     1.390  0.0100     1.390  0.0100
+BQV         C18         C10      SINGLE       y     1.384  0.0100     1.384  0.0100
+BQV         C02         O01      DOUBLE       n     1.210  0.0100     1.210  0.0100
+BQV         C02         C08      SINGLE       n     1.493  0.0181     1.493  0.0181
+BQV         C08         C09      SINGLE       y     1.393  0.0100     1.393  0.0100
+BQV         C02         N03      SINGLE       n     1.335  0.0102     1.335  0.0102
+BQV         C09         C10      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BQV         C10         C11      SINGLE       n     1.504  0.0100     1.504  0.0100
+BQV         C11         S12      SINGLE       n     1.809  0.0191     1.809  0.0191
+BQV         C13         S12      SINGLE       n     1.744  0.0119     1.744  0.0119
+BQV         C05         S04      SINGLE       n     1.754  0.0100     1.754  0.0100
+BQV         C14         C13      DOUBLE       y     1.385  0.0125     1.385  0.0125
+BQV         C14         C15      SINGLE       y     1.417  0.0151     1.417  0.0151
+BQV         C13         S17      SINGLE       y     1.695  0.0200     1.695  0.0200
+BQV         N03         S04      SINGLE       n     1.630  0.0157     1.630  0.0157
+BQV         C15         C16      DOUBLE       y     1.343  0.0200     1.343  0.0200
+BQV         O06         S04      DOUBLE       n     1.431  0.0100     1.431  0.0100
+BQV         O07         S04      DOUBLE       n     1.431  0.0100     1.431  0.0100
+BQV         C16         S17      SINGLE       y     1.695  0.0200     1.695  0.0200
+BQV         C14          H1      SINGLE       n     1.082  0.0130     0.942  0.0153
+BQV         C15          H2      SINGLE       n     1.082  0.0130     0.942  0.0153
+BQV         C16          H3      SINGLE       n     1.082  0.0130     0.942  0.0200
+BQV         C18          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+BQV         C19          H5      SINGLE       n     1.082  0.0130     0.945  0.0184
+BQV         C20          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+BQV         C05          H7      SINGLE       n     1.089  0.0100     0.969  0.0154
+BQV         C05          H8      SINGLE       n     1.089  0.0100     0.969  0.0154
+BQV         C05          H9      SINGLE       n     1.089  0.0100     0.969  0.0154
+BQV         C09         H10      SINGLE       n     1.082  0.0130     0.944  0.0147
+BQV         C11         H11      SINGLE       n     1.089  0.0100     0.975  0.0100
+BQV         C11         H12      SINGLE       n     1.089  0.0100     0.975  0.0100
+BQV         N03         H13      SINGLE       n     1.016  0.0100     0.873  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BQV         C13         C14         C15     107.289    1.50
+BQV         C13         C14          H1     127.256    2.63
+BQV         C15         C14          H1     125.455    1.50
+BQV         C14         C15         C16     107.456    1.50
+BQV         C14         C15          H2     125.907    1.50
+BQV         C16         C15          H2     126.637    1.50
+BQV         C15         C16         S17     108.418    3.00
+BQV         C15         C16          H3     128.419    2.40
+BQV         S17         C16          H3     123.163    3.00
+BQV         C19         C18         C10     120.335    1.50
+BQV         C19         C18          H4     119.833    1.50
+BQV         C10         C18          H4     119.832    1.50
+BQV         C20         C19         C18     120.098    1.50
+BQV         C20         C19          H5     119.951    1.50
+BQV         C18         C19          H5     119.951    1.50
+BQV         C19         C20         C08     120.272    1.50
+BQV         C19         C20          H6     119.789    1.50
+BQV         C08         C20          H6     119.938    1.50
+BQV         O01         C02         C08     122.092    1.50
+BQV         O01         C02         N03     121.673    1.50
+BQV         C08         C02         N03     116.235    2.27
+BQV         S04         C05          H7     109.353    1.50
+BQV         S04         C05          H8     109.353    1.50
+BQV         S04         C05          H9     109.353    1.50
+BQV          H7         C05          H8     109.614    1.50
+BQV          H7         C05          H9     109.614    1.50
+BQV          H8         C05          H9     109.614    1.50
+BQV         C20         C08         C02     120.246    3.00
+BQV         C20         C08         C09     119.432    1.50
+BQV         C02         C08         C09     120.322    2.89
+BQV         C08         C09         C10     121.082    1.50
+BQV         C08         C09         H10     119.612    1.50
+BQV         C10         C09         H10     119.306    1.50
+BQV         C18         C10         C09     118.781    1.50
+BQV         C18         C10         C11     120.669    1.50
+BQV         C09         C10         C11     120.550    1.50
+BQV         C10         C11         S12     111.115    3.00
+BQV         C10         C11         H11     109.787    1.50
+BQV         C10         C11         H12     109.787    1.50
+BQV         S12         C11         H11     109.066    1.50
+BQV         S12         C11         H12     109.066    1.50
+BQV         H11         C11         H12     108.294    1.50
+BQV         S12         C13         C14     129.232    2.21
+BQV         S12         C13         S17     122.349    3.00
+BQV         C14         C13         S17     108.418    3.00
+BQV         C02         N03         S04     122.854    2.63
+BQV         C02         N03         H13     118.981    2.17
+BQV         S04         N03         H13     118.166    2.40
+BQV         C05         S04         N03     106.086    1.77
+BQV         C05         S04         O06     107.962    1.50
+BQV         C05         S04         O07     107.962    1.50
+BQV         N03         S04         O06     107.140    1.97
+BQV         N03         S04         O07     107.140    1.97
+BQV         O06         S04         O07     118.941    1.50
+BQV         C11         S12         C13     120.000    3.00
+BQV         C13         S17         C16     108.418    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BQV              const_37         C13         C14         C15         C16       0.000    10.0     2
+BQV              const_23         S12         C13         C14         C15     180.000    10.0     2
+BQV             sp2_sp3_2         C18         C10         C11         S12     -90.000    10.0     6
+BQV             sp3_sp3_1         C10         C11         S12         C13     180.000    10.0     3
+BQV             sp2_sp2_9         C14         C13         S12         C11     180.000     5.0     2
+BQV              const_26         S12         C13         S17         C16     180.000    10.0     2
+BQV             sp2_sp3_9         C02         N03         S04         C05    -120.000    10.0     6
+BQV              const_29         C14         C15         C16         S17       0.000    10.0     2
+BQV              const_27         C15         C16         S17         C13       0.000    10.0     2
+BQV              const_35         C11         C10         C18         C19     180.000    10.0     2
+BQV       const_sp2_sp2_1         C10         C18         C19         C20       0.000     5.0     2
+BQV       const_sp2_sp2_5         C18         C19         C20         C08       0.000     5.0     2
+BQV              const_11         C02         C08         C20         C19     180.000    10.0     2
+BQV             sp2_sp2_7         O01         C02         N03         S04       0.000     5.0     2
+BQV             sp2_sp2_3         O01         C02         C08         C20       0.000     5.0     2
+BQV             sp3_sp3_6          H7         C05         S04         N03      60.000    10.0     3
+BQV              const_15         C02         C08         C09         C10     180.000    10.0     2
+BQV              const_18         C08         C09         C10         C11     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BQV    chir_1    S04    O06    O07    N03    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BQV    plan-1         C13   0.020
+BQV    plan-1         C14   0.020
+BQV    plan-1         C15   0.020
+BQV    plan-1         C16   0.020
+BQV    plan-1          H1   0.020
+BQV    plan-1          H2   0.020
+BQV    plan-1          H3   0.020
+BQV    plan-1         S12   0.020
+BQV    plan-1         S17   0.020
+BQV    plan-2         C02   0.020
+BQV    plan-2         C08   0.020
+BQV    plan-2         C09   0.020
+BQV    plan-2         C10   0.020
+BQV    plan-2         C11   0.020
+BQV    plan-2         C18   0.020
+BQV    plan-2         C19   0.020
+BQV    plan-2         C20   0.020
+BQV    plan-2         H10   0.020
+BQV    plan-2          H4   0.020
+BQV    plan-2          H5   0.020
+BQV    plan-2          H6   0.020
+BQV    plan-3         C02   0.020
+BQV    plan-3         C08   0.020
+BQV    plan-3         N03   0.020
+BQV    plan-3         O01   0.020
+BQV    plan-4         C02   0.020
+BQV    plan-4         H13   0.020
+BQV    plan-4         N03   0.020
+BQV    plan-4         S04   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BQV           SMILES              ACDLabs 12.01                                                                  c1c(scc1)SCc2cccc(C(NS(C)(=O)=O)=O)c2
+BQV            InChI                InChI  1.03 InChI=1S/C13H13NO3S3/c1-20(16,17)14-13(15)11-5-2-4-10(8-11)9-19-12-6-3-7-18-12/h2-8H,9H2,1H3,(H,14,15)
+BQV         InChIKey                InChI  1.03                                                                            VUNXNZBHBBHTIB-UHFFFAOYSA-N
+BQV SMILES_CANONICAL               CACTVS 3.385                                                                  C[S](=O)(=O)NC(=O)c1cccc(CSc2sccc2)c1
+BQV           SMILES               CACTVS 3.385                                                                  C[S](=O)(=O)NC(=O)c1cccc(CSc2sccc2)c1
+BQV SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                    CS(=O)(=O)NC(=O)c1cccc(c1)CSc2cccs2
+BQV           SMILES "OpenEye OEToolkits" 2.0.6                                                                    CS(=O)(=O)NC(=O)c1cccc(c1)CSc2cccs2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BQV acedrg               243         "dictionary generator"                  
+BQV acedrg_database      11          "data source"                           
+BQV rdkit                2017.03.2   "Chemoinformatics tool"
+BQV refmac5              5.8.0238    "optimization tool"                     

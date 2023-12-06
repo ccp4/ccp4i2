@@ -1,0 +1,225 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ONB     ONB      5H-dibenzo[b,f]azepine     NON-POLYMER     26     15     .     
+#
+data_comp_ONB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ONB     CAA     C       CR16    0       -21.886     76.766      -0.615      
+ONB     CAB     C       CR16    0       -21.687     80.442      -7.076      
+ONB     CAC     C       CR16    0       -20.539     76.806      -0.933      
+ONB     CAD     C       CR16    0       -20.358     80.150      -6.817      
+ONB     CAE     C       CR16    0       -22.747     77.716      -1.130      
+ONB     CAF     C       CR16    0       -22.595     80.511      -6.037      
+ONB     CAG     C       CR16    0       -20.048     77.793      -1.765      
+ONB     CAH     C       CR16    0       -19.933     79.926      -5.522      
+ONB     CAI     C       C1      0       -23.253     79.715      -2.492      
+ONB     CAJ     C       C1      0       -23.214     80.380      -3.647      
+ONB     NAK     N       NT1     0       -20.405     79.764      -3.143      
+ONB     CAL     C       CR6     0       -22.290     78.737      -1.984      
+ONB     CAM     C       CR6     0       -22.204     80.288      -4.703      
+ONB     CAN     C       CR6     0       -20.906     78.771      -2.297      
+ONB     CAO     C       CR6     0       -20.839     79.996      -4.451      
+ONB     HAA     H       H       0       -22.216     76.090      -0.046      
+ONB     HAB     H       H       0       -21.973     80.593      -7.962      
+ONB     HAC     H       H       0       -19.952     76.158      -0.581      
+ONB     HAD     H       H       0       -19.739     80.103      -7.527      
+ONB     HAE     H       H       0       -23.661     77.681      -0.909      
+ONB     HAF     H       H       0       -23.496     80.710      -6.221      
+ONB     HAG     H       H       0       -19.131     77.816      -1.978      
+ONB     HAH     H       H       0       -19.028     79.728      -5.352      
+ONB     HAI     H       H       0       -23.994     79.895      -1.930      
+ONB     HAJ     H       H       0       -23.924     80.987      -3.806      
+ONB     HNAK    H       H       0       -19.579     80.000      -2.983      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ONB         CAA         CAC      DOUBLE       y     1.381  0.0102     1.381  0.0102
+ONB         CAA         CAE      SINGLE       y     1.378  0.0104     1.378  0.0104
+ONB         CAB         CAD      DOUBLE       y     1.381  0.0102     1.381  0.0102
+ONB         CAB         CAF      SINGLE       y     1.378  0.0104     1.378  0.0104
+ONB         CAC         CAG      SINGLE       y     1.378  0.0101     1.378  0.0101
+ONB         CAD         CAH      SINGLE       y     1.378  0.0101     1.378  0.0101
+ONB         CAE         CAL      DOUBLE       y     1.404  0.0100     1.404  0.0100
+ONB         CAF         CAM      DOUBLE       y     1.404  0.0100     1.404  0.0100
+ONB         CAG         CAN      DOUBLE       y     1.402  0.0100     1.402  0.0100
+ONB         CAH         CAO      DOUBLE       y     1.402  0.0100     1.402  0.0100
+ONB         CAI         CAJ      DOUBLE       n     1.326  0.0177     1.326  0.0177
+ONB         CAI         CAL      SINGLE       n     1.462  0.0100     1.462  0.0100
+ONB         CAJ         CAM      SINGLE       n     1.462  0.0100     1.462  0.0100
+ONB         NAK         CAN      SINGLE       n     1.396  0.0183     1.396  0.0183
+ONB         NAK         CAO      SINGLE       n     1.396  0.0183     1.396  0.0183
+ONB         CAL         CAN      SINGLE       y     1.414  0.0100     1.414  0.0100
+ONB         CAM         CAO      SINGLE       y     1.414  0.0100     1.414  0.0100
+ONB         CAA         HAA      SINGLE       n     1.082  0.0130     0.943  0.0180
+ONB         CAB         HAB      SINGLE       n     1.082  0.0130     0.943  0.0180
+ONB         CAC         HAC      SINGLE       n     1.082  0.0130     0.943  0.0172
+ONB         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0172
+ONB         CAE         HAE      SINGLE       n     1.082  0.0130     0.941  0.0168
+ONB         CAF         HAF      SINGLE       n     1.082  0.0130     0.941  0.0168
+ONB         CAG         HAG      SINGLE       n     1.082  0.0130     0.942  0.0198
+ONB         CAH         HAH      SINGLE       n     1.082  0.0130     0.942  0.0198
+ONB         CAI         HAI      SINGLE       n     1.082  0.0130     0.948  0.0200
+ONB         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.948  0.0200
+ONB         NAK        HNAK      SINGLE       n     1.016  0.0100     0.873  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ONB         CAC         CAA         CAE     119.865    1.50
+ONB         CAC         CAA         HAA     120.113    1.50
+ONB         CAE         CAA         HAA     120.022    1.50
+ONB         CAD         CAB         CAF     119.865    1.50
+ONB         CAD         CAB         HAB     120.113    1.50
+ONB         CAF         CAB         HAB     120.022    1.50
+ONB         CAA         CAC         CAG     120.191    1.50
+ONB         CAA         CAC         HAC     120.046    1.50
+ONB         CAG         CAC         HAC     119.763    1.50
+ONB         CAB         CAD         CAH     120.191    1.50
+ONB         CAB         CAD         HAD     120.046    1.50
+ONB         CAH         CAD         HAD     119.763    1.50
+ONB         CAA         CAE         CAL     121.308    1.50
+ONB         CAA         CAE         HAE     119.581    1.50
+ONB         CAL         CAE         HAE     119.112    1.50
+ONB         CAB         CAF         CAM     121.308    1.50
+ONB         CAB         CAF         HAF     119.581    1.50
+ONB         CAM         CAF         HAF     119.112    1.50
+ONB         CAC         CAG         CAN     120.514    1.50
+ONB         CAC         CAG         HAG     119.988    1.50
+ONB         CAN         CAG         HAG     119.498    1.50
+ONB         CAD         CAH         CAO     120.514    1.50
+ONB         CAD         CAH         HAH     119.988    1.50
+ONB         CAO         CAH         HAH     119.498    1.50
+ONB         CAJ         CAI         CAL     127.039    1.50
+ONB         CAJ         CAI         HAI     116.719    1.50
+ONB         CAL         CAI         HAI     116.242    1.50
+ONB         CAI         CAJ         CAM     127.039    1.50
+ONB         CAI         CAJ         HAJ     116.719    1.50
+ONB         CAM         CAJ         HAJ     116.242    1.50
+ONB         CAN         NAK         CAO     125.421    1.80
+ONB         CAN         NAK        HNAK     113.844    3.00
+ONB         CAO         NAK        HNAK     113.844    3.00
+ONB         CAE         CAL         CAI     119.194    1.50
+ONB         CAE         CAL         CAN     118.153    1.50
+ONB         CAI         CAL         CAN     122.653    1.50
+ONB         CAF         CAM         CAJ     119.194    1.50
+ONB         CAF         CAM         CAO     118.153    1.50
+ONB         CAJ         CAM         CAO     122.653    1.50
+ONB         CAG         CAN         NAK     120.280    1.50
+ONB         CAG         CAN         CAL     119.969    2.02
+ONB         NAK         CAN         CAL     119.750    1.50
+ONB         CAH         CAO         NAK     120.280    1.50
+ONB         CAH         CAO         CAM     119.969    2.02
+ONB         NAK         CAO         CAM     119.750    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ONB       const_sp2_sp2_1         CAE         CAA         CAC         CAG       0.000     5.0     2
+ONB              const_41         CAC         CAA         CAE         CAL       0.000    10.0     2
+ONB            sp2_sp2_13         CAG         CAN         NAK         CAO     180.000     5.0     2
+ONB            sp2_sp2_17         CAH         CAO         NAK         CAN     180.000     5.0     2
+ONB              const_16         CAI         CAL         CAN         NAK       0.000    10.0     2
+ONB              const_36         CAJ         CAM         CAO         NAK       0.000    10.0     2
+ONB              const_21         CAF         CAB         CAD         CAH       0.000    10.0     2
+ONB              const_45         CAD         CAB         CAF         CAM       0.000    10.0     2
+ONB       const_sp2_sp2_5         CAA         CAC         CAG         CAN       0.000     5.0     2
+ONB              const_25         CAB         CAD         CAH         CAO       0.000    10.0     2
+ONB              const_18         CAA         CAE         CAL         CAI     180.000    10.0     2
+ONB              const_38         CAB         CAF         CAM         CAJ     180.000    10.0     2
+ONB              const_10         CAC         CAG         CAN         NAK     180.000    10.0     2
+ONB              const_30         CAD         CAH         CAO         NAK     180.000    10.0     2
+ONB             sp2_sp2_5         CAJ         CAI         CAL         CAE     180.000     5.0     2
+ONB             sp2_sp2_1         CAL         CAI         CAJ         CAM     180.000     5.0     2
+ONB             sp2_sp2_9         CAI         CAJ         CAM         CAF     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ONB    plan-1         CAA   0.020
+ONB    plan-1         CAC   0.020
+ONB    plan-1         CAE   0.020
+ONB    plan-1         CAG   0.020
+ONB    plan-1         CAI   0.020
+ONB    plan-1         CAL   0.020
+ONB    plan-1         CAN   0.020
+ONB    plan-1         HAA   0.020
+ONB    plan-1         HAC   0.020
+ONB    plan-1         HAE   0.020
+ONB    plan-1         HAG   0.020
+ONB    plan-1         NAK   0.020
+ONB    plan-2         CAB   0.020
+ONB    plan-2         CAD   0.020
+ONB    plan-2         CAF   0.020
+ONB    plan-2         CAH   0.020
+ONB    plan-2         CAJ   0.020
+ONB    plan-2         CAM   0.020
+ONB    plan-2         CAO   0.020
+ONB    plan-2         HAB   0.020
+ONB    plan-2         HAD   0.020
+ONB    plan-2         HAF   0.020
+ONB    plan-2         HAH   0.020
+ONB    plan-2         NAK   0.020
+ONB    plan-3         CAI   0.020
+ONB    plan-3         CAJ   0.020
+ONB    plan-3         CAL   0.020
+ONB    plan-3         HAI   0.020
+ONB    plan-4         CAI   0.020
+ONB    plan-4         CAJ   0.020
+ONB    plan-4         CAM   0.020
+ONB    plan-4         HAJ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ONB           SMILES              ACDLabs 12.01                                              c3cc2c(C=Cc1c(cccc1)N2)cc3
+ONB            InChI                InChI  1.03 InChI=1S/C14H11N/c1-3-7-13-11(5-1)9-10-12-6-2-4-8-14(12)15-13/h1-10,15H
+ONB         InChIKey                InChI  1.03                                             LCGTWRLJTMHIQZ-UHFFFAOYSA-N
+ONB SMILES_CANONICAL               CACTVS 3.370                                                  N1c2ccccc2C=Cc3ccccc13
+ONB           SMILES               CACTVS 3.370                                                  N1c2ccccc2C=Cc3ccccc13
+ONB SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                c1ccc2c(c1)C=Cc3ccccc3N2
+ONB           SMILES "OpenEye OEToolkits" 1.7.2                                                c1ccc2c(c1)C=Cc3ccccc3N2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ONB acedrg               243         "dictionary generator"                  
+ONB acedrg_database      11          "data source"                           
+ONB rdkit                2017.03.2   "Chemoinformatics tool"
+ONB refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,220 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LFQ     LFQ      5-methyl-4-phenyl-thiophene-2-carboximidamide     NON-POLYMER     27     15     .     
+#
+data_comp_LFQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LFQ     C10     C       CR16    0       -20.525     -22.497     -7.362      
+LFQ     C13     C       CR16    0       -20.175     -22.477     -10.106     
+LFQ     C15     C       CH3     0       -18.218     -20.907     -5.471      
+LFQ     C02     C       CR5     0       -19.116     -19.922     -6.118      
+LFQ     C03     C       CR5     0       -19.977     -20.065     -7.215      
+LFQ     C04     C       CR15    0       -20.668     -18.853     -7.512      
+LFQ     C05     C       CR5     0       -20.313     -17.834     -6.639      
+LFQ     C06     C       C       0       -20.784     -16.443     -6.590      
+LFQ     C09     C       CR6     0       -20.166     -21.303     -7.991      
+LFQ     C11     C       CR16    0       -20.703     -23.659     -8.099      
+LFQ     C12     C       CR16    0       -20.528     -23.649     -9.468      
+LFQ     C14     C       CR16    0       -19.995     -21.310     -9.376      
+LFQ     N07     N       NH1     0       -20.984     -15.811     -5.476      
+LFQ     N08     N       NH2     0       -21.018     -15.822     -7.767      
+LFQ     S01     S       S2      0       -19.193     -18.366     -5.525      
+LFQ     H101    H       H       0       -20.645     -22.512     -6.428      
+LFQ     H131    H       H       0       -20.055     -22.467     -11.041     
+LFQ     H151    H       H       0       -17.753     -20.491     -4.729      
+LFQ     H013    H       H       0       -17.570     -21.228     -6.116      
+LFQ     H152    H       H       0       -18.740     -21.655     -5.142      
+LFQ     H041    H       H       0       -21.285     -18.766     -8.217      
+LFQ     H111    H       H       0       -20.944     -24.459     -7.661      
+LFQ     H121    H       H       0       -20.650     -24.441     -9.967      
+LFQ     H141    H       H       0       -19.754     -20.515     -9.819      
+LFQ     H071    H       H       0       -20.807     -16.280     -4.748      
+LFQ     H081    H       H       0       -21.312     -15.003     -7.775      
+LFQ     H082    H       H       0       -20.871     -16.234     -8.519      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LFQ         C13         C12      DOUBLE       y     1.376  0.0124     1.376  0.0124
+LFQ         C13         C14      SINGLE       y     1.384  0.0100     1.384  0.0100
+LFQ         C11         C12      SINGLE       y     1.376  0.0114     1.376  0.0114
+LFQ         C09         C14      DOUBLE       y     1.393  0.0100     1.393  0.0100
+LFQ         C10         C11      DOUBLE       y     1.384  0.0100     1.384  0.0100
+LFQ         C10         C09      SINGLE       y     1.393  0.0100     1.393  0.0100
+LFQ         C03         C09      SINGLE       n     1.473  0.0100     1.473  0.0100
+LFQ         C06         N08      SINGLE       n     1.347  0.0152     1.347  0.0152
+LFQ         C03         C04      SINGLE       y     1.386  0.0200     1.386  0.0200
+LFQ         C04         C05      DOUBLE       y     1.371  0.0200     1.371  0.0200
+LFQ         C02         C03      DOUBLE       y     1.386  0.0200     1.386  0.0200
+LFQ         C05         C06      SINGLE       n     1.467  0.0100     1.467  0.0100
+LFQ         C06         N07      DOUBLE       n     1.288  0.0200     1.288  0.0200
+LFQ         C05         S01      SINGLE       y     1.695  0.0200     1.695  0.0200
+LFQ         C02         S01      SINGLE       y     1.695  0.0200     1.695  0.0200
+LFQ         C15         C02      SINGLE       n     1.481  0.0100     1.481  0.0100
+LFQ         C10        H101      SINGLE       n     1.082  0.0130     0.942  0.0125
+LFQ         C13        H131      SINGLE       n     1.082  0.0130     0.943  0.0180
+LFQ         C15        H151      SINGLE       n     1.089  0.0100     0.969  0.0144
+LFQ         C15        H013      SINGLE       n     1.089  0.0100     0.969  0.0144
+LFQ         C15        H152      SINGLE       n     1.089  0.0100     0.969  0.0144
+LFQ         C04        H041      SINGLE       n     1.082  0.0130     0.941  0.0169
+LFQ         C11        H111      SINGLE       n     1.082  0.0130     0.943  0.0180
+LFQ         C12        H121      SINGLE       n     1.082  0.0130     0.944  0.0161
+LFQ         C14        H141      SINGLE       n     1.082  0.0130     0.942  0.0125
+LFQ         N07        H071      SINGLE       n     1.016  0.0100     0.882  0.0200
+LFQ         N08        H081      SINGLE       n     1.016  0.0100     0.869  0.0200
+LFQ         N08        H082      SINGLE       n     1.016  0.0100     0.869  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LFQ         C11         C10         C09     120.682    1.50
+LFQ         C11         C10        H101     119.764    1.50
+LFQ         C09         C10        H101     119.564    1.50
+LFQ         C12         C13         C14     120.287    1.50
+LFQ         C12         C13        H131     119.957    1.50
+LFQ         C14         C13        H131     119.756    1.50
+LFQ         C02         C15        H151     109.576    1.50
+LFQ         C02         C15        H013     109.576    1.50
+LFQ         C02         C15        H152     109.576    1.50
+LFQ        H151         C15        H013     109.334    1.50
+LFQ        H151         C15        H152     109.334    1.50
+LFQ        H013         C15        H152     109.334    1.50
+LFQ         C03         C02         S01     108.432    3.00
+LFQ         C03         C02         C15     131.590    2.46
+LFQ         S01         C02         C15     119.978    3.00
+LFQ         C09         C03         C04     125.095    1.62
+LFQ         C09         C03         C02     127.420    1.78
+LFQ         C04         C03         C02     107.485    1.50
+LFQ         C03         C04         C05     107.218    1.50
+LFQ         C03         C04        H041     125.622    1.50
+LFQ         C05         C04        H041     127.160    1.56
+LFQ         C04         C05         C06     130.546    2.46
+LFQ         C04         C05         S01     108.432    3.00
+LFQ         C06         C05         S01     121.022    3.00
+LFQ         N08         C06         C05     116.431    2.93
+LFQ         N08         C06         N07     121.616    2.66
+LFQ         C05         C06         N07     121.953    3.00
+LFQ         C14         C09         C10     118.199    1.50
+LFQ         C14         C09         C03     120.900    1.50
+LFQ         C10         C09         C03     120.900    1.50
+LFQ         C12         C11         C10     120.287    1.50
+LFQ         C12         C11        H111     119.957    1.50
+LFQ         C10         C11        H111     119.756    1.50
+LFQ         C13         C12         C11     119.842    1.50
+LFQ         C13         C12        H121     120.079    1.50
+LFQ         C11         C12        H121     120.079    1.50
+LFQ         C13         C14         C09     120.682    1.50
+LFQ         C13         C14        H141     119.764    1.50
+LFQ         C09         C14        H141     119.564    1.50
+LFQ         C06         N07        H071     112.803    3.00
+LFQ         C06         N08        H081     119.928    1.50
+LFQ         C06         N08        H082     119.928    1.50
+LFQ        H081         N08        H082     120.144    2.31
+LFQ         C05         S01         C02     108.432    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LFQ              const_35         C14         C09         C10         C11       0.000    10.0     2
+LFQ              const_15         C09         C10         C11         C12       0.000    10.0     2
+LFQ              const_23         C11         C12         C13         C14       0.000    10.0     2
+LFQ              const_27         C12         C13         C14         C09       0.000    10.0     2
+LFQ             sp2_sp3_1         C03         C02         C15        H151     150.000    10.0     6
+LFQ              const_40         C15         C02         S01         C05     180.000    10.0     2
+LFQ       const_sp2_sp2_4         C15         C02         C03         C09       0.000     5.0     2
+LFQ       const_sp2_sp2_7         C09         C03         C04         C05     180.000     5.0     2
+LFQ             sp2_sp2_1         C04         C03         C09         C14     180.000     5.0     2
+LFQ              const_10         C03         C04         C05         C06     180.000    10.0     2
+LFQ              const_14         C06         C05         S01         C02     180.000    10.0     2
+LFQ             sp2_sp2_9         C04         C05         C06         N08     180.000     5.0     2
+LFQ            sp2_sp2_13         N08         C06         N07        H071     180.000     5.0     2
+LFQ             sp2_sp2_7         N07         C06         N08        H081       0.000     5.0     2
+LFQ              const_31         C10         C09         C14         C13       0.000    10.0     2
+LFQ              const_19         C10         C11         C12         C13       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LFQ    plan-1         C03   0.020
+LFQ    plan-1         C09   0.020
+LFQ    plan-1         C10   0.020
+LFQ    plan-1         C11   0.020
+LFQ    plan-1         C12   0.020
+LFQ    plan-1         C13   0.020
+LFQ    plan-1         C14   0.020
+LFQ    plan-1        H101   0.020
+LFQ    plan-1        H111   0.020
+LFQ    plan-1        H121   0.020
+LFQ    plan-1        H131   0.020
+LFQ    plan-1        H141   0.020
+LFQ    plan-2         C02   0.020
+LFQ    plan-2         C03   0.020
+LFQ    plan-2         C04   0.020
+LFQ    plan-2         C05   0.020
+LFQ    plan-2         C06   0.020
+LFQ    plan-2         C09   0.020
+LFQ    plan-2         C15   0.020
+LFQ    plan-2        H041   0.020
+LFQ    plan-2         S01   0.020
+LFQ    plan-3         C05   0.020
+LFQ    plan-3         C06   0.020
+LFQ    plan-3         N07   0.020
+LFQ    plan-3         N08   0.020
+LFQ    plan-4         C06   0.020
+LFQ    plan-4        H081   0.020
+LFQ    plan-4        H082   0.020
+LFQ    plan-4         N08   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LFQ            InChI                InChI  1.03 InChI=1S/C12H12N2S/c1-8-10(7-11(15-8)12(13)14)9-5-3-2-4-6-9/h2-7H,1H3,(H3,13,14)
+LFQ         InChIKey                InChI  1.03                                                      HUQORXRDKCJHHJ-UHFFFAOYSA-N
+LFQ SMILES_CANONICAL               CACTVS 3.385                                                         Cc1sc(cc1c2ccccc2)C(N)=N
+LFQ           SMILES               CACTVS 3.385                                                         Cc1sc(cc1c2ccccc2)C(N)=N
+LFQ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                               "[H]/N=C(/c1cc(c(s1)C)c2ccccc2)\N"
+LFQ           SMILES "OpenEye OEToolkits" 2.0.7                                                       Cc1c(cc(s1)C(=N)N)c2ccccc2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LFQ acedrg               243         "dictionary generator"                  
+LFQ acedrg_database      11          "data source"                           
+LFQ rdkit                2017.03.2   "Chemoinformatics tool"
+LFQ refmac5              5.8.0238    "optimization tool"                     

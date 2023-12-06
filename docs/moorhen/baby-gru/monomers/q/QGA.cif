@@ -1,0 +1,346 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+QGA     QGA      1-[(3-CYCLOHEXYLPROPANOYL)(2-HYDROXYETHYL)AMINO]-1-DEOXY-D-ALLITOL     NON-POLYMER     58     25     .     
+#
+data_comp_QGA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+QGA     C9      C       CH2     0       68.695      -3.653      42.774      
+QGA     C12     C       CH2     0       68.160      -4.381      43.994      
+QGA     C15     C       CH2     0       67.441      -3.426      44.929      
+QGA     C18     C       CH2     0       66.339      -2.656      44.202      
+QGA     C21     C       CH1     0       66.856      -1.914      42.973      
+QGA     C24     C       CH2     0       65.734      -1.172      42.257      
+QGA     C27     C       CH2     0       66.192      -0.180      41.170      
+QGA     C30     C       C       0       65.102      0.746       40.672      
+QGA     N33     N       N       0       65.422      1.732       39.794      
+QGA     O34     O       O       0       63.940      0.581       41.045      
+QGA     C35     C       CH2     0       66.707      1.823       39.077      
+QGA     C36     C       CH2     0       64.482      2.836       39.528      
+QGA     C37     C       CH1     0       64.674      4.036       40.451      
+QGA     C40     C       CH1     0       63.726      5.221       40.212      
+QGA     C41     C       CH1     0       63.911      6.430       41.138      
+QGA     C42     C       CH1     0       62.870      7.530       40.903      
+QGA     C43     C       CH2     0       63.028      8.692       41.864      
+QGA     O44     O       OH1     0       62.199      9.793       41.499      
+QGA     O47     O       OH1     0       64.541      3.597       41.807      
+QGA     O49     O       OH1     0       63.890      5.650       38.862      
+QGA     O51     O       OH1     0       63.838      5.994       42.497      
+QGA     O53     O       OH1     0       62.968      8.007       39.560      
+QGA     C60     C       CH2     0       66.782      0.901       37.881      
+QGA     O63     O       OH1     0       68.061      0.961       37.274      
+QGA     C1      C       CH2     0       67.589      -2.885      42.051      
+QGA     H9C1    H       H       0       69.398      -3.026      43.052      
+QGA     H9C2    H       H       0       69.096      -4.304      42.157      
+QGA     H121    H       H       0       67.540      -5.085      43.707      
+QGA     H122    H       H       0       68.904      -4.807      44.471      
+QGA     H151    H       H       0       68.088      -2.790      45.305      
+QGA     H152    H       H       0       67.048      -3.933      45.672      
+QGA     H181    H       H       0       65.938      -2.013      44.819      
+QGA     H182    H       H       0       65.640      -3.282      43.928      
+QGA     H21     H       H       0       67.507      -1.245      43.280      
+QGA     H241    H       H       0       65.215      -0.682      42.929      
+QGA     H242    H       H       0       65.138      -1.833      41.844      
+QGA     H271    H       H       0       66.545      -0.691      40.412      
+QGA     H272    H       H       0       66.922      0.360       41.537      
+QGA     H351    H       H       0       67.443      1.614       39.689      
+QGA     H352    H       H       0       66.840      2.746       38.770      
+QGA     H361    H       H       0       63.560      2.516       39.618      
+QGA     H362    H       H       0       64.595      3.132       38.599      
+QGA     H37     H       H       0       65.606      4.370       40.332      
+QGA     H40     H       H       0       62.797      4.887       40.319      
+QGA     H41     H       H       0       64.812      6.814       40.979      
+QGA     H42     H       H       0       61.954      7.141       41.037      
+QGA     H431    H       H       0       63.972      8.983       41.870      
+QGA     H432    H       H       0       62.788      8.398       42.776      
+QGA     H44     H       H       0       62.145      10.316      42.162      
+QGA     H47     H       H       0       65.063      4.047       42.302      
+QGA     H49     H       H       0       63.135      5.878       38.548      
+QGA     H51     H       H       0       64.422      6.407       42.954      
+QGA     H53     H       H       0       62.324      8.524       39.369      
+QGA     H601    H       H       0       66.101      1.159       37.230      
+QGA     H602    H       H       0       66.598      -0.015      38.163      
+QGA     H63     H       H       0       68.051      0.504       36.562      
+QGA     H1C1    H       H       0       66.947      -3.522      41.679      
+QGA     H1C2    H       H       0       67.981      -2.388      41.306      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+QGA          C9         C12      SINGLE       n     1.516  0.0136     1.516  0.0136
+QGA         C12         C15      SINGLE       n     1.516  0.0136     1.516  0.0136
+QGA         C15         C18      SINGLE       n     1.527  0.0100     1.527  0.0100
+QGA         C18         C21      SINGLE       n     1.524  0.0100     1.524  0.0100
+QGA         C21         C24      SINGLE       n     1.524  0.0100     1.524  0.0100
+QGA         C24         C27      SINGLE       n     1.539  0.0107     1.539  0.0107
+QGA         C27         C30      SINGLE       n     1.510  0.0100     1.510  0.0100
+QGA         C30         N33      SINGLE       n     1.347  0.0100     1.347  0.0100
+QGA         C30         O34      DOUBLE       n     1.229  0.0102     1.229  0.0102
+QGA         N33         C35      SINGLE       n     1.467  0.0100     1.467  0.0100
+QGA         N33         C36      SINGLE       n     1.467  0.0100     1.467  0.0100
+QGA         C36         C37      SINGLE       n     1.524  0.0100     1.524  0.0100
+QGA         C37         C40      SINGLE       n     1.532  0.0163     1.532  0.0163
+QGA         C40         C41      SINGLE       n     1.531  0.0100     1.531  0.0100
+QGA         C41         C42      SINGLE       n     1.530  0.0100     1.530  0.0100
+QGA         C42         C43      SINGLE       n     1.514  0.0100     1.514  0.0100
+QGA         C43         O44      SINGLE       n     1.425  0.0100     1.425  0.0100
+QGA         C37         O47      SINGLE       n     1.431  0.0100     1.431  0.0100
+QGA         C40         O49      SINGLE       n     1.424  0.0199     1.424  0.0199
+QGA         C41         O51      SINGLE       n     1.424  0.0199     1.424  0.0199
+QGA         C42         O53      SINGLE       n     1.429  0.0100     1.429  0.0100
+QGA         C35         C60      SINGLE       n     1.511  0.0110     1.511  0.0110
+QGA         C60         O63      SINGLE       n     1.417  0.0159     1.417  0.0159
+QGA          C9          C1      SINGLE       n     1.527  0.0100     1.527  0.0100
+QGA         C21          C1      SINGLE       n     1.524  0.0100     1.524  0.0100
+QGA          C9        H9C1      SINGLE       n     1.089  0.0100     0.982  0.0142
+QGA          C9        H9C2      SINGLE       n     1.089  0.0100     0.982  0.0142
+QGA         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0138
+QGA         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0138
+QGA         C15        H151      SINGLE       n     1.089  0.0100     0.982  0.0142
+QGA         C15        H152      SINGLE       n     1.089  0.0100     0.982  0.0142
+QGA         C18        H181      SINGLE       n     1.089  0.0100     0.978  0.0143
+QGA         C18        H182      SINGLE       n     1.089  0.0100     0.978  0.0143
+QGA         C21         H21      SINGLE       n     1.089  0.0100     0.983  0.0100
+QGA         C24        H241      SINGLE       n     1.089  0.0100     0.981  0.0200
+QGA         C24        H242      SINGLE       n     1.089  0.0100     0.981  0.0200
+QGA         C27        H271      SINGLE       n     1.089  0.0100     0.980  0.0155
+QGA         C27        H272      SINGLE       n     1.089  0.0100     0.980  0.0155
+QGA         C35        H351      SINGLE       n     1.089  0.0100     0.982  0.0152
+QGA         C35        H352      SINGLE       n     1.089  0.0100     0.982  0.0152
+QGA         C36        H361      SINGLE       n     1.089  0.0100     0.981  0.0152
+QGA         C36        H362      SINGLE       n     1.089  0.0100     0.981  0.0152
+QGA         C37         H37      SINGLE       n     1.089  0.0100     0.997  0.0100
+QGA         C40         H40      SINGLE       n     1.089  0.0100     0.992  0.0184
+QGA         C41         H41      SINGLE       n     1.089  0.0100     0.992  0.0184
+QGA         C42         H42      SINGLE       n     1.089  0.0100     1.004  0.0200
+QGA         C43        H431      SINGLE       n     1.089  0.0100     0.988  0.0200
+QGA         C43        H432      SINGLE       n     1.089  0.0100     0.988  0.0200
+QGA         O44         H44      SINGLE       n     0.970  0.0120     0.846  0.0200
+QGA         O47         H47      SINGLE       n     0.970  0.0120     0.848  0.0200
+QGA         O49         H49      SINGLE       n     0.970  0.0120     0.848  0.0200
+QGA         O51         H51      SINGLE       n     0.970  0.0120     0.848  0.0200
+QGA         O53         H53      SINGLE       n     0.970  0.0120     0.848  0.0200
+QGA         C60        H601      SINGLE       n     1.089  0.0100     0.977  0.0146
+QGA         C60        H602      SINGLE       n     1.089  0.0100     0.977  0.0146
+QGA         O63         H63      SINGLE       n     0.970  0.0120     0.846  0.0200
+QGA          C1        H1C1      SINGLE       n     1.089  0.0100     0.978  0.0143
+QGA          C1        H1C2      SINGLE       n     1.089  0.0100     0.978  0.0143
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+QGA         C12          C9          C1     111.360    1.50
+QGA         C12          C9        H9C1     109.386    1.50
+QGA         C12          C9        H9C2     109.386    1.50
+QGA          C1          C9        H9C1     109.388    1.50
+QGA          C1          C9        H9C2     109.388    1.50
+QGA        H9C1          C9        H9C2     108.036    1.50
+QGA          C9         C12         C15     111.038    1.50
+QGA          C9         C12        H121     109.386    1.50
+QGA          C9         C12        H122     109.386    1.50
+QGA         C15         C12        H121     109.386    1.50
+QGA         C15         C12        H122     109.386    1.50
+QGA        H121         C12        H122     108.036    1.50
+QGA         C12         C15         C18     111.360    1.50
+QGA         C12         C15        H151     109.386    1.50
+QGA         C12         C15        H152     109.386    1.50
+QGA         C18         C15        H151     109.388    1.50
+QGA         C18         C15        H152     109.388    1.50
+QGA        H151         C15        H152     108.036    1.50
+QGA         C15         C18         C21     112.229    1.50
+QGA         C15         C18        H181     109.267    1.50
+QGA         C15         C18        H182     109.267    1.50
+QGA         C21         C18        H181     109.293    1.50
+QGA         C21         C18        H182     109.293    1.50
+QGA        H181         C18        H182     107.919    1.50
+QGA         C18         C21         C24     112.225    1.52
+QGA         C18         C21          C1     109.635    1.50
+QGA         C18         C21         H21     107.897    1.50
+QGA         C24         C21          C1     112.225    1.52
+QGA         C24         C21         H21     107.857    1.50
+QGA          C1         C21         H21     107.897    1.50
+QGA         C21         C24         C27     114.301    2.00
+QGA         C21         C24        H241     108.473    1.50
+QGA         C21         C24        H242     108.473    1.50
+QGA         C27         C24        H241     108.514    1.50
+QGA         C27         C24        H242     108.514    1.50
+QGA        H241         C24        H242     107.696    1.50
+QGA         C24         C27         C30     112.952    2.17
+QGA         C24         C27        H271     108.830    1.50
+QGA         C24         C27        H272     108.830    1.50
+QGA         C30         C27        H271     108.929    1.50
+QGA         C30         C27        H272     108.929    1.50
+QGA        H271         C27        H272     108.159    1.50
+QGA         C27         C30         N33     117.451    1.50
+QGA         C27         C30         O34     121.100    1.50
+QGA         N33         C30         O34     121.449    1.50
+QGA         C30         N33         C35     121.621    3.00
+QGA         C30         N33         C36     121.621    3.00
+QGA         C35         N33         C36     116.758    1.50
+QGA         N33         C35         C60     113.108    1.50
+QGA         N33         C35        H351     108.894    1.50
+QGA         N33         C35        H352     108.894    1.50
+QGA         C60         C35        H351     109.060    1.50
+QGA         C60         C35        H352     109.060    1.50
+QGA        H351         C35        H352     107.851    1.50
+QGA         N33         C36         C37     113.500    1.50
+QGA         N33         C36        H361     108.976    1.50
+QGA         N33         C36        H362     108.976    1.50
+QGA         C37         C36        H361     108.865    1.50
+QGA         C37         C36        H362     108.865    1.50
+QGA        H361         C36        H362     107.873    1.50
+QGA         C36         C37         C40     115.444    2.21
+QGA         C36         C37         O47     109.290    2.07
+QGA         C36         C37         H37     108.552    1.50
+QGA         C40         C37         O47     109.845    1.96
+QGA         C40         C37         H37     108.022    1.50
+QGA         O47         C37         H37     108.019    1.50
+QGA         C37         C40         C41     116.404    3.00
+QGA         C37         C40         O49     108.384    1.62
+QGA         C37         C40         H40     107.921    1.50
+QGA         C41         C40         O49     109.024    2.24
+QGA         C41         C40         H40     108.569    1.50
+QGA         O49         C40         H40     108.243    1.50
+QGA         C40         C41         C42     112.413    1.50
+QGA         C40         C41         O51     109.024    2.24
+QGA         C40         C41         H41     108.569    1.50
+QGA         C42         C41         O51     109.164    1.97
+QGA         C42         C41         H41     108.336    1.50
+QGA         O51         C41         H41     108.243    1.50
+QGA         C41         C42         C43     112.159    1.50
+QGA         C41         C42         O53     109.549    1.85
+QGA         C41         C42         H42     108.777    1.50
+QGA         C43         C42         O53     109.623    1.60
+QGA         C43         C42         H42     107.986    1.50
+QGA         O53         C42         H42     108.591    1.50
+QGA         C42         C43         O44     111.364    1.50
+QGA         C42         C43        H431     109.234    1.50
+QGA         C42         C43        H432     109.234    1.50
+QGA         O44         C43        H431     109.268    1.50
+QGA         O44         C43        H432     109.268    1.50
+QGA        H431         C43        H432     108.313    1.50
+QGA         C43         O44         H44     108.280    3.00
+QGA         C37         O47         H47     109.296    1.50
+QGA         C40         O49         H49     108.564    3.00
+QGA         C41         O51         H51     108.564    3.00
+QGA         C42         O53         H53     111.202    3.00
+QGA         C35         C60         O63     111.016    1.85
+QGA         C35         C60        H601     109.434    1.50
+QGA         C35         C60        H602     109.434    1.50
+QGA         O63         C60        H601     109.500    1.50
+QGA         O63         C60        H602     109.500    1.50
+QGA        H601         C60        H602     108.121    1.50
+QGA         C60         O63         H63     109.054    3.00
+QGA          C9          C1         C21     112.229    1.50
+QGA          C9          C1        H1C1     109.267    1.50
+QGA          C9          C1        H1C2     109.267    1.50
+QGA         C21          C1        H1C1     109.293    1.50
+QGA         C21          C1        H1C2     109.293    1.50
+QGA        H1C1          C1        H1C2     107.919    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+QGA             sp3_sp3_1         C15         C12          C9          C1      60.000    10.0     3
+QGA           sp3_sp3_136         C21          C1          C9         C12     180.000    10.0     3
+QGA           sp3_sp3_124         N33         C35         C60         O63     180.000    10.0     3
+QGA            sp3_sp3_64         N33         C36         C37         C40     180.000    10.0     3
+QGA            sp3_sp3_73         C36         C37         C40         C41     180.000    10.0     3
+QGA           sp3_sp3_112         C36         C37         O47         H47     180.000    10.0     3
+QGA            sp3_sp3_82         C37         C40         C41         C42     180.000    10.0     3
+QGA           sp3_sp3_115         C37         C40         O49         H49     180.000    10.0     3
+QGA            sp3_sp3_91         C40         C41         C42         C43     180.000    10.0     3
+QGA           sp3_sp3_118         C40         C41         O51         H51     180.000    10.0     3
+QGA           sp3_sp3_100         C41         C42         C43         O44     180.000    10.0     3
+QGA           sp3_sp3_121         C41         C42         O53         H53     180.000    10.0     3
+QGA           sp3_sp3_109         C42         C43         O44         H44     180.000    10.0     3
+QGA            sp3_sp3_10          C9         C12         C15         C18     -60.000    10.0     3
+QGA           sp3_sp3_133         C35         C60         O63         H63     180.000    10.0     3
+QGA            sp3_sp3_19         C12         C15         C18         C21      60.000    10.0     3
+QGA            sp3_sp3_30         C15         C18         C21         C24     180.000    10.0     3
+QGA            sp3_sp3_38          C9          C1         C21         C24     180.000    10.0     3
+QGA            sp3_sp3_49         C18         C21         C24         C27      60.000    10.0     3
+QGA            sp3_sp3_55         C21         C24         C27         C30     180.000    10.0     3
+QGA             sp2_sp3_2         N33         C30         C27         C24     120.000    10.0     6
+QGA             sp2_sp2_1         C27         C30         N33         C35     180.000     5.0     2
+QGA             sp2_sp3_8         C30         N33         C35         C60     120.000    10.0     6
+QGA            sp2_sp3_14         C30         N33         C36         C37     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+QGA    chir_1    C21    C24    C18    C1    both
+QGA    chir_2    C37    O47    C40    C36    positive
+QGA    chir_3    C40    O49    C41    C37    positive
+QGA    chir_4    C41    O51    C40    C42    negative
+QGA    chir_5    C42    O53    C41    C43    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+QGA    plan-1         C27   0.020
+QGA    plan-1         C30   0.020
+QGA    plan-1         N33   0.020
+QGA    plan-1         O34   0.020
+QGA    plan-2         C30   0.020
+QGA    plan-2         C35   0.020
+QGA    plan-2         C36   0.020
+QGA    plan-2         N33   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+QGA           SMILES              ACDLabs 10.04                                                                                                         O=C(N(CC(O)C(O)C(O)C(O)CO)CCO)CCC1CCCCC1
+QGA SMILES_CANONICAL               CACTVS 3.341                                                                                         OCCN(C[C@H](O)[C@H](O)[C@H](O)[C@H](O)CO)C(=O)CCC1CCCCC1
+QGA           SMILES               CACTVS 3.341                                                                                             OCCN(C[CH](O)[CH](O)[CH](O)[CH](O)CO)C(=O)CCC1CCCCC1
+QGA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                   C1CCC(CC1)CCC(=O)N(CCO)C[C@@H]([C@@H]([C@@H]([C@@H](CO)O)O)O)O
+QGA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                       C1CCC(CC1)CCC(=O)N(CCO)CC(C(C(C(CO)O)O)O)O
+QGA            InChI                InChI  1.03 InChI=1S/C17H33NO7/c19-9-8-18(10-13(21)16(24)17(25)14(22)11-20)15(23)7-6-12-4-2-1-3-5-12/h12-14,16-17,19-22,24-25H,1-11H2/t13-,14+,16-,17+/m0/s1
+QGA         InChIKey                InChI  1.03                                                                                                                      AHJZPLOICPCLQM-HDEZJCGLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+QGA acedrg               243         "dictionary generator"                  
+QGA acedrg_database      11          "data source"                           
+QGA rdkit                2017.03.2   "Chemoinformatics tool"
+QGA refmac5              5.8.0238    "optimization tool"                     

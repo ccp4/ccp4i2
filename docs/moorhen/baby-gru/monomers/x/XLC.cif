@@ -1,0 +1,388 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XLC     XLC      3-CHLORO-N-[4-CHLORO-2-[[(4-CHLOROPHENYL)AMINO]CARBONYL]PHENYL]-4-[(4-METHYL-1-PIPERAZINYL)METHYL]-2-THIOPHENECARBOXAMIDE     NON-POLYMER     57     34     .     
+#
+data_comp_XLC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XLC     C1      C       CR6     0       9.484       7.587       26.395      
+XLC     C2      C       CR16    0       10.510      8.379       25.879      
+XLC     C3      C       CR16    0       11.684      8.564       26.593      
+XLC     C4      C       CR6     0       11.831      7.964       27.825      
+XLC     CL1     CL      CL      0       13.304      8.200       28.723      
+XLC     C5      C       CR16    0       10.830      7.180       28.359      
+XLC     C6      C       CR16    0       9.657       6.992       27.644      
+XLC     N7      N       NH1     0       8.269       7.364       25.706      
+XLC     C9      C       C       0       8.086       7.262       24.362      
+XLC     O10     O       O       0       8.980       6.923       23.593      
+XLC     C11     C       CR6     0       6.710       7.570       23.833      
+XLC     C12     C       CR6     0       6.172       6.855       22.735      
+XLC     C13     C       CR16    0       4.883       7.168       22.258      
+XLC     C14     C       CR16    0       4.142       8.168       22.852      
+XLC     C15     C       CR6     0       4.672       8.867       23.925      
+XLC     CL2     CL      CL      0       3.728       10.128      24.669      
+XLC     C16     C       CR16    0       5.930       8.586       24.410      
+XLC     N17     N       NH1     0       6.931       5.829       22.118      
+XLC     C19     C       C       0       6.716       4.489       22.189      
+XLC     O20     O       O       0       6.078       3.950       23.094      
+XLC     C21     C       CR5     0       7.297       3.682       21.099      
+XLC     S22     S       S2      0       7.224       2.014       21.192      
+XLC     C23     C       CR15    0       8.006       1.712       19.749      
+XLC     C24     C       CR5     0       8.331       2.861       19.126      
+XLC     C25     C       CR5     0       7.930       4.001       19.911      
+XLC     CL3     CL      CL      0       8.198       5.630       19.437      
+XLC     C26     C       CH2     0       9.055       2.909       17.811      
+XLC     N27     N       NT      0       8.283       2.683       16.581      
+XLC     C29     C       CH2     0       7.767       1.314       16.473      
+XLC     C30     C       CH2     0       7.106       1.110       15.130      
+XLC     N31     N       NT      0       6.017       2.067       14.936      
+XLC     C33     C       CH2     0       6.522       3.433       15.064      
+XLC     C34     C       CH2     0       7.186       3.642       16.406      
+XLC     C35     C       CH3     0       5.325       1.855       13.659      
+XLC     HC2     H       H       0       10.410      8.785       25.041      
+XLC     HC3     H       H       0       12.372      9.097       26.239      
+XLC     HC5     H       H       0       10.941      6.775       29.199      
+XLC     HC6     H       H       0       8.975       6.459       28.003      
+XLC     HN7     H       H       0       7.561       7.258       26.213      
+XLC     HC13    H       H       0       4.524       6.688       21.524      
+XLC     HC14    H       H       0       3.284       8.372       22.531      
+XLC     HC16    H       H       0       6.268       9.072       25.140      
+XLC     HN17    H       H       0       7.630       6.099       21.668      
+XLC     HC23    H       H       0       8.158       0.835       19.441      
+XLC     H261    H       H       0       9.769       2.240       17.841      
+XLC     H262    H       H       0       9.490       3.782       17.734      
+XLC     H291    H       H       0       8.501       0.676       16.578      
+XLC     H292    H       H       0       7.113       1.149       17.180      
+XLC     H301    H       H       0       6.754       0.199       15.077      
+XLC     H302    H       H       0       7.769       1.223       14.420      
+XLC     H331    H       H       0       5.781       4.065       14.967      
+XLC     H332    H       H       0       7.167       3.610       14.351      
+XLC     H341    H       H       0       7.535       4.554       16.462      
+XLC     H342    H       H       0       6.524       3.523       17.115      
+XLC     H351    H       H       0       5.361       2.665       13.118      
+XLC     H352    H       H       0       4.392       1.629       13.834      
+XLC     H353    H       H       0       5.743       1.124       13.167      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XLC          C1          C2      DOUBLE       y     1.389  0.0100     1.389  0.0100
+XLC          C1          C6      SINGLE       y     1.389  0.0100     1.389  0.0100
+XLC          C1          N7      SINGLE       n     1.411  0.0105     1.411  0.0105
+XLC          C2          C3      SINGLE       y     1.383  0.0100     1.383  0.0100
+XLC          C3          C4      DOUBLE       y     1.376  0.0102     1.376  0.0102
+XLC          C4         CL1      SINGLE       n     1.741  0.0100     1.741  0.0100
+XLC          C4          C5      SINGLE       y     1.376  0.0102     1.376  0.0102
+XLC          C5          C6      DOUBLE       y     1.383  0.0100     1.383  0.0100
+XLC          N7          C9      SINGLE       n     1.351  0.0126     1.351  0.0126
+XLC          C9         O10      DOUBLE       n     1.226  0.0100     1.226  0.0100
+XLC          C9         C11      SINGLE       n     1.500  0.0110     1.500  0.0110
+XLC         C11         C12      SINGLE       y     1.408  0.0109     1.408  0.0109
+XLC         C11         C16      DOUBLE       y     1.398  0.0107     1.398  0.0107
+XLC         C12         C13      DOUBLE       y     1.405  0.0109     1.405  0.0109
+XLC         C12         N17      SINGLE       n     1.415  0.0121     1.415  0.0121
+XLC         C13         C14      SINGLE       y     1.376  0.0100     1.376  0.0100
+XLC         C14         C15      DOUBLE       y     1.383  0.0100     1.383  0.0100
+XLC         C15         CL2      SINGLE       n     1.742  0.0100     1.742  0.0100
+XLC         C15         C16      SINGLE       y     1.375  0.0100     1.375  0.0100
+XLC         N17         C19      SINGLE       n     1.356  0.0102     1.356  0.0102
+XLC         C19         O20      DOUBLE       n     1.229  0.0124     1.229  0.0124
+XLC         C19         C21      SINGLE       n     1.469  0.0113     1.469  0.0113
+XLC         C21         S22      SINGLE       y     1.695  0.0200     1.695  0.0200
+XLC         C21         C25      DOUBLE       y     1.362  0.0200     1.362  0.0200
+XLC         S22         C23      SINGLE       y     1.695  0.0200     1.695  0.0200
+XLC         C23         C24      DOUBLE       y     1.344  0.0100     1.344  0.0100
+XLC         C24         C25      SINGLE       y     1.397  0.0200     1.397  0.0200
+XLC         C24         C26      SINGLE       n     1.497  0.0100     1.497  0.0100
+XLC         C25         CL3      SINGLE       n     1.717  0.0100     1.717  0.0100
+XLC         C26         N27      SINGLE       n     1.464  0.0100     1.464  0.0100
+XLC         N27         C29      SINGLE       n     1.464  0.0100     1.464  0.0100
+XLC         N27         C34      SINGLE       n     1.464  0.0100     1.464  0.0100
+XLC         C29         C30      SINGLE       n     1.509  0.0100     1.509  0.0100
+XLC         C30         N31      SINGLE       n     1.457  0.0100     1.457  0.0100
+XLC         N31         C33      SINGLE       n     1.457  0.0100     1.457  0.0100
+XLC         N31         C35      SINGLE       n     1.462  0.0100     1.462  0.0100
+XLC         C33         C34      SINGLE       n     1.509  0.0100     1.509  0.0100
+XLC          C2         HC2      SINGLE       n     1.082  0.0130     0.937  0.0124
+XLC          C3         HC3      SINGLE       n     1.082  0.0130     0.939  0.0138
+XLC          C5         HC5      SINGLE       n     1.082  0.0130     0.939  0.0138
+XLC          C6         HC6      SINGLE       n     1.082  0.0130     0.937  0.0124
+XLC          N7         HN7      SINGLE       n     1.016  0.0100     0.876  0.0200
+XLC         C13        HC13      SINGLE       n     1.082  0.0130     0.948  0.0200
+XLC         C14        HC14      SINGLE       n     1.082  0.0130     0.939  0.0138
+XLC         C16        HC16      SINGLE       n     1.082  0.0130     0.940  0.0137
+XLC         N17        HN17      SINGLE       n     1.016  0.0100     0.874  0.0200
+XLC         C23        HC23      SINGLE       n     1.082  0.0130     0.942  0.0200
+XLC         C26        H261      SINGLE       n     1.089  0.0100     0.979  0.0148
+XLC         C26        H262      SINGLE       n     1.089  0.0100     0.979  0.0148
+XLC         C29        H291      SINGLE       n     1.089  0.0100     0.978  0.0109
+XLC         C29        H292      SINGLE       n     1.089  0.0100     0.978  0.0109
+XLC         C30        H301      SINGLE       n     1.089  0.0100     0.978  0.0109
+XLC         C30        H302      SINGLE       n     1.089  0.0100     0.978  0.0109
+XLC         C33        H331      SINGLE       n     1.089  0.0100     0.978  0.0109
+XLC         C33        H332      SINGLE       n     1.089  0.0100     0.978  0.0109
+XLC         C34        H341      SINGLE       n     1.089  0.0100     0.978  0.0109
+XLC         C34        H342      SINGLE       n     1.089  0.0100     0.978  0.0109
+XLC         C35        H351      SINGLE       n     1.089  0.0100     0.975  0.0100
+XLC         C35        H352      SINGLE       n     1.089  0.0100     0.975  0.0100
+XLC         C35        H353      SINGLE       n     1.089  0.0100     0.975  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XLC          C2          C1          C6     119.307    1.50
+XLC          C2          C1          N7     120.346    2.93
+XLC          C6          C1          N7     120.346    2.93
+XLC          C1          C2          C3     120.317    1.50
+XLC          C1          C2         HC2     119.894    1.50
+XLC          C3          C2         HC2     119.788    1.50
+XLC          C2          C3          C4     119.406    1.50
+XLC          C2          C3         HC3     120.228    1.50
+XLC          C4          C3         HC3     120.366    1.50
+XLC          C3          C4         CL1     119.377    1.50
+XLC          C3          C4          C5     121.247    1.50
+XLC         CL1          C4          C5     119.382    1.50
+XLC          C4          C5          C6     119.406    1.50
+XLC          C4          C5         HC5     120.366    1.50
+XLC          C6          C5         HC5     120.228    1.50
+XLC          C1          C6          C5     120.317    1.50
+XLC          C1          C6         HC6     119.894    1.50
+XLC          C5          C6         HC6     119.788    1.50
+XLC          C1          N7          C9     126.750    1.50
+XLC          C1          N7         HN7     116.164    1.66
+XLC          C9          N7         HN7     117.086    2.38
+XLC          N7          C9         O10     123.270    1.50
+XLC          N7          C9         C11     115.770    1.71
+XLC         O10          C9         C11     120.960    1.50
+XLC          C9         C11         C12     121.320    1.50
+XLC          C9         C11         C16     120.044    2.89
+XLC         C12         C11         C16     118.636    1.50
+XLC         C11         C12         C13     119.592    1.50
+XLC         C11         C12         N17     119.485    1.81
+XLC         C13         C12         N17     120.923    3.00
+XLC         C12         C13         C14     120.244    1.50
+XLC         C12         C13        HC13     119.859    1.50
+XLC         C14         C13        HC13     119.896    1.50
+XLC         C13         C14         C15     119.651    1.50
+XLC         C13         C14        HC14     120.105    1.50
+XLC         C15         C14        HC14     120.244    1.50
+XLC         C14         C15         CL2     119.218    1.50
+XLC         C14         C15         C16     121.377    1.50
+XLC         CL2         C15         C16     119.405    1.50
+XLC         C11         C16         C15     120.493    1.50
+XLC         C11         C16        HC16     119.621    1.50
+XLC         C15         C16        HC16     119.893    1.50
+XLC         C12         N17         C19     127.170    2.35
+XLC         C12         N17        HN17     116.427    2.05
+XLC         C19         N17        HN17     116.403    1.98
+XLC         N17         C19         O20     124.297    1.50
+XLC         N17         C19         C21     114.856    1.50
+XLC         O20         C19         C21     120.847    1.72
+XLC         C19         C21         S22     119.804    3.00
+XLC         C19         C21         C25     131.867    3.00
+XLC         S22         C21         C25     108.329    3.00
+XLC         C21         S22         C23     108.329    3.00
+XLC         S22         C23         C24     108.329    3.00
+XLC         S22         C23        HC23     123.398    3.00
+XLC         C24         C23        HC23     128.274    2.51
+XLC         C23         C24         C25     106.897    1.50
+XLC         C23         C24         C26     126.723    2.99
+XLC         C25         C24         C26     126.379    2.55
+XLC         C21         C25         C24     108.117    2.27
+XLC         C21         C25         CL3     126.476    2.18
+XLC         C24         C25         CL3     125.407    1.50
+XLC         C24         C26         N27     111.662    2.68
+XLC         C24         C26        H261     108.919    1.50
+XLC         C24         C26        H262     108.919    1.50
+XLC         N27         C26        H261     108.883    1.50
+XLC         N27         C26        H262     108.883    1.50
+XLC        H261         C26        H262     107.917    1.50
+XLC         C26         N27         C29     110.398    1.50
+XLC         C26         N27         C34     110.398    1.50
+XLC         C29         N27         C34     109.128    1.50
+XLC         N27         C29         C30     110.745    1.50
+XLC         N27         C29        H291     109.490    1.50
+XLC         N27         C29        H292     109.490    1.50
+XLC         C30         C29        H291     109.532    1.50
+XLC         C30         C29        H292     109.532    1.50
+XLC        H291         C29        H292     108.187    1.50
+XLC         C29         C30         N31     110.810    1.50
+XLC         C29         C30        H301     109.532    1.50
+XLC         C29         C30        H302     109.532    1.50
+XLC         N31         C30        H301     109.480    1.50
+XLC         N31         C30        H302     109.480    1.50
+XLC        H301         C30        H302     108.187    1.50
+XLC         C30         N31         C33     109.130    1.50
+XLC         C30         N31         C35     110.746    1.50
+XLC         C33         N31         C35     110.746    1.50
+XLC         N31         C33         C34     110.810    1.50
+XLC         N31         C33        H331     109.480    1.50
+XLC         N31         C33        H332     109.480    1.50
+XLC         C34         C33        H331     109.532    1.50
+XLC         C34         C33        H332     109.532    1.50
+XLC        H331         C33        H332     108.187    1.50
+XLC         N27         C34         C33     110.745    1.50
+XLC         N27         C34        H341     109.490    1.50
+XLC         N27         C34        H342     109.490    1.50
+XLC         C33         C34        H341     109.532    1.50
+XLC         C33         C34        H342     109.532    1.50
+XLC        H341         C34        H342     108.187    1.50
+XLC         N31         C35        H351     109.526    1.50
+XLC         N31         C35        H352     109.526    1.50
+XLC         N31         C35        H353     109.526    1.50
+XLC        H351         C35        H352     109.428    1.50
+XLC        H351         C35        H353     109.428    1.50
+XLC        H352         C35        H353     109.428    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XLC              const_23          N7          C1          C2          C3     180.000    10.0     2
+XLC              const_55          N7          C1          C6          C5     180.000    10.0     2
+XLC             sp2_sp2_1          C2          C1          N7          C9     180.000     5.0     2
+XLC       const_sp2_sp2_4          C9         C11         C12         N17       0.000     5.0     2
+XLC              const_59          C9         C11         C16         C15     180.000    10.0     2
+XLC       const_sp2_sp2_7         N17         C12         C13         C14     180.000     5.0     2
+XLC            sp2_sp2_13         C11         C12         N17         C19     180.000     5.0     2
+XLC       const_sp2_sp2_9         C12         C13         C14         C15       0.000     5.0     2
+XLC              const_14         C13         C14         C15         CL2     180.000    10.0     2
+XLC              const_19         CL2         C15         C16         C11     180.000    10.0     2
+XLC            sp2_sp2_19         O20         C19         N17         C12       0.000     5.0     2
+XLC            sp2_sp2_22         N17         C19         C21         S22       0.000     5.0     2
+XLC              const_25          C1          C2          C3          C4       0.000    10.0     2
+XLC              const_42         C19         C21         S22         C23     180.000    10.0     2
+XLC              const_64         C19         C21         C25         CL3       0.000    10.0     2
+XLC              const_43         C24         C23         S22         C21       0.000    10.0     2
+XLC              const_46         S22         C23         C24         C26     180.000    10.0     2
+XLC              const_52         C26         C24         C25         CL3       0.000    10.0     2
+XLC             sp2_sp3_2         C23         C24         C26         N27     -90.000    10.0     6
+XLC            sp3_sp3_38         C24         C26         N27         C29     -60.000    10.0     3
+XLC             sp3_sp3_2         C30         C29         N27         C26     180.000    10.0     3
+XLC            sp3_sp3_44         C33         C34         N27         C26     -60.000    10.0     3
+XLC             sp3_sp3_7         N27         C29         C30         N31     -60.000    10.0     3
+XLC            sp3_sp3_17         C29         C30         N31         C35     180.000    10.0     3
+XLC              const_30          C2          C3          C4         CL1     180.000    10.0     2
+XLC            sp3_sp3_23         C34         C33         N31         C35      60.000    10.0     3
+XLC            sp3_sp3_50        H351         C35         N31         C30     -60.000    10.0     3
+XLC            sp3_sp3_28         N31         C33         C34         N27      60.000    10.0     3
+XLC              const_35         CL1          C4          C5          C6     180.000    10.0     2
+XLC              const_37          C4          C5          C6          C1       0.000    10.0     2
+XLC             sp2_sp2_7         O10          C9          N7          C1       0.000     5.0     2
+XLC             sp2_sp2_9         C12         C11          C9          N7     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+XLC    chir_1    N27    C29    C34    C26    both
+XLC    chir_2    N31    C30    C33    C35    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XLC    plan-1          C1   0.020
+XLC    plan-1          C2   0.020
+XLC    plan-1          C3   0.020
+XLC    plan-1          C4   0.020
+XLC    plan-1          C5   0.020
+XLC    plan-1          C6   0.020
+XLC    plan-1         CL1   0.020
+XLC    plan-1         HC2   0.020
+XLC    plan-1         HC3   0.020
+XLC    plan-1         HC5   0.020
+XLC    plan-1         HC6   0.020
+XLC    plan-1          N7   0.020
+XLC    plan-2         C11   0.020
+XLC    plan-2         C12   0.020
+XLC    plan-2         C13   0.020
+XLC    plan-2         C14   0.020
+XLC    plan-2         C15   0.020
+XLC    plan-2         C16   0.020
+XLC    plan-2          C9   0.020
+XLC    plan-2         CL2   0.020
+XLC    plan-2        HC13   0.020
+XLC    plan-2        HC14   0.020
+XLC    plan-2        HC16   0.020
+XLC    plan-2         N17   0.020
+XLC    plan-3         C19   0.020
+XLC    plan-3         C21   0.020
+XLC    plan-3         C23   0.020
+XLC    plan-3         C24   0.020
+XLC    plan-3         C25   0.020
+XLC    plan-3         C26   0.020
+XLC    plan-3         CL3   0.020
+XLC    plan-3        HC23   0.020
+XLC    plan-3         S22   0.020
+XLC    plan-4          C1   0.020
+XLC    plan-4          C9   0.020
+XLC    plan-4         HN7   0.020
+XLC    plan-4          N7   0.020
+XLC    plan-5         C11   0.020
+XLC    plan-5          C9   0.020
+XLC    plan-5          N7   0.020
+XLC    plan-5         O10   0.020
+XLC    plan-6         C12   0.020
+XLC    plan-6         C19   0.020
+XLC    plan-6        HN17   0.020
+XLC    plan-6         N17   0.020
+XLC    plan-7         C19   0.020
+XLC    plan-7         C21   0.020
+XLC    plan-7         N17   0.020
+XLC    plan-7         O20   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XLC           SMILES              ACDLabs 10.04                                                                                                                    Clc1ccc(cc1)NC(=O)c2cc(Cl)ccc2NC(=O)c3scc(c3Cl)CN4CCN(C)CC4
+XLC SMILES_CANONICAL               CACTVS 3.341                                                                                                                    CN1CCN(CC1)Cc2csc(C(=O)Nc3ccc(Cl)cc3C(=O)Nc4ccc(Cl)cc4)c2Cl
+XLC           SMILES               CACTVS 3.341                                                                                                                    CN1CCN(CC1)Cc2csc(C(=O)Nc3ccc(Cl)cc3C(=O)Nc4ccc(Cl)cc4)c2Cl
+XLC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                    CN1CCN(CC1)Cc2csc(c2Cl)C(=O)Nc3ccc(cc3C(=O)Nc4ccc(cc4)Cl)Cl
+XLC           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                    CN1CCN(CC1)Cc2csc(c2Cl)C(=O)Nc3ccc(cc3C(=O)Nc4ccc(cc4)Cl)Cl
+XLC            InChI                InChI  1.03 InChI=1S/C24H23Cl3N4O2S/c1-30-8-10-31(11-9-30)13-15-14-34-22(21(15)27)24(33)29-20-7-4-17(26)12-19(20)23(32)28-18-5-2-16(25)3-6-18/h2-7,12,14H,8-11,13H2,1H3,(H,28,32)(H,29,33)
+XLC         InChIKey                InChI  1.03                                                                                                                                                    FIZKTFMGWNHPMZ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XLC acedrg               243         "dictionary generator"                  
+XLC acedrg_database      11          "data source"                           
+XLC rdkit                2017.03.2   "Chemoinformatics tool"
+XLC refmac5              5.8.0238    "optimization tool"                     

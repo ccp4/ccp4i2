@@ -1,0 +1,197 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SNU     SNU      4-(1H-pyrrol-1-yl)aniline     NON-POLYMER     22     12     .     
+#
+data_comp_SNU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SNU     CAF     C       CR16    0       -52.069     -42.508     13.320      
+SNU     CAD     C       CR16    0       -53.104     -43.425     13.272      
+SNU     CAJ     C       CR6     0       -54.216     -43.300     14.109      
+SNU     NAA     N       NH2     0       -55.243     -44.215     14.058      
+SNU     CAE     C       CR16    0       -54.259     -42.223     14.997      
+SNU     CAG     C       CR16    0       -53.228     -41.302     15.050      
+SNU     CAK     C       CR6     0       -52.124     -41.437     14.211      
+SNU     NAL     N       NR5     0       -51.065     -40.494     14.263      
+SNU     CAH     C       CR15    0       -50.551     -39.917     15.402      
+SNU     CAB     C       CR15    0       -49.553     -39.071     15.041      
+SNU     CAC     C       CR15    0       -49.437     -39.123     13.641      
+SNU     CAI     C       CR15    0       -50.370     -39.997     13.184      
+SNU     HAF     H       H       0       -51.320     -42.612     12.743      
+SNU     HAD     H       H       0       -53.062     -44.149     12.667      
+SNU     HNAA    H       H       0       -55.278     -44.799     13.404      
+SNU     HNAB    H       H       0       -55.862     -44.213     14.680      
+SNU     HAE     H       H       0       -55.005     -42.126     15.568      
+SNU     HAG     H       H       0       -53.277     -40.574     15.662      
+SNU     HAH     H       H       0       -50.849     -40.081     16.281      
+SNU     HAB     H       H       0       -49.030     -38.545     15.624      
+SNU     HAC     H       H       0       -48.823     -38.638     13.114      
+SNU     HAI     H       H       0       -50.519     -40.230     12.282      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SNU         CAF         CAD      DOUBLE       y     1.380  0.0100     1.380  0.0100
+SNU         CAF         CAK      SINGLE       y     1.390  0.0100     1.390  0.0100
+SNU         CAD         CAJ      SINGLE       y     1.392  0.0113     1.392  0.0113
+SNU         CAJ         NAA      SINGLE       n     1.375  0.0178     1.375  0.0178
+SNU         CAJ         CAE      DOUBLE       y     1.392  0.0113     1.392  0.0113
+SNU         CAE         CAG      SINGLE       y     1.380  0.0100     1.380  0.0100
+SNU         CAG         CAK      DOUBLE       y     1.390  0.0100     1.390  0.0100
+SNU         CAK         NAL      SINGLE       n     1.416  0.0100     1.416  0.0100
+SNU         NAL         CAI      SINGLE       y     1.375  0.0100     1.375  0.0100
+SNU         NAL         CAH      SINGLE       y     1.375  0.0100     1.375  0.0100
+SNU         CAH         CAB      DOUBLE       y     1.358  0.0100     1.358  0.0100
+SNU         CAB         CAC      SINGLE       y     1.407  0.0139     1.407  0.0139
+SNU         CAC         CAI      DOUBLE       y     1.358  0.0100     1.358  0.0100
+SNU         CAF         HAF      SINGLE       n     1.082  0.0130     0.952  0.0200
+SNU         CAD         HAD      SINGLE       n     1.082  0.0130     0.944  0.0200
+SNU         NAA        HNAA      SINGLE       n     1.016  0.0100     0.877  0.0200
+SNU         NAA        HNAB      SINGLE       n     1.016  0.0100     0.877  0.0200
+SNU         CAE         HAE      SINGLE       n     1.082  0.0130     0.944  0.0200
+SNU         CAG         HAG      SINGLE       n     1.082  0.0130     0.952  0.0200
+SNU         CAH         HAH      SINGLE       n     1.082  0.0130     0.943  0.0130
+SNU         CAB         HAB      SINGLE       n     1.082  0.0130     0.943  0.0153
+SNU         CAC         HAC      SINGLE       n     1.082  0.0130     0.943  0.0153
+SNU         CAI         HAI      SINGLE       n     1.082  0.0130     0.943  0.0130
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SNU         CAD         CAF         CAK     120.213    1.50
+SNU         CAD         CAF         HAF     119.820    1.50
+SNU         CAK         CAF         HAF     119.967    1.50
+SNU         CAF         CAD         CAJ     120.725    1.50
+SNU         CAF         CAD         HAD     119.959    1.50
+SNU         CAJ         CAD         HAD     119.316    1.50
+SNU         CAD         CAJ         NAA     120.982    1.50
+SNU         CAD         CAJ         CAE     118.037    1.50
+SNU         NAA         CAJ         CAE     120.982    1.50
+SNU         CAJ         NAA        HNAA     119.811    2.73
+SNU         CAJ         NAA        HNAB     119.811    2.73
+SNU        HNAA         NAA        HNAB     120.379    3.00
+SNU         CAJ         CAE         CAG     120.725    1.50
+SNU         CAJ         CAE         HAE     119.316    1.50
+SNU         CAG         CAE         HAE     119.959    1.50
+SNU         CAE         CAG         CAK     120.213    1.50
+SNU         CAE         CAG         HAG     119.820    1.50
+SNU         CAK         CAG         HAG     119.967    1.50
+SNU         CAF         CAK         CAG     120.087    1.50
+SNU         CAF         CAK         NAL     119.957    1.50
+SNU         CAG         CAK         NAL     119.957    1.50
+SNU         CAK         NAL         CAI     125.940    1.50
+SNU         CAK         NAL         CAH     125.940    1.50
+SNU         CAI         NAL         CAH     108.120    1.50
+SNU         NAL         CAH         CAB     108.269    1.50
+SNU         NAL         CAH         HAH     125.579    1.50
+SNU         CAB         CAH         HAH     126.151    1.50
+SNU         CAH         CAB         CAC     107.671    1.50
+SNU         CAH         CAB         HAB     126.157    1.50
+SNU         CAC         CAB         HAB     126.172    1.50
+SNU         CAB         CAC         CAI     107.671    1.50
+SNU         CAB         CAC         HAC     126.172    1.50
+SNU         CAI         CAC         HAC     126.157    1.50
+SNU         NAL         CAI         CAC     108.269    1.50
+SNU         NAL         CAI         HAI     125.579    1.50
+SNU         CAC         CAI         HAI     126.151    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SNU              const_17         CAJ         CAD         CAF         CAK       0.000    10.0     2
+SNU              const_37         CAD         CAF         CAK         CAG       0.000    10.0     2
+SNU       const_sp2_sp2_5         CAB         CAC         CAI         NAL       0.000     5.0     2
+SNU              const_22         CAF         CAD         CAJ         NAA     180.000    10.0     2
+SNU             sp2_sp2_1         CAD         CAJ         NAA        HNAA     180.000     5.0     2
+SNU              const_26         CAG         CAE         CAJ         NAA     180.000    10.0     2
+SNU              const_29         CAJ         CAE         CAG         CAK       0.000    10.0     2
+SNU              const_33         CAE         CAG         CAK         CAF       0.000    10.0     2
+SNU             sp2_sp2_5         CAF         CAK         NAL         CAI     180.000     5.0     2
+SNU       const_sp2_sp2_2         CAC         CAI         NAL         CAK     180.000     5.0     2
+SNU              const_42         CAB         CAH         NAL         CAK     180.000    10.0     2
+SNU              const_13         CAC         CAB         CAH         NAL       0.000    10.0     2
+SNU       const_sp2_sp2_9         CAH         CAB         CAC         CAI       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SNU    plan-1         CAD   0.020
+SNU    plan-1         CAE   0.020
+SNU    plan-1         CAF   0.020
+SNU    plan-1         CAG   0.020
+SNU    plan-1         CAJ   0.020
+SNU    plan-1         CAK   0.020
+SNU    plan-1         HAD   0.020
+SNU    plan-1         HAE   0.020
+SNU    plan-1         HAF   0.020
+SNU    plan-1         HAG   0.020
+SNU    plan-1         NAA   0.020
+SNU    plan-1         NAL   0.020
+SNU    plan-2         CAB   0.020
+SNU    plan-2         CAC   0.020
+SNU    plan-2         CAH   0.020
+SNU    plan-2         CAI   0.020
+SNU    plan-2         CAK   0.020
+SNU    plan-2         HAB   0.020
+SNU    plan-2         HAC   0.020
+SNU    plan-2         HAH   0.020
+SNU    plan-2         HAI   0.020
+SNU    plan-2         NAL   0.020
+SNU    plan-3         CAJ   0.020
+SNU    plan-3        HNAA   0.020
+SNU    plan-3        HNAB   0.020
+SNU    plan-3         NAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SNU           SMILES              ACDLabs 12.01                                          c1(ccc(cc1)n2cccc2)N
+SNU            InChI                InChI  1.03 InChI=1S/C10H10N2/c11-9-3-5-10(6-4-9)12-7-1-2-8-12/h1-8H,11H2
+SNU         InChIKey                InChI  1.03                                   NHLHWHRXMZZWGA-UHFFFAOYSA-N
+SNU SMILES_CANONICAL               CACTVS 3.370                                            Nc1ccc(cc1)n2cccc2
+SNU           SMILES               CACTVS 3.370                                            Nc1ccc(cc1)n2cccc2
+SNU SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                          c1ccn(c1)c2ccc(cc2)N
+SNU           SMILES "OpenEye OEToolkits" 1.7.2                                          c1ccn(c1)c2ccc(cc2)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SNU acedrg               243         "dictionary generator"                  
+SNU acedrg_database      11          "data source"                           
+SNU rdkit                2017.03.2   "Chemoinformatics tool"
+SNU refmac5              5.8.0238    "optimization tool"                     

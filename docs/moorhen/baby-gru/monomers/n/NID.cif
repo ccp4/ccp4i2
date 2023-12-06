@@ -1,0 +1,183 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NID     NID      4-NITRO-INDEN-1-ONE     NON-POLYMER     18     13     .     
+#
+data_comp_NID
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NID     C2      C       CR6     0       99.049      44.595      21.962      
+NID     C7      C       CR56    0       99.949      44.239      20.951      
+NID     C1      C       CR15    0       100.474     42.965      20.508      
+NID     C9      C       CR15    0       101.335     43.158      19.456      
+NID     C8      C       CR5     0       101.415     44.529      19.183      
+NID     O1      O       O       0       102.097     45.046      18.315      
+NID     C6      C       CR56    0       100.521     45.221      20.141      
+NID     C5      C       CR16    0       100.221     46.561      20.310      
+NID     C4      C       CR16    0       99.326      46.910      21.316      
+NID     C3      C       CR16    0       98.744      45.951      22.135      
+NID     N       N       N       1       98.415      43.622      22.843      
+NID     ON1     O       OC      -1      98.578      43.749      24.047      
+NID     ON2     O       O       0       97.754      42.732      22.333      
+NID     H1      H       H       0       100.251     42.124      20.893      
+NID     H9      H       H       0       101.793     42.467      19.000      
+NID     H5      H       H       0       100.611     47.219      19.759      
+NID     H4      H       H       0       99.107      47.817      21.448      
+NID     H3      H       H       0       98.141      46.221      22.807      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NID          C2          C7      DOUBLE       y     1.395  0.0132     1.395  0.0132
+NID          C2          C3      SINGLE       y     1.394  0.0127     1.394  0.0127
+NID          C2           N      SINGLE       n     1.457  0.0200     1.457  0.0200
+NID          C7          C1      SINGLE       n     1.448  0.0200     1.448  0.0200
+NID          C7          C6      SINGLE       y     1.405  0.0160     1.405  0.0160
+NID          C1          C9      DOUBLE       n     1.350  0.0200     1.350  0.0200
+NID          C9          C8      SINGLE       n     1.384  0.0200     1.384  0.0200
+NID          C8          O1      DOUBLE       n     1.219  0.0132     1.219  0.0132
+NID          C8          C6      SINGLE       n     1.488  0.0133     1.488  0.0133
+NID          C6          C5      DOUBLE       y     1.381  0.0100     1.381  0.0100
+NID          C5          C4      SINGLE       y     1.385  0.0109     1.385  0.0109
+NID          C4          C3      DOUBLE       y     1.384  0.0100     1.384  0.0100
+NID           N         ON1      SINGLE       n     1.221  0.0162     1.221  0.0162
+NID           N         ON2      DOUBLE       n     1.221  0.0162     1.221  0.0162
+NID          C1          H1      SINGLE       n     1.082  0.0130     0.951  0.0200
+NID          C9          H9      SINGLE       n     1.082  0.0130     0.946  0.0153
+NID          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0200
+NID          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0125
+NID          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0177
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NID          C7          C2          C3     118.857    2.75
+NID          C7          C2           N     122.878    1.50
+NID          C3          C2           N     118.265    1.50
+NID          C2          C7          C1     131.605    1.50
+NID          C2          C7          C6     120.302    1.79
+NID          C1          C7          C6     108.093    1.50
+NID          C7          C1          C9     108.680    1.50
+NID          C7          C1          H1     125.126    1.50
+NID          C9          C1          H1     126.194    1.89
+NID          C1          C9          C8     107.036    1.50
+NID          C1          C9          H9     125.619    1.50
+NID          C8          C9          H9     127.346    1.50
+NID          C9          C8          O1     125.849    2.39
+NID          C9          C8          C6     107.292    1.54
+NID          O1          C8          C6     126.859    2.58
+NID          C7          C6          C8     108.899    1.50
+NID          C7          C6          C5     121.152    1.50
+NID          C8          C6          C5     129.949    1.61
+NID          C6          C5          C4     118.140    1.50
+NID          C6          C5          H5     120.904    1.50
+NID          C4          C5          H5     120.956    1.50
+NID          C5          C4          C3     121.382    1.50
+NID          C5          C4          H4     119.572    1.50
+NID          C3          C4          H4     119.047    1.50
+NID          C2          C3          C4     120.168    1.50
+NID          C2          C3          H3     120.365    1.50
+NID          C4          C3          H3     119.467    1.60
+NID          C2           N         ON1     117.967    1.50
+NID          C2           N         ON2     117.967    1.50
+NID         ON1           N         ON2     124.065    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NID       const_sp2_sp2_4           N          C2          C7          C1       0.000     5.0     2
+NID            sp2_sp2_17          C7          C2           N         ON1     180.000     5.0     2
+NID              const_23           N          C2          C3          C4     180.000    10.0     2
+NID             sp2_sp2_2          C9          C1          C7          C2     180.000     5.0     2
+NID       const_sp2_sp2_6          C8          C6          C7          C2     180.000     5.0     2
+NID             sp2_sp2_5          C7          C1          C9          C8       0.000     5.0     2
+NID            sp2_sp2_11          O1          C8          C9          C1     180.000     5.0     2
+NID            sp2_sp2_14          C7          C6          C8          O1     180.000     5.0     2
+NID       const_sp2_sp2_9          C4          C5          C6          C7       0.000     5.0     2
+NID              const_13          C3          C4          C5          C6       0.000    10.0     2
+NID              const_17          C2          C3          C4          C5       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NID    plan-1          C1   0.020
+NID    plan-1          C2   0.020
+NID    plan-1          C3   0.020
+NID    plan-1          C4   0.020
+NID    plan-1          C5   0.020
+NID    plan-1          C6   0.020
+NID    plan-1          C7   0.020
+NID    plan-1          C8   0.020
+NID    plan-1          H3   0.020
+NID    plan-1          H4   0.020
+NID    plan-1          H5   0.020
+NID    plan-1           N   0.020
+NID    plan-2          C1   0.020
+NID    plan-2          C7   0.020
+NID    plan-2          C9   0.020
+NID    plan-2          H1   0.020
+NID    plan-3          C1   0.020
+NID    plan-3          C8   0.020
+NID    plan-3          C9   0.020
+NID    plan-3          H9   0.020
+NID    plan-4          C6   0.020
+NID    plan-4          C8   0.020
+NID    plan-4          C9   0.020
+NID    plan-4          O1   0.020
+NID    plan-5          C2   0.020
+NID    plan-5           N   0.020
+NID    plan-5         ON1   0.020
+NID    plan-5         ON2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NID           SMILES              ACDLabs 10.04                            "[O-][N+](=O)c1cccc2c1C=CC2=O"
+NID SMILES_CANONICAL               CACTVS 3.341                          "[O-][N+](=O)c1cccc2C(=O)C=Cc12"
+NID           SMILES               CACTVS 3.341                          "[O-][N+](=O)c1cccc2C(=O)C=Cc12"
+NID SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                          c1cc2c(c(c1)[N+](=O)[O-])C=CC2=O
+NID           SMILES "OpenEye OEToolkits" 1.5.0                          c1cc2c(c(c1)[N+](=O)[O-])C=CC2=O
+NID            InChI                InChI  1.03 InChI=1S/C9H5NO3/c11-9-5-4-6-7(9)2-1-3-8(6)10(12)13/h1-5H
+NID         InChIKey                InChI  1.03                               UUNZJPCKMDLQPO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NID acedrg               243         "dictionary generator"                  
+NID acedrg_database      11          "data source"                           
+NID rdkit                2017.03.2   "Chemoinformatics tool"
+NID refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,176 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HCT     HCT      "(2R)-butane-1,2,4-tricarboxylic acid"     NON-POLYMER     20     13     .     
+#
+data_comp_HCT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HCT     C1      C       C       0       -4.984      -36.161     66.678      
+HCT     C2      C       CH2     0       -3.713      -35.643     66.026      
+HCT     C3      C       CH1     0       -2.542      -36.646     66.076      
+HCT     C4      C       CH2     0       -1.407      -36.240     65.119      
+HCT     C5      C       CH2     0       -0.790      -34.861     65.348      
+HCT     C6      C       C       0       0.329       -34.479     64.391      
+HCT     C7      C       C       0       -2.015      -36.874     67.501      
+HCT     O1      O       O       0       -5.211      -35.839     67.861      
+HCT     O2      O       OC      -1      -5.740      -36.885     66.000      
+HCT     O3      O       O       0       0.868       -33.364     64.539      
+HCT     O4      O       OC      -1      0.662       -35.290     63.502      
+HCT     O5      O       OC      -1      -1.780      -38.048     67.852      
+HCT     O6      O       O       0       -1.844      -35.884     68.242      
+HCT     H2      H       H       0       -3.454      -34.817     66.467      
+HCT     H2A     H       H       0       -3.910      -35.430     65.098      
+HCT     H3      H       H       0       -2.883      -37.516     65.765      
+HCT     H4      H       H       0       -1.757      -36.277     64.204      
+HCT     H4A     H       H       0       -0.699      -36.914     65.186      
+HCT     H5      H       H       0       -0.435      -34.819     66.260      
+HCT     H5A     H       H       0       -1.492      -34.181     65.276      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HCT          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+HCT          C1          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+HCT          C1          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+HCT          C2          C3      SINGLE       n     1.539  0.0136     1.539  0.0136
+HCT          C3          C4      SINGLE       n     1.533  0.0147     1.533  0.0147
+HCT          C3          C7      SINGLE       n     1.533  0.0102     1.533  0.0102
+HCT          C4          C5      SINGLE       n     1.521  0.0151     1.521  0.0151
+HCT          C5          C6      SINGLE       n     1.519  0.0109     1.519  0.0109
+HCT          C6          O3      DOUBLE       n     1.247  0.0187     1.247  0.0187
+HCT          C6          O4      SINGLE       n     1.247  0.0187     1.247  0.0187
+HCT          C7          O5      SINGLE       n     1.247  0.0187     1.247  0.0187
+HCT          C7          O6      DOUBLE       n     1.247  0.0187     1.247  0.0187
+HCT          C2          H2      SINGLE       n     1.089  0.0100     0.972  0.0128
+HCT          C2         H2A      SINGLE       n     1.089  0.0100     0.972  0.0128
+HCT          C3          H3      SINGLE       n     1.089  0.0100     0.985  0.0200
+HCT          C4          H4      SINGLE       n     1.089  0.0100     0.980  0.0178
+HCT          C4         H4A      SINGLE       n     1.089  0.0100     0.980  0.0178
+HCT          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0185
+HCT          C5         H5A      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HCT          C2          C1          O1     118.129    1.68
+HCT          C2          C1          O2     118.129    1.68
+HCT          O1          C1          O2     123.742    1.50
+HCT          C1          C2          C3     113.398    1.64
+HCT          C1          C2          H2     108.462    1.50
+HCT          C1          C2         H2A     108.462    1.50
+HCT          C3          C2          H2     109.189    1.50
+HCT          C3          C2         H2A     109.189    1.50
+HCT          H2          C2         H2A     107.639    1.50
+HCT          C2          C3          C4     110.760    1.86
+HCT          C2          C3          C7     111.066    2.42
+HCT          C2          C3          H3     108.361    1.50
+HCT          C4          C3          C7     110.778    2.06
+HCT          C4          C3          H3     107.780    1.50
+HCT          C7          C3          H3     107.706    1.93
+HCT          C3          C4          C5     115.067    1.50
+HCT          C3          C4          H4     108.447    1.50
+HCT          C3          C4         H4A     108.447    1.50
+HCT          C5          C4          H4     109.044    1.50
+HCT          C5          C4         H4A     109.044    1.50
+HCT          H4          C4         H4A     107.657    1.50
+HCT          C4          C5          C6     114.629    2.24
+HCT          C4          C5          H5     108.893    1.50
+HCT          C4          C5         H5A     108.893    1.50
+HCT          C6          C5          H5     108.404    1.50
+HCT          C6          C5         H5A     108.404    1.50
+HCT          H5          C5         H5A     107.521    1.50
+HCT          C5          C6          O3     118.214    1.64
+HCT          C5          C6          O4     118.214    1.64
+HCT          O3          C6          O4     123.571    1.50
+HCT          C3          C7          O5     118.051    1.50
+HCT          C3          C7          O6     118.051    1.50
+HCT          O5          C7          O6     123.899    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HCT             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+HCT             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+HCT            sp3_sp3_10          C2          C3          C4          C5     180.000    10.0     3
+HCT             sp2_sp3_7          O5          C7          C3          C2       0.000    10.0     6
+HCT            sp3_sp3_19          C3          C4          C5          C6     180.000    10.0     3
+HCT            sp2_sp3_14          O3          C6          C5          C4     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HCT    chir_1    C3    C7    C2    C4    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HCT    plan-1          C1   0.020
+HCT    plan-1          C2   0.020
+HCT    plan-1          O1   0.020
+HCT    plan-1          O2   0.020
+HCT    plan-2          C5   0.020
+HCT    plan-2          C6   0.020
+HCT    plan-2          O3   0.020
+HCT    plan-2          O4   0.020
+HCT    plan-3          C3   0.020
+HCT    plan-3          C7   0.020
+HCT    plan-3          O5   0.020
+HCT    plan-3          O6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HCT           SMILES              ACDLabs 10.04                                                                      O=C(O)CCC(C(=O)O)CC(=O)O
+HCT SMILES_CANONICAL               CACTVS 3.341                                                                  OC(=O)CC[C@H](CC(O)=O)C(O)=O
+HCT           SMILES               CACTVS 3.341                                                                   OC(=O)CC[CH](CC(O)=O)C(O)=O
+HCT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                C(CC(=O)O)[C@H](CC(=O)O)C(=O)O
+HCT           SMILES "OpenEye OEToolkits" 1.5.0                                                                    C(CC(=O)O)C(CC(=O)O)C(=O)O
+HCT            InChI                InChI  1.03 InChI=1S/C7H10O6/c8-5(9)2-1-4(7(12)13)3-6(10)11/h4H,1-3H2,(H,8,9)(H,10,11)(H,12,13)/t4-/m1/s1
+HCT         InChIKey                InChI  1.03                                                                   LOGBRYZYTBQBTB-SCSAIBSYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HCT acedrg               243         "dictionary generator"                  
+HCT acedrg_database      11          "data source"                           
+HCT rdkit                2017.03.2   "Chemoinformatics tool"
+HCT refmac5              5.8.0238    "optimization tool"                     

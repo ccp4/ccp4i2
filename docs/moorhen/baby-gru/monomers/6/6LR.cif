@@ -1,0 +1,145 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+6LR     6LR      morpholine     NON-POLYMER     15     6     .     
+#
+data_comp_6LR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+6LR     N4      N       NT1     0       3.632       34.192      34.539      
+6LR     C3      C       CH2     0       4.347       35.428      34.898      
+6LR     C2      C       CH2     0       5.778       35.401      34.416      
+6LR     C5      C       CH2     0       3.773       33.915      33.101      
+6LR     C6      C       CH2     0       5.220       33.932      32.670      
+6LR     O1      O       O2      0       5.846       35.167      33.012      
+6LR     H1      H       H       0       3.978       33.512      35.001      
+6LR     H3      H       H       0       3.883       36.199      34.499      
+6LR     H4      H       H       0       4.335       35.537      35.877      
+6LR     H5      H       H       0       6.270       34.691      34.890      
+6LR     H6      H       H       0       6.208       36.263      34.622      
+6LR     H7      H       H       0       3.273       34.592      32.588      
+6LR     H8      H       H       0       3.384       33.032      32.900      
+6LR     H9      H       H       0       5.273       33.801      31.696      
+6LR     H10     H       H       0       5.701       33.191      33.107      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+6LR          C6          O1      SINGLE       n     1.423  0.0100     1.423  0.0100
+6LR          C5          C6      SINGLE       n     1.509  0.0100     1.509  0.0100
+6LR          C2          O1      SINGLE       n     1.423  0.0100     1.423  0.0100
+6LR          N4          C5      SINGLE       n     1.470  0.0100     1.470  0.0100
+6LR          C3          C2      SINGLE       n     1.509  0.0100     1.509  0.0100
+6LR          N4          C3      SINGLE       n     1.470  0.0100     1.470  0.0100
+6LR          N4          H1      SINGLE       n     1.036  0.0160     0.892  0.0200
+6LR          C3          H3      SINGLE       n     1.089  0.0100     0.985  0.0100
+6LR          C3          H4      SINGLE       n     1.089  0.0100     0.985  0.0100
+6LR          C2          H5      SINGLE       n     1.089  0.0100     0.985  0.0100
+6LR          C2          H6      SINGLE       n     1.089  0.0100     0.985  0.0100
+6LR          C5          H7      SINGLE       n     1.089  0.0100     0.985  0.0100
+6LR          C5          H8      SINGLE       n     1.089  0.0100     0.985  0.0100
+6LR          C6          H9      SINGLE       n     1.089  0.0100     0.985  0.0100
+6LR          C6         H10      SINGLE       n     1.089  0.0100     0.985  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+6LR          C5          N4          C3     109.817    1.50
+6LR          C5          N4          H1     108.995    2.12
+6LR          C3          N4          H1     108.995    2.12
+6LR          C2          C3          N4     111.558    1.53
+6LR          C2          C3          H3     109.289    1.50
+6LR          C2          C3          H4     109.289    1.50
+6LR          N4          C3          H3     109.272    1.50
+6LR          N4          C3          H4     109.272    1.50
+6LR          H3          C3          H4     108.063    1.50
+6LR          O1          C2          C3     111.088    1.50
+6LR          O1          C2          H5     109.195    1.50
+6LR          O1          C2          H6     109.195    1.50
+6LR          C3          C2          H5     109.383    1.50
+6LR          C3          C2          H6     109.383    1.50
+6LR          H5          C2          H6     108.175    1.50
+6LR          C6          C5          N4     111.558    1.53
+6LR          C6          C5          H7     109.289    1.50
+6LR          C6          C5          H8     109.289    1.50
+6LR          N4          C5          H7     109.272    1.50
+6LR          N4          C5          H8     109.272    1.50
+6LR          H7          C5          H8     108.063    1.50
+6LR          O1          C6          C5     111.088    1.50
+6LR          O1          C6          H9     109.195    1.50
+6LR          O1          C6         H10     109.195    1.50
+6LR          C5          C6          H9     109.383    1.50
+6LR          C5          C6         H10     109.383    1.50
+6LR          H9          C6         H10     108.175    1.50
+6LR          C6          O1          C2     109.829    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+6LR            sp3_sp3_31          C2          C3          N4          C5     180.000    10.0     3
+6LR             sp3_sp3_1          C6          C5          N4          C3      60.000    10.0     3
+6LR            sp3_sp3_22          O1          C2          C3          N4      60.000    10.0     3
+6LR            sp3_sp3_19          C3          C2          O1          C6     -60.000    10.0     3
+6LR             sp3_sp3_7          N4          C5          C6          O1     -60.000    10.0     3
+6LR            sp3_sp3_16          C5          C6          O1          C2      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+6LR    chir_1    N4    C5    C3    H1    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+6LR           SMILES              ACDLabs 12.01                                 N1CCOCC1
+6LR            InChI                InChI  1.03 InChI=1S/C4H9NO/c1-3-6-4-2-5-1/h5H,1-4H2
+6LR         InChIKey                InChI  1.03              YNAVUWVOSKDBBP-UHFFFAOYSA-N
+6LR SMILES_CANONICAL               CACTVS 3.385                                 C1COCCN1
+6LR           SMILES               CACTVS 3.385                                 C1COCCN1
+6LR SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                 C1COCCN1
+6LR           SMILES "OpenEye OEToolkits" 2.0.4                                 C1COCCN1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+6LR acedrg               243         "dictionary generator"                  
+6LR acedrg_database      11          "data source"                           
+6LR rdkit                2017.03.2   "Chemoinformatics tool"
+6LR refmac5              5.8.0238    "optimization tool"                     

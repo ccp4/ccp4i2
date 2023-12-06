@@ -1,0 +1,484 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NCK     NCK      3,6-Bis[3-(4-methylpiperidino)propionamido]acridine     NON-POLYMER     79     38     .     
+#
+data_comp_NCK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NCK     O39     O       O       0       -13.707     0.344       -10.856     
+NCK     C9      C       C       0       -13.868     1.316       -11.583     
+NCK     C10     C       CH2     0       -13.791     1.205       -13.089     
+NCK     C13     C       CH2     0       -12.559     1.872       -13.673     
+NCK     N16     N       NT      0       -12.469     1.688       -15.136     
+NCK     C18     C       CH2     0       -11.821     0.415       -15.480     
+NCK     C27     C       CH2     0       -11.846     0.179       -16.980     
+NCK     C30     C       CH1     0       -11.195     1.313       -17.757     
+NCK     C20     C       CH3     0       -11.317     1.120       -19.266     
+NCK     C33     C       CH2     0       -11.780     2.642       -17.301     
+NCK     C36     C       CH2     0       -11.767     2.801       -15.791     
+NCK     N7      N       NH1     0       -14.134     2.555       -11.108     
+NCK     C6      C       CR6     0       -13.984     3.035       -9.773      
+NCK     C40     C       CR16    0       -15.072     3.755       -9.200      
+NCK     C42     C       CR16    0       -14.998     4.242       -7.925      
+NCK     C4      C       CR16    0       -12.842     2.826       -9.034      
+NCK     C3      C       CR66    0       -12.728     3.317       -7.703      
+NCK     N1      N       NRD6    0       -11.585     3.082       -7.027      
+NCK     C44     C       CR66    0       -13.828     4.042       -7.132      
+NCK     C45     C       CR16    0       -13.691     4.513       -5.830      
+NCK     C2      C       CR66    0       -12.520     4.281       -5.115      
+NCK     C87     C       CR66    0       -11.471     3.546       -5.766      
+NCK     C47     C       CR16    0       -12.308     4.732       -3.778      
+NCK     C49     C       CR16    0       -11.134     4.472       -3.128      
+NCK     C51     C       CR6     0       -10.089     3.744       -3.767      
+NCK     C85     C       CR16    0       -10.263     3.295       -5.057      
+NCK     N52     N       NH1     0       -8.892      3.511       -3.029      
+NCK     C54     C       C       0       -7.614      3.724       -3.425      
+NCK     O84     O       O       0       -7.324      4.369       -4.424      
+NCK     C55     C       CH2     0       -6.554      3.111       -2.537      
+NCK     C58     C       CH2     0       -6.505      1.597       -2.627      
+NCK     N61     N       NT      0       -5.441      1.023       -1.778      
+NCK     C63     C       CH2     0       -5.774      -0.332      -1.317      
+NCK     C66     C       CH2     0       -4.717      -0.860      -0.363      
+NCK     C69     C       CH1     0       -3.320      -0.841      -0.967      
+NCK     C77     C       CH3     0       -2.253      -1.270      0.036       
+NCK     C72     C       CH2     0       -3.038      0.536       -1.548      
+NCK     C75     C       CH2     0       -4.146      1.013       -2.471      
+NCK     H10     H       H       0       -14.596     1.614       -13.479     
+NCK     H10A    H       H       0       -13.793     0.254       -13.335     
+NCK     H13     H       H       0       -11.759     1.502       -13.251     
+NCK     H13A    H       H       0       -12.588     2.827       -13.467     
+NCK     H18     H       H       0       -10.899     0.430       -15.170     
+NCK     H18A    H       H       0       -12.279     -0.315      -15.029     
+NCK     H27     H       H       0       -12.774     0.081       -17.272     
+NCK     H27A    H       H       0       -11.379     -0.657      -17.180     
+NCK     H30     H       H       0       -10.236     1.317       -17.531     
+NCK     H20     H       H       0       -11.762     1.886       -19.663     
+NCK     H20A    H       H       0       -11.832     0.318       -19.456     
+NCK     H20B    H       H       0       -10.431     1.029       -19.652     
+NCK     H33     H       H       0       -12.701     2.713       -17.621     
+NCK     H33A    H       H       0       -11.267     3.372       -17.703     
+NCK     H36     H       H       0       -10.848     2.832       -15.474     
+NCK     H36A    H       H       0       -12.197     3.641       -15.553     
+NCK     HN7     H       H       0       -14.440     3.145       -11.678     
+NCK     H40     H       H       0       -15.851     3.897       -9.704      
+NCK     H42     H       H       0       -15.728     4.714       -7.567      
+NCK     H4      H       H       0       -12.124     2.350       -9.411      
+NCK     H45     H       H       0       -14.395     4.991       -5.430      
+NCK     H47     H       H       0       -12.984     5.214       -3.337      
+NCK     H49     H       H       0       -11.015     4.778       -2.249      
+NCK     H85     H       H       0       -9.573      2.814       -5.480      
+NCK     HN52    H       H       0       -9.013      3.195       -2.222      
+NCK     H55     H       H       0       -6.728      3.374       -1.606      
+NCK     H55A    H       H       0       -5.680      3.480       -2.791      
+NCK     H58     H       H       0       -6.354      1.332       -3.556      
+NCK     H58A    H       H       0       -7.370      1.235       -2.353      
+NCK     H63     H       H       0       -6.636      -0.319      -0.865      
+NCK     H63A    H       H       0       -5.845      -0.925      -2.086      
+NCK     H66     H       H       0       -4.944      -1.778      -0.111      
+NCK     H66A    H       H       0       -4.722      -0.317      0.450       
+NCK     H69     H       H       0       -3.309      -1.486      -1.711      
+NCK     H77     H       H       0       -1.556      -0.595      0.086       
+NCK     H77A    H       H       0       -1.862      -2.112      -0.249      
+NCK     H77B    H       H       0       -2.650      -1.384      0.915       
+NCK     H72     H       H       0       -2.197      0.508       -2.046      
+NCK     H72A    H       H       0       -2.933      1.177       -0.817      
+NCK     H75     H       H       0       -3.940      1.909       -2.788      
+NCK     H75A    H       H       0       -4.199      0.424       -3.244      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NCK         O39          C9      DOUBLE       n     1.223  0.0143     1.223  0.0143
+NCK          C9         C10      SINGLE       n     1.510  0.0135     1.510  0.0135
+NCK          C9          N7      SINGLE       n     1.350  0.0120     1.350  0.0120
+NCK         C10         C13      SINGLE       n     1.516  0.0178     1.516  0.0178
+NCK         C13         N16      SINGLE       n     1.468  0.0141     1.468  0.0141
+NCK         N16         C36      SINGLE       n     1.462  0.0143     1.462  0.0143
+NCK         N16         C18      SINGLE       n     1.462  0.0143     1.462  0.0143
+NCK         C18         C27      SINGLE       n     1.517  0.0100     1.517  0.0100
+NCK         C27         C30      SINGLE       n     1.519  0.0100     1.519  0.0100
+NCK         C30         C33      SINGLE       n     1.519  0.0100     1.519  0.0100
+NCK         C30         C20      SINGLE       n     1.524  0.0100     1.524  0.0100
+NCK         C33         C36      SINGLE       n     1.517  0.0100     1.517  0.0100
+NCK          N7          C6      SINGLE       n     1.422  0.0200     1.422  0.0200
+NCK          C6          C4      SINGLE       y     1.368  0.0156     1.368  0.0156
+NCK          C6         C40      DOUBLE       y     1.413  0.0163     1.413  0.0163
+NCK         C40         C42      SINGLE       y     1.362  0.0108     1.362  0.0108
+NCK         C42         C44      DOUBLE       y     1.424  0.0100     1.424  0.0100
+NCK          C4          C3      DOUBLE       y     1.421  0.0100     1.421  0.0100
+NCK          C3          N1      SINGLE       y     1.345  0.0100     1.345  0.0100
+NCK          C3         C44      SINGLE       y     1.431  0.0100     1.431  0.0100
+NCK          N1         C87      DOUBLE       y     1.345  0.0100     1.345  0.0100
+NCK         C44         C45      SINGLE       y     1.388  0.0100     1.388  0.0100
+NCK         C45          C2      DOUBLE       y     1.388  0.0100     1.388  0.0100
+NCK          C2         C87      SINGLE       y     1.431  0.0100     1.431  0.0100
+NCK          C2         C47      SINGLE       y     1.424  0.0100     1.424  0.0100
+NCK         C87         C85      SINGLE       y     1.421  0.0100     1.421  0.0100
+NCK         C47         C49      DOUBLE       y     1.362  0.0108     1.362  0.0108
+NCK         C49         C51      SINGLE       y     1.413  0.0163     1.413  0.0163
+NCK         C51         C85      DOUBLE       y     1.368  0.0156     1.368  0.0156
+NCK         C51         N52      SINGLE       n     1.422  0.0200     1.422  0.0200
+NCK         N52         C54      SINGLE       n     1.350  0.0120     1.350  0.0120
+NCK         C54         O84      DOUBLE       n     1.223  0.0143     1.223  0.0143
+NCK         C54         C55      SINGLE       n     1.510  0.0135     1.510  0.0135
+NCK         C55         C58      SINGLE       n     1.516  0.0178     1.516  0.0178
+NCK         C58         N61      SINGLE       n     1.468  0.0141     1.468  0.0141
+NCK         N61         C63      SINGLE       n     1.462  0.0143     1.462  0.0143
+NCK         N61         C75      SINGLE       n     1.462  0.0143     1.462  0.0143
+NCK         C63         C66      SINGLE       n     1.517  0.0100     1.517  0.0100
+NCK         C66         C69      SINGLE       n     1.519  0.0100     1.519  0.0100
+NCK         C69         C77      SINGLE       n     1.524  0.0100     1.524  0.0100
+NCK         C69         C72      SINGLE       n     1.519  0.0100     1.519  0.0100
+NCK         C72         C75      SINGLE       n     1.517  0.0100     1.517  0.0100
+NCK         C10         H10      SINGLE       n     1.089  0.0100     0.983  0.0105
+NCK         C10        H10A      SINGLE       n     1.089  0.0100     0.983  0.0105
+NCK         C13         H13      SINGLE       n     1.089  0.0100     0.977  0.0100
+NCK         C13        H13A      SINGLE       n     1.089  0.0100     0.977  0.0100
+NCK         C18         H18      SINGLE       n     1.089  0.0100     0.973  0.0129
+NCK         C18        H18A      SINGLE       n     1.089  0.0100     0.973  0.0129
+NCK         C27         H27      SINGLE       n     1.089  0.0100     0.978  0.0101
+NCK         C27        H27A      SINGLE       n     1.089  0.0100     0.978  0.0101
+NCK         C30         H30      SINGLE       n     1.089  0.0100     0.985  0.0132
+NCK         C20         H20      SINGLE       n     1.089  0.0100     0.971  0.0171
+NCK         C20        H20A      SINGLE       n     1.089  0.0100     0.971  0.0171
+NCK         C20        H20B      SINGLE       n     1.089  0.0100     0.971  0.0171
+NCK         C33         H33      SINGLE       n     1.089  0.0100     0.978  0.0101
+NCK         C33        H33A      SINGLE       n     1.089  0.0100     0.978  0.0101
+NCK         C36         H36      SINGLE       n     1.089  0.0100     0.973  0.0129
+NCK         C36        H36A      SINGLE       n     1.089  0.0100     0.973  0.0129
+NCK          N7         HN7      SINGLE       n     1.016  0.0100     0.874  0.0200
+NCK         C40         H40      SINGLE       n     1.082  0.0130     0.938  0.0125
+NCK         C42         H42      SINGLE       n     1.082  0.0130     0.940  0.0117
+NCK          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0128
+NCK         C45         H45      SINGLE       n     1.082  0.0130     0.940  0.0181
+NCK         C47         H47      SINGLE       n     1.082  0.0130     0.940  0.0117
+NCK         C49         H49      SINGLE       n     1.082  0.0130     0.938  0.0125
+NCK         C85         H85      SINGLE       n     1.082  0.0130     0.941  0.0128
+NCK         N52        HN52      SINGLE       n     1.016  0.0100     0.874  0.0200
+NCK         C55         H55      SINGLE       n     1.089  0.0100     0.983  0.0105
+NCK         C55        H55A      SINGLE       n     1.089  0.0100     0.983  0.0105
+NCK         C58         H58      SINGLE       n     1.089  0.0100     0.977  0.0100
+NCK         C58        H58A      SINGLE       n     1.089  0.0100     0.977  0.0100
+NCK         C63         H63      SINGLE       n     1.089  0.0100     0.973  0.0129
+NCK         C63        H63A      SINGLE       n     1.089  0.0100     0.973  0.0129
+NCK         C66         H66      SINGLE       n     1.089  0.0100     0.978  0.0101
+NCK         C66        H66A      SINGLE       n     1.089  0.0100     0.978  0.0101
+NCK         C69         H69      SINGLE       n     1.089  0.0100     0.985  0.0132
+NCK         C77         H77      SINGLE       n     1.089  0.0100     0.971  0.0171
+NCK         C77        H77A      SINGLE       n     1.089  0.0100     0.971  0.0171
+NCK         C77        H77B      SINGLE       n     1.089  0.0100     0.971  0.0171
+NCK         C72         H72      SINGLE       n     1.089  0.0100     0.978  0.0101
+NCK         C72        H72A      SINGLE       n     1.089  0.0100     0.978  0.0101
+NCK         C75         H75      SINGLE       n     1.089  0.0100     0.973  0.0129
+NCK         C75        H75A      SINGLE       n     1.089  0.0100     0.973  0.0129
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NCK         O39          C9         C10     122.246    1.50
+NCK         O39          C9          N7     123.018    1.50
+NCK         C10          C9          N7     114.736    1.50
+NCK          C9         C10         C13     112.881    1.57
+NCK          C9         C10         H10     108.894    1.50
+NCK          C9         C10        H10A     108.894    1.50
+NCK         C13         C10         H10     109.274    1.50
+NCK         C13         C10        H10A     109.274    1.50
+NCK         H10         C10        H10A     107.705    1.50
+NCK         C10         C13         N16     112.194    1.50
+NCK         C10         C13         H13     109.287    1.50
+NCK         C10         C13        H13A     109.287    1.50
+NCK         N16         C13         H13     108.728    1.50
+NCK         N16         C13        H13A     108.728    1.50
+NCK         H13         C13        H13A     107.831    1.50
+NCK         C13         N16         C36     110.653    1.50
+NCK         C13         N16         C18     110.653    1.50
+NCK         C36         N16         C18     109.788    1.50
+NCK         N16         C18         C27     111.082    1.50
+NCK         N16         C18         H18     109.353    1.50
+NCK         N16         C18        H18A     109.353    1.50
+NCK         C27         C18         H18     109.668    1.50
+NCK         C27         C18        H18A     109.668    1.50
+NCK         H18         C18        H18A     108.159    1.50
+NCK         C18         C27         C30     112.337    1.50
+NCK         C18         C27         H27     109.101    1.50
+NCK         C18         C27        H27A     109.101    1.50
+NCK         C30         C27         H27     109.139    1.50
+NCK         C30         C27        H27A     109.139    1.50
+NCK         H27         C27        H27A     107.890    1.50
+NCK         C27         C30         C33     109.365    1.50
+NCK         C27         C30         C20     111.853    1.50
+NCK         C27         C30         H30     107.894    1.50
+NCK         C33         C30         C20     111.853    1.50
+NCK         C33         C30         H30     107.894    1.50
+NCK         C20         C30         H30     108.049    1.50
+NCK         C30         C20         H20     109.597    1.50
+NCK         C30         C20        H20A     109.597    1.50
+NCK         C30         C20        H20B     109.597    1.50
+NCK         H20         C20        H20A     109.342    1.50
+NCK         H20         C20        H20B     109.342    1.50
+NCK        H20A         C20        H20B     109.342    1.50
+NCK         C30         C33         C36     112.337    1.50
+NCK         C30         C33         H33     109.139    1.50
+NCK         C30         C33        H33A     109.139    1.50
+NCK         C36         C33         H33     109.101    1.50
+NCK         C36         C33        H33A     109.101    1.50
+NCK         H33         C33        H33A     107.890    1.50
+NCK         N16         C36         C33     111.082    1.50
+NCK         N16         C36         H36     109.353    1.50
+NCK         N16         C36        H36A     109.353    1.50
+NCK         C33         C36         H36     109.668    1.50
+NCK         C33         C36        H36A     109.668    1.50
+NCK         H36         C36        H36A     108.159    1.50
+NCK          C9          N7          C6     127.724    2.00
+NCK          C9          N7         HN7     116.909    1.57
+NCK          C6          N7         HN7     115.367    2.19
+NCK          N7          C6          C4     122.851    2.44
+NCK          N7          C6         C40     117.805    3.00
+NCK          C4          C6         C40     119.344    2.03
+NCK          C6         C40         C42     120.598    1.50
+NCK          C6         C40         H40     119.741    1.50
+NCK         C42         C40         H40     119.661    1.50
+NCK         C40         C42         C44     120.788    1.50
+NCK         C40         C42         H42     119.477    1.50
+NCK         C44         C42         H42     119.735    1.50
+NCK          C6          C4          C3     121.137    1.50
+NCK          C6          C4          H4     119.649    1.50
+NCK          C3          C4          H4     119.214    1.50
+NCK          C4          C3          N1     118.241    1.50
+NCK          C4          C3         C44     119.261    1.50
+NCK          N1          C3         C44     122.499    1.50
+NCK          C3          N1         C87     118.398    1.50
+NCK         C42         C44          C3     118.872    1.50
+NCK         C42         C44         C45     123.157    1.50
+NCK          C3         C44         C45     117.971    1.50
+NCK         C44         C45          C2     120.662    1.50
+NCK         C44         C45         H45     119.669    1.50
+NCK          C2         C45         H45     119.669    1.50
+NCK         C45          C2         C87     117.971    1.50
+NCK         C45          C2         C47     123.157    1.50
+NCK         C87          C2         C47     118.872    1.50
+NCK          N1         C87          C2     122.499    1.50
+NCK          N1         C87         C85     118.241    1.50
+NCK          C2         C87         C85     119.261    1.50
+NCK          C2         C47         C49     120.788    1.50
+NCK          C2         C47         H47     119.735    1.50
+NCK         C49         C47         H47     119.477    1.50
+NCK         C47         C49         C51     120.598    1.50
+NCK         C47         C49         H49     119.661    1.50
+NCK         C51         C49         H49     119.741    1.50
+NCK         C49         C51         C85     119.344    2.03
+NCK         C49         C51         N52     117.805    3.00
+NCK         C85         C51         N52     122.851    2.44
+NCK         C87         C85         C51     121.137    1.50
+NCK         C87         C85         H85     119.214    1.50
+NCK         C51         C85         H85     119.649    1.50
+NCK         C51         N52         C54     127.724    2.00
+NCK         C51         N52        HN52     115.367    2.19
+NCK         C54         N52        HN52     116.909    1.57
+NCK         N52         C54         O84     123.018    1.50
+NCK         N52         C54         C55     114.736    1.50
+NCK         O84         C54         C55     122.246    1.50
+NCK         C54         C55         C58     112.881    1.57
+NCK         C54         C55         H55     108.894    1.50
+NCK         C54         C55        H55A     108.894    1.50
+NCK         C58         C55         H55     109.274    1.50
+NCK         C58         C55        H55A     109.274    1.50
+NCK         H55         C55        H55A     107.705    1.50
+NCK         C55         C58         N61     112.194    1.50
+NCK         C55         C58         H58     109.287    1.50
+NCK         C55         C58        H58A     109.287    1.50
+NCK         N61         C58         H58     108.728    1.50
+NCK         N61         C58        H58A     108.728    1.50
+NCK         H58         C58        H58A     107.831    1.50
+NCK         C58         N61         C63     110.653    1.50
+NCK         C58         N61         C75     110.653    1.50
+NCK         C63         N61         C75     109.788    1.50
+NCK         N61         C63         C66     111.082    1.50
+NCK         N61         C63         H63     109.353    1.50
+NCK         N61         C63        H63A     109.353    1.50
+NCK         C66         C63         H63     109.668    1.50
+NCK         C66         C63        H63A     109.668    1.50
+NCK         H63         C63        H63A     108.159    1.50
+NCK         C63         C66         C69     112.337    1.50
+NCK         C63         C66         H66     109.101    1.50
+NCK         C63         C66        H66A     109.101    1.50
+NCK         C69         C66         H66     109.139    1.50
+NCK         C69         C66        H66A     109.139    1.50
+NCK         H66         C66        H66A     107.890    1.50
+NCK         C66         C69         C77     111.853    1.50
+NCK         C66         C69         C72     109.365    1.50
+NCK         C66         C69         H69     107.894    1.50
+NCK         C77         C69         C72     111.853    1.50
+NCK         C77         C69         H69     108.049    1.50
+NCK         C72         C69         H69     107.894    1.50
+NCK         C69         C77         H77     109.597    1.50
+NCK         C69         C77        H77A     109.597    1.50
+NCK         C69         C77        H77B     109.597    1.50
+NCK         H77         C77        H77A     109.342    1.50
+NCK         H77         C77        H77B     109.342    1.50
+NCK        H77A         C77        H77B     109.342    1.50
+NCK         C69         C72         C75     112.337    1.50
+NCK         C69         C72         H72     109.139    1.50
+NCK         C69         C72        H72A     109.139    1.50
+NCK         C75         C72         H72     109.101    1.50
+NCK         C75         C72        H72A     109.101    1.50
+NCK         H72         C72        H72A     107.890    1.50
+NCK         N61         C75         C72     111.082    1.50
+NCK         N61         C75         H75     109.353    1.50
+NCK         N61         C75        H75A     109.353    1.50
+NCK         C72         C75         H75     109.668    1.50
+NCK         C72         C75        H75A     109.668    1.50
+NCK         H75         C75        H75A     108.159    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NCK             sp2_sp2_5          C4          C6          N7          C9     180.000     5.0     2
+NCK              const_54         C42         C40          C6          N7     180.000    10.0     2
+NCK              const_34          C3          C4          C6          N7     180.000    10.0     2
+NCK              const_49          C6         C40         C42         C44       0.000    10.0     2
+NCK              const_45         C40         C42         C44          C3       0.000    10.0     2
+NCK              const_39          N1          C3          C4          C6     180.000    10.0     2
+NCK       const_sp2_sp2_2          C4          C3          N1         C87     180.000     5.0     2
+NCK              const_41          C4          C3         C44         C42       0.000    10.0     2
+NCK       const_sp2_sp2_3          C2         C87          N1          C3       0.000     5.0     2
+NCK              const_15         C42         C44         C45          C2     180.000    10.0     2
+NCK       const_sp2_sp2_9         C87          C2         C45         C44       0.000     5.0     2
+NCK             sp2_sp2_3         O39          C9          N7          C6       0.000     5.0     2
+NCK             sp2_sp3_2         O39          C9         C10         C13     120.000    10.0     6
+NCK       const_sp2_sp2_5         C45          C2         C87          N1       0.000     5.0     2
+NCK              const_59         C45          C2         C47         C49     180.000    10.0     2
+NCK              const_18         C51         C85         C87          N1     180.000    10.0     2
+NCK              const_29          C2         C47         C49         C51       0.000    10.0     2
+NCK              const_26         C47         C49         C51         N52     180.000    10.0     2
+NCK              const_23         N52         C51         C85         C87     180.000    10.0     2
+NCK             sp2_sp2_9         C49         C51         N52         C54     180.000     5.0     2
+NCK            sp2_sp2_15         O84         C54         N52         C51       0.000     5.0     2
+NCK             sp2_sp3_8         N52         C54         C55         C58     120.000    10.0     6
+NCK           sp3_sp3_115         C54         C55         C58         N61     180.000    10.0     3
+NCK            sp3_sp3_85          C9         C10         C13         N16     180.000    10.0     3
+NCK           sp3_sp3_125         C55         C58         N61         C63     -60.000    10.0     3
+NCK            sp3_sp3_44         C66         C63         N61         C58     180.000    10.0     3
+NCK           sp3_sp3_131         C72         C75         N61         C58     -60.000    10.0     3
+NCK            sp3_sp3_49         N61         C63         C66         C69     -60.000    10.0     3
+NCK            sp3_sp3_60         C63         C66         C69         C77     -60.000    10.0     3
+NCK           sp3_sp3_139         C66         C69         C77         H77      60.000    10.0     3
+NCK            sp3_sp3_70         C77         C69         C72         C75     180.000    10.0     3
+NCK            sp3_sp3_76         C69         C72         C75         N61      60.000    10.0     3
+NCK            sp3_sp3_95         C10         C13         N16         C36     -60.000    10.0     3
+NCK             sp3_sp3_2         C33         C36         N16         C13     180.000    10.0     3
+NCK           sp3_sp3_101         C27         C18         N16         C13     -60.000    10.0     3
+NCK            sp3_sp3_34         N16         C18         C27         C30      60.000    10.0     3
+NCK            sp3_sp3_27         C18         C27         C30         C20     180.000    10.0     3
+NCK           sp3_sp3_107         H20         C20         C30         C27     -60.000    10.0     3
+NCK            sp3_sp3_19         C20         C30         C33         C36     -60.000    10.0     3
+NCK             sp3_sp3_7         C30         C33         C36         N16     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NCK    chir_1    N16    C13    C36    C18    both
+NCK    chir_2    C30    C27    C33    C20    both
+NCK    chir_3    N61    C58    C63    C75    both
+NCK    chir_4    C69    C66    C72    C77    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NCK    plan-1          C2   0.020
+NCK    plan-1          C3   0.020
+NCK    plan-1          C4   0.020
+NCK    plan-1         C40   0.020
+NCK    plan-1         C42   0.020
+NCK    plan-1         C44   0.020
+NCK    plan-1         C45   0.020
+NCK    plan-1         C47   0.020
+NCK    plan-1         C49   0.020
+NCK    plan-1         C51   0.020
+NCK    plan-1          C6   0.020
+NCK    plan-1         C85   0.020
+NCK    plan-1         C87   0.020
+NCK    plan-1          H4   0.020
+NCK    plan-1         H40   0.020
+NCK    plan-1         H42   0.020
+NCK    plan-1         H45   0.020
+NCK    plan-1         H47   0.020
+NCK    plan-1         H49   0.020
+NCK    plan-1         H85   0.020
+NCK    plan-1          N1   0.020
+NCK    plan-1         N52   0.020
+NCK    plan-1          N7   0.020
+NCK    plan-2         C10   0.020
+NCK    plan-2          C9   0.020
+NCK    plan-2          N7   0.020
+NCK    plan-2         O39   0.020
+NCK    plan-3          C6   0.020
+NCK    plan-3          C9   0.020
+NCK    plan-3         HN7   0.020
+NCK    plan-3          N7   0.020
+NCK    plan-4         C51   0.020
+NCK    plan-4         C54   0.020
+NCK    plan-4        HN52   0.020
+NCK    plan-4         N52   0.020
+NCK    plan-5         C54   0.020
+NCK    plan-5         C55   0.020
+NCK    plan-5         N52   0.020
+NCK    plan-5         O84   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NCK           SMILES              ACDLabs 10.04                                                                                                                             O=C(Nc3cc2nc1cc(ccc1cc2cc3)NC(=O)CCN4CCC(CC4)C)CCN5CCC(C)CC5
+NCK SMILES_CANONICAL               CACTVS 3.341                                                                                                                             CC1CCN(CC1)CCC(=O)Nc2ccc3cc4ccc(NC(=O)CCN5CCC(C)CC5)cc4nc3c2
+NCK           SMILES               CACTVS 3.341                                                                                                                             CC1CCN(CC1)CCC(=O)Nc2ccc3cc4ccc(NC(=O)CCN5CCC(C)CC5)cc4nc3c2
+NCK SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                             CC1CCN(CC1)CCC(=O)Nc2ccc3cc4ccc(cc4nc3c2)NC(=O)CCN5CCC(CC5)C
+NCK           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                             CC1CCN(CC1)CCC(=O)Nc2ccc3cc4ccc(cc4nc3c2)NC(=O)CCN5CCC(CC5)C
+NCK            InChI                InChI  1.03 InChI=1S/C31H41N5O2/c1-22-7-13-35(14-8-22)17-11-30(37)32-26-5-3-24-19-25-4-6-27(21-29(25)34-28(24)20-26)33-31(38)12-18-36-15-9-23(2)10-16-36/h3-6,19-23H,7-18H2,1-2H3,(H,32,37)(H,33,38)
+NCK         InChIKey                InChI  1.03                                                                                                                                                              BQDBDQOPOGFTHF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NCK acedrg               243         "dictionary generator"                  
+NCK acedrg_database      11          "data source"                           
+NCK rdkit                2017.03.2   "Chemoinformatics tool"
+NCK refmac5              5.8.0238    "optimization tool"                     

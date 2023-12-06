@@ -1,0 +1,532 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NYA     NYA      (1R,3R,7E,17beta)-17-{(1R,2E,4R)-4-hydroxy-1-methyl-4-[(3S,5S,7S)-tricyclo[3.3.1.1~3,7~]dec-1-yl]but-2-en-1-yl}-2-methylidene-9,10-secoestra-5,7-diene-1,3-diol     NON-POLYMER     87     37     .     
+#
+data_comp_NYA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NYA     C35     C       CH1     0       7.750       6.632       26.768      
+NYA     C36     C       CH2     0       7.246       6.481       28.205      
+NYA     C38     C       CH2     0       7.014       5.642       25.862      
+NYA     C31     C       CH1     0       7.512       5.054       28.690      
+NYA     C32     C       CH2     0       6.777       4.063       27.785      
+NYA     C33     C       CH1     0       7.283       4.217       26.349      
+NYA     C17     C       CH1     0       14.951      7.547       27.597      
+NYA     C21     C       CH3     0       15.168      5.732       29.401      
+NYA     C16     C       CH2     0       15.780      6.882       26.464      
+NYA     C13     C       CT      0       14.198      8.703       26.860      
+NYA     C15     C       CH2     0       15.905      7.919       25.329      
+NYA     C14     C       CH1     0       15.342      9.205       25.926      
+NYA     C8      C       CR6     0       14.965      10.404      25.082      
+NYA     C12     C       CH2     0       13.784      9.891       27.731      
+NYA     C18     C       CH3     0       12.987      8.189       26.054      
+NYA     C7      C       C1      0       15.113      10.423      23.749      
+NYA     C9      C       CH2     0       14.467      11.556      25.921      
+NYA     C6      C       C1      0       14.832      11.475      22.891      
+NYA     C23     C       C1      0       11.977      5.550       27.902      
+NYA     C22     C       C1      0       13.287      5.611       27.793      
+NYA     C24     C       CH1     0       11.079      4.625       27.137      
+NYA     C20     C       CH1     0       14.210      6.554       28.526      
+NYA     C29     C       CT      0       9.566       4.915       27.210      
+NYA     C28     C       C2      0       14.151      11.182      17.445      
+NYA     C30     C       CH2     0       9.022       4.769       28.644      
+NYA     C34     C       CH2     0       8.793       3.937       26.305      
+NYA     C37     C       CH2     0       9.259       6.344       26.724      
+NYA     C5      C       CR6     0       14.290      11.400      21.650      
+NYA     C10     C       CH2     0       13.880      10.128      20.947      
+NYA     C4      C       CH2     0       14.033      12.618      20.801      
+NYA     C11     C       CH2     0       13.387      11.127      26.923      
+NYA     C1      C       CH1     0       14.580      9.965       19.593      
+NYA     C2      C       CR6     0       14.451      11.212      18.734      
+NYA     C3      C       CH1     0       14.723      12.523      19.442      
+NYA     O3      O       OH1     0       11.351      3.316       27.612      
+NYA     O2      O       OH1     0       16.125      12.691      19.625      
+NYA     O1      O       OH1     0       14.064      8.783       18.985      
+NYA     H35     H       H       0       7.582       7.557       26.453      
+NYA     H36     H       H       0       7.708       7.124       28.790      
+NYA     H36A    H       H       0       6.281       6.671       28.242      
+NYA     H38     H       H       0       6.047       5.826       25.883      
+NYA     H38A    H       H       0       7.326       5.743       24.934      
+NYA     H31     H       H       0       7.188       4.955       29.622      
+NYA     H32     H       H       0       6.938       3.144       28.098      
+NYA     H32A    H       H       0       5.809       4.235       27.818      
+NYA     H33     H       H       0       6.812       3.572       25.760      
+NYA     H17     H       H       0       15.607      8.000       28.179      
+NYA     H21     H       H       0       16.089      5.923       29.152      
+NYA     H21A    H       H       0       14.995      4.782       29.281      
+NYA     H21B    H       H       0       15.033      5.967       30.335      
+NYA     H16     H       H       0       16.667      6.637       26.797      
+NYA     H16A    H       H       0       15.342      6.077       26.133      
+NYA     H15     H       H       0       15.392      7.643       24.553      
+NYA     H15A    H       H       0       16.831      8.036       25.066      
+NYA     H14     H       H       0       16.044      9.529       26.529      
+NYA     H12     H       H       0       14.533      10.129      28.331      
+NYA     H12A    H       H       0       13.023      9.624       28.302      
+NYA     H18     H       H       0       12.231      8.065       26.653      
+NYA     H18A    H       H       0       13.198      7.342       25.627      
+NYA     H18B    H       H       0       12.743      8.834       25.370      
+NYA     H7      H       H       0       15.462      9.643       23.362      
+NYA     H9      H       H       0       14.102      12.245      25.346      
+NYA     H9A     H       H       0       15.215      11.938      26.406      
+NYA     H6      H       H       0       15.053      12.334      23.200      
+NYA     H23     H       H       0       11.568      6.141       28.515      
+NYA     H22     H       H       0       13.695      4.984       27.218      
+NYA     H24     H       H       0       11.351      4.663       26.188      
+NYA     H20     H       H       0       13.650      7.093       29.137      
+NYA     H28     H       H       0       14.073      11.978      16.960      
+NYA     H28A    H       H       0       14.023      10.368      17.003      
+NYA     H30     H       H       0       9.192       3.851       28.971      
+NYA     H30A    H       H       0       9.492       5.400       29.244      
+NYA     H34     H       H       0       9.119       4.026       25.374      
+NYA     H34A    H       H       0       8.962       3.008       26.602      
+NYA     H37     H       H       0       9.730       7.000       27.296      
+NYA     H37A    H       H       0       9.589       6.453       25.797      
+NYA     H10     H       H       0       14.087      9.354       21.504      
+NYA     H10A    H       H       0       12.913      10.140      20.804      
+NYA     H4      H       H       0       14.353      13.417      21.265      
+NYA     H4A     H       H       0       13.070      12.718      20.663      
+NYA     H11     H       H       0       13.216      11.864      27.536      
+NYA     H11A    H       H       0       12.559      10.946      26.443      
+NYA     H1      H       H       0       15.535      9.812       19.753      
+NYA     H3      H       H       0       14.409      13.258      18.873      
+NYA     HO3     H       H       0       11.350      2.770       26.962      
+NYA     HO2     H       H       0       16.478      12.896      18.887      
+NYA     HO1     H       H       0       13.240      8.869       18.829      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NYA         C35         C36      SINGLE       n     1.527  0.0103     1.527  0.0103
+NYA         C35         C38      SINGLE       n     1.527  0.0103     1.527  0.0103
+NYA         C35         C37      SINGLE       n     1.533  0.0100     1.533  0.0100
+NYA         C36         C31      SINGLE       n     1.527  0.0103     1.527  0.0103
+NYA         C38         C33      SINGLE       n     1.527  0.0103     1.527  0.0103
+NYA         C31         C32      SINGLE       n     1.527  0.0103     1.527  0.0103
+NYA         C31         C30      SINGLE       n     1.533  0.0100     1.533  0.0100
+NYA         C32         C33      SINGLE       n     1.527  0.0103     1.527  0.0103
+NYA         C33         C34      SINGLE       n     1.533  0.0100     1.533  0.0100
+NYA         C17         C16      SINGLE       n     1.550  0.0100     1.550  0.0100
+NYA         C17         C13      SINGLE       n     1.550  0.0170     1.550  0.0170
+NYA         C17         C20      SINGLE       n     1.539  0.0100     1.539  0.0100
+NYA         C21         C20      SINGLE       n     1.532  0.0100     1.532  0.0100
+NYA         C16         C15      SINGLE       n     1.540  0.0100     1.540  0.0100
+NYA         C13         C14      SINGLE       n     1.554  0.0100     1.554  0.0100
+NYA         C13         C12      SINGLE       n     1.528  0.0100     1.528  0.0100
+NYA         C13         C18      SINGLE       n     1.537  0.0100     1.537  0.0100
+NYA         C15         C14      SINGLE       n     1.522  0.0100     1.522  0.0100
+NYA         C14          C8      SINGLE       n     1.506  0.0107     1.506  0.0107
+NYA          C8          C7      DOUBLE       n     1.334  0.0110     1.334  0.0110
+NYA          C8          C9      SINGLE       n     1.504  0.0100     1.504  0.0100
+NYA         C12         C11      SINGLE       n     1.527  0.0100     1.527  0.0100
+NYA          C7          C6      SINGLE       n     1.376  0.0200     1.376  0.0200
+NYA          C9         C11      SINGLE       n     1.532  0.0100     1.532  0.0100
+NYA          C6          C5      DOUBLE       n     1.342  0.0200     1.342  0.0200
+NYA         C23         C22      DOUBLE       n     1.315  0.0200     1.315  0.0200
+NYA         C23         C24      SINGLE       n     1.497  0.0100     1.497  0.0100
+NYA         C22         C20      SINGLE       n     1.503  0.0135     1.503  0.0135
+NYA         C24         C29      SINGLE       n     1.536  0.0104     1.536  0.0104
+NYA         C24          O3      SINGLE       n     1.417  0.0135     1.417  0.0135
+NYA         C29         C30      SINGLE       n     1.534  0.0100     1.534  0.0100
+NYA         C29         C34      SINGLE       n     1.534  0.0100     1.534  0.0100
+NYA         C29         C37      SINGLE       n     1.534  0.0100     1.534  0.0100
+NYA         C28          C2      DOUBLE       n     1.321  0.0103     1.321  0.0103
+NYA          C5         C10      SINGLE       n     1.504  0.0130     1.504  0.0130
+NYA          C5          C4      SINGLE       n     1.504  0.0130     1.504  0.0130
+NYA         C10          C1      SINGLE       n     1.523  0.0173     1.523  0.0173
+NYA          C4          C3      SINGLE       n     1.523  0.0173     1.523  0.0173
+NYA          C1          C2      SINGLE       n     1.509  0.0131     1.509  0.0131
+NYA          C1          O1      SINGLE       n     1.424  0.0100     1.424  0.0100
+NYA          C2          C3      SINGLE       n     1.509  0.0131     1.509  0.0131
+NYA          C3          O2      SINGLE       n     1.424  0.0100     1.424  0.0100
+NYA         C35         H35      SINGLE       n     1.089  0.0100     0.992  0.0157
+NYA         C36         H36      SINGLE       n     1.089  0.0100     0.984  0.0144
+NYA         C36        H36A      SINGLE       n     1.089  0.0100     0.984  0.0144
+NYA         C38         H38      SINGLE       n     1.089  0.0100     0.984  0.0144
+NYA         C38        H38A      SINGLE       n     1.089  0.0100     0.984  0.0144
+NYA         C31         H31      SINGLE       n     1.089  0.0100     0.992  0.0157
+NYA         C32         H32      SINGLE       n     1.089  0.0100     0.984  0.0144
+NYA         C32        H32A      SINGLE       n     1.089  0.0100     0.984  0.0144
+NYA         C33         H33      SINGLE       n     1.089  0.0100     0.992  0.0157
+NYA         C17         H17      SINGLE       n     1.089  0.0100     0.987  0.0107
+NYA         C21         H21      SINGLE       n     1.089  0.0100     0.973  0.0141
+NYA         C21        H21A      SINGLE       n     1.089  0.0100     0.973  0.0141
+NYA         C21        H21B      SINGLE       n     1.089  0.0100     0.973  0.0141
+NYA         C16         H16      SINGLE       n     1.089  0.0100     0.978  0.0141
+NYA         C16        H16A      SINGLE       n     1.089  0.0100     0.978  0.0141
+NYA         C15         H15      SINGLE       n     1.089  0.0100     0.970  0.0100
+NYA         C15        H15A      SINGLE       n     1.089  0.0100     0.970  0.0100
+NYA         C14         H14      SINGLE       n     1.089  0.0100     0.980  0.0100
+NYA         C12         H12      SINGLE       n     1.089  0.0100     0.988  0.0200
+NYA         C12        H12A      SINGLE       n     1.089  0.0100     0.988  0.0200
+NYA         C18         H18      SINGLE       n     1.089  0.0100     0.974  0.0200
+NYA         C18        H18A      SINGLE       n     1.089  0.0100     0.974  0.0200
+NYA         C18        H18B      SINGLE       n     1.089  0.0100     0.974  0.0200
+NYA          C7          H7      SINGLE       n     1.082  0.0130     0.940  0.0103
+NYA          C9          H9      SINGLE       n     1.089  0.0100     0.970  0.0100
+NYA          C9         H9A      SINGLE       n     1.089  0.0100     0.970  0.0100
+NYA          C6          H6      SINGLE       n     1.082  0.0130     0.940  0.0103
+NYA         C23         H23      SINGLE       n     1.082  0.0130     0.945  0.0200
+NYA         C22         H22      SINGLE       n     1.082  0.0130     0.945  0.0200
+NYA         C24         H24      SINGLE       n     1.089  0.0100     0.987  0.0181
+NYA         C20         H20      SINGLE       n     1.089  0.0100     0.988  0.0100
+NYA         C28         H28      SINGLE       n     1.082  0.0130     0.935  0.0139
+NYA         C28        H28A      SINGLE       n     1.082  0.0130     0.935  0.0139
+NYA         C30         H30      SINGLE       n     1.089  0.0100     0.990  0.0100
+NYA         C30        H30A      SINGLE       n     1.089  0.0100     0.990  0.0100
+NYA         C34         H34      SINGLE       n     1.089  0.0100     0.990  0.0100
+NYA         C34        H34A      SINGLE       n     1.089  0.0100     0.990  0.0100
+NYA         C37         H37      SINGLE       n     1.089  0.0100     0.990  0.0100
+NYA         C37        H37A      SINGLE       n     1.089  0.0100     0.990  0.0100
+NYA         C10         H10      SINGLE       n     1.089  0.0100     0.978  0.0152
+NYA         C10        H10A      SINGLE       n     1.089  0.0100     0.978  0.0152
+NYA          C4          H4      SINGLE       n     1.089  0.0100     0.978  0.0152
+NYA          C4         H4A      SINGLE       n     1.089  0.0100     0.978  0.0152
+NYA         C11         H11      SINGLE       n     1.089  0.0100     0.974  0.0100
+NYA         C11        H11A      SINGLE       n     1.089  0.0100     0.974  0.0100
+NYA          C1          H1      SINGLE       n     1.089  0.0100     0.981  0.0200
+NYA          C3          H3      SINGLE       n     1.089  0.0100     0.981  0.0200
+NYA          O3         HO3      SINGLE       n     0.970  0.0120     0.848  0.0200
+NYA          O2         HO2      SINGLE       n     0.970  0.0120     0.843  0.0200
+NYA          O1         HO1      SINGLE       n     0.970  0.0120     0.843  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NYA         C36         C35         C38     109.627    1.50
+NYA         C36         C35         C37     109.438    1.50
+NYA         C36         C35         H35     109.490    1.50
+NYA         C38         C35         C37     109.438    1.50
+NYA         C38         C35         H35     109.490    1.50
+NYA         C37         C35         H35     109.352    1.50
+NYA         C35         C36         C31     109.494    1.50
+NYA         C35         C36         H36     109.767    1.50
+NYA         C35         C36        H36A     109.767    1.50
+NYA         C31         C36         H36     109.767    1.50
+NYA         C31         C36        H36A     109.767    1.50
+NYA         H36         C36        H36A     108.211    1.50
+NYA         C35         C38         C33     109.494    1.50
+NYA         C35         C38         H38     109.767    1.50
+NYA         C35         C38        H38A     109.767    1.50
+NYA         C33         C38         H38     109.767    1.50
+NYA         C33         C38        H38A     109.767    1.50
+NYA         H38         C38        H38A     108.211    1.50
+NYA         C36         C31         C32     109.627    1.50
+NYA         C36         C31         C30     109.438    1.50
+NYA         C36         C31         H31     109.490    1.50
+NYA         C32         C31         C30     109.438    1.50
+NYA         C32         C31         H31     109.490    1.50
+NYA         C30         C31         H31     109.352    1.50
+NYA         C31         C32         C33     109.494    1.50
+NYA         C31         C32         H32     109.767    1.50
+NYA         C31         C32        H32A     109.767    1.50
+NYA         C33         C32         H32     109.767    1.50
+NYA         C33         C32        H32A     109.767    1.50
+NYA         H32         C32        H32A     108.211    1.50
+NYA         C38         C33         C32     109.627    1.50
+NYA         C38         C33         C34     109.438    1.50
+NYA         C38         C33         H33     109.490    1.50
+NYA         C32         C33         C34     109.438    1.50
+NYA         C32         C33         H33     109.490    1.50
+NYA         C34         C33         H33     109.352    1.50
+NYA         C16         C17         C13     103.557    1.50
+NYA         C16         C17         C20     112.102    1.50
+NYA         C16         C17         H17     107.200    1.50
+NYA         C13         C17         C20     119.284    1.50
+NYA         C13         C17         H17     106.586    1.50
+NYA         C20         C17         H17     107.164    1.50
+NYA         C20         C21         H21     109.480    1.50
+NYA         C20         C21        H21A     109.480    1.50
+NYA         C20         C21        H21B     109.480    1.50
+NYA         H21         C21        H21A     109.345    1.50
+NYA         H21         C21        H21B     109.345    1.50
+NYA        H21A         C21        H21B     109.345    1.50
+NYA         C17         C16         C15     107.063    1.50
+NYA         C17         C16         H16     110.194    1.50
+NYA         C17         C16        H16A     110.194    1.50
+NYA         C15         C16         H16     110.337    1.50
+NYA         C15         C16        H16A     110.337    1.50
+NYA         H16         C16        H16A     108.534    1.50
+NYA         C17         C13         C14     102.638    2.08
+NYA         C17         C13         C12     116.563    1.50
+NYA         C17         C13         C18     110.477    1.50
+NYA         C14         C13         C12     107.382    1.50
+NYA         C14         C13         C18     110.993    1.50
+NYA         C12         C13         C18     111.010    1.50
+NYA         C16         C15         C14     103.717    1.50
+NYA         C16         C15         H15     111.137    1.50
+NYA         C16         C15        H15A     111.137    1.50
+NYA         C14         C15         H15     111.016    1.50
+NYA         C14         C15        H15A     111.016    1.50
+NYA         H15         C15        H15A     108.883    1.50
+NYA         C13         C14         C15     103.847    1.50
+NYA         C13         C14          C8     113.565    1.50
+NYA         C13         C14         H14     105.939    1.50
+NYA         C15         C14          C8     119.251    3.00
+NYA         C15         C14         H14     105.970    1.50
+NYA          C8         C14         H14     107.579    1.77
+NYA         C14          C8          C7     121.876    1.50
+NYA         C14          C8          C9     113.430    2.23
+NYA          C7          C8          C9     124.694    1.50
+NYA         C13         C12         C11     112.828    1.50
+NYA         C13         C12         H12     109.703    1.50
+NYA         C13         C12        H12A     109.703    1.50
+NYA         C11         C12         H12     109.396    1.50
+NYA         C11         C12        H12A     109.396    1.50
+NYA         H12         C12        H12A     107.912    1.50
+NYA         C13         C18         H18     109.618    1.50
+NYA         C13         C18        H18A     109.618    1.50
+NYA         C13         C18        H18B     109.618    1.50
+NYA         H18         C18        H18A     109.337    1.50
+NYA         H18         C18        H18B     109.337    1.50
+NYA        H18A         C18        H18B     109.337    1.50
+NYA          C8          C7          C6     125.644    2.77
+NYA          C8          C7          H7     116.291    1.53
+NYA          C6          C7          H7     118.064    1.56
+NYA          C8          C9         C11     111.193    1.50
+NYA          C8          C9          H9     108.984    1.50
+NYA          C8          C9         H9A     108.984    1.50
+NYA         C11          C9          H9     109.046    1.50
+NYA         C11          C9         H9A     109.046    1.50
+NYA          H9          C9         H9A     107.904    1.50
+NYA          C7          C6          C5     125.078    2.77
+NYA          C7          C6          H6     117.498    1.56
+NYA          C5          C6          H6     117.424    1.50
+NYA         C22         C23         C24     125.803    2.42
+NYA         C22         C23         H23     117.388    1.78
+NYA         C24         C23         H23     116.812    2.00
+NYA         C23         C22         C20     126.738    1.64
+NYA         C23         C22         H22     116.956    1.78
+NYA         C20         C22         H22     116.306    1.50
+NYA         C23         C24         C29     115.082    2.01
+NYA         C23         C24          O3     109.726    2.42
+NYA         C23         C24         H24     108.874    1.53
+NYA         C29         C24          O3     109.490    2.90
+NYA         C29         C24         H24     109.204    1.50
+NYA          O3         C24         H24     108.654    1.50
+NYA         C17         C20         C21     113.128    1.50
+NYA         C17         C20         C22     110.423    1.50
+NYA         C17         C20         H20     107.994    1.50
+NYA         C21         C20         C22     109.248    1.50
+NYA         C21         C20         H20     108.002    1.50
+NYA         C22         C20         H20     107.947    1.50
+NYA         C24         C29         C30     110.579    1.50
+NYA         C24         C29         C34     110.579    1.50
+NYA         C24         C29         C37     110.579    1.50
+NYA         C30         C29         C34     108.466    1.50
+NYA         C30         C29         C37     108.466    1.50
+NYA         C34         C29         C37     108.466    1.50
+NYA          C2         C28         H28     120.214    1.50
+NYA          C2         C28        H28A     120.214    1.50
+NYA         H28         C28        H28A     119.572    2.66
+NYA         C31         C30         C29     110.510    1.50
+NYA         C31         C30         H30     109.662    1.50
+NYA         C31         C30        H30A     109.662    1.50
+NYA         C29         C30         H30     109.491    1.50
+NYA         C29         C30        H30A     109.491    1.50
+NYA         H30         C30        H30A     108.213    1.50
+NYA         C33         C34         C29     110.510    1.50
+NYA         C33         C34         H34     109.662    1.50
+NYA         C33         C34        H34A     109.662    1.50
+NYA         C29         C34         H34     109.491    1.50
+NYA         C29         C34        H34A     109.491    1.50
+NYA         H34         C34        H34A     108.213    1.50
+NYA         C35         C37         C29     110.510    1.50
+NYA         C35         C37         H37     109.662    1.50
+NYA         C35         C37        H37A     109.662    1.50
+NYA         C29         C37         H37     109.491    1.50
+NYA         C29         C37        H37A     109.491    1.50
+NYA         H37         C37        H37A     108.213    1.50
+NYA          C6          C5         C10     123.483    1.92
+NYA          C6          C5          C4     123.483    1.92
+NYA         C10          C5          C4     113.034    1.50
+NYA          C5         C10          C1     112.021    2.38
+NYA          C5         C10         H10     109.465    1.50
+NYA          C5         C10        H10A     109.465    1.50
+NYA          C1         C10         H10     109.200    1.50
+NYA          C1         C10        H10A     109.200    1.50
+NYA         H10         C10        H10A     107.887    1.50
+NYA          C5          C4          C3     112.021    2.38
+NYA          C5          C4          H4     109.465    1.50
+NYA          C5          C4         H4A     109.465    1.50
+NYA          C3          C4          H4     109.200    1.50
+NYA          C3          C4         H4A     109.200    1.50
+NYA          H4          C4         H4A     107.887    1.50
+NYA         C12         C11          C9     111.930    1.50
+NYA         C12         C11         H11     109.250    1.50
+NYA         C12         C11        H11A     109.250    1.50
+NYA          C9         C11         H11     109.240    1.50
+NYA          C9         C11        H11A     109.240    1.50
+NYA         H11         C11        H11A     107.912    1.50
+NYA         C10          C1          C2     112.021    2.38
+NYA         C10          C1          O1     109.247    2.43
+NYA         C10          C1          H1     109.200    1.50
+NYA          C2          C1          O1     110.376    2.91
+NYA          C2          C1          H1     108.363    1.50
+NYA          O1          C1          H1     107.694    1.50
+NYA         C28          C2          C1     121.696    2.01
+NYA         C28          C2          C3     121.696    2.01
+NYA          C1          C2          C3     116.608    1.99
+NYA          C4          C3          C2     112.021    2.38
+NYA          C4          C3          O2     109.247    2.43
+NYA          C4          C3          H3     109.200    1.50
+NYA          C2          C3          O2     110.376    2.91
+NYA          C2          C3          H3     108.363    1.50
+NYA          O2          C3          H3     107.694    1.50
+NYA         C24          O3         HO3     108.906    3.00
+NYA          C3          O2         HO2     109.127    2.79
+NYA          C1          O1         HO1     109.127    2.79
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NYA           sp3_sp3_118         C38         C35         C36         C31      60.000    10.0     3
+NYA           sp3_sp3_154         C36         C35         C38         C33      60.000    10.0     3
+NYA           sp3_sp3_172         C36         C35         C37         C29     180.000    10.0     3
+NYA            sp3_sp3_64         C13         C14         C15         C16      60.000    10.0     3
+NYA            sp2_sp3_22          C7          C8         C14         C13     180.000    10.0     6
+NYA             sp2_sp2_1          C6          C7          C8         C14     180.000     5.0     2
+NYA            sp2_sp3_28          C7          C8          C9         C11     180.000    10.0     6
+NYA            sp3_sp3_37          C9         C11         C12         C13      60.000    10.0     3
+NYA             sp2_sp2_5          C5          C6          C7          C8     180.000     5.0     2
+NYA            sp3_sp3_28         C12         C11          C9          C8     -60.000    10.0     3
+NYA             sp2_sp2_9         C10          C5          C6          C7     180.000     5.0     2
+NYA            sp2_sp2_13         C20         C22         C23         C24     180.000     5.0     2
+NYA            sp2_sp3_32         C22         C23         C24          O3     120.000    10.0     6
+NYA            sp2_sp3_38         C23         C22         C20         C21     120.000    10.0     6
+NYA           sp3_sp3_127         C32         C31         C36         C35     -60.000    10.0     3
+NYA           sp3_sp3_227         C23         C24         C29         C30     -60.000    10.0     3
+NYA           sp3_sp3_235         C23         C24          O3         HO3     180.000    10.0     3
+NYA           sp3_sp3_115         C24         C29         C30         C31     180.000    10.0     3
+NYA           sp3_sp3_103         C24         C29         C34         C33     180.000    10.0     3
+NYA           sp3_sp3_151         C24         C29         C37         C35     180.000    10.0     3
+NYA            sp2_sp2_17          C1          C2         C28         H28     180.000     5.0     2
+NYA             sp2_sp3_4          C6          C5         C10          C1     180.000    10.0     6
+NYA            sp2_sp3_46          C6          C5          C4          C3     180.000    10.0     6
+NYA             sp3_sp3_4          O1          C1         C10          C5     180.000    10.0     3
+NYA            sp3_sp3_13          O2          C3          C4          C5     -60.000    10.0     3
+NYA           sp3_sp3_163         C32         C33         C38         C35     -60.000    10.0     3
+NYA            sp2_sp3_11         C28          C2          C1          O1     -60.000    10.0     6
+NYA           sp3_sp3_238         C10          C1          O1         HO1     180.000    10.0     3
+NYA            sp2_sp3_17         C28          C2          C3          O2     -60.000    10.0     6
+NYA           sp3_sp3_241          C4          C3          O2         HO2     180.000    10.0     3
+NYA           sp3_sp3_136         C29         C30         C31         C36      60.000    10.0     3
+NYA            sp3_sp3_73         C36         C31         C32         C33      60.000    10.0     3
+NYA            sp3_sp3_82         C31         C32         C33         C38     -60.000    10.0     3
+NYA            sp3_sp3_91         C38         C33         C34         C29      60.000    10.0     3
+NYA           sp3_sp3_190         C16         C17         C20         C21     180.000    10.0     3
+NYA            sp3_sp3_47         C15         C16         C17         C20     180.000    10.0     3
+NYA           sp3_sp3_188         C18         C13         C17         C20      60.000    10.0     3
+NYA           sp3_sp3_202         C22         C20         C21         H21      60.000    10.0     3
+NYA            sp3_sp3_55         C14         C15         C16         C17     -60.000    10.0     3
+NYA            sp3_sp3_25         C18         C13         C14         C15     180.000    10.0     3
+NYA           sp3_sp3_210         C11         C12         C13         C18      60.000    10.0     3
+NYA           sp3_sp3_217         C17         C13         C18         H18     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NYA    chir_1    C35    C37    C36    C38    both
+NYA    chir_2    C31    C30    C36    C32    both
+NYA    chir_3    C33    C34    C38    C32    both
+NYA    chir_4    C17    C13    C20    C16    negative
+NYA    chir_5    C13    C14    C17    C12    negative
+NYA    chir_6    C14    C8    C13    C15    negative
+NYA    chir_7    C24    O3    C29    C23    negative
+NYA    chir_8    C20    C17    C22    C21    negative
+NYA    chir_9    C29    C24    C30    C34    both
+NYA    chir_10    C1    O1    C2    C10    negative
+NYA    chir_11    C3    O2    C2    C4    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NYA    plan-1         C14   0.020
+NYA    plan-1          C7   0.020
+NYA    plan-1          C8   0.020
+NYA    plan-1          C9   0.020
+NYA    plan-2          C6   0.020
+NYA    plan-2          C7   0.020
+NYA    plan-2          C8   0.020
+NYA    plan-2          H7   0.020
+NYA    plan-3          C5   0.020
+NYA    plan-3          C6   0.020
+NYA    plan-3          C7   0.020
+NYA    plan-3          H6   0.020
+NYA    plan-4         C22   0.020
+NYA    plan-4         C23   0.020
+NYA    plan-4         C24   0.020
+NYA    plan-4         H23   0.020
+NYA    plan-5         C20   0.020
+NYA    plan-5         C22   0.020
+NYA    plan-5         C23   0.020
+NYA    plan-5         H22   0.020
+NYA    plan-6          C2   0.020
+NYA    plan-6         C28   0.020
+NYA    plan-6         H28   0.020
+NYA    plan-6        H28A   0.020
+NYA    plan-7         C10   0.020
+NYA    plan-7          C4   0.020
+NYA    plan-7          C5   0.020
+NYA    plan-7          C6   0.020
+NYA    plan-8          C1   0.020
+NYA    plan-8          C2   0.020
+NYA    plan-8         C28   0.020
+NYA    plan-8          C3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NYA           SMILES              ACDLabs 10.04                                                                                                                                                                                     OC6/C(=C)C(O)CC(=C\C=C2\C1CCC(C1(C)CCC2)C(/C=C/C(O)C34CC5CC(C3)CC(C4)C5)C)\C6
+NYA SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                          C[C@H](/C=C/[C@@H](O)C12CC3CC(CC(C3)C1)C2)[C@H]4CC[C@H]5\C(CCC[C@]45C)=C\C=C/6C[C@@H](O)C(=C)[C@H](O)C/6
+NYA           SMILES               CACTVS 3.341                                                                                                                                                                         C[CH](C=C[CH](O)C12CC3CC(CC(C3)C1)C2)[CH]4CC[CH]5C(CCC[C]45C)=CC=C6C[CH](O)C(=C)[CH](O)C6
+NYA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                          C[C@H](\C=C\[C@H](C12CC3CC(C1)CC(C3)C2)O)[C@H]4CC[C@@H]\5[C@@]4(CCC/C5=C\C=C6C[C@H](C(=C)[C@@H](C6)O)O)C
+NYA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                             CC(C=CC(C12CC3CC(C1)CC(C3)C2)O)C4CCC5C4(CCCC5=CC=C6CC(C(=C)C(C6)O)O)C
+NYA            InChI                InChI  1.03 InChI=1S/C34H50O3/c1-21(6-11-32(37)34-18-24-13-25(19-34)15-26(14-24)20-34)28-9-10-29-27(5-4-12-33(28,29)3)8-7-23-16-30(35)22(2)31(36)17-23/h6-8,11,21,24-26,28-32,35-37H,2,4-5,9-10,12-20H2,1,3H3/b11-6+,27-8+/t21-,24-,25+,26-,28-,29+,30-,31-,32-,33-,34-/m1/s1
+NYA         InChIKey                InChI  1.03                                                                                                                                                                                                                                       XEQPVMGAXBNZAH-XMMQUESESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NYA acedrg               243         "dictionary generator"                  
+NYA acedrg_database      11          "data source"                           
+NYA rdkit                2017.03.2   "Chemoinformatics tool"
+NYA refmac5              5.8.0238    "optimization tool"                     

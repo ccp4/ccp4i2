@@ -1,0 +1,147 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EVI     EVI      1,3-thiazole-2-sulfonamide     NON-POLYMER     13     9     .     
+#
+data_comp_EVI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EVI     S       S       S3      0       31.853      -0.542      13.797      
+EVI     O1      O       O       0       30.636      -1.291      13.807      
+EVI     S1      S       S2      0       33.337      -3.117      13.363      
+EVI     C2      C       CR5     0       33.052      -1.514      12.997      
+EVI     O2      O       O       0       31.871      0.748       13.182      
+EVI     N3      N       NRD5    0       33.876      -1.107      12.011      
+EVI     C4      C       CR15    0       34.735      -2.100      11.558      
+EVI     C5      C       CR15    0       34.548      -3.303      12.232      
+EVI     NH      N       NT2     0       32.320      -0.359      15.316      
+EVI     H4      H       H       0       35.367      -1.962      10.873      
+EVI     H5      H       H       0       35.001      -4.121      12.112      
+EVI     HNH     H       H       0       31.951      0.289       15.693      
+EVI     HNHA    H       H       0       33.149      -0.413      15.409      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EVI           S          C2      SINGLE       n     1.739  0.0102     1.739  0.0102
+EVI           S          O2      DOUBLE       n     1.429  0.0100     1.429  0.0100
+EVI           S          O1      DOUBLE       n     1.429  0.0100     1.429  0.0100
+EVI           S          NH      SINGLE       n     1.600  0.0128     1.600  0.0128
+EVI          S1          C5      SINGLE       y     1.695  0.0200     1.695  0.0200
+EVI          S1          C2      SINGLE       y     1.695  0.0200     1.695  0.0200
+EVI          C2          N3      DOUBLE       y     1.332  0.0200     1.332  0.0200
+EVI          N3          C4      SINGLE       y     1.371  0.0139     1.371  0.0139
+EVI          C4          C5      DOUBLE       y     1.380  0.0196     1.380  0.0196
+EVI          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0176
+EVI          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0200
+EVI          NH         HNH      SINGLE       n     1.036  0.0160     0.836  0.0200
+EVI          NH        HNHA      SINGLE       n     1.036  0.0160     0.836  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EVI          C2           S          O2     107.921    1.50
+EVI          C2           S          O1     107.921    1.50
+EVI          C2           S          NH     109.471    3.00
+EVI          O2           S          O1     119.673    1.50
+EVI          O2           S          NH     108.091    1.50
+EVI          O1           S          NH     108.091    1.50
+EVI          C5          S1          C2     108.060    3.00
+EVI           S          C2          S1     125.255    3.00
+EVI           S          C2          N3     126.685    1.75
+EVI          S1          C2          N3     108.060    3.00
+EVI          C2          N3          C4     107.168    1.65
+EVI          N3          C4          C5     108.652    1.50
+EVI          N3          C4          H4     124.987    1.50
+EVI          C5          C4          H4     126.361    1.50
+EVI          S1          C5          C4     108.060    3.00
+EVI          S1          C5          H5     123.103    3.00
+EVI          C4          C5          H5     128.837    1.50
+EVI           S          NH         HNH     112.822    3.00
+EVI           S          NH        HNHA     112.822    3.00
+EVI         HNH          NH        HNHA     115.991    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EVI             sp2_sp3_1          S1          C2           S          O2     150.000    10.0     6
+EVI             sp3_sp3_2         HNH          NH           S          O2     -60.000    10.0     3
+EVI              const_12           S          C2          S1          C5     180.000    10.0     2
+EVI       const_sp2_sp2_1          C4          C5          S1          C2       0.000     5.0     2
+EVI              const_10           S          C2          N3          C4     180.000    10.0     2
+EVI       const_sp2_sp2_7          C5          C4          N3          C2       0.000     5.0     2
+EVI       const_sp2_sp2_3          N3          C4          C5          S1       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EVI    chir_1    S    O2    O1    NH    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EVI    plan-1          C2   0.020
+EVI    plan-1          C4   0.020
+EVI    plan-1          C5   0.020
+EVI    plan-1          H4   0.020
+EVI    plan-1          H5   0.020
+EVI    plan-1          N3   0.020
+EVI    plan-1           S   0.020
+EVI    plan-1          S1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EVI           SMILES              ACDLabs 12.01                                         O=S(=O)(N)c1nccs1
+EVI SMILES_CANONICAL               CACTVS 3.370                                       N[S](=O)(=O)c1sccn1
+EVI           SMILES               CACTVS 3.370                                       N[S](=O)(=O)c1sccn1
+EVI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                       c1csc(n1)S(=O)(=O)N
+EVI           SMILES "OpenEye OEToolkits" 1.7.2                                       c1csc(n1)S(=O)(=O)N
+EVI            InChI                InChI  1.03 InChI=1S/C3H4N2O2S2/c4-9(6,7)3-5-1-2-8-3/h1-2H,(H2,4,6,7)
+EVI         InChIKey                InChI  1.03                               WKXVETMYCFRGET-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EVI acedrg               243         "dictionary generator"                  
+EVI acedrg_database      11          "data source"                           
+EVI rdkit                2017.03.2   "Chemoinformatics tool"
+EVI refmac5              5.8.0238    "optimization tool"                     

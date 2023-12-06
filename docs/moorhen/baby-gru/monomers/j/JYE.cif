@@ -1,0 +1,206 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JYE     JYE      9-(3-azidopropyl)-8-bromanyl-purin-6-amine     NON-POLYMER     26     17     .     
+#
+data_comp_JYE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JYE     C2      C       CR16    0       21.742      11.368      12.630      
+JYE     C4      C       CR56    0       19.551      11.516      12.820      
+JYE     C5      C       CR56    0       19.497      12.649      12.031      
+JYE     C6      C       CR6     0       20.722      13.136      11.523      
+JYE     C8      C       CR5     0       17.468      12.205      12.615      
+JYE     CAE     C       CH2     0       17.583      8.860       13.237      
+JYE     CAF     C       CH2     0       16.963      7.757       14.070      
+JYE     CAG     C       CH2     0       17.819      10.134      14.024      
+JYE     N1      N       NRD6    0       21.851      12.456      11.850      
+JYE     N3      N       NRD6    0       20.649      10.819      13.162      
+JYE     N6      N       NH2     0       20.825      14.215      10.752      
+JYE     N7      N       NRD5    0       18.176      13.063      11.917      
+JYE     N9      N       NR5     0       18.256      11.246      13.185      
+JYE     NAA     N       NSP     -1      19.118      5.212       14.412      
+JYE     NAH     N       N       0       17.953      7.251       15.039      
+JYE     NAL     N       NSP     1       18.573      6.175       14.679      
+JYE     BR8     BR      BR      0       15.626      12.327      12.776      
+JYE     H1      H       H       0       22.555      10.929      12.829      
+JYE     H2      H       H       0       16.993      9.057       12.480      
+JYE     H3      H       H       0       18.438      8.545       12.877      
+JYE     H4      H       H       0       16.677      7.026       13.482      
+JYE     H5      H       H       0       16.184      8.111       14.551      
+JYE     H6      H       H       0       18.500      9.967       14.705      
+JYE     H7      H       H       0       16.994      10.384      14.485      
+JYE     H8      H       H       0       20.238      14.352      10.115      
+JYE     H9      H       H       0       21.480      14.783      10.883      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JYE          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+JYE          C6          N1      SINGLE       y     1.354  0.0100     1.354  0.0100
+JYE          C5          C6      DOUBLE       y     1.409  0.0100     1.409  0.0100
+JYE          C2          N1      DOUBLE       y     1.339  0.0100     1.339  0.0100
+JYE          C5          N7      SINGLE       y     1.391  0.0100     1.391  0.0100
+JYE          C8          N7      DOUBLE       y     1.311  0.0100     1.311  0.0100
+JYE          C4          C5      SINGLE       y     1.383  0.0100     1.383  0.0100
+JYE          C2          N3      SINGLE       y     1.330  0.0100     1.330  0.0100
+JYE          C8         BR8      SINGLE       n     1.852  0.0100     1.852  0.0100
+JYE          C8          N9      SINGLE       y     1.355  0.0152     1.355  0.0152
+JYE          C4          N3      DOUBLE       y     1.341  0.0100     1.341  0.0100
+JYE          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+JYE         CAG          N9      SINGLE       n     1.459  0.0100     1.459  0.0100
+JYE         CAE         CAG      SINGLE       n     1.516  0.0152     1.516  0.0152
+JYE         CAE         CAF      SINGLE       n     1.514  0.0200     1.514  0.0200
+JYE         CAF         NAH      SINGLE       n     1.474  0.0186     1.474  0.0186
+JYE         NAH         NAL      DOUBLE       n     1.293  0.0200     1.293  0.0200
+JYE         NAA         NAL      DOUBLE       n     1.135  0.0160     1.135  0.0160
+JYE          C2          H1      SINGLE       n     1.082  0.0130     0.945  0.0200
+JYE         CAE          H2      SINGLE       n     1.089  0.0100     0.980  0.0160
+JYE         CAE          H3      SINGLE       n     1.089  0.0100     0.980  0.0160
+JYE         CAF          H4      SINGLE       n     1.089  0.0100     0.981  0.0135
+JYE         CAF          H5      SINGLE       n     1.089  0.0100     0.981  0.0135
+JYE         CAG          H6      SINGLE       n     1.089  0.0100     0.978  0.0180
+JYE         CAG          H7      SINGLE       n     1.089  0.0100     0.978  0.0180
+JYE          N6          H8      SINGLE       n     1.016  0.0100     0.877  0.0200
+JYE          N6          H9      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JYE          N1          C2          N3     129.385    1.50
+JYE          N1          C2          H1     115.286    1.50
+JYE          N3          C2          H1     115.329    1.50
+JYE          C5          C4          N3     127.116    1.50
+JYE          C5          C4          N9     106.481    1.50
+JYE          N3          C4          N9     126.403    1.50
+JYE          C6          C5          N7     133.091    1.50
+JYE          C6          C5          C4     116.969    1.50
+JYE          N7          C5          C4     109.941    1.50
+JYE          N6          C6          N1     118.773    1.50
+JYE          N6          C6          C5     123.765    1.50
+JYE          N1          C6          C5     117.462    1.50
+JYE          N7          C8         BR8     123.786    2.14
+JYE          N7          C8          N9     110.759    1.50
+JYE         BR8          C8          N9     125.455    1.50
+JYE         CAG         CAE         CAF     112.929    1.50
+JYE         CAG         CAE          H2     108.995    1.50
+JYE         CAG         CAE          H3     108.995    1.50
+JYE         CAF         CAE          H2     109.004    1.50
+JYE         CAF         CAE          H3     109.004    1.50
+JYE          H2         CAE          H3     107.783    1.50
+JYE         CAE         CAF         NAH     109.662    2.15
+JYE         CAE         CAF          H4     109.405    1.50
+JYE         CAE         CAF          H5     109.405    1.50
+JYE         NAH         CAF          H4     109.598    1.50
+JYE         NAH         CAF          H5     109.598    1.50
+JYE          H4         CAF          H5     109.398    2.65
+JYE          N9         CAG         CAE     112.914    1.50
+JYE          N9         CAG          H6     108.820    1.50
+JYE          N9         CAG          H7     108.820    1.50
+JYE         CAE         CAG          H6     109.073    1.50
+JYE         CAE         CAG          H7     109.073    1.50
+JYE          H6         CAG          H7     107.797    1.50
+JYE          C6          N1          C2     118.575    1.50
+JYE          C2          N3          C4     110.494    1.50
+JYE          C6          N6          H8     119.723    1.50
+JYE          C6          N6          H9     119.723    1.50
+JYE          H8          N6          H9     120.554    1.88
+JYE          C5          N7          C8     105.916    1.50
+JYE          C8          N9          C4     106.903    1.50
+JYE          C8          N9         CAG     126.751    1.50
+JYE          C4          N9         CAG     126.346    1.50
+JYE         CAF         NAH         NAL     115.160    1.71
+JYE         NAH         NAL         NAA     180.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JYE       const_sp2_sp2_1          N3          C2          N1          C6       0.000     5.0     2
+JYE              const_23          N1          C2          N3          C4       0.000    10.0     2
+JYE           other_tor_1         NAA         NAL         NAH         CAF      90.000    10.0     1
+JYE              const_26          C5          C4          N9         CAG     180.000    10.0     2
+JYE       const_sp2_sp2_9          N3          C4          C5          C6       0.000     5.0     2
+JYE              const_13          C5          C4          N3          C2       0.000    10.0     2
+JYE              const_16          C6          C5          N7          C8     180.000    10.0     2
+JYE       const_sp2_sp2_8          N7          C5          C6          N6       0.000     5.0     2
+JYE             sp2_sp2_3          N1          C6          N6          H8       0.000     5.0     2
+JYE       const_sp2_sp2_4          N6          C6          N1          C2     180.000     5.0     2
+JYE              const_18         BR8          C8          N7          C5     180.000    10.0     2
+JYE              const_22         BR8          C8          N9         CAG       0.000    10.0     2
+JYE            sp3_sp3_10         CAG         CAE         CAF         NAH     180.000    10.0     3
+JYE             sp3_sp3_1         CAF         CAE         CAG          N9     180.000    10.0     3
+JYE             sp2_sp3_8         NAL         NAH         CAF         CAE     120.000    10.0     6
+JYE             sp2_sp3_2          C8          N9         CAG         CAE     -90.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JYE    plan-1         BR8   0.020
+JYE    plan-1          C2   0.020
+JYE    plan-1          C4   0.020
+JYE    plan-1          C5   0.020
+JYE    plan-1          C6   0.020
+JYE    plan-1          C8   0.020
+JYE    plan-1         CAG   0.020
+JYE    plan-1          H1   0.020
+JYE    plan-1          N1   0.020
+JYE    plan-1          N3   0.020
+JYE    plan-1          N6   0.020
+JYE    plan-1          N7   0.020
+JYE    plan-1          N9   0.020
+JYE    plan-2          C6   0.020
+JYE    plan-2          H8   0.020
+JYE    plan-2          H9   0.020
+JYE    plan-2          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JYE            InChI                InChI  1.03 InChI=1S/C8H9BrN8/c9-8-15-5-6(10)12-4-13-7(5)17(8)3-1-2-14-16-11/h4H,1-3H2,(H2,10,12,13)
+JYE         InChIKey                InChI  1.03                                                              MCUGUHUWEQYYKC-UHFFFAOYSA-N
+JYE SMILES_CANONICAL               CACTVS 3.385                                                       Nc1ncnc2n(CCCN=[N+]=[N-])c(Br)nc12
+JYE           SMILES               CACTVS 3.385                                                       Nc1ncnc2n(CCCN=[N+]=[N-])c(Br)nc12
+JYE SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                   c1nc(c2c(n1)n(c(n2)Br)CCCN=[N+]=[N-])N
+JYE           SMILES "OpenEye OEToolkits" 2.0.7                                                   c1nc(c2c(n1)n(c(n2)Br)CCCN=[N+]=[N-])N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JYE acedrg               243         "dictionary generator"                  
+JYE acedrg_database      11          "data source"                           
+JYE rdkit                2017.03.2   "Chemoinformatics tool"
+JYE refmac5              5.8.0238    "optimization tool"                     

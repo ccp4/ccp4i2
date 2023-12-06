@@ -1,0 +1,326 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EVW     EVW      2-azanyl-~{N}-(diphenylmethyl)-1,3-benzothiazole-6-carboxamide     NON-POLYMER     43     26     .     
+#
+data_comp_EVW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EVW     CAG     C       CR16    0       7.643       -14.502     14.265      
+EVW     CAD     C       CR56    0       8.475       -13.389     14.188      
+EVW     SAC     S       S2      0       9.712       -13.058     13.129      
+EVW     CAA     C       CR5     0       10.070      -11.577     13.811      
+EVW     NAB     N       NH2     0       11.041      -10.793     13.355      
+EVW     NAF     N       NRD5    0       9.284       -11.303     14.828      
+EVW     CAE     C       CR56    0       8.353       -12.321     15.077      
+EVW     CAJ     C       CR16    0       7.369       -12.367     16.073      
+EVW     CAI     C       CR16    0       6.550       -13.469     16.149      
+EVW     CAH     C       CR6     0       6.662       -14.543     15.248      
+EVW     CAK     C       C       0       5.775       -15.753     15.339      
+EVW     OAP     O       O       0       6.231       -16.869     15.085      
+EVW     NAL     N       NH1     0       4.492       -15.569     15.768      
+EVW     CAM     C       CH1     0       3.603       -16.679     16.138      
+EVW     CAO     C       CR6     0       4.146       -17.480     17.314      
+EVW     CAQ     C       CR16    0       4.719       -16.848     18.410      
+EVW     CAR     C       CR16    0       5.213       -17.584     19.480      
+EVW     CAS     C       CR16    0       5.139       -18.962     19.465      
+EVW     CAU     C       CR16    0       4.573       -19.605     18.385      
+EVW     CAT     C       CR16    0       4.079       -18.868     17.315      
+EVW     CAN     C       CR6     0       2.176       -16.217     16.403      
+EVW     CAV     C       CR16    0       1.110       -16.733     15.677      
+EVW     CAZ     C       CR16    0       -0.192      -16.317     15.928      
+EVW     CAY     C       CR16    0       -0.443      -15.386     16.913      
+EVW     CAX     C       CR16    0       0.604       -14.869     17.649      
+EVW     CAW     C       CR16    0       1.905       -15.286     17.398      
+EVW     H1      H       H       0       7.736       -15.213     13.661      
+EVW     H2      H       H       0       11.195      -10.021     13.741      
+EVW     H3      H       H       0       11.526      -11.051     12.671      
+EVW     H4      H       H       0       7.272       -11.656     16.681      
+EVW     H5      H       H       0       5.889       -13.498     16.818      
+EVW     H6      H       H       0       4.165       -14.753     15.796      
+EVW     H7      H       H       0       3.578       -17.283     15.359      
+EVW     H8      H       H       0       4.774       -15.905     18.429      
+EVW     H9      H       H       0       5.600       -17.140     20.218      
+EVW     H10     H       H       0       5.474       -19.463     20.192      
+EVW     H11     H       H       0       4.520       -20.547     18.371      
+EVW     H12     H       H       0       3.692       -19.316     16.580      
+EVW     H13     H       H       0       1.272       -17.371     15.000      
+EVW     H14     H       H       0       -0.905      -16.673     15.422      
+EVW     H15     H       H       0       -1.328      -15.103     17.083      
+EVW     H16     H       H       0       0.436       -14.231     18.324      
+EVW     H17     H       H       0       2.616       -14.926     17.905      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EVW         SAC         CAA      SINGLE       y     1.695  0.0200     1.695  0.0200
+EVW         CAD         SAC      SINGLE       y     1.695  0.0200     1.695  0.0200
+EVW         CAA         NAB      SINGLE       n     1.328  0.0105     1.328  0.0105
+EVW         CAA         NAF      DOUBLE       y     1.300  0.0172     1.300  0.0172
+EVW         CAG         CAD      DOUBLE       y     1.378  0.0200     1.378  0.0200
+EVW         CAG         CAH      SINGLE       y     1.383  0.0129     1.383  0.0129
+EVW         CAD         CAE      SINGLE       y     1.385  0.0119     1.385  0.0119
+EVW         CAK         OAP      DOUBLE       n     1.230  0.0114     1.230  0.0114
+EVW         CAH         CAK      SINGLE       n     1.498  0.0100     1.498  0.0100
+EVW         CAI         CAH      DOUBLE       y     1.400  0.0130     1.400  0.0130
+EVW         CAK         NAL      SINGLE       n     1.354  0.0141     1.354  0.0141
+EVW         NAF         CAE      SINGLE       y     1.391  0.0100     1.391  0.0100
+EVW         CAE         CAJ      DOUBLE       y     1.396  0.0100     1.396  0.0100
+EVW         CAJ         CAI      SINGLE       y     1.370  0.0116     1.370  0.0116
+EVW         NAL         CAM      SINGLE       n     1.464  0.0100     1.464  0.0100
+EVW         CAM         CAN      SINGLE       n     1.520  0.0100     1.520  0.0100
+EVW         CAM         CAO      SINGLE       n     1.520  0.0100     1.520  0.0100
+EVW         CAN         CAV      DOUBLE       y     1.385  0.0100     1.385  0.0100
+EVW         CAV         CAZ      SINGLE       y     1.386  0.0100     1.386  0.0100
+EVW         CAN         CAW      SINGLE       y     1.385  0.0100     1.385  0.0100
+EVW         CAZ         CAY      DOUBLE       y     1.374  0.0127     1.374  0.0127
+EVW         CAX         CAW      DOUBLE       y     1.386  0.0100     1.386  0.0100
+EVW         CAY         CAX      SINGLE       y     1.376  0.0124     1.376  0.0124
+EVW         CAO         CAT      SINGLE       y     1.385  0.0100     1.385  0.0100
+EVW         CAO         CAQ      DOUBLE       y     1.385  0.0100     1.385  0.0100
+EVW         CAU         CAT      DOUBLE       y     1.386  0.0100     1.386  0.0100
+EVW         CAQ         CAR      SINGLE       y     1.386  0.0100     1.386  0.0100
+EVW         CAS         CAU      SINGLE       y     1.374  0.0127     1.374  0.0127
+EVW         CAR         CAS      DOUBLE       y     1.376  0.0124     1.376  0.0124
+EVW         CAG          H1      SINGLE       n     1.082  0.0130     0.937  0.0100
+EVW         NAB          H2      SINGLE       n     1.016  0.0100     0.877  0.0200
+EVW         NAB          H3      SINGLE       n     1.016  0.0100     0.877  0.0200
+EVW         CAJ          H4      SINGLE       n     1.082  0.0130     0.940  0.0191
+EVW         CAI          H5      SINGLE       n     1.082  0.0130     0.942  0.0147
+EVW         NAL          H6      SINGLE       n     1.016  0.0100     0.879  0.0200
+EVW         CAM          H7      SINGLE       n     1.089  0.0100     0.986  0.0177
+EVW         CAQ          H8      SINGLE       n     1.082  0.0130     0.944  0.0174
+EVW         CAR          H9      SINGLE       n     1.082  0.0130     0.944  0.0175
+EVW         CAS         H10      SINGLE       n     1.082  0.0130     0.944  0.0161
+EVW         CAU         H11      SINGLE       n     1.082  0.0130     0.944  0.0175
+EVW         CAT         H12      SINGLE       n     1.082  0.0130     0.944  0.0174
+EVW         CAV         H13      SINGLE       n     1.082  0.0130     0.944  0.0174
+EVW         CAZ         H14      SINGLE       n     1.082  0.0130     0.944  0.0175
+EVW         CAY         H15      SINGLE       n     1.082  0.0130     0.944  0.0161
+EVW         CAX         H16      SINGLE       n     1.082  0.0130     0.944  0.0175
+EVW         CAW         H17      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EVW         CAD         CAG         CAH     118.675    1.50
+EVW         CAD         CAG          H1     121.103    1.50
+EVW         CAH         CAG          H1     120.222    1.50
+EVW         SAC         CAD         CAG     131.121    3.00
+EVW         SAC         CAD         CAE     108.216    3.00
+EVW         CAG         CAD         CAE     120.663    1.92
+EVW         CAA         SAC         CAD     108.216    3.00
+EVW         SAC         CAA         NAB     124.962    3.00
+EVW         SAC         CAA         NAF     108.216    3.00
+EVW         NAB         CAA         NAF     126.822    2.12
+EVW         CAA         NAB          H2     119.811    1.50
+EVW         CAA         NAB          H3     119.811    1.50
+EVW          H2         NAB          H3     120.377    1.82
+EVW         CAA         NAF         CAE     106.262    1.50
+EVW         CAD         CAE         NAF     109.090    1.50
+EVW         CAD         CAE         CAJ     120.663    1.92
+EVW         NAF         CAE         CAJ     130.247    1.50
+EVW         CAE         CAJ         CAI     118.059    1.50
+EVW         CAE         CAJ          H4     120.909    1.50
+EVW         CAI         CAJ          H4     121.031    1.50
+EVW         CAH         CAI         CAJ     121.821    1.50
+EVW         CAH         CAI          H5     119.172    1.50
+EVW         CAJ         CAI          H5     119.007    1.50
+EVW         CAG         CAH         CAK     119.644    2.70
+EVW         CAG         CAH         CAI     120.118    1.50
+EVW         CAK         CAH         CAI     120.238    2.89
+EVW         OAP         CAK         CAH     120.779    1.50
+EVW         OAP         CAK         NAL     122.597    1.50
+EVW         CAH         CAK         NAL     116.623    1.50
+EVW         CAK         NAL         CAM     122.577    1.61
+EVW         CAK         NAL          H6     119.172    1.99
+EVW         CAM         NAL          H6     118.251    1.50
+EVW         NAL         CAM         CAN     110.866    1.87
+EVW         NAL         CAM         CAO     110.866    1.87
+EVW         NAL         CAM          H7     106.544    1.50
+EVW         CAN         CAM         CAO     113.162    2.62
+EVW         CAN         CAM          H7     107.307    1.50
+EVW         CAO         CAM          H7     107.307    1.50
+EVW         CAM         CAO         CAT     120.838    1.58
+EVW         CAM         CAO         CAQ     120.838    1.58
+EVW         CAT         CAO         CAQ     118.324    1.50
+EVW         CAO         CAQ         CAR     120.739    1.50
+EVW         CAO         CAQ          H8     119.577    1.50
+EVW         CAR         CAQ          H8     119.684    1.50
+EVW         CAQ         CAR         CAS     120.161    1.50
+EVW         CAQ         CAR          H9     119.874    1.50
+EVW         CAS         CAR          H9     119.965    1.50
+EVW         CAU         CAS         CAR     119.878    1.50
+EVW         CAU         CAS         H10     120.061    1.50
+EVW         CAR         CAS         H10     120.061    1.50
+EVW         CAT         CAU         CAS     120.161    1.50
+EVW         CAT         CAU         H11     119.874    1.50
+EVW         CAS         CAU         H11     119.965    1.50
+EVW         CAO         CAT         CAU     120.739    1.50
+EVW         CAO         CAT         H12     119.577    1.50
+EVW         CAU         CAT         H12     119.684    1.50
+EVW         CAM         CAN         CAV     120.838    1.58
+EVW         CAM         CAN         CAW     120.838    1.58
+EVW         CAV         CAN         CAW     118.324    1.50
+EVW         CAN         CAV         CAZ     120.739    1.50
+EVW         CAN         CAV         H13     119.577    1.50
+EVW         CAZ         CAV         H13     119.684    1.50
+EVW         CAV         CAZ         CAY     120.161    1.50
+EVW         CAV         CAZ         H14     119.874    1.50
+EVW         CAY         CAZ         H14     119.965    1.50
+EVW         CAZ         CAY         CAX     119.878    1.50
+EVW         CAZ         CAY         H15     120.061    1.50
+EVW         CAX         CAY         H15     120.061    1.50
+EVW         CAW         CAX         CAY     120.161    1.50
+EVW         CAW         CAX         H16     119.874    1.50
+EVW         CAY         CAX         H16     119.965    1.50
+EVW         CAN         CAW         CAX     120.739    1.50
+EVW         CAN         CAW         H17     119.577    1.50
+EVW         CAX         CAW         H17     119.684    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EVW              const_11         SAC         CAD         CAG         CAH     180.000    10.0     2
+EVW              const_70         CAD         CAG         CAH         CAK     180.000    10.0     2
+EVW            sp2_sp2_11         OAP         CAK         NAL         CAM       0.000     5.0     2
+EVW             sp2_sp3_2         CAK         NAL         CAM         CAN     120.000    10.0     6
+EVW            sp2_sp3_14         CAT         CAO         CAM         NAL     -90.000    10.0     6
+EVW             sp2_sp3_7         CAV         CAN         CAM         NAL     150.000    10.0     6
+EVW              const_79         CAM         CAO         CAQ         CAR     180.000    10.0     2
+EVW              const_51         CAM         CAO         CAT         CAU     180.000    10.0     2
+EVW              const_65         CAO         CAQ         CAR         CAS       0.000    10.0     2
+EVW              const_61         CAQ         CAR         CAS         CAU       0.000    10.0     2
+EVW              const_57         CAR         CAS         CAU         CAT       0.000    10.0     2
+EVW              const_53         CAO         CAT         CAU         CAS       0.000    10.0     2
+EVW       const_sp2_sp2_2         CAG         CAD         SAC         CAA     180.000     5.0     2
+EVW              const_13         SAC         CAD         CAE         NAF       0.000    10.0     2
+EVW              const_31         CAM         CAN         CAV         CAZ     180.000    10.0     2
+EVW              const_75         CAM         CAN         CAW         CAX     180.000    10.0     2
+EVW              const_33         CAN         CAV         CAZ         CAY       0.000    10.0     2
+EVW              const_37         CAX         CAY         CAZ         CAV       0.000    10.0     2
+EVW              const_41         CAW         CAX         CAY         CAZ       0.000    10.0     2
+EVW              const_45         CAN         CAW         CAX         CAY       0.000    10.0     2
+EVW       const_sp2_sp2_4         NAB         CAA         SAC         CAD     180.000     5.0     2
+EVW             sp2_sp2_1         SAC         CAA         NAB          H2     180.000     5.0     2
+EVW       const_sp2_sp2_6         NAB         CAA         NAF         CAE     180.000     5.0     2
+EVW       const_sp2_sp2_7         CAD         CAE         NAF         CAA       0.000     5.0     2
+EVW              const_17         CAD         CAE         CAJ         CAI       0.000    10.0     2
+EVW              const_21         CAH         CAI         CAJ         CAE       0.000    10.0     2
+EVW              const_27         CAK         CAH         CAI         CAJ     180.000    10.0     2
+EVW             sp2_sp2_6         CAG         CAH         CAK         OAP       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EVW    chir_1    CAM    NAL    CAN    CAO    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EVW    plan-1         CAA   0.020
+EVW    plan-1         CAD   0.020
+EVW    plan-1         CAE   0.020
+EVW    plan-1         CAG   0.020
+EVW    plan-1         CAH   0.020
+EVW    plan-1         CAI   0.020
+EVW    plan-1         CAJ   0.020
+EVW    plan-1         CAK   0.020
+EVW    plan-1          H1   0.020
+EVW    plan-1          H4   0.020
+EVW    plan-1          H5   0.020
+EVW    plan-1         NAB   0.020
+EVW    plan-1         NAF   0.020
+EVW    plan-1         SAC   0.020
+EVW    plan-2         CAM   0.020
+EVW    plan-2         CAO   0.020
+EVW    plan-2         CAQ   0.020
+EVW    plan-2         CAR   0.020
+EVW    plan-2         CAS   0.020
+EVW    plan-2         CAT   0.020
+EVW    plan-2         CAU   0.020
+EVW    plan-2         H10   0.020
+EVW    plan-2         H11   0.020
+EVW    plan-2         H12   0.020
+EVW    plan-2          H8   0.020
+EVW    plan-2          H9   0.020
+EVW    plan-3         CAM   0.020
+EVW    plan-3         CAN   0.020
+EVW    plan-3         CAV   0.020
+EVW    plan-3         CAW   0.020
+EVW    plan-3         CAX   0.020
+EVW    plan-3         CAY   0.020
+EVW    plan-3         CAZ   0.020
+EVW    plan-3         H13   0.020
+EVW    plan-3         H14   0.020
+EVW    plan-3         H15   0.020
+EVW    plan-3         H16   0.020
+EVW    plan-3         H17   0.020
+EVW    plan-4         CAA   0.020
+EVW    plan-4          H2   0.020
+EVW    plan-4          H3   0.020
+EVW    plan-4         NAB   0.020
+EVW    plan-5         CAH   0.020
+EVW    plan-5         CAK   0.020
+EVW    plan-5         NAL   0.020
+EVW    plan-5         OAP   0.020
+EVW    plan-6         CAK   0.020
+EVW    plan-6         CAM   0.020
+EVW    plan-6          H6   0.020
+EVW    plan-6         NAL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EVW            InChI                InChI  1.03 InChI=1S/C21H17N3OS/c22-21-23-17-12-11-16(13-18(17)26-21)20(25)24-19(14-7-3-1-4-8-14)15-9-5-2-6-10-15/h1-13,19H,(H2,22,23)(H,24,25)
+EVW         InChIKey                InChI  1.03                                                                                                         HWVRAXQZLQFQPC-UHFFFAOYSA-N
+EVW SMILES_CANONICAL               CACTVS 3.385                                                                                           Nc1sc2cc(ccc2n1)C(=O)NC(c3ccccc3)c4ccccc4
+EVW           SMILES               CACTVS 3.385                                                                                           Nc1sc2cc(ccc2n1)C(=O)NC(c3ccccc3)c4ccccc4
+EVW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                       c1ccc(cc1)C(c2ccccc2)NC(=O)c3ccc4c(c3)sc(n4)N
+EVW           SMILES "OpenEye OEToolkits" 2.0.6                                                                                       c1ccc(cc1)C(c2ccccc2)NC(=O)c3ccc4c(c3)sc(n4)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EVW acedrg               243         "dictionary generator"                  
+EVW acedrg_database      11          "data source"                           
+EVW rdkit                2017.03.2   "Chemoinformatics tool"
+EVW refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,273 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DAC     DAC      "2-DECENOYL N-ACETYL CYSTEAMINE"     NON-POLYMER     43     18     .     
+#
+data_comp_DAC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DAC     C1      C       C       0       -15.193     5.148       10.436      
+DAC     O1      O       O       0       -14.904     6.297       10.187      
+DAC     C2      C       C1      0       -15.272     4.621       11.788      
+DAC     C3      C       C1      0       -15.391     5.338       12.908      
+DAC     C4      C       CH2     0       -15.662     6.812       13.039      
+DAC     C5      C       CH2     0       -16.992     7.233       12.462      
+DAC     C6      C       CH2     0       -17.162     8.731       12.236      
+DAC     C7      C       CH2     0       -17.851     9.098       10.938      
+DAC     C8      C       CH2     0       -19.248     8.542       10.791      
+DAC     C9      C       CH2     0       -20.061     9.182       9.694       
+DAC     C10     C       CH3     0       -21.450     8.605       9.549       
+DAC     S       S       S2      0       -15.737     4.150       9.098       
+DAC     "C1'"   C       CH2     0       -16.028     5.064       7.563       
+DAC     "C2'"   C       CH2     0       -17.033     4.416       6.636       
+DAC     "N3'"   N       NH1     0       -18.216     5.244       6.426       
+DAC     "C4'"   C       C       0       -19.418     5.022       6.979       
+DAC     "O4'"   O       O       0       -19.623     4.098       7.765       
+DAC     "C5'"   C       CH3     0       -20.515     5.956       6.578       
+DAC     H2      H       H       0       -15.235     3.683       11.878      
+DAC     H3      H       H       0       -15.292     4.860       13.715      
+DAC     H41     H       H       0       -14.943     7.310       12.591      
+DAC     H42     H       H       0       -15.643     7.053       13.992      
+DAC     H51     H       H       0       -17.701     6.932       13.068      
+DAC     H52     H       H       0       -17.127     6.774       11.609      
+DAC     H61     H       H       0       -16.279     9.159       12.251      
+DAC     H62     H       H       0       -17.682     9.102       12.980      
+DAC     H71     H       H       0       -17.305     8.774       10.190      
+DAC     H72     H       H       0       -17.894     10.076      10.872      
+DAC     H81     H       H       0       -19.724     8.657       11.641      
+DAC     H82     H       H       0       -19.187     7.579       10.613      
+DAC     H91     H       H       0       -19.582     9.075       8.843       
+DAC     H92     H       H       0       -20.135     10.144      9.876       
+DAC     H101    H       H       0       -21.916     9.057       8.824       
+DAC     H102    H       H       0       -21.943     8.730       10.378      
+DAC     H103    H       H       0       -21.388     7.654       9.349       
+DAC     "H1'1"  H       H       0       -15.179     5.158       7.088       
+DAC     "H1'2"  H       H       0       -16.340     5.963       7.788       
+DAC     "H2'1"  H       H       0       -17.296     3.544       7.000       
+DAC     "H2'2"  H       H       0       -16.602     4.257       5.769       
+DAC     "HN'"   H       H       0       -18.123     5.938       5.904       
+DAC     "H5'1"  H       H       0       -21.375     5.560       6.795       
+DAC     "H5'2"  H       H       0       -20.471     6.121       5.622       
+DAC     "H5'3"  H       H       0       -20.419     6.796       7.054       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DAC          C1          O1      DOUBLE       n     1.211  0.0160     1.211  0.0160
+DAC          C1          C2      SINGLE       n     1.444  0.0200     1.444  0.0200
+DAC          C1           S      SINGLE       n     1.762  0.0200     1.762  0.0200
+DAC          C2          C3      DOUBLE       n     1.326  0.0157     1.326  0.0157
+DAC          C3          C4      SINGLE       n     1.499  0.0157     1.499  0.0157
+DAC          C4          C5      SINGLE       n     1.497  0.0200     1.497  0.0200
+DAC          C5          C6      SINGLE       n     1.519  0.0164     1.519  0.0164
+DAC          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+DAC          C7          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+DAC          C8          C9      SINGLE       n     1.507  0.0200     1.507  0.0200
+DAC          C9         C10      SINGLE       n     1.510  0.0200     1.510  0.0200
+DAC           S       "C1'"      SINGLE       n     1.809  0.0191     1.809  0.0191
+DAC       "C1'"       "C2'"      SINGLE       n     1.510  0.0158     1.510  0.0158
+DAC       "C2'"       "N3'"      SINGLE       n     1.455  0.0100     1.455  0.0100
+DAC       "N3'"       "C4'"      SINGLE       n     1.336  0.0105     1.336  0.0105
+DAC       "C4'"       "O4'"      DOUBLE       n     1.229  0.0102     1.229  0.0102
+DAC       "C4'"       "C5'"      SINGLE       n     1.495  0.0100     1.495  0.0100
+DAC          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0200
+DAC          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0181
+DAC          C4         H41      SINGLE       n     1.089  0.0100     0.983  0.0180
+DAC          C4         H42      SINGLE       n     1.089  0.0100     0.983  0.0180
+DAC          C5         H51      SINGLE       n     1.089  0.0100     0.980  0.0160
+DAC          C5         H52      SINGLE       n     1.089  0.0100     0.980  0.0160
+DAC          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+DAC          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+DAC          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0163
+DAC          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0163
+DAC          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0163
+DAC          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0163
+DAC          C9         H91      SINGLE       n     1.089  0.0100     0.982  0.0155
+DAC          C9         H92      SINGLE       n     1.089  0.0100     0.982  0.0155
+DAC         C10        H101      SINGLE       n     1.089  0.0100     0.973  0.0157
+DAC         C10        H102      SINGLE       n     1.089  0.0100     0.973  0.0157
+DAC         C10        H103      SINGLE       n     1.089  0.0100     0.973  0.0157
+DAC       "C1'"      "H1'1"      SINGLE       n     1.089  0.0100     0.978  0.0177
+DAC       "C1'"      "H1'2"      SINGLE       n     1.089  0.0100     0.978  0.0177
+DAC       "C2'"      "H2'1"      SINGLE       n     1.089  0.0100     0.981  0.0127
+DAC       "C2'"      "H2'2"      SINGLE       n     1.089  0.0100     0.981  0.0127
+DAC       "N3'"       "HN'"      SINGLE       n     1.016  0.0100     0.872  0.0200
+DAC       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.971  0.0140
+DAC       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.971  0.0140
+DAC       "C5'"      "H5'3"      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DAC          O1          C1          C2     120.363    3.00
+DAC          O1          C1           S     120.701    2.65
+DAC          C2          C1           S     118.936    3.00
+DAC          C1          C2          C3     123.616    2.45
+DAC          C1          C2          H2     117.882    2.36
+DAC          C3          C2          H2     118.502    2.29
+DAC          C2          C3          C4     125.879    2.56
+DAC          C2          C3          H3     117.170    2.02
+DAC          C4          C3          H3     116.963    1.61
+DAC          C3          C4          C5     113.226    1.94
+DAC          C3          C4         H41     108.886    1.50
+DAC          C3          C4         H42     108.886    1.50
+DAC          C5          C4         H41     108.819    1.50
+DAC          C5          C4         H42     108.819    1.50
+DAC         H41          C4         H42     107.922    1.50
+DAC          C4          C5          C6     114.266    1.80
+DAC          C4          C5         H51     108.805    1.50
+DAC          C4          C5         H52     108.805    1.50
+DAC          C6          C5         H51     108.698    1.50
+DAC          C6          C5         H52     108.698    1.50
+DAC         H51          C5         H52     107.646    1.50
+DAC          C5          C6          C7     114.243    1.69
+DAC          C5          C6         H61     108.698    1.50
+DAC          C5          C6         H62     108.698    1.50
+DAC          C7          C6         H61     108.698    1.50
+DAC          C7          C6         H62     108.698    1.50
+DAC         H61          C6         H62     107.646    1.50
+DAC          C6          C7          C8     114.243    1.69
+DAC          C6          C7         H71     108.698    1.50
+DAC          C6          C7         H72     108.698    1.50
+DAC          C8          C7         H71     108.698    1.50
+DAC          C8          C7         H72     108.698    1.50
+DAC         H71          C7         H72     107.646    1.50
+DAC          C7          C8          C9     114.362    3.00
+DAC          C7          C8         H81     108.698    1.50
+DAC          C7          C8         H82     108.698    1.50
+DAC          C9          C8         H81     108.653    1.50
+DAC          C9          C8         H82     108.653    1.50
+DAC         H81          C8         H82     107.646    1.50
+DAC          C8          C9         C10     113.719    3.00
+DAC          C8          C9         H91     108.758    1.50
+DAC          C8          C9         H92     108.758    1.50
+DAC         C10          C9         H91     108.918    1.50
+DAC         C10          C9         H92     108.918    1.50
+DAC         H91          C9         H92     107.763    1.50
+DAC          C9         C10        H101     109.554    1.50
+DAC          C9         C10        H102     109.554    1.50
+DAC          C9         C10        H103     109.554    1.50
+DAC        H101         C10        H102     109.380    1.50
+DAC        H101         C10        H103     109.380    1.50
+DAC        H102         C10        H103     109.380    1.50
+DAC          C1           S       "C1'"     120.000    3.00
+DAC           S       "C1'"       "C2'"     112.239    3.00
+DAC           S       "C1'"      "H1'1"     109.066    1.50
+DAC           S       "C1'"      "H1'2"     109.066    1.50
+DAC       "C2'"       "C1'"      "H1'1"     108.964    1.50
+DAC       "C2'"       "C1'"      "H1'2"     108.964    1.50
+DAC      "H1'1"       "C1'"      "H1'2"     107.807    1.50
+DAC       "C1'"       "C2'"       "N3'"     112.117    1.54
+DAC       "C1'"       "C2'"      "H2'1"     109.038    1.50
+DAC       "C1'"       "C2'"      "H2'2"     109.038    1.50
+DAC       "N3'"       "C2'"      "H2'1"     109.102    1.50
+DAC       "N3'"       "C2'"      "H2'2"     109.102    1.50
+DAC      "H2'1"       "C2'"      "H2'2"     107.995    1.50
+DAC       "C2'"       "N3'"       "C4'"     123.008    1.80
+DAC       "C2'"       "N3'"       "HN'"     118.271    1.83
+DAC       "C4'"       "N3'"       "HN'"     118.722    1.50
+DAC       "N3'"       "C4'"       "O4'"     121.741    1.50
+DAC       "N3'"       "C4'"       "C5'"     116.326    1.50
+DAC       "O4'"       "C4'"       "C5'"     121.942    1.50
+DAC       "C4'"       "C5'"      "H5'1"     109.678    1.50
+DAC       "C4'"       "C5'"      "H5'2"     109.678    1.50
+DAC       "C4'"       "C5'"      "H5'3"     109.678    1.50
+DAC      "H5'1"       "C5'"      "H5'2"     109.365    1.50
+DAC      "H5'1"       "C5'"      "H5'3"     109.365    1.50
+DAC      "H5'2"       "C5'"      "H5'3"     109.365    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DAC             sp2_sp2_5          O1          C1           S       "C1'"     180.000     5.0     2
+DAC             sp2_sp2_3          O1          C1          C2          C3       0.000     5.0     2
+DAC            sp3_sp3_55       "C2'"       "C1'"           S          C1     180.000    10.0     3
+DAC            sp3_sp3_58           S       "C1'"       "C2'"       "N3'"     180.000    10.0     3
+DAC             sp2_sp3_8       "C4'"       "N3'"       "C2'"       "C1'"     120.000    10.0     6
+DAC            sp2_sp2_13       "O4'"       "C4'"       "N3'"       "C2'"       0.000     5.0     2
+DAC            sp2_sp3_13       "N3'"       "C4'"       "C5'"      "H5'1"       0.000    10.0     6
+DAC             sp2_sp2_7          C1          C2          C3          C4     180.000     5.0     2
+DAC             sp2_sp3_2          C2          C3          C4          C5     120.000    10.0     6
+DAC             sp3_sp3_1          C3          C4          C5          C6     180.000    10.0     3
+DAC            sp3_sp3_10          C4          C5          C6          C7     180.000    10.0     3
+DAC            sp3_sp3_19          C5          C6          C7          C8     180.000    10.0     3
+DAC            sp3_sp3_28          C6          C7          C8          C9     180.000    10.0     3
+DAC            sp3_sp3_37          C7          C8          C9         C10     180.000    10.0     3
+DAC            sp3_sp3_46        H101         C10          C9          C8     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DAC    plan-1          C1   0.020
+DAC    plan-1          C2   0.020
+DAC    plan-1          O1   0.020
+DAC    plan-1           S   0.020
+DAC    plan-2          C1   0.020
+DAC    plan-2          C2   0.020
+DAC    plan-2          C3   0.020
+DAC    plan-2          H2   0.020
+DAC    plan-3          C2   0.020
+DAC    plan-3          C3   0.020
+DAC    plan-3          C4   0.020
+DAC    plan-3          H3   0.020
+DAC    plan-4       "C2'"   0.020
+DAC    plan-4       "C4'"   0.020
+DAC    plan-4       "HN'"   0.020
+DAC    plan-4       "N3'"   0.020
+DAC    plan-5       "C4'"   0.020
+DAC    plan-5       "C5'"   0.020
+DAC    plan-5       "N3'"   0.020
+DAC    plan-5       "O4'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DAC           SMILES              ACDLabs 10.04                                                                                 O=C(SCCNC(=O)C)\C=C/CCCCCCC
+DAC SMILES_CANONICAL               CACTVS 3.341                                                                                 CCCCCCC\C=C/C(=O)SCCNC(C)=O
+DAC           SMILES               CACTVS 3.341                                                                                   CCCCCCCC=CC(=O)SCCNC(C)=O
+DAC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                 CCCCCCC\C=C/C(=O)SCCNC(=O)C
+DAC           SMILES "OpenEye OEToolkits" 1.5.0                                                                                   CCCCCCCC=CC(=O)SCCNC(=O)C
+DAC            InChI                InChI  1.03 InChI=1S/C14H25NO2S/c1-3-4-5-6-7-8-9-10-14(17)18-12-11-15-13(2)16/h9-10H,3-8,11-12H2,1-2H3,(H,15,16)/b10-9-
+DAC         InChIKey                InChI  1.03                                                                                 HYDKTIAWESXLEF-KTKRTIGZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DAC acedrg               243         "dictionary generator"                  
+DAC acedrg_database      11          "data source"                           
+DAC rdkit                2017.03.2   "Chemoinformatics tool"
+DAC refmac5              5.8.0238    "optimization tool"                     

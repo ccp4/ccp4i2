@@ -1,0 +1,313 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EZP     EZP      N-[(1R,2R)-1,3-dihydroxy-1-(4-nitrophenyl)propan-2-yl]-D-histidinamide     NON-POLYMER     45     25     .     
+#
+data_comp_EZP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EZP     CAG     C       CR16    0       84.441      -56.575     -3.486      
+EZP     CAI     C       CR16    0       84.355      -55.256     -3.069      
+EZP     CAU     C       CR6     0       85.341      -54.362     -3.486      
+EZP     NAY     N       N       1       85.262      -52.971     -3.055      
+EZP     OAF     O       OC      -1      84.256      -52.337     -3.332      
+EZP     OAC     O       O       0       86.205      -52.502     -2.435      
+EZP     CAJ     C       CR16    0       86.397      -54.762     -4.306      
+EZP     CAH     C       CR16    0       86.456      -56.087     -4.706      
+EZP     CAT     C       CR6     0       85.488      -57.009     -4.304      
+EZP     CAW     C       CH1     0       85.576      -58.453     -4.763      
+EZP     OAE     O       OH1     0       85.082      -59.363     -3.784      
+EZP     CAX     C       CH1     0       84.820      -58.700     -6.083      
+EZP     CAM     C       CH2     0       84.955      -60.137     -6.572      
+EZP     OAD     O       OH1     0       84.550      -60.272     -7.924      
+EZP     NAP     N       NH1     0       83.404      -58.364     -5.966      
+EZP     C       C       C       0       82.798      -57.331     -6.573      
+EZP     O       O       O       0       83.367      -56.562     -7.347      
+EZP     CA      C       CH1     0       81.321      -57.113     -6.242      
+EZP     N       N       NT3     1       81.196      -56.871     -4.777      
+EZP     CB      C       CH2     0       80.460      -58.310     -6.675      
+EZP     CG      C       CR5     0       78.997      -58.017     -6.703      
+EZP     CD2     C       CR15    0       78.294      -57.145     -7.471      
+EZP     NE2     N       NR5     0       76.983      -57.268     -7.094      
+EZP     CE1     C       CR15    0       76.932      -58.189     -6.129      
+EZP     ND1     N       NRD5    0       78.130      -58.673     -5.856      
+EZP     H1      H       H       0       83.778      -57.186     -3.210      
+EZP     H2      H       H       0       83.646      -54.975     -2.517      
+EZP     H3      H       H       0       87.057      -54.149     -4.580      
+EZP     H4      H       H       0       87.165      -56.370     -5.259      
+EZP     H5      H       H       0       86.527      -58.662     -4.921      
+EZP     H6      H       H       0       85.623      -59.369     -3.132      
+EZP     H7      H       H       0       85.236      -58.115     -6.768      
+EZP     H8      H       H       0       84.405      -60.724     -6.010      
+EZP     H9      H       H       0       85.889      -60.422     -6.484      
+EZP     H10     H       H       0       84.728      -61.057     -8.181      
+EZP     H11     H       H       0       82.934      -58.893     -5.458      
+EZP     H12     H       H       0       80.999      -56.311     -6.717      
+EZP     H13     H       H       0       80.351      -56.591     -4.584      
+EZP     H14     H       H       0       81.779      -56.223     -4.510      
+EZP     H15     H       H       0       81.363      -57.631     -4.305      
+EZP     H16     H       H       0       80.634      -59.051     -6.060      
+EZP     H17     H       H       0       80.753      -58.593     -7.565      
+EZP     H18     H       H       0       78.625      -56.563     -8.138      
+EZP     H19     H       H       0       76.321      -56.828     -7.424      
+EZP     H20     H       H       0       76.143      -58.458     -5.701      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EZP         CAM         OAD      SINGLE       n     1.417  0.0200     1.417  0.0200
+EZP         NE2         CE1      SINGLE       y     1.335  0.0100     1.335  0.0100
+EZP         CE1         ND1      DOUBLE       y     1.320  0.0100     1.320  0.0100
+EZP         CD2         NE2      SINGLE       y     1.370  0.0100     1.370  0.0100
+EZP          CG         ND1      SINGLE       y     1.379  0.0100     1.379  0.0100
+EZP          CG         CD2      DOUBLE       y     1.357  0.0100     1.357  0.0100
+EZP           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+EZP         CAX         CAM      SINGLE       n     1.523  0.0136     1.523  0.0136
+EZP         CAX         NAP      SINGLE       n     1.456  0.0100     1.456  0.0100
+EZP         CAW         CAX      SINGLE       n     1.540  0.0100     1.540  0.0100
+EZP          CB          CG      SINGLE       n     1.492  0.0100     1.492  0.0100
+EZP         NAP           C      SINGLE       n     1.337  0.0102     1.337  0.0102
+EZP           C          CA      SINGLE       n     1.526  0.0100     1.526  0.0100
+EZP          CA          CB      SINGLE       n     1.534  0.0118     1.534  0.0118
+EZP          CA           N      SINGLE       n     1.488  0.0100     1.488  0.0100
+EZP         CAJ         CAH      DOUBLE       y     1.382  0.0100     1.382  0.0100
+EZP         CAH         CAT      SINGLE       y     1.392  0.0100     1.392  0.0100
+EZP         CAT         CAW      SINGLE       n     1.515  0.0100     1.515  0.0100
+EZP         CAW         OAE      SINGLE       n     1.423  0.0133     1.423  0.0133
+EZP         CAU         CAJ      SINGLE       y     1.393  0.0100     1.393  0.0100
+EZP         CAG         CAT      DOUBLE       y     1.392  0.0100     1.392  0.0100
+EZP         NAY         OAC      DOUBLE       n     1.221  0.0162     1.221  0.0162
+EZP         CAU         NAY      SINGLE       n     1.457  0.0200     1.457  0.0200
+EZP         CAI         CAU      DOUBLE       y     1.393  0.0100     1.393  0.0100
+EZP         CAG         CAI      SINGLE       y     1.382  0.0100     1.382  0.0100
+EZP         NAY         OAF      SINGLE       n     1.221  0.0162     1.221  0.0162
+EZP         CAG          H1      SINGLE       n     1.082  0.0130     0.943  0.0173
+EZP         CAI          H2      SINGLE       n     1.082  0.0130     0.941  0.0200
+EZP         CAJ          H3      SINGLE       n     1.082  0.0130     0.941  0.0200
+EZP         CAH          H4      SINGLE       n     1.082  0.0130     0.943  0.0173
+EZP         CAW          H5      SINGLE       n     1.089  0.0100     0.987  0.0156
+EZP         OAE          H6      SINGLE       n     0.970  0.0120     0.848  0.0200
+EZP         CAX          H7      SINGLE       n     1.089  0.0100     0.992  0.0100
+EZP         CAM          H8      SINGLE       n     1.089  0.0100     0.981  0.0174
+EZP         CAM          H9      SINGLE       n     1.089  0.0100     0.981  0.0174
+EZP         OAD         H10      SINGLE       n     0.970  0.0120     0.846  0.0200
+EZP         NAP         H11      SINGLE       n     1.016  0.0100     0.872  0.0200
+EZP          CA         H12      SINGLE       n     1.089  0.0100     0.986  0.0200
+EZP           N         H13      SINGLE       n     1.036  0.0160     0.911  0.0200
+EZP           N         H14      SINGLE       n     1.036  0.0160     0.911  0.0200
+EZP           N         H15      SINGLE       n     1.036  0.0160     0.911  0.0200
+EZP          CB         H16      SINGLE       n     1.089  0.0100     0.979  0.0187
+EZP          CB         H17      SINGLE       n     1.089  0.0100     0.979  0.0187
+EZP         CD2         H18      SINGLE       n     1.082  0.0130     0.945  0.0191
+EZP         NE2         H19      SINGLE       n     1.016  0.0100     0.861  0.0200
+EZP         CE1         H20      SINGLE       n     1.082  0.0130     0.937  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EZP         CAT         CAG         CAI     120.938    1.50
+EZP         CAT         CAG          H1     119.666    1.50
+EZP         CAI         CAG          H1     119.396    1.50
+EZP         CAU         CAI         CAG     118.489    1.50
+EZP         CAU         CAI          H2     121.025    1.50
+EZP         CAG         CAI          H2     120.487    1.50
+EZP         CAJ         CAU         NAY     118.808    1.50
+EZP         CAJ         CAU         CAI     122.384    1.50
+EZP         NAY         CAU         CAI     118.808    1.50
+EZP         OAC         NAY         CAU     118.257    1.50
+EZP         OAC         NAY         OAF     123.486    1.50
+EZP         CAU         NAY         OAF     118.257    1.50
+EZP         CAH         CAJ         CAU     118.489    1.50
+EZP         CAH         CAJ          H3     120.487    1.50
+EZP         CAU         CAJ          H3     121.025    1.50
+EZP         CAJ         CAH         CAT     120.938    1.50
+EZP         CAJ         CAH          H4     119.396    1.50
+EZP         CAT         CAH          H4     119.666    1.50
+EZP         CAH         CAT         CAW     120.619    1.50
+EZP         CAH         CAT         CAG     118.763    1.50
+EZP         CAW         CAT         CAG     120.619    1.50
+EZP         CAX         CAW         CAT     113.018    1.62
+EZP         CAX         CAW         OAE     108.389    2.58
+EZP         CAX         CAW          H5     108.286    1.50
+EZP         CAT         CAW         OAE     112.050    1.50
+EZP         CAT         CAW          H5     108.540    1.50
+EZP         OAE         CAW          H5     108.742    1.50
+EZP         CAW         OAE          H6     108.178    3.00
+EZP         CAM         CAX         NAP     109.157    1.65
+EZP         CAM         CAX         CAW     112.177    1.50
+EZP         CAM         CAX          H7     107.627    1.50
+EZP         NAP         CAX         CAW     111.504    1.50
+EZP         NAP         CAX          H7     108.194    1.50
+EZP         CAW         CAX          H7     107.161    1.50
+EZP         OAD         CAM         CAX     111.903    1.66
+EZP         OAD         CAM          H8     109.411    1.50
+EZP         OAD         CAM          H9     109.411    1.50
+EZP         CAX         CAM          H8     109.343    1.50
+EZP         CAX         CAM          H9     109.343    1.50
+EZP          H8         CAM          H9     108.070    1.50
+EZP         CAM         OAD         H10     108.529    2.94
+EZP         CAX         NAP           C     123.632    1.63
+EZP         CAX         NAP         H11     117.489    3.00
+EZP           C         NAP         H11     118.879    1.83
+EZP           O           C         NAP     123.480    1.50
+EZP           O           C          CA     120.656    1.50
+EZP         NAP           C          CA     115.863    1.50
+EZP           C          CA          CB     110.476    1.81
+EZP           C          CA           N     107.575    1.50
+EZP           C          CA         H12     109.286    1.50
+EZP          CB          CA           N     110.324    1.50
+EZP          CB          CA         H12     108.492    1.50
+EZP           N          CA         H12     108.444    1.50
+EZP          CA           N         H13     110.142    3.00
+EZP          CA           N         H14     110.142    3.00
+EZP          CA           N         H15     110.142    3.00
+EZP         H13           N         H14     109.028    2.41
+EZP         H13           N         H15     109.028    2.41
+EZP         H14           N         H15     109.028    2.41
+EZP          CG          CB          CA     113.852    1.50
+EZP          CG          CB         H16     109.683    1.50
+EZP          CG          CB         H17     109.683    1.50
+EZP          CA          CB         H16     108.290    1.50
+EZP          CA          CB         H17     108.290    1.50
+EZP         H16          CB         H17     107.541    1.50
+EZP         ND1          CG         CD2     109.041    1.50
+EZP         ND1          CG          CB     120.759    1.50
+EZP         CD2          CG          CB     130.200    1.50
+EZP         NE2         CD2          CG     106.242    1.50
+EZP         NE2         CD2         H18     125.855    2.21
+EZP          CG         CD2         H18     127.902    1.83
+EZP         CE1         NE2         CD2     107.314    1.50
+EZP         CE1         NE2         H19     126.886    3.00
+EZP         CD2         NE2         H19     125.800    1.75
+EZP         NE2         CE1         ND1     111.692    1.50
+EZP         NE2         CE1         H20     124.008    1.50
+EZP         ND1         CE1         H20     124.304    1.50
+EZP         CE1         ND1          CG     105.707    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EZP              const_37         CAT         CAG         CAI         CAU       0.000    10.0     2
+EZP       const_sp2_sp2_2         CAI         CAG         CAT         CAW     180.000     5.0     2
+EZP             sp3_sp3_4         OAD         CAM         CAX         NAP     180.000    10.0     3
+EZP             sp2_sp3_1           C         NAP         CAX         CAM       0.000    10.0     6
+EZP             sp3_sp3_1         CAX         CAM         OAD         H10     180.000    10.0     3
+EZP             sp2_sp2_3           O           C         NAP         CAX       0.000     5.0     2
+EZP            sp2_sp3_13           O           C          CA          CB       0.000    10.0     6
+EZP            sp3_sp3_31           C          CA           N         H13     180.000    10.0     3
+EZP            sp3_sp3_22           C          CA          CB          CG     180.000    10.0     3
+EZP             sp2_sp3_8         ND1          CG          CB          CA     -90.000    10.0     6
+EZP              const_18         CAG         CAI         CAU         NAY     180.000    10.0     2
+EZP              const_34         NE2         CD2          CG          CB     180.000    10.0     2
+EZP              const_22          CB          CG         ND1         CE1     180.000    10.0     2
+EZP              const_29          CG         CD2         NE2         CE1       0.000    10.0     2
+EZP              const_25         ND1         CE1         NE2         CD2       0.000    10.0     2
+EZP              const_23         NE2         CE1         ND1          CG       0.000    10.0     2
+EZP             sp2_sp2_5         CAJ         CAU         NAY         OAC     180.000     5.0     2
+EZP              const_14         CAH         CAJ         CAU         NAY     180.000    10.0     2
+EZP       const_sp2_sp2_9         CAT         CAH         CAJ         CAU       0.000     5.0     2
+EZP       const_sp2_sp2_6         CAJ         CAH         CAT         CAW     180.000     5.0     2
+EZP            sp2_sp3_19         CAH         CAT         CAW         CAX     150.000    10.0     6
+EZP            sp3_sp3_40         CAX         CAW         OAE          H6     180.000    10.0     3
+EZP            sp3_sp3_16         OAE         CAW         CAX         CAM      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EZP    chir_1    CAW    OAE    CAX    CAT    negative
+EZP    chir_2    CAX    NAP    CAW    CAM    negative
+EZP    chir_3    CA    N    C    CB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EZP    plan-1         CAG   0.020
+EZP    plan-1         CAH   0.020
+EZP    plan-1         CAI   0.020
+EZP    plan-1         CAJ   0.020
+EZP    plan-1         CAT   0.020
+EZP    plan-1         CAU   0.020
+EZP    plan-1         CAW   0.020
+EZP    plan-1          H1   0.020
+EZP    plan-1          H2   0.020
+EZP    plan-1          H3   0.020
+EZP    plan-1          H4   0.020
+EZP    plan-1         NAY   0.020
+EZP    plan-2          CB   0.020
+EZP    plan-2         CD2   0.020
+EZP    plan-2         CE1   0.020
+EZP    plan-2          CG   0.020
+EZP    plan-2         H18   0.020
+EZP    plan-2         H19   0.020
+EZP    plan-2         H20   0.020
+EZP    plan-2         ND1   0.020
+EZP    plan-2         NE2   0.020
+EZP    plan-3         CAU   0.020
+EZP    plan-3         NAY   0.020
+EZP    plan-3         OAC   0.020
+EZP    plan-3         OAF   0.020
+EZP    plan-4           C   0.020
+EZP    plan-4         CAX   0.020
+EZP    plan-4         H11   0.020
+EZP    plan-4         NAP   0.020
+EZP    plan-5           C   0.020
+EZP    plan-5          CA   0.020
+EZP    plan-5         NAP   0.020
+EZP    plan-5           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EZP           SMILES              ACDLabs 12.01                                                                                                                     c1cc(N(=O)=O)ccc1C(O)C(NC(C(Cc2cncn2)N)=O)CO
+EZP            InChI                InChI  1.03 InChI=1S/C15H19N5O5/c16-12(5-10-6-17-8-18-10)15(23)19-13(7-21)14(22)9-1-3-11(4-2-9)20(24)25/h1-4,6,8,12-14,21-22H,5,7,16H2,(H,17,18)(H,19,23)/t12-,13-,14-/m1/s1
+EZP         InChIKey                InChI  1.03                                                                                                                                      MMDMFLDVXHCRMV-MGPQQGTHSA-N
+EZP SMILES_CANONICAL               CACTVS 3.385                                                                                                    N[C@H](Cc1c[nH]cn1)C(=O)N[C@H](CO)[C@H](O)c2ccc(cc2)[N](=O)=O
+EZP           SMILES               CACTVS 3.385                                                                                                       N[CH](Cc1c[nH]cn1)C(=O)N[CH](CO)[CH](O)c2ccc(cc2)[N](=O)=O
+EZP SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                    c1cc(ccc1[C@H]([C@@H](CO)NC(=O)[C@@H](Cc2c[nH]cn2)N)O)N(=O)=O
+EZP           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                  c1cc(ccc1C(C(CO)NC(=O)C(Cc2c[nH]cn2)N)O)N(=O)=O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EZP acedrg               243         "dictionary generator"                  
+EZP acedrg_database      11          "data source"                           
+EZP rdkit                2017.03.2   "Chemoinformatics tool"
+EZP refmac5              5.8.0238    "optimization tool"                     

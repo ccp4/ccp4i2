@@ -1,0 +1,342 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HPW     HPW      N-[3-(1-Hydroxy-6-oxo-4-phenyl-1,6-dihydro-pyridin-2-yl)-5-methanesulfonylamino-phenyl]-methanesulfonamide     NON-POLYMER     49     30     .     
+#
+data_comp_HPW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HPW     C14     C       CH3     0       20.427      -3.008      -1.272      
+HPW     C7      C       CR6     0       24.692      -1.841      -2.564      
+HPW     C8      C       CR16    0       25.622      -2.773      -3.019      
+HPW     C9      C       CR16    0       23.330      -2.054      -2.785      
+HPW     C10     C       CR6     0       22.907      -3.203      -3.457      
+HPW     C1      C       CH3     0       27.326      0.244       -3.098      
+HPW     S2      S       S3      0       26.570      -0.076      -1.552      
+HPW     O3      O       O       0       26.402      1.170       -0.877      
+HPW     O4      O       O       0       27.299      -1.111      -0.893      
+HPW     N5      N       NH1     0       25.070      -0.645      -1.857      
+HPW     N11     N       NH1     0       21.522      -3.474      -3.724      
+HPW     S13     S       S3      0       20.213      -2.819      -2.999      
+HPW     O15     O       O       0       19.090      -3.604      -3.396      
+HPW     O16     O       O       0       20.211      -1.426      -3.306      
+HPW     C17     C       CR16    0       23.845      -4.128      -3.907      
+HPW     C18     C       CR6     0       25.210      -3.917      -3.703      
+HPW     C19     C       CR6     0       26.223      -4.900      -4.174      
+HPW     C20     C       CR16    0       27.130      -5.446      -3.311      
+HPW     N21     N       NR6     0       26.268      -5.252      -5.528      
+HPW     O22     O       OH1     0       25.352      -4.687      -6.403      
+HPW     C24     C       CR6     0       27.194      -6.153      -6.038      
+HPW     O25     O       O       0       27.176      -6.429      -7.251      
+HPW     C26     C       CR16    0       28.127      -6.712      -5.100      
+HPW     C27     C       CR6     0       28.089      -6.359      -3.750      
+HPW     C28     C       CR6     0       29.066      -6.942      -2.793      
+HPW     C29     C       CR16    0       29.795      -6.126      -1.927      
+HPW     C30     C       CR16    0       30.711      -6.668      -1.033      
+HPW     C31     C       CR16    0       30.915      -8.032      -0.993      
+HPW     C32     C       CR16    0       30.207      -8.858      -1.843      
+HPW     C33     C       CR16    0       29.290      -8.319      -2.737      
+HPW     H1      H       H       0       20.623      -3.936      -1.073      
+HPW     H2      H       H       0       19.612      -2.743      -0.819      
+HPW     H3      H       H       0       21.159      -2.449      -0.975      
+HPW     H4      H       H       0       26.539      -2.639      -2.874      
+HPW     H5      H       H       0       22.702      -1.424      -2.475      
+HPW     H6      H       H       0       27.356      -0.572      -3.619      
+HPW     H7      H       H       0       28.228      0.568       -2.952      
+HPW     H8      H       H       0       26.812      0.914       -3.573      
+HPW     H9      H       H       0       24.422      -0.164      -1.550      
+HPW     H10     H       H       0       21.358      -4.050      -4.346      
+HPW     H11     H       H       0       23.562      -4.897      -4.369      
+HPW     H12     H       H       0       27.105      -5.208      -2.412      
+HPW     H13     H       H       0       25.802      -4.058      -6.836      
+HPW     H14     H       H       0       28.767      -7.322      -5.395      
+HPW     H15     H       H       0       29.662      -5.191      -1.947      
+HPW     H16     H       H       0       31.193      -6.102      -0.454      
+HPW     H17     H       H       0       31.538      -8.400      -0.386      
+HPW     H18     H       H       0       30.345      -9.790      -1.817      
+HPW     H19     H       H       0       28.809      -8.892      -3.315      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HPW         C24         O25      DOUBLE       n     1.242  0.0172     1.242  0.0172
+HPW         N21         O22      SINGLE       n     1.384  0.0100     1.384  0.0100
+HPW         N21         C24      SINGLE       y     1.382  0.0117     1.382  0.0117
+HPW         C24         C26      SINGLE       y     1.433  0.0111     1.433  0.0111
+HPW         C19         N21      SINGLE       y     1.375  0.0176     1.375  0.0176
+HPW         C26         C27      DOUBLE       y     1.392  0.0100     1.392  0.0100
+HPW         C18         C19      SINGLE       n     1.485  0.0100     1.485  0.0100
+HPW         C19         C20      DOUBLE       y     1.362  0.0100     1.362  0.0100
+HPW         C17         C18      DOUBLE       y     1.392  0.0100     1.392  0.0100
+HPW         C10         C17      SINGLE       y     1.387  0.0100     1.387  0.0100
+HPW         C20         C27      SINGLE       y     1.392  0.0100     1.392  0.0100
+HPW         C27         C28      SINGLE       n     1.486  0.0100     1.486  0.0100
+HPW          C8         C18      SINGLE       y     1.392  0.0100     1.392  0.0100
+HPW         C10         N11      SINGLE       n     1.422  0.0171     1.422  0.0171
+HPW         N11         S13      SINGLE       n     1.629  0.0128     1.629  0.0128
+HPW          C9         C10      DOUBLE       y     1.391  0.0100     1.391  0.0100
+HPW         S13         O15      DOUBLE       n     1.427  0.0100     1.427  0.0100
+HPW          C7          C8      DOUBLE       y     1.387  0.0100     1.387  0.0100
+HPW          C7          C9      SINGLE       y     1.391  0.0100     1.391  0.0100
+HPW          C7          N5      SINGLE       n     1.422  0.0171     1.422  0.0171
+HPW         C28         C33      SINGLE       y     1.392  0.0100     1.392  0.0100
+HPW         C28         C29      DOUBLE       y     1.392  0.0100     1.392  0.0100
+HPW         C32         C33      DOUBLE       y     1.386  0.0100     1.386  0.0100
+HPW         S13         O16      DOUBLE       n     1.427  0.0100     1.427  0.0100
+HPW         C14         S13      SINGLE       n     1.750  0.0100     1.750  0.0100
+HPW          S2          N5      SINGLE       n     1.629  0.0128     1.629  0.0128
+HPW          C1          S2      SINGLE       n     1.750  0.0100     1.750  0.0100
+HPW         C29         C30      SINGLE       y     1.386  0.0100     1.386  0.0100
+HPW         C31         C32      SINGLE       y     1.376  0.0124     1.376  0.0124
+HPW          S2          O3      DOUBLE       n     1.427  0.0100     1.427  0.0100
+HPW          S2          O4      DOUBLE       n     1.427  0.0100     1.427  0.0100
+HPW         C30         C31      DOUBLE       y     1.376  0.0114     1.376  0.0114
+HPW         C14          H1      SINGLE       n     1.089  0.0100     0.969  0.0154
+HPW         C14          H2      SINGLE       n     1.089  0.0100     0.969  0.0154
+HPW         C14          H3      SINGLE       n     1.089  0.0100     0.969  0.0154
+HPW          C8          H4      SINGLE       n     1.082  0.0130     0.941  0.0147
+HPW          C9          H5      SINGLE       n     1.082  0.0130     0.946  0.0200
+HPW          C1          H6      SINGLE       n     1.089  0.0100     0.969  0.0154
+HPW          C1          H7      SINGLE       n     1.089  0.0100     0.969  0.0154
+HPW          C1          H8      SINGLE       n     1.089  0.0100     0.969  0.0154
+HPW          N5          H9      SINGLE       n     1.016  0.0100     0.863  0.0132
+HPW         N11         H10      SINGLE       n     1.016  0.0100     0.863  0.0132
+HPW         C17         H11      SINGLE       n     1.082  0.0130     0.941  0.0147
+HPW         C20         H12      SINGLE       n     1.082  0.0130     0.930  0.0100
+HPW         O22         H13      SINGLE       n     0.970  0.0120     0.887  0.0200
+HPW         C26         H14      SINGLE       n     1.082  0.0130     0.932  0.0100
+HPW         C29         H15      SINGLE       n     1.082  0.0130     0.945  0.0170
+HPW         C30         H16      SINGLE       n     1.082  0.0130     0.943  0.0180
+HPW         C31         H17      SINGLE       n     1.082  0.0130     0.944  0.0161
+HPW         C32         H18      SINGLE       n     1.082  0.0130     0.943  0.0180
+HPW         C33         H19      SINGLE       n     1.082  0.0130     0.945  0.0170
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HPW         S13         C14          H1     109.254    1.50
+HPW         S13         C14          H2     109.254    1.50
+HPW         S13         C14          H3     109.254    1.50
+HPW          H1         C14          H2     109.614    1.50
+HPW          H1         C14          H3     109.614    1.50
+HPW          H2         C14          H3     109.614    1.50
+HPW          C8          C7          C9     120.624    2.01
+HPW          C8          C7          N5     119.688    2.41
+HPW          C9          C7          N5     119.688    2.41
+HPW         C18          C8          C7     120.421    1.50
+HPW         C18          C8          H4     119.529    1.50
+HPW          C7          C8          H4     120.055    1.50
+HPW         C10          C9          C7     119.099    1.76
+HPW         C10          C9          H5     120.450    1.50
+HPW          C7          C9          H5     120.450    1.50
+HPW         C17         C10         N11     119.688    2.41
+HPW         C17         C10          C9     120.624    2.01
+HPW         N11         C10          C9     119.688    2.41
+HPW          S2          C1          H6     109.254    1.50
+HPW          S2          C1          H7     109.254    1.50
+HPW          S2          C1          H8     109.254    1.50
+HPW          H6          C1          H7     109.614    1.50
+HPW          H6          C1          H8     109.614    1.50
+HPW          H7          C1          H8     109.614    1.50
+HPW          N5          S2          C1     106.714    1.50
+HPW          N5          S2          O3     106.966    1.72
+HPW          N5          S2          O4     106.966    1.72
+HPW          C1          S2          O3     108.412    1.50
+HPW          C1          S2          O4     108.412    1.50
+HPW          O3          S2          O4     118.713    1.50
+HPW          C7          N5          S2     124.452    3.00
+HPW          C7          N5          H9     117.774    1.56
+HPW          S2          N5          H9     117.756    1.59
+HPW         C10         N11         S13     124.452    3.00
+HPW         C10         N11         H10     117.774    1.56
+HPW         S13         N11         H10     117.756    1.59
+HPW         N11         S13         O15     106.966    1.72
+HPW         N11         S13         O16     106.966    1.72
+HPW         N11         S13         C14     106.714    1.50
+HPW         O15         S13         O16     118.713    1.50
+HPW         O15         S13         C14     108.412    1.50
+HPW         O16         S13         C14     108.412    1.50
+HPW         C18         C17         C10     120.421    1.50
+HPW         C18         C17         H11     119.529    1.50
+HPW         C10         C17         H11     120.055    1.50
+HPW         C19         C18         C17     120.601    1.50
+HPW         C19         C18          C8     120.601    1.50
+HPW         C17         C18          C8     118.798    1.50
+HPW         N21         C19         C18     117.815    1.53
+HPW         N21         C19         C20     120.162    3.00
+HPW         C18         C19         C20     122.023    1.50
+HPW         C19         C20         C27     120.500    1.81
+HPW         C19         C20         H12     119.823    1.50
+HPW         C27         C20         H12     119.676    1.50
+HPW         O22         N21         C24     118.660    1.50
+HPW         O22         N21         C19     118.145    1.50
+HPW         C24         N21         C19     123.195    1.50
+HPW         N21         O22         H13     105.192    3.00
+HPW         O25         C24         N21     119.138    1.50
+HPW         O25         C24         C26     124.469    1.50
+HPW         N21         C24         C26     116.393    1.50
+HPW         C24         C26         C27     120.813    1.50
+HPW         C24         C26         H14     119.703    1.50
+HPW         C27         C26         H14     119.484    1.50
+HPW         C26         C27         C20     118.936    1.50
+HPW         C26         C27         C28     120.534    1.50
+HPW         C20         C27         C28     120.530    1.50
+HPW         C27         C28         C33     121.096    1.50
+HPW         C27         C28         C29     121.096    1.50
+HPW         C33         C28         C29     117.808    1.50
+HPW         C28         C29         C30     120.887    1.50
+HPW         C28         C29         H15     119.477    1.50
+HPW         C30         C29         H15     119.636    1.50
+HPW         C29         C30         C31     120.251    1.50
+HPW         C29         C30         H16     119.823    1.50
+HPW         C31         C30         H16     119.926    1.50
+HPW         C32         C31         C30     119.915    1.50
+HPW         C32         C31         H17     120.043    1.50
+HPW         C30         C31         H17     120.043    1.50
+HPW         C33         C32         C31     120.251    1.50
+HPW         C33         C32         H18     119.823    1.50
+HPW         C31         C32         H18     119.926    1.50
+HPW         C28         C33         C32     120.887    1.50
+HPW         C28         C33         H19     119.477    1.50
+HPW         C32         C33         H19     119.636    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HPW             sp3_sp3_3          H1         C14         S13         N11      60.000    10.0     3
+HPW             sp2_sp3_4         C10         N11         S13         O15     120.000    10.0     6
+HPW              const_10         C10         C17         C18         C19     180.000    10.0     2
+HPW             sp2_sp2_1         C17         C18         C19         N21     180.000     5.0     2
+HPW              const_61         N21         C19         C20         C27       0.000    10.0     2
+HPW              const_24         C18         C19         N21         O22       0.000    10.0     2
+HPW              const_37         C19         C20         C27         C26       0.000    10.0     2
+HPW              const_28         O25         C24         N21         O22       0.000    10.0     2
+HPW       const_sp2_sp2_3          N5          C7          C8         C18     180.000     5.0     2
+HPW              const_67          N5          C7          C9         C10     180.000    10.0     2
+HPW            sp2_sp2_13          C8          C7          N5          S2     180.000     5.0     2
+HPW              const_31         O25         C24         C26         C27     180.000    10.0     2
+HPW              const_33         C24         C26         C27         C20       0.000    10.0     2
+HPW             sp2_sp2_5         C26         C27         C28         C33     180.000     5.0     2
+HPW              const_71         C27         C28         C29         C30     180.000    10.0     2
+HPW              const_43         C27         C28         C33         C32     180.000    10.0     2
+HPW              const_57         C28         C29         C30         C31       0.000    10.0     2
+HPW              const_53         C29         C30         C31         C32       0.000    10.0     2
+HPW              const_49         C30         C31         C32         C33       0.000    10.0     2
+HPW              const_45         C31         C32         C33         C28       0.000    10.0     2
+HPW       const_sp2_sp2_7         C19         C18          C8          C7     180.000     5.0     2
+HPW              const_19         N11         C10          C9          C7     180.000    10.0     2
+HPW             sp2_sp2_9         C17         C10         N11         S13     180.000     5.0     2
+HPW              const_15         N11         C10         C17         C18     180.000    10.0     2
+HPW            sp3_sp3_12          H6          C1          S2          N5      60.000    10.0     3
+HPW            sp2_sp3_11          C7          N5          S2          C1    -120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HPW    chir_1    S2    O3    O4    N5    both
+HPW    chir_2    S13    O15    O16    N11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HPW    plan-1         C10   0.020
+HPW    plan-1         C17   0.020
+HPW    plan-1         C18   0.020
+HPW    plan-1         C19   0.020
+HPW    plan-1          C7   0.020
+HPW    plan-1          C8   0.020
+HPW    plan-1          C9   0.020
+HPW    plan-1         H11   0.020
+HPW    plan-1          H4   0.020
+HPW    plan-1          H5   0.020
+HPW    plan-1         N11   0.020
+HPW    plan-1          N5   0.020
+HPW    plan-2         C18   0.020
+HPW    plan-2         C19   0.020
+HPW    plan-2         C20   0.020
+HPW    plan-2         C24   0.020
+HPW    plan-2         C26   0.020
+HPW    plan-2         C27   0.020
+HPW    plan-2         C28   0.020
+HPW    plan-2         H12   0.020
+HPW    plan-2         H14   0.020
+HPW    plan-2         N21   0.020
+HPW    plan-2         O22   0.020
+HPW    plan-2         O25   0.020
+HPW    plan-3         C27   0.020
+HPW    plan-3         C28   0.020
+HPW    plan-3         C29   0.020
+HPW    plan-3         C30   0.020
+HPW    plan-3         C31   0.020
+HPW    plan-3         C32   0.020
+HPW    plan-3         C33   0.020
+HPW    plan-3         H15   0.020
+HPW    plan-3         H16   0.020
+HPW    plan-3         H17   0.020
+HPW    plan-3         H18   0.020
+HPW    plan-3         H19   0.020
+HPW    plan-4          C7   0.020
+HPW    plan-4          H9   0.020
+HPW    plan-4          N5   0.020
+HPW    plan-4          S2   0.020
+HPW    plan-5         C10   0.020
+HPW    plan-5         H10   0.020
+HPW    plan-5         N11   0.020
+HPW    plan-5         S13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HPW           SMILES              ACDLabs 12.01                                                                            O=C3C=C(c1ccccc1)C=C(c2cc(NS(=O)(=O)C)cc(NS(=O)(=O)C)c2)N3O
+HPW            InChI                InChI  1.03 InChI=1S/C19H19N3O6S2/c1-29(25,26)20-16-8-15(9-17(12-16)21-30(2,27)28)18-10-14(11-19(23)22(18)24)13-6-4-3-5-7-13/h3-12,20-21,24H,1-2H3
+HPW         InChIKey                InChI  1.03                                                                                                            AKWZUDBNQVPNBK-UHFFFAOYSA-N
+HPW SMILES_CANONICAL               CACTVS 3.370                                                                        C[S](=O)(=O)Nc1cc(N[S](C)(=O)=O)cc(c1)C2=CC(=CC(=O)N2O)c3ccccc3
+HPW           SMILES               CACTVS 3.370                                                                        C[S](=O)(=O)Nc1cc(N[S](C)(=O)=O)cc(c1)C2=CC(=CC(=O)N2O)c3ccccc3
+HPW SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                            CS(=O)(=O)Nc1cc(cc(c1)NS(=O)(=O)C)C2=CC(=CC(=O)N2O)c3ccccc3
+HPW           SMILES "OpenEye OEToolkits" 1.7.6                                                                            CS(=O)(=O)Nc1cc(cc(c1)NS(=O)(=O)C)C2=CC(=CC(=O)N2O)c3ccccc3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HPW acedrg               243         "dictionary generator"                  
+HPW acedrg_database      11          "data source"                           
+HPW rdkit                2017.03.2   "Chemoinformatics tool"
+HPW refmac5              5.8.0238    "optimization tool"                     

@@ -336,27 +336,27 @@ class buccaneer_build_refine_mr(CPluginScript):
             script = self.container.controlParameters.SCRIPT
         elif rso == "coot_fit_residues":
             script = (
-                'fill_partial_residues(MolHandle_1)\n'
-                'fit_protein(MolHandle_1)\n'
-                'write_pdb_file(MolHandle_1, os.path.join(dropDir, "output.pdb"))\n')
+                'coot.fill_partial_residues(MolHandle_1)\n'
+                'coot.fit_protein(MolHandle_1)\n'
+                'coot.write_pdb_file(MolHandle_1, os.path.join(dropDir, "output.pdb"))\n')
         elif rso == "coot_stepped_refine":
             if self.container.controlParameters.USERAMA:
                 script = (
-                    'fill_partial_residues(MolHandle_1)\n'
-                    'stepped_refine_protein_for_rama(MolHandle_1)\n'
-                    'write_pdb_file(MolHandle_1, os.path.join(dropDir, "output.pdb"))\n')
+                    'coot.fill_partial_residues(MolHandle_1)\n'
+                    'coot.stepped_refine_protein_for_rama(MolHandle_1)\n'
+                    'coot.write_pdb_file(MolHandle_1, os.path.join(dropDir, "output.pdb"))\n')
             else:
                 script = (
-                    'fill_partial_residues(MolHandle_1)\n'
-                    'stepped_refine_protein(MolHandle_1)\n'
-                    'write_pdb_file(MolHandle_1, os.path.join(dropDir, "output.pdb"))\n')
+                    'coot.fill_partial_residues(MolHandle_1)\n'
+                    'coot.stepped_refine_protein(MolHandle_1)\n'
+                    'coot.write_pdb_file(MolHandle_1, os.path.join(dropDir, "output.pdb"))\n')
         elif rso == "coot_add_waters":
             script = (
-                'set_ligand_water_to_protein_distance_limits(2.2, 3.3)\n'
-                'execute_find_waters_real(MapHandle_1, MolHandle_1, 0, 1.3)\n'
-                'write_pdb_file(MolHandle_1, os.path.join(dropDir, "output.pdb"))\n')
+                'coot.set_ligand_water_to_protein_distance_limits(2.2, 3.3)\n'
+                'coot.execute_find_waters_real(MapHandle_1, MolHandle_1, 0, 1.3)\n'
+                'coot.write_pdb_file(MolHandle_1, os.path.join(dropDir, "output.pdb"))\n')
         elif rso == "none":
-            script = 'write_pdb_file(MolHandle_1, os.path.join(dropDir, "output.pdb"))\n'
+            script = 'coot.write_pdb_file(MolHandle_1, os.path.join(dropDir, "output.pdb"))\n'
         return self.makeCootPlugin(script)
 
     def makeCootPrunePlugin(self, chains_only=False):
@@ -364,10 +364,10 @@ class buccaneer_build_refine_mr(CPluginScript):
         script_path = os.path.join(os.path.dirname(current_path), "coot_prune.txt")
         script = open(script_path).read()
         if chains_only:
-            script += 'prune(MolHandle_1, MapHandle_1, DifmapHandle_1, residues=False, sidechains=False)\n'
+            script += 'coot.prune(MolHandle_1, MapHandle_1, DifmapHandle_1, residues=False, sidechains=False)\n'
         else:
-            script += 'prune(MolHandle_1, MapHandle_1, DifmapHandle_1)\n'
-        script += 'write_pdb_file(MolHandle_1, os.path.join(dropDir, "output.pdb"))\n'
+            script += 'coot.prune(MolHandle_1, MapHandle_1, DifmapHandle_1)\n'
+        script += 'coot.write_pdb_file(MolHandle_1, os.path.join(dropDir, "output.pdb"))\n'
         return self.makeCootPlugin(script)
 
 # ===== Generic sub-plugin methods =============================================

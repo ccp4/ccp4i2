@@ -1,0 +1,402 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VRZ     VRZ      1-[4-(4-amino-7-cyclopentyl-7H-pyrrolo[2,3-d]pyrimidin-5-yl)phenyl]-3-benzylurea     NON-POLYMER     58     32     .     
+#
+data_comp_VRZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VRZ     CAP     C       CH2     0       8.475       -1.362      -7.420      
+VRZ     CAN     C       CH2     0       9.599       -1.029      -8.370      
+VRZ     CAO     C       CH2     0       9.679       -2.234      -9.254      
+VRZ     CAQ     C       CH2     0       8.234       -2.643      -9.476      
+VRZ     CBE     C       CH1     0       7.439       -2.119      -8.266      
+VRZ     NBF     N       NR5     0       6.281       -1.296      -8.646      
+VRZ     CAM     C       CR15    0       6.345       -0.062      -9.237      
+VRZ     C4      C       CR56    0       4.962       -1.641      -8.476      
+VRZ     N3      N       NRD6    0       4.482       -2.781      -7.931      
+VRZ     C2      C       CR16    0       3.149       -2.813      -7.907      
+VRZ     N1      N       NRD6    0       2.270       -1.894      -8.338      
+VRZ     C6      C       CR6     0       2.757       -0.758      -8.881      
+VRZ     NAA     N       NH2     0       1.880       0.158       -9.311      
+VRZ     C5      C       CR56    0       4.161       -0.584      -8.973      
+VRZ     CBB     C       CR5     0       5.079       0.421       -9.456      
+VRZ     CAZ     C       CR6     0       4.733       1.716       -10.070     
+VRZ     CAK     C       CR16    0       5.164       2.032       -11.359     
+VRZ     CAI     C       CR16    0       4.839       3.245       -11.939     
+VRZ     CAJ     C       CR16    0       3.964       2.653       -9.379      
+VRZ     CAH     C       CR16    0       3.637       3.868       -9.955      
+VRZ     CAY     C       CR6     0       4.072       4.179       -11.243     
+VRZ     NAV     N       NH1     0       3.753       5.408       -11.856     
+VRZ     CAW     C       C       0       2.538       6.039       -11.882     
+VRZ     OAB     O       O       0       1.472       5.409       -11.840     
+VRZ     NAU     N       NH1     0       2.580       7.390       -11.949     
+VRZ     CAR     C       CH2     0       1.382       8.209       -12.012     
+VRZ     CAX     C       CR6     0       1.638       9.632       -12.448     
+VRZ     CAF     C       CR16    0       1.128       10.111      -13.649     
+VRZ     CAD     C       CR16    0       1.366       11.422      -14.045     
+VRZ     CAC     C       CR16    0       2.112       12.263      -13.247     
+VRZ     CAE     C       CR16    0       2.623       11.800      -12.053     
+VRZ     CAG     C       CR16    0       2.387       10.490      -11.652     
+VRZ     H1      H       H       0       8.802       -1.923      -6.686      
+VRZ     H2      H       H       0       8.091       -0.545      -7.040      
+VRZ     H3      H       H       0       9.395       -0.226      -8.890      
+VRZ     H4      H       H       0       10.439      -0.891      -7.889      
+VRZ     H5      H       H       0       10.182      -2.951      -8.819      
+VRZ     H6      H       H       0       10.114      -2.014      -10.102     
+VRZ     H7      H       H       0       8.162       -3.618      -9.539      
+VRZ     H8      H       H       0       7.894       -2.254      -10.309     
+VRZ     H9      H       H       0       7.115       -2.892      -7.745      
+VRZ     H10     H       H       0       7.139       0.393       -9.457      
+VRZ     H11     H       H       0       2.769       -3.593      -7.533      
+VRZ     H12     H       H       0       1.186       0.363       -8.815      
+VRZ     H13     H       H       0       2.003       0.549       -10.086     
+VRZ     H14     H       H       0       5.686       1.409       -11.843     
+VRZ     H15     H       H       0       5.139       3.443       -12.809     
+VRZ     H16     H       H       0       3.662       2.456       -8.504      
+VRZ     H17     H       H       0       3.118       4.489       -9.473      
+VRZ     H18     H       H       0       4.410       5.804       -12.287     
+VRZ     H25     H       H       0       3.360       7.787       -11.946     
+VRZ     H19     H       H       0       0.965       8.220       -11.125     
+VRZ     H26     H       H       0       0.747       7.796       -12.634     
+VRZ     H20     H       H       0       0.616       9.542       -14.202     
+VRZ     H21     H       H       0       1.016       11.736      -14.863     
+VRZ     H22     H       H       0       2.273       13.153      -13.518     
+VRZ     H23     H       H       0       3.134       12.374      -11.505     
+VRZ     H24     H       H       0       2.740       10.180      -10.833     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VRZ         CAF         CAD      DOUBLE       y     1.386  0.0100     1.386  0.0100
+VRZ         CAD         CAC      SINGLE       y     1.374  0.0127     1.374  0.0127
+VRZ         CAX         CAF      SINGLE       y     1.386  0.0100     1.386  0.0100
+VRZ         CAC         CAE      DOUBLE       y     1.374  0.0127     1.374  0.0127
+VRZ         CAR         CAX      SINGLE       n     1.508  0.0100     1.508  0.0100
+VRZ         CAX         CAG      DOUBLE       y     1.386  0.0100     1.386  0.0100
+VRZ         NAU         CAR      SINGLE       n     1.450  0.0100     1.450  0.0100
+VRZ         CAW         NAU      SINGLE       n     1.348  0.0100     1.348  0.0100
+VRZ         CAE         CAG      SINGLE       y     1.386  0.0100     1.386  0.0100
+VRZ         NAV         CAW      SINGLE       n     1.360  0.0168     1.360  0.0168
+VRZ         CAY         NAV      SINGLE       n     1.407  0.0126     1.407  0.0126
+VRZ         CAW         OAB      DOUBLE       n     1.235  0.0158     1.235  0.0158
+VRZ         CAI         CAY      SINGLE       y     1.392  0.0100     1.392  0.0100
+VRZ         CAK         CAI      DOUBLE       y     1.380  0.0100     1.380  0.0100
+VRZ         CAH         CAY      DOUBLE       y     1.392  0.0100     1.392  0.0100
+VRZ         CAZ         CAK      SINGLE       y     1.391  0.0100     1.391  0.0100
+VRZ         CAJ         CAH      SINGLE       y     1.380  0.0100     1.380  0.0100
+VRZ         CAZ         CAJ      DOUBLE       y     1.391  0.0100     1.391  0.0100
+VRZ         CBB         CAZ      SINGLE       n     1.474  0.0100     1.474  0.0100
+VRZ         CAO         CAQ      SINGLE       n     1.519  0.0200     1.519  0.0200
+VRZ         CAQ         CBE      SINGLE       n     1.534  0.0100     1.534  0.0100
+VRZ         CAN         CAO      SINGLE       n     1.512  0.0200     1.512  0.0200
+VRZ         CAM         CBB      DOUBLE       y     1.371  0.0100     1.371  0.0100
+VRZ          C5         CBB      SINGLE       y     1.446  0.0100     1.446  0.0100
+VRZ          C6         NAA      SINGLE       n     1.339  0.0100     1.339  0.0100
+VRZ         NBF         CAM      SINGLE       y     1.359  0.0180     1.359  0.0180
+VRZ          C6          C5      DOUBLE       y     1.415  0.0100     1.415  0.0100
+VRZ          C4          C5      SINGLE       y     1.416  0.0100     1.416  0.0100
+VRZ          N1          C6      SINGLE       y     1.347  0.0100     1.347  0.0100
+VRZ         NBF          C4      SINGLE       y     1.371  0.0100     1.371  0.0100
+VRZ         CBE         NBF      SINGLE       n     1.468  0.0100     1.468  0.0100
+VRZ          C4          N3      DOUBLE       y     1.346  0.0100     1.346  0.0100
+VRZ          C2          N1      DOUBLE       y     1.339  0.0100     1.339  0.0100
+VRZ         CAP         CBE      SINGLE       n     1.534  0.0100     1.534  0.0100
+VRZ         CAP         CAN      SINGLE       n     1.519  0.0200     1.519  0.0200
+VRZ          N3          C2      SINGLE       y     1.329  0.0100     1.329  0.0100
+VRZ         CAP          H1      SINGLE       n     1.089  0.0100     0.980  0.0100
+VRZ         CAP          H2      SINGLE       n     1.089  0.0100     0.980  0.0100
+VRZ         CAN          H3      SINGLE       n     1.089  0.0100     0.978  0.0100
+VRZ         CAN          H4      SINGLE       n     1.089  0.0100     0.978  0.0100
+VRZ         CAO          H5      SINGLE       n     1.089  0.0100     0.978  0.0100
+VRZ         CAO          H6      SINGLE       n     1.089  0.0100     0.978  0.0100
+VRZ         CAQ          H7      SINGLE       n     1.089  0.0100     0.980  0.0100
+VRZ         CAQ          H8      SINGLE       n     1.089  0.0100     0.980  0.0100
+VRZ         CBE          H9      SINGLE       n     1.089  0.0100     0.988  0.0121
+VRZ         CAM         H10      SINGLE       n     1.082  0.0130     0.942  0.0200
+VRZ          C2         H11      SINGLE       n     1.082  0.0130     0.945  0.0200
+VRZ         NAA         H12      SINGLE       n     1.016  0.0100     0.877  0.0200
+VRZ         NAA         H13      SINGLE       n     1.016  0.0100     0.877  0.0200
+VRZ         CAK         H14      SINGLE       n     1.082  0.0130     0.946  0.0185
+VRZ         CAI         H15      SINGLE       n     1.082  0.0130     0.942  0.0198
+VRZ         CAJ         H16      SINGLE       n     1.082  0.0130     0.946  0.0185
+VRZ         CAH         H17      SINGLE       n     1.082  0.0130     0.942  0.0198
+VRZ         NAV         H18      SINGLE       n     1.016  0.0100     0.879  0.0200
+VRZ         NAU         H25      SINGLE       n     1.016  0.0100     0.874  0.0186
+VRZ         CAR         H19      SINGLE       n     1.089  0.0100     0.980  0.0169
+VRZ         CAR         H26      SINGLE       n     1.089  0.0100     0.980  0.0169
+VRZ         CAF         H20      SINGLE       n     1.082  0.0130     0.944  0.0174
+VRZ         CAD         H21      SINGLE       n     1.082  0.0130     0.944  0.0175
+VRZ         CAC         H22      SINGLE       n     1.082  0.0130     0.944  0.0161
+VRZ         CAE         H23      SINGLE       n     1.082  0.0130     0.944  0.0175
+VRZ         CAG         H24      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VRZ         CBE         CAP         CAN     104.854    1.66
+VRZ         CBE         CAP          H1     111.118    1.50
+VRZ         CBE         CAP          H2     111.118    1.50
+VRZ         CAN         CAP          H1     110.839    1.50
+VRZ         CAN         CAP          H2     110.839    1.50
+VRZ          H1         CAP          H2     108.877    1.50
+VRZ         CAO         CAN         CAP     105.475    1.91
+VRZ         CAO         CAN          H3     110.679    1.50
+VRZ         CAO         CAN          H4     110.679    1.50
+VRZ         CAP         CAN          H3     110.839    1.50
+VRZ         CAP         CAN          H4     110.839    1.50
+VRZ          H3         CAN          H4     108.634    1.62
+VRZ         CAQ         CAO         CAN     105.475    1.91
+VRZ         CAQ         CAO          H5     110.839    1.50
+VRZ         CAQ         CAO          H6     110.839    1.50
+VRZ         CAN         CAO          H5     110.679    1.50
+VRZ         CAN         CAO          H6     110.679    1.50
+VRZ          H5         CAO          H6     108.634    1.62
+VRZ         CAO         CAQ         CBE     104.854    1.66
+VRZ         CAO         CAQ          H7     110.839    1.50
+VRZ         CAO         CAQ          H8     110.839    1.50
+VRZ         CBE         CAQ          H7     111.118    1.50
+VRZ         CBE         CAQ          H8     111.118    1.50
+VRZ          H7         CAQ          H8     108.877    1.50
+VRZ         CAQ         CBE         NBF     113.591    1.50
+VRZ         CAQ         CBE         CAP     102.534    1.50
+VRZ         CAQ         CBE          H9     109.222    1.50
+VRZ         NBF         CBE         CAP     113.591    1.50
+VRZ         NBF         CBE          H9     108.403    1.50
+VRZ         CAP         CBE          H9     109.222    1.50
+VRZ         CAM         NBF          C4     108.548    1.50
+VRZ         CAM         NBF         CBE     126.148    2.24
+VRZ          C4         NBF         CBE     125.304    1.50
+VRZ         CBB         CAM         NBF     109.199    1.50
+VRZ         CBB         CAM         H10     125.155    1.62
+VRZ         NBF         CAM         H10     125.646    1.71
+VRZ          C5          C4         NBF     108.546    1.50
+VRZ          C5          C4          N3     124.940    1.50
+VRZ         NBF          C4          N3     126.514    1.50
+VRZ          C4          N3          C2     111.930    1.50
+VRZ          N1          C2          N3     129.276    1.50
+VRZ          N1          C2         H11     115.341    1.50
+VRZ          N3          C2         H11     115.383    1.50
+VRZ          C6          N1          C2     118.047    1.50
+VRZ         NAA          C6          C5     122.913    1.50
+VRZ         NAA          C6          N1     117.906    1.50
+VRZ          C5          C6          N1     119.181    1.50
+VRZ          C6         NAA         H12     119.737    1.50
+VRZ          C6         NAA         H13     119.737    1.50
+VRZ         H12         NAA         H13     120.527    1.88
+VRZ         CBB          C5          C6     136.531    2.28
+VRZ         CBB          C5          C4     106.843    1.50
+VRZ          C6          C5          C4     116.626    1.50
+VRZ         CAZ         CBB         CAM     126.189    2.03
+VRZ         CAZ         CBB          C5     126.947    2.23
+VRZ         CAM         CBB          C5     106.864    1.50
+VRZ         CAK         CAZ         CAJ     118.066    1.50
+VRZ         CAK         CAZ         CBB     120.967    1.50
+VRZ         CAJ         CAZ         CBB     120.967    1.50
+VRZ         CAI         CAK         CAZ     120.642    1.50
+VRZ         CAI         CAK         H14     119.616    1.50
+VRZ         CAZ         CAK         H14     119.742    1.50
+VRZ         CAY         CAI         CAK     120.592    1.50
+VRZ         CAY         CAI         H15     119.635    1.50
+VRZ         CAK         CAI         H15     119.773    1.50
+VRZ         CAH         CAJ         CAZ     120.642    1.50
+VRZ         CAH         CAJ         H16     119.616    1.50
+VRZ         CAZ         CAJ         H16     119.742    1.50
+VRZ         CAY         CAH         CAJ     120.592    1.50
+VRZ         CAY         CAH         H17     119.635    1.50
+VRZ         CAJ         CAH         H17     119.773    1.50
+VRZ         NAV         CAY         CAI     120.266    3.00
+VRZ         NAV         CAY         CAH     120.266    3.00
+VRZ         CAI         CAY         CAH     119.467    1.50
+VRZ         CAW         NAV         CAY     127.320    1.50
+VRZ         CAW         NAV         H18     116.258    1.50
+VRZ         CAY         NAV         H18     116.423    1.97
+VRZ         NAU         CAW         NAV     114.726    2.57
+VRZ         NAU         CAW         OAB     122.487    1.50
+VRZ         NAV         CAW         OAB     122.787    1.50
+VRZ         CAR         NAU         CAW     122.011    1.50
+VRZ         CAR         NAU         H25     119.186    1.54
+VRZ         CAW         NAU         H25     118.803    1.50
+VRZ         CAX         CAR         NAU     113.692    1.56
+VRZ         CAX         CAR         H19     109.073    1.50
+VRZ         CAX         CAR         H26     109.073    1.50
+VRZ         NAU         CAR         H19     108.810    1.50
+VRZ         NAU         CAR         H26     108.810    1.50
+VRZ         H19         CAR         H26     107.860    1.50
+VRZ         CAF         CAX         CAR     120.710    1.50
+VRZ         CAF         CAX         CAG     118.580    1.50
+VRZ         CAR         CAX         CAG     120.710    1.50
+VRZ         CAD         CAF         CAX     120.442    1.50
+VRZ         CAD         CAF         H20     119.815    1.50
+VRZ         CAX         CAF         H20     119.742    1.50
+VRZ         CAF         CAD         CAC     120.273    1.50
+VRZ         CAF         CAD         H21     119.818    1.50
+VRZ         CAC         CAD         H21     119.909    1.50
+VRZ         CAD         CAC         CAE     119.997    1.50
+VRZ         CAD         CAC         H22     119.998    1.50
+VRZ         CAE         CAC         H22     119.998    1.50
+VRZ         CAC         CAE         CAG     120.273    1.50
+VRZ         CAC         CAE         H23     119.909    1.50
+VRZ         CAG         CAE         H23     119.818    1.50
+VRZ         CAX         CAG         CAE     120.442    1.50
+VRZ         CAX         CAG         H24     119.742    1.50
+VRZ         CAE         CAG         H24     119.815    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VRZ            sp3_sp3_37         CAO         CAN         CAP         CBE     180.000    10.0     3
+VRZ             sp3_sp3_1         CAN         CAP         CBE         CAQ      60.000    10.0     3
+VRZ              const_10         NAA          C6          N1          C2     180.000    10.0     2
+VRZ            sp2_sp2_17          C5          C6         NAA         H12     180.000     5.0     2
+VRZ       const_sp2_sp2_8         CBB          C5          C6         NAA       0.000     5.0     2
+VRZ              const_26          C6          C5         CBB         CAZ       0.000    10.0     2
+VRZ            sp2_sp2_13         CAK         CAZ         CBB         CAM     180.000     5.0     2
+VRZ              const_47         CAI         CAK         CAZ         CAJ       0.000    10.0     2
+VRZ              const_71         CAH         CAJ         CAZ         CAK       0.000    10.0     2
+VRZ              const_51         CAY         CAI         CAK         CAZ       0.000    10.0     2
+VRZ              const_56         CAK         CAI         CAY         NAV     180.000    10.0     2
+VRZ              const_63         CAY         CAH         CAJ         CAZ       0.000    10.0     2
+VRZ              const_60         CAJ         CAH         CAY         NAV     180.000    10.0     2
+VRZ            sp3_sp3_28         CAP         CAN         CAO         CAQ     -60.000    10.0     3
+VRZ             sp2_sp2_9         CAI         CAY         NAV         CAW     180.000     5.0     2
+VRZ             sp2_sp2_5         NAU         CAW         NAV         CAY     180.000     5.0     2
+VRZ             sp2_sp2_1         NAV         CAW         NAU         CAR     180.000     5.0     2
+VRZ             sp2_sp3_8         CAW         NAU         CAR         CAX     120.000    10.0     6
+VRZ             sp2_sp3_2         CAF         CAX         CAR         NAU     -90.000    10.0     6
+VRZ              const_28         CAD         CAF         CAX         CAR     180.000    10.0     2
+VRZ              const_68         CAE         CAG         CAX         CAR     180.000    10.0     2
+VRZ              const_31         CAC         CAD         CAF         CAX       0.000    10.0     2
+VRZ              const_35         CAE         CAC         CAD         CAF       0.000    10.0     2
+VRZ              const_39         CAD         CAC         CAE         CAG       0.000    10.0     2
+VRZ            sp3_sp3_19         CAN         CAO         CAQ         CBE      60.000    10.0     3
+VRZ              const_43         CAC         CAE         CAG         CAX       0.000    10.0     2
+VRZ            sp3_sp3_12         CAO         CAQ         CBE         NBF     180.000    10.0     3
+VRZ            sp2_sp3_14         CAM         NBF         CBE         CAQ     -90.000    10.0     6
+VRZ              const_15         CBB         CAM         NBF          C4       0.000    10.0     2
+VRZ              const_75          C5          C4         NBF         CAM       0.000    10.0     2
+VRZ              const_20         NBF         CAM         CBB         CAZ     180.000    10.0     2
+VRZ       const_sp2_sp2_1         NBF          C4          C5         CBB       0.000     5.0     2
+VRZ              const_79          C5          C4          N3          C2       0.000    10.0     2
+VRZ              const_13          N1          C2          N3          C4       0.000    10.0     2
+VRZ              const_11          N3          C2          N1          C6       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VRZ    chir_1    CBE    NBF    CAQ    CAP    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VRZ    plan-1          C2   0.020
+VRZ    plan-1          C4   0.020
+VRZ    plan-1          C5   0.020
+VRZ    plan-1          C6   0.020
+VRZ    plan-1         CAM   0.020
+VRZ    plan-1         CAZ   0.020
+VRZ    plan-1         CBB   0.020
+VRZ    plan-1         CBE   0.020
+VRZ    plan-1         H10   0.020
+VRZ    plan-1         H11   0.020
+VRZ    plan-1          N1   0.020
+VRZ    plan-1          N3   0.020
+VRZ    plan-1         NAA   0.020
+VRZ    plan-1         NBF   0.020
+VRZ    plan-2         CAH   0.020
+VRZ    plan-2         CAI   0.020
+VRZ    plan-2         CAJ   0.020
+VRZ    plan-2         CAK   0.020
+VRZ    plan-2         CAY   0.020
+VRZ    plan-2         CAZ   0.020
+VRZ    plan-2         CBB   0.020
+VRZ    plan-2         H14   0.020
+VRZ    plan-2         H15   0.020
+VRZ    plan-2         H16   0.020
+VRZ    plan-2         H17   0.020
+VRZ    plan-2         NAV   0.020
+VRZ    plan-3         CAC   0.020
+VRZ    plan-3         CAD   0.020
+VRZ    plan-3         CAE   0.020
+VRZ    plan-3         CAF   0.020
+VRZ    plan-3         CAG   0.020
+VRZ    plan-3         CAR   0.020
+VRZ    plan-3         CAX   0.020
+VRZ    plan-3         H20   0.020
+VRZ    plan-3         H21   0.020
+VRZ    plan-3         H22   0.020
+VRZ    plan-3         H23   0.020
+VRZ    plan-3         H24   0.020
+VRZ    plan-4          C6   0.020
+VRZ    plan-4         H12   0.020
+VRZ    plan-4         H13   0.020
+VRZ    plan-4         NAA   0.020
+VRZ    plan-5         CAW   0.020
+VRZ    plan-5         CAY   0.020
+VRZ    plan-5         H18   0.020
+VRZ    plan-5         NAV   0.020
+VRZ    plan-6         CAW   0.020
+VRZ    plan-6         NAU   0.020
+VRZ    plan-6         NAV   0.020
+VRZ    plan-6         OAB   0.020
+VRZ    plan-7         CAR   0.020
+VRZ    plan-7         CAW   0.020
+VRZ    plan-7         H25   0.020
+VRZ    plan-7         NAU   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VRZ           SMILES              ACDLabs 12.01                                                                                                                                        O=C(NCc1ccccc1)Nc5ccc(c3c2c(ncnc2n(c3)C4CCCC4)N)cc5
+VRZ            InChI                InChI  1.03 InChI=1S/C25H26N6O/c26-23-22-21(15-31(20-8-4-5-9-20)24(22)29-16-28-23)18-10-12-19(13-11-18)30-25(32)27-14-17-6-2-1-3-7-17/h1-3,6-7,10-13,15-16,20H,4-5,8-9,14H2,(H2,26,28,29)(H2,27,30,32)
+VRZ         InChIKey                InChI  1.03                                                                                                                                                                URGKVSPXHKAWNJ-UHFFFAOYSA-N
+VRZ SMILES_CANONICAL               CACTVS 3.370                                                                                                                                        Nc1ncnc2n(cc(c3ccc(NC(=O)NCc4ccccc4)cc3)c12)C5CCCC5
+VRZ           SMILES               CACTVS 3.370                                                                                                                                        Nc1ncnc2n(cc(c3ccc(NC(=O)NCc4ccccc4)cc3)c12)C5CCCC5
+VRZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                      c1ccc(cc1)CNC(=O)Nc2ccc(cc2)c3cn(c4c3c(ncn4)N)C5CCCC5
+VRZ           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                      c1ccc(cc1)CNC(=O)Nc2ccc(cc2)c3cn(c4c3c(ncn4)N)C5CCCC5
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VRZ acedrg               243         "dictionary generator"                  
+VRZ acedrg_database      11          "data source"                           
+VRZ rdkit                2017.03.2   "Chemoinformatics tool"
+VRZ refmac5              5.8.0238    "optimization tool"                     

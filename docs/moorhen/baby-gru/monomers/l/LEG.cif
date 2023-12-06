@@ -1,0 +1,251 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LEG     LEG      1-(4-HEXYLPHENYL)PROP-2-EN-1-ONE     NON-POLYMER     36     16     .     
+#
+data_comp_LEG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LEG     C27     C       CH3     0       59.080      7.758       31.090      
+LEG     C24     C       CH2     0       59.222      8.830       32.145      
+LEG     C21     C       CH2     0       57.949      9.594       32.406      
+LEG     C18     C       CH2     0       57.517      10.488      31.269      
+LEG     C15     C       CH2     0       56.441      11.501      31.633      
+LEG     C14     C       CH2     0       55.051      10.906      31.773      
+LEG     C1      C       CR6     0       53.969      11.928      32.029      
+LEG     C6      C       CR16    0       53.458      12.701      30.993      
+LEG     C5      C       CR16    0       52.467      13.644      31.222      
+LEG     C2      C       CR16    0       53.462      12.130      33.307      
+LEG     C3      C       CR16    0       52.473      13.071      33.548      
+LEG     C4      C       CR6     0       51.957      13.841      32.505      
+LEG     C11     C       C       0       50.895      14.860      32.753      
+LEG     O13     O       O       0       51.035      16.000      32.299      
+LEG     C12     C       C1      0       49.733      14.496      33.525      
+LEG     C33     C       C2      0       48.742      15.292      33.843      
+LEG     H271    H       H       0       59.903      7.241       31.039      
+LEG     H272    H       H       0       58.904      8.171       30.227      
+LEG     H273    H       H       0       58.342      7.168       31.323      
+LEG     H241    H       H       0       59.918      9.463       31.863      
+LEG     H242    H       H       0       59.518      8.414       32.983      
+LEG     H211    H       H       0       58.073      10.143      33.209      
+LEG     H212    H       H       0       57.231      8.953       32.593      
+LEG     H181    H       H       0       57.182      9.926       30.538      
+LEG     H182    H       H       0       58.302      10.972      30.935      
+LEG     H151    H       H       0       56.418      12.196      30.943      
+LEG     H152    H       H       0       56.686      11.931      32.479      
+LEG     H141    H       H       0       55.058      10.259      32.511      
+LEG     H142    H       H       0       54.835      10.417      30.950      
+LEG     H6      H       H       0       53.790      12.579      30.119      
+LEG     H5      H       H       0       52.135      14.155      30.504      
+LEG     H2      H       H       0       53.798      11.616      34.024      
+LEG     H3      H       H       0       52.145      13.188      34.422      
+LEG     H12     H       H       0       49.670      13.604      33.831      
+LEG     H331    H       H       0       48.017      14.962      34.357      
+LEG     H332    H       H       0       48.743      16.198      33.564      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LEG         C27         C24      SINGLE       n     1.510  0.0200     1.510  0.0200
+LEG         C24         C21      SINGLE       n     1.507  0.0200     1.507  0.0200
+LEG         C21         C18      SINGLE       n     1.509  0.0200     1.509  0.0200
+LEG         C18         C15      SINGLE       n     1.522  0.0142     1.522  0.0142
+LEG         C15         C14      SINGLE       n     1.519  0.0200     1.519  0.0200
+LEG         C14          C1      SINGLE       n     1.510  0.0100     1.510  0.0100
+LEG          C1          C2      DOUBLE       y     1.385  0.0110     1.385  0.0110
+LEG          C1          C6      SINGLE       y     1.385  0.0110     1.385  0.0110
+LEG          C6          C5      DOUBLE       y     1.384  0.0100     1.384  0.0100
+LEG          C5          C4      SINGLE       y     1.392  0.0100     1.392  0.0100
+LEG          C2          C3      SINGLE       y     1.383  0.0100     1.383  0.0100
+LEG          C3          C4      DOUBLE       y     1.392  0.0100     1.392  0.0100
+LEG          C4         C11      SINGLE       n     1.492  0.0100     1.492  0.0100
+LEG         C11         O13      DOUBLE       n     1.233  0.0156     1.233  0.0156
+LEG         C11         C12      SINGLE       n     1.432  0.0200     1.432  0.0200
+LEG         C12         C33      DOUBLE       n     1.305  0.0200     1.305  0.0200
+LEG         C27        H271      SINGLE       n     1.089  0.0100     0.973  0.0157
+LEG         C27        H272      SINGLE       n     1.089  0.0100     0.973  0.0157
+LEG         C27        H273      SINGLE       n     1.089  0.0100     0.973  0.0157
+LEG         C24        H241      SINGLE       n     1.089  0.0100     0.982  0.0155
+LEG         C24        H242      SINGLE       n     1.089  0.0100     0.982  0.0155
+LEG         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0163
+LEG         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0163
+LEG         C18        H181      SINGLE       n     1.089  0.0100     0.981  0.0163
+LEG         C18        H182      SINGLE       n     1.089  0.0100     0.981  0.0163
+LEG         C15        H151      SINGLE       n     1.089  0.0100     0.980  0.0160
+LEG         C15        H152      SINGLE       n     1.089  0.0100     0.980  0.0160
+LEG         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0150
+LEG         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0150
+LEG          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0173
+LEG          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0168
+LEG          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0173
+LEG          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+LEG         C12         H12      SINGLE       n     1.082  0.0130     0.945  0.0192
+LEG         C33        H331      SINGLE       n     1.082  0.0130     0.948  0.0200
+LEG         C33        H332      SINGLE       n     1.082  0.0130     0.948  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LEG         C24         C27        H271     109.554    1.50
+LEG         C24         C27        H272     109.554    1.50
+LEG         C24         C27        H273     109.554    1.50
+LEG        H271         C27        H272     109.380    1.50
+LEG        H271         C27        H273     109.380    1.50
+LEG        H272         C27        H273     109.380    1.50
+LEG         C27         C24         C21     113.719    3.00
+LEG         C27         C24        H241     108.918    1.50
+LEG         C27         C24        H242     108.918    1.50
+LEG         C21         C24        H241     108.758    1.50
+LEG         C21         C24        H242     108.758    1.50
+LEG        H241         C24        H242     107.763    1.50
+LEG         C24         C21         C18     114.362    3.00
+LEG         C24         C21        H211     108.653    1.50
+LEG         C24         C21        H212     108.653    1.50
+LEG         C18         C21        H211     108.698    1.50
+LEG         C18         C21        H212     108.698    1.50
+LEG        H211         C21        H212     107.646    1.50
+LEG         C21         C18         C15     114.491    1.55
+LEG         C21         C18        H181     108.698    1.50
+LEG         C21         C18        H182     108.698    1.50
+LEG         C15         C18        H181     108.625    1.50
+LEG         C15         C18        H182     108.625    1.50
+LEG        H181         C18        H182     107.646    1.50
+LEG         C18         C15         C14     113.851    2.19
+LEG         C18         C15        H151     108.775    1.50
+LEG         C18         C15        H152     108.775    1.50
+LEG         C14         C15        H151     108.763    1.50
+LEG         C14         C15        H152     108.763    1.50
+LEG        H151         C15        H152     107.749    1.50
+LEG         C15         C14          C1     114.548    2.35
+LEG         C15         C14        H141     108.665    1.50
+LEG         C15         C14        H142     108.665    1.50
+LEG          C1         C14        H141     108.803    1.50
+LEG          C1         C14        H142     108.803    1.50
+LEG        H141         C14        H142     107.745    1.50
+LEG         C14          C1          C2     121.055    1.50
+LEG         C14          C1          C6     121.055    1.50
+LEG          C2          C1          C6     117.890    1.50
+LEG          C1          C6          C5     121.075    1.50
+LEG          C1          C6          H6     119.388    1.50
+LEG          C5          C6          H6     119.538    1.50
+LEG          C6          C5          C4     120.651    1.50
+LEG          C6          C5          H5     119.627    1.50
+LEG          C4          C5          H5     119.722    1.50
+LEG          C1          C2          C3     121.075    1.50
+LEG          C1          C2          H2     119.388    1.50
+LEG          C3          C2          H2     119.538    1.50
+LEG          C2          C3          C4     120.651    1.50
+LEG          C2          C3          H3     119.627    1.50
+LEG          C4          C3          H3     119.722    1.50
+LEG          C5          C4          C3     118.658    1.50
+LEG          C5          C4         C11     120.671    2.31
+LEG          C3          C4         C11     120.671    2.31
+LEG          C4         C11         O13     119.606    1.50
+LEG          C4         C11         C12     119.360    1.50
+LEG         O13         C11         C12     121.034    1.50
+LEG         C11         C12         C33     123.837    3.00
+LEG         C11         C12         H12     118.235    1.50
+LEG         C33         C12         H12     117.927    2.55
+LEG         C12         C33        H331     120.073    2.19
+LEG         C12         C33        H332     120.073    2.19
+LEG        H331         C33        H332     119.855    2.15
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LEG             sp3_sp3_1         C21         C24         C27        H271     180.000    10.0     3
+LEG              const_10          C2          C3          C4         C11     180.000    10.0     2
+LEG             sp2_sp2_3         O13         C11          C4          C5       0.000     5.0     2
+LEG             sp2_sp2_7         O13         C11         C12         C33       0.000     5.0     2
+LEG             sp2_sp2_9         C11         C12         C33        H331     180.000     5.0     2
+LEG            sp3_sp3_10         C18         C21         C24         C27     180.000    10.0     3
+LEG            sp3_sp3_19         C15         C18         C21         C24     180.000    10.0     3
+LEG            sp3_sp3_28         C14         C15         C18         C21     180.000    10.0     3
+LEG            sp3_sp3_37          C1         C14         C15         C18     180.000    10.0     3
+LEG             sp2_sp3_2          C2          C1         C14         C15     -90.000    10.0     6
+LEG              const_23         C14          C1          C6          C5     180.000    10.0     2
+LEG       const_sp2_sp2_3         C14          C1          C2          C3     180.000     5.0     2
+LEG              const_17          C4          C5          C6          C1       0.000    10.0     2
+LEG              const_15         C11          C4          C5          C6     180.000    10.0     2
+LEG       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LEG    plan-1          C1   0.020
+LEG    plan-1         C11   0.020
+LEG    plan-1         C14   0.020
+LEG    plan-1          C2   0.020
+LEG    plan-1          C3   0.020
+LEG    plan-1          C4   0.020
+LEG    plan-1          C5   0.020
+LEG    plan-1          C6   0.020
+LEG    plan-1          H2   0.020
+LEG    plan-1          H3   0.020
+LEG    plan-1          H5   0.020
+LEG    plan-1          H6   0.020
+LEG    plan-2         C11   0.020
+LEG    plan-2         C12   0.020
+LEG    plan-2          C4   0.020
+LEG    plan-2         O13   0.020
+LEG    plan-3         C11   0.020
+LEG    plan-3         C12   0.020
+LEG    plan-3         C33   0.020
+LEG    plan-3         H12   0.020
+LEG    plan-4         C12   0.020
+LEG    plan-4         C33   0.020
+LEG    plan-4        H331   0.020
+LEG    plan-4        H332   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LEG           SMILES              ACDLabs 10.04                                                          O=C(c1ccc(cc1)CCCCCC)\C=C
+LEG SMILES_CANONICAL               CACTVS 3.341                                                           CCCCCCc1ccc(cc1)C(=O)C=C
+LEG           SMILES               CACTVS 3.341                                                           CCCCCCc1ccc(cc1)C(=O)C=C
+LEG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                           CCCCCCc1ccc(cc1)C(=O)C=C
+LEG           SMILES "OpenEye OEToolkits" 1.5.0                                                           CCCCCCc1ccc(cc1)C(=O)C=C
+LEG            InChI                InChI  1.03 InChI=1S/C15H20O/c1-3-5-6-7-8-13-9-11-14(12-10-13)15(16)4-2/h4,9-12H,2-3,5-8H2,1H3
+LEG         InChIKey                InChI  1.03                                                        IINHTEWASPUCMH-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LEG acedrg               243         "dictionary generator"                  
+LEG acedrg_database      11          "data source"                           
+LEG rdkit                2017.03.2   "Chemoinformatics tool"
+LEG refmac5              5.8.0238    "optimization tool"                     

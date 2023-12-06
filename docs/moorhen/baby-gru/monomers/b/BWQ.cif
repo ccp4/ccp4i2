@@ -1,0 +1,485 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BWQ     BWQ      "~{tert}-butyl 3-[(2~{S},5~{S},8~{S})-14-cyclopentyloxy-2-(2-methylpropyl)-4,7-bis(oxidanylidene)-3,6,17-triazatetracyclo[8.7.0.0^{3,8}.0^{11,16}]heptadeca-1(10),11,13,15-tetraen-5-yl]propanoate"     NON-POLYMER     79     38     .     
+#
+data_comp_BWQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BWQ     C01     C       CH3     0       170.714     156.495     166.395     
+BWQ     C02     C       CH1     0       169.953     157.225     165.289     
+BWQ     C03     C       CH3     0       170.921     157.956     164.366     
+BWQ     C04     C       CH2     0       168.911     158.182     165.883     
+BWQ     C05     C       CH1     0       168.040     158.980     164.889     
+BWQ     C06     C       CR56    0       167.134     158.030     164.157     
+BWQ     C08     C       CR56    0       166.360     156.484     162.731     
+BWQ     C09     C       CR16    0       166.206     155.533     161.718     
+BWQ     C10     C       CR6     0       164.958     154.951     161.559     
+BWQ     C12     C       CH1     0       163.611     153.431     160.132     
+BWQ     C13     C       CH2     0       163.898     152.384     159.071     
+BWQ     C14     C       CH2     0       162.668     152.383     158.203     
+BWQ     C15     C       CH2     0       162.182     153.791     158.194     
+BWQ     C16     C       CH2     0       162.744     154.475     159.428     
+BWQ     C17     C       CR16    0       163.884     155.312     162.404     
+BWQ     C18     C       CR16    0       164.040     156.249     163.398     
+BWQ     C19     C       CR56    0       165.293     156.857     163.582     
+BWQ     C20     C       CR56    0       165.831     157.831     164.486     
+BWQ     C21     C       CH2     0       165.198     158.610     165.590     
+BWQ     C22     C       CH1     0       165.756     160.033     165.509     
+BWQ     C23     C       CR6     0       165.038     160.924     166.516     
+BWQ     C26     C       CH1     0       167.221     161.561     167.508     
+BWQ     C27     C       CH2     0       167.594     160.728     168.747     
+BWQ     C28     C       CH2     0       169.058     160.784     169.179     
+BWQ     C29     C       C       0       169.345     159.960     170.408     
+BWQ     C32     C       CT      0       170.659     157.936     171.081     
+BWQ     C33     C       CH3     0       171.423     158.600     172.207     
+BWQ     C34     C       CH3     0       169.479     157.132     171.588     
+BWQ     C35     C       CH3     0       171.578     157.065     170.254     
+BWQ     C36     C       CR6     0       167.879     161.000     166.270     
+BWQ     N07     N       NR5     0       167.474     157.209     163.102     
+BWQ     N25     N       NR6     0       165.771     161.619     167.373     
+BWQ     N38     N       NR6     0       167.241     160.013     165.605     
+BWQ     O11     O       O2      0       164.877     154.023     160.546     
+BWQ     O24     O       O       0       163.797     161.018     166.506     
+BWQ     O30     O       O       0       168.867     160.188     171.492     
+BWQ     O31     O       O2      0       170.189     158.960     170.117     
+BWQ     O37     O       O       0       169.028     161.365     165.989     
+BWQ     H1      H       H       0       170.212     156.537     167.228     
+BWQ     H2      H       H       0       171.585     156.909     166.526     
+BWQ     H3      H       H       0       170.837     155.563     166.142     
+BWQ     H4      H       H       0       169.477     156.545     164.754     
+BWQ     H5      H       H       0       171.184     158.800     164.773     
+BWQ     H6      H       H       0       170.488     158.131     163.513     
+BWQ     H7      H       H       0       171.712     157.408     164.218     
+BWQ     H8      H       H       0       169.387     158.810     166.463     
+BWQ     H9      H       H       0       168.310     157.659     166.457     
+BWQ     H10     H       H       0       168.623     159.422     164.229     
+BWQ     H11     H       H       0       166.926     155.293     161.158     
+BWQ     H12     H       H       0       163.137     153.029     160.909     
+BWQ     H13     H       H       0       164.697     152.626     158.546     
+BWQ     H14     H       H       0       164.038     151.499     159.482     
+BWQ     H15     H       H       0       161.982     151.780     158.576     
+BWQ     H16     H       H       0       162.889     152.084     157.290     
+BWQ     H17     H       H       0       161.196     153.813     158.211     
+BWQ     H18     H       H       0       162.487     154.254     157.378     
+BWQ     H19     H       H       0       163.284     155.259     159.171     
+BWQ     H20     H       H       0       162.014     154.773     160.020     
+BWQ     H21     H       H       0       163.037     154.913     162.290     
+BWQ     H22     H       H       0       163.315     156.480     163.950     
+BWQ     H23     H       H       0       165.415     158.205     166.462     
+BWQ     H24     H       H       0       164.219     158.615     165.484     
+BWQ     H25     H       H       0       165.536     160.386     164.614     
+BWQ     H26     H       H       0       167.555     162.485     167.641     
+BWQ     H27     H       H       0       167.361     159.790     168.564     
+BWQ     H28     H       H       0       167.038     161.033     169.498     
+BWQ     H29     H       H       0       169.298     161.718     169.357     
+BWQ     H30     H       H       0       169.622     160.471     168.441     
+BWQ     H31     H       H       0       171.959     159.327     171.849     
+BWQ     H32     H       H       0       172.007     157.948     172.632     
+BWQ     H33     H       H       0       170.802     158.952     172.866     
+BWQ     H34     H       H       0       168.867     156.958     170.852     
+BWQ     H35     H       H       0       169.015     157.628     172.282     
+BWQ     H36     H       H       0       169.794     156.287     171.951     
+BWQ     H37     H       H       0       171.959     156.370     170.816     
+BWQ     H38     H       H       0       172.293     157.609     169.882     
+BWQ     H39     H       H       0       171.073     156.656     169.531     
+BWQ     H40     H       H       0       168.272     157.162     162.731     
+BWQ     H41     H       H       0       165.312     162.216     167.960     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BWQ         C14         C15      SINGLE       n     1.488  0.0200     1.488  0.0200
+BWQ         C15         C16      SINGLE       n     1.512  0.0200     1.512  0.0200
+BWQ         C13         C14      SINGLE       n     1.512  0.0200     1.512  0.0200
+BWQ         C12         C16      SINGLE       n     1.522  0.0200     1.522  0.0200
+BWQ         C12         C13      SINGLE       n     1.522  0.0200     1.522  0.0200
+BWQ         C12         O11      SINGLE       n     1.446  0.0176     1.446  0.0176
+BWQ         C10         O11      SINGLE       n     1.370  0.0110     1.370  0.0110
+BWQ         C09         C10      DOUBLE       y     1.380  0.0100     1.380  0.0100
+BWQ         C10         C17      SINGLE       y     1.405  0.0100     1.405  0.0100
+BWQ         C08         C09      SINGLE       y     1.395  0.0100     1.395  0.0100
+BWQ         C17         C18      DOUBLE       y     1.369  0.0128     1.369  0.0128
+BWQ         C08         N07      SINGLE       y     1.378  0.0100     1.378  0.0100
+BWQ         C08         C19      DOUBLE       y     1.414  0.0100     1.414  0.0100
+BWQ         C18         C19      SINGLE       y     1.403  0.0100     1.403  0.0100
+BWQ         C06         N07      SINGLE       y     1.377  0.0100     1.377  0.0100
+BWQ         C19         C20      SINGLE       y     1.436  0.0100     1.436  0.0100
+BWQ         C01         C02      SINGLE       n     1.521  0.0151     1.521  0.0151
+BWQ         C02         C03      SINGLE       n     1.521  0.0151     1.521  0.0151
+BWQ         C02         C04      SINGLE       n     1.528  0.0141     1.528  0.0141
+BWQ         C06         C20      DOUBLE       y     1.363  0.0105     1.363  0.0105
+BWQ         C05         C06      SINGLE       n     1.499  0.0100     1.499  0.0100
+BWQ         C20         C21      SINGLE       n     1.495  0.0100     1.495  0.0100
+BWQ         C04         C05      SINGLE       n     1.537  0.0100     1.537  0.0100
+BWQ         C05         N38      SINGLE       n     1.470  0.0116     1.470  0.0116
+BWQ         C21         C22      SINGLE       n     1.528  0.0100     1.528  0.0100
+BWQ         C22         N38      SINGLE       n     1.472  0.0113     1.472  0.0113
+BWQ         C36         N38      SINGLE       n     1.345  0.0100     1.345  0.0100
+BWQ         C22         C23      SINGLE       n     1.514  0.0134     1.514  0.0134
+BWQ         C36         O37      DOUBLE       n     1.237  0.0100     1.237  0.0100
+BWQ         C26         C36      SINGLE       n     1.510  0.0102     1.510  0.0102
+BWQ         C23         O24      DOUBLE       n     1.244  0.0100     1.244  0.0100
+BWQ         C23         N25      SINGLE       n     1.322  0.0100     1.322  0.0100
+BWQ         C26         N25      SINGLE       n     1.458  0.0100     1.458  0.0100
+BWQ         C26         C27      SINGLE       n     1.538  0.0100     1.538  0.0100
+BWQ         C27         C28      SINGLE       n     1.526  0.0114     1.526  0.0114
+BWQ         C28         C29      SINGLE       n     1.503  0.0175     1.503  0.0175
+BWQ         C32         C35      SINGLE       n     1.512  0.0110     1.512  0.0110
+BWQ         C29         O31      SINGLE       n     1.333  0.0106     1.333  0.0106
+BWQ         C32         O31      SINGLE       n     1.478  0.0102     1.478  0.0102
+BWQ         C32         C33      SINGLE       n     1.512  0.0110     1.512  0.0110
+BWQ         C29         O30      DOUBLE       n     1.203  0.0150     1.203  0.0150
+BWQ         C32         C34      SINGLE       n     1.512  0.0110     1.512  0.0110
+BWQ         C01          H1      SINGLE       n     1.089  0.0100     0.973  0.0146
+BWQ         C01          H2      SINGLE       n     1.089  0.0100     0.973  0.0146
+BWQ         C01          H3      SINGLE       n     1.089  0.0100     0.973  0.0146
+BWQ         C02          H4      SINGLE       n     1.089  0.0100     0.989  0.0162
+BWQ         C03          H5      SINGLE       n     1.089  0.0100     0.973  0.0146
+BWQ         C03          H6      SINGLE       n     1.089  0.0100     0.973  0.0146
+BWQ         C03          H7      SINGLE       n     1.089  0.0100     0.973  0.0146
+BWQ         C04          H8      SINGLE       n     1.089  0.0100     0.981  0.0164
+BWQ         C04          H9      SINGLE       n     1.089  0.0100     0.981  0.0164
+BWQ         C05         H10      SINGLE       n     1.089  0.0100     0.987  0.0200
+BWQ         C09         H11      SINGLE       n     1.082  0.0130     0.944  0.0100
+BWQ         C12         H12      SINGLE       n     1.089  0.0100     0.995  0.0100
+BWQ         C13         H13      SINGLE       n     1.089  0.0100     0.986  0.0108
+BWQ         C13         H14      SINGLE       n     1.089  0.0100     0.986  0.0108
+BWQ         C14         H15      SINGLE       n     1.089  0.0100     0.986  0.0110
+BWQ         C14         H16      SINGLE       n     1.089  0.0100     0.986  0.0110
+BWQ         C15         H17      SINGLE       n     1.089  0.0100     0.986  0.0110
+BWQ         C15         H18      SINGLE       n     1.089  0.0100     0.986  0.0110
+BWQ         C16         H19      SINGLE       n     1.089  0.0100     0.986  0.0108
+BWQ         C16         H20      SINGLE       n     1.089  0.0100     0.986  0.0108
+BWQ         C17         H21      SINGLE       n     1.082  0.0130     0.943  0.0103
+BWQ         C18         H22      SINGLE       n     1.082  0.0130     0.940  0.0107
+BWQ         C21         H23      SINGLE       n     1.089  0.0100     0.985  0.0100
+BWQ         C21         H24      SINGLE       n     1.089  0.0100     0.985  0.0100
+BWQ         C22         H25      SINGLE       n     1.089  0.0100     0.986  0.0118
+BWQ         C26         H26      SINGLE       n     1.089  0.0100     0.991  0.0170
+BWQ         C27         H27      SINGLE       n     1.089  0.0100     0.983  0.0186
+BWQ         C27         H28      SINGLE       n     1.089  0.0100     0.983  0.0186
+BWQ         C28         H29      SINGLE       n     1.089  0.0100     0.981  0.0185
+BWQ         C28         H30      SINGLE       n     1.089  0.0100     0.981  0.0185
+BWQ         C33         H31      SINGLE       n     1.089  0.0100     0.972  0.0148
+BWQ         C33         H32      SINGLE       n     1.089  0.0100     0.972  0.0148
+BWQ         C33         H33      SINGLE       n     1.089  0.0100     0.972  0.0148
+BWQ         C34         H34      SINGLE       n     1.089  0.0100     0.972  0.0148
+BWQ         C34         H35      SINGLE       n     1.089  0.0100     0.972  0.0148
+BWQ         C34         H36      SINGLE       n     1.089  0.0100     0.972  0.0148
+BWQ         C35         H37      SINGLE       n     1.089  0.0100     0.972  0.0148
+BWQ         C35         H38      SINGLE       n     1.089  0.0100     0.972  0.0148
+BWQ         C35         H39      SINGLE       n     1.089  0.0100     0.972  0.0148
+BWQ         N07         H40      SINGLE       n     1.016  0.0100     0.882  0.0200
+BWQ         N25         H41      SINGLE       n     1.016  0.0100     0.954  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BWQ         C02         C01          H1     109.539    1.50
+BWQ         C02         C01          H2     109.539    1.50
+BWQ         C02         C01          H3     109.539    1.50
+BWQ          H1         C01          H2     109.411    1.50
+BWQ          H1         C01          H3     109.411    1.50
+BWQ          H2         C01          H3     109.411    1.50
+BWQ         C01         C02         C03     110.389    1.50
+BWQ         C01         C02         C04     110.894    1.69
+BWQ         C01         C02          H4     108.065    1.50
+BWQ         C03         C02         C04     110.894    1.69
+BWQ         C03         C02          H4     108.065    1.50
+BWQ         C04         C02          H4     107.932    1.50
+BWQ         C02         C03          H5     109.539    1.50
+BWQ         C02         C03          H6     109.539    1.50
+BWQ         C02         C03          H7     109.539    1.50
+BWQ          H5         C03          H6     109.411    1.50
+BWQ          H5         C03          H7     109.411    1.50
+BWQ          H6         C03          H7     109.411    1.50
+BWQ         C02         C04         C05     115.123    1.50
+BWQ         C02         C04          H8     108.378    1.50
+BWQ         C02         C04          H9     108.378    1.50
+BWQ         C05         C04          H8     108.390    1.50
+BWQ         C05         C04          H9     108.390    1.50
+BWQ          H8         C04          H9     107.474    1.50
+BWQ         C06         C05         C04     111.002    2.24
+BWQ         C06         C05         N38     107.973    1.62
+BWQ         C06         C05         H10     108.299    1.50
+BWQ         C04         C05         N38     109.929    2.45
+BWQ         C04         C05         H10     106.533    3.00
+BWQ         N38         C05         H10     109.224    1.50
+BWQ         N07         C06         C20     109.469    1.50
+BWQ         N07         C06         C05     125.706    1.77
+BWQ         C20         C06         C05     124.826    1.50
+BWQ         C09         C08         N07     129.288    1.50
+BWQ         C09         C08         C19     122.711    1.50
+BWQ         N07         C08         C19     108.000    1.50
+BWQ         C10         C09         C08     117.652    1.50
+BWQ         C10         C09         H11     120.948    1.50
+BWQ         C08         C09         H11     121.399    1.50
+BWQ         O11         C10         C09     120.471    3.00
+BWQ         O11         C10         C17     118.550    3.00
+BWQ         C09         C10         C17     120.979    1.50
+BWQ         C16         C12         C13     105.141    1.50
+BWQ         C16         C12         O11     108.459    2.51
+BWQ         C16         C12         H12     111.313    1.50
+BWQ         C13         C12         O11     108.459    2.51
+BWQ         C13         C12         H12     111.313    1.50
+BWQ         O11         C12         H12     110.694    1.50
+BWQ         C14         C13         C12     105.200    1.50
+BWQ         C14         C13         H13     110.763    1.50
+BWQ         C14         C13         H14     110.763    1.50
+BWQ         C12         C13         H13     110.757    1.50
+BWQ         C12         C13         H14     110.757    1.50
+BWQ         H13         C13         H14     109.046    1.50
+BWQ         C15         C14         C13     106.171    2.25
+BWQ         C15         C14         H15     110.679    1.50
+BWQ         C15         C14         H16     110.679    1.50
+BWQ         C13         C14         H15     110.533    1.50
+BWQ         C13         C14         H16     110.533    1.50
+BWQ         H15         C14         H16     108.634    1.62
+BWQ         C14         C15         C16     106.171    2.25
+BWQ         C14         C15         H17     110.679    1.50
+BWQ         C14         C15         H18     110.679    1.50
+BWQ         C16         C15         H17     110.533    1.50
+BWQ         C16         C15         H18     110.533    1.50
+BWQ         H17         C15         H18     108.634    1.62
+BWQ         C15         C16         C12     105.200    1.50
+BWQ         C15         C16         H19     110.763    1.50
+BWQ         C15         C16         H20     110.763    1.50
+BWQ         C12         C16         H19     110.757    1.50
+BWQ         C12         C16         H20     110.757    1.50
+BWQ         H19         C16         H20     109.046    1.50
+BWQ         C10         C17         C18     120.812    1.50
+BWQ         C10         C17         H21     119.917    1.50
+BWQ         C18         C17         H21     119.271    1.50
+BWQ         C17         C18         C19     119.138    1.50
+BWQ         C17         C18         H22     120.419    1.50
+BWQ         C19         C18         H22     120.443    1.50
+BWQ         C08         C19         C18     118.708    1.50
+BWQ         C08         C19         C20     106.558    1.50
+BWQ         C18         C19         C20     134.735    1.50
+BWQ         C19         C20         C06     107.421    1.50
+BWQ         C19         C20         C21     130.006    1.50
+BWQ         C06         C20         C21     122.574    1.68
+BWQ         C20         C21         C22     108.459    1.50
+BWQ         C20         C21         H23     109.963    1.50
+BWQ         C20         C21         H24     109.963    1.50
+BWQ         C22         C21         H23     110.060    1.50
+BWQ         C22         C21         H24     110.060    1.50
+BWQ         H23         C21         H24     108.084    1.50
+BWQ         C21         C22         N38     109.928    1.80
+BWQ         C21         C22         C23     110.571    1.50
+BWQ         C21         C22         H25     108.745    1.50
+BWQ         N38         C22         C23     113.506    2.25
+BWQ         N38         C22         H25     108.109    1.50
+BWQ         C23         C22         H25     108.434    1.50
+BWQ         C22         C23         O24     120.830    1.50
+BWQ         C22         C23         N25     117.481    1.50
+BWQ         O24         C23         N25     121.688    1.50
+BWQ         C36         C26         N25     112.424    2.00
+BWQ         C36         C26         C27     110.115    2.66
+BWQ         C36         C26         H26     107.347    1.50
+BWQ         N25         C26         C27     110.271    2.01
+BWQ         N25         C26         H26     107.168    1.81
+BWQ         C27         C26         H26     107.624    1.58
+BWQ         C26         C27         C28     113.198    2.74
+BWQ         C26         C27         H27     108.222    1.50
+BWQ         C26         C27         H28     108.222    1.50
+BWQ         C28         C27         H27     108.514    1.50
+BWQ         C28         C27         H28     108.514    1.50
+BWQ         H27         C27         H28     107.880    1.69
+BWQ         C27         C28         C29     113.459    1.50
+BWQ         C27         C28         H29     108.830    1.50
+BWQ         C27         C28         H30     108.830    1.50
+BWQ         C29         C28         H29     109.094    1.50
+BWQ         C29         C28         H30     109.094    1.50
+BWQ         H29         C28         H30     107.544    1.50
+BWQ         C28         C29         O31     111.082    1.92
+BWQ         C28         C29         O30     124.644    1.50
+BWQ         O31         C29         O30     124.274    1.76
+BWQ         C35         C32         O31     107.108    3.00
+BWQ         C35         C32         C33     111.547    1.50
+BWQ         C35         C32         C34     111.547    1.50
+BWQ         O31         C32         C33     107.108    3.00
+BWQ         O31         C32         C34     107.108    3.00
+BWQ         C33         C32         C34     111.547    1.50
+BWQ         C32         C33         H31     109.487    1.50
+BWQ         C32         C33         H32     109.487    1.50
+BWQ         C32         C33         H33     109.487    1.50
+BWQ         H31         C33         H32     109.441    1.50
+BWQ         H31         C33         H33     109.441    1.50
+BWQ         H32         C33         H33     109.441    1.50
+BWQ         C32         C34         H34     109.487    1.50
+BWQ         C32         C34         H35     109.487    1.50
+BWQ         C32         C34         H36     109.487    1.50
+BWQ         H34         C34         H35     109.441    1.50
+BWQ         H34         C34         H36     109.441    1.50
+BWQ         H35         C34         H36     109.441    1.50
+BWQ         C32         C35         H37     109.487    1.50
+BWQ         C32         C35         H38     109.487    1.50
+BWQ         C32         C35         H39     109.487    1.50
+BWQ         H37         C35         H38     109.441    1.50
+BWQ         H37         C35         H39     109.441    1.50
+BWQ         H38         C35         H39     109.441    1.50
+BWQ         N38         C36         O37     121.733    1.50
+BWQ         N38         C36         C26     118.803    1.50
+BWQ         O37         C36         C26     119.464    2.29
+BWQ         C08         N07         C06     108.553    1.50
+BWQ         C08         N07         H40     126.176    1.50
+BWQ         C06         N07         H40     125.272    1.50
+BWQ         C23         N25         C26     125.948    2.27
+BWQ         C23         N25         H41     117.287    2.55
+BWQ         C26         N25         H41     116.765    2.23
+BWQ         C05         N38         C22     115.382    2.98
+BWQ         C05         N38         C36     119.844    1.57
+BWQ         C22         N38         C36     124.774    2.61
+BWQ         C12         O11         C10     118.287    1.70
+BWQ         C29         O31         C32     121.459    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BWQ            sp3_sp3_59          H1         C01         C02         C03     -60.000    10.0     3
+BWQ            sp3_sp3_37         C12         C13         C14         C15     -60.000    10.0     3
+BWQ            sp3_sp3_28         C13         C14         C15         C16      60.000    10.0     3
+BWQ            sp3_sp3_19         C14         C15         C16         C12     -60.000    10.0     3
+BWQ              const_33         C10         C17         C18         C19       0.000    10.0     2
+BWQ              const_37         C17         C18         C19         C08       0.000    10.0     2
+BWQ              const_17         C08         C19         C20         C06       0.000    10.0     2
+BWQ            sp2_sp3_10         C19         C20         C21         C22     180.000    10.0     6
+BWQ             sp3_sp3_1         C20         C21         C22         N38     -60.000    10.0     3
+BWQ            sp2_sp3_41         O24         C23         C22         C21     -60.000    10.0     6
+BWQ            sp2_sp3_13         C05         N38         C22         C21       0.000    10.0     6
+BWQ            sp3_sp3_67         C01         C02         C03          H5     180.000    10.0     3
+BWQ            sp3_sp3_79         C01         C02         C04         C05      60.000    10.0     3
+BWQ             sp2_sp2_7         O24         C23         N25         C26     180.000     5.0     2
+BWQ            sp3_sp3_94         C36         C26         C27         C28     180.000    10.0     3
+BWQ            sp2_sp3_23         O37         C36         C26         C27     -60.000    10.0     6
+BWQ            sp2_sp3_26         C23         N25         C26         C27     120.000    10.0     6
+BWQ           sp3_sp3_103         C26         C27         C28         C29     180.000    10.0     3
+BWQ            sp2_sp3_44         O31         C29         C28         C27     120.000    10.0     6
+BWQ            sp2_sp2_11         C28         C29         O31         C32     180.000     5.0     2
+BWQ           sp3_sp3_124         C35         C32         C33         H31     180.000    10.0     3
+BWQ           sp3_sp3_136         C35         C32         C34         H34      60.000    10.0     3
+BWQ           sp3_sp3_112         O31         C32         C35         H37     180.000    10.0     3
+BWQ           sp3_sp3_121         C35         C32         O31         C29     180.000    10.0     3
+BWQ             sp2_sp2_4         O37         C36         N38         C05       0.000     5.0     2
+BWQ            sp3_sp3_85         C02         C04         C05         C06     180.000    10.0     3
+BWQ            sp2_sp3_32         C22         N38         C05         C04     120.000    10.0     6
+BWQ             sp2_sp3_5         N07         C06         C05         C04     -60.000    10.0     6
+BWQ       const_sp2_sp2_1         N07         C06         C20         C19       0.000     5.0     2
+BWQ       const_sp2_sp2_5         C20         C06         N07         C08       0.000     5.0     2
+BWQ              const_13         C09         C08         C19         C18       0.000    10.0     2
+BWQ              const_11         C09         C08         N07         C06     180.000    10.0     2
+BWQ              const_23         N07         C08         C09         C10     180.000    10.0     2
+BWQ              const_26         C08         C09         C10         O11     180.000    10.0     2
+BWQ              const_31         O11         C10         C17         C18     180.000    10.0     2
+BWQ             sp2_sp2_9         C09         C10         O11         C12     180.000     5.0     2
+BWQ            sp3_sp3_49         O11         C12         C13         C14      60.000    10.0     3
+BWQ            sp3_sp3_16         O11         C12         C16         C15     180.000    10.0     3
+BWQ            sp3_sp3_55         C16         C12         O11         C10     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BWQ    chir_1    C02    C04    C01    C03    both
+BWQ    chir_2    C05    N38    C06    C04    positive
+BWQ    chir_3    C12    O11    C16    C13    both
+BWQ    chir_4    C22    N38    C23    C21    positive
+BWQ    chir_5    C26    N25    C36    C27    positive
+BWQ    chir_6    C32    O31    C35    C33    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BWQ    plan-1         C05   0.020
+BWQ    plan-1         C06   0.020
+BWQ    plan-1         C08   0.020
+BWQ    plan-1         C09   0.020
+BWQ    plan-1         C10   0.020
+BWQ    plan-1         C17   0.020
+BWQ    plan-1         C18   0.020
+BWQ    plan-1         C19   0.020
+BWQ    plan-1         C20   0.020
+BWQ    plan-1         C21   0.020
+BWQ    plan-1         H11   0.020
+BWQ    plan-1         H21   0.020
+BWQ    plan-1         H22   0.020
+BWQ    plan-1         H40   0.020
+BWQ    plan-1         N07   0.020
+BWQ    plan-1         O11   0.020
+BWQ    plan-2         C22   0.020
+BWQ    plan-2         C23   0.020
+BWQ    plan-2         N25   0.020
+BWQ    plan-2         O24   0.020
+BWQ    plan-3         C28   0.020
+BWQ    plan-3         C29   0.020
+BWQ    plan-3         O30   0.020
+BWQ    plan-3         O31   0.020
+BWQ    plan-4         C26   0.020
+BWQ    plan-4         C36   0.020
+BWQ    plan-4         N38   0.020
+BWQ    plan-4         O37   0.020
+BWQ    plan-5         C23   0.020
+BWQ    plan-5         C26   0.020
+BWQ    plan-5         H41   0.020
+BWQ    plan-5         N25   0.020
+BWQ    plan-6         C05   0.020
+BWQ    plan-6         C22   0.020
+BWQ    plan-6         C36   0.020
+BWQ    plan-6         N38   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BWQ            InChI                InChI  1.03 InChI=1S/C30H41N3O5/c1-17(2)14-24-27-21(20-11-10-19(15-23(20)31-27)37-18-8-6-7-9-18)16-25-28(35)32-22(29(36)33(24)25)12-13-26(34)38-30(3,4)5/h10-11,15,17-18,22,24-25,31H,6-9,12-14,16H2,1-5H3,(H,32,35)/t22-,24-,25-/m0/s1
+BWQ         InChIKey                InChI  1.03                                                                                                                                                                                                 MVNIRJAHJUCHLD-HVCNVCAESA-N
+BWQ SMILES_CANONICAL               CACTVS 3.385                                                                                                                                       CC(C)C[C@@H]1N2[C@@H](Cc3c1[nH]c4cc(OC5CCCC5)ccc34)C(=O)N[C@@H](CCC(=O)OC(C)(C)C)C2=O
+BWQ           SMILES               CACTVS 3.385                                                                                                                                             CC(C)C[CH]1N2[CH](Cc3c1[nH]c4cc(OC5CCCC5)ccc34)C(=O)N[CH](CCC(=O)OC(C)(C)C)C2=O
+BWQ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                        CC(C)C[C@H]1c2c(c3ccc(cc3[nH]2)OC4CCCC4)C[C@@H]5N1C(=O)[C@@H](NC5=O)CCC(=O)OC(C)(C)C
+BWQ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                      CC(C)CC1c2c(c3ccc(cc3[nH]2)OC4CCCC4)CC5N1C(=O)C(NC5=O)CCC(=O)OC(C)(C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BWQ acedrg               243         "dictionary generator"                  
+BWQ acedrg_database      11          "data source"                           
+BWQ rdkit                2017.03.2   "Chemoinformatics tool"
+BWQ refmac5              5.8.0238    "optimization tool"                     

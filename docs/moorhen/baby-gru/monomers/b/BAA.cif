@@ -1,0 +1,270 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BAA     BAA      (TERT-BUTYLOXYCARBONYL)-ALANYL-ALANYL-AMINE     NON-POLYMER     39     18     .     
+#
+data_comp_BAA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BAA     N3      N       NH2     0       44.592      23.541      35.936      
+BAA     C1      C       C       0       43.871      22.710      35.194      
+BAA     O1      O       O       0       42.731      22.353      35.489      
+BAA     CA1     C       CH1     0       44.531      22.201      33.906      
+BAA     CB1     C       CH3     0       45.676      21.243      34.234      
+BAA     N1      N       NH1     0       44.999      23.308      33.081      
+BAA     C2      C       C       0       44.164      24.036      32.323      
+BAA     O2      O       O       0       42.951      23.833      32.266      
+BAA     CA2     C       CH1     0       44.782      25.184      31.516      
+BAA     CB2     C       CH3     0       44.786      26.472      32.339      
+BAA     N2      N       NH1     0       44.081      25.402      30.254      
+BAA     C3      C       C       0       44.630      25.094      29.060      
+BAA     O3      O       O       0       45.737      24.622      28.910      
+BAA     O4      O       O2      0       43.749      25.384      28.076      
+BAA     C4      C       CT      0       44.041      25.268      26.628      
+BAA     C41     C       CH3     0       44.340      23.828      26.268      
+BAA     C42     C       CH3     0       42.754      25.719      25.975      
+BAA     C43     C       CH3     0       45.180      26.191      26.249      
+BAA     HN31    H       H       0       45.414      23.766      35.698      
+BAA     HN32    H       H       0       44.246      23.874      36.679      
+BAA     HA1     H       H       0       43.851      21.694      33.396      
+BAA     HB11    H       H       0       46.331      21.258      33.515      
+BAA     HB12    H       H       0       45.326      20.341      34.327      
+BAA     HB13    H       H       0       46.107      21.508      35.064      
+BAA     HN1     H       H       0       45.848      23.514      33.092      
+BAA     HA2     H       H       0       45.721      24.947      31.325      
+BAA     HB21    H       H       0       44.274      27.159      31.880      
+BAA     HB22    H       H       0       45.701      26.779      32.453      
+BAA     HB23    H       H       0       44.392      26.312      33.214      
+BAA     HN2     H       H       0       43.271      25.741      30.267      
+BAA     H411    H       H       0       44.210      23.699      25.313      
+BAA     H412    H       H       0       43.739      23.241      26.757      
+BAA     H413    H       H       0       45.259      23.614      26.499      
+BAA     H421    H       H       0       42.571      26.641      26.224      
+BAA     H422    H       H       0       42.023      25.152      26.273      
+BAA     H423    H       H       0       42.841      25.655      25.009      
+BAA     H431    H       H       0       45.198      26.302      25.283      
+BAA     H432    H       H       0       46.024      25.812      26.545      
+BAA     H433    H       H       0       45.048      27.057      26.671      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BAA          N3          C1      SINGLE       n     1.325  0.0100     1.325  0.0100
+BAA          C1          O1      DOUBLE       n     1.230  0.0100     1.230  0.0100
+BAA          C1         CA1      SINGLE       n     1.532  0.0100     1.532  0.0100
+BAA         CA1         CB1      SINGLE       n     1.525  0.0113     1.525  0.0113
+BAA         CA1          N1      SINGLE       n     1.453  0.0100     1.453  0.0100
+BAA          N1          C2      SINGLE       n     1.337  0.0100     1.337  0.0100
+BAA          C2          O2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+BAA          C2         CA2      SINGLE       n     1.530  0.0100     1.530  0.0100
+BAA         CA2         CB2      SINGLE       n     1.525  0.0113     1.525  0.0113
+BAA         CA2          N2      SINGLE       n     1.454  0.0100     1.454  0.0100
+BAA          N2          C3      SINGLE       n     1.344  0.0100     1.344  0.0100
+BAA          C3          O3      DOUBLE       n     1.210  0.0102     1.210  0.0102
+BAA          C3          O4      SINGLE       n     1.341  0.0126     1.341  0.0126
+BAA          O4          C4      SINGLE       n     1.477  0.0101     1.477  0.0101
+BAA          C4         C41      SINGLE       n     1.512  0.0110     1.512  0.0110
+BAA          C4         C42      SINGLE       n     1.512  0.0110     1.512  0.0110
+BAA          C4         C43      SINGLE       n     1.512  0.0110     1.512  0.0110
+BAA          N3        HN31      SINGLE       n     1.016  0.0100     0.884  0.0200
+BAA          N3        HN32      SINGLE       n     1.016  0.0100     0.884  0.0200
+BAA         CA1         HA1      SINGLE       n     1.089  0.0100     0.989  0.0200
+BAA         CB1        HB11      SINGLE       n     1.089  0.0100     0.972  0.0152
+BAA         CB1        HB12      SINGLE       n     1.089  0.0100     0.972  0.0152
+BAA         CB1        HB13      SINGLE       n     1.089  0.0100     0.972  0.0152
+BAA          N1         HN1      SINGLE       n     1.016  0.0100     0.873  0.0200
+BAA         CA2         HA2      SINGLE       n     1.089  0.0100     0.989  0.0200
+BAA         CB2        HB21      SINGLE       n     1.089  0.0100     0.972  0.0152
+BAA         CB2        HB22      SINGLE       n     1.089  0.0100     0.972  0.0152
+BAA         CB2        HB23      SINGLE       n     1.089  0.0100     0.972  0.0152
+BAA          N2         HN2      SINGLE       n     1.016  0.0100     0.875  0.0200
+BAA         C41        H411      SINGLE       n     1.089  0.0100     0.972  0.0148
+BAA         C41        H412      SINGLE       n     1.089  0.0100     0.972  0.0148
+BAA         C41        H413      SINGLE       n     1.089  0.0100     0.972  0.0148
+BAA         C42        H421      SINGLE       n     1.089  0.0100     0.972  0.0148
+BAA         C42        H422      SINGLE       n     1.089  0.0100     0.972  0.0148
+BAA         C42        H423      SINGLE       n     1.089  0.0100     0.972  0.0148
+BAA         C43        H431      SINGLE       n     1.089  0.0100     0.972  0.0148
+BAA         C43        H432      SINGLE       n     1.089  0.0100     0.972  0.0148
+BAA         C43        H433      SINGLE       n     1.089  0.0100     0.972  0.0148
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BAA          C1          N3        HN31     120.017    3.00
+BAA          C1          N3        HN32     120.017    3.00
+BAA        HN31          N3        HN32     119.966    2.38
+BAA          N3          C1          O1     123.732    1.50
+BAA          N3          C1         CA1     115.746    1.60
+BAA          O1          C1         CA1     120.522    1.50
+BAA          C1         CA1         CB1     109.980    1.50
+BAA          C1         CA1          N1     111.106    2.53
+BAA          C1         CA1         HA1     108.061    1.50
+BAA         CB1         CA1          N1     110.370    1.50
+BAA         CB1         CA1         HA1     108.358    1.50
+BAA          N1         CA1         HA1     108.310    1.50
+BAA         CA1         CB1        HB11     109.620    1.50
+BAA         CA1         CB1        HB12     109.620    1.50
+BAA         CA1         CB1        HB13     109.620    1.50
+BAA        HB11         CB1        HB12     109.386    1.50
+BAA        HB11         CB1        HB13     109.386    1.50
+BAA        HB12         CB1        HB13     109.386    1.50
+BAA         CA1          N1          C2     121.107    1.62
+BAA         CA1          N1         HN1     119.538    1.50
+BAA          C2          N1         HN1     119.355    1.83
+BAA          N1          C2          O2     122.954    1.50
+BAA          N1          C2         CA2     116.681    1.56
+BAA          O2          C2         CA2     120.365    1.50
+BAA          C2         CA2         CB2     110.119    1.50
+BAA          C2         CA2          N2     112.138    1.68
+BAA          C2         CA2         HA2     107.902    1.50
+BAA         CB2         CA2          N2     109.908    1.50
+BAA         CB2         CA2         HA2     108.358    1.50
+BAA          N2         CA2         HA2     108.227    1.50
+BAA         CA2         CB2        HB21     109.620    1.50
+BAA         CA2         CB2        HB22     109.620    1.50
+BAA         CA2         CB2        HB23     109.620    1.50
+BAA        HB21         CB2        HB22     109.386    1.50
+BAA        HB21         CB2        HB23     109.386    1.50
+BAA        HB22         CB2        HB23     109.386    1.50
+BAA         CA2          N2          C3     120.181    1.55
+BAA         CA2          N2         HN2     120.414    1.62
+BAA          C3          N2         HN2     119.405    2.20
+BAA          N2          C3          O3     124.504    1.50
+BAA          N2          C3          O4     109.944    1.50
+BAA          O3          C3          O4     125.552    1.50
+BAA          C3          O4          C4     120.806    1.50
+BAA          O4          C4         C41     107.315    3.00
+BAA          O4          C4         C42     107.315    3.00
+BAA          O4          C4         C43     107.315    3.00
+BAA         C41          C4         C42     111.547    1.50
+BAA         C41          C4         C43     111.547    1.50
+BAA         C42          C4         C43     111.547    1.50
+BAA          C4         C41        H411     109.487    1.50
+BAA          C4         C41        H412     109.487    1.50
+BAA          C4         C41        H413     109.487    1.50
+BAA        H411         C41        H412     109.441    1.50
+BAA        H411         C41        H413     109.441    1.50
+BAA        H412         C41        H413     109.441    1.50
+BAA          C4         C42        H421     109.487    1.50
+BAA          C4         C42        H422     109.487    1.50
+BAA          C4         C42        H423     109.487    1.50
+BAA        H421         C42        H422     109.441    1.50
+BAA        H421         C42        H423     109.441    1.50
+BAA        H422         C42        H423     109.441    1.50
+BAA          C4         C43        H431     109.487    1.50
+BAA          C4         C43        H432     109.487    1.50
+BAA          C4         C43        H433     109.487    1.50
+BAA        H431         C43        H432     109.441    1.50
+BAA        H431         C43        H433     109.441    1.50
+BAA        H432         C43        H433     109.441    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BAA             sp2_sp2_3          O1          C1          N3        HN31       0.000     5.0     2
+BAA            sp2_sp2_11          O3          C3          N2         CA2       0.000     5.0     2
+BAA            sp2_sp2_13          N2          C3          O4          C4     180.000     5.0     2
+BAA            sp3_sp3_19         C41          C4          O4          C3     180.000    10.0     3
+BAA            sp3_sp3_22          O4          C4         C41        H411     180.000    10.0     3
+BAA            sp3_sp3_34          O4          C4         C42        H421      60.000    10.0     3
+BAA            sp3_sp3_40          O4          C4         C43        H431     180.000    10.0     3
+BAA             sp2_sp3_1          N3          C1         CA1         CB1       0.000    10.0     6
+BAA             sp3_sp3_1          C1         CA1         CB1        HB11     180.000    10.0     3
+BAA             sp2_sp3_7          C2          N1         CA1          C1       0.000    10.0     6
+BAA             sp2_sp2_7          O2          C2          N1         CA1       0.000     5.0     2
+BAA            sp2_sp3_13          N1          C2         CA2         CB2       0.000    10.0     6
+BAA            sp2_sp3_19          C3          N2         CA2          C2       0.000    10.0     6
+BAA            sp3_sp3_10          C2         CA2         CB2        HB21     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BAA    chir_1    CA1    N1    C1    CB1    positive
+BAA    chir_2    CA2    N2    C2    CB2    positive
+BAA    chir_3    C4    O4    C41    C42    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BAA    plan-1          C1   0.020
+BAA    plan-1        HN31   0.020
+BAA    plan-1        HN32   0.020
+BAA    plan-1          N3   0.020
+BAA    plan-2          C1   0.020
+BAA    plan-2         CA1   0.020
+BAA    plan-2          N3   0.020
+BAA    plan-2          O1   0.020
+BAA    plan-3          C2   0.020
+BAA    plan-3         CA1   0.020
+BAA    plan-3         HN1   0.020
+BAA    plan-3          N1   0.020
+BAA    plan-4          C2   0.020
+BAA    plan-4         CA2   0.020
+BAA    plan-4          N1   0.020
+BAA    plan-4          O2   0.020
+BAA    plan-5          C3   0.020
+BAA    plan-5         CA2   0.020
+BAA    plan-5         HN2   0.020
+BAA    plan-5          N2   0.020
+BAA    plan-6          C3   0.020
+BAA    plan-6          N2   0.020
+BAA    plan-6          O3   0.020
+BAA    plan-6          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BAA           SMILES              ACDLabs 10.04                                                                                     O=C(OC(C)(C)C)NC(C(=O)NC(C(=O)N)C)C
+BAA SMILES_CANONICAL               CACTVS 3.341                                                                             C[C@H](NC(=O)[C@H](C)NC(=O)OC(C)(C)C)C(N)=O
+BAA           SMILES               CACTVS 3.341                                                                               C[CH](NC(=O)[CH](C)NC(=O)OC(C)(C)C)C(N)=O
+BAA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                            C[C@@H](C(=O)N)NC(=O)[C@H](C)NC(=O)OC(C)(C)C
+BAA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                     CC(C(=O)N)NC(=O)C(C)NC(=O)OC(C)(C)C
+BAA            InChI                InChI  1.03 InChI=1S/C11H21N3O4/c1-6(8(12)15)13-9(16)7(2)14-10(17)18-11(3,4)5/h6-7H,1-5H3,(H2,12,15)(H,13,16)(H,14,17)/t6-,7-/m0/s1
+BAA         InChIKey                InChI  1.03                                                                                             OAXZAMSRJZWMEV-BQBZGAKWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BAA acedrg               243         "dictionary generator"                  
+BAA acedrg_database      11          "data source"                           
+BAA rdkit                2017.03.2   "Chemoinformatics tool"
+BAA refmac5              5.8.0238    "optimization tool"                     

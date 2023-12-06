@@ -1,0 +1,221 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+X09     X09      AMINO-AUSTRALINE     NON-POLYMER     30     13     .     
+#
+data_comp_X09
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+X09     OAC     O       OH1     0       5.241       40.526      115.632     
+X09     CAI     C       CH1     0       5.125       41.073      116.934     
+X09     CAJ     C       CH1     0       5.294       39.981      118.002     
+X09     OAD     O       OH1     0       4.032       39.518      118.486     
+X09     CAL     C       CH1     0       6.091       40.611      119.150     
+X09     CAH     C       CH1     0       7.490       40.080      119.496     
+X09     OAB     O       OH1     0       8.203       39.572      118.370     
+X09     CAF     C       CH2     0       8.142       41.286      120.168     
+X09     CAG     C       CH2     0       7.642       42.461      119.337     
+X09     NAM     N       NT      0       6.332       42.042      118.738     
+X09     CAK     C       CH1     0       6.230       42.078      117.262     
+X09     CAE     C       CH2     0       5.964       43.491      116.748     
+X09     NAA     N       NT3     1       6.006       43.611      115.270     
+X09     HAC     H       H       0       4.803       41.004      115.085     
+X09     HAI     H       H       0       4.260       41.510      117.029     
+X09     HAJ     H       H       0       5.792       39.225      117.622     
+X09     HAD     H       H       0       3.594       40.182      118.785     
+X09     HAL     H       H       0       5.553       40.612      119.947     
+X09     HAH     H       H       0       7.416       39.337      120.131     
+X09     HAB     H       H       0       8.543       40.217      117.935     
+X09     HAF1    H       H       0       9.124       41.225      120.140     
+X09     HAF2    H       H       0       7.857       41.371      121.107     
+X09     HAG1    H       H       0       8.281       42.680      118.636     
+X09     HAG2    H       H       0       7.515       43.245      119.899     
+X09     HAK     H       H       0       7.072       41.737      116.871     
+X09     HAE1    H       H       0       6.632       44.096      117.134     
+X09     HAE2    H       H       0       5.083       43.780      117.065     
+X09     HAA1    H       H       0       6.167       44.472      115.035     
+X09     HAA2    H       H       0       5.211       43.353      114.917     
+X09     H3      H       H       0       6.664       43.085      114.933     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+X09         OAC         CAI      SINGLE       n     1.417  0.0100     1.417  0.0100
+X09         CAI         CAJ      SINGLE       n     1.533  0.0100     1.533  0.0100
+X09         CAI         CAK      SINGLE       n     1.528  0.0100     1.528  0.0100
+X09         CAJ         OAD      SINGLE       n     1.426  0.0100     1.426  0.0100
+X09         CAJ         CAL      SINGLE       n     1.529  0.0100     1.529  0.0100
+X09         CAL         CAH      SINGLE       n     1.536  0.0100     1.536  0.0100
+X09         CAL         NAM      SINGLE       n     1.512  0.0100     1.512  0.0100
+X09         CAH         OAB      SINGLE       n     1.424  0.0100     1.424  0.0100
+X09         CAH         CAF      SINGLE       n     1.525  0.0100     1.525  0.0100
+X09         CAF         CAG      SINGLE       n     1.520  0.0100     1.520  0.0100
+X09         CAG         NAM      SINGLE       n     1.498  0.0100     1.498  0.0100
+X09         NAM         CAK      SINGLE       n     1.481  0.0100     1.481  0.0100
+X09         CAK         CAE      SINGLE       n     1.527  0.0107     1.527  0.0107
+X09         CAE         NAA      SINGLE       n     1.483  0.0133     1.483  0.0133
+X09         OAC         HAC      SINGLE       n     0.970  0.0120     0.849  0.0200
+X09         CAI         HAI      SINGLE       n     1.089  0.0100     0.974  0.0130
+X09         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.983  0.0147
+X09         OAD         HAD      SINGLE       n     0.970  0.0120     0.849  0.0200
+X09         CAL         HAL      SINGLE       n     1.089  0.0100     0.962  0.0105
+X09         CAH         HAH      SINGLE       n     1.089  0.0100     0.980  0.0100
+X09         OAB         HAB      SINGLE       n     0.970  0.0120     0.849  0.0200
+X09         CAF        HAF1      SINGLE       n     1.089  0.0100     0.985  0.0127
+X09         CAF        HAF2      SINGLE       n     1.089  0.0100     0.985  0.0127
+X09         CAG        HAG1      SINGLE       n     1.089  0.0100     0.973  0.0100
+X09         CAG        HAG2      SINGLE       n     1.089  0.0100     0.973  0.0100
+X09         CAK         HAK      SINGLE       n     1.089  0.0100     0.989  0.0148
+X09         CAE        HAE1      SINGLE       n     1.089  0.0100     0.980  0.0160
+X09         CAE        HAE2      SINGLE       n     1.089  0.0100     0.980  0.0160
+X09         NAA        HAA1      SINGLE       n     1.036  0.0160     0.907  0.0200
+X09         NAA        HAA2      SINGLE       n     1.036  0.0160     0.907  0.0200
+X09         NAA          H3      SINGLE       n     1.036  0.0160     0.907  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+X09         CAI         OAC         HAC     109.104    3.00
+X09         OAC         CAI         CAJ     112.383    3.00
+X09         OAC         CAI         CAK     114.749    2.99
+X09         OAC         CAI         HAI     110.259    1.63
+X09         CAJ         CAI         CAK     102.385    1.50
+X09         CAJ         CAI         HAI     110.583    1.50
+X09         CAK         CAI         HAI     109.633    1.50
+X09         CAI         CAJ         OAD     112.536    2.29
+X09         CAI         CAJ         CAL     104.224    2.34
+X09         CAI         CAJ         HAJ     110.403    1.70
+X09         OAD         CAJ         CAL     109.780    1.55
+X09         OAD         CAJ         HAJ     110.289    1.50
+X09         CAL         CAJ         HAJ     110.415    1.50
+X09         CAJ         OAD         HAD     107.632    1.96
+X09         CAJ         CAL         CAH     117.900    2.74
+X09         CAJ         CAL         NAM     105.775    1.50
+X09         CAJ         CAL         HAL     109.361    1.50
+X09         CAH         CAL         NAM     105.775    1.50
+X09         CAH         CAL         HAL     109.696    1.50
+X09         NAM         CAL         HAL     108.922    1.50
+X09         CAL         CAH         OAB     111.411    2.26
+X09         CAL         CAH         CAF     104.224    2.34
+X09         CAL         CAH         HAH     110.198    1.50
+X09         OAB         CAH         CAF     113.354    3.00
+X09         OAB         CAH         HAH     106.673    1.65
+X09         CAF         CAH         HAH     110.861    2.06
+X09         CAH         OAB         HAB     108.895    1.50
+X09         CAH         CAF         CAG     101.994    1.50
+X09         CAH         CAF        HAF1     111.708    1.50
+X09         CAH         CAF        HAF2     111.708    1.50
+X09         CAG         CAF        HAF1     111.353    1.50
+X09         CAG         CAF        HAF2     111.353    1.50
+X09        HAF1         CAF        HAF2     110.198    3.00
+X09         CAF         CAG         NAM     104.974    1.78
+X09         CAF         CAG        HAG1     111.153    2.33
+X09         CAF         CAG        HAG2     111.153    2.33
+X09         NAM         CAG        HAG1     110.243    1.50
+X09         NAM         CAG        HAG2     110.243    1.50
+X09        HAG1         CAG        HAG2     109.037    1.50
+X09         CAL         NAM         CAG     107.156    1.50
+X09         CAL         NAM         CAK     107.231    1.50
+X09         CAG         NAM         CAK     116.193    1.50
+X09         CAI         CAK         NAM     103.979    1.50
+X09         CAI         CAK         CAE     113.745    2.48
+X09         CAI         CAK         HAK     107.500    1.50
+X09         NAM         CAK         CAE     111.567    3.00
+X09         NAM         CAK         HAK     108.439    1.68
+X09         CAE         CAK         HAK     109.223    1.50
+X09         CAK         CAE         NAA     113.223    3.00
+X09         CAK         CAE        HAE1     108.704    1.50
+X09         CAK         CAE        HAE2     108.704    1.50
+X09         NAA         CAE        HAE1     108.967    1.50
+X09         NAA         CAE        HAE2     108.967    1.50
+X09        HAE1         CAE        HAE2     107.717    1.50
+X09         CAE         NAA        HAA1     110.027    2.34
+X09         CAE         NAA        HAA2     110.027    2.34
+X09         CAE         NAA          H3     110.027    2.34
+X09        HAA1         NAA        HAA2     109.063    1.50
+X09        HAA1         NAA          H3     109.063    1.50
+X09        HAA2         NAA          H3     109.063    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+X09            sp3_sp3_64         CAJ         CAI         OAC         HAC     180.000    10.0     3
+X09            sp3_sp3_82         NAA         CAE         CAK         CAI     180.000    10.0     3
+X09            sp3_sp3_91         CAK         CAE         NAA        HAA1     180.000    10.0     3
+X09            sp3_sp3_71         OAC         CAI         CAK         CAE     180.000    10.0     3
+X09            sp3_sp3_38         OAC         CAI         CAJ         OAD      60.000    10.0     3
+X09            sp3_sp3_76         CAI         CAJ         OAD         HAD     180.000    10.0     3
+X09            sp3_sp3_47         OAD         CAJ         CAL         CAH     -60.000    10.0     3
+X09             sp3_sp3_5         OAB         CAH         CAL         CAJ      60.000    10.0     3
+X09            sp3_sp3_53         CAJ         CAL         NAM         CAG     180.000    10.0     3
+X09            sp3_sp3_79         CAL         CAH         OAB         HAB     180.000    10.0     3
+X09            sp3_sp3_11         CAG         CAF         CAH         OAB      60.000    10.0     3
+X09            sp3_sp3_19         CAH         CAF         CAG         NAM      60.000    10.0     3
+X09            sp3_sp3_28         CAF         CAG         NAM         CAL     -60.000    10.0     3
+X09            sp3_sp3_60         CAE         CAK         NAM         CAL     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+X09    chir_1    CAI    OAC    CAJ    CAK    negative
+X09    chir_2    CAJ    OAD    CAI    CAL    negative
+X09    chir_3    CAL    NAM    CAJ    CAH    negative
+X09    chir_4    CAH    OAB    CAL    CAF    positive
+X09    chir_5    NAM    CAL    CAK    CAG    positive
+X09    chir_6    CAK    NAM    CAI    CAE    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+X09           SMILES              ACDLabs 10.04                                                                         OC2C1N(C(C(O)C1O)CN)CC2
+X09 SMILES_CANONICAL               CACTVS 3.352                                                  NC[C@@H]1[C@@H](O)[C@H](O)[C@H]2[C@@H](O)CCN12
+X09           SMILES               CACTVS 3.352                                                          NC[CH]1[CH](O)[CH](O)[CH]2[CH](O)CCN12
+X09 SMILES_CANONICAL "OpenEye OEToolkits" 1.6.1                                                C1C[N@]2[C@@H]([C@H]([C@@H]([C@H]2[C@H]1O)O)O)CN
+X09           SMILES "OpenEye OEToolkits" 1.6.1                                                                         C1CN2C(C(C(C2C1O)O)O)CN
+X09            InChI                InChI  1.03 InChI=1S/C8H16N2O3/c9-3-4-7(12)8(13)6-5(11)1-2-10(4)6/h4-8,11-13H,1-3,9H2/t4-,5+,6-,7-,8-/m1/s1
+X09         InChIKey                InChI  1.03                                                                     RTYGUSZVNGAYPW-OZRXBMAMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+X09 acedrg               243         "dictionary generator"                  
+X09 acedrg_database      11          "data source"                           
+X09 rdkit                2017.03.2   "Chemoinformatics tool"
+X09 refmac5              5.8.0238    "optimization tool"                     

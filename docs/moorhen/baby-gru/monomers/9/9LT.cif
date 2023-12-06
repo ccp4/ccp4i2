@@ -1,0 +1,358 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+9LT     9LT      1-ethyl-~{N}-[(~{R})-(3-fluorophenyl)-(1-methylimidazol-2-yl)methyl]-2,3-bis(oxidanylidene)-4~{H}-quinoxaline-6-carboxamide     NON-POLYMER     51     31     .     
+#
+data_comp_9LT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+9LT     CAA     C       CH3     0       16.681      3.134       -7.536      
+9LT     CAB     C       CH3     0       10.274      4.003       2.317       
+9LT     CAG     C       CR16    0       11.434      8.347       0.447       
+9LT     CAH     C       CR15    0       13.465      2.371       2.018       
+9LT     CAI     C       CR16    0       12.742      8.763       0.605       
+9LT     CAJ     C       CR16    0       11.144      7.021       0.151       
+9LT     CAK     C       CR16    0       14.260      2.955       -3.545      
+9LT     CAL     C       CR16    0       14.974      2.563       -4.667      
+9LT     CAM     C       CR15    0       12.332      2.613       2.710       
+9LT     CAN     C       CR16    0       13.474      6.508       0.166       
+9LT     CAO     C       CR16    0       12.269      1.882       -4.406      
+9LT     CAP     C       CH2     0       16.484      1.718       -7.053      
+9LT     CAT     C       C       0       12.083      3.026       -2.197      
+9LT     CAU     C       CR6     0       13.731      7.829       0.459       
+9LT     CAV     C       CR6     0       12.885      2.627       -3.402      
+9LT     CAW     C       CR6     0       12.159      6.088       0.005       
+9LT     CAX     C       CR5     0       12.293      3.731       0.809       
+9LT     CAY     C       CR6     0       12.950      0.307       -7.664      
+9LT     CAZ     C       CR6     0       14.414      0.662       -7.832      
+9LT     CBA     C       CR66    0       12.981      1.477       -5.542      
+9LT     CBB     C       CR66    0       14.350      1.814       -5.689      
+9LT     CBC     C       CH1     0       11.849      4.627       -0.317      
+9LT     FAF     F       F       0       15.023      8.220       0.611       
+9LT     NAQ     N       NRD5    0       13.449      3.067       0.829       
+9LT     NAR     N       NH1     0       12.388      4.221       -1.609      
+9LT     NAS     N       NR6     0       12.342      0.736       -6.541      
+9LT     NBD     N       NR5     0       11.584      3.475       1.947       
+9LT     NBE     N       NR6     0       15.051      1.395       -6.837      
+9LT     OAC     O       O       0       11.224      2.268       -1.742      
+9LT     OAD     O       O       0       12.371      -0.344      -8.534      
+9LT     OAE     O       O       0       15.010      0.283       -8.861      
+9LT     H1      H       H       0       17.630      3.342       -7.557      
+9LT     H2      H       H       0       16.231      3.751       -6.937      
+9LT     H3      H       H       0       16.313      3.228       -8.429      
+9LT     H4      H       H       0       9.938       3.523       3.089       
+9LT     H5      H       H       0       9.660       3.892       1.576       
+9LT     H6      H       H       0       10.354      4.944       2.533       
+9LT     H7      H       H       0       10.731      8.972       0.542       
+9LT     H8      H       H       0       14.166      1.812       2.301       
+9LT     H9      H       H       0       12.948      9.663       0.806       
+9LT     H10     H       H       0       10.244      6.755       0.047       
+9LT     H11     H       H       0       14.692      3.457       -2.873      
+9LT     H12     H       H       0       15.876      2.802       -4.737      
+9LT     H13     H       H       0       12.089      2.267       3.549       
+9LT     H14     H       H       0       14.190      5.874       0.070       
+9LT     H15     H       H       0       11.355      1.652       -4.316      
+9LT     H16     H       H       0       16.977      1.590       -6.219      
+9LT     H17     H       H       0       16.872      1.105       -7.708      
+9LT     H18     H       H       0       10.861      4.544       -0.378      
+9LT     H19     H       H       0       12.911      4.782       -2.039      
+9LT     H20     H       H       0       11.482      0.532       -6.436      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+9LT         CAZ         OAE      DOUBLE       n     1.242  0.0172     1.242  0.0172
+9LT         CAY         OAD      DOUBLE       n     1.231  0.0100     1.231  0.0100
+9LT         CAA         CAP      SINGLE       n     1.508  0.0140     1.508  0.0140
+9LT         CAY         CAZ      SINGLE       y     1.515  0.0126     1.515  0.0126
+9LT         CAZ         NBE      SINGLE       y     1.380  0.0100     1.380  0.0100
+9LT         CAY         NAS      SINGLE       y     1.347  0.0100     1.347  0.0100
+9LT         CAP         NBE      SINGLE       n     1.475  0.0100     1.475  0.0100
+9LT         CBB         NBE      SINGLE       y     1.394  0.0100     1.394  0.0100
+9LT         CBA         NAS      SINGLE       y     1.395  0.0100     1.395  0.0100
+9LT         CBA         CBB      DOUBLE       y     1.396  0.0142     1.396  0.0142
+9LT         CAL         CBB      SINGLE       y     1.403  0.0100     1.403  0.0100
+9LT         CAO         CBA      SINGLE       y     1.394  0.0139     1.394  0.0139
+9LT         CAK         CAL      DOUBLE       y     1.381  0.0130     1.381  0.0130
+9LT         CAO         CAV      DOUBLE       y     1.390  0.0104     1.390  0.0104
+9LT         CAK         CAV      SINGLE       y     1.419  0.0100     1.419  0.0100
+9LT         CAT         CAV      SINGLE       n     1.498  0.0100     1.498  0.0100
+9LT         CAT         OAC      DOUBLE       n     1.230  0.0114     1.230  0.0114
+9LT         CAT         NAR      SINGLE       n     1.354  0.0141     1.354  0.0141
+9LT         CBC         NAR      SINGLE       n     1.453  0.0100     1.453  0.0100
+9LT         CAW         CBC      SINGLE       n     1.523  0.0128     1.523  0.0128
+9LT         CAX         CBC      SINGLE       n     1.502  0.0116     1.502  0.0116
+9LT         CAJ         CAW      SINGLE       y     1.382  0.0100     1.382  0.0100
+9LT         CAG         CAJ      DOUBLE       y     1.385  0.0100     1.385  0.0100
+9LT         CAN         CAW      DOUBLE       y     1.385  0.0102     1.385  0.0102
+9LT         CAG         CAI      SINGLE       y     1.375  0.0128     1.375  0.0128
+9LT         CAN         CAU      SINGLE       y     1.374  0.0100     1.374  0.0100
+9LT         CAI         CAU      DOUBLE       y     1.364  0.0125     1.364  0.0125
+9LT         CAU         FAF      SINGLE       n     1.359  0.0106     1.359  0.0106
+9LT         CAX         NAQ      DOUBLE       y     1.335  0.0200     1.335  0.0200
+9LT         CAX         NBD      SINGLE       y     1.363  0.0128     1.363  0.0128
+9LT         CAH         NAQ      SINGLE       y     1.379  0.0100     1.379  0.0100
+9LT         CAB         NBD      SINGLE       n     1.459  0.0110     1.459  0.0110
+9LT         CAM         NBD      SINGLE       y     1.372  0.0100     1.372  0.0100
+9LT         CAH         CAM      DOUBLE       y     1.349  0.0100     1.349  0.0100
+9LT         CAA          H1      SINGLE       n     1.089  0.0100     0.971  0.0200
+9LT         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0200
+9LT         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0200
+9LT         CAB          H4      SINGLE       n     1.089  0.0100     0.969  0.0162
+9LT         CAB          H5      SINGLE       n     1.089  0.0100     0.969  0.0162
+9LT         CAB          H6      SINGLE       n     1.089  0.0100     0.969  0.0162
+9LT         CAG          H7      SINGLE       n     1.082  0.0130     0.946  0.0200
+9LT         CAH          H8      SINGLE       n     1.082  0.0130     0.941  0.0103
+9LT         CAI          H9      SINGLE       n     1.082  0.0130     0.945  0.0200
+9LT         CAJ         H10      SINGLE       n     1.082  0.0130     0.944  0.0174
+9LT         CAK         H11      SINGLE       n     1.082  0.0130     0.944  0.0200
+9LT         CAL         H12      SINGLE       n     1.082  0.0130     0.939  0.0151
+9LT         CAM         H13      SINGLE       n     1.082  0.0130     0.939  0.0102
+9LT         CAN         H14      SINGLE       n     1.082  0.0130     0.961  0.0200
+9LT         CAO         H15      SINGLE       n     1.082  0.0130     0.947  0.0100
+9LT         CAP         H16      SINGLE       n     1.089  0.0100     0.980  0.0200
+9LT         CAP         H17      SINGLE       n     1.089  0.0100     0.980  0.0200
+9LT         CBC         H18      SINGLE       n     1.089  0.0100     0.994  0.0100
+9LT         NAR         H19      SINGLE       n     1.016  0.0100     0.879  0.0200
+9LT         NAS         H20      SINGLE       n     1.016  0.0100     0.889  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+9LT         CAP         CAA          H1     109.595    1.50
+9LT         CAP         CAA          H2     109.595    1.50
+9LT         CAP         CAA          H3     109.595    1.50
+9LT          H1         CAA          H2     109.243    2.31
+9LT          H1         CAA          H3     109.243    2.31
+9LT          H2         CAA          H3     109.243    2.31
+9LT         NBD         CAB          H4     109.448    1.50
+9LT         NBD         CAB          H5     109.448    1.50
+9LT         NBD         CAB          H6     109.448    1.50
+9LT          H4         CAB          H5     109.448    1.52
+9LT          H4         CAB          H6     109.448    1.52
+9LT          H5         CAB          H6     109.448    1.52
+9LT         CAJ         CAG         CAI     120.486    1.50
+9LT         CAJ         CAG          H7     119.869    1.50
+9LT         CAI         CAG          H7     119.646    1.50
+9LT         NAQ         CAH         CAM     110.099    1.50
+9LT         NAQ         CAH          H8     124.591    1.50
+9LT         CAM         CAH          H8     125.310    1.50
+9LT         CAG         CAI         CAU     117.789    1.50
+9LT         CAG         CAI          H9     121.190    1.50
+9LT         CAU         CAI          H9     121.021    1.50
+9LT         CAW         CAJ         CAG     120.657    1.50
+9LT         CAW         CAJ         H10     119.681    1.50
+9LT         CAG         CAJ         H10     119.662    1.50
+9LT         CAL         CAK         CAV     120.716    1.50
+9LT         CAL         CAK         H11     119.646    1.50
+9LT         CAV         CAK         H11     119.639    1.50
+9LT         CBB         CAL         CAK     119.857    1.50
+9LT         CBB         CAL         H12     120.044    1.50
+9LT         CAK         CAL         H12     120.093    1.50
+9LT         NBD         CAM         CAH     106.210    1.50
+9LT         NBD         CAM         H13     126.131    2.34
+9LT         CAH         CAM         H13     127.659    1.85
+9LT         CAW         CAN         CAU     119.325    1.50
+9LT         CAW         CAN         H14     119.660    1.50
+9LT         CAU         CAN         H14     121.015    1.50
+9LT         CBA         CAO         CAV     120.090    2.81
+9LT         CBA         CAO         H15     120.367    1.50
+9LT         CAV         CAO         H15     119.543    1.50
+9LT         CAA         CAP         NBE     112.280    1.50
+9LT         CAA         CAP         H16     109.324    1.50
+9LT         CAA         CAP         H17     109.324    1.50
+9LT         NBE         CAP         H16     109.160    1.50
+9LT         NBE         CAP         H17     109.160    1.50
+9LT         H16         CAP         H17     107.900    1.50
+9LT         CAV         CAT         OAC     121.125    1.50
+9LT         CAV         CAT         NAR     116.451    1.50
+9LT         OAC         CAT         NAR     122.425    1.50
+9LT         CAN         CAU         CAI     123.151    1.50
+9LT         CAN         CAU         FAF     118.393    1.50
+9LT         CAI         CAU         FAF     118.457    1.50
+9LT         CAO         CAV         CAK     119.480    1.50
+9LT         CAO         CAV         CAT     118.956    2.10
+9LT         CAK         CAV         CAT     121.563    2.35
+9LT         CBC         CAW         CAJ     120.704    2.01
+9LT         CBC         CAW         CAN     120.704    2.01
+9LT         CAJ         CAW         CAN     118.592    1.50
+9LT         CBC         CAX         NAQ     124.500    2.20
+9LT         CBC         CAX         NBD     125.121    1.69
+9LT         NAQ         CAX         NBD     110.379    1.50
+9LT         OAD         CAY         CAZ     119.639    1.50
+9LT         OAD         CAY         NAS     123.087    1.50
+9LT         CAZ         CAY         NAS     117.274    1.50
+9LT         OAE         CAZ         CAY     119.657    1.50
+9LT         OAE         CAZ         NBE     120.582    1.50
+9LT         CAY         CAZ         NBE     119.761    2.98
+9LT         NAS         CBA         CBB     118.535    1.50
+9LT         NAS         CBA         CAO     121.533    1.50
+9LT         CBB         CBA         CAO     119.932    1.50
+9LT         NBE         CBB         CBA     119.609    1.50
+9LT         NBE         CBB         CAL     120.460    1.50
+9LT         CBA         CBB         CAL     119.932    1.50
+9LT         NAR         CBC         CAW     111.786    1.94
+9LT         NAR         CBC         CAX     112.515    2.05
+9LT         NAR         CBC         H18     107.390    1.50
+9LT         CAW         CBC         CAX     111.894    2.22
+9LT         CAW         CBC         H18     107.292    1.94
+9LT         CAX         CBC         H18     106.987    1.50
+9LT         CAX         NAQ         CAH     106.100    1.50
+9LT         CAT         NAR         CBC     122.204    1.61
+9LT         CAT         NAR         H19     118.798    1.99
+9LT         CBC         NAR         H19     118.998    1.83
+9LT         CAY         NAS         CBA     123.240    1.50
+9LT         CAY         NAS         H20     117.670    1.50
+9LT         CBA         NAS         H20     119.089    2.04
+9LT         CAX         NBD         CAB     127.339    1.50
+9LT         CAX         NBD         CAM     107.211    1.50
+9LT         CAB         NBD         CAM     125.450    1.50
+9LT         CAZ         NBE         CAP     116.988    1.50
+9LT         CAZ         NBE         CBB     121.581    1.50
+9LT         CAP         NBE         CBB     121.431    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+9LT             sp3_sp3_1          H1         CAA         CAP         NBE     180.000    10.0     3
+9LT              const_50         CBA         CAO         CAV         CAT     180.000    10.0     2
+9LT              const_46         CAV         CAO         CBA         NAS     180.000    10.0     2
+9LT             sp2_sp3_2         CAZ         NBE         CAP         CAA     -90.000    10.0     6
+9LT             sp2_sp2_3         OAC         CAT         CAV         CAO       0.000     5.0     2
+9LT             sp2_sp2_7         OAC         CAT         NAR         CBC       0.000     5.0     2
+9LT            sp2_sp3_13         CAJ         CAW         CBC         NAR     150.000    10.0     6
+9LT            sp2_sp3_19         NAQ         CAX         CBC         NAR     150.000    10.0     6
+9LT              const_24         CBC         CAX         NAQ         CAH     180.000    10.0     2
+9LT              const_28         CBC         CAX         NBD         CAB       0.000    10.0     2
+9LT              const_56         OAD         CAY         CAZ         OAE       0.000    10.0     2
+9LT              const_71         OAD         CAY         NAS         CBA     180.000    10.0     2
+9LT              const_60         OAE         CAZ         NBE         CAP       0.000    10.0     2
+9LT              const_41         NAS         CBA         CBB         NBE       0.000    10.0     2
+9LT              const_65         CBB         CBA         NAS         CAY       0.000    10.0     2
+9LT            sp2_sp3_25         CAX         NBD         CAB          H4     150.000    10.0     6
+9LT              const_62         CBA         CBB         NBE         CAP     180.000    10.0     2
+9LT             sp2_sp3_7         CAT         NAR         CBC         CAW       0.000    10.0     6
+9LT              const_77         CAJ         CAG         CAI         CAU       0.000    10.0     2
+9LT       const_sp2_sp2_1         CAI         CAG         CAJ         CAW       0.000     5.0     2
+9LT              const_21         CAM         CAH         NAQ         CAX       0.000    10.0     2
+9LT              const_81         NAQ         CAH         CAM         NBD       0.000    10.0     2
+9LT              const_18         CAG         CAI         CAU         FAF     180.000    10.0     2
+9LT       const_sp2_sp2_6         CAG         CAJ         CAW         CBC     180.000     5.0     2
+9LT              const_74         CAL         CAK         CAV         CAT     180.000    10.0     2
+9LT              const_33         CAV         CAK         CAL         CBB       0.000    10.0     2
+9LT              const_38         CAK         CAL         CBB         NBE     180.000    10.0     2
+9LT              const_30         CAH         CAM         NBD         CAB     180.000    10.0     2
+9LT              const_14         CAW         CAN         CAU         FAF     180.000    10.0     2
+9LT              const_10         CAU         CAN         CAW         CBC     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+9LT    chir_1    CBC    NAR    CAX    CAW    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+9LT    plan-1         CAK   0.020
+9LT    plan-1         CAL   0.020
+9LT    plan-1         CAO   0.020
+9LT    plan-1         CAP   0.020
+9LT    plan-1         CAT   0.020
+9LT    plan-1         CAV   0.020
+9LT    plan-1         CAY   0.020
+9LT    plan-1         CAZ   0.020
+9LT    plan-1         CBA   0.020
+9LT    plan-1         CBB   0.020
+9LT    plan-1         H11   0.020
+9LT    plan-1         H12   0.020
+9LT    plan-1         H15   0.020
+9LT    plan-1         H20   0.020
+9LT    plan-1         NAS   0.020
+9LT    plan-1         NBE   0.020
+9LT    plan-1         OAD   0.020
+9LT    plan-1         OAE   0.020
+9LT    plan-2         CAG   0.020
+9LT    plan-2         CAI   0.020
+9LT    plan-2         CAJ   0.020
+9LT    plan-2         CAN   0.020
+9LT    plan-2         CAU   0.020
+9LT    plan-2         CAW   0.020
+9LT    plan-2         CBC   0.020
+9LT    plan-2         FAF   0.020
+9LT    plan-2         H10   0.020
+9LT    plan-2         H14   0.020
+9LT    plan-2          H7   0.020
+9LT    plan-2          H9   0.020
+9LT    plan-3         CAB   0.020
+9LT    plan-3         CAH   0.020
+9LT    plan-3         CAM   0.020
+9LT    plan-3         CAX   0.020
+9LT    plan-3         CBC   0.020
+9LT    plan-3         H13   0.020
+9LT    plan-3          H8   0.020
+9LT    plan-3         NAQ   0.020
+9LT    plan-3         NBD   0.020
+9LT    plan-4         CAT   0.020
+9LT    plan-4         CAV   0.020
+9LT    plan-4         NAR   0.020
+9LT    plan-4         OAC   0.020
+9LT    plan-5         CAT   0.020
+9LT    plan-5         CBC   0.020
+9LT    plan-5         H19   0.020
+9LT    plan-5         NAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+9LT            InChI                InChI  1.03 InChI=1S/C22H20FN5O3/c1-3-28-17-8-7-14(12-16(17)25-21(30)22(28)31)20(29)26-18(19-24-9-10-27(19)2)13-5-4-6-15(23)11-13/h4-12,18H,3H2,1-2H3,(H,25,30)(H,26,29)/t18-/m1/s1
+9LT         InChIKey                InChI  1.03                                                                                                                                             ORFTXHBAJDABTM-GOSISDBHSA-N
+9LT SMILES_CANONICAL               CACTVS 3.385                                                                                                              CCN1C(=O)C(=O)Nc2cc(ccc12)C(=O)N[C@H](c3cccc(F)c3)c4nccn4C
+9LT           SMILES               CACTVS 3.385                                                                                                               CCN1C(=O)C(=O)Nc2cc(ccc12)C(=O)N[CH](c3cccc(F)c3)c4nccn4C
+9LT SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                CCN1c2ccc(cc2NC(=O)C1=O)C(=O)N[C@H](c3cccc(c3)F)c4nccn4C
+9LT           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                    CCN1c2ccc(cc2NC(=O)C1=O)C(=O)NC(c3cccc(c3)F)c4nccn4C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+9LT acedrg               243         "dictionary generator"                  
+9LT acedrg_database      11          "data source"                           
+9LT rdkit                2017.03.2   "Chemoinformatics tool"
+9LT refmac5              5.8.0238    "optimization tool"                     

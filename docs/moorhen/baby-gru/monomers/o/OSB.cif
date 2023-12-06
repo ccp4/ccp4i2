@@ -1,0 +1,203 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OSB     OSB      2-SUCCINYLBENZOATE     NON-POLYMER     25     16     .     
+#
+data_comp_OSB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OSB     O1      O       OH1     0       29.448      -21.668     41.720      
+OSB     O2      O       O       0       29.647      -23.180     43.400      
+OSB     C7      C       C       0       29.238      -22.116     42.963      
+OSB     C6      C       CR16    0       26.460      -19.928     44.471      
+OSB     C5      C       CR16    0       27.153      -19.373     45.531      
+OSB     C4      C       CR16    0       28.477      -19.709     45.740      
+OSB     C3      C       CR16    0       29.107      -20.597     44.887      
+OSB     C2      C       CR6     0       28.429      -21.167     43.808      
+OSB     C1      C       CR6     0       27.079      -20.823     43.594      
+OSB     C8      C       C       0       26.291      -21.410     42.449      
+OSB     C9      C       CH2     0       25.560      -20.487     41.505      
+OSB     O3      O       O       0       26.218      -22.617     42.301      
+OSB     C10     C       CH2     0       26.222      -20.371     40.146      
+OSB     C11     C       C       0       27.284      -19.288     40.041      
+OSB     O4      O       O       0       27.420      -18.705     38.947      
+OSB     O5      O       OC      -1      27.979      -19.032     41.046      
+OSB     HO1     H       H       0       29.835      -20.909     41.594      
+OSB     H61     H       H       0       25.559      -19.696     44.332      
+OSB     H51     H       H       0       26.721      -18.769     46.112      
+OSB     H41     H       H       0       28.951      -19.333     46.463      
+OSB     H31     H       H       0       30.010      -20.819     45.036      
+OSB     H91     H       H       0       25.495      -19.598     41.908      
+OSB     H92     H       H       0       24.648      -20.822     41.386      
+OSB     H101    H       H       0       25.531      -20.188     39.477      
+OSB     H102    H       H       0       26.632      -21.230     39.915      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OSB          O1          C7      SINGLE       n     1.338  0.0153     1.338  0.0153
+OSB          O2          C7      DOUBLE       n     1.221  0.0175     1.221  0.0175
+OSB          C7          C2      SINGLE       n     1.502  0.0145     1.502  0.0145
+OSB          C6          C5      DOUBLE       y     1.380  0.0100     1.380  0.0100
+OSB          C6          C1      SINGLE       y     1.394  0.0100     1.394  0.0100
+OSB          C5          C4      SINGLE       y     1.378  0.0129     1.378  0.0129
+OSB          C4          C3      DOUBLE       y     1.380  0.0100     1.380  0.0100
+OSB          C3          C2      SINGLE       y     1.391  0.0100     1.391  0.0100
+OSB          C2          C1      DOUBLE       y     1.402  0.0100     1.402  0.0100
+OSB          C1          C8      SINGLE       n     1.497  0.0182     1.497  0.0182
+OSB          C8          C9      SINGLE       n     1.506  0.0112     1.506  0.0112
+OSB          C8          O3      DOUBLE       n     1.218  0.0120     1.218  0.0120
+OSB          C9         C10      SINGLE       n     1.514  0.0100     1.514  0.0100
+OSB         C10         C11      SINGLE       n     1.519  0.0109     1.519  0.0109
+OSB         C11          O4      DOUBLE       n     1.247  0.0187     1.247  0.0187
+OSB         C11          O5      SINGLE       n     1.247  0.0187     1.247  0.0187
+OSB          O1         HO1      SINGLE       n     0.966  0.0059     0.861  0.0200
+OSB          C6         H61      SINGLE       n     1.082  0.0130     0.941  0.0168
+OSB          C5         H51      SINGLE       n     1.082  0.0130     0.943  0.0180
+OSB          C4         H41      SINGLE       n     1.082  0.0130     0.943  0.0180
+OSB          C3         H31      SINGLE       n     1.082  0.0130     0.941  0.0168
+OSB          C9         H91      SINGLE       n     1.089  0.0100     0.979  0.0116
+OSB          C9         H92      SINGLE       n     1.089  0.0100     0.979  0.0116
+OSB         C10        H101      SINGLE       n     1.089  0.0100     0.979  0.0159
+OSB         C10        H102      SINGLE       n     1.089  0.0100     0.979  0.0159
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OSB          C7          O1         HO1     120.000    3.00
+OSB          O1          C7          O2     124.913    1.64
+OSB          O1          C7          C2     113.120    1.50
+OSB          O2          C7          C2     121.967    2.04
+OSB          C5          C6          C1     120.850    1.50
+OSB          C5          C6         H61     119.724    1.50
+OSB          C1          C6         H61     119.425    1.50
+OSB          C6          C5          C4     119.984    1.50
+OSB          C6          C5         H51     119.963    1.50
+OSB          C4          C5         H51     120.053    1.50
+OSB          C5          C4          C3     119.984    1.50
+OSB          C5          C4         H41     120.053    1.50
+OSB          C3          C4         H41     119.963    1.50
+OSB          C4          C3          C2     120.955    1.50
+OSB          C4          C3         H31     119.669    1.50
+OSB          C2          C3         H31     119.377    1.50
+OSB          C7          C2          C3     117.569    2.62
+OSB          C7          C2          C1     123.317    3.00
+OSB          C3          C2          C1     119.114    1.50
+OSB          C6          C1          C2     119.114    1.50
+OSB          C6          C1          C8     120.703    2.23
+OSB          C2          C1          C8     120.183    1.50
+OSB          C1          C8          C9     118.849    1.50
+OSB          C1          C8          O3     120.637    1.50
+OSB          C9          C8          O3     120.513    1.50
+OSB          C8          C9         C10     112.524    1.50
+OSB          C8          C9         H91     108.788    1.50
+OSB          C8          C9         H92     108.788    1.50
+OSB         C10          C9         H91     109.106    1.50
+OSB         C10          C9         H92     109.106    1.50
+OSB         H91          C9         H92     107.639    1.50
+OSB          C9         C10         C11     113.936    1.58
+OSB          C9         C10        H101     108.838    1.50
+OSB          C9         C10        H102     108.838    1.50
+OSB         C11         C10        H101     108.404    1.50
+OSB         C11         C10        H102     108.404    1.50
+OSB        H101         C10        H102     107.521    1.50
+OSB         C10         C11          O4     118.214    1.64
+OSB         C10         C11          O5     118.214    1.64
+OSB          O4         C11          O5     123.571    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OSB             sp2_sp2_1          O2          C7          O1         HO1     180.000     5.0     2
+OSB             sp3_sp3_1         C11         C10          C9          C8     180.000    10.0     3
+OSB             sp2_sp3_8          O4         C11         C10          C9     120.000    10.0     6
+OSB             sp2_sp2_3          C3          C2          C7          O1     180.000     5.0     2
+OSB       const_sp2_sp2_1          C4          C5          C6          C1       0.000     5.0     2
+OSB              const_23          C8          C1          C6          C5     180.000    10.0     2
+OSB       const_sp2_sp2_5          C3          C4          C5          C6       0.000     5.0     2
+OSB       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+OSB              const_15          C7          C2          C3          C4     180.000    10.0     2
+OSB              const_20          C8          C1          C2          C7       0.000    10.0     2
+OSB             sp2_sp2_7          C6          C1          C8          C9     180.000     5.0     2
+OSB             sp2_sp3_5          O3          C8          C9         C10     -60.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OSB    plan-1          C1   0.020
+OSB    plan-1          C2   0.020
+OSB    plan-1          C3   0.020
+OSB    plan-1          C4   0.020
+OSB    plan-1          C5   0.020
+OSB    plan-1          C6   0.020
+OSB    plan-1          C7   0.020
+OSB    plan-1          C8   0.020
+OSB    plan-1         H31   0.020
+OSB    plan-1         H41   0.020
+OSB    plan-1         H51   0.020
+OSB    plan-1         H61   0.020
+OSB    plan-2          C2   0.020
+OSB    plan-2          C7   0.020
+OSB    plan-2          O1   0.020
+OSB    plan-2          O2   0.020
+OSB    plan-3          C1   0.020
+OSB    plan-3          C8   0.020
+OSB    plan-3          C9   0.020
+OSB    plan-3          O3   0.020
+OSB    plan-4         C10   0.020
+OSB    plan-4         C11   0.020
+OSB    plan-4          O4   0.020
+OSB    plan-4          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OSB           SMILES              ACDLabs 10.04                                                                O=C(O)c1ccccc1C(=O)CCC(=O)O
+OSB SMILES_CANONICAL               CACTVS 3.341                                                                OC(=O)CCC(=O)c1ccccc1C(O)=O
+OSB           SMILES               CACTVS 3.341                                                                OC(=O)CCC(=O)c1ccccc1C(O)=O
+OSB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                            c1ccc(c(c1)C(=O)CCC(=O)O)C(=O)O
+OSB           SMILES "OpenEye OEToolkits" 1.5.0                                                            c1ccc(c(c1)C(=O)CCC(=O)O)C(=O)O
+OSB            InChI                InChI  1.03 InChI=1S/C11H10O5/c12-9(5-6-10(13)14)7-3-1-2-4-8(7)11(15)16/h1-4H,5-6H2,(H,13,14)(H,15,16)
+OSB         InChIKey                InChI  1.03                                                                YIVWQNVQRXFZJB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OSB acedrg               243         "dictionary generator"                  
+OSB acedrg_database      11          "data source"                           
+OSB rdkit                2017.03.2   "Chemoinformatics tool"
+OSB refmac5              5.8.0238    "optimization tool"                     

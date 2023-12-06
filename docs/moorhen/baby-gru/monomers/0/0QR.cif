@@ -1,0 +1,236 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+0QR     0QR      N-(6-aminopyridin-2-yl)-4-fluorobenzenesulfonamide     NON-POLYMER     28     18     .     
+#
+data_comp_0QR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+0QR     CAD     C       CR16    0       26.601      -0.150      13.443      
+0QR     CAE     C       CR16    0       26.108      -0.705      14.616      
+0QR     CAF     C       CR6     0       25.259      -1.779      14.526      
+0QR     FAG     F       F       0       24.776      -2.324      15.676      
+0QR     CAH     C       CR16    0       24.877      -2.329      13.328      
+0QR     CAI     C       CR16    0       25.370      -1.773      12.156      
+0QR     CAC     C       CR6     0       26.230      -0.684      12.216      
+0QR     SAB     S       S3      0       26.857      0.019       10.731      
+0QR     OAA     O       O       0       27.943      -0.797      10.284      
+0QR     OAR     O       O       0       27.078      1.415       10.946      
+0QR     NA2     N       NH1     0       25.692      -0.126      9.596       
+0QR     CAK     C       CR6     0       24.412      0.397       9.637       
+0QR     NA3     N       NRD6    0       23.639      0.042       8.589       
+0QR     CAQ     C       CR16    0       23.914      1.242       10.668      
+0QR     CAP     C       CR16    0       22.613      1.690       10.572      
+0QR     CAO     C       CR16    0       21.823      1.325       9.502       
+0QR     CAM     C       CR6     0       22.366      0.494       8.517       
+0QR     NA1     N       NH2     0       21.631      0.105       7.441       
+0QR     H1      H       H       0       27.187      0.588       13.483      
+0QR     H2      H       H       0       26.350      -0.353      15.453      
+0QR     H3      H       H       0       24.293      -3.065      13.303      
+0QR     H4      H       H       0       25.120      -2.135      11.322      
+0QR     H5      H       H       0       25.913      -0.582      8.896       
+0QR     H6      H       H       0       24.458      1.487       11.398      
+0QR     H7      H       H       0       22.261      2.249       11.244      
+0QR     H8      H       H       0       20.930      1.627       9.426       
+0QR     H9      H       H       0       20.783      0.327       7.388       
+0QR     H10     H       H       0       22.004      -0.366      6.801       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+0QR         CAM         NA1      SINGLE       n     1.356  0.0167     1.356  0.0167
+0QR         NA3         CAM      DOUBLE       y     1.347  0.0106     1.347  0.0106
+0QR         CAO         CAM      SINGLE       y     1.387  0.0200     1.387  0.0200
+0QR         CAK         NA3      SINGLE       y     1.343  0.0109     1.343  0.0109
+0QR         CAP         CAO      DOUBLE       y     1.377  0.0100     1.377  0.0100
+0QR         NA2         CAK      SINGLE       n     1.360  0.0198     1.360  0.0198
+0QR         CAK         CAQ      DOUBLE       y     1.396  0.0200     1.396  0.0200
+0QR         SAB         NA2      SINGLE       n     1.629  0.0114     1.629  0.0114
+0QR         CAQ         CAP      SINGLE       y     1.377  0.0100     1.377  0.0100
+0QR         SAB         OAA      DOUBLE       n     1.430  0.0100     1.430  0.0100
+0QR         SAB         OAR      DOUBLE       n     1.430  0.0100     1.430  0.0100
+0QR         CAC         SAB      SINGLE       n     1.757  0.0100     1.757  0.0100
+0QR         CAI         CAC      SINGLE       y     1.385  0.0100     1.385  0.0100
+0QR         CAH         CAI      DOUBLE       y     1.384  0.0100     1.384  0.0100
+0QR         CAD         CAC      DOUBLE       y     1.385  0.0100     1.385  0.0100
+0QR         CAD         CAE      SINGLE       y     1.384  0.0100     1.384  0.0100
+0QR         CAF         CAH      SINGLE       y     1.369  0.0100     1.369  0.0100
+0QR         CAE         CAF      DOUBLE       y     1.369  0.0100     1.369  0.0100
+0QR         CAF         FAG      SINGLE       n     1.361  0.0100     1.361  0.0100
+0QR         CAD          H1      SINGLE       n     1.082  0.0130     0.943  0.0126
+0QR         CAE          H2      SINGLE       n     1.082  0.0130     0.940  0.0196
+0QR         CAH          H3      SINGLE       n     1.082  0.0130     0.940  0.0196
+0QR         CAI          H4      SINGLE       n     1.082  0.0130     0.943  0.0126
+0QR         NA2          H5      SINGLE       n     1.016  0.0100     0.862  0.0200
+0QR         CAQ          H6      SINGLE       n     1.082  0.0130     0.945  0.0200
+0QR         CAP          H7      SINGLE       n     1.082  0.0130     0.942  0.0134
+0QR         CAO          H8      SINGLE       n     1.082  0.0130     0.945  0.0200
+0QR         NA1          H9      SINGLE       n     1.016  0.0100     0.877  0.0200
+0QR         NA1         H10      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+0QR         CAC         CAD         CAE     119.749    1.50
+0QR         CAC         CAD          H1     120.205    1.50
+0QR         CAE         CAD          H1     120.045    1.50
+0QR         CAD         CAE         CAF     118.456    1.50
+0QR         CAD         CAE          H2     120.809    1.50
+0QR         CAF         CAE          H2     120.735    1.50
+0QR         CAH         CAF         CAE     123.098    1.50
+0QR         CAH         CAF         FAG     118.451    1.50
+0QR         CAE         CAF         FAG     118.451    1.50
+0QR         CAI         CAH         CAF     118.456    1.50
+0QR         CAI         CAH          H3     120.809    1.50
+0QR         CAF         CAH          H3     120.735    1.50
+0QR         CAC         CAI         CAH     119.749    1.50
+0QR         CAC         CAI          H4     120.205    1.50
+0QR         CAH         CAI          H4     120.045    1.50
+0QR         SAB         CAC         CAI     119.754    1.50
+0QR         SAB         CAC         CAD     119.754    1.50
+0QR         CAI         CAC         CAD     120.492    1.50
+0QR         NA2         SAB         OAA     107.008    2.89
+0QR         NA2         SAB         OAR     107.008    2.89
+0QR         NA2         SAB         CAC     106.766    1.50
+0QR         OAA         SAB         OAR     119.445    1.50
+0QR         OAA         SAB         CAC     108.260    1.50
+0QR         OAR         SAB         CAC     108.260    1.50
+0QR         CAK         NA2         SAB     124.132    2.17
+0QR         CAK         NA2          H5     118.240    1.52
+0QR         SAB         NA2          H5     117.628    1.99
+0QR         NA3         CAK         NA2     116.719    2.98
+0QR         NA3         CAK         CAQ     121.822    1.50
+0QR         NA2         CAK         CAQ     121.459    2.22
+0QR         CAM         NA3         CAK     118.431    1.50
+0QR         CAK         CAQ         CAP     118.323    1.50
+0QR         CAK         CAQ          H6     120.402    1.50
+0QR         CAP         CAQ          H6     121.275    1.50
+0QR         CAO         CAP         CAQ     120.563    1.50
+0QR         CAO         CAP          H7     119.719    1.50
+0QR         CAQ         CAP          H7     119.719    1.50
+0QR         CAM         CAO         CAP     119.091    2.09
+0QR         CAM         CAO          H8     119.843    1.50
+0QR         CAP         CAO          H8     121.069    1.50
+0QR         NA1         CAM         NA3     117.009    1.55
+0QR         NA1         CAM         CAO     121.224    1.50
+0QR         NA3         CAM         CAO     121.767    1.50
+0QR         CAM         NA1          H9     119.818    1.59
+0QR         CAM         NA1         H10     119.818    1.59
+0QR          H9         NA1         H10     120.363    1.85
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+0QR              const_41         CAC         CAD         CAE         CAF       0.000    10.0     2
+0QR       const_sp2_sp2_3         SAB         CAC         CAD         CAE     180.000     5.0     2
+0QR             sp2_sp2_7         NA3         CAK         NA2         SAB       0.000     5.0     2
+0QR              const_22         NA2         CAK         NA3         CAM     180.000    10.0     2
+0QR              const_39         NA2         CAK         CAQ         CAP     180.000    10.0     2
+0QR              const_24         NA1         CAM         NA3         CAK     180.000    10.0     2
+0QR              const_33         CAO         CAP         CAQ         CAK       0.000    10.0     2
+0QR              const_29         CAM         CAO         CAP         CAQ       0.000    10.0     2
+0QR              const_27         NA1         CAM         CAO         CAP     180.000    10.0     2
+0QR             sp2_sp2_3         NA3         CAM         NA1          H9       0.000     5.0     2
+0QR              const_18         CAD         CAE         CAF         FAG     180.000    10.0     2
+0QR              const_15         FAG         CAF         CAH         CAI     180.000    10.0     2
+0QR       const_sp2_sp2_9         CAF         CAH         CAI         CAC       0.000     5.0     2
+0QR       const_sp2_sp2_7         SAB         CAC         CAI         CAH     180.000     5.0     2
+0QR             sp2_sp3_9         CAI         CAC         SAB         NA2      30.000    10.0     6
+0QR             sp2_sp3_2         CAK         NA2         SAB         OAA     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+0QR    chir_1    SAB    OAA    OAR    NA2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+0QR    plan-1         CAC   0.020
+0QR    plan-1         CAD   0.020
+0QR    plan-1         CAE   0.020
+0QR    plan-1         CAF   0.020
+0QR    plan-1         CAH   0.020
+0QR    plan-1         CAI   0.020
+0QR    plan-1         FAG   0.020
+0QR    plan-1          H1   0.020
+0QR    plan-1          H2   0.020
+0QR    plan-1          H3   0.020
+0QR    plan-1          H4   0.020
+0QR    plan-1         SAB   0.020
+0QR    plan-2         CAK   0.020
+0QR    plan-2         CAM   0.020
+0QR    plan-2         CAO   0.020
+0QR    plan-2         CAP   0.020
+0QR    plan-2         CAQ   0.020
+0QR    plan-2          H6   0.020
+0QR    plan-2          H7   0.020
+0QR    plan-2          H8   0.020
+0QR    plan-2         NA1   0.020
+0QR    plan-2         NA2   0.020
+0QR    plan-2         NA3   0.020
+0QR    plan-3         CAK   0.020
+0QR    plan-3          H5   0.020
+0QR    plan-3         NA2   0.020
+0QR    plan-3         SAB   0.020
+0QR    plan-4         CAM   0.020
+0QR    plan-4         H10   0.020
+0QR    plan-4          H9   0.020
+0QR    plan-4         NA1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+0QR           SMILES              ACDLabs 12.01                                                             O=S(=O)(Nc1nc(ccc1)N)c2ccc(F)cc2
+0QR            InChI                InChI  1.03 InChI=1S/C11H10FN3O2S/c12-8-4-6-9(7-5-8)18(16,17)15-11-3-1-2-10(13)14-11/h1-7H,(H3,13,14,15)
+0QR         InChIKey                InChI  1.03                                                                  RMLZUMIBXDAAKA-UHFFFAOYSA-N
+0QR SMILES_CANONICAL               CACTVS 3.370                                                           Nc1cccc(N[S](=O)(=O)c2ccc(F)cc2)n1
+0QR           SMILES               CACTVS 3.370                                                           Nc1cccc(N[S](=O)(=O)c2ccc(F)cc2)n1
+0QR SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                           c1cc(nc(c1)NS(=O)(=O)c2ccc(cc2)F)N
+0QR           SMILES "OpenEye OEToolkits" 1.7.6                                                           c1cc(nc(c1)NS(=O)(=O)c2ccc(cc2)F)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+0QR acedrg               243         "dictionary generator"                  
+0QR acedrg_database      11          "data source"                           
+0QR rdkit                2017.03.2   "Chemoinformatics tool"
+0QR refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,205 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RM1     RM1      N-METHYL-1(R)-AMINOINDAN     NON-POLYMER     24     11     .     
+#
+data_comp_RM1
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RM1     C10     C       CH3     0       53.707      149.218     24.668      
+RM1     N10     N       NT1     0       53.629      150.434     25.483      
+RM1     C9      C       CH1     0       52.851      151.550     24.938      
+RM1     C8      C       CR56    0       52.563      152.647     25.951      
+RM1     C7      C       CR16    0       51.914      152.536     27.173      
+RM1     C6      C       CR16    0       51.755      153.678     27.952      
+RM1     C5      C       CR16    0       52.234      154.901     27.514      
+RM1     C4      C       CR16    0       52.882      155.011     26.292      
+RM1     C3      C       CR56    0       53.046      153.875     25.506      
+RM1     C2      C       CH2     0       53.711      153.758     24.158      
+RM1     C1      C       CH2     0       53.581      152.273     23.785      
+RM1     H101    H       H       0       54.643      149.013     24.481      
+RM1     H102    H       H       0       53.229      149.350     23.826      
+RM1     H103    H       H       0       53.303      148.474     25.156      
+RM1     H10     H       H       0       53.448      150.224     26.322      
+RM1     H9      H       H       0       51.987      151.198     24.600      
+RM1     H7      H       H       0       51.588      151.701     27.470      
+RM1     H6      H       H       0       51.316      153.620     28.785      
+RM1     H5      H       H       0       52.119      155.668     28.053      
+RM1     H4      H       H       0       53.209      155.845     25.994      
+RM1     H2C1    H       H       0       54.657      154.029     24.211      
+RM1     H2C2    H       H       0       53.260      154.331     23.495      
+RM1     H1C1    H       H       0       53.079      152.180     22.961      
+RM1     H1C2    H       H       0       54.460      151.886     23.650      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RM1         C10         N10      SINGLE       n     1.463  0.0141     1.463  0.0141
+RM1         N10          C9      SINGLE       n     1.464  0.0100     1.464  0.0100
+RM1          C9          C8      SINGLE       n     1.519  0.0190     1.519  0.0190
+RM1          C9          C1      SINGLE       n     1.540  0.0166     1.540  0.0166
+RM1          C8          C7      DOUBLE       y     1.384  0.0100     1.384  0.0100
+RM1          C8          C3      SINGLE       y     1.389  0.0100     1.389  0.0100
+RM1          C7          C6      SINGLE       y     1.389  0.0100     1.389  0.0100
+RM1          C6          C5      DOUBLE       y     1.382  0.0104     1.382  0.0104
+RM1          C5          C4      SINGLE       y     1.384  0.0100     1.384  0.0100
+RM1          C4          C3      DOUBLE       y     1.387  0.0100     1.387  0.0100
+RM1          C3          C2      SINGLE       n     1.508  0.0100     1.508  0.0100
+RM1          C2          C1      SINGLE       n     1.536  0.0118     1.536  0.0118
+RM1         C10        H101      SINGLE       n     1.089  0.0100     0.977  0.0113
+RM1         C10        H102      SINGLE       n     1.089  0.0100     0.977  0.0113
+RM1         C10        H103      SINGLE       n     1.089  0.0100     0.977  0.0113
+RM1         N10         H10      SINGLE       n     1.036  0.0160     0.882  0.0200
+RM1          C9          H9      SINGLE       n     1.089  0.0100     0.992  0.0100
+RM1          C7          H7      SINGLE       n     1.082  0.0130     0.945  0.0141
+RM1          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0193
+RM1          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0193
+RM1          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0145
+RM1          C2        H2C1      SINGLE       n     1.089  0.0100     0.986  0.0200
+RM1          C2        H2C2      SINGLE       n     1.089  0.0100     0.986  0.0200
+RM1          C1        H1C1      SINGLE       n     1.089  0.0100     0.970  0.0100
+RM1          C1        H1C2      SINGLE       n     1.089  0.0100     0.970  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RM1         N10         C10        H101     109.533    1.50
+RM1         N10         C10        H102     109.533    1.50
+RM1         N10         C10        H103     109.533    1.50
+RM1        H101         C10        H102     109.475    1.50
+RM1        H101         C10        H103     109.475    1.50
+RM1        H102         C10        H103     109.475    1.50
+RM1         C10         N10          C9     114.793    2.66
+RM1         C10         N10         H10     110.352    3.00
+RM1          C9         N10         H10     115.258    2.70
+RM1         N10          C9          C8     114.128    1.50
+RM1         N10          C9          C1     113.888    3.00
+RM1         N10          C9          H9     109.006    1.50
+RM1          C8          C9          C1     102.338    1.56
+RM1          C8          C9          H9     109.261    1.73
+RM1          C1          C9          H9     109.315    1.50
+RM1          C9          C8          C7     128.922    1.50
+RM1          C9          C8          C3     110.020    1.50
+RM1          C7          C8          C3     121.058    1.50
+RM1          C8          C7          C6     118.620    1.50
+RM1          C8          C7          H7     120.658    1.50
+RM1          C6          C7          H7     120.722    1.50
+RM1          C7          C6          C5     120.884    1.50
+RM1          C7          C6          H6     119.599    1.50
+RM1          C5          C6          H6     119.518    1.50
+RM1          C6          C5          C4     120.884    1.50
+RM1          C6          C5          H5     119.518    1.50
+RM1          C4          C5          H5     119.599    1.50
+RM1          C5          C4          C3     118.855    1.50
+RM1          C5          C4          H4     120.843    1.50
+RM1          C3          C4          H4     120.302    1.50
+RM1          C8          C3          C4     119.700    1.50
+RM1          C8          C3          C2     111.213    1.50
+RM1          C4          C3          C2     129.087    1.50
+RM1          C3          C2          C1     103.522    1.50
+RM1          C3          C2        H2C1     110.984    1.50
+RM1          C3          C2        H2C2     110.984    1.50
+RM1          C1          C2        H2C1     111.351    1.50
+RM1          C1          C2        H2C2     111.351    1.50
+RM1        H2C1          C2        H2C2     108.635    1.50
+RM1          C9          C1          C2     104.443    2.26
+RM1          C9          C1        H1C1     110.802    1.50
+RM1          C9          C1        H1C2     110.802    1.50
+RM1          C2          C1        H1C1     110.662    1.50
+RM1          C2          C1        H1C2     110.662    1.50
+RM1        H1C1          C1        H1C2     108.877    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RM1            sp3_sp3_10        H101         C10         N10          C9     180.000    10.0     3
+RM1            sp3_sp3_17          C8          C9         N10         C10     -60.000    10.0     3
+RM1            sp3_sp3_23          C2          C1          C9         N10     -60.000    10.0     3
+RM1             sp2_sp3_5          C7          C8          C9         N10     -60.000    10.0     6
+RM1       const_sp2_sp2_6          C6          C7          C8          C9     180.000     5.0     2
+RM1       const_sp2_sp2_2          C4          C3          C8          C9     180.000     5.0     2
+RM1       const_sp2_sp2_9          C5          C6          C7          C8       0.000     5.0     2
+RM1              const_13          C4          C5          C6          C7       0.000    10.0     2
+RM1              const_17          C3          C4          C5          C6       0.000    10.0     2
+RM1              const_21          C8          C3          C4          C5       0.000    10.0     2
+RM1             sp2_sp3_7          C8          C3          C2          C1       0.000    10.0     6
+RM1             sp3_sp3_1          C9          C1          C2          C3     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RM1    chir_1    C9    N10    C8    C1    negative
+RM1    chir_2    N10    C9    C10    H10    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RM1    plan-1          C2   0.020
+RM1    plan-1          C3   0.020
+RM1    plan-1          C4   0.020
+RM1    plan-1          C5   0.020
+RM1    plan-1          C6   0.020
+RM1    plan-1          C7   0.020
+RM1    plan-1          C8   0.020
+RM1    plan-1          C9   0.020
+RM1    plan-1          H4   0.020
+RM1    plan-1          H5   0.020
+RM1    plan-1          H6   0.020
+RM1    plan-1          H7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RM1           SMILES              ACDLabs 10.04                                                                 c1cccc2c1CCC2NC
+RM1 SMILES_CANONICAL               CACTVS 3.341                                                            CN[C@@H]1CCc2ccccc12
+RM1           SMILES               CACTVS 3.341                                                              CN[CH]1CCc2ccccc12
+RM1 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                            CN[C@@H]1CCc2c1cccc2
+RM1           SMILES "OpenEye OEToolkits" 1.5.0                                                                 CNC1CCc2c1cccc2
+RM1            InChI                InChI  1.03 InChI=1S/C10H13N/c1-11-10-7-6-8-4-2-3-5-9(8)10/h2-5,10-11H,6-7H2,1H3/t10-/m1/s1
+RM1         InChIKey                InChI  1.03                                                     AIXUYZODYPPNAV-SNVBAGLBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RM1 acedrg               243         "dictionary generator"                  
+RM1 acedrg_database      11          "data source"                           
+RM1 rdkit                2017.03.2   "Chemoinformatics tool"
+RM1 refmac5              5.8.0238    "optimization tool"                     

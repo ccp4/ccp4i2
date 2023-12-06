@@ -1,0 +1,269 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LQZ     LQZ      2-(diethylamino)-N-(2,6-dimethylphenyl)ethanamide     NON-POLYMER     39     17     .     
+#
+data_comp_LQZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LQZ     C       C       C       0       45.972      8.200       -36.181     
+LQZ     N       N       NT      0       47.682      10.018      -36.359     
+LQZ     O       O       O       0       45.701      7.889       -35.024     
+LQZ     CA      C       CH2     0       47.396      8.582       -36.555     
+LQZ     CAA     C       CH3     0       47.180      12.305      -37.248     
+LQZ     CAB     C       CH3     0       50.195      9.862       -36.595     
+LQZ     CAC     C       CH3     0       43.265      10.296      -36.289     
+LQZ     CAD     C       CH3     0       44.170      5.563       -37.953     
+LQZ     CAF     C       CR16    0       40.980      7.348       -36.964     
+LQZ     CAG     C       CR16    0       41.439      8.600       -36.613     
+LQZ     CAH     C       CR16    0       41.870      6.385       -37.392     
+LQZ     CAI     C       CH2     0       47.390      10.840      -37.548     
+LQZ     CAJ     C       CH2     0       49.004      10.288      -35.760     
+LQZ     NAL     N       NH1     0       45.078      8.233       -37.194     
+LQZ     CAN     C       CR6     0       42.797      8.922       -36.681     
+LQZ     CAO     C       CR6     0       43.239      6.646       -37.481     
+LQZ     CAP     C       CR6     0       43.684      7.926       -37.116     
+LQZ     HA      H       H       0       47.560      8.348       -37.483     
+LQZ     HAA     H       H       0       48.007      8.058       -36.010     
+LQZ     HAAA    H       H       0       46.715      12.724      -37.991     
+LQZ     HAAB    H       H       0       48.039      12.737      -37.121     
+LQZ     HAAC    H       H       0       46.648      12.398      -36.441     
+LQZ     HAB     H       H       0       51.005      9.954       -36.069     
+LQZ     HABA    H       H       0       50.260      10.426      -37.383     
+LQZ     HABB    H       H       0       50.095      8.937       -36.868     
+LQZ     HAC     H       H       0       43.960      10.594      -36.897     
+LQZ     HACA    H       H       0       43.618      10.273      -35.384     
+LQZ     HACB    H       H       0       42.520      10.918      -36.327     
+LQZ     HAD     H       H       0       45.053      5.926       -38.124     
+LQZ     HADA    H       H       0       43.823      5.173       -38.772     
+LQZ     HADB    H       H       0       44.234      4.872       -37.273     
+LQZ     HAF     H       H       0       40.057      7.151       -36.912     
+LQZ     HAG     H       H       0       40.825      9.254       -36.321     
+LQZ     HAH     H       H       0       41.549      5.531       -37.631     
+LQZ     HAI     H       H       0       46.580      10.494      -37.977     
+LQZ     HAIA    H       H       0       48.121      10.749      -38.192     
+LQZ     HAJ     H       H       0       49.052      9.828       -34.896     
+LQZ     HAJA    H       H       0       49.079      11.247      -35.578     
+LQZ     HNAL    H       H       0       45.390      8.466       -37.976     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LQZ           C           O      DOUBLE       n     1.228  0.0107     1.228  0.0107
+LQZ           C          CA      SINGLE       n     1.516  0.0141     1.516  0.0141
+LQZ           C         NAL      SINGLE       n     1.347  0.0100     1.347  0.0100
+LQZ           N          CA      SINGLE       n     1.463  0.0165     1.463  0.0165
+LQZ           N         CAI      SINGLE       n     1.469  0.0100     1.469  0.0100
+LQZ           N         CAJ      SINGLE       n     1.469  0.0100     1.469  0.0100
+LQZ         CAA         CAI      SINGLE       n     1.508  0.0173     1.508  0.0173
+LQZ         CAB         CAJ      SINGLE       n     1.508  0.0173     1.508  0.0173
+LQZ         CAC         CAN      SINGLE       n     1.502  0.0100     1.502  0.0100
+LQZ         CAD         CAO      SINGLE       n     1.502  0.0100     1.502  0.0100
+LQZ         CAF         CAG      DOUBLE       y     1.377  0.0100     1.377  0.0100
+LQZ         CAF         CAH      SINGLE       y     1.377  0.0100     1.377  0.0100
+LQZ         CAG         CAN      SINGLE       y     1.393  0.0100     1.393  0.0100
+LQZ         CAH         CAO      DOUBLE       y     1.393  0.0100     1.393  0.0100
+LQZ         NAL         CAP      SINGLE       n     1.424  0.0152     1.424  0.0152
+LQZ         CAN         CAP      DOUBLE       y     1.395  0.0100     1.395  0.0100
+LQZ         CAO         CAP      SINGLE       y     1.395  0.0100     1.395  0.0100
+LQZ          CA          HA      SINGLE       n     1.089  0.0100     0.971  0.0200
+LQZ          CA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0200
+LQZ         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0145
+LQZ         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0145
+LQZ         CAA        HAAC      SINGLE       n     1.089  0.0100     0.971  0.0145
+LQZ         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0145
+LQZ         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0145
+LQZ         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0145
+LQZ         CAC         HAC      SINGLE       n     1.089  0.0100     0.971  0.0135
+LQZ         CAC        HACA      SINGLE       n     1.089  0.0100     0.971  0.0135
+LQZ         CAC        HACB      SINGLE       n     1.089  0.0100     0.971  0.0135
+LQZ         CAD         HAD      SINGLE       n     1.089  0.0100     0.971  0.0135
+LQZ         CAD        HADA      SINGLE       n     1.089  0.0100     0.971  0.0135
+LQZ         CAD        HADB      SINGLE       n     1.089  0.0100     0.971  0.0135
+LQZ         CAF         HAF      SINGLE       n     1.082  0.0130     0.945  0.0132
+LQZ         CAG         HAG      SINGLE       n     1.082  0.0130     0.943  0.0173
+LQZ         CAH         HAH      SINGLE       n     1.082  0.0130     0.943  0.0173
+LQZ         CAI         HAI      SINGLE       n     1.089  0.0100     0.980  0.0143
+LQZ         CAI        HAIA      SINGLE       n     1.089  0.0100     0.980  0.0143
+LQZ         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.980  0.0143
+LQZ         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.980  0.0143
+LQZ         NAL        HNAL      SINGLE       n     1.016  0.0100     0.874  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LQZ           O           C          CA     120.857    1.50
+LQZ           O           C         NAL     124.882    1.50
+LQZ          CA           C         NAL     114.261    1.50
+LQZ          CA           N         CAI     112.133    1.68
+LQZ          CA           N         CAJ     112.133    1.68
+LQZ         CAI           N         CAJ     110.773    1.86
+LQZ           C          CA           N     113.152    1.62
+LQZ           C          CA          HA     108.973    1.50
+LQZ           C          CA         HAA     108.973    1.50
+LQZ           N          CA          HA     108.930    1.50
+LQZ           N          CA         HAA     108.930    1.50
+LQZ          HA          CA         HAA     107.938    1.50
+LQZ         CAI         CAA        HAAA     109.529    1.50
+LQZ         CAI         CAA        HAAB     109.529    1.50
+LQZ         CAI         CAA        HAAC     109.529    1.50
+LQZ        HAAA         CAA        HAAB     109.415    1.50
+LQZ        HAAA         CAA        HAAC     109.415    1.50
+LQZ        HAAB         CAA        HAAC     109.415    1.50
+LQZ         CAJ         CAB         HAB     109.529    1.50
+LQZ         CAJ         CAB        HABA     109.529    1.50
+LQZ         CAJ         CAB        HABB     109.529    1.50
+LQZ         HAB         CAB        HABA     109.415    1.50
+LQZ         HAB         CAB        HABB     109.415    1.50
+LQZ        HABA         CAB        HABB     109.415    1.50
+LQZ         CAN         CAC         HAC     109.584    1.50
+LQZ         CAN         CAC        HACA     109.584    1.50
+LQZ         CAN         CAC        HACB     109.584    1.50
+LQZ         HAC         CAC        HACA     109.348    1.50
+LQZ         HAC         CAC        HACB     109.348    1.50
+LQZ        HACA         CAC        HACB     109.348    1.50
+LQZ         CAO         CAD         HAD     109.584    1.50
+LQZ         CAO         CAD        HADA     109.584    1.50
+LQZ         CAO         CAD        HADB     109.584    1.50
+LQZ         HAD         CAD        HADA     109.348    1.50
+LQZ         HAD         CAD        HADB     109.348    1.50
+LQZ        HADA         CAD        HADB     109.348    1.50
+LQZ         CAG         CAF         CAH     120.043    1.50
+LQZ         CAG         CAF         HAF     119.978    1.50
+LQZ         CAH         CAF         HAF     119.978    1.50
+LQZ         CAF         CAG         CAN     121.260    1.50
+LQZ         CAF         CAG         HAG     119.526    1.50
+LQZ         CAN         CAG         HAG     119.214    1.50
+LQZ         CAF         CAH         CAO     121.260    1.50
+LQZ         CAF         CAH         HAH     119.526    1.50
+LQZ         CAO         CAH         HAH     119.214    1.50
+LQZ           N         CAI         CAA     113.741    1.57
+LQZ           N         CAI         HAI     109.022    1.50
+LQZ           N         CAI        HAIA     109.022    1.50
+LQZ         CAA         CAI         HAI     109.135    1.50
+LQZ         CAA         CAI        HAIA     109.135    1.50
+LQZ         HAI         CAI        HAIA     107.838    1.50
+LQZ           N         CAJ         CAB     113.741    1.57
+LQZ           N         CAJ         HAJ     109.022    1.50
+LQZ           N         CAJ        HAJA     109.022    1.50
+LQZ         CAB         CAJ         HAJ     109.135    1.50
+LQZ         CAB         CAJ        HAJA     109.135    1.50
+LQZ         HAJ         CAJ        HAJA     107.838    1.50
+LQZ           C         NAL         CAP     126.724    2.00
+LQZ           C         NAL        HNAL     115.622    1.51
+LQZ         CAP         NAL        HNAL     117.655    1.52
+LQZ         CAC         CAN         CAG     120.668    1.50
+LQZ         CAC         CAN         CAP     121.616    1.50
+LQZ         CAG         CAN         CAP     117.716    1.50
+LQZ         CAD         CAO         CAH     120.668    1.50
+LQZ         CAD         CAO         CAP     121.616    1.50
+LQZ         CAH         CAO         CAP     117.716    1.50
+LQZ         NAL         CAP         CAN     118.998    1.50
+LQZ         NAL         CAP         CAO     118.998    1.50
+LQZ         CAN         CAP         CAO     122.005    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LQZ             sp2_sp2_3           O           C         NAL         CAP       0.000     5.0     2
+LQZ             sp2_sp3_2           O           C          CA           N     120.000    10.0     6
+LQZ              const_18         CAF         CAH         CAO         CAD     180.000    10.0     2
+LQZ             sp2_sp2_5         CAN         CAP         NAL           C     180.000     5.0     2
+LQZ              const_12         CAC         CAN         CAP         NAL       0.000    10.0     2
+LQZ              const_16         CAD         CAO         CAP         NAL       0.000    10.0     2
+LQZ             sp3_sp3_7         CAA         CAI           N          CA     180.000    10.0     3
+LQZ            sp3_sp3_14         CAB         CAJ           N          CA     -60.000    10.0     3
+LQZ             sp3_sp3_2           C          CA           N         CAI     -60.000    10.0     3
+LQZ            sp3_sp3_19        HAAA         CAA         CAI           N     180.000    10.0     3
+LQZ            sp3_sp3_28         HAB         CAB         CAJ           N     180.000    10.0     3
+LQZ             sp2_sp3_7         CAG         CAN         CAC         HAC     150.000    10.0     6
+LQZ            sp2_sp3_13         CAH         CAO         CAD         HAD     150.000    10.0     6
+LQZ              const_21         CAG         CAF         CAH         CAO       0.000    10.0     2
+LQZ       const_sp2_sp2_1         CAH         CAF         CAG         CAN       0.000     5.0     2
+LQZ       const_sp2_sp2_6         CAF         CAG         CAN         CAC     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LQZ    chir_1    N    CA    CAI    CAJ    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LQZ    plan-1         CAC   0.020
+LQZ    plan-1         CAD   0.020
+LQZ    plan-1         CAF   0.020
+LQZ    plan-1         CAG   0.020
+LQZ    plan-1         CAH   0.020
+LQZ    plan-1         CAN   0.020
+LQZ    plan-1         CAO   0.020
+LQZ    plan-1         CAP   0.020
+LQZ    plan-1         HAF   0.020
+LQZ    plan-1         HAG   0.020
+LQZ    plan-1         HAH   0.020
+LQZ    plan-1         NAL   0.020
+LQZ    plan-2           C   0.020
+LQZ    plan-2          CA   0.020
+LQZ    plan-2         NAL   0.020
+LQZ    plan-2           O   0.020
+LQZ    plan-3           C   0.020
+LQZ    plan-3         CAP   0.020
+LQZ    plan-3        HNAL   0.020
+LQZ    plan-3         NAL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LQZ           SMILES              ACDLabs 11.02                                                                      O=C(Nc1c(cccc1C)C)CN(CC)CC
+LQZ SMILES_CANONICAL               CACTVS 3.352                                                                      CCN(CC)CC(=O)Nc1c(C)cccc1C
+LQZ           SMILES               CACTVS 3.352                                                                      CCN(CC)CC(=O)Nc1c(C)cccc1C
+LQZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                      CCN(CC)CC(=O)Nc1c(cccc1C)C
+LQZ           SMILES "OpenEye OEToolkits" 1.7.0                                                                      CCN(CC)CC(=O)Nc1c(cccc1C)C
+LQZ            InChI                InChI  1.03 InChI=1S/C14H22N2O/c1-5-16(6-2)10-13(17)15-14-11(3)8-7-9-12(14)4/h7-9H,5-6,10H2,1-4H3,(H,15,17)
+LQZ         InChIKey                InChI  1.03                                                                     NNJVILVZKWQKPM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LQZ acedrg               243         "dictionary generator"                  
+LQZ acedrg_database      11          "data source"                           
+LQZ rdkit                2017.03.2   "Chemoinformatics tool"
+LQZ refmac5              5.8.0238    "optimization tool"                     

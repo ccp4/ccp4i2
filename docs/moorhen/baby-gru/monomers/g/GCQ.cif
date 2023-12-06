@@ -1,0 +1,263 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GCQ     GCQ      "GEMCITABINE DIPHOSPHATE"     NON-POLYMER     36     26     .     
+#
+data_comp_GCQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GCQ     O3B     O       OP      -1      27.081      52.695      17.349      
+GCQ     PB      P       P       0       27.810      52.342      16.076      
+GCQ     O1B     O       OP      -1      29.300      52.214      16.274      
+GCQ     O2B     O       O       0       27.451      53.253      14.928      
+GCQ     O3A     O       O2      0       27.291      50.870      15.660      
+GCQ     PA      P       P       0       25.914      50.330      15.040      
+GCQ     O1A     O       OP      -1      26.006      48.848      14.890      
+GCQ     O2A     O       O       0       25.581      51.141      13.832      
+GCQ     "O5'"   O       O2      0       24.884      50.682      16.219      
+GCQ     "C5'"   C       CH2     0       23.463      50.623      15.934      
+GCQ     "C4'"   C       CH1     0       22.683      51.016      17.167      
+GCQ     "C3'"   C       CH1     0       21.169      51.084      16.979      
+GCQ     "O3'"   O       OH1     0       20.491      50.725      18.174      
+GCQ     "C2'"   C       CT      0       20.951      52.548      16.620      
+GCQ     F1      F       F       0       19.721      52.996      16.977      
+GCQ     "O4'"   O       O2      0       23.085      52.336      17.603      
+GCQ     "C1'"   C       CH1     0       22.031      53.271      17.419      
+GCQ     N1      N       NR6     0       22.558      54.502      16.761      
+GCQ     C6      C       CR16    0       23.703      54.480      16.005      
+GCQ     C5      C       CR16    0       24.176      55.587      15.407      
+GCQ     C4      C       CR6     0       23.443      56.798      15.572      
+GCQ     N4      N       NH2     0       23.854      57.926      15.007      
+GCQ     N3      N       NRD6    0       22.317      56.829      16.303      
+GCQ     C2      C       CR6     0       21.846      55.705      16.906      
+GCQ     O2      O       O       0       20.804      55.727      17.583      
+GCQ     F2      F       F       0       21.088      52.766      15.287      
+GCQ     "H5'1"  H       H       0       23.213      49.706      15.663      
+GCQ     "H5'2"  H       H       0       23.245      51.238      15.192      
+GCQ     "H4'"   H       H       0       22.892      50.370      17.882      
+GCQ     "H3'"   H       H       0       20.883      50.500      16.235      
+GCQ     H1      H       H       0       19.688      50.522      17.988      
+GCQ     "H1'"   H       H       0       21.671      53.511      18.306      
+GCQ     H6      H       H       0       24.166      53.674      15.910      
+GCQ     H5      H       H       0       24.966      55.559      14.895      
+GCQ     HN41    H       H       0       23.298      58.600      14.916      
+GCQ     HN42    H       H       0       24.682      57.996      14.725      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GCQ         O3B          PB      SINGLE       n     1.509  0.0200     1.509  0.0200
+GCQ          PB         O1B      SINGLE       n     1.509  0.0200     1.509  0.0200
+GCQ          PB         O2B      DOUBLE       n     1.509  0.0200     1.509  0.0200
+GCQ          PB         O3A      SINGLE       n     1.614  0.0178     1.614  0.0178
+GCQ         O3A          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+GCQ          PA         O1A      SINGLE       n     1.493  0.0122     1.493  0.0122
+GCQ          PA         O2A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+GCQ          PA       "O5'"      SINGLE       n     1.604  0.0133     1.604  0.0133
+GCQ       "O5'"       "C5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+GCQ       "C5'"       "C4'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+GCQ       "C4'"       "C3'"      SINGLE       n     1.528  0.0117     1.528  0.0117
+GCQ       "C4'"       "O4'"      SINGLE       n     1.446  0.0100     1.446  0.0100
+GCQ       "C3'"       "O3'"      SINGLE       n     1.420  0.0122     1.420  0.0122
+GCQ       "C3'"       "C2'"      SINGLE       n     1.524  0.0121     1.524  0.0121
+GCQ       "C2'"          F1      SINGLE       n     1.356  0.0151     1.356  0.0151
+GCQ       "C2'"       "C1'"      SINGLE       n     1.524  0.0100     1.524  0.0100
+GCQ       "C2'"          F2      SINGLE       n     1.356  0.0151     1.356  0.0151
+GCQ       "O4'"       "C1'"      SINGLE       n     1.417  0.0100     1.417  0.0100
+GCQ       "C1'"          N1      SINGLE       n     1.479  0.0120     1.479  0.0120
+GCQ          N1          C6      SINGLE       y     1.364  0.0100     1.364  0.0100
+GCQ          N1          C2      SINGLE       y     1.395  0.0100     1.395  0.0100
+GCQ          C6          C5      DOUBLE       y     1.342  0.0100     1.342  0.0100
+GCQ          C5          C4      SINGLE       y     1.422  0.0123     1.422  0.0123
+GCQ          C4          N4      SINGLE       n     1.325  0.0109     1.325  0.0109
+GCQ          C4          N3      DOUBLE       y     1.339  0.0110     1.339  0.0110
+GCQ          N3          C2      SINGLE       y     1.355  0.0119     1.355  0.0119
+GCQ          C2          O2      DOUBLE       n     1.241  0.0100     1.241  0.0100
+GCQ       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+GCQ       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+GCQ       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.986  0.0200
+GCQ       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.988  0.0200
+GCQ       "O3'"          H1      SINGLE       n     0.970  0.0120     0.849  0.0200
+GCQ       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.987  0.0200
+GCQ          C6          H6      SINGLE       n     1.082  0.0130     0.935  0.0143
+GCQ          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0174
+GCQ          N4        HN41      SINGLE       n     1.016  0.0100     0.877  0.0200
+GCQ          N4        HN42      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GCQ         O3B          PB         O1B     112.716    1.50
+GCQ         O3B          PB         O2B     112.716    1.50
+GCQ         O3B          PB         O3A     105.965    2.38
+GCQ         O1B          PB         O2B     112.716    1.50
+GCQ         O1B          PB         O3A     105.965    2.38
+GCQ         O2B          PB         O3A     105.965    2.38
+GCQ          PB         O3A          PA     132.584    3.00
+GCQ         O3A          PA         O1A     108.816    2.14
+GCQ         O3A          PA         O2A     108.816    2.14
+GCQ         O3A          PA       "O5'"     101.065    1.97
+GCQ         O1A          PA         O2A     118.411    2.35
+GCQ         O1A          PA       "O5'"     109.410    1.50
+GCQ         O2A          PA       "O5'"     109.410    1.50
+GCQ          PA       "O5'"       "C5'"     118.553    2.41
+GCQ       "O5'"       "C5'"       "C4'"     109.342    1.50
+GCQ       "O5'"       "C5'"      "H5'1"     109.845    1.50
+GCQ       "O5'"       "C5'"      "H5'2"     109.845    1.50
+GCQ       "C4'"       "C5'"      "H5'1"     109.624    1.50
+GCQ       "C4'"       "C5'"      "H5'2"     109.624    1.50
+GCQ      "H5'1"       "C5'"      "H5'2"     108.472    1.50
+GCQ       "C5'"       "C4'"       "C3'"     114.866    1.63
+GCQ       "C5'"       "C4'"       "O4'"     109.615    1.50
+GCQ       "C5'"       "C4'"       "H4'"     108.268    1.50
+GCQ       "C3'"       "C4'"       "O4'"     105.508    1.50
+GCQ       "C3'"       "C4'"       "H4'"     109.143    1.50
+GCQ       "O4'"       "C4'"       "H4'"     108.698    1.50
+GCQ       "C4'"       "C3'"       "O3'"     110.985    2.41
+GCQ       "C4'"       "C3'"       "C2'"     102.769    1.50
+GCQ       "C4'"       "C3'"       "H3'"     110.624    1.81
+GCQ       "O3'"       "C3'"       "C2'"     111.240    2.54
+GCQ       "O3'"       "C3'"       "H3'"     110.259    1.63
+GCQ       "C2'"       "C3'"       "H3'"     110.414    1.64
+GCQ       "C3'"       "O3'"          H1     109.104    3.00
+GCQ       "C3'"       "C2'"          F1     110.874    2.39
+GCQ       "C3'"       "C2'"       "C1'"     103.185    1.56
+GCQ       "C3'"       "C2'"          F2     110.874    2.39
+GCQ          F1       "C2'"       "C1'"     109.442    2.45
+GCQ          F1       "C2'"          F2     106.983    1.50
+GCQ       "C1'"       "C2'"          F2     109.442    2.45
+GCQ       "C4'"       "O4'"       "C1'"     109.375    1.70
+GCQ       "C2'"       "C1'"       "O4'"     105.924    1.50
+GCQ       "C2'"       "C1'"          N1     113.961    1.50
+GCQ       "C2'"       "C1'"       "H1'"     109.581    1.50
+GCQ       "O4'"       "C1'"          N1     108.092    1.50
+GCQ       "O4'"       "C1'"       "H1'"     109.395    1.50
+GCQ          N1       "C1'"       "H1'"     108.901    1.50
+GCQ       "C1'"          N1          C6     121.161    1.50
+GCQ       "C1'"          N1          C2     118.329    1.51
+GCQ          C6          N1          C2     120.510    1.50
+GCQ          N1          C6          C5     121.215    1.50
+GCQ          N1          C6          H6     118.510    1.50
+GCQ          C5          C6          H6     120.275    1.75
+GCQ          C6          C5          C4     117.808    1.50
+GCQ          C6          C5          H5     120.848    1.50
+GCQ          C4          C5          H5     121.350    1.50
+GCQ          C5          C4          N4     120.876    1.50
+GCQ          C5          C4          N3     121.269    1.50
+GCQ          N4          C4          N3     117.855    1.50
+GCQ          C4          N4        HN41     119.818    1.59
+GCQ          C4          N4        HN42     119.818    1.59
+GCQ        HN41          N4        HN42     120.363    1.85
+GCQ          C4          N3          C2     120.266    1.50
+GCQ          N1          C2          N3     118.920    1.50
+GCQ          N1          C2          O2     118.716    1.50
+GCQ          N3          C2          O2     122.370    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GCQ             sp3_sp3_5       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+GCQ            sp3_sp3_53       "C5'"       "C4'"       "O4'"       "C1'"      60.000    10.0     3
+GCQ            sp3_sp3_55       "C4'"       "C3'"       "O3'"          H1     180.000    10.0     3
+GCQ            sp3_sp3_14          F1       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+GCQ            sp3_sp3_21       "O4'"       "C1'"       "C2'"          F1     -60.000    10.0     3
+GCQ            sp3_sp3_28       "C2'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+GCQ             sp2_sp3_1          C6          N1       "C1'"       "C2'"     150.000    10.0     6
+GCQ       const_sp2_sp2_2          C5          C6          N1       "C1'"     180.000     5.0     2
+GCQ              const_20          O2          C2          N1       "C1'"       0.000    10.0     2
+GCQ       const_sp2_sp2_5          C4          C5          C6          N1       0.000     5.0     2
+GCQ              const_11          N4          C4          C5          C6     180.000    10.0     2
+GCQ            sp3_sp3_32          PA         O3A          PB         O3B     -60.000    10.0     3
+GCQ             sp2_sp2_1          C5          C4          N4        HN41     180.000     5.0     2
+GCQ              const_14          N4          C4          N3          C2     180.000    10.0     2
+GCQ              const_16          O2          C2          N3          C4     180.000    10.0     2
+GCQ            sp3_sp3_34          PB         O3A          PA         O1A     180.000    10.0     3
+GCQ            sp3_sp3_37       "C5'"       "O5'"          PA         O3A     180.000    10.0     3
+GCQ            sp3_sp3_40       "C4'"       "C5'"       "O5'"          PA     180.000    10.0     3
+GCQ            sp3_sp3_43       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GCQ    chir_1    PB    O3A    O3B    O1B    both
+GCQ    chir_2    PA    O3A    "O5'"    O1A    both
+GCQ    chir_3    "C4'"    "O4'"    "C3'"    "C5'"    negative
+GCQ    chir_4    "C3'"    "O3'"    "C2'"    "C4'"    negative
+GCQ    chir_5    "C2'"    F1    F2    "C1'"    both
+GCQ    chir_6    "C1'"    "O4'"    N1    "C2'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GCQ    plan-1       "C1'"   0.020
+GCQ    plan-1          C2   0.020
+GCQ    plan-1          C4   0.020
+GCQ    plan-1          C5   0.020
+GCQ    plan-1          C6   0.020
+GCQ    plan-1          H5   0.020
+GCQ    plan-1          H6   0.020
+GCQ    plan-1          N1   0.020
+GCQ    plan-1          N3   0.020
+GCQ    plan-1          N4   0.020
+GCQ    plan-1          O2   0.020
+GCQ    plan-2          C4   0.020
+GCQ    plan-2        HN41   0.020
+GCQ    plan-2        HN42   0.020
+GCQ    plan-2          N4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GCQ           SMILES              ACDLabs 10.04                                                                                                                     O=P(O)(O)OP(=O)(O)OCC2OC(N1C(=O)N=C(N)C=C1)C(F)(F)C2O
+GCQ SMILES_CANONICAL               CACTVS 3.341                                                                                                 NC1=NC(=O)N(C=C1)[C@@H]2O[C@H](CO[P@@](O)(=O)O[P](O)(O)=O)[C@@H](O)C2(F)F
+GCQ           SMILES               CACTVS 3.341                                                                                                        NC1=NC(=O)N(C=C1)[CH]2O[CH](CO[P](O)(=O)O[P](O)(O)=O)[CH](O)C2(F)F
+GCQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                   C1=CN(C(=O)N=C1N)[C@H]2C([C@@H]([C@H](O2)CO[P@](=O)(O)OP(=O)(O)O)O)(F)F
+GCQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                   C1=CN(C(=O)N=C1N)C2C(C(C(O2)COP(=O)(O)OP(=O)(O)O)O)(F)F
+GCQ            InChI                InChI  1.03 InChI=1S/C9H13F2N3O10P2/c10-9(11)6(15)4(3-22-26(20,21)24-25(17,18)19)23-7(9)14-2-1-5(12)13-8(14)16/h1-2,4,6-7,15H,3H2,(H,20,21)(H2,12,13,16)(H2,17,18,19)/t4-,6-,7-/m1/s1
+GCQ         InChIKey                InChI  1.03                                                                                                                                               FRQISCZGNNXEMD-QPPQHZFASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GCQ acedrg               243         "dictionary generator"                  
+GCQ acedrg_database      11          "data source"                           
+GCQ rdkit                2017.03.2   "Chemoinformatics tool"
+GCQ refmac5              5.8.0238    "optimization tool"                     

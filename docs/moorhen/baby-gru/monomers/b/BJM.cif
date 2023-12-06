@@ -1,0 +1,348 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BJM     BJM      "(2~{S})-2-azanyl-1-[(1~{S},3~{S},5~{S})-3-(iminomethyl)-2-azabicyclo[3.1.0]hexan-2-yl]-2-[(5~{R},7~{S})-3-oxidanyl-1-adamantyl]ethanone"     NON-POLYMER     51     23     .     
+#
+data_comp_BJM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BJM     C1      C       CT      0       46.805      50.869      35.135      
+BJM     C2      C       CH1     0       46.373      51.518      36.469      
+BJM     C3      C       CH2     0       47.255      49.413      35.366      
+BJM     C8      C       CT      0       47.647      48.717      34.063      
+BJM     C9      C       CH1     0       46.004      50.144      32.832      
+BJM     C10     C       CH1     0       48.356      50.928      33.123      
+BJM     C13     C       CH2     0       46.449      48.704      33.118      
+BJM     C14     C       CH2     0       48.794      49.484      33.409      
+BJM     C16     C       CH2     0       47.154      50.912      32.172      
+BJM     C19     C       CH1     0       47.106      48.953      40.054      
+BJM     C20     C       CH2     0       46.877      48.216      38.774      
+BJM     C21     C       CH2     0       48.522      49.434      40.319      
+BJM     C22     C       C1      0       50.063      50.393      38.574      
+BJM     N23     N       NH1     0       50.145      49.529      37.624      
+BJM     C4      C       CH2     0       45.622      50.836      34.149      
+BJM     C5      C       CH2     0       47.962      51.615      34.440      
+BJM     C6      C       C       0       47.461      51.625      37.535      
+BJM     N7      N       NT3     1       45.809      52.897      36.331      
+BJM     N11     N       NR5     0       47.585      50.688      38.520      
+BJM     O12     O       O       0       48.256      52.563      37.472      
+BJM     O15     O       OH1     0       48.058      47.370      34.363      
+BJM     C17     C       CH1     0       46.573      49.686      38.842      
+BJM     C18     C       CH1     0       48.784      50.614      39.366      
+BJM     H1      H       H       0       45.651      50.965      36.828      
+BJM     H2      H       H       0       48.026      49.402      35.974      
+BJM     H3      H       H       0       46.521      48.913      35.790      
+BJM     H4      H       H       0       45.208      50.135      32.216      
+BJM     H5      H       H       0       49.115      51.432      32.697      
+BJM     H6      H       H       0       46.699      48.254      32.274      
+BJM     H7      H       H       0       45.709      48.197      33.531      
+BJM     H8      H       H       0       49.051      49.037      32.566      
+BJM     H9      H       H       0       49.577      49.483      34.011      
+BJM     H10     H       H       0       47.403      50.478      31.325      
+BJM     H11     H       H       0       46.871      51.834      31.976      
+BJM     H12     H       H       0       46.509      48.807      40.810      
+BJM     H13     H       H       0       47.657      47.936      38.262      
+BJM     H14     H       H       0       46.126      47.597      38.731      
+BJM     H15     H       H       0       48.611      49.724      41.261      
+BJM     H16     H       H       0       49.166      48.699      40.156      
+BJM     H17     H       H       0       50.811      50.916      38.801      
+BJM     H19     H       H       0       49.895      48.712      37.882      
+BJM     H22     H       H       0       45.330      51.761      33.953      
+BJM     H23     H       H       0       44.863      50.357      34.566      
+BJM     H24     H       H       0       48.749      51.640      35.039      
+BJM     H25     H       H       0       47.688      52.547      34.253      
+BJM     H26     H       H       0       45.668      53.284      37.146      
+BJM     H27     H       H       0       45.000      52.898      35.916      
+BJM     H28     H       H       0       46.354      53.459      35.870      
+BJM     H29     H       H       0       48.277      46.976      33.660      
+BJM     H30     H       H       0       45.632      50.009      38.843      
+BJM     H31     H       H       0       48.875      51.448      39.887      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BJM          C9         C16      SINGLE       n     1.529  0.0100     1.529  0.0100
+BJM         C10         C16      SINGLE       n     1.529  0.0100     1.529  0.0100
+BJM          C9         C13      SINGLE       n     1.531  0.0100     1.531  0.0100
+BJM          C9          C4      SINGLE       n     1.532  0.0100     1.532  0.0100
+BJM         C10         C14      SINGLE       n     1.531  0.0100     1.531  0.0100
+BJM         C10          C5      SINGLE       n     1.532  0.0100     1.532  0.0100
+BJM          C8         C13      SINGLE       n     1.523  0.0100     1.523  0.0100
+BJM          C8         C14      SINGLE       n     1.523  0.0100     1.523  0.0100
+BJM          C8         O15      SINGLE       n     1.439  0.0100     1.439  0.0100
+BJM          C3          C8      SINGLE       n     1.522  0.0107     1.522  0.0107
+BJM          C1          C4      SINGLE       n     1.534  0.0100     1.534  0.0100
+BJM          C1          C5      SINGLE       n     1.534  0.0100     1.534  0.0100
+BJM          C1          C3      SINGLE       n     1.534  0.0100     1.534  0.0100
+BJM          C1          C2      SINGLE       n     1.536  0.0104     1.536  0.0104
+BJM          C2          N7      SINGLE       n     1.487  0.0147     1.487  0.0147
+BJM          C2          C6      SINGLE       n     1.520  0.0100     1.520  0.0100
+BJM          C6         O12      DOUBLE       n     1.227  0.0149     1.227  0.0149
+BJM          C6         N11      SINGLE       n     1.346  0.0136     1.346  0.0136
+BJM         C22         N23      DOUBLE       n     1.288  0.0200     1.288  0.0200
+BJM         N11         C17      SINGLE       n     1.460  0.0160     1.460  0.0160
+BJM         N11         C18      SINGLE       n     1.464  0.0100     1.464  0.0100
+BJM         C20         C17      SINGLE       n     1.502  0.0122     1.502  0.0122
+BJM         C19         C17      SINGLE       n     1.517  0.0130     1.517  0.0130
+BJM         C19         C20      SINGLE       n     1.498  0.0200     1.498  0.0200
+BJM         C22         C18      SINGLE       n     1.516  0.0123     1.516  0.0123
+BJM         C21         C18      SINGLE       n     1.533  0.0109     1.533  0.0109
+BJM         C19         C21      SINGLE       n     1.517  0.0141     1.517  0.0141
+BJM          C2          H1      SINGLE       n     1.089  0.0100     0.986  0.0200
+BJM          C3          H2      SINGLE       n     1.089  0.0100     0.984  0.0141
+BJM          C3          H3      SINGLE       n     1.089  0.0100     0.984  0.0141
+BJM          C9          H4      SINGLE       n     1.089  0.0100     1.006  0.0179
+BJM         C10          H5      SINGLE       n     1.089  0.0100     1.006  0.0179
+BJM         C13          H6      SINGLE       n     1.089  0.0100     0.988  0.0131
+BJM         C13          H7      SINGLE       n     1.089  0.0100     0.988  0.0131
+BJM         C14          H8      SINGLE       n     1.089  0.0100     0.988  0.0131
+BJM         C14          H9      SINGLE       n     1.089  0.0100     0.988  0.0131
+BJM         C16         H10      SINGLE       n     1.089  0.0100     0.984  0.0144
+BJM         C16         H11      SINGLE       n     1.089  0.0100     0.984  0.0144
+BJM         C19         H12      SINGLE       n     1.089  0.0100     0.974  0.0200
+BJM         C20         H13      SINGLE       n     1.089  0.0100     0.974  0.0128
+BJM         C20         H14      SINGLE       n     1.089  0.0100     0.974  0.0128
+BJM         C21         H15      SINGLE       n     1.089  0.0100     0.990  0.0200
+BJM         C21         H16      SINGLE       n     1.089  0.0100     0.990  0.0200
+BJM         C22         H17      SINGLE       n     1.082  0.0130     0.941  0.0141
+BJM         N23         H19      SINGLE       n     1.016  0.0100     0.892  0.0200
+BJM          C4         H22      SINGLE       n     1.089  0.0100     0.990  0.0100
+BJM          C4         H23      SINGLE       n     1.089  0.0100     0.990  0.0100
+BJM          C5         H24      SINGLE       n     1.089  0.0100     0.990  0.0100
+BJM          C5         H25      SINGLE       n     1.089  0.0100     0.990  0.0100
+BJM          N7         H26      SINGLE       n     1.036  0.0160     0.911  0.0200
+BJM          N7         H27      SINGLE       n     1.036  0.0160     0.911  0.0200
+BJM          N7         H28      SINGLE       n     1.036  0.0160     0.911  0.0200
+BJM         O15         H29      SINGLE       n     0.970  0.0120     0.835  0.0200
+BJM         C17         H30      SINGLE       n     1.089  0.0100     0.995  0.0132
+BJM         C18         H31      SINGLE       n     1.089  0.0100     0.988  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BJM          C4          C1          C5     108.125    1.50
+BJM          C4          C1          C3     108.466    1.50
+BJM          C4          C1          C2     111.203    2.02
+BJM          C5          C1          C3     108.466    1.50
+BJM          C5          C1          C2     111.203    2.02
+BJM          C3          C1          C2     111.203    2.02
+BJM          C1          C2          N7     113.781    1.82
+BJM          C1          C2          C6     115.082    2.01
+BJM          C1          C2          H1     109.204    1.50
+BJM          N7          C2          C6     109.935    2.65
+BJM          N7          C2          H1     108.765    1.50
+BJM          C6          C2          H1     108.794    1.50
+BJM          C8          C3          C1     111.077    1.50
+BJM          C8          C3          H2     109.617    1.50
+BJM          C8          C3          H3     109.617    1.50
+BJM          C1          C3          H2     109.491    1.50
+BJM          C1          C3          H3     109.491    1.50
+BJM          H2          C3          H3     108.632    1.50
+BJM         C13          C8         C14     109.593    1.50
+BJM         C13          C8         O15     109.869    1.78
+BJM         C13          C8          C3     109.407    1.50
+BJM         C14          C8         O15     109.869    1.78
+BJM         C14          C8          C3     109.407    1.50
+BJM         O15          C8          C3     108.442    2.21
+BJM         C16          C9         C13     109.272    1.50
+BJM         C16          C9          C4     109.438    1.50
+BJM         C16          C9          H4     109.490    1.50
+BJM         C13          C9          C4     109.408    1.50
+BJM         C13          C9          H4     109.511    1.50
+BJM          C4          C9          H4     109.352    1.50
+BJM         C16         C10         C14     109.272    1.50
+BJM         C16         C10          C5     109.438    1.50
+BJM         C16         C10          H5     109.490    1.50
+BJM         C14         C10          C5     109.408    1.50
+BJM         C14         C10          H5     109.511    1.50
+BJM          C5         C10          H5     109.352    1.50
+BJM          C9         C13          C8     109.763    1.50
+BJM          C9         C13          H6     109.936    1.50
+BJM          C9         C13          H7     109.936    1.50
+BJM          C8         C13          H6     109.426    1.50
+BJM          C8         C13          H7     109.426    1.50
+BJM          H6         C13          H7     108.172    1.50
+BJM         C10         C14          C8     109.763    1.50
+BJM         C10         C14          H8     109.936    1.50
+BJM         C10         C14          H9     109.936    1.50
+BJM          C8         C14          H8     109.426    1.50
+BJM          C8         C14          H9     109.426    1.50
+BJM          H8         C14          H9     108.172    1.50
+BJM          C9         C16         C10     109.494    1.50
+BJM          C9         C16         H10     109.767    1.50
+BJM          C9         C16         H11     109.767    1.50
+BJM         C10         C16         H10     109.767    1.50
+BJM         C10         C16         H11     109.767    1.50
+BJM         H10         C16         H11     108.211    1.50
+BJM         C17         C19         C20      60.162    1.50
+BJM         C17         C19         C21     108.186    1.62
+BJM         C17         C19         H12     118.522    1.50
+BJM         C20         C19         C21     116.017    3.00
+BJM         C20         C19         H12     119.664    3.00
+BJM         C21         C19         H12     118.687    3.00
+BJM         C17         C20         C19      61.050    1.50
+BJM         C17         C20         H13     117.930    1.50
+BJM         C17         C20         H14     117.930    1.50
+BJM         C19         C20         H13     117.983    1.68
+BJM         C19         C20         H14     117.983    1.68
+BJM         H13         C20         H14     114.452    2.73
+BJM         C18         C21         C19     104.590    1.70
+BJM         C18         C21         H15     110.819    1.50
+BJM         C18         C21         H16     110.819    1.50
+BJM         C19         C21         H15     110.485    1.55
+BJM         C19         C21         H16     110.485    1.55
+BJM         H15         C21         H16     108.756    1.50
+BJM         N23         C22         C18     121.865    3.00
+BJM         N23         C22         H17     120.269    1.50
+BJM         C18         C22         H17     117.865    1.78
+BJM         C22         N23         H19     112.238    3.00
+BJM          C9          C4          C1     110.765    1.50
+BJM          C9          C4         H22     109.662    1.50
+BJM          C9          C4         H23     109.662    1.50
+BJM          C1          C4         H22     109.412    1.50
+BJM          C1          C4         H23     109.412    1.50
+BJM         H22          C4         H23     108.213    1.50
+BJM         C10          C5          C1     110.765    1.50
+BJM         C10          C5         H24     109.662    1.50
+BJM         C10          C5         H25     109.662    1.50
+BJM          C1          C5         H24     109.412    1.50
+BJM          C1          C5         H25     109.412    1.50
+BJM         H24          C5         H25     108.213    1.50
+BJM          C2          C6         O12     120.935    1.85
+BJM          C2          C6         N11     118.320    1.83
+BJM         O12          C6         N11     120.745    1.50
+BJM          C2          N7         H26     113.431    3.00
+BJM          C2          N7         H27     113.431    3.00
+BJM          C2          N7         H28     113.431    3.00
+BJM         H26          N7         H27     108.998    2.65
+BJM         H26          N7         H28     108.998    2.65
+BJM         H27          N7         H28     108.998    2.65
+BJM          C6         N11         C17     119.832    3.00
+BJM          C6         N11         C18     120.336    3.00
+BJM         C17         N11         C18     119.832    3.00
+BJM          C8         O15         H29     109.630    2.21
+BJM         N11         C17         C20     118.885    2.03
+BJM         N11         C17         C19     107.139    2.30
+BJM         N11         C17         H30     109.471    3.00
+BJM         C20         C17         C19      58.731    1.50
+BJM         C20         C17         H30     119.333    1.50
+BJM         C19         C17         H30     119.538    1.50
+BJM         N11         C18         C22     112.232    1.60
+BJM         N11         C18         C21     102.981    1.50
+BJM         N11         C18         H31     110.081    1.50
+BJM         C22         C18         C21     111.661    1.90
+BJM         C22         C18         H31     109.254    1.59
+BJM         C21         C18         H31     110.154    1.52
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BJM           sp3_sp3_139          C4          C1          C2          N7     180.000    10.0     3
+BJM            sp3_sp3_88          C2          C1          C4          C9     180.000    10.0     3
+BJM            sp3_sp3_52          C2          C1          C5         C10     180.000    10.0     3
+BJM           sp3_sp3_138          C2          C1          C3          H3     180.000    10.0     3
+BJM           sp3_sp3_119         N11         C17         C20         H13      60.000    10.0     3
+BJM           sp3_sp3_113         C22         C18         C21         H15     -60.000    10.0     3
+BJM           sp3_sp3_157         C21         C19         C20         C17     180.000    10.0     3
+BJM            sp2_sp3_22         H17         C22         C18         N11     180.000    10.0     6
+BJM             sp2_sp2_3         O12          C6         N11         C17       0.000     5.0     2
+BJM             sp2_sp3_6          C6         N11         C17         H30      60.000    10.0     6
+BJM            sp2_sp3_12          C6         N11         C18         H31      60.000    10.0     6
+BJM            sp2_sp3_16         N11          C6          C2          C1     180.000    10.0     6
+BJM           sp3_sp3_153          C6          C2          N7         H28     -60.000    10.0     3
+BJM            sp3_sp3_75          C1          C3          C8         O15     -60.000    10.0     3
+BJM           sp3_sp3_129          C3          C8         O15         H29     -60.000    10.0     3
+BJM             sp3_sp3_2          C9         C13          C8         O15     180.000    10.0     3
+BJM            sp3_sp3_65         C10         C14          C8         O15      60.000    10.0     3
+BJM            sp3_sp3_91          C1          C4          C9         C16     -60.000    10.0     3
+BJM            sp3_sp3_10          C8         C13          C9         C16     -60.000    10.0     3
+BJM            sp3_sp3_19         C10         C16          C9         C13      60.000    10.0     3
+BJM            sp3_sp3_55         C16         C10          C5          C1     -60.000    10.0     3
+BJM            sp3_sp3_37         C16         C10         C14          C8      60.000    10.0     3
+BJM            sp3_sp3_28         C14         C10         C16          C9     -60.000    10.0     3
+BJM           sp3_sp3_169         C20         C19         C21         C18      60.000    10.0     3
+BJM           sp3_sp3_101         N11         C17         C19         C20     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BJM    chir_1    C1    C2    C3    C4    negative
+BJM    chir_2    C2    N7    C6    C1    positive
+BJM    chir_3    C8    O15    C3    C13    positive
+BJM    chir_4    C9    C13    C4    C16    negative
+BJM    chir_5    C10    C14    C5    C16    positive
+BJM    chir_6    C19    C17    C21    C20    positive
+BJM    chir_7    C17    N11    C19    C20    positive
+BJM    chir_8    C18    N11    C22    C21    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BJM    plan-1         C18   0.020
+BJM    plan-1         C22   0.020
+BJM    plan-1         H17   0.020
+BJM    plan-1         N23   0.020
+BJM    plan-2          C2   0.020
+BJM    plan-2          C6   0.020
+BJM    plan-2         N11   0.020
+BJM    plan-2         O12   0.020
+BJM    plan-3         C17   0.020
+BJM    plan-3         C18   0.020
+BJM    plan-3          C6   0.020
+BJM    plan-3         N11   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BJM            InChI                InChI  1.03 InChI=1S/C18H27N3O2/c19-8-13-2-12-3-14(12)21(13)16(22)15(20)17-4-10-1-11(5-17)7-18(23,6-10)9-17/h8,10-15,19,23H,1-7,9,20H2/t10-,11+,12-,13+,14+,15-,17+,18-/m1/s1
+BJM         InChIKey                InChI  1.03                                                                                                                                       KMSQNYQXZPWGMJ-YQBUGCKMSA-N
+BJM SMILES_CANONICAL               CACTVS 3.385                                                                                         N[C@H](C(=O)N1[C@@H](C[C@@H]2C[C@H]12)C=N)C34C[C@H]5C[C@H](CC(O)(C5)C3)C4
+BJM           SMILES               CACTVS 3.385                                                                                                 N[CH](C(=O)N1[CH](C[CH]2C[CH]12)C=N)C34C[CH]5C[CH](CC(O)(C5)C3)C4
+BJM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                       C1[C@@H]2C[C@@H]2N([C@@H]1C=N)C(=O)[C@H](C34C[C@H]5C[C@@H](C3)CC(C5)(C4)O)N
+BJM           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                   C1C2CC2N(C1C=N)C(=O)C(C34CC5CC(C3)CC(C5)(C4)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BJM acedrg               243         "dictionary generator"                  
+BJM acedrg_database      11          "data source"                           
+BJM rdkit                2017.03.2   "Chemoinformatics tool"
+BJM refmac5              5.8.0238    "optimization tool"                     

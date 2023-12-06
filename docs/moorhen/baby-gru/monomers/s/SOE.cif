@@ -1,0 +1,195 @@
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SOE SOE 'alpha-L-sorbopyranose               ' NON-POLYMER 24 12 .
+
+data_comp_SOE
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SOE C1 C CH2 0 41.290 115.442 98.000
+SOE O1 O OH1 0 41.268 116.561 98.877
+SOE C2 C CT 0 39.934 115.197 97.348
+SOE O2 O OH1 0 40.049 113.992 96.627
+SOE C3 C CH1 0 39.538 116.369 96.425
+SOE O3 O OH1 0 40.379 116.370 95.277
+SOE C4 C CH1 0 38.074 116.287 95.995
+SOE O4 O OH1 0 37.727 117.449 95.243
+SOE C5 C CH1 0 37.161 116.153 97.202
+SOE O5 O OH1 0 35.809 115.944 96.786
+SOE C6 C CH2 0 37.611 114.979 98.052
+SOE O6 O O2 0 38.999 115.081 98.428
+SOE H11 H H 0 41.543 114.651 98.492
+SOE H12 H H 0 41.948 115.585 97.308
+SOE HO1 H H 0 40.972 116.316 99.632
+SOE HO2 H H 0 39.359 113.818 96.186
+SOE H3 H H 0 39.662 117.217 96.925
+SOE HO3 H H 0 40.285 117.120 94.910
+SOE H4 H H 0 37.957 115.490 95.417
+SOE HO4 H H 0 36.974 117.329 94.888
+SOE H5 H H 0 37.211 116.984 97.743
+SOE HO5 H H 0 35.304 116.073 97.446
+SOE H61 H H 0 37.474 114.137 97.551
+SOE H62 H H 0 37.065 114.945 98.876
+
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SOE C1 O1 SINGLE n 1.421 0.0100 1.421 0.0100
+SOE C1 C2 SINGLE n 1.522 0.0100 1.522 0.0100
+SOE C2 O2 SINGLE n 1.404 0.0119 1.404 0.0119
+SOE C2 C3 SINGLE n 1.536 0.0100 1.536 0.0100
+SOE C2 O6 SINGLE n 1.427 0.0100 1.427 0.0100
+SOE C3 O3 SINGLE n 1.422 0.0100 1.422 0.0100
+SOE C3 C4 SINGLE n 1.524 0.0100 1.524 0.0100
+SOE C4 O4 SINGLE n 1.427 0.0138 1.427 0.0138
+SOE C4 C5 SINGLE n 1.519 0.0100 1.519 0.0100
+SOE C5 O5 SINGLE n 1.430 0.0100 1.430 0.0100
+SOE C5 C6 SINGLE n 1.517 0.0100 1.517 0.0100
+SOE C6 O6 SINGLE n 1.438 0.0100 1.438 0.0100
+SOE C1 H11 SINGLE n 1.089 0.0100 0.966 0.0200
+SOE C1 H12 SINGLE n 1.089 0.0100 0.966 0.0200
+SOE O1 HO1 SINGLE n 0.970 0.0120 0.848 0.0200
+SOE O2 HO2 SINGLE n 0.970 0.0120 0.841 0.0200
+SOE C3 H3 SINGLE n 1.089 0.0100 0.993 0.0166
+SOE O3 HO3 SINGLE n 0.970 0.0120 0.841 0.0200
+SOE C4 H4 SINGLE n 1.089 0.0100 0.991 0.0121
+SOE O4 HO4 SINGLE n 0.970 0.0120 0.841 0.0200
+SOE C5 H5 SINGLE n 1.089 0.0100 0.993 0.0111
+SOE O5 HO5 SINGLE n 0.970 0.0120 0.841 0.0200
+SOE C6 H61 SINGLE n 1.089 0.0100 0.989 0.0132
+SOE C6 H62 SINGLE n 1.089 0.0100 0.989 0.0132
+
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SOE O1 C1 C2 110.376 2.58
+SOE O1 C1 H11 109.898 1.65
+SOE O1 C1 H12 109.898 1.65
+SOE C2 C1 H11 109.117 1.91
+SOE C2 C1 H12 109.117 1.91
+SOE H11 C1 H12 108.230 1.50
+SOE C1 O1 HO1 109.039 2.77
+SOE C1 C2 O2 109.592 2.80
+SOE C1 C2 C3 111.163 2.25
+SOE C1 C2 O6 106.043 1.50
+SOE O2 C2 C3 107.957 2.40
+SOE O2 C2 O6 110.641 2.01
+SOE C3 C2 O6 108.882 1.50
+SOE C2 O2 HO2 108.862 2.82
+SOE C2 C3 O3 109.269 1.50
+SOE C2 C3 C4 110.260 1.50
+SOE C2 C3 H3 108.535 1.50
+SOE O3 C3 C4 110.287 1.50
+SOE O3 C3 H3 109.910 1.64
+SOE C4 C3 H3 108.600 1.50
+SOE C3 O3 HO3 106.666 2.97
+SOE C3 C4 O4 109.889 1.50
+SOE C3 C4 C5 110.168 1.50
+SOE C3 C4 H4 108.527 1.50
+SOE O4 C4 C5 110.343 1.72
+SOE O4 C4 H4 108.767 1.50
+SOE C5 C4 H4 108.724 1.50
+SOE C4 O4 HO4 108.895 2.41
+SOE C4 C5 O5 110.286 1.81
+SOE C4 C5 C6 109.602 1.50
+SOE C4 C5 H5 109.054 1.50
+SOE O5 C5 C6 109.124 1.50
+SOE O5 C5 H5 109.069 1.50
+SOE C6 C5 H5 108.994 1.50
+SOE C5 O5 HO5 108.463 3.00
+SOE C5 C6 O6 111.608 1.50
+SOE C5 C6 H61 109.325 1.50
+SOE C5 C6 H62 109.325 1.50
+SOE O6 C6 H61 108.605 1.50
+SOE O6 C6 H62 108.605 1.50
+SOE H61 C6 H62 108.602 1.50
+SOE C2 O6 C6 113.511 1.50
+
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SOE tors_11 C2 C1 O1 HO1 83.478378 10.0 3
+SOE tors_10 O1 C1 C2 O2 -173.795898 10.0 3
+SOE tors_9 C1 C2 O6 C6 173.943787 10.0 3
+SOE tors_8 C1 C2 O2 HO2 -175.337463 10.0 3
+SOE tors_7 C1 C2 C3 O3 70.009895 10.0 3
+SOE tors_6 C2 C3 O3 HO3 -164.889496 10.0 3
+SOE tors_5 O3 C3 C4 O4 -63.397606 10.0 3
+SOE tors_4 C3 C4 O4 HO4 169.217712 10.0 3
+SOE tors_3 O4 C4 C5 O5 64.058113 10.0 3
+SOE tors_2 O5 C5 C6 O6 175.929626 10.0 3
+SOE tors_1 C4 C5 O5 HO5 -165.417847 10.0 3
+SOE ring_1 C6 O6 C2 C3 53.681767 3.0 1
+SOE ring_2 O6 C2 C3 C4 -51.170563 3.0 1
+SOE ring_3 C2 C3 C4 C5 53.034603 3.0 1
+SOE ring_4 C3 C4 C5 C6 -53.807552 3.0 1
+SOE ring_5 C4 C5 C6 O6 54.740376 3.0 1
+SOE ring_6 C5 C6 O6 C2 -56.811127 3.0 1
+
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SOE chir_1 C2 O6 O2 C3 negative
+SOE chir_2 C3 O3 C2 C4 positive
+SOE chir_3 C4 O4 C3 C5 negative
+SOE chir_4 C5 O5 C4 C6 positive
+
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SOE SMILES ACDLabs 12.01 OC1C(O)(OCC(O)C1O)CO
+SOE SMILES_CANONICAL CACTVS 3.370 OC[C@@]1(O)OC[C@H](O)[C@@H](O)[C@@H]1O
+SOE SMILES CACTVS 3.370 OC[C]1(O)OC[CH](O)[CH](O)[CH]1O
+SOE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0 C1[C@@H]([C@H]([C@@H]([C@](O1)(CO)O)O)O)O
+SOE SMILES "OpenEye OEToolkits" 1.7.0 C1C(C(C(C(O1)(CO)O)O)O)O
+SOE InChI InChI 1.03 InChI=1S/C6H12O6/c7-2-6(11)5(10)4(9)3(8)1-12-6/h3-5,7-11H,1-2H2/t3-,4+,5-,6+/m0/s1
+SOE InChIKey InChI 1.03 LKDRXBCSQODPBY-BGPJRJDNSA-N
+
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SOE acedrg 243 "dictionary generator"
+SOE acedrg_database 11 "data source"
+SOE rdkit 2017.03.2 "Chemoinformatics tool"
+SOE refmac5 5.8.0238 "optimization tool"

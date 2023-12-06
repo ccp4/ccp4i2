@@ -1,0 +1,247 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LWA     LWA      (2~{S})-~{N}-(4-aminocarbonylphenyl)oxolane-2-carboxamide     NON-POLYMER     31     17     .     
+#
+data_comp_LWA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LWA     N1      N       NH1     0       -11.034     -9.818      -27.434     
+LWA     C4      C       CR16    0       -13.455     -7.289      -28.661     
+LWA     C5      C       CR6     0       -14.275     -8.065      -29.477     
+LWA     C6      C       C       0       -15.424     -7.454      -30.209     
+LWA     C7      C       C       0       -10.700     -9.698      -26.125     
+LWA     C8      C       CH1     0       -9.344      -10.211     -25.737     
+LWA     C10     C       CH2     0       -7.499      -10.555     -27.278     
+LWA     N       N       NH2     0       -16.308     -6.744      -29.519     
+LWA     C       C       CR16    0       -14.000     -9.425      -29.606     
+LWA     O       O       O       0       -15.525     -7.618      -31.435     
+LWA     C1      C       CR16    0       -12.936     -9.999      -28.934     
+LWA     C11     C       CH2     0       -7.903      -11.819     -26.616     
+LWA     C2      C       CR6     0       -12.121     -9.217      -28.114     
+LWA     C3      C       CR16    0       -12.389     -7.854      -27.985     
+LWA     C9      C       CH2     0       -8.198      -9.482      -26.453     
+LWA     O1      O       O       0       -11.426     -9.217      -25.273     
+LWA     O2      O       O2      0       -9.210      -11.598     -26.069     
+LWA     H1      H       H       0       -10.524     -10.334     -27.923     
+LWA     H2      H       H       0       -13.627     -6.369      -28.564     
+LWA     H3      H       H       0       -9.238      -10.107     -24.761     
+LWA     H4      H       H       0       -7.801      -10.530     -28.207     
+LWA     H5      H       H       0       -6.529      -10.436     -27.251     
+LWA     H6      H       H       0       -16.228     -6.639      -28.637     
+LWA     H7      H       H       0       -16.995     -6.361      -29.939     
+LWA     H8      H       H       0       -14.543     -9.962      -30.155     
+LWA     H9      H       H       0       -12.761     -10.919     -29.028     
+LWA     H10     H       H       0       -7.273      -12.049     -25.905     
+LWA     H11     H       H       0       -7.926      -12.551     -27.263     
+LWA     H12     H       H       0       -11.844     -7.319      -27.434     
+LWA     H13     H       H       0       -8.537      -8.771      -27.029     
+LWA     H14     H       H       0       -7.581      -9.090      -25.805     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LWA          C6           O      DOUBLE       n     1.241  0.0105     1.241  0.0105
+LWA          C6           N      SINGLE       n     1.326  0.0100     1.326  0.0100
+LWA          C5          C6      SINGLE       n     1.492  0.0100     1.492  0.0100
+LWA          C5           C      SINGLE       y     1.390  0.0100     1.390  0.0100
+LWA           C          C1      DOUBLE       y     1.379  0.0100     1.379  0.0100
+LWA          C4          C5      DOUBLE       y     1.390  0.0100     1.390  0.0100
+LWA          C1          C2      SINGLE       y     1.392  0.0100     1.392  0.0100
+LWA          C4          C3      SINGLE       y     1.379  0.0100     1.379  0.0100
+LWA          C2          C3      DOUBLE       y     1.392  0.0100     1.392  0.0100
+LWA          N1          C2      SINGLE       n     1.414  0.0120     1.414  0.0120
+LWA          N1          C7      SINGLE       n     1.353  0.0100     1.353  0.0100
+LWA         C10         C11      SINGLE       n     1.489  0.0200     1.489  0.0200
+LWA         C11          O2      SINGLE       n     1.438  0.0200     1.438  0.0200
+LWA         C10          C9      SINGLE       n     1.523  0.0200     1.523  0.0200
+LWA          C8          O2      SINGLE       n     1.432  0.0100     1.432  0.0100
+LWA          C7          C8      SINGLE       n     1.498  0.0110     1.498  0.0110
+LWA          C7          O1      DOUBLE       n     1.218  0.0100     1.218  0.0100
+LWA          C8          C9      SINGLE       n     1.530  0.0129     1.530  0.0129
+LWA          N1          H1      SINGLE       n     1.016  0.0100     0.874  0.0200
+LWA          C4          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+LWA          C8          H3      SINGLE       n     1.089  0.0100     0.987  0.0200
+LWA         C10          H4      SINGLE       n     1.089  0.0100     0.977  0.0101
+LWA         C10          H5      SINGLE       n     1.089  0.0100     0.977  0.0101
+LWA           N          H6      SINGLE       n     1.016  0.0100     0.891  0.0200
+LWA           N          H7      SINGLE       n     1.016  0.0100     0.891  0.0200
+LWA           C          H8      SINGLE       n     1.082  0.0130     0.941  0.0168
+LWA          C1          H9      SINGLE       n     1.082  0.0130     0.942  0.0198
+LWA         C11         H10      SINGLE       n     1.089  0.0100     0.977  0.0104
+LWA         C11         H11      SINGLE       n     1.089  0.0100     0.977  0.0104
+LWA          C3         H12      SINGLE       n     1.082  0.0130     0.942  0.0198
+LWA          C9         H13      SINGLE       n     1.089  0.0100     0.976  0.0100
+LWA          C9         H14      SINGLE       n     1.089  0.0100     0.976  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LWA          C2          N1          C7     127.587    1.57
+LWA          C2          N1          H1     115.822    1.53
+LWA          C7          N1          H1     116.591    1.50
+LWA          C5          C4          C3     120.771    1.50
+LWA          C5          C4          H2     119.830    1.50
+LWA          C3          C4          H2     119.399    1.50
+LWA          C6          C5           C     120.525    2.37
+LWA          C6          C5          C4     120.525    2.37
+LWA           C          C5          C4     118.950    1.50
+LWA           O          C6           N     122.155    1.50
+LWA           O          C6          C5     119.820    1.50
+LWA           N          C6          C5     118.026    1.50
+LWA          N1          C7          C8     116.018    1.65
+LWA          N1          C7          O1     124.262    1.50
+LWA          C8          C7          O1     119.720    1.50
+LWA          O2          C8          C7     111.607    1.60
+LWA          O2          C8          C9     106.038    1.50
+LWA          O2          C8          H3     110.296    2.27
+LWA          C7          C8          C9     112.823    1.82
+LWA          C7          C8          H3     109.047    1.50
+LWA          C9          C8          H3     110.022    1.50
+LWA         C11         C10          C9     103.715    2.87
+LWA         C11         C10          H4     111.002    1.50
+LWA         C11         C10          H5     111.002    1.50
+LWA          C9         C10          H4     110.605    1.50
+LWA          C9         C10          H5     110.605    1.50
+LWA          H4         C10          H5     109.004    1.50
+LWA          C6           N          H6     120.236    2.75
+LWA          C6           N          H7     120.236    2.75
+LWA          H6           N          H7     119.529    2.83
+LWA          C5           C          C1     120.771    1.50
+LWA          C5           C          H8     119.830    1.50
+LWA          C1           C          H8     119.399    1.50
+LWA           C          C1          C2     120.067    1.50
+LWA           C          C1          H9     120.067    1.50
+LWA          C2          C1          H9     119.866    1.50
+LWA         C10         C11          O2     107.285    1.59
+LWA         C10         C11         H10     110.412    1.50
+LWA         C10         C11         H11     110.412    1.50
+LWA          O2         C11         H10     110.225    1.50
+LWA          O2         C11         H11     110.225    1.50
+LWA         H10         C11         H11     108.637    1.50
+LWA          C1          C2          C3     119.374    1.50
+LWA          C1          C2          N1     120.313    3.00
+LWA          C3          C2          N1     120.313    3.00
+LWA          C4          C3          C2     120.067    1.50
+LWA          C4          C3         H12     120.067    1.50
+LWA          C2          C3         H12     119.866    1.50
+LWA         C10          C9          C8     104.443    2.26
+LWA         C10          C9         H13     111.004    1.50
+LWA         C10          C9         H14     111.004    1.50
+LWA          C8          C9         H13     111.100    1.50
+LWA          C8          C9         H14     111.100    1.50
+LWA         H13          C9         H14     109.038    1.50
+LWA         C11          O2          C8     108.166    2.62
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LWA             sp2_sp2_9          C1          C2          N1          C7     180.000     5.0     2
+LWA            sp2_sp2_15          O1          C7          N1          C2       0.000     5.0     2
+LWA              const_14           C          C1          C2          N1     180.000    10.0     2
+LWA             sp3_sp3_4         C10         C11          O2          C8     -60.000    10.0     3
+LWA              const_19          N1          C2          C3          C4     180.000    10.0     2
+LWA              const_21          C2          C3          C4          C5       0.000    10.0     2
+LWA       const_sp2_sp2_2          C3          C4          C5          C6     180.000     5.0     2
+LWA             sp2_sp2_6           C          C5          C6           O       0.000     5.0     2
+LWA       const_sp2_sp2_6          C1           C          C5          C6     180.000     5.0     2
+LWA             sp2_sp2_3           O          C6           N          H6       0.000     5.0     2
+LWA             sp2_sp3_1          N1          C7          C8          O2       0.000    10.0     6
+LWA            sp3_sp3_28          C7          C8          C9         C10      60.000    10.0     3
+LWA             sp3_sp3_2          C7          C8          O2         C11     -60.000    10.0     3
+LWA             sp3_sp3_7          C9         C10         C11          O2      60.000    10.0     3
+LWA            sp3_sp3_16         C11         C10          C9          C8     -60.000    10.0     3
+LWA       const_sp2_sp2_9          C5           C          C1          C2       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LWA    chir_1    C8    O2    C7    C9    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LWA    plan-1           C   0.020
+LWA    plan-1          C1   0.020
+LWA    plan-1          C2   0.020
+LWA    plan-1          C3   0.020
+LWA    plan-1          C4   0.020
+LWA    plan-1          C5   0.020
+LWA    plan-1          C6   0.020
+LWA    plan-1         H12   0.020
+LWA    plan-1          H2   0.020
+LWA    plan-1          H8   0.020
+LWA    plan-1          H9   0.020
+LWA    plan-1          N1   0.020
+LWA    plan-2          C2   0.020
+LWA    plan-2          C7   0.020
+LWA    plan-2          H1   0.020
+LWA    plan-2          N1   0.020
+LWA    plan-3          C5   0.020
+LWA    plan-3          C6   0.020
+LWA    plan-3           N   0.020
+LWA    plan-3           O   0.020
+LWA    plan-4          C7   0.020
+LWA    plan-4          C8   0.020
+LWA    plan-4          N1   0.020
+LWA    plan-4          O1   0.020
+LWA    plan-5          C6   0.020
+LWA    plan-5          H6   0.020
+LWA    plan-5          H7   0.020
+LWA    plan-5           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LWA            InChI                InChI  1.03 InChI=1S/C12H14N2O3/c13-11(15)8-3-5-9(6-4-8)14-12(16)10-2-1-7-17-10/h3-6,10H,1-2,7H2,(H2,13,15)(H,14,16)/t10-/m0/s1
+LWA         InChIKey                InChI  1.03                                                                                         FSZYBIFIACXSAG-JTQLQIEISA-N
+LWA SMILES_CANONICAL               CACTVS 3.385                                                                                  NC(=O)c1ccc(NC(=O)[C@@H]2CCCO2)cc1
+LWA           SMILES               CACTVS 3.385                                                                                    NC(=O)c1ccc(NC(=O)[CH]2CCCO2)cc1
+LWA SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                  c1cc(ccc1C(=O)N)NC(=O)[C@@H]2CCCO2
+LWA           SMILES "OpenEye OEToolkits" 2.0.6                                                                                       c1cc(ccc1C(=O)N)NC(=O)C2CCCO2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LWA acedrg               243         "dictionary generator"                  
+LWA acedrg_database      11          "data source"                           
+LWA rdkit                2017.03.2   "Chemoinformatics tool"
+LWA refmac5              5.8.0238    "optimization tool"                     

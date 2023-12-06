@@ -1,0 +1,722 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KDW     KDW      ~{N}-[2-[[4-[[3-[3-[[4-[(2-acetamidoethylamino)methyl]-5-[(5-cyanopyridin-3-yl)methoxy]-2-methyl-phenoxy]methyl]-2-methyl-phenyl]-2-methyl-phenyl]methoxy]-2-[(5-cyanopyridin-3-yl)methoxy]-5-methyl-phenyl]methylamino]ethyl]ethanamide     NON-POLYMER     126     68     .     
+#
+data_comp_KDW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KDW     N1      N       NT1     0       -2.474      -29.052     -6.215      
+KDW     N3      N       NSP     0       3.600       -30.921     -4.427      
+KDW     C4      C       CH2     0       -3.417      -27.943     -6.227      
+KDW     C5      C       CR6     0       -3.173      -26.965     -7.352      
+KDW     C6      C       CR6     0       -2.029      -26.156     -7.362      
+KDW     C7      C       CH2     0       0.217       -26.648     -6.599      
+KDW     C8      C       CR6     0       0.884       -27.110     -5.339      
+KDW     C10     C       CR16    0       2.088       -27.884     -2.977      
+KDW     C13     C       CSP     0       2.922       -29.954     -3.991      
+KDW     C15     C       CR6     0       -2.715      -25.147     -9.445      
+KDW     C1      C       C       0       -2.978      -32.740     -3.688      
+KDW     C11     C       CR6     0       2.193       -28.716     -4.094      
+KDW     C12     C       CR16    0       1.579       -28.311     -5.283      
+KDW     C14     C       CR16    0       -1.803      -25.249     -8.395      
+KDW     C16     C       CH2     0       -1.297      -24.201     -11.183     
+KDW     C2      C       CH2     0       -3.751      -30.791     -4.994      
+KDW     C3      C       CH2     0       -2.535      -29.880     -4.999      
+KDW     C9      C       CR16    0       0.844       -26.357     -4.167      
+KDW     N2      N       NRD6    0       1.426       -26.723     -3.008      
+KDW     O1      O       O2      0       -1.142      -26.289     -6.309      
+KDW     O2      O       O2      0       -2.560      -24.267     -10.502     
+KDW     O3      O       O2      0       -1.436      -23.053     -20.312     
+KDW     N       N       NH1     0       -3.761      -31.662     -3.825      
+KDW     C       C       CH3     0       -3.137      -33.520     -2.422      
+KDW     O       O       O       0       -2.170      -33.077     -4.552      
+KDW     C17     C       CR6     0       -1.414      -23.276     -12.365     
+KDW     C18     C       CR16    0       -0.940      -21.968     -12.239     
+KDW     C19     C       CR16    0       -1.021      -21.067     -13.287     
+KDW     C20     C       CR16    0       -1.586      -21.469     -14.485     
+KDW     C21     C       CR6     0       -2.072      -22.770     -14.661     
+KDW     C22     C       CR6     0       -1.992      -23.687     -13.588     
+KDW     C23     C       CH3     0       -2.509      -25.106     -13.728     
+KDW     C24     C       CR6     0       -2.675      -23.126     -15.991     
+KDW     C25     C       CR16    0       -4.069      -23.084     -16.107     
+KDW     C26     C       CR16    0       -4.704      -23.401     -17.296     
+KDW     C27     C       CR16    0       -3.944      -23.765     -18.393     
+KDW     C28     C       CR6     0       -2.550      -23.823     -18.327     
+KDW     C29     C       CR6     0       -1.899      -23.498     -17.114     
+KDW     C30     C       CH3     0       -0.385      -23.558     -17.036     
+KDW     C31     C       CH2     0       -1.796      -24.229     -19.566     
+KDW     C32     C       CR6     0       -1.040      -23.213     -21.627     
+KDW     C33     C       CR16    0       0.291       -23.362     -22.003     
+KDW     C34     C       CR6     0       0.619       -23.524     -23.347     
+KDW     C35     C       CR6     0       -0.376      -23.536     -24.335     
+KDW     C36     C       CH2     0       -0.019      -23.713     -25.794     
+KDW     C37     C       CH2     0       -0.330      -21.528     -26.867     
+KDW     C38     C       CH2     0       -0.717      -21.769     -28.311     
+KDW     C39     C       C       0       1.038       -20.554     -29.552     
+KDW     C40     C       CH3     0       2.213       -20.676     -30.471     
+KDW     C41     C       CR16    0       -1.705      -23.387     -23.935     
+KDW     C42     C       CR6     0       -2.070      -23.225     -22.599     
+KDW     C43     C       CH3     0       -3.511      -23.066     -22.199     
+KDW     C44     C       CH2     0       2.654       -24.828     -23.311     
+KDW     C45     C       CR6     0       3.976       -24.876     -24.014     
+KDW     C46     C       CR16    0       4.253       -25.821     -24.998     
+KDW     C47     C       CR16    0       6.384       -25.031     -25.357     
+KDW     C48     C       CR6     0       6.213       -24.041     -24.387     
+KDW     C49     C       CR16    0       4.989       -23.974     -23.715     
+KDW     C50     C       CSP     0       7.290       -23.127     -24.109     
+KDW     C51     C       CR6     0       -3.885      -25.948     -9.459      
+KDW     C52     C       CR16    0       -4.078      -26.842     -8.406      
+KDW     C53     C       CH3     0       -4.887      -25.848     -10.577     
+KDW     N4      N       NT1     0       0.616       -22.554     -26.407     
+KDW     N5      N       NH1     0       0.441       -21.698     -29.194     
+KDW     N6      N       NRD6    0       5.423       -25.909     -25.661     
+KDW     N7      N       NSP     0       8.159       -22.419     -23.857     
+KDW     O4      O       O       0       0.650       -19.458     -29.151     
+KDW     O5      O       O2      0       1.932       -23.671     -23.754     
+KDW     H1      H       H       0       -2.639      -29.568     -6.922      
+KDW     H3      H       H       0       -3.360      -27.463     -5.373      
+KDW     H4      H       H       0       -4.326      -28.301     -6.307      
+KDW     H5      H       H       0       0.236       -27.362     -7.269      
+KDW     H6      H       H       0       0.691       -25.873     -6.962      
+KDW     H7      H       H       0       2.500       -28.151     -2.171      
+KDW     H8      H       H       0       1.633       -28.854     -6.054      
+KDW     H9      H       H       0       -1.024      -24.710     -8.388      
+KDW     H10     H       H       0       -1.030      -25.096     -11.472     
+KDW     H11     H       H       0       -0.613      -23.868     -10.568     
+KDW     H12     H       H       0       -3.753      -31.338     -5.807      
+KDW     H13     H       H       0       -4.565      -30.249     -4.995      
+KDW     H14     H       H       0       -2.561      -29.302     -4.208      
+KDW     H15     H       H       0       -1.723      -30.426     -4.941      
+KDW     H16     H       H       0       0.379       -25.541     -4.185      
+KDW     H17     H       H       0       -4.313      -31.462     -3.178      
+KDW     H18     H       H       0       -4.081      -33.657     -2.240      
+KDW     H19     H       H       0       -2.736      -33.031     -1.685      
+KDW     H20     H       H       0       -2.699      -34.382     -2.512      
+KDW     H21     H       H       0       -0.556      -21.695     -11.423     
+KDW     H22     H       H       0       -0.694      -20.186     -13.185     
+KDW     H23     H       H       0       -1.640      -20.857     -15.201     
+KDW     H24     H       H       0       -1.774      -25.730     -13.617     
+KDW     H25     H       H       0       -2.910      -25.242     -14.599     
+KDW     H26     H       H       0       -3.176      -25.274     -13.044     
+KDW     H27     H       H       0       -4.586      -22.836     -15.358     
+KDW     H28     H       H       0       -5.646      -23.368     -17.357     
+KDW     H29     H       H       0       -4.374      -23.981     -19.203     
+KDW     H30     H       H       0       -0.070      -23.216     -16.186     
+KDW     H31     H       H       0       -0.003      -23.022     -17.751     
+KDW     H32     H       H       0       -0.093      -24.478     -17.137     
+KDW     H33     H       H       0       -0.988      -24.732     -19.330     
+KDW     H34     H       H       0       -2.362      -24.810     -20.120     
+KDW     H35     H       H       0       0.974       -23.354     -21.345     
+KDW     H36     H       H       0       -0.836      -23.927     -26.295     
+KDW     H37     H       H       0       0.584       -24.482     -25.879     
+KDW     H38     H       H       0       -1.136      -21.540     -26.308     
+KDW     H39     H       H       0       0.081       -20.642     -26.783     
+KDW     H40     H       H       0       -1.378      -21.102     -28.587     
+KDW     H41     H       H       0       -1.130      -22.653     -28.392     
+KDW     H42     H       H       0       2.674       -19.823     -30.527     
+KDW     H43     H       H       0       1.909       -20.935     -31.356     
+KDW     H44     H       H       0       2.824       -21.350     -30.131     
+KDW     H45     H       H       0       -2.384      -23.396     -24.591     
+KDW     H46     H       H       0       -3.778      -23.813     -21.640     
+KDW     H47     H       H       0       -4.072      -23.042     -22.991     
+KDW     H48     H       H       0       -3.621      -22.238     -21.703     
+KDW     H49     H       H       0       2.792       -24.780     -22.344     
+KDW     H50     H       H       0       2.139       -25.636     -23.510     
+KDW     H51     H       H       0       3.580       -26.441     -25.215     
+KDW     H52     H       H       0       7.208       -25.082     -25.814     
+KDW     H53     H       H       0       4.844       -23.315     -23.054     
+KDW     H54     H       H       0       -4.852      -27.383     -8.410      
+KDW     H55     H       H       0       -5.696      -26.328     -10.336     
+KDW     H56     H       H       0       -4.513      -26.236     -11.384     
+KDW     H57     H       H       0       -5.106      -24.916     -10.738     
+KDW     H58     H       H       0       1.173       -22.168     -25.828     
+KDW     H60     H       H       0       0.760       -22.450     -29.504     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KDW         C39         C40      SINGLE       n     1.495  0.0100     1.495  0.0100
+KDW         C39          N5      SINGLE       n     1.336  0.0105     1.336  0.0105
+KDW         C38          N5      SINGLE       n     1.456  0.0100     1.456  0.0100
+KDW         C39          O4      DOUBLE       n     1.229  0.0102     1.229  0.0102
+KDW         C37         C38      SINGLE       n     1.514  0.0158     1.514  0.0158
+KDW         C36          N4      SINGLE       n     1.454  0.0100     1.454  0.0100
+KDW         C35         C36      SINGLE       n     1.509  0.0100     1.509  0.0100
+KDW         C37          N4      SINGLE       n     1.465  0.0148     1.465  0.0148
+KDW         C35         C41      DOUBLE       y     1.391  0.0100     1.391  0.0100
+KDW         C34         C35      SINGLE       y     1.396  0.0100     1.396  0.0100
+KDW         C41         C42      SINGLE       y     1.390  0.0100     1.390  0.0100
+KDW         C34          O5      SINGLE       n     1.381  0.0100     1.381  0.0100
+KDW         C44          O5      SINGLE       n     1.432  0.0146     1.432  0.0146
+KDW         C42         C43      SINGLE       n     1.502  0.0100     1.502  0.0100
+KDW         C32         C42      DOUBLE       y     1.406  0.0144     1.406  0.0144
+KDW         C33         C34      DOUBLE       y     1.389  0.0100     1.389  0.0100
+KDW         C46          N6      DOUBLE       y     1.340  0.0113     1.340  0.0113
+KDW         C45         C46      SINGLE       y     1.387  0.0100     1.387  0.0100
+KDW         C47          N6      SINGLE       y     1.333  0.0100     1.333  0.0100
+KDW         C44         C45      SINGLE       n     1.498  0.0100     1.498  0.0100
+KDW         C45         C49      DOUBLE       y     1.385  0.0100     1.385  0.0100
+KDW         C47         C48      DOUBLE       y     1.395  0.0100     1.395  0.0100
+KDW         C32         C33      SINGLE       y     1.389  0.0100     1.389  0.0100
+KDW          O3         C32      SINGLE       n     1.381  0.0100     1.381  0.0100
+KDW         C48         C49      SINGLE       y     1.396  0.0114     1.396  0.0114
+KDW         C48         C50      SINGLE       n     1.440  0.0102     1.440  0.0102
+KDW         C50          N7      TRIPLE       n     1.149  0.0200     1.149  0.0200
+KDW          O3         C31      SINGLE       n     1.432  0.0146     1.432  0.0146
+KDW         C28         C31      SINGLE       n     1.502  0.0100     1.502  0.0100
+KDW         C27         C28      DOUBLE       y     1.392  0.0100     1.392  0.0100
+KDW         C26         C27      SINGLE       y     1.383  0.0105     1.383  0.0105
+KDW         C28         C29      SINGLE       y     1.403  0.0100     1.403  0.0100
+KDW         C25         C26      DOUBLE       y     1.384  0.0100     1.384  0.0100
+KDW         C29         C30      SINGLE       n     1.511  0.0100     1.511  0.0100
+KDW         C24         C29      DOUBLE       y     1.402  0.0100     1.402  0.0100
+KDW         C24         C25      SINGLE       y     1.396  0.0100     1.396  0.0100
+KDW         C21         C24      SINGLE       n     1.499  0.0100     1.499  0.0100
+KDW         C20         C21      DOUBLE       y     1.396  0.0100     1.396  0.0100
+KDW         C21         C22      SINGLE       y     1.402  0.0100     1.402  0.0100
+KDW         C19         C20      SINGLE       y     1.384  0.0100     1.384  0.0100
+KDW         C22         C23      SINGLE       n     1.511  0.0100     1.511  0.0100
+KDW         C17         C22      DOUBLE       y     1.403  0.0100     1.403  0.0100
+KDW         C18         C19      DOUBLE       y     1.383  0.0105     1.383  0.0105
+KDW         C17         C18      SINGLE       y     1.392  0.0100     1.392  0.0100
+KDW         C16         C17      SINGLE       n     1.502  0.0100     1.502  0.0100
+KDW         C16          O2      SINGLE       n     1.432  0.0146     1.432  0.0146
+KDW         C15          O2      SINGLE       n     1.381  0.0100     1.381  0.0100
+KDW         C15         C14      DOUBLE       y     1.389  0.0100     1.389  0.0100
+KDW         C15         C51      SINGLE       y     1.406  0.0144     1.406  0.0144
+KDW          C6         C14      SINGLE       y     1.389  0.0100     1.389  0.0100
+KDW         C51         C53      SINGLE       n     1.502  0.0100     1.502  0.0100
+KDW          N3         C13      TRIPLE       n     1.149  0.0200     1.149  0.0200
+KDW         C51         C52      DOUBLE       y     1.390  0.0100     1.390  0.0100
+KDW          C7          C8      SINGLE       n     1.498  0.0100     1.498  0.0100
+KDW          C7          O1      SINGLE       n     1.432  0.0146     1.432  0.0146
+KDW          C8         C12      DOUBLE       y     1.385  0.0100     1.385  0.0100
+KDW         C11         C12      SINGLE       y     1.396  0.0114     1.396  0.0114
+KDW         C13         C11      SINGLE       n     1.440  0.0102     1.440  0.0102
+KDW          C6          O1      SINGLE       n     1.381  0.0100     1.381  0.0100
+KDW          C5          C6      DOUBLE       y     1.396  0.0100     1.396  0.0100
+KDW          C8          C9      SINGLE       y     1.387  0.0100     1.387  0.0100
+KDW         C10         C11      DOUBLE       y     1.395  0.0100     1.395  0.0100
+KDW          C5         C52      SINGLE       y     1.391  0.0100     1.391  0.0100
+KDW          C4          C5      SINGLE       n     1.509  0.0100     1.509  0.0100
+KDW          C9          N2      DOUBLE       y     1.340  0.0113     1.340  0.0113
+KDW         C10          N2      SINGLE       y     1.333  0.0100     1.333  0.0100
+KDW          N1          C4      SINGLE       n     1.454  0.0100     1.454  0.0100
+KDW          N1          C3      SINGLE       n     1.465  0.0148     1.465  0.0148
+KDW          C2          C3      SINGLE       n     1.515  0.0157     1.515  0.0157
+KDW          C2           N      SINGLE       n     1.456  0.0100     1.456  0.0100
+KDW          C1           N      SINGLE       n     1.336  0.0105     1.336  0.0105
+KDW          C1           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+KDW          C1           C      SINGLE       n     1.495  0.0100     1.495  0.0100
+KDW          N1          H1      SINGLE       n     1.036  0.0160     0.890  0.0200
+KDW          C4          H3      SINGLE       n     1.089  0.0100     0.981  0.0172
+KDW          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0172
+KDW          C7          H5      SINGLE       n     1.089  0.0100     0.978  0.0133
+KDW          C7          H6      SINGLE       n     1.089  0.0100     0.978  0.0133
+KDW         C10          H7      SINGLE       n     1.082  0.0130     0.943  0.0200
+KDW         C12          H8      SINGLE       n     1.082  0.0130     0.944  0.0123
+KDW         C14          H9      SINGLE       n     1.082  0.0130     0.948  0.0138
+KDW         C16         H10      SINGLE       n     1.089  0.0100     0.978  0.0133
+KDW         C16         H11      SINGLE       n     1.089  0.0100     0.978  0.0133
+KDW          C2         H12      SINGLE       n     1.089  0.0100     0.979  0.0148
+KDW          C2         H13      SINGLE       n     1.089  0.0100     0.979  0.0148
+KDW          C3         H14      SINGLE       n     1.089  0.0100     0.980  0.0143
+KDW          C3         H15      SINGLE       n     1.089  0.0100     0.980  0.0143
+KDW          C9         H16      SINGLE       n     1.082  0.0130     0.940  0.0200
+KDW           N         H17      SINGLE       n     1.016  0.0100     0.872  0.0200
+KDW           C         H18      SINGLE       n     1.089  0.0100     0.971  0.0140
+KDW           C         H19      SINGLE       n     1.089  0.0100     0.971  0.0140
+KDW           C         H20      SINGLE       n     1.089  0.0100     0.971  0.0140
+KDW         C18         H21      SINGLE       n     1.082  0.0130     0.942  0.0167
+KDW         C19         H22      SINGLE       n     1.082  0.0130     0.945  0.0184
+KDW         C20         H23      SINGLE       n     1.082  0.0130     0.943  0.0170
+KDW         C23         H24      SINGLE       n     1.089  0.0100     0.971  0.0135
+KDW         C23         H25      SINGLE       n     1.089  0.0100     0.971  0.0135
+KDW         C23         H26      SINGLE       n     1.089  0.0100     0.971  0.0135
+KDW         C25         H27      SINGLE       n     1.082  0.0130     0.943  0.0170
+KDW         C26         H28      SINGLE       n     1.082  0.0130     0.945  0.0184
+KDW         C27         H29      SINGLE       n     1.082  0.0130     0.942  0.0167
+KDW         C30         H30      SINGLE       n     1.089  0.0100     0.971  0.0135
+KDW         C30         H31      SINGLE       n     1.089  0.0100     0.971  0.0135
+KDW         C30         H32      SINGLE       n     1.089  0.0100     0.971  0.0135
+KDW         C31         H33      SINGLE       n     1.089  0.0100     0.978  0.0133
+KDW         C31         H34      SINGLE       n     1.089  0.0100     0.978  0.0133
+KDW         C33         H35      SINGLE       n     1.082  0.0130     0.948  0.0138
+KDW         C36         H36      SINGLE       n     1.089  0.0100     0.981  0.0172
+KDW         C36         H37      SINGLE       n     1.089  0.0100     0.981  0.0172
+KDW         C37         H38      SINGLE       n     1.089  0.0100     0.980  0.0143
+KDW         C37         H39      SINGLE       n     1.089  0.0100     0.980  0.0143
+KDW         C38         H40      SINGLE       n     1.089  0.0100     0.979  0.0148
+KDW         C38         H41      SINGLE       n     1.089  0.0100     0.979  0.0148
+KDW         C40         H42      SINGLE       n     1.089  0.0100     0.971  0.0140
+KDW         C40         H43      SINGLE       n     1.089  0.0100     0.971  0.0140
+KDW         C40         H44      SINGLE       n     1.089  0.0100     0.971  0.0140
+KDW         C41         H45      SINGLE       n     1.082  0.0130     0.944  0.0155
+KDW         C43         H46      SINGLE       n     1.089  0.0100     0.971  0.0135
+KDW         C43         H47      SINGLE       n     1.089  0.0100     0.971  0.0135
+KDW         C43         H48      SINGLE       n     1.089  0.0100     0.971  0.0135
+KDW         C44         H49      SINGLE       n     1.089  0.0100     0.978  0.0133
+KDW         C44         H50      SINGLE       n     1.089  0.0100     0.978  0.0133
+KDW         C46         H51      SINGLE       n     1.082  0.0130     0.940  0.0200
+KDW         C47         H52      SINGLE       n     1.082  0.0130     0.943  0.0200
+KDW         C49         H53      SINGLE       n     1.082  0.0130     0.944  0.0123
+KDW         C52         H54      SINGLE       n     1.082  0.0130     0.944  0.0155
+KDW         C53         H55      SINGLE       n     1.089  0.0100     0.971  0.0135
+KDW         C53         H56      SINGLE       n     1.089  0.0100     0.971  0.0135
+KDW         C53         H57      SINGLE       n     1.089  0.0100     0.971  0.0135
+KDW          N4         H58      SINGLE       n     1.036  0.0160     0.890  0.0200
+KDW          N5         H60      SINGLE       n     1.016  0.0100     0.872  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KDW          C4          N1          C3     112.874    1.52
+KDW          C4          N1          H1     107.963    3.00
+KDW          C3          N1          H1     107.266    3.00
+KDW          C5          C4          N1     113.604    2.23
+KDW          C5          C4          H3     108.972    1.50
+KDW          C5          C4          H4     108.972    1.50
+KDW          N1          C4          H3     108.965    1.50
+KDW          N1          C4          H4     108.965    1.50
+KDW          H3          C4          H4     107.860    1.50
+KDW          C6          C5         C52     118.254    1.50
+KDW          C6          C5          C4     120.369    1.51
+KDW         C52          C5          C4     121.376    1.50
+KDW         C14          C6          O1     121.989    1.50
+KDW         C14          C6          C5     120.946    1.50
+KDW          O1          C6          C5     117.065    2.07
+KDW          C8          C7          O1     109.010    1.62
+KDW          C8          C7          H5     109.945    1.50
+KDW          C8          C7          H6     109.945    1.50
+KDW          O1          C7          H5     109.697    1.50
+KDW          O1          C7          H6     109.697    1.50
+KDW          H5          C7          H6     108.398    1.50
+KDW          C7          C8         C12     121.671    1.50
+KDW          C7          C8          C9     121.960    1.50
+KDW         C12          C8          C9     116.370    1.50
+KDW         C11         C10          N2     122.690    1.50
+KDW         C11         C10          H7     118.636    1.50
+KDW          N2         C10          H7     118.673    1.50
+KDW          N3         C13         C11     177.968    1.50
+KDW          O2         C15         C14     123.240    1.50
+KDW          O2         C15         C51     115.814    1.50
+KDW         C14         C15         C51     120.946    1.50
+KDW           N          C1           O     121.741    1.50
+KDW           N          C1           C     116.326    1.50
+KDW           O          C1           C     121.942    1.50
+KDW         C12         C11         C13     121.929    1.50
+KDW         C12         C11         C10     119.539    1.50
+KDW         C13         C11         C10     118.531    3.00
+KDW          C8         C12         C11     120.650    1.50
+KDW          C8         C12          H8     119.289    1.50
+KDW         C11         C12          H8     120.060    1.50
+KDW         C15         C14          C6     119.668    1.50
+KDW         C15         C14          H9     120.166    1.50
+KDW          C6         C14          H9     120.166    1.50
+KDW         C17         C16          O2     109.567    2.18
+KDW         C17         C16         H10     110.054    1.50
+KDW         C17         C16         H11     110.054    1.50
+KDW          O2         C16         H10     109.697    1.50
+KDW          O2         C16         H11     109.697    1.50
+KDW         H10         C16         H11     108.398    1.50
+KDW          C3          C2           N     111.385    1.50
+KDW          C3          C2         H12     109.342    1.50
+KDW          C3          C2         H13     109.342    1.50
+KDW           N          C2         H12     109.265    1.50
+KDW           N          C2         H13     109.265    1.50
+KDW         H12          C2         H13     107.909    1.50
+KDW          N1          C3          C2     110.537    1.93
+KDW          N1          C3         H14     109.524    1.50
+KDW          N1          C3         H15     109.524    1.50
+KDW          C2          C3         H14     109.342    1.50
+KDW          C2          C3         H15     109.342    1.50
+KDW         H14          C3         H15     107.909    1.50
+KDW          C8          C9          N2     123.721    1.50
+KDW          C8          C9         H16     118.164    1.50
+KDW          N2          C9         H16     118.115    1.50
+KDW          C9          N2         C10     117.029    1.50
+KDW          C7          O1          C6     118.066    1.50
+KDW         C16          O2         C15     118.066    1.50
+KDW         C32          O3         C31     118.066    1.50
+KDW          C2           N          C1     122.919    1.80
+KDW          C2           N         H17     118.449    2.02
+KDW          C1           N         H17     118.633    1.50
+KDW          C1           C         H18     109.678    1.50
+KDW          C1           C         H19     109.678    1.50
+KDW          C1           C         H20     109.678    1.50
+KDW         H18           C         H19     109.365    1.50
+KDW         H18           C         H20     109.365    1.50
+KDW         H19           C         H20     109.365    1.50
+KDW         C22         C17         C18     119.003    1.50
+KDW         C22         C17         C16     121.094    1.51
+KDW         C18         C17         C16     119.903    1.55
+KDW         C19         C18         C17     121.222    1.50
+KDW         C19         C18         H21     119.621    1.50
+KDW         C17         C18         H21     119.162    1.50
+KDW         C20         C19         C18     119.814    1.50
+KDW         C20         C19         H22     120.087    1.50
+KDW         C18         C19         H22     120.099    1.50
+KDW         C21         C20         C19     121.379    1.50
+KDW         C21         C20         H23     119.123    1.50
+KDW         C19         C20         H23     119.497    1.50
+KDW         C24         C21         C20     119.548    1.50
+KDW         C24         C21         C22     121.354    1.56
+KDW         C20         C21         C22     119.098    1.50
+KDW         C21         C22         C23     120.523    1.50
+KDW         C21         C22         C17     119.479    1.50
+KDW         C23         C22         C17     119.998    1.50
+KDW         C22         C23         H24     109.601    1.50
+KDW         C22         C23         H25     109.601    1.50
+KDW         C22         C23         H26     109.601    1.50
+KDW         H24         C23         H25     109.348    1.50
+KDW         H24         C23         H26     109.348    1.50
+KDW         H25         C23         H26     109.348    1.50
+KDW         C29         C24         C25     119.098    1.50
+KDW         C29         C24         C21     121.354    1.56
+KDW         C25         C24         C21     119.548    1.50
+KDW         C26         C25         C24     121.379    1.50
+KDW         C26         C25         H27     119.497    1.50
+KDW         C24         C25         H27     119.123    1.50
+KDW         C27         C26         C25     119.814    1.50
+KDW         C27         C26         H28     120.099    1.50
+KDW         C25         C26         H28     120.087    1.50
+KDW         C28         C27         C26     121.222    1.50
+KDW         C28         C27         H29     119.162    1.50
+KDW         C26         C27         H29     119.621    1.50
+KDW         C31         C28         C27     119.903    1.55
+KDW         C31         C28         C29     121.094    1.51
+KDW         C27         C28         C29     119.003    1.50
+KDW         C28         C29         C30     119.998    1.50
+KDW         C28         C29         C24     119.479    1.50
+KDW         C30         C29         C24     120.523    1.50
+KDW         C29         C30         H30     109.601    1.50
+KDW         C29         C30         H31     109.601    1.50
+KDW         C29         C30         H32     109.601    1.50
+KDW         H30         C30         H31     109.348    1.50
+KDW         H30         C30         H32     109.348    1.50
+KDW         H31         C30         H32     109.348    1.50
+KDW          O3         C31         C28     109.567    2.18
+KDW          O3         C31         H33     109.697    1.50
+KDW          O3         C31         H34     109.697    1.50
+KDW         C28         C31         H33     110.054    1.50
+KDW         C28         C31         H34     110.054    1.50
+KDW         H33         C31         H34     108.398    1.50
+KDW         C42         C32         C33     120.946    1.50
+KDW         C42         C32          O3     115.814    1.50
+KDW         C33         C32          O3     123.240    1.50
+KDW         C34         C33         C32     119.668    1.50
+KDW         C34         C33         H35     120.166    1.50
+KDW         C32         C33         H35     120.166    1.50
+KDW         C35         C34          O5     117.065    2.07
+KDW         C35         C34         C33     120.946    1.50
+KDW          O5         C34         C33     121.989    1.50
+KDW         C36         C35         C41     121.376    1.50
+KDW         C36         C35         C34     120.369    1.51
+KDW         C41         C35         C34     118.254    1.50
+KDW          N4         C36         C35     113.604    2.23
+KDW          N4         C36         H36     108.965    1.50
+KDW          N4         C36         H37     108.965    1.50
+KDW         C35         C36         H36     108.972    1.50
+KDW         C35         C36         H37     108.972    1.50
+KDW         H36         C36         H37     107.860    1.50
+KDW         C38         C37          N4     110.537    1.93
+KDW         C38         C37         H38     109.342    1.50
+KDW         C38         C37         H39     109.342    1.50
+KDW          N4         C37         H38     109.524    1.50
+KDW          N4         C37         H39     109.524    1.50
+KDW         H38         C37         H39     107.909    1.50
+KDW          N5         C38         C37     111.385    1.50
+KDW          N5         C38         H40     109.265    1.50
+KDW          N5         C38         H41     109.265    1.50
+KDW         C37         C38         H40     109.342    1.50
+KDW         C37         C38         H41     109.342    1.50
+KDW         H40         C38         H41     107.909    1.50
+KDW         C40         C39          N5     116.322    1.50
+KDW         C40         C39          O4     121.942    1.50
+KDW          N5         C39          O4     121.744    1.50
+KDW         C39         C40         H42     109.678    1.50
+KDW         C39         C40         H43     109.678    1.50
+KDW         C39         C40         H44     109.678    1.50
+KDW         H42         C40         H43     109.365    1.50
+KDW         H42         C40         H44     109.365    1.50
+KDW         H43         C40         H44     109.365    1.50
+KDW         C35         C41         C42     122.034    1.50
+KDW         C35         C41         H45     119.198    1.50
+KDW         C42         C41         H45     118.769    1.50
+KDW         C41         C42         C43     121.297    1.50
+KDW         C41         C42         C32     118.152    1.50
+KDW         C43         C42         C32     120.544    1.50
+KDW         C42         C43         H46     109.597    1.50
+KDW         C42         C43         H47     109.597    1.50
+KDW         C42         C43         H48     109.597    1.50
+KDW         H46         C43         H47     109.348    1.50
+KDW         H46         C43         H48     109.348    1.50
+KDW         H47         C43         H48     109.348    1.50
+KDW          O5         C44         C45     109.010    1.62
+KDW          O5         C44         H49     109.697    1.50
+KDW          O5         C44         H50     109.697    1.50
+KDW         C45         C44         H49     109.945    1.50
+KDW         C45         C44         H50     109.945    1.50
+KDW         H49         C44         H50     108.398    1.50
+KDW         C46         C45         C44     121.960    1.50
+KDW         C46         C45         C49     116.370    1.50
+KDW         C44         C45         C49     121.671    1.50
+KDW          N6         C46         C45     123.721    1.50
+KDW          N6         C46         H51     118.115    1.50
+KDW         C45         C46         H51     118.164    1.50
+KDW          N6         C47         C48     122.690    1.50
+KDW          N6         C47         H52     118.673    1.50
+KDW         C48         C47         H52     118.636    1.50
+KDW         C47         C48         C49     119.539    1.50
+KDW         C47         C48         C50     118.531    3.00
+KDW         C49         C48         C50     121.929    1.50
+KDW         C45         C49         C48     120.650    1.50
+KDW         C45         C49         H53     119.289    1.50
+KDW         C48         C49         H53     120.060    1.50
+KDW         C48         C50          N7     177.968    1.50
+KDW         C15         C51         C53     120.551    1.50
+KDW         C15         C51         C52     118.152    1.50
+KDW         C53         C51         C52     121.291    1.50
+KDW         C51         C52          C5     122.034    1.50
+KDW         C51         C52         H54     118.769    1.50
+KDW          C5         C52         H54     119.198    1.50
+KDW         C51         C53         H55     109.597    1.50
+KDW         C51         C53         H56     109.597    1.50
+KDW         C51         C53         H57     109.597    1.50
+KDW         H55         C53         H56     109.348    1.50
+KDW         H55         C53         H57     109.348    1.50
+KDW         H56         C53         H57     109.348    1.50
+KDW         C36          N4         C37     112.874    1.52
+KDW         C36          N4         H58     107.963    3.00
+KDW         C37          N4         H58     107.266    3.00
+KDW         C39          N5         C38     122.919    1.80
+KDW         C39          N5         H60     118.633    1.50
+KDW         C38          N5         H60     118.449    2.02
+KDW         C46          N6         C47     117.029    1.50
+KDW         C34          O5         C44     118.066    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KDW            sp3_sp3_41          C2          C3          N1          C4     -60.000    10.0     3
+KDW            sp3_sp3_34          C5          C4          N1          C3     180.000    10.0     3
+KDW            sp2_sp2_19           O          C1           N          C2       0.000     5.0     2
+KDW            sp2_sp3_79           N          C1           C         H18       0.000    10.0     6
+KDW       const_sp2_sp2_7         C13         C11         C12          C8     180.000     5.0     2
+KDW            sp3_sp3_28         C17         C16          O2         C15     180.000    10.0     3
+KDW            sp2_sp3_50         C22         C17         C16          O2     -90.000    10.0     6
+KDW            sp3_sp3_46           N          C2          C3          N1     180.000    10.0     3
+KDW            sp2_sp3_74          C1           N          C2          C3     120.000    10.0     6
+KDW              const_15          C8          C9          N2         C10       0.000    10.0     2
+KDW            sp3_sp3_25         C28         C31          O3         C32     180.000    10.0     3
+KDW             sp2_sp2_7         C42         C32          O3         C31     180.000     5.0     2
+KDW             const_127         C16         C17         C18         C19     180.000    10.0     2
+KDW              const_40         C16         C17         C22         C23       0.000    10.0     2
+KDW              const_53         C17         C18         C19         C20       0.000    10.0     2
+KDW              const_49         C18         C19         C20         C21       0.000    10.0     2
+KDW              const_46         C19         C20         C21         C24     180.000    10.0     2
+KDW              const_44         C24         C21         C22         C23       0.000    10.0     2
+KDW             sp2_sp2_9         C20         C21         C24         C29     180.000     5.0     2
+KDW            sp2_sp3_68          C6          C5          C4          N1     -90.000    10.0     6
+KDW            sp2_sp3_43         C21         C22         C23         H24     150.000    10.0     6
+KDW             const_121         C29         C24         C25         C26       0.000    10.0     2
+KDW              const_58         C25         C24         C29         C30     180.000    10.0     2
+KDW              const_73         C24         C25         C26         C27       0.000    10.0     2
+KDW              const_69         C25         C26         C27         C28       0.000    10.0     2
+KDW              const_66         C26         C27         C28         C31     180.000    10.0     2
+KDW              const_64         C31         C28         C29         C30       0.000    10.0     2
+KDW            sp2_sp3_32         C27         C28         C31          O3     -90.000    10.0     6
+KDW            sp2_sp3_37         C28         C29         C30         H30     150.000    10.0     6
+KDW              const_20          C4          C5          C6          O1       0.000    10.0     2
+KDW             const_135          C4          C5         C52         C51     180.000    10.0     2
+KDW             const_119          O3         C32         C33         C34     180.000    10.0     2
+KDW              const_80          O3         C32         C42         C43       0.000    10.0     2
+KDW              const_94         C32         C33         C34          O5     180.000    10.0     2
+KDW              const_92          O5         C34         C35         C36       0.000    10.0     2
+KDW             sp2_sp2_5         C35         C34          O5         C44     180.000     5.0     2
+KDW            sp2_sp3_14         C41         C35         C36          N4     -90.000    10.0     6
+KDW              const_87         C36         C35         C41         C42     180.000    10.0     2
+KDW            sp3_sp3_10         C35         C36          N4         C37     180.000    10.0     3
+KDW             sp3_sp3_1          N4         C37         C38          N5     180.000    10.0     3
+KDW            sp3_sp3_17         C38         C37          N4         C36     -60.000    10.0     3
+KDW             sp2_sp3_8         C39          N5         C38         C37     120.000    10.0     6
+KDW             sp2_sp3_1          N5         C39         C40         H42       0.000    10.0     6
+KDW             sp2_sp2_1         C40         C39          N5         C38     180.000     5.0     2
+KDW              const_82         C35         C41         C42         C43     180.000    10.0     2
+KDW              const_22         C15         C14          C6          O1     180.000    10.0     2
+KDW            sp2_sp2_15         C14          C6          O1          C7     180.000     5.0     2
+KDW            sp2_sp3_19         C41         C42         C43         H46     150.000    10.0     6
+KDW            sp2_sp3_26         C46         C45         C44          O5     -90.000    10.0     6
+KDW            sp3_sp3_22         C45         C44          O5         C34     180.000    10.0     3
+KDW              const_99         C44         C45         C46          N6     180.000    10.0     2
+KDW             const_115         C44         C45         C49         C48     180.000    10.0     2
+KDW             const_101         C45         C46          N6         C47       0.000    10.0     2
+KDW             const_106          N6         C47         C48         C50     180.000    10.0     2
+KDW             const_103         C48         C47          N6         C46       0.000    10.0     2
+KDW             const_111         C50         C48         C49         C45     180.000    10.0     2
+KDW           other_tor_1          N7         C50         C48         C47      90.000    10.0     1
+KDW              const_35         C53         C51         C52          C5     180.000    10.0     2
+KDW            sp2_sp3_55         C15         C51         C53         H55     150.000    10.0     6
+KDW            sp3_sp3_31          C8          C7          O1          C6     180.000    10.0     3
+KDW            sp2_sp3_62         C12          C8          C7          O1     -90.000    10.0     6
+KDW       const_sp2_sp2_2         C11         C12          C8          C7     180.000     5.0     2
+KDW             const_131          C7          C8          C9          N2     180.000    10.0     2
+KDW              const_10          N2         C10         C11         C13     180.000    10.0     2
+KDW              const_13         C11         C10          N2          C9       0.000    10.0     2
+KDW           other_tor_3          N3         C13         C11         C12      90.000    10.0     1
+KDW              const_26          C6         C14         C15          O2     180.000    10.0     2
+KDW            sp2_sp2_13         C14         C15          O2         C16     180.000     5.0     2
+KDW              const_32          O2         C15         C51         C53       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KDW    chir_1    N1    C3    C4    H1    both
+KDW    chir_2    N4    C37    C36    H58    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KDW    plan-1         C10   0.020
+KDW    plan-1         C11   0.020
+KDW    plan-1         C12   0.020
+KDW    plan-1         C13   0.020
+KDW    plan-1          C7   0.020
+KDW    plan-1          C8   0.020
+KDW    plan-1          C9   0.020
+KDW    plan-1         H16   0.020
+KDW    plan-1          H7   0.020
+KDW    plan-1          H8   0.020
+KDW    plan-1          N2   0.020
+KDW    plan-2         C14   0.020
+KDW    plan-2         C15   0.020
+KDW    plan-2          C4   0.020
+KDW    plan-2          C5   0.020
+KDW    plan-2         C51   0.020
+KDW    plan-2         C52   0.020
+KDW    plan-2         C53   0.020
+KDW    plan-2          C6   0.020
+KDW    plan-2         H54   0.020
+KDW    plan-2          H9   0.020
+KDW    plan-2          O1   0.020
+KDW    plan-2          O2   0.020
+KDW    plan-3         C16   0.020
+KDW    plan-3         C17   0.020
+KDW    plan-3         C18   0.020
+KDW    plan-3         C19   0.020
+KDW    plan-3         C20   0.020
+KDW    plan-3         C21   0.020
+KDW    plan-3         C22   0.020
+KDW    plan-3         C23   0.020
+KDW    plan-3         C24   0.020
+KDW    plan-3         H21   0.020
+KDW    plan-3         H22   0.020
+KDW    plan-3         H23   0.020
+KDW    plan-4         C21   0.020
+KDW    plan-4         C24   0.020
+KDW    plan-4         C25   0.020
+KDW    plan-4         C26   0.020
+KDW    plan-4         C27   0.020
+KDW    plan-4         C28   0.020
+KDW    plan-4         C29   0.020
+KDW    plan-4         C30   0.020
+KDW    plan-4         C31   0.020
+KDW    plan-4         H27   0.020
+KDW    plan-4         H28   0.020
+KDW    plan-4         H29   0.020
+KDW    plan-5         C32   0.020
+KDW    plan-5         C33   0.020
+KDW    plan-5         C34   0.020
+KDW    plan-5         C35   0.020
+KDW    plan-5         C36   0.020
+KDW    plan-5         C41   0.020
+KDW    plan-5         C42   0.020
+KDW    plan-5         C43   0.020
+KDW    plan-5         H35   0.020
+KDW    plan-5         H45   0.020
+KDW    plan-5          O3   0.020
+KDW    plan-5          O5   0.020
+KDW    plan-6         C44   0.020
+KDW    plan-6         C45   0.020
+KDW    plan-6         C46   0.020
+KDW    plan-6         C47   0.020
+KDW    plan-6         C48   0.020
+KDW    plan-6         C49   0.020
+KDW    plan-6         C50   0.020
+KDW    plan-6         H51   0.020
+KDW    plan-6         H52   0.020
+KDW    plan-6         H53   0.020
+KDW    plan-6          N6   0.020
+KDW    plan-7           C   0.020
+KDW    plan-7          C1   0.020
+KDW    plan-7           N   0.020
+KDW    plan-7           O   0.020
+KDW    plan-8          C1   0.020
+KDW    plan-8          C2   0.020
+KDW    plan-8         H17   0.020
+KDW    plan-8           N   0.020
+KDW    plan-9         C39   0.020
+KDW    plan-9         C40   0.020
+KDW    plan-9          N5   0.020
+KDW    plan-9          O4   0.020
+KDW   plan-10         C38   0.020
+KDW   plan-10         C39   0.020
+KDW   plan-10         H60   0.020
+KDW   plan-10          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KDW            InChI                InChI  1.03 InChI=1S/C54H58N8O6/c1-35-17-47(29-57-13-15-61-39(5)63)53(65-31-43-19-41(23-55)25-59-27-43)21-51(35)67-33-45-9-7-11-49(37(45)3)50-12-8-10-46(38(50)4)34-68-52-22-54(66-32-44-20-42(24-56)26-60-28-44)48(18-36(52)2)30-58-14-16-62-40(6)64/h7-12,17-22,25-28,57-58H,13-16,29-34H2,1-6H3,(H,61,63)(H,62,64)
+KDW         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                               RNCINFJGGSQEHN-UHFFFAOYSA-N
+KDW SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                                  CC(=O)NCCNCc1cc(C)c(OCc2cccc(c2C)c3cccc(COc4cc(OCc5cncc(c5)C#N)c(CNCCNC(C)=O)cc4C)c3C)cc1OCc6cncc(c6)C#N
+KDW           SMILES               CACTVS 3.385                                                                                                                                                                                                  CC(=O)NCCNCc1cc(C)c(OCc2cccc(c2C)c3cccc(COc4cc(OCc5cncc(c5)C#N)c(CNCCNC(C)=O)cc4C)c3C)cc1OCc6cncc(c6)C#N
+KDW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                                                                                                                  Cc1cc(c(cc1OCc2cccc(c2C)c3cccc(c3C)COc4cc(c(cc4C)CNCCNC(=O)C)OCc5cc(cnc5)C#N)OCc6cc(cnc6)C#N)CNCCNC(=O)C
+KDW           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                                                                                                  Cc1cc(c(cc1OCc2cccc(c2C)c3cccc(c3C)COc4cc(c(cc4C)CNCCNC(=O)C)OCc5cc(cnc5)C#N)OCc6cc(cnc6)C#N)CNCCNC(=O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KDW acedrg               243         "dictionary generator"                  
+KDW acedrg_database      11          "data source"                           
+KDW rdkit                2017.03.2   "Chemoinformatics tool"
+KDW refmac5              5.8.0238    "optimization tool"                     

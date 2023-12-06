@@ -1,0 +1,180 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+01Y     01Y      "(cyclopentyloxy)acetic acid"     NON-POLYMER     21     10     .     
+#
+data_comp_01Y
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+01Y     O32     O       O       0       -2.745      0.337       1.646       
+01Y     C14     C       C       0       -2.568      0.382       0.412       
+01Y     C5      C       CH2     0       -1.224      0.896       -0.079      
+01Y     O21     O       O2      0       -0.269      -0.170      -0.162      
+01Y     C44     C       CH1     0       1.053       0.209       -0.520      
+01Y     C49     C       CH2     0       1.810       -1.022      -1.007      
+01Y     C48     C       CH2     0       3.255       -0.744      -0.664      
+01Y     C47     C       CH2     0       3.255       0.212       0.484       
+01Y     C45     C       CH2     0       1.821       0.647       0.722       
+01Y     OXT     O       OC      -1      -3.399      0.042       -0.453      
+01Y     H5      H       H       0       -0.892      1.581       0.536       
+01Y     H5A     H       H       0       -1.333      1.302       -0.963      
+01Y     H44     H       H       0       1.023       0.919       -1.208      
+01Y     H49     H       H       0       1.492       -1.834      -0.547      
+01Y     H49A    H       H       0       1.699       -1.140      -1.980      
+01Y     H48     H       H       0       3.721       -0.351      -1.439      
+01Y     H48A    H       H       0       3.714       -1.580      -0.416      
+01Y     H47     H       H       0       3.817       0.995       0.278       
+01Y     H47A    H       H       0       3.616       -0.223      1.292       
+01Y     H45     H       H       0       1.457       0.213       1.529       
+01Y     H45A    H       H       0       1.770       1.625       0.837       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+01Y         O32         C14      DOUBLE       n     1.247  0.0187     1.247  0.0187
+01Y         C14          C5      SINGLE       n     1.520  0.0100     1.520  0.0100
+01Y          C5         O21      SINGLE       n     1.433  0.0100     1.433  0.0100
+01Y         O21         C44      SINGLE       n     1.421  0.0102     1.421  0.0102
+01Y         C44         C45      SINGLE       n     1.526  0.0100     1.526  0.0100
+01Y         C47         C45      SINGLE       n     1.512  0.0200     1.512  0.0200
+01Y         C44         C49      SINGLE       n     1.526  0.0100     1.526  0.0100
+01Y         C49         C48      SINGLE       n     1.512  0.0200     1.512  0.0200
+01Y         C48         C47      SINGLE       n     1.488  0.0200     1.488  0.0200
+01Y         C14         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+01Y          C5          H5      SINGLE       n     1.089  0.0100     0.979  0.0144
+01Y          C5         H5A      SINGLE       n     1.089  0.0100     0.979  0.0144
+01Y         C44         H44      SINGLE       n     1.089  0.0100     0.988  0.0200
+01Y         C49         H49      SINGLE       n     1.089  0.0100     0.986  0.0108
+01Y         C49        H49A      SINGLE       n     1.089  0.0100     0.986  0.0108
+01Y         C48         H48      SINGLE       n     1.089  0.0100     0.986  0.0110
+01Y         C48        H48A      SINGLE       n     1.089  0.0100     0.986  0.0110
+01Y         C47         H47      SINGLE       n     1.089  0.0100     0.986  0.0110
+01Y         C47        H47A      SINGLE       n     1.089  0.0100     0.986  0.0110
+01Y         C45         H45      SINGLE       n     1.089  0.0100     0.986  0.0108
+01Y         C45        H45A      SINGLE       n     1.089  0.0100     0.986  0.0108
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+01Y         O32         C14          C5     117.215    2.49
+01Y         O32         C14         OXT     125.569    1.50
+01Y          C5         C14         OXT     117.215    2.49
+01Y         C14          C5         O21     110.427    2.31
+01Y         C14          C5          H5     109.314    1.50
+01Y         C14          C5         H5A     109.314    1.50
+01Y         O21          C5          H5     109.076    1.50
+01Y         O21          C5         H5A     109.076    1.50
+01Y          H5          C5         H5A     108.122    1.50
+01Y          C5         O21         C44     114.719    2.29
+01Y         O21         C44         C45     110.770    3.00
+01Y         O21         C44         C49     110.770    3.00
+01Y         O21         C44         H44     110.257    1.68
+01Y         C45         C44         C49     105.141    1.50
+01Y         C45         C44         H44     112.648    1.50
+01Y         C49         C44         H44     112.648    1.50
+01Y         C44         C49         C48     105.200    1.50
+01Y         C44         C49         H49     110.862    1.50
+01Y         C44         C49        H49A     110.862    1.50
+01Y         C48         C49         H49     110.763    1.50
+01Y         C48         C49        H49A     110.763    1.50
+01Y         H49         C49        H49A     109.046    1.50
+01Y         C49         C48         C47     106.171    2.25
+01Y         C49         C48         H48     110.533    1.50
+01Y         C49         C48        H48A     110.533    1.50
+01Y         C47         C48         H48     110.679    1.50
+01Y         C47         C48        H48A     110.679    1.50
+01Y         H48         C48        H48A     108.634    1.62
+01Y         C45         C47         C48     106.171    2.25
+01Y         C45         C47         H47     110.533    1.50
+01Y         C45         C47        H47A     110.533    1.50
+01Y         C48         C47         H47     110.679    1.50
+01Y         C48         C47        H47A     110.679    1.50
+01Y         H47         C47        H47A     108.634    1.62
+01Y         C44         C45         C47     105.200    1.50
+01Y         C44         C45         H45     110.862    1.50
+01Y         C44         C45        H45A     110.862    1.50
+01Y         C47         C45         H45     110.763    1.50
+01Y         C47         C45        H45A     110.763    1.50
+01Y         H45         C45        H45A     109.046    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+01Y             sp2_sp3_2         O32         C14          C5         O21     120.000    10.0     6
+01Y            sp3_sp3_37         C14          C5         O21         C44     180.000    10.0     3
+01Y            sp3_sp3_41         C45         C44         O21          C5      60.000    10.0     3
+01Y            sp3_sp3_46         O21         C44         C49         C48      60.000    10.0     3
+01Y             sp3_sp3_7         O21         C44         C45         C47     180.000    10.0     3
+01Y            sp3_sp3_28         C47         C48         C49         C44     -60.000    10.0     3
+01Y            sp3_sp3_19         C45         C47         C48         C49      60.000    10.0     3
+01Y            sp3_sp3_10         C44         C45         C47         C48     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+01Y    chir_1    C44    O21    C45    C49    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+01Y    plan-1         C14   0.020
+01Y    plan-1          C5   0.020
+01Y    plan-1         O32   0.020
+01Y    plan-1         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+01Y           SMILES              ACDLabs 12.01                                            O=C(O)COC1CCCC1
+01Y SMILES_CANONICAL               CACTVS 3.370                                            OC(=O)COC1CCCC1
+01Y           SMILES               CACTVS 3.370                                            OC(=O)COC1CCCC1
+01Y SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                          C1CCC(C1)OCC(=O)O
+01Y           SMILES "OpenEye OEToolkits" 1.7.0                                          C1CCC(C1)OCC(=O)O
+01Y            InChI                InChI  1.03 InChI=1S/C7H12O3/c8-7(9)5-10-6-3-1-2-4-6/h6H,1-5H2,(H,8,9)
+01Y         InChIKey                InChI  1.03                                JPUGGGCNNKXYCU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+01Y acedrg               243         "dictionary generator"                  
+01Y acedrg_database      11          "data source"                           
+01Y rdkit                2017.03.2   "Chemoinformatics tool"
+01Y refmac5              5.8.0238    "optimization tool"                     

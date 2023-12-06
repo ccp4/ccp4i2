@@ -1,0 +1,242 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+K80     K80      (2S,3R,4S,5S)-2-methyl-5-(4-methylphenyl)pyrrolidine-3,4-diol     NON-POLYMER     32     15     .     
+#
+data_comp_K80
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+K80     CAJ     C       CR16    0       -17.456     13.411      32.623      
+K80     CAK     C       CR16    0       -17.730     14.340      33.617      
+K80     CAL     C       CR6     0       -17.443     14.078      34.948      
+K80     CAO     C       CH3     0       -17.745     15.095      36.021      
+K80     CAM     C       CR16    0       -16.872     12.853      35.258      
+K80     CAN     C       CR16    0       -16.594     11.916      34.272      
+K80     CAI     C       CR6     0       -16.882     12.184      32.938      
+K80     CAC     C       CH1     0       -16.579     11.164      31.858      
+K80     NAD     N       NT1     0       -17.113     9.829       32.183      
+K80     CAE     C       CH1     0       -16.036     8.819       32.202      
+K80     CAF     C       CH3     0       -16.541     7.428       31.848      
+K80     CAA     C       CH1     0       -14.996     9.433       31.248      
+K80     OAH     O       OH1     0       -15.315     9.198       29.882      
+K80     CAB     C       CH1     0       -15.069     10.916      31.629      
+K80     OAG     O       OH1     0       -14.585     11.768      30.602      
+K80     H1      H       H       0       -17.660     13.614      31.727      
+K80     H2      H       H       0       -18.118     15.165      33.383      
+K80     H3      H       H       0       -17.395     14.788      36.873      
+K80     H4      H       H       0       -18.706     15.215      36.094      
+K80     H5      H       H       0       -17.332     15.943      35.791      
+K80     H6      H       H       0       -16.668     12.652      36.155      
+K80     H7      H       H       0       -16.205     11.093      34.508      
+K80     H8      H       H       0       -16.987     11.461      31.009      
+K80     H9      H       H       0       -17.757     9.604       31.610      
+K80     H11     H       H       0       -15.656     8.792       33.115      
+K80     H12     H       H       0       -17.145     7.117       32.542      
+K80     H13     H       H       0       -15.788     6.818       31.779      
+K80     H14     H       H       0       -17.012     7.456       31.000      
+K80     H15     H       H       0       -14.098     9.072       31.454      
+K80     H16     H       H       0       -14.964     8.462       29.646      
+K80     H17     H       H       0       -14.555     11.069      32.460      
+K80     H18     H       H       0       -14.636     12.574      30.863      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+K80         CAA         OAH      SINGLE       n     1.421  0.0100     1.421  0.0100
+K80         CAB         OAG      SINGLE       n     1.419  0.0101     1.419  0.0101
+K80         CAA         CAB      SINGLE       n     1.533  0.0100     1.533  0.0100
+K80         CAE         CAA      SINGLE       n     1.539  0.0102     1.539  0.0102
+K80         CAC         CAB      SINGLE       n     1.547  0.0100     1.547  0.0100
+K80         CAE         CAF      SINGLE       n     1.520  0.0100     1.520  0.0100
+K80         CAC         NAD      SINGLE       n     1.471  0.0128     1.471  0.0128
+K80         CAI         CAC      SINGLE       n     1.514  0.0146     1.514  0.0146
+K80         NAD         CAE      SINGLE       n     1.475  0.0100     1.475  0.0100
+K80         CAJ         CAI      DOUBLE       y     1.387  0.0100     1.387  0.0100
+K80         CAJ         CAK      SINGLE       y     1.384  0.0100     1.384  0.0100
+K80         CAN         CAI      SINGLE       y     1.387  0.0100     1.387  0.0100
+K80         CAK         CAL      DOUBLE       y     1.382  0.0115     1.382  0.0115
+K80         CAM         CAN      DOUBLE       y     1.384  0.0100     1.384  0.0100
+K80         CAL         CAM      SINGLE       y     1.382  0.0115     1.382  0.0115
+K80         CAL         CAO      SINGLE       n     1.507  0.0176     1.507  0.0176
+K80         CAJ          H1      SINGLE       n     1.082  0.0130     0.941  0.0149
+K80         CAK          H2      SINGLE       n     1.082  0.0130     0.942  0.0167
+K80         CAO          H3      SINGLE       n     1.089  0.0100     0.971  0.0135
+K80         CAO          H4      SINGLE       n     1.089  0.0100     0.971  0.0135
+K80         CAO          H5      SINGLE       n     1.089  0.0100     0.971  0.0135
+K80         CAM          H6      SINGLE       n     1.082  0.0130     0.942  0.0167
+K80         CAN          H7      SINGLE       n     1.082  0.0130     0.941  0.0149
+K80         CAC          H8      SINGLE       n     1.089  0.0100     0.988  0.0131
+K80         NAD          H9      SINGLE       n     1.036  0.0160     0.890  0.0200
+K80         CAE         H11      SINGLE       n     1.089  0.0100     0.990  0.0135
+K80         CAF         H12      SINGLE       n     1.089  0.0100     0.971  0.0169
+K80         CAF         H13      SINGLE       n     1.089  0.0100     0.971  0.0169
+K80         CAF         H14      SINGLE       n     1.089  0.0100     0.971  0.0169
+K80         CAA         H15      SINGLE       n     1.089  0.0100     0.990  0.0168
+K80         OAH         H16      SINGLE       n     0.970  0.0120     0.849  0.0200
+K80         CAB         H17      SINGLE       n     1.089  0.0100     0.989  0.0200
+K80         OAG         H18      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+K80         CAI         CAJ         CAK     120.636    1.50
+K80         CAI         CAJ          H1     119.680    1.50
+K80         CAK         CAJ          H1     119.684    1.50
+K80         CAJ         CAK         CAL     121.281    1.50
+K80         CAJ         CAK          H2     119.434    1.50
+K80         CAL         CAK          H2     119.285    1.50
+K80         CAK         CAL         CAM     117.724    1.50
+K80         CAK         CAL         CAO     121.138    1.50
+K80         CAM         CAL         CAO     121.138    1.50
+K80         CAL         CAO          H3     109.567    1.50
+K80         CAL         CAO          H4     109.567    1.50
+K80         CAL         CAO          H5     109.567    1.50
+K80          H3         CAO          H4     109.348    1.50
+K80          H3         CAO          H5     109.348    1.50
+K80          H4         CAO          H5     109.348    1.50
+K80         CAN         CAM         CAL     121.281    1.50
+K80         CAN         CAM          H6     119.434    1.50
+K80         CAL         CAM          H6     119.285    1.50
+K80         CAI         CAN         CAM     120.636    1.50
+K80         CAI         CAN          H7     119.680    1.50
+K80         CAM         CAN          H7     119.684    1.50
+K80         CAC         CAI         CAJ     120.779    1.50
+K80         CAC         CAI         CAN     120.779    1.50
+K80         CAJ         CAI         CAN     118.442    1.50
+K80         CAB         CAC         NAD     103.104    2.01
+K80         CAB         CAC         CAI     114.118    1.57
+K80         CAB         CAC          H8     109.153    1.50
+K80         NAD         CAC         CAI     112.593    1.88
+K80         NAD         CAC          H8     108.545    1.50
+K80         CAI         CAC          H8     109.229    1.50
+K80         CAC         NAD         CAE     109.056    3.00
+K80         CAC         NAD          H9     111.130    2.99
+K80         CAE         NAD          H9     110.078    2.70
+K80         CAA         CAE         CAF     116.281    2.92
+K80         CAA         CAE         NAD     103.104    2.01
+K80         CAA         CAE         H11     109.485    1.57
+K80         CAF         CAE         NAD     111.633    2.37
+K80         CAF         CAE         H11     109.109    1.50
+K80         NAD         CAE         H11     108.836    1.79
+K80         CAE         CAF         H12     109.537    1.50
+K80         CAE         CAF         H13     109.537    1.50
+K80         CAE         CAF         H14     109.537    1.50
+K80         H12         CAF         H13     109.421    1.50
+K80         H12         CAF         H14     109.421    1.50
+K80         H13         CAF         H14     109.421    1.50
+K80         OAH         CAA         CAB     112.463    2.73
+K80         OAH         CAA         CAE     111.549    2.36
+K80         OAH         CAA         H15     110.147    1.64
+K80         CAB         CAA         CAE     103.086    2.24
+K80         CAB         CAA         H15     110.255    2.04
+K80         CAE         CAA         H15     109.851    1.50
+K80         CAA         OAH         H16     108.584    1.68
+K80         OAG         CAB         CAA     112.463    2.73
+K80         OAG         CAB         CAC     110.392    2.12
+K80         OAG         CAB         H17     110.259    1.63
+K80         CAA         CAB         CAC     104.443    2.26
+K80         CAA         CAB         H17     110.255    2.04
+K80         CAC         CAB         H17     111.254    2.22
+K80         CAB         OAG         H18     109.104    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+K80              const_21         CAI         CAJ         CAK         CAL       0.000    10.0     2
+K80       const_sp2_sp2_3         CAC         CAI         CAJ         CAK     180.000     5.0     2
+K80            sp3_sp3_34         CAB         CAA         OAH         H16     180.000    10.0     3
+K80            sp3_sp3_14         OAH         CAA         CAB         OAG     -60.000    10.0     3
+K80            sp3_sp3_37         CAA         CAB         OAG         H18     180.000    10.0     3
+K80              const_18         CAJ         CAK         CAL         CAO     180.000    10.0     2
+K80             sp2_sp3_7         CAK         CAL         CAO          H3     150.000    10.0     6
+K80              const_15         CAO         CAL         CAM         CAN     180.000    10.0     2
+K80       const_sp2_sp2_9         CAL         CAM         CAN         CAI       0.000     5.0     2
+K80       const_sp2_sp2_7         CAC         CAI         CAN         CAM     180.000     5.0     2
+K80             sp2_sp3_1         CAJ         CAI         CAC         CAB     150.000    10.0     6
+K80             sp3_sp3_4         OAG         CAB         CAC         NAD     -60.000    10.0     3
+K80            sp3_sp3_49         CAB         CAC         NAD         CAE     180.000    10.0     3
+K80            sp3_sp3_30         CAF         CAE         NAD         CAC     180.000    10.0     3
+K80            sp3_sp3_40         CAA         CAE         CAF         H12     180.000    10.0     3
+K80            sp3_sp3_23         OAH         CAA         CAE         CAF      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+K80    chir_1    CAC    NAD    CAB    CAI    positive
+K80    chir_2    CAE    NAD    CAA    CAF    positive
+K80    chir_3    CAA    OAH    CAB    CAE    negative
+K80    chir_4    CAB    OAG    CAA    CAC    positive
+K80    chir_5    NAD    CAC    CAE    H9    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+K80    plan-1         CAC   0.020
+K80    plan-1         CAI   0.020
+K80    plan-1         CAJ   0.020
+K80    plan-1         CAK   0.020
+K80    plan-1         CAL   0.020
+K80    plan-1         CAM   0.020
+K80    plan-1         CAN   0.020
+K80    plan-1         CAO   0.020
+K80    plan-1          H1   0.020
+K80    plan-1          H2   0.020
+K80    plan-1          H6   0.020
+K80    plan-1          H7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+K80           SMILES              ACDLabs 12.01                                                                              OC2C(c1ccc(cc1)C)NC(C)C2O
+K80            InChI                InChI  1.03 InChI=1S/C12H17NO2/c1-7-3-5-9(6-4-7)10-12(15)11(14)8(2)13-10/h3-6,8,10-15H,1-2H3/t8-,10-,11+,12-/m0/s1
+K80         InChIKey                InChI  1.03                                                                            VSLJKQDKGOXAQN-IXLVHKGHSA-N
+K80 SMILES_CANONICAL               CACTVS 3.370                                                            C[C@@H]1N[C@H]([C@H](O)[C@@H]1O)c2ccc(C)cc2
+K80           SMILES               CACTVS 3.370                                                                  C[CH]1N[CH]([CH](O)[CH]1O)c2ccc(C)cc2
+K80 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                         Cc1ccc(cc1)[C@H]2[C@@H]([C@@H]([C@@H](N2)C)O)O
+K80           SMILES "OpenEye OEToolkits" 1.7.6                                                                            Cc1ccc(cc1)C2C(C(C(N2)C)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+K80 acedrg               243         "dictionary generator"                  
+K80 acedrg_database      11          "data source"                           
+K80 rdkit                2017.03.2   "Chemoinformatics tool"
+K80 refmac5              5.8.0238    "optimization tool"                     

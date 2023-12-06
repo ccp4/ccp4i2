@@ -1,0 +1,406 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FIT     FIT      (4aR,4bS,6aS,7S,9aS,9bS,11aR)-N-tert-butyl-4a,6a-dimethyl-2-oxo-2,4a,4b,5,6,6a,7,8,9,9a,9b,10,11,11a-tetradecahydro-1H-indeno[5,4-f]quinoline-7-carboxamide     NON-POLYMER     63     27     .     
+#
+data_comp_FIT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FIT     N1      N       NR6     0       2.385       21.258      -30.550     
+FIT     C2      C       CR16    0       0.965       19.359      -30.955     
+FIT     N2      N       NH1     0       6.957       15.309      -36.659     
+FIT     C4      C       CH1     0       3.491       20.536      -31.200     
+FIT     C5      C       CH2     0       4.666       21.424      -31.602     
+FIT     C6      C       CH2     0       5.811       20.578      -32.158     
+FIT     O1      O       O       0       0.270       21.276      -29.743     
+FIT     O2      O       O       0       8.429       16.874      -37.392     
+FIT     C1      C       CR16    0       1.841       18.863      -31.827     
+FIT     C3      C       CR6     0       1.168       20.698      -30.352     
+FIT     C7      C       CH1     0       5.370       19.702      -33.331     
+FIT     C8      C       CH1     0       4.137       18.838      -32.960     
+FIT     C9      C       CT      0       2.949       19.710      -32.416     
+FIT     C10     C       CH2     0       3.781       17.843      -34.085     
+FIT     C11     C       CH2     0       4.975       17.020      -34.595     
+FIT     C12     C       CT      0       6.155       17.891      -35.017     
+FIT     C13     C       CH1     0       6.495       18.787      -33.804     
+FIT     C14     C       CH2     0       7.861       19.384      -34.146     
+FIT     C15     C       CH2     0       8.592       18.237      -34.873     
+FIT     C16     C       CH1     0       7.521       17.148      -35.185     
+FIT     C17     C       CH3     0       5.809       18.678      -36.297     
+FIT     C18     C       CH3     0       2.292       20.601      -33.505     
+FIT     C19     C       C       0       7.696       16.419      -36.510     
+FIT     C20     C       CT      0       6.770       14.517      -37.905     
+FIT     C21     C       CH3     0       6.126       15.397      -38.970     
+FIT     C22     C       CH3     0       5.844       13.347      -37.595     
+FIT     C23     C       CH3     0       8.112       13.981      -38.392     
+FIT     HN1     H       H       0       2.512       22.081      -30.281     
+FIT     H2      H       H       0       0.205       18.861      -30.711     
+FIT     HN2     H       H       0       6.530       14.999      -35.937     
+FIT     H4      H       H       0       3.832       19.870      -30.552     
+FIT     H5      H       H       0       4.378       22.067      -32.276     
+FIT     H5A     H       H       0       4.978       21.921      -30.823     
+FIT     H6      H       H       0       6.161       20.009      -31.447     
+FIT     H6A     H       H       0       6.527       21.172      -32.450     
+FIT     H1      H       H       0       1.767       17.967      -32.072     
+FIT     H7      H       H       0       5.119       20.299      -34.072     
+FIT     H8      H       H       0       4.419       18.284      -32.194     
+FIT     H10     H       H       0       3.396       18.336      -34.834     
+FIT     H10A    H       H       0       3.101       17.225      -33.760     
+FIT     H11     H       H       0       4.688       16.478      -35.359     
+FIT     H11A    H       H       0       5.266       16.407      -33.888     
+FIT     H13     H       H       0       6.657       18.168      -33.052     
+FIT     H14     H       H       0       8.341       19.648      -33.334     
+FIT     H14A    H       H       0       7.765       20.165      -34.729     
+FIT     H15     H       H       0       9.293       17.869      -34.304     
+FIT     H15A    H       H       0       9.002       18.569      -35.691     
+FIT     H16     H       H       0       7.570       16.482      -34.465     
+FIT     H17     H       H       0       6.608       19.103      -36.655     
+FIT     H17A    H       H       0       5.148       19.360      -36.101     
+FIT     H17B    H       H       0       5.443       18.070      -36.965     
+FIT     H18     H       H       0       2.816       20.564      -34.318     
+FIT     H18A    H       H       0       2.250       21.518      -33.196     
+FIT     H18B    H       H       0       1.394       20.287      -33.693     
+FIT     H21     H       H       0       5.840       14.844      -39.719     
+FIT     H21A    H       H       0       6.767       16.058      -39.285     
+FIT     H21B    H       H       0       5.352       15.852      -38.591     
+FIT     H22     H       H       0       5.004       13.683      -37.236     
+FIT     H22A    H       H       0       6.266       12.763      -36.940     
+FIT     H22B    H       H       0       5.669       12.846      -38.412     
+FIT     H23     H       H       0       7.963       13.240      -39.006     
+FIT     H23A    H       H       0       8.633       13.670      -37.630     
+FIT     H23B    H       H       0       8.602       14.685      -38.852     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FIT          N1          C4      SINGLE       n     1.467  0.0100     1.467  0.0100
+FIT          N1          C3      SINGLE       n     1.340  0.0188     1.340  0.0188
+FIT          C2          C1      DOUBLE       n     1.328  0.0108     1.328  0.0108
+FIT          C2          C3      SINGLE       n     1.478  0.0100     1.478  0.0100
+FIT          N2         C19      SINGLE       n     1.335  0.0100     1.335  0.0100
+FIT          N2         C20      SINGLE       n     1.481  0.0100     1.481  0.0100
+FIT          C4          C5      SINGLE       n     1.526  0.0107     1.526  0.0107
+FIT          C4          C9      SINGLE       n     1.558  0.0138     1.558  0.0138
+FIT          C5          C6      SINGLE       n     1.526  0.0100     1.526  0.0100
+FIT          C6          C7      SINGLE       n     1.526  0.0100     1.526  0.0100
+FIT          O1          C3      DOUBLE       n     1.229  0.0100     1.229  0.0100
+FIT          O2         C19      DOUBLE       n     1.231  0.0100     1.231  0.0100
+FIT          C1          C9      SINGLE       n     1.509  0.0100     1.509  0.0100
+FIT          C7          C8      SINGLE       n     1.543  0.0100     1.543  0.0100
+FIT          C7         C13      SINGLE       n     1.521  0.0100     1.521  0.0100
+FIT          C8          C9      SINGLE       n     1.566  0.0100     1.566  0.0100
+FIT          C8         C10      SINGLE       n     1.539  0.0100     1.539  0.0100
+FIT          C9         C18      SINGLE       n     1.547  0.0100     1.547  0.0100
+FIT         C10         C11      SINGLE       n     1.535  0.0100     1.535  0.0100
+FIT         C11         C12      SINGLE       n     1.524  0.0100     1.524  0.0100
+FIT         C12         C13      SINGLE       n     1.540  0.0100     1.540  0.0100
+FIT         C12         C16      SINGLE       n     1.558  0.0100     1.558  0.0100
+FIT         C12         C17      SINGLE       n     1.536  0.0100     1.536  0.0100
+FIT         C13         C14      SINGLE       n     1.530  0.0100     1.530  0.0100
+FIT         C14         C15      SINGLE       n     1.543  0.0100     1.543  0.0100
+FIT         C15         C16      SINGLE       n     1.552  0.0141     1.552  0.0141
+FIT         C16         C19      SINGLE       n     1.516  0.0100     1.516  0.0100
+FIT         C20         C21      SINGLE       n     1.522  0.0113     1.522  0.0113
+FIT         C20         C22      SINGLE       n     1.522  0.0113     1.522  0.0113
+FIT         C20         C23      SINGLE       n     1.522  0.0113     1.522  0.0113
+FIT          N1         HN1      SINGLE       n     1.016  0.0100     0.875  0.0161
+FIT          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0156
+FIT          N2         HN2      SINGLE       n     1.016  0.0100     0.893  0.0200
+FIT          C4          H4      SINGLE       n     1.089  0.0100     0.989  0.0199
+FIT          C5          H5      SINGLE       n     1.089  0.0100     0.976  0.0200
+FIT          C5         H5A      SINGLE       n     1.089  0.0100     0.976  0.0200
+FIT          C6          H6      SINGLE       n     1.089  0.0100     0.976  0.0200
+FIT          C6         H6A      SINGLE       n     1.089  0.0100     0.976  0.0200
+FIT          C1          H1      SINGLE       n     1.082  0.0130     0.933  0.0100
+FIT          C7          H7      SINGLE       n     1.089  0.0100     0.985  0.0107
+FIT          C8          H8      SINGLE       n     1.089  0.0100     0.987  0.0118
+FIT         C10         H10      SINGLE       n     1.089  0.0100     0.976  0.0117
+FIT         C10        H10A      SINGLE       n     1.089  0.0100     0.976  0.0117
+FIT         C11         H11      SINGLE       n     1.089  0.0100     0.980  0.0166
+FIT         C11        H11A      SINGLE       n     1.089  0.0100     0.980  0.0166
+FIT         C13         H13      SINGLE       n     1.089  0.0100     0.985  0.0200
+FIT         C14         H14      SINGLE       n     1.089  0.0100     0.979  0.0163
+FIT         C14        H14A      SINGLE       n     1.089  0.0100     0.979  0.0163
+FIT         C15         H15      SINGLE       n     1.089  0.0100     0.975  0.0173
+FIT         C15        H15A      SINGLE       n     1.089  0.0100     0.975  0.0173
+FIT         C16         H16      SINGLE       n     1.089  0.0100     0.982  0.0192
+FIT         C17         H17      SINGLE       n     1.089  0.0100     0.974  0.0200
+FIT         C17        H17A      SINGLE       n     1.089  0.0100     0.974  0.0200
+FIT         C17        H17B      SINGLE       n     1.089  0.0100     0.974  0.0200
+FIT         C18         H18      SINGLE       n     1.089  0.0100     0.969  0.0135
+FIT         C18        H18A      SINGLE       n     1.089  0.0100     0.969  0.0135
+FIT         C18        H18B      SINGLE       n     1.089  0.0100     0.969  0.0135
+FIT         C21         H21      SINGLE       n     1.089  0.0100     0.974  0.0147
+FIT         C21        H21A      SINGLE       n     1.089  0.0100     0.974  0.0147
+FIT         C21        H21B      SINGLE       n     1.089  0.0100     0.974  0.0147
+FIT         C22         H22      SINGLE       n     1.089  0.0100     0.974  0.0147
+FIT         C22        H22A      SINGLE       n     1.089  0.0100     0.974  0.0147
+FIT         C22        H22B      SINGLE       n     1.089  0.0100     0.974  0.0147
+FIT         C23         H23      SINGLE       n     1.089  0.0100     0.974  0.0147
+FIT         C23        H23A      SINGLE       n     1.089  0.0100     0.974  0.0147
+FIT         C23        H23B      SINGLE       n     1.089  0.0100     0.974  0.0147
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FIT          C4          N1          C3     124.037    3.00
+FIT          C4          N1         HN1     118.500    2.25
+FIT          C3          N1         HN1     117.456    2.09
+FIT          C1          C2          C3     121.495    1.50
+FIT          C1          C2          H2     120.097    1.50
+FIT          C3          C2          H2     118.409    3.00
+FIT         C19          N2         C20     124.963    1.50
+FIT         C19          N2         HN2     118.832    2.56
+FIT         C20          N2         HN2     116.205    1.50
+FIT          N1          C4          C5     111.005    2.13
+FIT          N1          C4          C9     109.412    1.55
+FIT          N1          C4          H4     108.138    1.50
+FIT          C5          C4          C9     110.815    2.54
+FIT          C5          C4          H4     108.024    1.50
+FIT          C9          C4          H4     106.255    1.50
+FIT          C4          C5          C6     111.293    1.50
+FIT          C4          C5          H5     109.281    1.50
+FIT          C4          C5         H5A     109.281    1.50
+FIT          C6          C5          H5     109.232    1.50
+FIT          C6          C5         H5A     109.232    1.50
+FIT          H5          C5         H5A     107.853    1.50
+FIT          C5          C6          C7     112.182    1.50
+FIT          C5          C6          H6     109.059    1.50
+FIT          C5          C6         H6A     109.059    1.50
+FIT          C7          C6          H6     109.128    1.50
+FIT          C7          C6         H6A     109.128    1.50
+FIT          H6          C6         H6A     107.970    1.50
+FIT          C2          C1          C9     122.801    1.50
+FIT          C2          C1          H1     118.384    1.50
+FIT          C9          C1          H1     118.814    1.50
+FIT          N1          C3          C2     117.048    2.68
+FIT          N1          C3          O1     121.694    1.50
+FIT          C2          C3          O1     121.258    1.50
+FIT          C6          C7          C8     110.602    1.50
+FIT          C6          C7         C13     111.562    1.50
+FIT          C6          C7          H7     108.639    1.50
+FIT          C8          C7         C13     108.824    1.50
+FIT          C8          C7          H7     108.691    1.50
+FIT         C13          C7          H7     108.729    1.50
+FIT          C7          C8          C9     112.536    1.50
+FIT          C7          C8         C10     111.905    1.50
+FIT          C7          C8          H8     106.087    1.50
+FIT          C9          C8         C10     115.032    1.54
+FIT          C9          C8          H8     105.239    1.50
+FIT         C10          C8          H8     106.099    1.50
+FIT          C4          C9          C1     108.304    2.23
+FIT          C4          C9          C8     110.307    3.00
+FIT          C4          C9         C18     111.301    2.14
+FIT          C1          C9          C8     109.169    1.62
+FIT          C1          C9         C18     106.239    1.50
+FIT          C8          C9         C18     113.180    1.83
+FIT          C8         C10         C11     113.533    1.50
+FIT          C8         C10         H10     108.840    1.50
+FIT          C8         C10        H10A     108.840    1.50
+FIT         C11         C10         H10     108.860    1.50
+FIT         C11         C10        H10A     108.860    1.50
+FIT         H10         C10        H10A     107.720    1.50
+FIT         C10         C11         C12     111.787    1.50
+FIT         C10         C11         H11     109.340    1.50
+FIT         C10         C11        H11A     109.340    1.50
+FIT         C12         C11         H11     109.275    1.50
+FIT         C12         C11        H11A     109.275    1.50
+FIT         H11         C11        H11A     107.979    1.50
+FIT         C11         C12         C13     106.792    1.50
+FIT         C11         C12         C16     116.188    1.50
+FIT         C11         C12         C17     110.660    1.50
+FIT         C13         C12         C16      99.551    1.50
+FIT         C13         C12         C17     112.380    1.50
+FIT         C16         C12         C17     109.725    1.50
+FIT          C7         C13         C12     114.635    1.50
+FIT          C7         C13         C14     119.365    1.50
+FIT          C7         C13         H13     106.057    1.50
+FIT         C12         C13         C14     104.315    1.50
+FIT         C12         C13         H13     105.965    1.50
+FIT         C14         C13         H13     106.241    1.50
+FIT         C13         C14         C15     103.874    1.50
+FIT         C13         C14         H14     110.972    1.50
+FIT         C13         C14        H14A     110.972    1.50
+FIT         C15         C14         H14     111.013    1.50
+FIT         C15         C14        H14A     111.013    1.50
+FIT         H14         C14        H14A     109.060    1.50
+FIT         C14         C15         C16     106.636    1.50
+FIT         C14         C15         H15     110.428    1.50
+FIT         C14         C15        H15A     110.428    1.50
+FIT         C16         C15         H15     110.439    1.50
+FIT         C16         C15        H15A     110.439    1.50
+FIT         H15         C15        H15A     108.534    1.50
+FIT         C12         C16         C15     103.894    1.50
+FIT         C12         C16         C19     113.659    2.53
+FIT         C12         C16         H16     107.310    1.50
+FIT         C15         C16         C19     113.837    1.71
+FIT         C15         C16         H16     107.927    1.50
+FIT         C19         C16         H16     108.646    1.50
+FIT         C12         C17         H17     109.564    1.50
+FIT         C12         C17        H17A     109.564    1.50
+FIT         C12         C17        H17B     109.564    1.50
+FIT         H17         C17        H17A     109.337    1.50
+FIT         H17         C17        H17B     109.337    1.50
+FIT        H17A         C17        H17B     109.337    1.50
+FIT          C9         C18         H18     109.528    1.50
+FIT          C9         C18        H18A     109.528    1.50
+FIT          C9         C18        H18B     109.528    1.50
+FIT         H18         C18        H18A     109.398    1.50
+FIT         H18         C18        H18B     109.398    1.50
+FIT        H18A         C18        H18B     109.398    1.50
+FIT          N2         C19          O2     123.020    1.50
+FIT          N2         C19         C16     115.857    1.50
+FIT          O2         C19         C16     121.136    1.50
+FIT          N2         C20         C21     108.618    1.86
+FIT          N2         C20         C22     108.618    1.86
+FIT          N2         C20         C23     108.618    1.86
+FIT         C21         C20         C22     110.075    1.50
+FIT         C21         C20         C23     110.075    1.50
+FIT         C22         C20         C23     110.075    1.50
+FIT         C20         C21         H21     109.538    1.50
+FIT         C20         C21        H21A     109.538    1.50
+FIT         C20         C21        H21B     109.538    1.50
+FIT         H21         C21        H21A     109.412    1.50
+FIT         H21         C21        H21B     109.412    1.50
+FIT        H21A         C21        H21B     109.412    1.50
+FIT         C20         C22         H22     109.538    1.50
+FIT         C20         C22        H22A     109.538    1.50
+FIT         C20         C22        H22B     109.538    1.50
+FIT         H22         C22        H22A     109.412    1.50
+FIT         H22         C22        H22B     109.412    1.50
+FIT        H22A         C22        H22B     109.412    1.50
+FIT         C20         C23         H23     109.538    1.50
+FIT         C20         C23        H23A     109.538    1.50
+FIT         C20         C23        H23B     109.538    1.50
+FIT         H23         C23        H23A     109.412    1.50
+FIT         H23         C23        H23B     109.412    1.50
+FIT        H23A         C23        H23B     109.412    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FIT             sp2_sp3_2          C3          N1          C4          C5     120.000    10.0     6
+FIT            sp2_sp2_11          O1          C3          N1          C4     180.000     5.0     2
+FIT             sp3_sp3_1          C6          C7          C8          C9      60.000    10.0     3
+FIT           sp3_sp3_119         C12         C13          C7          C6     -60.000    10.0     3
+FIT           sp3_sp3_111          C7          C8          C9         C18     -60.000    10.0     3
+FIT            sp3_sp3_10         C11         C10          C8          C7     -60.000    10.0     3
+FIT           sp3_sp3_127         H18         C18          C9          C4     180.000    10.0     3
+FIT            sp3_sp3_19          C8         C10         C11         C12      60.000    10.0     3
+FIT            sp3_sp3_30         C10         C11         C12         C17     180.000    10.0     3
+FIT            sp3_sp3_43         C17         C12         C13          C7     180.000    10.0     3
+FIT           sp3_sp3_143         C17         C12         C16         C19      60.000    10.0     3
+FIT           sp3_sp3_145         C11         C12         C17         H17     180.000    10.0     3
+FIT            sp3_sp3_49          C7         C13         C14         C15     180.000    10.0     3
+FIT            sp3_sp3_55         C13         C14         C15         C16      60.000    10.0     3
+FIT            sp3_sp3_65         C14         C15         C16         C19      60.000    10.0     3
+FIT            sp2_sp3_19          N2         C19         C16         C12       0.000    10.0     6
+FIT             sp2_sp2_1          C9          C1          C2          C3       0.000     5.0     2
+FIT             sp2_sp2_6          C1          C2          C3          O1     180.000     5.0     2
+FIT           sp3_sp3_154          N2         C20         C21         H21     180.000    10.0     3
+FIT           sp3_sp3_166          N2         C20         C22         H22      60.000    10.0     3
+FIT           sp3_sp3_172          N2         C20         C23         H23     180.000    10.0     3
+FIT            sp2_sp2_15          O2         C19          N2         C20       0.000     5.0     2
+FIT            sp2_sp3_14         C19          N2         C20         C21     120.000    10.0     6
+FIT            sp3_sp3_75          N1          C4          C9         C18     180.000    10.0     3
+FIT            sp3_sp3_85          N1          C4          C5          C6     -60.000    10.0     3
+FIT            sp3_sp3_91          C4          C5          C6          C7     -60.000    10.0     3
+FIT           sp3_sp3_100          C5          C6          C7          C8      60.000    10.0     3
+FIT             sp2_sp3_9          C2          C1          C9         C18    -120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FIT    chir_1    C4    N1    C9    C5    negative
+FIT    chir_2    C7    C8    C13    C6    positive
+FIT    chir_3    C8    C9    C7    C10    positive
+FIT    chir_4    C9    C4    C1    C8    positive
+FIT    chir_5    C12    C16    C13    C11    positive
+FIT    chir_6    C13    C12    C7    C14    positive
+FIT    chir_7    C16    C19    C12    C15    positive
+FIT    chir_8    C20    N2    C21    C22    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FIT    plan-1          C3   0.020
+FIT    plan-1          C4   0.020
+FIT    plan-1         HN1   0.020
+FIT    plan-1          N1   0.020
+FIT    plan-2          C1   0.020
+FIT    plan-2          C2   0.020
+FIT    plan-2          C3   0.020
+FIT    plan-2          H2   0.020
+FIT    plan-3         C19   0.020
+FIT    plan-3         C20   0.020
+FIT    plan-3         HN2   0.020
+FIT    plan-3          N2   0.020
+FIT    plan-4          C1   0.020
+FIT    plan-4          C2   0.020
+FIT    plan-4          C9   0.020
+FIT    plan-4          H1   0.020
+FIT    plan-5          C2   0.020
+FIT    plan-5          C3   0.020
+FIT    plan-5          N1   0.020
+FIT    plan-5          O1   0.020
+FIT    plan-6         C16   0.020
+FIT    plan-6         C19   0.020
+FIT    plan-6          N2   0.020
+FIT    plan-6          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FIT           SMILES              ACDLabs 10.04                                                                                                                                        O=C(NC(C)(C)C)C2C1(CCC3C(C1CC2)CCC4NC(=O)C=CC34C)C
+FIT SMILES_CANONICAL               CACTVS 3.341                                                                                                               CC(C)(C)NC(=O)[C@H]1CC[C@H]2[C@@H]3CC[C@H]4NC(=O)C=C[C@]4(C)[C@H]3CC[C@]12C
+FIT           SMILES               CACTVS 3.341                                                                                                                       CC(C)(C)NC(=O)[CH]1CC[CH]2[CH]3CC[CH]4NC(=O)C=C[C]4(C)[CH]3CC[C]12C
+FIT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                          C[C@]12CC[C@H]3[C@H]([C@@H]1CC[C@@H]2C(=O)NC(C)(C)C)CC[C@@H]4[C@@]3(C=CC(=O)N4)C
+FIT           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                        CC12CCC3C(C1CCC2C(=O)NC(C)(C)C)CCC4C3(C=CC(=O)N4)C
+FIT            InChI                InChI  1.03 InChI=1S/C23H36N2O2/c1-21(2,3)25-20(27)17-8-7-15-14-6-9-18-23(5,13-11-19(26)24-18)16(14)10-12-22(15,17)4/h11,13-18H,6-10,12H2,1-5H3,(H,24,26)(H,25,27)/t14-,15-,16-,17+,18+,22-,23+/m0/s1
+FIT         InChIKey                InChI  1.03                                                                                                                                                               DBEPLOCGEIEOCV-WSBQPABSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FIT acedrg               243         "dictionary generator"                  
+FIT acedrg_database      11          "data source"                           
+FIT rdkit                2017.03.2   "Chemoinformatics tool"
+FIT refmac5              5.8.0238    "optimization tool"                     

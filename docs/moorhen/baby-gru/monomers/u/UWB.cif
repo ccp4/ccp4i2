@@ -1,0 +1,378 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+UWB     UWB      3-(7-ethoxynaphthalen-2-yl)-1-(piperidin-4-ylmethyl)-1H-pyrazolo[3,4-d]pyrimidin-4-amine     NON-POLYMER     56     30     .     
+#
+data_comp_UWB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+UWB     N5      N       NH2     0       0.227       -24.052     -30.886     
+UWB     C       C       CR6     0       -0.930      -23.467     -30.550     
+UWB     C3      C       CR56    0       -1.292      -22.167     -30.988     
+UWB     C4      C       CR5     0       -0.757      -21.153     -31.778     
+UWB     N2      N       NRD5    0       -1.599      -20.124     -31.817     
+UWB     N3      N       NR5     0       -2.687      -20.449     -31.081     
+UWB     C5      C       CH2     0       -3.791      -19.517     -30.928     
+UWB     C6      C       CH1     0       -3.400      -18.270     -30.154     
+UWB     C10     C       CH2     0       -4.530      -17.245     -30.124     
+UWB     C9      C       CH2     0       -4.437      -16.291     -28.966     
+UWB     N4      N       NT1     0       -3.047      -16.128     -28.518     
+UWB     C8      C       CH2     0       -2.472      -17.372     -27.982     
+UWB     C7      C       CH2     0       -2.949      -18.586     -28.731     
+UWB     C2      C       CR56    0       -2.546      -21.681     -30.551     
+UWB     N1      N       NRD6    0       -3.402      -22.365     -29.759     
+UWB     C1      C       CR16    0       -2.942      -23.571     -29.420     
+UWB     N       N       NRD6    0       -1.781      -24.156     -29.758     
+UWB     C11     C       CR6     0       0.527       -21.064     -32.491     
+UWB     C16     C       CR16    0       1.723       -21.125     -31.771     
+UWB     C15     C       CR66    0       2.972       -21.045     -32.421     
+UWB     C17     C       CR16    0       4.193       -21.104     -31.698     
+UWB     C18     C       CR6     0       5.394       -21.027     -32.364     
+UWB     O       O       O2      0       6.642       -21.064     -31.809     
+UWB     C21     C       CH2     0       6.812       -21.576     -30.480     
+UWB     C22     C       CH3     0       8.282       -21.651     -30.203     
+UWB     C19     C       CR16    0       5.421       -20.880     -33.772     
+UWB     C20     C       CR16    0       4.258       -20.820     -34.479     
+UWB     C14     C       CR66    0       3.001       -20.900     -33.836     
+UWB     C13     C       CR16    0       1.771       -20.842     -34.536     
+UWB     C12     C       CR16    0       0.573       -20.922     -33.879     
+UWB     H1      H       H       0       0.511       -24.010     -31.714     
+UWB     H2      H       H       0       0.695       -24.473     -30.275     
+UWB     H3      H       H       0       -4.527      -19.961     -30.461     
+UWB     H4      H       H       0       -4.109      -19.251     -31.815     
+UWB     H5      H       H       0       -2.636      -17.856     -30.624     
+UWB     H6      H       H       0       -4.517      -16.736     -30.950     
+UWB     H7      H       H       0       -5.380      -17.710     -30.077     
+UWB     H8      H       H       0       -4.973      -16.622     -28.226     
+UWB     H9      H       H       0       -4.788      -15.425     -29.229     
+UWB     H10     H       H       0       -2.549      -15.846     -29.202     
+UWB     H12     H       H       0       -2.716      -17.452     -27.046     
+UWB     H13     H       H       0       -1.503      -17.318     -28.036     
+UWB     H14     H       H       0       -2.228      -19.235     -28.758     
+UWB     H15     H       H       0       -3.688      -18.984     -28.245     
+UWB     H16     H       H       0       -3.510      -24.083     -28.866     
+UWB     H17     H       H       0       1.698       -21.221     -30.838     
+UWB     H18     H       H       0       4.170       -21.200     -30.762     
+UWB     H19     H       H       0       6.408       -22.465     -30.408     
+UWB     H20     H       H       0       6.377       -20.982     -29.835     
+UWB     H21     H       H       0       8.426       -21.837     -29.261     
+UWB     H22     H       H       0       8.700       -20.805     -30.433     
+UWB     H23     H       H       0       8.677       -22.361     -30.735     
+UWB     H24     H       H       0       6.247       -20.824     -34.220     
+UWB     H25     H       H       0       4.292       -20.724     -35.415     
+UWB     H26     H       H       0       1.777       -20.746     -35.476     
+UWB     H27     H       H       0       -0.228      -20.881     -34.369     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+UWB         C19         C20      DOUBLE       y     1.359  0.0100     1.359  0.0100
+UWB         C20         C14      SINGLE       y     1.411  0.0100     1.411  0.0100
+UWB         C14         C13      DOUBLE       y     1.413  0.0104     1.413  0.0104
+UWB         C13         C12      SINGLE       y     1.363  0.0106     1.363  0.0106
+UWB         C18         C19      SINGLE       y     1.410  0.0112     1.410  0.0112
+UWB         C15         C14      SINGLE       y     1.418  0.0105     1.418  0.0105
+UWB         C11         C12      DOUBLE       y     1.391  0.0100     1.391  0.0100
+UWB         C18           O      SINGLE       n     1.362  0.0100     1.362  0.0100
+UWB         C17         C18      DOUBLE       y     1.370  0.0100     1.370  0.0100
+UWB         C15         C17      SINGLE       y     1.417  0.0100     1.417  0.0100
+UWB         C16         C15      DOUBLE       y     1.409  0.0100     1.409  0.0100
+UWB           O         C21      SINGLE       n     1.432  0.0104     1.432  0.0104
+UWB         C11         C16      SINGLE       y     1.392  0.0142     1.392  0.0142
+UWB          C4         C11      SINGLE       n     1.473  0.0100     1.473  0.0100
+UWB         C21         C22      SINGLE       n     1.498  0.0164     1.498  0.0164
+UWB          N5           C      SINGLE       n     1.339  0.0100     1.339  0.0100
+UWB          C3          C4      SINGLE       y     1.400  0.0187     1.400  0.0187
+UWB          C4          N2      DOUBLE       y     1.328  0.0100     1.328  0.0100
+UWB           C          C3      DOUBLE       y     1.415  0.0100     1.415  0.0100
+UWB           C           N      SINGLE       y     1.347  0.0100     1.347  0.0100
+UWB          C3          C2      SINGLE       y     1.416  0.0100     1.416  0.0100
+UWB          N2          N3      SINGLE       y     1.349  0.0100     1.349  0.0100
+UWB          C1           N      DOUBLE       y     1.339  0.0100     1.339  0.0100
+UWB          N3          C5      SINGLE       n     1.452  0.0100     1.452  0.0100
+UWB          C5          C6      SINGLE       n     1.517  0.0106     1.517  0.0106
+UWB          N3          C2      SINGLE       y     1.348  0.0100     1.348  0.0100
+UWB          C2          N1      DOUBLE       y     1.346  0.0133     1.346  0.0133
+UWB          N1          C1      SINGLE       y     1.330  0.0100     1.330  0.0100
+UWB          C6         C10      SINGLE       n     1.523  0.0100     1.523  0.0100
+UWB          C6          C7      SINGLE       n     1.523  0.0100     1.523  0.0100
+UWB         C10          C9      SINGLE       n     1.493  0.0174     1.493  0.0174
+UWB          C8          C7      SINGLE       n     1.493  0.0174     1.493  0.0174
+UWB          C9          N4      SINGLE       n     1.467  0.0100     1.467  0.0100
+UWB          N4          C8      SINGLE       n     1.467  0.0100     1.467  0.0100
+UWB          N5          H1      SINGLE       n     1.016  0.0100     0.877  0.0200
+UWB          N5          H2      SINGLE       n     1.016  0.0100     0.877  0.0200
+UWB          C5          H3      SINGLE       n     1.089  0.0100     0.979  0.0150
+UWB          C5          H4      SINGLE       n     1.089  0.0100     0.979  0.0150
+UWB          C6          H5      SINGLE       n     1.089  0.0100     0.988  0.0159
+UWB         C10          H6      SINGLE       n     1.089  0.0100     0.970  0.0100
+UWB         C10          H7      SINGLE       n     1.089  0.0100     0.970  0.0100
+UWB          C9          H8      SINGLE       n     1.089  0.0100     0.971  0.0100
+UWB          C9          H9      SINGLE       n     1.089  0.0100     0.971  0.0100
+UWB          N4         H10      SINGLE       n     1.036  0.0160     0.890  0.0200
+UWB          C8         H12      SINGLE       n     1.089  0.0100     0.971  0.0100
+UWB          C8         H13      SINGLE       n     1.089  0.0100     0.971  0.0100
+UWB          C7         H14      SINGLE       n     1.089  0.0100     0.970  0.0100
+UWB          C7         H15      SINGLE       n     1.089  0.0100     0.970  0.0100
+UWB          C1         H16      SINGLE       n     1.082  0.0130     0.945  0.0200
+UWB         C16         H17      SINGLE       n     1.082  0.0130     0.939  0.0152
+UWB         C17         H18      SINGLE       n     1.082  0.0130     0.942  0.0157
+UWB         C21         H19      SINGLE       n     1.089  0.0100     0.979  0.0127
+UWB         C21         H20      SINGLE       n     1.089  0.0100     0.979  0.0127
+UWB         C22         H21      SINGLE       n     1.089  0.0100     0.971  0.0156
+UWB         C22         H22      SINGLE       n     1.089  0.0100     0.971  0.0156
+UWB         C22         H23      SINGLE       n     1.089  0.0100     0.971  0.0156
+UWB         C19         H24      SINGLE       n     1.082  0.0130     0.941  0.0131
+UWB         C20         H25      SINGLE       n     1.082  0.0130     0.941  0.0145
+UWB         C13         H26      SINGLE       n     1.082  0.0130     0.944  0.0160
+UWB         C12         H27      SINGLE       n     1.082  0.0130     0.940  0.0113
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+UWB           C          N5          H1     119.737    1.50
+UWB           C          N5          H2     119.737    1.50
+UWB          H1          N5          H2     120.527    1.88
+UWB          N5           C          C3     123.015    1.50
+UWB          N5           C           N     118.008    1.50
+UWB          C3           C           N     118.977    1.50
+UWB          C4          C3           C     137.050    2.28
+UWB          C4          C3          C2     106.529    1.50
+UWB           C          C3          C2     116.421    1.50
+UWB         C11          C4          C3     131.286    1.50
+UWB         C11          C4          N2     119.121    1.77
+UWB          C3          C4          N2     109.594    1.50
+UWB          C4          N2          N3     106.389    1.50
+UWB          N2          N3          C5     121.161    1.60
+UWB          N2          N3          C2     110.169    1.50
+UWB          C5          N3          C2     128.670    1.50
+UWB          N3          C5          C6     112.203    1.50
+UWB          N3          C5          H3     108.915    1.50
+UWB          N3          C5          H4     108.915    1.50
+UWB          C6          C5          H3     108.636    1.50
+UWB          C6          C5          H4     108.636    1.50
+UWB          H3          C5          H4     107.909    1.50
+UWB          C5          C6         C10     111.634    1.50
+UWB          C5          C6          C7     111.634    1.50
+UWB          C5          C6          H5     107.349    1.50
+UWB         C10          C6          C7     109.460    1.50
+UWB         C10          C6          H5     107.583    1.50
+UWB          C7          C6          H5     107.583    1.50
+UWB          C6         C10          C9     112.062    1.50
+UWB          C6         C10          H6     109.162    1.50
+UWB          C6         C10          H7     109.162    1.50
+UWB          C9         C10          H6     108.959    1.50
+UWB          C9         C10          H7     108.959    1.50
+UWB          H6         C10          H7     107.890    1.50
+UWB         C10          C9          N4     110.029    1.50
+UWB         C10          C9          H8     109.651    1.50
+UWB         C10          C9          H9     109.651    1.50
+UWB          N4          C9          H8     109.046    1.50
+UWB          N4          C9          H9     109.046    1.50
+UWB          H8          C9          H9     108.210    1.50
+UWB          C9          N4          C8     111.207    1.50
+UWB          C9          N4         H10     108.409    1.90
+UWB          C8          N4         H10     108.409    1.90
+UWB          C7          C8          N4     110.029    1.50
+UWB          C7          C8         H12     109.651    1.50
+UWB          C7          C8         H13     109.651    1.50
+UWB          N4          C8         H12     109.046    1.50
+UWB          N4          C8         H13     109.046    1.50
+UWB         H12          C8         H13     108.210    1.50
+UWB          C6          C7          C8     112.062    1.50
+UWB          C6          C7         H14     109.162    1.50
+UWB          C6          C7         H15     109.162    1.50
+UWB          C8          C7         H14     108.959    1.50
+UWB          C8          C7         H15     108.959    1.50
+UWB         H14          C7         H15     107.890    1.50
+UWB          C3          C2          N3     107.320    1.50
+UWB          C3          C2          N1     124.736    1.50
+UWB          N3          C2          N1     127.944    1.50
+UWB          C2          N1          C1     112.952    1.50
+UWB           N          C1          N1     129.071    1.50
+UWB           N          C1         H16     115.443    1.50
+UWB          N1          C1         H16     115.486    1.50
+UWB           C           N          C1     117.843    1.50
+UWB         C12         C11         C16     119.016    1.50
+UWB         C12         C11          C4     120.459    1.50
+UWB         C16         C11          C4     120.525    1.61
+UWB         C15         C16         C11     121.184    1.50
+UWB         C15         C16         H17     119.198    1.50
+UWB         C11         C16         H17     119.618    1.50
+UWB         C14         C15         C17     119.186    1.50
+UWB         C14         C15         C16     119.018    1.50
+UWB         C17         C15         C16     121.796    1.50
+UWB         C18         C17         C15     119.876    1.50
+UWB         C18         C17         H18     120.229    1.50
+UWB         C15         C17         H18     119.895    1.50
+UWB         C19         C18           O     115.287    3.00
+UWB         C19         C18         C17     120.644    1.50
+UWB           O         C18         C17     124.069    2.80
+UWB         C18           O         C21     117.948    1.50
+UWB           O         C21         C22     107.613    1.50
+UWB           O         C21         H19     110.040    1.50
+UWB           O         C21         H20     110.040    1.50
+UWB         C22         C21         H19     110.271    1.50
+UWB         C22         C21         H20     110.271    1.50
+UWB         H19         C21         H20     108.599    1.50
+UWB         C21         C22         H21     109.553    1.50
+UWB         C21         C22         H22     109.553    1.50
+UWB         C21         C22         H23     109.553    1.50
+UWB         H21         C22         H22     109.410    1.50
+UWB         H21         C22         H23     109.410    1.50
+UWB         H22         C22         H23     109.410    1.50
+UWB         C20         C19         C18     120.072    1.50
+UWB         C20         C19         H24     120.085    1.50
+UWB         C18         C19         H24     119.843    1.50
+UWB         C19         C20         C14     121.415    1.50
+UWB         C19         C20         H25     119.263    1.50
+UWB         C14         C20         H25     119.322    1.50
+UWB         C20         C14         C13     122.382    1.50
+UWB         C20         C14         C15     118.806    1.50
+UWB         C13         C14         C15     118.811    1.50
+UWB         C14         C13         C12     121.288    1.50
+UWB         C14         C13         H26     119.375    1.50
+UWB         C12         C13         H26     119.337    1.50
+UWB         C13         C12         C11     120.682    1.50
+UWB         C13         C12         H27     119.628    1.50
+UWB         C11         C12         H27     119.690    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+UWB             sp2_sp2_7          C3           C          N5          H1     180.000     5.0     2
+UWB            sp3_sp3_25          C7          C8          N4          C9     -60.000    10.0     3
+UWB            sp3_sp3_31          C6          C7          C8          N4      60.000    10.0     3
+UWB              const_45          C3          C2          N1          C1       0.000    10.0     2
+UWB              const_47           N          C1          N1          C2       0.000    10.0     2
+UWB              const_49          N1          C1           N           C       0.000    10.0     2
+UWB              const_67         C12         C11         C16         C15       0.000    10.0     2
+UWB       const_sp2_sp2_1         C16         C11         C12         C13       0.000     5.0     2
+UWB              const_17         C14         C15         C16         C11       0.000    10.0     2
+UWB              const_63         C14         C15         C17         C18       0.000    10.0     2
+UWB              const_13         C20         C14         C15         C17       0.000    10.0     2
+UWB              const_72          N5           C           N          C1     180.000    10.0     2
+UWB              const_40          N5           C          C3          C4       0.000    10.0     2
+UWB              const_34         C15         C17         C18           O     180.000    10.0     2
+UWB             sp2_sp2_1         C19         C18           O         C21     180.000     5.0     2
+UWB              const_31           O         C18         C19         C20     180.000    10.0     2
+UWB            sp3_sp3_40         C22         C21           O         C18     180.000    10.0     3
+UWB            sp3_sp3_43           O         C21         C22         H21     180.000    10.0     3
+UWB              const_25         C18         C19         C20         C14       0.000    10.0     2
+UWB              const_23         C13         C14         C20         C19     180.000    10.0     2
+UWB              const_10         C12         C13         C14         C20     180.000    10.0     2
+UWB       const_sp2_sp2_5         C11         C12         C13         C14       0.000     5.0     2
+UWB              const_41          N3          C2          C3          C4       0.000    10.0     2
+UWB              const_54           C          C3          C4         C11       0.000    10.0     2
+UWB             sp2_sp2_3         C12         C11          C4          C3     180.000     5.0     2
+UWB              const_56         C11          C4          N2          N3     180.000    10.0     2
+UWB              const_58          C4          N2          N3          C5     180.000    10.0     2
+UWB              const_60          C3          C2          N3          C5     180.000    10.0     2
+UWB             sp2_sp3_2          N2          N3          C5          C6     -90.000    10.0     6
+UWB            sp3_sp3_53          N3          C5          C6         C10     -60.000    10.0     3
+UWB            sp3_sp3_64          C5          C6          C7          C8      60.000    10.0     3
+UWB             sp3_sp3_3          C9         C10          C6          C5     -60.000    10.0     3
+UWB            sp3_sp3_10          C6         C10          C9          N4     -60.000    10.0     3
+UWB            sp3_sp3_19         C10          C9          N4          C8      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+UWB    chir_1    C6    C5    C10    C7    both
+UWB    chir_2    N4    C9    C8    H10    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+UWB    plan-1           C   0.020
+UWB    plan-1          C1   0.020
+UWB    plan-1         C11   0.020
+UWB    plan-1          C2   0.020
+UWB    plan-1          C3   0.020
+UWB    plan-1          C4   0.020
+UWB    plan-1          C5   0.020
+UWB    plan-1         H16   0.020
+UWB    plan-1           N   0.020
+UWB    plan-1          N1   0.020
+UWB    plan-1          N2   0.020
+UWB    plan-1          N3   0.020
+UWB    plan-1          N5   0.020
+UWB    plan-2         C11   0.020
+UWB    plan-2         C12   0.020
+UWB    plan-2         C13   0.020
+UWB    plan-2         C14   0.020
+UWB    plan-2         C15   0.020
+UWB    plan-2         C16   0.020
+UWB    plan-2         C17   0.020
+UWB    plan-2         C18   0.020
+UWB    plan-2         C19   0.020
+UWB    plan-2         C20   0.020
+UWB    plan-2          C4   0.020
+UWB    plan-2         H17   0.020
+UWB    plan-2         H18   0.020
+UWB    plan-2         H24   0.020
+UWB    plan-2         H25   0.020
+UWB    plan-2         H26   0.020
+UWB    plan-2         H27   0.020
+UWB    plan-2           O   0.020
+UWB    plan-3           C   0.020
+UWB    plan-3          H1   0.020
+UWB    plan-3          H2   0.020
+UWB    plan-3          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+UWB           SMILES              ACDLabs 12.01                                                                                                                       n1c(c2c(nc1)n(nc2c4cc3cc(OCC)ccc3cc4)CC5CCNCC5)N
+UWB            InChI                InChI  1.03 InChI=1S/C23H26N6O/c1-2-30-19-6-5-16-3-4-17(11-18(16)12-19)21-20-22(24)26-14-27-23(20)29(28-21)13-15-7-9-25-10-8-15/h3-6,11-12,14-15,25H,2,7-10,13H2,1H3,(H2,24,26,27)
+UWB         InChIKey                InChI  1.03                                                                                                                                            KMHCRQINFJTBPW-UHFFFAOYSA-N
+UWB SMILES_CANONICAL               CACTVS 3.385                                                                                                                         CCOc1ccc2ccc(cc2c1)c3nn(CC4CCNCC4)c5ncnc(N)c35
+UWB           SMILES               CACTVS 3.385                                                                                                                         CCOc1ccc2ccc(cc2c1)c3nn(CC4CCNCC4)c5ncnc(N)c35
+UWB SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                                         CCOc1ccc2ccc(cc2c1)c3c4c(ncnc4n(n3)CC5CCNCC5)N
+UWB           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                         CCOc1ccc2ccc(cc2c1)c3c4c(ncnc4n(n3)CC5CCNCC5)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+UWB acedrg               243         "dictionary generator"                  
+UWB acedrg_database      11          "data source"                           
+UWB rdkit                2017.03.2   "Chemoinformatics tool"
+UWB refmac5              5.8.0238    "optimization tool"                     

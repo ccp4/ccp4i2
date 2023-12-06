@@ -1,0 +1,453 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EPB     EPB      7,11-DIHYDROXY-8,8,10,12,16-PENTAMETHYL-3-[1-METHYL-2-(2-METHYL-THIAZOL-4-YL)VINYL]-4,17-DIOXABICYCLO[14.1.0]HEPTADECANE-5,9-DIONE     NON-POLYMER     76     35     .     
+#
+data_comp_EPB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EPB     O16     O       O       0       2.720       37.800      16.672      
+EPB     C51     C       CH3     0       8.513       37.866      17.561      
+EPB     O41     O       O2      0       7.990       39.910      18.866      
+EPB     C5      C       CT      0       7.783       39.182      17.624      
+EPB     C4      C       CH1     0       6.678       39.383      18.578      
+EPB     C16     C       C       0       3.653       38.293      16.088      
+EPB     O1      O       O2      0       4.546       39.138      16.653      
+EPB     C2      C       CH1     0       4.238       39.747      17.940      
+EPB     C3      C       CH2     0       5.551       40.366      18.437      
+EPB     C20     C       C       0       3.130       40.796      17.834      
+EPB     C21     C       CH3     0       3.290       41.818      16.742      
+EPB     C22     C       C1      0       2.082       40.797      18.666      
+EPB     C23     C       CR5     0       0.908       41.650      18.768      
+EPB     N26     N       NRD5    0       0.641       42.717      17.902      
+EPB     C25     C       CR5     0       -0.455      43.344      18.168      
+EPB     C27     C       CH3     0       -1.005      44.507      17.441      
+EPB     C24     C       CR15    0       -0.081      41.503      19.733      
+EPB     S1      S       S2      0       -1.234      42.679      19.488      
+EPB     C15     C       CH2     0       3.975       38.031      14.641      
+EPB     C14     C       CH1     0       3.306       39.012      13.679      
+EPB     O14     O       OH1     0       1.890       38.997      13.934      
+EPB     C13     C       CT      0       3.577       38.757      12.159      
+EPB     C29     C       CH3     0       3.012       37.393      11.714      
+EPB     C30     C       CH3     0       2.878       39.844      11.322      
+EPB     C12     C       C       0       5.091       38.815      11.839      
+EPB     O12     O       O       0       5.697       37.826      11.471      
+EPB     C11     C       CH1     0       5.878       40.126      11.994      
+EPB     C28     C       CH3     0       6.265       40.636      10.599      
+EPB     C10     C       CH1     0       7.092       39.889      12.912      
+EPB     O10     O       OH1     0       8.035       39.045      12.245      
+EPB     C9      C       CH1     0       7.840       41.148      13.412      
+EPB     C91     C       CH3     0       6.908       42.148      14.099      
+EPB     C8      C       CH2     0       9.085       40.830      14.274      
+EPB     C7      C       CH2     0       8.942       39.758      15.367      
+EPB     C6      C       CH2     0       7.830       40.047      16.375      
+EPB     H511    H       H       0       8.246       37.385      16.764      
+EPB     H512    H       H       0       8.295       37.338      18.342      
+EPB     H513    H       H       0       9.467       38.025      17.539      
+EPB     H4      H       H       0       6.445       38.576      19.100      
+EPB     H3      H       H       0       3.969       39.043      18.580      
+EPB     H31     H       H       0       5.816       41.084      17.819      
+EPB     H32     H       H       0       5.383       40.781      19.313      
+EPB     H211    H       H       0       4.126       41.676      16.271      
+EPB     H212    H       H       0       3.289       42.709      17.127      
+EPB     H213    H       H       0       2.553       41.741      16.114      
+EPB     H22     H       H       0       2.103       40.115      19.309      
+EPB     H271    H       H       0       -1.970      44.522      17.534      
+EPB     H272    H       H       0       -0.775      44.441      16.502      
+EPB     H273    H       H       0       -0.635      45.324      17.806      
+EPB     H24     H       H       0       -0.134      40.865      20.425      
+EPB     H151    H       H       0       3.692       37.119      14.430      
+EPB     H152    H       H       0       4.948       38.070      14.531      
+EPB     H14     H       H       0       3.640       39.908      13.887      
+EPB     H2      H       H       0       1.602       39.795      13.912      
+EPB     H291    H       H       0       3.458       36.675      12.195      
+EPB     H292    H       H       0       3.159       37.281      10.759      
+EPB     H293    H       H       0       2.057       37.361      11.897      
+EPB     H301    H       H       0       3.210       39.817      10.408      
+EPB     H302    H       H       0       3.059       40.718      11.708      
+EPB     H303    H       H       0       1.918       39.684      11.321      
+EPB     H11     H       H       0       5.296       40.807      12.411      
+EPB     H281    H       H       0       6.257       39.904      9.958       
+EPB     H282    H       H       0       7.155       41.026      10.625      
+EPB     H283    H       H       0       5.628       41.315      10.317      
+EPB     H1      H       H       0       6.760       39.401      13.709      
+EPB     H10     H       H       0       7.909       38.231      12.453      
+EPB     H9      H       H       0       8.176       41.598      12.599      
+EPB     H911    H       H       0       6.161       41.674      14.503      
+EPB     H912    H       H       0       6.568       42.778      13.440      
+EPB     H913    H       H       0       7.388       42.638      14.789      
+EPB     H81     H       H       0       9.388       41.660      14.700      
+EPB     H82     H       H       0       9.801       40.544      13.668      
+EPB     H71     H       H       0       9.795       39.690      15.847      
+EPB     H72     H       H       0       8.769       38.892      14.941      
+EPB     H61     H       H       0       7.901       40.980      16.652      
+EPB     H62     H       H       0       6.972       39.967      15.922      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EPB         O16         C16      DOUBLE       n     1.203  0.0150     1.203  0.0150
+EPB         C51          C5      SINGLE       n     1.503  0.0100     1.503  0.0100
+EPB         O41          C5      SINGLE       n     1.455  0.0100     1.455  0.0100
+EPB         O41          C4      SINGLE       n     1.443  0.0100     1.443  0.0100
+EPB          C5          C4      SINGLE       n     1.472  0.0100     1.472  0.0100
+EPB          C5          C6      SINGLE       n     1.515  0.0100     1.515  0.0100
+EPB          C4          C3      SINGLE       n     1.499  0.0101     1.499  0.0101
+EPB         C16          O1      SINGLE       n     1.334  0.0200     1.334  0.0200
+EPB         C16         C15      SINGLE       n     1.502  0.0135     1.502  0.0135
+EPB          O1          C2      SINGLE       n     1.447  0.0139     1.447  0.0139
+EPB          C2          C3      SINGLE       n     1.532  0.0100     1.532  0.0100
+EPB          C2         C20      SINGLE       n     1.515  0.0183     1.515  0.0183
+EPB         C20         C21      SINGLE       n     1.502  0.0100     1.502  0.0100
+EPB         C20         C22      DOUBLE       n     1.334  0.0100     1.334  0.0100
+EPB         C22         C23      SINGLE       n     1.445  0.0186     1.445  0.0186
+EPB         C23         N26      SINGLE       y     1.390  0.0100     1.390  0.0100
+EPB         C23         C24      DOUBLE       y     1.379  0.0196     1.379  0.0196
+EPB         N26         C25      DOUBLE       y     1.286  0.0100     1.286  0.0100
+EPB         C25         C27      SINGLE       n     1.478  0.0100     1.478  0.0100
+EPB         C25          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+EPB         C24          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+EPB         C15         C14      SINGLE       n     1.522  0.0110     1.522  0.0110
+EPB         C14         O14      SINGLE       n     1.437  0.0100     1.437  0.0100
+EPB         C14         C13      SINGLE       n     1.550  0.0149     1.550  0.0149
+EPB         C13         C29      SINGLE       n     1.538  0.0100     1.538  0.0100
+EPB         C13         C30      SINGLE       n     1.538  0.0100     1.538  0.0100
+EPB         C13         C12      SINGLE       n     1.542  0.0100     1.542  0.0100
+EPB         C12         O12      DOUBLE       n     1.209  0.0200     1.209  0.0200
+EPB         C12         C11      SINGLE       n     1.532  0.0100     1.532  0.0100
+EPB         C11         C28      SINGLE       n     1.521  0.0173     1.521  0.0173
+EPB         C11         C10      SINGLE       n     1.535  0.0100     1.535  0.0100
+EPB         C10         O10      SINGLE       n     1.426  0.0179     1.426  0.0179
+EPB         C10          C9      SINGLE       n     1.539  0.0120     1.539  0.0120
+EPB          C9         C91      SINGLE       n     1.521  0.0151     1.521  0.0151
+EPB          C9          C8      SINGLE       n     1.541  0.0100     1.541  0.0100
+EPB          C8          C7      SINGLE       n     1.529  0.0154     1.529  0.0154
+EPB          C7          C6      SINGLE       n     1.525  0.0100     1.525  0.0100
+EPB         C51        H511      SINGLE       n     1.089  0.0100     0.968  0.0175
+EPB         C51        H512      SINGLE       n     1.089  0.0100     0.968  0.0175
+EPB         C51        H513      SINGLE       n     1.089  0.0100     0.968  0.0175
+EPB          C4          H4      SINGLE       n     1.089  0.0100     0.989  0.0200
+EPB          C2          H3      SINGLE       n     1.089  0.0100     0.989  0.0134
+EPB          C3         H31      SINGLE       n     1.089  0.0100     0.984  0.0108
+EPB          C3         H32      SINGLE       n     1.089  0.0100     0.984  0.0108
+EPB         C21        H211      SINGLE       n     1.089  0.0100     0.971  0.0140
+EPB         C21        H212      SINGLE       n     1.089  0.0100     0.971  0.0140
+EPB         C21        H213      SINGLE       n     1.089  0.0100     0.971  0.0140
+EPB         C22         H22      SINGLE       n     1.082  0.0130     0.938  0.0170
+EPB         C27        H271      SINGLE       n     1.089  0.0100     0.969  0.0144
+EPB         C27        H272      SINGLE       n     1.089  0.0100     0.969  0.0144
+EPB         C27        H273      SINGLE       n     1.089  0.0100     0.969  0.0144
+EPB         C24         H24      SINGLE       n     1.082  0.0130     0.942  0.0200
+EPB         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0185
+EPB         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0185
+EPB         C14         H14      SINGLE       n     1.089  0.0100     0.978  0.0200
+EPB         O14          H2      SINGLE       n     0.970  0.0120     0.848  0.0200
+EPB         C29        H291      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPB         C29        H292      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPB         C29        H293      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPB         C30        H301      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPB         C30        H302      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPB         C30        H303      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPB         C11         H11      SINGLE       n     1.089  0.0100     0.990  0.0142
+EPB         C28        H281      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPB         C28        H282      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPB         C28        H283      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPB         C10          H1      SINGLE       n     1.089  0.0100     0.995  0.0200
+EPB         O10         H10      SINGLE       n     0.970  0.0120     0.848  0.0200
+EPB          C9          H9      SINGLE       n     1.089  0.0100     0.989  0.0162
+EPB         C91        H911      SINGLE       n     1.089  0.0100     0.973  0.0146
+EPB         C91        H912      SINGLE       n     1.089  0.0100     0.973  0.0146
+EPB         C91        H913      SINGLE       n     1.089  0.0100     0.973  0.0146
+EPB          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0160
+EPB          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0160
+EPB          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0160
+EPB          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0160
+EPB          C6         H61      SINGLE       n     1.089  0.0100     0.976  0.0131
+EPB          C6         H62      SINGLE       n     1.089  0.0100     0.976  0.0131
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EPB          C5         C51        H511     109.460    1.50
+EPB          C5         C51        H512     109.460    1.50
+EPB          C5         C51        H513     109.460    1.50
+EPB        H511         C51        H512     109.461    1.50
+EPB        H511         C51        H513     109.461    1.50
+EPB        H512         C51        H513     109.461    1.50
+EPB          C5         O41          C4      60.797    1.50
+EPB         C51          C5         O41     114.000    1.50
+EPB         C51          C5          C4     121.701    1.50
+EPB         C51          C5          C6     115.389    1.50
+EPB         O41          C5          C4      59.312    1.50
+EPB         O41          C5          C6     114.516    1.50
+EPB          C4          C5          C6     119.817    2.36
+EPB         O41          C4          C5      59.891    1.50
+EPB         O41          C4          C3     117.659    1.50
+EPB         O41          C4          H4     114.226    1.50
+EPB          C5          C4          C3     125.495    1.50
+EPB          C5          C4          H4     114.223    1.50
+EPB          C3          C4          H4     114.609    1.50
+EPB         O16         C16          O1     122.853    2.43
+EPB         O16         C16         C15     124.982    1.50
+EPB          O1         C16         C15     112.165    3.00
+EPB         C16          O1          C2     116.394    1.84
+EPB          O1          C2          C3     104.997    1.62
+EPB          O1          C2         C20     110.354    2.51
+EPB          O1          C2          H3     109.237    1.50
+EPB          C3          C2         C20     111.511    2.91
+EPB          C3          C2          H3     108.551    1.50
+EPB         C20          C2          H3     109.227    1.50
+EPB          C4          C3          C2     112.541    2.49
+EPB          C4          C3         H31     109.099    1.50
+EPB          C4          C3         H32     109.099    1.50
+EPB          C2          C3         H31     108.540    1.50
+EPB          C2          C3         H32     108.540    1.50
+EPB         H31          C3         H32     107.717    1.63
+EPB          C2         C20         C21     116.319    2.45
+EPB          C2         C20         C22     122.862    3.00
+EPB         C21         C20         C22     120.819    2.85
+EPB         C20         C21        H211     109.689    1.50
+EPB         C20         C21        H212     109.689    1.50
+EPB         C20         C21        H213     109.689    1.50
+EPB        H211         C21        H212     109.342    1.50
+EPB        H211         C21        H213     109.342    1.50
+EPB        H212         C21        H213     109.342    1.50
+EPB         C20         C22         C23     129.690    2.42
+EPB         C20         C22         H22     114.755    1.50
+EPB         C23         C22         H22     115.554    1.96
+EPB         C22         C23         N26     122.566    3.00
+EPB         C22         C23         C24     129.117    3.00
+EPB         N26         C23         C24     108.316    1.50
+EPB         C23         N26         C25     107.252    1.65
+EPB         N26         C25         C27     128.390    3.00
+EPB         N26         C25          S1     108.144    3.00
+EPB         C27         C25          S1     123.466    3.00
+EPB         C25         C27        H271     109.610    1.50
+EPB         C25         C27        H272     109.610    1.50
+EPB         C25         C27        H273     109.610    1.50
+EPB        H271         C27        H272     109.334    1.50
+EPB        H271         C27        H273     109.334    1.50
+EPB        H272         C27        H273     109.334    1.50
+EPB         C23         C24          S1     108.144    3.00
+EPB         C23         C24         H24     128.494    1.50
+EPB          S1         C24         H24     123.362    3.00
+EPB         C25          S1         C24     108.144    3.00
+EPB         C16         C15         C14     112.540    3.00
+EPB         C16         C15        H151     108.625    1.50
+EPB         C16         C15        H152     108.625    1.50
+EPB         C14         C15        H151     109.554    1.98
+EPB         C14         C15        H152     109.554    1.98
+EPB        H151         C15        H152     107.737    1.50
+EPB         C15         C14         O14     108.191    2.93
+EPB         C15         C14         C13     113.666    1.50
+EPB         C15         C14         H14     108.181    1.50
+EPB         O14         C14         C13     109.802    2.24
+EPB         O14         C14         H14     108.091    1.55
+EPB         C13         C14         H14     107.664    1.50
+EPB         C14         O14          H2     107.856    2.97
+EPB         C14         C13         C29     110.411    1.50
+EPB         C14         C13         C30     110.411    1.50
+EPB         C14         C13         C12     111.224    2.89
+EPB         C29         C13         C30     109.133    1.50
+EPB         C29         C13         C12     108.450    1.62
+EPB         C30         C13         C12     108.450    1.62
+EPB         C13         C29        H291     109.286    1.50
+EPB         C13         C29        H292     109.286    1.50
+EPB         C13         C29        H293     109.286    1.50
+EPB        H291         C29        H292     109.377    1.50
+EPB        H291         C29        H293     109.377    1.50
+EPB        H292         C29        H293     109.377    1.50
+EPB         C13         C30        H301     109.286    1.50
+EPB         C13         C30        H302     109.286    1.50
+EPB         C13         C30        H303     109.286    1.50
+EPB        H301         C30        H302     109.377    1.50
+EPB        H301         C30        H303     109.377    1.50
+EPB        H302         C30        H303     109.377    1.50
+EPB         C13         C12         O12     120.845    1.50
+EPB         C13         C12         C11     120.579    1.50
+EPB         O12         C12         C11     118.576    1.50
+EPB         C12         C11         C28     107.821    1.77
+EPB         C12         C11         C10     109.354    1.50
+EPB         C12         C11         H11     109.514    1.50
+EPB         C28         C11         C10     112.203    1.50
+EPB         C28         C11         H11     108.296    1.70
+EPB         C10         C11         H11     108.824    1.50
+EPB         C11         C28        H281     109.528    1.50
+EPB         C11         C28        H282     109.528    1.50
+EPB         C11         C28        H283     109.528    1.50
+EPB        H281         C28        H282     109.411    1.50
+EPB        H281         C28        H283     109.411    1.50
+EPB        H282         C28        H283     109.411    1.50
+EPB         C11         C10         O10     109.333    2.45
+EPB         C11         C10          C9     115.473    1.51
+EPB         C11         C10          H1     107.758    1.74
+EPB         O10         C10          C9     108.702    3.00
+EPB         O10         C10          H1     108.007    1.50
+EPB          C9         C10          H1     107.756    1.50
+EPB         C10         O10         H10     110.295    3.00
+EPB         C10          C9         C91     112.188    1.82
+EPB         C10          C9          C8     113.128    1.50
+EPB         C10          C9          H9     106.729    1.51
+EPB         C91          C9          C8     111.118    1.50
+EPB         C91          C9          H9     107.528    1.50
+EPB          C8          C9          H9     107.675    1.50
+EPB          C9         C91        H911     109.636    1.50
+EPB          C9         C91        H912     109.636    1.50
+EPB          C9         C91        H913     109.636    1.50
+EPB        H911         C91        H912     109.411    1.50
+EPB        H911         C91        H913     109.411    1.50
+EPB        H912         C91        H913     109.411    1.50
+EPB          C9          C8          C7     115.586    1.50
+EPB          C9          C8         H81     108.647    1.58
+EPB          C9          C8         H82     108.647    1.58
+EPB          C7          C8         H81     108.617    1.50
+EPB          C7          C8         H82     108.617    1.50
+EPB         H81          C8         H82     107.657    1.50
+EPB          C8          C7          C6     112.822    1.83
+EPB          C8          C7         H71     108.984    1.50
+EPB          C8          C7         H72     108.984    1.50
+EPB          C6          C7         H71     109.000    1.50
+EPB          C6          C7         H72     109.000    1.50
+EPB         H71          C7         H72     107.934    1.50
+EPB          C5          C6          C7     114.406    1.50
+EPB          C5          C6         H61     108.612    1.50
+EPB          C5          C6         H62     108.612    1.50
+EPB          C7          C6         H61     108.718    1.50
+EPB          C7          C6         H62     108.718    1.50
+EPB         H61          C6         H62     107.079    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EPB             sp2_sp2_8         C20         C22         C23         N26       0.000     5.0     2
+EPB       const_sp2_sp2_2         C22         C23         N26         C25     180.000     5.0     2
+EPB            sp2_sp3_20         N26         C25         C27        H272     -90.000    10.0     6
+EPB       const_sp2_sp2_4         C27         C25         N26         C23     180.000     5.0     2
+EPB            sp2_sp3_22          S1         C25         C27        H271     -30.000    10.0     6
+EPB       const_sp2_sp2_6         C27         C25          S1         C24     180.000     5.0     2
+EPB       const_sp2_sp2_7         C23         C24          S1         C25       0.000     5.0     2
+EPB            sp3_sp3_58         C13         C14         C15         C16      60.000    10.0     3
+EPB            sp3_sp3_67         C12         C13         C14         C15     180.000    10.0     3
+EPB            sp3_sp3_73         C30         C13         C14         C15     -60.000    10.0     3
+EPB            sp3_sp3_21          C6          C5         C51        H513     180.000    10.0     3
+EPB            sp3_sp3_79         C12         C13         C29        H291      60.000    10.0     3
+EPB            sp3_sp3_91         C29         C13         C30        H301     -60.000    10.0     3
+EPB            sp2_sp3_29         C11         C12         C13         C14     -60.000    10.0     6
+EPB            sp2_sp3_34         O12         C12         C11         C28     180.000    10.0     6
+EPB            sp3_sp3_97         C10         C11         C28        H281      60.000    10.0     3
+EPB           sp3_sp3_106          C9         C10         C11         C12      60.000    10.0     3
+EPB           sp3_sp3_115         C11         C10          C9         C91     180.000    10.0     3
+EPB           sp3_sp3_118         O10         C10          C9         C91      60.000    10.0     3
+EPB             sp3_sp3_1         C51          C5         O41          C4      60.000    10.0     3
+EPB            sp3_sp3_26         C51          C5          C6         H61     -60.000    10.0     3
+EPB           sp3_sp3_127          C8          C9         C91        H911      60.000    10.0     3
+EPB           sp3_sp3_136         H81          C8          C9         C10      60.000    10.0     3
+EPB           sp3_sp3_145         H71          C7          C8          C9      60.000    10.0     3
+EPB           sp3_sp3_154         H61          C6          C7          C8      60.000    10.0     3
+EPB            sp3_sp3_28         O41          C5          C6          C7      60.000    10.0     3
+EPB             sp3_sp3_9          C3          C4          C5          C6      60.000    10.0     3
+EPB            sp3_sp3_37         H31          C3          C4         O41      60.000    10.0     3
+EPB             sp2_sp3_5          O1         C16         C15         C14     -60.000    10.0     6
+EPB             sp2_sp3_2         O16         C16         C15         C14     120.000    10.0     6
+EPB            sp3_sp3_46          O1          C2          C3          C4     180.000    10.0     3
+EPB            sp3_sp3_49         C20          C2          C3          C4      60.000    10.0     3
+EPB            sp2_sp3_10         C22         C20          C2          O1     180.000    10.0     6
+EPB            sp2_sp3_16         C22         C20         C21        H211     180.000    10.0     6
+EPB             sp2_sp2_6         C21         C20         C22         H22     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EPB    chir_1    C5    O41    C4    C6    negative
+EPB    chir_2    C4    O41    C5    C3    positive
+EPB    chir_3    C2    O1    C20    C3    positive
+EPB    chir_4    C14    O14    C13    C15    positive
+EPB    chir_5    C13    C12    C14    C29    both
+EPB    chir_6    C11    C12    C10    C28    negative
+EPB    chir_7    C10    O10    C11    C9    positive
+EPB    chir_8    C9    C10    C8    C91    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EPB    plan-1         C22   0.020
+EPB    plan-1         C23   0.020
+EPB    plan-1         C24   0.020
+EPB    plan-1         C25   0.020
+EPB    plan-1         C27   0.020
+EPB    plan-1         H24   0.020
+EPB    plan-1         N26   0.020
+EPB    plan-1          S1   0.020
+EPB    plan-2         C15   0.020
+EPB    plan-2         C16   0.020
+EPB    plan-2          O1   0.020
+EPB    plan-2         O16   0.020
+EPB    plan-3          C2   0.020
+EPB    plan-3         C20   0.020
+EPB    plan-3         C21   0.020
+EPB    plan-3         C22   0.020
+EPB    plan-4         C20   0.020
+EPB    plan-4         C22   0.020
+EPB    plan-4         C23   0.020
+EPB    plan-4         H22   0.020
+EPB    plan-5         C11   0.020
+EPB    plan-5         C12   0.020
+EPB    plan-5         C13   0.020
+EPB    plan-5         O12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EPB           SMILES              ACDLabs 10.04                                                                                                                                                       O=C1C(C)C(O)C(C)CCCC3(OC3CC(OC(=O)CC(O)C1(C)C)/C(=C/c2nc(sc2)C)C)C
+EPB SMILES_CANONICAL               CACTVS 3.341                                                                                                                           C[C@H]1CCC[C@@]2(C)O[C@H]2C[C@H](OC(=O)C[C@H](O)C(C)(C)C(=O)[C@H](C)[C@H]1O)\C(C)=C\c3csc(C)n3
+EPB           SMILES               CACTVS 3.341                                                                                                                                     C[CH]1CCC[C]2(C)O[CH]2C[CH](OC(=O)C[CH](O)C(C)(C)C(=O)[CH](C)[CH]1O)C(C)=Cc3csc(C)n3
+EPB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                    Cc1nc(cs1)\C=C(/C)\[C@@H]2C[C@H]3[C@](O3)(CCC[C@@H]([C@@H]([C@H](C(=O)C([C@H](CC(=O)O2)O)(C)C)C)O)C)C
+EPB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                     Cc1nc(cs1)C=C(C)C2CC3C(O3)(CCCC(C(C(C(=O)C(C(CC(=O)O2)O)(C)C)C)O)C)C
+EPB            InChI                InChI  1.03 InChI=1S/C27H41NO6S/c1-15-9-8-10-27(7)22(34-27)12-20(16(2)11-19-14-35-18(4)28-19)33-23(30)13-21(29)26(5,6)25(32)17(3)24(15)31/h11,14-15,17,20-22,24,29,31H,8-10,12-13H2,1-7H3/b16-11+/t15-,17+,20-,21-,22-,24-,27+/m0/s1
+EPB         InChIKey                InChI  1.03                                                                                                                                                                                              QXRSDHAAWVKZLJ-PVYNADRNSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EPB acedrg               243         "dictionary generator"                  
+EPB acedrg_database      11          "data source"                           
+EPB rdkit                2017.03.2   "Chemoinformatics tool"
+EPB refmac5              5.8.0238    "optimization tool"                     

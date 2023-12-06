@@ -1,0 +1,225 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IFG     IFG      (2R,3R,4S,5R)-2-ACETAMIDO-3,4-DIHYDROXY-5-HYDROXYMETHYL-PIPERIDINE     NON-POLYMER     30     14     .     
+#
+data_comp_IFG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IFG     N1      N       NT1     0       -4.683      65.498      9.969       
+IFG     C2      C       CH1     0       -5.071      66.295      8.796       
+IFG     C3      C       CH1     0       -3.824      66.803      8.055       
+IFG     C4      C       CH1     0       -2.891      67.551      9.003       
+IFG     C5      C       CH1     0       -2.557      66.709      10.241      
+IFG     C6      C       CH2     0       -1.654      67.430      11.229      
+IFG     C7      C       C       0       -5.684      64.311      7.448       
+IFG     C8      C       CH3     0       -6.699      63.728      6.512       
+IFG     C9      C       CH2     0       -3.832      66.221      10.924      
+IFG     N2      N       NH1     0       -5.944      65.560      7.892       
+IFG     O7      O       O       0       -4.686      63.681      7.785       
+IFG     O3      O       OH1     0       -4.230      67.657      6.984       
+IFG     O4      O       OH1     0       -3.496      68.786      9.408       
+IFG     O6      O       OH1     0       -1.084      66.525      12.171      
+IFG     HN1     H       H       0       -5.417      65.220      10.383      
+IFG     HC2     H       H       0       -5.577      67.081      9.118       
+IFG     HC3     H       H       0       -3.340      66.030      7.674       
+IFG     HC4     H       H       0       -2.043      67.761      8.520       
+IFG     HC5     H       H       0       -2.065      65.914      9.923       
+IFG     HC61    H       H       0       -2.169      68.110      11.710      
+IFG     HC62    H       H       0       -0.932      67.883      10.744      
+IFG     HC81    H       H       0       -6.414      62.841      6.237       
+IFG     HC82    H       H       0       -6.784      64.296      5.730       
+IFG     HC83    H       H       0       -7.557      63.666      6.961       
+IFG     HC91    H       H       0       -3.598      65.628      11.668      
+IFG     HC92    H       H       0       -4.324      66.989      11.284      
+IFG     HN2     H       H       0       -6.678      65.957      7.624       
+IFG     HO3     H       H       0       -3.561      67.836      6.507       
+IFG     HO4     H       H       0       -2.894      69.369      9.482       
+IFG     HO6     H       H       0       -0.606      66.957      12.722      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IFG          N1          C2      SINGLE       n     1.467  0.0110     1.467  0.0110
+IFG          N1          C9      SINGLE       n     1.467  0.0114     1.467  0.0114
+IFG          C2          C3      SINGLE       n     1.535  0.0100     1.535  0.0100
+IFG          C2          N2      SINGLE       n     1.453  0.0100     1.453  0.0100
+IFG          C3          C4      SINGLE       n     1.522  0.0154     1.522  0.0154
+IFG          C3          O3      SINGLE       n     1.428  0.0123     1.428  0.0123
+IFG          C4          C5      SINGLE       n     1.533  0.0100     1.533  0.0100
+IFG          C4          O4      SINGLE       n     1.433  0.0100     1.433  0.0100
+IFG          C5          C6      SINGLE       n     1.520  0.0100     1.520  0.0100
+IFG          C5          C9      SINGLE       n     1.525  0.0100     1.525  0.0100
+IFG          C6          O6      SINGLE       n     1.425  0.0187     1.425  0.0187
+IFG          C7          C8      SINGLE       n     1.498  0.0100     1.498  0.0100
+IFG          C7          N2      SINGLE       n     1.347  0.0100     1.347  0.0100
+IFG          C7          O7      DOUBLE       n     1.227  0.0100     1.227  0.0100
+IFG          N1         HN1      SINGLE       n     1.036  0.0160     0.887  0.0200
+IFG          C2         HC2      SINGLE       n     1.089  0.0100     0.989  0.0151
+IFG          C3         HC3      SINGLE       n     1.089  0.0100     0.989  0.0181
+IFG          C4         HC4      SINGLE       n     1.089  0.0100     0.997  0.0189
+IFG          C5         HC5      SINGLE       n     1.089  0.0100     0.988  0.0159
+IFG          C6        HC61      SINGLE       n     1.089  0.0100     0.980  0.0170
+IFG          C6        HC62      SINGLE       n     1.089  0.0100     0.980  0.0170
+IFG          C8        HC81      SINGLE       n     1.089  0.0100     0.971  0.0140
+IFG          C8        HC82      SINGLE       n     1.089  0.0100     0.971  0.0140
+IFG          C8        HC83      SINGLE       n     1.089  0.0100     0.971  0.0140
+IFG          C9        HC91      SINGLE       n     1.089  0.0100     0.980  0.0172
+IFG          C9        HC92      SINGLE       n     1.089  0.0100     0.980  0.0172
+IFG          N2         HN2      SINGLE       n     1.016  0.0100     0.876  0.0200
+IFG          O3         HO3      SINGLE       n     0.970  0.0120     0.841  0.0200
+IFG          O4         HO4      SINGLE       n     0.970  0.0120     0.841  0.0200
+IFG          O6         HO6      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IFG          C2          N1          C9     111.782    3.00
+IFG          C2          N1         HN1     108.969    3.00
+IFG          C9          N1         HN1     109.383    3.00
+IFG          N1          C2          C3     110.258    1.51
+IFG          N1          C2          N2     112.186    2.26
+IFG          N1          C2         HC2     108.139    1.50
+IFG          C3          C2          N2     110.829    2.03
+IFG          C3          C2         HC2     108.258    1.50
+IFG          N2          C2         HC2     107.656    1.50
+IFG          C2          C3          C4     111.124    1.57
+IFG          C2          C3          O3     109.247    2.43
+IFG          C2          C3         HC3     109.068    1.50
+IFG          C4          C3          O3     110.081    2.02
+IFG          C4          C3         HC3     109.166    1.50
+IFG          O3          C3         HC3     108.790    1.50
+IFG          C3          C4          C5     111.938    1.50
+IFG          C3          C4          O4     110.081    2.02
+IFG          C3          C4         HC4     109.166    1.50
+IFG          C5          C4          O4     110.058    2.00
+IFG          C5          C4         HC4     109.119    1.50
+IFG          O4          C4         HC4     108.541    1.50
+IFG          C4          C5          C6     112.960    1.50
+IFG          C4          C5          C9     111.124    1.57
+IFG          C4          C5         HC5     107.028    1.50
+IFG          C6          C5          C9     110.883    1.50
+IFG          C6          C5         HC5     107.420    1.84
+IFG          C9          C5         HC5     107.832    1.50
+IFG          C5          C6          O6     111.464    2.00
+IFG          C5          C6        HC61     109.628    1.50
+IFG          C5          C6        HC62     109.628    1.50
+IFG          O6          C6        HC61     109.070    1.50
+IFG          O6          C6        HC62     109.070    1.50
+IFG        HC61          C6        HC62     107.925    1.50
+IFG          C8          C7          N2     115.679    1.50
+IFG          C8          C7          O7     121.840    1.50
+IFG          N2          C7          O7     122.481    1.56
+IFG          C7          C8        HC81     109.527    1.50
+IFG          C7          C8        HC82     109.527    1.50
+IFG          C7          C8        HC83     109.527    1.50
+IFG        HC81          C8        HC82     109.365    1.50
+IFG        HC81          C8        HC83     109.365    1.50
+IFG        HC82          C8        HC83     109.365    1.50
+IFG          N1          C9          C5     110.258    1.51
+IFG          N1          C9        HC91     109.326    1.50
+IFG          N1          C9        HC92     109.326    1.50
+IFG          C5          C9        HC91     109.290    1.50
+IFG          C5          C9        HC92     109.290    1.50
+IFG        HC91          C9        HC92     108.200    1.50
+IFG          C2          N2          C7     123.089    1.50
+IFG          C2          N2         HN2     118.168    1.75
+IFG          C7          N2         HN2     118.744    2.17
+IFG          C3          O3         HO3     109.099    3.00
+IFG          C4          O4         HO4     108.225    2.48
+IFG          C6          O6         HO6     109.369    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IFG             sp3_sp3_3          N2          C2          N1          C9     -60.000    10.0     3
+IFG            sp3_sp3_43          C5          C9          N1          C2     180.000    10.0     3
+IFG            sp3_sp3_11          N2          C2          C3          O3     -60.000    10.0     3
+IFG             sp2_sp3_1          C7          N2          C2          N1       0.000    10.0     6
+IFG            sp3_sp3_49          C2          C3          O3         HO3     180.000    10.0     3
+IFG            sp3_sp3_20          O3          C3          C4          O4      60.000    10.0     3
+IFG            sp3_sp3_52          C3          C4          O4         HO4     180.000    10.0     3
+IFG            sp3_sp3_29          O4          C4          C5          C6     -60.000    10.0     3
+IFG            sp3_sp3_55          C4          C5          C6          O6     180.000    10.0     3
+IFG            sp3_sp3_37          C6          C5          C9          N1     -60.000    10.0     3
+IFG            sp3_sp3_64          C5          C6          O6         HO6     180.000    10.0     3
+IFG             sp2_sp3_7          N2          C7          C8        HC81       0.000    10.0     6
+IFG             sp2_sp2_1          C8          C7          N2          C2     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IFG    chir_1    C2    N2    N1    C3    negative
+IFG    chir_2    C3    O3    C4    C2    negative
+IFG    chir_3    C4    O4    C3    C5    positive
+IFG    chir_4    C5    C4    C6    C9    negative
+IFG    chir_5    N1    C2    C9    HN1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IFG    plan-1          C7   0.020
+IFG    plan-1          C8   0.020
+IFG    plan-1          N2   0.020
+IFG    plan-1          O7   0.020
+IFG    plan-2          C2   0.020
+IFG    plan-2          C7   0.020
+IFG    plan-2         HN2   0.020
+IFG    plan-2          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IFG           SMILES              ACDLabs 10.04                                                                                      O=C(NC1NCC(CO)C(O)C1O)C
+IFG SMILES_CANONICAL               CACTVS 3.341                                                                     CC(=O)N[C@H]1NC[C@H](CO)[C@H](O)[C@@H]1O
+IFG           SMILES               CACTVS 3.341                                                                          CC(=O)N[CH]1NC[CH](CO)[CH](O)[CH]1O
+IFG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                   CC(=O)N[C@@H]1[C@H]([C@H]([C@H](CN1)CO)O)O
+IFG           SMILES "OpenEye OEToolkits" 1.5.0                                                                                    CC(=O)NC1C(C(C(CN1)CO)O)O
+IFG            InChI                InChI  1.03 InChI=1S/C8H16N2O4/c1-4(12)10-8-7(14)6(13)5(3-11)2-9-8/h5-9,11,13-14H,2-3H2,1H3,(H,10,12)/t5-,6+,7+,8-/m1/s1
+IFG         InChIKey                InChI  1.03                                                                                  IWVRQJNSUOIUFV-VGRMVHKJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IFG acedrg               243         "dictionary generator"                  
+IFG acedrg_database      11          "data source"                           
+IFG rdkit                2017.03.2   "Chemoinformatics tool"
+IFG refmac5              5.8.0238    "optimization tool"                     

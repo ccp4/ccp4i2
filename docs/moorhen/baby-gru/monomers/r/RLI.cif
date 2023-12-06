@@ -1,0 +1,300 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RLI     RLI      "4-{[4'-methyl-2'-(propanoylamino)-4,5'-bi-1,3-thiazol-2-yl]amino}benzoic acid"     NON-POLYMER     41     26     .     
+#
+data_comp_RLI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RLI     N10     N       NH1     0       30.839      9.197       8.076       
+RLI     O10     O       O       0       32.272      10.773      7.238       
+RLI     S10     S       S2      0       31.737      8.148       5.710       
+RLI     C11     C       CH3     0       31.752      11.020      10.496      
+RLI     N11     N       NRD5    0       30.163      7.044       7.238       
+RLI     O11     O       OC      -1      27.010      -1.063      3.012       
+RLI     S11     S       S2      0       32.697      5.598       1.734       
+RLI     C12     C       C       0       31.451      10.426      8.077       
+RLI     N12     N       NRD5    0       31.330      4.741       3.653       
+RLI     O12     O       O       0       28.580      -1.871      4.326       
+RLI     C13     C       CH2     0       31.042      11.336      9.216       
+RLI     N13     N       NH1     0       31.674      3.130       1.850       
+RLI     C14     C       CR5     0       30.867      8.184       7.137       
+RLI     C15     C       CR5     0       30.334      6.172       6.186       
+RLI     C16     C       CH3     0       29.595      4.876       6.208       
+RLI     C17     C       CR5     0       31.205      6.642       5.222       
+RLI     C18     C       CR5     0       31.667      6.069       3.969       
+RLI     C19     C       CR15    0       32.436      6.672       2.982       
+RLI     C20     C       CR5     0       31.835      4.359       2.444       
+RLI     C21     C       CR6     0       30.802      2.105       2.255       
+RLI     C22     C       CR16    0       29.482      2.381       2.596       
+RLI     C23     C       CR16    0       28.632      1.368       2.999       
+RLI     C24     C       CR6     0       29.079      0.054       3.066       
+RLI     C25     C       C       0       28.154      -1.043      3.500       
+RLI     C26     C       CR16    0       30.398      -0.222      2.721       
+RLI     C27     C       CR16    0       31.249      0.791       2.321       
+RLI     HN10    H       H       0       30.348      8.990       8.776       
+RLI     H11     H       H       0       31.496      11.665      11.178      
+RLI     H11A    H       H       0       32.714      11.065      10.354      
+RLI     H11B    H       H       0       31.511      10.125      10.790      
+RLI     H13     H       H       0       31.233      12.265      8.965       
+RLI     H13A    H       H       0       30.074      11.257      9.358       
+RLI     HN13    H       H       0       32.173      2.967       1.138       
+RLI     H16     H       H       0       29.206      4.707       5.336       
+RLI     H16A    H       H       0       28.887      4.915       6.870       
+RLI     H16B    H       H       0       30.206      4.157       6.433       
+RLI     H19     H       H       0       32.786      7.547       2.961       
+RLI     H22     H       H       0       29.166      3.268       2.558       
+RLI     H23     H       H       0       27.743      1.573       3.228       
+RLI     H26     H       H       0       30.717      -1.107      2.761       
+RLI     H27     H       H       0       32.141      0.591       2.092       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RLI         N10         C14      SINGLE       n     1.367  0.0190     1.367  0.0190
+RLI         N10         C12      SINGLE       n     1.357  0.0187     1.357  0.0187
+RLI         O10         C12      DOUBLE       n     1.223  0.0143     1.223  0.0143
+RLI         S10         C17      SINGLE       y     1.695  0.0200     1.695  0.0200
+RLI         S10         C14      SINGLE       y     1.695  0.0200     1.695  0.0200
+RLI         C11         C13      SINGLE       n     1.498  0.0200     1.498  0.0200
+RLI         N11         C15      SINGLE       y     1.339  0.0200     1.339  0.0200
+RLI         N11         C14      DOUBLE       y     1.335  0.0145     1.335  0.0145
+RLI         O11         C25      SINGLE       n     1.244  0.0200     1.244  0.0200
+RLI         S11         C20      SINGLE       y     1.695  0.0200     1.695  0.0200
+RLI         S11         C19      SINGLE       y     1.695  0.0200     1.695  0.0200
+RLI         C12         C13      SINGLE       n     1.514  0.0100     1.514  0.0100
+RLI         N12         C20      DOUBLE       y     1.354  0.0165     1.354  0.0165
+RLI         N12         C18      SINGLE       y     1.388  0.0142     1.388  0.0142
+RLI         O12         C25      DOUBLE       n     1.244  0.0200     1.244  0.0200
+RLI         N13         C21      SINGLE       n     1.397  0.0200     1.397  0.0200
+RLI         N13         C20      SINGLE       n     1.367  0.0190     1.367  0.0190
+RLI         C15         C17      DOUBLE       y     1.358  0.0182     1.358  0.0182
+RLI         C15         C16      SINGLE       n     1.491  0.0100     1.491  0.0100
+RLI         C17         C18      SINGLE       n     1.449  0.0100     1.449  0.0100
+RLI         C18         C19      DOUBLE       y     1.371  0.0200     1.371  0.0200
+RLI         C21         C27      SINGLE       y     1.385  0.0107     1.385  0.0107
+RLI         C21         C22      DOUBLE       y     1.385  0.0107     1.385  0.0107
+RLI         C22         C23      SINGLE       y     1.379  0.0100     1.379  0.0100
+RLI         C23         C24      DOUBLE       y     1.387  0.0103     1.387  0.0103
+RLI         C24         C26      SINGLE       y     1.387  0.0103     1.387  0.0103
+RLI         C24         C25      SINGLE       n     1.498  0.0200     1.498  0.0200
+RLI         C26         C27      DOUBLE       y     1.379  0.0100     1.379  0.0100
+RLI         N10        HN10      SINGLE       n     1.016  0.0100     0.878  0.0200
+RLI         C11         H11      SINGLE       n     1.089  0.0100     0.973  0.0141
+RLI         C11        H11A      SINGLE       n     1.089  0.0100     0.973  0.0141
+RLI         C11        H11B      SINGLE       n     1.089  0.0100     0.973  0.0141
+RLI         C13         H13      SINGLE       n     1.089  0.0100     0.981  0.0185
+RLI         C13        H13A      SINGLE       n     1.089  0.0100     0.981  0.0185
+RLI         N13        HN13      SINGLE       n     1.016  0.0100     0.884  0.0200
+RLI         C16         H16      SINGLE       n     1.089  0.0100     0.970  0.0153
+RLI         C16        H16A      SINGLE       n     1.089  0.0100     0.970  0.0153
+RLI         C16        H16B      SINGLE       n     1.089  0.0100     0.970  0.0153
+RLI         C19         H19      SINGLE       n     1.082  0.0130     0.942  0.0200
+RLI         C22         H22      SINGLE       n     1.082  0.0130     0.942  0.0198
+RLI         C23         H23      SINGLE       n     1.082  0.0130     0.941  0.0168
+RLI         C26         H26      SINGLE       n     1.082  0.0130     0.941  0.0168
+RLI         C27         H27      SINGLE       n     1.082  0.0130     0.942  0.0198
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RLI         C14         N10         C12     124.557    2.96
+RLI         C14         N10        HN10     116.760    2.70
+RLI         C12         N10        HN10     118.683    1.66
+RLI         C17         S10         C14     107.922    3.00
+RLI         C13         C11         H11     109.502    1.50
+RLI         C13         C11        H11A     109.502    1.50
+RLI         C13         C11        H11B     109.502    1.50
+RLI         H11         C11        H11A     109.380    1.50
+RLI         H11         C11        H11B     109.380    1.50
+RLI        H11A         C11        H11B     109.380    1.50
+RLI         C15         N11         C14     107.030    1.65
+RLI         C20         S11         C19     108.623    3.00
+RLI         N10         C12         O10     122.592    1.50
+RLI         N10         C12         C13     114.884    1.50
+RLI         O10         C12         C13     122.525    1.50
+RLI         C20         N12         C18     105.585    1.50
+RLI         C11         C13         C12     112.924    1.50
+RLI         C11         C13         H13     109.044    1.50
+RLI         C11         C13        H13A     109.044    1.50
+RLI         C12         C13         H13     108.894    1.50
+RLI         C12         C13        H13A     108.894    1.50
+RLI         H13         C13        H13A     107.827    1.50
+RLI         C21         N13         C20     126.633    3.00
+RLI         C21         N13        HN13     116.813    2.03
+RLI         C20         N13        HN13     116.554    2.70
+RLI         N10         C14         S10     123.039    3.00
+RLI         N10         C14         N11     129.039    3.00
+RLI         S10         C14         N11     107.922    3.00
+RLI         N11         C15         C17     109.203    1.50
+RLI         N11         C15         C16     120.704    1.50
+RLI         C17         C15         C16     130.093    2.84
+RLI         C15         C16         H16     109.591    1.50
+RLI         C15         C16        H16A     109.591    1.50
+RLI         C15         C16        H16B     109.591    1.50
+RLI         H16         C16        H16A     109.354    1.50
+RLI         H16         C16        H16B     109.354    1.50
+RLI        H16A         C16        H16B     109.354    1.50
+RLI         S10         C17         C15     107.922    3.00
+RLI         S10         C17         C18     121.352    3.00
+RLI         C15         C17         C18     130.726    3.00
+RLI         N12         C18         C17     122.103    2.71
+RLI         N12         C18         C19     108.547    1.50
+RLI         C17         C18         C19     129.350    3.00
+RLI         S11         C19         C18     108.623    3.00
+RLI         S11         C19         H19     122.728    3.00
+RLI         C18         C19         H19     128.649    2.15
+RLI         S11         C20         N12     108.623    3.00
+RLI         S11         C20         N13     122.688    3.00
+RLI         N12         C20         N13     128.689    3.00
+RLI         N13         C21         C27     120.596    2.40
+RLI         N13         C21         C22     120.596    2.40
+RLI         C27         C21         C22     118.808    1.50
+RLI         C21         C22         C23     120.387    1.50
+RLI         C21         C22         H22     119.692    1.50
+RLI         C23         C22         H22     119.922    1.50
+RLI         C22         C23         C24     120.683    1.50
+RLI         C22         C23         H23     119.467    1.50
+RLI         C24         C23         H23     119.850    1.50
+RLI         C23         C24         C26     119.053    1.50
+RLI         C23         C24         C25     120.474    1.50
+RLI         C26         C24         C25     120.474    1.50
+RLI         O11         C25         O12     124.418    1.50
+RLI         O11         C25         C24     117.791    1.50
+RLI         O12         C25         C24     117.791    1.50
+RLI         C24         C26         C27     120.683    1.50
+RLI         C24         C26         H26     119.850    1.50
+RLI         C27         C26         H26     119.467    1.50
+RLI         C21         C27         C26     120.387    1.50
+RLI         C21         C27         H27     119.692    1.50
+RLI         C26         C27         H27     119.922    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RLI             sp2_sp2_1         S10         C14         N10         C12     180.000     5.0     2
+RLI             sp2_sp2_7         O10         C12         N10         C14       0.000     5.0     2
+RLI            sp2_sp2_13         S11         C20         N13         C21     180.000     5.0     2
+RLI             sp2_sp2_9         C27         C21         N13         C20     180.000     5.0     2
+RLI             sp2_sp3_7         N11         C15         C16         H16     150.000    10.0     6
+RLI       const_sp2_sp2_5         C16         C15         C17         S10     180.000     5.0     2
+RLI            sp2_sp2_20         S10         C17         C18         N12     180.000     5.0     2
+RLI              const_17         N12         C18         C19         S11       0.000    10.0     2
+RLI              const_47         N13         C21         C22         C23     180.000    10.0     2
+RLI              const_23         N13         C21         C27         C26     180.000    10.0     2
+RLI              const_37         C21         C22         C23         C24       0.000    10.0     2
+RLI              const_34         C22         C23         C24         C25     180.000    10.0     2
+RLI            sp2_sp2_21         C23         C24         C25         O11     180.000     5.0     2
+RLI              const_31         C25         C24         C26         C27     180.000    10.0     2
+RLI              const_25         C24         C26         C27         C21       0.000    10.0     2
+RLI              const_42         N10         C14         S10         C17     180.000    10.0     2
+RLI       const_sp2_sp2_1         C15         C17         S10         C14       0.000     5.0     2
+RLI             sp3_sp3_1         H11         C11         C13         C12     180.000    10.0     3
+RLI              const_10         N10         C14         N11         C15     180.000    10.0     2
+RLI       const_sp2_sp2_8         C16         C15         N11         C14     180.000     5.0     2
+RLI              const_43         C18         C19         S11         C20       0.000    10.0     2
+RLI              const_12         N13         C20         S11         C19     180.000    10.0     2
+RLI             sp2_sp3_2         N10         C12         C13         C11     120.000    10.0     6
+RLI              const_16         C17         C18         N12         C20     180.000    10.0     2
+RLI              const_14         N13         C20         N12         C18     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RLI    plan-1         C14   0.020
+RLI    plan-1         C15   0.020
+RLI    plan-1         C16   0.020
+RLI    plan-1         C17   0.020
+RLI    plan-1         C18   0.020
+RLI    plan-1         N10   0.020
+RLI    plan-1         N11   0.020
+RLI    plan-1         S10   0.020
+RLI    plan-2         C17   0.020
+RLI    plan-2         C18   0.020
+RLI    plan-2         C19   0.020
+RLI    plan-2         C20   0.020
+RLI    plan-2         H19   0.020
+RLI    plan-2         N12   0.020
+RLI    plan-2         N13   0.020
+RLI    plan-2         S11   0.020
+RLI    plan-3         C21   0.020
+RLI    plan-3         C22   0.020
+RLI    plan-3         C23   0.020
+RLI    plan-3         C24   0.020
+RLI    plan-3         C25   0.020
+RLI    plan-3         C26   0.020
+RLI    plan-3         C27   0.020
+RLI    plan-3         H22   0.020
+RLI    plan-3         H23   0.020
+RLI    plan-3         H26   0.020
+RLI    plan-3         H27   0.020
+RLI    plan-3         N13   0.020
+RLI    plan-4         C12   0.020
+RLI    plan-4         C14   0.020
+RLI    plan-4        HN10   0.020
+RLI    plan-4         N10   0.020
+RLI    plan-5         C12   0.020
+RLI    plan-5         C13   0.020
+RLI    plan-5         N10   0.020
+RLI    plan-5         O10   0.020
+RLI    plan-6         C20   0.020
+RLI    plan-6         C21   0.020
+RLI    plan-6        HN13   0.020
+RLI    plan-6         N13   0.020
+RLI    plan-7         C24   0.020
+RLI    plan-7         C25   0.020
+RLI    plan-7         O11   0.020
+RLI    plan-7         O12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RLI           SMILES              ACDLabs 12.01                                                                                                        O=C(O)c3ccc(Nc1nc(cs1)c2sc(nc2C)NC(=O)CC)cc3
+RLI            InChI                InChI  1.03 InChI=1S/C17H16N4O3S2/c1-3-13(22)21-17-18-9(2)14(26-17)12-8-25-16(20-12)19-11-6-4-10(5-7-11)15(23)24/h4-8H,3H2,1-2H3,(H,19,20)(H,23,24)(H,18,21,22)
+RLI         InChIKey                InChI  1.03                                                                                                                         JOAXMWDTALNZFE-UHFFFAOYSA-N
+RLI SMILES_CANONICAL               CACTVS 3.370                                                                                                      CCC(=O)Nc1sc(c(C)n1)c2csc(Nc3ccc(cc3)C(O)=O)n2
+RLI           SMILES               CACTVS 3.370                                                                                                      CCC(=O)Nc1sc(c(C)n1)c2csc(Nc3ccc(cc3)C(O)=O)n2
+RLI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                      CCC(=O)Nc1nc(c(s1)c2csc(n2)Nc3ccc(cc3)C(=O)O)C
+RLI           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                      CCC(=O)Nc1nc(c(s1)c2csc(n2)Nc3ccc(cc3)C(=O)O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RLI acedrg               243         "dictionary generator"                  
+RLI acedrg_database      11          "data source"                           
+RLI rdkit                2017.03.2   "Chemoinformatics tool"
+RLI refmac5              5.8.0238    "optimization tool"                     

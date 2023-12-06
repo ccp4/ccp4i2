@@ -1,0 +1,265 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OBI     OBI      "1,1'-(OXYDIMETHYLENE)BIS(4-FORMYLPYRIDINIUM)DIOXIME"     NON-POLYMER     37     21     .     
+#
+data_comp_OBI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OBI     O3      O       OH1     0       27.656      20.934      13.019      
+OBI     N4      N       N       0       28.318      20.647      11.802      
+OBI     C14     C       C1      0       28.322      21.668      11.043      
+OBI     C11     C       CR6     0       29.558      22.187      10.461      
+OBI     C10     C       CR16    0       30.696      22.378      11.245      
+OBI     C9      C       CR16    0       31.864      22.872      10.684      
+OBI     C12     C       CR16    0       29.629      22.508      9.105       
+OBI     C13     C       CR16    0       30.803      23.002      8.558       
+OBI     N3      N       NR6     1       31.930      23.189      9.339       
+OBI     C8      C       CH2     0       33.174      23.713      8.753       
+OBI     O2      O       O2      0       34.045      22.677      8.302       
+OBI     C7      C       CH2     0       35.353      23.131      7.957       
+OBI     N2      N       NR6     1       36.206      23.343      9.138       
+OBI     C4      C       CR16    0       36.457      22.301      10.012      
+OBI     C3      C       CR16    0       37.256      22.483      11.132      
+OBI     C5      C       CR16    0       36.768      24.582      9.405       
+OBI     C6      C       CR16    0       37.569      24.777      10.520      
+OBI     C2      C       CR6     0       37.826      23.727      11.402      
+OBI     C1      C       C1      0       38.668      23.929      12.580      
+OBI     N1      N       N       0       39.625      23.140      12.859      
+OBI     O1      O       OH1     0       39.565      22.740      14.215      
+OBI     HO3     H       H       0       26.987      20.453      13.269      
+OBI     H14     H       H       0       27.509      22.103      10.848      
+OBI     H10     H       H       0       30.679      22.170      12.166      
+OBI     H9      H       H       0       32.628      22.997      11.223      
+OBI     H12     H       H       0       28.874      22.391      8.550       
+OBI     H13     H       H       0       30.840      23.216      7.640       
+OBI     H81     H       H       0       33.633      24.253      9.430       
+OBI     H82     H       H       0       32.946      24.293      7.996       
+OBI     H71     H       H       0       35.284      23.970      7.454       
+OBI     H72     H       H       0       35.781      22.462      7.382       
+OBI     H4      H       H       0       36.078      21.455      9.839       
+OBI     H3      H       H       0       37.412      21.754      11.710      
+OBI     H5      H       H       0       36.603      25.300      8.816       
+OBI     H6      H       H       0       37.940      25.631      10.678      
+OBI     H1      H       H       0       38.495      24.666      13.142      
+OBI     HO1     H       H       0       39.899      23.244      14.828      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OBI          O3          N4      SINGLE       n     1.415  0.0195     1.415  0.0195
+OBI          N4         C14      DOUBLE       n     1.271  0.0112     1.271  0.0112
+OBI         C14         C11      SINGLE       n     1.462  0.0100     1.462  0.0100
+OBI         C11         C10      DOUBLE       y     1.390  0.0103     1.390  0.0103
+OBI         C11         C12      SINGLE       y     1.390  0.0103     1.390  0.0103
+OBI         C10          C9      SINGLE       y     1.384  0.0100     1.384  0.0100
+OBI          C9          N3      DOUBLE       y     1.378  0.0177     1.378  0.0177
+OBI         C12         C13      DOUBLE       y     1.384  0.0100     1.384  0.0100
+OBI         C13          N3      SINGLE       y     1.378  0.0177     1.378  0.0177
+OBI          N3          C8      SINGLE       n     1.471  0.0100     1.471  0.0100
+OBI          C8          O2      SINGLE       n     1.424  0.0132     1.424  0.0132
+OBI          O2          C7      SINGLE       n     1.424  0.0132     1.424  0.0132
+OBI          C7          N2      SINGLE       n     1.471  0.0100     1.471  0.0100
+OBI          N2          C4      DOUBLE       y     1.378  0.0177     1.378  0.0177
+OBI          N2          C5      SINGLE       y     1.378  0.0177     1.378  0.0177
+OBI          C4          C3      SINGLE       y     1.384  0.0100     1.384  0.0100
+OBI          C3          C2      DOUBLE       y     1.390  0.0103     1.390  0.0103
+OBI          C5          C6      DOUBLE       y     1.384  0.0100     1.384  0.0100
+OBI          C6          C2      SINGLE       y     1.390  0.0103     1.390  0.0103
+OBI          C2          C1      SINGLE       n     1.462  0.0100     1.462  0.0100
+OBI          C1          N1      DOUBLE       n     1.271  0.0112     1.271  0.0112
+OBI          N1          O1      SINGLE       n     1.415  0.0195     1.415  0.0195
+OBI          O3         HO3      SINGLE       n     0.966  0.0059     0.861  0.0200
+OBI         C14         H14      SINGLE       n     1.082  0.0130     0.942  0.0164
+OBI         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0103
+OBI          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0169
+OBI         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0103
+OBI         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0169
+OBI          C8         H81      SINGLE       n     1.089  0.0100     0.980  0.0156
+OBI          C8         H82      SINGLE       n     1.089  0.0100     0.980  0.0156
+OBI          C7         H71      SINGLE       n     1.089  0.0100     0.980  0.0156
+OBI          C7         H72      SINGLE       n     1.089  0.0100     0.980  0.0156
+OBI          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0169
+OBI          C3          H3      SINGLE       n     1.082  0.0130     0.944  0.0103
+OBI          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0169
+OBI          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0103
+OBI          C1          H1      SINGLE       n     1.082  0.0130     0.942  0.0164
+OBI          O1         HO1      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OBI          N4          O3         HO3     120.000    3.00
+OBI          O3          N4         C14     110.625    1.59
+OBI          N4         C14         C11     121.486    1.50
+OBI          N4         C14         H14     119.578    1.50
+OBI         C11         C14         H14     118.935    1.50
+OBI         C14         C11         C10     121.245    1.50
+OBI         C14         C11         C12     121.245    1.50
+OBI         C10         C11         C12     117.510    1.50
+OBI         C11         C10          C9     120.235    1.50
+OBI         C11         C10         H10     120.335    1.50
+OBI          C9         C10         H10     119.430    1.50
+OBI         C10          C9          N3     121.373    1.50
+OBI         C10          C9          H9     119.673    1.50
+OBI          N3          C9          H9     118.954    1.50
+OBI         C11         C12         C13     120.235    1.50
+OBI         C11         C12         H12     120.335    1.50
+OBI         C13         C12         H12     119.430    1.50
+OBI         C12         C13          N3     121.373    1.50
+OBI         C12         C13         H13     119.673    1.50
+OBI          N3         C13         H13     118.954    1.50
+OBI          C9          N3         C13     119.275    1.50
+OBI          C9          N3          C8     120.362    1.50
+OBI         C13          N3          C8     120.362    1.50
+OBI          N3          C8          O2     112.798    1.50
+OBI          N3          C8         H81     108.793    1.53
+OBI          N3          C8         H82     108.793    1.53
+OBI          O2          C8         H81     109.309    1.50
+OBI          O2          C8         H82     109.309    1.50
+OBI         H81          C8         H82     108.663    1.50
+OBI          C8          O2          C7     112.777    1.57
+OBI          O2          C7          N2     112.798    1.50
+OBI          O2          C7         H71     109.309    1.50
+OBI          O2          C7         H72     109.309    1.50
+OBI          N2          C7         H71     108.793    1.53
+OBI          N2          C7         H72     108.793    1.53
+OBI         H71          C7         H72     108.663    1.50
+OBI          C7          N2          C4     120.362    1.50
+OBI          C7          N2          C5     120.362    1.50
+OBI          C4          N2          C5     119.275    1.50
+OBI          N2          C4          C3     121.373    1.50
+OBI          N2          C4          H4     118.954    1.50
+OBI          C3          C4          H4     119.673    1.50
+OBI          C4          C3          C2     120.235    1.50
+OBI          C4          C3          H3     119.430    1.50
+OBI          C2          C3          H3     120.335    1.50
+OBI          N2          C5          C6     121.373    1.50
+OBI          N2          C5          H5     118.954    1.50
+OBI          C6          C5          H5     119.673    1.50
+OBI          C5          C6          C2     120.235    1.50
+OBI          C5          C6          H6     119.430    1.50
+OBI          C2          C6          H6     120.335    1.50
+OBI          C3          C2          C6     117.510    1.50
+OBI          C3          C2          C1     121.245    1.50
+OBI          C6          C2          C1     121.245    1.50
+OBI          C2          C1          N1     121.486    1.50
+OBI          C2          C1          H1     118.935    1.50
+OBI          N1          C1          H1     119.578    1.50
+OBI          C1          N1          O1     110.625    1.59
+OBI          N1          O1         HO1     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OBI             sp2_sp2_1         C14          N4          O3         HO3     180.000     5.0     2
+OBI             sp3_sp3_4          N2          C7          O2          C8     180.000    10.0     3
+OBI             sp2_sp3_8          C4          N2          C7          O2     -90.000    10.0     6
+OBI              const_22          C3          C4          N2          C7     180.000    10.0     2
+OBI              const_46          C6          C5          N2          C7     180.000    10.0     2
+OBI              const_25          C2          C3          C4          N2       0.000    10.0     2
+OBI              const_31          C1          C2          C3          C4     180.000    10.0     2
+OBI              const_37          N2          C5          C6          C2       0.000    10.0     2
+OBI              const_35          C1          C2          C6          C5     180.000    10.0     2
+OBI             sp2_sp2_8          N1          C1          C2          C3     180.000     5.0     2
+OBI            sp2_sp2_12          C2          C1          N1          O1     180.000     5.0     2
+OBI            sp2_sp2_14          C1          N1          O1         HO1     180.000     5.0     2
+OBI             sp2_sp2_2         C11         C14          N4          O3     180.000     5.0     2
+OBI             sp2_sp2_4         C10         C11         C14          N4     180.000     5.0     2
+OBI       const_sp2_sp2_2          C9         C10         C11         C14     180.000     5.0     2
+OBI              const_43         C14         C11         C12         C13     180.000    10.0     2
+OBI       const_sp2_sp2_5         C11         C10          C9          N3       0.000     5.0     2
+OBI              const_10         C10          C9          N3          C8     180.000    10.0     2
+OBI              const_17         C11         C12         C13          N3       0.000    10.0     2
+OBI              const_14         C12         C13          N3          C8     180.000    10.0     2
+OBI             sp2_sp3_2          C9          N3          C8          O2     -90.000    10.0     6
+OBI             sp3_sp3_1          N3          C8          O2          C7     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OBI    plan-1          C1   0.020
+OBI    plan-1          C2   0.020
+OBI    plan-1          C3   0.020
+OBI    plan-1          C4   0.020
+OBI    plan-1          C5   0.020
+OBI    plan-1          C6   0.020
+OBI    plan-1          C7   0.020
+OBI    plan-1          H3   0.020
+OBI    plan-1          H4   0.020
+OBI    plan-1          H5   0.020
+OBI    plan-1          H6   0.020
+OBI    plan-1          N2   0.020
+OBI    plan-2         C10   0.020
+OBI    plan-2         C11   0.020
+OBI    plan-2         C12   0.020
+OBI    plan-2         C13   0.020
+OBI    plan-2         C14   0.020
+OBI    plan-2          C8   0.020
+OBI    plan-2          C9   0.020
+OBI    plan-2         H10   0.020
+OBI    plan-2         H12   0.020
+OBI    plan-2         H13   0.020
+OBI    plan-2          H9   0.020
+OBI    plan-2          N3   0.020
+OBI    plan-3         C11   0.020
+OBI    plan-3         C14   0.020
+OBI    plan-3         H14   0.020
+OBI    plan-3          N4   0.020
+OBI    plan-4          C1   0.020
+OBI    plan-4          C2   0.020
+OBI    plan-4          H1   0.020
+OBI    plan-4          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OBI           SMILES              ACDLabs 10.04                                                           O\N=C\c1cc[n+](cc1)COC[n+]2ccc(\C=N\O)cc2
+OBI SMILES_CANONICAL               CACTVS 3.341                                                           O\N=C\c1cc[n+](COC[n+]2ccc(cc2)\C=N\O)cc1
+OBI           SMILES               CACTVS 3.341                                                               ON=Cc1cc[n+](COC[n+]2ccc(cc2)C=NO)cc1
+OBI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                           c1c[n+](ccc1\C=N\O)COC[n+]2ccc(cc2)\C=N\O
+OBI           SMILES "OpenEye OEToolkits" 1.5.0                                                               c1c[n+](ccc1C=NO)COC[n+]2ccc(cc2)C=NO
+OBI            InChI                InChI  1.03 InChI=1S/C14H14N4O3/c19-15-9-13-1-5-17(6-2-13)11-21-12-18-7-3-14(4-8-18)10-16-20/h1-10H,11-12H2/p+2
+OBI         InChIKey                InChI  1.03                                                                         HIGRLDNHDGYWQJ-UHFFFAOYSA-P
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OBI acedrg               243         "dictionary generator"                  
+OBI acedrg_database      11          "data source"                           
+OBI rdkit                2017.03.2   "Chemoinformatics tool"
+OBI refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,188 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OTR     OTR      4-(2R-AMINO-1-HYDROXYETHYL)PHENOL     NON-POLYMER     22     11     .     
+#
+data_comp_OTR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OTR     C2      C       CR16    0       -26.701     24.588      60.362      
+OTR     C3      C       CR16    0       -25.425     24.050      60.260      
+OTR     C4      C       CR6     0       -24.381     24.832      59.788      
+OTR     O4      O       OH1     0       -23.116     24.304      59.685      
+OTR     C5      C       CR16    0       -24.618     26.148      59.421      
+OTR     C6      C       CR16    0       -25.898     26.676      59.527      
+OTR     C1      C       CR6     0       -26.957     25.907      59.999      
+OTR     C7      C       CH1     0       -28.357     26.490      60.112      
+OTR     O7      O       OH1     0       -28.350     27.782      60.695      
+OTR     C8      C       CH2     0       -29.010     26.579      58.735      
+OTR     N8      N       NT2     0       -30.429     26.930      58.827      
+OTR     H2      H       H       0       -27.404     24.049      60.684      
+OTR     H3      H       H       0       -25.267     23.155      60.511      
+OTR     HO4     H       H       0       -22.429     24.800      59.837      
+OTR     H5      H       H       0       -23.911     26.683      59.099      
+OTR     H6      H       H       0       -26.050     27.572      59.275      
+OTR     H7      H       H       0       -28.898     25.895      60.683      
+OTR     HO7     H       H       0       -28.149     27.708      61.516      
+OTR     H81     H       H       0       -28.926     25.716      58.273      
+OTR     H82     H       H       0       -28.550     27.256      58.194      
+OTR     HN81    H       H       0       -30.751     27.104      58.018      
+OTR     HN82    H       H       0       -30.529     27.666      59.313      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OTR          C2          C3      DOUBLE       y     1.385  0.0100     1.385  0.0100
+OTR          C2          C1      SINGLE       y     1.387  0.0111     1.387  0.0111
+OTR          C3          C4      SINGLE       y     1.383  0.0100     1.383  0.0100
+OTR          C4          C5      DOUBLE       y     1.383  0.0100     1.383  0.0100
+OTR          C4          O4      SINGLE       n     1.374  0.0155     1.374  0.0155
+OTR          C5          C6      SINGLE       y     1.385  0.0100     1.385  0.0100
+OTR          C6          C1      DOUBLE       y     1.387  0.0111     1.387  0.0111
+OTR          C1          C7      SINGLE       n     1.520  0.0100     1.520  0.0100
+OTR          C7          C8      SINGLE       n     1.527  0.0100     1.527  0.0100
+OTR          C7          O7      SINGLE       n     1.417  0.0143     1.417  0.0143
+OTR          C8          N8      SINGLE       n     1.464  0.0200     1.464  0.0200
+OTR          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0173
+OTR          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0169
+OTR          O4         HO4      SINGLE       n     0.966  0.0059     0.861  0.0200
+OTR          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0169
+OTR          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0173
+OTR          C7          H7      SINGLE       n     1.089  0.0100     0.986  0.0120
+OTR          O7         HO7      SINGLE       n     0.970  0.0120     0.848  0.0200
+OTR          C8         H81      SINGLE       n     1.089  0.0100     0.982  0.0143
+OTR          C8         H82      SINGLE       n     1.089  0.0100     0.982  0.0143
+OTR          N8        HN81      SINGLE       n     1.036  0.0160     0.888  0.0200
+OTR          N8        HN82      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OTR          C3          C2          C1     121.214    1.50
+OTR          C3          C2          H2     119.248    1.50
+OTR          C1          C2          H2     119.538    1.50
+OTR          C2          C3          C4     119.753    1.50
+OTR          C2          C3          H3     120.205    1.50
+OTR          C4          C3          H3     120.043    1.50
+OTR          C3          C4          C5     119.498    1.50
+OTR          C3          C4          O4     120.251    3.00
+OTR          C5          C4          O4     120.251    3.00
+OTR          C4          O4         HO4     120.000    3.00
+OTR          C4          C5          C6     119.753    1.50
+OTR          C4          C5          H5     120.043    1.50
+OTR          C6          C5          H5     120.205    1.50
+OTR          C5          C6          C1     121.214    1.50
+OTR          C5          C6          H6     119.248    1.50
+OTR          C1          C6          H6     119.538    1.50
+OTR          C2          C1          C6     118.569    1.50
+OTR          C2          C1          C7     120.716    1.50
+OTR          C6          C1          C7     120.716    1.50
+OTR          C1          C7          C8     110.619    1.69
+OTR          C1          C7          O7     112.088    1.90
+OTR          C1          C7          H7     108.561    1.50
+OTR          C8          C7          O7     109.047    2.04
+OTR          C8          C7          H7     109.057    1.50
+OTR          O7          C7          H7     108.687    1.50
+OTR          C7          O7         HO7     108.665    2.27
+OTR          C7          C8          N8     111.883    2.59
+OTR          C7          C8         H81     109.677    1.73
+OTR          C7          C8         H82     109.677    1.73
+OTR          N8          C8         H81     108.870    1.50
+OTR          N8          C8         H82     108.870    1.50
+OTR         H81          C8         H82     107.873    1.50
+OTR          C8          N8        HN81     109.962    3.00
+OTR          C8          N8        HN82     109.962    3.00
+OTR        HN81          N8        HN82     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OTR       const_sp2_sp2_1          C1          C2          C3          C4       0.000     5.0     2
+OTR              const_23          C7          C1          C2          C3     180.000    10.0     2
+OTR       const_sp2_sp2_6          C2          C3          C4          O4     180.000     5.0     2
+OTR             sp2_sp2_1          C3          C4          O4         HO4     180.000     5.0     2
+OTR              const_11          O4          C4          C5          C6     180.000    10.0     2
+OTR              const_13          C4          C5          C6          C1       0.000    10.0     2
+OTR              const_19          C7          C1          C6          C5     180.000    10.0     2
+OTR             sp2_sp3_1          C2          C1          C7          C8     150.000    10.0     6
+OTR            sp3_sp3_11          C8          C7          O7         HO7      60.000    10.0     3
+OTR             sp3_sp3_4          O7          C7          C8          N8      60.000    10.0     3
+OTR            sp3_sp3_13          C7          C8          N8        HN81     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OTR    chir_1    C7    O7    C8    C1    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OTR    plan-1          C1   0.020
+OTR    plan-1          C2   0.020
+OTR    plan-1          C3   0.020
+OTR    plan-1          C4   0.020
+OTR    plan-1          C5   0.020
+OTR    plan-1          C6   0.020
+OTR    plan-1          C7   0.020
+OTR    plan-1          H2   0.020
+OTR    plan-1          H3   0.020
+OTR    plan-1          H5   0.020
+OTR    plan-1          H6   0.020
+OTR    plan-1          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OTR           SMILES              ACDLabs 10.04                                                          OC(c1ccc(O)cc1)CN
+OTR SMILES_CANONICAL               CACTVS 3.341                                                      NC[C@H](O)c1ccc(O)cc1
+OTR           SMILES               CACTVS 3.341                                                       NC[CH](O)c1ccc(O)cc1
+OTR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                      c1cc(ccc1[C@H](CN)O)O
+OTR           SMILES "OpenEye OEToolkits" 1.5.0                                                          c1cc(ccc1C(CN)O)O
+OTR            InChI                InChI  1.03 InChI=1S/C8H11NO2/c9-5-8(11)6-1-3-7(10)4-2-6/h1-4,8,10-11H,5,9H2/t8-/m0/s1
+OTR         InChIKey                InChI  1.03                                                QHGUCRYDKWKLMG-QMMMGPOBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OTR acedrg               243         "dictionary generator"                  
+OTR acedrg_database      11          "data source"                           
+OTR rdkit                2017.03.2   "Chemoinformatics tool"
+OTR refmac5              5.8.0238    "optimization tool"                     

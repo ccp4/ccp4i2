@@ -1,0 +1,323 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+C70     C70      2-(4-chlorophenyl)-4-[(3S)-piperidin-3-ylamino]thieno[2,3-d]pyridazine-7-carboxamide     NON-POLYMER     44     26     .     
+#
+data_comp_C70
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+C70     C01     C       CR15    0       18.795      -2.924      10.389      
+C70     C02     C       CR5     0       19.239      -2.110      9.403       
+C70     S03     S       S2      0       18.043      -1.033      8.942       
+C70     C04     C       CR56    0       16.880      -1.563      10.008      
+C70     C05     C       CR56    0       17.439      -2.644      10.769      
+C70     C06     C       CR6     0       15.548      -1.155      10.258      
+C70     N07     N       NRD6    0       14.835      -1.789      11.202      
+C70     N08     N       NRD6    0       15.351      -2.809      11.926      
+C70     C09     C       CR6     0       16.605      -3.248      11.746      
+C70     N10     N       NH1     0       17.043      -4.293      12.520      
+C70     C11     C       CR6     0       20.566      -2.120      8.769       
+C70     C12     C       C       0       14.817      -0.043      9.550       
+C70     C13     C       CH1     0       16.334      -4.842      13.672      
+C70     C14     C       CH2     0       16.404      -3.886      14.875      
+C70     N15     N       NT1     0       15.675      -4.445      16.022      
+C70     C16     C       CH2     0       16.247      -5.734      16.430      
+C70     C17     C       CH2     0       16.193      -6.752      15.308      
+C70     C18     C       CH2     0       16.883      -6.211      14.057      
+C70     C19     C       CR16    0       21.300      -3.307      8.701       
+C70     C20     C       CR16    0       22.553      -3.337      8.111       
+C70     C21     C       CR6     0       23.081      -2.176      7.587       
+C70     C22     C       CR16    0       22.384      -0.988      7.640       
+C70     C23     C       CR16    0       21.131      -0.959      8.231       
+C70     CL24    CL      CL      0       24.655      -2.212      6.845       
+C70     N25     N       NH2     0       13.625      0.299       10.024      
+C70     O26     O       O       0       15.308      0.519       8.571       
+C70     H01     H       H       0       19.313      -3.603      10.783      
+C70     HN10    H       H       0       17.805      -4.662      12.306      
+C70     H13     H       H       0       15.381      -4.962      13.432      
+C70     H14     H       H       0       17.340      -3.741      15.124      
+C70     H14A    H       H       0       16.013      -3.021      14.631      
+C70     HN15    H       H       0       14.826      -4.574      15.796      
+C70     H16     H       H       0       15.751      -6.075      17.201      
+C70     H16A    H       H       0       17.179      -5.600      16.700      
+C70     H17     H       H       0       15.254      -6.959      15.105      
+C70     H17A    H       H       0       16.635      -7.580      15.600      
+C70     H18     H       H       0       17.854      -6.138      14.222      
+C70     H18A    H       H       0       16.747      -6.839      13.308      
+C70     H19     H       H       0       20.941      -4.101      9.057       
+C70     H20     H       H       0       23.037      -4.139      8.068       
+C70     H22     H       H       0       22.755      -0.205      7.280       
+C70     H23     H       H       0       20.661      -0.146      8.267       
+C70     HN25    H       H       0       13.159      0.951       9.633       
+C70     HN2A    H       H       0       13.279      -0.118      10.732      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+C70         C01         C02      DOUBLE       y     1.348  0.0100     1.348  0.0100
+C70         C01         C05      SINGLE       y     1.425  0.0100     1.425  0.0100
+C70         C02         C11      SINGLE       n     1.466  0.0100     1.466  0.0100
+C70         C02         S03      SINGLE       y     1.695  0.0200     1.695  0.0200
+C70         S03         C04      SINGLE       y     1.695  0.0200     1.695  0.0200
+C70         C04         C06      SINGLE       y     1.409  0.0109     1.409  0.0109
+C70         C04         C05      DOUBLE       y     1.414  0.0200     1.414  0.0200
+C70         C05         C09      SINGLE       y     1.414  0.0103     1.414  0.0103
+C70         C06         C12      SINGLE       n     1.502  0.0100     1.502  0.0100
+C70         C06         N07      DOUBLE       y     1.333  0.0132     1.333  0.0132
+C70         N07         N08      SINGLE       y     1.340  0.0156     1.340  0.0156
+C70         N08         C09      DOUBLE       y     1.329  0.0139     1.329  0.0139
+C70         C09         N10      SINGLE       n     1.351  0.0200     1.351  0.0200
+C70         N10         C13      SINGLE       n     1.457  0.0100     1.457  0.0100
+C70         C11         C23      SINGLE       y     1.392  0.0100     1.392  0.0100
+C70         C11         C19      DOUBLE       y     1.392  0.0100     1.392  0.0100
+C70         C12         O26      DOUBLE       n     1.230  0.0114     1.230  0.0114
+C70         C12         N25      SINGLE       n     1.325  0.0100     1.325  0.0100
+C70         C13         C18      SINGLE       n     1.523  0.0100     1.523  0.0100
+C70         C13         C14      SINGLE       n     1.535  0.0119     1.535  0.0119
+C70         C14         N15      SINGLE       n     1.467  0.0111     1.467  0.0111
+C70         N15         C16      SINGLE       n     1.467  0.0100     1.467  0.0100
+C70         C16         C17      SINGLE       n     1.515  0.0100     1.515  0.0100
+C70         C17         C18      SINGLE       n     1.526  0.0100     1.526  0.0100
+C70         C19         C20      SINGLE       y     1.382  0.0100     1.382  0.0100
+C70         C20         C21      DOUBLE       y     1.376  0.0100     1.376  0.0100
+C70         C21        CL24      SINGLE       n     1.741  0.0100     1.741  0.0100
+C70         C21         C22      SINGLE       y     1.376  0.0100     1.376  0.0100
+C70         C22         C23      DOUBLE       y     1.382  0.0100     1.382  0.0100
+C70         C01         H01      SINGLE       n     1.082  0.0130     0.941  0.0170
+C70         N10        HN10      SINGLE       n     1.016  0.0100     0.873  0.0200
+C70         C13         H13      SINGLE       n     1.089  0.0100     0.990  0.0147
+C70         C14         H14      SINGLE       n     1.089  0.0100     0.980  0.0172
+C70         C14        H14A      SINGLE       n     1.089  0.0100     0.980  0.0172
+C70         N15        HN15      SINGLE       n     1.036  0.0160     0.887  0.0200
+C70         C16         H16      SINGLE       n     1.089  0.0100     0.979  0.0126
+C70         C16        H16A      SINGLE       n     1.089  0.0100     0.979  0.0126
+C70         C17         H17      SINGLE       n     1.089  0.0100     0.983  0.0132
+C70         C17        H17A      SINGLE       n     1.089  0.0100     0.983  0.0132
+C70         C18         H18      SINGLE       n     1.089  0.0100     0.987  0.0100
+C70         C18        H18A      SINGLE       n     1.089  0.0100     0.987  0.0100
+C70         C19         H19      SINGLE       n     1.082  0.0130     0.941  0.0147
+C70         C20         H20      SINGLE       n     1.082  0.0130     0.938  0.0140
+C70         C22         H22      SINGLE       n     1.082  0.0130     0.938  0.0140
+C70         C23         H23      SINGLE       n     1.082  0.0130     0.941  0.0147
+C70         N25        HN25      SINGLE       n     1.016  0.0100     0.891  0.0200
+C70         N25        HN2A      SINGLE       n     1.016  0.0100     0.891  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+C70         C02         C01         C05     107.727    1.50
+C70         C02         C01         H01     126.516    1.56
+C70         C05         C01         H01     125.757    1.50
+C70         C01         C02         C11     130.671    2.77
+C70         C01         C02         S03     108.352    3.00
+C70         C11         C02         S03     120.977    3.00
+C70         C02         S03         C04     108.352    3.00
+C70         S03         C04         C06     131.409    3.00
+C70         S03         C04         C05     108.352    3.00
+C70         C06         C04         C05     120.239    1.69
+C70         C01         C05         C04     107.217    1.50
+C70         C01         C05         C09     134.432    2.40
+C70         C04         C05         C09     118.350    1.50
+C70         C04         C06         C12     124.326    2.66
+C70         C04         C06         N07     120.429    1.95
+C70         C12         C06         N07     115.245    1.50
+C70         C06         N07         N08     120.276    1.50
+C70         N07         N08         C09     120.276    1.50
+C70         C05         C09         N08     120.429    1.95
+C70         C05         C09         N10     122.563    2.29
+C70         N08         C09         N10     117.008    2.18
+C70         C09         N10         C13     123.034    2.33
+C70         C09         N10        HN10     118.342    1.52
+C70         C13         N10        HN10     118.624    1.57
+C70         C02         C11         C23     120.532    1.80
+C70         C02         C11         C19     120.532    1.80
+C70         C23         C11         C19     118.936    1.50
+C70         C06         C12         O26     120.880    1.50
+C70         C06         C12         N25     116.547    1.50
+C70         O26         C12         N25     122.573    1.50
+C70         N10         C13         C18     111.209    2.04
+C70         N10         C13         C14     110.829    2.03
+C70         N10         C13         H13     108.206    1.50
+C70         C18         C13         C14     109.934    1.50
+C70         C18         C13         H13     107.655    1.50
+C70         C14         C13         H13     107.779    1.50
+C70         C13         C14         N15     110.258    1.51
+C70         C13         C14         H14     109.534    1.50
+C70         C13         C14        H14A     109.534    1.50
+C70         N15         C14         H14     109.326    1.50
+C70         N15         C14        H14A     109.326    1.50
+C70         H14         C14        H14A     108.200    1.50
+C70         C14         N15         C16     110.415    1.50
+C70         C14         N15        HN15     109.383    3.00
+C70         C16         N15        HN15     108.409    1.90
+C70         N15         C16         C17     111.538    1.95
+C70         N15         C16         H16     109.046    1.50
+C70         N15         C16        H16A     109.046    1.50
+C70         C17         C16         H16     109.268    1.50
+C70         C17         C16        H16A     109.268    1.50
+C70         H16         C16        H16A     108.210    1.50
+C70         C16         C17         C18     110.340    1.50
+C70         C16         C17         H17     108.932    1.50
+C70         C16         C17        H17A     108.932    1.50
+C70         C18         C17         H17     109.460    1.50
+C70         C18         C17        H17A     109.460    1.50
+C70         H17         C17        H17A     108.022    1.50
+C70         C13         C18         C17     110.796    1.50
+C70         C13         C18         H18     109.341    1.50
+C70         C13         C18        H18A     109.341    1.50
+C70         C17         C18         H18     109.588    1.50
+C70         C17         C18        H18A     109.588    1.50
+C70         H18         C18        H18A     108.076    1.50
+C70         C11         C19         C20     120.591    1.50
+C70         C11         C19         H19     119.814    1.50
+C70         C20         C19         H19     119.595    1.50
+C70         C19         C20         C21     119.264    1.50
+C70         C19         C20         H20     120.348    1.50
+C70         C21         C20         H20     120.388    1.50
+C70         C20         C21        CL24     119.322    1.50
+C70         C20         C21         C22     121.356    1.50
+C70        CL24         C21         C22     119.322    1.50
+C70         C21         C22         C23     119.264    1.50
+C70         C21         C22         H22     120.388    1.50
+C70         C23         C22         H22     120.348    1.50
+C70         C11         C23         C22     120.591    1.50
+C70         C11         C23         H23     119.814    1.50
+C70         C22         C23         H23     119.595    1.50
+C70         C12         N25        HN25     120.201    2.60
+C70         C12         N25        HN2A     120.201    2.60
+C70        HN25         N25        HN2A     119.599    2.83
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+C70       const_sp2_sp2_2         C05         C01         C02         C11     180.000     5.0     2
+C70              const_46         C02         C01         C05         C04       0.000    10.0     2
+C70              const_52         C02         C11         C19         C20     180.000    10.0     2
+C70              const_28         C02         C11         C23         C22     180.000    10.0     2
+C70            sp2_sp2_15         O26         C12         N25        HN25       0.000     5.0     2
+C70            sp3_sp3_43         N10         C13         C14         N15      60.000    10.0     3
+C70             sp3_sp3_4         N10         C13         C18         C17     -60.000    10.0     3
+C70            sp3_sp3_34         C13         C14         N15         C16      60.000    10.0     3
+C70            sp3_sp3_28         C17         C16         N15         C14     -60.000    10.0     3
+C70            sp3_sp3_19         N15         C16         C17         C18      60.000    10.0     3
+C70            sp3_sp3_10         C16         C17         C18         C13     -60.000    10.0     3
+C70              const_42         C11         C19         C20         C21       0.000    10.0     2
+C70              const_39         C19         C20         C21        CL24     180.000    10.0     2
+C70             sp2_sp2_1         C01         C02         C11         C23     180.000     5.0     2
+C70       const_sp2_sp2_5         C01         C02         S03         C04       0.000     5.0     2
+C70              const_36        CL24         C21         C22         C23     180.000    10.0     2
+C70              const_30         C21         C22         C23         C11       0.000    10.0     2
+C70       const_sp2_sp2_8         C06         C04         S03         C02     180.000     5.0     2
+C70       const_sp2_sp2_9         S03         C04         C05         C01       0.000     5.0     2
+C70              const_16         S03         C04         C06         C12       0.000    10.0     2
+C70              const_25         C01         C05         C09         N10       0.000    10.0     2
+C70             sp2_sp2_6         C04         C06         C12         O26       0.000     5.0     2
+C70              const_18         C12         C06         N07         N08     180.000    10.0     2
+C70              const_19         C06         N07         N08         C09       0.000    10.0     2
+C70              const_21         N10         C09         N08         N07     180.000    10.0     2
+C70             sp2_sp2_9         C05         C09         N10         C13     180.000     5.0     2
+C70             sp2_sp3_1         C09         N10         C13         C18       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+C70    chir_1    C13    N10    C14    C18    positive
+C70    chir_2    N15    C14    C16    HN15    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+C70    plan-1         C01   0.020
+C70    plan-1         C02   0.020
+C70    plan-1         C04   0.020
+C70    plan-1         C05   0.020
+C70    plan-1         C06   0.020
+C70    plan-1         C09   0.020
+C70    plan-1         C11   0.020
+C70    plan-1         C12   0.020
+C70    plan-1         H01   0.020
+C70    plan-1         N07   0.020
+C70    plan-1         N08   0.020
+C70    plan-1         N10   0.020
+C70    plan-1         S03   0.020
+C70    plan-2         C02   0.020
+C70    plan-2         C11   0.020
+C70    plan-2         C19   0.020
+C70    plan-2         C20   0.020
+C70    plan-2         C21   0.020
+C70    plan-2         C22   0.020
+C70    plan-2         C23   0.020
+C70    plan-2        CL24   0.020
+C70    plan-2         H19   0.020
+C70    plan-2         H20   0.020
+C70    plan-2         H22   0.020
+C70    plan-2         H23   0.020
+C70    plan-3         C09   0.020
+C70    plan-3         C13   0.020
+C70    plan-3        HN10   0.020
+C70    plan-3         N10   0.020
+C70    plan-4         C06   0.020
+C70    plan-4         C12   0.020
+C70    plan-4         N25   0.020
+C70    plan-4         O26   0.020
+C70    plan-5         C12   0.020
+C70    plan-5        HN25   0.020
+C70    plan-5        HN2A   0.020
+C70    plan-5         N25   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+C70           SMILES              ACDLabs 12.01                                                                                                                   Clc4ccc(c2sc1c(nnc(c1c2)NC3CCCNC3)C(=O)N)cc4
+C70 SMILES_CANONICAL               CACTVS 3.370                                                                                                               NC(=O)c1nnc(N[C@H]2CCCNC2)c3cc(sc13)c4ccc(Cl)cc4
+C70           SMILES               CACTVS 3.370                                                                                                                NC(=O)c1nnc(N[CH]2CCCNC2)c3cc(sc13)c4ccc(Cl)cc4
+C70 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                               c1cc(ccc1c2cc3c(s2)c(nnc3N[C@H]4CCCNC4)C(=O)N)Cl
+C70           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                   c1cc(ccc1c2cc3c(s2)c(nnc3NC4CCCNC4)C(=O)N)Cl
+C70            InChI                InChI  1.03 InChI=1S/C18H18ClN5OS/c19-11-5-3-10(4-6-11)14-8-13-16(26-14)15(17(20)25)23-24-18(13)22-12-2-1-7-21-9-12/h3-6,8,12,21H,1-2,7,9H2,(H2,20,25)(H,22,24)/t12-/m0/s1
+C70         InChIKey                InChI  1.03                                                                                                                                    OIVCIDIQAWPEAZ-LBPRGKRZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+C70 acedrg               243         "dictionary generator"                  
+C70 acedrg_database      11          "data source"                           
+C70 rdkit                2017.03.2   "Chemoinformatics tool"
+C70 refmac5              5.8.0238    "optimization tool"                     

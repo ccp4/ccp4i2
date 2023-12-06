@@ -1,0 +1,276 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IMQ     IMQ      (2R,3R,4S)-2-(hydroxymethyl)-1-(quinolin-8-ylmethyl)pyrrolidine-3,4-diol     NON-POLYMER     38     20     .     
+#
+data_comp_IMQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IMQ     C9      C       CR66    0       29.080      25.026      22.672      
+IMQ     N1      N       NRD6    0       29.701      23.802      22.614      
+IMQ     C10     C       CR16    0       30.313      23.365      23.706      
+IMQ     C2      C       CR16    0       30.365      24.069      24.926      
+IMQ     C3      C       CR16    0       29.753      25.283      25.008      
+IMQ     C4      C       CR66    0       29.084      25.801      23.871      
+IMQ     C5      C       CR16    0       28.429      27.058      23.894      
+IMQ     C6      C       CR16    0       27.794      27.525      22.779      
+IMQ     C7      C       CR16    0       27.786      26.760      21.593      
+IMQ     C8      C       CR6     0       28.400      25.533      21.510      
+IMQ     C1      C       CH2     0       28.370      24.749      20.213      
+IMQ     "N4'"   N       NT      0       27.272      23.770      20.059      
+IMQ     "C1'"   C       CH2     0       26.677      23.209      21.292      
+IMQ     "C2'"   C       CH1     0       25.476      22.421      20.789      
+IMQ     "O2'"   O       OH1     0       25.674      21.033      20.995      
+IMQ     "C3'"   C       CH1     0       25.310      22.796      19.307      
+IMQ     "O3'"   O       OH1     0       25.705      21.763      18.411      
+IMQ     "C4'"   C       CH1     0       26.176      24.054      19.112      
+IMQ     "C5'"   C       CH2     0       25.447      25.369      19.361      
+IMQ     "O5'"   O       OH1     0       25.991      26.439      18.604      
+IMQ     H10     H       H       0       30.740      22.525      23.660      
+IMQ     H2      H       H       0       30.816      23.706      25.670      
+IMQ     H3      H       H       0       29.772      25.776      25.810      
+IMQ     H5      H       H       0       28.430      27.574      24.681      
+IMQ     H6      H       H       0       27.358      28.367      22.802      
+IMQ     H7      H       H       0       27.343      27.100      20.833      
+IMQ     H1      H       H       0       29.216      24.278      20.114      
+IMQ     H1A     H       H       0       28.317      25.386      19.478      
+IMQ     "H1'"   H       H       0       27.318      22.627      21.756      
+IMQ     "H1'A"  H       H       0       26.386      23.918      21.905      
+IMQ     "H2'"   H       H       0       24.670      22.702      21.271      
+IMQ     "HO2'"  H       H       0       26.370      20.778      20.581      
+IMQ     "H3'"   H       H       0       24.360      23.019      19.140      
+IMQ     "HO3'"  H       H       0       26.551      21.685      18.429      
+IMQ     "H4'"   H       H       0       26.541      24.067      18.185      
+IMQ     "H5'"   H       H       0       25.501      25.589      20.315      
+IMQ     "H5'A"  H       H       0       24.501      25.262      19.124      
+IMQ     "HO5'"  H       H       0       25.817      26.319      17.782      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IMQ          C9          N1      DOUBLE       y     1.368  0.0100     1.368  0.0100
+IMQ          C9          C4      SINGLE       y     1.423  0.0100     1.423  0.0100
+IMQ          C9          C8      SINGLE       y     1.431  0.0100     1.431  0.0100
+IMQ          N1         C10      SINGLE       y     1.321  0.0100     1.321  0.0100
+IMQ         C10          C2      DOUBLE       y     1.406  0.0100     1.406  0.0100
+IMQ          C2          C3      SINGLE       y     1.358  0.0112     1.358  0.0112
+IMQ          C3          C4      DOUBLE       y     1.415  0.0100     1.415  0.0100
+IMQ          C4          C5      SINGLE       y     1.415  0.0100     1.415  0.0100
+IMQ          C5          C6      DOUBLE       y     1.362  0.0100     1.362  0.0100
+IMQ          C6          C7      SINGLE       y     1.408  0.0100     1.408  0.0100
+IMQ          C7          C8      DOUBLE       y     1.368  0.0125     1.368  0.0125
+IMQ          C8          C1      SINGLE       n     1.510  0.0101     1.510  0.0101
+IMQ          C1       "N4'"      SINGLE       n     1.465  0.0125     1.465  0.0125
+IMQ       "N4'"       "C1'"      SINGLE       n     1.472  0.0152     1.472  0.0152
+IMQ       "N4'"       "C4'"      SINGLE       n     1.477  0.0100     1.477  0.0100
+IMQ       "C1'"       "C2'"      SINGLE       n     1.512  0.0154     1.512  0.0154
+IMQ       "C2'"       "O2'"      SINGLE       n     1.415  0.0100     1.415  0.0100
+IMQ       "C2'"       "C3'"      SINGLE       n     1.529  0.0127     1.529  0.0127
+IMQ       "C3'"       "O3'"      SINGLE       n     1.421  0.0100     1.421  0.0100
+IMQ       "C3'"       "C4'"      SINGLE       n     1.536  0.0156     1.536  0.0156
+IMQ       "C4'"       "C5'"      SINGLE       n     1.522  0.0100     1.522  0.0100
+IMQ       "C5'"       "O5'"      SINGLE       n     1.419  0.0100     1.419  0.0100
+IMQ         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0200
+IMQ          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0187
+IMQ          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0169
+IMQ          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0169
+IMQ          C6          H6      SINGLE       n     1.082  0.0130     0.948  0.0200
+IMQ          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0200
+IMQ          C1          H1      SINGLE       n     1.089  0.0100     0.974  0.0143
+IMQ          C1         H1A      SINGLE       n     1.089  0.0100     0.974  0.0143
+IMQ       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.982  0.0109
+IMQ       "C1'"      "H1'A"      SINGLE       n     1.089  0.0100     0.982  0.0109
+IMQ       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.980  0.0100
+IMQ       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+IMQ       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.990  0.0168
+IMQ       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+IMQ       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.996  0.0100
+IMQ       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.982  0.0184
+IMQ       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.982  0.0184
+IMQ       "O5'"      "HO5'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IMQ          N1          C9          C4     121.937    1.50
+IMQ          N1          C9          C8     118.605    1.50
+IMQ          C4          C9          C8     119.459    1.50
+IMQ          C9          N1         C10     116.884    1.50
+IMQ          N1         C10          C2     123.946    1.50
+IMQ          N1         C10         H10     117.805    1.50
+IMQ          C2         C10         H10     118.249    1.50
+IMQ         C10          C2          C3     118.626    1.50
+IMQ         C10          C2          H2     120.547    1.50
+IMQ          C3          C2          H2     120.827    1.50
+IMQ          C2          C3          C4     119.573    1.50
+IMQ          C2          C3          H3     120.464    1.50
+IMQ          C4          C3          H3     119.963    1.50
+IMQ          C9          C4          C3     119.034    1.50
+IMQ          C9          C4          C5     119.197    1.50
+IMQ          C3          C4          C5     121.769    1.50
+IMQ          C4          C5          C6     120.256    1.50
+IMQ          C4          C5          H5     119.952    1.50
+IMQ          C6          C5          H5     119.793    1.50
+IMQ          C5          C6          C7     119.984    1.50
+IMQ          C5          C6          H6     119.982    1.50
+IMQ          C7          C6          H6     120.034    1.50
+IMQ          C6          C7          C8     121.765    1.50
+IMQ          C6          C7          H7     119.189    1.50
+IMQ          C8          C7          H7     119.047    1.50
+IMQ          C9          C8          C7     119.341    1.50
+IMQ          C9          C8          C1     119.251    2.25
+IMQ          C7          C8          C1     121.408    1.50
+IMQ          C8          C1       "N4'"     112.482    1.71
+IMQ          C8          C1          H1     108.931    1.50
+IMQ          C8          C1         H1A     108.931    1.50
+IMQ       "N4'"          C1          H1     109.099    1.50
+IMQ       "N4'"          C1         H1A     109.099    1.50
+IMQ          H1          C1         H1A     107.790    1.50
+IMQ          C1       "N4'"       "C1'"     113.127    1.50
+IMQ          C1       "N4'"       "C4'"     115.000    2.52
+IMQ       "C1'"       "N4'"       "C4'"     110.107    2.34
+IMQ       "N4'"       "C1'"       "C2'"     103.268    1.50
+IMQ       "N4'"       "C1'"       "H1'"     110.819    1.50
+IMQ       "N4'"       "C1'"      "H1'A"     110.819    1.50
+IMQ       "C2'"       "C1'"       "H1'"     111.050    1.50
+IMQ       "C2'"       "C1'"      "H1'A"     111.050    1.50
+IMQ       "H1'"       "C1'"      "H1'A"     108.952    1.50
+IMQ       "C1'"       "C2'"       "O2'"     110.916    2.22
+IMQ       "C1'"       "C2'"       "C3'"     103.148    1.99
+IMQ       "C1'"       "C2'"       "H2'"     110.749    1.50
+IMQ       "O2'"       "C2'"       "C3'"     112.463    2.73
+IMQ       "O2'"       "C2'"       "H2'"     110.027    1.50
+IMQ       "C3'"       "C2'"       "H2'"     110.255    2.04
+IMQ       "C2'"       "O2'"      "HO2'"     109.442    1.50
+IMQ       "C2'"       "C3'"       "O3'"     112.463    2.73
+IMQ       "C2'"       "C3'"       "C4'"     104.666    1.50
+IMQ       "C2'"       "C3'"       "H3'"     110.255    2.04
+IMQ       "O3'"       "C3'"       "C4'"     111.549    2.36
+IMQ       "O3'"       "C3'"       "H3'"     110.147    1.64
+IMQ       "C4'"       "C3'"       "H3'"     109.851    1.50
+IMQ       "C3'"       "O3'"      "HO3'"     108.584    1.68
+IMQ       "N4'"       "C4'"       "C3'"     102.997    1.80
+IMQ       "N4'"       "C4'"       "C5'"     112.128    2.82
+IMQ       "N4'"       "C4'"       "H4'"     109.157    1.50
+IMQ       "C3'"       "C4'"       "C5'"     113.697    1.51
+IMQ       "C3'"       "C4'"       "H4'"     109.485    1.57
+IMQ       "C5'"       "C4'"       "H4'"     108.455    1.50
+IMQ       "C4'"       "C5'"       "O5'"     112.552    1.50
+IMQ       "C4'"       "C5'"       "H5'"     108.851    1.50
+IMQ       "C4'"       "C5'"      "H5'A"     108.851    1.50
+IMQ       "O5'"       "C5'"       "H5'"     109.270    1.50
+IMQ       "O5'"       "C5'"      "H5'A"     109.270    1.50
+IMQ       "H5'"       "C5'"      "H5'A"     108.330    1.50
+IMQ       "C5'"       "O5'"      "HO5'"     109.332    2.33
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IMQ       const_sp2_sp2_1          C4          C9          N1         C10       0.000     5.0     2
+IMQ              const_17          C3          C4          C9          N1       0.000    10.0     2
+IMQ              const_40          C1          C8          C9          N1       0.000    10.0     2
+IMQ            sp3_sp3_34          C8          C1       "N4'"       "C1'"     180.000    10.0     3
+IMQ             sp3_sp3_2       "C2'"       "C1'"       "N4'"          C1     180.000    10.0     3
+IMQ            sp3_sp3_43       "C5'"       "C4'"       "N4'"          C1     180.000    10.0     3
+IMQ             sp3_sp3_8       "N4'"       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+IMQ            sp3_sp3_46       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+IMQ            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"      60.000    10.0     3
+IMQ            sp3_sp3_49       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+IMQ            sp3_sp3_29       "O3'"       "C3'"       "C4'"       "C5'"     -60.000    10.0     3
+IMQ            sp3_sp3_52       "N4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+IMQ            sp3_sp3_61       "C4'"       "C5'"       "O5'"      "HO5'"     180.000    10.0     3
+IMQ       const_sp2_sp2_3          C2         C10          N1          C9       0.000     5.0     2
+IMQ       const_sp2_sp2_5          N1         C10          C2          C3       0.000     5.0     2
+IMQ       const_sp2_sp2_9         C10          C2          C3          C4       0.000     5.0     2
+IMQ              const_13          C2          C3          C4          C9       0.000    10.0     2
+IMQ              const_21          C9          C4          C5          C6       0.000    10.0     2
+IMQ              const_25          C4          C5          C6          C7       0.000    10.0     2
+IMQ              const_29          C5          C6          C7          C8       0.000    10.0     2
+IMQ              const_34          C6          C7          C8          C1     180.000    10.0     2
+IMQ             sp2_sp3_2          C9          C8          C1       "N4'"     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IMQ    chir_1    "N4'"    "C4'"    "C1'"    C1    positive
+IMQ    chir_2    "C2'"    "O2'"    "C3'"    "C1'"    positive
+IMQ    chir_3    "C3'"    "O3'"    "C2'"    "C4'"    negative
+IMQ    chir_4    "C4'"    "N4'"    "C3'"    "C5'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IMQ    plan-1          C1   0.020
+IMQ    plan-1         C10   0.020
+IMQ    plan-1          C2   0.020
+IMQ    plan-1          C3   0.020
+IMQ    plan-1          C4   0.020
+IMQ    plan-1          C5   0.020
+IMQ    plan-1          C6   0.020
+IMQ    plan-1          C7   0.020
+IMQ    plan-1          C8   0.020
+IMQ    plan-1          C9   0.020
+IMQ    plan-1         H10   0.020
+IMQ    plan-1          H2   0.020
+IMQ    plan-1          H3   0.020
+IMQ    plan-1          H5   0.020
+IMQ    plan-1          H6   0.020
+IMQ    plan-1          H7   0.020
+IMQ    plan-1          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IMQ           SMILES              ACDLabs 10.04                                                                                                 OCC3N(Cc2cccc1c2nccc1)CC(O)C3O
+IMQ SMILES_CANONICAL               CACTVS 3.341                                                                                  OC[C@@H]1[C@@H](O)[C@@H](O)CN1Cc2cccc3cccnc23
+IMQ           SMILES               CACTVS 3.341                                                                                        OC[CH]1[CH](O)[CH](O)CN1Cc2cccc3cccnc23
+IMQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                              c1cc2cccnc2c(c1)C[N@]3C[C@@H]([C@@H]([C@H]3CO)O)O
+IMQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                               c1cc2cccnc2c(c1)CN3CC(C(C3CO)O)O
+IMQ            InChI                InChI  1.03 InChI=1S/C15H18N2O3/c18-9-12-15(20)13(19)8-17(12)7-11-4-1-3-10-5-2-6-16-14(10)11/h1-6,12-13,15,18-20H,7-9H2/t12-,13+,15-/m1/s1
+IMQ         InChIKey                InChI  1.03                                                                                                    MZDAWIBFZPTLPG-VNHYZAJKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IMQ acedrg               243         "dictionary generator"                  
+IMQ acedrg_database      11          "data source"                           
+IMQ rdkit                2017.03.2   "Chemoinformatics tool"
+IMQ refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,351 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZYA     ZYA      "BENZOYL-TYROSINE-ALANINE-FLUORO-METHYL KETONE"     NON-POLYMER     52     29     .     
+#
+data_comp_ZYA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZYA     C1      C       C       0       97.836      20.798      -15.929     
+ZYA     O1      O       O       0       97.599      21.820      -15.322     
+ZYA     O2      O       O2      0       97.652      20.640      -17.253     
+ZYA     C2      C       CH2     0       97.411      21.841      -18.037     
+ZYA     C3      C       CR6     0       97.328      21.495      -19.497     
+ZYA     C4      C       CR16    0       96.121      21.572      -20.178     
+ZYA     C5      C       CR16    0       96.049      21.255      -21.529     
+ZYA     C6      C       CR16    0       97.184      20.862      -22.209     
+ZYA     C7      C       CR16    0       98.389      20.784      -21.544     
+ZYA     C8      C       CR16    0       98.462      21.101      -20.192     
+ZYA     N1      N       NH1     0       98.309      19.665      -15.372     
+ZYA     CA1     C       CH1     0       98.576      19.554      -13.943     
+ZYA     C       C       C       0       99.893      20.259      -13.608     
+ZYA     O       O       O       0       100.915     19.969      -14.227     
+ZYA     CB1     C       CH2     0       98.643      18.082      -13.523     
+ZYA     CG      C       CR6     0       97.350      17.328      -13.717     
+ZYA     CD1     C       CR16    0       96.227      17.626      -12.956     
+ZYA     CD2     C       CR16    0       97.243      16.309      -14.656     
+ZYA     CE1     C       CR16    0       95.033      16.937      -13.124     
+ZYA     CE2     C       CR16    0       96.057      15.611      -14.837     
+ZYA     CZ      C       CR6     0       94.946      15.926      -14.068     
+ZYA     OH      O       OH1     0       93.765      15.242      -14.236     
+ZYA     N2      N       NH1     0       99.860      21.172      -12.624     
+ZYA     CA2     C       CH1     0       101.037     21.913      -12.192     
+ZYA     CT      C       C       0       101.962     21.045      -11.336     
+ZYA     OT      O       O       0       103.129     20.916      -11.625     
+ZYA     CB2     C       CH3     0       100.627     23.173      -11.438     
+ZYA     CM      C       CH2     0       101.381     20.369      -10.146     
+ZYA     F1      F       F       0       102.064     20.643      -9.040      
+ZYA     H21     H       H       0       98.139      22.481      -17.892     
+ZYA     H22     H       H       0       96.573      22.259      -17.747     
+ZYA     H4      H       H       0       95.341      21.840      -19.719     
+ZYA     H5      H       H       0       95.223      21.309      -21.981     
+ZYA     H6      H       H       0       97.135      20.646      -23.127     
+ZYA     H7      H       H       0       99.167      20.515      -22.006     
+ZYA     H8      H       H       0       99.290      21.045      -19.743     
+ZYA     HN1     H       H       0       98.466      18.972      -15.886     
+ZYA     HA1     H       H       0       97.842      19.986      -13.441     
+ZYA     HB11    H       H       0       98.894      18.037      -12.577     
+ZYA     HB12    H       H       0       99.350      17.640      -14.039     
+ZYA     HD1     H       H       0       96.274      18.313      -12.311     
+ZYA     HD2     H       H       0       97.992      16.087      -15.184     
+ZYA     HE1     H       H       0       94.281      17.157      -12.598     
+ZYA     HE2     H       H       0       96.005      14.924      -15.480     
+ZYA     HO      H       H       0       93.648      14.734      -14.922     
+ZYA     HN2     H       H       0       99.104      21.328      -12.215     
+ZYA     HA2     H       H       0       101.544     22.191      -12.997     
+ZYA     HB21    H       H       0       100.104     23.747      -12.023     
+ZYA     HB22    H       H       0       101.422     23.650      -11.145     
+ZYA     HB23    H       H       0       100.093     22.931      -10.663     
+ZYA     HM1     H       H       0       101.393     19.408      -10.281     
+ZYA     HM2     H       H       0       100.464     20.663      -10.018     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZYA          C1          N1      SINGLE       n     1.344  0.0100     1.344  0.0100
+ZYA          C1          O1      DOUBLE       n     1.210  0.0102     1.210  0.0102
+ZYA          C1          O2      SINGLE       n     1.341  0.0100     1.341  0.0100
+ZYA          C2          C3      SINGLE       n     1.501  0.0101     1.501  0.0101
+ZYA          O2          C2      SINGLE       n     1.450  0.0125     1.450  0.0125
+ZYA          C3          C4      DOUBLE       y     1.383  0.0108     1.383  0.0108
+ZYA          C3          C8      SINGLE       y     1.383  0.0108     1.383  0.0108
+ZYA          C4          C5      SINGLE       y     1.386  0.0100     1.386  0.0100
+ZYA          C5          C6      DOUBLE       y     1.376  0.0124     1.376  0.0124
+ZYA          C6          C7      SINGLE       y     1.374  0.0127     1.374  0.0127
+ZYA          C7          C8      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ZYA         CA1         CB1      SINGLE       n     1.532  0.0110     1.532  0.0110
+ZYA         CA1           C      SINGLE       n     1.527  0.0118     1.527  0.0118
+ZYA          N1         CA1      SINGLE       n     1.454  0.0100     1.454  0.0100
+ZYA         CB1          CG      SINGLE       n     1.508  0.0100     1.508  0.0100
+ZYA          CG         CD1      DOUBLE       y     1.385  0.0110     1.385  0.0110
+ZYA          CG         CD2      SINGLE       y     1.385  0.0110     1.385  0.0110
+ZYA         CD1         CE1      SINGLE       y     1.385  0.0100     1.385  0.0100
+ZYA         CD2         CE2      DOUBLE       y     1.385  0.0100     1.385  0.0100
+ZYA         CE1          CZ      DOUBLE       y     1.383  0.0100     1.383  0.0100
+ZYA         CE2          CZ      SINGLE       y     1.383  0.0100     1.383  0.0100
+ZYA          CZ          OH      SINGLE       n     1.374  0.0155     1.374  0.0155
+ZYA           C          N2      SINGLE       n     1.337  0.0100     1.337  0.0100
+ZYA           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+ZYA         CA2         CB2      SINGLE       n     1.524  0.0107     1.524  0.0107
+ZYA         CA2          CT      SINGLE       n     1.529  0.0100     1.529  0.0100
+ZYA          N2         CA2      SINGLE       n     1.453  0.0100     1.453  0.0100
+ZYA          CT          CM      SINGLE       n     1.484  0.0200     1.484  0.0200
+ZYA          CT          OT      DOUBLE       n     1.209  0.0200     1.209  0.0200
+ZYA          CM          F1      SINGLE       n     1.328  0.0174     1.328  0.0174
+ZYA          C2         H21      SINGLE       n     1.089  0.0100     0.980  0.0157
+ZYA          C2         H22      SINGLE       n     1.089  0.0100     0.980  0.0157
+ZYA          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+ZYA          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0175
+ZYA          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0161
+ZYA          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0175
+ZYA          C8          H8      SINGLE       n     1.082  0.0130     0.944  0.0174
+ZYA          N1         HN1      SINGLE       n     1.016  0.0100     0.875  0.0200
+ZYA         CA1         HA1      SINGLE       n     1.089  0.0100     0.988  0.0200
+ZYA         CB1        HB11      SINGLE       n     1.089  0.0100     0.980  0.0164
+ZYA         CB1        HB12      SINGLE       n     1.089  0.0100     0.980  0.0164
+ZYA         CD1         HD1      SINGLE       n     1.082  0.0130     0.943  0.0173
+ZYA         CD2         HD2      SINGLE       n     1.082  0.0130     0.943  0.0173
+ZYA         CE1         HE1      SINGLE       n     1.082  0.0130     0.943  0.0169
+ZYA         CE2         HE2      SINGLE       n     1.082  0.0130     0.943  0.0169
+ZYA          OH          HO      SINGLE       n     0.966  0.0059     0.861  0.0200
+ZYA          N2         HN2      SINGLE       n     1.016  0.0100     0.873  0.0200
+ZYA         CA2         HA2      SINGLE       n     1.089  0.0100     0.991  0.0200
+ZYA         CB2        HB21      SINGLE       n     1.089  0.0100     0.972  0.0152
+ZYA         CB2        HB22      SINGLE       n     1.089  0.0100     0.972  0.0152
+ZYA         CB2        HB23      SINGLE       n     1.089  0.0100     0.972  0.0152
+ZYA          CM         HM1      SINGLE       n     1.089  0.0100     0.971  0.0145
+ZYA          CM         HM2      SINGLE       n     1.089  0.0100     0.971  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZYA          N1          C1          O1     124.890    1.50
+ZYA          N1          C1          O2     110.815    1.50
+ZYA          O1          C1          O2     124.295    1.50
+ZYA          C1          O2          C2     115.730    1.50
+ZYA          C3          C2          O2     109.508    2.22
+ZYA          C3          C2         H21     109.785    1.50
+ZYA          C3          C2         H22     109.785    1.50
+ZYA          O2          C2         H21     109.538    1.50
+ZYA          O2          C2         H22     109.538    1.50
+ZYA         H21          C2         H22     108.275    1.50
+ZYA          C2          C3          C4     120.651    1.50
+ZYA          C2          C3          C8     120.651    1.50
+ZYA          C4          C3          C8     118.697    1.50
+ZYA          C3          C4          C5     120.514    1.50
+ZYA          C3          C4          H4     119.732    1.50
+ZYA          C5          C4          H4     119.754    1.50
+ZYA          C4          C5          C6     120.186    1.50
+ZYA          C4          C5          H5     119.862    1.50
+ZYA          C6          C5          H5     119.952    1.50
+ZYA          C5          C6          C7     119.903    1.50
+ZYA          C5          C6          H6     120.048    1.50
+ZYA          C7          C6          H6     120.048    1.50
+ZYA          C6          C7          C8     120.186    1.50
+ZYA          C6          C7          H7     119.952    1.50
+ZYA          C8          C7          H7     119.862    1.50
+ZYA          C3          C8          C7     120.514    1.50
+ZYA          C3          C8          H8     119.732    1.50
+ZYA          C7          C8          H8     119.754    1.50
+ZYA          C1          N1         CA1     121.578    1.53
+ZYA          C1          N1         HN1     119.157    2.20
+ZYA         CA1          N1         HN1     119.265    1.50
+ZYA         CB1         CA1           C     110.507    1.62
+ZYA         CB1         CA1          N1     109.793    1.66
+ZYA         CB1         CA1         HA1     108.341    1.50
+ZYA           C         CA1          N1     109.211    2.19
+ZYA           C         CA1         HA1     108.179    1.50
+ZYA          N1         CA1         HA1     108.930    1.50
+ZYA         CA1           C          N2     115.931    1.80
+ZYA         CA1           C           O     120.806    1.50
+ZYA          N2           C           O     123.263    1.50
+ZYA         CA1         CB1          CG     113.550    1.83
+ZYA         CA1         CB1        HB11     108.810    1.50
+ZYA         CA1         CB1        HB12     108.810    1.50
+ZYA          CG         CB1        HB11     108.862    1.50
+ZYA          CG         CB1        HB12     108.862    1.50
+ZYA        HB11         CB1        HB12     107.782    1.50
+ZYA         CB1          CG         CD1     121.083    1.50
+ZYA         CB1          CG         CD2     121.083    1.50
+ZYA         CD1          CG         CD2     117.834    1.50
+ZYA          CG         CD1         CE1     121.472    1.50
+ZYA          CG         CD1         HD1     119.317    1.50
+ZYA         CE1         CD1         HD1     119.210    1.50
+ZYA          CG         CD2         CE2     121.472    1.50
+ZYA          CG         CD2         HD2     119.317    1.50
+ZYA         CE2         CD2         HD2     119.210    1.50
+ZYA         CD1         CE1          CZ     119.825    1.50
+ZYA         CD1         CE1         HE1     120.168    1.50
+ZYA          CZ         CE1         HE1     120.006    1.50
+ZYA         CD2         CE2          CZ     119.825    1.50
+ZYA         CD2         CE2         HE2     120.168    1.50
+ZYA          CZ         CE2         HE2     120.006    1.50
+ZYA         CE1          CZ         CE2     119.571    1.50
+ZYA         CE1          CZ          OH     120.215    3.00
+ZYA         CE2          CZ          OH     120.215    3.00
+ZYA          CZ          OH          HO     120.000    3.00
+ZYA           C          N2         CA2     121.950    1.76
+ZYA           C          N2         HN2     119.031    1.83
+ZYA         CA2          N2         HN2     119.019    1.92
+ZYA         CB2         CA2          CT     111.511    2.91
+ZYA         CB2         CA2          N2     110.277    1.50
+ZYA         CB2         CA2         HA2     108.342    1.50
+ZYA          CT         CA2          N2     111.249    2.34
+ZYA          CT         CA2         HA2     107.798    1.50
+ZYA          N2         CA2         HA2     108.161    1.50
+ZYA         CA2          CT          CM     117.694    1.50
+ZYA         CA2          CT          OT     120.768    1.50
+ZYA          CM          CT          OT     121.539    1.76
+ZYA         CA2         CB2        HB21     109.572    1.50
+ZYA         CA2         CB2        HB22     109.572    1.50
+ZYA         CA2         CB2        HB23     109.572    1.50
+ZYA        HB21         CB2        HB22     109.386    1.50
+ZYA        HB21         CB2        HB23     109.386    1.50
+ZYA        HB22         CB2        HB23     109.386    1.50
+ZYA          CT          CM          F1     111.931    1.63
+ZYA          CT          CM         HM1     109.516    1.50
+ZYA          CT          CM         HM2     109.516    1.50
+ZYA          F1          CM         HM1     108.415    2.17
+ZYA          F1          CM         HM2     108.415    2.17
+ZYA         HM1          CM         HM2     109.375    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZYA             sp2_sp2_3          O1          C1          N1         CA1       0.000     5.0     2
+ZYA             sp2_sp2_5          N1          C1          O2          C2     180.000     5.0     2
+ZYA            sp2_sp3_13          C1          N1         CA1         CB1       0.000    10.0     6
+ZYA             sp2_sp3_7          N2           C         CA1         CB1       0.000    10.0     6
+ZYA             sp3_sp3_4           C         CA1         CB1          CG     180.000    10.0     3
+ZYA             sp2_sp2_9         CA1           C          N2         CA2     180.000     5.0     2
+ZYA            sp2_sp3_20         CD1          CG         CB1         CA1     -90.000    10.0     6
+ZYA              const_22         CE1         CD1          CG         CB1     180.000    10.0     2
+ZYA              const_46         CE2         CD2          CG         CB1     180.000    10.0     2
+ZYA              const_25          CG         CD1         CE1          CZ       0.000    10.0     2
+ZYA              const_37          CG         CD2         CE2          CZ       0.000    10.0     2
+ZYA              const_30         CD1         CE1          CZ          OH     180.000    10.0     2
+ZYA              const_34         CD2         CE2          CZ          OH     180.000    10.0     2
+ZYA             sp2_sp2_7         CE1          CZ          OH          HO     180.000     5.0     2
+ZYA            sp2_sp3_31           C          N2         CA2         CB2       0.000    10.0     6
+ZYA            sp2_sp3_25          CM          CT         CA2         CB2       0.000    10.0     6
+ZYA            sp3_sp3_13          CT         CA2         CB2        HB21     180.000    10.0     3
+ZYA            sp2_sp3_38         CA2          CT          CM          F1     120.000    10.0     6
+ZYA             sp3_sp3_1          C3          C2          O2          C1     180.000    10.0     3
+ZYA             sp2_sp3_2          C4          C3          C2          O2     -90.000    10.0     6
+ZYA       const_sp2_sp2_3          C2          C3          C4          C5     180.000     5.0     2
+ZYA              const_43          C2          C3          C8          C7     180.000    10.0     2
+ZYA       const_sp2_sp2_5          C3          C4          C5          C6       0.000     5.0     2
+ZYA       const_sp2_sp2_9          C4          C5          C6          C7       0.000     5.0     2
+ZYA              const_13          C5          C6          C7          C8       0.000    10.0     2
+ZYA              const_17          C6          C7          C8          C3       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZYA    chir_1    CA1    N1    C    CB1    positive
+ZYA    chir_2    CA2    N2    CT    CB2    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZYA    plan-1         CB1   0.020
+ZYA    plan-1         CD1   0.020
+ZYA    plan-1         CD2   0.020
+ZYA    plan-1         CE1   0.020
+ZYA    plan-1         CE2   0.020
+ZYA    plan-1          CG   0.020
+ZYA    plan-1          CZ   0.020
+ZYA    plan-1         HD1   0.020
+ZYA    plan-1         HD2   0.020
+ZYA    plan-1         HE1   0.020
+ZYA    plan-1         HE2   0.020
+ZYA    plan-1          OH   0.020
+ZYA    plan-2          C2   0.020
+ZYA    plan-2          C3   0.020
+ZYA    plan-2          C4   0.020
+ZYA    plan-2          C5   0.020
+ZYA    plan-2          C6   0.020
+ZYA    plan-2          C7   0.020
+ZYA    plan-2          C8   0.020
+ZYA    plan-2          H4   0.020
+ZYA    plan-2          H5   0.020
+ZYA    plan-2          H6   0.020
+ZYA    plan-2          H7   0.020
+ZYA    plan-2          H8   0.020
+ZYA    plan-3          C1   0.020
+ZYA    plan-3          N1   0.020
+ZYA    plan-3          O1   0.020
+ZYA    plan-3          O2   0.020
+ZYA    plan-4          C1   0.020
+ZYA    plan-4         CA1   0.020
+ZYA    plan-4         HN1   0.020
+ZYA    plan-4          N1   0.020
+ZYA    plan-5           C   0.020
+ZYA    plan-5         CA1   0.020
+ZYA    plan-5          N2   0.020
+ZYA    plan-5           O   0.020
+ZYA    plan-6           C   0.020
+ZYA    plan-6         CA2   0.020
+ZYA    plan-6         HN2   0.020
+ZYA    plan-6          N2   0.020
+ZYA    plan-7         CA2   0.020
+ZYA    plan-7          CM   0.020
+ZYA    plan-7          CT   0.020
+ZYA    plan-7          OT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZYA           SMILES              ACDLabs 12.01                                                                                                                        FCC(=O)C(NC(=O)C(NC(=O)OCc1ccccc1)Cc2ccc(O)cc2)C
+ZYA SMILES_CANONICAL               CACTVS 3.370                                                                                                                C[C@H](NC(=O)[C@H](Cc1ccc(O)cc1)NC(=O)OCc2ccccc2)C(=O)CF
+ZYA           SMILES               CACTVS 3.370                                                                                                                  C[CH](NC(=O)[CH](Cc1ccc(O)cc1)NC(=O)OCc2ccccc2)C(=O)CF
+ZYA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                    CC(C(=O)CF)NC(=O)[C@H](Cc1ccc(cc1)O)NC(=O)OCc2ccccc2
+ZYA           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                        CC(C(=O)CF)NC(=O)C(Cc1ccc(cc1)O)NC(=O)OCc2ccccc2
+ZYA            InChI                InChI  1.03 InChI=1S/C21H23FN2O5/c1-14(19(26)12-22)23-20(27)18(11-15-7-9-17(25)10-8-15)24-21(28)29-13-16-5-3-2-4-6-16/h2-10,14,18,25H,11-13H2,1H3,(H,23,27)(H,24,28)/t14-,18-/m0/s1
+ZYA         InChIKey                InChI  1.03                                                                                                                                             RYABQRLJLIHDIP-KSSFIOAISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZYA acedrg               243         "dictionary generator"                  
+ZYA acedrg_database      11          "data source"                           
+ZYA rdkit                2017.03.2   "Chemoinformatics tool"
+ZYA refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,155 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+17Y     17Y      (1R,2S)-cyclopentane-1,2-diol     NON-POLYMER     17     7     .     
+#
+data_comp_17Y
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+17Y     OAA     O       OH1     0       -8.873      -27.098     -27.178     
+17Y     CAF     C       CH1     0       -10.224     -27.537     -27.217     
+17Y     CAD     C       CH2     0       -10.461     -28.609     -26.166     
+17Y     CAC     C       CH2     0       -11.924     -28.478     -25.771     
+17Y     CAE     C       CH2     0       -12.443     -27.191     -26.397     
+17Y     CAG     C       CH1     0       -11.209     -26.426     -26.853     
+17Y     OAB     O       OH1     0       -10.738     -25.565     -25.824     
+17Y     H1      H       H       0       -8.368      -27.731     -27.433     
+17Y     H2      H       H       0       -10.435     -27.880     -28.119     
+17Y     H3      H       H       0       -10.283     -29.501     -26.533     
+17Y     H4      H       H       0       -9.881      -28.466     -25.387     
+17Y     H5      H       H       0       -12.012     -28.442     -24.793     
+17Y     H6      H       H       0       -12.437     -29.249     -26.101     
+17Y     H7      H       H       0       -12.950     -26.669     -25.739     
+17Y     H8      H       H       0       -13.027     -27.391     -27.159     
+17Y     H9      H       H       0       -11.411     -25.895     -27.661     
+17Y     H10     H       H       0       -10.591     -26.000     -25.110     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+17Y         OAA         CAF      SINGLE       n     1.420  0.0122     1.420  0.0122
+17Y         CAF         CAG      SINGLE       n     1.529  0.0127     1.529  0.0127
+17Y         CAF         CAD      SINGLE       n     1.521  0.0100     1.521  0.0100
+17Y         CAE         CAG      SINGLE       n     1.521  0.0100     1.521  0.0100
+17Y         CAG         OAB      SINGLE       n     1.420  0.0122     1.420  0.0122
+17Y         CAC         CAE      SINGLE       n     1.517  0.0200     1.517  0.0200
+17Y         CAD         CAC      SINGLE       n     1.517  0.0200     1.517  0.0200
+17Y         OAA          H1      SINGLE       n     0.970  0.0120     0.849  0.0200
+17Y         CAF          H2      SINGLE       n     1.089  0.0100     0.988  0.0200
+17Y         CAD          H3      SINGLE       n     1.089  0.0100     0.981  0.0119
+17Y         CAD          H4      SINGLE       n     1.089  0.0100     0.981  0.0119
+17Y         CAC          H5      SINGLE       n     1.089  0.0100     0.983  0.0200
+17Y         CAC          H6      SINGLE       n     1.089  0.0100     0.983  0.0200
+17Y         CAE          H7      SINGLE       n     1.089  0.0100     0.981  0.0119
+17Y         CAE          H8      SINGLE       n     1.089  0.0100     0.981  0.0119
+17Y         CAG          H9      SINGLE       n     1.089  0.0100     0.988  0.0200
+17Y         OAB         H10      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+17Y         CAF         OAA          H1     109.104    3.00
+17Y         OAA         CAF         CAG     112.463    2.73
+17Y         OAA         CAF         CAD     111.015    2.41
+17Y         OAA         CAF          H2     110.259    1.63
+17Y         CAG         CAF         CAD     104.977    3.00
+17Y         CAG         CAF          H2     110.255    2.04
+17Y         CAD         CAF          H2     111.076    1.50
+17Y         CAF         CAD         CAC     105.200    1.50
+17Y         CAF         CAD          H3     110.947    1.50
+17Y         CAF         CAD          H4     110.947    1.50
+17Y         CAC         CAD          H3     110.763    1.50
+17Y         CAC         CAD          H4     110.763    1.50
+17Y          H3         CAD          H4     109.046    1.50
+17Y         CAE         CAC         CAD     105.475    1.91
+17Y         CAE         CAC          H5     110.533    1.50
+17Y         CAE         CAC          H6     110.533    1.50
+17Y         CAD         CAC          H5     110.533    1.50
+17Y         CAD         CAC          H6     110.533    1.50
+17Y          H5         CAC          H6     108.634    1.62
+17Y         CAG         CAE         CAC     105.200    1.50
+17Y         CAG         CAE          H7     110.947    1.50
+17Y         CAG         CAE          H8     110.947    1.50
+17Y         CAC         CAE          H7     110.763    1.50
+17Y         CAC         CAE          H8     110.763    1.50
+17Y          H7         CAE          H8     109.046    1.50
+17Y         CAF         CAG         CAE     104.977    3.00
+17Y         CAF         CAG         OAB     112.463    2.73
+17Y         CAF         CAG          H9     110.255    2.04
+17Y         CAE         CAG         OAB     111.015    2.41
+17Y         CAE         CAG          H9     111.076    1.50
+17Y         OAB         CAG          H9     110.259    1.63
+17Y         CAG         OAB         H10     109.104    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+17Y            sp3_sp3_37         CAG         CAF         OAA          H1     180.000    10.0     3
+17Y            sp3_sp3_41         CAC         CAD         CAF         OAA     -60.000    10.0     3
+17Y             sp3_sp3_5         OAA         CAF         CAG         OAB      60.000    10.0     3
+17Y            sp3_sp3_28         CAE         CAC         CAD         CAF     -60.000    10.0     3
+17Y            sp3_sp3_19         CAD         CAC         CAE         CAG      60.000    10.0     3
+17Y            sp3_sp3_11         CAC         CAE         CAG         OAB      60.000    10.0     3
+17Y            sp3_sp3_49         CAF         CAG         OAB         H10     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+17Y    chir_1    CAF    OAA    CAG    CAD    positive
+17Y    chir_2    CAG    OAB    CAF    CAE    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+17Y           SMILES              ACDLabs 12.01                                            OC1CCCC1O
+17Y            InChI                InChI  1.03 InChI=1S/C5H10O2/c6-4-2-1-3-5(4)7/h4-7H,1-3H2/t4-,5+
+17Y         InChIKey                InChI  1.03                          VCVOSERVUCJNPR-SYDPRGILSA-N
+17Y SMILES_CANONICAL               CACTVS 3.370                                    O[C@H]1CCC[C@H]1O
+17Y           SMILES               CACTVS 3.370                                      O[CH]1CCC[CH]1O
+17Y SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                C1C[C@H]([C@H](C1)O)O
+17Y           SMILES "OpenEye OEToolkits" 1.7.6                                        C1CC(C(C1)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+17Y acedrg               243         "dictionary generator"                  
+17Y acedrg_database      11          "data source"                           
+17Y rdkit                2017.03.2   "Chemoinformatics tool"
+17Y refmac5              5.8.0238    "optimization tool"                     

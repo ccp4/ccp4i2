@@ -1,0 +1,212 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8BD     8BD      "3-({[(1Z)-(2-methoxyphenyl)methylidene]amino}oxy)propanoic acid"     NON-POLYMER     28     16     .     
+#
+data_comp_8BD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8BD     CAA     C       CH3     0       23.715      42.186      23.804      
+8BD     OAL     O       O2      0       22.331      42.053      23.482      
+8BD     CAP     C       CR6     0       21.751      42.928      22.602      
+8BD     CAH     C       CR16    0       22.409      43.483      21.505      
+8BD     CAF     C       CR16    0       21.743      44.349      20.663      
+8BD     CAE     C       CR16    0       20.415      44.672      20.890      
+8BD     CAG     C       CR16    0       19.753      44.126      21.965      
+8BD     CAO     C       CR6     0       20.401      43.237      22.851      
+8BD     CAD     C       C1      0       19.678      42.671      23.981      
+8BD     NAK     N       N       0       19.951      43.017      25.175      
+8BD     OAM     O       O2      0       19.125      42.373      26.115      
+8BD     CAI     C       CH2     0       19.918      41.828      27.177      
+8BD     CAJ     C       CH2     0       20.403      40.461      26.771      
+8BD     CAN     C       C       0       20.882      39.619      27.943      
+8BD     OAC     O       OC      -1      20.376      38.489      28.101      
+8BD     OAB     O       O       0       21.758      40.093      28.692      
+8BD     HAA     H       H       0       23.923      43.119      23.975      
+8BD     HAAA    H       H       0       24.250      41.865      23.059      
+8BD     HAAB    H       H       0       23.914      41.660      24.595      
+8BD     HAH     H       H       0       23.310      43.271      21.337      
+8BD     HAF     H       H       0       22.198      44.722      19.927      
+8BD     HAE     H       H       0       19.966      45.265      20.311      
+8BD     HAG     H       H       0       18.852      44.349      22.117      
+8BD     HAD     H       H       0       18.997      42.039      23.819      
+8BD     HAI     H       H       0       19.377      41.757      27.992      
+8BD     HAIA    H       H       0       20.684      42.410      27.366      
+8BD     HAJ     H       H       0       21.143      40.564      26.136      
+8BD     HAJA    H       H       0       19.672      39.986      26.321      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8BD         CAA         OAL      SINGLE       n     1.424  0.0117     1.424  0.0117
+8BD         OAL         CAP      SINGLE       n     1.365  0.0100     1.365  0.0100
+8BD         CAP         CAH      DOUBLE       y     1.388  0.0100     1.388  0.0100
+8BD         CAP         CAO      SINGLE       y     1.399  0.0100     1.399  0.0100
+8BD         CAH         CAF      SINGLE       y     1.375  0.0106     1.375  0.0106
+8BD         CAF         CAE      DOUBLE       y     1.383  0.0123     1.383  0.0123
+8BD         CAE         CAG      SINGLE       y     1.373  0.0108     1.373  0.0108
+8BD         CAG         CAO      DOUBLE       y     1.408  0.0108     1.408  0.0108
+8BD         CAO         CAD      SINGLE       n     1.454  0.0100     1.454  0.0100
+8BD         CAD         NAK      DOUBLE       n     1.271  0.0110     1.271  0.0110
+8BD         NAK         OAM      SINGLE       n     1.406  0.0102     1.406  0.0102
+8BD         OAM         CAI      SINGLE       n     1.431  0.0100     1.431  0.0100
+8BD         CAI         CAJ      SINGLE       n     1.504  0.0200     1.504  0.0200
+8BD         CAJ         CAN      SINGLE       n     1.519  0.0109     1.519  0.0109
+8BD         CAN         OAB      DOUBLE       n     1.247  0.0187     1.247  0.0187
+8BD         CAN         OAC      SINGLE       n     1.247  0.0187     1.247  0.0187
+8BD         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+8BD         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+8BD         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0157
+8BD         CAH         HAH      SINGLE       n     1.082  0.0130     0.941  0.0179
+8BD         CAF         HAF      SINGLE       n     1.082  0.0130     0.943  0.0183
+8BD         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0180
+8BD         CAG         HAG      SINGLE       n     1.082  0.0130     0.941  0.0168
+8BD         CAD         HAD      SINGLE       n     1.082  0.0130     0.942  0.0164
+8BD         CAI         HAI      SINGLE       n     1.089  0.0100     0.980  0.0143
+8BD         CAI        HAIA      SINGLE       n     1.089  0.0100     0.980  0.0143
+8BD         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.981  0.0185
+8BD         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8BD         OAL         CAA         HAA     109.428    1.50
+8BD         OAL         CAA        HAAA     109.428    1.50
+8BD         OAL         CAA        HAAB     109.428    1.50
+8BD         HAA         CAA        HAAA     109.509    1.50
+8BD         HAA         CAA        HAAB     109.509    1.50
+8BD        HAAA         CAA        HAAB     109.509    1.50
+8BD         CAA         OAL         CAP     118.009    1.50
+8BD         OAL         CAP         CAH     123.861    1.50
+8BD         OAL         CAP         CAO     115.795    1.50
+8BD         CAH         CAP         CAO     120.345    1.50
+8BD         CAP         CAH         CAF     119.701    1.50
+8BD         CAP         CAH         HAH     120.114    1.50
+8BD         CAF         CAH         HAH     120.185    1.50
+8BD         CAH         CAF         CAE     120.726    1.50
+8BD         CAH         CAF         HAF     119.452    1.50
+8BD         CAE         CAF         HAF     119.821    1.50
+8BD         CAF         CAE         CAG     120.226    1.50
+8BD         CAF         CAE         HAE     119.933    1.50
+8BD         CAG         CAE         HAE     119.842    1.50
+8BD         CAE         CAG         CAO     121.358    1.50
+8BD         CAE         CAG         HAG     119.514    1.50
+8BD         CAO         CAG         HAG     119.128    1.50
+8BD         CAP         CAO         CAG     117.644    1.50
+8BD         CAP         CAO         CAD     121.380    1.50
+8BD         CAG         CAO         CAD     120.976    1.50
+8BD         CAO         CAD         NAK     121.141    1.50
+8BD         CAO         CAD         HAD     119.278    1.50
+8BD         NAK         CAD         HAD     119.591    1.50
+8BD         CAD         NAK         OAM     111.348    1.50
+8BD         NAK         OAM         CAI     109.297    1.50
+8BD         OAM         CAI         CAJ     107.754    2.90
+8BD         OAM         CAI         HAI     109.850    1.50
+8BD         OAM         CAI        HAIA     109.850    1.50
+8BD         CAJ         CAI         HAI     109.480    1.94
+8BD         CAJ         CAI        HAIA     109.480    1.94
+8BD         HAI         CAI        HAIA     108.308    1.50
+8BD         CAI         CAJ         CAN     111.511    2.91
+8BD         CAI         CAJ         HAJ     108.485    1.50
+8BD         CAI         CAJ        HAJA     108.485    1.50
+8BD         CAN         CAJ         HAJ     108.416    1.50
+8BD         CAN         CAJ        HAJA     108.416    1.50
+8BD         HAJ         CAJ        HAJA     108.097    1.58
+8BD         CAJ         CAN         OAB     118.187    1.67
+8BD         CAJ         CAN         OAC     118.187    1.67
+8BD         OAB         CAN         OAC     123.625    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8BD             sp3_sp3_2         HAA         CAA         OAL         CAP     -60.000    10.0     3
+8BD             sp3_sp3_5         CAJ         CAI         OAM         NAK     180.000    10.0     3
+8BD             sp3_sp3_8         OAM         CAI         CAJ         CAN     180.000    10.0     3
+8BD             sp2_sp3_2         OAB         CAN         CAJ         CAI     120.000    10.0     6
+8BD             sp2_sp2_1         CAH         CAP         OAL         CAA     180.000     5.0     2
+8BD       const_sp2_sp2_2         CAF         CAH         CAP         OAL     180.000     5.0     2
+8BD              const_24         CAD         CAO         CAP         OAL       0.000    10.0     2
+8BD       const_sp2_sp2_5         CAE         CAF         CAH         CAP       0.000     5.0     2
+8BD       const_sp2_sp2_9         CAG         CAE         CAF         CAH       0.000     5.0     2
+8BD              const_13         CAF         CAE         CAG         CAO       0.000    10.0     2
+8BD              const_18         CAE         CAG         CAO         CAD     180.000    10.0     2
+8BD             sp2_sp2_3         NAK         CAD         CAO         CAP     180.000     5.0     2
+8BD             sp2_sp2_7         CAO         CAD         NAK         OAM     180.000     5.0     2
+8BD             sp2_sp2_9         CAD         NAK         OAM         CAI     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8BD    plan-1         CAD   0.020
+8BD    plan-1         CAE   0.020
+8BD    plan-1         CAF   0.020
+8BD    plan-1         CAG   0.020
+8BD    plan-1         CAH   0.020
+8BD    plan-1         CAO   0.020
+8BD    plan-1         CAP   0.020
+8BD    plan-1         HAE   0.020
+8BD    plan-1         HAF   0.020
+8BD    plan-1         HAG   0.020
+8BD    plan-1         HAH   0.020
+8BD    plan-1         OAL   0.020
+8BD    plan-2         CAD   0.020
+8BD    plan-2         CAO   0.020
+8BD    plan-2         HAD   0.020
+8BD    plan-2         NAK   0.020
+8BD    plan-3         CAJ   0.020
+8BD    plan-3         CAN   0.020
+8BD    plan-3         OAB   0.020
+8BD    plan-3         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8BD           SMILES              ACDLabs 10.04                                                                         O=C(O)CCO\N=C/c1ccccc1OC
+8BD SMILES_CANONICAL               CACTVS 3.341                                                                         COc1ccccc1\C=N/OCCC(O)=O
+8BD           SMILES               CACTVS 3.341                                                                           COc1ccccc1C=NOCCC(O)=O
+8BD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                         COc1ccccc1\C=N/OCCC(=O)O
+8BD           SMILES "OpenEye OEToolkits" 1.5.0                                                                           COc1ccccc1C=NOCCC(=O)O
+8BD            InChI                InChI  1.03 InChI=1S/C11H13NO4/c1-15-10-5-3-2-4-9(10)8-12-16-7-6-11(13)14/h2-5,8H,6-7H2,1H3,(H,13,14)/b12-8-
+8BD         InChIKey                InChI  1.03                                                                      HNYXMVDBRIIJGT-WQLSENKSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8BD acedrg               243         "dictionary generator"                  
+8BD acedrg_database      11          "data source"                           
+8BD rdkit                2017.03.2   "Chemoinformatics tool"
+8BD refmac5              5.8.0238    "optimization tool"                     

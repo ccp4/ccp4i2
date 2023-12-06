@@ -1,0 +1,372 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JYI     JYI      "3-chloro-4-[(E)-2-(5,5-dimethyl-8-phenyl-5,6-dihydronaphthalen-2-yl)ethenyl]benzoic acid"     NON-POLYMER     52     30     .     
+#
+data_comp_JYI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JYI     CAM     C       CR16    0       -9.270      14.753      -9.230      
+JYI     CAJ     C       CR16    0       -9.112      15.622      -8.157      
+JYI     CAI     C       CR16    0       -7.976      15.562      -7.375      
+JYI     CAK     C       CR16    0       -6.992      14.636      -7.661      
+JYI     CAN     C       CR16    0       -7.141      13.766      -8.735      
+JYI     CAY     C       CR6     0       -8.284      13.814      -9.533      
+JYI     CAV     C       CR6     0       -8.449      12.879      -10.685     
+JYI     CBB     C       CR66    0       -8.336      11.410      -10.518     
+JYI     CAS     C       CR16    0       -8.489      10.779      -9.256      
+JYI     CAH     C       CR16    0       -8.693      13.383      -11.901     
+JYI     CAT     C       CH2     0       -8.815      12.507      -13.114     
+JYI     CBD     C       CT      0       -7.895      11.269      -13.048     
+JYI     CAA     C       CH3     0       -6.427      11.686      -13.273     
+JYI     CAB     C       CH3     0       -8.359      10.349      -14.193     
+JYI     CBC     C       CR66    0       -8.072      10.622      -11.658     
+JYI     CAQ     C       CR16    0       -7.954      9.235       -11.498     
+JYI     CAL     C       CR16    0       -8.108      8.642       -10.261     
+JYI     CAW     C       CR6     0       -8.380      9.404       -9.125      
+JYI     CAF     C       C1      0       -8.530      8.744       -7.821      
+JYI     CAG     C       C1      0       -9.281      9.151       -6.797      
+JYI     CBA     C       CR6     0       -9.442      8.495       -5.490      
+JYI     CAP     C       CR16    0       -8.361      7.842       -4.877      
+JYI     CAO     C       CR16    0       -8.497      7.223       -3.645      
+JYI     CAZ     C       CR6     0       -9.716      7.237       -2.980      
+JYI     CAU     C       C       0       -9.871      6.571       -1.645      
+JYI     OAD     O       OC      -1      -10.455     7.204       -0.747      
+JYI     OAC     O       O       0       -9.411      5.423       -1.511      
+JYI     CAR     C       CR16    0       -10.802     7.882       -3.563      
+JYI     CAX     C       CR6     0       -10.664     8.500       -4.797      
+JYI     CL      CL      CL      0       -12.071     9.280       -5.455      
+JYI     H1      H       H       0       -10.049     14.801      -9.760      
+JYI     H2      H       H       0       -9.785      16.253      -7.963      
+JYI     H3      H       H       0       -7.872      16.153      -6.646      
+JYI     H4      H       H       0       -6.215      14.594      -7.129      
+JYI     H5      H       H       0       -6.464      13.135      -8.923      
+JYI     H6      H       H       0       -8.669      11.300      -8.493      
+JYI     H7      H       H       0       -8.789      14.315      -12.012     
+JYI     H8      H       H       0       -8.600      13.036      -13.908     
+JYI     H9      H       H       0       -9.747      12.219      -13.197     
+JYI     H10     H       H       0       -5.874      11.353      -12.547     
+JYI     H11     H       H       0       -6.355      12.654      -13.304     
+JYI     H12     H       H       0       -6.101      11.320      -14.111     
+JYI     H13     H       H       0       -9.216      9.952       -13.967     
+JYI     H14     H       H       0       -7.708      9.643       -14.336     
+JYI     H15     H       H       0       -8.452      10.865      -15.011     
+JYI     H16     H       H       0       -7.773      8.690       -12.244     
+JYI     H17     H       H       0       -8.029      7.704       -10.179     
+JYI     H18     H       H       0       -8.040      7.941       -7.704      
+JYI     H19     H       H       0       -9.760      9.958       -6.915      
+JYI     H20     H       H       0       -7.529      7.823       -5.316      
+JYI     H21     H       H       0       -7.757      6.790       -3.257      
+JYI     H23     H       H       0       -11.634     7.901       -3.127      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JYI         CBD         CAB      SINGLE       n     1.536  0.0100     1.536  0.0100
+JYI         CBD         CAA      SINGLE       n     1.536  0.0100     1.536  0.0100
+JYI         CAT         CBD      SINGLE       n     1.540  0.0100     1.540  0.0100
+JYI         CBD         CBC      SINGLE       n     1.534  0.0100     1.534  0.0100
+JYI         CAH         CAT      SINGLE       n     1.500  0.0100     1.500  0.0100
+JYI         CAV         CAH      DOUBLE       n     1.335  0.0100     1.335  0.0100
+JYI         CBC         CAQ      DOUBLE       y     1.393  0.0100     1.393  0.0100
+JYI         CBB         CBC      SINGLE       y     1.400  0.0100     1.400  0.0100
+JYI         CAQ         CAL      SINGLE       y     1.377  0.0100     1.377  0.0100
+JYI         CAV         CBB      SINGLE       n     1.475  0.0100     1.475  0.0100
+JYI         CAY         CAV      SINGLE       n     1.490  0.0100     1.490  0.0100
+JYI         CBB         CAS      DOUBLE       y     1.405  0.0153     1.405  0.0153
+JYI         CAL         CAW      DOUBLE       y     1.393  0.0100     1.393  0.0100
+JYI         CAM         CAY      DOUBLE       y     1.391  0.0100     1.391  0.0100
+JYI         CAN         CAY      SINGLE       y     1.391  0.0100     1.391  0.0100
+JYI         CAM         CAJ      SINGLE       y     1.386  0.0100     1.386  0.0100
+JYI         CAS         CAW      SINGLE       y     1.381  0.0108     1.381  0.0108
+JYI         CAW         CAF      SINGLE       n     1.466  0.0100     1.466  0.0100
+JYI         CAK         CAN      DOUBLE       y     1.386  0.0100     1.386  0.0100
+JYI         CAJ         CAI      DOUBLE       y     1.376  0.0124     1.376  0.0124
+JYI         CAF         CAG      DOUBLE       n     1.326  0.0177     1.326  0.0177
+JYI         CAI         CAK      SINGLE       y     1.376  0.0124     1.376  0.0124
+JYI         CAG         CBA      SINGLE       n     1.468  0.0111     1.468  0.0111
+JYI         CBA         CAP      DOUBLE       y     1.398  0.0100     1.398  0.0100
+JYI         CBA         CAX      SINGLE       y     1.398  0.0100     1.398  0.0100
+JYI         CAP         CAO      SINGLE       y     1.381  0.0100     1.381  0.0100
+JYI         CAX          CL      SINGLE       n     1.738  0.0100     1.738  0.0100
+JYI         CAR         CAX      DOUBLE       y     1.382  0.0128     1.382  0.0128
+JYI         CAO         CAZ      DOUBLE       y     1.387  0.0103     1.387  0.0103
+JYI         CAZ         CAR      SINGLE       y     1.390  0.0100     1.390  0.0100
+JYI         CAZ         CAU      SINGLE       n     1.498  0.0200     1.498  0.0200
+JYI         CAU         OAC      DOUBLE       n     1.244  0.0200     1.244  0.0200
+JYI         CAU         OAD      SINGLE       n     1.244  0.0200     1.244  0.0200
+JYI         CAM          H1      SINGLE       n     1.082  0.0130     0.944  0.0187
+JYI         CAJ          H2      SINGLE       n     1.082  0.0130     0.943  0.0180
+JYI         CAI          H3      SINGLE       n     1.082  0.0130     0.944  0.0161
+JYI         CAK          H4      SINGLE       n     1.082  0.0130     0.943  0.0180
+JYI         CAN          H5      SINGLE       n     1.082  0.0130     0.944  0.0187
+JYI         CAS          H6      SINGLE       n     1.082  0.0130     0.943  0.0200
+JYI         CAH          H7      SINGLE       n     1.082  0.0130     0.943  0.0158
+JYI         CAT          H8      SINGLE       n     1.089  0.0100     0.978  0.0152
+JYI         CAT          H9      SINGLE       n     1.089  0.0100     0.978  0.0152
+JYI         CAA         H10      SINGLE       n     1.089  0.0100     0.971  0.0163
+JYI         CAA         H11      SINGLE       n     1.089  0.0100     0.971  0.0163
+JYI         CAA         H12      SINGLE       n     1.089  0.0100     0.971  0.0163
+JYI         CAB         H13      SINGLE       n     1.089  0.0100     0.971  0.0163
+JYI         CAB         H14      SINGLE       n     1.089  0.0100     0.971  0.0163
+JYI         CAB         H15      SINGLE       n     1.089  0.0100     0.971  0.0163
+JYI         CAQ         H16      SINGLE       n     1.082  0.0130     0.944  0.0167
+JYI         CAL         H17      SINGLE       n     1.082  0.0130     0.945  0.0200
+JYI         CAF         H18      SINGLE       n     1.082  0.0130     0.948  0.0200
+JYI         CAG         H19      SINGLE       n     1.082  0.0130     0.948  0.0200
+JYI         CAP         H20      SINGLE       n     1.082  0.0130     0.941  0.0168
+JYI         CAO         H21      SINGLE       n     1.082  0.0130     0.941  0.0168
+JYI         CAR         H23      SINGLE       n     1.082  0.0130     0.940  0.0137
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JYI         CAY         CAM         CAJ     120.460    1.50
+JYI         CAY         CAM          H1     119.781    1.50
+JYI         CAJ         CAM          H1     119.759    1.50
+JYI         CAM         CAJ         CAI     120.265    1.50
+JYI         CAM         CAJ          H2     119.781    1.50
+JYI         CAI         CAJ          H2     119.954    1.50
+JYI         CAJ         CAI         CAK     119.885    1.50
+JYI         CAJ         CAI          H3     120.057    1.50
+JYI         CAK         CAI          H3     120.057    1.50
+JYI         CAN         CAK         CAI     120.265    1.50
+JYI         CAN         CAK          H4     119.781    1.50
+JYI         CAI         CAK          H4     119.954    1.50
+JYI         CAY         CAN         CAK     120.460    1.50
+JYI         CAY         CAN          H5     119.781    1.50
+JYI         CAK         CAN          H5     119.759    1.50
+JYI         CAV         CAY         CAM     120.667    1.50
+JYI         CAV         CAY         CAN     120.667    1.50
+JYI         CAM         CAY         CAN     118.666    1.50
+JYI         CAH         CAV         CBB     118.491    1.50
+JYI         CAH         CAV         CAY     120.048    1.50
+JYI         CBB         CAV         CAY     121.461    1.73
+JYI         CBC         CBB         CAV     117.511    1.50
+JYI         CBC         CBB         CAS     119.818    1.50
+JYI         CAV         CBB         CAS     122.671    1.50
+JYI         CBB         CAS         CAW     120.542    1.50
+JYI         CBB         CAS          H6     119.910    1.50
+JYI         CAW         CAS          H6     119.549    1.50
+JYI         CAT         CAH         CAV     120.639    3.00
+JYI         CAT         CAH          H7     119.089    1.50
+JYI         CAV         CAH          H7     120.272    1.50
+JYI         CBD         CAT         CAH     112.021    2.38
+JYI         CBD         CAT          H8     110.022    1.50
+JYI         CBD         CAT          H9     110.022    1.50
+JYI         CAH         CAT          H8     109.159    1.50
+JYI         CAH         CAT          H9     109.159    1.50
+JYI          H8         CAT          H9     107.877    1.50
+JYI         CAB         CBD         CAA     108.970    1.50
+JYI         CAB         CBD         CAT     107.445    2.44
+JYI         CAB         CBD         CBC     109.916    1.50
+JYI         CAA         CBD         CAT     107.445    2.44
+JYI         CAA         CBD         CBC     109.916    1.50
+JYI         CAT         CBD         CBC     107.895    1.50
+JYI         CBD         CAA         H10     109.713    1.50
+JYI         CBD         CAA         H11     109.713    1.50
+JYI         CBD         CAA         H12     109.713    1.50
+JYI         H10         CAA         H11     109.285    1.50
+JYI         H10         CAA         H12     109.285    1.50
+JYI         H11         CAA         H12     109.285    1.50
+JYI         CBD         CAB         H13     109.713    1.50
+JYI         CBD         CAB         H14     109.713    1.50
+JYI         CBD         CAB         H15     109.713    1.50
+JYI         H13         CAB         H14     109.285    1.50
+JYI         H13         CAB         H15     109.285    1.50
+JYI         H14         CAB         H15     109.285    1.50
+JYI         CBD         CBC         CAQ     119.517    1.50
+JYI         CBD         CBC         CBB     121.389    1.74
+JYI         CAQ         CBC         CBB     119.094    1.50
+JYI         CBC         CAQ         CAL     120.771    1.50
+JYI         CBC         CAQ         H16     119.424    1.50
+JYI         CAL         CAQ         H16     119.806    1.50
+JYI         CAQ         CAL         CAW     120.793    1.50
+JYI         CAQ         CAL         H17     119.831    1.50
+JYI         CAW         CAL         H17     119.376    1.50
+JYI         CAL         CAW         CAS     118.983    1.50
+JYI         CAL         CAW         CAF     120.444    1.61
+JYI         CAS         CAW         CAF     120.574    1.59
+JYI         CAW         CAF         CAG     126.111    1.50
+JYI         CAW         CAF         H18     116.607    1.76
+JYI         CAG         CAF         H18     117.282    1.50
+JYI         CAF         CAG         CBA     126.938    2.22
+JYI         CAF         CAG         H19     116.850    1.50
+JYI         CBA         CAG         H19     116.211    1.50
+JYI         CAG         CBA         CAP     121.346    2.30
+JYI         CAG         CBA         CAX     122.097    1.50
+JYI         CAP         CBA         CAX     116.557    1.50
+JYI         CBA         CAP         CAO     120.766    1.50
+JYI         CBA         CAP         H20     119.280    1.50
+JYI         CAO         CAP         H20     119.953    1.50
+JYI         CAP         CAO         CAZ     120.682    1.50
+JYI         CAP         CAO         H21     119.586    1.50
+JYI         CAZ         CAO         H21     119.732    1.50
+JYI         CAO         CAZ         CAR     120.020    1.50
+JYI         CAO         CAZ         CAU     120.410    1.50
+JYI         CAR         CAZ         CAU     119.570    1.50
+JYI         CAZ         CAU         OAC     117.791    1.50
+JYI         CAZ         CAU         OAD     117.791    1.50
+JYI         OAC         CAU         OAD     124.418    1.50
+JYI         CAX         CAR         CAZ     120.448    1.50
+JYI         CAX         CAR         H23     119.332    1.50
+JYI         CAZ         CAR         H23     120.220    1.50
+JYI         CBA         CAX          CL     120.760    1.50
+JYI         CBA         CAX         CAR     121.527    1.50
+JYI          CL         CAX         CAR     117.714    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JYI              const_65         CAI         CAJ         CAM         CAY       0.000    10.0     2
+JYI       const_sp2_sp2_6         CAJ         CAM         CAY         CAV     180.000     5.0     2
+JYI             sp3_sp3_2         CAH         CAT         CBD         CAB     180.000    10.0     3
+JYI            sp3_sp3_21         H10         CAA         CBD         CAB      60.000    10.0     3
+JYI            sp3_sp3_12         H13         CAB         CBD         CAA      60.000    10.0     3
+JYI            sp2_sp3_12         CAQ         CBC         CBD         CAB      60.000    10.0     6
+JYI              const_26         CAL         CAQ         CBC         CBD     180.000    10.0     2
+JYI              const_29         CAW         CAL         CAQ         CBC       0.000    10.0     2
+JYI              const_34         CAQ         CAL         CAW         CAF     180.000    10.0     2
+JYI            sp2_sp2_13         CAG         CAF         CAW         CAL     180.000     5.0     2
+JYI            sp2_sp2_17         CAW         CAF         CAG         CBA     180.000     5.0     2
+JYI            sp2_sp2_21         CAF         CAG         CBA         CAP     180.000     5.0     2
+JYI              const_21         CAK         CAI         CAJ         CAM       0.000    10.0     2
+JYI              const_42         CAO         CAP         CBA         CAG     180.000    10.0     2
+JYI              const_72          CL         CAX         CBA         CAG       0.000    10.0     2
+JYI              const_45         CAZ         CAO         CAP         CBA       0.000    10.0     2
+JYI              const_50         CAP         CAO         CAZ         CAU     180.000    10.0     2
+JYI            sp2_sp2_25         OAC         CAU         CAZ         CAO     180.000     5.0     2
+JYI              const_54         CAX         CAR         CAZ         CAU     180.000    10.0     2
+JYI              const_58         CAZ         CAR         CAX          CL     180.000    10.0     2
+JYI              const_17         CAJ         CAI         CAK         CAN       0.000    10.0     2
+JYI              const_13         CAI         CAK         CAN         CAY       0.000    10.0     2
+JYI              const_10         CAK         CAN         CAY         CAV     180.000    10.0     2
+JYI             sp2_sp2_9         CAH         CAV         CAY         CAM     180.000     5.0     2
+JYI             sp2_sp2_5         CAH         CAV         CBB         CBC       0.000     5.0     2
+JYI             sp2_sp2_1         CAT         CAH         CAV         CBB       0.000     5.0     2
+JYI       const_sp2_sp2_1         CAV         CBB         CBC         CBD       0.000     5.0     2
+JYI              const_61         CAW         CAS         CBB         CBC       0.000    10.0     2
+JYI              const_38         CBB         CAS         CAW         CAF     180.000    10.0     2
+JYI             sp2_sp3_1         CAV         CAH         CAT         CBD       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JYI    chir_1    CBD    CBC    CAT    CAB    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JYI    plan-1         CAI   0.020
+JYI    plan-1         CAJ   0.020
+JYI    plan-1         CAK   0.020
+JYI    plan-1         CAM   0.020
+JYI    plan-1         CAN   0.020
+JYI    plan-1         CAV   0.020
+JYI    plan-1         CAY   0.020
+JYI    plan-1          H1   0.020
+JYI    plan-1          H2   0.020
+JYI    plan-1          H3   0.020
+JYI    plan-1          H4   0.020
+JYI    plan-1          H5   0.020
+JYI    plan-2         CAF   0.020
+JYI    plan-2         CAL   0.020
+JYI    plan-2         CAQ   0.020
+JYI    plan-2         CAS   0.020
+JYI    plan-2         CAV   0.020
+JYI    plan-2         CAW   0.020
+JYI    plan-2         CBB   0.020
+JYI    plan-2         CBC   0.020
+JYI    plan-2         CBD   0.020
+JYI    plan-2         H16   0.020
+JYI    plan-2         H17   0.020
+JYI    plan-2          H6   0.020
+JYI    plan-3         CAG   0.020
+JYI    plan-3         CAO   0.020
+JYI    plan-3         CAP   0.020
+JYI    plan-3         CAR   0.020
+JYI    plan-3         CAU   0.020
+JYI    plan-3         CAX   0.020
+JYI    plan-3         CAZ   0.020
+JYI    plan-3         CBA   0.020
+JYI    plan-3          CL   0.020
+JYI    plan-3         H20   0.020
+JYI    plan-3         H21   0.020
+JYI    plan-3         H23   0.020
+JYI    plan-4         CAH   0.020
+JYI    plan-4         CAV   0.020
+JYI    plan-4         CAY   0.020
+JYI    plan-4         CBB   0.020
+JYI    plan-5         CAH   0.020
+JYI    plan-5         CAT   0.020
+JYI    plan-5         CAV   0.020
+JYI    plan-5          H7   0.020
+JYI    plan-6         CAF   0.020
+JYI    plan-6         CAG   0.020
+JYI    plan-6         CAW   0.020
+JYI    plan-6         H18   0.020
+JYI    plan-7         CAF   0.020
+JYI    plan-7         CAG   0.020
+JYI    plan-7         CBA   0.020
+JYI    plan-7         H19   0.020
+JYI    plan-8         CAU   0.020
+JYI    plan-8         CAZ   0.020
+JYI    plan-8         OAC   0.020
+JYI    plan-8         OAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JYI           SMILES              ACDLabs 12.01                                                                                                   O=C(O)c1ccc(c(Cl)c1)\C=C\c4ccc2c(C(=CCC2(C)C)c3ccccc3)c4
+JYI            InChI                InChI  1.03 InChI=1S/C27H23ClO2/c1-27(2)15-14-22(19-6-4-3-5-7-19)23-16-18(9-13-24(23)27)8-10-20-11-12-21(26(29)30)17-25(20)28/h3-14,16-17H,15H2,1-2H3,(H,29,30)/b10-8+
+JYI         InChIKey                InChI  1.03                                                                                                                                FRTYVAKGTFXRNY-CSKARUKUSA-N
+JYI SMILES_CANONICAL               CACTVS 3.370                                                                                                     CC1(C)CC=C(c2ccccc2)c3cc(\C=C\c4ccc(cc4Cl)C(O)=O)ccc13
+JYI           SMILES               CACTVS 3.370                                                                                                       CC1(C)CC=C(c2ccccc2)c3cc(C=Cc4ccc(cc4Cl)C(O)=O)ccc13
+JYI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                     CC1(CC=C(c2c1ccc(c2)/C=C/c3ccc(cc3Cl)C(=O)O)c4ccccc4)C
+JYI           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                       CC1(CC=C(c2c1ccc(c2)C=Cc3ccc(cc3Cl)C(=O)O)c4ccccc4)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JYI acedrg               243         "dictionary generator"                  
+JYI acedrg_database      11          "data source"                           
+JYI rdkit                2017.03.2   "Chemoinformatics tool"
+JYI refmac5              5.8.0238    "optimization tool"                     

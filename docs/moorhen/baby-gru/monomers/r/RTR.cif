@@ -1,0 +1,345 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RTR     RTR      4-({4-[(6-CHLORO-1-BENZOTHIEN-2-YL)SULFONYL]-2-OXOPIPERAZIN-1-YL}METHYL)BENZENECARBOXIMIDAMIDE     NON-POLYMER     49     30     .     
+#
+data_comp_RTR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RTR     N29     N       NH1     0       10.017      1.955       23.042      
+RTR     C28     C       C       0       9.435       1.916       21.887      
+RTR     N30     N       NH2     0       10.052      1.317       20.847      
+RTR     C27     C       CR6     0       8.097       2.518       21.648      
+RTR     C26     C       CR16    0       7.908       3.460       20.639      
+RTR     C24     C       CR16    0       6.660       4.022       20.421      
+RTR     C22     C       CR6     0       5.566       3.648       21.198      
+RTR     C23     C       CR16    0       5.759       2.720       22.218      
+RTR     C25     C       CR16    0       7.007       2.157       22.437      
+RTR     C21     C       CH2     0       4.214       4.286       20.982      
+RTR     N19     N       NT      0       4.178       5.638       21.538      
+RTR     C16     C       CR6     0       4.310       5.813       22.870      
+RTR     O20     O       O       0       4.061       4.923       23.694      
+RTR     C12     C       CH2     0       4.923       7.088       23.385      
+RTR     N7      N       NT      0       5.602       7.968       22.394      
+RTR     C13     C       CH2     0       5.636       7.477       20.991      
+RTR     C17     C       CH2     0       4.343       6.791       20.653      
+RTR     S4      S       S3      0       6.926       8.805       22.890      
+RTR     O8      O       O       0       7.122       9.866       21.953      
+RTR     O9      O       O       0       6.744       9.123       24.272      
+RTR     C1      C       CR5     0       8.319       7.762       22.784      
+RTR     C3      C       CR15    0       8.819       6.902       23.755      
+RTR     C6      C       CR56    0       9.991       6.198       23.287      
+RTR     C5      C       CR56    0       10.321      6.577       21.936      
+RTR     S2      S       S2      0       9.230       7.703       21.385      
+RTR     C10     C       CR16    0       11.413      6.021       21.288      
+RTR     C14     C       CR6     0       12.181      5.090       21.971      
+RTR     CL      CL      CL      0       13.561      4.375       21.177      
+RTR     C15     C       CR16    0       11.882      4.705       23.281      
+RTR     C11     C       CR16    0       10.799      5.250       23.940      
+RTR     H29     H       H       0       9.607       2.333       23.650      
+RTR     H301    H       H       0       9.656       1.280       20.053      
+RTR     H302    H       H       0       10.857      0.959       20.956      
+RTR     H26     H       H       0       8.633       3.716       20.097      
+RTR     H24     H       H       0       6.549       4.658       19.734      
+RTR     H23     H       H       0       5.031       2.465       22.761      
+RTR     H25     H       H       0       7.116       1.523       23.123      
+RTR     H211    H       H       0       3.519       3.736       21.412      
+RTR     H212    H       H       0       4.019       4.317       20.017      
+RTR     H121    H       H       0       5.572       6.820       24.073      
+RTR     H122    H       H       0       4.214       7.601       23.829      
+RTR     H131    H       H       0       6.377       6.850       20.878      
+RTR     H132    H       H       0       5.777       8.229       20.381      
+RTR     H171    H       H       0       3.596       7.410       20.778      
+RTR     H172    H       H       0       4.355       6.504       19.718      
+RTR     H3      H       H       0       8.446       6.791       24.613      
+RTR     H10     H       H       0       11.628      6.269       20.406      
+RTR     H15     H       H       0       12.420      4.072       23.720      
+RTR     H11     H       H       0       10.598      4.991       24.823      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RTR         N29         C28      DOUBLE       n     1.287  0.0200     1.287  0.0200
+RTR         C28         N30      SINGLE       n     1.347  0.0152     1.347  0.0152
+RTR         C28         C27      SINGLE       n     1.484  0.0100     1.484  0.0100
+RTR         C27         C26      DOUBLE       y     1.390  0.0100     1.390  0.0100
+RTR         C27         C25      SINGLE       y     1.390  0.0100     1.390  0.0100
+RTR         C26         C24      SINGLE       y     1.383  0.0100     1.383  0.0100
+RTR         C24         C22      DOUBLE       y     1.389  0.0102     1.389  0.0102
+RTR         C22         C23      SINGLE       y     1.389  0.0102     1.389  0.0102
+RTR         C22         C21      SINGLE       n     1.509  0.0100     1.509  0.0100
+RTR         C23         C25      DOUBLE       y     1.383  0.0100     1.383  0.0100
+RTR         C21         N19      SINGLE       n     1.458  0.0100     1.458  0.0100
+RTR         N19         C16      SINGLE       n     1.345  0.0100     1.345  0.0100
+RTR         N19         C17      SINGLE       n     1.464  0.0100     1.464  0.0100
+RTR         C16         O20      DOUBLE       n     1.237  0.0100     1.237  0.0100
+RTR         C16         C12      SINGLE       n     1.499  0.0103     1.499  0.0103
+RTR         C12          N7      SINGLE       n     1.477  0.0100     1.477  0.0100
+RTR          N7         C13      SINGLE       n     1.481  0.0102     1.481  0.0102
+RTR          N7          S4      SINGLE       n     1.636  0.0126     1.636  0.0126
+RTR         C13         C17      SINGLE       n     1.506  0.0100     1.506  0.0100
+RTR          S4          O8      DOUBLE       n     1.429  0.0100     1.429  0.0100
+RTR          S4          O9      DOUBLE       n     1.429  0.0100     1.429  0.0100
+RTR          S4          C1      SINGLE       n     1.740  0.0137     1.740  0.0137
+RTR          C1          C3      DOUBLE       y     1.372  0.0200     1.372  0.0200
+RTR          C1          S2      SINGLE       y     1.695  0.0200     1.695  0.0200
+RTR          C3          C6      SINGLE       y     1.432  0.0110     1.432  0.0110
+RTR          C6          C5      DOUBLE       y     1.414  0.0200     1.414  0.0200
+RTR          C6         C11      SINGLE       y     1.401  0.0100     1.401  0.0100
+RTR          C5          S2      SINGLE       y     1.695  0.0200     1.695  0.0200
+RTR          C5         C10      SINGLE       y     1.382  0.0123     1.382  0.0123
+RTR         C10         C14      DOUBLE       y     1.385  0.0100     1.385  0.0100
+RTR         C14          CL      SINGLE       n     1.746  0.0100     1.746  0.0100
+RTR         C14         C15      SINGLE       y     1.395  0.0100     1.395  0.0100
+RTR         C15         C11      DOUBLE       y     1.376  0.0100     1.376  0.0100
+RTR         N29         H29      SINGLE       n     1.016  0.0100     0.823  0.0200
+RTR         N30        H301      SINGLE       n     1.016  0.0100     0.887  0.0200
+RTR         N30        H302      SINGLE       n     1.016  0.0100     0.887  0.0200
+RTR         C26         H26      SINGLE       n     1.082  0.0130     0.941  0.0168
+RTR         C24         H24      SINGLE       n     1.082  0.0130     0.943  0.0173
+RTR         C23         H23      SINGLE       n     1.082  0.0130     0.943  0.0173
+RTR         C25         H25      SINGLE       n     1.082  0.0130     0.941  0.0168
+RTR         C21        H211      SINGLE       n     1.089  0.0100     0.985  0.0126
+RTR         C21        H212      SINGLE       n     1.089  0.0100     0.985  0.0126
+RTR         C12        H121      SINGLE       n     1.089  0.0100     0.982  0.0184
+RTR         C12        H122      SINGLE       n     1.089  0.0100     0.982  0.0184
+RTR         C13        H131      SINGLE       n     1.089  0.0100     0.978  0.0101
+RTR         C13        H132      SINGLE       n     1.089  0.0100     0.978  0.0101
+RTR         C17        H171      SINGLE       n     1.089  0.0100     0.978  0.0161
+RTR         C17        H172      SINGLE       n     1.089  0.0100     0.978  0.0161
+RTR          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0149
+RTR         C10         H10      SINGLE       n     1.082  0.0130     0.941  0.0170
+RTR         C15         H15      SINGLE       n     1.082  0.0130     0.939  0.0105
+RTR         C11         H11      SINGLE       n     1.082  0.0130     0.942  0.0182
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RTR         C28         N29         H29     114.748    3.00
+RTR         N29         C28         N30     120.652    2.66
+RTR         N29         C28         C27     121.847    3.00
+RTR         N30         C28         C27     117.501    1.50
+RTR         C28         N30        H301     119.893    1.50
+RTR         C28         N30        H302     119.893    1.50
+RTR        H301         N30        H302     120.214    2.70
+RTR         C28         C27         C26     120.525    1.50
+RTR         C28         C27         C25     120.525    1.50
+RTR         C26         C27         C25     118.950    1.50
+RTR         C27         C26         C24     120.742    1.50
+RTR         C27         C26         H26     119.755    1.50
+RTR         C24         C26         H26     119.503    1.50
+RTR         C26         C24         C22     120.561    1.50
+RTR         C26         C24         H24     119.699    1.50
+RTR         C22         C24         H24     119.740    1.50
+RTR         C24         C22         C23     118.444    1.50
+RTR         C24         C22         C21     120.778    1.50
+RTR         C23         C22         C21     120.778    1.50
+RTR         C22         C23         C25     120.561    1.50
+RTR         C22         C23         H23     119.740    1.50
+RTR         C25         C23         H23     119.699    1.50
+RTR         C27         C25         C23     120.742    1.50
+RTR         C27         C25         H25     119.755    1.50
+RTR         C23         C25         H25     119.503    1.50
+RTR         C22         C21         N19     112.780    1.71
+RTR         C22         C21        H211     109.108    1.50
+RTR         C22         C21        H212     109.108    1.50
+RTR         N19         C21        H211     108.990    1.50
+RTR         N19         C21        H212     108.990    1.50
+RTR        H211         C21        H212     107.841    1.50
+RTR         C21         N19         C16     118.124    2.08
+RTR         C21         N19         C17     116.697    2.76
+RTR         C16         N19         C17     120.841    2.39
+RTR         N19         C16         O20     123.271    1.50
+RTR         N19         C16         C12     117.190    2.04
+RTR         O20         C16         C12     119.538    1.50
+RTR         C16         C12          N7     111.438    1.59
+RTR         C16         C12        H121     108.061    2.24
+RTR         C16         C12        H122     108.061    2.24
+RTR          N7         C12        H121     109.006    1.70
+RTR          N7         C12        H122     109.006    1.70
+RTR        H121         C12        H122     107.855    1.50
+RTR         C12          N7         C13     112.503    1.50
+RTR         C12          N7          S4     117.488    1.64
+RTR         C13          N7          S4     117.505    2.10
+RTR          N7         C13         C17     109.110    1.50
+RTR          N7         C13        H131     109.668    1.50
+RTR          N7         C13        H132     109.668    1.50
+RTR         C17         C13        H131     109.820    1.50
+RTR         C17         C13        H132     109.820    1.50
+RTR        H131         C13        H132     108.243    1.50
+RTR         N19         C17         C13     110.511    1.50
+RTR         N19         C17        H171     109.362    1.50
+RTR         N19         C17        H172     109.362    1.50
+RTR         C13         C17        H171     109.523    1.50
+RTR         C13         C17        H172     109.523    1.50
+RTR        H171         C17        H172     108.187    1.50
+RTR          N7          S4          O8     106.879    1.50
+RTR          N7          S4          O9     106.879    1.50
+RTR          N7          S4          C1     109.471    3.00
+RTR          O8          S4          O9     119.673    1.50
+RTR          O8          S4          C1     107.103    1.50
+RTR          O9          S4          C1     107.103    1.50
+RTR          S4          C1          C3     129.042    2.00
+RTR          S4          C1          S2     122.484    3.00
+RTR          C3          C1          S2     108.474    3.00
+RTR          C1          C3          C6     107.237    1.50
+RTR          C1          C3          H3     126.655    1.50
+RTR          C6          C3          H3     126.108    1.50
+RTR          C3          C6          C5     107.340    1.50
+RTR          C3          C6         C11     132.308    1.50
+RTR          C5          C6         C11     120.352    1.84
+RTR          C6          C5          S2     108.474    3.00
+RTR          C6          C5         C10     120.565    1.99
+RTR          S2          C5         C10     130.960    3.00
+RTR          C1          S2          C5     108.474    3.00
+RTR          C5         C10         C14     118.308    1.50
+RTR          C5         C10         H10     120.849    1.50
+RTR         C14         C10         H10     120.843    1.50
+RTR         C10         C14          CL     119.185    1.50
+RTR         C10         C14         C15     122.039    1.50
+RTR          CL         C14         C15     118.777    1.50
+RTR         C14         C15         C11     119.976    1.50
+RTR         C14         C15         H15     120.270    1.50
+RTR         C11         C15         H15     119.754    1.50
+RTR          C6         C11         C15     118.761    1.50
+RTR          C6         C11         H11     120.406    1.50
+RTR         C15         C11         H11     120.833    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RTR             sp2_sp2_5         N30         C28         N29         H29     180.000     5.0     2
+RTR             sp2_sp2_4         O20         C16         N19         C21       0.000     5.0     2
+RTR            sp2_sp3_22         C21         N19         C17         C13     180.000    10.0     6
+RTR             sp2_sp3_4         O20         C16         C12          N7     180.000    10.0     6
+RTR             sp3_sp3_2         C16         C12          N7          S4     180.000    10.0     3
+RTR             sp3_sp3_8         C17         C13          N7          S4      60.000    10.0     3
+RTR            sp3_sp3_23         C12          N7          S4          O8     -60.000    10.0     3
+RTR            sp3_sp3_13          N7         C13         C17         N19      60.000    10.0     3
+RTR            sp2_sp3_25          C3          C1          S4          O8     150.000    10.0     6
+RTR             sp2_sp2_9         N29         C28         N30        H301       0.000     5.0     2
+RTR            sp2_sp2_12         C26         C27         C28         N29       0.000     5.0     2
+RTR              const_23          S4          C1          C3          C6     180.000    10.0     2
+RTR              const_56          S4          C1          S2          C5     180.000    10.0     2
+RTR              const_25          C1          C3          C6          C5       0.000    10.0     2
+RTR       const_sp2_sp2_1          S2          C5          C6          C3       0.000     5.0     2
+RTR              const_58         C15         C11          C6          C3     180.000    10.0     2
+RTR              const_29          C6          C5          S2          C1       0.000    10.0     2
+RTR       const_sp2_sp2_5         C14         C10          C5          C6       0.000     5.0     2
+RTR              const_10          C5         C10         C14          CL     180.000    10.0     2
+RTR              const_15          CL         C14         C15         C11     180.000    10.0     2
+RTR              const_17          C6         C11         C15         C14       0.000    10.0     2
+RTR              const_32         C24         C26         C27         C28     180.000    10.0     2
+RTR              const_52         C23         C25         C27         C28     180.000    10.0     2
+RTR              const_35         C22         C24         C26         C27       0.000    10.0     2
+RTR              const_41         C21         C22         C24         C26     180.000    10.0     2
+RTR              const_45         C21         C22         C23         C25     180.000    10.0     2
+RTR             sp2_sp3_8         C24         C22         C21         N19     -90.000    10.0     6
+RTR              const_47         C22         C23         C25         C27       0.000    10.0     2
+RTR            sp2_sp3_14         C16         N19         C21         C22     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RTR    chir_1    N7    S4    C12    C13    positive
+RTR    chir_2    S4    O8    O9    N7    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RTR    plan-1          C1   0.020
+RTR    plan-1         C10   0.020
+RTR    plan-1         C11   0.020
+RTR    plan-1         C14   0.020
+RTR    plan-1         C15   0.020
+RTR    plan-1          C3   0.020
+RTR    plan-1          C5   0.020
+RTR    plan-1          C6   0.020
+RTR    plan-1          CL   0.020
+RTR    plan-1         H10   0.020
+RTR    plan-1         H11   0.020
+RTR    plan-1         H15   0.020
+RTR    plan-1          H3   0.020
+RTR    plan-1          S2   0.020
+RTR    plan-1          S4   0.020
+RTR    plan-2         C21   0.020
+RTR    plan-2         C22   0.020
+RTR    plan-2         C23   0.020
+RTR    plan-2         C24   0.020
+RTR    plan-2         C25   0.020
+RTR    plan-2         C26   0.020
+RTR    plan-2         C27   0.020
+RTR    plan-2         C28   0.020
+RTR    plan-2         H23   0.020
+RTR    plan-2         H24   0.020
+RTR    plan-2         H25   0.020
+RTR    plan-2         H26   0.020
+RTR    plan-3         C27   0.020
+RTR    plan-3         C28   0.020
+RTR    plan-3         N29   0.020
+RTR    plan-3         N30   0.020
+RTR    plan-4         C28   0.020
+RTR    plan-4        H301   0.020
+RTR    plan-4        H302   0.020
+RTR    plan-4         N30   0.020
+RTR    plan-5         C12   0.020
+RTR    plan-5         C16   0.020
+RTR    plan-5         N19   0.020
+RTR    plan-5         O20   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RTR           SMILES              ACDLabs 10.04                                                                                           O=C2N(Cc1ccc(C(=[N@H])N)cc1)CCN(C2)S(=O)(=O)c4sc3cc(Cl)ccc3c4
+RTR SMILES_CANONICAL               CACTVS 3.341                                                                                               NC(=N)c1ccc(CN2CCN(CC2=O)[S](=O)(=O)c3sc4cc(Cl)ccc4c3)cc1
+RTR           SMILES               CACTVS 3.341                                                                                               NC(=N)c1ccc(CN2CCN(CC2=O)[S](=O)(=O)c3sc4cc(Cl)ccc4c3)cc1
+RTR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                             c1cc(ccc1CN2CC[N@@](CC2=O)S(=O)(=O)c3cc4ccc(cc4s3)Cl)C(=N)N
+RTR           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                 c1cc(ccc1CN2CCN(CC2=O)S(=O)(=O)c3cc4ccc(cc4s3)Cl)C(=N)N
+RTR            InChI                InChI  1.03 InChI=1S/C20H19ClN4O3S2/c21-16-6-5-15-9-19(29-17(15)10-16)30(27,28)25-8-7-24(18(26)12-25)11-13-1-3-14(4-2-13)20(22)23/h1-6,9-10H,7-8,11-12H2,(H3,22,23)
+RTR         InChIKey                InChI  1.03                                                                                                                             VXONTEUOQXFJJS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RTR acedrg               243         "dictionary generator"                  
+RTR acedrg_database      11          "data source"                           
+RTR rdkit                2017.03.2   "Chemoinformatics tool"
+RTR refmac5              5.8.0238    "optimization tool"                     

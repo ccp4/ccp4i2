@@ -1,0 +1,321 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+243     243      "(9Z,11E,13S)-13-hydroxyoctadeca-9,11-dienoic acid"     NON-POLYMER     52     21     .     
+#
+data_comp_243
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+243     OAS     O       OC      -1      0.716       33.075      24.528      
+243     CAA     C       C       0       0.003       32.074      24.738      
+243     OAT     O       O       0       -1.110      32.126      25.299      
+243     CAB     C       CH2     0       0.518       30.718      24.286      
+243     CAC     C       CH2     0       1.474       30.048      25.233      
+243     CAD     C       CH2     0       0.804       29.501      26.487      
+243     CAE     C       CH2     0       -0.030      28.261      26.267      
+243     CAF     C       CH2     0       -0.459      27.569      27.538      
+243     CAG     C       CH2     0       -1.688      26.681      27.382      
+243     CAH     C       CH2     0       -1.997      25.822      28.572      
+243     CAI     C       C1      0       -2.315      26.612      29.811      
+243     CAJ     C       C1      0       -1.477      26.988      30.783      
+243     CAK     C       C1      0       -0.183      26.692      30.940      
+243     CAL     C       C1      0       0.625       27.162      31.884      
+243     CAM     C       CH1     0       2.060       26.766      32.100      
+243     OAU     O       OH1     0       2.135       25.479      32.726      
+243     CAN     C       CH2     0       2.883       26.722      30.815      
+243     CAO     C       CH2     0       2.910       28.029      30.033      
+243     CAP     C       CH2     0       3.978       28.098      28.969      
+243     CAQ     C       CH2     0       3.825       27.077      27.869      
+243     CAR     C       CH3     0       4.697       27.344      26.666      
+243     HAB     H       H       0       0.965       30.834      23.421      
+243     HABA    H       H       0       -0.252      30.129      24.140      
+243     HAC     H       H       0       2.164       30.690      25.500      
+243     HACA    H       H       0       1.920       29.309      24.768      
+243     HAD     H       H       0       0.233       30.198      26.872      
+243     HADA    H       H       0       1.501       29.294      27.146      
+243     HAE     H       H       0       0.484       27.628      25.722      
+243     HAEA    H       H       0       -0.832      28.507      25.758      
+243     HAF     H       H       0       -0.647      28.251      28.217      
+243     HAFA    H       H       0       0.285       27.020      27.865      
+243     HAG     H       H       0       -1.557      26.102      26.602      
+243     HAGA    H       H       0       -2.464      27.252      27.198      
+243     HAH     H       H       0       -1.232      25.233      28.747      
+243     HAHA    H       H       0       -2.769      25.252      28.355      
+243     HAI     H       H       0       -3.217      26.871      29.909      
+243     HAJ     H       H       0       -1.843      27.537      31.458      
+243     HAK     H       H       0       0.180       26.080      30.326      
+243     HAL     H       H       0       0.268       27.805      32.475      
+243     HAM     H       H       0       2.474       27.434      32.706      
+243     HOAU    H       H       0       2.907       25.381      33.063      
+243     HAN     H       H       0       2.528       26.017      30.235      
+243     HANA    H       H       0       3.805       26.477      31.042      
+243     HAO     H       H       0       3.047       28.768      30.664      
+243     HAOA    H       H       0       2.036       28.158      29.608      
+243     HAP     H       H       0       4.854       27.973      29.393      
+243     HAPA    H       H       0       3.967       28.994      28.569      
+243     HAQ     H       H       0       2.886       27.059      27.584      
+243     HAQA    H       H       0       4.045       26.190      28.229      
+243     HAR     H       H       0       4.546       26.656      25.995      
+243     HARA    H       H       0       5.633       27.335      26.933      
+243     HARB    H       H       0       4.476       28.214      26.291      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+243         OAS         CAA      SINGLE       n     1.247  0.0187     1.247  0.0187
+243         CAA         CAB      SINGLE       n     1.519  0.0109     1.519  0.0109
+243         CAA         OAT      DOUBLE       n     1.247  0.0187     1.247  0.0187
+243         CAB         CAC      SINGLE       n     1.497  0.0200     1.497  0.0200
+243         CAC         CAD      SINGLE       n     1.519  0.0164     1.519  0.0164
+243         CAD         CAE      SINGLE       n     1.509  0.0200     1.509  0.0200
+243         CAE         CAF      SINGLE       n     1.509  0.0200     1.509  0.0200
+243         CAF         CAG      SINGLE       n     1.523  0.0117     1.523  0.0117
+243         CAG         CAH      SINGLE       n     1.497  0.0200     1.497  0.0200
+243         CAH         CAI      SINGLE       n     1.499  0.0157     1.499  0.0157
+243         CAI         CAJ      DOUBLE       n     1.332  0.0144     1.332  0.0144
+243         CAJ         CAK      SINGLE       n     1.325  0.0200     1.325  0.0200
+243         CAK         CAL      DOUBLE       n     1.325  0.0127     1.325  0.0127
+243         CAL         CAM      SINGLE       n     1.500  0.0157     1.500  0.0157
+243         CAM         CAN      SINGLE       n     1.525  0.0100     1.525  0.0100
+243         CAM         OAU      SINGLE       n     1.433  0.0103     1.433  0.0103
+243         CAN         CAO      SINGLE       n     1.523  0.0117     1.523  0.0117
+243         CAO         CAP      SINGLE       n     1.509  0.0200     1.509  0.0200
+243         CAP         CAQ      SINGLE       n     1.507  0.0200     1.507  0.0200
+243         CAQ         CAR      SINGLE       n     1.510  0.0200     1.510  0.0200
+243         CAB         HAB      SINGLE       n     1.089  0.0100     0.981  0.0185
+243         CAB        HABA      SINGLE       n     1.089  0.0100     0.981  0.0185
+243         CAC         HAC      SINGLE       n     1.089  0.0100     0.980  0.0160
+243         CAC        HACA      SINGLE       n     1.089  0.0100     0.980  0.0160
+243         CAD         HAD      SINGLE       n     1.089  0.0100     0.981  0.0163
+243         CAD        HADA      SINGLE       n     1.089  0.0100     0.981  0.0163
+243         CAE         HAE      SINGLE       n     1.089  0.0100     0.981  0.0163
+243         CAE        HAEA      SINGLE       n     1.089  0.0100     0.981  0.0163
+243         CAF         HAF      SINGLE       n     1.089  0.0100     0.981  0.0163
+243         CAF        HAFA      SINGLE       n     1.089  0.0100     0.981  0.0163
+243         CAG         HAG      SINGLE       n     1.089  0.0100     0.980  0.0160
+243         CAG        HAGA      SINGLE       n     1.089  0.0100     0.980  0.0160
+243         CAH         HAH      SINGLE       n     1.089  0.0100     0.983  0.0180
+243         CAH        HAHA      SINGLE       n     1.089  0.0100     0.983  0.0180
+243         CAI         HAI      SINGLE       n     1.082  0.0130     0.943  0.0181
+243         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0200
+243         CAK         HAK      SINGLE       n     1.082  0.0130     0.943  0.0200
+243         CAL         HAL      SINGLE       n     1.082  0.0130     0.943  0.0181
+243         CAM         HAM      SINGLE       n     1.089  0.0100     0.992  0.0103
+243         OAU        HOAU      SINGLE       n     0.970  0.0120     0.848  0.0200
+243         CAN         HAN      SINGLE       n     1.089  0.0100     0.980  0.0160
+243         CAN        HANA      SINGLE       n     1.089  0.0100     0.980  0.0160
+243         CAO         HAO      SINGLE       n     1.089  0.0100     0.981  0.0163
+243         CAO        HAOA      SINGLE       n     1.089  0.0100     0.981  0.0163
+243         CAP         HAP      SINGLE       n     1.089  0.0100     0.981  0.0163
+243         CAP        HAPA      SINGLE       n     1.089  0.0100     0.981  0.0163
+243         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.982  0.0155
+243         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.982  0.0155
+243         CAR         HAR      SINGLE       n     1.089  0.0100     0.973  0.0157
+243         CAR        HARA      SINGLE       n     1.089  0.0100     0.973  0.0157
+243         CAR        HARB      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+243         OAS         CAA         CAB     118.214    1.64
+243         OAS         CAA         OAT     123.571    1.50
+243         CAB         CAA         OAT     118.214    1.64
+243         CAA         CAB         CAC     114.612    2.19
+243         CAA         CAB         HAB     108.404    1.50
+243         CAA         CAB        HABA     108.404    1.50
+243         CAC         CAB         HAB     108.815    1.50
+243         CAC         CAB        HABA     108.815    1.50
+243         HAB         CAB        HABA     107.521    1.50
+243         CAB         CAC         CAD     112.553    1.50
+243         CAB         CAC         HAC     109.164    1.50
+243         CAB         CAC        HACA     109.164    1.50
+243         CAD         CAC         HAC     108.698    1.50
+243         CAD         CAC        HACA     108.698    1.50
+243         HAC         CAC        HACA     107.646    1.50
+243         CAC         CAD         CAE     114.243    1.69
+243         CAC         CAD         HAD     108.698    1.50
+243         CAC         CAD        HADA     108.698    1.50
+243         CAE         CAD         HAD     108.698    1.50
+243         CAE         CAD        HADA     108.698    1.50
+243         HAD         CAD        HADA     107.646    1.50
+243         CAD         CAE         CAF     114.243    1.69
+243         CAD         CAE         HAE     108.698    1.50
+243         CAD         CAE        HAEA     108.698    1.50
+243         CAF         CAE         HAE     108.698    1.50
+243         CAF         CAE        HAEA     108.698    1.50
+243         HAE         CAE        HAEA     107.646    1.50
+243         CAE         CAF         CAG     114.243    1.69
+243         CAE         CAF         HAF     108.698    1.50
+243         CAE         CAF        HAFA     108.698    1.50
+243         CAG         CAF         HAF     108.698    1.50
+243         CAG         CAF        HAFA     108.698    1.50
+243         HAF         CAF        HAFA     107.646    1.50
+243         CAF         CAG         CAH     114.266    1.80
+243         CAF         CAG         HAG     108.698    1.50
+243         CAF         CAG        HAGA     108.698    1.50
+243         CAH         CAG         HAG     108.805    1.50
+243         CAH         CAG        HAGA     108.805    1.50
+243         HAG         CAG        HAGA     107.646    1.50
+243         CAG         CAH         CAI     113.226    1.94
+243         CAG         CAH         HAH     108.819    1.50
+243         CAG         CAH        HAHA     108.819    1.50
+243         CAI         CAH         HAH     108.886    1.50
+243         CAI         CAH        HAHA     108.886    1.50
+243         HAH         CAH        HAHA     107.922    1.50
+243         CAH         CAI         CAJ     125.702    2.56
+243         CAH         CAI         HAI     116.780    1.61
+243         CAJ         CAI         HAI     117.519    1.50
+243         CAI         CAJ         CAK     126.726    2.74
+243         CAI         CAJ         HAJ     117.302    1.50
+243         CAK         CAJ         HAJ     115.972    1.85
+243         CAJ         CAK         CAL     126.116    2.95
+243         CAJ         CAK         HAK     116.051    1.85
+243         CAL         CAK         HAK     117.833    2.29
+243         CAK         CAL         CAM     125.406    1.50
+243         CAK         CAL         HAL     117.401    2.02
+243         CAM         CAL         HAL     117.192    1.50
+243         CAL         CAM         CAN     112.178    1.75
+243         CAL         CAM         OAU     111.273    2.25
+243         CAL         CAM         HAM     108.340    1.50
+243         CAN         CAM         OAU     109.047    2.08
+243         CAN         CAM         HAM     108.382    1.50
+243         OAU         CAM         HAM     108.862    1.50
+243         CAM         OAU        HOAU     108.953    1.50
+243         CAM         CAN         CAO     113.983    1.50
+243         CAM         CAN         HAN     108.691    1.50
+243         CAM         CAN        HANA     108.691    1.50
+243         CAO         CAN         HAN     108.572    1.50
+243         CAO         CAN        HANA     108.572    1.50
+243         HAN         CAN        HANA     107.428    1.50
+243         CAN         CAO         CAP     114.776    2.10
+243         CAN         CAO         HAO     108.597    1.50
+243         CAN         CAO        HAOA     108.597    1.50
+243         CAP         CAO         HAO     108.698    1.50
+243         CAP         CAO        HAOA     108.698    1.50
+243         HAO         CAO        HAOA     107.646    1.50
+243         CAO         CAP         CAQ     114.362    3.00
+243         CAO         CAP         HAP     108.698    1.50
+243         CAO         CAP        HAPA     108.698    1.50
+243         CAQ         CAP         HAP     108.653    1.50
+243         CAQ         CAP        HAPA     108.653    1.50
+243         HAP         CAP        HAPA     107.646    1.50
+243         CAP         CAQ         CAR     113.719    3.00
+243         CAP         CAQ         HAQ     108.758    1.50
+243         CAP         CAQ        HAQA     108.758    1.50
+243         CAR         CAQ         HAQ     108.918    1.50
+243         CAR         CAQ        HAQA     108.918    1.50
+243         HAQ         CAQ        HAQA     107.763    1.50
+243         CAQ         CAR         HAR     109.554    1.50
+243         CAQ         CAR        HARA     109.554    1.50
+243         CAQ         CAR        HARB     109.554    1.50
+243         HAR         CAR        HARA     109.380    1.50
+243         HAR         CAR        HARB     109.380    1.50
+243        HARA         CAR        HARB     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+243             sp2_sp2_1         CAH         CAI         CAJ         CAK     180.000     5.0     2
+243             sp2_sp2_5         CAI         CAJ         CAK         CAL     180.000     5.0     2
+243             sp2_sp2_9         CAJ         CAK         CAL         CAM     180.000     5.0     2
+243            sp2_sp3_13         CAK         CAL         CAM         CAN       0.000    10.0     6
+243            sp3_sp3_64         CAL         CAM         OAU        HOAU     180.000    10.0     3
+243            sp3_sp3_55         CAL         CAM         CAN         CAO     180.000    10.0     3
+243            sp3_sp3_67         CAM         CAN         CAO         CAP     180.000    10.0     3
+243            sp3_sp3_76         CAN         CAO         CAP         CAQ     180.000    10.0     3
+243            sp3_sp3_85         CAO         CAP         CAQ         CAR     180.000    10.0     3
+243            sp3_sp3_94         CAP         CAQ         CAR         HAR     180.000    10.0     3
+243             sp2_sp3_2         OAS         CAA         CAB         CAC     120.000    10.0     6
+243             sp3_sp3_1         CAA         CAB         CAC         CAD     180.000    10.0     3
+243            sp3_sp3_10         CAB         CAC         CAD         CAE     180.000    10.0     3
+243            sp3_sp3_19         CAC         CAD         CAE         CAF     180.000    10.0     3
+243            sp3_sp3_28         CAD         CAE         CAF         CAG     180.000    10.0     3
+243            sp3_sp3_37         CAE         CAF         CAG         CAH     180.000    10.0     3
+243            sp3_sp3_46         CAF         CAG         CAH         CAI     180.000    10.0     3
+243             sp2_sp3_8         CAJ         CAI         CAH         CAG     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+243    chir_1    CAM    OAU    CAL    CAN    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+243    plan-1         CAA   0.020
+243    plan-1         CAB   0.020
+243    plan-1         OAS   0.020
+243    plan-1         OAT   0.020
+243    plan-2         CAH   0.020
+243    plan-2         CAI   0.020
+243    plan-2         CAJ   0.020
+243    plan-2         HAI   0.020
+243    plan-3         CAI   0.020
+243    plan-3         CAJ   0.020
+243    plan-3         CAK   0.020
+243    plan-3         HAJ   0.020
+243    plan-4         CAJ   0.020
+243    plan-4         CAK   0.020
+243    plan-4         CAL   0.020
+243    plan-4         HAK   0.020
+243    plan-5         CAK   0.020
+243    plan-5         CAL   0.020
+243    plan-5         CAM   0.020
+243    plan-5         HAL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+243           SMILES              ACDLabs 10.04                                                                                                                         O=C(O)CCCCCCC/C=C\C=C\C(O)CCCCC
+243 SMILES_CANONICAL               CACTVS 3.341                                                                                                                     CCCCC[C@H](O)\C=C\C=C/CCCCCCCC(O)=O
+243           SMILES               CACTVS 3.341                                                                                                                         CCCCC[CH](O)C=CC=CCCCCCCCC(O)=O
+243 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                    CCCCC[C@@H](\C=C\C=C/CCCCCCCC(=O)O)O
+243           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                            CCCCCC(C=CC=CCCCCCCCC(=O)O)O
+243            InChI                InChI  1.03 InChI=1S/C18H32O3/c1-2-3-11-14-17(19)15-12-9-7-5-4-6-8-10-13-16-18(20)21/h7,9,12,15,17,19H,2-6,8,10-11,13-14,16H2,1H3,(H,20,21)/b9-7-,15-12+/t17-/m0/s1
+243         InChIKey                InChI  1.03                                                                                                                             HNICUWMFWZBIFP-IRQZEAMPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+243 acedrg               243         "dictionary generator"                  
+243 acedrg_database      11          "data source"                           
+243 rdkit                2017.03.2   "Chemoinformatics tool"
+243 refmac5              5.8.0238    "optimization tool"                     

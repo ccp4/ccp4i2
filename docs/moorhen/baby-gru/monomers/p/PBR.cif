@@ -1,0 +1,141 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PBR     PBR      PENTABROMOPHENOL     NON-POLYMER     13     12     .     
+#
+data_comp_PBR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PBR     BR1     BR      BR      0       45.063      1.864       4.067       
+PBR     BR2     BR      BR      0       45.288      1.720       7.369       
+PBR     BR3     BR      BR      0       43.166      -0.155      9.067       
+PBR     BR4     BR      BR      0       40.846      -1.861      7.450       
+PBR     BR5     BR      BR      0       40.680      -1.669      4.147       
+PBR     O1      O       OH1     0       42.806      0.154       3.013       
+PBR     C1      C       CR6     0       43.868      0.805       5.069       
+PBR     C2      C       CR6     0       43.954      0.735       6.466       
+PBR     C3      C       CR6     0       43.054      -0.059      7.185       
+PBR     C4      C       CR6     0       42.071      -0.783      6.500       
+PBR     C5      C       CR6     0       41.990      -0.709      5.103       
+PBR     C6      C       CR6     0       42.888      0.083       4.384       
+PBR     H1      H       H       0       42.137      0.547       2.641       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PBR         BR1          C1      SINGLE       n     1.883  0.0137     1.883  0.0137
+PBR         BR2          C2      SINGLE       n     1.887  0.0100     1.887  0.0100
+PBR         BR3          C3      SINGLE       n     1.886  0.0119     1.886  0.0119
+PBR         BR4          C4      SINGLE       n     1.887  0.0100     1.887  0.0100
+PBR         BR5          C5      SINGLE       n     1.883  0.0137     1.883  0.0137
+PBR          O1          C6      SINGLE       n     1.374  0.0155     1.374  0.0155
+PBR          C1          C2      DOUBLE       y     1.397  0.0100     1.397  0.0100
+PBR          C1          C6      SINGLE       y     1.391  0.0100     1.391  0.0100
+PBR          C2          C3      SINGLE       y     1.393  0.0121     1.393  0.0121
+PBR          C3          C4      DOUBLE       y     1.396  0.0100     1.396  0.0100
+PBR          C4          C5      SINGLE       y     1.397  0.0100     1.397  0.0100
+PBR          C5          C6      DOUBLE       y     1.391  0.0100     1.391  0.0100
+PBR          O1          H1      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PBR          C6          O1          H1     120.000    3.00
+PBR         BR1          C1          C2     121.343    1.50
+PBR         BR1          C1          C6     118.380    1.50
+PBR          C2          C1          C6     120.277    1.50
+PBR         BR2          C2          C1     119.464    1.50
+PBR         BR2          C2          C3     120.157    1.50
+PBR          C1          C2          C3     120.378    1.50
+PBR         BR3          C3          C2     119.926    1.50
+PBR         BR3          C3          C4     119.926    1.50
+PBR          C2          C3          C4     120.148    1.50
+PBR         BR4          C4          C3     120.157    1.50
+PBR         BR4          C4          C5     119.464    1.50
+PBR          C3          C4          C5     120.378    1.50
+PBR         BR5          C5          C4     121.343    1.50
+PBR         BR5          C5          C6     118.380    1.50
+PBR          C4          C5          C6     120.277    1.50
+PBR          O1          C6          C1     120.729    3.00
+PBR          O1          C6          C5     120.729    3.00
+PBR          C1          C6          C5     118.542    2.02
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PBR              const_20         BR5          C5          C6          O1       0.000    10.0     2
+PBR             sp2_sp2_1          C1          C6          O1          H1     180.000     5.0     2
+PBR              const_24         BR1          C1          C6          O1       0.000    10.0     2
+PBR       const_sp2_sp2_4         BR1          C1          C2         BR2       0.000     5.0     2
+PBR       const_sp2_sp2_8         BR2          C2          C3         BR3       0.000     5.0     2
+PBR              const_12         BR3          C3          C4         BR4       0.000    10.0     2
+PBR              const_16         BR4          C4          C5         BR5       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PBR    plan-1         BR1   0.020
+PBR    plan-1         BR2   0.020
+PBR    plan-1         BR3   0.020
+PBR    plan-1         BR4   0.020
+PBR    plan-1         BR5   0.020
+PBR    plan-1          C1   0.020
+PBR    plan-1          C2   0.020
+PBR    plan-1          C3   0.020
+PBR    plan-1          C4   0.020
+PBR    plan-1          C5   0.020
+PBR    plan-1          C6   0.020
+PBR    plan-1          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PBR           SMILES              ACDLabs 10.04                         Brc1c(O)c(Br)c(Br)c(Br)c1Br
+PBR SMILES_CANONICAL               CACTVS 3.341                         Oc1c(Br)c(Br)c(Br)c(Br)c1Br
+PBR           SMILES               CACTVS 3.341                         Oc1c(Br)c(Br)c(Br)c(Br)c1Br
+PBR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                       c1(c(c(c(c(c1Br)Br)Br)Br)Br)O
+PBR           SMILES "OpenEye OEToolkits" 1.5.0                       c1(c(c(c(c(c1Br)Br)Br)Br)Br)O
+PBR            InChI                InChI  1.03 InChI=1S/C6HBr5O/c7-1-2(8)4(10)6(12)5(11)3(1)9/h12H
+PBR         InChIKey                InChI  1.03                         SVHOVVJFOWGYJO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PBR acedrg               243         "dictionary generator"                  
+PBR acedrg_database      11          "data source"                           
+PBR rdkit                2017.03.2   "Chemoinformatics tool"
+PBR refmac5              5.8.0238    "optimization tool"                     

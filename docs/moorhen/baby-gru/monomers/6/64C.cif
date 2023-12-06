@@ -1,0 +1,215 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+64C     64C      1-ethylisochromeno[3,4-c]pyrazol-5(3H)-one     NON-POLYMER     26     16     .     
+#
+data_comp_64C
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+64C     CAG     C       CR56    0       21.458      30.114      10.461      
+64C     CAD     C       CR66    0       20.820      28.822      10.493      
+64C     CAC     C       CR16    0       21.215      27.771      11.353      
+64C     CAB     C       CR16    0       20.556      26.552      11.332      
+64C     CAA     C       CR16    0       19.479      26.340      10.451      
+64C     CAF     C       CR16    0       19.069      27.340      9.600       
+64C     CAE     C       CR66    0       19.723      28.603      9.596       
+64C     CAJ     C       CR6     0       19.293      29.673      8.696       
+64C     OAK     O       O       0       18.387      29.602      7.902       
+64C     OAI     O       O2      0       19.957      30.886      8.724       
+64C     CAH     C       CR56    0       20.989      31.089      9.569       
+64C     NAN     N       NR5     0       21.743      32.184      9.736       
+64C     NAM     N       NRD5    0       22.686      31.974      10.696      
+64C     CAL     C       CR5     0       22.543      30.736      11.155      
+64C     CAO     C       CH2     0       23.412      30.150      12.226      
+64C     CAP     C       CH3     0       24.478      31.098      12.750      
+64C     H1      H       H       0       21.932      27.899      11.947      
+64C     H2      H       H       0       20.831      25.860      11.912      
+64C     H3      H       H       0       19.037      25.506      10.444      
+64C     H4      H       H       0       18.348      27.186      9.016       
+64C     H5      H       H       0       21.681      32.960      9.310       
+64C     H6      H       H       0       23.850      29.347      11.871      
+64C     H7      H       H       0       22.842      29.870      12.975      
+64C     H8      H       H       0       25.000      30.651      13.440      
+64C     H9      H       H       0       24.054      31.889      13.127      
+64C     H10     H       H       0       25.066      31.363      12.021      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+64C         CAJ         OAK      DOUBLE       n     1.206  0.0117     1.206  0.0117
+64C         CAJ         OAI      SINGLE       y     1.377  0.0127     1.377  0.0127
+64C         CAE         CAJ      SINGLE       y     1.456  0.0123     1.456  0.0123
+64C         OAI         CAH      SINGLE       y     1.346  0.0100     1.346  0.0100
+64C         CAF         CAE      DOUBLE       y     1.418  0.0111     1.418  0.0111
+64C         CAA         CAF      SINGLE       y     1.372  0.0100     1.372  0.0100
+64C         CAD         CAE      SINGLE       y     1.428  0.0100     1.428  0.0100
+64C         CAH         NAN      SINGLE       y     1.340  0.0104     1.340  0.0104
+64C         CAG         CAH      DOUBLE       y     1.403  0.0200     1.403  0.0200
+64C         NAN         NAM      SINGLE       y     1.358  0.0120     1.358  0.0120
+64C         CAB         CAA      DOUBLE       y     1.402  0.0131     1.402  0.0131
+64C         CAG         CAD      SINGLE       y     1.433  0.0135     1.433  0.0135
+64C         CAD         CAC      DOUBLE       y     1.410  0.0100     1.410  0.0100
+64C         CAG         CAL      SINGLE       y     1.430  0.0111     1.430  0.0111
+64C         NAM         CAL      DOUBLE       y     1.326  0.0100     1.326  0.0100
+64C         CAC         CAB      SINGLE       y     1.374  0.0184     1.374  0.0184
+64C         CAL         CAO      SINGLE       n     1.496  0.0100     1.496  0.0100
+64C         CAO         CAP      SINGLE       n     1.516  0.0200     1.516  0.0200
+64C         CAC          H1      SINGLE       n     1.082  0.0130     0.942  0.0138
+64C         CAB          H2      SINGLE       n     1.082  0.0130     0.944  0.0184
+64C         CAA          H3      SINGLE       n     1.082  0.0130     0.944  0.0184
+64C         CAF          H4      SINGLE       n     1.082  0.0130     0.941  0.0146
+64C         NAN          H5      SINGLE       n     1.016  0.0100     0.888  0.0200
+64C         CAO          H6      SINGLE       n     1.089  0.0100     0.982  0.0147
+64C         CAO          H7      SINGLE       n     1.089  0.0100     0.982  0.0147
+64C         CAP          H8      SINGLE       n     1.089  0.0100     0.973  0.0120
+64C         CAP          H9      SINGLE       n     1.089  0.0100     0.973  0.0120
+64C         CAP         H10      SINGLE       n     1.089  0.0100     0.973  0.0120
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+64C         CAH         CAG         CAD     120.711    2.26
+64C         CAH         CAG         CAL     106.378    1.50
+64C         CAD         CAG         CAL     132.911    1.98
+64C         CAE         CAD         CAG     117.767    1.50
+64C         CAE         CAD         CAC     119.315    1.50
+64C         CAG         CAD         CAC     122.917    1.50
+64C         CAD         CAC         CAB     120.619    1.50
+64C         CAD         CAC          H1     119.563    1.50
+64C         CAB         CAC          H1     119.818    1.50
+64C         CAA         CAB         CAC     120.071    1.50
+64C         CAA         CAB          H2     119.929    1.50
+64C         CAC         CAB          H2     119.999    1.50
+64C         CAF         CAA         CAB     120.169    1.50
+64C         CAF         CAA          H3     119.943    1.50
+64C         CAB         CAA          H3     119.887    1.50
+64C         CAE         CAF         CAA     120.524    1.50
+64C         CAE         CAF          H4     119.639    1.50
+64C         CAA         CAF          H4     119.837    1.50
+64C         CAJ         CAE         CAF     120.875    1.50
+64C         CAJ         CAE         CAD     119.824    1.62
+64C         CAF         CAE         CAD     119.301    1.50
+64C         OAK         CAJ         OAI     115.645    1.50
+64C         OAK         CAJ         CAE     125.561    1.50
+64C         OAI         CAJ         CAE     118.794    1.50
+64C         CAJ         OAI         CAH     119.634    1.57
+64C         OAI         CAH         NAN     129.022    3.00
+64C         OAI         CAH         CAG     123.271    1.53
+64C         NAN         CAH         CAG     107.708    1.50
+64C         CAH         NAN         NAM     109.690    1.50
+64C         CAH         NAN          H5     128.274    2.37
+64C         NAM         NAN          H5     122.035    3.00
+64C         NAN         NAM         CAL     106.869    1.50
+64C         CAG         CAL         NAM     109.355    1.50
+64C         CAG         CAL         CAO     127.084    2.48
+64C         NAM         CAL         CAO     123.562    2.43
+64C         CAL         CAO         CAP     113.284    1.50
+64C         CAL         CAO          H6     108.883    1.50
+64C         CAL         CAO          H7     108.883    1.50
+64C         CAP         CAO          H6     108.959    1.50
+64C         CAP         CAO          H7     108.959    1.50
+64C          H6         CAO          H7     107.724    1.50
+64C         CAO         CAP          H8     109.517    1.50
+64C         CAO         CAP          H9     109.517    1.50
+64C         CAO         CAP         H10     109.517    1.50
+64C          H8         CAP          H9     109.422    1.50
+64C          H8         CAP         H10     109.422    1.50
+64C          H9         CAP         H10     109.422    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+64C              const_41         CAE         CAD         CAG         CAH       0.000    10.0     2
+64C              const_21         CAD         CAG         CAH         OAI       0.000    10.0     2
+64C              const_50         CAH         CAG         CAL         CAO     180.000    10.0     2
+64C              const_35         OAI         CAH         NAN         NAM     180.000    10.0     2
+64C              const_37         CAL         NAM         NAN         CAH       0.000    10.0     2
+64C              const_40         CAO         CAL         NAM         NAN     180.000    10.0     2
+64C             sp2_sp3_2         CAG         CAL         CAO         CAP     -90.000    10.0     6
+64C             sp3_sp3_1         CAL         CAO         CAP          H8     180.000    10.0     3
+64C              const_45         CAB         CAC         CAD         CAE       0.000    10.0     2
+64C       const_sp2_sp2_1         CAG         CAD         CAE         CAJ       0.000     5.0     2
+64C              const_17         CAA         CAB         CAC         CAD       0.000    10.0     2
+64C              const_13         CAF         CAA         CAB         CAC       0.000    10.0     2
+64C       const_sp2_sp2_9         CAB         CAA         CAF         CAE       0.000     5.0     2
+64C       const_sp2_sp2_7         CAJ         CAE         CAF         CAA     180.000     5.0     2
+64C              const_32         CAF         CAE         CAJ         OAK       0.000    10.0     2
+64C              const_28         OAK         CAJ         OAI         CAH     180.000    10.0     2
+64C              const_26         NAN         CAH         OAI         CAJ     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+64C    plan-1         CAA   0.020
+64C    plan-1         CAB   0.020
+64C    plan-1         CAC   0.020
+64C    plan-1         CAD   0.020
+64C    plan-1         CAE   0.020
+64C    plan-1         CAF   0.020
+64C    plan-1         CAG   0.020
+64C    plan-1         CAH   0.020
+64C    plan-1         CAJ   0.020
+64C    plan-1         CAL   0.020
+64C    plan-1         CAO   0.020
+64C    plan-1          H1   0.020
+64C    plan-1          H2   0.020
+64C    plan-1          H3   0.020
+64C    plan-1          H4   0.020
+64C    plan-1          H5   0.020
+64C    plan-1         NAM   0.020
+64C    plan-1         NAN   0.020
+64C    plan-1         OAI   0.020
+64C    plan-1         OAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+64C           SMILES              ACDLabs 12.01                                                                c21c(nnc1OC(c3c2cccc3)=O)CC
+64C            InChI                InChI  1.03 InChI=1S/C12H10N2O2/c1-2-9-10-7-5-3-4-6-8(7)12(15)16-11(10)14-13-9/h3-6H,2H2,1H3,(H,13,14)
+64C         InChIKey                InChI  1.03                                                                MKAQORNERCMQLJ-UHFFFAOYSA-N
+64C SMILES_CANONICAL               CACTVS 3.385                                                               CCc1n[nH]c2OC(=O)c3ccccc3c12
+64C           SMILES               CACTVS 3.385                                                               CCc1n[nH]c2OC(=O)c3ccccc3c12
+64C SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                            CCc1c-2c([nH]n1)OC(=O)c3c2cccc3
+64C           SMILES "OpenEye OEToolkits" 2.0.4                                                            CCc1c-2c([nH]n1)OC(=O)c3c2cccc3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+64C acedrg               243         "dictionary generator"                  
+64C acedrg_database      11          "data source"                           
+64C rdkit                2017.03.2   "Chemoinformatics tool"
+64C refmac5              5.8.0238    "optimization tool"                     

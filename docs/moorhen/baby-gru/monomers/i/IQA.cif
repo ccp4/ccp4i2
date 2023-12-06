@@ -1,0 +1,260 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IQA     IQA      "(5-OXO-5,6-DIHYDRO-INDOLO[1,2-A]QUINAZOLIN-7-YL)-ACETIC ACID"     NON-POLYMER     33     22     .     
+#
+data_comp_IQA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IQA     O21     O       OC      -1      22.872      7.059       14.246      
+IQA     C20     C       C       0       23.596      6.536       15.112      
+IQA     O22     O       O       0       23.833      5.319       15.213      
+IQA     C18     C       CH2     0       24.245      7.464       16.134      
+IQA     C5      C       CR5     0       23.322      7.822       17.258      
+IQA     C8      C       CR56    0       23.162      7.126       18.460      
+IQA     N11     N       NR6     0       23.796      5.983       18.876      
+IQA     C10     C       CR6     0       23.533      5.406       20.095      
+IQA     O19     O       O       0       24.136      4.385       20.403      
+IQA     C12     C       CR66    0       22.542      6.043       20.969      
+IQA     C17     C       CR16    0       22.229      5.498       22.234      
+IQA     C16     C       CR16    0       21.299      6.102       23.047      
+IQA     C15     C       CR16    0       20.651      7.271       22.621      
+IQA     C14     C       CR16    0       20.929      7.835       21.391      
+IQA     C13     C       CR66    0       21.875      7.240       20.540      
+IQA     N9      N       NR5     0       22.197      7.783       19.263      
+IQA     C7      C       CR56    0       21.745      8.916       18.544      
+IQA     C6      C       CR56    0       22.435      8.945       17.309      
+IQA     C4      C       CR16    0       22.187      9.969       16.382      
+IQA     C1      C       CR16    0       21.264      10.944      16.690      
+IQA     C2      C       CR16    0       20.583      10.917      17.907      
+IQA     C3      C       CR16    0       20.808      9.920       18.838      
+IQA     H181    H       H       0       24.533      8.287       15.679      
+IQA     H182    H       H       0       25.044      7.025       16.501      
+IQA     H11     H       H       0       24.395      5.594       18.351      
+IQA     H17     H       H       0       22.657      4.721       22.523      
+IQA     H16     H       H       0       21.096      5.731       23.891      
+IQA     H15     H       H       0       20.015      7.680       23.182      
+IQA     H14     H       H       0       20.481      8.613       21.137      
+IQA     H4      H       H       0       22.648      9.987       15.559      
+IQA     H1      H       H       0       21.090      11.637      16.073      
+IQA     H2      H       H       0       19.956      11.593      18.097      
+IQA     H3      H       H       0       20.337      9.925       19.648      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IQA         O21         C20      SINGLE       n     1.244  0.0200     1.244  0.0200
+IQA         C20         O22      DOUBLE       n     1.244  0.0200     1.244  0.0200
+IQA         C20         C18      SINGLE       n     1.525  0.0126     1.525  0.0126
+IQA         C18          C5      SINGLE       n     1.498  0.0100     1.498  0.0100
+IQA          C5          C8      DOUBLE       y     1.414  0.0200     1.414  0.0200
+IQA          C5          C6      SINGLE       y     1.439  0.0100     1.439  0.0100
+IQA          C8         N11      SINGLE       y     1.361  0.0200     1.361  0.0200
+IQA          C8          N9      SINGLE       y     1.397  0.0139     1.397  0.0139
+IQA         N11         C10      SINGLE       y     1.374  0.0118     1.374  0.0118
+IQA         C10         O19      DOUBLE       n     1.223  0.0119     1.223  0.0119
+IQA         C10         C12      SINGLE       y     1.465  0.0128     1.465  0.0128
+IQA         C12         C17      SINGLE       y     1.405  0.0129     1.405  0.0129
+IQA         C12         C13      DOUBLE       y     1.411  0.0177     1.411  0.0177
+IQA         C17         C16      DOUBLE       y     1.374  0.0100     1.374  0.0100
+IQA         C16         C15      SINGLE       y     1.401  0.0132     1.401  0.0132
+IQA         C15         C14      DOUBLE       y     1.378  0.0100     1.378  0.0100
+IQA         C14         C13      SINGLE       y     1.397  0.0100     1.397  0.0100
+IQA         C13          N9      SINGLE       y     1.402  0.0124     1.402  0.0124
+IQA          N9          C7      SINGLE       y     1.398  0.0111     1.398  0.0111
+IQA          C7          C6      DOUBLE       y     1.409  0.0100     1.409  0.0100
+IQA          C7          C3      SINGLE       y     1.395  0.0100     1.395  0.0100
+IQA          C6          C4      SINGLE       y     1.400  0.0100     1.400  0.0100
+IQA          C4          C1      DOUBLE       y     1.377  0.0100     1.377  0.0100
+IQA          C1          C2      SINGLE       y     1.394  0.0106     1.394  0.0106
+IQA          C2          C3      DOUBLE       y     1.379  0.0100     1.379  0.0100
+IQA         C18        H181      SINGLE       n     1.089  0.0100     0.983  0.0200
+IQA         C18        H182      SINGLE       n     1.089  0.0100     0.983  0.0200
+IQA         N11         H11      SINGLE       n     1.016  0.0100     0.885  0.0200
+IQA         C17         H17      SINGLE       n     1.082  0.0130     0.933  0.0100
+IQA         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0184
+IQA         C15         H15      SINGLE       n     1.082  0.0130     0.941  0.0176
+IQA         C14         H14      SINGLE       n     1.082  0.0130     0.938  0.0100
+IQA          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0200
+IQA          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0181
+IQA          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0181
+IQA          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0126
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IQA         O21         C20         O22     125.371    1.75
+IQA         O21         C20         C18     117.315    1.72
+IQA         O22         C20         C18     117.315    1.72
+IQA         C20         C18          C5     112.079    2.81
+IQA         C20         C18        H181     108.731    1.50
+IQA         C20         C18        H182     108.731    1.50
+IQA          C5         C18        H181     108.919    1.50
+IQA          C5         C18        H182     108.919    1.50
+IQA        H181         C18        H182     107.730    1.50
+IQA         C18          C5          C8     126.364    2.61
+IQA         C18          C5          C6     126.364    2.61
+IQA          C8          C5          C6     107.272    1.50
+IQA          C5          C8         N11     131.255    1.87
+IQA          C5          C8          N9     108.381    1.50
+IQA         N11          C8          N9     120.363    1.50
+IQA          C8         N11         C10     120.931    1.50
+IQA          C8         N11         H11     120.428    1.50
+IQA         C10         N11         H11     118.641    2.15
+IQA         N11         C10         O19     118.913    1.67
+IQA         N11         C10         C12     118.453    2.19
+IQA         O19         C10         C12     122.634    1.50
+IQA         C10         C12         C17     121.231    1.50
+IQA         C10         C12         C13     120.005    1.50
+IQA         C17         C12         C13     118.764    1.50
+IQA         C12         C17         C16     120.462    1.50
+IQA         C12         C17         H17     119.670    1.50
+IQA         C16         C17         H17     119.868    1.50
+IQA         C17         C16         C15     120.107    1.50
+IQA         C17         C16         H16     119.974    1.50
+IQA         C15         C16         H16     119.918    1.50
+IQA         C16         C15         C14     120.782    1.50
+IQA         C16         C15         H15     119.738    1.50
+IQA         C14         C15         H15     119.480    1.50
+IQA         C15         C14         C13     119.285    1.50
+IQA         C15         C14         H14     120.402    1.50
+IQA         C13         C14         H14     120.313    1.50
+IQA         C12         C13         C14     120.599    1.50
+IQA         C12         C13          N9     119.234    1.50
+IQA         C14         C13          N9     120.167    1.50
+IQA          C8          N9         C13     121.014    1.50
+IQA          C8          N9          C7     108.164    1.50
+IQA         C13          N9          C7     130.821    2.05
+IQA          N9          C7          C6     107.488    1.50
+IQA          N9          C7          C3     131.280    1.50
+IQA          C6          C7          C3     121.232    1.50
+IQA          C5          C6          C7     108.695    1.50
+IQA          C5          C6          C4     131.952    1.50
+IQA          C7          C6          C4     119.353    1.50
+IQA          C6          C4          C1     119.071    1.50
+IQA          C6          C4          H4     120.325    1.50
+IQA          C1          C4          H4     120.605    1.50
+IQA          C4          C1          C2     121.139    1.50
+IQA          C4          C1          H1     119.508    1.50
+IQA          C2          C1          H1     119.353    1.50
+IQA          C1          C2          C3     121.336    1.50
+IQA          C1          C2          H2     119.303    1.50
+IQA          C3          C2          H2     119.361    1.50
+IQA          C7          C3          C2     117.869    1.50
+IQA          C7          C3          H3     121.039    1.50
+IQA          C2          C3          H3     121.092    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IQA              const_25         C15         C16         C17         C12       0.000    10.0     2
+IQA              const_29         C14         C15         C16         C17       0.000    10.0     2
+IQA              const_33         C13         C14         C15         C16       0.000    10.0     2
+IQA              const_37         C12         C13         C14         C15       0.000    10.0     2
+IQA              const_17         C12         C13          N9          C8       0.000    10.0     2
+IQA              const_69          C6          C7          N9          C8       0.000    10.0     2
+IQA              const_41          C5          C6          C7          N9       0.000    10.0     2
+IQA              const_78          C2          C3          C7          N9     180.000    10.0     2
+IQA              const_46          C1          C4          C6          C5     180.000    10.0     2
+IQA              const_49          C2          C1          C4          C6       0.000    10.0     2
+IQA              const_53          C4          C1          C2          C3       0.000    10.0     2
+IQA             sp2_sp3_2         O21         C20         C18          C5     120.000    10.0     6
+IQA              const_57          C1          C2          C3          C7       0.000    10.0     2
+IQA             sp2_sp3_8          C8          C5         C18         C20     -90.000    10.0     6
+IQA              const_75         C18          C5          C6          C7     180.000    10.0     2
+IQA              const_64         C18          C5          C8         N11       0.000    10.0     2
+IQA              const_66          C5          C8          N9         C13     180.000    10.0     2
+IQA       const_sp2_sp2_3          C5          C8         N11         C10     180.000     5.0     2
+IQA       const_sp2_sp2_7         O19         C10         N11          C8     180.000     5.0     2
+IQA              const_12         O19         C10         C12         C17       0.000    10.0     2
+IQA              const_23         C10         C12         C17         C16     180.000    10.0     2
+IQA              const_14         C10         C12         C13         C14     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IQA    plan-1          C1   0.020
+IQA    plan-1         C10   0.020
+IQA    plan-1         C12   0.020
+IQA    plan-1         C13   0.020
+IQA    plan-1         C14   0.020
+IQA    plan-1         C15   0.020
+IQA    plan-1         C16   0.020
+IQA    plan-1         C17   0.020
+IQA    plan-1         C18   0.020
+IQA    plan-1          C2   0.020
+IQA    plan-1          C3   0.020
+IQA    plan-1          C4   0.020
+IQA    plan-1          C5   0.020
+IQA    plan-1          C6   0.020
+IQA    plan-1          C7   0.020
+IQA    plan-1          C8   0.020
+IQA    plan-1          H1   0.020
+IQA    plan-1         H11   0.020
+IQA    plan-1         H14   0.020
+IQA    plan-1         H15   0.020
+IQA    plan-1         H16   0.020
+IQA    plan-1         H17   0.020
+IQA    plan-1          H2   0.020
+IQA    plan-1          H3   0.020
+IQA    plan-1          H4   0.020
+IQA    plan-1         N11   0.020
+IQA    plan-1          N9   0.020
+IQA    plan-1         O19   0.020
+IQA    plan-2         C18   0.020
+IQA    plan-2         C20   0.020
+IQA    plan-2         O21   0.020
+IQA    plan-2         O22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IQA           SMILES              ACDLabs 10.04                                                                                 O=C(O)Cc3c2NC(=O)c1c(cccc1)n2c4ccccc34
+IQA SMILES_CANONICAL               CACTVS 3.341                                                                                   OC(=O)Cc1c2NC(=O)c3ccccc3n2c4ccccc14
+IQA           SMILES               CACTVS 3.341                                                                                   OC(=O)Cc1c2NC(=O)c3ccccc3n2c4ccccc14
+IQA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                              c1ccc2c(c1)c(c3n2-c4ccccc4C(=O)N3)CC(=O)O
+IQA           SMILES "OpenEye OEToolkits" 1.5.0                                                                              c1ccc2c(c1)c(c3n2-c4ccccc4C(=O)N3)CC(=O)O
+IQA            InChI                InChI  1.03 InChI=1S/C17H12N2O3/c20-15(21)9-12-10-5-1-3-7-13(10)19-14-8-4-2-6-11(14)17(22)18-16(12)19/h1-8H,9H2,(H,18,22)(H,20,21)
+IQA         InChIKey                InChI  1.03                                                                                            INSBKYCYLCEBOD-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IQA acedrg               243         "dictionary generator"                  
+IQA acedrg_database      11          "data source"                           
+IQA rdkit                2017.03.2   "Chemoinformatics tool"
+IQA refmac5              5.8.0238    "optimization tool"                     

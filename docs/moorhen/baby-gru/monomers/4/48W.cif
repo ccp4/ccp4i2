@@ -1,0 +1,404 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+48W     48W      "6-chloro-N-{(3S)-1-[(2S)-1-(4-methyl-5-oxo-1,4-diazepan-1-yl)-1-oxopropan-2-yl]-2-oxopyrrolidin-3-yl}naphthalene-2-sulfonamide"     NON-POLYMER     61     34     .     
+#
+data_comp_48W
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+48W     C1      C       CH3     0       6.000       2.027       22.271      
+48W     C2      C       CH1     0       6.467       3.471       22.130      
+48W     N3      N       NR5     0       5.429       4.419       22.540      
+48W     C4      C       CH2     0       4.131       4.525       21.867      
+48W     C5      C       CH2     0       3.309       5.411       22.793      
+48W     C6      C       CH1     0       4.363       6.199       23.579      
+48W     N7      N       NT1     0       4.694       7.499       23.010      
+48W     S8      S       S3      0       5.701       8.546       23.706      
+48W     O9      O       O       0       5.796       8.189       25.089      
+48W     O10     O       O       0       5.231       9.853       23.361      
+48W     C11     C       CR6     0       7.291       8.347       22.960      
+48W     C12     C       CR16    0       7.469       8.733       21.608      
+48W     C13     C       CR16    0       8.697       8.584       21.024      
+48W     C14     C       CR66    0       9.797       8.051       21.744      
+48W     C15     C       CR16    0       11.077      7.888       21.154      
+48W     C16     C       CR6     0       12.105      7.369       21.894      
+48W     CL1     CL      CL      0       13.672      7.173       21.165      
+48W     C18     C       CR16    0       11.939      6.986       23.228      
+48W     C19     C       CR16    0       10.712      7.132       23.821      
+48W     C20     C       CR66    0       9.611       7.665       23.102      
+48W     C21     C       CR16    0       8.330       7.831       23.686      
+48W     C22     C       CR5     0       5.562       5.271       23.575      
+48W     O23     O       O       0       6.502       5.315       24.370      
+48W     C24     C       C       0       6.951       3.746       20.701      
+48W     O25     O       O       0       6.194       3.506       19.761      
+48W     N26     N       N       0       8.130       4.383       20.504      
+48W     C27     C       CH2     0       9.344       4.168       21.308      
+48W     C28     C       CH2     0       10.614      4.008       20.487      
+48W     N29     N       N       0       10.449      3.050       19.383      
+48W     C30     C       CH3     0       11.287      1.853       19.468      
+48W     C31     C       C       0       9.601       3.263       18.338      
+48W     O32     O       O       0       9.293       2.356       17.565      
+48W     C33     C       CH2     0       8.997       4.641       18.150      
+48W     C34     C       CH2     0       8.296       5.280       19.351      
+48W     H1      H       H       0       5.697       1.871       23.184      
+48W     H2      H       H       0       6.739       1.426       22.068      
+48W     H3      H       H       0       5.266       1.858       21.654      
+48W     H4      H       H       0       7.228       3.585       22.740      
+48W     H5      H       H       0       4.230       4.934       20.982      
+48W     H6      H       H       0       3.716       3.644       21.765      
+48W     H7      H       H       0       2.752       4.870       23.392      
+48W     H8      H       H       0       2.724       6.008       22.279      
+48W     H9      H       H       0       4.049       6.303       24.509      
+48W     H10     H       H       0       4.058       7.873       22.638      
+48W     H11     H       H       0       6.752       9.088       21.118      
+48W     H12     H       H       0       8.814       8.838       20.131      
+48W     H13     H       H       0       11.213      8.139       20.257      
+48W     H14     H       H       0       12.669      6.628       23.718      
+48W     H15     H       H       0       10.597      6.874       24.723      
+48W     H16     H       H       0       8.200       7.578       24.581      
+48W     H17     H       H       0       9.458       4.926       21.920      
+48W     H18     H       H       0       9.236       3.360       21.852      
+48W     H19     H       H       0       11.329      3.698       21.082      
+48W     H20     H       H       0       10.888      4.880       20.130      
+48W     H21     H       H       0       11.260      1.357       18.635      
+48W     H22     H       H       0       10.967      1.286       20.188      
+48W     H23     H       H       0       12.205      2.113       19.651      
+48W     H24     H       H       0       8.359       4.596       17.416      
+48W     H25     H       H       0       9.705       5.242       17.858      
+48W     H26     H       H       0       8.818       6.058       19.639      
+48W     H27     H       H       0       7.418       5.611       19.067      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+48W         C33         C34      SINGLE       n     1.528  0.0100     1.528  0.0100
+48W         C31         C33      SINGLE       n     1.512  0.0100     1.512  0.0100
+48W         N26         C34      SINGLE       n     1.465  0.0100     1.465  0.0100
+48W         C31         O32      DOUBLE       n     1.229  0.0102     1.229  0.0102
+48W         N29         C31      SINGLE       n     1.353  0.0100     1.353  0.0100
+48W         C28         N29      SINGLE       n     1.465  0.0100     1.465  0.0100
+48W         N29         C30      SINGLE       n     1.458  0.0101     1.458  0.0101
+48W         C27         C28      SINGLE       n     1.514  0.0138     1.514  0.0138
+48W         N26         C27      SINGLE       n     1.465  0.0100     1.465  0.0100
+48W         C24         N26      SINGLE       n     1.345  0.0100     1.345  0.0100
+48W         C24         O25      DOUBLE       n     1.229  0.0102     1.229  0.0102
+48W          C2         C24      SINGLE       n     1.528  0.0100     1.528  0.0100
+48W          C1          C2      SINGLE       n     1.523  0.0116     1.523  0.0116
+48W          C2          N3      SINGLE       n     1.458  0.0100     1.458  0.0100
+48W          N3          C4      SINGLE       n     1.464  0.0100     1.464  0.0100
+48W          N3         C22      SINGLE       n     1.342  0.0109     1.342  0.0109
+48W          C4          C5      SINGLE       n     1.522  0.0200     1.522  0.0200
+48W         C22         O23      DOUBLE       n     1.231  0.0121     1.231  0.0121
+48W          C6         C22      SINGLE       n     1.516  0.0163     1.516  0.0163
+48W          C5          C6      SINGLE       n     1.532  0.0108     1.532  0.0108
+48W          C6          N7      SINGLE       n     1.455  0.0100     1.455  0.0100
+48W          N7          S8      SINGLE       n     1.607  0.0100     1.607  0.0100
+48W         C12         C13      DOUBLE       y     1.363  0.0100     1.363  0.0100
+48W         C11         C12      SINGLE       y     1.413  0.0100     1.413  0.0100
+48W          S8         O10      DOUBLE       n     1.431  0.0100     1.431  0.0100
+48W         C13         C14      SINGLE       y     1.415  0.0105     1.415  0.0105
+48W          S8         C11      SINGLE       n     1.765  0.0101     1.765  0.0101
+48W          S8          O9      DOUBLE       n     1.431  0.0100     1.431  0.0100
+48W         C11         C21      DOUBLE       y     1.365  0.0100     1.365  0.0100
+48W         C14         C15      DOUBLE       y     1.415  0.0105     1.415  0.0105
+48W         C14         C20      SINGLE       y     1.418  0.0105     1.418  0.0105
+48W         C15         C16      SINGLE       y     1.365  0.0100     1.365  0.0100
+48W         C20         C21      SINGLE       y     1.415  0.0105     1.415  0.0105
+48W         C19         C20      DOUBLE       y     1.415  0.0105     1.415  0.0105
+48W         C16         CL1      SINGLE       n     1.740  0.0100     1.740  0.0100
+48W         C16         C18      DOUBLE       y     1.394  0.0105     1.394  0.0105
+48W         C18         C19      SINGLE       y     1.367  0.0100     1.367  0.0100
+48W          C1          H1      SINGLE       n     1.089  0.0100     0.974  0.0103
+48W          C1          H2      SINGLE       n     1.089  0.0100     0.974  0.0103
+48W          C1          H3      SINGLE       n     1.089  0.0100     0.974  0.0103
+48W          C2          H4      SINGLE       n     1.089  0.0100     0.984  0.0100
+48W          C4          H5      SINGLE       n     1.089  0.0100     0.980  0.0159
+48W          C4          H6      SINGLE       n     1.089  0.0100     0.980  0.0159
+48W          C5          H7      SINGLE       n     1.089  0.0100     0.981  0.0186
+48W          C5          H8      SINGLE       n     1.089  0.0100     0.981  0.0186
+48W          C6          H9      SINGLE       n     1.089  0.0100     0.988  0.0200
+48W          N7         H10      SINGLE       n     1.036  0.0160     0.826  0.0200
+48W         C12         H11      SINGLE       n     1.082  0.0130     0.939  0.0104
+48W         C13         H12      SINGLE       n     1.082  0.0130     0.935  0.0116
+48W         C15         H13      SINGLE       n     1.082  0.0130     0.941  0.0177
+48W         C18         H14      SINGLE       n     1.082  0.0130     0.949  0.0100
+48W         C19         H15      SINGLE       n     1.082  0.0130     0.945  0.0196
+48W         C21         H16      SINGLE       n     1.082  0.0130     0.939  0.0112
+48W         C27         H17      SINGLE       n     1.089  0.0100     0.981  0.0152
+48W         C27         H18      SINGLE       n     1.089  0.0100     0.981  0.0152
+48W         C28         H19      SINGLE       n     1.089  0.0100     0.981  0.0152
+48W         C28         H20      SINGLE       n     1.089  0.0100     0.981  0.0152
+48W         C30         H21      SINGLE       n     1.089  0.0100     0.971  0.0181
+48W         C30         H22      SINGLE       n     1.089  0.0100     0.971  0.0181
+48W         C30         H23      SINGLE       n     1.089  0.0100     0.971  0.0181
+48W         C33         H24      SINGLE       n     1.089  0.0100     0.973  0.0156
+48W         C33         H25      SINGLE       n     1.089  0.0100     0.973  0.0156
+48W         C34         H26      SINGLE       n     1.089  0.0100     0.980  0.0157
+48W         C34         H27      SINGLE       n     1.089  0.0100     0.980  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+48W          C2          C1          H1     109.468    1.50
+48W          C2          C1          H2     109.468    1.50
+48W          C2          C1          H3     109.468    1.50
+48W          H1          C1          H2     109.433    1.50
+48W          H1          C1          H3     109.433    1.50
+48W          H2          C1          H3     109.433    1.50
+48W         C24          C2          C1     110.233    1.50
+48W         C24          C2          N3     111.158    2.08
+48W         C24          C2          H4     107.192    1.50
+48W          C1          C2          N3     110.974    2.01
+48W          C1          C2          H4     107.171    1.50
+48W          N3          C2          H4     106.868    1.50
+48W          C2          N3          C4     123.336    1.50
+48W          C2          N3         C22     122.610    1.50
+48W          C4          N3         C22     114.053    1.50
+48W          N3          C4          C5     103.784    1.50
+48W          N3          C4          H5     110.941    1.50
+48W          N3          C4          H6     110.941    1.50
+48W          C5          C4          H5     111.265    1.50
+48W          C5          C4          H6     111.265    1.50
+48W          H5          C4          H6     108.998    1.50
+48W          C4          C5          C6     104.124    1.50
+48W          C4          C5          H7     111.290    1.50
+48W          C4          C5          H8     111.290    1.50
+48W          C6          C5          H7     111.538    1.50
+48W          C6          C5          H8     111.538    1.50
+48W          H7          C5          H8     108.877    1.50
+48W         C22          C6          C5     104.009    1.83
+48W         C22          C6          N7     111.491    2.69
+48W         C22          C6          H9     108.995    2.52
+48W          C5          C6          N7     113.888    3.00
+48W          C5          C6          H9     109.017    1.50
+48W          N7          C6          H9     110.514    2.74
+48W          C6          N7          S8     121.862    1.91
+48W          C6          N7         H10     113.764    3.00
+48W          S8          N7         H10     113.046    3.00
+48W          N7          S8         O10     106.957    1.50
+48W          N7          S8         C11     108.116    1.50
+48W          N7          S8          O9     106.957    1.50
+48W         O10          S8         C11     108.022    1.50
+48W         O10          S8          O9     119.556    1.50
+48W         C11          S8          O9     108.022    1.50
+48W         C12         C11          S8     119.508    1.50
+48W         C12         C11         C21     121.491    1.50
+48W          S8         C11         C21     119.001    1.50
+48W         C13         C12         C11     119.016    1.50
+48W         C13         C12         H11     120.453    1.50
+48W         C11         C12         H11     120.530    1.50
+48W         C12         C13         C14     120.820    1.50
+48W         C12         C13         H12     119.677    1.50
+48W         C14         C13         H12     119.503    1.50
+48W         C13         C14         C15     122.105    1.50
+48W         C13         C14         C20     118.770    1.50
+48W         C15         C14         C20     119.125    1.50
+48W         C14         C15         C16     119.792    1.50
+48W         C14         C15         H13     119.708    1.50
+48W         C16         C15         H13     120.500    1.50
+48W         C15         C16         CL1     119.489    1.50
+48W         C15         C16         C18     122.131    1.50
+48W         CL1         C16         C18     118.380    1.50
+48W         C16         C18         C19     119.112    1.50
+48W         C16         C18         H14     120.420    1.50
+48W         C19         C18         H14     120.460    1.50
+48W         C20         C19         C18     120.871    1.50
+48W         C20         C19         H15     119.564    1.50
+48W         C18         C19         H15     119.565    1.50
+48W         C14         C20         C21     118.734    1.50
+48W         C14         C20         C19     118.976    1.50
+48W         C21         C20         C19     122.290    1.50
+48W         C11         C21         C20     121.169    1.50
+48W         C11         C21         H16     119.562    1.50
+48W         C20         C21         H16     119.269    1.50
+48W          N3         C22         O23     125.541    1.50
+48W          N3         C22          C6     108.521    1.71
+48W         O23         C22          C6     125.938    1.50
+48W         N26         C24         O25     122.020    2.26
+48W         N26         C24          C2     117.767    1.50
+48W         O25         C24          C2     120.213    1.50
+48W         C34         N26         C27     116.758    1.50
+48W         C34         N26         C24     121.621    3.00
+48W         C27         N26         C24     121.621    3.00
+48W         C28         C27         N26     112.406    1.62
+48W         C28         C27         H17     108.926    1.50
+48W         C28         C27         H18     108.926    1.50
+48W         N26         C27         H17     109.037    1.50
+48W         N26         C27         H18     109.037    1.50
+48W         H17         C27         H18     107.844    1.50
+48W         N29         C28         C27     111.889    1.50
+48W         N29         C28         H19     109.022    1.50
+48W         N29         C28         H20     109.022    1.50
+48W         C27         C28         H19     108.926    1.50
+48W         C27         C28         H20     108.926    1.50
+48W         H19         C28         H20     107.844    1.50
+48W         C31         N29         C28     121.728    3.00
+48W         C31         N29         C30     121.441    3.00
+48W         C28         N29         C30     116.831    1.50
+48W         N29         C30         H21     109.634    1.50
+48W         N29         C30         H22     109.634    1.50
+48W         N29         C30         H23     109.634    1.50
+48W         H21         C30         H22     109.408    1.50
+48W         H21         C30         H23     109.408    1.50
+48W         H22         C30         H23     109.408    1.50
+48W         C33         C31         O32     121.181    1.50
+48W         C33         C31         N29     117.533    1.50
+48W         O32         C31         N29     121.286    2.26
+48W         C34         C33         C31     112.131    2.87
+48W         C34         C33         H24     108.999    1.50
+48W         C34         C33         H25     108.999    1.50
+48W         C31         C33         H24     108.929    1.50
+48W         C31         C33         H25     108.929    1.50
+48W         H24         C33         H25     107.745    2.07
+48W         C33         C34         N26     112.428    1.68
+48W         C33         C34         H26     108.929    1.50
+48W         C33         C34         H27     108.929    1.50
+48W         N26         C34         H26     108.589    1.50
+48W         N26         C34         H27     108.589    1.50
+48W         H26         C34         H27     107.673    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+48W            sp3_sp3_37          H1          C1          C2         C24     180.000    10.0     3
+48W       const_sp2_sp2_3          S8         C11         C12         C13     180.000     5.0     2
+48W              const_43          S8         C11         C21         C20     180.000    10.0     2
+48W       const_sp2_sp2_5         C11         C12         C13         C14       0.000     5.0     2
+48W              const_10         C12         C13         C14         C15     180.000    10.0     2
+48W              const_23         C13         C14         C15         C16     180.000    10.0     2
+48W              const_13         C13         C14         C20         C21       0.000    10.0     2
+48W              const_26         C14         C15         C16         CL1     180.000    10.0     2
+48W              const_31         CL1         C16         C18         C19     180.000    10.0     2
+48W              const_33         C16         C18         C19         C20       0.000    10.0     2
+48W              const_37         C18         C19         C20         C14       0.000    10.0     2
+48W              const_17         C14         C20         C21         C11       0.000    10.0     2
+48W            sp2_sp3_49          C4          N3          C2         C24     150.000    10.0     6
+48W            sp2_sp3_43         N26         C24          C2          C1       0.000    10.0     6
+48W             sp2_sp2_7         O25         C24         N26         C34       0.000     5.0     2
+48W            sp2_sp3_38         C34         N26         C27         C28     120.000    10.0     6
+48W            sp2_sp3_20         C27         N26         C34         C33     120.000    10.0     6
+48W            sp3_sp3_28         N26         C27         C28         N29     180.000    10.0     3
+48W            sp2_sp3_26         C31         N29         C28         C27     120.000    10.0     6
+48W            sp2_sp3_31         C31         N29         C30         H21       0.000    10.0     6
+48W             sp2_sp2_1         C33         C31         N29         C28     180.000     5.0     2
+48W            sp2_sp2_12         O23         C22          N3          C2       0.000     5.0     2
+48W             sp2_sp3_4          C2          N3          C4          C5     180.000    10.0     6
+48W            sp2_sp3_14         O32         C31         C33         C34     120.000    10.0     6
+48W            sp3_sp3_19         C31         C33         C34         N26     180.000    10.0     3
+48W             sp3_sp3_1          N3          C4          C5          C6     -60.000    10.0     3
+48W            sp3_sp3_11          C4          C5          C6          N7     180.000    10.0     3
+48W            sp2_sp3_11         O23         C22          C6          N7     -60.000    10.0     6
+48W            sp3_sp3_46         C22          C6          N7          S8     180.000    10.0     3
+48W            sp3_sp3_56          C6          N7          S8         O10     180.000    10.0     3
+48W            sp2_sp3_57         C12         C11          S8          N7      30.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+48W    chir_1    C2    N3    C24    C1    positive
+48W    chir_2    C6    N7    C22    C5    positive
+48W    chir_3    S8    O10    O9    N7    both
+48W    chir_4    N7    S8    C6    H10    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+48W    plan-1         C11   0.020
+48W    plan-1         C12   0.020
+48W    plan-1         C13   0.020
+48W    plan-1         C14   0.020
+48W    plan-1         C15   0.020
+48W    plan-1         C16   0.020
+48W    plan-1         C18   0.020
+48W    plan-1         C19   0.020
+48W    plan-1         C20   0.020
+48W    plan-1         C21   0.020
+48W    plan-1         CL1   0.020
+48W    plan-1         H11   0.020
+48W    plan-1         H12   0.020
+48W    plan-1         H13   0.020
+48W    plan-1         H14   0.020
+48W    plan-1         H15   0.020
+48W    plan-1         H16   0.020
+48W    plan-1          S8   0.020
+48W    plan-2          C2   0.020
+48W    plan-2         C22   0.020
+48W    plan-2          C4   0.020
+48W    plan-2          N3   0.020
+48W    plan-3         C22   0.020
+48W    plan-3          C6   0.020
+48W    plan-3          N3   0.020
+48W    plan-3         O23   0.020
+48W    plan-4          C2   0.020
+48W    plan-4         C24   0.020
+48W    plan-4         N26   0.020
+48W    plan-4         O25   0.020
+48W    plan-5         C24   0.020
+48W    plan-5         C27   0.020
+48W    plan-5         C34   0.020
+48W    plan-5         N26   0.020
+48W    plan-6         C28   0.020
+48W    plan-6         C30   0.020
+48W    plan-6         C31   0.020
+48W    plan-6         N29   0.020
+48W    plan-7         C31   0.020
+48W    plan-7         C33   0.020
+48W    plan-7         N29   0.020
+48W    plan-7         O32   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+48W           SMILES              ACDLabs 12.01                                                                                                             O=C4N(C)CCN(C(=O)C(N3C(=O)C(NS(=O)(=O)c2cc1ccc(Cl)cc1cc2)CC3)C)CC4
+48W            InChI                InChI  1.03 InChI=1S/C23H27ClN4O5S/c1-15(22(30)27-9-8-21(29)26(2)11-12-27)28-10-7-20(23(28)31)25-34(32,33)19-6-4-16-13-18(24)5-3-17(16)14-19/h3-6,13-15,20,25H,7-12H2,1-2H3/t15-,20-/m0/s1
+48W         InChIKey                InChI  1.03                                                                                                                                                    USQCUKQZXOWUDF-YWZLYKJASA-N
+48W SMILES_CANONICAL               CACTVS 3.385                                                                                                     C[C@H](N1CC[C@H](N[S](=O)(=O)c2ccc3cc(Cl)ccc3c2)C1=O)C(=O)N4CCN(C)C(=O)CC4
+48W           SMILES               CACTVS 3.385                                                                                                       C[CH](N1CC[CH](N[S](=O)(=O)c2ccc3cc(Cl)ccc3c2)C1=O)C(=O)N4CCN(C)C(=O)CC4
+48W SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                     C[C@@H](C(=O)N1CCC(=O)N(CC1)C)N2CC[C@@H](C2=O)NS(=O)(=O)c3ccc4cc(ccc4c3)Cl
+48W           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                               CC(C(=O)N1CCC(=O)N(CC1)C)N2CCC(C2=O)NS(=O)(=O)c3ccc4cc(ccc4c3)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+48W acedrg               243         "dictionary generator"                  
+48W acedrg_database      11          "data source"                           
+48W rdkit                2017.03.2   "Chemoinformatics tool"
+48W refmac5              5.8.0238    "optimization tool"                     

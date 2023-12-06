@@ -1,0 +1,255 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RJ6     RJ6      "N-(3,5-dimethoxyphenyl)imidodicarbonimidic diamide"     NON-POLYMER     34     17     .     
+#
+data_comp_RJ6
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RJ6     C1      C       CR6     0       26.814      4.793       62.450      
+RJ6     C2      C       CR16    0       27.340      5.967       62.976      
+RJ6     C3      C       CR6     0       28.236      6.711       62.219      
+RJ6     C4      C       CR16    0       28.606      6.297       60.937      
+RJ6     C5      C       CR6     0       28.078      5.112       60.429      
+RJ6     C6      C       CR16    0       27.184      4.353       61.178      
+RJ6     O7      O       O2      0       25.950      4.113       63.275      
+RJ6     C8      C       CH3     0       24.941      3.276       62.710      
+RJ6     O9      O       O2      0       28.686      7.864       62.816      
+RJ6     C10     C       CH3     0       29.953      8.409       62.449      
+RJ6     N11     N       NH1     0       28.414      4.627       59.136      
+RJ6     C12     C       C       0       29.596      4.735       58.505      
+RJ6     N13     N       NH1     0       29.674      5.178       57.220      
+RJ6     C14     C       C       0       28.718      5.719       56.392      
+RJ6     N15     N       NH2     0       27.623      6.298       56.848      
+RJ6     N16     N       NH2     1       30.724      4.389       59.142      
+RJ6     N17     N       NH2     1       28.982      5.751       55.097      
+RJ6     H2      H       H       0       27.090      6.256       63.839      
+RJ6     H4      H       H       0       29.209      6.806       60.423      
+RJ6     H6      H       H       0       26.833      3.554       60.823      
+RJ6     H8      H       H       0       25.350      2.467       62.363      
+RJ6     H8A     H       H       0       24.490      3.747       61.989      
+RJ6     H8B     H       H       0       24.295      3.043       63.396      
+RJ6     H10     H       H       0       29.891      8.802       61.563      
+RJ6     H10A    H       H       0       30.623      7.705       62.445      
+RJ6     H10B    H       H       0       30.208      9.093       63.089      
+RJ6     HN11    H       H       0       27.780      4.209       58.703      
+RJ6     HN13    H       H       0       30.473      5.112       56.862      
+RJ6     HN15    H       H       0       26.995      6.551       56.284      
+RJ6     HN1A    H       H       0       27.539      6.493       57.699      
+RJ6     HN16    H       H       0       31.502      4.475       58.742      
+RJ6     H17     H       H       0       30.686      4.066       59.958      
+RJ6     HN17    H       H       0       28.399      6.098       54.537      
+RJ6     H18     H       H       0       29.735      5.419       54.787      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RJ6          C1          C6      DOUBLE       y     1.390  0.0100     1.390  0.0100
+RJ6          C1          C2      SINGLE       y     1.385  0.0100     1.385  0.0100
+RJ6          C1          O7      SINGLE       n     1.370  0.0100     1.370  0.0100
+RJ6          C2          C3      DOUBLE       y     1.385  0.0100     1.385  0.0100
+RJ6          C3          C4      SINGLE       y     1.390  0.0100     1.390  0.0100
+RJ6          C3          O9      SINGLE       n     1.370  0.0100     1.370  0.0100
+RJ6          C4          C5      DOUBLE       y     1.389  0.0100     1.389  0.0100
+RJ6          C5         N11      SINGLE       n     1.418  0.0100     1.418  0.0100
+RJ6          C5          C6      SINGLE       y     1.389  0.0100     1.389  0.0100
+RJ6          O7          C8      SINGLE       n     1.424  0.0117     1.424  0.0117
+RJ6          O9         C10      SINGLE       n     1.424  0.0117     1.424  0.0117
+RJ6         N11         C12      SINGLE       n     1.337  0.0169     1.337  0.0169
+RJ6         C12         N13      SINGLE       n     1.340  0.0173     1.340  0.0173
+RJ6         C12         N16      DOUBLE       n     1.329  0.0200     1.329  0.0200
+RJ6         N13         C14      SINGLE       n     1.361  0.0133     1.361  0.0133
+RJ6         C14         N17      DOUBLE       n     1.318  0.0103     1.318  0.0103
+RJ6         C14         N15      SINGLE       n     1.316  0.0104     1.316  0.0104
+RJ6          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0200
+RJ6          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0154
+RJ6          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0154
+RJ6          C8          H8      SINGLE       n     1.089  0.0100     0.971  0.0157
+RJ6          C8         H8A      SINGLE       n     1.089  0.0100     0.971  0.0157
+RJ6          C8         H8B      SINGLE       n     1.089  0.0100     0.971  0.0157
+RJ6         C10         H10      SINGLE       n     1.089  0.0100     0.971  0.0157
+RJ6         C10        H10A      SINGLE       n     1.089  0.0100     0.971  0.0157
+RJ6         C10        H10B      SINGLE       n     1.089  0.0100     0.971  0.0157
+RJ6         N11        HN11      SINGLE       n     1.016  0.0100     0.874  0.0200
+RJ6         N13        HN13      SINGLE       n     1.016  0.0100     0.878  0.0200
+RJ6         N15        HN15      SINGLE       n     1.016  0.0100     0.881  0.0200
+RJ6         N15        HN1A      SINGLE       n     1.016  0.0100     0.881  0.0200
+RJ6         N16        HN16      SINGLE       n     1.016  0.0100     0.879  0.0200
+RJ6         N16         H17      SINGLE       n     1.016  0.0100     0.879  0.0200
+RJ6         N17        HN17      SINGLE       n     1.016  0.0100     0.879  0.0200
+RJ6         N17         H18      SINGLE       n     1.016  0.0100     0.879  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RJ6          C6          C1          C2     121.087    1.50
+RJ6          C6          C1          O7     119.652    3.00
+RJ6          C2          C1          O7     119.261    3.00
+RJ6          C1          C2          C3     118.694    1.50
+RJ6          C1          C2          H2     120.653    1.50
+RJ6          C3          C2          H2     120.653    1.50
+RJ6          C2          C3          C4     121.087    1.50
+RJ6          C2          C3          O9     119.261    3.00
+RJ6          C4          C3          O9     119.652    3.00
+RJ6          C3          C4          C5     119.091    1.50
+RJ6          C3          C4          H4     120.498    1.50
+RJ6          C5          C4          H4     120.411    1.50
+RJ6          C4          C5         N11     119.525    3.00
+RJ6          C4          C5          C6     120.951    1.50
+RJ6         N11          C5          C6     119.525    3.00
+RJ6          C1          C6          C5     119.091    1.50
+RJ6          C1          C6          H6     120.498    1.50
+RJ6          C5          C6          H6     120.411    1.50
+RJ6          C1          O7          C8     117.529    1.50
+RJ6          O7          C8          H8     109.428    1.50
+RJ6          O7          C8         H8A     109.428    1.50
+RJ6          O7          C8         H8B     109.428    1.50
+RJ6          H8          C8         H8A     109.509    1.50
+RJ6          H8          C8         H8B     109.509    1.50
+RJ6         H8A          C8         H8B     109.509    1.50
+RJ6          C3          O9         C10     117.529    1.50
+RJ6          O9         C10         H10     109.428    1.50
+RJ6          O9         C10        H10A     109.428    1.50
+RJ6          O9         C10        H10B     109.428    1.50
+RJ6         H10         C10        H10A     109.509    1.50
+RJ6         H10         C10        H10B     109.509    1.50
+RJ6        H10A         C10        H10B     109.509    1.50
+RJ6          C5         N11         C12     126.173    1.85
+RJ6          C5         N11        HN11     116.922    1.63
+RJ6         C12         N11        HN11     116.905    1.50
+RJ6         N11         C12         N13     119.231    2.49
+RJ6         N11         C12         N16     121.216    2.02
+RJ6         N13         C12         N16     119.553    2.47
+RJ6         C12         N13         C14     127.219    2.13
+RJ6         C12         N13        HN13     116.373    1.80
+RJ6         C14         N13        HN13     116.408    1.72
+RJ6         N13         C14         N17     119.509    2.65
+RJ6         N13         C14         N15     119.509    2.65
+RJ6         N17         C14         N15     120.981    1.50
+RJ6         C14         N15        HN15     119.855    2.01
+RJ6         C14         N15        HN1A     119.855    2.01
+RJ6        HN15         N15        HN1A     120.290    2.09
+RJ6         C12         N16        HN16     119.866    1.61
+RJ6         C12         N16         H17     119.866    1.61
+RJ6        HN16         N16         H17     120.267    2.09
+RJ6         C14         N17        HN17     119.855    2.01
+RJ6         C14         N17         H18     119.855    2.01
+RJ6        HN17         N17         H18     120.290    2.09
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RJ6              const_23          O7          C1          C2          C3     180.000    10.0     2
+RJ6       const_sp2_sp2_3          O7          C1          C6          C5     180.000     5.0     2
+RJ6             sp2_sp2_1          C6          C1          O7          C8     180.000     5.0     2
+RJ6             sp2_sp2_9         N13         C12         N11          C5     180.000     5.0     2
+RJ6            sp2_sp2_13         N11         C12         N13         C14     180.000     5.0     2
+RJ6            sp2_sp2_17         N11         C12         N16        HN16     180.000     5.0     2
+RJ6            sp2_sp2_21         N17         C14         N13         C12     180.000     5.0     2
+RJ6            sp2_sp2_29         N13         C14         N15        HN15     180.000     5.0     2
+RJ6            sp2_sp2_25         N13         C14         N17        HN17     180.000     5.0     2
+RJ6              const_18          C1          C2          C3          O9     180.000    10.0     2
+RJ6              const_15          O9          C3          C4          C5     180.000    10.0     2
+RJ6             sp2_sp2_3          C2          C3          O9         C10     180.000     5.0     2
+RJ6              const_10          C3          C4          C5         N11     180.000    10.0     2
+RJ6             sp2_sp2_5          C4          C5         N11         C12     180.000     5.0     2
+RJ6       const_sp2_sp2_7         N11          C5          C6          C1     180.000     5.0     2
+RJ6             sp3_sp3_2          H8          C8          O7          C1     -60.000    10.0     3
+RJ6             sp3_sp3_6         H10         C10          O9          C3     -60.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RJ6    plan-1          C1   0.020
+RJ6    plan-1          C2   0.020
+RJ6    plan-1          C3   0.020
+RJ6    plan-1          C4   0.020
+RJ6    plan-1          C5   0.020
+RJ6    plan-1          C6   0.020
+RJ6    plan-1          H2   0.020
+RJ6    plan-1          H4   0.020
+RJ6    plan-1          H6   0.020
+RJ6    plan-1         N11   0.020
+RJ6    plan-1          O7   0.020
+RJ6    plan-1          O9   0.020
+RJ6    plan-2         C12   0.020
+RJ6    plan-2          C5   0.020
+RJ6    plan-2        HN11   0.020
+RJ6    plan-2         N11   0.020
+RJ6    plan-3         C12   0.020
+RJ6    plan-3         N11   0.020
+RJ6    plan-3         N13   0.020
+RJ6    plan-3         N16   0.020
+RJ6    plan-4         C12   0.020
+RJ6    plan-4         C14   0.020
+RJ6    plan-4        HN13   0.020
+RJ6    plan-4         N13   0.020
+RJ6    plan-5         C14   0.020
+RJ6    plan-5         N13   0.020
+RJ6    plan-5         N15   0.020
+RJ6    plan-5         N17   0.020
+RJ6    plan-6         C14   0.020
+RJ6    plan-6        HN15   0.020
+RJ6    plan-6        HN1A   0.020
+RJ6    plan-6         N15   0.020
+RJ6    plan-7         C12   0.020
+RJ6    plan-7         H17   0.020
+RJ6    plan-7        HN16   0.020
+RJ6    plan-7         N16   0.020
+RJ6    plan-8         C14   0.020
+RJ6    plan-8         H18   0.020
+RJ6    plan-8        HN17   0.020
+RJ6    plan-8         N17   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RJ6           SMILES              ACDLabs 10.04                                                          O(c1cc(cc(OC)c1)NC(=[N@H])NC(=[N@H])N)C
+RJ6 SMILES_CANONICAL               CACTVS 3.341                                                                    COc1cc(NC(=N)NC(N)=N)cc(OC)c1
+RJ6           SMILES               CACTVS 3.341                                                                    COc1cc(NC(=N)NC(N)=N)cc(OC)c1
+RJ6 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                      "[H]/N=C(\N)/N/C(=N/[H])/Nc1cc(cc(c1)OC)OC"
+RJ6           SMILES "OpenEye OEToolkits" 1.5.0                                                            "[H]N=C(N)NC(=N[H])Nc1cc(cc(c1)OC)OC"
+RJ6            InChI                InChI  1.03 InChI=1S/C10H15N5O2/c1-16-7-3-6(4-8(5-7)17-2)14-10(13)15-9(11)12/h3-5H,1-2H3,(H6,11,12,13,14,15)
+RJ6         InChIKey                InChI  1.03                                                                      VQKIGKHIRBCYNE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RJ6 acedrg               243         "dictionary generator"                  
+RJ6 acedrg_database      11          "data source"                           
+RJ6 rdkit                2017.03.2   "Chemoinformatics tool"
+RJ6 refmac5              5.8.0238    "optimization tool"                     

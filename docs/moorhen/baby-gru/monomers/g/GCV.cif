@@ -1,0 +1,222 @@
+# /home/mihaela/Downloads/acedrg243/GCV_unimodal.cif
+# modified by Privateer
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GCV      GCV '4-O-METHYL-ALPHA-D-GLUCURONIC ACID  ' pyranose           25  14 .
+
+data_comp_GCV
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GCV C7 C CH3 0 5.727 -11.813 7.409
+GCV C1 C CH1 0 9.225 -12.881 3.508
+GCV C2 C CH1 0 9.642 -12.116 4.761
+GCV C3 C CH1 0 8.761 -12.478 5.949
+GCV C4 C CH1 0 7.285 -12.302 5.595
+GCV C5 C CH1 0 6.961 -13.109 4.331
+GCV C6 C C 0 5.523 -12.892 3.882
+GCV O1 O OH1 0 9.561 -14.229 3.640
+GCV O2 O OH1 0 11.018 -12.351 5.049
+GCV O3 O OH1 0 9.103 -11.664 7.071
+GCV O4 O O2 0 6.498 -12.780 6.686
+GCV O5 O O2 0 7.824 -12.730 3.255
+GCV O6A O O 0 4.694 -13.741 4.103
+GCV O6B O OC -1 5.220 -11.871 3.313
+GCV H71 H H 0 6.091 -10.922 7.281
+GCV H72 H H 0 5.748 -12.032 8.355
+GCV H73 H H 0 4.808 -11.835 7.095
+GCV H1 H H 0 9.720 -12.511 2.733
+GCV H2 H H 0 9.524 -11.155 4.568
+GCV H3 H H 0 8.925 -13.426 6.185
+GCV H4 H H 0 7.104 -11.344 5.435
+GCV H5 H H 0 7.078 -14.071 4.516
+GCV HO1 H H 0 10.401 -14.305 3.583
+GCV HO2 H H 0 11.263 -11.834 5.665
+GCV HO3 H H 0 8.959 -10.856 6.885
+
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GCV C7 O4 SINGLE n 1.422 0.0156 1.422 0.0156
+GCV C1 C2 SINGLE n 1.517 0.0200 1.517 0.0200
+GCV C1 O1 SINGLE n 1.392 0.0200 1.392 0.0200
+GCV C1 O5 SINGLE n 1.422 0.0149 1.422 0.0149
+GCV C2 C3 SINGLE n 1.520 0.0200 1.520 0.0200
+GCV C2 O2 SINGLE n 1.425 0.0112 1.425 0.0112
+GCV C3 C4 SINGLE n 1.527 0.0100 1.527 0.0100
+GCV C3 O3 SINGLE n 1.427 0.0125 1.427 0.0125
+GCV C4 C5 SINGLE n 1.533 0.0100 1.533 0.0100
+GCV C4 O4 SINGLE n 1.423 0.0100 1.423 0.0100
+GCV C5 C6 SINGLE n 1.518 0.0174 1.518 0.0174
+GCV C5 O5 SINGLE n 1.426 0.0100 1.426 0.0100
+GCV C6 O6A DOUBLE n 1.207 0.0200 1.207 0.0200
+GCV C6 O6B SINGLE n 1.207 0.0200 1.207 0.0200
+GCV C7 H71 SINGLE n 1.089 0.0100 0.971 0.0146
+GCV C7 H72 SINGLE n 1.089 0.0100 0.971 0.0146
+GCV C7 H73 SINGLE n 1.089 0.0100 0.971 0.0146
+GCV C1 H1 SINGLE n 1.089 0.0100 0.991 0.0200
+GCV C2 H2 SINGLE n 1.089 0.0100 0.987 0.0140
+GCV C3 H3 SINGLE n 1.089 0.0100 0.990 0.0140
+GCV C4 H4 SINGLE n 1.089 0.0100 0.988 0.0151
+GCV C5 H5 SINGLE n 1.089 0.0100 0.986 0.0200
+GCV O1 HO1 SINGLE n 0.970 0.0120 0.846 0.0200
+GCV O2 HO2 SINGLE n 0.970 0.0120 0.841 0.0200
+GCV O3 HO3 SINGLE n 0.970 0.0120 0.841 0.0200
+
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GCV O4 C7 H71 109.431 1.50
+GCV O4 C7 H72 109.431 1.50
+GCV O4 C7 H73 109.431 1.50
+GCV H71 C7 H72 109.450 1.50
+GCV H71 C7 H73 109.450 1.50
+GCV H72 C7 H73 109.450 1.50
+GCV C2 C1 O1 109.304 2.75
+GCV C2 C1 O5 110.495 2.07
+GCV C2 C1 H1 109.287 1.97
+GCV O1 C1 O5 110.093 3.00
+GCV O1 C1 H1 108.897 1.73
+GCV O5 C1 H1 108.645 1.60
+GCV C1 C2 C3 111.543 1.84
+GCV C1 C2 O2 109.956 1.70
+GCV C1 C2 H2 107.431 2.02
+GCV C3 C2 O2 111.053 2.62
+GCV C3 C2 H2 108.505 1.50
+GCV O2 C2 H2 108.551 1.50
+GCV C2 C3 C4 110.796 1.54
+GCV C2 C3 O3 109.587 2.09
+GCV C2 C3 H3 108.712 1.50
+GCV C4 C3 O3 110.081 2.02
+GCV C4 C3 H3 109.166 1.50
+GCV O3 C3 H3 108.767 1.50
+GCV C3 C4 C5 109.795 1.50
+GCV C3 C4 O4 109.116 2.14
+GCV C3 C4 H4 109.166 1.50
+GCV C5 C4 O4 109.247 2.43
+GCV C5 C4 H4 110.151 1.50
+GCV O4 C4 H4 109.096 1.50
+GCV C4 C5 C6 111.056 2.52
+GCV C4 C5 O5 109.645 1.79
+GCV C4 C5 H5 109.196 1.50
+GCV C6 C5 O5 107.807 2.54
+GCV C6 C5 H5 107.668 1.59
+GCV O5 C5 H5 108.284 2.17
+GCV C5 C6 O6A 119.643 2.54
+GCV C5 C6 O6B 119.643 2.54
+GCV O6A C6 O6B 120.713 1.50
+GCV C1 O1 HO1 108.606 2.51
+GCV C2 O2 HO2 109.126 2.06
+GCV C3 O3 HO3 108.895 2.41
+GCV C7 O4 C4 114.344 1.50
+GCV C1 O5 C5 111.559 2.21
+
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GCV tors_21 H71 C7 O4 C4 -21.551081 10.0 3
+GCV tors_20 H72 C7 O4 C4 -141.549454 10.0 3
+GCV tors_19 H73 C7 O4 C4 98.985199 10.0 3
+GCV tors_18 C2 C1 O1 HO1 -71.678520 10.0 3
+GCV tors_17 O5 C1 O1 HO1 165.207611 10.0 3
+GCV tors_16 H1 C1 O1 HO1 46.791122 10.0 3
+GCV tors_15 C1 C2 O2 HO2 171.244827 10.0 3
+GCV tors_14 C3 C2 O2 HO2 -64.762833 10.0 3
+GCV tors_13 H2 C2 O2 HO2 54.232967 10.0 3
+GCV tors_12 C2 C3 O3 HO3 62.147408 10.0 3
+GCV tors_11 C4 C3 O3 HO3 -59.946323 10.0 3
+GCV tors_10 H3 C3 O3 HO3 -179.341248 10.0 3
+GCV tors_9 C3 C4 O4 C7 113.467575 10.0 3
+GCV tors_8 C5 C4 O4 C7 -126.931892 10.0 3
+GCV tors_7 H4 C4 O4 C7 -5.907018 10.0 3
+GCV tors_6 O6A C6 C5 C4 -103.039803 10.0 6
+GCV tors_5 O6A C6 C5 O5 135.073349 10.0 6
+GCV tors_4 O6A C6 C5 H5 17.209576 10.0 6
+GCV tors_3 O6B C6 C5 C4 76.670769 10.0 6
+GCV tors_2 O6B C6 C5 O5 -45.216068 10.0 6
+GCV tors_1 O6B C6 C5 H5 -163.079849 10.0 6
+GCV ring_1 C5 O5 C1 C2 -55.738655 3.0 1
+GCV ring_2 O5 C1 C2 C3 52.110806 3.0 1
+GCV ring_3 C1 C2 C3 C4 -53.101608 3.0 1
+GCV ring_4 C2 C3 C4 C5 54.479385 3.0 1
+GCV ring_5 C3 C4 C5 O5 -55.776310 3.0 1
+GCV ring_6 C4 C5 O5 C1 57.950691 3.0 1
+
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GCV chir_1 C1 O5 O1 C2 positive
+GCV chir_2 C2 O2 C1 C3 negative
+GCV chir_3 C3 O3 C4 C2 negative
+GCV chir_4 C4 O4 C5 C3 positive
+GCV chir_5 C5 O5 C6 C4 positive
+
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GCV plan-1 C5 0.020
+GCV plan-1 C6 0.020
+GCV plan-1 O6A 0.020
+GCV plan-1 O6B 0.020
+
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GCV SMILES ACDLabs 10.04 O=C(O)C1OC(O)C(O)C(O)C1OC
+GCV SMILES_CANONICAL CACTVS 3.341 CO[C@H]1[C@H](O)[C@@H](O)[C@@H](O)O[C@@H]1C(O)=O
+GCV SMILES CACTVS 3.341 CO[CH]1[CH](O)[CH](O)[CH](O)O[CH]1C(O)=O
+GCV SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0 CO[C@H]1[C@@H]([C@H]([C@H](O[C@@H]1C(=O)O)O)O)O
+GCV SMILES "OpenEye OEToolkits" 1.5.0 COC1C(C(C(OC1C(=O)O)O)O)O
+GCV InChI InChI 1.03 InChI=1S/C7H12O7/c1-13-4-2(8)3(9)7(12)14-5(4)6(10)11/h2-5,7-9,12H,1H3,(H,10,11)/t2-,3-,4+,5+,7+/m1/s1
+GCV InChIKey InChI 1.03 WGLLPAPKWFDHHV-NRGGUMNKSA-N
+
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GCV acedrg 243 "dictionary generator"
+GCV acedrg_database 11 "data source"
+GCV rdkit 2017.03.2 "Chemoinformatics tool"
+GCV refmac5 5.8.0238 "optimization tool"

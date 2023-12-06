@@ -1,0 +1,529 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BKM     BKM      "(2Z)-2-[(1R)-3-{[(2R,3S,4R,7S,8S,11S,13R,16E)-17-ethyl-4,8-dihydroxy-3,7,11,13-tetramethyl-6,15-dioxononadeca-16,18-dien-2-yl]oxy}-1-hydroxy-3-oxopropyl]-3-methylbut-2-enedioic acid"     NON-POLYMER     94     44     .     
+#
+data_comp_BKM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BKM     C01     C       C2      0       14.130      23.067      -10.453     
+BKM     C02     C       C1      0       13.268      23.415      -11.385     
+BKM     C03     C       C       0       12.982      24.716      -11.915     
+BKM     C04     C       C1      0       13.692      25.889      -11.544     
+BKM     C05     C       C       0       13.417      27.288      -11.828     
+BKM     C07     C       CH2     0       14.480      28.300      -11.472     
+BKM     C08     C       CH1     0       15.330      28.763      -12.665     
+BKM     C09     C       CH3     0       16.083      27.575      -13.255     
+BKM     C10     C       CH2     0       16.308      29.892      -12.297     
+BKM     C11     C       CH1     0       15.719      31.192      -11.712     
+BKM     C12     C       CH3     0       16.827      32.195      -11.409     
+BKM     C13     C       CH2     0       14.634      31.814      -12.611     
+BKM     C14     C       CH2     0       14.022      33.124      -12.115     
+BKM     C15     C       CH1     0       12.707      33.529      -12.815     
+BKM     C17     C       CH1     0       12.089      34.860      -12.355     
+BKM     C18     C       CH3     0       11.683      34.831      -10.882     
+BKM     C19     C       C       0       10.889      35.247      -13.210     
+BKM     C21     C       CH2     0       10.783      36.659      -13.720     
+BKM     C22     C       CH1     0       10.495      36.770      -15.218     
+BKM     C24     C       CH1     0       11.485      36.089      -16.173     
+BKM     C25     C       CH3     0       12.916      36.630      -16.012     
+BKM     C26     C       CH1     0       11.034      36.148      -17.640     
+BKM     C27     C       CH3     0       11.864      35.320      -18.597     
+BKM     C29     C       C       0       8.677       36.327      -18.288     
+BKM     C31     C       CH2     0       7.399       35.534      -18.309     
+BKM     C32     C       CH1     0       6.172       36.291      -17.790     
+BKM     C34     C       C       0       6.034       36.189      -16.253     
+BKM     C35     C       C       0       5.388       35.077      -15.741     
+BKM     C38     C       C       0       6.534       37.298      -15.347     
+BKM     C39     C       CH3     0       6.601       38.672      -15.946     
+BKM     C40     C       C       0       7.084       37.059      -14.098     
+BKM     C43     C       CH2     0       11.838      24.794      -12.905     
+BKM     C44     C       CH3     0       12.276      25.103      -14.314     
+BKM     O06     O       O       0       12.396      27.691      -12.363     
+BKM     O16     O       OH1     0       12.944      33.579      -14.224     
+BKM     O20     O       O       0       10.036      34.427      -13.465     
+BKM     O23     O       OH1     0       10.447      38.159      -15.548     
+BKM     O28     O       O2      0       9.675       35.613      -17.721     
+BKM     O30     O       O       0       8.790       37.444      -18.732     
+BKM     O33     O       OH1     0       5.012       35.796      -18.439     
+BKM     O36     O       OC      -1      4.851       35.113      -14.630     
+BKM     O37     O       O       0       5.237       34.072      -16.441     
+BKM     O41     O       OC      -1      7.177       37.972      -13.274     
+BKM     O42     O       O       0       7.458       35.929      -13.774     
+BKM     H1      H       H       0       14.216      22.153      -10.214     
+BKM     H2      H       H       0       14.658      23.714      -10.010     
+BKM     H3      H       H       0       12.774      22.707      -11.764     
+BKM     H4      H       H       0       14.476      25.728      -11.048     
+BKM     H5      H       H       0       15.064      27.924      -10.789     
+BKM     H6      H       H       0       14.034      29.068      -11.073     
+BKM     H7      H       H       0       14.718      29.103      -13.361     
+BKM     H8      H       H       0       15.482      27.049      -13.811     
+BKM     H9      H       H       0       16.428      27.016      -12.537     
+BKM     H10     H       H       0       16.824      27.892      -13.799     
+BKM     H11     H       H       0       16.813      30.129      -13.104     
+BKM     H12     H       H       0       16.951      29.532      -11.650     
+BKM     H13     H       H       0       15.282      30.967      -10.855     
+BKM     H14     H       H       0       16.973      32.767      -12.183     
+BKM     H15     H       H       0       17.652      31.725      -11.197     
+BKM     H16     H       H       0       16.568      32.745      -10.648     
+BKM     H17     H       H       0       13.909      31.164      -12.716     
+BKM     H18     H       H       0       15.022      31.968      -13.498     
+BKM     H19     H       H       0       14.672      33.847      -12.243     
+BKM     H20     H       H       0       13.851      33.046      -11.152     
+BKM     H21     H       H       0       12.039      32.810      -12.648     
+BKM     H22     H       H       0       12.787      35.554      -12.464     
+BKM     H23     H       H       0       10.940      35.442      -10.730     
+BKM     H24     H       H       0       12.439      35.103      -10.333     
+BKM     H25     H       H       0       11.414      33.929      -10.635     
+BKM     H26     H       H       0       11.612      37.134      -13.522     
+BKM     H27     H       H       0       10.060      37.104      -13.236     
+BKM     H28     H       H       0       9.592       36.395      -15.384     
+BKM     H29     H       H       0       11.513      35.133      -15.927     
+BKM     H30     H       H       0       13.197      36.552      -15.086     
+BKM     H31     H       H       0       12.943      37.565      -16.281     
+BKM     H32     H       H       0       13.525      36.118      -16.571     
+BKM     H33     H       H       0       11.054      37.094      -17.927     
+BKM     H34     H       H       0       12.703      35.780      -18.782     
+BKM     H35     H       H       0       11.374      35.194      -19.429     
+BKM     H36     H       H       0       12.053      34.452      -18.198     
+BKM     H37     H       H       0       7.520       34.724      -17.774     
+BKM     H38     H       H       0       7.228       35.255      -19.231     
+BKM     H39     H       H       0       6.264       37.229      -18.048     
+BKM     H40     H       H       0       6.700       39.340      -15.252     
+BKM     H41     H       H       0       5.787       38.849      -16.440     
+BKM     H42     H       H       0       7.359       38.725      -16.549     
+BKM     H43     H       H       0       11.212      25.480      -12.613     
+BKM     H44     H       H       0       11.357      23.947      -12.912     
+BKM     H45     H       H       0       11.493      25.230      -14.877     
+BKM     H46     H       H       0       12.805      24.363      -14.659     
+BKM     H47     H       H       0       12.813      25.914      -14.320     
+BKM     H48     H       H       0       13.503      34.191      -14.406     
+BKM     H49     H       H       0       9.715       38.493      -15.278     
+BKM     H50     H       H       0       4.363       36.323      -18.300     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BKM         C26         C27      SINGLE       n     1.513  0.0100     1.513  0.0100
+BKM         C29         O28      SINGLE       n     1.342  0.0131     1.342  0.0131
+BKM         C26         O28      SINGLE       n     1.454  0.0123     1.454  0.0123
+BKM         C29         O30      DOUBLE       n     1.203  0.0150     1.203  0.0150
+BKM         C29         C31      SINGLE       n     1.502  0.0100     1.502  0.0100
+BKM         C24         C26      SINGLE       n     1.531  0.0103     1.531  0.0103
+BKM         C31         C32      SINGLE       n     1.528  0.0124     1.528  0.0124
+BKM         C24         C25      SINGLE       n     1.534  0.0118     1.534  0.0118
+BKM         C22         C24      SINGLE       n     1.527  0.0100     1.527  0.0100
+BKM         C32         O33      SINGLE       n     1.417  0.0135     1.417  0.0135
+BKM         C32         C34      SINGLE       n     1.514  0.0200     1.514  0.0200
+BKM         C08         C09      SINGLE       n     1.521  0.0135     1.521  0.0135
+BKM         C19         O20      DOUBLE       n     1.209  0.0200     1.209  0.0200
+BKM         C05         O06      DOUBLE       n     1.222  0.0100     1.222  0.0100
+BKM         C15         O16      SINGLE       n     1.426  0.0179     1.426  0.0179
+BKM         C22         O23      SINGLE       n     1.426  0.0179     1.426  0.0179
+BKM         C21         C22      SINGLE       n     1.527  0.0100     1.527  0.0100
+BKM         C08         C10      SINGLE       n     1.533  0.0103     1.533  0.0103
+BKM         C07         C08      SINGLE       n     1.525  0.0174     1.525  0.0174
+BKM         C34         C35      SINGLE       n     1.346  0.0200     1.346  0.0200
+BKM         C34         C38      DOUBLE       n     1.465  0.0200     1.465  0.0200
+BKM         C10         C11      SINGLE       n     1.532  0.0154     1.532  0.0154
+BKM         C35         O37      DOUBLE       n     1.230  0.0200     1.230  0.0200
+BKM         C11         C13      SINGLE       n     1.530  0.0200     1.530  0.0200
+BKM         C13         C14      SINGLE       n     1.528  0.0110     1.528  0.0110
+BKM         C14         C15      SINGLE       n     1.541  0.0200     1.541  0.0200
+BKM         C15         C17      SINGLE       n     1.531  0.0147     1.531  0.0147
+BKM         C35         O36      SINGLE       n     1.230  0.0200     1.230  0.0200
+BKM         C19         C21      SINGLE       n     1.503  0.0100     1.503  0.0100
+BKM         C17         C19      SINGLE       n     1.520  0.0101     1.520  0.0101
+BKM         C38         C39      SINGLE       n     1.483  0.0200     1.483  0.0200
+BKM         C05         C07      SINGLE       n     1.508  0.0100     1.508  0.0100
+BKM         C04         C05      SINGLE       n     1.435  0.0200     1.435  0.0200
+BKM         C38         C40      SINGLE       n     1.346  0.0200     1.346  0.0200
+BKM         C11         C12      SINGLE       n     1.521  0.0151     1.521  0.0151
+BKM         C17         C18      SINGLE       n     1.521  0.0173     1.521  0.0173
+BKM         C03         C04      DOUBLE       n     1.393  0.0200     1.393  0.0200
+BKM         C03         C43      SINGLE       n     1.510  0.0102     1.510  0.0102
+BKM         C43         C44      SINGLE       n     1.505  0.0200     1.505  0.0200
+BKM         C40         O42      DOUBLE       n     1.230  0.0200     1.230  0.0200
+BKM         C40         O41      SINGLE       n     1.230  0.0200     1.230  0.0200
+BKM         C02         C03      SINGLE       n     1.408  0.0200     1.408  0.0200
+BKM         C01         C02      DOUBLE       n     1.308  0.0200     1.308  0.0200
+BKM         C01          H1      SINGLE       n     1.082  0.0130     0.948  0.0200
+BKM         C01          H2      SINGLE       n     1.082  0.0130     0.948  0.0200
+BKM         C02          H3      SINGLE       n     1.082  0.0130     0.943  0.0200
+BKM         C04          H4      SINGLE       n     1.082  0.0130     0.943  0.0100
+BKM         C07          H5      SINGLE       n     1.089  0.0100     0.975  0.0166
+BKM         C07          H6      SINGLE       n     1.089  0.0100     0.975  0.0166
+BKM         C08          H7      SINGLE       n     1.089  0.0100     0.989  0.0175
+BKM         C09          H8      SINGLE       n     1.089  0.0100     0.973  0.0146
+BKM         C09          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+BKM         C09         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+BKM         C10         H11      SINGLE       n     1.089  0.0100     0.981  0.0160
+BKM         C10         H12      SINGLE       n     1.089  0.0100     0.981  0.0160
+BKM         C11         H13      SINGLE       n     1.089  0.0100     0.989  0.0162
+BKM         C12         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+BKM         C12         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+BKM         C12         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+BKM         C13         H17      SINGLE       n     1.089  0.0100     0.981  0.0160
+BKM         C13         H18      SINGLE       n     1.089  0.0100     0.981  0.0160
+BKM         C14         H19      SINGLE       n     1.089  0.0100     0.981  0.0160
+BKM         C14         H20      SINGLE       n     1.089  0.0100     0.981  0.0160
+BKM         C15         H21      SINGLE       n     1.089  0.0100     0.995  0.0200
+BKM         C17         H22      SINGLE       n     1.089  0.0100     0.990  0.0142
+BKM         C18         H23      SINGLE       n     1.089  0.0100     0.973  0.0141
+BKM         C18         H24      SINGLE       n     1.089  0.0100     0.973  0.0141
+BKM         C18         H25      SINGLE       n     1.089  0.0100     0.973  0.0141
+BKM         C21         H26      SINGLE       n     1.089  0.0100     0.977  0.0100
+BKM         C21         H27      SINGLE       n     1.089  0.0100     0.977  0.0100
+BKM         C22         H28      SINGLE       n     1.089  0.0100     0.995  0.0200
+BKM         C24         H29      SINGLE       n     1.089  0.0100     0.988  0.0186
+BKM         C25         H30      SINGLE       n     1.089  0.0100     0.973  0.0146
+BKM         C25         H31      SINGLE       n     1.089  0.0100     0.973  0.0146
+BKM         C25         H32      SINGLE       n     1.089  0.0100     0.973  0.0146
+BKM         C26         H33      SINGLE       n     1.089  0.0100     0.990  0.0148
+BKM         C27         H34      SINGLE       n     1.089  0.0100     0.974  0.0145
+BKM         C27         H35      SINGLE       n     1.089  0.0100     0.974  0.0145
+BKM         C27         H36      SINGLE       n     1.089  0.0100     0.974  0.0145
+BKM         C31         H37      SINGLE       n     1.089  0.0100     0.978  0.0107
+BKM         C31         H38      SINGLE       n     1.089  0.0100     0.978  0.0107
+BKM         C32         H39      SINGLE       n     1.089  0.0100     0.979  0.0100
+BKM         C39         H40      SINGLE       n     1.089  0.0100     0.969  0.0177
+BKM         C39         H41      SINGLE       n     1.089  0.0100     0.969  0.0177
+BKM         C39         H42      SINGLE       n     1.089  0.0100     0.969  0.0177
+BKM         C43         H43      SINGLE       n     1.089  0.0100     0.975  0.0121
+BKM         C43         H44      SINGLE       n     1.089  0.0100     0.975  0.0121
+BKM         C44         H45      SINGLE       n     1.089  0.0100     0.973  0.0141
+BKM         C44         H46      SINGLE       n     1.089  0.0100     0.973  0.0141
+BKM         C44         H47      SINGLE       n     1.089  0.0100     0.973  0.0141
+BKM         O16         H48      SINGLE       n     0.970  0.0120     0.848  0.0200
+BKM         O23         H49      SINGLE       n     0.970  0.0120     0.848  0.0200
+BKM         O33         H50      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BKM         C02         C01          H1     120.073    2.19
+BKM         C02         C01          H2     120.073    2.19
+BKM          H1         C01          H2     119.855    2.15
+BKM         C03         C02         C01     124.957    3.00
+BKM         C03         C02          H3     115.974    1.81
+BKM         C01         C02          H3     119.070    2.55
+BKM         C04         C03         C43     118.317    3.00
+BKM         C04         C03         C02     123.365    3.00
+BKM         C43         C03         C02     118.317    3.00
+BKM         C05         C04         C03     125.315    3.00
+BKM         C05         C04          H4     118.353    1.99
+BKM         C03         C04          H4     116.332    1.81
+BKM         O06         C05         C07     119.452    1.51
+BKM         O06         C05         C04     121.587    2.74
+BKM         C07         C05         C04     118.961    2.58
+BKM         C08         C07         C05     113.840    2.22
+BKM         C08         C07          H5     109.367    2.11
+BKM         C08         C07          H6     109.367    2.11
+BKM         C05         C07          H5     108.680    1.71
+BKM         C05         C07          H6     108.680    1.71
+BKM          H5         C07          H6     107.386    1.90
+BKM         C09         C08         C10     111.109    1.55
+BKM         C09         C08         C07     109.645    1.50
+BKM         C09         C08          H7     108.064    1.50
+BKM         C10         C08         C07     111.736    1.50
+BKM         C10         C08          H7     107.775    1.50
+BKM         C07         C08          H7     107.967    1.50
+BKM         C08         C09          H8     109.656    1.50
+BKM         C08         C09          H9     109.656    1.50
+BKM         C08         C09         H10     109.656    1.50
+BKM          H8         C09          H9     109.411    1.50
+BKM          H8         C09         H10     109.411    1.50
+BKM          H9         C09         H10     109.411    1.50
+BKM         C08         C10         C11     115.518    1.50
+BKM         C08         C10         H11     108.538    1.50
+BKM         C08         C10         H12     108.538    1.50
+BKM         C11         C10         H11     108.538    1.50
+BKM         C11         C10         H12     108.538    1.50
+BKM         H11         C10         H12     107.599    1.50
+BKM         C10         C11         C13     111.631    1.85
+BKM         C10         C11         C12     111.109    1.55
+BKM         C10         C11         H13     107.775    1.50
+BKM         C13         C11         C12     111.605    1.50
+BKM         C13         C11         H13     107.002    1.69
+BKM         C12         C11         H13     108.064    1.50
+BKM         C11         C12         H14     109.656    1.50
+BKM         C11         C12         H15     109.656    1.50
+BKM         C11         C12         H16     109.656    1.50
+BKM         H14         C12         H15     109.411    1.50
+BKM         H14         C12         H16     109.411    1.50
+BKM         H15         C12         H16     109.411    1.50
+BKM         C11         C13         C14     114.794    3.00
+BKM         C11         C13         H17     108.410    1.50
+BKM         C11         C13         H18     108.410    1.50
+BKM         C14         C13         H17     108.669    1.50
+BKM         C14         C13         H18     108.669    1.50
+BKM         H17         C13         H18     107.657    1.50
+BKM         C13         C14         C15     115.049    1.72
+BKM         C13         C14         H19     108.652    1.50
+BKM         C13         C14         H20     108.652    1.50
+BKM         C15         C14         H19     108.215    1.50
+BKM         C15         C14         H20     108.215    1.50
+BKM         H19         C14         H20     107.428    1.50
+BKM         O16         C15         C14     109.070    1.85
+BKM         O16         C15         C17     108.541    2.18
+BKM         O16         C15         H21     107.749    1.50
+BKM         C14         C15         C17     115.497    1.50
+BKM         C14         C15         H21     107.986    1.50
+BKM         C17         C15         H21     107.902    1.50
+BKM         C15         C17         C19     110.746    2.23
+BKM         C15         C17         C18     112.124    1.77
+BKM         C15         C17         H22     107.398    1.50
+BKM         C19         C17         C18     109.526    1.94
+BKM         C19         C17         H22     108.203    1.50
+BKM         C18         C17         H22     108.296    1.70
+BKM         C17         C18         H23     109.528    1.50
+BKM         C17         C18         H24     109.528    1.50
+BKM         C17         C18         H25     109.528    1.50
+BKM         H23         C18         H24     109.411    1.50
+BKM         H23         C18         H25     109.411    1.50
+BKM         H24         C18         H25     109.411    1.50
+BKM         O20         C19         C21     121.357    1.50
+BKM         O20         C19         C17     120.287    1.50
+BKM         C21         C19         C17     118.356    1.50
+BKM         C22         C21         C19     113.624    1.50
+BKM         C22         C21         H26     108.544    1.56
+BKM         C22         C21         H27     108.544    1.56
+BKM         C19         C21         H26     108.499    1.50
+BKM         C19         C21         H27     108.499    1.50
+BKM         H26         C21         H27     108.131    1.50
+BKM         C24         C22         O23     108.114    2.39
+BKM         C24         C22         C21     111.094    2.85
+BKM         C24         C22         H28     108.447    1.50
+BKM         O23         C22         C21     108.747    2.04
+BKM         O23         C22         H28     107.749    1.50
+BKM         C21         C22         H28     108.825    1.50
+BKM         C26         C24         C25     111.475    1.50
+BKM         C26         C24         C22     112.308    2.04
+BKM         C26         C24         H29     107.173    1.50
+BKM         C25         C24         C22     111.837    1.50
+BKM         C25         C24         H29     107.070    1.50
+BKM         C22         C24         H29     107.064    1.50
+BKM         C24         C25         H30     109.455    1.50
+BKM         C24         C25         H31     109.455    1.50
+BKM         C24         C25         H32     109.455    1.50
+BKM         H30         C25         H31     109.411    1.50
+BKM         H30         C25         H32     109.411    1.50
+BKM         H31         C25         H32     109.411    1.50
+BKM         C27         C26         O28     107.386    2.05
+BKM         C27         C26         C24     114.538    1.50
+BKM         C27         C26         H33     109.344    1.50
+BKM         O28         C26         C24     107.304    1.57
+BKM         O28         C26         H33     109.221    1.50
+BKM         C24         C26         H33     108.131    1.50
+BKM         C26         C27         H34     109.508    1.50
+BKM         C26         C27         H35     109.508    1.50
+BKM         C26         C27         H36     109.508    1.50
+BKM         H34         C27         H35     109.425    1.50
+BKM         H34         C27         H36     109.425    1.50
+BKM         H35         C27         H36     109.425    1.50
+BKM         O28         C29         O30     122.853    2.43
+BKM         O28         C29         C31     112.165    3.00
+BKM         O30         C29         C31     124.982    1.50
+BKM         C29         C31         C32     112.964    2.70
+BKM         C29         C31         H37     108.625    1.50
+BKM         C29         C31         H38     108.625    1.50
+BKM         C32         C31         H37     108.888    1.50
+BKM         C32         C31         H38     108.888    1.50
+BKM         H37         C31         H38     107.737    1.50
+BKM         C31         C32         O33     110.000    2.12
+BKM         C31         C32         C34     111.511    2.91
+BKM         C31         C32         H39     108.647    1.58
+BKM         O33         C32         C34     110.427    2.31
+BKM         O33         C32         H39     108.263    1.50
+BKM         C34         C32         H39     109.227    1.50
+BKM         C32         C34         C35     120.757    3.00
+BKM         C32         C34         C38     120.757    3.00
+BKM         C35         C34         C38     118.485    1.92
+BKM         C34         C35         O37     119.884    1.50
+BKM         C34         C35         O36     119.884    1.50
+BKM         O37         C35         O36     120.233    1.63
+BKM         C34         C38         C39     118.913    3.00
+BKM         C34         C38         C40     119.526    1.92
+BKM         C39         C38         C40     121.560    1.90
+BKM         C38         C39         H40     109.566    1.50
+BKM         C38         C39         H41     109.566    1.50
+BKM         C38         C39         H42     109.566    1.50
+BKM         H40         C39         H41     109.342    1.50
+BKM         H40         C39         H42     109.342    1.50
+BKM         H41         C39         H42     109.342    1.50
+BKM         C38         C40         O42     119.884    1.50
+BKM         C38         C40         O41     119.884    1.50
+BKM         O42         C40         O41     120.233    1.63
+BKM         C03         C43         C44     113.660    1.72
+BKM         C03         C43         H43     108.782    1.50
+BKM         C03         C43         H44     108.782    1.50
+BKM         C44         C43         H43     108.635    1.50
+BKM         C44         C43         H44     108.635    1.50
+BKM         H43         C43         H44     108.028    1.83
+BKM         C43         C44         H45     109.471    1.50
+BKM         C43         C44         H46     109.471    1.50
+BKM         C43         C44         H47     109.471    1.50
+BKM         H45         C44         H46     109.380    1.50
+BKM         H45         C44         H47     109.380    1.50
+BKM         H46         C44         H47     109.380    1.50
+BKM         C15         O16         H48     109.790    3.00
+BKM         C22         O23         H49     109.790    3.00
+BKM         C29         O28         C26     117.944    1.50
+BKM         C32         O33         H50     109.460    2.36
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BKM            sp2_sp2_27          H1         C01         C02         C03     180.000     5.0     2
+BKM           sp3_sp3_112         C11         C13         C14         C15     180.000    10.0     3
+BKM           sp3_sp3_121         C13         C14         C15         O16     180.000    10.0     3
+BKM           sp3_sp3_130         O16         C15         C17         C19     180.000    10.0     3
+BKM            sp3_sp3_61         C14         C15         O16         H48     180.000    10.0     3
+BKM           sp3_sp3_148         C15         C17         C18         H23     180.000    10.0     3
+BKM            sp2_sp3_19         O20         C19         C17         C15       0.000    10.0     6
+BKM            sp2_sp3_14         O20         C19         C21         C22     120.000    10.0     6
+BKM            sp3_sp3_67         C19         C21         C22         C24     180.000    10.0     3
+BKM            sp3_sp3_40         O23         C22         C24         C26     180.000    10.0     3
+BKM            sp3_sp3_64         C24         C22         O23         H49     180.000    10.0     3
+BKM            sp3_sp3_31         C26         C24         C25         H30     180.000    10.0     3
+BKM            sp3_sp3_13         C25         C24         C26         C27     180.000    10.0     3
+BKM            sp2_sp2_24         C01         C02         C03         C04       0.000     5.0     2
+BKM             sp3_sp3_1         O28         C26         C27         H34     180.000    10.0     3
+BKM            sp3_sp3_10         C27         C26         O28         C29     180.000    10.0     3
+BKM             sp2_sp3_2         O28         C29         C31         C32     120.000    10.0     6
+BKM             sp2_sp2_1         O30         C29         O28         C26     180.000     5.0     2
+BKM            sp3_sp3_22         C29         C31         C32         O33     180.000    10.0     3
+BKM             sp2_sp3_7         C35         C34         C32         C31       0.000    10.0     6
+BKM            sp3_sp3_49         C31         C32         O33         H50     180.000    10.0     3
+BKM             sp2_sp2_3         C32         C34         C35         O37     180.000     5.0     2
+BKM             sp2_sp2_8         C32         C34         C38         C39       0.000     5.0     2
+BKM            sp2_sp3_25         C34         C38         C39         H40       0.000    10.0     6
+BKM            sp2_sp2_17         C34         C38         C40         O42       0.000     5.0     2
+BKM            sp2_sp2_19         C43         C03         C04         C05     180.000     5.0     2
+BKM            sp2_sp3_38         C04         C03         C43         C44     120.000    10.0     6
+BKM           sp3_sp3_157         C03         C43         C44         H45     180.000    10.0     3
+BKM            sp2_sp2_12         C03         C04         C05         O06       0.000     5.0     2
+BKM            sp2_sp3_32         O06         C05         C07         C08     120.000    10.0     6
+BKM            sp3_sp3_85         C05         C07         C08         C09     180.000    10.0     3
+BKM            sp3_sp3_52         C10         C08         C09          H8     180.000    10.0     3
+BKM            sp3_sp3_76         C09         C08         C10         C11     180.000    10.0     3
+BKM            sp3_sp3_94         C08         C10         C11         C13     180.000    10.0     3
+BKM           sp3_sp3_139         C10         C11         C12         H14     180.000    10.0     3
+BKM           sp3_sp3_103         C10         C11         C13         C14     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BKM    chir_1    C08    C07    C10    C09    negative
+BKM    chir_2    C11    C10    C13    C12    positive
+BKM    chir_3    C15    O16    C17    C14    positive
+BKM    chir_4    C17    C19    C15    C18    positive
+BKM    chir_5    C22    O23    C24    C21    negative
+BKM    chir_6    C24    C26    C22    C25    positive
+BKM    chir_7    C26    O28    C24    C27    negative
+BKM    chir_8    C32    O33    C34    C31    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BKM    plan-1         C01   0.020
+BKM    plan-1         C02   0.020
+BKM    plan-1          H1   0.020
+BKM    plan-1          H2   0.020
+BKM    plan-2         C01   0.020
+BKM    plan-2         C02   0.020
+BKM    plan-2         C03   0.020
+BKM    plan-2          H3   0.020
+BKM    plan-3         C02   0.020
+BKM    plan-3         C03   0.020
+BKM    plan-3         C04   0.020
+BKM    plan-3         C43   0.020
+BKM    plan-4         C03   0.020
+BKM    plan-4         C04   0.020
+BKM    plan-4         C05   0.020
+BKM    plan-4          H4   0.020
+BKM    plan-5         C04   0.020
+BKM    plan-5         C05   0.020
+BKM    plan-5         C07   0.020
+BKM    plan-5         O06   0.020
+BKM    plan-6         C17   0.020
+BKM    plan-6         C19   0.020
+BKM    plan-6         C21   0.020
+BKM    plan-6         O20   0.020
+BKM    plan-7         C29   0.020
+BKM    plan-7         C31   0.020
+BKM    plan-7         O28   0.020
+BKM    plan-7         O30   0.020
+BKM    plan-8         C32   0.020
+BKM    plan-8         C34   0.020
+BKM    plan-8         C35   0.020
+BKM    plan-8         C38   0.020
+BKM    plan-9         C34   0.020
+BKM    plan-9         C35   0.020
+BKM    plan-9         O36   0.020
+BKM    plan-9         O37   0.020
+BKM   plan-10         C34   0.020
+BKM   plan-10         C38   0.020
+BKM   plan-10         C39   0.020
+BKM   plan-10         C40   0.020
+BKM   plan-11         C38   0.020
+BKM   plan-11         C40   0.020
+BKM   plan-11         O41   0.020
+BKM   plan-11         O42   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BKM           SMILES              ACDLabs 12.01                                                                                                                                                                                  C=[C@H]C(=[C@H]C(CC(CC(C)CCC(C(C)C(CC(O)C(C)C(C)OC(=O)CC(/C(C(O)=O)=C(/C(=O)O)C)O)=O)O)C)=O)CC
+BKM            InChI                InChI  1.03 InChI=1S/C33H52O11/c1-9-24(10-2)15-25(34)14-19(4)13-18(3)11-12-26(35)21(6)28(37)16-27(36)20(5)23(8)44-30(39)17-29(38)31(33(42)43)22(7)32(40)41/h9,15,18-21,23,26-27,29,35-36,38H,1,10-14,16-17H2,2-8H3,(H,40,41)(H,42,43)/b24-15-,31-22-/t18-,19+,20+,21-,23+,26-,27+,29+/m0/s1
+BKM         InChIKey                InChI  1.03                                                                                                                                                                                                                                                     AQLTUWTUANKXRS-OXKGMMJMSA-N
+BKM SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                    CCC(\C=C)=C/C(=O)C[C@H](C)C[C@@H](C)CC[C@H](O)[C@H](C)C(=O)C[C@@H](O)[C@H](C)[C@@H](C)OC(=O)C[C@@H](O)\C(C(O)=O)=C(/C)C(O)=O
+BKM           SMILES               CACTVS 3.385                                                                                                                                                                    CCC(C=C)=CC(=O)C[CH](C)C[CH](C)CC[CH](O)[CH](C)C(=O)C[CH](O)[CH](C)[CH](C)OC(=O)C[CH](O)C(C(O)=O)=C(C)C(O)=O
+BKM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                  CC/C(=C\C(=O)C[C@H](C)C[C@@H](C)CC[C@@H]([C@H](C)C(=O)C[C@H]([C@H](C)[C@@H](C)OC(=O)C[C@H](/C(=C(\C)/C(=O)O)/C(=O)O)O)O)O)/C=C
+BKM           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                            CCC(=CC(=O)CC(C)CC(C)CCC(C(C)C(=O)CC(C(C)C(C)OC(=O)CC(C(=C(C)C(=O)O)C(=O)O)O)O)O)C=C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BKM acedrg               243         "dictionary generator"                  
+BKM acedrg_database      11          "data source"                           
+BKM rdkit                2017.03.2   "Chemoinformatics tool"
+BKM refmac5              5.8.0238    "optimization tool"                     

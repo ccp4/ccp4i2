@@ -1,0 +1,445 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ASS     ASS      (E)-N-methyl-N-[[1-methyl-5-[3-[1-(phenylmethyl)piperidin-4-yl]propoxy]indol-2-yl]methyl]prop-1-en-1-amine     NON-POLYMER     72     33     .     
+#
+data_comp_ASS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ASS     CAA     C       CH3     0       -8.638      3.574       -2.256      
+ASS     CAD     C       C1      0       -8.666      3.105       -0.835      
+ASS     CAE     C       C1      0       -8.431      1.759       -0.476      
+ASS     NBE     N       N       0       -8.410      1.200       0.753       
+ASS     CAB     C       CH3     0       -8.640      1.992       1.964       
+ASS     CAW     C       CH2     0       -8.147      -0.243      0.892       
+ASS     CBA     C       CR5     0       -6.722      -0.625      0.631       
+ASS     NBG     N       NT      0       -6.281      -1.396      -0.484      
+ASS     CAC     C       CH3     0       -7.122      -1.944      -1.554      
+ASS     CAN     C       CR15    0       -5.638      -0.317      1.381       
+ASS     CBB     C       CR56    0       -4.477      -0.882      0.771       
+ASS     CAM     C       CR16    0       -3.107      -0.880      1.107       
+ASS     CBC     C       CR56    0       -4.914      -1.551      -0.393      
+ASS     CAL     C       CR16    0       -4.015      -2.217      -1.227      
+ASS     CAK     C       CR16    0       -2.686      -2.206      -0.884      
+ASS     CAZ     C       CR6     0       -2.226      -1.536      0.272       
+ASS     OOX     O       O2      0       -0.906      -1.515      0.654       
+ASS     CAP     C       CH2     0       0.138       -1.614      -0.324      
+ASS     CAO     C       CH2     0       1.452       -1.266      0.338       
+ASS     C17     C       CH2     0       2.662       -1.780      -0.432      
+ASS     C18     C       CH1     0       4.009       -1.549      0.227       
+ASS     C19     C       CH2     0       5.113       -2.359      -0.446      
+ASS     C20     C       CH2     0       6.491       -2.050      0.115       
+ASS     N1      N       NT      0       6.792       -0.612      0.024       
+ASS     C22     C       CH2     0       5.791       0.157       0.785       
+ASS     C23     C       CH2     0       4.395       -0.073      0.233       
+ASS     C24     C       CH2     0       8.156       -0.320      0.486       
+ASS     C25     C       CR6     0       8.683       1.010       -0.000      
+ASS     C26     C       CR16    0       9.049       2.004       0.899       
+ASS     C27     C       CR16    0       9.531       3.226       0.446       
+ASS     C28     C       CR16    0       9.651       3.466       -0.908      
+ASS     C29     C       CR16    0       9.290       2.488       -1.811      
+ASS     C30     C       CR16    0       8.807       1.266       -1.359      
+ASS     H1      H       H       0       -8.579      2.809       -2.852      
+ASS     H2      H       H       0       -7.867      4.148       -2.394      
+ASS     H3      H       H       0       -9.449      4.072       -2.451      
+ASS     H4      H       H       0       -8.849      3.736       -0.157      
+ASS     H5      H       H       0       -8.262      1.154       -1.184      
+ASS     H6      H       H       0       -8.433      1.466       2.753       
+ASS     H7      H       H       0       -9.570      2.269       1.997       
+ASS     H8      H       H       0       -8.072      2.779       1.948       
+ASS     H9      H       H       0       -8.727      -0.721      0.274       
+ASS     H10     H       H       0       -8.387      -0.527      1.791       
+ASS     H11     H       H       0       -7.542      -2.761      -1.247      
+ASS     H12     H       H       0       -6.582      -2.134      -2.333      
+ASS     H13     H       H       0       -7.805      -1.301      -1.789      
+ASS     H14     H       H       0       -5.653      0.188       2.176       
+ASS     H15     H       H       0       -2.795      -0.432      1.893       
+ASS     H16     H       H       0       -4.308      -2.659      -1.997      
+ASS     H17     H       H       0       -2.070      -2.654      -1.439      
+ASS     H18     H       H       0       -0.038      -1.000      -1.066      
+ASS     H19     H       H       0       0.175       -2.526      -0.678      
+ASS     H20     H       H       0       1.466       -1.644      1.243       
+ASS     H21     H       H       0       1.517       -0.291      0.423       
+ASS     H22     H       H       0       2.671       -1.350      -1.314      
+ASS     H23     H       H       0       2.549       -2.744      -0.574      
+ASS     H24     H       H       0       3.943       -1.846      1.159       
+ASS     H25     H       H       0       4.927       -3.312      -0.328      
+ASS     H26     H       H       0       5.109       -2.170      -1.405      
+ASS     H27     H       H       0       7.159       -2.554      -0.381      
+ASS     H28     H       H       0       6.533       -2.329      1.046       
+ASS     H30     H       H       0       6.003       1.105       0.740       
+ASS     H31     H       H       0       5.819       -0.115      1.719       
+ASS     H32     H       H       0       3.752       0.426       0.775       
+ASS     H33     H       H       0       4.351       0.274       -0.681      
+ASS     H34     H       H       0       8.761       -1.026      0.171       
+ASS     H35     H       H       0       8.171       -0.334      1.468       
+ASS     H36     H       H       0       8.971       1.849       1.826       
+ASS     H37     H       H       0       9.778       3.894       1.067       
+ASS     H38     H       H       0       9.979       4.296       -1.215      
+ASS     H39     H       H       0       9.370       2.648       -2.738      
+ASS     H40     H       H       0       8.562       0.601       -1.984      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ASS         CAA         CAD      SINGLE       n     1.497  0.0100     1.497  0.0100
+ASS         CAD         CAE      DOUBLE       n     1.405  0.0200     1.405  0.0200
+ASS         CAE         NBE      SINGLE       n     1.345  0.0132     1.345  0.0132
+ASS         NBE         CAW      SINGLE       n     1.466  0.0154     1.466  0.0154
+ASS         NBE         CAB      SINGLE       n     1.461  0.0100     1.461  0.0100
+ASS         CAW         CBA      SINGLE       n     1.496  0.0115     1.496  0.0115
+ASS         CBA         NBG      SINGLE       y     1.415  0.0200     1.415  0.0200
+ASS         CBA         CAN      DOUBLE       y     1.354  0.0148     1.354  0.0148
+ASS         NBG         CAC      SINGLE       n     1.465  0.0100     1.465  0.0100
+ASS         NBG         CBC      SINGLE       y     1.375  0.0116     1.375  0.0116
+ASS         CAN         CBB      SINGLE       y     1.428  0.0100     1.428  0.0100
+ASS         CBB         CBC      DOUBLE       y     1.410  0.0100     1.410  0.0100
+ASS         CBC         CAL      SINGLE       y     1.392  0.0100     1.392  0.0100
+ASS         CBB         CAM      SINGLE       y     1.407  0.0100     1.407  0.0100
+ASS         CAL         CAK      DOUBLE       y     1.369  0.0100     1.369  0.0100
+ASS         CAM         CAZ      DOUBLE       y     1.376  0.0100     1.376  0.0100
+ASS         CAK         CAZ      SINGLE       y     1.406  0.0100     1.406  0.0100
+ASS         CAZ         OOX      SINGLE       n     1.369  0.0102     1.369  0.0102
+ASS         OOX         CAP      SINGLE       n     1.432  0.0101     1.432  0.0101
+ASS         CAP         CAO      SINGLE       n     1.511  0.0100     1.511  0.0100
+ASS         CAO         C17      SINGLE       n     1.522  0.0100     1.522  0.0100
+ASS         C17         C18      SINGLE       n     1.517  0.0100     1.517  0.0100
+ASS         C18         C19      SINGLE       n     1.524  0.0100     1.524  0.0100
+ASS         C19         C20      SINGLE       n     1.517  0.0100     1.517  0.0100
+ASS         C20          N1      SINGLE       n     1.469  0.0100     1.469  0.0100
+ASS          N1         C22      SINGLE       n     1.469  0.0100     1.469  0.0100
+ASS         C22         C23      SINGLE       n     1.517  0.0100     1.517  0.0100
+ASS         C18         C23      SINGLE       n     1.524  0.0100     1.524  0.0100
+ASS          N1         C24      SINGLE       n     1.465  0.0100     1.465  0.0100
+ASS         C24         C25      SINGLE       n     1.509  0.0100     1.509  0.0100
+ASS         C25         C26      DOUBLE       y     1.385  0.0100     1.385  0.0100
+ASS         C26         C27      SINGLE       y     1.386  0.0100     1.386  0.0100
+ASS         C27         C28      DOUBLE       y     1.376  0.0124     1.376  0.0124
+ASS         C28         C29      SINGLE       y     1.374  0.0127     1.374  0.0127
+ASS         C29         C30      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ASS         C25         C30      SINGLE       y     1.385  0.0100     1.385  0.0100
+ASS         CAA          H1      SINGLE       n     1.089  0.0100     0.971  0.0140
+ASS         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0140
+ASS         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0140
+ASS         CAD          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+ASS         CAE          H5      SINGLE       n     1.082  0.0130     0.946  0.0100
+ASS         CAB          H6      SINGLE       n     1.089  0.0100     0.971  0.0181
+ASS         CAB          H7      SINGLE       n     1.089  0.0100     0.971  0.0181
+ASS         CAB          H8      SINGLE       n     1.089  0.0100     0.971  0.0181
+ASS         CAW          H9      SINGLE       n     1.089  0.0100     0.974  0.0112
+ASS         CAW         H10      SINGLE       n     1.089  0.0100     0.974  0.0112
+ASS         CAC         H11      SINGLE       n     1.089  0.0100     0.968  0.0155
+ASS         CAC         H12      SINGLE       n     1.089  0.0100     0.968  0.0155
+ASS         CAC         H13      SINGLE       n     1.089  0.0100     0.968  0.0155
+ASS         CAN         H14      SINGLE       n     1.082  0.0130     0.942  0.0149
+ASS         CAM         H15      SINGLE       n     1.082  0.0130     0.957  0.0200
+ASS         CAL         H16      SINGLE       n     1.082  0.0130     0.935  0.0100
+ASS         CAK         H17      SINGLE       n     1.082  0.0130     0.943  0.0200
+ASS         CAP         H18      SINGLE       n     1.089  0.0100     0.979  0.0131
+ASS         CAP         H19      SINGLE       n     1.089  0.0100     0.979  0.0131
+ASS         CAO         H20      SINGLE       n     1.089  0.0100     0.981  0.0160
+ASS         CAO         H21      SINGLE       n     1.089  0.0100     0.981  0.0160
+ASS         C17         H22      SINGLE       n     1.089  0.0100     0.981  0.0140
+ASS         C17         H23      SINGLE       n     1.089  0.0100     0.981  0.0140
+ASS         C18         H24      SINGLE       n     1.089  0.0100     0.981  0.0100
+ASS         C19         H25      SINGLE       n     1.089  0.0100     0.978  0.0101
+ASS         C19         H26      SINGLE       n     1.089  0.0100     0.978  0.0101
+ASS         C20         H27      SINGLE       n     1.089  0.0100     0.973  0.0129
+ASS         C20         H28      SINGLE       n     1.089  0.0100     0.973  0.0129
+ASS         C22         H30      SINGLE       n     1.089  0.0100     0.973  0.0129
+ASS         C22         H31      SINGLE       n     1.089  0.0100     0.973  0.0129
+ASS         C23         H32      SINGLE       n     1.089  0.0100     0.978  0.0101
+ASS         C23         H33      SINGLE       n     1.089  0.0100     0.978  0.0101
+ASS         C24         H34      SINGLE       n     1.089  0.0100     0.982  0.0103
+ASS         C24         H35      SINGLE       n     1.089  0.0100     0.982  0.0103
+ASS         C26         H36      SINGLE       n     1.082  0.0130     0.944  0.0174
+ASS         C27         H37      SINGLE       n     1.082  0.0130     0.944  0.0175
+ASS         C28         H38      SINGLE       n     1.082  0.0130     0.944  0.0161
+ASS         C29         H39      SINGLE       n     1.082  0.0130     0.944  0.0175
+ASS         C30         H40      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ASS         CAD         CAA          H1     109.567    1.50
+ASS         CAD         CAA          H2     109.567    1.50
+ASS         CAD         CAA          H3     109.567    1.50
+ASS          H1         CAA          H2     109.305    1.50
+ASS          H1         CAA          H3     109.305    1.50
+ASS          H2         CAA          H3     109.305    1.50
+ASS         CAA         CAD         CAE     122.760    3.00
+ASS         CAA         CAD          H4     118.715    1.66
+ASS         CAE         CAD          H4     118.525    2.09
+ASS         CAD         CAE         NBE     126.013    3.00
+ASS         CAD         CAE          H5     118.998    2.68
+ASS         NBE         CAE          H5     114.969    1.57
+ASS         CAE         NBE         CAW     121.253    2.13
+ASS         CAE         NBE         CAB     121.470    1.90
+ASS         CAW         NBE         CAB     117.277    2.61
+ASS         NBE         CAB          H6     109.523    1.50
+ASS         NBE         CAB          H7     109.523    1.50
+ASS         NBE         CAB          H8     109.523    1.50
+ASS          H6         CAB          H7     109.408    1.50
+ASS          H6         CAB          H8     109.408    1.50
+ASS          H7         CAB          H8     109.408    1.50
+ASS         NBE         CAW         CBA     114.123    1.50
+ASS         NBE         CAW          H9     108.746    1.50
+ASS         NBE         CAW         H10     108.746    1.50
+ASS         CBA         CAW          H9     108.975    1.50
+ASS         CBA         CAW         H10     108.975    1.50
+ASS          H9         CAW         H10     107.734    1.50
+ASS         CAW         CBA         NBG     123.479    1.50
+ASS         CAW         CBA         CAN     128.667    2.55
+ASS         NBG         CBA         CAN     107.853    1.50
+ASS         CBA         NBG         CAC     123.852    2.56
+ASS         CBA         NBG         CBC     107.804    1.50
+ASS         CAC         NBG         CBC     124.549    1.50
+ASS         NBG         CAC         H11     109.468    1.50
+ASS         NBG         CAC         H12     109.468    1.50
+ASS         NBG         CAC         H13     109.468    1.50
+ASS         H11         CAC         H12     109.427    1.50
+ASS         H11         CAC         H13     109.427    1.50
+ASS         H12         CAC         H13     109.427    1.50
+ASS         CBA         CAN         CBB     108.708    1.50
+ASS         CBA         CAN         H14     125.310    1.50
+ASS         CBB         CAN         H14     125.982    1.50
+ASS         CAN         CBB         CBC     106.477    1.50
+ASS         CAN         CBB         CAM     133.475    1.50
+ASS         CBC         CBB         CAM     120.049    1.50
+ASS         CBB         CAM         CAZ     117.914    1.50
+ASS         CBB         CAM         H15     121.104    1.50
+ASS         CAZ         CAM         H15     120.982    1.50
+ASS         NBG         CBC         CBB     107.546    1.50
+ASS         NBG         CBC         CAL     130.457    1.50
+ASS         CBB         CBC         CAL     121.996    1.50
+ASS         CBC         CAL         CAK     117.644    1.50
+ASS         CBC         CAL         H16     121.266    1.50
+ASS         CAK         CAL         H16     121.090    1.50
+ASS         CAL         CAK         CAZ     121.151    1.50
+ASS         CAL         CAK         H17     119.464    1.50
+ASS         CAZ         CAK         H17     119.385    1.50
+ASS         CAM         CAZ         CAK     121.246    1.50
+ASS         CAM         CAZ         OOX     120.061    3.00
+ASS         CAK         CAZ         OOX     118.694    3.00
+ASS         CAZ         OOX         CAP     117.464    1.77
+ASS         OOX         CAP         CAO     108.230    2.17
+ASS         OOX         CAP         H18     109.943    1.50
+ASS         OOX         CAP         H19     109.943    1.50
+ASS         CAO         CAP         H18     110.123    1.50
+ASS         CAO         CAP         H19     110.123    1.50
+ASS         H18         CAP         H19     108.474    1.50
+ASS         CAP         CAO         C17     112.948    1.80
+ASS         CAP         CAO         H20     108.893    1.50
+ASS         CAP         CAO         H21     108.893    1.50
+ASS         C17         CAO         H20     108.890    1.50
+ASS         C17         CAO         H21     108.890    1.50
+ASS         H20         CAO         H21     107.438    1.50
+ASS         CAO         C17         C18     115.438    1.50
+ASS         CAO         C17         H22     108.414    1.50
+ASS         CAO         C17         H23     108.414    1.50
+ASS         C18         C17         H22     108.473    1.50
+ASS         C18         C17         H23     108.473    1.50
+ASS         H22         C17         H23     107.696    1.50
+ASS         C17         C18         C19     112.003    1.50
+ASS         C17         C18         C23     112.003    1.50
+ASS         C17         C18         H24     107.857    1.50
+ASS         C19         C18         C23     109.024    1.50
+ASS         C19         C18         H24     107.879    1.50
+ASS         C23         C18         H24     107.879    1.50
+ASS         C18         C19         C20     112.062    1.50
+ASS         C18         C19         H25     109.093    1.50
+ASS         C18         C19         H26     109.093    1.50
+ASS         C20         C19         H25     109.101    1.50
+ASS         C20         C19         H26     109.101    1.50
+ASS         H25         C19         H26     107.890    1.50
+ASS         C19         C20          N1     110.972    1.50
+ASS         C19         C20         H27     109.668    1.50
+ASS         C19         C20         H28     109.668    1.50
+ASS          N1         C20         H27     109.373    1.50
+ASS          N1         C20         H28     109.373    1.50
+ASS         H27         C20         H28     108.159    1.50
+ASS         C20          N1         C22     109.879    1.50
+ASS         C20          N1         C24     110.624    1.50
+ASS         C22          N1         C24     110.624    1.50
+ASS          N1         C22         C23     110.972    1.50
+ASS          N1         C22         H30     109.373    1.50
+ASS          N1         C22         H31     109.373    1.50
+ASS         C23         C22         H30     109.668    1.50
+ASS         C23         C22         H31     109.668    1.50
+ASS         H30         C22         H31     108.159    1.50
+ASS         C22         C23         C18     112.062    1.50
+ASS         C22         C23         H32     109.101    1.50
+ASS         C22         C23         H33     109.101    1.50
+ASS         C18         C23         H32     109.093    1.50
+ASS         C18         C23         H33     109.093    1.50
+ASS         H32         C23         H33     107.890    1.50
+ASS          N1         C24         C25     113.287    1.50
+ASS          N1         C24         H34     108.958    1.50
+ASS          N1         C24         H35     108.958    1.50
+ASS         C25         C24         H34     109.108    1.50
+ASS         C25         C24         H35     109.108    1.50
+ASS         H34         C24         H35     107.841    1.50
+ASS         C24         C25         C26     120.718    1.50
+ASS         C24         C25         C30     120.718    1.50
+ASS         C26         C25         C30     118.565    1.50
+ASS         C25         C26         C27     120.633    1.50
+ASS         C25         C26         H36     119.681    1.50
+ASS         C27         C26         H36     119.686    1.50
+ASS         C26         C27         C28     120.151    1.50
+ASS         C26         C27         H37     119.879    1.50
+ASS         C28         C27         H37     119.970    1.50
+ASS         C27         C28         C29     119.868    1.50
+ASS         C27         C28         H38     120.066    1.50
+ASS         C29         C28         H38     120.066    1.50
+ASS         C28         C29         C30     120.151    1.50
+ASS         C28         C29         H39     119.970    1.50
+ASS         C30         C29         H39     119.879    1.50
+ASS         C29         C30         C25     120.633    1.50
+ASS         C29         C30         H40     119.686    1.50
+ASS         C25         C30         H40     119.681    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ASS             sp2_sp3_1         CAE         CAD         CAA          H1       0.000    10.0     6
+ASS              const_58         CAZ         CAM         CBB         CAN     180.000    10.0     2
+ASS              const_21         CAN         CBB         CBC         NBG       0.000    10.0     2
+ASS              const_38         CBB         CAM         CAZ         OOX     180.000    10.0     2
+ASS              const_26         CAK         CAL         CBC         NBG     180.000    10.0     2
+ASS              const_29         CAZ         CAK         CAL         CBC       0.000    10.0     2
+ASS              const_34         CAL         CAK         CAZ         OOX     180.000    10.0     2
+ASS             sp2_sp2_9         CAM         CAZ         OOX         CAP     180.000     5.0     2
+ASS            sp3_sp3_40         CAO         CAP         OOX         CAZ     180.000    10.0     3
+ASS            sp3_sp3_43         C17         CAO         CAP         OOX     180.000    10.0     3
+ASS            sp3_sp3_52         C18         C17         CAO         CAP     180.000    10.0     3
+ASS            sp3_sp3_62         CAO         C17         C18         C19     -60.000    10.0     3
+ASS             sp2_sp2_1         CAA         CAD         CAE         NBE     180.000     5.0     2
+ASS             sp3_sp3_7         C17         C18         C19         C20     180.000    10.0     3
+ASS            sp3_sp3_73         C17         C18         C23         C22      60.000    10.0     3
+ASS            sp3_sp3_10         C18         C19         C20          N1     -60.000    10.0     3
+ASS            sp3_sp3_20         C19         C20          N1         C24     180.000    10.0     3
+ASS            sp3_sp3_26         C23         C22          N1         C24      60.000    10.0     3
+ASS            sp3_sp3_80         C25         C24          N1         C20     -60.000    10.0     3
+ASS            sp3_sp3_31          N1         C22         C23         C18      60.000    10.0     3
+ASS            sp2_sp3_32         C26         C25         C24          N1     -90.000    10.0     6
+ASS       const_sp2_sp2_3         C24         C25         C26         C27     180.000     5.0     2
+ASS              const_63         C24         C25         C30         C29     180.000    10.0     2
+ASS       const_sp2_sp2_5         C25         C26         C27         C28       0.000     5.0     2
+ASS       const_sp2_sp2_9         C26         C27         C28         C29       0.000     5.0     2
+ASS             sp2_sp2_5         CAD         CAE         NBE         CAW     180.000     5.0     2
+ASS              const_13         C27         C28         C29         C30       0.000    10.0     2
+ASS              const_17         C28         C29         C30         C25       0.000    10.0     2
+ASS            sp2_sp3_13         CAE         NBE         CAB          H6       0.000    10.0     6
+ASS             sp2_sp3_8         CAE         NBE         CAW         CBA     120.000    10.0     6
+ASS            sp2_sp3_20         NBG         CBA         CAW         NBE     -90.000    10.0     6
+ASS              const_44         CAW         CBA         NBG         CAC       0.000    10.0     2
+ASS              const_54         CBB         CAN         CBA         CAW     180.000    10.0     2
+ASS              const_46         CBB         CBC         NBG         CAC     180.000    10.0     2
+ASS            sp2_sp3_25         CBA         NBG         CAC         H11     150.000    10.0     6
+ASS              const_49         CBA         CAN         CBB         CBC       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ASS    chir_1    C18    C19    C23    C17    both
+ASS    chir_2    N1    C24    C20    C22    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ASS    plan-1         CAC   0.020
+ASS    plan-1         CAK   0.020
+ASS    plan-1         CAL   0.020
+ASS    plan-1         CAM   0.020
+ASS    plan-1         CAN   0.020
+ASS    plan-1         CAW   0.020
+ASS    plan-1         CAZ   0.020
+ASS    plan-1         CBA   0.020
+ASS    plan-1         CBB   0.020
+ASS    plan-1         CBC   0.020
+ASS    plan-1         H14   0.020
+ASS    plan-1         H15   0.020
+ASS    plan-1         H16   0.020
+ASS    plan-1         H17   0.020
+ASS    plan-1         NBG   0.020
+ASS    plan-1         OOX   0.020
+ASS    plan-2         C24   0.020
+ASS    plan-2         C25   0.020
+ASS    plan-2         C26   0.020
+ASS    plan-2         C27   0.020
+ASS    plan-2         C28   0.020
+ASS    plan-2         C29   0.020
+ASS    plan-2         C30   0.020
+ASS    plan-2         H36   0.020
+ASS    plan-2         H37   0.020
+ASS    plan-2         H38   0.020
+ASS    plan-2         H39   0.020
+ASS    plan-2         H40   0.020
+ASS    plan-3         CAA   0.020
+ASS    plan-3         CAD   0.020
+ASS    plan-3         CAE   0.020
+ASS    plan-3          H4   0.020
+ASS    plan-4         CAD   0.020
+ASS    plan-4         CAE   0.020
+ASS    plan-4          H5   0.020
+ASS    plan-4         NBE   0.020
+ASS    plan-5         CAB   0.020
+ASS    plan-5         CAE   0.020
+ASS    plan-5         CAW   0.020
+ASS    plan-5         NBE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ASS            InChI                InChI  1.03 InChI=1S/C29H39N3O/c1-4-16-30(2)23-27-20-26-21-28(12-13-29(26)31(27)3)33-19-8-11-24-14-17-32(18-15-24)22-25-9-6-5-7-10-25/h4-7,9-10,12-13,16,20-21,24H,8,11,14-15,17-19,22-23H2,1-3H3/b16-4+
+ASS         InChIKey                InChI  1.03                                                                                                                                                                  ALOOECSBFUZTAZ-AYSLTRBKSA-N
+ASS SMILES_CANONICAL               CACTVS 3.385                                                                                                                                           C\C=C\N(C)Cc1cc2cc(OCCCC3CCN(CC3)Cc4ccccc4)ccc2n1C
+ASS           SMILES               CACTVS 3.385                                                                                                                                             CC=CN(C)Cc1cc2cc(OCCCC3CCN(CC3)Cc4ccccc4)ccc2n1C
+ASS SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                           C/C=C/N(C)Cc1cc2cc(ccc2n1C)OCCCC3CCN(CC3)Cc4ccccc4
+ASS           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                             CC=CN(C)Cc1cc2cc(ccc2n1C)OCCCC3CCN(CC3)Cc4ccccc4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ASS acedrg               243         "dictionary generator"                  
+ASS acedrg_database      11          "data source"                           
+ASS rdkit                2017.03.2   "Chemoinformatics tool"
+ASS refmac5              5.8.0238    "optimization tool"                     

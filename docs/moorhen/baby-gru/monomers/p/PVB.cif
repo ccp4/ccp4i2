@@ -1,0 +1,361 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PVB     PVB      "PURVALANOL B"     NON-POLYMER     54     30     .     
+#
+data_comp_PVB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PVB     N1      N       NRD6    0       30.321      28.865      -5.130      
+PVB     C9      C       CH1     0       26.118      29.352      -2.175      
+PVB     N9      N       NR5     0       26.880      29.900      -3.319      
+PVB     C4      C       CR56    0       28.064      29.411      -3.814      
+PVB     N3      N       NRD6    0       28.765      28.352      -3.374      
+PVB     C2      C       CR6     0       29.899      28.124      -4.076      
+PVB     C6      C       CR6     0       29.601      29.926      -5.554      
+PVB     C5      C       CR56    0       28.404      30.234      -4.874      
+PVB     N7      N       NRD5    0       27.452      31.229      -5.048      
+PVB     C8      C       CR15    0       26.576      30.983      -4.101      
+PVB     N6      N       NH1     0       30.010      30.687      -6.608      
+PVB     C1A     C       CR6     0       31.261      30.702      -7.271      
+PVB     C2A     C       CR16    0       31.317      30.544      -8.653      
+PVB     C3A     C       CR16    0       32.542      30.553      -9.300      
+PVB     C4A     C       CR6     0       33.737      30.712      -8.603      
+PVB     C5A     C       CR6     0       33.669      30.866      -7.218      
+PVB     CL1     CL      CL      0       35.094      31.072      -6.246      
+PVB     C6A     C       CR16    0       32.450      30.862      -6.547      
+PVB     CX      C       C       0       35.025      30.710      -9.371      
+PVB     OX1     O       OC      -1      35.788      29.740      -9.214      
+PVB     OX2     O       O       0       35.253      31.679      -10.118     
+PVB     N2      N       NH1     0       30.655      27.074      -3.701      
+PVB     C12     C       CH1     0       32.014      26.787      -4.185      
+PVB     C13     C       CH1     0       32.366      25.275      -4.114      
+PVB     C16     C       CH3     0       31.344      24.444      -4.878      
+PVB     C14     C       CH3     0       32.537      24.738      -2.698      
+PVB     C15     C       CH2     0       33.033      27.664      -3.458      
+PVB     O1      O       OH1     0       32.740      27.811      -2.077      
+PVB     C11     C       CH3     0       25.642      27.941      -2.474      
+PVB     C10     C       CH3     0       26.920      29.479      -0.893      
+PVB     H9      H       H       0       25.305      29.913      -2.063      
+PVB     H8      H       H       0       25.798      31.508      -3.968      
+PVB     H6      H       H       0       29.414      31.248      -6.931      
+PVB     H2A     H       H       0       30.522      30.435      -9.146      
+PVB     H3A     H       H       0       32.567      30.448      -10.235     
+PVB     H6A     H       H       0       32.424      30.965      -5.615      
+PVB     H2      H       H       0       30.310      26.506      -3.125      
+PVB     H12     H       H       0       32.052      27.027      -5.145      
+PVB     H13     H       H       0       33.234      25.162      -4.573      
+PVB     H161    H       H       0       31.676      23.535      -4.981      
+PVB     H162    H       H       0       31.199      24.836      -5.757      
+PVB     H163    H       H       0       30.504      24.429      -4.388      
+PVB     H141    H       H       0       31.795      25.033      -2.143      
+PVB     H142    H       H       0       33.371      25.069      -2.322      
+PVB     H143    H       H       0       32.557      23.766      -2.719      
+PVB     H151    H       H       0       33.049      28.550      -3.880      
+PVB     H152    H       H       0       33.925      27.269      -3.558      
+PVB     H1      H       H       0       33.446      28.051      -1.676      
+PVB     H111    H       H       0       25.534      27.830      -3.435      
+PVB     H112    H       H       0       24.788      27.789      -2.033      
+PVB     H113    H       H       0       26.294      27.298      -2.146      
+PVB     H101    H       H       0       27.486      30.270      -0.939      
+PVB     H102    H       H       0       27.477      28.690      -0.773      
+PVB     H103    H       H       0       26.311      29.562      -0.138      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PVB          N1          C2      DOUBLE       y     1.348  0.0113     1.348  0.0113
+PVB          N1          C6      SINGLE       y     1.344  0.0110     1.344  0.0110
+PVB          C9          N9      SINGLE       n     1.478  0.0100     1.478  0.0100
+PVB          C9         C11      SINGLE       n     1.513  0.0163     1.513  0.0163
+PVB          C9         C10      SINGLE       n     1.513  0.0163     1.513  0.0163
+PVB          N9          C4      SINGLE       y     1.372  0.0100     1.372  0.0100
+PVB          N9          C8      SINGLE       y     1.369  0.0100     1.369  0.0100
+PVB          C4          N3      DOUBLE       y     1.341  0.0100     1.341  0.0100
+PVB          C4          C5      SINGLE       y     1.384  0.0100     1.384  0.0100
+PVB          N3          C2      SINGLE       y     1.346  0.0100     1.346  0.0100
+PVB          C2          N2      SINGLE       n     1.341  0.0100     1.341  0.0100
+PVB          C6          C5      DOUBLE       y     1.407  0.0100     1.407  0.0100
+PVB          C6          N6      SINGLE       n     1.360  0.0100     1.360  0.0100
+PVB          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+PVB          N7          C8      DOUBLE       y     1.313  0.0100     1.313  0.0100
+PVB          N6         C1A      SINGLE       n     1.415  0.0100     1.415  0.0100
+PVB         C1A         C2A      DOUBLE       y     1.389  0.0100     1.389  0.0100
+PVB         C1A         C6A      SINGLE       y     1.397  0.0100     1.397  0.0100
+PVB         C2A         C3A      SINGLE       y     1.382  0.0100     1.382  0.0100
+PVB         C3A         C4A      DOUBLE       y     1.389  0.0100     1.389  0.0100
+PVB         C4A         C5A      SINGLE       y     1.391  0.0104     1.391  0.0104
+PVB         C4A          CX      SINGLE       n     1.498  0.0200     1.498  0.0200
+PVB         C5A         CL1      SINGLE       n     1.737  0.0100     1.737  0.0100
+PVB         C5A         C6A      DOUBLE       y     1.387  0.0100     1.387  0.0100
+PVB          CX         OX1      SINGLE       n     1.244  0.0200     1.244  0.0200
+PVB          CX         OX2      DOUBLE       n     1.244  0.0200     1.244  0.0200
+PVB          N2         C12      SINGLE       n     1.465  0.0100     1.465  0.0100
+PVB         C12         C13      SINGLE       n     1.549  0.0120     1.549  0.0120
+PVB         C12         C15      SINGLE       n     1.525  0.0100     1.525  0.0100
+PVB         C13         C16      SINGLE       n     1.522  0.0128     1.522  0.0128
+PVB         C13         C14      SINGLE       n     1.522  0.0128     1.522  0.0128
+PVB         C15          O1      SINGLE       n     1.417  0.0200     1.417  0.0200
+PVB          C9          H9      SINGLE       n     1.089  0.0100     0.994  0.0100
+PVB          C8          H8      SINGLE       n     1.082  0.0130     0.948  0.0200
+PVB          N6          H6      SINGLE       n     1.016  0.0100     0.879  0.0200
+PVB         C2A         H2A      SINGLE       n     1.082  0.0130     0.942  0.0198
+PVB         C3A         H3A      SINGLE       n     1.082  0.0130     0.941  0.0168
+PVB         C6A         H6A      SINGLE       n     1.082  0.0130     0.938  0.0145
+PVB          N2          H2      SINGLE       n     1.016  0.0100     0.880  0.0200
+PVB         C12         H12      SINGLE       n     1.089  0.0100     0.992  0.0164
+PVB         C13         H13      SINGLE       n     1.089  0.0100     0.988  0.0171
+PVB         C16        H161      SINGLE       n     1.089  0.0100     0.973  0.0146
+PVB         C16        H162      SINGLE       n     1.089  0.0100     0.973  0.0146
+PVB         C16        H163      SINGLE       n     1.089  0.0100     0.973  0.0146
+PVB         C14        H141      SINGLE       n     1.089  0.0100     0.973  0.0146
+PVB         C14        H142      SINGLE       n     1.089  0.0100     0.973  0.0146
+PVB         C14        H143      SINGLE       n     1.089  0.0100     0.973  0.0146
+PVB         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0174
+PVB         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0174
+PVB          O1          H1      SINGLE       n     0.970  0.0120     0.846  0.0200
+PVB         C11        H111      SINGLE       n     1.089  0.0100     0.973  0.0146
+PVB         C11        H112      SINGLE       n     1.089  0.0100     0.973  0.0146
+PVB         C11        H113      SINGLE       n     1.089  0.0100     0.973  0.0146
+PVB         C10        H101      SINGLE       n     1.089  0.0100     0.973  0.0146
+PVB         C10        H102      SINGLE       n     1.089  0.0100     0.973  0.0146
+PVB         C10        H103      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PVB          C2          N1          C6     118.759    1.50
+PVB          N9          C9         C11     110.275    1.50
+PVB          N9          C9         C10     110.275    1.50
+PVB          N9          C9          H9     107.820    1.50
+PVB         C11          C9         C10     112.990    2.22
+PVB         C11          C9          H9     107.337    1.70
+PVB         C10          C9          H9     107.337    1.70
+PVB          C9          N9          C4     125.703    1.50
+PVB          C9          N9          C8     128.635    1.50
+PVB          C4          N9          C8     105.662    1.50
+PVB          N9          C4          N3     126.755    1.50
+PVB          N9          C4          C5     106.138    1.50
+PVB          N3          C4          C5     127.107    1.50
+PVB          C4          N3          C2     113.563    1.50
+PVB          N1          C2          N3     125.123    1.50
+PVB          N1          C2          N2     117.486    1.50
+PVB          N3          C2          N2     117.391    1.62
+PVB          N1          C6          C5     118.131    1.50
+PVB          N1          C6          N6     121.858    1.50
+PVB          C5          C6          N6     120.012    1.50
+PVB          C4          C5          C6     117.317    1.50
+PVB          C4          C5          N7     110.563    1.50
+PVB          C6          C5          N7     132.120    1.50
+PVB          C5          N7          C8     103.566    1.50
+PVB          N9          C8          N7     114.070    1.50
+PVB          N9          C8          H8     122.835    1.50
+PVB          N7          C8          H8     123.095    1.50
+PVB          C6          N6         C1A     129.511    1.50
+PVB          C6          N6          H6     115.551    1.50
+PVB         C1A          N6          H6     114.937    1.50
+PVB          N6         C1A         C2A     119.694    3.00
+PVB          N6         C1A         C6A     120.827    2.70
+PVB         C2A         C1A         C6A     119.479    1.50
+PVB         C1A         C2A         C3A     120.183    1.50
+PVB         C1A         C2A         H2A     119.749    1.50
+PVB         C3A         C2A         H2A     120.068    1.50
+PVB         C2A         C3A         C4A     121.961    1.50
+PVB         C2A         C3A         H3A     119.103    1.50
+PVB         C4A         C3A         H3A     118.936    1.50
+PVB         C3A         C4A         C5A     117.970    1.50
+PVB         C3A         C4A          CX     118.772    1.50
+PVB         C5A         C4A          CX     123.258    1.50
+PVB         C4A         C5A         CL1     121.822    1.50
+PVB         C4A         C5A         C6A     121.225    1.50
+PVB         CL1         C5A         C6A     116.953    1.50
+PVB         C1A         C6A         C5A     119.181    1.50
+PVB         C1A         C6A         H6A     120.391    1.50
+PVB         C5A         C6A         H6A     120.427    1.50
+PVB         C4A          CX         OX1     117.586    1.73
+PVB         C4A          CX         OX2     117.586    1.73
+PVB         OX1          CX         OX2     124.828    1.50
+PVB          C2          N2         C12     122.840    2.30
+PVB          C2          N2          H2     118.811    2.32
+PVB         C12          N2          H2     118.349    2.52
+PVB          N2         C12         C13     111.308    2.28
+PVB          N2         C12         C15     109.565    1.79
+PVB          N2         C12         H12     107.866    1.50
+PVB         C13         C12         C15     111.094    2.85
+PVB         C13         C12         H12     106.939    1.50
+PVB         C15         C12         H12     107.847    1.50
+PVB         C12         C13         C16     111.893    2.19
+PVB         C12         C13         C14     111.893    2.19
+PVB         C12         C13         H13     107.382    1.50
+PVB         C16         C13         C14     110.676    1.50
+PVB         C16         C13         H13     107.603    1.50
+PVB         C14         C13         H13     107.603    1.50
+PVB         C13         C16        H161     109.507    1.50
+PVB         C13         C16        H162     109.507    1.50
+PVB         C13         C16        H163     109.507    1.50
+PVB        H161         C16        H162     109.411    1.50
+PVB        H161         C16        H163     109.411    1.50
+PVB        H162         C16        H163     109.411    1.50
+PVB         C13         C14        H141     109.507    1.50
+PVB         C13         C14        H142     109.507    1.50
+PVB         C13         C14        H143     109.507    1.50
+PVB        H141         C14        H142     109.411    1.50
+PVB        H141         C14        H143     109.411    1.50
+PVB        H142         C14        H143     109.411    1.50
+PVB         C12         C15          O1     111.676    1.78
+PVB         C12         C15        H151     109.264    1.50
+PVB         C12         C15        H152     109.264    1.50
+PVB          O1         C15        H151     109.411    1.50
+PVB          O1         C15        H152     109.411    1.50
+PVB        H151         C15        H152     108.070    1.50
+PVB         C15          O1          H1     108.529    2.94
+PVB          C9         C11        H111     109.466    1.50
+PVB          C9         C11        H112     109.466    1.50
+PVB          C9         C11        H113     109.466    1.50
+PVB        H111         C11        H112     109.476    1.50
+PVB        H111         C11        H113     109.476    1.50
+PVB        H112         C11        H113     109.476    1.50
+PVB          C9         C10        H101     109.466    1.50
+PVB          C9         C10        H102     109.466    1.50
+PVB          C9         C10        H103     109.466    1.50
+PVB        H101         C10        H102     109.476    1.50
+PVB        H101         C10        H103     109.476    1.50
+PVB        H102         C10        H103     109.476    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PVB              const_22          N2          C2          N1          C6     180.000    10.0     2
+PVB              const_44          N6          C6          N1          C2     180.000    10.0     2
+PVB             sp2_sp2_9         C2A         C1A          N6          C6     180.000     5.0     2
+PVB       const_sp2_sp2_3          N6         C1A         C2A         C3A     180.000     5.0     2
+PVB              const_51          N6         C1A         C6A         C5A     180.000    10.0     2
+PVB       const_sp2_sp2_5         C1A         C2A         C3A         C4A       0.000     5.0     2
+PVB              const_10         C2A         C3A         C4A          CX     180.000    10.0     2
+PVB              const_16          CX         C4A         C5A         CL1       0.000    10.0     2
+PVB            sp2_sp2_13         C3A         C4A          CX         OX1     180.000     5.0     2
+PVB              const_19         CL1         C5A         C6A         C1A     180.000    10.0     2
+PVB             sp2_sp3_2          C4          N9          C9         C11     -90.000    10.0     6
+PVB             sp3_sp3_2        H111         C11          C9         C10     -60.000    10.0     3
+PVB            sp3_sp3_10        H101         C10          C9         C11     180.000    10.0     3
+PVB             sp2_sp3_7          C2          N2         C12         C13       0.000    10.0     6
+PVB            sp3_sp3_20          N2         C12         C13         C16     -60.000    10.0     3
+PVB            sp3_sp3_28          N2         C12         C15          O1     180.000    10.0     3
+PVB            sp3_sp3_37         C12         C13         C16        H161     180.000    10.0     3
+PVB            sp3_sp3_49         C12         C13         C14        H141      60.000    10.0     3
+PVB            sp3_sp3_55         C12         C15          O1          H1     180.000    10.0     3
+PVB              const_38          N3          C4          N9          C9       0.000    10.0     2
+PVB              const_46          N7          C8          N9          C9     180.000    10.0     2
+PVB              const_26          N9          C4          N3          C2     180.000    10.0     2
+PVB              const_28          N9          C4          C5          C6     180.000    10.0     2
+PVB              const_24          N2          C2          N3          C4     180.000    10.0     2
+PVB             sp2_sp2_1          N1          C2          N2         C12     180.000     5.0     2
+PVB             sp2_sp2_7          N1          C6          N6         C1A       0.000     5.0     2
+PVB              const_32          C4          C5          C6          N6     180.000    10.0     2
+PVB              const_39          C4          C5          N7          C8       0.000    10.0     2
+PVB              const_41          N9          C8          N7          C5       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PVB    chir_1    C9    N9    C11    C10    both
+PVB    chir_2    C12    N2    C15    C13    negative
+PVB    chir_3    C13    C12    C16    C14    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PVB    plan-1          C2   0.020
+PVB    plan-1          C4   0.020
+PVB    plan-1          C5   0.020
+PVB    plan-1          C6   0.020
+PVB    plan-1          C8   0.020
+PVB    plan-1          C9   0.020
+PVB    plan-1          H8   0.020
+PVB    plan-1          N1   0.020
+PVB    plan-1          N2   0.020
+PVB    plan-1          N3   0.020
+PVB    plan-1          N6   0.020
+PVB    plan-1          N7   0.020
+PVB    plan-1          N9   0.020
+PVB    plan-2         C1A   0.020
+PVB    plan-2         C2A   0.020
+PVB    plan-2         C3A   0.020
+PVB    plan-2         C4A   0.020
+PVB    plan-2         C5A   0.020
+PVB    plan-2         C6A   0.020
+PVB    plan-2         CL1   0.020
+PVB    plan-2          CX   0.020
+PVB    plan-2         H2A   0.020
+PVB    plan-2         H3A   0.020
+PVB    plan-2         H6A   0.020
+PVB    plan-2          N6   0.020
+PVB    plan-3         C1A   0.020
+PVB    plan-3          C6   0.020
+PVB    plan-3          H6   0.020
+PVB    plan-3          N6   0.020
+PVB    plan-4         C4A   0.020
+PVB    plan-4          CX   0.020
+PVB    plan-4         OX1   0.020
+PVB    plan-4         OX2   0.020
+PVB    plan-5         C12   0.020
+PVB    plan-5          C2   0.020
+PVB    plan-5          H2   0.020
+PVB    plan-5          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PVB           SMILES              ACDLabs 10.04                                                                                                                               O=C(O)c1ccc(cc1Cl)Nc3nc(nc2c3ncn2C(C)C)NC(C(C)C)CO
+PVB SMILES_CANONICAL               CACTVS 3.352                                                                                                                       CC(C)[C@H](CO)Nc1nc(Nc2ccc(C(O)=O)c(Cl)c2)c3ncn(C(C)C)c3n1
+PVB           SMILES               CACTVS 3.352                                                                                                                        CC(C)[CH](CO)Nc1nc(Nc2ccc(C(O)=O)c(Cl)c2)c3ncn(C(C)C)c3n1
+PVB SMILES_CANONICAL "OpenEye OEToolkits" 1.6.1                                                                                                                     CC(C)[C@H](CO)Nc1nc(c2c(n1)n(cn2)C(C)C)Nc3ccc(c(c3)Cl)C(=O)O
+PVB           SMILES "OpenEye OEToolkits" 1.6.1                                                                                                                         CC(C)C(CO)Nc1nc(c2c(n1)n(cn2)C(C)C)Nc3ccc(c(c3)Cl)C(=O)O
+PVB            InChI                InChI  1.03 InChI=1S/C20H25ClN6O3/c1-10(2)15(8-28)24-20-25-17(16-18(26-20)27(9-22-16)11(3)4)23-12-5-6-13(19(29)30)14(21)7-12/h5-7,9-11,15,28H,8H2,1-4H3,(H,29,30)(H2,23,24,25,26)/t15-/m0/s1
+PVB         InChIKey                InChI  1.03                                                                                                                                                      ZKDXRFMOHZVXSG-HNNXBMFYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PVB acedrg               243         "dictionary generator"                  
+PVB acedrg_database      11          "data source"                           
+PVB rdkit                2017.03.2   "Chemoinformatics tool"
+PVB refmac5              5.8.0238    "optimization tool"                     

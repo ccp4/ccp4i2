@@ -1,0 +1,329 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AWN     AWN      2-(1~{H}-benzimidazol-2-yl)-~{N}-[(3-chloranyl-4-phenyl-phenyl)methyl]ethanamine     NON-POLYMER     46     26     .     
+#
+data_comp_AWN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AWN     C8      C       CR16    0       7.103       129.893     355.420     
+AWN     C5      C       CH2     0       7.300       134.415     353.407     
+AWN     C4      C       CH2     0       6.508       134.289     352.110     
+AWN     C2      C       CR6     0       4.944       137.700     351.566     
+AWN     N1      N       NR5     0       6.808       132.204     354.420     
+AWN     C6      C       CR5     0       7.706       133.103     353.959     
+AWN     CL      CL      CL      0       3.358       139.603     348.440     
+AWN     C       C       CR6     0       4.186       139.309     349.941     
+AWN     C15     C       CR6     0       4.721       140.369     350.679     
+AWN     C16     C       CR6     0       4.616       141.786     350.226     
+AWN     C21     C       CR16    0       5.757       142.513     349.882     
+AWN     C20     C       CR16    0       5.665       143.836     349.468     
+AWN     C19     C       CR16    0       4.434       144.456     349.397     
+AWN     C18     C       CR16    0       3.294       143.758     349.739     
+AWN     C17     C       CR16    0       3.383       142.436     350.157     
+AWN     C14     C       CR16    0       5.375       140.056     351.872     
+AWN     C13     C       CR16    0       5.483       138.744     352.307     
+AWN     C1      C       CR16    0       4.293       137.990     350.374     
+AWN     C3      C       CH2     0       5.071       136.275     352.046     
+AWN     N       N       NT1     0       6.230       135.596     351.486     
+AWN     N2      N       NRD5    0       8.948       132.671     354.060     
+AWN     C12     C       CR56    0       8.850       131.403     354.627     
+AWN     C7      C       CR56    0       7.507       131.100     354.857     
+AWN     C11     C       CR16    0       9.843       130.480     354.963     
+AWN     C10     C       CR16    0       9.448       129.283     355.520     
+AWN     C9      C       CR16    0       8.098       128.993     355.745     
+AWN     H1      H       H       0       6.200       129.699     355.571     
+AWN     H2      H       H       0       6.760       134.881     354.065     
+AWN     H3      H       H       0       8.095       134.947     353.245     
+AWN     H4      H       H       0       5.661       133.831     352.299     
+AWN     H5      H       H       0       7.020       133.735     351.481     
+AWN     H6      H       H       0       5.934       132.309     354.437     
+AWN     H7      H       H       0       6.604       142.096     349.927     
+AWN     H8      H       H       0       6.446       144.310     349.234     
+AWN     H9      H       H       0       4.372       145.355     349.115     
+AWN     H10     H       H       0       2.451       144.179     349.691     
+AWN     H11     H       H       0       2.596       141.965     350.386     
+AWN     H12     H       H       0       5.742       140.741     352.384     
+AWN     H13     H       H       0       5.928       138.558     353.117     
+AWN     H14     H       H       0       3.924       137.293     349.861     
+AWN     H15     H       H       0       4.260       135.780     351.799     
+AWN     H16     H       H       0       5.137       136.272     353.025     
+AWN     H17     H       H       0       6.946       136.121     351.569     
+AWN     H20     H       H       0       10.751      130.673     354.812     
+AWN     H21     H       H       0       10.100      128.649     355.753     
+AWN     H22     H       H       0       7.862       128.166     356.128     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AWN          CL           C      SINGLE       n     1.738  0.0114     1.738  0.0114
+AWN         C21         C20      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AWN         C20         C19      SINGLE       y     1.376  0.0124     1.376  0.0124
+AWN         C16         C21      SINGLE       y     1.392  0.0100     1.392  0.0100
+AWN         C19         C18      DOUBLE       y     1.376  0.0114     1.376  0.0114
+AWN           C          C1      DOUBLE       y     1.387  0.0117     1.387  0.0117
+AWN           C         C15      SINGLE       y     1.391  0.0100     1.391  0.0100
+AWN         C15         C16      SINGLE       n     1.490  0.0100     1.490  0.0100
+AWN         C16         C17      DOUBLE       y     1.392  0.0100     1.392  0.0100
+AWN          C2          C1      SINGLE       y     1.386  0.0100     1.386  0.0100
+AWN         C18         C17      SINGLE       y     1.386  0.0100     1.386  0.0100
+AWN         C15         C14      DOUBLE       y     1.392  0.0100     1.392  0.0100
+AWN          C2          C3      SINGLE       n     1.509  0.0100     1.509  0.0100
+AWN          C2         C13      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AWN         C14         C13      SINGLE       y     1.384  0.0100     1.384  0.0100
+AWN          C3           N      SINGLE       n     1.454  0.0100     1.454  0.0100
+AWN          C4           N      SINGLE       n     1.471  0.0137     1.471  0.0137
+AWN          C5          C4      SINGLE       n     1.522  0.0154     1.522  0.0154
+AWN          C5          C6      SINGLE       n     1.481  0.0100     1.481  0.0100
+AWN          N1          C6      SINGLE       y     1.351  0.0100     1.351  0.0100
+AWN          C6          N2      DOUBLE       y     1.318  0.0100     1.318  0.0100
+AWN          N1          C7      SINGLE       y     1.378  0.0100     1.378  0.0100
+AWN          N2         C12      SINGLE       y     1.393  0.0100     1.393  0.0100
+AWN         C12          C7      SINGLE       y     1.393  0.0100     1.393  0.0100
+AWN          C8          C7      DOUBLE       y     1.388  0.0100     1.388  0.0100
+AWN         C12         C11      DOUBLE       y     1.393  0.0100     1.393  0.0100
+AWN          C8          C9      SINGLE       y     1.377  0.0100     1.377  0.0100
+AWN         C11         C10      SINGLE       y     1.375  0.0100     1.375  0.0100
+AWN         C10          C9      DOUBLE       y     1.395  0.0112     1.395  0.0112
+AWN          C8          H1      SINGLE       n     1.082  0.0130     0.936  0.0156
+AWN          C5          H2      SINGLE       n     1.089  0.0100     0.970  0.0100
+AWN          C5          H3      SINGLE       n     1.089  0.0100     0.970  0.0100
+AWN          C4          H4      SINGLE       n     1.089  0.0100     0.982  0.0143
+AWN          C4          H5      SINGLE       n     1.089  0.0100     0.982  0.0143
+AWN          N1          H6      SINGLE       n     1.016  0.0100     0.881  0.0200
+AWN         C21          H7      SINGLE       n     1.082  0.0130     0.945  0.0170
+AWN         C20          H8      SINGLE       n     1.082  0.0130     0.943  0.0180
+AWN         C19          H9      SINGLE       n     1.082  0.0130     0.944  0.0161
+AWN         C18         H10      SINGLE       n     1.082  0.0130     0.943  0.0180
+AWN         C17         H11      SINGLE       n     1.082  0.0130     0.945  0.0170
+AWN         C14         H12      SINGLE       n     1.082  0.0130     0.930  0.0100
+AWN         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0173
+AWN          C1         H14      SINGLE       n     1.082  0.0130     0.941  0.0158
+AWN          C3         H15      SINGLE       n     1.089  0.0100     0.981  0.0172
+AWN          C3         H16      SINGLE       n     1.089  0.0100     0.981  0.0172
+AWN           N         H17      SINGLE       n     1.036  0.0160     0.890  0.0200
+AWN         C11         H20      SINGLE       n     1.082  0.0130     0.940  0.0194
+AWN         C10         H21      SINGLE       n     1.082  0.0130     0.939  0.0159
+AWN          C9         H22      SINGLE       n     1.082  0.0130     0.941  0.0181
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AWN          C7          C8          C9     116.713    1.50
+AWN          C7          C8          H1     121.713    1.50
+AWN          C9          C8          H1     121.573    1.50
+AWN          C4          C5          C6     112.733    1.51
+AWN          C4          C5          H2     108.920    1.50
+AWN          C4          C5          H3     108.920    1.50
+AWN          C6          C5          H2     108.854    1.50
+AWN          C6          C5          H3     108.854    1.50
+AWN          H2          C5          H3     107.724    1.50
+AWN           N          C4          C5     111.644    2.18
+AWN           N          C4          H4     109.402    1.50
+AWN           N          C4          H5     109.402    1.50
+AWN          C5          C4          H4     109.046    1.50
+AWN          C5          C4          H5     109.046    1.50
+AWN          H4          C4          H5     109.011    2.70
+AWN          C1          C2          C3     120.399    1.50
+AWN          C1          C2         C13     119.079    1.50
+AWN          C3          C2         C13     120.522    1.50
+AWN          C6          N1          C7     107.710    1.50
+AWN          C6          N1          H6     125.973    1.50
+AWN          C7          N1          H6     126.318    1.62
+AWN          C5          C6          N1     122.380    1.50
+AWN          C5          C6          N2     125.337    1.50
+AWN          N1          C6          N2     112.282    1.50
+AWN          CL           C          C1     118.395    1.50
+AWN          CL           C         C15     119.894    1.50
+AWN          C1           C         C15     121.711    1.50
+AWN           C         C15         C16     121.280    1.63
+AWN           C         C15         C14     117.402    1.50
+AWN         C16         C15         C14     121.318    1.53
+AWN         C21         C16         C15     121.096    1.50
+AWN         C21         C16         C17     117.808    1.50
+AWN         C15         C16         C17     121.096    1.50
+AWN         C20         C21         C16     120.887    1.50
+AWN         C20         C21          H7     119.636    1.50
+AWN         C16         C21          H7     119.477    1.50
+AWN         C21         C20         C19     120.251    1.50
+AWN         C21         C20          H8     119.823    1.50
+AWN         C19         C20          H8     119.926    1.50
+AWN         C20         C19         C18     119.915    1.50
+AWN         C20         C19          H9     120.043    1.50
+AWN         C18         C19          H9     120.043    1.50
+AWN         C19         C18         C17     120.251    1.50
+AWN         C19         C18         H10     119.926    1.50
+AWN         C17         C18         H10     119.823    1.50
+AWN         C16         C17         C18     120.887    1.50
+AWN         C16         C17         H11     119.477    1.50
+AWN         C18         C17         H11     119.636    1.50
+AWN         C15         C14         C13     120.798    1.50
+AWN         C15         C14         H12     119.514    1.50
+AWN         C13         C14         H12     119.688    1.50
+AWN          C2         C13         C14     121.097    1.50
+AWN          C2         C13         H13     119.480    1.50
+AWN         C14         C13         H13     119.423    1.50
+AWN           C          C1          C2     119.914    1.50
+AWN           C          C1         H14     120.172    1.50
+AWN          C2          C1         H14     119.914    1.50
+AWN          C2          C3           N     112.480    1.50
+AWN          C2          C3         H15     109.073    1.50
+AWN          C2          C3         H16     109.073    1.50
+AWN           N          C3         H15     108.965    1.50
+AWN           N          C3         H16     108.965    1.50
+AWN         H15          C3         H16     107.860    1.50
+AWN          C3           N          C4     112.912    1.50
+AWN          C3           N         H17     107.963    3.00
+AWN          C4           N         H17     108.280    3.00
+AWN          C6          N2         C12     105.184    1.50
+AWN          N2         C12          C7     109.552    1.50
+AWN          N2         C12         C11     130.388    1.50
+AWN          C7         C12         C11     120.060    1.50
+AWN          N1          C7         C12     105.272    1.50
+AWN          N1          C7          C8     132.484    1.50
+AWN         C12          C7          C8     122.244    1.50
+AWN         C12         C11         C10     117.727    1.50
+AWN         C12         C11         H20     120.915    1.50
+AWN         C10         C11         H20     121.359    1.50
+AWN         C11         C10          C9     121.628    1.50
+AWN         C11         C10         H21     119.132    1.50
+AWN          C9         C10         H21     119.240    1.50
+AWN          C8          C9         C10     121.628    1.50
+AWN          C8          C9         H22     119.132    1.50
+AWN         C10          C9         H22     119.240    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AWN       const_sp2_sp2_3          N1          C7          C8          C9     180.000     5.0     2
+AWN              const_81          C7          C8          C9         C10       0.000    10.0     2
+AWN              const_53         C19         C20         C21         C16       0.000    10.0     2
+AWN              const_57         C18         C19         C20         C21       0.000    10.0     2
+AWN              const_61         C17         C18         C19         C20       0.000    10.0     2
+AWN              const_65         C16         C17         C18         C19       0.000    10.0     2
+AWN              const_45          C2         C13         C14         C15       0.000    10.0     2
+AWN             sp3_sp3_2          C2          C3           N          C4     -60.000    10.0     3
+AWN            sp3_sp3_13           N          C4          C5          C6     180.000    10.0     3
+AWN             sp2_sp3_8          N1          C6          C5          C4     -90.000    10.0     6
+AWN              const_27          C7         C12          N2          C6       0.000    10.0     2
+AWN       const_sp2_sp2_5          N2         C12          C7          N1       0.000     5.0     2
+AWN              const_10         C10         C11         C12          N2     180.000    10.0     2
+AWN              const_13          C9         C10         C11         C12       0.000    10.0     2
+AWN              const_17         C11         C10          C9          C8       0.000    10.0     2
+AWN             sp3_sp3_7          C5          C4           N          C3     180.000    10.0     3
+AWN              const_74         C14         C13          C2          C3     180.000    10.0     2
+AWN              const_30           C          C1          C2          C3     180.000    10.0     2
+AWN             sp2_sp3_2          C1          C2          C3           N     -90.000    10.0     6
+AWN              const_77         C12          C7          N1          C6       0.000    10.0     2
+AWN              const_23          C5          C6          N1          C7     180.000    10.0     2
+AWN              const_26          C5          C6          N2         C12     180.000    10.0     2
+AWN              const_35          CL           C          C1          C2     180.000    10.0     2
+AWN              const_40          CL           C         C15         C16       0.000    10.0     2
+AWN              const_41         C13         C14         C15           C       0.000    10.0     2
+AWN             sp2_sp2_1           C         C15         C16         C21     180.000     5.0     2
+AWN              const_51         C15         C16         C21         C20     180.000    10.0     2
+AWN              const_69         C21         C16         C17         C18       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AWN    chir_1    N    C3    C4    H17    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AWN    plan-1         C10   0.020
+AWN    plan-1         C11   0.020
+AWN    plan-1         C12   0.020
+AWN    plan-1          C5   0.020
+AWN    plan-1          C6   0.020
+AWN    plan-1          C7   0.020
+AWN    plan-1          C8   0.020
+AWN    plan-1          C9   0.020
+AWN    plan-1          H1   0.020
+AWN    plan-1         H20   0.020
+AWN    plan-1         H21   0.020
+AWN    plan-1         H22   0.020
+AWN    plan-1          H6   0.020
+AWN    plan-1          N1   0.020
+AWN    plan-1          N2   0.020
+AWN    plan-2         C15   0.020
+AWN    plan-2         C16   0.020
+AWN    plan-2         C17   0.020
+AWN    plan-2         C18   0.020
+AWN    plan-2         C19   0.020
+AWN    plan-2         C20   0.020
+AWN    plan-2         C21   0.020
+AWN    plan-2         H10   0.020
+AWN    plan-2         H11   0.020
+AWN    plan-2          H7   0.020
+AWN    plan-2          H8   0.020
+AWN    plan-2          H9   0.020
+AWN    plan-3           C   0.020
+AWN    plan-3          C1   0.020
+AWN    plan-3         C13   0.020
+AWN    plan-3         C14   0.020
+AWN    plan-3         C15   0.020
+AWN    plan-3         C16   0.020
+AWN    plan-3          C2   0.020
+AWN    plan-3          C3   0.020
+AWN    plan-3          CL   0.020
+AWN    plan-3         H12   0.020
+AWN    plan-3         H13   0.020
+AWN    plan-3         H14   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AWN            InChI                InChI  1.03 InChI=1S/C22H20ClN3/c23-19-14-16(10-11-18(19)17-6-2-1-3-7-17)15-24-13-12-22-25-20-8-4-5-9-21(20)26-22/h1-11,14,24H,12-13,15H2,(H,25,26)
+AWN         InChIKey                InChI  1.03                                                                                                             FRBAXZWVJBIJNN-UHFFFAOYSA-N
+AWN SMILES_CANONICAL               CACTVS 3.385                                                                                                Clc1cc(CNCCc2[nH]c3ccccc3n2)ccc1c4ccccc4
+AWN           SMILES               CACTVS 3.385                                                                                                Clc1cc(CNCCc2[nH]c3ccccc3n2)ccc1c4ccccc4
+AWN SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                              c1ccc(cc1)c2ccc(cc2Cl)CNCCc3[nH]c4ccccc4n3
+AWN           SMILES "OpenEye OEToolkits" 2.0.6                                                                                              c1ccc(cc1)c2ccc(cc2Cl)CNCCc3[nH]c4ccccc4n3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AWN acedrg               243         "dictionary generator"                  
+AWN acedrg_database      11          "data source"                           
+AWN rdkit                2017.03.2   "Chemoinformatics tool"
+AWN refmac5              5.8.0238    "optimization tool"                     

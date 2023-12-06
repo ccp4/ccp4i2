@@ -14,7 +14,9 @@ from pathlib import Path
 from django.conf import settings
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-sys.path.append(BASE_DIR)
+sys.path.append(BASE_DIR.__str__())
+BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent.parent
+sys.path.append(BASE_DIR.__str__())
 print(sys.path)
 
 settings.configure(
@@ -31,7 +33,7 @@ settings.configure(
 )
 django.setup()
 
-from CCP4i2 import models
+from dbapi.CCP4i2 import models
 
 gi.require_version('Gtk', '3.0')
 
@@ -179,6 +181,7 @@ class CCP4i2Menu:
         return
 
     def __init__(self, jobId=None):
+        print('Hello!!!!!!!!!!!!!')
         self.dropDir = os.environ['PWD']
         if jobId is not None:
             self.job = models.Jobs.objects.get(jobid=jobId)

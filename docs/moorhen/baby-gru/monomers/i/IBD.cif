@@ -1,0 +1,367 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IBD     IBD      2-amino-4-{2,4-dichloro-5-[2-(diethylamino)ethoxy]phenyl}-N-ethylthieno[2,3-d]pyrimidine-6-carboxamide     NON-POLYMER     56     31     .     
+#
+data_comp_IBD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IBD     N1      N       NRD6    0       -0.356      -0.742      12.681      
+IBD     C2      C       CR6     0       -1.036      -1.141      13.787      
+IBD     N3      N       NRD6    0       -1.418      -0.328      14.794      
+IBD     C4      C       CR56    0       -1.101      0.978       14.688      
+IBD     C5      C       CR56    0       -0.393      1.483       13.563      
+IBD     C6      C       CR6     0       -0.042      0.570       12.552      
+IBD     CAA     C       CH3     0       -0.069      6.675       18.059      
+IBD     CAB     C       CH3     0       5.884       4.725       8.328       
+IBD     CAC     C       CH3     0       6.789       6.733       12.224      
+IBD     NAD     N       NH2     0       -1.349      -2.448      13.885      
+IBD     OAE     O       O       0       -0.147      5.689       14.495      
+IBD     CLAF    CL      CL      0       3.053       2.332       7.730       
+IBD     CLAG    CL      CL      0       -1.449      0.306       9.807       
+IBD     CAH     C       CR16    0       0.879       1.329       8.950       
+IBD     CAI     C       CR16    0       2.005       1.493       11.485      
+IBD     CAJ     C       CR15    0       -0.165      2.911       13.666      
+IBD     CAK     C       CH2     0       -1.141      6.477       17.029      
+IBD     CAL     C       CH2     0       6.315       5.454       9.577       
+IBD     CAM     C       CH2     0       5.432       6.271       11.740      
+IBD     CAN     C       CH2     0       4.443       3.075       11.667      
+IBD     CAO     C       CH2     0       5.727       3.812       11.373      
+IBD     NAR     N       NH1     0       -1.119      5.140       16.454      
+IBD     OAS     O       O2      0       4.015       2.411       10.471      
+IBD     SAT     S       S2      0       -1.416      2.237       15.736      
+IBD     CAU     C       C       0       -0.632      4.838       15.244      
+IBD     CAW     C       CR6     0       2.158       1.820       9.121       
+IBD     CAX     C       CR6     0       0.159       0.917       10.064      
+IBD     CAY     C       CR6     0       2.738       1.915       10.389      
+IBD     CAZ     C       CR5     0       -0.680      3.430       14.813      
+IBD     CBA     C       CR6     0       0.709       0.980       11.345      
+IBD     NBE     N       NT      0       5.469       5.150       10.761      
+IBD     HAA     H       H       0       0.011       7.620       18.267      
+IBD     HAAA    H       H       0       0.777       6.348       17.714      
+IBD     HAAB    H       H       0       -0.300      6.185       18.865      
+IBD     HAB     H       H       0       6.464       4.974       7.591       
+IBD     HABA    H       H       0       4.968       4.963       8.113       
+IBD     HABB    H       H       0       5.943       3.767       8.474       
+IBD     HAC     H       H       0       6.688       7.205       13.067      
+IBD     HACA    H       H       0       7.182       7.330       11.567      
+IBD     HACB    H       H       0       7.370       5.967       12.352      
+IBD     HNAD    H       H       0       -1.276      -2.858      14.657      
+IBD     HNAA    H       H       0       -1.623      -2.887      13.177      
+IBD     HAH     H       H       0       0.503       1.274       8.092       
+IBD     HAI     H       H       0       2.378       1.546       12.349      
+IBD     HAJ     H       H       0       0.287       3.418       13.015      
+IBD     HAK     H       H       0       -1.034      7.146       16.319      
+IBD     HAKA    H       H       0       -2.016      6.625       17.446      
+IBD     HAL     H       H       0       6.288       6.419       9.403       
+IBD     HALA    H       H       0       7.243       5.215       9.781       
+IBD     HAM     H       H       0       4.970       7.030       11.328      
+IBD     HAMA    H       H       0       4.901       5.990       12.515      
+IBD     HAN     H       H       0       3.759       3.705       11.967      
+IBD     HANA    H       H       0       4.592       2.419       12.377      
+IBD     HAO     H       H       0       6.275       3.270       10.767      
+IBD     HAOA    H       H       0       6.226       3.924       12.208      
+IBD     HNAR    H       H       0       -1.449      4.496       16.945      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IBD          N1          C2      DOUBLE       y     1.354  0.0100     1.354  0.0100
+IBD          N1          C6      SINGLE       y     1.349  0.0100     1.349  0.0100
+IBD          C2          N3      SINGLE       y     1.346  0.0100     1.346  0.0100
+IBD          C2         NAD      SINGLE       n     1.347  0.0100     1.347  0.0100
+IBD          N3          C4      DOUBLE       y     1.338  0.0176     1.338  0.0176
+IBD          C4          C5      SINGLE       y     1.401  0.0200     1.401  0.0200
+IBD          C4         SAT      SINGLE       y     1.695  0.0200     1.695  0.0200
+IBD          C5          C6      DOUBLE       y     1.403  0.0100     1.403  0.0100
+IBD          C5         CAJ      SINGLE       y     1.415  0.0200     1.415  0.0200
+IBD          C6         CBA      SINGLE       n     1.480  0.0100     1.480  0.0100
+IBD         CAA         CAK      SINGLE       n     1.499  0.0200     1.499  0.0200
+IBD         CAB         CAL      SINGLE       n     1.508  0.0173     1.508  0.0173
+IBD         CAC         CAM      SINGLE       n     1.508  0.0173     1.508  0.0173
+IBD         OAE         CAU      DOUBLE       n     1.231  0.0100     1.231  0.0100
+IBD        CLAF         CAW      SINGLE       n     1.731  0.0100     1.731  0.0100
+IBD        CLAG         CAX      SINGLE       n     1.738  0.0114     1.738  0.0114
+IBD         CAH         CAW      DOUBLE       y     1.376  0.0100     1.376  0.0100
+IBD         CAH         CAX      SINGLE       y     1.386  0.0100     1.386  0.0100
+IBD         CAI         CAY      DOUBLE       y     1.378  0.0100     1.378  0.0100
+IBD         CAI         CBA      SINGLE       y     1.397  0.0100     1.397  0.0100
+IBD         CAJ         CAZ      DOUBLE       y     1.353  0.0144     1.353  0.0144
+IBD         CAK         NAR      SINGLE       n     1.452  0.0100     1.452  0.0100
+IBD         CAL         NBE      SINGLE       n     1.479  0.0150     1.479  0.0150
+IBD         CAM         NBE      SINGLE       n     1.479  0.0150     1.479  0.0150
+IBD         CAN         CAO      SINGLE       n     1.509  0.0100     1.509  0.0100
+IBD         CAN         OAS      SINGLE       n     1.430  0.0100     1.430  0.0100
+IBD         CAO         NBE      SINGLE       n     1.480  0.0200     1.480  0.0200
+IBD         NAR         CAU      SINGLE       n     1.333  0.0106     1.333  0.0106
+IBD         OAS         CAY      SINGLE       n     1.367  0.0103     1.367  0.0103
+IBD         SAT         CAZ      SINGLE       y     1.695  0.0200     1.695  0.0200
+IBD         CAU         CAZ      SINGLE       n     1.467  0.0127     1.467  0.0127
+IBD         CAW         CAY      SINGLE       y     1.392  0.0100     1.392  0.0100
+IBD         CAX         CBA      DOUBLE       y     1.391  0.0100     1.391  0.0100
+IBD         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0145
+IBD         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0145
+IBD         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0145
+IBD         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0145
+IBD         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0145
+IBD         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0145
+IBD         CAC         HAC      SINGLE       n     1.089  0.0100     0.971  0.0145
+IBD         CAC        HACA      SINGLE       n     1.089  0.0100     0.971  0.0145
+IBD         CAC        HACB      SINGLE       n     1.089  0.0100     0.971  0.0145
+IBD         NAD        HNAD      SINGLE       n     1.016  0.0100     0.877  0.0200
+IBD         NAD        HNAA      SINGLE       n     1.016  0.0100     0.877  0.0200
+IBD         CAH         HAH      SINGLE       n     1.082  0.0130     0.938  0.0142
+IBD         CAI         HAI      SINGLE       n     1.082  0.0130     0.944  0.0200
+IBD         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.941  0.0170
+IBD         CAK         HAK      SINGLE       n     1.089  0.0100     0.981  0.0142
+IBD         CAK        HAKA      SINGLE       n     1.089  0.0100     0.981  0.0142
+IBD         CAL         HAL      SINGLE       n     1.089  0.0100     0.980  0.0143
+IBD         CAL        HALA      SINGLE       n     1.089  0.0100     0.980  0.0143
+IBD         CAM         HAM      SINGLE       n     1.089  0.0100     0.980  0.0143
+IBD         CAM        HAMA      SINGLE       n     1.089  0.0100     0.980  0.0143
+IBD         CAN         HAN      SINGLE       n     1.089  0.0100     0.977  0.0111
+IBD         CAN        HANA      SINGLE       n     1.089  0.0100     0.977  0.0111
+IBD         CAO         HAO      SINGLE       n     1.089  0.0100     0.980  0.0143
+IBD         CAO        HAOA      SINGLE       n     1.089  0.0100     0.980  0.0143
+IBD         NAR        HNAR      SINGLE       n     1.016  0.0100     0.873  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IBD          C2          N1          C6     117.999    1.50
+IBD          N1          C2          N3     125.124    1.50
+IBD          N1          C2         NAD     117.346    1.50
+IBD          N3          C2         NAD     117.530    1.50
+IBD          C2          N3          C4     117.935    2.19
+IBD          N3          C4          C5     122.611    2.68
+IBD          N3          C4         SAT     128.953    3.00
+IBD          C5          C4         SAT     108.436    3.00
+IBD          C4          C5          C6     117.175    1.50
+IBD          C4          C5         CAJ     106.881    1.50
+IBD          C6          C5         CAJ     135.944    3.00
+IBD          N1          C6          C5     119.157    1.50
+IBD          N1          C6         CBA     116.927    1.50
+IBD          C5          C6         CBA     123.917    1.50
+IBD         CAK         CAA         HAA     109.548    1.50
+IBD         CAK         CAA        HAAA     109.548    1.50
+IBD         CAK         CAA        HAAB     109.548    1.50
+IBD         HAA         CAA        HAAA     109.415    1.50
+IBD         HAA         CAA        HAAB     109.415    1.50
+IBD        HAAA         CAA        HAAB     109.415    1.50
+IBD         CAL         CAB         HAB     109.529    1.50
+IBD         CAL         CAB        HABA     109.529    1.50
+IBD         CAL         CAB        HABB     109.529    1.50
+IBD         HAB         CAB        HABA     109.415    1.50
+IBD         HAB         CAB        HABB     109.415    1.50
+IBD        HABA         CAB        HABB     109.415    1.50
+IBD         CAM         CAC         HAC     109.529    1.50
+IBD         CAM         CAC        HACA     109.529    1.50
+IBD         CAM         CAC        HACB     109.529    1.50
+IBD         HAC         CAC        HACA     109.415    1.50
+IBD         HAC         CAC        HACB     109.415    1.50
+IBD        HACA         CAC        HACB     109.415    1.50
+IBD          C2         NAD        HNAD     119.901    1.50
+IBD          C2         NAD        HNAA     119.901    1.50
+IBD        HNAD         NAD        HNAA     120.198    1.96
+IBD         CAW         CAH         CAX     119.042    1.50
+IBD         CAW         CAH         HAH     120.406    1.50
+IBD         CAX         CAH         HAH     120.553    1.50
+IBD         CAY         CAI         CBA     120.593    1.50
+IBD         CAY         CAI         HAI     119.938    1.50
+IBD         CBA         CAI         HAI     119.470    1.50
+IBD          C5         CAJ         CAZ     107.811    1.50
+IBD          C5         CAJ         HAJ     125.958    1.50
+IBD         CAZ         CAJ         HAJ     126.231    1.56
+IBD         CAA         CAK         NAR     112.470    1.50
+IBD         CAA         CAK         HAK     109.375    1.50
+IBD         CAA         CAK        HAKA     109.375    1.50
+IBD         NAR         CAK         HAK     109.052    1.50
+IBD         NAR         CAK        HAKA     109.052    1.50
+IBD         HAK         CAK        HAKA     108.054    1.50
+IBD         CAB         CAL         NBE     113.741    1.57
+IBD         CAB         CAL         HAL     109.135    1.50
+IBD         CAB         CAL        HALA     109.135    1.50
+IBD         NBE         CAL         HAL     109.022    1.50
+IBD         NBE         CAL        HALA     109.022    1.50
+IBD         HAL         CAL        HALA     107.838    1.50
+IBD         CAC         CAM         NBE     113.741    1.57
+IBD         CAC         CAM         HAM     109.135    1.50
+IBD         CAC         CAM        HAMA     109.135    1.50
+IBD         NBE         CAM         HAM     109.022    1.50
+IBD         NBE         CAM        HAMA     109.022    1.50
+IBD         HAM         CAM        HAMA     107.838    1.50
+IBD         CAO         CAN         OAS     107.287    2.37
+IBD         CAO         CAN         HAN     110.227    1.50
+IBD         CAO         CAN        HANA     110.227    1.50
+IBD         OAS         CAN         HAN     110.215    1.50
+IBD         OAS         CAN        HANA     110.215    1.50
+IBD         HAN         CAN        HANA     108.672    1.50
+IBD         CAN         CAO         NBE     112.399    3.00
+IBD         CAN         CAO         HAO     109.032    1.50
+IBD         CAN         CAO        HAOA     109.032    1.50
+IBD         NBE         CAO         HAO     109.118    1.50
+IBD         NBE         CAO        HAOA     109.118    1.50
+IBD         HAO         CAO        HAOA     107.851    1.50
+IBD         CAK         NAR         CAU     122.324    2.29
+IBD         CAK         NAR        HNAR     118.411    1.89
+IBD         CAU         NAR        HNAR     119.281    1.50
+IBD         CAN         OAS         CAY     117.464    1.77
+IBD          C4         SAT         CAZ     108.436    3.00
+IBD         OAE         CAU         NAR     122.159    1.50
+IBD         OAE         CAU         CAZ     121.045    1.72
+IBD         NAR         CAU         CAZ     116.796    1.69
+IBD        CLAF         CAW         CAH     119.321    1.50
+IBD        CLAF         CAW         CAY     119.252    1.50
+IBD         CAH         CAW         CAY     121.427    1.50
+IBD        CLAG         CAX         CAH     118.049    1.50
+IBD        CLAG         CAX         CBA     120.235    1.50
+IBD         CAH         CAX         CBA     121.716    1.50
+IBD         CAI         CAY         OAS     122.900    3.00
+IBD         CAI         CAY         CAW     119.073    1.50
+IBD         OAS         CAY         CAW     118.028    1.50
+IBD         CAJ         CAZ         SAT     108.436    3.00
+IBD         CAJ         CAZ         CAU     131.814    3.00
+IBD         SAT         CAZ         CAU     119.751    3.00
+IBD          C6         CBA         CAI     120.802    1.50
+IBD          C6         CBA         CAX     121.048    1.50
+IBD         CAI         CBA         CAX     118.150    1.50
+IBD         CAL         NBE         CAM     110.773    1.86
+IBD         CAL         NBE         CAO     112.216    2.51
+IBD         CAM         NBE         CAO     112.216    2.51
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IBD       const_sp2_sp2_2         NAD          C2          N1          C6     180.000     5.0     2
+IBD              const_45          C5          C6          N1          C2       0.000    10.0     2
+IBD              const_26         CAX         CAH         CAW        CLAF     180.000    10.0     2
+IBD              const_50         CAW         CAH         CAX        CLAG     180.000    10.0     2
+IBD              const_34         CBA         CAI         CAY         OAS     180.000    10.0     2
+IBD              const_38         CAY         CAI         CBA          C6     180.000    10.0     2
+IBD              const_20          C5         CAJ         CAZ         CAU     180.000    10.0     2
+IBD             sp2_sp3_2         CAU         NAR         CAK         CAA     120.000    10.0     6
+IBD            sp3_sp3_29         CAB         CAL         NBE         CAM     -60.000    10.0     3
+IBD            sp3_sp3_34         CAC         CAM         NBE         CAL     180.000    10.0     3
+IBD            sp3_sp3_40         OAS         CAN         CAO         NBE     180.000    10.0     3
+IBD            sp3_sp3_49         CAO         CAN         OAS         CAY     180.000    10.0     3
+IBD       const_sp2_sp2_4         NAD          C2          N3          C4     180.000     5.0     2
+IBD             sp2_sp2_1          N1          C2         NAD        HNAD     180.000     5.0     2
+IBD            sp3_sp3_53         CAN         CAO         NBE         CAL     -60.000    10.0     3
+IBD            sp2_sp2_11         OAE         CAU         NAR         CAK       0.000     5.0     2
+IBD            sp2_sp2_13         CAI         CAY         OAS         CAN     180.000     5.0     2
+IBD              const_24         CAU         CAZ         SAT          C4     180.000    10.0     2
+IBD            sp2_sp2_17         OAE         CAU         CAZ         CAJ       0.000     5.0     2
+IBD              const_32        CLAF         CAW         CAY         OAS       0.000    10.0     2
+IBD              const_44        CLAG         CAX         CBA          C6       0.000    10.0     2
+IBD       const_sp2_sp2_5          C5          C4          N3          C2       0.000     5.0     2
+IBD              const_48          N3          C4         SAT         CAZ     180.000    10.0     2
+IBD       const_sp2_sp2_7          N3          C4          C5          C6       0.000     5.0     2
+IBD              const_15          C4          C5         CAJ         CAZ       0.000    10.0     2
+IBD              const_11          C4          C5          C6          N1       0.000    10.0     2
+IBD             sp2_sp2_7          N1          C6         CBA         CAI       0.000     5.0     2
+IBD             sp3_sp3_1         HAA         CAA         CAK         NAR     180.000    10.0     3
+IBD            sp3_sp3_10         HAB         CAB         CAL         NBE     180.000    10.0     3
+IBD            sp3_sp3_19         HAC         CAC         CAM         NBE     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IBD    chir_1    NBE    CAO    CAL    CAM    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IBD    plan-1          C2   0.020
+IBD    plan-1          C4   0.020
+IBD    plan-1          C5   0.020
+IBD    plan-1          C6   0.020
+IBD    plan-1         CAJ   0.020
+IBD    plan-1         CAU   0.020
+IBD    plan-1         CAZ   0.020
+IBD    plan-1         CBA   0.020
+IBD    plan-1         HAJ   0.020
+IBD    plan-1          N1   0.020
+IBD    plan-1          N3   0.020
+IBD    plan-1         NAD   0.020
+IBD    plan-1         SAT   0.020
+IBD    plan-2          C6   0.020
+IBD    plan-2         CAH   0.020
+IBD    plan-2         CAI   0.020
+IBD    plan-2         CAW   0.020
+IBD    plan-2         CAX   0.020
+IBD    plan-2         CAY   0.020
+IBD    plan-2         CBA   0.020
+IBD    plan-2        CLAF   0.020
+IBD    plan-2        CLAG   0.020
+IBD    plan-2         HAH   0.020
+IBD    plan-2         HAI   0.020
+IBD    plan-2         OAS   0.020
+IBD    plan-3          C2   0.020
+IBD    plan-3        HNAA   0.020
+IBD    plan-3        HNAD   0.020
+IBD    plan-3         NAD   0.020
+IBD    plan-4         CAK   0.020
+IBD    plan-4         CAU   0.020
+IBD    plan-4        HNAR   0.020
+IBD    plan-4         NAR   0.020
+IBD    plan-5         CAU   0.020
+IBD    plan-5         CAZ   0.020
+IBD    plan-5         NAR   0.020
+IBD    plan-5         OAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IBD           SMILES              ACDLabs 12.01                                                                                                          Clc3c(OCCN(CC)CC)cc(c1nc(nc2sc(cc12)C(=O)NCC)N)c(Cl)c3
+IBD SMILES_CANONICAL               CACTVS 3.370                                                                                                            CCNC(=O)c1sc2nc(N)nc(c3cc(OCCN(CC)CC)c(Cl)cc3Cl)c2c1
+IBD           SMILES               CACTVS 3.370                                                                                                            CCNC(=O)c1sc2nc(N)nc(c3cc(OCCN(CC)CC)c(Cl)cc3Cl)c2c1
+IBD SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                            CCNC(=O)c1cc2c(nc(nc2s1)N)c3cc(c(cc3Cl)Cl)OCCN(CC)CC
+IBD           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                            CCNC(=O)c1cc2c(nc(nc2s1)N)c3cc(c(cc3Cl)Cl)OCCN(CC)CC
+IBD            InChI                InChI  1.03 InChI=1S/C21H25Cl2N5O2S/c1-4-25-19(29)17-10-13-18(26-21(24)27-20(13)31-17)12-9-16(15(23)11-14(12)22)30-8-7-28(5-2)6-3/h9-11H,4-8H2,1-3H3,(H,25,29)(H2,24,26,27)
+IBD         InChIKey                InChI  1.03                                                                                                                                     KQRDVNUCOWRFLN-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IBD acedrg               243         "dictionary generator"                  
+IBD acedrg_database      11          "data source"                           
+IBD rdkit                2017.03.2   "Chemoinformatics tool"
+IBD refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,273 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PDB     PDB      1-(2-chlorophenyl)-6-[(2R)-3,3,3-trifluoro-2-methylpropyl]-1,7-dihydro-4H-pyrazolo[3,4-d]pyrimidin-4-one     NON-POLYMER     36     24     .     
+#
+data_comp_PDB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PDB     C2      C       CR6     0       78.479      49.838      39.577      
+PDB     C3      C       CR16    0       79.169      49.741      38.373      
+PDB     C4      C       CR16    0       80.414      50.317      38.251      
+PDB     C5      C       CR16    0       80.976      50.988      39.319      
+PDB     F5      F       F       0       76.086      55.447      42.613      
+PDB     C6      C       CR16    0       80.295      51.089      40.523      
+PDB     F6      F       F       0       74.097      56.156      42.350      
+PDB     C7      C       CR6     0       79.042      50.512      40.656      
+PDB     F7      F       F       0       75.669      56.909      41.136      
+PDB     N8      N       NR5     0       78.344      50.621      41.897      
+PDB     N9      N       NRD5    0       78.850      49.999      43.024      
+PDB     C10     C       CR15    0       78.034      50.266      44.023      
+PDB     C11     C       CR56    0       77.199      51.298      42.222      
+PDB     C12     C       CR56    0       76.964      51.081      43.586      
+PDB     N13     N       NR6     0       76.320      52.059      41.495      
+PDB     C14     C       CR6     0       75.232      52.611      42.101      
+PDB     N15     N       NRD6    0       74.971      52.441      43.367      
+PDB     C16     C       CR6     0       75.819      51.676      44.155      
+PDB     O17     O       O       0       75.514      51.556      45.350      
+PDB     C18     C       CH2     0       74.286      53.442      41.292      
+PDB     C19     C       CH1     0       74.936      54.701      40.668      
+PDB     C20     C       CH3     0       74.088      55.224      39.511      
+PDB     C21     C       CT      0       75.194      55.794      41.688      
+PDB     CL1     CL      CL      0       76.921      49.108      39.709      
+PDB     H1      H       H       0       78.785      49.284      37.648      
+PDB     H2      H       H       0       80.881      50.252      37.438      
+PDB     H3      H       H       0       81.829      51.381      39.231      
+PDB     H4      H       H       0       80.681      51.546      41.246      
+PDB     H5      H       H       0       78.159      49.950      44.896      
+PDB     H6      H       H       0       76.464      52.195      40.633      
+PDB     H7      H       H       0       73.532      53.716      41.853      
+PDB     H8      H       H       0       73.926      52.888      40.569      
+PDB     H9      H       H       0       75.811      54.432      40.296      
+PDB     H10     H       H       0       74.576      55.916      39.033      
+PDB     H11     H       H       0       73.256      55.593      39.856      
+PDB     H12     H       H       0       73.887      54.495      38.899      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PDB          C3          C4      SINGLE       y     1.374  0.0100     1.374  0.0100
+PDB          C4          C5      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PDB          C2          C3      DOUBLE       y     1.388  0.0100     1.388  0.0100
+PDB          C5          C6      SINGLE       y     1.384  0.0100     1.384  0.0100
+PDB         C19         C20      SINGLE       n     1.521  0.0135     1.521  0.0135
+PDB          C2         CL1      SINGLE       n     1.725  0.0100     1.725  0.0100
+PDB          C2          C7      SINGLE       y     1.385  0.0100     1.385  0.0100
+PDB          C6          C7      DOUBLE       y     1.382  0.0100     1.382  0.0100
+PDB          C7          N8      SINGLE       n     1.427  0.0100     1.427  0.0100
+PDB         C18         C19      SINGLE       n     1.540  0.0118     1.540  0.0118
+PDB         C19         C21      SINGLE       n     1.512  0.0100     1.512  0.0100
+PDB         C14         C18      SINGLE       n     1.494  0.0100     1.494  0.0100
+PDB          F7         C21      SINGLE       n     1.331  0.0122     1.331  0.0122
+PDB         N13         C14      SINGLE       y     1.355  0.0100     1.355  0.0100
+PDB         C11         N13      SINGLE       y     1.361  0.0200     1.361  0.0200
+PDB          F6         C21      SINGLE       n     1.331  0.0122     1.331  0.0122
+PDB          F5         C21      SINGLE       n     1.331  0.0122     1.331  0.0122
+PDB          N8         C11      SINGLE       y     1.371  0.0200     1.371  0.0200
+PDB          N8          N9      SINGLE       y     1.377  0.0142     1.377  0.0142
+PDB         C14         N15      DOUBLE       y     1.295  0.0100     1.295  0.0100
+PDB         C11         C12      DOUBLE       y     1.419  0.0200     1.419  0.0200
+PDB          N9         C10      DOUBLE       y     1.315  0.0100     1.315  0.0100
+PDB         N15         C16      SINGLE       y     1.367  0.0200     1.367  0.0200
+PDB         C10         C12      SINGLE       y     1.416  0.0100     1.416  0.0100
+PDB         C12         C16      SINGLE       y     1.409  0.0200     1.409  0.0200
+PDB         C16         O17      DOUBLE       n     1.239  0.0136     1.239  0.0136
+PDB          C3          H1      SINGLE       n     1.082  0.0130     0.939  0.0138
+PDB          C4          H2      SINGLE       n     1.082  0.0130     0.939  0.0165
+PDB          C5          H3      SINGLE       n     1.082  0.0130     0.943  0.0172
+PDB          C6          H4      SINGLE       n     1.082  0.0130     0.938  0.0100
+PDB         C10          H5      SINGLE       n     1.082  0.0130     0.936  0.0129
+PDB         N13          H6      SINGLE       n     1.016  0.0100     0.885  0.0200
+PDB         C18          H7      SINGLE       n     1.089  0.0100     0.979  0.0114
+PDB         C18          H8      SINGLE       n     1.089  0.0100     0.979  0.0114
+PDB         C19          H9      SINGLE       n     1.089  0.0100     0.989  0.0175
+PDB         C20         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+PDB         C20         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+PDB         C20         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PDB          C3          C2         CL1     119.526    1.50
+PDB          C3          C2          C7     120.515    1.50
+PDB         CL1          C2          C7     119.958    1.50
+PDB          C4          C3          C2     119.621    1.50
+PDB          C4          C3          H1     120.378    1.50
+PDB          C2          C3          H1     120.001    1.50
+PDB          C3          C4          C5     120.211    1.50
+PDB          C3          C4          H2     119.773    1.50
+PDB          C5          C4          H2     120.015    1.50
+PDB          C4          C5          C6     120.482    1.50
+PDB          C4          C5          H3     119.924    1.50
+PDB          C6          C5          H3     119.595    1.50
+PDB          C5          C6          C7     119.483    1.50
+PDB          C5          C6          H4     120.353    1.50
+PDB          C7          C6          H4     120.165    1.50
+PDB          C2          C7          C6     119.687    1.50
+PDB          C2          C7          N8     120.083    1.50
+PDB          C6          C7          N8     120.230    1.50
+PDB          C7          N8         C11     130.760    1.50
+PDB          C7          N8          N9     119.798    1.50
+PDB         C11          N8          N9     109.442    1.50
+PDB          N8          N9         C10     106.154    1.50
+PDB          N9         C10         C12     110.488    1.50
+PDB          N9         C10          H5     123.782    3.00
+PDB         C12         C10          H5     125.730    1.50
+PDB         N13         C11          N8     132.311    1.50
+PDB         N13         C11         C12     120.169    1.50
+PDB          N8         C11         C12     107.520    1.50
+PDB         C11         C12         C10     106.397    3.00
+PDB         C11         C12         C16     119.981    2.10
+PDB         C10         C12         C16     133.623    2.28
+PDB         C14         N13         C11     119.579    1.50
+PDB         C14         N13          H6     120.314    1.50
+PDB         C11         N13          H6     120.107    1.50
+PDB         C18         C14         N13     120.153    2.34
+PDB         C18         C14         N15     118.477    1.50
+PDB         N13         C14         N15     121.370    1.50
+PDB         C14         N15         C16     118.429    1.50
+PDB         N15         C16         C12     120.472    1.78
+PDB         N15         C16         O17     116.539    1.50
+PDB         C12         C16         O17     122.989    1.50
+PDB         C19         C18         C14     111.525    1.84
+PDB         C19         C18          H7     108.524    1.50
+PDB         C19         C18          H8     108.524    1.50
+PDB         C14         C18          H7     108.985    1.50
+PDB         C14         C18          H8     108.985    1.50
+PDB          H7         C18          H8     107.735    1.50
+PDB         C20         C19         C18     110.998    1.50
+PDB         C20         C19         C21     110.749    1.50
+PDB         C20         C19          H9     107.863    1.50
+PDB         C18         C19         C21     110.871    1.56
+PDB         C18         C19          H9     107.574    1.50
+PDB         C21         C19          H9     107.627    1.50
+PDB         C19         C20         H10     109.513    1.50
+PDB         C19         C20         H11     109.513    1.50
+PDB         C19         C20         H12     109.513    1.50
+PDB         H10         C20         H11     109.411    1.50
+PDB         H10         C20         H12     109.411    1.50
+PDB         H11         C20         H12     109.411    1.50
+PDB         C19         C21          F7     112.567    1.50
+PDB         C19         C21          F6     112.567    1.50
+PDB         C19         C21          F5     112.567    1.50
+PDB          F7         C21          F6     106.124    1.50
+PDB          F7         C21          F5     106.124    1.50
+PDB          F6         C21          F5     106.124    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PDB              const_33         CL1          C2          C3          C4     180.000    10.0     2
+PDB              const_53         CL1          C2          C7          C6     180.000    10.0     2
+PDB              const_13         C12         C10          N9          N8       0.000    10.0     2
+PDB       const_sp2_sp2_9          N9         C10         C12         C11       0.000     5.0     2
+PDB       const_sp2_sp2_6         N13         C11         C12         C10     180.000     5.0     2
+PDB              const_17          N8         C11         N13         C14     180.000    10.0     2
+PDB              const_28         C11         C12         C16         O17     180.000    10.0     2
+PDB              const_21         C18         C14         N13         C11     180.000    10.0     2
+PDB              const_24         C18         C14         N15         C16     180.000    10.0     2
+PDB             sp2_sp3_2         N13         C14         C18         C19     -90.000    10.0     6
+PDB              const_26         O17         C16         N15         C14     180.000    10.0     2
+PDB            sp3_sp3_10         C14         C18         C19         C20     180.000    10.0     3
+PDB              const_35          C2          C3          C4          C5       0.000    10.0     2
+PDB             sp3_sp3_1         C18         C19         C20         H10     180.000    10.0     3
+PDB            sp3_sp3_19         C20         C19         C21          F7     180.000    10.0     3
+PDB              const_39          C3          C4          C5          C6       0.000    10.0     2
+PDB              const_43          C4          C5          C6          C7       0.000    10.0     2
+PDB              const_47          C5          C6          C7          C2       0.000    10.0     2
+PDB             sp2_sp2_1          C2          C7          N8         C11     180.000     5.0     2
+PDB              const_56          C7          N8          N9         C10     180.000    10.0     2
+PDB       const_sp2_sp2_4         N13         C11          N8          C7       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PDB    chir_1    C19    C21    C18    C20    negative
+PDB    chir_2    C21    F7    F6    F5    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PDB    plan-1         C10   0.020
+PDB    plan-1         C11   0.020
+PDB    plan-1         C12   0.020
+PDB    plan-1         C14   0.020
+PDB    plan-1         C16   0.020
+PDB    plan-1         C18   0.020
+PDB    plan-1          C7   0.020
+PDB    plan-1          H5   0.020
+PDB    plan-1          H6   0.020
+PDB    plan-1         N13   0.020
+PDB    plan-1         N15   0.020
+PDB    plan-1          N8   0.020
+PDB    plan-1          N9   0.020
+PDB    plan-1         O17   0.020
+PDB    plan-2          C2   0.020
+PDB    plan-2          C3   0.020
+PDB    plan-2          C4   0.020
+PDB    plan-2          C5   0.020
+PDB    plan-2          C6   0.020
+PDB    plan-2          C7   0.020
+PDB    plan-2         CL1   0.020
+PDB    plan-2          H1   0.020
+PDB    plan-2          H2   0.020
+PDB    plan-2          H3   0.020
+PDB    plan-2          H4   0.020
+PDB    plan-2          N8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PDB           SMILES              ACDLabs 12.01                                                                                            FC(F)(F)C(C)CC1=NC(=O)c2c(N1)n(nc2)c3ccccc3Cl
+PDB            InChI                InChI  1.03 InChI=1S/C15H12ClF3N4O/c1-8(15(17,18)19)6-12-21-13-9(14(24)22-12)7-20-23(13)11-5-3-2-4-10(11)16/h2-5,7-8H,6H2,1H3,(H,21,22,24)/t8-/m1/s1
+PDB         InChIKey                InChI  1.03                                                                                                              FFPXPXOAFQCNBS-MRVPVSSYSA-N
+PDB SMILES_CANONICAL               CACTVS 3.385                                                                                          C[C@H](CC1=NC(=O)c2cnn(c2N1)c3ccccc3Cl)C(F)(F)F
+PDB           SMILES               CACTVS 3.385                                                                                           C[CH](CC1=NC(=O)c2cnn(c2N1)c3ccccc3Cl)C(F)(F)F
+PDB SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                          C[C@H](CC1=NC(=O)c2cnn(c2N1)c3ccccc3Cl)C(F)(F)F
+PDB           SMILES "OpenEye OEToolkits" 1.7.6                                                                                              CC(CC1=NC(=O)c2cnn(c2N1)c3ccccc3Cl)C(F)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PDB acedrg               243         "dictionary generator"                  
+PDB acedrg_database      11          "data source"                           
+PDB rdkit                2017.03.2   "Chemoinformatics tool"
+PDB refmac5              5.8.0238    "optimization tool"                     

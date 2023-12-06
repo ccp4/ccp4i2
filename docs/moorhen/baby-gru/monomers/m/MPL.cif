@@ -1,0 +1,218 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MPL     MPL      "N-METHYL-PYRIDOXAL-5'-PHOSPHATE"     NON-POLYMER     28     17     .     
+#
+data_comp_MPL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MPL     P       P       P       0       -136.133    3.935       68.025      
+MPL     O1P     O       O       0       -136.946    5.210       68.143      
+MPL     O2P     O       OP      -1      -136.990    2.711       67.764      
+MPL     O3P     O       OP      -1      -135.168    3.743       69.179      
+MPL     O4P     O       O2      0       -135.217    4.119       66.708      
+MPL     C5A     C       CH2     0       -134.133    5.100       66.656      
+MPL     C5      C       CR6     0       -133.415    5.028       65.335      
+MPL     N1      N       NR6     1       -131.393    4.438       64.096      
+MPL     C1      C       CH3     0       -130.020    3.908       64.110      
+MPL     C6      C       CR16    0       -132.112    4.533       65.283      
+MPL     C2      C       CR6     0       -131.979    4.848       62.898      
+MPL     C2A     C       CH3     0       -131.186    4.740       61.611      
+MPL     C3      C       CR6     0       -133.295    5.350       62.925      
+MPL     O3      O       OH1     0       -133.912    5.765       61.765      
+MPL     C4      C       CR6     0       -134.022    5.444       64.135      
+MPL     C4A     C       C1      0       -135.389    5.973       64.114      
+MPL     O       O       O       0       -136.403    5.316       64.178      
+MPL     H51     H       H       0       -133.507    4.920       67.391      
+MPL     H52     H       H       0       -134.507    5.999       66.787      
+MPL     H11     H       H       0       -129.407    4.581       63.773      
+MPL     H12     H       H       0       -129.972    3.115       63.552      
+MPL     H13     H       H       0       -129.765    3.673       65.017      
+MPL     H6      H       H       0       -131.702    4.252       66.084      
+MPL     H21     H       H       0       -131.717    5.056       60.864      
+MPL     H22     H       H       0       -130.941    3.813       61.457      
+MPL     H23     H       H       0       -130.381    5.279       61.679      
+MPL     HO3     H       H       0       -134.542    5.291       61.419      
+MPL     H       H       H       0       -135.482    6.915       64.043      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MPL           P         O1P      DOUBLE       n     1.517  0.0192     1.517  0.0192
+MPL           P         O2P      SINGLE       n     1.517  0.0192     1.517  0.0192
+MPL           P         O3P      SINGLE       n     1.517  0.0192     1.517  0.0192
+MPL           P         O4P      SINGLE       n     1.614  0.0178     1.614  0.0178
+MPL         O4P         C5A      SINGLE       n     1.462  0.0104     1.462  0.0104
+MPL         C5A          C5      SINGLE       n     1.503  0.0100     1.503  0.0100
+MPL          C5          C6      DOUBLE       y     1.392  0.0100     1.392  0.0100
+MPL          C5          C4      SINGLE       y     1.403  0.0100     1.403  0.0100
+MPL          N1          C1      SINGLE       n     1.467  0.0100     1.467  0.0100
+MPL          N1          C6      SINGLE       y     1.378  0.0177     1.378  0.0177
+MPL          N1          C2      DOUBLE       y     1.384  0.0103     1.384  0.0103
+MPL          C2         C2A      SINGLE       n     1.507  0.0123     1.507  0.0123
+MPL          C2          C3      SINGLE       y     1.397  0.0127     1.397  0.0127
+MPL          C3          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+MPL          C3          C4      DOUBLE       y     1.409  0.0100     1.409  0.0100
+MPL          C4         C4A      SINGLE       n     1.464  0.0111     1.464  0.0111
+MPL         C4A           O      DOUBLE       n     1.210  0.0148     1.210  0.0148
+MPL         C5A         H51      SINGLE       n     1.089  0.0100     0.982  0.0107
+MPL         C5A         H52      SINGLE       n     1.089  0.0100     0.982  0.0107
+MPL          C1         H11      SINGLE       n     1.089  0.0100     0.971  0.0146
+MPL          C1         H12      SINGLE       n     1.089  0.0100     0.971  0.0146
+MPL          C1         H13      SINGLE       n     1.089  0.0100     0.971  0.0146
+MPL          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0169
+MPL         C2A         H21      SINGLE       n     1.089  0.0100     0.971  0.0138
+MPL         C2A         H22      SINGLE       n     1.089  0.0100     0.971  0.0138
+MPL         C2A         H23      SINGLE       n     1.089  0.0100     0.971  0.0138
+MPL          O3         HO3      SINGLE       n     0.966  0.0059     0.861  0.0200
+MPL         C4A           H      SINGLE       n     1.082  0.0130     0.949  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MPL         O1P           P         O2P     112.864    1.69
+MPL         O1P           P         O3P     112.864    1.69
+MPL         O1P           P         O4P     105.808    2.07
+MPL         O2P           P         O3P     112.864    1.69
+MPL         O2P           P         O4P     105.808    2.07
+MPL         O3P           P         O4P     105.808    2.07
+MPL           P         O4P         C5A     121.496    2.55
+MPL         O4P         C5A          C5     110.538    2.24
+MPL         O4P         C5A         H51     108.933    1.90
+MPL         O4P         C5A         H52     108.933    1.90
+MPL          C5         C5A         H51     109.800    1.50
+MPL          C5         C5A         H52     109.800    1.50
+MPL         H51         C5A         H52     108.248    1.50
+MPL         C5A          C5          C6     119.888    1.50
+MPL         C5A          C5          C4     121.285    1.50
+MPL          C6          C5          C4     118.827    1.50
+MPL          C1          N1          C6     121.030    1.50
+MPL          C1          N1          C2     118.933    1.83
+MPL          C6          N1          C2     120.037    1.50
+MPL          N1          C1         H11     109.451    1.50
+MPL          N1          C1         H12     109.451    1.50
+MPL          N1          C1         H13     109.451    1.50
+MPL         H11          C1         H12     109.436    1.85
+MPL         H11          C1         H13     109.436    1.85
+MPL         H12          C1         H13     109.436    1.85
+MPL          C5          C6          N1     122.439    1.50
+MPL          C5          C6          H6     118.897    1.54
+MPL          N1          C6          H6     118.664    1.50
+MPL          N1          C2         C2A     118.570    1.50
+MPL          N1          C2          C3     118.974    1.50
+MPL         C2A          C2          C3     122.457    1.50
+MPL          C2         C2A         H21     109.459    1.50
+MPL          C2         C2A         H22     109.459    1.50
+MPL          C2         C2A         H23     109.459    1.50
+MPL         H21         C2A         H22     109.339    1.66
+MPL         H21         C2A         H23     109.339    1.66
+MPL         H22         C2A         H23     109.339    1.66
+MPL          C2          C3          O3     119.654    3.00
+MPL          C2          C3          C4     120.692    1.50
+MPL          O3          C3          C4     119.654    3.00
+MPL          C3          O3         HO3     120.000    3.00
+MPL          C5          C4          C3     119.032    1.50
+MPL          C5          C4         C4A     121.320    2.22
+MPL          C3          C4         C4A     119.648    1.50
+MPL          C4         C4A           O     125.762    1.85
+MPL          C4         C4A           H     116.796    1.55
+MPL           O         C4A           H     117.442    1.69
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MPL             sp3_sp3_3         C5A         O4P           P         O1P      60.000    10.0     3
+MPL            sp2_sp3_13          N1          C2         C2A         H21     150.000    10.0     6
+MPL              const_16         C2A          C2          C3          O3       0.000    10.0     2
+MPL             sp2_sp2_1          C2          C3          O3         HO3     180.000     5.0     2
+MPL              const_20          O3          C3          C4         C4A       0.000    10.0     2
+MPL             sp2_sp2_3          C5          C4         C4A           O     180.000     5.0     2
+MPL             sp3_sp3_4          C5         C5A         O4P           P     180.000    10.0     3
+MPL             sp2_sp3_2          C6          C5         C5A         O4P     -90.000    10.0     6
+MPL              const_24         C4A          C4          C5         C5A       0.000    10.0     2
+MPL       const_sp2_sp2_3         C5A          C5          C6          N1     180.000     5.0     2
+MPL              const_12         C2A          C2          N1          C1       0.000    10.0     2
+MPL             sp2_sp3_7          C6          N1          C1         H11     150.000    10.0     6
+MPL       const_sp2_sp2_6          C5          C6          N1          C1     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MPL    chir_1    P    O4P    O2P    O3P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MPL    plan-1          C1   0.020
+MPL    plan-1          C2   0.020
+MPL    plan-1         C2A   0.020
+MPL    plan-1          C3   0.020
+MPL    plan-1          C4   0.020
+MPL    plan-1         C4A   0.020
+MPL    plan-1          C5   0.020
+MPL    plan-1         C5A   0.020
+MPL    plan-1          C6   0.020
+MPL    plan-1          H6   0.020
+MPL    plan-1          N1   0.020
+MPL    plan-1          O3   0.020
+MPL    plan-2          C4   0.020
+MPL    plan-2         C4A   0.020
+MPL    plan-2           H   0.020
+MPL    plan-2           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MPL           SMILES              ACDLabs 10.04                                                                       O=P(O)(O)OCc1c[n+](c(c(O)c1C=O)C)C
+MPL SMILES_CANONICAL               CACTVS 3.341                                                                     Cc1c(O)c(C=O)c(CO[P](O)(O)=O)c[n+]1C
+MPL           SMILES               CACTVS 3.341                                                                     Cc1c(O)c(C=O)c(CO[P](O)(O)=O)c[n+]1C
+MPL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                       Cc1c(c(c(c[n+]1C)COP(=O)(O)O)C=O)O
+MPL           SMILES "OpenEye OEToolkits" 1.5.0                                                                       Cc1c(c(c(c[n+]1C)COP(=O)(O)O)C=O)O
+MPL            InChI                InChI  1.03 InChI=1S/C9H12NO6P/c1-6-9(12)8(4-11)7(3-10(6)2)5-16-17(13,14)15/h3-4H,5H2,1-2H3,(H2-,11,12,13,14,15)/p+1
+MPL         InChIKey                InChI  1.03                                                                              CBNMAKRKGWDQHB-UHFFFAOYSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MPL acedrg               243         "dictionary generator"                  
+MPL acedrg_database      11          "data source"                           
+MPL rdkit                2017.03.2   "Chemoinformatics tool"
+MPL refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,228 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XEN     XEN      1-butyl-1,4,5,6-tetrahydropyridine-3-carboxamide     NON-POLYMER     31     13     .     
+#
+data_comp_XEN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XEN     C1      C       CH3     0       -31.266     23.172      -16.569     
+XEN     C2      C       CH2     0       -30.449     23.071      -15.300     
+XEN     C3      C       CH2     0       -29.824     24.382      -14.856     
+XEN     C4      C       CH2     0       -28.373     24.534      -15.289     
+XEN     N5      N       NR6     0       -28.208     24.618      -16.751     
+XEN     C6      C       CR16    0       -27.833     23.517      -17.471     
+XEN     C7      C       CR6     0       -27.513     23.626      -18.879     
+XEN     C8      C       CH2     0       -27.880     24.912      -19.601     
+XEN     C9      C       CH2     0       -28.882     25.765      -18.820     
+XEN     C10     C       CH2     0       -28.463     25.921      -17.372     
+XEN     C11     C       C       0       -26.823     22.475      -19.541     
+XEN     O12     O       O       0       -26.613     21.438      -18.901     
+XEN     N13     N       NH2     0       -26.455     22.567      -20.814     
+XEN     H13     H       H       0       -31.689     22.315      -16.752     
+XEN     H11     H       H       0       -30.687     23.412      -17.312     
+XEN     H12     H       H       0       -31.952     23.853      -16.461     
+XEN     H22     H       H       0       -29.737     22.408      -15.435     
+XEN     H21     H       H       0       -31.028     22.741      -14.579     
+XEN     H32     H       H       0       -29.871     24.439      -13.878     
+XEN     H31     H       H       0       -30.346     25.127      -15.222     
+XEN     H42     H       H       0       -27.852     23.771      -14.948     
+XEN     H41     H       H       0       -28.003     25.351      -14.883     
+XEN     H61     H       H       0       -27.800     22.680      -17.031     
+XEN     H81     H       H       0       -28.265     24.690      -20.472     
+XEN     H1      H       H       0       -27.068     25.433      -19.756     
+XEN     H91     H       H       0       -29.773     25.340      -18.859     
+XEN     H2      H       H       0       -28.949     26.656      -19.240     
+XEN     H101    H       H       0       -27.647     26.468      -17.323     
+XEN     H3      H       H       0       -29.172     26.386      -16.874     
+XEN     H132    H       H       0       -26.075     21.871      -21.214     
+XEN     H131    H       H       0       -26.562     23.313      -21.275     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XEN         C11         N13      SINGLE       n     1.325  0.0100     1.325  0.0100
+XEN         C11         O12      DOUBLE       n     1.235  0.0110     1.235  0.0110
+XEN          C7         C11      SINGLE       n     1.478  0.0169     1.478  0.0169
+XEN          C7          C8      SINGLE       n     1.503  0.0195     1.503  0.0195
+XEN          C8          C9      SINGLE       n     1.522  0.0176     1.522  0.0176
+XEN          C6          C7      DOUBLE       n     1.429  0.0200     1.429  0.0200
+XEN          C9         C10      SINGLE       n     1.513  0.0128     1.513  0.0128
+XEN          N5          C6      SINGLE       n     1.357  0.0192     1.357  0.0192
+XEN          N5         C10      SINGLE       n     1.462  0.0133     1.462  0.0133
+XEN          C4          N5      SINGLE       n     1.472  0.0100     1.472  0.0100
+XEN          C1          C2      SINGLE       n     1.510  0.0200     1.510  0.0200
+XEN          C3          C4      SINGLE       n     1.520  0.0152     1.520  0.0152
+XEN          C2          C3      SINGLE       n     1.512  0.0200     1.512  0.0200
+XEN          C1         H13      SINGLE       n     1.089  0.0100     0.973  0.0157
+XEN          C1         H11      SINGLE       n     1.089  0.0100     0.973  0.0157
+XEN          C1         H12      SINGLE       n     1.089  0.0100     0.973  0.0157
+XEN          C2         H22      SINGLE       n     1.089  0.0100     0.982  0.0155
+XEN          C2         H21      SINGLE       n     1.089  0.0100     0.982  0.0155
+XEN          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0160
+XEN          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0160
+XEN          C4         H42      SINGLE       n     1.089  0.0100     0.984  0.0191
+XEN          C4         H41      SINGLE       n     1.089  0.0100     0.984  0.0191
+XEN          C6         H61      SINGLE       n     1.082  0.0130     0.947  0.0200
+XEN          C8         H81      SINGLE       n     1.089  0.0100     0.978  0.0103
+XEN          C8          H1      SINGLE       n     1.089  0.0100     0.978  0.0103
+XEN          C9         H91      SINGLE       n     1.089  0.0100     0.988  0.0100
+XEN          C9          H2      SINGLE       n     1.089  0.0100     0.988  0.0100
+XEN         C10        H101      SINGLE       n     1.089  0.0100     0.983  0.0130
+XEN         C10          H3      SINGLE       n     1.089  0.0100     0.983  0.0130
+XEN         N13        H132      SINGLE       n     1.016  0.0100     0.887  0.0200
+XEN         N13        H131      SINGLE       n     1.016  0.0100     0.887  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XEN          C2          C1         H13     109.554    1.50
+XEN          C2          C1         H11     109.554    1.50
+XEN          C2          C1         H12     109.554    1.50
+XEN         H13          C1         H11     109.380    1.50
+XEN         H13          C1         H12     109.380    1.50
+XEN         H11          C1         H12     109.380    1.50
+XEN          C1          C2          C3     113.537    2.90
+XEN          C1          C2         H22     108.918    1.50
+XEN          C1          C2         H21     108.918    1.50
+XEN          C3          C2         H22     108.804    1.50
+XEN          C3          C2         H21     108.804    1.50
+XEN         H22          C2         H21     107.763    1.50
+XEN          C4          C3          C2     112.792    1.53
+XEN          C4          C3         H32     109.079    1.50
+XEN          C4          C3         H31     109.079    1.50
+XEN          C2          C3         H32     109.057    1.50
+XEN          C2          C3         H31     109.057    1.50
+XEN         H32          C3         H31     107.860    1.50
+XEN          N5          C4          C3     113.232    1.50
+XEN          N5          C4         H42     108.907    1.50
+XEN          N5          C4         H41     108.907    1.50
+XEN          C3          C4         H42     109.188    1.50
+XEN          C3          C4         H41     109.188    1.50
+XEN         H42          C4         H41     107.831    1.50
+XEN          C6          N5         C10     122.782    1.61
+XEN          C6          N5          C4     120.078    1.62
+XEN         C10          N5          C4     117.140    1.83
+XEN          C7          C6          N5     120.786    1.66
+XEN          C7          C6         H61     120.495    1.50
+XEN          N5          C6         H61     118.718    1.50
+XEN         C11          C7          C8     123.480    2.97
+XEN         C11          C7          C6     117.567    1.96
+XEN          C8          C7          C6     118.953    1.50
+XEN          C7          C8          C9     111.910    1.50
+XEN          C7          C8         H81     109.149    1.50
+XEN          C7          C8          H1     109.149    1.50
+XEN          C9          C8         H81     109.292    1.50
+XEN          C9          C8          H1     109.292    1.50
+XEN         H81          C8          H1     107.973    1.50
+XEN          C8          C9         C10     110.566    1.88
+XEN          C8          C9         H91     109.315    1.50
+XEN          C8          C9          H2     109.315    1.50
+XEN         C10          C9         H91     109.380    1.50
+XEN         C10          C9          H2     109.380    1.50
+XEN         H91          C9          H2     108.022    1.50
+XEN          C9         C10          N5     111.097    1.50
+XEN          C9         C10        H101     109.566    1.50
+XEN          C9         C10          H3     109.566    1.50
+XEN          N5         C10        H101     109.255    1.50
+XEN          N5         C10          H3     109.255    1.50
+XEN        H101         C10          H3     108.159    1.50
+XEN         N13         C11         O12     122.085    1.50
+XEN         N13         C11          C7     118.037    3.00
+XEN         O12         C11          C7     119.878    1.50
+XEN         C11         N13        H132     120.214    2.13
+XEN         C11         N13        H131     120.224    2.13
+XEN        H132         N13        H131     119.583    2.34
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XEN            sp3_sp3_19         H13          C1          C2          C3     180.000    10.0     3
+XEN            sp2_sp2_11         O12         C11         N13        H132       0.000     5.0     2
+XEN            sp3_sp3_37          C1          C2          C3          C4     180.000    10.0     3
+XEN            sp3_sp3_28          C2          C3          C4          N5     180.000    10.0     3
+XEN            sp2_sp3_14          C6          N5          C4          C3     -90.000    10.0     6
+XEN             sp2_sp2_2          C7          C6          N5          C4     180.000     5.0     2
+XEN            sp2_sp3_10          C4          N5         C10          C9     180.000    10.0     6
+XEN             sp2_sp2_6          N5          C6          C7         C11     180.000     5.0     2
+XEN            sp2_sp2_13         N13         C11          C7          C8     180.000     5.0     2
+XEN             sp2_sp3_4         C11          C7          C8          C9     180.000    10.0     6
+XEN             sp3_sp3_1          C7          C8          C9         C10     -60.000    10.0     3
+XEN            sp3_sp3_10          N5         C10          C9          C8      60.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XEN    plan-1         C10   0.020
+XEN    plan-1          C4   0.020
+XEN    plan-1          C6   0.020
+XEN    plan-1          N5   0.020
+XEN    plan-2          C6   0.020
+XEN    plan-2          C7   0.020
+XEN    plan-2         H61   0.020
+XEN    plan-2          N5   0.020
+XEN    plan-3         C11   0.020
+XEN    plan-3          C6   0.020
+XEN    plan-3          C7   0.020
+XEN    plan-3          C8   0.020
+XEN    plan-4         C11   0.020
+XEN    plan-4          C7   0.020
+XEN    plan-4         N13   0.020
+XEN    plan-4         O12   0.020
+XEN    plan-5         C11   0.020
+XEN    plan-5        H131   0.020
+XEN    plan-5        H132   0.020
+XEN    plan-5         N13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XEN           SMILES              ACDLabs 12.01                                                         CCCCN1C=C(CCC1)C(=O)N
+XEN            InChI                InChI  1.03 InChI=1S/C10H18N2O/c1-2-3-6-12-7-4-5-9(8-12)10(11)13/h8H,2-7H2,1H3,(H2,11,13)
+XEN         InChIKey                InChI  1.03                                                   QWLZGRCLLUCDGU-UHFFFAOYSA-N
+XEN SMILES_CANONICAL               CACTVS 3.385                                                         CCCCN1CCCC(=C1)C(N)=O
+XEN           SMILES               CACTVS 3.385                                                         CCCCN1CCCC(=C1)C(N)=O
+XEN SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                         CCCCN1CCCC(=C1)C(=O)N
+XEN           SMILES "OpenEye OEToolkits" 1.9.2                                                         CCCCN1CCCC(=C1)C(=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XEN acedrg               243         "dictionary generator"                  
+XEN acedrg_database      11          "data source"                           
+XEN rdkit                2017.03.2   "Chemoinformatics tool"
+XEN refmac5              5.8.0238    "optimization tool"                     

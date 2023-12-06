@@ -1,0 +1,386 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+38G     38G      4-(3-{3-[(R)-{[2-(dimethylamino)ethyl]amino}(hydroxy)methyl]phenyl}imidazo[1,2-b]pyridazin-6-yl)-2-methoxyphenol     NON-POLYMER     59     32     .     
+#
+data_comp_38G
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+38G     CBF     C       CH3     0       63.498      91.028      18.261      
+38G     OBE     O       O2      0       64.211      91.806      17.300      
+38G     CAZ     C       CR6     0       64.015      91.546      15.968      
+38G     CAY     C       CR16    0       62.789      91.250      15.383      
+38G     CBA     C       CR6     0       65.170      91.611      15.174      
+38G     OBD     O       OH1     0       66.400      91.907      15.715      
+38G     CBB     C       CR16    0       65.076      91.370      13.815      
+38G     CBC     C       CR16    0       63.854      91.069      13.236      
+38G     CAX     C       CR6     0       62.699      91.002      14.013      
+38G     CAV     C       CR6     0       61.399      90.685      13.399      
+38G     CAU     C       CR16    0       60.903      91.351      12.273      
+38G     CAT     C       CR16    0       59.649      91.017      11.724      
+38G     NAW     N       NRD6    0       60.705      89.691      14.010      
+38G     NAS     N       NT      0       59.469      89.387      13.452      
+38G     CAR     C       CR56    0       58.906      89.985      12.351      
+38G     NAQ     N       NRD5    0       57.694      89.454      12.058      
+38G     CAP     C       CR15    0       57.488      88.485      13.015      
+38G     CAG     C       CR5     0       58.540      88.403      13.890      
+38G     CAB     C       CR6     0       58.689      87.486      15.042      
+38G     CAA     C       CR16    0       59.626      87.691      16.068      
+38G     CAC     C       CR16    0       57.853      86.364      15.134      
+38G     CAD     C       CR16    0       57.963      85.488      16.201      
+38G     CAE     C       CR16    0       58.897      85.711      17.198      
+38G     CAF     C       CR6     0       59.745      86.812      17.140      
+38G     CAH     C       CH1     0       60.776      87.056      18.231      
+38G     OAI     O       OH1     0       60.114      87.506      19.402      
+38G     NAJ     N       NT1     0       61.579      85.848      18.507      
+38G     CAK     C       CH2     0       62.988      86.079      18.866      
+38G     CAL     C       CH2     0       63.887      86.086      17.629      
+38G     NAM     N       NT      0       65.290      86.460      17.850      
+38G     CAO     C       CH3     0       65.954      85.623      18.860      
+38G     CAN     C       CH3     0       65.452      87.884      18.170      
+38G     H1      H       H       0       63.454      90.103      17.969      
+38G     H2      H       H       0       62.598      91.380      18.355      
+38G     H3      H       H       0       63.954      91.075      19.117      
+38G     H4      H       H       0       62.010      91.208      15.914      
+38G     H5      H       H       0       66.458      92.452      16.379      
+38G     H6      H       H       0       65.850      91.410      13.283      
+38G     H7      H       H       0       63.808      90.904      12.297      
+38G     H8      H       H       0       61.411      92.034      11.870      
+38G     H9      H       H       0       59.314      91.462      10.967      
+38G     H10     H       H       0       56.700      87.957      13.032      
+38G     H11     H       H       0       60.195      88.436      16.035      
+38G     H12     H       H       0       57.211      86.198      14.466      
+38G     H13     H       H       0       57.395      84.734      16.249      
+38G     H14     H       H       0       58.964      85.104      17.918      
+38G     H15     H       H       0       61.384      87.766      17.926      
+38G     H16     H       H       0       59.894      88.358      19.271      
+38G     H17     H       H       0       61.558      85.241      17.853      
+38G     H19     H       H       0       63.279      85.370      19.477      
+38G     H20     H       H       0       63.068      86.932      19.340      
+38G     H21     H       H       0       63.501      86.701      16.971      
+38G     H22     H       H       0       63.868      85.191      17.231      
+38G     H24     H       H       0       65.719      84.686      18.716      
+38G     H25     H       H       0       65.669      85.894      19.755      
+38G     H26     H       H       0       66.922      85.729      18.784      
+38G     H27     H       H       0       66.403      88.104      18.201      
+38G     H28     H       H       0       65.049      88.078      19.038      
+38G     H29     H       H       0       65.019      88.425      17.481      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+38G         CAU         CAT      DOUBLE       y     1.386  0.0200     1.386  0.0200
+38G         CAT         CAR      SINGLE       y     1.416  0.0189     1.416  0.0189
+38G         CAR         NAQ      DOUBLE       y     1.345  0.0200     1.345  0.0200
+38G         NAQ         CAP      SINGLE       y     1.375  0.0145     1.375  0.0145
+38G         CAV         CAU      SINGLE       y     1.389  0.0117     1.389  0.0117
+38G         NAS         CAR      SINGLE       y     1.380  0.0200     1.380  0.0200
+38G         CAP         CAG      DOUBLE       y     1.371  0.0104     1.371  0.0104
+38G         CBB         CBC      DOUBLE       y     1.382  0.0100     1.382  0.0100
+38G         CBC         CAX      SINGLE       y     1.391  0.0100     1.391  0.0100
+38G         CAX         CAV      SINGLE       n     1.471  0.0136     1.471  0.0136
+38G         CAV         NAW      DOUBLE       y     1.337  0.0179     1.337  0.0179
+38G         NAS         CAG      SINGLE       y     1.413  0.0200     1.413  0.0200
+38G         NAW         NAS      SINGLE       y     1.389  0.0100     1.389  0.0100
+38G         CBA         CBB      SINGLE       y     1.379  0.0100     1.379  0.0100
+38G         CAG         CAB      SINGLE       n     1.471  0.0100     1.471  0.0100
+38G         CAY         CAX      DOUBLE       y     1.390  0.0105     1.390  0.0105
+38G         CAB         CAC      SINGLE       y     1.395  0.0100     1.395  0.0100
+38G         CAB         CAA      DOUBLE       y     1.397  0.0100     1.397  0.0100
+38G         CBA         OBD      SINGLE       n     1.374  0.0155     1.374  0.0155
+38G         CAZ         CBA      DOUBLE       y     1.397  0.0105     1.397  0.0105
+38G         CAC         CAD      DOUBLE       y     1.383  0.0100     1.383  0.0100
+38G         CAZ         CAY      SINGLE       y     1.383  0.0119     1.383  0.0119
+38G         OBE         CAZ      SINGLE       n     1.367  0.0100     1.367  0.0100
+38G         CAA         CAF      SINGLE       y     1.387  0.0100     1.387  0.0100
+38G         CAD         CAE      SINGLE       y     1.383  0.0105     1.383  0.0105
+38G         CAE         CAF      DOUBLE       y     1.388  0.0100     1.388  0.0100
+38G         CAF         CAH      SINGLE       n     1.518  0.0100     1.518  0.0100
+38G         CBF         OBE      SINGLE       n     1.424  0.0117     1.424  0.0117
+38G         CAH         OAI      SINGLE       n     1.419  0.0117     1.419  0.0117
+38G         CAH         NAJ      SINGLE       n     1.469  0.0137     1.469  0.0137
+38G         CAL         NAM      SINGLE       n     1.461  0.0111     1.461  0.0111
+38G         CAK         CAL      SINGLE       n     1.512  0.0200     1.512  0.0200
+38G         NAJ         CAK      SINGLE       n     1.466  0.0145     1.466  0.0145
+38G         NAM         CAN      SINGLE       n     1.466  0.0117     1.466  0.0117
+38G         NAM         CAO      SINGLE       n     1.466  0.0117     1.466  0.0117
+38G         CBF          H1      SINGLE       n     1.089  0.0100     0.971  0.0157
+38G         CBF          H2      SINGLE       n     1.089  0.0100     0.971  0.0157
+38G         CBF          H3      SINGLE       n     1.089  0.0100     0.971  0.0157
+38G         CAY          H4      SINGLE       n     1.082  0.0130     0.944  0.0171
+38G         OBD          H5      SINGLE       n     0.966  0.0059     0.861  0.0200
+38G         CBB          H6      SINGLE       n     1.082  0.0130     0.940  0.0196
+38G         CBC          H7      SINGLE       n     1.082  0.0130     0.955  0.0100
+38G         CAU          H8      SINGLE       n     1.082  0.0130     0.942  0.0200
+38G         CAT          H9      SINGLE       n     1.082  0.0130     0.939  0.0160
+38G         CAP         H10      SINGLE       n     1.082  0.0130     0.949  0.0200
+38G         CAA         H11      SINGLE       n     1.082  0.0130     0.946  0.0200
+38G         CAC         H12      SINGLE       n     1.082  0.0130     0.942  0.0147
+38G         CAD         H13      SINGLE       n     1.082  0.0130     0.945  0.0184
+38G         CAE         H14      SINGLE       n     1.082  0.0130     0.944  0.0174
+38G         CAH         H15      SINGLE       n     1.089  0.0100     0.982  0.0171
+38G         OAI         H16      SINGLE       n     0.970  0.0120     0.890  0.0200
+38G         NAJ         H17      SINGLE       n     1.036  0.0160     0.890  0.0200
+38G         CAK         H19      SINGLE       n     1.089  0.0100     0.980  0.0143
+38G         CAK         H20      SINGLE       n     1.089  0.0100     0.980  0.0143
+38G         CAL         H21      SINGLE       n     1.089  0.0100     0.980  0.0143
+38G         CAL         H22      SINGLE       n     1.089  0.0100     0.980  0.0143
+38G         CAO         H24      SINGLE       n     1.089  0.0100     0.977  0.0113
+38G         CAO         H25      SINGLE       n     1.089  0.0100     0.977  0.0113
+38G         CAO         H26      SINGLE       n     1.089  0.0100     0.977  0.0113
+38G         CAN         H27      SINGLE       n     1.089  0.0100     0.977  0.0113
+38G         CAN         H28      SINGLE       n     1.089  0.0100     0.977  0.0113
+38G         CAN         H29      SINGLE       n     1.089  0.0100     0.977  0.0113
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+38G         OBE         CBF          H1     109.428    1.50
+38G         OBE         CBF          H2     109.428    1.50
+38G         OBE         CBF          H3     109.428    1.50
+38G          H1         CBF          H2     109.509    1.50
+38G          H1         CBF          H3     109.509    1.50
+38G          H2         CBF          H3     109.509    1.50
+38G         CAZ         OBE         CBF     117.276    1.50
+38G         CBA         CAZ         CAY     120.107    1.50
+38G         CBA         CAZ         OBE     114.968    1.50
+38G         CAY         CAZ         OBE     124.925    1.50
+38G         CAX         CAY         CAZ     120.103    1.50
+38G         CAX         CAY          H4     119.827    1.99
+38G         CAZ         CAY          H4     120.069    1.50
+38G         CBB         CBA         OBD     120.209    3.00
+38G         CBB         CBA         CAZ     119.582    1.50
+38G         OBD         CBA         CAZ     120.209    3.00
+38G         CBA         OBD          H5     120.000    3.00
+38G         CBC         CBB         CBA     120.479    1.50
+38G         CBC         CBB          H6     119.918    1.50
+38G         CBA         CBB          H6     119.603    1.50
+38G         CBB         CBC         CAX     120.698    1.50
+38G         CBB         CBC          H7     119.381    1.50
+38G         CAX         CBC          H7     119.921    1.50
+38G         CBC         CAX         CAV     120.484    1.50
+38G         CBC         CAX         CAY     119.032    1.50
+38G         CAV         CAX         CAY     120.484    1.50
+38G         CAU         CAV         CAX     123.731    3.00
+38G         CAU         CAV         NAW     120.440    1.50
+38G         CAX         CAV         NAW     115.829    3.00
+38G         CAT         CAU         CAV     119.310    2.19
+38G         CAT         CAU          H8     119.934    1.50
+38G         CAV         CAU          H8     120.756    1.50
+38G         CAU         CAT         CAR     117.894    1.55
+38G         CAU         CAT          H9     121.235    1.50
+38G         CAR         CAT          H9     120.872    1.50
+38G         CAV         NAW         NAS     115.193    1.50
+38G         CAR         NAS         CAG     106.056    1.50
+38G         CAR         NAS         NAW     128.423    1.50
+38G         CAG         NAS         NAW     124.514    1.50
+38G         CAT         CAR         NAQ     130.121    3.00
+38G         CAT         CAR         NAS     119.714    1.50
+38G         NAQ         CAR         NAS     110.165    1.50
+38G         CAR         NAQ         CAP     103.357    1.50
+38G         NAQ         CAP         CAG     111.478    1.50
+38G         NAQ         CAP         H10     122.320    1.67
+38G         CAG         CAP         H10     126.202    3.00
+38G         CAP         CAG         NAS     108.351    1.70
+38G         CAP         CAG         CAB     127.301    2.56
+38G         NAS         CAG         CAB     124.348    1.50
+38G         CAG         CAB         CAC     120.584    2.56
+38G         CAG         CAB         CAA     120.584    2.56
+38G         CAC         CAB         CAA     118.833    1.50
+38G         CAB         CAA         CAF     120.952    1.50
+38G         CAB         CAA         H11     119.726    1.50
+38G         CAF         CAA         H11     119.321    1.50
+38G         CAB         CAC         CAD     120.245    1.50
+38G         CAB         CAC         H12     119.859    1.50
+38G         CAD         CAC         H12     119.895    1.50
+38G         CAC         CAD         CAE     120.518    1.50
+38G         CAC         CAD         H13     119.686    1.50
+38G         CAE         CAD         H13     119.796    1.50
+38G         CAD         CAE         CAF     120.866    1.50
+38G         CAD         CAE         H14     119.427    1.50
+38G         CAF         CAE         H14     119.707    1.50
+38G         CAA         CAF         CAE     118.586    1.50
+38G         CAA         CAF         CAH     120.707    1.50
+38G         CAE         CAF         CAH     120.707    1.50
+38G         CAF         CAH         OAI     110.106    1.50
+38G         CAF         CAH         NAJ     112.424    2.20
+38G         CAF         CAH         H15     109.455    1.59
+38G         OAI         CAH         NAJ     112.111    1.50
+38G         OAI         CAH         H15     109.600    1.50
+38G         NAJ         CAH         H15     109.140    1.50
+38G         CAH         OAI         H16     107.209    2.07
+38G         CAH         NAJ         CAK     112.615    2.70
+38G         CAH         NAJ         H17     111.861    3.00
+38G         CAK         NAJ         H17     108.280    3.00
+38G         CAL         CAK         NAJ     111.556    2.19
+38G         CAL         CAK         H19     109.409    1.50
+38G         CAL         CAK         H20     109.409    1.50
+38G         NAJ         CAK         H19     109.402    1.50
+38G         NAJ         CAK         H20     109.402    1.50
+38G         H19         CAK         H20     107.909    1.50
+38G         NAM         CAL         CAK     112.718    1.89
+38G         NAM         CAL         H21     109.093    1.50
+38G         NAM         CAL         H22     109.093    1.50
+38G         CAK         CAL         H21     109.068    1.50
+38G         CAK         CAL         H22     109.068    1.50
+38G         H21         CAL         H22     107.844    1.50
+38G         CAL         NAM         CAN     110.776    1.50
+38G         CAL         NAM         CAO     110.776    1.50
+38G         CAN         NAM         CAO     109.730    1.50
+38G         NAM         CAO         H24     109.516    1.50
+38G         NAM         CAO         H25     109.516    1.50
+38G         NAM         CAO         H26     109.516    1.50
+38G         H24         CAO         H25     109.408    1.50
+38G         H24         CAO         H26     109.408    1.50
+38G         H25         CAO         H26     109.408    1.50
+38G         NAM         CAN         H27     109.516    1.50
+38G         NAM         CAN         H28     109.516    1.50
+38G         NAM         CAN         H29     109.516    1.50
+38G         H27         CAN         H28     109.408    1.50
+38G         H27         CAN         H29     109.408    1.50
+38G         H28         CAN         H29     109.408    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+38G             sp3_sp3_2          H1         CBF         OBE         CAZ     -60.000    10.0     3
+38G             sp2_sp2_5         CAR         CAT         CAU         CAV       0.000     5.0     2
+38G            sp2_sp2_11         NAQ         CAR         CAT         CAU     180.000     5.0     2
+38G            sp2_sp2_13         CAR         NAS         NAW         CAV       0.000     5.0     2
+38G              const_22         CAT         CAR         NAS         CAG     180.000    10.0     2
+38G              const_53         CAP         CAG         NAS         CAR       0.000    10.0     2
+38G              const_26         CAT         CAR         NAQ         CAP     180.000    10.0     2
+38G              const_27         CAG         CAP         NAQ         CAR       0.000    10.0     2
+38G              const_29         NAS         CAG         CAP         NAQ       0.000    10.0     2
+38G            sp2_sp2_21         CAC         CAB         CAG         CAP     180.000     5.0     2
+38G              const_58         CAF         CAA         CAB         CAG     180.000    10.0     2
+38G       const_sp2_sp2_3         CAG         CAB         CAC         CAD     180.000     5.0     2
+38G              const_18         CAB         CAA         CAF         CAH     180.000    10.0     2
+38G            sp2_sp2_27         CBA         CAZ         OBE         CBF     180.000     5.0     2
+38G       const_sp2_sp2_5         CAB         CAC         CAD         CAE       0.000     5.0     2
+38G       const_sp2_sp2_9         CAC         CAD         CAE         CAF       0.000     5.0     2
+38G              const_14         CAD         CAE         CAF         CAH     180.000    10.0     2
+38G             sp2_sp3_1         CAA         CAF         CAH         OAI     150.000    10.0     6
+38G             sp3_sp3_6         NAJ         CAH         OAI         H16      60.000    10.0     3
+38G            sp3_sp3_11         OAI         CAH         NAJ         CAK     180.000    10.0     3
+38G            sp3_sp3_29         CAL         CAK         NAJ         CAH     180.000    10.0     3
+38G            sp3_sp3_20         NAJ         CAK         CAL         NAM     180.000    10.0     3
+38G            sp3_sp3_15         CAK         CAL         NAM         CAN     -60.000    10.0     3
+38G            sp3_sp3_42         H24         CAO         NAM         CAL     -60.000    10.0     3
+38G            sp3_sp3_35         H27         CAN         NAM         CAL     180.000    10.0     3
+38G              const_62         CAX         CAY         CAZ         OBE     180.000    10.0     2
+38G              const_36         OBE         CAZ         CBA         OBD       0.000    10.0     2
+38G              const_49         CBC         CAX         CAY         CAZ       0.000    10.0     2
+38G            sp2_sp2_25         CBB         CBA         OBD          H5     180.000     5.0     2
+38G              const_39         OBD         CBA         CBB         CBC     180.000    10.0     2
+38G              const_41         CBA         CBB         CBC         CAX       0.000    10.0     2
+38G              const_47         CAV         CAX         CBC         CBB     180.000    10.0     2
+38G            sp2_sp2_15         CAU         CAV         CAX         CBC     180.000     5.0     2
+38G             sp2_sp2_2         CAT         CAU         CAV         CAX     180.000     5.0     2
+38G            sp2_sp2_19         CAU         CAV         NAW         NAS       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+38G    chir_1    CAH    OAI    NAJ    CAF    negative
+38G    chir_2    NAM    CAL    CAN    CAO    both
+38G    chir_3    NAJ    CAH    CAK    H17    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+38G    plan-1         CAB   0.020
+38G    plan-1         CAG   0.020
+38G    plan-1         CAP   0.020
+38G    plan-1         CAR   0.020
+38G    plan-1         CAT   0.020
+38G    plan-1         CAU   0.020
+38G    plan-1         CAV   0.020
+38G    plan-1         CAX   0.020
+38G    plan-1         H10   0.020
+38G    plan-1          H8   0.020
+38G    plan-1          H9   0.020
+38G    plan-1         NAQ   0.020
+38G    plan-1         NAS   0.020
+38G    plan-1         NAW   0.020
+38G    plan-2         CAA   0.020
+38G    plan-2         CAB   0.020
+38G    plan-2         CAC   0.020
+38G    plan-2         CAD   0.020
+38G    plan-2         CAE   0.020
+38G    plan-2         CAF   0.020
+38G    plan-2         CAG   0.020
+38G    plan-2         CAH   0.020
+38G    plan-2         H11   0.020
+38G    plan-2         H12   0.020
+38G    plan-2         H13   0.020
+38G    plan-2         H14   0.020
+38G    plan-3         CAV   0.020
+38G    plan-3         CAX   0.020
+38G    plan-3         CAY   0.020
+38G    plan-3         CAZ   0.020
+38G    plan-3         CBA   0.020
+38G    plan-3         CBB   0.020
+38G    plan-3         CBC   0.020
+38G    plan-3          H4   0.020
+38G    plan-3          H6   0.020
+38G    plan-3          H7   0.020
+38G    plan-3         OBD   0.020
+38G    plan-3         OBE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+38G           SMILES              ACDLabs 12.01                                                                                                                    n2cc(c1cccc(c1)C(O)NCCN(C)C)n3nc(ccc23)c4ccc(O)c(OC)c4
+38G            InChI                InChI  1.03 InChI=1S/C24H27N5O3/c1-28(2)12-11-25-24(31)18-6-4-5-17(13-18)20-15-26-23-10-8-19(27-29(20)23)16-7-9-21(30)22(14-16)32-3/h4-10,13-15,24-25,30-31H,11-12H2,1-3H3/t24-/m1/s1
+38G         InChIKey                InChI  1.03                                                                                                                                               ASDVVHQAXNTHHM-XMMPIXPASA-N
+38G SMILES_CANONICAL               CACTVS 3.385                                                                                                                   COc1cc(ccc1O)c2ccc3ncc(n3n2)c4cccc(c4)[C@@H](O)NCCN(C)C
+38G           SMILES               CACTVS 3.385                                                                                                                     COc1cc(ccc1O)c2ccc3ncc(n3n2)c4cccc(c4)[CH](O)NCCN(C)C
+38G SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                                 CN(C)CCN[C@@H](c1cccc(c1)c2cnc3n2nc(cc3)c4ccc(c(c4)OC)O)O
+38G           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                      CN(C)CCNC(c1cccc(c1)c2cnc3n2nc(cc3)c4ccc(c(c4)OC)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+38G acedrg               243         "dictionary generator"                  
+38G acedrg_database      11          "data source"                           
+38G rdkit                2017.03.2   "Chemoinformatics tool"
+38G refmac5              5.8.0238    "optimization tool"                     

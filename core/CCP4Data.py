@@ -939,6 +939,31 @@ class CData(CObject, CDataQualifiers):
             except:
                 print('Error in CData.removeUnsetListItems', self.objectPath())
 
+    def locateElement(self, objectPath):
+        baseElement = self
+        pathElements = objectPath.split('.')
+        arrayFinder = re.compile(r'(?P<baseElement>.*)\[(?P<index>\d+)\]$')
+        for pathElement in pathElements:
+            print('pathElement', pathElement)
+            matches = arrayFinder.match(pathElement)
+            if matches is not None or isinstance(baseElement, CList):
+                if matches is not None:
+                    elementList = getattr(
+                        baseElement, matches.groupdict()['baseElement'])
+                    elementIndex = int(matches.groupdict()['index'])
+                elif isinstance(baseElement, CList):
+                    elementList = getattr(baseElement, pathElement)
+                    elementIndex = 0
+                while len(elementList) <= elementIndex:
+                    elementList.append(elementList.makeItem())
+                try:
+                    baseElement = elementList[elementIndex]
+                except TypeError as err:
+                    print(f'Failed deindexing {objectPath} at {pathElement}')
+                    raise err
+            else:
+                baseElement = getattr(baseElement, pathElement)
+        return baseElement
 '''
 A base class for classes that are equivalent to Python types.
 This implies that the CONTENT definition is empty.

@@ -1,0 +1,182 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+A98     A98      "methyl ~{N}-(5-ethylsulfanyl-1,3,4-thiadiazol-2-yl)carbamate"     NON-POLYMER     22     13     .     
+#
+data_comp_A98
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+A98     C4      C       CR5     0       -3.095      30.139      -23.630     
+A98     C5      C       C       0       -3.240      32.420      -24.603     
+A98     C6      C       CH3     0       -3.923      34.302      -25.881     
+A98     C3      C       CR5     0       -1.683      28.610      -22.355     
+A98     C2      C       CH2     0       1.179       27.509      -22.204     
+A98     C1      C       CH3     0       2.171       26.911      -21.241     
+A98     S1      S       S2      0       -0.403      27.890      -21.415     
+A98     N1      N       NRD5    0       -2.764      28.045      -22.779     
+A98     N2      N       NRD5    0       -3.592      28.921      -23.517     
+A98     S2      S       S2      0       -1.629      30.202      -22.831     
+A98     N3      N       NH1     0       -3.724      31.170      -24.300     
+A98     O1      O       O       0       -2.414      33.036      -23.963     
+A98     O2      O       O2      0       -3.839      32.868      -25.719     
+A98     H1      H       H       0       -3.038      34.656      -26.061     
+A98     H2      H       H       0       -4.274      34.703      -25.069     
+A98     H3      H       H       0       -4.511      34.507      -26.624     
+A98     H4      H       H       0       1.026       26.884      -22.936     
+A98     H5      H       H       0       1.551       28.328      -22.581     
+A98     H6      H       H       0       2.947       26.599      -21.730     
+A98     H7      H       H       0       1.761       26.166      -20.776     
+A98     H8      H       H       0       2.443       27.583      -20.598     
+A98     H9      H       H       0       -4.548      30.993      -24.555     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+A98          C6          O2      SINGLE       n     1.443  0.0101     1.443  0.0101
+A98          C5          O2      SINGLE       n     1.338  0.0116     1.338  0.0116
+A98          C5          N3      SINGLE       n     1.365  0.0151     1.365  0.0151
+A98          C4          N3      SINGLE       n     1.367  0.0190     1.367  0.0190
+A98          C5          O1      DOUBLE       n     1.212  0.0103     1.212  0.0103
+A98          C4          N2      DOUBLE       y     1.301  0.0200     1.301  0.0200
+A98          N1          N2      SINGLE       y     1.395  0.0133     1.395  0.0133
+A98          C4          S2      SINGLE       y     1.695  0.0200     1.695  0.0200
+A98          C3          N1      DOUBLE       y     1.288  0.0100     1.288  0.0100
+A98          C3          S2      SINGLE       y     1.695  0.0200     1.695  0.0200
+A98          C3          S1      SINGLE       n     1.744  0.0119     1.744  0.0119
+A98          C2          S1      SINGLE       n     1.809  0.0191     1.809  0.0191
+A98          C2          C1      SINGLE       n     1.506  0.0108     1.506  0.0108
+A98          C6          H1      SINGLE       n     1.089  0.0100     0.970  0.0175
+A98          C6          H2      SINGLE       n     1.089  0.0100     0.970  0.0175
+A98          C6          H3      SINGLE       n     1.089  0.0100     0.970  0.0175
+A98          C2          H4      SINGLE       n     1.089  0.0100     0.975  0.0100
+A98          C2          H5      SINGLE       n     1.089  0.0100     0.975  0.0100
+A98          C1          H6      SINGLE       n     1.089  0.0100     0.969  0.0134
+A98          C1          H7      SINGLE       n     1.089  0.0100     0.969  0.0134
+A98          C1          H8      SINGLE       n     1.089  0.0100     0.969  0.0134
+A98          N3          H9      SINGLE       n     1.016  0.0100     0.878  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+A98          N3          C4          N2     126.943    3.00
+A98          N3          C4          S2     124.592    3.00
+A98          N2          C4          S2     108.464    3.00
+A98          O2          C5          N3     109.149    1.68
+A98          O2          C5          O1     125.187    1.50
+A98          N3          C5          O1     125.665    1.50
+A98          O2          C6          H1     109.384    1.50
+A98          O2          C6          H2     109.384    1.50
+A98          O2          C6          H3     109.384    1.50
+A98          H1          C6          H2     109.532    1.53
+A98          H1          C6          H3     109.532    1.53
+A98          H2          C6          H3     109.532    1.53
+A98          N1          C3          S2     108.464    3.00
+A98          N1          C3          S1     128.567    3.00
+A98          S2          C3          S1     122.969    3.00
+A98          S1          C2          C1     112.239    3.00
+A98          S1          C2          H4     109.066    1.50
+A98          S1          C2          H5     109.066    1.50
+A98          C1          C2          H4     109.221    1.50
+A98          C1          C2          H5     109.221    1.50
+A98          H4          C2          H5     107.932    1.50
+A98          C2          C1          H6     109.475    1.50
+A98          C2          C1          H7     109.475    1.50
+A98          C2          C1          H8     109.475    1.50
+A98          H6          C1          H7     109.451    1.50
+A98          H6          C1          H8     109.451    1.50
+A98          H7          C1          H8     109.451    1.50
+A98          C3          S1          C2     120.000    3.00
+A98          N2          N1          C3     107.246    1.50
+A98          C4          N2          N1     107.362    1.50
+A98          C4          S2          C3     108.464    3.00
+A98          C5          N3          C4     125.063    2.96
+A98          C5          N3          H9     117.670    2.36
+A98          C4          N3          H9     117.267    2.70
+A98          C6          O2          C5     115.576    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+A98             sp2_sp2_7          N2          C4          N3          C5     180.000     5.0     2
+A98       const_sp2_sp2_2          N3          C4          N2          N1     180.000     5.0     2
+A98       const_sp2_sp2_9          N3          C4          S2          C3     180.000     5.0     2
+A98             sp2_sp2_3          O2          C5          N3          C4     180.000     5.0     2
+A98             sp2_sp2_1          N3          C5          O2          C6     180.000     5.0     2
+A98             sp3_sp3_2          H1          C6          O2          C5     -60.000    10.0     3
+A98            sp2_sp2_11          N1          C3          S1          C2     180.000     5.0     2
+A98       const_sp2_sp2_5          S1          C3          N1          N2     180.000     5.0     2
+A98       const_sp2_sp2_7          S1          C3          S2          C4     180.000     5.0     2
+A98             sp3_sp3_8          H6          C1          C2          S1     180.000    10.0     3
+A98             sp3_sp3_5          C1          C2          S1          C3     180.000    10.0     3
+A98       const_sp2_sp2_3          C3          N1          N2          C4       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+A98    plan-1          C3   0.020
+A98    plan-1          C4   0.020
+A98    plan-1          N1   0.020
+A98    plan-1          N2   0.020
+A98    plan-1          N3   0.020
+A98    plan-1          S1   0.020
+A98    plan-1          S2   0.020
+A98    plan-2          C5   0.020
+A98    plan-2          N3   0.020
+A98    plan-2          O1   0.020
+A98    plan-2          O2   0.020
+A98    plan-3          C4   0.020
+A98    plan-3          C5   0.020
+A98    plan-3          H9   0.020
+A98    plan-3          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+A98            InChI                InChI  1.03 InChI=1S/C6H9N3O2S2/c1-3-12-6-9-8-4(13-6)7-5(10)11-2/h3H2,1-2H3,(H,7,8,10)
+A98         InChIKey                InChI  1.03                                                SSCYIPXZAWJONZ-UHFFFAOYSA-N
+A98 SMILES_CANONICAL               CACTVS 3.385                                                       CCSc1sc(NC(=O)OC)nn1
+A98           SMILES               CACTVS 3.385                                                       CCSc1sc(NC(=O)OC)nn1
+A98 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                       CCSc1nnc(s1)NC(=O)OC
+A98           SMILES "OpenEye OEToolkits" 2.0.6                                                       CCSc1nnc(s1)NC(=O)OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+A98 acedrg               243         "dictionary generator"                  
+A98 acedrg_database      11          "data source"                           
+A98 rdkit                2017.03.2   "Chemoinformatics tool"
+A98 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,228 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EAA     EAA      "ETHACRYNIC ACID"     NON-POLYMER     30     19     .     
+#
+data_comp_EAA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EAA     C1      C       CR6     0       6.694       16.924      4.464       
+EAA     O2      O       O2      0       5.916       15.800      4.380       
+EAA     C2      C       CR6     0       7.228       17.203      5.727       
+EAA     CL1     CL      CL      0       6.866       16.144      7.041       
+EAA     C3      C       CR6     0       8.038       18.318      5.929       
+EAA     CL2     CL      CL      0       8.678       18.637      7.500       
+EAA     C4      C       CR6     0       8.335       19.176      4.874       
+EAA     C5      C       CR16    0       7.800       18.892      3.613       
+EAA     C6      C       CR16    0       6.996       17.786      3.408       
+EAA     C7      C       C       0       9.202       20.401      5.013       
+EAA     O1      O       O       0       8.790       21.345      5.688       
+EAA     C8      C       C       0       10.491      20.537      4.270       
+EAA     C9      C       CH2     0       11.134      21.900      4.138       
+EAA     C10     C       CH3     0       10.420      22.807      3.172       
+EAA     C11     C       C2      0       11.111      19.467      3.743       
+EAA     C12     C       CH2     0       5.185       15.518      3.192       
+EAA     C13     C       C       0       4.315       14.279      3.331       
+EAA     O       O       O       0       4.069       13.645      2.285       
+EAA     OXT     O       OC      -1      3.904       13.981      4.471       
+EAA     H5      H       H       0       7.993       19.463      2.893       
+EAA     H6      H       H       0       6.652       17.619      2.553       
+EAA     H91     H       H       0       12.057      21.794      3.842       
+EAA     H92     H       H       0       11.150      22.327      5.014       
+EAA     H101    H       H       0       10.849      23.680      3.168       
+EAA     H102    H       H       0       9.491       22.904      3.443       
+EAA     H103    H       H       0       10.458      22.424      2.278       
+EAA     H111    H       H       0       10.757      18.598      3.862       
+EAA     H112    H       H       0       11.907      19.579      3.241       
+EAA     H121    H       H       0       5.809       15.386      2.455       
+EAA     H122    H       H       0       4.620       16.281      2.973       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EAA          C1          O2      SINGLE       n     1.364  0.0100     1.364  0.0100
+EAA          C1          C2      DOUBLE       y     1.393  0.0100     1.393  0.0100
+EAA          C1          C6      SINGLE       y     1.389  0.0100     1.389  0.0100
+EAA          O2         C12      SINGLE       n     1.420  0.0100     1.420  0.0100
+EAA          C2         CL1      SINGLE       n     1.725  0.0100     1.725  0.0100
+EAA          C2          C3      SINGLE       y     1.388  0.0100     1.388  0.0100
+EAA          C3         CL2      SINGLE       n     1.726  0.0100     1.726  0.0100
+EAA          C3          C4      DOUBLE       y     1.387  0.0100     1.387  0.0100
+EAA          C4          C5      SINGLE       y     1.394  0.0112     1.394  0.0112
+EAA          C4          C7      SINGLE       n     1.505  0.0100     1.505  0.0100
+EAA          C5          C6      DOUBLE       y     1.380  0.0100     1.380  0.0100
+EAA          C7          O1      DOUBLE       n     1.230  0.0165     1.230  0.0165
+EAA          C7          C8      SINGLE       n     1.472  0.0200     1.472  0.0200
+EAA          C8          C9      SINGLE       n     1.510  0.0100     1.510  0.0100
+EAA          C8         C11      DOUBLE       n     1.329  0.0193     1.329  0.0193
+EAA          C9         C10      SINGLE       n     1.505  0.0200     1.505  0.0200
+EAA         C12         C13      SINGLE       n     1.520  0.0100     1.520  0.0100
+EAA         C13           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+EAA         C13         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+EAA          C5          H5      SINGLE       n     1.082  0.0130     0.939  0.0123
+EAA          C6          H6      SINGLE       n     1.082  0.0130     0.937  0.0135
+EAA          C9         H91      SINGLE       n     1.089  0.0100     0.975  0.0121
+EAA          C9         H92      SINGLE       n     1.089  0.0100     0.975  0.0121
+EAA         C10        H101      SINGLE       n     1.089  0.0100     0.973  0.0141
+EAA         C10        H102      SINGLE       n     1.089  0.0100     0.973  0.0141
+EAA         C10        H103      SINGLE       n     1.089  0.0100     0.973  0.0141
+EAA         C11        H111      SINGLE       n     1.082  0.0130     0.948  0.0200
+EAA         C11        H112      SINGLE       n     1.082  0.0130     0.948  0.0200
+EAA         C12        H121      SINGLE       n     1.089  0.0100     0.974  0.0102
+EAA         C12        H122      SINGLE       n     1.089  0.0100     0.974  0.0102
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EAA          O2          C1          C2     116.431    1.87
+EAA          O2          C1          C6     124.367    1.50
+EAA          C2          C1          C6     119.202    1.50
+EAA          C1          O2         C12     117.721    1.50
+EAA          C1          C2         CL1     118.685    1.50
+EAA          C1          C2          C3     120.976    1.50
+EAA         CL1          C2          C3     120.348    1.50
+EAA          C2          C3         CL2     119.687    1.50
+EAA          C2          C3          C4     120.706    1.50
+EAA         CL2          C3          C4     119.608    1.50
+EAA          C3          C4          C5     118.146    1.50
+EAA          C3          C4          C7     122.645    1.62
+EAA          C5          C4          C7     119.209    2.25
+EAA          C4          C5          C6     120.761    1.50
+EAA          C4          C5          H5     119.498    1.50
+EAA          C6          C5          H5     119.741    1.50
+EAA          C1          C6          C5     120.210    1.50
+EAA          C1          C6          H6     119.728    1.50
+EAA          C5          C6          H6     120.062    1.50
+EAA          C4          C7          O1     119.993    1.74
+EAA          C4          C7          C8     120.504    1.66
+EAA          O1          C7          C8     119.503    2.24
+EAA          C7          C8          C9     121.492    3.00
+EAA          C7          C8         C11     118.065    2.68
+EAA          C9          C8         C11     120.443    2.36
+EAA          C8          C9         C10     113.629    1.50
+EAA          C8          C9         H91     108.693    1.50
+EAA          C8          C9         H92     108.693    1.50
+EAA         C10          C9         H91     108.635    1.50
+EAA         C10          C9         H92     108.635    1.50
+EAA         H91          C9         H92     108.028    1.83
+EAA          C9         C10        H101     109.471    1.50
+EAA          C9         C10        H102     109.471    1.50
+EAA          C9         C10        H103     109.471    1.50
+EAA        H101         C10        H102     109.380    1.50
+EAA        H101         C10        H103     109.380    1.50
+EAA        H102         C10        H103     109.380    1.50
+EAA          C8         C11        H111     120.110    1.50
+EAA          C8         C11        H112     120.110    1.50
+EAA        H111         C11        H112     119.779    1.57
+EAA          O2         C12         C13     111.607    2.58
+EAA          O2         C12        H121     109.378    1.50
+EAA          O2         C12        H122     109.378    1.50
+EAA         C13         C12        H121     109.314    1.50
+EAA         C13         C12        H122     109.314    1.50
+EAA        H121         C12        H122     108.052    1.50
+EAA         C12         C13           O     117.215    2.48
+EAA         C12         C13         OXT     117.215    2.48
+EAA           O         C13         OXT     125.570    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EAA             sp2_sp2_1          C2          C1          O2         C12     180.000     5.0     2
+EAA       const_sp2_sp2_4          O2          C1          C2         CL1       0.000     5.0     2
+EAA              const_23          O2          C1          C6          C5     180.000    10.0     2
+EAA             sp2_sp3_2          C7          C8          C9         C10     120.000    10.0     6
+EAA            sp2_sp2_12        H111         C11          C8          C7       0.000     5.0     2
+EAA             sp3_sp3_4        H101         C10          C9          C8     180.000    10.0     3
+EAA             sp2_sp3_8           O         C13         C12          O2     120.000    10.0     6
+EAA             sp3_sp3_1         C13         C12          O2          C1     180.000    10.0     3
+EAA       const_sp2_sp2_8         CL1          C2          C3         CL2       0.000     5.0     2
+EAA              const_12         CL2          C3          C4          C7       0.000    10.0     2
+EAA              const_15          C7          C4          C5          C6     180.000    10.0     2
+EAA             sp2_sp2_4          C3          C4          C7          O1       0.000     5.0     2
+EAA              const_17          C4          C5          C6          C1       0.000    10.0     2
+EAA             sp2_sp2_9          O1          C7          C8          C9       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EAA    plan-1          C1   0.020
+EAA    plan-1          C2   0.020
+EAA    plan-1          C3   0.020
+EAA    plan-1          C4   0.020
+EAA    plan-1          C5   0.020
+EAA    plan-1          C6   0.020
+EAA    plan-1          C7   0.020
+EAA    plan-1         CL1   0.020
+EAA    plan-1         CL2   0.020
+EAA    plan-1          H5   0.020
+EAA    plan-1          H6   0.020
+EAA    plan-1          O2   0.020
+EAA    plan-2          C4   0.020
+EAA    plan-2          C7   0.020
+EAA    plan-2          C8   0.020
+EAA    plan-2          O1   0.020
+EAA    plan-3         C11   0.020
+EAA    plan-3          C7   0.020
+EAA    plan-3          C8   0.020
+EAA    plan-3          C9   0.020
+EAA    plan-4         C11   0.020
+EAA    plan-4          C8   0.020
+EAA    plan-4        H111   0.020
+EAA    plan-4        H112   0.020
+EAA    plan-5         C12   0.020
+EAA    plan-5         C13   0.020
+EAA    plan-5           O   0.020
+EAA    plan-5         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EAA           SMILES              ACDLabs 10.04                                                               Clc1c(C(=O)\C(=C)CC)ccc(OCC(=O)O)c1Cl
+EAA SMILES_CANONICAL               CACTVS 3.341                                                                CCC(=C)C(=O)c1ccc(OCC(O)=O)c(Cl)c1Cl
+EAA           SMILES               CACTVS 3.341                                                                CCC(=C)C(=O)c1ccc(OCC(O)=O)c(Cl)c1Cl
+EAA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                CCC(=C)C(=O)c1ccc(c(c1Cl)Cl)OCC(=O)O
+EAA           SMILES "OpenEye OEToolkits" 1.5.0                                                                CCC(=C)C(=O)c1ccc(c(c1Cl)Cl)OCC(=O)O
+EAA            InChI                InChI  1.03 InChI=1S/C13H12Cl2O4/c1-3-7(2)13(18)8-4-5-9(12(15)11(8)14)19-6-10(16)17/h4-5H,2-3,6H2,1H3,(H,16,17)
+EAA         InChIKey                InChI  1.03                                                                         AVOLMBLBETYQHX-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EAA acedrg               243         "dictionary generator"                  
+EAA acedrg_database      11          "data source"                           
+EAA rdkit                2017.03.2   "Chemoinformatics tool"
+EAA refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,166 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HRI     HRI      "ALPHA-CHLOROISOCAPROIC ACID"     NON-POLYMER     19     9     .     
+#
+data_comp_HRI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HRI     CZ      C       CH1     0       6.403       17.188      111.644     
+HRI     CH1     C       CH2     0       5.626       18.458      111.301     
+HRI     CF1     C       CH1     0       4.874       18.469      109.963     
+HRI     CI1     C       CH3     0       3.862       17.333      109.862     
+HRI     CI2     C       CH3     0       5.833       18.446      108.780     
+HRI     CH2     C       C       0       7.832       17.158      111.131     
+HRI     OF2     O       O       0       8.112       16.329      110.240     
+HRI     OF3     O       OC      -1      8.638       17.966      111.634     
+HRI     CL      CL      CL      0       6.458       16.994      113.431     
+HRI     HCZ     H       H       0       5.928       16.410      111.264     
+HRI     HCH1    H       H       0       6.252       19.212      111.303     
+HRI     HCH2    H       H       0       4.974       18.618      112.015     
+HRI     HCF1    H       H       0       4.371       19.319      109.921     
+HRI     HI11    H       H       0       3.164       17.576      109.229     
+HRI     HI12    H       H       0       3.463       17.173      110.736     
+HRI     HI13    H       H       0       4.306       16.523      109.557     
+HRI     HI21    H       H       0       6.241       17.566      108.707     
+HRI     HI22    H       H       0       6.527       19.115      108.912     
+HRI     HI23    H       H       0       5.344       18.645      107.963     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HRI          CZ         CH1      SINGLE       n     1.512  0.0200     1.512  0.0200
+HRI          CZ         CH2      SINGLE       n     1.519  0.0106     1.519  0.0106
+HRI          CZ          CL      SINGLE       n     1.800  0.0175     1.800  0.0175
+HRI         CH1         CF1      SINGLE       n     1.527  0.0131     1.527  0.0131
+HRI         CF1         CI1      SINGLE       n     1.521  0.0151     1.521  0.0151
+HRI         CF1         CI2      SINGLE       n     1.521  0.0151     1.521  0.0151
+HRI         CH2         OF2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+HRI         CH2         OF3      SINGLE       n     1.247  0.0187     1.247  0.0187
+HRI          CZ         HCZ      SINGLE       n     1.089  0.0100     0.990  0.0142
+HRI         CH1        HCH1      SINGLE       n     1.089  0.0100     0.980  0.0160
+HRI         CH1        HCH2      SINGLE       n     1.089  0.0100     0.980  0.0160
+HRI         CF1        HCF1      SINGLE       n     1.089  0.0100     0.989  0.0162
+HRI         CI1        HI11      SINGLE       n     1.089  0.0100     0.973  0.0146
+HRI         CI1        HI12      SINGLE       n     1.089  0.0100     0.973  0.0146
+HRI         CI1        HI13      SINGLE       n     1.089  0.0100     0.973  0.0146
+HRI         CI2        HI21      SINGLE       n     1.089  0.0100     0.973  0.0146
+HRI         CI2        HI22      SINGLE       n     1.089  0.0100     0.973  0.0146
+HRI         CI2        HI23      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HRI         CH1          CZ         CH2     114.504    2.22
+HRI         CH1          CZ          CL     110.061    1.67
+HRI         CH1          CZ         HCZ     108.964    1.50
+HRI         CH2          CZ          CL     110.491    2.68
+HRI         CH2          CZ         HCZ     108.627    1.50
+HRI          CL          CZ         HCZ     109.286    1.50
+HRI          CZ         CH1         CF1     114.969    1.50
+HRI          CZ         CH1        HCH1     108.469    1.50
+HRI          CZ         CH1        HCH2     108.469    1.50
+HRI         CF1         CH1        HCH1     108.471    1.50
+HRI         CF1         CH1        HCH2     108.471    1.50
+HRI        HCH1         CH1        HCH2     107.715    1.50
+HRI         CH1         CF1         CI1     111.118    1.50
+HRI         CH1         CF1         CI2     111.118    1.50
+HRI         CH1         CF1        HCF1     107.675    1.50
+HRI         CI1         CF1         CI2     110.507    1.50
+HRI         CI1         CF1        HCF1     108.052    1.50
+HRI         CI2         CF1        HCF1     108.052    1.50
+HRI         CF1         CI1        HI11     109.488    1.50
+HRI         CF1         CI1        HI12     109.488    1.50
+HRI         CF1         CI1        HI13     109.488    1.50
+HRI        HI11         CI1        HI12     109.411    1.50
+HRI        HI11         CI1        HI13     109.411    1.50
+HRI        HI12         CI1        HI13     109.411    1.50
+HRI         CF1         CI2        HI21     109.488    1.50
+HRI         CF1         CI2        HI22     109.488    1.50
+HRI         CF1         CI2        HI23     109.488    1.50
+HRI        HI21         CI2        HI22     109.411    1.50
+HRI        HI21         CI2        HI23     109.411    1.50
+HRI        HI22         CI2        HI23     109.411    1.50
+HRI          CZ         CH2         OF2     117.429    2.33
+HRI          CZ         CH2         OF3     117.429    2.33
+HRI         OF2         CH2         OF3     125.142    1.75
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HRI             sp3_sp3_1         CF1         CH1          CZ         CH2     180.000    10.0     3
+HRI             sp2_sp3_1         OF2         CH2          CZ         CH1       0.000    10.0     6
+HRI            sp3_sp3_13         CI1         CF1         CH1          CZ      60.000    10.0     3
+HRI            sp3_sp3_19         CH1         CF1         CI1        HI11     180.000    10.0     3
+HRI            sp3_sp3_31         CH1         CF1         CI2        HI21      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HRI    chir_1    CZ    CL    CH2    CH1    positive
+HRI    chir_2    CF1    CH1    CI1    CI2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HRI    plan-1         CH2   0.020
+HRI    plan-1          CZ   0.020
+HRI    plan-1         OF2   0.020
+HRI    plan-1         OF3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HRI           SMILES              ACDLabs 10.04                                                       ClC(C(=O)O)CC(C)C
+HRI SMILES_CANONICAL               CACTVS 3.341                                                  CC(C)C[C@@H](Cl)C(O)=O
+HRI           SMILES               CACTVS 3.341                                                    CC(C)C[CH](Cl)C(O)=O
+HRI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                       CC(C)CC(C(=O)O)Cl
+HRI           SMILES "OpenEye OEToolkits" 1.5.0                                                       CC(C)CC(C(=O)O)Cl
+HRI            InChI                InChI  1.03 InChI=1S/C6H11ClO2/c1-4(2)3-5(7)6(8)9/h4-5H,3H2,1-2H3,(H,8,9)/t5-/m1/s1
+HRI         InChIKey                InChI  1.03                                             CBQBIPRPIHIKPW-RXMQYKEDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HRI acedrg               243         "dictionary generator"                  
+HRI acedrg_database      11          "data source"                           
+HRI rdkit                2017.03.2   "Chemoinformatics tool"
+HRI refmac5              5.8.0238    "optimization tool"                     

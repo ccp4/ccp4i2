@@ -1,0 +1,255 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SHM     SHM      HOMOBIOTIN     NON-POLYMER     34     17     .     
+#
+data_comp_SHM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SHM     C1      C       CH1     0       -4.443      34.416      10.237      
+SHM     C2      C       CH1     0       -5.884      34.344      10.822      
+SHM     N3      N       NR5     0       -5.961      35.535      11.629      
+SHM     C4      C       CR5     0       -4.819      36.256      11.606      
+SHM     N5      N       NR5     0       -3.924      35.631      10.809      
+SHM     C6      C       CH1     0       -5.982      33.024      11.613      
+SHM     S7      S       S2      0       -4.325      32.765      12.335      
+SHM     C8      C       CH2     0       -3.700      33.158      10.686      
+SHM     C9      C       CH2     0       -7.051      33.012      12.691      
+SHM     C10     C       CH2     0       -7.430      31.627      13.210      
+SHM     C11     C       CH2     0       -8.533      31.639      14.241      
+SHM     C12     C       CH2     0       -8.797      30.289      14.895      
+SHM     C13     C       CH2     0       -9.610      29.361      14.032      
+SHM     C14     C       C       0       -11.098     29.657      13.915      
+SHM     O15     O       O       0       -11.781     28.920      13.176      
+SHM     O16     O       OC      -1      -11.577     30.617      14.554      
+SHM     O17     O       O       0       -4.623      37.319      12.217      
+SHM     H11     H       H       0       -4.468      34.473      9.247       
+SHM     H12     H       H       0       -6.559      34.367      10.095      
+SHM     HN3     H       H       0       -6.657      35.782      12.083      
+SHM     HN5     H       H       0       -3.128      35.944      10.669      
+SHM     H6      H       H       0       -6.163      32.287      10.981      
+SHM     H81     H       H       0       -2.741      33.324      10.716      
+SHM     H82     H       H       0       -3.874      32.424      10.072      
+SHM     H11A    H       H       0       -7.862      33.449      12.328      
+SHM     H21     H       H       0       -6.732      33.561      13.451      
+SHM     H12A    H       H       0       -6.635      31.209      13.603      
+SHM     H22     H       H       0       -7.713      31.074      12.451      
+SHM     H13     H       H       0       -9.357      31.953      13.813      
+SHM     H23     H       H       0       -8.298      32.286      14.940      
+SHM     H14     H       H       0       -9.261      30.434      15.746      
+SHM     H24     H       H       0       -7.937      29.865      15.097      
+SHM     H15     H       H       0       -9.510      28.450      14.380      
+SHM     H25     H       H       0       -9.229      29.367      13.128      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SHM          C1          C2      SINGLE       n     1.546  0.0190     1.546  0.0190
+SHM          C1          N5      SINGLE       n     1.440  0.0100     1.440  0.0100
+SHM          C1          C8      SINGLE       n     1.527  0.0106     1.527  0.0106
+SHM          C2          N3      SINGLE       n     1.440  0.0100     1.440  0.0100
+SHM          C2          C6      SINGLE       n     1.540  0.0100     1.540  0.0100
+SHM          N3          C4      SINGLE       n     1.351  0.0100     1.351  0.0100
+SHM          C4          N5      SINGLE       n     1.351  0.0100     1.351  0.0100
+SHM          C4         O17      DOUBLE       n     1.242  0.0100     1.242  0.0100
+SHM          C6          S7      SINGLE       n     1.828  0.0100     1.828  0.0100
+SHM          C6          C9      SINGLE       n     1.516  0.0200     1.516  0.0200
+SHM          S7          C8      SINGLE       n     1.809  0.0122     1.809  0.0122
+SHM          C9         C10      SINGLE       n     1.527  0.0100     1.527  0.0100
+SHM         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+SHM         C11         C12      SINGLE       n     1.523  0.0117     1.523  0.0117
+SHM         C12         C13      SINGLE       n     1.497  0.0200     1.497  0.0200
+SHM         C13         C14      SINGLE       n     1.519  0.0109     1.519  0.0109
+SHM         C14         O15      DOUBLE       n     1.247  0.0187     1.247  0.0187
+SHM         C14         O16      SINGLE       n     1.247  0.0187     1.247  0.0187
+SHM          C1         H11      SINGLE       n     1.089  0.0100     0.992  0.0104
+SHM          C2         H12      SINGLE       n     1.089  0.0100     0.992  0.0104
+SHM          N3         HN3      SINGLE       n     1.016  0.0100     0.866  0.0173
+SHM          N5         HN5      SINGLE       n     1.016  0.0100     0.866  0.0173
+SHM          C6          H6      SINGLE       n     1.089  0.0100     0.988  0.0181
+SHM          C8         H81      SINGLE       n     1.089  0.0100     0.973  0.0162
+SHM          C8         H82      SINGLE       n     1.089  0.0100     0.973  0.0162
+SHM          C9        H11A      SINGLE       n     1.089  0.0100     0.990  0.0100
+SHM          C9         H21      SINGLE       n     1.089  0.0100     0.990  0.0100
+SHM         C10        H12A      SINGLE       n     1.089  0.0100     0.981  0.0160
+SHM         C10         H22      SINGLE       n     1.089  0.0100     0.981  0.0160
+SHM         C11         H13      SINGLE       n     1.089  0.0100     0.981  0.0163
+SHM         C11         H23      SINGLE       n     1.089  0.0100     0.981  0.0163
+SHM         C12         H14      SINGLE       n     1.089  0.0100     0.980  0.0160
+SHM         C12         H24      SINGLE       n     1.089  0.0100     0.980  0.0160
+SHM         C13         H15      SINGLE       n     1.089  0.0100     0.981  0.0185
+SHM         C13         H25      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SHM          C2          C1          N5     103.067    1.50
+SHM          C2          C1          C8     104.802    1.87
+SHM          C2          C1         H11     110.773    1.50
+SHM          N5          C1          C8     113.949    2.21
+SHM          N5          C1         H11     110.900    1.50
+SHM          C8          C1         H11     110.691    1.64
+SHM          C1          C2          N3     103.067    1.50
+SHM          C1          C2          C6     104.802    1.87
+SHM          C1          C2         H12     110.773    1.50
+SHM          N3          C2          C6     113.949    2.21
+SHM          N3          C2         H12     110.900    1.50
+SHM          C6          C2         H12     110.779    1.50
+SHM          C2          N3          C4     112.454    1.50
+SHM          C2          N3         HN3     124.974    2.25
+SHM          C4          N3         HN3     122.572    2.15
+SHM          N3          C4          N5     108.587    1.50
+SHM          N3          C4         O17     125.707    1.50
+SHM          N5          C4         O17     125.707    1.50
+SHM          C1          N5          C4     112.454    1.50
+SHM          C1          N5         HN5     124.974    2.25
+SHM          C4          N5         HN5     122.572    2.15
+SHM          C2          C6          S7     105.927    1.58
+SHM          C2          C6          C9     113.984    2.76
+SHM          C2          C6          H6     109.157    1.50
+SHM          S7          C6          C9     111.156    2.31
+SHM          S7          C6          H6     108.608    1.50
+SHM          C9          C6          H6     109.052    1.71
+SHM          C6          S7          C8      92.264    3.00
+SHM          C1          C8          S7     105.927    1.58
+SHM          C1          C8         H81     110.225    1.62
+SHM          C1          C8         H82     110.225    1.62
+SHM          S7          C8         H81     110.350    1.50
+SHM          S7          C8         H82     110.350    1.50
+SHM         H81          C8         H82     108.811    1.50
+SHM          C6          C9         C10     114.922    2.04
+SHM          C6          C9        H11A     108.334    1.50
+SHM          C6          C9         H21     108.334    1.50
+SHM         C10          C9        H11A     108.756    1.50
+SHM         C10          C9         H21     108.756    1.50
+SHM        H11A          C9         H21     107.535    1.50
+SHM          C9         C10         C11     114.188    2.10
+SHM          C9         C10        H12A     108.765    1.50
+SHM          C9         C10         H22     108.765    1.50
+SHM         C11         C10        H12A     108.803    1.50
+SHM         C11         C10         H22     108.803    1.50
+SHM        H12A         C10         H22     107.696    1.50
+SHM         C10         C11         C12     114.292    1.50
+SHM         C10         C11         H13     108.623    1.50
+SHM         C10         C11         H23     108.623    1.50
+SHM         C12         C11         H13     108.698    1.50
+SHM         C12         C11         H23     108.698    1.50
+SHM         H13         C11         H23     107.646    1.50
+SHM         C11         C12         C13     112.553    1.50
+SHM         C11         C12         H14     108.698    1.50
+SHM         C11         C12         H24     108.698    1.50
+SHM         C13         C12         H14     109.164    1.50
+SHM         C13         C12         H24     109.164    1.50
+SHM         H14         C12         H24     107.646    1.50
+SHM         C12         C13         C14     114.612    2.19
+SHM         C12         C13         H15     108.815    1.50
+SHM         C12         C13         H25     108.815    1.50
+SHM         C14         C13         H15     108.404    1.50
+SHM         C14         C13         H25     108.404    1.50
+SHM         H15         C13         H25     107.521    1.50
+SHM         C13         C14         O15     118.214    1.64
+SHM         C13         C14         O16     118.214    1.64
+SHM         O15         C14         O16     123.571    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SHM             sp3_sp3_1          N5          C1          C2          N3      60.000    10.0     3
+SHM             sp2_sp3_7          C4          N5          C1          C2       0.000    10.0     6
+SHM            sp3_sp3_25          C2          C1          C8          S7     180.000    10.0     3
+SHM            sp3_sp3_61         C10         C11         C12         C13     180.000    10.0     3
+SHM            sp3_sp3_70         C11         C12         C13         C14     180.000    10.0     3
+SHM            sp2_sp3_14         O15         C14         C13         C12     120.000    10.0     6
+SHM             sp2_sp3_1          C4          N3          C2          C1       0.000    10.0     6
+SHM            sp3_sp3_11          C1          C2          C6          C9      60.000    10.0     3
+SHM             sp2_sp2_3         O17          C4          N3          C2     180.000     5.0     2
+SHM             sp2_sp2_7         O17          C4          N5          C1     180.000     5.0     2
+SHM            sp3_sp3_20          C9          C6          S7          C8     -60.000    10.0     3
+SHM            sp3_sp3_34          C2          C6          C9         C10     180.000    10.0     3
+SHM            sp3_sp3_22          C1          C8          S7          C6     -60.000    10.0     3
+SHM            sp3_sp3_43         C11         C10          C9          C6     180.000    10.0     3
+SHM            sp3_sp3_52          C9         C10         C11         C12     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SHM    chir_1    C1    N5    C8    C2    negative
+SHM    chir_2    C2    N3    C6    C1    positive
+SHM    chir_3    C6    S7    C2    C9    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SHM    plan-1          C2   0.020
+SHM    plan-1          C4   0.020
+SHM    plan-1         HN3   0.020
+SHM    plan-1          N3   0.020
+SHM    plan-2          C4   0.020
+SHM    plan-2          N3   0.020
+SHM    plan-2          N5   0.020
+SHM    plan-2         O17   0.020
+SHM    plan-3          C1   0.020
+SHM    plan-3          C4   0.020
+SHM    plan-3         HN5   0.020
+SHM    plan-3          N5   0.020
+SHM    plan-4         C13   0.020
+SHM    plan-4         C14   0.020
+SHM    plan-4         O15   0.020
+SHM    plan-4         O16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SHM           SMILES              ACDLabs 10.04                                                                                                 O=C1NC2C(SCC2N1)CCCCCC(=O)O
+SHM SMILES_CANONICAL               CACTVS 3.341                                                                                   OC(=O)CCCCC[C@@H]1SC[C@@H]2NC(=O)N[C@H]12
+SHM           SMILES               CACTVS 3.341                                                                                        OC(=O)CCCCC[CH]1SC[CH]2NC(=O)N[CH]12
+SHM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                               C1[C@H]2[C@@H]([C@@H](S1)CCCCCC(=O)O)NC(=O)N2
+SHM           SMILES "OpenEye OEToolkits" 1.5.0                                                                                             C1C2C(C(S1)CCCCCC(=O)O)NC(=O)N2
+SHM            InChI                InChI  1.03 InChI=1S/C11H18N2O3S/c14-9(15)5-3-1-2-4-8-10-7(6-17-8)12-11(16)13-10/h7-8,10H,1-6H2,(H,14,15)(H2,12,13,16)/t7-,8-,10-/m0/s1
+SHM         InChIKey                InChI  1.03                                                                                                 CUIOUBJXOZHWNJ-NRPADANISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SHM acedrg               243         "dictionary generator"                  
+SHM acedrg_database      11          "data source"                           
+SHM rdkit                2017.03.2   "Chemoinformatics tool"
+SHM refmac5              5.8.0238    "optimization tool"                     

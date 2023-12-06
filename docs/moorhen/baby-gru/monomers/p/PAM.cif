@@ -1,0 +1,284 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PAM     PAM      "PALMITOLEIC ACID"     NON-POLYMER     47     18     .     
+#
+data_comp_PAM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PAM     C1      C       C       0       140.150     -35.381     54.858      
+PAM     O1      O       OC      -1      139.129     -35.949     55.296      
+PAM     O2      O       O       0       141.154     -35.134     55.555      
+PAM     C2      C       CH2     0       140.171     -34.968     53.397      
+PAM     C3      C       CH2     0       140.708     -36.007     52.462      
+PAM     C4      C       CH2     0       140.705     -35.550     51.014      
+PAM     C5      C       CH2     0       141.228     -36.576     50.039      
+PAM     C6      C       CH2     0       141.343     -36.080     48.619      
+PAM     C7      C       CH2     0       140.007     -35.906     47.908      
+PAM     C8      C       CH2     0       140.124     -35.500     46.471      
+PAM     C9      C       C1      0       140.513     -36.625     45.562      
+PAM     C10     C       C1      0       140.755     -36.527     44.279      
+PAM     C11     C       CH2     0       140.690     -35.269     43.467      
+PAM     C12     C       CH2     0       140.882     -35.486     41.992      
+PAM     C13     C       CH2     0       139.848     -36.380     41.312      
+PAM     C14     C       CH2     0       138.409     -35.914     41.415      
+PAM     C15     C       CH2     0       138.130     -34.545     40.845      
+PAM     C16     C       CH3     0       136.660     -34.203     40.790      
+PAM     H21     H       H       0       140.714     -34.155     53.313      
+PAM     H22     H       H       0       139.256     -34.741     53.126      
+PAM     H31     H       H       0       140.168     -36.821     52.538      
+PAM     H32     H       H       0       141.626     -36.232     52.721      
+PAM     H41     H       H       0       141.251     -34.738     50.939      
+PAM     H42     H       H       0       139.787     -35.315     50.760      
+PAM     H51     H       H       0       140.633     -37.355     50.053      
+PAM     H52     H       H       0       142.113     -36.873     50.341      
+PAM     H61     H       H       0       141.891     -36.713     48.108      
+PAM     H62     H       H       0       141.811     -35.218     48.623      
+PAM     H71     H       H       0       139.484     -35.228     48.385      
+PAM     H72     H       H       0       139.513     -36.750     47.958      
+PAM     H81     H       H       0       140.795     -34.785     46.397      
+PAM     H82     H       H       0       139.261     -35.135     46.173      
+PAM     H9      H       H       0       140.590     -37.483     45.951      
+PAM     H10     H       H       0       140.995     -37.319     43.824      
+PAM     H111    H       H       0       141.387     -34.654     43.786      
+PAM     H112    H       H       0       139.820     -34.839     43.618      
+PAM     H121    H       H       0       141.768     -35.881     41.851      
+PAM     H122    H       H       0       140.879     -34.613     41.547      
+PAM     H131    H       H       0       139.910     -37.280     41.695      
+PAM     H132    H       H       0       140.081     -36.451     40.361      
+PAM     H141    H       H       0       138.144     -35.919     42.358      
+PAM     H142    H       H       0       137.841     -36.563     40.948      
+PAM     H151    H       H       0       138.501     -34.498     39.937      
+PAM     H152    H       H       0       138.591     -33.873     41.393      
+PAM     H161    H       H       0       136.546     -33.318     40.403      
+PAM     H162    H       H       0       136.290     -34.212     41.690      
+PAM     H163    H       H       0       136.193     -34.858     40.243      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PAM          C1          O1      SINGLE       n     1.247  0.0187     1.247  0.0187
+PAM          C1          O2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+PAM          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+PAM          C2          C3      SINGLE       n     1.497  0.0200     1.497  0.0200
+PAM          C3          C4      SINGLE       n     1.519  0.0164     1.519  0.0164
+PAM          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+PAM          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+PAM          C6          C7      SINGLE       n     1.523  0.0117     1.523  0.0117
+PAM          C7          C8      SINGLE       n     1.497  0.0200     1.497  0.0200
+PAM          C8          C9      SINGLE       n     1.497  0.0127     1.497  0.0127
+PAM          C9         C10      DOUBLE       n     1.308  0.0200     1.308  0.0200
+PAM         C10         C11      SINGLE       n     1.497  0.0127     1.497  0.0127
+PAM         C11         C12      SINGLE       n     1.497  0.0200     1.497  0.0200
+PAM         C12         C13      SINGLE       n     1.519  0.0164     1.519  0.0164
+PAM         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+PAM         C14         C15      SINGLE       n     1.507  0.0200     1.507  0.0200
+PAM         C15         C16      SINGLE       n     1.510  0.0200     1.510  0.0200
+PAM          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+PAM          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+PAM          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0160
+PAM          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0160
+PAM          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+PAM          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+PAM          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0163
+PAM          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0163
+PAM          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+PAM          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+PAM          C7         H71      SINGLE       n     1.089  0.0100     0.980  0.0160
+PAM          C7         H72      SINGLE       n     1.089  0.0100     0.980  0.0160
+PAM          C8         H81      SINGLE       n     1.089  0.0100     0.983  0.0180
+PAM          C8         H82      SINGLE       n     1.089  0.0100     0.983  0.0180
+PAM          C9          H9      SINGLE       n     1.082  0.0130     0.945  0.0200
+PAM         C10         H10      SINGLE       n     1.082  0.0130     0.945  0.0200
+PAM         C11        H111      SINGLE       n     1.089  0.0100     0.983  0.0180
+PAM         C11        H112      SINGLE       n     1.089  0.0100     0.983  0.0180
+PAM         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0160
+PAM         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0160
+PAM         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0163
+PAM         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0163
+PAM         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0163
+PAM         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0163
+PAM         C15        H151      SINGLE       n     1.089  0.0100     0.982  0.0155
+PAM         C15        H152      SINGLE       n     1.089  0.0100     0.982  0.0155
+PAM         C16        H161      SINGLE       n     1.089  0.0100     0.973  0.0157
+PAM         C16        H162      SINGLE       n     1.089  0.0100     0.973  0.0157
+PAM         C16        H163      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PAM          O1          C1          O2     123.571    1.50
+PAM          O1          C1          C2     118.214    1.64
+PAM          O2          C1          C2     118.214    1.64
+PAM          C1          C2          C3     114.612    2.19
+PAM          C1          C2         H21     108.404    1.50
+PAM          C1          C2         H22     108.404    1.50
+PAM          C3          C2         H21     108.815    1.50
+PAM          C3          C2         H22     108.815    1.50
+PAM         H21          C2         H22     107.521    1.50
+PAM          C2          C3          C4     112.553    1.50
+PAM          C2          C3         H31     109.164    1.50
+PAM          C2          C3         H32     109.164    1.50
+PAM          C4          C3         H31     108.698    1.50
+PAM          C4          C3         H32     108.698    1.50
+PAM         H31          C3         H32     107.646    1.50
+PAM          C3          C4          C5     114.243    1.69
+PAM          C3          C4         H41     108.698    1.50
+PAM          C3          C4         H42     108.698    1.50
+PAM          C5          C4         H41     108.698    1.50
+PAM          C5          C4         H42     108.698    1.50
+PAM         H41          C4         H42     107.646    1.50
+PAM          C4          C5          C6     114.243    1.69
+PAM          C4          C5         H51     108.698    1.50
+PAM          C4          C5         H52     108.698    1.50
+PAM          C6          C5         H51     108.698    1.50
+PAM          C6          C5         H52     108.698    1.50
+PAM         H51          C5         H52     107.646    1.50
+PAM          C5          C6          C7     114.243    1.69
+PAM          C5          C6         H61     108.698    1.50
+PAM          C5          C6         H62     108.698    1.50
+PAM          C7          C6         H61     108.698    1.50
+PAM          C7          C6         H62     108.698    1.50
+PAM         H61          C6         H62     107.646    1.50
+PAM          C6          C7          C8     114.266    1.80
+PAM          C6          C7         H71     108.698    1.50
+PAM          C6          C7         H72     108.698    1.50
+PAM          C8          C7         H71     108.805    1.50
+PAM          C8          C7         H72     108.805    1.50
+PAM         H71          C7         H72     107.646    1.50
+PAM          C7          C8          C9     113.226    1.94
+PAM          C7          C8         H81     108.819    1.50
+PAM          C7          C8         H82     108.819    1.50
+PAM          C9          C8         H81     108.886    1.50
+PAM          C9          C8         H82     108.886    1.50
+PAM         H81          C8         H82     107.922    1.50
+PAM          C8          C9         C10     125.684    3.00
+PAM          C8          C9          H9     117.007    1.61
+PAM         C10          C9          H9     117.310    2.16
+PAM          C9         C10         C11     125.684    3.00
+PAM          C9         C10         H10     117.310    2.16
+PAM         C11         C10         H10     117.007    1.61
+PAM         C10         C11         C12     113.226    1.94
+PAM         C10         C11        H111     108.886    1.50
+PAM         C10         C11        H112     108.886    1.50
+PAM         C12         C11        H111     108.819    1.50
+PAM         C12         C11        H112     108.819    1.50
+PAM        H111         C11        H112     107.922    1.50
+PAM         C11         C12         C13     114.266    1.80
+PAM         C11         C12        H121     108.805    1.50
+PAM         C11         C12        H122     108.805    1.50
+PAM         C13         C12        H121     108.698    1.50
+PAM         C13         C12        H122     108.698    1.50
+PAM        H121         C12        H122     107.646    1.50
+PAM         C12         C13         C14     114.243    1.69
+PAM         C12         C13        H131     108.698    1.50
+PAM         C12         C13        H132     108.698    1.50
+PAM         C14         C13        H131     108.698    1.50
+PAM         C14         C13        H132     108.698    1.50
+PAM        H131         C13        H132     107.646    1.50
+PAM         C13         C14         C15     114.362    3.00
+PAM         C13         C14        H141     108.698    1.50
+PAM         C13         C14        H142     108.698    1.50
+PAM         C15         C14        H141     108.653    1.50
+PAM         C15         C14        H142     108.653    1.50
+PAM        H141         C14        H142     107.646    1.50
+PAM         C14         C15         C16     113.719    3.00
+PAM         C14         C15        H151     108.758    1.50
+PAM         C14         C15        H152     108.758    1.50
+PAM         C16         C15        H151     108.918    1.50
+PAM         C16         C15        H152     108.918    1.50
+PAM        H151         C15        H152     107.763    1.50
+PAM         C15         C16        H161     109.554    1.50
+PAM         C15         C16        H162     109.554    1.50
+PAM         C15         C16        H163     109.554    1.50
+PAM        H161         C16        H162     109.380    1.50
+PAM        H161         C16        H163     109.380    1.50
+PAM        H162         C16        H163     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PAM             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+PAM             sp2_sp2_1         C11         C10          C9          C8     180.000     5.0     2
+PAM            sp2_sp3_14          C9         C10         C11         C12     120.000    10.0     6
+PAM            sp3_sp3_55         C10         C11         C12         C13     180.000    10.0     3
+PAM            sp3_sp3_64         C11         C12         C13         C14     180.000    10.0     3
+PAM            sp3_sp3_73         C12         C13         C14         C15     180.000    10.0     3
+PAM            sp3_sp3_82         C13         C14         C15         C16     180.000    10.0     3
+PAM            sp3_sp3_91         C14         C15         C16        H161     180.000    10.0     3
+PAM             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+PAM            sp3_sp3_10          C2          C3          C4          C5     180.000    10.0     3
+PAM            sp3_sp3_19          C3          C4          C5          C6     180.000    10.0     3
+PAM            sp3_sp3_28          C4          C5          C6          C7     180.000    10.0     3
+PAM            sp3_sp3_37          C5          C6          C7          C8     180.000    10.0     3
+PAM            sp3_sp3_46          C6          C7          C8          C9     180.000    10.0     3
+PAM             sp2_sp3_8         C10          C9          C8          C7     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PAM    plan-1          C1   0.020
+PAM    plan-1          C2   0.020
+PAM    plan-1          O1   0.020
+PAM    plan-1          O2   0.020
+PAM    plan-2         C10   0.020
+PAM    plan-2          C8   0.020
+PAM    plan-2          C9   0.020
+PAM    plan-2          H9   0.020
+PAM    plan-3         C10   0.020
+PAM    plan-3         C11   0.020
+PAM    plan-3          C9   0.020
+PAM    plan-3         H10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PAM           SMILES              ACDLabs 10.04                                                                             O=C(O)CCCCCCC\C=C/CCCCCC
+PAM SMILES_CANONICAL               CACTVS 3.341                                                                             CCCCCC\C=C/CCCCCCCC(O)=O
+PAM           SMILES               CACTVS 3.341                                                                               CCCCCCC=CCCCCCCCC(O)=O
+PAM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                             CCCCCC\C=C/CCCCCCCC(=O)O
+PAM           SMILES "OpenEye OEToolkits" 1.5.0                                                                               CCCCCCC=CCCCCCCCC(=O)O
+PAM            InChI                InChI  1.03 InChI=1S/C16H30O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16(17)18/h7-8H,2-6,9-15H2,1H3,(H,17,18)/b8-7-
+PAM         InChIKey                InChI  1.03                                                                          SECPZKHBENQXJG-FPLPWBNLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PAM acedrg               243         "dictionary generator"                  
+PAM acedrg_database      11          "data source"                           
+PAM rdkit                2017.03.2   "Chemoinformatics tool"
+PAM refmac5              5.8.0238    "optimization tool"                     

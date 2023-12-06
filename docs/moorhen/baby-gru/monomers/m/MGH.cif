@@ -1,0 +1,356 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MGH     MGH      "methyl N-(carboxymethyl)-N-(3-phenylpropanoyl)glycyl-D-histidinate"     NON-POLYMER     53     30     .     
+#
+data_comp_MGH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MGH     C01     C       CH3     0       106.915     -71.911     6.228       
+MGH     O02     O       O2      0       106.935     -70.507     6.590       
+MGH     C03     C       C       0       107.156     -69.619     5.623       
+MGH     O04     O       O       0       107.593     -69.892     4.531       
+MGH     C05     C       CH1     0       106.795     -68.215     6.076       
+MGH     C06     C       CH2     0       107.686     -67.135     5.423       
+MGH     C07     C       CR5     0       109.132     -67.206     5.800       
+MGH     C08     C       CR15    0       110.197     -66.573     5.242       
+MGH     N09     N       NR5     0       111.302     -66.967     5.949       
+MGH     C10     C       CR15    0       110.887     -67.808     6.897       
+MGH     N11     N       NRD5    0       109.580     -67.981     6.852       
+MGH     N12     N       NH1     0       105.381     -67.927     5.881       
+MGH     C13     C       C       0       104.766     -67.895     4.691       
+MGH     O14     O       O       0       105.328     -68.111     3.618       
+MGH     C15     C       CH2     0       103.273     -67.577     4.717       
+MGH     N16     N       N       0       102.448     -68.790     4.748       
+MGH     C17     C       CH2     0       102.108     -69.257     6.097       
+MGH     C18     C       C       0       103.112     -70.287     6.614       
+MGH     O19     O       OC      -1      103.181     -71.372     6.003       
+MGH     O20     O       O       0       103.793     -69.971     7.610       
+MGH     C21     C       C       0       102.139     -69.437     3.581       
+MGH     O22     O       O       0       102.709     -69.155     2.527       
+MGH     C23     C       CH2     0       101.025     -70.459     3.563       
+MGH     C24     C       CH2     0       99.644      -69.817     3.651       
+MGH     C25     C       CR6     0       98.504      -70.808     3.634       
+MGH     C26     C       CR16    0       97.744      -71.004     2.486       
+MGH     C27     C       CR16    0       96.696      -71.915     2.474       
+MGH     C28     C       CR16    0       96.394      -72.640     3.609       
+MGH     C29     C       CR16    0       97.138      -72.457     4.755       
+MGH     C30     C       CR16    0       98.187      -71.546     4.769       
+MGH     H101    H       H       0       107.801     -72.181     5.937       
+MGH     H201    H       H       0       106.279     -72.053     5.508       
+MGH     H301    H       H       0       106.653     -72.438     6.999       
+MGH     H05     H       H       0       106.950     -68.180     7.050       
+MGH     H106    H       H       0       107.333     -66.256     5.671       
+MGH     H206    H       H       0       107.608     -67.210     4.452       
+MGH     H08     H       H       0       110.196     -65.978     4.508       
+MGH     HN09    H       H       0       112.112     -66.714     5.801       
+MGH     H10     H       H       0       111.454     -68.219     7.520       
+MGH     HN12    H       H       0       104.907     -67.771     6.598       
+MGH     H115    H       H       0       103.053     -67.047     3.915       
+MGH     H215    H       H       0       103.080     -67.013     5.503       
+MGH     H117    H       H       0       101.216     -69.657     6.101       
+MGH     H217    H       H       0       102.087     -68.501     6.719       
+MGH     H123    H       H       0       101.137     -71.078     4.298       
+MGH     H223    H       H       0       101.080     -70.962     2.735       
+MGH     H124    H       H       0       99.538      -69.199     2.896       
+MGH     H224    H       H       0       99.592      -69.290     4.475       
+MGH     H26     H       H       0       97.944      -70.512     1.706       
+MGH     H27     H       H       0       96.188      -72.039     1.688       
+MGH     H28     H       H       0       95.682      -73.260     3.601       
+MGH     H29     H       H       0       96.935      -72.951     5.533       
+MGH     H30     H       H       0       98.692      -71.425     5.557       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MGH         O02         C03      SINGLE       n     1.326  0.0123     1.326  0.0123
+MGH         C01         O02      SINGLE       n     1.447  0.0130     1.447  0.0130
+MGH         C03         C05      SINGLE       n     1.514  0.0100     1.514  0.0100
+MGH         C03         O04      DOUBLE       n     1.203  0.0150     1.203  0.0150
+MGH         C05         N12      SINGLE       n     1.451  0.0100     1.451  0.0100
+MGH         C06         C07      SINGLE       n     1.492  0.0100     1.492  0.0100
+MGH         C05         C06      SINGLE       n     1.539  0.0100     1.539  0.0100
+MGH         C07         N11      SINGLE       y     1.379  0.0100     1.379  0.0100
+MGH         C08         N09      SINGLE       y     1.370  0.0100     1.370  0.0100
+MGH         C07         C08      DOUBLE       y     1.357  0.0100     1.357  0.0100
+MGH         N09         C10      SINGLE       y     1.335  0.0100     1.335  0.0100
+MGH         C10         N11      DOUBLE       y     1.320  0.0100     1.320  0.0100
+MGH         N12         C13      SINGLE       n     1.333  0.0100     1.333  0.0100
+MGH         C13         C15      SINGLE       n     1.524  0.0113     1.524  0.0113
+MGH         C13         O14      DOUBLE       n     1.229  0.0102     1.229  0.0102
+MGH         C15         N16      SINGLE       n     1.460  0.0100     1.460  0.0100
+MGH         N16         C17      SINGLE       n     1.460  0.0100     1.460  0.0100
+MGH         C17         C18      SINGLE       n     1.527  0.0103     1.527  0.0103
+MGH         C18         O19      SINGLE       n     1.247  0.0187     1.247  0.0187
+MGH         C18         O20      DOUBLE       n     1.247  0.0187     1.247  0.0187
+MGH         N16         C21      SINGLE       n     1.359  0.0100     1.359  0.0100
+MGH         C21         O22      DOUBLE       n     1.229  0.0102     1.229  0.0102
+MGH         C21         C23      SINGLE       n     1.508  0.0116     1.508  0.0116
+MGH         C24         C25      SINGLE       n     1.510  0.0100     1.510  0.0100
+MGH         C23         C24      SINGLE       n     1.524  0.0200     1.524  0.0200
+MGH         C25         C30      DOUBLE       y     1.385  0.0111     1.385  0.0111
+MGH         C26         C27      DOUBLE       y     1.386  0.0100     1.386  0.0100
+MGH         C25         C26      SINGLE       y     1.385  0.0111     1.385  0.0111
+MGH         C27         C28      SINGLE       y     1.376  0.0124     1.376  0.0124
+MGH         C28         C29      DOUBLE       y     1.374  0.0127     1.374  0.0127
+MGH         C29         C30      SINGLE       y     1.386  0.0100     1.386  0.0100
+MGH         C01        H101      SINGLE       n     1.089  0.0100     0.970  0.0175
+MGH         C01        H201      SINGLE       n     1.089  0.0100     0.970  0.0175
+MGH         C01        H301      SINGLE       n     1.089  0.0100     0.970  0.0175
+MGH         C05         H05      SINGLE       n     1.089  0.0100     0.987  0.0115
+MGH         C06        H106      SINGLE       n     1.089  0.0100     0.979  0.0187
+MGH         C06        H206      SINGLE       n     1.089  0.0100     0.979  0.0187
+MGH         C08         H08      SINGLE       n     1.082  0.0130     0.945  0.0191
+MGH         N09        HN09      SINGLE       n     1.016  0.0100     0.861  0.0200
+MGH         C10         H10      SINGLE       n     1.082  0.0130     0.937  0.0200
+MGH         N12        HN12      SINGLE       n     1.016  0.0100     0.873  0.0200
+MGH         C15        H115      SINGLE       n     1.089  0.0100     0.986  0.0117
+MGH         C15        H215      SINGLE       n     1.089  0.0100     0.986  0.0117
+MGH         C17        H117      SINGLE       n     1.089  0.0100     0.979  0.0115
+MGH         C17        H217      SINGLE       n     1.089  0.0100     0.979  0.0115
+MGH         C23        H123      SINGLE       n     1.089  0.0100     0.970  0.0190
+MGH         C23        H223      SINGLE       n     1.089  0.0100     0.970  0.0190
+MGH         C24        H124      SINGLE       n     1.089  0.0100     0.981  0.0169
+MGH         C24        H224      SINGLE       n     1.089  0.0100     0.981  0.0169
+MGH         C26         H26      SINGLE       n     1.082  0.0130     0.944  0.0174
+MGH         C27         H27      SINGLE       n     1.082  0.0130     0.944  0.0175
+MGH         C28         H28      SINGLE       n     1.082  0.0130     0.944  0.0161
+MGH         C29         H29      SINGLE       n     1.082  0.0130     0.944  0.0175
+MGH         C30         H30      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MGH         O02         C01        H101     109.367    1.50
+MGH         O02         C01        H201     109.367    1.50
+MGH         O02         C01        H301     109.367    1.50
+MGH        H101         C01        H201     109.532    1.53
+MGH        H101         C01        H301     109.532    1.53
+MGH        H201         C01        H301     109.532    1.53
+MGH         C03         O02         C01     116.120    1.50
+MGH         O02         C03         C05     111.536    1.55
+MGH         O02         C03         O04     123.903    1.50
+MGH         C05         C03         O04     124.560    1.50
+MGH         C03         C05         N12     111.753    1.75
+MGH         C03         C05         C06     111.066    1.72
+MGH         C03         C05         H05     107.597    1.50
+MGH         N12         C05         C06     110.975    1.50
+MGH         N12         C05         H05     107.553    1.50
+MGH         C06         C05         H05     108.480    1.50
+MGH         C07         C06         C05     112.183    1.50
+MGH         C07         C06        H106     109.683    1.50
+MGH         C07         C06        H206     109.683    1.50
+MGH         C05         C06        H106     108.816    1.50
+MGH         C05         C06        H206     108.816    1.50
+MGH        H106         C06        H206     107.541    1.50
+MGH         C06         C07         N11     120.759    1.50
+MGH         C06         C07         C08     130.200    1.50
+MGH         N11         C07         C08     109.041    1.50
+MGH         N09         C08         C07     106.242    1.50
+MGH         N09         C08         H08     125.855    2.21
+MGH         C07         C08         H08     127.902    1.83
+MGH         C08         N09         C10     107.314    1.50
+MGH         C08         N09        HN09     125.800    1.75
+MGH         C10         N09        HN09     126.886    3.00
+MGH         N09         C10         N11     111.692    1.50
+MGH         N09         C10         H10     124.008    1.50
+MGH         N11         C10         H10     124.304    1.50
+MGH         C07         N11         C10     105.707    1.50
+MGH         C05         N12         C13     122.226    1.76
+MGH         C05         N12        HN12     118.487    1.50
+MGH         C13         N12        HN12     119.286    1.50
+MGH         N12         C13         C15     115.632    1.70
+MGH         N12         C13         O14     123.174    1.50
+MGH         C15         C13         O14     121.193    1.50
+MGH         C13         C15         N16     111.993    1.67
+MGH         C13         C15        H115     108.523    1.50
+MGH         C13         C15        H215     108.523    1.50
+MGH         N16         C15        H115     109.303    1.50
+MGH         N16         C15        H215     109.303    1.50
+MGH        H115         C15        H215     107.938    1.50
+MGH         C15         N16         C17     116.543    2.79
+MGH         C15         N16         C21     121.728    2.70
+MGH         C17         N16         C21     121.728    2.70
+MGH         N16         C17         C18     111.249    2.34
+MGH         N16         C17        H117     109.037    1.50
+MGH         N16         C17        H217     109.037    1.50
+MGH         C18         C17        H117     108.544    1.50
+MGH         C18         C17        H217     108.544    1.50
+MGH        H117         C17        H217     107.487    1.50
+MGH         C17         C18         O19     117.146    1.78
+MGH         C17         C18         O20     117.146    1.78
+MGH         O19         C18         O20     125.708    1.50
+MGH         N16         C21         O22     121.449    1.50
+MGH         N16         C21         C23     117.451    1.50
+MGH         O22         C21         C23     121.100    1.50
+MGH         C21         C23         C24     112.429    2.96
+MGH         C21         C23        H123     108.929    1.50
+MGH         C21         C23        H223     108.929    1.50
+MGH         C24         C23        H123     108.976    1.50
+MGH         C24         C23        H223     108.976    1.50
+MGH        H123         C23        H223     108.535    1.50
+MGH         C25         C24         C23     113.835    1.79
+MGH         C25         C24        H124     108.803    1.50
+MGH         C25         C24        H224     108.803    1.50
+MGH         C23         C24        H124     108.600    1.50
+MGH         C23         C24        H224     108.600    1.50
+MGH        H124         C24        H224     107.745    1.50
+MGH         C24         C25         C30     120.970    1.50
+MGH         C24         C25         C26     120.970    1.50
+MGH         C30         C25         C26     118.060    1.50
+MGH         C27         C26         C25     120.624    1.50
+MGH         C27         C26         H26     119.786    1.50
+MGH         C25         C26         H26     119.591    1.50
+MGH         C26         C27         C28     120.325    1.50
+MGH         C26         C27         H27     119.792    1.50
+MGH         C28         C27         H27     119.883    1.50
+MGH         C27         C28         C29     120.043    1.50
+MGH         C27         C28         H28     119.979    1.50
+MGH         C29         C28         H28     119.979    1.50
+MGH         C28         C29         C30     120.325    1.50
+MGH         C28         C29         H29     119.883    1.50
+MGH         C30         C29         H29     119.792    1.50
+MGH         C25         C30         C29     120.624    1.50
+MGH         C25         C30         H30     119.591    1.50
+MGH         C29         C30         H30     119.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MGH             sp3_sp3_2        H101         C01         O02         C03     -60.000    10.0     3
+MGH             sp2_sp2_3         C15         C13         N12         C05     180.000     5.0     2
+MGH            sp2_sp3_20         N12         C13         C15         N16     120.000    10.0     6
+MGH            sp2_sp3_26         C17         N16         C15         C13     120.000    10.0     6
+MGH            sp2_sp3_32         C15         N16         C17         C18     120.000    10.0     6
+MGH             sp2_sp2_9         O22         C21         N16         C15       0.000     5.0     2
+MGH            sp2_sp3_38         O19         C18         C17         N16     120.000    10.0     6
+MGH             sp2_sp2_1         C05         C03         O02         C01     180.000     5.0     2
+MGH            sp2_sp3_44         N16         C21         C23         C24     120.000    10.0     6
+MGH            sp3_sp3_14         C21         C23         C24         C25     180.000    10.0     3
+MGH            sp2_sp3_50         C30         C25         C24         C23     -90.000    10.0     6
+MGH              const_39         C24         C25         C26         C27     180.000    10.0     2
+MGH              const_15         C24         C25         C30         C29     180.000    10.0     2
+MGH              const_29         C25         C26         C27         C28       0.000    10.0     2
+MGH              const_25         C26         C27         C28         C29       0.000    10.0     2
+MGH              const_21         C27         C28         C29         C30       0.000    10.0     2
+MGH              const_17         C28         C29         C30         C25       0.000    10.0     2
+MGH             sp2_sp3_1         O02         C03         C05         N12       0.000    10.0     6
+MGH             sp2_sp3_7         C13         N12         C05         C03       0.000    10.0     6
+MGH             sp3_sp3_5         C03         C05         C06         C07     180.000    10.0     3
+MGH            sp2_sp3_14         N11         C07         C06         C05     -90.000    10.0     6
+MGH       const_sp2_sp2_2         C06         C07         N11         C10     180.000     5.0     2
+MGH              const_35         C06         C07         C08         N09     180.000    10.0     2
+MGH       const_sp2_sp2_9         C07         C08         N09         C10       0.000     5.0     2
+MGH       const_sp2_sp2_5         N11         C10         N09         C08       0.000     5.0     2
+MGH       const_sp2_sp2_3         N09         C10         N11         C07       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MGH    chir_1    C05    N12    C03    C06    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MGH    plan-1         C06   0.020
+MGH    plan-1         C07   0.020
+MGH    plan-1         C08   0.020
+MGH    plan-1         C10   0.020
+MGH    plan-1         H08   0.020
+MGH    plan-1         H10   0.020
+MGH    plan-1        HN09   0.020
+MGH    plan-1         N09   0.020
+MGH    plan-1         N11   0.020
+MGH    plan-2         C24   0.020
+MGH    plan-2         C25   0.020
+MGH    plan-2         C26   0.020
+MGH    plan-2         C27   0.020
+MGH    plan-2         C28   0.020
+MGH    plan-2         C29   0.020
+MGH    plan-2         C30   0.020
+MGH    plan-2         H26   0.020
+MGH    plan-2         H27   0.020
+MGH    plan-2         H28   0.020
+MGH    plan-2         H29   0.020
+MGH    plan-2         H30   0.020
+MGH    plan-3         C03   0.020
+MGH    plan-3         C05   0.020
+MGH    plan-3         O02   0.020
+MGH    plan-3         O04   0.020
+MGH    plan-4         C05   0.020
+MGH    plan-4         C13   0.020
+MGH    plan-4        HN12   0.020
+MGH    plan-4         N12   0.020
+MGH    plan-5         C13   0.020
+MGH    plan-5         C15   0.020
+MGH    plan-5         N12   0.020
+MGH    plan-5         O14   0.020
+MGH    plan-6         C15   0.020
+MGH    plan-6         C17   0.020
+MGH    plan-6         C21   0.020
+MGH    plan-6         N16   0.020
+MGH    plan-7         C17   0.020
+MGH    plan-7         C18   0.020
+MGH    plan-7         O19   0.020
+MGH    plan-7         O20   0.020
+MGH    plan-8         C21   0.020
+MGH    plan-8         C23   0.020
+MGH    plan-8         N16   0.020
+MGH    plan-8         O22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MGH           SMILES              ACDLabs 12.01                                                                                                                                O=C(O)CN(C(=O)CCc1ccccc1)CC(=O)NC(C(=O)OC)Cc2ncnc2
+MGH SMILES_CANONICAL               CACTVS 3.370                                                                                                                        COC(=O)[C@@H](Cc1c[nH]cn1)NC(=O)CN(CC(O)=O)C(=O)CCc2ccccc2
+MGH           SMILES               CACTVS 3.370                                                                                                                          COC(=O)[CH](Cc1c[nH]cn1)NC(=O)CN(CC(O)=O)C(=O)CCc2ccccc2
+MGH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                        COC(=O)[C@@H](Cc1c[nH]cn1)NC(=O)CN(CC(=O)O)C(=O)CCc2ccccc2
+MGH           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                             COC(=O)C(Cc1c[nH]cn1)NC(=O)CN(CC(=O)O)C(=O)CCc2ccccc2
+MGH            InChI                InChI  1.03 InChI=1S/C20H24N4O6/c1-30-20(29)16(9-15-10-21-13-22-15)23-17(25)11-24(12-19(27)28)18(26)8-7-14-5-3-2-4-6-14/h2-6,10,13,16H,7-9,11-12H2,1H3,(H,21,22)(H,23,25)(H,27,28)/t16-/m1/s1
+MGH         InChIKey                InChI  1.03                                                                                                                                                       FTBNIEVYMZAOPN-MRXNPFEDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MGH acedrg               243         "dictionary generator"                  
+MGH acedrg_database      11          "data source"                           
+MGH rdkit                2017.03.2   "Chemoinformatics tool"
+MGH refmac5              5.8.0238    "optimization tool"                     

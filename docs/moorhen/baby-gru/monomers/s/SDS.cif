@@ -1,0 +1,256 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SDS     SDS      "DODECYL SULFATE"     NON-POLYMER     42     17     .     
+#
+data_comp_SDS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SDS     S       S       S3      0       21.361      28.978      34.550      
+SDS     O1S     O       O       0       19.948      29.227      34.730      
+SDS     O2S     O       O2      0       21.741      29.695      33.173      
+SDS     O3S     O       OS      -1      22.188      29.606      35.557      
+SDS     O4      O       O       0       21.675      27.582      34.341      
+SDS     C1      C       CH2     0       21.725      31.172      33.139      
+SDS     C2      C       CH3     0       28.347      38.293      28.097      
+SDS     C3      C       CH2     0       28.065      37.602      29.410      
+SDS     C4      C       CH2     0       29.180      37.737      30.415      
+SDS     C5      C       CH2     0       28.850      37.219      31.796      
+SDS     C6      C       CH2     0       28.639      35.721      31.877      
+SDS     C7      C       CH2     0       27.191      35.291      31.889      
+SDS     C8      C       CH2     0       26.989      33.796      31.897      
+SDS     C9      C       CH2     0       25.544      33.366      31.967      
+SDS     C10     C       CH2     0       25.343      31.871      31.987      
+SDS     C11     C       CH2     0       23.899      31.439      31.904      
+SDS     C12     C       CH2     0       23.132      31.669      33.183      
+SDS     H1C1    H       H       0       21.179      31.478      33.895      
+SDS     H1C2    H       H       0       21.271      31.381      32.296      
+SDS     H2C1    H       H       0       27.594      38.166      27.494      
+SDS     H2C2    H       H       0       29.150      37.917      27.697      
+SDS     H2C3    H       H       0       28.479      39.245      28.253      
+SDS     H3C1    H       H       0       27.908      36.647      29.239      
+SDS     H3C2    H       H       0       27.244      37.976      29.797      
+SDS     H4C1    H       H       0       29.423      38.685      30.486      
+SDS     H4C2    H       H       0       29.965      37.255      30.078      
+SDS     H5C1    H       H       0       28.038      37.670      32.113      
+SDS     H5C2    H       H       0       29.580      37.464      32.404      
+SDS     H6C1    H       H       0       29.071      35.389      32.692      
+SDS     H6C2    H       H       0       29.085      35.297      31.113      
+SDS     H7C1    H       H       0       26.745      35.664      31.100      
+SDS     H7C2    H       H       0       26.757      35.671      32.683      
+SDS     H8C1    H       H       0       27.467      33.418      32.666      
+SDS     H8C2    H       H       0       27.390      33.420      31.084      
+SDS     H9C1    H       H       0       25.068      33.737      31.194      
+SDS     H9C2    H       H       0       25.141      33.748      32.776      
+SDS     H101    H       H       0       25.731      31.512      32.813      
+SDS     H102    H       H       0       25.832      31.478      31.233      
+SDS     H111    H       H       0       23.867      30.485      31.679      
+SDS     H112    H       H       0       23.463      31.933      31.177      
+SDS     H121    H       H       0       23.592      31.218      33.922      
+SDS     H122    H       H       0       23.108      32.629      33.379      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SDS           S         O1S      DOUBLE       n     1.446  0.0158     1.446  0.0158
+SDS           S         O2S      SINGLE       n     1.592  0.0200     1.592  0.0200
+SDS           S         O3S      SINGLE       n     1.446  0.0158     1.446  0.0158
+SDS           S          O4      DOUBLE       n     1.446  0.0158     1.446  0.0158
+SDS         O2S          C1      SINGLE       n     1.475  0.0100     1.475  0.0100
+SDS          C1         C12      SINGLE       n     1.492  0.0138     1.492  0.0138
+SDS          C2          C3      SINGLE       n     1.510  0.0200     1.510  0.0200
+SDS          C3          C4      SINGLE       n     1.507  0.0200     1.507  0.0200
+SDS          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+SDS          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+SDS          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+SDS          C7          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+SDS          C8          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+SDS          C9         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+SDS         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+SDS         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+SDS          C1        H1C1      SINGLE       n     1.089  0.0100     0.981  0.0174
+SDS          C1        H1C2      SINGLE       n     1.089  0.0100     0.981  0.0174
+SDS          C2        H2C1      SINGLE       n     1.089  0.0100     0.973  0.0157
+SDS          C2        H2C2      SINGLE       n     1.089  0.0100     0.973  0.0157
+SDS          C2        H2C3      SINGLE       n     1.089  0.0100     0.973  0.0157
+SDS          C3        H3C1      SINGLE       n     1.089  0.0100     0.982  0.0155
+SDS          C3        H3C2      SINGLE       n     1.089  0.0100     0.982  0.0155
+SDS          C4        H4C1      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS          C4        H4C2      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS          C5        H5C1      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS          C5        H5C2      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS          C6        H6C1      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS          C6        H6C2      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS          C7        H7C1      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS          C7        H7C2      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS          C8        H8C1      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS          C8        H8C2      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS          C9        H9C1      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS          C9        H9C2      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0163
+SDS         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0166
+SDS         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0166
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SDS         O1S           S         O2S     105.233    2.47
+SDS         O1S           S         O3S     113.532    1.50
+SDS         O1S           S          O4     113.532    1.50
+SDS         O2S           S         O3S     105.233    2.47
+SDS         O2S           S          O4     105.233    2.47
+SDS         O3S           S          O4     113.532    1.50
+SDS           S         O2S          C1     116.432    1.50
+SDS         O2S          C1         C12     108.695    1.50
+SDS         O2S          C1        H1C1     104.250    3.00
+SDS         O2S          C1        H1C2     104.250    3.00
+SDS         C12          C1        H1C1     113.323    2.16
+SDS         C12          C1        H1C2     113.323    2.16
+SDS        H1C1          C1        H1C2     110.030    2.08
+SDS          C3          C2        H2C1     109.554    1.50
+SDS          C3          C2        H2C2     109.554    1.50
+SDS          C3          C2        H2C3     109.554    1.50
+SDS        H2C1          C2        H2C2     109.380    1.50
+SDS        H2C1          C2        H2C3     109.380    1.50
+SDS        H2C2          C2        H2C3     109.380    1.50
+SDS          C2          C3          C4     113.719    3.00
+SDS          C2          C3        H3C1     108.918    1.50
+SDS          C2          C3        H3C2     108.918    1.50
+SDS          C4          C3        H3C1     108.758    1.50
+SDS          C4          C3        H3C2     108.758    1.50
+SDS        H3C1          C3        H3C2     107.763    1.50
+SDS          C3          C4          C5     114.362    3.00
+SDS          C3          C4        H4C1     108.653    1.50
+SDS          C3          C4        H4C2     108.653    1.50
+SDS          C5          C4        H4C1     108.698    1.50
+SDS          C5          C4        H4C2     108.698    1.50
+SDS        H4C1          C4        H4C2     107.646    1.50
+SDS          C4          C5          C6     114.243    1.69
+SDS          C4          C5        H5C1     108.698    1.50
+SDS          C4          C5        H5C2     108.698    1.50
+SDS          C6          C5        H5C1     108.698    1.50
+SDS          C6          C5        H5C2     108.698    1.50
+SDS        H5C1          C5        H5C2     107.646    1.50
+SDS          C5          C6          C7     114.243    1.69
+SDS          C5          C6        H6C1     108.698    1.50
+SDS          C5          C6        H6C2     108.698    1.50
+SDS          C7          C6        H6C1     108.698    1.50
+SDS          C7          C6        H6C2     108.698    1.50
+SDS        H6C1          C6        H6C2     107.646    1.50
+SDS          C6          C7          C8     114.243    1.69
+SDS          C6          C7        H7C1     108.698    1.50
+SDS          C6          C7        H7C2     108.698    1.50
+SDS          C8          C7        H7C1     108.698    1.50
+SDS          C8          C7        H7C2     108.698    1.50
+SDS        H7C1          C7        H7C2     107.646    1.50
+SDS          C7          C8          C9     114.243    1.69
+SDS          C7          C8        H8C1     108.698    1.50
+SDS          C7          C8        H8C2     108.698    1.50
+SDS          C9          C8        H8C1     108.698    1.50
+SDS          C9          C8        H8C2     108.698    1.50
+SDS        H8C1          C8        H8C2     107.646    1.50
+SDS          C8          C9         C10     114.243    1.69
+SDS          C8          C9        H9C1     108.698    1.50
+SDS          C8          C9        H9C2     108.698    1.50
+SDS         C10          C9        H9C1     108.698    1.50
+SDS         C10          C9        H9C2     108.698    1.50
+SDS        H9C1          C9        H9C2     107.646    1.50
+SDS          C9         C10         C11     114.243    1.69
+SDS          C9         C10        H101     108.698    1.50
+SDS          C9         C10        H102     108.698    1.50
+SDS         C11         C10        H101     108.698    1.50
+SDS         C11         C10        H102     108.698    1.50
+SDS        H101         C10        H102     107.646    1.50
+SDS         C10         C11         C12     113.259    1.53
+SDS         C10         C11        H111     108.698    1.50
+SDS         C10         C11        H112     108.698    1.50
+SDS         C12         C11        H111     108.902    1.50
+SDS         C12         C11        H112     108.902    1.50
+SDS        H111         C11        H112     107.646    1.50
+SDS          C1         C12         C11     113.412    1.51
+SDS          C1         C12        H121     107.569    1.72
+SDS          C1         C12        H122     107.569    1.72
+SDS         C11         C12        H121     108.944    1.50
+SDS         C11         C12        H122     108.944    1.50
+SDS        H121         C12        H122     107.788    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SDS             sp3_sp3_2          C1         O2S           S         O1S     -60.000    10.0     3
+SDS            sp3_sp3_52          C5          C6          C7          C8     180.000    10.0     3
+SDS            sp3_sp3_61          C6          C7          C8          C9     180.000    10.0     3
+SDS            sp3_sp3_70          C7          C8          C9         C10     180.000    10.0     3
+SDS            sp3_sp3_79         C11         C10          C9          C8     180.000    10.0     3
+SDS            sp3_sp3_88          C9         C10         C11         C12     180.000    10.0     3
+SDS            sp3_sp3_97         C10         C11         C12          C1     180.000    10.0     3
+SDS             sp3_sp3_4         C12          C1         O2S           S     180.000    10.0     3
+SDS             sp3_sp3_7         O2S          C1         C12         C11     180.000    10.0     3
+SDS            sp3_sp3_16        H2C1          C2          C3          C4     180.000    10.0     3
+SDS            sp3_sp3_25          C2          C3          C4          C5     180.000    10.0     3
+SDS            sp3_sp3_34          C3          C4          C5          C6     180.000    10.0     3
+SDS            sp3_sp3_43          C4          C5          C6          C7     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SDS    chir_1    S    O1S    O4    O2S    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SDS           SMILES              ACDLabs 10.04                                                                O=S(=O)(OCCCCCCCCCCCC)O
+SDS SMILES_CANONICAL               CACTVS 3.341                                                              CCCCCCCCCCCCO[S](O)(=O)=O
+SDS           SMILES               CACTVS 3.341                                                              CCCCCCCCCCCCO[S](O)(=O)=O
+SDS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                CCCCCCCCCCCCOS(=O)(=O)O
+SDS           SMILES "OpenEye OEToolkits" 1.5.0                                                                CCCCCCCCCCCCOS(=O)(=O)O
+SDS            InChI                InChI  1.03 InChI=1S/C12H26O4S/c1-2-3-4-5-6-7-8-9-10-11-12-16-17(13,14)15/h2-12H2,1H3,(H,13,14,15)
+SDS         InChIKey                InChI  1.03                                                            MOTZDAYCYVMXPC-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SDS acedrg               243         "dictionary generator"                  
+SDS acedrg_database      11          "data source"                           
+SDS rdkit                2017.03.2   "Chemoinformatics tool"
+SDS refmac5              5.8.0238    "optimization tool"                     

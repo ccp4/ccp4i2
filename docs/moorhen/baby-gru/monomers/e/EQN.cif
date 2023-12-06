@@ -1,0 +1,342 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EQN     EQN      "4-{[(5,5,8,8-tetramethyl-5,6,7,8-tetrahydronaphthalen-2-yl)carbonyl]amino}benzoic acid"     NON-POLYMER     50     26     .     
+#
+data_comp_EQN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EQN     CAA     C       CH3     0       -10.183     -12.485     -13.278     
+EQN     CAB     C       CH3     0       -12.042     -10.810     -13.349     
+EQN     CAC     C       CH3     0       -10.925     -10.718     -18.101     
+EQN     CAD     C       CH3     0       -8.743      -11.927     -17.894     
+EQN     OAE     O       O       0       -4.896      -3.389      -8.319      
+EQN     OAF     O       O       0       -8.256      -6.195      -13.472     
+EQN     OAG     O       OC      -1      -4.720      -5.152      -7.014      
+EQN     CAH     C       CR16    0       -5.744      -6.214      -11.429     
+EQN     CAI     C       CR16    0       -7.333      -7.058      -9.828      
+EQN     CAJ     C       CR16    0       -5.173      -5.432      -10.443     
+EQN     CAK     C       CR16    0       -6.755      -6.271      -8.849      
+EQN     CAL     C       CR16    0       -8.147      -8.410      -15.538     
+EQN     CAM     C       CR16    0       -8.600      -9.356      -16.434     
+EQN     CAN     C       CR16    0       -9.457      -9.418      -13.792     
+EQN     CAO     C       CH2     0       -11.599     -12.221     -15.336     
+EQN     CAP     C       CH2     0       -10.647     -12.594     -16.458     
+EQN     NAQ     N       NH1     0       -7.410      -7.832      -12.143     
+EQN     CAR     C       C       0       -5.049      -4.600      -8.079      
+EQN     CAS     C       C       0       -8.065      -7.385      -13.244     
+EQN     CAT     C       CR6     0       -6.830      -7.038      -11.130     
+EQN     CAU     C       CR6     0       -5.671      -5.451      -9.144      
+EQN     CAV     C       CR6     0       -8.563      -8.427      -14.200     
+EQN     CAW     C       CR66    0       -9.494      -10.370     -16.045     
+EQN     CAX     C       CR66    0       -9.941      -10.406     -14.699     
+EQN     CAY     C       CT      0       -10.921     -11.471     -14.174     
+EQN     CAZ     C       CT      0       -9.952      -11.383     -17.108     
+EQN     HAA     H       H       0       -9.416      -12.064     -12.857     
+EQN     HAAA    H       H       0       -9.878      -13.239     -13.807     
+EQN     HAAB    H       H       0       -10.783     -12.810     -12.586     
+EQN     HAB     H       H       0       -12.334     -9.993      -13.786     
+EQN     HABA    H       H       0       -11.715     -10.597     -12.460     
+EQN     HABB    H       H       0       -12.796     -11.418     -13.272     
+EQN     HAC     H       H       0       -10.725     -9.771      -18.182     
+EQN     HACA    H       H       0       -11.839     -10.822     -17.794     
+EQN     HACB    H       H       0       -10.838     -11.134     -18.975     
+EQN     HAD     H       H       0       -8.004      -12.093     -17.286     
+EQN     HADA    H       H       0       -8.467      -11.282     -18.564     
+EQN     HADB    H       H       0       -8.985      -12.758     -18.335     
+EQN     HAH     H       H       0       -5.399      -6.194      -12.306     
+EQN     HAI     H       H       0       -8.067      -7.609      -9.617      
+EQN     HAJ     H       H       0       -4.440      -4.881      -10.655     
+EQN     HAK     H       H       0       -7.101      -6.292      -7.974      
+EQN     HAL     H       H       0       -7.545      -7.743      -15.831     
+EQN     HAM     H       H       0       -8.302      -9.315      -17.328     
+EQN     HAN     H       H       0       -9.739      -9.433      -12.886     
+EQN     HAO     H       H       0       -12.315     -11.664     -15.698     
+EQN     HAOA    H       H       0       -12.011     -13.037     -14.987     
+EQN     HAP     H       H       0       -9.966      -13.201     -16.109     
+EQN     HAPA    H       H       0       -11.145     -13.079     -17.146     
+EQN     HNAQ    H       H       0       -7.328      -8.699      -12.041     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EQN         CAA         CAY      SINGLE       n     1.536  0.0100     1.536  0.0100
+EQN         CAB         CAY      SINGLE       n     1.536  0.0100     1.536  0.0100
+EQN         CAC         CAZ      SINGLE       n     1.536  0.0100     1.536  0.0100
+EQN         CAD         CAZ      SINGLE       n     1.536  0.0100     1.536  0.0100
+EQN         OAE         CAR      DOUBLE       n     1.244  0.0200     1.244  0.0200
+EQN         OAF         CAS      DOUBLE       n     1.226  0.0100     1.226  0.0100
+EQN         OAG         CAR      SINGLE       n     1.244  0.0200     1.244  0.0200
+EQN         CAH         CAJ      DOUBLE       y     1.379  0.0100     1.379  0.0100
+EQN         CAH         CAT      SINGLE       y     1.392  0.0100     1.392  0.0100
+EQN         CAI         CAK      SINGLE       y     1.379  0.0100     1.379  0.0100
+EQN         CAI         CAT      DOUBLE       y     1.392  0.0100     1.392  0.0100
+EQN         CAJ         CAU      SINGLE       y     1.387  0.0103     1.387  0.0103
+EQN         CAK         CAU      DOUBLE       y     1.387  0.0103     1.387  0.0103
+EQN         CAL         CAM      DOUBLE       y     1.377  0.0100     1.377  0.0100
+EQN         CAL         CAV      SINGLE       y     1.400  0.0130     1.400  0.0130
+EQN         CAM         CAW      SINGLE       y     1.397  0.0100     1.397  0.0100
+EQN         CAN         CAV      DOUBLE       y     1.394  0.0103     1.394  0.0103
+EQN         CAN         CAX      SINGLE       y     1.397  0.0200     1.397  0.0200
+EQN         CAO         CAP      SINGLE       n     1.516  0.0100     1.516  0.0100
+EQN         CAO         CAY      SINGLE       n     1.536  0.0100     1.536  0.0100
+EQN         CAP         CAZ      SINGLE       n     1.536  0.0100     1.536  0.0100
+EQN         NAQ         CAS      SINGLE       n     1.351  0.0126     1.351  0.0126
+EQN         NAQ         CAT      SINGLE       n     1.411  0.0105     1.411  0.0105
+EQN         CAR         CAU      SINGLE       n     1.498  0.0200     1.498  0.0200
+EQN         CAS         CAV      SINGLE       n     1.498  0.0104     1.498  0.0104
+EQN         CAW         CAX      DOUBLE       y     1.407  0.0100     1.407  0.0100
+EQN         CAW         CAZ      SINGLE       n     1.528  0.0100     1.528  0.0100
+EQN         CAX         CAY      SINGLE       n     1.530  0.0100     1.530  0.0100
+EQN         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0163
+EQN         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0163
+EQN         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0163
+EQN         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0163
+EQN         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0163
+EQN         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0163
+EQN         CAC         HAC      SINGLE       n     1.089  0.0100     0.971  0.0163
+EQN         CAC        HACA      SINGLE       n     1.089  0.0100     0.971  0.0163
+EQN         CAC        HACB      SINGLE       n     1.089  0.0100     0.971  0.0163
+EQN         CAD         HAD      SINGLE       n     1.089  0.0100     0.971  0.0163
+EQN         CAD        HADA      SINGLE       n     1.089  0.0100     0.971  0.0163
+EQN         CAD        HADB      SINGLE       n     1.089  0.0100     0.971  0.0163
+EQN         CAH         HAH      SINGLE       n     1.082  0.0130     0.942  0.0198
+EQN         CAI         HAI      SINGLE       n     1.082  0.0130     0.942  0.0198
+EQN         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.941  0.0168
+EQN         CAK         HAK      SINGLE       n     1.082  0.0130     0.941  0.0168
+EQN         CAL         HAL      SINGLE       n     1.082  0.0130     0.945  0.0200
+EQN         CAM         HAM      SINGLE       n     1.082  0.0130     0.944  0.0167
+EQN         CAN         HAN      SINGLE       n     1.082  0.0130     0.950  0.0191
+EQN         CAO         HAO      SINGLE       n     1.089  0.0100     0.978  0.0200
+EQN         CAO        HAOA      SINGLE       n     1.089  0.0100     0.978  0.0200
+EQN         CAP         HAP      SINGLE       n     1.089  0.0100     0.978  0.0200
+EQN         CAP        HAPA      SINGLE       n     1.089  0.0100     0.978  0.0200
+EQN         NAQ        HNAQ      SINGLE       n     1.016  0.0100     0.876  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EQN         CAY         CAA         HAA     109.713    1.50
+EQN         CAY         CAA        HAAA     109.713    1.50
+EQN         CAY         CAA        HAAB     109.713    1.50
+EQN         HAA         CAA        HAAA     109.285    1.50
+EQN         HAA         CAA        HAAB     109.285    1.50
+EQN        HAAA         CAA        HAAB     109.285    1.50
+EQN         CAY         CAB         HAB     109.713    1.50
+EQN         CAY         CAB        HABA     109.713    1.50
+EQN         CAY         CAB        HABB     109.713    1.50
+EQN         HAB         CAB        HABA     109.285    1.50
+EQN         HAB         CAB        HABB     109.285    1.50
+EQN        HABA         CAB        HABB     109.285    1.50
+EQN         CAZ         CAC         HAC     109.713    1.50
+EQN         CAZ         CAC        HACA     109.713    1.50
+EQN         CAZ         CAC        HACB     109.713    1.50
+EQN         HAC         CAC        HACA     109.285    1.50
+EQN         HAC         CAC        HACB     109.285    1.50
+EQN        HACA         CAC        HACB     109.285    1.50
+EQN         CAZ         CAD         HAD     109.713    1.50
+EQN         CAZ         CAD        HADA     109.713    1.50
+EQN         CAZ         CAD        HADB     109.713    1.50
+EQN         HAD         CAD        HADA     109.285    1.50
+EQN         HAD         CAD        HADB     109.285    1.50
+EQN        HADA         CAD        HADB     109.285    1.50
+EQN         CAJ         CAH         CAT     120.049    1.50
+EQN         CAJ         CAH         HAH     120.076    1.50
+EQN         CAT         CAH         HAH     119.875    1.50
+EQN         CAK         CAI         CAT     120.049    1.50
+EQN         CAK         CAI         HAI     120.076    1.50
+EQN         CAT         CAI         HAI     119.875    1.50
+EQN         CAH         CAJ         CAU     120.726    1.50
+EQN         CAH         CAJ         HAJ     119.445    1.50
+EQN         CAU         CAJ         HAJ     119.829    1.50
+EQN         CAI         CAK         CAU     120.726    1.50
+EQN         CAI         CAK         HAK     119.445    1.50
+EQN         CAU         CAK         HAK     119.829    1.50
+EQN         CAM         CAL         CAV     120.646    1.50
+EQN         CAM         CAL         HAL     119.616    1.50
+EQN         CAV         CAL         HAL     119.739    1.50
+EQN         CAL         CAM         CAW     120.623    1.50
+EQN         CAL         CAM         HAM     119.880    1.50
+EQN         CAW         CAM         HAM     119.497    1.50
+EQN         CAV         CAN         CAX     121.312    1.50
+EQN         CAV         CAN         HAN     119.423    1.50
+EQN         CAX         CAN         HAN     119.265    1.50
+EQN         CAP         CAO         CAY     112.297    1.50
+EQN         CAP         CAO         HAO     109.236    1.50
+EQN         CAP         CAO        HAOA     109.236    1.50
+EQN         CAY         CAO         HAO     109.081    1.50
+EQN         CAY         CAO        HAOA     109.081    1.50
+EQN         HAO         CAO        HAOA     107.796    1.50
+EQN         CAO         CAP         CAZ     112.297    1.50
+EQN         CAO         CAP         HAP     109.236    1.50
+EQN         CAO         CAP        HAPA     109.236    1.50
+EQN         CAZ         CAP         HAP     109.081    1.50
+EQN         CAZ         CAP        HAPA     109.081    1.50
+EQN         HAP         CAP        HAPA     107.796    1.50
+EQN         CAS         NAQ         CAT     126.750    1.50
+EQN         CAS         NAQ        HNAQ     117.086    2.38
+EQN         CAT         NAQ        HNAQ     116.164    1.66
+EQN         OAE         CAR         OAG     124.418    1.50
+EQN         OAE         CAR         CAU     117.791    1.50
+EQN         OAG         CAR         CAU     117.791    1.50
+EQN         OAF         CAS         NAQ     123.170    1.50
+EQN         OAF         CAS         CAV     120.941    1.50
+EQN         NAQ         CAS         CAV     115.889    1.50
+EQN         CAH         CAT         CAI     119.355    1.50
+EQN         CAH         CAT         NAQ     120.322    2.93
+EQN         CAI         CAT         NAQ     120.322    2.93
+EQN         CAJ         CAU         CAK     119.095    1.50
+EQN         CAJ         CAU         CAR     120.452    1.50
+EQN         CAK         CAU         CAR     120.452    1.50
+EQN         CAL         CAV         CAN     118.835    1.50
+EQN         CAL         CAV         CAS     120.617    2.89
+EQN         CAN         CAV         CAS     120.548    2.75
+EQN         CAM         CAW         CAX     119.292    1.50
+EQN         CAM         CAW         CAZ     118.334    1.50
+EQN         CAX         CAW         CAZ     122.374    1.50
+EQN         CAN         CAX         CAW     119.292    1.50
+EQN         CAN         CAX         CAY     118.802    1.50
+EQN         CAW         CAX         CAY     121.907    1.50
+EQN         CAA         CAY         CAB     108.970    1.50
+EQN         CAA         CAY         CAO     108.698    1.61
+EQN         CAA         CAY         CAX     109.916    1.50
+EQN         CAB         CAY         CAO     108.698    1.61
+EQN         CAB         CAY         CAX     109.916    1.50
+EQN         CAO         CAY         CAX     110.362    1.50
+EQN         CAC         CAZ         CAD     108.970    1.50
+EQN         CAC         CAZ         CAP     108.698    1.61
+EQN         CAC         CAZ         CAW     109.916    1.50
+EQN         CAD         CAZ         CAP     108.698    1.61
+EQN         CAD         CAZ         CAW     109.916    1.50
+EQN         CAP         CAZ         CAW     110.362    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EQN            sp3_sp3_21         HAA         CAA         CAY         CAB      60.000    10.0     3
+EQN              const_10         CAI         CAK         CAU         CAR     180.000    10.0     2
+EQN              const_21         CAV         CAL         CAM         CAW       0.000    10.0     2
+EQN              const_46         CAM         CAL         CAV         CAS     180.000    10.0     2
+EQN              const_25         CAL         CAM         CAW         CAX       0.000    10.0     2
+EQN              const_38         CAX         CAN         CAV         CAS     180.000    10.0     2
+EQN              const_33         CAV         CAN         CAX         CAW       0.000    10.0     2
+EQN             sp3_sp3_1         CAY         CAO         CAP         CAZ      60.000    10.0     3
+EQN            sp3_sp3_56         CAP         CAO         CAY         CAA     -60.000    10.0     3
+EQN            sp3_sp3_11         CAO         CAP         CAZ         CAC      60.000    10.0     3
+EQN             sp2_sp2_3         OAF         CAS         NAQ         CAT       0.000     5.0     2
+EQN             sp2_sp2_5         CAH         CAT         NAQ         CAS     180.000     5.0     2
+EQN             sp2_sp2_9         OAE         CAR         CAU         CAJ     180.000     5.0     2
+EQN            sp2_sp2_15         OAF         CAS         CAV         CAL       0.000     5.0     2
+EQN            sp3_sp3_30         HAB         CAB         CAY         CAA      60.000    10.0     3
+EQN              const_29         CAM         CAW         CAX         CAN       0.000    10.0     2
+EQN             sp2_sp3_6         CAM         CAW         CAZ         CAC      60.000    10.0     6
+EQN            sp2_sp3_12         CAN         CAX         CAY         CAA      60.000    10.0     6
+EQN            sp3_sp3_39         HAC         CAC         CAZ         CAD      60.000    10.0     3
+EQN            sp3_sp3_48         HAD         CAD         CAZ         CAC      60.000    10.0     3
+EQN              const_42         CAJ         CAH         CAT         NAQ     180.000    10.0     2
+EQN       const_sp2_sp2_1         CAT         CAH         CAJ         CAU       0.000     5.0     2
+EQN              const_13         CAT         CAI         CAK         CAU       0.000    10.0     2
+EQN              const_18         CAK         CAI         CAT         NAQ     180.000    10.0     2
+EQN       const_sp2_sp2_6         CAH         CAJ         CAU         CAR     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EQN    chir_1    CAY    CAX    CAO    CAA    both
+EQN    chir_2    CAZ    CAW    CAP    CAC    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EQN    plan-1         CAH   0.020
+EQN    plan-1         CAI   0.020
+EQN    plan-1         CAJ   0.020
+EQN    plan-1         CAK   0.020
+EQN    plan-1         CAR   0.020
+EQN    plan-1         CAT   0.020
+EQN    plan-1         CAU   0.020
+EQN    plan-1         HAH   0.020
+EQN    plan-1         HAI   0.020
+EQN    plan-1         HAJ   0.020
+EQN    plan-1         HAK   0.020
+EQN    plan-1         NAQ   0.020
+EQN    plan-2         CAL   0.020
+EQN    plan-2         CAM   0.020
+EQN    plan-2         CAN   0.020
+EQN    plan-2         CAS   0.020
+EQN    plan-2         CAV   0.020
+EQN    plan-2         CAW   0.020
+EQN    plan-2         CAX   0.020
+EQN    plan-2         CAY   0.020
+EQN    plan-2         CAZ   0.020
+EQN    plan-2         HAL   0.020
+EQN    plan-2         HAM   0.020
+EQN    plan-2         HAN   0.020
+EQN    plan-3         CAS   0.020
+EQN    plan-3         CAT   0.020
+EQN    plan-3        HNAQ   0.020
+EQN    plan-3         NAQ   0.020
+EQN    plan-4         CAR   0.020
+EQN    plan-4         CAU   0.020
+EQN    plan-4         OAE   0.020
+EQN    plan-4         OAG   0.020
+EQN    plan-5         CAS   0.020
+EQN    plan-5         CAV   0.020
+EQN    plan-5         NAQ   0.020
+EQN    plan-5         OAF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EQN SMILES_CANONICAL               CACTVS 3.352                                                                                             CC1(C)CCC(C)(C)c2cc(ccc12)C(=O)Nc3ccc(cc3)C(O)=O
+EQN           SMILES               CACTVS 3.352                                                                                             CC1(C)CCC(C)(C)c2cc(ccc12)C(=O)Nc3ccc(cc3)C(O)=O
+EQN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                             CC1(CCC(c2c1ccc(c2)C(=O)Nc3ccc(cc3)C(=O)O)(C)C)C
+EQN           SMILES "OpenEye OEToolkits" 1.7.0                                                                                             CC1(CCC(c2c1ccc(c2)C(=O)Nc3ccc(cc3)C(=O)O)(C)C)C
+EQN            InChI                InChI  1.03 InChI=1S/C22H25NO3/c1-21(2)11-12-22(3,4)18-13-15(7-10-17(18)21)19(24)23-16-8-5-14(6-9-16)20(25)26/h5-10,13H,11-12H2,1-4H3,(H,23,24)(H,25,26)
+EQN         InChIKey                InChI  1.03                                                                                                                  SZWKGOZKRMMLAJ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EQN acedrg               243         "dictionary generator"                  
+EQN acedrg_database      11          "data source"                           
+EQN rdkit                2017.03.2   "Chemoinformatics tool"
+EQN refmac5              5.8.0238    "optimization tool"                     

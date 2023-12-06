@@ -1,0 +1,281 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KSF     KSF      N-(2-chlorophenyl)-5-phenylimidazo[1,5-a]pyrazin-8-amine     NON-POLYMER     36     23     .     
+#
+data_comp_KSF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KSF     CL23    CL      CL      0       21.010      38.381      5.293       
+KSF     C18     C       CR6     0       19.747      37.467      6.053       
+KSF     C17     C       CR6     0       19.870      37.061      7.385       
+KSF     C22     C       CR16    0       18.836      36.331      7.966       
+KSF     C21     C       CR16    0       17.707      36.015      7.226       
+KSF     C20     C       CR16    0       17.599      36.422      5.911       
+KSF     C19     C       CR16    0       18.612      37.146      5.323       
+KSF     N16     N       NH1     0       21.021      37.373      8.170       
+KSF     C2      C       CR6     0       22.299      36.924      8.040       
+KSF     N3      N       NRD6    0       22.526      35.869      7.219       
+KSF     C4      C       CR16    0       23.771      35.396      7.056       
+KSF     C5      C       CR6     0       24.899      35.945      7.710       
+KSF     N6      N       NT      0       24.709      37.041      8.566       
+KSF     C7      C       CR15    0       25.519      37.817      9.343       
+KSF     N8      N       NRD5    0       24.798      38.764      9.986       
+KSF     C9      C       CR15    0       23.514      38.582      9.607       
+KSF     C1      C       CR56    0       23.406      37.523      8.724       
+KSF     C10     C       CR6     0       26.268      35.404      7.508       
+KSF     C11     C       CR16    0       26.814      35.340      6.231       
+KSF     C12     C       CR16    0       28.093      34.832      6.038       
+KSF     C13     C       CR16    0       28.832      34.383      7.113       
+KSF     C14     C       CR16    0       28.297      34.440      8.385       
+KSF     C15     C       CR16    0       27.019      34.945      8.585       
+KSF     H22     H       H       0       18.907      36.053      8.858       
+KSF     H21     H       H       0       17.011      35.520      7.625       
+KSF     H20     H       H       0       16.832      36.205      5.415       
+KSF     H19     H       H       0       18.539      37.423      4.429       
+KSF     HN16    H       H       0       20.870      37.926      8.825       
+KSF     H4      H       H       0       23.898      34.665      6.483       
+KSF     H7      H       H       0       26.439      37.711      9.423       
+KSF     H9      H       H       0       22.804      39.103      9.904       
+KSF     H11     H       H       0       26.313      35.646      5.490       
+KSF     H12     H       H       0       28.455      34.794      5.168       
+KSF     H13     H       H       0       29.701      34.038      6.980       
+KSF     H14     H       H       0       28.801      34.134      9.122       
+KSF     H15     H       H       0       26.659      34.983      9.458       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KSF        CL23         C18      SINGLE       n     1.734  0.0100     1.734  0.0100
+KSF         C18         C17      DOUBLE       y     1.392  0.0100     1.392  0.0100
+KSF         C18         C19      SINGLE       y     1.383  0.0100     1.383  0.0100
+KSF         C17         C22      SINGLE       y     1.389  0.0100     1.389  0.0100
+KSF         C17         N16      SINGLE       n     1.425  0.0112     1.425  0.0112
+KSF         C22         C21      DOUBLE       y     1.383  0.0100     1.383  0.0100
+KSF         C21         C20      SINGLE       y     1.376  0.0124     1.376  0.0124
+KSF         C20         C19      DOUBLE       y     1.374  0.0100     1.374  0.0100
+KSF         N16          C2      SINGLE       n     1.348  0.0200     1.348  0.0200
+KSF          C2          N3      DOUBLE       y     1.338  0.0150     1.338  0.0150
+KSF          C2          C1      SINGLE       y     1.409  0.0200     1.409  0.0200
+KSF          N3          C4      SINGLE       y     1.336  0.0108     1.336  0.0108
+KSF          C4          C5      DOUBLE       y     1.410  0.0200     1.410  0.0200
+KSF          C5          N6      SINGLE       y     1.400  0.0200     1.400  0.0200
+KSF          C5         C10      SINGLE       n     1.485  0.0100     1.485  0.0100
+KSF          N6          C7      SINGLE       y     1.365  0.0136     1.365  0.0136
+KSF          N6          C1      SINGLE       y     1.402  0.0125     1.402  0.0125
+KSF          C7          N8      DOUBLE       y     1.338  0.0200     1.338  0.0200
+KSF          N8          C9      SINGLE       y     1.338  0.0200     1.338  0.0200
+KSF          C9          C1      DOUBLE       y     1.389  0.0200     1.389  0.0200
+KSF         C10         C11      DOUBLE       y     1.387  0.0100     1.387  0.0100
+KSF         C10         C15      SINGLE       y     1.387  0.0100     1.387  0.0100
+KSF         C11         C12      SINGLE       y     1.386  0.0100     1.386  0.0100
+KSF         C12         C13      DOUBLE       y     1.376  0.0114     1.376  0.0114
+KSF         C13         C14      SINGLE       y     1.376  0.0124     1.376  0.0124
+KSF         C14         C15      DOUBLE       y     1.386  0.0100     1.386  0.0100
+KSF         C22         H22      SINGLE       n     1.082  0.0130     0.937  0.0124
+KSF         C21         H21      SINGLE       n     1.082  0.0130     0.943  0.0172
+KSF         C20         H20      SINGLE       n     1.082  0.0130     0.939  0.0165
+KSF         C19         H19      SINGLE       n     1.082  0.0130     0.939  0.0138
+KSF         N16        HN16      SINGLE       n     1.016  0.0100     0.870  0.0200
+KSF          C4          H4      SINGLE       n     1.082  0.0130     0.938  0.0140
+KSF          C7          H7      SINGLE       n     1.082  0.0130     0.929  0.0100
+KSF          C9          H9      SINGLE       n     1.082  0.0130     0.929  0.0100
+KSF         C11         H11      SINGLE       n     1.082  0.0130     0.945  0.0163
+KSF         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0180
+KSF         C13         H13      SINGLE       n     1.082  0.0130     0.944  0.0161
+KSF         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0180
+KSF         C15         H15      SINGLE       n     1.082  0.0130     0.945  0.0163
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KSF        CL23         C18         C17     120.077    1.50
+KSF        CL23         C18         C19     119.577    1.50
+KSF         C17         C18         C19     120.346    1.59
+KSF         C18         C17         C22     119.105    1.81
+KSF         C18         C17         N16     120.706    2.92
+KSF         C22         C17         N16     120.189    2.62
+KSF         C17         C22         C21     120.094    1.50
+KSF         C17         C22         H22     119.746    1.50
+KSF         C21         C22         H22     120.160    1.50
+KSF         C22         C21         C20     120.524    1.50
+KSF         C22         C21         H21     119.597    1.50
+KSF         C20         C21         H21     119.879    1.50
+KSF         C21         C20         C19     120.296    1.50
+KSF         C21         C20         H20     119.973    1.50
+KSF         C19         C20         H20     119.731    1.50
+KSF         C18         C19         C20     119.634    1.50
+KSF         C18         C19         H19     119.960    1.50
+KSF         C20         C19         H19     120.406    1.50
+KSF         C17         N16          C2     127.312    3.00
+KSF         C17         N16        HN16     116.131    2.79
+KSF          C2         N16        HN16     116.557    2.90
+KSF         N16          C2          N3     119.019    3.00
+KSF         N16          C2          C1     123.728    3.00
+KSF          N3          C2          C1     117.253    1.50
+KSF          C2          N3          C4     117.190    1.50
+KSF          N3          C4          C5     122.549    1.50
+KSF          N3          C4          H4     118.627    1.50
+KSF          C5          C4          H4     118.824    1.50
+KSF          C4          C5          N6     119.988    3.00
+KSF          C4          C5         C10     121.613    2.22
+KSF          N6          C5         C10     118.399    1.58
+KSF          C5          N6          C7     125.931    2.87
+KSF          C5          N6          C1     109.471    3.00
+KSF          C7          N6          C1     107.156    1.50
+KSF          N6          C7          N8     110.531    1.50
+KSF          N6          C7          H7     124.967    1.50
+KSF          N8          C7          H7     124.501    1.50
+KSF          C7          N8          C9     104.899    1.50
+KSF          N8          C9          C1     111.042    1.50
+KSF          N8          C9          H9     124.104    1.55
+KSF          C1          C9          H9     124.854    1.50
+KSF          C2          C1          N6     120.241    1.50
+KSF          C2          C1          C9     132.106    2.44
+KSF          N6          C1          C9     107.653    1.50
+KSF          C5         C10         C11     120.512    1.50
+KSF          C5         C10         C15     120.512    1.50
+KSF         C11         C10         C15     118.976    1.50
+KSF         C10         C11         C12     120.361    1.50
+KSF         C10         C11         H11     119.795    1.50
+KSF         C12         C11         H11     119.844    1.50
+KSF         C11         C12         C13     120.227    1.50
+KSF         C11         C12         H12     119.800    1.50
+KSF         C13         C12         H12     119.973    1.50
+KSF         C12         C13         C14     119.848    1.50
+KSF         C12         C13         H13     120.076    1.50
+KSF         C14         C13         H13     120.076    1.50
+KSF         C13         C14         C15     120.227    1.50
+KSF         C13         C14         H14     119.973    1.50
+KSF         C15         C14         H14     119.800    1.50
+KSF         C10         C15         C14     120.361    1.50
+KSF         C10         C15         H15     119.795    1.50
+KSF         C14         C15         H15     119.844    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KSF             sp2_sp2_5          N3          C4          C5          N6       0.000     5.0     2
+KSF            sp2_sp2_10          C4          C5          N6          C7     180.000     5.0     2
+KSF            sp2_sp2_25         C11         C10          C5          C4     180.000     5.0     2
+KSF              const_46          N8          C7          N6          C5     180.000    10.0     2
+KSF              const_41          C2          C1          N6          C5       0.000    10.0     2
+KSF              const_49          N6          C7          N8          C9       0.000    10.0     2
+KSF              const_51          C1          C9          N8          C7       0.000    10.0     2
+KSF              const_55          C2          C1          C9          N8     180.000    10.0     2
+KSF       const_sp2_sp2_3          C5         C10         C11         C12     180.000     5.0     2
+KSF              const_63          C5         C10         C15         C14     180.000    10.0     2
+KSF       const_sp2_sp2_5         C10         C11         C12         C13       0.000     5.0     2
+KSF       const_sp2_sp2_9         C11         C12         C13         C14       0.000     5.0     2
+KSF              const_24         N16         C17         C18        CL23       0.000    10.0     2
+KSF              const_59        CL23         C18         C19         C20     180.000    10.0     2
+KSF              const_13         C12         C13         C14         C15       0.000    10.0     2
+KSF              const_17         C13         C14         C15         C10       0.000    10.0     2
+KSF              const_27         N16         C17         C22         C21     180.000    10.0     2
+KSF            sp2_sp2_13         C18         C17         N16          C2     180.000     5.0     2
+KSF              const_29         C20         C21         C22         C17       0.000    10.0     2
+KSF              const_33         C19         C20         C21         C22       0.000    10.0     2
+KSF              const_37         C18         C19         C20         C21       0.000    10.0     2
+KSF            sp2_sp2_19          N3          C2         N16         C17       0.000     5.0     2
+KSF            sp2_sp2_22          N6          C1          C2         N16     180.000     5.0     2
+KSF             sp2_sp2_2         N16          C2          N3          C4     180.000     5.0     2
+KSF             sp2_sp2_3          C5          C4          N3          C2       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KSF    plan-1          C1   0.020
+KSF    plan-1         C10   0.020
+KSF    plan-1          C2   0.020
+KSF    plan-1          C4   0.020
+KSF    plan-1          C5   0.020
+KSF    plan-1          C7   0.020
+KSF    plan-1          C9   0.020
+KSF    plan-1          H4   0.020
+KSF    plan-1          H7   0.020
+KSF    plan-1          H9   0.020
+KSF    plan-1         N16   0.020
+KSF    plan-1          N3   0.020
+KSF    plan-1          N6   0.020
+KSF    plan-1          N8   0.020
+KSF    plan-2         C10   0.020
+KSF    plan-2         C11   0.020
+KSF    plan-2         C12   0.020
+KSF    plan-2         C13   0.020
+KSF    plan-2         C14   0.020
+KSF    plan-2         C15   0.020
+KSF    plan-2          C5   0.020
+KSF    plan-2         H11   0.020
+KSF    plan-2         H12   0.020
+KSF    plan-2         H13   0.020
+KSF    plan-2         H14   0.020
+KSF    plan-2         H15   0.020
+KSF    plan-3         C17   0.020
+KSF    plan-3         C18   0.020
+KSF    plan-3         C19   0.020
+KSF    plan-3         C20   0.020
+KSF    plan-3         C21   0.020
+KSF    plan-3         C22   0.020
+KSF    plan-3        CL23   0.020
+KSF    plan-3         H19   0.020
+KSF    plan-3         H20   0.020
+KSF    plan-3         H21   0.020
+KSF    plan-3         H22   0.020
+KSF    plan-3         N16   0.020
+KSF    plan-4         C17   0.020
+KSF    plan-4          C2   0.020
+KSF    plan-4        HN16   0.020
+KSF    plan-4         N16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KSF           SMILES              ACDLabs 10.04                                                                            Clc1ccccc1Nc3ncc(n2c3cnc2)c4ccccc4
+KSF SMILES_CANONICAL               CACTVS 3.341                                                                            Clc1ccccc1Nc2ncc(n3cncc23)c4ccccc4
+KSF           SMILES               CACTVS 3.341                                                                            Clc1ccccc1Nc2ncc(n3cncc23)c4ccccc4
+KSF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                          c1ccc(cc1)c2cnc(c3n2cnc3)Nc4ccccc4Cl
+KSF           SMILES "OpenEye OEToolkits" 1.5.0                                                                          c1ccc(cc1)c2cnc(c3n2cnc3)Nc4ccccc4Cl
+KSF            InChI                InChI  1.03 InChI=1S/C18H13ClN4/c19-14-8-4-5-9-15(14)22-18-17-10-20-12-23(17)16(11-21-18)13-6-2-1-3-7-13/h1-12H,(H,21,22)
+KSF         InChIKey                InChI  1.03                                                                                   NNBICZMPIJMWGC-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KSF acedrg               243         "dictionary generator"                  
+KSF acedrg_database      11          "data source"                           
+KSF rdkit                2017.03.2   "Chemoinformatics tool"
+KSF refmac5              5.8.0238    "optimization tool"                     

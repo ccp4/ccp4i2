@@ -1,0 +1,263 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+Z8R     Z8R      "3-[4-(methylsulfonylaminomethyl)phenyl]benzoic acid"     NON-POLYMER     35     21     .     
+#
+data_comp_Z8R
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+Z8R     C2      C       CR16    0       96.232      248.000     5.999       
+Z8R     O2      O       O       0       98.030      240.600     1.035       
+Z8R     C4      C       CR16    0       94.300      246.997     7.002       
+Z8R     C5      C       CR16    0       94.115      248.130     7.778       
+Z8R     C7      C       CR6     0       95.562      245.688     5.262       
+Z8R     C6      C       CR16    0       94.988      249.200     7.667       
+Z8R     C8      C       CR16    0       96.823      245.108     5.123       
+Z8R     C       C       C       0       97.002      250.297     6.651       
+Z8R     C1      C       CR6     0       96.054      249.143     6.776       
+Z8R     C10     C       CR16    0       94.497      245.084     4.593       
+Z8R     C11     C       CR16    0       94.687      243.947     3.818       
+Z8R     C12     C       CR6     0       95.946      243.378     3.684       
+Z8R     C13     C       CH2     0       96.152      242.146     2.844       
+Z8R     C14     C       CH3     0       95.573      240.132     0.377       
+Z8R     C3      C       CR6     0       95.360      246.906     6.096       
+Z8R     C9      C       CR16    0       97.011      243.973     4.346       
+Z8R     N       N       NT1     0       96.484      242.467     1.452       
+Z8R     O       O       O       0       98.220      250.062     6.756       
+Z8R     O1      O       OC      -1      96.519      251.425     6.449       
+Z8R     O3      O       O       0       97.056      241.852     -0.856      
+Z8R     S       S       S3      0       96.908      241.271     0.446       
+Z8R     H       H       H       0       96.955      247.961     5.395       
+Z8R     H1      H       H       0       93.699      246.273     7.086       
+Z8R     H2      H       H       0       93.392      248.173     8.384       
+Z8R     H3      H       H       0       94.858      249.967     8.196       
+Z8R     H4      H       H       0       97.562      245.494     5.563       
+Z8R     H6      H       H       0       93.632      245.452     4.669       
+Z8R     H7      H       H       0       93.950      243.558     3.376       
+Z8R     H9      H       H       0       95.341      241.610     2.864       
+Z8R     H8      H       H       0       96.870      241.616     3.231       
+Z8R     H13     H       H       0       95.356      239.948     -0.549      
+Z8R     H11     H       H       0       94.801      240.513     0.822       
+Z8R     H12     H       H       0       95.830      239.309     0.820       
+Z8R     H5      H       H       0       97.874      243.601     4.269       
+Z8R     H10     H       H       0       97.006      243.180     1.326       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+Z8R          C2          C1      DOUBLE       y     1.390  0.0100     1.390  0.0100
+Z8R          C2          C3      SINGLE       y     1.392  0.0160     1.392  0.0160
+Z8R          O2           S      DOUBLE       n     1.434  0.0100     1.434  0.0100
+Z8R          C4          C5      SINGLE       y     1.382  0.0100     1.382  0.0100
+Z8R          C4          C3      DOUBLE       y     1.393  0.0100     1.393  0.0100
+Z8R          C5          C6      DOUBLE       y     1.382  0.0100     1.382  0.0100
+Z8R          C7          C8      DOUBLE       y     1.391  0.0104     1.391  0.0104
+Z8R          C7         C10      SINGLE       y     1.391  0.0104     1.391  0.0104
+Z8R          C7          C3      SINGLE       n     1.488  0.0100     1.488  0.0100
+Z8R          C6          C1      SINGLE       y     1.388  0.0100     1.388  0.0100
+Z8R          C8          C9      SINGLE       y     1.385  0.0100     1.385  0.0100
+Z8R           C          C1      SINGLE       n     1.498  0.0200     1.498  0.0200
+Z8R           C           O      DOUBLE       n     1.244  0.0200     1.244  0.0200
+Z8R           C          O1      SINGLE       n     1.244  0.0200     1.244  0.0200
+Z8R         C10         C11      DOUBLE       y     1.385  0.0100     1.385  0.0100
+Z8R         C11         C12      SINGLE       y     1.385  0.0100     1.385  0.0100
+Z8R         C12         C13      SINGLE       n     1.504  0.0100     1.504  0.0100
+Z8R         C12          C9      DOUBLE       y     1.385  0.0100     1.385  0.0100
+Z8R         C13           N      SINGLE       n     1.465  0.0148     1.465  0.0148
+Z8R         C14           S      SINGLE       n     1.756  0.0100     1.756  0.0100
+Z8R           N           S      SINGLE       n     1.618  0.0100     1.618  0.0100
+Z8R          O3           S      DOUBLE       n     1.434  0.0100     1.434  0.0100
+Z8R          C2           H      SINGLE       n     1.082  0.0130     0.943  0.0197
+Z8R          C4          H1      SINGLE       n     1.082  0.0130     0.945  0.0170
+Z8R          C5          H2      SINGLE       n     1.082  0.0130     0.944  0.0134
+Z8R          C6          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+Z8R          C8          H4      SINGLE       n     1.082  0.0130     0.943  0.0170
+Z8R         C10          H6      SINGLE       n     1.082  0.0130     0.943  0.0170
+Z8R         C11          H7      SINGLE       n     1.082  0.0130     0.943  0.0173
+Z8R         C13          H9      SINGLE       n     1.089  0.0100     0.973  0.0100
+Z8R         C13          H8      SINGLE       n     1.089  0.0100     0.973  0.0100
+Z8R         C14         H13      SINGLE       n     1.089  0.0100     0.969  0.0154
+Z8R         C14         H11      SINGLE       n     1.089  0.0100     0.969  0.0154
+Z8R         C14         H12      SINGLE       n     1.089  0.0100     0.969  0.0154
+Z8R          C9          H5      SINGLE       n     1.082  0.0130     0.943  0.0173
+Z8R           N         H10      SINGLE       n     1.036  0.0160     0.892  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+Z8R          C1          C2          C3     121.499    1.50
+Z8R          C1          C2           H     119.298    1.50
+Z8R          C3          C2           H     119.203    1.50
+Z8R          C5          C4          C3     121.012    1.50
+Z8R          C5          C4          H1     119.574    1.50
+Z8R          C3          C4          H1     119.415    1.50
+Z8R          C4          C5          C6     120.046    1.50
+Z8R          C4          C5          H2     119.971    1.50
+Z8R          C6          C5          H2     119.983    1.50
+Z8R          C8          C7         C10     117.628    1.50
+Z8R          C8          C7          C3     121.186    1.50
+Z8R         C10          C7          C3     121.186    1.50
+Z8R          C5          C6          C1     120.273    1.50
+Z8R          C5          C6          H3     119.813    1.50
+Z8R          C1          C6          H3     119.914    1.50
+Z8R          C7          C8          C9     121.128    1.50
+Z8R          C7          C8          H4     119.445    1.50
+Z8R          C9          C8          H4     119.429    1.50
+Z8R          C1           C           O     117.791    1.50
+Z8R          C1           C          O1     117.791    1.50
+Z8R           O           C          O1     124.418    1.50
+Z8R          C2          C1          C6     119.394    1.50
+Z8R          C2          C1           C     120.219    1.50
+Z8R          C6          C1           C     120.387    1.50
+Z8R          C7         C10         C11     121.128    1.50
+Z8R          C7         C10          H6     119.445    1.50
+Z8R         C11         C10          H6     119.429    1.50
+Z8R         C10         C11         C12     120.894    1.50
+Z8R         C10         C11          H7     119.525    1.50
+Z8R         C12         C11          H7     119.581    1.50
+Z8R         C11         C12         C13     120.837    1.50
+Z8R         C11         C12          C9     118.325    1.50
+Z8R         C13         C12          C9     120.837    1.50
+Z8R         C12         C13           N     112.211    1.75
+Z8R         C12         C13          H9     109.077    1.50
+Z8R         C12         C13          H8     109.077    1.50
+Z8R           N         C13          H9     109.132    1.50
+Z8R           N         C13          H8     109.132    1.50
+Z8R          H9         C13          H8     107.884    1.50
+Z8R           S         C14         H13     109.353    1.50
+Z8R           S         C14         H11     109.353    1.50
+Z8R           S         C14         H12     109.353    1.50
+Z8R         H13         C14         H11     109.614    1.50
+Z8R         H13         C14         H12     109.614    1.50
+Z8R         H11         C14         H12     109.614    1.50
+Z8R          C2          C3          C4     117.776    1.50
+Z8R          C2          C3          C7     120.978    1.50
+Z8R          C4          C3          C7     121.246    1.50
+Z8R          C8          C9         C12     120.894    1.50
+Z8R          C8          C9          H5     119.525    1.50
+Z8R         C12          C9          H5     119.581    1.50
+Z8R         C13           N           S     118.416    2.52
+Z8R         C13           N         H10     115.981    2.86
+Z8R           S           N         H10     110.892    3.00
+Z8R          O2           S         C14     107.962    1.50
+Z8R          O2           S           N     107.110    1.50
+Z8R          O2           S          O3     118.941    1.50
+Z8R         C14           S           N     107.597    1.50
+Z8R         C14           S          O3     107.962    1.50
+Z8R           N           S          O3     107.110    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+Z8R              const_41          C1          C2          C3          C4       0.000    10.0     2
+Z8R              const_23           C          C1          C2          C3     180.000    10.0     2
+Z8R              const_14         C10         C11         C12         C13     180.000    10.0     2
+Z8R             sp2_sp3_2         C11         C12         C13           N     -90.000    10.0     6
+Z8R              const_11         C13         C12          C9          C8     180.000    10.0     2
+Z8R             sp3_sp3_1         C12         C13           N           S     180.000    10.0     3
+Z8R             sp3_sp3_7         H13         C14           S          O2     180.000    10.0     3
+Z8R            sp3_sp3_20         C13           N           S          O2     180.000    10.0     3
+Z8R              const_37          C2          C3          C4          C5       0.000    10.0     2
+Z8R              const_33          C3          C4          C5          C6       0.000    10.0     2
+Z8R              const_29          C4          C5          C6          C1       0.000    10.0     2
+Z8R             sp2_sp2_1          C2          C3          C7          C8     180.000     5.0     2
+Z8R       const_sp2_sp2_1         C10          C7          C8          C9       0.000     5.0     2
+Z8R              const_45         C11         C10          C7          C8       0.000    10.0     2
+Z8R              const_27           C          C1          C6          C5     180.000    10.0     2
+Z8R       const_sp2_sp2_5          C7          C8          C9         C12       0.000     5.0     2
+Z8R             sp2_sp2_5           O           C          C1          C2     180.000     5.0     2
+Z8R              const_17          C7         C10         C11         C12       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+Z8R    chir_1    S    O2    O3    N    both
+Z8R    chir_2    N    S    C13    H10    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+Z8R    plan-1           C   0.020
+Z8R    plan-1          C1   0.020
+Z8R    plan-1          C2   0.020
+Z8R    plan-1          C3   0.020
+Z8R    plan-1          C4   0.020
+Z8R    plan-1          C5   0.020
+Z8R    plan-1          C6   0.020
+Z8R    plan-1          C7   0.020
+Z8R    plan-1           H   0.020
+Z8R    plan-1          H1   0.020
+Z8R    plan-1          H2   0.020
+Z8R    plan-1          H3   0.020
+Z8R    plan-2         C10   0.020
+Z8R    plan-2         C11   0.020
+Z8R    plan-2         C12   0.020
+Z8R    plan-2         C13   0.020
+Z8R    plan-2          C3   0.020
+Z8R    plan-2          C7   0.020
+Z8R    plan-2          C8   0.020
+Z8R    plan-2          C9   0.020
+Z8R    plan-2          H4   0.020
+Z8R    plan-2          H5   0.020
+Z8R    plan-2          H6   0.020
+Z8R    plan-2          H7   0.020
+Z8R    plan-3           C   0.020
+Z8R    plan-3          C1   0.020
+Z8R    plan-3           O   0.020
+Z8R    plan-3          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+Z8R            InChI                InChI  1.03 InChI=1S/C15H15NO4S/c1-21(19,20)16-10-11-5-7-12(8-6-11)13-3-2-4-14(9-13)15(17)18/h2-9,16H,10H2,1H3,(H,17,18)
+Z8R         InChIKey                InChI  1.03                                                                                  GDROHHKTEPPNSN-UHFFFAOYSA-N
+Z8R SMILES_CANONICAL               CACTVS 3.385                                                                     C[S](=O)(=O)NCc1ccc(cc1)c2cccc(c2)C(O)=O
+Z8R           SMILES               CACTVS 3.385                                                                     C[S](=O)(=O)NCc1ccc(cc1)c2cccc(c2)C(O)=O
+Z8R SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                       CS(=O)(=O)NCc1ccc(cc1)c2cccc(c2)C(=O)O
+Z8R           SMILES "OpenEye OEToolkits" 2.0.6                                                                       CS(=O)(=O)NCc1ccc(cc1)c2cccc(c2)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+Z8R acedrg               243         "dictionary generator"                  
+Z8R acedrg_database      11          "data source"                           
+Z8R rdkit                2017.03.2   "Chemoinformatics tool"
+Z8R refmac5              5.8.0238    "optimization tool"                     

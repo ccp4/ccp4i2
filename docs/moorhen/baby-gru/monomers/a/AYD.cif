@@ -1,0 +1,284 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AYD     AYD      "4-{[(4'-AMINO-2'-METHYLPYRIMIDIN-5'-YL)METHYL]AMINO}PENT-3-ENYL DIPHOSPHATE"     NON-POLYMER     41     24     .     
+#
+data_comp_AYD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AYD     "N1'"   N       NRD6    0       2.562       101.724     52.035      
+AYD     "C2'"   C       CR6     0       3.541       102.634     52.132      
+AYD     CM2     C       CH3     0       4.809       102.372     51.385      
+AYD     "N3'"   N       NRD6    0       3.462       103.761     52.852      
+AYD     "C4'"   C       CR6     0       2.318       103.999     53.528      
+AYD     "N4'"   N       NH2     0       2.261       105.135     54.244      
+AYD     "C5'"   C       CR6     0       1.223       103.093     53.480      
+AYD     "C6'"   C       CR16    0       1.422       101.959     52.706      
+AYD     "C7'"   C       CH2     0       -0.059      103.338     54.239      
+AYD     N3      N       NH1     0       0.148       103.369     55.691      
+AYD     C5      C       C1      0       1.062       102.603     57.738      
+AYD     C4      C       C       0       0.578       102.339     56.439      
+AYD     CM4     C       CH3     0       0.455       100.934     55.910      
+AYD     C6      C       CH2     0       1.816       101.670     58.625      
+AYD     C7      C       CH2     0       3.141       101.233     58.058      
+AYD     O7      O       O2      0       3.847       100.388     58.996      
+AYD     PA      P       P       0       5.313       99.860      58.612      
+AYD     O1A     O       O       0       5.242       99.199      57.275      
+AYD     O2A     O       OP      -1      6.282       100.978     58.811      
+AYD     O3A     O       O2      0       5.558       98.748      59.741      
+AYD     PB      P       P       0       4.774       97.396      60.144      
+AYD     O1B     O       O       0       3.659       97.823      61.067      
+AYD     O2B     O       OP      -1      5.791       96.516      60.828      
+AYD     O3B     O       OP      -1      4.267       96.805      58.852      
+AYD     HM21    H       H       0       5.425       103.112     51.514      
+AYD     HM22    H       H       0       4.613       102.277     50.439      
+AYD     HM23    H       H       0       5.215       101.554     51.714      
+AYD     "H4'1"  H       H       0       1.608       105.704     54.107      
+AYD     "H4'2"  H       H       0       2.877       105.304     54.844      
+AYD     "H6'"   H       H       0       0.728       101.327     52.647      
+AYD     "H7'1"  H       H       0       -0.708      102.639     54.017      
+AYD     "H7'2"  H       H       0       -0.436      104.197     53.957      
+AYD     HN3     H       H       0       -0.031      104.111     56.109      
+AYD     H5      H       H       0       0.890       103.463     58.090      
+AYD     HM41    H       H       0       0.504       100.299     56.644      
+AYD     HM42    H       H       0       1.178       100.759     55.284      
+AYD     HM43    H       H       0       -0.400      100.829     55.457      
+AYD     H61     H       H       0       1.269       100.872     58.794      
+AYD     H62     H       H       0       1.977       102.110     59.489      
+AYD     H71     H       H       0       3.681       102.026     57.856      
+AYD     H72     H       H       0       2.991       100.745     57.222      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AYD       "N1'"       "C2'"      DOUBLE       y     1.335  0.0101     1.335  0.0101
+AYD       "N1'"       "C6'"      SINGLE       y     1.340  0.0100     1.340  0.0100
+AYD       "C2'"         CM2      SINGLE       n     1.494  0.0103     1.494  0.0103
+AYD       "C2'"       "N3'"      SINGLE       y     1.333  0.0107     1.333  0.0107
+AYD       "N3'"       "C4'"      DOUBLE       y     1.343  0.0133     1.343  0.0133
+AYD       "C4'"       "N4'"      SINGLE       n     1.343  0.0151     1.343  0.0151
+AYD       "C4'"       "C5'"      SINGLE       y     1.416  0.0135     1.416  0.0135
+AYD       "C5'"       "C6'"      DOUBLE       y     1.383  0.0136     1.383  0.0136
+AYD       "C5'"       "C7'"      SINGLE       n     1.508  0.0100     1.508  0.0100
+AYD       "C7'"          N3      SINGLE       n     1.455  0.0190     1.455  0.0190
+AYD          N3          C4      SINGLE       n     1.328  0.0147     1.328  0.0147
+AYD          C5          C4      DOUBLE       n     1.397  0.0200     1.397  0.0200
+AYD          C5          C6      SINGLE       n     1.491  0.0133     1.491  0.0133
+AYD          C4         CM4      SINGLE       n     1.502  0.0101     1.502  0.0101
+AYD          C6          C7      SINGLE       n     1.504  0.0200     1.504  0.0200
+AYD          C7          O7      SINGLE       n     1.447  0.0162     1.447  0.0162
+AYD          O7          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+AYD          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+AYD          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+AYD          PA         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+AYD         O3A          PB      SINGLE       n     1.614  0.0178     1.614  0.0178
+AYD          PB         O1B      DOUBLE       n     1.509  0.0200     1.509  0.0200
+AYD          PB         O2B      SINGLE       n     1.509  0.0200     1.509  0.0200
+AYD          PB         O3B      SINGLE       n     1.509  0.0200     1.509  0.0200
+AYD         CM2        HM21      SINGLE       n     1.089  0.0100     0.971  0.0138
+AYD         CM2        HM22      SINGLE       n     1.089  0.0100     0.971  0.0138
+AYD         CM2        HM23      SINGLE       n     1.089  0.0100     0.971  0.0138
+AYD       "N4'"      "H4'1"      SINGLE       n     1.016  0.0100     0.877  0.0200
+AYD       "N4'"      "H4'2"      SINGLE       n     1.016  0.0100     0.877  0.0200
+AYD       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.940  0.0200
+AYD       "C7'"      "H7'1"      SINGLE       n     1.089  0.0100     0.980  0.0169
+AYD       "C7'"      "H7'2"      SINGLE       n     1.089  0.0100     0.980  0.0169
+AYD          N3         HN3      SINGLE       n     1.016  0.0100     0.870  0.0114
+AYD          C5          H5      SINGLE       n     1.082  0.0130     0.945  0.0200
+AYD         CM4        HM41      SINGLE       n     1.089  0.0100     0.973  0.0132
+AYD         CM4        HM42      SINGLE       n     1.089  0.0100     0.973  0.0132
+AYD         CM4        HM43      SINGLE       n     1.089  0.0100     0.973  0.0132
+AYD          C6         H61      SINGLE       n     1.089  0.0100     0.983  0.0195
+AYD          C6         H62      SINGLE       n     1.089  0.0100     0.983  0.0195
+AYD          C7         H71      SINGLE       n     1.089  0.0100     0.980  0.0143
+AYD          C7         H72      SINGLE       n     1.089  0.0100     0.980  0.0143
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AYD       "C2'"       "N1'"       "C6'"     117.093    1.65
+AYD       "N1'"       "C2'"         CM2     117.906    1.50
+AYD       "N1'"       "C2'"       "N3'"     124.399    1.50
+AYD         CM2       "C2'"       "N3'"     117.695    1.52
+AYD       "C2'"         CM2        HM21     109.546    1.50
+AYD       "C2'"         CM2        HM22     109.546    1.50
+AYD       "C2'"         CM2        HM23     109.546    1.50
+AYD        HM21         CM2        HM22     109.397    1.50
+AYD        HM21         CM2        HM23     109.397    1.50
+AYD        HM22         CM2        HM23     109.397    1.50
+AYD       "C2'"       "N3'"       "C4'"     117.145    1.69
+AYD       "N3'"       "C4'"       "N4'"     116.812    1.55
+AYD       "N3'"       "C4'"       "C5'"     121.951    1.50
+AYD       "N4'"       "C4'"       "C5'"     121.236    1.50
+AYD       "C4'"       "N4'"      "H4'1"     119.860    1.50
+AYD       "C4'"       "N4'"      "H4'2"     119.860    1.50
+AYD      "H4'1"       "N4'"      "H4'2"     120.280    1.85
+AYD       "C4'"       "C5'"       "C6'"     116.265    1.50
+AYD       "C4'"       "C5'"       "C7'"     121.884    1.50
+AYD       "C6'"       "C5'"       "C7'"     121.851    1.50
+AYD       "N1'"       "C6'"       "C5'"     123.147    1.50
+AYD       "N1'"       "C6'"       "H6'"     118.449    1.50
+AYD       "C5'"       "C6'"       "H6'"     118.404    1.50
+AYD       "C5'"       "C7'"          N3     112.746    1.93
+AYD       "C5'"       "C7'"      "H7'1"     109.005    1.50
+AYD       "C5'"       "C7'"      "H7'2"     109.005    1.50
+AYD          N3       "C7'"      "H7'1"     108.811    1.50
+AYD          N3       "C7'"      "H7'2"     108.811    1.50
+AYD      "H7'1"       "C7'"      "H7'2"     107.860    1.50
+AYD       "C7'"          N3          C4     122.931    2.35
+AYD       "C7'"          N3         HN3     119.594    1.76
+AYD          C4          N3         HN3     117.475    1.51
+AYD          C4          C5          C6     126.332    3.00
+AYD          C4          C5          H5     116.836    1.82
+AYD          C6          C5          H5     116.832    1.85
+AYD          N3          C4          C5     119.382    3.00
+AYD          N3          C4         CM4     117.684    2.03
+AYD          C5          C4         CM4     122.933    3.00
+AYD          C4         CM4        HM41     109.469    1.50
+AYD          C4         CM4        HM42     109.469    1.50
+AYD          C4         CM4        HM43     109.469    1.50
+AYD        HM41         CM4        HM42     109.402    1.50
+AYD        HM41         CM4        HM43     109.402    1.50
+AYD        HM42         CM4        HM43     109.402    1.50
+AYD          C5          C6          C7     116.364    3.00
+AYD          C5          C6         H61     109.013    1.50
+AYD          C5          C6         H62     109.013    1.50
+AYD          C7          C6         H61     108.485    1.50
+AYD          C7          C6         H62     108.485    1.50
+AYD         H61          C6         H62     107.703    1.50
+AYD          C6          C7          O7     109.643    2.62
+AYD          C6          C7         H71     109.480    1.94
+AYD          C6          C7         H72     109.480    1.94
+AYD          O7          C7         H71     109.902    1.50
+AYD          O7          C7         H72     109.902    1.50
+AYD         H71          C7         H72     108.388    1.50
+AYD          C7          O7          PA     119.251    1.51
+AYD          O7          PA         O1A     107.912    2.57
+AYD          O7          PA         O2A     107.912    2.57
+AYD          O7          PA         O3A     101.065    1.97
+AYD         O1A          PA         O2A     118.411    2.35
+AYD         O1A          PA         O3A     108.816    2.14
+AYD         O2A          PA         O3A     108.816    2.14
+AYD          PA         O3A          PB     132.584    3.00
+AYD         O3A          PB         O1B     105.965    2.38
+AYD         O3A          PB         O2B     105.965    2.38
+AYD         O3A          PB         O3B     105.965    2.38
+AYD         O1B          PB         O2B     112.716    1.50
+AYD         O1B          PB         O3B     112.716    1.50
+AYD         O2B          PB         O3B     112.716    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AYD       const_sp2_sp2_2         CM2       "C2'"       "N1'"       "C6'"     180.000     5.0     2
+AYD              const_15       "C5'"       "C6'"       "N1'"       "C2'"       0.000    10.0     2
+AYD            sp2_sp2_11          N3          C4          C5          C6       0.000     5.0     2
+AYD            sp2_sp3_20          C4          C5          C6          C7     120.000    10.0     6
+AYD            sp2_sp3_25          N3          C4         CM4        HM41       0.000    10.0     6
+AYD             sp3_sp3_1          C5          C6          C7          O7     180.000    10.0     3
+AYD            sp3_sp3_10          C6          C7          O7          PA     180.000    10.0     3
+AYD            sp3_sp3_15          C7          O7          PA         O1A      60.000    10.0     3
+AYD            sp3_sp3_17          PB         O3A          PA          O7     -60.000    10.0     3
+AYD            sp3_sp3_21          PA         O3A          PB         O1B      60.000    10.0     3
+AYD             sp2_sp3_1       "N1'"       "C2'"         CM2        HM21     150.000    10.0     6
+AYD       const_sp2_sp2_4         CM2       "C2'"       "N3'"       "C4'"     180.000     5.0     2
+AYD       const_sp2_sp2_6       "N4'"       "C4'"       "N3'"       "C2'"     180.000     5.0     2
+AYD             sp2_sp2_3       "N3'"       "C4'"       "N4'"      "H4'1"       0.000     5.0     2
+AYD              const_10       "N4'"       "C4'"       "C5'"       "C7'"       0.000    10.0     2
+AYD              const_13       "C7'"       "C5'"       "C6'"       "N1'"     180.000    10.0     2
+AYD             sp2_sp3_8       "C4'"       "C5'"       "C7'"          N3     -90.000    10.0     6
+AYD            sp2_sp3_14          C4          N3       "C7'"       "C5'"     120.000    10.0     6
+AYD             sp2_sp2_7          C5          C4          N3       "C7'"       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AYD    chir_1    PA    O3A    O7    O2A    both
+AYD    chir_2    PB    O3A    O2B    O3B    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AYD    plan-1       "C2'"   0.020
+AYD    plan-1       "C4'"   0.020
+AYD    plan-1       "C5'"   0.020
+AYD    plan-1       "C6'"   0.020
+AYD    plan-1       "C7'"   0.020
+AYD    plan-1         CM2   0.020
+AYD    plan-1       "H6'"   0.020
+AYD    plan-1       "N1'"   0.020
+AYD    plan-1       "N3'"   0.020
+AYD    plan-1       "N4'"   0.020
+AYD    plan-2       "C4'"   0.020
+AYD    plan-2      "H4'1"   0.020
+AYD    plan-2      "H4'2"   0.020
+AYD    plan-2       "N4'"   0.020
+AYD    plan-3          C4   0.020
+AYD    plan-3       "C7'"   0.020
+AYD    plan-3         HN3   0.020
+AYD    plan-3          N3   0.020
+AYD    plan-4          C4   0.020
+AYD    plan-4          C5   0.020
+AYD    plan-4          C6   0.020
+AYD    plan-4          H5   0.020
+AYD    plan-5          C4   0.020
+AYD    plan-5          C5   0.020
+AYD    plan-5         CM4   0.020
+AYD    plan-5          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AYD           SMILES              ACDLabs 10.04                                                                                                               O=P(O)(O)OP(=O)(O)OCC/C=C(/NCc1cnc(nc1N)C)C
+AYD            InChI                InChI  1.03 InChI=1S/C11H20N4O7P2/c1-8(13-6-10-7-14-9(2)15-11(10)12)4-3-5-21-24(19,20)22-23(16,17)18/h4,7,13H,3,5-6H2,1-2H3,(H,19,20)(H2,12,14,15)(H2,16,17,18)/b8-4+
+AYD         InChIKey                InChI  1.03                                                                                                                               DPGNBHAKLFOOJK-XBXARRHUSA-N
+AYD SMILES_CANONICAL               CACTVS 3.385                                                                                                           CC(\NCc1cnc(C)nc1N)=C/CCO[P](O)(=O)O[P](O)(O)=O
+AYD           SMILES               CACTVS 3.385                                                                                                             CC(NCc1cnc(C)nc1N)=CCCO[P](O)(=O)O[P](O)(O)=O
+AYD SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                                                        Cc1ncc(c(n1)N)CN/C(=C/CCO[P@@](=O)(O)OP(=O)(O)O)/C
+AYD           SMILES "OpenEye OEToolkits" 1.7.5                                                                                                               Cc1ncc(c(n1)N)CNC(=CCCOP(=O)(O)OP(=O)(O)O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AYD acedrg               243         "dictionary generator"                  
+AYD acedrg_database      11          "data source"                           
+AYD rdkit                2017.03.2   "Chemoinformatics tool"
+AYD refmac5              5.8.0238    "optimization tool"                     

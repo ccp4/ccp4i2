@@ -1,0 +1,312 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OCD     OCD      octadecanal     NON-POLYMER     55     19     .     
+#
+data_comp_OCD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OCD     C1      C       C1      0       12.877      83.540      47.129      
+OCD     O1      O       O       0       13.170      84.023      46.080      
+OCD     C2      C       CH2     0       12.798      84.264      48.430      
+OCD     C3      C       CH2     0       12.344      83.420      49.584      
+OCD     C4      C       CH2     0       13.407      82.462      50.100      
+OCD     C5      C       CH2     0       14.474      83.112      50.949      
+OCD     C6      C       CH2     0       15.424      82.138      51.601      
+OCD     C7      C       CH2     0       16.544      82.790      52.373      
+OCD     C8      C       CH2     0       17.517      81.818      52.993      
+OCD     C9      C       CH2     0       18.644      82.474      53.755      
+OCD     C10     C       CH2     0       19.503      81.514      54.546      
+OCD     C11     C       CH2     0       20.314      80.550      53.705      
+OCD     C12     C       CH2     0       19.720      79.167      53.587      
+OCD     C13     C       CH2     0       20.510      78.225      52.711      
+OCD     C14     C       CH2     0       19.868      76.873      52.518      
+OCD     C15     C       CH2     0       19.924      75.981      53.734      
+OCD     C16     C       CH2     0       19.407      74.583      53.501      
+OCD     C17     C       CH2     0       19.439      73.699      54.721      
+OCD     C18     C       CH3     0       18.912      72.306      54.473      
+OCD     H1      H       H       0       12.678      82.618      47.138      
+OCD     H2      H       H       0       12.179      85.018      48.332      
+OCD     H3      H       H       0       13.682      84.634      48.638      
+OCD     H4      H       H       0       11.560      82.900      49.308      
+OCD     H5      H       H       0       12.067      84.008      50.317      
+OCD     H6      H       H       0       13.838      82.025      49.336      
+OCD     H7      H       H       0       12.967      81.764      50.631      
+OCD     H8      H       H       0       14.038      83.643      51.650      
+OCD     H9      H       H       0       14.992      83.727      50.388      
+OCD     H10     H       H       0       15.812      81.564      50.906      
+OCD     H11     H       H       0       14.915      81.562      52.211      
+OCD     H12     H       H       0       16.156      83.343      53.084      
+OCD     H13     H       H       0       17.037      83.385      51.769      
+OCD     H14     H       H       0       17.900      81.260      52.283      
+OCD     H15     H       H       0       17.027      81.228      53.604      
+OCD     H16     H       H       0       18.262      83.134      54.371      
+OCD     H17     H       H       0       19.214      82.956      53.119      
+OCD     H18     H       H       0       18.924      80.999      55.148      
+OCD     H19     H       H       0       20.119      82.036      55.104      
+OCD     H20     H       H       0       21.211      80.472      54.096      
+OCD     H21     H       H       0       20.417      80.925      52.804      
+OCD     H22     H       H       0       18.811      79.244      53.226      
+OCD     H23     H       H       0       19.650      78.777      54.485      
+OCD     H24     H       H       0       21.398      78.098      53.107      
+OCD     H25     H       H       0       20.633      78.643      51.832      
+OCD     H26     H       H       0       20.314      76.417      51.773      
+OCD     H27     H       H       0       18.929      77.004      52.267      
+OCD     H28     H       H       0       19.400      76.395      54.452      
+OCD     H29     H       H       0       20.855      75.925      54.040      
+OCD     H30     H       H       0       19.942      74.163      52.795      
+OCD     H31     H       H       0       18.481      74.640      53.180      
+OCD     H32     H       H       0       18.906      74.119      55.430      
+OCD     H33     H       H       0       20.366      73.636      55.040      
+OCD     H34     H       H       0       18.962      71.788      55.295      
+OCD     H35     H       H       0       19.447      71.872      53.786      
+OCD     H36     H       H       0       17.986      72.355      54.178      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OCD          C1          O1      DOUBLE       n     1.192  0.0200     1.192  0.0200
+OCD          C1          C2      SINGLE       n     1.490  0.0115     1.490  0.0115
+OCD          C2          C3      SINGLE       n     1.497  0.0200     1.497  0.0200
+OCD          C3          C4      SINGLE       n     1.519  0.0164     1.519  0.0164
+OCD          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+OCD          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+OCD          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+OCD         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+OCD         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+OCD          C7          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+OCD          C8          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+OCD         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+OCD         C16         C17      SINGLE       n     1.507  0.0200     1.507  0.0200
+OCD         C12         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+OCD         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+OCD         C17         C18      SINGLE       n     1.510  0.0200     1.510  0.0200
+OCD          C9         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+OCD         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+OCD          C1          H1      SINGLE       n     1.082  0.0130     0.943  0.0105
+OCD          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0185
+OCD          C2          H3      SINGLE       n     1.089  0.0100     0.981  0.0185
+OCD          C3          H4      SINGLE       n     1.089  0.0100     0.980  0.0160
+OCD          C3          H5      SINGLE       n     1.089  0.0100     0.980  0.0160
+OCD          C4          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD          C4          H7      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD          C5          H8      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD          C5          H9      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD          C6         H10      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD          C6         H11      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD          C7         H12      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD          C7         H13      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD          C8         H14      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD          C8         H15      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD          C9         H16      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD          C9         H17      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C10         H18      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C10         H19      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C11         H20      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C11         H21      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C12         H22      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C12         H23      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C13         H24      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C13         H25      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C14         H26      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C14         H27      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C15         H28      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C15         H29      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C16         H30      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C16         H31      SINGLE       n     1.089  0.0100     0.981  0.0163
+OCD         C17         H32      SINGLE       n     1.089  0.0100     0.982  0.0155
+OCD         C17         H33      SINGLE       n     1.089  0.0100     0.982  0.0155
+OCD         C18         H34      SINGLE       n     1.089  0.0100     0.973  0.0157
+OCD         C18         H35      SINGLE       n     1.089  0.0100     0.973  0.0157
+OCD         C18         H36      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OCD          O1          C1          C2     125.770    1.96
+OCD          O1          C1          H1     117.130    1.50
+OCD          C2          C1          H1     117.100    1.50
+OCD          C1          C2          C3     114.504    2.22
+OCD          C1          C2          H2     108.942    1.50
+OCD          C1          C2          H3     108.942    1.50
+OCD          C3          C2          H2     108.844    1.50
+OCD          C3          C2          H3     108.844    1.50
+OCD          H2          C2          H3     107.705    1.50
+OCD          C2          C3          C4     113.146    1.68
+OCD          C2          C3          H4     108.915    1.50
+OCD          C2          C3          H5     108.915    1.50
+OCD          C4          C3          H4     108.698    1.50
+OCD          C4          C3          H5     108.698    1.50
+OCD          H4          C3          H5     107.646    1.50
+OCD          C3          C4          C5     114.243    1.69
+OCD          C3          C4          H6     108.698    1.50
+OCD          C3          C4          H7     108.698    1.50
+OCD          C5          C4          H6     108.698    1.50
+OCD          C5          C4          H7     108.698    1.50
+OCD          H6          C4          H7     107.646    1.50
+OCD          C4          C5          C6     114.243    1.69
+OCD          C4          C5          H8     108.698    1.50
+OCD          C4          C5          H9     108.698    1.50
+OCD          C6          C5          H8     108.698    1.50
+OCD          C6          C5          H9     108.698    1.50
+OCD          H8          C5          H9     107.646    1.50
+OCD          C5          C6          C7     114.243    1.69
+OCD          C5          C6         H10     108.698    1.50
+OCD          C5          C6         H11     108.698    1.50
+OCD          C7          C6         H10     108.698    1.50
+OCD          C7          C6         H11     108.698    1.50
+OCD         H10          C6         H11     107.646    1.50
+OCD          C6          C7          C8     114.243    1.69
+OCD          C6          C7         H12     108.698    1.50
+OCD          C6          C7         H13     108.698    1.50
+OCD          C8          C7         H12     108.698    1.50
+OCD          C8          C7         H13     108.698    1.50
+OCD         H12          C7         H13     107.646    1.50
+OCD          C7          C8          C9     114.243    1.69
+OCD          C7          C8         H14     108.698    1.50
+OCD          C7          C8         H15     108.698    1.50
+OCD          C9          C8         H14     108.698    1.50
+OCD          C9          C8         H15     108.698    1.50
+OCD         H14          C8         H15     107.646    1.50
+OCD          C8          C9         C10     114.243    1.69
+OCD          C8          C9         H16     108.698    1.50
+OCD          C8          C9         H17     108.698    1.50
+OCD         C10          C9         H16     108.698    1.50
+OCD         C10          C9         H17     108.698    1.50
+OCD         H16          C9         H17     107.646    1.50
+OCD          C9         C10         C11     114.243    1.69
+OCD          C9         C10         H18     108.698    1.50
+OCD          C9         C10         H19     108.698    1.50
+OCD         C11         C10         H18     108.698    1.50
+OCD         C11         C10         H19     108.698    1.50
+OCD         H18         C10         H19     107.646    1.50
+OCD         C12         C11         C10     114.243    1.69
+OCD         C12         C11         H20     108.698    1.50
+OCD         C12         C11         H21     108.698    1.50
+OCD         C10         C11         H20     108.698    1.50
+OCD         C10         C11         H21     108.698    1.50
+OCD         H20         C11         H21     107.646    1.50
+OCD         C13         C12         C11     114.243    1.69
+OCD         C13         C12         H22     108.698    1.50
+OCD         C13         C12         H23     108.698    1.50
+OCD         C11         C12         H22     108.698    1.50
+OCD         C11         C12         H23     108.698    1.50
+OCD         H22         C12         H23     107.646    1.50
+OCD         C14         C13         C12     114.243    1.69
+OCD         C14         C13         H24     108.698    1.50
+OCD         C14         C13         H25     108.698    1.50
+OCD         C12         C13         H24     108.698    1.50
+OCD         C12         C13         H25     108.698    1.50
+OCD         H24         C13         H25     107.646    1.50
+OCD         C13         C14         C15     114.243    1.69
+OCD         C13         C14         H26     108.698    1.50
+OCD         C13         C14         H27     108.698    1.50
+OCD         C15         C14         H26     108.698    1.50
+OCD         C15         C14         H27     108.698    1.50
+OCD         H26         C14         H27     107.646    1.50
+OCD         C14         C15         C16     114.243    1.69
+OCD         C14         C15         H28     108.698    1.50
+OCD         C14         C15         H29     108.698    1.50
+OCD         C16         C15         H28     108.698    1.50
+OCD         C16         C15         H29     108.698    1.50
+OCD         H28         C15         H29     107.646    1.50
+OCD         C15         C16         C17     114.362    3.00
+OCD         C15         C16         H30     108.698    1.50
+OCD         C15         C16         H31     108.698    1.50
+OCD         C17         C16         H30     108.653    1.50
+OCD         C17         C16         H31     108.653    1.50
+OCD         H30         C16         H31     107.646    1.50
+OCD         C16         C17         C18     113.719    3.00
+OCD         C16         C17         H32     108.758    1.50
+OCD         C16         C17         H33     108.758    1.50
+OCD         C18         C17         H32     108.918    1.50
+OCD         C18         C17         H33     108.918    1.50
+OCD         H32         C17         H33     107.763    1.50
+OCD         C17         C18         H34     109.554    1.50
+OCD         C17         C18         H35     109.554    1.50
+OCD         C17         C18         H36     109.554    1.50
+OCD         H34         C18         H35     109.380    1.50
+OCD         H34         C18         H36     109.380    1.50
+OCD         H35         C18         H36     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OCD             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+OCD           sp3_sp3_136          C9         C10         C11         C12     180.000    10.0     3
+OCD           sp3_sp3_109         C10         C11         C12         C13     180.000    10.0     3
+OCD           sp3_sp3_100         C11         C12         C13         C14     180.000    10.0     3
+OCD            sp3_sp3_46         C12         C13         C14         C15     180.000    10.0     3
+OCD            sp3_sp3_55         C13         C14         C15         C16     180.000    10.0     3
+OCD            sp3_sp3_82         C14         C15         C16         C17     180.000    10.0     3
+OCD            sp3_sp3_91         C15         C16         C17         C18     180.000    10.0     3
+OCD           sp3_sp3_118         C16         C17         C18         H34     180.000    10.0     3
+OCD             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+OCD            sp3_sp3_10          C2          C3          C4          C5     180.000    10.0     3
+OCD            sp3_sp3_19          C3          C4          C5          C6     180.000    10.0     3
+OCD            sp3_sp3_28          C4          C5          C6          C7     180.000    10.0     3
+OCD            sp3_sp3_37          C5          C6          C7          C8     180.000    10.0     3
+OCD            sp3_sp3_64          C6          C7          C8          C9     180.000    10.0     3
+OCD            sp3_sp3_73          C7          C8          C9         C10     180.000    10.0     3
+OCD           sp3_sp3_127         C11         C10          C9          C8     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OCD    plan-1          C1   0.020
+OCD    plan-1          C2   0.020
+OCD    plan-1          H1   0.020
+OCD    plan-1          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OCD           SMILES              ACDLabs 12.01                                                            C(CCCCCCCCCCCCCCCCC)=O
+OCD            InChI                InChI  1.03 InChI=1S/C18H36O/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19/h18H,2-17H2,1H3
+OCD         InChIKey                InChI  1.03                                                       FWWQKRXKHIRPJY-UHFFFAOYSA-N
+OCD SMILES_CANONICAL               CACTVS 3.385                                                              CCCCCCCCCCCCCCCCCC=O
+OCD           SMILES               CACTVS 3.385                                                              CCCCCCCCCCCCCCCCCC=O
+OCD SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                              CCCCCCCCCCCCCCCCCC=O
+OCD           SMILES "OpenEye OEToolkits" 2.0.5                                                              CCCCCCCCCCCCCCCCCC=O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OCD acedrg               243         "dictionary generator"                  
+OCD acedrg_database      11          "data source"                           
+OCD rdkit                2017.03.2   "Chemoinformatics tool"
+OCD refmac5              5.8.0238    "optimization tool"                     

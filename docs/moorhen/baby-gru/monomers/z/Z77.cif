@@ -1,0 +1,352 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+Z77     Z77      1-[(6,7-dimethyl-2-oxo-1,2-dihydroquinolin-3-yl)methyl]-1-(2-hydroxyethyl)-3-(3-methoxyphenyl)thiourea     NON-POLYMER     54     29     .     
+#
+data_comp_Z77
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+Z77     N1      N       NH1     0       -23.673     5.191       -4.146      
+Z77     N2      N       N       0       -22.964     7.328       -4.704      
+Z77     N3      N       NR6     0       -25.249     5.487       -8.459      
+Z77     CAA     C       CH3     0       -26.901     1.951       -0.247      
+Z77     CAB     C       CH3     0       -29.380     9.436       -8.508      
+Z77     CAC     C       CH3     0       -29.668     6.898       -10.132     
+Z77     OAD     O       O       0       -23.252     4.704       -7.786      
+Z77     OAE     O       OH1     0       -22.549     10.878      -3.671      
+Z77     SAF     S       S1      0       -24.643     7.129       -2.662      
+Z77     CAG     C       CR16    0       -26.283     2.568       -4.444      
+Z77     CAH     C       CR16    0       -25.390     3.571       -4.792      
+Z77     CAI     C       CR16    0       -26.409     2.144       -3.133      
+Z77     CAJ     C       CR16    0       -24.721     3.744       -2.483      
+Z77     CAK     C       CR16    0       -27.159     8.566       -7.760      
+Z77     CAL     C       CR16    0       -27.419     6.217       -9.260      
+Z77     CAM     C       CR16    0       -24.923     7.767       -6.962      
+Z77     CAN     C       CH2     0       -23.053     9.810       -4.454      
+Z77     CAO     C       CH2     0       -22.291     8.534       -4.180      
+Z77     CAP     C       CH2     0       -22.682     7.031       -6.122      
+Z77     OAS     O       O2      0       -25.670     2.387       -0.824      
+Z77     CAT     C       C       0       -23.676     6.518       -3.905      
+Z77     CAU     C       CR6     0       -28.310     8.372       -8.522      
+Z77     CAV     C       CR6     0       -28.442     7.160       -9.292      
+Z77     CAW     C       CR6     0       -24.618     4.172       -3.804      
+Z77     CAX     C       CR6     0       -25.630     2.744       -2.147      
+Z77     CAY     C       CR6     0       -23.931     6.817       -6.948      
+Z77     CAZ     C       CR6     0       -24.101     5.614       -7.739      
+Z77     CBA     C       CR66    0       -26.115     7.596       -7.731      
+Z77     CBB     C       CR66    0       -26.265     6.422       -8.492      
+Z77     HN1     H       H       0       -22.956     4.887       -4.528      
+Z77     HN3     H       H       0       -25.346     4.741       -8.943      
+Z77     HAA     H       H       0       -27.083     1.039       -0.530      
+Z77     HAAA    H       H       0       -27.624     2.531       -0.538      
+Z77     HAAB    H       H       0       -26.831     1.981       0.721       
+Z77     HAB     H       H       0       -29.855     9.444       -9.354      
+Z77     HABA    H       H       0       -28.970     10.305      -8.366      
+Z77     HABB    H       H       0       -30.006     9.255       -7.788      
+Z77     HAC     H       H       0       -30.464     6.997       -9.584      
+Z77     HACA    H       H       0       -29.638     5.996       -10.490     
+Z77     HACB    H       H       0       -29.701     7.533       -10.865     
+Z77     HOAE    H       H       0       -22.919     11.598      -3.915      
+Z77     HAG     H       H       0       -26.814     2.169       -5.112      
+Z77     HAH     H       H       0       -25.314     3.851       -5.689      
+Z77     HAI     H       H       0       -27.020     1.462       -2.914      
+Z77     HAJ     H       H       0       -24.193     4.146       -1.816      
+Z77     HAK     H       H       0       -27.074     9.354       -7.257      
+Z77     HAL     H       H       0       -27.508     5.419       -9.769      
+Z77     HAM     H       H       0       -24.814     8.547       -6.450      
+Z77     HAN     H       H       0       -22.977     10.036      -5.401      
+Z77     HANA    H       H       0       -23.999     9.674       -4.249      
+Z77     HAO     H       H       0       -21.399     8.607       -4.584      
+Z77     HAOA    H       H       0       -22.162     8.443       -3.211      
+Z77     HAP     H       H       0       -22.113     6.236       -6.171      
+Z77     HAPA    H       H       0       -22.180     7.777       -6.515      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+Z77          N1         CAW      SINGLE       n     1.428  0.0100     1.428  0.0100
+Z77          N1         CAT      SINGLE       n     1.341  0.0100     1.341  0.0100
+Z77          N2         CAP      SINGLE       n     1.468  0.0100     1.468  0.0100
+Z77          N2         CAT      SINGLE       n     1.330  0.0108     1.330  0.0108
+Z77          N2         CAO      SINGLE       n     1.471  0.0102     1.471  0.0102
+Z77          N3         CBB      SINGLE       y     1.379  0.0100     1.379  0.0100
+Z77          N3         CAZ      SINGLE       y     1.357  0.0100     1.357  0.0100
+Z77         CAA         OAS      SINGLE       n     1.424  0.0117     1.424  0.0117
+Z77         CAB         CAU      SINGLE       n     1.506  0.0117     1.506  0.0117
+Z77         CAC         CAV      SINGLE       n     1.507  0.0100     1.507  0.0100
+Z77         OAD         CAZ      DOUBLE       n     1.242  0.0172     1.242  0.0172
+Z77         OAE         CAN      SINGLE       n     1.417  0.0159     1.417  0.0159
+Z77         SAF         CAT      DOUBLE       n     1.682  0.0143     1.682  0.0143
+Z77         CAG         CAH      DOUBLE       y     1.384  0.0100     1.384  0.0100
+Z77         CAG         CAI      SINGLE       y     1.380  0.0102     1.380  0.0102
+Z77         CAH         CAW      SINGLE       y     1.387  0.0100     1.387  0.0100
+Z77         CAI         CAX      DOUBLE       y     1.386  0.0109     1.386  0.0109
+Z77         CAJ         CAW      DOUBLE       y     1.387  0.0100     1.387  0.0100
+Z77         CAJ         CAX      SINGLE       y     1.387  0.0100     1.387  0.0100
+Z77         CAK         CAU      SINGLE       y     1.383  0.0176     1.383  0.0176
+Z77         CAK         CBA      DOUBLE       y     1.419  0.0175     1.419  0.0175
+Z77         CAL         CAV      SINGLE       y     1.378  0.0152     1.378  0.0152
+Z77         CAL         CBB      DOUBLE       y     1.398  0.0100     1.398  0.0100
+Z77         CAM         CBA      SINGLE       y     1.419  0.0175     1.419  0.0175
+Z77         CAM         CAY      DOUBLE       y     1.369  0.0106     1.369  0.0106
+Z77         CAN         CAO      SINGLE       n     1.511  0.0110     1.511  0.0110
+Z77         CAP         CAY      SINGLE       n     1.509  0.0100     1.509  0.0100
+Z77         OAS         CAX      SINGLE       n     1.366  0.0100     1.366  0.0100
+Z77         CAU         CAV      DOUBLE       y     1.415  0.0183     1.415  0.0183
+Z77         CAY         CAZ      SINGLE       y     1.443  0.0100     1.443  0.0100
+Z77         CBA         CBB      SINGLE       y     1.403  0.0100     1.403  0.0100
+Z77          N1         HN1      SINGLE       n     1.016  0.0100     0.869  0.0200
+Z77          N3         HN3      SINGLE       n     1.016  0.0100     0.893  0.0200
+Z77         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+Z77         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+Z77         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0157
+Z77         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0135
+Z77         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0135
+Z77         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0135
+Z77         CAC         HAC      SINGLE       n     1.089  0.0100     0.971  0.0135
+Z77         CAC        HACA      SINGLE       n     1.089  0.0100     0.971  0.0135
+Z77         CAC        HACB      SINGLE       n     1.089  0.0100     0.971  0.0135
+Z77         OAE        HOAE      SINGLE       n     0.970  0.0120     0.846  0.0200
+Z77         CAG         HAG      SINGLE       n     1.082  0.0130     0.942  0.0141
+Z77         CAH         HAH      SINGLE       n     1.082  0.0130     0.943  0.0178
+Z77         CAI         HAI      SINGLE       n     1.082  0.0130     0.942  0.0163
+Z77         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.942  0.0154
+Z77         CAK         HAK      SINGLE       n     1.082  0.0130     0.939  0.0158
+Z77         CAL         HAL      SINGLE       n     1.082  0.0130     0.951  0.0154
+Z77         CAM         HAM      SINGLE       n     1.082  0.0130     0.939  0.0158
+Z77         CAN         HAN      SINGLE       n     1.089  0.0100     0.977  0.0146
+Z77         CAN        HANA      SINGLE       n     1.089  0.0100     0.977  0.0146
+Z77         CAO         HAO      SINGLE       n     1.089  0.0100     0.982  0.0152
+Z77         CAO        HAOA      SINGLE       n     1.089  0.0100     0.982  0.0152
+Z77         CAP         HAP      SINGLE       n     1.089  0.0100     0.981  0.0161
+Z77         CAP        HAPA      SINGLE       n     1.089  0.0100     0.981  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+Z77         CAW          N1         CAT     127.550    3.00
+Z77         CAW          N1         HN1     116.223    1.83
+Z77         CAT          N1         HN1     116.227    2.13
+Z77         CAP          N2         CAT     122.309    1.69
+Z77         CAP          N2         CAO     115.808    1.70
+Z77         CAT          N2         CAO     121.883    1.79
+Z77         CBB          N3         CAZ     124.913    1.50
+Z77         CBB          N3         HN3     118.197    1.50
+Z77         CAZ          N3         HN3     116.890    1.86
+Z77         OAS         CAA         HAA     109.428    1.50
+Z77         OAS         CAA        HAAA     109.428    1.50
+Z77         OAS         CAA        HAAB     109.428    1.50
+Z77         HAA         CAA        HAAA     109.509    1.50
+Z77         HAA         CAA        HAAB     109.509    1.50
+Z77        HAAA         CAA        HAAB     109.509    1.50
+Z77         CAU         CAB         HAB     109.535    1.50
+Z77         CAU         CAB        HABA     109.535    1.50
+Z77         CAU         CAB        HABB     109.535    1.50
+Z77         HAB         CAB        HABA     109.348    1.50
+Z77         HAB         CAB        HABB     109.348    1.50
+Z77        HABA         CAB        HABB     109.348    1.50
+Z77         CAV         CAC         HAC     109.535    1.50
+Z77         CAV         CAC        HACA     109.535    1.50
+Z77         CAV         CAC        HACB     109.535    1.50
+Z77         HAC         CAC        HACA     109.348    1.50
+Z77         HAC         CAC        HACB     109.348    1.50
+Z77        HACA         CAC        HACB     109.348    1.50
+Z77         CAN         OAE        HOAE     109.054    3.00
+Z77         CAH         CAG         CAI     121.159    1.50
+Z77         CAH         CAG         HAG     119.464    1.50
+Z77         CAI         CAG         HAG     119.377    1.50
+Z77         CAG         CAH         CAW     119.724    1.50
+Z77         CAG         CAH         HAH     120.204    1.50
+Z77         CAW         CAH         HAH     120.072    1.50
+Z77         CAG         CAI         CAX     119.166    1.50
+Z77         CAG         CAI         HAI     120.451    1.50
+Z77         CAX         CAI         HAI     120.382    1.50
+Z77         CAW         CAJ         CAX     119.264    1.50
+Z77         CAW         CAJ         HAJ     120.324    1.50
+Z77         CAX         CAJ         HAJ     120.412    1.50
+Z77         CAU         CAK         CBA     121.358    1.50
+Z77         CAU         CAK         HAK     118.936    1.50
+Z77         CBA         CAK         HAK     119.706    1.50
+Z77         CAV         CAL         CBB     120.792    1.51
+Z77         CAV         CAL         HAL     119.285    1.50
+Z77         CBB         CAL         HAL     119.923    1.50
+Z77         CBA         CAM         CAY     121.084    1.50
+Z77         CBA         CAM         HAM     119.637    1.50
+Z77         CAY         CAM         HAM     119.279    1.50
+Z77         OAE         CAN         CAO     111.016    1.85
+Z77         OAE         CAN         HAN     109.500    1.50
+Z77         OAE         CAN        HANA     109.500    1.50
+Z77         CAO         CAN         HAN     109.434    1.50
+Z77         CAO         CAN        HANA     109.434    1.50
+Z77         HAN         CAN        HANA     108.121    1.50
+Z77          N2         CAO         CAN     113.108    1.50
+Z77          N2         CAO         HAO     108.976    1.50
+Z77          N2         CAO        HAOA     108.976    1.50
+Z77         CAN         CAO         HAO     109.060    1.50
+Z77         CAN         CAO        HAOA     109.060    1.50
+Z77         HAO         CAO        HAOA     107.851    1.50
+Z77          N2         CAP         CAY     113.064    1.52
+Z77          N2         CAP         HAP     108.852    1.50
+Z77          N2         CAP        HAPA     108.852    1.50
+Z77         CAY         CAP         HAP     109.005    1.50
+Z77         CAY         CAP        HAPA     109.005    1.50
+Z77         HAP         CAP        HAPA     107.928    1.50
+Z77         CAA         OAS         CAX     117.529    1.50
+Z77          N1         CAT          N2     115.340    3.00
+Z77          N1         CAT         SAF     122.148    2.83
+Z77          N2         CAT         SAF     122.512    1.50
+Z77         CAB         CAU         CAK     119.875    1.50
+Z77         CAB         CAU         CAV     120.943    1.50
+Z77         CAK         CAU         CAV     119.182    1.50
+Z77         CAC         CAV         CAL     120.058    1.50
+Z77         CAC         CAV         CAU     120.569    1.50
+Z77         CAL         CAV         CAU     119.373    1.50
+Z77          N1         CAW         CAH     119.928    3.00
+Z77          N1         CAW         CAJ     119.822    1.94
+Z77         CAH         CAW         CAJ     120.250    1.50
+Z77         CAI         CAX         CAJ     120.437    1.50
+Z77         CAI         CAX         OAS     119.766    3.00
+Z77         CAJ         CAX         OAS     119.797    3.00
+Z77         CAM         CAY         CAP     121.178    1.50
+Z77         CAM         CAY         CAZ     118.851    1.74
+Z77         CAP         CAY         CAZ     119.971    1.50
+Z77          N3         CAZ         OAD     119.569    1.50
+Z77          N3         CAZ         CAY     117.843    2.33
+Z77         OAD         CAZ         CAY     122.589    1.50
+Z77         CAK         CBA         CAM     122.418    1.50
+Z77         CAK         CBA         CBB     118.927    1.50
+Z77         CAM         CBA         CBB     118.654    1.50
+Z77          N3         CBB         CAL     120.978    1.50
+Z77          N3         CBB         CBA     118.654    1.50
+Z77         CAL         CBB         CBA     120.368    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+Z77             sp2_sp2_5          N2         CAT          N1         CAW     180.000     5.0     2
+Z77             sp2_sp2_1         CAH         CAW          N1         CAT     180.000     5.0     2
+Z77       const_sp2_sp2_6         CAG         CAH         CAW          N1     180.000     5.0     2
+Z77              const_18         CAG         CAI         CAX         OAS     180.000    10.0     2
+Z77              const_10         CAX         CAJ         CAW          N1     180.000    10.0     2
+Z77              const_14         CAW         CAJ         CAX         OAS     180.000    10.0     2
+Z77              const_22         CBA         CAK         CAU         CAB     180.000    10.0     2
+Z77              const_66         CAU         CAK         CBA         CAM     180.000    10.0     2
+Z77              const_30         CBB         CAL         CAV         CAC     180.000    10.0     2
+Z77              const_34         CAV         CAL         CBB          N3     180.000    10.0     2
+Z77              const_50         CBA         CAM         CAY         CAP     180.000    10.0     2
+Z77              const_46         CAY         CAM         CBA         CAK     180.000    10.0     2
+Z77             sp3_sp3_8         OAE         CAN         CAO          N2     180.000    10.0     3
+Z77            sp2_sp3_26         CAM         CAY         CAP          N2     -90.000    10.0     6
+Z77            sp2_sp2_13         CAI         CAX         OAS         CAA     180.000     5.0     2
+Z77             sp2_sp3_8         CAP          N2         CAO         CAN     120.000    10.0     6
+Z77             sp2_sp3_2         CAT          N2         CAP         CAY     120.000    10.0     6
+Z77             sp2_sp2_9          N1         CAT          N2         CAP     180.000     5.0     2
+Z77              const_28         CAB         CAU         CAV         CAC       0.000    10.0     2
+Z77              const_56         CAP         CAY         CAZ         OAD       0.000    10.0     2
+Z77              const_38         CAK         CBA         CBB          N3     180.000    10.0     2
+Z77              const_59         OAD         CAZ          N3         CBB     180.000    10.0     2
+Z77              const_43         CAL         CBB          N3         CAZ     180.000    10.0     2
+Z77             sp3_sp3_2         HAA         CAA         OAS         CAX     -60.000    10.0     3
+Z77            sp2_sp3_13         CAK         CAU         CAB         HAB     150.000    10.0     6
+Z77            sp2_sp3_19         CAL         CAV         CAC         HAC     150.000    10.0     6
+Z77             sp3_sp3_5         CAO         CAN         OAE        HOAE     180.000    10.0     3
+Z77       const_sp2_sp2_1         CAI         CAG         CAH         CAW       0.000     5.0     2
+Z77              const_61         CAH         CAG         CAI         CAX       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+Z77    plan-1         CAB   0.020
+Z77    plan-1         CAC   0.020
+Z77    plan-1         CAK   0.020
+Z77    plan-1         CAL   0.020
+Z77    plan-1         CAM   0.020
+Z77    plan-1         CAP   0.020
+Z77    plan-1         CAU   0.020
+Z77    plan-1         CAV   0.020
+Z77    plan-1         CAY   0.020
+Z77    plan-1         CAZ   0.020
+Z77    plan-1         CBA   0.020
+Z77    plan-1         CBB   0.020
+Z77    plan-1         HAK   0.020
+Z77    plan-1         HAL   0.020
+Z77    plan-1         HAM   0.020
+Z77    plan-1         HN3   0.020
+Z77    plan-1          N3   0.020
+Z77    plan-1         OAD   0.020
+Z77    plan-2         CAG   0.020
+Z77    plan-2         CAH   0.020
+Z77    plan-2         CAI   0.020
+Z77    plan-2         CAJ   0.020
+Z77    plan-2         CAW   0.020
+Z77    plan-2         CAX   0.020
+Z77    plan-2         HAG   0.020
+Z77    plan-2         HAH   0.020
+Z77    plan-2         HAI   0.020
+Z77    plan-2         HAJ   0.020
+Z77    plan-2          N1   0.020
+Z77    plan-2         OAS   0.020
+Z77    plan-3         CAT   0.020
+Z77    plan-3         CAW   0.020
+Z77    plan-3         HN1   0.020
+Z77    plan-3          N1   0.020
+Z77    plan-4         CAO   0.020
+Z77    plan-4         CAP   0.020
+Z77    plan-4         CAT   0.020
+Z77    plan-4          N2   0.020
+Z77    plan-5         CAT   0.020
+Z77    plan-5          N1   0.020
+Z77    plan-5          N2   0.020
+Z77    plan-5         SAF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+Z77 SMILES_CANONICAL               CACTVS 3.352                                                                                                             COc1cccc(NC(=S)N(CCO)CC2=Cc3cc(C)c(C)cc3NC2=O)c1
+Z77           SMILES               CACTVS 3.352                                                                                                             COc1cccc(NC(=S)N(CCO)CC2=Cc3cc(C)c(C)cc3NC2=O)c1
+Z77 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                           Cc1cc2c(cc1C)NC(=O)C(=C2)CN(CCO)C(=S)Nc3cccc(c3)OC
+Z77           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                           Cc1cc2c(cc1C)NC(=O)C(=C2)CN(CCO)C(=S)Nc3cccc(c3)OC
+Z77            InChI                InChI  1.03 InChI=1S/C22H25N3O3S/c1-14-9-16-11-17(21(27)24-20(16)10-15(14)2)13-25(7-8-26)22(29)23-18-5-4-6-19(12-18)28-3/h4-6,9-12,26H,7-8,13H2,1-3H3,(H,23,29)(H,24,27)
+Z77         InChIKey                InChI  1.03                                                                                                                                  ANZIHXJDZSQUFB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+Z77 acedrg               243         "dictionary generator"                  
+Z77 acedrg_database      11          "data source"                           
+Z77 rdkit                2017.03.2   "Chemoinformatics tool"
+Z77 refmac5              5.8.0238    "optimization tool"                     

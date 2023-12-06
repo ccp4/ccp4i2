@@ -1,0 +1,238 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EPS     EPS      "5-[(1-CARBOXYVINYL)OXY]-4-HYDROXY-3-(PHOSPHONOOXY)CYCLOHEX-1-ENE-1-CARBOXYLIC ACID"     NON-POLYMER     30     21     .     
+#
+data_comp_EPS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EPS     C1      C       CR6     0       -17.981     9.448       16.636      
+EPS     C2      C       CR16    0       -18.851     9.778       17.596      
+EPS     C3      C       CH1     0       -19.788     8.811       18.260      
+EPS     C4      C       CH1     0       -19.339     7.363       18.071      
+EPS     C5      C       CH1     0       -18.962     7.101       16.615      
+EPS     C6      C       CH2     0       -17.820     8.015       16.177      
+EPS     O3      O       O2      0       -21.094     9.008       17.709      
+EPS     P       P       P       0       -22.308     9.705       18.514      
+EPS     O1P     O       O       0       -21.889     11.140      18.774      
+EPS     O2P     O       OP      -1      -23.529     9.619       17.618      
+EPS     O3P     O       OP      -1      -22.485     8.919       19.799      
+EPS     O4      O       OH1     0       -20.383     6.472       18.474      
+EPS     O5      O       O2      0       -18.533     5.710       16.502      
+EPS     C7      C       C       0       -18.849     5.024       15.385      
+EPS     C8      C       C2      0       -20.122     4.546       15.358      
+EPS     C9      C       C       0       -17.864     4.887       14.449      
+EPS     O91     O       OC      -1      -16.757     5.385       14.669      
+EPS     O92     O       O       0       -18.099     4.270       13.407      
+EPS     C10     C       C       0       -17.179     10.507      16.055      
+EPS     O11     O       O       0       -15.968     10.475      16.174      
+EPS     O12     O       OC      -1      -17.727     11.414      15.457      
+EPS     H2      H       H       0       -18.875     10.685      17.875      
+EPS     H3      H       H       0       -19.812     9.009       19.240      
+EPS     H4      H       H       0       -18.558     7.196       18.632      
+EPS     H5      H       H       0       -19.750     7.266       16.044      
+EPS     H61     H       H       0       -16.984     7.660       16.531      
+EPS     H62     H       H       0       -17.762     7.997       15.203      
+EPS     HO4     H       H       0       -20.080     5.687       18.489      
+EPS     H81     H       H       0       -20.700     4.718       16.102      
+EPS     H82     H       H       0       -20.422     4.048       14.598      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EPS          C1          C2      DOUBLE       n     1.333  0.0100     1.333  0.0100
+EPS          C1          C6      SINGLE       n     1.503  0.0183     1.503  0.0183
+EPS          C1         C10      SINGLE       n     1.446  0.0200     1.446  0.0200
+EPS          C2          C3      SINGLE       n     1.499  0.0100     1.499  0.0100
+EPS          C3          C4      SINGLE       n     1.526  0.0100     1.526  0.0100
+EPS          C3          O3      SINGLE       n     1.428  0.0141     1.428  0.0141
+EPS          C4          C5      SINGLE       n     1.523  0.0178     1.523  0.0178
+EPS          C4          O4      SINGLE       n     1.429  0.0159     1.429  0.0159
+EPS          C5          C6      SINGLE       n     1.524  0.0126     1.524  0.0126
+EPS          C5          O5      SINGLE       n     1.455  0.0145     1.455  0.0145
+EPS          O3           P      SINGLE       n     1.614  0.0178     1.614  0.0178
+EPS           P         O1P      DOUBLE       n     1.517  0.0192     1.517  0.0192
+EPS           P         O2P      SINGLE       n     1.517  0.0192     1.517  0.0192
+EPS           P         O3P      SINGLE       n     1.517  0.0192     1.517  0.0192
+EPS          O5          C7      SINGLE       n     1.339  0.0174     1.339  0.0174
+EPS          C7          C8      DOUBLE       n     1.348  0.0200     1.348  0.0200
+EPS          C7          C9      SINGLE       n     1.348  0.0200     1.348  0.0200
+EPS          C9         O91      SINGLE       n     1.230  0.0200     1.230  0.0200
+EPS          C9         O92      DOUBLE       n     1.230  0.0200     1.230  0.0200
+EPS         C10         O11      DOUBLE       n     1.217  0.0200     1.217  0.0200
+EPS         C10         O12      SINGLE       n     1.217  0.0200     1.217  0.0200
+EPS          C2          H2      SINGLE       n     1.082  0.0130     0.949  0.0100
+EPS          C3          H3      SINGLE       n     1.089  0.0100     0.999  0.0200
+EPS          C4          H4      SINGLE       n     1.089  0.0100     0.977  0.0200
+EPS          C5          H5      SINGLE       n     1.089  0.0100     0.986  0.0158
+EPS          C6         H61      SINGLE       n     1.089  0.0100     0.975  0.0100
+EPS          C6         H62      SINGLE       n     1.089  0.0100     0.975  0.0100
+EPS          O4         HO4      SINGLE       n     0.970  0.0120     0.841  0.0200
+EPS          C8         H81      SINGLE       n     1.082  0.0130     0.957  0.0200
+EPS          C8         H82      SINGLE       n     1.082  0.0130     0.957  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EPS          C2          C1          C6     121.169    1.50
+EPS          C2          C1         C10     117.572    1.50
+EPS          C6          C1         C10     121.259    1.79
+EPS          C1          C2          C3     124.265    1.50
+EPS          C1          C2          H2     117.415    1.50
+EPS          C3          C2          H2     118.320    1.50
+EPS          C2          C3          C4     111.632    1.50
+EPS          C2          C3          O3     109.522    2.52
+EPS          C2          C3          H3     109.070    1.50
+EPS          C4          C3          O3     110.564    1.90
+EPS          C4          C3          H3     108.836    1.50
+EPS          O3          C3          H3     109.209    1.50
+EPS          C3          C4          C5     111.124    1.57
+EPS          C3          C4          O4     109.779    1.72
+EPS          C3          C4          H4     109.434    1.50
+EPS          C5          C4          O4     110.081    2.02
+EPS          C5          C4          H4     109.166    1.50
+EPS          O4          C4          H4     108.767    1.50
+EPS          C4          C5          C6     110.811    1.64
+EPS          C4          C5          O5     108.122    1.78
+EPS          C4          C5          H5     109.166    1.50
+EPS          C6          C5          O5     108.826    1.50
+EPS          C6          C5          H5     109.453    2.12
+EPS          O5          C5          H5     109.681    1.50
+EPS          C1          C6          C5     112.021    2.38
+EPS          C1          C6         H61     109.149    1.50
+EPS          C1          C6         H62     109.149    1.50
+EPS          C5          C6         H61     108.743    1.50
+EPS          C5          C6         H62     108.743    1.50
+EPS         H61          C6         H62     107.887    1.50
+EPS          C3          O3           P     122.306    2.63
+EPS          O3           P         O1P     106.518    3.00
+EPS          O3           P         O2P     106.518    3.00
+EPS          O3           P         O3P     106.518    3.00
+EPS         O1P           P         O2P     112.139    1.52
+EPS         O1P           P         O3P     112.139    1.52
+EPS         O2P           P         O3P     112.139    1.52
+EPS          C4          O4         HO4     108.895    2.41
+EPS          C5          O5          C7     117.637    1.50
+EPS          O5          C7          C8     116.262    3.00
+EPS          O5          C7          C9     116.262    3.00
+EPS          C8          C7          C9     127.477    3.00
+EPS          C7          C8         H81     119.183    2.19
+EPS          C7          C8         H82     119.183    2.19
+EPS         H81          C8         H82     121.634    1.50
+EPS          C7          C9         O91     118.654    3.00
+EPS          C7          C9         O92     118.654    3.00
+EPS         O91          C9         O92     122.692    1.63
+EPS          C1         C10         O11     119.490    1.50
+EPS          C1         C10         O12     119.490    1.50
+EPS         O11         C10         O12     121.020    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EPS             sp2_sp2_3         C10          C1          C2          C3     180.000     5.0     2
+EPS             sp2_sp2_7          C2          C1         C10         O11       0.000     5.0     2
+EPS            sp2_sp3_10         C10          C1          C6          C5     180.000    10.0     6
+EPS             sp2_sp2_9          C8          C7          O5          C5     180.000     5.0     2
+EPS            sp2_sp2_13          O5          C7          C8         H81       0.000     5.0     2
+EPS            sp2_sp2_17          O5          C7          C9         O91       0.000     5.0     2
+EPS             sp2_sp3_2          C1          C2          C3          O3     120.000    10.0     6
+EPS             sp3_sp3_5          O3          C3          C4          O4      60.000    10.0     3
+EPS            sp3_sp3_28          C2          C3          O3           P     180.000    10.0     3
+EPS            sp3_sp3_31          C3          C4          O4         HO4     180.000    10.0     3
+EPS            sp3_sp3_14          O4          C4          C5          O5     -60.000    10.0     3
+EPS            sp3_sp3_34          C4          C5          O5          C7     180.000    10.0     3
+EPS            sp3_sp3_22          O5          C5          C6          C1     -60.000    10.0     3
+EPS            sp3_sp3_39          C3          O3           P         O1P      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EPS    chir_1    C3    O3    C4    C2    negative
+EPS    chir_2    C4    O4    C3    C5    positive
+EPS    chir_3    C5    O5    C4    C6    negative
+EPS    chir_4    P    O3    O2P    O3P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EPS    plan-1          C1   0.020
+EPS    plan-1         C10   0.020
+EPS    plan-1          C2   0.020
+EPS    plan-1          C6   0.020
+EPS    plan-2          C1   0.020
+EPS    plan-2          C2   0.020
+EPS    plan-2          C3   0.020
+EPS    plan-2          H2   0.020
+EPS    plan-3          C7   0.020
+EPS    plan-3          C8   0.020
+EPS    plan-3          C9   0.020
+EPS    plan-3          O5   0.020
+EPS    plan-4          C7   0.020
+EPS    plan-4          C8   0.020
+EPS    plan-4         H81   0.020
+EPS    plan-4         H82   0.020
+EPS    plan-5          C7   0.020
+EPS    plan-5          C9   0.020
+EPS    plan-5         O91   0.020
+EPS    plan-5         O92   0.020
+EPS    plan-6          C1   0.020
+EPS    plan-6         C10   0.020
+EPS    plan-6         O11   0.020
+EPS    plan-6         O12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EPS           SMILES              ACDLabs 10.04                                                                                                 O=C(O)C1=CC(OP(=O)(O)O)C(O)C(O/C(C(=O)O)=C)C1
+EPS SMILES_CANONICAL               CACTVS 3.341                                                                                     O[C@H]1[C@@H](CC(=C[C@H]1O[P](O)(O)=O)C(O)=O)OC(=C)C(O)=O
+EPS           SMILES               CACTVS 3.341                                                                                         O[CH]1[CH](CC(=C[CH]1O[P](O)(O)=O)C(O)=O)OC(=C)C(O)=O
+EPS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                       C=C(C(=O)O)O[C@@H]1CC(=C[C@H]([C@H]1O)OP(=O)(O)O)C(=O)O
+EPS           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                    C=C(C(=O)O)OC1CC(=CC(C1O)OP(=O)(O)O)C(=O)O
+EPS            InChI                InChI  1.03 InChI=1S/C10H13O10P/c1-4(9(12)13)19-6-2-5(10(14)15)3-7(8(6)11)20-21(16,17)18/h3,6-8,11H,1-2H2,(H,12,13)(H,14,15)(H2,16,17,18)/t6-,7-,8+/m1/s1
+EPS         InChIKey                InChI  1.03                                                                                                                   QUTYKIXIUDQOLK-PRJMDXOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EPS acedrg               243         "dictionary generator"                  
+EPS acedrg_database      11          "data source"                           
+EPS rdkit                2017.03.2   "Chemoinformatics tool"
+EPS refmac5              5.8.0238    "optimization tool"                     

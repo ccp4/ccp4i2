@@ -1,0 +1,205 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8ZM     8ZM      5-phenyltetrazolo[1,5-a]pyrimidin-7-ol     NON-POLYMER     23     16     .     
+#
+data_comp_8ZM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8ZM     C4      C       CR6     0       44.403      5.284       -20.332     
+8ZM     C7      C       CR6     0       44.333      3.829       -20.115     
+8ZM     C6      C       CR16    0       44.756      7.169       -21.801     
+8ZM     C9      C       CR6     0       43.533      1.583       -20.714     
+8ZM     C8      C       CR16    0       43.575      2.984       -20.954     
+8ZM     C1      C       CR16    0       44.532      8.040       -20.753     
+8ZM     C2      C       CR16    0       44.244      7.545       -19.496     
+8ZM     C3      C       CR16    0       44.176      6.175       -19.281     
+8ZM     C5      C       CR16    0       44.692      5.797       -21.597     
+8ZM     N10     N       NT      0       44.269      1.141       -19.636     
+8ZM     C11     C       CR56    0       44.982      1.992       -18.861     
+8ZM     N12     N       NRD6    0       45.053      3.355       -19.057     
+8ZM     N13     N       NRD5    0       45.573      1.301       -17.924     
+8ZM     N14     N       NRD5    0       45.218      0.011       -18.127     
+8ZM     N15     N       NRD5    0       44.407      -0.111      -19.186     
+8ZM     O16     O       OH1     0       42.819      0.733       -21.490     
+8ZM     HC6     H       H       0       44.953      7.506       -22.659     
+8ZM     HC8     H       H       0       43.095      3.347       -21.673     
+8ZM     HC1     H       H       0       44.577      8.972       -20.895     
+8ZM     HC2     H       H       0       44.091      8.139       -18.780     
+8ZM     HC3     H       H       0       43.980      5.847       -18.424     
+8ZM     HC5     H       H       0       44.845      5.211       -22.315     
+8ZM     HO16    H       H       0       43.016      -0.105      -21.506     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8ZM          C9         O16      SINGLE       n     1.355  0.0200     1.355  0.0200
+8ZM          C6          C5      DOUBLE       y     1.385  0.0100     1.385  0.0100
+8ZM          C6          C1      SINGLE       y     1.376  0.0124     1.376  0.0124
+8ZM          C4          C5      SINGLE       y     1.392  0.0100     1.392  0.0100
+8ZM          C9          C8      DOUBLE       y     1.419  0.0200     1.419  0.0200
+8ZM          C7          C8      SINGLE       y     1.391  0.0200     1.391  0.0200
+8ZM          C9         N10      SINGLE       y     1.379  0.0122     1.379  0.0122
+8ZM          C1          C2      DOUBLE       y     1.376  0.0124     1.376  0.0124
+8ZM          C4          C7      SINGLE       n     1.471  0.0136     1.471  0.0136
+8ZM          C4          C3      DOUBLE       y     1.392  0.0100     1.392  0.0100
+8ZM          C7         N12      DOUBLE       y     1.337  0.0179     1.337  0.0179
+8ZM         N10         N15      SINGLE       y     1.357  0.0200     1.357  0.0200
+8ZM         N10         C11      SINGLE       y     1.368  0.0160     1.368  0.0160
+8ZM          C2          C3      SINGLE       y     1.385  0.0100     1.385  0.0100
+8ZM         N14         N15      DOUBLE       y     1.324  0.0200     1.324  0.0200
+8ZM         C11         N12      SINGLE       y     1.355  0.0200     1.355  0.0200
+8ZM         C11         N13      DOUBLE       y     1.304  0.0200     1.304  0.0200
+8ZM         N13         N14      SINGLE       y     1.324  0.0200     1.324  0.0200
+8ZM          C6         HC6      SINGLE       n     1.082  0.0130     0.943  0.0180
+8ZM          C8         HC8      SINGLE       n     1.082  0.0130     0.937  0.0149
+8ZM          C1         HC1      SINGLE       n     1.082  0.0130     0.944  0.0161
+8ZM          C2         HC2      SINGLE       n     1.082  0.0130     0.943  0.0180
+8ZM          C3         HC3      SINGLE       n     1.082  0.0130     0.939  0.0100
+8ZM          C5         HC5      SINGLE       n     1.082  0.0130     0.939  0.0100
+8ZM         O16        HO16      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8ZM          C5          C4          C7     120.551    1.50
+8ZM          C5          C4          C3     118.898    1.50
+8ZM          C7          C4          C3     120.551    1.50
+8ZM          C8          C7          C4     123.731    3.00
+8ZM          C8          C7         N12     120.440    1.50
+8ZM          C4          C7         N12     115.829    3.00
+8ZM          C5          C6          C1     120.281    1.50
+8ZM          C5          C6         HC6     119.773    1.50
+8ZM          C1          C6         HC6     119.946    1.50
+8ZM         O16          C9          C8     120.303    3.00
+8ZM         O16          C9         N10     119.849    3.00
+8ZM          C8          C9         N10     119.849    3.00
+8ZM          C9          C8          C7     120.303    1.50
+8ZM          C9          C8         HC8     119.801    1.50
+8ZM          C7          C8         HC8     119.897    1.50
+8ZM          C6          C1          C2     119.901    1.50
+8ZM          C6          C1         HC1     120.049    1.50
+8ZM          C2          C1         HC1     120.049    1.50
+8ZM          C1          C2          C3     120.281    1.50
+8ZM          C1          C2         HC2     119.946    1.50
+8ZM          C3          C2         HC2     119.773    1.50
+8ZM          C4          C3          C2     120.320    1.50
+8ZM          C4          C3         HC3     119.854    1.50
+8ZM          C2          C3         HC3     119.826    1.50
+8ZM          C6          C5          C4     120.320    1.50
+8ZM          C6          C5         HC5     119.826    1.50
+8ZM          C4          C5         HC5     119.854    1.50
+8ZM          C9         N10         N15     109.471    3.00
+8ZM          C9         N10         C11     109.471    3.00
+8ZM         N15         N10         C11     111.210    1.50
+8ZM         N10         C11         N12     122.836    1.50
+8ZM         N10         C11         N13     111.465    1.50
+8ZM         N12         C11         N13     125.699    1.50
+8ZM          C7         N12         C11     112.140    1.50
+8ZM         C11         N13         N14     106.783    1.50
+8ZM         N15         N14         N13     111.137    1.50
+8ZM         N10         N15         N14     107.128    1.50
+8ZM          C9         O16        HO16     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8ZM            sp2_sp2_17          C5          C4          C7          C8     180.000     5.0     2
+8ZM              const_31          C2          C3          C4          C5       0.000    10.0     2
+8ZM              const_13          C7          C4          C5          C6     180.000    10.0     2
+8ZM            sp2_sp2_13         N10         C11         N12          C7       0.000     5.0     2
+8ZM       const_sp2_sp2_9         N10         C11         N13         N14       0.000     5.0     2
+8ZM       const_sp2_sp2_8         C11         N13         N14         N15       0.000     5.0     2
+8ZM       const_sp2_sp2_7         N13         N14         N15         N10       0.000     5.0     2
+8ZM            sp2_sp2_21          C8          C7         N12         C11       0.000     5.0     2
+8ZM             sp2_sp2_3          C4          C7          C8          C9     180.000     5.0     2
+8ZM              const_19          C2          C1          C6          C5       0.000    10.0     2
+8ZM              const_15          C4          C5          C6          C1       0.000    10.0     2
+8ZM            sp2_sp2_15          C8          C9         O16        HO16     180.000     5.0     2
+8ZM             sp2_sp2_6          C7          C8          C9         O16     180.000     5.0     2
+8ZM            sp2_sp2_12         O16          C9         N10         N15       0.000     5.0     2
+8ZM              const_23          C6          C1          C2          C3       0.000    10.0     2
+8ZM              const_27          C1          C2          C3          C4       0.000    10.0     2
+8ZM       const_sp2_sp2_1         N12         C11         N10          C9       0.000     5.0     2
+8ZM       const_sp2_sp2_6          C9         N10         N15         N14     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8ZM    plan-1         C11   0.020
+8ZM    plan-1          C4   0.020
+8ZM    plan-1          C7   0.020
+8ZM    plan-1          C8   0.020
+8ZM    plan-1          C9   0.020
+8ZM    plan-1         HC8   0.020
+8ZM    plan-1         N10   0.020
+8ZM    plan-1         N12   0.020
+8ZM    plan-1         N13   0.020
+8ZM    plan-1         N14   0.020
+8ZM    plan-1         N15   0.020
+8ZM    plan-1         O16   0.020
+8ZM    plan-2          C1   0.020
+8ZM    plan-2          C2   0.020
+8ZM    plan-2          C3   0.020
+8ZM    plan-2          C4   0.020
+8ZM    plan-2          C5   0.020
+8ZM    plan-2          C6   0.020
+8ZM    plan-2          C7   0.020
+8ZM    plan-2         HC1   0.020
+8ZM    plan-2         HC2   0.020
+8ZM    plan-2         HC3   0.020
+8ZM    plan-2         HC5   0.020
+8ZM    plan-2         HC6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8ZM           SMILES              ACDLabs 12.01                                              c3(c1nc2n(c(c1)O)nnn2)ccccc3
+8ZM            InChI                InChI  1.03 InChI=1S/C10H7N5O/c16-9-6-8(7-4-2-1-3-5-7)11-10-12-13-14-15(9)10/h1-6,16H
+8ZM         InChIKey                InChI  1.03                                               ZEMGYOQXYFNSGE-UHFFFAOYSA-N
+8ZM SMILES_CANONICAL               CACTVS 3.385                                                  Oc1cc(nc2nnnn12)c3ccccc3
+8ZM           SMILES               CACTVS 3.385                                                  Oc1cc(nc2nnnn12)c3ccccc3
+8ZM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                              c1ccc(cc1)c2cc(n3c(n2)nnn3)O
+8ZM           SMILES "OpenEye OEToolkits" 2.0.6                                              c1ccc(cc1)c2cc(n3c(n2)nnn3)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8ZM acedrg               243         "dictionary generator"                  
+8ZM acedrg_database      11          "data source"                           
+8ZM rdkit                2017.03.2   "Chemoinformatics tool"
+8ZM refmac5              5.8.0238    "optimization tool"                     

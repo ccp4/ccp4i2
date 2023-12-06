@@ -1,0 +1,697 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JAS     JAS      "JASPISAMIDE A"     NON-POLYMER     125     61     .     
+#
+data_comp_JAS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JAS     O13     O       OH1     0       0.962       14.888      16.811      
+JAS     C40     C       CH2     0       0.257       14.125      17.731      
+JAS     N4      N       N       0       -1.141      13.918      17.330      
+JAS     C41     C       CH3     0       -1.332      13.168      16.090      
+JAS     C35     C       C1      0       -2.167      14.380      18.063      
+JAS     C34     C       C1      0       -3.477      14.337      17.826      
+JAS     C33     C       CH2     0       -4.530      14.852      18.761      
+JAS     C32     C       CH1     0       -5.321      13.770      19.487      
+JAS     O12     O       O2      0       -5.964      12.960      18.487      
+JAS     C42     C       CH3     0       -7.335      13.257      18.259      
+JAS     C31     C       CH1     0       -4.474      12.859      20.387      
+JAS     C39     C       CH3     0       -3.765      13.633      21.498      
+JAS     C30     C       C       0       -5.328      11.755      20.997      
+JAS     O11     O       O       0       -6.221      12.027      21.766      
+JAS     C29     C       CH2     0       -5.049      10.323      20.627      
+JAS     C28     C       CH2     0       -5.972      9.758       19.547      
+JAS     C27     C       CH1     0       -5.798      8.253       19.276      
+JAS     C38     C       CH3     0       -4.455      7.963       18.605      
+JAS     C26     C       CH1     0       -6.974      7.628       18.491      
+JAS     O10     O       O2      0       -8.164      7.662       19.293      
+JAS     C43     C       CH3     0       -8.364      6.533       20.136      
+JAS     C25     C       CH2     0       -7.305      8.296       17.157      
+JAS     C24     C       CH1     0       -8.426      7.666       16.339      
+JAS     O2      O       O2      0       -8.082      6.258       16.131      
+JAS     C1      C       C       0       -8.849      5.266       16.642      
+JAS     O1      O       O       0       -9.862      5.432       17.274      
+JAS     C2      C       CH2     0       -8.275      3.913       16.313      
+JAS     C3      C       CH1     0       -9.304      2.917       15.786      
+JAS     O3      O       OH1     0       -9.761      3.352       14.504      
+JAS     C4      C       CH2     0       -8.744      1.481       15.669      
+JAS     C5      C       CH1     0       -9.786      0.388       15.329      
+JAS     O4      O       OH1     0       -10.682     0.243       16.432      
+JAS     C6      C       CH2     0       -9.161      -0.974      15.024      
+JAS     C23     C       CH1     0       -8.664      8.300       14.954      
+JAS     C37     C       CH3     0       -8.933      9.799       15.076      
+JAS     C22     C       CH2     0       -9.767      7.626       14.117      
+JAS     C21     C       CH2     0       -9.631      7.813       12.598      
+JAS     C20     C       C1      0       -8.559      6.976       11.975      
+JAS     C19     C       C1      0       -7.403      7.426       11.523      
+JAS     C18     C       CR5     0       -6.252      6.594       11.172      
+JAS     O9      O       O2      0       -5.101      7.139       10.712      
+JAS     C17     C       CR15    0       -4.254      6.095       10.488      
+JAS     N3      N       NRD5    0       -6.165      5.259       11.246      
+JAS     C16     C       CR5     0       -4.912      4.938       10.817      
+JAS     C15     C       CR5     0       -4.474      3.564       10.767      
+JAS     N2      N       NRD5    0       -5.166      2.481       11.109      
+JAS     O8      O       O2      0       -3.223      3.225       10.333      
+JAS     C14     C       CR15    0       -3.158      1.864       10.419      
+JAS     C13     C       CR5     0       -4.362      1.409       10.897      
+JAS     C12     C       CR5     0       -4.841      0.080       11.183      
+JAS     N1      N       NRD5    0       -6.084      -0.296      11.353      
+JAS     O7      O       O2      0       -3.990      -0.981      11.321      
+JAS     C11     C       CR15    0       -4.783      -2.060      11.591      
+JAS     C10     C       CR5     0       -6.058      -1.647      11.617      
+JAS     C9      C       CH1     0       -7.298      -2.451      11.870      
+JAS     O6      O       O2      0       -7.097      -3.835      11.572      
+JAS     C44     C       CH3     0       -7.325      -4.184      10.208      
+JAS     C8      C       CH1     0       -7.781      -2.401      13.339      
+JAS     C36     C       CH3     0       -6.640      -2.654      14.338      
+JAS     C7      C       C       0       -8.495      -1.087      13.677      
+JAS     O5      O       O       0       -8.543      -0.172      12.879      
+JAS     HO1     H       H       0       1.777       14.909      17.043      
+JAS     H401    H       H       0       0.289       14.572      18.604      
+JAS     H402    H       H       0       0.695       13.252      17.823      
+JAS     H411    H       H       0       -2.056      12.531      16.201      
+JAS     H412    H       H       0       -0.517      12.688      15.865      
+JAS     H413    H       H       0       -1.551      13.783      15.371      
+JAS     H35     H       H       0       -1.913      14.797      18.874      
+JAS     H34     H       H       0       -3.778      13.960      17.001      
+JAS     H331    H       H       0       -5.162      15.402      18.250      
+JAS     H332    H       H       0       -4.111      15.438      19.425      
+JAS     H32     H       H       0       -6.007      14.201      20.052      
+JAS     H421    H       H       0       -7.659      12.730      17.511      
+JAS     H422    H       H       0       -7.432      14.202      18.057      
+JAS     H423    H       H       0       -7.849      13.041      19.054      
+JAS     H31     H       H       0       -3.784      12.438      19.818      
+JAS     H391    H       H       0       -3.581      13.042      22.249      
+JAS     H392    H       H       0       -4.331      14.367      21.795      
+JAS     H393    H       H       0       -2.926      13.991      21.158      
+JAS     H291    H       H       0       -5.137      9.773       21.435      
+JAS     H292    H       H       0       -4.120      10.250      20.320      
+JAS     H281    H       H       0       -5.817      10.246      18.712      
+JAS     H282    H       H       0       -6.900      9.922       19.814      
+JAS     H27     H       H       0       -5.777      7.804       20.156      
+JAS     H381    H       H       0       -4.596      7.478       17.773      
+JAS     H382    H       H       0       -3.907      7.422       19.200      
+JAS     H383    H       H       0       -3.991      8.797       18.413      
+JAS     H26     H       H       0       -6.739      6.680       18.312      
+JAS     H431    H       H       0       -9.140      6.685       20.700      
+JAS     H432    H       H       0       -7.581      6.400       20.694      
+JAS     H433    H       H       0       -8.511      5.743       19.591      
+JAS     H251    H       H       0       -6.494      8.311       16.607      
+JAS     H252    H       H       0       -7.542      9.230       17.335      
+JAS     H24     H       H       0       -9.268      7.742       16.853      
+JAS     H21     H       H       0       -7.863      3.546       17.125      
+JAS     H22     H       H       0       -7.565      4.023       15.644      
+JAS     H3      H       H       0       -10.082     2.901       16.405      
+JAS     HO2     H       H       0       -9.112      3.351       13.956      
+JAS     H41     H       H       0       -8.314      1.246       16.519      
+JAS     H42     H       H       0       -8.048      1.475       14.978      
+JAS     H5      H       H       0       -10.315     0.688       14.542      
+JAS     HO4     H       H       0       -10.251     -0.011      17.117      
+JAS     H61     H       H       0       -9.862      -1.653      15.079      
+JAS     H62     H       H       0       -8.500      -1.166      15.717      
+JAS     H23     H       H       0       -7.818      8.201       14.452      
+JAS     H371    H       H       0       -9.460      10.106      14.318      
+JAS     H372    H       H       0       -8.087      10.279      15.095      
+JAS     H373    H       H       0       -9.422      9.977       15.898      
+JAS     H221    H       H       0       -10.635     7.989       14.394      
+JAS     H222    H       H       0       -9.776      6.667       14.304      
+JAS     H211    H       H       0       -9.442      8.758       12.410      
+JAS     H212    H       H       0       -10.490     7.589       12.176      
+JAS     H20     H       H       0       -8.730      6.049       11.898      
+JAS     H19     H       H       0       -7.303      8.354       11.416      
+JAS     H17     H       H       0       -3.364      6.178       10.159      
+JAS     H14     H       H       0       -2.399      1.342       10.181      
+JAS     H11     H       H       0       -4.461      -2.938      11.734      
+JAS     H9      H       H       0       -8.017      -2.093      11.292      
+JAS     H441    H       H       0       -7.087      -5.116      10.070      
+JAS     H442    H       H       0       -6.779      -3.624      9.632       
+JAS     H443    H       H       0       -8.263      -4.055      9.992       
+JAS     H8      H       H       0       -8.435      -3.129      13.452      
+JAS     H361    H       H       0       -6.145      -1.829      14.489      
+JAS     H362    H       H       0       -6.037      -3.331      13.984      
+JAS     H363    H       H       0       -7.011      -2.964      15.182      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JAS         O13         C40      SINGLE       n     1.387  0.0200     1.387  0.0200
+JAS         C40          N4      SINGLE       n     1.457  0.0184     1.457  0.0184
+JAS          N4         C41      SINGLE       n     1.458  0.0101     1.458  0.0101
+JAS          N4         C35      SINGLE       n     1.332  0.0133     1.332  0.0133
+JAS         C35         C34      DOUBLE       n     1.327  0.0137     1.327  0.0137
+JAS         C34         C33      SINGLE       n     1.498  0.0100     1.498  0.0100
+JAS         C33         C32      SINGLE       n     1.521  0.0100     1.521  0.0100
+JAS         C32         O12      SINGLE       n     1.435  0.0104     1.435  0.0104
+JAS         C32         C31      SINGLE       n     1.531  0.0102     1.531  0.0102
+JAS         O12         C42      SINGLE       n     1.417  0.0200     1.417  0.0200
+JAS         C31         C39      SINGLE       n     1.521  0.0173     1.521  0.0173
+JAS         C31         C30      SINGLE       n     1.520  0.0101     1.520  0.0101
+JAS         C30         O11      DOUBLE       n     1.209  0.0200     1.209  0.0200
+JAS         C30         C29      SINGLE       n     1.504  0.0100     1.504  0.0100
+JAS         C29         C28      SINGLE       n     1.528  0.0121     1.528  0.0121
+JAS         C28         C27      SINGLE       n     1.536  0.0100     1.536  0.0100
+JAS         C27         C38      SINGLE       n     1.521  0.0151     1.521  0.0151
+JAS         C27         C26      SINGLE       n     1.539  0.0128     1.539  0.0128
+JAS         C26         O10      SINGLE       n     1.433  0.0114     1.433  0.0114
+JAS         C26         C25      SINGLE       n     1.518  0.0200     1.518  0.0200
+JAS         O10         C43      SINGLE       n     1.417  0.0200     1.417  0.0200
+JAS         C25         C24      SINGLE       n     1.519  0.0116     1.519  0.0116
+JAS         C24          O2      SINGLE       n     1.454  0.0123     1.454  0.0123
+JAS         C24         C23      SINGLE       n     1.537  0.0100     1.537  0.0100
+JAS          O2          C1      SINGLE       n     1.342  0.0131     1.342  0.0131
+JAS          C1          O1      DOUBLE       n     1.203  0.0150     1.203  0.0150
+JAS          C1          C2      SINGLE       n     1.502  0.0135     1.502  0.0135
+JAS          C2          C3      SINGLE       n     1.524  0.0118     1.524  0.0118
+JAS          C3          O3      SINGLE       n     1.426  0.0179     1.426  0.0179
+JAS          C3          C4      SINGLE       n     1.541  0.0200     1.541  0.0200
+JAS          C4          C5      SINGLE       n     1.541  0.0200     1.541  0.0200
+JAS          C5          O4      SINGLE       n     1.426  0.0179     1.426  0.0179
+JAS          C5          C6      SINGLE       n     1.524  0.0124     1.524  0.0124
+JAS          C6          C7      SINGLE       n     1.503  0.0100     1.503  0.0100
+JAS         C23         C37      SINGLE       n     1.521  0.0151     1.521  0.0151
+JAS         C23         C22      SINGLE       n     1.536  0.0100     1.536  0.0100
+JAS         C22         C21      SINGLE       n     1.532  0.0200     1.532  0.0200
+JAS         C21         C20      SINGLE       n     1.496  0.0100     1.496  0.0100
+JAS         C20         C19      DOUBLE       n     1.318  0.0157     1.318  0.0157
+JAS         C19         C18      SINGLE       n     1.461  0.0200     1.461  0.0200
+JAS         C18          O9      SINGLE       y     1.356  0.0125     1.356  0.0125
+JAS         C18          N3      DOUBLE       y     1.336  0.0200     1.336  0.0200
+JAS          O9         C17      SINGLE       y     1.365  0.0113     1.365  0.0113
+JAS         C17         C16      DOUBLE       y     1.371  0.0200     1.371  0.0200
+JAS          N3         C16      SINGLE       y     1.353  0.0200     1.353  0.0200
+JAS         C16         C15      SINGLE       n     1.442  0.0100     1.442  0.0100
+JAS         C15          N2      DOUBLE       y     1.332  0.0200     1.332  0.0200
+JAS         C15          O8      SINGLE       y     1.368  0.0100     1.368  0.0100
+JAS          N2         C13      SINGLE       y     1.353  0.0200     1.353  0.0200
+JAS          O8         C14      SINGLE       y     1.365  0.0113     1.365  0.0113
+JAS         C14         C13      DOUBLE       y     1.371  0.0200     1.371  0.0200
+JAS         C13         C12      SINGLE       n     1.442  0.0100     1.442  0.0100
+JAS         C12          N1      DOUBLE       y     1.312  0.0200     1.312  0.0200
+JAS         C12          O7      SINGLE       y     1.368  0.0100     1.368  0.0100
+JAS          N1         C10      SINGLE       y     1.377  0.0100     1.377  0.0100
+JAS          O7         C11      SINGLE       y     1.366  0.0113     1.366  0.0113
+JAS         C11         C10      DOUBLE       y     1.339  0.0100     1.339  0.0100
+JAS         C10          C9      SINGLE       n     1.495  0.0100     1.495  0.0100
+JAS          C9          O6      SINGLE       n     1.427  0.0100     1.427  0.0100
+JAS          C9          C8      SINGLE       n     1.538  0.0100     1.538  0.0100
+JAS          O6         C44      SINGLE       n     1.422  0.0157     1.422  0.0157
+JAS          C8         C36      SINGLE       n     1.532  0.0131     1.532  0.0131
+JAS          C8          C7      SINGLE       n     1.524  0.0108     1.524  0.0108
+JAS          C7          O5      DOUBLE       n     1.209  0.0200     1.209  0.0200
+JAS         O13         HO1      SINGLE       n     0.970  0.0120     0.848  0.0200
+JAS         C40        H401      SINGLE       n     1.089  0.0100     0.981  0.0145
+JAS         C40        H402      SINGLE       n     1.089  0.0100     0.981  0.0145
+JAS         C41        H411      SINGLE       n     1.089  0.0100     0.971  0.0181
+JAS         C41        H412      SINGLE       n     1.089  0.0100     0.971  0.0181
+JAS         C41        H413      SINGLE       n     1.089  0.0100     0.971  0.0181
+JAS         C35         H35      SINGLE       n     1.082  0.0130     0.946  0.0100
+JAS         C34         H34      SINGLE       n     1.082  0.0130     0.957  0.0200
+JAS         C33        H331      SINGLE       n     1.089  0.0100     0.981  0.0185
+JAS         C33        H332      SINGLE       n     1.089  0.0100     0.981  0.0185
+JAS         C32         H32      SINGLE       n     1.089  0.0100     0.987  0.0151
+JAS         C42        H421      SINGLE       n     1.089  0.0100     0.971  0.0146
+JAS         C42        H422      SINGLE       n     1.089  0.0100     0.971  0.0146
+JAS         C42        H423      SINGLE       n     1.089  0.0100     0.971  0.0146
+JAS         C31         H31      SINGLE       n     1.089  0.0100     0.990  0.0142
+JAS         C39        H391      SINGLE       n     1.089  0.0100     0.973  0.0141
+JAS         C39        H392      SINGLE       n     1.089  0.0100     0.973  0.0141
+JAS         C39        H393      SINGLE       n     1.089  0.0100     0.973  0.0141
+JAS         C29        H291      SINGLE       n     1.089  0.0100     0.981  0.0185
+JAS         C29        H292      SINGLE       n     1.089  0.0100     0.981  0.0185
+JAS         C28        H281      SINGLE       n     1.089  0.0100     0.980  0.0160
+JAS         C28        H282      SINGLE       n     1.089  0.0100     0.980  0.0160
+JAS         C27         H27      SINGLE       n     1.089  0.0100     0.989  0.0162
+JAS         C38        H381      SINGLE       n     1.089  0.0100     0.973  0.0146
+JAS         C38        H382      SINGLE       n     1.089  0.0100     0.973  0.0146
+JAS         C38        H383      SINGLE       n     1.089  0.0100     0.973  0.0146
+JAS         C26         H26      SINGLE       n     1.089  0.0100     0.992  0.0184
+JAS         C43        H431      SINGLE       n     1.089  0.0100     0.971  0.0146
+JAS         C43        H432      SINGLE       n     1.089  0.0100     0.971  0.0146
+JAS         C43        H433      SINGLE       n     1.089  0.0100     0.971  0.0146
+JAS         C25        H251      SINGLE       n     1.089  0.0100     0.981  0.0160
+JAS         C25        H252      SINGLE       n     1.089  0.0100     0.981  0.0160
+JAS         C24         H24      SINGLE       n     1.089  0.0100     0.990  0.0148
+JAS          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+JAS          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+JAS          C3          H3      SINGLE       n     1.089  0.0100     0.995  0.0200
+JAS          O3         HO2      SINGLE       n     0.970  0.0120     0.848  0.0200
+JAS          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0160
+JAS          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0160
+JAS          C5          H5      SINGLE       n     1.089  0.0100     0.995  0.0200
+JAS          O4         HO4      SINGLE       n     0.970  0.0120     0.848  0.0200
+JAS          C6         H61      SINGLE       n     1.089  0.0100     0.977  0.0100
+JAS          C6         H62      SINGLE       n     1.089  0.0100     0.977  0.0100
+JAS         C23         H23      SINGLE       n     1.089  0.0100     0.989  0.0162
+JAS         C37        H371      SINGLE       n     1.089  0.0100     0.973  0.0146
+JAS         C37        H372      SINGLE       n     1.089  0.0100     0.973  0.0146
+JAS         C37        H373      SINGLE       n     1.089  0.0100     0.973  0.0146
+JAS         C22        H221      SINGLE       n     1.089  0.0100     0.980  0.0160
+JAS         C22        H222      SINGLE       n     1.089  0.0100     0.980  0.0160
+JAS         C21        H211      SINGLE       n     1.089  0.0100     0.983  0.0180
+JAS         C21        H212      SINGLE       n     1.089  0.0100     0.983  0.0180
+JAS         C20         H20      SINGLE       n     1.082  0.0130     0.946  0.0200
+JAS         C19         H19      SINGLE       n     1.082  0.0130     0.940  0.0199
+JAS         C17         H17      SINGLE       n     1.082  0.0130     0.952  0.0200
+JAS         C14         H14      SINGLE       n     1.082  0.0130     0.952  0.0200
+JAS         C11         H11      SINGLE       n     1.082  0.0130     0.946  0.0100
+JAS          C9          H9      SINGLE       n     1.089  0.0100     0.989  0.0200
+JAS         C44        H441      SINGLE       n     1.089  0.0100     0.971  0.0146
+JAS         C44        H442      SINGLE       n     1.089  0.0100     0.971  0.0146
+JAS         C44        H443      SINGLE       n     1.089  0.0100     0.971  0.0146
+JAS          C8          H8      SINGLE       n     1.089  0.0100     0.985  0.0200
+JAS         C36        H361      SINGLE       n     1.089  0.0100     0.973  0.0141
+JAS         C36        H362      SINGLE       n     1.089  0.0100     0.973  0.0141
+JAS         C36        H363      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JAS         C40         O13         HO1     108.678    3.00
+JAS         O13         C40          N4     113.213    3.00
+JAS         O13         C40        H401     109.169    1.50
+JAS         O13         C40        H402     109.169    1.50
+JAS          N4         C40        H401     109.115    1.50
+JAS          N4         C40        H402     109.115    1.50
+JAS        H401         C40        H402     108.188    1.50
+JAS         C40          N4         C41     116.721    2.02
+JAS         C40          N4         C35     121.623    2.35
+JAS         C41          N4         C35     121.655    1.90
+JAS          N4         C41        H411     109.523    1.50
+JAS          N4         C41        H412     109.523    1.50
+JAS          N4         C41        H413     109.523    1.50
+JAS        H411         C41        H412     109.408    1.50
+JAS        H411         C41        H413     109.408    1.50
+JAS        H412         C41        H413     109.408    1.50
+JAS          N4         C35         C34     126.013    3.00
+JAS          N4         C35         H35     114.969    1.57
+JAS         C34         C35         H35     118.998    2.68
+JAS         C35         C34         C33     124.896    3.00
+JAS         C35         C34         H34     117.724    2.09
+JAS         C33         C34         H34     117.380    1.85
+JAS         C34         C33         C32     113.751    2.05
+JAS         C34         C33        H331     109.013    1.50
+JAS         C34         C33        H332     109.013    1.50
+JAS         C32         C33        H331     108.544    1.56
+JAS         C32         C33        H332     108.544    1.56
+JAS        H331         C33        H332     107.440    1.74
+JAS         C33         C32         O12     108.044    3.00
+JAS         C33         C32         C31     112.581    1.77
+JAS         C33         C32         H32     108.825    1.50
+JAS         O12         C32         C31     108.156    1.61
+JAS         O12         C32         H32     108.724    1.50
+JAS         C31         C32         H32     107.902    1.50
+JAS         C32         O12         C42     114.258    1.50
+JAS         O12         C42        H421     109.461    1.50
+JAS         O12         C42        H422     109.461    1.50
+JAS         O12         C42        H423     109.461    1.50
+JAS        H421         C42        H422     109.532    1.53
+JAS        H421         C42        H423     109.532    1.53
+JAS        H422         C42        H423     109.532    1.53
+JAS         C32         C31         C39     112.124    1.77
+JAS         C32         C31         C30     110.746    2.23
+JAS         C32         C31         H31     107.398    1.50
+JAS         C39         C31         C30     109.526    1.94
+JAS         C39         C31         H31     108.296    1.70
+JAS         C30         C31         H31     108.203    1.50
+JAS         C31         C39        H391     109.528    1.50
+JAS         C31         C39        H392     109.528    1.50
+JAS         C31         C39        H393     109.528    1.50
+JAS        H391         C39        H392     109.411    1.50
+JAS        H391         C39        H393     109.411    1.50
+JAS        H392         C39        H393     109.411    1.50
+JAS         C31         C30         O11     120.573    1.50
+JAS         C31         C30         C29     118.642    1.50
+JAS         O11         C30         C29     120.785    1.50
+JAS         C30         C29         C28     114.397    2.37
+JAS         C30         C29        H291     108.488    1.50
+JAS         C30         C29        H292     108.488    1.50
+JAS         C28         C29        H291     108.844    1.50
+JAS         C28         C29        H292     108.844    1.50
+JAS        H291         C29        H292     107.764    1.50
+JAS         C29         C28         C27     114.688    1.50
+JAS         C29         C28        H281     108.915    1.50
+JAS         C29         C28        H282     108.915    1.50
+JAS         C27         C28        H281     108.647    1.58
+JAS         C27         C28        H282     108.647    1.58
+JAS        H281         C28        H282     107.657    1.50
+JAS         C28         C27         C38     111.118    1.50
+JAS         C28         C27         C26     112.564    2.99
+JAS         C28         C27         H27     107.675    1.50
+JAS         C38         C27         C26     111.475    1.50
+JAS         C38         C27         H27     107.528    1.50
+JAS         C26         C27         H27     107.173    1.50
+JAS         C27         C38        H381     109.636    1.50
+JAS         C27         C38        H382     109.636    1.50
+JAS         C27         C38        H383     109.636    1.50
+JAS        H381         C38        H382     109.411    1.50
+JAS        H381         C38        H383     109.411    1.50
+JAS        H382         C38        H383     109.411    1.50
+JAS         C27         C26         O10     109.862    2.13
+JAS         C27         C26         C25     115.695    1.97
+JAS         C27         C26         H26     108.131    1.50
+JAS         O10         C26         C25     108.549    3.00
+JAS         O10         C26         H26     108.724    1.50
+JAS         C25         C26         H26     108.603    1.50
+JAS         C26         O10         C43     114.258    1.50
+JAS         O10         C43        H431     109.461    1.50
+JAS         O10         C43        H432     109.461    1.50
+JAS         O10         C43        H433     109.461    1.50
+JAS        H431         C43        H432     109.532    1.53
+JAS        H431         C43        H433     109.532    1.53
+JAS        H432         C43        H433     109.532    1.53
+JAS         C26         C25         C24     115.229    2.13
+JAS         C26         C25        H251     109.116    1.50
+JAS         C26         C25        H252     109.116    1.50
+JAS         C24         C25        H251     109.116    1.50
+JAS         C24         C25        H252     109.116    1.50
+JAS        H251         C25        H252     107.406    1.50
+JAS         C25         C24          O2     107.570    1.96
+JAS         C25         C24         C23     115.695    1.97
+JAS         C25         C24         H24     108.603    1.50
+JAS          O2         C24         C23     107.304    1.57
+JAS          O2         C24         H24     109.024    1.50
+JAS         C23         C24         H24     108.131    1.50
+JAS         C24          O2          C1     117.944    1.50
+JAS          O2          C1          O1     122.853    2.43
+JAS          O2          C1          C2     112.165    3.00
+JAS          O1          C1          C2     124.982    1.50
+JAS          C1          C2          C3     113.737    2.32
+JAS          C1          C2         H21     108.625    1.50
+JAS          C1          C2         H22     108.625    1.50
+JAS          C3          C2         H21     109.119    1.50
+JAS          C3          C2         H22     109.119    1.50
+JAS         H21          C2         H22     107.737    1.50
+JAS          C2          C3          O3     108.747    2.04
+JAS          C2          C3          C4     112.398    3.00
+JAS          C2          C3          H3     108.825    1.50
+JAS          O3          C3          C4     109.024    2.32
+JAS          O3          C3          H3     108.270    1.50
+JAS          C4          C3          H3     108.603    1.50
+JAS          C3          O3         HO2     108.921    2.24
+JAS          C3          C4          C5     115.229    2.13
+JAS          C3          C4         H41     108.468    1.50
+JAS          C3          C4         H42     108.468    1.50
+JAS          C5          C4         H41     108.468    1.50
+JAS          C5          C4         H42     108.468    1.50
+JAS         H41          C4         H42     107.406    1.50
+JAS          C4          C5          O4     109.024    2.32
+JAS          C4          C5          C6     112.398    3.00
+JAS          C4          C5          H5     108.603    1.50
+JAS          O4          C5          C6     108.747    2.04
+JAS          O4          C5          H5     108.270    1.50
+JAS          C6          C5          H5     108.825    1.50
+JAS          C5          O4         HO4     108.921    2.24
+JAS          C5          C6          C7     113.624    1.50
+JAS          C5          C6         H61     108.544    1.56
+JAS          C5          C6         H62     108.544    1.56
+JAS          C7          C6         H61     108.499    1.50
+JAS          C7          C6         H62     108.499    1.50
+JAS         H61          C6         H62     108.131    1.50
+JAS         C24         C23         C37     111.475    1.50
+JAS         C24         C23         C22     112.564    2.99
+JAS         C24         C23         H23     107.173    1.50
+JAS         C37         C23         C22     111.118    1.50
+JAS         C37         C23         H23     107.528    1.50
+JAS         C22         C23         H23     107.675    1.50
+JAS         C23         C37        H371     109.636    1.50
+JAS         C23         C37        H372     109.636    1.50
+JAS         C23         C37        H373     109.636    1.50
+JAS        H371         C37        H372     109.411    1.50
+JAS        H371         C37        H373     109.411    1.50
+JAS        H372         C37        H373     109.411    1.50
+JAS         C23         C22         C21     114.688    1.50
+JAS         C23         C22        H221     108.647    1.58
+JAS         C23         C22        H222     108.647    1.58
+JAS         C21         C22        H221     108.316    1.50
+JAS         C21         C22        H222     108.316    1.50
+JAS        H221         C22        H222     107.657    1.50
+JAS         C22         C21         C20     113.769    2.23
+JAS         C22         C21        H211     108.786    1.50
+JAS         C22         C21        H212     108.786    1.50
+JAS         C20         C21        H211     108.797    1.50
+JAS         C20         C21        H212     108.797    1.50
+JAS        H211         C21        H212     107.922    1.50
+JAS         C21         C20         C19     125.301    3.00
+JAS         C21         C20         H20     117.049    1.73
+JAS         C19         C20         H20     117.651    1.50
+JAS         C20         C19         C18     124.826    3.00
+JAS         C20         C19         H19     118.062    1.50
+JAS         C18         C19         H19     117.113    3.00
+JAS         C19         C18          O9     121.175    2.20
+JAS         C19         C18          N3     127.338    3.00
+JAS          O9         C18          N3     111.487    1.50
+JAS         C18          O9         C17     107.341    1.75
+JAS          O9         C17         C16     108.459    1.50
+JAS          O9         C17         H17     124.493    3.00
+JAS         C16         C17         H17     127.048    2.15
+JAS         C18          N3         C16     104.875    1.50
+JAS         C17         C16          N3     107.837    1.50
+JAS         C17         C16         C15     129.595    3.00
+JAS          N3         C16         C15     122.568    3.00
+JAS         C16         C15          N2     128.211    3.00
+JAS         C16         C15          O8     120.943    1.50
+JAS          N2         C15          O8     110.846    1.50
+JAS         C15          N2         C13     106.375    1.50
+JAS         C15          O8         C14     106.529    1.50
+JAS          O8         C14         C13     108.436    1.50
+JAS          O8         C14         H14     124.504    3.00
+JAS         C13         C14         H14     127.060    2.15
+JAS          N2         C13         C14     107.814    1.50
+JAS          N2         C13         C12     122.580    3.00
+JAS         C14         C13         C12     129.606    3.00
+JAS         C13         C12          N1     128.257    3.00
+JAS         C13         C12          O7     120.989    1.50
+JAS          N1         C12          O7     110.755    1.50
+JAS         C12          N1         C10     105.928    1.50
+JAS         C12          O7         C11     106.438    1.50
+JAS          O7         C11         C10     108.345    1.50
+JAS          O7         C11         H11     124.341    3.00
+JAS         C10         C11         H11     127.314    2.00
+JAS          N1         C10         C11     108.534    2.56
+JAS          N1         C10          C9     123.426    1.77
+JAS         C11         C10          C9     128.040    3.00
+JAS         C10          C9          O6     111.958    1.50
+JAS         C10          C9          C8     110.747    2.16
+JAS         C10          C9          H9     108.146    1.50
+JAS          O6          C9          C8     107.003    2.30
+JAS          O6          C9          H9     109.498    1.50
+JAS          C8          C9          H9     108.474    1.50
+JAS          C9          O6         C44     113.287    1.50
+JAS          O6         C44        H441     109.501    1.50
+JAS          O6         C44        H442     109.501    1.50
+JAS          O6         C44        H443     109.501    1.50
+JAS        H441         C44        H442     109.532    1.53
+JAS        H441         C44        H443     109.532    1.53
+JAS        H442         C44        H443     109.532    1.53
+JAS          C9          C8         C36     111.734    1.50
+JAS          C9          C8          C7     109.546    1.50
+JAS          C9          C8          H8     107.601    1.50
+JAS         C36          C8          C7     109.526    1.94
+JAS         C36          C8          H8     108.016    1.51
+JAS          C7          C8          H8     108.203    1.50
+JAS          C8         C36        H361     109.591    1.50
+JAS          C8         C36        H362     109.591    1.50
+JAS          C8         C36        H363     109.591    1.50
+JAS        H361         C36        H362     109.411    1.50
+JAS        H361         C36        H363     109.411    1.50
+JAS        H362         C36        H363     109.411    1.50
+JAS          C6          C7          C8     118.356    1.50
+JAS          C6          C7          O5     121.357    1.50
+JAS          C8          C7          O5     120.287    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JAS             sp3_sp3_1          N4         C40         O13         HO1     180.000    10.0     3
+JAS            sp3_sp3_28         C32         C31         C39        H391     180.000    10.0     3
+JAS            sp2_sp3_19         O11         C30         C31         C32       0.000    10.0     6
+JAS            sp2_sp3_26         C31         C30         C29         C28     120.000    10.0     6
+JAS            sp3_sp3_37         C27         C28         C29         C30     180.000    10.0     3
+JAS            sp3_sp3_46         C38         C27         C28         C29     180.000    10.0     3
+JAS            sp3_sp3_55         C28         C27         C38        H381     180.000    10.0     3
+JAS            sp3_sp3_64         O10         C26         C27         C28     180.000    10.0     3
+JAS            sp3_sp3_73         C27         C26         O10         C43     180.000    10.0     3
+JAS            sp3_sp3_76         C24         C25         C26         C27     180.000    10.0     3
+JAS            sp3_sp3_85        H431         C43         O10         C26     180.000    10.0     3
+JAS             sp2_sp3_2         C41          N4         C40         O13     120.000    10.0     6
+JAS            sp3_sp3_88          O2         C24         C25         C26     180.000    10.0     3
+JAS            sp3_sp3_97         C25         C24          O2          C1     180.000    10.0     3
+JAS           sp3_sp3_100         C37         C23         C24         C25     180.000    10.0     3
+JAS             sp2_sp2_9          O1          C1          O2         C24     180.000     5.0     2
+JAS            sp2_sp3_32          O2          C1          C2          C3     120.000    10.0     6
+JAS           sp3_sp3_109          C1          C2          C3          O3     180.000    10.0     3
+JAS           sp3_sp3_118          C2          C3          O3         HO2     180.000    10.0     3
+JAS           sp3_sp3_121          C2          C3          C4          C5     180.000    10.0     3
+JAS           sp3_sp3_130          C3          C4          C5          O4     180.000    10.0     3
+JAS             sp2_sp3_7         C40          N4         C41        H411       0.000    10.0     6
+JAS             sp2_sp2_1         C34         C35          N4         C40     180.000     5.0     2
+JAS           sp3_sp3_139          C4          C5          O4         HO4     180.000    10.0     3
+JAS           sp3_sp3_142          C4          C5          C6          C7     180.000    10.0     3
+JAS            sp2_sp3_38          C8          C7          C6          C5     120.000    10.0     6
+JAS           sp3_sp3_151         C24         C23         C37        H371     180.000    10.0     3
+JAS           sp3_sp3_160         C21         C22         C23         C24     180.000    10.0     3
+JAS           sp3_sp3_169         C20         C21         C22         C23     180.000    10.0     3
+JAS            sp2_sp3_44         C19         C20         C21         C22     120.000    10.0     6
+JAS            sp2_sp2_11         C18         C19         C20         C21     180.000     5.0     2
+JAS            sp2_sp2_15          O9         C18         C19         C20     180.000     5.0     2
+JAS              const_22         C19         C18          O9         C17     180.000    10.0     2
+JAS              const_32         C19         C18          N3         C16     180.000    10.0     2
+JAS              const_23         C16         C17          O9         C18       0.000    10.0     2
+JAS              const_25          N3         C16         C17          O9       0.000    10.0     2
+JAS              const_29         C17         C16          N3         C18       0.000    10.0     2
+JAS            sp2_sp2_19          N2         C15         C16         C17     180.000     5.0     2
+JAS              const_12         C16         C15          N2         C13     180.000    10.0     2
+JAS              const_34         C16         C15          O8         C14     180.000    10.0     2
+JAS              const_13         C14         C13          N2         C15       0.000    10.0     2
+JAS              const_19         C13         C14          O8         C15       0.000    10.0     2
+JAS              const_15          N2         C13         C14          O8       0.000    10.0     2
+JAS            sp2_sp2_24          N1         C12         C13          N2       0.000     5.0     2
+JAS       const_sp2_sp2_2         C13         C12          N1         C10     180.000     5.0     2
+JAS              const_36         C13         C12          O7         C11     180.000    10.0     2
+JAS             sp2_sp2_5         C33         C34         C35          N4     180.000     5.0     2
+JAS       const_sp2_sp2_4          C9         C10          N1         C12     180.000     5.0     2
+JAS       const_sp2_sp2_9         C10         C11          O7         C12       0.000     5.0     2
+JAS       const_sp2_sp2_7          C9         C10         C11          O7     180.000     5.0     2
+JAS            sp2_sp3_49          N1         C10          C9          O6     150.000    10.0     6
+JAS           sp3_sp3_179          C8          C9          O6         C44      60.000    10.0     3
+JAS           sp3_sp3_182         C36          C8          C9          O6     -60.000    10.0     3
+JAS           sp3_sp3_190        H441         C44          O6          C9     180.000    10.0     3
+JAS           sp3_sp3_193        H361         C36          C8          C9     180.000    10.0     3
+JAS            sp2_sp3_55          C6          C7          C8          C9       0.000    10.0     6
+JAS            sp2_sp3_14         C35         C34         C33         C32     120.000    10.0     6
+JAS             sp3_sp3_4         O12         C32         C33         C34     180.000    10.0     3
+JAS            sp3_sp3_16         C39         C31         C32         C33     180.000    10.0     3
+JAS            sp3_sp3_13         C33         C32         O12         C42     180.000    10.0     3
+JAS            sp3_sp3_25        H421         C42         O12         C32     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JAS    chir_1    C32    O12    C31    C33    negative
+JAS    chir_2    C31    C30    C32    C39    negative
+JAS    chir_3    C27    C26    C28    C38    positive
+JAS    chir_4    C26    O10    C27    C25    positive
+JAS    chir_5    C24    O2    C23    C25    positive
+JAS    chir_6    C3    O3    C2    C4    positive
+JAS    chir_7    C5    O4    C6    C4    positive
+JAS    chir_8    C23    C24    C22    C37    negative
+JAS    chir_9    C9    O6    C10    C8    positive
+JAS    chir_10    C8    C7    C9    C36    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JAS    plan-1         C15   0.020
+JAS    plan-1         C16   0.020
+JAS    plan-1         C17   0.020
+JAS    plan-1         C18   0.020
+JAS    plan-1         C19   0.020
+JAS    plan-1         H17   0.020
+JAS    plan-1          N3   0.020
+JAS    plan-1          O9   0.020
+JAS    plan-2         C12   0.020
+JAS    plan-2         C13   0.020
+JAS    plan-2         C14   0.020
+JAS    plan-2         C15   0.020
+JAS    plan-2         C16   0.020
+JAS    plan-2         H14   0.020
+JAS    plan-2          N2   0.020
+JAS    plan-2          O8   0.020
+JAS    plan-3         C10   0.020
+JAS    plan-3         C11   0.020
+JAS    plan-3         C12   0.020
+JAS    plan-3         C13   0.020
+JAS    plan-3          C9   0.020
+JAS    plan-3         H11   0.020
+JAS    plan-3          N1   0.020
+JAS    plan-3          O7   0.020
+JAS    plan-4         C35   0.020
+JAS    plan-4         C40   0.020
+JAS    plan-4         C41   0.020
+JAS    plan-4          N4   0.020
+JAS    plan-5         C34   0.020
+JAS    plan-5         C35   0.020
+JAS    plan-5         H35   0.020
+JAS    plan-5          N4   0.020
+JAS    plan-6         C33   0.020
+JAS    plan-6         C34   0.020
+JAS    plan-6         C35   0.020
+JAS    plan-6         H34   0.020
+JAS    plan-7         C29   0.020
+JAS    plan-7         C30   0.020
+JAS    plan-7         C31   0.020
+JAS    plan-7         O11   0.020
+JAS    plan-8          C1   0.020
+JAS    plan-8          C2   0.020
+JAS    plan-8          O1   0.020
+JAS    plan-8          O2   0.020
+JAS    plan-9         C19   0.020
+JAS    plan-9         C20   0.020
+JAS    plan-9         C21   0.020
+JAS    plan-9         H20   0.020
+JAS   plan-10         C18   0.020
+JAS   plan-10         C19   0.020
+JAS   plan-10         C20   0.020
+JAS   plan-10         H19   0.020
+JAS   plan-11          C6   0.020
+JAS   plan-11          C7   0.020
+JAS   plan-11          C8   0.020
+JAS   plan-11          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JAS           SMILES              ACDLabs 10.04                                                                                                                                                                                                                                            O=C(C(C)C(OC)C\C=C\N(C)CO)CCC(C)C(OC)CC4OC(=O)CC(O)CC(O)CC(=O)C(C)C(OC)c1nc(oc1)c2nc(oc2)c3nc(oc3)C=CCCC4C
+JAS SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                               CO[C@H](C/C=C/N(C)CO)[C@@H](C)C(=O)CC[C@H](C)[C@H](C[C@@H]1OC(=O)C[C@@H](O)C[C@H](O)CC(=O)[C@H](C)[C@H](OC)c2coc(n2)c3coc(n3)c4coc(/C=C/CC[C@H]1C)n4)OC
+JAS           SMILES               CACTVS 3.341                                                                                                                                                                                                                CO[CH](CC=CN(C)CO)[CH](C)C(=O)CC[CH](C)[CH](C[CH]1OC(=O)C[CH](O)C[CH](O)CC(=O)[CH](C)[CH](OC)c2coc(n2)c3coc(n3)c4coc(C=CCC[CH]1C)n4)OC
+JAS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                           C[C@@H]1CC\C=C\c2nc(co2)-c3nc(co3)-c4nc(co4)[C@H]([C@H](C(=O)C[C@H](C[C@@H](CC(=O)O[C@H]1C[C@@H]([C@@H](C)CCC(=O)[C@H](C)[C@@H](C\C=C\N(C)CO)OC)OC)O)O)C)OC
+JAS           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                                            CC1CCC=Cc2nc(co2)-c3nc(co3)-c4nc(co4)C(C(C(=O)CC(CC(CC(=O)OC1CC(C(C)CCC(=O)C(C)C(CC=CN(C)CO)OC)OC)O)O)C)OC
+JAS            InChI                InChI  1.03 InChI=1S/C44H64N4O13/c1-26-12-9-10-14-40-45-33(23-58-40)43-47-34(24-60-43)44-46-32(22-59-44)42(57-8)29(4)36(53)19-30(50)18-31(51)20-41(54)61-39(26)21-38(56-7)27(2)15-16-35(52)28(3)37(55-6)13-11-17-48(5)25-49/h10-11,14,17,22-24,26-31,37-39,42,49-51H,9,12-13,15-16,18-21,25H2,1-8H3/b14-10+,17-11+/t26-,27+,28+,29+,30+,31+,37-,38+,39+,42+/m1/s1
+JAS         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                           VMTDLKOWOZYTPX-RZKNNNBGSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JAS acedrg               243         "dictionary generator"                  
+JAS acedrg_database      11          "data source"                           
+JAS rdkit                2017.03.2   "Chemoinformatics tool"
+JAS refmac5              5.8.0238    "optimization tool"                     

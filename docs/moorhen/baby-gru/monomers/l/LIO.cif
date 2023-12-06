@@ -1,0 +1,558 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LIO     LIO      "[1-PENTADECANOYL-2-DECANOYL-GLYCEROL-3-YL]PHOSPHONYL CHOLINE"     NON-POLYMER     109     43     .     
+#
+data_comp_LIO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LIO     C1      C       CH2     0       2.561       69.074      98.740      
+LIO     C2      C       CH1     0       2.723       70.432      99.388      
+LIO     C3      C       CH2     0       3.981       71.160      98.965      
+LIO     C4      C       CH2     0       2.779       66.135      96.979      
+LIO     C5      C       CH2     0       3.004       64.640      96.950      
+LIO     C6      C       CH3     0       4.521       64.669      94.978      
+LIO     C7      C       CH3     0       4.230       62.632      96.266      
+LIO     C8      C       CH3     0       5.465       64.488      97.218      
+LIO     C11     C       C       0       6.170       71.558      99.765      
+LIO     C12     C       CH2     0       6.175       73.020      100.131     
+LIO     C13     C       CH2     0       6.206       73.932      98.942      
+LIO     C14     C       CH2     0       5.891       75.374      99.299      
+LIO     C15     C       CH2     0       6.160       76.358      98.187      
+LIO     C16     C       CH2     0       5.829       77.790      98.529      
+LIO     C17     C       CH2     0       6.190       78.781      97.450      
+LIO     C18     C       CH2     0       5.869       80.216      97.793      
+LIO     C19     C       CH2     0       4.427       80.599      97.572      
+LIO     C20     C       CH2     0       4.087       80.937      96.141      
+LIO     C21     C       CH2     0       2.640       81.303      95.919      
+LIO     C22     C       CH2     0       2.307       81.682      94.496      
+LIO     C23     C       CH2     0       0.857       82.036      94.273      
+LIO     C24     C       CH2     0       0.522       82.420      92.855      
+LIO     C25     C       CH3     0       -0.932      82.773      92.652      
+LIO     C31     C       C       0       0.874       71.867      100.009     
+LIO     C32     C       CH2     0       1.613       72.937      100.779     
+LIO     C33     C       CH2     0       1.994       74.143      99.956      
+LIO     C34     C       CH2     0       0.947       75.249      99.979      
+LIO     C35     C       CH2     0       1.439       76.573      99.446      
+LIO     C36     C       CH2     0       0.376       77.642      99.357      
+LIO     C37     C       CH2     0       0.877       78.973      98.852      
+LIO     C38     C       CH2     0       -0.211      79.977      98.558      
+LIO     C39     C       CH2     0       -0.822      80.609      99.782      
+LIO     C40     C       CH3     0       -1.789      81.726      99.468      
+LIO     N       N       NT      1       4.303       64.122      96.352      
+LIO     O2      O       O2      0       1.580       71.265      99.033      
+LIO     O3      O       O2      0       4.987       70.991      99.990      
+LIO     O11     O       O       0       7.113       70.956      99.321      
+LIO     O31     O       O       0       -0.266      71.558      100.236     
+LIO     O1P     O       OP      -1      3.076       66.151      99.857      
+LIO     O2P     O       O       0       0.480       66.089      100.000     
+LIO     O3P     O       O2      0       1.699       68.236      99.560      
+LIO     O4P     O       O2      0       1.606       66.450      97.787      
+LIO     P       P       P       0       1.735       66.639      99.380      
+LIO     H11     H       H       0       3.439       68.649      98.642      
+LIO     H12     H       H       0       2.167       69.179      97.849      
+LIO     H21     H       H       0       2.746       70.306      100.371     
+LIO     H31     H       H       0       3.795       72.120      98.843      
+LIO     H32     H       H       0       4.318       70.797      98.112      
+LIO     H41     H       H       0       2.638       66.463      96.060      
+LIO     H42     H       H       0       3.572       66.590      97.345      
+LIO     H51     H       H       0       2.266       64.238      96.451      
+LIO     H52     H       H       0       2.946       64.307      97.866      
+LIO     H61     H       H       0       5.268       64.209      94.565      
+LIO     H62     H       H       0       4.715       65.616      95.034      
+LIO     H63     H       H       0       3.720       64.529      94.451      
+LIO     H71     H       H       0       5.072       62.288      95.930      
+LIO     H72     H       H       0       3.512       62.384      95.664      
+LIO     H73     H       H       0       4.058       62.272      97.149      
+LIO     H81     H       H       0       6.269       64.081      96.862      
+LIO     H82     H       H       0       5.305       64.165      98.117      
+LIO     H83     H       H       0       5.567       65.451      97.229      
+LIO     H121    H       H       0       6.960       73.204      100.691     
+LIO     H122    H       H       0       5.377       73.223      100.666     
+LIO     H131    H       H       0       5.555       73.623      98.278      
+LIO     H132    H       H       0       7.094       73.895      98.530      
+LIO     H141    H       H       0       6.427       75.629      100.081     
+LIO     H142    H       H       0       4.946       75.437      99.553      
+LIO     H151    H       H       0       5.635       76.094      97.401      
+LIO     H152    H       H       0       7.108       76.304      97.942      
+LIO     H161    H       H       0       6.304       78.034      99.352      
+LIO     H162    H       H       0       4.867       77.856      98.710      
+LIO     H171    H       H       0       5.711       78.540      96.629      
+LIO     H172    H       H       0       7.150       78.710      97.266      
+LIO     H181    H       H       0       6.437       80.803      97.250      
+LIO     H182    H       H       0       6.095       80.372      98.735      
+LIO     H191    H       H       0       4.218       81.374      98.136      
+LIO     H192    H       H       0       3.856       79.857      97.864      
+LIO     H201    H       H       0       4.306       80.166      95.575      
+LIO     H202    H       H       0       4.649       81.687      95.852      
+LIO     H211    H       H       0       2.413       82.056      96.505      
+LIO     H212    H       H       0       2.079       80.542      96.181      
+LIO     H221    H       H       0       2.542       80.932      93.908      
+LIO     H222    H       H       0       2.862       82.448      94.236      
+LIO     H231    H       H       0       0.622       82.783      94.864      
+LIO     H232    H       H       0       0.303       81.268      94.530      
+LIO     H241    H       H       0       0.753       81.672      92.262      
+LIO     H242    H       H       0       1.075       83.189      92.597      
+LIO     H251    H       H       0       -1.082      83.014      91.721      
+LIO     H252    H       H       0       -1.167      83.526      93.222      
+LIO     H253    H       H       0       -1.488      82.009      92.881      
+LIO     H321    H       H       0       2.429       72.549      101.161     
+LIO     H322    H       H       0       1.052       73.225      101.530     
+LIO     H331    H       H       0       2.143       73.872      99.026      
+LIO     H332    H       H       0       2.838       74.507      100.296     
+LIO     H341    H       H       0       0.640       75.379      100.901     
+LIO     H342    H       H       0       0.175       74.963      99.446      
+LIO     H351    H       H       0       1.819       76.432      98.553      
+LIO     H352    H       H       0       2.161       76.897      100.027     
+LIO     H361    H       H       0       -0.016      77.770      100.246     
+LIO     H362    H       H       0       -0.336      77.327      98.760      
+LIO     H371    H       H       0       1.396       78.824      98.033      
+LIO     H372    H       H       0       1.484       79.355      99.522      
+LIO     H381    H       H       0       -0.921      79.531      98.048      
+LIO     H382    H       H       0       0.160       80.686      97.991      
+LIO     H391    H       H       0       -0.102      80.962      100.348     
+LIO     H392    H       H       0       -1.293      79.916      100.294     
+LIO     H401    H       H       0       -2.168      82.071      100.295     
+LIO     H402    H       H       0       -2.505      81.388      98.901      
+LIO     H403    H       H       0       -1.321      82.442      99.003      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LIO          C1          C2      SINGLE       n     1.512  0.0104     1.512  0.0104
+LIO          C1         O3P      SINGLE       n     1.454  0.0165     1.454  0.0165
+LIO          C2          C3      SINGLE       n     1.512  0.0104     1.512  0.0104
+LIO          C2          O2      SINGLE       n     1.454  0.0123     1.454  0.0123
+LIO          C3          O3      SINGLE       n     1.444  0.0100     1.444  0.0100
+LIO          C4          C5      SINGLE       n     1.509  0.0100     1.509  0.0100
+LIO          C4         O4P      SINGLE       n     1.454  0.0165     1.454  0.0165
+LIO          C5           N      SINGLE       n     1.516  0.0100     1.516  0.0100
+LIO          C6           N      SINGLE       n     1.488  0.0165     1.488  0.0165
+LIO          C7           N      SINGLE       n     1.488  0.0165     1.488  0.0165
+LIO          C8           N      SINGLE       n     1.488  0.0165     1.488  0.0165
+LIO         C11         C12      SINGLE       n     1.503  0.0174     1.503  0.0174
+LIO         C11          O3      SINGLE       n     1.329  0.0116     1.329  0.0116
+LIO         C11         O11      DOUBLE       n     1.203  0.0150     1.203  0.0150
+LIO         C12         C13      SINGLE       n     1.497  0.0200     1.497  0.0200
+LIO         C13         C14      SINGLE       n     1.519  0.0164     1.519  0.0164
+LIO         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+LIO         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+LIO         C16         C17      SINGLE       n     1.509  0.0200     1.509  0.0200
+LIO         C17         C18      SINGLE       n     1.509  0.0200     1.509  0.0200
+LIO         C18         C19      SINGLE       n     1.509  0.0200     1.509  0.0200
+LIO         C19         C20      SINGLE       n     1.509  0.0200     1.509  0.0200
+LIO         C20         C21      SINGLE       n     1.509  0.0200     1.509  0.0200
+LIO         C21         C22      SINGLE       n     1.509  0.0200     1.509  0.0200
+LIO         C22         C23      SINGLE       n     1.509  0.0200     1.509  0.0200
+LIO         C23         C24      SINGLE       n     1.507  0.0200     1.507  0.0200
+LIO         C24         C25      SINGLE       n     1.510  0.0200     1.510  0.0200
+LIO         C31         C32      SINGLE       n     1.503  0.0174     1.503  0.0174
+LIO         C31          O2      SINGLE       n     1.342  0.0131     1.342  0.0131
+LIO         C31         O31      DOUBLE       n     1.203  0.0150     1.203  0.0150
+LIO         C32         C33      SINGLE       n     1.497  0.0200     1.497  0.0200
+LIO         C33         C34      SINGLE       n     1.519  0.0164     1.519  0.0164
+LIO         C34         C35      SINGLE       n     1.509  0.0200     1.509  0.0200
+LIO         C35         C36      SINGLE       n     1.509  0.0200     1.509  0.0200
+LIO         C36         C37      SINGLE       n     1.509  0.0200     1.509  0.0200
+LIO         C37         C38      SINGLE       n     1.509  0.0200     1.509  0.0200
+LIO         C38         C39      SINGLE       n     1.507  0.0200     1.507  0.0200
+LIO         C39         C40      SINGLE       n     1.510  0.0200     1.510  0.0200
+LIO         O1P           P      SINGLE       n     1.504  0.0115     1.504  0.0115
+LIO         O2P           P      DOUBLE       n     1.504  0.0115     1.504  0.0115
+LIO         O3P           P      SINGLE       n     1.606  0.0100     1.606  0.0100
+LIO         O4P           P      SINGLE       n     1.606  0.0100     1.606  0.0100
+LIO          C1         H11      SINGLE       n     1.089  0.0100     0.980  0.0146
+LIO          C1         H12      SINGLE       n     1.089  0.0100     0.980  0.0146
+LIO          C2         H21      SINGLE       n     1.089  0.0100     0.990  0.0148
+LIO          C3         H31      SINGLE       n     1.089  0.0100     0.985  0.0188
+LIO          C3         H32      SINGLE       n     1.089  0.0100     0.985  0.0188
+LIO          C4         H41      SINGLE       n     1.089  0.0100     0.986  0.0100
+LIO          C4         H42      SINGLE       n     1.089  0.0100     0.986  0.0100
+LIO          C5         H51      SINGLE       n     1.089  0.0100     0.977  0.0167
+LIO          C5         H52      SINGLE       n     1.089  0.0100     0.977  0.0167
+LIO          C6         H61      SINGLE       n     1.089  0.0100     0.969  0.0145
+LIO          C6         H62      SINGLE       n     1.089  0.0100     0.969  0.0145
+LIO          C6         H63      SINGLE       n     1.089  0.0100     0.969  0.0145
+LIO          C7         H71      SINGLE       n     1.089  0.0100     0.969  0.0145
+LIO          C7         H72      SINGLE       n     1.089  0.0100     0.969  0.0145
+LIO          C7         H73      SINGLE       n     1.089  0.0100     0.969  0.0145
+LIO          C8         H81      SINGLE       n     1.089  0.0100     0.969  0.0145
+LIO          C8         H82      SINGLE       n     1.089  0.0100     0.969  0.0145
+LIO          C8         H83      SINGLE       n     1.089  0.0100     0.969  0.0145
+LIO         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0185
+LIO         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0185
+LIO         C13        H131      SINGLE       n     1.089  0.0100     0.980  0.0160
+LIO         C13        H132      SINGLE       n     1.089  0.0100     0.980  0.0160
+LIO         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C18        H181      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C18        H182      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C19        H191      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C19        H192      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C20        H201      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C20        H202      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C23        H231      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C23        H232      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C24        H241      SINGLE       n     1.089  0.0100     0.982  0.0155
+LIO         C24        H242      SINGLE       n     1.089  0.0100     0.982  0.0155
+LIO         C25        H251      SINGLE       n     1.089  0.0100     0.973  0.0157
+LIO         C25        H252      SINGLE       n     1.089  0.0100     0.973  0.0157
+LIO         C25        H253      SINGLE       n     1.089  0.0100     0.973  0.0157
+LIO         C32        H321      SINGLE       n     1.089  0.0100     0.981  0.0185
+LIO         C32        H322      SINGLE       n     1.089  0.0100     0.981  0.0185
+LIO         C33        H331      SINGLE       n     1.089  0.0100     0.980  0.0160
+LIO         C33        H332      SINGLE       n     1.089  0.0100     0.980  0.0160
+LIO         C34        H341      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C34        H342      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C35        H351      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C35        H352      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C36        H361      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C36        H362      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C37        H371      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C37        H372      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C38        H381      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C38        H382      SINGLE       n     1.089  0.0100     0.981  0.0163
+LIO         C39        H391      SINGLE       n     1.089  0.0100     0.982  0.0155
+LIO         C39        H392      SINGLE       n     1.089  0.0100     0.982  0.0155
+LIO         C40        H401      SINGLE       n     1.089  0.0100     0.973  0.0157
+LIO         C40        H402      SINGLE       n     1.089  0.0100     0.973  0.0157
+LIO         C40        H403      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LIO          C2          C1         O3P     109.438    2.56
+LIO          C2          C1         H11     109.582    1.50
+LIO          C2          C1         H12     109.582    1.50
+LIO         O3P          C1         H11     109.393    1.91
+LIO         O3P          C1         H12     109.393    1.91
+LIO         H11          C1         H12     108.319    1.50
+LIO          C1          C2          C3     113.504    1.50
+LIO          C1          C2          O2     109.042    2.74
+LIO          C1          C2         H21     108.656    1.50
+LIO          C3          C2          O2     109.042    2.74
+LIO          C3          C2         H21     108.656    1.50
+LIO          O2          C2         H21     109.221    1.50
+LIO          C2          C3          O3     108.641    1.70
+LIO          C2          C3         H31     110.376    1.50
+LIO          C2          C3         H32     110.376    1.50
+LIO          O3          C3         H31     109.514    1.50
+LIO          O3          C3         H32     109.514    1.50
+LIO         H31          C3         H32     108.601    1.50
+LIO          C5          C4         O4P     109.379    2.50
+LIO          C5          C4         H41     109.175    1.50
+LIO          C5          C4         H42     109.175    1.50
+LIO         O4P          C4         H41     109.451    1.50
+LIO         O4P          C4         H42     109.451    1.50
+LIO         H41          C4         H42     107.889    1.50
+LIO          C4          C5           N     115.936    1.50
+LIO          C4          C5         H51     108.150    1.50
+LIO          C4          C5         H52     108.150    1.50
+LIO           N          C5         H51     107.825    1.61
+LIO           N          C5         H52     107.825    1.61
+LIO         H51          C5         H52     107.359    1.69
+LIO           N          C6         H61     108.994    1.50
+LIO           N          C6         H62     108.994    1.50
+LIO           N          C6         H63     108.994    1.50
+LIO         H61          C6         H62     109.693    1.55
+LIO         H61          C6         H63     109.693    1.55
+LIO         H62          C6         H63     109.693    1.55
+LIO           N          C7         H71     108.994    1.50
+LIO           N          C7         H72     108.994    1.50
+LIO           N          C7         H73     108.994    1.50
+LIO         H71          C7         H72     109.693    1.55
+LIO         H71          C7         H73     109.693    1.55
+LIO         H72          C7         H73     109.693    1.55
+LIO           N          C8         H81     108.994    1.50
+LIO           N          C8         H82     108.994    1.50
+LIO           N          C8         H83     108.994    1.50
+LIO         H81          C8         H82     109.693    1.55
+LIO         H81          C8         H83     109.693    1.55
+LIO         H82          C8         H83     109.693    1.55
+LIO         C12         C11          O3     111.516    1.50
+LIO         C12         C11         O11     125.251    2.71
+LIO          O3         C11         O11     123.233    1.50
+LIO         C11         C12         C13     113.365    1.50
+LIO         C11         C12        H121     108.883    1.50
+LIO         C11         C12        H122     108.883    1.50
+LIO         C13         C12        H121     108.815    1.50
+LIO         C13         C12        H122     108.815    1.50
+LIO        H121         C12        H122     107.521    1.50
+LIO         C12         C13         C14     112.553    1.50
+LIO         C12         C13        H131     109.164    1.50
+LIO         C12         C13        H132     109.164    1.50
+LIO         C14         C13        H131     108.698    1.50
+LIO         C14         C13        H132     108.698    1.50
+LIO        H131         C13        H132     107.646    1.50
+LIO         C13         C14         C15     114.243    1.69
+LIO         C13         C14        H141     108.698    1.50
+LIO         C13         C14        H142     108.698    1.50
+LIO         C15         C14        H141     108.698    1.50
+LIO         C15         C14        H142     108.698    1.50
+LIO        H141         C14        H142     107.646    1.50
+LIO         C14         C15         C16     114.243    1.69
+LIO         C14         C15        H151     108.698    1.50
+LIO         C14         C15        H152     108.698    1.50
+LIO         C16         C15        H151     108.698    1.50
+LIO         C16         C15        H152     108.698    1.50
+LIO        H151         C15        H152     107.646    1.50
+LIO         C15         C16         C17     114.243    1.69
+LIO         C15         C16        H161     108.698    1.50
+LIO         C15         C16        H162     108.698    1.50
+LIO         C17         C16        H161     108.698    1.50
+LIO         C17         C16        H162     108.698    1.50
+LIO        H161         C16        H162     107.646    1.50
+LIO         C16         C17         C18     114.243    1.69
+LIO         C16         C17        H171     108.698    1.50
+LIO         C16         C17        H172     108.698    1.50
+LIO         C18         C17        H171     108.698    1.50
+LIO         C18         C17        H172     108.698    1.50
+LIO        H171         C17        H172     107.646    1.50
+LIO         C17         C18         C19     114.243    1.69
+LIO         C17         C18        H181     108.698    1.50
+LIO         C17         C18        H182     108.698    1.50
+LIO         C19         C18        H181     108.698    1.50
+LIO         C19         C18        H182     108.698    1.50
+LIO        H181         C18        H182     107.646    1.50
+LIO         C18         C19         C20     114.243    1.69
+LIO         C18         C19        H191     108.698    1.50
+LIO         C18         C19        H192     108.698    1.50
+LIO         C20         C19        H191     108.698    1.50
+LIO         C20         C19        H192     108.698    1.50
+LIO        H191         C19        H192     107.646    1.50
+LIO         C19         C20         C21     114.243    1.69
+LIO         C19         C20        H201     108.698    1.50
+LIO         C19         C20        H202     108.698    1.50
+LIO         C21         C20        H201     108.698    1.50
+LIO         C21         C20        H202     108.698    1.50
+LIO        H201         C20        H202     107.646    1.50
+LIO         C20         C21         C22     114.243    1.69
+LIO         C20         C21        H211     108.698    1.50
+LIO         C20         C21        H212     108.698    1.50
+LIO         C22         C21        H211     108.698    1.50
+LIO         C22         C21        H212     108.698    1.50
+LIO        H211         C21        H212     107.646    1.50
+LIO         C21         C22         C23     114.243    1.69
+LIO         C21         C22        H221     108.698    1.50
+LIO         C21         C22        H222     108.698    1.50
+LIO         C23         C22        H221     108.698    1.50
+LIO         C23         C22        H222     108.698    1.50
+LIO        H221         C22        H222     107.646    1.50
+LIO         C22         C23         C24     114.362    3.00
+LIO         C22         C23        H231     108.698    1.50
+LIO         C22         C23        H232     108.698    1.50
+LIO         C24         C23        H231     108.653    1.50
+LIO         C24         C23        H232     108.653    1.50
+LIO        H231         C23        H232     107.646    1.50
+LIO         C23         C24         C25     113.719    3.00
+LIO         C23         C24        H241     108.758    1.50
+LIO         C23         C24        H242     108.758    1.50
+LIO         C25         C24        H241     108.918    1.50
+LIO         C25         C24        H242     108.918    1.50
+LIO        H241         C24        H242     107.763    1.50
+LIO         C24         C25        H251     109.554    1.50
+LIO         C24         C25        H252     109.554    1.50
+LIO         C24         C25        H253     109.554    1.50
+LIO        H251         C25        H252     109.380    1.50
+LIO        H251         C25        H253     109.380    1.50
+LIO        H252         C25        H253     109.380    1.50
+LIO         C32         C31          O2     113.008    3.00
+LIO         C32         C31         O31     124.714    2.71
+LIO          O2         C31         O31     122.278    2.43
+LIO         C31         C32         C33     113.365    1.50
+LIO         C31         C32        H321     108.883    1.50
+LIO         C31         C32        H322     108.883    1.50
+LIO         C33         C32        H321     108.815    1.50
+LIO         C33         C32        H322     108.815    1.50
+LIO        H321         C32        H322     107.521    1.50
+LIO         C32         C33         C34     112.553    1.50
+LIO         C32         C33        H331     109.164    1.50
+LIO         C32         C33        H332     109.164    1.50
+LIO         C34         C33        H331     108.698    1.50
+LIO         C34         C33        H332     108.698    1.50
+LIO        H331         C33        H332     107.646    1.50
+LIO         C33         C34         C35     114.243    1.69
+LIO         C33         C34        H341     108.698    1.50
+LIO         C33         C34        H342     108.698    1.50
+LIO         C35         C34        H341     108.698    1.50
+LIO         C35         C34        H342     108.698    1.50
+LIO        H341         C34        H342     107.646    1.50
+LIO         C34         C35         C36     114.243    1.69
+LIO         C34         C35        H351     108.698    1.50
+LIO         C34         C35        H352     108.698    1.50
+LIO         C36         C35        H351     108.698    1.50
+LIO         C36         C35        H352     108.698    1.50
+LIO        H351         C35        H352     107.646    1.50
+LIO         C35         C36         C37     114.243    1.69
+LIO         C35         C36        H361     108.698    1.50
+LIO         C35         C36        H362     108.698    1.50
+LIO         C37         C36        H361     108.698    1.50
+LIO         C37         C36        H362     108.698    1.50
+LIO        H361         C36        H362     107.646    1.50
+LIO         C36         C37         C38     114.243    1.69
+LIO         C36         C37        H371     108.698    1.50
+LIO         C36         C37        H372     108.698    1.50
+LIO         C38         C37        H371     108.698    1.50
+LIO         C38         C37        H372     108.698    1.50
+LIO        H371         C37        H372     107.646    1.50
+LIO         C37         C38         C39     114.362    3.00
+LIO         C37         C38        H381     108.698    1.50
+LIO         C37         C38        H382     108.698    1.50
+LIO         C39         C38        H381     108.653    1.50
+LIO         C39         C38        H382     108.653    1.50
+LIO        H381         C38        H382     107.646    1.50
+LIO         C38         C39         C40     113.719    3.00
+LIO         C38         C39        H391     108.758    1.50
+LIO         C38         C39        H392     108.758    1.50
+LIO         C40         C39        H391     108.918    1.50
+LIO         C40         C39        H392     108.918    1.50
+LIO        H391         C39        H392     107.763    1.50
+LIO         C39         C40        H401     109.554    1.50
+LIO         C39         C40        H402     109.554    1.50
+LIO         C39         C40        H403     109.554    1.50
+LIO        H401         C40        H402     109.380    1.50
+LIO        H401         C40        H403     109.380    1.50
+LIO        H402         C40        H403     109.380    1.50
+LIO          C5           N          C6     109.961    1.74
+LIO          C5           N          C7     109.961    1.74
+LIO          C5           N          C8     109.961    1.74
+LIO          C6           N          C7     109.041    1.50
+LIO          C6           N          C8     109.041    1.50
+LIO          C7           N          C8     109.041    1.50
+LIO          C2          O2         C31     117.944    1.50
+LIO          C3          O3         C11     116.187    1.50
+LIO          C1         O3P           P     119.251    1.51
+LIO          C4         O4P           P     119.251    1.51
+LIO         O1P           P         O2P     119.782    1.83
+LIO         O1P           P         O3P     107.777    3.00
+LIO         O1P           P         O4P     107.777    3.00
+LIO         O2P           P         O3P     107.777    3.00
+LIO         O2P           P         O4P     107.777    3.00
+LIO         O3P           P         O4P     102.789    2.10
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LIO             sp3_sp3_1         O3P          C1          C2          C3     180.000    10.0     3
+LIO            sp3_sp3_10          C2          C1         O3P           P     180.000    10.0     3
+LIO            sp3_sp3_85         C12         C13         C14         C15     180.000    10.0     3
+LIO            sp3_sp3_94         C13         C14         C15         C16     180.000    10.0     3
+LIO           sp3_sp3_103         C14         C15         C16         C17     180.000    10.0     3
+LIO           sp3_sp3_112         C15         C16         C17         C18     180.000    10.0     3
+LIO           sp3_sp3_121         C16         C17         C18         C19     180.000    10.0     3
+LIO           sp3_sp3_130         C17         C18         C19         C20     180.000    10.0     3
+LIO           sp3_sp3_139         C18         C19         C20         C21     180.000    10.0     3
+LIO           sp3_sp3_148         C19         C20         C21         C22     180.000    10.0     3
+LIO           sp3_sp3_157         C20         C21         C22         C23     180.000    10.0     3
+LIO           sp3_sp3_166         C21         C22         C23         C24     180.000    10.0     3
+LIO            sp3_sp3_13          C1          C2          C3          O3     180.000    10.0     3
+LIO            sp3_sp3_22          C1          C2          O2         C31     180.000    10.0     3
+LIO           sp3_sp3_175         C22         C23         C24         C25     180.000    10.0     3
+LIO           sp3_sp3_184         C23         C24         C25        H251     180.000    10.0     3
+LIO             sp2_sp3_8          O2         C31         C32         C33     120.000    10.0     6
+LIO             sp2_sp2_3         C32         C31          O2          C2     180.000     5.0     2
+LIO           sp3_sp3_193         C31         C32         C33         C34     180.000    10.0     3
+LIO           sp3_sp3_202         C32         C33         C34         C35     180.000    10.0     3
+LIO           sp3_sp3_211         C33         C34         C35         C36     180.000    10.0     3
+LIO           sp3_sp3_220         C34         C35         C36         C37     180.000    10.0     3
+LIO           sp3_sp3_229         C35         C36         C37         C38     180.000    10.0     3
+LIO           sp3_sp3_238         C36         C37         C38         C39     180.000    10.0     3
+LIO            sp3_sp3_25          C2          C3          O3         C11     180.000    10.0     3
+LIO           sp3_sp3_247         C37         C38         C39         C40     180.000    10.0     3
+LIO           sp3_sp3_256         C38         C39         C40        H401     180.000    10.0     3
+LIO            sp3_sp3_28         O4P          C4          C5           N     180.000    10.0     3
+LIO            sp3_sp3_37          C5          C4         O4P           P     180.000    10.0     3
+LIO           sp3_sp3_265          C1         O3P           P         O1P     180.000    10.0     3
+LIO           sp3_sp3_269          C4         O4P           P         O1P     -60.000    10.0     3
+LIO            sp3_sp3_40          C4          C5           N          C6     180.000    10.0     3
+LIO            sp3_sp3_49         H61          C6           N          C5     180.000    10.0     3
+LIO            sp3_sp3_58         H71          C7           N          C5     180.000    10.0     3
+LIO            sp3_sp3_67         H81          C8           N          C5     180.000    10.0     3
+LIO             sp2_sp2_1         C12         C11          O3          C3     180.000     5.0     2
+LIO             sp2_sp3_2          O3         C11         C12         C13     120.000    10.0     6
+LIO            sp3_sp3_76         C11         C12         C13         C14     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LIO    chir_1    C2    O2    C1    C3    negative
+LIO    chir_2    P    O3P    O4P    O1P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LIO    plan-1         C11   0.020
+LIO    plan-1         C12   0.020
+LIO    plan-1         O11   0.020
+LIO    plan-1          O3   0.020
+LIO    plan-2         C31   0.020
+LIO    plan-2         C32   0.020
+LIO    plan-2          O2   0.020
+LIO    plan-2         O31   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LIO           SMILES              ACDLabs 10.04                                                                                                               O=C(OC(COP(=O)(OCC[N+](C)(C)C)O)COC(=O)CCCCCCCCCCCCCC)CCCCCCCCC
+LIO SMILES_CANONICAL               CACTVS 3.341                                                                                                       CCCCCCCCCCCCCCC(=O)OC[C@H](CO[P@@](O)(=O)OCC[N+](C)(C)C)OC(=O)CCCCCCCCC
+LIO           SMILES               CACTVS 3.341                                                                                                          CCCCCCCCCCCCCCC(=O)OC[CH](CO[P](O)(=O)OCC[N+](C)(C)C)OC(=O)CCCCCCCCC
+LIO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                        CCCCCCCCCCCCCCC(=O)OC[C@H](CO[P@](=O)(O)OCC[N+](C)(C)C)OC(=O)CCCCCCCCC
+LIO           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                               CCCCCCCCCCCCCCC(=O)OCC(COP(=O)(O)OCC[N+](C)(C)C)OC(=O)CCCCCCCCC
+LIO            InChI                InChI  1.03 InChI=1S/C33H66NO8P/c1-6-8-10-12-14-15-16-17-18-20-21-23-25-32(35)39-29-31(30-41-43(37,38)40-28-27-34(3,4)5)42-33(36)26-24-22-19-13-11-9-7-2/h31H,6-30H2,1-5H3/p+1/t31-/m1/s1
+LIO         InChIKey                InChI  1.03                                                                                                                                                   YAOVLDDMIGILIT-WJOKGBTCSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LIO acedrg               243         "dictionary generator"                  
+LIO acedrg_database      11          "data source"                           
+LIO rdkit                2017.03.2   "Chemoinformatics tool"
+LIO refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,489 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ERT     ERT      "METHYL (4R)-2-ETHYL-2,5,12-TRIHYDROXY-7-METHOXY-6,11-DIOXO-4-{[2,3,6-TRIDEOXY-3-(DIMETHYLAMINO)-BETA-D-RIBO-HEXOPYRANOSYL]OXY}-1H,2H,3H,4H,6H,11H-TETRACENE-1-CARBOXYLATE"     NON-POLYMER     80     43     .     
+#
+data_comp_ERT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ERT     O11     O       OH1     0       62.886      0.972       40.591      
+ERT     C11     C       CR6     0       61.730      0.727       39.882      
+ERT     C18     C       CR66    0       61.340      1.644       38.878      
+ERT     C17     C       CR66    0       60.161      1.405       38.142      
+ERT     C6      C       CR6     0       59.387      0.256       38.428      
+ERT     O6      O       OH1     0       58.234      0.023       37.710      
+ERT     C5      C       CR6     0       59.762      2.366       37.083      
+ERT     O5      O       O       0       58.562      2.503       36.769      
+ERT     C16     C       CR66    0       60.827      3.207       36.470      
+ERT     C4      C       CR6     0       60.718      3.786       35.171      
+ERT     O4      O       O2      0       59.587      3.538       34.457      
+ERT     C40     C       CH3     0       59.003      4.581       33.669      
+ERT     C3      C       CR16    0       61.774      4.560       34.665      
+ERT     C2      C       CR16    0       62.907      4.770       35.427      
+ERT     C15     C       CR66    0       62.006      3.448       37.218      
+ERT     C1      C       CR16    0       63.036      4.220       36.696      
+ERT     C12     C       CR6     0       62.146      2.848       38.572      
+ERT     O12     O       O       0       62.878      3.359       39.417      
+ERT     C19     C       CR66    0       60.952      -0.415      40.157      
+ERT     C10     C       CH1     0       61.407      -1.371      41.255      
+ERT     C21     C       C       0       61.169      -0.731      42.618      
+ERT     O13     O       O       0       60.105      -0.291      42.986      
+ERT     O10     O       O2      0       62.288      -0.707      43.343      
+ERT     C22     C       CH3     0       62.206      -0.187      44.695      
+ERT     C20     C       CR66    0       59.776      -0.643      39.429      
+ERT     C7      C       CH1     0       58.895      -1.859      39.684      
+ERT     C8      C       CH2     0       59.275      -2.674      40.914      
+ERT     C9      C       CT      0       60.791      -2.782      41.103      
+ERT     C13     C       CH2     0       61.121      -3.745      42.254      
+ERT     C14     C       CH3     0       62.593      -4.020      42.499      
+ERT     O9      O       OH1     0       61.341      -3.362      39.906      
+ERT     O7      O       O2      0       58.922      -2.689      38.505      
+ERT     "C1'"   C       CH1     0       57.920      -3.664      38.318      
+ERT     "C2'"   C       CH2     0       57.277      -3.451      36.964      
+ERT     "C3'"   C       CH1     0       58.198      -3.868      35.815      
+ERT     "N3'"   N       NT      0       57.675      -3.712      34.438      
+ERT     "C7'"   C       CH3     0       58.073      -2.448      33.813      
+ERT     "C8'"   C       CH3     0       56.240      -3.943      34.238      
+ERT     "C4'"   C       CH1     0       58.726      -5.288      36.053      
+ERT     "O4'"   O       OH1     0       57.667      -6.247      35.983      
+ERT     "C5'"   C       CH1     0       59.410      -5.366      37.418      
+ERT     "O5'"   O       O2      0       58.467      -4.986      38.450      
+ERT     "C6'"   C       CH3     0       59.906      -6.751      37.763      
+ERT     H11     H       H       0       63.575      0.468       40.478      
+ERT     HO6     H       H       0       57.466      0.099       38.092      
+ERT     H401    H       H       0       59.522      4.699       32.856      
+ERT     H402    H       H       0       59.000      5.411       34.175      
+ERT     H403    H       H       0       58.092      4.339       33.438      
+ERT     H4      H       H       0       61.712      4.944       33.807      
+ERT     H3      H       H       0       63.603      5.295       35.074      
+ERT     H2      H       H       0       63.817      4.373       37.199      
+ERT     H10     H       H       0       62.377      -1.498      41.156      
+ERT     H221    H       H       0       61.565      -0.708      45.204      
+ERT     H222    H       H       0       61.925      0.741       44.668      
+ERT     H223    H       H       0       63.078      -0.248      45.114      
+ERT     H7      H       H       0       57.970      -1.536      39.816      
+ERT     H81     H       H       0       58.899      -3.586      40.834      
+ERT     H82     H       H       0       58.877      -2.253      41.716      
+ERT     H131    H       H       0       60.680      -4.600      42.065      
+ERT     H132    H       H       0       60.726      -3.394      43.080      
+ERT     H141    H       H       0       62.687      -4.625      43.256      
+ERT     H142    H       H       0       63.056      -3.188      42.694      
+ERT     H143    H       H       0       62.985      -4.430      41.709      
+ERT     HO9     H       H       0       60.983      -4.109      39.749      
+ERT     "H1'"   H       H       0       57.224      -3.551      39.012      
+ERT     "H2'1"  H       H       0       56.457      -3.967      36.928      
+ERT     "H2'2"  H       H       0       57.046      -2.514      36.866      
+ERT     "H3'"   H       H       0       58.982      -3.287      35.866      
+ERT     "H7'1"  H       H       0       57.840      -1.706      34.405      
+ERT     "H7'2"  H       H       0       57.614      -2.334      32.957      
+ERT     "H7'3"  H       H       0       59.038      -2.449      33.661      
+ERT     "H8'1"  H       H       0       55.957      -4.733      34.737      
+ERT     "H8'2"  H       H       0       56.063      -4.084      33.288      
+ERT     "H8'3"  H       H       0       55.735      -3.167      34.549      
+ERT     "H4'"   H       H       0       59.386      -5.501      35.347      
+ERT     H1      H       H       0       57.219      -6.262      36.696      
+ERT     "H5'"   H       H       0       60.181      -4.734      37.428      
+ERT     "H6'1"  H       H       0       59.173      -7.281      38.116      
+ERT     "H6'2"  H       H       0       60.609      -6.686      38.430      
+ERT     "H6'3"  H       H       0       60.257      -7.177      36.964      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ERT         O11         C11      SINGLE       n     1.374  0.0155     1.374  0.0155
+ERT         C11         C18      DOUBLE       y     1.407  0.0116     1.407  0.0116
+ERT         C11         C19      SINGLE       y     1.395  0.0129     1.395  0.0129
+ERT         C18         C17      SINGLE       y     1.403  0.0114     1.403  0.0114
+ERT         C18         C12      SINGLE       n     1.463  0.0186     1.463  0.0186
+ERT         C17          C6      DOUBLE       y     1.407  0.0116     1.407  0.0116
+ERT         C17          C5      SINGLE       n     1.463  0.0186     1.463  0.0186
+ERT          C6          O6      SINGLE       n     1.374  0.0155     1.374  0.0155
+ERT          C6         C20      SINGLE       y     1.393  0.0103     1.393  0.0103
+ERT          C5          O5      DOUBLE       n     1.244  0.0200     1.244  0.0200
+ERT          C5         C16      SINGLE       n     1.469  0.0164     1.469  0.0164
+ERT         C16          C4      DOUBLE       y     1.415  0.0100     1.415  0.0100
+ERT         C16         C15      SINGLE       y     1.410  0.0100     1.410  0.0100
+ERT          C4          O4      SINGLE       n     1.356  0.0100     1.356  0.0100
+ERT          C4          C3      SINGLE       y     1.397  0.0100     1.397  0.0100
+ERT          O4         C40      SINGLE       n     1.429  0.0105     1.429  0.0105
+ERT          C3          C2      DOUBLE       y     1.375  0.0172     1.375  0.0172
+ERT          C2          C1      SINGLE       y     1.388  0.0167     1.388  0.0167
+ERT         C15          C1      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ERT         C15         C12      SINGLE       n     1.484  0.0104     1.484  0.0104
+ERT         C12         O12      DOUBLE       n     1.227  0.0124     1.227  0.0124
+ERT         C19         C10      SINGLE       n     1.519  0.0100     1.519  0.0100
+ERT         C19         C20      DOUBLE       y     1.389  0.0109     1.389  0.0109
+ERT         C10         C21      SINGLE       n     1.520  0.0100     1.520  0.0100
+ERT         C10          C9      SINGLE       n     1.537  0.0151     1.537  0.0151
+ERT         C21         O13      DOUBLE       n     1.205  0.0137     1.205  0.0137
+ERT         C21         O10      SINGLE       n     1.329  0.0104     1.329  0.0104
+ERT         O10         C22      SINGLE       n     1.448  0.0108     1.448  0.0108
+ERT         C20          C7      SINGLE       n     1.515  0.0100     1.515  0.0100
+ERT          C7          C8      SINGLE       n     1.517  0.0113     1.517  0.0113
+ERT          C7          O7      SINGLE       n     1.434  0.0148     1.434  0.0148
+ERT          C8          C9      SINGLE       n     1.532  0.0100     1.532  0.0100
+ERT          C9         C13      SINGLE       n     1.531  0.0100     1.531  0.0100
+ERT          C9          O9      SINGLE       n     1.437  0.0107     1.437  0.0107
+ERT         C13         C14      SINGLE       n     1.515  0.0129     1.515  0.0129
+ERT          O7       "C1'"      SINGLE       n     1.403  0.0143     1.403  0.0143
+ERT       "C1'"       "C2'"      SINGLE       n     1.507  0.0154     1.507  0.0154
+ERT       "C1'"       "O5'"      SINGLE       n     1.422  0.0172     1.422  0.0172
+ERT       "C2'"       "C3'"      SINGLE       n     1.525  0.0112     1.525  0.0112
+ERT       "C3'"       "N3'"      SINGLE       n     1.464  0.0149     1.464  0.0149
+ERT       "C3'"       "C4'"      SINGLE       n     1.532  0.0100     1.532  0.0100
+ERT       "N3'"       "C7'"      SINGLE       n     1.461  0.0113     1.461  0.0113
+ERT       "N3'"       "C8'"      SINGLE       n     1.461  0.0113     1.461  0.0113
+ERT       "C4'"       "O4'"      SINGLE       n     1.428  0.0123     1.428  0.0123
+ERT       "C4'"       "C5'"      SINGLE       n     1.525  0.0174     1.525  0.0174
+ERT       "C5'"       "O5'"      SINGLE       n     1.444  0.0117     1.444  0.0117
+ERT       "C5'"       "C6'"      SINGLE       n     1.510  0.0100     1.510  0.0100
+ERT         O11         H11      SINGLE       n     0.966  0.0059     0.861  0.0200
+ERT          O6         HO6      SINGLE       n     0.966  0.0059     0.861  0.0200
+ERT         C40        H401      SINGLE       n     1.089  0.0100     0.971  0.0157
+ERT         C40        H402      SINGLE       n     1.089  0.0100     0.971  0.0157
+ERT         C40        H403      SINGLE       n     1.089  0.0100     0.971  0.0157
+ERT          C3          H4      SINGLE       n     1.082  0.0130     0.942  0.0175
+ERT          C2          H3      SINGLE       n     1.082  0.0130     0.940  0.0131
+ERT          C1          H2      SINGLE       n     1.082  0.0130     0.941  0.0157
+ERT         C10         H10      SINGLE       n     1.089  0.0100     0.983  0.0167
+ERT         C22        H221      SINGLE       n     1.089  0.0100     0.970  0.0175
+ERT         C22        H222      SINGLE       n     1.089  0.0100     0.970  0.0175
+ERT         C22        H223      SINGLE       n     1.089  0.0100     0.970  0.0175
+ERT          C7          H7      SINGLE       n     1.089  0.0100     0.988  0.0175
+ERT          C8         H81      SINGLE       n     1.089  0.0100     0.990  0.0100
+ERT          C8         H82      SINGLE       n     1.089  0.0100     0.990  0.0100
+ERT         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0140
+ERT         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0140
+ERT         C14        H141      SINGLE       n     1.089  0.0100     0.973  0.0146
+ERT         C14        H142      SINGLE       n     1.089  0.0100     0.973  0.0146
+ERT         C14        H143      SINGLE       n     1.089  0.0100     0.973  0.0146
+ERT          O9         HO9      SINGLE       n     0.970  0.0120     0.841  0.0200
+ERT       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.989  0.0183
+ERT       "C2'"      "H2'1"      SINGLE       n     1.089  0.0100     0.970  0.0100
+ERT       "C2'"      "H2'2"      SINGLE       n     1.089  0.0100     0.970  0.0100
+ERT       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.977  0.0149
+ERT       "C7'"      "H7'1"      SINGLE       n     1.089  0.0100     0.977  0.0113
+ERT       "C7'"      "H7'2"      SINGLE       n     1.089  0.0100     0.977  0.0113
+ERT       "C7'"      "H7'3"      SINGLE       n     1.089  0.0100     0.977  0.0113
+ERT       "C8'"      "H8'1"      SINGLE       n     1.089  0.0100     0.977  0.0113
+ERT       "C8'"      "H8'2"      SINGLE       n     1.089  0.0100     0.977  0.0113
+ERT       "C8'"      "H8'3"      SINGLE       n     1.089  0.0100     0.977  0.0113
+ERT       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.989  0.0181
+ERT       "O4'"          H1      SINGLE       n     0.970  0.0120     0.841  0.0200
+ERT       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.997  0.0100
+ERT       "C6'"      "H6'1"      SINGLE       n     1.089  0.0100     0.971  0.0171
+ERT       "C6'"      "H6'2"      SINGLE       n     1.089  0.0100     0.971  0.0171
+ERT       "C6'"      "H6'3"      SINGLE       n     1.089  0.0100     0.971  0.0171
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ERT         C11         O11         H11     120.000    3.00
+ERT         O11         C11         C18     119.630    2.42
+ERT         O11         C11         C19     119.630    2.42
+ERT         C18         C11         C19     120.740    1.55
+ERT         C11         C18         C17     119.344    1.50
+ERT         C11         C18         C12     120.115    1.85
+ERT         C17         C18         C12     120.540    1.50
+ERT         C18         C17          C6     119.344    1.50
+ERT         C18         C17          C5     120.540    1.50
+ERT          C6         C17          C5     120.115    1.85
+ERT         C17          C6          O6     119.630    2.42
+ERT         C17          C6         C20     120.740    1.55
+ERT          O6          C6         C20     119.630    2.42
+ERT          C6          O6         HO6     120.000    3.00
+ERT         C17          C5          O5     120.534    1.50
+ERT         C17          C5         C16     118.974    1.50
+ERT          O5          C5         C16     120.491    1.50
+ERT          C5         C16          C4     121.488    1.50
+ERT          C5         C16         C15     120.419    1.50
+ERT          C4         C16         C15     118.093    1.50
+ERT         C16          C4          O4     117.375    1.50
+ERT         C16          C4          C3     119.719    1.50
+ERT          O4          C4          C3     122.906    1.50
+ERT          C4          O4         C40     117.888    1.50
+ERT          O4         C40        H401     109.402    1.50
+ERT          O4         C40        H402     109.402    1.50
+ERT          O4         C40        H403     109.402    1.50
+ERT        H401         C40        H402     109.509    1.50
+ERT        H401         C40        H403     109.509    1.50
+ERT        H402         C40        H403     109.509    1.50
+ERT          C4          C3          C2     119.771    1.50
+ERT          C4          C3          H4     120.095    1.50
+ERT          C2          C3          H4     120.134    1.50
+ERT          C3          C2          C1     121.656    1.50
+ERT          C3          C2          H3     118.827    1.50
+ERT          C1          C2          H3     119.518    1.50
+ERT         C16         C15          C1     120.581    1.50
+ERT         C16         C15         C12     120.551    1.50
+ERT          C1         C15         C12     118.868    1.50
+ERT          C2          C1         C15     120.181    1.50
+ERT          C2          C1          H2     119.985    1.50
+ERT         C15          C1          H2     119.834    1.50
+ERT         C18         C12         C15     118.974    1.50
+ERT         C18         C12         O12     120.819    1.50
+ERT         C15         C12         O12     120.206    1.50
+ERT         C11         C19         C10     119.680    2.12
+ERT         C11         C19         C20     119.916    1.50
+ERT         C10         C19         C20     120.404    1.50
+ERT         C19         C10         C21     112.141    2.89
+ERT         C19         C10          C9     111.445    2.09
+ERT         C19         C10         H10     108.261    1.50
+ERT         C21         C10          C9     111.056    2.52
+ERT         C21         C10         H10     107.476    1.53
+ERT          C9         C10         H10     107.077    1.94
+ERT         C10         C21         O13     124.641    1.50
+ERT         C10         C21         O10     111.380    1.50
+ERT         O13         C21         O10     123.980    1.50
+ERT         C21         O10         C22     115.883    1.50
+ERT         O10         C22        H221     109.378    1.50
+ERT         O10         C22        H222     109.378    1.50
+ERT         O10         C22        H223     109.378    1.50
+ERT        H221         C22        H222     109.532    1.53
+ERT        H221         C22        H223     109.532    1.53
+ERT        H222         C22        H223     109.532    1.53
+ERT          C6         C20         C19     119.916    1.50
+ERT          C6         C20          C7     119.739    3.00
+ERT         C19         C20          C7     120.345    1.50
+ERT         C20          C7          C8     112.454    1.55
+ERT         C20          C7          O7     108.615    2.09
+ERT         C20          C7          H7     108.618    1.50
+ERT          C8          C7          O7     110.347    2.52
+ERT          C8          C7          H7     108.616    1.50
+ERT          O7          C7          H7     108.904    1.51
+ERT          C7          C8          C9     111.124    1.57
+ERT          C7          C8         H81     109.005    1.50
+ERT          C7          C8         H82     109.005    1.50
+ERT          C9          C8         H81     108.878    1.50
+ERT          C9          C8         H82     108.878    1.50
+ERT         H81          C8         H82     108.019    1.50
+ERT         C10          C9          C8     111.005    1.50
+ERT         C10          C9         C13     111.163    2.25
+ERT         C10          C9          O9     109.247    2.43
+ERT          C8          C9         C13     111.480    1.50
+ERT          C8          C9          O9     108.137    2.20
+ERT         C13          C9          O9     108.450    1.84
+ERT          C9         C13         C14     113.198    2.74
+ERT          C9         C13        H131     108.285    1.50
+ERT          C9         C13        H132     108.285    1.50
+ERT         C14         C13        H131     108.580    1.50
+ERT         C14         C13        H132     108.580    1.50
+ERT        H131         C13        H132     107.552    1.50
+ERT         C13         C14        H141     109.470    1.50
+ERT         C13         C14        H142     109.470    1.50
+ERT         C13         C14        H143     109.470    1.50
+ERT        H141         C14        H142     109.364    1.50
+ERT        H141         C14        H143     109.364    1.50
+ERT        H142         C14        H143     109.364    1.50
+ERT          C9          O9         HO9     108.747    3.00
+ERT          C7          O7       "C1'"     116.577    2.53
+ERT          O7       "C1'"       "C2'"     108.296    1.50
+ERT          O7       "C1'"       "O5'"     110.325    1.95
+ERT          O7       "C1'"       "H1'"     109.322    1.50
+ERT       "C2'"       "C1'"       "O5'"     111.005    1.50
+ERT       "C2'"       "C1'"       "H1'"     109.482    1.68
+ERT       "O5'"       "C1'"       "H1'"     109.272    1.61
+ERT       "C1'"       "C2'"       "C3'"     111.124    1.57
+ERT       "C1'"       "C2'"      "H2'1"     109.160    1.50
+ERT       "C1'"       "C2'"      "H2'2"     109.160    1.50
+ERT       "C3'"       "C2'"      "H2'1"     109.341    1.50
+ERT       "C3'"       "C2'"      "H2'2"     109.341    1.50
+ERT      "H2'1"       "C2'"      "H2'2"     108.097    1.50
+ERT       "C2'"       "C3'"       "N3'"     114.485    2.28
+ERT       "C2'"       "C3'"       "C4'"     110.196    1.50
+ERT       "C2'"       "C3'"       "H3'"     107.655    1.50
+ERT       "N3'"       "C3'"       "C4'"     111.773    3.00
+ERT       "N3'"       "C3'"       "H3'"     106.228    1.50
+ERT       "C4'"       "C3'"       "H3'"     107.258    1.68
+ERT       "C3'"       "N3'"       "C7'"     112.278    2.47
+ERT       "C3'"       "N3'"       "C8'"     112.278    2.47
+ERT       "C7'"       "N3'"       "C8'"     110.179    1.50
+ERT       "N3'"       "C7'"      "H7'1"     109.516    1.94
+ERT       "N3'"       "C7'"      "H7'2"     109.516    1.94
+ERT       "N3'"       "C7'"      "H7'3"     109.516    1.94
+ERT      "H7'1"       "C7'"      "H7'2"     109.377    1.50
+ERT      "H7'1"       "C7'"      "H7'3"     109.377    1.50
+ERT      "H7'2"       "C7'"      "H7'3"     109.377    1.50
+ERT       "N3'"       "C8'"      "H8'1"     109.516    1.94
+ERT       "N3'"       "C8'"      "H8'2"     109.516    1.94
+ERT       "N3'"       "C8'"      "H8'3"     109.516    1.94
+ERT      "H8'1"       "C8'"      "H8'2"     109.377    1.50
+ERT      "H8'1"       "C8'"      "H8'3"     109.377    1.50
+ERT      "H8'2"       "C8'"      "H8'3"     109.377    1.50
+ERT       "C3'"       "C4'"       "O4'"     110.124    1.87
+ERT       "C3'"       "C4'"       "C5'"     111.124    1.57
+ERT       "C3'"       "C4'"       "H4'"     108.987    1.50
+ERT       "O4'"       "C4'"       "C5'"     109.153    2.02
+ERT       "O4'"       "C4'"       "H4'"     108.790    1.50
+ERT       "C5'"       "C4'"       "H4'"     109.550    1.50
+ERT       "C4'"       "O4'"          H1     109.099    3.00
+ERT       "C4'"       "C5'"       "O5'"     109.378    1.54
+ERT       "C4'"       "C5'"       "C6'"     113.192    1.50
+ERT       "C4'"       "C5'"       "H5'"     108.898    1.50
+ERT       "O5'"       "C5'"       "C6'"     106.787    1.50
+ERT       "O5'"       "C5'"       "H5'"     109.141    1.50
+ERT       "C6'"       "C5'"       "H5'"     109.193    1.50
+ERT       "C1'"       "O5'"       "C5'"     113.097    1.50
+ERT       "C5'"       "C6'"      "H6'1"     109.468    1.50
+ERT       "C5'"       "C6'"      "H6'2"     109.468    1.50
+ERT       "C5'"       "C6'"      "H6'3"     109.468    1.50
+ERT      "H6'1"       "C6'"      "H6'2"     109.383    1.59
+ERT      "H6'1"       "C6'"      "H6'3"     109.383    1.59
+ERT      "H6'2"       "C6'"      "H6'3"     109.383    1.59
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ERT            sp2_sp2_13         C18         C11         O11         H11     180.000     5.0     2
+ERT            sp3_sp3_68        H401         C40          O4          C4     -60.000    10.0     3
+ERT              const_33          C1          C2          C3          C4       0.000    10.0     2
+ERT              const_37         C15          C1          C2          C3       0.000    10.0     2
+ERT              const_41          C2          C1         C15         C16       0.000    10.0     2
+ERT            sp2_sp2_11         O12         C12         C15         C16     180.000     5.0     2
+ERT             sp2_sp3_5         C11         C19         C10         C21     -60.000    10.0     6
+ERT              const_17         C11         C19         C20          C6       0.000    10.0     2
+ERT            sp2_sp3_13         O13         C21         C10         C19       0.000    10.0     6
+ERT            sp3_sp3_44         C21         C10          C9         C13     -60.000    10.0     3
+ERT              const_48         O11         C11         C19         C10       0.000    10.0     2
+ERT       const_sp2_sp2_3         O11         C11         C18         C17     180.000     5.0     2
+ERT            sp2_sp2_24         O13         C21         O10         C22       0.000     5.0     2
+ERT            sp3_sp3_72        H221         C22         O10         C21     -60.000    10.0     3
+ERT            sp2_sp3_11          C6         C20          C7          O7     -60.000    10.0     6
+ERT            sp3_sp3_61          O7          C7          C8          C9     180.000    10.0     3
+ERT            sp3_sp3_75         C20          C7          O7       "C1'"     180.000    10.0     3
+ERT            sp3_sp3_50          C7          C8          C9         C13     180.000    10.0     3
+ERT            sp3_sp3_80         C14         C13          C9          O9      60.000    10.0     3
+ERT            sp3_sp3_89         C13          C9          O9         HO9     -60.000    10.0     3
+ERT            sp3_sp3_90          C9         C13         C14        H141     180.000    10.0     3
+ERT            sp2_sp2_18         O12         C12         C18         C11       0.000     5.0     2
+ERT       const_sp2_sp2_5          C6         C17         C18         C11       0.000     5.0     2
+ERT            sp3_sp3_99       "C2'"       "C1'"          O7          C7     180.000    10.0     3
+ERT             sp3_sp3_4          O7       "C1'"       "C2'"       "C3'"     180.000    10.0     3
+ERT           sp3_sp3_103          O7       "C1'"       "O5'"       "C5'"      60.000    10.0     3
+ERT            sp3_sp3_11       "C1'"       "C2'"       "C3'"       "N3'"      60.000    10.0     3
+ERT           sp3_sp3_106       "C2'"       "C3'"       "N3'"       "C7'"     -60.000    10.0     3
+ERT            sp3_sp3_23       "N3'"       "C3'"       "C4'"       "O4'"     -60.000    10.0     3
+ERT           sp3_sp3_112      "H7'1"       "C7'"       "N3'"       "C8'"     -60.000    10.0     3
+ERT           sp3_sp3_117      "H8'1"       "C8'"       "N3'"       "C7'"     180.000    10.0     3
+ERT           sp3_sp3_123       "C3'"       "C4'"       "O4'"          H1     180.000    10.0     3
+ERT            sp3_sp3_32       "O4'"       "C4'"       "C5'"       "C6'"     180.000    10.0     3
+ERT              const_10         C18         C17          C6          O6     180.000    10.0     2
+ERT             sp2_sp2_2         C18         C17          C5          O5     180.000     5.0     2
+ERT            sp3_sp3_38       "C6'"       "C5'"       "O5'"       "C1'"     -60.000    10.0     3
+ERT           sp3_sp3_126       "C4'"       "C5'"       "C6'"      "H6'1"     180.000    10.0     3
+ERT              const_14         C19         C20          C6          O6     180.000    10.0     2
+ERT            sp2_sp2_19         C17          C6          O6         HO6     180.000     5.0     2
+ERT             sp2_sp2_8          C4         C16          C5          O5       0.000     5.0     2
+ERT              const_22          C1         C15         C16          C5     180.000    10.0     2
+ERT              const_28          C5         C16          C4          O4       0.000    10.0     2
+ERT            sp2_sp2_21         C16          C4          O4         C40     180.000     5.0     2
+ERT              const_30          C2          C3          C4          O4     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ERT    chir_1    C10    C21    C9    C19    negative
+ERT    chir_2    C7    O7    C20    C8    positive
+ERT    chir_3    C9    O9    C10    C8    negative
+ERT    chir_4    "C1'"    "O5'"    O7    "C2'"    negative
+ERT    chir_5    "C3'"    "N3'"    "C4'"    "C2'"    positive
+ERT    chir_6    "N3'"    "C3'"    "C7'"    "C8'"    both
+ERT    chir_7    "C4'"    "O4'"    "C5'"    "C3'"    positive
+ERT    chir_8    "C5'"    "O5'"    "C4'"    "C6'"    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ERT    plan-1          C1   0.020
+ERT    plan-1         C12   0.020
+ERT    plan-1         C15   0.020
+ERT    plan-1         C16   0.020
+ERT    plan-1          C2   0.020
+ERT    plan-1          C3   0.020
+ERT    plan-1          C4   0.020
+ERT    plan-1          C5   0.020
+ERT    plan-1          H2   0.020
+ERT    plan-1          H3   0.020
+ERT    plan-1          H4   0.020
+ERT    plan-1          O4   0.020
+ERT    plan-2         C10   0.020
+ERT    plan-2         C11   0.020
+ERT    plan-2         C12   0.020
+ERT    plan-2         C17   0.020
+ERT    plan-2         C18   0.020
+ERT    plan-2         C19   0.020
+ERT    plan-2         C20   0.020
+ERT    plan-2          C5   0.020
+ERT    plan-2          C6   0.020
+ERT    plan-2          C7   0.020
+ERT    plan-2         O11   0.020
+ERT    plan-2          O6   0.020
+ERT    plan-3         C16   0.020
+ERT    plan-3         C17   0.020
+ERT    plan-3          C5   0.020
+ERT    plan-3          O5   0.020
+ERT    plan-4         C12   0.020
+ERT    plan-4         C15   0.020
+ERT    plan-4         C18   0.020
+ERT    plan-4         O12   0.020
+ERT    plan-5         C10   0.020
+ERT    plan-5         C21   0.020
+ERT    plan-5         O10   0.020
+ERT    plan-5         O13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ERT           SMILES              ACDLabs 10.04                                                                                                                                                                  O=C2c1c(O)c5c(c(O)c1C(=O)c3cccc(OC)c23)C(C(=O)OC)C(O)(CC5OC4OC(C(O)C(N(C)C)C4)C)CC
+ERT SMILES_CANONICAL               CACTVS 3.341                                                                                                                                       CC[C@@]1(O)C[C@H](O[C@H]2C[C@@H]([C@H](O)[C@H](C)O2)N(C)C)c3c(O)c4C(=O)c5c(OC)cccc5C(=O)c4c(O)c3[C@H]1C(=O)OC
+ERT           SMILES               CACTVS 3.341                                                                                                                                                CC[C]1(O)C[CH](O[CH]2C[CH]([CH](O)[CH](C)O2)N(C)C)c3c(O)c4C(=O)c5c(OC)cccc5C(=O)c4c(O)c3[CH]1C(=O)OC
+ERT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                     CC[C@]1(C[C@@H](c2c(c(c3c(c2O)C(=O)c4c(cccc4OC)C3=O)O)[C@H]1C(=O)OC)O[C@H]5C[C@@H]([C@@H]([C@@H](O5)C)O)N(C)C)O
+ERT           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                    CCC1(CC(c2c(c(c3c(c2O)C(=O)c4c(cccc4OC)C3=O)O)C1C(=O)OC)OC5CC(C(C(O5)C)O)N(C)C)O
+ERT            InChI                InChI  1.03 InChI=1S/C31H37NO11/c1-7-31(39)12-17(43-18-11-15(32(3)4)25(33)13(2)42-18)20-21(24(31)30(38)41-6)29(37)22-23(28(20)36)27(35)19-14(26(22)34)9-8-10-16(19)40-5/h8-10,13,15,17-18,24-25,33,36-37,39H,7,11-12H2,1-6H3/t13-,15-,17-,18-,24-,25+,31+/m0/s1
+ERT         InChIKey                InChI  1.03                                                                                                                                                                                                                         XSSVYBYWQBNYOH-QJIXERIWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ERT acedrg               243         "dictionary generator"                  
+ERT acedrg_database      11          "data source"                           
+ERT rdkit                2017.03.2   "Chemoinformatics tool"
+ERT refmac5              5.8.0238    "optimization tool"                     

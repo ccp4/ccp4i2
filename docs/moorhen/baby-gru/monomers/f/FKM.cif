@@ -1,0 +1,376 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FKM     FKM      N-[(1R)-1-[3-(Cyclopentyloxy)-phenyl]-ethyl]-3-[(3,4-dihydro-2,4-dioxo-1(2H)-pyrimidinyl)methoxy]-1-propanesulfonamide     NON-POLYMER     60     31     .     
+#
+data_comp_FKM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FKM     O16     O       O       0       4.364       4.275       26.764      
+FKM     S14     S       S3      0       4.959       4.085       25.478      
+FKM     O15     O       O       0       4.522       4.895       24.384      
+FKM     C13     C       CH2     0       6.712       4.331       25.666      
+FKM     C12     C       CH2     0       7.339       3.431       26.717      
+FKM     C11     C       CH2     0       8.850       3.373       26.625      
+FKM     O10     O       O2      0       9.385       4.686       26.731      
+FKM     C9      C       CH2     0       10.725      4.839       26.338      
+FKM     N4      N       NR6     0       10.886      4.832       24.871      
+FKM     C3      C       CR6     0       11.643      3.844       24.246      
+FKM     O8      O       O       0       12.207      2.949       24.861      
+FKM     N2      N       NR6     0       11.724      3.931       22.875      
+FKM     C5      C       CR16    0       10.272      5.811       24.139      
+FKM     C6      C       CR16    0       10.368      5.872       22.795      
+FKM     C1      C       CR6     0       11.132      4.892       22.075      
+FKM     O7      O       O       0       11.289      4.849       20.855      
+FKM     N17     N       NT1     0       4.736       2.530       25.074      
+FKM     C18     C       CH1     0       4.822       2.063       23.671      
+FKM     C19     C       CH3     0       4.151       0.705       23.571      
+FKM     C20     C       CR6     0       6.253       2.042       23.115      
+FKM     C25     C       CR16    0       6.614       2.865       22.042      
+FKM     C24     C       CR16    0       7.907       2.839       21.545      
+FKM     C23     C       CR16    0       8.855       1.997       22.105      
+FKM     C22     C       CR6     0       8.515       1.169       23.169      
+FKM     C21     C       CR16    0       7.216       1.197       23.675      
+FKM     O26     O       O2      0       9.545       0.386       23.638      
+FKM     C27     C       CH1     0       9.317       -0.692      24.587      
+FKM     C31     C       CH2     0       10.517      -1.621      24.579      
+FKM     C30     C       CH2     0       10.613      -2.148      25.995      
+FKM     C29     C       CH2     0       9.870       -1.198      26.877      
+FKM     C28     C       CH2     0       9.293       -0.113      25.992      
+FKM     H1      H       H       0       6.859       5.264       25.910      
+FKM     H2      H       H       0       7.136       4.172       24.805      
+FKM     H3      H       H       0       6.984       2.524       26.619      
+FKM     H4      H       H       0       7.090       3.752       27.607      
+FKM     H5      H       H       0       9.112       2.971       25.770      
+FKM     H6      H       H       0       9.204       2.814       27.350      
+FKM     H7      H       H       0       11.262      4.124       26.736      
+FKM     H8      H       H       0       11.059      5.695       26.677      
+FKM     H9      H       H       0       12.207      3.303       22.470      
+FKM     H10     H       H       0       9.769       6.460       24.583      
+FKM     H11     H       H       0       9.935       6.557       22.328      
+FKM     H12     H       H       0       4.080       2.179       25.569      
+FKM     H13     H       H       0       4.291       2.686       23.118      
+FKM     H14     H       H       0       3.213       0.781       23.816      
+FKM     H15     H       H       0       4.587       0.076       24.171      
+FKM     H16     H       H       0       4.216       0.372       22.659      
+FKM     H17     H       H       0       5.974       3.441       21.655      
+FKM     H18     H       H       0       8.144       3.394       20.823      
+FKM     H19     H       H       0       9.733       1.984       21.763      
+FKM     H20     H       H       0       6.974       0.640       24.398      
+FKM     H21     H       H       0       8.478       -1.185      24.379      
+FKM     H22     H       H       0       10.380      -2.360      23.941      
+FKM     H23     H       H       0       11.336      -1.132      24.333      
+FKM     H24     H       H       0       11.557      -2.208      26.273      
+FKM     H25     H       H       0       10.217      -3.049      26.051      
+FKM     H26     H       H       0       10.478      -0.804      27.546      
+FKM     H27     H       H       0       9.147       -1.667      27.355      
+FKM     H28     H       H       0       8.371       0.104       26.264      
+FKM     H29     H       H       0       9.842       0.704       26.042      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FKM          C1          O7      DOUBLE       n     1.231  0.0100     1.231  0.0100
+FKM         C25         C24      DOUBLE       y     1.382  0.0119     1.382  0.0119
+FKM         C24         C23      SINGLE       y     1.382  0.0111     1.382  0.0111
+FKM          C6          C1      SINGLE       y     1.434  0.0100     1.434  0.0100
+FKM          N2          C1      SINGLE       y     1.381  0.0100     1.381  0.0100
+FKM         C20         C25      SINGLE       y     1.396  0.0100     1.396  0.0100
+FKM         C23         C22      DOUBLE       y     1.382  0.0153     1.382  0.0153
+FKM          C5          C6      DOUBLE       y     1.343  0.0119     1.343  0.0119
+FKM          C3          N2      SINGLE       y     1.373  0.0104     1.373  0.0104
+FKM         C18         C20      SINGLE       n     1.533  0.0200     1.533  0.0200
+FKM         C20         C21      DOUBLE       y     1.391  0.0137     1.391  0.0137
+FKM         C22         C21      SINGLE       y     1.387  0.0100     1.387  0.0100
+FKM         C22         O26      SINGLE       n     1.370  0.0110     1.370  0.0110
+FKM         C18         C19      SINGLE       n     1.517  0.0100     1.517  0.0100
+FKM         N17         C18      SINGLE       n     1.476  0.0123     1.476  0.0123
+FKM         O26         C27      SINGLE       n     1.446  0.0176     1.446  0.0176
+FKM          N4          C5      SINGLE       y     1.362  0.0107     1.362  0.0107
+FKM          C3          O8      DOUBLE       n     1.222  0.0104     1.222  0.0104
+FKM          N4          C3      SINGLE       y     1.384  0.0100     1.384  0.0100
+FKM         C27         C31      SINGLE       n     1.522  0.0200     1.522  0.0200
+FKM         C27         C28      SINGLE       n     1.522  0.0200     1.522  0.0200
+FKM         C31         C30      SINGLE       n     1.512  0.0200     1.512  0.0200
+FKM          C9          N4      SINGLE       n     1.471  0.0100     1.471  0.0100
+FKM         S14         O15      DOUBLE       n     1.430  0.0100     1.430  0.0100
+FKM         S14         N17      SINGLE       n     1.618  0.0100     1.618  0.0100
+FKM         S14         C13      SINGLE       n     1.779  0.0138     1.779  0.0138
+FKM         O16         S14      DOUBLE       n     1.430  0.0100     1.430  0.0100
+FKM         C13         C12      SINGLE       n     1.517  0.0200     1.517  0.0200
+FKM         C29         C28      SINGLE       n     1.512  0.0200     1.512  0.0200
+FKM         C30         C29      SINGLE       n     1.488  0.0200     1.488  0.0200
+FKM         O10          C9      SINGLE       n     1.402  0.0123     1.402  0.0123
+FKM         C11         O10      SINGLE       n     1.414  0.0200     1.414  0.0200
+FKM         C12         C11      SINGLE       n     1.514  0.0100     1.514  0.0100
+FKM         C13          H1      SINGLE       n     1.089  0.0100     0.975  0.0200
+FKM         C13          H2      SINGLE       n     1.089  0.0100     0.975  0.0200
+FKM         C12          H3      SINGLE       n     1.089  0.0100     0.979  0.0100
+FKM         C12          H4      SINGLE       n     1.089  0.0100     0.979  0.0100
+FKM         C11          H5      SINGLE       n     1.089  0.0100     0.981  0.0174
+FKM         C11          H6      SINGLE       n     1.089  0.0100     0.981  0.0174
+FKM          C9          H7      SINGLE       n     1.089  0.0100     0.980  0.0169
+FKM          C9          H8      SINGLE       n     1.089  0.0100     0.980  0.0169
+FKM          N2          H9      SINGLE       n     1.016  0.0100     0.889  0.0200
+FKM          C5         H10      SINGLE       n     1.082  0.0130     0.933  0.0100
+FKM          C6         H11      SINGLE       n     1.082  0.0130     0.935  0.0100
+FKM         N17         H12      SINGLE       n     1.036  0.0160     0.892  0.0200
+FKM         C18         H13      SINGLE       n     1.089  0.0100     0.989  0.0200
+FKM         C19         H14      SINGLE       n     1.089  0.0100     0.973  0.0168
+FKM         C19         H15      SINGLE       n     1.089  0.0100     0.973  0.0168
+FKM         C19         H16      SINGLE       n     1.089  0.0100     0.973  0.0168
+FKM         C25         H17      SINGLE       n     1.082  0.0130     0.944  0.0174
+FKM         C24         H18      SINGLE       n     1.082  0.0130     0.941  0.0152
+FKM         C23         H19      SINGLE       n     1.082  0.0130     0.942  0.0163
+FKM         C21         H20      SINGLE       n     1.082  0.0130     0.945  0.0164
+FKM         C27         H21      SINGLE       n     1.089  0.0100     0.995  0.0100
+FKM         C31         H22      SINGLE       n     1.089  0.0100     0.986  0.0108
+FKM         C31         H23      SINGLE       n     1.089  0.0100     0.986  0.0108
+FKM         C30         H24      SINGLE       n     1.089  0.0100     0.986  0.0110
+FKM         C30         H25      SINGLE       n     1.089  0.0100     0.986  0.0110
+FKM         C29         H26      SINGLE       n     1.089  0.0100     0.986  0.0110
+FKM         C29         H27      SINGLE       n     1.089  0.0100     0.986  0.0110
+FKM         C28         H28      SINGLE       n     1.089  0.0100     0.986  0.0108
+FKM         C28         H29      SINGLE       n     1.089  0.0100     0.986  0.0108
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FKM         O15         S14         N17     107.110    1.50
+FKM         O15         S14         C13     107.501    2.06
+FKM         O15         S14         O16     119.199    1.50
+FKM         N17         S14         C13     106.340    1.53
+FKM         N17         S14         O16     107.110    1.50
+FKM         C13         S14         O16     107.501    2.06
+FKM         S14         C13         C12     111.256    2.92
+FKM         S14         C13          H1     107.816    1.50
+FKM         S14         C13          H2     107.816    1.50
+FKM         C12         C13          H1     109.242    1.50
+FKM         C12         C13          H2     109.242    1.50
+FKM          H1         C13          H2     108.043    1.50
+FKM         C13         C12         C11     113.272    2.91
+FKM         C13         C12          H3     109.334    1.50
+FKM         C13         C12          H4     109.334    1.50
+FKM         C11         C12          H3     108.802    1.50
+FKM         C11         C12          H4     108.802    1.50
+FKM          H3         C12          H4     107.715    1.50
+FKM         O10         C11         C12     109.601    2.19
+FKM         O10         C11          H5     109.668    1.50
+FKM         O10         C11          H6     109.668    1.50
+FKM         C12         C11          H5     109.787    1.50
+FKM         C12         C11          H6     109.787    1.50
+FKM          H5         C11          H6     108.375    1.50
+FKM          C9         O10         C11     114.958    1.57
+FKM          N4          C9         O10     112.798    1.50
+FKM          N4          C9          H7     108.793    1.53
+FKM          N4          C9          H8     108.793    1.53
+FKM         O10          C9          H7     109.488    1.50
+FKM         O10          C9          H8     109.488    1.50
+FKM          H7          C9          H8     108.663    1.50
+FKM          C5          N4          C3     121.064    1.50
+FKM          C5          N4          C9     120.078    1.50
+FKM          C3          N4          C9     118.858    1.50
+FKM          N2          C3          O8     122.071    1.50
+FKM          N2          C3          N4     116.221    1.50
+FKM          O8          C3          N4     121.707    1.50
+FKM          C1          N2          C3     126.949    1.50
+FKM          C1          N2          H9     117.080    1.73
+FKM          C3          N2          H9     115.970    1.50
+FKM          C6          C5          N4     121.299    1.50
+FKM          C6          C5         H10     119.272    1.50
+FKM          N4          C5         H10     119.429    1.50
+FKM          C1          C6          C5     119.977    1.50
+FKM          C1          C6         H11     119.954    1.50
+FKM          C5          C6         H11     120.069    1.50
+FKM          O7          C1          C6     126.024    1.50
+FKM          O7          C1          N2     119.486    1.50
+FKM          C6          C1          N2     114.490    1.50
+FKM         C18         N17         S14     118.416    2.52
+FKM         C18         N17         H12     116.312    3.00
+FKM         S14         N17         H12     110.892    3.00
+FKM         C20         C18         C19     112.585    1.68
+FKM         C20         C18         N17     113.412    1.50
+FKM         C20         C18         H13     107.531    1.50
+FKM         C19         C18         N17     108.411    1.50
+FKM         C19         C18         H13     108.162    3.00
+FKM         N17         C18         H13     107.090    1.50
+FKM         C18         C19         H14     110.841    2.67
+FKM         C18         C19         H15     110.841    2.67
+FKM         C18         C19         H16     110.841    2.67
+FKM         H14         C19         H15     109.407    1.50
+FKM         H14         C19         H16     109.407    1.50
+FKM         H15         C19         H16     109.407    1.50
+FKM         C25         C20         C18     120.360    1.50
+FKM         C25         C20         C21     118.967    1.50
+FKM         C18         C20         C21     120.674    1.53
+FKM         C24         C25         C20     120.457    1.50
+FKM         C24         C25         H17     119.796    1.50
+FKM         C20         C25         H17     119.747    1.50
+FKM         C25         C24         C23     120.322    1.50
+FKM         C25         C24         H18     119.978    1.50
+FKM         C23         C24         H18     119.700    1.50
+FKM         C24         C23         C22     119.940    1.50
+FKM         C24         C23         H19     120.092    1.50
+FKM         C22         C23         H19     119.968    1.50
+FKM         C23         C22         C21     120.108    1.50
+FKM         C23         C22         O26     119.946    3.00
+FKM         C21         C22         O26     119.946    3.00
+FKM         C20         C21         C22     120.206    1.50
+FKM         C20         C21         H20     119.716    1.50
+FKM         C22         C21         H20     120.078    1.50
+FKM         C22         O26         C27     118.287    1.70
+FKM         O26         C27         C31     108.459    2.51
+FKM         O26         C27         C28     108.459    2.51
+FKM         O26         C27         H21     110.694    1.50
+FKM         C31         C27         C28     105.141    1.50
+FKM         C31         C27         H21     111.313    1.50
+FKM         C28         C27         H21     111.313    1.50
+FKM         C27         C31         C30     105.200    1.50
+FKM         C27         C31         H22     110.757    1.50
+FKM         C27         C31         H23     110.757    1.50
+FKM         C30         C31         H22     110.763    1.50
+FKM         C30         C31         H23     110.763    1.50
+FKM         H22         C31         H23     109.046    1.50
+FKM         C31         C30         C29     106.171    2.25
+FKM         C31         C30         H24     110.533    1.50
+FKM         C31         C30         H25     110.533    1.50
+FKM         C29         C30         H24     110.679    1.50
+FKM         C29         C30         H25     110.679    1.50
+FKM         H24         C30         H25     108.634    1.62
+FKM         C28         C29         C30     106.171    2.25
+FKM         C28         C29         H26     110.533    1.50
+FKM         C28         C29         H27     110.533    1.50
+FKM         C30         C29         H26     110.679    1.50
+FKM         C30         C29         H27     110.679    1.50
+FKM         H26         C29         H27     108.634    1.62
+FKM         C27         C28         C29     105.200    1.50
+FKM         C27         C28         H28     110.757    1.50
+FKM         C27         C28         H29     110.757    1.50
+FKM         C29         C28         H28     110.763    1.50
+FKM         C29         C28         H29     110.763    1.50
+FKM         H28         C28         H29     109.046    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FKM              const_15          O7          C1          N2          C3     180.000    10.0     2
+FKM       const_sp2_sp2_5          N4          C5          C6          C1       0.000     5.0     2
+FKM              const_11          O7          C1          C6          C5     180.000    10.0     2
+FKM            sp3_sp3_48         C19         C18         N17         S14      60.000    10.0     3
+FKM            sp3_sp3_40         N17         C18         C19         H14      60.000    10.0     3
+FKM             sp2_sp3_1         C25         C20         C18         C19     150.000    10.0     6
+FKM              const_23         C18         C20         C25         C24     180.000    10.0     2
+FKM              const_43         C18         C20         C21         C22     180.000    10.0     2
+FKM            sp3_sp3_68         C18         N17         S14         O15     180.000    10.0     3
+FKM            sp3_sp3_70         C12         C13         S14         O15     180.000    10.0     3
+FKM              const_25         C23         C24         C25         C20       0.000    10.0     2
+FKM              const_29         C22         C23         C24         C25       0.000    10.0     2
+FKM              const_35         O26         C22         C23         C24     180.000    10.0     2
+FKM              const_38         C20         C21         C22         O26     180.000    10.0     2
+FKM             sp2_sp2_1         C23         C22         O26         C27     180.000     5.0     2
+FKM            sp3_sp3_52         C31         C27         O26         C22     180.000    10.0     3
+FKM             sp3_sp3_7         O26         C27         C31         C30     180.000    10.0     3
+FKM            sp3_sp3_58         O26         C27         C28         C29      60.000    10.0     3
+FKM            sp3_sp3_10         C29         C30         C31         C27     -60.000    10.0     3
+FKM            sp3_sp3_19         C28         C29         C30         C31      60.000    10.0     3
+FKM            sp3_sp3_28         C27         C28         C29         C30     -60.000    10.0     3
+FKM            sp3_sp3_79         C11         C12         C13         S14     180.000    10.0     3
+FKM            sp3_sp3_94         O10         C11         C12         C13     180.000    10.0     3
+FKM            sp3_sp3_91         C12         C11         O10          C9     180.000    10.0     3
+FKM            sp3_sp3_88          N4          C9         O10         C11     180.000    10.0     3
+FKM             sp2_sp3_8          C5          N4          C9         O10     -90.000    10.0     6
+FKM       const_sp2_sp2_2          C6          C5          N4          C9     180.000     5.0     2
+FKM              const_48          O8          C3          N4          C9       0.000    10.0     2
+FKM              const_19          O8          C3          N2          C1     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FKM    chir_1    S14    O15    O16    N17    both
+FKM    chir_2    C18    N17    C20    C19    negative
+FKM    chir_3    C27    O26    C31    C28    both
+FKM    chir_4    N17    S14    C18    H12    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FKM    plan-1          C1   0.020
+FKM    plan-1          C3   0.020
+FKM    plan-1          C5   0.020
+FKM    plan-1          C6   0.020
+FKM    plan-1          C9   0.020
+FKM    plan-1         H10   0.020
+FKM    plan-1         H11   0.020
+FKM    plan-1          H9   0.020
+FKM    plan-1          N2   0.020
+FKM    plan-1          N4   0.020
+FKM    plan-1          O7   0.020
+FKM    plan-1          O8   0.020
+FKM    plan-2         C18   0.020
+FKM    plan-2         C20   0.020
+FKM    plan-2         C21   0.020
+FKM    plan-2         C22   0.020
+FKM    plan-2         C23   0.020
+FKM    plan-2         C24   0.020
+FKM    plan-2         C25   0.020
+FKM    plan-2         H17   0.020
+FKM    plan-2         H18   0.020
+FKM    plan-2         H19   0.020
+FKM    plan-2         H20   0.020
+FKM    plan-2         O26   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FKM            InChI                InChI  1.03 InChI=1S/C21H29N3O6S/c1-16(17-6-4-9-19(14-17)30-18-7-2-3-8-18)23-31(27,28)13-5-12-29-15-24-11-10-20(25)22-21(24)26/h4,6,9-11,14,16,18,23H,2-3,5,7-8,12-13,15H2,1H3,(H,22,25,26)/t16-/m1/s1
+FKM         InChIKey                InChI  1.03                                                                                                                                                                AMCGLRWKUQPNKD-MRXNPFEDSA-N
+FKM SMILES_CANONICAL               CACTVS 3.385                                                                                                                                C[C@@H](N[S](=O)(=O)CCCOCN1C=CC(=O)NC1=O)c2cccc(OC3CCCC3)c2
+FKM           SMILES               CACTVS 3.385                                                                                                                                  C[CH](N[S](=O)(=O)CCCOCN1C=CC(=O)NC1=O)c2cccc(OC3CCCC3)c2
+FKM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                   C[C@H](c1cccc(c1)OC2CCCC2)NS(=O)(=O)CCCOCN3C=CC(=O)NC3=O
+FKM           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                       CC(c1cccc(c1)OC2CCCC2)NS(=O)(=O)CCCOCN3C=CC(=O)NC3=O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FKM acedrg               243         "dictionary generator"                  
+FKM acedrg_database      11          "data source"                           
+FKM rdkit                2017.03.2   "Chemoinformatics tool"
+FKM refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,239 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+M5A     M5A      "(2S)-2-[4-(thiophene-2-carbonyl)phenyl]propanoic acid"     NON-POLYMER     29     18     .     
+#
+data_comp_M5A
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+M5A     O2      O       O       0       62.589      28.549      52.271      
+M5A     C9      C       C       0       62.101      28.874      53.348      
+M5A     C10     C       CR5     0       62.903      28.776      54.578      
+M5A     C11     C       CR15    0       62.562      29.033      55.871      
+M5A     C12     C       CR15    0       63.656      28.805      56.776      
+M5A     C13     C       CR15    0       64.768      28.383      56.123      
+M5A     S       S       S2      0       64.493      28.272      54.488      
+M5A     C4      C       CR6     0       60.702      29.381      53.369      
+M5A     C6      C       CR16    0       60.393      30.622      53.929      
+M5A     C2      C       CR16    0       59.087      31.086      53.936      
+M5A     C7      C       CR16    0       59.670      28.629      52.804      
+M5A     C3      C       CR16    0       58.367      29.104      52.814      
+M5A     C1      C       CR6     0       58.050      30.337      53.381      
+M5A     C       C       CH1     0       56.614      30.858      53.386      
+M5A     C5      C       CH3     0       55.610      29.845      53.930      
+M5A     C8      C       C       0       56.188      31.314      51.972      
+M5A     O       O       OC      -1      54.976      31.517      51.764      
+M5A     O1      O       O       0       57.065      31.479      51.099      
+M5A     H1      H       H       0       61.711      29.329      56.145      
+M5A     H2      H       H       0       63.601      28.933      57.708      
+M5A     H3      H       H       0       65.606      28.170      56.498      
+M5A     H4      H       H       0       61.075      31.144      54.313      
+M5A     H5      H       H       0       58.896      31.924      54.323      
+M5A     H6      H       H       0       59.858      27.793      52.416      
+M5A     H7      H       H       0       57.681      28.582      52.431      
+M5A     H8      H       H       0       56.586      31.654      53.972      
+M5A     H9      H       H       0       55.976      29.419      54.724      
+M5A     H10     H       H       0       55.430      29.168      53.255      
+M5A     H11     H       H       0       54.781      30.300      54.162      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+M5A          C8          O1      DOUBLE       n     1.244  0.0200     1.244  0.0200
+M5A          C8           O      SINGLE       n     1.244  0.0200     1.244  0.0200
+M5A           C          C8      SINGLE       n     1.536  0.0146     1.536  0.0146
+M5A          O2          C9      DOUBLE       n     1.226  0.0100     1.226  0.0100
+M5A          C7          C3      DOUBLE       y     1.383  0.0100     1.383  0.0100
+M5A          C3          C1      SINGLE       y     1.389  0.0100     1.389  0.0100
+M5A          C4          C7      SINGLE       y     1.391  0.0136     1.391  0.0136
+M5A          C1           C      SINGLE       n     1.525  0.0100     1.525  0.0100
+M5A           C          C5      SINGLE       n     1.524  0.0129     1.524  0.0129
+M5A          C2          C1      DOUBLE       y     1.389  0.0100     1.389  0.0100
+M5A          C9          C4      SINGLE       n     1.487  0.0100     1.487  0.0100
+M5A          C9         C10      SINGLE       n     1.467  0.0119     1.467  0.0119
+M5A          C4          C6      DOUBLE       y     1.391  0.0136     1.391  0.0136
+M5A          C6          C2      SINGLE       y     1.383  0.0100     1.383  0.0100
+M5A         C10           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+M5A         C13           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+M5A         C10         C11      DOUBLE       y     1.352  0.0140     1.352  0.0140
+M5A         C11         C12      SINGLE       y     1.413  0.0154     1.413  0.0154
+M5A         C12         C13      DOUBLE       y     1.343  0.0200     1.343  0.0200
+M5A         C11          H1      SINGLE       n     1.082  0.0130     0.942  0.0154
+M5A         C12          H2      SINGLE       n     1.082  0.0130     0.942  0.0153
+M5A         C13          H3      SINGLE       n     1.082  0.0130     0.942  0.0200
+M5A          C6          H4      SINGLE       n     1.082  0.0130     0.941  0.0168
+M5A          C2          H5      SINGLE       n     1.082  0.0130     0.943  0.0173
+M5A          C7          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+M5A          C3          H7      SINGLE       n     1.082  0.0130     0.943  0.0173
+M5A           C          H8      SINGLE       n     1.089  0.0100     0.989  0.0200
+M5A          C5          H9      SINGLE       n     1.089  0.0100     0.973  0.0160
+M5A          C5         H10      SINGLE       n     1.089  0.0100     0.973  0.0160
+M5A          C5         H11      SINGLE       n     1.089  0.0100     0.973  0.0160
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+M5A          O2          C9          C4     119.305    1.50
+M5A          O2          C9         C10     119.845    1.72
+M5A          C4          C9         C10     120.850    3.00
+M5A          C9         C10           S     119.801    3.00
+M5A          C9         C10         C11     131.864    3.00
+M5A           S         C10         C11     108.336    3.00
+M5A         C10         C11         C12     107.620    1.50
+M5A         C10         C11          H1     126.542    1.56
+M5A         C12         C11          H1     125.837    1.50
+M5A         C11         C12         C13     107.373    1.50
+M5A         C11         C12          H2     125.949    1.50
+M5A         C13         C12          H2     126.679    1.50
+M5A           S         C13         C12     108.336    3.00
+M5A           S         C13          H3     123.204    3.00
+M5A         C12         C13          H3     128.460    2.40
+M5A         C10           S         C13     108.336    3.00
+M5A          C7          C4          C9     120.568    2.30
+M5A          C7          C4          C6     118.865    1.50
+M5A          C9          C4          C6     120.568    2.30
+M5A          C4          C6          C2     120.500    1.50
+M5A          C4          C6          H4     119.814    1.50
+M5A          C2          C6          H4     119.686    1.50
+M5A          C1          C2          C6     121.111    1.50
+M5A          C1          C2          H5     119.363    1.50
+M5A          C6          C2          H5     119.526    1.50
+M5A          C3          C7          C4     120.500    1.50
+M5A          C3          C7          H6     119.686    1.50
+M5A          C4          C7          H6     119.814    1.50
+M5A          C7          C3          C1     121.111    1.50
+M5A          C7          C3          H7     119.526    1.50
+M5A          C1          C3          H7     119.363    1.50
+M5A          C3          C1           C     121.043    1.50
+M5A          C3          C1          C2     117.914    1.50
+M5A           C          C1          C2     121.045    1.50
+M5A          C8           C          C1     109.412    1.97
+M5A          C8           C          C5     109.576    1.81
+M5A          C8           C          H8     107.741    1.50
+M5A          C1           C          C5     113.442    1.50
+M5A          C1           C          H8     107.835    1.52
+M5A          C5           C          H8     108.269    1.50
+M5A           C          C5          H9     109.546    1.53
+M5A           C          C5         H10     109.546    1.53
+M5A           C          C5         H11     109.546    1.53
+M5A          H9          C5         H10     109.411    1.50
+M5A          H9          C5         H11     109.411    1.50
+M5A         H10          C5         H11     109.411    1.50
+M5A          O1          C8           O     123.747    1.63
+M5A          O1          C8           C     118.127    1.82
+M5A           O          C8           C     118.127    1.82
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+M5A              const_17          C1          C3          C7          C4       0.000    10.0     2
+M5A              const_23           C          C1          C3          C7     180.000    10.0     2
+M5A             sp2_sp3_7          C3          C1           C          C8     150.000    10.0     6
+M5A             sp3_sp3_1          C8           C          C5          H9     180.000    10.0     3
+M5A             sp2_sp3_2          O1          C8           C          C5     120.000    10.0     6
+M5A             sp2_sp2_8           S         C10          C9          O2     180.000     5.0     2
+M5A             sp2_sp2_2          C7          C4          C9          O2       0.000     5.0     2
+M5A              const_39          C9         C10         C11         C12     180.000    10.0     2
+M5A       const_sp2_sp2_2          C9         C10           S         C13     180.000     5.0     2
+M5A       const_sp2_sp2_9         C10         C11         C12         C13       0.000     5.0     2
+M5A       const_sp2_sp2_5         C11         C12         C13           S       0.000     5.0     2
+M5A       const_sp2_sp2_3         C12         C13           S         C10       0.000     5.0     2
+M5A              const_15          C9          C4          C7          C3     180.000    10.0     2
+M5A              const_35          C9          C4          C6          C2     180.000    10.0     2
+M5A              const_29          C1          C2          C6          C4       0.000    10.0     2
+M5A              const_27           C          C1          C2          C6     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+M5A    chir_1    C    C8    C1    C5    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+M5A    plan-1           C   0.020
+M5A    plan-1          C1   0.020
+M5A    plan-1          C2   0.020
+M5A    plan-1          C3   0.020
+M5A    plan-1          C4   0.020
+M5A    plan-1          C6   0.020
+M5A    plan-1          C7   0.020
+M5A    plan-1          C9   0.020
+M5A    plan-1          H4   0.020
+M5A    plan-1          H5   0.020
+M5A    plan-1          H6   0.020
+M5A    plan-1          H7   0.020
+M5A    plan-2         C10   0.020
+M5A    plan-2         C11   0.020
+M5A    plan-2         C12   0.020
+M5A    plan-2         C13   0.020
+M5A    plan-2          C9   0.020
+M5A    plan-2          H1   0.020
+M5A    plan-2          H2   0.020
+M5A    plan-2          H3   0.020
+M5A    plan-2           S   0.020
+M5A    plan-3         C10   0.020
+M5A    plan-3          C4   0.020
+M5A    plan-3          C9   0.020
+M5A    plan-3          O2   0.020
+M5A    plan-4           C   0.020
+M5A    plan-4          C8   0.020
+M5A    plan-4           O   0.020
+M5A    plan-4          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+M5A           SMILES              ACDLabs 12.01                                                                     O=C(c1ccc(cc1)C(C)C(O)=O)c2cccs2
+M5A            InChI                InChI  1.03 InChI=1S/C14H12O3S/c1-9(14(16)17)10-4-6-11(7-5-10)13(15)12-3-2-8-18-12/h2-9H,1H3,(H,16,17)/t9-/m0/s1
+M5A         InChIKey                InChI  1.03                                                                          MDKGKXOCJGEUJW-VIFPVBQESA-N
+M5A SMILES_CANONICAL               CACTVS 3.385                                                                 C[C@H](C(O)=O)c1ccc(cc1)C(=O)c2sccc2
+M5A           SMILES               CACTVS 3.385                                                                  C[CH](C(O)=O)c1ccc(cc1)C(=O)c2sccc2
+M5A SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                C[C@@H](c1ccc(cc1)C(=O)c2cccs2)C(=O)O
+M5A           SMILES "OpenEye OEToolkits" 2.0.7                                                                     CC(c1ccc(cc1)C(=O)c2cccs2)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+M5A acedrg               243         "dictionary generator"                  
+M5A acedrg_database      11          "data source"                           
+M5A rdkit                2017.03.2   "Chemoinformatics tool"
+M5A refmac5              5.8.0238    "optimization tool"                     

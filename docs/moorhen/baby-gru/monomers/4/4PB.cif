@@ -1,0 +1,167 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4PB     4PB      N-HYDROXY-4-PHOSPHONO-BUTANAMIDE     NON-POLYMER     19     11     .     
+#
+data_comp_4PB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4PB     C1      C       C       0       36.413      31.001      19.443      
+4PB     C2      C       CH2     0       36.158      30.981      20.933      
+4PB     C3      C       CH2     0       35.013      30.056      21.329      
+4PB     C4      C       CH2     0       34.796      29.987      22.841      
+4PB     N       N       NH1     0       35.613      31.778      18.745      
+4PB     O1      O       O       0       37.315      30.324      18.936      
+4PB     ON      O       OH1     0       35.755      31.903      17.368      
+4PB     P       P       P       0       33.452      28.868      23.280      
+4PB     O1P     O       O       0       33.362      28.841      24.769      
+4PB     O2P     O       OP      -1      32.205      29.408      22.666      
+4PB     O3P     O       OP      -1      33.795      27.524      22.730      
+4PB     H21     H       H       0       35.952      31.890      21.239      
+4PB     H22     H       H       0       36.973      30.688      21.394      
+4PB     H31     H       H       0       35.201      29.157      20.989      
+4PB     H32     H       H       0       34.190      30.370      20.900      
+4PB     H41     H       H       0       34.599      30.886      23.176      
+4PB     H42     H       H       0       35.626      29.689      23.268      
+4PB     HN      H       H       0       34.971      32.228      19.137      
+4PB     HON     H       H       0       35.416      31.196      16.998      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4PB          C1          C2      SINGLE       n     1.510  0.0100     1.510  0.0100
+4PB          C1           N      SINGLE       n     1.313  0.0100     1.313  0.0100
+4PB          C1          O1      DOUBLE       n     1.236  0.0100     1.236  0.0100
+4PB          C2          C3      SINGLE       n     1.524  0.0139     1.524  0.0139
+4PB          C3          C4      SINGLE       n     1.529  0.0100     1.529  0.0100
+4PB          C4           P      SINGLE       n     1.803  0.0200     1.803  0.0200
+4PB           N          ON      SINGLE       n     1.389  0.0110     1.389  0.0110
+4PB           P         O1P      DOUBLE       n     1.492  0.0200     1.492  0.0200
+4PB           P         O2P      SINGLE       n     1.492  0.0200     1.492  0.0200
+4PB           P         O3P      SINGLE       n     1.492  0.0200     1.492  0.0200
+4PB          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+4PB          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+4PB          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0178
+4PB          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0178
+4PB          C4         H41      SINGLE       n     1.089  0.0100     0.980  0.0122
+4PB          C4         H42      SINGLE       n     1.089  0.0100     0.980  0.0122
+4PB           N          HN      SINGLE       n     1.016  0.0100     0.875  0.0200
+4PB          ON         HON      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4PB          C2          C1           N     114.903    1.50
+4PB          C2          C1          O1     121.816    1.50
+4PB           N          C1          O1     123.281    1.50
+4PB          C1          C2          C3     112.984    1.82
+4PB          C1          C2         H21     109.247    1.50
+4PB          C1          C2         H22     109.247    1.50
+4PB          C3          C2         H21     108.844    1.50
+4PB          C3          C2         H22     108.844    1.50
+4PB         H21          C2         H22     107.846    1.50
+4PB          C2          C3          C4     113.326    2.10
+4PB          C2          C3         H31     108.915    1.50
+4PB          C2          C3         H32     108.915    1.50
+4PB          C4          C3         H31     109.282    1.50
+4PB          C4          C3         H32     109.282    1.50
+4PB         H31          C3         H32     107.744    1.50
+4PB          C3          C4           P     111.410    2.87
+4PB          C3          C4         H41     108.817    1.50
+4PB          C3          C4         H42     108.817    1.50
+4PB           P          C4         H41     109.545    1.50
+4PB           P          C4         H42     109.545    1.50
+4PB         H41          C4         H42     107.240    1.91
+4PB          C1           N          ON     120.736    1.50
+4PB          C1           N          HN     120.460    1.50
+4PB          ON           N          HN     118.803    2.59
+4PB           N          ON         HON     108.051    2.18
+4PB          C4           P         O1P     108.625    3.00
+4PB          C4           P         O2P     108.625    3.00
+4PB          C4           P         O3P     108.625    3.00
+4PB         O1P           P         O2P     111.786    1.50
+4PB         O1P           P         O3P     111.786    1.50
+4PB         O2P           P         O3P     111.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4PB             sp2_sp3_2           N          C1          C2          C3     120.000    10.0     6
+4PB             sp2_sp2_1          C2          C1           N          ON     180.000     5.0     2
+4PB             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+4PB            sp3_sp3_10          C2          C3          C4           P     180.000    10.0     3
+4PB            sp3_sp3_21          C3          C4           P         O1P      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+4PB    chir_1    P    O2P    O3P    O1P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4PB    plan-1          C1   0.020
+4PB    plan-1          C2   0.020
+4PB    plan-1           N   0.020
+4PB    plan-1          O1   0.020
+4PB    plan-2          C1   0.020
+4PB    plan-2          HN   0.020
+4PB    plan-2           N   0.020
+4PB    plan-2          ON   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4PB           SMILES              ACDLabs 10.04                                                  "[O-]P([O-])(=O)CCCC(=O)NO"
+4PB SMILES_CANONICAL               CACTVS 3.341                                                  ONC(=O)CCC[P]([O-])([O-])=O
+4PB           SMILES               CACTVS 3.341                                                  ONC(=O)CCC[P]([O-])([O-])=O
+4PB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                  C(CC(=O)NO)CP(=O)([O-])[O-]
+4PB           SMILES "OpenEye OEToolkits" 1.5.0                                                  C(CC(=O)NO)CP(=O)([O-])[O-]
+4PB            InChI                InChI  1.03 InChI=1S/C4H10NO5P/c6-4(5-7)2-1-3-11(8,9)10/h7H,1-3H2,(H,5,6)(H2,8,9,10)/p-2
+4PB         InChIKey                InChI  1.03                                                  AKXSFRVADDCWTF-UHFFFAOYSA-L
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4PB acedrg               243         "dictionary generator"                  
+4PB acedrg_database      11          "data source"                           
+4PB rdkit                2017.03.2   "Chemoinformatics tool"
+4PB refmac5              5.8.0238    "optimization tool"                     

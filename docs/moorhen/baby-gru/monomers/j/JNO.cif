@@ -1,0 +1,349 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JNO     JNO      2-{4-[(4-imidazo[1,2-a]pyridin-3-ylpyrimidin-2-yl)amino]piperidin-1-yl}-N-methylacetamide     NON-POLYMER     50     27     .     
+#
+data_comp_JNO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JNO     C01     C       CH3     0       26.932      2.353       27.504      
+JNO     N02     N       NH1     0       26.499      3.674       27.923      
+JNO     C03     C       C       0       27.252      4.498       28.650      
+JNO     O04     O       O       0       28.384      4.214       29.038      
+JNO     C05     C       CH2     0       26.633      5.852       28.975      
+JNO     N06     N       NT      0       25.365      5.765       29.692      
+JNO     C07     C       CH2     0       24.582      6.996       29.547      
+JNO     C08     C       CH2     0       23.218      6.871       30.207      
+JNO     C09     C       CH1     0       23.359      6.514       31.676      
+JNO     C10     C       CH2     0       24.232      5.282       31.841      
+JNO     C11     C       CH2     0       25.561      5.457       31.113      
+JNO     N12     N       NH1     0       22.051      6.340       32.302      
+JNO     C13     C       CR6     0       21.249      7.358       32.740      
+JNO     N14     N       NRD6    0       21.558      8.630       32.374      
+JNO     C15     C       CR6     0       20.784      9.638       32.810      
+JNO     C16     C       CR16    0       19.664      9.368       33.598      
+JNO     C17     C       CR16    0       19.406      8.046       33.922      
+JNO     N18     N       NRD6    0       20.179      7.040       33.506      
+JNO     C19     C       CR5     0       21.116      11.014      32.417      
+JNO     N20     N       NR5     0       22.355      11.483      31.984      
+JNO     C21     C       CR16    0       23.575      10.857      31.804      
+JNO     C22     C       CR16    0       24.630      11.574      31.364      
+JNO     C23     C       CR16    0       24.500      12.956      31.089      
+JNO     C24     C       CR16    0       23.306      13.580      31.264      
+JNO     C25     C       CR56    0       22.199      12.840      31.722      
+JNO     N26     N       NRD5    0       20.950      13.218      31.966      
+JNO     C27     C       CR15    0       20.284      12.105      32.390      
+JNO     H01     H       H       0       27.493      1.952       28.188      
+JNO     H01A    H       H       0       27.434      2.423       26.675      
+JNO     H01B    H       H       0       26.154      1.789       27.360      
+JNO     HN02    H       H       0       25.705      3.940       27.677      
+JNO     H05     H       H       0       26.496      6.337       28.134      
+JNO     H05A    H       H       0       27.269      6.371       29.512      
+JNO     H07     H       H       0       25.069      7.736       29.949      
+JNO     H07A    H       H       0       24.459      7.194       28.602      
+JNO     H08     H       H       0       22.696      6.175       29.752      
+JNO     H08A    H       H       0       22.734      7.720       30.120      
+JNO     H09     H       H       0       23.821      7.261       32.122      
+JNO     H10     H       H       0       23.761      4.499       31.481      
+JNO     H10A    H       H       0       24.398      5.126       32.796      
+JNO     H11     H       H       0       26.063      6.179       31.531      
+JNO     H11A    H       H       0       26.082      4.640       31.201      
+JNO     HN12    H       H       0       21.748      5.526       32.405      
+JNO     H16     H       H       0       19.101      10.065      33.907      
+JNO     H17     H       H       0       18.651      7.846       34.463      
+JNO     H21     H       H       0       23.671      9.941       31.985      
+JNO     H22     H       H       0       25.459      11.150      31.241      
+JNO     H23     H       H       0       25.242      13.446      30.784      
+JNO     H24     H       H       0       23.217      14.497      31.082      
+JNO     H27     H       H       0       19.366      12.107      32.632      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JNO         C01         N02      SINGLE       n     1.450  0.0100     1.450  0.0100
+JNO         N02         C03      SINGLE       n     1.327  0.0100     1.327  0.0100
+JNO         C03         O04      DOUBLE       n     1.229  0.0102     1.229  0.0102
+JNO         C03         C05      SINGLE       n     1.521  0.0119     1.521  0.0119
+JNO         C05         N06      SINGLE       n     1.454  0.0100     1.454  0.0100
+JNO         N06         C07      SINGLE       n     1.462  0.0100     1.462  0.0100
+JNO         N06         C11      SINGLE       n     1.462  0.0100     1.462  0.0100
+JNO         C07         C08      SINGLE       n     1.517  0.0183     1.517  0.0183
+JNO         C08         C09      SINGLE       n     1.517  0.0100     1.517  0.0100
+JNO         C09         C10      SINGLE       n     1.517  0.0100     1.517  0.0100
+JNO         C09         N12      SINGLE       n     1.457  0.0100     1.457  0.0100
+JNO         C10         C11      SINGLE       n     1.517  0.0183     1.517  0.0183
+JNO         N12         C13      SINGLE       n     1.350  0.0189     1.350  0.0189
+JNO         C13         N14      DOUBLE       y     1.354  0.0100     1.354  0.0100
+JNO         C13         N18      SINGLE       y     1.348  0.0100     1.348  0.0100
+JNO         N14         C15      SINGLE       y     1.342  0.0100     1.342  0.0100
+JNO         C15         C16      DOUBLE       y     1.392  0.0100     1.392  0.0100
+JNO         C15         C19      SINGLE       n     1.463  0.0102     1.463  0.0102
+JNO         C16         C17      SINGLE       y     1.381  0.0100     1.381  0.0100
+JNO         C17         N18      DOUBLE       y     1.331  0.0100     1.331  0.0100
+JNO         C19         N20      SINGLE       y     1.389  0.0100     1.389  0.0100
+JNO         C19         C27      DOUBLE       y     1.371  0.0104     1.371  0.0104
+JNO         N20         C21      SINGLE       y     1.376  0.0100     1.376  0.0100
+JNO         N20         C25      SINGLE       y     1.388  0.0100     1.388  0.0100
+JNO         C21         C22      DOUBLE       y     1.347  0.0100     1.347  0.0100
+JNO         C22         C23      SINGLE       y     1.412  0.0132     1.412  0.0132
+JNO         C23         C24      DOUBLE       y     1.356  0.0100     1.356  0.0100
+JNO         C24         C25      SINGLE       y     1.403  0.0120     1.403  0.0120
+JNO         C25         N26      DOUBLE       y     1.329  0.0106     1.329  0.0106
+JNO         N26         C27      SINGLE       y     1.363  0.0127     1.363  0.0127
+JNO         C01         H01      SINGLE       n     1.089  0.0100     0.971  0.0198
+JNO         C01        H01A      SINGLE       n     1.089  0.0100     0.971  0.0198
+JNO         C01        H01B      SINGLE       n     1.089  0.0100     0.971  0.0198
+JNO         N02        HN02      SINGLE       n     1.016  0.0100     0.872  0.0200
+JNO         C05         H05      SINGLE       n     1.089  0.0100     0.980  0.0178
+JNO         C05        H05A      SINGLE       n     1.089  0.0100     0.980  0.0178
+JNO         C07         H07      SINGLE       n     1.089  0.0100     0.973  0.0129
+JNO         C07        H07A      SINGLE       n     1.089  0.0100     0.973  0.0129
+JNO         C08         H08      SINGLE       n     1.089  0.0100     0.982  0.0100
+JNO         C08        H08A      SINGLE       n     1.089  0.0100     0.982  0.0100
+JNO         C09         H09      SINGLE       n     1.089  0.0100     0.985  0.0100
+JNO         C10         H10      SINGLE       n     1.089  0.0100     0.982  0.0100
+JNO         C10        H10A      SINGLE       n     1.089  0.0100     0.982  0.0100
+JNO         C11         H11      SINGLE       n     1.089  0.0100     0.973  0.0129
+JNO         C11        H11A      SINGLE       n     1.089  0.0100     0.973  0.0129
+JNO         N12        HN12      SINGLE       n     1.016  0.0100     0.873  0.0200
+JNO         C16         H16      SINGLE       n     1.082  0.0130     0.948  0.0100
+JNO         C17         H17      SINGLE       n     1.082  0.0130     0.950  0.0100
+JNO         C21         H21      SINGLE       n     1.082  0.0130     0.942  0.0176
+JNO         C22         H22      SINGLE       n     1.082  0.0130     0.939  0.0164
+JNO         C23         H23      SINGLE       n     1.082  0.0130     0.940  0.0129
+JNO         C24         H24      SINGLE       n     1.082  0.0130     0.939  0.0110
+JNO         C27         H27      SINGLE       n     1.082  0.0130     0.949  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JNO         N02         C01         H01     109.480    1.50
+JNO         N02         C01        H01A     109.480    1.50
+JNO         N02         C01        H01B     109.480    1.50
+JNO         H01         C01        H01A     109.279    1.79
+JNO         H01         C01        H01B     109.279    1.79
+JNO        H01A         C01        H01B     109.279    1.79
+JNO         C01         N02         C03     122.359    1.50
+JNO         C01         N02        HN02     118.653    1.58
+JNO         C03         N02        HN02     118.988    1.94
+JNO         N02         C03         O04     122.817    1.50
+JNO         N02         C03         C05     115.705    1.65
+JNO         O04         C03         C05     121.478    1.50
+JNO         C03         C05         N06     113.330    1.58
+JNO         C03         C05         H05     109.182    1.50
+JNO         C03         C05        H05A     109.182    1.50
+JNO         N06         C05         H05     108.934    1.50
+JNO         N06         C05        H05A     108.934    1.50
+JNO         H05         C05        H05A     107.786    1.50
+JNO         C05         N06         C07     110.934    1.50
+JNO         C05         N06         C11     110.934    1.50
+JNO         C07         N06         C11     109.788    1.50
+JNO         N06         C07         C08     111.289    1.50
+JNO         N06         C07         H07     109.353    1.50
+JNO         N06         C07        H07A     109.353    1.50
+JNO         C08         C07         H07     109.494    1.50
+JNO         C08         C07        H07A     109.494    1.50
+JNO         H07         C07        H07A     108.159    1.50
+JNO         C07         C08         C09     110.795    1.50
+JNO         C07         C08         H08     109.507    1.50
+JNO         C07         C08        H08A     109.507    1.50
+JNO         C09         C08         H08     109.341    1.50
+JNO         C09         C08        H08A     109.341    1.50
+JNO         H08         C08        H08A     108.048    1.50
+JNO         C08         C09         C10     110.769    1.50
+JNO         C08         C09         N12     111.209    2.04
+JNO         C08         C09         H09     107.655    1.50
+JNO         C10         C09         N12     111.209    2.04
+JNO         C10         C09         H09     107.655    1.50
+JNO         N12         C09         H09     108.206    1.50
+JNO         C09         C10         C11     110.795    1.50
+JNO         C09         C10         H10     109.341    1.50
+JNO         C09         C10        H10A     109.341    1.50
+JNO         C11         C10         H10     109.507    1.50
+JNO         C11         C10        H10A     109.507    1.50
+JNO         H10         C10        H10A     108.048    1.50
+JNO         N06         C11         C10     111.289    1.50
+JNO         N06         C11         H11     109.353    1.50
+JNO         N06         C11        H11A     109.353    1.50
+JNO         C10         C11         H11     109.494    1.50
+JNO         C10         C11        H11A     109.494    1.50
+JNO         H11         C11        H11A     108.159    1.50
+JNO         C09         N12         C13     123.282    2.33
+JNO         C09         N12        HN12     118.872    1.57
+JNO         C13         N12        HN12     117.846    2.15
+JNO         N12         C13         N14     118.092    1.62
+JNO         N12         C13         N18     118.092    1.62
+JNO         N14         C13         N18     123.816    1.50
+JNO         C13         N14         C15     117.856    1.50
+JNO         N14         C15         C16     121.428    1.50
+JNO         N14         C15         C19     117.462    2.83
+JNO         C16         C15         C19     121.110    2.19
+JNO         C15         C16         C17     118.271    1.50
+JNO         C15         C16         H16     120.753    1.50
+JNO         C17         C16         H16     120.976    1.50
+JNO         C16         C17         N18     122.313    1.50
+JNO         C16         C17         H17     119.009    1.50
+JNO         N18         C17         H17     118.679    1.50
+JNO         C13         N18         C17     116.316    1.50
+JNO         C15         C19         N20     125.064    1.50
+JNO         C15         C19         C27     128.736    1.50
+JNO         N20         C19         C27     106.200    1.50
+JNO         C19         N20         C21     130.671    1.50
+JNO         C19         N20         C25     107.917    1.65
+JNO         C21         N20         C25     121.412    1.50
+JNO         N20         C21         C22     119.251    1.50
+JNO         N20         C21         H21     120.090    1.50
+JNO         C22         C21         H21     120.658    1.50
+JNO         C21         C22         C23     120.790    1.50
+JNO         C21         C22         H22     119.488    1.50
+JNO         C23         C22         H22     119.722    1.50
+JNO         C22         C23         C24     120.491    1.50
+JNO         C22         C23         H23     119.866    1.50
+JNO         C24         C23         H23     119.643    1.50
+JNO         C23         C24         C25     119.292    1.50
+JNO         C23         C24         H24     120.524    1.50
+JNO         C25         C24         H24     120.184    1.50
+JNO         N20         C25         C24     118.764    1.50
+JNO         N20         C25         N26     110.409    1.50
+JNO         C24         C25         N26     130.828    1.50
+JNO         C25         N26         C27     105.561    1.50
+JNO         C19         C27         N26     109.914    1.50
+JNO         C19         C27         H27     126.552    3.00
+JNO         N26         C27         H27     123.534    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JNO             sp2_sp3_1         C03         N02         C01         H01       0.000    10.0     6
+JNO             sp2_sp2_5         N14         C13         N12         C09     180.000     5.0     2
+JNO       const_sp2_sp2_2         N12         C13         N14         C15     180.000     5.0     2
+JNO              const_48         N12         C13         N18         C17     180.000    10.0     2
+JNO       const_sp2_sp2_3         C16         C15         N14         C13       0.000     5.0     2
+JNO       const_sp2_sp2_5         N14         C15         C16         C17       0.000     5.0     2
+JNO            sp2_sp2_11         N14         C15         C19         N20       0.000     5.0     2
+JNO       const_sp2_sp2_9         C15         C16         C17         N18       0.000     5.0     2
+JNO              const_13         C16         C17         N18         C13       0.000    10.0     2
+JNO              const_18         C15         C19         N20         C21       0.000    10.0     2
+JNO              const_51         C15         C19         C27         N26     180.000    10.0     2
+JNO              const_28         C22         C21         N20         C19     180.000    10.0     2
+JNO              const_20         C24         C25         N20         C19     180.000    10.0     2
+JNO             sp2_sp2_3         O04         C03         N02         C01       0.000     5.0     2
+JNO              const_31         N20         C21         C22         C23       0.000    10.0     2
+JNO              const_35         C21         C22         C23         C24       0.000    10.0     2
+JNO              const_39         C22         C23         C24         C25       0.000    10.0     2
+JNO              const_43         C23         C24         C25         N20       0.000    10.0     2
+JNO              const_23         N20         C25         N26         C27       0.000    10.0     2
+JNO              const_25         C19         C27         N26         C25       0.000    10.0     2
+JNO             sp2_sp3_8         N02         C03         C05         N06     120.000    10.0     6
+JNO            sp3_sp3_44         C03         C05         N06         C07     -60.000    10.0     3
+JNO            sp3_sp3_50         C10         C11         N06         C05     -60.000    10.0     3
+JNO             sp3_sp3_2         C08         C07         N06         C05     180.000    10.0     3
+JNO             sp3_sp3_7         N06         C07         C08         C09     -60.000    10.0     3
+JNO            sp3_sp3_18         C07         C08         C09         N12     -60.000    10.0     3
+JNO            sp2_sp3_14         C13         N12         C09         C08     120.000    10.0     6
+JNO            sp3_sp3_28         N12         C09         C10         C11     180.000    10.0     3
+JNO            sp3_sp3_34         C09         C10         C11         N06      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JNO    chir_1    N06    C05    C07    C11    both
+JNO    chir_2    C09    N12    C08    C10    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JNO    plan-1         C15   0.020
+JNO    plan-1         C19   0.020
+JNO    plan-1         C21   0.020
+JNO    plan-1         C22   0.020
+JNO    plan-1         C23   0.020
+JNO    plan-1         C24   0.020
+JNO    plan-1         C25   0.020
+JNO    plan-1         C27   0.020
+JNO    plan-1         H21   0.020
+JNO    plan-1         H22   0.020
+JNO    plan-1         H23   0.020
+JNO    plan-1         H24   0.020
+JNO    plan-1         H27   0.020
+JNO    plan-1         N20   0.020
+JNO    plan-1         N26   0.020
+JNO    plan-2         C13   0.020
+JNO    plan-2         C15   0.020
+JNO    plan-2         C16   0.020
+JNO    plan-2         C17   0.020
+JNO    plan-2         C19   0.020
+JNO    plan-2         H16   0.020
+JNO    plan-2         H17   0.020
+JNO    plan-2         N12   0.020
+JNO    plan-2         N14   0.020
+JNO    plan-2         N18   0.020
+JNO    plan-3         C01   0.020
+JNO    plan-3         C03   0.020
+JNO    plan-3        HN02   0.020
+JNO    plan-3         N02   0.020
+JNO    plan-4         C03   0.020
+JNO    plan-4         C05   0.020
+JNO    plan-4         N02   0.020
+JNO    plan-4         O04   0.020
+JNO    plan-5         C09   0.020
+JNO    plan-5         C13   0.020
+JNO    plan-5        HN12   0.020
+JNO    plan-5         N12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JNO           SMILES              ACDLabs 10.04                                                                                                                       O=C(NC)CN4CCC(Nc3nc(c2cnc1ccccn12)ccn3)CC4
+JNO SMILES_CANONICAL               CACTVS 3.341                                                                                                                       CNC(=O)CN1CCC(CC1)Nc2nccc(n2)c3cnc4ccccn34
+JNO           SMILES               CACTVS 3.341                                                                                                                       CNC(=O)CN1CCC(CC1)Nc2nccc(n2)c3cnc4ccccn34
+JNO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                       CNC(=O)CN1CCC(CC1)Nc2nccc(n2)c3cnc4n3cccc4
+JNO           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                       CNC(=O)CN1CCC(CC1)Nc2nccc(n2)c3cnc4n3cccc4
+JNO            InChI                InChI  1.03 InChI=1S/C19H23N7O/c1-20-18(27)13-25-10-6-14(7-11-25)23-19-21-8-5-15(24-19)16-12-22-17-4-2-3-9-26(16)17/h2-5,8-9,12,14H,6-7,10-11,13H2,1H3,(H,20,27)(H,21,23,24)
+JNO         InChIKey                InChI  1.03                                                                                                                                      AJLILYAPRHIFAS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JNO acedrg               243         "dictionary generator"                  
+JNO acedrg_database      11          "data source"                           
+JNO rdkit                2017.03.2   "Chemoinformatics tool"
+JNO refmac5              5.8.0238    "optimization tool"                     

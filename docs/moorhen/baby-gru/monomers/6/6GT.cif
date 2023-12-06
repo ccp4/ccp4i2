@@ -1,0 +1,167 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+6GT     6GT      "2-oxoheptanedioic acid"     NON-POLYMER     20     12     .     
+#
+data_comp_6GT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+6GT     OAA     O       O       0       93.264      95.235      110.200     
+6GT     CAJ     C       C       0       92.555      95.798      109.342     
+6GT     OAD     O       OC      -1      91.924      95.184      108.459     
+6GT     CAH     C       CH2     0       92.453      97.314      109.375     
+6GT     CAF     C       CH2     0       91.171      97.843      109.941     
+6GT     CAG     C       CH2     0       91.094      97.708      111.457     
+6GT     CAI     C       CH2     0       89.877      98.377      112.086     
+6GT     CAL     C       C       0       88.582      97.662      111.783     
+6GT     OAC     O       O       0       87.829      98.192      110.958     
+6GT     CAK     C       C       0       88.224      96.520      112.343     
+6GT     OAB     O       O       0       87.146      96.001      112.032     
+6GT     OAE     O       OC      -1      88.977      95.993      113.167     
+6GT     H2      H       H       0       92.556      97.650      108.459     
+6GT     H3      H       H       0       93.202      97.665      109.903     
+6GT     H4      H       H       0       90.418      97.359      109.541     
+6GT     H5      H       H       0       91.078      98.789      109.703     
+6GT     H6      H       H       0       91.903      98.100      111.848     
+6GT     H7      H       H       0       91.084      96.756      111.688     
+6GT     H8      H       H       0       89.816      99.294      111.758     
+6GT     H9      H       H       0       90.000      98.417      113.053     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+6GT         OAA         CAJ      DOUBLE       n     1.247  0.0187     1.247  0.0187
+6GT         CAJ         OAD      SINGLE       n     1.247  0.0187     1.247  0.0187
+6GT         CAJ         CAH      SINGLE       n     1.519  0.0109     1.519  0.0109
+6GT         CAH         CAF      SINGLE       n     1.497  0.0200     1.497  0.0200
+6GT         CAF         CAG      SINGLE       n     1.523  0.0147     1.523  0.0147
+6GT         CAL         OAC      DOUBLE       n     1.230  0.0184     1.230  0.0184
+6GT         CAG         CAI      SINGLE       n     1.522  0.0200     1.522  0.0200
+6GT         CAI         CAL      SINGLE       n     1.508  0.0100     1.508  0.0100
+6GT         CAL         CAK      SINGLE       n     1.299  0.0200     1.299  0.0200
+6GT         CAK         OAB      DOUBLE       n     1.230  0.0200     1.230  0.0200
+6GT         CAK         OAE      SINGLE       n     1.230  0.0200     1.230  0.0200
+6GT         CAH          H2      SINGLE       n     1.089  0.0100     0.981  0.0185
+6GT         CAH          H3      SINGLE       n     1.089  0.0100     0.981  0.0185
+6GT         CAF          H4      SINGLE       n     1.089  0.0100     0.980  0.0160
+6GT         CAF          H5      SINGLE       n     1.089  0.0100     0.980  0.0160
+6GT         CAG          H6      SINGLE       n     1.089  0.0100     0.980  0.0160
+6GT         CAG          H7      SINGLE       n     1.089  0.0100     0.980  0.0160
+6GT         CAI          H8      SINGLE       n     1.089  0.0100     0.975  0.0121
+6GT         CAI          H9      SINGLE       n     1.089  0.0100     0.975  0.0121
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+6GT         OAA         CAJ         OAD     123.571    1.50
+6GT         OAA         CAJ         CAH     118.214    1.64
+6GT         OAD         CAJ         CAH     118.214    1.64
+6GT         CAJ         CAH         CAF     114.612    2.19
+6GT         CAJ         CAH          H2     108.404    1.50
+6GT         CAJ         CAH          H3     108.404    1.50
+6GT         CAF         CAH          H2     108.815    1.50
+6GT         CAF         CAH          H3     108.815    1.50
+6GT          H2         CAH          H3     107.521    1.50
+6GT         CAH         CAF         CAG     112.553    1.50
+6GT         CAH         CAF          H4     109.164    1.50
+6GT         CAH         CAF          H5     109.164    1.50
+6GT         CAG         CAF          H4     108.698    1.50
+6GT         CAG         CAF          H5     108.698    1.50
+6GT          H4         CAF          H5     107.646    1.50
+6GT         CAF         CAG         CAI     114.272    1.50
+6GT         CAF         CAG          H6     108.698    1.50
+6GT         CAF         CAG          H7     108.698    1.50
+6GT         CAI         CAG          H6     108.724    1.50
+6GT         CAI         CAG          H7     108.724    1.50
+6GT          H6         CAG          H7     107.646    1.50
+6GT         CAG         CAI         CAL     112.665    1.76
+6GT         CAG         CAI          H8     108.866    1.50
+6GT         CAG         CAI          H9     108.866    1.50
+6GT         CAL         CAI          H8     108.680    1.71
+6GT         CAL         CAI          H9     108.680    1.71
+6GT          H8         CAI          H9     107.764    1.50
+6GT         OAC         CAL         CAI     117.958    1.51
+6GT         OAC         CAL         CAK     119.042    3.00
+6GT         CAI         CAL         CAK     122.999    2.52
+6GT         CAL         CAK         OAB     118.654    3.00
+6GT         CAL         CAK         OAE     118.654    3.00
+6GT         OAB         CAK         OAE     122.692    1.63
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+6GT             sp2_sp3_2         OAA         CAJ         CAH         CAF     120.000    10.0     6
+6GT             sp3_sp3_1         CAG         CAF         CAH         CAJ     180.000    10.0     3
+6GT            sp3_sp3_10         CAH         CAF         CAG         CAI     180.000    10.0     3
+6GT            sp3_sp3_19         CAF         CAG         CAI         CAL     180.000    10.0     3
+6GT             sp2_sp3_8         OAC         CAL         CAI         CAG     120.000    10.0     6
+6GT             sp2_sp2_2         OAB         CAK         CAL         OAC       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+6GT    plan-1         CAH   0.020
+6GT    plan-1         CAJ   0.020
+6GT    plan-1         OAA   0.020
+6GT    plan-1         OAD   0.020
+6GT    plan-2         CAI   0.020
+6GT    plan-2         CAK   0.020
+6GT    plan-2         CAL   0.020
+6GT    plan-2         OAC   0.020
+6GT    plan-3         CAK   0.020
+6GT    plan-3         CAL   0.020
+6GT    plan-3         OAB   0.020
+6GT    plan-3         OAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+6GT           SMILES              ACDLabs 12.01                                                 O=C(CCCCC(C(=O)O)=O)O
+6GT            InChI                InChI  1.03 InChI=1S/C7H10O5/c8-5(7(11)12)3-1-2-4-6(9)10/h1-4H2,(H,9,10)(H,11,12)
+6GT         InChIKey                InChI  1.03                                           HABHUTWTLGRDDU-UHFFFAOYSA-N
+6GT SMILES_CANONICAL               CACTVS 3.385                                                 OC(=O)CCCCC(=O)C(O)=O
+6GT           SMILES               CACTVS 3.385                                                 OC(=O)CCCCC(=O)C(O)=O
+6GT SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                               C(CCC(=O)O)CC(=O)C(=O)O
+6GT           SMILES "OpenEye OEToolkits" 2.0.4                                               C(CCC(=O)O)CC(=O)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+6GT acedrg               243         "dictionary generator"                  
+6GT acedrg_database      11          "data source"                           
+6GT rdkit                2017.03.2   "Chemoinformatics tool"
+6GT refmac5              5.8.0238    "optimization tool"                     

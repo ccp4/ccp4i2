@@ -1,0 +1,245 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+1PB     1PB      1,4-DIPHENYL-2-BUTENE     NON-POLYMER     32     16     .     
+#
+data_comp_1PB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+1PB     CP      C       CR16    0       53.947      153.905     25.181      
+1PB     CA      C       C1      0       50.712      159.231     29.746      
+1PB     CB      C       C1      0       50.780      157.951     29.420      
+1PB     CC      C       CH2     0       51.718      157.375     28.392      
+1PB     CD      C       CH2     0       51.406      155.919     28.036      
+1PB     CG      C       CR6     0       49.861      159.850     30.774      
+1PB     CH      C       CR16    0       48.582      159.365     31.065      
+1PB     CI      C       CR16    0       47.792      159.966     32.034      
+1PB     C1      C       CR6     0       52.316      155.240     27.030      
+1PB     CJ      C       CR16    0       48.259      161.064     32.728      
+1PB     CK      C       CR16    0       49.517      161.564     32.455      
+1PB     CL      C       CR16    0       50.310      160.965     31.487      
+1PB     CN      C       CR16    0       52.101      153.902     26.713      
+1PB     CO      C       CR16    0       52.908      153.239     25.797      
+1PB     CQ      C       CR16    0       54.179      155.230     25.479      
+1PB     CR      C       CR16    0       53.372      155.896     26.394      
+1PB     HP      H       H       0       54.496      153.456     24.559      
+1PB     HA      H       H       0       51.273      159.823     29.267      
+1PB     HB      H       H       0       50.202      157.348     29.861      
+1PB     HCC1    H       H       0       52.633      157.435     28.738      
+1PB     HCC2    H       H       0       51.667      157.925     27.582      
+1PB     HDC1    H       H       0       50.489      155.880     27.689      
+1PB     HDC2    H       H       0       51.423      155.393     28.863      
+1PB     HH      H       H       0       48.254      158.617     30.597      
+1PB     HI      H       H       0       46.934      159.623     32.219      
+1PB     HJ      H       H       0       47.721      161.472     33.387      
+1PB     HK      H       H       0       49.839      162.314     32.928      
+1PB     HL      H       H       0       51.166      161.313     31.308      
+1PB     HN      H       H       0       51.392      153.437     27.130      
+1PB     HO      H       H       0       52.746      152.331     25.597      
+1PB     HQ      H       H       0       54.889      155.689     25.059      
+1PB     HR      H       H       0       53.546      156.802     26.585      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+1PB          CP          CO      DOUBLE       y     1.376  0.0124     1.376  0.0124
+1PB          CP          CQ      SINGLE       y     1.374  0.0127     1.374  0.0127
+1PB          CA          CB      DOUBLE       n     1.321  0.0145     1.321  0.0145
+1PB          CA          CG      SINGLE       n     1.470  0.0132     1.470  0.0132
+1PB          CB          CC      SINGLE       n     1.506  0.0104     1.506  0.0104
+1PB          CC          CD      SINGLE       n     1.521  0.0172     1.521  0.0172
+1PB          CD          C1      SINGLE       n     1.510  0.0100     1.510  0.0100
+1PB          CG          CH      DOUBLE       y     1.394  0.0100     1.394  0.0100
+1PB          CG          CL      SINGLE       y     1.394  0.0100     1.394  0.0100
+1PB          CH          CI      SINGLE       y     1.384  0.0100     1.384  0.0100
+1PB          CI          CJ      DOUBLE       y     1.376  0.0114     1.376  0.0114
+1PB          C1          CN      DOUBLE       y     1.385  0.0111     1.385  0.0111
+1PB          C1          CR      SINGLE       y     1.385  0.0111     1.385  0.0111
+1PB          CJ          CK      SINGLE       y     1.376  0.0124     1.376  0.0124
+1PB          CK          CL      DOUBLE       y     1.384  0.0100     1.384  0.0100
+1PB          CN          CO      SINGLE       y     1.386  0.0100     1.386  0.0100
+1PB          CQ          CR      DOUBLE       y     1.386  0.0100     1.386  0.0100
+1PB          CP          HP      SINGLE       n     1.082  0.0130     0.944  0.0161
+1PB          CA          HA      SINGLE       n     1.082  0.0130     0.946  0.0187
+1PB          CB          HB      SINGLE       n     1.082  0.0130     0.944  0.0181
+1PB          CC        HCC1      SINGLE       n     1.089  0.0100     0.980  0.0119
+1PB          CC        HCC2      SINGLE       n     1.089  0.0100     0.980  0.0119
+1PB          CD        HDC1      SINGLE       n     1.089  0.0100     0.981  0.0169
+1PB          CD        HDC2      SINGLE       n     1.089  0.0100     0.981  0.0169
+1PB          CH          HH      SINGLE       n     1.082  0.0130     0.941  0.0168
+1PB          CI          HI      SINGLE       n     1.082  0.0130     0.943  0.0180
+1PB          CJ          HJ      SINGLE       n     1.082  0.0130     0.944  0.0161
+1PB          CK          HK      SINGLE       n     1.082  0.0130     0.943  0.0180
+1PB          CL          HL      SINGLE       n     1.082  0.0130     0.941  0.0168
+1PB          CN          HN      SINGLE       n     1.082  0.0130     0.944  0.0174
+1PB          CO          HO      SINGLE       n     1.082  0.0130     0.944  0.0175
+1PB          CQ          HQ      SINGLE       n     1.082  0.0130     0.944  0.0175
+1PB          CR          HR      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+1PB          CO          CP          CQ     120.043    1.50
+1PB          CO          CP          HP     119.979    1.50
+1PB          CQ          CP          HP     119.979    1.50
+1PB          CB          CA          CG     126.740    1.50
+1PB          CB          CA          HA     117.273    1.86
+1PB          CG          CA          HA     115.988    1.50
+1PB          CA          CB          CC     125.750    2.58
+1PB          CA          CB          HB     117.434    1.82
+1PB          CC          CB          HB     116.816    1.73
+1PB          CB          CC          CD     112.881    1.57
+1PB          CB          CC        HCC1     108.797    1.50
+1PB          CB          CC        HCC2     108.797    1.50
+1PB          CD          CC        HCC1     109.108    1.50
+1PB          CD          CC        HCC2     109.108    1.50
+1PB        HCC1          CC        HCC2     107.705    1.50
+1PB          CC          CD          C1     113.063    1.84
+1PB          CC          CD        HDC1     108.959    1.50
+1PB          CC          CD        HDC2     108.959    1.50
+1PB          C1          CD        HDC1     108.803    1.50
+1PB          C1          CD        HDC2     108.803    1.50
+1PB        HDC1          CD        HDC2     107.745    1.50
+1PB          CA          CG          CH     121.141    2.00
+1PB          CA          CG          CL     121.141    2.00
+1PB          CH          CG          CL     117.718    1.50
+1PB          CG          CH          CI     120.956    1.50
+1PB          CG          CH          HH     119.405    1.50
+1PB          CI          CH          HH     119.638    1.50
+1PB          CH          CI          CJ     120.217    1.50
+1PB          CH          CI          HI     119.846    1.50
+1PB          CJ          CI          HI     119.937    1.50
+1PB          CD          C1          CN     120.970    1.50
+1PB          CD          C1          CR     120.970    1.50
+1PB          CN          C1          CR     118.060    1.50
+1PB          CI          CJ          CK     119.935    1.50
+1PB          CI          CJ          HJ     120.033    1.50
+1PB          CK          CJ          HJ     120.033    1.50
+1PB          CJ          CK          CL     120.217    1.50
+1PB          CJ          CK          HK     119.937    1.50
+1PB          CL          CK          HK     119.846    1.50
+1PB          CG          CL          CK     120.956    1.50
+1PB          CG          CL          HL     119.405    1.50
+1PB          CK          CL          HL     119.638    1.50
+1PB          C1          CN          CO     120.624    1.50
+1PB          C1          CN          HN     119.591    1.50
+1PB          CO          CN          HN     119.786    1.50
+1PB          CP          CO          CN     120.325    1.50
+1PB          CP          CO          HO     119.883    1.50
+1PB          CN          CO          HO     119.792    1.50
+1PB          CP          CQ          CR     120.325    1.50
+1PB          CP          CQ          HQ     119.883    1.50
+1PB          CR          CQ          HQ     119.792    1.50
+1PB          C1          CR          CQ     120.624    1.50
+1PB          C1          CR          HR     119.591    1.50
+1PB          CQ          CR          HR     119.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+1PB       const_sp2_sp2_1          CN          CO          CP          CQ       0.000     5.0     2
+1PB              const_41          CO          CP          CQ          CR       0.000    10.0     2
+1PB              const_37          CJ          CK          CL          CG       0.000    10.0     2
+1PB       const_sp2_sp2_5          C1          CN          CO          CP       0.000     5.0     2
+1PB              const_17          CP          CQ          CR          C1       0.000    10.0     2
+1PB             sp2_sp2_1          CG          CA          CB          CC     180.000     5.0     2
+1PB             sp2_sp2_5          CB          CA          CG          CH     180.000     5.0     2
+1PB             sp2_sp3_2          CA          CB          CC          CD     120.000    10.0     6
+1PB             sp3_sp3_1          CB          CC          CD          C1     180.000    10.0     3
+1PB             sp2_sp3_8          CN          C1          CD          CC     -90.000    10.0     6
+1PB              const_47          CA          CG          CL          CK     180.000    10.0     2
+1PB              const_23          CA          CG          CH          CI     180.000    10.0     2
+1PB              const_25          CG          CH          CI          CJ       0.000    10.0     2
+1PB              const_29          CH          CI          CJ          CK       0.000    10.0     2
+1PB              const_11          CD          C1          CN          CO     180.000    10.0     2
+1PB              const_15          CD          C1          CR          CQ     180.000    10.0     2
+1PB              const_33          CI          CJ          CK          CL       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+1PB    plan-1          C1   0.020
+1PB    plan-1          CD   0.020
+1PB    plan-1          CN   0.020
+1PB    plan-1          CO   0.020
+1PB    plan-1          CP   0.020
+1PB    plan-1          CQ   0.020
+1PB    plan-1          CR   0.020
+1PB    plan-1          HN   0.020
+1PB    plan-1          HO   0.020
+1PB    plan-1          HP   0.020
+1PB    plan-1          HQ   0.020
+1PB    plan-1          HR   0.020
+1PB    plan-2          CA   0.020
+1PB    plan-2          CG   0.020
+1PB    plan-2          CH   0.020
+1PB    plan-2          CI   0.020
+1PB    plan-2          CJ   0.020
+1PB    plan-2          CK   0.020
+1PB    plan-2          CL   0.020
+1PB    plan-2          HH   0.020
+1PB    plan-2          HI   0.020
+1PB    plan-2          HJ   0.020
+1PB    plan-2          HK   0.020
+1PB    plan-2          HL   0.020
+1PB    plan-3          CA   0.020
+1PB    plan-3          CB   0.020
+1PB    plan-3          CG   0.020
+1PB    plan-3          HA   0.020
+1PB    plan-4          CA   0.020
+1PB    plan-4          CB   0.020
+1PB    plan-4          CC   0.020
+1PB    plan-4          HB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+1PB           SMILES              ACDLabs 10.04                                                             C(=C/c1ccccc1)\CCc2ccccc2
+1PB SMILES_CANONICAL               CACTVS 3.341                                                             C(Cc1ccccc1)/C=C/c2ccccc2
+1PB           SMILES               CACTVS 3.341                                                               C(Cc1ccccc1)C=Cc2ccccc2
+1PB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                             c1ccc(cc1)CC\C=C\c2ccccc2
+1PB           SMILES "OpenEye OEToolkits" 1.5.0                                                               c1ccc(cc1)CCC=Cc2ccccc2
+1PB            InChI                InChI  1.03 InChI=1S/C16H16/c1-3-9-15(10-4-1)13-7-8-14-16-11-5-2-6-12-16/h1-7,9-13H,8,14H2/b13-7+
+1PB         InChIKey                InChI  1.03                                                           NJJOGKAVAWZLAU-NTUHNPAUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+1PB acedrg               243         "dictionary generator"                  
+1PB acedrg_database      11          "data source"                           
+1PB rdkit                2017.03.2   "Chemoinformatics tool"
+1PB refmac5              5.8.0238    "optimization tool"                     

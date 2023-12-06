@@ -1,0 +1,226 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CCB     CCB      CYCLOBUTYL(CYCLOPENTYL)FORMAMIDE     NON-POLYMER     29     12     .     
+#
+data_comp_CCB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CCB     N1      N       N       0       10.853      -0.476      1.322       
+CCB     C2      C       C1      0       12.155      -0.299      1.626       
+CCB     O3      O       O       0       12.906      -1.104      2.181       
+CCB     C5      C       CH1     0       10.242      -1.847      1.522       
+CCB     C6      C       CH1     0       10.091      0.654       0.805       
+CCB     C7      C       CH2     0       9.136       -2.258      0.534       
+CCB     C8      C       CH2     0       7.881       -2.480      1.366       
+CCB     C9      C       CH2     0       8.375       -2.834      2.739       
+CCB     C10     C       CH2     0       9.644       -2.017      2.926       
+CCB     C20     C       CH2     0       10.416      2.078       1.308       
+CCB     C21     C       CH2     0       8.913       2.363       1.433       
+CCB     C22     C       CH2     0       8.632       0.864       1.257       
+CCB     H2      H       H       0       12.563      0.530       1.354       
+CCB     H5      H       H       0       10.969      -2.513      1.428       
+CCB     H6      H       H       0       10.126      0.642       -0.177      
+CCB     H71     H       H       0       8.987       -1.568      -0.140      
+CCB     H72     H       H       0       9.386       -3.084      0.075       
+CCB     H81     H       H       0       7.344       -3.208      0.994       
+CCB     H82     H       H       0       7.334       -1.670      1.393       
+CCB     H91     H       H       0       8.568       -3.791      2.802       
+CCB     H92     H       H       0       7.711       -2.602      3.418       
+CCB     H101    H       H       0       9.443       -1.150      3.327       
+CCB     H102    H       H       0       10.271      -2.489      3.508       
+CCB     H201    H       H       0       10.892      2.101       2.159       
+CCB     H202    H       H       0       10.869      2.632       0.644       
+CCB     H211    H       H       0       8.558       2.916       0.722       
+CCB     H212    H       H       0       8.652       2.711       2.298       
+CCB     H221    H       H       0       8.402       0.409       2.086       
+CCB     H222    H       H       0       7.976       0.665       0.562       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CCB          N1          C2      SINGLE       n     1.321  0.0200     1.321  0.0200
+CCB          N1          C5      SINGLE       n     1.476  0.0200     1.476  0.0200
+CCB          N1          C6      SINGLE       n     1.444  0.0112     1.444  0.0112
+CCB          C2          O3      DOUBLE       n     1.232  0.0100     1.232  0.0100
+CCB          C5          C7      SINGLE       n     1.532  0.0107     1.532  0.0107
+CCB          C5         C10      SINGLE       n     1.532  0.0107     1.532  0.0107
+CCB          C6         C20      SINGLE       n     1.536  0.0140     1.536  0.0140
+CCB          C6         C22      SINGLE       n     1.536  0.0140     1.536  0.0140
+CCB          C7          C8      SINGLE       n     1.523  0.0152     1.523  0.0152
+CCB          C8          C9      SINGLE       n     1.512  0.0200     1.512  0.0200
+CCB          C9         C10      SINGLE       n     1.523  0.0152     1.523  0.0152
+CCB         C20         C21      SINGLE       n     1.536  0.0125     1.536  0.0125
+CCB         C21         C22      SINGLE       n     1.536  0.0125     1.536  0.0125
+CCB          C2          H2      SINGLE       n     1.082  0.0130     0.964  0.0200
+CCB          C5          H5      SINGLE       n     1.089  0.0100     0.990  0.0173
+CCB          C6          H6      SINGLE       n     1.089  0.0100     0.983  0.0141
+CCB          C7         H71      SINGLE       n     1.089  0.0100     0.977  0.0101
+CCB          C7         H72      SINGLE       n     1.089  0.0100     0.977  0.0101
+CCB          C8         H81      SINGLE       n     1.089  0.0100     0.978  0.0100
+CCB          C8         H82      SINGLE       n     1.089  0.0100     0.978  0.0100
+CCB          C9         H91      SINGLE       n     1.089  0.0100     0.978  0.0100
+CCB          C9         H92      SINGLE       n     1.089  0.0100     0.978  0.0100
+CCB         C10        H101      SINGLE       n     1.089  0.0100     0.977  0.0101
+CCB         C10        H102      SINGLE       n     1.089  0.0100     0.977  0.0101
+CCB         C20        H201      SINGLE       n     1.089  0.0100     0.976  0.0142
+CCB         C20        H202      SINGLE       n     1.089  0.0100     0.976  0.0142
+CCB         C21        H211      SINGLE       n     1.089  0.0100     0.968  0.0103
+CCB         C21        H212      SINGLE       n     1.089  0.0100     0.968  0.0103
+CCB         C22        H221      SINGLE       n     1.089  0.0100     0.976  0.0142
+CCB         C22        H222      SINGLE       n     1.089  0.0100     0.976  0.0142
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CCB          C2          N1          C5     120.919    1.92
+CCB          C2          N1          C6     120.608    2.50
+CCB          C5          N1          C6     118.473    3.00
+CCB          N1          C2          O3     125.202    3.00
+CCB          N1          C2          H2     116.959    2.37
+CCB          O3          C2          H2     117.839    2.29
+CCB          N1          C5          C7     112.360    2.19
+CCB          N1          C5         C10     112.360    2.19
+CCB          N1          C5          H5     108.828    1.83
+CCB          C7          C5         C10     104.374    1.55
+CCB          C7          C5          H5     108.708    1.50
+CCB         C10          C5          H5     108.708    1.50
+CCB          N1          C6         C20     116.232    2.96
+CCB          N1          C6         C22     116.232    2.96
+CCB          N1          C6          H6     109.796    1.50
+CCB         C20          C6         C22      88.454    1.50
+CCB         C20          C6          H6     109.718    1.50
+CCB         C22          C6          H6     109.718    1.50
+CCB          C5          C7          C8     104.866    1.82
+CCB          C5          C7         H71     110.783    1.50
+CCB          C5          C7         H72     110.783    1.50
+CCB          C8          C7         H71     110.871    1.50
+CCB          C8          C7         H72     110.871    1.50
+CCB         H71          C7         H72     108.887    1.50
+CCB          C7          C8          C9     105.632    1.63
+CCB          C7          C8         H81     110.660    1.50
+CCB          C7          C8         H82     110.660    1.50
+CCB          C9          C8         H81     110.679    1.50
+CCB          C9          C8         H82     110.679    1.50
+CCB         H81          C8         H82     108.634    1.62
+CCB          C8          C9         C10     105.632    1.63
+CCB          C8          C9         H91     110.679    1.50
+CCB          C8          C9         H92     110.679    1.50
+CCB         C10          C9         H91     110.660    1.50
+CCB         C10          C9         H92     110.660    1.50
+CCB         H91          C9         H92     108.634    1.62
+CCB          C5         C10          C9     104.866    1.82
+CCB          C5         C10        H101     110.783    1.50
+CCB          C5         C10        H102     110.783    1.50
+CCB          C9         C10        H101     110.871    1.50
+CCB          C9         C10        H102     110.871    1.50
+CCB        H101         C10        H102     108.887    1.50
+CCB          C6         C20         C21      88.096    1.50
+CCB          C6         C20        H201     113.912    1.57
+CCB          C6         C20        H202     113.912    1.57
+CCB         C21         C20        H201     114.144    1.50
+CCB         C21         C20        H202     114.144    1.50
+CCB        H201         C20        H202     111.010    1.50
+CCB         C20         C21         C22      88.269    1.50
+CCB         C20         C21        H211     114.061    1.50
+CCB         C20         C21        H212     114.061    1.50
+CCB         C22         C21        H211     114.061    1.50
+CCB         C22         C21        H212     114.061    1.50
+CCB        H211         C21        H212     110.794    1.50
+CCB          C6         C22         C21      88.096    1.50
+CCB          C6         C22        H221     113.912    1.57
+CCB          C6         C22        H222     113.912    1.57
+CCB         C21         C22        H221     114.144    1.50
+CCB         C21         C22        H222     114.144    1.50
+CCB        H221         C22        H222     111.010    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CCB             sp2_sp2_1          O3          C2          N1          C5     180.000     5.0     2
+CCB             sp2_sp3_2          C2          N1          C5          C7     120.000    10.0     6
+CCB             sp2_sp3_8          C2          N1          C6         C20     120.000    10.0     6
+CCB            sp3_sp3_55         C20         C21         C22          C6      60.000    10.0     3
+CCB             sp3_sp3_7          N1          C5          C7          C8     180.000    10.0     3
+CCB            sp3_sp3_65          C9         C10          C5          N1     -60.000    10.0     3
+CCB            sp3_sp3_74         C21         C22          C6          N1     -60.000    10.0     3
+CCB            sp3_sp3_39         C21         C20          C6          N1     -60.000    10.0     3
+CCB            sp3_sp3_10          C5          C7          C8          C9     -60.000    10.0     3
+CCB            sp3_sp3_19          C7          C8          C9         C10      60.000    10.0     3
+CCB            sp3_sp3_28          C5         C10          C9          C8     -60.000    10.0     3
+CCB            sp3_sp3_46          C6         C20         C21         C22     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CCB    chir_1    C5    N1    C7    C10    both
+CCB    chir_2    C6    N1    C20    C22    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CCB    plan-1          C2   0.020
+CCB    plan-1          C5   0.020
+CCB    plan-1          C6   0.020
+CCB    plan-1          N1   0.020
+CCB    plan-2          C2   0.020
+CCB    plan-2          H2   0.020
+CCB    plan-2          N1   0.020
+CCB    plan-2          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CCB           SMILES              ACDLabs 10.04                                             O=CN(C1CCC1)C2CCCC2
+CCB SMILES_CANONICAL               CACTVS 3.341                                             O=CN(C1CCCC1)C2CCC2
+CCB           SMILES               CACTVS 3.341                                             O=CN(C1CCCC1)C2CCC2
+CCB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                           C1CCC(C1)N(C=O)C2CCC2
+CCB           SMILES "OpenEye OEToolkits" 1.5.0                                           C1CCC(C1)N(C=O)C2CCC2
+CCB            InChI                InChI  1.03 InChI=1S/C10H17NO/c12-8-11(10-6-3-7-10)9-4-1-2-5-9/h8-10H,1-7H2
+CCB         InChIKey                InChI  1.03                                     DWGVYBRKKSJLNS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CCB acedrg               243         "dictionary generator"                  
+CCB acedrg_database      11          "data source"                           
+CCB rdkit                2017.03.2   "Chemoinformatics tool"
+CCB refmac5              5.8.0238    "optimization tool"                     

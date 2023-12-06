@@ -1,0 +1,178 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AS9     AS9      "N-[HYDROXY(METHYL)PHOSPHORYL]-L-ASPARTIC ACID"     NON-POLYMER     21     13     .     
+#
+data_comp_AS9
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AS9     CAA     C       CH3     0       -48.574     20.228      -21.412     
+AS9     PAM     P       P       0       -49.220     19.713      -19.824     
+AS9     OAG     O       O       0       -49.864     18.368      -19.908     
+AS9     OAD     O       OH1     0       -48.000     19.683      -18.857     
+AS9     N       N       NT1     0       -50.200     20.885      -19.234     
+AS9     CA      C       CH1     0       -50.805     20.791      -17.899     
+AS9     C       C       C       0       -52.331     20.995      -17.895     
+AS9     OXT     O       OC      -1      -53.002     20.262      -17.142     
+AS9     O       O       O       0       -52.792     21.882      -18.641     
+AS9     CB      C       CH2     0       -50.133     21.784      -16.949     
+AS9     CG      C       C       0       -50.313     21.432      -15.482     
+AS9     OD2     O       O       0       -49.716     20.428      -15.044     
+AS9     OD1     O       OC      -1      -51.048     22.164      -14.790     
+AS9     HAA1    H       H       0       -49.051     21.022      -21.706     
+AS9     HAA2    H       H       0       -48.701     19.508      -22.053     
+AS9     HAA3    H       H       0       -47.627     20.425      -21.319     
+AS9     HOAD    H       H       0       -47.782     20.449      -18.594     
+AS9     H       H       H       0       -50.726     21.255      -19.812     
+AS9     HA      H       H       0       -50.627     19.886      -17.545     
+AS9     HB2     H       H       0       -50.502     22.678      -17.100     
+AS9     HB3     H       H       0       -49.173     21.814      -17.142     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AS9         CAA         PAM      SINGLE       n     1.790  0.0156     1.790  0.0156
+AS9         PAM         OAG      DOUBLE       n     1.493  0.0199     1.493  0.0199
+AS9         PAM           N      SINGLE       n     1.634  0.0168     1.634  0.0168
+AS9         PAM         OAD      SINGLE       n     1.557  0.0167     1.557  0.0167
+AS9           N          CA      SINGLE       n     1.466  0.0110     1.466  0.0110
+AS9          CA           C      SINGLE       n     1.539  0.0100     1.539  0.0100
+AS9          CA          CB      SINGLE       n     1.529  0.0100     1.529  0.0100
+AS9           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+AS9           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+AS9          CB          CG      SINGLE       n     1.519  0.0109     1.519  0.0109
+AS9          CG         OD2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+AS9          CG         OD1      SINGLE       n     1.247  0.0187     1.247  0.0187
+AS9         CAA        HAA1      SINGLE       n     1.089  0.0100     0.972  0.0156
+AS9         CAA        HAA2      SINGLE       n     1.089  0.0100     0.972  0.0156
+AS9         CAA        HAA3      SINGLE       n     1.089  0.0100     0.972  0.0156
+AS9         OAD        HOAD      SINGLE       n     0.970  0.0120     0.839  0.0200
+AS9           N           H      SINGLE       n     1.036  0.0160     0.863  0.0200
+AS9          CA          HA      SINGLE       n     1.089  0.0100     0.987  0.0159
+AS9          CB         HB2      SINGLE       n     1.089  0.0100     0.979  0.0159
+AS9          CB         HB3      SINGLE       n     1.089  0.0100     0.979  0.0159
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AS9         PAM         CAA        HAA1     108.528    1.50
+AS9         PAM         CAA        HAA2     108.528    1.50
+AS9         PAM         CAA        HAA3     108.528    1.50
+AS9        HAA1         CAA        HAA2     109.533    1.50
+AS9        HAA1         CAA        HAA3     109.533    1.50
+AS9        HAA2         CAA        HAA3     109.533    1.50
+AS9         CAA         PAM         OAG     110.326    3.00
+AS9         CAA         PAM           N     108.355    3.00
+AS9         CAA         PAM         OAD     105.177    2.72
+AS9         OAG         PAM           N     113.406    3.00
+AS9         OAG         PAM         OAD     110.226    3.00
+AS9           N         PAM         OAD     104.521    3.00
+AS9         PAM         OAD        HOAD     112.398    3.00
+AS9         PAM           N          CA     120.863    2.69
+AS9         PAM           N           H     115.833    3.00
+AS9          CA           N           H     111.283    3.00
+AS9           N          CA           C     113.481    2.07
+AS9           N          CA          CB     111.883    2.59
+AS9           N          CA          HA     108.621    1.50
+AS9           C          CA          CB     111.511    2.91
+AS9           C          CA          HA     108.169    1.50
+AS9          CB          CA          HA     107.587    1.50
+AS9          CA           C           O     117.226    1.56
+AS9          CA           C         OXT     117.226    1.56
+AS9           O           C         OXT     125.548    1.50
+AS9          CA          CB          CG     111.511    2.91
+AS9          CA          CB         HB2     108.988    1.50
+AS9          CA          CB         HB3     108.988    1.50
+AS9          CG          CB         HB2     107.840    2.14
+AS9          CG          CB         HB3     107.840    2.14
+AS9         HB2          CB         HB3     107.891    1.66
+AS9          CB          CG         OD2     117.986    1.50
+AS9          CB          CG         OD1     117.986    1.50
+AS9         OD2          CG         OD1     124.027    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AS9             sp3_sp3_1        HAA1         CAA         PAM         OAG     180.000    10.0     3
+AS9            sp3_sp3_16        HOAD         OAD         PAM         CAA     180.000    10.0     3
+AS9            sp3_sp3_13          CA           N         PAM         CAA      60.000    10.0     3
+AS9            sp3_sp3_19           C          CA           N         PAM     180.000    10.0     3
+AS9             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+AS9            sp3_sp3_25           N          CA          CB          CG     180.000    10.0     3
+AS9             sp2_sp3_8         OD2          CG          CB          CA     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AS9    chir_1    PAM    OAD    OAG    N    negative
+AS9    chir_2    CA    N    C    CB    positive
+AS9    chir_3    N    PAM    CA    H    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AS9    plan-1           C   0.020
+AS9    plan-1          CA   0.020
+AS9    plan-1           O   0.020
+AS9    plan-1         OXT   0.020
+AS9    plan-2          CB   0.020
+AS9    plan-2          CG   0.020
+AS9    plan-2         OD1   0.020
+AS9    plan-2         OD2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AS9           SMILES              ACDLabs 10.04                                                                          O=C(O)C(NP(=O)(O)C)CC(=O)O
+AS9 SMILES_CANONICAL               CACTVS 3.341                                                                  C[P@](O)(=O)N[C@@H](CC(O)=O)C(O)=O
+AS9           SMILES               CACTVS 3.341                                                                     C[P](O)(=O)N[CH](CC(O)=O)C(O)=O
+AS9 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                  C[P@](=O)(N[C@@H](CC(=O)O)C(=O)O)O
+AS9           SMILES "OpenEye OEToolkits" 1.5.0                                                                          CP(=O)(NC(CC(=O)O)C(=O)O)O
+AS9            InChI                InChI  1.03 InChI=1S/C5H10NO6P/c1-13(11,12)6-3(5(9)10)2-4(7)8/h3H,2H2,1H3,(H,7,8)(H,9,10)(H2,6,11,12)/t3-/m0/s1
+AS9         InChIKey                InChI  1.03                                                                         GKKRPYJQMIDFSC-VKHMYHEASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AS9 acedrg               243         "dictionary generator"                  
+AS9 acedrg_database      11          "data source"                           
+AS9 rdkit                2017.03.2   "Chemoinformatics tool"
+AS9 refmac5              5.8.0238    "optimization tool"                     

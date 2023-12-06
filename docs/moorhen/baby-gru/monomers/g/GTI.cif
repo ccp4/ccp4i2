@@ -1,0 +1,245 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GTI     GTI      1-(3-phenyl-1,2,4-thiadiazol-5-yl)piperazine     NON-POLYMER     31     17     .     
+#
+data_comp_GTI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GTI     NJ      N       NRD5    0       -31.777     -66.368     -19.750     
+GTI     NK      N       NRD5    0       -33.231     -65.944     -21.462     
+GTI     NL      N       NT1     0       -38.033     -64.313     -20.438     
+GTI     NQ      N       NT      0       -35.419     -65.468     -20.452     
+GTI     CAA     C       CR16    0       -28.786     -66.792     -23.885     
+GTI     CAB     C       CR16    0       -28.724     -67.413     -22.654     
+GTI     CAC     C       CR16    0       -29.874     -66.004     -24.198     
+GTI     CAD     C       CR16    0       -29.749     -67.249     -21.733     
+GTI     CAE     C       CR16    0       -30.903     -65.834     -23.283     
+GTI     CAF     C       CH2     0       -37.258     -64.402     -21.672     
+GTI     CAG     C       CH2     0       -37.711     -65.436     -19.561     
+GTI     CAH     C       CH2     0       -35.776     -64.376     -21.371     
+GTI     CAI     C       CH2     0       -36.235     -65.468     -19.226     
+GTI     SAM     S       S2      0       -33.180     -66.075     -18.993     
+GTI     CAN     C       CR6     0       -30.857     -66.460     -22.039     
+GTI     CAO     C       CR5     0       -31.943     -66.269     -21.064     
+GTI     CAP     C       CR5     0       -34.069     -65.801     -20.388     
+GTI     HNL     H       H       0       -37.850     -63.544     -20.023     
+GTI     HAA     H       H       0       -28.088     -66.907     -24.510     
+GTI     HAB     H       H       0       -27.982     -67.953     -22.437     
+GTI     HAC     H       H       0       -29.920     -65.578     -25.038     
+GTI     HAD     H       H       0       -29.696     -67.677     -20.898     
+GTI     HAE     H       H       0       -31.637     -65.293     -23.508     
+GTI     HAF     H       H       0       -37.484     -65.238     -22.144     
+GTI     HAFA    H       H       0       -37.488     -63.646     -22.261     
+GTI     HAG     H       H       0       -37.964     -66.280     -20.004     
+GTI     HAGA    H       H       0       -38.234     -65.361     -18.728     
+GTI     HAH     H       H       0       -35.285     -64.467     -22.197     
+GTI     HAHA    H       H       0       -35.545     -63.530     -20.968     
+GTI     HAI     H       H       0       -36.010     -64.696     -18.692     
+GTI     HAIA    H       H       0       -36.048     -66.262     -18.712     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GTI          NJ         CAO      DOUBLE       y     1.314  0.0200     1.314  0.0200
+GTI          NJ         SAM      SINGLE       y     1.652  0.0200     1.652  0.0200
+GTI          NK         CAO      SINGLE       y     1.376  0.0106     1.376  0.0106
+GTI          NK         CAP      DOUBLE       y     1.354  0.0165     1.354  0.0165
+GTI          NL         CAF      SINGLE       n     1.460  0.0112     1.460  0.0112
+GTI          NL         CAG      SINGLE       n     1.460  0.0112     1.460  0.0112
+GTI          NQ         CAH      SINGLE       n     1.466  0.0100     1.466  0.0100
+GTI          NQ         CAP      SINGLE       n     1.376  0.0164     1.376  0.0164
+GTI          NQ         CAI      SINGLE       n     1.466  0.0100     1.466  0.0100
+GTI         CAA         CAC      DOUBLE       y     1.376  0.0124     1.376  0.0124
+GTI         CAA         CAB      SINGLE       y     1.376  0.0124     1.376  0.0124
+GTI         CAB         CAD      DOUBLE       y     1.384  0.0100     1.384  0.0100
+GTI         CAC         CAE      SINGLE       y     1.384  0.0100     1.384  0.0100
+GTI         CAD         CAN      SINGLE       y     1.388  0.0100     1.388  0.0100
+GTI         CAE         CAN      DOUBLE       y     1.388  0.0100     1.388  0.0100
+GTI         CAF         CAH      SINGLE       n     1.512  0.0100     1.512  0.0100
+GTI         CAG         CAI      SINGLE       n     1.512  0.0100     1.512  0.0100
+GTI         SAM         CAP      SINGLE       y     1.695  0.0200     1.695  0.0200
+GTI         CAN         CAO      SINGLE       n     1.468  0.0100     1.468  0.0100
+GTI          NL         HNL      SINGLE       n     1.036  0.0160     0.893  0.0200
+GTI         CAA         HAA      SINGLE       n     1.082  0.0130     0.944  0.0161
+GTI         CAB         HAB      SINGLE       n     1.082  0.0130     0.943  0.0180
+GTI         CAC         HAC      SINGLE       n     1.082  0.0130     0.943  0.0180
+GTI         CAD         HAD      SINGLE       n     1.082  0.0130     0.940  0.0200
+GTI         CAE         HAE      SINGLE       n     1.082  0.0130     0.940  0.0200
+GTI         CAF         HAF      SINGLE       n     1.089  0.0100     0.986  0.0200
+GTI         CAF        HAFA      SINGLE       n     1.089  0.0100     0.986  0.0200
+GTI         CAG         HAG      SINGLE       n     1.089  0.0100     0.986  0.0200
+GTI         CAG        HAGA      SINGLE       n     1.089  0.0100     0.986  0.0200
+GTI         CAH         HAH      SINGLE       n     1.089  0.0100     0.965  0.0141
+GTI         CAH        HAHA      SINGLE       n     1.089  0.0100     0.965  0.0141
+GTI         CAI         HAI      SINGLE       n     1.089  0.0100     0.965  0.0141
+GTI         CAI        HAIA      SINGLE       n     1.089  0.0100     0.965  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GTI         CAO          NJ         SAM     107.933    3.00
+GTI         CAO          NK         CAP     105.198    1.50
+GTI         CAF          NL         CAG     110.165    1.50
+GTI         CAF          NL         HNL     109.673    3.00
+GTI         CAG          NL         HNL     109.673    3.00
+GTI         CAH          NQ         CAP     118.016    2.83
+GTI         CAH          NQ         CAI     112.404    1.50
+GTI         CAP          NQ         CAI     118.016    2.83
+GTI         CAC         CAA         CAB     119.930    1.50
+GTI         CAC         CAA         HAA     120.035    1.50
+GTI         CAB         CAA         HAA     120.035    1.50
+GTI         CAA         CAB         CAD     120.375    1.50
+GTI         CAA         CAB         HAB     119.913    1.50
+GTI         CAD         CAB         HAB     119.712    1.50
+GTI         CAA         CAC         CAE     120.375    1.50
+GTI         CAA         CAC         HAC     119.913    1.50
+GTI         CAE         CAC         HAC     119.712    1.50
+GTI         CAB         CAD         CAN     120.350    1.50
+GTI         CAB         CAD         HAD     119.878    1.50
+GTI         CAN         CAD         HAD     119.771    1.50
+GTI         CAC         CAE         CAN     120.350    1.50
+GTI         CAC         CAE         HAE     119.878    1.50
+GTI         CAN         CAE         HAE     119.771    1.50
+GTI          NL         CAF         CAH     110.811    1.78
+GTI          NL         CAF         HAF     109.479    1.50
+GTI          NL         CAF        HAFA     109.479    1.50
+GTI         CAH         CAF         HAF     109.477    1.50
+GTI         CAH         CAF        HAFA     109.477    1.50
+GTI         HAF         CAF        HAFA     108.060    1.50
+GTI          NL         CAG         CAI     110.811    1.78
+GTI          NL         CAG         HAG     109.479    1.50
+GTI          NL         CAG        HAGA     109.479    1.50
+GTI         CAI         CAG         HAG     109.477    1.50
+GTI         CAI         CAG        HAGA     109.477    1.50
+GTI         HAG         CAG        HAGA     108.060    1.50
+GTI          NQ         CAH         CAF     109.759    1.50
+GTI          NQ         CAH         HAH     109.476    1.50
+GTI          NQ         CAH        HAHA     109.476    1.50
+GTI         CAF         CAH         HAH     109.522    1.50
+GTI         CAF         CAH        HAHA     109.522    1.50
+GTI         HAH         CAH        HAHA     108.670    1.50
+GTI          NQ         CAI         CAG     109.759    1.50
+GTI          NQ         CAI         HAI     109.476    1.50
+GTI          NQ         CAI        HAIA     109.476    1.50
+GTI         CAG         CAI         HAI     109.522    1.50
+GTI         CAG         CAI        HAIA     109.522    1.50
+GTI         HAI         CAI        HAIA     108.670    1.50
+GTI          NJ         SAM         CAP     107.933    3.00
+GTI         CAD         CAN         CAE     118.620    1.50
+GTI         CAD         CAN         CAO     120.690    1.50
+GTI         CAE         CAN         CAO     120.690    1.50
+GTI          NJ         CAO          NK     111.004    1.50
+GTI          NJ         CAO         CAN     126.515    2.91
+GTI          NK         CAO         CAN     122.481    1.50
+GTI          NK         CAP          NQ     127.095    1.92
+GTI          NK         CAP         SAM     107.933    3.00
+GTI          NQ         CAP         SAM     124.972    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GTI              const_29         CAO          NJ         SAM         CAP       0.000    10.0     2
+GTI              const_21          NK         CAO          NJ         SAM       0.000    10.0     2
+GTI            sp3_sp3_16          NL         CAG         CAI          NQ      60.000    10.0     3
+GTI              const_27          NK         CAP         SAM          NJ       0.000    10.0     2
+GTI             sp2_sp2_5         CAD         CAN         CAO          NJ     180.000     5.0     2
+GTI              const_23          NJ         CAO          NK         CAP       0.000    10.0     2
+GTI              const_26          NQ         CAP          NK         CAO     180.000    10.0     2
+GTI            sp3_sp3_25         CAI         CAG          NL         CAF     180.000    10.0     3
+GTI             sp3_sp3_1         CAH         CAF          NL         CAG      60.000    10.0     3
+GTI             sp2_sp3_4         CAP          NQ         CAH         CAF     180.000    10.0     6
+GTI             sp2_sp3_7         CAH          NQ         CAI         CAG       0.000    10.0     6
+GTI             sp2_sp2_1          NK         CAP          NQ         CAH     180.000     5.0     2
+GTI              const_30         CAC         CAA         CAB         CAD       0.000    10.0     2
+GTI       const_sp2_sp2_1         CAB         CAA         CAC         CAE       0.000     5.0     2
+GTI              const_17         CAA         CAB         CAD         CAN       0.000    10.0     2
+GTI       const_sp2_sp2_5         CAA         CAC         CAE         CAN       0.000     5.0     2
+GTI              const_13         CAB         CAD         CAN         CAE       0.000    10.0     2
+GTI       const_sp2_sp2_9         CAC         CAE         CAN         CAD       0.000     5.0     2
+GTI             sp3_sp3_7          NL         CAF         CAH          NQ     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GTI    chir_1    NL    CAF    CAG    HNL    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GTI    plan-1         CAN   0.020
+GTI    plan-1         CAO   0.020
+GTI    plan-1         CAP   0.020
+GTI    plan-1          NJ   0.020
+GTI    plan-1          NK   0.020
+GTI    plan-1          NQ   0.020
+GTI    plan-1         SAM   0.020
+GTI    plan-2         CAA   0.020
+GTI    plan-2         CAB   0.020
+GTI    plan-2         CAC   0.020
+GTI    plan-2         CAD   0.020
+GTI    plan-2         CAE   0.020
+GTI    plan-2         CAN   0.020
+GTI    plan-2         CAO   0.020
+GTI    plan-2         HAA   0.020
+GTI    plan-2         HAB   0.020
+GTI    plan-2         HAC   0.020
+GTI    plan-2         HAD   0.020
+GTI    plan-2         HAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GTI           SMILES              ACDLabs 12.01                                                            n1c(snc1c2ccccc2)N3CCNCC3
+GTI            InChI                InChI  1.03 InChI=1S/C12H14N4S/c1-2-4-10(5-3-1)11-14-12(17-15-11)16-8-6-13-7-9-16/h1-5,13H,6-9H2
+GTI         InChIKey                InChI  1.03                                                          UMFMHSLRNJBGKO-UHFFFAOYSA-N
+GTI SMILES_CANONICAL               CACTVS 3.370                                                          C1CN(CCN1)c2snc(n2)c3ccccc3
+GTI           SMILES               CACTVS 3.370                                                          C1CN(CCN1)c2snc(n2)c3ccccc3
+GTI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                          c1ccc(cc1)c2nc(sn2)N3CCNCC3
+GTI           SMILES "OpenEye OEToolkits" 1.7.2                                                          c1ccc(cc1)c2nc(sn2)N3CCNCC3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GTI acedrg               243         "dictionary generator"                  
+GTI acedrg_database      11          "data source"                           
+GTI rdkit                2017.03.2   "Chemoinformatics tool"
+GTI refmac5              5.8.0238    "optimization tool"                     

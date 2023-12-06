@@ -1,0 +1,667 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GT6     GT6      "(2S,2'S)-N,N'-[(6,6'-difluoro-1H,1'H-2,2'-biindole-3,3'-diyl)bis{methanediyl[(2R,4S)-4-hydroxypyrrolidine-2,1-diyl][(2S)-1-oxobutane-1,2-diyl]}]bis[2-(methylamino)propanamide]"     NON-POLYMER     114     58     .     
+#
+data_comp_GT6
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GT6     C0      C       CH3     0       8.109       2.064       1.924       
+GT6     N1      N       NT1     0       7.591       2.271       0.568       
+GT6     CA1     C       CH1     0       8.449       1.747       -0.507      
+GT6     C1      C       C       0       9.762       2.519       -0.619      
+GT6     N2      N       NH1     0       10.892      1.800       -0.701      
+GT6     CA2     C       CH1     0       12.223      2.394       -0.647      
+GT6     C2      C       C       0       13.275      1.380       -1.113      
+GT6     N3      N       NR5     0       14.554      1.790       -1.254      
+GT6     O1      O       O       0       9.742       3.748       -0.638      
+GT6     O2      O       O       0       12.974      0.196       -1.260      
+GT6     CD3     C       CH2     0       14.993      3.161       -1.571      
+GT6     CG3     C       CH1     0       16.314      2.943       -2.290      
+GT6     CB3     C       CH2     0       16.905      1.774       -1.528      
+GT6     CA3     C       CH1     0       15.708      0.868       -1.212      
+GT6     CB4     C       CH2     0       15.799      0.156       0.147       
+GT6     CG4     C       CR5     0       17.079      -0.593      0.381       
+GT6     CD2     C       CR56    0       17.567      -1.689      -0.397      
+GT6     CE2     C       CR56    0       18.792      -2.086      0.184       
+GT6     NE1     N       NR5     0       19.036      -1.272      1.267       
+GT6     CD1     C       CR5     0       18.009      -0.364      1.399       
+GT6     CZ2     C       CR16    0       19.529      -3.140      -0.350      
+GT6     CH2     C       CR6     0       19.026      -3.781      -1.459      
+GT6     CZ3     C       CR16    0       17.824      -3.416      -2.056      
+GT6     CE3     C       CR16    0       17.091      -2.373      -1.530      
+GT6     F       F       F       0       19.729      -4.816      -2.001      
+GT6     CB1     C       CH3     0       7.695       1.795       -1.832      
+GT6     CB2     C       CH2     0       12.526      2.935       0.757       
+GT6     CG2     C       CH3     0       12.445      1.884       1.854       
+GT6     OG3     O       OH1     0       17.148      4.084       -2.153      
+GT6     C0B     C       CH3     0       8.287       -2.299      1.684       
+GT6     N1B     N       NT1     0       7.706       -2.509      3.014       
+GT6     CA6     C       CH1     0       8.471       -1.915      4.121       
+GT6     C1B     C       C       0       9.808       -2.619      4.337       
+GT6     N2B     N       NH1     0       10.906      -1.850      4.399       
+GT6     CA7     C       CH1     0       12.261      -2.386      4.362       
+GT6     C2B     C       C       0       13.269      -1.316      4.801       
+GT6     N3B     N       NR5     0       14.548      -1.678      5.043       
+GT6     O1B     O       O       0       9.843       -3.848      4.388       
+GT6     O2B     O       O       0       12.904      -0.153      4.969       
+GT6     CD8     C       CH2     0       15.049      -3.039      5.306       
+GT6     CG8     C       CH1     0       16.338      -2.783      6.068       
+GT6     CB8     C       CH2     0       16.896      -1.570      5.350       
+GT6     CA8     C       CH1     0       15.669      -0.714      5.008       
+GT6     CB9     C       CH2     0       15.764      -0.004      3.647       
+GT6     CG9     C       CR5     0       17.012      0.804       3.441       
+GT6     CD7     C       CR56    0       17.430      1.923       4.227       
+GT6     CE7     C       CR56    0       18.648      2.377       3.673       
+GT6     NE6     N       NR5     0       18.954      1.574       2.597       
+GT6     CD6     C       CR5     0       17.974      0.618       2.444       
+GT6     CZ7     C       CR16    0       19.323      3.465       4.221       
+GT6     CH7     C       CR6     0       18.766      4.082       5.317       
+GT6     CZ8     C       CR16    0       17.569      3.662       5.888       
+GT6     CE8     C       CR16    0       16.898      2.585       5.349       
+GT6     FB      F       F       0       19.408      5.150       5.872       
+GT6     CB6     C       CH3     0       7.647       -1.964      5.403       
+GT6     CB7     C       CH2     0       12.590      -2.947      2.971       
+GT6     CG7     C       CH3     0       12.485      -1.921      1.852       
+GT6     OG8     O       OH1     0       17.226      -3.882      5.927       
+GT6     H1      H       H       0       7.389       2.175       2.576       
+GT6     H2      H       H       0       8.812       2.715       2.118       
+GT6     H3      H       H       0       8.477       1.163       2.010       
+GT6     H4      H       H       0       6.806       1.853       0.515       
+GT6     H6      H       H       0       8.659       0.801       -0.307      
+GT6     H7      H       H       0       10.826      0.933       -0.798      
+GT6     H8      H       H       0       12.230      3.162       -1.269      
+GT6     H9      H       H       0       14.342      3.622       -2.158      
+GT6     H10     H       H       0       15.122      3.698       -0.749      
+GT6     H11     H       H       0       16.168      2.720       -3.251      
+GT6     H12     H       H       0       17.340      2.084       -0.697      
+GT6     H13     H       H       0       17.570      1.296       -2.081      
+GT6     H14     H       H       0       15.619      0.181       -1.908      
+GT6     H15     H       H       0       15.056      -0.478      0.217       
+GT6     H16     H       H       0       15.684      0.823       0.853       
+GT6     H17     H       H       0       19.757      -1.313      1.817       
+GT6     H18     H       H       0       20.345      -3.403      0.039       
+GT6     H19     H       H       0       17.517      -3.875      -2.807      
+GT6     H20     H       H       0       16.276      -2.119      -1.927      
+GT6     H21     H       H       0       8.313       1.643       -2.568      
+GT6     H22     H       H       0       7.278       2.667       -1.938      
+GT6     H23     H       H       0       7.009       1.107       -1.841      
+GT6     H24     H       H       0       11.894      3.654       0.963       
+GT6     H25     H       H       0       13.421      3.323       0.763       
+GT6     H26     H       H       0       12.515      2.317       2.722       
+GT6     H27     H       H       0       13.173      1.247       1.753       
+GT6     H28     H       H       0       11.595      1.414       1.799       
+GT6     H29     H       H       0       16.802      4.723       -2.592      
+GT6     H30     H       H       0       7.619       -2.485      0.996       
+GT6     H31     H       H       0       9.049       -2.895      1.553       
+GT6     H32     H       H       0       8.587       -1.374      1.591       
+GT6     H33     H       H       0       6.897       -2.135      3.012       
+GT6     H35     H       H       0       8.649       -0.965      3.906       
+GT6     H36     H       H       0       10.802      -0.985      4.475       
+GT6     H37     H       H       0       12.300      -3.138      5.002       
+GT6     H38     H       H       0       14.412      -3.560      5.856       
+GT6     H39     H       H       0       15.227      -3.529      4.465       
+GT6     H40     H       H       0       16.157      -2.590      7.030       
+GT6     H41     H       H       0       17.374      -1.842      4.529       
+GT6     H42     H       H       0       17.518      -1.072      5.935       
+GT6     H43     H       H       0       15.544      -0.026      5.696       
+GT6     H44     H       H       0       14.995      0.595       3.553       
+GT6     H45     H       H       0       15.698      -0.679      2.942       
+GT6     H46     H       H       0       19.684      1.649       2.063       
+GT6     H47     H       H       0       20.134      3.765       3.849       
+GT6     H48     H       H       0       17.225      4.106       6.631       
+GT6     H49     H       H       0       16.087      2.293       5.728       
+GT6     H50     H       H       0       6.842       -1.431      5.293       
+GT6     H51     H       H       0       8.170       -1.609      6.141       
+GT6     H52     H       H       0       7.400       -2.884      5.596       
+GT6     H53     H       H       0       11.983      -3.689      2.776       
+GT6     H54     H       H       0       13.497      -3.306      2.979       
+GT6     H55     H       H       0       12.536      -2.374      0.993       
+GT6     H56     H       H       0       13.216      -1.283      1.922       
+GT6     H57     H       H       0       11.638      -1.448      1.915       
+GT6     H58     H       H       0       17.924      -3.722      6.383       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GT6         CA1         CB1      SINGLE       n     1.524  0.0118     1.524  0.0118
+GT6          N1         CA1      SINGLE       n     1.468  0.0128     1.468  0.0128
+GT6          C0          N1      SINGLE       n     1.463  0.0141     1.463  0.0141
+GT6         CA1          C1      SINGLE       n     1.524  0.0100     1.524  0.0100
+GT6         CH2           F      SINGLE       n     1.364  0.0100     1.364  0.0100
+GT6         CH2         CZ3      DOUBLE       y     1.388  0.0100     1.388  0.0100
+GT6         CZ3         CE3      SINGLE       y     1.373  0.0100     1.373  0.0100
+GT6          C1          O1      DOUBLE       n     1.229  0.0102     1.229  0.0102
+GT6          C1          N2      SINGLE       n     1.337  0.0100     1.337  0.0100
+GT6         CZ2         CH2      SINGLE       y     1.374  0.0107     1.374  0.0107
+GT6          N2         CA2      SINGLE       n     1.453  0.0100     1.453  0.0100
+GT6         CD2         CE3      DOUBLE       y     1.401  0.0100     1.401  0.0100
+GT6          C2          O2      DOUBLE       n     1.227  0.0149     1.227  0.0149
+GT6         CA2          C2      SINGLE       n     1.528  0.0100     1.528  0.0100
+GT6          C2          N3      SINGLE       n     1.342  0.0108     1.342  0.0108
+GT6         CA2         CB2      SINGLE       n     1.531  0.0100     1.531  0.0100
+GT6         CE2         CZ2      DOUBLE       y     1.391  0.0100     1.391  0.0100
+GT6          N3         CA3      SINGLE       n     1.472  0.0100     1.472  0.0100
+GT6         CB3         CA3      SINGLE       n     1.532  0.0100     1.532  0.0100
+GT6         CA3         CB4      SINGLE       n     1.534  0.0100     1.534  0.0100
+GT6          N3         CD3      SINGLE       n     1.470  0.0105     1.470  0.0105
+GT6         CG3         CB3      SINGLE       n     1.521  0.0137     1.521  0.0137
+GT6         CD3         CG3      SINGLE       n     1.522  0.0100     1.522  0.0100
+GT6         CG3         OG3      SINGLE       n     1.420  0.0105     1.420  0.0105
+GT6         CD2         CE2      SINGLE       y     1.411  0.0100     1.411  0.0100
+GT6         CG4         CD2      SINGLE       y     1.432  0.0100     1.432  0.0100
+GT6         CE2         NE1      SINGLE       y     1.375  0.0100     1.375  0.0100
+GT6         CB4         CG4      SINGLE       n     1.499  0.0100     1.499  0.0100
+GT6         CB2         CG2      SINGLE       n     1.515  0.0196     1.515  0.0196
+GT6         CG4         CD1      DOUBLE       y     1.392  0.0200     1.392  0.0200
+GT6         NE1         CD1      SINGLE       y     1.374  0.0112     1.374  0.0112
+GT6         CD1         CD6      SINGLE       n     1.433  0.0152     1.433  0.0152
+GT6         NE6         CD6      SINGLE       y     1.374  0.0112     1.374  0.0112
+GT6         CG9         CD6      DOUBLE       y     1.392  0.0200     1.392  0.0200
+GT6         CE7         NE6      SINGLE       y     1.375  0.0100     1.375  0.0100
+GT6         CB7         CG7      SINGLE       n     1.515  0.0196     1.515  0.0196
+GT6         CA7         CB7      SINGLE       n     1.531  0.0100     1.531  0.0100
+GT6         CB9         CG9      SINGLE       n     1.499  0.0100     1.499  0.0100
+GT6         CG9         CD7      SINGLE       y     1.432  0.0100     1.432  0.0100
+GT6         CA8         CB9      SINGLE       n     1.534  0.0100     1.534  0.0100
+GT6         CG8         OG8      SINGLE       n     1.420  0.0105     1.420  0.0105
+GT6         CD7         CE7      DOUBLE       y     1.411  0.0100     1.411  0.0100
+GT6         CE7         CZ7      SINGLE       y     1.391  0.0100     1.391  0.0100
+GT6         CD8         CG8      SINGLE       n     1.522  0.0100     1.522  0.0100
+GT6         N3B         CD8      SINGLE       n     1.470  0.0105     1.470  0.0105
+GT6         CG8         CB8      SINGLE       n     1.521  0.0137     1.521  0.0137
+GT6         CB8         CA8      SINGLE       n     1.532  0.0100     1.532  0.0100
+GT6         CD7         CE8      SINGLE       y     1.401  0.0100     1.401  0.0100
+GT6         N3B         CA8      SINGLE       n     1.472  0.0100     1.472  0.0100
+GT6         C2B         N3B      SINGLE       n     1.342  0.0108     1.342  0.0108
+GT6         CZ7         CH7      DOUBLE       y     1.374  0.0107     1.374  0.0107
+GT6         CA7         C2B      SINGLE       n     1.528  0.0100     1.528  0.0100
+GT6         N2B         CA7      SINGLE       n     1.453  0.0100     1.453  0.0100
+GT6         C2B         O2B      DOUBLE       n     1.227  0.0149     1.227  0.0149
+GT6         CZ8         CE8      DOUBLE       y     1.373  0.0100     1.373  0.0100
+GT6         C1B         N2B      SINGLE       n     1.337  0.0100     1.337  0.0100
+GT6         CH7         CZ8      SINGLE       y     1.388  0.0100     1.388  0.0100
+GT6         CH7          FB      SINGLE       n     1.364  0.0100     1.364  0.0100
+GT6         C1B         O1B      DOUBLE       n     1.229  0.0102     1.229  0.0102
+GT6         C0B         N1B      SINGLE       n     1.463  0.0141     1.463  0.0141
+GT6         CA6         C1B      SINGLE       n     1.524  0.0100     1.524  0.0100
+GT6         N1B         CA6      SINGLE       n     1.468  0.0128     1.468  0.0128
+GT6         CA6         CB6      SINGLE       n     1.524  0.0118     1.524  0.0118
+GT6          C0          H1      SINGLE       n     1.089  0.0100     0.977  0.0113
+GT6          C0          H2      SINGLE       n     1.089  0.0100     0.977  0.0113
+GT6          C0          H3      SINGLE       n     1.089  0.0100     0.977  0.0113
+GT6          N1          H4      SINGLE       n     1.036  0.0160     0.890  0.0200
+GT6         CA1          H6      SINGLE       n     1.089  0.0100     0.990  0.0200
+GT6          N2          H7      SINGLE       n     1.016  0.0100     0.873  0.0200
+GT6         CA2          H8      SINGLE       n     1.089  0.0100     0.990  0.0200
+GT6         CD3          H9      SINGLE       n     1.089  0.0100     0.990  0.0100
+GT6         CD3         H10      SINGLE       n     1.089  0.0100     0.990  0.0100
+GT6         CG3         H11      SINGLE       n     1.089  0.0100     0.998  0.0200
+GT6         CB3         H12      SINGLE       n     1.089  0.0100     0.988  0.0100
+GT6         CB3         H13      SINGLE       n     1.089  0.0100     0.988  0.0100
+GT6         CA3         H14      SINGLE       n     1.089  0.0100     0.982  0.0200
+GT6         CB4         H15      SINGLE       n     1.089  0.0100     0.980  0.0157
+GT6         CB4         H16      SINGLE       n     1.089  0.0100     0.980  0.0157
+GT6         NE1         H17      SINGLE       n     1.016  0.0100     0.908  0.0200
+GT6         CZ2         H18      SINGLE       n     1.082  0.0130     0.941  0.0170
+GT6         CZ3         H19      SINGLE       n     1.082  0.0130     0.932  0.0100
+GT6         CE3         H20      SINGLE       n     1.082  0.0130     0.942  0.0182
+GT6         CB1         H21      SINGLE       n     1.089  0.0100     0.972  0.0152
+GT6         CB1         H22      SINGLE       n     1.089  0.0100     0.972  0.0152
+GT6         CB1         H23      SINGLE       n     1.089  0.0100     0.972  0.0152
+GT6         CB2         H24      SINGLE       n     1.089  0.0100     0.980  0.0200
+GT6         CB2         H25      SINGLE       n     1.089  0.0100     0.980  0.0200
+GT6         CG2         H26      SINGLE       n     1.089  0.0100     0.973  0.0157
+GT6         CG2         H27      SINGLE       n     1.089  0.0100     0.973  0.0157
+GT6         CG2         H28      SINGLE       n     1.089  0.0100     0.973  0.0157
+GT6         OG3         H29      SINGLE       n     0.970  0.0120     0.849  0.0200
+GT6         C0B         H30      SINGLE       n     1.089  0.0100     0.977  0.0113
+GT6         C0B         H31      SINGLE       n     1.089  0.0100     0.977  0.0113
+GT6         C0B         H32      SINGLE       n     1.089  0.0100     0.977  0.0113
+GT6         N1B         H33      SINGLE       n     1.036  0.0160     0.890  0.0200
+GT6         CA6         H35      SINGLE       n     1.089  0.0100     0.990  0.0200
+GT6         N2B         H36      SINGLE       n     1.016  0.0100     0.873  0.0200
+GT6         CA7         H37      SINGLE       n     1.089  0.0100     0.990  0.0200
+GT6         CD8         H38      SINGLE       n     1.089  0.0100     0.990  0.0100
+GT6         CD8         H39      SINGLE       n     1.089  0.0100     0.990  0.0100
+GT6         CG8         H40      SINGLE       n     1.089  0.0100     0.998  0.0200
+GT6         CB8         H41      SINGLE       n     1.089  0.0100     0.988  0.0100
+GT6         CB8         H42      SINGLE       n     1.089  0.0100     0.988  0.0100
+GT6         CA8         H43      SINGLE       n     1.089  0.0100     0.982  0.0200
+GT6         CB9         H44      SINGLE       n     1.089  0.0100     0.980  0.0157
+GT6         CB9         H45      SINGLE       n     1.089  0.0100     0.980  0.0157
+GT6         NE6         H46      SINGLE       n     1.016  0.0100     0.908  0.0200
+GT6         CZ7         H47      SINGLE       n     1.082  0.0130     0.941  0.0170
+GT6         CZ8         H48      SINGLE       n     1.082  0.0130     0.932  0.0100
+GT6         CE8         H49      SINGLE       n     1.082  0.0130     0.942  0.0182
+GT6         CB6         H50      SINGLE       n     1.089  0.0100     0.972  0.0152
+GT6         CB6         H51      SINGLE       n     1.089  0.0100     0.972  0.0152
+GT6         CB6         H52      SINGLE       n     1.089  0.0100     0.972  0.0152
+GT6         CB7         H53      SINGLE       n     1.089  0.0100     0.980  0.0200
+GT6         CB7         H54      SINGLE       n     1.089  0.0100     0.980  0.0200
+GT6         CG7         H55      SINGLE       n     1.089  0.0100     0.973  0.0157
+GT6         CG7         H56      SINGLE       n     1.089  0.0100     0.973  0.0157
+GT6         CG7         H57      SINGLE       n     1.089  0.0100     0.973  0.0157
+GT6         OG8         H58      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GT6          N1          C0          H1     110.215    1.50
+GT6          N1          C0          H2     110.215    1.50
+GT6          N1          C0          H3     110.215    1.50
+GT6          H1          C0          H2     109.279    1.79
+GT6          H1          C0          H3     109.279    1.79
+GT6          H2          C0          H3     109.279    1.79
+GT6         CA1          N1          C0     112.615    2.70
+GT6         CA1          N1          H4     106.958    3.00
+GT6          C0          N1          H4     108.144    3.00
+GT6         CB1         CA1          N1     109.546    2.08
+GT6         CB1         CA1          C1     110.119    1.50
+GT6         CB1         CA1          H6     108.358    1.50
+GT6          N1         CA1          C1     112.148    1.50
+GT6          N1         CA1          H6     108.712    1.50
+GT6          C1         CA1          H6     107.902    1.50
+GT6         CA1          C1          O1     120.365    1.50
+GT6         CA1          C1          N2     116.681    1.56
+GT6          O1          C1          N2     122.954    1.50
+GT6          C1          N2         CA2     122.084    1.50
+GT6          C1          N2          H7     118.225    1.83
+GT6         CA2          N2          H7     119.691    3.00
+GT6          N2         CA2          C2     109.451    1.98
+GT6          N2         CA2         CB2     111.253    1.50
+GT6          N2         CA2          H8     107.870    1.79
+GT6          C2         CA2         CB2     111.469    2.23
+GT6          C2         CA2          H8     108.476    1.50
+GT6         CB2         CA2          H8     107.451    1.50
+GT6          O2          C2         CA2     121.242    1.50
+GT6          O2          C2          N3     121.351    1.50
+GT6         CA2          C2          N3     117.407    1.50
+GT6          C2          N3         CA3     124.421    3.00
+GT6          C2          N3         CD3     124.733    3.00
+GT6         CA3          N3         CD3     110.846    1.77
+GT6          N3         CD3         CG3     103.056    1.50
+GT6          N3         CD3          H9     111.119    1.50
+GT6          N3         CD3         H10     111.119    1.50
+GT6         CG3         CD3          H9     111.058    1.50
+GT6         CG3         CD3         H10     111.058    1.50
+GT6          H9         CD3         H10     108.952    1.50
+GT6         CB3         CG3         CD3     103.430    1.50
+GT6         CB3         CG3         OG3     109.789    1.93
+GT6         CB3         CG3         H11     111.491    1.54
+GT6         CD3         CG3         OG3     110.264    2.19
+GT6         CD3         CG3         H11     111.046    1.50
+GT6         OG3         CG3         H11     110.852    1.50
+GT6         CA3         CB3         CG3     105.023    1.50
+GT6         CA3         CB3         H12     110.817    1.50
+GT6         CA3         CB3         H13     110.817    1.50
+GT6         CG3         CB3         H12     110.841    1.50
+GT6         CG3         CB3         H13     110.841    1.50
+GT6         H12         CB3         H13     109.113    1.50
+GT6          N3         CA3         CB3     102.363    1.50
+GT6          N3         CA3         CB4     109.797    2.76
+GT6          N3         CA3         H14     109.977    1.62
+GT6         CB3         CA3         CB4     113.745    2.48
+GT6         CB3         CA3         H14     109.529    1.50
+GT6         CB4         CA3         H14     106.994    2.93
+GT6         CA3         CB4         CG4     114.042    1.50
+GT6         CA3         CB4         H15     108.686    1.50
+GT6         CA3         CB4         H16     108.686    1.50
+GT6         CG4         CB4         H15     108.841    1.50
+GT6         CG4         CB4         H16     108.841    1.50
+GT6         H15         CB4         H16     107.714    1.50
+GT6         CD2         CG4         CB4     126.105    1.50
+GT6         CD2         CG4         CD1     107.652    1.50
+GT6         CB4         CG4         CD1     126.243    1.76
+GT6         CE3         CD2         CE2     118.500    1.50
+GT6         CE3         CD2         CG4     133.885    1.50
+GT6         CE2         CD2         CG4     107.615    1.50
+GT6         CZ2         CE2         CD2     121.436    1.50
+GT6         CZ2         CE2         NE1     130.623    1.50
+GT6         CD2         CE2         NE1     107.941    1.50
+GT6         CE2         NE1         CD1     108.760    1.50
+GT6         CE2         NE1         H17     126.628    2.31
+GT6         CD1         NE1         H17     124.612    2.08
+GT6         CG4         CD1         NE1     108.033    1.50
+GT6         CG4         CD1         CD6     129.113    3.00
+GT6         NE1         CD1         CD6     122.854    2.80
+GT6         CH2         CZ2         CE2     118.726    1.50
+GT6         CH2         CZ2         H18     120.919    1.50
+GT6         CE2         CZ2         H18     120.355    1.50
+GT6           F         CH2         CZ3     117.978    1.50
+GT6           F         CH2         CZ2     118.707    1.50
+GT6         CZ3         CH2         CZ2     123.315    1.50
+GT6         CH2         CZ3         CE3     119.244    1.50
+GT6         CH2         CZ3         H19     120.272    1.50
+GT6         CE3         CZ3         H19     120.484    1.50
+GT6         CZ3         CE3         CD2     118.779    1.50
+GT6         CZ3         CE3         H20     120.726    1.50
+GT6         CD2         CE3         H20     120.495    1.50
+GT6         CA1         CB1         H21     109.620    1.50
+GT6         CA1         CB1         H22     109.620    1.50
+GT6         CA1         CB1         H23     109.620    1.50
+GT6         H21         CB1         H22     109.386    1.50
+GT6         H21         CB1         H23     109.386    1.50
+GT6         H22         CB1         H23     109.386    1.50
+GT6         CA2         CB2         CG2     112.808    1.50
+GT6         CA2         CB2         H24     108.818    1.50
+GT6         CA2         CB2         H25     108.818    1.50
+GT6         CG2         CB2         H24     108.917    1.50
+GT6         CG2         CB2         H25     108.917    1.50
+GT6         H24         CB2         H25     107.741    1.50
+GT6         CB2         CG2         H26     109.526    1.50
+GT6         CB2         CG2         H27     109.526    1.50
+GT6         CB2         CG2         H28     109.526    1.50
+GT6         H26         CG2         H27     109.380    1.50
+GT6         H26         CG2         H28     109.380    1.50
+GT6         H27         CG2         H28     109.380    1.50
+GT6         CG3         OG3         H29     108.359    1.75
+GT6         N1B         C0B         H30     110.215    1.50
+GT6         N1B         C0B         H31     110.215    1.50
+GT6         N1B         C0B         H32     110.215    1.50
+GT6         H30         C0B         H31     109.279    1.79
+GT6         H30         C0B         H32     109.279    1.79
+GT6         H31         C0B         H32     109.279    1.79
+GT6         C0B         N1B         CA6     112.615    2.70
+GT6         C0B         N1B         H33     108.144    3.00
+GT6         CA6         N1B         H33     106.958    3.00
+GT6         C1B         CA6         N1B     112.148    1.50
+GT6         C1B         CA6         CB6     110.119    1.50
+GT6         C1B         CA6         H35     107.902    1.50
+GT6         N1B         CA6         CB6     109.546    2.08
+GT6         N1B         CA6         H35     108.712    1.50
+GT6         CB6         CA6         H35     108.358    1.50
+GT6         N2B         C1B         O1B     122.954    1.50
+GT6         N2B         C1B         CA6     116.681    1.56
+GT6         O1B         C1B         CA6     120.365    1.50
+GT6         CA7         N2B         C1B     122.084    1.50
+GT6         CA7         N2B         H36     119.691    3.00
+GT6         C1B         N2B         H36     118.225    1.83
+GT6         CB7         CA7         C2B     111.469    2.23
+GT6         CB7         CA7         N2B     111.253    1.50
+GT6         CB7         CA7         H37     107.451    1.50
+GT6         C2B         CA7         N2B     109.451    1.98
+GT6         C2B         CA7         H37     108.476    1.50
+GT6         N2B         CA7         H37     107.870    1.79
+GT6         N3B         C2B         CA7     117.407    1.50
+GT6         N3B         C2B         O2B     121.351    1.50
+GT6         CA7         C2B         O2B     121.242    1.50
+GT6         CD8         N3B         CA8     110.846    1.77
+GT6         CD8         N3B         C2B     124.733    3.00
+GT6         CA8         N3B         C2B     124.421    3.00
+GT6         CG8         CD8         N3B     103.056    1.50
+GT6         CG8         CD8         H38     111.058    1.50
+GT6         CG8         CD8         H39     111.058    1.50
+GT6         N3B         CD8         H38     111.119    1.50
+GT6         N3B         CD8         H39     111.119    1.50
+GT6         H38         CD8         H39     108.952    1.50
+GT6         OG8         CG8         CD8     110.264    2.19
+GT6         OG8         CG8         CB8     109.789    1.93
+GT6         OG8         CG8         H40     110.852    1.50
+GT6         CD8         CG8         CB8     103.430    1.50
+GT6         CD8         CG8         H40     111.046    1.50
+GT6         CB8         CG8         H40     111.491    1.54
+GT6         CG8         CB8         CA8     105.023    1.50
+GT6         CG8         CB8         H41     110.841    1.50
+GT6         CG8         CB8         H42     110.841    1.50
+GT6         CA8         CB8         H41     110.817    1.50
+GT6         CA8         CB8         H42     110.817    1.50
+GT6         H41         CB8         H42     109.113    1.50
+GT6         CB9         CA8         CB8     113.745    2.48
+GT6         CB9         CA8         N3B     109.797    2.76
+GT6         CB9         CA8         H43     106.994    2.93
+GT6         CB8         CA8         N3B     102.363    1.50
+GT6         CB8         CA8         H43     109.529    1.50
+GT6         N3B         CA8         H43     109.977    1.62
+GT6         CG9         CB9         CA8     114.042    1.50
+GT6         CG9         CB9         H44     108.841    1.50
+GT6         CG9         CB9         H45     108.841    1.50
+GT6         CA8         CB9         H44     108.686    1.50
+GT6         CA8         CB9         H45     108.686    1.50
+GT6         H44         CB9         H45     107.714    1.50
+GT6         CD6         CG9         CB9     126.243    1.76
+GT6         CD6         CG9         CD7     107.652    1.50
+GT6         CB9         CG9         CD7     126.105    1.50
+GT6         CG9         CD7         CE7     107.615    1.50
+GT6         CG9         CD7         CE8     133.885    1.50
+GT6         CE7         CD7         CE8     118.500    1.50
+GT6         NE6         CE7         CD7     107.941    1.50
+GT6         NE6         CE7         CZ7     130.623    1.50
+GT6         CD7         CE7         CZ7     121.436    1.50
+GT6         CD6         NE6         CE7     108.760    1.50
+GT6         CD6         NE6         H46     124.612    2.08
+GT6         CE7         NE6         H46     126.628    2.31
+GT6         CD1         CD6         NE6     122.854    2.80
+GT6         CD1         CD6         CG9     129.113    3.00
+GT6         NE6         CD6         CG9     108.033    1.50
+GT6         CE7         CZ7         CH7     118.726    1.50
+GT6         CE7         CZ7         H47     120.355    1.50
+GT6         CH7         CZ7         H47     120.919    1.50
+GT6         CZ7         CH7         CZ8     123.315    1.50
+GT6         CZ7         CH7          FB     118.707    1.50
+GT6         CZ8         CH7          FB     117.978    1.50
+GT6         CE8         CZ8         CH7     119.244    1.50
+GT6         CE8         CZ8         H48     120.484    1.50
+GT6         CH7         CZ8         H48     120.272    1.50
+GT6         CD7         CE8         CZ8     118.779    1.50
+GT6         CD7         CE8         H49     120.495    1.50
+GT6         CZ8         CE8         H49     120.726    1.50
+GT6         CA6         CB6         H50     109.620    1.50
+GT6         CA6         CB6         H51     109.620    1.50
+GT6         CA6         CB6         H52     109.620    1.50
+GT6         H50         CB6         H51     109.386    1.50
+GT6         H50         CB6         H52     109.386    1.50
+GT6         H51         CB6         H52     109.386    1.50
+GT6         CG7         CB7         CA7     112.808    1.50
+GT6         CG7         CB7         H53     108.917    1.50
+GT6         CG7         CB7         H54     108.917    1.50
+GT6         CA7         CB7         H53     108.818    1.50
+GT6         CA7         CB7         H54     108.818    1.50
+GT6         H53         CB7         H54     107.741    1.50
+GT6         CB7         CG7         H55     109.526    1.50
+GT6         CB7         CG7         H56     109.526    1.50
+GT6         CB7         CG7         H57     109.526    1.50
+GT6         H55         CG7         H56     109.380    1.50
+GT6         H55         CG7         H57     109.380    1.50
+GT6         H56         CG7         H57     109.380    1.50
+GT6         CG8         OG8         H58     108.359    1.75
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GT6            sp3_sp3_70          H1          C0          N1         CA1     180.000    10.0     3
+GT6            sp3_sp3_20          N3         CD3         CG3         OG3      60.000    10.0     3
+GT6            sp3_sp3_11         CA3         CB3         CG3         OG3     180.000    10.0     3
+GT6            sp3_sp3_94         CB3         CG3         OG3         H29     180.000    10.0     3
+GT6             sp3_sp3_4         CB4         CA3         CB3         CG3     180.000    10.0     3
+GT6            sp3_sp3_85          N3         CA3         CB4         CG4     180.000    10.0     3
+GT6            sp2_sp3_38         CD2         CG4         CB4         CA3     -90.000    10.0     6
+GT6       const_sp2_sp2_4         CE3         CD2         CG4         CB4       0.000     5.0     2
+GT6              const_70         NE1         CD1         CG4         CB4     180.000    10.0     2
+GT6       const_sp2_sp2_5         CE3         CD2         CE2         CZ2       0.000     5.0     2
+GT6              const_17         CE2         CD2         CE3         CZ3       0.000    10.0     2
+GT6              const_11         CZ2         CE2         NE1         CD1     180.000    10.0     2
+GT6              const_33         CD2         CE2         CZ2         CH2       0.000    10.0     2
+GT6              const_13         CG4         CD1         NE1         CE2       0.000    10.0     2
+GT6             sp2_sp2_9         CG4         CD1         CD6         NE6     180.000     5.0     2
+GT6            sp3_sp3_65         CB1         CA1          N1          C0     -60.000    10.0     3
+GT6              const_31           F         CH2         CZ2         CE2     180.000    10.0     2
+GT6              const_27           F         CH2         CZ3         CE3     180.000    10.0     2
+GT6              const_21         CD2         CE3         CZ3         CH2       0.000    10.0     2
+GT6            sp3_sp3_97         CA2         CB2         CG2         H26     180.000    10.0     3
+GT6           sp3_sp3_136         H30         C0B         N1B         CA6     180.000    10.0     3
+GT6            sp3_sp3_55          N1         CA1         CB1         H21     180.000    10.0     3
+GT6            sp2_sp3_13          O1          C1         CA1         CB1       0.000    10.0     6
+GT6           sp3_sp3_143         C1B         CA6         N1B         C0B     -60.000    10.0     3
+GT6            sp2_sp3_67         N2B         C1B         CA6         N1B       0.000    10.0     6
+GT6           sp3_sp3_148         C1B         CA6         CB6         H50     180.000    10.0     3
+GT6            sp2_sp2_19         O1B         C1B         N2B         CA7       0.000     5.0     2
+GT6            sp2_sp3_61         C1B         N2B         CA7         CB7       0.000    10.0     6
+GT6            sp2_sp3_58         O2B         C2B         CA7         CB7     180.000    10.0     6
+GT6           sp3_sp3_115         C2B         CA7         CB7         CG7     180.000    10.0     3
+GT6            sp2_sp2_13         CA7         C2B         N3B         CD8     180.000     5.0     2
+GT6            sp2_sp3_10         C2B         N3B         CD8         CG8     180.000    10.0     6
+GT6            sp2_sp3_53         C2B         N3B         CA8         CB9     -60.000    10.0     6
+GT6            sp3_sp3_29         N3B         CD8         CG8         OG8      60.000    10.0     3
+GT6             sp2_sp2_1         CA1          C1          N2         CA2     180.000     5.0     2
+GT6            sp3_sp3_38         CA8         CB8         CG8         OG8     180.000    10.0     3
+GT6           sp3_sp3_133         CD8         CG8         OG8         H58     180.000    10.0     3
+GT6            sp3_sp3_49         CB9         CA8         CB8         CG8     180.000    10.0     3
+GT6           sp3_sp3_124         CB8         CA8         CB9         CG9     180.000    10.0     3
+GT6            sp2_sp3_44         CD6         CG9         CB9         CA8     -90.000    10.0     6
+GT6              const_74         CE7         CD7         CG9         CB9     180.000    10.0     2
+GT6              const_40         CD1         CD6         CG9         CB9       0.000    10.0     2
+GT6              const_49         CG9         CD7         CE7         NE6       0.000    10.0     2
+GT6              const_79         CG9         CD7         CE8         CZ8     180.000    10.0     2
+GT6              const_45         CD7         CE7         NE6         CD6       0.000    10.0     2
+GT6              const_55         NE6         CE7         CZ7         CH7     180.000    10.0     2
+GT6              const_43         CD1         CD6         NE6         CE7     180.000    10.0     2
+GT6              const_59          FB         CH7         CZ7         CE7     180.000    10.0     2
+GT6            sp2_sp3_19          C1          N2         CA2          C2       0.000    10.0     6
+GT6              const_63          FB         CH7         CZ8         CE8     180.000    10.0     2
+GT6              const_65         CD7         CE8         CZ8         CH7       0.000    10.0     2
+GT6           sp3_sp3_106         CA7         CB7         CG7         H55     180.000    10.0     3
+GT6            sp3_sp3_76          N2         CA2         CB2         CG2     180.000    10.0     3
+GT6            sp2_sp3_25          O2          C2         CA2          N2       0.000    10.0     6
+GT6             sp2_sp2_7          O2          C2          N3         CA3       0.000     5.0     2
+GT6            sp2_sp3_34          C2          N3         CD3         CG3     180.000    10.0     6
+GT6             sp2_sp3_5          C2          N3         CA3         CB4     -60.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GT6    chir_1    CA1    N1    C1    CB1    positive
+GT6    chir_2    CA2    N2    C2    CB2    positive
+GT6    chir_3    CG3    OG3    CD3    CB3    positive
+GT6    chir_4    CA3    N3    CB3    CB4    negative
+GT6    chir_5    CA6    N1B    C1B    CB6    positive
+GT6    chir_6    CA7    N2B    C2B    CB7    positive
+GT6    chir_7    CG8    OG8    CD8    CB8    positive
+GT6    chir_8    CA8    N3B    CB8    CB9    negative
+GT6    chir_9    N1    CA1    C0    H4    both
+GT6    chir_10    N1B    CA6    C0B    H33    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GT6    plan-1         CB4   0.020
+GT6    plan-1         CD1   0.020
+GT6    plan-1         CD2   0.020
+GT6    plan-1         CD6   0.020
+GT6    plan-1         CE2   0.020
+GT6    plan-1         CE3   0.020
+GT6    plan-1         CG4   0.020
+GT6    plan-1         CH2   0.020
+GT6    plan-1         CZ2   0.020
+GT6    plan-1         CZ3   0.020
+GT6    plan-1           F   0.020
+GT6    plan-1         H17   0.020
+GT6    plan-1         H18   0.020
+GT6    plan-1         H19   0.020
+GT6    plan-1         H20   0.020
+GT6    plan-1         NE1   0.020
+GT6    plan-2         CB9   0.020
+GT6    plan-2         CD1   0.020
+GT6    plan-2         CD6   0.020
+GT6    plan-2         CD7   0.020
+GT6    plan-2         CE7   0.020
+GT6    plan-2         CE8   0.020
+GT6    plan-2         CG9   0.020
+GT6    plan-2         CH7   0.020
+GT6    plan-2         CZ7   0.020
+GT6    plan-2         CZ8   0.020
+GT6    plan-2          FB   0.020
+GT6    plan-2         H46   0.020
+GT6    plan-2         H47   0.020
+GT6    plan-2         H48   0.020
+GT6    plan-2         H49   0.020
+GT6    plan-2         NE6   0.020
+GT6    plan-3          C1   0.020
+GT6    plan-3         CA1   0.020
+GT6    plan-3          N2   0.020
+GT6    plan-3          O1   0.020
+GT6    plan-4          C1   0.020
+GT6    plan-4         CA2   0.020
+GT6    plan-4          H7   0.020
+GT6    plan-4          N2   0.020
+GT6    plan-5          C2   0.020
+GT6    plan-5         CA2   0.020
+GT6    plan-5          N3   0.020
+GT6    plan-5          O2   0.020
+GT6    plan-6          C2   0.020
+GT6    plan-6         CA3   0.020
+GT6    plan-6         CD3   0.020
+GT6    plan-6          N3   0.020
+GT6    plan-7         C1B   0.020
+GT6    plan-7         CA6   0.020
+GT6    plan-7         N2B   0.020
+GT6    plan-7         O1B   0.020
+GT6    plan-8         C1B   0.020
+GT6    plan-8         CA7   0.020
+GT6    plan-8         H36   0.020
+GT6    plan-8         N2B   0.020
+GT6    plan-9         C2B   0.020
+GT6    plan-9         CA7   0.020
+GT6    plan-9         N3B   0.020
+GT6    plan-9         O2B   0.020
+GT6   plan-10         C2B   0.020
+GT6   plan-10         CA8   0.020
+GT6   plan-10         CD8   0.020
+GT6   plan-10         N3B   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GT6           SMILES              ACDLabs 12.01                                                                                                                                                                                                                       O=C(N6C(Cc5c1ccc(F)cc1nc5c3c(c2ccc(F)cc2n3)CC4N(C(=O)C(NC(=O)C(NC)C)CC)CC(O)C4)CC(O)C6)C(NC(=O)C(NC)C)CC
+GT6            InChI                InChI  1.03 InChI=1S/C42H56F2N8O6/c1-7-33(49-39(55)21(3)45-5)41(57)51-19-27(53)15-25(51)17-31-29-11-9-23(43)13-35(29)47-37(31)38-32(30-12-10-24(44)14-36(30)48-38)18-26-16-28(54)20-52(26)42(58)34(8-2)50-40(56)22(4)46-6/h9-14,21-22,25-28,33-34,45-48,53-54H,7-8,15-20H2,1-6H3,(H,49,55)(H,50,56)/t21-,22-,25-,26-,27-,28-,33-,34-/m0/s1
+GT6         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                    PKWRMUKBEYJEIX-DXXQBUJASA-N
+GT6 SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                                   CC[C@H](NC(=O)[C@H](C)NC)C(=O)N1C[C@@H](O)C[C@H]1Cc2c([nH]c3cc(F)ccc23)c4[nH]c5cc(F)ccc5c4C[C@@H]6C[C@H](O)CN6C(=O)[C@H](CC)NC(=O)[C@H](C)NC
+GT6           SMILES               CACTVS 3.370                                                                                                                                                                                             CC[CH](NC(=O)[CH](C)NC)C(=O)N1C[CH](O)C[CH]1Cc2c([nH]c3cc(F)ccc23)c4[nH]c5cc(F)ccc5c4C[CH]6C[CH](O)CN6C(=O)[CH](CC)NC(=O)[CH](C)NC
+GT6 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                  CC[C@@H](C(=O)N1C[C@H](C[C@H]1Cc2c3ccc(cc3[nH]c2c4c(c5ccc(cc5[nH]4)F)C[C@@H]6C[C@@H](CN6C(=O)[C@H](CC)NC(=O)[C@H](C)NC)O)F)O)NC(=O)[C@H](C)NC
+GT6           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                                     CCC(C(=O)N1CC(CC1Cc2c3ccc(cc3[nH]c2c4c(c5ccc(cc5[nH]4)F)CC6CC(CN6C(=O)C(CC)NC(=O)C(C)NC)O)F)O)NC(=O)C(C)NC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GT6 acedrg               243         "dictionary generator"                  
+GT6 acedrg_database      11          "data source"                           
+GT6 rdkit                2017.03.2   "Chemoinformatics tool"
+GT6 refmac5              5.8.0238    "optimization tool"                     

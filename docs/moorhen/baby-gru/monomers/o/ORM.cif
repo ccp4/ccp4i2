@@ -1,0 +1,245 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ORM     ORM      2-chloro-N-{4-chloro-3-[(propan-2-yl)sulfamoyl]phenyl}acetamide     NON-POLYMER     33     19     .     
+#
+data_comp_ORM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ORM     CAR     C       CH2     0       18.156      -7.208      13.370      
+ORM     CAP     C       C       0       17.331      -6.055      13.906      
+ORM     OAQ     O       O       0       17.376      -4.969      13.352      
+ORM     NAH     N       NH1     0       16.583      -6.326      14.995      
+ORM     CAC     C       CR6     0       16.085      -5.423      15.964      
+ORM     CAD     C       CR16    0       16.965      -4.630      16.703      
+ORM     CAB     C       CR16    0       14.715      -5.321      16.177      
+ORM     CAA     C       CR16    0       14.219      -4.439      17.121      
+ORM     CAF     C       CR6     0       15.091      -3.652      17.855      
+ORM     CLA     CL      CL      0       14.391      -2.571      19.014      
+ORM     CAE     C       CR6     0       16.474      -3.740      17.656      
+ORM     SAI     S       S3      0       17.630      -2.750      18.574      
+ORM     OAJ     O       O       0       18.960      -3.079      18.159      
+ORM     OAK     O       O       0       17.310      -2.871      19.963      
+ORM     NAL     N       NT1     0       17.382      -1.197      18.182      
+ORM     CAM     C       CH1     0       17.406      -0.611      16.823      
+ORM     CAO     C       CH3     0       16.106      -0.859      16.079      
+ORM     CAN     C       CH3     0       18.613      -1.043      16.008      
+ORM     CL1     CL      CL      0       19.586      -7.555      14.349      
+ORM     H1      H       H       0       18.439      -6.998      12.463      
+ORM     H2      H       H       0       17.600      -8.006      13.331      
+ORM     H4      H       H       0       16.366      -7.164      15.123      
+ORM     H5      H       H       0       17.879      -4.705      16.552      
+ORM     H6      H       H       0       14.124      -5.853      15.681      
+ORM     H7      H       H       0       13.298      -4.372      17.262      
+ORM     H8      H       H       0       16.832      -0.832      18.739      
+ORM     H9      H       H       0       17.481      0.372       16.930      
+ORM     H10     H       H       0       15.372      -0.908      16.715      
+ORM     H11     H       H       0       16.164      -1.697      15.588      
+ORM     H12     H       H       0       15.945      -0.130      15.455      
+ORM     H13     H       H       0       19.418      -0.950      16.546      
+ORM     H14     H       H       0       18.687      -0.483      15.216      
+ORM     H15     H       H       0       18.510      -1.972      15.738      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ORM         CAR         CAP      SINGLE       n     1.514  0.0125     1.514  0.0125
+ORM         CAP         OAQ      DOUBLE       n     1.219  0.0140     1.219  0.0140
+ORM         CAP         NAH      SINGLE       n     1.345  0.0131     1.345  0.0131
+ORM         NAH         CAC      SINGLE       n     1.414  0.0100     1.414  0.0100
+ORM         CAM         CAN      SINGLE       n     1.517  0.0100     1.517  0.0100
+ORM         CAC         CAB      DOUBLE       y     1.388  0.0100     1.388  0.0100
+ORM         CAC         CAD      SINGLE       y     1.393  0.0100     1.393  0.0100
+ORM         CAB         CAA      SINGLE       y     1.382  0.0100     1.382  0.0100
+ORM         CAD         CAE      DOUBLE       y     1.387  0.0100     1.387  0.0100
+ORM         CAM         CAO      SINGLE       n     1.517  0.0100     1.517  0.0100
+ORM         NAL         CAM      SINGLE       n     1.476  0.0100     1.476  0.0100
+ORM         CAA         CAF      DOUBLE       y     1.382  0.0100     1.382  0.0100
+ORM         CAF         CAE      SINGLE       y     1.393  0.0100     1.393  0.0100
+ORM         CAE         SAI      SINGLE       n     1.773  0.0100     1.773  0.0100
+ORM         CAF         CLA      SINGLE       n     1.731  0.0100     1.731  0.0100
+ORM         SAI         OAJ      DOUBLE       n     1.431  0.0100     1.431  0.0100
+ORM         SAI         NAL      SINGLE       n     1.616  0.0100     1.616  0.0100
+ORM         SAI         OAK      DOUBLE       n     1.431  0.0100     1.431  0.0100
+ORM         CAR         CL1      SINGLE       n     1.767  0.0200     1.767  0.0200
+ORM         CAR          H1      SINGLE       n     1.089  0.0100     0.973  0.0130
+ORM         CAR          H2      SINGLE       n     1.089  0.0100     0.973  0.0130
+ORM         NAH          H4      SINGLE       n     1.016  0.0100     0.874  0.0200
+ORM         CAD          H5      SINGLE       n     1.082  0.0130     0.930  0.0100
+ORM         CAB          H6      SINGLE       n     1.082  0.0130     0.937  0.0124
+ORM         CAA          H7      SINGLE       n     1.082  0.0130     0.934  0.0100
+ORM         NAL          H8      SINGLE       n     1.036  0.0160     0.862  0.0200
+ORM         CAM          H9      SINGLE       n     1.089  0.0100     0.992  0.0135
+ORM         CAO         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+ORM         CAO         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+ORM         CAO         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+ORM         CAN         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+ORM         CAN         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+ORM         CAN         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ORM         CAP         CAR         CL1     113.251    2.28
+ORM         CAP         CAR          H1     108.964    1.50
+ORM         CAP         CAR          H2     108.964    1.50
+ORM         CL1         CAR          H1     108.911    1.50
+ORM         CL1         CAR          H2     108.911    1.50
+ORM          H1         CAR          H2     107.950    1.50
+ORM         CAR         CAP         OAQ     120.790    2.60
+ORM         CAR         CAP         NAH     114.504    2.40
+ORM         OAQ         CAP         NAH     124.706    1.50
+ORM         CAP         NAH         CAC     128.458    1.50
+ORM         CAP         NAH          H4     116.024    2.40
+ORM         CAC         NAH          H4     115.518    1.69
+ORM         NAH         CAC         CAB     119.855    3.00
+ORM         NAH         CAC         CAD     120.129    3.00
+ORM         CAB         CAC         CAD     120.016    1.50
+ORM         CAC         CAD         CAE     119.532    1.50
+ORM         CAC         CAD          H5     120.137    2.19
+ORM         CAE         CAD          H5     120.331    1.50
+ORM         CAC         CAB         CAA     120.732    1.50
+ORM         CAC         CAB          H6     119.687    1.50
+ORM         CAA         CAB          H6     119.581    1.50
+ORM         CAB         CAA         CAF     119.872    1.50
+ORM         CAB         CAA          H7     120.176    1.50
+ORM         CAF         CAA          H7     119.952    1.50
+ORM         CAA         CAF         CAE     120.679    1.50
+ORM         CAA         CAF         CLA     117.813    1.50
+ORM         CAE         CAF         CLA     121.508    1.50
+ORM         CAD         CAE         CAF     119.169    1.50
+ORM         CAD         CAE         SAI     118.663    1.50
+ORM         CAF         CAE         SAI     122.168    1.50
+ORM         CAE         SAI         OAJ     108.549    1.50
+ORM         CAE         SAI         NAL     107.637    1.50
+ORM         CAE         SAI         OAK     108.549    1.50
+ORM         OAJ         SAI         NAL     106.820    1.50
+ORM         OAJ         SAI         OAK     119.599    1.50
+ORM         NAL         SAI         OAK     106.820    1.50
+ORM         CAM         NAL         SAI     122.139    2.10
+ORM         CAM         NAL          H8     116.930    2.40
+ORM         SAI         NAL          H8     111.495    3.00
+ORM         CAN         CAM         CAO     111.834    1.50
+ORM         CAN         CAM         NAL     111.211    1.91
+ORM         CAN         CAM          H9     107.146    1.50
+ORM         CAO         CAM         NAL     111.211    1.91
+ORM         CAO         CAM          H9     107.146    1.50
+ORM         NAL         CAM          H9     107.961    1.50
+ORM         CAM         CAO         H10     109.474    1.50
+ORM         CAM         CAO         H11     109.474    1.50
+ORM         CAM         CAO         H12     109.474    1.50
+ORM         H10         CAO         H11     109.386    1.50
+ORM         H10         CAO         H12     109.386    1.50
+ORM         H11         CAO         H12     109.386    1.50
+ORM         CAM         CAN         H13     109.474    1.50
+ORM         CAM         CAN         H14     109.474    1.50
+ORM         CAM         CAN         H15     109.474    1.50
+ORM         H13         CAN         H14     109.386    1.50
+ORM         H13         CAN         H15     109.386    1.50
+ORM         H14         CAN         H15     109.386    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ORM             sp2_sp3_2         OAQ         CAP         CAR         CL1     120.000    10.0     6
+ORM             sp2_sp3_7         CAD         CAE         SAI         OAJ     150.000    10.0     6
+ORM            sp3_sp3_29         CAM         NAL         SAI         OAJ     180.000    10.0     3
+ORM            sp3_sp3_21         CAN         CAM         NAL         SAI      60.000    10.0     3
+ORM            sp3_sp3_10         CAN         CAM         CAO         H10     180.000    10.0     3
+ORM             sp3_sp3_4         CAO         CAM         CAN         H13      60.000    10.0     3
+ORM             sp2_sp2_1         CAR         CAP         NAH         CAC     180.000     5.0     2
+ORM             sp2_sp2_5         CAB         CAC         NAH         CAP     180.000     5.0     2
+ORM              const_23         NAH         CAC         CAD         CAE     180.000    10.0     2
+ORM       const_sp2_sp2_2         CAA         CAB         CAC         NAH     180.000     5.0     2
+ORM              const_18         CAC         CAD         CAE         SAI     180.000    10.0     2
+ORM       const_sp2_sp2_5         CAF         CAA         CAB         CAC       0.000     5.0     2
+ORM              const_10         CAB         CAA         CAF         CLA     180.000    10.0     2
+ORM              const_16         SAI         CAE         CAF         CLA       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ORM    chir_1    SAI    OAJ    OAK    NAL    both
+ORM    chir_2    CAM    NAL    CAN    CAO    both
+ORM    chir_3    NAL    SAI    CAM    H8    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ORM    plan-1         CAA   0.020
+ORM    plan-1         CAB   0.020
+ORM    plan-1         CAC   0.020
+ORM    plan-1         CAD   0.020
+ORM    plan-1         CAE   0.020
+ORM    plan-1         CAF   0.020
+ORM    plan-1         CLA   0.020
+ORM    plan-1          H5   0.020
+ORM    plan-1          H6   0.020
+ORM    plan-1          H7   0.020
+ORM    plan-1         NAH   0.020
+ORM    plan-1         SAI   0.020
+ORM    plan-2         CAP   0.020
+ORM    plan-2         CAR   0.020
+ORM    plan-2         NAH   0.020
+ORM    plan-2         OAQ   0.020
+ORM    plan-3         CAC   0.020
+ORM    plan-3         CAP   0.020
+ORM    plan-3          H4   0.020
+ORM    plan-3         NAH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ORM           SMILES              ACDLabs 12.01                                                                   C(C(Nc1ccc(Cl)c(c1)S(=O)(=O)NC(C)C)=O)Cl
+ORM            InChI                InChI  1.03 InChI=1S/C11H14Cl2N2O3S/c1-7(2)15-19(17,18)10-5-8(3-4-9(10)13)14-11(16)6-12/h3-5,7,15H,6H2,1-2H3,(H,14,16)
+ORM         InChIKey                InChI  1.03                                                                                KNMHYCCVNWINHU-UHFFFAOYSA-N
+ORM SMILES_CANONICAL               CACTVS 3.385                                                                     CC(C)N[S](=O)(=O)c1cc(NC(=O)CCl)ccc1Cl
+ORM           SMILES               CACTVS 3.385                                                                     CC(C)N[S](=O)(=O)c1cc(NC(=O)CCl)ccc1Cl
+ORM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                       CC(C)NS(=O)(=O)c1cc(ccc1Cl)NC(=O)CCl
+ORM           SMILES "OpenEye OEToolkits" 2.0.7                                                                       CC(C)NS(=O)(=O)c1cc(ccc1Cl)NC(=O)CCl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ORM acedrg               243         "dictionary generator"                  
+ORM acedrg_database      11          "data source"                           
+ORM rdkit                2017.03.2   "Chemoinformatics tool"
+ORM refmac5              5.8.0238    "optimization tool"                     

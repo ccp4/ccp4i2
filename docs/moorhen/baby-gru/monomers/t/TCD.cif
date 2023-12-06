@@ -1,0 +1,251 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TCD     TCD      3,5-DICHLORO-2-{4-[(3,5-DICHLOROPYRIDIN-2-YL)OXY]PHENOXY}PYRIDINE     NON-POLYMER     32     24     .     
+#
+data_comp_TCD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TCD     C1      C       CR6     0       2.557       -12.097     43.287      
+TCD     O21     O       O2      0       3.662       -12.916     43.572      
+TCD     C2      C       CR16    0       2.063       -11.177     44.194      
+TCD     C3      C       CR16    0       0.973       -10.388     43.848      
+TCD     C4      C       CR6     0       0.395       -10.522     42.601      
+TCD     O31     O       O2      0       -0.694      -9.686      42.302      
+TCD     C5      C       CR16    0       0.906       -11.423     41.685      
+TCD     C6      C       CR16    0       1.990       -12.218     42.034      
+TCD     C22     C       CR6     0       3.995       -13.480     44.771      
+TCD     N23     N       NRD6    0       3.081       -13.727     45.691      
+TCD     C24     C       CR16    0       3.470       -14.289     46.856      
+TCD     C25     C       CR6     0       4.783       -14.621     47.099      
+TCD     CL25    CL      CL      0       5.235       -15.345     48.606      
+TCD     C26     C       CR16    0       5.739       -14.372     46.132      
+TCD     C27     C       CR6     0       5.337       -13.796     44.950      
+TCD     CL27    CL      CL      0       6.515       -13.477     43.732      
+TCD     C32     C       CR6     0       -1.803      -9.998      41.568      
+TCD     N33     N       NRD6    0       -2.192      -11.249     41.415      
+TCD     C34     C       CR16    0       -3.297      -11.500     40.679      
+TCD     C35     C       CR6     0       -4.029      -10.487     40.102      
+TCD     CL35    CL      CL      0       -5.443      -10.855     39.172      
+TCD     C36     C       CR16    0       -3.628      -9.175      40.270      
+TCD     C37     C       CR6     0       -2.500      -8.928      41.016      
+TCD     CL37    CL      CL      0       -1.983      -7.298      41.235      
+TCD     H2      H       H       0       2.450       -11.091     45.048      
+TCD     H3      H       H       0       0.628       -9.767      44.467      
+TCD     H5      H       H       0       0.515       -11.513     40.833      
+TCD     H6      H       H       0       2.335       -12.839     41.415      
+TCD     H24     H       H       0       2.814       -14.458     47.514      
+TCD     H26     H       H       0       6.642       -14.586     46.269      
+TCD     H34     H       H       0       -3.568      -12.397     40.568      
+TCD     H36     H       H       0       -4.106      -8.464      39.888      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TCD          C1         O21      SINGLE       n     1.401  0.0100     1.401  0.0100
+TCD          C1          C2      DOUBLE       y     1.376  0.0114     1.376  0.0114
+TCD          C1          C6      SINGLE       y     1.376  0.0114     1.376  0.0114
+TCD         O21         C22      SINGLE       n     1.362  0.0100     1.362  0.0100
+TCD          C2          C3      SINGLE       y     1.385  0.0100     1.385  0.0100
+TCD          C3          C4      DOUBLE       y     1.376  0.0114     1.376  0.0114
+TCD          C4         O31      SINGLE       n     1.401  0.0100     1.401  0.0100
+TCD          C4          C5      SINGLE       y     1.376  0.0114     1.376  0.0114
+TCD         O31         C32      SINGLE       n     1.362  0.0100     1.362  0.0100
+TCD          C5          C6      DOUBLE       y     1.385  0.0100     1.385  0.0100
+TCD         C22         N23      DOUBLE       y     1.311  0.0100     1.311  0.0100
+TCD         C22         C27      SINGLE       y     1.383  0.0108     1.383  0.0108
+TCD         N23         C24      SINGLE       y     1.344  0.0107     1.344  0.0107
+TCD         C24         C25      DOUBLE       y     1.374  0.0100     1.374  0.0100
+TCD         C25        CL25      SINGLE       n     1.732  0.0100     1.732  0.0100
+TCD         C25         C26      SINGLE       y     1.381  0.0155     1.381  0.0155
+TCD         C26         C27      DOUBLE       y     1.372  0.0100     1.372  0.0100
+TCD         C27        CL27      SINGLE       n     1.723  0.0100     1.723  0.0100
+TCD         C32         N33      DOUBLE       y     1.311  0.0100     1.311  0.0100
+TCD         C32         C37      SINGLE       y     1.383  0.0108     1.383  0.0108
+TCD         N33         C34      SINGLE       y     1.344  0.0107     1.344  0.0107
+TCD         C34         C35      DOUBLE       y     1.374  0.0100     1.374  0.0100
+TCD         C35        CL35      SINGLE       n     1.732  0.0100     1.732  0.0100
+TCD         C35         C36      SINGLE       y     1.381  0.0155     1.381  0.0155
+TCD         C36         C37      DOUBLE       y     1.372  0.0100     1.372  0.0100
+TCD         C37        CL37      SINGLE       n     1.723  0.0100     1.723  0.0100
+TCD          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0174
+TCD          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0174
+TCD          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0174
+TCD          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0174
+TCD         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0190
+TCD         C26         H26      SINGLE       n     1.082  0.0130     0.938  0.0142
+TCD         C34         H34      SINGLE       n     1.082  0.0130     0.944  0.0190
+TCD         C36         H36      SINGLE       n     1.082  0.0130     0.938  0.0142
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TCD         O21          C1          C2     119.478    2.43
+TCD         O21          C1          C6     119.478    2.43
+TCD          C2          C1          C6     121.044    1.50
+TCD          C1         O21         C22     119.209    2.48
+TCD          C1          C2          C3     119.478    1.50
+TCD          C1          C2          H2     120.460    1.50
+TCD          C3          C2          H2     120.061    1.50
+TCD          C2          C3          C4     119.478    1.50
+TCD          C2          C3          H3     120.061    1.50
+TCD          C4          C3          H3     120.460    1.50
+TCD          C3          C4         O31     119.478    2.43
+TCD          C3          C4          C5     121.044    1.50
+TCD         O31          C4          C5     119.478    2.43
+TCD          C4         O31         C32     119.209    2.48
+TCD          C4          C5          C6     119.478    1.50
+TCD          C4          C5          H5     120.460    1.50
+TCD          C6          C5          H5     120.061    1.50
+TCD          C1          C6          C5     119.478    1.50
+TCD          C1          C6          H6     120.460    1.50
+TCD          C5          C6          H6     120.061    1.50
+TCD         O21         C22         N23     118.936    2.69
+TCD         O21         C22         C27     118.923    3.00
+TCD         N23         C22         C27     122.141    1.50
+TCD         C22         N23         C24     117.030    1.50
+TCD         N23         C24         C25     121.868    1.50
+TCD         N23         C24         H24     118.346    1.50
+TCD         C25         C24         H24     119.786    1.50
+TCD         C24         C25        CL25     119.694    1.50
+TCD         C24         C25         C26     120.574    1.50
+TCD        CL25         C25         C26     119.732    1.50
+TCD         C25         C26         C27     119.066    1.50
+TCD         C25         C26         H26     121.065    1.50
+TCD         C27         C26         H26     119.869    1.50
+TCD         C22         C27         C26     119.320    1.50
+TCD         C22         C27        CL27     121.464    1.50
+TCD         C26         C27        CL27     119.216    1.50
+TCD         O31         C32         N33     118.936    2.69
+TCD         O31         C32         C37     118.923    3.00
+TCD         N33         C32         C37     122.141    1.50
+TCD         C32         N33         C34     117.030    1.50
+TCD         N33         C34         C35     121.868    1.50
+TCD         N33         C34         H34     118.346    1.50
+TCD         C35         C34         H34     119.786    1.50
+TCD         C34         C35        CL35     119.694    1.50
+TCD         C34         C35         C36     120.574    1.50
+TCD        CL35         C35         C36     119.732    1.50
+TCD         C35         C36         C37     119.066    1.50
+TCD         C35         C36         H36     121.065    1.50
+TCD         C37         C36         H36     119.869    1.50
+TCD         C32         C37         C36     119.320    1.50
+TCD         C32         C37        CL37     121.464    1.50
+TCD         C36         C37        CL37     119.216    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TCD             sp2_sp2_1          C2          C1         O21         C22     180.000     5.0     2
+TCD       const_sp2_sp2_3         O21          C1          C2          C3     180.000     5.0     2
+TCD              const_55         O21          C1          C6          C5     180.000    10.0     2
+TCD              const_26         N23         C24         C25        CL25     180.000    10.0     2
+TCD              const_31        CL25         C25         C26         C27     180.000    10.0     2
+TCD              const_34         C25         C26         C27        CL27     180.000    10.0     2
+TCD              const_38         O31         C32         N33         C34     180.000    10.0     2
+TCD              const_64         O31         C32         C37        CL37       0.000    10.0     2
+TCD              const_39         C35         C34         N33         C32       0.000    10.0     2
+TCD              const_42         N33         C34         C35        CL35     180.000    10.0     2
+TCD              const_47        CL35         C35         C36         C37     180.000    10.0     2
+TCD             sp2_sp2_3         N23         C22         O21          C1     180.000     5.0     2
+TCD              const_50         C35         C36         C37        CL37     180.000    10.0     2
+TCD       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+TCD              const_10          C2          C3          C4         O31     180.000    10.0     2
+TCD             sp2_sp2_5          C3          C4         O31         C32     180.000     5.0     2
+TCD              const_15         O31          C4          C5          C6     180.000    10.0     2
+TCD             sp2_sp2_7         N33         C32         O31          C4     180.000     5.0     2
+TCD              const_17          C4          C5          C6          C1       0.000    10.0     2
+TCD              const_60         O21         C22         C27        CL27       0.000    10.0     2
+TCD              const_22         O21         C22         N23         C24     180.000    10.0     2
+TCD              const_23         C25         C24         N23         C22       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TCD    plan-1          C1   0.020
+TCD    plan-1          C2   0.020
+TCD    plan-1          C3   0.020
+TCD    plan-1          C4   0.020
+TCD    plan-1          C5   0.020
+TCD    plan-1          C6   0.020
+TCD    plan-1          H2   0.020
+TCD    plan-1          H3   0.020
+TCD    plan-1          H5   0.020
+TCD    plan-1          H6   0.020
+TCD    plan-1         O21   0.020
+TCD    plan-1         O31   0.020
+TCD    plan-2         C22   0.020
+TCD    plan-2         C24   0.020
+TCD    plan-2         C25   0.020
+TCD    plan-2         C26   0.020
+TCD    plan-2         C27   0.020
+TCD    plan-2        CL25   0.020
+TCD    plan-2        CL27   0.020
+TCD    plan-2         H24   0.020
+TCD    plan-2         H26   0.020
+TCD    plan-2         N23   0.020
+TCD    plan-2         O21   0.020
+TCD    plan-3         C32   0.020
+TCD    plan-3         C34   0.020
+TCD    plan-3         C35   0.020
+TCD    plan-3         C36   0.020
+TCD    plan-3         C37   0.020
+TCD    plan-3        CL35   0.020
+TCD    plan-3        CL37   0.020
+TCD    plan-3         H34   0.020
+TCD    plan-3         H36   0.020
+TCD    plan-3         N33   0.020
+TCD    plan-3         O31   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TCD           SMILES              ACDLabs 10.04                                                            Clc3cc(Cl)cnc3Oc2ccc(Oc1ncc(Cl)cc1Cl)cc2
+TCD SMILES_CANONICAL               CACTVS 3.341                                                          Clc1cnc(Oc2ccc(Oc3ncc(Cl)cc3Cl)cc2)c(Cl)c1
+TCD           SMILES               CACTVS 3.341                                                          Clc1cnc(Oc2ccc(Oc3ncc(Cl)cc3Cl)cc2)c(Cl)c1
+TCD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                        c1cc(ccc1Oc2c(cc(cn2)Cl)Cl)Oc3c(cc(cn3)Cl)Cl
+TCD           SMILES "OpenEye OEToolkits" 1.5.0                                                        c1cc(ccc1Oc2c(cc(cn2)Cl)Cl)Oc3c(cc(cn3)Cl)Cl
+TCD            InChI                InChI  1.03 InChI=1S/C16H8Cl4N2O2/c17-9-5-13(19)15(21-7-9)23-11-1-2-12(4-3-11)24-16-14(20)6-10(18)8-22-16/h1-8H
+TCD         InChIKey                InChI  1.03                                                                         BAFKRPOFIYPKBQ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TCD acedrg               243         "dictionary generator"                  
+TCD acedrg_database      11          "data source"                           
+TCD rdkit                2017.03.2   "Chemoinformatics tool"
+TCD refmac5              5.8.0238    "optimization tool"                     

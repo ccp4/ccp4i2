@@ -1,0 +1,239 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CUE     CUE      Coumestrol     NON-POLYMER     28     20     .     
+#
+data_comp_CUE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CUE     OAA     O       O       0       -7.410      -20.286     10.465      
+CUE     OAB     O       OH1     0       -2.747      -15.251     11.627      
+CUE     OAC     O       OH1     0       -10.605     -18.991     4.254       
+CUE     CAD     C       CR16    0       -4.037      -15.155     9.609       
+CUE     CAE     C       CR16    0       -9.973      -20.006     6.350       
+CUE     CAF     C       CR16    0       -4.994      -15.676     8.786       
+CUE     CAG     C       CR16    0       -9.201      -20.009     7.496       
+CUE     CAH     C       CR16    0       -4.363      -16.966     11.191      
+CUE     CAI     C       CR16    0       -8.916      -17.967     5.590       
+CUE     OAJ     O       O2      0       -5.964      -18.659     10.751      
+CUE     OAK     O       O2      0       -7.187      -17.055     7.110       
+CUE     CAL     C       CR6     0       -3.714      -15.793     10.814      
+CUE     CAM     C       CR6     0       -9.833      -18.984     5.391       
+CUE     CAN     C       CR6     0       -6.951      -19.274     9.991       
+CUE     CAO     C       CR66    0       -5.333      -17.486     10.348      
+CUE     CAP     C       CR56    0       -8.150      -17.981     6.740       
+CUE     CAQ     C       CR66    0       -5.664      -16.855     9.138       
+CUE     CAR     C       CR56    0       -8.272      -18.984     7.704       
+CUE     CAS     C       CR56    0       -6.673      -17.458     8.331       
+CUE     CAT     C       CR56    0       -7.316      -18.653     8.741       
+CUE     H1      H       H       0       -2.657      -15.521     12.440      
+CUE     H2      H       H       0       -11.182     -19.617     4.122       
+CUE     H3      H       H       0       -3.591      -14.363     9.365       
+CUE     H4      H       H       0       -10.600     -20.695     6.206       
+CUE     H5      H       H       0       -5.202      -15.241     7.981       
+CUE     H6      H       H       0       -9.304      -20.699     8.131       
+CUE     H7      H       H       0       -4.151      -17.399     12.000      
+CUE     H8      H       H       0       -8.820      -17.284     4.952       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CUE         OAC         CAM      SINGLE       n     1.374  0.0155     1.374  0.0155
+CUE         CAI         CAM      SINGLE       y     1.381  0.0100     1.381  0.0100
+CUE         CAE         CAM      DOUBLE       y     1.405  0.0100     1.405  0.0100
+CUE         CAI         CAP      DOUBLE       y     1.380  0.0100     1.380  0.0100
+CUE         CAE         CAG      SINGLE       y     1.377  0.0100     1.377  0.0100
+CUE         OAK         CAP      SINGLE       y     1.385  0.0100     1.385  0.0100
+CUE         CAP         CAR      SINGLE       y     1.393  0.0100     1.393  0.0100
+CUE         OAK         CAS      SINGLE       y     1.383  0.0130     1.383  0.0130
+CUE         CAG         CAR      DOUBLE       y     1.394  0.0100     1.394  0.0100
+CUE         CAR         CAT      SINGLE       y     1.450  0.0100     1.450  0.0100
+CUE         CAS         CAT      DOUBLE       y     1.404  0.0200     1.404  0.0200
+CUE         CAQ         CAS      SINGLE       y     1.417  0.0192     1.417  0.0192
+CUE         CAN         CAT      SINGLE       y     1.428  0.0186     1.428  0.0186
+CUE         CAF         CAQ      SINGLE       y     1.398  0.0100     1.398  0.0100
+CUE         CAD         CAF      DOUBLE       y     1.360  0.0114     1.360  0.0114
+CUE         CAO         CAQ      DOUBLE       y     1.401  0.0100     1.401  0.0100
+CUE         CAD         CAL      SINGLE       y     1.397  0.0100     1.397  0.0100
+CUE         OAA         CAN      DOUBLE       n     1.208  0.0100     1.208  0.0100
+CUE         OAJ         CAN      SINGLE       y     1.384  0.0115     1.384  0.0115
+CUE         OAJ         CAO      SINGLE       y     1.389  0.0100     1.389  0.0100
+CUE         CAH         CAO      SINGLE       y     1.383  0.0100     1.383  0.0100
+CUE         CAH         CAL      DOUBLE       y     1.388  0.0100     1.388  0.0100
+CUE         OAB         CAL      SINGLE       n     1.374  0.0155     1.374  0.0155
+CUE         OAB          H1      SINGLE       n     0.966  0.0059     0.861  0.0200
+CUE         OAC          H2      SINGLE       n     0.966  0.0059     0.861  0.0200
+CUE         CAD          H3      SINGLE       n     1.082  0.0130     0.941  0.0131
+CUE         CAE          H4      SINGLE       n     1.082  0.0130     0.943  0.0103
+CUE         CAF          H5      SINGLE       n     1.082  0.0130     0.938  0.0130
+CUE         CAG          H6      SINGLE       n     1.082  0.0130     0.943  0.0166
+CUE         CAH          H7      SINGLE       n     1.082  0.0130     0.942  0.0200
+CUE         CAI          H8      SINGLE       n     1.082  0.0130     0.939  0.0199
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CUE         CAL         OAB          H1     120.000    3.00
+CUE         CAM         OAC          H2     120.000    3.00
+CUE         CAF         CAD         CAL     120.159    1.50
+CUE         CAF         CAD          H3     119.932    1.50
+CUE         CAL         CAD          H3     119.910    1.50
+CUE         CAM         CAE         CAG     120.524    1.50
+CUE         CAM         CAE          H4     119.599    1.50
+CUE         CAG         CAE          H4     119.877    1.50
+CUE         CAQ         CAF         CAD     120.362    1.50
+CUE         CAQ         CAF          H5     119.993    1.50
+CUE         CAD         CAF          H5     119.645    1.50
+CUE         CAE         CAG         CAR     118.825    1.50
+CUE         CAE         CAG          H6     120.274    1.50
+CUE         CAR         CAG          H6     120.911    1.50
+CUE         CAO         CAH         CAL     118.543    1.50
+CUE         CAO         CAH          H7     120.512    1.50
+CUE         CAL         CAH          H7     120.945    1.50
+CUE         CAM         CAI         CAP     119.068    1.50
+CUE         CAM         CAI          H8     120.108    1.50
+CUE         CAP         CAI          H8     120.824    1.50
+CUE         CAN         OAJ         CAO     122.559    1.50
+CUE         CAP         OAK         CAS     106.737    1.50
+CUE         CAD         CAL         CAH     120.357    1.50
+CUE         CAD         CAL         OAB     119.822    3.00
+CUE         CAH         CAL         OAB     119.822    3.00
+CUE         OAC         CAM         CAI     119.655    3.00
+CUE         OAC         CAM         CAE     119.655    3.00
+CUE         CAI         CAM         CAE     120.691    1.50
+CUE         CAT         CAN         OAA     127.307    1.50
+CUE         CAT         CAN         OAJ     117.276    1.58
+CUE         OAA         CAN         OAJ     115.417    1.50
+CUE         CAQ         CAO         OAJ     121.941    1.50
+CUE         CAQ         CAO         CAH     121.491    1.50
+CUE         OAJ         CAO         CAH     116.568    1.50
+CUE         CAI         CAP         OAK     126.869    1.50
+CUE         CAI         CAP         CAR     122.523    1.50
+CUE         OAK         CAP         CAR     110.608    1.50
+CUE         CAS         CAQ         CAF     122.851    1.56
+CUE         CAS         CAQ         CAO     118.060    1.68
+CUE         CAF         CAQ         CAO     119.089    1.50
+CUE         CAP         CAR         CAG     118.359    1.50
+CUE         CAP         CAR         CAT     106.253    1.50
+CUE         CAG         CAR         CAT     135.388    1.50
+CUE         OAK         CAS         CAT     109.265    1.50
+CUE         OAK         CAS         CAQ     129.711    1.50
+CUE         CAT         CAS         CAQ     121.024    1.74
+CUE         CAR         CAT         CAS     107.137    1.50
+CUE         CAR         CAT         CAN     133.723    1.70
+CUE         CAS         CAT         CAN     119.140    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CUE              const_56         CAI         CAP         OAK         CAS     180.000    10.0     2
+CUE              const_65         CAT         CAS         OAK         CAP       0.000    10.0     2
+CUE              const_46         OAA         CAN         CAT         CAR       0.000    10.0     2
+CUE       const_sp2_sp2_9         OAJ         CAO         CAQ         CAS       0.000     5.0     2
+CUE              const_33         CAI         CAP         CAR         CAG       0.000    10.0     2
+CUE              const_54         CAF         CAQ         CAS         OAK       0.000    10.0     2
+CUE              const_57         CAP         CAR         CAT         CAS       0.000    10.0     2
+CUE              const_47         OAK         CAS         CAT         CAR       0.000    10.0     2
+CUE             sp2_sp2_3         CAD         CAL         OAB          H1     180.000     5.0     2
+CUE             sp2_sp2_1         CAI         CAM         OAC          H2     180.000     5.0     2
+CUE              const_68         CAF         CAD         CAL         OAB     180.000    10.0     2
+CUE       const_sp2_sp2_1         CAL         CAD         CAF         CAQ       0.000     5.0     2
+CUE              const_22         CAG         CAE         CAM         OAC     180.000    10.0     2
+CUE              const_61         CAM         CAE         CAG         CAR       0.000    10.0     2
+CUE       const_sp2_sp2_6         CAD         CAF         CAQ         CAS     180.000     5.0     2
+CUE              const_37         CAE         CAG         CAR         CAP       0.000    10.0     2
+CUE              const_18         CAO         CAH         CAL         OAB     180.000    10.0     2
+CUE              const_13         CAL         CAH         CAO         CAQ       0.000    10.0     2
+CUE              const_26         CAP         CAI         CAM         OAC     180.000    10.0     2
+CUE              const_30         CAM         CAI         CAP         OAK     180.000    10.0     2
+CUE              const_42         OAA         CAN         OAJ         CAO     180.000    10.0     2
+CUE              const_71         CAQ         CAO         OAJ         CAN       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CUE    plan-1         CAE   0.020
+CUE    plan-1         CAF   0.020
+CUE    plan-1         CAG   0.020
+CUE    plan-1         CAH   0.020
+CUE    plan-1         CAI   0.020
+CUE    plan-1         CAM   0.020
+CUE    plan-1         CAN   0.020
+CUE    plan-1         CAO   0.020
+CUE    plan-1         CAP   0.020
+CUE    plan-1         CAQ   0.020
+CUE    plan-1         CAR   0.020
+CUE    plan-1         CAS   0.020
+CUE    plan-1         CAT   0.020
+CUE    plan-1          H4   0.020
+CUE    plan-1          H6   0.020
+CUE    plan-1          H8   0.020
+CUE    plan-1         OAA   0.020
+CUE    plan-1         OAC   0.020
+CUE    plan-1         OAJ   0.020
+CUE    plan-1         OAK   0.020
+CUE    plan-2         CAD   0.020
+CUE    plan-2         CAF   0.020
+CUE    plan-2         CAH   0.020
+CUE    plan-2         CAL   0.020
+CUE    plan-2         CAO   0.020
+CUE    plan-2         CAQ   0.020
+CUE    plan-2         CAS   0.020
+CUE    plan-2          H3   0.020
+CUE    plan-2          H5   0.020
+CUE    plan-2          H7   0.020
+CUE    plan-2         OAB   0.020
+CUE    plan-2         OAJ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CUE           SMILES              ACDLabs 12.01                                                        O=C3Oc4cc(O)ccc4c2oc1c(ccc(O)c1)c23
+CUE            InChI                InChI  1.03 InChI=1S/C15H8O5/c16-7-1-3-9-11(5-7)19-14-10-4-2-8(17)6-12(10)20-15(18)13(9)14/h1-6,16-17H
+CUE         InChIKey                InChI  1.03                                                                ZZIALNLLNHEQPJ-UHFFFAOYSA-N
+CUE SMILES_CANONICAL               CACTVS 3.385                                                        Oc1ccc2c(OC(=O)c3c2oc4cc(O)ccc34)c1
+CUE           SMILES               CACTVS 3.385                                                        Oc1ccc2c(OC(=O)c3c2oc4cc(O)ccc34)c1
+CUE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                       c1cc2c(cc1O)oc-3c2C(=O)Oc4c3ccc(c4)O
+CUE           SMILES "OpenEye OEToolkits" 1.7.6                                                       c1cc2c(cc1O)oc-3c2C(=O)Oc4c3ccc(c4)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CUE acedrg               243         "dictionary generator"                  
+CUE acedrg_database      11          "data source"                           
+CUE rdkit                2017.03.2   "Chemoinformatics tool"
+CUE refmac5              5.8.0238    "optimization tool"                     

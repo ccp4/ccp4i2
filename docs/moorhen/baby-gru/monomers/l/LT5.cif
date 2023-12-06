@@ -1,0 +1,198 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LT5     LT5      (1R)-2-amino-1-[3-(trifluoromethyl)phenyl]ethanol     NON-POLYMER     24     14     .     
+#
+data_comp_LT5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LT5     FAC     F       F       0       22.616      60.112      -26.454     
+LT5     CAN     C       CT      0       23.399      60.128      -25.380     
+LT5     FAD     F       F       0       22.805      59.329      -24.496     
+LT5     FAE     F       F       0       23.303      61.355      -24.880     
+LT5     CAL     C       CR6     0       24.822      59.734      -25.679     
+LT5     CAI     C       CR16    0       25.395      60.078      -26.899     
+LT5     CAH     C       CR16    0       25.573      59.040      -24.739     
+LT5     CAF     C       CR16    0       26.882      58.692      -25.036     
+LT5     CAG     C       CR16    0       27.448      59.034      -26.255     
+LT5     CAK     C       CR6     0       26.709      59.732      -27.205     
+LT5     CAM     C       CH1     0       27.327      60.110      -28.544     
+LT5     OAB     O       OH1     0       28.576      60.758      -28.381     
+LT5     CAJ     C       CH2     0       27.530      58.870      -29.413     
+LT5     NAA     N       NT2     0       26.260      58.237      -29.776     
+LT5     HAI     H       H       0       24.895      60.552      -27.540     
+LT5     HAH     H       H       0       25.203      58.801      -23.904     
+LT5     HAF     H       H       0       27.395      58.217      -24.400     
+LT5     HAG     H       H       0       28.341      58.790      -26.442     
+LT5     HAM     H       H       0       26.715      60.727      -29.009     
+LT5     HOAB    H       H       0       28.438      61.553      -28.122     
+LT5     HAJ     H       H       0       28.085      58.217      -28.934     
+LT5     HAJA    H       H       0       28.005      59.121      -30.235     
+LT5     HNAA    H       H       0       26.404      57.581      -30.357     
+LT5     HNAB    H       H       0       25.729      58.828      -30.172     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LT5         FAC         CAN      SINGLE       n     1.329  0.0183     1.329  0.0183
+LT5         CAN         CAL      SINGLE       n     1.502  0.0100     1.502  0.0100
+LT5         CAN         FAE      SINGLE       n     1.329  0.0183     1.329  0.0183
+LT5         CAN         FAD      SINGLE       n     1.329  0.0183     1.329  0.0183
+LT5         CAL         CAI      DOUBLE       y     1.386  0.0100     1.386  0.0100
+LT5         CAL         CAH      SINGLE       y     1.383  0.0100     1.383  0.0100
+LT5         CAI         CAK      SINGLE       y     1.390  0.0100     1.390  0.0100
+LT5         CAH         CAF      DOUBLE       y     1.382  0.0100     1.382  0.0100
+LT5         CAF         CAG      SINGLE       y     1.382  0.0100     1.382  0.0100
+LT5         CAG         CAK      DOUBLE       y     1.387  0.0111     1.387  0.0111
+LT5         CAK         CAM      SINGLE       n     1.521  0.0100     1.521  0.0100
+LT5         CAM         CAJ      SINGLE       n     1.527  0.0100     1.527  0.0100
+LT5         CAM         OAB      SINGLE       n     1.417  0.0143     1.417  0.0143
+LT5         CAJ         NAA      SINGLE       n     1.464  0.0200     1.464  0.0200
+LT5         CAI         HAI      SINGLE       n     1.082  0.0130     0.941  0.0156
+LT5         CAH         HAH      SINGLE       n     1.082  0.0130     0.944  0.0174
+LT5         CAF         HAF      SINGLE       n     1.082  0.0130     0.945  0.0132
+LT5         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0174
+LT5         CAM         HAM      SINGLE       n     1.089  0.0100     0.986  0.0120
+LT5         OAB        HOAB      SINGLE       n     0.970  0.0120     0.848  0.0200
+LT5         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.982  0.0143
+LT5         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.982  0.0143
+LT5         NAA        HNAA      SINGLE       n     1.036  0.0160     0.888  0.0200
+LT5         NAA        HNAB      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LT5         FAC         CAN         CAL     112.813    1.50
+LT5         FAC         CAN         FAE     105.974    1.50
+LT5         FAC         CAN         FAD     105.974    1.50
+LT5         CAL         CAN         FAE     112.813    1.50
+LT5         CAL         CAN         FAD     112.813    1.50
+LT5         FAE         CAN         FAD     105.974    1.50
+LT5         CAN         CAL         CAI     119.637    1.50
+LT5         CAN         CAL         CAH     119.859    1.50
+LT5         CAI         CAL         CAH     120.503    1.50
+LT5         CAL         CAI         CAK     121.772    1.50
+LT5         CAL         CAI         HAI     119.728    1.50
+LT5         CAK         CAI         HAI     118.500    1.50
+LT5         CAL         CAH         CAF     119.043    1.50
+LT5         CAL         CAH         HAH     120.698    1.50
+LT5         CAF         CAH         HAH     120.259    1.50
+LT5         CAH         CAF         CAG     120.019    1.50
+LT5         CAH         CAF         HAF     119.991    1.50
+LT5         CAG         CAF         HAF     119.991    1.50
+LT5         CAF         CAG         CAK     120.067    1.50
+LT5         CAF         CAG         HAG     119.973    1.50
+LT5         CAK         CAG         HAG     119.960    1.50
+LT5         CAI         CAK         CAG     118.596    1.50
+LT5         CAI         CAK         CAM     120.679    1.50
+LT5         CAG         CAK         CAM     120.725    1.50
+LT5         CAK         CAM         CAJ     110.619    1.69
+LT5         CAK         CAM         OAB     112.088    1.90
+LT5         CAK         CAM         HAM     108.561    1.50
+LT5         CAJ         CAM         OAB     109.047    2.04
+LT5         CAJ         CAM         HAM     109.057    1.50
+LT5         OAB         CAM         HAM     108.687    1.50
+LT5         CAM         OAB        HOAB     108.665    2.27
+LT5         CAM         CAJ         NAA     111.883    2.59
+LT5         CAM         CAJ         HAJ     109.677    1.73
+LT5         CAM         CAJ        HAJA     109.677    1.73
+LT5         NAA         CAJ         HAJ     108.870    1.50
+LT5         NAA         CAJ        HAJA     108.870    1.50
+LT5         HAJ         CAJ        HAJA     107.873    1.50
+LT5         CAJ         NAA        HNAA     109.962    3.00
+LT5         CAJ         NAA        HNAB     109.962    3.00
+LT5        HNAA         NAA        HNAB     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LT5            sp3_sp3_11         CAJ         CAM         OAB        HOAB      60.000    10.0     3
+LT5             sp3_sp3_2         NAA         CAJ         CAM         OAB     -60.000    10.0     3
+LT5            sp3_sp3_13         CAM         CAJ         NAA        HNAA     180.000    10.0     3
+LT5             sp2_sp3_1         CAI         CAL         CAN         FAC     150.000    10.0     6
+LT5       const_sp2_sp2_2         CAK         CAI         CAL         CAN     180.000     5.0     2
+LT5              const_22         CAF         CAH         CAL         CAN     180.000    10.0     2
+LT5       const_sp2_sp2_6         CAL         CAI         CAK         CAM     180.000     5.0     2
+LT5              const_17         CAG         CAF         CAH         CAL       0.000    10.0     2
+LT5              const_13         CAH         CAF         CAG         CAK       0.000    10.0     2
+LT5              const_10         CAF         CAG         CAK         CAM     180.000    10.0     2
+LT5             sp2_sp3_7         CAI         CAK         CAM         CAJ     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LT5    chir_1    CAN    FAC    FAE    FAD    both
+LT5    chir_2    CAM    OAB    CAJ    CAK    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LT5    plan-1         CAF   0.020
+LT5    plan-1         CAG   0.020
+LT5    plan-1         CAH   0.020
+LT5    plan-1         CAI   0.020
+LT5    plan-1         CAK   0.020
+LT5    plan-1         CAL   0.020
+LT5    plan-1         CAM   0.020
+LT5    plan-1         CAN   0.020
+LT5    plan-1         HAF   0.020
+LT5    plan-1         HAG   0.020
+LT5    plan-1         HAH   0.020
+LT5    plan-1         HAI   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LT5           SMILES              ACDLabs 10.04                                                           FC(F)(F)c1cccc(c1)C(O)CN
+LT5 SMILES_CANONICAL               CACTVS 3.341                                                       NC[C@H](O)c1cccc(c1)C(F)(F)F
+LT5           SMILES               CACTVS 3.341                                                        NC[CH](O)c1cccc(c1)C(F)(F)F
+LT5 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                     c1cc(cc(c1)C(F)(F)F)[C@H](CN)O
+LT5           SMILES "OpenEye OEToolkits" 1.5.0                                                         c1cc(cc(c1)C(F)(F)F)C(CN)O
+LT5            InChI                InChI  1.03 InChI=1S/C9H10F3NO/c10-9(11,12)7-3-1-2-6(4-7)8(14)5-13/h1-4,8,14H,5,13H2/t8-/m0/s1
+LT5         InChIKey                InChI  1.03                                                        RRBRWAPWPGAJMA-QMMMGPOBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LT5 acedrg               243         "dictionary generator"                  
+LT5 acedrg_database      11          "data source"                           
+LT5 rdkit                2017.03.2   "Chemoinformatics tool"
+LT5 refmac5              5.8.0238    "optimization tool"                     

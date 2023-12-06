@@ -1,0 +1,464 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ARQ     ARQ      BENZOYLAMINO-BENZYL-METHYL-[2-HYDROXY-3-[1-METHYL-ETHYL-OXY-N-FORMAMIDYL]-4-PHENYL-BUTYL]-AMMONIUM     NON-POLYMER     75     37     .     
+#
+data_comp_ARQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ARQ     C1      C       CT      0       2.117       1.895       11.048      
+ARQ     C2      C       CH3     0       1.072       0.868       10.669      
+ARQ     C3      C       CH3     0       1.471       3.229       11.348      
+ARQ     C4      C       CH3     0       3.171       2.045       9.970       
+ARQ     O4      O       O2      0       2.714       1.491       12.343      
+ARQ     C30     C       C       0       3.603       0.484       12.473      
+ARQ     O3      O       O       0       3.648       -0.512      11.783      
+ARQ     N1      N       NH1     0       4.431       0.735       13.510      
+ARQ     C5      C       CH1     0       5.550       -0.120      13.900      
+ARQ     C6      C       CH2     0       6.883       0.517       13.480      
+ARQ     C7      C       CR6     0       7.017       0.712       11.986      
+ARQ     C8      C       CR16    0       7.249       -0.370      11.144      
+ARQ     C9      C       CR16    0       7.373       -0.190      9.772       
+ARQ     C10     C       CR16    0       7.267       1.072       9.227       
+ARQ     C11     C       CR16    0       6.914       1.978       11.420      
+ARQ     C12     C       CR16    0       7.038       2.155       10.048      
+ARQ     C13     C       CH1     0       5.507       -0.403      15.414      
+ARQ     O1      O       OH1     0       5.470       0.844       16.107      
+ARQ     C14     C       CH2     0       4.359       -1.283      15.886      
+ARQ     N2      N       NT      1       4.728       -2.652      16.471      
+ARQ     C22     C       CH3     0       5.385       -2.407      17.808      
+ARQ     C15     C       CH2     0       3.432       -3.418      16.713      
+ARQ     C16     C       CR6     0       3.584       -4.763      17.377      
+ARQ     C17     C       CR16    0       3.940       -5.887      16.640      
+ARQ     C18     C       CR16    0       4.077       -7.124      17.259      
+ARQ     C19     C       CR16    0       3.855       -7.250      18.616      
+ARQ     C20     C       CR16    0       3.361       -4.906      18.742      
+ARQ     C21     C       CR16    0       3.498       -6.144      19.357      
+ARQ     N3      N       NH1     0       5.647       -3.375      15.621      
+ARQ     C23     C       C       0       5.481       -3.627      14.312      
+ARQ     O2      O       O       0       4.391       -3.527      13.756      
+ARQ     C27     C       CR6     0       6.699       -3.898      13.492      
+ARQ     C26     C       CR16    0       6.610       -4.729      12.377      
+ARQ     C25     C       CR16    0       7.727       -4.977      11.592      
+ARQ     C24     C       CR16    0       8.938       -4.393      11.901      
+ARQ     C28     C       CR16    0       7.926       -3.302      13.784      
+ARQ     C29     C       CR16    0       9.039       -3.558      12.996      
+ARQ     H21A    H       H       0       0.573       0.608       11.462      
+ARQ     H22     H       H       0       1.503       0.085       10.288      
+ARQ     H23     H       H       0       0.463       1.251       10.016      
+ARQ     H31     H       H       0       2.126       3.824       11.750      
+ARQ     H32     H       H       0       0.730       3.099       11.964      
+ARQ     H33     H       H       0       1.140       3.623       10.523      
+ARQ     H41     H       H       0       3.930       2.537       10.326      
+ARQ     H42     H       H       0       2.796       2.532       9.217       
+ARQ     H43     H       H       0       3.465       1.168       9.672       
+ARQ     HN1     H       H       0       4.309       1.451       13.997      
+ARQ     H5      H       H       0       5.465       -0.980      13.438      
+ARQ     H61     H       H       0       7.618       -0.054      13.790      
+ARQ     H62     H       H       0       6.974       1.387       13.924      
+ARQ     H8      H       H       0       7.322       -1.237      11.511      
+ARQ     H9      H       H       0       7.529       -0.933      9.212       
+ARQ     H10     H       H       0       7.351       1.194       8.294       
+ARQ     H11     H       H       0       6.757       2.725       11.975      
+ARQ     H12     H       H       0       6.965       3.020       9.677       
+ARQ     H13     H       H       0       6.361       -0.840      15.657      
+ARQ     HO1     H       H       0       5.731       0.728       16.905      
+ARQ     H141    H       H       0       3.751       -1.425      15.137      
+ARQ     H142    H       H       0       3.854       -0.796      16.566      
+ARQ     H221    H       H       0       5.699       -3.250      18.182      
+ARQ     H222    H       H       0       4.741       -2.004      18.418      
+ARQ     H223    H       H       0       6.143       -1.808      17.701      
+ARQ     H151    H       H       0       2.979       -3.542      15.859      
+ARQ     H152    H       H       0       2.851       -2.861      17.269      
+ARQ     H17     H       H       0       4.094       -5.809      15.712      
+ARQ     H18     H       H       0       4.321       -7.880      16.749      
+ARQ     H19     H       H       0       3.948       -8.091      19.035      
+ARQ     H20     H       H       0       3.117       -4.153      19.257      
+ARQ     H21     H       H       0       3.346       -6.228      20.285      
+ARQ     HN3     H       H       0       6.364       -3.707      15.998      
+ARQ     H26     H       H       0       5.789       -5.133      12.157      
+ARQ     H25     H       H       0       7.657       -5.549      10.845      
+ARQ     H24     H       H       0       9.697       -4.565      11.366      
+ARQ     H28     H       H       0       8.006       -2.732      14.528      
+ARQ     H29     H       H       0       9.866       -3.158      13.208      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ARQ          C1          C2      SINGLE       n     1.512  0.0110     1.512  0.0110
+ARQ          C1          C3      SINGLE       n     1.512  0.0110     1.512  0.0110
+ARQ          C1          C4      SINGLE       n     1.512  0.0110     1.512  0.0110
+ARQ          C1          O4      SINGLE       n     1.477  0.0101     1.477  0.0101
+ARQ          O4         C30      SINGLE       n     1.341  0.0126     1.341  0.0126
+ARQ         C30          O3      DOUBLE       n     1.210  0.0102     1.210  0.0102
+ARQ         C30          N1      SINGLE       n     1.340  0.0141     1.340  0.0141
+ARQ          N1          C5      SINGLE       n     1.457  0.0100     1.457  0.0100
+ARQ          C5          C6      SINGLE       n     1.536  0.0100     1.536  0.0100
+ARQ          C5         C13      SINGLE       n     1.538  0.0100     1.538  0.0100
+ARQ          C6          C7      SINGLE       n     1.512  0.0103     1.512  0.0103
+ARQ          C7          C8      DOUBLE       y     1.385  0.0111     1.385  0.0111
+ARQ          C7         C11      SINGLE       y     1.385  0.0111     1.385  0.0111
+ARQ          C8          C9      SINGLE       y     1.386  0.0100     1.386  0.0100
+ARQ          C9         C10      DOUBLE       y     1.374  0.0127     1.374  0.0127
+ARQ         C10         C12      SINGLE       y     1.374  0.0127     1.374  0.0127
+ARQ         C11         C12      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ARQ         C13          O1      SINGLE       n     1.424  0.0199     1.424  0.0199
+ARQ         C13         C14      SINGLE       n     1.516  0.0100     1.516  0.0100
+ARQ         C14          N2      SINGLE       n     1.506  0.0179     1.506  0.0179
+ARQ          N2         C22      SINGLE       n     1.503  0.0100     1.503  0.0100
+ARQ          N2         C15      SINGLE       n     1.504  0.0172     1.504  0.0172
+ARQ          N2          N3      SINGLE       n     1.427  0.0144     1.427  0.0144
+ARQ         C15         C16      SINGLE       n     1.505  0.0100     1.505  0.0100
+ARQ         C16         C17      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ARQ         C16         C20      SINGLE       y     1.386  0.0100     1.386  0.0100
+ARQ         C17         C18      SINGLE       y     1.386  0.0100     1.386  0.0100
+ARQ         C18         C19      DOUBLE       y     1.376  0.0124     1.376  0.0124
+ARQ         C19         C21      SINGLE       y     1.374  0.0127     1.374  0.0127
+ARQ         C20         C21      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ARQ          N3         C23      SINGLE       n     1.335  0.0102     1.335  0.0102
+ARQ         C23          O2      DOUBLE       n     1.228  0.0100     1.228  0.0100
+ARQ         C23         C27      SINGLE       n     1.488  0.0100     1.488  0.0100
+ARQ         C27         C26      DOUBLE       y     1.389  0.0100     1.389  0.0100
+ARQ         C27         C28      SINGLE       y     1.389  0.0100     1.389  0.0100
+ARQ         C26         C25      SINGLE       y     1.384  0.0100     1.384  0.0100
+ARQ         C25         C24      DOUBLE       y     1.376  0.0124     1.376  0.0124
+ARQ         C24         C29      SINGLE       y     1.376  0.0124     1.376  0.0124
+ARQ         C28         C29      DOUBLE       y     1.384  0.0100     1.384  0.0100
+ARQ          C2        H21A      SINGLE       n     1.089  0.0100     0.972  0.0148
+ARQ          C2         H22      SINGLE       n     1.089  0.0100     0.972  0.0148
+ARQ          C2         H23      SINGLE       n     1.089  0.0100     0.972  0.0148
+ARQ          C3         H31      SINGLE       n     1.089  0.0100     0.972  0.0148
+ARQ          C3         H32      SINGLE       n     1.089  0.0100     0.972  0.0148
+ARQ          C3         H33      SINGLE       n     1.089  0.0100     0.972  0.0148
+ARQ          C4         H41      SINGLE       n     1.089  0.0100     0.972  0.0148
+ARQ          C4         H42      SINGLE       n     1.089  0.0100     0.972  0.0148
+ARQ          C4         H43      SINGLE       n     1.089  0.0100     0.972  0.0148
+ARQ          N1         HN1      SINGLE       n     1.016  0.0100     0.872  0.0200
+ARQ          C5          H5      SINGLE       n     1.089  0.0100     0.984  0.0181
+ARQ          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0150
+ARQ          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0150
+ARQ          C8          H8      SINGLE       n     1.082  0.0130     0.944  0.0174
+ARQ          C9          H9      SINGLE       n     1.082  0.0130     0.944  0.0175
+ARQ         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0161
+ARQ         C11         H11      SINGLE       n     1.082  0.0130     0.944  0.0174
+ARQ         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0175
+ARQ         C13         H13      SINGLE       n     1.089  0.0100     0.992  0.0184
+ARQ          O1         HO1      SINGLE       n     0.970  0.0120     0.848  0.0200
+ARQ         C14        H141      SINGLE       n     1.089  0.0100     0.976  0.0165
+ARQ         C14        H142      SINGLE       n     1.089  0.0100     0.976  0.0165
+ARQ         C22        H221      SINGLE       n     1.089  0.0100     0.974  0.0151
+ARQ         C22        H222      SINGLE       n     1.089  0.0100     0.974  0.0151
+ARQ         C22        H223      SINGLE       n     1.089  0.0100     0.974  0.0151
+ARQ         C15        H151      SINGLE       n     1.089  0.0100     0.977  0.0158
+ARQ         C15        H152      SINGLE       n     1.089  0.0100     0.977  0.0158
+ARQ         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0174
+ARQ         C18         H18      SINGLE       n     1.082  0.0130     0.944  0.0175
+ARQ         C19         H19      SINGLE       n     1.082  0.0130     0.944  0.0161
+ARQ         C20         H20      SINGLE       n     1.082  0.0130     0.944  0.0174
+ARQ         C21         H21      SINGLE       n     1.082  0.0130     0.944  0.0175
+ARQ          N3         HN3      SINGLE       n     1.016  0.0100     0.873  0.0200
+ARQ         C26         H26      SINGLE       n     1.082  0.0130     0.941  0.0168
+ARQ         C25         H25      SINGLE       n     1.082  0.0130     0.943  0.0180
+ARQ         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0161
+ARQ         C28         H28      SINGLE       n     1.082  0.0130     0.941  0.0168
+ARQ         C29         H29      SINGLE       n     1.082  0.0130     0.943  0.0180
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ARQ          C2          C1          C3     111.547    1.50
+ARQ          C2          C1          C4     111.547    1.50
+ARQ          C2          C1          O4     107.315    3.00
+ARQ          C3          C1          C4     111.547    1.50
+ARQ          C3          C1          O4     107.315    3.00
+ARQ          C4          C1          O4     107.315    3.00
+ARQ          C1          C2        H21A     109.487    1.50
+ARQ          C1          C2         H22     109.487    1.50
+ARQ          C1          C2         H23     109.487    1.50
+ARQ        H21A          C2         H22     109.441    1.50
+ARQ        H21A          C2         H23     109.441    1.50
+ARQ         H22          C2         H23     109.441    1.50
+ARQ          C1          C3         H31     109.487    1.50
+ARQ          C1          C3         H32     109.487    1.50
+ARQ          C1          C3         H33     109.487    1.50
+ARQ         H31          C3         H32     109.441    1.50
+ARQ         H31          C3         H33     109.441    1.50
+ARQ         H32          C3         H33     109.441    1.50
+ARQ          C1          C4         H41     109.487    1.50
+ARQ          C1          C4         H42     109.487    1.50
+ARQ          C1          C4         H43     109.487    1.50
+ARQ         H41          C4         H42     109.441    1.50
+ARQ         H41          C4         H43     109.441    1.50
+ARQ         H42          C4         H43     109.441    1.50
+ARQ          C1          O4         C30     120.806    1.50
+ARQ          O4         C30          O3     125.552    1.50
+ARQ          O4         C30          N1     109.944    1.50
+ARQ          O3         C30          N1     124.504    1.50
+ARQ         C30          N1          C5     122.950    1.53
+ARQ         C30          N1         HN1     119.336    2.20
+ARQ          C5          N1         HN1     117.714    3.00
+ARQ          N1          C5          C6     110.274    1.50
+ARQ          N1          C5         C13     109.748    1.50
+ARQ          N1          C5          H5     108.194    1.50
+ARQ          C6          C5         C13     112.266    1.50
+ARQ          C6          C5          H5     108.431    1.50
+ARQ         C13          C5          H5     107.639    1.50
+ARQ          C5          C6          C7     113.215    1.50
+ARQ          C5          C6         H61     108.892    1.50
+ARQ          C5          C6         H62     108.892    1.50
+ARQ          C7          C6         H61     108.862    1.50
+ARQ          C7          C6         H62     108.862    1.50
+ARQ         H61          C6         H62     107.782    1.50
+ARQ          C6          C7          C8     120.970    1.50
+ARQ          C6          C7         C11     120.970    1.50
+ARQ          C8          C7         C11     118.060    1.50
+ARQ          C7          C8          C9     120.624    1.50
+ARQ          C7          C8          H8     119.591    1.50
+ARQ          C9          C8          H8     119.786    1.50
+ARQ          C8          C9         C10     120.325    1.50
+ARQ          C8          C9          H9     119.792    1.50
+ARQ         C10          C9          H9     119.883    1.50
+ARQ          C9         C10         C12     120.043    1.50
+ARQ          C9         C10         H10     119.979    1.50
+ARQ         C12         C10         H10     119.979    1.50
+ARQ          C7         C11         C12     120.624    1.50
+ARQ          C7         C11         H11     119.591    1.50
+ARQ         C12         C11         H11     119.786    1.50
+ARQ         C10         C12         C11     120.325    1.50
+ARQ         C10         C12         H12     119.883    1.50
+ARQ         C11         C12         H12     119.792    1.50
+ARQ          C5         C13          O1     109.040    1.72
+ARQ          C5         C13         C14     114.793    1.69
+ARQ          C5         C13         H13     108.500    1.50
+ARQ          O1         C13         C14     110.059    2.69
+ARQ          O1         C13         H13     108.183    1.96
+ARQ         C14         C13         H13     108.719    1.50
+ARQ         C13          O1         HO1     109.265    3.00
+ARQ         C13         C14          N2     112.810    3.00
+ARQ         C13         C14        H141     109.345    1.50
+ARQ         C13         C14        H142     109.345    1.50
+ARQ          N2         C14        H141     108.866    1.50
+ARQ          N2         C14        H142     108.866    1.50
+ARQ        H141         C14        H142     107.788    1.50
+ARQ         C14          N2         C22     110.351    2.60
+ARQ         C14          N2         C15     110.351    2.60
+ARQ         C14          N2          N3     109.471    3.00
+ARQ         C22          N2         C15     110.351    2.60
+ARQ         C22          N2          N3     109.471    3.00
+ARQ         C15          N2          N3     109.471    3.00
+ARQ          N2         C22        H221     109.456    1.50
+ARQ          N2         C22        H222     109.456    1.50
+ARQ          N2         C22        H223     109.456    1.50
+ARQ        H221         C22        H222     109.475    1.50
+ARQ        H221         C22        H223     109.475    1.50
+ARQ        H222         C22        H223     109.475    1.50
+ARQ          N2         C15         C16     111.783    2.39
+ARQ          N2         C15        H151     108.765    1.50
+ARQ          N2         C15        H152     108.765    1.50
+ARQ         C16         C15        H151     109.262    1.50
+ARQ         C16         C15        H152     109.262    1.50
+ARQ        H151         C15        H152     108.019    1.50
+ARQ         C15         C16         C17     120.710    1.50
+ARQ         C15         C16         C20     120.710    1.50
+ARQ         C17         C16         C20     118.580    1.50
+ARQ         C16         C17         C18     120.442    1.50
+ARQ         C16         C17         H17     119.742    1.50
+ARQ         C18         C17         H17     119.815    1.50
+ARQ         C17         C18         C19     120.273    1.50
+ARQ         C17         C18         H18     119.818    1.50
+ARQ         C19         C18         H18     119.909    1.50
+ARQ         C18         C19         C21     119.997    1.50
+ARQ         C18         C19         H19     119.998    1.50
+ARQ         C21         C19         H19     119.998    1.50
+ARQ         C16         C20         C21     120.442    1.50
+ARQ         C16         C20         H20     119.742    1.50
+ARQ         C21         C20         H20     119.815    1.50
+ARQ         C19         C21         C20     120.273    1.50
+ARQ         C19         C21         H21     119.909    1.50
+ARQ         C20         C21         H21     119.818    1.50
+ARQ          N2          N3         C23     120.056    3.00
+ARQ          N2          N3         HN3     121.166    3.00
+ARQ         C23          N3         HN3     118.778    2.17
+ARQ          N3         C23          O2     122.244    1.50
+ARQ          N3         C23         C27     116.806    2.27
+ARQ          O2         C23         C27     120.949    1.50
+ARQ         C23         C27         C26     120.497    2.92
+ARQ         C23         C27         C28     120.497    2.92
+ARQ         C26         C27         C28     119.007    1.50
+ARQ         C27         C26         C25     120.300    1.50
+ARQ         C27         C26         H26     119.925    1.50
+ARQ         C25         C26         H26     119.776    1.50
+ARQ         C26         C25         C24     120.226    1.50
+ARQ         C26         C25         H25     119.842    1.50
+ARQ         C24         C25         H25     119.933    1.50
+ARQ         C25         C24         C29     119.943    1.50
+ARQ         C25         C24         H24     120.028    1.50
+ARQ         C29         C24         H24     120.028    1.50
+ARQ         C27         C28         C29     120.300    1.50
+ARQ         C27         C28         H28     119.925    1.50
+ARQ         C29         C28         H28     119.776    1.50
+ARQ         C24         C29         C28     120.226    1.50
+ARQ         C24         C29         H29     119.933    1.50
+ARQ         C28         C29         H29     119.842    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ARQ             sp3_sp3_4          C3          C1          C2        H21A      60.000    10.0     3
+ARQ            sp3_sp3_10          C2          C1          C3         H31     180.000    10.0     3
+ARQ            sp3_sp3_22          C2          C1          C4         H41      60.000    10.0     3
+ARQ            sp3_sp3_28          C2          C1          O4         C30     180.000    10.0     3
+ARQ       const_sp2_sp2_3          C6          C7          C8          C9     180.000     5.0     2
+ARQ              const_62         C12         C11          C7          C6     180.000    10.0     2
+ARQ       const_sp2_sp2_5          C7          C8          C9         C10       0.000     5.0     2
+ARQ       const_sp2_sp2_9         C12         C10          C9          C8       0.000     5.0     2
+ARQ              const_13          C9         C10         C12         C11       0.000    10.0     2
+ARQ              const_17          C7         C11         C12         C10       0.000    10.0     2
+ARQ            sp3_sp3_49          C5         C13          O1         HO1     180.000    10.0     3
+ARQ            sp3_sp3_52          C5         C13         C14          N2     180.000    10.0     3
+ARQ            sp3_sp3_61         C13         C14          N2         C22     180.000    10.0     3
+ARQ            sp3_sp3_70        H221         C22          N2         C14     180.000    10.0     3
+ARQ            sp3_sp3_79         C16         C15          N2         C14     180.000    10.0     3
+ARQ            sp2_sp3_13         C23          N3          N2         C14       0.000    10.0     6
+ARQ            sp2_sp3_20         C17         C16         C15          N2     -90.000    10.0     6
+ARQ              const_23         C15         C16         C17         C18     180.000    10.0     2
+ARQ              const_67         C15         C16         C20         C21     180.000    10.0     2
+ARQ              const_25         C16         C17         C18         C19       0.000    10.0     2
+ARQ              const_29         C17         C18         C19         C21       0.000    10.0     2
+ARQ              const_33         C18         C19         C21         C20       0.000    10.0     2
+ARQ              const_37         C16         C20         C21         C19       0.000    10.0     2
+ARQ             sp2_sp2_9          O2         C23          N3          N2       0.000     5.0     2
+ARQ            sp2_sp2_11          N3         C23         C27         C26     180.000     5.0     2
+ARQ              const_42         C25         C26         C27         C23     180.000    10.0     2
+ARQ              const_71         C23         C27         C28         C29     180.000    10.0     2
+ARQ              const_45         C24         C25         C26         C27       0.000    10.0     2
+ARQ              const_49         C29         C24         C25         C26       0.000    10.0     2
+ARQ              const_53         C25         C24         C29         C28       0.000    10.0     2
+ARQ              const_57         C27         C28         C29         C24       0.000    10.0     2
+ARQ             sp2_sp2_1          O3         C30          O4          C1     180.000     5.0     2
+ARQ             sp2_sp2_3          O4         C30          N1          C5     180.000     5.0     2
+ARQ             sp2_sp3_1         C30          N1          C5          C6       0.000    10.0     6
+ARQ            sp3_sp3_40          O1         C13          C5          N1     180.000    10.0     3
+ARQ            sp3_sp3_31          N1          C5          C6          C7     180.000    10.0     3
+ARQ             sp2_sp3_8          C8          C7          C6          C5     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ARQ    chir_1    C1    O4    C2    C3    both
+ARQ    chir_2    C5    N1    C13    C6    positive
+ARQ    chir_3    C13    O1    C5    C14    positive
+ARQ    chir_4    N2    N3    C14    C15    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ARQ    plan-1         C10   0.020
+ARQ    plan-1         C11   0.020
+ARQ    plan-1         C12   0.020
+ARQ    plan-1          C6   0.020
+ARQ    plan-1          C7   0.020
+ARQ    plan-1          C8   0.020
+ARQ    plan-1          C9   0.020
+ARQ    plan-1         H10   0.020
+ARQ    plan-1         H11   0.020
+ARQ    plan-1         H12   0.020
+ARQ    plan-1          H8   0.020
+ARQ    plan-1          H9   0.020
+ARQ    plan-2         C15   0.020
+ARQ    plan-2         C16   0.020
+ARQ    plan-2         C17   0.020
+ARQ    plan-2         C18   0.020
+ARQ    plan-2         C19   0.020
+ARQ    plan-2         C20   0.020
+ARQ    plan-2         C21   0.020
+ARQ    plan-2         H17   0.020
+ARQ    plan-2         H18   0.020
+ARQ    plan-2         H19   0.020
+ARQ    plan-2         H20   0.020
+ARQ    plan-2         H21   0.020
+ARQ    plan-3         C23   0.020
+ARQ    plan-3         C24   0.020
+ARQ    plan-3         C25   0.020
+ARQ    plan-3         C26   0.020
+ARQ    plan-3         C27   0.020
+ARQ    plan-3         C28   0.020
+ARQ    plan-3         C29   0.020
+ARQ    plan-3         H24   0.020
+ARQ    plan-3         H25   0.020
+ARQ    plan-3         H26   0.020
+ARQ    plan-3         H28   0.020
+ARQ    plan-3         H29   0.020
+ARQ    plan-4         C30   0.020
+ARQ    plan-4          N1   0.020
+ARQ    plan-4          O3   0.020
+ARQ    plan-4          O4   0.020
+ARQ    plan-5         C30   0.020
+ARQ    plan-5          C5   0.020
+ARQ    plan-5         HN1   0.020
+ARQ    plan-5          N1   0.020
+ARQ    plan-6         C23   0.020
+ARQ    plan-6         HN3   0.020
+ARQ    plan-6          N2   0.020
+ARQ    plan-6          N3   0.020
+ARQ    plan-7         C23   0.020
+ARQ    plan-7         C27   0.020
+ARQ    plan-7          N3   0.020
+ARQ    plan-7          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ARQ           SMILES              ACDLabs 10.04                                                                                                                                          O=C(OC(C)(C)C)NC(Cc1ccccc1)C(O)C[N+](NC(=O)c2ccccc2)(Cc3ccccc3)C
+ARQ SMILES_CANONICAL               CACTVS 3.341                                                                                                                              CC(C)(C)OC(=O)N[C@@H](Cc1ccccc1)[C@@H](O)C[N@@+](C)(Cc2ccccc2)NC(=O)c3ccccc3
+ARQ           SMILES               CACTVS 3.341                                                                                                                                    CC(C)(C)OC(=O)N[CH](Cc1ccccc1)[CH](O)C[N+](C)(Cc2ccccc2)NC(=O)c3ccccc3
+ARQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                               CC(C)(C)OC(=O)N[C@@H](Cc1ccccc1)[C@H](C[N@@+](C)(Cc2ccccc2)NC(=O)c3ccccc3)O
+ARQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                          CC(C)(C)OC(=O)NC(Cc1ccccc1)C(C[N+](C)(Cc2ccccc2)NC(=O)c3ccccc3)O
+ARQ            InChI                InChI  1.03 InChI=1S/C30H37N3O4/c1-30(2,3)37-29(36)31-26(20-23-14-8-5-9-15-23)27(34)22-33(4,21-24-16-10-6-11-17-24)32-28(35)25-18-12-7-13-19-25/h5-19,26-27,34H,20-22H2,1-4H3,(H-,31,32,35,36)/p+1/t26-,27-,33+/m0/s1
+ARQ         InChIKey                InChI  1.03                                                                                                                                                                               KTCIZECZUWZDHY-ZTMGNVKNSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ARQ acedrg               243         "dictionary generator"                  
+ARQ acedrg_database      11          "data source"                           
+ARQ rdkit                2017.03.2   "Chemoinformatics tool"
+ARQ refmac5              5.8.0238    "optimization tool"                     

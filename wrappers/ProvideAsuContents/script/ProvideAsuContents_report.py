@@ -58,7 +58,7 @@ class ProvideAsuContents_report(Report):
                   else:
                       outputXml = etree.fromstring( text )
                   matthewsAnalysis = outputXml.findall( ".//matthewsCompositions" )
-                  if len(matthewsAnalysis) > 0 and len(matthewsAnalysis[0])>0:
+                  if len(matthewsAnalysis) > 0 and len(matthewsAnalysis[0].getchildren())>0:
                       text = ''
                       fold = summaryDiv.addFold(label="Analysis", initiallyOpen=True)
                       div = fold.addDiv()

@@ -1,0 +1,175 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+1LQ     1LQ      quinazolin-4-amine     NON-POLYMER     18     11     .     
+#
+data_comp_1LQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+1LQ     CAE     C       CR16    0       -15.106     2.795       4.985       
+1LQ     CAB     C       CR16    0       -15.104     2.148       3.780       
+1LQ     CAC     C       CR16    0       -16.266     2.092       2.988       
+1LQ     CAF     C       CR16    0       -17.419     2.687       3.413       
+1LQ     C5      C       CR66    0       -17.462     3.369       4.660       
+1LQ     C4      C       CR66    0       -16.281     3.422       5.459       
+1LQ     N3      N       NRD6    0       -16.262     4.074       6.685       
+1LQ     C2      C       CR16    0       -17.397     4.629       7.047       
+1LQ     N1      N       NRD6    0       -18.577     4.650       6.387       
+1LQ     C6      C       CR6     0       -18.629     4.030       5.202       
+1LQ     NAA     N       NH2     0       -19.796     4.047       4.541       
+1LQ     H1      H       H       0       -14.321     2.825       5.506       
+1LQ     H2      H       H       0       -14.312     1.733       3.477       
+1LQ     H3      H       H       0       -16.248     1.641       2.159       
+1LQ     H4      H       H       0       -18.198     2.644       2.873       
+1LQ     H5      H       H       0       -17.389     5.071       7.876       
+1LQ     H6      H       H       0       -20.116     3.302       4.199       
+1LQ     H7      H       H       0       -20.239     4.802       4.455       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+1LQ         CAC         CAF      DOUBLE       y     1.361  0.0115     1.361  0.0115
+1LQ         CAB         CAC      SINGLE       y     1.401  0.0132     1.401  0.0132
+1LQ         CAF          C5      SINGLE       y     1.418  0.0111     1.418  0.0111
+1LQ         CAE         CAB      DOUBLE       y     1.363  0.0103     1.363  0.0103
+1LQ          C6         NAA      SINGLE       n     1.341  0.0100     1.341  0.0100
+1LQ          C5          C6      SINGLE       y     1.443  0.0100     1.443  0.0100
+1LQ          C5          C4      DOUBLE       y     1.421  0.0100     1.421  0.0100
+1LQ         CAE          C4      SINGLE       y     1.410  0.0100     1.410  0.0100
+1LQ          N1          C6      DOUBLE       y     1.334  0.0100     1.334  0.0100
+1LQ          C4          N3      SINGLE       y     1.383  0.0129     1.383  0.0129
+1LQ          C2          N1      SINGLE       y     1.348  0.0100     1.348  0.0100
+1LQ          N3          C2      DOUBLE       y     1.310  0.0100     1.310  0.0100
+1LQ         CAE          H1      SINGLE       n     1.082  0.0130     0.943  0.0197
+1LQ         CAB          H2      SINGLE       n     1.082  0.0130     0.944  0.0200
+1LQ         CAC          H3      SINGLE       n     1.082  0.0130     0.944  0.0184
+1LQ         CAF          H4      SINGLE       n     1.082  0.0130     0.949  0.0200
+1LQ          C2          H5      SINGLE       n     1.082  0.0130     0.939  0.0106
+1LQ         NAA          H6      SINGLE       n     1.016  0.0100     0.880  0.0200
+1LQ         NAA          H7      SINGLE       n     1.016  0.0100     0.880  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+1LQ         CAB         CAE          C4     120.196    1.50
+1LQ         CAB         CAE          H1     120.186    1.50
+1LQ          C4         CAE          H1     119.618    1.50
+1LQ         CAC         CAB         CAE     120.682    1.50
+1LQ         CAC         CAB          H2     119.732    1.50
+1LQ         CAE         CAB          H2     119.585    1.50
+1LQ         CAF         CAC         CAB     120.287    1.50
+1LQ         CAF         CAC          H3     119.885    1.50
+1LQ         CAB         CAC          H3     119.828    1.50
+1LQ         CAC         CAF          C5     120.642    1.50
+1LQ         CAC         CAF          H4     119.779    1.50
+1LQ          C5         CAF          H4     119.580    1.50
+1LQ         CAF          C5          C6     124.018    1.72
+1LQ         CAF          C5          C4     119.284    1.50
+1LQ          C6          C5          C4     116.698    1.50
+1LQ          C5          C4         CAE     118.909    1.50
+1LQ          C5          C4          N3     121.576    1.50
+1LQ         CAE          C4          N3     119.514    1.50
+1LQ          C4          N3          C2     114.967    1.50
+1LQ          N1          C2          N3     128.611    1.50
+1LQ          N1          C2          H5     115.655    1.50
+1LQ          N3          C2          H5     115.734    1.50
+1LQ          C6          N1          C2     117.040    1.50
+1LQ         NAA          C6          C5     121.080    1.50
+1LQ         NAA          C6          N1     117.812    1.50
+1LQ          C5          C6          N1     121.108    1.50
+1LQ          C6         NAA          H6     119.848    1.50
+1LQ          C6         NAA          H7     119.848    1.50
+1LQ          H6         NAA          H7     120.304    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+1LQ              const_13         CAC         CAB         CAE          C4       0.000    10.0     2
+1LQ              const_33          C5          C4         CAE         CAB       0.000    10.0     2
+1LQ              const_17         CAE         CAB         CAC         CAF       0.000    10.0     2
+1LQ              const_21         CAB         CAC         CAF          C5       0.000    10.0     2
+1LQ              const_27          C6          C5         CAF         CAC     180.000    10.0     2
+1LQ              const_29         CAE          C4          C5         CAF       0.000    10.0     2
+1LQ       const_sp2_sp2_4         CAF          C5          C6         NAA       0.000     5.0     2
+1LQ              const_11          C5          C4          N3          C2       0.000    10.0     2
+1LQ       const_sp2_sp2_9          N1          C2          N3          C4       0.000     5.0     2
+1LQ       const_sp2_sp2_7          N3          C2          N1          C6       0.000     5.0     2
+1LQ       const_sp2_sp2_6         NAA          C6          N1          C2     180.000     5.0     2
+1LQ             sp2_sp2_1          C5          C6         NAA          H6     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+1LQ    plan-1          C2   0.020
+1LQ    plan-1          C4   0.020
+1LQ    plan-1          C5   0.020
+1LQ    plan-1          C6   0.020
+1LQ    plan-1         CAB   0.020
+1LQ    plan-1         CAC   0.020
+1LQ    plan-1         CAE   0.020
+1LQ    plan-1         CAF   0.020
+1LQ    plan-1          H1   0.020
+1LQ    plan-1          H2   0.020
+1LQ    plan-1          H3   0.020
+1LQ    plan-1          H4   0.020
+1LQ    plan-1          H5   0.020
+1LQ    plan-1          N1   0.020
+1LQ    plan-1          N3   0.020
+1LQ    plan-1         NAA   0.020
+1LQ    plan-2          C6   0.020
+1LQ    plan-2          H6   0.020
+1LQ    plan-2          H7   0.020
+1LQ    plan-2         NAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+1LQ           SMILES              ACDLabs 12.01                                             n2c1c(cccc1)c(nc2)N
+1LQ            InChI                InChI  1.03 InChI=1S/C8H7N3/c9-8-6-3-1-2-4-7(6)10-5-11-8/h1-5H,(H2,9,10,11)
+1LQ         InChIKey                InChI  1.03                                     DRYRBWIFRVMRPV-UHFFFAOYSA-N
+1LQ SMILES_CANONICAL               CACTVS 3.370                                                 Nc1ncnc2ccccc12
+1LQ           SMILES               CACTVS 3.370                                                 Nc1ncnc2ccccc12
+1LQ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                             c1ccc2c(c1)c(ncn2)N
+1LQ           SMILES "OpenEye OEToolkits" 1.7.6                                             c1ccc2c(c1)c(ncn2)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+1LQ acedrg               243         "dictionary generator"                  
+1LQ acedrg_database      11          "data source"                           
+1LQ rdkit                2017.03.2   "Chemoinformatics tool"
+1LQ refmac5              5.8.0238    "optimization tool"                     

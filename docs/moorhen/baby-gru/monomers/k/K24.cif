@@ -1,0 +1,167 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+K24     K24      N,2-dimethyl-1,3-thiazole-5-carboxamide     NON-POLYMER     18     10     .     
+#
+data_comp_K24
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+K24     N1      N       NRD5    0       -15.207     -14.348     -4.823      
+K24     C4      C       CR5     0       -15.332     -13.128     -4.266      
+K24     C5      C       CH3     0       -14.371     -12.008     -4.355      
+K24     N       N       NH1     0       -19.486     -15.506     -4.093      
+K24     C       C       CH3     0       -19.370     -15.478     -5.539      
+K24     O       O       O       0       -18.698     -15.136     -2.031      
+K24     C1      C       C       0       -18.530     -15.093     -3.250      
+K24     C2      C       CR5     0       -17.255     -14.580     -3.780      
+K24     C3      C       CR15    0       -16.271     -15.191     -4.557      
+K24     S       S       S2      0       -16.768     -13.026     -3.420      
+K24     H1      H       H       0       -14.677     -11.271     -3.804      
+K24     H2      H       H       0       -14.301     -11.713     -5.275      
+K24     H3      H       H       0       -13.501     -12.300     -4.044      
+K24     H4      H       H       0       -20.218     -15.810     -3.759      
+K24     H5      H       H       0       -19.182     -14.574     -5.838      
+K24     H6      H       H       0       -20.205     -15.777     -5.934      
+K24     H7      H       H       0       -18.656     -16.071     -5.823      
+K24     H8      H       H       0       -16.327     -16.080     -4.885      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+K24           N           C      SINGLE       n     1.448  0.0100     1.448  0.0100
+K24          N1          C3      SINGLE       y     1.372  0.0107     1.372  0.0107
+K24          N1          C4      DOUBLE       y     1.332  0.0200     1.332  0.0200
+K24          C2          C3      DOUBLE       y     1.379  0.0196     1.379  0.0196
+K24          C4          C5      SINGLE       n     1.478  0.0100     1.478  0.0100
+K24          C4           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+K24           N          C1      SINGLE       n     1.333  0.0106     1.333  0.0106
+K24          C1          C2      SINGLE       n     1.467  0.0127     1.467  0.0127
+K24          C2           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+K24           O          C1      DOUBLE       n     1.231  0.0100     1.231  0.0100
+K24          C5          H1      SINGLE       n     1.089  0.0100     0.969  0.0144
+K24          C5          H2      SINGLE       n     1.089  0.0100     0.969  0.0144
+K24          C5          H3      SINGLE       n     1.089  0.0100     0.969  0.0144
+K24           N          H4      SINGLE       n     1.016  0.0100     0.860  0.0100
+K24           C          H5      SINGLE       n     1.089  0.0100     0.971  0.0198
+K24           C          H6      SINGLE       n     1.089  0.0100     0.971  0.0198
+K24           C          H7      SINGLE       n     1.089  0.0100     0.971  0.0198
+K24          C3          H8      SINGLE       n     1.082  0.0130     0.949  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+K24          C3          N1          C4     107.111    1.65
+K24          N1          C4          C5     128.460    3.00
+K24          N1          C4           S     108.004    3.00
+K24          C5          C4           S     123.536    3.00
+K24          C4          C5          H1     109.610    1.50
+K24          C4          C5          H2     109.610    1.50
+K24          C4          C5          H3     109.610    1.50
+K24          H1          C5          H2     109.334    1.50
+K24          H1          C5          H3     109.334    1.50
+K24          H2          C5          H3     109.334    1.50
+K24           C           N          C1     121.467    1.80
+K24           C           N          H4     119.018    1.50
+K24          C1           N          H4     119.515    1.50
+K24           N           C          H5     109.483    1.50
+K24           N           C          H6     109.483    1.50
+K24           N           C          H7     109.483    1.50
+K24          H5           C          H6     109.279    1.79
+K24          H5           C          H7     109.279    1.79
+K24          H6           C          H7     109.279    1.79
+K24           N          C1          C2     116.796    1.69
+K24           N          C1           O     122.159    1.50
+K24          C2          C1           O     121.045    1.72
+K24          C3          C2          C1     130.433    3.00
+K24          C3          C2           S     108.004    3.00
+K24          C1          C2           S     121.563    3.00
+K24          N1          C3          C2     108.878    1.50
+K24          N1          C3          H8     125.175    1.50
+K24          C2          C3          H8     125.947    1.50
+K24          C4           S          C2     108.004    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+K24              const_12          C5          C4          N1          C3     180.000    10.0     2
+K24       const_sp2_sp2_1          C2          C3          N1          C4       0.000     5.0     2
+K24             sp2_sp3_7          N1          C4          C5          H1     150.000    10.0     6
+K24              const_10          C5          C4           S          C2     180.000    10.0     2
+K24             sp2_sp3_1          C1           N           C          H5       0.000    10.0     6
+K24             sp2_sp2_3           O          C1           N           C       0.000     5.0     2
+K24             sp2_sp2_5           N          C1          C2          C3     180.000     5.0     2
+K24       const_sp2_sp2_5          C1          C2          C3          N1     180.000     5.0     2
+K24       const_sp2_sp2_8          C1          C2           S          C4     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+K24    plan-1          C1   0.020
+K24    plan-1          C2   0.020
+K24    plan-1          C3   0.020
+K24    plan-1          C4   0.020
+K24    plan-1          C5   0.020
+K24    plan-1          H8   0.020
+K24    plan-1          N1   0.020
+K24    plan-1           S   0.020
+K24    plan-2           C   0.020
+K24    plan-2          C1   0.020
+K24    plan-2          H4   0.020
+K24    plan-2           N   0.020
+K24    plan-3          C1   0.020
+K24    plan-3          C2   0.020
+K24    plan-3           N   0.020
+K24    plan-3           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+K24           SMILES              ACDLabs 12.01                                           n1cc(C(NC)=O)sc1C
+K24            InChI                InChI  1.03 InChI=1S/C6H8N2OS/c1-4-8-3-5(10-4)6(9)7-2/h3H,1-2H3,(H,7,9)
+K24         InChIKey                InChI  1.03                                 PUIJVJNJITYIIM-UHFFFAOYSA-N
+K24 SMILES_CANONICAL               CACTVS 3.385                                           CNC(=O)c1sc(C)nc1
+K24           SMILES               CACTVS 3.385                                           CNC(=O)c1sc(C)nc1
+K24 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                           Cc1ncc(s1)C(=O)NC
+K24           SMILES "OpenEye OEToolkits" 2.0.6                                           Cc1ncc(s1)C(=O)NC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+K24 acedrg               243         "dictionary generator"                  
+K24 acedrg_database      11          "data source"                           
+K24 rdkit                2017.03.2   "Chemoinformatics tool"
+K24 refmac5              5.8.0238    "optimization tool"                     

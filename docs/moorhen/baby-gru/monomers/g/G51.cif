@@ -1,0 +1,393 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+G51     G51      (5R,7S)-N-(1,3-benzodioxol-5-ylmethyl)-5-(4-ethylphenyl)-7-(trifluoromethyl)-4,5,6,7-tetrahydropyrazolo[1,5-a]pyrimidine-3-carboxamide     NON-POLYMER     57     34     .     
+#
+data_comp_G51
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+G51     O22     O       O       0       -5.385      32.902      -37.949     
+G51     C20     C       C       0       -5.893      33.903      -38.469     
+G51     N21     N       NH1     0       -5.660      34.260      -39.746     
+G51     C23     C       CH2     0       -4.973      33.393      -40.701     
+G51     C24     C       CR6     0       -5.922      32.485      -41.445     
+G51     C29     C       CR16    0       -6.116      32.629      -42.810     
+G51     C28     C       CR16    0       -6.991      31.807      -43.533     
+G51     C27     C       CR56    0       -7.655      30.844      -42.827     
+G51     O40     O       O2      0       -8.559      29.917      -43.290     
+G51     C41     C       CH2     0       -9.024      29.223      -42.131     
+G51     O42     O       O2      0       -8.256      29.654      -41.007     
+G51     C26     C       CR56    0       -7.474      30.689      -41.467     
+G51     C25     C       CR16    0       -6.620      31.487      -40.750     
+G51     C17     C       CR5     0       -6.867      34.697      -37.692     
+G51     C18     C       CR15    0       -7.803      35.641      -38.167     
+G51     N19     N       NRD5    0       -8.538      36.152      -37.188     
+G51     N4      N       NT      0       -8.090      35.553      -36.039     
+G51     C3      C       CH1     0       -8.668      35.836      -34.724     
+G51     C13     C       CT      0       -9.033      37.307      -34.521     
+G51     F57     F       F       0       -9.997      37.711      -35.354     
+G51     F56     F       F       0       -9.475      37.559      -33.286     
+G51     F58     F       F       0       -7.996      38.124      -34.724     
+G51     C5      C       CR56    0       -7.086      34.643      -36.302     
+G51     N6      N       NR6     0       -6.506      33.930      -35.283     
+G51     C1      C       CH1     0       -7.137      33.949      -33.964     
+G51     C2      C       CH2     0       -7.680      35.347      -33.650     
+G51     C7      C       CR6     0       -6.181      33.459      -32.890     
+G51     C12     C       CR16    0       -4.977      34.120      -32.657     
+G51     C11     C       CR16    0       -4.098      33.677      -31.678     
+G51     C10     C       CR6     0       -4.388      32.562      -30.902     
+G51     C32     C       CH2     0       -3.424      32.081      -29.835     
+G51     C33     C       CH3     0       -2.392      31.101      -30.334     
+G51     C9      C       CR16    0       -5.587      31.901      -31.136     
+G51     C8      C       CR16    0       -6.472      32.339      -32.113     
+G51     H2      H       H       0       -5.904      35.049      -40.023     
+G51     H232    H       H       0       -4.308      32.847      -40.232     
+G51     H231    H       H       0       -4.493      33.954      -41.345     
+G51     H29     H       H       0       -5.642      33.306      -43.271     
+G51     H28     H       H       0       -7.115      31.912      -44.459     
+G51     H412    H       H       0       -8.920      28.257      -42.256     
+G51     H411    H       H       0       -9.972      29.418      -41.983     
+G51     H25     H       H       0       -6.508      31.368      -39.824     
+G51     H18     H       H       0       -7.903      35.892      -39.066     
+G51     H3      H       H       0       -9.490      35.312      -34.619     
+G51     HN6     H       H       0       -5.772      33.469      -35.403     
+G51     H1      H       H       0       -7.896      33.325      -34.002     
+G51     H22     H       H       0       -8.131      35.328      -32.779     
+G51     H21     H       H       0       -6.928      35.975      -33.588     
+G51     H12     H       H       0       -4.758      34.878      -33.169     
+G51     H11     H       H       0       -3.290      34.140      -31.537     
+G51     H322    H       H       0       -3.939      31.657      -29.115     
+G51     H321    H       H       0       -2.963      32.858      -29.454     
+G51     H332    H       H       0       -1.813      30.837      -29.600     
+G51     H331    H       H       0       -1.860      31.518      -31.032     
+G51     H333    H       H       0       -2.838      30.315      -30.694     
+G51     H9      H       H       0       -5.805      31.142      -30.621     
+G51     H8      H       H       0       -7.277      31.874      -32.251     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+G51         C27         O40      SINGLE       n     1.376  0.0100     1.376  0.0100
+G51         O40         C41      SINGLE       n     1.428  0.0104     1.428  0.0104
+G51         C28         C27      SINGLE       y     1.362  0.0100     1.362  0.0100
+G51         C29         C28      DOUBLE       y     1.397  0.0100     1.397  0.0100
+G51         C27         C26      DOUBLE       y     1.379  0.0100     1.379  0.0100
+G51         C41         O42      SINGLE       n     1.428  0.0104     1.428  0.0104
+G51         C24         C29      SINGLE       y     1.381  0.0100     1.381  0.0100
+G51         O42         C26      SINGLE       n     1.377  0.0100     1.377  0.0100
+G51         C26         C25      SINGLE       y     1.367  0.0100     1.367  0.0100
+G51         C24         C25      DOUBLE       y     1.398  0.0100     1.398  0.0100
+G51         C23         C24      SINGLE       n     1.508  0.0100     1.508  0.0100
+G51         N21         C23      SINGLE       n     1.458  0.0100     1.458  0.0100
+G51         C20         N21      SINGLE       n     1.334  0.0144     1.334  0.0144
+G51         O22         C20      DOUBLE       n     1.235  0.0149     1.235  0.0149
+G51         C20         C17      SINGLE       n     1.472  0.0116     1.472  0.0116
+G51         C17         C18      SINGLE       y     1.407  0.0100     1.407  0.0100
+G51         C18         N19      DOUBLE       y     1.321  0.0100     1.321  0.0100
+G51         C17          C5      DOUBLE       y     1.419  0.0200     1.419  0.0200
+G51         N19          N4      SINGLE       y     1.365  0.0181     1.365  0.0181
+G51          N4          C5      SINGLE       y     1.396  0.0200     1.396  0.0200
+G51          C5          N6      SINGLE       n     1.365  0.0200     1.365  0.0200
+G51          N4          C3      SINGLE       n     1.456  0.0129     1.456  0.0129
+G51         C13         F57      SINGLE       n     1.336  0.0100     1.336  0.0100
+G51          N6          C1      SINGLE       n     1.458  0.0120     1.458  0.0120
+G51         C13         F58      SINGLE       n     1.336  0.0100     1.336  0.0100
+G51          C3         C13      SINGLE       n     1.525  0.0117     1.525  0.0117
+G51         C13         F56      SINGLE       n     1.336  0.0100     1.336  0.0100
+G51          C3          C2      SINGLE       n     1.530  0.0138     1.530  0.0138
+G51          C1          C2      SINGLE       n     1.528  0.0110     1.528  0.0110
+G51          C1          C7      SINGLE       n     1.518  0.0100     1.518  0.0100
+G51          C7         C12      DOUBLE       y     1.390  0.0100     1.390  0.0100
+G51         C12         C11      SINGLE       y     1.385  0.0100     1.385  0.0100
+G51          C7          C8      SINGLE       y     1.390  0.0100     1.390  0.0100
+G51         C11         C10      DOUBLE       y     1.385  0.0110     1.385  0.0110
+G51          C9          C8      DOUBLE       y     1.385  0.0100     1.385  0.0100
+G51         C10          C9      SINGLE       y     1.385  0.0110     1.385  0.0110
+G51         C10         C32      SINGLE       n     1.516  0.0100     1.516  0.0100
+G51         C32         C33      SINGLE       n     1.508  0.0200     1.508  0.0200
+G51         N21          H2      SINGLE       n     1.016  0.0100     0.871  0.0122
+G51         C23        H232      SINGLE       n     1.089  0.0100     0.980  0.0169
+G51         C23        H231      SINGLE       n     1.089  0.0100     0.980  0.0169
+G51         C29         H29      SINGLE       n     1.082  0.0130     0.947  0.0107
+G51         C28         H28      SINGLE       n     1.082  0.0130     0.940  0.0128
+G51         C41        H412      SINGLE       n     1.089  0.0100     0.979  0.0146
+G51         C41        H411      SINGLE       n     1.089  0.0100     0.979  0.0146
+G51         C25         H25      SINGLE       n     1.082  0.0130     0.941  0.0105
+G51         C18         H18      SINGLE       n     1.082  0.0130     0.939  0.0167
+G51          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0100
+G51          N6         HN6      SINGLE       n     1.016  0.0100     0.875  0.0200
+G51          C1          H1      SINGLE       n     1.089  0.0100     0.983  0.0124
+G51          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0170
+G51          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0170
+G51         C12         H12      SINGLE       n     1.082  0.0130     0.940  0.0134
+G51         C11         H11      SINGLE       n     1.082  0.0130     0.942  0.0167
+G51         C32        H322      SINGLE       n     1.089  0.0100     0.981  0.0138
+G51         C32        H321      SINGLE       n     1.089  0.0100     0.981  0.0138
+G51         C33        H332      SINGLE       n     1.089  0.0100     0.972  0.0140
+G51         C33        H331      SINGLE       n     1.089  0.0100     0.972  0.0140
+G51         C33        H333      SINGLE       n     1.089  0.0100     0.972  0.0140
+G51          C9          H9      SINGLE       n     1.082  0.0130     0.942  0.0167
+G51          C8          H8      SINGLE       n     1.082  0.0130     0.940  0.0134
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+G51         N21         C20         O22     122.796    1.50
+G51         N21         C20         C17     116.606    2.63
+G51         O22         C20         C17     120.598    1.84
+G51         C23         N21         C20     121.712    1.50
+G51         C23         N21          H2     118.727    1.76
+G51         C20         N21          H2     119.561    1.50
+G51         C24         C23         N21     112.746    1.93
+G51         C24         C23        H232     109.005    1.50
+G51         C24         C23        H231     109.005    1.50
+G51         N21         C23        H232     108.967    1.50
+G51         N21         C23        H231     108.967    1.50
+G51        H232         C23        H231     107.860    1.50
+G51         C29         C24         C25     119.626    1.50
+G51         C29         C24         C23     120.551    1.50
+G51         C25         C24         C23     119.823    1.50
+G51         C28         C29         C24     122.270    1.50
+G51         C28         C29         H29     118.909    1.50
+G51         C24         C29         H29     118.822    1.50
+G51         C27         C28         C29     116.575    1.50
+G51         C27         C28         H28     121.654    1.50
+G51         C29         C28         H28     121.774    1.50
+G51         O40         C27         C28     128.217    1.50
+G51         O40         C27         C26     109.913    1.50
+G51         C28         C27         C26     121.870    1.50
+G51         C27         O40         C41     105.409    1.50
+G51         O40         C41         O42     108.187    1.50
+G51         O40         C41        H412     109.983    1.50
+G51         O40         C41        H411     109.983    1.50
+G51         O42         C41        H412     109.983    1.50
+G51         O42         C41        H411     109.983    1.50
+G51        H412         C41        H411     108.633    1.82
+G51         C41         O42         C26     105.409    1.50
+G51         C27         C26         O42     109.761    1.50
+G51         C27         C26         C25     122.249    1.50
+G51         O42         C26         C25     127.990    1.50
+G51         C26         C25         C24     117.407    1.50
+G51         C26         C25         H25     121.281    1.50
+G51         C24         C25         H25     121.312    1.50
+G51         C20         C17         C18     126.805    3.00
+G51         C20         C17          C5     126.654    3.00
+G51         C18         C17          C5     106.541    1.50
+G51         C17         C18         N19     111.012    1.50
+G51         C17         C18         H18     125.735    3.00
+G51         N19         C18         H18     123.253    1.55
+G51         C18         N19          N4     104.585    1.50
+G51         N19          N4          C5     111.210    1.50
+G51         N19          N4          C3     109.471    3.00
+G51          C5          N4          C3     123.427    1.66
+G51          N4          C3         C13     110.198    3.00
+G51          N4          C3          C2     106.882    2.39
+G51          N4          C3          H3     109.227    1.50
+G51         C13          C3          C2     111.589    1.58
+G51         C13          C3          H3     107.837    1.50
+G51          C2          C3          H3     107.458    1.50
+G51         F57         C13         F58     106.784    1.50
+G51         F57         C13          C3     113.013    1.50
+G51         F57         C13         F56     106.784    1.50
+G51         F58         C13          C3     113.013    1.50
+G51         F58         C13         F56     106.784    1.50
+G51          C3         C13         F56     113.013    1.50
+G51         C17          C5          N4     108.341    1.50
+G51         C17          C5          N6     131.431    1.93
+G51          N4          C5          N6     120.245    2.04
+G51          C5          N6          C1     118.416    2.23
+G51          C5          N6         HN6     122.092    3.00
+G51          C1          N6         HN6     119.492    2.46
+G51          N6          C1          C2     110.160    1.50
+G51          N6          C1          C7     111.043    2.06
+G51          N6          C1          H1     107.216    2.55
+G51          C2          C1          C7     111.992    1.71
+G51          C2          C1          H1     108.407    1.50
+G51          C7          C1          H1     107.618    1.93
+G51          C3          C2          C1     111.124    1.57
+G51          C3          C2         H22     109.268    1.50
+G51          C3          C2         H21     109.268    1.50
+G51          C1          C2         H22     109.169    1.50
+G51          C1          C2         H21     109.169    1.50
+G51         H22          C2         H21     108.019    1.50
+G51          C1          C7         C12     120.924    2.03
+G51          C1          C7          C8     120.924    2.03
+G51         C12          C7          C8     118.152    1.50
+G51          C7         C12         C11     120.857    1.50
+G51          C7         C12         H12     119.521    1.50
+G51         C11         C12         H12     119.619    1.50
+G51         C12         C11         C10     121.144    1.50
+G51         C12         C11         H11     119.450    1.50
+G51         C10         C11         H11     119.405    1.50
+G51         C11         C10          C9     117.849    1.50
+G51         C11         C10         C32     121.075    1.50
+G51          C9         C10         C32     121.075    1.50
+G51         C10         C32         C33     114.128    2.82
+G51         C10         C32        H322     108.725    1.50
+G51         C10         C32        H321     108.725    1.50
+G51         C33         C32        H322     108.760    1.50
+G51         C33         C32        H321     108.760    1.50
+G51        H322         C32        H321     107.696    1.50
+G51         C32         C33        H332     109.522    1.50
+G51         C32         C33        H331     109.522    1.50
+G51         C32         C33        H333     109.522    1.50
+G51        H332         C33        H331     109.417    1.50
+G51        H332         C33        H333     109.417    1.50
+G51        H331         C33        H333     109.417    1.50
+G51          C8          C9         C10     121.144    1.50
+G51          C8          C9          H9     119.450    1.50
+G51         C10          C9          H9     119.405    1.50
+G51          C7          C8          C9     120.857    1.50
+G51          C7          C8          H8     119.521    1.50
+G51          C9          C8          H8     119.619    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+G51             sp2_sp2_7         C27         C26         O42         C41       0.000     5.0     2
+G51              const_49         C24         C25         C26         C27       0.000    10.0     2
+G51              const_23         C20         C17         C18         N19     180.000    10.0     2
+G51              const_59         C20         C17          C5          N4     180.000    10.0     2
+G51              const_25         C17         C18         N19          N4       0.000    10.0     2
+G51              const_27         C18         N19          N4          C5       0.000    10.0     2
+G51            sp2_sp3_23         N19          N4          C3         C13     -60.000    10.0     6
+G51              const_29         C17          C5          N4         N19       0.000    10.0     2
+G51            sp3_sp3_25         F57         C13          C3          N4     180.000    10.0     3
+G51            sp3_sp3_11          C1          C2          C3         C13     180.000    10.0     3
+G51            sp2_sp2_13         C18         C17         C20         N21     180.000     5.0     2
+G51            sp2_sp2_11         O22         C20         N21         C23       0.000     5.0     2
+G51             sp2_sp2_3         C17          C5          N6          C1     180.000     5.0     2
+G51             sp2_sp3_1          C5          N6          C1          C2       0.000    10.0     6
+G51             sp3_sp3_1          N6          C1          C2          C3     -60.000    10.0     3
+G51            sp2_sp3_25         C12          C7          C1          N6     150.000    10.0     6
+G51       const_sp2_sp2_2         C11         C12          C7          C1     180.000     5.0     2
+G51              const_63          C1          C7          C8          C9     180.000    10.0     2
+G51       const_sp2_sp2_5         C10         C11         C12          C7       0.000     5.0     2
+G51              const_11         C32         C10         C11         C12     180.000    10.0     2
+G51            sp2_sp3_32         C11         C10         C32         C33     -90.000    10.0     6
+G51              const_15         C32         C10          C9          C8     180.000    10.0     2
+G51            sp2_sp3_14         C20         N21         C23         C24     120.000    10.0     6
+G51            sp3_sp3_34         C10         C32         C33        H332     180.000    10.0     3
+G51              const_17          C7          C8          C9         C10       0.000    10.0     2
+G51             sp2_sp3_8         C29         C24         C23         N21     -90.000    10.0     6
+G51              const_55         C23         C24         C25         C26     180.000    10.0     2
+G51              const_35         C23         C24         C29         C28     180.000    10.0     2
+G51              const_37         C27         C28         C29         C24       0.000    10.0     2
+G51              const_43         O40         C27         C28         C29     180.000    10.0     2
+G51              const_45         O42         C26         C27         O40       0.000    10.0     2
+G51             sp2_sp2_6         C28         C27         O40         C41     180.000     5.0     2
+G51            sp3_sp3_19         O42         C41         O40         C27     -60.000    10.0     3
+G51            sp3_sp3_22         O40         C41         O42         C26      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+G51    chir_1    C3    N4    C13    C2    positive
+G51    chir_2    C13    F57    F58    F56    both
+G51    chir_3    C1    N6    C7    C2    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+G51    plan-1         C23   0.020
+G51    plan-1         C24   0.020
+G51    plan-1         C25   0.020
+G51    plan-1         C26   0.020
+G51    plan-1         C27   0.020
+G51    plan-1         C28   0.020
+G51    plan-1         C29   0.020
+G51    plan-1         H25   0.020
+G51    plan-1         H28   0.020
+G51    plan-1         H29   0.020
+G51    plan-1         O40   0.020
+G51    plan-1         O42   0.020
+G51    plan-2         C17   0.020
+G51    plan-2         C18   0.020
+G51    plan-2         C20   0.020
+G51    plan-2          C3   0.020
+G51    plan-2          C5   0.020
+G51    plan-2         H18   0.020
+G51    plan-2         N19   0.020
+G51    plan-2          N4   0.020
+G51    plan-2          N6   0.020
+G51    plan-3          C1   0.020
+G51    plan-3         C10   0.020
+G51    plan-3         C11   0.020
+G51    plan-3         C12   0.020
+G51    plan-3         C32   0.020
+G51    plan-3          C7   0.020
+G51    plan-3          C8   0.020
+G51    plan-3          C9   0.020
+G51    plan-3         H11   0.020
+G51    plan-3         H12   0.020
+G51    plan-3          H8   0.020
+G51    plan-3          H9   0.020
+G51    plan-4         C17   0.020
+G51    plan-4         C20   0.020
+G51    plan-4         N21   0.020
+G51    plan-4         O22   0.020
+G51    plan-5         C20   0.020
+G51    plan-5         C23   0.020
+G51    plan-5          H2   0.020
+G51    plan-5         N21   0.020
+G51    plan-6          C1   0.020
+G51    plan-6          C5   0.020
+G51    plan-6         HN6   0.020
+G51    plan-6          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+G51           SMILES              ACDLabs 12.01                                                                                                                                  O=C(c1c2n(nc1)C(CC(N2)c3ccc(cc3)CC)C(F)(F)F)NCc4cc5c(cc4)OCO5
+G51            InChI                InChI  1.03 InChI=1S/C24H23F3N4O3/c1-2-14-3-6-16(7-4-14)18-10-21(24(25,26)27)31-22(30-18)17(12-29-31)23(32)28-11-15-5-8-19-20(9-15)34-13-33-19/h3-9,12,18,21,30H,2,10-11,13H2,1H3,(H,28,32)/t18-,21+/m1/s1
+G51         InChIKey                InChI  1.03                                                                                                                                                                    AGTNDMNRULIWGD-NQIIRXRSSA-N
+G51 SMILES_CANONICAL               CACTVS 3.385                                                                                                                              CCc1ccc(cc1)[C@H]2C[C@H](n3ncc(C(=O)NCc4ccc5OCOc5c4)c3N2)C(F)(F)F
+G51           SMILES               CACTVS 3.385                                                                                                                                CCc1ccc(cc1)[CH]2C[CH](n3ncc(C(=O)NCc4ccc5OCOc5c4)c3N2)C(F)(F)F
+G51 SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                                          CCc1ccc(cc1)[C@H]2C[C@H](n3c(c(cn3)C(=O)NCc4ccc5c(c4)OCO5)N2)C(F)(F)F
+G51           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                                  CCc1ccc(cc1)C2CC(n3c(c(cn3)C(=O)NCc4ccc5c(c4)OCO5)N2)C(F)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+G51 acedrg               243         "dictionary generator"                  
+G51 acedrg_database      11          "data source"                           
+G51 rdkit                2017.03.2   "Chemoinformatics tool"
+G51 refmac5              5.8.0238    "optimization tool"                     

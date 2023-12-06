@@ -1,0 +1,190 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BOY     BOY      "[(R)-hydroxy(4-methylphenyl)methyl]phosphonic acid"     NON-POLYMER     22     13     .     
+#
+data_comp_BOY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BOY     CAA     C       CH3     0       31.971      12.739      23.229      
+BOY     CAF     C       CR16    0       32.181      13.003      25.726      
+BOY     CAG     C       CR16    0       33.377      11.235      24.683      
+BOY     CAH     C       CR16    0       32.683      12.620      26.962      
+BOY     CAI     C       CR16    0       33.883      10.844      25.914      
+BOY     CAJ     C       CR6     0       32.519      12.319      24.568      
+BOY     CAK     C       CR6     0       33.543      11.535      27.071      
+BOY     CAL     C       CH1     0       34.086      11.119      28.408      
+BOY     OAB     O       OP      -1      33.732      9.383       30.425      
+BOY     OAC     O       OH1     0       35.472      10.820      28.391      
+BOY     OAD     O       OP      -1      31.735      10.006      29.074      
+BOY     OAE     O       O       0       33.482      8.519       28.103      
+BOY     PAM     P       P       0       33.198      9.656       29.046      
+BOY     HAA3    H       H       0       31.085      13.120      23.345      
+BOY     HAA2    H       H       0       31.916      11.967      22.643      
+BOY     HAA1    H       H       0       32.557      13.404      22.832      
+BOY     HAF1    H       H       0       31.600      13.742      25.671      
+BOY     HAG1    H       H       0       33.619      10.756      23.909      
+BOY     HAH1    H       H       0       32.438      13.102      27.733      
+BOY     HAI1    H       H       0       34.464      10.105      25.966      
+BOY     HAL1    H       H       0       33.939      11.848      29.042      
+BOY     HAC1    H       H       0       35.600      10.069      28.042      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BOY         CAA         CAJ      SINGLE       n     1.507  0.0176     1.507  0.0176
+BOY         CAG         CAJ      SINGLE       y     1.382  0.0115     1.382  0.0115
+BOY         CAF         CAJ      DOUBLE       y     1.382  0.0115     1.382  0.0115
+BOY         CAG         CAI      DOUBLE       y     1.384  0.0100     1.384  0.0100
+BOY         CAF         CAH      SINGLE       y     1.384  0.0100     1.384  0.0100
+BOY         CAI         CAK      SINGLE       y     1.385  0.0100     1.385  0.0100
+BOY         CAH         CAK      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BOY         CAK         CAL      SINGLE       n     1.498  0.0167     1.498  0.0167
+BOY         OAE         PAM      DOUBLE       n     1.505  0.0200     1.505  0.0200
+BOY         CAL         OAC      SINGLE       n     1.417  0.0100     1.417  0.0100
+BOY         CAL         PAM      SINGLE       n     1.825  0.0200     1.825  0.0200
+BOY         OAD         PAM      SINGLE       n     1.505  0.0200     1.505  0.0200
+BOY         OAB         PAM      SINGLE       n     1.505  0.0200     1.505  0.0200
+BOY         CAA        HAA3      SINGLE       n     1.089  0.0100     0.971  0.0135
+BOY         CAA        HAA2      SINGLE       n     1.089  0.0100     0.971  0.0135
+BOY         CAA        HAA1      SINGLE       n     1.089  0.0100     0.971  0.0135
+BOY         CAF        HAF1      SINGLE       n     1.082  0.0130     0.942  0.0167
+BOY         CAG        HAG1      SINGLE       n     1.082  0.0130     0.942  0.0167
+BOY         CAH        HAH1      SINGLE       n     1.082  0.0130     0.942  0.0167
+BOY         CAI        HAI1      SINGLE       n     1.082  0.0130     0.942  0.0167
+BOY         CAL        HAL1      SINGLE       n     1.089  0.0100     0.977  0.0200
+BOY         OAC        HAC1      SINGLE       n     0.970  0.0120     0.837  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BOY         CAJ         CAA        HAA3     109.567    1.50
+BOY         CAJ         CAA        HAA2     109.567    1.50
+BOY         CAJ         CAA        HAA1     109.567    1.50
+BOY        HAA3         CAA        HAA2     109.348    1.50
+BOY        HAA3         CAA        HAA1     109.348    1.50
+BOY        HAA2         CAA        HAA1     109.348    1.50
+BOY         CAJ         CAF         CAH     121.172    1.50
+BOY         CAJ         CAF        HAF1     119.283    1.50
+BOY         CAH         CAF        HAF1     119.545    1.50
+BOY         CAJ         CAG         CAI     121.172    1.50
+BOY         CAJ         CAG        HAG1     119.283    1.50
+BOY         CAI         CAG        HAG1     119.545    1.50
+BOY         CAF         CAH         CAK     120.620    1.50
+BOY         CAF         CAH        HAH1     119.723    1.50
+BOY         CAK         CAH        HAH1     119.658    1.50
+BOY         CAG         CAI         CAK     120.620    1.50
+BOY         CAG         CAI        HAI1     119.723    1.50
+BOY         CAK         CAI        HAI1     119.658    1.50
+BOY         CAA         CAJ         CAG     121.123    1.50
+BOY         CAA         CAJ         CAF     121.123    1.50
+BOY         CAG         CAJ         CAF     117.753    1.50
+BOY         CAI         CAK         CAH     118.664    1.50
+BOY         CAI         CAK         CAL     120.668    1.50
+BOY         CAH         CAK         CAL     120.668    1.50
+BOY         CAK         CAL         OAC     113.863    1.50
+BOY         CAK         CAL         PAM     113.602    3.00
+BOY         CAK         CAL        HAL1     109.436    1.50
+BOY         OAC         CAL         PAM     108.256    2.94
+BOY         OAC         CAL        HAL1     109.763    1.64
+BOY         PAM         CAL        HAL1     108.528    1.50
+BOY         CAL         OAC        HAC1     109.474    1.50
+BOY         OAE         PAM         CAL     110.326    3.00
+BOY         OAE         PAM         OAD     112.502    1.50
+BOY         OAE         PAM         OAB     112.502    1.50
+BOY         CAL         PAM         OAD     110.326    3.00
+BOY         CAL         PAM         OAB     110.326    3.00
+BOY         OAD         PAM         OAB     112.502    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BOY             sp2_sp3_1         CAG         CAJ         CAA        HAA3     150.000    10.0     6
+BOY              const_21         CAJ         CAF         CAH         CAK       0.000    10.0     2
+BOY       const_sp2_sp2_2         CAH         CAF         CAJ         CAA     180.000     5.0     2
+BOY       const_sp2_sp2_9         CAJ         CAG         CAI         CAK       0.000     5.0     2
+BOY       const_sp2_sp2_6         CAI         CAG         CAJ         CAA     180.000     5.0     2
+BOY              const_18         CAF         CAH         CAK         CAL     180.000    10.0     2
+BOY              const_14         CAG         CAI         CAK         CAL     180.000    10.0     2
+BOY             sp2_sp3_7         CAI         CAK         CAL         OAC     150.000    10.0     6
+BOY             sp3_sp3_9         OAC         CAL         PAM         OAE     -60.000    10.0     3
+BOY             sp3_sp3_2         PAM         CAL         OAC        HAC1      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BOY    chir_1    CAL    PAM    OAC    CAK    negative
+BOY    chir_2    PAM    OAD    OAB    OAE    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BOY    plan-1         CAA   0.020
+BOY    plan-1         CAF   0.020
+BOY    plan-1         CAG   0.020
+BOY    plan-1         CAH   0.020
+BOY    plan-1         CAI   0.020
+BOY    plan-1         CAJ   0.020
+BOY    plan-1         CAK   0.020
+BOY    plan-1         CAL   0.020
+BOY    plan-1        HAF1   0.020
+BOY    plan-1        HAG1   0.020
+BOY    plan-1        HAH1   0.020
+BOY    plan-1        HAI1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BOY           SMILES              ACDLabs 12.01                                                                 Cc1ccc(cc1)C(P(O)(O)=O)O
+BOY            InChI                InChI  1.03 InChI=1S/C8H11O4P/c1-6-2-4-7(5-3-6)8(9)13(10,11)12/h2-5,8-9H,1H3,(H2,10,11,12)/t8-/m1/s1
+BOY         InChIKey                InChI  1.03                                                              AFOAUCXHAIELNA-MRVPVSSYSA-N
+BOY SMILES_CANONICAL               CACTVS 3.385                                                           Cc1ccc(cc1)[C@H](O)[P](O)(O)=O
+BOY           SMILES               CACTVS 3.385                                                            Cc1ccc(cc1)[CH](O)[P](O)(O)=O
+BOY SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                             Cc1ccc(cc1)[C@H](O)P(=O)(O)O
+BOY           SMILES "OpenEye OEToolkits" 2.0.6                                                                 Cc1ccc(cc1)C(O)P(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BOY acedrg               243         "dictionary generator"                  
+BOY acedrg_database      11          "data source"                           
+BOY rdkit                2017.03.2   "Chemoinformatics tool"
+BOY refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,193 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KFQ     KFQ      1-sulfanyl[1,2,4]triazolo[4,3-a]quinoxalin-4(5H)-one     NON-POLYMER     21     15     .     
+#
+data_comp_KFQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KFQ     OAA     O       O       0       26.267      35.757      49.840      
+KFQ     CAJ     C       CR6     0       26.481      35.302      48.718      
+KFQ     CAN     C       CR56    0       26.381      33.935      48.372      
+KFQ     NAG     N       NRD5    0       26.057      32.902      49.122      
+KFQ     NAH     N       NRD5    0       26.098      31.768      48.330      
+KFQ     CAK     C       CR5     0       26.446      32.117      47.108      
+KFQ     SAB     S       SH1     0       26.608      30.958      45.812      
+KFQ     NAO     N       NR5     0       26.641      33.498      47.076      
+KFQ     CAM     C       CR66    0       27.014      34.418      46.067      
+KFQ     CAF     C       CR16    0       27.290      34.038      44.739      
+KFQ     CAD     C       CR16    0       27.648      34.994      43.810      
+KFQ     CAC     C       CR16    0       27.743      36.348      44.169      
+KFQ     CAE     C       CR16    0       27.480      36.745      45.457      
+KFQ     CAL     C       CR66    0       27.113      35.790      46.422      
+KFQ     NAI     N       NR6     0       26.843      36.184      47.736      
+KFQ     H1      H       HSH1    0       26.605      29.760      46.060      
+KFQ     H2      H       H       0       27.231      33.139      44.480      
+KFQ     H3      H       H       0       27.830      34.732      42.925      
+KFQ     H4      H       H       0       27.989      36.987      43.524      
+KFQ     H5      H       H       0       27.545      37.652      45.694      
+KFQ     H6      H       H       0       26.908      37.048      47.948      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KFQ         CAD         CAC      DOUBLE       y     1.401  0.0132     1.401  0.0132
+KFQ         CAF         CAD      SINGLE       y     1.376  0.0100     1.376  0.0100
+KFQ         CAC         CAE      SINGLE       y     1.372  0.0100     1.372  0.0100
+KFQ         CAM         CAF      DOUBLE       y     1.400  0.0118     1.400  0.0118
+KFQ         CAE         CAL      DOUBLE       y     1.403  0.0100     1.403  0.0100
+KFQ         CAK         SAB      SINGLE       n     1.744  0.0119     1.744  0.0119
+KFQ         CAM         CAL      SINGLE       y     1.407  0.0160     1.407  0.0160
+KFQ         NAO         CAM      SINGLE       y     1.401  0.0128     1.401  0.0128
+KFQ         CAL         NAI      SINGLE       y     1.397  0.0100     1.397  0.0100
+KFQ         CAK         NAO      SINGLE       y     1.379  0.0182     1.379  0.0182
+KFQ         CAN         NAO      SINGLE       y     1.387  0.0100     1.387  0.0100
+KFQ         NAH         CAK      DOUBLE       y     1.317  0.0104     1.317  0.0104
+KFQ         CAJ         NAI      SINGLE       y     1.362  0.0132     1.362  0.0132
+KFQ         CAJ         CAN      SINGLE       y     1.409  0.0100     1.409  0.0100
+KFQ         CAN         NAG      DOUBLE       y     1.318  0.0100     1.318  0.0100
+KFQ         NAG         NAH      SINGLE       y     1.383  0.0120     1.383  0.0120
+KFQ         OAA         CAJ      DOUBLE       n     1.229  0.0100     1.229  0.0100
+KFQ         SAB          H1      SINGLE       n     1.345  0.0041     1.224  0.0200
+KFQ         CAF          H2      SINGLE       n     1.082  0.0130     0.940  0.0101
+KFQ         CAD          H3      SINGLE       n     1.082  0.0130     0.941  0.0176
+KFQ         CAC          H4      SINGLE       n     1.082  0.0130     0.941  0.0176
+KFQ         CAE          H5      SINGLE       n     1.082  0.0130     0.939  0.0151
+KFQ         NAI          H6      SINGLE       n     1.016  0.0100     0.891  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KFQ         NAI         CAJ         CAN     116.296    2.21
+KFQ         NAI         CAJ         OAA     118.197    1.67
+KFQ         CAN         CAJ         OAA     125.507    1.50
+KFQ         NAO         CAN         CAJ     119.966    1.50
+KFQ         NAO         CAN         NAG     109.481    1.50
+KFQ         CAJ         CAN         NAG     130.553    1.50
+KFQ         CAN         NAG         NAH     106.867    1.50
+KFQ         CAK         NAH         NAG     107.264    1.50
+KFQ         SAB         CAK         NAO     124.351    2.05
+KFQ         SAB         CAK         NAH     127.155    3.00
+KFQ         NAO         CAK         NAH     108.494    1.50
+KFQ         CAK         SAB          H1     120.000    3.00
+KFQ         CAM         NAO         CAK     130.717    2.13
+KFQ         CAM         NAO         CAN     121.388    1.50
+KFQ         CAK         NAO         CAN     107.894    1.59
+KFQ         CAF         CAM         CAL     119.463    1.50
+KFQ         CAF         CAM         NAO     121.262    1.50
+KFQ         CAL         CAM         NAO     119.274    1.50
+KFQ         CAD         CAF         CAM     119.550    1.50
+KFQ         CAD         CAF          H2     120.380    1.50
+KFQ         CAM         CAF          H2     120.070    1.50
+KFQ         CAC         CAD         CAF     120.993    1.50
+KFQ         CAC         CAD          H3     119.633    1.50
+KFQ         CAF         CAD          H3     119.374    1.50
+KFQ         CAD         CAC         CAE     120.714    1.50
+KFQ         CAD         CAC          H4     119.717    1.50
+KFQ         CAE         CAC          H4     119.569    1.50
+KFQ         CAC         CAE         CAL     119.813    1.50
+KFQ         CAC         CAE          H5     120.173    1.50
+KFQ         CAL         CAE          H5     120.016    1.50
+KFQ         CAE         CAL         CAM     119.463    1.50
+KFQ         CAE         CAL         NAI     120.311    1.50
+KFQ         CAM         CAL         NAI     120.225    1.50
+KFQ         CAL         NAI         CAJ     122.850    1.50
+KFQ         CAL         NAI          H6     119.020    1.72
+KFQ         CAJ         NAI          H6     118.130    2.15
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KFQ       const_sp2_sp2_9         CAE         CAC         CAD         CAF       0.000     5.0     2
+KFQ              const_13         CAD         CAC         CAE         CAL       0.000    10.0     2
+KFQ              const_17         CAC         CAE         CAL         CAM       0.000    10.0     2
+KFQ              const_27         CAE         CAL         NAI         CAJ     180.000    10.0     2
+KFQ              const_23         OAA         CAJ         NAI         CAL     180.000    10.0     2
+KFQ              const_50         OAA         CAJ         CAN         NAO     180.000    10.0     2
+KFQ              const_52         NAO         CAN         NAG         NAH       0.000    10.0     2
+KFQ              const_37         CAJ         CAN         NAO         CAM       0.000    10.0     2
+KFQ              const_47         CAN         NAG         NAH         CAK       0.000    10.0     2
+KFQ              const_46         SAB         CAK         NAH         NAG     180.000    10.0     2
+KFQ             sp2_sp2_1         NAO         CAK         SAB          H1     180.000     5.0     2
+KFQ              const_44         SAB         CAK         NAO         CAM       0.000    10.0     2
+KFQ              const_36         CAF         CAM         NAO         CAK       0.000    10.0     2
+KFQ              const_29         CAE         CAL         CAM         CAF       0.000    10.0     2
+KFQ       const_sp2_sp2_1         CAD         CAF         CAM         CAL       0.000     5.0     2
+KFQ       const_sp2_sp2_5         CAC         CAD         CAF         CAM       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KFQ    plan-1         CAC   0.020
+KFQ    plan-1         CAD   0.020
+KFQ    plan-1         CAE   0.020
+KFQ    plan-1         CAF   0.020
+KFQ    plan-1         CAJ   0.020
+KFQ    plan-1         CAK   0.020
+KFQ    plan-1         CAL   0.020
+KFQ    plan-1         CAM   0.020
+KFQ    plan-1         CAN   0.020
+KFQ    plan-1          H2   0.020
+KFQ    plan-1          H3   0.020
+KFQ    plan-1          H4   0.020
+KFQ    plan-1          H5   0.020
+KFQ    plan-1          H6   0.020
+KFQ    plan-1         NAG   0.020
+KFQ    plan-1         NAH   0.020
+KFQ    plan-1         NAI   0.020
+KFQ    plan-1         NAO   0.020
+KFQ    plan-1         OAA   0.020
+KFQ    plan-1         SAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KFQ           SMILES              ACDLabs 12.01                                                              O=C3Nc1c(cccc1)n2c3nnc2S
+KFQ            InChI                InChI  1.03 InChI=1S/C9H6N4OS/c14-8-7-11-12-9(15)13(7)6-4-2-1-3-5(6)10-8/h1-4H,(H,10,14)(H,12,15)
+KFQ         InChIKey                InChI  1.03                                                           WDUVQRMZWGBWJS-UHFFFAOYSA-N
+KFQ SMILES_CANONICAL               CACTVS 3.370                                                                Sc1nnc2n1c3ccccc3NC2=O
+KFQ           SMILES               CACTVS 3.370                                                                Sc1nnc2n1c3ccccc3NC2=O
+KFQ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                         c1ccc-2c(c1)NC(=O)c3n2c(nn3)S
+KFQ           SMILES "OpenEye OEToolkits" 1.7.6                                                         c1ccc-2c(c1)NC(=O)c3n2c(nn3)S
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KFQ acedrg               243         "dictionary generator"                  
+KFQ acedrg_database      11          "data source"                           
+KFQ rdkit                2017.03.2   "Chemoinformatics tool"
+KFQ refmac5              5.8.0238    "optimization tool"                     

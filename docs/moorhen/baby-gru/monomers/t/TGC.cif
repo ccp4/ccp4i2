@@ -1,0 +1,530 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TGC     TGC      3-thiaglutaryl-CoA     NON-POLYMER     91     56     .     
+#
+data_comp_TGC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TGC     P31     P       P       0       71.576      7.664       36.421      
+TGC     O33     O       O       0       70.541      6.946       35.619      
+TGC     O34     O       OP      -1      72.672      6.846       37.020      
+TGC     O23     O       O2      0       72.216      8.837       35.524      
+TGC     C19     C       CH2     0       72.714      10.105      36.048      
+TGC     C18     C       CH1     0       74.095      9.952       36.647      
+TGC     O22     O       O2      0       74.006      9.359       37.961      
+TGC     C15     C       CH1     0       75.307      8.971       38.332      
+TGC     N9      N       NR5     0       75.243      7.902       39.326      
+TGC     C4      C       CR56    0       76.319      7.313       39.947      
+TGC     N3      N       NRD6    0       77.626      7.588       39.769      
+TGC     C2      C       CR16    0       78.393      6.816       40.540      
+TGC     N1      N       NRD6    0       78.029      5.862       41.411      
+TGC     C6      C       CR6     0       76.705      5.605       41.572      
+TGC     N6      N       NH2     0       76.337      4.661       42.433      
+TGC     C5      C       CR56    0       75.792      6.363       40.805      
+TGC     N7      N       NRD5    0       74.408      6.357       40.726      
+TGC     C8      C       CR15    0       74.129      7.282       39.842      
+TGC     C16     C       CH1     0       76.023      8.568       37.040      
+TGC     O20     O       OH1     0       77.309      9.149       36.985      
+TGC     C17     C       CH1     0       75.089      9.054       35.914      
+TGC     O21     O       O2      0       75.770      9.814       34.909      
+TGC     P39     P       P       0       76.264      8.959       33.625      
+TGC     O40     O       OP      -1      77.007      7.743       34.145      
+TGC     O41     O       O       0       75.015      8.579       32.852      
+TGC     O42     O       OP      -1      77.169      9.881       32.828      
+TGC     O32     O       O2      0       70.829      8.463       37.595      
+TGC     P35     P       P       0       69.285      8.804       37.868      
+TGC     O36     O       O       0       68.731      9.543       36.696      
+TGC     O37     O       OP      -1      68.587      7.571       38.341      
+TGC     O38     O       O2      0       69.405      9.825       39.101      
+TGC     C46     C       CH2     0       69.725      9.322       40.435      
+TGC     C45     C       CT      0       70.642      10.312      41.161      
+TGC     C53     C       CH3     0       71.889      10.572      40.299      
+TGC     C57     C       CH3     0       69.889      11.637      41.354      
+TGC     C44     C       CH1     0       71.029      9.725       42.535      
+TGC     O52     O       OH1     0       71.778      8.521       42.355      
+TGC     C43     C       C       0       71.789      10.663      43.472      
+TGC     O51     O       O       0       73.020      10.645      43.478      
+TGC     N68     N       NH1     0       71.075      11.466      44.255      
+TGC     C62     C       CH2     0       71.661      12.447      45.161      
+TGC     C61     C       CH2     0       72.158      13.681      44.435      
+TGC     C69     C       C       0       72.912      14.620      45.355      
+TGC     O72     O       O       0       74.113      14.827      45.190      
+TGC     N71     N       NH1     0       72.216      15.183      46.354      
+TGC     C74     C       CH2     0       72.797      16.029      47.388      
+TGC     C73     C       CH2     0       72.994      17.453      46.927      
+TGC     S81     S       S2      0       73.602      18.513      48.263      
+TGC     "C1'"   C       C       0       72.809      20.030      48.690      
+TGC     "O1'"   O       O       0       73.196      20.728      49.595      
+TGC     "C2'"   C       CH2     0       71.625      20.371      47.824      
+TGC     "S3'"   S       S2      0       70.115      19.504      48.315      
+TGC     "C3'"   C       CH2     0       68.860      20.670      47.726      
+TGC     "C4'"   C       C       0       68.349      21.589      48.823      
+TGC     "O2'"   O       O       0       69.188      22.310      49.399      
+TGC     "O3'"   O       OC      -1      67.127      21.559      49.070      
+TGC     H191    H       H       0       72.097      10.454      36.734      
+TGC     H192    H       H       0       72.754      10.766      35.313      
+TGC     H18     H       H       0       74.485      10.848      36.734      
+TGC     H15     H       H       0       75.775      9.744       38.723      
+TGC     H2      H       H       0       79.324      6.960       40.461      
+TGC     HN61    H       H       0       76.803      4.534       43.166      
+TGC     HN62    H       H       0       75.629      4.171       42.265      
+TGC     H8      H       H       0       73.250      7.499       39.585      
+TGC     H16     H       H       0       76.106      7.578       36.990      
+TGC     HO20    H       H       0       77.793      8.811       37.594      
+TGC     H17     H       H       0       74.633      8.278       35.514      
+TGC     H461    H       H       0       70.169      8.454       40.364      
+TGC     H462    H       H       0       68.903      9.202       40.950      
+TGC     H531    H       H       0       72.670      10.695      40.862      
+TGC     H532    H       H       0       71.755      11.372      39.760      
+TGC     H533    H       H       0       72.041      9.813       39.709      
+TGC     H571    H       H       0       69.227      11.534      42.060      
+TGC     H572    H       H       0       69.442      11.890      40.530      
+TGC     H573    H       H       0       70.517      12.338      41.602      
+TGC     H44     H       H       0       70.184      9.482       42.986      
+TGC     HO52    H       H       0       72.605      8.677       42.242      
+TGC     HN68    H       H       0       70.205      11.411      44.230      
+TGC     H621    H       H       0       72.407      12.036      45.645      
+TGC     H622    H       H       0       70.986      12.715      45.820      
+TGC     H611    H       H       0       71.402      14.157      44.049      
+TGC     H612    H       H       0       72.745      13.415      43.706      
+TGC     HN71    H       H       0       71.356      15.035      46.382      
+TGC     H741    H       H       0       73.662      15.658      47.664      
+TGC     H742    H       H       0       72.205      16.027      48.171      
+TGC     H731    H       H       0       72.143      17.804      46.597      
+TGC     H732    H       H       0       73.634      17.466      46.188      
+TGC     "H2'1"  H       H       0       71.829      20.144      46.899      
+TGC     "H2'2"  H       H       0       71.462      21.330      47.873      
+TGC     "H3'1"  H       H       0       68.109      20.168      47.361      
+TGC     "H3'2"  H       H       0       69.242      21.213      47.013      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TGC         P39         O41      DOUBLE       n     1.517  0.0192     1.517  0.0192
+TGC         P39         O42      SINGLE       n     1.517  0.0192     1.517  0.0192
+TGC         P39         O40      SINGLE       n     1.517  0.0192     1.517  0.0192
+TGC         O21         P39      SINGLE       n     1.614  0.0178     1.614  0.0178
+TGC         C17         O21      SINGLE       n     1.425  0.0152     1.425  0.0152
+TGC         C18         C17      SINGLE       n     1.525  0.0133     1.525  0.0133
+TGC         C16         C17      SINGLE       n     1.529  0.0125     1.529  0.0125
+TGC         P35         O36      DOUBLE       n     1.493  0.0122     1.493  0.0122
+TGC         O23         C19      SINGLE       n     1.450  0.0166     1.450  0.0166
+TGC         P31         O23      SINGLE       n     1.604  0.0133     1.604  0.0133
+TGC         C19         C18      SINGLE       n     1.509  0.0100     1.509  0.0100
+TGC         C18         O22      SINGLE       n     1.451  0.0100     1.451  0.0100
+TGC         C16         O20      SINGLE       n     1.411  0.0100     1.411  0.0100
+TGC         C15         C16      SINGLE       n     1.525  0.0100     1.525  0.0100
+TGC         P31         O33      DOUBLE       n     1.493  0.0122     1.493  0.0122
+TGC         P35         O37      SINGLE       n     1.493  0.0122     1.493  0.0122
+TGC         O32         P35      SINGLE       n     1.604  0.0133     1.604  0.0133
+TGC         P35         O38      SINGLE       n     1.604  0.0133     1.604  0.0133
+TGC         P31         O32      SINGLE       n     1.604  0.0133     1.604  0.0133
+TGC         P31         O34      SINGLE       n     1.493  0.0122     1.493  0.0122
+TGC         O22         C15      SINGLE       n     1.409  0.0100     1.409  0.0100
+TGC         C15          N9      SINGLE       n     1.458  0.0100     1.458  0.0100
+TGC         O38         C46      SINGLE       n     1.454  0.0165     1.454  0.0165
+TGC          C4          N3      DOUBLE       y     1.343  0.0100     1.343  0.0100
+TGC          N3          C2      SINGLE       y     1.330  0.0100     1.330  0.0100
+TGC          N9          C4      SINGLE       y     1.374  0.0101     1.374  0.0101
+TGC          N9          C8      SINGLE       y     1.372  0.0100     1.372  0.0100
+TGC          C4          C5      SINGLE       y     1.381  0.0100     1.381  0.0100
+TGC         C46         C45      SINGLE       n     1.526  0.0108     1.526  0.0108
+TGC          C2          N1      DOUBLE       y     1.339  0.0100     1.339  0.0100
+TGC         C45         C57      SINGLE       n     1.531  0.0109     1.531  0.0109
+TGC          N7          C8      DOUBLE       y     1.310  0.0100     1.310  0.0100
+TGC         C45         C53      SINGLE       n     1.531  0.0109     1.531  0.0109
+TGC         C45         C44      SINGLE       n     1.532  0.0112     1.532  0.0112
+TGC          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+TGC          C6          C5      DOUBLE       y     1.408  0.0100     1.408  0.0100
+TGC          N1          C6      SINGLE       y     1.354  0.0100     1.354  0.0100
+TGC          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+TGC         C44         O52      SINGLE       n     1.419  0.0162     1.419  0.0162
+TGC         C44         C43      SINGLE       n     1.519  0.0108     1.519  0.0108
+TGC         C43         O51      DOUBLE       n     1.229  0.0102     1.229  0.0102
+TGC         C43         N68      SINGLE       n     1.326  0.0100     1.326  0.0100
+TGC         N68         C62      SINGLE       n     1.457  0.0100     1.457  0.0100
+TGC         C69         O72      DOUBLE       n     1.229  0.0102     1.229  0.0102
+TGC         C62         C61      SINGLE       n     1.513  0.0195     1.513  0.0195
+TGC         C61         C69      SINGLE       n     1.514  0.0100     1.514  0.0100
+TGC         C69         N71      SINGLE       n     1.337  0.0118     1.337  0.0118
+TGC         N71         C74      SINGLE       n     1.455  0.0100     1.455  0.0100
+TGC         C74         C73      SINGLE       n     1.510  0.0158     1.510  0.0158
+TGC         C73         S81      SINGLE       n     1.809  0.0191     1.809  0.0191
+TGC         S81       "C1'"      SINGLE       n     1.762  0.0200     1.762  0.0200
+TGC       "C1'"       "O1'"      DOUBLE       n     1.207  0.0100     1.207  0.0100
+TGC       "C1'"       "C2'"      SINGLE       n     1.506  0.0100     1.506  0.0100
+TGC       "C2'"       "S3'"      SINGLE       n     1.809  0.0100     1.809  0.0100
+TGC       "S3'"       "C3'"      SINGLE       n     1.811  0.0100     1.811  0.0100
+TGC       "C3'"       "C4'"      SINGLE       n     1.519  0.0100     1.519  0.0100
+TGC       "C4'"       "O2'"      DOUBLE       n     1.247  0.0187     1.247  0.0187
+TGC       "C4'"       "O3'"      SINGLE       n     1.247  0.0187     1.247  0.0187
+TGC         C19        H191      SINGLE       n     1.089  0.0100     0.989  0.0200
+TGC         C19        H192      SINGLE       n     1.089  0.0100     0.989  0.0200
+TGC         C18         H18      SINGLE       n     1.089  0.0100     0.981  0.0200
+TGC         C15         H15      SINGLE       n     1.089  0.0100     0.984  0.0200
+TGC          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+TGC          N6        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+TGC          N6        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+TGC          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+TGC         C16         H16      SINGLE       n     1.089  0.0100     0.994  0.0200
+TGC         O20        HO20      SINGLE       n     0.970  0.0120     0.849  0.0200
+TGC         C17         H17      SINGLE       n     1.089  0.0100     0.985  0.0119
+TGC         C46        H461      SINGLE       n     1.089  0.0100     0.978  0.0102
+TGC         C46        H462      SINGLE       n     1.089  0.0100     0.978  0.0102
+TGC         C53        H531      SINGLE       n     1.089  0.0100     0.973  0.0146
+TGC         C53        H532      SINGLE       n     1.089  0.0100     0.973  0.0146
+TGC         C53        H533      SINGLE       n     1.089  0.0100     0.973  0.0146
+TGC         C57        H571      SINGLE       n     1.089  0.0100     0.973  0.0146
+TGC         C57        H572      SINGLE       n     1.089  0.0100     0.973  0.0146
+TGC         C57        H573      SINGLE       n     1.089  0.0100     0.973  0.0146
+TGC         C44         H44      SINGLE       n     1.089  0.0100     0.988  0.0129
+TGC         O52        HO52      SINGLE       n     0.970  0.0120     0.848  0.0200
+TGC         N68        HN68      SINGLE       n     1.016  0.0100     0.872  0.0200
+TGC         C62        H621      SINGLE       n     1.089  0.0100     0.980  0.0159
+TGC         C62        H622      SINGLE       n     1.089  0.0100     0.980  0.0159
+TGC         C61        H611      SINGLE       n     1.089  0.0100     0.973  0.0156
+TGC         C61        H612      SINGLE       n     1.089  0.0100     0.973  0.0156
+TGC         N71        HN71      SINGLE       n     1.016  0.0100     0.872  0.0200
+TGC         C74        H741      SINGLE       n     1.089  0.0100     0.981  0.0127
+TGC         C74        H742      SINGLE       n     1.089  0.0100     0.981  0.0127
+TGC         C73        H731      SINGLE       n     1.089  0.0100     0.978  0.0177
+TGC         C73        H732      SINGLE       n     1.089  0.0100     0.978  0.0177
+TGC       "C2'"      "H2'1"      SINGLE       n     1.089  0.0100     0.974  0.0194
+TGC       "C2'"      "H2'2"      SINGLE       n     1.089  0.0100     0.974  0.0194
+TGC       "C3'"      "H3'1"      SINGLE       n     1.089  0.0100     0.974  0.0194
+TGC       "C3'"      "H3'2"      SINGLE       n     1.089  0.0100     0.974  0.0194
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TGC         O23         P31         O33     109.410    1.50
+TGC         O23         P31         O32     101.065    1.97
+TGC         O23         P31         O34     109.410    1.50
+TGC         O33         P31         O32     108.816    2.14
+TGC         O33         P31         O34     118.411    2.35
+TGC         O32         P31         O34     108.816    2.14
+TGC         C19         O23         P31     118.553    2.41
+TGC         O23         C19         C18     109.342    1.50
+TGC         O23         C19        H191     109.845    1.50
+TGC         O23         C19        H192     109.845    1.50
+TGC         C18         C19        H191     109.624    1.50
+TGC         C18         C19        H192     109.624    1.50
+TGC        H191         C19        H192     108.472    1.50
+TGC         C17         C18         C19     114.866    1.63
+TGC         C17         C18         O22     105.508    1.50
+TGC         C17         C18         H18     109.143    1.50
+TGC         C19         C18         O22     109.123    1.50
+TGC         C19         C18         H18     108.268    1.50
+TGC         O22         C18         H18     108.947    1.50
+TGC         C18         O22         C15     109.903    1.50
+TGC         C16         C15         O22     106.047    1.50
+TGC         C16         C15          N9     113.824    1.50
+TGC         C16         C15         H15     109.015    1.50
+TGC         O22         C15          N9     108.477    1.50
+TGC         O22         C15         H15     109.807    1.50
+TGC          N9         C15         H15     109.561    1.50
+TGC         C15          N9          C4     127.459    1.80
+TGC         C15          N9          C8     126.848    1.91
+TGC          C4          N9          C8     105.693    1.50
+TGC          N3          C4          N9     127.895    1.50
+TGC          N3          C4          C5     126.489    1.50
+TGC          N9          C4          C5     105.616    1.50
+TGC          C4          N3          C2     110.982    1.50
+TGC          N3          C2          N1     129.332    1.50
+TGC          N3          C2          H2     115.355    1.50
+TGC          N1          C2          H2     115.313    1.50
+TGC          C2          N1          C6     118.521    1.50
+TGC          C5          C6          N1     117.409    1.50
+TGC          C5          C6          N6     123.792    1.50
+TGC          N1          C6          N6     118.799    1.50
+TGC          C6          N6        HN61     119.723    1.50
+TGC          C6          N6        HN62     119.723    1.50
+TGC        HN61          N6        HN62     120.554    1.88
+TGC          C4          C5          N7     110.486    1.50
+TGC          C4          C5          C6     117.267    1.50
+TGC          N7          C5          C6     132.247    1.50
+TGC          C8          N7          C5     104.739    1.50
+TGC          N9          C8          N7     113.469    1.50
+TGC          N9          C8          H8     123.206    1.50
+TGC          N7          C8          H8     123.326    1.50
+TGC         C17         C16         O20     112.463    2.73
+TGC         C17         C16         C15     101.388    1.50
+TGC         C17         C16         H16     110.255    2.04
+TGC         O20         C16         C15     111.715    2.69
+TGC         O20         C16         H16     110.448    1.97
+TGC         C15         C16         H16     110.636    1.70
+TGC         C16         O20        HO20     109.103    2.13
+TGC         O21         C17         C18     110.864    2.31
+TGC         O21         C17         C16     110.766    3.00
+TGC         O21         C17         H17     110.343    1.64
+TGC         C18         C17         C16     102.352    1.50
+TGC         C18         C17         H17     110.624    1.81
+TGC         C16         C17         H17     110.255    2.04
+TGC         P39         O21         C17     109.471    3.00
+TGC         O41         P39         O42     112.139    1.52
+TGC         O41         P39         O40     112.139    1.52
+TGC         O41         P39         O21     106.518    3.00
+TGC         O42         P39         O40     112.139    1.52
+TGC         O42         P39         O21     106.518    3.00
+TGC         O40         P39         O21     106.518    3.00
+TGC         P35         O32         P31     132.542    3.00
+TGC         O36         P35         O37     118.411    2.35
+TGC         O36         P35         O32     108.816    2.14
+TGC         O36         P35         O38     107.912    2.57
+TGC         O37         P35         O32     108.816    2.14
+TGC         O37         P35         O38     107.912    2.57
+TGC         O32         P35         O38     101.065    1.97
+TGC         P35         O38         C46     119.251    1.51
+TGC         O38         C46         C45     108.435    1.69
+TGC         O38         C46        H461     109.739    1.50
+TGC         O38         C46        H462     109.739    1.50
+TGC         C45         C46        H461     109.473    1.50
+TGC         C45         C46        H462     109.473    1.50
+TGC        H461         C46        H462     108.108    1.50
+TGC         C46         C45         C57     109.385    1.50
+TGC         C46         C45         C53     109.385    1.50
+TGC         C46         C45         C44     111.094    2.85
+TGC         C57         C45         C53     108.765    1.50
+TGC         C57         C45         C44     109.534    1.52
+TGC         C53         C45         C44     109.534    1.52
+TGC         C45         C53        H531     109.575    1.50
+TGC         C45         C53        H532     109.575    1.50
+TGC         C45         C53        H533     109.575    1.50
+TGC        H531         C53        H532     109.377    1.50
+TGC        H531         C53        H533     109.377    1.50
+TGC        H532         C53        H533     109.377    1.50
+TGC         C45         C57        H571     109.575    1.50
+TGC         C45         C57        H572     109.575    1.50
+TGC         C45         C57        H573     109.575    1.50
+TGC        H571         C57        H572     109.377    1.50
+TGC        H571         C57        H573     109.377    1.50
+TGC        H572         C57        H573     109.377    1.50
+TGC         C45         C44         O52     109.482    3.00
+TGC         C45         C44         C43     111.511    2.91
+TGC         C45         C44         H44     107.825    1.50
+TGC         O52         C44         C43     109.850    1.55
+TGC         O52         C44         H44     108.675    1.50
+TGC         C43         C44         H44     108.529    1.70
+TGC         C44         O52        HO52     108.894    3.00
+TGC         C44         C43         O51     119.859    1.78
+TGC         C44         C43         N68     117.147    1.50
+TGC         O51         C43         N68     122.977    1.50
+TGC         C43         N68         C62     122.964    1.80
+TGC         C43         N68        HN68     118.685    1.94
+TGC         C62         N68        HN68     118.351    1.90
+TGC         N68         C62         C61     112.257    1.50
+TGC         N68         C62        H621     108.979    1.50
+TGC         N68         C62        H622     108.979    1.50
+TGC         C61         C62        H621     108.971    1.50
+TGC         C61         C62        H622     108.971    1.50
+TGC        H621         C62        H622     107.877    1.50
+TGC         C62         C61         C69     112.120    2.79
+TGC         C62         C61        H611     109.432    1.50
+TGC         C62         C61        H612     109.432    1.50
+TGC         C69         C61        H611     108.945    1.50
+TGC         C69         C61        H612     108.945    1.50
+TGC        H611         C61        H612     107.745    2.07
+TGC         O72         C69         C61     120.987    1.50
+TGC         O72         C69         N71     121.943    1.50
+TGC         C61         C69         N71     117.070    1.96
+TGC         C69         N71         C74     123.437    1.80
+TGC         C69         N71        HN71     117.862    2.10
+TGC         C74         N71        HN71     118.700    1.83
+TGC         N71         C74         C73     112.117    1.54
+TGC         N71         C74        H741     109.102    1.50
+TGC         N71         C74        H742     109.102    1.50
+TGC         C73         C74        H741     109.038    1.50
+TGC         C73         C74        H742     109.038    1.50
+TGC        H741         C74        H742     107.995    1.50
+TGC         C74         C73         S81     112.239    3.00
+TGC         C74         C73        H731     108.964    1.50
+TGC         C74         C73        H732     108.964    1.50
+TGC         S81         C73        H731     109.066    1.50
+TGC         S81         C73        H732     109.066    1.50
+TGC        H731         C73        H732     107.807    1.50
+TGC         C73         S81       "C1'"     120.000    3.00
+TGC         S81       "C1'"       "O1'"     122.917    2.65
+TGC         S81       "C1'"       "C2'"     113.298    2.65
+TGC       "O1'"       "C1'"       "C2'"     123.785    1.70
+TGC       "C1'"       "C2'"       "S3'"     112.659    2.32
+TGC       "C1'"       "C2'"      "H2'1"     109.036    1.50
+TGC       "C1'"       "C2'"      "H2'2"     109.036    1.50
+TGC       "S3'"       "C2'"      "H2'1"     108.570    1.78
+TGC       "S3'"       "C2'"      "H2'2"     108.570    1.78
+TGC      "H2'1"       "C2'"      "H2'2"     108.193    1.80
+TGC       "C2'"       "S3'"       "C3'"     100.297    1.96
+TGC       "S3'"       "C3'"       "C4'"     111.968    3.00
+TGC       "S3'"       "C3'"      "H3'1"     108.718    1.65
+TGC       "S3'"       "C3'"      "H3'2"     108.718    1.65
+TGC       "C4'"       "C3'"      "H3'1"     108.575    1.82
+TGC       "C4'"       "C3'"      "H3'2"     108.575    1.82
+TGC      "H3'1"       "C3'"      "H3'2"     108.166    1.80
+TGC       "C3'"       "C4'"       "O2'"     117.212    2.93
+TGC       "C3'"       "C4'"       "O3'"     117.212    2.93
+TGC       "O2'"       "C4'"       "O3'"     125.576    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TGC            sp3_sp3_65         P35         O32         P31         O23     -60.000    10.0     3
+TGC            sp3_sp3_42         C19         O23         P31         O33      60.000    10.0     3
+TGC       const_sp2_sp2_3          N1          C2          N3          C4       0.000     5.0     2
+TGC       const_sp2_sp2_5          N3          C2          N1          C6       0.000     5.0     2
+TGC       const_sp2_sp2_8          N6          C6          N1          C2     180.000     5.0     2
+TGC             sp2_sp2_1          C5          C6          N6        HN61     180.000     5.0     2
+TGC              const_10          C4          C5          C6          N6     180.000    10.0     2
+TGC              const_21          C4          C5          N7          C8       0.000    10.0     2
+TGC              const_23          N9          C8          N7          C5       0.000    10.0     2
+TGC            sp3_sp3_55         C17         C16         O20        HO20     180.000    10.0     3
+TGC            sp3_sp3_14         O20         C16         C17         O21     -60.000    10.0     3
+TGC            sp3_sp3_34         C18         C17         O21         P39     180.000    10.0     3
+TGC            sp3_sp3_33         C17         O21         P39         O41      60.000    10.0     3
+TGC            sp3_sp3_60         P31         O32         P35         O36      60.000    10.0     3
+TGC            sp3_sp3_63         C46         O38         P35         O36      60.000    10.0     3
+TGC            sp3_sp3_67         C45         C46         O38         P35     180.000    10.0     3
+TGC            sp3_sp3_73         C57         C45         C46         O38      60.000    10.0     3
+TGC            sp3_sp3_91         C46         C45         C53        H531      60.000    10.0     3
+TGC            sp3_sp3_79         C46         C45         C57        H571     180.000    10.0     3
+TGC            sp3_sp3_98         O52         C44         C45         C46     -60.000    10.0     3
+TGC           sp3_sp3_106         C45         C44         O52        HO52     180.000    10.0     3
+TGC             sp2_sp3_7         O51         C43         C44         C45       0.000    10.0     6
+TGC             sp2_sp2_5         C44         C43         N68         C62     180.000     5.0     2
+TGC            sp2_sp3_14         C43         N68         C62         C61     120.000    10.0     6
+TGC            sp3_sp3_37         C18         C19         O23         P31     180.000    10.0     3
+TGC           sp3_sp3_109         C69         C61         C62         N68     180.000    10.0     3
+TGC            sp2_sp3_20         O72         C69         C61         C62     120.000    10.0     6
+TGC            sp2_sp2_11         O72         C69         N71         C74       0.000     5.0     2
+TGC            sp2_sp3_26         C69         N71         C74         C73     120.000    10.0     6
+TGC           sp3_sp3_118         S81         C73         C74         N71     180.000    10.0     3
+TGC           sp3_sp3_127         C74         C73         S81       "C1'"     180.000    10.0     3
+TGC            sp2_sp2_13       "O1'"       "C1'"         S81         C73     180.000     5.0     2
+TGC            sp2_sp3_32         S81       "C1'"       "C2'"       "S3'"     120.000    10.0     6
+TGC            sp3_sp3_43         C17         C18         C19         O23     180.000    10.0     3
+TGC           sp3_sp3_130       "C1'"       "C2'"       "S3'"       "C3'"     180.000    10.0     3
+TGC           sp3_sp3_133       "C4'"       "C3'"       "S3'"       "C2'"     180.000    10.0     3
+TGC            sp2_sp3_38       "O2'"       "C4'"       "C3'"       "S3'"     120.000    10.0     6
+TGC             sp3_sp3_5         O21         C17         C18         C19      60.000    10.0     3
+TGC            sp3_sp3_53         C19         C18         O22         C15      60.000    10.0     3
+TGC            sp3_sp3_28         C16         C15         O22         C18     -60.000    10.0     3
+TGC            sp3_sp3_20         O22         C15         C16         O20     180.000    10.0     3
+TGC             sp2_sp3_1          C4          N9         C15         C16     150.000    10.0     6
+TGC              const_26          N7          C8          N9         C15     180.000    10.0     2
+TGC              const_16          N3          C4          N9         C15       0.000    10.0     2
+TGC       const_sp2_sp2_2          N9          C4          N3          C2     180.000     5.0     2
+TGC              const_18          N3          C4          C5          N7     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TGC    chir_1    P31    O32    O23    O34    both
+TGC    chir_2    C18    O22    C17    C19    negative
+TGC    chir_3    C15    O22    N9    C16    negative
+TGC    chir_4    C16    O20    C15    C17    negative
+TGC    chir_5    C17    O21    C18    C16    positive
+TGC    chir_6    P39    O21    O42    O40    both
+TGC    chir_7    P35    O32    O38    O37    both
+TGC    chir_8    C45    C44    C46    C57    both
+TGC    chir_9    C44    O52    C43    C45    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TGC    plan-1         C15   0.020
+TGC    plan-1          C2   0.020
+TGC    plan-1          C4   0.020
+TGC    plan-1          C5   0.020
+TGC    plan-1          C6   0.020
+TGC    plan-1          C8   0.020
+TGC    plan-1          H2   0.020
+TGC    plan-1          H8   0.020
+TGC    plan-1          N1   0.020
+TGC    plan-1          N3   0.020
+TGC    plan-1          N6   0.020
+TGC    plan-1          N7   0.020
+TGC    plan-1          N9   0.020
+TGC    plan-2          C6   0.020
+TGC    plan-2        HN61   0.020
+TGC    plan-2        HN62   0.020
+TGC    plan-2          N6   0.020
+TGC    plan-3         C43   0.020
+TGC    plan-3         C44   0.020
+TGC    plan-3         N68   0.020
+TGC    plan-3         O51   0.020
+TGC    plan-4         C43   0.020
+TGC    plan-4         C62   0.020
+TGC    plan-4        HN68   0.020
+TGC    plan-4         N68   0.020
+TGC    plan-5         C61   0.020
+TGC    plan-5         C69   0.020
+TGC    plan-5         N71   0.020
+TGC    plan-5         O72   0.020
+TGC    plan-6         C69   0.020
+TGC    plan-6         C74   0.020
+TGC    plan-6        HN71   0.020
+TGC    plan-6         N71   0.020
+TGC    plan-7       "C1'"   0.020
+TGC    plan-7       "C2'"   0.020
+TGC    plan-7       "O1'"   0.020
+TGC    plan-7         S81   0.020
+TGC    plan-8       "C3'"   0.020
+TGC    plan-8       "C4'"   0.020
+TGC    plan-8       "O2'"   0.020
+TGC    plan-8       "O3'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TGC           SMILES              ACDLabs 10.04                                                                                                                                                                                                                                    O=C(O)CSCC(=O)SCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(=O)(O)OP(=O)(O)OCC3OC(n2cnc1c(ncnc12)N)C(O)C3OP(=O)(O)O
+TGC SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                                    CC(C)(CO[P@@](O)(=O)O[P@@](O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O[P](O)(O)=O)n2cnc3c(N)ncnc23)[C@@H](O)C(=O)NCCC(=O)NCCSC(=O)CSCC(O)=O
+TGC           SMILES               CACTVS 3.341                                                                                                                                                                                                               CC(C)(CO[P](O)(=O)O[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O[P](O)(O)=O)n2cnc3c(N)ncnc23)[CH](O)C(=O)NCCC(=O)NCCSC(=O)CSCC(O)=O
+TGC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                        CC(C)(CO[P@](=O)(O)O[P@](=O)(O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)[C@H](C(=O)NCCC(=O)NCCSC(=O)CSCC(=O)O)O
+TGC           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                                    CC(C)(COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)C(C(=O)NCCC(=O)NCCSC(=O)CSCC(=O)O)O
+TGC            InChI                InChI  1.03 InChI=1S/C25H40N7O19P3S2/c1-25(2,20(38)23(39)28-4-3-14(33)27-5-6-56-16(36)9-55-8-15(34)35)10-48-54(45,46)51-53(43,44)47-7-13-19(50-52(40,41)42)18(37)24(49-13)32-12-31-17-21(26)29-11-30-22(17)32/h11-13,18-20,24,37-38H,3-10H2,1-2H3,(H,27,33)(H,28,39)(H,34,35)(H,43,44)(H,45,46)(H2,26,29,30)(H2,40,41,42)/t13-,18-,19-,20+,24-/m1/s1
+TGC         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                              GKSSRSUPHZUOQO-ITIYDSSPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TGC acedrg               243         "dictionary generator"                  
+TGC acedrg_database      11          "data source"                           
+TGC rdkit                2017.03.2   "Chemoinformatics tool"
+TGC refmac5              5.8.0238    "optimization tool"                     

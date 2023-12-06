@@ -1,0 +1,339 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OSA     OSA      "7-amino-4-hydroxy-3-[(E)-(5-hydroxy-7-sulfonaphthalen-2-yl)diazenyl]naphthalene-2-sulfonic acid"     NON-POLYMER     48     33     .     
+#
+data_comp_OSA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OSA     CAA     C       CR16    0       42.674      16.679      8.238       
+OSA     CAB     C       CR16    0       41.413      16.774      8.756       
+OSA     CAC     C       CR66    0       41.211      16.848      10.161      
+OSA     CAD     C       CR66    0       42.344      16.821      11.018      
+OSA     CAE     C       CR16    0       43.642      16.722      10.447      
+OSA     CAF     C       CR6     0       43.818      16.651      9.082       
+OSA     NAG     N       NH2     0       45.073      16.555      8.534       
+OSA     CAH     C       CR16    0       42.159      16.894      12.422      
+OSA     CAI     C       CR6     0       40.902      16.991      12.988      
+OSA     CAJ     C       CR6     0       39.772      17.018      12.148      
+OSA     CAK     C       CR6     0       39.905      16.949      10.747      
+OSA     OAL     O       OH1     0       38.796      16.976      9.931       
+OSA     NAM     N       N       0       38.452      17.119      12.707      
+OSA     NAN     N       N       0       37.892      16.014      12.903      
+OSA     CAO     C       CR6     0       36.571      16.071      13.467      
+OSA     CAP     C       CR16    0       35.525      15.402      12.815      
+OSA     CAQ     C       CR16    0       34.258      15.422      13.314      
+OSA     CAR     C       CR66    0       33.960      16.120      14.516      
+OSA     CAS     C       CR66    0       35.013      16.799      15.189      
+OSA     CAT     C       CR16    0       36.318      16.754      14.640      
+OSA     CAU     C       CR16    0       34.728      17.499      16.389      
+OSA     CAV     C       CR6     0       33.463      17.531      16.903      
+OSA     CAW     C       CR16    0       32.410      16.859      16.244      
+OSA     CAX     C       CR6     0       32.647      16.169      15.076      
+OSA     OAY     O       OH1     0       31.609      15.521      14.447      
+OSA     SAZ     S       S3      0       33.151      18.409      18.395      
+OSA     OBA     O       OH1     0       31.683      18.566      18.508      
+OSA     OBB     O       O       0       33.641      17.631      19.502      
+OSA     OBC     O       O       0       33.767      19.707      18.305      
+OSA     SBD     S       S3      0       40.737      17.079      14.739      
+OSA     OBE     O       O       0       42.040      17.084      15.351      
+OSA     OBF     O       OH1     0       40.069      18.372      15.024      
+OSA     OBG     O       O       0       39.932      15.974      15.190      
+OSA     HAA     H       H       0       42.788      16.631      7.309       
+OSA     HAB     H       H       0       40.675      16.790      8.170       
+OSA     HAE     H       H       0       44.392      16.704      11.011      
+OSA     HNAG    H       H       0       45.772      16.847      8.977       
+OSA     HNAA    H       H       0       45.180      16.201      7.739       
+OSA     HAH     H       H       0       42.915      16.876      12.978      
+OSA     HOAL    H       H       0       38.273      17.660      9.938       
+OSA     HAP     H       H       0       35.701      14.934      12.017      
+OSA     HAQ     H       H       0       33.575      14.966      12.852      
+OSA     HAT     H       H       0       37.023      17.201      15.077      
+OSA     HAU     H       H       0       35.421      17.949      16.836      
+OSA     HAW     H       H       0       31.538      16.880      16.599      
+OSA     HOAY    H       H       0       31.019      15.101      14.912      
+OSA     HOBA    H       H       0       31.377      19.106      17.827      
+OSA     HOBF    H       H       0       39.168      18.238      15.153      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OSA         CAA         CAB      DOUBLE       y     1.362  0.0108     1.362  0.0108
+OSA         CAA         CAF      SINGLE       y     1.417  0.0114     1.417  0.0114
+OSA         CAB         CAC      SINGLE       y     1.415  0.0122     1.415  0.0122
+OSA         CAC         CAD      DOUBLE       y     1.417  0.0100     1.417  0.0100
+OSA         CAC         CAK      SINGLE       y     1.429  0.0115     1.429  0.0115
+OSA         CAD         CAE      SINGLE       y     1.418  0.0100     1.418  0.0100
+OSA         CAD         CAH      SINGLE       y     1.415  0.0105     1.415  0.0105
+OSA         CAE         CAF      DOUBLE       y     1.375  0.0100     1.375  0.0100
+OSA         CAF         NAG      SINGLE       n     1.372  0.0200     1.372  0.0200
+OSA         CAH         CAI      DOUBLE       y     1.371  0.0130     1.371  0.0130
+OSA         CAI         CAJ      SINGLE       y     1.401  0.0100     1.401  0.0100
+OSA         CAI         SBD      SINGLE       n     1.756  0.0116     1.756  0.0116
+OSA         CAJ         CAK      DOUBLE       y     1.404  0.0100     1.404  0.0100
+OSA         CAJ         NAM      SINGLE       n     1.430  0.0199     1.430  0.0199
+OSA         CAK         OAL      SINGLE       n     1.374  0.0155     1.374  0.0155
+OSA         NAM         NAN      DOUBLE       n     1.250  0.0190     1.250  0.0190
+OSA         NAN         CAO      SINGLE       n     1.430  0.0199     1.430  0.0199
+OSA         CAO         CAP      DOUBLE       y     1.395  0.0131     1.395  0.0131
+OSA         CAO         CAT      SINGLE       y     1.372  0.0135     1.372  0.0135
+OSA         CAP         CAQ      SINGLE       y     1.355  0.0122     1.355  0.0122
+OSA         CAQ         CAR      DOUBLE       y     1.415  0.0122     1.415  0.0122
+OSA         CAR         CAS      SINGLE       y     1.417  0.0100     1.417  0.0100
+OSA         CAR         CAX      SINGLE       y     1.422  0.0104     1.422  0.0104
+OSA         CAS         CAT      DOUBLE       y     1.413  0.0117     1.413  0.0117
+OSA         CAS         CAU      SINGLE       y     1.415  0.0105     1.415  0.0105
+OSA         CAU         CAV      DOUBLE       y     1.363  0.0103     1.363  0.0103
+OSA         CAV         CAW      SINGLE       y     1.398  0.0166     1.398  0.0166
+OSA         CAV         SAZ      SINGLE       n     1.756  0.0119     1.756  0.0119
+OSA         CAW         CAX      DOUBLE       y     1.373  0.0100     1.373  0.0100
+OSA         CAX         OAY      SINGLE       n     1.374  0.0155     1.374  0.0155
+OSA         SAZ         OBA      SINGLE       n     1.482  0.0200     1.482  0.0200
+OSA         SAZ         OBB      DOUBLE       n     1.440  0.0100     1.440  0.0100
+OSA         SAZ         OBC      DOUBLE       n     1.440  0.0100     1.440  0.0100
+OSA         SBD         OBE      DOUBLE       n     1.440  0.0100     1.440  0.0100
+OSA         SBD         OBF      SINGLE       n     1.482  0.0200     1.482  0.0200
+OSA         SBD         OBG      DOUBLE       n     1.440  0.0100     1.440  0.0100
+OSA         CAA         HAA      SINGLE       n     1.082  0.0130     0.938  0.0125
+OSA         CAB         HAB      SINGLE       n     1.082  0.0130     0.943  0.0175
+OSA         CAE         HAE      SINGLE       n     1.082  0.0130     0.938  0.0165
+OSA         NAG        HNAG      SINGLE       n     1.016  0.0100     0.877  0.0200
+OSA         NAG        HNAA      SINGLE       n     1.016  0.0100     0.877  0.0200
+OSA         CAH         HAH      SINGLE       n     1.082  0.0130     0.939  0.0112
+OSA         OAL        HOAL      SINGLE       n     0.966  0.0059     0.861  0.0200
+OSA         CAP         HAP      SINGLE       n     1.082  0.0130     0.942  0.0177
+OSA         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.943  0.0175
+OSA         CAT         HAT      SINGLE       n     1.082  0.0130     0.942  0.0159
+OSA         CAU         HAU      SINGLE       n     1.082  0.0130     0.939  0.0112
+OSA         CAW         HAW      SINGLE       n     1.082  0.0130     0.943  0.0168
+OSA         OAY        HOAY      SINGLE       n     0.966  0.0059     0.861  0.0200
+OSA         OBA        HOBA      SINGLE       n     0.970  0.0120     0.921  0.0200
+OSA         OBF        HOBF      SINGLE       n     0.970  0.0120     0.921  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OSA         CAB         CAA         CAF     121.088    1.50
+OSA         CAB         CAA         HAA     119.561    1.50
+OSA         CAF         CAA         HAA     119.351    1.50
+OSA         CAA         CAB         CAC     120.756    1.50
+OSA         CAA         CAB         HAB     119.440    1.50
+OSA         CAC         CAB         HAB     119.805    1.50
+OSA         CAB         CAC         CAD     119.397    1.50
+OSA         CAB         CAC         CAK     121.431    1.50
+OSA         CAD         CAC         CAK     119.173    1.50
+OSA         CAC         CAD         CAE     119.262    1.50
+OSA         CAC         CAD         CAH     119.285    1.50
+OSA         CAE         CAD         CAH     121.453    1.50
+OSA         CAD         CAE         CAF     120.901    1.50
+OSA         CAD         CAE         HAE     119.470    1.50
+OSA         CAF         CAE         HAE     119.629    1.50
+OSA         CAA         CAF         CAE     118.596    1.50
+OSA         CAA         CAF         NAG     120.222    1.50
+OSA         CAE         CAF         NAG     121.182    1.50
+OSA         CAF         NAG        HNAG     120.146    2.42
+OSA         CAF         NAG        HNAA     120.146    2.42
+OSA        HNAG         NAG        HNAA     119.708    3.00
+OSA         CAD         CAH         CAI     121.284    1.50
+OSA         CAD         CAH         HAH     119.278    1.50
+OSA         CAI         CAH         HAH     119.438    1.50
+OSA         CAH         CAI         CAJ     119.159    1.50
+OSA         CAH         CAI         SBD     119.935    1.50
+OSA         CAJ         CAI         SBD     120.906    1.50
+OSA         CAI         CAJ         CAK     120.938    1.74
+OSA         CAI         CAJ         NAM     118.775    2.73
+OSA         CAK         CAJ         NAM     120.288    3.00
+OSA         CAC         CAK         CAJ     120.161    1.84
+OSA         CAC         CAK         OAL     118.301    2.50
+OSA         CAJ         CAK         OAL     121.537    3.00
+OSA         CAK         OAL        HOAL     120.000    3.00
+OSA         CAJ         NAM         NAN     114.070    2.29
+OSA         NAM         NAN         CAO     114.070    2.29
+OSA         NAN         CAO         CAP     120.234    3.00
+OSA         NAN         CAO         CAT     120.254    3.00
+OSA         CAP         CAO         CAT     119.512    1.50
+OSA         CAO         CAP         CAQ     120.626    1.50
+OSA         CAO         CAP         HAP     119.709    1.50
+OSA         CAQ         CAP         HAP     119.665    1.50
+OSA         CAP         CAQ         CAR     120.634    1.50
+OSA         CAP         CAQ         HAQ     119.501    1.50
+OSA         CAR         CAQ         HAQ     119.866    1.50
+OSA         CAQ         CAR         CAS     119.275    1.50
+OSA         CAQ         CAR         CAX     121.821    1.50
+OSA         CAS         CAR         CAX     118.904    1.50
+OSA         CAR         CAS         CAT     119.140    1.50
+OSA         CAR         CAS         CAU     119.017    1.50
+OSA         CAT         CAS         CAU     121.844    1.50
+OSA         CAO         CAT         CAS     120.814    1.50
+OSA         CAO         CAT         HAT     119.472    1.50
+OSA         CAS         CAT         HAT     119.714    1.50
+OSA         CAS         CAU         CAV     121.015    1.50
+OSA         CAS         CAU         HAU     119.420    1.50
+OSA         CAV         CAU         HAU     119.565    1.50
+OSA         CAU         CAV         CAW     120.504    1.50
+OSA         CAU         CAV         SAZ     120.235    1.50
+OSA         CAW         CAV         SAZ     119.261    1.50
+OSA         CAV         CAW         CAX     120.118    1.50
+OSA         CAV         CAW         HAW     120.043    1.50
+OSA         CAX         CAW         HAW     119.839    1.50
+OSA         CAR         CAX         CAW     120.443    1.50
+OSA         CAR         CAX         OAY     118.161    2.50
+OSA         CAW         CAX         OAY     121.397    3.00
+OSA         CAX         OAY        HOAY     120.000    3.00
+OSA         CAV         SAZ         OBA     106.633    1.50
+OSA         CAV         SAZ         OBB     109.513    1.50
+OSA         CAV         SAZ         OBC     109.513    1.50
+OSA         OBA         SAZ         OBB     110.900    2.56
+OSA         OBA         SAZ         OBC     110.900    2.56
+OSA         OBB         SAZ         OBC     114.848    3.00
+OSA         SAZ         OBA        HOBA     109.599    1.50
+OSA         CAI         SBD         OBE     109.513    1.50
+OSA         CAI         SBD         OBF     106.633    1.50
+OSA         CAI         SBD         OBG     109.513    1.50
+OSA         OBE         SBD         OBF     110.900    2.56
+OSA         OBE         SBD         OBG     114.848    3.00
+OSA         OBF         SBD         OBG     110.900    2.56
+OSA         SBD         OBF        HOBF     109.599    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OSA       const_sp2_sp2_1         CAF         CAA         CAB         CAC       0.000     5.0     2
+OSA              const_74         CAB         CAA         CAF         NAG     180.000    10.0     2
+OSA             sp2_sp2_7         CAC         CAK         OAL        HOAL     180.000     5.0     2
+OSA             sp2_sp2_9         CAJ         NAM         NAN         CAO     180.000     5.0     2
+OSA            sp2_sp2_10         CAP         CAO         NAN         NAM     180.000     5.0     2
+OSA              const_39         NAN         CAO         CAP         CAQ     180.000    10.0     2
+OSA              const_83         NAN         CAO         CAT         CAS     180.000    10.0     2
+OSA              const_41         CAO         CAP         CAQ         CAR       0.000    10.0     2
+OSA              const_45         CAP         CAQ         CAR         CAS       0.000    10.0     2
+OSA              const_49         CAQ         CAR         CAS         CAT       0.000    10.0     2
+OSA              const_88         CAQ         CAR         CAX         OAY       0.000    10.0     2
+OSA              const_53         CAR         CAS         CAT         CAO       0.000    10.0     2
+OSA              const_57         CAR         CAS         CAU         CAV       0.000    10.0     2
+OSA       const_sp2_sp2_5         CAA         CAB         CAC         CAD       0.000     5.0     2
+OSA              const_62         CAS         CAU         CAV         SAZ     180.000    10.0     2
+OSA              const_67         SAZ         CAV         CAW         CAX     180.000    10.0     2
+OSA             sp2_sp3_9         CAU         CAV         SAZ         OBA      30.000    10.0     6
+OSA              const_70         CAV         CAW         CAX         OAY     180.000    10.0     2
+OSA            sp2_sp2_12         CAR         CAX         OAY        HOAY     180.000     5.0     2
+OSA             sp3_sp3_2        HOBA         OBA         SAZ         OBB     -60.000    10.0     3
+OSA             sp3_sp3_5        HOBF         OBF         SBD         OBE     -60.000    10.0     3
+OSA              const_80         CAB         CAC         CAK         OAL       0.000    10.0     2
+OSA       const_sp2_sp2_9         CAB         CAC         CAD         CAE       0.000     5.0     2
+OSA              const_13         CAC         CAD         CAE         CAF       0.000    10.0     2
+OSA              const_21         CAC         CAD         CAH         CAI       0.000    10.0     2
+OSA              const_18         CAD         CAE         CAF         NAG     180.000    10.0     2
+OSA             sp2_sp2_1         CAA         CAF         NAG        HNAG     180.000     5.0     2
+OSA              const_26         CAD         CAH         CAI         SBD     180.000    10.0     2
+OSA             sp2_sp3_1         CAH         CAI         SBD         OBE     150.000    10.0     6
+OSA              const_32         SBD         CAI         CAJ         NAM       0.000    10.0     2
+OSA              const_36         NAM         CAJ         CAK         OAL       0.000    10.0     2
+OSA             sp2_sp2_5         CAI         CAJ         NAM         NAN     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OSA    chir_1    SAZ    OBB    OBC    OBA    both
+OSA    chir_2    SBD    OBE    OBG    OBF    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OSA    plan-1         CAA   0.020
+OSA    plan-1         CAB   0.020
+OSA    plan-1         CAC   0.020
+OSA    plan-1         CAD   0.020
+OSA    plan-1         CAE   0.020
+OSA    plan-1         CAF   0.020
+OSA    plan-1         CAH   0.020
+OSA    plan-1         CAI   0.020
+OSA    plan-1         CAJ   0.020
+OSA    plan-1         CAK   0.020
+OSA    plan-1         HAA   0.020
+OSA    plan-1         HAB   0.020
+OSA    plan-1         HAE   0.020
+OSA    plan-1         HAH   0.020
+OSA    plan-1         NAG   0.020
+OSA    plan-1         NAM   0.020
+OSA    plan-1         OAL   0.020
+OSA    plan-1         SBD   0.020
+OSA    plan-2         CAO   0.020
+OSA    plan-2         CAP   0.020
+OSA    plan-2         CAQ   0.020
+OSA    plan-2         CAR   0.020
+OSA    plan-2         CAS   0.020
+OSA    plan-2         CAT   0.020
+OSA    plan-2         CAU   0.020
+OSA    plan-2         CAV   0.020
+OSA    plan-2         CAW   0.020
+OSA    plan-2         CAX   0.020
+OSA    plan-2         HAP   0.020
+OSA    plan-2         HAQ   0.020
+OSA    plan-2         HAT   0.020
+OSA    plan-2         HAU   0.020
+OSA    plan-2         HAW   0.020
+OSA    plan-2         NAN   0.020
+OSA    plan-2         OAY   0.020
+OSA    plan-2         SAZ   0.020
+OSA    plan-3         CAF   0.020
+OSA    plan-3        HNAA   0.020
+OSA    plan-3        HNAG   0.020
+OSA    plan-3         NAG   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OSA           SMILES              ACDLabs 12.01                                                                                                             O=S(=O)(O)c4cc3cc(/N=N/c2c(O)c1c(cc(cc1)N)cc2S(=O)(=O)O)ccc3c(O)c4
+OSA SMILES_CANONICAL               CACTVS 3.370                                                                                                           Nc1ccc2c(O)c(N=Nc3ccc4c(O)cc(cc4c3)[S](O)(=O)=O)c(cc2c1)[S](O)(=O)=O
+OSA           SMILES               CACTVS 3.370                                                                                                           Nc1ccc2c(O)c(N=Nc3ccc4c(O)cc(cc4c3)[S](O)(=O)=O)c(cc2c1)[S](O)(=O)=O
+OSA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                             c1cc2c(cc1N)cc(c(c2O)/N=N/c3ccc4c(c3)cc(cc4O)S(=O)(=O)O)S(=O)(=O)O
+OSA           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                               c1cc2c(cc1N)cc(c(c2O)N=Nc3ccc4c(c3)cc(cc4O)S(=O)(=O)O)S(=O)(=O)O
+OSA            InChI                InChI  1.03 InChI=1S/C20H15N3O8S2/c21-12-1-3-16-10(5-12)8-18(33(29,30)31)19(20(16)25)23-22-13-2-4-15-11(6-13)7-14(9-17(15)24)32(26,27)28/h1-9,24-25H,21H2,(H,26,27,28)(H,29,30,31)/b23-22+
+OSA         InChIKey                InChI  1.03                                                                                                                                                    ZSHNSNDVNDUHIM-GHVJWSGMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OSA acedrg               243         "dictionary generator"                  
+OSA acedrg_database      11          "data source"                           
+OSA rdkit                2017.03.2   "Chemoinformatics tool"
+OSA refmac5              5.8.0238    "optimization tool"                     

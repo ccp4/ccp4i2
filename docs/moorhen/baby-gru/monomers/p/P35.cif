@@ -1,0 +1,343 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+P35     P35      4-({5-[(piperidin-4-yl)amino]-1,3-dihydro-2H-isoindol-2-yl}sulfonyl)benzene-1,3-diol     NON-POLYMER     50     27     .     
+#
+data_comp_P35
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+P35     C26     C       CR16    0       12.117      3.375       -35.362     
+P35     C21     C       CR16    0       17.503      2.538       -38.045     
+P35     C10     C       CR56    0       16.176      0.539       -38.379     
+P35     C11     C       CR16    0       17.322      -0.221      -38.592     
+P35     C12     C       CR6     0       18.580      0.418       -38.534     
+P35     C14     C       CH1     0       19.911      -1.646      -39.245     
+P35     C15     C       CH2     0       21.320      -2.175      -39.042     
+P35     C19     C       CH2     0       19.507      -1.738      -40.707     
+P35     C20     C       CR16    0       18.658      1.799       -38.255     
+P35     C18     C       CH2     0       19.702      -3.151      -41.235     
+P35     O01     O       OH1     0       9.892       6.160       -36.176     
+P35     C02     C       CR6     0       10.598      4.988       -36.298     
+P35     C03     C       CR16    0       10.507      4.243       -37.467     
+P35     C04     C       CR6     0       11.224      3.053       -37.593     
+P35     O05     O       OH1     0       11.118      2.334       -38.760     
+P35     C06     C       CR6     0       12.041      2.615       -36.527     
+P35     S07     S       S3      0       12.960      1.105       -36.657     
+P35     N08     N       NT      0       14.046      1.284       -37.850     
+P35     C09     C       CH2     0       14.740      0.101       -38.394     
+P35     N13     N       NH1     0       19.782      -0.282      -38.733     
+P35     C16     C       CH2     0       21.465      -3.575      -39.617     
+P35     N17     N       NT1     0       21.082      -3.612      -41.034     
+P35     C22     C       CR56    0       16.265      1.903       -38.108     
+P35     C23     C       CH2     0       14.895      2.489       -37.915     
+P35     O24     O       O       0       13.717      0.921       -35.456     
+P35     O25     O       O       0       12.056      0.084       -37.092     
+P35     C27     C       CR16    0       11.400      4.554       -35.250     
+P35     H261    H       H       0       12.655      3.094       -34.645     
+P35     H211    H       H       0       17.557      3.463       -37.860     
+P35     H111    H       H       0       17.249      -1.141      -38.776     
+P35     H141    H       H       0       19.305      -2.229      -38.731     
+P35     H151    H       H       0       21.961      -1.573      -39.481     
+P35     H152    H       H       0       21.527      -2.193      -38.081     
+P35     H192    H       H       0       20.051      -1.114      -41.236     
+P35     H191    H       H       0       18.564      -1.481      -40.805     
+P35     H201    H       H       0       19.498      2.225       -38.213     
+P35     H181    H       H       0       19.493      -3.175      -42.193     
+P35     H182    H       H       0       19.090      -3.762      -40.772     
+P35     H011    H       H       0       9.578       6.396       -35.409     
+P35     H031    H       H       0       9.962       4.541       -38.177     
+P35     H051    H       H       0       11.389      1.517       -38.796     
+P35     H091    H       H       0       14.441      -0.098      -39.295     
+P35     H092    H       H       0       14.604      -0.679      -37.833     
+P35     H131    H       H       0       20.521      0.140       -38.530     
+P35     H161    H       H       0       20.896      -4.197      -39.115     
+P35     H162    H       H       0       22.396      -3.871      -39.529     
+P35     H171    H       H       0       21.627      -3.074      -41.487     
+P35     H231    H       H       0       14.847      3.004       -37.094     
+P35     H232    H       H       0       14.645      3.056       -38.662     
+P35     H271    H       H       0       11.457      5.061       -34.465     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+P35         C18         N17      SINGLE       n     1.467  0.0100     1.467  0.0100
+P35         C19         C18      SINGLE       n     1.516  0.0166     1.516  0.0166
+P35         C16         N17      SINGLE       n     1.467  0.0100     1.467  0.0100
+P35         C14         C19      SINGLE       n     1.517  0.0100     1.517  0.0100
+P35         C15         C16      SINGLE       n     1.516  0.0166     1.516  0.0166
+P35         C14         C15      SINGLE       n     1.517  0.0100     1.517  0.0100
+P35         C14         N13      SINGLE       n     1.456  0.0143     1.456  0.0143
+P35         C12         N13      SINGLE       n     1.382  0.0200     1.382  0.0200
+P35         C04         O05      SINGLE       n     1.374  0.0155     1.374  0.0155
+P35         C11         C12      DOUBLE       y     1.398  0.0148     1.398  0.0148
+P35         C12         C20      SINGLE       y     1.402  0.0151     1.402  0.0151
+P35         C10         C11      SINGLE       y     1.387  0.0100     1.387  0.0100
+P35         C21         C20      DOUBLE       y     1.384  0.0100     1.384  0.0100
+P35         C10         C09      SINGLE       n     1.502  0.0100     1.502  0.0100
+P35         C10         C22      DOUBLE       y     1.389  0.0100     1.389  0.0100
+P35         N08         C09      SINGLE       n     1.475  0.0100     1.475  0.0100
+P35         C21         C22      SINGLE       y     1.389  0.0100     1.389  0.0100
+P35         C03         C04      DOUBLE       y     1.389  0.0120     1.389  0.0120
+P35         C04         C06      SINGLE       y     1.407  0.0102     1.407  0.0102
+P35         C22         C23      SINGLE       n     1.502  0.0100     1.502  0.0100
+P35         C02         C03      SINGLE       y     1.386  0.0100     1.386  0.0100
+P35         N08         C23      SINGLE       n     1.475  0.0100     1.475  0.0100
+P35         S07         N08      SINGLE       n     1.622  0.0100     1.622  0.0100
+P35         S07         O25      DOUBLE       n     1.431  0.0100     1.431  0.0100
+P35         C06         S07      SINGLE       n     1.766  0.0143     1.766  0.0143
+P35         S07         O24      DOUBLE       n     1.431  0.0100     1.431  0.0100
+P35         C26         C06      DOUBLE       y     1.388  0.0100     1.388  0.0100
+P35         O01         C02      SINGLE       n     1.374  0.0155     1.374  0.0155
+P35         C02         C27      DOUBLE       y     1.386  0.0100     1.386  0.0100
+P35         C26         C27      SINGLE       y     1.381  0.0100     1.381  0.0100
+P35         C26        H261      SINGLE       n     1.082  0.0130     0.940  0.0163
+P35         C21        H211      SINGLE       n     1.082  0.0130     0.945  0.0189
+P35         C11        H111      SINGLE       n     1.082  0.0130     0.942  0.0100
+P35         C14        H141      SINGLE       n     1.089  0.0100     0.985  0.0100
+P35         C15        H151      SINGLE       n     1.089  0.0100     0.983  0.0100
+P35         C15        H152      SINGLE       n     1.089  0.0100     0.983  0.0100
+P35         C19        H192      SINGLE       n     1.089  0.0100     0.983  0.0100
+P35         C19        H191      SINGLE       n     1.089  0.0100     0.983  0.0100
+P35         C20        H201      SINGLE       n     1.082  0.0130     0.943  0.0192
+P35         C18        H181      SINGLE       n     1.089  0.0100     0.981  0.0142
+P35         C18        H182      SINGLE       n     1.089  0.0100     0.981  0.0142
+P35         O01        H011      SINGLE       n     0.966  0.0059     0.861  0.0200
+P35         C03        H031      SINGLE       n     1.082  0.0130     0.943  0.0179
+P35         O05        H051      SINGLE       n     0.966  0.0059     0.861  0.0200
+P35         C09        H091      SINGLE       n     1.089  0.0100     0.970  0.0100
+P35         C09        H092      SINGLE       n     1.089  0.0100     0.970  0.0100
+P35         N13        H131      SINGLE       n     1.016  0.0100     0.873  0.0200
+P35         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0142
+P35         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0142
+P35         N17        H171      SINGLE       n     1.036  0.0160     0.890  0.0200
+P35         C23        H231      SINGLE       n     1.089  0.0100     0.970  0.0100
+P35         C23        H232      SINGLE       n     1.089  0.0100     0.970  0.0100
+P35         C27        H271      SINGLE       n     1.082  0.0130     0.937  0.0102
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+P35         C06         C26         C27     120.117    1.50
+P35         C06         C26        H261     120.164    1.50
+P35         C27         C26        H261     119.720    1.50
+P35         C20         C21         C22     119.001    1.50
+P35         C20         C21        H211     120.372    1.50
+P35         C22         C21        H211     120.626    1.50
+P35         C11         C10         C09     129.355    1.50
+P35         C11         C10         C22     120.397    1.50
+P35         C09         C10         C22     110.248    1.50
+P35         C12         C11         C10     118.264    1.50
+P35         C12         C11        H111     121.133    1.50
+P35         C10         C11        H111     120.603    1.50
+P35         N13         C12         C11     119.236    2.08
+P35         N13         C12         C20     119.275    2.39
+P35         C11         C12         C20     121.489    2.03
+P35         C19         C14         C15     110.769    1.50
+P35         C19         C14         N13     111.209    2.04
+P35         C19         C14        H141     107.655    1.50
+P35         C15         C14         N13     111.209    2.04
+P35         C15         C14        H141     107.655    1.50
+P35         N13         C14        H141     108.206    1.50
+P35         C16         C15         C14     110.795    1.50
+P35         C16         C15        H151     109.398    1.50
+P35         C16         C15        H152     109.398    1.50
+P35         C14         C15        H151     109.341    1.50
+P35         C14         C15        H152     109.341    1.50
+P35        H151         C15        H152     108.048    1.50
+P35         C18         C19         C14     110.795    1.50
+P35         C18         C19        H192     109.398    1.50
+P35         C18         C19        H191     109.398    1.50
+P35         C14         C19        H192     109.341    1.50
+P35         C14         C19        H191     109.341    1.50
+P35        H192         C19        H191     108.048    1.50
+P35         C12         C20         C21     120.190    1.50
+P35         C12         C20        H201     119.992    1.50
+P35         C21         C20        H201     119.819    1.50
+P35         N17         C18         C19     111.116    1.92
+P35         N17         C18        H181     109.046    1.50
+P35         N17         C18        H182     109.046    1.50
+P35         C19         C18        H181     109.572    1.50
+P35         C19         C18        H182     109.572    1.50
+P35        H181         C18        H182     108.210    1.50
+P35         C02         O01        H011     120.000    3.00
+P35         C03         C02         O01     119.739    3.00
+P35         C03         C02         C27     120.523    1.50
+P35         O01         C02         C27     119.739    3.00
+P35         C04         C03         C02     119.712    1.50
+P35         C04         C03        H031     119.998    1.50
+P35         C02         C03        H031     120.296    1.50
+P35         O05         C04         C03     120.278    3.00
+P35         O05         C04         C06     120.278    3.00
+P35         C03         C04         C06     119.443    1.50
+P35         C04         O05        H051     120.000    3.00
+P35         C04         C06         S07     120.708    1.50
+P35         C04         C06         C26     119.898    1.50
+P35         S07         C06         C26     119.394    1.50
+P35         N08         S07         O25     106.350    1.50
+P35         N08         S07         C06     107.203    1.50
+P35         N08         S07         O24     106.350    1.50
+P35         O25         S07         C06     107.973    1.50
+P35         O25         S07         O24     120.107    1.50
+P35         C06         S07         O24     107.973    1.50
+P35         C09         N08         C23     111.755    1.50
+P35         C09         N08         S07     119.853    1.50
+P35         C23         N08         S07     119.853    1.50
+P35         C10         C09         N08     101.950    1.50
+P35         C10         C09        H091     111.397    1.50
+P35         C10         C09        H092     111.397    1.50
+P35         N08         C09        H091     111.288    1.50
+P35         N08         C09        H092     111.288    1.50
+P35        H091         C09        H092     109.245    1.50
+P35         C14         N13         C12     124.478    1.50
+P35         C14         N13        H131     118.073    1.57
+P35         C12         N13        H131     117.450    1.50
+P35         N17         C16         C15     111.116    1.92
+P35         N17         C16        H161     109.046    1.50
+P35         N17         C16        H162     109.046    1.50
+P35         C15         C16        H161     109.572    1.50
+P35         C15         C16        H162     109.572    1.50
+P35        H161         C16        H162     108.210    1.50
+P35         C18         N17         C16     111.207    1.50
+P35         C18         N17        H171     108.409    1.90
+P35         C16         N17        H171     108.409    1.90
+P35         C10         C22         C21     120.659    1.50
+P35         C10         C22         C23     110.117    1.50
+P35         C21         C22         C23     129.224    1.50
+P35         C22         C23         N08     101.950    1.50
+P35         C22         C23        H231     111.397    1.50
+P35         C22         C23        H232     111.397    1.50
+P35         N08         C23        H231     111.288    1.50
+P35         N08         C23        H232     111.288    1.50
+P35        H231         C23        H232     109.245    1.50
+P35         C02         C27         C26     120.302    1.50
+P35         C02         C27        H271     119.845    1.50
+P35         C26         C27        H271     119.853    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+P35       const_sp2_sp2_3         S07         C06         C26         C27     180.000     5.0     2
+P35              const_45         C06         C26         C27         C02       0.000    10.0     2
+P35             sp2_sp2_7         C03         C02         O01        H011     180.000     5.0     2
+P35              const_15         O01         C02         C03         C04     180.000    10.0     2
+P35              const_19         O01         C02         C27         C26     180.000    10.0     2
+P35              const_10         C02         C03         C04         O05     180.000    10.0     2
+P35             sp2_sp2_5         C03         C04         O05        H051     180.000     5.0     2
+P35       const_sp2_sp2_8         O05         C04         C06         S07       0.000     5.0     2
+P35            sp2_sp3_19         C04         C06         S07         O25     150.000    10.0     6
+P35            sp3_sp3_62         C09         N08         S07         O25     -60.000    10.0     3
+P35             sp3_sp3_2         C10         C09         N08         S07      60.000    10.0     3
+P35             sp3_sp3_8         C22         C23         N08         S07     180.000    10.0     3
+P35              const_41         C20         C21         C22         C10       0.000    10.0     2
+P35              const_21         C12         C20         C21         C22       0.000    10.0     2
+P35            sp3_sp3_37         C15         C16         N17         C18     -60.000    10.0     3
+P35             sp2_sp3_7         C10         C22         C23         N08       0.000    10.0     6
+P35             sp2_sp3_4         C11         C10         C09         N08     180.000    10.0     6
+P35              const_37         C11         C10         C22         C21       0.000    10.0     2
+P35              const_35         C09         C10         C11         C12     180.000    10.0     2
+P35              const_30         C10         C11         C12         N13     180.000    10.0     2
+P35             sp2_sp2_1         C11         C12         N13         C14     180.000     5.0     2
+P35              const_27         N13         C12         C20         C21     180.000    10.0     2
+P35            sp2_sp3_14         C12         N13         C14         C19     120.000    10.0     6
+P35            sp3_sp3_55         N13         C14         C15         C16      60.000    10.0     3
+P35            sp3_sp3_19         N13         C14         C19         C18     180.000    10.0     3
+P35            sp3_sp3_43         C14         C15         C16         N17      60.000    10.0     3
+P35            sp3_sp3_22         N17         C18         C19         C14     -60.000    10.0     3
+P35            sp3_sp3_31         C19         C18         N17         C16      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+P35    chir_1    C14    N13    C19    C15    both
+P35    chir_2    S07    O25    O24    N08    both
+P35    chir_3    N08    S07    C09    C23    positive
+P35    chir_4    N17    C18    C16    H171    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+P35    plan-1         C02   0.020
+P35    plan-1         C03   0.020
+P35    plan-1         C04   0.020
+P35    plan-1         C06   0.020
+P35    plan-1         C26   0.020
+P35    plan-1         C27   0.020
+P35    plan-1        H031   0.020
+P35    plan-1        H261   0.020
+P35    plan-1        H271   0.020
+P35    plan-1         O01   0.020
+P35    plan-1         O05   0.020
+P35    plan-1         S07   0.020
+P35    plan-2         C09   0.020
+P35    plan-2         C10   0.020
+P35    plan-2         C11   0.020
+P35    plan-2         C12   0.020
+P35    plan-2         C20   0.020
+P35    plan-2         C21   0.020
+P35    plan-2         C22   0.020
+P35    plan-2         C23   0.020
+P35    plan-2        H111   0.020
+P35    plan-2        H201   0.020
+P35    plan-2        H211   0.020
+P35    plan-2         N13   0.020
+P35    plan-3         C12   0.020
+P35    plan-3         C14   0.020
+P35    plan-3        H131   0.020
+P35    plan-3         N13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+P35           SMILES              ACDLabs 12.01                                                                                                 c1cc(O)cc(c1S(=O)(N2Cc3ccc(cc3C2)NC4CCNCC4)=O)O
+P35            InChI                InChI  1.03 InChI=1S/C19H23N3O4S/c23-17-3-4-19(18(24)10-17)27(25,26)22-11-13-1-2-16(9-14(13)12-22)21-15-5-7-20-8-6-15/h1-4,9-10,15,20-21,23-24H,5-8,11-12H2
+P35         InChIKey                InChI  1.03                                                                                                                     HQHMYMINMCVYMC-UHFFFAOYSA-N
+P35 SMILES_CANONICAL               CACTVS 3.385                                                                                               Oc1ccc(c(O)c1)[S](=O)(=O)N2Cc3ccc(NC4CCNCC4)cc3C2
+P35           SMILES               CACTVS 3.385                                                                                               Oc1ccc(c(O)c1)[S](=O)(=O)N2Cc3ccc(NC4CCNCC4)cc3C2
+P35 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                                 c1cc2c(cc1NC3CCNCC3)CN(C2)S(=O)(=O)c4ccc(cc4O)O
+P35           SMILES "OpenEye OEToolkits" 2.0.4                                                                                                 c1cc2c(cc1NC3CCNCC3)CN(C2)S(=O)(=O)c4ccc(cc4O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+P35 acedrg               243         "dictionary generator"                  
+P35 acedrg_database      11          "data source"                           
+P35 rdkit                2017.03.2   "Chemoinformatics tool"
+P35 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,230 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LNX     LNX      "2,2'-(5-(thiophen-2-yl)-1,3-phenylene)diacetic acid"     NON-POLYMER     29     19     .     
+#
+data_comp_LNX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LNX     C1      C       CH2     0       17.966      59.873      13.194      
+LNX     C2      C       CR6     0       17.962      61.047      12.246      
+LNX     C3      C       CR16    0       17.772      62.340      12.724      
+LNX     O1      O       OC      -1      19.033      59.919      15.320      
+LNX     O2      O       O       0       18.913      66.788      12.474      
+LNX     O3      O       OC      -1      19.761      64.945      13.313      
+LNX     C11     C       CR15    0       18.202      61.984      6.228       
+LNX     C12     C       CR15    0       19.115      60.987      6.350       
+LNX     C13     C       CR16    0       18.149      60.862      10.876      
+LNX     C       C       C       0       19.199      59.824      14.091      
+LNX     O       O       O       0       20.312      59.693      13.551      
+LNX     C8      C       CR6     0       18.152      61.948      9.994       
+LNX     C7      C       CR16    0       17.954      63.232      10.509      
+LNX     C4      C       CR6     0       17.766      63.442      11.873      
+LNX     C5      C       CH2     0       17.554      64.834      12.416      
+LNX     C6      C       C       0       18.842      65.578      12.759      
+LNX     C9      C       CR5     0       18.344      61.764      8.552       
+LNX     C10     C       CR15    0       17.747      62.448      7.511       
+LNX     S       S       S2      0       19.411      60.631      7.947       
+LNX     H1      H       H       0       17.919      59.044      12.682      
+LNX     H2      H       H       0       17.172      59.917      13.758      
+LNX     H3      H       H       0       17.644      62.474      13.647      
+LNX     H6      H       H       0       17.900      62.334      5.407       
+LNX     H7      H       H       0       19.554      60.527      5.655       
+LNX     H8      H       H       0       18.278      59.987      10.545      
+LNX     H9      H       H       0       17.951      63.976      9.925       
+LNX     H10     H       H       0       17.005      64.779      13.220      
+LNX     H11     H       H       0       17.060      65.357      11.759      
+LNX     H12     H       H       0       17.113      63.136      7.621       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LNX         C11         C12      DOUBLE       y     1.343  0.0200     1.343  0.0200
+LNX         C11         C10      SINGLE       y     1.413  0.0154     1.413  0.0154
+LNX         C12           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+LNX          C9         C10      DOUBLE       y     1.363  0.0200     1.363  0.0200
+LNX          C9           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+LNX          C8          C9      SINGLE       n     1.464  0.0100     1.464  0.0100
+LNX          C8          C7      DOUBLE       y     1.393  0.0100     1.393  0.0100
+LNX         C13          C8      SINGLE       y     1.393  0.0100     1.393  0.0100
+LNX          C7          C4      SINGLE       y     1.388  0.0120     1.388  0.0120
+LNX          C2         C13      DOUBLE       y     1.388  0.0120     1.388  0.0120
+LNX          C4          C5      SINGLE       n     1.509  0.0100     1.509  0.0100
+LNX          C3          C4      DOUBLE       y     1.389  0.0100     1.389  0.0100
+LNX          C2          C3      SINGLE       y     1.389  0.0100     1.389  0.0100
+LNX          C1          C2      SINGLE       n     1.509  0.0100     1.509  0.0100
+LNX          C5          C6      SINGLE       n     1.525  0.0126     1.525  0.0126
+LNX          O2          C6      DOUBLE       n     1.244  0.0200     1.244  0.0200
+LNX          O3          C6      SINGLE       n     1.244  0.0200     1.244  0.0200
+LNX          C1           C      SINGLE       n     1.525  0.0126     1.525  0.0126
+LNX           C           O      DOUBLE       n     1.244  0.0200     1.244  0.0200
+LNX          O1           C      SINGLE       n     1.244  0.0200     1.244  0.0200
+LNX          C1          H1      SINGLE       n     1.089  0.0100     0.975  0.0113
+LNX          C1          H2      SINGLE       n     1.089  0.0100     0.975  0.0113
+LNX          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0156
+LNX         C11          H6      SINGLE       n     1.082  0.0130     0.942  0.0153
+LNX         C12          H7      SINGLE       n     1.082  0.0130     0.942  0.0200
+LNX         C13          H8      SINGLE       n     1.082  0.0130     0.946  0.0200
+LNX          C7          H9      SINGLE       n     1.082  0.0130     0.946  0.0200
+LNX          C5         H10      SINGLE       n     1.089  0.0100     0.975  0.0113
+LNX          C5         H11      SINGLE       n     1.089  0.0100     0.975  0.0113
+LNX         C10         H12      SINGLE       n     1.082  0.0130     0.942  0.0154
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LNX          C2          C1           C     113.444    2.96
+LNX          C2          C1          H1     109.081    1.50
+LNX          C2          C1          H2     109.081    1.50
+LNX           C          C1          H1     108.710    1.50
+LNX           C          C1          H2     108.710    1.50
+LNX          H1          C1          H2     107.676    1.52
+LNX         C13          C2          C3     118.643    1.50
+LNX         C13          C2          C1     120.662    1.50
+LNX          C3          C2          C1     120.695    1.50
+LNX          C4          C3          C2     121.804    1.50
+LNX          C4          C3          H3     119.098    1.50
+LNX          C2          C3          H3     119.098    1.50
+LNX         C12         C11         C10     107.395    1.50
+LNX         C12         C11          H6     126.667    1.50
+LNX         C10         C11          H6     125.937    1.50
+LNX         C11         C12           S     108.358    3.00
+LNX         C11         C12          H7     128.449    2.40
+LNX           S         C12          H7     123.193    3.00
+LNX          C8         C13          C2     121.010    1.50
+LNX          C8         C13          H8     119.684    1.50
+LNX          C2         C13          H8     119.307    1.50
+LNX          C1           C           O     118.115    1.50
+LNX          C1           C          O1     118.115    1.50
+LNX           O           C          O1     123.770    1.50
+LNX          C9          C8          C7     120.555    1.61
+LNX          C9          C8         C13     120.555    1.61
+LNX          C7          C8         C13     118.890    1.50
+LNX          C8          C7          C4     121.010    1.50
+LNX          C8          C7          H9     119.684    1.50
+LNX          C4          C7          H9     119.307    1.50
+LNX          C7          C4          C5     120.662    1.50
+LNX          C7          C4          C3     118.643    1.50
+LNX          C5          C4          C3     120.695    1.50
+LNX          C4          C5          C6     113.444    2.96
+LNX          C4          C5         H10     109.081    1.50
+LNX          C4          C5         H11     109.081    1.50
+LNX          C6          C5         H10     108.710    1.50
+LNX          C6          C5         H11     108.710    1.50
+LNX         H10          C5         H11     107.676    1.52
+LNX          C5          C6          O2     118.115    1.50
+LNX          C5          C6          O3     118.115    1.50
+LNX          O2          C6          O3     123.770    1.50
+LNX         C10          C9           S     108.358    3.00
+LNX         C10          C9          C8     131.079    2.36
+LNX           S          C9          C8     120.564    3.00
+LNX         C11         C10          C9     107.531    1.50
+LNX         C11         C10         H12     125.850    1.50
+LNX          C9         C10         H12     126.619    1.50
+LNX         C12           S          C9     108.358    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LNX             sp2_sp3_8         C13          C2          C1           C     -90.000    10.0     6
+LNX            sp2_sp3_20           O           C          C1          C2     120.000    10.0     6
+LNX              const_22          C4          C7          C8          C9     180.000    10.0     2
+LNX             sp2_sp2_1          C7          C8          C9         C10     180.000     5.0     2
+LNX              const_27          C5          C4          C7          C8     180.000    10.0     2
+LNX             sp2_sp3_2          C7          C4          C5          C6     -90.000    10.0     6
+LNX            sp2_sp3_14          O2          C6          C5          C4     120.000    10.0     6
+LNX       const_sp2_sp2_9         C11         C10          C9           S       0.000     5.0     2
+LNX       const_sp2_sp2_7         C10          C9           S         C12       0.000     5.0     2
+LNX              const_39          C1          C2          C3          C4     180.000    10.0     2
+LNX              const_14          C8         C13          C2          C1     180.000    10.0     2
+LNX              const_30          C2          C3          C4          C5     180.000    10.0     2
+LNX              const_33          C9         C10         C11         C12       0.000    10.0     2
+LNX       const_sp2_sp2_1         C10         C11         C12           S       0.000     5.0     2
+LNX       const_sp2_sp2_5         C11         C12           S          C9       0.000     5.0     2
+LNX              const_18          C2         C13          C8          C9     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LNX    plan-1          C1   0.020
+LNX    plan-1         C13   0.020
+LNX    plan-1          C2   0.020
+LNX    plan-1          C3   0.020
+LNX    plan-1          C4   0.020
+LNX    plan-1          C5   0.020
+LNX    plan-1          C7   0.020
+LNX    plan-1          C8   0.020
+LNX    plan-1          C9   0.020
+LNX    plan-1          H3   0.020
+LNX    plan-1          H8   0.020
+LNX    plan-1          H9   0.020
+LNX    plan-2         C10   0.020
+LNX    plan-2         C11   0.020
+LNX    plan-2         C12   0.020
+LNX    plan-2          C8   0.020
+LNX    plan-2          C9   0.020
+LNX    plan-2         H12   0.020
+LNX    plan-2          H6   0.020
+LNX    plan-2          H7   0.020
+LNX    plan-2           S   0.020
+LNX    plan-3           C   0.020
+LNX    plan-3          C1   0.020
+LNX    plan-3           O   0.020
+LNX    plan-3          O1   0.020
+LNX    plan-4          C5   0.020
+LNX    plan-4          C6   0.020
+LNX    plan-4          O2   0.020
+LNX    plan-4          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LNX           SMILES              ACDLabs 12.01                                                                     C(C(O)=O)c1cc(cc(c1)c2cccs2)CC(=O)O
+LNX            InChI                InChI  1.03 InChI=1S/C14H12O4S/c15-13(16)7-9-4-10(8-14(17)18)6-11(5-9)12-2-1-3-19-12/h1-6H,7-8H2,(H,15,16)(H,17,18)
+LNX         InChIKey                InChI  1.03                                                                             KZPRFEGRESQBAV-UHFFFAOYSA-N
+LNX SMILES_CANONICAL               CACTVS 3.385                                                                       OC(=O)Cc1cc(CC(O)=O)cc(c1)c2sccc2
+LNX           SMILES               CACTVS 3.385                                                                       OC(=O)Cc1cc(CC(O)=O)cc(c1)c2sccc2
+LNX SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                     c1cc(sc1)c2cc(cc(c2)CC(=O)O)CC(=O)O
+LNX           SMILES "OpenEye OEToolkits" 2.0.4                                                                     c1cc(sc1)c2cc(cc(c2)CC(=O)O)CC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LNX acedrg               243         "dictionary generator"                  
+LNX acedrg_database      11          "data source"                           
+LNX rdkit                2017.03.2   "Chemoinformatics tool"
+LNX refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,395 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GEL     GEL      1-O-OCTYL-2-HEPTYLPHOSPHONYL-SN-GLYCERO-3-PHOSPHOETHANOLAMINE     NON-POLYMER     74     31     .     
+#
+data_comp_GEL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GEL     C1      C       CH2     0       32.955      5.320       68.670      
+GEL     O1      O       O2      0       33.211      3.954       68.361      
+GEL     C11     C       CH2     0       34.541      3.643       67.963      
+GEL     C12     C       CH2     0       34.613      2.190       67.565      
+GEL     C13     C       CH2     0       34.537      1.242       68.740      
+GEL     C14     C       CH2     0       34.444      -0.220      68.346      
+GEL     C15     C       CH2     0       35.651      -0.778      67.617      
+GEL     C16     C       CH2     0       36.942      -0.732      68.400      
+GEL     C17     C       CH2     0       38.072      -1.514      67.782      
+GEL     C18     C       CH3     0       39.375      -1.388      68.534      
+GEL     C2      C       CH1     0       32.641      6.095       67.409      
+GEL     O2      O       O2      0       31.590      5.378       66.671      
+GEL     P2      P       P       0       31.449      5.406       65.085      
+GEL     O1P     O       O       0       30.603      6.591       64.708      
+GEL     O2P     O       OP      -1      32.809      5.343       64.445      
+GEL     C22     C       CH2     0       30.540      3.877       64.691      
+GEL     C23     C       CH2     0       31.228      2.608       65.168      
+GEL     C24     C       CH2     0       30.406      1.365       64.854      
+GEL     C25     C       CH2     0       30.967      0.086       65.440      
+GEL     C26     C       CH2     0       30.289      -0.375      66.709      
+GEL     C27     C       CH2     0       30.441      0.565       67.877      
+GEL     C28     C       CH3     0       30.022      -0.036      69.197      
+GEL     C3      C       CH2     0       32.152      7.501       67.675      
+GEL     O3      O       O2      0       33.266      8.342       68.095      
+GEL     P3      P       P       0       34.004      9.291       67.029      
+GEL     O3P     O       O       0       34.383      8.462       65.833      
+GEL     O4P     O       OP      -1      35.057      10.077      67.761      
+GEL     O5P     O       O2      0       32.844      10.308      66.580      
+GEL     C31     C       CH2     0       32.246      11.189      67.570      
+GEL     C32     C       CH2     0       31.160      12.015      66.932      
+GEL     N3      N       NT2     0       30.115      11.187      66.328      
+GEL     H11     H       H       0       33.740      5.714       69.110      
+GEL     H12     H       H       0       32.193      5.377       69.285      
+GEL     H111    H       H       0       35.159      3.817       68.705      
+GEL     H112    H       H       0       34.803      4.208       67.205      
+GEL     H121    H       H       0       35.454      2.037       67.086      
+GEL     H122    H       H       0       33.877      1.993       66.949      
+GEL     H131    H       H       0       33.748      1.469       69.278      
+GEL     H132    H       H       0       35.326      1.371       69.307      
+GEL     H141    H       H       0       33.655      -0.337      67.774      
+GEL     H142    H       H       0       34.299      -0.751      69.157      
+GEL     H151    H       H       0       35.773      -0.282      66.780      
+GEL     H152    H       H       0       35.465      -1.712      67.380      
+GEL     H161    H       H       0       36.776      -1.079      69.302      
+GEL     H162    H       H       0       37.223      0.204       68.489      
+GEL     H171    H       H       0       38.205      -1.203      66.861      
+GEL     H172    H       H       0       37.816      -2.462      67.745      
+GEL     H181    H       H       0       40.078      -1.853      68.048      
+GEL     H182    H       H       0       39.280      -1.781      69.419      
+GEL     H183    H       H       0       39.610      -0.448      68.623      
+GEL     H2      H       H       0       33.460      6.144       66.857      
+GEL     H221    H       H       0       30.417      3.826       63.720      
+GEL     H222    H       H       0       29.649      3.927       65.097      
+GEL     H231    H       H       0       31.375      2.662       66.135      
+GEL     H232    H       H       0       32.104      2.532       64.735      
+GEL     H241    H       H       0       30.348      1.264       63.880      
+GEL     H242    H       H       0       29.494      1.496       65.192      
+GEL     H251    H       H       0       31.922      0.215       65.624      
+GEL     H252    H       H       0       30.889      -0.625      64.769      
+GEL     H261    H       H       0       30.655      -1.249      66.961      
+GEL     H262    H       H       0       29.332      -0.496      66.527      
+GEL     H271    H       H       0       29.902      1.369       67.708      
+GEL     H272    H       H       0       31.381      0.843       67.938      
+GEL     H281    H       H       0       30.109      0.630       69.901      
+GEL     H282    H       H       0       30.590      -0.799      69.403      
+GEL     H283    H       H       0       29.096      -0.329      69.143      
+GEL     H31     H       H       0       31.474      7.484       68.382      
+GEL     H32     H       H       0       31.741      7.868       66.863      
+GEL     H311    H       H       0       32.938      11.780      67.948      
+GEL     H312    H       H       0       31.868      10.652      68.306      
+GEL     H321    H       H       0       31.554      12.587      66.240      
+GEL     H322    H       H       0       30.755      12.595      67.610      
+GEL     HN31    H       H       0       29.440      11.699      66.059      
+GEL     HN32    H       H       0       29.791      10.620      66.929      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GEL          C1          O1      SINGLE       n     1.422  0.0110     1.422  0.0110
+GEL          C1          C2      SINGLE       n     1.512  0.0104     1.512  0.0104
+GEL          O1         C11      SINGLE       n     1.422  0.0111     1.422  0.0111
+GEL         C11         C12      SINGLE       n     1.508  0.0200     1.508  0.0200
+GEL         C12         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+GEL         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+GEL         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+GEL         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+GEL         C16         C17      SINGLE       n     1.507  0.0200     1.507  0.0200
+GEL         C17         C18      SINGLE       n     1.510  0.0200     1.510  0.0200
+GEL          C2          O2      SINGLE       n     1.468  0.0151     1.468  0.0151
+GEL          C2          C3      SINGLE       n     1.512  0.0104     1.512  0.0104
+GEL          O2          P2      SINGLE       n     1.590  0.0138     1.590  0.0138
+GEL          P2         O1P      DOUBLE       n     1.504  0.0133     1.504  0.0133
+GEL          P2         O2P      SINGLE       n     1.504  0.0133     1.504  0.0133
+GEL          P2         C22      SINGLE       n     1.822  0.0169     1.822  0.0169
+GEL         C22         C23      SINGLE       n     1.520  0.0163     1.520  0.0163
+GEL         C23         C24      SINGLE       n     1.523  0.0117     1.523  0.0117
+GEL         C24         C25      SINGLE       n     1.509  0.0200     1.509  0.0200
+GEL         C25         C26      SINGLE       n     1.509  0.0200     1.509  0.0200
+GEL         C26         C27      SINGLE       n     1.507  0.0200     1.507  0.0200
+GEL         C27         C28      SINGLE       n     1.510  0.0200     1.510  0.0200
+GEL          C3          O3      SINGLE       n     1.454  0.0165     1.454  0.0165
+GEL          O3          P3      SINGLE       n     1.606  0.0100     1.606  0.0100
+GEL          P3         O3P      DOUBLE       n     1.504  0.0115     1.504  0.0115
+GEL          P3         O4P      SINGLE       n     1.504  0.0115     1.504  0.0115
+GEL          P3         O5P      SINGLE       n     1.606  0.0100     1.606  0.0100
+GEL         O5P         C31      SINGLE       n     1.454  0.0165     1.454  0.0165
+GEL         C31         C32      SINGLE       n     1.506  0.0173     1.506  0.0173
+GEL         C32          N3      SINGLE       n     1.464  0.0200     1.464  0.0200
+GEL          C1         H11      SINGLE       n     1.089  0.0100     0.981  0.0174
+GEL          C1         H12      SINGLE       n     1.089  0.0100     0.981  0.0174
+GEL         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0174
+GEL         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0174
+GEL         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0166
+GEL         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0166
+GEL         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C17        H171      SINGLE       n     1.089  0.0100     0.982  0.0155
+GEL         C17        H172      SINGLE       n     1.089  0.0100     0.982  0.0155
+GEL         C18        H181      SINGLE       n     1.089  0.0100     0.973  0.0157
+GEL         C18        H182      SINGLE       n     1.089  0.0100     0.973  0.0157
+GEL         C18        H183      SINGLE       n     1.089  0.0100     0.973  0.0157
+GEL          C2          H2      SINGLE       n     1.089  0.0100     0.990  0.0148
+GEL         C22        H221      SINGLE       n     1.089  0.0100     0.980  0.0122
+GEL         C22        H222      SINGLE       n     1.089  0.0100     0.980  0.0122
+GEL         C23        H231      SINGLE       n     1.089  0.0100     0.980  0.0160
+GEL         C23        H232      SINGLE       n     1.089  0.0100     0.980  0.0160
+GEL         C24        H241      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C24        H242      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C25        H251      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C25        H252      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C26        H261      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C26        H262      SINGLE       n     1.089  0.0100     0.981  0.0163
+GEL         C27        H271      SINGLE       n     1.089  0.0100     0.982  0.0155
+GEL         C27        H272      SINGLE       n     1.089  0.0100     0.982  0.0155
+GEL         C28        H281      SINGLE       n     1.089  0.0100     0.973  0.0157
+GEL         C28        H282      SINGLE       n     1.089  0.0100     0.973  0.0157
+GEL         C28        H283      SINGLE       n     1.089  0.0100     0.973  0.0157
+GEL          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0146
+GEL          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0146
+GEL         C31        H311      SINGLE       n     1.089  0.0100     0.986  0.0100
+GEL         C31        H312      SINGLE       n     1.089  0.0100     0.986  0.0100
+GEL         C32        H321      SINGLE       n     1.089  0.0100     0.980  0.0143
+GEL         C32        H322      SINGLE       n     1.089  0.0100     0.980  0.0143
+GEL          N3        HN31      SINGLE       n     1.036  0.0160     0.888  0.0200
+GEL          N3        HN32      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GEL          O1          C1          C2     109.289    2.60
+GEL          O1          C1         H11     109.546    1.50
+GEL          O1          C1         H12     109.546    1.50
+GEL          C2          C1         H11     109.582    1.50
+GEL          C2          C1         H12     109.582    1.50
+GEL         H11          C1         H12     108.601    1.50
+GEL          C1          O1         C11     113.198    3.00
+GEL          O1         C11         C12     109.174    1.50
+GEL          O1         C11        H111     109.746    1.50
+GEL          O1         C11        H112     109.746    1.50
+GEL         C12         C11        H111     109.912    1.50
+GEL         C12         C11        H112     109.912    1.50
+GEL        H111         C11        H112     108.375    1.50
+GEL         C11         C12         C13     113.402    1.80
+GEL         C11         C12        H121     108.852    1.50
+GEL         C11         C12        H122     108.852    1.50
+GEL         C13         C12        H121     108.944    1.50
+GEL         C13         C12        H122     108.944    1.50
+GEL        H121         C12        H122     107.788    1.50
+GEL         C12         C13         C14     113.259    1.53
+GEL         C12         C13        H131     108.902    1.50
+GEL         C12         C13        H132     108.902    1.50
+GEL         C14         C13        H131     108.698    1.50
+GEL         C14         C13        H132     108.698    1.50
+GEL        H131         C13        H132     107.646    1.50
+GEL         C13         C14         C15     114.243    1.69
+GEL         C13         C14        H141     108.698    1.50
+GEL         C13         C14        H142     108.698    1.50
+GEL         C15         C14        H141     108.698    1.50
+GEL         C15         C14        H142     108.698    1.50
+GEL        H141         C14        H142     107.646    1.50
+GEL         C14         C15         C16     114.243    1.69
+GEL         C14         C15        H151     108.698    1.50
+GEL         C14         C15        H152     108.698    1.50
+GEL         C16         C15        H151     108.698    1.50
+GEL         C16         C15        H152     108.698    1.50
+GEL        H151         C15        H152     107.646    1.50
+GEL         C15         C16         C17     114.362    3.00
+GEL         C15         C16        H161     108.698    1.50
+GEL         C15         C16        H162     108.698    1.50
+GEL         C17         C16        H161     108.653    1.50
+GEL         C17         C16        H162     108.653    1.50
+GEL        H161         C16        H162     107.646    1.50
+GEL         C16         C17         C18     113.719    3.00
+GEL         C16         C17        H171     108.758    1.50
+GEL         C16         C17        H172     108.758    1.50
+GEL         C18         C17        H171     108.918    1.50
+GEL         C18         C17        H172     108.918    1.50
+GEL        H171         C17        H172     107.763    1.50
+GEL         C17         C18        H181     109.554    1.50
+GEL         C17         C18        H182     109.554    1.50
+GEL         C17         C18        H183     109.554    1.50
+GEL        H181         C18        H182     109.380    1.50
+GEL        H181         C18        H183     109.380    1.50
+GEL        H182         C18        H183     109.380    1.50
+GEL          C1          C2          O2     108.064    2.35
+GEL          C1          C2          C3     113.504    1.50
+GEL          C1          C2          H2     108.656    1.50
+GEL          O2          C2          C3     108.064    2.35
+GEL          O2          C2          H2     109.315    1.50
+GEL          C3          C2          H2     108.656    1.50
+GEL          C2          O2          P2     121.496    2.55
+GEL          O2          P2         O1P     108.773    3.00
+GEL          O2          P2         O2P     108.773    3.00
+GEL          O2          P2         C22     105.177    2.72
+GEL         O1P          P2         O2P     115.915    1.71
+GEL         O1P          P2         C22     109.196    1.50
+GEL         O2P          P2         C22     109.196    1.50
+GEL          P2         C22         C23     114.025    1.50
+GEL          P2         C22        H221     108.603    1.50
+GEL          P2         C22        H222     108.603    1.50
+GEL         C23         C22        H221     108.817    1.50
+GEL         C23         C22        H222     108.817    1.50
+GEL        H221         C22        H222     107.240    1.91
+GEL         C22         C23         C24     111.584    1.92
+GEL         C22         C23        H231     109.282    1.50
+GEL         C22         C23        H232     109.282    1.50
+GEL         C24         C23        H231     109.087    1.50
+GEL         C24         C23        H232     109.087    1.50
+GEL        H231         C23        H232     107.744    1.50
+GEL         C23         C24         C25     113.860    1.50
+GEL         C23         C24        H241     108.776    1.50
+GEL         C23         C24        H242     108.776    1.50
+GEL         C25         C24        H241     108.698    1.50
+GEL         C25         C24        H242     108.698    1.50
+GEL        H241         C24        H242     107.646    1.50
+GEL         C24         C25         C26     114.243    1.69
+GEL         C24         C25        H251     108.698    1.50
+GEL         C24         C25        H252     108.698    1.50
+GEL         C26         C25        H251     108.698    1.50
+GEL         C26         C25        H252     108.698    1.50
+GEL        H251         C25        H252     107.646    1.50
+GEL         C25         C26         C27     114.362    3.00
+GEL         C25         C26        H261     108.698    1.50
+GEL         C25         C26        H262     108.698    1.50
+GEL         C27         C26        H261     108.653    1.50
+GEL         C27         C26        H262     108.653    1.50
+GEL        H261         C26        H262     107.646    1.50
+GEL         C26         C27         C28     113.719    3.00
+GEL         C26         C27        H271     108.758    1.50
+GEL         C26         C27        H272     108.758    1.50
+GEL         C28         C27        H271     108.918    1.50
+GEL         C28         C27        H272     108.918    1.50
+GEL        H271         C27        H272     107.763    1.50
+GEL         C27         C28        H281     109.554    1.50
+GEL         C27         C28        H282     109.554    1.50
+GEL         C27         C28        H283     109.554    1.50
+GEL        H281         C28        H282     109.380    1.50
+GEL        H281         C28        H283     109.380    1.50
+GEL        H282         C28        H283     109.380    1.50
+GEL          C2          C3          O3     109.438    2.56
+GEL          C2          C3         H31     109.582    1.50
+GEL          C2          C3         H32     109.582    1.50
+GEL          O3          C3         H31     109.393    1.91
+GEL          O3          C3         H32     109.393    1.91
+GEL         H31          C3         H32     108.319    1.50
+GEL          C3          O3          P3     119.251    1.51
+GEL          O3          P3         O3P     107.777    3.00
+GEL          O3          P3         O4P     107.777    3.00
+GEL          O3          P3         O5P     102.789    2.10
+GEL         O3P          P3         O4P     119.782    1.83
+GEL         O3P          P3         O5P     107.777    3.00
+GEL         O4P          P3         O5P     107.777    3.00
+GEL          P3         O5P         C31     119.251    1.51
+GEL         O5P         C31         C32     109.643    2.62
+GEL         O5P         C31        H311     109.451    1.50
+GEL         O5P         C31        H312     109.451    1.50
+GEL         C32         C31        H311     109.705    1.50
+GEL         C32         C31        H312     109.705    1.50
+GEL        H311         C31        H312     107.889    1.50
+GEL         C31         C32          N3     111.883    2.59
+GEL         C31         C32        H321     109.091    1.50
+GEL         C31         C32        H322     109.091    1.50
+GEL          N3         C32        H321     108.870    1.50
+GEL          N3         C32        H322     108.870    1.50
+GEL        H321         C32        H322     107.873    1.50
+GEL         C32          N3        HN31     109.962    3.00
+GEL         C32          N3        HN32     109.962    3.00
+GEL        HN31          N3        HN32     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GEL             sp3_sp3_1          C2          C1          O1         C11     180.000    10.0     3
+GEL             sp3_sp3_4          O1          C1          C2          O2     180.000    10.0     3
+GEL            sp3_sp3_79          C1          C2          O2          P2     180.000    10.0     3
+GEL            sp3_sp3_82          C1          C2          C3          O3     180.000    10.0     3
+GEL            sp3_sp3_91          C2          O2          P2         O1P     180.000    10.0     3
+GEL            sp3_sp3_94         C23         C22          P2          O2     180.000    10.0     3
+GEL           sp3_sp3_103          P2         C22         C23         C24     180.000    10.0     3
+GEL           sp3_sp3_112         C22         C23         C24         C25     180.000    10.0     3
+GEL           sp3_sp3_121         C23         C24         C25         C26     180.000    10.0     3
+GEL           sp3_sp3_130         C24         C25         C26         C27     180.000    10.0     3
+GEL           sp3_sp3_139         C25         C26         C27         C28     180.000    10.0     3
+GEL            sp3_sp3_13         C12         C11          O1          C1     180.000    10.0     3
+GEL           sp3_sp3_148         C26         C27         C28        H281     180.000    10.0     3
+GEL           sp3_sp3_157          C2          C3          O3          P3     180.000    10.0     3
+GEL           sp3_sp3_162          C3          O3          P3         O3P      60.000    10.0     3
+GEL           sp3_sp3_163         C31         O5P          P3          O3     180.000    10.0     3
+GEL           sp3_sp3_166         C32         C31         O5P          P3     180.000    10.0     3
+GEL           sp3_sp3_169         O5P         C31         C32          N3     180.000    10.0     3
+GEL           sp3_sp3_178         C31         C32          N3        HN31     180.000    10.0     3
+GEL            sp3_sp3_16          O1         C11         C12         C13     180.000    10.0     3
+GEL            sp3_sp3_25         C11         C12         C13         C14     180.000    10.0     3
+GEL            sp3_sp3_34         C12         C13         C14         C15     180.000    10.0     3
+GEL            sp3_sp3_43         C13         C14         C15         C16     180.000    10.0     3
+GEL            sp3_sp3_52         C14         C15         C16         C17     180.000    10.0     3
+GEL            sp3_sp3_61         C15         C16         C17         C18     180.000    10.0     3
+GEL            sp3_sp3_70         C16         C17         C18        H181     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GEL    chir_1    C2    O2    C3    C1    negative
+GEL    chir_2    P2    O2    O2P    O1P    both
+GEL    chir_3    P3    O3    O5P    O4P    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GEL           SMILES              ACDLabs 10.04                                                                                                                  O=P(OCC(OP(=O)(O)CCCCCCC)COCCCCCCCC)(OCCN)O
+GEL SMILES_CANONICAL               CACTVS 3.341                                                                                                       CCCCCCCCOC[C@H](CO[P@@](O)(=O)OCCN)O[P@](O)(=O)CCCCCCC
+GEL           SMILES               CACTVS 3.341                                                                                                           CCCCCCCCOC[CH](CO[P](O)(=O)OCCN)O[P](O)(=O)CCCCCCC
+GEL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                            CCCCCCCCOCC(CO[P@](=O)(O)OCCN)O[P@](=O)(CCCCCCC)O
+GEL           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                  CCCCCCCCOCC(COP(=O)(O)OCCN)OP(=O)(CCCCCCC)O
+GEL            InChI                InChI  1.03 InChI=1S/C20H45NO8P2/c1-3-5-7-9-10-12-15-26-18-20(19-28-31(24,25)27-16-14-21)29-30(22,23)17-13-11-8-6-4-2/h20H,3-19,21H2,1-2H3,(H,22,23)(H,24,25)/t20-/m1/s1
+GEL         InChIKey                InChI  1.03                                                                                                                                  RCCNUBYROFOKAU-HXUWFJFHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GEL acedrg               243         "dictionary generator"                  
+GEL acedrg_database      11          "data source"                           
+GEL rdkit                2017.03.2   "Chemoinformatics tool"
+GEL refmac5              5.8.0238    "optimization tool"                     

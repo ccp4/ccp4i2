@@ -1,0 +1,254 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JET     JET      "[3-(2-methoxy-2-oxidanylidene-ethoxy)phenyl]methyl 1~{H}-pyrazole-4-carboxylate"     NON-POLYMER     35     21     .     
+#
+data_comp_JET
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JET     C17     C       CR5     0       -20.283     17.515      -12.221     
+JET     C21     C       CR15    0       -18.915     17.397      -11.950     
+JET     O01     O       O       0       -20.539     19.847      -12.388     
+JET     C02     C       C       0       -21.039     18.751      -12.366     
+JET     O03     O       O2      0       -22.365     18.518      -12.467     
+JET     C04     C       CH2     0       -23.271     19.647      -12.608     
+JET     C05     C       CR6     0       -23.502     20.284      -11.264     
+JET     C06     C       CR16    0       -23.199     21.624      -11.044     
+JET     C07     C       CR16    0       -23.417     22.196      -9.800      
+JET     C08     C       CR16    0       -23.937     21.441      -8.761      
+JET     C09     C       CR6     0       -24.245     20.100      -8.970      
+JET     O10     O       O2      0       -24.750     19.457      -7.866      
+JET     C11     C       CH2     0       -25.228     18.121      -7.963      
+JET     C12     C       C       0       -25.792     17.647      -6.644      
+JET     O13     O       O2      0       -26.095     16.353      -6.731      
+JET     C14     C       CH3     0       -26.686     15.723      -5.565      
+JET     O15     O       O       0       -25.939     18.335      -5.674      
+JET     C16     C       CR16    0       -24.022     19.532      -10.223     
+JET     C18     C       CR15    0       -20.739     16.207      -12.318     
+JET     N19     N       NR5     0       -19.688     15.414      -12.113     
+JET     N20     N       NRD5    0       -18.561     16.127      -11.886     
+JET     H1      H       H       0       -18.304     18.099      -11.825     
+JET     H2      H       H       0       -24.127     19.334      -12.969     
+JET     H3      H       H       0       -22.903     20.305      -13.234     
+JET     H4      H       H       0       -22.844     22.147      -11.745     
+JET     H5      H       H       0       -23.210     23.103      -9.658      
+JET     H6      H       H       0       -24.084     21.833      -7.917      
+JET     H7      H       H       0       -24.497     17.535      -8.230      
+JET     H8      H       H       0       -25.920     18.072      -8.646      
+JET     H9      H       H       0       -27.514     16.173      -5.337      
+JET     H10     H       H       0       -26.068     15.780      -4.819      
+JET     H11     H       H       0       -26.869     14.791      -5.763      
+JET     H12     H       H       0       -24.227     18.622      -10.369     
+JET     H13     H       H       0       -21.622     15.913      -12.495     
+JET     H14     H       H       0       -19.687     14.520      -12.117     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JET         O01         C02      DOUBLE       n     1.204  0.0100     1.204  0.0100
+JET         C18         N19      SINGLE       y     1.331  0.0100     1.331  0.0100
+JET         C17         C18      DOUBLE       y     1.393  0.0200     1.393  0.0200
+JET         N19         N20      SINGLE       y     1.350  0.0100     1.350  0.0100
+JET         C17         C02      SINGLE       n     1.454  0.0120     1.454  0.0120
+JET         C17         C21      SINGLE       y     1.402  0.0100     1.402  0.0100
+JET         C02         O03      SINGLE       n     1.340  0.0127     1.340  0.0127
+JET         C21         N20      DOUBLE       y     1.320  0.0100     1.320  0.0100
+JET         O03         C04      SINGLE       n     1.450  0.0100     1.450  0.0100
+JET         C04         C05      SINGLE       n     1.504  0.0100     1.504  0.0100
+JET         C05         C06      DOUBLE       y     1.388  0.0100     1.388  0.0100
+JET         C05         C16      SINGLE       y     1.382  0.0100     1.382  0.0100
+JET         C06         C07      SINGLE       y     1.382  0.0119     1.382  0.0119
+JET         C09         C16      DOUBLE       y     1.386  0.0100     1.386  0.0100
+JET         C07         C08      DOUBLE       y     1.382  0.0111     1.382  0.0111
+JET         C08         C09      SINGLE       y     1.386  0.0109     1.386  0.0109
+JET         C09         O10      SINGLE       n     1.369  0.0100     1.369  0.0100
+JET         O10         C11      SINGLE       n     1.420  0.0100     1.420  0.0100
+JET         C11         C12      SINGLE       n     1.507  0.0159     1.507  0.0159
+JET         C12         O13      SINGLE       n     1.329  0.0100     1.329  0.0100
+JET         C12         O15      DOUBLE       n     1.196  0.0100     1.196  0.0100
+JET         O13         C14      SINGLE       n     1.447  0.0130     1.447  0.0130
+JET         C21          H1      SINGLE       n     1.082  0.0130     0.938  0.0150
+JET         C04          H2      SINGLE       n     1.089  0.0100     0.980  0.0157
+JET         C04          H3      SINGLE       n     1.089  0.0100     0.980  0.0157
+JET         C06          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+JET         C07          H5      SINGLE       n     1.082  0.0130     0.941  0.0152
+JET         C08          H6      SINGLE       n     1.082  0.0130     0.942  0.0163
+JET         C11          H7      SINGLE       n     1.089  0.0100     0.974  0.0102
+JET         C11          H8      SINGLE       n     1.089  0.0100     0.974  0.0102
+JET         C14          H9      SINGLE       n     1.089  0.0100     0.970  0.0175
+JET         C14         H10      SINGLE       n     1.089  0.0100     0.970  0.0175
+JET         C14         H11      SINGLE       n     1.089  0.0100     0.970  0.0175
+JET         C16         H12      SINGLE       n     1.082  0.0130     0.945  0.0164
+JET         C18         H13      SINGLE       n     1.082  0.0130     0.947  0.0100
+JET         N19         H14      SINGLE       n     1.016  0.0100     0.894  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JET         C18         C17         C02     126.600    3.00
+JET         C18         C17         C21     106.112    1.50
+JET         C02         C17         C21     127.288    2.69
+JET         C17         C21         N20     110.960    1.50
+JET         C17         C21          H1     126.735    1.50
+JET         N20         C21          H1     122.305    3.00
+JET         O01         C02         C17     124.783    1.50
+JET         O01         C02         O03     123.211    1.50
+JET         C17         C02         O03     112.006    1.50
+JET         C02         O03         C04     116.058    1.50
+JET         O03         C04         C05     109.091    2.22
+JET         O03         C04          H2     109.850    1.50
+JET         O03         C04          H3     109.850    1.50
+JET         C05         C04          H2     109.785    1.50
+JET         C05         C04          H3     109.785    1.50
+JET          H2         C04          H3     108.275    1.50
+JET         C04         C05         C06     120.906    1.50
+JET         C04         C05         C16     120.013    1.52
+JET         C06         C05         C16     119.082    1.50
+JET         C05         C06         C07     120.471    1.50
+JET         C05         C06          H4     119.754    1.50
+JET         C07         C06          H4     119.776    1.50
+JET         C06         C07         C08     120.380    1.50
+JET         C06         C07          H5     119.949    1.50
+JET         C08         C07          H5     119.671    1.50
+JET         C07         C08         C09     119.224    1.50
+JET         C07         C08          H6     120.423    1.50
+JET         C09         C08          H6     120.353    1.50
+JET         C16         C09         C08     120.035    1.50
+JET         C16         C09         O10     119.710    3.00
+JET         C08         C09         O10     120.255    3.00
+JET         C09         O10         C11     117.722    1.50
+JET         O10         C11         C12     110.451    2.51
+JET         O10         C11          H7     109.378    1.50
+JET         O10         C11          H8     109.378    1.50
+JET         C12         C11          H7     109.463    1.50
+JET         C12         C11          H8     109.463    1.50
+JET          H7         C11          H8     108.052    1.50
+JET         C11         C12         O13     109.874    1.50
+JET         C11         C12         O15     125.150    1.71
+JET         O13         C12         O15     124.975    1.50
+JET         C12         O13         C14     115.969    1.50
+JET         O13         C14          H9     109.367    1.50
+JET         O13         C14         H10     109.367    1.50
+JET         O13         C14         H11     109.367    1.50
+JET          H9         C14         H10     109.532    1.53
+JET          H9         C14         H11     109.532    1.53
+JET         H10         C14         H11     109.532    1.53
+JET         C05         C16         C09     120.809    1.50
+JET         C05         C16         H12     119.728    1.50
+JET         C09         C16         H12     119.463    1.50
+JET         N19         C18         C17     107.041    1.50
+JET         N19         C18         H13     125.340    2.65
+JET         C17         C18         H13     127.619    1.50
+JET         C18         N19         N20     110.822    1.50
+JET         C18         N19         H14     126.923    2.02
+JET         N20         N19         H14     122.255    2.09
+JET         N19         N20         C21     105.066    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JET              const_35         C02         C17         C21         N20     180.000    10.0     2
+JET              const_23         C02         C17         C18         N19     180.000    10.0     2
+JET             sp2_sp2_3         O01         C02         C17         C18       0.000     5.0     2
+JET             sp2_sp2_7         C16         C09         O10         C11     180.000     5.0     2
+JET              const_19         O10         C09         C16         C05     180.000    10.0     2
+JET             sp3_sp3_4         C12         C11         O10         C09     180.000    10.0     3
+JET             sp2_sp3_8         O13         C12         C11         O10     120.000    10.0     6
+JET             sp2_sp2_9         C11         C12         O13         C14     180.000     5.0     2
+JET             sp3_sp3_8          H9         C14         O13         C12     -60.000    10.0     3
+JET              const_25         C17         C18         N19         N20       0.000    10.0     2
+JET              const_29         C18         N19         N20         C21       0.000    10.0     2
+JET              const_31         C17         C21         N20         N19       0.000    10.0     2
+JET             sp2_sp2_5         O01         C02         O03         C04     180.000     5.0     2
+JET             sp3_sp3_1         C05         C04         O03         C02     180.000    10.0     3
+JET             sp2_sp3_2         C06         C05         C04         O03     -90.000    10.0     6
+JET              const_39         C04         C05         C16         C09     180.000    10.0     2
+JET       const_sp2_sp2_3         C04         C05         C06         C07     180.000     5.0     2
+JET       const_sp2_sp2_5         C05         C06         C07         C08       0.000     5.0     2
+JET       const_sp2_sp2_9         C06         C07         C08         C09       0.000     5.0     2
+JET              const_14         C07         C08         C09         O10     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JET    plan-1         C02   0.020
+JET    plan-1         C17   0.020
+JET    plan-1         C18   0.020
+JET    plan-1         C21   0.020
+JET    plan-1          H1   0.020
+JET    plan-1         H13   0.020
+JET    plan-1         H14   0.020
+JET    plan-1         N19   0.020
+JET    plan-1         N20   0.020
+JET    plan-2         C04   0.020
+JET    plan-2         C05   0.020
+JET    plan-2         C06   0.020
+JET    plan-2         C07   0.020
+JET    plan-2         C08   0.020
+JET    plan-2         C09   0.020
+JET    plan-2         C16   0.020
+JET    plan-2         H12   0.020
+JET    plan-2          H4   0.020
+JET    plan-2          H5   0.020
+JET    plan-2          H6   0.020
+JET    plan-2         O10   0.020
+JET    plan-3         C02   0.020
+JET    plan-3         C17   0.020
+JET    plan-3         O01   0.020
+JET    plan-3         O03   0.020
+JET    plan-4         C11   0.020
+JET    plan-4         C12   0.020
+JET    plan-4         O13   0.020
+JET    plan-4         O15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JET            InChI                InChI  1.03 InChI=1S/C14H14N2O5/c1-19-13(17)9-20-12-4-2-3-10(5-12)8-21-14(18)11-6-15-16-7-11/h2-7H,8-9H2,1H3,(H,15,16)
+JET         InChIKey                InChI  1.03                                                                                HARZTHMZNXIIKQ-UHFFFAOYSA-N
+JET SMILES_CANONICAL               CACTVS 3.385                                                                       COC(=O)COc1cccc(COC(=O)c2c[nH]nc2)c1
+JET           SMILES               CACTVS 3.385                                                                       COC(=O)COc1cccc(COC(=O)c2c[nH]nc2)c1
+JET SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                       COC(=O)COc1cccc(c1)COC(=O)c2c[nH]nc2
+JET           SMILES "OpenEye OEToolkits" 2.0.7                                                                       COC(=O)COc1cccc(c1)COC(=O)c2c[nH]nc2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JET acedrg               243         "dictionary generator"                  
+JET acedrg_database      11          "data source"                           
+JET rdkit                2017.03.2   "Chemoinformatics tool"
+JET refmac5              5.8.0238    "optimization tool"                     

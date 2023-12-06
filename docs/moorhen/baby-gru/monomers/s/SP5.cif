@@ -1,0 +1,280 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SP5     SP5      N-[3-({4-[(3-aminopropyl)amino]butyl}amino)propyl]acetamide     NON-POLYMER     45     17     .     
+#
+data_comp_SP5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SP5     CAB     C       CH3     0       57.494      -60.808     58.293      
+SP5     CAC     C       C       0       57.368      -59.456     58.925      
+SP5     OAA     O       O       0       57.928      -59.201     59.989      
+SP5     NAD     N       NH1     0       56.627      -58.532     58.295      
+SP5     CAE     C       CH2     0       55.924      -58.735     57.031      
+SP5     CAF     C       CH2     0       55.163      -57.499     56.587      
+SP5     CAG     C       CH2     0       54.406      -57.702     55.290      
+SP5     NAH     N       NT1     0       53.774      -56.466     54.822      
+SP5     CAI     C       CH2     0       52.606      -56.021     55.584      
+SP5     CAJ     C       CH2     0       51.808      -54.970     54.827      
+SP5     CAK     C       CH2     0       51.213      -55.504     53.536      
+SP5     CAL     C       CH2     0       50.279      -54.509     52.863      
+SP5     NAM     N       NT1     0       51.013      -53.388     52.272      
+SP5     CAN     C       CH2     0       50.264      -52.587     51.302      
+SP5     CAO     C       CH2     0       50.419      -53.127     49.898      
+SP5     CAP     C       CH2     0       49.534      -52.453     48.890      
+SP5     NAQ     N       NT2     0       49.833      -51.023     48.763      
+SP5     HAB     H       H       0       58.053      -61.375     58.849      
+SP5     HABA    H       H       0       57.899      -60.724     57.414      
+SP5     HABB    H       H       0       56.616      -61.213     58.206      
+SP5     HNAD    H       H       0       56.556      -57.744     58.667      
+SP5     HAE     H       H       0       55.295      -59.481     57.131      
+SP5     HAEA    H       H       0       56.574      -58.979     56.339      
+SP5     HAF     H       H       0       55.796      -56.760     56.476      
+SP5     HAFA    H       H       0       54.532      -57.246     57.290      
+SP5     HAG     H       H       0       53.719      -58.389     55.420      
+SP5     HAGA    H       H       0       55.025      -58.027     54.603      
+SP5     HNAH    H       H       0       54.385      -55.805     54.826      
+SP5     HAI     H       H       0       52.900      -55.648     56.441      
+SP5     HAIA    H       H       0       52.027      -56.789     55.773      
+SP5     HAJ     H       H       0       52.395      -54.212     54.620      
+SP5     HAJA    H       H       0       51.084      -54.643     55.403      
+SP5     HAK     H       H       0       50.716      -56.327     53.729      
+SP5     HAKA    H       H       0       51.940      -55.727     52.917      
+SP5     HAL     H       H       0       49.642      -54.167     53.524      
+SP5     HALA    H       H       0       49.769      -54.969     52.164      
+SP5     HNAM    H       H       0       51.276      -52.844     52.938      
+SP5     HAN     H       H       0       50.586      -51.662     51.330      
+SP5     HANA    H       H       0       49.314      -52.581     51.545      
+SP5     HAO     H       H       0       50.221      -54.086     49.905      
+SP5     HAOA    H       H       0       51.353      -53.023     49.622      
+SP5     HAP     H       H       0       48.597      -52.558     49.155      
+SP5     HAPA    H       H       0       49.649      -52.880     48.017      
+SP5     HNAQ    H       H       0       49.377      -50.663     48.092      
+SP5     HNAA    H       H       0       50.695      -50.895     48.594      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SP5         CAB         CAC      SINGLE       n     1.495  0.0100     1.495  0.0100
+SP5         CAC         OAA      DOUBLE       n     1.229  0.0102     1.229  0.0102
+SP5         CAC         NAD      SINGLE       n     1.336  0.0105     1.336  0.0105
+SP5         NAD         CAE      SINGLE       n     1.456  0.0109     1.456  0.0109
+SP5         CAE         CAF      SINGLE       n     1.517  0.0117     1.517  0.0117
+SP5         CAF         CAG      SINGLE       n     1.512  0.0200     1.512  0.0200
+SP5         CAG         NAH      SINGLE       n     1.463  0.0111     1.463  0.0111
+SP5         NAH         CAI      SINGLE       n     1.463  0.0111     1.463  0.0111
+SP5         CAI         CAJ      SINGLE       n     1.521  0.0100     1.521  0.0100
+SP5         CAJ         CAK      SINGLE       n     1.519  0.0150     1.519  0.0150
+SP5         CAK         CAL      SINGLE       n     1.521  0.0100     1.521  0.0100
+SP5         CAL         NAM      SINGLE       n     1.463  0.0111     1.463  0.0111
+SP5         NAM         CAN      SINGLE       n     1.463  0.0111     1.463  0.0111
+SP5         CAN         CAO      SINGLE       n     1.512  0.0200     1.512  0.0200
+SP5         CAO         CAP      SINGLE       n     1.502  0.0191     1.502  0.0191
+SP5         CAP         NAQ      SINGLE       n     1.466  0.0117     1.466  0.0117
+SP5         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0140
+SP5         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0140
+SP5         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0140
+SP5         NAD        HNAD      SINGLE       n     1.016  0.0100     0.872  0.0200
+SP5         CAE         HAE      SINGLE       n     1.089  0.0100     0.981  0.0152
+SP5         CAE        HAEA      SINGLE       n     1.089  0.0100     0.981  0.0152
+SP5         CAF         HAF      SINGLE       n     1.089  0.0100     0.979  0.0161
+SP5         CAF        HAFA      SINGLE       n     1.089  0.0100     0.979  0.0161
+SP5         CAG         HAG      SINGLE       n     1.089  0.0100     0.980  0.0143
+SP5         CAG        HAGA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SP5         NAH        HNAH      SINGLE       n     1.036  0.0160     0.899  0.0200
+SP5         CAI         HAI      SINGLE       n     1.089  0.0100     0.980  0.0143
+SP5         CAI        HAIA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SP5         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.981  0.0160
+SP5         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.981  0.0160
+SP5         CAK         HAK      SINGLE       n     1.089  0.0100     0.981  0.0160
+SP5         CAK        HAKA      SINGLE       n     1.089  0.0100     0.981  0.0160
+SP5         CAL         HAL      SINGLE       n     1.089  0.0100     0.980  0.0143
+SP5         CAL        HALA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SP5         NAM        HNAM      SINGLE       n     1.036  0.0160     0.899  0.0200
+SP5         CAN         HAN      SINGLE       n     1.089  0.0100     0.980  0.0143
+SP5         CAN        HANA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SP5         CAO         HAO      SINGLE       n     1.089  0.0100     0.979  0.0161
+SP5         CAO        HAOA      SINGLE       n     1.089  0.0100     0.979  0.0161
+SP5         CAP         HAP      SINGLE       n     1.089  0.0100     0.979  0.0106
+SP5         CAP        HAPA      SINGLE       n     1.089  0.0100     0.979  0.0106
+SP5         NAQ        HNAQ      SINGLE       n     1.036  0.0160     0.888  0.0200
+SP5         NAQ        HNAA      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SP5         CAC         CAB         HAB     109.678    1.50
+SP5         CAC         CAB        HABA     109.678    1.50
+SP5         CAC         CAB        HABB     109.678    1.50
+SP5         HAB         CAB        HABA     109.365    1.50
+SP5         HAB         CAB        HABB     109.365    1.50
+SP5        HABA         CAB        HABB     109.365    1.50
+SP5         CAB         CAC         OAA     121.938    1.50
+SP5         CAB         CAC         NAD     116.326    1.50
+SP5         OAA         CAC         NAD     121.744    1.50
+SP5         CAC         NAD         CAE     122.966    1.80
+SP5         CAC         NAD        HNAD     118.680    1.50
+SP5         CAE         NAD        HNAD     118.354    1.90
+SP5         NAD         CAE         CAF     112.174    1.52
+SP5         NAD         CAE         HAE     108.979    1.50
+SP5         NAD         CAE        HAEA     108.979    1.50
+SP5         CAF         CAE         HAE     109.350    1.50
+SP5         CAF         CAE        HAEA     109.350    1.50
+SP5         HAE         CAE        HAEA     107.877    1.50
+SP5         CAE         CAF         CAG     113.258    1.75
+SP5         CAE         CAF         HAF     108.958    1.50
+SP5         CAE         CAF        HAFA     108.958    1.50
+SP5         CAG         CAF         HAF     108.958    1.50
+SP5         CAG         CAF        HAFA     108.958    1.50
+SP5         HAF         CAF        HAFA     107.594    1.73
+SP5         CAF         CAG         NAH     111.530    1.50
+SP5         CAF         CAG         HAG     109.350    1.50
+SP5         CAF         CAG        HAGA     109.350    1.50
+SP5         NAH         CAG         HAG     109.338    1.50
+SP5         NAH         CAG        HAGA     109.338    1.50
+SP5         HAG         CAG        HAGA     107.877    1.50
+SP5         CAG         NAH         CAI     114.187    2.61
+SP5         CAG         NAH        HNAH     108.180    3.00
+SP5         CAI         NAH        HNAH     108.180    3.00
+SP5         NAH         CAI         CAJ     111.754    2.01
+SP5         NAH         CAI         HAI     109.338    1.50
+SP5         NAH         CAI        HAIA     109.338    1.50
+SP5         CAJ         CAI         HAI     109.197    1.51
+SP5         CAJ         CAI        HAIA     109.197    1.51
+SP5         HAI         CAI        HAIA     107.877    1.50
+SP5         CAI         CAJ         CAK     112.652    1.50
+SP5         CAI         CAJ         HAJ     108.956    1.50
+SP5         CAI         CAJ        HAJA     108.956    1.50
+SP5         CAK         CAJ         HAJ     108.999    1.50
+SP5         CAK         CAJ        HAJA     108.999    1.50
+SP5         HAJ         CAJ        HAJA     107.927    1.57
+SP5         CAJ         CAK         CAL     112.652    1.50
+SP5         CAJ         CAK         HAK     108.999    1.50
+SP5         CAJ         CAK        HAKA     108.999    1.50
+SP5         CAL         CAK         HAK     108.956    1.50
+SP5         CAL         CAK        HAKA     108.956    1.50
+SP5         HAK         CAK        HAKA     107.927    1.57
+SP5         CAK         CAL         NAM     111.754    2.01
+SP5         CAK         CAL         HAL     109.197    1.51
+SP5         CAK         CAL        HALA     109.197    1.51
+SP5         NAM         CAL         HAL     109.338    1.50
+SP5         NAM         CAL        HALA     109.338    1.50
+SP5         HAL         CAL        HALA     107.877    1.50
+SP5         CAL         NAM         CAN     114.187    2.61
+SP5         CAL         NAM        HNAM     108.180    3.00
+SP5         CAN         NAM        HNAM     108.180    3.00
+SP5         NAM         CAN         CAO     111.530    1.50
+SP5         NAM         CAN         HAN     109.338    1.50
+SP5         NAM         CAN        HANA     109.338    1.50
+SP5         CAO         CAN         HAN     109.350    1.50
+SP5         CAO         CAN        HANA     109.350    1.50
+SP5         HAN         CAN        HANA     107.877    1.50
+SP5         CAN         CAO         CAP     114.005    1.96
+SP5         CAN         CAO         HAO     108.958    1.50
+SP5         CAN         CAO        HAOA     108.958    1.50
+SP5         CAP         CAO         HAO     109.108    1.50
+SP5         CAP         CAO        HAOA     109.108    1.50
+SP5         HAO         CAO        HAOA     107.594    1.73
+SP5         CAO         CAP         NAQ     111.621    2.46
+SP5         CAO         CAP         HAP     109.330    1.50
+SP5         CAO         CAP        HAPA     109.330    1.50
+SP5         NAQ         CAP         HAP     108.763    1.50
+SP5         NAQ         CAP        HAPA     108.763    1.50
+SP5         HAP         CAP        HAPA     107.806    1.50
+SP5         CAP         NAQ        HNAQ     110.839    3.00
+SP5         CAP         NAQ        HNAA     110.839    3.00
+SP5        HNAQ         NAQ        HNAA     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SP5             sp2_sp3_1         OAA         CAC         CAB         HAB       0.000    10.0     6
+SP5            sp3_sp3_49         CAJ         CAK         CAL         NAM     180.000    10.0     3
+SP5            sp3_sp3_58         CAK         CAL         NAM         CAN     180.000    10.0     3
+SP5            sp3_sp3_65         CAO         CAN         NAM         CAL     -60.000    10.0     3
+SP5            sp3_sp3_70         NAM         CAN         CAO         CAP     180.000    10.0     3
+SP5            sp3_sp3_79         CAN         CAO         CAP         NAQ     180.000    10.0     3
+SP5            sp3_sp3_88         CAO         CAP         NAQ        HNAQ     180.000    10.0     3
+SP5             sp2_sp2_1         CAB         CAC         NAD         CAE     180.000     5.0     2
+SP5             sp2_sp3_8         CAC         NAD         CAE         CAF     120.000    10.0     6
+SP5             sp3_sp3_1         NAD         CAE         CAF         CAG     180.000    10.0     3
+SP5            sp3_sp3_10         CAE         CAF         CAG         NAH     180.000    10.0     3
+SP5            sp3_sp3_20         CAF         CAG         NAH         CAI     -60.000    10.0     3
+SP5            sp3_sp3_25         CAJ         CAI         NAH         CAG     180.000    10.0     3
+SP5            sp3_sp3_31         NAH         CAI         CAJ         CAK     180.000    10.0     3
+SP5            sp3_sp3_40         CAI         CAJ         CAK         CAL     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SP5    chir_1    NAH    CAG    CAI    HNAH    both
+SP5    chir_2    NAM    CAN    CAL    HNAM    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SP5    plan-1         CAB   0.020
+SP5    plan-1         CAC   0.020
+SP5    plan-1         NAD   0.020
+SP5    plan-1         OAA   0.020
+SP5    plan-2         CAC   0.020
+SP5    plan-2         CAE   0.020
+SP5    plan-2        HNAD   0.020
+SP5    plan-2         NAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SP5           SMILES              ACDLabs 10.04                                                                          O=C(NCCCNCCCCNCCCN)C
+SP5 SMILES_CANONICAL               CACTVS 3.341                                                                          CC(=O)NCCCNCCCCNCCCN
+SP5           SMILES               CACTVS 3.341                                                                          CC(=O)NCCCNCCCCNCCCN
+SP5 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                          CC(=O)NCCCNCCCCNCCCN
+SP5           SMILES "OpenEye OEToolkits" 1.5.0                                                                          CC(=O)NCCCNCCCCNCCCN
+SP5            InChI                InChI  1.03 InChI=1S/C12H28N4O/c1-12(17)16-11-5-10-15-8-3-2-7-14-9-4-6-13/h14-15H,2-11,13H2,1H3,(H,16,17)
+SP5         InChIKey                InChI  1.03                                                                   GUNURVWAJRRUAV-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SP5 acedrg               243         "dictionary generator"                  
+SP5 acedrg_database      11          "data source"                           
+SP5 rdkit                2017.03.2   "Chemoinformatics tool"
+SP5 refmac5              5.8.0238    "optimization tool"                     

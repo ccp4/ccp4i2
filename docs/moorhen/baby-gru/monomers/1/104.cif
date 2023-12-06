@@ -1,0 +1,194 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+104     104      "N,N'-BIS(2-AMINOETHYL)-1,2-ETHANEDIAMINE"     NON-POLYMER     28     10     .     
+#
+data_comp_104
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+104     N1      N       NT2     0       6.280       8.624       6.572       
+104     C2      C       CH2     0       6.204       7.983       7.883       
+104     C3      C       CH2     0       7.571       7.660       8.444       
+104     N4      N       NT1     0       8.353       6.848       7.513       
+104     C5      C       CH2     0       9.690       6.508       7.999       
+104     C6      C       CH2     0       10.488      5.745       6.966       
+104     N7      N       NT1     0       10.177      4.316       6.981       
+104     C8      C       CH2     0       10.946      3.531       7.949       
+104     C9      C       CH2     0       12.304      3.128       7.410       
+104     N10     N       NT2     0       13.075      2.358       8.383       
+104     H11     H       H       0       5.472       8.902       6.330       
+104     H12     H       H       0       6.801       9.342       6.622       
+104     H21     H       H       0       5.685       7.161       7.806       
+104     H22     H       H       0       5.735       8.576       8.500       
+104     H31     H       H       0       7.469       7.175       9.290       
+104     H32     H       H       0       8.052       8.493       8.632       
+104     HN4     H       H       0       7.905       6.085       7.355       
+104     H51     H       H       0       9.610       5.964       8.811       
+104     H52     H       H       0       10.168      7.330       8.234       
+104     H61     H       H       0       11.445      5.875       7.137       
+104     H62     H       H       0       10.293      6.108       6.077       
+104     HN7     H       H       0       10.299      3.983       6.153       
+104     H81     H       H       0       10.440      2.724       8.182       
+104     H82     H       H       0       11.065      4.053       8.769       
+104     H91     H       H       0       12.806      3.929       7.168       
+104     H92     H       H       0       12.186      2.593       6.603       
+104     H101    H       H       0       13.563      1.748       7.960       
+104     H102    H       H       0       13.639      2.897       8.809       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+104          N1          C2      SINGLE       n     1.461  0.0200     1.461  0.0200
+104          C2          C3      SINGLE       n     1.512  0.0200     1.512  0.0200
+104          C3          N4      SINGLE       n     1.462  0.0100     1.462  0.0100
+104          N4          C5      SINGLE       n     1.462  0.0100     1.462  0.0100
+104          C5          C6      SINGLE       n     1.512  0.0200     1.512  0.0200
+104          C6          N7      SINGLE       n     1.462  0.0100     1.462  0.0100
+104          N7          C8      SINGLE       n     1.462  0.0100     1.462  0.0100
+104          C8          C9      SINGLE       n     1.512  0.0200     1.512  0.0200
+104          C9         N10      SINGLE       n     1.461  0.0200     1.461  0.0200
+104          N1         H11      SINGLE       n     1.036  0.0160     0.888  0.0200
+104          N1         H12      SINGLE       n     1.036  0.0160     0.888  0.0200
+104          C2         H21      SINGLE       n     1.089  0.0100     0.976  0.0131
+104          C2         H22      SINGLE       n     1.089  0.0100     0.976  0.0131
+104          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0143
+104          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0143
+104          N4         HN4      SINGLE       n     1.036  0.0160     0.899  0.0200
+104          C5         H51      SINGLE       n     1.089  0.0100     0.980  0.0143
+104          C5         H52      SINGLE       n     1.089  0.0100     0.980  0.0143
+104          C6         H61      SINGLE       n     1.089  0.0100     0.980  0.0143
+104          C6         H62      SINGLE       n     1.089  0.0100     0.980  0.0143
+104          N7         HN7      SINGLE       n     1.036  0.0160     0.899  0.0200
+104          C8         H81      SINGLE       n     1.089  0.0100     0.980  0.0143
+104          C8         H82      SINGLE       n     1.089  0.0100     0.980  0.0143
+104          C9         H91      SINGLE       n     1.089  0.0100     0.976  0.0131
+104          C9         H92      SINGLE       n     1.089  0.0100     0.976  0.0131
+104         N10        H101      SINGLE       n     1.036  0.0160     0.888  0.0200
+104         N10        H102      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+104          C2          N1         H11     109.540    3.00
+104          C2          N1         H12     109.540    3.00
+104         H11          N1         H12     107.243    3.00
+104          N1          C2          C3     111.522    3.00
+104          N1          C2         H21     108.883    1.50
+104          N1          C2         H22     108.883    1.50
+104          C3          C2         H21     109.136    1.50
+104          C3          C2         H22     109.136    1.50
+104         H21          C2         H22     107.734    1.50
+104          C2          C3          N4     111.556    2.19
+104          C2          C3         H31     109.479    1.50
+104          C2          C3         H32     109.479    1.50
+104          N4          C3         H31     109.410    1.50
+104          N4          C3         H32     109.410    1.50
+104         H31          C3         H32     107.909    1.50
+104          C3          N4          C5     113.963    1.50
+104          C3          N4         HN4     108.452    3.00
+104          C5          N4         HN4     108.452    3.00
+104          N4          C5          C6     112.314    2.24
+104          N4          C5         H51     109.410    1.50
+104          N4          C5         H52     109.410    1.50
+104          C6          C5         H51     109.342    1.50
+104          C6          C5         H52     109.342    1.50
+104         H51          C5         H52     107.909    1.50
+104          C5          C6          N7     112.314    2.24
+104          C5          C6         H61     109.342    1.50
+104          C5          C6         H62     109.342    1.50
+104          N7          C6         H61     109.410    1.50
+104          N7          C6         H62     109.410    1.50
+104         H61          C6         H62     107.909    1.50
+104          C6          N7          C8     113.963    1.50
+104          C6          N7         HN7     108.452    3.00
+104          C8          N7         HN7     108.452    3.00
+104          N7          C8          C9     111.556    2.19
+104          N7          C8         H81     109.410    1.50
+104          N7          C8         H82     109.410    1.50
+104          C9          C8         H81     109.479    1.50
+104          C9          C8         H82     109.479    1.50
+104         H81          C8         H82     107.909    1.50
+104          C8          C9         N10     111.522    3.00
+104          C8          C9         H91     109.136    1.50
+104          C8          C9         H92     109.136    1.50
+104         N10          C9         H91     108.883    1.50
+104         N10          C9         H92     108.883    1.50
+104         H91          C9         H92     107.734    1.50
+104          C9         N10        H101     109.540    3.00
+104          C9         N10        H102     109.540    3.00
+104        H101         N10        H102     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+104             sp3_sp3_1          C3          C2          N1         H11     180.000    10.0     3
+104             sp3_sp3_7          N1          C2          C3          N4     180.000    10.0     3
+104            sp3_sp3_16          C2          C3          N4          C5     180.000    10.0     3
+104            sp3_sp3_23          C6          C5          N4          C3     -60.000    10.0     3
+104            sp3_sp3_28          N4          C5          C6          N7     180.000    10.0     3
+104            sp3_sp3_38          C5          C6          N7          C8     -60.000    10.0     3
+104            sp3_sp3_43          C9          C8          N7          C6     180.000    10.0     3
+104            sp3_sp3_49          N7          C8          C9         N10     180.000    10.0     3
+104            sp3_sp3_58          C8          C9         N10        H101     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+104    chir_1    N4    C5    C3    HN4    both
+104    chir_2    N7    C6    C8    HN7    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+104           SMILES              ACDLabs 10.04                                          NCCNCCNCCN
+104 SMILES_CANONICAL               CACTVS 3.341                                          NCCNCCNCCN
+104           SMILES               CACTVS 3.341                                          NCCNCCNCCN
+104 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                        C(CNCCNCCN)N
+104           SMILES "OpenEye OEToolkits" 1.5.0                                        C(CNCCNCCN)N
+104            InChI                InChI  1.03 InChI=1S/C6H18N4/c7-1-3-9-5-6-10-4-2-8/h9-10H,1-8H2
+104         InChIKey                InChI  1.03                         VILCJCGEZXAXTO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+104 acedrg               243         "dictionary generator"                  
+104 acedrg_database      11          "data source"                           
+104 rdkit                2017.03.2   "Chemoinformatics tool"
+104 refmac5              5.8.0238    "optimization tool"                     

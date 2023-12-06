@@ -1,0 +1,383 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KVH     KVH      (2~{R},3~{S},4~{R},5~{R},6~{S})-2-(hydroxymethyl)-6-(2-naphthalen-2-yl-1,3-thiazol-4-yl)oxane-3,4,5-triol     NON-POLYMER     45     26     .     
+#
+data_comp_KVH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KVH     C8      C       CR66    0       37.646      25.883      33.349      
+KVH     C7      C       CR16    0       37.472      25.058      32.217      
+KVH     C9      C       CR66    0       36.497      26.429      33.986      
+KVH     C10     C       CR16    0       35.220      26.122      33.460      
+KVH     C11     C       CR16    0       35.073      25.320      32.362      
+KVH     C12     C       CR16    0       38.927      26.190      33.875      
+KVH     C13     C       CR16    0       39.063      26.991      34.970      
+KVH     C1      C       CR5     0       34.967      22.807      28.850      
+KVH     C14     C       CR16    0       37.928      27.533      35.604      
+KVH     C15     C       CR16    0       36.680      27.263      35.130      
+KVH     C6      C       CR6     0       36.184      24.768      31.713      
+KVH     C4      C       CR5     0       35.999      23.912      30.541      
+KVH     C2      C       CR15    0       36.239      22.379      28.578      
+KVH     N5      N       NRD5    0       34.837      23.655      29.934      
+KVH     S3      S       S2      0       37.220      23.079      29.729      
+KVH     "C1'"   C       CH1     0       33.738      22.433      28.073      
+KVH     "O5'"   O       O2      0       33.763      21.021      27.824      
+KVH     "C5'"   C       CH1     0       32.576      20.528      27.169      
+KVH     "C6'"   C       CH2     0       32.712      19.024      27.079      
+KVH     "O6'"   O       OH1     0       33.869      18.638      26.337      
+KVH     "C4'"   C       CH1     0       32.423      21.210      25.804      
+KVH     "O4'"   O       OH1     0       31.207      20.782      25.198      
+KVH     "C3'"   C       CH1     0       32.415      22.725      25.965      
+KVH     "O3'"   O       OH1     0       32.396      23.351      24.683      
+KVH     "C2'"   C       CH1     0       33.634      23.203      26.755      
+KVH     "O2'"   O       OH1     0       33.525      24.606      27.021      
+KVH     H1      H       H       0       38.231      24.700      31.799      
+KVH     H2      H       H       0       34.451      26.479      33.876      
+KVH     H3      H       H       0       34.213      25.139      32.043      
+KVH     H4      H       H       0       39.696      25.833      33.460      
+KVH     H5      H       H       0       39.924      27.184      35.306      
+KVH     H6      H       H       0       38.033      28.087      36.362      
+KVH     H7      H       H       0       35.925      27.631      35.562      
+KVH     H8      H       H       0       36.546      21.806      27.896      
+KVH     H9      H       H       0       32.945      22.642      28.630      
+KVH     H10     H       H       0       31.790      20.749      27.724      
+KVH     H11     H       H       0       31.914      18.650      26.650      
+KVH     H12     H       H       0       32.772      18.651      27.983      
+KVH     H13     H       H       0       34.565      18.910      26.737      
+KVH     H14     H       H       0       33.180      20.955      25.225      
+KVH     H15     H       H       0       31.175      21.058      24.404      
+KVH     H16     H       H       0       31.594      22.983      26.453      
+KVH     H17     H       H       0       32.245      24.173      24.783      
+KVH     H18     H       H       0       34.448      23.044      26.220      
+KVH     H19     H       H       0       32.835      24.758      27.479      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KVH       "C3'"       "O3'"      SINGLE       n     1.427  0.0125     1.427  0.0125
+KVH       "C4'"       "O4'"      SINGLE       n     1.425  0.0176     1.425  0.0176
+KVH       "C4'"       "C3'"      SINGLE       n     1.520  0.0154     1.520  0.0154
+KVH       "C3'"       "C2'"      SINGLE       n     1.527  0.0100     1.527  0.0100
+KVH       "C5'"       "C4'"      SINGLE       n     1.524  0.0200     1.524  0.0200
+KVH       "C2'"       "O2'"      SINGLE       n     1.431  0.0107     1.431  0.0107
+KVH       "C1'"       "C2'"      SINGLE       n     1.528  0.0100     1.528  0.0100
+KVH       "C6'"       "O6'"      SINGLE       n     1.426  0.0200     1.426  0.0200
+KVH       "C5'"       "C6'"      SINGLE       n     1.511  0.0136     1.511  0.0136
+KVH       "O5'"       "C5'"      SINGLE       n     1.440  0.0109     1.440  0.0109
+KVH       "C1'"       "O5'"      SINGLE       n     1.431  0.0113     1.431  0.0113
+KVH          C1       "C1'"      SINGLE       n     1.500  0.0100     1.500  0.0100
+KVH          C1          C2      DOUBLE       y     1.365  0.0200     1.365  0.0200
+KVH          C2          S3      SINGLE       y     1.695  0.0200     1.695  0.0200
+KVH          C1          N5      SINGLE       y     1.352  0.0200     1.352  0.0200
+KVH          C4          S3      SINGLE       y     1.695  0.0200     1.695  0.0200
+KVH          C4          N5      DOUBLE       y     1.312  0.0200     1.312  0.0200
+KVH          C6          C4      SINGLE       n     1.458  0.0100     1.458  0.0100
+KVH          C7          C6      DOUBLE       y     1.394  0.0170     1.394  0.0170
+KVH         C11          C6      SINGLE       y     1.393  0.0100     1.393  0.0100
+KVH          C8          C7      SINGLE       y     1.409  0.0100     1.409  0.0100
+KVH         C10         C11      DOUBLE       y     1.363  0.0106     1.363  0.0106
+KVH          C8         C12      DOUBLE       y     1.415  0.0100     1.415  0.0100
+KVH          C8          C9      SINGLE       y     1.418  0.0100     1.418  0.0100
+KVH         C12         C13      SINGLE       y     1.358  0.0118     1.358  0.0118
+KVH          C9         C10      SINGLE       y     1.413  0.0104     1.413  0.0104
+KVH          C9         C15      DOUBLE       y     1.421  0.0157     1.421  0.0157
+KVH         C13         C14      DOUBLE       y     1.402  0.0131     1.402  0.0131
+KVH         C14         C15      SINGLE       y     1.358  0.0118     1.358  0.0118
+KVH          C7          H1      SINGLE       n     1.082  0.0130     0.939  0.0152
+KVH         C10          H2      SINGLE       n     1.082  0.0130     0.944  0.0160
+KVH         C11          H3      SINGLE       n     1.082  0.0130     0.936  0.0100
+KVH         C12          H4      SINGLE       n     1.082  0.0130     0.944  0.0192
+KVH         C13          H5      SINGLE       n     1.082  0.0130     0.944  0.0184
+KVH         C14          H6      SINGLE       n     1.082  0.0130     0.944  0.0184
+KVH         C15          H7      SINGLE       n     1.082  0.0130     0.944  0.0192
+KVH          C2          H8      SINGLE       n     1.082  0.0130     0.942  0.0200
+KVH       "C1'"          H9      SINGLE       n     1.089  0.0100     0.990  0.0199
+KVH       "C5'"         H10      SINGLE       n     1.089  0.0100     0.988  0.0182
+KVH       "C6'"         H11      SINGLE       n     1.089  0.0100     0.980  0.0184
+KVH       "C6'"         H12      SINGLE       n     1.089  0.0100     0.980  0.0184
+KVH       "O6'"         H13      SINGLE       n     0.970  0.0120     0.848  0.0200
+KVH       "C4'"         H14      SINGLE       n     1.089  0.0100     0.986  0.0131
+KVH       "O4'"         H15      SINGLE       n     0.970  0.0120     0.841  0.0200
+KVH       "C3'"         H16      SINGLE       n     1.089  0.0100     0.990  0.0140
+KVH       "O3'"         H17      SINGLE       n     0.970  0.0120     0.841  0.0200
+KVH       "C2'"         H18      SINGLE       n     1.089  0.0100     0.988  0.0151
+KVH       "O2'"         H19      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KVH          C7          C8         C12     122.207    1.50
+KVH          C7          C8          C9     119.018    1.50
+KVH         C12          C8          C9     118.775    1.50
+KVH          C6          C7          C8     121.184    1.50
+KVH          C6          C7          H1     119.618    1.50
+KVH          C8          C7          H1     119.198    1.50
+KVH          C8          C9         C10     118.811    1.50
+KVH          C8          C9         C15     118.775    1.50
+KVH         C10          C9         C15     122.414    1.50
+KVH         C11         C10          C9     121.288    1.50
+KVH         C11         C10          H2     119.337    1.50
+KVH          C9         C10          H2     119.375    1.50
+KVH          C6         C11         C10     120.682    1.50
+KVH          C6         C11          H3     119.690    1.50
+KVH         C10         C11          H3     119.628    1.50
+KVH          C8         C12         C13     120.911    1.50
+KVH          C8         C12          H4     119.431    1.50
+KVH         C13         C12          H4     119.659    1.50
+KVH         C12         C13         C14     120.314    1.50
+KVH         C12         C13          H5     119.871    1.50
+KVH         C14         C13          H5     119.815    1.50
+KVH       "C1'"          C1          C2     128.304    3.00
+KVH       "C1'"          C1          N5     122.929    3.00
+KVH          C2          C1          N5     108.767    2.56
+KVH         C13         C14         C15     120.314    1.50
+KVH         C13         C14          H6     119.815    1.50
+KVH         C15         C14          H6     119.871    1.50
+KVH          C9         C15         C14     120.911    1.50
+KVH          C9         C15          H7     119.431    1.50
+KVH         C14         C15          H7     119.659    1.50
+KVH          C4          C6          C7     120.492    1.50
+KVH          C4          C6         C11     120.492    1.50
+KVH          C7          C6         C11     119.016    1.50
+KVH          S3          C4          N5     108.031    3.00
+KVH          S3          C4          C6     123.420    3.00
+KVH          N5          C4          C6     128.549    3.00
+KVH          C1          C2          S3     108.031    3.00
+KVH          C1          C2          H8     129.141    1.51
+KVH          S3          C2          H8     122.828    3.00
+KVH          C1          N5          C4     107.139    1.65
+KVH          C2          S3          C4     108.031    3.00
+KVH       "C2'"       "C1'"       "O5'"     110.064    1.62
+KVH       "C2'"       "C1'"          C1     111.427    1.75
+KVH       "C2'"       "C1'"          H9     108.791    1.50
+KVH       "O5'"       "C1'"          C1     108.467    1.60
+KVH       "O5'"       "C1'"          H9     108.552    1.50
+KVH          C1       "C1'"          H9     107.961    1.50
+KVH       "C5'"       "O5'"       "C1'"     113.071    1.75
+KVH       "C4'"       "C5'"       "C6'"     112.996    1.59
+KVH       "C4'"       "C5'"       "O5'"     109.378    1.54
+KVH       "C4'"       "C5'"         H10     108.960    1.50
+KVH       "C6'"       "C5'"       "O5'"     107.094    1.51
+KVH       "C6'"       "C5'"         H10     109.269    1.50
+KVH       "O5'"       "C5'"         H10     108.995    1.50
+KVH       "O6'"       "C6'"       "C5'"     111.299    2.09
+KVH       "O6'"       "C6'"         H11     109.265    1.50
+KVH       "O6'"       "C6'"         H12     109.265    1.50
+KVH       "C5'"       "C6'"         H11     109.363    1.50
+KVH       "C5'"       "C6'"         H12     109.363    1.50
+KVH         H11       "C6'"         H12     108.155    1.50
+KVH       "C6'"       "O6'"         H13     109.472    2.41
+KVH       "O4'"       "C4'"       "C3'"     110.101    1.97
+KVH       "O4'"       "C4'"       "C5'"     109.072    2.07
+KVH       "O4'"       "C4'"         H14     109.194    1.50
+KVH       "C3'"       "C4'"       "C5'"     110.272    1.76
+KVH       "C3'"       "C4'"         H14     109.032    1.50
+KVH       "C5'"       "C4'"         H14     109.223    1.50
+KVH       "C4'"       "O4'"         H15     109.564    3.00
+KVH       "O3'"       "C3'"       "C4'"     110.243    1.88
+KVH       "O3'"       "C3'"       "C2'"     110.081    2.02
+KVH       "O3'"       "C3'"         H16     108.767    1.50
+KVH       "C4'"       "C3'"       "C2'"     110.796    1.54
+KVH       "C4'"       "C3'"         H16     108.653    1.50
+KVH       "C2'"       "C3'"         H16     109.166    1.50
+KVH       "C3'"       "O3'"         H17     108.895    2.41
+KVH       "C3'"       "C2'"       "O2'"     110.081    2.02
+KVH       "C3'"       "C2'"       "C1'"     110.123    3.00
+KVH       "C3'"       "C2'"         H18     109.166    1.50
+KVH       "O2'"       "C2'"       "C1'"     109.334    1.86
+KVH       "O2'"       "C2'"         H18     108.790    1.50
+KVH       "C1'"       "C2'"         H18     109.340    1.50
+KVH       "C2'"       "O2'"         H19     109.099    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KVH                   nu0       "C5'"       "O5'"       "C1'"       "C2'"     -65.066    10.0     3
+KVH                   nu1       "O5'"       "C1'"       "C2'"       "C3'"      57.514    10.0     3
+KVH                   nu2       "C1'"       "C2'"       "C3'"       "C4'"     -50.979    10.0     3
+KVH                   nu3       "C2'"       "C3'"       "C4'"       "C5'"      51.020    10.0     3
+KVH                   nu4       "C3'"       "C4'"       "C5'"       "O5'"     -57.178    10.0     3
+KVH                   nu5       "C4'"       "C5'"       "O5'"       "C1'"      64.649    10.0     3
+KVH       const_sp2_sp2_1          C6          C7          C8          C9       0.000     5.0     2
+KVH       const_sp2_sp2_2          C6          C7          C8         C12     180.000     5.0     2
+KVH       const_sp2_sp2_3          H1          C7          C8          C9     180.000     5.0     2
+KVH       const_sp2_sp2_4          H1          C7          C8         C12       0.000     5.0     2
+KVH       const_sp2_sp2_5         C11          C6          C7          C8       0.000     5.0     2
+KVH       const_sp2_sp2_6         C11          C6          C7          H1     180.000     5.0     2
+KVH       const_sp2_sp2_7          C4          C6          C7          C8     180.000     5.0     2
+KVH       const_sp2_sp2_8          C4          C6          C7          H1       0.000     5.0     2
+KVH       const_sp2_sp2_9         C10         C11          C6          C7       0.000     5.0     2
+KVH              const_10         C10         C11          C6          C4     180.000    10.0     2
+KVH              const_11          H3         C11          C6          C7     180.000    10.0     2
+KVH              const_12          H3         C11          C6          C4       0.000    10.0     2
+KVH              const_13          C9         C10         C11          C6       0.000    10.0     2
+KVH              const_14          C9         C10         C11          H3     180.000    10.0     2
+KVH              const_15          H2         C10         C11          C6     180.000    10.0     2
+KVH              const_16          H2         C10         C11          H3       0.000    10.0     2
+KVH              const_17         C11         C10          C9          C8       0.000    10.0     2
+KVH              const_18         C11         C10          C9         C15     180.000    10.0     2
+KVH              const_19          H2         C10          C9          C8     180.000    10.0     2
+KVH              const_20          H2         C10          C9         C15       0.000    10.0     2
+KVH              const_21         C13         C12          C8          C9       0.000    10.0     2
+KVH              const_22         C13         C12          C8          C7     180.000    10.0     2
+KVH              const_23          H4         C12          C8          C9     180.000    10.0     2
+KVH              const_24          H4         C12          C8          C7       0.000    10.0     2
+KVH              const_25          C8         C12         C13         C14       0.000    10.0     2
+KVH              const_26          C8         C12         C13          H5     180.000    10.0     2
+KVH              const_27          H4         C12         C13         C14     180.000    10.0     2
+KVH              const_28          H4         C12         C13          H5       0.000    10.0     2
+KVH              const_29         C12         C13         C14         C15       0.000    10.0     2
+KVH              const_30         C12         C13         C14          H6     180.000    10.0     2
+KVH              const_31          H5         C13         C14         C15     180.000    10.0     2
+KVH              const_32          H5         C13         C14          H6       0.000    10.0     2
+KVH              const_33         C13         C14         C15          C9       0.000    10.0     2
+KVH              const_34         C13         C14         C15          H7     180.000    10.0     2
+KVH              const_35          H6         C14         C15          C9     180.000    10.0     2
+KVH              const_36          H6         C14         C15          H7       0.000    10.0     2
+KVH              const_37         C14         C15          C9          C8       0.000    10.0     2
+KVH              const_38         C14         C15          C9         C10     180.000    10.0     2
+KVH              const_39          H7         C15          C9          C8     180.000    10.0     2
+KVH              const_40          H7         C15          C9         C10       0.000    10.0     2
+KVH              const_41          N5          C1          C2          S3       0.000    10.0     2
+KVH              const_42          N5          C1          C2          H8     180.000    10.0     2
+KVH              const_43       "C1'"          C1          C2          S3     180.000    10.0     2
+KVH              const_44       "C1'"          C1          C2          H8       0.000    10.0     2
+KVH              const_45          C1          C2          S3          C4       0.000    10.0     2
+KVH              const_46          H8          C2          S3          C4     180.000    10.0     2
+KVH              const_47          N5          C4          S3          C2       0.000    10.0     2
+KVH              const_48          C6          C4          S3          C2     180.000    10.0     2
+KVH              const_49          S3          C4          N5          C1       0.000    10.0     2
+KVH              const_50          C6          C4          N5          C1     180.000    10.0     2
+KVH            sp3_sp3_40       "C4'"       "C3'"       "O3'"         H17     180.000    10.0     3
+KVH            sp3_sp3_41       "C2'"       "C3'"       "O3'"         H17      60.000    10.0     3
+KVH            sp3_sp3_42         H16       "C3'"       "O3'"         H17     -60.000    10.0     3
+KVH            sp3_sp3_43       "C3'"       "C4'"       "O4'"         H15     180.000    10.0     3
+KVH            sp3_sp3_44       "C5'"       "C4'"       "O4'"         H15      60.000    10.0     3
+KVH            sp3_sp3_45         H14       "C4'"       "O4'"         H15     -60.000    10.0     3
+KVH            sp3_sp3_46       "C3'"       "C2'"       "O2'"         H19     180.000    10.0     3
+KVH            sp3_sp3_47       "C1'"       "C2'"       "O2'"         H19      60.000    10.0     3
+KVH            sp3_sp3_48         H18       "C2'"       "O2'"         H19     -60.000    10.0     3
+KVH            sp3_sp3_49       "C5'"       "C6'"       "O6'"         H13     180.000    10.0     3
+KVH            sp3_sp3_50         H11       "C6'"       "O6'"         H13      60.000    10.0     3
+KVH            sp3_sp3_51         H12       "C6'"       "O6'"         H13     -60.000    10.0     3
+KVH            sp3_sp3_52       "C4'"       "C5'"       "C6'"       "O6'"     180.000    10.0     3
+KVH            sp3_sp3_53       "C4'"       "C5'"       "C6'"         H11     -60.000    10.0     3
+KVH            sp3_sp3_54       "C4'"       "C5'"       "C6'"         H12      60.000    10.0     3
+KVH            sp3_sp3_55       "O5'"       "C5'"       "C6'"       "O6'"      60.000    10.0     3
+KVH            sp3_sp3_56       "O5'"       "C5'"       "C6'"         H11     180.000    10.0     3
+KVH            sp3_sp3_57       "O5'"       "C5'"       "C6'"         H12     -60.000    10.0     3
+KVH            sp3_sp3_58         H10       "C5'"       "C6'"       "O6'"     -60.000    10.0     3
+KVH            sp3_sp3_59         H10       "C5'"       "C6'"         H11      60.000    10.0     3
+KVH            sp3_sp3_60         H10       "C5'"       "C6'"         H12     180.000    10.0     3
+KVH             sp2_sp3_1          C2          C1       "C1'"       "C2'"     150.000    10.0     6
+KVH             sp2_sp3_2          C2          C1       "C1'"       "O5'"     -90.000    10.0     6
+KVH             sp2_sp3_3          C2          C1       "C1'"          H9      30.000    10.0     6
+KVH             sp2_sp3_4          N5          C1       "C1'"       "C2'"     -30.000    10.0     6
+KVH             sp2_sp3_5          N5          C1       "C1'"       "O5'"      90.000    10.0     6
+KVH             sp2_sp3_6          N5          C1       "C1'"          H9    -150.000    10.0     6
+KVH              const_51          C2          C1          N5          C4       0.000    10.0     2
+KVH              const_52       "C1'"          C1          N5          C4     180.000    10.0     2
+KVH             sp2_sp2_1          S3          C4          C6          C7     180.000     5.0     2
+KVH             sp2_sp2_2          S3          C4          C6         C11       0.000     5.0     2
+KVH             sp2_sp2_3          N5          C4          C6          C7       0.000     5.0     2
+KVH             sp2_sp2_4          N5          C4          C6         C11     180.000     5.0     2
+KVH              const_53          C7          C8          C9         C10       0.000    10.0     2
+KVH              const_54          C7          C8          C9         C15     180.000    10.0     2
+KVH              const_55         C12          C8          C9         C10     180.000    10.0     2
+KVH              const_56         C12          C8          C9         C15       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KVH    chir_1    "C1'"    "O5'"    "C2'"    C1    positive
+KVH    chir_2    "C5'"    "O5'"    "C4'"    "C6'"    negative
+KVH    chir_3    "C4'"    "O4'"    "C5'"    "C3'"    positive
+KVH    chir_4    "C3'"    "O3'"    "C4'"    "C2'"    negative
+KVH    chir_5    "C2'"    "O2'"    "C1'"    "C3'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KVH    plan-1         C10   0.020
+KVH    plan-1         C11   0.020
+KVH    plan-1         C12   0.020
+KVH    plan-1         C13   0.020
+KVH    plan-1         C14   0.020
+KVH    plan-1         C15   0.020
+KVH    plan-1          C4   0.020
+KVH    plan-1          C6   0.020
+KVH    plan-1          C7   0.020
+KVH    plan-1          C8   0.020
+KVH    plan-1          C9   0.020
+KVH    plan-1          H1   0.020
+KVH    plan-1          H2   0.020
+KVH    plan-1          H3   0.020
+KVH    plan-1          H4   0.020
+KVH    plan-1          H5   0.020
+KVH    plan-1          H6   0.020
+KVH    plan-1          H7   0.020
+KVH    plan-2          C1   0.020
+KVH    plan-2       "C1'"   0.020
+KVH    plan-2          C2   0.020
+KVH    plan-2          C4   0.020
+KVH    plan-2          C6   0.020
+KVH    plan-2          H8   0.020
+KVH    plan-2          N5   0.020
+KVH    plan-2          S3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KVH            InChI                InChI  1.03 InChI=1S/C19H19NO5S/c21-8-14-15(22)16(23)17(24)18(25-14)13-9-26-19(20-13)12-6-5-10-3-1-2-4-11(10)7-12/h1-7,9,14-18,21-24H,8H2/t14-,15-,16+,17-,18+/m1/s1
+KVH         InChIKey                InChI  1.03                                                                                                                              FZKCJLOBYMCTSR-SFFUCWETSA-N
+KVH SMILES_CANONICAL               CACTVS 3.385                                                                                         OC[C@H]1O[C@H]([C@H](O)[C@@H](O)[C@@H]1O)c2csc(n2)c3ccc4ccccc4c3
+KVH           SMILES               CACTVS 3.385                                                                                                OC[CH]1O[CH]([CH](O)[CH](O)[CH]1O)c2csc(n2)c3ccc4ccccc4c3
+KVH SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                     c1ccc2cc(ccc2c1)c3nc(cs3)[C@H]4[C@@H]([C@H]([C@@H]([C@H](O4)CO)O)O)O
+KVH           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                           c1ccc2cc(ccc2c1)c3nc(cs3)C4C(C(C(C(O4)CO)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KVH acedrg               243         "dictionary generator"                  
+KVH acedrg_database      11          "data source"                           
+KVH rdkit                2017.03.2   "Chemoinformatics tool"
+KVH refmac5              5.8.0238    "optimization tool"                     

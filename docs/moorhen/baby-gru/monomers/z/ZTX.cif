@@ -1,0 +1,399 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZTX     ZTX      "2-((4-(4-HYDROXYPIPERIDIN-1-YL)PHENYL)AMINO)-5,11-DIMETHYL-5H-BENZO[E]PYRIMIDO [5,4-B][1,4]DIAZEPIN-6(11H)-ONE"     NON-POLYMER     58     32     .     
+#
+data_comp_ZTX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZTX     N1      N       NRD6    0       37.085      48.698      59.716      
+ZTX     C2      C       CR6     0       38.272      49.127      59.224      
+ZTX     N3      N       NRD6    0       38.779      50.364      59.444      
+ZTX     C4      C       CR6     0       38.083      51.212      60.215      
+ZTX     C5      C       CR6     0       36.805      50.850      60.738      
+ZTX     C6      C       CR16    0       36.375      49.551      60.455      
+ZTX     OAA     O       O       0       35.093      53.774      61.996      
+ZTX     CAB     C       C       0       35.838      53.111      61.275      
+ZTX     CAC     C       CR6     0       36.541      53.807      60.135      
+ZTX     CAD     C       CR6     0       37.878      53.537      59.741      
+ZTX     NAE     N       NT      0       38.587      52.482      60.389      
+ZTX     CAF     C       CH3     0       39.987      52.676      60.770      
+ZTX     CAH     C       CR16    0       37.736      55.228      58.030      
+ZTX     CAI     C       CR16    0       36.449      55.526      58.428      
+ZTX     CAK     C       CR16    0       35.865      54.829      59.468      
+ZTX     CAL     C       CR16    0       38.449      54.232      58.667      
+ZTX     NAN     N       NH1     0       38.997      48.264      58.462      
+ZTX     CAO     C       CR6     0       40.216      48.475      57.774      
+ZTX     CAP     C       CR16    0       41.288      47.601      57.951      
+ZTX     CAQ     C       CR16    0       42.475      47.813      57.288      
+ZTX     CAR     C       CR6     0       42.630      48.912      56.416      
+ZTX     NAS     N       NR6     0       43.827      49.138      55.760      
+ZTX     CAT     C       CH2     0       44.472      48.141      54.859      
+ZTX     CAU     C       CH2     0       44.907      48.768      53.548      
+ZTX     CAV     C       CH1     0       45.748      50.004      53.759      
+ZTX     OAW     O       OH1     0       46.079      50.587      52.512      
+ZTX     CAX     C       CH2     0       44.994      50.998      54.609      
+ZTX     CAY     C       CH2     0       44.620      50.387      55.942      
+ZTX     CAZ     C       CR16    0       41.538      49.789      56.255      
+ZTX     CBA     C       CR16    0       40.356      49.568      56.918      
+ZTX     NBG     N       N       0       36.062      51.784      61.550      
+ZTX     CBH     C       CH3     0       35.504      51.250      62.808      
+ZTX     H6      H       H       0       35.542      49.248      60.805      
+ZTX     HAF     H       H       0       40.161      53.626      60.909      
+ZTX     HAFA    H       H       0       40.569      52.340      60.062      
+ZTX     HAFB    H       H       0       40.168      52.190      61.597      
+ZTX     HAH     H       H       0       38.132      55.704      57.319      
+ZTX     HAI     H       H       0       35.965      56.206      57.988      
+ZTX     HAK     H       H       0       34.986      55.044      59.728      
+ZTX     HAL     H       H       0       39.327      54.034      58.391      
+ZTX     HNAN    H       H       0       38.660      47.459      58.391      
+ZTX     HAP     H       H       0       41.200      46.859      58.528      
+ZTX     HAQ     H       H       0       43.191      47.214      57.416      
+ZTX     HAT     H       H       0       45.253      47.757      55.313      
+ZTX     HATA    H       H       0       43.838      47.414      54.677      
+ZTX     HAU     H       H       0       44.115      49.004      53.022      
+ZTX     HAUA    H       H       0       45.424      48.114      53.033      
+ZTX     HAV     H       H       0       46.586      49.749      54.228      
+ZTX     HOAW    H       H       0       46.677      51.166      52.633      
+ZTX     HAX     H       H       0       44.182      51.280      54.138      
+ZTX     HAXA    H       H       0       45.551      51.791      54.756      
+ZTX     HAY     H       H       0       45.435      50.179      56.447      
+ZTX     HAYA    H       H       0       44.097      51.034      56.462      
+ZTX     HAZ     H       H       0       41.618      50.533      55.683      
+ZTX     HBA     H       H       0       39.634      50.165      56.799      
+ZTX     HBH     H       H       0       35.832      50.352      62.971      
+ZTX     HBHA    H       H       0       34.536      51.230      62.749      
+ZTX     HBHB    H       H       0       35.768      51.818      63.550      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZTX          N1          C2      DOUBLE       y     1.348  0.0100     1.348  0.0100
+ZTX          N1          C6      SINGLE       y     1.328  0.0100     1.328  0.0100
+ZTX          C2         NAN      SINGLE       n     1.352  0.0129     1.352  0.0129
+ZTX          C2          N3      SINGLE       y     1.347  0.0125     1.347  0.0125
+ZTX          N3          C4      DOUBLE       y     1.338  0.0104     1.338  0.0104
+ZTX          C4         NAE      SINGLE       n     1.382  0.0169     1.382  0.0169
+ZTX          C4          C5      SINGLE       y     1.425  0.0200     1.425  0.0200
+ZTX          C5          C6      DOUBLE       y     1.391  0.0100     1.391  0.0100
+ZTX          C5         NBG      SINGLE       n     1.435  0.0100     1.435  0.0100
+ZTX         OAA         CAB      DOUBLE       n     1.228  0.0106     1.228  0.0106
+ZTX         CAB         CAC      SINGLE       n     1.500  0.0100     1.500  0.0100
+ZTX         CAB         NBG      SINGLE       n     1.356  0.0122     1.356  0.0122
+ZTX         CAC         CAD      DOUBLE       y     1.411  0.0108     1.411  0.0108
+ZTX         CAC         CAK      SINGLE       y     1.385  0.0124     1.385  0.0124
+ZTX         CAD         CAL      SINGLE       y     1.396  0.0100     1.396  0.0100
+ZTX         CAD         NAE      SINGLE       n     1.426  0.0161     1.426  0.0161
+ZTX         NAE         CAF      SINGLE       n     1.461  0.0106     1.461  0.0106
+ZTX         CAH         CAL      DOUBLE       y     1.378  0.0101     1.378  0.0101
+ZTX         CAH         CAI      SINGLE       y     1.376  0.0124     1.376  0.0124
+ZTX         CAI         CAK      DOUBLE       y     1.378  0.0104     1.378  0.0104
+ZTX         NAN         CAO      SINGLE       n     1.413  0.0102     1.413  0.0102
+ZTX         CAO         CAP      DOUBLE       y     1.390  0.0100     1.390  0.0100
+ZTX         CAO         CBA      SINGLE       y     1.390  0.0100     1.390  0.0100
+ZTX         CAP         CAQ      SINGLE       y     1.369  0.0129     1.369  0.0129
+ZTX         CAQ         CAR      DOUBLE       y     1.407  0.0129     1.407  0.0129
+ZTX         CAR         NAS      SINGLE       n     1.379  0.0200     1.379  0.0200
+ZTX         CAR         CAZ      SINGLE       y     1.407  0.0129     1.407  0.0129
+ZTX         NAS         CAT      SINGLE       n     1.475  0.0200     1.475  0.0200
+ZTX         NAS         CAY      SINGLE       n     1.475  0.0200     1.475  0.0200
+ZTX         CAT         CAU      SINGLE       n     1.512  0.0143     1.512  0.0143
+ZTX         CAU         CAV      SINGLE       n     1.509  0.0100     1.509  0.0100
+ZTX         CAV         OAW      SINGLE       n     1.416  0.0145     1.416  0.0145
+ZTX         CAV         CAX      SINGLE       n     1.509  0.0100     1.509  0.0100
+ZTX         CAX         CAY      SINGLE       n     1.512  0.0143     1.512  0.0143
+ZTX         CAZ         CBA      DOUBLE       y     1.369  0.0129     1.369  0.0129
+ZTX         NBG         CBH      SINGLE       n     1.470  0.0100     1.470  0.0100
+ZTX          C6          H6      SINGLE       n     1.082  0.0130     0.953  0.0200
+ZTX         CAF         HAF      SINGLE       n     1.089  0.0100     0.976  0.0100
+ZTX         CAF        HAFA      SINGLE       n     1.089  0.0100     0.976  0.0100
+ZTX         CAF        HAFB      SINGLE       n     1.089  0.0100     0.976  0.0100
+ZTX         CAH         HAH      SINGLE       n     1.082  0.0130     0.943  0.0172
+ZTX         CAI         HAI      SINGLE       n     1.082  0.0130     0.943  0.0180
+ZTX         CAK         HAK      SINGLE       n     1.082  0.0130     0.941  0.0168
+ZTX         CAL         HAL      SINGLE       n     1.082  0.0130     0.942  0.0198
+ZTX         NAN        HNAN      SINGLE       n     1.016  0.0100     0.874  0.0200
+ZTX         CAP         HAP      SINGLE       n     1.082  0.0130     0.944  0.0200
+ZTX         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.942  0.0100
+ZTX         CAT         HAT      SINGLE       n     1.089  0.0100     0.981  0.0110
+ZTX         CAT        HATA      SINGLE       n     1.089  0.0100     0.981  0.0110
+ZTX         CAU         HAU      SINGLE       n     1.089  0.0100     0.980  0.0102
+ZTX         CAU        HAUA      SINGLE       n     1.089  0.0100     0.980  0.0102
+ZTX         CAV         HAV      SINGLE       n     1.089  0.0100     0.994  0.0100
+ZTX         OAW        HOAW      SINGLE       n     0.970  0.0120     0.841  0.0200
+ZTX         CAX         HAX      SINGLE       n     1.089  0.0100     0.980  0.0102
+ZTX         CAX        HAXA      SINGLE       n     1.089  0.0100     0.980  0.0102
+ZTX         CAY         HAY      SINGLE       n     1.089  0.0100     0.981  0.0110
+ZTX         CAY        HAYA      SINGLE       n     1.089  0.0100     0.981  0.0110
+ZTX         CAZ         HAZ      SINGLE       n     1.082  0.0130     0.942  0.0100
+ZTX         CBA         HBA      SINGLE       n     1.082  0.0130     0.944  0.0200
+ZTX         CBH         HBH      SINGLE       n     1.089  0.0100     0.970  0.0149
+ZTX         CBH        HBHA      SINGLE       n     1.089  0.0100     0.970  0.0149
+ZTX         CBH        HBHB      SINGLE       n     1.089  0.0100     0.970  0.0149
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZTX          C2          N1          C6     117.101    1.50
+ZTX          N1          C2         NAN     117.230    2.94
+ZTX          N1          C2          N3     124.601    1.50
+ZTX         NAN          C2          N3     118.169    2.95
+ZTX          C2          N3          C4     117.784    1.50
+ZTX          N3          C4         NAE     116.465    1.50
+ZTX          N3          C4          C5     120.661    1.50
+ZTX         NAE          C4          C5     122.874    1.86
+ZTX          C4          C5          C6     117.122    1.50
+ZTX          C4          C5         NBG     121.439    2.27
+ZTX          C6          C5         NBG     121.439    2.27
+ZTX          N1          C6          C5     122.732    1.50
+ZTX          N1          C6          H6     118.069    2.84
+ZTX          C5          C6          H6     119.199    1.50
+ZTX         OAA         CAB         CAC     120.536    1.50
+ZTX         OAA         CAB         NBG     121.305    1.50
+ZTX         CAC         CAB         NBG     118.159    1.66
+ZTX         CAB         CAC         CAD     121.769    2.15
+ZTX         CAB         CAC         CAK     119.933    2.89
+ZTX         CAD         CAC         CAK     118.298    1.50
+ZTX         CAC         CAD         CAL     120.115    2.02
+ZTX         CAC         CAD         NAE     119.175    1.50
+ZTX         CAL         CAD         NAE     120.710    1.50
+ZTX          C4         NAE         CAD     119.197    2.03
+ZTX          C4         NAE         CAF     117.604    1.50
+ZTX         CAD         NAE         CAF     116.492    1.57
+ZTX         NAE         CAF         HAF     109.471    1.50
+ZTX         NAE         CAF        HAFA     109.471    1.50
+ZTX         NAE         CAF        HAFB     109.471    1.50
+ZTX         HAF         CAF        HAFA     109.482    1.50
+ZTX         HAF         CAF        HAFB     109.482    1.50
+ZTX        HAFA         CAF        HAFB     109.482    1.50
+ZTX         CAL         CAH         CAI     120.337    1.50
+ZTX         CAL         CAH         HAH     119.690    1.50
+ZTX         CAI         CAH         HAH     119.973    1.50
+ZTX         CAH         CAI         CAK     120.011    1.50
+ZTX         CAH         CAI         HAI     120.040    1.50
+ZTX         CAK         CAI         HAI     119.949    1.50
+ZTX         CAC         CAK         CAI     121.244    1.50
+ZTX         CAC         CAK         HAK     119.149    1.50
+ZTX         CAI         CAK         HAK     119.607    1.50
+ZTX         CAD         CAL         CAH     119.995    1.50
+ZTX         CAD         CAL         HAL     119.931    1.50
+ZTX         CAH         CAL         HAL     120.074    1.50
+ZTX          C2         NAN         CAO     129.384    1.99
+ZTX          C2         NAN        HNAN     114.882    1.54
+ZTX         CAO         NAN        HNAN     115.734    1.50
+ZTX         NAN         CAO         CAP     120.584    3.00
+ZTX         NAN         CAO         CBA     120.584    3.00
+ZTX         CAP         CAO         CBA     118.832    1.50
+ZTX         CAO         CAP         CAQ     120.033    1.50
+ZTX         CAO         CAP         HAP     119.994    1.50
+ZTX         CAQ         CAP         HAP     119.973    1.50
+ZTX         CAP         CAQ         CAR     121.042    1.50
+ZTX         CAP         CAQ         HAQ     119.366    1.50
+ZTX         CAR         CAQ         HAQ     119.592    1.50
+ZTX         CAQ         CAR         NAS     120.491    1.52
+ZTX         CAQ         CAR         CAZ     119.017    1.78
+ZTX         NAS         CAR         CAZ     120.491    1.52
+ZTX         CAR         NAS         CAT     123.474    1.63
+ZTX         CAR         NAS         CAY     123.474    1.63
+ZTX         CAT         NAS         CAY     113.053    1.54
+ZTX         NAS         CAT         CAU     110.478    1.50
+ZTX         NAS         CAT         HAT     109.189    1.50
+ZTX         NAS         CAT        HATA     109.189    1.50
+ZTX         CAU         CAT         HAT     109.565    1.50
+ZTX         CAU         CAT        HATA     109.565    1.50
+ZTX         HAT         CAT        HATA     108.202    1.50
+ZTX         CAT         CAU         CAV     111.671    2.54
+ZTX         CAT         CAU         HAU     109.491    1.50
+ZTX         CAT         CAU        HAUA     109.491    1.50
+ZTX         CAV         CAU         HAU     109.359    1.50
+ZTX         CAV         CAU        HAUA     109.359    1.50
+ZTX         HAU         CAU        HAUA     108.000    1.50
+ZTX         CAU         CAV         OAW     109.852    1.83
+ZTX         CAU         CAV         CAX     110.196    1.50
+ZTX         CAU         CAV         HAV     108.906    1.50
+ZTX         OAW         CAV         CAX     109.852    1.83
+ZTX         OAW         CAV         HAV     108.828    1.50
+ZTX         CAX         CAV         HAV     108.906    1.50
+ZTX         CAV         OAW        HOAW     108.820    1.99
+ZTX         CAV         CAX         CAY     111.671    2.54
+ZTX         CAV         CAX         HAX     109.359    1.50
+ZTX         CAV         CAX        HAXA     109.359    1.50
+ZTX         CAY         CAX         HAX     109.491    1.50
+ZTX         CAY         CAX        HAXA     109.491    1.50
+ZTX         HAX         CAX        HAXA     108.000    1.50
+ZTX         NAS         CAY         CAX     110.478    1.50
+ZTX         NAS         CAY         HAY     109.189    1.50
+ZTX         NAS         CAY        HAYA     109.189    1.50
+ZTX         CAX         CAY         HAY     109.565    1.50
+ZTX         CAX         CAY        HAYA     109.565    1.50
+ZTX         HAY         CAY        HAYA     108.202    1.50
+ZTX         CAR         CAZ         CBA     121.042    1.50
+ZTX         CAR         CAZ         HAZ     119.592    1.50
+ZTX         CBA         CAZ         HAZ     119.366    1.50
+ZTX         CAO         CBA         CAZ     120.033    1.50
+ZTX         CAO         CBA         HBA     119.994    1.50
+ZTX         CAZ         CBA         HBA     119.973    1.50
+ZTX          C5         NBG         CAB     123.658    2.18
+ZTX          C5         NBG         CBH     116.718    1.50
+ZTX         CAB         NBG         CBH     119.624    2.27
+ZTX         NBG         CBH         HBH     109.467    1.50
+ZTX         NBG         CBH        HBHA     109.467    1.50
+ZTX         NBG         CBH        HBHB     109.467    1.50
+ZTX         HBH         CBH        HBHA     109.352    1.56
+ZTX         HBH         CBH        HBHB     109.352    1.56
+ZTX        HBHA         CBH        HBHB     109.352    1.56
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZTX       const_sp2_sp2_2         NAN          C2          N1          C6     180.000     5.0     2
+ZTX              const_55          C5          C6          N1          C2       0.000    10.0     2
+ZTX             sp2_sp3_7          C4         NAE         CAF         HAF       0.000    10.0     6
+ZTX              const_27         CAL         CAH         CAI         CAK       0.000    10.0     2
+ZTX              const_23         CAI         CAH         CAL         CAD       0.000    10.0     2
+ZTX              const_31         CAH         CAI         CAK         CAC       0.000    10.0     2
+ZTX            sp2_sp2_25         CAP         CAO         NAN          C2     180.000     5.0     2
+ZTX              const_37         NAN         CAO         CAP         CAQ     180.000    10.0     2
+ZTX              const_63         NAN         CAO         CBA         CAZ     180.000    10.0     2
+ZTX              const_39         CAO         CAP         CAQ         CAR       0.000    10.0     2
+ZTX              const_44         CAP         CAQ         CAR         NAS     180.000    10.0     2
+ZTX             sp2_sp2_1          N1          C2         NAN         CAO     180.000     5.0     2
+ZTX       const_sp2_sp2_4         NAN          C2          N3          C4     180.000     5.0     2
+ZTX            sp2_sp2_29         CAQ         CAR         NAS         CAT     180.000     5.0     2
+ZTX              const_47         CAQ         CAR         CAZ         CBA       0.000    10.0     2
+ZTX             sp2_sp3_4         CAR         NAS         CAT         CAU     180.000    10.0     6
+ZTX            sp2_sp3_16         CAR         NAS         CAY         CAX     180.000    10.0     6
+ZTX             sp3_sp3_1         NAS         CAT         CAU         CAV     -60.000    10.0     3
+ZTX            sp3_sp3_12         CAT         CAU         CAV         OAW     -60.000    10.0     3
+ZTX            sp3_sp3_38         CAU         CAV         OAW        HOAW      60.000    10.0     3
+ZTX            sp3_sp3_22         OAW         CAV         CAX         CAY     180.000    10.0     3
+ZTX            sp3_sp3_28         CAV         CAX         CAY         NAS      60.000    10.0     3
+ZTX              const_51         CAR         CAZ         CBA         CAO       0.000    10.0     2
+ZTX       const_sp2_sp2_6         NAE          C4          N3          C2     180.000     5.0     2
+ZTX            sp2_sp3_22         CAB         NBG         CBH         HBH     180.000    10.0     6
+ZTX             sp2_sp2_8          N3          C4         NAE         CAF     180.000     5.0     2
+ZTX              const_10         NAE          C4          C5         NBG       0.000    10.0     2
+ZTX             sp2_sp2_9          C4          C5         NBG         CAB     180.000     5.0     2
+ZTX              const_13         NBG          C5          C6          N1     180.000    10.0     2
+ZTX            sp2_sp2_20         OAA         CAB         NBG         CBH     180.000     5.0     2
+ZTX            sp2_sp2_15         OAA         CAB         CAC         CAD       0.000     5.0     2
+ZTX              const_59         CAB         CAC         CAK         CAI     180.000    10.0     2
+ZTX              const_18         CAB         CAC         CAD         NAE       0.000    10.0     2
+ZTX            sp2_sp2_22         CAC         CAD         NAE         CAF       0.000     5.0     2
+ZTX              const_21         NAE         CAD         CAL         CAH     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZTX    chir_1    CAV    OAW    CAU    CAX    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZTX    plan-1          C2   0.020
+ZTX    plan-1          C4   0.020
+ZTX    plan-1          C5   0.020
+ZTX    plan-1          C6   0.020
+ZTX    plan-1          H6   0.020
+ZTX    plan-1          N1   0.020
+ZTX    plan-1          N3   0.020
+ZTX    plan-1         NAE   0.020
+ZTX    plan-1         NAN   0.020
+ZTX    plan-1         NBG   0.020
+ZTX    plan-2         CAB   0.020
+ZTX    plan-2         CAC   0.020
+ZTX    plan-2         CAD   0.020
+ZTX    plan-2         CAH   0.020
+ZTX    plan-2         CAI   0.020
+ZTX    plan-2         CAK   0.020
+ZTX    plan-2         CAL   0.020
+ZTX    plan-2         HAH   0.020
+ZTX    plan-2         HAI   0.020
+ZTX    plan-2         HAK   0.020
+ZTX    plan-2         HAL   0.020
+ZTX    plan-2         NAE   0.020
+ZTX    plan-3         CAO   0.020
+ZTX    plan-3         CAP   0.020
+ZTX    plan-3         CAQ   0.020
+ZTX    plan-3         CAR   0.020
+ZTX    plan-3         CAZ   0.020
+ZTX    plan-3         CBA   0.020
+ZTX    plan-3         HAP   0.020
+ZTX    plan-3         HAQ   0.020
+ZTX    plan-3         HAZ   0.020
+ZTX    plan-3         HBA   0.020
+ZTX    plan-3         NAN   0.020
+ZTX    plan-3         NAS   0.020
+ZTX    plan-4         CAB   0.020
+ZTX    plan-4         CAC   0.020
+ZTX    plan-4         NBG   0.020
+ZTX    plan-4         OAA   0.020
+ZTX    plan-5          C2   0.020
+ZTX    plan-5         CAO   0.020
+ZTX    plan-5        HNAN   0.020
+ZTX    plan-5         NAN   0.020
+ZTX    plan-6         CAR   0.020
+ZTX    plan-6         CAT   0.020
+ZTX    plan-6         CAY   0.020
+ZTX    plan-6         NAS   0.020
+ZTX    plan-7          C5   0.020
+ZTX    plan-7         CAB   0.020
+ZTX    plan-7         CBH   0.020
+ZTX    plan-7         NBG   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZTX            InChI                InChI  1.03 InChI=1S/C24H26N6O2/c1-28-20-6-4-3-5-19(20)23(32)29(2)21-15-25-24(27-22(21)28)26-16-7-9-17(10-8-16)30-13-11-18(31)12-14-30/h3-10,15,18,31H,11-14H2,1-2H3,(H,25,26,27)
+ZTX         InChIKey                InChI  1.03                                                                                                                                           DFQAJLQXPSPNJE-UHFFFAOYSA-N
+ZTX           SMILES              ACDLabs 12.01                                                                                                                   O=C2c5ccccc5N(c1nc(ncc1N2C)Nc3ccc(cc3)N4CCC(O)CC4)C
+ZTX SMILES_CANONICAL               CACTVS 3.370                                                                                                                 CN1C(=O)c2ccccc2N(C)c3nc(Nc4ccc(cc4)N5CCC(O)CC5)ncc13
+ZTX           SMILES               CACTVS 3.370                                                                                                                 CN1C(=O)c2ccccc2N(C)c3nc(Nc4ccc(cc4)N5CCC(O)CC5)ncc13
+ZTX SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                 CN1c2ccccc2C(=O)N(c3c1nc(nc3)Nc4ccc(cc4)N5CCC(CC5)O)C
+ZTX           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                 CN1c2ccccc2C(=O)N(c3c1nc(nc3)Nc4ccc(cc4)N5CCC(CC5)O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZTX acedrg               243         "dictionary generator"                  
+ZTX acedrg_database      11          "data source"                           
+ZTX rdkit                2017.03.2   "Chemoinformatics tool"
+ZTX refmac5              5.8.0238    "optimization tool"                     

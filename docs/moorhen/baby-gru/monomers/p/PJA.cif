@@ -1,0 +1,284 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PJA     PJA      "4-formyl-3-hydroxy-8-methoxy-1,9-dimethyl-11-oxo-11H-dibenzo[b,e][1,4]dioxepine-6-carboxylic acid"     NON-POLYMER     39     26     .     
+#
+data_comp_PJA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PJA     O       O       O       0       6.153       18.250      26.732      
+PJA     CAN     C       C1      0       5.403       19.029      26.189      
+PJA     CBB     C       CR6     0       5.685       20.435      25.956      
+PJA     CBF     C       CR6     0       5.764       20.952      24.641      
+PJA     OAS     O       O2      0       5.538       19.998      23.646      
+PJA     CBE     C       CR6     0       6.384       19.875      22.563      
+PJA     CBA     C       CR6     0       7.154       18.740      22.305      
+PJA     CAU     C       C       0       7.114       17.545      23.211      
+PJA     OAH     O       O       0       6.305       16.638      22.945      
+PJA     OAE     O       OC      -1      7.892       17.523      24.182      
+PJA     CAL     C       CR16    0       7.972       18.748      21.172      
+PJA     CAZ     C       CR6     0       8.023       19.834      20.316      
+PJA     OAQ     O       O2      0       8.826       19.859      19.205      
+PJA     CAA     C       CH3     0       8.806       18.753      18.305      
+PJA     CAY     C       CR6     0       7.254       20.983      20.570      
+PJA     CAD     C       CH3     0       7.305       22.176      19.647      
+PJA     CBD     C       CR6     0       6.426       20.969      21.698      
+PJA     OAR     O       O2      0       5.635       22.075      22.043      
+PJA     CBC     C       C       0       6.127       22.889      23.017      
+PJA     OAG     O       O       0       6.637       23.937      22.738      
+PJA     CBG     C       CR6     0       6.030       22.333      24.405      
+PJA     CAW     C       CR6     0       6.239       23.191      25.549      
+PJA     CAC     C       CH3     0       6.540       24.674      25.456      
+PJA     CAK     C       CR16    0       6.160       22.655      26.830      
+PJA     CAX     C       CR6     0       5.889       21.309      27.041      
+PJA     OAJ     O       OH1     0       5.825       20.849      28.336      
+PJA     H2      H       H       0       4.564       18.702      25.890      
+PJA     H5      H       H       0       8.500       17.987      20.985      
+PJA     H6      H       H       0       7.887       18.503      18.115      
+PJA     H7      H       H       0       9.270       18.001      18.708      
+PJA     H8      H       H       0       9.251       19.002      17.479      
+PJA     H9      H       H       0       6.790       22.911      20.016      
+PJA     H10     H       H       0       6.938       21.932      18.782      
+PJA     H11     H       H       0       8.226       22.460      19.535      
+PJA     H12     H       H       0       6.542       25.071      26.342      
+PJA     H13     H       H       0       5.862       25.111      24.917      
+PJA     H14     H       H       0       7.412       24.805      25.050      
+PJA     H15     H       H       0       6.293       23.217      27.579      
+PJA     H16     H       H       0       5.460       21.332      28.948      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PJA         OAQ         CAA      SINGLE       n     1.424  0.0117     1.424  0.0117
+PJA         CAZ         OAQ      SINGLE       n     1.365  0.0147     1.365  0.0147
+PJA         CAY         CAD      SINGLE       n     1.505  0.0100     1.505  0.0100
+PJA         CAZ         CAY      DOUBLE       y     1.398  0.0100     1.398  0.0100
+PJA         CAL         CAZ      SINGLE       y     1.378  0.0100     1.378  0.0100
+PJA         CAY         CBD      SINGLE       y     1.390  0.0111     1.390  0.0111
+PJA         CBA         CAL      DOUBLE       y     1.395  0.0100     1.395  0.0100
+PJA         CBD         OAR      SINGLE       n     1.404  0.0128     1.404  0.0128
+PJA         CBE         CBD      DOUBLE       y     1.398  0.0117     1.398  0.0117
+PJA         OAR         CBC      SINGLE       n     1.360  0.0112     1.360  0.0112
+PJA         CBE         CBA      SINGLE       y     1.394  0.0100     1.394  0.0100
+PJA         CBA         CAU      SINGLE       n     1.498  0.0200     1.498  0.0200
+PJA         OAS         CBE      SINGLE       n     1.381  0.0100     1.381  0.0100
+PJA         CAU         OAH      DOUBLE       n     1.244  0.0200     1.244  0.0200
+PJA         CBC         OAG      DOUBLE       n     1.198  0.0100     1.198  0.0100
+PJA         CBC         CBG      SINGLE       n     1.482  0.0100     1.482  0.0100
+PJA         CAU         OAE      SINGLE       n     1.244  0.0200     1.244  0.0200
+PJA         CBF         OAS      SINGLE       n     1.391  0.0127     1.391  0.0127
+PJA         CBF         CBG      SINGLE       y     1.404  0.0114     1.404  0.0114
+PJA         CBG         CAW      DOUBLE       y     1.414  0.0147     1.414  0.0147
+PJA         CBB         CBF      DOUBLE       y     1.404  0.0138     1.404  0.0138
+PJA         CAW         CAC      SINGLE       n     1.511  0.0100     1.511  0.0100
+PJA         CAW         CAK      SINGLE       y     1.385  0.0100     1.385  0.0100
+PJA         CAN         CBB      SINGLE       n     1.446  0.0183     1.446  0.0183
+PJA         CBB         CAX      SINGLE       y     1.408  0.0102     1.408  0.0102
+PJA           O         CAN      DOUBLE       n     1.210  0.0148     1.210  0.0148
+PJA         CAK         CAX      DOUBLE       y     1.390  0.0100     1.390  0.0100
+PJA         CAX         OAJ      SINGLE       n     1.374  0.0155     1.374  0.0155
+PJA         CAN          H2      SINGLE       n     1.082  0.0130     0.949  0.0200
+PJA         CAL          H5      SINGLE       n     1.082  0.0130     0.945  0.0127
+PJA         CAA          H6      SINGLE       n     1.089  0.0100     0.971  0.0157
+PJA         CAA          H7      SINGLE       n     1.089  0.0100     0.971  0.0157
+PJA         CAA          H8      SINGLE       n     1.089  0.0100     0.971  0.0157
+PJA         CAD          H9      SINGLE       n     1.089  0.0100     0.971  0.0135
+PJA         CAD         H10      SINGLE       n     1.089  0.0100     0.971  0.0135
+PJA         CAD         H11      SINGLE       n     1.089  0.0100     0.971  0.0135
+PJA         CAC         H12      SINGLE       n     1.089  0.0100     0.971  0.0135
+PJA         CAC         H13      SINGLE       n     1.089  0.0100     0.971  0.0135
+PJA         CAC         H14      SINGLE       n     1.089  0.0100     0.971  0.0135
+PJA         CAK         H15      SINGLE       n     1.082  0.0130     0.946  0.0100
+PJA         OAJ         H16      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PJA         CBB         CAN           O     125.101    1.97
+PJA         CBB         CAN          H2     117.049    1.65
+PJA           O         CAN          H2     117.851    1.69
+PJA         CBF         CBB         CAN     120.763    1.50
+PJA         CBF         CBB         CAX     118.473    1.50
+PJA         CAN         CBB         CAX     120.763    1.50
+PJA         OAS         CBF         CBG     119.762    2.59
+PJA         OAS         CBF         CBB     119.762    2.59
+PJA         CBG         CBF         CBB     120.476    1.50
+PJA         CBE         OAS         CBF     118.469    2.57
+PJA         CBD         CBE         CBA     120.028    1.50
+PJA         CBD         CBE         OAS     120.000    2.23
+PJA         CBA         CBE         OAS     119.973    2.59
+PJA         CAL         CBA         CBE     118.475    1.50
+PJA         CAL         CBA         CAU     120.479    1.50
+PJA         CBE         CBA         CAU     121.047    1.50
+PJA         CBA         CAU         OAH     117.949    1.50
+PJA         CBA         CAU         OAE     117.949    1.50
+PJA         OAH         CAU         OAE     124.103    1.50
+PJA         CAZ         CAL         CBA     121.880    1.50
+PJA         CAZ         CAL          H5     119.056    1.50
+PJA         CBA         CAL          H5     119.064    1.50
+PJA         OAQ         CAZ         CAY     116.694    2.07
+PJA         OAQ         CAZ         CAL     122.564    1.50
+PJA         CAY         CAZ         CAL     120.741    1.50
+PJA         CAA         OAQ         CAZ     118.009    1.50
+PJA         OAQ         CAA          H6     109.428    1.50
+PJA         OAQ         CAA          H7     109.428    1.50
+PJA         OAQ         CAA          H8     109.428    1.50
+PJA          H6         CAA          H7     109.509    1.50
+PJA          H6         CAA          H8     109.509    1.50
+PJA          H7         CAA          H8     109.509    1.50
+PJA         CAD         CAY         CAZ     121.549    1.53
+PJA         CAD         CAY         CBD     120.661    1.50
+PJA         CAZ         CAY         CBD     117.790    1.50
+PJA         CAY         CAD          H9     109.602    1.50
+PJA         CAY         CAD         H10     109.602    1.50
+PJA         CAY         CAD         H11     109.602    1.50
+PJA          H9         CAD         H10     109.348    1.50
+PJA          H9         CAD         H11     109.348    1.50
+PJA         H10         CAD         H11     109.348    1.50
+PJA         CAY         CBD         OAR     119.283    1.50
+PJA         CAY         CBD         CBE     121.086    1.50
+PJA         OAR         CBD         CBE     119.631    1.55
+PJA         CBD         OAR         CBC     117.956    1.78
+PJA         OAR         CBC         OAG     123.524    1.50
+PJA         OAR         CBC         CBG     112.526    1.50
+PJA         OAG         CBC         CBG     123.949    1.94
+PJA         CBC         CBG         CBF     119.893    2.17
+PJA         CBC         CBG         CAW     120.577    2.16
+PJA         CBF         CBG         CAW     119.529    1.50
+PJA         CBG         CAW         CAC     122.690    1.50
+PJA         CBG         CAW         CAK     119.222    1.50
+PJA         CAC         CAW         CAK     118.088    1.50
+PJA         CAW         CAC         H12     109.545    1.50
+PJA         CAW         CAC         H13     109.545    1.50
+PJA         CAW         CAC         H14     109.545    1.50
+PJA         H12         CAC         H13     109.348    1.50
+PJA         H12         CAC         H14     109.348    1.50
+PJA         H13         CAC         H14     109.348    1.50
+PJA         CAW         CAK         CAX     121.121    1.50
+PJA         CAW         CAK         H15     119.458    1.50
+PJA         CAX         CAK         H15     119.422    1.50
+PJA         CBB         CAX         CAK     121.178    1.50
+PJA         CBB         CAX         OAJ     119.411    3.00
+PJA         CAK         CAX         OAJ     119.411    3.00
+PJA         CAX         OAJ         H16     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PJA              const_34         CBA         CAL         CAZ         OAQ     180.000    10.0     2
+PJA             sp2_sp2_1         CAY         CAZ         OAQ         CAA     180.000     5.0     2
+PJA              const_32         CAD         CAY         CAZ         OAQ       0.000    10.0     2
+PJA             sp3_sp3_2          H6         CAA         OAQ         CAZ     -60.000    10.0     3
+PJA             sp2_sp3_1         CAZ         CAY         CAD          H9     150.000    10.0     6
+PJA              const_28         CAD         CAY         CBD         OAR       0.000    10.0     2
+PJA             sp2_sp2_3         CAY         CBD         OAR         CBC     180.000     5.0     2
+PJA             sp2_sp2_5         OAG         CBC         OAR         CBD     180.000     5.0     2
+PJA            sp2_sp2_13         OAR         CBC         CBG         CBF     180.000     5.0     2
+PJA            sp2_sp2_19           O         CAN         CBB         CBF     180.000     5.0     2
+PJA              const_12         CAC         CAW         CBG         CBC       0.000    10.0     2
+PJA             sp2_sp3_7         CBG         CAW         CAC         H12     150.000    10.0     6
+PJA              const_14         CAX         CAK         CAW         CAC     180.000    10.0     2
+PJA              const_18         CAW         CAK         CAX         OAJ     180.000    10.0     2
+PJA            sp2_sp2_23         CBB         CAX         OAJ         H16     180.000     5.0     2
+PJA              const_48         OAJ         CAX         CBB         CAN       0.000    10.0     2
+PJA       const_sp2_sp2_4         CAN         CBB         CBF         OAS       0.000     5.0     2
+PJA       const_sp2_sp2_8         OAS         CBF         CBG         CBC       0.000     5.0     2
+PJA            sp2_sp2_17         CBG         CBF         OAS         CBE     180.000     5.0     2
+PJA            sp2_sp2_11         CBD         CBE         OAS         CBF     180.000     5.0     2
+PJA              const_24         OAR         CBD         CBE         OAS       0.000    10.0     2
+PJA              const_44         CAU         CBA         CBE         OAS       0.000    10.0     2
+PJA              const_38         CAZ         CAL         CBA         CAU     180.000    10.0     2
+PJA             sp2_sp2_7         OAH         CAU         CBA         CAL     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PJA    plan-1         CAD   0.020
+PJA    plan-1         CAL   0.020
+PJA    plan-1         CAU   0.020
+PJA    plan-1         CAY   0.020
+PJA    plan-1         CAZ   0.020
+PJA    plan-1         CBA   0.020
+PJA    plan-1         CBD   0.020
+PJA    plan-1         CBE   0.020
+PJA    plan-1          H5   0.020
+PJA    plan-1         OAQ   0.020
+PJA    plan-1         OAR   0.020
+PJA    plan-1         OAS   0.020
+PJA    plan-2         CAC   0.020
+PJA    plan-2         CAK   0.020
+PJA    plan-2         CAN   0.020
+PJA    plan-2         CAW   0.020
+PJA    plan-2         CAX   0.020
+PJA    plan-2         CBB   0.020
+PJA    plan-2         CBC   0.020
+PJA    plan-2         CBF   0.020
+PJA    plan-2         CBG   0.020
+PJA    plan-2         H15   0.020
+PJA    plan-2         OAJ   0.020
+PJA    plan-2         OAS   0.020
+PJA    plan-3         CAN   0.020
+PJA    plan-3         CBB   0.020
+PJA    plan-3          H2   0.020
+PJA    plan-3           O   0.020
+PJA    plan-4         CAU   0.020
+PJA    plan-4         CBA   0.020
+PJA    plan-4         OAE   0.020
+PJA    plan-4         OAH   0.020
+PJA    plan-5         CBC   0.020
+PJA    plan-5         CBG   0.020
+PJA    plan-5         OAG   0.020
+PJA    plan-5         OAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PJA           SMILES              ACDLabs 12.01                                                                        O=C(O)c1c2Oc3c(C(=O)Oc2c(c(OC)c1)C)c(cc(O)c3C=O)C
+PJA            InChI                InChI  1.03 InChI=1S/C18H14O8/c1-7-4-11(20)10(6-19)15-13(7)18(23)26-14-8(2)12(24-3)5-9(17(21)22)16(14)25-15/h4-6,20H,1-3H3,(H,21,22)
+PJA         InChIKey                InChI  1.03                                                                                              FUCWJKJZOHOLEO-UHFFFAOYSA-N
+PJA SMILES_CANONICAL               CACTVS 3.370                                                                          COc1cc(C(O)=O)c2Oc3c(C=O)c(O)cc(C)c3C(=O)Oc2c1C
+PJA           SMILES               CACTVS 3.370                                                                          COc1cc(C(O)=O)c2Oc3c(C=O)c(O)cc(C)c3C(=O)Oc2c1C
+PJA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                        Cc1cc(c(c2c1C(=O)Oc3c(c(cc(c3O2)C(=O)O)OC)C)C=O)O
+PJA           SMILES "OpenEye OEToolkits" 1.7.6                                                                        Cc1cc(c(c2c1C(=O)Oc3c(c(cc(c3O2)C(=O)O)OC)C)C=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PJA acedrg               243         "dictionary generator"                  
+PJA acedrg_database      11          "data source"                           
+PJA rdkit                2017.03.2   "Chemoinformatics tool"
+PJA refmac5              5.8.0238    "optimization tool"                     

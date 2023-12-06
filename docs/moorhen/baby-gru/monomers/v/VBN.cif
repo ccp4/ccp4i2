@@ -1,0 +1,553 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VBN     VBN      "(4S,5R)-N-{3-[(2,3-dihydroxybenzoyl)amino]propyl}-2-(2,3-dihydroxyphenyl)-N-[3-({[(4S,5R)-2-(2,3-dihydroxyphenyl)-5-methyl-4,5-dihydro-1,3-oxazol-4-yl]carbonyl}amino)propyl]-5-methyl-4,5-dihydro-1,3-oxazole-4-carboxamide"     NON-POLYMER     90     51     .     
+#
+data_comp_VBN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VBN     C       C       C       0       24.501      17.962      3.321       
+VBN     N       N       NRD5    0       23.939      16.748      5.369       
+VBN     O       O       O       0       23.339      18.354      3.187       
+VBN     CA      C       CH1     0       24.736      16.691      4.132       
+VBN     CB      C       CH1     0       24.268      15.369      3.475       
+VBN     CAB     C       CH3     0       30.281      12.397      6.107       
+VBN     OAC     O       O       0       26.445      21.970      6.383       
+VBN     OAD     O       O       0       28.466      14.953      3.354       
+VBN     OAF     O       OH1     0       26.514      16.844      9.288       
+VBN     OAG     O       OH1     0       21.628      16.018      10.091      
+VBN     OAH     O       OH1     0       23.405      12.988      9.606       
+VBN     OAI     O       OH1     0       26.096      18.070      6.833       
+VBN     OAJ     O       OH1     0       23.498      16.676      8.153       
+VBN     OAK     O       OH1     0       25.894      13.927      8.812       
+VBN     CAL     C       CR16    0       26.306      20.355      10.300      
+VBN     CAM     C       CR16    0       20.320      14.159      7.223       
+VBN     CAN     C       CR16    0       23.709      11.419      6.314       
+VBN     CAO     C       CR16    0       26.446      18.968      10.365      
+VBN     CAP     C       CR16    0       20.451      14.678      8.512       
+VBN     CAQ     C       CR16    0       23.194      11.794      7.556       
+VBN     CAR     C       CR16    0       26.100      20.968      9.096       
+VBN     CAS     C       CR16    0       21.245      14.479      6.241       
+VBN     CAT     C       CR16    0       24.950      11.879      5.902       
+VBN     CAU     C       CH2     0       25.604      21.092      3.455       
+VBN     CAV     C       CH2     0       27.924      18.494      3.671       
+VBN     CAW     C       CH2     0       24.528      21.169      4.525       
+VBN     CAX     C       CH2     0       29.195      17.665      3.686       
+VBN     CAY     C       CH2     0       25.376      20.047      2.376       
+VBN     CAZ     C       CH2     0       26.918      18.099      2.606       
+VBN     NBB     N       NH1     0       24.887      20.473      5.756       
+VBN     NBC     N       NH1     0       29.167      16.619      4.713       
+VBN     NBD     N       NRD5    0       27.395      14.404      6.194       
+VBN     OBF     O       O2      0       27.887      12.229      5.885       
+VBN     CBG     C       C       0       25.799      20.947      6.615       
+VBN     CBH     C       C       0       28.797      15.364      4.467       
+VBN     CBJ     C       CR5     0       23.302      15.657      5.482       
+VBN     CBK     C       CR6     0       26.375      18.210      9.208       
+VBN     CBL     C       CR6     0       21.510      15.515      8.817       
+VBN     CBM     C       CR6     0       23.925      12.629      8.385       
+VBN     CBN     C       CR6     0       26.167      18.836      7.973       
+VBN     CBO     C       CR6     0       22.451      15.842      7.832       
+VBN     CBP     C       CR6     0       25.181      13.098      7.977       
+VBN     CBQ     C       CR6     0       26.019      20.232      7.904       
+VBN     CBR     C       CR6     0       22.323      15.320      6.529       
+VBN     CBS     C       CR6     0       25.701      12.720      6.723       
+VBN     CBU     C       CH1     0       29.074      12.926      5.387       
+VBN     CBW     C       CR5     0       27.014      13.196      6.268       
+VBN     CBX     C       CH1     0       28.765      14.420      5.660       
+VBN     NBY     N       N       0       25.563      18.650      2.825       
+VBN     OG1     O       O2      0       23.542      14.696      4.553       
+VBN     CG2     C       CH3     0       25.369      14.470      3.001       
+VBN     HA      H       H       0       25.685      16.616      4.405       
+VBN     HB      H       H       0       23.654      15.571      2.727       
+VBN     HAB     H       H       0       30.251      12.674      7.036       
+VBN     HABA    H       H       0       31.085      12.747      5.688       
+VBN     HABB    H       H       0       30.285      11.427      6.057       
+VBN     HOAF    H       H       0       27.026      16.429      8.735       
+VBN     HOAG    H       H       0       21.687      16.869      10.214      
+VBN     HOAH    H       H       0       23.578      13.763      9.941       
+VBN     HOAI    H       H       0       26.739      17.534      6.633       
+VBN     HOAJ    H       H       0       23.537      17.468      7.816       
+VBN     HOAK    H       H       0       26.630      13.653      9.166       
+VBN     HAL     H       H       0       26.354      20.866      11.085      
+VBN     HAM     H       H       0       19.600      13.593      7.020       
+VBN     HAN     H       H       0       23.210      10.853      5.756       
+VBN     HAO     H       H       0       26.587      18.544      11.194      
+VBN     HAP     H       H       0       19.820      14.459      9.177       
+VBN     HAQ     H       H       0       22.351      11.480      7.834       
+VBN     HAR     H       H       0       26.007      21.904      9.061       
+VBN     HAS     H       H       0       21.146      14.123      5.373       
+VBN     HAT     H       H       0       25.292      11.621      5.061       
+VBN     HAU     H       H       0       26.464      20.919      3.882       
+VBN     HAUA    H       H       0       25.673      21.968      3.023       
+VBN     HAV     H       H       0       28.170      19.431      3.535       
+VBN     HAVA    H       H       0       27.494      18.431      4.548       
+VBN     HAW     H       H       0       23.696      20.785      4.177       
+VBN     HAWA    H       H       0       24.351      22.111      4.735       
+VBN     HAX     H       H       0       29.960      18.252      3.869       
+VBN     HAXA    H       H       0       29.336      17.260      2.804       
+VBN     HAY     H       H       0       25.996      20.231      1.639       
+VBN     HAYA    H       H       0       24.471      20.160      2.018       
+VBN     HAZ     H       H       0       26.874      17.122      2.559       
+VBN     HAZA    H       H       0       27.252      18.410      1.737       
+VBN     HNBB    H       H       0       24.480      19.722      5.935       
+VBN     HNBC    H       H       0       29.407      16.844      5.544       
+VBN     HBU     H       H       0       29.174      12.773      4.417       
+VBN     HBX     H       H       0       29.366      14.758      6.375       
+VBN     HG2     H       H       0       24.984      13.689      2.571       
+VBN     HG2A    H       H       0       25.905      14.191      3.760       
+VBN     HG2B    H       H       0       25.926      14.949      2.367       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VBN           C           O      DOUBLE       n     1.231  0.0100     1.231  0.0100
+VBN           C          CA      SINGLE       n     1.508  0.0182     1.508  0.0182
+VBN           C         NBY      SINGLE       n     1.346  0.0100     1.346  0.0100
+VBN           N          CA      SINGLE       n     1.470  0.0110     1.470  0.0110
+VBN           N         CBJ      DOUBLE       n     1.267  0.0104     1.267  0.0104
+VBN          CA          CB      SINGLE       n     1.548  0.0112     1.548  0.0112
+VBN          CB         OG1      SINGLE       n     1.465  0.0100     1.465  0.0100
+VBN          CB         CG2      SINGLE       n     1.500  0.0200     1.500  0.0200
+VBN         CAB         CBU      SINGLE       n     1.500  0.0200     1.500  0.0200
+VBN         OAC         CBG      DOUBLE       n     1.230  0.0114     1.230  0.0114
+VBN         OAD         CBH      DOUBLE       n     1.231  0.0100     1.231  0.0100
+VBN         OAF         CBK      SINGLE       n     1.374  0.0155     1.374  0.0155
+VBN         OAG         CBL      SINGLE       n     1.374  0.0155     1.374  0.0155
+VBN         OAH         CBM      SINGLE       n     1.374  0.0155     1.374  0.0155
+VBN         OAI         CBN      SINGLE       n     1.374  0.0155     1.374  0.0155
+VBN         OAJ         CBO      SINGLE       n     1.374  0.0155     1.374  0.0155
+VBN         OAK         CBP      SINGLE       n     1.374  0.0155     1.374  0.0155
+VBN         CAL         CAO      DOUBLE       y     1.393  0.0103     1.393  0.0103
+VBN         CAL         CAR      SINGLE       y     1.364  0.0110     1.364  0.0110
+VBN         CAM         CAP      DOUBLE       y     1.393  0.0103     1.393  0.0103
+VBN         CAM         CAS      SINGLE       y     1.384  0.0100     1.384  0.0100
+VBN         CAN         CAQ      DOUBLE       y     1.393  0.0103     1.393  0.0103
+VBN         CAN         CAT      SINGLE       y     1.384  0.0100     1.384  0.0100
+VBN         CAO         CBK      SINGLE       y     1.381  0.0100     1.381  0.0100
+VBN         CAP         CBL      SINGLE       y     1.381  0.0100     1.381  0.0100
+VBN         CAQ         CBM      SINGLE       y     1.381  0.0100     1.381  0.0100
+VBN         CAR         CBQ      DOUBLE       y     1.399  0.0100     1.399  0.0100
+VBN         CAS         CBR      DOUBLE       y     1.392  0.0100     1.392  0.0100
+VBN         CAT         CBS      DOUBLE       y     1.392  0.0100     1.392  0.0100
+VBN         CAU         CAW      SINGLE       n     1.517  0.0117     1.517  0.0117
+VBN         CAU         CAY      SINGLE       n     1.515  0.0142     1.515  0.0142
+VBN         CAV         CAX      SINGLE       n     1.517  0.0117     1.517  0.0117
+VBN         CAV         CAZ      SINGLE       n     1.515  0.0142     1.515  0.0142
+VBN         CAW         NBB      SINGLE       n     1.455  0.0100     1.455  0.0100
+VBN         CAX         NBC      SINGLE       n     1.461  0.0130     1.461  0.0130
+VBN         CAY         NBY      SINGLE       n     1.471  0.0100     1.471  0.0100
+VBN         CAZ         NBY      SINGLE       n     1.471  0.0100     1.471  0.0100
+VBN         NBB         CBG      SINGLE       n     1.333  0.0111     1.333  0.0111
+VBN         NBC         CBH      SINGLE       n     1.326  0.0100     1.326  0.0100
+VBN         NBD         CBW      DOUBLE       n     1.267  0.0104     1.267  0.0104
+VBN         NBD         CBX      SINGLE       n     1.470  0.0110     1.470  0.0110
+VBN         OBF         CBU      SINGLE       n     1.465  0.0100     1.465  0.0100
+VBN         OBF         CBW      SINGLE       n     1.357  0.0124     1.357  0.0124
+VBN         CBG         CBQ      SINGLE       n     1.487  0.0100     1.487  0.0100
+VBN         CBH         CBX      SINGLE       n     1.508  0.0182     1.508  0.0182
+VBN         CBJ         CBR      SINGLE       n     1.468  0.0100     1.468  0.0100
+VBN         CBJ         OG1      SINGLE       n     1.357  0.0124     1.357  0.0124
+VBN         CBK         CBN      DOUBLE       y     1.395  0.0100     1.395  0.0100
+VBN         CBL         CBO      DOUBLE       y     1.396  0.0100     1.396  0.0100
+VBN         CBM         CBP      DOUBLE       y     1.396  0.0100     1.396  0.0100
+VBN         CBN         CBQ      SINGLE       y     1.399  0.0100     1.399  0.0100
+VBN         CBO         CBR      SINGLE       y     1.402  0.0111     1.402  0.0111
+VBN         CBP         CBS      SINGLE       y     1.402  0.0111     1.402  0.0111
+VBN         CBS         CBW      SINGLE       n     1.468  0.0100     1.468  0.0100
+VBN         CBU         CBX      SINGLE       n     1.548  0.0112     1.548  0.0112
+VBN          CA          HA      SINGLE       n     1.089  0.0100     0.994  0.0188
+VBN          CB          HB      SINGLE       n     1.089  0.0100     0.988  0.0181
+VBN         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0169
+VBN         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0169
+VBN         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0169
+VBN         OAF        HOAF      SINGLE       n     0.966  0.0059     0.861  0.0200
+VBN         OAG        HOAG      SINGLE       n     0.966  0.0059     0.861  0.0200
+VBN         OAH        HOAH      SINGLE       n     0.966  0.0059     0.861  0.0200
+VBN         OAI        HOAI      SINGLE       n     0.966  0.0059     0.861  0.0200
+VBN         OAJ        HOAJ      SINGLE       n     0.966  0.0059     0.861  0.0200
+VBN         OAK        HOAK      SINGLE       n     0.966  0.0059     0.861  0.0200
+VBN         CAL         HAL      SINGLE       n     1.082  0.0130     0.938  0.0149
+VBN         CAM         HAM      SINGLE       n     1.082  0.0130     0.938  0.0149
+VBN         CAN         HAN      SINGLE       n     1.082  0.0130     0.938  0.0149
+VBN         CAO         HAO      SINGLE       n     1.082  0.0130     0.942  0.0174
+VBN         CAP         HAP      SINGLE       n     1.082  0.0130     0.942  0.0174
+VBN         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.942  0.0174
+VBN         CAR         HAR      SINGLE       n     1.082  0.0130     0.941  0.0168
+VBN         CAS         HAS      SINGLE       n     1.082  0.0130     0.944  0.0100
+VBN         CAT         HAT      SINGLE       n     1.082  0.0130     0.944  0.0100
+VBN         CAU         HAU      SINGLE       n     1.089  0.0100     0.979  0.0161
+VBN         CAU        HAUA      SINGLE       n     1.089  0.0100     0.979  0.0161
+VBN         CAV         HAV      SINGLE       n     1.089  0.0100     0.979  0.0161
+VBN         CAV        HAVA      SINGLE       n     1.089  0.0100     0.979  0.0161
+VBN         CAW         HAW      SINGLE       n     1.089  0.0100     0.981  0.0152
+VBN         CAW        HAWA      SINGLE       n     1.089  0.0100     0.981  0.0152
+VBN         CAX         HAX      SINGLE       n     1.089  0.0100     0.981  0.0152
+VBN         CAX        HAXA      SINGLE       n     1.089  0.0100     0.981  0.0152
+VBN         CAY         HAY      SINGLE       n     1.089  0.0100     0.981  0.0152
+VBN         CAY        HAYA      SINGLE       n     1.089  0.0100     0.981  0.0152
+VBN         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.981  0.0152
+VBN         CAZ        HAZA      SINGLE       n     1.089  0.0100     0.981  0.0152
+VBN         NBB        HNBB      SINGLE       n     1.016  0.0100     0.873  0.0200
+VBN         NBC        HNBC      SINGLE       n     1.016  0.0100     0.893  0.0200
+VBN         CBU         HBU      SINGLE       n     1.089  0.0100     0.988  0.0181
+VBN         CBX         HBX      SINGLE       n     1.089  0.0100     0.994  0.0188
+VBN         CG2         HG2      SINGLE       n     1.089  0.0100     0.971  0.0169
+VBN         CG2        HG2A      SINGLE       n     1.089  0.0100     0.971  0.0169
+VBN         CG2        HG2B      SINGLE       n     1.089  0.0100     0.971  0.0169
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VBN           O           C          CA     120.353    1.50
+VBN           O           C         NBY     122.985    1.50
+VBN          CA           C         NBY     116.662    1.65
+VBN          CA           N         CBJ     107.937    1.96
+VBN           C          CA           N     107.922    3.00
+VBN           C          CA          CB     115.618    1.50
+VBN           C          CA          HA     109.469    1.50
+VBN           N          CA          CB     105.224    2.48
+VBN           N          CA          HA     107.683    2.23
+VBN          CB          CA          HA     109.290    1.50
+VBN          CA          CB         OG1     104.870    1.50
+VBN          CA          CB         CG2     113.745    2.48
+VBN          CA          CB          HB     109.569    1.50
+VBN         OG1          CB         CG2     108.891    1.50
+VBN         OG1          CB          HB     110.936    3.00
+VBN         CG2          CB          HB     110.240    2.02
+VBN         CBU         CAB         HAB     109.190    1.50
+VBN         CBU         CAB        HABA     109.190    1.50
+VBN         CBU         CAB        HABB     109.190    1.50
+VBN         HAB         CAB        HABA     109.436    1.50
+VBN         HAB         CAB        HABB     109.436    1.50
+VBN        HABA         CAB        HABB     109.436    1.50
+VBN         CBK         OAF        HOAF     120.000    3.00
+VBN         CBL         OAG        HOAG     120.000    3.00
+VBN         CBM         OAH        HOAH     120.000    3.00
+VBN         CBN         OAI        HOAI     120.000    3.00
+VBN         CBO         OAJ        HOAJ     120.000    3.00
+VBN         CBP         OAK        HOAK     120.000    3.00
+VBN         CAO         CAL         CAR     120.302    1.50
+VBN         CAO         CAL         HAL     119.710    1.50
+VBN         CAR         CAL         HAL     119.988    1.50
+VBN         CAP         CAM         CAS     120.576    1.50
+VBN         CAP         CAM         HAM     119.611    1.50
+VBN         CAS         CAM         HAM     119.813    1.50
+VBN         CAQ         CAN         CAT     120.576    1.50
+VBN         CAQ         CAN         HAN     119.611    1.50
+VBN         CAT         CAN         HAN     119.813    1.50
+VBN         CAL         CAO         CBK     119.932    1.50
+VBN         CAL         CAO         HAO     120.228    1.50
+VBN         CBK         CAO         HAO     119.840    1.50
+VBN         CAM         CAP         CBL     119.851    1.50
+VBN         CAM         CAP         HAP     120.268    1.50
+VBN         CBL         CAP         HAP     119.881    1.50
+VBN         CAN         CAQ         CBM     119.851    1.50
+VBN         CAN         CAQ         HAQ     120.268    1.50
+VBN         CBM         CAQ         HAQ     119.881    1.50
+VBN         CAL         CAR         CBQ     121.608    1.50
+VBN         CAL         CAR         HAR     119.483    1.50
+VBN         CBQ         CAR         HAR     118.909    1.50
+VBN         CAM         CAS         CBR     120.764    1.50
+VBN         CAM         CAS         HAS     119.753    1.50
+VBN         CBR         CAS         HAS     119.484    1.50
+VBN         CAN         CAT         CBS     120.764    1.50
+VBN         CAN         CAT         HAT     119.753    1.50
+VBN         CBS         CAT         HAT     119.484    1.50
+VBN         CAW         CAU         CAY     114.153    1.67
+VBN         CAW         CAU         HAU     108.958    1.50
+VBN         CAW         CAU        HAUA     108.958    1.50
+VBN         CAY         CAU         HAU     108.861    1.50
+VBN         CAY         CAU        HAUA     108.861    1.50
+VBN         HAU         CAU        HAUA     107.594    1.73
+VBN         CAX         CAV         CAZ     114.153    1.67
+VBN         CAX         CAV         HAV     108.958    1.50
+VBN         CAX         CAV        HAVA     108.958    1.50
+VBN         CAZ         CAV         HAV     108.861    1.50
+VBN         CAZ         CAV        HAVA     108.861    1.50
+VBN         HAV         CAV        HAVA     107.594    1.73
+VBN         CAU         CAW         NBB     112.434    1.50
+VBN         CAU         CAW         HAW     109.350    1.50
+VBN         CAU         CAW        HAWA     109.350    1.50
+VBN         NBB         CAW         HAW     109.020    1.50
+VBN         NBB         CAW        HAWA     109.020    1.50
+VBN         HAW         CAW        HAWA     107.877    1.50
+VBN         CAV         CAX         NBC     112.211    1.50
+VBN         CAV         CAX         HAX     109.350    1.50
+VBN         CAV         CAX        HAXA     109.350    1.50
+VBN         NBC         CAX         HAX     108.475    1.75
+VBN         NBC         CAX        HAXA     108.475    1.75
+VBN         HAX         CAX        HAXA     107.877    1.50
+VBN         CAU         CAY         NBY     113.863    1.50
+VBN         CAU         CAY         HAY     108.842    1.50
+VBN         CAU         CAY        HAYA     108.842    1.50
+VBN         NBY         CAY         HAY     108.944    1.50
+VBN         NBY         CAY        HAYA     108.944    1.50
+VBN         HAY         CAY        HAYA     107.673    1.50
+VBN         CAV         CAZ         NBY     113.863    1.50
+VBN         CAV         CAZ         HAZ     108.842    1.50
+VBN         CAV         CAZ        HAZA     108.842    1.50
+VBN         NBY         CAZ         HAZ     108.944    1.50
+VBN         NBY         CAZ        HAZA     108.944    1.50
+VBN         HAZ         CAZ        HAZA     107.673    1.50
+VBN         CAW         NBB         CBG     121.796    1.50
+VBN         CAW         NBB        HNBB     118.813    1.50
+VBN         CBG         NBB        HNBB     119.379    1.77
+VBN         CAX         NBC         CBH     122.174    1.50
+VBN         CAX         NBC        HNBC     118.760    1.50
+VBN         CBH         NBC        HNBC     119.067    1.50
+VBN         CBW         NBD         CBX     107.937    1.96
+VBN         CBU         OBF         CBW     106.585    1.50
+VBN         OAC         CBG         NBB     121.812    1.50
+VBN         OAC         CBG         CBQ     119.811    1.50
+VBN         NBB         CBG         CBQ     118.378    1.50
+VBN         OAD         CBH         NBC     123.725    1.50
+VBN         OAD         CBH         CBX     119.983    1.50
+VBN         NBC         CBH         CBX     116.292    1.65
+VBN           N         CBJ         CBR     126.548    1.50
+VBN           N         CBJ         OG1     117.874    1.50
+VBN         CBR         CBJ         OG1     115.578    1.50
+VBN         OAF         CBK         CAO     120.201    3.00
+VBN         OAF         CBK         CBN     120.201    3.00
+VBN         CAO         CBK         CBN     119.598    1.50
+VBN         OAG         CBL         CAP     120.242    3.00
+VBN         OAG         CBL         CBO     120.242    3.00
+VBN         CAP         CBL         CBO     119.516    1.50
+VBN         OAH         CBM         CAQ     120.242    3.00
+VBN         OAH         CBM         CBP     120.242    3.00
+VBN         CAQ         CBM         CBP     119.516    1.50
+VBN         OAI         CBN         CBK     119.972    3.00
+VBN         OAI         CBN         CBQ     119.972    3.00
+VBN         CBK         CBN         CBQ     120.057    1.50
+VBN         OAJ         CBO         CBL     120.056    3.00
+VBN         OAJ         CBO         CBR     120.056    3.00
+VBN         CBL         CBO         CBR     119.889    1.50
+VBN         OAK         CBP         CBM     120.056    3.00
+VBN         OAK         CBP         CBS     120.056    3.00
+VBN         CBM         CBP         CBS     119.889    1.50
+VBN         CAR         CBQ         CBG     121.280    3.00
+VBN         CAR         CBQ         CBN     118.504    1.50
+VBN         CBG         CBQ         CBN     120.217    2.42
+VBN         CAS         CBR         CBJ     119.922    1.50
+VBN         CAS         CBR         CBO     119.404    1.50
+VBN         CBJ         CBR         CBO     120.674    1.86
+VBN         CAT         CBS         CBP     119.404    1.50
+VBN         CAT         CBS         CBW     119.922    1.50
+VBN         CBP         CBS         CBW     120.674    1.86
+VBN         CAB         CBU         OBF     108.891    1.50
+VBN         CAB         CBU         CBX     113.745    2.48
+VBN         CAB         CBU         HBU     110.240    2.02
+VBN         OBF         CBU         CBX     104.870    1.50
+VBN         OBF         CBU         HBU     110.936    3.00
+VBN         CBX         CBU         HBU     109.569    1.50
+VBN         NBD         CBW         OBF     117.874    1.50
+VBN         NBD         CBW         CBS     126.548    1.50
+VBN         OBF         CBW         CBS     115.578    1.50
+VBN         NBD         CBX         CBH     107.922    3.00
+VBN         NBD         CBX         CBU     105.224    2.48
+VBN         NBD         CBX         HBX     107.683    2.23
+VBN         CBH         CBX         CBU     115.618    1.50
+VBN         CBH         CBX         HBX     109.469    1.50
+VBN         CBU         CBX         HBX     109.290    1.50
+VBN           C         NBY         CAY     121.554    3.00
+VBN           C         NBY         CAZ     121.554    3.00
+VBN         CAY         NBY         CAZ     116.892    1.50
+VBN          CB         OG1         CBJ     106.585    1.50
+VBN          CB         CG2         HG2     109.190    1.50
+VBN          CB         CG2        HG2A     109.190    1.50
+VBN          CB         CG2        HG2B     109.190    1.50
+VBN         HG2         CG2        HG2A     109.436    1.50
+VBN         HG2         CG2        HG2B     109.436    1.50
+VBN        HG2A         CG2        HG2B     109.436    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VBN             sp2_sp3_4           O           C          CA           N       0.000    10.0     6
+VBN             sp2_sp2_9           O           C         NBY         CAY       0.000     5.0     2
+VBN            sp2_sp2_17         CAQ         CBM         OAH        HOAH     180.000     5.0     2
+VBN            sp2_sp2_19         CBK         CBN         OAI        HOAI     180.000     5.0     2
+VBN            sp2_sp2_21         CBL         CBO         OAJ        HOAJ     180.000     5.0     2
+VBN            sp2_sp2_23         CBM         CBP         OAK        HOAK     180.000     5.0     2
+VBN       const_sp2_sp2_1         CAR         CAL         CAO         CBK       0.000     5.0     2
+VBN              const_61         CAO         CAL         CAR         CBQ       0.000    10.0     2
+VBN              const_21         CAS         CAM         CAP         CBL       0.000    10.0     2
+VBN              const_65         CAP         CAM         CAS         CBR       0.000    10.0     2
+VBN              const_41         CAT         CAN         CAQ         CBM       0.000    10.0     2
+VBN              const_69         CAQ         CAN         CAT         CBS       0.000    10.0     2
+VBN       const_sp2_sp2_6         CAL         CAO         CBK         OAF     180.000     5.0     2
+VBN              const_26         CAM         CAP         CBL         OAG     180.000    10.0     2
+VBN              const_46         CAN         CAQ         CBM         OAH     180.000    10.0     2
+VBN             sp2_sp3_2         CBJ           N          CA           C     120.000    10.0     6
+VBN            sp2_sp2_12         CBR         CBJ           N          CA     180.000     5.0     2
+VBN              const_18         CAL         CAR         CBQ         CBG     180.000    10.0     2
+VBN              const_38         CAM         CAS         CBR         CBJ     180.000    10.0     2
+VBN              const_57         CAN         CAT         CBS         CBP       0.000    10.0     2
+VBN            sp3_sp3_43         CAY         CAU         CAW         NBB     180.000    10.0     3
+VBN            sp3_sp3_52         CAW         CAU         CAY         NBY     180.000    10.0     3
+VBN            sp3_sp3_61         CAZ         CAV         CAX         NBC     180.000    10.0     3
+VBN            sp3_sp3_70         CAX         CAV         CAZ         NBY     180.000    10.0     3
+VBN            sp2_sp3_11         CBG         NBB         CAW         CAU     120.000    10.0     6
+VBN            sp2_sp3_17         CBH         NBC         CAX         CAV     120.000    10.0     6
+VBN            sp2_sp3_23           C         NBY         CAY         CAU     120.000    10.0     6
+VBN            sp2_sp3_29           C         NBY         CAZ         CAV     120.000    10.0     6
+VBN            sp2_sp2_27         OAC         CBG         NBB         CAW       0.000     5.0     2
+VBN            sp2_sp2_31         OAD         CBH         NBC         CAX       0.000     5.0     2
+VBN             sp2_sp2_3         OBF         CBW         NBD         CBX       0.000     5.0     2
+VBN            sp2_sp3_35         CBW         NBD         CBX         CBH     120.000    10.0     6
+VBN            sp3_sp3_14         CAB         CBU         OBF         CBW     180.000    10.0     3
+VBN             sp2_sp2_5         NBD         CBW         OBF         CBU       0.000     5.0     2
+VBN            sp2_sp2_35         OAC         CBG         CBQ         CAR       0.000     5.0     2
+VBN            sp2_sp3_37         OAD         CBH         CBX         NBD       0.000    10.0     6
+VBN            sp2_sp2_37           N         CBJ         CBR         CAS     180.000     5.0     2
+VBN             sp2_sp2_1           N         CBJ         OG1          CB       0.000     5.0     2
+VBN              const_12         OAF         CBK         CBN         OAI       0.000    10.0     2
+VBN              const_32         OAG         CBL         CBO         OAJ       0.000    10.0     2
+VBN              const_52         OAH         CBM         CBP         OAK       0.000    10.0     2
+VBN              const_16         OAI         CBN         CBQ         CBG       0.000    10.0     2
+VBN             sp3_sp3_5           C          CA          CB         CG2     -60.000    10.0     3
+VBN              const_35         OAJ         CBO         CBR         CAS     180.000    10.0     2
+VBN              const_55         OAK         CBP         CBS         CAT     180.000    10.0     2
+VBN            sp2_sp2_41         CAT         CBS         CBW         NBD     180.000     5.0     2
+VBN            sp3_sp3_20         CAB         CBU         CBX         CBH     -60.000    10.0     3
+VBN            sp3_sp3_11         CG2          CB         OG1         CBJ     180.000    10.0     3
+VBN            sp3_sp3_25          CA          CB         CG2         HG2     180.000    10.0     3
+VBN            sp3_sp3_34         HAB         CAB         CBU         OBF     180.000    10.0     3
+VBN            sp2_sp2_13         CAO         CBK         OAF        HOAF     180.000     5.0     2
+VBN            sp2_sp2_15         CAP         CBL         OAG        HOAG     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VBN    chir_1    CA    N    C    CB    positive
+VBN    chir_2    CB    OG1    CA    CG2    negative
+VBN    chir_3    CBU    OBF    CBX    CAB    negative
+VBN    chir_4    CBX    NBD    CBH    CBU    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VBN    plan-1         CAL   0.020
+VBN    plan-1         CAO   0.020
+VBN    plan-1         CAR   0.020
+VBN    plan-1         CBG   0.020
+VBN    plan-1         CBK   0.020
+VBN    plan-1         CBN   0.020
+VBN    plan-1         CBQ   0.020
+VBN    plan-1         HAL   0.020
+VBN    plan-1         HAO   0.020
+VBN    plan-1         HAR   0.020
+VBN    plan-1         OAF   0.020
+VBN    plan-1         OAI   0.020
+VBN    plan-2         CAM   0.020
+VBN    plan-2         CAP   0.020
+VBN    plan-2         CAS   0.020
+VBN    plan-2         CBJ   0.020
+VBN    plan-2         CBL   0.020
+VBN    plan-2         CBO   0.020
+VBN    plan-2         CBR   0.020
+VBN    plan-2         HAM   0.020
+VBN    plan-2         HAP   0.020
+VBN    plan-2         HAS   0.020
+VBN    plan-2         OAG   0.020
+VBN    plan-2         OAJ   0.020
+VBN    plan-3         CAN   0.020
+VBN    plan-3         CAQ   0.020
+VBN    plan-3         CAT   0.020
+VBN    plan-3         CBM   0.020
+VBN    plan-3         CBP   0.020
+VBN    plan-3         CBS   0.020
+VBN    plan-3         CBW   0.020
+VBN    plan-3         HAN   0.020
+VBN    plan-3         HAQ   0.020
+VBN    plan-3         HAT   0.020
+VBN    plan-3         OAH   0.020
+VBN    plan-3         OAK   0.020
+VBN    plan-4           C   0.020
+VBN    plan-4          CA   0.020
+VBN    plan-4         NBY   0.020
+VBN    plan-4           O   0.020
+VBN    plan-5         CAW   0.020
+VBN    plan-5         CBG   0.020
+VBN    plan-5        HNBB   0.020
+VBN    plan-5         NBB   0.020
+VBN    plan-6         CAX   0.020
+VBN    plan-6         CBH   0.020
+VBN    plan-6        HNBC   0.020
+VBN    plan-6         NBC   0.020
+VBN    plan-7         CBG   0.020
+VBN    plan-7         CBQ   0.020
+VBN    plan-7         NBB   0.020
+VBN    plan-7         OAC   0.020
+VBN    plan-8         CBH   0.020
+VBN    plan-8         CBX   0.020
+VBN    plan-8         NBC   0.020
+VBN    plan-8         OAD   0.020
+VBN    plan-9         CBJ   0.020
+VBN    plan-9         CBR   0.020
+VBN    plan-9           N   0.020
+VBN    plan-9         OG1   0.020
+VBN   plan-10         CBS   0.020
+VBN   plan-10         CBW   0.020
+VBN   plan-10         NBD   0.020
+VBN   plan-10         OBF   0.020
+VBN   plan-11           C   0.020
+VBN   plan-11         CAY   0.020
+VBN   plan-11         CAZ   0.020
+VBN   plan-11         NBY   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VBN           SMILES              ACDLabs 12.01                                                                                                                                                                                          O=C(N(CCCNC(=O)c1cccc(O)c1O)CCCNC(=O)C2N=C(OC2C)c3cccc(O)c3O)C4N=C(OC4C)c5cccc(O)c5O
+VBN SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                        C[C@H]1OC(=N[C@@H]1C(=O)NCCCN(CCCNC(=O)c2cccc(O)c2O)C(=O)[C@H]3N=C(O[C@@H]3C)c4cccc(O)c4O)c5cccc(O)c5O
+VBN           SMILES               CACTVS 3.370                                                                                                                                                                              C[CH]1OC(=N[CH]1C(=O)NCCCN(CCCNC(=O)c2cccc(O)c2O)C(=O)[CH]3N=C(O[CH]3C)c4cccc(O)c4O)c5cccc(O)c5O
+VBN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                                    C[C@@H]1[C@H](N=C(O1)c2cccc(c2O)O)C(=O)NCCCN(CCCNC(=O)c3cccc(c3O)O)C(=O)[C@@H]4[C@H](OC(=N4)c5cccc(c5O)O)C
+VBN           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                                      CC1C(N=C(O1)c2cccc(c2O)O)C(=O)NCCCN(CCCNC(=O)c3cccc(c3O)O)C(=O)C4C(OC(=N4)c5cccc(c5O)O)C
+VBN            InChI                InChI  1.03 InChI=1S/C35H39N5O11/c1-18-26(38-33(50-18)21-9-4-12-24(42)29(21)45)32(48)37-15-7-17-40(16-6-14-36-31(47)20-8-3-11-23(41)28(20)44)35(49)27-19(2)51-34(39-27)22-10-5-13-25(43)30(22)46/h3-5,8-13,18-19,26-27,41-46H,6-7,14-17H2,1-2H3,(H,36,47)(H,37,48)/t18-,19-,26+,27+/m1/s1
+VBN         InChIKey                InChI  1.03                                                                                                                                                                                                                                                   LLMKLMMXMOTPRU-QCOILQKOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VBN acedrg               243         "dictionary generator"                  
+VBN acedrg_database      11          "data source"                           
+VBN rdkit                2017.03.2   "Chemoinformatics tool"
+VBN refmac5              5.8.0238    "optimization tool"                     

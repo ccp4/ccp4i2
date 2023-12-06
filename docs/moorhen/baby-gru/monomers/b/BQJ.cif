@@ -1,0 +1,549 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BQJ     BQJ      2-(dimethylamino)-1-[4-(2-oxo-2-{3-[3-{[2-(piperidin-1-yl)ethyl]sulfanyl}-4-(trifluoromethyl)phenyl]-1-propyl-1,4,6,7-tetrahydro-5H-pyrazolo[4,3-c]pyridin-5-yl}ethyl)piperidin-1-yl]ethan-1-one     NON-POLYMER     95     46     .     
+#
+data_comp_BQJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BQJ     N1      N       NT      0       6.746       2.930       12.673      
+BQJ     C2      C       CH2     0       5.419       3.375       12.222      
+BQJ     C4      C       CH2     0       5.590       5.422       13.654      
+BQJ     C5      C       CH2     0       6.978       4.961       14.055      
+BQJ     C6      C       CH2     0       7.595       4.090       12.978      
+BQJ     C64     C       CH3     0       6.453       -7.714      15.812      
+BQJ     C62     C       CH2     0       6.061       -6.891      14.598      
+BQJ     C60     C       CH2     0       5.182       -5.723      14.994      
+BQJ     N45     N       NR5     0       4.784       -4.895      13.857      
+BQJ     N44     N       NRD5    0       5.702       -4.269      13.074      
+BQJ     C42     C       CR5     0       5.028       -3.593      12.134      
+BQJ     C47     C       CR56    0       3.649       -3.799      12.321      
+BQJ     C51     C       CH2     0       2.439       -3.282      11.630      
+BQJ     N54     N       NT      0       1.475       -3.075      12.710      
+BQJ     C53     C       CH2     0       1.061       -4.344      13.335      
+BQJ     C54     C       CH2     0       2.238       -5.071      13.988      
+BQJ     C46     C       CR56    0       3.532       -4.605      13.409      
+BQJ     C68     C       C       0       1.004       -1.841      13.029      
+BQJ     O72     O       O       0       0.756       -0.998      12.174      
+BQJ     C72     C       CH2     0       1.111       -1.430      14.481      
+BQJ     C75     C       CH1     0       2.576       -1.257      14.931      
+BQJ     C76     C       CH2     0       2.715       -1.162      16.448      
+BQJ     C77     C       CH2     0       4.165       -0.985      16.859      
+BQJ     N80     N       NR6     0       4.746       0.207       16.218      
+BQJ     C79     C       CH2     0       4.672       0.138       14.749      
+BQJ     C80     C       CH2     0       3.233       -0.032      14.297      
+BQJ     C87     C       C       0       5.423       1.189       16.842      
+BQJ     O87     O       O       0       6.391       1.746       16.308      
+BQJ     C89     C       CH2     0       4.890       1.750       18.166      
+BQJ     N91     N       NT      0       4.101       2.995       18.060      
+BQJ     C95     C       CH3     0       4.889       4.131       17.577      
+BQJ     C93     C       CH3     0       2.887       2.826       17.261      
+BQJ     C24     C       CR6     0       5.740       -2.783      11.127      
+BQJ     C23     C       CR16    0       5.325       -2.772      9.798       
+BQJ     C22     C       CR16    0       5.985       -1.997      8.857       
+BQJ     C21     C       CR6     0       7.077       -1.198      9.213       
+BQJ     C26     C       CR6     0       7.491       -1.207      10.564      
+BQJ     C25     C       CR16    0       6.818       -1.984      11.504      
+BQJ     S19     S       S2      0       8.849       -0.240      11.173      
+BQJ     C17     C       CH2     0       8.466       1.144       12.274      
+BQJ     C15     C       CH2     0       7.387       2.031       11.685      
+BQJ     C3      C       CH2     0       4.731       4.232       13.269      
+BQJ     C33     C       CT      0       7.784       -0.361      8.188       
+BQJ     F44     F       F       0       9.098       -0.555      8.186       
+BQJ     F45     F       F       0       7.616       0.942       8.387       
+BQJ     F46     F       F       0       7.391       -0.585      6.937       
+BQJ     H2      H       H       0       5.515       3.885       11.399      
+BQJ     H3      H       H       0       4.865       2.598       12.033      
+BQJ     H4      H       H       0       5.654       6.040       12.895      
+BQJ     H5      H       H       0       5.173       5.901       14.402      
+BQJ     H6      H       H       0       6.924       4.455       14.892      
+BQJ     H7      H       H       0       7.549       5.742       14.209      
+BQJ     H8      H       H       0       7.721       4.617       12.170      
+BQJ     H9      H       H       0       8.469       3.782       13.275      
+BQJ     H10     H       H       0       7.018       -8.456      15.534      
+BQJ     H11     H       H       0       5.652       -8.061      16.242      
+BQJ     H12     H       H       0       6.940       -7.154      16.441      
+BQJ     H13     H       H       0       5.576       -7.456      13.955      
+BQJ     H14     H       H       0       6.870       -6.550      14.152      
+BQJ     H15     H       H       0       5.666       -5.166      15.636      
+BQJ     H16     H       H       0       4.383       -6.066      15.440      
+BQJ     H17     H       H       0       2.627       -2.442      11.160      
+BQJ     H18     H       H       0       2.087       -3.934      10.986      
+BQJ     H19     H       H       0       0.662       -4.937      12.634      
+BQJ     H20     H       H       0       0.360       -4.165      14.026      
+BQJ     H21     H       H       0       2.138       -6.027      13.849      
+BQJ     H22     H       H       0       2.224       -4.903      14.945      
+BQJ     H23     H       H       0       0.674       -2.111      15.051      
+BQJ     H24     H       H       0       0.630       -0.575      14.611      
+BQJ     H25     H       H       0       3.078       -2.060      14.632      
+BQJ     H26     H       H       0       2.191       -0.405      16.775      
+BQJ     H27     H       H       0       2.361       -1.976      16.857      
+BQJ     H28     H       H       0       4.678       -1.777      16.583      
+BQJ     H29     H       H       0       4.227       -0.916      17.835      
+BQJ     H30     H       H       0       5.207       -0.624      14.432      
+BQJ     H31     H       H       0       5.041       0.956       14.350      
+BQJ     H32     H       H       0       2.724       0.766       14.539      
+BQJ     H33     H       H       0       3.213       -0.118      13.324      
+BQJ     H34     H       H       0       5.647       1.919       18.750      
+BQJ     H35     H       H       0       4.340       1.086       18.598      
+BQJ     H37     H       H       0       5.758       4.144       18.025      
+BQJ     H38     H       H       0       4.414       4.961       17.774      
+BQJ     H39     H       H       0       5.024       4.057       16.613      
+BQJ     H40     H       H       0       2.306       3.601       17.387      
+BQJ     H41     H       H       0       2.416       2.020       17.547      
+BQJ     H42     H       H       0       3.117       2.748       16.314      
+BQJ     H43     H       H       0       4.592       -3.304      9.535       
+BQJ     H44     H       H       0       5.688       -2.014      7.962       
+BQJ     H45     H       H       0       7.102       -1.979      12.402      
+BQJ     H46     H       H       0       9.271       1.659       12.424      
+BQJ     H47     H       H       0       8.175       0.795       13.128      
+BQJ     H48     H       H       0       7.779       2.568       10.969      
+BQJ     H49     H       H       0       6.705       1.460       11.282      
+BQJ     H50     H       H       0       4.550       3.690       14.065      
+BQJ     H51     H       H       0       3.874       4.549       12.917      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BQJ         C33         F46      SINGLE       n     1.329  0.0183     1.329  0.0183
+BQJ         C33         F44      SINGLE       n     1.329  0.0183     1.329  0.0183
+BQJ         C33         F45      SINGLE       n     1.329  0.0183     1.329  0.0183
+BQJ         C21         C33      SINGLE       n     1.495  0.0102     1.495  0.0102
+BQJ         C22         C21      SINGLE       y     1.392  0.0100     1.392  0.0100
+BQJ         C21         C26      DOUBLE       y     1.404  0.0112     1.404  0.0112
+BQJ         C23         C22      DOUBLE       y     1.383  0.0100     1.383  0.0100
+BQJ         C26         S19      SINGLE       n     1.772  0.0127     1.772  0.0127
+BQJ         S19         C17      SINGLE       n     1.809  0.0191     1.809  0.0191
+BQJ         C26         C25      SINGLE       y     1.386  0.0144     1.386  0.0144
+BQJ         C24         C23      SINGLE       y     1.390  0.0100     1.390  0.0100
+BQJ         C17         C15      SINGLE       n     1.515  0.0100     1.515  0.0100
+BQJ         C24         C25      DOUBLE       y     1.391  0.0100     1.391  0.0100
+BQJ         C42         C24      SINGLE       n     1.476  0.0100     1.476  0.0100
+BQJ          N1         C15      SINGLE       n     1.471  0.0185     1.471  0.0185
+BQJ          N1          C6      SINGLE       n     1.462  0.0143     1.462  0.0143
+BQJ          C5          C6      SINGLE       n     1.513  0.0163     1.513  0.0163
+BQJ         C42         C47      SINGLE       y     1.411  0.0100     1.411  0.0100
+BQJ         N44         C42      DOUBLE       y     1.339  0.0100     1.339  0.0100
+BQJ          N1          C2      SINGLE       n     1.462  0.0143     1.462  0.0143
+BQJ         C47         C51      SINGLE       n     1.491  0.0152     1.491  0.0152
+BQJ         C51         N54      SINGLE       n     1.461  0.0100     1.461  0.0100
+BQJ          C2          C3      SINGLE       n     1.513  0.0163     1.513  0.0163
+BQJ         C47         C46      DOUBLE       y     1.361  0.0105     1.361  0.0105
+BQJ         N45         N44      SINGLE       y     1.355  0.0102     1.355  0.0102
+BQJ         C68         O72      DOUBLE       n     1.226  0.0100     1.226  0.0100
+BQJ          C4          C5      SINGLE       n     1.515  0.0113     1.515  0.0113
+BQJ         N54         C68      SINGLE       n     1.356  0.0104     1.356  0.0104
+BQJ         N54         C53      SINGLE       n     1.469  0.0100     1.469  0.0100
+BQJ          C4          C3      SINGLE       n     1.515  0.0113     1.515  0.0113
+BQJ         C68         C72      SINGLE       n     1.510  0.0129     1.510  0.0129
+BQJ         N45         C46      SINGLE       y     1.357  0.0100     1.357  0.0100
+BQJ         C54         C46      SINGLE       n     1.487  0.0100     1.487  0.0100
+BQJ         C60         N45      SINGLE       n     1.460  0.0100     1.460  0.0100
+BQJ         C53         C54      SINGLE       n     1.513  0.0149     1.513  0.0149
+BQJ         C62         C60      SINGLE       n     1.515  0.0102     1.515  0.0102
+BQJ         C64         C62      SINGLE       n     1.518  0.0100     1.518  0.0100
+BQJ         C72         C75      SINGLE       n     1.538  0.0117     1.538  0.0117
+BQJ         C75         C80      SINGLE       n     1.526  0.0100     1.526  0.0100
+BQJ         C79         C80      SINGLE       n     1.516  0.0100     1.516  0.0100
+BQJ         C75         C76      SINGLE       n     1.526  0.0100     1.526  0.0100
+BQJ         N80         C79      SINGLE       n     1.465  0.0108     1.465  0.0108
+BQJ         C76         C77      SINGLE       n     1.516  0.0100     1.516  0.0100
+BQJ         C77         N80      SINGLE       n     1.465  0.0108     1.465  0.0108
+BQJ         N80         C87      SINGLE       n     1.338  0.0100     1.338  0.0100
+BQJ         C87         O87      DOUBLE       n     1.236  0.0100     1.236  0.0100
+BQJ         C87         C89      SINGLE       n     1.517  0.0169     1.517  0.0169
+BQJ         N91         C93      SINGLE       n     1.458  0.0123     1.458  0.0123
+BQJ         C89         N91      SINGLE       n     1.463  0.0165     1.463  0.0165
+BQJ         N91         C95      SINGLE       n     1.458  0.0123     1.458  0.0123
+BQJ          C2          H2      SINGLE       n     1.089  0.0100     0.973  0.0129
+BQJ          C2          H3      SINGLE       n     1.089  0.0100     0.973  0.0129
+BQJ          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0121
+BQJ          C4          H5      SINGLE       n     1.089  0.0100     0.981  0.0121
+BQJ          C5          H6      SINGLE       n     1.089  0.0100     0.980  0.0120
+BQJ          C5          H7      SINGLE       n     1.089  0.0100     0.980  0.0120
+BQJ          C6          H8      SINGLE       n     1.089  0.0100     0.973  0.0129
+BQJ          C6          H9      SINGLE       n     1.089  0.0100     0.973  0.0129
+BQJ         C64         H10      SINGLE       n     1.089  0.0100     0.973  0.0157
+BQJ         C64         H11      SINGLE       n     1.089  0.0100     0.973  0.0157
+BQJ         C64         H12      SINGLE       n     1.089  0.0100     0.973  0.0157
+BQJ         C62         H13      SINGLE       n     1.089  0.0100     0.984  0.0131
+BQJ         C62         H14      SINGLE       n     1.089  0.0100     0.984  0.0131
+BQJ         C60         H15      SINGLE       n     1.089  0.0100     0.978  0.0180
+BQJ         C60         H16      SINGLE       n     1.089  0.0100     0.978  0.0180
+BQJ         C51         H17      SINGLE       n     1.089  0.0100     0.981  0.0136
+BQJ         C51         H18      SINGLE       n     1.089  0.0100     0.981  0.0136
+BQJ         C53         H19      SINGLE       n     1.089  0.0100     1.001  0.0164
+BQJ         C53         H20      SINGLE       n     1.089  0.0100     1.001  0.0164
+BQJ         C54         H21      SINGLE       n     1.089  0.0100     0.971  0.0200
+BQJ         C54         H22      SINGLE       n     1.089  0.0100     0.971  0.0200
+BQJ         C72         H23      SINGLE       n     1.089  0.0100     0.990  0.0100
+BQJ         C72         H24      SINGLE       n     1.089  0.0100     0.990  0.0100
+BQJ         C75         H25      SINGLE       n     1.089  0.0100     0.994  0.0117
+BQJ         C76         H26      SINGLE       n     1.089  0.0100     0.977  0.0102
+BQJ         C76         H27      SINGLE       n     1.089  0.0100     0.977  0.0102
+BQJ         C77         H28      SINGLE       n     1.089  0.0100     0.983  0.0147
+BQJ         C77         H29      SINGLE       n     1.089  0.0100     0.983  0.0147
+BQJ         C79         H30      SINGLE       n     1.089  0.0100     0.983  0.0147
+BQJ         C79         H31      SINGLE       n     1.089  0.0100     0.983  0.0147
+BQJ         C80         H32      SINGLE       n     1.089  0.0100     0.977  0.0102
+BQJ         C80         H33      SINGLE       n     1.089  0.0100     0.977  0.0102
+BQJ         C89         H34      SINGLE       n     1.089  0.0100     0.971  0.0200
+BQJ         C89         H35      SINGLE       n     1.089  0.0100     0.971  0.0200
+BQJ         C95         H37      SINGLE       n     1.089  0.0100     0.977  0.0113
+BQJ         C95         H38      SINGLE       n     1.089  0.0100     0.977  0.0113
+BQJ         C95         H39      SINGLE       n     1.089  0.0100     0.977  0.0113
+BQJ         C93         H40      SINGLE       n     1.089  0.0100     0.977  0.0113
+BQJ         C93         H41      SINGLE       n     1.089  0.0100     0.977  0.0113
+BQJ         C93         H42      SINGLE       n     1.089  0.0100     0.977  0.0113
+BQJ         C23         H43      SINGLE       n     1.082  0.0130     0.943  0.0200
+BQJ         C22         H44      SINGLE       n     1.082  0.0130     0.943  0.0173
+BQJ         C25         H45      SINGLE       n     1.082  0.0130     0.942  0.0177
+BQJ         C17         H46      SINGLE       n     1.089  0.0100     0.967  0.0183
+BQJ         C17         H47      SINGLE       n     1.089  0.0100     0.967  0.0183
+BQJ         C15         H48      SINGLE       n     1.089  0.0100     0.977  0.0152
+BQJ         C15         H49      SINGLE       n     1.089  0.0100     0.977  0.0152
+BQJ          C3         H50      SINGLE       n     1.089  0.0100     0.980  0.0120
+BQJ          C3         H51      SINGLE       n     1.089  0.0100     0.980  0.0120
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BQJ         C15          N1          C6     111.219    1.66
+BQJ         C15          N1          C2     111.219    1.66
+BQJ          C6          N1          C2     109.788    1.50
+BQJ          N1          C2          C3     111.218    1.50
+BQJ          N1          C2          H2     109.353    1.50
+BQJ          N1          C2          H3     109.353    1.50
+BQJ          C3          C2          H2     109.566    1.50
+BQJ          C3          C2          H3     109.566    1.50
+BQJ          H2          C2          H3     108.159    1.50
+BQJ          C5          C4          C3     110.168    1.50
+BQJ          C5          C4          H4     109.613    1.50
+BQJ          C5          C4          H5     109.613    1.50
+BQJ          C3          C4          H4     109.613    1.50
+BQJ          C3          C4          H5     109.613    1.50
+BQJ          H4          C4          H5     108.036    1.50
+BQJ          C6          C5          C4     111.021    1.50
+BQJ          C6          C5          H6     109.380    1.50
+BQJ          C6          C5          H7     109.380    1.50
+BQJ          C4          C5          H6     109.453    1.50
+BQJ          C4          C5          H7     109.453    1.50
+BQJ          H6          C5          H7     108.022    1.50
+BQJ          N1          C6          C5     111.218    1.50
+BQJ          N1          C6          H8     109.353    1.50
+BQJ          N1          C6          H9     109.353    1.50
+BQJ          C5          C6          H8     109.566    1.50
+BQJ          C5          C6          H9     109.566    1.50
+BQJ          H8          C6          H9     108.159    1.50
+BQJ         C62         C64         H10     109.538    1.50
+BQJ         C62         C64         H11     109.538    1.50
+BQJ         C62         C64         H12     109.538    1.50
+BQJ         H10         C64         H11     109.380    1.50
+BQJ         H10         C64         H12     109.380    1.50
+BQJ         H11         C64         H12     109.380    1.50
+BQJ         C60         C62         C64     111.254    1.50
+BQJ         C60         C62         H13     108.995    1.50
+BQJ         C60         C62         H14     108.995    1.50
+BQJ         C64         C62         H13     109.587    1.50
+BQJ         C64         C62         H14     109.587    1.50
+BQJ         H13         C62         H14     107.790    1.50
+BQJ         N45         C60         C62     112.560    1.50
+BQJ         N45         C60         H15     109.127    1.50
+BQJ         N45         C60         H16     109.127    1.50
+BQJ         C62         C60         H15     109.073    1.50
+BQJ         C62         C60         H16     109.073    1.50
+BQJ         H15         C60         H16     107.991    1.50
+BQJ         N44         N45         C46     108.420    1.50
+BQJ         N44         N45         C60     122.294    1.60
+BQJ         C46         N45         C60     129.285    1.82
+BQJ         C42         N44         N45     106.288    1.50
+BQJ         C24         C42         C47     129.811    1.50
+BQJ         C24         C42         N44     120.087    1.50
+BQJ         C47         C42         N44     110.102    1.50
+BQJ         C42         C47         C51     130.251    2.34
+BQJ         C42         C47         C46     107.271    1.55
+BQJ         C51         C47         C46     122.478    1.52
+BQJ         C47         C51         N54     108.298    1.56
+BQJ         C47         C51         H17     110.691    1.50
+BQJ         C47         C51         H18     110.691    1.50
+BQJ         N54         C51         H17     109.093    1.66
+BQJ         N54         C51         H18     109.093    1.66
+BQJ         H17         C51         H18     108.071    1.50
+BQJ         C51         N54         C68     120.613    2.25
+BQJ         C51         N54         C53     115.031    2.05
+BQJ         C68         N54         C53     122.719    2.99
+BQJ         N54         C53         C54     110.423    1.50
+BQJ         N54         C53         H19     109.562    1.50
+BQJ         N54         C53         H20     109.562    1.50
+BQJ         C54         C53         H19     109.548    1.50
+BQJ         C54         C53         H20     109.548    1.50
+BQJ         H19         C53         H20     108.732    1.61
+BQJ         C46         C54         C53     107.976    1.50
+BQJ         C46         C54         H21     110.082    1.50
+BQJ         C46         C54         H22     110.082    1.50
+BQJ         C53         C54         H21     109.298    1.50
+BQJ         C53         C54         H22     109.298    1.50
+BQJ         H21         C54         H22     108.255    1.50
+BQJ         C47         C46         N45     107.918    1.96
+BQJ         C47         C46         C54     125.427    1.68
+BQJ         N45         C46         C54     126.655    1.77
+BQJ         O72         C68         N54     121.756    1.50
+BQJ         O72         C68         C72     120.967    1.50
+BQJ         N54         C68         C72     117.276    1.50
+BQJ         C68         C72         C75     114.835    2.57
+BQJ         C68         C72         H23     108.907    1.50
+BQJ         C68         C72         H24     108.907    1.50
+BQJ         C75         C72         H23     108.906    1.50
+BQJ         C75         C72         H24     108.906    1.50
+BQJ         H23         C72         H24     107.652    1.50
+BQJ         C72         C75         C80     111.176    1.53
+BQJ         C72         C75         C76     111.176    1.53
+BQJ         C72         C75         H25     107.131    1.50
+BQJ         C80         C75         C76     109.024    1.50
+BQJ         C80         C75         H25     107.879    1.50
+BQJ         C76         C75         H25     107.879    1.50
+BQJ         C75         C76         C77     112.062    1.50
+BQJ         C75         C76         H26     109.093    1.50
+BQJ         C75         C76         H27     109.093    1.50
+BQJ         C77         C76         H26     109.101    1.50
+BQJ         C77         C76         H27     109.101    1.50
+BQJ         H26         C76         H27     107.890    1.50
+BQJ         C76         C77         N80     110.373    1.50
+BQJ         C76         C77         H28     109.668    1.50
+BQJ         C76         C77         H29     109.668    1.50
+BQJ         N80         C77         H28     109.413    1.50
+BQJ         N80         C77         H29     109.413    1.50
+BQJ         H28         C77         H29     108.159    1.50
+BQJ         C79         N80         C77     114.082    1.50
+BQJ         C79         N80         C87     122.959    2.77
+BQJ         C77         N80         C87     122.959    2.77
+BQJ         C80         C79         N80     110.373    1.50
+BQJ         C80         C79         H30     109.668    1.50
+BQJ         C80         C79         H31     109.668    1.50
+BQJ         N80         C79         H30     109.413    1.50
+BQJ         N80         C79         H31     109.413    1.50
+BQJ         H30         C79         H31     108.159    1.50
+BQJ         C75         C80         C79     112.062    1.50
+BQJ         C75         C80         H32     109.093    1.50
+BQJ         C75         C80         H33     109.093    1.50
+BQJ         C79         C80         H32     109.101    1.50
+BQJ         C79         C80         H33     109.101    1.50
+BQJ         H32         C80         H33     107.890    1.50
+BQJ         N80         C87         O87     121.931    1.50
+BQJ         N80         C87         C89     117.738    1.50
+BQJ         O87         C87         C89     120.331    1.50
+BQJ         C87         C89         N91     112.685    2.15
+BQJ         C87         C89         H34     108.787    1.50
+BQJ         C87         C89         H35     108.787    1.50
+BQJ         N91         C89         H34     108.700    1.50
+BQJ         N91         C89         H35     108.700    1.50
+BQJ         H34         C89         H35     107.908    1.50
+BQJ         C93         N91         C89     110.923    1.50
+BQJ         C93         N91         C95     109.730    1.50
+BQJ         C89         N91         C95     110.923    1.50
+BQJ         N91         C95         H37     109.516    1.50
+BQJ         N91         C95         H38     109.516    1.50
+BQJ         N91         C95         H39     109.516    1.50
+BQJ         H37         C95         H38     109.408    1.50
+BQJ         H37         C95         H39     109.408    1.50
+BQJ         H38         C95         H39     109.408    1.50
+BQJ         N91         C93         H40     109.516    1.50
+BQJ         N91         C93         H41     109.516    1.50
+BQJ         N91         C93         H42     109.516    1.50
+BQJ         H40         C93         H41     109.408    1.50
+BQJ         H40         C93         H42     109.408    1.50
+BQJ         H41         C93         H42     109.408    1.50
+BQJ         C23         C24         C25     119.098    1.50
+BQJ         C23         C24         C42     120.425    1.50
+BQJ         C25         C24         C42     120.478    1.50
+BQJ         C22         C23         C24     120.753    1.50
+BQJ         C22         C23         H43     119.706    1.50
+BQJ         C24         C23         H43     119.541    1.50
+BQJ         C21         C22         C23     121.028    1.50
+BQJ         C21         C22         H44     119.424    1.50
+BQJ         C23         C22         H44     119.548    1.50
+BQJ         C33         C21         C22     120.054    1.50
+BQJ         C33         C21         C26     121.414    1.50
+BQJ         C22         C21         C26     118.532    1.50
+BQJ         C21         C26         S19     119.875    2.83
+BQJ         C21         C26         C25     120.249    1.50
+BQJ         S19         C26         C25     119.875    2.83
+BQJ         C26         C25         C24     120.340    1.50
+BQJ         C26         C25         H45     119.870    1.50
+BQJ         C24         C25         H45     119.790    1.50
+BQJ         C26         S19         C17     120.000    3.00
+BQJ         S19         C17         C15     112.239    3.00
+BQJ         S19         C17         H46     109.066    1.50
+BQJ         S19         C17         H47     109.066    1.50
+BQJ         C15         C17         H46     110.203    2.43
+BQJ         C15         C17         H47     110.203    2.43
+BQJ         H46         C17         H47     107.922    1.50
+BQJ         C17         C15          N1     113.565    1.79
+BQJ         C17         C15         H48     109.111    2.02
+BQJ         C17         C15         H49     109.111    2.02
+BQJ          N1         C15         H48     109.135    1.50
+BQJ          N1         C15         H49     109.135    1.50
+BQJ         H48         C15         H49     107.781    1.50
+BQJ          C2          C3          C4     111.021    1.50
+BQJ          C2          C3         H50     109.380    1.50
+BQJ          C2          C3         H51     109.380    1.50
+BQJ          C4          C3         H50     109.453    1.50
+BQJ          C4          C3         H51     109.453    1.50
+BQJ         H50          C3         H51     108.022    1.50
+BQJ         F46         C33         F44     105.974    1.50
+BQJ         F46         C33         F45     105.974    1.50
+BQJ         F46         C33         C21     113.129    1.50
+BQJ         F44         C33         F45     105.974    1.50
+BQJ         F44         C33         C21     113.129    1.50
+BQJ         F45         C33         C21     113.129    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BQJ            sp3_sp3_98          C3          C2          N1         C15     -60.000    10.0     3
+BQJ             sp3_sp3_2          C5          C6          N1         C15     180.000    10.0     3
+BQJ            sp3_sp3_92         C17         C15          N1          C6     -60.000    10.0     3
+BQJ              const_28         C24         C42         C47         C51       0.000    10.0     2
+BQJ             sp2_sp2_3         C23         C24         C42         C47     180.000     5.0     2
+BQJ             sp2_sp3_4         C42         C47         C51         N54     180.000    10.0     6
+BQJ              const_29         N45         C46         C47         C42       0.000    10.0     2
+BQJ            sp2_sp3_10         C68         N54         C51         C47     180.000    10.0     6
+BQJ            sp2_sp3_16         C68         N54         C53         C54     180.000    10.0     6
+BQJ             sp2_sp2_9         O72         C68         N54         C51       0.000     5.0     2
+BQJ            sp3_sp3_43         N54         C53         C54         C46     -60.000    10.0     3
+BQJ            sp2_sp3_19         C47         C46         C54         C53       0.000    10.0     6
+BQJ            sp2_sp3_44         O72         C68         C72         C75     120.000    10.0     6
+BQJ           sp3_sp3_122         C68         C72         C75         C80     -60.000    10.0     3
+BQJ            sp3_sp3_34          N1          C2          C3          C4      60.000    10.0     3
+BQJ           sp3_sp3_133         C72         C75         C76         C77      60.000    10.0     3
+BQJ            sp3_sp3_58         C72         C75         C80         C79     180.000    10.0     3
+BQJ            sp3_sp3_70         C75         C76         C77         N80      60.000    10.0     3
+BQJ            sp2_sp3_34         C87         N80         C77         C76     180.000    10.0     6
+BQJ            sp2_sp3_28         C87         N80         C79         C80     180.000    10.0     6
+BQJ            sp2_sp2_13         O87         C87         N80         C79       0.000     5.0     2
+BQJ            sp3_sp3_61         N80         C79         C80         C75     -60.000    10.0     3
+BQJ            sp2_sp3_59         O87         C87         C89         N91     -60.000    10.0     6
+BQJ           sp3_sp3_146         C87         C89         N91         C93     -60.000    10.0     3
+BQJ           sp3_sp3_151         H37         C95         N91         C93     180.000    10.0     3
+BQJ           sp3_sp3_139         H40         C93         N91         C89     180.000    10.0     3
+BQJ            sp3_sp3_16          C3          C4          C5          C6      60.000    10.0     3
+BQJ            sp3_sp3_25          C2          C3          C4          C5     -60.000    10.0     3
+BQJ       const_sp2_sp2_1         C22         C23         C24         C25       0.000     5.0     2
+BQJ              const_33         C23         C24         C25         C26       0.000    10.0     2
+BQJ       const_sp2_sp2_5         C21         C22         C23         C24       0.000     5.0     2
+BQJ              const_11         C33         C21         C22         C23     180.000    10.0     2
+BQJ              const_16         C33         C21         C26         S19       0.000    10.0     2
+BQJ            sp2_sp3_37         C22         C21         C33         F46     150.000    10.0     6
+BQJ              const_18         C24         C25         C26         S19     180.000    10.0     2
+BQJ             sp2_sp2_1         C21         C26         S19         C17     180.000     5.0     2
+BQJ            sp3_sp3_79         C15         C17         S19         C26     180.000    10.0     3
+BQJ            sp3_sp3_82          N1         C15         C17         S19     180.000    10.0     3
+BQJ             sp3_sp3_7          C4          C5          C6          N1     -60.000    10.0     3
+BQJ           sp3_sp3_112         C60         C62         C64         H10     180.000    10.0     3
+BQJ           sp3_sp3_103         N45         C60         C62         C64     180.000    10.0     3
+BQJ            sp2_sp3_50         N44         N45         C60         C62     -90.000    10.0     6
+BQJ              const_38         C47         C46         N45         C60     180.000    10.0     2
+BQJ              const_22         C42         N44         N45         C60     180.000    10.0     2
+BQJ              const_24         C24         C42         N44         N45     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BQJ    chir_1    N1    C15    C6    C2    both
+BQJ    chir_2    C75    C72    C80    C76    both
+BQJ    chir_3    N91    C89    C93    C95    both
+BQJ    chir_4    C33    F46    F44    F45    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BQJ    plan-1         C24   0.020
+BQJ    plan-1         C42   0.020
+BQJ    plan-1         C46   0.020
+BQJ    plan-1         C47   0.020
+BQJ    plan-1         C51   0.020
+BQJ    plan-1         C54   0.020
+BQJ    plan-1         C60   0.020
+BQJ    plan-1         N44   0.020
+BQJ    plan-1         N45   0.020
+BQJ    plan-2         C21   0.020
+BQJ    plan-2         C22   0.020
+BQJ    plan-2         C23   0.020
+BQJ    plan-2         C24   0.020
+BQJ    plan-2         C25   0.020
+BQJ    plan-2         C26   0.020
+BQJ    plan-2         C33   0.020
+BQJ    plan-2         C42   0.020
+BQJ    plan-2         H43   0.020
+BQJ    plan-2         H44   0.020
+BQJ    plan-2         H45   0.020
+BQJ    plan-2         S19   0.020
+BQJ    plan-3         C68   0.020
+BQJ    plan-3         C72   0.020
+BQJ    plan-3         N54   0.020
+BQJ    plan-3         O72   0.020
+BQJ    plan-4         C77   0.020
+BQJ    plan-4         C79   0.020
+BQJ    plan-4         C87   0.020
+BQJ    plan-4         N80   0.020
+BQJ    plan-5         C87   0.020
+BQJ    plan-5         C89   0.020
+BQJ    plan-5         N80   0.020
+BQJ    plan-5         O87   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BQJ           SMILES              ACDLabs 12.01                                                                                                                            N1(CCCCC1)CCSc5c(ccc(c2nn(CCC)c4c2CN(C(CC3CCN(C(CN(C)C)=O)CC3)=O)CC4)c5)C(F)(F)F
+BQJ            InChI                InChI  1.03 InChI=1S/C34H49F3N6O2S/c1-4-13-43-29-12-18-42(31(44)21-25-10-16-41(17-11-25)32(45)24-39(2)3)23-27(29)33(38-43)26-8-9-28(34(35,36)37)30(22-26)46-20-19-40-14-6-5-7-15-40/h8-9,22,25H,4-7,10-21,23-24H2,1-3H3
+BQJ         InChIKey                InChI  1.03                                                                                                                                                                                 NUSUQUBVOSMEDW-UHFFFAOYSA-N
+BQJ SMILES_CANONICAL               CACTVS 3.385                                                                                                                              CCCn1nc(c2ccc(c(SCCN3CCCCC3)c2)C(F)(F)F)c4CN(CCc14)C(=O)CC5CCN(CC5)C(=O)CN(C)C
+BQJ           SMILES               CACTVS 3.385                                                                                                                              CCCn1nc(c2ccc(c(SCCN3CCCCC3)c2)C(F)(F)F)c4CN(CCc14)C(=O)CC5CCN(CC5)C(=O)CN(C)C
+BQJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                            CCCn1c2c(c(n1)c3ccc(c(c3)SCCN4CCCCC4)C(F)(F)F)CN(CC2)C(=O)CC5CCN(CC5)C(=O)CN(C)C
+BQJ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                            CCCn1c2c(c(n1)c3ccc(c(c3)SCCN4CCCCC4)C(F)(F)F)CN(CC2)C(=O)CC5CCN(CC5)C(=O)CN(C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BQJ acedrg               243         "dictionary generator"                  
+BQJ acedrg_database      11          "data source"                           
+BQJ rdkit                2017.03.2   "Chemoinformatics tool"
+BQJ refmac5              5.8.0238    "optimization tool"                     

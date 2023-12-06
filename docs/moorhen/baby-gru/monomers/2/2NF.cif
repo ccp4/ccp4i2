@@ -1,0 +1,443 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+2NF     2NF      "[[(2R,3S,4R,5R)-5-(6-aminopurin-9-yl)-3,4-dihydroxyoxolan-2-yl]methoxy-hydroxyphosphoryl][(2R,3S,4R,5R)-5-(3-carbamoylpyridin-1-ium-1yl)- 3-fluoro-,4- hydroxyoxolan-2-yl]methyl phosphate"     NON-POLYMER     69     44     .     
+#
+data_comp_2NF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+2NF     O7N     O       O       0       19.747      -7.832      4.926       
+2NF     C7N     C       C       0       19.314      -6.684      5.118       
+2NF     N7N     N       NH2     0       19.414      -6.081      6.295       
+2NF     C3N     C       CR6     0       18.660      -5.945      3.992       
+2NF     C4N     C       CR16    0       17.570      -6.492      3.327       
+2NF     C5N     C       CR16    0       16.981      -5.796      2.287       
+2NF     C6N     C       CR16    0       17.478      -4.561      1.913       
+2NF     C2N     C       CR16    0       19.155      -4.699      3.608       
+2NF     N1N     N       NR6     1       18.557      -4.007      2.573       
+2NF     C1D     C       CH1     0       19.106      -2.683      2.181       
+2NF     C2D     C       CH1     0       20.179      -2.752      1.102       
+2NF     F2D     F       F       0       21.397      -2.813      1.682       
+2NF     C3D     C       CH1     0       20.002      -1.433      0.359       
+2NF     O3D     O       OH1     0       20.693      -0.354      0.955       
+2NF     O4D     O       O2      0       18.063      -1.856      1.655       
+2NF     C4D     C       CH1     0       18.484      -1.260      0.409       
+2NF     C5D     C       CH2     0       17.744      -1.900      -0.740      
+2NF     O5D     O       O2      0       16.333      -1.574      -0.655      
+2NF     PN      P       P       0       15.303      -2.348      -1.612      
+2NF     O1N     O       O       0       13.955      -1.718      -1.499      
+2NF     O2N     O       OP      -1      15.416      -3.818      -1.376      
+2NF     O3      O       O2      0       15.907      -2.012      -3.061      
+2NF     PA      P       P       0       16.046      -2.869      -4.410      
+2NF     O1A     O       O       0       16.038      -1.933      -5.574      
+2NF     O2A     O       OP      -1      15.039      -3.971      -4.385      
+2NF     O5B     O       O2      0       17.516      -3.487      -4.234      
+2NF     C5B     C       CH2     0       18.665      -2.612      -4.392      
+2NF     C4B     C       CH1     0       19.908      -3.283      -3.854      
+2NF     O4B     O       O2      0       19.608      -3.943      -2.598      
+2NF     C1B     C       CH1     0       20.457      -5.057      -2.477      
+2NF     C2B     C       CH1     0       20.555      -5.629      -3.886      
+2NF     O2B     O       OH1     0       21.731      -6.398      -4.029      
+2NF     C3B     C       CH1     0       20.536      -4.361      -4.754      
+2NF     O3B     O       OH1     0       21.840      -3.968      -5.169      
+2NF     N9A     N       NR5     0       19.897      -5.985      -1.500      
+2NF     C8A     C       CR15    0       18.610      -6.462      -1.464      
+2NF     N7A     N       NRD5    0       18.388      -7.292      -0.476      
+2NF     C5A     C       CR56    0       19.604      -7.374      0.185       
+2NF     C6A     C       CR6     0       20.021      -8.098      1.324       
+2NF     N6A     N       NH2     0       19.221      -8.906      2.018       
+2NF     C4A     C       CR56    0       20.547      -6.573      -0.439      
+2NF     N3A     N       NRD6    0       21.831      -6.415      -0.064      
+2NF     C2A     C       CR16    0       22.113      -7.142      1.019       
+2NF     N1A     N       NRD6    0       21.312      -7.956      1.723       
+2NF     HN7N    H       H       0       19.093      -5.258      6.419       
+2NF     HN7A    H       H       0       19.808      -6.498      6.978       
+2NF     H4N     H       H       0       17.234      -7.334      3.581       
+2NF     H5N     H       H       0       16.241      -6.160      1.829       
+2NF     H6N     H       H       0       17.077      -4.088      1.204       
+2NF     H2N     H       H       0       19.894      -4.329      4.061       
+2NF     H1D     H       H       0       19.485      -2.247      2.985       
+2NF     H2D     H       H       0       20.032      -3.514      0.501       
+2NF     H3D     H       H       0       20.292      -1.533      -0.572      
+2NF     HO3D    H       H       0       20.376      -0.219      1.731       
+2NF     H4D     H       H       0       18.263      -0.300      0.425       
+2NF     H5D     H       H       0       17.866      -2.881      -0.707      
+2NF     H5DA    H       H       0       18.113      -1.568      -1.594      
+2NF     H5B     H       H       0       18.511      -1.765      -3.907      
+2NF     H5BA    H       H       0       18.794      -2.402      -5.350      
+2NF     H4B     H       H       0       20.574      -2.583      -3.684      
+2NF     H1B     H       H       0       21.350      -4.764      -2.186      
+2NF     H2B     H       H       0       19.761      -6.192      -4.085      
+2NF     HO2B    H       H       0       21.820      -6.619      -4.844      
+2NF     H3B     H       H       0       19.960      -4.506      -5.549      
+2NF     HO3B    H       H       0       22.020      -4.352      -5.905      
+2NF     H8A     H       H       0       17.951      -6.213      -2.089      
+2NF     HN6A    H       H       0       19.520      -9.297      2.746       
+2NF     HN6B    H       H       0       18.399      -9.044      1.746       
+2NF     H2A     H       H       0       23.002      -7.074      1.333       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+2NF         O7N         C7N      DOUBLE       n     1.241  0.0105     1.241  0.0105
+2NF         C7N         C3N      SINGLE       n     1.497  0.0100     1.497  0.0100
+2NF         C7N         N7N      SINGLE       n     1.326  0.0100     1.326  0.0100
+2NF         C3N         C2N      DOUBLE       y     1.390  0.0105     1.390  0.0105
+2NF         C3N         C4N      SINGLE       y     1.385  0.0100     1.385  0.0100
+2NF         C4N         C5N      DOUBLE       y     1.380  0.0100     1.380  0.0100
+2NF         C5N         C6N      SINGLE       y     1.380  0.0128     1.380  0.0128
+2NF         C6N         N1N      DOUBLE       y     1.375  0.0105     1.375  0.0105
+2NF         C2N         N1N      SINGLE       y     1.377  0.0105     1.377  0.0105
+2NF         N1N         C1D      SINGLE       n     1.477  0.0138     1.477  0.0138
+2NF         C1D         C2D      SINGLE       n     1.524  0.0100     1.524  0.0100
+2NF         C2D         F2D      SINGLE       n     1.349  0.0200     1.349  0.0200
+2NF         C2D         C3D      SINGLE       n     1.524  0.0121     1.524  0.0121
+2NF         C3D         O3D      SINGLE       n     1.411  0.0121     1.411  0.0121
+2NF         C1D         O4D      SINGLE       n     1.425  0.0141     1.425  0.0141
+2NF         C3D         C4D      SINGLE       n     1.528  0.0117     1.528  0.0117
+2NF         O4D         C4D      SINGLE       n     1.443  0.0107     1.443  0.0107
+2NF         C4D         C5D      SINGLE       n     1.509  0.0100     1.509  0.0100
+2NF         C5D         O5D      SINGLE       n     1.450  0.0166     1.450  0.0166
+2NF         O5D          PN      SINGLE       n     1.604  0.0133     1.604  0.0133
+2NF          PN         O2N      SINGLE       n     1.493  0.0122     1.493  0.0122
+2NF          PN         O1N      DOUBLE       n     1.493  0.0122     1.493  0.0122
+2NF          PN          O3      SINGLE       n     1.604  0.0133     1.604  0.0133
+2NF          O3          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+2NF          PA         O5B      SINGLE       n     1.604  0.0133     1.604  0.0133
+2NF          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+2NF          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+2NF         O5B         C5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+2NF         C5B         C4B      SINGLE       n     1.509  0.0100     1.509  0.0100
+2NF         C4B         O4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+2NF         O4B         C1B      SINGLE       n     1.409  0.0100     1.409  0.0100
+2NF         C1B         N9A      SINGLE       n     1.458  0.0100     1.458  0.0100
+2NF         C1B         C2B      SINGLE       n     1.525  0.0100     1.525  0.0100
+2NF         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+2NF         C4B         C3B      SINGLE       n     1.535  0.0100     1.535  0.0100
+2NF         C2B         C3B      SINGLE       n     1.531  0.0100     1.531  0.0100
+2NF         C3B         O3B      SINGLE       n     1.422  0.0100     1.422  0.0100
+2NF         N9A         C4A      SINGLE       y     1.374  0.0101     1.374  0.0101
+2NF         N9A         C8A      SINGLE       y     1.372  0.0100     1.372  0.0100
+2NF         C8A         N7A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+2NF         N7A         C5A      SINGLE       y     1.388  0.0100     1.388  0.0100
+2NF         C5A         C6A      SINGLE       y     1.408  0.0100     1.408  0.0100
+2NF         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+2NF         C6A         N1A      DOUBLE       y     1.354  0.0100     1.354  0.0100
+2NF         C5A         C4A      DOUBLE       y     1.381  0.0100     1.381  0.0100
+2NF         C4A         N3A      SINGLE       y     1.343  0.0100     1.343  0.0100
+2NF         N3A         C2A      DOUBLE       y     1.330  0.0100     1.330  0.0100
+2NF         C2A         N1A      SINGLE       y     1.339  0.0100     1.339  0.0100
+2NF         N7N        HN7N      SINGLE       n     1.016  0.0100     0.891  0.0200
+2NF         N7N        HN7A      SINGLE       n     1.016  0.0100     0.891  0.0200
+2NF         C4N         H4N      SINGLE       n     1.082  0.0130     0.941  0.0168
+2NF         C5N         H5N      SINGLE       n     1.082  0.0130     0.943  0.0190
+2NF         C6N         H6N      SINGLE       n     1.082  0.0130     0.943  0.0169
+2NF         C2N         H2N      SINGLE       n     1.082  0.0130     0.943  0.0170
+2NF         C1D         H1D      SINGLE       n     1.089  0.0100     0.990  0.0173
+2NF         C2D         H2D      SINGLE       n     1.089  0.0100     0.981  0.0170
+2NF         C3D         H3D      SINGLE       n     1.089  0.0100     0.980  0.0100
+2NF         O3D        HO3D      SINGLE       n     0.970  0.0120     0.849  0.0200
+2NF         C4D         H4D      SINGLE       n     1.089  0.0100     0.986  0.0200
+2NF         C5D         H5D      SINGLE       n     1.089  0.0100     0.989  0.0200
+2NF         C5D        H5DA      SINGLE       n     1.089  0.0100     0.989  0.0200
+2NF         C5B         H5B      SINGLE       n     1.089  0.0100     0.989  0.0200
+2NF         C5B        H5BA      SINGLE       n     1.089  0.0100     0.989  0.0200
+2NF         C4B         H4B      SINGLE       n     1.089  0.0100     0.981  0.0200
+2NF         C1B         H1B      SINGLE       n     1.089  0.0100     0.984  0.0200
+2NF         C2B         H2B      SINGLE       n     1.089  0.0100     0.994  0.0200
+2NF         O2B        HO2B      SINGLE       n     0.970  0.0120     0.849  0.0200
+2NF         C3B         H3B      SINGLE       n     1.089  0.0100     0.992  0.0200
+2NF         O3B        HO3B      SINGLE       n     0.970  0.0120     0.849  0.0200
+2NF         C8A         H8A      SINGLE       n     1.082  0.0130     0.942  0.0170
+2NF         N6A        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+2NF         N6A        HN6B      SINGLE       n     1.016  0.0100     0.877  0.0200
+2NF         C2A         H2A      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+2NF         O7N         C7N         C3N     119.730    1.50
+2NF         O7N         C7N         N7N     122.238    1.50
+2NF         C3N         C7N         N7N     118.032    1.50
+2NF         C7N         N7N        HN7N     120.236    2.75
+2NF         C7N         N7N        HN7A     120.236    2.75
+2NF        HN7N         N7N        HN7A     119.529    2.83
+2NF         C7N         C3N         C2N     119.660    2.75
+2NF         C7N         C3N         C4N     120.938    2.50
+2NF         C2N         C3N         C4N     119.402    1.64
+2NF         C3N         C4N         C5N     119.166    1.50
+2NF         C3N         C4N         H4N     120.513    1.50
+2NF         C5N         C4N         H4N     120.320    1.50
+2NF         C4N         C5N         C6N     120.016    1.50
+2NF         C4N         C5N         H5N     120.300    1.50
+2NF         C6N         C5N         H5N     119.683    1.50
+2NF         C5N         C6N         N1N     121.277    1.50
+2NF         C5N         C6N         H6N     120.031    1.59
+2NF         N1N         C6N         H6N     118.693    1.53
+2NF         C3N         C2N         N1N     119.549    3.00
+2NF         C3N         C2N         H2N     120.021    1.50
+2NF         N1N         C2N         H2N     120.430    1.53
+2NF         C6N         N1N         C2N     120.590    1.50
+2NF         C6N         N1N         C1D     119.705    1.50
+2NF         C2N         N1N         C1D     119.705    1.50
+2NF         N1N         C1D         C2D     113.961    1.50
+2NF         N1N         C1D         O4D     108.092    1.50
+2NF         N1N         C1D         H1D     108.901    1.50
+2NF         C2D         C1D         O4D     105.973    1.50
+2NF         C2D         C1D         H1D     109.391    1.50
+2NF         O4D         C1D         H1D     109.395    1.50
+2NF         C1D         C2D         F2D     109.343    1.50
+2NF         C1D         C2D         C3D     103.185    1.56
+2NF         C1D         C2D         H2D     111.301    1.50
+2NF         F2D         C2D         C3D     110.051    1.88
+2NF         F2D         C2D         H2D     111.335    1.50
+2NF         C3D         C2D         H2D     110.826    1.50
+2NF         C2D         C3D         O3D     111.623    3.00
+2NF         C2D         C3D         C4D     102.302    1.50
+2NF         C2D         C3D         H3D     110.299    1.50
+2NF         O3D         C3D         C4D     112.431    2.44
+2NF         O3D         C3D         H3D     109.964    1.50
+2NF         C4D         C3D         H3D     109.965    1.50
+2NF         C3D         O3D        HO3D     108.182    1.86
+2NF         C1D         O4D         C4D     109.375    1.70
+2NF         C3D         C4D         O4D     105.508    1.50
+2NF         C3D         C4D         C5D     114.866    1.63
+2NF         C3D         C4D         H4D     109.385    1.50
+2NF         O4D         C4D         C5D     109.615    1.50
+2NF         O4D         C4D         H4D     108.698    1.50
+2NF         C5D         C4D         H4D     108.268    1.50
+2NF         C4D         C5D         O5D     109.342    1.50
+2NF         C4D         C5D         H5D     109.624    1.50
+2NF         C4D         C5D        H5DA     109.624    1.50
+2NF         O5D         C5D         H5D     109.845    1.50
+2NF         O5D         C5D        H5DA     109.845    1.50
+2NF         H5D         C5D        H5DA     108.472    1.50
+2NF         C5D         O5D          PN     118.553    2.41
+2NF         O5D          PN         O2N     109.410    1.50
+2NF         O5D          PN         O1N     109.410    1.50
+2NF         O5D          PN          O3     101.065    1.97
+2NF         O2N          PN         O1N     118.411    2.35
+2NF         O2N          PN          O3     108.816    2.14
+2NF         O1N          PN          O3     108.816    2.14
+2NF          PN          O3          PA     132.542    3.00
+2NF          O3          PA         O5B     101.065    1.97
+2NF          O3          PA         O1A     108.816    2.14
+2NF          O3          PA         O2A     108.816    2.14
+2NF         O5B          PA         O1A     109.410    1.50
+2NF         O5B          PA         O2A     109.410    1.50
+2NF         O1A          PA         O2A     118.411    2.35
+2NF          PA         O5B         C5B     118.553    2.41
+2NF         O5B         C5B         C4B     109.342    1.50
+2NF         O5B         C5B         H5B     109.845    1.50
+2NF         O5B         C5B        H5BA     109.845    1.50
+2NF         C4B         C5B         H5B     109.624    1.50
+2NF         C4B         C5B        H5BA     109.624    1.50
+2NF         H5B         C5B        H5BA     108.472    1.50
+2NF         C5B         C4B         O4B     109.123    1.50
+2NF         C5B         C4B         C3B     116.008    1.52
+2NF         C5B         C4B         H4B     108.268    1.50
+2NF         O4B         C4B         C3B     105.388    1.50
+2NF         O4B         C4B         H4B     108.947    1.50
+2NF         C3B         C4B         H4B     109.363    1.86
+2NF         C4B         O4B         C1B     109.903    1.50
+2NF         O4B         C1B         N9A     108.477    1.50
+2NF         O4B         C1B         C2B     106.047    1.50
+2NF         O4B         C1B         H1B     109.807    1.50
+2NF         N9A         C1B         C2B     113.824    1.50
+2NF         N9A         C1B         H1B     109.561    1.50
+2NF         C2B         C1B         H1B     109.015    1.50
+2NF         C1B         C2B         O2B     111.715    2.69
+2NF         C1B         C2B         C3B     101.239    1.50
+2NF         C1B         C2B         H2B     110.636    1.70
+2NF         O2B         C2B         C3B     112.782    2.45
+2NF         O2B         C2B         H2B     110.448    1.97
+2NF         C3B         C2B         H2B     110.596    1.51
+2NF         C2B         O2B        HO2B     109.103    2.13
+2NF         C4B         C3B         C2B     102.602    1.50
+2NF         C4B         C3B         O3B     111.281    2.46
+2NF         C4B         C3B         H3B     110.452    2.54
+2NF         C2B         C3B         O3B     111.581    2.83
+2NF         C2B         C3B         H3B     110.504    1.75
+2NF         O3B         C3B         H3B     110.380    1.67
+2NF         C3B         O3B        HO3B     108.744    3.00
+2NF         C1B         N9A         C4A     127.459    1.80
+2NF         C1B         N9A         C8A     126.848    1.91
+2NF         C4A         N9A         C8A     105.693    1.50
+2NF         N9A         C8A         N7A     113.469    1.50
+2NF         N9A         C8A         H8A     123.206    1.50
+2NF         N7A         C8A         H8A     123.326    1.50
+2NF         C8A         N7A         C5A     104.739    1.50
+2NF         N7A         C5A         C6A     132.250    1.50
+2NF         N7A         C5A         C4A     110.483    1.50
+2NF         C6A         C5A         C4A     117.267    1.50
+2NF         C5A         C6A         N6A     123.792    1.50
+2NF         C5A         C6A         N1A     117.409    1.50
+2NF         N6A         C6A         N1A     118.799    1.50
+2NF         C6A         N6A        HN6A     119.723    1.50
+2NF         C6A         N6A        HN6B     119.723    1.50
+2NF        HN6A         N6A        HN6B     120.554    1.88
+2NF         N9A         C4A         C5A     105.616    1.50
+2NF         N9A         C4A         N3A     127.895    1.50
+2NF         C5A         C4A         N3A     126.489    1.50
+2NF         C4A         N3A         C2A     110.982    1.50
+2NF         N3A         C2A         N1A     129.332    1.50
+2NF         N3A         C2A         H2A     115.355    1.50
+2NF         N1A         C2A         H2A     115.313    1.50
+2NF         C6A         N1A         C2A     118.521    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+2NF            sp3_sp3_38         F2D         C2D         C3D         O3D     -60.000    10.0     3
+2NF            sp3_sp3_55         C2D         C3D         O3D        HO3D     180.000    10.0     3
+2NF            sp3_sp3_47         O3D         C3D         C4D         C5D      60.000    10.0     3
+2NF            sp3_sp3_53         C5D         C4D         O4D         C1D     180.000    10.0     3
+2NF            sp3_sp3_61         C3D         C4D         C5D         O5D     180.000    10.0     3
+2NF            sp3_sp3_70         C4D         C5D         O5D          PN     180.000    10.0     3
+2NF            sp3_sp3_74         C5D         O5D          PN         O2N     -60.000    10.0     3
+2NF            sp3_sp3_77          PA          O3          PN         O5D     -60.000    10.0     3
+2NF             sp2_sp2_7         O7N         C7N         N7N        HN7N       0.000     5.0     2
+2NF             sp2_sp2_2         C2N         C3N         C7N         O7N       0.000     5.0     2
+2NF            sp3_sp3_80          PN          O3          PA         O5B     -60.000    10.0     3
+2NF            sp3_sp3_82         C5B         O5B          PA          O3     180.000    10.0     3
+2NF            sp3_sp3_85         C4B         C5B         O5B          PA     180.000    10.0     3
+2NF            sp3_sp3_88         O4B         C4B         C5B         O5B     180.000    10.0     3
+2NF             sp3_sp3_2         C5B         C4B         O4B         C1B     -60.000    10.0     3
+2NF           sp3_sp3_104         O3B         C3B         C4B         C5B     180.000    10.0     3
+2NF             sp3_sp3_5         N9A         C1B         O4B         C4B     180.000    10.0     3
+2NF             sp3_sp3_8         O4B         C1B         C2B         O2B     180.000    10.0     3
+2NF             sp2_sp3_7         C4A         N9A         C1B         O4B     150.000    10.0     6
+2NF            sp3_sp3_97         C1B         C2B         O2B        HO2B     180.000    10.0     3
+2NF            sp3_sp3_20         O2B         C2B         C3B         O3B     -60.000    10.0     3
+2NF           sp3_sp3_109         C4B         C3B         O3B        HO3B     180.000    10.0     3
+2NF              const_50         N7A         C8A         N9A         C1B     180.000    10.0     2
+2NF              const_34         C5A         C4A         N9A         C1B     180.000    10.0     2
+2NF              const_43         N9A         C8A         N7A         C5A       0.000    10.0     2
+2NF              const_42         C6A         C5A         N7A         C8A     180.000    10.0     2
+2NF       const_sp2_sp2_4         N7A         C5A         C6A         N6A       0.000     5.0     2
+2NF              const_37         N9A         C4A         C5A         N7A       0.000    10.0     2
+2NF             sp2_sp2_9         C5A         C6A         N6A        HN6A     180.000     5.0     2
+2NF       const_sp2_sp2_6         N6A         C6A         N1A         C2A     180.000     5.0     2
+2NF              const_47         C7N         C3N         C4N         C5N     180.000    10.0     2
+2NF              const_14         N1N         C2N         C3N         C7N     180.000    10.0     2
+2NF              const_12         N9A         C4A         N3A         C2A     180.000    10.0     2
+2NF       const_sp2_sp2_9         N1A         C2A         N3A         C4A       0.000     5.0     2
+2NF       const_sp2_sp2_7         N3A         C2A         N1A         C6A       0.000     5.0     2
+2NF              const_29         C3N         C4N         C5N         C6N       0.000    10.0     2
+2NF              const_25         C4N         C5N         C6N         N1N       0.000    10.0     2
+2NF              const_21         C5N         C6N         N1N         C2N       0.000    10.0     2
+2NF              const_17         C3N         C2N         N1N         C6N       0.000    10.0     2
+2NF             sp2_sp3_1         C6N         N1N         C1D         C2D     150.000    10.0     6
+2NF            sp3_sp3_29         N1N         C1D         C2D         F2D      60.000    10.0     3
+2NF            sp3_sp3_59         N1N         C1D         O4D         C4D      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+2NF    chir_1    C1D    O4D    N1N    C2D    negative
+2NF    chir_2    C2D    F2D    C1D    C3D    negative
+2NF    chir_3    C3D    O3D    C2D    C4D    negative
+2NF    chir_4    C4D    O4D    C3D    C5D    negative
+2NF    chir_5    PN    O3    O5D    O2N    both
+2NF    chir_6    PA    O3    O5B    O2A    both
+2NF    chir_7    C4B    O4B    C3B    C5B    negative
+2NF    chir_8    C1B    O4B    N9A    C2B    negative
+2NF    chir_9    C2B    O2B    C1B    C3B    negative
+2NF    chir_10    C3B    O3B    C4B    C2B    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+2NF    plan-1         C1B   0.020
+2NF    plan-1         C2A   0.020
+2NF    plan-1         C4A   0.020
+2NF    plan-1         C5A   0.020
+2NF    plan-1         C6A   0.020
+2NF    plan-1         C8A   0.020
+2NF    plan-1         H2A   0.020
+2NF    plan-1         H8A   0.020
+2NF    plan-1         N1A   0.020
+2NF    plan-1         N3A   0.020
+2NF    plan-1         N6A   0.020
+2NF    plan-1         N7A   0.020
+2NF    plan-1         N9A   0.020
+2NF    plan-2         C1D   0.020
+2NF    plan-2         C2N   0.020
+2NF    plan-2         C3N   0.020
+2NF    plan-2         C4N   0.020
+2NF    plan-2         C5N   0.020
+2NF    plan-2         C6N   0.020
+2NF    plan-2         C7N   0.020
+2NF    plan-2         H2N   0.020
+2NF    plan-2         H4N   0.020
+2NF    plan-2         H5N   0.020
+2NF    plan-2         H6N   0.020
+2NF    plan-2         N1N   0.020
+2NF    plan-3         C3N   0.020
+2NF    plan-3         C7N   0.020
+2NF    plan-3         N7N   0.020
+2NF    plan-3         O7N   0.020
+2NF    plan-4         C7N   0.020
+2NF    plan-4        HN7A   0.020
+2NF    plan-4        HN7N   0.020
+2NF    plan-4         N7N   0.020
+2NF    plan-5         C6A   0.020
+2NF    plan-5        HN6A   0.020
+2NF    plan-5        HN6B   0.020
+2NF    plan-5         N6A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+2NF            InChI                InChI  1.03 InChI=1S/C21H26FN7O13P2/c22-12-14(30)10(40-20(12)28-3-1-2-9(4-28)18(24)33)5-38-43(34,35)42-44(36,37)39-6-11-15(31)16(32)21(41-11)29-8-27-13-17(23)25-7-26-19(13)29/h1-4,7-8,10-12,14-16,20-21,30-32H,5-6H2,(H5-,23,24,25,26,33,34,35,36,37)/t10-,11-,12-,14-,15-,16-,20-,21-/m1/s1
+2NF         InChIKey                InChI  1.03                                                                                                                                                                                                                                                        JSGNSBZQCQQLEF-OZCXFSBSSA-N
+2NF SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                       NC(=O)c1ccc[n+](c1)[C@@H]2O[C@H](CO[P]([O-])(=O)O[P](O)(=O)OC[C@H]3O[C@H]([C@H](O)[C@@H]3O)n4cnc5c(N)ncnc45)[C@@H](O)[C@H]2F
+2NF           SMILES               CACTVS 3.385                                                                                                                                                                  NC(=O)c1ccc[n+](c1)[CH]2O[CH](CO[P]([O-])(=O)O[P](O)(=O)OC[CH]3O[CH]([CH](O)[CH]3O)n4cnc5c(N)ncnc45)[CH](O)[CH]2F
+2NF SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                                                                                                   c1cc(c[n+](c1)[C@H]2[C@@H]([C@@H]([C@H](O2)COP(=O)([O-])O[P@](=O)(O)OC[C@@H]3[C@H]([C@H]([C@@H](O3)n4cnc5c4ncnc5N)O)O)O)F)C(=O)N
+2NF           SMILES "OpenEye OEToolkits" 1.7.5                                                                                                                                                                                          c1cc(c[n+](c1)C2C(C(C(O2)COP(=O)([O-])OP(=O)(O)OCC3C(C(C(O3)n4cnc5c4ncnc5N)O)O)O)F)C(=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+2NF acedrg               243         "dictionary generator"                  
+2NF acedrg_database      11          "data source"                           
+2NF rdkit                2017.03.2   "Chemoinformatics tool"
+2NF refmac5              5.8.0238    "optimization tool"                     

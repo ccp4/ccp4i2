@@ -1,0 +1,262 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RGY     RGY      "(4R,4aS,7aS,9S)-3,10-dimethyl-5,6,7,7a,8,9-hexahydro-4H-4a,9-epiminopyrrolo[3',4':5,6]cyclohepta[1,2-d][1,2]oxazol-4-ol"     NON-POLYMER     34     17     .     
+#
+data_comp_RGY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RGY     N1      N       NT      0       4.197       31.136      12.022      
+RGY     N3      N       NRD5    0       8.155       33.167      13.006      
+RGY     C4      C       CH1     0       4.045       30.727      14.302      
+RGY     C5      C       CH2     0       2.844       29.835      14.616      
+RGY     C6      C       CH2     0       3.919       28.789      12.835      
+RGY     C7      C       CT      0       4.656       30.125      13.003      
+RGY     C8      C       CH1     0       6.222       30.014      12.977      
+RGY     C10     C       CR56    0       6.019       32.507      12.808      
+RGY     C1      C       CH3     0       4.462       31.056      10.580      
+RGY     C11     C       CR5     0       8.152       31.863      13.081      
+RGY     C12     C       CH3     0       9.402       31.069      13.261      
+RGY     C2      C       CH1     0       4.516       32.429      12.660      
+RGY     C3      C       CH2     0       3.716       32.201      13.947      
+RGY     C9      C       CR56    0       6.823       31.396      12.972      
+RGY     N2      N       NT1     0       2.595       29.038      13.410      
+RGY     O1      O       OH1     0       6.654       29.230      14.090      
+RGY     O2      O       O2      0       6.802       33.606      12.835      
+RGY     H2      H       H       0       4.683       30.719      15.061      
+RGY     H3      H       H       0       3.038       29.248      15.369      
+RGY     H4      H       H       0       2.058       30.371      14.832      
+RGY     H5      H       H       0       4.374       28.069      13.319      
+RGY     H6      H       H       0       3.844       28.544      11.889      
+RGY     H7      H       H       0       6.492       29.541      12.152      
+RGY     H8      H       H       0       4.009       30.280      10.211      
+RGY     H9      H       H       0       5.417       30.974      10.426      
+RGY     H10     H       H       0       4.132       31.859      10.145      
+RGY     H11     H       H       0       9.178       30.133      13.378      
+RGY     H12     H       H       0       9.878       31.387      14.044      
+RGY     H13     H       H       0       9.966       31.170      12.478      
+RGY     H14     H       H       0       4.153       33.185      12.136      
+RGY     H15     H       H       0       4.008       32.804      14.654      
+RGY     H16     H       H       0       2.762       32.323      13.794      
+RGY     H17     H       H       0       2.120       29.516      12.848      
+RGY     H19     H       H       0       6.770       29.715      14.777      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RGY          N1          C1      SINGLE       n     1.466  0.0100     1.466  0.0100
+RGY          N1          C2      SINGLE       n     1.478  0.0139     1.478  0.0139
+RGY          N1          C7      SINGLE       n     1.474  0.0169     1.474  0.0169
+RGY         C10          C2      SINGLE       n     1.513  0.0111     1.513  0.0111
+RGY          C2          C3      SINGLE       n     1.536  0.0127     1.536  0.0127
+RGY         C10          O2      SINGLE       y     1.358  0.0200     1.358  0.0200
+RGY         C10          C9      DOUBLE       y     1.393  0.0200     1.393  0.0200
+RGY          N3          O2      SINGLE       y     1.430  0.0100     1.430  0.0100
+RGY          C6          C7      SINGLE       n     1.538  0.0109     1.538  0.0109
+RGY          C6          N2      SINGLE       n     1.464  0.0100     1.464  0.0100
+RGY          N3         C11      DOUBLE       y     1.303  0.0100     1.303  0.0100
+RGY          C7          C8      SINGLE       n     1.538  0.0189     1.538  0.0189
+RGY          C4          C7      SINGLE       n     1.550  0.0132     1.550  0.0132
+RGY          C8          C9      SINGLE       n     1.500  0.0101     1.500  0.0101
+RGY         C11          C9      SINGLE       y     1.413  0.0100     1.413  0.0100
+RGY          C8          O1      SINGLE       n     1.425  0.0116     1.425  0.0116
+RGY         C11         C12      SINGLE       n     1.492  0.0100     1.492  0.0100
+RGY          C5          N2      SINGLE       n     1.464  0.0100     1.464  0.0100
+RGY          C4          C3      SINGLE       n     1.546  0.0100     1.546  0.0100
+RGY          C4          C5      SINGLE       n     1.524  0.0104     1.524  0.0104
+RGY          C4          H2      SINGLE       n     1.089  0.0100     0.992  0.0100
+RGY          C5          H3      SINGLE       n     1.089  0.0100     0.975  0.0121
+RGY          C5          H4      SINGLE       n     1.089  0.0100     0.975  0.0121
+RGY          C6          H5      SINGLE       n     1.089  0.0100     0.980  0.0174
+RGY          C6          H6      SINGLE       n     1.089  0.0100     0.980  0.0174
+RGY          C8          H7      SINGLE       n     1.089  0.0100     0.989  0.0200
+RGY          C1          H8      SINGLE       n     1.089  0.0100     0.971  0.0165
+RGY          C1          H9      SINGLE       n     1.089  0.0100     0.971  0.0165
+RGY          C1         H10      SINGLE       n     1.089  0.0100     0.971  0.0165
+RGY         C12         H11      SINGLE       n     1.089  0.0100     0.970  0.0153
+RGY         C12         H12      SINGLE       n     1.089  0.0100     0.970  0.0153
+RGY         C12         H13      SINGLE       n     1.089  0.0100     0.970  0.0153
+RGY          C2         H14      SINGLE       n     1.089  0.0100     0.989  0.0126
+RGY          C3         H15      SINGLE       n     1.089  0.0100     0.974  0.0100
+RGY          C3         H16      SINGLE       n     1.089  0.0100     0.974  0.0100
+RGY          N2         H17      SINGLE       n     1.036  0.0160     0.874  0.0200
+RGY          O1         H19      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RGY          C1          N1          C2     113.295    2.23
+RGY          C1          N1          C7     120.853    3.00
+RGY          C2          N1          C7     106.489    1.50
+RGY          O2          N3         C11     107.019    1.50
+RGY          C7          C4          C3     104.367    1.50
+RGY          C7          C4          C5     104.367    1.50
+RGY          C7          C4          H2     112.719    1.50
+RGY          C3          C4          C5     114.694    2.57
+RGY          C3          C4          H2     109.969    1.96
+RGY          C5          C4          H2     111.026    1.66
+RGY          N2          C5          C4     103.016    1.95
+RGY          N2          C5          H3     110.320    1.50
+RGY          N2          C5          H4     110.320    1.50
+RGY          C4          C5          H3     111.018    1.50
+RGY          C4          C5          H4     111.018    1.50
+RGY          H3          C5          H4     108.987    1.50
+RGY          C7          C6          N2     104.311    1.50
+RGY          C7          C6          H5     110.799    1.50
+RGY          C7          C6          H6     110.799    1.50
+RGY          N2          C6          H5     110.320    1.50
+RGY          N2          C6          H6     110.320    1.50
+RGY          H5          C6          H6     108.882    1.50
+RGY          N1          C7          C6     113.627    3.00
+RGY          N1          C7          C8     109.703    2.58
+RGY          N1          C7          C4     102.511    2.22
+RGY          C6          C7          C8     113.673    2.48
+RGY          C6          C7          C4     105.299    1.62
+RGY          C8          C7          C4     114.694    2.76
+RGY          C7          C8          C9     107.310    1.94
+RGY          C7          C8          O1     108.624    1.58
+RGY          C7          C8          H7     109.163    1.50
+RGY          C9          C8          O1     111.166    2.62
+RGY          C9          C8          H7     109.589    1.50
+RGY          O1          C8          H7     108.293    1.51
+RGY          C2         C10          O2     122.465    3.00
+RGY          C2         C10          C9     128.697    2.27
+RGY          O2         C10          C9     108.838    1.50
+RGY          N1          C1          H8     109.500    1.50
+RGY          N1          C1          H9     109.500    1.50
+RGY          N1          C1         H10     109.500    1.50
+RGY          H8          C1          H9     109.432    1.50
+RGY          H8          C1         H10     109.432    1.50
+RGY          H9          C1         H10     109.432    1.50
+RGY          N3         C11          C9     108.746    1.50
+RGY          N3         C11         C12     122.743    3.00
+RGY          C9         C11         C12     128.511    1.50
+RGY         C11         C12         H11     109.521    1.50
+RGY         C11         C12         H12     109.521    1.50
+RGY         C11         C12         H13     109.521    1.50
+RGY         H11         C12         H12     109.368    1.50
+RGY         H11         C12         H13     109.368    1.50
+RGY         H12         C12         H13     109.368    1.50
+RGY          N1          C2         C10     107.681    1.74
+RGY          N1          C2          C3     102.859    2.40
+RGY          N1          C2         H14     109.453    1.50
+RGY         C10          C2          C3     115.378    2.90
+RGY         C10          C2         H14     109.862    1.50
+RGY          C3          C2         H14     109.488    1.50
+RGY          C2          C3          C4     103.248    1.52
+RGY          C2          C3         H15     110.961    1.50
+RGY          C2          C3         H16     110.961    1.50
+RGY          C4          C3         H15     110.841    1.50
+RGY          C4          C3         H16     110.841    1.50
+RGY         H15          C3         H16     109.000    1.50
+RGY         C10          C9          C8     121.913    2.35
+RGY         C10          C9         C11     107.507    1.55
+RGY          C8          C9         C11     130.580    2.34
+RGY          C6          N2          C5     104.054    1.50
+RGY          C6          N2         H17     107.991    2.32
+RGY          C5          N2         H17     107.991    2.32
+RGY          C8          O1         H19     108.850    2.68
+RGY         C10          O2          N3     107.890    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RGY             sp3_sp3_2         C10          C2          N1          C1     180.000    10.0     3
+RGY            sp3_sp3_73          C6          C7          N1          C1     180.000    10.0     3
+RGY            sp3_sp3_64          H8          C1          N1          C2     180.000    10.0     3
+RGY            sp3_sp3_16          N1          C2          C3          C4     -60.000    10.0     3
+RGY       const_sp2_sp2_1         C11          N3          O2         C10       0.000     5.0     2
+RGY              const_13         C12         C11          N3          O2     180.000    10.0     2
+RGY            sp3_sp3_25          C2          C3          C4          C7      60.000    10.0     3
+RGY            sp3_sp3_79          C7          C4          C5          N2     180.000    10.0     3
+RGY            sp3_sp3_34          C3          C4          C7          N1     -60.000    10.0     3
+RGY            sp3_sp3_58          C4          C5          N2          C6     -60.000    10.0     3
+RGY            sp3_sp3_52          C7          C6          N2          C5      60.000    10.0     3
+RGY            sp3_sp3_44          N2          C6          C7          N1      60.000    10.0     3
+RGY             sp3_sp3_8          N1          C7          C8          O1     180.000    10.0     3
+RGY             sp2_sp3_8         C10          C9          C8          O1     120.000    10.0     6
+RGY            sp3_sp3_76          C7          C8          O1         H19     180.000    10.0     3
+RGY             sp2_sp3_4          O2         C10          C2          N1     180.000    10.0     6
+RGY       const_sp2_sp2_4          C2         C10          C9          C8       0.000     5.0     2
+RGY       const_sp2_sp2_3          C2         C10          O2          N3     180.000     5.0     2
+RGY            sp2_sp3_13          N3         C11         C12         H11     150.000    10.0     6
+RGY              const_10         C12         C11          C9         C10     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RGY    chir_1    N1    C7    C2    C1    negative
+RGY    chir_2    C4    C7    C5    C3    positive
+RGY    chir_3    C7    N1    C8    C6    positive
+RGY    chir_4    C8    O1    C7    C9    negative
+RGY    chir_5    C2    N1    C10    C3    positive
+RGY    chir_6    N2    C6    C5    H17    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RGY    plan-1         C10   0.020
+RGY    plan-1         C11   0.020
+RGY    plan-1         C12   0.020
+RGY    plan-1          C2   0.020
+RGY    plan-1          C8   0.020
+RGY    plan-1          C9   0.020
+RGY    plan-1          N3   0.020
+RGY    plan-1          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RGY           SMILES              ACDLabs 12.01                                                                                      N1(C3c4onc(C)c4C(C12C(CNC2)C3)O)C
+RGY            InChI                InChI  1.03 InChI=1S/C12H17N3O2/c1-6-9-10(17-14-6)8-3-7-4-13-5-12(7,11(9)16)15(8)2/h7-8,11,13,16H,3-5H2,1-2H3/t7-,8-,11+,12+/m0/s1
+RGY         InChIKey                InChI  1.03                                                                                            ORUIQGBPSJFGIC-LDDIKCJXSA-N
+RGY SMILES_CANONICAL               CACTVS 3.385                                                                          CN1[C@H]2C[C@H]3CNC[C@@]13[C@H](O)c4c(C)noc24
+RGY           SMILES               CACTVS 3.385                                                                               CN1[CH]2C[CH]3CNC[C]13[CH](O)c4c(C)noc24
+RGY SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                        Cc1c2c(on1)[C@@H]3C[C@H]4CNC[C@@]4([C@@H]2O)N3C
+RGY           SMILES "OpenEye OEToolkits" 2.0.6                                                                                          Cc1c2c(on1)C3CC4CNCC4(C2O)N3C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RGY acedrg               243         "dictionary generator"                  
+RGY acedrg_database      11          "data source"                           
+RGY rdkit                2017.03.2   "Chemoinformatics tool"
+RGY refmac5              5.8.0238    "optimization tool"                     

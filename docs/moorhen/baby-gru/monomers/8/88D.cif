@@ -1,0 +1,339 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+88D     88D      N-(2-methylphenyl)-Nalpha-(selenophene-2-carbonyl)-D-phenylalaninamide     NON-POLYMER     46     26     .     
+#
+data_comp_88D
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+88D     CAA     C       CH3     0       185.518     184.067     16.689      
+88D     CAW     C       CR6     0       184.667     182.848     16.909      
+88D     CAM     C       CR16    0       183.450     182.951     17.590      
+88D     CAG     C       CR16    0       182.646     181.848     17.808      
+88D     CAH     C       CR16    0       183.039     180.610     17.349      
+88D     CAN     C       CR16    0       184.238     180.471     16.673      
+88D     CAX     C       CR6     0       185.050     181.579     16.448      
+88D     NAQ     N       NH1     0       186.283     181.436     15.753      
+88D     C       C       C       0       186.493     180.854     14.546      
+88D     O       O       O       0       185.594     180.462     13.812      
+88D     CA      C       CH1     0       187.965     180.697     14.129      
+88D     CB      C       CH2     0       188.551     179.365     14.624      
+88D     CG      C       CR6     0       188.409     179.102     16.104      
+88D     CD1     C       CR16    0       187.381     178.300     16.587      
+88D     CE1     C       CR16    0       187.248     178.056     17.948      
+88D     CZ      C       CR16    0       188.144     178.607     18.842      
+88D     CE2     C       CR16    0       189.171     179.403     18.377      
+88D     CD2     C       CR16    0       189.304     179.649     17.016      
+88D     N       N       NH1     0       188.160     180.813     12.695      
+88D     CAT     C       C       0       187.818     181.897     11.976      
+88D     OAB     O       O       0       187.341     182.914     12.481      
+88D     CAY     C       CR5     0       188.038     181.894     10.496      
+88D     SE      SE      SE      0       189.059     180.630     9.559       
+88D     CAJ     C       CR15    0       188.996     181.748     8.072       
+88D     CAI     C       CR15    0       188.196     182.899     8.361       
+88D     CAO     C       CR15    0       187.481     182.801     9.588       
+88D     H1      H       H       0       185.019     184.865     16.928      
+88D     H2      H       H       0       185.778     184.119     15.755      
+88D     H3      H       H       0       186.315     184.010     17.241      
+88D     H4      H       H       0       183.172     183.794     17.908      
+88D     H5      H       H       0       181.828     181.944     18.271      
+88D     H6      H       H       0       182.494     179.855     17.496      
+88D     H7      H       H       0       184.506     179.625     16.358      
+88D     H8      H       H       0       186.986     181.742     16.173      
+88D     H9      H       H       0       188.475     181.430     14.550      
+88D     H10     H       H       0       189.504     179.342     14.396      
+88D     H11     H       H       0       188.116     178.635     14.135      
+88D     H12     H       H       0       186.763     177.920     15.982      
+88D     H13     H       H       0       186.544     177.511     18.262      
+88D     H14     H       H       0       188.054     178.441     19.766      
+88D     H15     H       H       0       189.786     179.782     18.985      
+88D     H16     H       H       0       190.009     180.194     16.705      
+88D     H17     H       H       0       188.520     180.126     12.285      
+88D     H18     H       H       0       189.430     181.581     7.259       
+88D     H19     H       H       0       188.151     183.636     7.787       
+88D     H20     H       H       0       186.696     183.293     9.779       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+88D         CAJ         CAI      DOUBLE       n     1.423  0.0200     1.423  0.0200
+88D          SE         CAJ      SINGLE       n     1.884  0.0200     1.884  0.0200
+88D         CAI         CAO      SINGLE       n     1.397  0.0200     1.397  0.0200
+88D         CAY          SE      SINGLE       n     1.884  0.0200     1.884  0.0200
+88D         CAY         CAO      DOUBLE       n     1.381  0.0200     1.381  0.0200
+88D         CAT         CAY      SINGLE       n     1.481  0.0200     1.481  0.0200
+88D           N         CAT      SINGLE       n     1.337  0.0106     1.337  0.0106
+88D         CAT         OAB      DOUBLE       n     1.230  0.0103     1.230  0.0103
+88D          CA           N      SINGLE       n     1.446  0.0100     1.446  0.0100
+88D           C           O      DOUBLE       n     1.223  0.0143     1.223  0.0143
+88D          CA          CB      SINGLE       n     1.532  0.0110     1.532  0.0110
+88D           C          CA      SINGLE       n     1.531  0.0118     1.531  0.0118
+88D          CB          CG      SINGLE       n     1.508  0.0100     1.508  0.0100
+88D         NAQ           C      SINGLE       n     1.350  0.0120     1.350  0.0120
+88D         CAX         NAQ      SINGLE       n     1.419  0.0123     1.419  0.0123
+88D          CG         CD1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+88D          CG         CD2      SINGLE       y     1.385  0.0111     1.385  0.0111
+88D         CAA         CAW      SINGLE       n     1.499  0.0139     1.499  0.0139
+88D         CAW         CAX      DOUBLE       y     1.394  0.0111     1.394  0.0111
+88D         CAN         CAX      SINGLE       y     1.387  0.0100     1.387  0.0100
+88D         CAW         CAM      SINGLE       y     1.393  0.0100     1.393  0.0100
+88D         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+88D         CAH         CAN      DOUBLE       y     1.381  0.0109     1.381  0.0109
+88D         CAM         CAG      DOUBLE       y     1.379  0.0111     1.379  0.0111
+88D         CE2         CD2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+88D         CAG         CAH      SINGLE       y     1.376  0.0124     1.376  0.0124
+88D         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+88D          CZ         CE2      SINGLE       y     1.376  0.0124     1.376  0.0124
+88D         CAA          H1      SINGLE       n     1.089  0.0100     0.971  0.0135
+88D         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0135
+88D         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0135
+88D         CAM          H4      SINGLE       n     1.082  0.0130     0.943  0.0173
+88D         CAG          H5      SINGLE       n     1.082  0.0130     0.944  0.0175
+88D         CAH          H6      SINGLE       n     1.082  0.0130     0.943  0.0172
+88D         CAN          H7      SINGLE       n     1.082  0.0130     0.942  0.0183
+88D         NAQ          H8      SINGLE       n     1.016  0.0100     0.874  0.0200
+88D          CA          H9      SINGLE       n     1.089  0.0100     0.988  0.0200
+88D          CB         H10      SINGLE       n     1.089  0.0100     0.980  0.0164
+88D          CB         H11      SINGLE       n     1.089  0.0100     0.980  0.0164
+88D         CD1         H12      SINGLE       n     1.082  0.0130     0.944  0.0174
+88D         CE1         H13      SINGLE       n     1.082  0.0130     0.944  0.0175
+88D          CZ         H14      SINGLE       n     1.082  0.0130     0.944  0.0161
+88D         CE2         H15      SINGLE       n     1.082  0.0130     0.944  0.0175
+88D         CD2         H16      SINGLE       n     1.082  0.0130     0.944  0.0174
+88D           N         H17      SINGLE       n     1.016  0.0100     0.880  0.0200
+88D         CAJ         H18      SINGLE       n     1.082  0.0130     0.936  0.0100
+88D         CAI         H19      SINGLE       n     1.082  0.0130     0.935  0.0100
+88D         CAO         H20      SINGLE       n     1.082  0.0130     0.945  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+88D         CAW         CAA          H1     109.584    1.50
+88D         CAW         CAA          H2     109.584    1.50
+88D         CAW         CAA          H3     109.584    1.50
+88D          H1         CAA          H2     109.348    1.50
+88D          H1         CAA          H3     109.348    1.50
+88D          H2         CAA          H3     109.348    1.50
+88D         CAA         CAW         CAX     121.821    1.50
+88D         CAA         CAW         CAM     120.845    1.50
+88D         CAX         CAW         CAM     117.335    1.50
+88D         CAW         CAM         CAG     121.328    1.50
+88D         CAW         CAM          H4     119.180    1.50
+88D         CAG         CAM          H4     119.492    1.50
+88D         CAM         CAG         CAH     120.212    1.50
+88D         CAM         CAG          H5     119.849    1.50
+88D         CAH         CAG          H5     119.940    1.50
+88D         CAN         CAH         CAG     120.538    1.50
+88D         CAN         CAH          H6     119.590    1.50
+88D         CAG         CAH          H6     119.872    1.50
+88D         CAX         CAN         CAH     120.257    1.50
+88D         CAX         CAN          H7     119.733    1.50
+88D         CAH         CAN          H7     120.009    1.50
+88D         NAQ         CAX         CAW     118.453    1.52
+88D         NAQ         CAX         CAN     121.216    1.70
+88D         CAW         CAX         CAN     120.331    1.50
+88D           C         NAQ         CAX     127.487    1.64
+88D           C         NAQ          H8     116.469    1.63
+88D         CAX         NAQ          H8     116.044    2.41
+88D           O           C          CA     121.168    1.50
+88D           O           C         NAQ     124.225    1.50
+88D          CA           C         NAQ     114.606    1.78
+88D           N          CA          CB     111.400    1.80
+88D           N          CA           C     111.445    2.83
+88D           N          CA          H9     107.614    1.50
+88D          CB          CA           C     111.537    1.50
+88D          CB          CA          H9     108.341    1.50
+88D           C          CA          H9     107.417    1.50
+88D          CA          CB          CG     113.550    1.83
+88D          CA          CB         H10     108.810    1.50
+88D          CA          CB         H11     108.810    1.50
+88D          CG          CB         H10     108.862    1.50
+88D          CG          CB         H11     108.862    1.50
+88D         H10          CB         H11     107.782    1.50
+88D          CB          CG         CD1     120.970    1.50
+88D          CB          CG         CD2     120.970    1.50
+88D         CD1          CG         CD2     118.060    1.50
+88D          CG         CD1         CE1     120.624    1.50
+88D          CG         CD1         H12     119.591    1.50
+88D         CE1         CD1         H12     119.786    1.50
+88D         CD1         CE1          CZ     120.325    1.50
+88D         CD1         CE1         H13     119.792    1.50
+88D          CZ         CE1         H13     119.883    1.50
+88D         CE1          CZ         CE2     120.043    1.50
+88D         CE1          CZ         H14     119.979    1.50
+88D         CE2          CZ         H14     119.979    1.50
+88D         CD2         CE2          CZ     120.325    1.50
+88D         CD2         CE2         H15     119.792    1.50
+88D          CZ         CE2         H15     119.883    1.50
+88D          CG         CD2         CE2     120.624    1.50
+88D          CG         CD2         H16     119.591    1.50
+88D         CE2         CD2         H16     119.786    1.50
+88D         CAT           N          CA     121.488    1.69
+88D         CAT           N         H17     118.947    1.50
+88D          CA           N         H17     119.566    3.00
+88D         CAY         CAT           N     117.656    2.58
+88D         CAY         CAT         OAB     119.582    2.01
+88D           N         CAT         OAB     122.762    1.50
+88D          SE         CAY         CAO     114.616    3.00
+88D          SE         CAY         CAT     120.291    2.81
+88D         CAO         CAY         CAT     125.093    3.00
+88D         CAJ          SE         CAY     109.471    3.00
+88D         CAI         CAJ          SE     114.814    3.00
+88D         CAI         CAJ         H18     123.832    1.68
+88D          SE         CAJ         H18     121.354    2.66
+88D         CAJ         CAI         CAO     112.453    1.79
+88D         CAJ         CAI         H19     123.013    1.60
+88D         CAO         CAI         H19     124.534    1.62
+88D         CAI         CAO         CAY     111.394    2.48
+88D         CAI         CAO         H20     125.044    1.62
+88D         CAY         CAO         H20     123.562    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+88D            sp2_sp3_23         CAX         CAW         CAA          H1     150.000    10.0     6
+88D             sp3_sp3_1           N          CA          CB          CG     180.000    10.0     3
+88D             sp2_sp3_5         CAT           N          CA          CB       0.000    10.0     6
+88D            sp2_sp3_18         CD1          CG          CB          CA     -90.000    10.0     6
+88D              const_22         CE1         CD1          CG          CB     180.000    10.0     2
+88D              const_42         CE2         CD2          CG          CB     180.000    10.0     2
+88D              const_25          CG         CD1         CE1          CZ       0.000    10.0     2
+88D              const_29         CD1         CE1          CZ         CE2       0.000    10.0     2
+88D              const_33         CD2         CE2          CZ         CE1       0.000    10.0     2
+88D              const_37          CG         CD2         CE2          CZ       0.000    10.0     2
+88D            sp2_sp2_19         OAB         CAT           N          CA       0.000     5.0     2
+88D            sp2_sp2_14           N         CAT         CAY          SE       0.000     5.0     2
+88D              const_46         CAG         CAM         CAW         CAA     180.000    10.0     2
+88D       const_sp2_sp2_4         CAA         CAW         CAX         NAQ       0.000     5.0     2
+88D            sp2_sp2_10         CAI         CAO         CAY         CAT     180.000     5.0     2
+88D             sp2_sp2_1         CAO         CAI         CAJ          SE       0.000     5.0     2
+88D             sp2_sp2_5         CAJ         CAI         CAO         CAY       0.000     5.0     2
+88D              const_17         CAH         CAG         CAM         CAW       0.000    10.0     2
+88D              const_13         CAM         CAG         CAH         CAN       0.000    10.0     2
+88D       const_sp2_sp2_9         CAG         CAH         CAN         CAX       0.000     5.0     2
+88D       const_sp2_sp2_6         CAH         CAN         CAX         NAQ     180.000     5.0     2
+88D            sp2_sp2_25         CAW         CAX         NAQ           C     180.000     5.0     2
+88D            sp2_sp2_23           O           C         NAQ         CAX       0.000     5.0     2
+88D            sp2_sp3_11           O           C          CA           N       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+88D    chir_1    CA    N    C    CB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+88D    plan-1          CB   0.020
+88D    plan-1         CD1   0.020
+88D    plan-1         CD2   0.020
+88D    plan-1         CE1   0.020
+88D    plan-1         CE2   0.020
+88D    plan-1          CG   0.020
+88D    plan-1          CZ   0.020
+88D    plan-1         H12   0.020
+88D    plan-1         H13   0.020
+88D    plan-1         H14   0.020
+88D    plan-1         H15   0.020
+88D    plan-1         H16   0.020
+88D    plan-2         CAA   0.020
+88D    plan-2         CAG   0.020
+88D    plan-2         CAH   0.020
+88D    plan-2         CAM   0.020
+88D    plan-2         CAN   0.020
+88D    plan-2         CAW   0.020
+88D    plan-2         CAX   0.020
+88D    plan-2          H4   0.020
+88D    plan-2          H5   0.020
+88D    plan-2          H6   0.020
+88D    plan-2          H7   0.020
+88D    plan-2         NAQ   0.020
+88D    plan-3           C   0.020
+88D    plan-3         CAX   0.020
+88D    plan-3          H8   0.020
+88D    plan-3         NAQ   0.020
+88D    plan-4           C   0.020
+88D    plan-4          CA   0.020
+88D    plan-4         NAQ   0.020
+88D    plan-4           O   0.020
+88D    plan-5          CA   0.020
+88D    plan-5         CAT   0.020
+88D    plan-5         H17   0.020
+88D    plan-5           N   0.020
+88D    plan-6         CAT   0.020
+88D    plan-6         CAY   0.020
+88D    plan-6           N   0.020
+88D    plan-6         OAB   0.020
+88D    plan-7         CAO   0.020
+88D    plan-7         CAT   0.020
+88D    plan-7         CAY   0.020
+88D    plan-7          SE   0.020
+88D    plan-8         CAI   0.020
+88D    plan-8         CAJ   0.020
+88D    plan-8         H18   0.020
+88D    plan-8          SE   0.020
+88D    plan-9         CAI   0.020
+88D    plan-9         CAJ   0.020
+88D    plan-9         CAO   0.020
+88D    plan-9         H19   0.020
+88D   plan-10         CAI   0.020
+88D   plan-10         CAO   0.020
+88D   plan-10         CAY   0.020
+88D   plan-10         H20   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+88D           SMILES              ACDLabs 12.01                                                                                                           Cc1ccccc1NC(=O)C(Cc2ccccc2)NC(=O)c3[se]ccc3
+88D            InChI                InChI  1.03 InChI=1S/C21H20N2O2Se/c1-15-8-5-6-11-17(15)22-20(24)18(14-16-9-3-2-4-10-16)23-21(25)19-12-7-13-26-19/h2-13,18H,14H2,1H3,(H,22,24)(H,23,25)/t18-/m1/s1
+88D         InChIKey                InChI  1.03                                                                                                                           AGKDXQQYJWMFAB-GOSISDBHSA-N
+88D SMILES_CANONICAL               CACTVS 3.385                                                                                                      Cc1ccccc1NC(=O)[C@@H](Cc2ccccc2)NC(=O)c3[se]ccc3
+88D           SMILES               CACTVS 3.385                                                                                                        Cc1ccccc1NC(=O)[CH](Cc2ccccc2)NC(=O)c3[se]ccc3
+88D SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                      Cc1ccccc1NC(=O)[C@@H](Cc2ccccc2)NC(=O)c3ccc[se]3
+88D           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                           Cc1ccccc1NC(=O)C(Cc2ccccc2)NC(=O)c3ccc[se]3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+88D acedrg               243         "dictionary generator"                  
+88D acedrg_database      11          "data source"                           
+88D rdkit                2017.03.2   "Chemoinformatics tool"
+88D refmac5              5.8.0238    "optimization tool"                     

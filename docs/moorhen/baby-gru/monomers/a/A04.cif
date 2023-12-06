@@ -1,0 +1,218 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+A04     A04      "5-[2-(TRIFLUOROMETHOXY)PHENYL]-2-FUROIC ACID"     NON-POLYMER     25     19     .     
+#
+data_comp_A04
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+A04     OAQ     O       OC      -1      1.749       -0.990      9.761       
+A04     CAB     C       C       0       0.827       -0.987      8.967       
+A04     OAR     O       O       0       0.954       -1.051      7.755       
+A04     CAA     C       CR5     0       -0.530      -0.900      9.514       
+A04     OAP     O       O2      0       -1.556      -0.897      8.603       
+A04     CAD     C       CR15    0       -1.043      -0.817      10.764      
+A04     CAE     C       CR15    0       -2.448      -0.762      10.631      
+A04     CAC     C       CR5     0       -2.726      -0.805      9.309       
+A04     CAG     C       CR6     0       -3.954      -0.799      8.521       
+A04     CAK     C       CR16    0       -4.166      -1.820      7.594       
+A04     CAH     C       CR16    0       -5.317      -1.849      6.824       
+A04     CAF     C       CR16    0       -6.267      -0.861      6.967       
+A04     CAI     C       CR16    0       -6.084      0.165       7.870       
+A04     CAJ     C       CR6     0       -4.937      0.205       8.671       
+A04     OAS     O       O2      0       -4.664      1.201       9.579       
+A04     CAL     C       CT      0       -5.611      1.672       10.409      
+A04     FAN     F       F       0       -6.338      2.606       9.826       
+A04     FAO     F       F       0       -6.445      0.753       10.861      
+A04     FAM     F       F       0       -5.058      2.232       11.466      
+A04     HAD     H       H       0       -0.558      -0.800      11.566      
+A04     HAE     H       H       0       -3.071      -0.699      11.331      
+A04     HAK     H       H       0       -3.521      -2.499      7.493       
+A04     HAH     H       H       0       -5.450      -2.546      6.203       
+A04     HAF     H       H       0       -7.050      -0.882      6.442       
+A04     HAI     H       H       0       -6.743      0.830       7.953       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+A04         OAQ         CAB      SINGLE       n     1.217  0.0200     1.217  0.0200
+A04         CAB         OAR      DOUBLE       n     1.217  0.0200     1.217  0.0200
+A04         CAB         CAA      SINGLE       n     1.458  0.0200     1.458  0.0200
+A04         CAA         OAP      SINGLE       y     1.372  0.0132     1.372  0.0132
+A04         CAA         CAD      DOUBLE       y     1.353  0.0100     1.353  0.0100
+A04         OAP         CAC      SINGLE       y     1.370  0.0100     1.370  0.0100
+A04         CAD         CAE      SINGLE       y     1.411  0.0100     1.411  0.0100
+A04         CAE         CAC      DOUBLE       y     1.352  0.0100     1.352  0.0100
+A04         CAC         CAG      SINGLE       n     1.456  0.0100     1.456  0.0100
+A04         CAG         CAK      DOUBLE       y     1.392  0.0100     1.392  0.0100
+A04         CAG         CAJ      SINGLE       y     1.404  0.0100     1.404  0.0100
+A04         CAK         CAH      SINGLE       y     1.383  0.0100     1.383  0.0100
+A04         CAH         CAF      DOUBLE       y     1.376  0.0124     1.376  0.0124
+A04         CAF         CAI      SINGLE       y     1.375  0.0106     1.375  0.0106
+A04         CAI         CAJ      DOUBLE       y     1.390  0.0100     1.390  0.0100
+A04         CAJ         OAS      SINGLE       n     1.367  0.0100     1.367  0.0100
+A04         OAS         CAL      SINGLE       n     1.327  0.0168     1.327  0.0168
+A04         CAL         FAN      SINGLE       n     1.318  0.0152     1.318  0.0152
+A04         CAL         FAO      SINGLE       n     1.318  0.0152     1.318  0.0152
+A04         CAL         FAM      SINGLE       n     1.318  0.0152     1.318  0.0152
+A04         CAD         HAD      SINGLE       n     1.082  0.0130     0.937  0.0166
+A04         CAE         HAE      SINGLE       n     1.082  0.0130     0.939  0.0104
+A04         CAK         HAK      SINGLE       n     1.082  0.0130     0.942  0.0166
+A04         CAH         HAH      SINGLE       n     1.082  0.0130     0.943  0.0180
+A04         CAF         HAF      SINGLE       n     1.082  0.0130     0.943  0.0183
+A04         CAI         HAI      SINGLE       n     1.082  0.0130     0.941  0.0179
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+A04         OAQ         CAB         OAR     124.973    1.50
+A04         OAQ         CAB         CAA     117.513    1.50
+A04         OAR         CAB         CAA     117.513    1.50
+A04         CAB         CAA         OAP     115.909    1.50
+A04         CAB         CAA         CAD     134.695    1.50
+A04         OAP         CAA         CAD     109.397    1.50
+A04         CAA         OAP         CAC     107.554    1.50
+A04         CAA         CAD         CAE     106.552    1.50
+A04         CAA         CAD         HAD     126.775    1.50
+A04         CAE         CAD         HAD     126.673    1.50
+A04         CAD         CAE         CAC     106.911    1.50
+A04         CAD         CAE         HAE     126.527    1.50
+A04         CAC         CAE         HAE     126.562    1.50
+A04         OAP         CAC         CAE     109.586    1.50
+A04         OAP         CAC         CAG     116.381    1.50
+A04         CAE         CAC         CAG     134.033    1.50
+A04         CAC         CAG         CAK     120.324    1.50
+A04         CAC         CAG         CAJ     120.835    1.80
+A04         CAK         CAG         CAJ     118.841    1.50
+A04         CAG         CAK         CAH     120.445    1.50
+A04         CAG         CAK         HAK     119.732    1.50
+A04         CAH         CAK         HAK     119.823    1.50
+A04         CAK         CAH         CAF     120.228    1.50
+A04         CAK         CAH         HAH     119.785    1.50
+A04         CAF         CAH         HAH     119.987    1.50
+A04         CAH         CAF         CAI     120.567    1.50
+A04         CAH         CAF         HAF     119.901    1.50
+A04         CAI         CAF         HAF     119.532    1.50
+A04         CAF         CAI         CAJ     119.737    1.50
+A04         CAF         CAI         HAI     120.221    1.50
+A04         CAJ         CAI         HAI     120.041    1.50
+A04         CAG         CAJ         CAI     120.182    1.50
+A04         CAG         CAJ         OAS     117.621    1.92
+A04         CAI         CAJ         OAS     122.197    3.00
+A04         CAJ         OAS         CAL     117.390    1.50
+A04         OAS         CAL         FAN     111.622    2.31
+A04         OAS         CAL         FAO     111.622    2.31
+A04         OAS         CAL         FAM     111.622    2.31
+A04         FAN         CAL         FAO     107.218    1.66
+A04         FAN         CAL         FAM     107.218    1.66
+A04         FAO         CAL         FAM     107.218    1.66
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+A04              const_21         CAI         CAF         CAH         CAK       0.000    10.0     2
+A04              const_25         CAH         CAF         CAI         CAJ       0.000    10.0     2
+A04              const_30         CAF         CAI         CAJ         OAS     180.000    10.0     2
+A04             sp2_sp2_9         CAG         CAJ         OAS         CAL     180.000     5.0     2
+A04             sp3_sp3_1         FAN         CAL         OAS         CAJ     180.000    10.0     3
+A04             sp2_sp2_3         OAP         CAA         CAB         OAQ       0.000     5.0     2
+A04       const_sp2_sp2_2         CAB         CAA         OAP         CAC     180.000     5.0     2
+A04              const_35         CAB         CAA         CAD         CAE     180.000    10.0     2
+A04       const_sp2_sp2_3         CAE         CAC         OAP         CAA       0.000     5.0     2
+A04       const_sp2_sp2_9         CAA         CAD         CAE         CAC       0.000     5.0     2
+A04       const_sp2_sp2_5         OAP         CAC         CAE         CAD       0.000     5.0     2
+A04             sp2_sp2_7         OAP         CAC         CAG         CAK       0.000     5.0     2
+A04              const_40         CAC         CAG         CAJ         OAS       0.000    10.0     2
+A04              const_15         CAC         CAG         CAK         CAH     180.000    10.0     2
+A04              const_17         CAF         CAH         CAK         CAG       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+A04    chir_1    CAL    FAN    FAO    FAM    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+A04    plan-1         CAC   0.020
+A04    plan-1         CAF   0.020
+A04    plan-1         CAG   0.020
+A04    plan-1         CAH   0.020
+A04    plan-1         CAI   0.020
+A04    plan-1         CAJ   0.020
+A04    plan-1         CAK   0.020
+A04    plan-1         HAF   0.020
+A04    plan-1         HAH   0.020
+A04    plan-1         HAI   0.020
+A04    plan-1         HAK   0.020
+A04    plan-1         OAS   0.020
+A04    plan-2         CAA   0.020
+A04    plan-2         CAB   0.020
+A04    plan-2         CAC   0.020
+A04    plan-2         CAD   0.020
+A04    plan-2         CAE   0.020
+A04    plan-2         CAG   0.020
+A04    plan-2         HAD   0.020
+A04    plan-2         HAE   0.020
+A04    plan-2         OAP   0.020
+A04    plan-3         CAA   0.020
+A04    plan-3         CAB   0.020
+A04    plan-3         OAQ   0.020
+A04    plan-3         OAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+A04           SMILES              ACDLabs 10.04                                                      O=C(O)c2oc(c1c(OC(F)(F)F)cccc1)cc2
+A04 SMILES_CANONICAL               CACTVS 3.341                                                        OC(=O)c1oc(cc1)c2ccccc2OC(F)(F)F
+A04           SMILES               CACTVS 3.341                                                        OC(=O)c1oc(cc1)c2ccccc2OC(F)(F)F
+A04 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                    c1ccc(c(c1)c2ccc(o2)C(=O)O)OC(F)(F)F
+A04           SMILES "OpenEye OEToolkits" 1.5.0                                                    c1ccc(c(c1)c2ccc(o2)C(=O)O)OC(F)(F)F
+A04            InChI                InChI  1.03 InChI=1S/C12H7F3O4/c13-12(14,15)19-9-4-2-1-3-7(9)8-5-6-10(18-8)11(16)17/h1-6H,(H,16,17)
+A04         InChIKey                InChI  1.03                                                             PSLFQKRPFOCZHR-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+A04 acedrg               243         "dictionary generator"                  
+A04 acedrg_database      11          "data source"                           
+A04 rdkit                2017.03.2   "Chemoinformatics tool"
+A04 refmac5              5.8.0238    "optimization tool"                     

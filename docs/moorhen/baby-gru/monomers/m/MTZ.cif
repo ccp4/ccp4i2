@@ -1,0 +1,325 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MTZ     MTZ      4-METHYL-5-{(2E)-2-[(4-MORPHOLIN-4-YLPHENYL)IMINO]-2,5-DIHYDROPYRIMIDIN-4-YL}-1,3-THIAZOL-2-AMINE     NON-POLYMER     46     26     .     
+#
+data_comp_MTZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MTZ     C14     C       CH2     0       -3.955      47.814      2.113       
+MTZ     C15     C       CH2     0       -4.698      46.854      3.017       
+MTZ     O       O       O2      0       -4.472      45.495      2.647       
+MTZ     C16     C       CH2     0       -3.084      45.175      2.704       
+MTZ     C17     C       CH2     0       -2.264      46.058      1.789       
+MTZ     N5      N       NR6     0       -2.521      47.477      2.094       
+MTZ     C11     C       CR6     0       -1.512      48.398      2.321       
+MTZ     C12     C       CR16    0       -1.488      49.180      3.495       
+MTZ     C13     C       CR16    0       -0.481      50.091      3.712       
+MTZ     C10     C       CR16    0       -0.475      48.572      1.383       
+MTZ     C9      C       CR16    0       0.528       49.484      1.604       
+MTZ     C8      C       CR6     0       0.546       50.255      2.773       
+MTZ     N4      N       N       0       1.584       51.194      2.992       
+MTZ     C5      C       CR6     0       2.847       50.946      3.276       
+MTZ     N2      N       NRD6    0       3.364       49.715      3.048       
+MTZ     N3      N       NRD6    0       3.579       51.960      3.780       
+MTZ     C6      C       CR16    0       4.864       51.987      3.470       
+MTZ     C7      C       CH2     0       5.577       50.819      2.847       
+MTZ     C4      C       CR6     0       4.641       49.629      2.714       
+MTZ     C3      C       CR5     0       5.136       48.347      2.220       
+MTZ     S       S       S2      0       4.223       46.964      2.467       
+MTZ     C1      C       CR5     0       6.281       47.978      1.538       
+MTZ     C2      C       CH3     0       7.403       48.853      1.090       
+MTZ     N1      N       NRD5    0       6.343       46.627      1.264       
+MTZ     C       C       CR5     0       5.286       45.933      1.710       
+MTZ     N       N       NH2     0       5.090       44.625      1.582       
+MTZ     H141    H       H       0       -4.318      47.757      1.205       
+MTZ     H142    H       H       0       -4.080      48.731      2.434       
+MTZ     H151    H       H       0       -4.406      46.989      3.943       
+MTZ     H152    H       H       0       -5.658      47.044      2.970       
+MTZ     H161    H       H       0       -2.960      44.239      2.444       
+MTZ     H162    H       H       0       -2.766      45.279      3.625       
+MTZ     H171    H       H       0       -2.499      45.874      0.856       
+MTZ     H172    H       H       0       -1.311      45.859      1.909       
+MTZ     H12     H       H       0       -2.170      49.081      4.136       
+MTZ     H13     H       H       0       -0.479      50.607      4.499       
+MTZ     H10     H       H       0       -0.470      48.059      0.593       
+MTZ     H9      H       H       0       1.214       49.588      0.968       
+MTZ     H6      H       H       0       5.376       52.798      3.650       
+MTZ     H7C1    H       H       0       6.335       50.575      3.406       
+MTZ     H7C2    H       H       0       5.896       51.081      1.967       
+MTZ     H2C1    H       H       0       8.062       48.323      0.615       
+MTZ     H2C2    H       H       0       7.819       49.267      1.862       
+MTZ     H2C3    H       H       0       7.061       49.543      0.501       
+MTZ     HN1     H       H       0       4.363       44.259      1.908       
+MTZ     HN2     H       H       0       5.689       44.133      1.171       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MTZ         C14         C15      SINGLE       n     1.511  0.0100     1.511  0.0100
+MTZ         C14          N5      SINGLE       n     1.471  0.0100     1.471  0.0100
+MTZ         C15           O      SINGLE       n     1.423  0.0105     1.423  0.0105
+MTZ           O         C16      SINGLE       n     1.423  0.0105     1.423  0.0105
+MTZ         C16         C17      SINGLE       n     1.511  0.0100     1.511  0.0100
+MTZ         C17          N5      SINGLE       n     1.471  0.0100     1.471  0.0100
+MTZ          N5         C11      SINGLE       n     1.379  0.0200     1.379  0.0200
+MTZ         C11         C12      DOUBLE       y     1.406  0.0130     1.406  0.0130
+MTZ         C11         C10      SINGLE       y     1.406  0.0130     1.406  0.0130
+MTZ         C12         C13      SINGLE       y     1.371  0.0100     1.371  0.0100
+MTZ         C13          C8      DOUBLE       y     1.396  0.0100     1.396  0.0100
+MTZ         C10          C9      DOUBLE       y     1.371  0.0100     1.371  0.0100
+MTZ          C9          C8      SINGLE       y     1.396  0.0100     1.396  0.0100
+MTZ          C8          N4      SINGLE       n     1.412  0.0147     1.412  0.0147
+MTZ          N4          C5      DOUBLE       n     1.306  0.0200     1.306  0.0200
+MTZ          C5          N2      SINGLE       n     1.332  0.0188     1.332  0.0188
+MTZ          C5          N3      SINGLE       n     1.332  0.0188     1.332  0.0188
+MTZ          N2          C4      DOUBLE       n     1.304  0.0200     1.304  0.0200
+MTZ          N3          C6      DOUBLE       n     1.310  0.0200     1.310  0.0200
+MTZ          C6          C7      SINGLE       n     1.502  0.0100     1.502  0.0100
+MTZ          C7          C4      SINGLE       n     1.517  0.0100     1.517  0.0100
+MTZ          C4          C3      SINGLE       n     1.455  0.0100     1.455  0.0100
+MTZ          C3           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+MTZ          C3          C1      DOUBLE       y     1.358  0.0182     1.358  0.0182
+MTZ           S           C      SINGLE       y     1.695  0.0200     1.695  0.0200
+MTZ          C1          C2      SINGLE       n     1.491  0.0100     1.491  0.0100
+MTZ          C1          N1      SINGLE       y     1.339  0.0200     1.339  0.0200
+MTZ          N1           C      DOUBLE       y     1.335  0.0145     1.335  0.0145
+MTZ           C           N      SINGLE       n     1.328  0.0105     1.328  0.0105
+MTZ         C14        H141      SINGLE       n     1.089  0.0100     0.980  0.0155
+MTZ         C14        H142      SINGLE       n     1.089  0.0100     0.980  0.0155
+MTZ         C15        H151      SINGLE       n     1.089  0.0100     0.980  0.0155
+MTZ         C15        H152      SINGLE       n     1.089  0.0100     0.980  0.0155
+MTZ         C16        H161      SINGLE       n     1.089  0.0100     0.980  0.0155
+MTZ         C16        H162      SINGLE       n     1.089  0.0100     0.980  0.0155
+MTZ         C17        H171      SINGLE       n     1.089  0.0100     0.980  0.0155
+MTZ         C17        H172      SINGLE       n     1.089  0.0100     0.980  0.0155
+MTZ         C12         H12      SINGLE       n     1.082  0.0130     0.942  0.0103
+MTZ         C13         H13      SINGLE       n     1.082  0.0130     0.941  0.0200
+MTZ         C10         H10      SINGLE       n     1.082  0.0130     0.942  0.0103
+MTZ          C9          H9      SINGLE       n     1.082  0.0130     0.941  0.0200
+MTZ          C6          H6      SINGLE       n     1.082  0.0130     0.976  0.0200
+MTZ          C7        H7C1      SINGLE       n     1.089  0.0100     0.973  0.0171
+MTZ          C7        H7C2      SINGLE       n     1.089  0.0100     0.973  0.0171
+MTZ          C2        H2C1      SINGLE       n     1.089  0.0100     0.970  0.0153
+MTZ          C2        H2C2      SINGLE       n     1.089  0.0100     0.970  0.0153
+MTZ          C2        H2C3      SINGLE       n     1.089  0.0100     0.970  0.0153
+MTZ           N         HN1      SINGLE       n     1.016  0.0100     0.877  0.0200
+MTZ           N         HN2      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MTZ         C15         C14          N5     109.868    1.50
+MTZ         C15         C14        H141     109.720    1.50
+MTZ         C15         C14        H142     109.720    1.50
+MTZ          N5         C14        H141     109.710    1.50
+MTZ          N5         C14        H142     109.710    1.50
+MTZ        H141         C14        H142     108.247    1.50
+MTZ         C14         C15           O     111.654    1.50
+MTZ         C14         C15        H151     109.316    1.50
+MTZ         C14         C15        H152     109.316    1.50
+MTZ           O         C15        H151     109.195    1.50
+MTZ           O         C15        H152     109.195    1.50
+MTZ        H151         C15        H152     108.175    1.50
+MTZ         C15           O         C16     109.829    1.50
+MTZ           O         C16         C17     111.654    1.50
+MTZ           O         C16        H161     109.195    1.50
+MTZ           O         C16        H162     109.195    1.50
+MTZ         C17         C16        H161     109.316    1.50
+MTZ         C17         C16        H162     109.316    1.50
+MTZ        H161         C16        H162     108.175    1.50
+MTZ         C16         C17          N5     109.868    1.50
+MTZ         C16         C17        H171     109.720    1.50
+MTZ         C16         C17        H172     109.720    1.50
+MTZ          N5         C17        H171     109.710    1.50
+MTZ          N5         C17        H172     109.710    1.50
+MTZ        H171         C17        H172     108.247    1.50
+MTZ         C14          N5         C17     113.053    1.54
+MTZ         C14          N5         C11     123.474    1.63
+MTZ         C17          N5         C11     123.474    1.63
+MTZ          N5         C11         C12     120.527    1.52
+MTZ          N5         C11         C10     120.527    1.52
+MTZ         C12         C11         C10     118.946    1.78
+MTZ         C11         C12         C13     120.970    1.50
+MTZ         C11         C12         H12     119.628    1.50
+MTZ         C13         C12         H12     119.402    1.50
+MTZ         C12         C13          C8     120.263    1.50
+MTZ         C12         C13         H13     119.948    1.50
+MTZ          C8         C13         H13     119.789    1.50
+MTZ         C11         C10          C9     120.970    1.50
+MTZ         C11         C10         H10     119.628    1.50
+MTZ          C9         C10         H10     119.402    1.50
+MTZ         C10          C9          C8     120.263    1.50
+MTZ         C10          C9          H9     119.948    1.50
+MTZ          C8          C9          H9     119.789    1.50
+MTZ         C13          C8          C9     118.587    1.50
+MTZ         C13          C8          N4     120.707    2.77
+MTZ          C9          C8          N4     120.707    2.77
+MTZ          C8          N4          C5     122.693    2.96
+MTZ          N4          C5          N2     118.766    2.37
+MTZ          N4          C5          N3     118.766    2.37
+MTZ          N2          C5          N3     122.468    1.50
+MTZ          C5          N2          C4     116.585    1.84
+MTZ          C5          N3          C6     116.585    1.84
+MTZ          N3          C6          C7     123.993    3.00
+MTZ          N3          C6          H6     118.109    2.61
+MTZ          C7          C6          H6     117.898    1.79
+MTZ          C6          C7          C4     112.879    3.00
+MTZ          C6          C7        H7C1     108.350    1.50
+MTZ          C6          C7        H7C2     108.350    1.50
+MTZ          C4          C7        H7C1     108.879    1.50
+MTZ          C4          C7        H7C2     108.879    1.50
+MTZ        H7C1          C7        H7C2     106.810    3.00
+MTZ          N2          C4          C7     124.109    3.00
+MTZ          N2          C4          C3     116.609    2.10
+MTZ          C7          C4          C3     119.283    1.50
+MTZ          C4          C3           S     120.749    3.00
+MTZ          C4          C3          C1     131.329    2.68
+MTZ           S          C3          C1     107.922    3.00
+MTZ          C3           S           C     107.922    3.00
+MTZ          C3          C1          C2     130.093    2.84
+MTZ          C3          C1          N1     109.203    1.50
+MTZ          C2          C1          N1     120.704    1.50
+MTZ          C1          C2        H2C1     109.591    1.50
+MTZ          C1          C2        H2C2     109.591    1.50
+MTZ          C1          C2        H2C3     109.591    1.50
+MTZ        H2C1          C2        H2C2     109.354    1.50
+MTZ        H2C1          C2        H2C3     109.354    1.50
+MTZ        H2C2          C2        H2C3     109.354    1.50
+MTZ          C1          N1           C     107.030    1.65
+MTZ           S           C          N1     107.922    3.00
+MTZ           S           C           N     125.109    3.00
+MTZ          N1           C           N     126.969    2.12
+MTZ           C           N         HN1     119.811    1.50
+MTZ           C           N         HN2     119.811    1.50
+MTZ         HN1           N         HN2     120.377    1.82
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MTZ             sp3_sp3_1          N5         C14         C15           O      60.000    10.0     3
+MTZ            sp2_sp3_19         C17          N5         C14         C15       0.000    10.0     6
+MTZ              const_15          N4          C8          C9         C10     180.000    10.0     2
+MTZ            sp2_sp2_11         C13          C8          N4          C5     180.000     5.0     2
+MTZ            sp2_sp2_13          N2          C5          N4          C8     180.000     5.0     2
+MTZ             sp2_sp2_2          N4          C5          N2          C4     180.000     5.0     2
+MTZ            sp2_sp2_16          N4          C5          N3          C6     180.000     5.0     2
+MTZ             sp2_sp2_3          C7          C4          N2          C5       0.000     5.0     2
+MTZ             sp2_sp2_5          C7          C6          N3          C5       0.000     5.0     2
+MTZ            sp2_sp3_13          N3          C6          C7          C4       0.000    10.0     6
+MTZ             sp2_sp3_7          N2          C4          C7          C6       0.000    10.0     6
+MTZ            sp2_sp2_20           S          C3          C4          N2     180.000     5.0     2
+MTZ              const_22          C4          C3           S           C     180.000    10.0     2
+MTZ              const_36          C2          C1          C3          C4       0.000    10.0     2
+MTZ            sp3_sp3_10         C14         C15           O         C16     -60.000    10.0     3
+MTZ              const_24           N           C           S          C3     180.000    10.0     2
+MTZ            sp2_sp3_25          C3          C1          C2        H2C1     150.000    10.0     6
+MTZ              const_28          C2          C1          N1           C     180.000    10.0     2
+MTZ              const_26           N           C          N1          C1     180.000    10.0     2
+MTZ            sp2_sp2_21           S           C           N         HN1     180.000     5.0     2
+MTZ            sp3_sp3_13         C17         C16           O         C15      60.000    10.0     3
+MTZ            sp3_sp3_16           O         C16         C17          N5     -60.000    10.0     3
+MTZ             sp2_sp3_1         C14          N5         C17         C16       0.000    10.0     6
+MTZ             sp2_sp2_7         C12         C11          N5         C14     180.000     5.0     2
+MTZ       const_sp2_sp2_3          N5         C11         C12         C13     180.000     5.0     2
+MTZ              const_30          C9         C10         C11          N5     180.000    10.0     2
+MTZ       const_sp2_sp2_5         C11         C12         C13          C8       0.000     5.0     2
+MTZ              const_10         C12         C13          C8          N4     180.000    10.0     2
+MTZ              const_17         C11         C10          C9          C8       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MTZ    plan-1         C10   0.020
+MTZ    plan-1         C11   0.020
+MTZ    plan-1         C12   0.020
+MTZ    plan-1         C13   0.020
+MTZ    plan-1          C8   0.020
+MTZ    plan-1          C9   0.020
+MTZ    plan-1         H10   0.020
+MTZ    plan-1         H12   0.020
+MTZ    plan-1         H13   0.020
+MTZ    plan-1          H9   0.020
+MTZ    plan-1          N4   0.020
+MTZ    plan-1          N5   0.020
+MTZ    plan-2           C   0.020
+MTZ    plan-2          C1   0.020
+MTZ    plan-2          C2   0.020
+MTZ    plan-2          C3   0.020
+MTZ    plan-2          C4   0.020
+MTZ    plan-2           N   0.020
+MTZ    plan-2          N1   0.020
+MTZ    plan-2           S   0.020
+MTZ    plan-3         C11   0.020
+MTZ    plan-3         C14   0.020
+MTZ    plan-3         C17   0.020
+MTZ    plan-3          N5   0.020
+MTZ    plan-4          C5   0.020
+MTZ    plan-4          N2   0.020
+MTZ    plan-4          N3   0.020
+MTZ    plan-4          N4   0.020
+MTZ    plan-5          C6   0.020
+MTZ    plan-5          C7   0.020
+MTZ    plan-5          H6   0.020
+MTZ    plan-5          N3   0.020
+MTZ    plan-6          C3   0.020
+MTZ    plan-6          C4   0.020
+MTZ    plan-6          C7   0.020
+MTZ    plan-6          N2   0.020
+MTZ    plan-7           C   0.020
+MTZ    plan-7         HN1   0.020
+MTZ    plan-7         HN2   0.020
+MTZ    plan-7           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MTZ           SMILES              ACDLabs 10.04                                                                                                N\2=C(c1sc(nc1C)N)CC=NC/2=N\c4ccc(N3CCOCC3)cc4
+MTZ SMILES_CANONICAL               CACTVS 3.341                                                                                                   Cc1nc(N)sc1C2=NC(N=CC2)=Nc3ccc(cc3)N4CCOCC4
+MTZ           SMILES               CACTVS 3.341                                                                                                   Cc1nc(N)sc1C2=NC(N=CC2)=Nc3ccc(cc3)N4CCOCC4
+MTZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                 Cc1c(sc(n1)N)C2=NC(=Nc3ccc(cc3)N4CCOCC4)N=CC2
+MTZ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                 Cc1c(sc(n1)N)C2=NC(=Nc3ccc(cc3)N4CCOCC4)N=CC2
+MTZ            InChI                InChI  1.03 InChI=1S/C18H20N6OS/c1-12-16(26-17(19)21-12)15-6-7-20-18(23-15)22-13-2-4-14(5-3-13)24-8-10-25-11-9-24/h2-5,7H,6,8-11H2,1H3,(H2,19,21)/b22-18-
+MTZ         InChIKey                InChI  1.03                                                                                                                   RPSZSAKYXPWBRR-PYCFMQQDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MTZ acedrg               243         "dictionary generator"                  
+MTZ acedrg_database      11          "data source"                           
+MTZ rdkit                2017.03.2   "Chemoinformatics tool"
+MTZ refmac5              5.8.0238    "optimization tool"                     

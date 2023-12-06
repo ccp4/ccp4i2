@@ -1,0 +1,242 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AKD     AKD      5-bromo-2-[(3S)-piperidin-3-ylamino]benzoate     NON-POLYMER     31     17     .     
+#
+data_comp_AKD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AKD     OAA     O       OC      -1      38.515      2.710       93.725      
+AKD     OAB     O       O       0       38.541      4.011       95.502      
+AKD     BRAC    BR      BR      0       43.774      3.499       92.113      
+AKD     CAD     C       CR16    0       43.376      2.823       94.848      
+AKD     CAE     C       CR16    0       42.636      2.596       95.986      
+AKD     CAF     C       CR16    0       41.373      3.340       93.623      
+AKD     CAG     C       CH2     0       39.926      4.236       100.476     
+AKD     CAH     C       CH2     0       40.512      3.119       101.317     
+AKD     CAI     C       CH2     0       39.615      3.744       99.063      
+AKD     CAJ     C       CH2     0       41.373      1.975       99.369      
+AKD     NAK     N       NT1     0       41.703      2.536       100.686     
+AKD     NAL     N       NH1     0       40.515      2.507       97.125      
+AKD     CAM     C       C       0       39.101      3.294       94.654      
+AKD     CAN     C       CR6     0       42.739      3.192       93.676      
+AKD     CAO     C       CR6     0       41.238      2.744       95.965      
+AKD     CAP     C       CR6     0       40.590      3.120       94.759      
+AKD     CAQ     C       CH1     0       40.829      3.068       98.435      
+AKD     HAD     H       H       0       44.312      2.726       94.867      
+AKD     HAE     H       H       0       43.064      2.348       96.778      
+AKD     HAF     H       H       0       40.963      3.590       92.822      
+AKD     HAG     H       H       0       39.102      4.563       100.902     
+AKD     HAGA    H       H       0       40.567      4.979       100.435     
+AKD     HAH     H       H       0       40.755      3.469       102.198     
+AKD     HAHA    H       H       0       39.839      2.418       101.440     
+AKD     HAI     H       H       0       39.341      4.508       98.502      
+AKD     HAIA    H       H       0       38.865      3.103       99.095      
+AKD     HAJ     H       H       0       40.702      1.269       99.476      
+AKD     HAJA    H       H       0       42.177      1.576       98.975      
+AKD     HNAK    H       H       0       42.011      1.891       101.212     
+AKD     HNAL    H       H       0       39.831      1.967       97.069      
+AKD     HAQ     H       H       0       41.533      3.755       98.326      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AKD         OAA         CAM      SINGLE       n     1.244  0.0200     1.244  0.0200
+AKD         OAB         CAM      DOUBLE       n     1.244  0.0200     1.244  0.0200
+AKD        BRAC         CAN      SINGLE       n     1.900  0.0100     1.900  0.0100
+AKD         CAD         CAE      DOUBLE       y     1.372  0.0107     1.372  0.0107
+AKD         CAD         CAN      SINGLE       y     1.380  0.0100     1.380  0.0100
+AKD         CAE         CAO      SINGLE       y     1.401  0.0114     1.401  0.0114
+AKD         CAF         CAN      DOUBLE       y     1.371  0.0100     1.371  0.0100
+AKD         CAF         CAP      SINGLE       y     1.393  0.0100     1.393  0.0100
+AKD         CAG         CAH      SINGLE       n     1.515  0.0100     1.515  0.0100
+AKD         CAG         CAI      SINGLE       n     1.526  0.0100     1.526  0.0100
+AKD         CAH         NAK      SINGLE       n     1.467  0.0100     1.467  0.0100
+AKD         CAI         CAQ      SINGLE       n     1.523  0.0100     1.523  0.0100
+AKD         CAJ         NAK      SINGLE       n     1.467  0.0111     1.467  0.0111
+AKD         CAJ         CAQ      SINGLE       n     1.535  0.0119     1.535  0.0119
+AKD         NAL         CAO      SINGLE       n     1.377  0.0200     1.377  0.0200
+AKD         NAL         CAQ      SINGLE       n     1.457  0.0100     1.457  0.0100
+AKD         CAM         CAP      SINGLE       n     1.498  0.0200     1.498  0.0200
+AKD         CAO         CAP      DOUBLE       y     1.414  0.0104     1.414  0.0104
+AKD         CAD         HAD      SINGLE       n     1.082  0.0130     0.942  0.0176
+AKD         CAE         HAE      SINGLE       n     1.082  0.0130     0.934  0.0100
+AKD         CAF         HAF      SINGLE       n     1.082  0.0130     0.934  0.0100
+AKD         CAG         HAG      SINGLE       n     1.089  0.0100     0.983  0.0132
+AKD         CAG        HAGA      SINGLE       n     1.089  0.0100     0.983  0.0132
+AKD         CAH         HAH      SINGLE       n     1.089  0.0100     0.979  0.0126
+AKD         CAH        HAHA      SINGLE       n     1.089  0.0100     0.979  0.0126
+AKD         CAI         HAI      SINGLE       n     1.089  0.0100     0.987  0.0100
+AKD         CAI        HAIA      SINGLE       n     1.089  0.0100     0.987  0.0100
+AKD         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.980  0.0172
+AKD         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.980  0.0172
+AKD         NAK        HNAK      SINGLE       n     1.036  0.0160     0.887  0.0200
+AKD         NAL        HNAL      SINGLE       n     1.016  0.0100     0.873  0.0200
+AKD         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.990  0.0147
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AKD         CAE         CAD         CAN     119.562    1.50
+AKD         CAE         CAD         HAD     120.131    1.50
+AKD         CAN         CAD         HAD     120.308    1.50
+AKD         CAD         CAE         CAO     120.147    1.50
+AKD         CAD         CAE         HAE     120.025    1.50
+AKD         CAO         CAE         HAE     119.828    1.50
+AKD         CAN         CAF         CAP     120.298    1.50
+AKD         CAN         CAF         HAF     120.074    1.50
+AKD         CAP         CAF         HAF     119.628    1.50
+AKD         CAH         CAG         CAI     110.340    1.50
+AKD         CAH         CAG         HAG     108.932    1.50
+AKD         CAH         CAG        HAGA     108.932    1.50
+AKD         CAI         CAG         HAG     109.460    1.50
+AKD         CAI         CAG        HAGA     109.460    1.50
+AKD         HAG         CAG        HAGA     108.022    1.50
+AKD         CAG         CAH         NAK     111.538    1.95
+AKD         CAG         CAH         HAH     109.268    1.50
+AKD         CAG         CAH        HAHA     109.268    1.50
+AKD         NAK         CAH         HAH     109.046    1.50
+AKD         NAK         CAH        HAHA     109.046    1.50
+AKD         HAH         CAH        HAHA     108.210    1.50
+AKD         CAG         CAI         CAQ     110.796    1.50
+AKD         CAG         CAI         HAI     109.588    1.50
+AKD         CAG         CAI        HAIA     109.588    1.50
+AKD         CAQ         CAI         HAI     109.341    1.50
+AKD         CAQ         CAI        HAIA     109.341    1.50
+AKD         HAI         CAI        HAIA     108.076    1.50
+AKD         NAK         CAJ         CAQ     110.258    1.51
+AKD         NAK         CAJ         HAJ     109.326    1.50
+AKD         NAK         CAJ        HAJA     109.326    1.50
+AKD         CAQ         CAJ         HAJ     109.534    1.50
+AKD         CAQ         CAJ        HAJA     109.534    1.50
+AKD         HAJ         CAJ        HAJA     108.200    1.50
+AKD         CAH         NAK         CAJ     110.415    1.50
+AKD         CAH         NAK        HNAK     108.409    1.90
+AKD         CAJ         NAK        HNAK     109.383    3.00
+AKD         CAO         NAL         CAQ     124.478    1.50
+AKD         CAO         NAL        HNAL     117.450    1.50
+AKD         CAQ         NAL        HNAL     118.073    1.57
+AKD         OAA         CAM         OAB     124.521    1.50
+AKD         OAA         CAM         CAP     117.739    1.50
+AKD         OAB         CAM         CAP     117.739    1.50
+AKD        BRAC         CAN         CAD     119.337    1.50
+AKD        BRAC         CAN         CAF     119.555    1.50
+AKD         CAD         CAN         CAF     121.101    1.50
+AKD         CAE         CAO         NAL     119.648    2.39
+AKD         CAE         CAO         CAP     120.355    2.02
+AKD         NAL         CAO         CAP     119.998    2.16
+AKD         CAF         CAP         CAM     119.158    1.50
+AKD         CAF         CAP         CAO     118.538    1.50
+AKD         CAM         CAP         CAO     122.304    1.50
+AKD         CAI         CAQ         CAJ     109.934    1.50
+AKD         CAI         CAQ         NAL     111.209    2.04
+AKD         CAI         CAQ         HAQ     107.655    1.50
+AKD         CAJ         CAQ         NAL     110.829    2.03
+AKD         CAJ         CAQ         HAQ     107.779    1.50
+AKD         NAL         CAQ         HAQ     108.206    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AKD             sp2_sp2_1         CAE         CAO         NAL         CAQ     180.000     5.0     2
+AKD             sp2_sp3_1         CAO         NAL         CAQ         CAI       0.000    10.0     6
+AKD             sp2_sp2_5         OAA         CAM         CAP         CAF     180.000     5.0     2
+AKD              const_12         NAL         CAO         CAP         CAM       0.000    10.0     2
+AKD              const_22         CAE         CAD         CAN        BRAC     180.000    10.0     2
+AKD       const_sp2_sp2_1         CAN         CAD         CAE         CAO       0.000     5.0     2
+AKD       const_sp2_sp2_6         CAD         CAE         CAO         NAL     180.000     5.0     2
+AKD              const_18         CAP         CAF         CAN        BRAC     180.000    10.0     2
+AKD              const_14         CAN         CAF         CAP         CAM     180.000    10.0     2
+AKD             sp3_sp3_1         CAI         CAG         CAH         NAK      60.000    10.0     3
+AKD            sp3_sp3_40         CAH         CAG         CAI         CAQ     180.000    10.0     3
+AKD            sp3_sp3_10         CAG         CAH         NAK         CAJ     -60.000    10.0     3
+AKD            sp3_sp3_32         CAG         CAI         CAQ         NAL     180.000    10.0     3
+AKD            sp3_sp3_16         CAQ         CAJ         NAK         CAH      60.000    10.0     3
+AKD            sp3_sp3_23         NAK         CAJ         CAQ         NAL      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AKD    chir_1    CAQ    NAL    CAJ    CAI    positive
+AKD    chir_2    NAK    CAJ    CAH    HNAK    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AKD    plan-1        BRAC   0.020
+AKD    plan-1         CAD   0.020
+AKD    plan-1         CAE   0.020
+AKD    plan-1         CAF   0.020
+AKD    plan-1         CAM   0.020
+AKD    plan-1         CAN   0.020
+AKD    plan-1         CAO   0.020
+AKD    plan-1         CAP   0.020
+AKD    plan-1         HAD   0.020
+AKD    plan-1         HAE   0.020
+AKD    plan-1         HAF   0.020
+AKD    plan-1         NAL   0.020
+AKD    plan-2         CAO   0.020
+AKD    plan-2         CAQ   0.020
+AKD    plan-2        HNAL   0.020
+AKD    plan-2         NAL   0.020
+AKD    plan-3         CAM   0.020
+AKD    plan-3         CAP   0.020
+AKD    plan-3         OAA   0.020
+AKD    plan-3         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AKD           SMILES              ACDLabs 11.02                                                                                     "[O-]C(=O)c2c(NC1CCCNC1)ccc(Br)c2"
+AKD SMILES_CANONICAL               CACTVS 3.352                                                                                   "[O-]C(=O)c1cc(Br)ccc1N[C@H]2CCCNC2"
+AKD           SMILES               CACTVS 3.352                                                                                    "[O-]C(=O)c1cc(Br)ccc1N[CH]2CCCNC2"
+AKD SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                   c1cc(c(cc1Br)C(=O)[O-])N[C@H]2CCCNC2
+AKD           SMILES "OpenEye OEToolkits" 1.7.0                                                                                       c1cc(c(cc1Br)C(=O)[O-])NC2CCCNC2
+AKD            InChI                InChI  1.03 InChI=1S/C12H15BrN2O2/c13-8-3-4-11(10(6-8)12(16)17)15-9-2-1-5-14-7-9/h3-4,6,9,14-15H,1-2,5,7H2,(H,16,17)/p-1/t9-/m0/s1
+AKD         InChIKey                InChI  1.03                                                                                            DFYNENBDVWMLFE-VIFPVBQESA-M
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AKD acedrg               243         "dictionary generator"                  
+AKD acedrg_database      11          "data source"                           
+AKD rdkit                2017.03.2   "Chemoinformatics tool"
+AKD refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,683 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PKZ     PKZ      Palmitoyl-CoA     NON-POLYMER     127     65     .     
+#
+data_comp_PKZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PKZ     C3      C       CH2     0       20.460      20.331      6.332       
+PKZ     C1      C       C       0       19.611      22.490      7.369       
+PKZ     C10     C       CH2     0       26.315      22.681      3.154       
+PKZ     C8      C       CH2     0       26.620      21.190      5.201       
+PKZ     C7      C       CH2     0       25.444      21.431      6.127       
+PKZ     C5      C       CH2     0       22.948      20.948      6.264       
+PKZ     C11     C       CH2     0       26.974      23.687      2.239       
+PKZ     C13     C       CH2     0       28.729      24.117      0.460       
+PKZ     C16     C       CH3     0       31.815      22.478      -1.210      
+PKZ     C15     C       CH2     0       30.821      22.812      -0.124      
+PKZ     C14     C       CH2     0       29.592      23.524      -0.627      
+PKZ     N1A     N       NRD6    0       32.078      26.280      1.460       
+PKZ     C2A     C       CR16    0       31.299      26.740      0.468       
+PKZ     N3A     N       NRD6    0       31.529      26.746      -0.846      
+PKZ     C4A     C       CR56    0       32.726      26.200      -1.130      
+PKZ     C5A     C       CR56    0       33.634      25.685      -0.225      
+PKZ     C6A     C       CR6     0       33.280      25.733      1.141       
+PKZ     N6A     N       NH2     0       34.055      25.276      2.121       
+PKZ     N7A     N       NRD5    0       34.756      25.208      -0.892      
+PKZ     C8A     C       CR15    0       34.512      25.437      -2.162      
+PKZ     N9A     N       NT      0       33.293      26.040      -2.367      
+PKZ     C1B     C       CH1     0       32.708      26.430      -3.654      
+PKZ     C2B     C       CH1     0       31.439      25.669      -4.024      
+PKZ     O2B     O       OH1     0       31.743      24.432      -4.634      
+PKZ     C3B     C       CH1     0       30.754      26.659      -4.970      
+PKZ     O3B     O       O2      0       31.229      26.521      -6.314      
+PKZ     P3B     P       P       0       30.106      26.790      -7.449      
+PKZ     O7A     O       OP      -1      29.141      25.620      -7.391      
+PKZ     O8A     O       OP      -1      29.430      28.105      -7.106      
+PKZ     O9A     O       O       0       30.843      26.856      -8.774      
+PKZ     C4B     C       CH1     0       31.148      28.018      -4.389      
+PKZ     O4B     O       O2      0       32.340      27.788      -3.593      
+PKZ     C5B     C       CH2     0       30.097      28.677      -3.528      
+PKZ     O5B     O       O2      0       30.452      30.072      -3.318      
+PKZ     P1A     P       P       0       30.873      30.604      -1.862      
+PKZ     O1A     O       OP      -1      31.042      32.087      -1.909      
+PKZ     O2A     O       O       0       32.006      29.783      -1.342      
+PKZ     O3A     O       O2      0       29.558      30.265      -1.008      
+PKZ     P2A     P       P       0       28.050      30.809      -1.069      
+PKZ     O4A     O       OP      -1      27.431      30.392      -2.362      
+PKZ     O5A     O       O       0       28.035      32.255      -0.695      
+PKZ     O6A     O       O2      0       27.363      29.969      0.113       
+PKZ     CBP     C       CT      0       26.925      29.449      2.462       
+PKZ     CCP     C       CH2     0       27.919      30.038      1.458       
+PKZ     CDP     C       CH3     0       27.543      29.561      3.863       
+PKZ     CEP     C       CH3     0       25.643      30.291      2.432       
+PKZ     CAP     C       CH1     0       26.587      27.979      2.138       
+PKZ     OAP     O       OH1     0       27.779      27.204      2.058       
+PKZ     C9P     C       C       0       25.618      27.309      3.105       
+PKZ     O9P     O       O       0       24.412      27.349      2.866       
+PKZ     N8P     N       NH1     0       26.129      26.712      4.177       
+PKZ     C7P     C       CH2     0       25.330      26.027      5.188       
+PKZ     C6P     C       CH2     0       24.642      26.990      6.135       
+PKZ     C5P     C       C       0       23.630      26.305      7.034       
+PKZ     O5P     O       O       0       23.883      25.209      7.532       
+PKZ     N4P     N       NH1     0       22.471      26.943      7.267       
+PKZ     C3P     C       CH2     0       21.386      26.415      8.084       
+PKZ     C2P     C       CH2     0       20.495      25.463      7.317       
+PKZ     S1P     S       S2      0       20.853      23.717      7.636       
+PKZ     O1      O       O       0       18.490      22.773      7.022       
+PKZ     C2      C       CH2     0       20.083      21.077      7.586       
+PKZ     C4      C       CH2     0       21.619      20.935      5.543       
+PKZ     C6      C       CH2     0       24.091      21.501      5.445       
+PKZ     C9      C       CH2     0       27.083      22.406      4.427       
+PKZ     C12     C       CH2     0       27.998      23.097      1.299       
+PKZ     H1      H       H       0       19.676      20.287      5.746       
+PKZ     H2      H       H       0       20.697      19.411      6.573       
+PKZ     H3      H       H       0       26.201      21.839      2.664       
+PKZ     H4      H       H       0       25.422      23.010      3.390       
+PKZ     H5      H       H       0       26.382      20.482      4.565       
+PKZ     H6      H       H       0       27.372      20.860      5.737       
+PKZ     H7      H       H       0       25.592      22.271      6.611       
+PKZ     H8      H       H       0       25.422      20.710      6.793       
+PKZ     H9      H       H       0       23.167      20.030      6.533       
+PKZ     H10     H       H       0       22.862      21.484      7.080       
+PKZ     H11     H       H       0       27.410      24.373      2.788       
+PKZ     H12     H       H       0       26.278      24.130      1.707       
+PKZ     H13     H       H       0       28.070      24.714      0.046       
+PKZ     H14     H       H       0       29.295      24.660      1.049       
+PKZ     H15     H       H       0       32.545      21.956      -0.835      
+PKZ     H16     H       H       0       32.168      23.300      -1.593      
+PKZ     H17     H       H       0       31.374      21.961      -1.907      
+PKZ     H18     H       H       0       31.261      23.378      0.547       
+PKZ     H19     H       H       0       30.545      21.981      0.321       
+PKZ     H20     H       H       0       29.872      24.242      -1.233      
+PKZ     H21     H       H       0       29.053      22.890      -1.146      
+PKZ     H22     H       H       0       30.473      27.111      0.738       
+PKZ     H23     H       H       0       33.694      24.855      2.801       
+PKZ     H24     H       H       0       34.922      25.397      2.082       
+PKZ     H25     H       H       0       35.115      25.209      -2.849      
+PKZ     H26     H       H       0       33.376      26.299      -4.364      
+PKZ     H27     H       H       0       30.871      25.521      -3.224      
+PKZ     H28     H       H       0       32.133      23.932      -4.070      
+PKZ     H29     H       H       0       29.778      26.532      -4.926      
+PKZ     H32     H       H       0       31.370      28.630      -5.123      
+PKZ     H33     H       H       0       30.034      28.204      -2.662      
+PKZ     H34     H       H       0       29.218      28.622      -3.978      
+PKZ     H37     H       H       0       28.105      30.970      1.690       
+PKZ     H38     H       H       0       28.762      29.544      1.495       
+PKZ     H39     H       H       0       28.279      28.932      3.950       
+PKZ     H40     H       H       0       26.872      29.367      4.540       
+PKZ     H41     H       H       0       27.878      30.465      3.998       
+PKZ     H42     H       H       0       25.128      30.072      1.635       
+PKZ     H43     H       H       0       25.872      31.236      2.415       
+PKZ     H44     H       H       0       25.105      30.107      3.221       
+PKZ     H45     H       H       0       26.160      27.968      1.248       
+PKZ     H46     H       H       0       27.629      26.520      1.581       
+PKZ     H47     H       H       0       26.995      26.727      4.288       
+PKZ     H48     H       H       0       25.913      25.432      5.705       
+PKZ     H49     H       H       0       24.654      25.473      4.744       
+PKZ     H50     H       H       0       24.194      27.682      5.619       
+PKZ     H51     H       H       0       25.310      27.427      6.691       
+PKZ     H52     H       H       0       22.360      27.731      6.910       
+PKZ     H53     H       H       0       20.842      27.163      8.411       
+PKZ     H54     H       H       0       21.760      25.954      8.865       
+PKZ     H55     H       H       0       20.596      25.636      6.359       
+PKZ     H56     H       H       0       19.564      25.643      7.554       
+PKZ     H57     H       H       0       20.828      21.094      8.174       
+PKZ     H58     H       H       0       19.386      20.602      8.023       
+PKZ     H59     H       H       0       21.389      21.854      5.291       
+PKZ     H60     H       H       0       21.725      20.424      4.712       
+PKZ     H61     H       H       0       24.134      21.009      4.598       
+PKZ     H62     H       H       0       23.897      22.439      5.232       
+PKZ     H63     H       H       0       27.017      23.194      5.008       
+PKZ     H64     H       H       0       28.030      22.287      4.199       
+PKZ     H65     H       H       0       27.547      22.463      0.701       
+PKZ     H66     H       H       0       28.655      22.593      1.825       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PKZ         P3B         O9A      DOUBLE       n     1.517  0.0192     1.517  0.0192
+PKZ         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+PKZ         O3B         P3B      SINGLE       n     1.614  0.0178     1.614  0.0178
+PKZ         P3B         O7A      SINGLE       n     1.517  0.0192     1.517  0.0192
+PKZ         P3B         O8A      SINGLE       n     1.517  0.0192     1.517  0.0192
+PKZ         C3B         O3B      SINGLE       n     1.425  0.0152     1.425  0.0152
+PKZ         C2B         C3B      SINGLE       n     1.529  0.0125     1.529  0.0125
+PKZ         C1B         C2B      SINGLE       n     1.525  0.0100     1.525  0.0100
+PKZ         C3B         C4B      SINGLE       n     1.525  0.0133     1.525  0.0133
+PKZ         N7A         C8A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+PKZ         C8A         N9A      SINGLE       y     1.372  0.0200     1.372  0.0200
+PKZ         N9A         C1B      SINGLE       n     1.458  0.0200     1.458  0.0200
+PKZ         C1B         O4B      SINGLE       n     1.409  0.0100     1.409  0.0100
+PKZ         C5A         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+PKZ         C4B         C5B      SINGLE       n     1.509  0.0100     1.509  0.0100
+PKZ         C4B         O4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+PKZ         C4A         N9A      SINGLE       y     1.372  0.0100     1.372  0.0100
+PKZ         C5B         O5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+PKZ         C4A         C5A      DOUBLE       y     1.381  0.0100     1.381  0.0100
+PKZ         C5A         C6A      SINGLE       y     1.408  0.0100     1.408  0.0100
+PKZ         C16         C15      SINGLE       n     1.510  0.0200     1.510  0.0200
+PKZ         N3A         C4A      SINGLE       y     1.343  0.0100     1.343  0.0100
+PKZ         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+PKZ         N1A         C6A      DOUBLE       y     1.354  0.0100     1.354  0.0100
+PKZ         O5B         P1A      SINGLE       n     1.604  0.0133     1.604  0.0133
+PKZ         C2A         N3A      DOUBLE       y     1.330  0.0100     1.330  0.0100
+PKZ         P2A         O5A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+PKZ         P2A         O4A      SINGLE       n     1.493  0.0122     1.493  0.0122
+PKZ         C15         C14      SINGLE       n     1.507  0.0200     1.507  0.0200
+PKZ         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+PKZ         N1A         C2A      SINGLE       y     1.339  0.0100     1.339  0.0100
+PKZ         O3A         P2A      SINGLE       n     1.604  0.0133     1.604  0.0133
+PKZ         P2A         O6A      SINGLE       n     1.604  0.0133     1.604  0.0133
+PKZ         P1A         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+PKZ         P1A         O2A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+PKZ         P1A         O1A      SINGLE       n     1.493  0.0122     1.493  0.0122
+PKZ         C13         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+PKZ         O6A         CCP      SINGLE       n     1.454  0.0165     1.454  0.0165
+PKZ         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+PKZ         CBP         CEP      SINGLE       n     1.531  0.0109     1.531  0.0109
+PKZ         CBP         CCP      SINGLE       n     1.526  0.0108     1.526  0.0108
+PKZ         CBP         CAP      SINGLE       n     1.532  0.0112     1.532  0.0112
+PKZ         CAP         OAP      SINGLE       n     1.419  0.0162     1.419  0.0162
+PKZ         CAP         C9P      SINGLE       n     1.519  0.0108     1.519  0.0108
+PKZ         CBP         CDP      SINGLE       n     1.531  0.0109     1.531  0.0109
+PKZ         C9P         O9P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PKZ         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+PKZ         C9P         N8P      SINGLE       n     1.326  0.0100     1.326  0.0100
+PKZ         C10          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+PKZ         N8P         C7P      SINGLE       n     1.457  0.0100     1.457  0.0100
+PKZ          C8          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+PKZ         C7P         C6P      SINGLE       n     1.513  0.0195     1.513  0.0195
+PKZ         C6P         C5P      SINGLE       n     1.514  0.0100     1.514  0.0100
+PKZ          C8          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+PKZ          C7          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+PKZ          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+PKZ          C5          C4      SINGLE       n     1.509  0.0200     1.509  0.0200
+PKZ          C3          C4      SINGLE       n     1.519  0.0164     1.519  0.0164
+PKZ         C5P         N4P      SINGLE       n     1.337  0.0118     1.337  0.0118
+PKZ         C5P         O5P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PKZ         N4P         C3P      SINGLE       n     1.455  0.0100     1.455  0.0100
+PKZ          C1          O1      DOUBLE       n     1.207  0.0100     1.207  0.0100
+PKZ         C3P         C2P      SINGLE       n     1.510  0.0158     1.510  0.0158
+PKZ         C2P         S1P      SINGLE       n     1.809  0.0191     1.809  0.0191
+PKZ          C3          C2      SINGLE       n     1.497  0.0200     1.497  0.0200
+PKZ          C1         S1P      SINGLE       n     1.762  0.0200     1.762  0.0200
+PKZ          C1          C2      SINGLE       n     1.502  0.0151     1.502  0.0151
+PKZ          C3          H1      SINGLE       n     1.089  0.0100     0.980  0.0160
+PKZ          C3          H2      SINGLE       n     1.089  0.0100     0.980  0.0160
+PKZ         C10          H3      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ         C10          H4      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ          C8          H5      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ          C8          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ          C7          H7      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ          C7          H8      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ          C5          H9      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ          C5         H10      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ         C11         H11      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ         C11         H12      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ         C13         H13      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ         C13         H14      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ         C16         H15      SINGLE       n     1.089  0.0100     0.973  0.0157
+PKZ         C16         H16      SINGLE       n     1.089  0.0100     0.973  0.0157
+PKZ         C16         H17      SINGLE       n     1.089  0.0100     0.973  0.0157
+PKZ         C15         H18      SINGLE       n     1.089  0.0100     0.982  0.0155
+PKZ         C15         H19      SINGLE       n     1.089  0.0100     0.982  0.0155
+PKZ         C14         H20      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ         C14         H21      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ         C2A         H22      SINGLE       n     1.082  0.0130     0.945  0.0200
+PKZ         N6A         H23      SINGLE       n     1.016  0.0100     0.877  0.0200
+PKZ         N6A         H24      SINGLE       n     1.016  0.0100     0.877  0.0200
+PKZ         C8A         H25      SINGLE       n     1.082  0.0130     0.942  0.0170
+PKZ         C1B         H26      SINGLE       n     1.089  0.0100     0.984  0.0200
+PKZ         C2B         H27      SINGLE       n     1.089  0.0100     0.994  0.0200
+PKZ         O2B         H28      SINGLE       n     0.970  0.0120     0.849  0.0200
+PKZ         C3B         H29      SINGLE       n     1.089  0.0100     0.985  0.0119
+PKZ         C4B         H32      SINGLE       n     1.089  0.0100     0.981  0.0200
+PKZ         C5B         H33      SINGLE       n     1.089  0.0100     0.989  0.0200
+PKZ         C5B         H34      SINGLE       n     1.089  0.0100     0.989  0.0200
+PKZ         CCP         H37      SINGLE       n     1.089  0.0100     0.978  0.0102
+PKZ         CCP         H38      SINGLE       n     1.089  0.0100     0.978  0.0102
+PKZ         CDP         H39      SINGLE       n     1.089  0.0100     0.973  0.0146
+PKZ         CDP         H40      SINGLE       n     1.089  0.0100     0.973  0.0146
+PKZ         CDP         H41      SINGLE       n     1.089  0.0100     0.973  0.0146
+PKZ         CEP         H42      SINGLE       n     1.089  0.0100     0.973  0.0146
+PKZ         CEP         H43      SINGLE       n     1.089  0.0100     0.973  0.0146
+PKZ         CEP         H44      SINGLE       n     1.089  0.0100     0.973  0.0146
+PKZ         CAP         H45      SINGLE       n     1.089  0.0100     0.988  0.0129
+PKZ         OAP         H46      SINGLE       n     0.970  0.0120     0.848  0.0200
+PKZ         N8P         H47      SINGLE       n     1.016  0.0100     0.872  0.0200
+PKZ         C7P         H48      SINGLE       n     1.089  0.0100     0.980  0.0159
+PKZ         C7P         H49      SINGLE       n     1.089  0.0100     0.980  0.0159
+PKZ         C6P         H50      SINGLE       n     1.089  0.0100     0.973  0.0156
+PKZ         C6P         H51      SINGLE       n     1.089  0.0100     0.973  0.0156
+PKZ         N4P         H52      SINGLE       n     1.016  0.0100     0.872  0.0200
+PKZ         C3P         H53      SINGLE       n     1.089  0.0100     0.981  0.0127
+PKZ         C3P         H54      SINGLE       n     1.089  0.0100     0.981  0.0127
+PKZ         C2P         H55      SINGLE       n     1.089  0.0100     0.978  0.0177
+PKZ         C2P         H56      SINGLE       n     1.089  0.0100     0.978  0.0177
+PKZ          C2         H57      SINGLE       n     1.089  0.0100     0.950  0.0162
+PKZ          C2         H58      SINGLE       n     1.089  0.0100     0.950  0.0162
+PKZ          C4         H59      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ          C4         H60      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ          C9         H63      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ          C9         H64      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ         C12         H65      SINGLE       n     1.089  0.0100     0.981  0.0163
+PKZ         C12         H66      SINGLE       n     1.089  0.0100     0.981  0.0163
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PKZ          C4          C3          C2     113.146    1.68
+PKZ          C4          C3          H1     108.698    1.50
+PKZ          C4          C3          H2     108.698    1.50
+PKZ          C2          C3          H1     108.915    1.50
+PKZ          C2          C3          H2     108.915    1.50
+PKZ          H1          C3          H2     107.646    1.50
+PKZ          O1          C1         S1P     122.927    2.65
+PKZ          O1          C1          C2     123.766    1.64
+PKZ         S1P          C1          C2     113.307    2.65
+PKZ         C11         C10          C9     114.243    1.69
+PKZ         C11         C10          H3     108.698    1.50
+PKZ         C11         C10          H4     108.698    1.50
+PKZ          C9         C10          H3     108.698    1.50
+PKZ          C9         C10          H4     108.698    1.50
+PKZ          H3         C10          H4     107.646    1.50
+PKZ          C9          C8          C7     114.243    1.69
+PKZ          C9          C8          H5     108.698    1.50
+PKZ          C9          C8          H6     108.698    1.50
+PKZ          C7          C8          H5     108.698    1.50
+PKZ          C7          C8          H6     108.698    1.50
+PKZ          H5          C8          H6     107.646    1.50
+PKZ          C8          C7          C6     114.243    1.69
+PKZ          C8          C7          H7     108.698    1.50
+PKZ          C8          C7          H8     108.698    1.50
+PKZ          C6          C7          H7     108.698    1.50
+PKZ          C6          C7          H8     108.698    1.50
+PKZ          H7          C7          H8     107.646    1.50
+PKZ          C6          C5          C4     114.243    1.69
+PKZ          C6          C5          H9     108.698    1.50
+PKZ          C6          C5         H10     108.698    1.50
+PKZ          C4          C5          H9     108.698    1.50
+PKZ          C4          C5         H10     108.698    1.50
+PKZ          H9          C5         H10     107.646    1.50
+PKZ         C12         C11         C10     114.243    1.69
+PKZ         C12         C11         H11     108.698    1.50
+PKZ         C12         C11         H12     108.698    1.50
+PKZ         C10         C11         H11     108.698    1.50
+PKZ         C10         C11         H12     108.698    1.50
+PKZ         H11         C11         H12     107.646    1.50
+PKZ         C14         C13         C12     114.243    1.69
+PKZ         C14         C13         H13     108.698    1.50
+PKZ         C14         C13         H14     108.698    1.50
+PKZ         C12         C13         H13     108.698    1.50
+PKZ         C12         C13         H14     108.698    1.50
+PKZ         H13         C13         H14     107.646    1.50
+PKZ         C15         C16         H15     109.554    1.50
+PKZ         C15         C16         H16     109.554    1.50
+PKZ         C15         C16         H17     109.554    1.50
+PKZ         H15         C16         H16     109.380    1.50
+PKZ         H15         C16         H17     109.380    1.50
+PKZ         H16         C16         H17     109.380    1.50
+PKZ         C16         C15         C14     113.719    3.00
+PKZ         C16         C15         H18     108.918    1.50
+PKZ         C16         C15         H19     108.918    1.50
+PKZ         C14         C15         H18     108.758    1.50
+PKZ         C14         C15         H19     108.758    1.50
+PKZ         H18         C15         H19     107.763    1.50
+PKZ         C15         C14         C13     114.362    3.00
+PKZ         C15         C14         H20     108.653    1.50
+PKZ         C15         C14         H21     108.653    1.50
+PKZ         C13         C14         H20     108.698    1.50
+PKZ         C13         C14         H21     108.698    1.50
+PKZ         H20         C14         H21     107.646    1.50
+PKZ         C6A         N1A         C2A     118.521    1.50
+PKZ         N3A         C2A         N1A     129.332    1.50
+PKZ         N3A         C2A         H22     115.355    1.50
+PKZ         N1A         C2A         H22     115.313    1.50
+PKZ         C4A         N3A         C2A     110.982    1.50
+PKZ         N9A         C4A         C5A     107.666    1.69
+PKZ         N9A         C4A         N3A     125.845    1.50
+PKZ         C5A         C4A         N3A     126.489    1.50
+PKZ         N7A         C5A         C4A     110.588    1.50
+PKZ         N7A         C5A         C6A     132.145    1.50
+PKZ         C4A         C5A         C6A     117.267    1.50
+PKZ         C5A         C6A         N6A     123.792    1.50
+PKZ         C5A         C6A         N1A     117.409    1.50
+PKZ         N6A         C6A         N1A     118.799    1.50
+PKZ         C6A         N6A         H23     119.723    1.50
+PKZ         C6A         N6A         H24     119.723    1.50
+PKZ         H23         N6A         H24     120.554    1.88
+PKZ         C8A         N7A         C5A     103.927    1.50
+PKZ         N7A         C8A         N9A     112.130    1.94
+PKZ         N7A         C8A         H25     123.170    1.50
+PKZ         N9A         C8A         H25     124.701    2.19
+PKZ         C8A         N9A         C1B     126.078    2.46
+PKZ         C8A         N9A         C4A     107.594    1.50
+PKZ         C1B         N9A         C4A     125.158    1.54
+PKZ         C2B         C1B         N9A     113.752    2.20
+PKZ         C2B         C1B         O4B     106.047    1.50
+PKZ         C2B         C1B         H26     109.015    1.50
+PKZ         N9A         C1B         O4B     108.167    1.51
+PKZ         N9A         C1B         H26     109.246    1.50
+PKZ         O4B         C1B         H26     109.807    1.50
+PKZ         O2B         C2B         C3B     112.463    2.73
+PKZ         O2B         C2B         C1B     111.715    2.69
+PKZ         O2B         C2B         H27     110.448    1.97
+PKZ         C3B         C2B         C1B     101.388    1.50
+PKZ         C3B         C2B         H27     110.255    2.04
+PKZ         C1B         C2B         H27     110.636    1.70
+PKZ         C2B         O2B         H28     109.103    2.13
+PKZ         O3B         C3B         C2B     110.766    3.00
+PKZ         O3B         C3B         C4B     110.864    2.31
+PKZ         O3B         C3B         H29     110.343    1.64
+PKZ         C2B         C3B         C4B     102.352    1.50
+PKZ         C2B         C3B         H29     110.255    2.04
+PKZ         C4B         C3B         H29     110.624    1.81
+PKZ         P3B         O3B         C3B     109.471    3.00
+PKZ         O9A         P3B         O3B     106.518    3.00
+PKZ         O9A         P3B         O7A     112.139    1.52
+PKZ         O9A         P3B         O8A     112.139    1.52
+PKZ         O3B         P3B         O7A     106.518    3.00
+PKZ         O3B         P3B         O8A     106.518    3.00
+PKZ         O7A         P3B         O8A     112.139    1.52
+PKZ         C3B         C4B         C5B     114.866    1.63
+PKZ         C3B         C4B         O4B     105.508    1.50
+PKZ         C3B         C4B         H32     109.143    1.50
+PKZ         C5B         C4B         O4B     109.123    1.50
+PKZ         C5B         C4B         H32     108.268    1.50
+PKZ         O4B         C4B         H32     108.947    1.50
+PKZ         C1B         O4B         C4B     109.903    1.50
+PKZ         C4B         C5B         O5B     109.342    1.50
+PKZ         C4B         C5B         H33     109.624    1.50
+PKZ         C4B         C5B         H34     109.624    1.50
+PKZ         O5B         C5B         H33     109.845    1.50
+PKZ         O5B         C5B         H34     109.845    1.50
+PKZ         H33         C5B         H34     108.472    1.50
+PKZ         C5B         O5B         P1A     118.553    2.41
+PKZ         O5B         P1A         O3A     101.065    1.97
+PKZ         O5B         P1A         O2A     109.410    1.50
+PKZ         O5B         P1A         O1A     109.410    1.50
+PKZ         O3A         P1A         O2A     108.816    2.14
+PKZ         O3A         P1A         O1A     108.816    2.14
+PKZ         O2A         P1A         O1A     118.411    2.35
+PKZ         P2A         O3A         P1A     132.542    3.00
+PKZ         O5A         P2A         O4A     118.411    2.35
+PKZ         O5A         P2A         O3A     108.816    2.14
+PKZ         O5A         P2A         O6A     107.912    2.57
+PKZ         O4A         P2A         O3A     108.816    2.14
+PKZ         O4A         P2A         O6A     107.912    2.57
+PKZ         O3A         P2A         O6A     101.065    1.97
+PKZ         P2A         O6A         CCP     119.251    1.51
+PKZ         CEP         CBP         CCP     109.385    1.50
+PKZ         CEP         CBP         CAP     109.534    1.52
+PKZ         CEP         CBP         CDP     108.765    1.50
+PKZ         CCP         CBP         CAP     111.094    2.85
+PKZ         CCP         CBP         CDP     109.385    1.50
+PKZ         CAP         CBP         CDP     109.534    1.52
+PKZ         O6A         CCP         CBP     108.435    1.69
+PKZ         O6A         CCP         H37     109.739    1.50
+PKZ         O6A         CCP         H38     109.739    1.50
+PKZ         CBP         CCP         H37     109.473    1.50
+PKZ         CBP         CCP         H38     109.473    1.50
+PKZ         H37         CCP         H38     108.108    1.50
+PKZ         CBP         CDP         H39     109.575    1.50
+PKZ         CBP         CDP         H40     109.575    1.50
+PKZ         CBP         CDP         H41     109.575    1.50
+PKZ         H39         CDP         H40     109.377    1.50
+PKZ         H39         CDP         H41     109.377    1.50
+PKZ         H40         CDP         H41     109.377    1.50
+PKZ         CBP         CEP         H42     109.575    1.50
+PKZ         CBP         CEP         H43     109.575    1.50
+PKZ         CBP         CEP         H44     109.575    1.50
+PKZ         H42         CEP         H43     109.377    1.50
+PKZ         H42         CEP         H44     109.377    1.50
+PKZ         H43         CEP         H44     109.377    1.50
+PKZ         CBP         CAP         OAP     109.482    3.00
+PKZ         CBP         CAP         C9P     111.511    2.91
+PKZ         CBP         CAP         H45     107.825    1.50
+PKZ         OAP         CAP         C9P     109.850    1.55
+PKZ         OAP         CAP         H45     108.675    1.50
+PKZ         C9P         CAP         H45     108.529    1.70
+PKZ         CAP         OAP         H46     108.894    3.00
+PKZ         CAP         C9P         O9P     119.859    1.78
+PKZ         CAP         C9P         N8P     117.147    1.50
+PKZ         O9P         C9P         N8P     122.977    1.50
+PKZ         C9P         N8P         C7P     122.964    1.80
+PKZ         C9P         N8P         H47     118.685    1.94
+PKZ         C7P         N8P         H47     118.351    1.90
+PKZ         N8P         C7P         C6P     112.257    1.50
+PKZ         N8P         C7P         H48     108.979    1.50
+PKZ         N8P         C7P         H49     108.979    1.50
+PKZ         C6P         C7P         H48     108.971    1.50
+PKZ         C6P         C7P         H49     108.971    1.50
+PKZ         H48         C7P         H49     107.877    1.50
+PKZ         C7P         C6P         C5P     112.120    2.79
+PKZ         C7P         C6P         H50     109.432    1.50
+PKZ         C7P         C6P         H51     109.432    1.50
+PKZ         C5P         C6P         H50     108.945    1.50
+PKZ         C5P         C6P         H51     108.945    1.50
+PKZ         H50         C6P         H51     107.745    2.07
+PKZ         C6P         C5P         N4P     117.070    1.96
+PKZ         C6P         C5P         O5P     120.987    1.50
+PKZ         N4P         C5P         O5P     121.943    1.50
+PKZ         C5P         N4P         C3P     123.437    1.80
+PKZ         C5P         N4P         H52     117.862    2.10
+PKZ         C3P         N4P         H52     118.700    1.83
+PKZ         N4P         C3P         C2P     112.117    1.54
+PKZ         N4P         C3P         H53     109.102    1.50
+PKZ         N4P         C3P         H54     109.102    1.50
+PKZ         C2P         C3P         H53     109.038    1.50
+PKZ         C2P         C3P         H54     109.038    1.50
+PKZ         H53         C3P         H54     107.995    1.50
+PKZ         C3P         C2P         S1P     112.239    3.00
+PKZ         C3P         C2P         H55     108.964    1.50
+PKZ         C3P         C2P         H56     108.964    1.50
+PKZ         S1P         C2P         H55     109.066    1.50
+PKZ         S1P         C2P         H56     109.066    1.50
+PKZ         H55         C2P         H56     107.807    1.50
+PKZ         C2P         S1P          C1     120.000    3.00
+PKZ          C3          C2          C1     113.932    1.92
+PKZ          C3          C2         H57     108.844    1.50
+PKZ          C3          C2         H58     108.844    1.50
+PKZ          C1          C2         H57     108.026    1.59
+PKZ          C1          C2         H58     108.026    1.59
+PKZ         H57          C2         H58     107.705    1.50
+PKZ          C5          C4          C3     114.243    1.69
+PKZ          C5          C4         H59     108.698    1.50
+PKZ          C5          C4         H60     108.698    1.50
+PKZ          C3          C4         H59     108.698    1.50
+PKZ          C3          C4         H60     108.698    1.50
+PKZ         H59          C4         H60     107.646    1.50
+PKZ          C7          C6          C5     114.243    1.69
+PKZ          C7          C6         H61     108.698    1.50
+PKZ          C7          C6         H62     108.698    1.50
+PKZ          C5          C6         H61     108.698    1.50
+PKZ          C5          C6         H62     108.698    1.50
+PKZ         H61          C6         H62     107.646    1.50
+PKZ         C10          C9          C8     114.243    1.69
+PKZ         C10          C9         H63     108.698    1.50
+PKZ         C10          C9         H64     108.698    1.50
+PKZ          C8          C9         H63     108.698    1.50
+PKZ          C8          C9         H64     108.698    1.50
+PKZ         H63          C9         H64     107.646    1.50
+PKZ         C13         C12         C11     114.243    1.69
+PKZ         C13         C12         H65     108.698    1.50
+PKZ         C13         C12         H66     108.698    1.50
+PKZ         C11         C12         H65     108.698    1.50
+PKZ         C11         C12         H66     108.698    1.50
+PKZ         H65         C12         H66     107.646    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PKZ           sp3_sp3_247          C1          C2          C3          C4     180.000    10.0     3
+PKZ           sp3_sp3_226          C2          C3          C4          C5     180.000    10.0     3
+PKZ              const_27         N3A         C2A         N1A         C6A       0.000    10.0     2
+PKZ       const_sp2_sp2_2         N6A         C6A         N1A         C2A     180.000     5.0     2
+PKZ              const_13         N1A         C2A         N3A         C4A       0.000    10.0     2
+PKZ              const_12         N9A         C4A         N3A         C2A     180.000    10.0     2
+PKZ       const_sp2_sp2_7         N9A         C4A         C5A         N7A       0.000     5.0     2
+PKZ              const_15         C5A         C4A         N9A         C8A       0.000    10.0     2
+PKZ       const_sp2_sp2_6         N7A         C5A         C6A         N6A       0.000     5.0     2
+PKZ              const_25         C4A         C5A         N7A         C8A       0.000    10.0     2
+PKZ             sp2_sp2_1         C5A         C6A         N6A         H23     180.000     5.0     2
+PKZ              const_23         N9A         C8A         N7A         C5A       0.000    10.0     2
+PKZ              const_20         N7A         C8A         N9A         C1B     180.000    10.0     2
+PKZ            sp2_sp2_13          O1          C1         S1P         C2P     180.000     5.0     2
+PKZ            sp2_sp3_32          O1          C1          C2          C3     120.000    10.0     6
+PKZ             sp2_sp3_1         C8A         N9A         C1B         C2B     150.000    10.0     6
+PKZ             sp3_sp3_5         N9A         C1B         C2B         O2B      60.000    10.0     3
+PKZ            sp3_sp3_40         C2B         C1B         O4B         C4B     180.000    10.0     3
+PKZ            sp3_sp3_31         C3B         C2B         O2B         H28     180.000    10.0     3
+PKZ            sp3_sp3_14         O2B         C2B         C3B         O3B     -60.000    10.0     3
+PKZ            sp3_sp3_37         C2B         C3B         O3B         P3B     180.000    10.0     3
+PKZ            sp3_sp3_23         O3B         C3B         C4B         C5B      60.000    10.0     3
+PKZ            sp3_sp3_36         C3B         O3B         P3B         O9A      60.000    10.0     3
+PKZ           sp3_sp3_154          C9         C10         C11         C12     180.000    10.0     3
+PKZ           sp3_sp3_163         C11         C10          C9          C8     180.000    10.0     3
+PKZ            sp3_sp3_29         C5B         C4B         O4B         C1B     180.000    10.0     3
+PKZ            sp3_sp3_43         C3B         C4B         C5B         O5B     180.000    10.0     3
+PKZ            sp3_sp3_52         C4B         C5B         O5B         P1A     180.000    10.0     3
+PKZ            sp3_sp3_64         C5B         O5B         P1A         O3A     180.000    10.0     3
+PKZ            sp3_sp3_92         P2A         O3A         P1A         O5B     -60.000    10.0     3
+PKZ            sp3_sp3_87         P1A         O3A         P2A         O5A      60.000    10.0     3
+PKZ            sp3_sp3_90         CCP         O6A         P2A         O5A      60.000    10.0     3
+PKZ           sp3_sp3_190          C6          C7          C8          C9     180.000    10.0     3
+PKZ           sp3_sp3_172          C7          C8          C9         C10     180.000    10.0     3
+PKZ           sp3_sp3_103         CBP         CCP         O6A         P2A     180.000    10.0     3
+PKZ           sp3_sp3_127         CEP         CBP         CCP         O6A      60.000    10.0     3
+PKZ           sp3_sp3_151         CEP         CBP         CDP         H39     -60.000    10.0     3
+PKZ           sp3_sp3_115         CCP         CBP         CEP         H42     180.000    10.0     3
+PKZ           sp3_sp3_133         OAP         CAP         CBP         CEP     180.000    10.0     3
+PKZ           sp3_sp3_142         CBP         CAP         OAP         H46     180.000    10.0     3
+PKZ             sp2_sp3_7         O9P         C9P         CAP         CBP       0.000    10.0     6
+PKZ             sp2_sp2_5         CAP         C9P         N8P         C7P     180.000     5.0     2
+PKZ           sp3_sp3_199          C5          C6          C7          C8     180.000    10.0     3
+PKZ            sp2_sp3_14         C9P         N8P         C7P         C6P     120.000    10.0     6
+PKZ           sp3_sp3_181         C5P         C6P         C7P         N8P     180.000    10.0     3
+PKZ            sp2_sp3_20         N4P         C5P         C6P         C7P     120.000    10.0     6
+PKZ             sp2_sp2_9         C6P         C5P         N4P         C3P     180.000     5.0     2
+PKZ            sp2_sp3_26         C5P         N4P         C3P         C2P     120.000    10.0     6
+PKZ           sp3_sp3_235         S1P         C2P         C3P         N4P     180.000    10.0     3
+PKZ           sp3_sp3_244         C3P         C2P         S1P          C1     180.000    10.0     3
+PKZ           sp3_sp3_217          C3          C4          C5          C6     180.000    10.0     3
+PKZ           sp3_sp3_208          C4          C5          C6          C7     180.000    10.0     3
+PKZ           sp3_sp3_106         C10         C11         C12         C13     180.000    10.0     3
+PKZ            sp3_sp3_76         C12         C13         C14         C15     180.000    10.0     3
+PKZ            sp3_sp3_94         C11         C12         C13         C14     180.000    10.0     3
+PKZ            sp3_sp3_55         C14         C15         C16         H15     180.000    10.0     3
+PKZ            sp3_sp3_67         C13         C14         C15         C16     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PKZ    chir_1    C1B    O4B    N9A    C2B    negative
+PKZ    chir_2    C2B    O2B    C1B    C3B    negative
+PKZ    chir_3    C3B    O3B    C4B    C2B    positive
+PKZ    chir_4    P3B    O3B    O7A    O8A    both
+PKZ    chir_5    C4B    O4B    C3B    C5B    negative
+PKZ    chir_6    P1A    O3A    O5B    O1A    both
+PKZ    chir_7    P2A    O3A    O6A    O4A    both
+PKZ    chir_8    CBP    CAP    CCP    CEP    both
+PKZ    chir_9    CAP    OAP    C9P    CBP    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PKZ    plan-1         C1B   0.020
+PKZ    plan-1         C2A   0.020
+PKZ    plan-1         C4A   0.020
+PKZ    plan-1         C5A   0.020
+PKZ    plan-1         C6A   0.020
+PKZ    plan-1         C8A   0.020
+PKZ    plan-1         H22   0.020
+PKZ    plan-1         H25   0.020
+PKZ    plan-1         N1A   0.020
+PKZ    plan-1         N3A   0.020
+PKZ    plan-1         N6A   0.020
+PKZ    plan-1         N7A   0.020
+PKZ    plan-1         N9A   0.020
+PKZ    plan-2          C1   0.020
+PKZ    plan-2          C2   0.020
+PKZ    plan-2          O1   0.020
+PKZ    plan-2         S1P   0.020
+PKZ    plan-3         C6A   0.020
+PKZ    plan-3         H23   0.020
+PKZ    plan-3         H24   0.020
+PKZ    plan-3         N6A   0.020
+PKZ    plan-4         C9P   0.020
+PKZ    plan-4         CAP   0.020
+PKZ    plan-4         N8P   0.020
+PKZ    plan-4         O9P   0.020
+PKZ    plan-5         C7P   0.020
+PKZ    plan-5         C9P   0.020
+PKZ    plan-5         H47   0.020
+PKZ    plan-5         N8P   0.020
+PKZ    plan-6         C5P   0.020
+PKZ    plan-6         C6P   0.020
+PKZ    plan-6         N4P   0.020
+PKZ    plan-6         O5P   0.020
+PKZ    plan-7         C3P   0.020
+PKZ    plan-7         C5P   0.020
+PKZ    plan-7         H52   0.020
+PKZ    plan-7         N4P   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PKZ           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                           C(CC(SCCNC(CCNC(C(C(C)(COP(OP(OCC3C(C(C(n2c1ncnc(c1nc2)N)O3)O)OP(O)(O)=O)(=O)O)(O)=O)C)O)=O)=O)=O)CCCCCCCCCCCCC
+PKZ            InChI                InChI  1.03 InChI=1S/C37H66N7O17P3S/c1-4-5-6-7-8-9-10-11-12-13-14-15-16-17-28(46)65-21-20-39-27(45)18-19-40-35(49)32(48)37(2,3)23-58-64(55,56)61-63(53,54)57-22-26-31(60-62(50,51)52)30(47)36(59-26)44-25-43-29-33(38)41-24-42-34(29)44/h24-26,30-32,36,47-48H,4-23H2,1-3H3,(H,39,45)(H,40,49)(H,53,54)(H,55,56)(H2,38,41,42)(H2,50,51,52)/t26-,30-,31-,32+,36-/m1/s1
+PKZ         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                               MNBKLUUYKPBKDU-BBECNAHFSA-N
+PKZ SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                                                    CCCCCCCCCCCCCCCC(=O)SCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O[P](O)(O)=O)n2cnc3c(N)ncnc23
+PKZ           SMILES               CACTVS 3.385                                                                                                                                                                                                                          CCCCCCCCCCCCCCCC(=O)SCCNC(=O)CCNC(=O)[CH](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O[P](O)(O)=O)n2cnc3c(N)ncnc23
+PKZ SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                                                                                                                                        CCCCCCCCCCCCCCCC(=O)SCCNC(=O)CCNC(=O)[C@@H](C(C)(C)COP(=O)(O)OP(=O)(O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O
+PKZ           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                                                                                                                                               CCCCCCCCCCCCCCCC(=O)SCCNC(=O)CCNC(=O)C(C(C)(C)COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PKZ acedrg               243         "dictionary generator"                  
+PKZ acedrg_database      11          "data source"                           
+PKZ rdkit                2017.03.2   "Chemoinformatics tool"
+PKZ refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,217 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HNK     HNK      5-[(2R)-1-methylpyrrolidin-2-yl]pyridin-2-ol     NON-POLYMER     27     13     .     
+#
+data_comp_HNK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HNK     N1      N       NRD6    0       -52.811     16.667      73.024      
+HNK     C2      C       CR16    0       -52.424     15.779      73.964      
+HNK     C3      C       CR6     0       -51.092     15.487      74.232      
+HNK     C4      C       CR16    0       -50.126     16.152      73.486      
+HNK     C5      C       CR16    0       -50.504     17.069      72.514      
+HNK     C6      C       CR6     0       -51.870     17.294      72.319      
+HNK     O6      O       OH1     0       -52.286     18.179      71.383      
+HNK     C7      C       CH1     0       -50.701     14.483      75.299      
+HNK     C8      C       CH2     0       -50.058     13.193      74.741      
+HNK     C9      C       CH2     0       -48.619     13.200      75.246      
+HNK     C10     C       CH2     0       -48.707     13.956      76.556      
+HNK     N11     N       NT      0       -49.687     14.997      76.258      
+HNK     C12     C       CH3     0       -50.176     15.677      77.451      
+HNK     H2      H       H       0       -53.094     15.334      74.464      
+HNK     H4      H       H       0       -49.213     15.979      73.642      
+HNK     H5      H       H       0       -49.849     17.527      72.001      
+HNK     HO6     H       H       0       -51.756     18.428      70.751      
+HNK     H7      H       H       0       -51.508     14.229      75.809      
+HNK     H8      H       H       0       -50.538     12.398      75.070      
+HNK     H8A     H       H       0       -50.080     13.188      73.755      
+HNK     H9      H       H       0       -48.021     13.661      74.612      
+HNK     H9A     H       H       0       -48.288     12.281      75.391      
+HNK     H10     H       H       0       -47.840     14.347      76.803      
+HNK     H10A    H       H       0       -49.019     13.374      77.285      
+HNK     H12     H       H       0       -49.425     16.044      77.945      
+HNK     H12A    H       H       0       -50.654     15.045      78.012      
+HNK     H12B    H       H       0       -50.774     16.397      77.192      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HNK          N1          C2      DOUBLE       y     1.344  0.0108     1.344  0.0108
+HNK          N1          C6      SINGLE       y     1.324  0.0141     1.324  0.0141
+HNK          C2          C3      SINGLE       y     1.385  0.0100     1.385  0.0100
+HNK          C3          C4      DOUBLE       y     1.387  0.0100     1.387  0.0100
+HNK          C3          C7      SINGLE       n     1.514  0.0139     1.514  0.0139
+HNK          C4          C5      SINGLE       y     1.386  0.0100     1.386  0.0100
+HNK          C5          C6      DOUBLE       y     1.393  0.0136     1.393  0.0136
+HNK          C6          O6      SINGLE       n     1.352  0.0176     1.352  0.0176
+HNK          C7          C8      SINGLE       n     1.539  0.0100     1.539  0.0100
+HNK          C7         N11      SINGLE       n     1.485  0.0123     1.485  0.0123
+HNK          C8          C9      SINGLE       n     1.523  0.0100     1.523  0.0100
+HNK          C9         C10      SINGLE       n     1.519  0.0111     1.519  0.0111
+HNK         C10         N11      SINGLE       n     1.465  0.0100     1.465  0.0100
+HNK         N11         C12      SINGLE       n     1.457  0.0100     1.457  0.0100
+HNK          C2          H2      SINGLE       n     1.082  0.0130     0.947  0.0113
+HNK          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0164
+HNK          C5          H5      SINGLE       n     1.082  0.0130     0.950  0.0100
+HNK          O6         HO6      SINGLE       n     0.966  0.0059     0.861  0.0200
+HNK          C7          H7      SINGLE       n     1.089  0.0100     0.988  0.0131
+HNK          C8          H8      SINGLE       n     1.089  0.0100     0.986  0.0100
+HNK          C8         H8A      SINGLE       n     1.089  0.0100     0.986  0.0100
+HNK          C9          H9      SINGLE       n     1.089  0.0100     0.987  0.0200
+HNK          C9         H9A      SINGLE       n     1.089  0.0100     0.987  0.0200
+HNK         C10         H10      SINGLE       n     1.089  0.0100     0.983  0.0122
+HNK         C10        H10A      SINGLE       n     1.089  0.0100     0.983  0.0122
+HNK         C12         H12      SINGLE       n     1.089  0.0100     0.971  0.0148
+HNK         C12        H12A      SINGLE       n     1.089  0.0100     0.971  0.0148
+HNK         C12        H12B      SINGLE       n     1.089  0.0100     0.971  0.0148
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HNK          C2          N1          C6     117.494    1.50
+HNK          N1          C2          C3     122.760    1.50
+HNK          N1          C2          H2     118.538    1.50
+HNK          C3          C2          H2     118.703    1.50
+HNK          C2          C3          C4     117.782    1.50
+HNK          C2          C3          C7     121.189    1.78
+HNK          C4          C3          C7     121.029    1.59
+HNK          C3          C4          C5     120.563    1.50
+HNK          C3          C4          H4     119.564    1.50
+HNK          C5          C4          H4     119.873    1.50
+HNK          C4          C5          C6     118.461    1.50
+HNK          C4          C5          H5     120.374    1.50
+HNK          C6          C5          H5     121.165    1.50
+HNK          N1          C6          C5     122.941    1.50
+HNK          N1          C6          O6     117.433    3.00
+HNK          C5          C6          O6     119.626    3.00
+HNK          C6          O6         HO6     120.000    3.00
+HNK          C3          C7          C8     113.884    1.85
+HNK          C3          C7         N11     114.176    1.63
+HNK          C3          C7          H7     109.229    1.50
+HNK          C8          C7         N11     101.965    1.50
+HNK          C8          C7          H7     108.847    1.50
+HNK         N11          C7          H7     108.702    1.50
+HNK          C7          C8          C9     103.404    1.50
+HNK          C7          C8          H8     110.910    1.50
+HNK          C7          C8         H8A     110.910    1.50
+HNK          C9          C8          H8     111.031    1.50
+HNK          C9          C8         H8A     111.031    1.50
+HNK          H8          C8         H8A     108.960    1.50
+HNK          C8          C9         C10     103.361    1.50
+HNK          C8          C9          H9     111.005    1.50
+HNK          C8          C9         H9A     111.005    1.50
+HNK         C10          C9          H9     110.793    1.50
+HNK         C10          C9         H9A     110.793    1.50
+HNK          H9          C9         H9A     108.899    1.50
+HNK          C9         C10         N11     104.312    1.50
+HNK          C9         C10         H10     111.171    1.50
+HNK          C9         C10        H10A     111.171    1.50
+HNK         N11         C10         H10     110.819    1.50
+HNK         N11         C10        H10A     110.819    1.50
+HNK         H10         C10        H10A     108.998    1.50
+HNK          C7         N11         C10     110.850    2.78
+HNK          C7         N11         C12     116.441    3.00
+HNK         C10         N11         C12     112.674    1.64
+HNK         N11         C12         H12     109.549    1.50
+HNK         N11         C12        H12A     109.549    1.50
+HNK         N11         C12        H12B     109.549    1.50
+HNK         H12         C12        H12A     109.462    1.50
+HNK         H12         C12        H12B     109.462    1.50
+HNK        H12A         C12        H12B     109.462    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HNK       const_sp2_sp2_1          C3          C2          N1          C6       0.000     5.0     2
+HNK              const_20          O6          C6          N1          C2     180.000    10.0     2
+HNK            sp3_sp3_29          C9         C10         N11         C12      60.000    10.0     3
+HNK            sp3_sp3_40         H12         C12         N11          C7     180.000    10.0     3
+HNK       const_sp2_sp2_3          N1          C2          C3          C4       0.000     5.0     2
+HNK       const_sp2_sp2_7          C2          C3          C4          C5       0.000     5.0     2
+HNK             sp2_sp3_1          C2          C3          C7          C8     150.000    10.0     6
+HNK              const_11          C3          C4          C5          C6       0.000    10.0     2
+HNK              const_16          C4          C5          C6          O6     180.000    10.0     2
+HNK             sp2_sp2_1          N1          C6          O6         HO6     180.000     5.0     2
+HNK            sp3_sp3_37          C3          C7         N11         C12     180.000    10.0     3
+HNK             sp3_sp3_4          C3          C7          C8          C9     -60.000    10.0     3
+HNK            sp3_sp3_10          C7          C8          C9         C10     -60.000    10.0     3
+HNK            sp3_sp3_19         N11         C10          C9          C8      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HNK    chir_1    C7    N11    C3    C8    negative
+HNK    chir_2    N11    C7    C10    C12    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HNK    plan-1          C2   0.020
+HNK    plan-1          C3   0.020
+HNK    plan-1          C4   0.020
+HNK    plan-1          C5   0.020
+HNK    plan-1          C6   0.020
+HNK    plan-1          C7   0.020
+HNK    plan-1          H2   0.020
+HNK    plan-1          H4   0.020
+HNK    plan-1          H5   0.020
+HNK    plan-1          N1   0.020
+HNK    plan-1          O6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HNK           SMILES              ACDLabs 12.01                                                                            n1cc(ccc1O)C2N(C)CCC2
+HNK SMILES_CANONICAL               CACTVS 3.370                                                                         CN1CCC[C@@H]1c2ccc(O)nc2
+HNK           SMILES               CACTVS 3.370                                                                           CN1CCC[CH]1c2ccc(O)nc2
+HNK SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                      C[N@]1CCC[C@@H]1c2ccc(nc2)O
+HNK           SMILES "OpenEye OEToolkits" 1.7.0                                                                              CN1CCCC1c2ccc(nc2)O
+HNK            InChI                InChI  1.03 InChI=1S/C10H14N2O/c1-12-6-2-3-9(12)8-4-5-10(13)11-7-8/h4-5,7,9H,2-3,6H2,1H3,(H,11,13)/t9-/m1/s1
+HNK         InChIKey                InChI  1.03                                                                      ATRCOGLZUCICIV-SECBINFHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HNK acedrg               243         "dictionary generator"                  
+HNK acedrg_database      11          "data source"                           
+HNK rdkit                2017.03.2   "Chemoinformatics tool"
+HNK refmac5              5.8.0238    "optimization tool"                     

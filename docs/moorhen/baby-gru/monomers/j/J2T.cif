@@ -1,0 +1,250 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+J2T     J2T      N-(2,3-dihydro-1H-inden-5-yl)tetrazolo[1,5-b]pyridazin-6-amine     NON-POLYMER     31     19     .     
+#
+data_comp_J2T
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+J2T     NAA     N       NRD5    0       -31.684     16.874      -37.465     
+J2T     CAB     C       CR56    0       -31.402     17.886      -36.638     
+J2T     CAC     C       CR16    0       -32.176     18.609      -35.694     
+J2T     CAD     C       CR16    0       -31.528     19.619      -35.000     
+J2T     CAE     C       CR16    0       -27.661     22.438      -34.282     
+J2T     CAF     C       CR16    0       -26.331     22.696      -33.977     
+J2T     CAG     C       CR56    0       -25.497     21.643      -33.609     
+J2T     CAH     C       CH2     0       -24.036     21.690      -33.237     
+J2T     CAI     C       CH2     0       -23.626     20.221      -33.195     
+J2T     NAJ     N       NRD5    0       -30.522     16.629      -38.111     
+J2T     NAK     N       NRD5    0       -29.544     17.449      -37.712     
+J2T     NAL     N       NT      0       -30.106     18.229      -36.791     
+J2T     NAM     N       NRD6    0       -29.395     19.228      -36.135     
+J2T     CAN     C       CR6     0       -30.121     19.922      -35.228     
+J2T     NAO     N       NH1     0       -29.527     20.910      -34.540     
+J2T     CAP     C       CR6     0       -28.154     21.133      -34.221     
+J2T     CAQ     C       CR16    0       -27.319     20.069      -33.846     
+J2T     CAR     C       CR56    0       -25.988     20.341      -33.546     
+J2T     CAS     C       CH2     0       -24.900     19.384      -33.125     
+J2T     HAC     H       H       0       -33.082     18.410      -35.548     
+J2T     HAD     H       H       0       -32.010     20.120      -34.365     
+J2T     HAE     H       H       0       -28.231     23.146      -34.533     
+J2T     HAF     H       H       0       -25.992     23.578      -34.018     
+J2T     HAH     H       H       0       -23.516     22.186      -33.912     
+J2T     HAHA    H       H       0       -23.908     22.122      -32.360     
+J2T     HAI     H       H       0       -23.065     20.049      -32.408     
+J2T     HAIA    H       H       0       -23.112     19.989      -33.999     
+J2T     HNAO    H       H       0       -30.072     21.521      -34.241     
+J2T     HAQ     H       H       0       -27.648     19.187      -33.805     
+J2T     HAS     H       H       0       -25.059     19.049      -32.211     
+J2T     HASA    H       H       0       -24.854     18.613      -33.738     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+J2T         NAA         NAJ      SINGLE       y     1.324  0.0200     1.324  0.0200
+J2T         NAA         CAB      DOUBLE       y     1.334  0.0200     1.334  0.0200
+J2T         CAB         CAC      SINGLE       y     1.416  0.0189     1.416  0.0189
+J2T         CAB         NAL      SINGLE       y     1.373  0.0189     1.373  0.0189
+J2T         CAC         CAD      DOUBLE       y     1.369  0.0200     1.369  0.0200
+J2T         CAD         CAN      SINGLE       y     1.430  0.0200     1.430  0.0200
+J2T         CAE         CAP      DOUBLE       y     1.392  0.0121     1.392  0.0121
+J2T         CAE         CAF      SINGLE       y     1.386  0.0100     1.386  0.0100
+J2T         CAF         CAG      DOUBLE       y     1.389  0.0100     1.389  0.0100
+J2T         CAG         CAR      SINGLE       y     1.389  0.0100     1.389  0.0100
+J2T         CAG         CAH      SINGLE       n     1.508  0.0100     1.508  0.0100
+J2T         CAH         CAI      SINGLE       n     1.526  0.0175     1.526  0.0175
+J2T         CAI         CAS      SINGLE       n     1.526  0.0175     1.526  0.0175
+J2T         NAJ         NAK      DOUBLE       y     1.324  0.0200     1.324  0.0200
+J2T         NAK         NAL      SINGLE       y     1.351  0.0200     1.351  0.0200
+J2T         NAL         NAM      SINGLE       y     1.389  0.0100     1.389  0.0100
+J2T         NAM         CAN      DOUBLE       y     1.327  0.0200     1.327  0.0200
+J2T         CAN         NAO      SINGLE       n     1.338  0.0122     1.338  0.0122
+J2T         NAO         CAP      SINGLE       n     1.425  0.0112     1.425  0.0112
+J2T         CAP         CAQ      SINGLE       y     1.400  0.0106     1.400  0.0106
+J2T         CAQ         CAR      DOUBLE       y     1.388  0.0100     1.388  0.0100
+J2T         CAR         CAS      SINGLE       n     1.508  0.0100     1.508  0.0100
+J2T         CAC         HAC      SINGLE       n     1.082  0.0130     0.939  0.0160
+J2T         CAD         HAD      SINGLE       n     1.082  0.0130     0.942  0.0156
+J2T         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0192
+J2T         CAF         HAF      SINGLE       n     1.082  0.0130     0.945  0.0141
+J2T         CAH         HAH      SINGLE       n     1.089  0.0100     0.986  0.0100
+J2T         CAH        HAHA      SINGLE       n     1.089  0.0100     0.986  0.0100
+J2T         CAI         HAI      SINGLE       n     1.089  0.0100     0.982  0.0142
+J2T         CAI        HAIA      SINGLE       n     1.089  0.0100     0.982  0.0142
+J2T         NAO        HNAO      SINGLE       n     1.016  0.0100     0.870  0.0200
+J2T         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.942  0.0100
+J2T         CAS         HAS      SINGLE       n     1.089  0.0100     0.986  0.0100
+J2T         CAS        HASA      SINGLE       n     1.089  0.0100     0.986  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+J2T         NAJ         NAA         CAB     104.120    1.50
+J2T         NAA         CAB         CAC     129.516    2.11
+J2T         NAA         CAB         NAL     110.467    1.50
+J2T         CAC         CAB         NAL     120.017    1.50
+J2T         CAB         CAC         CAD     117.894    1.55
+J2T         CAB         CAC         HAC     120.872    1.50
+J2T         CAD         CAC         HAC     121.235    1.50
+J2T         CAC         CAD         CAN     122.622    2.50
+J2T         CAC         CAD         HAD     118.828    1.50
+J2T         CAN         CAD         HAD     118.550    2.56
+J2T         CAP         CAE         CAF     120.246    1.50
+J2T         CAP         CAE         HAE     119.963    1.50
+J2T         CAF         CAE         HAE     119.790    1.50
+J2T         CAE         CAF         CAG     119.058    1.50
+J2T         CAE         CAF         HAF     120.627    1.50
+J2T         CAG         CAF         HAF     120.315    1.50
+J2T         CAF         CAG         CAR     120.376    1.50
+J2T         CAF         CAG         CAH     128.936    1.50
+J2T         CAR         CAG         CAH     110.688    1.50
+J2T         CAG         CAH         CAI     103.044    1.50
+J2T         CAG         CAH         HAH     110.984    1.50
+J2T         CAG         CAH        HAHA     110.984    1.50
+J2T         CAI         CAH         HAH     111.262    1.50
+J2T         CAI         CAH        HAHA     111.262    1.50
+J2T         HAH         CAH        HAHA     108.635    1.50
+J2T         CAH         CAI         CAS     106.646    1.91
+J2T         CAH         CAI         HAI     110.248    1.50
+J2T         CAH         CAI        HAIA     110.248    1.50
+J2T         CAS         CAI         HAI     110.248    1.50
+J2T         CAS         CAI        HAIA     110.248    1.50
+J2T         HAI         CAI        HAIA     108.464    1.50
+J2T         NAA         NAJ         NAK     111.137    1.50
+J2T         NAJ         NAK         NAL     107.128    1.50
+J2T         CAB         NAL         NAK     111.210    1.50
+J2T         CAB         NAL         NAM     128.423    1.50
+J2T         NAK         NAL         NAM     109.471    3.00
+J2T         NAL         NAM         CAN     115.193    1.50
+J2T         CAD         CAN         NAM     121.837    1.66
+J2T         CAD         CAN         NAO     120.084    2.97
+J2T         NAM         CAN         NAO     118.079    1.93
+J2T         CAN         NAO         CAP     128.340    3.00
+J2T         CAN         NAO        HNAO     115.514    3.00
+J2T         CAP         NAO        HNAO     116.146    2.79
+J2T         CAE         CAP         NAO     118.969    2.62
+J2T         CAE         CAP         CAQ     121.545    2.03
+J2T         NAO         CAP         CAQ     119.486    2.92
+J2T         CAP         CAQ         CAR     118.321    1.50
+J2T         CAP         CAQ         HAQ     121.105    1.50
+J2T         CAR         CAQ         HAQ     120.575    1.50
+J2T         CAG         CAR         CAQ     120.454    1.50
+J2T         CAG         CAR         CAS     110.155    1.50
+J2T         CAQ         CAR         CAS     129.391    1.78
+J2T         CAI         CAS         CAR     103.044    1.50
+J2T         CAI         CAS         HAS     111.262    1.50
+J2T         CAI         CAS        HASA     111.262    1.50
+J2T         CAR         CAS         HAS     110.984    1.50
+J2T         CAR         CAS        HASA     110.984    1.50
+J2T         HAS         CAS        HASA     108.635    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+J2T              const_30         CAC         CAB         NAA         NAJ     180.000    10.0     2
+J2T       const_sp2_sp2_1         CAB         NAA         NAJ         NAK       0.000     5.0     2
+J2T       const_sp2_sp2_3         NAJ         NAK         NAL         CAB       0.000     5.0     2
+J2T            sp2_sp2_15         CAB         NAL         NAM         CAN       0.000     5.0     2
+J2T            sp2_sp2_14         NAO         CAN         NAM         NAL     180.000     5.0     2
+J2T            sp2_sp2_17         CAD         CAN         NAO         CAP     180.000     5.0     2
+J2T            sp2_sp2_21         CAE         CAP         NAO         CAN     180.000     5.0     2
+J2T              const_15         NAO         CAP         CAQ         CAR     180.000    10.0     2
+J2T              const_17         CAP         CAQ         CAR         CAG       0.000    10.0     2
+J2T             sp2_sp3_1         CAG         CAR         CAS         CAI       0.000    10.0     6
+J2T       const_sp2_sp2_5         NAA         CAB         NAL         NAK       0.000     5.0     2
+J2T             sp2_sp2_3         NAA         CAB         CAC         CAD     180.000     5.0     2
+J2T             sp2_sp2_5         CAB         CAC         CAD         CAN       0.000     5.0     2
+J2T            sp2_sp2_10         CAC         CAD         CAN         NAO     180.000     5.0     2
+J2T              const_10         CAF         CAE         CAP         NAO     180.000    10.0     2
+J2T              const_31         CAP         CAE         CAF         CAG       0.000    10.0     2
+J2T              const_25         CAE         CAF         CAG         CAR       0.000    10.0     2
+J2T              const_21         CAF         CAG         CAR         CAQ       0.000    10.0     2
+J2T            sp2_sp3_10         CAF         CAG         CAH         CAI     180.000    10.0     6
+J2T            sp3_sp3_10         CAG         CAH         CAI         CAS     -60.000    10.0     3
+J2T             sp3_sp3_1         CAH         CAI         CAS         CAR      60.000    10.0     3
+J2T       const_sp2_sp2_2         NAA         NAJ         NAK         NAL       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+J2T    plan-1         CAB   0.020
+J2T    plan-1         CAC   0.020
+J2T    plan-1         CAD   0.020
+J2T    plan-1         CAN   0.020
+J2T    plan-1         HAC   0.020
+J2T    plan-1         HAD   0.020
+J2T    plan-1         NAA   0.020
+J2T    plan-1         NAJ   0.020
+J2T    plan-1         NAK   0.020
+J2T    plan-1         NAL   0.020
+J2T    plan-1         NAM   0.020
+J2T    plan-1         NAO   0.020
+J2T    plan-2         CAE   0.020
+J2T    plan-2         CAF   0.020
+J2T    plan-2         CAG   0.020
+J2T    plan-2         CAH   0.020
+J2T    plan-2         CAP   0.020
+J2T    plan-2         CAQ   0.020
+J2T    plan-2         CAR   0.020
+J2T    plan-2         CAS   0.020
+J2T    plan-2         HAE   0.020
+J2T    plan-2         HAF   0.020
+J2T    plan-2         HAQ   0.020
+J2T    plan-2         NAO   0.020
+J2T    plan-3         CAN   0.020
+J2T    plan-3         CAP   0.020
+J2T    plan-3        HNAO   0.020
+J2T    plan-3         NAO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+J2T           SMILES              ACDLabs 12.01                                                                    n1c(ccc2nnnn12)Nc3cc4c(cc3)CCC4
+J2T            InChI                InChI  1.03 InChI=1S/C13H12N6/c1-2-9-4-5-11(8-10(9)3-1)14-12-6-7-13-15-17-18-19(13)16-12/h4-8H,1-3H2,(H,14,16)
+J2T         InChIKey                InChI  1.03                                                                        XUXHXRTXDKMOCI-UHFFFAOYSA-N
+J2T SMILES_CANONICAL               CACTVS 3.370                                                                      C1Cc2ccc(Nc3ccc4nnnn4n3)cc2C1
+J2T           SMILES               CACTVS 3.370                                                                      C1Cc2ccc(Nc3ccc4nnnn4n3)cc2C1
+J2T SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                      c1cc2c(cc1Nc3ccc4nnnn4n3)CCC2
+J2T           SMILES "OpenEye OEToolkits" 1.7.6                                                                      c1cc2c(cc1Nc3ccc4nnnn4n3)CCC2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+J2T acedrg               243         "dictionary generator"                  
+J2T acedrg_database      11          "data source"                           
+J2T rdkit                2017.03.2   "Chemoinformatics tool"
+J2T refmac5              5.8.0238    "optimization tool"                     

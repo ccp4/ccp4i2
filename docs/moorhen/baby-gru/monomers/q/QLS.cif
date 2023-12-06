@@ -1,0 +1,468 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+QLS     QLS      "methyl [(2R,7S)-7-({(2E)-3-[5-chloro-2-(1H-tetrazol-1-yl)phenyl]prop-2-enoyl}amino)-2-(trifluoromethyl)-2,3,4,5,6,7-hexahydro-1H-8,11-epimino-1,9-benzodiazacyclotridecin-14-yl]carbamate"     NON-POLYMER     71     44     .     
+#
+data_comp_QLS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+QLS     C13     C       C1      0       37.658      -17.068     28.170      
+QLS     C18     C       CH2     0       39.015      -22.105     28.160      
+QLS     C17     C       CH1     0       39.328      -20.981     29.158      
+QLS     C15     C       C       0       38.361      -18.807     29.869      
+QLS     C19     C       CH2     0       40.035      -23.246     28.040      
+QLS     C20     C       CH2     0       40.345      -24.062     29.293      
+QLS     C22     C       CR5     0       40.793      -20.684     29.189      
+QLS     C24     C       CR15    0       42.779      -19.981     28.708      
+QLS     C34     C       C       0       48.733      -22.174     32.494      
+QLS     C27     C       CR6     0       44.045      -21.195     30.602      
+QLS     CL1     CL      CL      0       34.019      -13.458     28.697      
+QLS     C2      C       CR16    0       37.321      -13.708     26.458      
+QLS     C3      C       CR16    0       36.148      -13.250     27.038      
+QLS     C4      C       CR6     0       35.492      -14.037     27.970      
+QLS     C5      C       CR16    0       35.989      -15.271     28.327      
+QLS     C6      C       CR6     0       37.172      -15.754     27.748      
+QLS     C7      C       CR6     0       37.835      -14.948     26.809      
+QLS     N8      N       NR5     0       39.054      -15.376     26.174      
+QLS     C9      C       CR15    0       39.354      -15.565     24.888      
+QLS     N10     N       NRD5    0       40.599      -15.944     24.776      
+QLS     N11     N       NRD5    0       41.080      -15.978     26.048      
+QLS     N12     N       NRD5    0       40.167      -15.632     26.893      
+QLS     C14     C       C1      0       37.818      -17.491     29.434      
+QLS     O16     O       O       0       38.635      -19.006     31.052      
+QLS     N21     N       NH1     0       38.536      -19.772     28.914      
+QLS     N23     N       NRD5    0       41.462      -19.934     28.322      
+QLS     C25     C       CR5     0       42.893      -20.768     29.819      
+QLS     N26     N       NR5     0       41.628      -21.212     30.093      
+QLS     C28     C       CR16    0       45.031      -20.265     30.972      
+QLS     C29     C       CR16    0       46.133      -20.659     31.704      
+QLS     C30     C       CR6     0       46.296      -21.987     32.084      
+QLS     C31     C       CR16    0       45.341      -22.943     31.728      
+QLS     C32     C       CR6     0       44.215      -22.559     30.981      
+QLS     N33     N       NH1     0       47.429      -22.370     32.830      
+QLS     O35     O       O       0       49.137      -21.791     31.422      
+QLS     O36     O       O2      0       49.524      -22.481     33.548      
+QLS     C37     C       CH3     0       50.915      -22.097     33.461      
+QLS     C38     C       CH2     0       41.651      -24.861     29.285      
+QLS     C39     C       CH1     0       42.990      -24.109     29.329      
+QLS     N40     N       NT1     0       43.282      -23.519     30.646      
+QLS     C41     C       CT      0       44.140      -25.017     28.912      
+QLS     F42     F       F       0       44.311      -26.029     29.758      
+QLS     F43     F       F       0       45.305      -24.379     28.850      
+QLS     F44     F       F       0       43.961      -25.559     27.710      
+QLS     H49     H       H       0       37.898      -17.660     27.479      
+QLS     H53     H       H       0       38.150      -22.495     28.404      
+QLS     H52     H       H       0       38.909      -21.703     27.272      
+QLS     H51     H       H       0       39.094      -21.322     30.056      
+QLS     H54     H       H       0       40.875      -22.882     27.693      
+QLS     H55     H       H       0       39.700      -23.869     27.361      
+QLS     H57     H       H       0       39.609      -24.698     29.424      
+QLS     H56     H       H       0       40.345      -23.472     30.068      
+QLS     H59     H       H       0       43.482      -19.527     28.272      
+QLS     H45     H       H       0       37.771      -13.177     25.825      
+QLS     H46     H       H       0       35.802      -12.410     26.801      
+QLS     H47     H       H       0       35.533      -15.795     28.961      
+QLS     H48     H       H       0       38.754      -15.449     24.172      
+QLS     H50     H       H       0       37.560      -16.889     30.114      
+QLS     H58     H       H       0       38.130      -19.704     28.149      
+QLS     H70     H       H       0       41.400      -21.741     30.751      
+QLS     H60     H       H       0       44.935      -19.363     30.722      
+QLS     H61     H       H       0       46.783      -20.022     31.949      
+QLS     H62     H       H       0       45.448      -23.841     31.983      
+QLS     H63     H       H       0       47.275      -22.779     33.581      
+QLS     H65     H       H       0       50.979      -21.142     33.302      
+QLS     H66     H       H       0       51.338      -22.576     32.730      
+QLS     H64     H       H       0       51.362      -22.318     34.293      
+QLS     H68     H       H       0       41.639      -25.419     28.479      
+QLS     H67     H       H       0       41.631      -25.470     30.054      
+QLS     H69     H       H       0       42.948      -23.370     28.671      
+QLS     H71     H       H       0       43.044      -24.035     31.313      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+QLS          C9         N10      DOUBLE       y     1.306  0.0100     1.306  0.0100
+QLS         N10         N11      SINGLE       y     1.361  0.0121     1.361  0.0121
+QLS          N8          C9      SINGLE       y     1.333  0.0100     1.333  0.0100
+QLS         N11         N12      DOUBLE       y     1.291  0.0100     1.291  0.0100
+QLS          N8         N12      SINGLE       y     1.349  0.0100     1.349  0.0100
+QLS          C7          N8      SINGLE       n     1.438  0.0100     1.438  0.0100
+QLS          C2          C7      DOUBLE       y     1.383  0.0100     1.383  0.0100
+QLS          C2          C3      SINGLE       y     1.383  0.0100     1.383  0.0100
+QLS          C6          C7      SINGLE       y     1.396  0.0100     1.396  0.0100
+QLS         C24         N23      SINGLE       y     1.372  0.0100     1.372  0.0100
+QLS         C22         N23      DOUBLE       y     1.325  0.0100     1.325  0.0100
+QLS         C18         C19      SINGLE       n     1.523  0.0117     1.523  0.0117
+QLS         C18         C17      SINGLE       n     1.528  0.0100     1.528  0.0100
+QLS          C3          C4      DOUBLE       y     1.383  0.0100     1.383  0.0100
+QLS         C13          C6      SINGLE       n     1.462  0.0121     1.462  0.0121
+QLS          C5          C6      DOUBLE       y     1.399  0.0102     1.399  0.0102
+QLS         C24         C25      DOUBLE       y     1.367  0.0100     1.367  0.0100
+QLS         C19         C20      SINGLE       n     1.509  0.0200     1.509  0.0200
+QLS         C13         C14      DOUBLE       n     1.327  0.0200     1.327  0.0200
+QLS         C41         F44      SINGLE       n     1.330  0.0100     1.330  0.0100
+QLS         C17         N21      SINGLE       n     1.462  0.0110     1.462  0.0110
+QLS         C15         N21      SINGLE       n     1.341  0.0200     1.341  0.0200
+QLS         C17         C22      SINGLE       n     1.497  0.0107     1.497  0.0107
+QLS         C22         N26      SINGLE       y     1.344  0.0100     1.344  0.0100
+QLS          C4          C5      SINGLE       y     1.375  0.0100     1.375  0.0100
+QLS         CL1          C4      SINGLE       n     1.742  0.0100     1.742  0.0100
+QLS         C41         F43      SINGLE       n     1.330  0.0100     1.330  0.0100
+QLS         C15         C14      SINGLE       n     1.479  0.0120     1.479  0.0120
+QLS         C25         N26      SINGLE       y     1.375  0.0100     1.375  0.0100
+QLS         C27         C25      SINGLE       n     1.460  0.0114     1.460  0.0114
+QLS         C39         C41      SINGLE       n     1.518  0.0109     1.518  0.0109
+QLS         C41         F42      SINGLE       n     1.330  0.0100     1.330  0.0100
+QLS         C20         C38      SINGLE       n     1.509  0.0200     1.509  0.0200
+QLS         C15         O16      DOUBLE       n     1.229  0.0129     1.229  0.0129
+QLS         C38         C39      SINGLE       n     1.527  0.0100     1.527  0.0100
+QLS         C39         N40      SINGLE       n     1.465  0.0100     1.465  0.0100
+QLS         C27         C28      DOUBLE       y     1.403  0.0100     1.403  0.0100
+QLS         C27         C32      SINGLE       y     1.410  0.0134     1.410  0.0134
+QLS         C28         C29      SINGLE       y     1.378  0.0100     1.378  0.0100
+QLS         C32         N40      SINGLE       n     1.372  0.0100     1.372  0.0100
+QLS         C31         C32      DOUBLE       y     1.400  0.0100     1.400  0.0100
+QLS         C29         C30      DOUBLE       y     1.388  0.0100     1.388  0.0100
+QLS         C30         C31      SINGLE       y     1.393  0.0100     1.393  0.0100
+QLS         C30         N33      SINGLE       n     1.409  0.0100     1.409  0.0100
+QLS         C34         O35      DOUBLE       n     1.207  0.0101     1.207  0.0101
+QLS         C34         N33      SINGLE       n     1.356  0.0111     1.356  0.0111
+QLS         C34         O36      SINGLE       n     1.348  0.0108     1.348  0.0108
+QLS         O36         C37      SINGLE       n     1.443  0.0101     1.443  0.0101
+QLS         C13         H49      SINGLE       n     1.082  0.0130     0.945  0.0200
+QLS         C18         H53      SINGLE       n     1.089  0.0100     0.980  0.0160
+QLS         C18         H52      SINGLE       n     1.089  0.0100     0.980  0.0160
+QLS         C17         H51      SINGLE       n     1.089  0.0100     0.988  0.0164
+QLS         C19         H54      SINGLE       n     1.089  0.0100     0.981  0.0163
+QLS         C19         H55      SINGLE       n     1.089  0.0100     0.981  0.0163
+QLS         C20         H57      SINGLE       n     1.089  0.0100     0.981  0.0163
+QLS         C20         H56      SINGLE       n     1.089  0.0100     0.981  0.0163
+QLS         C24         H59      SINGLE       n     1.082  0.0130     0.944  0.0200
+QLS          C2         H45      SINGLE       n     1.082  0.0130     0.940  0.0155
+QLS          C3         H46      SINGLE       n     1.082  0.0130     0.939  0.0138
+QLS          C5         H47      SINGLE       n     1.082  0.0130     0.940  0.0137
+QLS          C9         H48      SINGLE       n     1.082  0.0130     0.942  0.0172
+QLS         C14         H50      SINGLE       n     1.082  0.0130     0.945  0.0193
+QLS         N21         H58      SINGLE       n     1.016  0.0100     0.874  0.0200
+QLS         N26         H70      SINGLE       n     1.016  0.0100     0.880  0.0200
+QLS         C28         H60      SINGLE       n     1.082  0.0130     0.941  0.0147
+QLS         C29         H61      SINGLE       n     1.082  0.0130     0.942  0.0198
+QLS         C31         H62      SINGLE       n     1.082  0.0130     0.940  0.0177
+QLS         N33         H63      SINGLE       n     1.016  0.0100     0.867  0.0200
+QLS         C37         H65      SINGLE       n     1.089  0.0100     0.970  0.0175
+QLS         C37         H66      SINGLE       n     1.089  0.0100     0.970  0.0175
+QLS         C37         H64      SINGLE       n     1.089  0.0100     0.970  0.0175
+QLS         C38         H68      SINGLE       n     1.089  0.0100     0.981  0.0160
+QLS         C38         H67      SINGLE       n     1.089  0.0100     0.981  0.0160
+QLS         C39         H69      SINGLE       n     1.089  0.0100     0.992  0.0164
+QLS         N40         H71      SINGLE       n     1.016  0.0100     0.876  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+QLS          C6         C13         C14     127.302    1.50
+QLS          C6         C13         H49     116.203    1.50
+QLS         C14         C13         H49     116.495    1.60
+QLS         C19         C18         C17     113.636    1.85
+QLS         C19         C18         H53     108.801    1.50
+QLS         C19         C18         H52     108.801    1.50
+QLS         C17         C18         H53     108.818    1.50
+QLS         C17         C18         H52     108.818    1.50
+QLS         H53         C18         H52     107.715    1.50
+QLS         C18         C17         N21     111.253    1.50
+QLS         C18         C17         C22     110.747    2.16
+QLS         C18         C17         H51     107.451    1.50
+QLS         N21         C17         C22     112.515    2.05
+QLS         N21         C17         H51     107.712    1.50
+QLS         C22         C17         H51     106.599    1.50
+QLS         N21         C15         C14     114.634    1.50
+QLS         N21         C15         O16     122.940    1.83
+QLS         C14         C15         O16     122.426    1.50
+QLS         C18         C19         C20     114.183    2.57
+QLS         C18         C19         H54     108.801    1.50
+QLS         C18         C19         H55     108.801    1.50
+QLS         C20         C19         H54     108.698    1.50
+QLS         C20         C19         H55     108.698    1.50
+QLS         H54         C19         H55     107.646    1.50
+QLS         C19         C20         C38     115.138    2.03
+QLS         C19         C20         H57     108.698    1.50
+QLS         C19         C20         H56     108.698    1.50
+QLS         C38         C20         H57     108.601    1.50
+QLS         C38         C20         H56     108.601    1.50
+QLS         H57         C20         H56     107.646    1.50
+QLS         N23         C22         C17     124.729    3.00
+QLS         N23         C22         N26     110.064    1.50
+QLS         C17         C22         N26     125.207    1.69
+QLS         N23         C24         C25     109.781    1.80
+QLS         N23         C24         H59     124.404    1.50
+QLS         C25         C24         H59     125.816    1.75
+QLS         O35         C34         N33     126.310    1.50
+QLS         O35         C34         O36     124.180    1.50
+QLS         N33         C34         O36     109.510    1.50
+QLS         C25         C27         C28     120.009    1.50
+QLS         C25         C27         C32     121.652    1.96
+QLS         C28         C27         C32     118.340    1.50
+QLS          C7          C2          C3     119.595    1.50
+QLS          C7          C2         H45     120.137    1.50
+QLS          C3          C2         H45     120.268    1.50
+QLS          C2          C3          C4     119.598    1.50
+QLS          C2          C3         H46     120.135    1.50
+QLS          C4          C3         H46     120.266    1.50
+QLS          C3          C4          C5     121.254    1.50
+QLS          C3          C4         CL1     119.280    1.50
+QLS          C5          C4         CL1     119.467    1.50
+QLS          C6          C5          C4     120.377    1.50
+QLS          C6          C5         H47     119.676    1.50
+QLS          C4          C5         H47     119.947    1.50
+QLS          C7          C6         C13     121.747    2.04
+QLS          C7          C6          C5     118.632    1.50
+QLS         C13          C6          C5     119.621    2.30
+QLS          N8          C7          C2     118.755    1.50
+QLS          N8          C7          C6     120.702    1.50
+QLS          C2          C7          C6     120.543    1.50
+QLS          C9          N8         N12     107.581    1.50
+QLS          C9          N8          C7     131.387    1.50
+QLS         N12          N8          C7     121.032    1.50
+QLS         N10          C9          N8     109.677    1.50
+QLS         N10          C9         H48     125.346    1.50
+QLS          N8          C9         H48     124.969    1.50
+QLS          C9         N10         N11     105.404    1.50
+QLS         N10         N11         N12     110.848    1.50
+QLS         N11         N12          N8     106.498    1.50
+QLS         C13         C14         C15     121.613    2.02
+QLS         C13         C14         H50     119.447    1.90
+QLS         C15         C14         H50     118.940    1.50
+QLS         C17         N21         C15     122.342    1.70
+QLS         C17         N21         H58     118.898    2.69
+QLS         C15         N21         H58     118.760    2.08
+QLS         C24         N23         C22     105.966    1.50
+QLS         C24         C25         N26     106.245    1.61
+QLS         C24         C25         C27     130.988    1.50
+QLS         N26         C25         C27     122.767    1.50
+QLS         C22         N26         C25     107.944    2.04
+QLS         C22         N26         H70     125.916    2.25
+QLS         C25         N26         H70     126.140    1.67
+QLS         C27         C28         C29     120.868    1.50
+QLS         C27         C28         H60     119.481    1.50
+QLS         C29         C28         H60     119.652    1.50
+QLS         C28         C29         C30     120.818    1.50
+QLS         C28         C29         H61     119.660    1.50
+QLS         C30         C29         H61     119.522    1.50
+QLS         C29         C30         C31     120.074    1.50
+QLS         C29         C30         N33     119.795    3.00
+QLS         C31         C30         N33     120.131    3.00
+QLS         C32         C31         C30     119.045    1.76
+QLS         C32         C31         H62     120.160    1.50
+QLS         C30         C31         H62     120.795    1.50
+QLS         C27         C32         N40     119.085    2.22
+QLS         C27         C32         C31     120.857    2.08
+QLS         N40         C32         C31     120.058    1.90
+QLS         C30         N33         C34     126.824    1.50
+QLS         C30         N33         H63     116.703    1.63
+QLS         C34         N33         H63     116.473    1.50
+QLS         C34         O36         C37     115.454    1.50
+QLS         O36         C37         H65     109.384    1.50
+QLS         O36         C37         H66     109.384    1.50
+QLS         O36         C37         H64     109.384    1.50
+QLS         H65         C37         H66     109.532    1.53
+QLS         H65         C37         H64     109.532    1.53
+QLS         H66         C37         H64     109.532    1.53
+QLS         C20         C38         C39     114.477    2.22
+QLS         C20         C38         H68     108.650    1.50
+QLS         C20         C38         H67     108.650    1.50
+QLS         C39         C38         H68     108.329    1.50
+QLS         C39         C38         H67     108.329    1.50
+QLS         H68         C38         H67     107.844    1.50
+QLS         C41         C39         C38     111.046    3.00
+QLS         C41         C39         N40     110.970    2.09
+QLS         C41         C39         H69     107.629    1.50
+QLS         C38         C39         N40     111.883    2.59
+QLS         C38         C39         H69     108.261    1.50
+QLS         N40         C39         H69     107.785    1.50
+QLS         C39         N40         C32     121.243    3.00
+QLS         C39         N40         H71     112.625    3.00
+QLS         C32         N40         H71     113.883    3.00
+QLS         F44         C41         F43     106.454    1.50
+QLS         F44         C41         C39     112.307    1.61
+QLS         F44         C41         F42     106.454    1.50
+QLS         F43         C41         C39     112.307    1.61
+QLS         F43         C41         F42     106.454    1.50
+QLS         C39         C41         F42     112.307    1.61
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+QLS             sp2_sp2_5         C14         C13          C6          C7     180.000     5.0     2
+QLS             sp2_sp2_9          C6         C13         C14         C15     180.000     5.0     2
+QLS              const_63          C7          C2          C3          C4       0.000    10.0     2
+QLS              const_34          C3          C2          C7          N8     180.000    10.0     2
+QLS              const_50          C2          C3          C4         CL1     180.000    10.0     2
+QLS              const_47         CL1          C4          C5          C6     180.000    10.0     2
+QLS              const_42          C4          C5          C6         C13     180.000    10.0     2
+QLS              const_40         C13          C6          C7          N8       0.000    10.0     2
+QLS             sp2_sp2_1          C2          C7          N8          C9     180.000     5.0     2
+QLS              const_53         N10          C9          N8         N12       0.000    10.0     2
+QLS              const_61         N11         N12          N8          C9       0.000    10.0     2
+QLS              const_57          N8          C9         N10         N11       0.000    10.0     2
+QLS              const_59          C9         N10         N11         N12       0.000    10.0     2
+QLS            sp3_sp3_10         N21         C17         C18         C19     180.000    10.0     3
+QLS             sp3_sp3_1         C17         C18         C19         C20     180.000    10.0     3
+QLS              const_60         N10         N11         N12          N8       0.000    10.0     2
+QLS       const_sp2_sp2_9         C24         C25         N26         C22       0.000     5.0     2
+QLS              const_17         C27         C28         C29         C30       0.000    10.0     2
+QLS              const_22         C28         C29         C30         N33     180.000    10.0     2
+QLS             sp2_sp3_1         C15         N21         C17         C18       0.000    10.0     6
+QLS             sp2_sp3_7         N23         C22         C17         C18     150.000    10.0     6
+QLS              const_27         N33         C30         C31         C32     180.000    10.0     2
+QLS            sp2_sp2_29         C29         C30         N33         C34     180.000     5.0     2
+QLS              const_30         C30         C31         C32         N40     180.000    10.0     2
+QLS            sp2_sp2_25         C27         C32         N40         C39     180.000     5.0     2
+QLS            sp3_sp3_56         H65         C37         O36         C34     -60.000    10.0     3
+QLS            sp3_sp3_46         C20         C38         C39         C41     180.000    10.0     3
+QLS            sp2_sp3_13         C32         N40         C39         C41       0.000    10.0     6
+QLS            sp3_sp3_28         C38         C39         C41         F44     180.000    10.0     3
+QLS            sp2_sp2_17         C13         C14         C15         N21     180.000     5.0     2
+QLS            sp2_sp2_13         C14         C15         N21         C17     180.000     5.0     2
+QLS            sp3_sp3_19         C18         C19         C20         C38     180.000    10.0     3
+QLS            sp3_sp3_37         C19         C20         C38         C39     180.000    10.0     3
+QLS       const_sp2_sp2_2         C17         C22         N23         C24     180.000     5.0     2
+QLS              const_69         C17         C22         N26         C25     180.000    10.0     2
+QLS       const_sp2_sp2_3         C25         C24         N23         C22       0.000     5.0     2
+QLS       const_sp2_sp2_5         N23         C24         C25         N26       0.000     5.0     2
+QLS            sp2_sp2_35         O35         C34         N33         C30       0.000     5.0     2
+QLS            sp2_sp2_37         O35         C34         O36         C37     180.000     5.0     2
+QLS            sp2_sp2_21         C24         C25         C27         C28     180.000     5.0     2
+QLS              const_15         C25         C27         C28         C29     180.000    10.0     2
+QLS              const_74         C25         C27         C32         N40       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+QLS    chir_1    C17    N21    C22    C18    positive
+QLS    chir_2    C39    N40    C41    C38    negative
+QLS    chir_3    C41    F44    F43    F42    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+QLS    plan-1         C13   0.020
+QLS    plan-1          C2   0.020
+QLS    plan-1          C3   0.020
+QLS    plan-1          C4   0.020
+QLS    plan-1          C5   0.020
+QLS    plan-1          C6   0.020
+QLS    plan-1          C7   0.020
+QLS    plan-1         CL1   0.020
+QLS    plan-1         H45   0.020
+QLS    plan-1         H46   0.020
+QLS    plan-1         H47   0.020
+QLS    plan-1          N8   0.020
+QLS    plan-2          C7   0.020
+QLS    plan-2          C9   0.020
+QLS    plan-2         H48   0.020
+QLS    plan-2         N10   0.020
+QLS    plan-2         N11   0.020
+QLS    plan-2         N12   0.020
+QLS    plan-2          N8   0.020
+QLS    plan-3         C17   0.020
+QLS    plan-3         C22   0.020
+QLS    plan-3         C24   0.020
+QLS    plan-3         C25   0.020
+QLS    plan-3         C27   0.020
+QLS    plan-3         H59   0.020
+QLS    plan-3         H70   0.020
+QLS    plan-3         N23   0.020
+QLS    plan-3         N26   0.020
+QLS    plan-4         C25   0.020
+QLS    plan-4         C27   0.020
+QLS    plan-4         C28   0.020
+QLS    plan-4         C29   0.020
+QLS    plan-4         C30   0.020
+QLS    plan-4         C31   0.020
+QLS    plan-4         C32   0.020
+QLS    plan-4         H60   0.020
+QLS    plan-4         H61   0.020
+QLS    plan-4         H62   0.020
+QLS    plan-4         N33   0.020
+QLS    plan-4         N40   0.020
+QLS    plan-5         C13   0.020
+QLS    plan-5         C14   0.020
+QLS    plan-5          C6   0.020
+QLS    plan-5         H49   0.020
+QLS    plan-6         C14   0.020
+QLS    plan-6         C15   0.020
+QLS    plan-6         N21   0.020
+QLS    plan-6         O16   0.020
+QLS    plan-7         C34   0.020
+QLS    plan-7         N33   0.020
+QLS    plan-7         O35   0.020
+QLS    plan-7         O36   0.020
+QLS    plan-8         C13   0.020
+QLS    plan-8         C14   0.020
+QLS    plan-8         C15   0.020
+QLS    plan-8         H50   0.020
+QLS    plan-9         C15   0.020
+QLS    plan-9         C17   0.020
+QLS    plan-9         H58   0.020
+QLS    plan-9         N21   0.020
+QLS   plan-10         C30   0.020
+QLS   plan-10         C34   0.020
+QLS   plan-10         H63   0.020
+QLS   plan-10         N33   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+QLS           SMILES              ACDLabs 12.01                                                                                                                                                             "[C@H](=CC(=O)NC2CCCCC(Nc1c(ccc(NC(OC)=O)c1)c3cnc2n3)C(F)(F)F)c4cc(Cl)ccc4n5nnnc5"
+QLS            InChI                InChI  1.03 InChI=1S/C28H27ClF3N9O3/c1-44-27(43)35-18-8-9-19-21(13-18)36-24(28(30,31)32)5-3-2-4-20(26-33-14-22(19)38-26)37-25(42)11-6-16-12-17(29)7-10-23(16)41-15-34-39-40-41/h6-15,20,24,36H,2-5H2,1H3,(H,33,38)(H,35,43)(H,37,42)/b11-6+/t20-,24+/m0/s1
+QLS         InChIKey                InChI  1.03                                                                                                                                                                                                                    UXHSEEJCQYWDBB-UENHJXRBSA-N
+QLS SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                        COC(=O)Nc1ccc2c(N[C@H](CCCC[C@H](NC(=O)/C=C/c3cc(Cl)ccc3n4cnnn4)c5[nH]c2cn5)C(F)(F)F)c1
+QLS           SMILES               CACTVS 3.385                                                                                                                                                            COC(=O)Nc1ccc2c(N[CH](CCCC[CH](NC(=O)C=Cc3cc(Cl)ccc3n4cnnn4)c5[nH]c2cn5)C(F)(F)F)c1
+QLS SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                      COC(=O)Nc1ccc-2c(c1)N[C@H](CCCC[C@@H](c3[nH]c2cn3)NC(=O)/C=C/c4cc(ccc4n5cnnn5)Cl)C(F)(F)F
+QLS           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                 COC(=O)Nc1ccc-2c(c1)NC(CCCCC(c3[nH]c2cn3)NC(=O)C=Cc4cc(ccc4n5cnnn5)Cl)C(F)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+QLS acedrg               243         "dictionary generator"                  
+QLS acedrg_database      11          "data source"                           
+QLS rdkit                2017.03.2   "Chemoinformatics tool"
+QLS refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,232 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TLF     TLF      "2-[(3-chloro-2-methylphenyl)amino]benzoic acid"     NON-POLYMER     29     18     .     
+#
+data_comp_TLF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TLF     C4      C       CR16    0       3.917       9.522       10.619      
+TLF     C5      C       CR16    0       3.844       9.916       11.942      
+TLF     C6      C       CR6     0       2.607       10.155      12.542      
+TLF     C8      C       CR6     0       3.433       10.218      14.951      
+TLF     C9      C       CR16    0       4.172       11.222      15.602      
+TLF     C10     C       CR16    0       5.046       10.917      16.627      
+TLF     C11     C       CR16    0       5.210       9.611       17.035      
+TLF     C12     C       CR16    0       4.497       8.603       16.415      
+TLF     C13     C       CR6     0       3.604       8.869       15.375      
+TLF     C14     C       C       0       2.874       7.707       14.765      
+TLF     O16     O       OC      -1      3.555       6.764       14.322      
+TLF     O15     O       O       0       1.632       7.754       14.737      
+TLF     N7      N       NH1     0       2.550       10.563      13.907      
+TLF     C1      C       CR6     0       1.409       9.997       11.807      
+TLF     C17     C       CH3     0       0.068       10.256      12.441      
+TLF     C2      C       CR6     0       1.535       9.599       10.470      
+TLF     CL      CL      CL      0       0.119       9.378       9.468       
+TLF     C3      C       CR16    0       2.764       9.362       9.878       
+TLF     H1      H       H       0       4.752       9.363       10.224      
+TLF     H2      H       H       0       4.635       10.024      12.441      
+TLF     H3      H       H       0       4.068       12.118      15.330      
+TLF     H4      H       H       0       5.531       11.607      17.048      
+TLF     H5      H       H       0       5.806       9.405       17.735      
+TLF     H6      H       H       0       4.614       7.713       16.700      
+TLF     H8      H       H       0       1.926       11.126      14.123      
+TLF     H9      H       H       0       0.062       9.907       13.347      
+TLF     H10     H       H       0       -0.634      9.821       11.935      
+TLF     H11     H       H       0       -0.100      11.212      12.466      
+TLF     H12     H       H       0       2.811       9.094       8.979       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TLF          C2          CL      SINGLE       n     1.746  0.0134     1.746  0.0134
+TLF          C2          C3      SINGLE       y     1.381  0.0100     1.381  0.0100
+TLF          C1          C2      DOUBLE       y     1.390  0.0100     1.390  0.0100
+TLF          C4          C3      DOUBLE       y     1.379  0.0100     1.379  0.0100
+TLF          C1         C17      SINGLE       n     1.501  0.0100     1.501  0.0100
+TLF          C6          C1      SINGLE       y     1.402  0.0100     1.402  0.0100
+TLF          C4          C5      SINGLE       y     1.383  0.0100     1.383  0.0100
+TLF          C5          C6      DOUBLE       y     1.391  0.0100     1.391  0.0100
+TLF          C6          N7      SINGLE       n     1.419  0.0107     1.419  0.0107
+TLF          C8          N7      SINGLE       n     1.405  0.0137     1.405  0.0137
+TLF          C8          C9      DOUBLE       y     1.402  0.0100     1.402  0.0100
+TLF          C8         C13      SINGLE       y     1.417  0.0100     1.417  0.0100
+TLF          C9         C10      SINGLE       y     1.378  0.0101     1.378  0.0101
+TLF         C14         O15      DOUBLE       n     1.244  0.0200     1.244  0.0200
+TLF         C14         O16      SINGLE       n     1.244  0.0200     1.244  0.0200
+TLF         C13         C14      SINGLE       n     1.498  0.0200     1.498  0.0200
+TLF         C12         C13      DOUBLE       y     1.392  0.0100     1.392  0.0100
+TLF         C10         C11      DOUBLE       y     1.376  0.0124     1.376  0.0124
+TLF         C11         C12      SINGLE       y     1.378  0.0104     1.378  0.0104
+TLF          C4          H1      SINGLE       n     1.082  0.0130     0.937  0.0130
+TLF          C5          H2      SINGLE       n     1.082  0.0130     0.942  0.0183
+TLF          C9          H3      SINGLE       n     1.082  0.0130     0.942  0.0198
+TLF         C10          H4      SINGLE       n     1.082  0.0130     0.943  0.0172
+TLF         C11          H5      SINGLE       n     1.082  0.0130     0.943  0.0180
+TLF         C12          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+TLF          N7          H8      SINGLE       n     1.016  0.0100     0.870  0.0200
+TLF         C17          H9      SINGLE       n     1.089  0.0100     0.971  0.0135
+TLF         C17         H10      SINGLE       n     1.089  0.0100     0.971  0.0135
+TLF         C17         H11      SINGLE       n     1.089  0.0100     0.971  0.0135
+TLF          C3         H12      SINGLE       n     1.082  0.0130     0.939  0.0176
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TLF          C3          C4          C5     120.923    1.50
+TLF          C3          C4          H1     119.559    1.50
+TLF          C5          C4          H1     119.518    1.50
+TLF          C4          C5          C6     120.816    1.50
+TLF          C4          C5          H2     119.837    1.50
+TLF          C6          C5          H2     119.347    1.50
+TLF          C1          C6          C5     120.651    1.78
+TLF          C1          C6          N7     118.712    1.50
+TLF          C5          C6          N7     120.637    1.50
+TLF          N7          C8          C9     120.914    1.50
+TLF          N7          C8         C13     120.928    1.50
+TLF          C9          C8         C13     118.158    1.50
+TLF          C8          C9         C10     120.871    1.50
+TLF          C8          C9          H3     119.320    1.50
+TLF         C10          C9          H3     119.810    1.50
+TLF          C9         C10         C11     120.548    1.50
+TLF          C9         C10          H4     119.585    1.50
+TLF         C11         C10          H4     119.867    1.50
+TLF         C10         C11         C12     120.222    1.50
+TLF         C10         C11          H5     119.934    1.50
+TLF         C12         C11          H5     119.844    1.50
+TLF         C13         C12         C11     121.691    1.50
+TLF         C13         C12          H6     118.850    1.50
+TLF         C11         C12          H6     119.459    1.50
+TLF          C8         C13         C14     123.095    1.50
+TLF          C8         C13         C12     118.510    1.50
+TLF         C14         C13         C12     118.395    1.50
+TLF         O15         C14         O16     124.521    1.50
+TLF         O15         C14         C13     117.739    1.50
+TLF         O16         C14         C13     117.739    1.50
+TLF          C6          N7          C8     126.703    1.71
+TLF          C6          N7          H8     116.649    2.14
+TLF          C8          N7          H8     116.649    2.14
+TLF          C2          C1         C17     122.402    1.50
+TLF          C2          C1          C6     116.433    1.50
+TLF         C17          C1          C6     121.166    1.50
+TLF          C1         C17          H9     109.594    1.50
+TLF          C1         C17         H10     109.594    1.50
+TLF          C1         C17         H11     109.594    1.50
+TLF          H9         C17         H10     109.348    1.50
+TLF          H9         C17         H11     109.348    1.50
+TLF         H10         C17         H11     109.348    1.50
+TLF          CL          C2          C3     118.469    1.50
+TLF          CL          C2          C1     119.775    1.50
+TLF          C3          C2          C1     121.756    1.50
+TLF          C2          C3          C4     119.421    1.50
+TLF          C2          C3         H12     120.177    1.50
+TLF          C4          C3         H12     120.402    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TLF              const_41          C3          C4          C5          C6       0.000    10.0     2
+TLF              const_21          C2          C3          C4          C5       0.000    10.0     2
+TLF             sp2_sp3_1          C2          C1         C17          H9     150.000    10.0     6
+TLF              const_32         C17          C1          C2          CL       0.000    10.0     2
+TLF              const_27          CL          C2          C3          C4     180.000    10.0     2
+TLF              const_38          C4          C5          C6          N7     180.000    10.0     2
+TLF             sp2_sp2_1          C1          C6          N7          C8     180.000     5.0     2
+TLF              const_36         C17          C1          C6          N7       0.000    10.0     2
+TLF             sp2_sp2_5          C9          C8          N7          C6     180.000     5.0     2
+TLF       const_sp2_sp2_3          N7          C8          C9         C10     180.000     5.0     2
+TLF              const_48         C14         C13          C8          N7       0.000    10.0     2
+TLF       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+TLF       const_sp2_sp2_9          C9         C10         C11         C12       0.000     5.0     2
+TLF              const_13         C10         C11         C12         C13       0.000    10.0     2
+TLF              const_18         C11         C12         C13         C14     180.000    10.0     2
+TLF             sp2_sp2_9          C8         C13         C14         O15     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TLF    plan-1          C1   0.020
+TLF    plan-1         C17   0.020
+TLF    plan-1          C2   0.020
+TLF    plan-1          C3   0.020
+TLF    plan-1          C4   0.020
+TLF    plan-1          C5   0.020
+TLF    plan-1          C6   0.020
+TLF    plan-1          CL   0.020
+TLF    plan-1          H1   0.020
+TLF    plan-1         H12   0.020
+TLF    plan-1          H2   0.020
+TLF    plan-1          N7   0.020
+TLF    plan-2         C10   0.020
+TLF    plan-2         C11   0.020
+TLF    plan-2         C12   0.020
+TLF    plan-2         C13   0.020
+TLF    plan-2         C14   0.020
+TLF    plan-2          C8   0.020
+TLF    plan-2          C9   0.020
+TLF    plan-2          H3   0.020
+TLF    plan-2          H4   0.020
+TLF    plan-2          H5   0.020
+TLF    plan-2          H6   0.020
+TLF    plan-2          N7   0.020
+TLF    plan-3         C13   0.020
+TLF    plan-3         C14   0.020
+TLF    plan-3         O15   0.020
+TLF    plan-3         O16   0.020
+TLF    plan-4          C6   0.020
+TLF    plan-4          C8   0.020
+TLF    plan-4          H8   0.020
+TLF    plan-4          N7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TLF           SMILES              ACDLabs 12.01                                                                   Clc2cccc(Nc1ccccc1C(=O)O)c2C
+TLF            InChI                InChI  1.03 InChI=1S/C14H12ClNO2/c1-9-11(15)6-4-8-12(9)16-13-7-3-2-5-10(13)14(17)18/h2-8,16H,1H3,(H,17,18)
+TLF         InChIKey                InChI  1.03                                                                    YEZNLOUZAIOMLT-UHFFFAOYSA-N
+TLF SMILES_CANONICAL               CACTVS 3.370                                                                   Cc1c(Cl)cccc1Nc2ccccc2C(O)=O
+TLF           SMILES               CACTVS 3.370                                                                   Cc1c(Cl)cccc1Nc2ccccc2C(O)=O
+TLF SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                   Cc1c(cccc1Cl)Nc2ccccc2C(=O)O
+TLF           SMILES "OpenEye OEToolkits" 1.7.6                                                                   Cc1c(cccc1Cl)Nc2ccccc2C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TLF acedrg               243         "dictionary generator"                  
+TLF acedrg_database      11          "data source"                           
+TLF rdkit                2017.03.2   "Chemoinformatics tool"
+TLF refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,362 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+12G     12G      "{4-[(2R)-3-(2-chlorobenzoyl)-2-(2-chlorophenyl)-4-hydroxy-5-oxo-2,5-dihydro-1H-pyrrol-1-yl]phenyl}acetic acid"     NON-POLYMER     49     33     .     
+#
+data_comp_12G
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+12G     CLA     CL      CL      0       3.859       24.248      0.341       
+12G     CBB     C       CR6     0       2.938       23.637      1.689       
+12G     CAM     C       CR16    0       2.429       24.584      2.570       
+12G     CAI     C       CR16    0       1.692       24.173      3.657       
+12G     CAK     C       CR16    0       1.461       22.830      3.869       
+12G     CAO     C       CR16    0       1.972       21.886      2.986       
+12G     CBE     C       CR6     0       2.712       22.272      1.872       
+12G     CBF     C       CH1     0       3.272       21.221      0.928       
+12G     NBG     N       NR5     0       2.300       20.179      0.536       
+12G     CBC     C       CR6     0       1.025       20.513      -0.034      
+12G     CAR     C       CR16    0       -0.125      19.851      0.386       
+12G     CAP     C       CR16    0       -1.350      20.186      -0.174      
+12G     CAZ     C       CR6     0       -1.464      21.175      -1.143      
+12G     CAT     C       CH2     0       -2.803      21.532      -1.741      
+12G     CAU     C       C       0       -3.120      20.766      -3.021      
+12G     OAD     O       O       0       -2.423      20.991      -4.027      
+12G     OAA     O       OC      -1      -4.062      19.953      -3.000      
+12G     CAQ     C       CR16    0       -0.303      21.826      -1.543      
+12G     CAS     C       CR16    0       0.935       21.509      -1.002      
+12G     CAX     C       CR5     0       2.800       18.904      0.790       
+12G     OAC     O       O       0       2.265       17.850      0.498       
+12G     CAW     C       CR5     0       4.048       19.067      1.456       
+12G     OAE     O       OH1     0       4.792       18.012      1.886       
+12G     CAY     C       CR5     0       4.370       20.373      1.558       
+12G     CAV     C       C       0       5.585       20.998      2.129       
+12G     OAB     O       O       0       5.840       22.166      1.867       
+12G     CBD     C       CR6     0       6.469       20.282      3.091       
+12G     CBA     C       CR6     0       6.044       19.938      4.369       
+12G     CL2     CL      CL      0       4.433       20.302      4.910       
+12G     CAL     C       CR16    0       6.886       19.284      5.256       
+12G     CAH     C       CR16    0       8.173       18.975      4.874       
+12G     CAJ     C       CR16    0       8.623       19.315      3.614       
+12G     CAN     C       CR16    0       7.783       19.966      2.730       
+12G     H1      H       H       0       2.587       25.497      2.423       
+12G     H2      H       H       0       1.346       24.810      4.255       
+12G     H3      H       H       0       0.955       22.550      4.615       
+12G     H4      H       H       0       1.809       20.977      3.139       
+12G     H5      H       H       0       3.621       21.649      0.118       
+12G     H6      H       H       0       -0.072      19.176      1.040       
+12G     H7      H       H       0       -2.125      19.732      0.112       
+12G     H8      H       H       0       -2.820      22.487      -1.936      
+12G     H9      H       H       0       -3.502      21.351      -1.087      
+12G     H11     H       H       0       -0.358      22.501      -2.200      
+12G     H12     H       H       0       1.707       21.964      -1.290      
+12G     H13     H       H       0       5.581       17.883      1.568       
+12G     H14     H       H       0       6.579       19.054      6.112       
+12G     H15     H       H       0       8.743       18.532      5.473       
+12G     H16     H       H       0       9.504       19.101      3.355       
+12G     H17     H       H       0       8.097       20.193      1.873       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+12G         CAU         OAD      DOUBLE       n     1.244  0.0200     1.244  0.0200
+12G         CAT         CAU      SINGLE       n     1.525  0.0126     1.525  0.0126
+12G         CAZ         CAT      SINGLE       n     1.509  0.0100     1.509  0.0100
+12G         CAU         OAA      SINGLE       n     1.244  0.0200     1.244  0.0200
+12G         CAZ         CAQ      DOUBLE       y     1.386  0.0100     1.386  0.0100
+12G         CAQ         CAS      SINGLE       y     1.384  0.0100     1.384  0.0100
+12G         CAP         CAZ      SINGLE       y     1.386  0.0100     1.386  0.0100
+12G         CBC         CAS      DOUBLE       y     1.387  0.0100     1.387  0.0100
+12G         CAR         CAP      DOUBLE       y     1.384  0.0100     1.384  0.0100
+12G         CBC         CAR      SINGLE       y     1.387  0.0100     1.387  0.0100
+12G         NBG         CBC      SINGLE       n     1.430  0.0116     1.430  0.0116
+12G         CAX         OAC      DOUBLE       n     1.217  0.0129     1.217  0.0129
+12G         NBG         CAX      SINGLE       n     1.392  0.0192     1.392  0.0192
+12G         CBF         NBG      SINGLE       n     1.479  0.0145     1.479  0.0145
+12G         CAX         CAW      SINGLE       n     1.416  0.0200     1.416  0.0200
+12G         CLA         CBB      SINGLE       n     1.742  0.0100     1.742  0.0100
+12G         CBF         CAY      SINGLE       n     1.519  0.0163     1.519  0.0163
+12G         CBE         CBF      SINGLE       n     1.516  0.0100     1.516  0.0100
+12G         CAW         OAE      SINGLE       n     1.360  0.0200     1.360  0.0200
+12G         CAW         CAY      DOUBLE       n     1.344  0.0103     1.344  0.0103
+12G         CAY         CAV      SINGLE       n     1.467  0.0168     1.467  0.0168
+12G         CBB         CBE      DOUBLE       y     1.388  0.0100     1.388  0.0100
+12G         CAO         CBE      SINGLE       y     1.387  0.0100     1.387  0.0100
+12G         CBB         CAM      SINGLE       y     1.386  0.0100     1.386  0.0100
+12G         CAV         OAB      DOUBLE       n     1.224  0.0100     1.224  0.0100
+12G         CAV         CBD      SINGLE       n     1.487  0.0114     1.487  0.0114
+12G         CBD         CAN      SINGLE       y     1.394  0.0114     1.394  0.0114
+12G         CAJ         CAN      DOUBLE       y     1.379  0.0100     1.379  0.0100
+12G         CBD         CBA      DOUBLE       y     1.383  0.0100     1.383  0.0100
+12G         CAK         CAO      DOUBLE       y     1.386  0.0100     1.386  0.0100
+12G         CAM         CAI      DOUBLE       y     1.373  0.0113     1.373  0.0113
+12G         CAH         CAJ      SINGLE       y     1.376  0.0124     1.376  0.0124
+12G         CBA         CL2      SINGLE       n     1.737  0.0100     1.737  0.0100
+12G         CBA         CAL      SINGLE       y     1.383  0.0100     1.383  0.0100
+12G         CAI         CAK      SINGLE       y     1.376  0.0124     1.376  0.0124
+12G         CAL         CAH      DOUBLE       y     1.372  0.0132     1.372  0.0132
+12G         CAM          H1      SINGLE       n     1.082  0.0130     0.939  0.0176
+12G         CAI          H2      SINGLE       n     1.082  0.0130     0.939  0.0165
+12G         CAK          H3      SINGLE       n     1.082  0.0130     0.944  0.0175
+12G         CAO          H4      SINGLE       n     1.082  0.0130     0.936  0.0100
+12G         CBF          H5      SINGLE       n     1.089  0.0100     0.985  0.0181
+12G         CAR          H6      SINGLE       n     1.082  0.0130     0.941  0.0137
+12G         CAP          H7      SINGLE       n     1.082  0.0130     0.943  0.0173
+12G         CAT          H8      SINGLE       n     1.089  0.0100     0.975  0.0113
+12G         CAT          H9      SINGLE       n     1.089  0.0100     0.975  0.0113
+12G         CAQ         H11      SINGLE       n     1.082  0.0130     0.943  0.0173
+12G         CAS         H12      SINGLE       n     1.082  0.0130     0.941  0.0137
+12G         OAE         H13      SINGLE       n     0.966  0.0059     0.861  0.0200
+12G         CAL         H14      SINGLE       n     1.082  0.0130     0.938  0.0140
+12G         CAH         H15      SINGLE       n     1.082  0.0130     0.939  0.0165
+12G         CAJ         H16      SINGLE       n     1.082  0.0130     0.943  0.0180
+12G         CAN         H17      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+12G         CLA         CBB         CBE     120.749    1.50
+12G         CLA         CBB         CAM     117.440    1.50
+12G         CBE         CBB         CAM     121.810    1.50
+12G         CBB         CAM         CAI     119.516    1.50
+12G         CBB         CAM          H1     120.130    1.50
+12G         CAI         CAM          H1     120.354    1.50
+12G         CAM         CAI         CAK     120.284    1.50
+12G         CAM         CAI          H2     119.737    1.50
+12G         CAK         CAI          H2     119.979    1.50
+12G         CAO         CAK         CAI     120.274    1.50
+12G         CAO         CAK          H3     119.780    1.50
+12G         CAI         CAK          H3     119.946    1.50
+12G         CBE         CAO         CAK     120.635    1.50
+12G         CBE         CAO          H4     119.601    1.50
+12G         CAK         CAO          H4     119.764    1.50
+12G         CBF         CBE         CBB     120.961    1.50
+12G         CBF         CBE         CAO     121.559    2.15
+12G         CBB         CBE         CAO     117.480    1.50
+12G         NBG         CBF         CAY     101.369    1.50
+12G         NBG         CBF         CBE     113.671    1.50
+12G         NBG         CBF          H5     109.191    1.50
+12G         CAY         CBF         CBE     114.005    1.85
+12G         CAY         CBF          H5     109.225    1.50
+12G         CBE         CBF          H5     109.026    1.50
+12G         CBC         NBG         CAX     125.225    2.70
+12G         CBC         NBG         CBF     121.291    1.59
+12G         CAX         NBG         CBF     113.484    2.00
+12G         CAS         CBC         CAR     120.329    1.50
+12G         CAS         CBC         NBG     119.836    1.50
+12G         CAR         CBC         NBG     119.836    1.50
+12G         CAP         CAR         CBC     119.342    1.50
+12G         CAP         CAR          H6     120.386    1.50
+12G         CBC         CAR          H6     120.272    1.50
+12G         CAZ         CAP         CAR     121.601    1.50
+12G         CAZ         CAP          H7     119.212    1.50
+12G         CAR         CAP          H7     119.186    1.50
+12G         CAT         CAZ         CAQ     121.108    1.50
+12G         CAT         CAZ         CAP     121.108    1.50
+12G         CAQ         CAZ         CAP     117.784    1.50
+12G         CAU         CAT         CAZ     113.444    2.96
+12G         CAU         CAT          H8     108.710    1.50
+12G         CAU         CAT          H9     108.710    1.50
+12G         CAZ         CAT          H8     109.081    1.50
+12G         CAZ         CAT          H9     109.081    1.50
+12G          H8         CAT          H9     107.676    1.52
+12G         OAD         CAU         CAT     118.115    1.50
+12G         OAD         CAU         OAA     123.770    1.50
+12G         CAT         CAU         OAA     118.115    1.50
+12G         CAZ         CAQ         CAS     121.601    1.50
+12G         CAZ         CAQ         H11     119.212    1.50
+12G         CAS         CAQ         H11     119.186    1.50
+12G         CAQ         CAS         CBC     119.342    1.50
+12G         CAQ         CAS         H12     120.386    1.50
+12G         CBC         CAS         H12     120.272    1.50
+12G         OAC         CAX         NBG     125.944    1.50
+12G         OAC         CAX         CAW     127.125    1.99
+12G         NBG         CAX         CAW     106.931    1.57
+12G         CAX         CAW         OAE     125.979    3.00
+12G         CAX         CAW         CAY     108.041    3.00
+12G         OAE         CAW         CAY     125.979    3.00
+12G         CAW         OAE         H13     120.000    3.00
+12G         CBF         CAY         CAW     109.462    2.72
+12G         CBF         CAY         CAV     123.691    3.00
+12G         CAW         CAY         CAV     126.847    2.88
+12G         CAY         CAV         OAB     119.601    1.50
+12G         CAY         CAV         CBD     120.578    1.69
+12G         OAB         CAV         CBD     119.820    1.73
+12G         CAV         CBD         CAN     121.115    2.17
+12G         CAV         CBD         CBA     120.879    2.75
+12G         CAN         CBD         CBA     118.005    1.50
+12G         CBD         CBA         CL2     120.338    1.70
+12G         CBD         CBA         CAL     121.380    1.50
+12G         CL2         CBA         CAL     118.282    1.50
+12G         CBA         CAL         CAH     119.468    1.50
+12G         CBA         CAL         H14     120.153    1.50
+12G         CAH         CAL         H14     120.379    1.50
+12G         CAJ         CAH         CAL     120.312    1.50
+12G         CAJ         CAH         H15     119.965    1.50
+12G         CAL         CAH         H15     119.723    1.50
+12G         CAN         CAJ         CAH     120.214    1.50
+12G         CAN         CAJ         H16     119.848    1.50
+12G         CAH         CAJ         H16     119.938    1.50
+12G         CBD         CAN         CAJ     120.620    1.50
+12G         CBD         CAN         H17     119.690    1.50
+12G         CAJ         CAN         H17     119.690    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+12G              const_57         CAZ         CAP         CAR         CBC       0.000    10.0     2
+12G              const_54         CAR         CAP         CAZ         CAT     180.000    10.0     2
+12G            sp2_sp3_14         CAQ         CAZ         CAT         CAU     -90.000    10.0     6
+12G              const_50         CAS         CAQ         CAZ         CAT     180.000    10.0     2
+12G             sp2_sp3_8         OAD         CAU         CAT         CAZ     120.000    10.0     6
+12G              const_45         CAZ         CAQ         CAS         CBC       0.000    10.0     2
+12G             sp2_sp2_8         OAE         CAW         CAX         OAC       0.000     5.0     2
+12G              const_66         CAI         CAM         CBB         CLA     180.000    10.0     2
+12G              const_24         CLA         CBB         CBE         CBF       0.000    10.0     2
+12G            sp2_sp2_17         CAX         CAW         OAE         H13     180.000     5.0     2
+12G            sp2_sp2_12         OAE         CAW         CAY         CAV       0.000     5.0     2
+12G            sp2_sp2_21         OAB         CAV         CAY         CBF       0.000     5.0     2
+12G            sp2_sp2_25         OAB         CAV         CBD         CAN       0.000     5.0     2
+12G              const_72         CL2         CBA         CBD         CAV       0.000    10.0     2
+12G       const_sp2_sp2_2         CAJ         CAN         CBD         CAV     180.000     5.0     2
+12G              const_18         CAH         CAL         CBA         CL2     180.000    10.0     2
+12G              const_13         CAJ         CAH         CAL         CBA       0.000    10.0     2
+12G              const_37         CAK         CAI         CAM         CBB       0.000    10.0     2
+12G       const_sp2_sp2_9         CAL         CAH         CAJ         CAN       0.000     5.0     2
+12G       const_sp2_sp2_5         CAH         CAJ         CAN         CBD       0.000     5.0     2
+12G              const_33         CAM         CAI         CAK         CAO       0.000    10.0     2
+12G              const_29         CAI         CAK         CAO         CBE       0.000    10.0     2
+12G              const_26         CAK         CAO         CBE         CBF     180.000    10.0     2
+12G            sp2_sp3_25         CBB         CBE         CBF         NBG     150.000    10.0     6
+12G            sp2_sp3_22         CAV         CAY         CBF         NBG     180.000    10.0     6
+12G             sp2_sp3_4         CBC         NBG         CBF         CAY     180.000    10.0     6
+12G             sp2_sp2_4         OAC         CAX         NBG         CBC       0.000     5.0     2
+12G            sp2_sp2_14         CAS         CBC         NBG         CAX       0.000     5.0     2
+12G              const_61         CAP         CAR         CBC         CAS       0.000    10.0     2
+12G              const_41         CAQ         CAS         CBC         CAR       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+12G    chir_1    CBF    NBG    CBE    CAY    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+12G    plan-1         CAP   0.020
+12G    plan-1         CAQ   0.020
+12G    plan-1         CAR   0.020
+12G    plan-1         CAS   0.020
+12G    plan-1         CAT   0.020
+12G    plan-1         CAZ   0.020
+12G    plan-1         CBC   0.020
+12G    plan-1         H11   0.020
+12G    plan-1         H12   0.020
+12G    plan-1          H6   0.020
+12G    plan-1          H7   0.020
+12G    plan-1         NBG   0.020
+12G    plan-2         CAI   0.020
+12G    plan-2         CAK   0.020
+12G    plan-2         CAM   0.020
+12G    plan-2         CAO   0.020
+12G    plan-2         CBB   0.020
+12G    plan-2         CBE   0.020
+12G    plan-2         CBF   0.020
+12G    plan-2         CLA   0.020
+12G    plan-2          H1   0.020
+12G    plan-2          H2   0.020
+12G    plan-2          H3   0.020
+12G    plan-2          H4   0.020
+12G    plan-3         CAH   0.020
+12G    plan-3         CAJ   0.020
+12G    plan-3         CAL   0.020
+12G    plan-3         CAN   0.020
+12G    plan-3         CAV   0.020
+12G    plan-3         CBA   0.020
+12G    plan-3         CBD   0.020
+12G    plan-3         CL2   0.020
+12G    plan-3         H14   0.020
+12G    plan-3         H15   0.020
+12G    plan-3         H16   0.020
+12G    plan-3         H17   0.020
+12G    plan-4         CAX   0.020
+12G    plan-4         CBC   0.020
+12G    plan-4         CBF   0.020
+12G    plan-4         NBG   0.020
+12G    plan-5         CAT   0.020
+12G    plan-5         CAU   0.020
+12G    plan-5         OAA   0.020
+12G    plan-5         OAD   0.020
+12G    plan-6         CAW   0.020
+12G    plan-6         CAX   0.020
+12G    plan-6         NBG   0.020
+12G    plan-6         OAC   0.020
+12G    plan-7         CAW   0.020
+12G    plan-7         CAX   0.020
+12G    plan-7         CAY   0.020
+12G    plan-7         OAE   0.020
+12G    plan-8         CAV   0.020
+12G    plan-8         CAW   0.020
+12G    plan-8         CAY   0.020
+12G    plan-8         CBF   0.020
+12G    plan-9         CAV   0.020
+12G    plan-9         CAY   0.020
+12G    plan-9         CBD   0.020
+12G    plan-9         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+12G           SMILES              ACDLabs 12.01                                                                                                         Clc1ccccc1C(=O)C3=C(O)C(=O)N(c2ccc(cc2)CC(=O)O)C3c4ccccc4Cl
+12G            InChI                InChI  1.03 InChI=1S/C25H17Cl2NO5/c26-18-7-3-1-5-16(18)22-21(23(31)17-6-2-4-8-19(17)27)24(32)25(33)28(22)15-11-9-14(10-12-15)13-20(29)30/h1-12,22,32H,13H2,(H,29,30)/t22-/m0/s1
+12G         InChIKey                InChI  1.03                                                                                                                                         PDDRNBYLNRVKJE-QFIPXVFZSA-N
+12G SMILES_CANONICAL               CACTVS 3.370                                                                                                    OC(=O)Cc1ccc(cc1)N2[C@@H](c3ccccc3Cl)C(=C(O)C2=O)C(=O)c4ccccc4Cl
+12G           SMILES               CACTVS 3.370                                                                                                      OC(=O)Cc1ccc(cc1)N2[CH](c3ccccc3Cl)C(=C(O)C2=O)C(=O)c4ccccc4Cl
+12G SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                 c1ccc(c(c1)[C@H]2C(=C(C(=O)N2c3ccc(cc3)CC(=O)O)O)C(=O)c4ccccc4Cl)Cl
+12G           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                     c1ccc(c(c1)C2C(=C(C(=O)N2c3ccc(cc3)CC(=O)O)O)C(=O)c4ccccc4Cl)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+12G acedrg               243         "dictionary generator"                  
+12G acedrg_database      11          "data source"                           
+12G rdkit                2017.03.2   "Chemoinformatics tool"
+12G refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,577 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LOP     LOP      "(1R)-2-{[(R)-(2-AMINOETHOXY)(HYDROXY)PHOSPHORYL]OXY}-1-[(DODECANOYLOXY)METHYL]ETHYL (9Z)-OCTADEC-9-ENOATE"     NON-POLYMER     112     45     .     
+#
+data_comp_LOP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LOP     N1      N       NT2     0       -56.717     -84.240     40.792      
+LOP     C1      C       CH2     0       -55.454     -84.766     40.270      
+LOP     C2      C       CH2     0       -54.294     -83.846     40.547      
+LOP     O1      O       O2      0       -53.112     -84.295     39.821      
+LOP     P1      P       P       0       -52.746     -83.633     38.403      
+LOP     O2      O       O2      0       -51.396     -84.397     37.980      
+LOP     O3      O       OP      -1      -52.419     -82.183     38.636      
+LOP     O4      O       O       0       -53.817     -84.009     37.417      
+LOP     C3      C       CH2     0       -50.236     -84.346     38.857      
+LOP     C4      C       CH1     0       -49.008     -84.848     38.130      
+LOP     C5      C       CH2     0       -48.626     -83.993     36.942      
+LOP     O5      O       O2      0       -47.891     -84.857     39.070      
+LOP     O6      O       O2      0       -47.411     -84.522     36.353      
+LOP     C6      C       C       0       -47.655     -85.937     39.844      
+LOP     O7      O       O       0       -48.426     -86.850     40.004      
+LOP     C7      C       CH2     0       -46.310     -85.848     40.520      
+LOP     C8      C       CH2     0       -45.544     -87.136     40.524      
+LOP     C9      C       CH2     0       -44.208     -87.007     41.235      
+LOP     C10     C       CH2     0       -43.422     -88.290     41.345      
+LOP     C11     C       CH2     0       -42.070     -88.123     41.995      
+LOP     C12     C       CH2     0       -41.265     -89.409     42.128      
+LOP     C13     C       CH2     0       -39.894     -89.208     42.696      
+LOP     C14     C       C1      0       -39.083     -90.465     42.774      
+LOP     C15     C       C1      0       -37.832     -90.539     43.157      
+LOP     C16     C       CH2     0       -36.985     -89.380     43.586      
+LOP     C17     C       CH2     0       -35.568     -89.751     43.897      
+LOP     C18     C       CH2     0       -34.681     -88.562     44.224      
+LOP     C19     C       CH2     0       -33.250     -88.918     44.544      
+LOP     C20     C       CH2     0       -32.377     -87.728     44.861      
+LOP     C21     C       CH2     0       -30.943     -88.074     45.178      
+LOP     C22     C       CH2     0       -30.077     -86.881     45.493      
+LOP     C23     C       CH3     0       -28.645     -87.237     45.810      
+LOP     C24     C       C       0       -46.268     -83.832     36.444      
+LOP     O8      O       O       0       -46.179     -82.685     36.809      
+LOP     C25     C       CH2     0       -45.085     -84.658     36.009      
+LOP     C26     C       CH2     0       -44.339     -85.284     37.148      
+LOP     C27     C       CH2     0       -43.025     -85.913     36.714      
+LOP     C28     C       CH2     0       -42.256     -86.573     37.833      
+LOP     C29     C       CH2     0       -40.947     -87.194     37.409      
+LOP     C30     C       CH2     0       -40.163     -87.815     38.540      
+LOP     C31     C       CH2     0       -38.849     -88.430     38.123      
+LOP     C32     C       CH2     0       -38.040     -88.994     39.267      
+LOP     C33     C       CH2     0       -36.726     -89.611     38.855      
+LOP     C34     C       CH2     0       -35.894     -90.120     40.004      
+LOP     C35     C       CH3     0       -34.588     -90.748     39.577      
+LOP     HN11    H       H       0       -57.357     -84.851     40.711      
+LOP     HN12    H       H       0       -56.636     -84.057     41.657      
+LOP     H11     H       H       0       -55.539     -84.898     39.303      
+LOP     H12     H       H       0       -55.279     -85.639     40.681      
+LOP     H21     H       H       0       -54.101     -83.836     41.514      
+LOP     H22     H       H       0       -54.525     -82.926     40.275      
+LOP     H31     H       H       0       -50.401     -84.901     39.648      
+LOP     H32     H       H       0       -50.088     -83.424     39.153      
+LOP     H4      H       H       0       -49.184     -85.768     37.807      
+LOP     H51     H       H       0       -48.503     -83.059     37.224      
+LOP     H52     H       H       0       -49.344     -84.017     36.268      
+LOP     H71     H       H       0       -46.442     -85.557     41.447      
+LOP     H72     H       H       0       -45.769     -85.163     40.070      
+LOP     H81     H       H       0       -45.387     -87.424     39.601      
+LOP     H82     H       H       0       -46.076     -87.829     40.969      
+LOP     H91     H       H       0       -44.367     -86.660     42.139      
+LOP     H92     H       H       0       -43.662     -86.346     40.757      
+LOP     H101    H       H       0       -43.296     -88.661     40.445      
+LOP     H102    H       H       0       -43.944     -88.938     41.864      
+LOP     H111    H       H       0       -42.198     -87.740     42.889      
+LOP     H112    H       H       0       -41.547     -87.479     41.470      
+LOP     H121    H       H       0       -41.184     -89.822     41.243      
+LOP     H122    H       H       0       -41.758     -90.031     42.703      
+LOP     H131    H       H       0       -39.978     -88.828     43.599      
+LOP     H132    H       H       0       -39.414     -88.556     42.139      
+LOP     H14     H       H       0       -39.511     -91.270     42.527      
+LOP     H15     H       H       0       -37.429     -91.394     43.165      
+LOP     H161    H       H       0       -37.387     -88.973     44.385      
+LOP     H162    H       H       0       -36.986     -88.706     42.871      
+LOP     H171    H       H       0       -35.189     -90.224     43.127      
+LOP     H172    H       H       0       -35.561     -90.367     44.658      
+LOP     H181    H       H       0       -35.064     -88.086     44.991      
+LOP     H182    H       H       0       -34.687     -87.947     43.460      
+LOP     H191    H       H       0       -32.865     -89.396     43.778      
+LOP     H192    H       H       0       -33.241     -89.529     45.311      
+LOP     H201    H       H       0       -32.762     -87.252     45.627      
+LOP     H202    H       H       0       -32.390     -87.116     44.094      
+LOP     H211    H       H       0       -30.557     -88.549     44.412      
+LOP     H212    H       H       0       -30.929     -88.684     45.946      
+LOP     H221    H       H       0       -30.464     -86.405     46.260      
+LOP     H222    H       H       0       -30.091     -86.270     44.725      
+LOP     H231    H       H       0       -28.143     -86.427     46.004      
+LOP     H232    H       H       0       -28.245     -87.690     45.047      
+LOP     H233    H       H       0       -28.619     -87.826     46.584      
+LOP     H251    H       H       0       -44.468     -84.087     35.504      
+LOP     H252    H       H       0       -45.392     -85.367     35.403      
+LOP     H261    H       H       0       -44.899     -85.974     37.561      
+LOP     H262    H       H       0       -44.155     -84.602     37.827      
+LOP     H271    H       H       0       -42.462     -85.218     36.312      
+LOP     H272    H       H       0       -43.210     -86.583     36.022      
+LOP     H281    H       H       0       -42.819     -87.270     38.233      
+LOP     H282    H       H       0       -42.075     -85.903     38.527      
+LOP     H291    H       H       0       -40.394     -86.503     36.985      
+LOP     H292    H       H       0       -41.129     -87.884     36.736      
+LOP     H301    H       H       0       -40.715     -88.509     38.960      
+LOP     H302    H       H       0       -39.987     -87.126     39.215      
+LOP     H311    H       H       0       -38.313     -87.748     37.666      
+LOP     H312    H       H       0       -39.027     -89.149     37.480      
+LOP     H321    H       H       0       -38.577     -89.675     39.725      
+LOP     H322    H       H       0       -37.862     -88.275     39.910      
+LOP     H331    H       H       0       -36.205     -88.941     38.363      
+LOP     H332    H       H       0       -36.906     -90.356     38.244      
+LOP     H341    H       H       0       -36.418     -90.784     40.503      
+LOP     H342    H       H       0       -35.703     -89.372     40.611      
+LOP     H351    H       H       0       -34.102     -91.054     40.362      
+LOP     H352    H       H       0       -34.052     -90.092     39.100      
+LOP     H353    H       H       0       -34.767     -91.506     38.993      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LOP          N1          C1      SINGLE       n     1.464  0.0200     1.464  0.0200
+LOP          C1          C2      SINGLE       n     1.506  0.0173     1.506  0.0173
+LOP          C2          O1      SINGLE       n     1.454  0.0165     1.454  0.0165
+LOP          O1          P1      SINGLE       n     1.606  0.0100     1.606  0.0100
+LOP          P1          O2      SINGLE       n     1.606  0.0100     1.606  0.0100
+LOP          P1          O3      SINGLE       n     1.504  0.0115     1.504  0.0115
+LOP          P1          O4      DOUBLE       n     1.504  0.0115     1.504  0.0115
+LOP          O2          C3      SINGLE       n     1.454  0.0165     1.454  0.0165
+LOP          C3          C4      SINGLE       n     1.512  0.0104     1.512  0.0104
+LOP          C4          C5      SINGLE       n     1.512  0.0104     1.512  0.0104
+LOP          C4          O5      SINGLE       n     1.454  0.0123     1.454  0.0123
+LOP          C5          O6      SINGLE       n     1.444  0.0100     1.444  0.0100
+LOP          O5          C6      SINGLE       n     1.342  0.0131     1.342  0.0131
+LOP          O6         C24      SINGLE       n     1.329  0.0116     1.329  0.0116
+LOP          C6          O7      DOUBLE       n     1.203  0.0150     1.203  0.0150
+LOP          C6          C7      SINGLE       n     1.503  0.0174     1.503  0.0174
+LOP          C7          C8      SINGLE       n     1.497  0.0200     1.497  0.0200
+LOP          C8          C9      SINGLE       n     1.519  0.0164     1.519  0.0164
+LOP          C9         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+LOP         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+LOP         C11         C12      SINGLE       n     1.523  0.0117     1.523  0.0117
+LOP         C12         C13      SINGLE       n     1.497  0.0200     1.497  0.0200
+LOP         C13         C14      SINGLE       n     1.497  0.0127     1.497  0.0127
+LOP         C14         C15      DOUBLE       n     1.308  0.0200     1.308  0.0200
+LOP         C15         C16      SINGLE       n     1.497  0.0127     1.497  0.0127
+LOP         C16         C17      SINGLE       n     1.497  0.0200     1.497  0.0200
+LOP         C17         C18      SINGLE       n     1.519  0.0164     1.519  0.0164
+LOP         C18         C19      SINGLE       n     1.509  0.0200     1.509  0.0200
+LOP         C19         C20      SINGLE       n     1.509  0.0200     1.509  0.0200
+LOP         C20         C21      SINGLE       n     1.509  0.0200     1.509  0.0200
+LOP         C21         C22      SINGLE       n     1.507  0.0200     1.507  0.0200
+LOP         C22         C23      SINGLE       n     1.510  0.0200     1.510  0.0200
+LOP         C24          O8      DOUBLE       n     1.203  0.0150     1.203  0.0150
+LOP         C24         C25      SINGLE       n     1.503  0.0174     1.503  0.0174
+LOP         C25         C26      SINGLE       n     1.497  0.0200     1.497  0.0200
+LOP         C26         C27      SINGLE       n     1.519  0.0164     1.519  0.0164
+LOP         C27         C28      SINGLE       n     1.509  0.0200     1.509  0.0200
+LOP         C28         C29      SINGLE       n     1.509  0.0200     1.509  0.0200
+LOP         C29         C30      SINGLE       n     1.509  0.0200     1.509  0.0200
+LOP         C30         C31      SINGLE       n     1.509  0.0200     1.509  0.0200
+LOP         C31         C32      SINGLE       n     1.509  0.0200     1.509  0.0200
+LOP         C32         C33      SINGLE       n     1.509  0.0200     1.509  0.0200
+LOP         C33         C34      SINGLE       n     1.507  0.0200     1.507  0.0200
+LOP         C34         C35      SINGLE       n     1.510  0.0200     1.510  0.0200
+LOP          N1        HN11      SINGLE       n     1.036  0.0160     0.888  0.0200
+LOP          N1        HN12      SINGLE       n     1.036  0.0160     0.888  0.0200
+LOP          C1         H11      SINGLE       n     1.089  0.0100     0.980  0.0143
+LOP          C1         H12      SINGLE       n     1.089  0.0100     0.980  0.0143
+LOP          C2         H21      SINGLE       n     1.089  0.0100     0.986  0.0100
+LOP          C2         H22      SINGLE       n     1.089  0.0100     0.986  0.0100
+LOP          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0146
+LOP          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0146
+LOP          C4          H4      SINGLE       n     1.089  0.0100     0.990  0.0148
+LOP          C5         H51      SINGLE       n     1.089  0.0100     0.985  0.0188
+LOP          C5         H52      SINGLE       n     1.089  0.0100     0.985  0.0188
+LOP          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0185
+LOP          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0185
+LOP          C8         H81      SINGLE       n     1.089  0.0100     0.980  0.0160
+LOP          C8         H82      SINGLE       n     1.089  0.0100     0.980  0.0160
+LOP          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0160
+LOP         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0160
+LOP         C13        H131      SINGLE       n     1.089  0.0100     0.983  0.0180
+LOP         C13        H132      SINGLE       n     1.089  0.0100     0.983  0.0180
+LOP         C14         H14      SINGLE       n     1.082  0.0130     0.945  0.0200
+LOP         C15         H15      SINGLE       n     1.082  0.0130     0.945  0.0200
+LOP         C16        H161      SINGLE       n     1.089  0.0100     0.983  0.0180
+LOP         C16        H162      SINGLE       n     1.089  0.0100     0.983  0.0180
+LOP         C17        H171      SINGLE       n     1.089  0.0100     0.980  0.0160
+LOP         C17        H172      SINGLE       n     1.089  0.0100     0.980  0.0160
+LOP         C18        H181      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C18        H182      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C19        H191      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C19        H192      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C20        H201      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C20        H202      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C22        H221      SINGLE       n     1.089  0.0100     0.982  0.0155
+LOP         C22        H222      SINGLE       n     1.089  0.0100     0.982  0.0155
+LOP         C23        H231      SINGLE       n     1.089  0.0100     0.973  0.0157
+LOP         C23        H232      SINGLE       n     1.089  0.0100     0.973  0.0157
+LOP         C23        H233      SINGLE       n     1.089  0.0100     0.973  0.0157
+LOP         C25        H251      SINGLE       n     1.089  0.0100     0.981  0.0185
+LOP         C25        H252      SINGLE       n     1.089  0.0100     0.981  0.0185
+LOP         C26        H261      SINGLE       n     1.089  0.0100     0.980  0.0160
+LOP         C26        H262      SINGLE       n     1.089  0.0100     0.980  0.0160
+LOP         C27        H271      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C27        H272      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C28        H281      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C28        H282      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C29        H291      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C29        H292      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C30        H301      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C30        H302      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C31        H311      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C31        H312      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C32        H321      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C32        H322      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C33        H331      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C33        H332      SINGLE       n     1.089  0.0100     0.981  0.0163
+LOP         C34        H341      SINGLE       n     1.089  0.0100     0.982  0.0155
+LOP         C34        H342      SINGLE       n     1.089  0.0100     0.982  0.0155
+LOP         C35        H351      SINGLE       n     1.089  0.0100     0.973  0.0157
+LOP         C35        H352      SINGLE       n     1.089  0.0100     0.973  0.0157
+LOP         C35        H353      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LOP          C1          N1        HN11     109.962    3.00
+LOP          C1          N1        HN12     109.962    3.00
+LOP        HN11          N1        HN12     107.243    3.00
+LOP          N1          C1          C2     111.883    2.59
+LOP          N1          C1         H11     108.870    1.50
+LOP          N1          C1         H12     108.870    1.50
+LOP          C2          C1         H11     109.091    1.50
+LOP          C2          C1         H12     109.091    1.50
+LOP         H11          C1         H12     107.873    1.50
+LOP          C1          C2          O1     109.643    2.62
+LOP          C1          C2         H21     109.705    1.50
+LOP          C1          C2         H22     109.705    1.50
+LOP          O1          C2         H21     109.451    1.50
+LOP          O1          C2         H22     109.451    1.50
+LOP         H21          C2         H22     107.889    1.50
+LOP          C2          O1          P1     119.251    1.51
+LOP          O1          P1          O2     102.789    2.10
+LOP          O1          P1          O3     107.777    3.00
+LOP          O1          P1          O4     107.777    3.00
+LOP          O2          P1          O3     107.777    3.00
+LOP          O2          P1          O4     107.777    3.00
+LOP          O3          P1          O4     119.782    1.83
+LOP          P1          O2          C3     119.251    1.51
+LOP          O2          C3          C4     109.438    2.56
+LOP          O2          C3         H31     109.393    1.91
+LOP          O2          C3         H32     109.393    1.91
+LOP          C4          C3         H31     109.582    1.50
+LOP          C4          C3         H32     109.582    1.50
+LOP         H31          C3         H32     108.319    1.50
+LOP          C3          C4          C5     113.504    1.50
+LOP          C3          C4          O5     109.042    2.74
+LOP          C3          C4          H4     108.656    1.50
+LOP          C5          C4          O5     109.042    2.74
+LOP          C5          C4          H4     108.656    1.50
+LOP          O5          C4          H4     109.221    1.50
+LOP          C4          C5          O6     108.641    1.70
+LOP          C4          C5         H51     110.376    1.50
+LOP          C4          C5         H52     110.376    1.50
+LOP          O6          C5         H51     109.514    1.50
+LOP          O6          C5         H52     109.514    1.50
+LOP         H51          C5         H52     108.601    1.50
+LOP          C4          O5          C6     117.944    1.50
+LOP          C5          O6         C24     116.187    1.50
+LOP          O5          C6          O7     122.278    2.43
+LOP          O5          C6          C7     113.008    3.00
+LOP          O7          C6          C7     124.714    2.71
+LOP          C6          C7          C8     113.365    1.50
+LOP          C6          C7         H71     108.883    1.50
+LOP          C6          C7         H72     108.883    1.50
+LOP          C8          C7         H71     108.815    1.50
+LOP          C8          C7         H72     108.815    1.50
+LOP         H71          C7         H72     107.521    1.50
+LOP          C7          C8          C9     112.553    1.50
+LOP          C7          C8         H81     109.164    1.50
+LOP          C7          C8         H82     109.164    1.50
+LOP          C9          C8         H81     108.698    1.50
+LOP          C9          C8         H82     108.698    1.50
+LOP         H81          C8         H82     107.646    1.50
+LOP          C8          C9         C10     114.243    1.69
+LOP          C8          C9         H91     108.698    1.50
+LOP          C8          C9         H92     108.698    1.50
+LOP         C10          C9         H91     108.698    1.50
+LOP         C10          C9         H92     108.698    1.50
+LOP         H91          C9         H92     107.646    1.50
+LOP          C9         C10         C11     114.243    1.69
+LOP          C9         C10        H101     108.698    1.50
+LOP          C9         C10        H102     108.698    1.50
+LOP         C11         C10        H101     108.698    1.50
+LOP         C11         C10        H102     108.698    1.50
+LOP        H101         C10        H102     107.646    1.50
+LOP         C10         C11         C12     114.243    1.69
+LOP         C10         C11        H111     108.698    1.50
+LOP         C10         C11        H112     108.698    1.50
+LOP         C12         C11        H111     108.698    1.50
+LOP         C12         C11        H112     108.698    1.50
+LOP        H111         C11        H112     107.646    1.50
+LOP         C11         C12         C13     114.266    1.80
+LOP         C11         C12        H121     108.698    1.50
+LOP         C11         C12        H122     108.698    1.50
+LOP         C13         C12        H121     108.805    1.50
+LOP         C13         C12        H122     108.805    1.50
+LOP        H121         C12        H122     107.646    1.50
+LOP         C12         C13         C14     113.226    1.94
+LOP         C12         C13        H131     108.819    1.50
+LOP         C12         C13        H132     108.819    1.50
+LOP         C14         C13        H131     108.886    1.50
+LOP         C14         C13        H132     108.886    1.50
+LOP        H131         C13        H132     107.922    1.50
+LOP         C13         C14         C15     125.684    3.00
+LOP         C13         C14         H14     117.007    1.61
+LOP         C15         C14         H14     117.310    2.16
+LOP         C14         C15         C16     125.684    3.00
+LOP         C14         C15         H15     117.310    2.16
+LOP         C16         C15         H15     117.007    1.61
+LOP         C15         C16         C17     113.226    1.94
+LOP         C15         C16        H161     108.886    1.50
+LOP         C15         C16        H162     108.886    1.50
+LOP         C17         C16        H161     108.819    1.50
+LOP         C17         C16        H162     108.819    1.50
+LOP        H161         C16        H162     107.922    1.50
+LOP         C16         C17         C18     114.266    1.80
+LOP         C16         C17        H171     108.805    1.50
+LOP         C16         C17        H172     108.805    1.50
+LOP         C18         C17        H171     108.698    1.50
+LOP         C18         C17        H172     108.698    1.50
+LOP        H171         C17        H172     107.646    1.50
+LOP         C17         C18         C19     114.243    1.69
+LOP         C17         C18        H181     108.698    1.50
+LOP         C17         C18        H182     108.698    1.50
+LOP         C19         C18        H181     108.698    1.50
+LOP         C19         C18        H182     108.698    1.50
+LOP        H181         C18        H182     107.646    1.50
+LOP         C18         C19         C20     114.243    1.69
+LOP         C18         C19        H191     108.698    1.50
+LOP         C18         C19        H192     108.698    1.50
+LOP         C20         C19        H191     108.698    1.50
+LOP         C20         C19        H192     108.698    1.50
+LOP        H191         C19        H192     107.646    1.50
+LOP         C19         C20         C21     114.243    1.69
+LOP         C19         C20        H201     108.698    1.50
+LOP         C19         C20        H202     108.698    1.50
+LOP         C21         C20        H201     108.698    1.50
+LOP         C21         C20        H202     108.698    1.50
+LOP        H201         C20        H202     107.646    1.50
+LOP         C20         C21         C22     114.362    3.00
+LOP         C20         C21        H211     108.698    1.50
+LOP         C20         C21        H212     108.698    1.50
+LOP         C22         C21        H211     108.653    1.50
+LOP         C22         C21        H212     108.653    1.50
+LOP        H211         C21        H212     107.646    1.50
+LOP         C21         C22         C23     113.719    3.00
+LOP         C21         C22        H221     108.758    1.50
+LOP         C21         C22        H222     108.758    1.50
+LOP         C23         C22        H221     108.918    1.50
+LOP         C23         C22        H222     108.918    1.50
+LOP        H221         C22        H222     107.763    1.50
+LOP         C22         C23        H231     109.554    1.50
+LOP         C22         C23        H232     109.554    1.50
+LOP         C22         C23        H233     109.554    1.50
+LOP        H231         C23        H232     109.380    1.50
+LOP        H231         C23        H233     109.380    1.50
+LOP        H232         C23        H233     109.380    1.50
+LOP          O6         C24          O8     123.233    1.50
+LOP          O6         C24         C25     111.516    1.50
+LOP          O8         C24         C25     125.251    2.71
+LOP         C24         C25         C26     113.365    1.50
+LOP         C24         C25        H251     108.883    1.50
+LOP         C24         C25        H252     108.883    1.50
+LOP         C26         C25        H251     108.815    1.50
+LOP         C26         C25        H252     108.815    1.50
+LOP        H251         C25        H252     107.521    1.50
+LOP         C25         C26         C27     112.553    1.50
+LOP         C25         C26        H261     109.164    1.50
+LOP         C25         C26        H262     109.164    1.50
+LOP         C27         C26        H261     108.698    1.50
+LOP         C27         C26        H262     108.698    1.50
+LOP        H261         C26        H262     107.646    1.50
+LOP         C26         C27         C28     114.243    1.69
+LOP         C26         C27        H271     108.698    1.50
+LOP         C26         C27        H272     108.698    1.50
+LOP         C28         C27        H271     108.698    1.50
+LOP         C28         C27        H272     108.698    1.50
+LOP        H271         C27        H272     107.646    1.50
+LOP         C27         C28         C29     114.243    1.69
+LOP         C27         C28        H281     108.698    1.50
+LOP         C27         C28        H282     108.698    1.50
+LOP         C29         C28        H281     108.698    1.50
+LOP         C29         C28        H282     108.698    1.50
+LOP        H281         C28        H282     107.646    1.50
+LOP         C28         C29         C30     114.243    1.69
+LOP         C28         C29        H291     108.698    1.50
+LOP         C28         C29        H292     108.698    1.50
+LOP         C30         C29        H291     108.698    1.50
+LOP         C30         C29        H292     108.698    1.50
+LOP        H291         C29        H292     107.646    1.50
+LOP         C29         C30         C31     114.243    1.69
+LOP         C29         C30        H301     108.698    1.50
+LOP         C29         C30        H302     108.698    1.50
+LOP         C31         C30        H301     108.698    1.50
+LOP         C31         C30        H302     108.698    1.50
+LOP        H301         C30        H302     107.646    1.50
+LOP         C30         C31         C32     114.243    1.69
+LOP         C30         C31        H311     108.698    1.50
+LOP         C30         C31        H312     108.698    1.50
+LOP         C32         C31        H311     108.698    1.50
+LOP         C32         C31        H312     108.698    1.50
+LOP        H311         C31        H312     107.646    1.50
+LOP         C31         C32         C33     114.243    1.69
+LOP         C31         C32        H321     108.698    1.50
+LOP         C31         C32        H322     108.698    1.50
+LOP         C33         C32        H321     108.698    1.50
+LOP         C33         C32        H322     108.698    1.50
+LOP        H321         C32        H322     107.646    1.50
+LOP         C32         C33         C34     114.362    3.00
+LOP         C32         C33        H331     108.698    1.50
+LOP         C32         C33        H332     108.698    1.50
+LOP         C34         C33        H331     108.653    1.50
+LOP         C34         C33        H332     108.653    1.50
+LOP        H331         C33        H332     107.646    1.50
+LOP         C33         C34         C35     113.719    3.00
+LOP         C33         C34        H341     108.758    1.50
+LOP         C33         C34        H342     108.758    1.50
+LOP         C35         C34        H341     108.918    1.50
+LOP         C35         C34        H342     108.918    1.50
+LOP        H341         C34        H342     107.763    1.50
+LOP         C34         C35        H351     109.554    1.50
+LOP         C34         C35        H352     109.554    1.50
+LOP         C34         C35        H353     109.554    1.50
+LOP        H351         C35        H352     109.380    1.50
+LOP        H351         C35        H353     109.380    1.50
+LOP        H352         C35        H353     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LOP             sp3_sp3_1          C2          C1          N1        HN11     180.000    10.0     3
+LOP            sp3_sp3_49          C4          C5          O6         C24     180.000    10.0     3
+LOP             sp2_sp2_1          O7          C6          O5          C4     180.000     5.0     2
+LOP             sp2_sp2_3          O8         C24          O6          C5     180.000     5.0     2
+LOP             sp2_sp3_2          O5          C6          C7          C8     120.000    10.0     6
+LOP            sp3_sp3_52          C6          C7          C8          C9     180.000    10.0     3
+LOP            sp3_sp3_61          C7          C8          C9         C10     180.000    10.0     3
+LOP            sp3_sp3_70         C11         C10          C9          C8     180.000    10.0     3
+LOP            sp3_sp3_79          C9         C10         C11         C12     180.000    10.0     3
+LOP            sp3_sp3_88         C10         C11         C12         C13     180.000    10.0     3
+LOP             sp3_sp3_7          N1          C1          C2          O1     180.000    10.0     3
+LOP            sp3_sp3_97         C11         C12         C13         C14     180.000    10.0     3
+LOP             sp2_sp3_8         C15         C14         C13         C12     120.000    10.0     6
+LOP             sp2_sp2_5         C13         C14         C15         C16     180.000     5.0     2
+LOP            sp2_sp3_14         C14         C15         C16         C17     120.000    10.0     6
+LOP           sp3_sp3_106         C15         C16         C17         C18     180.000    10.0     3
+LOP           sp3_sp3_115         C16         C17         C18         C19     180.000    10.0     3
+LOP           sp3_sp3_124         C17         C18         C19         C20     180.000    10.0     3
+LOP           sp3_sp3_133         C18         C19         C20         C21     180.000    10.0     3
+LOP           sp3_sp3_142         C19         C20         C21         C22     180.000    10.0     3
+LOP           sp3_sp3_151         C20         C21         C22         C23     180.000    10.0     3
+LOP            sp3_sp3_16          C1          C2          O1          P1     180.000    10.0     3
+LOP           sp3_sp3_160         C21         C22         C23        H231     180.000    10.0     3
+LOP            sp2_sp3_20          O6         C24         C25         C26     120.000    10.0     6
+LOP           sp3_sp3_169         C24         C25         C26         C27     180.000    10.0     3
+LOP           sp3_sp3_178         C25         C26         C27         C28     180.000    10.0     3
+LOP           sp3_sp3_187         C26         C27         C28         C29     180.000    10.0     3
+LOP           sp3_sp3_196         C27         C28         C29         C30     180.000    10.0     3
+LOP           sp3_sp3_205         C28         C29         C30         C31     180.000    10.0     3
+LOP           sp3_sp3_214         C29         C30         C31         C32     180.000    10.0     3
+LOP            sp3_sp3_19          C2          O1          P1          O2     180.000    10.0     3
+LOP           sp3_sp3_223         C30         C31         C32         C33     180.000    10.0     3
+LOP           sp3_sp3_232         C31         C32         C33         C34     180.000    10.0     3
+LOP           sp3_sp3_241         C32         C33         C34         C35     180.000    10.0     3
+LOP           sp3_sp3_250         C33         C34         C35        H351     180.000    10.0     3
+LOP            sp3_sp3_23          C3          O2          P1          O1     -60.000    10.0     3
+LOP            sp3_sp3_25          C4          C3          O2          P1     180.000    10.0     3
+LOP            sp3_sp3_28          O2          C3          C4          C5     180.000    10.0     3
+LOP            sp3_sp3_37          C3          C4          C5          O6     180.000    10.0     3
+LOP            sp3_sp3_46          C3          C4          O5          C6     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LOP    chir_1    P1    O2    O1    O3    both
+LOP    chir_2    C4    O5    C3    C5    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LOP    plan-1          C6   0.020
+LOP    plan-1          C7   0.020
+LOP    plan-1          O5   0.020
+LOP    plan-1          O7   0.020
+LOP    plan-2         C13   0.020
+LOP    plan-2         C14   0.020
+LOP    plan-2         C15   0.020
+LOP    plan-2         H14   0.020
+LOP    plan-3         C14   0.020
+LOP    plan-3         C15   0.020
+LOP    plan-3         C16   0.020
+LOP    plan-3         H15   0.020
+LOP    plan-4         C24   0.020
+LOP    plan-4         C25   0.020
+LOP    plan-4          O6   0.020
+LOP    plan-4          O8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LOP           SMILES              ACDLabs 10.04                                                                                                                                                    O=C(OCC(OC(=O)CCCCCCC\C=C/CCCCCCCC)COP(=O)(OCCN)O)CCCCCCCCCCC
+LOP SMILES_CANONICAL               CACTVS 3.341                                                                                                                                            CCCCCCCCCCCC(=O)OC[C@H](CO[P@@](O)(=O)OCCN)OC(=O)CCCCCCC\C=C/CCCCCCCC
+LOP           SMILES               CACTVS 3.341                                                                                                                                                 CCCCCCCCCCCC(=O)OC[CH](CO[P](O)(=O)OCCN)OC(=O)CCCCCCCC=CCCCCCCCC
+LOP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                             CCCCCCCCCCCC(=O)OC[C@H](CO[P@](=O)(O)OCCN)OC(=O)CCCCCCC\C=C/CCCCCCCC
+LOP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                      CCCCCCCCCCCC(=O)OCC(COP(=O)(O)OCCN)OC(=O)CCCCCCCC=CCCCCCCCC
+LOP            InChI                InChI  1.03 InChI=1S/C35H68NO8P/c1-3-5-7-9-11-13-14-15-16-17-18-20-22-24-26-28-35(38)44-33(32-43-45(39,40)42-30-29-36)31-41-34(37)27-25-23-21-19-12-10-8-6-4-2/h15-16,33H,3-14,17-32,36H2,1-2H3,(H,39,40)/b16-15-/t33-/m1/s1
+LOP         InChIKey                InChI  1.03                                                                                                                                                                                      FUUNMZKPCMPCHT-ILGKRYBBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LOP acedrg               243         "dictionary generator"                  
+LOP acedrg_database      11          "data source"                           
+LOP rdkit                2017.03.2   "Chemoinformatics tool"
+LOP refmac5              5.8.0238    "optimization tool"                     

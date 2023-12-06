@@ -1,0 +1,376 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+J60     J60      5-[(E)-(5-CHLORO-2-OXO-1,2-DIHYDRO-3H-INDOL-3-YLIDENE)METHYL]-N-[2-(DIETHYLAMINO)ETHYL]-2,4-DIMETHYL-1H-PYRROLE-3-CARBOXAMIDE     NON-POLYMER     56     29     .     
+#
+data_comp_J60
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+J60     CBA     C       CH3     0       15.530      10.280      18.300      
+J60     CAZ     C       CH2     0       15.461      9.552       16.979      
+J60     NAX     N       NT      0       14.667      8.290       17.031      
+J60     CAY     C       CH2     0       13.191      8.489       17.161      
+J60     CBB     C       CH3     0       12.484      8.988       15.921      
+J60     CAW     C       CH2     0       15.037      7.288       15.980      
+J60     CAV     C       CH2     0       15.361      7.863       14.603      
+J60     NAU     N       NH1     0       15.320      6.840       13.570      
+J60     CAS     C       C       0       16.211      5.845       13.495      
+J60     OAT     O       O       0       17.205      5.809       14.231      
+J60     CAN     C       CR5     0       15.969      4.757       12.536      
+J60     CAM     C       CR5     0       14.757      4.094       12.304      
+J60     CAQ     C       CH3     0       13.426      4.349       12.947      
+J60     CAO     C       CR5     0       16.934      4.182       11.717      
+J60     CAR     C       CH3     0       18.386      4.480       11.552      
+J60     NAP     N       NR5     0       16.348      3.211       10.996      
+J60     CAL     C       CR5     0       15.011      3.119       11.312      
+J60     CAK     C       C1      0       14.124      2.209       10.743      
+J60     CAG     C       CR5     0       13.958      1.800       9.451       
+J60     CAE     C       CR56    0       13.079      0.735       8.966       
+J60     CAD     C       CR16    0       12.179      -0.122      9.592       
+J60     CAA     C       CR6     0       11.493      -1.032      8.806       
+J60     CL      CL      CL      0       10.361      -2.117      9.566       
+J60     CAB     C       CR16    0       11.678      -1.110      7.428       
+J60     CAC     C       CR16    0       12.576      -0.256      6.792       
+J60     CAF     C       CR56    0       13.262      0.654       7.573       
+J60     NAH     N       NR5     0       14.205      1.606       7.174       
+J60     CAI     C       CR5     0       14.618      2.361       8.224       
+J60     OAJ     O       O       0       15.395      3.314       8.145       
+J60     HBA1    H       H       0       16.235      10.947      18.266      
+J60     HBA2    H       H       0       15.719      9.646       19.010      
+J60     HBA3    H       H       0       14.681      10.717      18.475      
+J60     HAZ1    H       H       0       16.376      9.341       16.699      
+J60     HAZ2    H       H       0       15.076      10.150      16.307      
+J60     HAY1    H       H       0       13.023      9.121       17.890      
+J60     HAY2    H       H       0       12.788      7.634       17.423      
+J60     HBB1    H       H       0       11.566      9.214       16.143      
+J60     HBB2    H       H       0       12.489      8.295       15.241      
+J60     HBB3    H       H       0       12.935      9.777       15.581      
+J60     HAW1    H       H       0       14.303      6.646       15.882      
+J60     HAW2    H       H       0       15.818      6.787       16.296      
+J60     HAV1    H       H       0       16.256      8.261       14.611      
+J60     HAV2    H       H       0       14.721      8.565       14.374      
+J60     HAU     H       H       0       14.697      6.892       12.960      
+J60     HAQ1    H       H       0       12.882      3.546       12.912      
+J60     HAQ2    H       H       0       12.967      5.065       12.478      
+J60     HAQ3    H       H       0       13.554      4.606       13.874      
+J60     HAR1    H       H       0       18.779      3.849       10.932      
+J60     HAR2    H       H       0       18.831      4.409       12.409      
+J60     HAR3    H       H       0       18.495      5.378       11.207      
+J60     HAP     H       H       0       16.758      2.709       10.401      
+J60     HAK     H       H       0       13.531      1.798       11.351      
+J60     HAD     H       H       0       12.042      -0.083      10.519      
+J60     HAB     H       H       0       11.197      -1.740      6.924       
+J60     HAC     H       H       0       12.708      -0.300      5.864       
+J60     HAH     H       H       0       14.493      1.703       6.355       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+J60         CBA         CAZ      SINGLE       n     1.508  0.0173     1.508  0.0173
+J60         CAZ         NAX      SINGLE       n     1.479  0.0150     1.479  0.0150
+J60         NAX         CAY      SINGLE       n     1.479  0.0150     1.479  0.0150
+J60         CAY         CBB      SINGLE       n     1.508  0.0173     1.508  0.0173
+J60         NAX         CAW      SINGLE       n     1.471  0.0177     1.471  0.0177
+J60         CAW         CAV      SINGLE       n     1.515  0.0157     1.515  0.0157
+J60         CAV         NAU      SINGLE       n     1.452  0.0100     1.452  0.0100
+J60         NAU         CAS      SINGLE       n     1.332  0.0105     1.332  0.0105
+J60         CAS         OAT      DOUBLE       n     1.235  0.0149     1.235  0.0149
+J60         CAS         CAN      SINGLE       n     1.463  0.0173     1.463  0.0173
+J60         CAN         CAM      SINGLE       y     1.399  0.0200     1.399  0.0200
+J60         CAM         CAQ      SINGLE       n     1.500  0.0100     1.500  0.0100
+J60         CAN         CAO      DOUBLE       y     1.383  0.0200     1.383  0.0200
+J60         CAO         CAR      SINGLE       n     1.492  0.0100     1.492  0.0100
+J60         CAO         NAP      SINGLE       y     1.342  0.0100     1.342  0.0100
+J60         CAM         CAL      DOUBLE       y     1.419  0.0200     1.419  0.0200
+J60         NAP         CAL      SINGLE       y     1.378  0.0100     1.378  0.0100
+J60         CAL         CAK      SINGLE       n     1.391  0.0139     1.391  0.0139
+J60         CAK         CAG      DOUBLE       n     1.362  0.0163     1.362  0.0163
+J60         CAG         CAE      SINGLE       n     1.465  0.0100     1.465  0.0100
+J60         CAE         CAD      DOUBLE       y     1.388  0.0100     1.388  0.0100
+J60         CAD         CAA      SINGLE       y     1.380  0.0100     1.380  0.0100
+J60         CAA          CL      SINGLE       n     1.742  0.0100     1.742  0.0100
+J60         CAA         CAB      DOUBLE       y     1.389  0.0100     1.389  0.0100
+J60         CAB         CAC      SINGLE       y     1.389  0.0100     1.389  0.0100
+J60         CAE         CAF      SINGLE       y     1.405  0.0100     1.405  0.0100
+J60         CAC         CAF      DOUBLE       y     1.378  0.0100     1.378  0.0100
+J60         CAF         NAH      SINGLE       n     1.398  0.0100     1.398  0.0100
+J60         CAG         CAI      SINGLE       n     1.501  0.0100     1.501  0.0100
+J60         NAH         CAI      SINGLE       n     1.357  0.0100     1.357  0.0100
+J60         CAI         OAJ      DOUBLE       n     1.232  0.0100     1.232  0.0100
+J60         CBA        HBA1      SINGLE       n     1.089  0.0100     0.971  0.0145
+J60         CBA        HBA2      SINGLE       n     1.089  0.0100     0.971  0.0145
+J60         CBA        HBA3      SINGLE       n     1.089  0.0100     0.971  0.0145
+J60         CAZ        HAZ1      SINGLE       n     1.089  0.0100     0.980  0.0143
+J60         CAZ        HAZ2      SINGLE       n     1.089  0.0100     0.980  0.0143
+J60         CAY        HAY1      SINGLE       n     1.089  0.0100     0.980  0.0143
+J60         CAY        HAY2      SINGLE       n     1.089  0.0100     0.980  0.0143
+J60         CBB        HBB1      SINGLE       n     1.089  0.0100     0.971  0.0145
+J60         CBB        HBB2      SINGLE       n     1.089  0.0100     0.971  0.0145
+J60         CBB        HBB3      SINGLE       n     1.089  0.0100     0.971  0.0145
+J60         CAW        HAW1      SINGLE       n     1.089  0.0100     0.980  0.0143
+J60         CAW        HAW2      SINGLE       n     1.089  0.0100     0.980  0.0143
+J60         CAV        HAV1      SINGLE       n     1.089  0.0100     0.979  0.0148
+J60         CAV        HAV2      SINGLE       n     1.089  0.0100     0.979  0.0148
+J60         NAU         HAU      SINGLE       n     1.016  0.0100     0.873  0.0200
+J60         CAQ        HAQ1      SINGLE       n     1.089  0.0100     0.971  0.0172
+J60         CAQ        HAQ2      SINGLE       n     1.089  0.0100     0.971  0.0172
+J60         CAQ        HAQ3      SINGLE       n     1.089  0.0100     0.971  0.0172
+J60         CAR        HAR1      SINGLE       n     1.089  0.0100     0.968  0.0138
+J60         CAR        HAR2      SINGLE       n     1.089  0.0100     0.968  0.0138
+J60         CAR        HAR3      SINGLE       n     1.089  0.0100     0.968  0.0138
+J60         NAP         HAP      SINGLE       n     1.016  0.0100     0.880  0.0200
+J60         CAK         HAK      SINGLE       n     1.082  0.0130     0.944  0.0100
+J60         CAD         HAD      SINGLE       n     1.082  0.0130     0.938  0.0100
+J60         CAB         HAB      SINGLE       n     1.082  0.0130     0.939  0.0197
+J60         CAC         HAC      SINGLE       n     1.082  0.0130     0.938  0.0104
+J60         NAH         HAH      SINGLE       n     1.016  0.0100     0.873  0.0106
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+J60         CAZ         CBA        HBA1     109.529    1.50
+J60         CAZ         CBA        HBA2     109.529    1.50
+J60         CAZ         CBA        HBA3     109.529    1.50
+J60        HBA1         CBA        HBA2     109.415    1.50
+J60        HBA1         CBA        HBA3     109.415    1.50
+J60        HBA2         CBA        HBA3     109.415    1.50
+J60         CBA         CAZ         NAX     113.741    1.57
+J60         CBA         CAZ        HAZ1     109.135    1.50
+J60         CBA         CAZ        HAZ2     109.135    1.50
+J60         NAX         CAZ        HAZ1     109.022    1.50
+J60         NAX         CAZ        HAZ2     109.022    1.50
+J60        HAZ1         CAZ        HAZ2     107.838    1.50
+J60         CAZ         NAX         CAY     110.773    1.86
+J60         CAZ         NAX         CAW     110.672    1.50
+J60         CAY         NAX         CAW     110.672    1.50
+J60         NAX         CAY         CBB     113.741    1.57
+J60         NAX         CAY        HAY1     109.022    1.50
+J60         NAX         CAY        HAY2     109.022    1.50
+J60         CBB         CAY        HAY1     109.135    1.50
+J60         CBB         CAY        HAY2     109.135    1.50
+J60        HAY1         CAY        HAY2     107.838    1.50
+J60         CAY         CBB        HBB1     109.529    1.50
+J60         CAY         CBB        HBB2     109.529    1.50
+J60         CAY         CBB        HBB3     109.529    1.50
+J60        HBB1         CBB        HBB2     109.415    1.50
+J60        HBB1         CBB        HBB3     109.415    1.50
+J60        HBB2         CBB        HBB3     109.415    1.50
+J60         NAX         CAW         CAV     112.541    1.50
+J60         NAX         CAW        HAW1     109.110    1.50
+J60         NAX         CAW        HAW2     109.110    1.50
+J60         CAV         CAW        HAW1     109.068    1.50
+J60         CAV         CAW        HAW2     109.068    1.50
+J60        HAW1         CAW        HAW2     107.844    1.50
+J60         CAW         CAV         NAU     111.591    1.66
+J60         CAW         CAV        HAV1     109.409    1.50
+J60         CAW         CAV        HAV2     109.409    1.50
+J60         NAU         CAV        HAV1     108.582    1.50
+J60         NAU         CAV        HAV2     108.582    1.50
+J60        HAV1         CAV        HAV2     107.909    1.50
+J60         CAV         NAU         CAS     121.924    2.29
+J60         CAV         NAU         HAU     119.202    1.50
+J60         CAS         NAU         HAU     118.874    1.50
+J60         NAU         CAS         OAT     121.373    1.50
+J60         NAU         CAS         CAN     117.293    2.07
+J60         OAT         CAS         CAN     121.334    1.50
+J60         CAS         CAN         CAM     126.091    3.00
+J60         CAS         CAN         CAO     125.971    1.53
+J60         CAM         CAN         CAO     107.938    1.50
+J60         CAN         CAM         CAQ     127.620    1.50
+J60         CAN         CAM         CAL     107.398    1.50
+J60         CAQ         CAM         CAL     124.982    1.50
+J60         CAM         CAQ        HAQ1     109.746    1.50
+J60         CAM         CAQ        HAQ2     109.746    1.50
+J60         CAM         CAQ        HAQ3     109.746    1.50
+J60        HAQ1         CAQ        HAQ2     109.190    1.68
+J60        HAQ1         CAQ        HAQ3     109.190    1.68
+J60        HAQ2         CAQ        HAQ3     109.190    1.68
+J60         CAN         CAO         CAR     131.657    1.58
+J60         CAN         CAO         NAP     107.393    1.50
+J60         CAR         CAO         NAP     120.950    1.50
+J60         CAO         CAR        HAR1     109.497    1.50
+J60         CAO         CAR        HAR2     109.497    1.50
+J60         CAO         CAR        HAR3     109.497    1.50
+J60        HAR1         CAR        HAR2     109.354    1.50
+J60        HAR1         CAR        HAR3     109.354    1.50
+J60        HAR2         CAR        HAR3     109.354    1.50
+J60         CAO         NAP         CAL     109.827    1.50
+J60         CAO         NAP         HAP     124.998    1.50
+J60         CAL         NAP         HAP     125.176    3.00
+J60         CAM         CAL         NAP     107.445    1.50
+J60         CAM         CAL         CAK     128.286    3.00
+J60         NAP         CAL         CAK     124.269    3.00
+J60         CAL         CAK         CAG     129.815    3.00
+J60         CAL         CAK         HAK     115.798    1.83
+J60         CAG         CAK         HAK     114.387    1.50
+J60         CAK         CAG         CAE     129.141    3.00
+J60         CAK         CAG         CAI     125.011    3.00
+J60         CAE         CAG         CAI     105.847    1.50
+J60         CAG         CAE         CAD     133.252    1.70
+J60         CAG         CAE         CAF     107.068    1.50
+J60         CAD         CAE         CAF     119.680    1.50
+J60         CAE         CAD         CAA     117.875    1.50
+J60         CAE         CAD         HAD     120.974    1.50
+J60         CAA         CAD         HAD     121.151    1.50
+J60         CAD         CAA          CL     118.966    1.50
+J60         CAD         CAA         CAB     122.166    1.50
+J60          CL         CAA         CAB     118.866    1.50
+J60         CAA         CAB         CAC     120.094    1.50
+J60         CAA         CAB         HAB     120.086    1.50
+J60         CAC         CAB         HAB     119.820    1.50
+J60         CAB         CAC         CAF     117.665    1.50
+J60         CAB         CAC         HAC     120.982    1.50
+J60         CAF         CAC         HAC     121.354    1.50
+J60         CAE         CAF         CAC     122.520    1.50
+J60         CAE         CAF         NAH     109.130    1.50
+J60         CAC         CAF         NAH     128.349    1.50
+J60         CAF         NAH         CAI     111.067    1.50
+J60         CAF         NAH         HAH     124.550    1.50
+J60         CAI         NAH         HAH     124.383    1.50
+J60         CAG         CAI         NAH     106.887    1.50
+J60         CAG         CAI         OAJ     127.854    1.50
+J60         NAH         CAI         OAJ     125.259    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+J60             sp3_sp3_1         NAX         CAZ         CBA        HBA1     180.000    10.0     3
+J60              const_28         CAQ         CAM         CAN         CAS       0.000    10.0     2
+J60              const_44         CAS         CAN         CAO         CAR       0.000    10.0     2
+J60             sp2_sp3_7         CAN         CAM         CAQ        HAQ1     150.000    10.0     6
+J60              const_32         CAK         CAL         CAM         CAQ       0.000    10.0     2
+J60            sp2_sp3_13         CAN         CAO         CAR        HAR1     150.000    10.0     6
+J60              const_39         CAR         CAO         NAP         CAL     180.000    10.0     2
+J60              const_35         CAK         CAL         NAP         CAO     180.000    10.0     2
+J60            sp2_sp2_21         CAG         CAK         CAL         CAM     180.000     5.0     2
+J60            sp2_sp2_25         CAE         CAG         CAK         CAL     180.000     5.0     2
+J60             sp2_sp2_4         CAD         CAE         CAG         CAK       0.000     5.0     2
+J60            sp2_sp2_32         CAK         CAG         CAI         OAJ       0.000     5.0     2
+J60       const_sp2_sp2_2         CAA         CAD         CAE         CAG     180.000     5.0     2
+J60              const_22         CAG         CAE         CAF         CAC     180.000    10.0     2
+J60            sp3_sp3_11         CBA         CAZ         NAX         CAY     -60.000    10.0     3
+J60       const_sp2_sp2_7          CL         CAA         CAD         CAE     180.000     5.0     2
+J60              const_11          CL         CAA         CAB         CAC     180.000    10.0     2
+J60              const_13         CAA         CAB         CAC         CAF       0.000    10.0     2
+J60              const_17         CAB         CAC         CAF         CAE       0.000    10.0     2
+J60             sp2_sp2_5         CAE         CAF         NAH         CAI       0.000     5.0     2
+J60            sp2_sp2_11         OAJ         CAI         NAH         CAF     180.000     5.0     2
+J60            sp3_sp3_16         CBB         CAY         NAX         CAZ     180.000    10.0     3
+J60            sp3_sp3_32         CAV         CAW         NAX         CAZ     -60.000    10.0     3
+J60            sp3_sp3_22         NAX         CAY         CBB        HBB1     180.000    10.0     3
+J60            sp3_sp3_37         NAU         CAV         CAW         NAX     180.000    10.0     3
+J60             sp2_sp3_2         CAS         NAU         CAV         CAW     120.000    10.0     6
+J60            sp2_sp2_15         OAT         CAS         NAU         CAV       0.000     5.0     2
+J60            sp2_sp2_17         CAM         CAN         CAS         NAU     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+J60    chir_1    NAX    CAW    CAZ    CAY    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+J60    plan-1         CAK   0.020
+J60    plan-1         CAL   0.020
+J60    plan-1         CAM   0.020
+J60    plan-1         CAN   0.020
+J60    plan-1         CAO   0.020
+J60    plan-1         CAQ   0.020
+J60    plan-1         CAR   0.020
+J60    plan-1         CAS   0.020
+J60    plan-1         HAP   0.020
+J60    plan-1         NAP   0.020
+J60    plan-2         CAA   0.020
+J60    plan-2         CAB   0.020
+J60    plan-2         CAC   0.020
+J60    plan-2         CAD   0.020
+J60    plan-2         CAE   0.020
+J60    plan-2         CAF   0.020
+J60    plan-2         CAG   0.020
+J60    plan-2          CL   0.020
+J60    plan-2         HAB   0.020
+J60    plan-2         HAC   0.020
+J60    plan-2         HAD   0.020
+J60    plan-2         NAH   0.020
+J60    plan-3         CAS   0.020
+J60    plan-3         CAV   0.020
+J60    plan-3         HAU   0.020
+J60    plan-3         NAU   0.020
+J60    plan-4         CAN   0.020
+J60    plan-4         CAS   0.020
+J60    plan-4         NAU   0.020
+J60    plan-4         OAT   0.020
+J60    plan-5         CAG   0.020
+J60    plan-5         CAK   0.020
+J60    plan-5         CAL   0.020
+J60    plan-5         HAK   0.020
+J60    plan-6         CAE   0.020
+J60    plan-6         CAG   0.020
+J60    plan-6         CAI   0.020
+J60    plan-6         CAK   0.020
+J60    plan-7         CAF   0.020
+J60    plan-7         CAI   0.020
+J60    plan-7         HAH   0.020
+J60    plan-7         NAH   0.020
+J60    plan-8         CAG   0.020
+J60    plan-8         CAI   0.020
+J60    plan-8         NAH   0.020
+J60    plan-8         OAJ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+J60           SMILES              ACDLabs 10.04                                                                                                                      O=C(NCCN(CC)CC)c1c(c(nc1C)/C=C3/c2cc(Cl)ccc2NC3=O)C
+J60 SMILES_CANONICAL               CACTVS 3.341                                                                                                                CCN(CC)CCNC(=O)c1c(C)[nH]c(\C=C\2C(=O)Nc3ccc(Cl)cc\23)c1C
+J60           SMILES               CACTVS 3.341                                                                                                                   CCN(CC)CCNC(=O)c1c(C)[nH]c(C=C2C(=O)Nc3ccc(Cl)cc23)c1C
+J60 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                  CCN(CC)CCNC(=O)c1c(c([nH]c1C)\C=C/2\c3cc(ccc3NC2=O)Cl)C
+J60           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                     CCN(CC)CCNC(=O)c1c(c([nH]c1C)C=C2c3cc(ccc3NC2=O)Cl)C
+J60            InChI                InChI  1.03 InChI=1S/C22H27ClN4O2/c1-5-27(6-2)10-9-24-22(29)20-13(3)19(25-14(20)4)12-17-16-11-15(23)7-8-18(16)26-21(17)28/h7-8,11-12,25H,5-6,9-10H2,1-4H3,(H,24,29)(H,26,28)/b17-12-
+J60         InChIKey                InChI  1.03                                                                                                                                              XPLJEFSRINKZLC-ATVHPVEESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+J60 acedrg               243         "dictionary generator"                  
+J60 acedrg_database      11          "data source"                           
+J60 rdkit                2017.03.2   "Chemoinformatics tool"
+J60 refmac5              5.8.0238    "optimization tool"                     

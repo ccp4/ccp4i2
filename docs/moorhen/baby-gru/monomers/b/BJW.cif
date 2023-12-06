@@ -1,0 +1,805 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BJW     BJW      "4-[(2~{R},3~{a}~{R},5~{R},6~{R},6~{a}~{R})-5-[[[[(2~{R},3~{S},4~{R},5~{R})-5-(6-aminopurin-9-yl)-3,4-bis(oxidanyl)oxolan-2-yl]methoxy-oxidanyl-phosphoryl]oxy-oxidanyl-phosphoryl]oxymethyl]-2-[[(5~{S})-6-[[(2~{S})-3-(1~{H}-indol-3-yl)-1-oxidanylidene-1-(propan-2-ylamino)propan-2-yl]amino]-6-oxidanylidene-5-(phenylmethoxycarbonylamino)hexyl]amino]-6-oxidanyl-3~{a},5,6,6~{a}-tetrahydrofuro[2,3-d][1,3]oxathiol-2-yl]butanoic acid"     NON-POLYMER     141     80     .     
+#
+data_comp_BJW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BJW     C1      C       CR56    0       -12.277     31.063      -1.027      
+BJW     C2      C       CR56    0       -13.599     31.317      -1.351      
+BJW     C3      C       CR6     0       -13.846     32.106      -2.495      
+BJW     C4      C       CR15    0       -13.640     30.115      0.407       
+BJW     N1      N       NRD6    0       -12.772     32.558      -3.194      
+BJW     N2      N       NRD6    0       -11.195     31.498      -1.702      
+BJW     C5      C       CR16    0       -5.408      27.862      2.064       
+BJW     C6      C       CR16    0       -4.182      27.938      2.690       
+BJW     C7      C       CR16    0       -3.556      26.801      3.212       
+BJW     C8      C       CR16    0       -4.146      25.556      3.120       
+BJW     C9      C       CR56    0       -5.393      25.439      2.490       
+BJW     C10     C       CR56    0       -6.006      26.603      1.970       
+BJW     N3      N       NR5     0       -7.199      26.226      1.413       
+BJW     C11     C       CR15    0       -7.356      24.874      1.565       
+BJW     C12     C       CR5     0       -6.278      24.339      2.211       
+BJW     C13     C       CH2     0       -6.069      22.901      2.581       
+BJW     C14     C       CH1     0       -6.106      22.653      4.101       
+BJW     C15     C       C       0       -7.417      23.173      4.696       
+BJW     O1      O       O       0       -8.488      22.819      4.204       
+BJW     N4      N       NH1     0       -7.313      24.073      5.687       
+BJW     C16     C       CH1     0       -8.407      24.933      6.159       
+BJW     C17     C       CH3     0       -9.529      24.103      6.753       
+BJW     C18     C       CH3     0       -8.883      25.833      5.035       
+BJW     N5      N       NH1     0       -5.936      21.235      4.404       
+BJW     C19     C       C       0       -4.930      20.738      5.144       
+BJW     O2      O       O       0       -4.042      21.431      5.639       
+BJW     C20     C       CH1     0       -4.918      19.222      5.375       
+BJW     N6      N       NH1     0       -3.568      18.672      5.339       
+BJW     C21     C       C       0       -2.900      18.529      4.175       
+BJW     O3      O       O       0       -3.342      18.817      3.083       
+BJW     O4      O       O2      0       -1.672      18.020      4.386       
+BJW     C22     C       CH2     0       -0.723      18.103      3.287       
+BJW     C23     C       CR6     0       0.626       17.608      3.724       
+BJW     C24     C       CR16    0       1.412       18.368      4.578       
+BJW     C25     C       CR16    0       2.663       17.914      4.979       
+BJW     C26     C       CR16    0       3.138       16.699      4.527       
+BJW     C27     C       CR16    0       2.367       15.937      3.675       
+BJW     C28     C       CR16    0       1.116       16.390      3.273       
+BJW     C29     C       CH2     0       -5.610      18.871      6.694       
+BJW     C30     C       CH2     0       -7.130      18.983      6.646       
+BJW     C31     C       CH2     0       -7.819      18.656      7.958       
+BJW     C32     C       CH2     0       -9.327      18.813      7.865       
+BJW     N7      N       NT1     0       -9.991      18.813      9.179       
+BJW     C33     C       CT      0       -11.337     19.400      9.250       
+BJW     C34     C       CH2     0       -12.087     18.883      10.487      
+BJW     C35     C       CH2     0       -12.495     17.416      10.433      
+BJW     C36     C       CH2     0       -13.220     16.920      11.673      
+BJW     C37     C       C       0       -14.663     17.380      11.789      
+BJW     O5      O       O       0       -15.476     16.997      10.925      
+BJW     O6      O       OC      -1      -14.970     18.121      12.745      
+BJW     O7      O       O2      0       -12.082     19.095      8.074       
+BJW     S1      S       S2      0       -11.160     21.203      9.340       
+BJW     C38     C       CH1     0       -12.338     21.438      7.985       
+BJW     O8      O       O2      0       -11.673     21.730      6.776       
+BJW     C39     C       CH1     0       -13.049     20.101      7.772       
+BJW     C40     C       CH1     0       -13.329     20.140      6.269       
+BJW     O9      O       OH1     0       -13.508     18.840      5.734       
+BJW     C41     C       CH1     0       -12.051     20.775      5.760       
+BJW     C42     C       CH2     0       -12.159     21.462      4.422       
+BJW     O10     O       O2      0       -12.989     22.647      4.536       
+BJW     P1      P       P       0       -13.158     23.587      3.247       
+BJW     O11     O       OP      -1      -14.141     22.969      2.310       
+BJW     O12     O       O       0       -11.810     23.950      2.717       
+BJW     O13     O       O2      0       -13.822     24.892      3.903       
+BJW     P2      P       P       0       -13.275     25.999      4.928       
+BJW     O14     O       OP      -1      -14.334     27.033      5.124       
+BJW     O15     O       O       0       -12.734     25.306      6.135       
+BJW     O16     O       O2      0       -12.062     26.631      4.090       
+BJW     C43     C       CH2     0       -12.353     27.339      2.858       
+BJW     C44     C       CH1     0       -11.069     27.871      2.270       
+BJW     O17     O       O2      0       -11.330     28.347      0.924       
+BJW     C45     C       CH1     0       -10.436     29.061      3.003       
+BJW     O18     O       OH1     0       -9.016      29.045      2.903       
+BJW     C46     C       CH1     0       -11.077     30.257      2.290       
+BJW     O19     O       OH1     0       -10.303     31.436      2.366       
+BJW     C47     C       CH1     0       -11.177     29.747      0.854       
+BJW     N8      N       NR5     0       -12.311     30.290      0.111       
+BJW     N9      N       NRD5    0       -14.446     30.712      -0.434      
+BJW     C48     C       CR16    0       -11.545     32.230      -2.760      
+BJW     N10     N       NH2     0       -15.066     32.427      -2.919      
+BJW     H1      H       H       0       -13.942     29.617      1.147       
+BJW     H2      H       H       0       -5.829      28.628      1.712       
+BJW     H3      H       H       0       -3.757      28.774      2.767       
+BJW     H4      H       H       0       -2.716      26.888      3.635       
+BJW     H5      H       H       0       -3.716      24.794      3.475       
+BJW     H6      H       H       0       -7.772      26.762      1.022       
+BJW     H7      H       H       0       -8.104      24.385      1.259       
+BJW     H8      H       H       0       -5.203      22.605      2.234       
+BJW     H9      H       H       0       -6.763      22.357      2.155       
+BJW     H10     H       H       0       -5.363      23.159      4.505       
+BJW     H11     H       H       0       -6.552      24.156      6.105       
+BJW     H12     H       H       0       -8.048      25.512      6.876       
+BJW     H13     H       H       0       -9.157      23.308      7.172       
+BJW     H14     H       H       0       -10.150     23.839      6.052       
+BJW     H15     H       H       0       -10.002     24.629      7.421       
+BJW     H16     H       H       0       -8.113      26.194      4.562       
+BJW     H17     H       H       0       -9.407      26.565      5.405       
+BJW     H18     H       H       0       -9.432      25.324      4.415       
+BJW     H19     H       H       0       -6.532      20.683      4.086       
+BJW     H20     H       H       0       -5.440      18.800      4.646       
+BJW     H21     H       H       0       -3.176      18.430      6.086       
+BJW     H22     H       H       0       -0.649      19.033      2.986       
+BJW     H23     H       H       0       -1.047      17.563      2.535       
+BJW     H24     H       H       0       1.094       19.199      4.891       
+BJW     H25     H       H       0       3.188       18.439      5.562       
+BJW     H26     H       H       0       3.988       16.392      4.800       
+BJW     H27     H       H       0       2.688       15.106      3.364       
+BJW     H28     H       H       0       0.594       15.862      2.690       
+BJW     H29     H       H       0       -5.274      19.466      7.398       
+BJW     H30     H       H       0       -5.373      17.953      6.940       
+BJW     H31     H       H       0       -7.466      18.377      5.952       
+BJW     H32     H       H       0       -7.371      19.897      6.385       
+BJW     H33     H       H       0       -7.474      19.250      8.658       
+BJW     H34     H       H       0       -7.608      17.732      8.211       
+BJW     H35     H       H       0       -9.688      18.068      7.326       
+BJW     H36     H       H       0       -9.523      19.653      7.381       
+BJW     H37     H       H       0       -9.470      19.077      9.841       
+BJW     H39     H       H       0       -12.896     19.421      10.615      
+BJW     H40     H       H       0       -11.524     19.014      11.277      
+BJW     H41     H       H       0       -11.691     16.872      10.300      
+BJW     H42     H       H       0       -13.077     17.278      9.657       
+BJW     H43     H       H       0       -12.733     17.224      12.468      
+BJW     H44     H       H       0       -13.207     15.939      11.676      
+BJW     H46     H       H       0       -12.974     22.153      8.221       
+BJW     H47     H       H       0       -13.871     20.009      8.309       
+BJW     H48     H       H       0       -14.106     20.704      6.072       
+BJW     H49     H       H       0       -14.173     18.461      6.101       
+BJW     H50     H       H       0       -11.348     20.085      5.698       
+BJW     H51     H       H       0       -12.555     20.838      3.763       
+BJW     H52     H       H       0       -11.255     21.713      4.109       
+BJW     H55     H       H       0       -12.971     28.089      3.039       
+BJW     H56     H       H       0       -12.784     26.726      2.212       
+BJW     H57     H       H       0       -10.423     27.135      2.226       
+BJW     H58     H       H       0       -10.709     29.047      3.957       
+BJW     H59     H       H       0       -8.776      28.943      2.095       
+BJW     H60     H       H       0       -11.983     30.429      2.661       
+BJW     H61     H       H       0       -9.496      31.261      2.164       
+BJW     H62     H       H       0       -10.342     29.962      0.382       
+BJW     H63     H       H       0       -10.829     32.566      -3.277      
+BJW     H64     H       H       0       -15.221     32.508      -3.779      
+BJW     H65     H       H       0       -15.709     32.555      -2.337      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BJW          N1         C48      SINGLE       y     1.339  0.0100     1.339  0.0100
+BJW          N2         C48      DOUBLE       y     1.330  0.0100     1.330  0.0100
+BJW          C3          N1      DOUBLE       y     1.354  0.0100     1.354  0.0100
+BJW          C1          N2      SINGLE       y     1.343  0.0100     1.343  0.0100
+BJW          C3         N10      SINGLE       n     1.330  0.0100     1.330  0.0100
+BJW          C2          C3      SINGLE       y     1.408  0.0100     1.408  0.0100
+BJW          C1          C2      DOUBLE       y     1.381  0.0100     1.381  0.0100
+BJW          C1          N8      SINGLE       y     1.374  0.0101     1.374  0.0101
+BJW          C2          N9      SINGLE       y     1.388  0.0100     1.388  0.0100
+BJW         C45         O18      SINGLE       n     1.422  0.0100     1.422  0.0100
+BJW         C46         O19      SINGLE       n     1.411  0.0100     1.411  0.0100
+BJW         C47          N8      SINGLE       n     1.458  0.0100     1.458  0.0100
+BJW         O17         C47      SINGLE       n     1.409  0.0100     1.409  0.0100
+BJW         C46         C47      SINGLE       n     1.525  0.0100     1.525  0.0100
+BJW          C4          N8      SINGLE       y     1.372  0.0100     1.372  0.0100
+BJW         C44         O17      SINGLE       n     1.451  0.0100     1.451  0.0100
+BJW         C45         C46      SINGLE       n     1.531  0.0100     1.531  0.0100
+BJW         C44         C45      SINGLE       n     1.535  0.0100     1.535  0.0100
+BJW          C4          N9      DOUBLE       y     1.310  0.0100     1.310  0.0100
+BJW         C43         C44      SINGLE       n     1.509  0.0100     1.509  0.0100
+BJW          P1         O12      DOUBLE       n     1.493  0.0122     1.493  0.0122
+BJW         O16         C43      SINGLE       n     1.450  0.0166     1.450  0.0166
+BJW          P2         O16      SINGLE       n     1.604  0.0133     1.604  0.0133
+BJW          P1         O11      SINGLE       n     1.493  0.0122     1.493  0.0122
+BJW          P1         O13      SINGLE       n     1.604  0.0133     1.604  0.0133
+BJW         O10          P1      SINGLE       n     1.604  0.0133     1.604  0.0133
+BJW         C42         O10      SINGLE       n     1.450  0.0166     1.450  0.0166
+BJW         C41         C42      SINGLE       n     1.506  0.0164     1.506  0.0164
+BJW         O13          P2      SINGLE       n     1.604  0.0133     1.604  0.0133
+BJW          P2         O15      DOUBLE       n     1.493  0.0122     1.493  0.0122
+BJW          P2         O14      SINGLE       n     1.493  0.0122     1.493  0.0122
+BJW         C15          O1      DOUBLE       n     1.229  0.0102     1.229  0.0102
+BJW         C21          O3      DOUBLE       n     1.210  0.0102     1.210  0.0102
+BJW         C40          O9      SINGLE       n     1.417  0.0100     1.417  0.0100
+BJW         C40         C41      SINGLE       n     1.514  0.0101     1.514  0.0101
+BJW          O8         C41      SINGLE       n     1.441  0.0100     1.441  0.0100
+BJW          O4         C22      SINGLE       n     1.450  0.0125     1.450  0.0125
+BJW         C22         C23      SINGLE       n     1.501  0.0101     1.501  0.0101
+BJW         C16         C18      SINGLE       n     1.514  0.0108     1.514  0.0108
+BJW         C21          O4      SINGLE       n     1.341  0.0100     1.341  0.0100
+BJW          N6         C21      SINGLE       n     1.344  0.0100     1.344  0.0100
+BJW         C16         C17      SINGLE       n     1.514  0.0108     1.514  0.0108
+BJW         C39         C40      SINGLE       n     1.533  0.0143     1.533  0.0143
+BJW         C23         C28      SINGLE       y     1.383  0.0108     1.383  0.0108
+BJW         C27         C28      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BJW         C14         C15      SINGLE       n     1.526  0.0118     1.526  0.0118
+BJW         C15          N4      SINGLE       n     1.337  0.0102     1.337  0.0102
+BJW         C14          N5      SINGLE       n     1.456  0.0100     1.456  0.0100
+BJW          N5         C19      SINGLE       n     1.337  0.0100     1.337  0.0100
+BJW         C20          N6      SINGLE       n     1.453  0.0115     1.453  0.0115
+BJW         C19         C20      SINGLE       n     1.530  0.0100     1.530  0.0100
+BJW         C20         C29      SINGLE       n     1.528  0.0100     1.528  0.0100
+BJW         C13         C14      SINGLE       n     1.539  0.0100     1.539  0.0100
+BJW         C12         C13      SINGLE       n     1.498  0.0100     1.498  0.0100
+BJW         C23         C24      DOUBLE       y     1.383  0.0108     1.383  0.0108
+BJW          N4         C16      SINGLE       n     1.464  0.0112     1.464  0.0112
+BJW         C38          O8      SINGLE       n     1.406  0.0131     1.406  0.0131
+BJW         C29         C30      SINGLE       n     1.523  0.0114     1.523  0.0114
+BJW         C30         C31      SINGLE       n     1.514  0.0200     1.514  0.0200
+BJW         C19          O2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+BJW         C11         C12      DOUBLE       y     1.365  0.0100     1.365  0.0100
+BJW          N3         C11      SINGLE       y     1.369  0.0100     1.369  0.0100
+BJW         C26         C27      SINGLE       y     1.374  0.0127     1.374  0.0127
+BJW          C9         C12      SINGLE       y     1.439  0.0100     1.439  0.0100
+BJW          O7         C39      SINGLE       n     1.424  0.0100     1.424  0.0100
+BJW         C38         C39      SINGLE       n     1.531  0.0101     1.531  0.0101
+BJW         C31         C32      SINGLE       n     1.516  0.0131     1.516  0.0131
+BJW         C32          N7      SINGLE       n     1.465  0.0118     1.465  0.0118
+BJW         C33          O7      SINGLE       n     1.415  0.0172     1.415  0.0172
+BJW          S1         C38      SINGLE       n     1.822  0.0196     1.822  0.0196
+BJW         C24         C25      SINGLE       y     1.386  0.0100     1.386  0.0100
+BJW         C10          N3      SINGLE       y     1.370  0.0100     1.370  0.0100
+BJW         C25         C26      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BJW          N7         C33      SINGLE       n     1.462  0.0148     1.462  0.0148
+BJW          C9         C10      SINGLE       y     1.411  0.0100     1.411  0.0100
+BJW          C8          C9      DOUBLE       y     1.399  0.0100     1.399  0.0100
+BJW         C33          S1      SINGLE       n     1.818  0.0200     1.818  0.0200
+BJW         C33         C34      SINGLE       n     1.532  0.0162     1.532  0.0162
+BJW          C5         C10      DOUBLE       y     1.394  0.0100     1.394  0.0100
+BJW         C34         C35      SINGLE       n     1.521  0.0154     1.521  0.0154
+BJW         C35         C36      SINGLE       n     1.518  0.0200     1.518  0.0200
+BJW          C7          C8      SINGLE       y     1.377  0.0100     1.377  0.0100
+BJW         C37          O5      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BJW          C5          C6      SINGLE       y     1.376  0.0100     1.376  0.0100
+BJW         C36         C37      SINGLE       n     1.519  0.0109     1.519  0.0109
+BJW         C37          O6      SINGLE       n     1.247  0.0187     1.247  0.0187
+BJW          C6          C7      DOUBLE       y     1.395  0.0112     1.395  0.0112
+BJW          C4          H1      SINGLE       n     1.082  0.0130     0.942  0.0170
+BJW          C5          H2      SINGLE       n     1.082  0.0130     0.942  0.0188
+BJW          C6          H3      SINGLE       n     1.082  0.0130     0.941  0.0181
+BJW          C7          H4      SINGLE       n     1.082  0.0130     0.944  0.0181
+BJW          C8          H5      SINGLE       n     1.082  0.0130     0.944  0.0200
+BJW          N3          H6      SINGLE       n     1.016  0.0100     0.877  0.0200
+BJW         C11          H7      SINGLE       n     1.082  0.0130     0.945  0.0191
+BJW         C13          H8      SINGLE       n     1.089  0.0100     0.979  0.0197
+BJW         C13          H9      SINGLE       n     1.089  0.0100     0.979  0.0197
+BJW         C14         H10      SINGLE       n     1.089  0.0100     0.987  0.0159
+BJW          N4         H11      SINGLE       n     1.016  0.0100     0.872  0.0200
+BJW         C16         H12      SINGLE       n     1.089  0.0100     0.989  0.0106
+BJW         C17         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+BJW         C17         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+BJW         C17         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+BJW         C18         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+BJW         C18         H17      SINGLE       n     1.089  0.0100     0.973  0.0146
+BJW         C18         H18      SINGLE       n     1.089  0.0100     0.973  0.0146
+BJW          N5         H19      SINGLE       n     1.016  0.0100     0.873  0.0200
+BJW         C20         H20      SINGLE       n     1.089  0.0100     0.991  0.0200
+BJW          N6         H21      SINGLE       n     1.016  0.0100     0.875  0.0200
+BJW         C22         H22      SINGLE       n     1.089  0.0100     0.980  0.0157
+BJW         C22         H23      SINGLE       n     1.089  0.0100     0.980  0.0157
+BJW         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0174
+BJW         C25         H25      SINGLE       n     1.082  0.0130     0.944  0.0175
+BJW         C26         H26      SINGLE       n     1.082  0.0130     0.944  0.0161
+BJW         C27         H27      SINGLE       n     1.082  0.0130     0.944  0.0175
+BJW         C28         H28      SINGLE       n     1.082  0.0130     0.944  0.0174
+BJW         C29         H29      SINGLE       n     1.089  0.0100     0.980  0.0160
+BJW         C29         H30      SINGLE       n     1.089  0.0100     0.980  0.0160
+BJW         C30         H31      SINGLE       n     1.089  0.0100     0.981  0.0163
+BJW         C30         H32      SINGLE       n     1.089  0.0100     0.981  0.0163
+BJW         C31         H33      SINGLE       n     1.089  0.0100     0.981  0.0160
+BJW         C31         H34      SINGLE       n     1.089  0.0100     0.981  0.0160
+BJW         C32         H35      SINGLE       n     1.089  0.0100     0.988  0.0200
+BJW         C32         H36      SINGLE       n     1.089  0.0100     0.988  0.0200
+BJW          N7         H37      SINGLE       n     1.036  0.0160     0.882  0.0200
+BJW         C34         H39      SINGLE       n     1.089  0.0100     0.979  0.0139
+BJW         C34         H40      SINGLE       n     1.089  0.0100     0.979  0.0139
+BJW         C35         H41      SINGLE       n     1.089  0.0100     0.980  0.0160
+BJW         C35         H42      SINGLE       n     1.089  0.0100     0.980  0.0160
+BJW         C36         H43      SINGLE       n     1.089  0.0100     0.981  0.0185
+BJW         C36         H44      SINGLE       n     1.089  0.0100     0.981  0.0185
+BJW         C38         H46      SINGLE       n     1.089  0.0100     0.986  0.0186
+BJW         C39         H47      SINGLE       n     1.089  0.0100     0.986  0.0173
+BJW         C40         H48      SINGLE       n     1.089  0.0100     0.980  0.0126
+BJW          O9         H49      SINGLE       n     0.970  0.0120     0.849  0.0200
+BJW         C41         H50      SINGLE       n     1.089  0.0100     0.987  0.0151
+BJW         C42         H51      SINGLE       n     1.089  0.0100     0.989  0.0200
+BJW         C42         H52      SINGLE       n     1.089  0.0100     0.989  0.0200
+BJW         C43         H55      SINGLE       n     1.089  0.0100     0.989  0.0200
+BJW         C43         H56      SINGLE       n     1.089  0.0100     0.989  0.0200
+BJW         C44         H57      SINGLE       n     1.089  0.0100     0.981  0.0200
+BJW         C45         H58      SINGLE       n     1.089  0.0100     0.992  0.0200
+BJW         O18         H59      SINGLE       n     0.970  0.0120     0.849  0.0200
+BJW         C46         H60      SINGLE       n     1.089  0.0100     0.994  0.0200
+BJW         O19         H61      SINGLE       n     0.970  0.0120     0.849  0.0200
+BJW         C47         H62      SINGLE       n     1.089  0.0100     0.984  0.0200
+BJW         C48         H63      SINGLE       n     1.082  0.0130     0.945  0.0200
+BJW         N10         H64      SINGLE       n     1.016  0.0100     0.877  0.0200
+BJW         N10         H65      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BJW          N2          C1          C2     126.489    1.50
+BJW          N2          C1          N8     127.895    1.50
+BJW          C2          C1          N8     105.616    1.50
+BJW          C3          C2          C1     117.270    1.50
+BJW          C3          C2          N9     132.247    1.50
+BJW          C1          C2          N9     110.483    1.50
+BJW          N1          C3         N10     118.799    1.50
+BJW          N1          C3          C2     117.409    1.50
+BJW         N10          C3          C2     123.792    1.50
+BJW          N8          C4          N9     113.469    1.50
+BJW          N8          C4          H1     123.206    1.50
+BJW          N9          C4          H1     123.326    1.50
+BJW         C48          N1          C3     118.521    1.50
+BJW         C48          N2          C1     110.982    1.50
+BJW         C10          C5          C6     117.385    1.50
+BJW         C10          C5          H2     121.137    1.50
+BJW          C6          C5          H2     121.477    1.50
+BJW          C5          C6          C7     121.628    1.50
+BJW          C5          C6          H3     119.132    1.50
+BJW          C7          C6          H3     119.240    1.50
+BJW          C8          C7          C6     121.212    1.50
+BJW          C8          C7          H4     119.471    1.50
+BJW          C6          C7          H4     119.316    1.50
+BJW          C9          C8          C7     118.817    1.50
+BJW          C9          C8          H5     120.505    1.50
+BJW          C7          C8          H5     120.678    1.50
+BJW         C12          C9         C10     106.987    1.50
+BJW         C12          C9          C8     134.307    1.50
+BJW         C10          C9          C8     118.706    1.50
+BJW          N3         C10          C9     107.455    1.50
+BJW          N3         C10          C5     130.294    1.50
+BJW          C9         C10          C5     122.250    1.50
+BJW         C11          N3         C10     109.042    1.50
+BJW         C11          N3          H6     125.328    1.77
+BJW         C10          N3          H6     125.630    1.60
+BJW         C12         C11          N3     110.404    1.50
+BJW         C12         C11          H7     125.159    1.59
+BJW          N3         C11          H7     124.437    1.50
+BJW         C13         C12         C11     127.068    1.62
+BJW         C13         C12          C9     126.820    1.50
+BJW         C11         C12          C9     106.112    1.50
+BJW         C14         C13         C12     112.993    1.87
+BJW         C14         C13          H8     108.816    1.50
+BJW         C14         C13          H9     108.816    1.50
+BJW         C12         C13          H8     109.029    1.50
+BJW         C12         C13          H9     109.029    1.50
+BJW          H8         C13          H9     107.759    1.50
+BJW         C15         C14          N5     111.106    2.53
+BJW         C15         C14         C13     110.540    1.53
+BJW         C15         C14         H10     108.061    1.50
+BJW          N5         C14         C13     110.975    1.50
+BJW          N5         C14         H10     108.161    1.50
+BJW         C13         C14         H10     108.480    1.50
+BJW          O1         C15         C14     120.430    1.50
+BJW          O1         C15          N4     123.154    1.50
+BJW         C14         C15          N4     116.417    1.50
+BJW         C15          N4         C16     122.664    1.50
+BJW         C15          N4         H11     119.026    1.83
+BJW         C16          N4         H11     118.310    2.55
+BJW         C18         C16         C17     111.835    1.50
+BJW         C18         C16          N4     109.617    1.50
+BJW         C18         C16         H12     108.408    1.50
+BJW         C17         C16          N4     109.617    1.50
+BJW         C17         C16         H12     108.408    1.50
+BJW          N4         C16         H12     108.397    1.50
+BJW         C16         C17         H13     109.432    1.50
+BJW         C16         C17         H14     109.432    1.50
+BJW         C16         C17         H15     109.432    1.50
+BJW         H13         C17         H14     109.386    1.50
+BJW         H13         C17         H15     109.386    1.50
+BJW         H14         C17         H15     109.386    1.50
+BJW         C16         C18         H16     109.432    1.50
+BJW         C16         C18         H17     109.432    1.50
+BJW         C16         C18         H18     109.432    1.50
+BJW         H16         C18         H17     109.386    1.50
+BJW         H16         C18         H18     109.386    1.50
+BJW         H17         C18         H18     109.386    1.50
+BJW         C14          N5         C19     121.950    1.76
+BJW         C14          N5         H19     119.019    1.92
+BJW         C19          N5         H19     119.031    1.83
+BJW          N5         C19         C20     116.639    1.50
+BJW          N5         C19          O2     123.016    1.50
+BJW         C20         C19          O2     120.345    1.50
+BJW          N6         C20         C19     112.413    1.56
+BJW          N6         C20         C29     111.076    1.75
+BJW          N6         C20         H20     108.337    1.50
+BJW         C19         C20         C29     111.390    2.17
+BJW         C19         C20         H20     107.852    1.50
+BJW         C29         C20         H20     108.242    1.50
+BJW         C21          N6         C20     120.144    1.69
+BJW         C21          N6         H21     119.498    2.20
+BJW         C20          N6         H21     120.357    1.50
+BJW          O3         C21          O4     124.295    1.50
+BJW          O3         C21          N6     124.890    1.50
+BJW          O4         C21          N6     110.815    1.50
+BJW         C22          O4         C21     115.730    1.50
+BJW          O4         C22         C23     109.508    2.22
+BJW          O4         C22         H22     109.538    1.50
+BJW          O4         C22         H23     109.538    1.50
+BJW         C23         C22         H22     109.785    1.50
+BJW         C23         C22         H23     109.785    1.50
+BJW         H22         C22         H23     108.275    1.50
+BJW         C22         C23         C28     120.651    1.50
+BJW         C22         C23         C24     120.651    1.50
+BJW         C28         C23         C24     118.697    1.50
+BJW         C23         C24         C25     120.514    1.50
+BJW         C23         C24         H24     119.732    1.50
+BJW         C25         C24         H24     119.754    1.50
+BJW         C24         C25         C26     120.186    1.50
+BJW         C24         C25         H25     119.862    1.50
+BJW         C26         C25         H25     119.952    1.50
+BJW         C27         C26         C25     119.903    1.50
+BJW         C27         C26         H26     120.048    1.50
+BJW         C25         C26         H26     120.048    1.50
+BJW         C28         C27         C26     120.186    1.50
+BJW         C28         C27         H27     119.862    1.50
+BJW         C26         C27         H27     119.952    1.50
+BJW         C23         C28         C27     120.514    1.50
+BJW         C23         C28         H28     119.732    1.50
+BJW         C27         C28         H28     119.754    1.50
+BJW         C20         C29         C30     113.702    1.73
+BJW         C20         C29         H29     108.827    1.50
+BJW         C20         C29         H30     108.827    1.50
+BJW         C30         C29         H29     108.650    1.50
+BJW         C30         C29         H30     108.650    1.50
+BJW         H29         C29         H30     107.844    1.50
+BJW         C29         C30         C31     113.328    2.00
+BJW         C29         C30         H31     108.601    1.50
+BJW         C29         C30         H32     108.601    1.50
+BJW         C31         C30         H31     108.806    1.50
+BJW         C31         C30         H32     108.806    1.50
+BJW         H31         C30         H32     107.646    1.50
+BJW         C30         C31         C32     112.970    2.28
+BJW         C30         C31         H33     109.041    1.50
+BJW         C30         C31         H34     109.041    1.50
+BJW         C32         C31         H33     108.980    1.50
+BJW         C32         C31         H34     108.980    1.50
+BJW         H33         C31         H34     107.927    1.57
+BJW         C31         C32          N7     111.829    1.50
+BJW         C31         C32         H35     108.776    1.50
+BJW         C31         C32         H36     108.776    1.50
+BJW          N7         C32         H35     109.292    2.33
+BJW          N7         C32         H36     109.292    2.33
+BJW         H35         C32         H36     107.702    1.50
+BJW         C32          N7         C33     114.793    2.66
+BJW         C32          N7         H37     112.572    3.00
+BJW         C33          N7         H37     113.194    3.00
+BJW          O7         C33          N7     110.645    2.84
+BJW          O7         C33          S1     106.805    1.50
+BJW          O7         C33         C34     109.091    1.63
+BJW          N7         C33          S1     109.471    3.00
+BJW          N7         C33         C34     109.661    2.31
+BJW          S1         C33         C34     111.156    2.31
+BJW         C33         C34         C35     112.518    2.73
+BJW         C33         C34         H39     109.253    1.50
+BJW         C33         C34         H40     109.253    1.50
+BJW         C35         C34         H39     108.506    1.50
+BJW         C35         C34         H40     108.506    1.50
+BJW         H39         C34         H40     107.535    1.50
+BJW         C34         C35         C36     115.088    2.06
+BJW         C34         C35         H41     108.816    1.50
+BJW         C34         C35         H42     108.816    1.50
+BJW         C36         C35         H41     108.915    1.50
+BJW         C36         C35         H42     108.915    1.50
+BJW         H41         C35         H42     107.696    1.50
+BJW         C35         C36         C37     114.629    2.24
+BJW         C35         C36         H43     108.844    1.50
+BJW         C35         C36         H44     108.844    1.50
+BJW         C37         C36         H43     108.404    1.50
+BJW         C37         C36         H44     108.404    1.50
+BJW         H43         C36         H44     107.521    1.50
+BJW          O5         C37         C36     118.214    1.64
+BJW          O5         C37          O6     123.571    1.50
+BJW         C36         C37          O6     118.214    1.64
+BJW         C39          O7         C33     108.501    1.71
+BJW         C38          S1         C33      95.449    2.96
+BJW          O8         C38         C39     106.125    1.50
+BJW          O8         C38          S1     109.471    3.00
+BJW          O8         C38         H46     110.812    1.50
+BJW         C39         C38          S1     106.724    2.64
+BJW         C39         C38         H46     111.284    1.50
+BJW          S1         C38         H46     109.268    1.50
+BJW         C41          O8         C38     108.481    1.50
+BJW         C40         C39          O7     110.439    2.02
+BJW         C40         C39         C38     104.802    1.87
+BJW         C40         C39         H47     112.223    1.50
+BJW          O7         C39         C38     103.985    1.50
+BJW          O7         C39         H47     112.135    1.50
+BJW         C38         C39         H47     112.825    1.50
+BJW          O9         C40         C41     111.586    1.86
+BJW          O9         C40         C39     111.374    2.42
+BJW          O9         C40         H48     110.994    1.50
+BJW         C41         C40         C39     101.993    1.50
+BJW         C41         C40         H48     111.385    1.50
+BJW         C39         C40         H48     111.236    1.50
+BJW         C40          O9         H49     110.104    2.02
+BJW         C42         C41         C40     115.237    1.67
+BJW         C42         C41          O8     109.749    1.70
+BJW         C42         C41         H50     108.962    1.72
+BJW         C40         C41          O8     104.433    1.50
+BJW         C40         C41         H50     109.522    1.50
+BJW          O8         C41         H50     108.980    1.50
+BJW         O10         C42         C41     109.510    1.50
+BJW         O10         C42         H51     109.845    1.50
+BJW         O10         C42         H52     109.845    1.50
+BJW         C41         C42         H51     109.496    1.62
+BJW         C41         C42         H52     109.496    1.62
+BJW         H51         C42         H52     108.472    1.50
+BJW          P1         O10         C42     118.553    2.41
+BJW         O12          P1         O11     118.411    2.35
+BJW         O12          P1         O13     108.816    2.14
+BJW         O12          P1         O10     109.410    1.50
+BJW         O11          P1         O13     108.816    2.14
+BJW         O11          P1         O10     109.410    1.50
+BJW         O13          P1         O10     101.065    1.97
+BJW          P1         O13          P2     132.542    3.00
+BJW         O16          P2         O13     101.065    1.97
+BJW         O16          P2         O15     109.410    1.50
+BJW         O16          P2         O14     109.410    1.50
+BJW         O13          P2         O15     108.816    2.14
+BJW         O13          P2         O14     108.816    2.14
+BJW         O15          P2         O14     118.411    2.35
+BJW         C43         O16          P2     118.553    2.41
+BJW         C44         C43         O16     109.342    1.50
+BJW         C44         C43         H55     109.624    1.50
+BJW         C44         C43         H56     109.624    1.50
+BJW         O16         C43         H55     109.845    1.50
+BJW         O16         C43         H56     109.845    1.50
+BJW         H55         C43         H56     108.472    1.50
+BJW         O17         C44         C45     105.388    1.50
+BJW         O17         C44         C43     109.123    1.50
+BJW         O17         C44         H57     108.947    1.50
+BJW         C45         C44         C43     116.008    1.52
+BJW         C45         C44         H57     109.363    1.86
+BJW         C43         C44         H57     108.268    1.50
+BJW         C47         O17         C44     109.903    1.50
+BJW         O18         C45         C46     111.581    2.83
+BJW         O18         C45         C44     111.281    2.46
+BJW         O18         C45         H58     110.380    1.67
+BJW         C46         C45         C44     102.602    1.50
+BJW         C46         C45         H58     110.504    1.75
+BJW         C44         C45         H58     110.452    2.54
+BJW         C45         O18         H59     108.744    3.00
+BJW         O19         C46         C47     111.715    2.69
+BJW         O19         C46         C45     112.782    2.45
+BJW         O19         C46         H60     110.448    1.97
+BJW         C47         C46         C45     101.239    1.50
+BJW         C47         C46         H60     110.636    1.70
+BJW         C45         C46         H60     110.596    1.51
+BJW         C46         O19         H61     109.103    2.13
+BJW          N8         C47         O17     108.477    1.50
+BJW          N8         C47         C46     113.824    1.50
+BJW          N8         C47         H62     109.561    1.50
+BJW         O17         C47         C46     106.047    1.50
+BJW         O17         C47         H62     109.807    1.50
+BJW         C46         C47         H62     109.015    1.50
+BJW          C1          N8         C47     127.459    1.80
+BJW          C1          N8          C4     105.693    1.50
+BJW         C47          N8          C4     126.848    1.91
+BJW          C2          N9          C4     104.739    1.50
+BJW          N1         C48          N2     129.332    1.50
+BJW          N1         C48         H63     115.313    1.50
+BJW          N2         C48         H63     115.355    1.50
+BJW          C3         N10         H64     119.723    1.50
+BJW          C3         N10         H65     119.723    1.50
+BJW         H64         N10         H65     120.554    1.88
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BJW              const_49          N2          C1          C2          C3       0.000    10.0     2
+BJW              const_37          C2          C1          N2         C48       0.000    10.0     2
+BJW              const_84          N2          C1          N8         C47       0.000    10.0     2
+BJW              const_21          N3         C10          C9         C12       0.000    10.0     2
+BJW       const_sp2_sp2_3         C13         C12          C9         C10     180.000     5.0     2
+BJW              const_13          C9         C10          N3         C11       0.000    10.0     2
+BJW       const_sp2_sp2_9         C12         C11          N3         C10       0.000     5.0     2
+BJW       const_sp2_sp2_6          N3         C11         C12         C13     180.000     5.0     2
+BJW            sp2_sp3_38         C11         C12         C13         C14     -90.000    10.0     6
+BJW           sp3_sp3_151         C12         C13         C14         C15     180.000    10.0     3
+BJW            sp2_sp3_13          O1         C15         C14          N5       0.000    10.0     6
+BJW            sp2_sp3_19         C19          N5         C14         C15       0.000    10.0     6
+BJW            sp2_sp2_13          O1         C15          N4         C16       0.000     5.0     2
+BJW            sp2_sp3_44         C15          N4         C16         C18     120.000    10.0     6
+BJW              const_46          C1          C2          C3         N10     180.000    10.0     2
+BJW              const_54          C3          C2          N9          C4     180.000    10.0     2
+BJW           sp3_sp3_133         C18         C16         C17         H13     180.000    10.0     3
+BJW           sp3_sp3_127         C17         C16         C18         H16      60.000    10.0     3
+BJW            sp2_sp2_15         C20         C19          N5         C14     180.000     5.0     2
+BJW            sp2_sp3_31          N5         C19         C20          N6       0.000    10.0     6
+BJW            sp2_sp3_25         C21          N6         C20         C19       0.000    10.0     6
+BJW           sp3_sp3_142          N6         C20         C29         C30     180.000    10.0     3
+BJW             sp2_sp2_9          O3         C21          N6         C20       0.000     5.0     2
+BJW             sp2_sp2_5          O3         C21          O4         C22     180.000     5.0     2
+BJW              const_44         N10          C3          N1         C48     180.000    10.0     2
+BJW             sp2_sp2_3          N1          C3         N10         H64       0.000     5.0     2
+BJW           sp3_sp3_121         C23         C22          O4         C21     180.000    10.0     3
+BJW             sp2_sp3_8         C28         C23         C22          O4     -90.000    10.0     6
+BJW              const_87         C22         C23         C24         C25     180.000    10.0     2
+BJW              const_63         C22         C23         C28         C27     180.000    10.0     2
+BJW              const_77         C23         C24         C25         C26       0.000    10.0     2
+BJW              const_73         C24         C25         C26         C27       0.000    10.0     2
+BJW              const_69         C25         C26         C27         C28       0.000    10.0     2
+BJW              const_65         C26         C27         C28         C23       0.000    10.0     2
+BJW           sp3_sp3_160         C20         C29         C30         C31     180.000    10.0     3
+BJW           sp3_sp3_169         C29         C30         C31         C32     180.000    10.0     3
+BJW              const_57          N9          C4          N8          C1       0.000    10.0     2
+BJW              const_55          N8          C4          N9          C2       0.000    10.0     2
+BJW           sp3_sp3_178         C30         C31         C32          N7     180.000    10.0     3
+BJW           sp3_sp3_187         C31         C32          N7         C33     180.000    10.0     3
+BJW           sp3_sp3_198         C34         C33          N7         C32      60.000    10.0     3
+BJW           sp3_sp3_205          N7         C33         C34         C35      60.000    10.0     3
+BJW             sp3_sp3_2          N7         C33          O7         C39     -60.000    10.0     3
+BJW           sp3_sp3_200          N7         C33          S1         C38      60.000    10.0     3
+BJW           sp3_sp3_211         C33         C34         C35         C36     180.000    10.0     3
+BJW           sp3_sp3_220         C34         C35         C36         C37     180.000    10.0     3
+BJW            sp2_sp3_50          O5         C37         C36         C35     120.000    10.0     6
+BJW              const_41          N2         C48          N1          C3       0.000    10.0     2
+BJW             sp3_sp3_5         C40         C39          O7         C33     180.000    10.0     3
+BJW            sp3_sp3_17          O8         C38          S1         C33     180.000    10.0     3
+BJW            sp3_sp3_19         C39         C38          O8         C41      60.000    10.0     3
+BJW             sp3_sp3_7          O8         C38         C39         C40      60.000    10.0     3
+BJW            sp3_sp3_23         C42         C41          O8         C38     180.000    10.0     3
+BJW            sp3_sp3_38          O7         C39         C40          O9     -60.000    10.0     3
+BJW           sp3_sp3_118         C41         C40          O9         H49     180.000    10.0     3
+BJW            sp3_sp3_29          O9         C40         C41         C42      60.000    10.0     3
+BJW           sp3_sp3_106         C40         C41         C42         O10     180.000    10.0     3
+BJW           sp3_sp3_103         C41         C42         O10          P1     180.000    10.0     3
+BJW           sp3_sp3_102         C42         O10          P1         O12      60.000    10.0     3
+BJW              const_39          N1         C48          N2          C1       0.000    10.0     2
+BJW            sp3_sp3_99          P2         O13          P1         O12      60.000    10.0     3
+BJW           sp3_sp3_116          P1         O13          P2         O16     -60.000    10.0     3
+BJW            sp3_sp3_94         C43         O16          P2         O13     180.000    10.0     3
+BJW            sp3_sp3_91         C44         C43         O16          P2     180.000    10.0     3
+BJW            sp3_sp3_82         O16         C43         C44         O17     180.000    10.0     3
+BJW            sp3_sp3_44         C43         C44         O17         C47     -60.000    10.0     3
+BJW            sp3_sp3_77         C43         C44         C45         O18     180.000    10.0     3
+BJW              const_19          N3         C10          C5          C6     180.000    10.0     2
+BJW              const_89         C10          C5          C6          C7       0.000    10.0     2
+BJW            sp3_sp3_47          N8         C47         O17         C44     180.000    10.0     3
+BJW            sp3_sp3_67         C46         C45         O18         H59     180.000    10.0     3
+BJW            sp3_sp3_62         O18         C45         C46         O19     -60.000    10.0     3
+BJW            sp3_sp3_70         C47         C46         O19         H61     180.000    10.0     3
+BJW            sp3_sp3_53         O19         C46         C47          N8      60.000    10.0     3
+BJW             sp2_sp3_1          C1          N8         C47         O17     150.000    10.0     6
+BJW              const_33          C5          C6          C7          C8       0.000    10.0     2
+BJW              const_29          C6          C7          C8          C9       0.000    10.0     2
+BJW              const_26          C7          C8          C9         C12     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BJW    chir_1    C14    N5    C15    C13    positive
+BJW    chir_2    C16    N4    C18    C17    both
+BJW    chir_3    C20    N6    C19    C29    positive
+BJW    chir_4    C33    S1    O7    N7    negative
+BJW    chir_5    C38    S1    O8    C39    negative
+BJW    chir_6    C39    O7    C38    C40    negative
+BJW    chir_7    C40    O9    C39    C41    negative
+BJW    chir_8    C41    O8    C40    C42    negative
+BJW    chir_9    P1    O13    O10    O11    both
+BJW    chir_10    P2    O13    O16    O14    both
+BJW    chir_11    C44    O17    C45    C43    negative
+BJW    chir_12    C45    O18    C44    C46    positive
+BJW    chir_13    C46    O19    C47    C45    negative
+BJW    chir_14    C47    O17    N8    C46    negative
+BJW    chir_15    N7    C33    C32    H37    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BJW    plan-1          C1   0.020
+BJW    plan-1          C2   0.020
+BJW    plan-1          C3   0.020
+BJW    plan-1          C4   0.020
+BJW    plan-1         C47   0.020
+BJW    plan-1         C48   0.020
+BJW    plan-1          H1   0.020
+BJW    plan-1         H63   0.020
+BJW    plan-1          N1   0.020
+BJW    plan-1         N10   0.020
+BJW    plan-1          N2   0.020
+BJW    plan-1          N8   0.020
+BJW    plan-1          N9   0.020
+BJW    plan-2         C10   0.020
+BJW    plan-2         C11   0.020
+BJW    plan-2         C12   0.020
+BJW    plan-2         C13   0.020
+BJW    plan-2          C5   0.020
+BJW    plan-2          C6   0.020
+BJW    plan-2          C7   0.020
+BJW    plan-2          C8   0.020
+BJW    plan-2          C9   0.020
+BJW    plan-2          H2   0.020
+BJW    plan-2          H3   0.020
+BJW    plan-2          H4   0.020
+BJW    plan-2          H5   0.020
+BJW    plan-2          H6   0.020
+BJW    plan-2          H7   0.020
+BJW    plan-2          N3   0.020
+BJW    plan-3         C22   0.020
+BJW    plan-3         C23   0.020
+BJW    plan-3         C24   0.020
+BJW    plan-3         C25   0.020
+BJW    plan-3         C26   0.020
+BJW    plan-3         C27   0.020
+BJW    plan-3         C28   0.020
+BJW    plan-3         H24   0.020
+BJW    plan-3         H25   0.020
+BJW    plan-3         H26   0.020
+BJW    plan-3         H27   0.020
+BJW    plan-3         H28   0.020
+BJW    plan-4         C14   0.020
+BJW    plan-4         C15   0.020
+BJW    plan-4          N4   0.020
+BJW    plan-4          O1   0.020
+BJW    plan-5         C15   0.020
+BJW    plan-5         C16   0.020
+BJW    plan-5         H11   0.020
+BJW    plan-5          N4   0.020
+BJW    plan-6         C14   0.020
+BJW    plan-6         C19   0.020
+BJW    plan-6         H19   0.020
+BJW    plan-6          N5   0.020
+BJW    plan-7         C19   0.020
+BJW    plan-7         C20   0.020
+BJW    plan-7          N5   0.020
+BJW    plan-7          O2   0.020
+BJW    plan-8         C20   0.020
+BJW    plan-8         C21   0.020
+BJW    plan-8         H21   0.020
+BJW    plan-8          N6   0.020
+BJW    plan-9         C21   0.020
+BJW    plan-9          N6   0.020
+BJW    plan-9          O3   0.020
+BJW    plan-9          O4   0.020
+BJW   plan-10         C36   0.020
+BJW   plan-10         C37   0.020
+BJW   plan-10          O5   0.020
+BJW   plan-10          O6   0.020
+BJW   plan-11          C3   0.020
+BJW   plan-11         H64   0.020
+BJW   plan-11         H65   0.020
+BJW   plan-11         N10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BJW            InChI                InChI  1.03 InChI=1S/C48H64N10O19P2S/c1-26(2)55-44(65)32(19-28-20-50-30-14-7-6-13-29(28)30)56-43(64)31(57-47(66)71-21-27-11-4-3-5-12-27)15-8-9-18-54-48(17-10-16-35(59)60)76-40-38(62)34(75-46(40)80-48)23-73-79(69,70)77-78(67,68)72-22-33-37(61)39(63)45(74-33)58-25-53-36-41(49)51-24-52-42(36)58/h3-7,11-14,20,24-26,31-34,37-40,45-46,50,54,61-63H,8-10,15-19,21-23H2,1-2H3,(H,55,65)(H,56,64)(H,57,66)(H,59,60)(H,67,68)(H,69,70)(H2,49,51,52)/t31-,32-,33+,34+,37+,38+,39+,40+,45+,46+,48+/m0/s1
+BJW         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                                                                                                                                 XUCUAEBJCFCJBU-KVSCZEPFSA-N
+BJW SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                                                                                                                              CC(C)NC(=O)[C@H](Cc1c[nH]c2ccccc12)NC(=O)[C@H](CCCCN[C@]3(CCCC(O)=O)O[C@@H]4[C@H](O)[C@@H](CO[P](O)(=O)O[P](O)(=O)OC[C@H]5O[C@H]([C@H](O)[C@@H]5O)n6cnc7c(N)ncnc67)O[C@@H]4S3)NC(=O)OCc8ccccc8
+BJW           SMILES               CACTVS 3.385                                                                                                                                                                                                                                                                                                             CC(C)NC(=O)[CH](Cc1c[nH]c2ccccc12)NC(=O)[CH](CCCCN[C]3(CCCC(O)=O)O[CH]4[CH](O)[CH](CO[P](O)(=O)O[P](O)(=O)OC[CH]5O[CH]([CH](O)[CH]5O)n6cnc7c(N)ncnc67)O[CH]4S3)NC(=O)OCc8ccccc8
+BJW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                                                                                                                                CC(C)NC(=O)[C@H](Cc1c[nH]c2c1cccc2)NC(=O)[C@H](CCCCN[C@@]3(O[C@@H]4[C@@H]([C@H](O[C@@H]4S3)COP(=O)(O)OP(=O)(O)OC[C@@H]5[C@H]([C@H]([C@@H](O5)n6cnc7c6ncnc7N)O)O)O)CCCC(=O)O)NC(=O)OCc8ccccc8
+BJW           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                                                                                                                                                                                 CC(C)NC(=O)C(Cc1c[nH]c2c1cccc2)NC(=O)C(CCCCNC3(OC4C(C(OC4S3)COP(=O)(O)OP(=O)(O)OCC5C(C(C(O5)n6cnc7c6ncnc7N)O)O)O)CCCC(=O)O)NC(=O)OCc8ccccc8
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BJW acedrg               243         "dictionary generator"                  
+BJW acedrg_database      11          "data source"                           
+BJW rdkit                2017.03.2   "Chemoinformatics tool"
+BJW refmac5              5.8.0238    "optimization tool"                     

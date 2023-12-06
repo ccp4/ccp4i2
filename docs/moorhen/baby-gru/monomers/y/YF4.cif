@@ -1,0 +1,221 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YF4     YF4      5-{[ETHYL(METHYL)AMINO]METHYL}-2-METHYL-5,6-DIHYDROPYRIMIDIN-4-AMINE     NON-POLYMER     29     13     .     
+#
+data_comp_YF4
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YF4     "N1'"   N       NRD6    0       3.940       104.447     53.756      
+YF4     "C2'"   C       CR6     0       3.714       105.766     53.821      
+YF4     CM2     C       CH3     0       4.901       106.674     53.829      
+YF4     "N3'"   N       NRD6    0       2.499       106.327     53.881      
+YF4     "C4'"   C       CR6     0       1.425       105.510     53.874      
+YF4     "N4'"   N       NH2     0       0.221       106.105     53.935      
+YF4     "C5'"   C       CR6     0       1.565       104.094     53.812      
+YF4     "C6'"   C       CR16    0       2.872       103.631     53.747      
+YF4     "C7'"   C       CH2     0       0.383       103.150     53.796      
+YF4     CM4     C       CH3     0       -1.261      103.173     57.235      
+YF4     C4      C       CH2     0       -0.429      103.683     56.083      
+YF4     N3      N       NT      0       -0.018      102.626     55.136      
+YF4     C2      C       CH3     0       1.008       101.737     55.709      
+YF4     HM21    H       H       0       4.608       107.600     53.859      
+YF4     HM22    H       H       0       5.426       106.529     53.025      
+YF4     HM23    H       H       0       5.449       106.485     54.608      
+YF4     "H4'1"  H       H       0       0.009       106.591     54.633      
+YF4     "H4'2"  H       H       0       -0.350      106.004     53.276      
+YF4     "H6'"   H       H       0       3.018       102.703     53.703      
+YF4     "H7'1"  H       H       0       0.600       102.390     53.214      
+YF4     "H7'2"  H       H       0       -0.386      103.610     53.398      
+YF4     HM41    H       H       0       -1.662      103.924     57.702      
+YF4     HM42    H       H       0       -0.696      102.675     57.848      
+YF4     HM43    H       H       0       -1.961      102.592     56.896      
+YF4     H41     H       H       0       0.370       104.124     56.441      
+YF4     H42     H       H       0       -0.948      104.358     55.599      
+YF4     H21     H       H       0       0.621       101.220     56.443      
+YF4     H22     H       H       0       1.754       102.269     56.049      
+YF4     H23     H       H       0       1.335       101.124     55.023      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YF4       "N1'"       "C2'"      DOUBLE       y     1.335  0.0101     1.335  0.0101
+YF4       "N1'"       "C6'"      SINGLE       y     1.340  0.0100     1.340  0.0100
+YF4       "C2'"         CM2      SINGLE       n     1.494  0.0103     1.494  0.0103
+YF4       "C2'"       "N3'"      SINGLE       y     1.333  0.0107     1.333  0.0107
+YF4       "N3'"       "C4'"      DOUBLE       y     1.343  0.0133     1.343  0.0133
+YF4       "C4'"       "N4'"      SINGLE       n     1.343  0.0151     1.343  0.0151
+YF4       "C4'"       "C5'"      SINGLE       y     1.416  0.0135     1.416  0.0135
+YF4       "C5'"       "C6'"      DOUBLE       y     1.383  0.0136     1.383  0.0136
+YF4       "C5'"       "C7'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+YF4       "C7'"          N3      SINGLE       n     1.473  0.0192     1.473  0.0192
+YF4         CM4          C4      SINGLE       n     1.508  0.0173     1.508  0.0173
+YF4          C4          N3      SINGLE       n     1.472  0.0129     1.472  0.0129
+YF4          N3          C2      SINGLE       n     1.465  0.0140     1.465  0.0140
+YF4         CM2        HM21      SINGLE       n     1.089  0.0100     0.971  0.0138
+YF4         CM2        HM22      SINGLE       n     1.089  0.0100     0.971  0.0138
+YF4         CM2        HM23      SINGLE       n     1.089  0.0100     0.971  0.0138
+YF4       "N4'"      "H4'1"      SINGLE       n     1.016  0.0100     0.877  0.0200
+YF4       "N4'"      "H4'2"      SINGLE       n     1.016  0.0100     0.877  0.0200
+YF4       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.940  0.0200
+YF4       "C7'"      "H7'1"      SINGLE       n     1.089  0.0100     0.981  0.0172
+YF4       "C7'"      "H7'2"      SINGLE       n     1.089  0.0100     0.981  0.0172
+YF4         CM4        HM41      SINGLE       n     1.089  0.0100     0.971  0.0145
+YF4         CM4        HM42      SINGLE       n     1.089  0.0100     0.971  0.0145
+YF4         CM4        HM43      SINGLE       n     1.089  0.0100     0.971  0.0145
+YF4          C4         H41      SINGLE       n     1.089  0.0100     0.980  0.0143
+YF4          C4         H42      SINGLE       n     1.089  0.0100     0.980  0.0143
+YF4          C2         H21      SINGLE       n     1.089  0.0100     0.977  0.0113
+YF4          C2         H22      SINGLE       n     1.089  0.0100     0.977  0.0113
+YF4          C2         H23      SINGLE       n     1.089  0.0100     0.977  0.0113
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YF4       "C2'"       "N1'"       "C6'"     117.093    1.65
+YF4       "N1'"       "C2'"         CM2     117.906    1.50
+YF4       "N1'"       "C2'"       "N3'"     124.399    1.50
+YF4         CM2       "C2'"       "N3'"     117.695    1.52
+YF4       "C2'"         CM2        HM21     109.546    1.50
+YF4       "C2'"         CM2        HM22     109.546    1.50
+YF4       "C2'"         CM2        HM23     109.546    1.50
+YF4        HM21         CM2        HM22     109.397    1.50
+YF4        HM21         CM2        HM23     109.397    1.50
+YF4        HM22         CM2        HM23     109.397    1.50
+YF4       "C2'"       "N3'"       "C4'"     117.145    1.69
+YF4       "N3'"       "C4'"       "N4'"     116.812    1.55
+YF4       "N3'"       "C4'"       "C5'"     121.951    1.50
+YF4       "N4'"       "C4'"       "C5'"     121.236    1.50
+YF4       "C4'"       "N4'"      "H4'1"     119.860    1.50
+YF4       "C4'"       "N4'"      "H4'2"     119.860    1.50
+YF4      "H4'1"       "N4'"      "H4'2"     120.280    1.85
+YF4       "C4'"       "C5'"       "C6'"     116.265    1.50
+YF4       "C4'"       "C5'"       "C7'"     121.884    1.50
+YF4       "C6'"       "C5'"       "C7'"     121.851    1.50
+YF4       "N1'"       "C6'"       "C5'"     123.147    1.50
+YF4       "N1'"       "C6'"       "H6'"     118.449    1.50
+YF4       "C5'"       "C6'"       "H6'"     118.404    1.50
+YF4       "C5'"       "C7'"          N3     112.673    1.70
+YF4       "C5'"       "C7'"      "H7'1"     109.005    1.50
+YF4       "C5'"       "C7'"      "H7'2"     109.005    1.50
+YF4          N3       "C7'"      "H7'1"     109.018    1.50
+YF4          N3       "C7'"      "H7'2"     109.018    1.50
+YF4      "H7'1"       "C7'"      "H7'2"     107.928    1.50
+YF4          C4         CM4        HM41     109.529    1.50
+YF4          C4         CM4        HM42     109.529    1.50
+YF4          C4         CM4        HM43     109.529    1.50
+YF4        HM41         CM4        HM42     109.415    1.50
+YF4        HM41         CM4        HM43     109.415    1.50
+YF4        HM42         CM4        HM43     109.415    1.50
+YF4         CM4          C4          N3     113.593    1.50
+YF4         CM4          C4         H41     109.135    1.50
+YF4         CM4          C4         H42     109.135    1.50
+YF4          N3          C4         H41     109.010    1.50
+YF4          N3          C4         H42     109.010    1.50
+YF4         H41          C4         H42     107.838    1.50
+YF4       "C7'"          N3          C4     111.357    1.81
+YF4       "C7'"          N3          C2     110.353    1.50
+YF4          C4          N3          C2     110.882    1.50
+YF4          N3          C2         H21     109.612    1.50
+YF4          N3          C2         H22     109.612    1.50
+YF4          N3          C2         H23     109.612    1.50
+YF4         H21          C2         H22     109.408    1.50
+YF4         H21          C2         H23     109.408    1.50
+YF4         H22          C2         H23     109.408    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YF4       const_sp2_sp2_2         CM2       "C2'"       "N1'"       "C6'"     180.000     5.0     2
+YF4              const_15       "C5'"       "C6'"       "N1'"       "C2'"       0.000    10.0     2
+YF4            sp3_sp3_16         CM4          C4          N3       "C7'"     180.000    10.0     3
+YF4            sp3_sp3_22         H21          C2          N3       "C7'"     180.000    10.0     3
+YF4             sp2_sp3_1       "N1'"       "C2'"         CM2        HM21     150.000    10.0     6
+YF4       const_sp2_sp2_4         CM2       "C2'"       "N3'"       "C4'"     180.000     5.0     2
+YF4       const_sp2_sp2_6       "N4'"       "C4'"       "N3'"       "C2'"     180.000     5.0     2
+YF4             sp2_sp2_3       "N3'"       "C4'"       "N4'"      "H4'1"       0.000     5.0     2
+YF4              const_10       "N4'"       "C4'"       "C5'"       "C7'"       0.000    10.0     2
+YF4              const_13       "C7'"       "C5'"       "C6'"       "N1'"     180.000    10.0     2
+YF4             sp2_sp3_8       "C4'"       "C5'"       "C7'"          N3     -90.000    10.0     6
+YF4             sp3_sp3_1       "C5'"       "C7'"          N3          C4     180.000    10.0     3
+YF4             sp3_sp3_7          N3          C4         CM4        HM41     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+YF4    chir_1    N3    "C7'"    C4    C2    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YF4    plan-1       "C2'"   0.020
+YF4    plan-1       "C4'"   0.020
+YF4    plan-1       "C5'"   0.020
+YF4    plan-1       "C6'"   0.020
+YF4    plan-1       "C7'"   0.020
+YF4    plan-1         CM2   0.020
+YF4    plan-1       "H6'"   0.020
+YF4    plan-1       "N1'"   0.020
+YF4    plan-1       "N3'"   0.020
+YF4    plan-1       "N4'"   0.020
+YF4    plan-2       "C4'"   0.020
+YF4    plan-2      "H4'1"   0.020
+YF4    plan-2      "H4'2"   0.020
+YF4    plan-2       "N4'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YF4           SMILES              ACDLabs 10.04                                                           n1c(N)c(cnc1C)CN(CC)C
+YF4 SMILES_CANONICAL               CACTVS 3.341                                                             CCN(C)Cc1cnc(C)nc1N
+YF4           SMILES               CACTVS 3.341                                                             CCN(C)Cc1cnc(C)nc1N
+YF4 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                             CCN(C)Cc1cnc(nc1N)C
+YF4           SMILES "OpenEye OEToolkits" 1.5.0                                                             CCN(C)Cc1cnc(nc1N)C
+YF4            InChI                InChI  1.03 InChI=1S/C9H16N4/c1-4-13(3)6-8-5-11-7(2)12-9(8)10/h5H,4,6H2,1-3H3,(H2,10,11,12)
+YF4         InChIKey                InChI  1.03                                                     UMZINNCUCWRLDQ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YF4 acedrg               243         "dictionary generator"                  
+YF4 acedrg_database      11          "data source"                           
+YF4 rdkit                2017.03.2   "Chemoinformatics tool"
+YF4 refmac5              5.8.0238    "optimization tool"                     

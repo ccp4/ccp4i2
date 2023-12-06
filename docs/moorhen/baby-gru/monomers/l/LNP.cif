@@ -1,0 +1,515 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LNP     LNP      (3alpha,9beta,10alpha,13alpha)-30-cyclopropylidenelanost-7-en-3-ol     NON-POLYMER     88     34     .     
+#
+data_comp_LNP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LNP     CAA     C       CH2     0       10.946      19.972      -35.268     
+LNP     CAB     C       CH1     0       12.239      19.317      -35.817     
+LNP     CAC     C       CR66    0       13.453      19.695      -34.981     
+LNP     CAD     C       CT      0       13.215      20.331      -33.608     
+LNP     CAE     C       CT      0       11.964      19.638      -32.874     
+LNP     CAF     C       CH2     0       10.723      19.922      -33.733     
+LNP     CAG     C       CT      0       12.484      19.432      -37.373     
+LNP     CAH     C       CH1     0       13.829      18.724      -37.773     
+LNP     CAI     C       CH2     0       15.004      18.955      -36.803     
+LNP     CAJ     C       CR16    0       14.673      19.477      -35.440     
+LNP     CAK     C       CH2     0       12.614      20.909      -37.796     
+LNP     CAL     C       CH2     0       13.080      21.142      -39.240     
+LNP     CAM     C       CH1     0       14.331      20.365      -39.601     
+LNP     CAN     C       CT      0       14.285      18.855      -39.276     
+LNP     CAO     C       CH2     0       14.286      20.155      -32.499     
+LNP     CAP     C       CH2     0       13.546      20.402      -31.186     
+LNP     CAQ     C       CH1     0       12.016      20.297      -31.456     
+LNP     CAR     C       C1      0       13.061      21.846      -33.857     
+LNP     CAS     C       CH3     0       12.097      18.108      -32.696     
+LNP     CAT     C       CH3     0       11.253      18.821      -38.092     
+LNP     CAV     C       CH1     0       11.244      19.672      -30.272     
+LNP     CAW     C       CH3     0       15.693      18.264      -39.529     
+LNP     CAX     C       CH3     0       13.360      18.142      -40.289     
+LNP     CAY     C       CH3     0       9.765       19.442      -30.580     
+LNP     CAZ     C       CH2     0       11.384      20.516      -28.991     
+LNP     CBA     C       CH2     0       11.265      19.733      -27.704     
+LNP     CBB     C       CH2     0       11.464      20.575      -26.467     
+LNP     CBC     C       CH1     0       11.064      19.909      -25.143     
+LNP     CBD     C       CH3     0       11.900      18.662      -24.880     
+LNP     CBE     C       CH3     0       11.157      20.879      -23.967     
+LNP     CBF     C       C       0       13.966      22.607      -34.442     
+LNP     CBG     C       CH2     0       14.345      23.921      -34.925     
+LNP     CBH     C       CH2     0       15.277      22.747      -35.046     
+LNP     OBH     O       OH1     0       14.615      20.582      -40.986     
+LNP     HAA     H       H       0       10.936      20.907      -35.543     
+LNP     HAAA    H       H       0       10.176      19.544      -35.682     
+LNP     HAB     H       H       0       12.116      18.351      -35.661     
+LNP     HAF     H       H       0       10.043      19.245      -33.541     
+LNP     HAFA    H       H       0       10.354      20.783      -33.451     
+LNP     HAH     H       H       0       13.631      17.762      -37.673     
+LNP     HAI     H       H       0       15.636      19.590      -37.201     
+LNP     HAIA    H       H       0       15.485      18.105      -36.694     
+LNP     HAJ     H       H       0       15.404      19.673      -34.870     
+LNP     HAK     H       H       0       13.246      21.357      -37.195     
+LNP     HAKA    H       H       0       11.741      21.343      -37.683     
+LNP     HAL     H       H       0       13.259      22.093      -39.360     
+LNP     HALA    H       H       0       12.364      20.900      -39.854     
+LNP     HAM     H       H       0       15.075      20.759      -39.084     
+LNP     HAO     H       H       0       15.018      20.797      -32.611     
+LNP     HAOA    H       H       0       14.661      19.250      -32.523     
+LNP     HAP     H       H       0       13.765      21.291      -30.840     
+LNP     HAPA    H       H       0       13.816      19.737      -30.519     
+LNP     HAQ     H       H       0       11.679      21.218      -31.546     
+LNP     HAR     H       H       0       12.254      22.245      -33.571     
+LNP     HAS     H       H       0       12.754      17.907      -32.008     
+LNP     HASA    H       H       0       12.374      17.694      -33.524     
+LNP     HASB    H       H       0       11.243      17.733      -32.429     
+LNP     HAT     H       H       0       11.029      19.343      -38.882     
+LNP     HATA    H       H       0       10.485      18.802      -37.511     
+LNP     HATB    H       H       0       11.454      17.906      -38.362     
+LNP     HAV     H       H       0       11.647      18.793      -30.083     
+LNP     HAW     H       H       0       16.375      18.861      -39.183     
+LNP     HAWA    H       H       0       15.842      18.145      -40.480     
+LNP     HAWB    H       H       0       15.766      17.403      -39.085     
+LNP     HAX     H       H       0       12.570      18.673      -40.451     
+LNP     HAXA    H       H       0       13.098      17.277      -39.934     
+LNP     HAXB    H       H       0       13.821      18.011      -41.133     
+LNP     HAY     H       H       0       9.441       20.145      -31.170     
+LNP     HAYA    H       H       0       9.249       19.455      -29.755     
+LNP     HAYB    H       H       0       9.649       18.580      -31.014     
+LNP     HAZ     H       H       0       10.689      21.208      -28.996     
+LNP     HAZA    H       H       0       12.253      20.967      -28.993     
+LNP     HBA     H       H       0       11.931      19.013      -27.709     
+LNP     HBAA    H       H       0       10.377      19.317      -27.664     
+LNP     HBB     H       H       0       10.941      21.399      -26.570     
+LNP     HBBA    H       H       0       12.410      20.828      -26.412     
+LNP     HBC     H       H       0       10.120      19.625      -25.225     
+LNP     HBD     H       H       0       12.836      18.851      -25.071     
+LNP     HBDA    H       H       0       11.594      17.938      -25.454     
+LNP     HBDB    H       H       0       11.808      18.396      -23.949     
+LNP     HBE     H       H       0       11.152      21.796      -24.293     
+LNP     HBEA    H       H       0       11.979      20.720      -23.472     
+LNP     HBEB    H       H       0       10.395      20.744      -23.378     
+LNP     HBG     H       H       0       13.929      24.249      -35.745     
+LNP     HBGA    H       H       0       14.571      24.607      -34.269     
+LNP     HBH     H       H       0       15.417      22.375      -35.937     
+LNP     HBHA    H       H       0       16.058      22.733      -34.461     
+LNP     HOBH    H       H       0       15.445      20.677      -41.093     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LNP         CAA         CAB      SINGLE       n     1.536  0.0107     1.536  0.0107
+LNP         CAA         CAF      SINGLE       n     1.541  0.0140     1.541  0.0140
+LNP         CAB         CAC      SINGLE       n     1.516  0.0100     1.516  0.0100
+LNP         CAB         CAG      SINGLE       n     1.560  0.0101     1.560  0.0101
+LNP         CAC         CAD      SINGLE       n     1.515  0.0138     1.515  0.0138
+LNP         CAC         CAJ      DOUBLE       n     1.326  0.0100     1.326  0.0100
+LNP         CAD         CAE      SINGLE       n     1.599  0.0125     1.599  0.0125
+LNP         CAD         CAO      SINGLE       n     1.549  0.0100     1.549  0.0100
+LNP         CAD         CAR      SINGLE       n     1.528  0.0134     1.528  0.0134
+LNP         CAE         CAF      SINGLE       n     1.530  0.0100     1.530  0.0100
+LNP         CAE         CAQ      SINGLE       n     1.557  0.0100     1.557  0.0100
+LNP         CAE         CAS      SINGLE       n     1.536  0.0100     1.536  0.0100
+LNP         CAG         CAH      SINGLE       n     1.553  0.0100     1.553  0.0100
+LNP         CAG         CAK      SINGLE       n     1.535  0.0100     1.535  0.0100
+LNP         CAG         CAT      SINGLE       n     1.540  0.0100     1.540  0.0100
+LNP         CAH         CAI      SINGLE       n     1.527  0.0100     1.527  0.0100
+LNP         CAH         CAN      SINGLE       n     1.560  0.0100     1.560  0.0100
+LNP         CAI         CAJ      SINGLE       n     1.500  0.0100     1.500  0.0100
+LNP         CAK         CAL      SINGLE       n     1.529  0.0100     1.529  0.0100
+LNP         CAL         CAM      SINGLE       n     1.512  0.0100     1.512  0.0100
+LNP         CAM         CAN      SINGLE       n     1.536  0.0107     1.536  0.0107
+LNP         CAM         OBH      SINGLE       n     1.428  0.0123     1.428  0.0123
+LNP         CAN         CAW      SINGLE       n     1.539  0.0100     1.539  0.0100
+LNP         CAN         CAX      SINGLE       n     1.539  0.0100     1.539  0.0100
+LNP         CAO         CAP      SINGLE       n     1.527  0.0103     1.527  0.0103
+LNP         CAP         CAQ      SINGLE       n     1.553  0.0100     1.553  0.0100
+LNP         CAQ         CAV      SINGLE       n     1.539  0.0100     1.539  0.0100
+LNP         CAR         CBF      DOUBLE       n     1.315  0.0124     1.315  0.0124
+LNP         CAV         CAY      SINGLE       n     1.526  0.0100     1.526  0.0100
+LNP         CAV         CAZ      SINGLE       n     1.536  0.0100     1.536  0.0100
+LNP         CAZ         CBA      SINGLE       n     1.509  0.0200     1.509  0.0200
+LNP         CBA         CBB      SINGLE       n     1.509  0.0200     1.509  0.0200
+LNP         CBB         CBC      SINGLE       n     1.529  0.0177     1.529  0.0177
+LNP         CBC         CBD      SINGLE       n     1.521  0.0151     1.521  0.0151
+LNP         CBC         CBE      SINGLE       n     1.521  0.0151     1.521  0.0151
+LNP         CBF         CBG      SINGLE       n     1.452  0.0192     1.452  0.0192
+LNP         CBF         CBH      SINGLE       n     1.452  0.0192     1.452  0.0192
+LNP         CBG         CBH      SINGLE       n     1.500  0.0200     1.500  0.0200
+LNP         CAA         HAA      SINGLE       n     1.089  0.0100     0.975  0.0100
+LNP         CAA        HAAA      SINGLE       n     1.089  0.0100     0.975  0.0100
+LNP         CAB         HAB      SINGLE       n     1.089  0.0100     0.987  0.0100
+LNP         CAF         HAF      SINGLE       n     1.089  0.0100     0.979  0.0200
+LNP         CAF        HAFA      SINGLE       n     1.089  0.0100     0.979  0.0200
+LNP         CAH         HAH      SINGLE       n     1.089  0.0100     0.987  0.0110
+LNP         CAI         HAI      SINGLE       n     1.089  0.0100     0.983  0.0152
+LNP         CAI        HAIA      SINGLE       n     1.089  0.0100     0.983  0.0152
+LNP         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.949  0.0200
+LNP         CAK         HAK      SINGLE       n     1.089  0.0100     0.982  0.0116
+LNP         CAK        HAKA      SINGLE       n     1.089  0.0100     0.982  0.0116
+LNP         CAL         HAL      SINGLE       n     1.089  0.0100     0.975  0.0135
+LNP         CAL        HALA      SINGLE       n     1.089  0.0100     0.975  0.0135
+LNP         CAM         HAM      SINGLE       n     1.089  0.0100     0.989  0.0181
+LNP         CAO         HAO      SINGLE       n     1.089  0.0100     0.980  0.0130
+LNP         CAO        HAOA      SINGLE       n     1.089  0.0100     0.980  0.0130
+LNP         CAP         HAP      SINGLE       n     1.089  0.0100     0.979  0.0112
+LNP         CAP        HAPA      SINGLE       n     1.089  0.0100     0.979  0.0112
+LNP         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.986  0.0165
+LNP         CAR         HAR      SINGLE       n     1.082  0.0130     0.946  0.0200
+LNP         CAS         HAS      SINGLE       n     1.089  0.0100     0.974  0.0200
+LNP         CAS        HASA      SINGLE       n     1.089  0.0100     0.974  0.0200
+LNP         CAS        HASB      SINGLE       n     1.089  0.0100     0.974  0.0200
+LNP         CAT         HAT      SINGLE       n     1.089  0.0100     0.978  0.0200
+LNP         CAT        HATA      SINGLE       n     1.089  0.0100     0.978  0.0200
+LNP         CAT        HATB      SINGLE       n     1.089  0.0100     0.978  0.0200
+LNP         CAV         HAV      SINGLE       n     1.089  0.0100     0.986  0.0200
+LNP         CAW         HAW      SINGLE       n     1.089  0.0100     0.971  0.0171
+LNP         CAW        HAWA      SINGLE       n     1.089  0.0100     0.971  0.0171
+LNP         CAW        HAWB      SINGLE       n     1.089  0.0100     0.971  0.0171
+LNP         CAX         HAX      SINGLE       n     1.089  0.0100     0.971  0.0171
+LNP         CAX        HAXA      SINGLE       n     1.089  0.0100     0.971  0.0171
+LNP         CAX        HAXB      SINGLE       n     1.089  0.0100     0.971  0.0171
+LNP         CAY         HAY      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNP         CAY        HAYA      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNP         CAY        HAYB      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNP         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.981  0.0160
+LNP         CAZ        HAZA      SINGLE       n     1.089  0.0100     0.981  0.0160
+LNP         CBA         HBA      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNP         CBA        HBAA      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNP         CBB         HBB      SINGLE       n     1.089  0.0100     0.981  0.0160
+LNP         CBB        HBBA      SINGLE       n     1.089  0.0100     0.981  0.0160
+LNP         CBC         HBC      SINGLE       n     1.089  0.0100     0.989  0.0162
+LNP         CBD         HBD      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNP         CBD        HBDA      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNP         CBD        HBDB      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNP         CBE         HBE      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNP         CBE        HBEA      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNP         CBE        HBEB      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNP         CBG         HBG      SINGLE       n     1.089  0.0100     0.976  0.0200
+LNP         CBG        HBGA      SINGLE       n     1.089  0.0100     0.976  0.0200
+LNP         CBH         HBH      SINGLE       n     1.089  0.0100     0.976  0.0200
+LNP         CBH        HBHA      SINGLE       n     1.089  0.0100     0.976  0.0200
+LNP         OBH        HOBH      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LNP         CAB         CAA         CAF     114.995    1.50
+LNP         CAB         CAA         HAA     108.556    1.50
+LNP         CAB         CAA        HAAA     108.556    1.50
+LNP         CAF         CAA         HAA     108.860    1.50
+LNP         CAF         CAA        HAAA     108.860    1.50
+LNP         HAA         CAA        HAAA     107.720    1.50
+LNP         CAA         CAB         CAC     112.453    1.50
+LNP         CAA         CAB         CAG     114.712    1.50
+LNP         CAA         CAB         HAB     105.714    1.50
+LNP         CAC         CAB         CAG     111.696    1.50
+LNP         CAC         CAB         HAB     105.568    1.50
+LNP         CAG         CAB         HAB     105.688    1.50
+LNP         CAB         CAC         CAD     115.719    2.90
+LNP         CAB         CAC         CAJ     121.851    1.50
+LNP         CAD         CAC         CAJ     122.430    3.00
+LNP         CAC         CAD         CAE     112.192    2.10
+LNP         CAC         CAD         CAO     117.571    2.47
+LNP         CAC         CAD         CAR     108.197    3.00
+LNP         CAE         CAD         CAO     102.638    2.08
+LNP         CAE         CAD         CAR     113.530    2.76
+LNP         CAO         CAD         CAR     111.098    2.60
+LNP         CAD         CAE         CAF     111.036    2.95
+LNP         CAD         CAE         CAQ     102.638    2.08
+LNP         CAD         CAE         CAS     112.927    1.94
+LNP         CAF         CAE         CAQ     117.506    1.50
+LNP         CAF         CAE         CAS     109.296    1.50
+LNP         CAQ         CAE         CAS     109.192    1.50
+LNP         CAA         CAF         CAE     114.416    1.50
+LNP         CAA         CAF         HAF     109.340    1.50
+LNP         CAA         CAF        HAFA     109.340    1.50
+LNP         CAE         CAF         HAF     108.978    1.50
+LNP         CAE         CAF        HAFA     108.978    1.50
+LNP         HAF         CAF        HAFA     107.979    1.50
+LNP         CAB         CAG         CAH     106.246    1.50
+LNP         CAB         CAG         CAK     109.398    1.50
+LNP         CAB         CAG         CAT     109.139    2.08
+LNP         CAH         CAG         CAK     107.870    1.50
+LNP         CAH         CAG         CAT     113.719    1.50
+LNP         CAK         CAG         CAT     107.826    1.53
+LNP         CAG         CAH         CAI     110.746    1.50
+LNP         CAG         CAH         CAN     117.372    1.50
+LNP         CAG         CAH         HAH     104.615    1.50
+LNP         CAI         CAH         CAN     112.948    1.50
+LNP         CAI         CAH         HAH     104.786    1.50
+LNP         CAN         CAH         HAH     104.384    1.50
+LNP         CAH         CAI         CAJ     112.266    1.50
+LNP         CAH         CAI         HAI     109.187    1.50
+LNP         CAH         CAI        HAIA     109.187    1.50
+LNP         CAJ         CAI         HAI     109.058    1.50
+LNP         CAJ         CAI        HAIA     109.058    1.50
+LNP         HAI         CAI        HAIA     107.532    1.50
+LNP         CAC         CAJ         CAI     124.813    1.50
+LNP         CAC         CAJ         HAJ     117.564    1.50
+LNP         CAI         CAJ         HAJ     117.616    1.50
+LNP         CAG         CAK         CAL     114.011    1.50
+LNP         CAG         CAK         HAK     108.766    1.50
+LNP         CAG         CAK        HAKA     108.766    1.50
+LNP         CAL         CAK         HAK     108.701    1.50
+LNP         CAL         CAK        HAKA     108.701    1.50
+LNP         HAK         CAK        HAKA     107.765    1.50
+LNP         CAK         CAL         CAM     111.360    1.50
+LNP         CAK         CAL         HAL     109.494    1.50
+LNP         CAK         CAL        HALA     109.494    1.50
+LNP         CAM         CAL         HAL     109.415    1.50
+LNP         CAM         CAL        HALA     109.415    1.50
+LNP         HAL         CAL        HALA     108.255    1.50
+LNP         CAL         CAM         CAN     113.350    1.50
+LNP         CAL         CAM         OBH     109.166    1.66
+LNP         CAL         CAM         HAM     107.851    1.50
+LNP         CAN         CAM         OBH     110.684    1.83
+LNP         CAN         CAM         HAM     107.755    1.50
+LNP         OBH         CAM         HAM     107.801    1.50
+LNP         CAH         CAN         CAM     107.833    1.50
+LNP         CAH         CAN         CAW     111.708    2.87
+LNP         CAH         CAN         CAX     111.708    2.87
+LNP         CAM         CAN         CAW     109.077    1.76
+LNP         CAM         CAN         CAX     109.077    1.76
+LNP         CAW         CAN         CAX     107.543    1.50
+LNP         CAD         CAO         CAP     105.427    1.50
+LNP         CAD         CAO         HAO     110.630    1.50
+LNP         CAD         CAO        HAOA     110.630    1.50
+LNP         CAP         CAO         HAO     110.955    1.50
+LNP         CAP         CAO        HAOA     110.955    1.50
+LNP         HAO         CAO        HAOA     108.966    1.50
+LNP         CAO         CAP         CAQ     107.456    1.50
+LNP         CAO         CAP         HAP     110.201    1.50
+LNP         CAO         CAP        HAPA     110.201    1.50
+LNP         CAQ         CAP         HAP     110.194    1.50
+LNP         CAQ         CAP        HAPA     110.194    1.50
+LNP         HAP         CAP        HAPA     108.534    1.50
+LNP         CAE         CAQ         CAP     102.692    1.50
+LNP         CAE         CAQ         CAV     119.624    1.50
+LNP         CAE         CAQ         HAQ     107.500    1.50
+LNP         CAP         CAQ         CAV     112.192    1.50
+LNP         CAP         CAQ         HAQ     107.200    1.50
+LNP         CAV         CAQ         HAQ     107.114    1.50
+LNP         CAD         CAR         CBF     121.503    3.00
+LNP         CAD         CAR         HAR     117.795    1.79
+LNP         CBF         CAR         HAR     120.702    1.87
+LNP         CAE         CAS         HAS     109.469    1.50
+LNP         CAE         CAS        HASA     109.469    1.50
+LNP         CAE         CAS        HASB     109.469    1.50
+LNP         HAS         CAS        HASA     109.337    1.50
+LNP         HAS         CAS        HASB     109.337    1.50
+LNP        HASA         CAS        HASB     109.337    1.50
+LNP         CAG         CAT         HAT     109.618    1.50
+LNP         CAG         CAT        HATA     109.618    1.50
+LNP         CAG         CAT        HATB     109.618    1.50
+LNP         HAT         CAT        HATA     109.398    1.50
+LNP         HAT         CAT        HATB     109.398    1.50
+LNP        HATA         CAT        HATB     109.398    1.50
+LNP         CAQ         CAV         CAY     112.864    1.50
+LNP         CAQ         CAV         CAZ     110.222    1.50
+LNP         CAQ         CAV         HAV     107.632    1.50
+LNP         CAY         CAV         CAZ     110.535    1.50
+LNP         CAY         CAV         HAV     107.737    1.50
+LNP         CAZ         CAV         HAV     107.621    1.50
+LNP         CAN         CAW         HAW     109.506    1.50
+LNP         CAN         CAW        HAWA     109.506    1.50
+LNP         CAN         CAW        HAWB     109.506    1.50
+LNP         HAW         CAW        HAWA     109.375    1.50
+LNP         HAW         CAW        HAWB     109.375    1.50
+LNP        HAWA         CAW        HAWB     109.375    1.50
+LNP         CAN         CAX         HAX     109.506    1.50
+LNP         CAN         CAX        HAXA     109.506    1.50
+LNP         CAN         CAX        HAXB     109.506    1.50
+LNP         HAX         CAX        HAXA     109.375    1.50
+LNP         HAX         CAX        HAXB     109.375    1.50
+LNP        HAXA         CAX        HAXB     109.375    1.50
+LNP         CAV         CAY         HAY     109.640    1.50
+LNP         CAV         CAY        HAYA     109.640    1.50
+LNP         CAV         CAY        HAYB     109.640    1.50
+LNP         HAY         CAY        HAYA     109.345    1.50
+LNP         HAY         CAY        HAYB     109.345    1.50
+LNP        HAYA         CAY        HAYB     109.345    1.50
+LNP         CAV         CAZ         CBA     115.300    1.50
+LNP         CAV         CAZ         HAZ     108.444    1.50
+LNP         CAV         CAZ        HAZA     108.444    1.50
+LNP         CBA         CAZ         HAZ     108.377    1.50
+LNP         CBA         CAZ        HAZA     108.377    1.50
+LNP         HAZ         CAZ        HAZA     107.884    1.50
+LNP         CAZ         CBA         CBB     113.095    1.50
+LNP         CAZ         CBA         HBA     108.937    1.50
+LNP         CAZ         CBA        HBAA     108.937    1.50
+LNP         CBB         CBA         HBA     108.762    1.50
+LNP         CBB         CBA        HBAA     108.762    1.50
+LNP         HBA         CBA        HBAA     107.646    1.50
+LNP         CBA         CBB         CBC     115.585    1.50
+LNP         CBA         CBB         HBB     108.469    1.50
+LNP         CBA         CBB        HBBA     108.469    1.50
+LNP         CBC         CBB         HBB     108.407    1.50
+LNP         CBC         CBB        HBBA     108.407    1.50
+LNP         HBB         CBB        HBBA     107.657    1.50
+LNP         CBB         CBC         CBD     111.368    1.50
+LNP         CBB         CBC         CBE     111.368    1.50
+LNP         CBB         CBC         HBC     107.933    1.50
+LNP         CBD         CBC         CBE     110.507    1.50
+LNP         CBD         CBC         HBC     108.052    1.50
+LNP         CBE         CBC         HBC     108.052    1.50
+LNP         CBC         CBD         HBD     109.488    1.50
+LNP         CBC         CBD        HBDA     109.488    1.50
+LNP         CBC         CBD        HBDB     109.488    1.50
+LNP         HBD         CBD        HBDA     109.411    1.50
+LNP         HBD         CBD        HBDB     109.411    1.50
+LNP        HBDA         CBD        HBDB     109.411    1.50
+LNP         CBC         CBE         HBE     109.488    1.50
+LNP         CBC         CBE        HBEA     109.488    1.50
+LNP         CBC         CBE        HBEB     109.488    1.50
+LNP         HBE         CBE        HBEA     109.411    1.50
+LNP         HBE         CBE        HBEB     109.411    1.50
+LNP        HBEA         CBE        HBEB     109.411    1.50
+LNP         CAR         CBF         CBG     148.724    3.00
+LNP         CAR         CBF         CBH     148.724    3.00
+LNP         CBG         CBF         CBH      62.552    1.50
+LNP         CBF         CBG         CBH      58.306    1.50
+LNP         CBF         CBG         HBG     118.230    1.77
+LNP         CBF         CBG        HBGA     118.230    1.77
+LNP         CBH         CBG         HBG     117.347    1.50
+LNP         CBH         CBG        HBGA     117.347    1.50
+LNP         HBG         CBG        HBGA     115.339    1.61
+LNP         CBF         CBH         CBG      58.306    1.50
+LNP         CBF         CBH         HBH     118.230    1.77
+LNP         CBF         CBH        HBHA     118.230    1.77
+LNP         CBG         CBH         HBH     117.347    1.50
+LNP         CBG         CBH        HBHA     117.347    1.50
+LNP         HBH         CBH        HBHA     115.339    1.61
+LNP         CAM         OBH        HOBH     108.917    2.79
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LNP             sp3_sp3_1         CAF         CAA         CAB         CAC      60.000    10.0     3
+LNP           sp3_sp3_119         CAB         CAA         CAF        HAFA      60.000    10.0     3
+LNP           sp3_sp3_100         CAG         CAK         CAL         CAM      60.000    10.0     3
+LNP            sp3_sp3_92         CAK         CAL         CAM         OBH      60.000    10.0     3
+LNP            sp3_sp3_87         OBH         CAM         CAN         CAW     180.000    10.0     3
+LNP           sp3_sp3_173         HAM         CAM         OBH        HOBH     -60.000    10.0     3
+LNP           sp3_sp3_182         CAX         CAN         CAW        HAWB     180.000    10.0     3
+LNP           sp3_sp3_191         CAW         CAN         CAX        HAXB     180.000    10.0     3
+LNP            sp3_sp3_64         CAD         CAO         CAP         CAQ     -60.000    10.0     3
+LNP            sp3_sp3_56         CAO         CAP         CAQ         CAV     180.000    10.0     3
+LNP           sp3_sp3_194         CAE         CAQ         CAV         HAV      60.000    10.0     3
+LNP             sp2_sp2_7         HAR         CAR         CBF         CBG       0.000     5.0     2
+LNP             sp2_sp3_1         CAD         CAC         CAB         CAA       0.000    10.0     6
+LNP           sp3_sp3_133         HAB         CAB         CAG         CAK      60.000    10.0     3
+LNP           sp3_sp3_206         CAZ         CAV         CAY        HAYB     -60.000    10.0     3
+LNP           sp3_sp3_215         CAY         CAV         CAZ        HAZA     -60.000    10.0     3
+LNP           sp3_sp3_221         CAV         CAZ         CBA        HBAA      60.000    10.0     3
+LNP           sp3_sp3_230         CAZ         CBA         CBB        HBBA      60.000    10.0     3
+LNP           sp3_sp3_240         HBB         CBB         CBC         CBE      60.000    10.0     3
+LNP           sp3_sp3_248         CBB         CBC         CBD        HBDB      60.000    10.0     3
+LNP           sp3_sp3_260         CBB         CBC         CBE        HBEB     -60.000    10.0     3
+LNP             sp2_sp3_9         CAB         CAC         CAD         CAR    -120.000    10.0     6
+LNP             sp2_sp2_1         CAB         CAC         CAJ         CAI       0.000     5.0     2
+LNP       const_sp2_sp2_1         CAR         CBF         CBG         CBH     120.000     5.0     6
+LNP            sp2_sp3_31         CBG         CBF         CBH         HBH     180.000    10.0     6
+LNP           sp3_sp3_143         CAR         CAD         CAO        HAOA     180.000    10.0     3
+LNP            sp2_sp3_25         CBF         CAR         CAD         CAO    -120.000    10.0     6
+LNP            sp3_sp3_18         CAR         CAD         CAE         CAS     -60.000    10.0     3
+LNP            sp3_sp3_53         CAS         CAE         CAQ         CAV     180.000    10.0     3
+LNP           sp3_sp3_146         CAD         CAE         CAS        HASB      60.000    10.0     3
+LNP            sp3_sp3_25         CAS         CAE         CAF         CAA     180.000    10.0     3
+LNP           sp3_sp3_161         CAT         CAG         CAK        HAKA     180.000    10.0     3
+LNP           sp3_sp3_164         CAB         CAG         CAT        HATB      60.000    10.0     3
+LNP            sp3_sp3_43         CAT         CAG         CAH         CAI     180.000    10.0     3
+LNP            sp3_sp3_74         CAG         CAH         CAN         CAW      60.000    10.0     3
+LNP            sp3_sp3_28         CAG         CAH         CAI         CAJ     -60.000    10.0     3
+LNP            sp2_sp3_13         CAC         CAJ         CAI         CAH       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LNP    chir_1    CAB    CAC    CAG    CAA    positive
+LNP    chir_2    CAD    CAC    CAE    CAR    positive
+LNP    chir_3    CAE    CAD    CAQ    CAF    negative
+LNP    chir_4    CAG    CAH    CAB    CAK    negative
+LNP    chir_5    CAH    CAN    CAG    CAI    positive
+LNP    chir_6    CAM    OBH    CAN    CAL    positive
+LNP    chir_7    CAN    CAM    CAH    CAW    both
+LNP    chir_8    CAQ    CAE    CAV    CAP    negative
+LNP    chir_9    CAV    CAQ    CAZ    CAY    negative
+LNP    chir_10    CBC    CBB    CBD    CBE    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LNP    plan-1         CAB   0.020
+LNP    plan-1         CAC   0.020
+LNP    plan-1         CAD   0.020
+LNP    plan-1         CAJ   0.020
+LNP    plan-2         CAC   0.020
+LNP    plan-2         CAI   0.020
+LNP    plan-2         CAJ   0.020
+LNP    plan-2         HAJ   0.020
+LNP    plan-3         CAD   0.020
+LNP    plan-3         CAR   0.020
+LNP    plan-3         CBF   0.020
+LNP    plan-3         HAR   0.020
+LNP    plan-4         CAR   0.020
+LNP    plan-4         CBF   0.020
+LNP    plan-4         CBG   0.020
+LNP    plan-4         CBH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LNP           SMILES              ACDLabs 12.01                                                                                                                                            OC5C(C1C(C3C(=CC1)C4(\C=C2/CC2)C(CC3)(C)C(C(C)CCCC(C)C)CC4)(C)CC5)(C)C
+LNP SMILES_CANONICAL               CACTVS 3.370                                                                                                                    CC(C)CCC[C@@H](C)[C@H]1CC[C@@]2(C=C3CC3)C4=CC[C@@H]5C(C)(C)[C@@H](O)CC[C@]5(C)[C@@H]4CC[C@]12C
+LNP           SMILES               CACTVS 3.370                                                                                                                                 CC(C)CCC[CH](C)[CH]1CC[C]2(C=C3CC3)C4=CC[CH]5C(C)(C)[CH](O)CC[C]5(C)[CH]4CC[C]12C
+LNP SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                    C[C@H](CCCC(C)C)[C@H]1CC[C@@]2([C@@]1(CC[C@@H]3C2=CC[C@H]4[C@@]3(CC[C@@H](C4(C)C)O)C)C)C=C5CC5
+LNP           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                      CC(C)CCCC(C)C1CCC2(C1(CCC3C2=CCC4C3(CCC(C4(C)C)O)C)C)C=C5CC5
+LNP            InChI                InChI  1.03 InChI=1S/C33H54O/c1-22(2)9-8-10-23(3)25-16-20-33(21-24-11-12-24)27-13-14-28-30(4,5)29(34)17-18-31(28,6)26(27)15-19-32(25,33)7/h13,21-23,25-26,28-29,34H,8-12,14-20H2,1-7H3/t23-,25-,26-,28-,29+,31-,32-,33-/m1/s1
+LNP         InChIKey                InChI  1.03                                                                                                                                                                                       JMJLBCGVSMHFQK-SIDBGHOXSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LNP acedrg               243         "dictionary generator"                  
+LNP acedrg_database      11          "data source"                           
+LNP rdkit                2017.03.2   "Chemoinformatics tool"
+LNP refmac5              5.8.0238    "optimization tool"                     

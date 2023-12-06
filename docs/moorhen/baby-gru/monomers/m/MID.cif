@@ -1,0 +1,441 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MID     MID      1-[N-(naphthalen-2-ylsulfonyl)glycyl-4-carbamimidoyl-D-phenylalanyl]piperidine     NON-POLYMER     68     37     .     
+#
+data_comp_MID
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MID     S       S       S3      0       -5.581      6.077       25.599      
+MID     O1S     O       O       0       -6.551      5.088       25.959      
+MID     O2S     O       O       0       -5.938      7.460       25.672      
+MID     C1      C       CR16    0       -3.913      4.616       27.181      
+MID     C2      C       CR6     0       -4.136      5.834       26.598      
+MID     C3      C       CR16    0       -3.223      6.903       26.775      
+MID     C4      C       CR16    0       -2.108      6.712       27.543      
+MID     C5      C       CR16    0       -0.689      5.240       28.972      
+MID     C6      C       CR16    0       -0.468      4.028       29.554      
+MID     C7      C       CR16    0       -1.382      2.972       29.369      
+MID     C8      C       CR16    0       -2.497      3.149       28.605      
+MID     C9      C       CR66    0       -2.764      4.395       27.981      
+MID     C10     C       CR66    0       -1.845      5.465       28.165      
+MID     N       N       NT1     0       -5.166      5.784       24.067      
+MID     CA      C       CH2     0       -4.404      4.588       23.713      
+MID     C       C       C       0       -2.942      4.872       23.423      
+MID     O       O       O       0       -2.413      5.900       23.845      
+MID     N1      N       NH1     0       -2.305      3.940       22.704      
+MID     CA1     C       CH1     0       -0.995      4.135       22.087      
+MID     CB      C       C       0       -0.143      2.865       22.252      
+MID     O1      O       O       0       0.088       2.164       21.258      
+MID     CB1     C       CH2     0       -1.163      4.534       20.608      
+MID     CG      C       CR6     0       -2.089      5.710       20.411      
+MID     CD1     C       CR16    0       -3.354      5.542       19.857      
+MID     CD2     C       CR16    0       -1.723      6.984       20.830      
+MID     CE1     C       CR16    0       -4.216      6.616       19.697      
+MID     CE2     C       CR16    0       -2.580      8.064       20.674      
+MID     CZ      C       CR6     0       -3.838      7.894       20.102      
+MID     CF      C       C       0       -4.762      9.046       19.937      
+MID     NG1     N       NH1     0       -5.963      9.048       20.417      
+MID     NG2     N       NH2     0       -4.309      10.125      19.262      
+MID     N11     N       NR6     0       0.368       2.545       23.470      
+MID     C21     C       CH2     0       0.455       3.403       24.665      
+MID     C31     C       CH2     0       -0.287      2.792       25.840      
+MID     C41     C       CH2     0       0.230       1.396       26.145      
+MID     C51     C       CH2     0       0.172       0.539       24.891      
+MID     C61     C       CH2     0       0.913       1.203       23.745      
+MID     H1      H       H       0       -4.525      3.916       27.053      
+MID     H3      H       H       0       -3.381      7.735       26.370      
+MID     H4      H       H       0       -1.506      7.417       27.662      
+MID     H5      H       H       0       -0.070      5.941       29.102      
+MID     H6      H       H       0       0.301       3.895       30.085      
+MID     H7      H       H       0       -1.220      2.136       29.777      
+MID     H8      H       H       0       -3.101      2.434       28.489      
+MID     H       H       H       0       -4.957      6.495       23.637      
+MID     HA2     H       H       0       -4.803      4.187       22.926      
+MID     HA3     H       H       0       -4.461      3.942       24.434      
+MID     H2      H       H       0       -2.692      3.163       22.595      
+MID     HA      H       H       0       -0.538      4.882       22.535      
+MID     HB2     H       H       0       -1.516      3.769       20.107      
+MID     HB3     H       H       0       -0.284      4.755       20.237      
+MID     HD1     H       H       0       -3.626      4.684       19.576      
+MID     HD2     H       H       0       -0.874      7.118       21.217      
+MID     HE1     H       H       0       -5.062      6.479       19.310      
+MID     HE2     H       H       0       -2.305      8.919       20.955      
+MID     HG1     H       H       0       -6.199      8.370       20.823      
+MID     HG21    H       H       0       -3.488      10.129      18.924      
+MID     HG22    H       H       0       -4.834      10.833      19.157      
+MID     H21     H       H       0       1.401       3.517       24.907      
+MID     H22     H       H       0       0.086       4.292       24.482      
+MID     H31     H       H       0       -1.247      2.748       25.633      
+MID     H32     H       H       0       -0.172      3.363       26.631      
+MID     H41     H       H       0       -0.314      0.988       26.851      
+MID     H42     H       H       0       1.156       1.449       26.466      
+MID     H51     H       H       0       -0.766      0.397       24.635      
+MID     H52     H       H       0       0.574       -0.339      25.076      
+MID     H61     H       H       0       1.865       1.283       23.977      
+MID     H62     H       H       0       0.846       0.633       22.947      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MID           S         O1S      DOUBLE       n     1.431  0.0100     1.431  0.0100
+MID           S         O2S      DOUBLE       n     1.431  0.0100     1.431  0.0100
+MID           S          C2      SINGLE       n     1.772  0.0100     1.772  0.0100
+MID          C1          C2      DOUBLE       y     1.365  0.0100     1.365  0.0100
+MID          C1          C9      SINGLE       y     1.415  0.0105     1.415  0.0105
+MID          C2          C3      SINGLE       y     1.413  0.0100     1.413  0.0100
+MID          C3          C4      DOUBLE       y     1.363  0.0100     1.363  0.0100
+MID          C4         C10      SINGLE       y     1.414  0.0100     1.414  0.0100
+MID          C5          C6      SINGLE       y     1.358  0.0118     1.358  0.0118
+MID          C5         C10      DOUBLE       y     1.421  0.0157     1.421  0.0157
+MID          C6          C7      DOUBLE       y     1.402  0.0131     1.402  0.0131
+MID          C7          C8      SINGLE       y     1.358  0.0118     1.358  0.0118
+MID          C8          C9      DOUBLE       y     1.415  0.0105     1.415  0.0105
+MID          C9         C10      SINGLE       y     1.414  0.0117     1.414  0.0117
+MID           N          CA      SINGLE       n     1.459  0.0100     1.459  0.0100
+MID          CA           C      SINGLE       n     1.515  0.0100     1.515  0.0100
+MID           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+MID          N1         CA1      SINGLE       n     1.456  0.0100     1.456  0.0100
+MID         CA1          CB      SINGLE       n     1.525  0.0130     1.525  0.0130
+MID         CA1         CB1      SINGLE       n     1.536  0.0102     1.536  0.0102
+MID          CB          O1      DOUBLE       n     1.236  0.0100     1.236  0.0100
+MID         CB1          CG      SINGLE       n     1.508  0.0100     1.508  0.0100
+MID          CG         CD1      DOUBLE       y     1.385  0.0110     1.385  0.0110
+MID          CG         CD2      SINGLE       y     1.385  0.0110     1.385  0.0110
+MID         CD1         CE1      SINGLE       y     1.383  0.0100     1.383  0.0100
+MID         CD2         CE2      DOUBLE       y     1.383  0.0100     1.383  0.0100
+MID         CE1          CZ      DOUBLE       y     1.390  0.0100     1.390  0.0100
+MID         CE2          CZ      SINGLE       y     1.390  0.0100     1.390  0.0100
+MID          CZ          CF      SINGLE       n     1.484  0.0100     1.484  0.0100
+MID          CF         NG1      DOUBLE       n     1.287  0.0200     1.287  0.0200
+MID          CF         NG2      SINGLE       n     1.347  0.0152     1.347  0.0152
+MID         N11         C21      SINGLE       n     1.465  0.0108     1.465  0.0108
+MID         N11         C61      SINGLE       n     1.465  0.0108     1.465  0.0108
+MID         C21         C31      SINGLE       n     1.516  0.0108     1.516  0.0108
+MID         C31         C41      SINGLE       n     1.519  0.0104     1.519  0.0104
+MID         C41         C51      SINGLE       n     1.519  0.0104     1.519  0.0104
+MID         C51         C61      SINGLE       n     1.516  0.0108     1.516  0.0108
+MID           S           N      SINGLE       n     1.613  0.0102     1.613  0.0102
+MID           C          N1      SINGLE       n     1.333  0.0100     1.333  0.0100
+MID          CB         N11      SINGLE       n     1.346  0.0100     1.346  0.0100
+MID          C1          H1      SINGLE       n     1.082  0.0130     0.939  0.0112
+MID          C3          H3      SINGLE       n     1.082  0.0130     0.939  0.0104
+MID          C4          H4      SINGLE       n     1.082  0.0130     0.935  0.0116
+MID          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0192
+MID          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0184
+MID          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0184
+MID          C8          H8      SINGLE       n     1.082  0.0130     0.944  0.0192
+MID           N           H      SINGLE       n     1.036  0.0160     0.857  0.0200
+MID          CA         HA2      SINGLE       n     1.089  0.0100     0.970  0.0100
+MID          CA         HA3      SINGLE       n     1.089  0.0100     0.970  0.0100
+MID          N1          H2      SINGLE       n     1.016  0.0100     0.873  0.0200
+MID         CA1          HA      SINGLE       n     1.089  0.0100     0.987  0.0159
+MID         CB1         HB2      SINGLE       n     1.089  0.0100     0.980  0.0164
+MID         CB1         HB3      SINGLE       n     1.089  0.0100     0.980  0.0164
+MID         CD1         HD1      SINGLE       n     1.082  0.0130     0.943  0.0173
+MID         CD2         HD2      SINGLE       n     1.082  0.0130     0.943  0.0173
+MID         CE1         HE1      SINGLE       n     1.082  0.0130     0.941  0.0168
+MID         CE2         HE2      SINGLE       n     1.082  0.0130     0.941  0.0168
+MID         NG1         HG1      SINGLE       n     1.016  0.0100     0.823  0.0200
+MID         NG2        HG21      SINGLE       n     1.016  0.0100     0.887  0.0200
+MID         NG2        HG22      SINGLE       n     1.016  0.0100     0.887  0.0200
+MID         C21         H21      SINGLE       n     1.089  0.0100     0.983  0.0130
+MID         C21         H22      SINGLE       n     1.089  0.0100     0.983  0.0130
+MID         C31         H31      SINGLE       n     1.089  0.0100     0.983  0.0130
+MID         C31         H32      SINGLE       n     1.089  0.0100     0.983  0.0130
+MID         C41         H41      SINGLE       n     1.089  0.0100     0.981  0.0121
+MID         C41         H42      SINGLE       n     1.089  0.0100     0.981  0.0121
+MID         C51         H51      SINGLE       n     1.089  0.0100     0.983  0.0130
+MID         C51         H52      SINGLE       n     1.089  0.0100     0.983  0.0130
+MID         C61         H61      SINGLE       n     1.089  0.0100     0.983  0.0130
+MID         C61         H62      SINGLE       n     1.089  0.0100     0.983  0.0130
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MID         O1S           S         O2S     119.599    1.50
+MID         O1S           S          C2     108.022    1.50
+MID         O1S           S           N     106.978    1.50
+MID         O2S           S          C2     108.022    1.50
+MID         O2S           S           N     106.978    1.50
+MID          C2           S           N     107.637    1.50
+MID          C2          C1          C9     121.169    1.50
+MID          C2          C1          H1     119.562    1.50
+MID          C9          C1          H1     119.269    1.50
+MID           S          C2          C1     119.001    1.50
+MID           S          C2          C3     119.508    1.50
+MID          C1          C2          C3     121.491    1.50
+MID          C2          C3          C4     119.016    1.50
+MID          C2          C3          H3     120.530    1.50
+MID          C4          C3          H3     120.453    1.50
+MID          C3          C4         C10     120.820    1.50
+MID          C3          C4          H4     119.677    1.50
+MID         C10          C4          H4     119.503    1.50
+MID          C6          C5         C10     120.911    1.50
+MID          C6          C5          H5     119.659    1.50
+MID         C10          C5          H5     119.431    1.50
+MID          C5          C6          C7     120.314    1.50
+MID          C5          C6          H6     119.871    1.50
+MID          C7          C6          H6     119.815    1.50
+MID          C6          C7          C8     120.314    1.50
+MID          C6          C7          H7     119.815    1.50
+MID          C8          C7          H7     119.871    1.50
+MID          C7          C8          C9     120.911    1.50
+MID          C7          C8          H8     119.659    1.50
+MID          C9          C8          H8     119.431    1.50
+MID          C1          C9          C8     122.491    1.50
+MID          C1          C9         C10     118.734    1.50
+MID          C8          C9         C10     118.775    1.50
+MID          C4         C10          C5     122.455    1.50
+MID          C4         C10          C9     118.770    1.50
+MID          C5         C10          C9     118.775    1.50
+MID          CA           N           S     119.741    1.92
+MID          CA           N           H     115.242    2.91
+MID           S           N           H     112.671    3.00
+MID           N          CA           C     111.999    2.38
+MID           N          CA         HA2     109.142    1.50
+MID           N          CA         HA3     109.142    1.50
+MID           C          CA         HA2     108.884    1.50
+MID           C          CA         HA3     108.884    1.50
+MID         HA2          CA         HA3     107.908    1.50
+MID          CA           C           O     120.556    1.50
+MID          CA           C          N1     115.951    1.70
+MID           O           C          N1     123.493    1.50
+MID         CA1          N1           C     121.957    1.76
+MID         CA1          N1          H2     119.025    1.92
+MID           C          N1          H2     119.017    1.50
+MID          N1         CA1          CB     110.812    2.04
+MID          N1         CA1         CB1     110.790    1.50
+MID          N1         CA1          HA     108.161    1.50
+MID          CB         CA1         CB1     110.020    1.88
+MID          CB         CA1          HA     108.676    1.50
+MID         CB1         CA1          HA     108.240    1.50
+MID         CA1          CB          O1     120.623    1.74
+MID         CA1          CB         N11     117.572    1.61
+MID          O1          CB         N11     121.805    1.50
+MID         CA1         CB1          CG     113.420    1.89
+MID         CA1         CB1         HB2     108.793    1.50
+MID         CA1         CB1         HB3     108.793    1.50
+MID          CG         CB1         HB2     108.862    1.50
+MID          CG         CB1         HB3     108.862    1.50
+MID         HB2         CB1         HB3     107.782    1.50
+MID         CB1          CG         CD1     121.126    1.50
+MID         CB1          CG         CD2     121.126    1.50
+MID         CD1          CG         CD2     117.748    1.50
+MID          CG         CD1         CE1     120.933    1.50
+MID          CG         CD1         HD1     119.459    1.50
+MID         CE1         CD1         HD1     119.609    1.50
+MID          CG         CD2         CE2     120.933    1.50
+MID          CG         CD2         HD2     119.459    1.50
+MID         CE2         CD2         HD2     119.609    1.50
+MID         CD1         CE1          CZ     120.726    1.50
+MID         CD1         CE1         HE1     119.511    1.50
+MID          CZ         CE1         HE1     119.763    1.50
+MID         CD2         CE2          CZ     120.726    1.50
+MID         CD2         CE2         HE2     119.511    1.50
+MID          CZ         CE2         HE2     119.763    1.50
+MID         CE1          CZ         CE2     118.934    1.50
+MID         CE1          CZ          CF     120.533    1.50
+MID         CE2          CZ          CF     120.533    1.50
+MID          CZ          CF         NG1     121.847    3.00
+MID          CZ          CF         NG2     117.501    1.50
+MID         NG1          CF         NG2     120.652    2.66
+MID          CF         NG1         HG1     114.748    3.00
+MID          CF         NG2        HG21     119.893    1.50
+MID          CF         NG2        HG22     119.893    1.50
+MID        HG21         NG2        HG22     120.214    2.70
+MID         C21         N11         C61     113.515    1.50
+MID         C21         N11          CB     123.243    3.00
+MID         C61         N11          CB     123.243    3.00
+MID         N11         C21         C31     110.568    1.50
+MID         N11         C21         H21     109.413    1.50
+MID         N11         C21         H22     109.413    1.50
+MID         C31         C21         H21     109.566    1.50
+MID         C31         C21         H22     109.566    1.50
+MID         H21         C21         H22     108.159    1.50
+MID         C21         C31         C41     111.021    1.50
+MID         C21         C31         H31     109.380    1.50
+MID         C21         C31         H32     109.380    1.50
+MID         C41         C31         H31     109.453    1.50
+MID         C41         C31         H32     109.453    1.50
+MID         H31         C31         H32     108.022    1.50
+MID         C31         C41         C51     110.168    1.50
+MID         C31         C41         H41     109.613    1.50
+MID         C31         C41         H42     109.613    1.50
+MID         C51         C41         H41     109.613    1.50
+MID         C51         C41         H42     109.613    1.50
+MID         H41         C41         H42     108.036    1.50
+MID         C41         C51         C61     111.021    1.50
+MID         C41         C51         H51     109.453    1.50
+MID         C41         C51         H52     109.453    1.50
+MID         C61         C51         H51     109.380    1.50
+MID         C61         C51         H52     109.380    1.50
+MID         H51         C51         H52     108.022    1.50
+MID         N11         C61         C51     110.568    1.50
+MID         N11         C61         H61     109.413    1.50
+MID         N11         C61         H62     109.413    1.50
+MID         C51         C61         H61     109.566    1.50
+MID         C51         C61         H62     109.566    1.50
+MID         H61         C61         H62     108.159    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MID            sp3_sp3_56          CA           N           S         O1S     180.000    10.0     3
+MID             sp2_sp3_7          C1          C2           S         O1S     150.000    10.0     6
+MID              const_34          C7          C8          C9          C1     180.000    10.0     2
+MID              const_17          C4         C10          C9          C1       0.000    10.0     2
+MID            sp3_sp3_37           C          CA           N           S     180.000    10.0     3
+MID            sp2_sp3_14           O           C          CA           N     120.000    10.0     6
+MID            sp2_sp2_11          CA           C          N1         CA1     180.000     5.0     2
+MID            sp2_sp3_19           C          N1         CA1          CB       0.000    10.0     6
+MID            sp2_sp3_25          O1          CB         CA1          N1       0.000    10.0     6
+MID            sp3_sp3_43          N1         CA1         CB1          CG     180.000    10.0     3
+MID            sp2_sp2_15         CA1          CB         N11         C21     180.000     5.0     2
+MID            sp2_sp3_32         CD1          CG         CB1         CA1     -90.000    10.0     6
+MID              const_38         CE1         CD1          CG         CB1     180.000    10.0     2
+MID              const_66         CE2         CD2          CG         CB1     180.000    10.0     2
+MID              const_41          CG         CD1         CE1          CZ       0.000    10.0     2
+MID              const_53          CG         CD2         CE2          CZ       0.000    10.0     2
+MID              const_46         CD1         CE1          CZ          CF     180.000    10.0     2
+MID              const_50         CD2         CE2          CZ          CF     180.000    10.0     2
+MID             sp2_sp2_3         NG1          CF          CZ         CE1       0.000     5.0     2
+MID             sp2_sp2_6         NG2          CF         NG1         HG1       0.000     5.0     2
+MID             sp2_sp2_9         NG1          CF         NG2        HG21       0.000     5.0     2
+MID             sp2_sp3_4          CB         N11         C21         C31     180.000    10.0     6
+MID            sp2_sp3_40          CB         N11         C61         C51     180.000    10.0     6
+MID             sp3_sp3_1         N11         C21         C31         C41     -60.000    10.0     3
+MID            sp3_sp3_10         C21         C31         C41         C51      60.000    10.0     3
+MID            sp3_sp3_19         C31         C41         C51         C61     -60.000    10.0     3
+MID            sp3_sp3_28         C41         C51         C61         N11      60.000    10.0     3
+MID              const_58          C2          C1          C9          C8     180.000    10.0     2
+MID       const_sp2_sp2_2          C9          C1          C2           S     180.000     5.0     2
+MID       const_sp2_sp2_7           S          C2          C3          C4     180.000     5.0     2
+MID       const_sp2_sp2_9          C2          C3          C4         C10       0.000     5.0     2
+MID              const_15          C5         C10          C4          C3     180.000    10.0     2
+MID              const_63          C4         C10          C5          C6     180.000    10.0     2
+MID              const_21         C10          C5          C6          C7       0.000    10.0     2
+MID              const_25          C5          C6          C7          C8       0.000    10.0     2
+MID              const_29          C6          C7          C8          C9       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MID    chir_1    S    O1S    O2S    N    both
+MID    chir_2    CA1    N1    CB    CB1    negative
+MID    chir_3    N    S    CA    H    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MID    plan-1          C1   0.020
+MID    plan-1         C10   0.020
+MID    plan-1          C2   0.020
+MID    plan-1          C3   0.020
+MID    plan-1          C4   0.020
+MID    plan-1          C5   0.020
+MID    plan-1          C6   0.020
+MID    plan-1          C7   0.020
+MID    plan-1          C8   0.020
+MID    plan-1          C9   0.020
+MID    plan-1          H1   0.020
+MID    plan-1          H3   0.020
+MID    plan-1          H4   0.020
+MID    plan-1          H5   0.020
+MID    plan-1          H6   0.020
+MID    plan-1          H7   0.020
+MID    plan-1          H8   0.020
+MID    plan-1           S   0.020
+MID    plan-2         CB1   0.020
+MID    plan-2         CD1   0.020
+MID    plan-2         CD2   0.020
+MID    plan-2         CE1   0.020
+MID    plan-2         CE2   0.020
+MID    plan-2          CF   0.020
+MID    plan-2          CG   0.020
+MID    plan-2          CZ   0.020
+MID    plan-2         HD1   0.020
+MID    plan-2         HD2   0.020
+MID    plan-2         HE1   0.020
+MID    plan-2         HE2   0.020
+MID    plan-3           C   0.020
+MID    plan-3          CA   0.020
+MID    plan-3          N1   0.020
+MID    plan-3           O   0.020
+MID    plan-4           C   0.020
+MID    plan-4         CA1   0.020
+MID    plan-4          H2   0.020
+MID    plan-4          N1   0.020
+MID    plan-5         CA1   0.020
+MID    plan-5          CB   0.020
+MID    plan-5         N11   0.020
+MID    plan-5          O1   0.020
+MID    plan-6          CF   0.020
+MID    plan-6          CZ   0.020
+MID    plan-6         NG1   0.020
+MID    plan-6         NG2   0.020
+MID    plan-7          CF   0.020
+MID    plan-7        HG21   0.020
+MID    plan-7        HG22   0.020
+MID    plan-7         NG2   0.020
+MID    plan-8         C21   0.020
+MID    plan-8         C61   0.020
+MID    plan-8          CB   0.020
+MID    plan-8         N11   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MID           SMILES              ACDLabs 10.04                                                                                                                                        O=C(N1CCCCC1)C(NC(=O)CNS(=O)(=O)c3cc2ccccc2cc3)Cc4ccc(C(=[N@H])N)cc4
+MID SMILES_CANONICAL               CACTVS 3.341                                                                                                                                     NC(=N)c1ccc(C[C@@H](NC(=O)CN[S](=O)(=O)c2ccc3ccccc3c2)C(=O)N4CCCCC4)cc1
+MID           SMILES               CACTVS 3.341                                                                                                                                       NC(=N)c1ccc(C[CH](NC(=O)CN[S](=O)(=O)c2ccc3ccccc3c2)C(=O)N4CCCCC4)cc1
+MID SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                "[H]/N=C(/c1ccc(cc1)C[C@H](C(=O)N2CCCCC2)NC(=O)CNS(=O)(=O)c3ccc4ccccc4c3)\N"
+MID           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                       "[H]N=C(c1ccc(cc1)CC(C(=O)N2CCCCC2)NC(=O)CNS(=O)(=O)c3ccc4ccccc4c3)N"
+MID            InChI                InChI  1.03 InChI=1S/C27H31N5O4S/c28-26(29)21-10-8-19(9-11-21)16-24(27(34)32-14-4-1-5-15-32)31-25(33)18-30-37(35,36)23-13-12-20-6-2-3-7-22(20)17-23/h2-3,6-13,17,24,30H,1,4-5,14-16,18H2,(H3,28,29)(H,31,33)/t24-/m1/s1
+MID         InChIKey                InChI  1.03                                                                                                                                                                                 XXTWZTPVNIYSJZ-XMMPIXPASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MID acedrg               243         "dictionary generator"                  
+MID acedrg_database      11          "data source"                           
+MID rdkit                2017.03.2   "Chemoinformatics tool"
+MID refmac5              5.8.0238    "optimization tool"                     

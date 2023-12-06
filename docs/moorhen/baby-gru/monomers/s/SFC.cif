@@ -1,0 +1,631 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SFC     SFC      "(S)-IBUPROFENOYL-COENZYME A"     NON-POLYMER     111     62     .     
+#
+data_comp_SFC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SFC     O7A     O       OP      -1      64.477      10.482      33.487      
+SFC     P3B     P       P       0       63.173      11.246      33.618      
+SFC     O9A     O       O       0       62.470      11.409      32.284      
+SFC     O8A     O       OP      -1      62.263      10.644      34.673      
+SFC     O3B     O       O2      0       63.563      12.739      34.113      
+SFC     C3B     C       CH1     0       64.024      12.814      35.466      
+SFC     C2B     C       CH1     0       65.058      13.923      35.652      
+SFC     O2B     O       OH1     0       65.955      14.039      34.558      
+SFC     C1B     C       CH1     0       64.159      15.156      35.773      
+SFC     N9A     N       NR5     1       64.728      16.224      36.596      
+SFC     C4A     C       CR56    0       65.155      17.453      36.158      
+SFC     C5A     C       CR56    0       65.626      18.161      37.266      
+SFC     C6A     C       CR6     0       66.119      19.463      37.051      
+SFC     N6A     N       NH2     0       66.595      20.234      38.029      
+SFC     N1A     N       NRD6    0       66.107      19.948      35.792      
+SFC     C2A     C       CR16    0       65.626      19.164      34.813      
+SFC     N3A     N       NRD6    0       65.137      17.929      34.886      
+SFC     N7A     N       NR5     0       65.471      17.333      38.356      
+SFC     C8A     C       CR15    0       64.923      16.156      37.937      
+SFC     O4B     O       O2      0       62.949      14.708      36.385      
+SFC     C4B     C       CH1     0       62.903      13.266      36.397      
+SFC     C5B     C       CH2     0       63.017      12.777      37.820      
+SFC     O5B     O       O2      0       62.795      11.344      37.856      
+SFC     P1A     P       P       0       62.741      10.606      39.279      
+SFC     O1A     O       OP      -1      62.677      9.129       39.069      
+SFC     O2A     O       O       0       63.818      11.147      40.161      
+SFC     O3A     O       O2      0       61.322      11.109      39.832      
+SFC     P2A     P       P       0       59.812      10.753      39.422      
+SFC     O4A     O       OP      -1      58.883      11.698      40.110      
+SFC     O5A     O       O       0       59.729      10.613      37.937      
+SFC     O6A     O       O2      0       59.641      9.298       40.077      
+SFC     CCP     C       CH2     0       59.829      9.133       41.512      
+SFC     CBP     C       CT      0       59.373      7.736       41.940      
+SFC     CDP     C       CH3     0       59.543      7.626       43.461      
+SFC     CEP     C       CH3     0       57.881      7.588       41.609      
+SFC     CAP     C       CH1     0       60.173      6.628       41.224      
+SFC     OAP     O       OH1     0       61.568      6.804       41.452      
+SFC     C9P     C       C       0       59.782      5.200       41.587      
+SFC     O9P     O       O       0       58.935      4.620       40.910      
+SFC     N8P     N       NH1     0       60.384      4.642       42.633      
+SFC     C7P     C       CH2     0       60.139      3.274       43.079      
+SFC     C6P     C       CH2     0       58.778      3.097       43.730      
+SFC     C5P     C       C       0       58.513      4.120       44.818      
+SFC     O5P     O       O       0       59.343      4.306       45.706      
+SFC     N4P     N       NH1     0       57.340      4.775       44.782      
+SFC     C3P     C       CH2     0       57.020      5.951       45.580      
+SFC     C2P     C       CH2     0       56.093      5.646       46.735      
+SFC     S1P     S       S2      0       55.227      7.152       47.234      
+SFC     C1      C       C       0       54.123      7.863       46.051      
+SFC     O1      O       O       0       53.730      7.220       45.114      
+SFC     C2      C       CH1     0       53.834      9.341       46.217      
+SFC     C13     C       CH3     0       53.038      9.640       47.488      
+SFC     C3      C       CR6     0       55.153      10.100      46.071      
+SFC     C4      C       CR16    0       55.858      10.605      47.164      
+SFC     C8      C       CR16    0       57.061      11.276      46.994      
+SFC     C7      C       CR6     0       57.608      11.463      45.730      
+SFC     C6      C       CR16    0       56.912      10.956      44.641      
+SFC     C5      C       CR16    0       55.711      10.284      44.808      
+SFC     C9      C       CH2     0       58.923      12.198      45.543      
+SFC     C10     C       CH1     0       60.079      11.320      45.056      
+SFC     C12     C       CH3     0       61.260      12.172      44.618      
+SFC     C11     C       CH3     0       60.502      10.323      46.124      
+SFC     "H3'"   H       H       0       64.399      11.953      35.763      
+SFC     "H2'"   H       H       0       65.561      13.776      36.490      
+SFC     H7      H       H       0       66.479      14.692      34.697      
+SFC     "H1'"   H       H       0       63.964      15.499      34.867      
+SFC     HN61    H       H       0       66.407      21.091      38.038      
+SFC     HN62    H       H       0       67.093      19.881      38.658      
+SFC     H11     H       H       0       65.637      19.545      33.948      
+SFC     HN7     H       H       0       65.691      17.524      39.211      
+SFC     H9      H       H       0       64.715      15.418      38.487      
+SFC     "H4'"   H       H       0       62.041      12.969      36.035      
+SFC     "H5'1"  H       H       0       62.346      13.235      38.383      
+SFC     "H5'2"  H       H       0       63.918      12.986      38.172      
+SFC     H41     H       H       0       59.309      9.808       41.992      
+SFC     H42     H       H       0       60.772      9.260       41.741      
+SFC     H11X    H       H       0       60.489      7.611       43.686      
+SFC     H12     H       H       0       59.122      6.812       43.785      
+SFC     H13     H       H       0       59.125      8.393       43.890      
+SFC     H141    H       H       0       57.772      7.430       40.656      
+SFC     H142    H       H       0       57.409      8.403       41.855      
+SFC     H143    H       H       0       57.504      6.840       42.104      
+SFC     H1      H       H       0       60.011      6.733       40.255      
+SFC     H3      H       H       0       62.000      6.426       40.827      
+SFC     HN8     H       H       0       60.961      5.118       43.083      
+SFC     H71     H       H       0       60.834      3.019       43.720      
+SFC     H72     H       H       0       60.205      2.671       42.309      
+SFC     H61     H       H       0       58.720      2.206       44.116      
+SFC     H62     H       H       0       58.088      3.166       43.048      
+SFC     HN4     H       H       0       56.720      4.467       44.252      
+SFC     H31     H       H       0       56.593      6.615       44.997      
+SFC     H32     H       H       0       57.844      6.350       45.930      
+SFC     H21     H       H       0       56.610      5.298       47.488      
+SFC     H22     H       H       0       55.444      4.966       46.465      
+SFC     H2      H       H       0       53.271      9.607       45.451      
+SFC     H131    H       H       0       52.915      10.602      47.572      
+SFC     H132    H       H       0       53.512      9.308       48.268      
+SFC     H133    H       H       0       52.168      9.208       47.432      
+SFC     H4      H       H       0       55.518      10.492      48.033      
+SFC     H8      H       H       0       57.515      11.611      47.748      
+SFC     H6      H       H       0       57.263      11.071      43.774      
+SFC     H5      H       H       0       55.259      9.949       44.052      
+SFC     H91     H       H       0       59.183      12.608      46.395      
+SFC     H92     H       H       0       58.789      12.921      44.893      
+SFC     H10     H       H       0       59.768      10.808      44.268      
+SFC     H121    H       H       0       61.967      11.596      44.278      
+SFC     H122    H       H       0       61.592      12.681      45.378      
+SFC     H123    H       H       0       60.976      12.784      43.917      
+SFC     H111    H       H       0       59.825      9.629       46.206      
+SFC     H112    H       H       0       60.601      10.782      46.976      
+SFC     H113    H       H       0       61.351      9.919       45.873      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SFC         O7A         P3B      SINGLE       n     1.517  0.0192     1.517  0.0192
+SFC         P3B         O9A      DOUBLE       n     1.517  0.0192     1.517  0.0192
+SFC         P3B         O8A      SINGLE       n     1.517  0.0192     1.517  0.0192
+SFC         P3B         O3B      SINGLE       n     1.614  0.0178     1.614  0.0178
+SFC         O3B         C3B      SINGLE       n     1.425  0.0152     1.425  0.0152
+SFC         C3B         C2B      SINGLE       n     1.527  0.0100     1.527  0.0100
+SFC         C3B         C4B      SINGLE       n     1.525  0.0133     1.525  0.0133
+SFC         C2B         O2B      SINGLE       n     1.419  0.0101     1.419  0.0101
+SFC         C2B         C1B      SINGLE       n     1.530  0.0100     1.530  0.0100
+SFC         C1B         N9A      SINGLE       n     1.459  0.0149     1.459  0.0149
+SFC         C1B         O4B      SINGLE       n     1.426  0.0147     1.426  0.0147
+SFC         N9A         C4A      SINGLE       y     1.371  0.0104     1.371  0.0104
+SFC         N9A         C8A      DOUBLE       y     1.350  0.0165     1.350  0.0165
+SFC         C4A         C5A      SINGLE       y     1.395  0.0100     1.395  0.0100
+SFC         C4A         N3A      DOUBLE       y     1.341  0.0185     1.341  0.0185
+SFC         C5A         C6A      DOUBLE       y     1.401  0.0167     1.401  0.0167
+SFC         C5A         N7A      SINGLE       y     1.379  0.0100     1.379  0.0100
+SFC         C6A         N6A      SINGLE       n     1.333  0.0135     1.333  0.0135
+SFC         C6A         N1A      SINGLE       y     1.346  0.0100     1.346  0.0100
+SFC         N1A         C2A      DOUBLE       y     1.339  0.0100     1.339  0.0100
+SFC         C2A         N3A      SINGLE       y     1.326  0.0100     1.326  0.0100
+SFC         N7A         C8A      SINGLE       y     1.362  0.0142     1.362  0.0142
+SFC         O4B         C4B      SINGLE       n     1.443  0.0107     1.443  0.0107
+SFC         C4B         C5B      SINGLE       n     1.509  0.0100     1.509  0.0100
+SFC         C5B         O5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+SFC         O5B         P1A      SINGLE       n     1.604  0.0133     1.604  0.0133
+SFC         P1A         O1A      SINGLE       n     1.493  0.0122     1.493  0.0122
+SFC         P1A         O2A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+SFC         P1A         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+SFC         O3A         P2A      SINGLE       n     1.604  0.0133     1.604  0.0133
+SFC         P2A         O4A      SINGLE       n     1.493  0.0122     1.493  0.0122
+SFC         P2A         O5A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+SFC         P2A         O6A      SINGLE       n     1.604  0.0133     1.604  0.0133
+SFC         O6A         CCP      SINGLE       n     1.454  0.0165     1.454  0.0165
+SFC         CCP         CBP      SINGLE       n     1.526  0.0108     1.526  0.0108
+SFC         CBP         CDP      SINGLE       n     1.531  0.0109     1.531  0.0109
+SFC         CBP         CEP      SINGLE       n     1.531  0.0109     1.531  0.0109
+SFC         CBP         CAP      SINGLE       n     1.532  0.0112     1.532  0.0112
+SFC         CAP         OAP      SINGLE       n     1.419  0.0162     1.419  0.0162
+SFC         CAP         C9P      SINGLE       n     1.519  0.0108     1.519  0.0108
+SFC         C9P         O9P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+SFC         C9P         N8P      SINGLE       n     1.326  0.0100     1.326  0.0100
+SFC         N8P         C7P      SINGLE       n     1.457  0.0100     1.457  0.0100
+SFC         C7P         C6P      SINGLE       n     1.513  0.0195     1.513  0.0195
+SFC         C6P         C5P      SINGLE       n     1.514  0.0100     1.514  0.0100
+SFC         C5P         O5P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+SFC         C5P         N4P      SINGLE       n     1.337  0.0118     1.337  0.0118
+SFC         N4P         C3P      SINGLE       n     1.455  0.0100     1.455  0.0100
+SFC         C3P         C2P      SINGLE       n     1.510  0.0158     1.510  0.0158
+SFC         C2P         S1P      SINGLE       n     1.809  0.0191     1.809  0.0191
+SFC         S1P          C1      SINGLE       n     1.762  0.0200     1.762  0.0200
+SFC          C1          O1      DOUBLE       n     1.203  0.0135     1.203  0.0135
+SFC          C1          C2      SINGLE       n     1.513  0.0100     1.513  0.0100
+SFC          C2         C13      SINGLE       n     1.526  0.0113     1.526  0.0113
+SFC          C2          C3      SINGLE       n     1.523  0.0100     1.523  0.0100
+SFC          C3          C4      DOUBLE       y     1.389  0.0100     1.389  0.0100
+SFC          C3          C5      SINGLE       y     1.389  0.0100     1.389  0.0100
+SFC          C4          C8      SINGLE       y     1.384  0.0100     1.384  0.0100
+SFC          C8          C7      DOUBLE       y     1.385  0.0110     1.385  0.0110
+SFC          C7          C6      SINGLE       y     1.385  0.0110     1.385  0.0110
+SFC          C7          C9      SINGLE       n     1.517  0.0100     1.517  0.0100
+SFC          C6          C5      DOUBLE       y     1.384  0.0100     1.384  0.0100
+SFC          C9         C10      SINGLE       n     1.530  0.0100     1.530  0.0100
+SFC         C10         C12      SINGLE       n     1.520  0.0105     1.520  0.0105
+SFC         C10         C11      SINGLE       n     1.520  0.0105     1.520  0.0105
+SFC         C3B       "H3'"      SINGLE       n     1.089  0.0100     0.985  0.0119
+SFC         C2B       "H2'"      SINGLE       n     1.089  0.0100     0.989  0.0200
+SFC         O2B          H7      SINGLE       n     0.970  0.0120     0.849  0.0200
+SFC         C1B       "H1'"      SINGLE       n     1.089  0.0100     0.989  0.0186
+SFC         N6A        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+SFC         N6A        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+SFC         C2A         H11      SINGLE       n     1.082  0.0130     0.945  0.0200
+SFC         N7A         HN7      SINGLE       n     1.016  0.0100     0.904  0.0200
+SFC         C8A          H9      SINGLE       n     1.082  0.0130     0.943  0.0184
+SFC         C4B       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+SFC         C5B      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+SFC         C5B      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+SFC         CCP         H41      SINGLE       n     1.089  0.0100     0.978  0.0102
+SFC         CCP         H42      SINGLE       n     1.089  0.0100     0.978  0.0102
+SFC         CDP        H11X      SINGLE       n     1.089  0.0100     0.973  0.0146
+SFC         CDP         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+SFC         CDP         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+SFC         CEP        H141      SINGLE       n     1.089  0.0100     0.973  0.0146
+SFC         CEP        H142      SINGLE       n     1.089  0.0100     0.973  0.0146
+SFC         CEP        H143      SINGLE       n     1.089  0.0100     0.973  0.0146
+SFC         CAP          H1      SINGLE       n     1.089  0.0100     0.988  0.0129
+SFC         OAP          H3      SINGLE       n     0.970  0.0120     0.848  0.0200
+SFC         N8P         HN8      SINGLE       n     1.016  0.0100     0.872  0.0200
+SFC         C7P         H71      SINGLE       n     1.089  0.0100     0.980  0.0159
+SFC         C7P         H72      SINGLE       n     1.089  0.0100     0.980  0.0159
+SFC         C6P         H61      SINGLE       n     1.089  0.0100     0.973  0.0156
+SFC         C6P         H62      SINGLE       n     1.089  0.0100     0.973  0.0156
+SFC         N4P         HN4      SINGLE       n     1.016  0.0100     0.872  0.0200
+SFC         C3P         H31      SINGLE       n     1.089  0.0100     0.981  0.0127
+SFC         C3P         H32      SINGLE       n     1.089  0.0100     0.981  0.0127
+SFC         C2P         H21      SINGLE       n     1.089  0.0100     0.978  0.0177
+SFC         C2P         H22      SINGLE       n     1.089  0.0100     0.978  0.0177
+SFC          C2          H2      SINGLE       n     1.089  0.0100     0.987  0.0200
+SFC         C13        H131      SINGLE       n     1.089  0.0100     0.973  0.0160
+SFC         C13        H132      SINGLE       n     1.089  0.0100     0.973  0.0160
+SFC         C13        H133      SINGLE       n     1.089  0.0100     0.973  0.0160
+SFC          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0167
+SFC          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0167
+SFC          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0167
+SFC          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0167
+SFC          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0150
+SFC          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0150
+SFC         C10         H10      SINGLE       n     1.089  0.0100     0.990  0.0200
+SFC         C12        H121      SINGLE       n     1.089  0.0100     0.973  0.0146
+SFC         C12        H122      SINGLE       n     1.089  0.0100     0.973  0.0146
+SFC         C12        H123      SINGLE       n     1.089  0.0100     0.973  0.0146
+SFC         C11        H111      SINGLE       n     1.089  0.0100     0.973  0.0146
+SFC         C11        H112      SINGLE       n     1.089  0.0100     0.973  0.0146
+SFC         C11        H113      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SFC         O7A         P3B         O9A     112.139    1.52
+SFC         O7A         P3B         O8A     112.139    1.52
+SFC         O7A         P3B         O3B     106.518    3.00
+SFC         O9A         P3B         O8A     112.139    1.52
+SFC         O9A         P3B         O3B     106.518    3.00
+SFC         O8A         P3B         O3B     106.518    3.00
+SFC         P3B         O3B         C3B     109.471    3.00
+SFC         O3B         C3B         C2B     110.766    3.00
+SFC         O3B         C3B         C4B     110.864    2.31
+SFC         O3B         C3B       "H3'"     110.343    1.64
+SFC         C2B         C3B         C4B     102.352    1.50
+SFC         C2B         C3B       "H3'"     110.255    2.04
+SFC         C4B         C3B       "H3'"     110.624    1.81
+SFC         C3B         C2B         O2B     112.463    2.73
+SFC         C3B         C2B         C1B     101.388    1.50
+SFC         C3B         C2B       "H2'"     110.255    2.04
+SFC         O2B         C2B         C1B     111.715    2.69
+SFC         O2B         C2B       "H2'"     110.448    1.97
+SFC         C1B         C2B       "H2'"     110.636    1.70
+SFC         C2B         O2B          H7     109.103    2.13
+SFC         C2B         C1B         N9A     113.824    1.50
+SFC         C2B         C1B         O4B     106.047    1.50
+SFC         C2B         C1B       "H1'"     109.015    1.50
+SFC         N9A         C1B         O4B     108.477    1.50
+SFC         N9A         C1B       "H1'"     109.561    1.50
+SFC         O4B         C1B       "H1'"     109.807    1.50
+SFC         C1B         N9A         C4A     126.308    1.80
+SFC         C1B         N9A         C8A     125.356    1.50
+SFC         C4A         N9A         C8A     108.336    1.50
+SFC         N9A         C4A         C5A     108.347    1.50
+SFC         N9A         C4A         N3A     126.921    1.50
+SFC         C5A         C4A         N3A     124.732    1.50
+SFC         C4A         C5A         C6A     117.856    1.50
+SFC         C4A         C5A         N7A     106.994    1.50
+SFC         C6A         C5A         N7A     135.150    1.50
+SFC         C5A         C6A         N6A     123.102    1.50
+SFC         C5A         C6A         N1A     118.381    1.50
+SFC         N6A         C6A         N1A     118.516    1.50
+SFC         C6A         N6A        HN61     119.723    1.50
+SFC         C6A         N6A        HN62     119.723    1.50
+SFC        HN61         N6A        HN62     120.554    1.88
+SFC         C6A         N1A         C2A     118.586    1.50
+SFC         N1A         C2A         N3A     129.397    1.50
+SFC         N1A         C2A         H11     115.280    1.50
+SFC         N3A         C2A         H11     115.323    1.50
+SFC         C4A         N3A         C2A     111.047    1.50
+SFC         C5A         N7A         C8A     108.829    1.50
+SFC         C5A         N7A         HN7     126.457    1.50
+SFC         C8A         N7A         HN7     124.714    1.84
+SFC         N9A         C8A         N7A     107.495    2.12
+SFC         N9A         C8A          H9     126.179    1.50
+SFC         N7A         C8A          H9     126.326    1.61
+SFC         C1B         O4B         C4B     109.903    1.50
+SFC         C3B         C4B         O4B     105.508    1.50
+SFC         C3B         C4B         C5B     114.866    1.63
+SFC         C3B         C4B       "H4'"     109.143    1.50
+SFC         O4B         C4B         C5B     109.123    1.50
+SFC         O4B         C4B       "H4'"     108.947    1.50
+SFC         C5B         C4B       "H4'"     108.268    1.50
+SFC         C4B         C5B         O5B     109.342    1.50
+SFC         C4B         C5B      "H5'1"     109.624    1.50
+SFC         C4B         C5B      "H5'2"     109.624    1.50
+SFC         O5B         C5B      "H5'1"     109.845    1.50
+SFC         O5B         C5B      "H5'2"     109.845    1.50
+SFC      "H5'1"         C5B      "H5'2"     108.472    1.50
+SFC         C5B         O5B         P1A     118.553    2.41
+SFC         O5B         P1A         O1A     109.410    1.50
+SFC         O5B         P1A         O2A     109.410    1.50
+SFC         O5B         P1A         O3A     101.065    1.97
+SFC         O1A         P1A         O2A     118.411    2.35
+SFC         O1A         P1A         O3A     108.816    2.14
+SFC         O2A         P1A         O3A     108.816    2.14
+SFC         P1A         O3A         P2A     132.542    3.00
+SFC         O3A         P2A         O4A     108.816    2.14
+SFC         O3A         P2A         O5A     108.816    2.14
+SFC         O3A         P2A         O6A     101.065    1.97
+SFC         O4A         P2A         O5A     118.411    2.35
+SFC         O4A         P2A         O6A     107.912    2.57
+SFC         O5A         P2A         O6A     107.912    2.57
+SFC         P2A         O6A         CCP     119.251    1.51
+SFC         O6A         CCP         CBP     108.435    1.69
+SFC         O6A         CCP         H41     109.739    1.50
+SFC         O6A         CCP         H42     109.739    1.50
+SFC         CBP         CCP         H41     109.473    1.50
+SFC         CBP         CCP         H42     109.473    1.50
+SFC         H41         CCP         H42     108.108    1.50
+SFC         CCP         CBP         CDP     109.385    1.50
+SFC         CCP         CBP         CEP     109.385    1.50
+SFC         CCP         CBP         CAP     111.094    2.85
+SFC         CDP         CBP         CEP     108.765    1.50
+SFC         CDP         CBP         CAP     109.534    1.52
+SFC         CEP         CBP         CAP     109.534    1.52
+SFC         CBP         CDP        H11X     109.575    1.50
+SFC         CBP         CDP         H12     109.575    1.50
+SFC         CBP         CDP         H13     109.575    1.50
+SFC        H11X         CDP         H12     109.377    1.50
+SFC        H11X         CDP         H13     109.377    1.50
+SFC         H12         CDP         H13     109.377    1.50
+SFC         CBP         CEP        H141     109.575    1.50
+SFC         CBP         CEP        H142     109.575    1.50
+SFC         CBP         CEP        H143     109.575    1.50
+SFC        H141         CEP        H142     109.377    1.50
+SFC        H141         CEP        H143     109.377    1.50
+SFC        H142         CEP        H143     109.377    1.50
+SFC         CBP         CAP         OAP     109.482    3.00
+SFC         CBP         CAP         C9P     111.511    2.91
+SFC         CBP         CAP          H1     107.825    1.50
+SFC         OAP         CAP         C9P     109.850    1.55
+SFC         OAP         CAP          H1     108.675    1.50
+SFC         C9P         CAP          H1     108.529    1.70
+SFC         CAP         OAP          H3     108.894    3.00
+SFC         CAP         C9P         O9P     119.859    1.78
+SFC         CAP         C9P         N8P     117.147    1.50
+SFC         O9P         C9P         N8P     122.977    1.50
+SFC         C9P         N8P         C7P     122.964    1.80
+SFC         C9P         N8P         HN8     118.685    1.94
+SFC         C7P         N8P         HN8     118.351    1.90
+SFC         N8P         C7P         C6P     112.257    1.50
+SFC         N8P         C7P         H71     108.979    1.50
+SFC         N8P         C7P         H72     108.979    1.50
+SFC         C6P         C7P         H71     108.971    1.50
+SFC         C6P         C7P         H72     108.971    1.50
+SFC         H71         C7P         H72     107.877    1.50
+SFC         C7P         C6P         C5P     112.120    2.79
+SFC         C7P         C6P         H61     109.432    1.50
+SFC         C7P         C6P         H62     109.432    1.50
+SFC         C5P         C6P         H61     108.945    1.50
+SFC         C5P         C6P         H62     108.945    1.50
+SFC         H61         C6P         H62     107.745    2.07
+SFC         C6P         C5P         O5P     120.987    1.50
+SFC         C6P         C5P         N4P     117.070    1.96
+SFC         O5P         C5P         N4P     121.943    1.50
+SFC         C5P         N4P         C3P     123.437    1.80
+SFC         C5P         N4P         HN4     117.862    2.10
+SFC         C3P         N4P         HN4     118.700    1.83
+SFC         N4P         C3P         C2P     112.117    1.54
+SFC         N4P         C3P         H31     109.102    1.50
+SFC         N4P         C3P         H32     109.102    1.50
+SFC         C2P         C3P         H31     109.038    1.50
+SFC         C2P         C3P         H32     109.038    1.50
+SFC         H31         C3P         H32     107.995    1.50
+SFC         C3P         C2P         S1P     112.239    3.00
+SFC         C3P         C2P         H21     108.964    1.50
+SFC         C3P         C2P         H22     108.964    1.50
+SFC         S1P         C2P         H21     109.066    1.50
+SFC         S1P         C2P         H22     109.066    1.50
+SFC         H21         C2P         H22     107.807    1.50
+SFC         C2P         S1P          C1     120.000    3.00
+SFC         S1P          C1          O1     122.944    2.65
+SFC         S1P          C1          C2     113.325    2.65
+SFC          O1          C1          C2     123.731    1.58
+SFC          C1          C2         C13     111.237    1.73
+SFC          C1          C2          C3     109.559    2.57
+SFC          C1          C2          H2     107.509    1.50
+SFC         C13          C2          C3     113.237    1.59
+SFC         C13          C2          H2     108.168    1.50
+SFC          C3          C2          H2     107.645    1.61
+SFC          C2         C13        H131     109.459    1.84
+SFC          C2         C13        H132     109.459    1.84
+SFC          C2         C13        H133     109.459    1.84
+SFC        H131         C13        H132     109.411    1.50
+SFC        H131         C13        H133     109.411    1.50
+SFC        H132         C13        H133     109.411    1.50
+SFC          C2          C3          C4     121.046    1.50
+SFC          C2          C3          C5     121.046    1.50
+SFC          C4          C3          C5     117.909    1.50
+SFC          C3          C4          C8     121.106    1.50
+SFC          C3          C4          H4     119.366    1.50
+SFC          C8          C4          H4     119.528    1.50
+SFC          C4          C8          C7     121.021    1.50
+SFC          C4          C8          H8     119.564    1.50
+SFC          C7          C8          H8     119.415    1.50
+SFC          C8          C7          C6     117.836    1.50
+SFC          C8          C7          C9     121.082    1.50
+SFC          C6          C7          C9     121.082    1.50
+SFC          C7          C6          C5     121.021    1.50
+SFC          C7          C6          H6     119.415    1.50
+SFC          C5          C6          H6     119.564    1.50
+SFC          C3          C5          C6     121.106    1.50
+SFC          C3          C5          H5     119.366    1.50
+SFC          C6          C5          H5     119.528    1.50
+SFC          C7          C9         C10     114.426    1.50
+SFC          C7          C9         H91     108.738    1.50
+SFC          C7          C9         H92     108.738    1.50
+SFC         C10          C9         H91     108.467    1.50
+SFC         C10          C9         H92     108.467    1.50
+SFC         H91          C9         H92     107.709    1.50
+SFC          C9         C10         C12     110.980    1.50
+SFC          C9         C10         C11     110.980    1.50
+SFC          C9         C10         H10     108.159    1.50
+SFC         C12         C10         C11     110.724    1.50
+SFC         C12         C10         H10     107.921    2.39
+SFC         C11         C10         H10     107.921    2.39
+SFC         C10         C12        H121     109.354    1.85
+SFC         C10         C12        H122     109.354    1.85
+SFC         C10         C12        H123     109.354    1.85
+SFC        H121         C12        H122     109.411    1.50
+SFC        H121         C12        H123     109.411    1.50
+SFC        H122         C12        H123     109.411    1.50
+SFC         C10         C11        H111     109.354    1.85
+SFC         C10         C11        H112     109.354    1.85
+SFC         C10         C11        H113     109.354    1.85
+SFC        H111         C11        H112     109.411    1.50
+SFC        H111         C11        H113     109.411    1.50
+SFC        H112         C11        H113     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SFC       const_sp2_sp2_2         N9A         C4A         C5A         C6A     180.000     5.0     2
+SFC              const_52         N9A         C4A         N3A         C2A     180.000    10.0     2
+SFC       const_sp2_sp2_6         C4A         C5A         C6A         N6A     180.000     5.0     2
+SFC              const_39         C4A         C5A         N7A         C8A       0.000    10.0     2
+SFC             sp2_sp2_1         C5A         C6A         N6A        HN61     180.000     5.0     2
+SFC              const_10         N6A         C6A         N1A         C2A     180.000    10.0     2
+SFC              const_11         N3A         C2A         N1A         C6A       0.000    10.0     2
+SFC              const_13         N1A         C2A         N3A         C4A       0.000    10.0     2
+SFC              const_43         N9A         C8A         N7A         C5A       0.000    10.0     2
+SFC            sp3_sp3_23         C5B         C4B         O4B         C1B     180.000    10.0     3
+SFC            sp3_sp3_26         C3B         O3B         P3B         O7A     -60.000    10.0     3
+SFC            sp3_sp3_43         C3B         C4B         C5B         O5B     180.000    10.0     3
+SFC            sp3_sp3_52         C4B         C5B         O5B         P1A     180.000    10.0     3
+SFC            sp3_sp3_56         C5B         O5B         P1A         O1A     -60.000    10.0     3
+SFC            sp3_sp3_59         P2A         O3A         P1A         O5B     -60.000    10.0     3
+SFC            sp3_sp3_61         P1A         O3A         P2A         O4A     180.000    10.0     3
+SFC            sp3_sp3_64         CCP         O6A         P2A         O3A     180.000    10.0     3
+SFC            sp3_sp3_67         CBP         CCP         O6A         P2A     180.000    10.0     3
+SFC            sp3_sp3_73         CDP         CBP         CCP         O6A      60.000    10.0     3
+SFC            sp3_sp3_79         CCP         CBP         CDP        H11X     180.000    10.0     3
+SFC            sp3_sp3_91         CCP         CBP         CEP        H141      60.000    10.0     3
+SFC            sp3_sp3_98         OAP         CAP         CBP         CCP     -60.000    10.0     3
+SFC           sp3_sp3_106         CBP         CAP         OAP          H3     180.000    10.0     3
+SFC             sp2_sp3_7         O9P         C9P         CAP         CBP       0.000    10.0     6
+SFC             sp2_sp2_5         CAP         C9P         N8P         C7P     180.000     5.0     2
+SFC            sp2_sp3_14         C9P         N8P         C7P         C6P     120.000    10.0     6
+SFC           sp3_sp3_109         C5P         C6P         C7P         N8P     180.000    10.0     3
+SFC            sp2_sp3_20         O5P         C5P         C6P         C7P     120.000    10.0     6
+SFC             sp2_sp2_9         C6P         C5P         N4P         C3P     180.000     5.0     2
+SFC            sp2_sp3_26         C5P         N4P         C3P         C2P     120.000    10.0     6
+SFC           sp3_sp3_118         S1P         C2P         C3P         N4P     180.000    10.0     3
+SFC           sp3_sp3_127         C3P         C2P         S1P          C1     180.000    10.0     3
+SFC            sp2_sp2_13          O1          C1         S1P         C2P     180.000     5.0     2
+SFC            sp2_sp3_31         S1P          C1          C2         C13       0.000    10.0     6
+SFC            sp3_sp3_28         C2B         C3B         O3B         P3B     180.000    10.0     3
+SFC           sp3_sp3_130        H131         C13          C2          C1     180.000    10.0     3
+SFC            sp2_sp3_37          C4          C3          C2          C1     150.000    10.0     6
+SFC              const_17          C2          C3          C4          C8     180.000    10.0     2
+SFC              const_55          C2          C3          C5          C6     180.000    10.0     2
+SFC              const_19          C3          C4          C8          C7       0.000    10.0     2
+SFC              const_25          C9          C7          C8          C4     180.000    10.0     2
+SFC              const_28          C5          C6          C7          C9     180.000    10.0     2
+SFC            sp2_sp3_44          C8          C7          C9         C10     -90.000    10.0     6
+SFC              const_31          C3          C5          C6          C7       0.000    10.0     2
+SFC           sp3_sp3_142         C12         C10          C9          C7      60.000    10.0     3
+SFC           sp3_sp3_148          C9         C10         C12        H121     180.000    10.0     3
+SFC           sp3_sp3_160          C9         C10         C11        H111      60.000    10.0     3
+SFC            sp3_sp3_35         O3B         C3B         C4B         C5B     180.000    10.0     3
+SFC             sp3_sp3_5         O2B         C2B         C3B         O3B      60.000    10.0     3
+SFC            sp3_sp3_40         C3B         C2B         O2B          H7     180.000    10.0     3
+SFC            sp3_sp3_14         N9A         C1B         C2B         O2B     -60.000    10.0     3
+SFC            sp3_sp3_19         C2B         C1B         O4B         C4B      60.000    10.0     3
+SFC             sp2_sp3_1         C4A         N9A         C1B         C2B     150.000    10.0     6
+SFC              const_36         C5A         C4A         N9A         C1B     180.000    10.0     2
+SFC              const_48         N7A         C8A         N9A         C1B     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SFC    chir_1    P3B    O3B    O7A    O8A    both
+SFC    chir_2    C3B    O3B    C4B    C2B    positive
+SFC    chir_3    C2B    O2B    C1B    C3B    negative
+SFC    chir_4    C1B    O4B    N9A    C2B    negative
+SFC    chir_5    C4B    O4B    C3B    C5B    negative
+SFC    chir_6    P1A    O3A    O5B    O1A    both
+SFC    chir_7    P2A    O3A    O6A    O4A    both
+SFC    chir_8    CBP    CAP    CCP    CDP    both
+SFC    chir_9    CAP    OAP    C9P    CBP    negative
+SFC    chir_10    C2    C1    C3    C13    positive
+SFC    chir_11    C10    C9    C12    C11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SFC    plan-1         C1B   0.020
+SFC    plan-1         C2A   0.020
+SFC    plan-1         C4A   0.020
+SFC    plan-1         C5A   0.020
+SFC    plan-1         C6A   0.020
+SFC    plan-1         C8A   0.020
+SFC    plan-1         H11   0.020
+SFC    plan-1          H9   0.020
+SFC    plan-1         HN7   0.020
+SFC    plan-1         N1A   0.020
+SFC    plan-1         N3A   0.020
+SFC    plan-1         N6A   0.020
+SFC    plan-1         N7A   0.020
+SFC    plan-1         N9A   0.020
+SFC    plan-2          C2   0.020
+SFC    plan-2          C3   0.020
+SFC    plan-2          C4   0.020
+SFC    plan-2          C5   0.020
+SFC    plan-2          C6   0.020
+SFC    plan-2          C7   0.020
+SFC    plan-2          C8   0.020
+SFC    plan-2          C9   0.020
+SFC    plan-2          H4   0.020
+SFC    plan-2          H5   0.020
+SFC    plan-2          H6   0.020
+SFC    plan-2          H8   0.020
+SFC    plan-3         C6A   0.020
+SFC    plan-3        HN61   0.020
+SFC    plan-3        HN62   0.020
+SFC    plan-3         N6A   0.020
+SFC    plan-4         C9P   0.020
+SFC    plan-4         CAP   0.020
+SFC    plan-4         N8P   0.020
+SFC    plan-4         O9P   0.020
+SFC    plan-5         C7P   0.020
+SFC    plan-5         C9P   0.020
+SFC    plan-5         HN8   0.020
+SFC    plan-5         N8P   0.020
+SFC    plan-6         C5P   0.020
+SFC    plan-6         C6P   0.020
+SFC    plan-6         N4P   0.020
+SFC    plan-6         O5P   0.020
+SFC    plan-7         C3P   0.020
+SFC    plan-7         C5P   0.020
+SFC    plan-7         HN4   0.020
+SFC    plan-7         N4P   0.020
+SFC    plan-8          C1   0.020
+SFC    plan-8          C2   0.020
+SFC    plan-8          O1   0.020
+SFC    plan-8         S1P   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SFC           SMILES              ACDLabs 10.04                                                                                                                                                                                                                                   O=C(SCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(=O)(O)OP(=O)(O)OCC3OC([n+]2cnc1c2ncnc1N)C(O)C3OP(=O)(O)O)C(c4ccc(cc4)CC(C)C)C
+SFC SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                             CC(C)Cc1ccc(cc1)[C@H](C)C(=O)SCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)CO[P@](O)(=O)O[P@](O)(=O)OC[C@H]2O[C@H]([C@H](O)[C@@H]2O[P](O)(O)=O)[n+]3c[nH]c4c(N)ncnc34
+SFC           SMILES               CACTVS 3.341                                                                                                                                                                                                      CC(C)Cc1ccc(cc1)[CH](C)C(=O)SCCNC(=O)CCNC(=O)[CH](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[CH]2O[CH]([CH](O)[CH]2O[P](O)(O)=O)[n+]3c[nH]c4c(N)ncnc34
+SFC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                           CC(C)Cc1ccc(cc1)[C@H](C)C(=O)SCCNC(=O)CCNC(=O)[C@@H](C(C)(C)CO[P@@](=O)(O)O[P@@](=O)(O)OC[C@@H]2[C@H]([C@H]([C@@H](O2)[n+]3c[nH]c4c3ncnc4N)O)OP(=O)(O)O)O
+SFC           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                              CC(C)Cc1ccc(cc1)C(C)C(=O)SCCNC(=O)CCNC(=O)C(C(C)(C)COP(=O)(O)OP(=O)(O)OCC2C(C(C(O2)[n+]3c[nH]c4c3ncnc4N)O)OP(=O)(O)O)O
+SFC            InChI                InChI  1.03 InChI=1S/C34H52N7O17P3S/c1-19(2)14-21-6-8-22(9-7-21)20(3)33(46)62-13-12-36-24(42)10-11-37-31(45)28(44)34(4,5)16-55-61(52,53)58-60(50,51)54-15-23-27(57-59(47,48)49)26(43)32(56-23)41-18-40-25-29(35)38-17-39-30(25)41/h6-9,17-20,23,26-28,32,43-44H,10-16H2,1-5H3,(H8,35,36,37,38,39,42,45,47,48,49,50,51,52,53)/p+1/t20-,23+,26+,27+,28-,32+/m0/s1
+SFC         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                         NXIKDQUQQHUCJH-MIXAKNBRSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SFC acedrg               243         "dictionary generator"                  
+SFC acedrg_database      11          "data source"                           
+SFC rdkit                2017.03.2   "Chemoinformatics tool"
+SFC refmac5              5.8.0238    "optimization tool"                     

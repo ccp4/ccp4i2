@@ -1,0 +1,600 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DR7     DR7      "(3S,8S,9S,12S)-3,12-BIS(1,1-DIMETHYLETHYL)-8-HYDROXY-4,11-DIOXO-9-(PHENYLMETHYL)-6-[[4-(2-PYRIDINYL)PHENYL]METHYL]-2,5,6,10,13-PENTAAZATETRADECANEDIOIC ACID DIMETHYL ESTER"     NON-POLYMER     103     51     .     
+#
+data_comp_DR7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DR7     CAA     C       CH3     0       -43.093     65.071      33.872      
+DR7     OBI     O       O2      0       -42.038     65.730      33.136      
+DR7     CBK     C       C       0       -42.040     67.076      33.134      
+DR7     OAI     O       O       0       -42.758     67.772      33.820      
+DR7     N       N       NH1     0       -41.112     67.534      32.266      
+DR7     CA      C       CH1     0       -40.881     68.954      32.014      
+DR7     CB      C       CT      0       -39.567     69.458      32.699      
+DR7     CAE     C       CH3     0       -38.333     68.677      32.233      
+DR7     CG2     C       CH3     0       -39.690     69.289      34.217      
+DR7     CG1     C       CH3     0       -39.346     70.945      32.396      
+DR7     C       C       C       0       -40.962     69.173      30.499      
+DR7     O       O       O       0       -40.281     68.479      29.744      
+DR7     NBG     N       NH1     0       -41.809     70.120      30.062      
+DR7     CBT     C       CH1     0       -42.209     70.307      28.670      
+DR7     CBA     C       CH2     0       -43.543     69.592      28.396      
+DR7     CBO     C       CR6     0       -43.511     68.112      28.712      
+DR7     CAT     C       CR16    0       -42.809     67.227      27.902      
+DR7     CAP     C       CR16    0       -42.771     65.870      28.199      
+DR7     CAN     C       CR16    0       -43.426     65.385      29.311      
+DR7     CAQ     C       CR16    0       -44.121     66.251      30.128      
+DR7     CAU     C       CR16    0       -44.160     67.608      29.833      
+DR7     CBS     C       CH1     0       -42.268     71.809      28.327      
+DR7     OAM     O       OH1     0       -43.301     72.430      29.089      
+DR7     CBC     C       CH2     0       -40.971     72.560      28.589      
+DR7     NBW     N       NT      0       -39.760     71.945      28.028      
+DR7     NBH     N       NH1     0       -39.872     71.822      26.621      
+DR7     CBN     C       C       0       -39.582     70.667      26.020      
+DR7     OAL     O       O       0       -39.326     69.641      26.643      
+DR7     CBV     C       CH1     0       -39.474     70.675      24.488      
+DR7     CBY     C       CT      0       -40.592     69.875      23.740      
+DR7     CAH     C       CH3     0       -40.410     70.043      22.228      
+DR7     CAF     C       CH3     0       -41.974     70.418      24.121      
+DR7     CAG     C       CH3     0       -40.555     68.375      24.057      
+DR7     NBF     N       NH1     0       -38.137     70.208      24.133      
+DR7     CBL     C       C       0       -37.280     70.923      23.373      
+DR7     OAJ     O       O       0       -37.505     72.020      22.908      
+DR7     OBJ     O       O2      0       -36.137     70.232      23.199      
+DR7     CAB     C       CH3     0       -35.014     70.949      22.639      
+DR7     CBB     C       CH2     0       -38.509     72.641      28.394      
+DR7     CBP     C       CR6     0       -37.276     71.874      27.979      
+DR7     CAW     C       CR16    0       -36.405     72.380      27.024      
+DR7     CAY     C       CR16    0       -35.283     71.667      26.633      
+DR7     CAX     C       CR16    0       -37.006     70.625      28.521      
+DR7     CAZ     C       CR16    0       -35.889     69.905      28.131      
+DR7     CBQ     C       CR6     0       -35.003     70.414      27.181      
+DR7     CBR     C       CR6     0       -33.805     69.640      26.760      
+DR7     CAV     C       CR16    0       -33.023     68.924      27.668      
+DR7     CAR     C       CR16    0       -31.926     68.217      27.211      
+DR7     CAO     C       CR16    0       -31.623     68.230      25.865      
+DR7     CAS     C       CR16    0       -32.438     68.955      25.020      
+DR7     NBD     N       NRD6    0       -33.513     69.647      25.437      
+DR7     HAA1    H       H       0       -43.956     65.366      33.538      
+DR7     HAA2    H       H       0       -43.017     65.291      34.814      
+DR7     HAA3    H       H       0       -43.013     64.111      33.756      
+DR7     HN      H       H       0       -40.625     66.952      31.825      
+DR7     HA      H       H       0       -41.617     69.468      32.430      
+DR7     HAE1    H       H       0       -37.556     68.969      32.741      
+DR7     HAE2    H       H       0       -38.176     68.840      31.288      
+DR7     HAE3    H       H       0       -38.469     67.725      32.378      
+DR7     HG21    H       H       0       -39.735     68.343      34.438      
+DR7     HG22    H       H       0       -40.498     69.733      34.530      
+DR7     HG23    H       H       0       -38.915     69.683      34.655      
+DR7     HG11    H       H       0       -38.682     71.310      33.007      
+DR7     HG12    H       H       0       -40.184     71.427      32.505      
+DR7     HG13    H       H       0       -39.030     71.051      31.482      
+DR7     HBG     H       H       0       -42.150     70.684      30.635      
+DR7     HBT     H       H       0       -41.528     69.904      28.091      
+DR7     HBA1    H       H       0       -43.776     69.708      27.450      
+DR7     HBA2    H       H       0       -44.249     70.013      28.930      
+DR7     HAT     H       H       0       -42.358     67.552      27.139      
+DR7     HAP     H       H       0       -42.295     65.279      27.637      
+DR7     HAN     H       H       0       -43.400     64.463      29.511      
+DR7     HAQ     H       H       0       -44.571     65.922      30.889      
+DR7     HAU     H       H       0       -44.638     68.194      30.398      
+DR7     HBS     H       H       0       -42.498     71.902      27.366      
+DR7     HAM     H       H       0       -43.497     73.176      28.738      
+DR7     HBC1    H       H       0       -40.852     72.648      29.557      
+DR7     HBC2    H       H       0       -41.055     73.464      28.221      
+DR7     HBH     H       H       0       -40.139     72.507      26.154      
+DR7     HBV     H       H       0       -39.568     71.613      24.186      
+DR7     HAH1    H       H       0       -41.152     69.622      21.760      
+DR7     HAH2    H       H       0       -39.578     69.624      21.949      
+DR7     HAH3    H       H       0       -40.384     70.990      22.006      
+DR7     HAF1    H       H       0       -41.958     71.391      24.099      
+DR7     HAF2    H       H       0       -42.210     70.121      25.017      
+DR7     HAF3    H       H       0       -42.641     70.092      23.492      
+DR7     HAG1    H       H       0       -41.191     67.909      23.486      
+DR7     HAG2    H       H       0       -40.796     68.227      24.987      
+DR7     HAG3    H       H       0       -39.664     68.024      23.894      
+DR7     HBF     H       H       0       -37.878     69.428      24.439      
+DR7     HAB1    H       H       0       -34.821     71.729      23.185      
+DR7     HAB2    H       H       0       -35.226     71.229      21.735      
+DR7     HAB3    H       H       0       -34.238     70.367      22.623      
+DR7     HBB1    H       H       0       -38.492     72.776      29.365      
+DR7     HBB2    H       H       0       -38.501     73.525      27.969      
+DR7     HAW     H       H       0       -36.574     73.225      26.641      
+DR7     HAY     H       H       0       -34.704     72.036      25.988      
+DR7     HAX     H       H       0       -37.592     70.260      29.164      
+DR7     HAZ     H       H       0       -35.725     69.061      28.517      
+DR7     HAV     H       H       0       -33.243     68.924      28.590      
+DR7     HAR     H       H       0       -31.388     67.732      27.816      
+DR7     HAO     H       H       0       -30.879     67.756      25.530      
+DR7     HAS     H       H       0       -32.236     68.967      24.097      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DR7         CAA         OBI      SINGLE       n     1.443  0.0101     1.443  0.0101
+DR7         OBI         CBK      SINGLE       n     1.342  0.0100     1.342  0.0100
+DR7         CBK         OAI      DOUBLE       n     1.210  0.0102     1.210  0.0102
+DR7         CBK           N      SINGLE       n     1.344  0.0100     1.344  0.0100
+DR7           N          CA      SINGLE       n     1.453  0.0114     1.453  0.0114
+DR7          CA          CB      SINGLE       n     1.559  0.0100     1.559  0.0100
+DR7          CA           C      SINGLE       n     1.529  0.0100     1.529  0.0100
+DR7          CB         CAE      SINGLE       n     1.531  0.0109     1.531  0.0109
+DR7          CB         CG2      SINGLE       n     1.531  0.0109     1.531  0.0109
+DR7          CB         CG1      SINGLE       n     1.531  0.0109     1.531  0.0109
+DR7           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+DR7           C         NBG      SINGLE       n     1.337  0.0102     1.337  0.0102
+DR7         NBG         CBT      SINGLE       n     1.455  0.0100     1.455  0.0100
+DR7         CBT         CBA      SINGLE       n     1.536  0.0100     1.536  0.0100
+DR7         CBT         CBS      SINGLE       n     1.538  0.0100     1.538  0.0100
+DR7         CBA         CBO      SINGLE       n     1.512  0.0103     1.512  0.0103
+DR7         CBO         CAT      DOUBLE       y     1.385  0.0111     1.385  0.0111
+DR7         CBO         CAU      SINGLE       y     1.385  0.0111     1.385  0.0111
+DR7         CAT         CAP      SINGLE       y     1.386  0.0100     1.386  0.0100
+DR7         CAP         CAN      DOUBLE       y     1.374  0.0127     1.374  0.0127
+DR7         CAN         CAQ      SINGLE       y     1.374  0.0127     1.374  0.0127
+DR7         CAQ         CAU      DOUBLE       y     1.386  0.0100     1.386  0.0100
+DR7         CBS         OAM      SINGLE       n     1.424  0.0199     1.424  0.0199
+DR7         CBS         CBC      SINGLE       n     1.519  0.0100     1.519  0.0100
+DR7         CBC         NBW      SINGLE       n     1.468  0.0100     1.468  0.0100
+DR7         NBW         NBH      SINGLE       n     1.413  0.0100     1.413  0.0100
+DR7         NBW         CBB      SINGLE       n     1.474  0.0100     1.474  0.0100
+DR7         NBH         CBN      SINGLE       n     1.328  0.0100     1.328  0.0100
+DR7         CBN         OAL      DOUBLE       n     1.226  0.0101     1.226  0.0101
+DR7         CBN         CBV      SINGLE       n     1.532  0.0100     1.532  0.0100
+DR7         CBV         CBY      SINGLE       n     1.559  0.0100     1.559  0.0100
+DR7         CBV         NBF      SINGLE       n     1.453  0.0114     1.453  0.0114
+DR7         CBY         CAH      SINGLE       n     1.531  0.0109     1.531  0.0109
+DR7         CBY         CAF      SINGLE       n     1.531  0.0109     1.531  0.0109
+DR7         CBY         CAG      SINGLE       n     1.531  0.0109     1.531  0.0109
+DR7         NBF         CBL      SINGLE       n     1.344  0.0100     1.344  0.0100
+DR7         CBL         OAJ      DOUBLE       n     1.210  0.0102     1.210  0.0102
+DR7         CBL         OBJ      SINGLE       n     1.342  0.0100     1.342  0.0100
+DR7         OBJ         CAB      SINGLE       n     1.443  0.0101     1.443  0.0101
+DR7         CBB         CBP      SINGLE       n     1.509  0.0100     1.509  0.0100
+DR7         CBP         CAW      DOUBLE       y     1.385  0.0100     1.385  0.0100
+DR7         CBP         CAX      SINGLE       y     1.385  0.0100     1.385  0.0100
+DR7         CAW         CAY      SINGLE       y     1.382  0.0100     1.382  0.0100
+DR7         CAY         CBQ      DOUBLE       y     1.391  0.0100     1.391  0.0100
+DR7         CAX         CAZ      DOUBLE       y     1.382  0.0100     1.382  0.0100
+DR7         CAZ         CBQ      SINGLE       y     1.391  0.0100     1.391  0.0100
+DR7         CBQ         CBR      SINGLE       n     1.485  0.0100     1.485  0.0100
+DR7         CBR         CAV      DOUBLE       y     1.382  0.0176     1.382  0.0176
+DR7         CBR         NBD      SINGLE       y     1.347  0.0131     1.347  0.0131
+DR7         CAV         CAR      SINGLE       y     1.379  0.0100     1.379  0.0100
+DR7         CAR         CAO      DOUBLE       y     1.374  0.0129     1.374  0.0129
+DR7         CAO         CAS      SINGLE       y     1.376  0.0130     1.376  0.0130
+DR7         CAS         NBD      DOUBLE       y     1.341  0.0100     1.341  0.0100
+DR7         CAA        HAA1      SINGLE       n     1.089  0.0100     0.970  0.0175
+DR7         CAA        HAA2      SINGLE       n     1.089  0.0100     0.970  0.0175
+DR7         CAA        HAA3      SINGLE       n     1.089  0.0100     0.970  0.0175
+DR7           N          HN      SINGLE       n     1.016  0.0100     0.875  0.0200
+DR7          CA          HA      SINGLE       n     1.089  0.0100     0.991  0.0200
+DR7         CAE        HAE1      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CAE        HAE2      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CAE        HAE3      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CG2        HG21      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CG2        HG22      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CG2        HG23      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CG1        HG11      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CG1        HG12      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CG1        HG13      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         NBG         HBG      SINGLE       n     1.016  0.0100     0.872  0.0200
+DR7         CBT         HBT      SINGLE       n     1.089  0.0100     0.984  0.0181
+DR7         CBA        HBA1      SINGLE       n     1.089  0.0100     0.981  0.0150
+DR7         CBA        HBA2      SINGLE       n     1.089  0.0100     0.981  0.0150
+DR7         CAT         HAT      SINGLE       n     1.082  0.0130     0.944  0.0174
+DR7         CAP         HAP      SINGLE       n     1.082  0.0130     0.944  0.0175
+DR7         CAN         HAN      SINGLE       n     1.082  0.0130     0.944  0.0161
+DR7         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.944  0.0175
+DR7         CAU         HAU      SINGLE       n     1.082  0.0130     0.944  0.0174
+DR7         CBS         HBS      SINGLE       n     1.089  0.0100     0.992  0.0184
+DR7         OAM         HAM      SINGLE       n     0.970  0.0120     0.848  0.0200
+DR7         CBC        HBC1      SINGLE       n     1.089  0.0100     0.980  0.0143
+DR7         CBC        HBC2      SINGLE       n     1.089  0.0100     0.980  0.0143
+DR7         NBH         HBH      SINGLE       n     1.016  0.0100     0.871  0.0200
+DR7         CBV         HBV      SINGLE       n     1.089  0.0100     0.991  0.0200
+DR7         CAH        HAH1      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CAH        HAH2      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CAH        HAH3      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CAF        HAF1      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CAF        HAF2      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CAF        HAF3      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CAG        HAG1      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CAG        HAG2      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         CAG        HAG3      SINGLE       n     1.089  0.0100     0.973  0.0146
+DR7         NBF         HBF      SINGLE       n     1.016  0.0100     0.875  0.0200
+DR7         CAB        HAB1      SINGLE       n     1.089  0.0100     0.970  0.0175
+DR7         CAB        HAB2      SINGLE       n     1.089  0.0100     0.970  0.0175
+DR7         CAB        HAB3      SINGLE       n     1.089  0.0100     0.970  0.0175
+DR7         CBB        HBB1      SINGLE       n     1.089  0.0100     0.981  0.0172
+DR7         CBB        HBB2      SINGLE       n     1.089  0.0100     0.981  0.0172
+DR7         CAW         HAW      SINGLE       n     1.082  0.0130     0.943  0.0173
+DR7         CAY         HAY      SINGLE       n     1.082  0.0130     0.942  0.0141
+DR7         CAX         HAX      SINGLE       n     1.082  0.0130     0.943  0.0173
+DR7         CAZ         HAZ      SINGLE       n     1.082  0.0130     0.942  0.0141
+DR7         CAV         HAV      SINGLE       n     1.082  0.0130     0.948  0.0199
+DR7         CAR         HAR      SINGLE       n     1.082  0.0130     0.944  0.0200
+DR7         CAO         HAO      SINGLE       n     1.082  0.0130     0.944  0.0200
+DR7         CAS         HAS      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DR7         OBI         CAA        HAA1     109.384    1.50
+DR7         OBI         CAA        HAA2     109.384    1.50
+DR7         OBI         CAA        HAA3     109.384    1.50
+DR7        HAA1         CAA        HAA2     109.532    1.53
+DR7        HAA1         CAA        HAA3     109.532    1.53
+DR7        HAA2         CAA        HAA3     109.532    1.53
+DR7         CAA         OBI         CBK     115.328    1.50
+DR7         OBI         CBK         OAI     124.970    1.50
+DR7         OBI         CBK           N     110.249    1.50
+DR7         OAI         CBK           N     124.782    1.50
+DR7         CBK           N          CA     120.995    1.63
+DR7         CBK           N          HN     119.625    2.20
+DR7          CA           N          HN     119.380    1.92
+DR7           N          CA          CB     111.308    2.28
+DR7           N          CA           C     111.106    2.53
+DR7           N          CA          HA     108.161    1.50
+DR7          CB          CA           C     111.511    2.91
+DR7          CB          CA          HA     106.840    1.50
+DR7           C          CA          HA     108.061    1.50
+DR7          CA          CB         CAE     109.638    1.92
+DR7          CA          CB         CG2     109.638    1.92
+DR7          CA          CB         CG1     109.638    1.92
+DR7         CAE          CB         CG2     108.477    1.50
+DR7         CAE          CB         CG1     108.477    1.50
+DR7         CG2          CB         CG1     108.477    1.50
+DR7          CB         CAE        HAE1     109.547    1.50
+DR7          CB         CAE        HAE2     109.547    1.50
+DR7          CB         CAE        HAE3     109.547    1.50
+DR7        HAE1         CAE        HAE2     109.377    1.50
+DR7        HAE1         CAE        HAE3     109.377    1.50
+DR7        HAE2         CAE        HAE3     109.377    1.50
+DR7          CB         CG2        HG21     109.547    1.50
+DR7          CB         CG2        HG22     109.547    1.50
+DR7          CB         CG2        HG23     109.547    1.50
+DR7        HG21         CG2        HG22     109.377    1.50
+DR7        HG21         CG2        HG23     109.377    1.50
+DR7        HG22         CG2        HG23     109.377    1.50
+DR7          CB         CG1        HG11     109.547    1.50
+DR7          CB         CG1        HG12     109.547    1.50
+DR7          CB         CG1        HG13     109.547    1.50
+DR7        HG11         CG1        HG12     109.377    1.50
+DR7        HG11         CG1        HG13     109.377    1.50
+DR7        HG12         CG1        HG13     109.377    1.50
+DR7          CA           C           O     120.430    1.50
+DR7          CA           C         NBG     116.417    1.50
+DR7           O           C         NBG     123.154    1.50
+DR7           C         NBG         CBT     123.632    1.63
+DR7           C         NBG         HBG     118.879    1.83
+DR7         CBT         NBG         HBG     117.489    3.00
+DR7         NBG         CBT         CBA     110.274    1.50
+DR7         NBG         CBT         CBS     109.748    1.50
+DR7         NBG         CBT         HBT     108.194    1.50
+DR7         CBA         CBT         CBS     112.266    1.50
+DR7         CBA         CBT         HBT     108.431    1.50
+DR7         CBS         CBT         HBT     107.639    1.50
+DR7         CBT         CBA         CBO     113.215    1.50
+DR7         CBT         CBA        HBA1     108.892    1.50
+DR7         CBT         CBA        HBA2     108.892    1.50
+DR7         CBO         CBA        HBA1     108.862    1.50
+DR7         CBO         CBA        HBA2     108.862    1.50
+DR7        HBA1         CBA        HBA2     107.782    1.50
+DR7         CBA         CBO         CAT     120.970    1.50
+DR7         CBA         CBO         CAU     120.970    1.50
+DR7         CAT         CBO         CAU     118.060    1.50
+DR7         CBO         CAT         CAP     120.624    1.50
+DR7         CBO         CAT         HAT     119.591    1.50
+DR7         CAP         CAT         HAT     119.786    1.50
+DR7         CAT         CAP         CAN     120.325    1.50
+DR7         CAT         CAP         HAP     119.792    1.50
+DR7         CAN         CAP         HAP     119.883    1.50
+DR7         CAP         CAN         CAQ     120.043    1.50
+DR7         CAP         CAN         HAN     119.979    1.50
+DR7         CAQ         CAN         HAN     119.979    1.50
+DR7         CAN         CAQ         CAU     120.325    1.50
+DR7         CAN         CAQ         HAQ     119.883    1.50
+DR7         CAU         CAQ         HAQ     119.792    1.50
+DR7         CBO         CAU         CAQ     120.624    1.50
+DR7         CBO         CAU         HAU     119.591    1.50
+DR7         CAQ         CAU         HAU     119.786    1.50
+DR7         CBT         CBS         OAM     109.040    1.72
+DR7         CBT         CBS         CBC     112.581    1.77
+DR7         CBT         CBS         HBS     108.500    1.50
+DR7         OAM         CBS         CBC     109.290    2.07
+DR7         OAM         CBS         HBS     108.183    1.96
+DR7         CBC         CBS         HBS     108.552    1.50
+DR7         CBS         OAM         HAM     109.265    3.00
+DR7         CBS         CBC         NBW     111.883    2.59
+DR7         CBS         CBC        HBC1     109.093    1.50
+DR7         CBS         CBC        HBC2     109.093    1.50
+DR7         NBW         CBC        HBC1     108.783    1.50
+DR7         NBW         CBC        HBC2     108.783    1.50
+DR7        HBC1         CBC        HBC2     107.873    1.50
+DR7         CBC         NBW         NBH     109.794    1.50
+DR7         CBC         NBW         CBB     114.848    2.03
+DR7         NBH         NBW         CBB     110.229    1.50
+DR7         NBW         NBH         CBN     119.838    1.50
+DR7         NBW         NBH         HBH     120.234    2.39
+DR7         CBN         NBH         HBH     119.928    2.41
+DR7         NBH         CBN         OAL     122.893    1.50
+DR7         NBH         CBN         CBV     116.713    1.50
+DR7         OAL         CBN         CBV     120.394    1.50
+DR7         CBN         CBV         CBY     111.511    2.91
+DR7         CBN         CBV         NBF     111.106    2.53
+DR7         CBN         CBV         HBV     108.061    1.50
+DR7         CBY         CBV         NBF     111.308    2.28
+DR7         CBY         CBV         HBV     106.840    1.50
+DR7         NBF         CBV         HBV     108.161    1.50
+DR7         CBV         CBY         CAH     109.638    1.92
+DR7         CBV         CBY         CAF     109.638    1.92
+DR7         CBV         CBY         CAG     109.638    1.92
+DR7         CAH         CBY         CAF     108.477    1.50
+DR7         CAH         CBY         CAG     108.477    1.50
+DR7         CAF         CBY         CAG     108.477    1.50
+DR7         CBY         CAH        HAH1     109.547    1.50
+DR7         CBY         CAH        HAH2     109.547    1.50
+DR7         CBY         CAH        HAH3     109.547    1.50
+DR7        HAH1         CAH        HAH2     109.377    1.50
+DR7        HAH1         CAH        HAH3     109.377    1.50
+DR7        HAH2         CAH        HAH3     109.377    1.50
+DR7         CBY         CAF        HAF1     109.547    1.50
+DR7         CBY         CAF        HAF2     109.547    1.50
+DR7         CBY         CAF        HAF3     109.547    1.50
+DR7        HAF1         CAF        HAF2     109.377    1.50
+DR7        HAF1         CAF        HAF3     109.377    1.50
+DR7        HAF2         CAF        HAF3     109.377    1.50
+DR7         CBY         CAG        HAG1     109.547    1.50
+DR7         CBY         CAG        HAG2     109.547    1.50
+DR7         CBY         CAG        HAG3     109.547    1.50
+DR7        HAG1         CAG        HAG2     109.377    1.50
+DR7        HAG1         CAG        HAG3     109.377    1.50
+DR7        HAG2         CAG        HAG3     109.377    1.50
+DR7         CBV         NBF         CBL     120.995    1.63
+DR7         CBV         NBF         HBF     119.380    1.92
+DR7         CBL         NBF         HBF     119.625    2.20
+DR7         NBF         CBL         OAJ     124.782    1.50
+DR7         NBF         CBL         OBJ     110.248    1.50
+DR7         OAJ         CBL         OBJ     124.970    1.50
+DR7         CBL         OBJ         CAB     115.328    1.50
+DR7         OBJ         CAB        HAB1     109.384    1.50
+DR7         OBJ         CAB        HAB2     109.384    1.50
+DR7         OBJ         CAB        HAB3     109.384    1.50
+DR7        HAB1         CAB        HAB2     109.532    1.53
+DR7        HAB1         CAB        HAB3     109.532    1.53
+DR7        HAB2         CAB        HAB3     109.532    1.53
+DR7         NBW         CBB         CBP     112.075    1.86
+DR7         NBW         CBB        HBB1     108.951    1.50
+DR7         NBW         CBB        HBB2     108.951    1.50
+DR7         CBP         CBB        HBB1     109.172    1.50
+DR7         CBP         CBB        HBB2     109.172    1.50
+DR7        HBB1         CBB        HBB2     107.748    1.50
+DR7         CBB         CBP         CAW     120.837    1.50
+DR7         CBB         CBP         CAX     120.835    1.50
+DR7         CAW         CBP         CAX     118.327    1.50
+DR7         CBP         CAW         CAY     120.895    1.50
+DR7         CBP         CAW         HAW     119.581    1.50
+DR7         CAY         CAW         HAW     119.524    1.50
+DR7         CAW         CAY         CBQ     120.829    1.50
+DR7         CAW         CAY         HAY     119.510    1.50
+DR7         CBQ         CAY         HAY     119.661    1.50
+DR7         CBP         CAX         CAZ     120.895    1.50
+DR7         CBP         CAX         HAX     119.581    1.50
+DR7         CAZ         CAX         HAX     119.524    1.50
+DR7         CAX         CAZ         CBQ     120.829    1.50
+DR7         CAX         CAZ         HAZ     119.510    1.50
+DR7         CBQ         CAZ         HAZ     119.661    1.50
+DR7         CAY         CBQ         CAZ     118.225    1.50
+DR7         CAY         CBQ         CBR     120.888    1.50
+DR7         CAZ         CBQ         CBR     120.888    1.50
+DR7         CBQ         CBR         CAV     122.135    1.50
+DR7         CBQ         CBR         NBD     116.456    1.50
+DR7         CAV         CBR         NBD     121.410    1.50
+DR7         CBR         CAV         CAR     119.353    1.50
+DR7         CBR         CAV         HAV     120.113    1.50
+DR7         CAR         CAV         HAV     120.534    1.50
+DR7         CAV         CAR         CAO     119.260    1.50
+DR7         CAV         CAR         HAR     120.271    1.50
+DR7         CAO         CAR         HAR     120.469    1.50
+DR7         CAR         CAO         CAS     118.387    1.50
+DR7         CAR         CAO         HAO     120.877    1.50
+DR7         CAS         CAO         HAO     120.736    1.50
+DR7         CAO         CAS         NBD     123.734    1.50
+DR7         CAO         CAS         HAS     118.457    1.50
+DR7         NBD         CAS         HAS     117.809    1.50
+DR7         CBR         NBD         CAS     117.856    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DR7             sp3_sp3_2        HAA1         CAA         OBI         CBK     -60.000    10.0     3
+DR7             sp2_sp2_7          CA           C         NBG         CBT     180.000     5.0     2
+DR7            sp2_sp3_13           C         NBG         CBT         CBA       0.000    10.0     6
+DR7            sp3_sp3_41         CBO         CBA         CBT         NBG     180.000    10.0     3
+DR7            sp3_sp3_50         OAM         CBS         CBT         NBG     180.000    10.0     3
+DR7            sp2_sp3_20         CAT         CBO         CBA         CBT     -90.000    10.0     6
+DR7       const_sp2_sp2_2         CAP         CAT         CBO         CBA     180.000     5.0     2
+DR7              const_60         CAQ         CAU         CBO         CBA     180.000    10.0     2
+DR7       const_sp2_sp2_5         CAN         CAP         CAT         CBO       0.000     5.0     2
+DR7       const_sp2_sp2_9         CAQ         CAN         CAP         CAT       0.000     5.0     2
+DR7              const_13         CAP         CAN         CAQ         CAU       0.000    10.0     2
+DR7              const_17         CAN         CAQ         CAU         CBO       0.000    10.0     2
+DR7             sp2_sp2_1         OAI         CBK         OBI         CAA     180.000     5.0     2
+DR7            sp3_sp3_59         CBT         CBS         OAM         HAM     180.000    10.0     3
+DR7            sp3_sp3_62         NBW         CBC         CBS         CBT     180.000    10.0     3
+DR7            sp3_sp3_71         CBS         CBC         NBW         NBH     180.000    10.0     3
+DR7            sp2_sp3_25         CBN         NBH         NBW         CBC       0.000    10.0     6
+DR7            sp3_sp3_77         CBP         CBB         NBW         CBC     180.000    10.0     3
+DR7            sp2_sp2_13         OAL         CBN         NBH         NBW       0.000     5.0     2
+DR7            sp2_sp3_29         NBH         CBN         CBV         CBY       0.000    10.0     6
+DR7            sp3_sp3_84         CBN         CBV         CBY         CAH     -60.000    10.0     3
+DR7            sp2_sp3_35         CBL         NBF         CBV         CBN       0.000    10.0     6
+DR7            sp3_sp3_92        HAH1         CAH         CBY         CBV     180.000    10.0     3
+DR7           sp3_sp3_102        HAF1         CAF         CBY         CBV     -60.000    10.0     3
+DR7           sp3_sp3_110        HAG1         CAG         CBY         CBV     180.000    10.0     3
+DR7             sp2_sp2_3         OBI         CBK           N          CA     180.000     5.0     2
+DR7            sp2_sp2_17         OAJ         CBL         NBF         CBV       0.000     5.0     2
+DR7            sp2_sp2_19         NBF         CBL         OBJ         CAB     180.000     5.0     2
+DR7           sp3_sp3_120        HAB1         CAB         OBJ         CBL     -60.000    10.0     3
+DR7            sp2_sp3_42         CAW         CBP         CBB         NBW     -90.000    10.0     6
+DR7              const_40         CAY         CAW         CBP         CBB     180.000    10.0     2
+DR7              const_64         CAZ         CAX         CBP         CBB     180.000    10.0     2
+DR7              const_43         CBP         CAW         CAY         CBQ       0.000    10.0     2
+DR7              const_47         CAW         CAY         CBQ         CAZ       0.000    10.0     2
+DR7              const_55         CBP         CAX         CAZ         CBQ       0.000    10.0     2
+DR7              const_51         CAX         CAZ         CBQ         CAY       0.000    10.0     2
+DR7            sp2_sp2_21         CAY         CBQ         CBR         CAV     180.000     5.0     2
+DR7              const_22         CAR         CAV         CBR         CBQ     180.000    10.0     2
+DR7              const_68         CBQ         CBR         NBD         CAS     180.000    10.0     2
+DR7              const_25         CAO         CAR         CAV         CBR       0.000    10.0     2
+DR7              const_29         CAS         CAO         CAR         CAV       0.000    10.0     2
+DR7              const_33         CAR         CAO         CAS         NBD       0.000    10.0     2
+DR7              const_37         CAO         CAS         NBD         CBR       0.000    10.0     2
+DR7             sp2_sp3_1         CBK           N          CA          CB       0.000    10.0     6
+DR7             sp2_sp3_7           O           C          CA           N       0.000    10.0     6
+DR7             sp3_sp3_6           N          CA          CB         CAE     -60.000    10.0     3
+DR7            sp3_sp3_14        HAE1         CAE          CB          CA     180.000    10.0     3
+DR7            sp3_sp3_26          CA          CB         CG2        HG21      60.000    10.0     3
+DR7            sp3_sp3_32          CA          CB         CG1        HG11     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DR7    chir_1    CA    N    C    CB    positive
+DR7    chir_2    CB    CA    CAE    CG2    both
+DR7    chir_3    CBT    NBG    CBS    CBA    positive
+DR7    chir_4    CBS    OAM    CBT    CBC    positive
+DR7    chir_5    NBW    NBH    CBC    CBB    positive
+DR7    chir_6    CBV    NBF    CBN    CBY    positive
+DR7    chir_7    CBY    CBV    CAH    CAF    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DR7    plan-1         CAN   0.020
+DR7    plan-1         CAP   0.020
+DR7    plan-1         CAQ   0.020
+DR7    plan-1         CAT   0.020
+DR7    plan-1         CAU   0.020
+DR7    plan-1         CBA   0.020
+DR7    plan-1         CBO   0.020
+DR7    plan-1         HAN   0.020
+DR7    plan-1         HAP   0.020
+DR7    plan-1         HAQ   0.020
+DR7    plan-1         HAT   0.020
+DR7    plan-1         HAU   0.020
+DR7    plan-2         CAW   0.020
+DR7    plan-2         CAX   0.020
+DR7    plan-2         CAY   0.020
+DR7    plan-2         CAZ   0.020
+DR7    plan-2         CBB   0.020
+DR7    plan-2         CBP   0.020
+DR7    plan-2         CBQ   0.020
+DR7    plan-2         CBR   0.020
+DR7    plan-2         HAW   0.020
+DR7    plan-2         HAX   0.020
+DR7    plan-2         HAY   0.020
+DR7    plan-2         HAZ   0.020
+DR7    plan-3         CAO   0.020
+DR7    plan-3         CAR   0.020
+DR7    plan-3         CAS   0.020
+DR7    plan-3         CAV   0.020
+DR7    plan-3         CBQ   0.020
+DR7    plan-3         CBR   0.020
+DR7    plan-3         HAO   0.020
+DR7    plan-3         HAR   0.020
+DR7    plan-3         HAS   0.020
+DR7    plan-3         HAV   0.020
+DR7    plan-3         NBD   0.020
+DR7    plan-4         CBK   0.020
+DR7    plan-4           N   0.020
+DR7    plan-4         OAI   0.020
+DR7    plan-4         OBI   0.020
+DR7    plan-5          CA   0.020
+DR7    plan-5         CBK   0.020
+DR7    plan-5          HN   0.020
+DR7    plan-5           N   0.020
+DR7    plan-6           C   0.020
+DR7    plan-6          CA   0.020
+DR7    plan-6         NBG   0.020
+DR7    plan-6           O   0.020
+DR7    plan-7           C   0.020
+DR7    plan-7         CBT   0.020
+DR7    plan-7         HBG   0.020
+DR7    plan-7         NBG   0.020
+DR7    plan-8         CBN   0.020
+DR7    plan-8         HBH   0.020
+DR7    plan-8         NBH   0.020
+DR7    plan-8         NBW   0.020
+DR7    plan-9         CBN   0.020
+DR7    plan-9         CBV   0.020
+DR7    plan-9         NBH   0.020
+DR7    plan-9         OAL   0.020
+DR7   plan-10         CBL   0.020
+DR7   plan-10         CBV   0.020
+DR7   plan-10         HBF   0.020
+DR7   plan-10         NBF   0.020
+DR7   plan-11         CBL   0.020
+DR7   plan-11         NBF   0.020
+DR7   plan-11         OAJ   0.020
+DR7   plan-11         OBJ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DR7           SMILES              ACDLabs 10.04                                                                                                                                                                               O=C(OC)NC(C(=O)NC(Cc1ccccc1)C(O)CN(NC(=O)C(NC(=O)OC)C(C)(C)C)Cc3ccc(c2ncccc2)cc3)C(C)(C)C
+DR7 SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                            COC(=O)N[C@H](C(=O)N[C@@H](Cc1ccccc1)[C@@H](O)CN(Cc2ccc(cc2)c3ccccn3)NC(=O)[C@@H](NC(=O)OC)C(C)(C)C)C(C)(C)C
+DR7           SMILES               CACTVS 3.341                                                                                                                                                                   COC(=O)N[CH](C(=O)N[CH](Cc1ccccc1)[CH](O)CN(Cc2ccc(cc2)c3ccccn3)NC(=O)[CH](NC(=O)OC)C(C)(C)C)C(C)(C)C
+DR7 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                             CC(C)(C)[C@@H](C(=O)N[C@@H](Cc1ccccc1)[C@H](CN(Cc2ccc(cc2)c3ccccn3)NC(=O)[C@H](C(C)(C)C)NC(=O)OC)O)NC(=O)OC
+DR7           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                               CC(C)(C)C(C(=O)NC(Cc1ccccc1)C(CN(Cc2ccc(cc2)c3ccccn3)NC(=O)C(C(C)(C)C)NC(=O)OC)O)NC(=O)OC
+DR7            InChI                InChI  1.03 InChI=1S/C38H52N6O7/c1-37(2,3)31(41-35(48)50-7)33(46)40-29(22-25-14-10-9-11-15-25)30(45)24-44(43-34(47)32(38(4,5)6)42-36(49)51-8)23-26-17-19-27(20-18-26)28-16-12-13-21-39-28/h9-21,29-32,45H,22-24H2,1-8H3,(H,40,46)(H,41,48)(H,42,49)(H,43,47)/t29-,30-,31+,32+/m0/s1
+DR7         InChIKey                InChI  1.03                                                                                                                                                                                                                                             AXRYRYVKAWYZBR-GASGPIRDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DR7 acedrg               243         "dictionary generator"                  
+DR7 acedrg_database      11          "data source"                           
+DR7 rdkit                2017.03.2   "Chemoinformatics tool"
+DR7 refmac5              5.8.0238    "optimization tool"                     

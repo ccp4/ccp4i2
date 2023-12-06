@@ -1,0 +1,221 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CKX     CKX      "(2~{S},3~{S},4~{R},5~{R})-4,5-bis(oxidanyl)-2-propyl-piperidine-3-carboxylic acid"     NON-POLYMER     30     14     .     
+#
+data_comp_CKX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CKX     N       N       NT1     0       124.356     -880.704    303.172     
+CKX     C10     C       CH3     0       125.722     -881.895    307.215     
+CKX     C2      C       CH2     0       123.766     -879.905    302.091     
+CKX     C3      C       CH1     0       124.768     -879.725    300.963     
+CKX     C4      C       CH1     0       126.011     -879.022    301.493     
+CKX     C5      C       CH1     0       126.612     -879.780    302.689     
+CKX     C6      C       C       0       127.785     -878.998    303.284     
+CKX     C7      C       CH1     0       125.551     -880.086    303.771     
+CKX     C8      C       CH2     0       126.057     -881.004    304.888     
+CKX     C9      C       CH2     0       125.084     -881.212    306.027     
+CKX     O3      O       OH1     0       124.180     -878.956    299.918     
+CKX     O4      O       OH1     0       126.976     -878.897    300.443     
+CKX     O61     O       O       0       128.881     -879.507    303.268     
+CKX     O62     O       OC      -1      127.570     -877.903    303.747     
+CKX     H1      H       H       0       124.570     -881.499    302.857     
+CKX     H3      H       H       0       125.088     -881.926    307.952     
+CKX     H4      H       H       0       126.512     -881.399    307.490     
+CKX     H5      H       H       0       125.978     -882.801    306.971     
+CKX     H6      H       H       0       122.968     -880.355    301.744     
+CKX     H7      H       H       0       123.506     -879.024    302.434     
+CKX     H8      H       H       0       125.020     -880.603    300.613     
+CKX     H9      H       H       0       125.759     -878.114    301.789     
+CKX     H10     H       H       0       126.967     -880.637    302.354     
+CKX     H11     H       H       0       125.285     -879.222    304.185     
+CKX     H12     H       H       0       126.885     -880.632    305.257     
+CKX     H13     H       H       0       126.271     -881.879    304.497     
+CKX     H14     H       H       0       124.729     -880.342    306.308     
+CKX     H15     H       H       0       124.329     -881.753    305.710     
+CKX     H16     H       H       0       123.626     -879.447    299.520     
+CKX     H17     H       H       0       127.204     -879.667    300.189     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CKX          C3          O3      SINGLE       n     1.424  0.0100     1.424  0.0100
+CKX          C4          O4      SINGLE       n     1.431  0.0107     1.431  0.0107
+CKX          C3          C4      SINGLE       n     1.523  0.0100     1.523  0.0100
+CKX          C2          C3      SINGLE       n     1.519  0.0103     1.519  0.0103
+CKX          C4          C5      SINGLE       n     1.534  0.0100     1.534  0.0100
+CKX           N          C2      SINGLE       n     1.467  0.0114     1.467  0.0114
+CKX          C5          C6      SINGLE       n     1.525  0.0129     1.525  0.0129
+CKX          C5          C7      SINGLE       n     1.540  0.0104     1.540  0.0104
+CKX          C6         O61      DOUBLE       n     1.207  0.0200     1.207  0.0200
+CKX           N          C7      SINGLE       n     1.471  0.0100     1.471  0.0100
+CKX          C6         O62      SINGLE       n     1.207  0.0200     1.207  0.0200
+CKX          C7          C8      SINGLE       n     1.526  0.0155     1.526  0.0155
+CKX          C8          C9      SINGLE       n     1.513  0.0100     1.513  0.0100
+CKX         C10          C9      SINGLE       n     1.511  0.0200     1.511  0.0200
+CKX           N          H1      SINGLE       n     1.036  0.0160     0.881  0.0200
+CKX         C10          H3      SINGLE       n     1.089  0.0100     0.973  0.0157
+CKX         C10          H4      SINGLE       n     1.089  0.0100     0.973  0.0157
+CKX         C10          H5      SINGLE       n     1.089  0.0100     0.973  0.0157
+CKX          C2          H6      SINGLE       n     1.089  0.0100     0.980  0.0183
+CKX          C2          H7      SINGLE       n     1.089  0.0100     0.980  0.0183
+CKX          C3          H8      SINGLE       n     1.089  0.0100     0.978  0.0167
+CKX          C4          H9      SINGLE       n     1.089  0.0100     0.988  0.0151
+CKX          C5         H10      SINGLE       n     1.089  0.0100     0.986  0.0149
+CKX          C7         H11      SINGLE       n     1.089  0.0100     0.994  0.0100
+CKX          C8         H12      SINGLE       n     1.089  0.0100     0.981  0.0140
+CKX          C8         H13      SINGLE       n     1.089  0.0100     0.981  0.0140
+CKX          C9         H14      SINGLE       n     1.089  0.0100     0.981  0.0160
+CKX          C9         H15      SINGLE       n     1.089  0.0100     0.981  0.0160
+CKX          O3         H16      SINGLE       n     0.970  0.0120     0.841  0.0200
+CKX          O4         H17      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CKX          C2           N          C7     112.650    1.50
+CKX          C2           N          H1     109.383    3.00
+CKX          C7           N          H1     108.853    2.50
+CKX          C9         C10          H3     109.562    1.50
+CKX          C9         C10          H4     109.562    1.50
+CKX          C9         C10          H5     109.562    1.50
+CKX          H3         C10          H4     109.380    1.50
+CKX          H3         C10          H5     109.380    1.50
+CKX          H4         C10          H5     109.380    1.50
+CKX          C3          C2           N     110.258    1.51
+CKX          C3          C2          H6     108.826    1.78
+CKX          C3          C2          H7     108.826    1.78
+CKX           N          C2          H6     109.427    1.65
+CKX           N          C2          H7     109.427    1.65
+CKX          H6          C2          H7     108.406    1.54
+CKX          O3          C3          C4     110.081    2.02
+CKX          O3          C3          C2     109.653    2.18
+CKX          O3          C3          H8     109.251    2.36
+CKX          C4          C3          C2     109.659    1.50
+CKX          C4          C3          H8     109.166    1.50
+CKX          C2          C3          H8     109.232    1.50
+CKX          O4          C4          C3     110.081    2.02
+CKX          O4          C4          C5     110.445    1.75
+CKX          O4          C4          H9     108.541    1.50
+CKX          C3          C4          C5     110.880    1.50
+CKX          C3          C4          H9     109.166    1.50
+CKX          C5          C4          H9     108.961    1.50
+CKX          C4          C5          C6     111.056    2.52
+CKX          C4          C5          C7     111.124    1.57
+CKX          C4          C5         H10     107.422    1.50
+CKX          C6          C5          C7     109.543    1.50
+CKX          C6          C5         H10     106.966    1.50
+CKX          C7          C5         H10     107.965    1.50
+CKX          C5          C6         O61     118.283    1.50
+CKX          C5          C6         O62     118.283    1.50
+CKX         O61          C6         O62     123.435    1.50
+CKX          C5          C7           N     110.258    1.51
+CKX          C5          C7          C8     112.413    1.50
+CKX          C5          C7         H11     107.334    1.66
+CKX           N          C7          C8     110.171    2.97
+CKX           N          C7         H11     108.362    1.55
+CKX          C8          C7         H11     107.628    1.50
+CKX          C7          C8          C9     115.652    2.90
+CKX          C7          C8         H12     108.561    1.50
+CKX          C7          C8         H13     108.561    1.50
+CKX          C9          C8         H12     108.674    1.50
+CKX          C9          C8         H13     108.674    1.50
+CKX         H12          C8         H13     107.880    1.69
+CKX          C8          C9         C10     112.487    1.50
+CKX          C8          C9         H14     109.100    1.50
+CKX          C8          C9         H15     109.100    1.50
+CKX         C10          C9         H14     109.249    1.50
+CKX         C10          C9         H15     109.249    1.50
+CKX         H14          C9         H15     107.693    1.50
+CKX          C3          O3         H16     107.637    2.41
+CKX          C4          O4         H17     108.225    2.48
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CKX             sp3_sp3_1          C3          C2           N          C7      60.000    10.0     3
+CKX            sp3_sp3_51          C8          C7           N          C2      60.000    10.0     3
+CKX            sp3_sp3_73          H3         C10          C9          C8     180.000    10.0     3
+CKX             sp3_sp3_8           N          C2          C3          O3      60.000    10.0     3
+CKX            sp3_sp3_43          C4          C3          O3         H16     180.000    10.0     3
+CKX            sp3_sp3_20          O3          C3          C4          O4      60.000    10.0     3
+CKX            sp3_sp3_46          C3          C4          O4         H17     180.000    10.0     3
+CKX            sp3_sp3_29          O4          C4          C5          C6     -60.000    10.0     3
+CKX             sp2_sp3_1         O61          C6          C5          C4       0.000    10.0     6
+CKX            sp3_sp3_38          C6          C5          C7          C8      60.000    10.0     3
+CKX            sp3_sp3_55          C5          C7          C8          C9     180.000    10.0     3
+CKX            sp3_sp3_64          C7          C8          C9         C10     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CKX    chir_1    C3    O3    C4    C2    negative
+CKX    chir_2    C4    O4    C3    C5    negative
+CKX    chir_3    C5    C6    C4    C7    positive
+CKX    chir_4    C7    N    C5    C8    positive
+CKX    chir_5    N    C7    C2    H1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CKX    plan-1          C5   0.020
+CKX    plan-1          C6   0.020
+CKX    plan-1         O61   0.020
+CKX    plan-1         O62   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CKX            InChI                InChI  1.03 InChI=1S/C9H17NO4/c1-2-3-5-7(9(13)14)8(12)6(11)4-10-5/h5-8,10-12H,2-4H2,1H3,(H,13,14)/t5-,6+,7-,8-/m0/s1
+CKX         InChIKey                InChI  1.03                                                                              FBBVTGIVZAYALR-YWIQKCBGSA-N
+CKX SMILES_CANONICAL               CACTVS 3.385                                                                CCC[C@@H]1NC[C@@H](O)[C@H](O)[C@H]1C(O)=O
+CKX           SMILES               CACTVS 3.385                                                                      CCC[CH]1NC[CH](O)[CH](O)[CH]1C(O)=O
+CKX SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                              CCC[C@H]1[C@@H]([C@H]([C@@H](CN1)O)O)C(=O)O
+CKX           SMILES "OpenEye OEToolkits" 2.0.7                                                                                CCCC1C(C(C(CN1)O)O)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CKX acedrg               243         "dictionary generator"                  
+CKX acedrg_database      11          "data source"                           
+CKX rdkit                2017.03.2   "Chemoinformatics tool"
+CKX refmac5              5.8.0238    "optimization tool"                     

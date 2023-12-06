@@ -1,0 +1,134 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FOA     FOA      "2-FUROIC ACID"     NON-POLYMER     11     8     .     
+#
+data_comp_FOA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FOA     C1      C       C       0       -24.950     -11.079     -14.730     
+FOA     C2      C       CR5     0       -25.608     -10.127     -13.831     
+FOA     C3      C       CR15    0       -26.772     -10.137     -13.155     
+FOA     C4      C       CR15    0       -26.848     -8.911      -12.450     
+FOA     C5      C       CR15    0       -25.699     -8.220      -12.750     
+FOA     O6      O       O       0       -23.851     -10.787     -15.172     
+FOA     O7      O       OC      -1      -25.545     -12.111     -14.981     
+FOA     O8      O       O2      0       -24.932     -8.959      -13.597     
+FOA     H3      H       H       0       -27.408     -10.823     -13.153     
+FOA     H4      H       H       0       -27.544     -8.627      -11.889     
+FOA     H5      H       H       0       -25.464     -7.368      -12.428     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FOA          C1          C2      SINGLE       n     1.458  0.0200     1.458  0.0200
+FOA          C1          O6      DOUBLE       n     1.217  0.0200     1.217  0.0200
+FOA          C1          O7      SINGLE       n     1.217  0.0200     1.217  0.0200
+FOA          C2          C3      DOUBLE       y     1.343  0.0100     1.343  0.0100
+FOA          C2          O8      SINGLE       y     1.367  0.0100     1.367  0.0100
+FOA          C3          C4      SINGLE       y     1.416  0.0136     1.416  0.0136
+FOA          C4          C5      DOUBLE       y     1.384  0.0200     1.384  0.0200
+FOA          C5          O8      SINGLE       y     1.363  0.0110     1.363  0.0110
+FOA          C3          H3      SINGLE       n     1.082  0.0130     0.936  0.0163
+FOA          C4          H4      SINGLE       n     1.082  0.0130     0.938  0.0166
+FOA          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0191
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FOA          C2          C1          O6     117.513    1.50
+FOA          C2          C1          O7     117.513    1.50
+FOA          O6          C1          O7     124.973    1.50
+FOA          C1          C2          C3     134.492    1.50
+FOA          C1          C2          O8     115.706    1.50
+FOA          C3          C2          O8     109.801    1.50
+FOA          C2          C3          C4     106.282    1.50
+FOA          C2          C3          H3     126.807    1.50
+FOA          C4          C3          H3     126.911    1.50
+FOA          C3          C4          C5     106.742    1.50
+FOA          C3          C4          H4     126.670    1.50
+FOA          C5          C4          H4     126.588    1.50
+FOA          C4          C5          O8     110.367    1.50
+FOA          C4          C5          H5     125.684    2.87
+FOA          O8          C5          H5     123.949    2.84
+FOA          C2          O8          C5     106.808    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FOA             sp2_sp2_1          O6          C1          C2          C3     180.000     5.0     2
+FOA       const_sp2_sp2_3          C1          C2          C3          C4     180.000     5.0     2
+FOA              const_16          C1          C2          O8          C5     180.000    10.0     2
+FOA       const_sp2_sp2_5          C2          C3          C4          C5       0.000     5.0     2
+FOA       const_sp2_sp2_9          C3          C4          C5          O8       0.000     5.0     2
+FOA              const_13          C4          C5          O8          C2       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FOA    plan-1          C1   0.020
+FOA    plan-1          C2   0.020
+FOA    plan-1          C3   0.020
+FOA    plan-1          C4   0.020
+FOA    plan-1          C5   0.020
+FOA    plan-1          H3   0.020
+FOA    plan-1          H4   0.020
+FOA    plan-1          H5   0.020
+FOA    plan-1          O8   0.020
+FOA    plan-2          C1   0.020
+FOA    plan-2          C2   0.020
+FOA    plan-2          O6   0.020
+FOA    plan-2          O7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FOA           SMILES              ACDLabs 10.04                                    O=C(O)c1occc1
+FOA SMILES_CANONICAL               CACTVS 3.341                                    OC(=O)c1occc1
+FOA           SMILES               CACTVS 3.341                                    OC(=O)c1occc1
+FOA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                  c1cc(oc1)C(=O)O
+FOA           SMILES "OpenEye OEToolkits" 1.5.0                                  c1cc(oc1)C(=O)O
+FOA            InChI                InChI  1.03 InChI=1S/C5H4O3/c6-5(7)4-2-1-3-8-4/h1-3H,(H,6,7)
+FOA         InChIKey                InChI  1.03                      SMNDYUVBFMFKNZ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FOA acedrg               243         "dictionary generator"                  
+FOA acedrg_database      11          "data source"                           
+FOA rdkit                2017.03.2   "Chemoinformatics tool"
+FOA refmac5              5.8.0238    "optimization tool"                     

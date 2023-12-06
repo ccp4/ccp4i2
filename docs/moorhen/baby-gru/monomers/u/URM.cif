@@ -1,0 +1,476 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+URM     URM      "(((2S,3R,4S,5R,6R)-3,4,5-trihydroxy-6-(hydroxymethyl)tetrahydro-2H-pyran-2-yl)methyl)phosphonic(((2R,3S,4R,5R)-5-(2,4-dioxo-3,4-dihydropyrimidin-1(2H)-yl)-3,4-dihydroxytetrahydrofuran-2-yl)methyl phosphoric)anhydride"     NON-POLYMER     60     36     .     
+#
+data_comp_URM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+URM     C1      C       CH1     0       78.396      -71.379     36.430      
+URM     C2      C       CH1     0       78.380      -69.853     36.267      
+URM     C3      C       CH1     0       79.181      -69.367     37.486      
+URM     C4      C       CH1     0       80.135      -70.543     37.720      
+URM     C5      C       CH2     0       80.778      -70.637     39.083      
+URM     O6      O       O2      0       79.290      -71.692     37.480      
+URM     O7      O       OH1     0       79.900      -68.164     37.241      
+URM     O8      O       O2      0       79.757      -70.777     40.105      
+URM     P9      P       P       0       80.224      -70.832     41.639      
+URM     O10     O       OP      -1      81.075      -69.643     41.943      
+URM     O11     O       O       0       80.768      -72.189     41.943      
+URM     O12     O       O2      0       78.824      -70.661     42.403      
+URM     N13     N       NR6     0       77.056      -71.937     36.758      
+URM     N15     N       NR6     0       75.188      -73.225     36.211      
+URM     C17     C       CR16    0       75.239      -72.109     38.306      
+URM     C18     C       CR16    0       76.449      -71.635     37.961      
+URM     C19     C       CR6     0       76.425      -72.757     35.827      
+URM     O19     O       O       0       76.910      -73.059     34.742      
+URM     C20     C       CR6     0       74.527      -72.965     37.399      
+URM     O20     O       O       0       73.417      -73.460     37.597      
+URM     O21     O       OH1     0       78.987      -69.508     35.038      
+URM     P22     P       P       0       77.935      -69.384     42.727      
+URM     O23     O       OP      -1      78.525      -68.666     43.910      
+URM     O24     O       O       0       77.771      -68.564     41.477      
+URM     O36     O       O2      0       76.225      -71.649     41.447      
+URM     C37     C       CH1     0       76.319      -72.875     42.180      
+URM     C38     C       CH1     0       74.917      -73.410     42.498      
+URM     C39     C       CH1     0       74.116      -72.344     43.231      
+URM     C40     C       CH1     0       74.070      -71.056     42.421      
+URM     C41     C       CH1     0       75.489      -70.578     42.063      
+URM     O42     O       OH1     0       74.251      -73.782     41.292      
+URM     O43     O       OH1     0       72.792      -72.810     43.487      
+URM     O44     O       OH1     0       73.382      -70.049     43.162      
+URM     C45     C       CH2     0       76.282      -69.985     43.222      
+URM     C46     C       CH2     0       77.151      -73.820     41.340      
+URM     O47     O       OH1     0       77.239      -75.116     41.931      
+URM     H1      H       H       0       78.734      -71.788     35.606      
+URM     H2      H       H       0       77.464      -69.511     36.304      
+URM     H3      H       H       0       78.575      -69.251     38.262      
+URM     H4      H       H       0       80.846      -70.527     37.044      
+URM     H5      H       H       0       81.312      -69.822     39.253      
+URM     H5A     H       H       0       81.385      -71.418     39.109      
+URM     HO7     H       H       0       80.342      -67.963     37.938      
+URM     HN15    H       H       0       74.775      -73.753     35.624      
+URM     H17     H       H       0       74.862      -71.883     39.131      
+URM     H18     H       H       0       76.904      -71.078     38.562      
+URM     HO21    H       H       0       79.024      -68.663     34.969      
+URM     H37     H       H       0       76.795      -72.712     43.032      
+URM     H38     H       H       0       74.997      -74.202     43.079      
+URM     H39     H       H       0       74.558      -72.157     44.096      
+URM     H40     H       H       0       73.570      -71.227     41.589      
+URM     H41     H       H       0       75.400      -69.852     41.396      
+URM     HO42    H       H       0       73.528      -74.170     41.477      
+URM     HO43    H       H       0       72.409      -72.272     44.008      
+URM     HO44    H       H       0       73.271      -69.370     42.678      
+URM     H45     H       H       0       75.779      -69.233     43.596      
+URM     H45A    H       H       0       76.382      -70.657     43.925      
+URM     H46     H       H       0       78.053      -73.452     41.239      
+URM     H46A    H       H       0       76.755      -73.898     40.447      
+URM     HO47    H       H       0       77.635      -75.059     42.679      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+URM          C1         N13      SINGLE       n     1.476  0.0133     1.476  0.0133
+URM          C1          O6      SINGLE       n     1.412  0.0100     1.412  0.0100
+URM          C1          C2      SINGLE       n     1.529  0.0100     1.529  0.0100
+URM          C2         O21      SINGLE       n     1.412  0.0100     1.412  0.0100
+URM          C2          C3      SINGLE       n     1.533  0.0109     1.533  0.0109
+URM          C3          C4      SINGLE       n     1.535  0.0100     1.535  0.0100
+URM          C3          O7      SINGLE       n     1.422  0.0100     1.422  0.0100
+URM          C4          O6      SINGLE       n     1.451  0.0111     1.451  0.0111
+URM          C4          C5      SINGLE       n     1.509  0.0100     1.509  0.0100
+URM          C5          O8      SINGLE       n     1.450  0.0166     1.450  0.0166
+URM          O8          P9      SINGLE       n     1.604  0.0133     1.604  0.0133
+URM          P9         O11      DOUBLE       n     1.493  0.0122     1.493  0.0122
+URM          P9         O12      SINGLE       n     1.604  0.0133     1.604  0.0133
+URM          P9         O10      SINGLE       n     1.493  0.0122     1.493  0.0122
+URM         O12         P22      SINGLE       n     1.590  0.0138     1.590  0.0138
+URM         N13         C19      SINGLE       y     1.383  0.0100     1.383  0.0100
+URM         N13         C18      SINGLE       y     1.375  0.0106     1.375  0.0106
+URM         N15         C19      SINGLE       y     1.372  0.0112     1.372  0.0112
+URM         N15         C20      SINGLE       y     1.381  0.0100     1.381  0.0100
+URM         C17         C20      SINGLE       y     1.434  0.0100     1.434  0.0100
+URM         C17         C18      DOUBLE       y     1.342  0.0100     1.342  0.0100
+URM         C19         O19      DOUBLE       n     1.224  0.0111     1.224  0.0111
+URM         C20         O20      DOUBLE       n     1.231  0.0100     1.231  0.0100
+URM         P22         O24      DOUBLE       n     1.504  0.0125     1.504  0.0125
+URM         P22         O23      SINGLE       n     1.504  0.0125     1.504  0.0125
+URM         P22         C45      SINGLE       n     1.822  0.0194     1.822  0.0194
+URM         O36         C41      SINGLE       n     1.430  0.0100     1.430  0.0100
+URM         O36         C37      SINGLE       n     1.426  0.0100     1.426  0.0100
+URM         C37         C46      SINGLE       n     1.511  0.0136     1.511  0.0136
+URM         C37         C38      SINGLE       n     1.524  0.0200     1.524  0.0200
+URM         C38         O42      SINGLE       n     1.425  0.0176     1.425  0.0176
+URM         C38         C39      SINGLE       n     1.520  0.0154     1.520  0.0154
+URM         C39         C40      SINGLE       n     1.520  0.0154     1.520  0.0154
+URM         C39         O43      SINGLE       n     1.427  0.0125     1.427  0.0125
+URM         C40         C41      SINGLE       n     1.525  0.0170     1.525  0.0170
+URM         C40         O44      SINGLE       n     1.425  0.0176     1.425  0.0176
+URM         C41         C45      SINGLE       n     1.518  0.0113     1.518  0.0113
+URM         C46         O47      SINGLE       n     1.426  0.0200     1.426  0.0200
+URM          C1          H1      SINGLE       n     1.089  0.0100     0.981  0.0118
+URM          C2          H2      SINGLE       n     1.089  0.0100     0.978  0.0200
+URM          C3          H3      SINGLE       n     1.089  0.0100     0.992  0.0200
+URM          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0200
+URM          C5          H5      SINGLE       n     1.089  0.0100     0.989  0.0200
+URM          C5         H5A      SINGLE       n     1.089  0.0100     0.989  0.0200
+URM          O7         HO7      SINGLE       n     0.970  0.0120     0.849  0.0200
+URM         N15        HN15      SINGLE       n     1.016  0.0100     0.889  0.0200
+URM         C17         H17      SINGLE       n     1.082  0.0130     0.935  0.0100
+URM         C18         H18      SINGLE       n     1.082  0.0130     0.938  0.0107
+URM         O21        HO21      SINGLE       n     0.970  0.0120     0.849  0.0200
+URM         C37         H37      SINGLE       n     1.089  0.0100     0.990  0.0106
+URM         C38         H38      SINGLE       n     1.089  0.0100     0.986  0.0131
+URM         C39         H39      SINGLE       n     1.089  0.0100     0.990  0.0140
+URM         C40         H40      SINGLE       n     1.089  0.0100     0.986  0.0131
+URM         C41         H41      SINGLE       n     1.089  0.0100     0.990  0.0162
+URM         O42        HO42      SINGLE       n     0.970  0.0120     0.841  0.0200
+URM         O43        HO43      SINGLE       n     0.970  0.0120     0.841  0.0200
+URM         O44        HO44      SINGLE       n     0.970  0.0120     0.841  0.0200
+URM         C45         H45      SINGLE       n     1.089  0.0100     0.980  0.0190
+URM         C45        H45A      SINGLE       n     1.089  0.0100     0.980  0.0190
+URM         C46         H46      SINGLE       n     1.089  0.0100     0.980  0.0184
+URM         C46        H46A      SINGLE       n     1.089  0.0100     0.980  0.0184
+URM         O47        HO47      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+URM         N13          C1          O6     108.667    1.50
+URM         N13          C1          C2     112.859    1.50
+URM         N13          C1          H1     109.166    1.50
+URM          O6          C1          C2     106.825    1.50
+URM          O6          C1          H1     109.327    1.50
+URM          C2          C1          H1     109.776    1.83
+URM          C1          C2         O21     109.476    3.00
+URM          C1          C2          C3     101.269    1.50
+URM          C1          C2          H2     110.760    1.63
+URM         O21          C2          C3     112.861    2.52
+URM         O21          C2          H2     111.022    1.77
+URM          C3          C2          H2     110.799    1.82
+URM          C2          C3          C4     102.071    1.50
+URM          C2          C3          O7     111.993    3.00
+URM          C2          C3          H3     110.108    1.66
+URM          C4          C3          O7     111.281    2.46
+URM          C4          C3          H3     110.452    2.54
+URM          O7          C3          H3     110.380    1.67
+URM          C3          C4          O6     104.439    1.50
+URM          C3          C4          C5     116.008    1.52
+URM          C3          C4          H4     109.363    1.86
+URM          O6          C4          C5     109.615    1.50
+URM          O6          C4          H4     108.698    1.50
+URM          C5          C4          H4     108.268    1.50
+URM          C4          C5          O8     109.342    1.50
+URM          C4          C5          H5     109.624    1.50
+URM          C4          C5         H5A     109.624    1.50
+URM          O8          C5          H5     109.845    1.50
+URM          O8          C5         H5A     109.845    1.50
+URM          H5          C5         H5A     108.472    1.50
+URM          C1          O6          C4     109.578    1.50
+URM          C3          O7         HO7     108.744    3.00
+URM          C5          O8          P9     118.553    2.41
+URM          O8          P9         O11     109.410    1.50
+URM          O8          P9         O12     101.065    1.97
+URM          O8          P9         O10     109.410    1.50
+URM         O11          P9         O12     108.570    2.41
+URM         O11          P9         O10     118.411    2.35
+URM         O12          P9         O10     108.570    2.41
+URM          P9         O12         P22     132.584    3.00
+URM          C1         N13         C19     117.109    1.50
+URM          C1         N13         C18     121.471    1.52
+URM         C19         N13         C18     121.419    1.50
+URM         C19         N15         C20     126.992    1.50
+URM         C19         N15        HN15     115.772    1.79
+URM         C20         N15        HN15     117.236    1.73
+URM         C20         C17         C18     119.525    1.50
+URM         C20         C17         H17     120.151    1.50
+URM         C18         C17         H17     120.325    1.50
+URM         N13         C18         C17     122.557    1.50
+URM         N13         C18         H18     118.477    1.50
+URM         C17         C18         H18     118.966    1.50
+URM         N13         C19         N15     114.848    1.50
+URM         N13         C19         O19     122.841    1.50
+URM         N15         C19         O19     122.311    1.50
+URM         N15         C20         C17     114.659    1.50
+URM         N15         C20         O20     119.401    1.50
+URM         C17         C20         O20     125.940    1.50
+URM          C2         O21        HO21     109.449    1.85
+URM         O12         P22         O24     109.115    3.00
+URM         O12         P22         O23     109.115    3.00
+URM         O12         P22         C45     105.177    2.72
+URM         O24         P22         O23     115.915    1.71
+URM         O24         P22         C45     107.585    2.44
+URM         O23         P22         C45     107.585    2.44
+URM         C41         O36         C37     113.554    1.50
+URM         O36         C37         C46     107.094    1.51
+URM         O36         C37         C38     109.378    1.54
+URM         O36         C37         H37     109.107    1.50
+URM         C46         C37         C38     112.996    1.59
+URM         C46         C37         H37     109.269    1.50
+URM         C38         C37         H37     108.960    1.50
+URM         C37         C38         O42     109.072    2.07
+URM         C37         C38         C39     110.272    1.76
+URM         C37         C38         H38     109.223    1.50
+URM         O42         C38         C39     110.101    1.97
+URM         O42         C38         H38     109.194    1.50
+URM         C39         C38         H38     109.032    1.50
+URM         C38         C39         C40     110.796    1.54
+URM         C38         C39         O43     110.243    1.88
+URM         C38         C39         H39     108.653    1.50
+URM         C40         C39         O43     110.243    1.88
+URM         C40         C39         H39     108.653    1.50
+URM         O43         C39         H39     108.767    1.50
+URM         C39         C40         C41     110.316    1.64
+URM         C39         C40         O44     110.101    1.97
+URM         C39         C40         H40     109.032    1.50
+URM         C41         C40         O44     109.153    2.02
+URM         C41         C40         H40     109.550    1.50
+URM         O44         C40         H40     109.194    1.50
+URM         O36         C41         C40     109.378    1.54
+URM         O36         C41         C45     107.878    2.44
+URM         O36         C41         H41     108.995    1.50
+URM         C40         C41         C45     113.587    1.96
+URM         C40         C41         H41     108.898    1.50
+URM         C45         C41         H41     108.699    2.22
+URM         C38         O42        HO42     109.564    3.00
+URM         C39         O43        HO43     108.895    2.41
+URM         C40         O44        HO44     109.564    3.00
+URM         P22         C45         C41     109.471    3.00
+URM         P22         C45         H45     108.697    1.50
+URM         P22         C45        H45A     108.697    1.50
+URM         C41         C45         H45     108.444    1.50
+URM         C41         C45        H45A     108.444    1.50
+URM         H45         C45        H45A     107.717    1.50
+URM         C37         C46         O47     111.299    2.09
+URM         C37         C46         H46     109.363    1.50
+URM         C37         C46        H46A     109.363    1.50
+URM         O47         C46         H46     109.265    1.50
+URM         O47         C46        H46A     109.265    1.50
+URM         H46         C46        H46A     108.155    1.50
+URM         C46         O47        HO47     109.472    2.41
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+URM                   nu0         C41         O36         C37         C38      61.460    10.0     3
+URM                   nu1         O36         C37         C38         C39     -58.851    10.0     3
+URM                   nu2         C37         C38         C39         C40      53.653    10.0     3
+URM                   nu3         C38         C39         C40         C41     -50.826    10.0     3
+URM                   nu4         C39         C40         C41         O36      52.115    10.0     3
+URM                   nu5         C40         C41         O36         C37     -57.642    10.0     3
+URM       const_sp2_sp2_1         N15         C19         N13         C18       0.000     5.0     2
+URM       const_sp2_sp2_2         N15         C19         N13          C1     180.000     5.0     2
+URM       const_sp2_sp2_3         O19         C19         N13         C18     180.000     5.0     2
+URM       const_sp2_sp2_4         O19         C19         N13          C1       0.000     5.0     2
+URM       const_sp2_sp2_5         N13         C19         N15         C20       0.000     5.0     2
+URM       const_sp2_sp2_6         N13         C19         N15        HN15     180.000     5.0     2
+URM       const_sp2_sp2_7         O19         C19         N15         C20     180.000     5.0     2
+URM       const_sp2_sp2_8         O19         C19         N15        HN15       0.000     5.0     2
+URM       const_sp2_sp2_9         C17         C20         N15         C19       0.000     5.0     2
+URM              const_10         C17         C20         N15        HN15     180.000    10.0     2
+URM              const_11         O20         C20         N15         C19     180.000    10.0     2
+URM              const_12         O20         C20         N15        HN15       0.000    10.0     2
+URM              const_13         C18         C17         C20         N15       0.000    10.0     2
+URM              const_14         C18         C17         C20         O20     180.000    10.0     2
+URM              const_15         H17         C17         C20         N15     180.000    10.0     2
+URM              const_16         H17         C17         C20         O20       0.000    10.0     2
+URM              const_17         C20         C17         C18         N13       0.000    10.0     2
+URM              const_18         C20         C17         C18         H18     180.000    10.0     2
+URM              const_19         H17         C17         C18         N13     180.000    10.0     2
+URM              const_20         H17         C17         C18         H18       0.000    10.0     2
+URM             sp3_sp3_1          C2          C1          O6          C4      60.000    10.0     3
+URM             sp3_sp3_2         N13          C1          O6          C4     -60.000    10.0     3
+URM             sp3_sp3_3          H1          C1          O6          C4     180.000    10.0     3
+URM             sp3_sp3_4          C3          C4          O6          C1     -60.000    10.0     3
+URM             sp3_sp3_5          C5          C4          O6          C1     180.000    10.0     3
+URM             sp3_sp3_6          H4          C4          O6          C1      60.000    10.0     3
+URM             sp3_sp3_7          C2          C3          C4          O6      60.000    10.0     3
+URM             sp3_sp3_8          C2          C3          C4          C5     180.000    10.0     3
+URM             sp3_sp3_9          C2          C3          C4          H4     -60.000    10.0     3
+URM            sp3_sp3_10          O7          C3          C4          O6     -60.000    10.0     3
+URM            sp3_sp3_11          O7          C3          C4          C5      60.000    10.0     3
+URM            sp3_sp3_12          O7          C3          C4          H4     180.000    10.0     3
+URM            sp3_sp3_13          H3          C3          C4          O6     180.000    10.0     3
+URM            sp3_sp3_14          H3          C3          C4          C5     -60.000    10.0     3
+URM            sp3_sp3_15          H3          C3          C4          H4      60.000    10.0     3
+URM            sp3_sp3_16          C1          C2          C3          C4     -60.000    10.0     3
+URM            sp3_sp3_17          C1          C2          C3          O7      60.000    10.0     3
+URM            sp3_sp3_18          C1          C2          C3          H3     180.000    10.0     3
+URM            sp3_sp3_19         O21          C2          C3          C4     180.000    10.0     3
+URM            sp3_sp3_20         O21          C2          C3          O7     -60.000    10.0     3
+URM            sp3_sp3_21         O21          C2          C3          H3      60.000    10.0     3
+URM            sp3_sp3_22          H2          C2          C3          C4      60.000    10.0     3
+URM            sp3_sp3_23          H2          C2          C3          O7     180.000    10.0     3
+URM            sp3_sp3_24          H2          C2          C3          H3     -60.000    10.0     3
+URM             sp2_sp3_1         C19         N13          C1          O6     150.000    10.0     6
+URM             sp2_sp3_2         C19         N13          C1          C2     -90.000    10.0     6
+URM             sp2_sp3_3         C19         N13          C1          H1      30.000    10.0     6
+URM             sp2_sp3_4         C18         N13          C1          O6     -30.000    10.0     6
+URM             sp2_sp3_5         C18         N13          C1          C2      90.000    10.0     6
+URM             sp2_sp3_6         C18         N13          C1          H1    -150.000    10.0     6
+URM            sp3_sp3_64          O6          C1          C2          C3     180.000    10.0     3
+URM            sp3_sp3_65          O6          C1          C2         O21     -60.000    10.0     3
+URM            sp3_sp3_66          O6          C1          C2          H2      60.000    10.0     3
+URM            sp3_sp3_67         N13          C1          C2          C3      60.000    10.0     3
+URM            sp3_sp3_68         N13          C1          C2         O21     180.000    10.0     3
+URM            sp3_sp3_69         N13          C1          C2          H2     -60.000    10.0     3
+URM            sp3_sp3_70          H1          C1          C2          C3     -60.000    10.0     3
+URM            sp3_sp3_71          H1          C1          C2         O21      60.000    10.0     3
+URM            sp3_sp3_72          H1          C1          C2          H2     180.000    10.0     3
+URM            sp3_sp3_73          C1          C2         O21        HO21     180.000    10.0     3
+URM            sp3_sp3_74          C3          C2         O21        HO21      60.000    10.0     3
+URM            sp3_sp3_75          H2          C2         O21        HO21     -60.000    10.0     3
+URM            sp3_sp3_76          C2          C3          O7         HO7     180.000    10.0     3
+URM            sp3_sp3_77          C4          C3          O7         HO7      60.000    10.0     3
+URM            sp3_sp3_78          H3          C3          O7         HO7     -60.000    10.0     3
+URM            sp3_sp3_79          C3          C4          C5          O8     180.000    10.0     3
+URM            sp3_sp3_80          C3          C4          C5          H5     -60.000    10.0     3
+URM            sp3_sp3_81          C3          C4          C5         H5A      60.000    10.0     3
+URM            sp3_sp3_82          O6          C4          C5          O8      60.000    10.0     3
+URM            sp3_sp3_83          O6          C4          C5          H5     180.000    10.0     3
+URM            sp3_sp3_84          O6          C4          C5         H5A     -60.000    10.0     3
+URM            sp3_sp3_85          H4          C4          C5          O8     -60.000    10.0     3
+URM            sp3_sp3_86          H4          C4          C5          H5      60.000    10.0     3
+URM            sp3_sp3_87          H4          C4          C5         H5A     180.000    10.0     3
+URM            sp3_sp3_88          C4          C5          O8          P9     180.000    10.0     3
+URM            sp3_sp3_89          H5          C5          O8          P9      60.000    10.0     3
+URM            sp3_sp3_90         H5A          C5          O8          P9     -60.000    10.0     3
+URM            sp3_sp3_91          C5          O8          P9         O12     180.000    10.0     3
+URM            sp3_sp3_92          C5          O8          P9         O10     -60.000    10.0     3
+URM            sp3_sp3_93          C5          O8          P9         O11      60.000    10.0     3
+URM            sp3_sp3_94         P22         O12          P9         O10     180.000    10.0     3
+URM            sp3_sp3_95         P22         O12          P9          O8     -60.000    10.0     3
+URM            sp3_sp3_96         P22         O12          P9         O11      60.000    10.0     3
+URM            sp3_sp3_97          P9         O12         P22         O24     180.000    10.0     3
+URM            sp3_sp3_98          P9         O12         P22         O23     -60.000    10.0     3
+URM            sp3_sp3_99          P9         O12         P22         C45      60.000    10.0     3
+URM              const_21         C17         C18         N13         C19       0.000    10.0     2
+URM              const_22         C17         C18         N13          C1     180.000    10.0     2
+URM              const_23         H18         C18         N13         C19     180.000    10.0     2
+URM              const_24         H18         C18         N13          C1       0.000    10.0     2
+URM           sp3_sp3_100         C41         C45         P22         O12     180.000    10.0     3
+URM           sp3_sp3_101         C41         C45         P22         O23     -60.000    10.0     3
+URM           sp3_sp3_102         C41         C45         P22         O24      60.000    10.0     3
+URM           sp3_sp3_103         H45         C45         P22         O12      60.000    10.0     3
+URM           sp3_sp3_104         H45         C45         P22         O23     180.000    10.0     3
+URM           sp3_sp3_105         H45         C45         P22         O24     -60.000    10.0     3
+URM           sp3_sp3_106        H45A         C45         P22         O12     -60.000    10.0     3
+URM           sp3_sp3_107        H45A         C45         P22         O23      60.000    10.0     3
+URM           sp3_sp3_108        H45A         C45         P22         O24     180.000    10.0     3
+URM           sp3_sp3_112         O36         C37         C46         O47     180.000    10.0     3
+URM           sp3_sp3_113         O36         C37         C46         H46     -60.000    10.0     3
+URM           sp3_sp3_114         O36         C37         C46        H46A      60.000    10.0     3
+URM           sp3_sp3_115         C38         C37         C46         O47      60.000    10.0     3
+URM           sp3_sp3_116         C38         C37         C46         H46     180.000    10.0     3
+URM           sp3_sp3_117         C38         C37         C46        H46A     -60.000    10.0     3
+URM           sp3_sp3_118         H37         C37         C46         O47     -60.000    10.0     3
+URM           sp3_sp3_119         H37         C37         C46         H46      60.000    10.0     3
+URM           sp3_sp3_120         H37         C37         C46        H46A     180.000    10.0     3
+URM           sp3_sp3_121         C37         C38         O42        HO42     180.000    10.0     3
+URM           sp3_sp3_122         C39         C38         O42        HO42      60.000    10.0     3
+URM           sp3_sp3_123         H38         C38         O42        HO42     -60.000    10.0     3
+URM           sp3_sp3_124         C38         C39         O43        HO43     180.000    10.0     3
+URM           sp3_sp3_125         C40         C39         O43        HO43      60.000    10.0     3
+URM           sp3_sp3_126         H39         C39         O43        HO43     -60.000    10.0     3
+URM           sp3_sp3_127         C39         C40         O44        HO44     180.000    10.0     3
+URM           sp3_sp3_128         C41         C40         O44        HO44      60.000    10.0     3
+URM           sp3_sp3_129         H40         C40         O44        HO44     -60.000    10.0     3
+URM           sp3_sp3_130         O36         C41         C45         P22     180.000    10.0     3
+URM           sp3_sp3_131         O36         C41         C45         H45     -60.000    10.0     3
+URM           sp3_sp3_132         O36         C41         C45        H45A      60.000    10.0     3
+URM           sp3_sp3_133         C40         C41         C45         P22      60.000    10.0     3
+URM           sp3_sp3_134         C40         C41         C45         H45     180.000    10.0     3
+URM           sp3_sp3_135         C40         C41         C45        H45A     -60.000    10.0     3
+URM           sp3_sp3_136         H41         C41         C45         P22     -60.000    10.0     3
+URM           sp3_sp3_137         H41         C41         C45         H45      60.000    10.0     3
+URM           sp3_sp3_138         H41         C41         C45        H45A     180.000    10.0     3
+URM           sp3_sp3_139         C37         C46         O47        HO47     180.000    10.0     3
+URM           sp3_sp3_140         H46         C46         O47        HO47      60.000    10.0     3
+URM           sp3_sp3_141        H46A         C46         O47        HO47     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+URM    chir_1    C1    O6    N13    C2    negative
+URM    chir_2    C2    O21    C1    C3    negative
+URM    chir_3    C3    O7    C4    C2    positive
+URM    chir_4    C4    O6    C3    C5    negative
+URM    chir_5    P9    O12    O8    O10    both
+URM    chir_6    P22    O12    O23    O24    both
+URM    chir_7    C37    O36    C38    C46    negative
+URM    chir_8    C38    O42    C37    C39    negative
+URM    chir_9    C39    O43    C40    C38    positive
+URM    chir_10    C40    O44    C41    C39    negative
+URM    chir_11    C41    O36    C45    C40    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+URM    plan-1          C1   0.020
+URM    plan-1         C17   0.020
+URM    plan-1         C18   0.020
+URM    plan-1         C19   0.020
+URM    plan-1         C20   0.020
+URM    plan-1         H17   0.020
+URM    plan-1         H18   0.020
+URM    plan-1        HN15   0.020
+URM    plan-1         N13   0.020
+URM    plan-1         N15   0.020
+URM    plan-1         O19   0.020
+URM    plan-1         O20   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+URM SMILES_CANONICAL               CACTVS 3.370                                                                                                                           OC[C@H]1O[C@H](C[P](O)(=O)O[P](O)(=O)OC[C@H]2O[C@H]([C@H](O)[C@@H]2O)N3C=CC(=O)NC3=O)[C@H](O)[C@@H](O)[C@H]1O
+URM           SMILES               CACTVS 3.370                                                                                                                                      OC[CH]1O[CH](C[P](O)(=O)O[P](O)(=O)OC[CH]2O[CH]([CH](O)[CH]2O)N3C=CC(=O)NC3=O)[CH](O)[CH](O)[CH]1O
+URM SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                               C1=CN(C(=O)NC1=O)[C@H]2[C@@H]([C@@H]([C@H](O2)CO[P@@](=O)(O)O[P@@](=O)(C[C@@H]3[C@@H]([C@H]([C@H]([C@H](O3)CO)O)O)O)O)O)O
+URM           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                               C1=CN(C(=O)NC1=O)C2C(C(C(O2)COP(=O)(O)OP(=O)(CC3C(C(C(C(O3)CO)O)O)O)O)O)O
+URM            InChI                InChI  1.03 InChI=1S/C16H26N2O16P2/c19-3-6-10(21)13(24)12(23)8(32-6)5-35(27,28)34-36(29,30)31-4-7-11(22)14(25)15(33-7)18-2-1-9(20)17-16(18)26/h1-2,6-8,10-15,19,21-25H,3-5H2,(H,27,28)(H,29,30)(H,17,20,26)/t6-,7-,8-,10+,11-,12+,13+,14-,15-/m1/s1
+URM         InChIKey                InChI  1.03                                                                                                                                                                                                             WUPLBUVQIJIOHV-PPSAJGQHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+URM acedrg               243         "dictionary generator"                  
+URM acedrg_database      11          "data source"                           
+URM rdkit                2017.03.2   "Chemoinformatics tool"
+URM refmac5              5.8.0238    "optimization tool"                     

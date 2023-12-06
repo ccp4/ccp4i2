@@ -1,0 +1,329 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HIZ     HIZ      1-{4-[(1S)-1-amino-2-(benzyloxy)ethyl]-1,3-thiazol-2-yl}-3-(3-chloro-4-fluorophenyl)urea     NON-POLYMER     46     28     .     
+#
+data_comp_HIZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HIZ     NAA     N       NT2     0       23.178      -0.869      17.014      
+HIZ     OAB     O       O       0       18.112      4.544       16.968      
+HIZ     FAC     F       F       0       16.434      10.305      18.966      
+HIZ     CLAD    CL      CL      0       16.692      8.144       20.917      
+HIZ     CAE     C       CR16    0       21.874      4.929       20.049      
+HIZ     CAF     C       CR16    0       20.961      4.110       20.680      
+HIZ     CAG     C       CR16    0       23.125      4.444       19.732      
+HIZ     CAH     C       CR16    0       21.301      2.800       20.995      
+HIZ     CAI     C       CR16    0       23.467      3.135       20.047      
+HIZ     CAJ     C       CR16    0       17.816      9.381       17.293      
+HIZ     CAK     C       CR16    0       18.635      8.345       16.859      
+HIZ     CAL     C       CR15    0       20.256      0.332       17.571      
+HIZ     CAM     C       CR16    0       18.259      7.173       18.933      
+HIZ     CAN     C       CH2     0       22.921      0.875       21.026      
+HIZ     CAO     C       CH2     0       22.442      -0.809      19.372      
+HIZ     NAP     N       NRD5    0       21.666      2.162       17.360      
+HIZ     NAQ     N       NH1     0       19.687      6.185       17.240      
+HIZ     NAR     N       NH1     0       20.316      4.059       16.617      
+HIZ     OAS     O       O2      0       21.965      -0.020      20.464      
+HIZ     SAT     S       S2      0       19.288      1.594       17.067      
+HIZ     CAU     C       C       0       19.281      4.908       16.955      
+HIZ     CAV     C       CR6     0       22.557      2.301       20.682      
+HIZ     CAW     C       CR6     0       17.233      9.297       18.538      
+HIZ     CAX     C       CR6     0       18.862      7.237       17.677      
+HIZ     CAY     C       CR6     0       17.441      8.215       19.360      
+HIZ     CAZ     C       CR5     0       21.504      0.809       17.684      
+HIZ     CBA     C       CR5     0       20.507      2.748       17.006      
+HIZ     CBB     C       CH1     0       22.699      0.005       18.101      
+HIZ     HNAA    H       H       0       22.549      -1.505      16.872      
+HIZ     HNAB    H       H       0       23.924      -1.291      17.304      
+HIZ     HAE     H       H       0       21.642      5.819       19.835      
+HIZ     HAF     H       H       0       20.104      4.438       20.898      
+HIZ     HAG     H       H       0       23.752      5.003       19.301      
+HIZ     HAH     H       H       0       20.672      2.244       21.427      
+HIZ     HAI     H       H       0       24.326      2.810       19.826      
+HIZ     HAJ     H       H       0       17.659      10.133      16.747      
+HIZ     HAK     H       H       0       19.037      8.392       16.011      
+HIZ     HAL     H       H       0       19.930      -0.537      17.736      
+HIZ     HAM     H       H       0       18.404      6.430       19.494      
+HIZ     HAN     H       H       0       23.819      0.672       20.689      
+HIZ     HANA    H       H       0       22.932      0.766       22.000      
+HIZ     HAO     H       H       0       21.779      -1.505      19.170      
+HIZ     HAOA    H       H       0       23.274      -1.262      19.634      
+HIZ     HNAQ    H       H       0       20.542      6.372       17.146      
+HIZ     HNAR    H       H       0       20.931      4.374       16.075      
+HIZ     HBB     H       H       0       23.421      0.650       18.297      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HIZ         NAA         CBB      SINGLE       n     1.475  0.0140     1.475  0.0140
+HIZ         OAB         CAU      DOUBLE       n     1.224  0.0100     1.224  0.0100
+HIZ         FAC         CAW      SINGLE       n     1.355  0.0100     1.355  0.0100
+HIZ        CLAD         CAY      SINGLE       n     1.730  0.0100     1.730  0.0100
+HIZ         CAE         CAF      DOUBLE       y     1.374  0.0127     1.374  0.0127
+HIZ         CAE         CAG      SINGLE       y     1.374  0.0127     1.374  0.0127
+HIZ         CAF         CAH      SINGLE       y     1.386  0.0100     1.386  0.0100
+HIZ         CAG         CAI      DOUBLE       y     1.386  0.0100     1.386  0.0100
+HIZ         CAH         CAV      DOUBLE       y     1.383  0.0108     1.383  0.0108
+HIZ         CAI         CAV      SINGLE       y     1.383  0.0108     1.383  0.0108
+HIZ         CAJ         CAK      DOUBLE       y     1.386  0.0100     1.386  0.0100
+HIZ         CAJ         CAW      SINGLE       y     1.373  0.0103     1.373  0.0103
+HIZ         CAK         CAX      SINGLE       y     1.393  0.0100     1.393  0.0100
+HIZ         CAL         CAZ      DOUBLE       y     1.339  0.0100     1.339  0.0100
+HIZ         CAL         SAT      SINGLE       y     1.695  0.0200     1.695  0.0200
+HIZ         CAM         CAX      DOUBLE       y     1.392  0.0100     1.392  0.0100
+HIZ         CAM         CAY      SINGLE       y     1.386  0.0113     1.386  0.0113
+HIZ         CAN         OAS      SINGLE       n     1.420  0.0118     1.420  0.0118
+HIZ         CAN         CAV      SINGLE       n     1.511  0.0100     1.511  0.0100
+HIZ         CAO         CBB      SINGLE       n     1.527  0.0125     1.527  0.0125
+HIZ         CAO         OAS      SINGLE       n     1.425  0.0108     1.425  0.0108
+HIZ         NAP         CBA      DOUBLE       y     1.335  0.0145     1.335  0.0145
+HIZ         NAP         CAZ      SINGLE       y     1.386  0.0126     1.386  0.0126
+HIZ         NAQ         CAX      SINGLE       n     1.405  0.0100     1.405  0.0100
+HIZ         NAQ         CAU      SINGLE       n     1.366  0.0100     1.366  0.0100
+HIZ         NAR         CAU      SINGLE       n     1.372  0.0133     1.372  0.0133
+HIZ         NAR         CBA      SINGLE       n     1.367  0.0190     1.367  0.0190
+HIZ         SAT         CBA      SINGLE       y     1.695  0.0200     1.695  0.0200
+HIZ         CAW         CAY      DOUBLE       y     1.369  0.0120     1.369  0.0120
+HIZ         CAZ         CBB      SINGLE       n     1.497  0.0107     1.497  0.0107
+HIZ         NAA        HNAA      SINGLE       n     1.036  0.0160     0.905  0.0200
+HIZ         NAA        HNAB      SINGLE       n     1.036  0.0160     0.905  0.0200
+HIZ         CAE         HAE      SINGLE       n     1.082  0.0130     0.944  0.0161
+HIZ         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0175
+HIZ         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0175
+HIZ         CAH         HAH      SINGLE       n     1.082  0.0130     0.944  0.0174
+HIZ         CAI         HAI      SINGLE       n     1.082  0.0130     0.944  0.0174
+HIZ         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.942  0.0102
+HIZ         CAK         HAK      SINGLE       n     1.082  0.0130     0.939  0.0128
+HIZ         CAL         HAL      SINGLE       n     1.082  0.0130     0.942  0.0200
+HIZ         CAM         HAM      SINGLE       n     1.082  0.0130     0.942  0.0118
+HIZ         CAN         HAN      SINGLE       n     1.089  0.0100     0.980  0.0180
+HIZ         CAN        HANA      SINGLE       n     1.089  0.0100     0.980  0.0180
+HIZ         CAO         HAO      SINGLE       n     1.089  0.0100     0.982  0.0200
+HIZ         CAO        HAOA      SINGLE       n     1.089  0.0100     0.982  0.0200
+HIZ         NAQ        HNAQ      SINGLE       n     1.016  0.0100     0.879  0.0200
+HIZ         NAR        HNAR      SINGLE       n     1.016  0.0100     0.878  0.0200
+HIZ         CBB         HBB      SINGLE       n     1.089  0.0100     0.988  0.0164
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HIZ         CBB         NAA        HNAA     107.811    3.00
+HIZ         CBB         NAA        HNAB     107.811    3.00
+HIZ        HNAA         NAA        HNAB     107.163    3.00
+HIZ         CAF         CAE         CAG     119.903    1.50
+HIZ         CAF         CAE         HAE     120.048    1.50
+HIZ         CAG         CAE         HAE     120.048    1.50
+HIZ         CAE         CAF         CAH     120.186    1.50
+HIZ         CAE         CAF         HAF     119.952    1.50
+HIZ         CAH         CAF         HAF     119.862    1.50
+HIZ         CAE         CAG         CAI     120.186    1.50
+HIZ         CAE         CAG         HAG     119.952    1.50
+HIZ         CAI         CAG         HAG     119.862    1.50
+HIZ         CAF         CAH         CAV     120.514    1.50
+HIZ         CAF         CAH         HAH     119.754    1.50
+HIZ         CAV         CAH         HAH     119.732    1.50
+HIZ         CAG         CAI         CAV     120.514    1.50
+HIZ         CAG         CAI         HAI     119.754    1.50
+HIZ         CAV         CAI         HAI     119.732    1.50
+HIZ         CAK         CAJ         CAW     118.870    1.50
+HIZ         CAK         CAJ         HAJ     120.816    1.50
+HIZ         CAW         CAJ         HAJ     120.314    1.50
+HIZ         CAJ         CAK         CAX     120.386    1.50
+HIZ         CAJ         CAK         HAK     119.776    1.50
+HIZ         CAX         CAK         HAK     119.838    1.50
+HIZ         CAZ         CAL         SAT     108.031    3.00
+HIZ         CAZ         CAL         HAL     129.154    2.00
+HIZ         SAT         CAL         HAL     122.815    3.00
+HIZ         CAX         CAM         CAY     119.661    1.50
+HIZ         CAX         CAM         HAM     120.377    1.50
+HIZ         CAY         CAM         HAM     119.963    1.50
+HIZ         OAS         CAN         CAV     110.921    2.08
+HIZ         OAS         CAN         HAN     109.541    1.50
+HIZ         OAS         CAN        HANA     109.541    1.50
+HIZ         CAV         CAN         HAN     109.785    1.50
+HIZ         CAV         CAN        HANA     109.785    1.50
+HIZ         HAN         CAN        HANA     108.275    1.50
+HIZ         CBB         CAO         OAS     110.756    3.00
+HIZ         CBB         CAO         HAO     109.301    1.50
+HIZ         CBB         CAO        HAOA     109.301    1.50
+HIZ         OAS         CAO         HAO     109.668    1.50
+HIZ         OAS         CAO        HAOA     109.668    1.50
+HIZ         HAO         CAO        HAOA     108.319    1.50
+HIZ         CBA         NAP         CAZ     107.139    1.65
+HIZ         CAX         NAQ         CAU     126.001    1.50
+HIZ         CAX         NAQ        HNAQ     116.873    1.97
+HIZ         CAU         NAQ        HNAQ     117.126    1.50
+HIZ         CAU         NAR         CBA     125.100    2.96
+HIZ         CAU         NAR        HNAR     117.596    1.50
+HIZ         CBA         NAR        HNAR     117.304    2.70
+HIZ         CAN         OAS         CAO     112.738    1.50
+HIZ         CAL         SAT         CBA     108.031    3.00
+HIZ         OAB         CAU         NAQ     124.596    1.50
+HIZ         OAB         CAU         NAR     122.479    1.50
+HIZ         NAQ         CAU         NAR     112.925    1.50
+HIZ         CAH         CAV         CAI     118.697    1.50
+HIZ         CAH         CAV         CAN     120.651    1.50
+HIZ         CAI         CAV         CAN     120.651    1.50
+HIZ         FAC         CAW         CAJ     119.333    1.50
+HIZ         FAC         CAW         CAY     119.174    1.50
+HIZ         CAJ         CAW         CAY     121.493    1.50
+HIZ         CAK         CAX         CAM     120.033    1.50
+HIZ         CAK         CAX         NAQ     119.237    3.00
+HIZ         CAM         CAX         NAQ     120.730    3.00
+HIZ        CLAD         CAY         CAM     120.091    1.50
+HIZ        CLAD         CAY         CAW     120.352    1.50
+HIZ         CAM         CAY         CAW     119.558    1.50
+HIZ         CAL         CAZ         NAP     108.766    2.56
+HIZ         CAL         CAZ         CBB     129.103    3.00
+HIZ         NAP         CAZ         CBB     122.132    3.00
+HIZ         NAP         CBA         NAR     128.984    3.00
+HIZ         NAP         CBA         SAT     108.031    3.00
+HIZ         NAR         CBA         SAT     122.984    3.00
+HIZ         NAA         CBB         CAO     111.883    2.59
+HIZ         NAA         CBB         CAZ     112.622    2.07
+HIZ         NAA         CBB         HBB     107.543    1.50
+HIZ         CAO         CBB         CAZ     110.747    2.16
+HIZ         CAO         CBB         HBB     107.651    1.50
+HIZ         CAZ         CBB         HBB     106.599    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HIZ             sp3_sp3_1         CAO         CBB         NAA        HNAA     180.000    10.0     3
+HIZ              const_26         CAJ         CAK         CAX         NAQ     180.000    10.0     2
+HIZ              const_59         CAZ         CAL         SAT         CBA       0.000    10.0     2
+HIZ              const_42         SAT         CAL         CAZ         CBB     180.000    10.0     2
+HIZ              const_30         CAY         CAM         CAX         NAQ     180.000    10.0     2
+HIZ              const_34         CAX         CAM         CAY        CLAD     180.000    10.0     2
+HIZ             sp3_sp3_7         CAV         CAN         OAS         CAO     180.000    10.0     3
+HIZ             sp2_sp3_2         CAH         CAV         CAN         OAS     -90.000    10.0     6
+HIZ            sp3_sp3_19         CBB         CAO         OAS         CAN     180.000    10.0     3
+HIZ            sp3_sp3_10         OAS         CAO         CBB         NAA     180.000    10.0     3
+HIZ              const_46         CBB         CAZ         NAP         CBA     180.000    10.0     2
+HIZ              const_48         NAR         CBA         NAP         CAZ     180.000    10.0     2
+HIZ             sp2_sp2_7         OAB         CAU         NAQ         CAX       0.000     5.0     2
+HIZ             sp2_sp2_1         CAK         CAX         NAQ         CAU     180.000     5.0     2
+HIZ            sp2_sp2_11         OAB         CAU         NAR         CBA       0.000     5.0     2
+HIZ            sp2_sp2_13         NAP         CBA         NAR         CAU     180.000     5.0     2
+HIZ              const_50         NAR         CBA         SAT         CAL     180.000    10.0     2
+HIZ              const_40         FAC         CAW         CAY        CLAD       0.000    10.0     2
+HIZ             sp2_sp3_7         CAL         CAZ         CBB         NAA     150.000    10.0     6
+HIZ       const_sp2_sp2_1         CAG         CAE         CAF         CAH       0.000     5.0     2
+HIZ              const_51         CAF         CAE         CAG         CAI       0.000    10.0     2
+HIZ       const_sp2_sp2_5         CAE         CAF         CAH         CAV       0.000     5.0     2
+HIZ              const_17         CAE         CAG         CAI         CAV       0.000    10.0     2
+HIZ              const_10         CAF         CAH         CAV         CAN     180.000    10.0     2
+HIZ              const_14         CAG         CAI         CAV         CAN     180.000    10.0     2
+HIZ              const_21         CAW         CAJ         CAK         CAX       0.000    10.0     2
+HIZ              const_56         CAK         CAJ         CAW         FAC     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HIZ    chir_1    CBB    NAA    CAO    CAZ    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HIZ    plan-1         CAJ   0.020
+HIZ    plan-1         CAK   0.020
+HIZ    plan-1         CAM   0.020
+HIZ    plan-1         CAW   0.020
+HIZ    plan-1         CAX   0.020
+HIZ    plan-1         CAY   0.020
+HIZ    plan-1        CLAD   0.020
+HIZ    plan-1         FAC   0.020
+HIZ    plan-1         HAJ   0.020
+HIZ    plan-1         HAK   0.020
+HIZ    plan-1         HAM   0.020
+HIZ    plan-1         NAQ   0.020
+HIZ    plan-2         CAL   0.020
+HIZ    plan-2         CAZ   0.020
+HIZ    plan-2         CBA   0.020
+HIZ    plan-2         CBB   0.020
+HIZ    plan-2         HAL   0.020
+HIZ    plan-2         NAP   0.020
+HIZ    plan-2         NAR   0.020
+HIZ    plan-2         SAT   0.020
+HIZ    plan-3         CAE   0.020
+HIZ    plan-3         CAF   0.020
+HIZ    plan-3         CAG   0.020
+HIZ    plan-3         CAH   0.020
+HIZ    plan-3         CAI   0.020
+HIZ    plan-3         CAN   0.020
+HIZ    plan-3         CAV   0.020
+HIZ    plan-3         HAE   0.020
+HIZ    plan-3         HAF   0.020
+HIZ    plan-3         HAG   0.020
+HIZ    plan-3         HAH   0.020
+HIZ    plan-3         HAI   0.020
+HIZ    plan-4         CAU   0.020
+HIZ    plan-4         CAX   0.020
+HIZ    plan-4        HNAQ   0.020
+HIZ    plan-4         NAQ   0.020
+HIZ    plan-5         CAU   0.020
+HIZ    plan-5         CBA   0.020
+HIZ    plan-5        HNAR   0.020
+HIZ    plan-5         NAR   0.020
+HIZ    plan-6         CAU   0.020
+HIZ    plan-6         NAQ   0.020
+HIZ    plan-6         NAR   0.020
+HIZ    plan-6         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HIZ           SMILES              ACDLabs 11.02                                                                                                                 O=C(Nc1nc(cs1)C(N)COCc2ccccc2)Nc3ccc(F)c(Cl)c3
+HIZ SMILES_CANONICAL               CACTVS 3.352                                                                                                             N[C@H](COCc1ccccc1)c2csc(NC(=O)Nc3ccc(F)c(Cl)c3)n2
+HIZ           SMILES               CACTVS 3.352                                                                                                              N[CH](COCc1ccccc1)c2csc(NC(=O)Nc3ccc(F)c(Cl)c3)n2
+HIZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                           c1ccc(cc1)COC[C@H](c2csc(n2)NC(=O)Nc3ccc(c(c3)Cl)F)N
+HIZ           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                               c1ccc(cc1)COCC(c2csc(n2)NC(=O)Nc3ccc(c(c3)Cl)F)N
+HIZ            InChI                InChI  1.03 InChI=1S/C19H18ClFN4O2S/c20-14-8-13(6-7-15(14)21)23-18(26)25-19-24-17(11-28-19)16(22)10-27-9-12-4-2-1-3-5-12/h1-8,11,16H,9-10,22H2,(H2,23,24,25,26)/t16-/m1/s1
+HIZ         InChIKey                InChI  1.03                                                                                                                                    DUYHXVUZFOXOBB-MRXNPFEDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HIZ acedrg               243         "dictionary generator"                  
+HIZ acedrg_database      11          "data source"                           
+HIZ rdkit                2017.03.2   "Chemoinformatics tool"
+HIZ refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,306 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+X84     X84      4-[(3-hydroxypropyl)amino]-5-nitro-2-[(pyridin-3-ylmethyl)amino]benzamide     NON-POLYMER     44     25     .     
+#
+data_comp_X84
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+X84     N01     N       NH1     0       -63.897     -9.788      23.811      
+X84     N02     N       NH2     0       -66.719     -10.311     21.176      
+X84     N03     N       NRD6    0       -63.229     -11.689     28.101      
+X84     N04     N       NH1     0       -66.739     -7.529      27.008      
+X84     N05     N       N       1       -69.087     -8.492      25.533      
+X84     C06     C       CR16    0       -67.560     -9.579      24.001      
+X84     C07     C       CR6     0       -66.297     -9.927      23.536      
+X84     C08     C       CR6     0       -65.150     -9.473      24.246      
+X84     C09     C       CR16    0       -65.305     -8.664      25.398      
+X84     C10     C       CR6     0       -66.585     -8.316      25.872      
+X84     C11     C       CR6     0       -67.712     -8.791      25.143      
+X84     C12     C       C       0       -66.196     -10.777     22.304      
+X84     C13     C       CH2     0       -62.775     -10.117     24.675      
+X84     C14     C       CR6     0       -63.056     -11.142     25.751      
+X84     C15     C       CR16    0       -62.995     -10.817     27.102      
+X84     C16     C       CR16    0       -63.536     -12.953     27.756      
+X84     C17     C       CR16    0       -63.618     -13.378     26.445      
+X84     C18     C       CR16    0       -63.372     -12.458     25.435      
+X84     C19     C       CH2     0       -65.686     -7.073      27.903      
+X84     C20     C       CH2     0       -65.196     -8.220      28.766      
+X84     C21     C       CH2     0       -64.013     -7.846      29.632      
+X84     O22     O       O       0       -65.635     -11.883     22.350      
+X84     O23     O       OH1     0       -63.618     -8.917      30.471      
+X84     O24     O       OC      -1      -69.483     -7.342      25.428      
+X84     O25     O       O       0       -69.786     -9.403      25.948      
+X84     HN01    H       H       0       -63.751     -9.756      22.953      
+X84     H102    H       H       0       -67.119     -9.513      21.152      
+X84     H202    H       H       0       -66.675     -10.795     20.429      
+X84     HN04    H       H       0       -67.554     -7.272      27.212      
+X84     H06     H       H       0       -68.326     -9.880      23.540      
+X84     H09     H       H       0       -64.549     -8.362      25.866      
+X84     H113    H       H       0       -62.463     -9.289      25.097      
+X84     H213    H       H       0       -62.043     -10.445     24.111      
+X84     H15     H       H       0       -62.780     -9.932      27.333      
+X84     H16     H       H       0       -63.703     -13.575     28.444      
+X84     H17     H       H       0       -63.836     -14.271     26.240      
+X84     H18     H       H       0       -63.422     -12.724     24.532      
+X84     H119    H       H       0       -66.042     -6.357      28.469      
+X84     H219    H       H       0       -64.950     -6.697      27.380      
+X84     H120    H       H       0       -64.948     -8.969      28.184      
+X84     H220    H       H       0       -65.936     -8.517      29.337      
+X84     H121    H       H       0       -64.248     -7.072      30.187      
+X84     H221    H       H       0       -63.259     -7.591      29.059      
+X84     HO23    H       H       0       -62.914     -8.692      30.882      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+X84         N01         C08      SINGLE       n     1.356  0.0115     1.356  0.0115
+X84         N01         C13      SINGLE       n     1.448  0.0127     1.448  0.0127
+X84         N02         C12      SINGLE       n     1.326  0.0100     1.326  0.0100
+X84         N04         C19      SINGLE       n     1.450  0.0119     1.450  0.0119
+X84         N05         O24      SINGLE       n     1.221  0.0162     1.221  0.0162
+X84         C06         C11      DOUBLE       y     1.392  0.0104     1.392  0.0104
+X84         C06         C07      SINGLE       y     1.389  0.0100     1.389  0.0100
+X84         C07         C08      DOUBLE       y     1.417  0.0107     1.417  0.0107
+X84         C08         C09      SINGLE       y     1.410  0.0117     1.410  0.0117
+X84         C09         C10      DOUBLE       y     1.400  0.0100     1.400  0.0100
+X84         N04         C10      SINGLE       n     1.368  0.0166     1.368  0.0166
+X84         N05         C11      SINGLE       n     1.457  0.0200     1.457  0.0200
+X84         C10         C11      SINGLE       y     1.410  0.0134     1.410  0.0134
+X84         C07         C12      SINGLE       n     1.497  0.0105     1.497  0.0105
+X84         C13         C14      SINGLE       n     1.511  0.0100     1.511  0.0100
+X84         C14         C15      SINGLE       y     1.378  0.0171     1.378  0.0171
+X84         N03         C15      DOUBLE       y     1.342  0.0117     1.342  0.0117
+X84         N03         C16      SINGLE       y     1.338  0.0156     1.338  0.0156
+X84         C16         C17      DOUBLE       y     1.368  0.0200     1.368  0.0200
+X84         C14         C18      DOUBLE       y     1.380  0.0155     1.380  0.0155
+X84         C17         C18      SINGLE       y     1.375  0.0185     1.375  0.0185
+X84         C19         C20      SINGLE       n     1.516  0.0100     1.516  0.0100
+X84         C20         C21      SINGLE       n     1.513  0.0100     1.513  0.0100
+X84         C21         O23      SINGLE       n     1.417  0.0200     1.417  0.0200
+X84         C12         O22      DOUBLE       n     1.241  0.0105     1.241  0.0105
+X84         N05         O25      DOUBLE       n     1.221  0.0162     1.221  0.0162
+X84         N01        HN01      SINGLE       n     1.016  0.0100     0.871  0.0200
+X84         N02        H102      SINGLE       n     1.016  0.0100     0.891  0.0200
+X84         N02        H202      SINGLE       n     1.016  0.0100     0.891  0.0200
+X84         N04        HN04      SINGLE       n     1.016  0.0100     0.880  0.0200
+X84         C06         H06      SINGLE       n     1.082  0.0130     0.943  0.0184
+X84         C09         H09      SINGLE       n     1.082  0.0130     0.943  0.0200
+X84         C13        H113      SINGLE       n     1.089  0.0100     0.980  0.0114
+X84         C13        H213      SINGLE       n     1.089  0.0100     0.980  0.0114
+X84         C15         H15      SINGLE       n     1.082  0.0130     0.940  0.0200
+X84         C16         H16      SINGLE       n     1.082  0.0130     0.942  0.0166
+X84         C17         H17      SINGLE       n     1.082  0.0130     0.942  0.0124
+X84         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0173
+X84         C19        H119      SINGLE       n     1.089  0.0100     0.979  0.0121
+X84         C19        H219      SINGLE       n     1.089  0.0100     0.979  0.0121
+X84         C20        H120      SINGLE       n     1.089  0.0100     0.981  0.0122
+X84         C20        H220      SINGLE       n     1.089  0.0100     0.981  0.0122
+X84         C21        H121      SINGLE       n     1.089  0.0100     0.981  0.0174
+X84         C21        H221      SINGLE       n     1.089  0.0100     0.981  0.0174
+X84         O23        HO23      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+X84         C08         N01         C13     123.176    1.76
+X84         C08         N01        HN01     118.085    2.04
+X84         C13         N01        HN01     118.739    1.50
+X84         C12         N02        H102     120.236    2.75
+X84         C12         N02        H202     120.236    2.75
+X84        H102         N02        H202     119.529    2.83
+X84         C15         N03         C16     117.026    1.50
+X84         C19         N04         C10     124.152    1.50
+X84         C19         N04        HN04     118.794    2.77
+X84         C10         N04        HN04     117.056    2.29
+X84         O24         N05         C11     118.439    1.50
+X84         O24         N05         O25     123.122    1.50
+X84         C11         N05         O25     118.439    1.50
+X84         C11         C06         C07     120.719    1.50
+X84         C11         C06         H06     119.612    1.50
+X84         C07         C06         H06     119.669    1.50
+X84         C06         C07         C08     119.685    1.50
+X84         C06         C07         C12     119.398    2.89
+X84         C08         C07         C12     120.916    1.50
+X84         N01         C08         C07     119.443    1.50
+X84         N01         C08         C09     119.055    1.76
+X84         C07         C08         C09     121.502    2.02
+X84         C08         C09         C10     119.953    1.76
+X84         C08         C09         H09     120.938    1.50
+X84         C10         C09         H09     119.108    1.50
+X84         C09         C10         N04     120.024    1.50
+X84         C09         C10         C11     117.810    1.50
+X84         N04         C10         C11     122.166    1.50
+X84         C06         C11         N05     117.016    1.50
+X84         C06         C11         C10     120.330    2.53
+X84         N05         C11         C10     122.654    1.50
+X84         N02         C12         C07     117.954    1.50
+X84         N02         C12         O22     121.562    1.50
+X84         C07         C12         O22     120.484    1.50
+X84         N01         C13         C14     113.671    1.99
+X84         N01         C13        H113     108.755    1.50
+X84         N01         C13        H213     108.755    1.50
+X84         C14         C13        H113     109.424    1.50
+X84         C14         C13        H213     109.424    1.50
+X84        H113         C13        H213     107.706    1.50
+X84         C13         C14         C15     121.593    1.50
+X84         C13         C14         C18     121.370    1.50
+X84         C15         C14         C18     117.038    1.50
+X84         C14         C15         N03     124.145    1.50
+X84         C14         C15         H15     117.934    1.50
+X84         N03         C15         H15     117.921    1.50
+X84         N03         C16         C17     123.287    1.50
+X84         N03         C16         H16     118.129    1.50
+X84         C17         C16         H16     118.584    1.50
+X84         C16         C17         C18     118.535    1.50
+X84         C16         C17         H17     120.722    1.50
+X84         C18         C17         H17     120.734    1.50
+X84         C14         C18         C17     119.978    1.83
+X84         C14         C18         H18     119.917    1.50
+X84         C17         C18         H18     120.105    1.50
+X84         N04         C19         C20     109.602    1.50
+X84         N04         C19        H119     109.184    1.50
+X84         N04         C19        H219     109.184    1.50
+X84         C20         C19        H119     110.378    1.50
+X84         C20         C19        H219     110.378    1.50
+X84        H119         C19        H219     107.909    1.50
+X84         C19         C20         C21     113.104    1.50
+X84         C19         C20        H120     108.375    1.50
+X84         C19         C20        H220     108.375    1.50
+X84         C21         C20        H120     109.317    1.50
+X84         C21         C20        H220     109.317    1.50
+X84        H120         C20        H220     107.717    1.50
+X84         C20         C21         O23     111.826    2.06
+X84         C20         C21        H121     109.435    1.50
+X84         C20         C21        H221     109.435    1.50
+X84         O23         C21        H121     109.258    1.50
+X84         O23         C21        H221     109.258    1.50
+X84        H121         C21        H221     108.120    1.50
+X84         C21         O23        HO23     108.576    2.78
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+X84             sp2_sp3_2         C08         N01         C13         C14     120.000    10.0     6
+X84             sp2_sp2_1         C07         C08         N01         C13     180.000     5.0     2
+X84            sp2_sp3_14         C15         C14         C13         N01     -90.000    10.0     6
+X84              const_25         C13         C14         C15         N03     180.000    10.0     2
+X84              const_29         C13         C14         C18         C17     180.000    10.0     2
+X84              const_35         N03         C16         C17         C18       0.000    10.0     2
+X84              const_31         C16         C17         C18         C14       0.000    10.0     2
+X84             sp3_sp3_1         N04         C19         C20         C21     180.000    10.0     3
+X84            sp3_sp3_10         C19         C20         C21         O23     180.000    10.0     3
+X84             sp2_sp2_7         O22         C12         N02        H102       0.000     5.0     2
+X84            sp3_sp3_19         C20         C21         O23        HO23     180.000    10.0     3
+X84              const_21         C14         C15         N03         C16       0.000    10.0     2
+X84              const_43         C17         C16         N03         C15       0.000    10.0     2
+X84             sp2_sp3_8         C10         N04         C19         C20     120.000    10.0     6
+X84             sp2_sp2_9         C09         C10         N04         C19     180.000     5.0     2
+X84            sp2_sp2_13         C06         C11         N05         O24     180.000     5.0     2
+X84       const_sp2_sp2_2         C07         C06         C11         N05     180.000     5.0     2
+X84              const_40         C11         C06         C07         C12     180.000    10.0     2
+X84            sp2_sp2_17         C06         C07         C12         N02     180.000     5.0     2
+X84              const_20         C12         C07         C08         N01       0.000    10.0     2
+X84              const_15         N01         C08         C09         C10     180.000    10.0     2
+X84              const_10         C08         C09         C10         N04     180.000    10.0     2
+X84       const_sp2_sp2_8         N04         C10         C11         N05       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+X84    plan-1         C06   0.020
+X84    plan-1         C07   0.020
+X84    plan-1         C08   0.020
+X84    plan-1         C09   0.020
+X84    plan-1         C10   0.020
+X84    plan-1         C11   0.020
+X84    plan-1         C12   0.020
+X84    plan-1         H06   0.020
+X84    plan-1         H09   0.020
+X84    plan-1         N01   0.020
+X84    plan-1         N04   0.020
+X84    plan-1         N05   0.020
+X84    plan-2         C13   0.020
+X84    plan-2         C14   0.020
+X84    plan-2         C15   0.020
+X84    plan-2         C16   0.020
+X84    plan-2         C17   0.020
+X84    plan-2         C18   0.020
+X84    plan-2         H15   0.020
+X84    plan-2         H16   0.020
+X84    plan-2         H17   0.020
+X84    plan-2         H18   0.020
+X84    plan-2         N03   0.020
+X84    plan-3         C08   0.020
+X84    plan-3         C13   0.020
+X84    plan-3        HN01   0.020
+X84    plan-3         N01   0.020
+X84    plan-4         C12   0.020
+X84    plan-4        H102   0.020
+X84    plan-4        H202   0.020
+X84    plan-4         N02   0.020
+X84    plan-5         C10   0.020
+X84    plan-5         C19   0.020
+X84    plan-5        HN04   0.020
+X84    plan-5         N04   0.020
+X84    plan-6         C11   0.020
+X84    plan-6         N05   0.020
+X84    plan-6         O24   0.020
+X84    plan-6         O25   0.020
+X84    plan-7         C07   0.020
+X84    plan-7         C12   0.020
+X84    plan-7         N02   0.020
+X84    plan-7         O22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+X84           SMILES              ACDLabs 12.01                                                                                       "[O-][N+](=O)c2c(NCCCO)cc(NCc1cccnc1)c(C(=O)N)c2"
+X84 SMILES_CANONICAL               CACTVS 3.370                                                                                           NC(=O)c1cc(c(NCCCO)cc1NCc2cccnc2)[N+]([O-])=O
+X84           SMILES               CACTVS 3.370                                                                                           NC(=O)c1cc(c(NCCCO)cc1NCc2cccnc2)[N+]([O-])=O
+X84 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                         c1cc(cnc1)CNc2cc(c(cc2C(=O)N)[N+](=O)[O-])NCCCO
+X84           SMILES "OpenEye OEToolkits" 1.7.0                                                                                         c1cc(cnc1)CNc2cc(c(cc2C(=O)N)[N+](=O)[O-])NCCCO
+X84            InChI                InChI  1.03 InChI=1S/C16H19N5O4/c17-16(23)12-7-15(21(24)25)14(19-5-2-6-22)8-13(12)20-10-11-3-1-4-18-9-11/h1,3-4,7-9,19-20,22H,2,5-6,10H2,(H2,17,23)
+X84         InChIKey                InChI  1.03                                                                                                             IFKSVNMHRIABRM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+X84 acedrg               243         "dictionary generator"                  
+X84 acedrg_database      11          "data source"                           
+X84 rdkit                2017.03.2   "Chemoinformatics tool"
+X84 refmac5              5.8.0238    "optimization tool"                     

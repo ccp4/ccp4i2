@@ -1,0 +1,234 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OBG     OBG      6-(benzyloxy)-9H-purin-2-amine     NON-POLYMER     29     18     .     
+#
+data_comp_OBG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OBG     C1      C       CR6     0       -13.728     -26.784     3.664       
+OBG     N1      N       NH2     0       -12.590     -26.851     2.946       
+OBG     O1      O       O2      0       -17.250     -26.529     3.016       
+OBG     C2      C       CR6     0       -16.045     -26.620     3.622       
+OBG     N2      N       NRD6    0       -14.897     -26.692     2.957       
+OBG     C3      C       CH2     0       -17.307     -26.356     1.588       
+OBG     N3      N       NRD5    0       -17.036     -26.591     5.976       
+OBG     C4      C       CR6     0       -18.741     -26.160     1.183       
+OBG     N4      N       NR5     0       -15.046     -26.746     6.990       
+OBG     C5      C       CR16    0       -19.410     -27.125     0.443       
+OBG     N5      N       NRD6    0       -13.607     -26.814     5.010       
+OBG     C6      C       CR16    0       -20.736     -26.937     0.072       
+OBG     C7      C       CR16    0       -21.402     -25.784     0.438       
+OBG     C8      C       CR16    0       -20.746     -24.819     1.173       
+OBG     C9      C       CR16    0       -19.421     -25.006     1.545       
+OBG     C10     C       CR56    0       -16.028     -26.645     5.022       
+OBG     C11     C       CR15    0       -16.398     -26.654     7.121       
+OBG     C12     C       CR56    0       -14.796     -26.742     5.649       
+OBG     HN1     H       H       0       -12.505     -26.375     2.214       
+OBG     HN1A    H       H       0       -11.935     -27.371     3.212       
+OBG     H3      H       H       0       -16.938     -27.145     1.144       
+OBG     H3A     H       H       0       -16.779     -25.576     1.325       
+OBG     HN4     H       H       0       -14.444     -26.799     7.643       
+OBG     H5      H       H       0       -18.961     -27.915     0.190       
+OBG     H6      H       H       0       -21.182     -27.599     -0.431      
+OBG     H7      H       H       0       -22.302     -25.657     0.185       
+OBG     H8      H       H       0       -21.199     -24.030     1.425       
+OBG     H9      H       H       0       -18.978     -24.341     2.048       
+OBG     H11     H       H       0       -16.834     -26.637     7.960       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OBG          C1          N1      SINGLE       n     1.347  0.0100     1.347  0.0100
+OBG          C1          N2      DOUBLE       y     1.362  0.0100     1.362  0.0100
+OBG          C1          N5      SINGLE       y     1.346  0.0100     1.346  0.0100
+OBG          O1          C2      SINGLE       n     1.345  0.0140     1.345  0.0140
+OBG          O1          C3      SINGLE       n     1.434  0.0149     1.434  0.0149
+OBG          C2          N2      SINGLE       y     1.322  0.0100     1.322  0.0100
+OBG          C2         C10      DOUBLE       y     1.396  0.0148     1.396  0.0148
+OBG          C3          C4      SINGLE       n     1.502  0.0100     1.502  0.0100
+OBG          N3         C10      SINGLE       y     1.389  0.0100     1.389  0.0100
+OBG          N3         C11      DOUBLE       y     1.313  0.0100     1.313  0.0100
+OBG          C4          C5      DOUBLE       y     1.383  0.0108     1.383  0.0108
+OBG          C4          C9      SINGLE       y     1.383  0.0108     1.383  0.0108
+OBG          N4         C11      SINGLE       y     1.360  0.0100     1.360  0.0100
+OBG          N4         C12      SINGLE       y     1.364  0.0100     1.364  0.0100
+OBG          C5          C6      SINGLE       y     1.386  0.0100     1.386  0.0100
+OBG          N5         C12      DOUBLE       y     1.348  0.0100     1.348  0.0100
+OBG          C6          C7      DOUBLE       y     1.376  0.0124     1.376  0.0124
+OBG          C7          C8      SINGLE       y     1.374  0.0127     1.374  0.0127
+OBG          C8          C9      DOUBLE       y     1.386  0.0100     1.386  0.0100
+OBG         C10         C12      SINGLE       y     1.385  0.0124     1.385  0.0124
+OBG          N1         HN1      SINGLE       n     1.016  0.0100     0.877  0.0200
+OBG          N1        HN1A      SINGLE       n     1.016  0.0100     0.877  0.0200
+OBG          C3          H3      SINGLE       n     1.089  0.0100     0.978  0.0133
+OBG          C3         H3A      SINGLE       n     1.089  0.0100     0.978  0.0133
+OBG          N4         HN4      SINGLE       n     1.016  0.0100     0.890  0.0200
+OBG          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+OBG          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0175
+OBG          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0161
+OBG          C8          H8      SINGLE       n     1.082  0.0130     0.944  0.0175
+OBG          C9          H9      SINGLE       n     1.082  0.0130     0.944  0.0174
+OBG         C11         H11      SINGLE       n     1.082  0.0130     0.946  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OBG          N1          C1          N2     117.018    1.50
+OBG          N1          C1          N5     117.281    1.50
+OBG          N2          C1          N5     125.701    1.50
+OBG          C1          N1         HN1     119.901    1.50
+OBG          C1          N1        HN1A     119.901    1.50
+OBG         HN1          N1        HN1A     120.198    1.96
+OBG          C2          O1          C3     117.210    1.50
+OBG          O1          C2          N2     121.366    2.36
+OBG          O1          C2         C10     118.355    1.50
+OBG          N2          C2         C10     120.279    1.80
+OBG          C1          N2          C2     117.753    1.50
+OBG          O1          C3          C4     109.110    2.22
+OBG          O1          C3          H3     109.732    1.50
+OBG          O1          C3         H3A     109.732    1.50
+OBG          C4          C3          H3     109.862    1.50
+OBG          C4          C3         H3A     109.862    1.50
+OBG          H3          C3         H3A     108.398    1.50
+OBG         C10          N3         C11     104.646    1.50
+OBG          C3          C4          C5     120.651    1.50
+OBG          C3          C4          C9     120.652    1.50
+OBG          C5          C4          C9     118.697    1.50
+OBG         C11          N4         C12     105.933    1.50
+OBG         C11          N4         HN4     127.327    1.50
+OBG         C12          N4         HN4     126.741    1.50
+OBG          C4          C5          C6     120.514    1.50
+OBG          C4          C5          H5     119.732    1.50
+OBG          C6          C5          H5     119.754    1.50
+OBG          C1          N5         C12     112.315    1.50
+OBG          C5          C6          C7     120.186    1.50
+OBG          C5          C6          H6     119.862    1.50
+OBG          C7          C6          H6     119.952    1.50
+OBG          C6          C7          C8     119.903    1.50
+OBG          C6          C7          H7     120.048    1.50
+OBG          C8          C7          H7     120.048    1.50
+OBG          C7          C8          C9     120.186    1.50
+OBG          C7          C8          H8     119.952    1.50
+OBG          C9          C8          H8     119.862    1.50
+OBG          C4          C9          C8     120.514    1.50
+OBG          C4          C9          H9     119.732    1.50
+OBG          C8          C9          H9     119.754    1.50
+OBG          C2         C10          N3     131.977    1.50
+OBG          C2         C10         C12     118.413    1.50
+OBG          N3         C10         C12     109.610    1.50
+OBG          N3         C11          N4     113.720    1.50
+OBG          N3         C11         H11     123.257    1.50
+OBG          N4         C11         H11     123.023    1.50
+OBG          N4         C12          N5     128.369    1.50
+OBG          N4         C12         C10     106.092    1.50
+OBG          N5         C12         C10     125.539    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OBG             sp2_sp2_1          N2          C1          N1         HN1     180.000     5.0     2
+OBG              const_46          N1          C1          N5         C12     180.000    10.0     2
+OBG              const_16          N1          C1          N2          C2     180.000    10.0     2
+OBG              const_24          N4         C12          N5          C1     180.000    10.0     2
+OBG              const_33          C5          C6          C7          C8       0.000    10.0     2
+OBG              const_37          C6          C7          C8          C9       0.000    10.0     2
+OBG              const_41          C7          C8          C9          C4       0.000    10.0     2
+OBG       const_sp2_sp2_4          C2         C10         C12          N4     180.000     5.0     2
+OBG             sp2_sp2_5          N2          C2          O1          C3     180.000     5.0     2
+OBG             sp3_sp3_1          C4          C3          O1          C2     180.000    10.0     3
+OBG              const_22          N3         C10          C2          O1       0.000    10.0     2
+OBG              const_18          O1          C2          N2          C1     180.000    10.0     2
+OBG             sp2_sp3_2          C5          C4          C3          O1     -90.000    10.0     6
+OBG       const_sp2_sp2_2          C2         C10          N3         C11     180.000     5.0     2
+OBG              const_47          N4         C11          N3         C10       0.000    10.0     2
+OBG              const_51          C3          C4          C9          C8     180.000    10.0     2
+OBG              const_27          C3          C4          C5          C6     180.000    10.0     2
+OBG              const_11          N3         C11          N4         C12       0.000    10.0     2
+OBG       const_sp2_sp2_9          N5         C12          N4         C11     180.000     5.0     2
+OBG              const_29          C4          C5          C6          C7       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OBG    plan-1          C1   0.020
+OBG    plan-1         C10   0.020
+OBG    plan-1         C11   0.020
+OBG    plan-1         C12   0.020
+OBG    plan-1          C2   0.020
+OBG    plan-1         H11   0.020
+OBG    plan-1         HN4   0.020
+OBG    plan-1          N1   0.020
+OBG    plan-1          N2   0.020
+OBG    plan-1          N3   0.020
+OBG    plan-1          N4   0.020
+OBG    plan-1          N5   0.020
+OBG    plan-1          O1   0.020
+OBG    plan-2          C3   0.020
+OBG    plan-2          C4   0.020
+OBG    plan-2          C5   0.020
+OBG    plan-2          C6   0.020
+OBG    plan-2          C7   0.020
+OBG    plan-2          C8   0.020
+OBG    plan-2          C9   0.020
+OBG    plan-2          H5   0.020
+OBG    plan-2          H6   0.020
+OBG    plan-2          H7   0.020
+OBG    plan-2          H8   0.020
+OBG    plan-2          H9   0.020
+OBG    plan-3          C1   0.020
+OBG    plan-3         HN1   0.020
+OBG    plan-3        HN1A   0.020
+OBG    plan-3          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OBG SMILES_CANONICAL               CACTVS 3.352                                                                            Nc1nc2[nH]cnc2c(OCc3ccccc3)n1
+OBG           SMILES               CACTVS 3.352                                                                            Nc1nc2[nH]cnc2c(OCc3ccccc3)n1
+OBG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                        c1ccc(cc1)COc2c3c([nH]cn3)nc(n2)N
+OBG           SMILES "OpenEye OEToolkits" 1.7.0                                                                        c1ccc(cc1)COc2c3c([nH]cn3)nc(n2)N
+OBG            InChI                InChI  1.03 InChI=1S/C12H11N5O/c13-12-16-10-9(14-7-15-10)11(17-12)18-6-8-4-2-1-3-5-8/h1-5,7H,6H2,(H3,13,14,15,16,17)
+OBG         InChIKey                InChI  1.03                                                                              KRWMERLEINMZFT-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OBG acedrg               243         "dictionary generator"                  
+OBG acedrg_database      11          "data source"                           
+OBG rdkit                2017.03.2   "Chemoinformatics tool"
+OBG refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,306 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3L4     3L4      "[(2-{[2-(2-amino-6-oxo-1,6-dihydro-9H-purin-9-yl)ethyl][(E)-2-phosphonoethenyl]amino}ethoxy)methyl]phosphonic acid"     NON-POLYMER     44     28     .     
+#
+data_comp_3L4
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3L4     OAG     O       OP      -1      -25.670     23.308      -36.761     
+3L4     PBB     P       P       0       -26.505     23.529      -37.975     
+3L4     OAH     O       OP      -1      -27.592     24.518      -37.726     
+3L4     OAD     O       O       0       -27.039     22.246      -38.521     
+3L4     CAP     C       CH2     0       -25.421     24.241      -39.242     
+3L4     OAT     O       O2      0       -24.334     23.364      -39.501     
+3L4     CAJ     C       CH2     0       -23.445     23.821      -40.513     
+3L4     CAK     C       CH2     0       -22.450     22.732      -40.833     
+3L4     NAY     N       N       0       -22.998     21.689      -41.714     
+3L4     CAM     C       C1      0       -23.014     21.851      -43.034     
+3L4     CAO     C       C1      0       -23.465     20.967      -44.040     
+3L4     PBA     P       P       0       -23.413     21.412      -45.751     
+3L4     OAE     O       OP      -1      -23.218     20.190      -46.605     
+3L4     OAF     O       OP      -1      -24.699     22.079      -46.154     
+3L4     OAC     O       O       0       -22.281     22.369      -46.008     
+3L4     CAL     C       CH2     0       -23.547     20.481      -41.069     
+3L4     CAN     C       CH2     0       -25.060     20.433      -41.088     
+3L4     N9      N       NT      0       -25.599     19.318      -40.305     
+3L4     C4      C       CR56    0       -25.552     19.148      -38.937     
+3L4     N3      N       NRD6    0       -24.972     19.996      -38.048     
+3L4     C2      C       CR6     0       -25.081     19.562      -36.788     
+3L4     N2      N       NH2     0       -24.559     20.286      -35.788     
+3L4     N1      N       NR6     0       -25.711     18.385      -36.444     
+3L4     C6      C       CR6     0       -26.314     17.498      -37.346     
+3L4     O6      O       O       0       -26.856     16.463      -36.935     
+3L4     C5      C       CR56    0       -26.202     17.953      -38.687     
+3L4     N7      N       NRD5    0       -26.654     17.386      -39.875     
+3L4     C8      C       CR15    0       -26.272     18.236      -40.796     
+3L4     H3      H       H       0       -25.086     25.105      -38.923     
+3L4     H4      H       H       0       -25.941     24.383      -40.060     
+3L4     H5      H       H       0       -22.974     24.623      -40.201     
+3L4     H6      H       H       0       -23.952     24.055      -41.320     
+3L4     H7      H       H       0       -22.142     22.328      -39.993     
+3L4     H8      H       H       0       -21.669     23.139      -41.268     
+3L4     H9      H       H       0       -22.679     22.679      -43.335     
+3L4     H10     H       H       0       -23.800     20.119      -43.804     
+3L4     H13     H       H       0       -23.234     20.436      -40.139     
+3L4     H14     H       H       0       -23.194     19.687      -41.530     
+3L4     H15     H       H       0       -25.375     20.341      -42.009     
+3L4     H16     H       H       0       -25.424     21.265      -40.729     
+3L4     H17     H       H       0       -24.971     20.324      -35.014     
+3L4     H18     H       H       0       -23.808     20.723      -35.910     
+3L4     H19     H       H       0       -25.743     18.161      -35.575     
+3L4     H20     H       H       0       -26.441     18.116      -41.722     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3L4         PBA         OAC      DOUBLE       n     1.508  0.0200     1.508  0.0200
+3L4         PBA         OAF      SINGLE       n     1.508  0.0200     1.508  0.0200
+3L4         PBA         OAE      SINGLE       n     1.508  0.0200     1.508  0.0200
+3L4         CAO         PBA      SINGLE       n     1.768  0.0200     1.768  0.0200
+3L4         CAM         CAO      DOUBLE       n     1.405  0.0200     1.405  0.0200
+3L4         NAY         CAM      SINGLE       n     1.325  0.0106     1.325  0.0106
+3L4         CAK         NAY      SINGLE       n     1.467  0.0100     1.467  0.0100
+3L4         NAY         CAL      SINGLE       n     1.470  0.0100     1.470  0.0100
+3L4          N7          C8      DOUBLE       y     1.310  0.0100     1.310  0.0100
+3L4          N9          C8      SINGLE       y     1.368  0.0147     1.368  0.0147
+3L4         CAJ         CAK      SINGLE       n     1.509  0.0107     1.509  0.0107
+3L4         CAL         CAN      SINGLE       n     1.510  0.0200     1.510  0.0200
+3L4         CAN          N9      SINGLE       n     1.464  0.0101     1.464  0.0101
+3L4          C5          N7      SINGLE       y     1.390  0.0100     1.390  0.0100
+3L4         OAT         CAJ      SINGLE       n     1.422  0.0100     1.422  0.0100
+3L4          N9          C4      SINGLE       y     1.384  0.0181     1.384  0.0181
+3L4          C4          C5      DOUBLE       y     1.380  0.0100     1.380  0.0100
+3L4          C6          C5      SINGLE       y     1.417  0.0103     1.417  0.0103
+3L4          C4          N3      SINGLE       y     1.355  0.0100     1.355  0.0100
+3L4         CAP         OAT      SINGLE       n     1.418  0.0200     1.418  0.0200
+3L4         PBB         CAP      SINGLE       n     1.813  0.0200     1.813  0.0200
+3L4          C6          O6      DOUBLE       n     1.239  0.0100     1.239  0.0100
+3L4          N1          C6      SINGLE       y     1.396  0.0107     1.396  0.0107
+3L4          N3          C2      DOUBLE       y     1.333  0.0104     1.333  0.0104
+3L4          C2          N1      SINGLE       y     1.374  0.0100     1.374  0.0100
+3L4          C2          N2      SINGLE       n     1.340  0.0101     1.340  0.0101
+3L4         PBB         OAD      DOUBLE       n     1.492  0.0200     1.492  0.0200
+3L4         OAG         PBB      SINGLE       n     1.492  0.0200     1.492  0.0200
+3L4         PBB         OAH      SINGLE       n     1.492  0.0200     1.492  0.0200
+3L4         CAP          H3      SINGLE       n     1.089  0.0100     0.980  0.0118
+3L4         CAP          H4      SINGLE       n     1.089  0.0100     0.980  0.0118
+3L4         CAJ          H5      SINGLE       n     1.089  0.0100     0.981  0.0174
+3L4         CAJ          H6      SINGLE       n     1.089  0.0100     0.981  0.0174
+3L4         CAK          H7      SINGLE       n     1.089  0.0100     0.982  0.0152
+3L4         CAK          H8      SINGLE       n     1.089  0.0100     0.982  0.0152
+3L4         CAM          H9      SINGLE       n     1.082  0.0130     0.942  0.0171
+3L4         CAO         H10      SINGLE       n     1.082  0.0130     0.942  0.0200
+3L4         CAL         H13      SINGLE       n     1.089  0.0100     0.984  0.0163
+3L4         CAL         H14      SINGLE       n     1.089  0.0100     0.984  0.0163
+3L4         CAN         H15      SINGLE       n     1.089  0.0100     0.978  0.0180
+3L4         CAN         H16      SINGLE       n     1.089  0.0100     0.978  0.0180
+3L4          N2         H17      SINGLE       n     1.016  0.0100     0.877  0.0200
+3L4          N2         H18      SINGLE       n     1.016  0.0100     0.877  0.0200
+3L4          N1         H19      SINGLE       n     1.016  0.0100     0.897  0.0200
+3L4          C8         H20      SINGLE       n     1.082  0.0130     0.948  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3L4         CAP         PBB         OAD     110.326    3.00
+3L4         CAP         PBB         OAG     110.326    3.00
+3L4         CAP         PBB         OAH     110.326    3.00
+3L4         OAD         PBB         OAG     112.502    1.50
+3L4         OAD         PBB         OAH     112.502    1.50
+3L4         OAG         PBB         OAH     112.502    1.50
+3L4         OAT         CAP         PBB     108.256    2.94
+3L4         OAT         CAP          H3     109.680    1.50
+3L4         OAT         CAP          H4     109.680    1.50
+3L4         PBB         CAP          H3     108.528    1.50
+3L4         PBB         CAP          H4     108.528    1.50
+3L4          H3         CAP          H4     108.552    1.71
+3L4         CAJ         OAT         CAP     113.200    3.00
+3L4         CAK         CAJ         OAT     109.144    1.95
+3L4         CAK         CAJ          H5     109.902    1.50
+3L4         CAK         CAJ          H6     109.902    1.50
+3L4         OAT         CAJ          H5     109.668    1.50
+3L4         OAT         CAJ          H6     109.668    1.50
+3L4          H5         CAJ          H6     108.313    1.50
+3L4         NAY         CAK         CAJ     113.108    1.50
+3L4         NAY         CAK          H7     108.976    1.50
+3L4         NAY         CAK          H8     108.976    1.50
+3L4         CAJ         CAK          H7     108.839    1.50
+3L4         CAJ         CAK          H8     108.839    1.50
+3L4          H7         CAK          H8     107.851    1.50
+3L4         CAM         NAY         CAK     121.632    1.54
+3L4         CAM         NAY         CAL     121.632    1.54
+3L4         CAK         NAY         CAL     116.737    1.50
+3L4         CAO         CAM         NAY     126.541    3.00
+3L4         CAO         CAM          H9     117.952    2.03
+3L4         NAY         CAM          H9     115.507    1.57
+3L4         PBA         CAO         CAM     121.883    3.00
+3L4         PBA         CAO         H10     118.956    2.51
+3L4         CAM         CAO         H10     119.161    1.97
+3L4         OAC         PBA         OAF     111.149    3.00
+3L4         OAC         PBA         OAE     111.149    3.00
+3L4         OAC         PBA         CAO     113.187    2.44
+3L4         OAF         PBA         OAE     111.149    3.00
+3L4         OAF         PBA         CAO     113.187    2.44
+3L4         OAE         PBA         CAO     113.187    2.44
+3L4         NAY         CAL         CAN     113.395    1.61
+3L4         NAY         CAL         H13     108.976    1.50
+3L4         NAY         CAL         H14     108.976    1.50
+3L4         CAN         CAL         H13     109.394    1.50
+3L4         CAN         CAL         H14     109.394    1.50
+3L4         H13         CAL         H14     107.533    1.50
+3L4         CAL         CAN          N9     111.989    1.71
+3L4         CAL         CAN         H15     109.892    3.00
+3L4         CAL         CAN         H16     109.892    3.00
+3L4          N9         CAN         H15     108.458    1.53
+3L4          N9         CAN         H16     108.458    1.53
+3L4         H15         CAN         H16     107.991    1.50
+3L4          C8          N9         CAN     124.795    3.00
+3L4          C8          N9          C4     107.594    1.50
+3L4         CAN          N9          C4     124.908    2.72
+3L4          N9          C4          C5     106.681    1.69
+3L4          N9          C4          N3     124.873    1.56
+3L4          C5          C4          N3     128.446    1.50
+3L4          C4          N3          C2     112.093    1.50
+3L4          N3          C2          N1     123.612    1.50
+3L4          N3          C2          N2     119.821    1.50
+3L4          N1          C2          N2     116.575    1.50
+3L4          C2          N2         H17     119.868    1.50
+3L4          C2          N2         H18     119.868    1.50
+3L4         H17          N2         H18     120.263    1.96
+3L4          C6          N1          C2     125.374    1.50
+3L4          C6          N1         H19     116.964    2.44
+3L4          C2          N1         H19     117.663    2.71
+3L4          C5          C6          O6     128.236    1.50
+3L4          C5          C6          N1     111.384    1.50
+3L4          O6          C6          N1     120.380    1.50
+3L4          N7          C5          C4     110.771    1.50
+3L4          N7          C5          C6     130.146    1.50
+3L4          C4          C5          C6     119.083    1.50
+3L4          C8          N7          C5     104.148    1.50
+3L4          N7          C8          N9     114.617    1.50
+3L4          N7          C8         H20     123.146    1.50
+3L4          N9          C8         H20     122.237    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3L4             sp2_sp3_3         CAM         CAO         PBA         OAC    -120.000    10.0     6
+3L4            sp3_sp3_10         NAY         CAL         CAN          N9     180.000    10.0     3
+3L4            sp2_sp3_20          C8          N9         CAN         CAL     -90.000    10.0     6
+3L4              const_28          C5          C4          N9         CAN     180.000    10.0     2
+3L4              const_20          N7          C8          N9         CAN     180.000    10.0     2
+3L4              const_32          N9          C4          N3          C2     180.000    10.0     2
+3L4       const_sp2_sp2_1          N9          C4          C5          N7       0.000     5.0     2
+3L4              const_18          N2          C2          N3          C4     180.000    10.0     2
+3L4            sp3_sp3_27         OAT         CAP         PBB         OAD      60.000    10.0     3
+3L4            sp2_sp2_11          N3          C2          N2         H17       0.000     5.0     2
+3L4              const_15          N2          C2          N1          C6     180.000    10.0     2
+3L4              const_11          O6          C6          N1          C2     180.000    10.0     2
+3L4       const_sp2_sp2_8          N7          C5          C6          O6       0.000     5.0     2
+3L4              const_25          C4          C5          N7          C8       0.000    10.0     2
+3L4              const_23          N9          C8          N7          C5       0.000    10.0     2
+3L4            sp3_sp3_22         PBB         CAP         OAT         CAJ     180.000    10.0     3
+3L4            sp3_sp3_19         CAK         CAJ         OAT         CAP     180.000    10.0     3
+3L4             sp3_sp3_1         OAT         CAJ         CAK         NAY     180.000    10.0     3
+3L4             sp2_sp3_8         CAM         NAY         CAK         CAJ     120.000    10.0     6
+3L4            sp2_sp3_14         CAM         NAY         CAL         CAN     120.000    10.0     6
+3L4             sp2_sp2_5         CAO         CAM         NAY         CAK     180.000     5.0     2
+3L4             sp2_sp2_1         NAY         CAM         CAO         PBA     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+3L4    chir_1    PBB    OAG    OAH    OAD    both
+3L4    chir_2    PBA    OAF    OAE    OAC    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3L4    plan-1          C2   0.020
+3L4    plan-1          C4   0.020
+3L4    plan-1          C5   0.020
+3L4    plan-1          C6   0.020
+3L4    plan-1          C8   0.020
+3L4    plan-1         CAN   0.020
+3L4    plan-1         H19   0.020
+3L4    plan-1         H20   0.020
+3L4    plan-1          N1   0.020
+3L4    plan-1          N2   0.020
+3L4    plan-1          N3   0.020
+3L4    plan-1          N7   0.020
+3L4    plan-1          N9   0.020
+3L4    plan-1          O6   0.020
+3L4    plan-2         CAK   0.020
+3L4    plan-2         CAL   0.020
+3L4    plan-2         CAM   0.020
+3L4    plan-2         NAY   0.020
+3L4    plan-3         CAM   0.020
+3L4    plan-3         CAO   0.020
+3L4    plan-3          H9   0.020
+3L4    plan-3         NAY   0.020
+3L4    plan-4         CAM   0.020
+3L4    plan-4         CAO   0.020
+3L4    plan-4         H10   0.020
+3L4    plan-4         PBA   0.020
+3L4    plan-5          C2   0.020
+3L4    plan-5         H17   0.020
+3L4    plan-5         H18   0.020
+3L4    plan-5          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3L4           SMILES              ACDLabs 12.01                                                                                                                      O=P(O)(O)/C=C/N(CCOCP(=O)(O)O)CCn1c2N=C(NC(=O)c2nc1)N
+3L4            InChI                InChI  1.03 InChI=1S/C12H20N6O8P2/c13-12-15-10-9(11(19)16-12)14-7-18(10)2-1-17(4-6-27(20,21)22)3-5-26-8-28(23,24)25/h4,6-7H,1-3,5,8H2,(H2,20,21,22)(H2,23,24,25)(H3,13,15,16,19)/b6-4+
+3L4         InChIKey                InChI  1.03                                                                                                                                                HGNAMUIMUCHWJL-GQCTYLIASA-N
+3L4 SMILES_CANONICAL               CACTVS 3.385                                                                                                                  NC1=Nc2n(CCN(CCOC[P](O)(O)=O)/C=C/[P](O)(O)=O)cnc2C(=O)N1
+3L4           SMILES               CACTVS 3.385                                                                                                                    NC1=Nc2n(CCN(CCOC[P](O)(O)=O)C=C[P](O)(O)=O)cnc2C(=O)N1
+3L4 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                      c1nc2c(n1CCN(CCOCP(=O)(O)O)/C=C/P(=O)(O)O)N=C(NC2=O)N
+3L4           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                        c1nc2c(n1CCN(CCOCP(=O)(O)O)C=CP(=O)(O)O)N=C(NC2=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3L4 acedrg               243         "dictionary generator"                  
+3L4 acedrg_database      11          "data source"                           
+3L4 rdkit                2017.03.2   "Chemoinformatics tool"
+3L4 refmac5              5.8.0238    "optimization tool"                     

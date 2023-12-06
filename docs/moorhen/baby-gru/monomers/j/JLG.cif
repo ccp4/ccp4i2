@@ -1,0 +1,172 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JLG     JLG      "2-(thiophen-2-yl)-1,3-thiazole-4-carboxylic acid"     NON-POLYMER     17     13     .     
+#
+data_comp_JLG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JLG     C10     C       CR15    0       -66.181     23.279      -12.881     
+JLG     O01     O       O       0       -67.879     19.254      -7.888      
+JLG     C02     C       C       0       -67.954     20.139      -8.719      
+JLG     O03     O       OC      -1      -68.908     20.880      -8.853      
+JLG     C04     C       CR5     0       -66.801     20.326      -9.634      
+JLG     C05     C       CR15    0       -65.633     19.568      -9.640      
+JLG     S06     S       S2      0       -64.620     20.133      -10.832     
+JLG     C07     C       CR5     0       -65.664     21.339      -11.340     
+JLG     N08     N       NRD5    0       -66.801     21.332      -10.610     
+JLG     C09     C       CR5     0       -65.378     22.260      -12.415     
+JLG     C11     C       CR15    0       -65.565     23.991      -13.968     
+JLG     C12     C       CR15    0       -64.342     23.485      -14.270     
+JLG     S13     S       S2      0       -63.954     22.203      -13.281     
+JLG     H101    H       H       0       -67.032     23.489      -12.534     
+JLG     H051    H       H       0       -65.405     18.844      -9.082      
+JLG     H111    H       H       0       -65.966     24.718      -14.412     
+JLG     H121    H       H       0       -63.751     23.782      -14.940     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JLG         C11         C12      DOUBLE       y     1.343  0.0200     1.343  0.0200
+JLG         C12         S13      SINGLE       y     1.695  0.0200     1.695  0.0200
+JLG         C10         C11      SINGLE       y     1.413  0.0154     1.413  0.0154
+JLG         C09         S13      SINGLE       y     1.695  0.0200     1.695  0.0200
+JLG         C10         C09      DOUBLE       y     1.363  0.0200     1.363  0.0200
+JLG         C07         C09      SINGLE       n     1.442  0.0100     1.442  0.0100
+JLG         C07         N08      DOUBLE       y     1.333  0.0200     1.333  0.0200
+JLG         S06         C07      SINGLE       y     1.695  0.0200     1.695  0.0200
+JLG         C04         N08      SINGLE       y     1.391  0.0100     1.391  0.0100
+JLG         C05         S06      SINGLE       y     1.695  0.0200     1.695  0.0200
+JLG         C04         C05      DOUBLE       y     1.379  0.0196     1.379  0.0196
+JLG         C02         C04      SINGLE       n     1.476  0.0200     1.476  0.0200
+JLG         O01         C02      DOUBLE       n     1.214  0.0200     1.214  0.0200
+JLG         C02         O03      SINGLE       n     1.214  0.0200     1.214  0.0200
+JLG         C10        H101      SINGLE       n     1.082  0.0130     0.942  0.0154
+JLG         C05        H051      SINGLE       n     1.082  0.0130     0.942  0.0200
+JLG         C11        H111      SINGLE       n     1.082  0.0130     0.942  0.0153
+JLG         C12        H121      SINGLE       n     1.082  0.0130     0.942  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JLG         C11         C10         C09     107.531    1.50
+JLG         C11         C10        H101     125.850    1.50
+JLG         C09         C10        H101     126.619    1.50
+JLG         C04         C02         O01     117.574    1.50
+JLG         C04         C02         O03     117.574    1.50
+JLG         O01         C02         O03     124.852    1.50
+JLG         N08         C04         C05     108.549    1.50
+JLG         N08         C04         C02     122.418    1.69
+JLG         C05         C04         C02     129.033    3.00
+JLG         S06         C05         C04     108.377    3.00
+JLG         S06         C05        H051     123.246    3.00
+JLG         C04         C05        H051     128.377    1.50
+JLG         C07         S06         C05     108.377    3.00
+JLG         C09         C07         N08     128.215    3.00
+JLG         C09         C07         S06     123.408    3.00
+JLG         N08         C07         S06     108.377    3.00
+JLG         C07         N08         C04     106.320    1.50
+JLG         S13         C09         C10     108.358    3.00
+JLG         S13         C09         C07     121.134    3.00
+JLG         C10         C09         C07     130.508    3.00
+JLG         C12         C11         C10     107.395    1.50
+JLG         C12         C11        H111     126.667    1.50
+JLG         C10         C11        H111     125.937    1.50
+JLG         C11         C12         S13     108.358    3.00
+JLG         C11         C12        H121     128.449    2.40
+JLG         S13         C12        H121     123.193    3.00
+JLG         C12         S13         C09     108.358    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JLG       const_sp2_sp2_9         C09         C10         C11         C12       0.000     5.0     2
+JLG              const_21         S13         C09         C10         C11       0.000    10.0     2
+JLG              const_13         C10         C11         C12         S13       0.000    10.0     2
+JLG              const_17         C11         C12         S13         C09       0.000    10.0     2
+JLG             sp2_sp2_6         O01         C02         C04         N08       0.000     5.0     2
+JLG              const_27         C02         C04         C05         S06     180.000    10.0     2
+JLG       const_sp2_sp2_2         C02         C04         N08         C07     180.000     5.0     2
+JLG       const_sp2_sp2_7         C04         C05         S06         C07       0.000     5.0     2
+JLG       const_sp2_sp2_6         C09         C07         S06         C05     180.000     5.0     2
+JLG       const_sp2_sp2_4         C09         C07         N08         C04     180.000     5.0     2
+JLG             sp2_sp2_2         N08         C07         C09         S13       0.000     5.0     2
+JLG              const_19         C10         C09         S13         C12       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JLG    plan-1         C07   0.020
+JLG    plan-1         C09   0.020
+JLG    plan-1         C10   0.020
+JLG    plan-1         C11   0.020
+JLG    plan-1         C12   0.020
+JLG    plan-1        H101   0.020
+JLG    plan-1        H111   0.020
+JLG    plan-1        H121   0.020
+JLG    plan-1         S13   0.020
+JLG    plan-2         C02   0.020
+JLG    plan-2         C04   0.020
+JLG    plan-2         C05   0.020
+JLG    plan-2         C07   0.020
+JLG    plan-2         C09   0.020
+JLG    plan-2        H051   0.020
+JLG    plan-2         N08   0.020
+JLG    plan-2         S06   0.020
+JLG    plan-3         C02   0.020
+JLG    plan-3         C04   0.020
+JLG    plan-3         O01   0.020
+JLG    plan-3         O03   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JLG           SMILES              ACDLabs 12.01                                              c2c(c1scc(C(=O)O)n1)scc2
+JLG            InChI                InChI  1.03 InChI=1S/C8H5NO2S2/c10-8(11)5-4-13-7(9-5)6-2-1-3-12-6/h1-4H,(H,10,11)
+JLG         InChIKey                InChI  1.03                                           FGKCNTGJZXHKFJ-UHFFFAOYSA-N
+JLG SMILES_CANONICAL               CACTVS 3.385                                                OC(=O)c1csc(n1)c2sccc2
+JLG           SMILES               CACTVS 3.385                                                OC(=O)c1csc(n1)c2sccc2
+JLG SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                              c1cc(sc1)c2nc(cs2)C(=O)O
+JLG           SMILES "OpenEye OEToolkits" 2.0.6                                              c1cc(sc1)c2nc(cs2)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JLG acedrg               243         "dictionary generator"                  
+JLG acedrg_database      11          "data source"                           
+JLG rdkit                2017.03.2   "Chemoinformatics tool"
+JLG refmac5              5.8.0238    "optimization tool"                     

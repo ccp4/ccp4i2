@@ -1,0 +1,731 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OBN     OBN      OUABAIN     NON-POLYMER     85     41     .     
+#
+data_comp_OBN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OBN     C1      C       CH1     0       6.303       12.100      42.424      
+OBN     C2      C       CH2     0       5.252       11.975      43.521      
+OBN     C3      C       CH1     0       4.849       10.545      43.842      
+OBN     C4      C       CH2     0       4.528       9.758       42.580      
+OBN     C5      C       CT      0       5.592       9.855       41.476      
+OBN     C6      C       CH2     0       5.168       9.054       40.252      
+OBN     C7      C       CH2     0       3.970       9.661       39.528      
+OBN     C8      C       CH1     0       4.171       11.142      39.167      
+OBN     C9      C       CH1     0       4.693       11.990      40.370      
+OBN     C10     C       CT      0       5.947       11.356      41.093      
+OBN     C11     C       CH1     0       4.791       13.485      39.969      
+OBN     C12     C       CH2     0       3.536       14.034      39.270      
+OBN     C13     C       CT      0       3.048       13.213      38.068      
+OBN     C14     C       CT      0       2.911       11.718      38.488      
+OBN     C15     C       CH2     0       1.624       11.706      39.325      
+OBN     C16     C       CH2     0       0.684       12.714      38.647      
+OBN     C17     C       CH1     0       1.567       13.646      37.777      
+OBN     C18     C       CH3     0       4.009       13.440      36.897      
+OBN     C19     C       CH2     0       7.195       11.443      40.162      
+OBN     C20     C       CR5     0       1.137       13.727      36.339      
+OBN     C21     C       CH2     0       1.049       15.024      35.599      
+OBN     C22     C       CR15    0       0.771       12.762      35.501      
+OBN     C23     C       CR5     0       0.444       13.340      34.204      
+OBN     "C1'"   C       CH1     0       5.570       9.042       45.634      
+OBN     "C2'"   C       CH1     0       6.751       8.137       45.968      
+OBN     "C3'"   C       CH1     0       7.889       8.946       46.583      
+OBN     "C4'"   C       CH1     0       7.396       9.755       47.774      
+OBN     "C5'"   C       CH1     0       6.234       10.641      47.341      
+OBN     "C6'"   C       CH3     0       5.618       11.415      48.484      
+OBN     O1      O       OH1     0       7.574       11.669      42.949      
+OBN     O3      O       O2      0       5.922       9.877       44.555      
+OBN     O5      O       OH1     0       6.769       9.220       42.037      
+OBN     O11     O       OH1     0       4.997       14.389      41.059      
+OBN     O14     O       OH1     0       2.670       10.957      37.276      
+OBN     O19     O       OH1     0       8.058       12.551      40.404      
+OBN     O21     O       O2      0       0.623       14.676      34.265      
+OBN     O23     O       O       0       0.070       12.820      33.184      
+OBN     "O2'"   O       OH1     0       6.324       7.099       46.846      
+OBN     "O3'"   O       OH1     0       8.943       8.070       46.983      
+OBN     "O4'"   O       OH1     0       8.452       10.558      48.299      
+OBN     "O5'"   O       O2      0       5.182       9.820       46.776      
+OBN     H1      H       H       0       6.401       13.056      42.226      
+OBN     H21     H       H       0       5.602       12.390      44.333      
+OBN     H22A    H       H       0       4.457       12.474      43.255      
+OBN     H3      H       H       0       4.038       10.567      44.413      
+OBN     H41     H       H       0       3.672       10.068      42.232      
+OBN     H42     H       H       0       4.422       8.817       42.817      
+OBN     H61     H       H       0       5.914       8.993       39.626      
+OBN     H62     H       H       0       4.943       8.145       40.529      
+OBN     H71     H       H       0       3.175       9.564       40.085      
+OBN     H72     H       H       0       3.818       9.151       38.710      
+OBN     H8      H       H       0       4.868       11.157      38.472      
+OBN     H9      H       H       0       3.974       11.974      41.030      
+OBN     H11     H       H       0       5.546       13.586      39.348      
+OBN     H121    H       H       0       3.726       14.932      38.970      
+OBN     H122    H       H       0       2.829       14.095      39.925      
+OBN     H151    H       H       0       1.803       11.976      40.243      
+OBN     H152    H       H       0       1.221       10.819      39.340      
+OBN     H161    H       H       0       0.209       13.234      39.320      
+OBN     H162    H       H       0       0.026       12.246      38.101      
+OBN     H17     H       H       0       1.455       14.554      38.141      
+OBN     H181    H       H       0       4.023       14.387      36.671      
+OBN     H182    H       H       0       3.723       12.928      36.122      
+OBN     H183    H       H       0       4.903       13.156      37.152      
+OBN     H191    H       H       0       6.903       11.491      39.232      
+OBN     H192    H       H       0       7.727       10.628      40.246      
+OBN     H211    H       H       0       0.398       15.613      36.017      
+OBN     H212    H       H       0       1.915       15.463      35.572      
+OBN     H22     H       H       0       0.726       11.849      35.710      
+OBN     "H1'"   H       H       0       4.801       8.476       45.364      
+OBN     "H2'"   H       H       0       7.077       7.726       45.132      
+OBN     "H3'"   H       H       0       8.240       9.572       45.899      
+OBN     "H4'"   H       H       0       7.082       9.136       48.475      
+OBN     "H5'"   H       H       0       6.554       11.279      46.658      
+OBN     "H6'1"  H       H       0       4.698       11.638      48.270      
+OBN     "H6'2"  H       H       0       6.122       12.232      48.629      
+OBN     "H6'3"  H       H       0       5.640       10.875      49.291      
+OBN     HO1     H       H       0       7.515       10.945      43.370      
+OBN     HO5     H       H       0       7.147       8.706       41.485      
+OBN     HOE     H       H       0       4.422       14.223      41.650      
+OBN     HOF     H       H       0       2.205       10.274      37.441      
+OBN     HON     H       H       0       7.805       13.211      39.947      
+OBN     "HO2'"  H       H       0       6.929       6.518       46.901      
+OBN     "HO3'"  H       H       0       9.614       8.530       47.193      
+OBN     "HO4'"  H       H       0       8.734       11.090      47.710      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OBN          C1          C2      SINGLE       n     1.519  0.0100     1.519  0.0100
+OBN          C1         C10      SINGLE       n     1.553  0.0100     1.553  0.0100
+OBN          C1          O1      SINGLE       n     1.437  0.0100     1.437  0.0100
+OBN          C2          C3      SINGLE       n     1.518  0.0100     1.518  0.0100
+OBN          C3          C4      SINGLE       n     1.520  0.0100     1.520  0.0100
+OBN          C3          O3      SINGLE       n     1.450  0.0100     1.450  0.0100
+OBN          C4          C5      SINGLE       n     1.530  0.0100     1.530  0.0100
+OBN          C5          C6      SINGLE       n     1.522  0.0100     1.522  0.0100
+OBN          C5         C10      SINGLE       n     1.569  0.0144     1.569  0.0144
+OBN          C5          O5      SINGLE       n     1.446  0.0100     1.446  0.0100
+OBN          C6          C7      SINGLE       n     1.527  0.0100     1.527  0.0100
+OBN          C7          C8      SINGLE       n     1.531  0.0100     1.531  0.0100
+OBN          C8          C9      SINGLE       n     1.545  0.0100     1.545  0.0100
+OBN          C8         C14      SINGLE       n     1.535  0.0100     1.535  0.0100
+OBN          C9         C10      SINGLE       n     1.559  0.0100     1.559  0.0100
+OBN          C9         C11      SINGLE       n     1.536  0.0128     1.536  0.0128
+OBN         C10         C19      SINGLE       n     1.543  0.0119     1.543  0.0119
+OBN         C11         C12      SINGLE       n     1.535  0.0100     1.535  0.0100
+OBN         C11         O11      SINGLE       n     1.430  0.0100     1.430  0.0100
+OBN         C12         C13      SINGLE       n     1.529  0.0100     1.529  0.0100
+OBN         C13         C14      SINGLE       n     1.553  0.0100     1.553  0.0100
+OBN         C13         C17      SINGLE       n     1.559  0.0100     1.559  0.0100
+OBN         C13         C18      SINGLE       n     1.526  0.0100     1.526  0.0100
+OBN         C14         C15      SINGLE       n     1.532  0.0100     1.532  0.0100
+OBN         C14         O14      SINGLE       n     1.448  0.0100     1.448  0.0100
+OBN         C15         C16      SINGLE       n     1.537  0.0100     1.537  0.0100
+OBN         C16         C17      SINGLE       n     1.547  0.0114     1.547  0.0114
+OBN         C17         C20      SINGLE       n     1.497  0.0120     1.497  0.0120
+OBN         C19         O19      SINGLE       n     1.423  0.0107     1.423  0.0107
+OBN         C20         C21      SINGLE       n     1.496  0.0112     1.496  0.0112
+OBN         C20         C22      DOUBLE       n     1.328  0.0100     1.328  0.0100
+OBN         C21         O21      SINGLE       n     1.444  0.0128     1.444  0.0128
+OBN         C22         C23      SINGLE       n     1.457  0.0100     1.457  0.0100
+OBN         C23         O21      SINGLE       n     1.349  0.0117     1.349  0.0117
+OBN         C23         O23      DOUBLE       n     1.205  0.0100     1.205  0.0100
+OBN       "C1'"       "C2'"      SINGLE       n     1.522  0.0111     1.522  0.0111
+OBN       "C1'"          O3      SINGLE       n     1.406  0.0135     1.406  0.0135
+OBN       "C1'"       "O5'"      SINGLE       n     1.422  0.0169     1.422  0.0169
+OBN       "C2'"       "C3'"      SINGLE       n     1.519  0.0200     1.519  0.0200
+OBN       "C2'"       "O2'"      SINGLE       n     1.425  0.0112     1.425  0.0112
+OBN       "C3'"       "C4'"      SINGLE       n     1.520  0.0158     1.520  0.0158
+OBN       "C3'"       "O3'"      SINGLE       n     1.427  0.0138     1.427  0.0138
+OBN       "C4'"       "C5'"      SINGLE       n     1.523  0.0102     1.523  0.0102
+OBN       "C4'"       "O4'"      SINGLE       n     1.425  0.0176     1.425  0.0176
+OBN       "C5'"       "C6'"      SINGLE       n     1.510  0.0100     1.510  0.0100
+OBN       "C5'"       "O5'"      SINGLE       n     1.445  0.0100     1.445  0.0100
+OBN          C1          H1      SINGLE       n     1.089  0.0100     0.985  0.0102
+OBN          C2         H21      SINGLE       n     1.089  0.0100     0.976  0.0106
+OBN          C2        H22A      SINGLE       n     1.089  0.0100     0.976  0.0106
+OBN          C3          H3      SINGLE       n     1.089  0.0100     0.992  0.0200
+OBN          C4         H41      SINGLE       n     1.089  0.0100     0.976  0.0100
+OBN          C4         H42      SINGLE       n     1.089  0.0100     0.976  0.0100
+OBN          C6         H61      SINGLE       n     1.089  0.0100     0.976  0.0100
+OBN          C6         H62      SINGLE       n     1.089  0.0100     0.976  0.0100
+OBN          C7         H71      SINGLE       n     1.089  0.0100     0.977  0.0165
+OBN          C7         H72      SINGLE       n     1.089  0.0100     0.977  0.0165
+OBN          C8          H8      SINGLE       n     1.089  0.0100     0.988  0.0200
+OBN          C9          H9      SINGLE       n     1.089  0.0100     0.983  0.0193
+OBN         C11         H11      SINGLE       n     1.089  0.0100     0.983  0.0125
+OBN         C12        H121      SINGLE       n     1.089  0.0100     0.966  0.0100
+OBN         C12        H122      SINGLE       n     1.089  0.0100     0.966  0.0100
+OBN         C15        H151      SINGLE       n     1.089  0.0100     0.974  0.0121
+OBN         C15        H152      SINGLE       n     1.089  0.0100     0.974  0.0121
+OBN         C16        H161      SINGLE       n     1.089  0.0100     0.974  0.0100
+OBN         C16        H162      SINGLE       n     1.089  0.0100     0.974  0.0100
+OBN         C17         H17      SINGLE       n     1.089  0.0100     0.985  0.0100
+OBN         C18        H181      SINGLE       n     1.089  0.0100     0.974  0.0200
+OBN         C18        H182      SINGLE       n     1.089  0.0100     0.974  0.0200
+OBN         C18        H183      SINGLE       n     1.089  0.0100     0.974  0.0200
+OBN         C19        H191      SINGLE       n     1.089  0.0100     0.978  0.0107
+OBN         C19        H192      SINGLE       n     1.089  0.0100     0.978  0.0107
+OBN         C21        H211      SINGLE       n     1.089  0.0100     0.972  0.0119
+OBN         C21        H212      SINGLE       n     1.089  0.0100     0.972  0.0119
+OBN         C22         H22      SINGLE       n     1.082  0.0130     0.938  0.0151
+OBN       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.992  0.0127
+OBN       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.987  0.0140
+OBN       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.991  0.0121
+OBN       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.986  0.0131
+OBN       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.989  0.0117
+OBN       "C6'"      "H6'1"      SINGLE       n     1.089  0.0100     0.971  0.0171
+OBN       "C6'"      "H6'2"      SINGLE       n     1.089  0.0100     0.971  0.0171
+OBN       "C6'"      "H6'3"      SINGLE       n     1.089  0.0100     0.971  0.0171
+OBN          O1         HO1      SINGLE       n     0.970  0.0120     0.841  0.0200
+OBN          O5         HO5      SINGLE       n     0.970  0.0120     0.844  0.0200
+OBN         O11         HOE      SINGLE       n     0.970  0.0120     0.841  0.0200
+OBN         O14         HOF      SINGLE       n     0.970  0.0120     0.843  0.0200
+OBN         O19         HON      SINGLE       n     0.970  0.0120     0.842  0.0200
+OBN       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.841  0.0200
+OBN       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.841  0.0200
+OBN       "O4'"      "HO4'"      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OBN          C2          C1         C10     112.976    1.50
+OBN          C2          C1          O1     109.051    2.17
+OBN          C2          C1          H1     108.506    1.50
+OBN         C10          C1          O1     111.398    1.97
+OBN         C10          C1          H1     108.501    1.50
+OBN          O1          C1          H1     108.172    1.50
+OBN          C1          C2          C3     112.301    1.97
+OBN          C1          C2         H21     109.171    1.50
+OBN          C1          C2        H22A     109.171    1.50
+OBN          C3          C2         H21     109.270    1.50
+OBN          C3          C2        H22A     109.270    1.50
+OBN         H21          C2        H22A     108.159    1.50
+OBN          C2          C3          C4     110.924    1.50
+OBN          C2          C3          O3     109.852    2.33
+OBN          C2          C3          H3     109.129    1.50
+OBN          C4          C3          O3     109.262    2.57
+OBN          C4          C3          H3     108.993    1.50
+OBN          O3          C3          H3     109.532    1.50
+OBN          C3          C4          C5     113.236    1.65
+OBN          C3          C4         H41     109.050    1.50
+OBN          C3          C4         H42     109.050    1.50
+OBN          C5          C4         H41     108.548    1.50
+OBN          C5          C4         H42     108.548    1.50
+OBN         H41          C4         H42     107.676    1.50
+OBN          C4          C5          C6     110.478    1.50
+OBN          C4          C5         C10     111.152    1.50
+OBN          C4          C5          O5     107.359    1.79
+OBN          C6          C5         C10     111.152    1.50
+OBN          C6          C5          O5     105.808    1.73
+OBN         C10          C5          O5     107.631    1.94
+OBN          C5          C6          C7     112.981    1.50
+OBN          C5          C6         H61     109.005    1.50
+OBN          C5          C6         H62     109.005    1.50
+OBN          C7          C6         H61     108.939    1.50
+OBN          C7          C6         H62     108.939    1.50
+OBN         H61          C6         H62     107.467    1.50
+OBN          C6          C7          C8     112.182    1.50
+OBN          C6          C7         H71     109.282    1.50
+OBN          C6          C7         H72     109.282    1.50
+OBN          C8          C7         H71     109.265    1.50
+OBN          C8          C7         H72     109.265    1.50
+OBN         H71          C7         H72     107.970    1.50
+OBN          C7          C8          C9     110.553    1.50
+OBN          C7          C8         C14     111.522    1.50
+OBN          C7          C8          H8     107.124    1.50
+OBN          C9          C8         C14     113.156    1.76
+OBN          C9          C8          H8     108.372    1.50
+OBN         C14          C8          H8     106.882    1.50
+OBN          C8          C9         C10     112.117    1.50
+OBN          C8          C9         C11     113.476    1.85
+OBN          C8          C9          H9     106.169    1.50
+OBN         C10          C9         C11     115.397    1.50
+OBN         C10          C9          H9     105.555    1.50
+OBN         C11          C9          H9     104.947    1.50
+OBN          C1         C10          C5     109.871    1.50
+OBN          C1         C10          C9     109.614    1.50
+OBN          C1         C10         C19     108.360    1.92
+OBN          C5         C10          C9     108.395    1.50
+OBN          C5         C10         C19     111.880    1.93
+OBN          C9         C10         C19     111.488    1.74
+OBN          C9         C11         C12     113.217    1.50
+OBN          C9         C11         O11     110.793    1.97
+OBN          C9         C11         H11     107.687    1.50
+OBN         C12         C11         O11     109.459    2.43
+OBN         C12         C11         H11     107.577    1.50
+OBN         O11         C11         H11     107.770    1.50
+OBN         C11         C12         C13     113.340    1.50
+OBN         C11         C12        H121     108.959    1.50
+OBN         C11         C12        H122     108.959    1.50
+OBN         C13         C12        H121     109.186    1.50
+OBN         C13         C12        H122     109.186    1.50
+OBN        H121         C12        H122     108.001    1.50
+OBN         C12         C13         C14     108.819    1.50
+OBN         C12         C13         C17     107.854    1.79
+OBN         C12         C13         C18     110.386    1.50
+OBN         C14         C13         C17     102.725    1.63
+OBN         C14         C13         C18     113.370    1.50
+OBN         C17         C13         C18     113.336    1.50
+OBN          C8         C14         C13     114.042    1.50
+OBN          C8         C14         C15     116.239    1.50
+OBN          C8         C14         O14     108.225    1.50
+OBN         C13         C14         C15     103.567    1.50
+OBN         C13         C14         O14     108.216    1.76
+OBN         C15         C14         O14     108.093    2.44
+OBN         C14         C15         C16     105.643    1.50
+OBN         C14         C15        H151     110.774    1.50
+OBN         C14         C15        H152     110.774    1.50
+OBN         C16         C15        H151     110.574    1.50
+OBN         C16         C15        H152     110.574    1.50
+OBN        H151         C15        H152     108.726    1.50
+OBN         C15         C16         C17     106.587    1.50
+OBN         C15         C16        H161     110.418    1.50
+OBN         C15         C16        H162     110.418    1.50
+OBN         C17         C16        H161     110.392    1.50
+OBN         C17         C16        H162     110.392    1.50
+OBN        H161         C16        H162     108.650    1.50
+OBN         C13         C17         C16     104.825    1.50
+OBN         C13         C17         C20     115.731    1.50
+OBN         C13         C17         H17     107.337    1.50
+OBN         C16         C17         C20     113.727    1.50
+OBN         C16         C17         H17     107.316    1.50
+OBN         C20         C17         H17     107.315    1.50
+OBN         C13         C18        H181     109.308    1.50
+OBN         C13         C18        H182     109.308    1.50
+OBN         C13         C18        H183     109.308    1.50
+OBN        H181         C18        H182     109.337    1.50
+OBN        H181         C18        H183     109.337    1.50
+OBN        H182         C18        H183     109.337    1.50
+OBN         C10         C19         O19     112.508    3.00
+OBN         C10         C19        H191     109.760    1.50
+OBN         C10         C19        H192     109.760    1.50
+OBN         O19         C19        H191     109.368    1.50
+OBN         O19         C19        H192     109.368    1.50
+OBN        H191         C19        H192     108.034    1.50
+OBN         C17         C20         C21     123.651    2.31
+OBN         C17         C20         C22     128.635    2.05
+OBN         C21         C20         C22     107.714    1.50
+OBN         C20         C21         O21     105.237    1.50
+OBN         C20         C21        H211     110.603    1.50
+OBN         C20         C21        H212     110.603    1.50
+OBN         O21         C21        H211     110.296    1.50
+OBN         O21         C21        H212     110.296    1.50
+OBN        H211         C21        H212     109.619    2.83
+OBN         C20         C22         C23     109.450    1.50
+OBN         C20         C22         H22     125.362    1.50
+OBN         C23         C22         H22     125.181    1.50
+OBN         C22         C23         O21     108.889    1.50
+OBN         C22         C23         O23     130.692    1.50
+OBN         O21         C23         O23     120.420    1.50
+OBN       "C2'"       "C1'"          O3     108.782    1.93
+OBN       "C2'"       "C1'"       "O5'"     110.316    1.50
+OBN       "C2'"       "C1'"       "H1'"     109.438    1.50
+OBN          O3       "C1'"       "O5'"     110.157    1.98
+OBN          O3       "C1'"       "H1'"     109.369    1.50
+OBN       "O5'"       "C1'"       "H1'"     109.132    1.50
+OBN       "C1'"       "C2'"       "C3'"     109.880    1.85
+OBN       "C1'"       "C2'"       "O2'"     109.907    1.90
+OBN       "C1'"       "C2'"       "H2'"     108.647    1.50
+OBN       "C3'"       "C2'"       "O2'"     111.053    2.62
+OBN       "C3'"       "C2'"       "H2'"     108.505    1.50
+OBN       "O2'"       "C2'"       "H2'"     108.551    1.50
+OBN       "C2'"       "C3'"       "C4'"     110.687    1.67
+OBN       "C2'"       "C3'"       "O3'"     109.587    2.09
+OBN       "C2'"       "C3'"       "H3'"     108.712    1.50
+OBN       "C4'"       "C3'"       "O3'"     110.243    1.88
+OBN       "C4'"       "C3'"       "H3'"     108.653    1.50
+OBN       "O3'"       "C3'"       "H3'"     108.767    1.50
+OBN       "C3'"       "C4'"       "C5'"     109.500    1.50
+OBN       "C3'"       "C4'"       "O4'"     110.101    1.97
+OBN       "C3'"       "C4'"       "H4'"     109.032    1.50
+OBN       "C5'"       "C4'"       "O4'"     109.789    1.62
+OBN       "C5'"       "C4'"       "H4'"     108.901    1.50
+OBN       "O4'"       "C4'"       "H4'"     109.194    1.50
+OBN       "C4'"       "C5'"       "C6'"     113.299    1.50
+OBN       "C4'"       "C5'"       "O5'"     109.213    1.50
+OBN       "C4'"       "C5'"       "H5'"     108.992    1.50
+OBN       "C6'"       "C5'"       "O5'"     106.787    1.50
+OBN       "C6'"       "C5'"       "H5'"     109.193    1.50
+OBN       "O5'"       "C5'"       "H5'"     109.141    1.50
+OBN       "C5'"       "C6'"      "H6'1"     109.468    1.50
+OBN       "C5'"       "C6'"      "H6'2"     109.468    1.50
+OBN       "C5'"       "C6'"      "H6'3"     109.468    1.50
+OBN      "H6'1"       "C6'"      "H6'2"     109.383    1.59
+OBN      "H6'1"       "C6'"      "H6'3"     109.383    1.59
+OBN      "H6'2"       "C6'"      "H6'3"     109.383    1.59
+OBN          C1          O1         HO1     107.549    3.00
+OBN          C3          O3       "C1'"     117.169    1.96
+OBN          C5          O5         HO5     110.274    1.81
+OBN         C11         O11         HOE     106.773    3.00
+OBN         C14         O14         HOF     108.793    1.74
+OBN         C19         O19         HON     108.886    3.00
+OBN         C21         O21         C23     108.691    1.50
+OBN       "C2'"       "O2'"      "HO2'"     109.126    2.06
+OBN       "C3'"       "O3'"      "HO3'"     108.895    2.41
+OBN       "C4'"       "O4'"      "HO4'"     109.564    3.00
+OBN       "C1'"       "O5'"       "C5'"     113.009    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OBN                   nu0       "C5'"       "O5'"       "C1'"       "C2'"      62.272    10.0     3
+OBN                   nu1       "O5'"       "C1'"       "C2'"       "C3'"     -54.044    10.0     3
+OBN                   nu2       "C1'"       "C2'"       "C3'"       "C4'"      48.626    10.0     3
+OBN                   nu3       "C2'"       "C3'"       "C4'"       "C5'"     -49.645    10.0     3
+OBN                   nu4       "C3'"       "C4'"       "C5'"       "O5'"      56.903    10.0     3
+OBN                   nu5       "C4'"       "C5'"       "O5'"       "C1'"     -64.007    10.0     3
+OBN            sp3_sp3_40         C10          C1          C2          C3      60.000    10.0     3
+OBN            sp3_sp3_41         C10          C1          C2         H21     180.000    10.0     3
+OBN            sp3_sp3_42         C10          C1          C2        H22A     -60.000    10.0     3
+OBN            sp3_sp3_43          O1          C1          C2          C3     -60.000    10.0     3
+OBN            sp3_sp3_44          O1          C1          C2         H21      60.000    10.0     3
+OBN            sp3_sp3_45          O1          C1          C2        H22A     180.000    10.0     3
+OBN            sp3_sp3_46          H1          C1          C2          C3     180.000    10.0     3
+OBN            sp3_sp3_47          H1          C1          C2         H21     -60.000    10.0     3
+OBN            sp3_sp3_48          H1          C1          C2        H22A      60.000    10.0     3
+OBN            sp3_sp3_49          C1          C2          C3          C4     -60.000    10.0     3
+OBN            sp3_sp3_50          C1          C2          C3          O3      60.000    10.0     3
+OBN            sp3_sp3_51          C1          C2          C3          H3     180.000    10.0     3
+OBN            sp3_sp3_52         H21          C2          C3          C4     180.000    10.0     3
+OBN            sp3_sp3_53         H21          C2          C3          O3     -60.000    10.0     3
+OBN            sp3_sp3_54         H21          C2          C3          H3      60.000    10.0     3
+OBN            sp3_sp3_55        H22A          C2          C3          C4      60.000    10.0     3
+OBN            sp3_sp3_56        H22A          C2          C3          O3     180.000    10.0     3
+OBN            sp3_sp3_57        H22A          C2          C3          H3     -60.000    10.0     3
+OBN            sp3_sp3_58          C2          C3          C4          C5      60.000    10.0     3
+OBN            sp3_sp3_59          C2          C3          C4         H41     180.000    10.0     3
+OBN            sp3_sp3_60          C2          C3          C4         H42     -60.000    10.0     3
+OBN            sp3_sp3_61          O3          C3          C4          C5     -60.000    10.0     3
+OBN            sp3_sp3_62          O3          C3          C4         H41      60.000    10.0     3
+OBN            sp3_sp3_63          O3          C3          C4         H42     180.000    10.0     3
+OBN            sp3_sp3_64          H3          C3          C4          C5     180.000    10.0     3
+OBN            sp3_sp3_65          H3          C3          C4         H41     -60.000    10.0     3
+OBN            sp3_sp3_66          H3          C3          C4         H42      60.000    10.0     3
+OBN            sp3_sp3_67          C3          C4          C5         C10     -60.000    10.0     3
+OBN            sp3_sp3_68          C3          C4          C5          C6      60.000    10.0     3
+OBN            sp3_sp3_69          C3          C4          C5          O5     180.000    10.0     3
+OBN            sp3_sp3_70         H41          C4          C5         C10     180.000    10.0     3
+OBN            sp3_sp3_71         H41          C4          C5          C6     -60.000    10.0     3
+OBN            sp3_sp3_72         H41          C4          C5          O5      60.000    10.0     3
+OBN            sp3_sp3_73         H42          C4          C5         C10      60.000    10.0     3
+OBN            sp3_sp3_74         H42          C4          C5          C6     180.000    10.0     3
+OBN            sp3_sp3_75         H42          C4          C5          O5     -60.000    10.0     3
+OBN            sp3_sp3_76          C1         C10          C5          C4      60.000    10.0     3
+OBN            sp3_sp3_77          C1         C10          C5          C6     180.000    10.0     3
+OBN            sp3_sp3_78          C1         C10          C5          O5     -60.000    10.0     3
+OBN            sp3_sp3_79          C9         C10          C5          C4     -60.000    10.0     3
+OBN            sp3_sp3_80          C9         C10          C5          C6      60.000    10.0     3
+OBN            sp3_sp3_81          C9         C10          C5          O5     180.000    10.0     3
+OBN            sp3_sp3_82         C19         C10          C5          C4     180.000    10.0     3
+OBN            sp3_sp3_83         C19         C10          C5          C6     -60.000    10.0     3
+OBN            sp3_sp3_84         C19         C10          C5          O5      60.000    10.0     3
+OBN            sp3_sp3_85         C10          C5          C6          C7      60.000    10.0     3
+OBN            sp3_sp3_86         C10          C5          C6         H61     180.000    10.0     3
+OBN            sp3_sp3_87         C10          C5          C6         H62     -60.000    10.0     3
+OBN            sp3_sp3_88          C4          C5          C6          C7     -60.000    10.0     3
+OBN            sp3_sp3_89          C4          C5          C6         H61      60.000    10.0     3
+OBN            sp3_sp3_90          C4          C5          C6         H62     180.000    10.0     3
+OBN            sp3_sp3_91          O5          C5          C6          C7     180.000    10.0     3
+OBN            sp3_sp3_92          O5          C5          C6         H61     -60.000    10.0     3
+OBN            sp3_sp3_93          O5          C5          C6         H62      60.000    10.0     3
+OBN            sp3_sp3_94          C5          C6          C7          C8     -60.000    10.0     3
+OBN            sp3_sp3_95          C5          C6          C7         H71      60.000    10.0     3
+OBN            sp3_sp3_96          C5          C6          C7         H72     180.000    10.0     3
+OBN            sp3_sp3_97         H61          C6          C7          C8     180.000    10.0     3
+OBN            sp3_sp3_98         H61          C6          C7         H71     -60.000    10.0     3
+OBN            sp3_sp3_99         H61          C6          C7         H72      60.000    10.0     3
+OBN           sp3_sp3_100         H62          C6          C7          C8      60.000    10.0     3
+OBN           sp3_sp3_101         H62          C6          C7         H71     180.000    10.0     3
+OBN           sp3_sp3_102         H62          C6          C7         H72     -60.000    10.0     3
+OBN           sp3_sp3_103          C6          C7          C8          C9      60.000    10.0     3
+OBN           sp3_sp3_104          C6          C7          C8         C14     180.000    10.0     3
+OBN           sp3_sp3_105          C6          C7          C8          H8     -60.000    10.0     3
+OBN           sp3_sp3_106         H71          C7          C8          C9     -60.000    10.0     3
+OBN           sp3_sp3_107         H71          C7          C8         C14      60.000    10.0     3
+OBN           sp3_sp3_108         H71          C7          C8          H8     180.000    10.0     3
+OBN           sp3_sp3_109         H72          C7          C8          C9     180.000    10.0     3
+OBN           sp3_sp3_110         H72          C7          C8         C14     -60.000    10.0     3
+OBN           sp3_sp3_111         H72          C7          C8          H8      60.000    10.0     3
+OBN           sp3_sp3_112          C7          C8          C9         C10     -60.000    10.0     3
+OBN           sp3_sp3_113          C7          C8          C9         C11      60.000    10.0     3
+OBN           sp3_sp3_114          C7          C8          C9          H9     180.000    10.0     3
+OBN           sp3_sp3_115         C14          C8          C9         C10     180.000    10.0     3
+OBN           sp3_sp3_116         C14          C8          C9         C11     -60.000    10.0     3
+OBN           sp3_sp3_117         C14          C8          C9          H9      60.000    10.0     3
+OBN           sp3_sp3_118          H8          C8          C9         C10      60.000    10.0     3
+OBN           sp3_sp3_119          H8          C8          C9         C11     180.000    10.0     3
+OBN           sp3_sp3_120          H8          C8          C9          H9     -60.000    10.0     3
+OBN           sp3_sp3_121          C5         C10          C9          C8      60.000    10.0     3
+OBN           sp3_sp3_122          C5         C10          C9         C11     180.000    10.0     3
+OBN           sp3_sp3_123          C5         C10          C9          H9     -60.000    10.0     3
+OBN           sp3_sp3_124          C1         C10          C9          C8     -60.000    10.0     3
+OBN           sp3_sp3_125          C1         C10          C9         C11      60.000    10.0     3
+OBN           sp3_sp3_126          C1         C10          C9          H9     180.000    10.0     3
+OBN           sp3_sp3_127         C19         C10          C9          C8     180.000    10.0     3
+OBN           sp3_sp3_128         C19         C10          C9         C11     -60.000    10.0     3
+OBN           sp3_sp3_129         C19         C10          C9          H9      60.000    10.0     3
+OBN           sp3_sp3_130         C12         C11          C9          C8     -60.000    10.0     3
+OBN           sp3_sp3_131         C12         C11          C9         C10      60.000    10.0     3
+OBN           sp3_sp3_132         C12         C11          C9          H9     180.000    10.0     3
+OBN           sp3_sp3_133         O11         C11          C9          C8     180.000    10.0     3
+OBN           sp3_sp3_134         O11         C11          C9         C10     -60.000    10.0     3
+OBN           sp3_sp3_135         O11         C11          C9          H9      60.000    10.0     3
+OBN           sp3_sp3_136         H11         C11          C9          C8      60.000    10.0     3
+OBN           sp3_sp3_137         H11         C11          C9         C10     180.000    10.0     3
+OBN           sp3_sp3_138         H11         C11          C9          H9     -60.000    10.0     3
+OBN           sp3_sp3_139          C9         C11         C12         C13      60.000    10.0     3
+OBN           sp3_sp3_140          C9         C11         C12        H121     180.000    10.0     3
+OBN           sp3_sp3_141          C9         C11         C12        H122     -60.000    10.0     3
+OBN           sp3_sp3_142         O11         C11         C12         C13     -60.000    10.0     3
+OBN           sp3_sp3_143         O11         C11         C12        H121      60.000    10.0     3
+OBN           sp3_sp3_144         O11         C11         C12        H122     180.000    10.0     3
+OBN           sp3_sp3_145         H11         C11         C12         C13     180.000    10.0     3
+OBN           sp3_sp3_146         H11         C11         C12        H121     -60.000    10.0     3
+OBN           sp3_sp3_147         H11         C11         C12        H122      60.000    10.0     3
+OBN           sp3_sp3_148         C11         C12         C13         C14     -60.000    10.0     3
+OBN           sp3_sp3_149         C11         C12         C13         C17      60.000    10.0     3
+OBN           sp3_sp3_150         C11         C12         C13         C18     180.000    10.0     3
+OBN           sp3_sp3_151        H121         C12         C13         C14     180.000    10.0     3
+OBN           sp3_sp3_152        H121         C12         C13         C17     -60.000    10.0     3
+OBN           sp3_sp3_153        H121         C12         C13         C18      60.000    10.0     3
+OBN           sp3_sp3_154        H122         C12         C13         C14      60.000    10.0     3
+OBN           sp3_sp3_155        H122         C12         C13         C17     180.000    10.0     3
+OBN           sp3_sp3_156        H122         C12         C13         C18     -60.000    10.0     3
+OBN           sp3_sp3_157         C12         C13         C14          C8      60.000    10.0     3
+OBN           sp3_sp3_158         C12         C13         C14         C15     180.000    10.0     3
+OBN           sp3_sp3_159         C12         C13         C14         O14     -60.000    10.0     3
+OBN           sp3_sp3_160         C17         C13         C14          C8     -60.000    10.0     3
+OBN           sp3_sp3_161         C17         C13         C14         C15      60.000    10.0     3
+OBN           sp3_sp3_162         C17         C13         C14         O14     180.000    10.0     3
+OBN           sp3_sp3_163         C18         C13         C14          C8     180.000    10.0     3
+OBN           sp3_sp3_164         C18         C13         C14         C15     -60.000    10.0     3
+OBN           sp3_sp3_165         C18         C13         C14         O14      60.000    10.0     3
+OBN           sp3_sp3_166         C13         C14         C15         C16     -60.000    10.0     3
+OBN           sp3_sp3_167         C13         C14         C15        H151      60.000    10.0     3
+OBN           sp3_sp3_168         C13         C14         C15        H152     180.000    10.0     3
+OBN           sp3_sp3_169          C8         C14         C15         C16     180.000    10.0     3
+OBN           sp3_sp3_170          C8         C14         C15        H151     -60.000    10.0     3
+OBN           sp3_sp3_171          C8         C14         C15        H152      60.000    10.0     3
+OBN           sp3_sp3_172         O14         C14         C15         C16      60.000    10.0     3
+OBN           sp3_sp3_173         O14         C14         C15        H151     180.000    10.0     3
+OBN           sp3_sp3_174         O14         C14         C15        H152     -60.000    10.0     3
+OBN           sp3_sp3_175         C14         C15         C16         C17      60.000    10.0     3
+OBN           sp3_sp3_176         C14         C15         C16        H161     180.000    10.0     3
+OBN           sp3_sp3_177         C14         C15         C16        H162     -60.000    10.0     3
+OBN           sp3_sp3_178        H151         C15         C16         C17     -60.000    10.0     3
+OBN           sp3_sp3_179        H151         C15         C16        H161      60.000    10.0     3
+OBN           sp3_sp3_180        H151         C15         C16        H162     180.000    10.0     3
+OBN           sp3_sp3_181        H152         C15         C16         C17     180.000    10.0     3
+OBN           sp3_sp3_182        H152         C15         C16        H161     -60.000    10.0     3
+OBN           sp3_sp3_183        H152         C15         C16        H162      60.000    10.0     3
+OBN           sp3_sp3_184         C15         C16         C17         C13     -60.000    10.0     3
+OBN           sp3_sp3_185         C15         C16         C17         C20      60.000    10.0     3
+OBN           sp3_sp3_186         C15         C16         C17         H17     180.000    10.0     3
+OBN           sp3_sp3_187        H161         C16         C17         C13     180.000    10.0     3
+OBN           sp3_sp3_188        H161         C16         C17         C20     -60.000    10.0     3
+OBN           sp3_sp3_189        H161         C16         C17         H17      60.000    10.0     3
+OBN           sp3_sp3_190        H162         C16         C17         C13      60.000    10.0     3
+OBN           sp3_sp3_191        H162         C16         C17         C20     180.000    10.0     3
+OBN           sp3_sp3_192        H162         C16         C17         H17     -60.000    10.0     3
+OBN             sp2_sp3_1         C22         C20         C21         O21       0.000    10.0     6
+OBN             sp2_sp3_2         C22         C20         C21        H211     120.000    10.0     6
+OBN             sp2_sp3_3         C22         C20         C21        H212    -120.000    10.0     6
+OBN             sp2_sp3_4         C17         C20         C21         O21     180.000    10.0     6
+OBN             sp2_sp3_5         C17         C20         C21        H211     -60.000    10.0     6
+OBN             sp2_sp3_6         C17         C20         C21        H212      60.000    10.0     6
+OBN           sp3_sp3_193         C20         C21         O21         C23     -60.000    10.0     3
+OBN           sp3_sp3_194        H211         C21         O21         C23      60.000    10.0     3
+OBN           sp3_sp3_195        H212         C21         O21         C23     180.000    10.0     3
+OBN             sp2_sp2_1         C22         C23         O21         C21       0.000     5.0     2
+OBN             sp2_sp2_2         O23         C23         O21         C21     180.000     5.0     2
+OBN             sp2_sp2_3         C20         C22         C23         O21       0.000     5.0     2
+OBN             sp2_sp2_4         C20         C22         C23         O23     180.000     5.0     2
+OBN             sp2_sp2_5         H22         C22         C23         O21     180.000     5.0     2
+OBN             sp2_sp2_6         H22         C22         C23         O23       0.000     5.0     2
+OBN           sp3_sp3_196          C2          C1         C10          C5     180.000    10.0     3
+OBN           sp3_sp3_197          C2          C1         C10          C9     -60.000    10.0     3
+OBN           sp3_sp3_198          C2          C1         C10         C19      60.000    10.0     3
+OBN           sp3_sp3_199          O1          C1         C10          C5      60.000    10.0     3
+OBN           sp3_sp3_200          O1          C1         C10          C9     180.000    10.0     3
+OBN           sp3_sp3_201          O1          C1         C10         C19     -60.000    10.0     3
+OBN           sp3_sp3_202          H1          C1         C10          C5     -60.000    10.0     3
+OBN           sp3_sp3_203          H1          C1         C10          C9      60.000    10.0     3
+OBN           sp3_sp3_204          H1          C1         C10         C19     180.000    10.0     3
+OBN           sp3_sp3_205          C2          C1          O1         HO1     180.000    10.0     3
+OBN           sp3_sp3_206         C10          C1          O1         HO1      60.000    10.0     3
+OBN           sp3_sp3_207          H1          C1          O1         HO1     -60.000    10.0     3
+OBN           sp3_sp3_208          C2          C3          O3       "C1'"     180.000    10.0     3
+OBN           sp3_sp3_209          C4          C3          O3       "C1'"      60.000    10.0     3
+OBN           sp3_sp3_210          H3          C3          O3       "C1'"     -60.000    10.0     3
+OBN           sp3_sp3_211          C4          C5          O5         HO5     180.000    10.0     3
+OBN           sp3_sp3_212          C6          C5          O5         HO5      60.000    10.0     3
+OBN           sp3_sp3_213         C10          C5          O5         HO5     -60.000    10.0     3
+OBN           sp3_sp3_214         C13         C14          C8          C9     180.000    10.0     3
+OBN           sp3_sp3_215         C13         C14          C8          C7     -60.000    10.0     3
+OBN           sp3_sp3_216         C13         C14          C8          H8      60.000    10.0     3
+OBN           sp3_sp3_217         C15         C14          C8          C9      60.000    10.0     3
+OBN           sp3_sp3_218         C15         C14          C8          C7     180.000    10.0     3
+OBN           sp3_sp3_219         C15         C14          C8          H8     -60.000    10.0     3
+OBN           sp3_sp3_220         O14         C14          C8          C9     -60.000    10.0     3
+OBN           sp3_sp3_221         O14         C14          C8          C7      60.000    10.0     3
+OBN           sp3_sp3_222         O14         C14          C8          H8     180.000    10.0     3
+OBN           sp3_sp3_223          C1         C10         C19         O19     180.000    10.0     3
+OBN           sp3_sp3_224          C1         C10         C19        H191     -60.000    10.0     3
+OBN           sp3_sp3_225          C1         C10         C19        H192      60.000    10.0     3
+OBN           sp3_sp3_226          C5         C10         C19         O19      60.000    10.0     3
+OBN           sp3_sp3_227          C5         C10         C19        H191     180.000    10.0     3
+OBN           sp3_sp3_228          C5         C10         C19        H192     -60.000    10.0     3
+OBN           sp3_sp3_229          C9         C10         C19         O19     -60.000    10.0     3
+OBN           sp3_sp3_230          C9         C10         C19        H191      60.000    10.0     3
+OBN           sp3_sp3_231          C9         C10         C19        H192     180.000    10.0     3
+OBN           sp3_sp3_232          C9         C11         O11         HOE     180.000    10.0     3
+OBN           sp3_sp3_233         C12         C11         O11         HOE      60.000    10.0     3
+OBN           sp3_sp3_234         H11         C11         O11         HOE     -60.000    10.0     3
+OBN           sp3_sp3_235         C14         C13         C17         C16     180.000    10.0     3
+OBN           sp3_sp3_236         C14         C13         C17         C20     -60.000    10.0     3
+OBN           sp3_sp3_237         C14         C13         C17         H17      60.000    10.0     3
+OBN           sp3_sp3_238         C12         C13         C17         C16      60.000    10.0     3
+OBN           sp3_sp3_239         C12         C13         C17         C20     180.000    10.0     3
+OBN           sp3_sp3_240         C12         C13         C17         H17     -60.000    10.0     3
+OBN           sp3_sp3_241         C18         C13         C17         C16     -60.000    10.0     3
+OBN           sp3_sp3_242         C18         C13         C17         C20      60.000    10.0     3
+OBN           sp3_sp3_243         C18         C13         C17         H17     180.000    10.0     3
+OBN           sp3_sp3_244         C12         C13         C18        H181     180.000    10.0     3
+OBN           sp3_sp3_245         C12         C13         C18        H182     -60.000    10.0     3
+OBN           sp3_sp3_246         C12         C13         C18        H183      60.000    10.0     3
+OBN           sp3_sp3_247         C14         C13         C18        H181      60.000    10.0     3
+OBN           sp3_sp3_248         C14         C13         C18        H182     180.000    10.0     3
+OBN           sp3_sp3_249         C14         C13         C18        H183     -60.000    10.0     3
+OBN           sp3_sp3_250         C17         C13         C18        H181     -60.000    10.0     3
+OBN           sp3_sp3_251         C17         C13         C18        H182      60.000    10.0     3
+OBN           sp3_sp3_252         C17         C13         C18        H183     180.000    10.0     3
+OBN           sp3_sp3_253          C8         C14         O14         HOF     180.000    10.0     3
+OBN           sp3_sp3_254         C13         C14         O14         HOF      60.000    10.0     3
+OBN           sp3_sp3_255         C15         C14         O14         HOF     -60.000    10.0     3
+OBN             sp2_sp3_7         C21         C20         C17         C13     150.000    10.0     6
+OBN             sp2_sp3_8         C21         C20         C17         C16     -90.000    10.0     6
+OBN             sp2_sp3_9         C21         C20         C17         H17      30.000    10.0     6
+OBN            sp2_sp3_10         C22         C20         C17         C13     -30.000    10.0     6
+OBN            sp2_sp3_11         C22         C20         C17         C16      90.000    10.0     6
+OBN            sp2_sp3_12         C22         C20         C17         H17    -150.000    10.0     6
+OBN           sp3_sp3_256         C10         C19         O19         HON     180.000    10.0     3
+OBN           sp3_sp3_257        H191         C19         O19         HON      60.000    10.0     3
+OBN           sp3_sp3_258        H192         C19         O19         HON     -60.000    10.0     3
+OBN             sp2_sp2_7         C21         C20         C22         C23       0.000     5.0     2
+OBN             sp2_sp2_8         C21         C20         C22         H22     180.000     5.0     2
+OBN             sp2_sp2_9         C17         C20         C22         C23     180.000     5.0     2
+OBN            sp2_sp2_10         C17         C20         C22         H22       0.000     5.0     2
+OBN           sp3_sp3_259       "C2'"       "C1'"          O3          C3     180.000    10.0     3
+OBN           sp3_sp3_260       "O5'"       "C1'"          O3          C3      60.000    10.0     3
+OBN           sp3_sp3_261       "H1'"       "C1'"          O3          C3     -60.000    10.0     3
+OBN           sp3_sp3_265       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+OBN           sp3_sp3_266       "C3'"       "C2'"       "O2'"      "HO2'"      60.000    10.0     3
+OBN           sp3_sp3_267       "H2'"       "C2'"       "O2'"      "HO2'"     -60.000    10.0     3
+OBN           sp3_sp3_268       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+OBN           sp3_sp3_269       "C4'"       "C3'"       "O3'"      "HO3'"      60.000    10.0     3
+OBN           sp3_sp3_270       "H3'"       "C3'"       "O3'"      "HO3'"     -60.000    10.0     3
+OBN           sp3_sp3_271       "C3'"       "C4'"       "O4'"      "HO4'"     180.000    10.0     3
+OBN           sp3_sp3_272       "C5'"       "C4'"       "O4'"      "HO4'"      60.000    10.0     3
+OBN           sp3_sp3_273       "H4'"       "C4'"       "O4'"      "HO4'"     -60.000    10.0     3
+OBN           sp3_sp3_274       "C4'"       "C5'"       "C6'"      "H6'1"     180.000    10.0     3
+OBN           sp3_sp3_275       "C4'"       "C5'"       "C6'"      "H6'2"     -60.000    10.0     3
+OBN           sp3_sp3_276       "C4'"       "C5'"       "C6'"      "H6'3"      60.000    10.0     3
+OBN           sp3_sp3_277       "O5'"       "C5'"       "C6'"      "H6'1"      60.000    10.0     3
+OBN           sp3_sp3_278       "O5'"       "C5'"       "C6'"      "H6'2"     180.000    10.0     3
+OBN           sp3_sp3_279       "O5'"       "C5'"       "C6'"      "H6'3"     -60.000    10.0     3
+OBN           sp3_sp3_280       "H5'"       "C5'"       "C6'"      "H6'1"     -60.000    10.0     3
+OBN           sp3_sp3_281       "H5'"       "C5'"       "C6'"      "H6'2"      60.000    10.0     3
+OBN           sp3_sp3_282       "H5'"       "C5'"       "C6'"      "H6'3"     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OBN    chir_1    C1    O1    C10    C2    negative
+OBN    chir_2    C3    O3    C4    C2    positive
+OBN    chir_3    C5    O5    C10    C4    positive
+OBN    chir_4    C8    C14    C9    C7    negative
+OBN    chir_5    C9    C11    C10    C8    positive
+OBN    chir_6    C10    C5    C1    C19    negative
+OBN    chir_7    C11    O11    C9    C12    negative
+OBN    chir_8    C13    C14    C17    C12    negative
+OBN    chir_9    C14    O14    C13    C8    positive
+OBN    chir_10    C17    C13    C20    C16    negative
+OBN    chir_11    "C1'"    "O5'"    O3    "C2'"    negative
+OBN    chir_12    "C2'"    "O2'"    "C1'"    "C3'"    negative
+OBN    chir_13    "C3'"    "O3'"    "C2'"    "C4'"    negative
+OBN    chir_14    "C4'"    "O4'"    "C5'"    "C3'"    negative
+OBN    chir_15    "C5'"    "O5'"    "C4'"    "C6'"    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OBN    plan-1         C17   0.020
+OBN    plan-1         C20   0.020
+OBN    plan-1         C21   0.020
+OBN    plan-1         C22   0.020
+OBN    plan-2         C20   0.020
+OBN    plan-2         C22   0.020
+OBN    plan-2         C23   0.020
+OBN    plan-2         H22   0.020
+OBN    plan-3         C22   0.020
+OBN    plan-3         C23   0.020
+OBN    plan-3         O21   0.020
+OBN    plan-3         O23   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OBN           SMILES              ACDLabs 10.04                                                                                                                                                                                                O=C1OCC(=C1)C4CCC5(O)C3CCC6(O)CC(OC2OC(C(O)C(O)C2O)C)CC(O)C6(CO)C3C(O)CC45C
+OBN SMILES_CANONICAL               CACTVS 3.341                                                                                                                                  C[C@@H]1O[C@@H](O[C@H]2C[C@@H](O)[C@]3(CO)[C@H]4[C@H](O)C[C@]5(C)[C@H](CC[C@]5(O)[C@@H]4CC[C@]3(O)C2)C6=CC(=O)OC6)[C@H](O)[C@H](O)[C@H]1O
+OBN           SMILES               CACTVS 3.341                                                                                                                                                     C[CH]1O[CH](O[CH]2C[CH](O)[C]3(CO)[CH]4[CH](O)C[C]5(C)[CH](CC[C]5(O)[CH]4CC[C]3(O)C2)C6=CC(=O)OC6)[CH](O)[CH](O)[CH]1O
+OBN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                             C[C@H]1[C@@H]([C@H]([C@H]([C@@H](O1)O[C@H]2C[C@H]([C@@]3([C@@H]4[C@@H](CC[C@@]3(C2)O)[C@]5(CC[C@@H]([C@]5(C[C@H]4O)C)C6=CC(=O)OC6)O)CO)O)O)O)O
+OBN           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                            CC1C(C(C(C(O1)OC2CC(C3(C4C(CCC3(C2)O)C5(CCC(C5(CC4O)C)C6=CC(=O)OC6)O)CO)O)O)O)O
+OBN            InChI                InChI  1.03 InChI=1S/C29H44O12/c1-13-22(34)23(35)24(36)25(40-13)41-15-8-19(32)28(12-30)21-17(3-5-27(28,37)9-15)29(38)6-4-16(14-7-20(33)39-11-14)26(29,2)10-18(21)31/h7,13,15-19,21-25,30-32,34-38H,3-6,8-12H2,1-2H3/t13-,15-,16+,17+,18+,19+,21+,22-,23+,24+,25-,26+,27-,28+,29-/m0/s1
+OBN         InChIKey                InChI  1.03                                                                                                                                                                                                                                                LPMXVESGRSUGHW-HBYQJFLCSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OBN acedrg               243         "dictionary generator"                  
+OBN acedrg_database      11          "data source"                           
+OBN rdkit                2017.03.2   "Chemoinformatics tool"
+OBN refmac5              5.8.0238    "optimization tool"                     

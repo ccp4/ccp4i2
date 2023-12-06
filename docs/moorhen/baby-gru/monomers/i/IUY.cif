@@ -1,0 +1,371 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IUY     IUY      "ethyl (5R)-5-(4-cyanophenyl)-7-methyl-8-[3-(trifluoromethyl)phenyl]-1,5-dihydroimidazo[1,2-a]pyrimidin-4-ium-6-carboxylate"     NON-POLYMER     53     33     .     
+#
+data_comp_IUY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IUY     C1      C       CR6     0       28.104      -21.896     4.636       
+IUY     C2      C       CH1     0       28.483      -23.052     5.566       
+IUY     C3      C       CR6     0       27.658      -22.110     3.358       
+IUY     N4      N       NR6     0       28.083      -23.298     2.678       
+IUY     C5      C       CH3     0       26.818      -21.151     2.572       
+IUY     C6      C       CR6     0       27.330      -23.508     6.461       
+IUY     C7      C       CR16    0       27.463      -23.501     7.845       
+IUY     C8      C       CR16    0       26.427      -23.918     8.662       
+IUY     C9      C       CR6     0       25.237      -24.356     8.096       
+IUY     C10     C       CR16    0       25.091      -24.373     6.715       
+IUY     C11     C       CR16    0       26.135      -23.953     5.908       
+IUY     C12     C       C       0       28.162      -20.541     5.223       
+IUY     O13     O       O       0       28.180      -19.491     4.617       
+IUY     O14     O       O2      0       28.139      -20.572     6.560       
+IUY     C15     C       CH2     0       27.524      -19.449     7.264       
+IUY     C16     C       CH3     0       27.296      -19.833     8.675       
+IUY     C17     C       CSP     0       24.155      -24.792     8.942       
+IUY     N18     N       NSP     0       23.319      -25.154     9.642       
+IUY     N19     N       NR5     1       28.949      -24.174     4.753       
+IUY     C20     C       CR56    0       28.745      -24.275     3.385       
+IUY     N21     N       NR5     0       29.315      -25.458     2.969       
+IUY     C22     C       CR15    0       29.851      -26.069     4.063       
+IUY     C23     C       CR15    0       29.621      -25.276     5.148       
+IUY     C24     C       CR6     0       27.853      -23.525     1.260       
+IUY     C25     C       CR16    0       28.567      -22.810     0.312       
+IUY     C26     C       CR16    0       28.347      -23.041     -1.040      
+IUY     C27     C       CR16    0       27.428      -23.993     -1.454      
+IUY     C28     C       CR6     0       26.719      -24.709     -0.494      
+IUY     C29     C       CR16    0       26.937      -24.484     0.860       
+IUY     C30     C       CT      0       25.726      -25.747     -0.913      
+IUY     F31     F       F       0       25.223      -25.541     -2.128      
+IUY     F32     F       F       0       26.246      -26.969     -0.940      
+IUY     F33     F       F       0       24.672      -25.820     -0.104      
+IUY     H2      H       H       0       29.233      -22.765     6.141       
+IUY     H5      H       H       0       26.227      -21.634     1.978       
+IUY     H5A     H       H       0       27.392      -20.568     2.052       
+IUY     H5B     H       H       0       26.280      -20.616     3.175       
+IUY     H7      H       H       0       28.267      -23.205     8.233       
+IUY     H8      H       H       0       26.534      -23.903     9.597       
+IUY     H10     H       H       0       24.288      -24.669     6.324       
+IUY     H11     H       H       0       26.032      -23.966     4.973       
+IUY     H15     H       H       0       26.671      -19.213     6.841       
+IUY     H15A    H       H       0       28.116      -18.669     7.222       
+IUY     H16     H       H       0       27.204      -19.033     9.218       
+IUY     H16A    H       H       0       28.048      -20.357     8.996       
+IUY     H16B    H       H       0       26.483      -20.361     8.739       
+IUY     HN21    H       H       0       29.330      -25.767     2.145       
+IUY     H22     H       H       0       30.303      -26.899     4.056       
+IUY     H23     H       H       0       29.884      -25.456     6.035       
+IUY     H25     H       H       0       29.193      -22.159     0.585       
+IUY     H26     H       H       0       28.831      -22.546     -1.681      
+IUY     H27     H       H       0       27.289      -24.142     -2.376      
+IUY     H29     H       H       0       26.457      -24.977     1.508       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IUY          C1          C2      SINGLE       n     1.521  0.0100     1.521  0.0100
+IUY          C1          C3      DOUBLE       n     1.356  0.0100     1.356  0.0100
+IUY          C1         C12      SINGLE       n     1.462  0.0118     1.462  0.0118
+IUY          C2          C6      SINGLE       n     1.528  0.0100     1.528  0.0100
+IUY          C2         N19      SINGLE       n     1.463  0.0110     1.463  0.0110
+IUY          C3          N4      SINGLE       n     1.380  0.0200     1.380  0.0200
+IUY          C3          C5      SINGLE       n     1.487  0.0123     1.487  0.0123
+IUY          N4         C20      SINGLE       n     1.368  0.0200     1.368  0.0200
+IUY          N4         C24      SINGLE       n     1.449  0.0100     1.449  0.0100
+IUY          C6          C7      DOUBLE       y     1.386  0.0100     1.386  0.0100
+IUY          C6         C11      SINGLE       y     1.386  0.0100     1.386  0.0100
+IUY          C7          C8      SINGLE       y     1.380  0.0100     1.380  0.0100
+IUY          C8          C9      DOUBLE       y     1.386  0.0100     1.386  0.0100
+IUY          C9         C10      SINGLE       y     1.386  0.0100     1.386  0.0100
+IUY          C9         C17      SINGLE       n     1.441  0.0112     1.441  0.0112
+IUY         C10         C11      DOUBLE       y     1.380  0.0100     1.380  0.0100
+IUY         C12         O13      DOUBLE       n     1.209  0.0129     1.209  0.0129
+IUY         C12         O14      SINGLE       n     1.332  0.0104     1.332  0.0104
+IUY         O14         C15      SINGLE       n     1.457  0.0120     1.457  0.0120
+IUY         C15         C16      SINGLE       n     1.478  0.0200     1.478  0.0200
+IUY         C17         N18      TRIPLE       n     1.149  0.0200     1.149  0.0200
+IUY         N19         C20      DOUBLE       y     1.393  0.0126     1.393  0.0126
+IUY         N19         C23      SINGLE       y     1.350  0.0165     1.350  0.0165
+IUY         C20         N21      SINGLE       y     1.375  0.0109     1.375  0.0109
+IUY         N21         C22      SINGLE       y     1.363  0.0141     1.363  0.0141
+IUY         C22         C23      DOUBLE       y     1.363  0.0131     1.363  0.0131
+IUY         C24         C25      DOUBLE       y     1.382  0.0100     1.382  0.0100
+IUY         C24         C29      SINGLE       y     1.382  0.0100     1.382  0.0100
+IUY         C25         C26      SINGLE       y     1.385  0.0100     1.385  0.0100
+IUY         C26         C27      DOUBLE       y     1.380  0.0131     1.380  0.0131
+IUY         C27         C28      SINGLE       y     1.386  0.0100     1.386  0.0100
+IUY         C28         C29      DOUBLE       y     1.385  0.0100     1.385  0.0100
+IUY         C28         C30      SINGLE       n     1.491  0.0100     1.491  0.0100
+IUY         C30         F31      SINGLE       n     1.329  0.0183     1.329  0.0183
+IUY         C30         F32      SINGLE       n     1.329  0.0183     1.329  0.0183
+IUY         C30         F33      SINGLE       n     1.329  0.0183     1.329  0.0183
+IUY          C2          H2      SINGLE       n     1.089  0.0100     0.987  0.0158
+IUY          C5          H5      SINGLE       n     1.089  0.0100     0.969  0.0150
+IUY          C5         H5A      SINGLE       n     1.089  0.0100     0.969  0.0150
+IUY          C5         H5B      SINGLE       n     1.089  0.0100     0.969  0.0150
+IUY          C7          H7      SINGLE       n     1.082  0.0130     0.941  0.0171
+IUY          C8          H8      SINGLE       n     1.082  0.0130     0.941  0.0168
+IUY         C10         H10      SINGLE       n     1.082  0.0130     0.941  0.0168
+IUY         C11         H11      SINGLE       n     1.082  0.0130     0.941  0.0171
+IUY         C15         H15      SINGLE       n     1.089  0.0100     0.980  0.0148
+IUY         C15        H15A      SINGLE       n     1.089  0.0100     0.980  0.0148
+IUY         C16         H16      SINGLE       n     1.089  0.0100     0.971  0.0156
+IUY         C16        H16A      SINGLE       n     1.089  0.0100     0.971  0.0156
+IUY         C16        H16B      SINGLE       n     1.089  0.0100     0.971  0.0156
+IUY         N21        HN21      SINGLE       n     1.016  0.0100     0.880  0.0200
+IUY         C22         H22      SINGLE       n     1.082  0.0130     0.945  0.0191
+IUY         C23         H23      SINGLE       n     1.082  0.0130     0.942  0.0152
+IUY         C25         H25      SINGLE       n     1.082  0.0130     0.943  0.0125
+IUY         C26         H26      SINGLE       n     1.082  0.0130     0.943  0.0185
+IUY         C27         H27      SINGLE       n     1.082  0.0130     0.944  0.0174
+IUY         C29         H29      SINGLE       n     1.082  0.0130     0.944  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IUY          C2          C1          C3     122.565    1.50
+IUY          C2          C1         C12     115.909    1.50
+IUY          C3          C1         C12     121.527    1.74
+IUY          C1          C2          C6     112.455    1.50
+IUY          C1          C2         N19     108.288    1.50
+IUY          C1          C2          H2     109.175    1.50
+IUY          C6          C2         N19     111.028    1.50
+IUY          C6          C2          H2     108.855    1.50
+IUY         N19          C2          H2     109.114    1.50
+IUY          C1          C3          N4     118.073    1.66
+IUY          C1          C3          C5     125.500    1.83
+IUY          N4          C3          C5     116.426    1.58
+IUY          C3          N4         C20     118.934    2.03
+IUY          C3          N4         C24     120.998    1.50
+IUY         C20          N4         C24     120.068    1.91
+IUY          C3          C5          H5     109.539    1.50
+IUY          C3          C5         H5A     109.539    1.50
+IUY          C3          C5         H5B     109.539    1.50
+IUY          H5          C5         H5A     109.380    1.50
+IUY          H5          C5         H5B     109.380    1.50
+IUY         H5A          C5         H5B     109.380    1.50
+IUY          C2          C6          C7     120.611    1.50
+IUY          C2          C6         C11     120.611    1.50
+IUY          C7          C6         C11     118.778    1.50
+IUY          C6          C7          C8     120.821    1.50
+IUY          C6          C7          H7     119.583    1.50
+IUY          C8          C7          H7     119.596    1.50
+IUY          C7          C8          C9     119.743    1.50
+IUY          C7          C8          H8     119.813    1.50
+IUY          C9          C8          H8     120.444    1.50
+IUY          C8          C9         C10     120.094    1.50
+IUY          C8          C9         C17     119.953    1.50
+IUY         C10          C9         C17     119.953    1.50
+IUY          C9         C10         C11     119.743    1.50
+IUY          C9         C10         H10     120.444    1.50
+IUY         C11         C10         H10     119.813    1.50
+IUY          C6         C11         C10     120.821    1.50
+IUY          C6         C11         H11     119.583    1.50
+IUY         C10         C11         H11     119.596    1.50
+IUY          C1         C12         O13     127.078    1.50
+IUY          C1         C12         O14     110.392    1.50
+IUY         O13         C12         O14     122.530    1.50
+IUY         C12         O14         C15     116.691    1.50
+IUY         O14         C15         C16     108.484    2.03
+IUY         O14         C15         H15     109.811    1.50
+IUY         O14         C15        H15A     109.811    1.50
+IUY         C16         C15         H15     110.009    1.50
+IUY         C16         C15        H15A     110.009    1.50
+IUY         H15         C15        H15A     108.453    1.50
+IUY         C15         C16         H16     109.517    1.50
+IUY         C15         C16        H16A     109.517    1.50
+IUY         C15         C16        H16B     109.517    1.50
+IUY         H16         C16        H16A     109.410    1.50
+IUY         H16         C16        H16B     109.410    1.50
+IUY        H16A         C16        H16B     109.410    1.50
+IUY          C9         C17         N18     177.968    1.50
+IUY          C2         N19         C20     124.881    1.85
+IUY          C2         N19         C23     127.670    2.38
+IUY         C20         N19         C23     107.449    1.50
+IUY          N4         C20         N19     122.687    1.50
+IUY          N4         C20         N21     129.750    1.56
+IUY         N19         C20         N21     107.562    1.50
+IUY         C20         N21         C22     107.971    1.50
+IUY         C20         N21        HN21     125.846    3.00
+IUY         C22         N21        HN21     126.183    1.50
+IUY         N21         C22         C23     108.056    1.50
+IUY         N21         C22         H22     125.184    1.50
+IUY         C23         C22         H22     126.759    1.50
+IUY         N19         C23         C22     108.961    1.50
+IUY         N19         C23         H23     124.798    1.93
+IUY         C22         C23         H23     126.241    1.50
+IUY          N4         C24         C25     120.031    1.50
+IUY          N4         C24         C29     120.031    1.50
+IUY         C25         C24         C29     119.938    1.50
+IUY         C24         C25         C26     119.637    1.50
+IUY         C24         C25         H25     120.111    1.50
+IUY         C26         C25         H25     120.252    1.50
+IUY         C25         C26         C27     120.233    1.50
+IUY         C25         C26         H26     119.767    1.50
+IUY         C27         C26         H26     120.000    1.50
+IUY         C26         C27         C28     118.927    1.50
+IUY         C26         C27         H27     120.317    1.50
+IUY         C28         C27         H27     120.756    1.50
+IUY         C27         C28         C29     121.551    1.50
+IUY         C27         C28         C30     119.505    1.50
+IUY         C29         C28         C30     118.944    1.50
+IUY         C24         C29         C28     119.714    1.50
+IUY         C24         C29         H29     120.387    1.50
+IUY         C28         C29         H29     119.898    1.50
+IUY         C28         C30         F31     112.813    1.50
+IUY         C28         C30         F32     112.813    1.50
+IUY         C28         C30         F33     112.813    1.50
+IUY         F31         C30         F32     105.974    1.50
+IUY         F31         C30         F33     105.974    1.50
+IUY         F32         C30         F33     105.974    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IUY             sp2_sp3_5         C12          C1          C2          C6     -60.000    10.0     6
+IUY            sp2_sp2_14          C2          C1         C12         O13       0.000     5.0     2
+IUY            sp2_sp2_12         C12          C1          C3          C5       0.000     5.0     2
+IUY            sp2_sp2_22         O13         C12         O14         C15       0.000     5.0     2
+IUY             sp3_sp3_1         C16         C15         O14         C12     180.000    10.0     3
+IUY             sp3_sp3_4         O14         C15         C16         H16     180.000    10.0     3
+IUY              const_21          N4         C20         N19          C2       0.000    10.0     2
+IUY              const_62         C22         C23         N19          C2     180.000    10.0     2
+IUY              const_27          N4         C20         N21         C22     180.000    10.0     2
+IUY             sp2_sp3_7         C20         N19          C2          C1       0.000    10.0     6
+IUY            sp2_sp3_13          C7          C6          C2          C1     150.000    10.0     6
+IUY              const_29         C23         C22         N21         C20       0.000    10.0     2
+IUY              const_33         N21         C22         C23         N19       0.000    10.0     2
+IUY              const_39          N4         C24         C25         C26     180.000    10.0     2
+IUY              const_67          N4         C24         C29         C28     180.000    10.0     2
+IUY              const_41         C24         C25         C26         C27       0.000    10.0     2
+IUY              const_45         C25         C26         C27         C28       0.000    10.0     2
+IUY              const_50         C26         C27         C28         C30     180.000    10.0     2
+IUY              const_55         C30         C28         C29         C24     180.000    10.0     2
+IUY            sp2_sp3_25         C27         C28         C30         F31     150.000    10.0     6
+IUY             sp2_sp2_7          C5          C3          N4         C20     180.000     5.0     2
+IUY            sp2_sp3_19          C1          C3          C5          H5     150.000    10.0     6
+IUY             sp2_sp2_1         N19         C20          N4          C3       0.000     5.0     2
+IUY            sp2_sp2_17         C25         C24          N4          C3     180.000     5.0     2
+IUY              const_58         C10         C11          C6          C2     180.000    10.0     2
+IUY       const_sp2_sp2_3          C2          C6          C7          C8     180.000     5.0     2
+IUY       const_sp2_sp2_5          C6          C7          C8          C9       0.000     5.0     2
+IUY              const_10          C7          C8          C9         C17     180.000    10.0     2
+IUY           other_tor_1         N18         C17          C9          C8      90.000    10.0     1
+IUY              const_14         C11         C10          C9         C17     180.000    10.0     2
+IUY              const_17          C9         C10         C11          C6       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IUY    chir_1    C2    N19    C1    C6    negative
+IUY    chir_2    C30    F31    F32    F33    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IUY    plan-1         C10   0.020
+IUY    plan-1         C11   0.020
+IUY    plan-1         C17   0.020
+IUY    plan-1          C2   0.020
+IUY    plan-1          C6   0.020
+IUY    plan-1          C7   0.020
+IUY    plan-1          C8   0.020
+IUY    plan-1          C9   0.020
+IUY    plan-1         H10   0.020
+IUY    plan-1         H11   0.020
+IUY    plan-1          H7   0.020
+IUY    plan-1          H8   0.020
+IUY    plan-2          C2   0.020
+IUY    plan-2         C20   0.020
+IUY    plan-2         C22   0.020
+IUY    plan-2         C23   0.020
+IUY    plan-2         H22   0.020
+IUY    plan-2         H23   0.020
+IUY    plan-2        HN21   0.020
+IUY    plan-2         N19   0.020
+IUY    plan-2         N21   0.020
+IUY    plan-2          N4   0.020
+IUY    plan-3         C24   0.020
+IUY    plan-3         C25   0.020
+IUY    plan-3         C26   0.020
+IUY    plan-3         C27   0.020
+IUY    plan-3         C28   0.020
+IUY    plan-3         C29   0.020
+IUY    plan-3         C30   0.020
+IUY    plan-3         H25   0.020
+IUY    plan-3         H26   0.020
+IUY    plan-3         H27   0.020
+IUY    plan-3         H29   0.020
+IUY    plan-3          N4   0.020
+IUY    plan-4          C1   0.020
+IUY    plan-4         C12   0.020
+IUY    plan-4          C2   0.020
+IUY    plan-4          C3   0.020
+IUY    plan-5          C1   0.020
+IUY    plan-5          C3   0.020
+IUY    plan-5          C5   0.020
+IUY    plan-5          N4   0.020
+IUY    plan-6         C20   0.020
+IUY    plan-6         C24   0.020
+IUY    plan-6          C3   0.020
+IUY    plan-6          N4   0.020
+IUY    plan-7          C1   0.020
+IUY    plan-7         C12   0.020
+IUY    plan-7         O13   0.020
+IUY    plan-7         O14   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IUY            InChI                InChI  1.03 InChI=1S/C24H19F3N4O2/c1-3-33-22(32)20-15(2)31(19-6-4-5-18(13-19)24(25,26)27)23-29-11-12-30(23)21(20)17-9-7-16(14-28)8-10-17/h4-13,21H,3H2,1-2H3/p+1/t21-/m1/s1
+IUY         InChIKey                InChI  1.03                                                                                                                                     JHIVXCHUXFMPOR-OAQYLSRUSA-O
+IUY SMILES_CANONICAL               CACTVS 3.385                                                                                           CCOC(=O)C1=C(C)N(c2cccc(c2)C(F)(F)F)c3[nH]cc[n+]3[C@@H]1c4ccc(cc4)C#N
+IUY           SMILES               CACTVS 3.385                                                                                             CCOC(=O)C1=C(C)N(c2cccc(c2)C(F)(F)F)c3[nH]cc[n+]3[CH]1c4ccc(cc4)C#N
+IUY SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                           CCOC(=O)C1=C(N(c2[nH]cc[n+]2[C@@H]1c3ccc(cc3)C#N)c4cccc(c4)C(F)(F)F)C
+IUY           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                CCOC(=O)C1=C(N(c2[nH]cc[n+]2C1c3ccc(cc3)C#N)c4cccc(c4)C(F)(F)F)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IUY acedrg               243         "dictionary generator"                  
+IUY acedrg_database      11          "data source"                           
+IUY rdkit                2017.03.2   "Chemoinformatics tool"
+IUY refmac5              5.8.0238    "optimization tool"                     

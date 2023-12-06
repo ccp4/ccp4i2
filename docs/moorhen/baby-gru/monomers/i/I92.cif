@@ -1,0 +1,186 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+I92     I92      "4-(2-bromophenyl)-2,4-dioxobutanoic acid"     NON-POLYMER     21     15     .     
+#
+data_comp_I92
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+I92     O01     O       OC      -1      37.493      79.270      65.299      
+I92     C02     C       C       0       37.851      80.068      64.430      
+I92     O03     O       O       0       39.043      80.364      64.287      
+I92     C04     C       C       0       36.948      80.619      63.631      
+I92     O05     O       O       0       37.339      81.407      62.783      
+I92     C06     C       CH2     0       35.455      80.347      63.676      
+I92     C07     C       C       0       35.010      79.458      62.531      
+I92     O08     O       O       0       35.089      79.859      61.387      
+I92     C09     C       CR6     0       34.511      78.084      62.825      
+I92     C10     C       CR16    0       35.333      77.180      63.517      
+I92     C11     C       CR16    0       34.904      75.896      63.806      
+I92     C12     C       CR16    0       33.645      75.483      63.411      
+I92     C13     C       CR16    0       32.813      76.350      62.727      
+I92     C14     C       CR6     0       33.244      77.639      62.438      
+I92     BR15    BR      BR      0       32.028      78.758      61.495      
+I92     H06     H       H       0       34.971      81.197      63.621      
+I92     H06A    H       H       0       35.214      79.922      64.524      
+I92     H10     H       H       0       36.191      77.454      63.788      
+I92     H11     H       H       0       35.470      75.304      64.272      
+I92     H12     H       H       0       33.353      74.612      63.607      
+I92     H13     H       H       0       31.955      76.070      62.458      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+I92         O01         C02      SINGLE       n     1.230  0.0200     1.230  0.0200
+I92         C02         C04      SINGLE       n     1.299  0.0200     1.299  0.0200
+I92         C02         O03      DOUBLE       n     1.230  0.0200     1.230  0.0200
+I92         C04         O05      DOUBLE       n     1.220  0.0120     1.220  0.0120
+I92         C04         C06      SINGLE       n     1.506  0.0200     1.506  0.0200
+I92         C06         C07      SINGLE       n     1.515  0.0199     1.515  0.0199
+I92         C07         O08      DOUBLE       n     1.215  0.0100     1.215  0.0100
+I92         C07         C09      SINGLE       n     1.489  0.0100     1.489  0.0100
+I92         C09         C14      DOUBLE       y     1.392  0.0100     1.392  0.0100
+I92         C09         C10      SINGLE       y     1.400  0.0131     1.400  0.0131
+I92         C10         C11      DOUBLE       y     1.382  0.0100     1.382  0.0100
+I92         C11         C12      SINGLE       y     1.378  0.0120     1.378  0.0120
+I92         C12         C13      DOUBLE       y     1.375  0.0137     1.375  0.0137
+I92         C13         C14      SINGLE       y     1.385  0.0100     1.385  0.0100
+I92         C14        BR15      SINGLE       n     1.902  0.0100     1.902  0.0100
+I92         C06         H06      SINGLE       n     1.089  0.0100     0.980  0.0200
+I92         C06        H06A      SINGLE       n     1.089  0.0100     0.980  0.0200
+I92         C10         H10      SINGLE       n     1.082  0.0130     0.941  0.0168
+I92         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0180
+I92         C12         H12      SINGLE       n     1.082  0.0130     0.940  0.0105
+I92         C13         H13      SINGLE       n     1.082  0.0130     0.941  0.0149
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+I92         O01         C02         C04     118.654    3.00
+I92         O01         C02         O03     122.692    1.63
+I92         C04         C02         O03     118.654    3.00
+I92         C02         C04         O05     118.636    3.00
+I92         C02         C04         C06     122.941    3.00
+I92         O05         C04         C06     118.423    1.50
+I92         C04         C06         C07     111.575    3.00
+I92         C04         C06         H06     109.153    1.50
+I92         C04         C06        H06A     109.153    1.50
+I92         C07         C06         H06     108.599    1.50
+I92         C07         C06        H06A     108.599    1.50
+I92         H06         C06        H06A     107.635    1.72
+I92         C06         C07         O08     120.120    1.50
+I92         C06         C07         C09     119.175    1.68
+I92         O08         C07         C09     120.704    1.50
+I92         C07         C09         C14     121.050    2.32
+I92         C07         C09         C10     121.037    2.23
+I92         C14         C09         C10     117.914    1.50
+I92         C09         C10         C11     121.241    1.50
+I92         C09         C10         H10     119.246    1.50
+I92         C11         C10         H10     119.513    1.50
+I92         C10         C11         C12     120.089    1.50
+I92         C10         C11         H11     119.907    1.50
+I92         C12         C11         H11     119.998    1.50
+I92         C11         C12         C13     119.945    1.50
+I92         C11         C12         H12     120.119    1.50
+I92         C13         C12         H12     119.936    1.50
+I92         C12         C13         C14     119.414    1.50
+I92         C12         C13         H13     120.440    1.50
+I92         C14         C13         H13     120.146    1.50
+I92         C09         C14         C13     121.404    1.50
+I92         C09         C14        BR15     121.283    1.50
+I92         C13         C14        BR15     117.313    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+I92              const_13         C10         C11         C12         C13       0.000    10.0     2
+I92       const_sp2_sp2_9         C11         C12         C13         C14       0.000     5.0     2
+I92       const_sp2_sp2_6         C12         C13         C14        BR15     180.000     5.0     2
+I92             sp2_sp2_2         O01         C02         C04         O05       0.000     5.0     2
+I92             sp2_sp3_2         C02         C04         C06         C07     120.000    10.0     6
+I92             sp2_sp3_8         O08         C07         C06         C04     120.000    10.0     6
+I92             sp2_sp2_5         C06         C07         C09         C14     180.000     5.0     2
+I92       const_sp2_sp2_4         C07         C09         C14        BR15       0.000     5.0     2
+I92              const_23         C07         C09         C10         C11     180.000    10.0     2
+I92              const_17         C09         C10         C11         C12       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+I92    plan-1        BR15   0.020
+I92    plan-1         C07   0.020
+I92    plan-1         C09   0.020
+I92    plan-1         C10   0.020
+I92    plan-1         C11   0.020
+I92    plan-1         C12   0.020
+I92    plan-1         C13   0.020
+I92    plan-1         C14   0.020
+I92    plan-1         H10   0.020
+I92    plan-1         H11   0.020
+I92    plan-1         H12   0.020
+I92    plan-1         H13   0.020
+I92    plan-2         C02   0.020
+I92    plan-2         C04   0.020
+I92    plan-2         O01   0.020
+I92    plan-2         O03   0.020
+I92    plan-3         C02   0.020
+I92    plan-3         C04   0.020
+I92    plan-3         C06   0.020
+I92    plan-3         O05   0.020
+I92    plan-4         C06   0.020
+I92    plan-4         C07   0.020
+I92    plan-4         C09   0.020
+I92    plan-4         O08   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+I92           SMILES              ACDLabs 12.01                                                   O=C(c1ccccc1Br)CC(=O)C(=O)O
+I92            InChI                InChI  1.03 InChI=1S/C10H7BrO4/c11-7-4-2-1-3-6(7)8(12)5-9(13)10(14)15/h1-4H,5H2,(H,14,15)
+I92         InChIKey                InChI  1.03                                                   HQXXYSXUODFGRE-UHFFFAOYSA-N
+I92 SMILES_CANONICAL               CACTVS 3.370                                                   OC(=O)C(=O)CC(=O)c1ccccc1Br
+I92           SMILES               CACTVS 3.370                                                   OC(=O)C(=O)CC(=O)c1ccccc1Br
+I92 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                               c1ccc(c(c1)C(=O)CC(=O)C(=O)O)Br
+I92           SMILES "OpenEye OEToolkits" 1.7.2                                               c1ccc(c(c1)C(=O)CC(=O)C(=O)O)Br
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+I92 acedrg               243         "dictionary generator"                  
+I92 acedrg_database      11          "data source"                           
+I92 rdkit                2017.03.2   "Chemoinformatics tool"
+I92 refmac5              5.8.0238    "optimization tool"                     

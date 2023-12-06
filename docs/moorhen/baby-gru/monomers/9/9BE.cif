@@ -1,0 +1,174 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+9BE     9BE      N-benzylthioformamide     NON-POLYMER     19     10     .     
+#
+data_comp_9BE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+9BE     S01     S       S1      0       9.859       -8.887      -5.087      
+9BE     C02     C       C1      0       9.457       -8.799      -3.488      
+9BE     N03     N       NH1     0       9.361       -9.817      -2.602      
+9BE     C04     C       CH2     0       9.604       -11.228     -2.916      
+9BE     C05     C       CR6     0       8.331       -12.000     -3.164      
+9BE     C06     C       CR16    0       7.611       -11.821     -4.340      
+9BE     C07     C       CR16    0       6.440       -12.533     -4.567      
+9BE     C08     C       CR16    0       5.979       -13.429     -3.624      
+9BE     C09     C       CR16    0       6.684       -13.616     -2.454      
+9BE     C10     C       CR16    0       7.855       -12.906     -2.223      
+9BE     H2      H       H       0       9.270       -7.940      -3.136      
+9BE     H1      H       H       0       9.137       -9.617      -1.783      
+9BE     H3      H       H       0       10.083      -11.637     -2.165      
+9BE     H4      H       H       0       10.179      -11.297     -3.704      
+9BE     H5      H       H       0       7.920       -11.211     -4.989      
+9BE     H6      H       H       0       5.959       -12.404     -5.369      
+9BE     H7      H       H       0       5.183       -13.913     -3.779      
+9BE     H8      H       H       0       6.370       -14.229     -1.808      
+9BE     H9      H       H       0       8.332       -13.040     -1.419      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+9BE         S01         C02      DOUBLE       n     1.649  0.0110     1.649  0.0110
+9BE         C06         C07      SINGLE       y     1.386  0.0100     1.386  0.0100
+9BE         C07         C08      DOUBLE       y     1.376  0.0124     1.376  0.0124
+9BE         C02         N03      SINGLE       n     1.337  0.0200     1.337  0.0200
+9BE         C05         C06      DOUBLE       y     1.386  0.0100     1.386  0.0100
+9BE         C08         C09      SINGLE       y     1.374  0.0127     1.374  0.0127
+9BE         C04         C05      SINGLE       n     1.508  0.0100     1.508  0.0100
+9BE         C05         C10      SINGLE       y     1.386  0.0100     1.386  0.0100
+9BE         N03         C04      SINGLE       n     1.455  0.0191     1.455  0.0191
+9BE         C09         C10      DOUBLE       y     1.386  0.0100     1.386  0.0100
+9BE         C02          H2      SINGLE       n     1.082  0.0130     0.947  0.0200
+9BE         N03          H1      SINGLE       n     1.016  0.0100     0.873  0.0200
+9BE         C04          H3      SINGLE       n     1.089  0.0100     0.980  0.0169
+9BE         C04          H4      SINGLE       n     1.089  0.0100     0.980  0.0169
+9BE         C06          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+9BE         C07          H6      SINGLE       n     1.082  0.0130     0.944  0.0175
+9BE         C08          H7      SINGLE       n     1.082  0.0130     0.944  0.0161
+9BE         C09          H8      SINGLE       n     1.082  0.0130     0.944  0.0175
+9BE         C10          H9      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+9BE         S01         C02         N03     123.622    2.99
+9BE         S01         C02          H2     118.632    1.62
+9BE         N03         C02          H2     117.745    2.13
+9BE         C02         N03         C04     122.966    1.50
+9BE         C02         N03          H1     118.373    1.75
+9BE         C04         N03          H1     118.661    1.76
+9BE         C05         C04         N03     112.746    1.93
+9BE         C05         C04          H3     109.073    1.50
+9BE         C05         C04          H4     109.073    1.50
+9BE         N03         C04          H3     108.967    1.50
+9BE         N03         C04          H4     108.967    1.50
+9BE          H3         C04          H4     107.860    1.50
+9BE         C06         C05         C04     120.710    1.50
+9BE         C06         C05         C10     118.580    1.50
+9BE         C04         C05         C10     120.710    1.50
+9BE         C07         C06         C05     120.442    1.50
+9BE         C07         C06          H5     119.815    1.50
+9BE         C05         C06          H5     119.742    1.50
+9BE         C06         C07         C08     120.273    1.50
+9BE         C06         C07          H6     119.818    1.50
+9BE         C08         C07          H6     119.909    1.50
+9BE         C07         C08         C09     119.997    1.50
+9BE         C07         C08          H7     119.998    1.50
+9BE         C09         C08          H7     119.998    1.50
+9BE         C08         C09         C10     120.273    1.50
+9BE         C08         C09          H8     119.909    1.50
+9BE         C10         C09          H8     119.818    1.50
+9BE         C05         C10         C09     120.442    1.50
+9BE         C05         C10          H9     119.742    1.50
+9BE         C09         C10          H9     119.815    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+9BE             sp2_sp2_1         S01         C02         N03         C04     180.000     5.0     2
+9BE             sp2_sp3_8         C02         N03         C04         C05     120.000    10.0     6
+9BE             sp2_sp3_2         C06         C05         C04         N03     -90.000    10.0     6
+9BE       const_sp2_sp2_3         C04         C05         C06         C07     180.000     5.0     2
+9BE              const_23         C04         C05         C10         C09     180.000    10.0     2
+9BE       const_sp2_sp2_5         C05         C06         C07         C08       0.000     5.0     2
+9BE       const_sp2_sp2_9         C06         C07         C08         C09       0.000     5.0     2
+9BE              const_13         C07         C08         C09         C10       0.000    10.0     2
+9BE              const_17         C08         C09         C10         C05       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+9BE    plan-1         C04   0.020
+9BE    plan-1         C05   0.020
+9BE    plan-1         C06   0.020
+9BE    plan-1         C07   0.020
+9BE    plan-1         C08   0.020
+9BE    plan-1         C09   0.020
+9BE    plan-1         C10   0.020
+9BE    plan-1          H5   0.020
+9BE    plan-1          H6   0.020
+9BE    plan-1          H7   0.020
+9BE    plan-1          H8   0.020
+9BE    plan-1          H9   0.020
+9BE    plan-2         C02   0.020
+9BE    plan-2          H2   0.020
+9BE    plan-2         N03   0.020
+9BE    plan-2         S01   0.020
+9BE    plan-3         C02   0.020
+9BE    plan-3         C04   0.020
+9BE    plan-3          H1   0.020
+9BE    plan-3         N03   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+9BE           SMILES              ACDLabs 12.01                                                S=CNCc1ccccc1
+9BE            InChI                InChI  1.03 InChI=1S/C8H9NS/c10-7-9-6-8-4-2-1-3-5-8/h1-5,7H,6H2,(H,9,10)
+9BE         InChIKey                InChI  1.03                                  QAADZYUXQLUXFX-UHFFFAOYSA-N
+9BE SMILES_CANONICAL               CACTVS 3.385                                                S=CNCc1ccccc1
+9BE           SMILES               CACTVS 3.385                                                S=CNCc1ccccc1
+9BE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                              c1ccc(cc1)CNC=S
+9BE           SMILES "OpenEye OEToolkits" 1.7.6                                              c1ccc(cc1)CNC=S
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+9BE acedrg               243         "dictionary generator"                  
+9BE acedrg_database      11          "data source"                           
+9BE rdkit                2017.03.2   "Chemoinformatics tool"
+9BE refmac5              5.8.0238    "optimization tool"                     

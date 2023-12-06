@@ -1,0 +1,161 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+5RG     5RG      "2-amino-5-fluorobenzoic acid"     NON-POLYMER     16     11     .     
+#
+data_comp_5RG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+5RG     NAA     N       NH2     0       -16.706     3.111       -9.903      
+5RG     OAB     O       OC      -1      -19.645     2.756       -10.523     
+5RG     OAC     O       O       0       -19.415     2.995       -12.700     
+5RG     FAD     F       F       0       -16.572     -1.318      -13.143     
+5RG     CAE     C       CR16    0       -15.579     1.181       -10.736     
+5RG     CAF     C       CR16    0       -15.536     0.059       -11.552     
+5RG     CAG     C       CR16    0       -17.747     0.567       -12.371     
+5RG     CAH     C       C       0       -19.052     2.549       -11.597     
+5RG     CAI     C       CR6     0       -16.712     2.021       -10.723     
+5RG     CAJ     C       CR6     0       -16.616     -0.219      -12.345     
+5RG     CAK     C       CR6     0       -17.814     1.702       -11.559     
+5RG     HNAA    H       H       0       -16.813     3.912       -10.244     
+5RG     HNAB    H       H       0       -16.594     3.007       -9.040      
+5RG     HAE     H       H       0       -14.846     1.388       -10.183     
+5RG     HAF     H       H       0       -14.779     -0.499      -11.559     
+5RG     HAG     H       H       0       -18.467     0.349       -12.924     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+5RG         NAA         CAI      SINGLE       n     1.363  0.0155     1.363  0.0155
+5RG         OAB         CAH      SINGLE       n     1.244  0.0200     1.244  0.0200
+5RG         OAC         CAH      DOUBLE       n     1.244  0.0200     1.244  0.0200
+5RG         FAD         CAJ      SINGLE       n     1.359  0.0100     1.359  0.0100
+5RG         CAE         CAF      DOUBLE       y     1.384  0.0100     1.384  0.0100
+5RG         CAE         CAI      SINGLE       y     1.405  0.0100     1.405  0.0100
+5RG         CAF         CAJ      SINGLE       y     1.367  0.0111     1.367  0.0111
+5RG         CAG         CAJ      DOUBLE       y     1.369  0.0200     1.369  0.0200
+5RG         CAG         CAK      SINGLE       y     1.393  0.0100     1.393  0.0100
+5RG         CAH         CAK      SINGLE       n     1.498  0.0200     1.498  0.0200
+5RG         CAI         CAK      DOUBLE       y     1.413  0.0100     1.413  0.0100
+5RG         NAA        HNAA      SINGLE       n     1.016  0.0100     0.877  0.0200
+5RG         NAA        HNAB      SINGLE       n     1.016  0.0100     0.877  0.0200
+5RG         CAE         HAE      SINGLE       n     1.082  0.0130     0.942  0.0186
+5RG         CAF         HAF      SINGLE       n     1.082  0.0130     0.940  0.0138
+5RG         CAG         HAG      SINGLE       n     1.082  0.0130     0.934  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+5RG         CAI         NAA        HNAA     119.767    1.50
+5RG         CAI         NAA        HNAB     119.767    1.50
+5RG        HNAA         NAA        HNAB     120.467    3.00
+5RG         CAF         CAE         CAI     120.462    1.50
+5RG         CAF         CAE         HAE     120.087    1.50
+5RG         CAI         CAE         HAE     119.450    1.50
+5RG         CAE         CAF         CAJ     119.042    1.50
+5RG         CAE         CAF         HAF     120.441    1.50
+5RG         CAJ         CAF         HAF     120.516    1.50
+5RG         CAJ         CAG         CAK     119.628    1.50
+5RG         CAJ         CAG         HAG     120.687    1.50
+5RG         CAK         CAG         HAG     119.685    1.50
+5RG         OAB         CAH         OAC     124.521    1.50
+5RG         OAB         CAH         CAK     117.739    1.50
+5RG         OAC         CAH         CAK     117.739    1.50
+5RG         NAA         CAI         CAE     119.076    1.50
+5RG         NAA         CAI         CAK     122.513    1.50
+5RG         CAE         CAI         CAK     118.411    1.50
+5RG         FAD         CAJ         CAF     118.231    1.50
+5RG         FAD         CAJ         CAG     118.167    1.50
+5RG         CAF         CAJ         CAG     123.602    1.50
+5RG         CAG         CAK         CAH     119.270    1.50
+5RG         CAG         CAK         CAI     118.854    1.50
+5RG         CAH         CAK         CAI     121.876    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+5RG             sp2_sp2_1         CAE         CAI         NAA        HNAA     180.000     5.0     2
+5RG       const_sp2_sp2_1         CAI         CAE         CAF         CAJ       0.000     5.0     2
+5RG              const_22         CAF         CAE         CAI         NAA     180.000    10.0     2
+5RG       const_sp2_sp2_6         CAE         CAF         CAJ         FAD     180.000     5.0     2
+5RG              const_14         CAJ         CAG         CAK         CAH     180.000    10.0     2
+5RG              const_10         CAK         CAG         CAJ         FAD     180.000    10.0     2
+5RG             sp2_sp2_5         OAB         CAH         CAK         CAG     180.000     5.0     2
+5RG              const_20         NAA         CAI         CAK         CAH       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+5RG    plan-1         CAE   0.020
+5RG    plan-1         CAF   0.020
+5RG    plan-1         CAG   0.020
+5RG    plan-1         CAH   0.020
+5RG    plan-1         CAI   0.020
+5RG    plan-1         CAJ   0.020
+5RG    plan-1         CAK   0.020
+5RG    plan-1         FAD   0.020
+5RG    plan-1         HAE   0.020
+5RG    plan-1         HAF   0.020
+5RG    plan-1         HAG   0.020
+5RG    plan-1         NAA   0.020
+5RG    plan-2         CAI   0.020
+5RG    plan-2        HNAA   0.020
+5RG    plan-2        HNAB   0.020
+5RG    plan-2         NAA   0.020
+5RG    plan-3         CAH   0.020
+5RG    plan-3         CAK   0.020
+5RG    plan-3         OAB   0.020
+5RG    plan-3         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+5RG           SMILES              ACDLabs 12.01                                               O=C(O)c1cc(F)ccc1N
+5RG            InChI                InChI  1.03 InChI=1S/C7H6FNO2/c8-4-1-2-6(9)5(3-4)7(10)11/h1-3H,9H2,(H,10,11)
+5RG         InChIKey                InChI  1.03                                      FPQMGQZTBWIHDN-UHFFFAOYSA-N
+5RG SMILES_CANONICAL               CACTVS 3.370                                               Nc1ccc(F)cc1C(O)=O
+5RG           SMILES               CACTVS 3.370                                               Nc1ccc(F)cc1C(O)=O
+5RG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                             c1cc(c(cc1F)C(=O)O)N
+5RG           SMILES "OpenEye OEToolkits" 1.7.2                                             c1cc(c(cc1F)C(=O)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+5RG acedrg               243         "dictionary generator"                  
+5RG acedrg_database      11          "data source"                           
+5RG rdkit                2017.03.2   "Chemoinformatics tool"
+5RG refmac5              5.8.0238    "optimization tool"                     

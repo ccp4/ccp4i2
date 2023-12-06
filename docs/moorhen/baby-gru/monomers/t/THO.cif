@@ -1,0 +1,152 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+THO     THO      "REDUCED THREONINE"     NON-POLYMER     18     7     .     
+#
+data_comp_THO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+THO     N       N       NT2     0       -4.959      -1.844      0.491       
+THO     CA      C       CH1     0       -6.314      -1.867      1.078       
+THO     CB      C       CH1     0       -6.716      -3.284      1.522       
+THO     CG2     C       CH3     0       -8.173      -3.407      1.867       
+THO     OG1     O       OH1     0       -6.410      -4.205      0.478       
+THO     C       C       CH2     0       -6.436      -0.866      2.230       
+THO     O       O       OH1     0       -5.878      0.396       1.899       
+THO     H       H       H       0       -4.745      -1.013      0.263       
+THO     H2      H       H       0       -4.943      -2.336      -0.247      
+THO     HA      H       H       0       -6.952      -1.584      0.372       
+THO     HB      H       H       0       -6.181      -3.522      2.322       
+THO     HG21    H       H       0       -8.415      -4.349      1.926       
+THO     HG22    H       H       0       -8.710      -2.978      1.177       
+THO     HG23    H       H       0       -8.343      -2.976      2.723       
+THO     HG1     H       H       0       -6.402      -4.994      0.789       
+THO     HC1     H       H       0       -5.977      -1.225      3.019       
+THO     HC2     H       H       0       -7.382      -0.748      2.459       
+THO     HO      H       H       0       -6.324      0.728       1.262       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+THO           N          CA      SINGLE       n     1.476  0.0134     1.476  0.0134
+THO          CA          CB      SINGLE       n     1.537  0.0100     1.537  0.0100
+THO          CA           C      SINGLE       n     1.530  0.0118     1.530  0.0118
+THO          CB         CG2      SINGLE       n     1.501  0.0160     1.501  0.0160
+THO          CB         OG1      SINGLE       n     1.424  0.0199     1.424  0.0199
+THO           C           O      SINGLE       n     1.417  0.0200     1.417  0.0200
+THO           N           H      SINGLE       n     1.036  0.0160     0.888  0.0200
+THO           N          H2      SINGLE       n     1.036  0.0160     0.888  0.0200
+THO          CA          HA      SINGLE       n     1.089  0.0100     0.992  0.0135
+THO          CB          HB      SINGLE       n     1.089  0.0100     0.992  0.0184
+THO         CG2        HG21      SINGLE       n     1.089  0.0100     0.974  0.0145
+THO         CG2        HG22      SINGLE       n     1.089  0.0100     0.974  0.0145
+THO         CG2        HG23      SINGLE       n     1.089  0.0100     0.974  0.0145
+THO         OG1         HG1      SINGLE       n     0.970  0.0120     0.848  0.0200
+THO           C         HC1      SINGLE       n     1.089  0.0100     0.981  0.0174
+THO           C         HC2      SINGLE       n     1.089  0.0100     0.981  0.0174
+THO           O          HO      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+THO          CA           N           H     109.715    3.00
+THO          CA           N          H2     109.715    3.00
+THO           H           N          H2     107.559    3.00
+THO           N          CA          CB     111.883    2.59
+THO           N          CA           C     111.883    2.59
+THO           N          CA          HA     107.944    1.55
+THO          CB          CA           C     111.335    2.14
+THO          CB          CA          HA     107.639    1.50
+THO           C          CA          HA     107.627    1.50
+THO          CA          CB         CG2     113.131    1.50
+THO          CA          CB         OG1     109.040    1.72
+THO          CA          CB          HB     108.500    1.50
+THO         CG2          CB         OG1     109.779    2.11
+THO         CG2          CB          HB     108.799    1.50
+THO         OG1          CB          HB     108.878    1.50
+THO          CB         CG2        HG21     109.564    1.50
+THO          CB         CG2        HG22     109.564    1.50
+THO          CB         CG2        HG23     109.564    1.50
+THO        HG21         CG2        HG22     109.425    1.50
+THO        HG21         CG2        HG23     109.425    1.50
+THO        HG22         CG2        HG23     109.425    1.50
+THO          CB         OG1         HG1     109.608    2.55
+THO          CA           C           O     111.903    1.66
+THO          CA           C         HC1     109.343    1.50
+THO          CA           C         HC2     109.343    1.50
+THO           O           C         HC1     109.411    1.50
+THO           O           C         HC2     109.411    1.50
+THO         HC1           C         HC2     108.070    1.50
+THO           C           O          HO     108.529    2.94
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+THO             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+THO             sp3_sp3_7           N          CA          CB         CG2     180.000    10.0     3
+THO            sp3_sp3_16           O           C          CA           N     180.000    10.0     3
+THO            sp3_sp3_25          CA          CB         CG2        HG21     180.000    10.0     3
+THO            sp3_sp3_34          CA          CB         OG1         HG1     180.000    10.0     3
+THO            sp3_sp3_37          CA           C           O          HO     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+THO    chir_1    CA    N    CB    C    negative
+THO    chir_2    CB    OG1    CA    CG2    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+THO           SMILES              ACDLabs 10.04                                                       OCC(N)C(O)C
+THO SMILES_CANONICAL               CACTVS 3.341                                              C[C@@H](O)[C@H](N)CO
+THO           SMILES               CACTVS 3.341                                                 C[CH](O)[CH](N)CO
+THO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                              C[C@H]([C@@H](CO)N)O
+THO           SMILES "OpenEye OEToolkits" 1.5.0                                                       CC(C(CO)N)O
+THO            InChI                InChI  1.03 InChI=1S/C4H11NO2/c1-3(7)4(5)2-6/h3-4,6-7H,2,5H2,1H3/t3-,4-/m1/s1
+THO         InChIKey                InChI  1.03                                       MUVQIIBPDFTEKM-QWWZWVQMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+THO acedrg               243         "dictionary generator"                  
+THO acedrg_database      11          "data source"                           
+THO rdkit                2017.03.2   "Chemoinformatics tool"
+THO refmac5              5.8.0238    "optimization tool"                     

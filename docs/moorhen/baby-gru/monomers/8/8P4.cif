@@ -1,0 +1,172 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8P4     8P4      1-(4-fluorophenyl)thiourea     NON-POLYMER     18     11     .     
+#
+data_comp_8P4
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8P4     N1      N       NH1     0       17.146      14.742      26.939      
+8P4     C4      C       CR16    0       19.409      11.907      27.789      
+8P4     C5      C       CR16    0       18.431      12.657      27.148      
+8P4     C6      C       CR6     0       18.145      13.951      27.574      
+8P4     C7      C       C       0       16.954      14.891      25.617      
+8P4     C1      C       CR16    0       18.844      14.483      28.652      
+8P4     C2      C       CR16    0       19.822      13.735      29.295      
+8P4     C3      C       CR6     0       20.078      12.466      28.846      
+8P4     N2      N       NH2     0       15.724      14.722      25.148      
+8P4     S1      S       S1      0       18.250      15.289      24.593      
+8P4     F1      F       F       0       21.036      11.732      29.474      
+8P4     H1      H       H       0       16.607      15.171      27.468      
+8P4     H2      H       H       0       19.607      11.034      27.503      
+8P4     H3      H       H       0       17.964      12.289      26.422      
+8P4     H4      H       H       0       18.656      15.354      28.947      
+8P4     H5      H       H       0       20.298      14.092      30.023      
+8P4     H6      H       H       0       15.068      14.517      25.695      
+8P4     H7      H       H       0       15.568      14.816      24.289      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8P4          C7          S1      DOUBLE       n     1.698  0.0100     1.698  0.0100
+8P4          C7          N2      SINGLE       n     1.326  0.0100     1.326  0.0100
+8P4          N1          C7      SINGLE       n     1.342  0.0100     1.342  0.0100
+8P4          N1          C6      SINGLE       n     1.421  0.0113     1.421  0.0113
+8P4          C5          C6      SINGLE       y     1.387  0.0100     1.387  0.0100
+8P4          C4          C5      DOUBLE       y     1.385  0.0100     1.385  0.0100
+8P4          C6          C1      DOUBLE       y     1.387  0.0100     1.387  0.0100
+8P4          C4          C3      SINGLE       y     1.367  0.0100     1.367  0.0100
+8P4          C1          C2      SINGLE       y     1.385  0.0100     1.385  0.0100
+8P4          C2          C3      DOUBLE       y     1.367  0.0100     1.367  0.0100
+8P4          C3          F1      SINGLE       n     1.361  0.0100     1.361  0.0100
+8P4          N1          H1      SINGLE       n     1.016  0.0100     0.869  0.0200
+8P4          C4          H2      SINGLE       n     1.082  0.0130     0.940  0.0138
+8P4          C5          H3      SINGLE       n     1.082  0.0130     0.939  0.0128
+8P4          C1          H4      SINGLE       n     1.082  0.0130     0.939  0.0128
+8P4          C2          H5      SINGLE       n     1.082  0.0130     0.940  0.0138
+8P4          N2          H6      SINGLE       n     1.016  0.0100     0.878  0.0200
+8P4          N2          H7      SINGLE       n     1.016  0.0100     0.878  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8P4          C7          N1          C6     126.160    1.91
+8P4          C7          N1          H1     117.415    1.53
+8P4          C6          N1          H1     116.425    1.83
+8P4          C5          C4          C3     118.607    1.50
+8P4          C5          C4          H2     120.659    1.50
+8P4          C3          C4          H2     120.734    1.50
+8P4          C6          C5          C4     120.256    1.50
+8P4          C6          C5          H3     119.902    1.50
+8P4          C4          C5          H3     119.841    1.50
+8P4          N1          C6          C5     120.332    3.00
+8P4          N1          C6          C1     120.332    3.00
+8P4          C5          C6          C1     119.336    1.50
+8P4          S1          C7          N2     121.576    1.50
+8P4          S1          C7          N1     120.588    1.50
+8P4          N2          C7          N1     117.824    1.56
+8P4          C6          C1          C2     120.256    1.50
+8P4          C6          C1          H4     119.902    1.50
+8P4          C2          C1          H4     119.841    1.50
+8P4          C1          C2          C3     118.607    1.50
+8P4          C1          C2          H5     120.659    1.50
+8P4          C3          C2          H5     120.734    1.50
+8P4          C4          C3          C2     122.932    1.50
+8P4          C4          C3          F1     118.537    1.50
+8P4          C2          C3          F1     118.537    1.50
+8P4          C7          N2          H6     119.916    3.00
+8P4          C7          N2          H7     119.916    3.00
+8P4          H6          N2          H7     120.168    1.51
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8P4             sp2_sp2_9          C5          C6          N1          C7     180.000     5.0     2
+8P4             sp2_sp2_7          S1          C7          N1          C6       0.000     5.0     2
+8P4       const_sp2_sp2_1          C3          C4          C5          C6       0.000     5.0     2
+8P4              const_23          F1          C3          C4          C5     180.000    10.0     2
+8P4       const_sp2_sp2_6          C4          C5          C6          N1     180.000     5.0     2
+8P4              const_10          C2          C1          C6          N1     180.000    10.0     2
+8P4             sp2_sp2_3          S1          C7          N2          H6       0.000     5.0     2
+8P4              const_13          C6          C1          C2          C3       0.000    10.0     2
+8P4              const_18          C1          C2          C3          F1     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8P4    plan-1          C1   0.020
+8P4    plan-1          C2   0.020
+8P4    plan-1          C3   0.020
+8P4    plan-1          C4   0.020
+8P4    plan-1          C5   0.020
+8P4    plan-1          C6   0.020
+8P4    plan-1          F1   0.020
+8P4    plan-1          H2   0.020
+8P4    plan-1          H3   0.020
+8P4    plan-1          H4   0.020
+8P4    plan-1          H5   0.020
+8P4    plan-1          N1   0.020
+8P4    plan-2          C6   0.020
+8P4    plan-2          C7   0.020
+8P4    plan-2          H1   0.020
+8P4    plan-2          N1   0.020
+8P4    plan-3          C7   0.020
+8P4    plan-3          N1   0.020
+8P4    plan-3          N2   0.020
+8P4    plan-3          S1   0.020
+8P4    plan-4          C7   0.020
+8P4    plan-4          H6   0.020
+8P4    plan-4          H7   0.020
+8P4    plan-4          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8P4            InChI                InChI  1.03 InChI=1S/C7H7FN2S/c8-5-1-3-6(4-2-5)10-7(9)11/h1-4H,(H3,9,10,11)
+8P4         InChIKey                InChI  1.03                                     BRWKXKNZRVALNZ-UHFFFAOYSA-N
+8P4 SMILES_CANONICAL               CACTVS 3.385                                              NC(=S)Nc1ccc(F)cc1
+8P4           SMILES               CACTVS 3.385                                              NC(=S)Nc1ccc(F)cc1
+8P4 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                              c1cc(ccc1NC(=S)N)F
+8P4           SMILES "OpenEye OEToolkits" 2.0.6                                              c1cc(ccc1NC(=S)N)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8P4 acedrg               243         "dictionary generator"                  
+8P4 acedrg_database      11          "data source"                           
+8P4 rdkit                2017.03.2   "Chemoinformatics tool"
+8P4 refmac5              5.8.0238    "optimization tool"                     

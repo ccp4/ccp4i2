@@ -1,0 +1,320 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KHS     KHS      N-{2-[(2-chlorophenyl)sulfanyl]ethyl}-2-methyl-2-{[5-(trifluoromethyl)pyridin-2-yl]sulfonyl}propanamide     NON-POLYMER     47     29     .     
+#
+data_comp_KHS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KHS     CLB     CL      CL      0       176.939     70.006      21.211      
+KHS     CBB     C       CR6     0       177.706     70.276      19.682      
+KHS     CBA     C       CR16    0       179.089     70.250      19.625      
+KHS     CAW     C       CR16    0       179.727     70.463      18.416      
+KHS     CAX     C       CR16    0       178.991     70.699      17.268      
+KHS     CAY     C       CR16    0       177.606     70.726      17.319      
+KHS     CAZ     C       CR6     0       176.945     70.511      18.532      
+KHS     SAV     S       S2      0       175.174     70.554      18.575      
+KHS     CAU     C       CH2     0       174.365     72.166      18.662      
+KHS     CAT     C       CH2     0       174.769     72.928      19.899      
+KHS     NAS     N       NH1     0       174.314     74.311      19.878      
+KHS     CAQ     C       C       0       173.036     74.669      20.018      
+KHS     OAR     O       O       0       172.156     73.846      20.272      
+KHS     CAO     C       CT      0       172.693     76.153      19.792      
+KHS     CAP     C       CH3     0       173.313     77.000      20.906      
+KHS     CAN     C       CH3     0       171.174     76.359      19.836      
+KHS     SAL     S       S3      0       173.323     76.652      18.187      
+KHS     OAM     O       O       0       172.660     75.835      17.210      
+KHS     OAK     O       O       0       174.755     76.596      18.266      
+KHS     CAJ     C       CR6     0       172.837     78.342      17.935      
+KHS     NAI     N       NRD6    0       173.678     79.265      18.403      
+KHS     CAE     C       CR16    0       173.358     80.575      18.239      
+KHS     CAF     C       CR6     0       172.191     80.991      17.601      
+KHS     CAC     C       CT      0       171.856     82.436      17.435      
+KHS     FAA     F       F       0       172.928     83.222      17.376      
+KHS     FAD     F       F       0       171.115     82.907      18.433      
+KHS     FAB     F       F       0       171.170     82.688      16.323      
+KHS     CAG     C       CR16    0       171.338     79.989      17.131      
+KHS     CAH     C       CR16    0       171.655     78.648      17.292      
+KHS     H1      H       H       0       179.591     70.089      20.407      
+KHS     H2      H       H       0       180.665     70.446      18.375      
+KHS     H3      H       H       0       179.432     70.843      16.448      
+KHS     H4      H       H       0       177.108     70.887      16.541      
+KHS     H5      H       H       0       173.399     72.037      18.661      
+KHS     H6      H       H       0       174.602     72.683      17.871      
+KHS     H7      H       H       0       175.747     72.915      19.977      
+KHS     H8      H       H       0       174.399     72.479      20.689      
+KHS     H9      H       H       0       174.920     74.931      19.763      
+KHS     H10     H       H       0       173.035     77.926      20.798      
+KHS     H11     H       H       0       174.282     76.940      20.862      
+KHS     H12     H       H       0       173.003     76.663      21.765      
+KHS     H13     H       H       0       170.831     76.039      20.688      
+KHS     H14     H       H       0       170.760     75.862      19.109      
+KHS     H15     H       H       0       170.969     77.305      19.744      
+KHS     H16     H       H       0       173.952     81.225      18.570      
+KHS     H17     H       H       0       170.535     80.226      16.695      
+KHS     H18     H       H       0       171.083     77.976      16.975      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KHS         CAC         FAA      SINGLE       n     1.329  0.0183     1.329  0.0183
+KHS         SAL         OAK      DOUBLE       n     1.435  0.0100     1.435  0.0100
+KHS         NAI         CAE      DOUBLE       y     1.345  0.0200     1.345  0.0200
+KHS         CAE         CAF      SINGLE       y     1.383  0.0136     1.383  0.0136
+KHS         CAJ         NAI      SINGLE       y     1.330  0.0100     1.330  0.0100
+KHS         SAL         OAM      DOUBLE       n     1.435  0.0100     1.435  0.0100
+KHS         CAC         FAB      SINGLE       n     1.329  0.0183     1.329  0.0183
+KHS         CAF         CAC      SINGLE       n     1.485  0.0137     1.485  0.0137
+KHS         CAC         FAD      SINGLE       n     1.329  0.0183     1.329  0.0183
+KHS         CAF         CAG      DOUBLE       y     1.392  0.0100     1.392  0.0100
+KHS         SAL         CAJ      SINGLE       n     1.774  0.0137     1.774  0.0137
+KHS         CAJ         CAH      DOUBLE       y     1.377  0.0100     1.377  0.0100
+KHS         CAO         SAL      SINGLE       n     1.784  0.0200     1.784  0.0200
+KHS         CAG         CAH      SINGLE       y     1.383  0.0103     1.383  0.0103
+KHS         CAQ         OAR      DOUBLE       n     1.229  0.0102     1.229  0.0102
+KHS         SAV         CAU      SINGLE       n     1.809  0.0191     1.809  0.0191
+KHS         CAU         CAT      SINGLE       n     1.508  0.0101     1.508  0.0101
+KHS         CAQ         CAO      SINGLE       n     1.533  0.0115     1.533  0.0115
+KHS         CAO         CAP      SINGLE       n     1.529  0.0127     1.529  0.0127
+KHS         CAO         CAN      SINGLE       n     1.529  0.0127     1.529  0.0127
+KHS         NAS         CAQ      SINGLE       n     1.330  0.0100     1.330  0.0100
+KHS         CAZ         SAV      SINGLE       n     1.772  0.0127     1.772  0.0127
+KHS         CAX         CAY      DOUBLE       y     1.383  0.0100     1.383  0.0100
+KHS         CAY         CAZ      SINGLE       y     1.396  0.0100     1.396  0.0100
+KHS         CAW         CAX      SINGLE       y     1.376  0.0124     1.376  0.0124
+KHS         CBB         CAZ      DOUBLE       y     1.392  0.0143     1.392  0.0143
+KHS         CAT         NAS      SINGLE       n     1.455  0.0100     1.455  0.0100
+KHS         CBA         CAW      DOUBLE       y     1.376  0.0127     1.376  0.0127
+KHS         CBB         CBA      SINGLE       y     1.382  0.0100     1.382  0.0100
+KHS         CLB         CBB      SINGLE       n     1.731  0.0100     1.731  0.0100
+KHS         CBA          H1      SINGLE       n     1.082  0.0130     0.943  0.0172
+KHS         CAW          H2      SINGLE       n     1.082  0.0130     0.939  0.0165
+KHS         CAX          H3      SINGLE       n     1.082  0.0130     0.942  0.0167
+KHS         CAY          H4      SINGLE       n     1.082  0.0130     0.938  0.0115
+KHS         CAU          H5      SINGLE       n     1.089  0.0100     0.974  0.0100
+KHS         CAU          H6      SINGLE       n     1.089  0.0100     0.974  0.0100
+KHS         CAT          H7      SINGLE       n     1.089  0.0100     0.981  0.0127
+KHS         CAT          H8      SINGLE       n     1.089  0.0100     0.981  0.0127
+KHS         NAS          H9      SINGLE       n     1.016  0.0100     0.872  0.0200
+KHS         CAP         H10      SINGLE       n     1.089  0.0100     0.973  0.0141
+KHS         CAP         H11      SINGLE       n     1.089  0.0100     0.973  0.0141
+KHS         CAP         H12      SINGLE       n     1.089  0.0100     0.973  0.0141
+KHS         CAN         H13      SINGLE       n     1.089  0.0100     0.973  0.0141
+KHS         CAN         H14      SINGLE       n     1.089  0.0100     0.973  0.0141
+KHS         CAN         H15      SINGLE       n     1.089  0.0100     0.973  0.0141
+KHS         CAE         H16      SINGLE       n     1.082  0.0130     0.940  0.0200
+KHS         CAG         H17      SINGLE       n     1.082  0.0130     0.943  0.0173
+KHS         CAH         H18      SINGLE       n     1.082  0.0130     0.938  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KHS         CAZ         CBB         CBA     121.365    1.50
+KHS         CAZ         CBB         CLB     120.153    1.50
+KHS         CBA         CBB         CLB     118.482    1.50
+KHS         CAW         CBA         CBB     119.283    1.50
+KHS         CAW         CBA          H1     120.550    1.50
+KHS         CBB         CBA          H1     120.168    1.50
+KHS         CAX         CAW         CBA     119.823    1.50
+KHS         CAX         CAW          H2     120.210    1.50
+KHS         CBA         CAW          H2     119.968    1.50
+KHS         CAY         CAX         CAW     119.860    1.50
+KHS         CAY         CAX          H3     119.969    1.50
+KHS         CAW         CAX          H3     120.171    1.50
+KHS         CAX         CAY         CAZ     120.115    1.50
+KHS         CAX         CAY          H4     120.172    1.50
+KHS         CAZ         CAY          H4     119.713    1.50
+KHS         SAV         CAZ         CAY     120.223    2.83
+KHS         SAV         CAZ         CBB     120.223    2.83
+KHS         CAY         CAZ         CBB     119.554    1.50
+KHS         CAU         SAV         CAZ     120.000    3.00
+KHS         SAV         CAU         CAT     112.239    3.00
+KHS         SAV         CAU          H5     109.066    1.50
+KHS         SAV         CAU          H6     109.066    1.50
+KHS         CAT         CAU          H5     109.520    1.50
+KHS         CAT         CAU          H6     109.520    1.50
+KHS          H5         CAU          H6     108.148    1.50
+KHS         CAU         CAT         NAS     113.008    1.54
+KHS         CAU         CAT          H7     109.175    1.50
+KHS         CAU         CAT          H8     109.175    1.50
+KHS         NAS         CAT          H7     109.102    1.50
+KHS         NAS         CAT          H8     109.102    1.50
+KHS          H7         CAT          H8     107.995    1.50
+KHS         CAQ         NAS         CAT     123.005    1.80
+KHS         CAQ         NAS          H9     118.726    1.94
+KHS         CAT         NAS          H9     118.268    1.83
+KHS         OAR         CAQ         CAO     120.934    1.77
+KHS         OAR         CAQ         NAS     122.320    1.50
+KHS         CAO         CAQ         NAS     116.746    1.56
+KHS         SAL         CAO         CAQ     111.664    2.75
+KHS         SAL         CAO         CAP     111.256    2.92
+KHS         SAL         CAO         CAN     111.256    2.92
+KHS         CAQ         CAO         CAP     109.654    2.46
+KHS         CAQ         CAO         CAN     109.654    2.46
+KHS         CAP         CAO         CAN     109.414    1.61
+KHS         CAO         CAP         H10     108.346    2.50
+KHS         CAO         CAP         H11     108.346    2.50
+KHS         CAO         CAP         H12     108.346    2.50
+KHS         H10         CAP         H11     109.433    1.50
+KHS         H10         CAP         H12     109.433    1.50
+KHS         H11         CAP         H12     109.433    1.50
+KHS         CAO         CAN         H13     108.346    2.50
+KHS         CAO         CAN         H14     108.346    2.50
+KHS         CAO         CAN         H15     108.346    2.50
+KHS         H13         CAN         H14     109.433    1.50
+KHS         H13         CAN         H15     109.433    1.50
+KHS         H14         CAN         H15     109.433    1.50
+KHS         OAK         SAL         OAM     118.604    1.50
+KHS         OAK         SAL         CAJ     108.321    1.50
+KHS         OAK         SAL         CAO     106.598    1.55
+KHS         OAM         SAL         CAJ     108.321    1.50
+KHS         OAM         SAL         CAO     106.598    1.55
+KHS         CAJ         SAL         CAO     105.236    1.90
+KHS         NAI         CAJ         SAL     115.778    1.50
+KHS         NAI         CAJ         CAH     123.533    1.50
+KHS         SAL         CAJ         CAH     120.690    1.50
+KHS         CAE         NAI         CAJ     118.441    1.50
+KHS         NAI         CAE         CAF     122.800    1.50
+KHS         NAI         CAE         H16     118.707    1.50
+KHS         CAF         CAE         H16     118.493    1.50
+KHS         CAE         CAF         CAC     121.452    1.51
+KHS         CAE         CAF         CAG     117.364    1.50
+KHS         CAC         CAF         CAG     121.184    1.50
+KHS         FAA         CAC         FAB     105.974    1.50
+KHS         FAA         CAC         CAF     112.783    1.50
+KHS         FAA         CAC         FAD     105.974    1.50
+KHS         FAB         CAC         CAF     112.783    1.50
+KHS         FAB         CAC         FAD     105.974    1.50
+KHS         CAF         CAC         FAD     112.783    1.50
+KHS         CAF         CAG         CAH     120.527    1.50
+KHS         CAF         CAG         H17     119.527    1.50
+KHS         CAH         CAG         H17     119.947    1.50
+KHS         CAJ         CAH         CAG     117.336    1.50
+KHS         CAJ         CAH         H18     121.492    1.50
+KHS         CAG         CAH         H18     121.172    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KHS             sp2_sp2_3         OAR         CAQ         NAS         CAT       0.000     5.0     2
+KHS            sp2_sp3_13         OAR         CAQ         CAO         SAL       0.000    10.0     6
+KHS            sp3_sp3_25         SAL         CAO         CAP         H10      60.000    10.0     3
+KHS            sp3_sp3_31         H13         CAN         CAO         SAL     180.000    10.0     3
+KHS             sp3_sp3_4         CAQ         CAO         SAL         OAK      60.000    10.0     3
+KHS             sp2_sp3_8         NAI         CAJ         SAL         OAK     -90.000    10.0     6
+KHS       const_sp2_sp2_2         SAL         CAJ         NAI         CAE     180.000     5.0     2
+KHS              const_38         CAG         CAH         CAJ         SAL     180.000    10.0     2
+KHS              const_42         CAW         CBA         CBB         CLB     180.000    10.0     2
+KHS              const_20         SAV         CAZ         CBB         CLB       0.000    10.0     2
+KHS       const_sp2_sp2_3         CAF         CAE         NAI         CAJ       0.000     5.0     2
+KHS       const_sp2_sp2_6         NAI         CAE         CAF         CAC     180.000     5.0     2
+KHS             sp2_sp3_1         CAE         CAF         CAC         FAA     150.000    10.0     6
+KHS              const_11         CAC         CAF         CAG         CAH     180.000    10.0     2
+KHS              const_13         CAF         CAG         CAH         CAJ       0.000    10.0     2
+KHS              const_33         CAX         CAW         CBA         CBB       0.000    10.0     2
+KHS              const_29         CBA         CAW         CAX         CAY       0.000    10.0     2
+KHS              const_25         CAW         CAX         CAY         CAZ       0.000    10.0     2
+KHS              const_22         CAX         CAY         CAZ         SAV     180.000    10.0     2
+KHS             sp2_sp2_5         CAY         CAZ         SAV         CAU     180.000     5.0     2
+KHS            sp3_sp3_10         CAT         CAU         SAV         CAZ     180.000    10.0     3
+KHS            sp3_sp3_13         NAS         CAT         CAU         SAV     180.000    10.0     3
+KHS            sp2_sp3_20         CAQ         NAS         CAT         CAU     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KHS    chir_1    CAO    SAL    CAQ    CAP    both
+KHS    chir_2    SAL    OAK    OAM    CAJ    both
+KHS    chir_3    CAC    FAA    FAB    FAD    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KHS    plan-1         CAC   0.020
+KHS    plan-1         CAE   0.020
+KHS    plan-1         CAF   0.020
+KHS    plan-1         CAG   0.020
+KHS    plan-1         CAH   0.020
+KHS    plan-1         CAJ   0.020
+KHS    plan-1         H16   0.020
+KHS    plan-1         H17   0.020
+KHS    plan-1         H18   0.020
+KHS    plan-1         NAI   0.020
+KHS    plan-1         SAL   0.020
+KHS    plan-2         CAW   0.020
+KHS    plan-2         CAX   0.020
+KHS    plan-2         CAY   0.020
+KHS    plan-2         CAZ   0.020
+KHS    plan-2         CBA   0.020
+KHS    plan-2         CBB   0.020
+KHS    plan-2         CLB   0.020
+KHS    plan-2          H1   0.020
+KHS    plan-2          H2   0.020
+KHS    plan-2          H3   0.020
+KHS    plan-2          H4   0.020
+KHS    plan-2         SAV   0.020
+KHS    plan-3         CAQ   0.020
+KHS    plan-3         CAT   0.020
+KHS    plan-3          H9   0.020
+KHS    plan-3         NAS   0.020
+KHS    plan-4         CAO   0.020
+KHS    plan-4         CAQ   0.020
+KHS    plan-4         NAS   0.020
+KHS    plan-4         OAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KHS           SMILES              ACDLabs 12.01                                                                                          Clc1ccccc1SCCNC(=O)C(C)(C)S(=O)(=O)c2ccc(cn2)C(F)(F)F
+KHS            InChI                InChI  1.03 InChI=1S/C18H18ClF3N2O3S2/c1-17(2,16(25)23-9-10-28-14-6-4-3-5-13(14)19)29(26,27)15-8-7-12(11-24-15)18(20,21)22/h3-8,11H,9-10H2,1-2H3,(H,23,25)
+KHS         InChIKey                InChI  1.03                                                                                                                    OUZIIFOEMPAZKX-UHFFFAOYSA-N
+KHS SMILES_CANONICAL               CACTVS 3.385                                                                                        CC(C)(C(=O)NCCSc1ccccc1Cl)[S](=O)(=O)c2ccc(cn2)C(F)(F)F
+KHS           SMILES               CACTVS 3.385                                                                                        CC(C)(C(=O)NCCSc1ccccc1Cl)[S](=O)(=O)c2ccc(cn2)C(F)(F)F
+KHS SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                          CC(C)(C(=O)NCCSc1ccccc1Cl)S(=O)(=O)c2ccc(cn2)C(F)(F)F
+KHS           SMILES "OpenEye OEToolkits" 2.0.6                                                                                          CC(C)(C(=O)NCCSc1ccccc1Cl)S(=O)(=O)c2ccc(cn2)C(F)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KHS acedrg               243         "dictionary generator"                  
+KHS acedrg_database      11          "data source"                           
+KHS rdkit                2017.03.2   "Chemoinformatics tool"
+KHS refmac5              5.8.0238    "optimization tool"                     

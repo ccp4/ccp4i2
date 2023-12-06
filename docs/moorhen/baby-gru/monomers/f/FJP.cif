@@ -1,0 +1,294 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FJP     FJP      "(2E,6Z)-3,7,11-trimethyldodeca-2,6,10-trien-1-yl dihydrogen phosphate"     NON-POLYMER     45     20     .     
+#
+data_comp_FJP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FJP     CAA     C       CH3     0       24.844      -20.703     7.314       
+FJP     CAB     C       CH3     0       22.546      -21.144     8.239       
+FJP     CAC     C       CH3     0       23.378      -16.578     9.350       
+FJP     CAD     C       CH3     0       24.733      -11.548     6.351       
+FJP     OAE     O       O       0       23.530      -9.278      11.392      
+FJP     OAF     O       OP      -1      25.726      -10.523     11.253      
+FJP     OAG     O       OP      -1      25.257      -8.607      9.672       
+FJP     CAH     C       C1      0       22.998      -19.058     6.969       
+FJP     CAI     C       C1      0       23.205      -15.023     7.402       
+FJP     CAJ     C       C1      0       22.593      -11.493     7.659       
+FJP     CAK     C       CH2     0       23.760      -18.000     6.228       
+FJP     CAL     C       CH2     0       23.468      -14.463     6.034       
+FJP     CAM     C       CH2     0       22.961      -10.367     8.578       
+FJP     CAN     C       CH2     0       24.544      -17.094     7.159       
+FJP     CAO     C       CH2     0       22.820      -13.108     5.795       
+FJP     OAP     O       O2      0       24.019      -10.765     9.445       
+FJP     CAQ     C       C       0       23.432      -20.211     7.464       
+FJP     CAR     C       C       0       23.676      -16.146     7.943       
+FJP     CAS     C       C       0       23.338      -12.005     6.679       
+FJP     PAT     P       P       0       24.671      -9.734      10.502      
+FJP     HAA     H       H       0       25.429      -19.971     7.065       
+FJP     HAAA    H       H       0       24.878      -21.389     6.628       
+FJP     HAAB    H       H       0       25.146      -21.079     8.157       
+FJP     HAB     H       H       0       21.674      -20.739     8.375       
+FJP     HABA    H       H       0       22.949      -21.331     9.103       
+FJP     HABB    H       H       0       22.441      -21.975     7.748       
+FJP     HAC     H       H       0       22.863      -15.891     9.804       
+FJP     HACA    H       H       0       24.211      -16.723     9.828       
+FJP     HACB    H       H       0       22.869      -17.404     9.335       
+FJP     HAD     H       H       0       24.950      -10.744     6.849       
+FJP     HADA    H       H       0       24.796      -11.360     5.400       
+FJP     HADB    H       H       0       25.365      -12.248     6.582       
+FJP     HAH     H       H       0       22.080      -18.873     7.096       
+FJP     HAI     H       H       0       22.622      -14.514     7.944       
+FJP     HAJ     H       H       0       21.742      -11.879     7.798       
+FJP     HAK     H       H       0       23.133      -17.457     5.708       
+FJP     HAKA    H       H       0       24.379      -18.426     5.600       
+FJP     HAL     H       H       0       23.134      -15.093     5.364       
+FJP     HALA    H       H       0       24.434      -14.377     5.906       
+FJP     HAM     H       H       0       22.176      -10.106     9.110       
+FJP     HAMA    H       H       0       23.239      -9.586      8.049       
+FJP     HAN     H       H       0       25.189      -16.579     6.634       
+FJP     HANA    H       H       0       25.052      -17.650     7.785       
+FJP     HAO     H       H       0       21.853      -13.196     5.923       
+FJP     HAOA    H       H       0       22.967      -12.853     4.861       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FJP         CAA         CAQ      SINGLE       n     1.499  0.0156     1.499  0.0156
+FJP         CAB         CAQ      SINGLE       n     1.499  0.0156     1.499  0.0156
+FJP         CAC         CAR      SINGLE       n     1.499  0.0156     1.499  0.0156
+FJP         CAD         CAS      SINGLE       n     1.499  0.0156     1.499  0.0156
+FJP         OAE         PAT      DOUBLE       n     1.517  0.0192     1.517  0.0192
+FJP         OAF         PAT      SINGLE       n     1.517  0.0192     1.517  0.0192
+FJP         OAG         PAT      SINGLE       n     1.517  0.0192     1.517  0.0192
+FJP         CAH         CAK      SINGLE       n     1.498  0.0141     1.498  0.0141
+FJP         CAH         CAQ      DOUBLE       n     1.324  0.0100     1.324  0.0100
+FJP         CAI         CAL      SINGLE       n     1.498  0.0141     1.498  0.0141
+FJP         CAI         CAR      DOUBLE       n     1.330  0.0100     1.330  0.0100
+FJP         CAJ         CAS      DOUBLE       n     1.329  0.0100     1.329  0.0100
+FJP         CAJ         CAM      SINGLE       n     1.496  0.0200     1.496  0.0200
+FJP         CAK         CAN      SINGLE       n     1.516  0.0200     1.516  0.0200
+FJP         CAL         CAO      SINGLE       n     1.516  0.0200     1.516  0.0200
+FJP         CAM         OAP      SINGLE       n     1.425  0.0152     1.425  0.0152
+FJP         CAN         CAR      SINGLE       n     1.503  0.0104     1.503  0.0104
+FJP         CAO         CAS      SINGLE       n     1.503  0.0104     1.503  0.0104
+FJP         OAP         PAT      SINGLE       n     1.614  0.0178     1.614  0.0178
+FJP         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0140
+FJP         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0140
+FJP         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0140
+FJP         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0140
+FJP         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0140
+FJP         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0140
+FJP         CAC         HAC      SINGLE       n     1.089  0.0100     0.971  0.0140
+FJP         CAC        HACA      SINGLE       n     1.089  0.0100     0.971  0.0140
+FJP         CAC        HACB      SINGLE       n     1.089  0.0100     0.971  0.0140
+FJP         CAD         HAD      SINGLE       n     1.089  0.0100     0.971  0.0140
+FJP         CAD        HADA      SINGLE       n     1.089  0.0100     0.971  0.0140
+FJP         CAD        HADB      SINGLE       n     1.089  0.0100     0.971  0.0140
+FJP         CAH         HAH      SINGLE       n     1.082  0.0130     0.945  0.0200
+FJP         CAI         HAI      SINGLE       n     1.082  0.0130     0.945  0.0200
+FJP         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.945  0.0200
+FJP         CAK         HAK      SINGLE       n     1.089  0.0100     0.979  0.0159
+FJP         CAK        HAKA      SINGLE       n     1.089  0.0100     0.979  0.0159
+FJP         CAL         HAL      SINGLE       n     1.089  0.0100     0.979  0.0159
+FJP         CAL        HALA      SINGLE       n     1.089  0.0100     0.979  0.0159
+FJP         CAM         HAM      SINGLE       n     1.089  0.0100     0.983  0.0100
+FJP         CAM        HAMA      SINGLE       n     1.089  0.0100     0.983  0.0100
+FJP         CAN         HAN      SINGLE       n     1.089  0.0100     0.979  0.0159
+FJP         CAN        HANA      SINGLE       n     1.089  0.0100     0.979  0.0159
+FJP         CAO         HAO      SINGLE       n     1.089  0.0100     0.979  0.0159
+FJP         CAO        HAOA      SINGLE       n     1.089  0.0100     0.979  0.0159
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FJP         CAQ         CAA         HAA     109.600    1.50
+FJP         CAQ         CAA        HAAA     109.600    1.50
+FJP         CAQ         CAA        HAAB     109.600    1.50
+FJP         HAA         CAA        HAAA     109.342    1.50
+FJP         HAA         CAA        HAAB     109.342    1.50
+FJP        HAAA         CAA        HAAB     109.342    1.50
+FJP         CAQ         CAB         HAB     109.600    1.50
+FJP         CAQ         CAB        HABA     109.600    1.50
+FJP         CAQ         CAB        HABB     109.600    1.50
+FJP         HAB         CAB        HABA     109.342    1.50
+FJP         HAB         CAB        HABB     109.342    1.50
+FJP        HABA         CAB        HABB     109.342    1.50
+FJP         CAR         CAC         HAC     109.541    1.50
+FJP         CAR         CAC        HACA     109.541    1.50
+FJP         CAR         CAC        HACB     109.541    1.50
+FJP         HAC         CAC        HACA     109.342    1.50
+FJP         HAC         CAC        HACB     109.342    1.50
+FJP        HACA         CAC        HACB     109.342    1.50
+FJP         CAS         CAD         HAD     109.541    1.50
+FJP         CAS         CAD        HADA     109.541    1.50
+FJP         CAS         CAD        HADB     109.541    1.50
+FJP         HAD         CAD        HADA     109.342    1.50
+FJP         HAD         CAD        HADB     109.342    1.50
+FJP        HADA         CAD        HADB     109.342    1.50
+FJP         CAK         CAH         CAQ     128.282    1.50
+FJP         CAK         CAH         HAH     115.635    1.60
+FJP         CAQ         CAH         HAH     116.082    1.50
+FJP         CAL         CAI         CAR     128.114    1.50
+FJP         CAL         CAI         HAI     115.635    1.60
+FJP         CAR         CAI         HAI     116.261    1.50
+FJP         CAS         CAJ         CAM     124.396    3.00
+FJP         CAS         CAJ         HAJ     117.563    1.50
+FJP         CAM         CAJ         HAJ     118.040    2.26
+FJP         CAH         CAK         CAN     112.751    2.50
+FJP         CAH         CAK         HAK     109.181    1.50
+FJP         CAH         CAK        HAKA     109.181    1.50
+FJP         CAN         CAK         HAK     109.013    1.50
+FJP         CAN         CAK        HAKA     109.013    1.50
+FJP         HAK         CAK        HAKA     107.922    1.50
+FJP         CAI         CAL         CAO     112.751    2.50
+FJP         CAI         CAL         HAL     109.181    1.50
+FJP         CAI         CAL        HALA     109.181    1.50
+FJP         CAO         CAL         HAL     109.013    1.50
+FJP         CAO         CAL        HALA     109.013    1.50
+FJP         HAL         CAL        HALA     107.922    1.50
+FJP         CAJ         CAM         OAP     110.575    2.78
+FJP         CAJ         CAM         HAM     109.840    1.50
+FJP         CAJ         CAM        HAMA     109.840    1.50
+FJP         OAP         CAM         HAM     110.196    2.06
+FJP         OAP         CAM        HAMA     110.196    2.06
+FJP         HAM         CAM        HAMA     108.062    1.50
+FJP         CAK         CAN         CAR     113.520    2.62
+FJP         CAK         CAN         HAN     108.867    1.50
+FJP         CAK         CAN        HANA     108.867    1.50
+FJP         CAR         CAN         HAN     108.816    1.50
+FJP         CAR         CAN        HANA     108.816    1.50
+FJP         HAN         CAN        HANA     107.710    1.94
+FJP         CAL         CAO         CAS     113.520    2.62
+FJP         CAL         CAO         HAO     108.867    1.50
+FJP         CAL         CAO        HAOA     108.867    1.50
+FJP         CAS         CAO         HAO     108.816    1.50
+FJP         CAS         CAO        HAOA     108.816    1.50
+FJP         HAO         CAO        HAOA     107.710    1.94
+FJP         CAM         OAP         PAT     121.496    2.55
+FJP         CAA         CAQ         CAB     114.618    1.50
+FJP         CAA         CAQ         CAH     122.691    1.63
+FJP         CAB         CAQ         CAH     122.691    1.63
+FJP         CAC         CAR         CAI     123.681    1.50
+FJP         CAC         CAR         CAN     115.131    1.50
+FJP         CAI         CAR         CAN     121.188    1.50
+FJP         CAD         CAS         CAJ     123.007    1.73
+FJP         CAD         CAS         CAO     115.386    1.50
+FJP         CAJ         CAS         CAO     121.607    1.82
+FJP         OAE         PAT         OAF     112.864    1.69
+FJP         OAE         PAT         OAG     112.864    1.69
+FJP         OAE         PAT         OAP     105.795    2.09
+FJP         OAF         PAT         OAG     112.864    1.69
+FJP         OAF         PAT         OAP     105.795    2.09
+FJP         OAG         PAT         OAP     105.795    2.09
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FJP             sp2_sp3_1         CAB         CAQ         CAA         HAA       0.000    10.0     6
+FJP             sp3_sp3_1         CAH         CAK         CAN         CAR     180.000    10.0     3
+FJP            sp3_sp3_10         CAI         CAL         CAO         CAS     180.000    10.0     3
+FJP            sp3_sp3_19         CAJ         CAM         OAP         PAT     180.000    10.0     3
+FJP            sp2_sp3_44         CAC         CAR         CAN         CAK     120.000    10.0     6
+FJP            sp2_sp3_50         CAD         CAS         CAO         CAL     120.000    10.0     6
+FJP            sp3_sp3_24         CAM         OAP         PAT         OAE      60.000    10.0     3
+FJP             sp2_sp3_7         CAA         CAQ         CAB         HAB       0.000    10.0     6
+FJP            sp2_sp3_13         CAI         CAR         CAC         HAC       0.000    10.0     6
+FJP            sp2_sp3_19         CAJ         CAS         CAD         HAD       0.000    10.0     6
+FJP            sp2_sp3_26         CAQ         CAH         CAK         CAN     120.000    10.0     6
+FJP             sp2_sp2_1         CAK         CAH         CAQ         CAA     180.000     5.0     2
+FJP            sp2_sp3_32         CAR         CAI         CAL         CAO     120.000    10.0     6
+FJP             sp2_sp2_6         CAL         CAI         CAR         CAC       0.000     5.0     2
+FJP            sp2_sp3_38         CAS         CAJ         CAM         OAP     120.000    10.0     6
+FJP            sp2_sp2_10         CAM         CAJ         CAS         CAD       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FJP    chir_1    PAT    OAP    OAF    OAG    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FJP    plan-1         CAH   0.020
+FJP    plan-1         CAK   0.020
+FJP    plan-1         CAQ   0.020
+FJP    plan-1         HAH   0.020
+FJP    plan-2         CAI   0.020
+FJP    plan-2         CAL   0.020
+FJP    plan-2         CAR   0.020
+FJP    plan-2         HAI   0.020
+FJP    plan-3         CAJ   0.020
+FJP    plan-3         CAM   0.020
+FJP    plan-3         CAS   0.020
+FJP    plan-3         HAJ   0.020
+FJP    plan-4         CAA   0.020
+FJP    plan-4         CAB   0.020
+FJP    plan-4         CAH   0.020
+FJP    plan-4         CAQ   0.020
+FJP    plan-5         CAC   0.020
+FJP    plan-5         CAI   0.020
+FJP    plan-5         CAN   0.020
+FJP    plan-5         CAR   0.020
+FJP    plan-6         CAD   0.020
+FJP    plan-6         CAJ   0.020
+FJP    plan-6         CAO   0.020
+FJP    plan-6         CAS   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FJP           SMILES              ACDLabs 12.01                                                                                        O=P(OC/C=C(/CC/C=C(/C)CC\C=C(/C)C)C)(O)O
+FJP SMILES_CANONICAL               CACTVS 3.370                                                                                        CC(C)=CCCC(\C)=C/CCC(/C)=C/CO[P](O)(O)=O
+FJP           SMILES               CACTVS 3.370                                                                                            CC(C)=CCCC(C)=CCCC(C)=CCO[P](O)(O)=O
+FJP SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                        CC(=CCC/C(=C\CC/C(=C/COP(=O)(O)O)/C)/C)C
+FJP           SMILES "OpenEye OEToolkits" 1.7.0                                                                                              CC(=CCCC(=CCCC(=CCOP(=O)(O)O)C)C)C
+FJP            InChI                InChI  1.03 InChI=1S/C15H27O4P/c1-13(2)7-5-8-14(3)9-6-10-15(4)11-12-19-20(16,17)18/h7,9,11H,5-6,8,10,12H2,1-4H3,(H2,16,17,18)/b14-9-,15-11+
+FJP         InChIKey                InChI  1.03                                                                                                     ALEWCKXBHSDCCT-GNESMGCMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FJP acedrg               243         "dictionary generator"                  
+FJP acedrg_database      11          "data source"                           
+FJP rdkit                2017.03.2   "Chemoinformatics tool"
+FJP refmac5              5.8.0238    "optimization tool"                     

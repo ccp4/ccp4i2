@@ -1,0 +1,396 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TTX     TTX      TENTOXIN     NON-POLYMER     60     30     .     
+#
+data_comp_TTX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TTX     C7      C       CH3     0       51.312      36.797      62.665      
+TTX     N1      N       N       0       50.584      36.617      61.400      
+TTX     C15     C       C       0       51.312      36.321      60.276      
+TTX     C16     C       C1      0       51.117      37.032      59.122      
+TTX     C17     C       CR6     0       50.376      38.279      58.879      
+TTX     C22     C       CR16    0       50.410      39.358      59.767      
+TTX     C21     C       CR16    0       49.690      40.516      59.513      
+TTX     C20     C       CR16    0       48.923      40.620      58.370      
+TTX     C19     C       CR16    0       48.872      39.567      57.480      
+TTX     C18     C       CR16    0       49.589      38.406      57.731      
+TTX     C6      C       C       0       49.164      36.656      61.505      
+TTX     O1      O       O       0       48.612      37.179      62.474      
+TTX     C5      C       CH1     0       48.343      35.888      60.449      
+TTX     C4      C       CH2     0       46.842      35.964      60.746      
+TTX     C2      C       CH1     0       46.177      37.313      60.456      
+TTX     C1      C       CH3     0       45.913      37.487      58.967      
+TTX     C3      C       CH3     0       44.884      37.468      61.243      
+TTX     N2      N       NH1     0       48.781      34.497      60.386      
+TTX     C8      C       C       0       48.788      33.797      59.239      
+TTX     O2      O       O       0       48.197      34.172      58.226      
+TTX     C9      C       CH1     0       49.685      32.548      59.177      
+TTX     C10     C       CH3     0       49.180      31.599      58.093      
+TTX     N3      N       N       0       49.868      31.812      60.448      
+TTX     C11     C       CH3     0       48.674      31.182      61.020      
+TTX     C12     C       C       0       51.034      31.689      61.148      
+TTX     O3      O       O       0       51.153      30.861      62.049      
+TTX     C13     C       CH2     0       52.184      32.664      60.880      
+TTX     N4      N       NH1     0       51.761      34.042      61.062      
+TTX     C14     C       C       0       52.095      35.018      60.199      
+TTX     O4      O       O       0       53.043      34.902      59.406      
+TTX     H71     H       H       0       50.915      36.245      63.358      
+TTX     H72     H       H       0       51.266      37.727      62.936      
+TTX     H73     H       H       0       52.243      36.546      62.561      
+TTX     H161    H       H       0       51.514      36.660      58.350      
+TTX     H221    H       H       0       50.929      39.295      60.550      
+TTX     H211    H       H       0       49.727      41.235      60.122      
+TTX     H201    H       H       0       48.436      41.410      58.197      
+TTX     H191    H       H       0       48.349      39.636      56.698      
+TTX     H181    H       H       0       49.547      37.693      57.119      
+TTX     H51     H       H       0       48.492      36.300      59.567      
+TTX     H41     H       H       0       46.694      35.735      61.685      
+TTX     H42     H       H       0       46.393      35.282      60.209      
+TTX     H21     H       H       0       46.792      38.032      60.739      
+TTX     H11     H       H       0       45.471      38.340      58.813      
+TTX     H12     H       H       0       45.341      36.765      58.652      
+TTX     H13     H       H       0       46.755      37.468      58.481      
+TTX     H31     H       H       0       45.075      37.409      62.196      
+TTX     H32     H       H       0       44.264      36.761      60.993      
+TTX     H33     H       H       0       44.486      38.333      61.046      
+TTX     HN21    H       H       0       49.021      34.101      61.123      
+TTX     H91     H       H       0       50.571      32.852      58.890      
+TTX     H101    H       H       0       49.619      30.737      58.183      
+TTX     H102    H       H       0       49.379      31.969      57.216      
+TTX     H103    H       H       0       48.219      31.479      58.180      
+TTX     H111    H       H       0       48.578      31.440      61.952      
+TTX     H112    H       H       0       48.757      30.216      60.966      
+TTX     H113    H       H       0       47.878      31.457      60.538      
+TTX     H131    H       H       0       52.518      32.524      59.970      
+TTX     H132    H       H       0       52.916      32.471      61.502      
+TTX     HN41    H       H       0       51.284      34.232      61.762      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TTX          C7          N1      SINGLE       n     1.464  0.0100     1.464  0.0100
+TTX          N1         C15      SINGLE       n     1.338  0.0200     1.338  0.0200
+TTX          N1          C6      SINGLE       n     1.388  0.0200     1.388  0.0200
+TTX         C15         C16      DOUBLE       n     1.343  0.0200     1.343  0.0200
+TTX         C15         C14      SINGLE       n     1.489  0.0200     1.489  0.0200
+TTX         C16         C17      SINGLE       n     1.466  0.0126     1.466  0.0126
+TTX         C17         C22      DOUBLE       y     1.394  0.0100     1.394  0.0100
+TTX         C17         C18      SINGLE       y     1.394  0.0100     1.394  0.0100
+TTX         C22         C21      SINGLE       y     1.384  0.0100     1.384  0.0100
+TTX         C21         C20      DOUBLE       y     1.376  0.0124     1.376  0.0124
+TTX         C20         C19      SINGLE       y     1.376  0.0114     1.376  0.0114
+TTX         C19         C18      DOUBLE       y     1.384  0.0100     1.384  0.0100
+TTX          C6          O1      DOUBLE       n     1.229  0.0107     1.229  0.0107
+TTX          C6          C5      SINGLE       n     1.527  0.0132     1.527  0.0132
+TTX          C5          C4      SINGLE       n     1.528  0.0100     1.528  0.0100
+TTX          C5          N2      SINGLE       n     1.453  0.0100     1.453  0.0100
+TTX          C4          C2      SINGLE       n     1.528  0.0105     1.528  0.0105
+TTX          C2          C1      SINGLE       n     1.521  0.0151     1.521  0.0151
+TTX          C2          C3      SINGLE       n     1.521  0.0151     1.521  0.0151
+TTX          N2          C8      SINGLE       n     1.337  0.0100     1.337  0.0100
+TTX          C8          O2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+TTX          C8          C9      SINGLE       n     1.530  0.0100     1.530  0.0100
+TTX          C9         C10      SINGLE       n     1.523  0.0100     1.523  0.0100
+TTX          C9          N3      SINGLE       n     1.470  0.0100     1.470  0.0100
+TTX          N3         C11      SINGLE       n     1.461  0.0100     1.461  0.0100
+TTX          N3         C12      SINGLE       n     1.348  0.0122     1.348  0.0122
+TTX         C12          O3      DOUBLE       n     1.228  0.0100     1.228  0.0100
+TTX         C12         C13      SINGLE       n     1.527  0.0104     1.527  0.0104
+TTX         C13          N4      SINGLE       n     1.449  0.0100     1.449  0.0100
+TTX          N4         C14      SINGLE       n     1.337  0.0100     1.337  0.0100
+TTX         C14          O4      DOUBLE       n     1.239  0.0100     1.239  0.0100
+TTX          C7         H71      SINGLE       n     1.089  0.0100     0.970  0.0152
+TTX          C7         H72      SINGLE       n     1.089  0.0100     0.970  0.0152
+TTX          C7         H73      SINGLE       n     1.089  0.0100     0.970  0.0152
+TTX         C16        H161      SINGLE       n     1.082  0.0130     0.945  0.0200
+TTX         C22        H221      SINGLE       n     1.082  0.0130     0.941  0.0168
+TTX         C21        H211      SINGLE       n     1.082  0.0130     0.943  0.0180
+TTX         C20        H201      SINGLE       n     1.082  0.0130     0.944  0.0161
+TTX         C19        H191      SINGLE       n     1.082  0.0130     0.943  0.0180
+TTX         C18        H181      SINGLE       n     1.082  0.0130     0.941  0.0168
+TTX          C5         H51      SINGLE       n     1.089  0.0100     0.991  0.0200
+TTX          C4         H41      SINGLE       n     1.089  0.0100     0.978  0.0119
+TTX          C4         H42      SINGLE       n     1.089  0.0100     0.978  0.0119
+TTX          C2         H21      SINGLE       n     1.089  0.0100     0.989  0.0162
+TTX          C1         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+TTX          C1         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+TTX          C1         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+TTX          C3         H31      SINGLE       n     1.089  0.0100     0.973  0.0146
+TTX          C3         H32      SINGLE       n     1.089  0.0100     0.973  0.0146
+TTX          C3         H33      SINGLE       n     1.089  0.0100     0.973  0.0146
+TTX          N2        HN21      SINGLE       n     1.016  0.0100     0.873  0.0200
+TTX          C9         H91      SINGLE       n     1.089  0.0100     0.983  0.0142
+TTX         C10        H101      SINGLE       n     1.089  0.0100     0.972  0.0152
+TTX         C10        H102      SINGLE       n     1.089  0.0100     0.972  0.0152
+TTX         C10        H103      SINGLE       n     1.089  0.0100     0.972  0.0152
+TTX         C11        H111      SINGLE       n     1.089  0.0100     0.971  0.0181
+TTX         C11        H112      SINGLE       n     1.089  0.0100     0.971  0.0181
+TTX         C11        H113      SINGLE       n     1.089  0.0100     0.971  0.0181
+TTX         C13        H131      SINGLE       n     1.089  0.0100     0.980  0.0145
+TTX         C13        H132      SINGLE       n     1.089  0.0100     0.980  0.0145
+TTX          N4        HN41      SINGLE       n     1.016  0.0100     0.874  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TTX          N1          C7         H71     110.053    1.50
+TTX          N1          C7         H72     110.053    1.50
+TTX          N1          C7         H73     110.053    1.50
+TTX         H71          C7         H72     109.408    1.50
+TTX         H71          C7         H73     109.408    1.50
+TTX         H72          C7         H73     109.408    1.50
+TTX          C7          N1         C15     119.574    2.35
+TTX          C7          N1          C6     116.141    1.50
+TTX         C15          N1          C6     124.286    2.86
+TTX          N1         C15         C16     119.290    3.00
+TTX          N1         C15         C14     119.290    3.00
+TTX         C16         C15         C14     121.419    3.00
+TTX         C15         C16         C17     129.861    1.60
+TTX         C15         C16        H161     114.956    1.50
+TTX         C17         C16        H161     115.183    1.50
+TTX         C16         C17         C22     121.141    3.00
+TTX         C16         C17         C18     121.141    3.00
+TTX         C22         C17         C18     117.718    1.50
+TTX         C17         C22         C21     120.956    1.50
+TTX         C17         C22        H221     119.405    1.50
+TTX         C21         C22        H221     119.638    1.50
+TTX         C22         C21         C20     120.217    1.50
+TTX         C22         C21        H211     119.846    1.50
+TTX         C20         C21        H211     119.937    1.50
+TTX         C21         C20         C19     119.935    1.50
+TTX         C21         C20        H201     120.033    1.50
+TTX         C19         C20        H201     120.033    1.50
+TTX         C20         C19         C18     120.217    1.50
+TTX         C20         C19        H191     119.937    1.50
+TTX         C18         C19        H191     119.846    1.50
+TTX         C17         C18         C19     120.956    1.50
+TTX         C17         C18        H181     119.405    1.50
+TTX         C19         C18        H181     119.638    1.50
+TTX          N1          C6          O1     122.107    1.67
+TTX          N1          C6          C5     117.263    1.98
+TTX          O1          C6          C5     120.630    1.50
+TTX          C6          C5          C4     108.587    1.50
+TTX          C6          C5          N2     111.106    2.53
+TTX          C6          C5         H51     109.162    1.50
+TTX          C4          C5          N2     110.363    1.84
+TTX          C4          C5         H51     108.275    1.50
+TTX          N2          C5         H51     107.954    1.50
+TTX          C5          C4          C2     115.210    1.50
+TTX          C5          C4         H41     108.470    1.50
+TTX          C5          C4         H42     108.470    1.50
+TTX          C2          C4         H41     108.478    1.50
+TTX          C2          C4         H42     108.478    1.50
+TTX         H41          C4         H42     107.542    1.50
+TTX          C4          C2          C1     110.880    1.50
+TTX          C4          C2          C3     110.880    1.50
+TTX          C4          C2         H21     108.053    1.50
+TTX          C1          C2          C3     110.507    1.50
+TTX          C1          C2         H21     108.052    1.50
+TTX          C3          C2         H21     108.052    1.50
+TTX          C2          C1         H11     109.488    1.50
+TTX          C2          C1         H12     109.488    1.50
+TTX          C2          C1         H13     109.488    1.50
+TTX         H11          C1         H12     109.411    1.50
+TTX         H11          C1         H13     109.411    1.50
+TTX         H12          C1         H13     109.411    1.50
+TTX          C2          C3         H31     109.488    1.50
+TTX          C2          C3         H32     109.488    1.50
+TTX          C2          C3         H33     109.488    1.50
+TTX         H31          C3         H32     109.411    1.50
+TTX         H31          C3         H33     109.411    1.50
+TTX         H32          C3         H33     109.411    1.50
+TTX          C5          N2          C8     121.028    1.58
+TTX          C5          N2        HN21     119.803    1.64
+TTX          C8          N2        HN21     119.169    1.83
+TTX          N2          C8          O2     123.154    1.50
+TTX          N2          C8          C9     116.417    1.50
+TTX          O2          C8          C9     120.430    1.50
+TTX          C8          C9         C10     109.980    1.50
+TTX          C8          C9          N3     110.547    2.68
+TTX          C8          C9         H91     108.061    1.50
+TTX         C10          C9          N3     111.308    2.28
+TTX         C10          C9         H91     108.119    1.50
+TTX          N3          C9         H91     106.680    1.50
+TTX          C9         C10        H101     109.749    1.54
+TTX          C9         C10        H102     109.749    1.54
+TTX          C9         C10        H103     109.749    1.54
+TTX        H101         C10        H102     109.386    1.50
+TTX        H101         C10        H103     109.386    1.50
+TTX        H102         C10        H103     109.386    1.50
+TTX          C9          N3         C11     117.493    1.75
+TTX          C9          N3         C12     121.159    3.00
+TTX         C11          N3         C12     121.349    3.00
+TTX          N3         C11        H111     110.029    1.50
+TTX          N3         C11        H112     110.029    1.50
+TTX          N3         C11        H113     110.029    1.50
+TTX        H111         C11        H112     109.408    1.50
+TTX        H111         C11        H113     109.408    1.50
+TTX        H112         C11        H113     109.408    1.50
+TTX          N3         C12          O3     121.719    2.26
+TTX          N3         C12         C13     117.639    1.50
+TTX          O3         C12         C13     120.646    1.50
+TTX         C12         C13          N4     112.757    2.43
+TTX         C12         C13        H131     108.884    1.50
+TTX         C12         C13        H132     108.884    1.50
+TTX          N4         C13        H131     109.004    1.50
+TTX          N4         C13        H132     109.004    1.50
+TTX        H131         C13        H132     107.845    1.50
+TTX         C13          N4         C14     120.400    1.50
+TTX         C13          N4        HN41     119.949    1.66
+TTX         C14          N4        HN41     119.651    1.73
+TTX         C15         C14          N4     116.701    1.87
+TTX         C15         C14          O4     121.092    1.50
+TTX          N4         C14          O4     122.207    1.52
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TTX             sp2_sp3_1         C15          N1          C7         H71       0.000    10.0     6
+TTX             sp2_sp3_7          N1          C6          C5          C4       0.000    10.0     6
+TTX             sp3_sp3_1          C2          C4          C5          C6     180.000    10.0     3
+TTX            sp2_sp3_13          C8          N2          C5          C6       0.000    10.0     6
+TTX            sp3_sp3_13          C1          C2          C4          C5      60.000    10.0     3
+TTX            sp3_sp3_19         H11          C1          C2          C4     180.000    10.0     3
+TTX            sp3_sp3_31          C4          C2          C3         H31      60.000    10.0     3
+TTX            sp2_sp2_23          O2          C8          N2          C5       0.000     5.0     2
+TTX            sp2_sp3_19          N2          C8          C9         C10       0.000    10.0     6
+TTX             sp2_sp2_8          O1          C6          N1          C7     180.000     5.0     2
+TTX             sp2_sp2_2         C16         C15          N1          C7       0.000     5.0     2
+TTX            sp3_sp3_37        H101         C10          C9          C8     180.000    10.0     3
+TTX            sp2_sp3_25         C11          N3          C9          C8       0.000    10.0     6
+TTX            sp2_sp3_31          C9          N3         C11        H111       0.000    10.0     6
+TTX            sp2_sp2_27          O3         C12          N3          C9       0.000     5.0     2
+TTX            sp2_sp3_38          N3         C12         C13          N4     120.000    10.0     6
+TTX            sp2_sp3_44         C14          N4         C13         C12     120.000    10.0     6
+TTX            sp2_sp2_29         C15         C14          N4         C13     180.000     5.0     2
+TTX            sp2_sp2_13          N4         C14         C15          N1     180.000     5.0     2
+TTX             sp2_sp2_9          N1         C15         C16         C17     180.000     5.0     2
+TTX            sp2_sp2_17         C15         C16         C17         C22     180.000     5.0     2
+TTX       const_sp2_sp2_3         C16         C17         C22         C21     180.000     5.0     2
+TTX              const_23         C16         C17         C18         C19     180.000    10.0     2
+TTX       const_sp2_sp2_5         C20         C21         C22         C17       0.000     5.0     2
+TTX       const_sp2_sp2_9         C19         C20         C21         C22       0.000     5.0     2
+TTX              const_13         C18         C19         C20         C21       0.000    10.0     2
+TTX              const_17         C17         C18         C19         C20       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TTX    chir_1    C5    N2    C6    C4    positive
+TTX    chir_2    C2    C4    C1    C3    both
+TTX    chir_3    C9    N3    C8    C10    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TTX    plan-1         C16   0.020
+TTX    plan-1         C17   0.020
+TTX    plan-1         C18   0.020
+TTX    plan-1         C19   0.020
+TTX    plan-1         C20   0.020
+TTX    plan-1         C21   0.020
+TTX    plan-1         C22   0.020
+TTX    plan-1        H181   0.020
+TTX    plan-1        H191   0.020
+TTX    plan-1        H201   0.020
+TTX    plan-1        H211   0.020
+TTX    plan-1        H221   0.020
+TTX    plan-2         C15   0.020
+TTX    plan-2          C6   0.020
+TTX    plan-2          C7   0.020
+TTX    plan-2          N1   0.020
+TTX    plan-3         C14   0.020
+TTX    plan-3         C15   0.020
+TTX    plan-3         C16   0.020
+TTX    plan-3          N1   0.020
+TTX    plan-4         C15   0.020
+TTX    plan-4         C16   0.020
+TTX    plan-4         C17   0.020
+TTX    plan-4        H161   0.020
+TTX    plan-5          C5   0.020
+TTX    plan-5          C6   0.020
+TTX    plan-5          N1   0.020
+TTX    plan-5          O1   0.020
+TTX    plan-6          C5   0.020
+TTX    plan-6          C8   0.020
+TTX    plan-6        HN21   0.020
+TTX    plan-6          N2   0.020
+TTX    plan-7          C8   0.020
+TTX    plan-7          C9   0.020
+TTX    plan-7          N2   0.020
+TTX    plan-7          O2   0.020
+TTX    plan-8         C11   0.020
+TTX    plan-8         C12   0.020
+TTX    plan-8          C9   0.020
+TTX    plan-8          N3   0.020
+TTX    plan-9         C12   0.020
+TTX    plan-9         C13   0.020
+TTX    plan-9          N3   0.020
+TTX    plan-9          O3   0.020
+TTX   plan-10         C13   0.020
+TTX   plan-10         C14   0.020
+TTX   plan-10        HN41   0.020
+TTX   plan-10          N4   0.020
+TTX   plan-11         C14   0.020
+TTX   plan-11         C15   0.020
+TTX   plan-11          N4   0.020
+TTX   plan-11          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TTX           SMILES              ACDLabs 10.04                                                                                                                              O=C1NC(C(=O)N(/C(C(=O)NCC(=O)N(C)C1C)=C\c2ccccc2)C)CC(C)C
+TTX SMILES_CANONICAL               CACTVS 3.341                                                                                                                     CC(C)C[C@@H]1NC(=O)[C@H](C)N(C)C(=O)CNC(=O)C(=C/c2ccccc2)/N(C)C1=O
+TTX           SMILES               CACTVS 3.341                                                                                                                          CC(C)C[CH]1NC(=O)[CH](C)N(C)C(=O)CNC(=O)C(=Cc2ccccc2)N(C)C1=O
+TTX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                     C[C@H]1C(=O)N[C@H](C(=O)N(/C(=C\c2ccccc2)/C(=O)NCC(=O)N1C)C)CC(C)C
+TTX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                CC1C(=O)NC(C(=O)N(C(=Cc2ccccc2)C(=O)NCC(=O)N1C)C)CC(C)C
+TTX            InChI                InChI  1.03 InChI=1S/C22H30N4O4/c1-14(2)11-17-22(30)26(5)18(12-16-9-7-6-8-10-16)21(29)23-13-19(27)25(4)15(3)20(28)24-17/h6-10,12,14-15,17H,11,13H2,1-5H3,(H,23,29)(H,24,28)/b18-12-/t15-,17-/m0/s1
+TTX         InChIKey                InChI  1.03                                                                                                                                                            SIIRBDOFKDACOK-LFXZBHHUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TTX acedrg               243         "dictionary generator"                  
+TTX acedrg_database      11          "data source"                           
+TTX rdkit                2017.03.2   "Chemoinformatics tool"
+TTX refmac5              5.8.0238    "optimization tool"                     

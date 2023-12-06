@@ -1,0 +1,342 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+X4C     X4C      8-methyl-6-[2-(5-methyl-1-phenyl-1H-benzimidazol-2-yl)ethyl]imidazo[1,5-a]pyrimidine     NON-POLYMER     49     28     .     
+#
+data_comp_X4C
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+X4C     C25     C       CR16    0       17.581      6.191       55.276      
+X4C     C24     C       CR16    0       18.453      7.259       55.359      
+X4C     C26     C       CR16    0       17.929      4.979       55.838      
+X4C     C17     C       CR16    0       24.223      6.399       55.038      
+X4C     C15     C       CR16    0       22.871      6.297       55.305      
+X4C     C23     C       CR16    0       19.675      7.123       56.003      
+X4C     C27     C       CR16    0       19.149      4.826       56.484      
+X4C     C12     C       CR16    0       24.831      5.821       57.302      
+X4C     C16     C       CR6     0       25.205      6.166       56.015      
+X4C     C8      C       CR56    0       23.470      5.711       57.603      
+X4C     C10     C       CR56    0       22.517      5.950       56.606      
+X4C     C18     C       CR6     0       20.013      5.903       56.564      
+X4C     C9      C       CR5     0       18.580      2.880       62.915      
+X4C     C7      C       CR56    0       17.524      2.975       62.065      
+X4C     C1      C       CR5     0       21.550      5.419       58.560      
+X4C     C2      C       CR5     0       19.410      3.338       60.969      
+X4C     C21     C       CR16    0       15.825      3.268       60.003      
+X4C     C14     C       CR16    0       17.136      3.416       59.749      
+X4C     C22     C       CR16    0       15.402      2.972       61.309      
+X4C     C20     C       CH3     0       26.665      6.297       55.643      
+X4C     C28     C       CH3     0       18.575      2.583       64.379      
+X4C     C11     C       CH2     0       20.493      5.127       59.569      
+X4C     C13     C       CH2     0       20.371      3.629       59.872      
+X4C     N4      N       NRD5    0       22.837      5.384       58.801      
+X4C     N3      N       NRD5    0       19.741      3.100       62.252      
+X4C     N19     N       NRD6    0       16.211      2.819       62.354      
+X4C     N5      N       NT      0       21.277      5.757       57.227      
+X4C     N6      N       NT      0       18.031      3.265       60.820      
+X4C     H1      H       H       0       16.751      6.289       54.838      
+X4C     H2      H       H       0       18.218      8.088       54.976      
+X4C     H3      H       H       0       17.336      4.248       55.783      
+X4C     H4      H       H       0       24.497      6.631       54.175      
+X4C     H5      H       H       0       22.225      6.456       54.640      
+X4C     H6      H       H       0       20.269      7.851       56.058      
+X4C     H7      H       H       0       19.385      3.999       56.868      
+X4C     H8      H       H       0       25.481      5.663       57.965      
+X4C     H9      H       H       0       15.202      3.364       59.305      
+X4C     H10     H       H       0       17.438      3.613       58.889      
+X4C     H11     H       H       0       14.477      2.873       61.459      
+X4C     H12     H       H       0       27.214      6.236       56.442      
+X4C     H13     H       H       0       26.815      7.156       55.215      
+X4C     H14     H       H       0       26.909      5.585       55.030      
+X4C     H15     H       H       0       18.228      3.347       64.864      
+X4C     H16     H       H       0       19.480      2.396       64.676      
+X4C     H17     H       H       0       18.014      1.811       64.551      
+X4C     H18     H       H       0       19.630      5.461       59.250      
+X4C     H19     H       H       0       20.708      5.602       60.399      
+X4C     H20     H       H       0       20.082      3.163       59.063      
+X4C     H21     H       H       0       21.251      3.282       60.121      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+X4C         C17         C15      DOUBLE       y     1.377  0.0116     1.377  0.0116
+X4C         C17         C16      SINGLE       y     1.388  0.0200     1.388  0.0200
+X4C         C15         C10      SINGLE       y     1.389  0.0100     1.389  0.0100
+X4C         C16         C20      SINGLE       n     1.511  0.0163     1.511  0.0163
+X4C         C25         C26      DOUBLE       y     1.376  0.0112     1.376  0.0112
+X4C         C26         C27      SINGLE       y     1.385  0.0100     1.385  0.0100
+X4C         C25         C24      SINGLE       y     1.376  0.0124     1.376  0.0124
+X4C         C12         C16      DOUBLE       y     1.379  0.0100     1.379  0.0100
+X4C         C27         C18      DOUBLE       y     1.380  0.0100     1.380  0.0100
+X4C         C24         C23      DOUBLE       y     1.385  0.0100     1.385  0.0100
+X4C         C10          N5      SINGLE       y     1.404  0.0105     1.404  0.0105
+X4C          C8         C10      DOUBLE       y     1.399  0.0100     1.399  0.0100
+X4C         C23         C18      SINGLE       y     1.380  0.0100     1.380  0.0100
+X4C         C18          N5      SINGLE       n     1.433  0.0100     1.433  0.0100
+X4C         C12          C8      SINGLE       y     1.395  0.0100     1.395  0.0100
+X4C          C1          N5      SINGLE       y     1.396  0.0161     1.396  0.0161
+X4C          C8          N4      SINGLE       y     1.392  0.0100     1.392  0.0100
+X4C          C1          N4      DOUBLE       y     1.307  0.0100     1.307  0.0100
+X4C          C1         C11      SINGLE       n     1.488  0.0100     1.488  0.0100
+X4C         C11         C13      SINGLE       n     1.533  0.0191     1.533  0.0191
+X4C         C21         C14      DOUBLE       y     1.342  0.0123     1.342  0.0123
+X4C         C21         C22      SINGLE       y     1.400  0.0114     1.400  0.0114
+X4C         C14          N6      SINGLE       y     1.400  0.0200     1.400  0.0200
+X4C          C2         C13      SINGLE       n     1.487  0.0100     1.487  0.0100
+X4C          C2          N6      SINGLE       y     1.396  0.0161     1.396  0.0161
+X4C          C7          N6      SINGLE       y     1.376  0.0112     1.376  0.0112
+X4C         C22         N19      DOUBLE       y     1.318  0.0142     1.318  0.0142
+X4C          C2          N3      DOUBLE       y     1.337  0.0200     1.337  0.0200
+X4C          C7         N19      SINGLE       y     1.345  0.0116     1.345  0.0116
+X4C          C9          C7      DOUBLE       y     1.358  0.0182     1.358  0.0182
+X4C          C9          N3      SINGLE       y     1.337  0.0200     1.337  0.0200
+X4C          C9         C28      SINGLE       n     1.494  0.0100     1.494  0.0100
+X4C         C25          H1      SINGLE       n     1.082  0.0130     0.944  0.0161
+X4C         C24          H2      SINGLE       n     1.082  0.0130     0.943  0.0172
+X4C         C26          H3      SINGLE       n     1.082  0.0130     0.943  0.0172
+X4C         C17          H4      SINGLE       n     1.082  0.0130     0.935  0.0103
+X4C         C15          H5      SINGLE       n     1.082  0.0130     0.941  0.0154
+X4C         C23          H6      SINGLE       n     1.082  0.0130     0.942  0.0181
+X4C         C27          H7      SINGLE       n     1.082  0.0130     0.942  0.0181
+X4C         C12          H8      SINGLE       n     1.082  0.0130     0.942  0.0173
+X4C         C21          H9      SINGLE       n     1.082  0.0130     0.941  0.0156
+X4C         C14         H10      SINGLE       n     1.082  0.0130     0.933  0.0100
+X4C         C22         H11      SINGLE       n     1.082  0.0130     0.942  0.0100
+X4C         C20         H12      SINGLE       n     1.089  0.0100     0.971  0.0135
+X4C         C20         H13      SINGLE       n     1.089  0.0100     0.971  0.0135
+X4C         C20         H14      SINGLE       n     1.089  0.0100     0.971  0.0135
+X4C         C28         H15      SINGLE       n     1.089  0.0100     0.970  0.0153
+X4C         C28         H16      SINGLE       n     1.089  0.0100     0.970  0.0153
+X4C         C28         H17      SINGLE       n     1.089  0.0100     0.970  0.0153
+X4C         C11         H18      SINGLE       n     1.089  0.0100     0.980  0.0115
+X4C         C11         H19      SINGLE       n     1.089  0.0100     0.980  0.0115
+X4C         C13         H20      SINGLE       n     1.089  0.0100     0.978  0.0121
+X4C         C13         H21      SINGLE       n     1.089  0.0100     0.978  0.0121
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+X4C         C26         C25         C24     119.898    1.50
+X4C         C26         C25          H1     120.051    1.50
+X4C         C24         C25          H1     120.051    1.50
+X4C         C25         C24         C23     120.549    1.50
+X4C         C25         C24          H2     119.890    1.50
+X4C         C23         C24          H2     119.561    1.50
+X4C         C25         C26         C27     120.549    1.50
+X4C         C25         C26          H3     119.890    1.50
+X4C         C27         C26          H3     119.561    1.50
+X4C         C15         C17         C16     122.459    1.50
+X4C         C15         C17          H4     118.888    1.50
+X4C         C16         C17          H4     118.654    1.50
+X4C         C17         C15         C10     116.722    1.50
+X4C         C17         C15          H5     121.454    1.50
+X4C         C10         C15          H5     121.824    1.50
+X4C         C24         C23         C18     119.185    1.50
+X4C         C24         C23          H6     120.530    1.50
+X4C         C18         C23          H6     120.284    1.50
+X4C         C26         C27         C18     119.185    1.50
+X4C         C26         C27          H7     120.530    1.50
+X4C         C18         C27          H7     120.284    1.50
+X4C         C16         C12          C8     118.636    1.50
+X4C         C16         C12          H8     120.775    1.50
+X4C          C8         C12          H8     120.589    1.50
+X4C         C17         C16         C20     119.485    1.50
+X4C         C17         C16         C12     119.847    1.50
+X4C         C20         C16         C12     120.668    1.50
+X4C         C10          C8         C12     119.922    1.50
+X4C         C10          C8          N4     109.977    1.50
+X4C         C12          C8          N4     130.100    1.50
+X4C         C15         C10          N5     131.493    1.50
+X4C         C15         C10          C8     122.414    1.50
+X4C          N5         C10          C8     106.093    1.50
+X4C         C27         C18         C23     120.634    1.50
+X4C         C27         C18          N5     119.683    1.50
+X4C         C23         C18          N5     119.683    1.50
+X4C          C7          C9          N3     110.740    1.50
+X4C          C7          C9         C28     128.539    1.76
+X4C          N3          C9         C28     120.721    2.32
+X4C          N6          C7         N19     123.587    1.50
+X4C          N6          C7          C9     109.176    1.50
+X4C         N19          C7          C9     127.237    1.50
+X4C          N5          C1          N4     112.266    1.94
+X4C          N5          C1         C11     122.289    1.62
+X4C          N4          C1         C11     125.445    1.50
+X4C         C13          C2          N6     124.706    1.50
+X4C         C13          C2          N3     124.326    2.43
+X4C          N6          C2          N3     110.968    1.50
+X4C         C14         C21         C22     120.259    2.29
+X4C         C14         C21          H9     119.333    1.50
+X4C         C22         C21          H9     120.409    1.50
+X4C         C21         C14          N6     119.730    3.00
+X4C         C21         C14         H10     120.541    1.50
+X4C          N6         C14         H10     119.730    3.00
+X4C         C21         C22         N19     124.038    1.50
+X4C         C21         C22         H11     118.158    1.50
+X4C         N19         C22         H11     117.803    1.50
+X4C         C16         C20         H12     109.472    1.50
+X4C         C16         C20         H13     109.472    1.50
+X4C         C16         C20         H14     109.472    1.50
+X4C         H12         C20         H13     109.348    1.50
+X4C         H12         C20         H14     109.348    1.50
+X4C         H13         C20         H14     109.348    1.50
+X4C          C9         C28         H15     109.521    1.50
+X4C          C9         C28         H16     109.521    1.50
+X4C          C9         C28         H17     109.521    1.50
+X4C         H15         C28         H16     109.368    1.50
+X4C         H15         C28         H17     109.368    1.50
+X4C         H16         C28         H17     109.368    1.50
+X4C          C1         C11         C13     112.535    1.50
+X4C          C1         C11         H18     108.854    1.50
+X4C          C1         C11         H19     108.854    1.50
+X4C         C13         C11         H18     108.823    1.50
+X4C         C13         C11         H19     108.823    1.50
+X4C         H18         C11         H19     107.724    1.50
+X4C         C11         C13          C2     112.535    1.50
+X4C         C11         C13         H20     108.823    1.50
+X4C         C11         C13         H21     108.823    1.50
+X4C          C2         C13         H20     108.827    1.50
+X4C          C2         C13         H21     108.827    1.50
+X4C         H20         C13         H21     107.724    1.50
+X4C          C8          N4          C1     105.084    1.50
+X4C          C2          N3          C9     106.237    1.50
+X4C         C22         N19          C7     111.639    1.50
+X4C         C10          N5         C18     123.922    1.61
+X4C         C10          N5          C1     107.594    1.50
+X4C         C18          N5          C1     124.897    2.56
+X4C         C14          N6          C2     125.931    2.87
+X4C         C14          N6          C7     109.471    3.00
+X4C          C2          N6          C7     107.156    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+X4C              const_69         C23         C24         C25         C26       0.000    10.0     2
+X4C              const_35         C24         C25         C26         C27       0.000    10.0     2
+X4C              const_24         C15         C10          N5         C18       0.000    10.0     2
+X4C            sp2_sp2_15         C27         C18          N5         C10     180.000     5.0     2
+X4C              const_56          N6          C7          C9         C28     180.000    10.0     2
+X4C            sp2_sp3_19          C7          C9         C28         H15     150.000    10.0     6
+X4C              const_76         C28          C9          N3          C2     180.000    10.0     2
+X4C            sp2_sp2_19          N6          C7         N19         C22       0.000     5.0     2
+X4C              const_31         N19          C7          N6         C14       0.000    10.0     2
+X4C             sp2_sp3_8          N5          C1         C11         C13     -90.000    10.0     6
+X4C              const_30         C11          C1          N4          C8     180.000    10.0     2
+X4C              const_27         C11          C1          N5         C10     180.000    10.0     2
+X4C            sp2_sp3_14          N6          C2         C13         C11     -90.000    10.0     6
+X4C              const_64         C13          C2          N3          C9     180.000    10.0     2
+X4C              const_62         C13          C2          N6         C14       0.000    10.0     2
+X4C             sp2_sp2_5          N6         C14         C21         C22       0.000     5.0     2
+X4C             sp2_sp2_9         C14         C21         C22         N19       0.000     5.0     2
+X4C             sp2_sp2_2         C21         C14          N6          C2     180.000     5.0     2
+X4C            sp2_sp2_13         C21         C22         N19          C7       0.000     5.0     2
+X4C              const_51         C18         C23         C24         C25       0.000    10.0     2
+X4C             sp3_sp3_1          C1         C11         C13          C2     180.000    10.0     3
+X4C              const_39         C25         C26         C27         C18       0.000    10.0     2
+X4C       const_sp2_sp2_1         C10         C15         C17         C16       0.000     5.0     2
+X4C              const_67         C20         C16         C17         C15     180.000    10.0     2
+X4C       const_sp2_sp2_7          N5         C10         C15         C17     180.000     5.0     2
+X4C              const_47         C27         C18         C23         C24       0.000    10.0     2
+X4C              const_43         C23         C18         C27         C26       0.000    10.0     2
+X4C              const_18          C8         C12         C16         C20     180.000    10.0     2
+X4C              const_13         C16         C12          C8         C10       0.000    10.0     2
+X4C             sp2_sp3_1         C17         C16         C20         H12     150.000    10.0     6
+X4C       const_sp2_sp2_9         C15         C10          C8         C12       0.000     5.0     2
+X4C              const_73         C10          C8          N4          C1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+X4C    plan-1          C1   0.020
+X4C    plan-1         C10   0.020
+X4C    plan-1         C11   0.020
+X4C    plan-1         C12   0.020
+X4C    plan-1         C15   0.020
+X4C    plan-1         C16   0.020
+X4C    plan-1         C17   0.020
+X4C    plan-1         C18   0.020
+X4C    plan-1         C20   0.020
+X4C    plan-1          C8   0.020
+X4C    plan-1          H4   0.020
+X4C    plan-1          H5   0.020
+X4C    plan-1          H8   0.020
+X4C    plan-1          N4   0.020
+X4C    plan-1          N5   0.020
+X4C    plan-2         C13   0.020
+X4C    plan-2         C14   0.020
+X4C    plan-2          C2   0.020
+X4C    plan-2         C21   0.020
+X4C    plan-2         C22   0.020
+X4C    plan-2         C28   0.020
+X4C    plan-2          C7   0.020
+X4C    plan-2          C9   0.020
+X4C    plan-2         H10   0.020
+X4C    plan-2         H11   0.020
+X4C    plan-2          H9   0.020
+X4C    plan-2         N19   0.020
+X4C    plan-2          N3   0.020
+X4C    plan-2          N6   0.020
+X4C    plan-3         C18   0.020
+X4C    plan-3         C23   0.020
+X4C    plan-3         C24   0.020
+X4C    plan-3         C25   0.020
+X4C    plan-3         C26   0.020
+X4C    plan-3         C27   0.020
+X4C    plan-3          H1   0.020
+X4C    plan-3          H2   0.020
+X4C    plan-3          H3   0.020
+X4C    plan-3          H6   0.020
+X4C    plan-3          H7   0.020
+X4C    plan-3          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+X4C           SMILES              ACDLabs 12.01                                                                                            n2c1cc(ccc1n(c2CCc4nc(c3ncccn34)C)c5ccccc5)C
+X4C            InChI                InChI  1.03 InChI=1S/C23H21N5/c1-16-9-10-20-19(15-16)26-22(28(20)18-7-4-3-5-8-18)12-11-21-25-17(2)23-24-13-6-14-27(21)23/h3-10,13-15H,11-12H2,1-2H3
+X4C         InChIKey                InChI  1.03                                                                                                             VOYXDWSUNQJWTO-UHFFFAOYSA-N
+X4C SMILES_CANONICAL               CACTVS 3.385                                                                                            Cc1ccc2n(c(CCc3nc(C)c4ncccn34)nc2c1)c5ccccc5
+X4C           SMILES               CACTVS 3.385                                                                                            Cc1ccc2n(c(CCc3nc(C)c4ncccn34)nc2c1)c5ccccc5
+X4C SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                            Cc1ccc2c(c1)nc(n2c3ccccc3)CCc4nc(c5n4cccn5)C
+X4C           SMILES "OpenEye OEToolkits" 1.7.6                                                                                            Cc1ccc2c(c1)nc(n2c3ccccc3)CCc4nc(c5n4cccn5)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+X4C acedrg               243         "dictionary generator"                  
+X4C acedrg_database      11          "data source"                           
+X4C rdkit                2017.03.2   "Chemoinformatics tool"
+X4C refmac5              5.8.0238    "optimization tool"                     

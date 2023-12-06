@@ -1,0 +1,170 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DBP     DBP      "1,3-DIAMINOBENZYL PHENYLALANINE"     NON-POLYMER     19     9     .     
+#
+data_comp_DBP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DBP     N       N       NT2     0       27.848      57.624      49.762      
+DBP     CB      C       CH2     0       26.393      57.462      49.672      
+DBP     CG      C       CR6     0       25.985      56.017      49.520      
+DBP     CD1     C       CR16    0       26.215      55.111      50.553      
+DBP     CE1     C       CR16    0       25.841      53.784      50.416      
+DBP     CD2     C       CR16    0       25.378      55.573      48.351      
+DBP     CE2     C       CR6     0       24.996      54.233      48.200      
+DBP     CZ      C       CR16    0       25.236      53.347      49.248      
+DBP     NE2     N       NH2     0       24.394      53.803      47.037      
+DBP     HN1     H       H       0       27.987      58.577      49.824      
+DBP     HN21    H       H       0       28.181      57.344      48.900      
+DBP     HB11    H       H       0       26.084      58.001      48.907      
+DBP     HB21    H       H       0       26.003      57.849      50.489      
+DBP     HD11    H       H       0       26.626      55.403      51.351      
+DBP     HC11    H       H       0       25.999      53.175      51.118      
+DBP     HC21    H       H       0       25.219      56.179      47.648      
+DBP     HCZ1    H       H       0       24.983      52.443      49.158      
+DBP     HE21    H       H       0       24.104      52.977      46.973      
+DBP     HE22    H       H       0       24.302      54.356      46.362      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DBP           N          CB      SINGLE       n     1.467  0.0144     1.467  0.0144
+DBP          CB          CG      SINGLE       n     1.509  0.0100     1.509  0.0100
+DBP          CG         CD1      DOUBLE       y     1.390  0.0100     1.390  0.0100
+DBP          CG         CD2      SINGLE       y     1.386  0.0100     1.386  0.0100
+DBP         CD1         CE1      SINGLE       y     1.380  0.0131     1.380  0.0131
+DBP         CE1          CZ      DOUBLE       y     1.381  0.0144     1.381  0.0144
+DBP         CD2         CE2      DOUBLE       y     1.397  0.0100     1.397  0.0100
+DBP         CE2          CZ      SINGLE       y     1.390  0.0100     1.390  0.0100
+DBP         CE2         NE2      SINGLE       n     1.376  0.0195     1.376  0.0195
+DBP           N         HN1      SINGLE       n     1.036  0.0160     0.965  0.0200
+DBP           N        HN21      SINGLE       n     1.036  0.0160     0.965  0.0200
+DBP          CB        HB11      SINGLE       n     1.089  0.0100     0.985  0.0198
+DBP          CB        HB21      SINGLE       n     1.089  0.0100     0.985  0.0198
+DBP         CD1        HD11      SINGLE       n     1.082  0.0130     0.944  0.0174
+DBP         CE1        HC11      SINGLE       n     1.082  0.0130     0.943  0.0185
+DBP         CD2        HC21      SINGLE       n     1.082  0.0130     0.942  0.0139
+DBP          CZ        HCZ1      SINGLE       n     1.082  0.0130     0.943  0.0178
+DBP         NE2        HE21      SINGLE       n     1.016  0.0100     0.877  0.0200
+DBP         NE2        HE22      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DBP          CB           N         HN1     104.789    3.00
+DBP          CB           N        HN21     104.789    3.00
+DBP         HN1           N        HN21     107.163    3.00
+DBP           N          CB          CG     112.424    2.20
+DBP           N          CB        HB11     107.542    2.93
+DBP           N          CB        HB21     107.542    2.93
+DBP          CG          CB        HB11     110.855    3.00
+DBP          CG          CB        HB21     110.855    3.00
+DBP        HB11          CB        HB21     107.838    1.50
+DBP          CB          CG         CD1     120.600    2.59
+DBP          CB          CG         CD2     120.460    1.50
+DBP         CD1          CG         CD2     118.940    1.50
+DBP          CG         CD1         CE1     120.440    1.50
+DBP          CG         CD1        HD11     119.744    1.50
+DBP         CE1         CD1        HD11     119.817    1.50
+DBP         CD1         CE1          CZ     120.562    1.50
+DBP         CD1         CE1        HC11     119.815    1.50
+DBP          CZ         CE1        HC11     119.623    1.50
+DBP          CG         CD2         CE2     120.649    1.50
+DBP          CG         CD2        HC21     119.843    1.50
+DBP         CE2         CD2        HC21     119.508    1.50
+DBP         CD2         CE2          CZ     118.665    1.50
+DBP         CD2         CE2         NE2     120.560    1.50
+DBP          CZ         CE2         NE2     120.775    1.50
+DBP         CE1          CZ         CE2     120.745    1.50
+DBP         CE1          CZ        HCZ1     119.881    1.50
+DBP         CE2          CZ        HCZ1     119.374    1.50
+DBP         CE2         NE2        HE21     119.811    2.73
+DBP         CE2         NE2        HE22     119.811    2.73
+DBP        HE21         NE2        HE22     120.379    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DBP             sp3_sp3_1          CG          CB           N         HN1     180.000    10.0     3
+DBP             sp2_sp3_2         CD1          CG          CB           N     -90.000    10.0     6
+DBP       const_sp2_sp2_2         CE1         CD1          CG          CB     180.000     5.0     2
+DBP              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+DBP       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+DBP       const_sp2_sp2_9         CD1         CE1          CZ         CE2       0.000     5.0     2
+DBP              const_18          CG         CD2         CE2         NE2     180.000    10.0     2
+DBP              const_15         NE2         CE2          CZ         CE1     180.000    10.0     2
+DBP             sp2_sp2_1         CD2         CE2         NE2        HE21     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DBP    plan-1          CB   0.020
+DBP    plan-1         CD1   0.020
+DBP    plan-1         CD2   0.020
+DBP    plan-1         CE1   0.020
+DBP    plan-1         CE2   0.020
+DBP    plan-1          CG   0.020
+DBP    plan-1          CZ   0.020
+DBP    plan-1        HC11   0.020
+DBP    plan-1        HC21   0.020
+DBP    plan-1        HCZ1   0.020
+DBP    plan-1        HD11   0.020
+DBP    plan-1         NE2   0.020
+DBP    plan-2         CE2   0.020
+DBP    plan-2        HE21   0.020
+DBP    plan-2        HE22   0.020
+DBP    plan-2         NE2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DBP           SMILES              ACDLabs 10.04                                       NCc1cc(N)ccc1
+DBP SMILES_CANONICAL               CACTVS 3.341                                       NCc1cccc(N)c1
+DBP           SMILES               CACTVS 3.341                                       NCc1cccc(N)c1
+DBP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                     c1cc(cc(c1)N)CN
+DBP           SMILES "OpenEye OEToolkits" 1.5.0                                     c1cc(cc(c1)N)CN
+DBP            InChI                InChI  1.03 InChI=1S/C7H10N2/c8-5-6-2-1-3-7(9)4-6/h1-4H,5,8-9H2
+DBP         InChIKey                InChI  1.03                         ZDBWYUOUYNQZBM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DBP acedrg               243         "dictionary generator"                  
+DBP acedrg_database      11          "data source"                           
+DBP rdkit                2017.03.2   "Chemoinformatics tool"
+DBP refmac5              5.8.0238    "optimization tool"                     

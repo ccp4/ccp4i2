@@ -1,0 +1,151 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BUB     BUB      "1-BUTANE BORONIC ACID"     NON-POLYMER     18     7     .     
+#
+data_comp_BUB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BUB     C1      C       CH3     0       3.454       -0.373      -0.033      
+BUB     C2      C       CH2     0       2.268       0.560       -0.086      
+BUB     C6      C       CH2     0       0.931       -0.158      0.017       
+BUB     C9      C       CH2     0       -0.270      0.771       -0.045      
+BUB     B12     B       B       0       -1.632      -0.014      0.084       
+BUB     O15     O       OH1     0       -1.666      -1.372      0.088       
+BUB     O16     O       OH1     0       -2.794      0.681       0.192       
+BUB     H11     H       H       0       4.277       0.142       -0.102      
+BUB     H12     H       H       0       3.405       -1.004      -0.773      
+BUB     H13     H       H       0       3.448       -0.861      0.809       
+BUB     H21     H       H       0       2.294       1.062       -0.930      
+BUB     H22     H       H       0       2.338       1.206       0.650       
+BUB     H61     H       H       0       0.909       -0.653      0.856       
+BUB     H62     H       H       0       0.871       -0.806      -0.709      
+BUB     H91     H       H       0       -0.254      1.258       -0.896      
+BUB     H92     H       H       0       -0.203      1.429       0.680       
+BUB     HO15    H       H       0       -2.313      -1.674      -0.367      
+BUB     HO16    H       H       0       -2.694      1.397       0.632       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BUB          C1          C2      SINGLE       n     1.510  0.0200     1.510  0.0200
+BUB          C2          C6      SINGLE       n     1.521  0.0100     1.521  0.0100
+BUB          C6          C9      SINGLE       n     1.519  0.0120     1.519  0.0120
+BUB          C9         B12      SINGLE       n     1.573  0.0200     1.573  0.0200
+BUB         B12         O15      SINGLE       n     1.358  0.0116     1.358  0.0116
+BUB         B12         O16      SINGLE       n     1.358  0.0116     1.358  0.0116
+BUB          C1         H11      SINGLE       n     1.089  0.0100     0.973  0.0157
+BUB          C1         H12      SINGLE       n     1.089  0.0100     0.973  0.0157
+BUB          C1         H13      SINGLE       n     1.089  0.0100     0.973  0.0157
+BUB          C2         H21      SINGLE       n     1.089  0.0100     0.982  0.0155
+BUB          C2         H22      SINGLE       n     1.089  0.0100     0.982  0.0155
+BUB          C6         H61      SINGLE       n     1.089  0.0100     0.975  0.0191
+BUB          C6         H62      SINGLE       n     1.089  0.0100     0.975  0.0191
+BUB          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0150
+BUB          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0150
+BUB         O15        HO15      SINGLE       n     0.970  0.0120     0.847  0.0200
+BUB         O16        HO16      SINGLE       n     0.970  0.0120     0.847  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BUB          C2          C1         H11     109.554    1.50
+BUB          C2          C1         H12     109.554    1.50
+BUB          C2          C1         H13     109.554    1.50
+BUB         H11          C1         H12     109.380    1.50
+BUB         H11          C1         H13     109.380    1.50
+BUB         H12          C1         H13     109.380    1.50
+BUB          C1          C2          C6     113.288    1.50
+BUB          C1          C2         H21     108.918    1.50
+BUB          C1          C2         H22     108.918    1.50
+BUB          C6          C2         H21     108.755    1.50
+BUB          C6          C2         H22     108.755    1.50
+BUB         H21          C2         H22     107.763    1.50
+BUB          C2          C6          C9     113.326    2.10
+BUB          C2          C6         H61     108.314    1.50
+BUB          C2          C6         H62     108.314    1.50
+BUB          C9          C6         H61     108.869    1.50
+BUB          C9          C6         H62     108.869    1.50
+BUB         H61          C6         H62     107.324    1.50
+BUB          C6          C9         B12     109.534    3.00
+BUB          C6          C9         H91     108.964    1.50
+BUB          C6          C9         H92     108.964    1.50
+BUB         B12          C9         H91     109.347    1.86
+BUB         B12          C9         H92     109.347    1.86
+BUB         H91          C9         H92     107.808    1.50
+BUB          C9         B12         O15     120.001    3.00
+BUB          C9         B12         O16     120.000    3.00
+BUB         O15         B12         O16     119.998    3.00
+BUB         B12         O15        HO15     111.858    3.00
+BUB         B12         O16        HO16     111.858    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BUB             sp3_sp3_1         H11          C1          C2          C6     180.000    10.0     3
+BUB            sp3_sp3_10          C1          C2          C6          C9     180.000    10.0     3
+BUB            sp3_sp3_19          C2          C6          C9         B12     180.000    10.0     3
+BUB            sp3_sp3_28         O15         B12          C9          C6     180.000    10.0     3
+BUB            sp3_sp3_34          C9         B12         O15        HO15     180.000    10.0     3
+BUB            sp3_sp3_36          C9         B12         O16        HO16     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BUB    plan-1         B12   0.020
+BUB    plan-1          C9   0.020
+BUB    plan-1         O15   0.020
+BUB    plan-1         O16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BUB           SMILES              ACDLabs 12.01                                        OB(O)CCCC
+BUB            InChI                InChI  1.03 InChI=1S/C4H11BO2/c1-2-3-4-5(6)7/h6-7H,2-4H2,1H3
+BUB         InChIKey                InChI  1.03                      QPKFVRWIISEVCW-UHFFFAOYSA-N
+BUB SMILES_CANONICAL               CACTVS 3.385                                        CCCCB(O)O
+BUB           SMILES               CACTVS 3.385                                        CCCCB(O)O
+BUB SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                      B(CCCC)(O)O
+BUB           SMILES "OpenEye OEToolkits" 1.7.6                                      B(CCCC)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BUB acedrg               243         "dictionary generator"                  
+BUB acedrg_database      11          "data source"                           
+BUB rdkit                2017.03.2   "Chemoinformatics tool"
+BUB refmac5              5.8.0238    "optimization tool"                     

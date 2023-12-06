@@ -1,0 +1,204 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3YP     3YP      3-CYCLOPENTYL-N-HYDROXYPROPANAMIDE     NON-POLYMER     26     11     .     
+#
+data_comp_3YP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3YP     CAF     C       CH2     0       -5.019      -12.043     38.406      
+3YP     CAC     C       CH2     0       -4.964      -10.857     37.449      
+3YP     CAD     C       CH2     0       -4.284      -9.725      38.171      
+3YP     CAG     C       CH2     0       -3.841      -10.264     39.524      
+3YP     CAK     C       CH1     0       -4.752      -11.458     39.790      
+3YP     CAH     C       CH2     0       -4.156      -12.467     40.775      
+3YP     CAE     C       CH2     0       -5.113      -13.587     41.182      
+3YP     CAJ     C       C       0       -4.502      -14.557     42.169      
+3YP     OAA     O       O       0       -3.558      -15.287     41.842      
+3YP     NAI     N       NH1     0       -5.031      -14.567     43.375      
+3YP     OAB     O       OH1     0       -4.570      -15.443     44.352      
+3YP     HAF1    H       H       0       -5.905      -12.474     38.377      
+3YP     HAF2    H       H       0       -4.334      -12.711     38.173      
+3YP     HAC1    H       H       0       -4.462      -11.096     36.640      
+3YP     HAC2    H       H       0       -5.871      -10.594     37.180      
+3YP     HAD1    H       H       0       -4.905      -8.972      38.288      
+3YP     HAD2    H       H       0       -3.509      -9.408      37.658      
+3YP     HAG1    H       H       0       -3.950      -9.580      40.225      
+3YP     HAG2    H       H       0       -2.898      -10.544     39.496      
+3YP     HAK     H       H       0       -5.608      -11.129     40.168      
+3YP     HAH1    H       H       0       -3.871      -11.986     41.580      
+3YP     HAH2    H       H       0       -3.358      -12.866     40.368      
+3YP     HAE1    H       H       0       -5.381      -14.081     40.379      
+3YP     HAE2    H       H       0       -5.922      -13.187     41.567      
+3YP     HAI     H       H       0       -5.679      -14.020     43.589      
+3YP     HAB     H       H       0       -3.806      -15.150     44.639      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3YP         CAF         CAC      SINGLE       n     1.523  0.0200     1.523  0.0200
+3YP         CAF         CAK      SINGLE       n     1.526  0.0100     1.526  0.0100
+3YP         CAC         CAD      SINGLE       n     1.503  0.0200     1.503  0.0200
+3YP         CAD         CAG      SINGLE       n     1.523  0.0200     1.523  0.0200
+3YP         CAG         CAK      SINGLE       n     1.526  0.0100     1.526  0.0100
+3YP         CAK         CAH      SINGLE       n     1.530  0.0100     1.530  0.0100
+3YP         CAH         CAE      SINGLE       n     1.528  0.0100     1.528  0.0100
+3YP         CAE         CAJ      SINGLE       n     1.510  0.0100     1.510  0.0100
+3YP         CAJ         OAA      DOUBLE       n     1.236  0.0100     1.236  0.0100
+3YP         CAJ         NAI      SINGLE       n     1.313  0.0100     1.313  0.0100
+3YP         NAI         OAB      SINGLE       n     1.389  0.0110     1.389  0.0110
+3YP         CAF        HAF1      SINGLE       n     1.089  0.0100     0.985  0.0118
+3YP         CAF        HAF2      SINGLE       n     1.089  0.0100     0.985  0.0118
+3YP         CAC        HAC1      SINGLE       n     1.089  0.0100     0.982  0.0145
+3YP         CAC        HAC2      SINGLE       n     1.089  0.0100     0.982  0.0145
+3YP         CAD        HAD1      SINGLE       n     1.089  0.0100     0.982  0.0145
+3YP         CAD        HAD2      SINGLE       n     1.089  0.0100     0.982  0.0145
+3YP         CAG        HAG1      SINGLE       n     1.089  0.0100     0.985  0.0118
+3YP         CAG        HAG2      SINGLE       n     1.089  0.0100     0.985  0.0118
+3YP         CAK         HAK      SINGLE       n     1.089  0.0100     0.992  0.0133
+3YP         CAH        HAH1      SINGLE       n     1.089  0.0100     0.980  0.0191
+3YP         CAH        HAH2      SINGLE       n     1.089  0.0100     0.980  0.0191
+3YP         CAE        HAE1      SINGLE       n     1.089  0.0100     0.981  0.0185
+3YP         CAE        HAE2      SINGLE       n     1.089  0.0100     0.981  0.0185
+3YP         NAI         HAI      SINGLE       n     1.016  0.0100     0.875  0.0200
+3YP         OAB         HAB      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3YP         CAC         CAF         CAK     105.018    1.50
+3YP         CAC         CAF        HAF1     110.744    1.50
+3YP         CAC         CAF        HAF2     110.744    1.50
+3YP         CAK         CAF        HAF1     110.689    1.50
+3YP         CAK         CAF        HAF2     110.689    1.50
+3YP        HAF1         CAF        HAF2     108.821    1.50
+3YP         CAF         CAC         CAD     106.544    3.00
+3YP         CAF         CAC        HAC1     110.704    1.50
+3YP         CAF         CAC        HAC2     110.704    1.50
+3YP         CAD         CAC        HAC1     110.679    1.50
+3YP         CAD         CAC        HAC2     110.679    1.50
+3YP        HAC1         CAC        HAC2     108.634    1.62
+3YP         CAC         CAD         CAG     106.544    3.00
+3YP         CAC         CAD        HAD1     110.679    1.50
+3YP         CAC         CAD        HAD2     110.679    1.50
+3YP         CAG         CAD        HAD1     110.704    1.50
+3YP         CAG         CAD        HAD2     110.704    1.50
+3YP        HAD1         CAD        HAD2     108.634    1.62
+3YP         CAD         CAG         CAK     105.018    1.50
+3YP         CAD         CAG        HAG1     110.744    1.50
+3YP         CAD         CAG        HAG2     110.744    1.50
+3YP         CAK         CAG        HAG1     110.689    1.50
+3YP         CAK         CAG        HAG2     110.689    1.50
+3YP        HAG1         CAG        HAG2     108.821    1.50
+3YP         CAF         CAK         CAG     104.276    2.97
+3YP         CAF         CAK         CAH     113.255    1.62
+3YP         CAF         CAK         HAK     108.453    1.91
+3YP         CAG         CAK         CAH     113.255    1.62
+3YP         CAG         CAK         HAK     108.453    1.91
+3YP         CAH         CAK         HAK     107.814    1.50
+3YP         CAK         CAH         CAE     113.850    1.72
+3YP         CAK         CAH        HAH1     108.408    1.50
+3YP         CAK         CAH        HAH2     108.408    1.50
+3YP         CAE         CAH        HAH1     108.716    1.50
+3YP         CAE         CAH        HAH2     108.716    1.50
+3YP        HAH1         CAH        HAH2     107.607    1.50
+3YP         CAH         CAE         CAJ     112.952    2.17
+3YP         CAH         CAE        HAE1     108.756    1.50
+3YP         CAH         CAE        HAE2     108.756    1.50
+3YP         CAJ         CAE        HAE1     108.929    1.50
+3YP         CAJ         CAE        HAE2     108.929    1.50
+3YP        HAE1         CAE        HAE2     107.705    1.50
+3YP         CAE         CAJ         OAA     121.816    1.50
+3YP         CAE         CAJ         NAI     114.903    1.50
+3YP         OAA         CAJ         NAI     123.281    1.50
+3YP         CAJ         NAI         OAB     120.736    1.50
+3YP         CAJ         NAI         HAI     120.460    1.50
+3YP         OAB         NAI         HAI     118.803    2.59
+3YP         NAI         OAB         HAB     108.051    2.18
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3YP             sp3_sp3_1         CAD         CAC         CAF         CAK      60.000    10.0     3
+3YP            sp3_sp3_39         CAC         CAF         CAK         CAH      60.000    10.0     3
+3YP            sp3_sp3_10         CAF         CAC         CAD         CAG     -60.000    10.0     3
+3YP            sp3_sp3_19         CAC         CAD         CAG         CAK      60.000    10.0     3
+3YP            sp3_sp3_29         CAD         CAG         CAK         CAH      60.000    10.0     3
+3YP            sp3_sp3_47         CAE         CAH         CAK         CAF     -60.000    10.0     3
+3YP            sp3_sp3_55         CAJ         CAE         CAH         CAK     180.000    10.0     3
+3YP             sp2_sp3_2         OAA         CAJ         CAE         CAH     120.000    10.0     6
+3YP             sp2_sp2_1         CAE         CAJ         NAI         OAB     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+3YP    chir_1    CAK    CAH    CAF    CAG    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3YP    plan-1         CAE   0.020
+3YP    plan-1         CAJ   0.020
+3YP    plan-1         NAI   0.020
+3YP    plan-1         OAA   0.020
+3YP    plan-2         CAJ   0.020
+3YP    plan-2         HAI   0.020
+3YP    plan-2         NAI   0.020
+3YP    plan-2         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3YP           SMILES              ACDLabs 10.04                                                   O=C(NO)CCC1CCCC1
+3YP SMILES_CANONICAL               CACTVS 3.341                                                   ONC(=O)CCC1CCCC1
+3YP           SMILES               CACTVS 3.341                                                   ONC(=O)CCC1CCCC1
+3YP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                 C1CCC(C1)CCC(=O)NO
+3YP           SMILES "OpenEye OEToolkits" 1.5.0                                                 C1CCC(C1)CCC(=O)NO
+3YP            InChI                InChI  1.03 InChI=1S/C8H15NO2/c10-8(9-11)6-5-7-3-1-2-4-7/h7,11H,1-6H2,(H,9,10)
+3YP         InChIKey                InChI  1.03                                        PCDWXHSMVLWAMG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3YP acedrg               243         "dictionary generator"                  
+3YP acedrg_database      11          "data source"                           
+3YP rdkit                2017.03.2   "Chemoinformatics tool"
+3YP refmac5              5.8.0238    "optimization tool"                     

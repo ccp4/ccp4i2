@@ -1,0 +1,189 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IFL     IFL      (3S,4R,5R)-3,4-DIHYDROXY-5-(HYDROXYMETHYL)PIPERIDIN-2-ONE     NON-POLYMER     22     11     .     
+#
+data_comp_IFL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IFL     O4      O       OH1     0       -1.607      10.432      6.853       
+IFL     C4      C       CH1     0       -1.123      10.543      8.197       
+IFL     C3      C       CH1     0       -0.555      11.942      8.416       
+IFL     O3      O       OH1     0       0.661       12.085      7.681       
+IFL     C2      C       CR6     0       -0.287      12.250      9.873       
+IFL     N       N       NR6     0       -0.864      11.494      10.806      
+IFL     C7      C       CH2     0       -1.707      10.315      10.614      
+IFL     C5      C       CH1     0       -2.237      10.246      9.197       
+IFL     C6      C       CH2     0       -2.946      8.923       8.950       
+IFL     O6      O       OH1     0       -2.031      7.833       8.862       
+IFL     O2      O       O       0       0.435       13.208      10.181      
+IFL     H4      H       H       0       -2.266      10.947      6.756       
+IFL     HA      H       H       0       -0.400      9.881       8.319       
+IFL     H3      H       H       0       -1.203      12.605      8.073       
+IFL     HB      H       H       0       0.813       12.906      7.566       
+IFL     H       H       H       0       -0.727      11.724      11.613      
+IFL     H7C1    H       H       0       -2.458      10.348      11.240      
+IFL     H7C2    H       H       0       -1.184      9.509       10.805      
+IFL     H5      H       H       0       -2.911      10.961      9.095       
+IFL     H6C1    H       H       0       -3.461      8.975       8.118       
+IFL     H6C2    H       H       0       -3.576      8.749       9.681       
+IFL     H6      H       H       0       -2.460      7.117       8.712       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IFL          O4          C4      SINGLE       n     1.431  0.0107     1.431  0.0107
+IFL          C4          C3      SINGLE       n     1.523  0.0120     1.523  0.0120
+IFL          C4          C5      SINGLE       n     1.525  0.0100     1.525  0.0100
+IFL          C3          O3      SINGLE       n     1.427  0.0125     1.427  0.0125
+IFL          C3          C2      SINGLE       n     1.503  0.0148     1.503  0.0148
+IFL          C2           N      SINGLE       n     1.326  0.0114     1.326  0.0114
+IFL          C2          O2      DOUBLE       n     1.237  0.0107     1.237  0.0107
+IFL           N          C7      SINGLE       n     1.459  0.0100     1.459  0.0100
+IFL          C7          C5      SINGLE       n     1.514  0.0100     1.514  0.0100
+IFL          C5          C6      SINGLE       n     1.520  0.0100     1.520  0.0100
+IFL          C6          O6      SINGLE       n     1.425  0.0187     1.425  0.0187
+IFL          O4          H4      SINGLE       n     0.970  0.0120     0.841  0.0200
+IFL          C4          HA      SINGLE       n     1.089  0.0100     0.988  0.0151
+IFL          C3          H3      SINGLE       n     1.089  0.0100     0.989  0.0200
+IFL          O3          HB      SINGLE       n     0.970  0.0120     0.843  0.0200
+IFL           N           H      SINGLE       n     1.016  0.0100     0.849  0.0200
+IFL          C7        H7C1      SINGLE       n     1.089  0.0100     0.979  0.0148
+IFL          C7        H7C2      SINGLE       n     1.089  0.0100     0.979  0.0148
+IFL          C5          H5      SINGLE       n     1.089  0.0100     0.988  0.0159
+IFL          C6        H6C1      SINGLE       n     1.089  0.0100     0.980  0.0170
+IFL          C6        H6C2      SINGLE       n     1.089  0.0100     0.980  0.0170
+IFL          O6          H6      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IFL          C4          O4          H4     108.225    2.48
+IFL          O4          C4          C3     109.779    1.72
+IFL          O4          C4          C5     110.058    2.00
+IFL          O4          C4          HA     108.541    1.50
+IFL          C3          C4          C5     111.124    1.57
+IFL          C3          C4          HA     109.434    1.50
+IFL          C5          C4          HA     109.119    1.50
+IFL          C4          C3          O3     110.170    1.75
+IFL          C4          C3          C2     111.458    1.50
+IFL          C4          C3          H3     108.836    1.50
+IFL          O3          C3          C2     108.772    2.39
+IFL          O3          C3          H3     108.370    1.50
+IFL          C2          C3          H3     108.474    1.50
+IFL          C3          O3          HB     108.734    2.82
+IFL          C3          C2           N     117.077    1.63
+IFL          C3          C2          O2     121.234    2.30
+IFL           N          C2          O2     121.689    1.50
+IFL          C2           N          C7     126.462    1.50
+IFL          C2           N           H     116.327    2.01
+IFL          C7           N           H     117.211    2.67
+IFL           N          C7          C5     110.160    1.50
+IFL           N          C7        H7C1     109.237    1.50
+IFL           N          C7        H7C2     109.237    1.50
+IFL          C5          C7        H7C1     109.290    1.50
+IFL          C5          C7        H7C2     109.290    1.50
+IFL        H7C1          C7        H7C2     108.200    1.50
+IFL          C4          C5          C7     111.124    1.57
+IFL          C4          C5          C6     112.960    1.50
+IFL          C4          C5          H5     107.028    1.50
+IFL          C7          C5          C6     110.883    1.50
+IFL          C7          C5          H5     107.832    1.50
+IFL          C6          C5          H5     107.420    1.84
+IFL          C5          C6          O6     111.464    2.00
+IFL          C5          C6        H6C1     109.628    1.50
+IFL          C5          C6        H6C2     109.628    1.50
+IFL          O6          C6        H6C1     109.070    1.50
+IFL          O6          C6        H6C2     109.070    1.50
+IFL        H6C1          C6        H6C2     107.925    1.50
+IFL          C6          O6          H6     109.369    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IFL            sp3_sp3_19          C3          C4          O4          H4     180.000    10.0     3
+IFL             sp3_sp3_5          O3          C3          C4          O4      60.000    10.0     3
+IFL            sp3_sp3_26          O4          C4          C5          C6     180.000    10.0     3
+IFL            sp3_sp3_31          C4          C3          O3          HB     180.000    10.0     3
+IFL             sp2_sp3_5          O2          C2          C3          O3     -60.000    10.0     6
+IFL             sp2_sp2_3          O2          C2           N          C7     180.000     5.0     2
+IFL             sp2_sp3_7          C2           N          C7          C5       0.000    10.0     6
+IFL            sp3_sp3_13          C6          C5          C7           N     -60.000    10.0     3
+IFL            sp3_sp3_34          C4          C5          C6          O6     180.000    10.0     3
+IFL            sp3_sp3_43          C5          C6          O6          H6     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IFL    chir_1    C4    O4    C3    C5    negative
+IFL    chir_2    C3    O3    C2    C4    positive
+IFL    chir_3    C5    C4    C6    C7    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IFL    plan-1          C2   0.020
+IFL    plan-1          C3   0.020
+IFL    plan-1           N   0.020
+IFL    plan-1          O2   0.020
+IFL    plan-2          C2   0.020
+IFL    plan-2          C7   0.020
+IFL    plan-2           H   0.020
+IFL    plan-2           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IFL           SMILES              ACDLabs 10.04                                                                     O=C1NCC(CO)C(O)C1O
+IFL SMILES_CANONICAL               CACTVS 3.341                                                       OC[C@H]1CNC(=O)[C@@H](O)[C@@H]1O
+IFL           SMILES               CACTVS 3.341                                                            OC[CH]1CNC(=O)[CH](O)[CH]1O
+IFL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                   C1[C@@H]([C@H]([C@@H](C(=O)N1)O)O)CO
+IFL           SMILES "OpenEye OEToolkits" 1.5.0                                                                 C1C(C(C(C(=O)N1)O)O)CO
+IFL            InChI                InChI  1.03 InChI=1S/C6H11NO4/c8-2-3-1-7-6(11)5(10)4(3)9/h3-5,8-10H,1-2H2,(H,7,11)/t3-,4-,5+/m1/s1
+IFL         InChIKey                InChI  1.03                                                            ARBXEMIAJIJEQI-WDCZJNDASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IFL acedrg               243         "dictionary generator"                  
+IFL acedrg_database      11          "data source"                           
+IFL rdkit                2017.03.2   "Chemoinformatics tool"
+IFL refmac5              5.8.0238    "optimization tool"                     

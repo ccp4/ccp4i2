@@ -1,0 +1,219 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CXB     CXB      "[(2-AMINO-ALPHA-METHOXYIMINO-4-THIAZOLYLACETYL)AMINO]METHYLBORONIC ACID"     NON-POLYMER     28     17     .     
+#
+data_comp_CXB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CXB     C18     C       CH3     0       11.776      13.739      37.185      
+CXB     O17     O       O2      0       11.856      12.344      37.499      
+CXB     N16     N       N       0       13.200      11.997      37.708      
+CXB     C13     C       C       0       13.476      10.746      37.514      
+CXB     C11     C       C       0       12.443      9.638       37.270      
+CXB     O12     O       O       0       11.271      9.848       37.584      
+CXB     N10     N       NH1     0       12.799      8.507       36.658      
+CXB     C7      C       CH2     0       11.899      7.372       36.517      
+CXB     B       B       B       0       10.757      7.661       35.471      
+CXB     OB1     O       OH1     0       10.742      6.994       34.288      
+CXB     OB2     O       OH1     0       9.780       8.564       35.743      
+CXB     C14     C       CR5     0       14.910      10.452      37.644      
+CXB     C15     C       CR15    0       15.454      9.322       38.249      
+CXB     S16     S       S2      0       17.117      9.405       38.185      
+CXB     C17     C       CR5     0       17.166      10.879      37.401      
+CXB     N18     N       NH2     0       18.296      11.492      37.065      
+CXB     N19     N       NRD5    0       15.904      11.345      37.165      
+CXB     H181    H       H       0       12.308      13.925      36.394      
+CXB     H182    H       H       0       12.113      14.259      37.931      
+CXB     H183    H       H       0       10.852      13.979      37.015      
+CXB     H10     H       H       0       13.588      8.445       36.300      
+CXB     H71     H       H       0       11.501      7.168       37.389      
+CXB     H72     H       H       0       12.414      6.589       36.230      
+CXB     HB1     H       H       0       9.958       6.756       34.071      
+CXB     HB2     H       H       0       9.578       9.026       35.062      
+CXB     H15     H       H       0       14.998      8.595       38.638      
+CXB     H11     H       H       0       18.266      12.267      36.655      
+CXB     H12     H       H       0       19.067      11.121      37.257      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CXB         C18         O17      SINGLE       n     1.431  0.0100     1.431  0.0100
+CXB         O17         N16      SINGLE       n     1.401  0.0129     1.401  0.0129
+CXB         N16         C13      DOUBLE       n     1.285  0.0117     1.285  0.0117
+CXB         C13         C11      SINGLE       n     1.498  0.0200     1.498  0.0200
+CXB         C13         C14      SINGLE       n     1.467  0.0100     1.467  0.0100
+CXB         C11         O12      DOUBLE       n     1.231  0.0100     1.231  0.0100
+CXB         C11         N10      SINGLE       n     1.330  0.0100     1.330  0.0100
+CXB         N10          C7      SINGLE       n     1.453  0.0115     1.453  0.0115
+CXB          C7           B      SINGLE       n     1.573  0.0200     1.573  0.0200
+CXB           B         OB1      SINGLE       n     1.358  0.0116     1.358  0.0116
+CXB           B         OB2      SINGLE       n     1.358  0.0116     1.358  0.0116
+CXB         C14         C15      DOUBLE       y     1.379  0.0196     1.379  0.0196
+CXB         C14         N19      SINGLE       y     1.377  0.0200     1.377  0.0200
+CXB         C15         S16      SINGLE       y     1.695  0.0200     1.695  0.0200
+CXB         S16         C17      SINGLE       y     1.695  0.0200     1.695  0.0200
+CXB         C17         N18      SINGLE       n     1.328  0.0105     1.328  0.0105
+CXB         C17         N19      DOUBLE       y     1.354  0.0165     1.354  0.0165
+CXB         C18        H181      SINGLE       n     1.089  0.0100     0.970  0.0177
+CXB         C18        H182      SINGLE       n     1.089  0.0100     0.970  0.0177
+CXB         C18        H183      SINGLE       n     1.089  0.0100     0.970  0.0177
+CXB         N10         H10      SINGLE       n     1.016  0.0100     0.870  0.0200
+CXB          C7         H71      SINGLE       n     1.089  0.0100     0.980  0.0132
+CXB          C7         H72      SINGLE       n     1.089  0.0100     0.980  0.0132
+CXB         OB1         HB1      SINGLE       n     0.970  0.0120     0.847  0.0200
+CXB         OB2         HB2      SINGLE       n     0.970  0.0120     0.847  0.0200
+CXB         C15         H15      SINGLE       n     1.082  0.0130     0.942  0.0200
+CXB         N18         H11      SINGLE       n     1.016  0.0100     0.877  0.0200
+CXB         N18         H12      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CXB         O17         C18        H181     109.449    1.50
+CXB         O17         C18        H182     109.449    1.50
+CXB         O17         C18        H183     109.449    1.50
+CXB        H181         C18        H182     109.461    1.50
+CXB        H181         C18        H183     109.461    1.50
+CXB        H182         C18        H183     109.461    1.50
+CXB         C18         O17         N16     108.634    1.50
+CXB         O17         N16         C13     111.365    1.50
+CXB         N16         C13         C11     117.209    3.00
+CXB         N16         C13         C14     120.279    3.00
+CXB         C11         C13         C14     122.513    3.00
+CXB         C13         C11         O12     118.608    1.54
+CXB         C13         C11         N10     118.431    3.00
+CXB         O12         C11         N10     122.961    1.83
+CXB         C11         N10          C7     122.275    1.63
+CXB         C11         N10         H10     118.926    2.08
+CXB          C7         N10         H10     118.799    1.94
+CXB         N10          C7           B     109.471    3.00
+CXB         N10          C7         H71     108.953    1.50
+CXB         N10          C7         H72     108.953    1.50
+CXB           B          C7         H71     109.347    1.86
+CXB           B          C7         H72     109.347    1.86
+CXB         H71          C7         H72     107.863    1.50
+CXB          C7           B         OB1     120.001    3.00
+CXB          C7           B         OB2     120.000    3.00
+CXB         OB1           B         OB2     119.998    3.00
+CXB           B         OB1         HB1     111.858    3.00
+CXB           B         OB2         HB2     111.858    3.00
+CXB         C13         C14         C15     128.808    3.00
+CXB         C13         C14         N19     122.488    1.50
+CXB         C15         C14         N19     108.704    1.50
+CXB         C14         C15         S16     108.532    3.00
+CXB         C14         C15         H15     128.300    1.50
+CXB         S16         C15         H15     123.168    3.00
+CXB         C15         S16         C17     108.532    3.00
+CXB         S16         C17         N18     124.804    3.00
+CXB         S16         C17         N19     108.532    3.00
+CXB         N18         C17         N19     126.664    2.12
+CXB         C17         N18         H11     119.811    1.50
+CXB         C17         N18         H12     119.811    1.50
+CXB         H11         N18         H12     120.377    1.82
+CXB         C14         N19         C17     105.700    1.59
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CXB             sp3_sp3_2        H181         C18         O17         N16     -60.000    10.0     3
+CXB       const_sp2_sp2_3         C13         C14         C15         S16     180.000     5.0     2
+CXB              const_12         C13         C14         N19         C17     180.000    10.0     2
+CXB       const_sp2_sp2_5         C14         C15         S16         C17       0.000     5.0     2
+CXB       const_sp2_sp2_8         N18         C17         S16         C15     180.000     5.0     2
+CXB            sp2_sp2_16         S16         C17         N18         H11     180.000     5.0     2
+CXB              const_10         N18         C17         N19         C14     180.000    10.0     2
+CXB             sp2_sp2_1         C13         N16         O17         C18     180.000     5.0     2
+CXB             sp2_sp2_2         C11         C13         N16         O17     180.000     5.0     2
+CXB            sp2_sp2_10         N16         C13         C14         C15       0.000     5.0     2
+CXB             sp2_sp2_7         O12         C11         C13         N16     180.000     5.0     2
+CXB            sp2_sp2_12         C13         C11         N10          C7     180.000     5.0     2
+CXB             sp2_sp3_2         C11         N10          C7           B     120.000    10.0     6
+CXB             sp3_sp3_5         OB1           B          C7         N10     180.000    10.0     3
+CXB            sp3_sp3_13          C7           B         OB2         HB2     180.000    10.0     3
+CXB            sp3_sp3_11          C7           B         OB1         HB1     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CXB    plan-1         C13   0.020
+CXB    plan-1         C14   0.020
+CXB    plan-1         C15   0.020
+CXB    plan-1         C17   0.020
+CXB    plan-1         H15   0.020
+CXB    plan-1         N18   0.020
+CXB    plan-1         N19   0.020
+CXB    plan-1         S16   0.020
+CXB    plan-2         C11   0.020
+CXB    plan-2         C13   0.020
+CXB    plan-2         C14   0.020
+CXB    plan-2         N16   0.020
+CXB    plan-3         C11   0.020
+CXB    plan-3         C13   0.020
+CXB    plan-3         N10   0.020
+CXB    plan-3         O12   0.020
+CXB    plan-4         C11   0.020
+CXB    plan-4          C7   0.020
+CXB    plan-4         H10   0.020
+CXB    plan-4         N10   0.020
+CXB    plan-5           B   0.020
+CXB    plan-5          C7   0.020
+CXB    plan-5         OB1   0.020
+CXB    plan-5         OB2   0.020
+CXB    plan-6         C17   0.020
+CXB    plan-6         H11   0.020
+CXB    plan-6         H12   0.020
+CXB    plan-6         N18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CXB           SMILES              ACDLabs 10.04                                                                               O=C(C(=N\OC)/c1nc(sc1)N)NCB(O)O
+CXB SMILES_CANONICAL               CACTVS 3.341                                                                               CO\N=C(/C(=O)NCB(O)O)c1csc(N)n1
+CXB           SMILES               CACTVS 3.341                                                                                 CON=C(C(=O)NCB(O)O)c1csc(N)n1
+CXB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                            B(CNC(=O)/C(=N\OC)/c1csc(n1)N)(O)O
+CXB           SMILES "OpenEye OEToolkits" 1.5.0                                                                               B(CNC(=O)C(=NOC)c1csc(n1)N)(O)O
+CXB            InChI                InChI  1.03 InChI=1S/C7H11BN4O4S/c1-16-12-5(4-2-17-7(9)11-4)6(13)10-3-8(14)15/h2,14-15H,3H2,1H3,(H2,9,11)(H,10,13)/b12-5-
+CXB         InChIKey                InChI  1.03                                                                                   FMYGJTQJYFMFCR-XGICHPGQSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CXB acedrg               243         "dictionary generator"                  
+CXB acedrg_database      11          "data source"                           
+CXB rdkit                2017.03.2   "Chemoinformatics tool"
+CXB refmac5              5.8.0238    "optimization tool"                     

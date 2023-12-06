@@ -1,0 +1,390 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TIR     TIR      "TIRANDAMYCIN E"     NON-POLYMER     58     29     .     
+#
+data_comp_TIR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TIR     N       N       NR5     0       33.000      -25.603     14.430      
+TIR     C1      C       CH2     0       31.874      -26.493     14.627      
+TIR     O1      O       O       0       30.784      -27.050     16.673      
+TIR     C2      C       CR5     0       31.610      -26.359     16.100      
+TIR     O2      O       O2      0       28.507      -22.518     23.730      
+TIR     C3      C       CR5     0       32.448      -25.286     16.617      
+TIR     O3      O       O2      0       26.674      -21.870     22.385      
+TIR     C4      C       C       0       32.460      -24.707     17.883      
+TIR     O4      O       OH1     0       24.803      -24.750     23.722      
+TIR     C5      C       C1      0       31.966      -25.259     19.056      
+TIR     O5      O       OH1     0       32.931      -23.390     17.932      
+TIR     C6      C       C1      0       31.634      -24.622     20.229      
+TIR     O6      O       O       0       34.272      -24.076     15.596      
+TIR     C7      C       C       0       31.117      -25.153     21.461      
+TIR     C8      C       C1      0       30.462      -24.312     22.332      
+TIR     C9      C       CH1     0       29.614      -24.641     23.535      
+TIR     C10     C       CH1     0       28.251      -23.928     23.552      
+TIR     C11     C       CT      0       27.381      -21.627     23.617      
+TIR     C12     C       CH3     0       27.868      -20.175     23.569      
+TIR     C13     C       CH1     0       26.163      -23.222     22.302      
+TIR     C14     C       CH1     0       27.393      -24.163     22.300      
+TIR     C15     C       CH3     0       27.051      -25.641     22.091      
+TIR     C16     C       CH1     0       25.067      -23.388     23.381      
+TIR     C17     C       CR16    0       25.384      -22.652     24.649      
+TIR     C18     C       CR6     0       26.433      -21.844     24.795      
+TIR     C19     C       CH3     0       26.733      -21.168     26.104      
+TIR     C20     C       CH3     0       30.417      -24.347     24.808      
+TIR     C21     C       CH3     0       31.260      -26.605     21.693      
+TIR     C22     C       CR5     0       33.353      -24.906     15.528      
+TIR     HN      H       H       0       33.405      -25.530     13.658      
+TIR     H11     H       H       0       31.099      -26.209     14.106      
+TIR     H12     H       H       0       32.102      -27.413     14.394      
+TIR     HO4     H       H       0       24.026      -24.801     24.084      
+TIR     H5      H       H       0       31.828      -26.199     19.056      
+TIR     HO5     H       H       0       33.781      -23.239     17.997      
+TIR     H6      H       H       0       31.772      -23.689     20.228      
+TIR     H8      H       H       0       30.550      -23.388     22.164      
+TIR     H9      H       H       0       29.435      -25.613     23.516      
+TIR     H10     H       H       0       27.751      -24.267     24.336      
+TIR     H112    H       H       0       27.127      -19.576     23.744      
+TIR     H212    H       H       0       28.229      -19.986     22.689      
+TIR     H312    H       H       0       28.562      -20.043     24.232      
+TIR     H13     H       H       0       25.720      -23.316     21.415      
+TIR     H14     H       H       0       27.944      -23.909     21.526      
+TIR     H115    H       H       0       26.992      -26.089     22.950      
+TIR     H215    H       H       0       27.744      -26.062     21.557      
+TIR     H315    H       H       0       26.200      -25.718     21.629      
+TIR     H16     H       H       0       24.228      -23.009     23.020      
+TIR     H17     H       H       0       24.798      -22.772     25.385      
+TIR     H119    H       H       0       26.282      -21.635     26.824      
+TIR     H219    H       H       0       26.423      -20.250     26.073      
+TIR     H319    H       H       0       27.689      -21.179     26.265      
+TIR     H120    H       H       0       29.822      -24.367     25.578      
+TIR     H220    H       H       0       30.828      -23.468     24.740      
+TIR     H320    H       H       0       31.110      -25.020     24.918      
+TIR     H121    H       H       0       32.096      -26.916     21.316      
+TIR     H221    H       H       0       30.524      -27.075     21.273      
+TIR     H321    H       H       0       31.255      -26.786     22.644      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TIR           N          C1      SINGLE       n     1.450  0.0100     1.450  0.0100
+TIR           N         C22      SINGLE       n     1.350  0.0126     1.350  0.0126
+TIR          C1          C2      SINGLE       n     1.502  0.0200     1.502  0.0200
+TIR          O6         C22      DOUBLE       n     1.240  0.0164     1.240  0.0164
+TIR          C3         C22      SINGLE       n     1.459  0.0200     1.459  0.0200
+TIR          O1          C2      DOUBLE       n     1.220  0.0100     1.220  0.0100
+TIR          C2          C3      SINGLE       n     1.449  0.0200     1.449  0.0200
+TIR          C3          C4      DOUBLE       n     1.388  0.0189     1.388  0.0189
+TIR          C4          O5      SINGLE       n     1.395  0.0200     1.395  0.0200
+TIR          C4          C5      SINGLE       n     1.382  0.0200     1.382  0.0200
+TIR          C5          C6      DOUBLE       n     1.364  0.0200     1.364  0.0200
+TIR          C6          C7      SINGLE       n     1.421  0.0200     1.421  0.0200
+TIR          C7         C21      SINGLE       n     1.466  0.0200     1.466  0.0200
+TIR          C7          C8      DOUBLE       n     1.362  0.0200     1.362  0.0200
+TIR          O3         C13      SINGLE       n     1.444  0.0100     1.444  0.0100
+TIR          O3         C11      SINGLE       n     1.429  0.0161     1.429  0.0161
+TIR         C13         C14      SINGLE       n     1.535  0.0152     1.535  0.0152
+TIR         C13         C16      SINGLE       n     1.528  0.0151     1.528  0.0151
+TIR          C8          C9      SINGLE       n     1.505  0.0120     1.505  0.0120
+TIR         C14         C15      SINGLE       n     1.530  0.0100     1.530  0.0100
+TIR         C10         C14      SINGLE       n     1.529  0.0100     1.529  0.0100
+TIR         C11         C12      SINGLE       n     1.530  0.0134     1.530  0.0134
+TIR          O2         C11      SINGLE       n     1.429  0.0161     1.429  0.0161
+TIR         C11         C18      SINGLE       n     1.510  0.0170     1.510  0.0170
+TIR          O4         C16      SINGLE       n     1.429  0.0100     1.429  0.0100
+TIR         C16         C17      SINGLE       n     1.496  0.0106     1.496  0.0106
+TIR          O2         C10      SINGLE       n     1.438  0.0100     1.438  0.0100
+TIR          C9         C10      SINGLE       n     1.532  0.0121     1.532  0.0121
+TIR          C9         C20      SINGLE       n     1.533  0.0100     1.533  0.0100
+TIR         C17         C18      DOUBLE       n     1.328  0.0110     1.328  0.0110
+TIR         C18         C19      SINGLE       n     1.501  0.0100     1.501  0.0100
+TIR           N          HN      SINGLE       n     1.016  0.0100     0.875  0.0100
+TIR          C1         H11      SINGLE       n     1.089  0.0100     0.976  0.0131
+TIR          C1         H12      SINGLE       n     1.089  0.0100     0.976  0.0131
+TIR          O4         HO4      SINGLE       n     0.970  0.0120     0.858  0.0200
+TIR          C5          H5      SINGLE       n     1.082  0.0130     0.951  0.0143
+TIR          O5         HO5      SINGLE       n     0.966  0.0059     0.861  0.0200
+TIR          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0196
+TIR          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0181
+TIR          C9          H9      SINGLE       n     1.089  0.0100     0.990  0.0143
+TIR         C10         H10      SINGLE       n     1.089  0.0100     0.990  0.0162
+TIR         C12        H112      SINGLE       n     1.089  0.0100     0.969  0.0135
+TIR         C12        H212      SINGLE       n     1.089  0.0100     0.969  0.0135
+TIR         C12        H312      SINGLE       n     1.089  0.0100     0.969  0.0135
+TIR         C13         H13      SINGLE       n     1.089  0.0100     0.996  0.0100
+TIR         C14         H14      SINGLE       n     1.089  0.0100     0.986  0.0187
+TIR         C15        H115      SINGLE       n     1.089  0.0100     0.971  0.0171
+TIR         C15        H215      SINGLE       n     1.089  0.0100     0.971  0.0171
+TIR         C15        H315      SINGLE       n     1.089  0.0100     0.971  0.0171
+TIR         C16         H16      SINGLE       n     1.089  0.0100     0.989  0.0126
+TIR         C17         H17      SINGLE       n     1.082  0.0130     0.949  0.0200
+TIR         C19        H119      SINGLE       n     1.089  0.0100     0.969  0.0158
+TIR         C19        H219      SINGLE       n     1.089  0.0100     0.969  0.0158
+TIR         C19        H319      SINGLE       n     1.089  0.0100     0.969  0.0158
+TIR         C20        H120      SINGLE       n     1.089  0.0100     0.973  0.0141
+TIR         C20        H220      SINGLE       n     1.089  0.0100     0.973  0.0141
+TIR         C20        H320      SINGLE       n     1.089  0.0100     0.973  0.0141
+TIR         C21        H121      SINGLE       n     1.089  0.0100     0.969  0.0177
+TIR         C21        H221      SINGLE       n     1.089  0.0100     0.969  0.0177
+TIR         C21        H321      SINGLE       n     1.089  0.0100     0.969  0.0177
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TIR          C1           N         C22     113.835    1.50
+TIR          C1           N          HN     122.422    3.00
+TIR         C22           N          HN     123.743    1.50
+TIR           N          C1          C2     101.369    1.50
+TIR           N          C1         H11     111.212    1.50
+TIR           N          C1         H12     111.212    1.50
+TIR          C2          C1         H11     110.841    1.50
+TIR          C2          C1         H12     110.841    1.50
+TIR         H11          C1         H12     109.201    1.50
+TIR          C1          C2          O1     122.598    1.50
+TIR          C1          C2          C3     106.811    1.50
+TIR          O1          C2          C3     130.590    1.72
+TIR         C11          O2         C10     112.803    2.55
+TIR         C22          C3          C2     105.220    1.50
+TIR         C22          C3          C4     123.352    2.96
+TIR          C2          C3          C4     131.427    1.98
+TIR         C13          O3         C11     111.982    1.53
+TIR          C3          C4          O5     115.431    3.00
+TIR          C3          C4          C5     128.148    1.50
+TIR          O5          C4          C5     116.420    3.00
+TIR         C16          O4         HO4     108.920    2.67
+TIR          C4          C5          C6     126.916    3.00
+TIR          C4          C5          H5     117.393    1.50
+TIR          C6          C5          H5     115.690    2.10
+TIR          C4          O5         HO5     120.000    3.00
+TIR          C5          C6          C7     128.731    2.66
+TIR          C5          C6          H6     115.978    2.10
+TIR          C7          C6          H6     115.291    1.50
+TIR          C6          C7         C21     116.788    1.50
+TIR          C6          C7          C8     120.475    3.00
+TIR         C21          C7          C8     122.737    1.98
+TIR          C7          C8          C9     127.667    3.00
+TIR          C7          C8          H8     116.459    1.82
+TIR          C9          C8          H8     115.874    2.42
+TIR          C8          C9         C10     113.355    2.65
+TIR          C8          C9         C20     109.641    1.50
+TIR          C8          C9          H9     107.733    1.50
+TIR         C10          C9         C20     111.679    1.68
+TIR         C10          C9          H9     107.990    1.56
+TIR         C20          C9          H9     108.385    1.50
+TIR         C14         C10          O2     110.180    1.50
+TIR         C14         C10          C9     111.163    2.25
+TIR         C14         C10         H10     108.256    1.50
+TIR          O2         C10          C9     106.969    1.50
+TIR          O2         C10         H10     108.827    1.50
+TIR          C9         C10         H10     108.597    2.41
+TIR          O3         C11         C12     106.798    1.50
+TIR          O3         C11          O2     109.944    1.50
+TIR          O3         C11         C18     109.032    1.50
+TIR         C12         C11          O2     107.497    3.00
+TIR         C12         C11         C18     107.604    2.03
+TIR          O2         C11         C18     107.592    3.00
+TIR         C11         C12        H112     109.490    1.50
+TIR         C11         C12        H212     109.490    1.50
+TIR         C11         C12        H312     109.490    1.50
+TIR        H112         C12        H212     109.711    3.00
+TIR        H112         C12        H312     109.711    3.00
+TIR        H212         C12        H312     109.711    3.00
+TIR          O3         C13         C14     109.124    2.20
+TIR          O3         C13         C16     109.124    2.20
+TIR          O3         C13         H13     107.139    1.50
+TIR         C14         C13         C16     112.399    2.36
+TIR         C14         C13         H13     107.046    1.70
+TIR         C16         C13         H13     107.046    1.70
+TIR         C13         C14         C15     112.168    2.77
+TIR         C13         C14         C10     112.392    2.23
+TIR         C13         C14         H14     108.918    1.50
+TIR         C15         C14         C10     112.218    1.53
+TIR         C15         C14         H14     107.155    1.50
+TIR         C10         C14         H14     107.948    1.50
+TIR         C14         C15        H115     109.609    1.50
+TIR         C14         C15        H215     109.609    1.50
+TIR         C14         C15        H315     109.609    1.50
+TIR        H115         C15        H215     109.350    1.50
+TIR        H115         C15        H315     109.350    1.50
+TIR        H215         C15        H315     109.350    1.50
+TIR         C13         C16          O4     110.242    2.74
+TIR         C13         C16         C17     112.233    2.39
+TIR         C13         C16         H16     108.918    1.50
+TIR          O4         C16         C17     109.059    1.87
+TIR          O4         C16         H16     108.171    1.50
+TIR         C17         C16         H16     108.457    1.50
+TIR         C16         C17         C18     123.068    3.00
+TIR         C16         C17         H17     117.990    1.50
+TIR         C18         C17         H17     118.941    1.72
+TIR         C11         C18         C17     120.956    3.00
+TIR         C11         C18         C19     117.267    1.94
+TIR         C17         C18         C19     121.777    1.50
+TIR         C18         C19        H119     109.605    1.50
+TIR         C18         C19        H219     109.605    1.50
+TIR         C18         C19        H319     109.605    1.50
+TIR        H119         C19        H219     109.402    1.50
+TIR        H119         C19        H319     109.402    1.50
+TIR        H219         C19        H319     109.402    1.50
+TIR          C9         C20        H120     109.474    1.50
+TIR          C9         C20        H220     109.474    1.50
+TIR          C9         C20        H320     109.474    1.50
+TIR        H120         C20        H220     109.356    1.50
+TIR        H120         C20        H320     109.356    1.50
+TIR        H220         C20        H320     109.356    1.50
+TIR          C7         C21        H121     109.517    1.50
+TIR          C7         C21        H221     109.517    1.50
+TIR          C7         C21        H321     109.517    1.50
+TIR        H121         C21        H221     109.342    1.50
+TIR        H121         C21        H321     109.342    1.50
+TIR        H221         C21        H321     109.342    1.50
+TIR           N         C22          O6     126.335    2.67
+TIR           N         C22          C3     107.330    1.52
+TIR          O6         C22          C3     126.335    2.75
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TIR            sp2_sp3_13         C22           N          C1          C2       0.000    10.0     6
+TIR            sp2_sp2_15          O6         C22           N          C1     180.000     5.0     2
+TIR            sp2_sp2_32          C5          C6          C7         C21       0.000     5.0     2
+TIR            sp2_sp2_37          C6          C7          C8          C9       0.000     5.0     2
+TIR            sp2_sp3_25          C6          C7         C21        H121       0.000    10.0     6
+TIR            sp2_sp3_32          C7          C8          C9         C20     120.000    10.0     6
+TIR            sp3_sp3_61         C14         C10          C9          C8     180.000    10.0     3
+TIR            sp3_sp3_70        H120         C20          C9          C8     180.000    10.0     3
+TIR            sp3_sp3_23          C9         C10         C14         C15      60.000    10.0     3
+TIR            sp3_sp3_46          O3         C11         C12        H112     180.000    10.0     3
+TIR            sp2_sp3_11         C19         C18         C11         C12     -60.000    10.0     6
+TIR            sp3_sp3_11          O3         C13         C14         C15      60.000    10.0     3
+TIR            sp3_sp3_29          O3         C13         C16          O4      60.000    10.0     3
+TIR            sp2_sp3_22          O1          C2          C1           N     180.000    10.0     6
+TIR            sp3_sp3_37         C13         C14         C15        H115     180.000    10.0     3
+TIR             sp2_sp3_2         C18         C17         C16          O4     120.000    10.0     6
+TIR             sp2_sp2_2         C16         C17         C18         C19     180.000     5.0     2
+TIR            sp2_sp3_37         C11         C18         C19        H119     150.000    10.0     6
+TIR             sp2_sp2_8          O1          C2          C3          C4       0.000     5.0     2
+TIR            sp3_sp3_59          C9         C10          O2         C11      60.000    10.0     3
+TIR             sp3_sp3_2         C12         C11          O2         C10     -60.000    10.0     3
+TIR            sp2_sp2_12          O6         C22          C3          C4       0.000     5.0     2
+TIR            sp2_sp2_18         C22          C3          C4          O5       0.000     5.0     2
+TIR             sp3_sp3_5         C12         C11          O3         C13     180.000    10.0     3
+TIR             sp3_sp3_7         C14         C13          O3         C11      60.000    10.0     3
+TIR            sp2_sp2_22          C5          C4          O5         HO5       0.000     5.0     2
+TIR            sp2_sp2_25          O5          C4          C5          C6       0.000     5.0     2
+TIR            sp3_sp3_55         C13         C16          O4         HO4     180.000    10.0     3
+TIR            sp2_sp2_27          C4          C5          C6          C7     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TIR    chir_1    C9    C10    C8    C20    negative
+TIR    chir_2    C10    O2    C14    C9    negative
+TIR    chir_3    C11    O3    O2    C18    positive
+TIR    chir_4    C13    O3    C16    C14    positive
+TIR    chir_5    C14    C13    C10    C15    negative
+TIR    chir_6    C16    O4    C13    C17    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TIR    plan-1          C1   0.020
+TIR    plan-1         C22   0.020
+TIR    plan-1          HN   0.020
+TIR    plan-1           N   0.020
+TIR    plan-2          C1   0.020
+TIR    plan-2          C2   0.020
+TIR    plan-2          C3   0.020
+TIR    plan-2          O1   0.020
+TIR    plan-3          C2   0.020
+TIR    plan-3         C22   0.020
+TIR    plan-3          C3   0.020
+TIR    plan-3          C4   0.020
+TIR    plan-4          C3   0.020
+TIR    plan-4          C4   0.020
+TIR    plan-4          C5   0.020
+TIR    plan-4          O5   0.020
+TIR    plan-5          C4   0.020
+TIR    plan-5          C5   0.020
+TIR    plan-5          C6   0.020
+TIR    plan-5          H5   0.020
+TIR    plan-6          C5   0.020
+TIR    plan-6          C6   0.020
+TIR    plan-6          C7   0.020
+TIR    plan-6          H6   0.020
+TIR    plan-7         C21   0.020
+TIR    plan-7          C6   0.020
+TIR    plan-7          C7   0.020
+TIR    plan-7          C8   0.020
+TIR    plan-8          C7   0.020
+TIR    plan-8          C8   0.020
+TIR    plan-8          C9   0.020
+TIR    plan-8          H8   0.020
+TIR    plan-9         C16   0.020
+TIR    plan-9         C17   0.020
+TIR    plan-9         C18   0.020
+TIR    plan-9         H17   0.020
+TIR   plan-10         C11   0.020
+TIR   plan-10         C17   0.020
+TIR   plan-10         C18   0.020
+TIR   plan-10         C19   0.020
+TIR   plan-11         C22   0.020
+TIR   plan-11          C3   0.020
+TIR   plan-11           N   0.020
+TIR   plan-11          O6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TIR SMILES_CANONICAL               CACTVS 3.352                                                                                                                       C[C@H](\C=C(C)\C=C\C(O)=C1/C(=O)CNC1=O)[C@H]2O[C@@]3(C)O[C@@H]([C@@H]2C)[C@@H](O)C=C3C
+TIR           SMILES               CACTVS 3.352                                                                                                                                     C[CH](C=C(C)C=CC(O)=C1C(=O)CNC1=O)[CH]2O[C]3(C)O[CH]([CH]2C)[CH](O)C=C3C
+TIR SMILES_CANONICAL "OpenEye OEToolkits" 1.6.1                                                                                                                     C[C@H]1[C@H]2[C@H](C=C([C@](O2)(O[C@@H]1[C@H](C)\C=C(/C)\C=C\C(=C\3/C(=O)CNC3=O)\O)C)C)O
+TIR           SMILES "OpenEye OEToolkits" 1.6.1                                                                                                                                                    CC1C2C(C=C(C(O2)(OC1C(C)C=C(C)C=CC(=C3C(=O)CNC3=O)O)C)C)O
+TIR            InChI                InChI  1.03 InChI=1S/C22H29NO6/c1-11(6-7-15(24)18-17(26)10-23-21(18)27)8-12(2)19-14(4)20-16(25)9-13(3)22(5,28-19)29-20/h6-9,12,14,16,19-20,24-25H,10H2,1-5H3,(H,23,27)/b7-6+,11-8+,18-15-/t12-,14-,16+,19-,20+,22+/m1/s1
+TIR         InChIKey                InChI  1.03                                                                                                                                                                                  ADEAEUKXVJOXIM-YNKBRHJSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TIR acedrg               243         "dictionary generator"                  
+TIR acedrg_database      11          "data source"                           
+TIR rdkit                2017.03.2   "Chemoinformatics tool"
+TIR refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,307 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OEV     OEV      (1S,2S,3R,6R)-4-(hydroxymethyl)-6-(octylamino)cyclohex-4-ene-1,2,3-triol     NON-POLYMER     49     20     .     
+#
+data_comp_OEV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OEV     C1      C       CH1     0       30.164      66.175      9.591       
+OEV     N1      N       NT1     0       30.200      65.272      10.757      
+OEV     C2      C       CH1     0       31.518      66.207      8.868       
+OEV     O2      O       OH1     0       32.492      66.785      9.743       
+OEV     C3      C       CH1     0       31.410      66.984      7.571       
+OEV     O3      O       OH1     0       32.682      67.030      6.923       
+OEV     C4      C       CH1     0       30.374      66.369      6.623       
+OEV     O4      O       OH1     0       30.022      67.327      5.622       
+OEV     C5      C       CR6     0       29.129      65.873      7.332       
+OEV     C6      C       CH2     0       27.974      65.445      6.460       
+OEV     O6      O       OH1     0       27.447      64.184      6.841       
+OEV     C7      C       CR16    0       29.040      65.802      8.661       
+OEV     C8      C       CH2     0       29.281      65.604      11.850      
+OEV     C9      C       CH2     0       29.881      66.627      12.799      
+OEV     C10     C       CH2     0       28.922      67.071      13.897      
+OEV     C11     C       CH2     0       27.675      67.812      13.447      
+OEV     C12     C       CH2     0       27.930      69.071      12.647      
+OEV     C13     C       CH2     0       26.689      69.883      12.340      
+OEV     C14     C       CH2     0       25.672      69.224      11.435      
+OEV     C15     C       CH3     0       26.177      68.909      10.046      
+OEV     H1      H       H       0       29.978      67.087      9.929       
+OEV     H2      H       H       0       30.110      64.422      10.536      
+OEV     H3      H       H       0       31.790      65.280      8.660       
+OEV     H4      H       H       0       33.249      66.693      9.388       
+OEV     H5      H       H       0       31.141      67.896      7.796       
+OEV     H6      H       H       0       32.647      67.588      6.294       
+OEV     H7      H       H       0       30.792      65.601      6.161       
+OEV     H8      H       H       0       29.641      67.988      5.983       
+OEV     H9      H       H       0       28.258      65.394      5.522       
+OEV     H10     H       H       0       27.261      66.117      6.519       
+OEV     H11     H       H       0       28.004      63.592      6.626       
+OEV     H12     H       H       0       28.227      65.505      9.042       
+OEV     H13     H       H       0       29.061      64.783      12.354      
+OEV     H14     H       H       0       28.443      65.959      11.469      
+OEV     H15     H       H       0       30.169      67.409      12.285      
+OEV     H16     H       H       0       30.678      66.237      13.217      
+OEV     H17     H       H       0       29.413      67.649      14.519      
+OEV     H18     H       H       0       28.641      66.277      14.400      
+OEV     H19     H       H       0       27.154      68.051      14.243      
+OEV     H28     H       H       0       27.125      67.204      12.910      
+OEV     H20     H       H       0       28.362      68.827      11.802      
+OEV     H29     H       H       0       28.557      69.637      13.146      
+OEV     H21     H       H       0       26.968      70.727      11.925      
+OEV     H22     H       H       0       26.249      70.106      13.188      
+OEV     H23     H       H       0       24.894      69.818      11.359      
+OEV     H24     H       H       0       25.367      68.392      11.857      
+OEV     H25     H       H       0       25.429      68.654      9.478       
+OEV     H26     H       H       0       26.814      68.175      10.090      
+OEV     H27     H       H       0       26.613      69.694      9.672       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OEV          C1          N1      SINGLE       n     1.472  0.0145     1.472  0.0145
+OEV          N1          C8      SINGLE       n     1.465  0.0118     1.465  0.0118
+OEV          C1          C2      SINGLE       n     1.535  0.0100     1.535  0.0100
+OEV          C2          O2      SINGLE       n     1.431  0.0107     1.431  0.0107
+OEV          C2          C3      SINGLE       n     1.515  0.0100     1.515  0.0100
+OEV          C3          O3      SINGLE       n     1.429  0.0159     1.429  0.0159
+OEV          C3          C4      SINGLE       n     1.529  0.0100     1.529  0.0100
+OEV          C4          C5      SINGLE       n     1.510  0.0100     1.510  0.0100
+OEV          C4          O4      SINGLE       n     1.427  0.0125     1.427  0.0125
+OEV          C5          C7      DOUBLE       n     1.329  0.0123     1.329  0.0123
+OEV          C5          C6      SINGLE       n     1.507  0.0100     1.507  0.0100
+OEV          C6          O6      SINGLE       n     1.417  0.0163     1.417  0.0163
+OEV          C1          C7      SINGLE       n     1.504  0.0105     1.504  0.0105
+OEV          C8          C9      SINGLE       n     1.516  0.0131     1.516  0.0131
+OEV          C9         C10      SINGLE       n     1.514  0.0200     1.514  0.0200
+OEV         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+OEV         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+OEV         C12         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+OEV         C13         C14      SINGLE       n     1.507  0.0200     1.507  0.0200
+OEV         C14         C15      SINGLE       n     1.510  0.0200     1.510  0.0200
+OEV          C1          H1      SINGLE       n     1.089  0.0100     0.990  0.0163
+OEV          N1          H2      SINGLE       n     1.036  0.0160     0.882  0.0200
+OEV          C2          H3      SINGLE       n     1.089  0.0100     0.988  0.0151
+OEV          O2          H4      SINGLE       n     0.970  0.0120     0.841  0.0200
+OEV          C3          H5      SINGLE       n     1.089  0.0100     0.977  0.0200
+OEV          O3          H6      SINGLE       n     0.970  0.0120     0.841  0.0200
+OEV          C4          H7      SINGLE       n     1.089  0.0100     0.989  0.0200
+OEV          O4          H8      SINGLE       n     0.970  0.0120     0.843  0.0200
+OEV          C6          H9      SINGLE       n     1.089  0.0100     0.982  0.0119
+OEV          C6         H10      SINGLE       n     1.089  0.0100     0.982  0.0119
+OEV          O6         H11      SINGLE       n     0.970  0.0120     0.841  0.0200
+OEV          C7         H12      SINGLE       n     1.082  0.0130     0.945  0.0102
+OEV          C8         H13      SINGLE       n     1.089  0.0100     0.988  0.0200
+OEV          C8         H14      SINGLE       n     1.089  0.0100     0.988  0.0200
+OEV          C9         H15      SINGLE       n     1.089  0.0100     0.981  0.0160
+OEV          C9         H16      SINGLE       n     1.089  0.0100     0.981  0.0160
+OEV         C10         H17      SINGLE       n     1.089  0.0100     0.981  0.0163
+OEV         C10         H18      SINGLE       n     1.089  0.0100     0.981  0.0163
+OEV         C11         H19      SINGLE       n     1.089  0.0100     0.981  0.0163
+OEV         C11         H28      SINGLE       n     1.089  0.0100     0.981  0.0163
+OEV         C12         H20      SINGLE       n     1.089  0.0100     0.981  0.0163
+OEV         C12         H29      SINGLE       n     1.089  0.0100     0.981  0.0163
+OEV         C13         H21      SINGLE       n     1.089  0.0100     0.981  0.0163
+OEV         C13         H22      SINGLE       n     1.089  0.0100     0.981  0.0163
+OEV         C14         H23      SINGLE       n     1.089  0.0100     0.982  0.0155
+OEV         C14         H24      SINGLE       n     1.089  0.0100     0.982  0.0155
+OEV         C15         H25      SINGLE       n     1.089  0.0100     0.973  0.0157
+OEV         C15         H26      SINGLE       n     1.089  0.0100     0.973  0.0157
+OEV         C15         H27      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OEV          N1          C1          C2     111.865    2.42
+OEV          N1          C1          C7     110.455    3.00
+OEV          N1          C1          H1     107.382    1.55
+OEV          C2          C1          C7     112.021    2.38
+OEV          C2          C1          H1     108.258    1.50
+OEV          C7          C1          H1     107.701    1.50
+OEV          C1          N1          C8     114.477    2.43
+OEV          C1          N1          H2     112.476    3.00
+OEV          C8          N1          H2     109.903    3.00
+OEV          C1          C2          O2     109.247    2.43
+OEV          C1          C2          C3     111.124    1.57
+OEV          C1          C2          H3     109.068    1.50
+OEV          O2          C2          C3     111.630    1.78
+OEV          O2          C2          H3     108.954    1.50
+OEV          C3          C2          H3     108.943    1.50
+OEV          C2          O2          H4     108.064    2.53
+OEV          C2          C3          O3     110.219    1.72
+OEV          C2          C3          C4     111.124    1.57
+OEV          C2          C3          H5     107.830    1.50
+OEV          O3          C3          C4     109.779    1.72
+OEV          O3          C3          H5     108.767    1.50
+OEV          C4          C3          H5     109.434    1.50
+OEV          C3          O3          H6     108.895    2.41
+OEV          C3          C4          C5     111.944    1.50
+OEV          C3          C4          O4     110.170    1.75
+OEV          C3          C4          H7     108.836    1.50
+OEV          C5          C4          O4     109.627    1.79
+OEV          C5          C4          H7     108.621    1.50
+OEV          O4          C4          H7     107.721    1.50
+OEV          C4          O4          H8     109.283    1.50
+OEV          C4          C5          C7     121.931    1.50
+OEV          C4          C5          C6     116.516    2.44
+OEV          C7          C5          C6     121.553    2.28
+OEV          C5          C6          O6     112.455    1.50
+OEV          C5          C6          H9     110.379    3.00
+OEV          C5          C6         H10     110.379    3.00
+OEV          O6          C6          H9     109.147    1.50
+OEV          O6          C6         H10     109.147    1.50
+OEV          H9          C6         H10     107.920    1.50
+OEV          C6          O6         H11     108.166    2.70
+OEV          C5          C7          C1     122.416    3.00
+OEV          C5          C7         H12     118.988    1.92
+OEV          C1          C7         H12     118.596    1.50
+OEV          N1          C8          C9     111.829    1.50
+OEV          N1          C8         H13     109.170    3.00
+OEV          N1          C8         H14     109.170    3.00
+OEV          C9          C8         H13     109.153    1.50
+OEV          C9          C8         H14     109.153    1.50
+OEV         H13          C8         H14     107.881    1.50
+OEV          C8          C9         C10     112.612    1.50
+OEV          C8          C9         H15     109.061    1.50
+OEV          C8          C9         H16     109.061    1.50
+OEV         C10          C9         H15     109.041    1.50
+OEV         C10          C9         H16     109.041    1.50
+OEV         H15          C9         H16     107.927    1.57
+OEV          C9         C10         C11     113.853    2.32
+OEV          C9         C10         H17     108.806    1.50
+OEV          C9         C10         H18     108.806    1.50
+OEV         C11         C10         H17     108.698    1.50
+OEV         C11         C10         H18     108.698    1.50
+OEV         H17         C10         H18     107.646    1.50
+OEV         C10         C11         C12     114.243    1.69
+OEV         C10         C11         H19     108.698    1.50
+OEV         C10         C11         H28     108.698    1.50
+OEV         C12         C11         H19     108.698    1.50
+OEV         C12         C11         H28     108.698    1.50
+OEV         H19         C11         H28     107.646    1.50
+OEV         C11         C12         C13     114.243    1.69
+OEV         C11         C12         H20     108.698    1.50
+OEV         C11         C12         H29     108.698    1.50
+OEV         C13         C12         H20     108.698    1.50
+OEV         C13         C12         H29     108.698    1.50
+OEV         H20         C12         H29     107.646    1.50
+OEV         C12         C13         C14     114.362    3.00
+OEV         C12         C13         H21     108.698    1.50
+OEV         C12         C13         H22     108.698    1.50
+OEV         C14         C13         H21     108.653    1.50
+OEV         C14         C13         H22     108.653    1.50
+OEV         H21         C13         H22     107.646    1.50
+OEV         C13         C14         C15     113.719    3.00
+OEV         C13         C14         H23     108.758    1.50
+OEV         C13         C14         H24     108.758    1.50
+OEV         C15         C14         H23     108.918    1.50
+OEV         C15         C14         H24     108.918    1.50
+OEV         H23         C14         H24     107.763    1.50
+OEV         C14         C15         H25     109.554    1.50
+OEV         C14         C15         H26     109.554    1.50
+OEV         C14         C15         H27     109.554    1.50
+OEV         H25         C15         H26     109.380    1.50
+OEV         H25         C15         H27     109.380    1.50
+OEV         H26         C15         H27     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OEV            sp3_sp3_29          C2          C1          N1          C8     -60.000    10.0     3
+OEV            sp2_sp3_14          C5          C7          C1          N1     120.000    10.0     6
+OEV             sp3_sp3_5          N1          C1          C2          O2      60.000    10.0     3
+OEV            sp3_sp3_52          N1          C8          C9         C10     180.000    10.0     3
+OEV            sp3_sp3_61         C11         C10          C9          C8     180.000    10.0     3
+OEV            sp3_sp3_70          C9         C10         C11         C12     180.000    10.0     3
+OEV            sp3_sp3_79         C10         C11         C12         C13     180.000    10.0     3
+OEV            sp3_sp3_88         C11         C12         C13         C14     180.000    10.0     3
+OEV            sp3_sp3_97         C12         C13         C14         C15     180.000    10.0     3
+OEV           sp3_sp3_106         C13         C14         C15         H25     180.000    10.0     3
+OEV            sp3_sp3_34          C9          C8          N1          C1     180.000    10.0     3
+OEV            sp3_sp3_40          C1          C2          O2          H4     180.000    10.0     3
+OEV            sp3_sp3_14          O2          C2          C3          O3     -60.000    10.0     3
+OEV            sp3_sp3_43          C2          C3          O3          H6     180.000    10.0     3
+OEV            sp3_sp3_23          O3          C3          C4          O4      60.000    10.0     3
+OEV            sp3_sp3_46          C3          C4          O4          H8     180.000    10.0     3
+OEV             sp2_sp3_5          C6          C5          C4          O4     -60.000    10.0     6
+OEV             sp2_sp2_3          C6          C5          C7          C1     180.000     5.0     2
+OEV             sp2_sp3_8          C4          C5          C6          O6     -90.000    10.0     6
+OEV            sp3_sp3_49          C5          C6          O6         H11     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OEV    chir_1    C1    N1    C2    C7    negative
+OEV    chir_2    C2    O2    C3    C1    positive
+OEV    chir_3    C3    O3    C2    C4    positive
+OEV    chir_4    C4    O4    C3    C5    negative
+OEV    chir_5    N1    C1    C8    H2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OEV    plan-1          C4   0.020
+OEV    plan-1          C5   0.020
+OEV    plan-1          C6   0.020
+OEV    plan-1          C7   0.020
+OEV    plan-2          C1   0.020
+OEV    plan-2          C5   0.020
+OEV    plan-2          C7   0.020
+OEV    plan-2         H12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OEV           SMILES              ACDLabs 10.04                                                                                           OC1C(=CC(NCCCCCCCC)C(O)C1O)CO
+OEV SMILES_CANONICAL               CACTVS 3.341                                                                         CCCCCCCCN[C@@H]1C=C(CO)[C@@H](O)[C@H](O)[C@H]1O
+OEV           SMILES               CACTVS 3.341                                                                               CCCCCCCCN[CH]1C=C(CO)[CH](O)[CH](O)[CH]1O
+OEV SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                         CCCCCCCCN[C@@H]1C=C([C@H]([C@@H]([C@H]1O)O)O)CO
+OEV           SMILES "OpenEye OEToolkits" 1.5.0                                                                                           CCCCCCCCNC1C=C(C(C(C1O)O)O)CO
+OEV            InChI                InChI  1.03 InChI=1S/C15H29NO4/c1-2-3-4-5-6-7-8-16-12-9-11(10-17)13(18)15(20)14(12)19/h9,12-20H,2-8,10H2,1H3/t12-,13-,14+,15+/m1/s1
+OEV         InChIKey                InChI  1.03                                                                                             UPZUHYMBTUUPML-KBXIAJHMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OEV acedrg               243         "dictionary generator"                  
+OEV acedrg_database      11          "data source"                           
+OEV rdkit                2017.03.2   "Chemoinformatics tool"
+OEV refmac5              5.8.0238    "optimization tool"                     

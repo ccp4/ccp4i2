@@ -1,0 +1,375 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KBI     KBI      trans-4-({9-[(3S)-tetrahydrofuran-3-yl]-8-[(2,4,6-trifluorophenyl)amino]-9H-purin-2-yl}amino)cyclohexanol     NON-POLYMER     55     32     .     
+#
+data_comp_KBI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KBI     C1      C       CR6     0       -21.904     6.514       -32.148     
+KBI     F1      F       F       0       -18.759     13.808      -31.691     
+KBI     N1      N       NRD6    0       -20.713     6.204       -32.719     
+KBI     O1      O       OH1     0       -27.232     5.019       -28.430     
+KBI     C2      C       CR56    0       -21.538     8.741       -32.375     
+KBI     F2      F       F       0       -15.955     14.405      -35.395     
+KBI     N2      N       NRD6    0       -22.368     7.770       -31.952     
+KBI     O2      O       O2      0       -23.882     9.613       -29.984     
+KBI     C3      C       CR56    0       -20.306     8.523       -32.970     
+KBI     F3      F       F       0       -19.575     11.452      -35.705     
+KBI     N3      N       NT      0       -21.726     10.112      -32.327     
+KBI     C4      C       CR16    0       -19.920     7.196       -33.127     
+KBI     N4      N       NRD5    0       -19.712     9.743       -33.284     
+KBI     C5      C       CR5     0       -20.578     10.659      -32.886     
+KBI     N5      N       NH1     0       -20.333     12.004      -33.040     
+KBI     C6      C       CR6     0       -19.214     12.599      -33.668     
+KBI     N6      N       NH1     0       -22.683     5.463       -31.747     
+KBI     C7      C       CH1     0       -23.969     5.563       -31.062     
+KBI     C8      C       CH2     0       -23.787     5.972       -29.612     
+KBI     C9      C       CH2     0       -25.142     6.106       -28.907     
+KBI     C10     C       CH1     0       -25.943     4.830       -29.017     
+KBI     C11     C       CH2     0       -26.095     4.364       -30.446     
+KBI     C12     C       CH2     0       -24.734     4.254       -31.145     
+KBI     C13     C       CH1     0       -22.906     10.809      -31.757     
+KBI     C14     C       CH2     0       -22.984     10.684      -30.235     
+KBI     C15     C       CH2     0       -24.880     9.670       -30.990     
+KBI     C16     C       CH2     0       -24.273     10.295      -32.234     
+KBI     C17     C       CR6     0       -18.850     12.328      -34.983     
+KBI     C18     C       CR16    0       -17.755     12.922      -35.581     
+KBI     C19     C       CR6     0       -17.031     13.811      -34.826     
+KBI     C20     C       CR16    0       -17.336     14.131      -33.527     
+KBI     C21     C       CR6     0       -18.437     13.513      -32.965     
+KBI     HO1     H       H       0       -27.597     4.268       -28.328     
+KBI     H4      H       H       0       -19.092     6.992       -33.524     
+KBI     HN5     H       H       0       -20.913     12.555      -32.714     
+KBI     HN6     H       H       0       -22.373     4.662       -31.919     
+KBI     H7      H       H       0       -24.506     6.256       -31.514     
+KBI     H8      H       H       0       -23.238     5.293       -29.150     
+KBI     H8A     H       H       0       -23.306     6.833       -29.571     
+KBI     H9      H       H       0       -25.656     6.842       -29.310     
+KBI     H9A     H       H       0       -25.002     6.315       -27.956     
+KBI     H10     H       H       0       -25.464     4.122       -28.512     
+KBI     H11     H       H       0       -26.667     5.001       -30.931     
+KBI     H11A    H       H       0       -26.542     3.487       -30.450     
+KBI     H12     H       H       0       -24.200     3.538       -30.722     
+KBI     H12A    H       H       0       -24.867     4.014       -32.094     
+KBI     H13     H       H       0       -22.841     11.766      -31.988     
+KBI     H14     H       H       0       -23.322     11.521      -29.835     
+KBI     H14A    H       H       0       -22.094     10.486      -29.855     
+KBI     H15     H       H       0       -25.645     10.212      -30.675     
+KBI     H15A    H       H       0       -25.207     8.759       -31.191     
+KBI     H16     H       H       0       -24.174     9.630       -32.951     
+KBI     H16A    H       H       0       -24.830     11.035      -32.562     
+KBI     H18     H       H       0       -17.518     12.726      -36.471     
+KBI     H20     H       H       0       -16.817     14.745      -33.036     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KBI          C1          N1      DOUBLE       y     1.348  0.0113     1.348  0.0113
+KBI          C1          N2      SINGLE       y     1.346  0.0100     1.346  0.0100
+KBI          C1          N6      SINGLE       n     1.350  0.0189     1.350  0.0189
+KBI          F1         C21      SINGLE       n     1.347  0.0100     1.347  0.0100
+KBI          N1          C4      SINGLE       y     1.329  0.0100     1.329  0.0100
+KBI          O1         C10      SINGLE       n     1.429  0.0148     1.429  0.0148
+KBI          C2          C3      SINGLE       y     1.386  0.0113     1.386  0.0113
+KBI          C2          N3      SINGLE       y     1.384  0.0181     1.384  0.0181
+KBI          C2          N2      DOUBLE       y     1.342  0.0100     1.342  0.0100
+KBI          F2         C19      SINGLE       n     1.354  0.0100     1.354  0.0100
+KBI          O2         C15      SINGLE       n     1.417  0.0166     1.417  0.0166
+KBI          O2         C14      SINGLE       n     1.421  0.0100     1.421  0.0100
+KBI          C3          N4      SINGLE       y     1.391  0.0100     1.391  0.0100
+KBI          C3          C4      DOUBLE       y     1.387  0.0148     1.387  0.0148
+KBI          F3         C17      SINGLE       n     1.347  0.0100     1.347  0.0100
+KBI          N3          C5      SINGLE       y     1.379  0.0173     1.379  0.0173
+KBI          N3         C13      SINGLE       n     1.478  0.0121     1.478  0.0121
+KBI          N4          C5      DOUBLE       y     1.319  0.0100     1.319  0.0100
+KBI          C5          N5      SINGLE       n     1.365  0.0151     1.365  0.0151
+KBI          N5          C6      SINGLE       n     1.410  0.0119     1.410  0.0119
+KBI          C6         C17      DOUBLE       y     1.385  0.0100     1.385  0.0100
+KBI          C6         C21      SINGLE       y     1.385  0.0100     1.385  0.0100
+KBI          N6          C7      SINGLE       n     1.457  0.0100     1.457  0.0100
+KBI          C7         C12      SINGLE       n     1.516  0.0100     1.516  0.0100
+KBI          C7          C8      SINGLE       n     1.516  0.0100     1.516  0.0100
+KBI          C8          C9      SINGLE       n     1.532  0.0104     1.532  0.0104
+KBI          C9         C10      SINGLE       n     1.509  0.0100     1.509  0.0100
+KBI         C10         C11      SINGLE       n     1.509  0.0100     1.509  0.0100
+KBI         C11         C12      SINGLE       n     1.532  0.0104     1.532  0.0104
+KBI         C13         C16      SINGLE       n     1.534  0.0100     1.534  0.0100
+KBI         C13         C14      SINGLE       n     1.530  0.0112     1.530  0.0112
+KBI         C15         C16      SINGLE       n     1.515  0.0143     1.515  0.0143
+KBI         C17         C18      SINGLE       y     1.378  0.0100     1.378  0.0100
+KBI         C18         C19      DOUBLE       y     1.369  0.0100     1.369  0.0100
+KBI         C19         C20      SINGLE       y     1.369  0.0100     1.369  0.0100
+KBI         C20         C21      DOUBLE       y     1.378  0.0100     1.378  0.0100
+KBI          O1         HO1      SINGLE       n     0.970  0.0120     0.841  0.0200
+KBI          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0200
+KBI          N5         HN5      SINGLE       n     1.016  0.0100     0.865  0.0100
+KBI          N6         HN6      SINGLE       n     1.016  0.0100     0.873  0.0200
+KBI          C7          H7      SINGLE       n     1.089  0.0100     0.986  0.0100
+KBI          C8          H8      SINGLE       n     1.089  0.0100     0.988  0.0140
+KBI          C8         H8A      SINGLE       n     1.089  0.0100     0.988  0.0140
+KBI          C9          H9      SINGLE       n     1.089  0.0100     0.984  0.0118
+KBI          C9         H9A      SINGLE       n     1.089  0.0100     0.984  0.0118
+KBI         C10         H10      SINGLE       n     1.089  0.0100     0.992  0.0121
+KBI         C11         H11      SINGLE       n     1.089  0.0100     0.984  0.0118
+KBI         C11        H11A      SINGLE       n     1.089  0.0100     0.984  0.0118
+KBI         C12         H12      SINGLE       n     1.089  0.0100     0.988  0.0140
+KBI         C12        H12A      SINGLE       n     1.089  0.0100     0.988  0.0140
+KBI         C13         H13      SINGLE       n     1.089  0.0100     0.988  0.0121
+KBI         C14         H14      SINGLE       n     1.089  0.0100     0.988  0.0100
+KBI         C14        H14A      SINGLE       n     1.089  0.0100     0.988  0.0100
+KBI         C15         H15      SINGLE       n     1.089  0.0100     0.989  0.0100
+KBI         C15        H15A      SINGLE       n     1.089  0.0100     0.989  0.0100
+KBI         C16         H16      SINGLE       n     1.089  0.0100     0.983  0.0100
+KBI         C16        H16A      SINGLE       n     1.089  0.0100     0.983  0.0100
+KBI         C18         H18      SINGLE       n     1.082  0.0130     0.942  0.0189
+KBI         C20         H20      SINGLE       n     1.082  0.0130     0.942  0.0189
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KBI          N1          C1          N2     125.310    1.50
+KBI          N1          C1          N6     117.345    1.62
+KBI          N2          C1          N6     117.345    1.62
+KBI          C1          N1          C4     117.671    1.50
+KBI         C10          O1         HO1     108.820    1.99
+KBI          C3          C2          N3     108.330    1.69
+KBI          C3          C2          N2     125.148    1.50
+KBI          N3          C2          N2     126.522    1.56
+KBI          C1          N2          C2     113.750    1.50
+KBI         C15          O2         C14     107.463    3.00
+KBI          C2          C3          N4     109.708    1.50
+KBI          C2          C3          C4     117.497    1.91
+KBI          N4          C3          C4     132.796    1.89
+KBI          C2          N3          C5     107.594    1.50
+KBI          C2          N3         C13     125.158    1.54
+KBI          C5          N3         C13     126.078    2.46
+KBI          N1          C4          C3     120.624    1.68
+KBI          N1          C4          H4     119.456    1.50
+KBI          C3          C4          H4     119.920    1.50
+KBI          C3          N4          C5     104.499    1.50
+KBI          N3          C5          N4     114.046    1.50
+KBI          N3          C5          N5     123.856    1.75
+KBI          N4          C5          N5     122.098    3.00
+KBI          C5          N5          C6     125.904    1.68
+KBI          C5          N5         HN5     117.284    1.87
+KBI          C6          N5         HN5     116.812    2.03
+KBI          N5          C6         C17     121.150    2.92
+KBI          N5          C6         C21     121.150    2.92
+KBI         C17          C6         C21     117.699    1.50
+KBI          C1          N6          C7     123.282    2.33
+KBI          C1          N6         HN6     117.846    2.15
+KBI          C7          N6         HN6     118.872    1.57
+KBI          N6          C7         C12     111.209    2.04
+KBI          N6          C7          C8     111.209    2.04
+KBI          N6          C7          H7     108.206    1.50
+KBI         C12          C7          C8     110.640    1.50
+KBI         C12          C7          H7     108.434    1.50
+KBI          C8          C7          H7     108.434    1.50
+KBI          C7          C8          C9     111.008    1.50
+KBI          C7          C8          H8     109.355    1.50
+KBI          C7          C8         H8A     109.355    1.50
+KBI          C9          C8          H8     109.720    1.50
+KBI          C9          C8         H8A     109.720    1.50
+KBI          H8          C8         H8A     108.076    1.50
+KBI          C8          C9         C10     110.983    1.50
+KBI          C8          C9          H9     109.824    1.50
+KBI          C8          C9         H9A     109.824    1.50
+KBI         C10          C9          H9     109.029    1.50
+KBI         C10          C9         H9A     109.029    1.50
+KBI          H9          C9         H9A     108.174    1.50
+KBI          O1         C10          C9     110.157    2.24
+KBI          O1         C10         C11     110.157    2.24
+KBI          O1         C10         H10     108.828    1.50
+KBI          C9         C10         C11     111.508    2.90
+KBI          C9         C10         H10     108.353    2.24
+KBI         C11         C10         H10     108.353    2.24
+KBI         C10         C11         C12     110.983    1.50
+KBI         C10         C11         H11     109.029    1.50
+KBI         C10         C11        H11A     109.029    1.50
+KBI         C12         C11         H11     109.824    1.50
+KBI         C12         C11        H11A     109.824    1.50
+KBI         H11         C11        H11A     108.174    1.50
+KBI          C7         C12         C11     111.008    1.50
+KBI          C7         C12         H12     109.355    1.50
+KBI          C7         C12        H12A     109.355    1.50
+KBI         C11         C12         H12     109.720    1.50
+KBI         C11         C12        H12A     109.720    1.50
+KBI         H12         C12        H12A     108.076    1.50
+KBI          N3         C13         C16     113.752    2.20
+KBI          N3         C13         C14     113.752    2.20
+KBI          N3         C13         H13     108.756    1.83
+KBI         C16         C13         C14     104.443    2.26
+KBI         C16         C13         H13     109.222    1.50
+KBI         C14         C13         H13     109.235    1.50
+KBI          O2         C14         C13     105.931    1.50
+KBI          O2         C14         H14     110.363    1.50
+KBI          O2         C14        H14A     110.363    1.50
+KBI         C13         C14         H14     110.388    1.50
+KBI         C13         C14        H14A     110.388    1.50
+KBI         H14         C14        H14A     108.621    1.50
+KBI          O2         C15         C16     106.763    3.00
+KBI          O2         C15         H15     110.289    1.50
+KBI          O2         C15        H15A     110.289    1.50
+KBI         C16         C15         H15     110.523    1.50
+KBI         C16         C15        H15A     110.523    1.50
+KBI         H15         C15        H15A     108.637    1.50
+KBI         C13         C16         C15     103.031    1.50
+KBI         C13         C16         H16     111.118    1.50
+KBI         C13         C16        H16A     111.118    1.50
+KBI         C15         C16         H16     111.169    1.50
+KBI         C15         C16        H16A     111.169    1.50
+KBI         H16         C16        H16A     109.097    1.50
+KBI          F3         C17          C6     119.300    1.50
+KBI          F3         C17         C18     118.597    1.50
+KBI          C6         C17         C18     122.103    1.82
+KBI         C17         C18         C19     117.163    1.50
+KBI         C17         C18         H18     121.323    1.50
+KBI         C19         C18         H18     121.513    1.50
+KBI          F2         C19         C18     118.116    1.50
+KBI          F2         C19         C20     118.116    1.50
+KBI         C18         C19         C20     123.768    1.50
+KBI         C19         C20         C21     117.163    1.50
+KBI         C19         C20         H20     121.513    1.50
+KBI         C21         C20         H20     121.323    1.50
+KBI          F1         C21          C6     119.300    1.50
+KBI          F1         C21         C20     118.597    1.50
+KBI          C6         C21         C20     122.103    1.82
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KBI             sp2_sp2_1          N1          C1          N6          C7     180.000     5.0     2
+KBI              const_22          N6          C1          N1          C4     180.000    10.0     2
+KBI              const_44          N6          C1          N2          C2     180.000    10.0     2
+KBI              const_41          N5          C5          N3          C2     180.000    10.0     2
+KBI             sp2_sp3_1          C2          N3         C13         C16     150.000    10.0     6
+KBI              const_38          N5          C5          N4          C3     180.000    10.0     2
+KBI             sp2_sp2_5          N3          C5          N5          C6     180.000     5.0     2
+KBI             sp2_sp2_9         C17          C6          N5          C5     180.000     5.0     2
+KBI       const_sp2_sp2_4          F3         C17          C6          N5       0.000     5.0     2
+KBI              const_52          F1         C21          C6          N5       0.000    10.0     2
+KBI             sp2_sp3_8          C1          N6          C7         C12     120.000    10.0     6
+KBI            sp3_sp3_85          N6          C7          C8          C9      60.000    10.0     3
+KBI             sp3_sp3_3         C11         C12          C7          N6     -60.000    10.0     3
+KBI            sp3_sp3_37          C7          C8          C9         C10      60.000    10.0     3
+KBI            sp3_sp3_34          O1         C10          C9          C8      60.000    10.0     3
+KBI            sp3_sp3_22          O1         C10         C11         C12     -60.000    10.0     3
+KBI            sp3_sp3_10         C10         C11         C12          C7     -60.000    10.0     3
+KBI            sp3_sp3_70          N3         C13         C14          O2     180.000    10.0     3
+KBI            sp3_sp3_61          N3         C13         C16         C15     -60.000    10.0     3
+KBI            sp3_sp3_49          O2         C15         C16         C13     -60.000    10.0     3
+KBI       const_sp2_sp2_7          F3         C17         C18         C19     180.000     5.0     2
+KBI              const_10         C17         C18         C19          F2     180.000    10.0     2
+KBI              const_15          F2         C19         C20         C21     180.000    10.0     2
+KBI              const_23          C3          C4          N1          C1       0.000    10.0     2
+KBI              const_18         C19         C20         C21          F1     180.000    10.0     2
+KBI            sp3_sp3_77          C9         C10          O1         HO1      60.000    10.0     3
+KBI              const_45          C3          C2          N3          C5       0.000    10.0     2
+KBI              const_33          C3          C2          N2          C1       0.000    10.0     2
+KBI              const_29          N3          C2          C3          N4       0.000    10.0     2
+KBI            sp3_sp3_79         C13         C14          O2         C15     180.000    10.0     3
+KBI            sp3_sp3_46         C16         C15          O2         C14      60.000    10.0     3
+KBI              const_25          C2          C3          C4          N1       0.000    10.0     2
+KBI              const_35          C2          C3          N4          C5       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KBI    chir_1    C7    N6    C12    C8    both
+KBI    chir_2    C10    O1    C9    C11    both
+KBI    chir_3    C13    N3    C14    C16    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KBI    plan-1          C1   0.020
+KBI    plan-1         C13   0.020
+KBI    plan-1          C2   0.020
+KBI    plan-1          C3   0.020
+KBI    plan-1          C4   0.020
+KBI    plan-1          C5   0.020
+KBI    plan-1          H4   0.020
+KBI    plan-1          N1   0.020
+KBI    plan-1          N2   0.020
+KBI    plan-1          N3   0.020
+KBI    plan-1          N4   0.020
+KBI    plan-1          N5   0.020
+KBI    plan-1          N6   0.020
+KBI    plan-2         C17   0.020
+KBI    plan-2         C18   0.020
+KBI    plan-2         C19   0.020
+KBI    plan-2         C20   0.020
+KBI    plan-2         C21   0.020
+KBI    plan-2          C6   0.020
+KBI    plan-2          F1   0.020
+KBI    plan-2          F2   0.020
+KBI    plan-2          F3   0.020
+KBI    plan-2         H18   0.020
+KBI    plan-2         H20   0.020
+KBI    plan-2          N5   0.020
+KBI    plan-3          C5   0.020
+KBI    plan-3          C6   0.020
+KBI    plan-3         HN5   0.020
+KBI    plan-3          N5   0.020
+KBI    plan-4          C1   0.020
+KBI    plan-4          C7   0.020
+KBI    plan-4         HN6   0.020
+KBI    plan-4          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KBI           SMILES              ACDLabs 12.01                                                                                                                                            Fc1cc(F)cc(F)c1Nc3nc2cnc(nc2n3C4CCOC4)NC5CCC(O)CC5
+KBI            InChI                InChI  1.03 InChI=1S/C21H23F3N6O2/c22-11-7-15(23)18(16(24)8-11)28-21-27-17-9-25-20(26-12-1-3-14(31)4-2-12)29-19(17)30(21)13-5-6-32-10-13/h7-9,12-14,31H,1-6,10H2,(H,27,28)(H,25,26,29)/t12-,13-,14-/m0/s1
+KBI         InChIKey                InChI  1.03                                                                                                                                                                   IBGLGMOPHJQDJB-IHRRRGAJSA-N
+KBI SMILES_CANONICAL               CACTVS 3.370                                                                                                                             O[C@@H]1CC[C@H](CC1)Nc2ncc3nc(Nc4c(F)cc(F)cc4F)n([C@H]5CCOC5)c3n2
+KBI           SMILES               CACTVS 3.370                                                                                                                                 O[CH]1CC[CH](CC1)Nc2ncc3nc(Nc4c(F)cc(F)cc4F)n([CH]5CCOC5)c3n2
+KBI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                                      c1c(cc(c(c1F)Nc2nc3cnc(nc3n2[C@H]4CCOC4)NC5CCC(CC5)O)F)F
+KBI           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                                          c1c(cc(c(c1F)Nc2nc3cnc(nc3n2C4CCOC4)NC5CCC(CC5)O)F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KBI acedrg               243         "dictionary generator"                  
+KBI acedrg_database      11          "data source"                           
+KBI rdkit                2017.03.2   "Chemoinformatics tool"
+KBI refmac5              5.8.0238    "optimization tool"                     

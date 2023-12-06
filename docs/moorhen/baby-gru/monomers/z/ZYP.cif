@@ -1,0 +1,346 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZYP     ZYP      5-(1,1-dioxido-1,2-thiazinan-2-yl)-N-(4-fluorobenzyl)-8-hydroxy-1,6-naphthyridine-7-carboxamide     NON-POLYMER     49     30     .     
+#
+data_comp_ZYP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZYP     OAA     O       O       0       -34.670     34.565      -20.696     
+ZYP     OAB     O       O       0       -39.260     28.368      -22.179     
+ZYP     OAC     O       O       0       -39.335     30.774      -21.736     
+ZYP     OAD     O       OH1     0       -35.013     33.012      -18.143     
+ZYP     FAE     F       F       0       -41.913     38.464      -21.037     
+ZYP     CAF     C       CR16    0       -35.984     28.090      -18.135     
+ZYP     CAG     C       CR16    0       -35.460     29.036      -17.231     
+ZYP     CAH     C       CR16    0       -40.296     37.131      -19.981     
+ZYP     CAI     C       CR16    0       -40.894     36.751      -22.276     
+ZYP     CAJ     C       CR16    0       -39.390     36.080      -20.054     
+ZYP     CAK     C       CR16    0       -39.983     35.702      -22.332     
+ZYP     CAL     C       CR16    0       -36.362     28.515      -19.373     
+ZYP     CAM     C       CH2     0       -36.241     29.082      -24.210     
+ZYP     CAN     C       CH2     0       -37.632     29.040      -24.821     
+ZYP     CAO     C       CH2     0       -36.273     28.696      -22.746     
+ZYP     CAP     C       CH2     0       -38.229     34.218      -21.278     
+ZYP     CAQ     C       CH2     0       -38.584     29.990      -24.111     
+ZYP     NAR     N       NRD6    0       -35.308     30.321      -17.505     
+ZYP     NAS     N       NRD6    0       -36.430     31.741      -21.294     
+ZYP     NAT     N       NH1     0       -36.849     34.704      -21.250     
+ZYP     CAU     C       C       0       -35.781     34.042      -20.777     
+ZYP     CAV     C       CR6     0       -41.023     37.436      -21.099     
+ZYP     CAW     C       CR6     0       -39.224     35.351      -21.223     
+ZYP     CAX     C       CR6     0       -35.533     32.142      -19.077     
+ZYP     CAY     C       CR6     0       -35.941     32.599      -20.378     
+ZYP     CAZ     C       CR6     0       -36.589     30.430      -21.001     
+ZYP     CBA     C       CR66    0       -36.220     29.887      -19.723     
+ZYP     CBB     C       CR66    0       -35.681     30.768      -18.745     
+ZYP     NBC     N       NR6     0       -37.117     29.625      -21.986     
+ZYP     SBD     S       S3      0       -38.702     29.665      -22.368     
+ZYP     HOAD    H       H       0       -34.683     32.721      -17.402     
+ZYP     HAF     H       H       0       -36.072     27.185      -17.887     
+ZYP     HAG     H       H       0       -35.201     28.737      -16.375     
+ZYP     HAH     H       H       0       -40.407     37.620      -19.186     
+ZYP     HAI     H       H       0       -41.409     36.984      -23.027     
+ZYP     HAJ     H       H       0       -38.880     35.856      -19.293     
+ZYP     HAK     H       H       0       -39.882     35.220      -23.136     
+ZYP     HAL     H       H       0       -36.717     27.901      -20.001     
+ZYP     HAM     H       H       0       -35.653     28.466      -24.697     
+ZYP     HAMA    H       H       0       -35.874     29.987      -24.301     
+ZYP     HAN     H       H       0       -37.581     29.286      -25.765     
+ZYP     HANA    H       H       0       -37.986     28.131      -24.762     
+ZYP     HAO     H       H       0       -35.360     28.705      -22.385     
+ZYP     HAOA    H       H       0       -36.628     27.786      -22.655     
+ZYP     HAP     H       H       0       -38.388     33.627      -20.515     
+ZYP     HAPA    H       H       0       -38.373     33.700      -22.098     
+ZYP     HAQ     H       H       0       -39.466     29.907      -24.488     
+ZYP     HAQA    H       H       0       -38.279     30.897      -24.223     
+ZYP     HNAT    H       H       0       -36.695     35.501      -21.580     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZYP         OAA         CAU      DOUBLE       n     1.230  0.0114     1.230  0.0114
+ZYP         OAB         SBD      DOUBLE       n     1.425  0.0100     1.425  0.0100
+ZYP         OAC         SBD      DOUBLE       n     1.425  0.0100     1.425  0.0100
+ZYP         OAD         CAX      SINGLE       n     1.374  0.0155     1.374  0.0155
+ZYP         FAE         CAV      SINGLE       n     1.361  0.0100     1.361  0.0100
+ZYP         CAF         CAG      DOUBLE       y     1.406  0.0100     1.406  0.0100
+ZYP         CAF         CAL      SINGLE       y     1.359  0.0110     1.359  0.0110
+ZYP         CAG         NAR      SINGLE       y     1.317  0.0100     1.317  0.0100
+ZYP         CAH         CAJ      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ZYP         CAH         CAV      SINGLE       y     1.363  0.0118     1.363  0.0118
+ZYP         CAI         CAK      SINGLE       y     1.386  0.0100     1.386  0.0100
+ZYP         CAI         CAV      DOUBLE       y     1.363  0.0118     1.363  0.0118
+ZYP         CAJ         CAW      SINGLE       y     1.384  0.0111     1.384  0.0111
+ZYP         CAK         CAW      DOUBLE       y     1.384  0.0111     1.384  0.0111
+ZYP         CAL         CBA      DOUBLE       y     1.418  0.0111     1.418  0.0111
+ZYP         CAM         CAN      SINGLE       n     1.518  0.0116     1.518  0.0116
+ZYP         CAM         CAO      SINGLE       n     1.513  0.0132     1.513  0.0132
+ZYP         CAN         CAQ      SINGLE       n     1.519  0.0133     1.519  0.0133
+ZYP         CAO         NBC      SINGLE       n     1.464  0.0109     1.464  0.0109
+ZYP         CAP         NAT      SINGLE       n     1.458  0.0100     1.458  0.0100
+ZYP         CAP         CAW      SINGLE       n     1.508  0.0100     1.508  0.0100
+ZYP         CAQ         SBD      SINGLE       n     1.772  0.0200     1.772  0.0200
+ZYP         NAR         CBB      DOUBLE       y     1.365  0.0100     1.365  0.0100
+ZYP         NAS         CAY      SINGLE       y     1.341  0.0107     1.341  0.0107
+ZYP         NAS         CAZ      DOUBLE       y     1.344  0.0127     1.344  0.0127
+ZYP         NAT         CAU      SINGLE       n     1.335  0.0100     1.335  0.0100
+ZYP         CAU         CAY      SINGLE       n     1.502  0.0100     1.502  0.0100
+ZYP         CAX         CAY      DOUBLE       y     1.420  0.0200     1.420  0.0200
+ZYP         CAX         CBB      SINGLE       y     1.417  0.0108     1.417  0.0108
+ZYP         CAZ         CBA      SINGLE       y     1.423  0.0144     1.423  0.0144
+ZYP         CAZ         NBC      SINGLE       n     1.370  0.0200     1.370  0.0200
+ZYP         CBA         CBB      SINGLE       y     1.418  0.0100     1.418  0.0100
+ZYP         NBC         SBD      SINGLE       n     1.628  0.0100     1.628  0.0100
+ZYP         OAD        HOAD      SINGLE       n     0.966  0.0059     0.861  0.0200
+ZYP         CAF         HAF      SINGLE       n     1.082  0.0130     0.942  0.0187
+ZYP         CAG         HAG      SINGLE       n     1.082  0.0130     0.943  0.0200
+ZYP         CAH         HAH      SINGLE       n     1.082  0.0130     0.940  0.0141
+ZYP         CAI         HAI      SINGLE       n     1.082  0.0130     0.940  0.0141
+ZYP         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0173
+ZYP         CAK         HAK      SINGLE       n     1.082  0.0130     0.943  0.0173
+ZYP         CAL         HAL      SINGLE       n     1.082  0.0130     0.949  0.0200
+ZYP         CAM         HAM      SINGLE       n     1.089  0.0100     0.981  0.0134
+ZYP         CAM        HAMA      SINGLE       n     1.089  0.0100     0.981  0.0134
+ZYP         CAN         HAN      SINGLE       n     1.089  0.0100     0.977  0.0102
+ZYP         CAN        HANA      SINGLE       n     1.089  0.0100     0.977  0.0102
+ZYP         CAO         HAO      SINGLE       n     1.089  0.0100     0.981  0.0161
+ZYP         CAO        HAOA      SINGLE       n     1.089  0.0100     0.981  0.0161
+ZYP         CAP         HAP      SINGLE       n     1.089  0.0100     0.980  0.0169
+ZYP         CAP        HAPA      SINGLE       n     1.089  0.0100     0.980  0.0169
+ZYP         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.963  0.0173
+ZYP         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.963  0.0173
+ZYP         NAT        HNAT      SINGLE       n     1.016  0.0100     0.875  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZYP         CAX         OAD        HOAD     120.000    3.00
+ZYP         CAG         CAF         CAL     118.446    1.50
+ZYP         CAG         CAF         HAF     120.637    1.50
+ZYP         CAL         CAF         HAF     120.917    1.50
+ZYP         CAF         CAG         NAR     123.766    1.50
+ZYP         CAF         CAG         HAG     118.339    1.50
+ZYP         NAR         CAG         HAG     117.895    1.50
+ZYP         CAJ         CAH         CAV     118.175    1.50
+ZYP         CAJ         CAH         HAH     120.983    1.50
+ZYP         CAV         CAH         HAH     120.843    1.50
+ZYP         CAK         CAI         CAV     118.175    1.50
+ZYP         CAK         CAI         HAI     120.983    1.50
+ZYP         CAV         CAI         HAI     120.843    1.50
+ZYP         CAH         CAJ         CAW     121.162    1.50
+ZYP         CAH         CAJ         HAJ     119.398    1.50
+ZYP         CAW         CAJ         HAJ     119.441    1.50
+ZYP         CAI         CAK         CAW     121.162    1.50
+ZYP         CAI         CAK         HAK     119.398    1.50
+ZYP         CAW         CAK         HAK     119.441    1.50
+ZYP         CAF         CAL         CBA     120.297    1.50
+ZYP         CAF         CAL         HAL     120.284    1.50
+ZYP         CBA         CAL         HAL     119.426    1.50
+ZYP         CAN         CAM         CAO     111.236    1.50
+ZYP         CAN         CAM         HAM     109.388    1.50
+ZYP         CAN         CAM        HAMA     109.388    1.50
+ZYP         CAO         CAM         HAM     109.491    1.50
+ZYP         CAO         CAM        HAMA     109.491    1.50
+ZYP         HAM         CAM        HAMA     108.022    1.50
+ZYP         CAM         CAN         CAQ     111.223    1.50
+ZYP         CAM         CAN         HAN     109.388    1.50
+ZYP         CAM         CAN        HANA     109.388    1.50
+ZYP         CAQ         CAN         HAN     108.909    1.50
+ZYP         CAQ         CAN        HANA     108.909    1.50
+ZYP         HAN         CAN        HANA     108.019    1.50
+ZYP         CAM         CAO         NBC     110.569    1.50
+ZYP         CAM         CAO         HAO     109.565    1.50
+ZYP         CAM         CAO        HAOA     109.565    1.50
+ZYP         NBC         CAO         HAO     109.526    1.50
+ZYP         NBC         CAO        HAOA     109.526    1.50
+ZYP         HAO         CAO        HAOA     108.194    1.50
+ZYP         NAT         CAP         CAW     112.551    1.55
+ZYP         NAT         CAP         HAP     109.133    1.50
+ZYP         NAT         CAP        HAPA     109.133    1.50
+ZYP         CAW         CAP         HAP     109.073    1.50
+ZYP         CAW         CAP        HAPA     109.073    1.50
+ZYP         HAP         CAP        HAPA     107.860    1.50
+ZYP         CAN         CAQ         SBD     110.645    3.00
+ZYP         CAN         CAQ         HAQ     109.367    1.50
+ZYP         CAN         CAQ        HAQA     109.367    1.50
+ZYP         SBD         CAQ         HAQ     107.095    2.56
+ZYP         SBD         CAQ        HAQA     107.095    2.56
+ZYP         HAQ         CAQ        HAQA     108.651    1.76
+ZYP         CAG         NAR         CBB     116.983    1.50
+ZYP         CAY         NAS         CAZ     119.138    1.50
+ZYP         CAP         NAT         CAU     122.901    1.50
+ZYP         CAP         NAT        HNAT     118.660    1.50
+ZYP         CAU         NAT        HNAT     118.439    2.09
+ZYP         OAA         CAU         NAT     123.750    1.50
+ZYP         OAA         CAU         CAY     120.815    1.50
+ZYP         NAT         CAU         CAY     115.435    1.50
+ZYP         FAE         CAV         CAH     118.544    1.50
+ZYP         FAE         CAV         CAI     118.537    1.50
+ZYP         CAH         CAV         CAI     122.913    1.50
+ZYP         CAJ         CAW         CAK     118.415    1.50
+ZYP         CAJ         CAW         CAP     120.793    1.50
+ZYP         CAK         CAW         CAP     120.793    1.50
+ZYP         OAD         CAX         CAY     121.484    3.00
+ZYP         OAD         CAX         CBB     118.248    2.50
+ZYP         CAY         CAX         CBB     120.267    1.50
+ZYP         NAS         CAY         CAU     117.854    1.50
+ZYP         NAS         CAY         CAX     121.058    1.50
+ZYP         CAU         CAY         CAX     121.088    2.28
+ZYP         NAS         CAZ         CBA     121.491    1.58
+ZYP         NAS         CAZ         NBC     118.123    1.50
+ZYP         CBA         CAZ         NBC     120.386    1.50
+ZYP         CAL         CBA         CAZ     122.231    1.85
+ZYP         CAL         CBA         CBB     118.945    1.50
+ZYP         CAZ         CBA         CBB     118.823    1.50
+ZYP         NAR         CBB         CAX     119.222    1.50
+ZYP         NAR         CBB         CBA     121.556    1.50
+ZYP         CAX         CBB         CBA     119.222    1.50
+ZYP         CAO         NBC         CAZ     121.442    3.00
+ZYP         CAO         NBC         SBD     117.474    2.33
+ZYP         CAZ         NBC         SBD     121.084    3.00
+ZYP         OAB         SBD         OAC     118.916    1.50
+ZYP         OAB         SBD         CAQ     109.360    1.50
+ZYP         OAB         SBD         NBC     109.749    1.77
+ZYP         OAC         SBD         CAQ     109.360    1.50
+ZYP         OAC         SBD         NBC     109.749    1.77
+ZYP         CAQ         SBD         NBC     100.093    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZYP              const_26         CAI         CAK         CAW         CAP     180.000    10.0     2
+ZYP              const_14         CAF         CAL         CBA         CAZ     180.000    10.0     2
+ZYP             sp3_sp3_1         CAO         CAM         CAN         CAQ      60.000    10.0     3
+ZYP            sp3_sp3_28         CAN         CAM         CAO         NBC     180.000    10.0     3
+ZYP            sp3_sp3_10         CAM         CAN         CAQ         SBD     -60.000    10.0     3
+ZYP            sp2_sp3_10         CAZ         NBC         CAO         CAM     180.000    10.0     6
+ZYP            sp2_sp3_14         CAU         NAT         CAP         CAW     120.000    10.0     6
+ZYP            sp2_sp3_20         CAJ         CAW         CAP         NAT     -90.000    10.0     6
+ZYP            sp3_sp3_20         CAN         CAQ         SBD         OAB     180.000    10.0     3
+ZYP       const_sp2_sp2_8         CAX         CBB         NAR         CAG     180.000     5.0     2
+ZYP              const_38         CAU         CAY         NAS         CAZ     180.000    10.0     2
+ZYP              const_59         CBA         CAZ         NAS         CAY       0.000    10.0     2
+ZYP             sp2_sp2_5         OAA         CAU         NAT         CAP       0.000     5.0     2
+ZYP            sp2_sp2_10         OAA         CAU         CAY         NAS     180.000     5.0     2
+ZYP              const_42         OAD         CAX         CAY         CAU       0.000    10.0     2
+ZYP              const_46         OAD         CAX         CBB         NAR       0.000    10.0     2
+ZYP              const_48         NAS         CAZ         CBA         CAL     180.000    10.0     2
+ZYP            sp2_sp2_13         NAS         CAZ         NBC         CAO       0.000     5.0     2
+ZYP       const_sp2_sp2_9         CAL         CBA         CBB         NAR       0.000     5.0     2
+ZYP             sp2_sp3_3         CAO         NBC         SBD         OAB    -120.000    10.0     6
+ZYP             sp2_sp2_1         CAY         CAX         OAD        HOAD     180.000     5.0     2
+ZYP              const_51         CAG         CAF         CAL         CBA       0.000    10.0     2
+ZYP       const_sp2_sp2_1         CAL         CAF         CAG         NAR       0.000     5.0     2
+ZYP       const_sp2_sp2_5         CAF         CAG         NAR         CBB       0.000     5.0     2
+ZYP              const_56         CAJ         CAH         CAV         FAE     180.000    10.0     2
+ZYP              const_17         CAV         CAH         CAJ         CAW       0.000    10.0     2
+ZYP              const_29         CAV         CAI         CAK         CAW       0.000    10.0     2
+ZYP              const_34         CAK         CAI         CAV         FAE     180.000    10.0     2
+ZYP              const_22         CAH         CAJ         CAW         CAP     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZYP    chir_1    SBD    OAB    OAC    NBC    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZYP    plan-1         CAF   0.020
+ZYP    plan-1         CAG   0.020
+ZYP    plan-1         CAL   0.020
+ZYP    plan-1         CAU   0.020
+ZYP    plan-1         CAX   0.020
+ZYP    plan-1         CAY   0.020
+ZYP    plan-1         CAZ   0.020
+ZYP    plan-1         CBA   0.020
+ZYP    plan-1         CBB   0.020
+ZYP    plan-1         HAF   0.020
+ZYP    plan-1         HAG   0.020
+ZYP    plan-1         HAL   0.020
+ZYP    plan-1         NAR   0.020
+ZYP    plan-1         NAS   0.020
+ZYP    plan-1         NBC   0.020
+ZYP    plan-1         OAD   0.020
+ZYP    plan-2         CAH   0.020
+ZYP    plan-2         CAI   0.020
+ZYP    plan-2         CAJ   0.020
+ZYP    plan-2         CAK   0.020
+ZYP    plan-2         CAP   0.020
+ZYP    plan-2         CAV   0.020
+ZYP    plan-2         CAW   0.020
+ZYP    plan-2         FAE   0.020
+ZYP    plan-2         HAH   0.020
+ZYP    plan-2         HAI   0.020
+ZYP    plan-2         HAJ   0.020
+ZYP    plan-2         HAK   0.020
+ZYP    plan-3         CAP   0.020
+ZYP    plan-3         CAU   0.020
+ZYP    plan-3        HNAT   0.020
+ZYP    plan-3         NAT   0.020
+ZYP    plan-4         CAU   0.020
+ZYP    plan-4         CAY   0.020
+ZYP    plan-4         NAT   0.020
+ZYP    plan-4         OAA   0.020
+ZYP    plan-5         CAO   0.020
+ZYP    plan-5         CAZ   0.020
+ZYP    plan-5         NBC   0.020
+ZYP    plan-5         SBD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZYP           SMILES              ACDLabs 12.01                                                                                              O=S4(=O)N(c2nc(C(=O)NCc1ccc(F)cc1)c(O)c3ncccc23)CCCC4
+ZYP SMILES_CANONICAL               CACTVS 3.370                                                                                              Oc1c(nc(N2CCCC[S]2(=O)=O)c3cccnc13)C(=O)NCc4ccc(F)cc4
+ZYP           SMILES               CACTVS 3.370                                                                                              Oc1c(nc(N2CCCC[S]2(=O)=O)c3cccnc13)C(=O)NCc4ccc(F)cc4
+ZYP SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                              c1cc2c(c(c(nc2N3CCCCS3(=O)=O)C(=O)NCc4ccc(cc4)F)O)nc1
+ZYP           SMILES "OpenEye OEToolkits" 1.7.0                                                                                              c1cc2c(c(c(nc2N3CCCCS3(=O)=O)C(=O)NCc4ccc(cc4)F)O)nc1
+ZYP            InChI                InChI  1.03 InChI=1S/C20H19FN4O4S/c21-14-7-5-13(6-8-14)12-23-20(27)17-18(26)16-15(4-3-9-22-16)19(24-17)25-10-1-2-11-30(25,28)29/h3-9,26H,1-2,10-12H2,(H,23,27)
+ZYP         InChIKey                InChI  1.03                                                                                                                        DIDKWCOCQJWMDJ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZYP acedrg               243         "dictionary generator"                  
+ZYP acedrg_database      11          "data source"                           
+ZYP rdkit                2017.03.2   "Chemoinformatics tool"
+ZYP refmac5              5.8.0238    "optimization tool"                     

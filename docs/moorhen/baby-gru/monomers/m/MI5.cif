@@ -1,0 +1,353 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MI5     MI5      N-(3-methylisothiazol-5-yl)-3-(1-methyl-1H-pyrazol-4-yl)-5-[(3R)-piperidin-3-yl]pyrazolo[1,5-a]pyrimidin-7-amine     NON-POLYMER     50     28     .     
+#
+data_comp_MI5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MI5     C01     C       CR5     0       14.481      -0.451      10.209      
+MI5     C02     C       CR56    0       15.692      -1.083      10.491      
+MI5     N03     N       NT      0       16.653      -0.429      9.777       
+MI5     N04     N       NRD5    0       16.138      0.595       9.044       
+MI5     C05     C       CR15    0       14.837      0.576       9.307       
+MI5     N06     N       NRD6    0       15.914      -2.139      11.304      
+MI5     C07     C       CR6     0       17.215      -2.540      11.391      
+MI5     C08     C       CR16    0       18.257      -1.916      10.683      
+MI5     C09     C       CR6     0       17.973      -0.824      9.847       
+MI5     N10     N       NH1     0       18.961      -0.162      9.122       
+MI5     C11     C       CH1     0       17.495      -3.717      12.285      
+MI5     C12     C       CR5     0       13.132      -0.754      10.710      
+MI5     C13     C       CH2     0       17.003      -3.507      13.714      
+MI5     N14     N       NT1     0       17.340      -4.665      14.553      
+MI5     C15     C       CH2     0       16.699      -5.883      14.040      
+MI5     C16     C       CH2     0       17.151      -6.202      12.628      
+MI5     C17     C       CH2     0       16.914      -5.011      11.704      
+MI5     C18     C       CR15    0       11.924      -0.285      10.185      
+MI5     N19     N       NRD5    0       10.879      -0.740      10.860      
+MI5     N20     N       NT      0       11.422      -1.522      11.846      
+MI5     C21     C       CR15    0       12.774      -1.547      11.778      
+MI5     C22     C       CH3     0       10.557      -2.203      12.804      
+MI5     C23     C       CR5     0       19.896      -0.696      8.252       
+MI5     S24     S       S2      0       19.673      -2.149      7.462       
+MI5     N25     N       NRD5    0       21.096      -2.094      6.681       
+MI5     C26     C       CR5     0       21.778      -1.017      6.965       
+MI5     C27     C       CR15    0       21.117      -0.163      7.881       
+MI5     C28     C       CH3     0       23.111      -0.818      6.321       
+MI5     H05     H       H       0       14.231      1.184       8.928       
+MI5     H08     H       H       0       19.141      -2.228      10.767      
+MI5     HN10    H       H       0       18.996      0.704       9.230       
+MI5     H11     H       H       0       18.475      -3.846      12.340      
+MI5     H13     H       H       0       17.419      -2.700      14.085      
+MI5     H13A    H       H       0       16.031      -3.381      13.710      
+MI5     HN14    H       H       0       18.219      -4.787      14.547      
+MI5     H15     H       H       0       15.728      -5.762      14.050      
+MI5     H15A    H       H       0       16.920      -6.633      14.628      
+MI5     H16     H       H       0       16.652      -6.982      12.297      
+MI5     H16A    H       H       0       18.107      -6.428      12.638      
+MI5     H17     H       H       0       17.333      -5.188      10.825      
+MI5     H17A    H       H       0       15.943      -4.896      11.559      
+MI5     H18     H       H       0       11.839      0.285       9.444       
+MI5     H21     H       H       0       13.361      -2.014      12.347      
+MI5     H22     H       H       0       11.095      -2.567      13.524      
+MI5     H22A    H       H       0       10.085      -2.923      12.359      
+MI5     H22B    H       H       0       9.916       -1.573      13.166      
+MI5     H27     H       H       0       21.463      0.655       8.196       
+MI5     H28     H       H       0       23.773      -1.370      6.766       
+MI5     H28A    H       H       0       23.371      0.114       6.392       
+MI5     H28B    H       H       0       23.061      -1.067      5.385       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MI5         C01         C05      SINGLE       y     1.407  0.0100     1.407  0.0100
+MI5         C01         C02      DOUBLE       y     1.403  0.0200     1.403  0.0200
+MI5         C01         C12      SINGLE       n     1.470  0.0100     1.470  0.0100
+MI5         C02         N03      SINGLE       y     1.372  0.0113     1.372  0.0113
+MI5         C02         N06      SINGLE       y     1.345  0.0116     1.345  0.0116
+MI5         N03         N04      SINGLE       y     1.366  0.0181     1.366  0.0181
+MI5         N03         C09      SINGLE       y     1.379  0.0122     1.379  0.0122
+MI5         N04         C05      DOUBLE       y     1.322  0.0100     1.322  0.0100
+MI5         N06         C07      DOUBLE       y     1.333  0.0200     1.333  0.0200
+MI5         C07         C08      SINGLE       y     1.381  0.0200     1.381  0.0200
+MI5         C07         C11      SINGLE       n     1.501  0.0128     1.501  0.0128
+MI5         C08         C09      DOUBLE       y     1.398  0.0160     1.398  0.0160
+MI5         C09         N10      SINGLE       n     1.388  0.0200     1.388  0.0200
+MI5         N10         C23      SINGLE       n     1.377  0.0194     1.377  0.0194
+MI5         C11         C17      SINGLE       n     1.530  0.0138     1.530  0.0138
+MI5         C11         C13      SINGLE       n     1.523  0.0100     1.523  0.0100
+MI5         C12         C18      SINGLE       y     1.391  0.0200     1.391  0.0200
+MI5         C12         C21      DOUBLE       y     1.380  0.0177     1.380  0.0177
+MI5         C13         N14      SINGLE       n     1.467  0.0114     1.467  0.0114
+MI5         N14         C15      SINGLE       n     1.467  0.0100     1.467  0.0100
+MI5         C15         C16      SINGLE       n     1.515  0.0100     1.515  0.0100
+MI5         C16         C17      SINGLE       n     1.524  0.0100     1.524  0.0100
+MI5         C18         N19      DOUBLE       y     1.322  0.0100     1.322  0.0100
+MI5         N19         N20      SINGLE       y     1.371  0.0100     1.371  0.0100
+MI5         N20         C21      SINGLE       y     1.357  0.0100     1.357  0.0100
+MI5         N20         C22      SINGLE       n     1.460  0.0100     1.460  0.0100
+MI5         C23         C27      DOUBLE       y     1.369  0.0200     1.369  0.0200
+MI5         C23         S24      SINGLE       y     1.695  0.0200     1.695  0.0200
+MI5         S24         N25      SINGLE       y     1.652  0.0200     1.652  0.0200
+MI5         N25         C26      DOUBLE       y     1.302  0.0100     1.302  0.0100
+MI5         C26         C28      SINGLE       n     1.494  0.0100     1.494  0.0100
+MI5         C26         C27      SINGLE       y     1.402  0.0118     1.402  0.0118
+MI5         C05         H05      SINGLE       n     1.082  0.0130     0.939  0.0167
+MI5         C08         H08      SINGLE       n     1.082  0.0130     0.941  0.0156
+MI5         N10        HN10      SINGLE       n     1.016  0.0100     0.873  0.0200
+MI5         C11         H11      SINGLE       n     1.089  0.0100     0.990  0.0168
+MI5         C13         H13      SINGLE       n     1.089  0.0100     0.980  0.0143
+MI5         C13        H13A      SINGLE       n     1.089  0.0100     0.980  0.0143
+MI5         N14        HN14      SINGLE       n     1.036  0.0160     0.887  0.0200
+MI5         C15         H15      SINGLE       n     1.089  0.0100     0.979  0.0126
+MI5         C15        H15A      SINGLE       n     1.089  0.0100     0.979  0.0126
+MI5         C16         H16      SINGLE       n     1.089  0.0100     0.983  0.0130
+MI5         C16        H16A      SINGLE       n     1.089  0.0100     0.983  0.0130
+MI5         C17         H17      SINGLE       n     1.089  0.0100     0.989  0.0200
+MI5         C17        H17A      SINGLE       n     1.089  0.0100     0.989  0.0200
+MI5         C18         H18      SINGLE       n     1.082  0.0130     0.939  0.0167
+MI5         C21         H21      SINGLE       n     1.082  0.0130     0.942  0.0200
+MI5         C22         H22      SINGLE       n     1.089  0.0100     0.969  0.0184
+MI5         C22        H22A      SINGLE       n     1.089  0.0100     0.969  0.0184
+MI5         C22        H22B      SINGLE       n     1.089  0.0100     0.969  0.0184
+MI5         C27         H27      SINGLE       n     1.082  0.0130     0.942  0.0153
+MI5         C28         H28      SINGLE       n     1.089  0.0100     0.970  0.0153
+MI5         C28        H28A      SINGLE       n     1.089  0.0100     0.970  0.0153
+MI5         C28        H28B      SINGLE       n     1.089  0.0100     0.970  0.0153
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MI5         C05         C01         C02     104.288    1.50
+MI5         C05         C01         C12     126.661    3.00
+MI5         C02         C01         C12     129.051    3.00
+MI5         C01         C02         N03     109.228    1.50
+MI5         C01         C02         N06     127.134    1.50
+MI5         N03         C02         N06     123.638    1.50
+MI5         C02         N03         N04     111.210    1.50
+MI5         C02         N03         C09     109.471    3.00
+MI5         N04         N03         C09     109.471    3.00
+MI5         N03         N04         C05     104.585    1.50
+MI5         C01         C05         N04     111.012    1.50
+MI5         C01         C05         H05     125.735    3.00
+MI5         N04         C05         H05     123.253    1.55
+MI5         C02         N06         C07     112.140    1.50
+MI5         N06         C07         C08     121.085    1.66
+MI5         N06         C07         C11     117.697    2.34
+MI5         C08         C07         C11     121.219    3.00
+MI5         C07         C08         C09     119.404    1.50
+MI5         C07         C08         H08     120.286    1.50
+MI5         C09         C08         H08     120.310    1.50
+MI5         N03         C09         C08     119.615    3.00
+MI5         N03         C09         N10     119.615    3.00
+MI5         C08         C09         N10     120.770    3.00
+MI5         C09         N10         C23     127.852    1.50
+MI5         C09         N10        HN10     116.084    2.17
+MI5         C23         N10        HN10     116.064    2.55
+MI5         C07         C11         C17     112.052    2.15
+MI5         C07         C11         C13     112.052    2.15
+MI5         C07         C11         H11     108.678    1.50
+MI5         C17         C11         C13     110.511    1.50
+MI5         C17         C11         H11     106.904    1.50
+MI5         C13         C11         H11     107.168    1.85
+MI5         C01         C12         C18     126.587    1.50
+MI5         C01         C12         C21     128.162    2.56
+MI5         C18         C12         C21     105.251    1.50
+MI5         C11         C13         N14     110.258    1.51
+MI5         C11         C13         H13     109.072    1.50
+MI5         C11         C13        H13A     109.072    1.50
+MI5         N14         C13         H13     109.326    1.50
+MI5         N14         C13        H13A     109.326    1.50
+MI5         H13         C13        H13A     108.200    1.50
+MI5         C13         N14         C15     110.415    1.50
+MI5         C13         N14        HN14     109.383    3.00
+MI5         C15         N14        HN14     108.409    1.90
+MI5         N14         C15         C16     111.538    1.95
+MI5         N14         C15         H15     109.046    1.50
+MI5         N14         C15        H15A     109.046    1.50
+MI5         C16         C15         H15     109.268    1.50
+MI5         C16         C15        H15A     109.268    1.50
+MI5         H15         C15        H15A     108.210    1.50
+MI5         C15         C16         C17     110.340    1.50
+MI5         C15         C16         H16     108.932    1.50
+MI5         C15         C16        H16A     108.932    1.50
+MI5         C17         C16         H16     109.388    1.50
+MI5         C17         C16        H16A     109.388    1.50
+MI5         H16         C16        H16A     108.022    1.50
+MI5         C11         C17         C16     111.241    1.50
+MI5         C11         C17         H17     109.031    1.50
+MI5         C11         C17        H17A     109.031    1.50
+MI5         C16         C17         H17     109.388    1.50
+MI5         C16         C17        H17A     109.388    1.50
+MI5         H17         C17        H17A     107.728    1.50
+MI5         C12         C18         N19     111.175    1.50
+MI5         C12         C18         H18     125.898    3.00
+MI5         N19         C18         H18     122.927    2.33
+MI5         C18         N19         N20     103.919    1.50
+MI5         N19         N20         C21     111.649    1.50
+MI5         N19         N20         C22     118.244    2.18
+MI5         C21         N20         C22     124.795    3.00
+MI5         C12         C21         N20     107.699    2.05
+MI5         C12         C21         H21     125.756    1.50
+MI5         N20         C21         H21     126.545    1.50
+MI5         N20         C22         H22     109.462    1.50
+MI5         N20         C22        H22A     109.462    1.50
+MI5         N20         C22        H22B     109.462    1.50
+MI5         H22         C22        H22A     109.466    1.50
+MI5         H22         C22        H22B     109.466    1.50
+MI5        H22A         C22        H22B     109.466    1.50
+MI5         N10         C23         C27     129.981    3.00
+MI5         N10         C23         S24     121.789    3.00
+MI5         C27         C23         S24     108.230    3.00
+MI5         C23         S24         N25     108.230    3.00
+MI5         S24         N25         C26     108.230    3.00
+MI5         N25         C26         C28     122.606    3.00
+MI5         N25         C26         C27     108.511    1.50
+MI5         C28         C26         C27     128.883    1.50
+MI5         C23         C27         C26     106.799    1.50
+MI5         C23         C27         H27     126.688    1.56
+MI5         C26         C27         H27     126.512    1.50
+MI5         C26         C28         H28     109.591    1.50
+MI5         C26         C28        H28A     109.591    1.50
+MI5         C26         C28        H28B     109.591    1.50
+MI5         H28         C28        H28A     109.354    1.50
+MI5         H28         C28        H28B     109.354    1.50
+MI5        H28A         C28        H28B     109.354    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MI5              const_36         C05         C01         C02         N03       0.000    10.0     2
+MI5            sp2_sp2_15         C05         C01         C12         C18     180.000     5.0     2
+MI5       const_sp2_sp2_1         C02         C01         C05         N04       0.000     5.0     2
+MI5            sp3_sp3_43         C07         C11         C13         N14      60.000    10.0     3
+MI5             sp3_sp3_4         C07         C11         C17         C16     -60.000    10.0     3
+MI5              const_15         C01         C12         C18         N19     180.000    10.0     2
+MI5              const_42         C01         C12         C21         N20     180.000    10.0     2
+MI5            sp3_sp3_34         C11         C13         N14         C15      60.000    10.0     3
+MI5            sp3_sp3_28         C16         C15         N14         C13     -60.000    10.0     3
+MI5            sp3_sp3_19         N14         C15         C16         C17      60.000    10.0     3
+MI5            sp3_sp3_10         C15         C16         C17         C11     -60.000    10.0     3
+MI5              const_17         C12         C18         N19         N20       0.000    10.0     2
+MI5              const_20         C18         N19         N20         C22     180.000    10.0     2
+MI5              const_22         C12         C21         N20         C22     180.000    10.0     2
+MI5             sp2_sp3_7         N19         N20         C22         H22     150.000    10.0     6
+MI5       const_sp2_sp2_9         C01         C02         N03         N04       0.000     5.0     2
+MI5            sp2_sp2_20         C01         C02         N06         C07     180.000     5.0     2
+MI5              const_45         N10         C23         S24         N25     180.000    10.0     2
+MI5              const_27         N10         C23         C27         C26     180.000    10.0     2
+MI5              const_35         C26         N25         S24         C23       0.000    10.0     2
+MI5              const_34         C28         C26         N25         S24     180.000    10.0     2
+MI5              const_31         C28         C26         C27         C23     180.000    10.0     2
+MI5            sp2_sp3_13         N25         C26         C28         H28     150.000    10.0     6
+MI5       const_sp2_sp2_7         C02         N03         N04         C05       0.000     5.0     2
+MI5             sp2_sp2_3         N10         C09         N03         C02     180.000     5.0     2
+MI5       const_sp2_sp2_5         C01         C05         N04         N03       0.000     5.0     2
+MI5            sp2_sp2_13         C08         C07         N06         C02       0.000     5.0     2
+MI5             sp2_sp3_1         N06         C07         C11         C17     150.000    10.0     6
+MI5             sp2_sp2_9         N06         C07         C08         C09       0.000     5.0     2
+MI5             sp2_sp2_6         C07         C08         C09         N10     180.000     5.0     2
+MI5            sp2_sp2_21         N03         C09         N10         C23     180.000     5.0     2
+MI5            sp2_sp2_25         C27         C23         N10         C09     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MI5    chir_1    C11    C07    C13    C17    negative
+MI5    chir_2    N14    C13    C15    HN14    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MI5    plan-1         C01   0.020
+MI5    plan-1         C02   0.020
+MI5    plan-1         C05   0.020
+MI5    plan-1         C07   0.020
+MI5    plan-1         C08   0.020
+MI5    plan-1         C09   0.020
+MI5    plan-1         C11   0.020
+MI5    plan-1         C12   0.020
+MI5    plan-1         H05   0.020
+MI5    plan-1         H08   0.020
+MI5    plan-1         N03   0.020
+MI5    plan-1         N04   0.020
+MI5    plan-1         N06   0.020
+MI5    plan-1         N10   0.020
+MI5    plan-2         C01   0.020
+MI5    plan-2         C12   0.020
+MI5    plan-2         C18   0.020
+MI5    plan-2         C21   0.020
+MI5    plan-2         C22   0.020
+MI5    plan-2         H18   0.020
+MI5    plan-2         H21   0.020
+MI5    plan-2         N19   0.020
+MI5    plan-2         N20   0.020
+MI5    plan-3         C23   0.020
+MI5    plan-3         C26   0.020
+MI5    plan-3         C27   0.020
+MI5    plan-3         C28   0.020
+MI5    plan-3         H27   0.020
+MI5    plan-3         N10   0.020
+MI5    plan-3         N25   0.020
+MI5    plan-3         S24   0.020
+MI5    plan-4         C09   0.020
+MI5    plan-4         C23   0.020
+MI5    plan-4        HN10   0.020
+MI5    plan-4         N10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MI5           SMILES              ACDLabs 12.01                                                                                                             n5sc(Nc2n4ncc(c1cn(nc1)C)c4nc(c2)C3CCCNC3)cc5C
+MI5 SMILES_CANONICAL               CACTVS 3.370                                                                                                        Cn1cc(cn1)c2cnn3c(Nc4snc(C)c4)cc(nc23)[C@@H]5CCCNC5
+MI5           SMILES               CACTVS 3.370                                                                                                          Cn1cc(cn1)c2cnn3c(Nc4snc(C)c4)cc(nc23)[CH]5CCCNC5
+MI5 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                          Cc1cc(sn1)Nc2cc(nc3n2ncc3c4cnn(c4)C)[C@@H]5CCCNC5
+MI5           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                               Cc1cc(sn1)Nc2cc(nc3n2ncc3c4cnn(c4)C)C5CCCNC5
+MI5            InChI                InChI  1.03 InChI=1S/C19H22N8S/c1-12-6-18(28-25-12)24-17-7-16(13-4-3-5-20-8-13)23-19-15(10-22-27(17)19)14-9-21-26(2)11-14/h6-7,9-11,13,20,24H,3-5,8H2,1-2H3/t13-/m1/s1
+MI5         InChIKey                InChI  1.03                                                                                                                                GZPYWHILDNLCNY-CYBMUJFWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MI5 acedrg               243         "dictionary generator"                  
+MI5 acedrg_database      11          "data source"                           
+MI5 rdkit                2017.03.2   "Chemoinformatics tool"
+MI5 refmac5              5.8.0238    "optimization tool"                     

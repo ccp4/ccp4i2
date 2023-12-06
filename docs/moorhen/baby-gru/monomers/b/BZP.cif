@@ -1,0 +1,170 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BZP     BZP      N1-CARBOXYPIPERAZINE     NON-POLYMER     19     9     .     
+#
+data_comp_BZP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BZP     N1      N       NT      0       23.705      1.711       5.452       
+BZP     C1      C       C       0       22.451      2.076       5.063       
+BZP     O1      O       O       0       22.189      2.663       4.035       
+BZP     O2      O       OH1     0       21.531      1.790       5.996       
+BZP     C2      C       CH2     0       24.853      2.272       4.733       
+BZP     C3      C       CH2     0       26.101      2.191       5.585       
+BZP     N4      N       NT1     0       26.350      0.815       6.009       
+BZP     C5      C       CH2     0       25.211      0.304       6.769       
+BZP     C6      C       CH2     0       23.951      0.348       5.932       
+BZP     HO2     H       H       0       20.695      1.923       5.835       
+BZP     H21     H       H       0       24.991      1.776       3.901       
+BZP     H22     H       H       0       24.680      3.208       4.504       
+BZP     H31     H       H       0       25.996      2.766       6.379       
+BZP     H32     H       H       0       26.874      2.521       5.069       
+BZP     HN4     H       H       0       27.086      0.784       6.513       
+BZP     H51     H       H       0       25.087      0.849       7.581       
+BZP     H52     H       H       0       25.391      -0.624      7.047       
+BZP     H61     H       H       0       24.047      -0.254      5.167       
+BZP     H62     H       H       0       23.198      0.034       6.470       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BZP          N1          C1      SINGLE       n     1.355  0.0100     1.355  0.0100
+BZP          N1          C2      SINGLE       n     1.460  0.0100     1.460  0.0100
+BZP          N1          C6      SINGLE       n     1.460  0.0100     1.460  0.0100
+BZP          C1          O1      DOUBLE       n     1.211  0.0100     1.211  0.0100
+BZP          C1          O2      SINGLE       n     1.338  0.0153     1.338  0.0153
+BZP          C2          C3      SINGLE       n     1.512  0.0100     1.512  0.0100
+BZP          C3          N4      SINGLE       n     1.460  0.0112     1.460  0.0112
+BZP          N4          C5      SINGLE       n     1.460  0.0112     1.460  0.0112
+BZP          C5          C6      SINGLE       n     1.512  0.0100     1.512  0.0100
+BZP          O2         HO2      SINGLE       n     0.966  0.0059     0.861  0.0200
+BZP          C2         H21      SINGLE       n     1.089  0.0100     0.978  0.0161
+BZP          C2         H22      SINGLE       n     1.089  0.0100     0.978  0.0161
+BZP          C3         H31      SINGLE       n     1.089  0.0100     0.986  0.0200
+BZP          C3         H32      SINGLE       n     1.089  0.0100     0.986  0.0200
+BZP          N4         HN4      SINGLE       n     1.036  0.0160     0.893  0.0200
+BZP          C5         H51      SINGLE       n     1.089  0.0100     0.986  0.0200
+BZP          C5         H52      SINGLE       n     1.089  0.0100     0.986  0.0200
+BZP          C6         H61      SINGLE       n     1.089  0.0100     0.978  0.0161
+BZP          C6         H62      SINGLE       n     1.089  0.0100     0.978  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BZP          C1          N1          C2     120.572    3.00
+BZP          C1          N1          C6     120.572    3.00
+BZP          C2          N1          C6     114.042    1.50
+BZP          N1          C1          O1     124.478    1.50
+BZP          N1          C1          O2     111.356    1.50
+BZP          O1          C1          O2     124.167    1.64
+BZP          C1          O2         HO2     120.000    3.00
+BZP          N1          C2          C3     109.884    1.50
+BZP          N1          C2         H21     109.598    1.50
+BZP          N1          C2         H22     109.598    1.50
+BZP          C3          C2         H21     109.627    1.50
+BZP          C3          C2         H22     109.627    1.50
+BZP         H21          C2         H22     108.187    1.50
+BZP          C2          C3          N4     110.456    1.63
+BZP          C2          C3         H31     109.542    1.50
+BZP          C2          C3         H32     109.542    1.50
+BZP          N4          C3         H31     109.479    1.50
+BZP          N4          C3         H32     109.479    1.50
+BZP         H31          C3         H32     108.060    1.50
+BZP          C3          N4          C5     110.165    1.50
+BZP          C3          N4         HN4     109.673    3.00
+BZP          C5          N4         HN4     109.673    3.00
+BZP          N4          C5          C6     110.456    1.63
+BZP          N4          C5         H51     109.479    1.50
+BZP          N4          C5         H52     109.479    1.50
+BZP          C6          C5         H51     109.542    1.50
+BZP          C6          C5         H52     109.542    1.50
+BZP         H51          C5         H52     108.060    1.50
+BZP          N1          C6          C5     109.884    1.50
+BZP          N1          C6         H61     109.598    1.50
+BZP          N1          C6         H62     109.598    1.50
+BZP          C5          C6         H61     109.627    1.50
+BZP          C5          C6         H62     109.627    1.50
+BZP         H61          C6         H62     108.187    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BZP             sp2_sp2_3          O1          C1          N1          C2       0.000     5.0     2
+BZP             sp2_sp3_4          C1          N1          C2          C3     180.000    10.0     6
+BZP            sp2_sp3_10          C1          N1          C6          C5     180.000    10.0     6
+BZP             sp2_sp2_6          O1          C1          O2         HO2       0.000     5.0     2
+BZP             sp3_sp3_1          N1          C2          C3          N4     -60.000    10.0     3
+BZP            sp3_sp3_10          C2          C3          N4          C5      60.000    10.0     3
+BZP            sp3_sp3_16          C6          C5          N4          C3     -60.000    10.0     3
+BZP            sp3_sp3_22          N4          C5          C6          N1      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BZP    chir_1    N4    C3    C5    HN4    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BZP    plan-1          C1   0.020
+BZP    plan-1          N1   0.020
+BZP    plan-1          O1   0.020
+BZP    plan-1          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BZP           SMILES              ACDLabs 10.04                                            O=C(O)N1CCNCC1
+BZP SMILES_CANONICAL               CACTVS 3.341                                            OC(=O)N1CCNCC1
+BZP           SMILES               CACTVS 3.341                                            OC(=O)N1CCNCC1
+BZP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                          C1CN(CCN1)C(=O)O
+BZP           SMILES "OpenEye OEToolkits" 1.5.0                                          C1CN(CCN1)C(=O)O
+BZP            InChI                InChI  1.03 InChI=1S/C5H10N2O2/c8-5(9)7-3-1-6-2-4-7/h6H,1-4H2,(H,8,9)
+BZP         InChIKey                InChI  1.03                               RFIOZSIHFNEKFF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BZP acedrg               243         "dictionary generator"                  
+BZP acedrg_database      11          "data source"                           
+BZP rdkit                2017.03.2   "Chemoinformatics tool"
+BZP refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,273 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OPX     OPX      "(1s,3R,4S)-1-[(cyclohexylamino)methyl]-3,4-dihydroxycyclopentanesulfonic acid"     NON-POLYMER     42     19     .     
+#
+data_comp_OPX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OPX     CAF     C       CH2     0       8.847       -30.120     21.659      
+OPX     CAG     C       CH2     0       9.967       -30.927     22.288      
+OPX     CAH     C       CH2     0       8.210       -29.184     22.669      
+OPX     CAI     C       CH2     0       11.009      -30.023     22.947      
+OPX     CAJ     C       CH2     0       9.250       -28.276     23.324      
+OPX     CAK     C       CH2     0       11.026      -27.690     25.925      
+OPX     CAL     C       CH2     0       11.094      -25.204     25.251      
+OPX     CAM     C       CH2     0       11.140      -25.793     27.617      
+OPX     CAO     C       CH1     0       10.700      -24.007     26.098      
+OPX     CAP     C       CH1     0       10.186      -24.629     27.394      
+OPX     CAQ     C       CH1     0       10.362      -29.096     23.969      
+OPX     CAR     C       CT      0       11.598      -26.280     26.228      
+OPX     NAN     N       NT1     0       11.375      -28.241     24.607      
+OPX     OAA     O       O       0       13.777      -27.082     24.993      
+OPX     OAB     O       O       0       13.919      -25.067     26.358      
+OPX     OAC     O       OH1     0       9.709       -23.236     25.436      
+OPX     OAD     O       OH1     0       8.837       -25.076     27.325      
+OPX     OAE     O       OH1     0       13.851      -27.242     27.411      
+OPX     SAS     S       S3      0       13.429      -26.393     26.189      
+OPX     H1      H       H       0       9.203       -29.597     20.910      
+OPX     H2      H       H       0       8.165       -30.730     21.306      
+OPX     H3      H       H       0       9.592       -31.534     22.962      
+OPX     H4      H       H       0       10.403      -31.473     21.597      
+OPX     H5      H       H       0       7.757       -29.712     23.362      
+OPX     H6      H       H       0       7.534       -28.631     22.219      
+OPX     H7      H       H       0       11.457      -29.485     22.259      
+OPX     H8      H       H       0       11.687      -30.575     23.392      
+OPX     H9      H       H       0       8.816       -27.720     24.006      
+OPX     H10     H       H       0       9.637       -27.680     22.647      
+OPX     H11     H       H       0       10.049      -27.643     26.009      
+OPX     H12     H       H       0       11.351      -28.302     26.620      
+OPX     H13     H       H       0       10.320      -25.538     24.745      
+OPX     H14     H       H       0       11.802      -24.959     24.613      
+OPX     H15     H       H       0       10.686      -26.520     28.101      
+OPX     H16     H       H       0       11.912      -25.503     28.151      
+OPX     H17     H       H       0       11.488      -23.442     26.293      
+OPX     H18     H       H       0       10.274      -23.968     28.124      
+OPX     H19     H       H       0       9.955       -29.658     24.673      
+OPX     H20     H       H       0       11.612      -27.611     24.017      
+OPX     H22     H       H       0       9.470       -22.597     25.941      
+OPX     H23     H       H       0       8.726       -25.623     26.686      
+OPX     H21     H       H       0       14.641      -27.044     27.649      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OPX         CAF         CAG      SINGLE       n     1.515  0.0126     1.515  0.0126
+OPX         CAF         CAH      SINGLE       n     1.515  0.0126     1.515  0.0126
+OPX         CAG         CAI      SINGLE       n     1.527  0.0100     1.527  0.0100
+OPX         CAI         CAQ      SINGLE       n     1.521  0.0138     1.521  0.0138
+OPX         CAH         CAJ      SINGLE       n     1.527  0.0100     1.527  0.0100
+OPX         CAJ         CAQ      SINGLE       n     1.521  0.0138     1.521  0.0138
+OPX         CAQ         NAN      SINGLE       n     1.468  0.0132     1.468  0.0132
+OPX         CAK         NAN      SINGLE       n     1.465  0.0114     1.465  0.0114
+OPX         OAA         SAS      DOUBLE       n     1.425  0.0142     1.425  0.0142
+OPX         CAL         CAR      SINGLE       n     1.536  0.0100     1.536  0.0100
+OPX         CAL         CAO      SINGLE       n     1.521  0.0137     1.521  0.0137
+OPX         CAO         OAC      SINGLE       n     1.420  0.0122     1.420  0.0122
+OPX         CAK         CAR      SINGLE       n     1.545  0.0144     1.545  0.0144
+OPX         CAR         SAS      SINGLE       n     1.832  0.0144     1.832  0.0144
+OPX         CAM         CAR      SINGLE       n     1.536  0.0100     1.536  0.0100
+OPX         CAO         CAP      SINGLE       n     1.529  0.0127     1.529  0.0127
+OPX         OAB         SAS      DOUBLE       n     1.425  0.0142     1.425  0.0142
+OPX         OAE         SAS      SINGLE       n     1.549  0.0200     1.549  0.0200
+OPX         CAP         OAD      SINGLE       n     1.420  0.0122     1.420  0.0122
+OPX         CAM         CAP      SINGLE       n     1.521  0.0137     1.521  0.0137
+OPX         CAF          H1      SINGLE       n     1.089  0.0100     0.981  0.0138
+OPX         CAF          H2      SINGLE       n     1.089  0.0100     0.981  0.0138
+OPX         CAG          H3      SINGLE       n     1.089  0.0100     0.982  0.0131
+OPX         CAG          H4      SINGLE       n     1.089  0.0100     0.982  0.0131
+OPX         CAH          H5      SINGLE       n     1.089  0.0100     0.982  0.0131
+OPX         CAH          H6      SINGLE       n     1.089  0.0100     0.982  0.0131
+OPX         CAI          H7      SINGLE       n     1.089  0.0100     0.981  0.0121
+OPX         CAI          H8      SINGLE       n     1.089  0.0100     0.981  0.0121
+OPX         CAJ          H9      SINGLE       n     1.089  0.0100     0.981  0.0121
+OPX         CAJ         H10      SINGLE       n     1.089  0.0100     0.981  0.0121
+OPX         CAK         H11      SINGLE       n     1.089  0.0100     0.982  0.0100
+OPX         CAK         H12      SINGLE       n     1.089  0.0100     0.982  0.0100
+OPX         CAL         H13      SINGLE       n     1.089  0.0100     0.983  0.0154
+OPX         CAL         H14      SINGLE       n     1.089  0.0100     0.983  0.0154
+OPX         CAM         H15      SINGLE       n     1.089  0.0100     0.983  0.0154
+OPX         CAM         H16      SINGLE       n     1.089  0.0100     0.983  0.0154
+OPX         CAO         H17      SINGLE       n     1.089  0.0100     0.988  0.0200
+OPX         CAP         H18      SINGLE       n     1.089  0.0100     0.988  0.0200
+OPX         CAQ         H19      SINGLE       n     1.089  0.0100     0.988  0.0199
+OPX         NAN         H20      SINGLE       n     1.036  0.0160     0.894  0.0200
+OPX         OAC         H22      SINGLE       n     0.970  0.0120     0.849  0.0200
+OPX         OAD         H23      SINGLE       n     0.970  0.0120     0.849  0.0200
+OPX         OAE         H21      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OPX         CAG         CAF         CAH     111.038    1.50
+OPX         CAG         CAF          H1     109.386    1.50
+OPX         CAG         CAF          H2     109.386    1.50
+OPX         CAH         CAF          H1     109.386    1.50
+OPX         CAH         CAF          H2     109.386    1.50
+OPX          H1         CAF          H2     108.036    1.50
+OPX         CAF         CAG         CAI     111.328    1.50
+OPX         CAF         CAG          H3     109.386    1.50
+OPX         CAF         CAG          H4     109.386    1.50
+OPX         CAI         CAG          H3     109.340    1.50
+OPX         CAI         CAG          H4     109.340    1.50
+OPX          H3         CAG          H4     108.036    1.50
+OPX         CAF         CAH         CAJ     111.328    1.50
+OPX         CAF         CAH          H5     109.386    1.50
+OPX         CAF         CAH          H6     109.386    1.50
+OPX         CAJ         CAH          H5     109.340    1.50
+OPX         CAJ         CAH          H6     109.340    1.50
+OPX          H5         CAH          H6     108.036    1.50
+OPX         CAG         CAI         CAQ     110.796    1.50
+OPX         CAG         CAI          H7     109.472    1.50
+OPX         CAG         CAI          H8     109.472    1.50
+OPX         CAQ         CAI          H7     109.338    1.50
+OPX         CAQ         CAI          H8     109.338    1.50
+OPX          H7         CAI          H8     108.076    1.50
+OPX         CAH         CAJ         CAQ     110.796    1.50
+OPX         CAH         CAJ          H9     109.472    1.50
+OPX         CAH         CAJ         H10     109.472    1.50
+OPX         CAQ         CAJ          H9     109.338    1.50
+OPX         CAQ         CAJ         H10     109.338    1.50
+OPX          H9         CAJ         H10     108.076    1.50
+OPX         NAN         CAK         CAR     110.786    2.77
+OPX         NAN         CAK         H11     109.366    1.50
+OPX         NAN         CAK         H12     109.366    1.50
+OPX         CAR         CAK         H11     108.389    1.50
+OPX         CAR         CAK         H12     108.389    1.50
+OPX         H11         CAK         H12     108.010    1.71
+OPX         CAR         CAL         CAO     104.443    2.26
+OPX         CAR         CAL         H13     110.458    1.50
+OPX         CAR         CAL         H14     110.458    1.50
+OPX         CAO         CAL         H13     110.947    1.50
+OPX         CAO         CAL         H14     110.947    1.50
+OPX         H13         CAL         H14     108.877    1.50
+OPX         CAR         CAM         CAP     104.443    2.26
+OPX         CAR         CAM         H15     110.458    1.50
+OPX         CAR         CAM         H16     110.458    1.50
+OPX         CAP         CAM         H15     110.947    1.50
+OPX         CAP         CAM         H16     110.947    1.50
+OPX         H15         CAM         H16     108.877    1.50
+OPX         CAL         CAO         OAC     111.015    2.41
+OPX         CAL         CAO         CAP     104.977    3.00
+OPX         CAL         CAO         H17     111.076    1.50
+OPX         OAC         CAO         CAP     112.463    2.73
+OPX         OAC         CAO         H17     110.259    1.63
+OPX         CAP         CAO         H17     110.255    2.04
+OPX         CAO         CAP         OAD     112.463    2.73
+OPX         CAO         CAP         CAM     104.977    3.00
+OPX         CAO         CAP         H18     110.255    2.04
+OPX         OAD         CAP         CAM     111.015    2.41
+OPX         OAD         CAP         H18     110.259    1.63
+OPX         CAM         CAP         H18     111.076    1.50
+OPX         CAI         CAQ         CAJ     110.870    1.50
+OPX         CAI         CAQ         NAN     111.820    2.36
+OPX         CAI         CAQ         H19     108.306    1.50
+OPX         CAJ         CAQ         NAN     111.820    2.36
+OPX         CAJ         CAQ         H19     108.306    1.50
+OPX         NAN         CAQ         H19     108.110    1.50
+OPX         CAL         CAR         CAK     113.745    2.48
+OPX         CAL         CAR         SAS     111.120    2.39
+OPX         CAL         CAR         CAM     103.432    2.03
+OPX         CAK         CAR         SAS     109.471    3.00
+OPX         CAK         CAR         CAM     113.745    2.48
+OPX         SAS         CAR         CAM     111.120    2.39
+OPX         CAQ         NAN         CAK     114.477    2.43
+OPX         CAQ         NAN         H20     107.785    2.86
+OPX         CAK         NAN         H20     108.898    3.00
+OPX         CAO         OAC         H22     109.104    3.00
+OPX         CAP         OAD         H23     109.104    3.00
+OPX         SAS         OAE         H21     110.371    3.00
+OPX         OAA         SAS         CAR     107.393    1.53
+OPX         OAA         SAS         OAB     118.519    1.61
+OPX         OAA         SAS         OAE     110.831    2.65
+OPX         CAR         SAS         OAB     107.393    1.53
+OPX         CAR         SAS         OAE     109.471    3.00
+OPX         OAB         SAS         OAE     110.831    2.65
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OPX             sp3_sp3_1         CAH         CAF         CAG         CAI      60.000    10.0     3
+OPX            sp3_sp3_82         CAG         CAF         CAH         CAJ     180.000    10.0     3
+OPX            sp3_sp3_94         CAI         CAQ         NAN         CAK     180.000    10.0     3
+OPX           sp3_sp3_127         CAK         CAR         SAS         OAA      60.000    10.0     3
+OPX           sp3_sp3_134         H21         OAE         SAS         OAA     -60.000    10.0     3
+OPX            sp3_sp3_10         CAF         CAG         CAI         CAQ     -60.000    10.0     3
+OPX            sp3_sp3_37         CAF         CAH         CAJ         CAQ      60.000    10.0     3
+OPX            sp3_sp3_21         CAG         CAI         CAQ         NAN     -60.000    10.0     3
+OPX            sp3_sp3_29         CAH         CAJ         CAQ         NAN      60.000    10.0     3
+OPX           sp3_sp3_116         NAN         CAK         CAR         SAS     -60.000    10.0     3
+OPX            sp3_sp3_97         CAR         CAK         NAN         CAQ     180.000    10.0     3
+OPX            sp3_sp3_47         CAO         CAL         CAR         CAK     180.000    10.0     3
+OPX           sp3_sp3_104         CAR         CAL         CAO         OAC     -60.000    10.0     3
+OPX            sp3_sp3_56         CAP         CAM         CAR         CAK      60.000    10.0     3
+OPX            sp3_sp3_65         CAR         CAM         CAP         OAD     180.000    10.0     3
+OPX           sp3_sp3_112         CAL         CAO         OAC         H22     180.000    10.0     3
+OPX            sp3_sp3_77         OAC         CAO         CAP         OAD     -60.000    10.0     3
+OPX           sp3_sp3_136         CAO         CAP         OAD         H23     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OPX    chir_1    CAO    OAC    CAP    CAL    negative
+OPX    chir_2    CAP    OAD    CAO    CAM    positive
+OPX    chir_3    CAQ    NAN    CAI    CAJ    both
+OPX    chir_4    CAR    SAS    CAK    CAL    positive
+OPX    chir_5    SAS    OAA    OAB    OAE    both
+OPX    chir_6    NAN    CAQ    CAK    H20    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OPX           SMILES              ACDLabs 12.01                                                                                    O=S(=O)(O)C1(CC(O)C(O)C1)CNC2CCCCC2
+OPX            InChI                InChI  1.03 InChI=1S/C12H23NO5S/c14-10-6-12(7-11(10)15,19(16,17)18)8-13-9-4-2-1-3-5-9/h9-11,13-15H,1-8H2,(H,16,17,18)/t10-,11+,12-
+OPX         InChIKey                InChI  1.03                                                                                            RMLVAYWMDDDXFB-ZSBIGDGJSA-N
+OPX SMILES_CANONICAL               CACTVS 3.370                                                                       O[C@@H]1C[C@](CNC2CCCCC2)(C[C@@H]1O)[S](O)(=O)=O
+OPX           SMILES               CACTVS 3.370                                                                            O[CH]1C[C](CNC2CCCCC2)(C[CH]1O)[S](O)(=O)=O
+OPX SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                          C1CCC(CC1)NCC2(C[C@H]([C@H](C2)O)O)S(=O)(=O)O
+OPX           SMILES "OpenEye OEToolkits" 1.7.6                                                                                  C1CCC(CC1)NCC2(CC(C(C2)O)O)S(=O)(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OPX acedrg               243         "dictionary generator"                  
+OPX acedrg_database      11          "data source"                           
+OPX rdkit                2017.03.2   "Chemoinformatics tool"
+OPX refmac5              5.8.0238    "optimization tool"                     

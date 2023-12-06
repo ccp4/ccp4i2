@@ -1,0 +1,188 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HFA     HFA      "ALPHA-HYDROXY-BETA-PHENYL-PROPIONIC ACID"     NON-POLYMER     21     12     .     
+#
+data_comp_HFA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HFA     OA      O       OH1     0       8.403       18.645      11.765      
+HFA     CA      C       CH1     0       7.866       18.184      12.984      
+HFA     C       C       C       0       8.189       16.701      13.199      
+HFA     O       O       O       0       7.780       15.898      12.337      
+HFA     CB      C       CH2     0       6.359       18.451      13.005      
+HFA     CG      C       CR6     0       5.715       18.196      14.347      
+HFA     CD1     C       CR16    0       5.993       19.015      15.436      
+HFA     CD2     C       CR16    0       4.829       17.139      14.527      
+HFA     CE1     C       CR16    0       5.402       18.782      16.672      
+HFA     CE2     C       CR16    0       4.238       16.908      15.763      
+HFA     CZ      C       CR16    0       4.525       17.729      16.834      
+HFA     OXT     O       OC      -1      8.837       16.402      14.222      
+HFA     HOA     H       H       0       8.367       19.491      11.726      
+HFA     HA      H       H       0       8.279       18.696      13.714      
+HFA     HB1     H       H       0       5.927       17.884      12.331      
+HFA     HB2     H       H       0       6.200       19.386      12.753      
+HFA     HD1     H       H       0       6.593       19.737      15.333      
+HFA     HD2     H       H       0       4.626       16.572      13.800      
+HFA     HE1     H       H       0       5.601       19.346      17.402      
+HFA     HE2     H       H       0       3.638       16.186      15.870      
+HFA     HZ      H       H       0       4.124       17.571      17.673      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HFA          OA          CA      SINGLE       n     1.409  0.0144     1.409  0.0144
+HFA          CA           C      SINGLE       n     1.533  0.0100     1.533  0.0100
+HFA          CA          CB      SINGLE       n     1.530  0.0115     1.530  0.0115
+HFA           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+HFA           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+HFA          CB          CG      SINGLE       n     1.509  0.0100     1.509  0.0100
+HFA          CG         CD1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+HFA          CG         CD2      SINGLE       y     1.385  0.0111     1.385  0.0111
+HFA         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+HFA         CD2         CE2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+HFA         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+HFA         CE2          CZ      SINGLE       y     1.376  0.0124     1.376  0.0124
+HFA          OA         HOA      SINGLE       n     0.970  0.0120     0.848  0.0200
+HFA          CA          HA      SINGLE       n     1.089  0.0100     0.983  0.0100
+HFA          CB         HB1      SINGLE       n     1.089  0.0100     0.981  0.0169
+HFA          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0169
+HFA         CD1         HD1      SINGLE       n     1.082  0.0130     0.944  0.0174
+HFA         CD2         HD2      SINGLE       n     1.082  0.0130     0.944  0.0174
+HFA         CE1         HE1      SINGLE       n     1.082  0.0130     0.944  0.0175
+HFA         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+HFA          CZ          HZ      SINGLE       n     1.082  0.0130     0.944  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HFA          CA          OA         HOA     110.443    1.50
+HFA          OA          CA           C     111.343    1.72
+HFA          OA          CA          CB     109.707    1.85
+HFA          OA          CA          HA     108.492    1.50
+HFA           C          CA          CB     111.511    2.91
+HFA           C          CA          HA     108.330    1.50
+HFA          CB          CA          HA     108.341    1.50
+HFA          CA           C           O     117.167    1.52
+HFA          CA           C         OXT     117.167    1.52
+HFA           O           C         OXT     125.666    1.50
+HFA          CA          CB          CG     113.450    1.50
+HFA          CA          CB         HB1     108.871    1.50
+HFA          CA          CB         HB2     108.871    1.50
+HFA          CG          CB         HB1     108.813    1.50
+HFA          CG          CB         HB2     108.813    1.50
+HFA         HB1          CB         HB2     107.755    1.50
+HFA          CB          CG         CD1     120.970    1.50
+HFA          CB          CG         CD2     120.970    1.50
+HFA         CD1          CG         CD2     118.060    1.50
+HFA          CG         CD1         CE1     120.624    1.50
+HFA          CG         CD1         HD1     119.591    1.50
+HFA         CE1         CD1         HD1     119.786    1.50
+HFA          CG         CD2         CE2     120.624    1.50
+HFA          CG         CD2         HD2     119.591    1.50
+HFA         CE2         CD2         HD2     119.786    1.50
+HFA         CD1         CE1          CZ     120.325    1.50
+HFA         CD1         CE1         HE1     119.792    1.50
+HFA          CZ         CE1         HE1     119.883    1.50
+HFA         CD2         CE2          CZ     120.325    1.50
+HFA         CD2         CE2         HE2     119.792    1.50
+HFA          CZ         CE2         HE2     119.883    1.50
+HFA         CE1          CZ         CE2     120.043    1.50
+HFA         CE1          CZ          HZ     119.979    1.50
+HFA         CE2          CZ          HZ     119.979    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HFA             sp3_sp3_1           C          CA          OA         HOA     180.000    10.0     3
+HFA             sp2_sp3_1           O           C          CA          OA       0.000    10.0     6
+HFA             sp3_sp3_4          OA          CA          CB          CG     180.000    10.0     3
+HFA             sp2_sp3_8         CD1          CG          CB          CA     -90.000    10.0     6
+HFA       const_sp2_sp2_2         CE1         CD1          CG          CB     180.000     5.0     2
+HFA              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+HFA       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+HFA              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+HFA       const_sp2_sp2_9         CD1         CE1          CZ         CE2       0.000     5.0     2
+HFA              const_13         CD2         CE2          CZ         CE1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HFA    chir_1    CA    OA    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HFA    plan-1          CB   0.020
+HFA    plan-1         CD1   0.020
+HFA    plan-1         CD2   0.020
+HFA    plan-1         CE1   0.020
+HFA    plan-1         CE2   0.020
+HFA    plan-1          CG   0.020
+HFA    plan-1          CZ   0.020
+HFA    plan-1         HD1   0.020
+HFA    plan-1         HD2   0.020
+HFA    plan-1         HE1   0.020
+HFA    plan-1         HE2   0.020
+HFA    plan-1          HZ   0.020
+HFA    plan-2           C   0.020
+HFA    plan-2          CA   0.020
+HFA    plan-2           O   0.020
+HFA    plan-2         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HFA           SMILES              ACDLabs 10.04                                                               O=C(O)C(O)Cc1ccccc1
+HFA SMILES_CANONICAL               CACTVS 3.341                                                          O[C@@H](Cc1ccccc1)C(O)=O
+HFA           SMILES               CACTVS 3.341                                                            O[CH](Cc1ccccc1)C(O)=O
+HFA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                        c1ccc(cc1)C[C@@H](C(=O)O)O
+HFA           SMILES "OpenEye OEToolkits" 1.5.0                                                             c1ccc(cc1)CC(C(=O)O)O
+HFA            InChI                InChI  1.03 InChI=1S/C9H10O3/c10-8(9(11)12)6-7-4-2-1-3-5-7/h1-5,8,10H,6H2,(H,11,12)/t8-/m0/s1
+HFA         InChIKey                InChI  1.03                                                       VOXXWSYKYCBWHO-QMMMGPOBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HFA acedrg               243         "dictionary generator"                  
+HFA acedrg_database      11          "data source"                           
+HFA rdkit                2017.03.2   "Chemoinformatics tool"
+HFA refmac5              5.8.0238    "optimization tool"                     

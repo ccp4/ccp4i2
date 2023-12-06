@@ -1,0 +1,271 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BRN     BRN      BERENIL     NON-POLYMER     36     21     .     
+#
+data_comp_BRN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BRN     C1      C       CR6     0       7.932       24.379      71.611      
+BRN     C2      C       CR16    0       7.298       25.065      70.577      
+BRN     C3      C       CR16    0       8.013       25.428      69.451      
+BRN     C4      C       CR6     0       9.367       25.126      69.334      
+BRN     C5      C       CR16    0       9.993       24.445      70.376      
+BRN     C6      C       CR16    0       9.290       24.076      71.509      
+BRN     C7      C       C       0       10.128      25.520      68.120      
+BRN     NA      N       NH1     0       10.778      24.666      67.398      
+BRN     NB      N       NH2     0       10.128      26.826      67.775      
+BRN     N1      N       NH1     0       7.189       24.037      72.739      
+BRN     N       N       N       0       7.474       22.962      73.470      
+BRN     "N1'"   N       N       0       6.789       22.906      74.547      
+BRN     "C1'"   C       CR6     0       7.319       22.064      75.576      
+BRN     "C2'"   C       CR16    0       8.581       21.457      75.586      
+BRN     "C3'"   C       CR16    0       8.962       20.668      76.658      
+BRN     "C4'"   C       CR6     0       8.108       20.467      77.740      
+BRN     "C5'"   C       CR16    0       6.857       21.079      77.727      
+BRN     "C6'"   C       CR16    0       6.463       21.868      76.661      
+BRN     "C7'"   C       C       0       8.524       19.621      78.889      
+BRN     "NA'"   N       NH1     0       9.631       19.811      79.532      
+BRN     "NB'"   N       NH2     0       7.697       18.622      79.269      
+BRN     H2      H       H       0       6.383       25.277      70.644      
+BRN     H3      H       H       0       7.575       25.887      68.756      
+BRN     H5      H       H       0       10.907      24.233      70.312      
+BRN     H6      H       H       0       9.729       23.618      72.205      
+BRN     HA      H       H       0       10.750      23.880      67.646      
+BRN     HB1     H       H       0       9.689       27.419      68.269      
+BRN     HB2     H       H       0       10.566      27.093      67.051      
+BRN     HN1     H       H       0       6.504       24.548      72.972      
+BRN     "H2'"   H       H       0       9.171       21.580      74.865      
+BRN     "H3'"   H       H       0       9.812       20.263      76.653      
+BRN     "H5'"   H       H       0       6.267       20.953      78.449      
+BRN     "H6'"   H       H       0       5.614       22.274      76.666      
+BRN     "HA'"   H       H       0       10.108      20.431      79.272      
+BRN     "HB'1"  H       H       0       7.911       18.110      79.962      
+BRN     "HB'2"  H       H       0       6.943       18.471      78.825      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BRN          C1          C2      DOUBLE       y     1.389  0.0100     1.389  0.0100
+BRN          C1          C6      SINGLE       y     1.389  0.0100     1.389  0.0100
+BRN          C1          N1      SINGLE       n     1.390  0.0100     1.390  0.0100
+BRN          C2          C3      SINGLE       y     1.379  0.0100     1.379  0.0100
+BRN          C3          C4      DOUBLE       y     1.390  0.0100     1.390  0.0100
+BRN          C4          C5      SINGLE       y     1.390  0.0100     1.390  0.0100
+BRN          C4          C7      SINGLE       n     1.484  0.0100     1.484  0.0100
+BRN          C5          C6      DOUBLE       y     1.379  0.0100     1.379  0.0100
+BRN          C7          NA      DOUBLE       n     1.287  0.0200     1.287  0.0200
+BRN          C7          NB      SINGLE       n     1.347  0.0152     1.347  0.0152
+BRN          N1           N      SINGLE       n     1.326  0.0107     1.326  0.0107
+BRN           N       "N1'"      DOUBLE       n     1.272  0.0126     1.272  0.0126
+BRN       "N1'"       "C1'"      SINGLE       n     1.424  0.0116     1.424  0.0116
+BRN       "C1'"       "C2'"      DOUBLE       y     1.385  0.0146     1.385  0.0146
+BRN       "C1'"       "C6'"      SINGLE       y     1.385  0.0146     1.385  0.0146
+BRN       "C2'"       "C3'"      SINGLE       y     1.380  0.0101     1.380  0.0101
+BRN       "C3'"       "C4'"      DOUBLE       y     1.390  0.0100     1.390  0.0100
+BRN       "C4'"       "C5'"      SINGLE       y     1.390  0.0100     1.390  0.0100
+BRN       "C4'"       "C7'"      SINGLE       n     1.484  0.0100     1.484  0.0100
+BRN       "C5'"       "C6'"      DOUBLE       y     1.380  0.0101     1.380  0.0101
+BRN       "C7'"       "NA'"      DOUBLE       n     1.287  0.0200     1.287  0.0200
+BRN       "C7'"       "NB'"      SINGLE       n     1.347  0.0152     1.347  0.0152
+BRN          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0198
+BRN          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+BRN          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0168
+BRN          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0198
+BRN          NA          HA      SINGLE       n     1.016  0.0100     0.823  0.0200
+BRN          NB         HB1      SINGLE       n     1.016  0.0100     0.887  0.0200
+BRN          NB         HB2      SINGLE       n     1.016  0.0100     0.887  0.0200
+BRN          N1         HN1      SINGLE       n     1.016  0.0100     0.882  0.0200
+BRN       "C2'"       "H2'"      SINGLE       n     1.082  0.0130     0.941  0.0200
+BRN       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.941  0.0168
+BRN       "C5'"       "H5'"      SINGLE       n     1.082  0.0130     0.941  0.0168
+BRN       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.941  0.0200
+BRN       "NA'"       "HA'"      SINGLE       n     1.016  0.0100     0.823  0.0200
+BRN       "NB'"      "HB'1"      SINGLE       n     1.016  0.0100     0.887  0.0200
+BRN       "NB'"      "HB'2"      SINGLE       n     1.016  0.0100     0.887  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BRN          C2          C1          C6     119.956    1.50
+BRN          C2          C1          N1     120.022    1.83
+BRN          C6          C1          N1     120.022    1.83
+BRN          C1          C2          C3     119.511    1.50
+BRN          C1          C2          H2     120.200    1.50
+BRN          C3          C2          H2     120.290    1.50
+BRN          C2          C3          C4     120.955    1.50
+BRN          C2          C3          H3     119.278    1.50
+BRN          C4          C3          H3     119.767    1.50
+BRN          C3          C4          C5     119.113    1.50
+BRN          C3          C4          C7     120.444    1.50
+BRN          C5          C4          C7     120.444    1.50
+BRN          C4          C5          C6     120.955    1.50
+BRN          C4          C5          H5     119.767    1.50
+BRN          C6          C5          H5     119.278    1.50
+BRN          C1          C6          C5     119.511    1.50
+BRN          C1          C6          H6     120.200    1.50
+BRN          C5          C6          H6     120.290    1.50
+BRN          C4          C7          NA     121.847    3.00
+BRN          C4          C7          NB     117.501    1.50
+BRN          NA          C7          NB     120.652    2.66
+BRN          C7          NA          HA     114.748    3.00
+BRN          C7          NB         HB1     119.893    1.50
+BRN          C7          NB         HB2     119.893    1.50
+BRN         HB1          NB         HB2     120.214    2.70
+BRN          C1          N1           N     120.212    1.50
+BRN          C1          N1         HN1     121.099    3.00
+BRN           N          N1         HN1     118.689    2.22
+BRN          N1           N       "N1'"     112.320    1.50
+BRN           N       "N1'"       "C1'"     112.570    1.50
+BRN       "N1'"       "C1'"       "C2'"     120.182    3.00
+BRN       "N1'"       "C1'"       "C6'"     120.182    3.00
+BRN       "C2'"       "C1'"       "C6'"     119.636    1.50
+BRN       "C1'"       "C2'"       "C3'"     119.851    1.50
+BRN       "C1'"       "C2'"       "H2'"     119.923    1.50
+BRN       "C3'"       "C2'"       "H2'"     120.226    1.50
+BRN       "C2'"       "C3'"       "C4'"     120.834    1.50
+BRN       "C2'"       "C3'"       "H3'"     119.339    1.50
+BRN       "C4'"       "C3'"       "H3'"     119.828    1.50
+BRN       "C3'"       "C4'"       "C5'"     118.992    1.50
+BRN       "C3'"       "C4'"       "C7'"     120.504    1.50
+BRN       "C5'"       "C4'"       "C7'"     120.504    1.50
+BRN       "C4'"       "C5'"       "C6'"     120.834    1.50
+BRN       "C4'"       "C5'"       "H5'"     119.828    1.50
+BRN       "C6'"       "C5'"       "H5'"     119.339    1.50
+BRN       "C1'"       "C6'"       "C5'"     119.851    1.50
+BRN       "C1'"       "C6'"       "H6'"     119.923    1.50
+BRN       "C5'"       "C6'"       "H6'"     120.226    1.50
+BRN       "C4'"       "C7'"       "NA'"     121.847    3.00
+BRN       "C4'"       "C7'"       "NB'"     117.501    1.50
+BRN       "NA'"       "C7'"       "NB'"     120.652    2.66
+BRN       "C7'"       "NA'"       "HA'"     114.748    3.00
+BRN       "C7'"       "NB'"      "HB'1"     119.893    1.50
+BRN       "C7'"       "NB'"      "HB'2"     119.893    1.50
+BRN      "HB'1"       "NB'"      "HB'2"     120.214    2.70
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BRN              const_23          N1          C1          C2          C3     180.000    10.0     2
+BRN              const_43          N1          C1          C6          C5     180.000    10.0     2
+BRN             sp2_sp2_1          C2          C1          N1           N     180.000     5.0     2
+BRN            sp2_sp2_17          N1           N       "N1'"       "C1'"     180.000     5.0     2
+BRN            sp2_sp2_18       "C2'"       "C1'"       "N1'"           N     180.000     5.0     2
+BRN       const_sp2_sp2_3       "N1'"       "C1'"       "C2'"       "C3'"     180.000     5.0     2
+BRN              const_47       "N1'"       "C1'"       "C6'"       "C5'"     180.000    10.0     2
+BRN       const_sp2_sp2_5       "C1'"       "C2'"       "C3'"       "C4'"       0.000     5.0     2
+BRN              const_10       "C2'"       "C3'"       "C4'"       "C7'"     180.000    10.0     2
+BRN              const_15       "C7'"       "C4'"       "C5'"       "C6'"     180.000    10.0     2
+BRN            sp2_sp2_21       "C3'"       "C4'"       "C7'"       "NA'"       0.000     5.0     2
+BRN              const_17       "C4'"       "C5'"       "C6'"       "C1'"       0.000    10.0     2
+BRN            sp2_sp2_25       "NB'"       "C7'"       "NA'"       "HA'"       0.000     5.0     2
+BRN            sp2_sp2_28       "NA'"       "C7'"       "NB'"      "HB'1"       0.000     5.0     2
+BRN              const_25          C1          C2          C3          C4       0.000    10.0     2
+BRN              const_30          C2          C3          C4          C7     180.000    10.0     2
+BRN              const_35          C7          C4          C5          C6     180.000    10.0     2
+BRN             sp2_sp2_6          C3          C4          C7          NA       0.000     5.0     2
+BRN              const_37          C4          C5          C6          C1       0.000    10.0     2
+BRN            sp2_sp2_10          NB          C7          NA          HA       0.000     5.0     2
+BRN            sp2_sp2_13          NA          C7          NB         HB1       0.000     5.0     2
+BRN            sp2_sp2_15       "N1'"           N          N1          C1     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BRN    plan-1          C1   0.020
+BRN    plan-1          C2   0.020
+BRN    plan-1          C3   0.020
+BRN    plan-1          C4   0.020
+BRN    plan-1          C5   0.020
+BRN    plan-1          C6   0.020
+BRN    plan-1          C7   0.020
+BRN    plan-1          H2   0.020
+BRN    plan-1          H3   0.020
+BRN    plan-1          H5   0.020
+BRN    plan-1          H6   0.020
+BRN    plan-1          N1   0.020
+BRN    plan-2       "C1'"   0.020
+BRN    plan-2       "C2'"   0.020
+BRN    plan-2       "C3'"   0.020
+BRN    plan-2       "C4'"   0.020
+BRN    plan-2       "C5'"   0.020
+BRN    plan-2       "C6'"   0.020
+BRN    plan-2       "C7'"   0.020
+BRN    plan-2       "H2'"   0.020
+BRN    plan-2       "H3'"   0.020
+BRN    plan-2       "H5'"   0.020
+BRN    plan-2       "H6'"   0.020
+BRN    plan-2       "N1'"   0.020
+BRN    plan-3          C4   0.020
+BRN    plan-3          C7   0.020
+BRN    plan-3          NA   0.020
+BRN    plan-3          NB   0.020
+BRN    plan-4          C7   0.020
+BRN    plan-4         HB1   0.020
+BRN    plan-4         HB2   0.020
+BRN    plan-4          NB   0.020
+BRN    plan-5          C1   0.020
+BRN    plan-5         HN1   0.020
+BRN    plan-5           N   0.020
+BRN    plan-5          N1   0.020
+BRN    plan-6       "C4'"   0.020
+BRN    plan-6       "C7'"   0.020
+BRN    plan-6       "NA'"   0.020
+BRN    plan-6       "NB'"   0.020
+BRN    plan-7       "C7'"   0.020
+BRN    plan-7      "HB'1"   0.020
+BRN    plan-7      "HB'2"   0.020
+BRN    plan-7       "NB'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BRN           SMILES              ACDLabs 10.04                                                                  N(=N/Nc1ccc(cc1)C(=[N@H])N)\c2ccc(C(=[N@H])N)cc2
+BRN SMILES_CANONICAL               CACTVS 3.341                                                                              NC(=N)c1ccc(NN=Nc2ccc(cc2)C(N)=N)cc1
+BRN           SMILES               CACTVS 3.341                                                                              NC(=N)c1ccc(NN=Nc2ccc(cc2)C(N)=N)cc1
+BRN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                            c1cc(ccc1C(=N)N)N/N=N/c2ccc(cc2)C(=N)N
+BRN           SMILES "OpenEye OEToolkits" 1.5.0                                                                              c1cc(ccc1C(=N)N)NN=Nc2ccc(cc2)C(=N)N
+BRN            InChI                InChI  1.03 InChI=1S/C14H15N7/c15-13(16)9-1-5-11(6-2-9)19-21-20-12-7-3-10(4-8-12)14(17)18/h1-8H,(H3,15,16)(H3,17,18)(H,19,20)
+BRN         InChIKey                InChI  1.03                                                                                       XNYZHCFCZNMTFY-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BRN acedrg               243         "dictionary generator"                  
+BRN acedrg_database      11          "data source"                           
+BRN rdkit                2017.03.2   "Chemoinformatics tool"
+BRN refmac5              5.8.0238    "optimization tool"                     

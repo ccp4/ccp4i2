@@ -1,0 +1,133 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XAP     XAP      3-AMINOOXY-1-AMINOPROPANE     NON-POLYMER     16     6     .     
+#
+data_comp_XAP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XAP     N1      N       NT2     0       -33.117     3.289       -15.947     
+XAP     C1      C       CH2     0       -34.525     3.695       -15.910     
+XAP     C2      C       CH2     0       -34.850     4.617       -14.741     
+XAP     C3      C       CH2     0       -34.982     3.889       -13.433     
+XAP     O1      O       O2      0       -33.706     3.413       -12.956     
+XAP     N2      N       NT2     0       -32.995     4.476       -12.327     
+XAP     HN11    H       H       0       -32.992     2.636       -16.536     
+XAP     HN12    H       H       0       -32.852     2.984       -15.157     
+XAP     H11     H       H       0       -35.081     2.891       -15.855     
+XAP     H12     H       H       0       -34.742     4.148       -16.750     
+XAP     H21     H       H       0       -35.691     5.087       -14.926     
+XAP     H22     H       H       0       -34.144     5.293       -14.657     
+XAP     H31     H       H       0       -35.584     3.123       -13.543     
+XAP     H32     H       H       0       -35.373     4.488       -12.761     
+XAP     HN21    H       H       0       -32.485     4.100       -11.621     
+XAP     HN22    H       H       0       -32.460     4.892       -12.989     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XAP          N1          C1      SINGLE       n     1.466  0.0117     1.466  0.0117
+XAP          C1          C2      SINGLE       n     1.523  0.0127     1.523  0.0127
+XAP          C2          C3      SINGLE       n     1.501  0.0200     1.501  0.0200
+XAP          C3          O1      SINGLE       n     1.442  0.0100     1.442  0.0100
+XAP          O1          N2      SINGLE       n     1.423  0.0200     1.423  0.0200
+XAP          N1        HN11      SINGLE       n     1.036  0.0160     0.888  0.0200
+XAP          N1        HN12      SINGLE       n     1.036  0.0160     0.888  0.0200
+XAP          C1         H11      SINGLE       n     1.089  0.0100     0.979  0.0106
+XAP          C1         H12      SINGLE       n     1.089  0.0100     0.979  0.0106
+XAP          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0122
+XAP          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0122
+XAP          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0174
+XAP          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0174
+XAP          N2        HN21      SINGLE       n     1.036  0.0160     0.948  0.0200
+XAP          N2        HN22      SINGLE       n     1.036  0.0160     0.948  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XAP          C1          N1        HN11     110.839    3.00
+XAP          C1          N1        HN12     110.839    3.00
+XAP        HN11          N1        HN12     107.243    3.00
+XAP          N1          C1          C2     113.282    2.68
+XAP          N1          C1         H11     108.763    1.50
+XAP          N1          C1         H12     108.763    1.50
+XAP          C2          C1         H11     109.475    1.50
+XAP          C2          C1         H12     109.475    1.50
+XAP         H11          C1         H12     107.806    1.50
+XAP          C1          C2          C3     113.087    1.51
+XAP          C1          C2         H21     109.322    1.50
+XAP          C1          C2         H22     109.322    1.50
+XAP          C3          C2         H21     108.802    1.50
+XAP          C3          C2         H22     108.802    1.50
+XAP         H21          C2         H22     107.717    1.50
+XAP          C2          C3          O1     112.029    2.95
+XAP          C2          C3         H31     109.787    1.50
+XAP          C2          C3         H32     109.787    1.50
+XAP          O1          C3         H31     109.064    1.50
+XAP          O1          C3         H32     109.064    1.50
+XAP         H31          C3         H32     108.308    1.50
+XAP          C3          O1          N2     109.509    1.50
+XAP          O1          N2        HN21     107.495    3.00
+XAP          O1          N2        HN22     107.495    3.00
+XAP        HN21          N2        HN22     112.988    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XAP             sp3_sp3_1          C2          C1          N1        HN11     180.000    10.0     3
+XAP             sp3_sp3_7          N1          C1          C2          C3     180.000    10.0     3
+XAP            sp3_sp3_16          C1          C2          C3          O1     180.000    10.0     3
+XAP            sp3_sp3_25          C2          C3          O1          N2     180.000    10.0     3
+XAP            sp3_sp3_28        HN21          N2          O1          C3     180.000    10.0     3
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XAP           SMILES              ACDLabs 10.04                              O(N)CCCN
+XAP SMILES_CANONICAL               CACTVS 3.341                                NCCCON
+XAP           SMILES               CACTVS 3.341                                NCCCON
+XAP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                              C(CN)CON
+XAP           SMILES "OpenEye OEToolkits" 1.5.0                              C(CN)CON
+XAP            InChI                InChI  1.03 InChI=1S/C3H10N2O/c4-2-1-3-6-5/h1-5H2
+XAP         InChIKey                InChI  1.03           VSZFWDPIWSPZON-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XAP acedrg               243         "dictionary generator"                  
+XAP acedrg_database      11          "data source"                           
+XAP rdkit                2017.03.2   "Chemoinformatics tool"
+XAP refmac5              5.8.0238    "optimization tool"                     

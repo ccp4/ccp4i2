@@ -1,0 +1,252 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NNR     NNR      "Nicotinamide riboside"     NON-POLYMER     33     18     .     
+#
+data_comp_NNR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NNR     O2R     O       OH1     0       -19.313     -2.575      -11.544     
+NNR     C2R     C       CH1     0       -19.391     -1.422      -10.721     
+NNR     C3R     C       CH1     0       -20.768     -1.221      -10.075     
+NNR     O3R     O       OH1     0       -21.845     -1.671      -10.891     
+NNR     C4R     C       CH1     0       -20.817     0.301       -9.858      
+NNR     C5R     C       CH2     0       -20.343     0.758       -8.498      
+NNR     O5R     O       OH1     0       -20.418     2.172       -8.374      
+NNR     O4R     O       O2      0       -19.969     0.869       -10.881     
+NNR     C1R     C       CH1     0       -19.293     -0.164      -11.591     
+NNR     N1      N       NR6     1       -17.907     0.288       -11.870     
+NNR     C2      C       CR16    0       -17.098     0.715       -10.835     
+NNR     C6      C       CR16    0       -17.425     0.286       -13.162     
+NNR     C5      C       CR16    0       -16.136     0.707       -13.434     
+NNR     C4      C       CR16    0       -15.317     1.136       -12.404     
+NNR     C3      C       CR6     0       -15.798     1.142       -11.100     
+NNR     C7      C       C       0       -14.926     1.600       -9.971      
+NNR     O7      O       O       0       -13.818     1.067       -9.800      
+NNR     N7      N       NH2     0       -15.371     2.570       -9.182      
+NNR     HO2R    H       H       0       -19.075     -3.242      -11.075     
+NNR     H2R     H       H       0       -18.684     -1.433      -10.031     
+NNR     H3R     H       H       0       -20.795     -1.683      -9.197      
+NNR     HO3R    H       H       0       -21.918     -1.186      -11.584     
+NNR     H4R     H       H       0       -21.734     0.619       -9.999      
+NNR     H5R1    H       H       0       -19.415     0.470       -8.363      
+NNR     H5R2    H       H       0       -20.898     0.343       -7.804      
+NNR     HO5R    H       H       0       -20.155     2.396       -7.600      
+NNR     H1R     H       H       0       -19.762     -0.324      -12.449     
+NNR     H2      H       H       0       -17.422     0.719       -9.949      
+NNR     H6      H       H       0       -17.985     -0.006      -13.862     
+NNR     H5      H       H       0       -15.819     0.700       -14.322     
+NNR     H4      H       H       0       -14.440     1.422       -12.587     
+NNR     HN71    H       H       0       -14.873     2.852       -8.499      
+NNR     HN72    H       H       0       -16.165     2.952       -9.325      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NNR          C6          C5      DOUBLE       y     1.380  0.0128     1.380  0.0128
+NNR          C5          C4      SINGLE       y     1.380  0.0100     1.380  0.0100
+NNR          N1          C6      SINGLE       y     1.375  0.0105     1.375  0.0105
+NNR          C4          C3      DOUBLE       y     1.385  0.0100     1.385  0.0100
+NNR         O2R         C2R      SINGLE       n     1.419  0.0101     1.419  0.0101
+NNR         C1R          N1      SINGLE       n     1.477  0.0138     1.477  0.0138
+NNR          N1          C2      DOUBLE       y     1.377  0.0105     1.377  0.0105
+NNR          C2          C3      SINGLE       y     1.390  0.0105     1.390  0.0105
+NNR          C3          C7      SINGLE       n     1.497  0.0100     1.497  0.0100
+NNR         C2R         C1R      SINGLE       n     1.533  0.0100     1.533  0.0100
+NNR         O4R         C1R      SINGLE       n     1.425  0.0141     1.425  0.0141
+NNR         C2R         C3R      SINGLE       n     1.533  0.0100     1.533  0.0100
+NNR          C7          O7      DOUBLE       n     1.241  0.0105     1.241  0.0105
+NNR          C7          N7      SINGLE       n     1.326  0.0100     1.326  0.0100
+NNR         C3R         O3R      SINGLE       n     1.422  0.0100     1.422  0.0100
+NNR         C4R         O4R      SINGLE       n     1.443  0.0107     1.443  0.0107
+NNR         C3R         C4R      SINGLE       n     1.535  0.0100     1.535  0.0100
+NNR         C4R         C5R      SINGLE       n     1.511  0.0177     1.511  0.0177
+NNR         C5R         O5R      SINGLE       n     1.421  0.0131     1.421  0.0131
+NNR         O2R        HO2R      SINGLE       n     0.970  0.0120     0.849  0.0200
+NNR         C2R         H2R      SINGLE       n     1.089  0.0100     0.989  0.0200
+NNR         C3R         H3R      SINGLE       n     1.089  0.0100     0.992  0.0200
+NNR         O3R        HO3R      SINGLE       n     0.970  0.0120     0.849  0.0200
+NNR         C4R         H4R      SINGLE       n     1.089  0.0100     0.981  0.0200
+NNR         C5R        H5R1      SINGLE       n     1.089  0.0100     0.981  0.0200
+NNR         C5R        H5R2      SINGLE       n     1.089  0.0100     0.981  0.0200
+NNR         O5R        HO5R      SINGLE       n     0.970  0.0120     0.848  0.0200
+NNR         C1R         H1R      SINGLE       n     1.089  0.0100     0.990  0.0173
+NNR          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0170
+NNR          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0169
+NNR          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0190
+NNR          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0168
+NNR          N7        HN71      SINGLE       n     1.016  0.0100     0.891  0.0200
+NNR          N7        HN72      SINGLE       n     1.016  0.0100     0.891  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NNR         C2R         O2R        HO2R     109.449    1.85
+NNR         O2R         C2R         C1R     109.476    3.00
+NNR         O2R         C2R         C3R     112.861    2.52
+NNR         O2R         C2R         H2R     111.022    1.77
+NNR         C1R         C2R         C3R     101.269    1.50
+NNR         C1R         C2R         H2R     110.760    1.63
+NNR         C3R         C2R         H2R     110.799    1.82
+NNR         C2R         C3R         O3R     111.993    3.00
+NNR         C2R         C3R         C4R     102.071    1.50
+NNR         C2R         C3R         H3R     110.108    1.66
+NNR         O3R         C3R         C4R     111.281    2.46
+NNR         O3R         C3R         H3R     110.380    1.67
+NNR         C4R         C3R         H3R     110.452    2.54
+NNR         C3R         O3R        HO3R     108.744    3.00
+NNR         O4R         C4R         C3R     104.439    1.50
+NNR         O4R         C4R         C5R     109.573    1.50
+NNR         O4R         C4R         H4R     108.698    1.50
+NNR         C3R         C4R         C5R     114.598    1.97
+NNR         C3R         C4R         H4R     109.363    1.86
+NNR         C5R         C4R         H4R     109.037    1.87
+NNR         C4R         C5R         O5R     111.279    1.98
+NNR         C4R         C5R        H5R1     109.326    2.00
+NNR         C4R         C5R        H5R2     109.326    2.00
+NNR         O5R         C5R        H5R1     109.280    1.50
+NNR         O5R         C5R        H5R2     109.280    1.50
+NNR        H5R1         C5R        H5R2     108.248    2.26
+NNR         C5R         O5R        HO5R     109.007    3.00
+NNR         C1R         O4R         C4R     109.578    1.50
+NNR          N1         C1R         C2R     113.620    1.99
+NNR          N1         C1R         O4R     108.092    1.50
+NNR          N1         C1R         H1R     108.901    1.50
+NNR         C2R         C1R         O4R     106.825    1.50
+NNR         C2R         C1R         H1R     109.776    1.83
+NNR         O4R         C1R         H1R     109.327    1.50
+NNR          C6          N1         C1R     119.705    1.50
+NNR          C6          N1          C2     120.590    1.50
+NNR         C1R          N1          C2     119.705    1.50
+NNR          N1          C2          C3     119.549    3.00
+NNR          N1          C2          H2     120.430    1.53
+NNR          C3          C2          H2     120.021    1.50
+NNR          C5          C6          N1     121.277    1.50
+NNR          C5          C6          H6     120.031    1.59
+NNR          N1          C6          H6     118.693    1.53
+NNR          C6          C5          C4     120.016    1.50
+NNR          C6          C5          H5     119.683    1.50
+NNR          C4          C5          H5     120.300    1.50
+NNR          C5          C4          C3     119.166    1.50
+NNR          C5          C4          H4     120.320    1.50
+NNR          C3          C4          H4     120.513    1.50
+NNR          C4          C3          C2     119.402    1.64
+NNR          C4          C3          C7     120.938    2.50
+NNR          C2          C3          C7     119.660    2.75
+NNR          C3          C7          O7     119.730    1.50
+NNR          C3          C7          N7     118.032    1.50
+NNR          O7          C7          N7     122.238    1.50
+NNR          C7          N7        HN71     120.236    2.75
+NNR          C7          N7        HN72     120.236    2.75
+NNR        HN71          N7        HN72     119.529    2.83
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NNR            sp3_sp3_25         C1R         C2R         O2R        HO2R     180.000    10.0     3
+NNR              const_18          N1          C2          C3          C7     180.000    10.0     2
+NNR       const_sp2_sp2_5          C4          C5          C6          N1       0.000     5.0     2
+NNR       const_sp2_sp2_9          C3          C4          C5          C6       0.000     5.0     2
+NNR              const_15          C7          C3          C4          C5     180.000    10.0     2
+NNR             sp2_sp2_2          C4          C3          C7          O7       0.000     5.0     2
+NNR             sp2_sp2_7          O7          C7          N7        HN71       0.000     5.0     2
+NNR            sp3_sp3_32         O2R         C2R         C3R         O3R     180.000    10.0     3
+NNR             sp3_sp3_5          N1         C1R         C2R         O2R      60.000    10.0     3
+NNR            sp3_sp3_37         C2R         C3R         O3R        HO3R     180.000    10.0     3
+NNR            sp3_sp3_20         O3R         C3R         C4R         C5R     -60.000    10.0     3
+NNR            sp3_sp3_40         O4R         C4R         C5R         O5R     180.000    10.0     3
+NNR            sp3_sp3_14         C5R         C4R         O4R         C1R     -60.000    10.0     3
+NNR            sp3_sp3_49         C4R         C5R         O5R        HO5R     180.000    10.0     3
+NNR            sp3_sp3_11          N1         C1R         O4R         C4R     180.000    10.0     3
+NNR             sp2_sp3_1          C6          N1         C1R         C2R     150.000    10.0     6
+NNR              const_21          C3          C2          N1          C6       0.000    10.0     2
+NNR       const_sp2_sp2_2          C5          C6          N1         C1R     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NNR    chir_1    C2R    O2R    C1R    C3R    negative
+NNR    chir_2    C3R    O3R    C4R    C2R    positive
+NNR    chir_3    C4R    O4R    C3R    C5R    negative
+NNR    chir_4    C1R    O4R    N1    C2R    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NNR    plan-1         C1R   0.020
+NNR    plan-1          C2   0.020
+NNR    plan-1          C3   0.020
+NNR    plan-1          C4   0.020
+NNR    plan-1          C5   0.020
+NNR    plan-1          C6   0.020
+NNR    plan-1          C7   0.020
+NNR    plan-1          H2   0.020
+NNR    plan-1          H4   0.020
+NNR    plan-1          H5   0.020
+NNR    plan-1          H6   0.020
+NNR    plan-1          N1   0.020
+NNR    plan-2          C3   0.020
+NNR    plan-2          C7   0.020
+NNR    plan-2          N7   0.020
+NNR    plan-2          O7   0.020
+NNR    plan-3          C7   0.020
+NNR    plan-3        HN71   0.020
+NNR    plan-3        HN72   0.020
+NNR    plan-3          N7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NNR           SMILES              ACDLabs 10.04                                                                                               O=C(c1ccc[n+](c1)C2OC(C(O)C2O)CO)N
+NNR SMILES_CANONICAL               CACTVS 3.341                                                                             NC(=O)c1ccc[n+](c1)[C@@H]2O[C@H](CO)[C@@H](O)[C@H]2O
+NNR           SMILES               CACTVS 3.341                                                                                   NC(=O)c1ccc[n+](c1)[CH]2O[CH](CO)[CH](O)[CH]2O
+NNR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                         c1cc(c[n+](c1)[C@H]2[C@@H]([C@@H]([C@H](O2)CO)O)O)C(=O)N
+NNR           SMILES "OpenEye OEToolkits" 1.5.0                                                                                           c1cc(c[n+](c1)C2C(C(C(O2)CO)O)O)C(=O)N
+NNR            InChI                InChI  1.03 InChI=1S/C11H14N2O5/c12-10(17)6-2-1-3-13(4-6)11-9(16)8(15)7(5-14)18-11/h1-4,7-9,11,14-16H,5H2,(H-,12,17)/p+1/t7-,8-,9-,11-/m1/s1
+NNR         InChIKey                InChI  1.03                                                                                                      JLEBZPBDRKPWTD-TURQNECASA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NNR acedrg               243         "dictionary generator"                  
+NNR acedrg_database      11          "data source"                           
+NNR rdkit                2017.03.2   "Chemoinformatics tool"
+NNR refmac5              5.8.0238    "optimization tool"                     

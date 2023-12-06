@@ -1,0 +1,162 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8KB     8KB      (6~{R})-1,4-oxazepan-6-ol     NON-POLYMER     19     8     .     
+#
+data_comp_8KB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8KB     C4      C       CH2     0       -22.286     10.270      -32.334     
+8KB     O       O       OH1     0       -20.133     9.851       -31.374     
+8KB     C       C       CH1     0       -21.349     10.556      -31.171     
+8KB     O1      O       O2      0       -23.296     9.312       -32.028     
+8KB     C3      C       CH2     0       -22.875     8.020       -31.605     
+8KB     C2      C       CH2     0       -22.900     7.977       -30.097     
+8KB     N       N       NT1     0       -21.816     8.769       -29.516     
+8KB     C1      C       CH2     0       -21.895     10.208      -29.792     
+8KB     H9      H       H       0       -22.719     11.108      -32.604     
+8KB     H10     H       H       0       -21.762     9.943       -33.097     
+8KB     H1      H       H       0       -19.520     10.171      -30.884     
+8KB     H       H       H       0       -21.141     11.524      -31.178     
+8KB     H7      H       H       0       -21.968     7.832       -31.933     
+8KB     H8      H       H       0       -23.480     7.338       -31.968     
+8KB     H5      H       H       0       -22.817     7.046       -29.801     
+8KB     H6      H       H       0       -23.762     8.319       -29.780     
+8KB     H11     H       H       0       -21.038     8.444       -29.831     
+8KB     H2      H       H       0       -22.827     10.506      -29.728     
+8KB     H3      H       H       0       -21.379     10.694      -29.115     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8KB          C4          O1      SINGLE       n     1.422  0.0110     1.422  0.0110
+8KB          C4           C      SINGLE       n     1.516  0.0100     1.516  0.0100
+8KB          O1          C3      SINGLE       n     1.422  0.0113     1.422  0.0113
+8KB           O           C      SINGLE       n     1.418  0.0108     1.418  0.0108
+8KB          C3          C2      SINGLE       n     1.509  0.0138     1.509  0.0138
+8KB           C          C1      SINGLE       n     1.519  0.0100     1.519  0.0100
+8KB          C2           N      SINGLE       n     1.460  0.0138     1.460  0.0138
+8KB           N          C1      SINGLE       n     1.463  0.0109     1.463  0.0109
+8KB          C4          H9      SINGLE       n     1.089  0.0100     0.981  0.0174
+8KB          C4         H10      SINGLE       n     1.089  0.0100     0.981  0.0174
+8KB           O          H1      SINGLE       n     0.970  0.0120     0.848  0.0200
+8KB           C           H      SINGLE       n     1.089  0.0100     0.991  0.0104
+8KB          C3          H7      SINGLE       n     1.089  0.0100     0.981  0.0174
+8KB          C3          H8      SINGLE       n     1.089  0.0100     0.981  0.0174
+8KB          C2          H5      SINGLE       n     1.089  0.0100     0.980  0.0143
+8KB          C2          H6      SINGLE       n     1.089  0.0100     0.980  0.0143
+8KB           N         H11      SINGLE       n     1.036  0.0160     0.899  0.0200
+8KB          C1          H2      SINGLE       n     1.089  0.0100     0.980  0.0143
+8KB          C1          H3      SINGLE       n     1.089  0.0100     0.980  0.0143
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8KB          O1          C4           C     109.289    2.60
+8KB          O1          C4          H9     109.546    1.50
+8KB          O1          C4         H10     109.546    1.50
+8KB           C          C4          H9     109.582    1.50
+8KB           C          C4         H10     109.582    1.50
+8KB          H9          C4         H10     108.601    1.50
+8KB           C           O          H1     110.408    2.04
+8KB          C4           C           O     109.314    1.96
+8KB          C4           C          C1     111.094    2.85
+8KB          C4           C           H     108.656    1.50
+8KB           O           C          C1     109.290    2.07
+8KB           O           C           H     108.395    1.50
+8KB          C1           C           H     108.552    1.50
+8KB          C4          O1          C3     113.198    3.00
+8KB          O1          C3          C2     109.317    2.36
+8KB          O1          C3          H7     109.822    1.50
+8KB          O1          C3          H8     109.822    1.50
+8KB          C2          C3          H7     109.857    1.50
+8KB          C2          C3          H8     109.857    1.50
+8KB          H7          C3          H8     108.313    1.50
+8KB          C3          C2           N     111.163    1.50
+8KB          C3          C2          H5     109.233    1.50
+8KB          C3          C2          H6     109.233    1.50
+8KB           N          C2          H5     109.542    1.51
+8KB           N          C2          H6     109.542    1.51
+8KB          H5          C2          H6     108.238    1.99
+8KB          C2           N          C1     113.474    1.55
+8KB          C2           N         H11     107.057    3.00
+8KB          C1           N         H11     108.280    3.00
+8KB           C          C1           N     110.916    1.50
+8KB           C          C1          H2     109.093    1.50
+8KB           C          C1          H3     109.093    1.50
+8KB           N          C1          H2     109.402    1.50
+8KB           N          C1          H3     109.402    1.50
+8KB          H2          C1          H3     107.997    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8KB             sp3_sp3_4           O           C          C4          O1     180.000    10.0     3
+8KB             sp3_sp3_1           C          C4          O1          C3     180.000    10.0     3
+8KB            sp3_sp3_16          C4           C           O          H1     180.000    10.0     3
+8KB            sp3_sp3_28          C4           C          C1           N     180.000    10.0     3
+8KB            sp3_sp3_13          C2          C3          O1          C4     180.000    10.0     3
+8KB            sp3_sp3_19           N          C2          C3          O1     180.000    10.0     3
+8KB            sp3_sp3_37          C3          C2           N          C1     180.000    10.0     3
+8KB            sp3_sp3_44           C          C1           N          C2     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+8KB    chir_1    C    O    C4    C1    negative
+8KB    chir_2    N    C1    C2    H11    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8KB            InChI                InChI  1.03 InChI=1S/C5H11NO2/c7-5-3-6-1-2-8-4-5/h5-7H,1-4H2/t5-/m1/s1
+8KB         InChIKey                InChI  1.03                                AJQUDIYIICBQDR-RXMQYKEDSA-N
+8KB SMILES_CANONICAL               CACTVS 3.385                                            O[C@@H]1CNCCOC1
+8KB           SMILES               CACTVS 3.385                                              O[CH]1CNCCOC1
+8KB SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                          C1COC[C@@H](CN1)O
+8KB           SMILES "OpenEye OEToolkits" 2.0.6                                               C1COCC(CN1)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8KB acedrg               243         "dictionary generator"                  
+8KB acedrg_database      11          "data source"                           
+8KB rdkit                2017.03.2   "Chemoinformatics tool"
+8KB refmac5              5.8.0238    "optimization tool"                     

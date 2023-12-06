@@ -1,0 +1,135 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MAS     MAS      "dimethylsulfamic acid"     NON-POLYMER     14     7     .     
+#
+data_comp_MAS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MAS     S       S       S3      0       2.338       27.239      19.949      
+MAS     O1      O       O       0       2.327       27.948      21.177      
+MAS     O2      O       O       0       1.276       27.415      19.025      
+MAS     N       N       NT      0       2.341       25.651      20.349      
+MAS     C1      C       CH3     0       3.534       25.090      20.986      
+MAS     C2      C       CH3     0       1.120       25.092      20.932      
+MAS     O3      O       OH1     0       3.680       27.550      19.207      
+MAS     H11     H       H       0       3.485       24.114      20.976      
+MAS     H12     H       H       0       3.587       25.403      21.910      
+MAS     H13     H       H       0       4.331       25.377      20.501      
+MAS     H21     H       H       0       0.344       25.391      20.420      
+MAS     H22     H       H       0       1.034       25.395      21.857      
+MAS     H23     H       H       0       1.162       24.116      20.913      
+MAS     H3      H       H       0       3.568       28.204      18.678      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MAS           S          O1      DOUBLE       n     1.419  0.0106     1.419  0.0106
+MAS           S          O2      DOUBLE       n     1.419  0.0106     1.419  0.0106
+MAS           S           N      SINGLE       n     1.631  0.0200     1.631  0.0200
+MAS           N          C1      SINGLE       n     1.461  0.0113     1.461  0.0113
+MAS           N          C2      SINGLE       n     1.461  0.0113     1.461  0.0113
+MAS           S          O3      SINGLE       n     1.565  0.0200     1.565  0.0200
+MAS          C1         H11      SINGLE       n     1.089  0.0100     0.977  0.0113
+MAS          C1         H12      SINGLE       n     1.089  0.0100     0.977  0.0113
+MAS          C1         H13      SINGLE       n     1.089  0.0100     0.977  0.0113
+MAS          C2         H21      SINGLE       n     1.089  0.0100     0.977  0.0113
+MAS          C2         H22      SINGLE       n     1.089  0.0100     0.977  0.0113
+MAS          C2         H23      SINGLE       n     1.089  0.0100     0.977  0.0113
+MAS          O3          H3      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MAS          O1           S          O2     120.154    1.50
+MAS          O1           S           N     106.907    1.78
+MAS          O1           S          O3     110.180    2.87
+MAS          O2           S           N     106.907    1.78
+MAS          O2           S          O3     110.180    2.87
+MAS           N           S          O3     107.236    3.00
+MAS           S           N          C1     118.416    2.52
+MAS           S           N          C2     118.416    2.52
+MAS          C1           N          C2     111.079    1.99
+MAS           N          C1         H11     109.536    1.50
+MAS           N          C1         H12     109.536    1.50
+MAS           N          C1         H13     109.536    1.50
+MAS         H11          C1         H12     109.476    1.50
+MAS         H11          C1         H13     109.476    1.50
+MAS         H12          C1         H13     109.476    1.50
+MAS           N          C2         H21     109.536    1.50
+MAS           N          C2         H22     109.536    1.50
+MAS           N          C2         H23     109.536    1.50
+MAS         H21          C2         H22     109.476    1.50
+MAS         H21          C2         H23     109.476    1.50
+MAS         H22          C2         H23     109.476    1.50
+MAS           S          O3          H3     109.576    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MAS             sp3_sp3_4          C1           N           S          O1      60.000    10.0     3
+MAS            sp3_sp3_20          H3          O3           S          O1     -60.000    10.0     3
+MAS             sp3_sp3_7         H11          C1           N           S     180.000    10.0     3
+MAS            sp3_sp3_14         H21          C2           N           S     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MAS    chir_1    S    O1    O2    O3    both
+MAS    chir_2    N    S    C1    C2    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MAS           SMILES              ACDLabs 12.01                                   O=S(=O)(O)N(C)C
+MAS SMILES_CANONICAL               CACTVS 3.370                                 CN(C)[S](O)(=O)=O
+MAS           SMILES               CACTVS 3.370                                 CN(C)[S](O)(=O)=O
+MAS SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                   CN(C)S(=O)(=O)O
+MAS           SMILES "OpenEye OEToolkits" 1.7.0                                   CN(C)S(=O)(=O)O
+MAS            InChI                InChI  1.03 InChI=1S/C2H7NO3S/c1-3(2)7(4,5)6/h1-2H3,(H,4,5,6)
+MAS         InChIKey                InChI  1.03                       YGNOYUCUPMACDT-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MAS acedrg               243         "dictionary generator"                  
+MAS acedrg_database      11          "data source"                           
+MAS rdkit                2017.03.2   "Chemoinformatics tool"
+MAS refmac5              5.8.0238    "optimization tool"                     

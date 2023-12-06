@@ -1,0 +1,175 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+51S     51S      2,4-dimethylaniline     NON-POLYMER     20     9     .     
+#
+data_comp_51S
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+51S     CG      C       CR6     0       -24.616     26.805      -2.612      
+51S     CD1     C       CR16    0       -24.356     25.535      -3.102      
+51S     CE1     C       CR16    0       -24.404     24.416      -2.290      
+51S     CD2     C       CR16    0       -24.930     26.929      -1.263      
+51S     CE2     C       CR6     0       -24.992     25.837      -0.400      
+51S     CZ      C       CR6     0       -24.719     24.543      -0.938      
+51S     CM      C       CH3     0       -25.338     26.049      1.048       
+51S     CN      C       CH3     0       -24.558     28.011      -3.516      
+51S     NH2     N       NH2     0       -24.761     23.404      -0.136      
+51S     H1      H       H       0       -24.141     25.431      -4.015      
+51S     H2      H       H       0       -24.224     23.563      -2.645      
+51S     H3      H       H       0       -25.108     27.788      -0.915      
+51S     H4      H       H       0       -25.593     25.207      1.458       
+51S     H5      H       H       0       -26.079     26.673      1.116       
+51S     H6      H       H       0       -24.569     26.413      1.515       
+51S     H7      H       H       0       -24.781     28.811      -3.012      
+51S     H8      H       H       0       -25.191     27.903      -4.243      
+51S     H9      H       H       0       -23.662     28.101      -3.881      
+51S     H10     H       H       0       -25.313     22.752      -0.334      
+51S     H11     H       H       0       -24.236     23.345      0.564       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+51S          CG          CN      SINGLE       n     1.506  0.0200     1.506  0.0200
+51S          CG         CD1      DOUBLE       y     1.383  0.0103     1.383  0.0103
+51S         CD1         CE1      SINGLE       y     1.381  0.0100     1.381  0.0100
+51S          CG         CD2      SINGLE       y     1.386  0.0100     1.386  0.0100
+51S         CE1          CZ      DOUBLE       y     1.381  0.0200     1.381  0.0200
+51S         CD2         CE2      DOUBLE       y     1.389  0.0100     1.389  0.0100
+51S         CE2          CZ      SINGLE       y     1.410  0.0170     1.410  0.0170
+51S          CZ         NH2      SINGLE       n     1.391  0.0182     1.391  0.0182
+51S         CE2          CM      SINGLE       n     1.502  0.0100     1.502  0.0100
+51S         CD1          H1      SINGLE       n     1.082  0.0130     0.943  0.0173
+51S         CE1          H2      SINGLE       n     1.082  0.0130     0.941  0.0129
+51S         CD2          H3      SINGLE       n     1.082  0.0130     0.944  0.0143
+51S          CM          H4      SINGLE       n     1.089  0.0100     0.971  0.0135
+51S          CM          H5      SINGLE       n     1.089  0.0100     0.971  0.0135
+51S          CM          H6      SINGLE       n     1.089  0.0100     0.971  0.0135
+51S          CN          H7      SINGLE       n     1.089  0.0100     0.971  0.0135
+51S          CN          H8      SINGLE       n     1.089  0.0100     0.971  0.0135
+51S          CN          H9      SINGLE       n     1.089  0.0100     0.971  0.0135
+51S         NH2         H10      SINGLE       n     1.016  0.0100     0.877  0.0200
+51S         NH2         H11      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+51S          CN          CG         CD1     121.072    1.50
+51S          CN          CG         CD2     121.038    1.50
+51S         CD1          CG         CD2     117.890    1.50
+51S          CG         CD1         CE1     121.808    1.50
+51S          CG         CD1          H1     119.083    1.50
+51S         CE1         CD1          H1     119.109    1.50
+51S         CD1         CE1          CZ     120.154    1.50
+51S         CD1         CE1          H2     120.373    1.50
+51S          CZ         CE1          H2     119.474    1.50
+51S          CG         CD2         CE2     122.466    1.50
+51S          CG         CD2          H3     118.833    1.50
+51S         CE2         CD2          H3     118.701    1.50
+51S         CD2         CE2          CZ     118.091    1.50
+51S         CD2         CE2          CM     120.570    1.50
+51S          CZ         CE2          CM     121.339    1.50
+51S         CE1          CZ         CE2     119.591    1.50
+51S         CE1          CZ         NH2     119.960    1.50
+51S         CE2          CZ         NH2     120.449    1.50
+51S         CE2          CM          H4     109.584    1.50
+51S         CE2          CM          H5     109.584    1.50
+51S         CE2          CM          H6     109.584    1.50
+51S          H4          CM          H5     109.348    1.50
+51S          H4          CM          H6     109.348    1.50
+51S          H5          CM          H6     109.348    1.50
+51S          CG          CN          H7     109.567    1.50
+51S          CG          CN          H8     109.567    1.50
+51S          CG          CN          H9     109.567    1.50
+51S          H7          CN          H8     109.348    1.50
+51S          H7          CN          H9     109.348    1.50
+51S          H8          CN          H9     109.348    1.50
+51S          CZ         NH2         H10     119.767    1.50
+51S          CZ         NH2         H11     119.767    1.50
+51S         H10         NH2         H11     120.467    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+51S       const_sp2_sp2_2         CE1         CD1          CG          CN     180.000     5.0     2
+51S              const_22         CE2         CD2          CG          CN     180.000    10.0     2
+51S             sp2_sp3_1         CD1          CG          CN          H7     150.000    10.0     6
+51S       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+51S              const_10         CD1         CE1          CZ         NH2     180.000    10.0     2
+51S              const_18          CG         CD2         CE2          CM     180.000    10.0     2
+51S              const_16          CM         CE2          CZ         NH2       0.000    10.0     2
+51S             sp2_sp3_7         CD2         CE2          CM          H4     150.000    10.0     6
+51S             sp2_sp2_1         CE1          CZ         NH2         H10     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+51S    plan-1         CD1   0.020
+51S    plan-1         CD2   0.020
+51S    plan-1         CE1   0.020
+51S    plan-1         CE2   0.020
+51S    plan-1          CG   0.020
+51S    plan-1          CM   0.020
+51S    plan-1          CN   0.020
+51S    plan-1          CZ   0.020
+51S    plan-1          H1   0.020
+51S    plan-1          H2   0.020
+51S    plan-1          H3   0.020
+51S    plan-1         NH2   0.020
+51S    plan-2          CZ   0.020
+51S    plan-2         H10   0.020
+51S    plan-2         H11   0.020
+51S    plan-2         NH2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+51S           SMILES              ACDLabs 12.01                                    c1(cc(C)c(cc1)N)C
+51S            InChI                InChI  1.03 InChI=1S/C8H11N/c1-6-3-4-8(9)7(2)5-6/h3-5H,9H2,1-2H3
+51S         InChIKey                InChI  1.03                          CZZZABOKJQXEBO-UHFFFAOYSA-N
+51S SMILES_CANONICAL               CACTVS 3.385                                      Cc1ccc(N)c(C)c1
+51S           SMILES               CACTVS 3.385                                      Cc1ccc(N)c(C)c1
+51S SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                      Cc1ccc(c(c1)C)N
+51S           SMILES "OpenEye OEToolkits" 1.9.2                                      Cc1ccc(c(c1)C)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+51S acedrg               243         "dictionary generator"                  
+51S acedrg_database      11          "data source"                           
+51S rdkit                2017.03.2   "Chemoinformatics tool"
+51S refmac5              5.8.0238    "optimization tool"                     

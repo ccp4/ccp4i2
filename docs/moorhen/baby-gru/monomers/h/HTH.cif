@@ -1,0 +1,186 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HTH     HTH      (2S,3R)-heptane-1,2,3-triol     NON-POLYMER     26     10     .     
+#
+data_comp_HTH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HTH     C1      C       CH2     0       77.269      6.024       61.725      
+HTH     O1      O       OH1     0       76.485      5.597       60.614      
+HTH     C2      C       CH1     0       76.701      7.277       62.360      
+HTH     O2      O       OH1     0       75.448      6.965       62.974      
+HTH     C3      C       CH1     0       76.507      8.454       61.381      
+HTH     O3      O       OH1     0       77.730      8.711       60.688      
+HTH     C4      C       CH2     0       76.043      9.757       62.028      
+HTH     C5      C       CH2     0       75.812      10.920      61.092      
+HTH     C6      C       CH2     0       75.204      12.132      61.750      
+HTH     C7      C       CH3     0       75.001      13.295      60.808      
+HTH     H1      H       H       0       78.194      6.199       61.425      
+HTH     H1A     H       H       0       77.295      5.302       62.400      
+HTH     HO1     H       H       0       76.851      4.912       60.279      
+HTH     H2      H       H       0       77.339      7.572       63.077      
+HTH     HO2     H       H       0       74.872      6.727       62.399      
+HTH     H3      H       H       0       75.830      8.189       60.707      
+HTH     HO3     H       H       0       78.332      8.909       61.254      
+HTH     H4      H       H       0       76.712      10.024      62.693      
+HTH     H4A     H       H       0       75.208      9.580       62.510      
+HTH     H5      H       H       0       75.220      10.626      60.367      
+HTH     H5A     H       H       0       76.669      11.178      60.692      
+HTH     H6      H       H       0       75.788      12.418      62.486      
+HTH     H6A     H       H       0       74.337      11.880      62.136      
+HTH     H7      H       H       0       74.637      14.052      61.299      
+HTH     H7A     H       H       0       74.380      13.039      60.104      
+HTH     H7B     H       H       0       75.853      13.546      60.412      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HTH          C1          O1      SINGLE       n     1.425  0.0100     1.425  0.0100
+HTH          C1          C2      SINGLE       n     1.514  0.0100     1.514  0.0100
+HTH          C2          O2      SINGLE       n     1.429  0.0100     1.429  0.0100
+HTH          C2          C3      SINGLE       n     1.535  0.0200     1.535  0.0200
+HTH          C3          O3      SINGLE       n     1.424  0.0199     1.424  0.0199
+HTH          C3          C4      SINGLE       n     1.526  0.0100     1.526  0.0100
+HTH          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+HTH          C5          C6      SINGLE       n     1.507  0.0200     1.507  0.0200
+HTH          C6          C7      SINGLE       n     1.510  0.0200     1.510  0.0200
+HTH          C1          H1      SINGLE       n     1.089  0.0100     0.988  0.0200
+HTH          C1         H1A      SINGLE       n     1.089  0.0100     0.988  0.0200
+HTH          O1         HO1      SINGLE       n     0.970  0.0120     0.846  0.0200
+HTH          C2          H2      SINGLE       n     1.089  0.0100     1.004  0.0200
+HTH          O2         HO2      SINGLE       n     0.970  0.0120     0.848  0.0200
+HTH          C3          H3      SINGLE       n     1.089  0.0100     0.992  0.0184
+HTH          O3         HO3      SINGLE       n     0.970  0.0120     0.848  0.0200
+HTH          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0160
+HTH          C4         H4A      SINGLE       n     1.089  0.0100     0.981  0.0160
+HTH          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0163
+HTH          C5         H5A      SINGLE       n     1.089  0.0100     0.981  0.0163
+HTH          C6          H6      SINGLE       n     1.089  0.0100     0.982  0.0155
+HTH          C6         H6A      SINGLE       n     1.089  0.0100     0.982  0.0155
+HTH          C7          H7      SINGLE       n     1.089  0.0100     0.973  0.0157
+HTH          C7         H7A      SINGLE       n     1.089  0.0100     0.973  0.0157
+HTH          C7         H7B      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HTH          O1          C1          C2     111.364    1.50
+HTH          O1          C1          H1     109.268    1.50
+HTH          O1          C1         H1A     109.268    1.50
+HTH          C2          C1          H1     109.234    1.50
+HTH          C2          C1         H1A     109.234    1.50
+HTH          H1          C1         H1A     108.313    1.50
+HTH          C1          O1         HO1     108.280    3.00
+HTH          C1          C2          O2     109.623    1.60
+HTH          C1          C2          C3     113.761    1.50
+HTH          C1          C2          H2     107.986    1.50
+HTH          O2          C2          C3     109.320    2.01
+HTH          O2          C2          H2     108.591    1.50
+HTH          C3          C2          H2     108.450    1.83
+HTH          C2          O2         HO2     111.202    3.00
+HTH          C2          C3          O3     109.320    2.01
+HTH          C2          C3          C4     115.002    1.95
+HTH          C2          C3          H3     108.450    1.83
+HTH          O3          C3          C4     108.325    1.59
+HTH          O3          C3          H3     107.870    1.50
+HTH          C4          C3          H3     108.287    1.50
+HTH          C3          O3         HO3     108.815    1.50
+HTH          C3          C4          C5     116.150    2.74
+HTH          C3          C4          H4     108.389    1.50
+HTH          C3          C4         H4A     108.389    1.50
+HTH          C5          C4          H4     108.572    1.50
+HTH          C5          C4         H4A     108.572    1.50
+HTH          H4          C4         H4A     107.428    1.50
+HTH          C4          C5          C6     114.183    2.57
+HTH          C4          C5          H5     108.597    1.50
+HTH          C4          C5         H5A     108.597    1.50
+HTH          C6          C5          H5     108.653    1.50
+HTH          C6          C5         H5A     108.653    1.50
+HTH          H5          C5         H5A     107.646    1.50
+HTH          C5          C6          C7     113.719    3.00
+HTH          C5          C6          H6     108.758    1.50
+HTH          C5          C6         H6A     108.758    1.50
+HTH          C7          C6          H6     108.918    1.50
+HTH          C7          C6         H6A     108.918    1.50
+HTH          H6          C6         H6A     107.763    1.50
+HTH          C6          C7          H7     109.554    1.50
+HTH          C6          C7         H7A     109.554    1.50
+HTH          C6          C7         H7B     109.554    1.50
+HTH          H7          C7         H7A     109.380    1.50
+HTH          H7          C7         H7B     109.380    1.50
+HTH         H7A          C7         H7B     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HTH             sp3_sp3_1          C2          C1          O1         HO1     180.000    10.0     3
+HTH             sp3_sp3_4          O1          C1          C2          O2     180.000    10.0     3
+HTH            sp3_sp3_13          C1          C2          O2         HO2     180.000    10.0     3
+HTH            sp3_sp3_16          C1          C2          C3          O3     180.000    10.0     3
+HTH            sp3_sp3_25          C2          C3          O3         HO3     180.000    10.0     3
+HTH            sp3_sp3_28          C2          C3          C4          C5     180.000    10.0     3
+HTH            sp3_sp3_37          C3          C4          C5          C6     180.000    10.0     3
+HTH            sp3_sp3_46          C4          C5          C6          C7     180.000    10.0     3
+HTH            sp3_sp3_55          C5          C6          C7          H7     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HTH    chir_1    C2    O2    C3    C1    positive
+HTH    chir_2    C3    O3    C2    C4    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HTH SMILES_CANONICAL               CACTVS 3.352                                             CCCC[C@@H](O)[C@@H](O)CO
+HTH           SMILES               CACTVS 3.352                                                 CCCC[CH](O)[CH](O)CO
+HTH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                               CCCC[C@H]([C@H](CO)O)O
+HTH           SMILES "OpenEye OEToolkits" 1.7.0                                                       CCCCC(C(CO)O)O
+HTH            InChI                InChI  1.03 InChI=1S/C7H16O3/c1-2-3-4-6(9)7(10)5-8/h6-10H,2-5H2,1H3/t6-,7+/m1/s1
+HTH         InChIKey                InChI  1.03                                          HXYCHJFUBNTKQR-RQJHMYQMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HTH acedrg               243         "dictionary generator"                  
+HTH acedrg_database      11          "data source"                           
+HTH rdkit                2017.03.2   "Chemoinformatics tool"
+HTH refmac5              5.8.0238    "optimization tool"                     

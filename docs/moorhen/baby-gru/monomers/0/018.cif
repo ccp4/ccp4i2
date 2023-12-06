@@ -1,0 +1,239 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+018     018      2-nitro-N-(thiophen-3-ylmethyl)-4-(trifluoromethyl)aniline     NON-POLYMER     29     20     .     
+#
+data_comp_018
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+018     OAR     O       O       0       9.799       -41.251     12.866      
+018     NAQ     N       N       1       10.845      -40.881     12.356      
+018     OAP     O       OC      -1      11.634      -40.137     12.917      
+018     CAI     C       CR6     0       11.166      -41.348     11.013      
+018     CAH     C       CR16    0       10.353      -40.883     9.973       
+018     CAD     C       CR6     0       10.585      -41.282     8.667       
+018     CAC     C       CT      0       9.707       -40.769     7.569       
+018     FAA     F       F       0       8.443       -40.595     7.947       
+018     FAG     F       F       0       10.110      -39.593     7.101       
+018     FAB     F       F       0       9.651       -41.579     6.515       
+018     CAJ     C       CR6     0       12.247      -42.230     10.746      
+018     CAF     C       CR16    0       12.452      -42.611     9.404       
+018     CAE     C       CR16    0       11.638      -42.141     8.387       
+018     NAK     N       NH1     0       13.056      -42.703     11.750      
+018     CAL     C       CH2     0       14.496      -42.851     11.650      
+018     CAM     C       CR5     0       15.204      -41.585     11.277      
+018     CAN     C       CR15    0       15.898      -41.425     10.132      
+018     SAO     S       S2      0       16.556      -39.897     10.044      
+018     CAT     C       CR15    0       15.948      -39.401     11.514      
+018     CAS     C       CR15    0       15.231      -40.397     12.095      
+018     HAH     H       H       0       9.646       -40.299     10.173      
+018     HAF     H       H       0       13.160      -43.197     9.195       
+018     HAE     H       H       0       11.809      -42.416     7.502       
+018     HNAK    H       H       0       12.673      -42.936     12.497      
+018     HAL     H       H       0       14.700      -43.536     10.982      
+018     HALA    H       H       0       14.842      -43.161     12.512      
+018     HAN     H       H       0       16.020      -42.059     9.447       
+018     HAT     H       H       0       16.108      -38.536     11.851      
+018     HAS     H       H       0       14.799      -40.331     12.929      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+018         OAR         NAQ      DOUBLE       n     1.221  0.0162     1.221  0.0162
+018         NAQ         OAP      SINGLE       n     1.221  0.0162     1.221  0.0162
+018         NAQ         CAI      SINGLE       n     1.457  0.0200     1.457  0.0200
+018         CAI         CAH      DOUBLE       y     1.394  0.0127     1.394  0.0127
+018         CAI         CAJ      SINGLE       y     1.410  0.0134     1.410  0.0134
+018         CAH         CAD      SINGLE       y     1.382  0.0100     1.382  0.0100
+018         CAD         CAC      SINGLE       n     1.491  0.0100     1.491  0.0100
+018         CAD         CAE      DOUBLE       y     1.383  0.0100     1.383  0.0100
+018         CAC         FAA      SINGLE       n     1.329  0.0183     1.329  0.0183
+018         CAC         FAG      SINGLE       n     1.329  0.0183     1.329  0.0183
+018         CAC         FAB      SINGLE       n     1.329  0.0183     1.329  0.0183
+018         CAJ         CAF      DOUBLE       y     1.401  0.0114     1.401  0.0114
+018         CAJ         NAK      SINGLE       n     1.363  0.0200     1.363  0.0200
+018         CAF         CAE      SINGLE       y     1.377  0.0141     1.377  0.0141
+018         NAK         CAL      SINGLE       n     1.448  0.0109     1.448  0.0109
+018         CAL         CAM      SINGLE       n     1.497  0.0100     1.497  0.0100
+018         CAM         CAN      DOUBLE       y     1.344  0.0100     1.344  0.0100
+018         CAM         CAS      SINGLE       y     1.430  0.0113     1.430  0.0113
+018         CAN         SAO      SINGLE       y     1.695  0.0200     1.695  0.0200
+018         SAO         CAT      SINGLE       y     1.695  0.0200     1.695  0.0200
+018         CAT         CAS      DOUBLE       y     1.343  0.0200     1.343  0.0200
+018         CAH         HAH      SINGLE       n     1.082  0.0130     0.939  0.0130
+018         CAF         HAF      SINGLE       n     1.082  0.0130     0.943  0.0113
+018         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0173
+018         NAK        HNAK      SINGLE       n     1.016  0.0100     0.872  0.0200
+018         CAL         HAL      SINGLE       n     1.089  0.0100     0.979  0.0148
+018         CAL        HALA      SINGLE       n     1.089  0.0100     0.979  0.0148
+018         CAN         HAN      SINGLE       n     1.082  0.0130     0.942  0.0200
+018         CAT         HAT      SINGLE       n     1.082  0.0130     0.942  0.0200
+018         CAS         HAS      SINGLE       n     1.082  0.0130     0.942  0.0153
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+018         OAR         NAQ         OAP     123.122    1.50
+018         OAR         NAQ         CAI     118.439    1.50
+018         OAP         NAQ         CAI     118.439    1.50
+018         NAQ         CAI         CAH     117.342    1.50
+018         NAQ         CAI         CAJ     122.980    1.50
+018         CAH         CAI         CAJ     119.678    2.53
+018         CAI         CAH         CAD     121.050    1.50
+018         CAI         CAH         HAH     119.200    1.50
+018         CAD         CAH         HAH     119.750    1.50
+018         CAH         CAD         CAC     118.857    1.50
+018         CAH         CAD         CAE     121.447    1.50
+018         CAC         CAD         CAE     119.696    1.50
+018         CAD         CAC         FAA     112.813    1.50
+018         CAD         CAC         FAG     112.813    1.50
+018         CAD         CAC         FAB     112.813    1.50
+018         FAA         CAC         FAG     105.974    1.50
+018         FAA         CAC         FAB     105.974    1.50
+018         FAG         CAC         FAB     105.974    1.50
+018         CAI         CAJ         CAF     116.291    1.50
+018         CAI         CAJ         NAK     122.586    1.90
+018         CAF         CAJ         NAK     121.123    1.76
+018         CAJ         CAF         CAE     120.642    1.50
+018         CAJ         CAF         HAF     119.423    1.50
+018         CAE         CAF         HAF     119.936    1.50
+018         CAD         CAE         CAF     120.893    1.50
+018         CAD         CAE         HAE     119.914    1.50
+018         CAF         CAE         HAE     119.194    1.50
+018         CAJ         NAK         CAL     123.832    1.50
+018         CAJ         NAK        HNAK     117.818    2.04
+018         CAL         NAK        HNAK     118.351    1.79
+018         NAK         CAL         CAM     112.515    2.05
+018         NAK         CAL         HAL     109.106    1.55
+018         NAK         CAL        HALA     109.106    1.55
+018         CAM         CAL         HAL     108.919    1.50
+018         CAM         CAL        HALA     108.919    1.50
+018         HAL         CAL        HALA     107.966    1.50
+018         CAL         CAM         CAN     126.702    2.99
+018         CAL         CAM         CAS     126.358    2.55
+018         CAN         CAM         CAS     106.940    1.50
+018         CAM         CAN         SAO     108.372    3.00
+018         CAM         CAN         HAN     128.252    2.51
+018         SAO         CAN         HAN     123.376    3.00
+018         CAN         SAO         CAT     108.372    3.00
+018         SAO         CAT         CAS     108.372    3.00
+018         SAO         CAT         HAT     123.186    3.00
+018         CAS         CAT         HAT     128.442    2.40
+018         CAM         CAS         CAT     107.945    1.50
+018         CAM         CAS         HAS     125.406    1.50
+018         CAT         CAS         HAS     126.649    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+018              const_18         CAE         CAF         CAJ         NAK     180.000    10.0     2
+018             sp2_sp2_5         CAI         CAJ         NAK         CAL     180.000     5.0     2
+018              const_13         CAD         CAE         CAF         CAJ       0.000    10.0     2
+018             sp2_sp3_8         CAJ         NAK         CAL         CAM     120.000    10.0     6
+018            sp2_sp3_14         CAN         CAM         CAL         NAK     -90.000    10.0     6
+018              const_23         CAL         CAM         CAN         SAO     180.000    10.0     2
+018              const_39         CAL         CAM         CAS         CAT     180.000    10.0     2
+018              const_25         CAM         CAN         SAO         CAT       0.000    10.0     2
+018              const_27         CAS         CAT         SAO         CAN       0.000    10.0     2
+018              const_29         CAM         CAS         CAT         SAO       0.000    10.0     2
+018             sp2_sp2_1         CAH         CAI         NAQ         OAR     180.000     5.0     2
+018              const_36         NAQ         CAI         CAJ         NAK       0.000    10.0     2
+018       const_sp2_sp2_2         CAD         CAH         CAI         NAQ     180.000     5.0     2
+018       const_sp2_sp2_7         CAC         CAD         CAH         CAI     180.000     5.0     2
+018              const_11         CAC         CAD         CAE         CAF     180.000    10.0     2
+018             sp2_sp3_1         CAH         CAD         CAC         FAA     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+018    chir_1    CAC    FAA    FAG    FAB    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+018    plan-1         CAC   0.020
+018    plan-1         CAD   0.020
+018    plan-1         CAE   0.020
+018    plan-1         CAF   0.020
+018    plan-1         CAH   0.020
+018    plan-1         CAI   0.020
+018    plan-1         CAJ   0.020
+018    plan-1         HAE   0.020
+018    plan-1         HAF   0.020
+018    plan-1         HAH   0.020
+018    plan-1         NAK   0.020
+018    plan-1         NAQ   0.020
+018    plan-2         CAL   0.020
+018    plan-2         CAM   0.020
+018    plan-2         CAN   0.020
+018    plan-2         CAS   0.020
+018    plan-2         CAT   0.020
+018    plan-2         HAN   0.020
+018    plan-2         HAS   0.020
+018    plan-2         HAT   0.020
+018    plan-2         SAO   0.020
+018    plan-3         CAI   0.020
+018    plan-3         NAQ   0.020
+018    plan-3         OAP   0.020
+018    plan-3         OAR   0.020
+018    plan-4         CAJ   0.020
+018    plan-4         CAL   0.020
+018    plan-4        HNAK   0.020
+018    plan-4         NAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+018           SMILES              ACDLabs 10.04                                                    FC(F)(F)c1ccc(c([N+]([O-])=O)c1)NCc2ccsc2
+018 SMILES_CANONICAL               CACTVS 3.341                                                    "[O-][N+](=O)c1cc(ccc1NCc2cscc2)C(F)(F)F"
+018           SMILES               CACTVS 3.341                                                    "[O-][N+](=O)c1cc(ccc1NCc2cscc2)C(F)(F)F"
+018 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                    c1cc(c(cc1C(F)(F)F)[N+](=O)[O-])NCc2ccsc2
+018           SMILES "OpenEye OEToolkits" 1.5.0                                                    c1cc(c(cc1C(F)(F)F)[N+](=O)[O-])NCc2ccsc2
+018            InChI                InChI  1.03 InChI=1S/C12H9F3N2O2S/c13-12(14,15)9-1-2-10(11(5-9)17(18)19)16-6-8-3-4-20-7-8/h1-5,7,16H,6H2
+018         InChIKey                InChI  1.03                                                                  NGKHDSWSPXFWOE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+018 acedrg               243         "dictionary generator"                  
+018 acedrg_database      11          "data source"                           
+018 rdkit                2017.03.2   "Chemoinformatics tool"
+018 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,728 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TXN     TXN      "(2R,3R,4R,5R)-5-(2-amino-6-oxo-3,6-dihydro-9H-purin-9-yl)-2-({[(S)-({(3R,4R)-4-({[(S)-{[(2R,3R,4R,5R)-5-(2-amino-6-oxo-6,8-dihydro-9H-purin-9-yl)-2-(hydroxymethyl)-4-methoxytetrahydrofuran-3-yl]oxy}(hydroxy)phosphoryl]oxy}methyl)-1-[(4-amino-5H-pyrrolo[3,2-d]pyrimidin-7-yl)methyl]pyrrolidin-3-yl}oxy)(hydroxy)phosphoryl]oxy}methyl)-4-methoxytetrahydrofuran-3-yl 3-hydroxypropyl hydrogen (S)-phosphate"     NON-POLYMER     124     75     .     
+#
+data_comp_TXN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TXN     PV      P       P       0       29.575      69.795      43.248      
+TXN     PY      P       P       0       26.174      65.915      41.913      
+TXN     PZ      P       P       0       21.253      69.356      41.615      
+TXN     O126    O       OH1     0       21.573      74.393      40.877      
+TXN     C1C     C       CH2     0       30.019      65.477      44.370      
+TXN     N1C     N       NT      0       29.397      64.641      45.406      
+TXN     C1D     C       CH1     0       22.938      67.763      46.032      
+TXN     C1E     C       CH1     0       26.656      73.094      44.731      
+TXN     N1G     N       NRD6    0       21.920      74.404      46.495      
+TXN     N1I     N       NRD6    0       31.920      66.016      50.100      
+TXN     N1N     N       NRD6    0       27.535      66.900      48.402      
+TXN     O1V     O       O       0       29.057      69.242      41.949      
+TXN     O1Y     O       O       0       26.826      67.239      41.620      
+TXN     O1Z     O       OP      -1      19.869      69.648      41.102      
+TXN     C2C     C       CH2     0       28.127      64.217      44.791      
+TXN     C2D     C       CH1     0       21.924      68.727      45.417      
+TXN     O2D     O       O2      0       20.607      68.240      45.665      
+TXN     C2E     C       CH1     0       26.758      72.388      43.381      
+TXN     O2E     O       O2      0       25.818      71.319      43.323      
+TXN     C2G     C       CR6     0       22.649      73.270      46.731      
+TXN     N2G     N       NH2     0       22.097      72.300      47.443      
+TXN     C2I     C       CR16    0       30.684      65.781      49.630      
+TXN     C2N     C       CR6     0       26.540      66.037      48.187      
+TXN     N2N     N       NH2     0       26.653      64.774      48.599      
+TXN     O2V     O       OP      -1      30.833      70.618      43.205      
+TXN     O2Y     O       OP      -1      25.669      65.139      40.728      
+TXN     O2Z     O       O       0       22.093      68.411      40.802      
+TXN     C3B     C       CH2     0       22.705      73.708      41.386      
+TXN     C3C     C       CH1     0       27.655      65.441      44.010      
+TXN     O3C     O       O2      0       27.180      64.971      42.742      
+TXN     C3D     C       CH1     0       22.312      68.718      43.931      
+TXN     O3D     O       O2      0       21.128      68.827      43.129      
+TXN     C3E     C       CH1     0       28.225      71.944      43.364      
+TXN     O3E     O       O2      0       28.415      70.653      43.960      
+TXN     N3G     N       NRD6    0       23.910      73.098      46.267      
+TXN     N3I     N       NRD6    0       30.368      65.125      48.526      
+TXN     N3N     N       NR6     0       25.387      66.404      47.548      
+TXN     C4B     C       CH2     0       22.380      72.971      42.673      
+TXN     C4C     C       CH1     0       28.874      66.358      43.876      
+TXN     C4D     C       CH1     0       23.016      67.372      43.727      
+TXN     O4D     O       O2      0       23.202      66.794      45.044      
+TXN     C4E     C       CH1     0       28.934      73.030      44.179      
+TXN     O4E     O       O2      0       27.908      73.715      44.942      
+TXN     C4G     C       CR56    0       24.424      74.029      45.437      
+TXN     C4I     C       CR56    0       31.418      64.649      47.807      
+TXN     C4N     C       CR56    0       25.231      67.695      47.107      
+TXN     C5B     C       CH2     0       21.395      71.836      42.520      
+TXN     O5B     O       O2      0       22.020      70.759      41.765      
+TXN     C5C     C       CH2     0       28.735      67.667      44.620      
+TXN     O5C     O       O2      0       29.814      68.575      44.269      
+TXN     C5D     C       CH2     0       24.359      67.457      43.043      
+TXN     O5D     O       O2      0       24.934      66.129      42.915      
+TXN     C5E     C       CH2     0       29.668      74.065      43.356      
+TXN     O5E     O       OH1     0       28.807      74.681      42.409      
+TXN     C5G     C       CR56    0       23.703      75.214      45.122      
+TXN     C5I     C       CR56    0       32.748      64.839      48.208      
+TXN     C5N     C       CR56    0       26.253      68.623      47.316      
+TXN     C6C     C       CH2     0       30.221      63.509      45.846      
+TXN     C6D     C       CH3     0       19.652      69.261      45.945      
+TXN     C6E     C       CH3     0       25.591      70.825      42.006      
+TXN     C6G     C       CR6     0       22.406      75.373      45.683      
+TXN     O6G     O       O       0       21.711      76.386      45.441      
+TXN     C6I     C       CR6     0       32.982      65.554      49.404      
+TXN     N6I     N       NH2     0       34.207      65.793      49.879      
+TXN     C6N     C       CR6     0       27.411      68.212      47.974      
+TXN     O6N     O       O       0       28.363      68.975      48.193      
+TXN     N7G     N       NRD5    0       24.337      76.015      44.341      
+TXN     N7I     N       NR5     0       33.542      64.236      47.263      
+TXN     N7N     N       NRD5    0       25.870      69.853      46.788      
+TXN     C8G     C       CH2     0       25.636      75.372      44.017      
+TXN     C8I     C       CR15    0       32.735      63.688      46.305      
+TXN     C8N     C       CR15    0       24.671      69.663      46.285      
+TXN     N9G     N       NR5     0       25.591      74.104      44.757      
+TXN     C9I     C       CR5     0       31.430      63.933      46.622      
+TXN     N9N     N       NR5     0       24.214      68.367      46.442      
+TXN     HO12    H       H       0       21.766      74.700      40.112      
+TXN     H1C     H       H       0       30.756      66.029      44.749      
+TXN     H1CA    H       H       0       30.386      64.919      43.633      
+TXN     H1D     H       H       0       22.524      67.323      46.820      
+TXN     H1E     H       H       0       26.523      72.434      45.453      
+TXN     H2C     H       H       0       27.474      63.967      45.480      
+TXN     H2CA    H       H       0       28.269      63.449      44.195      
+TXN     H2D     H       H       0       22.017      69.639      45.781      
+TXN     H2E     H       H       0       26.595      73.032      42.648      
+TXN     HN2G    H       H       0       22.492      71.523      47.503      
+TXN     HN2A    H       H       0       21.337      72.436      47.852      
+TXN     H2I     H       H       0       29.957      66.125      50.151      
+TXN     HN2N    H       H       0       26.310      64.127      48.115      
+TXN     HN2B    H       H       0       27.070      64.596      49.350      
+TXN     H3B     H       H       0       23.424      74.353      41.558      
+TXN     H3BA    H       H       0       23.023      73.065      40.718      
+TXN     H3C     H       H       0       26.933      65.896      44.502      
+TXN     H3D     H       H       0       22.931      69.461      43.749      
+TXN     H3E     H       H       0       28.551      71.950      42.434      
+TXN     HN3N    H       H       0       24.744      65.809      47.421      
+TXN     H4B     H       H       0       22.014      73.646      43.286      
+TXN     H4BA    H       H       0       23.236      72.622      43.007      
+TXN     H4C     H       H       0       29.012      66.553      42.913      
+TXN     H4D     H       H       0       22.438      66.780      43.198      
+TXN     H4E     H       H       0       29.573      72.606      44.791      
+TXN     H5B     H       H       0       20.594      72.150      42.049      
+TXN     H5BA    H       H       0       21.124      71.509      43.404      
+TXN     H5C     H       H       0       28.758      67.493      45.581      
+TXN     H5CA    H       H       0       27.871      68.075      44.406      
+TXN     H5D     H       H       0       24.964      68.033      43.573      
+TXN     H5DA    H       H       0       24.251      67.859      42.150      
+TXN     H5E     H       H       0       30.413      73.634      42.884      
+TXN     H5EA    H       H       0       30.038      74.751      43.952      
+TXN     HO5E    H       H       0       29.274      75.125      41.858      
+TXN     H6C     H       H       0       30.509      62.999      45.061      
+TXN     H6CA    H       H       0       29.678      62.916      46.404      
+TXN     H6D     H       H       0       18.765      68.869      45.996      
+TXN     H6DA    H       H       0       19.671      69.927      45.238      
+TXN     H6DB    H       H       0       19.868      69.683      46.793      
+TXN     H6E     H       H       0       24.946      70.101      42.042      
+TXN     H6EA    H       H       0       26.426      70.496      41.635      
+TXN     H6EB    H       H       0       25.245      71.539      41.447      
+TXN     HN6I    H       H       0       34.899      65.381      49.529      
+TXN     HN6A    H       H       0       34.317      66.361      50.540      
+TXN     HN7I    H       H       0       34.419      64.204      47.267      
+TXN     H8G     H       H       0       26.377      75.933      44.317      
+TXN     H8GA    H       H       0       25.709      75.220      43.055      
+TXN     H8I     H       H       0       33.038      63.216      45.545      
+TXN     H8N     H       H       0       24.179      70.341      45.864      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TXN          PV         O1V      DOUBLE       n     1.504  0.0115     1.504  0.0115
+TXN          PV         O2V      SINGLE       n     1.504  0.0115     1.504  0.0115
+TXN          PV         O3E      SINGLE       n     1.606  0.0100     1.606  0.0100
+TXN          PV         O5C      SINGLE       n     1.606  0.0100     1.606  0.0100
+TXN          PY         O1Y      DOUBLE       n     1.504  0.0115     1.504  0.0115
+TXN          PY         O2Y      SINGLE       n     1.504  0.0115     1.504  0.0115
+TXN          PY         O3C      SINGLE       n     1.606  0.0100     1.606  0.0100
+TXN          PY         O5D      SINGLE       n     1.606  0.0100     1.606  0.0100
+TXN          PZ         O2Z      DOUBLE       n     1.504  0.0115     1.504  0.0115
+TXN          PZ         O5B      SINGLE       n     1.606  0.0100     1.606  0.0100
+TXN          PZ         O1Z      SINGLE       n     1.504  0.0115     1.504  0.0115
+TXN          PZ         O3D      SINGLE       n     1.606  0.0100     1.606  0.0100
+TXN        O126         C3B      SINGLE       n     1.417  0.0200     1.417  0.0200
+TXN         C1C         C4C      SINGLE       n     1.528  0.0100     1.528  0.0100
+TXN         C1C         N1C      SINGLE       n     1.472  0.0152     1.472  0.0152
+TXN         N1C         C6C      SINGLE       n     1.465  0.0122     1.465  0.0122
+TXN         N1C         C2C      SINGLE       n     1.472  0.0152     1.472  0.0152
+TXN         C1D         O4D      SINGLE       n     1.412  0.0100     1.412  0.0100
+TXN         C1D         N9N      SINGLE       n     1.464  0.0100     1.464  0.0100
+TXN         C1D         C2D      SINGLE       n     1.527  0.0100     1.527  0.0100
+TXN         C1E         O4E      SINGLE       n     1.416  0.0117     1.416  0.0117
+TXN         C1E         C2E      SINGLE       n     1.529  0.0100     1.529  0.0100
+TXN         C1E         N9G      SINGLE       n     1.466  0.0175     1.466  0.0175
+TXN         N1G         C6G      SINGLE       n     1.338  0.0183     1.338  0.0183
+TXN         N1G         C2G      DOUBLE       n     1.361  0.0100     1.361  0.0100
+TXN         N1I         C6I      DOUBLE       y     1.346  0.0100     1.346  0.0100
+TXN         N1I         C2I      SINGLE       y     1.339  0.0100     1.339  0.0100
+TXN         N1N         C6N      SINGLE       y     1.367  0.0200     1.367  0.0200
+TXN         N1N         C2N      DOUBLE       y     1.328  0.0100     1.328  0.0100
+TXN         C2C         C3C      SINGLE       n     1.519  0.0166     1.519  0.0166
+TXN         C2D         C3D      SINGLE       n     1.529  0.0125     1.529  0.0125
+TXN         C2D         O2D      SINGLE       n     1.423  0.0100     1.423  0.0100
+TXN         O2D         C6D      SINGLE       n     1.423  0.0131     1.423  0.0131
+TXN         C2E         C3E      SINGLE       n     1.529  0.0125     1.529  0.0125
+TXN         C2E         O2E      SINGLE       n     1.423  0.0100     1.423  0.0100
+TXN         O2E         C6E      SINGLE       n     1.423  0.0131     1.423  0.0131
+TXN         C2G         N3G      SINGLE       n     1.349  0.0100     1.349  0.0100
+TXN         C2G         N2G      SINGLE       n     1.319  0.0163     1.319  0.0163
+TXN         C2I         N3I      DOUBLE       y     1.308  0.0200     1.308  0.0200
+TXN         C2N         N3N      SINGLE       y     1.362  0.0100     1.362  0.0100
+TXN         C2N         N2N      SINGLE       n     1.333  0.0100     1.333  0.0100
+TXN         C3B         C4B      SINGLE       n     1.518  0.0102     1.518  0.0102
+TXN         C3C         C4C      SINGLE       n     1.528  0.0100     1.528  0.0100
+TXN         C3C         O3C      SINGLE       n     1.425  0.0152     1.425  0.0152
+TXN         C3D         C4D      SINGLE       n     1.525  0.0133     1.525  0.0133
+TXN         C3D         O3D      SINGLE       n     1.425  0.0152     1.425  0.0152
+TXN         C3E         C4E      SINGLE       n     1.525  0.0133     1.525  0.0133
+TXN         C3E         O3E      SINGLE       n     1.425  0.0152     1.425  0.0152
+TXN         N3G         C4G      DOUBLE       n     1.339  0.0200     1.339  0.0200
+TXN         N3I         C4I      SINGLE       y     1.355  0.0100     1.355  0.0100
+TXN         N3N         C4N      SINGLE       y     1.361  0.0200     1.361  0.0200
+TXN         C4B         C5B      SINGLE       n     1.510  0.0100     1.510  0.0100
+TXN         C4C         C5C      SINGLE       n     1.511  0.0100     1.511  0.0100
+TXN         C4D         C5D      SINGLE       n     1.509  0.0100     1.509  0.0100
+TXN         C4D         O4D      SINGLE       n     1.451  0.0100     1.451  0.0100
+TXN         C4E         C5E      SINGLE       n     1.511  0.0177     1.511  0.0177
+TXN         C4E         O4E      SINGLE       n     1.450  0.0100     1.450  0.0100
+TXN         C4G         N9G      SINGLE       n     1.359  0.0200     1.359  0.0200
+TXN         C4G         C5G      SINGLE       n     1.425  0.0100     1.425  0.0100
+TXN         C4I         C9I      SINGLE       y     1.383  0.0200     1.383  0.0200
+TXN         C4I         C5I      DOUBLE       y     1.397  0.0100     1.397  0.0100
+TXN         C4N         C5N      DOUBLE       y     1.403  0.0200     1.403  0.0200
+TXN         C4N         N9N      SINGLE       y     1.393  0.0126     1.393  0.0126
+TXN         C5B         O5B      SINGLE       n     1.456  0.0100     1.456  0.0100
+TXN         C5C         O5C      SINGLE       n     1.450  0.0166     1.450  0.0166
+TXN         C5D         O5D      SINGLE       n     1.450  0.0166     1.450  0.0166
+TXN         C5E         O5E      SINGLE       n     1.421  0.0131     1.421  0.0131
+TXN         C5G         N7G      DOUBLE       n     1.288  0.0186     1.288  0.0186
+TXN         C5G         C6G      SINGLE       n     1.412  0.0200     1.412  0.0200
+TXN         C5I         N7I      SINGLE       y     1.373  0.0100     1.373  0.0100
+TXN         C5I         C6I      SINGLE       y     1.401  0.0167     1.401  0.0167
+TXN         C5N         N7N      SINGLE       y     1.391  0.0100     1.391  0.0100
+TXN         C5N         C6N      SINGLE       y     1.391  0.0200     1.391  0.0200
+TXN         C6C         C9I      SINGLE       n     1.497  0.0100     1.497  0.0100
+TXN         C6G         O6G      DOUBLE       n     1.251  0.0200     1.251  0.0200
+TXN         C6I         N6I      SINGLE       n     1.333  0.0135     1.333  0.0135
+TXN         C6N         O6N      DOUBLE       n     1.239  0.0136     1.239  0.0136
+TXN         N7G         C8G      SINGLE       n     1.472  0.0200     1.472  0.0200
+TXN         N7I         C8I      SINGLE       y     1.368  0.0100     1.368  0.0100
+TXN         N7N         C8N      DOUBLE       y     1.311  0.0100     1.311  0.0100
+TXN         C8G         N9G      SINGLE       n     1.462  0.0154     1.462  0.0154
+TXN         C8I         C9I      DOUBLE       y     1.366  0.0100     1.366  0.0100
+TXN         C8N         N9N      SINGLE       y     1.381  0.0100     1.381  0.0100
+TXN        O126        HO12      SINGLE       n     0.970  0.0120     0.846  0.0200
+TXN         C1C         H1C      SINGLE       n     1.089  0.0100     0.995  0.0200
+TXN         C1C        H1CA      SINGLE       n     1.089  0.0100     0.995  0.0200
+TXN         C1D         H1D      SINGLE       n     1.089  0.0100     0.993  0.0200
+TXN         C1E         H1E      SINGLE       n     1.089  0.0100     0.987  0.0200
+TXN         C2C         H2C      SINGLE       n     1.089  0.0100     0.982  0.0109
+TXN         C2C        H2CA      SINGLE       n     1.089  0.0100     0.982  0.0109
+TXN         C2D         H2D      SINGLE       n     1.089  0.0100     0.988  0.0200
+TXN         C2E         H2E      SINGLE       n     1.089  0.0100     0.988  0.0200
+TXN         N2G        HN2G      SINGLE       n     1.016  0.0100     0.872  0.0200
+TXN         N2G        HN2A      SINGLE       n     1.016  0.0100     0.872  0.0200
+TXN         C2I         H2I      SINGLE       n     1.082  0.0130     0.959  0.0200
+TXN         N2N        HN2N      SINGLE       n     1.016  0.0100     0.877  0.0200
+TXN         N2N        HN2B      SINGLE       n     1.016  0.0100     0.877  0.0200
+TXN         C3B         H3B      SINGLE       n     1.089  0.0100     0.981  0.0174
+TXN         C3B        H3BA      SINGLE       n     1.089  0.0100     0.981  0.0174
+TXN         C3C         H3C      SINGLE       n     1.089  0.0100     0.985  0.0119
+TXN         C3D         H3D      SINGLE       n     1.089  0.0100     0.985  0.0119
+TXN         C3E         H3E      SINGLE       n     1.089  0.0100     0.985  0.0119
+TXN         N3N        HN3N      SINGLE       n     1.016  0.0100     0.885  0.0200
+TXN         C4B         H4B      SINGLE       n     1.089  0.0100     0.983  0.0175
+TXN         C4B        H4BA      SINGLE       n     1.089  0.0100     0.983  0.0175
+TXN         C4C         H4C      SINGLE       n     1.089  0.0100     0.992  0.0133
+TXN         C4D         H4D      SINGLE       n     1.089  0.0100     0.981  0.0200
+TXN         C4E         H4E      SINGLE       n     1.089  0.0100     0.981  0.0200
+TXN         C5B         H5B      SINGLE       n     1.089  0.0100     0.981  0.0100
+TXN         C5B        H5BA      SINGLE       n     1.089  0.0100     0.981  0.0100
+TXN         C5C         H5C      SINGLE       n     1.089  0.0100     0.979  0.0188
+TXN         C5C        H5CA      SINGLE       n     1.089  0.0100     0.979  0.0188
+TXN         C5D         H5D      SINGLE       n     1.089  0.0100     0.989  0.0200
+TXN         C5D        H5DA      SINGLE       n     1.089  0.0100     0.989  0.0200
+TXN         C5E         H5E      SINGLE       n     1.089  0.0100     0.981  0.0200
+TXN         C5E        H5EA      SINGLE       n     1.089  0.0100     0.981  0.0200
+TXN         O5E        HO5E      SINGLE       n     0.970  0.0120     0.848  0.0200
+TXN         C6C         H6C      SINGLE       n     1.089  0.0100     0.979  0.0148
+TXN         C6C        H6CA      SINGLE       n     1.089  0.0100     0.979  0.0148
+TXN         C6D         H6D      SINGLE       n     1.089  0.0100     0.971  0.0146
+TXN         C6D        H6DA      SINGLE       n     1.089  0.0100     0.971  0.0146
+TXN         C6D        H6DB      SINGLE       n     1.089  0.0100     0.971  0.0146
+TXN         C6E         H6E      SINGLE       n     1.089  0.0100     0.971  0.0146
+TXN         C6E        H6EA      SINGLE       n     1.089  0.0100     0.971  0.0146
+TXN         C6E        H6EB      SINGLE       n     1.089  0.0100     0.971  0.0146
+TXN         N6I        HN6I      SINGLE       n     1.016  0.0100     0.877  0.0200
+TXN         N6I        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+TXN         N7I        HN7I      SINGLE       n     1.016  0.0100     0.878  0.0200
+TXN         C8G         H8G      SINGLE       n     1.089  0.0100     0.977  0.0141
+TXN         C8G        H8GA      SINGLE       n     1.089  0.0100     0.977  0.0141
+TXN         C8I         H8I      SINGLE       n     1.082  0.0130     0.945  0.0191
+TXN         C8N         H8N      SINGLE       n     1.082  0.0130     0.939  0.0154
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TXN         O1V          PV         O2V     116.964    2.85
+TXN         O1V          PV         O3E     108.530    2.45
+TXN         O1V          PV         O5C     107.912    2.57
+TXN         O2V          PV         O3E     108.530    2.45
+TXN         O2V          PV         O5C     107.912    2.57
+TXN         O3E          PV         O5C     101.077    2.30
+TXN         O1Y          PY         O2Y     116.964    2.85
+TXN         O1Y          PY         O3C     108.530    2.45
+TXN         O1Y          PY         O5D     107.912    2.57
+TXN         O2Y          PY         O3C     108.530    2.45
+TXN         O2Y          PY         O5D     107.912    2.57
+TXN         O3C          PY         O5D     101.077    2.30
+TXN         O2Z          PZ         O5B     107.912    2.57
+TXN         O2Z          PZ         O1Z     116.964    2.85
+TXN         O2Z          PZ         O3D     108.530    2.45
+TXN         O5B          PZ         O1Z     107.912    2.57
+TXN         O5B          PZ         O3D     101.077    2.30
+TXN         O1Z          PZ         O3D     108.530    2.45
+TXN         C3B        O126        HO12     108.576    2.78
+TXN         C4C         C1C         N1C     103.895    1.50
+TXN         C4C         C1C         H1C     110.966    1.50
+TXN         C4C         C1C        H1CA     110.966    1.50
+TXN         N1C         C1C         H1C     110.819    1.50
+TXN         N1C         C1C        H1CA     110.819    1.50
+TXN         H1C         C1C        H1CA     108.517    1.50
+TXN         C1C         N1C         C6C     113.639    2.17
+TXN         C1C         N1C         C2C     103.876    1.50
+TXN         C6C         N1C         C2C     113.639    2.17
+TXN         O4D         C1D         N9N     108.477    1.50
+TXN         O4D         C1D         C2D     106.765    1.50
+TXN         O4D         C1D         H1D     109.807    1.50
+TXN         N9N         C1D         C2D     112.584    1.50
+TXN         N9N         C1D         H1D     109.561    1.50
+TXN         C2D         C1D         H1D     109.263    1.50
+TXN         O4E         C1E         C2E     106.883    1.50
+TXN         O4E         C1E         N9G     109.703    1.83
+TXN         O4E         C1E         H1E     108.532    2.90
+TXN         C2E         C1E         N9G     113.039    1.91
+TXN         C2E         C1E         H1E     111.147    3.00
+TXN         N9G         C1E         H1E     110.672    1.50
+TXN         C6G         N1G         C2G     118.756    1.84
+TXN         C6I         N1I         C2I     118.698    1.50
+TXN         C6N         N1N         C2N     118.438    1.50
+TXN         N1C         C2C         C3C     103.268    1.50
+TXN         N1C         C2C         H2C     110.819    1.50
+TXN         N1C         C2C        H2CA     110.819    1.50
+TXN         C3C         C2C         H2C     111.050    1.50
+TXN         C3C         C2C        H2CA     111.050    1.50
+TXN         H2C         C2C        H2CA     108.952    1.50
+TXN         C1D         C2D         C3D     101.388    1.50
+TXN         C1D         C2D         O2D     110.738    2.44
+TXN         C1D         C2D         H2D     111.584    1.94
+TXN         C3D         C2D         O2D     112.623    3.00
+TXN         C3D         C2D         H2D     110.255    2.04
+TXN         O2D         C2D         H2D     110.257    1.68
+TXN         C2D         O2D         C6D     113.084    1.50
+TXN         C1E         C2E         C3E     101.599    1.50
+TXN         C1E         C2E         O2E     110.738    2.44
+TXN         C1E         C2E         H2E     111.470    3.00
+TXN         C3E         C2E         O2E     112.623    3.00
+TXN         C3E         C2E         H2E     110.255    2.04
+TXN         O2E         C2E         H2E     110.257    1.68
+TXN         C2E         O2E         C6E     113.084    1.50
+TXN         N1G         C2G         N3G     122.393    1.66
+TXN         N1G         C2G         N2G     118.802    1.50
+TXN         N3G         C2G         N2G     118.805    1.50
+TXN         C2G         N2G        HN2G     119.867    1.50
+TXN         C2G         N2G        HN2A     119.867    1.50
+TXN        HN2G         N2G        HN2A     120.266    1.81
+TXN         N1I         C2I         N3I     126.963    1.50
+TXN         N1I         C2I         H2I     116.337    1.50
+TXN         N3I         C2I         H2I     116.699    1.50
+TXN         N1N         C2N         N3N     121.064    1.50
+TXN         N1N         C2N         N2N     120.408    1.50
+TXN         N3N         C2N         N2N     118.528    1.50
+TXN         C2N         N2N        HN2N     119.700    2.06
+TXN         C2N         N2N        HN2B     119.700    2.06
+TXN        HN2N         N2N        HN2B     120.601    1.96
+TXN        O126         C3B         C4B     111.314    3.00
+TXN        O126         C3B         H3B     109.258    1.50
+TXN        O126         C3B        H3BA     109.258    1.50
+TXN         C4B         C3B         H3B     109.103    1.50
+TXN         C4B         C3B        H3BA     109.103    1.50
+TXN         H3B         C3B        H3BA     108.120    1.50
+TXN         C2C         C3C         C4C     104.443    2.26
+TXN         C2C         C3C         O3C     109.088    3.00
+TXN         C2C         C3C         H3C     110.749    1.50
+TXN         C4C         C3C         O3C     110.722    2.96
+TXN         C4C         C3C         H3C     110.816    1.58
+TXN         O3C         C3C         H3C     110.343    1.64
+TXN          PY         O3C         C3C     109.471    3.00
+TXN         C2D         C3D         C4D     102.352    1.50
+TXN         C2D         C3D         O3D     110.766    3.00
+TXN         C2D         C3D         H3D     110.255    2.04
+TXN         C4D         C3D         O3D     110.864    2.31
+TXN         C4D         C3D         H3D     110.624    1.81
+TXN         O3D         C3D         H3D     110.343    1.64
+TXN          PZ         O3D         C3D     109.471    3.00
+TXN         C2E         C3E         C4E     102.352    1.50
+TXN         C2E         C3E         O3E     110.766    3.00
+TXN         C2E         C3E         H3E     110.255    2.04
+TXN         C4E         C3E         O3E     110.864    2.31
+TXN         C4E         C3E         H3E     110.624    1.81
+TXN         O3E         C3E         H3E     110.343    1.64
+TXN          PV         O3E         C3E     109.471    3.00
+TXN         C2G         N3G         C4G     118.259    2.73
+TXN         C2I         N3I         C4I     115.359    1.50
+TXN         C2N         N3N         C4N     119.469    1.50
+TXN         C2N         N3N        HN3N     120.033    1.95
+TXN         C4N         N3N        HN3N     120.497    1.50
+TXN         C3B         C4B         C5B     113.605    1.94
+TXN         C3B         C4B         H4B     103.378    3.00
+TXN         C3B         C4B        H4BA     103.378    3.00
+TXN         C5B         C4B         H4B     108.949    1.50
+TXN         C5B         C4B        H4BA     108.949    1.50
+TXN         H4B         C4B        H4BA     108.411    3.00
+TXN         C1C         C4C         C3C     102.159    1.62
+TXN         C1C         C4C         C5C     113.745    2.48
+TXN         C1C         C4C         H4C     108.836    1.50
+TXN         C3C         C4C         C5C     113.709    1.89
+TXN         C3C         C4C         H4C     107.749    1.50
+TXN         C5C         C4C         H4C     108.495    1.50
+TXN         C3D         C4D         C5D     114.866    1.63
+TXN         C3D         C4D         O4D     105.508    1.50
+TXN         C3D         C4D         H4D     109.143    1.50
+TXN         C5D         C4D         O4D     109.123    1.50
+TXN         C5D         C4D         H4D     108.268    1.50
+TXN         O4D         C4D         H4D     108.947    1.50
+TXN         C1D         O4D         C4D     109.903    1.50
+TXN         C3E         C4E         C5E     114.866    1.63
+TXN         C3E         C4E         O4E     105.508    1.50
+TXN         C3E         C4E         H4E     109.143    1.50
+TXN         C5E         C4E         O4E     108.019    1.50
+TXN         C5E         C4E         H4E     109.037    1.87
+TXN         O4E         C4E         H4E     110.466    2.90
+TXN         C1E         O4E         C4E     109.816    1.50
+TXN         N3G         C4G         N9G     129.007    2.24
+TXN         N3G         C4G         C5G     121.206    2.12
+TXN         N9G         C4G         C5G     109.787    2.44
+TXN         N3I         C4I         C9I     130.055    1.77
+TXN         N3I         C4I         C5I     122.519    1.50
+TXN         C9I         C4I         C5I     107.426    1.70
+TXN         N3N         C4N         C5N     120.059    1.50
+TXN         N3N         C4N         N9N     132.857    1.50
+TXN         C5N         C4N         N9N     107.084    1.62
+TXN         C4B         C5B         O5B     109.312    1.50
+TXN         C4B         C5B         H5B     110.058    1.50
+TXN         C4B         C5B        H5BA     110.058    1.50
+TXN         O5B         C5B         H5B     109.902    1.50
+TXN         O5B         C5B        H5BA     109.902    1.50
+TXN         H5B         C5B        H5BA     108.388    1.50
+TXN          PZ         O5B         C5B     119.251    1.51
+TXN         C4C         C5C         O5C     109.157    2.94
+TXN         C4C         C5C         H5C     109.715    1.50
+TXN         C4C         C5C        H5CA     109.715    1.50
+TXN         O5C         C5C         H5C     109.821    1.50
+TXN         O5C         C5C        H5CA     109.821    1.50
+TXN         H5C         C5C        H5CA     108.335    1.56
+TXN          PV         O5C         C5C     118.553    2.41
+TXN         C4D         C5D         O5D     109.342    1.50
+TXN         C4D         C5D         H5D     109.624    1.50
+TXN         C4D         C5D        H5DA     109.624    1.50
+TXN         O5D         C5D         H5D     109.845    1.50
+TXN         O5D         C5D        H5DA     109.845    1.50
+TXN         H5D         C5D        H5DA     108.472    1.50
+TXN          PY         O5D         C5D     118.553    2.41
+TXN         C4E         C5E         O5E     111.279    1.98
+TXN         C4E         C5E         H5E     109.326    2.00
+TXN         C4E         C5E        H5EA     109.326    2.00
+TXN         O5E         C5E         H5E     109.280    1.50
+TXN         O5E         C5E        H5EA     109.280    1.50
+TXN         H5E         C5E        H5EA     108.248    2.26
+TXN         C5E         O5E        HO5E     109.007    3.00
+TXN         C4G         C5G         N7G     117.923    3.00
+TXN         C4G         C5G         C6G     119.900    2.63
+TXN         N7G         C5G         C6G     122.177    3.00
+TXN         C4I         C5I         N7I     106.618    1.50
+TXN         C4I         C5I         C6I     117.968    1.50
+TXN         N7I         C5I         C6I     135.414    1.50
+TXN         C4N         C5N         N7N     108.520    1.50
+TXN         C4N         C5N         C6N     120.613    1.50
+TXN         N7N         C5N         C6N     130.867    1.89
+TXN         N1C         C6C         C9I     109.471    3.00
+TXN         N1C         C6C         H6C     109.029    1.50
+TXN         N1C         C6C        H6CA     109.029    1.50
+TXN         C9I         C6C         H6C     108.919    1.50
+TXN         C9I         C6C        H6CA     108.919    1.50
+TXN         H6C         C6C        H6CA     107.768    1.50
+TXN         O2D         C6D         H6D     109.434    1.50
+TXN         O2D         C6D        H6DA     109.434    1.50
+TXN         O2D         C6D        H6DB     109.434    1.50
+TXN         H6D         C6D        H6DA     109.541    1.50
+TXN         H6D         C6D        H6DB     109.541    1.50
+TXN        H6DA         C6D        H6DB     109.541    1.50
+TXN         O2E         C6E         H6E     109.434    1.50
+TXN         O2E         C6E        H6EA     109.434    1.50
+TXN         O2E         C6E        H6EB     109.434    1.50
+TXN         H6E         C6E        H6EA     109.541    1.50
+TXN         H6E         C6E        H6EB     109.541    1.50
+TXN        H6EA         C6E        H6EB     109.541    1.50
+TXN         N1G         C6G         C5G     119.487    3.00
+TXN         N1G         C6G         O6G     119.544    1.73
+TXN         C5G         C6G         O6G     120.969    1.78
+TXN         N1I         C6I         C5I     118.493    1.50
+TXN         N1I         C6I         N6I     118.461    1.50
+TXN         C5I         C6I         N6I     123.047    1.50
+TXN         C6I         N6I        HN6I     119.723    1.50
+TXN         C6I         N6I        HN6A     119.723    1.50
+TXN        HN6I         N6I        HN6A     120.554    1.88
+TXN         N1N         C6N         C5N     120.356    1.68
+TXN         N1N         C6N         O6N     117.157    1.50
+TXN         C5N         C6N         O6N     122.487    1.50
+TXN         C5G         N7G         C8G     107.583    1.50
+TXN         C5I         N7I         C8I     108.672    1.50
+TXN         C5I         N7I        HN7I     126.013    1.93
+TXN         C8I         N7I        HN7I     125.315    1.77
+TXN         C5N         N7N         C8N     104.226    1.50
+TXN         N7G         C8G         N9G     102.667    1.50
+TXN         N7G         C8G         H8G     109.715    1.50
+TXN         N7G         C8G        H8GA     109.715    1.50
+TXN         N9G         C8G         H8G     110.672    1.50
+TXN         N9G         C8G        H8GA     110.672    1.50
+TXN         H8G         C8G        H8GA     108.859    1.50
+TXN         N7I         C8I         C9I     109.709    1.50
+TXN         N7I         C8I         H8I     124.866    1.50
+TXN         C9I         C8I         H8I     125.425    1.50
+TXN         N7N         C8N         N9N     112.955    1.50
+TXN         N7N         C8N         H8N     123.582    1.50
+TXN         N9N         C8N         H8N     123.462    1.50
+TXN         C1E         N9G         C4G     126.082    3.00
+TXN         C1E         N9G         C8G     123.568    2.92
+TXN         C4G         N9G         C8G     110.350    1.50
+TXN         C4I         C9I         C6C     125.133    2.48
+TXN         C4I         C9I         C8I     107.575    1.50
+TXN         C6C         C9I         C8I     127.292    2.55
+TXN         C1D         N9N         C4N     126.474    2.01
+TXN         C1D         N9N         C8N     126.312    1.91
+TXN         C4N         N9N         C8N     107.214    1.55
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TXN            sp3_sp3_84         C3E         O3E          PV         O1V      60.000    10.0     3
+TXN            sp3_sp3_87         C5C         O5C          PV         O1V      60.000    10.0     3
+TXN              const_60         N2N         C2N         N1N         C6N     180.000    10.0     2
+TXN              const_16         O6N         C6N         N1N         C2N     180.000    10.0     2
+TXN            sp3_sp3_20         N1C         C2C         C3C         O3C     180.000    10.0     3
+TXN           sp3_sp3_133         C1D         C2D         O2D         C6D     180.000    10.0     3
+TXN            sp3_sp3_53         O2D         C2D         C3D         O3D     -60.000    10.0     3
+TXN           sp3_sp3_136         H6D         C6D         O2D         C2D     180.000    10.0     3
+TXN           sp3_sp3_139         C1E         C2E         O2E         C6E     180.000    10.0     3
+TXN            sp3_sp3_77         O2E         C2E         C3E         O3E     -60.000    10.0     3
+TXN           sp3_sp3_142         H6E         C6E         O2E         C2E     180.000    10.0     3
+TXN            sp2_sp2_23         N1G         C2G         N2G        HN2G     180.000     5.0     2
+TXN            sp2_sp2_14         N2G         C2G         N3G         C4G     180.000     5.0     2
+TXN            sp3_sp3_90         C3C         O3C          PY         O1Y      60.000    10.0     3
+TXN            sp3_sp3_93         C5D         O5D          PY         O1Y      60.000    10.0     3
+TXN              const_13         N1I         C2I         N3I         C4I       0.000    10.0     2
+TXN            sp2_sp2_29         N1N         C2N         N2N        HN2N       0.000     5.0     2
+TXN              const_31         N2N         C2N         N3N         C4N     180.000    10.0     2
+TXN           sp3_sp3_145        O126         C3B         C4B         C5B     180.000    10.0     3
+TXN           sp3_sp3_154         C2C         C3C         O3C          PY     180.000    10.0     3
+TXN            sp3_sp3_14         O3C         C3C         C4C         C5C     -60.000    10.0     3
+TXN            sp3_sp3_99         C3D         O3D          PZ         O2Z      60.000    10.0     3
+TXN            sp3_sp3_96         C5B         O5B          PZ         O2Z      60.000    10.0     3
+TXN           sp3_sp3_157         C2D         C3D         O3D          PZ     180.000    10.0     3
+TXN            sp3_sp3_44         O3D         C3D         C4D         C5D      60.000    10.0     3
+TXN           sp3_sp3_160         C2E         C3E         O3E          PV     180.000    10.0     3
+TXN            sp3_sp3_68         O3E         C3E         C4E         C5E      60.000    10.0     3
+TXN            sp2_sp2_12         N9G         C4G         N3G         C2G     180.000     5.0     2
+TXN              const_12         C9I         C4I         N3I         C2I     180.000    10.0     2
+TXN              const_25         C5N         C4N         N3N         C2N       0.000    10.0     2
+TXN           sp3_sp3_163         C3B         C4B         C5B         O5B     180.000    10.0     3
+TXN           sp3_sp3_172         C1C         C4C         C5C         O5C     180.000    10.0     3
+TXN            sp3_sp3_38         C5D         C4D         O4D         C1D     180.000    10.0     3
+TXN           sp3_sp3_181         C3D         C4D         C5D         O5D     180.000    10.0     3
+TXN           sp3_sp3_100         C4B         C3B        O126        HO12     180.000    10.0     3
+TXN            sp3_sp3_62         C5E         C4E         O4E         C1E     180.000    10.0     3
+TXN           sp3_sp3_190         C3E         C4E         C5E         O5E     180.000    10.0     3
+TXN             sp2_sp2_8         N3G         C4G         C5G         N7G     180.000     5.0     2
+TXN            sp2_sp2_18         N3G         C4G         N9G         C1E       0.000     5.0     2
+TXN       const_sp2_sp2_8         N3I         C4I         C5I         N7I     180.000     5.0     2
+TXN              const_36         N3I         C4I         C9I         C6C       0.000    10.0     2
+TXN              const_22         N3N         C4N         C5N         N7N     180.000    10.0     2
+TXN              const_64         N3N         C4N         N9N         C1D       0.000    10.0     2
+TXN           sp3_sp3_199         C4B         C5B         O5B          PZ     180.000    10.0     3
+TXN           sp3_sp3_202         C4C         C5C         O5C          PV     180.000    10.0     3
+TXN             sp3_sp3_2         N1C         C1C         C4C         C5C     180.000    10.0     3
+TXN           sp3_sp3_104         C4C         C1C         N1C         C6C     -60.000    10.0     3
+TXN           sp3_sp3_205         C4D         C5D         O5D          PY     180.000    10.0     3
+TXN           sp3_sp3_208         C4E         C5E         O5E        HO5E     180.000    10.0     3
+TXN             sp2_sp2_4         C4G         C5G         C6G         O6G     180.000     5.0     2
+TXN            sp2_sp2_19         C4G         C5G         N7G         C8G       0.000     5.0     2
+TXN       const_sp2_sp2_4         C4I         C5I         C6I         N6I     180.000     5.0     2
+TXN              const_45         C4I         C5I         N7I         C8I       0.000    10.0     2
+TXN              const_18         C4N         C5N         C6N         O6N     180.000    10.0     2
+TXN              const_49         C4N         C5N         N7N         C8N       0.000    10.0     2
+TXN            sp2_sp3_23         C4I         C9I         C6C         N1C     -90.000    10.0     6
+TXN            sp3_sp3_29         C3C         C2C         N1C         C6C      60.000    10.0     3
+TXN           sp3_sp3_109         C9I         C6C         N1C         C1C     180.000    10.0     3
+TXN            sp2_sp2_33         N1I         C6I         N6I        HN6I       0.000     5.0     2
+TXN             sp2_sp3_7         C5G         N7G         C8G         N9G       0.000    10.0     6
+TXN              const_41         C9I         C8I         N7I         C5I       0.000    10.0     2
+TXN              const_51         N9N         C8N         N7N         C5N       0.000    10.0     2
+TXN             sp2_sp3_4         C1E         N9G         C8G         N7G     180.000    10.0     6
+TXN           sp3_sp3_116         O4D         C1D         C2D         O2D     -60.000    10.0     3
+TXN            sp3_sp3_35         N9N         C1D         O4D         C4D     -60.000    10.0     3
+TXN            sp2_sp3_10         C4N         N9N         C1D         O4D     150.000    10.0     6
+TXN              const_38         N7I         C8I         C9I         C6C     180.000    10.0     2
+TXN              const_54         N7N         C8N         N9N         C1D     180.000    10.0     2
+TXN           sp3_sp3_125         O4E         C1E         C2E         O2E     -60.000    10.0     3
+TXN            sp3_sp3_58         C2E         C1E         O4E         C4E      60.000    10.0     3
+TXN            sp2_sp3_16         C4G         N9G         C1E         O4E     150.000    10.0     6
+TXN            sp2_sp2_22         N2G         C2G         N1G         C6G     180.000     5.0     2
+TXN             sp2_sp2_2         O6G         C6G         N1G         C2G     180.000     5.0     2
+TXN              const_57         N3I         C2I         N1I         C6I       0.000    10.0     2
+TXN       const_sp2_sp2_2         N6I         C6I         N1I         C2I     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TXN    chir_1    PV    O3E    O5C    O2V    both
+TXN    chir_2    PY    O3C    O5D    O2Y    both
+TXN    chir_3    PZ    O3D    O5B    O1Z    both
+TXN    chir_4    C1D    O4D    N9N    C2D    negative
+TXN    chir_5    C1E    O4E    N9G    C2E    negative
+TXN    chir_6    C2D    O2D    C1D    C3D    negative
+TXN    chir_7    C2E    O2E    C1E    C3E    negative
+TXN    chir_8    C3C    O3C    C2C    C4C    negative
+TXN    chir_9    C3D    O3D    C2D    C4D    negative
+TXN    chir_10    C3E    O3E    C2E    C4E    negative
+TXN    chir_11    C4C    C3C    C5C    C1C    negative
+TXN    chir_12    C4D    O4D    C3D    C5D    negative
+TXN    chir_13    C4E    O4E    C3E    C5E    negative
+TXN    chir_14    N1C    C2C    C6C    C1C    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TXN    plan-1         C1D   0.020
+TXN    plan-1         C2N   0.020
+TXN    plan-1         C4N   0.020
+TXN    plan-1         C5N   0.020
+TXN    plan-1         C6N   0.020
+TXN    plan-1         C8N   0.020
+TXN    plan-1         H8N   0.020
+TXN    plan-1        HN3N   0.020
+TXN    plan-1         N1N   0.020
+TXN    plan-1         N2N   0.020
+TXN    plan-1         N3N   0.020
+TXN    plan-1         N7N   0.020
+TXN    plan-1         N9N   0.020
+TXN    plan-1         O6N   0.020
+TXN    plan-2         C2I   0.020
+TXN    plan-2         C4I   0.020
+TXN    plan-2         C5I   0.020
+TXN    plan-2         C6C   0.020
+TXN    plan-2         C6I   0.020
+TXN    plan-2         C8I   0.020
+TXN    plan-2         C9I   0.020
+TXN    plan-2         H2I   0.020
+TXN    plan-2         H8I   0.020
+TXN    plan-2        HN7I   0.020
+TXN    plan-2         N1I   0.020
+TXN    plan-2         N3I   0.020
+TXN    plan-2         N6I   0.020
+TXN    plan-2         N7I   0.020
+TXN    plan-3         C2G   0.020
+TXN    plan-3         N1G   0.020
+TXN    plan-3         N2G   0.020
+TXN    plan-3         N3G   0.020
+TXN    plan-4         C2G   0.020
+TXN    plan-4        HN2A   0.020
+TXN    plan-4        HN2G   0.020
+TXN    plan-4         N2G   0.020
+TXN    plan-5         C2N   0.020
+TXN    plan-5        HN2B   0.020
+TXN    plan-5        HN2N   0.020
+TXN    plan-5         N2N   0.020
+TXN    plan-6         C4G   0.020
+TXN    plan-6         C5G   0.020
+TXN    plan-6         N3G   0.020
+TXN    plan-6         N9G   0.020
+TXN    plan-7         C4G   0.020
+TXN    plan-7         C5G   0.020
+TXN    plan-7         C6G   0.020
+TXN    plan-7         N7G   0.020
+TXN    plan-8         C5G   0.020
+TXN    plan-8         C6G   0.020
+TXN    plan-8         N1G   0.020
+TXN    plan-8         O6G   0.020
+TXN    plan-9         C6I   0.020
+TXN    plan-9        HN6A   0.020
+TXN    plan-9        HN6I   0.020
+TXN    plan-9         N6I   0.020
+TXN   plan-10         C1E   0.020
+TXN   plan-10         C4G   0.020
+TXN   plan-10         C8G   0.020
+TXN   plan-10         N9G   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TXN           SMILES              ACDLabs 11.02                                                                                                                                                                                                                                                                                                                        O=C9N=C(N=C1C9=NCN1C8OC(CO)C(OP(=O)(O)OCC7CN(Cc3c2ncnc(N)c2nc3)CC7OP(=O)(O)OCC6OC(n4cnc5c4NC(=NC5=O)N)C(OC)C6OP(=O)(OCCCO)O)C8OC)N
+TXN SMILES_CANONICAL               CACTVS 3.352                                                                                                                                                                                                                                                               CO[C@@H]1[C@H](O[P](O)(=O)OC[C@H]2CN(C[C@@H]2O[P](O)(=O)OC[C@H]3O[C@H]([C@H](OC)[C@@H]3O[P](O)(=O)OCCCO)n4cnc5C(=O)N=C(N)Nc45)Cc6c[nH]c7c(N)ncnc67)[C@@H](CO)O[C@H]1N8CN=C9C(=O)N=C(N)N=C89
+TXN           SMILES               CACTVS 3.352                                                                                                                                                                                                                                                                             CO[CH]1[CH](O[P](O)(=O)OC[CH]2CN(C[CH]2O[P](O)(=O)OC[CH]3O[CH]([CH](OC)[CH]3O[P](O)(=O)OCCCO)n4cnc5C(=O)N=C(N)Nc45)Cc6c[nH]c7c(N)ncnc67)[CH](CO)O[CH]1N8CN=C9C(=O)N=C(N)N=C89
+TXN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                                                                                                                                CO[C@@H]1[C@@H]([C@H](O[C@H]1n2cnc3c2NC(=NC3=O)N)CO[P@](=O)(O)O[C@H]4CN(C[C@@H]4CO[P@](=O)(O)O[C@@H]5[C@H](O[C@H]([C@@H]5OC)N6CN=C7C6=NC(=NC7=O)N)CO)Cc8c[nH]c9c8ncnc9N)O[P@@](=O)(O)OCCCO
+TXN           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                                                                                                                                                                       COC1C(C(OC1n2cnc3c2NC(=NC3=O)N)COP(=O)(O)OC4CN(CC4COP(=O)(O)OC5C(OC(C5OC)N6CN=C7C6=NC(=NC7=O)N)CO)Cc8c[nH]c9c8ncnc9N)OP(=O)(O)OCCCO
+TXN            InChI                InChI  1.03 InChI=1S/C37H52N15O20P3/c1-63-27-25(19(10-54)68-34(27)51-14-44-23-30(51)46-36(39)48-32(23)55)71-75(61,62)66-11-17-8-50(7-16-6-41-22-21(16)42-13-43-29(22)38)9-18(17)70-74(59,60)67-12-20-26(72-73(57,58)65-5-3-4-53)28(64-2)35(69-20)52-15-45-24-31(52)47-37(40)49-33(24)56/h6,13,15,17-20,25-28,34-35,41,53-54H,3-5,7-12,14H2,1-2H3,(H,57,58)(H,59,60)(H,61,62)(H2,38,42,43)(H2,39,48,55)(H3,40,47,49,56)/t17-,18+,19-,20-,25-,26-,27-,28-,34-,35-/m1/s1
+TXN         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                                                                                               XYVXLTGAFUOPLT-UTNLYJRASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TXN acedrg               243         "dictionary generator"                  
+TXN acedrg_database      11          "data source"                           
+TXN rdkit                2017.03.2   "Chemoinformatics tool"
+TXN refmac5              5.8.0238    "optimization tool"                     

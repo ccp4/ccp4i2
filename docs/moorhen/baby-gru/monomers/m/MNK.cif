@@ -1,0 +1,278 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MNK     MNK      (2S)-5,7-dihydroxy-9-methyl-2-(prop-1-en-2-yl)-1,2,3,4-tetrahydro-6H-benzo[7]annulen-6-one     NON-POLYMER     36     18     .     
+#
+data_comp_MNK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MNK     C1      C       C       0       10.301      23.172      12.613      
+MNK     O1      O       OH1     0       9.879       23.857      11.465      
+MNK     C2      C       C       0       11.226      22.071      12.362      
+MNK     O2      O       O       0       11.392      21.675      11.197      
+MNK     C3      C       C       0       11.954      21.420      13.379      
+MNK     O3      O       OH1     0       12.660      20.272      12.997      
+MNK     C4      C       C1      0       12.095      21.731      14.760      
+MNK     C5      C       C       0       11.545      22.767      15.493      
+MNK     C6      C       CR6     0       10.452      23.655      15.081      
+MNK     C7      C       CR6     0       9.745       23.607      13.822      
+MNK     C8      C       CH3     0       12.090      22.911      16.908      
+MNK     C9      C       CH2     0       10.048      24.787      15.998      
+MNK     C10     C       CH1     0       9.018       25.784      15.454      
+MNK     C11     C       CH2     0       7.843       25.037      14.818      
+MNK     C12     C       CH2     0       8.257       23.898      13.885      
+MNK     C13     C       C       0       9.636       26.893      14.605      
+MNK     C14     C       C2      0       10.269      27.899      15.222      
+MNK     C15     C       CH3     0       9.556       26.870      13.107      
+MNK     H17     H       H       0       9.201       23.571      11.019      
+MNK     H18     H       H       0       12.560      19.538      13.437      
+MNK     H4      H       H       0       12.638      21.124      15.235      
+MNK     H8      H       H       0       12.746      22.222      17.091      
+MNK     H8A     H       H       0       11.361      22.832      17.544      
+MNK     H8B     H       H       0       12.509      23.781      17.006      
+MNK     H9      H       H       0       10.861      25.294      16.248      
+MNK     H9A     H       H       0       9.684       24.397      16.832      
+MNK     H10     H       H       0       8.641       26.238      16.249      
+MNK     H11     H       H       0       7.286       25.670      14.320      
+MNK     H11A    H       H       0       7.287       24.663      15.532      
+MNK     H12     H       H       0       7.799       23.084      14.175      
+MNK     H12A    H       H       0       7.932       24.107      12.988      
+MNK     H14     H       H       0       10.321      27.919      16.169      
+MNK     H14A    H       H       0       10.672      28.596      14.719      
+MNK     H15     H       H       0       8.649       26.682      12.820      
+MNK     H15A    H       H       0       10.150      26.188      12.759      
+MNK     H15B    H       H       0       9.824       27.733      12.750      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MNK          C1          C7      DOUBLE       n     1.386  0.0200     1.386  0.0200
+MNK          C1          O1      SINGLE       n     1.395  0.0200     1.395  0.0200
+MNK          C1          C2      SINGLE       n     1.463  0.0152     1.463  0.0152
+MNK          C2          C3      SINGLE       n     1.416  0.0200     1.416  0.0200
+MNK          C2          O2      DOUBLE       n     1.235  0.0194     1.235  0.0194
+MNK          C3          C4      DOUBLE       n     1.426  0.0200     1.426  0.0200
+MNK          C3          O3      SINGLE       n     1.395  0.0200     1.395  0.0200
+MNK          C4          C5      SINGLE       n     1.360  0.0200     1.360  0.0200
+MNK          C5          C8      SINGLE       n     1.497  0.0200     1.497  0.0200
+MNK          C5          C6      DOUBLE       n     1.428  0.0200     1.428  0.0200
+MNK          C6          C9      SINGLE       n     1.507  0.0100     1.507  0.0100
+MNK          C6          C7      SINGLE       n     1.421  0.0200     1.421  0.0200
+MNK          C9         C10      SINGLE       n     1.528  0.0132     1.528  0.0132
+MNK         C10         C11      SINGLE       n     1.527  0.0100     1.527  0.0100
+MNK          C7         C12      SINGLE       n     1.510  0.0100     1.510  0.0100
+MNK         C11         C12      SINGLE       n     1.525  0.0100     1.525  0.0100
+MNK         C10         C13      SINGLE       n     1.517  0.0100     1.517  0.0100
+MNK         C13         C14      DOUBLE       n     1.332  0.0200     1.332  0.0200
+MNK         C13         C15      SINGLE       n     1.481  0.0200     1.481  0.0200
+MNK          O1         H17      SINGLE       n     0.966  0.0059     0.861  0.0200
+MNK          O3         H18      SINGLE       n     0.966  0.0059     0.861  0.0200
+MNK          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0196
+MNK          C8          H8      SINGLE       n     1.089  0.0100     0.970  0.0156
+MNK          C8         H8A      SINGLE       n     1.089  0.0100     0.970  0.0156
+MNK          C8         H8B      SINGLE       n     1.089  0.0100     0.970  0.0156
+MNK          C9          H9      SINGLE       n     1.089  0.0100     0.990  0.0100
+MNK          C9         H9A      SINGLE       n     1.089  0.0100     0.990  0.0100
+MNK         C10         H10      SINGLE       n     1.089  0.0100     0.990  0.0161
+MNK         C11         H11      SINGLE       n     1.089  0.0100     0.979  0.0123
+MNK         C11        H11A      SINGLE       n     1.089  0.0100     0.979  0.0123
+MNK         C12         H12      SINGLE       n     1.089  0.0100     0.978  0.0103
+MNK         C12        H12A      SINGLE       n     1.089  0.0100     0.978  0.0103
+MNK         C14         H14      SINGLE       n     1.082  0.0130     0.949  0.0200
+MNK         C14        H14A      SINGLE       n     1.082  0.0130     0.949  0.0200
+MNK         C15         H15      SINGLE       n     1.089  0.0100     0.971  0.0140
+MNK         C15        H15A      SINGLE       n     1.089  0.0100     0.971  0.0140
+MNK         C15        H15B      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MNK          C7          C1          O1     115.399    1.90
+MNK          C7          C1          C2     128.133    2.77
+MNK          O1          C1          C2     116.468    3.00
+MNK          C1          O1         H17     120.000    3.00
+MNK          C1          C2          C3     124.008    1.65
+MNK          C1          C2          O2     118.986    1.54
+MNK          C3          C2          O2     117.006    1.50
+MNK          C2          C3          C4     130.680    1.50
+MNK          C2          C3          O3     114.660    3.00
+MNK          C4          C3          O3     114.660    3.00
+MNK          C3          O3         H18     120.000    3.00
+MNK          C3          C4          C5     125.798    3.00
+MNK          C3          C4          H4     117.131    2.13
+MNK          C5          C4          H4     117.071    1.50
+MNK          C4          C5          C8     118.492    3.00
+MNK          C4          C5          C6     122.233    2.77
+MNK          C8          C5          C6     119.274    3.00
+MNK          C5          C6          C9     122.320    3.00
+MNK          C5          C6          C7     122.304    2.59
+MNK          C9          C6          C7     115.376    1.50
+MNK          C1          C7          C6     122.304    2.59
+MNK          C1          C7         C12     122.320    3.00
+MNK          C6          C7         C12     115.376    1.50
+MNK          C5          C8          H8     109.426    1.50
+MNK          C5          C8         H8A     109.426    1.50
+MNK          C5          C8         H8B     109.426    1.50
+MNK          H8          C8         H8A     109.347    1.50
+MNK          H8          C8         H8B     109.347    1.50
+MNK         H8A          C8         H8B     109.347    1.50
+MNK          C6          C9         C10     112.021    2.38
+MNK          C6          C9          H9     109.149    1.50
+MNK          C6          C9         H9A     109.149    1.50
+MNK         C10          C9          H9     109.148    1.50
+MNK         C10          C9         H9A     109.148    1.50
+MNK          H9          C9         H9A     107.754    1.50
+MNK          C9         C10         C11     109.847    1.50
+MNK          C9         C10         C13     112.352    1.87
+MNK          C9         C10         H10     107.461    1.50
+MNK         C11         C10         C13     112.362    1.58
+MNK         C11         C10         H10     107.403    1.50
+MNK         C13         C10         H10     107.348    1.50
+MNK         C10         C11         C12     110.425    1.50
+MNK         C10         C11         H11     109.409    1.50
+MNK         C10         C11        H11A     109.409    1.50
+MNK         C12         C11         H11     109.082    1.50
+MNK         C12         C11        H11A     109.082    1.50
+MNK         H11         C11        H11A     107.919    1.50
+MNK          C7         C12         C11     111.910    1.50
+MNK          C7         C12         H12     109.149    1.50
+MNK          C7         C12        H12A     109.149    1.50
+MNK         C11         C12         H12     109.121    1.50
+MNK         C11         C12        H12A     109.121    1.50
+MNK         H12         C12        H12A     107.973    1.50
+MNK         C10         C13         C14     122.320    2.02
+MNK         C10         C13         C15     116.319    2.42
+MNK         C14         C13         C15     121.362    1.50
+MNK         C13         C14         H14     120.142    2.07
+MNK         C13         C14        H14A     120.142    2.07
+MNK         H14         C14        H14A     119.716    2.51
+MNK         C13         C15         H15     109.610    1.50
+MNK         C13         C15        H15A     109.610    1.50
+MNK         C13         C15        H15B     109.610    1.50
+MNK         H15         C15        H15A     109.347    1.50
+MNK         H15         C15        H15B     109.347    1.50
+MNK        H15A         C15        H15B     109.347    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MNK             sp2_sp2_6          C2          C1          O1         H17       0.000     5.0     2
+MNK             sp2_sp2_9          O1          C1          C2          C3       0.000     5.0     2
+MNK             sp2_sp2_4          O1          C1          C7          C6     180.000     5.0     2
+MNK             sp3_sp3_4         C13         C10          C9          C6     180.000    10.0     3
+MNK            sp3_sp3_13         C13         C10         C11         C12     -60.000    10.0     3
+MNK            sp2_sp3_19         C14         C13         C10          C9       0.000    10.0     6
+MNK            sp3_sp3_19         C10         C11         C12          C7     -60.000    10.0     3
+MNK            sp2_sp2_35         C15         C13         C14         H14       0.000     5.0     2
+MNK            sp2_sp3_28         C14         C13         C15         H15     180.000    10.0     6
+MNK            sp2_sp2_11          C1          C2          C3          C4     180.000     5.0     2
+MNK            sp2_sp2_19          C2          C3          O3         H18     180.000     5.0     2
+MNK            sp2_sp2_15          C2          C3          C4          C5     180.000     5.0     2
+MNK            sp2_sp2_22          C3          C4          C5          C8       0.000     5.0     2
+MNK            sp2_sp3_13          C4          C5          C8          H8       0.000    10.0     6
+MNK            sp2_sp2_27          C4          C5          C6          C9       0.000     5.0     2
+MNK             sp2_sp3_4          C5          C6          C9         C10     180.000    10.0     6
+MNK            sp2_sp2_32          C5          C6          C7          C1       0.000     5.0     2
+MNK            sp2_sp3_10          C1          C7         C12         C11     180.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MNK    chir_1    C10    C13    C9    C11    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MNK    plan-1          C1   0.020
+MNK    plan-1          C2   0.020
+MNK    plan-1          C7   0.020
+MNK    plan-1          O1   0.020
+MNK    plan-2          C1   0.020
+MNK    plan-2          C2   0.020
+MNK    plan-2          C3   0.020
+MNK    plan-2          O2   0.020
+MNK    plan-3          C2   0.020
+MNK    plan-3          C3   0.020
+MNK    plan-3          C4   0.020
+MNK    plan-3          O3   0.020
+MNK    plan-4          C3   0.020
+MNK    plan-4          C4   0.020
+MNK    plan-4          C5   0.020
+MNK    plan-4          H4   0.020
+MNK    plan-5          C4   0.020
+MNK    plan-5          C5   0.020
+MNK    plan-5          C6   0.020
+MNK    plan-5          C8   0.020
+MNK    plan-6          C5   0.020
+MNK    plan-6          C6   0.020
+MNK    plan-6          C7   0.020
+MNK    plan-6          C9   0.020
+MNK    plan-7          C1   0.020
+MNK    plan-7         C12   0.020
+MNK    plan-7          C6   0.020
+MNK    plan-7          C7   0.020
+MNK    plan-8         C10   0.020
+MNK    plan-8         C13   0.020
+MNK    plan-8         C14   0.020
+MNK    plan-8         C15   0.020
+MNK    plan-9         C13   0.020
+MNK    plan-9         C14   0.020
+MNK    plan-9         H14   0.020
+MNK    plan-9        H14A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MNK           SMILES              ACDLabs 12.01                                                                                O=C1C(O)=CC(=C2C(=C1O)CCC(C(=C)\C)C2)C
+MNK SMILES_CANONICAL               CACTVS 3.370                                                                             CC(=C)[C@H]1CCC2=C(O)C(=O)C(=CC(=C2C1)C)O
+MNK           SMILES               CACTVS 3.370                                                                              CC(=C)[CH]1CCC2=C(O)C(=O)C(=CC(=C2C1)C)O
+MNK SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                             CC1=C2C[C@H](CCC2=C(C(=O)C(=C1)O)O)C(=C)C
+MNK           SMILES "OpenEye OEToolkits" 1.7.0                                                                                 CC1=C2CC(CCC2=C(C(=O)C(=C1)O)O)C(=C)C
+MNK            InChI                InChI  1.03 InChI=1S/C15H18O3/c1-8(2)10-4-5-11-12(7-10)9(3)6-13(16)15(18)14(11)17/h6,10H,1,4-5,7H2,2-3H3,(H2,16,17,18)/t10-/m0/s1
+MNK         InChIKey                InChI  1.03                                                                                           XZCVMNQLRNHDOD-JTQLQIEISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MNK acedrg               243         "dictionary generator"                  
+MNK acedrg_database      11          "data source"                           
+MNK rdkit                2017.03.2   "Chemoinformatics tool"
+MNK refmac5              5.8.0238    "optimization tool"                     

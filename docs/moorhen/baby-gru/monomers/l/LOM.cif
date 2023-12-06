@@ -1,0 +1,117 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LOM     LOM      THIAZOLE     NON-POLYMER     8     5     .     
+#
+data_comp_LOM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LOM     C1      C       CR15    0       15.358      -11.193     17.526      
+LOM     N1      N       NRD5    0       16.680      -10.897     17.562      
+LOM     C2      C       CR15    0       17.344      -11.350     16.427      
+LOM     C3      C       CR15    0       16.500      -11.997     15.528      
+LOM     S1      S       S2      0       14.950      -12.008     16.129      
+LOM     H1      H       H       0       14.726      -10.982     18.184      
+LOM     H2      H       H       0       18.268      -11.227     16.292      
+LOM     H3      H       H       0       16.717      -12.385     14.698      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LOM          C1          N1      DOUBLE       y     1.347  0.0132     1.347  0.0132
+LOM          C1          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+LOM          N1          C2      SINGLE       y     1.371  0.0139     1.371  0.0139
+LOM          C2          C3      DOUBLE       y     1.380  0.0196     1.380  0.0196
+LOM          C3          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+LOM          C1          H1      SINGLE       n     1.082  0.0130     0.937  0.0100
+LOM          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0176
+LOM          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LOM          N1          C1          S1     108.447    3.00
+LOM          N1          C1          H1     126.836    1.50
+LOM          S1          C1          H1     124.717    3.00
+LOM          C1          N1          C2     105.619    1.50
+LOM          N1          C2          C3     109.039    1.50
+LOM          N1          C2          H2     124.793    1.50
+LOM          C3          C2          H2     126.168    1.50
+LOM          C2          C3          S1     108.447    3.00
+LOM          C2          C3          H3     128.644    1.50
+LOM          S1          C3          H3     122.909    3.00
+LOM          C1          S1          C3     108.447    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LOM       const_sp2_sp2_1          S1          C1          N1          C2       0.000     5.0     2
+LOM              const_11          N1          C1          S1          C3       0.000    10.0     2
+LOM       const_sp2_sp2_3          C3          C2          N1          C1       0.000     5.0     2
+LOM       const_sp2_sp2_5          N1          C2          C3          S1       0.000     5.0     2
+LOM       const_sp2_sp2_9          C2          C3          S1          C1       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LOM    plan-1          C1   0.020
+LOM    plan-1          C2   0.020
+LOM    plan-1          C3   0.020
+LOM    plan-1          H1   0.020
+LOM    plan-1          H2   0.020
+LOM    plan-1          H3   0.020
+LOM    plan-1          N1   0.020
+LOM    plan-1          S1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LOM           SMILES              ACDLabs 10.04                            n1ccsc1
+LOM SMILES_CANONICAL               CACTVS 3.341                            s1ccnc1
+LOM           SMILES               CACTVS 3.341                            s1ccnc1
+LOM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                            c1cscn1
+LOM           SMILES "OpenEye OEToolkits" 1.5.0                            c1cscn1
+LOM            InChI                InChI  1.03 InChI=1S/C3H3NS/c1-2-5-3-4-1/h1-3H
+LOM         InChIKey                InChI  1.03        FZWLAAWBMGSTSO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LOM acedrg               243         "dictionary generator"                  
+LOM acedrg_database      11          "data source"                           
+LOM rdkit                2017.03.2   "Chemoinformatics tool"
+LOM refmac5              5.8.0238    "optimization tool"                     

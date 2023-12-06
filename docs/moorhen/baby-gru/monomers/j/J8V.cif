@@ -1,0 +1,315 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+J8V     J8V      "3-{[2-oxo-4-phenoxy-6-(trifluoromethyl)-1,2-dihydropyridine-3-carbonyl]amino}benzoic acid"     NON-POLYMER     42     30     .     
+#
+data_comp_J8V
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+J8V     C14     C       CR6     0       -1.861      38.292      -11.876     
+J8V     C13     C       CR6     0       -1.378      38.219      -13.186     
+J8V     C01     C       CR16    0       -2.463      39.257      -17.699     
+J8V     C02     C       CR6     0       -3.239      39.347      -18.851     
+J8V     C03     C       CR16    0       -4.627      39.364      -18.744     
+J8V     C04     C       CR16    0       -5.229      39.293      -17.496     
+J8V     C05     C       CR16    0       -4.462      39.204      -16.349     
+J8V     C06     C       CR6     0       -3.068      39.186      -16.442     
+J8V     C08     C       C       0       -2.285      38.073      -14.374     
+J8V     C09     C       C       0       -2.578      39.423      -20.195     
+J8V     C15     C       CR16    0       -0.962      38.406      -10.805     
+J8V     C16     C       CR6     0       0.380       38.471      -11.017     
+J8V     C18     C       CR6     0       0.046       38.272      -13.419     
+J8V     C20     C       CT      0       1.373       38.603      -9.888      
+J8V     C25     C       CR6     0       -3.916      38.878      -10.680     
+J8V     C26     C       CR16    0       -3.614      40.161      -10.264     
+J8V     C27     C       CR16    0       -4.345      40.722      -9.225      
+J8V     C28     C       CR16    0       -5.371      40.020      -8.627      
+J8V     C29     C       CR16    0       -5.668      38.746      -9.063      
+J8V     C30     C       CR16    0       -4.944      38.167      -10.096     
+J8V     F21     F       F       0       2.448       39.302      -10.233     
+J8V     F22     F       F       0       0.862       39.214      -8.826      
+J8V     F23     F       F       0       1.810       37.422      -9.470      
+J8V     N07     N       NH1     0       -2.287      39.092      -15.269     
+J8V     N17     N       NR6     0       0.853       38.398      -12.304     
+J8V     O10     O       OC      -1      -1.686      38.594      -20.450     
+J8V     O11     O       O       0       -2.957      40.312      -20.979     
+J8V     O12     O       O       0       -2.975      37.067      -14.503     
+J8V     O19     O       O       0       0.578       38.219      -14.534     
+J8V     O24     O       O2      0       -3.251      38.220      -11.715     
+J8V     H2      H       H       0       -1.526      39.244      -17.762     
+J8V     H3      H       H       0       -5.159      39.425      -19.518     
+J8V     H4      H       H       0       -6.167      39.305      -17.428     
+J8V     H5      H       H       0       -4.879      39.155      -15.504     
+J8V     H6      H       H       0       -1.295      38.455      -9.924      
+J8V     H7      H       H       0       -2.913      40.644      -10.666     
+J8V     H8      H       H       0       -4.140      41.595      -8.931      
+J8V     H9      H       H       0       -5.867      40.409      -7.924      
+J8V     H10     H       H       0       -6.367      38.261      -8.657      
+J8V     H11     H       H       0       -5.149      37.296      -10.390     
+J8V     H12     H       H       0       -1.755      39.772      -15.112     
+J8V     H1      H       H       0       1.719       38.432      -12.446     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+J8V         C09         O11      DOUBLE       n     1.244  0.0200     1.244  0.0200
+J8V         C09         O10      SINGLE       n     1.244  0.0200     1.244  0.0200
+J8V         C02         C09      SINGLE       n     1.498  0.0200     1.498  0.0200
+J8V         C02         C03      SINGLE       y     1.389  0.0100     1.389  0.0100
+J8V         C03         C04      DOUBLE       y     1.384  0.0100     1.384  0.0100
+J8V         C01         C02      DOUBLE       y     1.389  0.0100     1.389  0.0100
+J8V         C04         C05      SINGLE       y     1.379  0.0100     1.379  0.0100
+J8V         C01         C06      SINGLE       y     1.393  0.0100     1.393  0.0100
+J8V         C05         C06      DOUBLE       y     1.394  0.0100     1.394  0.0100
+J8V         C06         N07      SINGLE       n     1.411  0.0105     1.411  0.0105
+J8V         C08         N07      SINGLE       n     1.351  0.0126     1.351  0.0126
+J8V         C18         O19      DOUBLE       n     1.235  0.0126     1.235  0.0126
+J8V         C08         O12      DOUBLE       n     1.226  0.0100     1.226  0.0100
+J8V         C13         C08      SINGLE       n     1.498  0.0104     1.498  0.0104
+J8V         C13         C18      SINGLE       y     1.440  0.0100     1.440  0.0100
+J8V         C18         N17      SINGLE       y     1.379  0.0100     1.379  0.0100
+J8V         C14         C13      DOUBLE       y     1.392  0.0100     1.392  0.0100
+J8V         C16         N17      SINGLE       y     1.366  0.0100     1.366  0.0100
+J8V         C14         O24      SINGLE       n     1.393  0.0113     1.393  0.0113
+J8V         C14         C15      SINGLE       y     1.390  0.0134     1.390  0.0134
+J8V         C25         O24      SINGLE       n     1.390  0.0100     1.390  0.0100
+J8V         C15         C16      DOUBLE       y     1.353  0.0100     1.353  0.0100
+J8V         C16         C20      SINGLE       n     1.505  0.0100     1.505  0.0100
+J8V         C20         F21      SINGLE       n     1.327  0.0128     1.327  0.0128
+J8V         C20         F23      SINGLE       n     1.327  0.0128     1.327  0.0128
+J8V         C20         F22      SINGLE       n     1.327  0.0128     1.327  0.0128
+J8V         C25         C26      DOUBLE       y     1.375  0.0100     1.375  0.0100
+J8V         C25         C30      SINGLE       y     1.375  0.0100     1.375  0.0100
+J8V         C26         C27      SINGLE       y     1.385  0.0100     1.385  0.0100
+J8V         C29         C30      DOUBLE       y     1.385  0.0100     1.385  0.0100
+J8V         C27         C28      DOUBLE       y     1.376  0.0124     1.376  0.0124
+J8V         C28         C29      SINGLE       y     1.375  0.0126     1.375  0.0126
+J8V         C01          H2      SINGLE       n     1.082  0.0130     0.939  0.0130
+J8V         C03          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+J8V         C04          H4      SINGLE       n     1.082  0.0130     0.940  0.0164
+J8V         C05          H5      SINGLE       n     1.082  0.0130     0.943  0.0178
+J8V         C15          H6      SINGLE       n     1.082  0.0130     0.943  0.0196
+J8V         C26          H7      SINGLE       n     1.082  0.0130     0.942  0.0163
+J8V         C27          H8      SINGLE       n     1.082  0.0130     0.943  0.0183
+J8V         C28          H9      SINGLE       n     1.082  0.0130     0.944  0.0161
+J8V         C29         H10      SINGLE       n     1.082  0.0130     0.943  0.0183
+J8V         C30         H11      SINGLE       n     1.082  0.0130     0.942  0.0163
+J8V         N07         H12      SINGLE       n     1.016  0.0100     0.876  0.0200
+J8V         N17          H1      SINGLE       n     1.016  0.0100     0.876  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+J8V         C13         C14         O24     119.379    2.59
+J8V         C13         C14         C15     120.233    1.50
+J8V         O24         C14         C15     120.387    3.00
+J8V         C08         C13         C18     118.260    2.75
+J8V         C08         C13         C14     122.126    3.00
+J8V         C18         C13         C14     119.614    1.50
+J8V         C02         C01         C06     120.536    1.50
+J8V         C02         C01          H2     120.043    1.50
+J8V         C06         C01          H2     119.421    1.50
+J8V         C09         C02         C03     120.481    1.50
+J8V         C09         C02         C01     119.888    1.50
+J8V         C03         C02         C01     119.631    1.50
+J8V         C02         C03         C04     120.088    1.50
+J8V         C02         C03          H3     120.006    1.50
+J8V         C04         C03          H3     119.905    1.50
+J8V         C03         C04         C05     120.429    1.50
+J8V         C03         C04          H4     119.881    1.50
+J8V         C05         C04          H4     119.690    1.50
+J8V         C04         C05         C06     119.776    1.50
+J8V         C04         C05          H5     120.178    1.50
+J8V         C06         C05          H5     120.046    1.50
+J8V         C01         C06         C05     119.540    1.50
+J8V         C01         C06         N07     120.160    2.89
+J8V         C05         C06         N07     120.300    2.93
+J8V         N07         C08         O12     123.170    1.50
+J8V         N07         C08         C13     115.889    1.50
+J8V         O12         C08         C13     120.941    1.50
+J8V         O11         C09         O10     124.418    1.50
+J8V         O11         C09         C02     117.791    1.50
+J8V         O10         C09         C02     117.791    1.50
+J8V         C14         C15         C16     120.353    1.50
+J8V         C14         C15          H6     119.819    1.50
+J8V         C16         C15          H6     119.827    1.50
+J8V         N17         C16         C15     119.162    1.50
+J8V         N17         C16         C20     118.295    1.50
+J8V         C15         C16         C20     122.542    1.50
+J8V         O19         C18         C13     124.458    1.50
+J8V         O19         C18         N17     118.835    1.50
+J8V         C13         C18         N17     116.707    1.50
+J8V         C16         C20         F21     111.948    1.50
+J8V         C16         C20         F23     111.948    1.50
+J8V         C16         C20         F22     111.948    1.50
+J8V         F21         C20         F23     106.502    1.50
+J8V         F21         C20         F22     106.502    1.50
+J8V         F23         C20         F22     106.502    1.50
+J8V         O24         C25         C26     119.450    3.00
+J8V         O24         C25         C30     119.450    3.00
+J8V         C26         C25         C30     121.100    1.50
+J8V         C25         C26         C27     118.805    1.50
+J8V         C25         C26          H7     120.669    1.50
+J8V         C27         C26          H7     120.526    1.50
+J8V         C26         C27         C28     120.691    1.50
+J8V         C26         C27          H8     119.470    1.50
+J8V         C28         C27          H8     119.839    1.50
+J8V         C27         C28         C29     119.908    1.50
+J8V         C27         C28          H9     120.046    1.50
+J8V         C29         C28          H9     120.046    1.50
+J8V         C30         C29         C28     120.691    1.50
+J8V         C30         C29         H10     119.470    1.50
+J8V         C28         C29         H10     119.839    1.50
+J8V         C25         C30         C29     118.805    1.50
+J8V         C25         C30         H11     120.669    1.50
+J8V         C29         C30         H11     120.526    1.50
+J8V         C06         N07         C08     126.750    1.50
+J8V         C06         N07         H12     116.164    1.66
+J8V         C08         N07         H12     117.086    2.38
+J8V         C18         N17         C16     123.930    1.50
+J8V         C18         N17          H1     117.396    1.78
+J8V         C16         N17          H1     118.673    2.27
+J8V         C14         O24         C25     118.432    1.52
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+J8V              const_24         C08         C13         C14         O24       0.000    10.0     2
+J8V              const_67         O24         C14         C15         C16     180.000    10.0     2
+J8V            sp2_sp2_17         C13         C14         O24         C25     180.000     5.0     2
+J8V              const_38         C14         C15         C16         C20     180.000    10.0     2
+J8V             sp2_sp3_1         N17         C16         C20         F21     150.000    10.0     6
+J8V              const_35         C20         C16         N17         C18     180.000    10.0     2
+J8V              const_31         O19         C18         N17         C16     180.000    10.0     2
+J8V              const_43         O24         C25         C26         C27     180.000    10.0     2
+J8V              const_71         O24         C25         C30         C29     180.000    10.0     2
+J8V            sp2_sp2_19         C26         C25         O24         C14     180.000     5.0     2
+J8V              const_45         C25         C26         C27         C28       0.000    10.0     2
+J8V              const_49         C26         C27         C28         C29       0.000    10.0     2
+J8V              const_53         C27         C28         C29         C30       0.000    10.0     2
+J8V              const_57         C28         C29         C30         C25       0.000    10.0     2
+J8V              const_28         C08         C13         C18         O19       0.000    10.0     2
+J8V            sp2_sp2_13         N07         C08         C13         C18     180.000     5.0     2
+J8V       const_sp2_sp2_2         C06         C01         C02         C09     180.000     5.0     2
+J8V              const_62         C02         C01         C06         N07     180.000    10.0     2
+J8V       const_sp2_sp2_7         C09         C02         C03         C04     180.000     5.0     2
+J8V             sp2_sp2_1         C03         C02         C09         O11     180.000     5.0     2
+J8V       const_sp2_sp2_9         C02         C03         C04         C05       0.000     5.0     2
+J8V              const_13         C03         C04         C05         C06       0.000    10.0     2
+J8V              const_18         C04         C05         C06         N07     180.000    10.0     2
+J8V             sp2_sp2_5         C01         C06         N07         C08     180.000     5.0     2
+J8V            sp2_sp2_11         O12         C08         N07         C06       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+J8V    chir_1    C20    F21    F23    F22    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+J8V    plan-1         C08   0.020
+J8V    plan-1         C13   0.020
+J8V    plan-1         C14   0.020
+J8V    plan-1         C15   0.020
+J8V    plan-1         C16   0.020
+J8V    plan-1         C18   0.020
+J8V    plan-1         C20   0.020
+J8V    plan-1          H1   0.020
+J8V    plan-1          H6   0.020
+J8V    plan-1         N17   0.020
+J8V    plan-1         O19   0.020
+J8V    plan-1         O24   0.020
+J8V    plan-2         C25   0.020
+J8V    plan-2         C26   0.020
+J8V    plan-2         C27   0.020
+J8V    plan-2         C28   0.020
+J8V    plan-2         C29   0.020
+J8V    plan-2         C30   0.020
+J8V    plan-2         H10   0.020
+J8V    plan-2         H11   0.020
+J8V    plan-2          H7   0.020
+J8V    plan-2          H8   0.020
+J8V    plan-2          H9   0.020
+J8V    plan-2         O24   0.020
+J8V    plan-3         C01   0.020
+J8V    plan-3         C02   0.020
+J8V    plan-3         C03   0.020
+J8V    plan-3         C04   0.020
+J8V    plan-3         C05   0.020
+J8V    plan-3         C06   0.020
+J8V    plan-3         C09   0.020
+J8V    plan-3          H2   0.020
+J8V    plan-3          H3   0.020
+J8V    plan-3          H4   0.020
+J8V    plan-3          H5   0.020
+J8V    plan-3         N07   0.020
+J8V    plan-4         C08   0.020
+J8V    plan-4         C13   0.020
+J8V    plan-4         N07   0.020
+J8V    plan-4         O12   0.020
+J8V    plan-5         C02   0.020
+J8V    plan-5         C09   0.020
+J8V    plan-5         O10   0.020
+J8V    plan-5         O11   0.020
+J8V    plan-6         C06   0.020
+J8V    plan-6         C08   0.020
+J8V    plan-6         H12   0.020
+J8V    plan-6         N07   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+J8V           SMILES              ACDLabs 12.01                                                                                          C=2(Oc1ccccc1)C=C(C(F)(F)F)NC(C=2C(=O)Nc3cc(ccc3)C(O)=O)=O
+J8V            InChI                InChI  1.03 InChI=1S/C20H13F3N2O5/c21-20(22,23)15-10-14(30-13-7-2-1-3-8-13)16(18(27)25-15)17(26)24-12-6-4-5-11(9-12)19(28)29/h1-10H,(H,24,26)(H,25,27)(H,28,29)
+J8V         InChIKey                InChI  1.03                                                                                                                         QMARDTCIJVODCK-UHFFFAOYSA-N
+J8V SMILES_CANONICAL               CACTVS 3.385                                                                                             OC(=O)c1cccc(NC(=O)C2=C(Oc3ccccc3)C=C(NC2=O)C(F)(F)F)c1
+J8V           SMILES               CACTVS 3.385                                                                                             OC(=O)c1cccc(NC(=O)C2=C(Oc3ccccc3)C=C(NC2=O)C(F)(F)F)c1
+J8V SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                         c1ccc(cc1)OC2=C(C(=O)NC(=C2)C(F)(F)F)C(=O)Nc3cccc(c3)C(=O)O
+J8V           SMILES "OpenEye OEToolkits" 2.0.6                                                                                         c1ccc(cc1)OC2=C(C(=O)NC(=C2)C(F)(F)F)C(=O)Nc3cccc(c3)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+J8V acedrg               243         "dictionary generator"                  
+J8V acedrg_database      11          "data source"                           
+J8V rdkit                2017.03.2   "Chemoinformatics tool"
+J8V refmac5              5.8.0238    "optimization tool"                     

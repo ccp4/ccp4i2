@@ -1,0 +1,357 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+WAQ     WAQ      PIMELOYL-AMP     NON-POLYMER     55     33     .     
+#
+data_comp_WAQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+WAQ     N1      N       NRD6    0       0.876       -1.528      3.136       
+WAQ     C2      C       CR16    0       1.204       -0.841      4.243       
+WAQ     N3      N       NRD6    0       0.637       -0.871      5.450       
+WAQ     C4      C       CR56    0       -0.397      -1.733      5.475       
+WAQ     C5      C       CR56    0       -0.854      -2.507      4.426       
+WAQ     C6      C       CR6     0       -0.173      -2.389      3.194       
+WAQ     N6      N       NH2     0       -0.501      -3.072      2.101       
+WAQ     N7      N       NRD5    0       -1.940      -3.272      4.834       
+WAQ     C8      C       CR15    0       -2.119      -2.953      6.096       
+WAQ     N9      N       NT      0       -1.204      -2.023      6.543       
+WAQ     "C1'"   C       CH1     0       -1.089      -1.423      7.877       
+WAQ     "C2'"   C       CH1     0       -1.842      -0.097      8.007       
+WAQ     "O2'"   O       OH1     0       -1.069      0.857       8.704       
+WAQ     "C3'"   C       CH1     0       -3.105      -0.510      8.771       
+WAQ     "O3'"   O       OH1     0       -3.676      0.559       9.515       
+WAQ     "C4'"   C       CH1     0       -2.549      -1.601      9.690       
+WAQ     "O4'"   O       O2      0       -1.623      -2.314      8.834       
+WAQ     "C5'"   C       CH2     0       -3.552      -2.556      10.294      
+WAQ     "O5'"   O       O2      0       -4.032      -3.483      9.284       
+WAQ     OAB     O       OC      -1      -8.594      -11.183     15.892      
+WAQ     OAC     O       O       0       -7.001      -6.073      11.364      
+WAQ     OAD     O       O       0       -5.426      -5.358      8.472       
+WAQ     OAE     O       O       0       -7.069      -12.751     15.673      
+WAQ     OAH     O       OP      -1      -6.460      -3.425      9.806       
+WAQ     CAK     C       CH2     0       -5.236      -8.621      14.403      
+WAQ     CAL     C       CH2     0       -6.129      -9.480      15.290      
+WAQ     CAM     C       CH2     0       -5.990      -7.811      13.355      
+WAQ     CAN     C       CH2     0       -6.680      -10.675     14.576      
+WAQ     CAO     C       CH2     0       -5.114      -6.830      12.627      
+WAQ     OAU     O       O2      0       -4.990      -5.162      10.968      
+WAQ     CAW     C       C       0       -7.509      -11.606     15.445      
+WAQ     CAX     C       C       0       -5.828      -5.999      11.594      
+WAQ     PBG     P       P       0       -5.330      -4.375      9.592       
+WAQ     H2      H       H       0       1.940       -0.254      4.153       
+WAQ     HN6     H       H       0       -0.820      -3.886      2.176       
+WAQ     HN6A    H       H       0       -0.400      -2.705      1.311       
+WAQ     H8      H       H       0       -2.798      -3.330      6.628       
+WAQ     "H1'"   H       H       0       -0.137      -1.267      8.074       
+WAQ     "H2'"   H       H       0       -2.082      0.255       7.109       
+WAQ     "HO2'"  H       H       0       -1.524      1.568       8.798       
+WAQ     "H3'"   H       H       0       -3.776      -0.893      8.149       
+WAQ     "HO3'"  H       H       0       -4.382      0.280       9.895       
+WAQ     "H4'"   H       H       0       -2.047      -1.182      10.421      
+WAQ     "H5'"   H       H       0       -4.312      -2.043      10.665      
+WAQ     "H5'A"  H       H       0       -3.126      -3.058      11.032      
+WAQ     HAK     H       H       0       -4.592      -9.203      13.947      
+WAQ     HAKA    H       H       0       -4.728      -8.004      14.972      
+WAQ     HAL     H       H       0       -6.870      -8.930      15.621      
+WAQ     HALA    H       H       0       -5.609      -9.778      16.066      
+WAQ     HAM     H       H       0       -6.719      -7.327      13.796      
+WAQ     HAMA    H       H       0       -6.391      -8.428      12.708      
+WAQ     HAN     H       H       0       -5.936      -11.187     14.193      
+WAQ     HANA    H       H       0       -7.241      -10.368     13.831      
+WAQ     HAO     H       H       0       -4.389      -7.323      12.186      
+WAQ     HAOA    H       H       0       -4.704      -6.228      13.284      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+WAQ          N1          C6      DOUBLE       y     1.354  0.0100     1.354  0.0100
+WAQ          N1          C2      SINGLE       y     1.339  0.0100     1.339  0.0100
+WAQ          C2          N3      DOUBLE       y     1.330  0.0100     1.330  0.0100
+WAQ          N3          C4      SINGLE       y     1.343  0.0100     1.343  0.0100
+WAQ          C4          C5      DOUBLE       y     1.381  0.0100     1.381  0.0100
+WAQ          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+WAQ          C5          C6      SINGLE       y     1.408  0.0100     1.408  0.0100
+WAQ          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+WAQ          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+WAQ          N7          C8      DOUBLE       y     1.310  0.0100     1.310  0.0100
+WAQ          C8          N9      SINGLE       y     1.372  0.0200     1.372  0.0200
+WAQ          N9       "C1'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+WAQ       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+WAQ       "C1'"       "O4'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+WAQ       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+WAQ       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+WAQ       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+WAQ       "C3'"       "C4'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+WAQ       "C4'"       "O4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+WAQ       "C4'"       "C5'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+WAQ       "C5'"       "O5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+WAQ       "O5'"         PBG      SINGLE       n     1.604  0.0133     1.604  0.0133
+WAQ         OAB         CAW      SINGLE       n     1.247  0.0187     1.247  0.0187
+WAQ         OAC         CAX      DOUBLE       n     1.194  0.0158     1.194  0.0158
+WAQ         OAD         PBG      DOUBLE       n     1.493  0.0122     1.493  0.0122
+WAQ         OAE         CAW      DOUBLE       n     1.247  0.0187     1.247  0.0187
+WAQ         OAH         PBG      SINGLE       n     1.493  0.0122     1.493  0.0122
+WAQ         CAK         CAM      SINGLE       n     1.523  0.0117     1.523  0.0117
+WAQ         CAK         CAL      SINGLE       n     1.523  0.0117     1.523  0.0117
+WAQ         CAL         CAN      SINGLE       n     1.497  0.0200     1.497  0.0200
+WAQ         CAM         CAO      SINGLE       n     1.497  0.0200     1.497  0.0200
+WAQ         CAN         CAW      SINGLE       n     1.519  0.0109     1.519  0.0109
+WAQ         CAO         CAX      SINGLE       n     1.502  0.0148     1.502  0.0148
+WAQ         OAU         PBG      SINGLE       n     1.617  0.0158     1.617  0.0158
+WAQ         OAU         CAX      SINGLE       n     1.333  0.0162     1.333  0.0162
+WAQ          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+WAQ          N6         HN6      SINGLE       n     1.016  0.0100     0.877  0.0200
+WAQ          N6        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+WAQ          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+WAQ       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+WAQ       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+WAQ       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+WAQ       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+WAQ       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+WAQ       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+WAQ       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.989  0.0200
+WAQ       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.989  0.0200
+WAQ         CAK         HAK      SINGLE       n     1.089  0.0100     0.981  0.0163
+WAQ         CAK        HAKA      SINGLE       n     1.089  0.0100     0.981  0.0163
+WAQ         CAL         HAL      SINGLE       n     1.089  0.0100     0.980  0.0160
+WAQ         CAL        HALA      SINGLE       n     1.089  0.0100     0.980  0.0160
+WAQ         CAM         HAM      SINGLE       n     1.089  0.0100     0.980  0.0160
+WAQ         CAM        HAMA      SINGLE       n     1.089  0.0100     0.980  0.0160
+WAQ         CAN         HAN      SINGLE       n     1.089  0.0100     0.981  0.0185
+WAQ         CAN        HANA      SINGLE       n     1.089  0.0100     0.981  0.0185
+WAQ         CAO         HAO      SINGLE       n     1.089  0.0100     0.981  0.0185
+WAQ         CAO        HAOA      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+WAQ          C6          N1          C2     118.521    1.50
+WAQ          N1          C2          N3     129.332    1.50
+WAQ          N1          C2          H2     115.313    1.50
+WAQ          N3          C2          H2     115.355    1.50
+WAQ          C2          N3          C4     110.982    1.50
+WAQ          N3          C4          C5     126.489    1.50
+WAQ          N3          C4          N9     125.845    1.50
+WAQ          C5          C4          N9     107.666    1.69
+WAQ          C4          C5          C6     117.267    1.50
+WAQ          C4          C5          N7     110.588    1.50
+WAQ          C6          C5          N7     132.145    1.50
+WAQ          N1          C6          C5     117.409    1.50
+WAQ          N1          C6          N6     118.799    1.50
+WAQ          C5          C6          N6     123.792    1.50
+WAQ          C6          N6         HN6     119.723    1.50
+WAQ          C6          N6        HN6A     119.723    1.50
+WAQ         HN6          N6        HN6A     120.554    1.88
+WAQ          C5          N7          C8     103.927    1.50
+WAQ          N7          C8          N9     112.130    1.94
+WAQ          N7          C8          H8     123.170    1.50
+WAQ          N9          C8          H8     124.701    2.19
+WAQ          C4          N9          C8     107.594    1.50
+WAQ          C4          N9       "C1'"     125.158    1.54
+WAQ          C8          N9       "C1'"     126.078    2.46
+WAQ          N9       "C1'"       "C2'"     113.752    2.20
+WAQ          N9       "C1'"       "O4'"     108.167    1.51
+WAQ          N9       "C1'"       "H1'"     109.246    1.50
+WAQ       "C2'"       "C1'"       "O4'"     106.047    1.50
+WAQ       "C2'"       "C1'"       "H1'"     109.015    1.50
+WAQ       "O4'"       "C1'"       "H1'"     109.807    1.50
+WAQ       "C1'"       "C2'"       "O2'"     111.715    2.69
+WAQ       "C1'"       "C2'"       "C3'"     101.239    1.50
+WAQ       "C1'"       "C2'"       "H2'"     110.636    1.70
+WAQ       "O2'"       "C2'"       "C3'"     112.782    2.45
+WAQ       "O2'"       "C2'"       "H2'"     110.448    1.97
+WAQ       "C3'"       "C2'"       "H2'"     110.596    1.51
+WAQ       "C2'"       "O2'"      "HO2'"     109.103    2.13
+WAQ       "C2'"       "C3'"       "O3'"     111.581    2.83
+WAQ       "C2'"       "C3'"       "C4'"     102.602    1.50
+WAQ       "C2'"       "C3'"       "H3'"     110.504    1.75
+WAQ       "O3'"       "C3'"       "C4'"     111.281    2.46
+WAQ       "O3'"       "C3'"       "H3'"     110.380    1.67
+WAQ       "C4'"       "C3'"       "H3'"     110.452    2.54
+WAQ       "C3'"       "O3'"      "HO3'"     108.744    3.00
+WAQ       "C3'"       "C4'"       "O4'"     105.388    1.50
+WAQ       "C3'"       "C4'"       "C5'"     116.008    1.52
+WAQ       "C3'"       "C4'"       "H4'"     109.363    1.86
+WAQ       "O4'"       "C4'"       "C5'"     109.123    1.50
+WAQ       "O4'"       "C4'"       "H4'"     108.947    1.50
+WAQ       "C5'"       "C4'"       "H4'"     108.268    1.50
+WAQ       "C1'"       "O4'"       "C4'"     109.903    1.50
+WAQ       "C4'"       "C5'"       "O5'"     109.342    1.50
+WAQ       "C4'"       "C5'"       "H5'"     109.624    1.50
+WAQ       "C4'"       "C5'"      "H5'A"     109.624    1.50
+WAQ       "O5'"       "C5'"       "H5'"     109.845    1.50
+WAQ       "O5'"       "C5'"      "H5'A"     109.845    1.50
+WAQ       "H5'"       "C5'"      "H5'A"     108.472    1.50
+WAQ       "C5'"       "O5'"         PBG     118.553    2.41
+WAQ         CAM         CAK         CAL     114.243    1.69
+WAQ         CAM         CAK         HAK     108.698    1.50
+WAQ         CAM         CAK        HAKA     108.698    1.50
+WAQ         CAL         CAK         HAK     108.698    1.50
+WAQ         CAL         CAK        HAKA     108.698    1.50
+WAQ         HAK         CAK        HAKA     107.646    1.50
+WAQ         CAK         CAL         CAN     112.553    1.50
+WAQ         CAK         CAL         HAL     108.698    1.50
+WAQ         CAK         CAL        HALA     108.698    1.50
+WAQ         CAN         CAL         HAL     109.164    1.50
+WAQ         CAN         CAL        HALA     109.164    1.50
+WAQ         HAL         CAL        HALA     107.646    1.50
+WAQ         CAK         CAM         CAO     112.553    1.50
+WAQ         CAK         CAM         HAM     108.698    1.50
+WAQ         CAK         CAM        HAMA     108.698    1.50
+WAQ         CAO         CAM         HAM     109.164    1.50
+WAQ         CAO         CAM        HAMA     109.164    1.50
+WAQ         HAM         CAM        HAMA     107.646    1.50
+WAQ         CAL         CAN         CAW     114.612    2.19
+WAQ         CAL         CAN         HAN     108.815    1.50
+WAQ         CAL         CAN        HANA     108.815    1.50
+WAQ         CAW         CAN         HAN     108.404    1.50
+WAQ         CAW         CAN        HANA     108.404    1.50
+WAQ         HAN         CAN        HANA     107.521    1.50
+WAQ         CAM         CAO         CAX     114.046    1.93
+WAQ         CAM         CAO         HAO     108.815    1.50
+WAQ         CAM         CAO        HAOA     108.815    1.50
+WAQ         CAX         CAO         HAO     108.648    1.50
+WAQ         CAX         CAO        HAOA     108.648    1.50
+WAQ         HAO         CAO        HAOA     107.521    1.50
+WAQ         PBG         OAU         CAX     122.808    2.93
+WAQ         OAB         CAW         OAE     123.571    1.50
+WAQ         OAB         CAW         CAN     118.214    1.64
+WAQ         OAE         CAW         CAN     118.214    1.64
+WAQ         OAC         CAX         CAO     124.278    1.60
+WAQ         OAC         CAX         OAU     124.062    1.74
+WAQ         CAO         CAX         OAU     111.661    1.82
+WAQ       "O5'"         PBG         OAD     107.912    2.57
+WAQ       "O5'"         PBG         OAH     107.912    2.57
+WAQ       "O5'"         PBG         OAU     104.460    3.00
+WAQ         OAD         PBG         OAH     119.782    1.83
+WAQ         OAD         PBG         OAU     112.304    3.00
+WAQ         OAH         PBG         OAU     112.304    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+WAQ              const_23          N3          C2          N1          C6       0.000    10.0     2
+WAQ       const_sp2_sp2_2          N6          C6          N1          C2     180.000     5.0     2
+WAQ             sp3_sp3_5          N9       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+WAQ            sp3_sp3_32          N9       "C1'"       "O4'"       "C4'"      60.000    10.0     3
+WAQ            sp3_sp3_34       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+WAQ            sp3_sp3_14       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+WAQ            sp3_sp3_37       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+WAQ            sp3_sp3_23       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+WAQ            sp3_sp3_29       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+WAQ            sp3_sp3_40       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+WAQ            sp3_sp3_49       "C4'"       "C5'"       "O5'"         PBG     180.000    10.0     3
+WAQ            sp3_sp3_54       "C5'"       "O5'"         PBG         OAD      60.000    10.0     3
+WAQ              const_13          N1          C2          N3          C4       0.000    10.0     2
+WAQ            sp3_sp3_64         CAM         CAK         CAL         CAN     180.000    10.0     3
+WAQ            sp3_sp3_55         CAL         CAK         CAM         CAO     180.000    10.0     3
+WAQ            sp3_sp3_73         CAK         CAL         CAN         CAW     180.000    10.0     3
+WAQ            sp3_sp3_82         CAK         CAM         CAO         CAX     180.000    10.0     3
+WAQ             sp2_sp3_8         OAB         CAW         CAN         CAL     120.000    10.0     6
+WAQ            sp2_sp3_14         OAC         CAX         CAO         CAM     120.000    10.0     6
+WAQ             sp2_sp2_5         OAC         CAX         OAU         PBG     180.000     5.0     2
+WAQ            sp3_sp3_91       "O5'"         PBG         OAU         CAX     180.000    10.0     3
+WAQ              const_11          C5          C4          N3          C2       0.000    10.0     2
+WAQ       const_sp2_sp2_7          N3          C4          C5          C6       0.000     5.0     2
+WAQ              const_27          N3          C4          N9          C8     180.000    10.0     2
+WAQ       const_sp2_sp2_4          C4          C5          C6          N6     180.000     5.0     2
+WAQ              const_15          C4          C5          N7          C8       0.000    10.0     2
+WAQ             sp2_sp2_3          N1          C6          N6         HN6       0.000     5.0     2
+WAQ              const_17          N9          C8          N7          C5       0.000    10.0     2
+WAQ              const_19          N7          C8          N9          C4       0.000    10.0     2
+WAQ             sp2_sp3_1          C4          N9       "C1'"       "C2'"     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+WAQ    chir_1    "C1'"    "O4'"    N9    "C2'"    negative
+WAQ    chir_2    "C2'"    "O2'"    "C1'"    "C3'"    negative
+WAQ    chir_3    "C3'"    "O3'"    "C4'"    "C2'"    positive
+WAQ    chir_4    "C4'"    "O4'"    "C3'"    "C5'"    negative
+WAQ    chir_5    PBG    OAU    "O5'"    OAH    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+WAQ    plan-1       "C1'"   0.020
+WAQ    plan-1          C2   0.020
+WAQ    plan-1          C4   0.020
+WAQ    plan-1          C5   0.020
+WAQ    plan-1          C6   0.020
+WAQ    plan-1          C8   0.020
+WAQ    plan-1          H2   0.020
+WAQ    plan-1          H8   0.020
+WAQ    plan-1          N1   0.020
+WAQ    plan-1          N3   0.020
+WAQ    plan-1          N6   0.020
+WAQ    plan-1          N7   0.020
+WAQ    plan-1          N9   0.020
+WAQ    plan-2          C6   0.020
+WAQ    plan-2         HN6   0.020
+WAQ    plan-2        HN6A   0.020
+WAQ    plan-2          N6   0.020
+WAQ    plan-3         CAN   0.020
+WAQ    plan-3         CAW   0.020
+WAQ    plan-3         OAB   0.020
+WAQ    plan-3         OAE   0.020
+WAQ    plan-4         CAO   0.020
+WAQ    plan-4         CAX   0.020
+WAQ    plan-4         OAC   0.020
+WAQ    plan-4         OAU   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+WAQ            InChI                InChI  1.03 InChI=1S/C17H24N5O10P/c18-15-12-16(20-7-19-15)22(8-21-12)17-14(27)13(26)9(31-17)6-30-33(28,29)32-11(25)5-3-1-2-4-10(23)24/h7-9,13-14,17,26-27H,1-6H2,(H,23,24)(H,28,29)(H2,18,19,20)/t9-,13-,14-,17-/m1/s1
+WAQ         InChIKey                InChI  1.03                                                                                                                                                                                CPQFOEZUJPOPAM-KRQFVHPKSA-N
+WAQ SMILES_CANONICAL               CACTVS 3.385                                                                                                                               Nc1ncnc2n(cnc12)[C@@H]3O[C@H](CO[P](O)(=O)OC(=O)CCCCCC(O)=O)[C@@H](O)[C@H]3O
+WAQ           SMILES               CACTVS 3.385                                                                                                                                     Nc1ncnc2n(cnc12)[CH]3O[CH](CO[P](O)(=O)OC(=O)CCCCCC(O)=O)[CH](O)[CH]3O
+WAQ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                           c1nc(c2c(n1)n(cn2)[C@H]3[C@@H]([C@@H]([C@H](O3)COP(=O)(O)OC(=O)CCCCCC(=O)O)O)O)N
+WAQ           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                             c1nc(c2c(n1)n(cn2)C3C(C(C(O3)COP(=O)(O)OC(=O)CCCCCC(=O)O)O)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+WAQ acedrg               243         "dictionary generator"                  
+WAQ acedrg_database      11          "data source"                           
+WAQ rdkit                2017.03.2   "Chemoinformatics tool"
+WAQ refmac5              5.8.0238    "optimization tool"                     

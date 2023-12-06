@@ -1,0 +1,314 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BQ8     BQ8      (2~{R})-~{N}-[5-[3,5-bis(oxidanyl)phenyl]-4-ethanoyl-1,3-thiazol-2-yl]-2-carbamimidamido-propanamide     NON-POLYMER     43     25     .     
+#
+data_comp_BQ8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BQ8     N       N       NH1     0       27.413      -44.723     155.769     
+BQ8     CA      C       CH1     0       28.678      -44.234     155.239     
+BQ8     C       C       C       0       28.799      -44.472     153.729     
+BQ8     O       O       O       0       29.789      -45.017     153.259     
+BQ8     CB      C       CH3     0       28.845      -42.748     155.544     
+BQ8     CAA     C       CH3     0       25.485      -42.881     147.536     
+BQ8     CAI     C       CR16    0       28.097      -46.679     145.469     
+BQ8     CAJ     C       CR16    0       26.576      -46.203     147.279     
+BQ8     CAK     C       CR16    0       28.846      -45.399     147.372     
+BQ8     CAP     C       C       0       27.095      -45.997     156.018     
+BQ8     CAQ     C       C       0       25.165      -43.490     148.867     
+BQ8     CAS     C       CR6     0       26.837      -46.785     146.045     
+BQ8     CAT     C       CR6     0       29.099      -45.984     146.137     
+BQ8     CAU     C       CR6     0       27.581      -45.508     147.958     
+BQ8     CAV     C       CR5     0       27.441      -44.228     151.641     
+BQ8     CAW     C       CR5     0       26.283      -44.028     149.674     
+BQ8     CAX     C       CR5     0       27.299      -44.889     149.256     
+BQ8     NAC     N       NH2     0       25.919      -46.279     156.559     
+BQ8     NAD     N       NH2     1       27.931      -46.991     155.742     
+BQ8     NAL     N       NRD5    0       26.368      -43.661     151.010     
+BQ8     NAM     N       NH1     0       27.747      -44.012     152.973     
+BQ8     OAE     O       O       0       24.016      -43.548     149.286     
+BQ8     OAG     O       OH1     0       25.842      -47.471     145.390     
+BQ8     OAH     O       OH1     0       30.345      -45.880     145.564     
+BQ8     SAO     S       S2      0       28.295      -45.185     150.560     
+BQ8     H1      H       H       0       26.794      -44.129     155.936     
+BQ8     H2      H       H       0       29.412      -44.720     155.687     
+BQ8     H3      H       H       0       28.877      -42.615     156.507     
+BQ8     H4      H       H       0       28.095      -42.253     155.175     
+BQ8     H5      H       H       0       29.671      -42.425     155.147     
+BQ8     H6      H       H       0       26.440      -42.729     147.465     
+BQ8     H7      H       H       0       25.018      -42.036     147.446     
+BQ8     H8      H       H       0       25.202      -43.480     146.829     
+BQ8     H9      H       H       0       28.271      -47.075     144.630     
+BQ8     H10     H       H       0       25.717      -46.280     147.666     
+BQ8     H11     H       H       0       29.532      -44.928     147.819     
+BQ8     H12     H       H       0       25.699      -47.116     156.725     
+BQ8     H13     H       H       0       25.352      -45.634     156.757     
+BQ8     H14     H       H       0       27.702      -47.818     155.933     
+BQ8     H18     H       H       0       28.703      -46.843     155.361     
+BQ8     H15     H       H       0       27.158      -43.495     153.370     
+BQ8     H16     H       H       0       25.029      -47.189     145.427     
+BQ8     H17     H       H       0       30.988      -45.490     145.984     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BQ8         CAT         OAH      SINGLE       n     1.374  0.0155     1.374  0.0155
+BQ8         CAI         CAT      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BQ8         CAK         CAT      SINGLE       y     1.386  0.0100     1.386  0.0100
+BQ8         CAI         CAS      SINGLE       y     1.386  0.0100     1.386  0.0100
+BQ8         CAK         CAU      DOUBLE       y     1.394  0.0100     1.394  0.0100
+BQ8         CAS         OAG      SINGLE       n     1.374  0.0155     1.374  0.0155
+BQ8         CAJ         CAS      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BQ8         CAJ         CAU      SINGLE       y     1.394  0.0100     1.394  0.0100
+BQ8         CAU         CAX      SINGLE       n     1.464  0.0100     1.464  0.0100
+BQ8         CAA         CAQ      SINGLE       n     1.497  0.0156     1.497  0.0156
+BQ8         CAW         CAX      DOUBLE       y     1.385  0.0200     1.385  0.0200
+BQ8         CAX         SAO      SINGLE       y     1.695  0.0200     1.695  0.0200
+BQ8         CAQ         CAW      SINGLE       n     1.479  0.0100     1.479  0.0100
+BQ8         CAQ         OAE      DOUBLE       n     1.224  0.0152     1.224  0.0152
+BQ8         CAW         NAL      SINGLE       y     1.378  0.0100     1.378  0.0100
+BQ8         CAV         SAO      SINGLE       y     1.695  0.0200     1.695  0.0200
+BQ8         CAV         NAL      DOUBLE       y     1.354  0.0165     1.354  0.0165
+BQ8         CAV         NAM      SINGLE       n     1.367  0.0190     1.367  0.0190
+BQ8           C           O      DOUBLE       n     1.223  0.0143     1.223  0.0143
+BQ8           C         NAM      SINGLE       n     1.357  0.0187     1.357  0.0187
+BQ8          CA          CB      SINGLE       n     1.525  0.0113     1.525  0.0113
+BQ8          CA           C      SINGLE       n     1.530  0.0136     1.530  0.0136
+BQ8           N          CA      SINGLE       n     1.452  0.0100     1.452  0.0100
+BQ8           N         CAP      SINGLE       n     1.327  0.0105     1.327  0.0105
+BQ8         CAP         NAD      DOUBLE       n     1.322  0.0100     1.322  0.0100
+BQ8         CAP         NAC      SINGLE       n     1.321  0.0100     1.321  0.0100
+BQ8           N          H1      SINGLE       n     1.016  0.0100     0.873  0.0200
+BQ8          CA          H2      SINGLE       n     1.089  0.0100     0.989  0.0200
+BQ8          CB          H3      SINGLE       n     1.089  0.0100     0.972  0.0152
+BQ8          CB          H4      SINGLE       n     1.089  0.0100     0.972  0.0152
+BQ8          CB          H5      SINGLE       n     1.089  0.0100     0.972  0.0152
+BQ8         CAA          H6      SINGLE       n     1.089  0.0100     0.969  0.0198
+BQ8         CAA          H7      SINGLE       n     1.089  0.0100     0.969  0.0198
+BQ8         CAA          H8      SINGLE       n     1.089  0.0100     0.969  0.0198
+BQ8         CAI          H9      SINGLE       n     1.082  0.0130     0.944  0.0200
+BQ8         CAJ         H10      SINGLE       n     1.082  0.0130     0.945  0.0200
+BQ8         CAK         H11      SINGLE       n     1.082  0.0130     0.945  0.0200
+BQ8         NAC         H12      SINGLE       n     1.016  0.0100     0.881  0.0200
+BQ8         NAC         H13      SINGLE       n     1.016  0.0100     0.881  0.0200
+BQ8         NAD         H14      SINGLE       n     1.016  0.0100     0.879  0.0200
+BQ8         NAD         H18      SINGLE       n     1.016  0.0100     0.879  0.0200
+BQ8         NAM         H15      SINGLE       n     1.016  0.0100     0.878  0.0200
+BQ8         OAG         H16      SINGLE       n     0.966  0.0059     0.861  0.0200
+BQ8         OAH         H17      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BQ8          CA           N         CAP     122.478    2.35
+BQ8          CA           N          H1     119.564    1.92
+BQ8         CAP           N          H1     117.958    2.01
+BQ8          CB          CA           C     109.909    1.50
+BQ8          CB          CA           N     110.277    1.50
+BQ8          CB          CA          H2     108.358    1.50
+BQ8           C          CA           N     111.486    1.78
+BQ8           C          CA          H2     108.109    1.50
+BQ8           N          CA          H2     108.161    1.50
+BQ8           O           C         NAM     122.978    1.50
+BQ8           O           C          CA     121.724    1.62
+BQ8         NAM           C          CA     115.298    1.50
+BQ8          CA          CB          H3     109.620    1.50
+BQ8          CA          CB          H4     109.620    1.50
+BQ8          CA          CB          H5     109.620    1.50
+BQ8          H3          CB          H4     109.386    1.50
+BQ8          H3          CB          H5     109.386    1.50
+BQ8          H4          CB          H5     109.386    1.50
+BQ8         CAQ         CAA          H6     109.525    1.50
+BQ8         CAQ         CAA          H7     109.525    1.50
+BQ8         CAQ         CAA          H8     109.525    1.50
+BQ8          H6         CAA          H7     109.390    1.59
+BQ8          H6         CAA          H8     109.390    1.59
+BQ8          H7         CAA          H8     109.390    1.59
+BQ8         CAT         CAI         CAS     119.504    1.50
+BQ8         CAT         CAI          H9     120.248    1.50
+BQ8         CAS         CAI          H9     120.248    1.50
+BQ8         CAS         CAJ         CAU     120.267    1.50
+BQ8         CAS         CAJ         H10     120.029    1.50
+BQ8         CAU         CAJ         H10     119.704    1.50
+BQ8         CAT         CAK         CAU     120.267    1.50
+BQ8         CAT         CAK         H11     120.029    1.50
+BQ8         CAU         CAK         H11     119.704    1.50
+BQ8           N         CAP         NAD     120.013    1.50
+BQ8           N         CAP         NAC     120.013    1.50
+BQ8         NAD         CAP         NAC     119.974    1.50
+BQ8         CAA         CAQ         CAW     117.684    1.50
+BQ8         CAA         CAQ         OAE     121.736    1.50
+BQ8         CAW         CAQ         OAE     120.580    1.50
+BQ8         CAI         CAS         OAG     119.790    3.00
+BQ8         CAI         CAS         CAJ     120.420    1.50
+BQ8         OAG         CAS         CAJ     119.790    3.00
+BQ8         OAH         CAT         CAI     119.790    3.00
+BQ8         OAH         CAT         CAK     119.790    3.00
+BQ8         CAI         CAT         CAK     120.420    1.50
+BQ8         CAK         CAU         CAJ     119.121    1.50
+BQ8         CAK         CAU         CAX     120.440    1.61
+BQ8         CAJ         CAU         CAX     120.440    1.61
+BQ8         SAO         CAV         NAL     108.396    3.00
+BQ8         SAO         CAV         NAM     122.802    3.00
+BQ8         NAL         CAV         NAM     128.802    3.00
+BQ8         CAX         CAW         CAQ     129.433    3.00
+BQ8         CAX         CAW         NAL     109.250    1.50
+BQ8         CAQ         CAW         NAL     121.318    3.00
+BQ8         CAU         CAX         CAW     132.475    2.08
+BQ8         CAU         CAX         SAO     119.129    3.00
+BQ8         CAW         CAX         SAO     108.396    3.00
+BQ8         CAP         NAC         H12     119.855    2.01
+BQ8         CAP         NAC         H13     119.855    2.01
+BQ8         H12         NAC         H13     120.290    2.09
+BQ8         CAP         NAD         H14     119.855    2.01
+BQ8         CAP         NAD         H18     119.855    2.01
+BQ8         H14         NAD         H18     120.290    2.09
+BQ8         CAW         NAL         CAV     105.563    1.59
+BQ8         CAV         NAM           C     124.557    2.96
+BQ8         CAV         NAM         H15     116.760    2.70
+BQ8           C         NAM         H15     118.683    1.66
+BQ8         CAS         OAG         H16     120.000    3.00
+BQ8         CAT         OAH         H17     120.000    3.00
+BQ8         CAX         SAO         CAV     108.396    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BQ8            sp2_sp3_13         CAP           N          CA          CB       0.000    10.0     6
+BQ8            sp2_sp2_21         NAD         CAP           N          CA     180.000     5.0     2
+BQ8             sp2_sp2_9         CAA         CAQ         CAW         CAX     180.000     5.0     2
+BQ8             sp2_sp2_3         CAI         CAS         OAG         H16     180.000     5.0     2
+BQ8             sp2_sp2_1         CAI         CAT         OAH         H17     180.000     5.0     2
+BQ8             sp2_sp2_5         CAK         CAU         CAX         CAW     180.000     5.0     2
+BQ8              const_36         NAM         CAV         NAL         CAW     180.000    10.0     2
+BQ8            sp2_sp2_13         SAO         CAV         NAM           C     180.000     5.0     2
+BQ8              const_22         NAM         CAV         SAO         CAX     180.000    10.0     2
+BQ8              const_28         CAQ         CAW         CAX         CAU       0.000    10.0     2
+BQ8              const_30         CAQ         CAW         NAL         CAV     180.000    10.0     2
+BQ8              const_24         CAU         CAX         SAO         CAV     180.000    10.0     2
+BQ8             sp2_sp3_7           O           C          CA          CB       0.000    10.0     6
+BQ8             sp3_sp3_1           C          CA          CB          H3     180.000    10.0     3
+BQ8            sp2_sp2_19           O           C         NAM         CAV       0.000     5.0     2
+BQ8             sp2_sp3_4         OAE         CAQ         CAA          H6     180.000    10.0     6
+BQ8              const_32         CAT         CAI         CAS         OAG     180.000    10.0     2
+BQ8       const_sp2_sp2_2         CAS         CAI         CAT         OAH     180.000     5.0     2
+BQ8              const_18         CAU         CAJ         CAS         OAG     180.000    10.0     2
+BQ8              const_13         CAS         CAJ         CAU         CAK       0.000    10.0     2
+BQ8       const_sp2_sp2_6         CAU         CAK         CAT         OAH     180.000     5.0     2
+BQ8       const_sp2_sp2_9         CAT         CAK         CAU         CAJ       0.000     5.0     2
+BQ8            sp2_sp2_29           N         CAP         NAC         H12     180.000     5.0     2
+BQ8            sp2_sp2_25           N         CAP         NAD         H14     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BQ8    chir_1    CA    N    C    CB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BQ8    plan-1         CAI   0.020
+BQ8    plan-1         CAJ   0.020
+BQ8    plan-1         CAK   0.020
+BQ8    plan-1         CAS   0.020
+BQ8    plan-1         CAT   0.020
+BQ8    plan-1         CAU   0.020
+BQ8    plan-1         CAX   0.020
+BQ8    plan-1         H10   0.020
+BQ8    plan-1         H11   0.020
+BQ8    plan-1          H9   0.020
+BQ8    plan-1         OAG   0.020
+BQ8    plan-1         OAH   0.020
+BQ8    plan-2         CAQ   0.020
+BQ8    plan-2         CAU   0.020
+BQ8    plan-2         CAV   0.020
+BQ8    plan-2         CAW   0.020
+BQ8    plan-2         CAX   0.020
+BQ8    plan-2         NAL   0.020
+BQ8    plan-2         NAM   0.020
+BQ8    plan-2         SAO   0.020
+BQ8    plan-3          CA   0.020
+BQ8    plan-3         CAP   0.020
+BQ8    plan-3          H1   0.020
+BQ8    plan-3           N   0.020
+BQ8    plan-4           C   0.020
+BQ8    plan-4          CA   0.020
+BQ8    plan-4         NAM   0.020
+BQ8    plan-4           O   0.020
+BQ8    plan-5         CAP   0.020
+BQ8    plan-5           N   0.020
+BQ8    plan-5         NAC   0.020
+BQ8    plan-5         NAD   0.020
+BQ8    plan-6         CAA   0.020
+BQ8    plan-6         CAQ   0.020
+BQ8    plan-6         CAW   0.020
+BQ8    plan-6         OAE   0.020
+BQ8    plan-7         CAP   0.020
+BQ8    plan-7         H12   0.020
+BQ8    plan-7         H13   0.020
+BQ8    plan-7         NAC   0.020
+BQ8    plan-8         CAP   0.020
+BQ8    plan-8         H14   0.020
+BQ8    plan-8         H18   0.020
+BQ8    plan-8         NAD   0.020
+BQ8    plan-9           C   0.020
+BQ8    plan-9         CAV   0.020
+BQ8    plan-9         H15   0.020
+BQ8    plan-9         NAM   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BQ8            InChI                InChI  1.03 InChI=1S/C15H17N5O4S/c1-6(18-14(16)17)13(24)20-15-19-11(7(2)21)12(25-15)8-3-9(22)5-10(23)4-8/h3-6,22-23H,1-2H3,(H4,16,17,18)(H,19,20,24)/t6-/m1/s1
+BQ8         InChIKey                InChI  1.03                                                                                                                        UGPBIUVAGLINNK-ZCFIWIBFSA-N
+BQ8 SMILES_CANONICAL               CACTVS 3.385                                                                                              C[C@@H](NC(N)=N)C(=O)Nc1sc(c2cc(O)cc(O)c2)c(n1)C(C)=O
+BQ8           SMILES               CACTVS 3.385                                                                                                C[CH](NC(N)=N)C(=O)Nc1sc(c2cc(O)cc(O)c2)c(n1)C(C)=O
+BQ8 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                       "[H]/N=C(/N)\N[C@H](C)C(=O)Nc1nc(c(s1)c2cc(cc(c2)O)O)C(=O)C"
+BQ8           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                   CC(C(=O)Nc1nc(c(s1)c2cc(cc(c2)O)O)C(=O)C)NC(=N)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BQ8 acedrg               243         "dictionary generator"                  
+BQ8 acedrg_database      11          "data source"                           
+BQ8 rdkit                2017.03.2   "Chemoinformatics tool"
+BQ8 refmac5              5.8.0238    "optimization tool"                     

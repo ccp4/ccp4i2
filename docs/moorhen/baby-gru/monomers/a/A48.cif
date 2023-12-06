@@ -1,0 +1,394 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+A48     A48      4-[(DIMESITYLBORYL)(2,2,2-TRIFLUOROETHYL)AMINO]PHENOL     NON-POLYMER     61     32     .     
+#
+data_comp_A48
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+A48     CAD     C       CH3     0       23.981      -3.798      10.989      
+A48     CAE     C       CR6     0       24.013      -5.310      10.927      
+A48     CAA     C       CR16    0       23.862      -6.005      12.130      
+A48     CAB     C       CR6     0       23.875      -7.392      12.190      
+A48     CAC     C       CH3     0       23.707      -8.117      13.506      
+A48     CAF     C       CR16    0       24.047      -8.084      11.000      
+A48     CAI     C       CR6     0       24.203      -7.432      9.776       
+A48     CAJ     C       CH3     0       24.382      -8.310      8.558       
+A48     CAH     C       CR6     0       24.190      -6.014      9.706       
+A48     B       B       B       0       24.364      -5.250      8.328       
+A48     N       N       N       0       23.428      -5.387      7.251       
+A48     CAW     C       CH2     0       22.003      -5.738      7.471       
+A48     CBD     C       CT      0       21.474      -6.865      6.601       
+A48     FBF     F       F       0       22.406      -7.760      6.274       
+A48     FBE     F       F       0       20.500      -7.541      7.210       
+A48     FBC     F       F       0       20.960      -6.412      5.457       
+A48     CAP     C       CR6     0       23.799      -5.106      5.883       
+A48     CAQ     C       CR16    0       24.829      -5.822      5.280       
+A48     CAR     C       CR16    0       25.191      -5.548      3.970       
+A48     CAZ     C       CR6     0       24.528      -4.559      3.250       
+A48     OBA     O       OH1     0       24.885      -4.290      1.951       
+A48     CAY     C       CR16    0       23.499      -3.844      3.855       
+A48     CAX     C       CR16    0       23.136      -4.114      5.165       
+A48     CAM     C       CR6     0       25.614      -4.294      8.138       
+A48     CAL     C       CR6     0       26.944      -4.790      8.198       
+A48     CAG     C       CH3     0       27.250      -6.250      8.459       
+A48     CAK     C       CR16    0       28.029      -3.929      8.021       
+A48     CAT     C       CR6     0       27.867      -2.573      7.776       
+A48     CAS     C       CH3     0       29.061      -1.665      7.586       
+A48     CAU     C       CR16    0       26.570      -2.083      7.711       
+A48     CAV     C       CR6     0       25.455      -2.904      7.885       
+A48     CBB     C       CH3     0       24.101      -2.236      7.785       
+A48     HAD1    H       H       0       23.630      -3.506      11.846      
+A48     HAD2    H       H       0       23.414      -3.457      10.282      
+A48     HAD3    H       H       0       24.880      -3.449      10.877      
+A48     HAA     H       H       0       23.746      -5.517      12.930      
+A48     HAC1    H       H       0       23.737      -9.076      13.358      
+A48     HAC2    H       H       0       22.853      -7.879      13.901      
+A48     HAC3    H       H       0       24.423      -7.863      14.110      
+A48     HAF     H       H       0       24.059      -9.029      11.017      
+A48     HAJ1    H       H       0       24.585      -7.764      7.783       
+A48     HAJ2    H       H       0       23.565      -8.809      8.394       
+A48     HAJ3    H       H       0       25.112      -8.933      8.710       
+A48     HAW1    H       H       0       21.461      -4.939      7.311       
+A48     HAW2    H       H       0       21.877      -5.985      8.409       
+A48     HAQ     H       H       0       25.279      -6.490      5.768       
+A48     HAR     H       H       0       25.888      -6.035      3.565       
+A48     HOBA    H       H       0       24.953      -3.474      1.684       
+A48     HAY     H       H       0       23.047      -3.173      3.372       
+A48     HAX     H       H       0       22.440      -3.628      5.574       
+A48     HAG1    H       H       0       28.189      -6.430      8.293       
+A48     HAG2    H       H       0       26.713      -6.803      7.870       
+A48     HAG3    H       H       0       27.042      -6.467      9.382       
+A48     HAK     H       H       0       28.906      -4.279      8.068       
+A48     HAS1    H       H       0       28.760      -0.760      7.407       
+A48     HAS2    H       H       0       29.592      -1.981      6.837       
+A48     HAS3    H       H       0       29.604      -1.671      8.390       
+A48     HAU     H       H       0       26.436      -1.162      7.545       
+A48     HBB1    H       H       0       24.074      -1.466      8.375       
+A48     HBB2    H       H       0       23.404      -2.859      8.041       
+A48     HBB3    H       H       0       23.949      -1.944      6.872       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+A48         CAD         CAE      SINGLE       n     1.512  0.0100     1.512  0.0100
+A48         CAE         CAH      DOUBLE       y     1.413  0.0100     1.413  0.0100
+A48         CAE         CAA      SINGLE       y     1.392  0.0100     1.392  0.0100
+A48         CAA         CAB      DOUBLE       y     1.386  0.0100     1.386  0.0100
+A48         CAB         CAF      SINGLE       y     1.386  0.0100     1.386  0.0100
+A48         CAB         CAC      SINGLE       n     1.511  0.0100     1.511  0.0100
+A48         CAF         CAI      DOUBLE       y     1.392  0.0100     1.392  0.0100
+A48         CAI         CAJ      SINGLE       n     1.512  0.0100     1.512  0.0100
+A48         CAI         CAH      SINGLE       y     1.413  0.0100     1.413  0.0100
+A48         CAH           B      SINGLE       n     1.579  0.0100     1.579  0.0100
+A48           B         CAM      SINGLE       n     1.579  0.0100     1.579  0.0100
+A48           B           N      SINGLE       n     1.418  0.0136     1.418  0.0136
+A48           N         CAP      SINGLE       n     1.432  0.0143     1.432  0.0143
+A48           N         CAW      SINGLE       n     1.476  0.0101     1.476  0.0101
+A48         CAW         CBD      SINGLE       n     1.504  0.0172     1.504  0.0172
+A48         CBD         FBF      SINGLE       n     1.333  0.0100     1.333  0.0100
+A48         CBD         FBC      SINGLE       n     1.333  0.0100     1.333  0.0100
+A48         CBD         FBE      SINGLE       n     1.333  0.0100     1.333  0.0100
+A48         CAP         CAQ      DOUBLE       y     1.388  0.0100     1.388  0.0100
+A48         CAP         CAX      SINGLE       y     1.388  0.0100     1.388  0.0100
+A48         CAQ         CAR      SINGLE       y     1.383  0.0100     1.383  0.0100
+A48         CAR         CAZ      DOUBLE       y     1.388  0.0102     1.388  0.0102
+A48         CAZ         OBA      SINGLE       n     1.374  0.0155     1.374  0.0155
+A48         CAZ         CAY      SINGLE       y     1.388  0.0102     1.388  0.0102
+A48         CAY         CAX      DOUBLE       y     1.383  0.0100     1.383  0.0100
+A48         CAM         CAL      DOUBLE       y     1.413  0.0100     1.413  0.0100
+A48         CAM         CAV      SINGLE       y     1.413  0.0100     1.413  0.0100
+A48         CAL         CAK      SINGLE       y     1.392  0.0100     1.392  0.0100
+A48         CAL         CAG      SINGLE       n     1.512  0.0100     1.512  0.0100
+A48         CAK         CAT      DOUBLE       y     1.386  0.0100     1.386  0.0100
+A48         CAT         CAS      SINGLE       n     1.511  0.0100     1.511  0.0100
+A48         CAT         CAU      SINGLE       y     1.386  0.0100     1.386  0.0100
+A48         CAU         CAV      DOUBLE       y     1.392  0.0100     1.392  0.0100
+A48         CAV         CBB      SINGLE       n     1.512  0.0100     1.512  0.0100
+A48         CAD        HAD1      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAD        HAD2      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAD        HAD3      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAA         HAA      SINGLE       n     1.082  0.0130     0.945  0.0119
+A48         CAC        HAC1      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAC        HAC2      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAC        HAC3      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAF         HAF      SINGLE       n     1.082  0.0130     0.945  0.0119
+A48         CAJ        HAJ1      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAJ        HAJ2      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAJ        HAJ3      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAW        HAW1      SINGLE       n     1.089  0.0100     0.979  0.0121
+A48         CAW        HAW2      SINGLE       n     1.089  0.0100     0.979  0.0121
+A48         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.942  0.0170
+A48         CAR         HAR      SINGLE       n     1.082  0.0130     0.942  0.0151
+A48         OBA        HOBA      SINGLE       n     0.966  0.0059     0.861  0.0200
+A48         CAY         HAY      SINGLE       n     1.082  0.0130     0.942  0.0151
+A48         CAX         HAX      SINGLE       n     1.082  0.0130     0.942  0.0170
+A48         CAG        HAG1      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAG        HAG2      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAG        HAG3      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAK         HAK      SINGLE       n     1.082  0.0130     0.945  0.0119
+A48         CAS        HAS1      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAS        HAS2      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAS        HAS3      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CAU         HAU      SINGLE       n     1.082  0.0130     0.945  0.0119
+A48         CBB        HBB1      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CBB        HBB2      SINGLE       n     1.089  0.0100     0.971  0.0135
+A48         CBB        HBB3      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+A48         CAE         CAD        HAD1     109.704    1.50
+A48         CAE         CAD        HAD2     109.704    1.50
+A48         CAE         CAD        HAD3     109.704    1.50
+A48        HAD1         CAD        HAD2     109.348    1.50
+A48        HAD1         CAD        HAD3     109.348    1.50
+A48        HAD2         CAD        HAD3     109.348    1.50
+A48         CAD         CAE         CAH     122.110    1.50
+A48         CAD         CAE         CAA     117.636    1.50
+A48         CAH         CAE         CAA     120.254    1.50
+A48         CAE         CAA         CAB     122.266    1.50
+A48         CAE         CAA         HAA     118.826    1.50
+A48         CAB         CAA         HAA     118.910    1.50
+A48         CAA         CAB         CAF     117.960    1.50
+A48         CAA         CAB         CAC     121.020    1.50
+A48         CAF         CAB         CAC     121.020    1.50
+A48         CAB         CAC        HAC1     109.567    1.50
+A48         CAB         CAC        HAC2     109.567    1.50
+A48         CAB         CAC        HAC3     109.567    1.50
+A48        HAC1         CAC        HAC2     109.348    1.50
+A48        HAC1         CAC        HAC3     109.348    1.50
+A48        HAC2         CAC        HAC3     109.348    1.50
+A48         CAB         CAF         CAI     122.266    1.50
+A48         CAB         CAF         HAF     118.910    1.50
+A48         CAI         CAF         HAF     118.826    1.50
+A48         CAF         CAI         CAJ     117.636    1.50
+A48         CAF         CAI         CAH     120.254    1.50
+A48         CAJ         CAI         CAH     122.110    1.50
+A48         CAI         CAJ        HAJ1     109.704    1.50
+A48         CAI         CAJ        HAJ2     109.704    1.50
+A48         CAI         CAJ        HAJ3     109.704    1.50
+A48        HAJ1         CAJ        HAJ2     109.348    1.50
+A48        HAJ1         CAJ        HAJ3     109.348    1.50
+A48        HAJ2         CAJ        HAJ3     109.348    1.50
+A48         CAE         CAH         CAI     116.996    1.50
+A48         CAE         CAH           B     121.502    1.50
+A48         CAI         CAH           B     121.502    1.50
+A48         CAH           B         CAM     119.868    2.87
+A48         CAH           B           N     120.066    2.97
+A48         CAM           B           N     120.066    2.97
+A48           B           N         CAP     124.107    3.00
+A48           B           N         CAW     121.106    2.81
+A48         CAP           N         CAW     114.787    1.50
+A48           N         CAW         CBD     112.281    1.50
+A48           N         CAW        HAW1     108.859    1.50
+A48           N         CAW        HAW2     108.859    1.50
+A48         CBD         CAW        HAW1     109.325    1.50
+A48         CBD         CAW        HAW2     109.325    1.50
+A48        HAW1         CAW        HAW2     107.790    1.50
+A48         CAW         CBD         FBF     111.983    1.50
+A48         CAW         CBD         FBC     111.983    1.50
+A48         CAW         CBD         FBE     111.983    1.50
+A48         FBF         CBD         FBC     106.759    1.50
+A48         FBF         CBD         FBE     106.759    1.50
+A48         FBC         CBD         FBE     106.759    1.50
+A48           N         CAP         CAQ     119.910    1.50
+A48           N         CAP         CAX     119.910    1.50
+A48         CAQ         CAP         CAX     120.179    2.01
+A48         CAP         CAQ         CAR     119.941    1.50
+A48         CAP         CAQ         HAQ     119.720    1.50
+A48         CAR         CAQ         HAQ     120.339    1.50
+A48         CAQ         CAR         CAZ     120.185    1.50
+A48         CAQ         CAR         HAR     119.901    1.50
+A48         CAZ         CAR         HAR     119.915    1.50
+A48         CAR         CAZ         OBA     120.215    3.00
+A48         CAR         CAZ         CAY     119.570    1.50
+A48         OBA         CAZ         CAY     120.215    3.00
+A48         CAZ         OBA        HOBA     120.000    3.00
+A48         CAZ         CAY         CAX     120.185    1.50
+A48         CAZ         CAY         HAY     119.915    1.50
+A48         CAX         CAY         HAY     119.901    1.50
+A48         CAP         CAX         CAY     119.941    1.50
+A48         CAP         CAX         HAX     119.720    1.50
+A48         CAY         CAX         HAX     120.339    1.50
+A48           B         CAM         CAL     121.502    1.50
+A48           B         CAM         CAV     121.502    1.50
+A48         CAL         CAM         CAV     116.996    1.50
+A48         CAM         CAL         CAK     120.254    1.50
+A48         CAM         CAL         CAG     122.110    1.50
+A48         CAK         CAL         CAG     117.636    1.50
+A48         CAL         CAG        HAG1     109.704    1.50
+A48         CAL         CAG        HAG2     109.704    1.50
+A48         CAL         CAG        HAG3     109.704    1.50
+A48        HAG1         CAG        HAG2     109.348    1.50
+A48        HAG1         CAG        HAG3     109.348    1.50
+A48        HAG2         CAG        HAG3     109.348    1.50
+A48         CAL         CAK         CAT     122.266    1.50
+A48         CAL         CAK         HAK     118.826    1.50
+A48         CAT         CAK         HAK     118.910    1.50
+A48         CAK         CAT         CAS     121.020    1.50
+A48         CAK         CAT         CAU     117.960    1.50
+A48         CAS         CAT         CAU     121.020    1.50
+A48         CAT         CAS        HAS1     109.567    1.50
+A48         CAT         CAS        HAS2     109.567    1.50
+A48         CAT         CAS        HAS3     109.567    1.50
+A48        HAS1         CAS        HAS2     109.348    1.50
+A48        HAS1         CAS        HAS3     109.348    1.50
+A48        HAS2         CAS        HAS3     109.348    1.50
+A48         CAT         CAU         CAV     122.266    1.50
+A48         CAT         CAU         HAU     118.910    1.50
+A48         CAV         CAU         HAU     118.826    1.50
+A48         CAM         CAV         CAU     120.254    1.50
+A48         CAM         CAV         CBB     122.110    1.50
+A48         CAU         CAV         CBB     117.636    1.50
+A48         CAV         CBB        HBB1     109.704    1.50
+A48         CAV         CBB        HBB2     109.704    1.50
+A48         CAV         CBB        HBB3     109.704    1.50
+A48        HBB1         CBB        HBB2     109.348    1.50
+A48        HBB1         CBB        HBB3     109.348    1.50
+A48        HBB2         CBB        HBB3     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+A48             sp2_sp3_1         CAH         CAE         CAD        HAD1     150.000    10.0     6
+A48            sp2_sp3_20           B           N         CAW         CBD     120.000    10.0     6
+A48            sp2_sp2_14         CAQ         CAP           N           B       0.000     5.0     2
+A48             sp3_sp3_1           N         CAW         CBD         FBF     180.000    10.0     3
+A48              const_43           N         CAP         CAQ         CAR     180.000    10.0     2
+A48              const_67           N         CAP         CAX         CAY     180.000    10.0     2
+A48              const_45         CAP         CAQ         CAR         CAZ       0.000    10.0     2
+A48              const_50         CAQ         CAR         CAZ         OBA     180.000    10.0     2
+A48            sp2_sp2_17         CAR         CAZ         OBA        HOBA     180.000     5.0     2
+A48              const_54         CAX         CAY         CAZ         OBA     180.000    10.0     2
+A48              const_62         CAB         CAA         CAE         CAD     180.000    10.0     2
+A48       const_sp2_sp2_4         CAD         CAE         CAH           B       0.000     5.0     2
+A48              const_57         CAP         CAX         CAY         CAZ       0.000    10.0     2
+A48              const_24         CAG         CAL         CAM           B       0.000    10.0     2
+A48              const_72           B         CAM         CAV         CBB       0.000    10.0     2
+A48            sp2_sp3_25         CAM         CAL         CAG        HAG1     150.000    10.0     6
+A48              const_26         CAT         CAK         CAL         CAG     180.000    10.0     2
+A48              const_30         CAL         CAK         CAT         CAS     180.000    10.0     2
+A48            sp2_sp3_31         CAK         CAT         CAS        HAS1     150.000    10.0     6
+A48              const_35         CAS         CAT         CAU         CAV     180.000    10.0     2
+A48              const_38         CAT         CAU         CAV         CBB     180.000    10.0     2
+A48              const_18         CAE         CAA         CAB         CAC     180.000    10.0     2
+A48            sp2_sp3_37         CAM         CAV         CBB        HBB1     150.000    10.0     6
+A48             sp2_sp3_7         CAA         CAB         CAC        HAC1     150.000    10.0     6
+A48              const_15         CAC         CAB         CAF         CAI     180.000    10.0     2
+A48              const_10         CAB         CAF         CAI         CAJ     180.000    10.0     2
+A48            sp2_sp3_13         CAF         CAI         CAJ        HAJ1     150.000    10.0     6
+A48       const_sp2_sp2_8           B         CAH         CAI         CAJ       0.000     5.0     2
+A48             sp2_sp2_3           N           B         CAH         CAE       0.000     5.0     2
+A48             sp2_sp2_9         CAH           B           N         CAW     180.000     5.0     2
+A48             sp2_sp2_7           N           B         CAM         CAL       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+A48    chir_1    CBD    FBF    FBC    FBE    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+A48    plan-1         CAP   0.020
+A48    plan-1         CAQ   0.020
+A48    plan-1         CAR   0.020
+A48    plan-1         CAX   0.020
+A48    plan-1         CAY   0.020
+A48    plan-1         CAZ   0.020
+A48    plan-1         HAQ   0.020
+A48    plan-1         HAR   0.020
+A48    plan-1         HAX   0.020
+A48    plan-1         HAY   0.020
+A48    plan-1           N   0.020
+A48    plan-1         OBA   0.020
+A48    plan-2           B   0.020
+A48    plan-2         CAA   0.020
+A48    plan-2         CAB   0.020
+A48    plan-2         CAC   0.020
+A48    plan-2         CAD   0.020
+A48    plan-2         CAE   0.020
+A48    plan-2         CAF   0.020
+A48    plan-2         CAH   0.020
+A48    plan-2         CAI   0.020
+A48    plan-2         CAJ   0.020
+A48    plan-2         HAA   0.020
+A48    plan-2         HAF   0.020
+A48    plan-3           B   0.020
+A48    plan-3         CAG   0.020
+A48    plan-3         CAK   0.020
+A48    plan-3         CAL   0.020
+A48    plan-3         CAM   0.020
+A48    plan-3         CAS   0.020
+A48    plan-3         CAT   0.020
+A48    plan-3         CAU   0.020
+A48    plan-3         CAV   0.020
+A48    plan-3         CBB   0.020
+A48    plan-3         HAK   0.020
+A48    plan-3         HAU   0.020
+A48    plan-4           B   0.020
+A48    plan-4         CAH   0.020
+A48    plan-4         CAM   0.020
+A48    plan-4           N   0.020
+A48    plan-5           B   0.020
+A48    plan-5         CAP   0.020
+A48    plan-5         CAW   0.020
+A48    plan-5           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+A48           SMILES              ACDLabs 10.04                                                                                   FC(F)(F)CN(c1ccc(O)cc1)B(c2c(cc(cc2C)C)C)c3c(cc(cc3C)C)C
+A48 SMILES_CANONICAL               CACTVS 3.341                                                                                 Cc1cc(C)c(B(N(CC(F)(F)F)c2ccc(O)cc2)c3c(C)cc(C)cc3C)c(C)c1
+A48           SMILES               CACTVS 3.341                                                                                 Cc1cc(C)c(B(N(CC(F)(F)F)c2ccc(O)cc2)c3c(C)cc(C)cc3C)c(C)c1
+A48 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                 B(c1c(cc(cc1C)C)C)(c2c(cc(cc2C)C)C)N(CC(F)(F)F)c3ccc(cc3)O
+A48           SMILES "OpenEye OEToolkits" 1.5.0                                                                                 B(c1c(cc(cc1C)C)C)(c2c(cc(cc2C)C)C)N(CC(F)(F)F)c3ccc(cc3)O
+A48            InChI                InChI  1.03 InChI=1S/C26H29BF3NO/c1-16-11-18(3)24(19(4)12-16)27(25-20(5)13-17(2)14-21(25)6)31(15-26(28,29)30)22-7-9-23(32)10-8-22/h7-14,32H,15H2,1-6H3
+A48         InChIKey                InChI  1.03                                                                                                                DWBQXWOHSLDMOS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+A48 acedrg               243         "dictionary generator"                  
+A48 acedrg_database      11          "data source"                           
+A48 rdkit                2017.03.2   "Chemoinformatics tool"
+A48 refmac5              5.8.0238    "optimization tool"                     

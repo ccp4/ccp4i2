@@ -1,0 +1,372 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IFC     IFC      N-[2-methyl-5-({[3-(4-methyl-1H-imidazol-1-yl)-5-(trifluoromethyl)phenyl]carbonyl}amino)phenyl]isoxazole-5-carboxamide     NON-POLYMER     52     34     .     
+#
+data_comp_IFC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IFC     C1A     C       CH3     0       -9.462      16.723      59.251      
+IFC     C1Y     C       CR5     0       -8.747      17.179      58.019      
+IFC     C1Q     C       CR15    0       -8.477      16.502      56.872      
+IFC     N1S     N       NRD5    0       -8.241      18.454      57.915      
+IFC     C1L     C       CR15    0       -7.687      18.533      56.729      
+IFC     N2G     N       NR5     0       -7.797      17.364      56.045      
+IFC     C2C     C       CR6     0       -7.317      17.083      54.725      
+IFC     C1M     C       CR16    0       -7.995      16.154      53.911      
+IFC     C1P     C       CR16    0       -6.191      17.737      54.250      
+IFC     C2D     C       CR6     0       -5.711      17.482      52.969      
+IFC     C2H     C       CT      0       -4.494      18.195      52.460      
+IFC     F1F     F       F       0       -3.586      18.417      53.406      
+IFC     F1G     F       F       0       -3.851      17.529      51.503      
+IFC     F1E     F       F       0       -4.777      19.386      51.943      
+IFC     C1O     C       CR16    0       -6.391      16.567      52.171      
+IFC     C2B     C       CR6     0       -7.533      15.895      52.620      
+IFC     C1W     C       C       0       -8.195      14.911      51.694      
+IFC     O1C     O       O       0       -7.558      14.406      50.773      
+IFC     N1T     N       NH1     0       -9.505      14.615      51.911      
+IFC     C2A     C       CR6     0       -10.203     13.467      51.466      
+IFC     C1N     C       CR16    0       -9.608      12.207      51.406      
+IFC     C1K     C       CR16    0       -11.531     13.619      51.068      
+IFC     C1J     C       CR16    0       -12.257     12.527      50.618      
+IFC     C1Z     C       CR6     0       -11.688     11.254      50.544      
+IFC     C1B     C       CH3     0       -12.500     10.089      50.051      
+IFC     C2E     C       CR6     0       -10.349     11.117      50.951      
+IFC     N1U     N       NH1     0       -9.729      9.848       50.886      
+IFC     C1X     C       C       0       -9.859      8.805       51.750      
+IFC     O1D     O       O       0       -10.515     8.840       52.787      
+IFC     C2F     C       CR5     0       -9.150      7.578       51.362      
+IFC     C1I     C       CR15    0       -9.166      6.321       51.843      
+IFC     C1H     C       CR15    0       -8.281      5.573       51.074      
+IFC     N1R     N       NRD5    0       -7.739      6.318       50.161      
+IFC     O1V     O       O2      0       -8.279      7.616       50.322      
+IFC     H1A     H       H       0       -9.337      17.375      59.958      
+IFC     H1AA    H       H       0       -9.107      15.866      59.534      
+IFC     H1AB    H       H       0       -10.409     16.632      59.060      
+IFC     H1Q     H       H       0       -8.706      15.612      56.660      
+IFC     H1L     H       H       0       -7.261      19.298      56.395      
+IFC     H1M     H       H       0       -8.762      15.713      54.234      
+IFC     H1P     H       H       0       -5.741      18.359      54.797      
+IFC     H1O     H       H       0       -6.078      16.387      51.299      
+IFC     HN1T    H       H       0       -9.990      15.209      52.334      
+IFC     H1N     H       H       0       -8.704      12.090      51.669      
+IFC     H1K     H       H       0       -11.936     14.468      51.109      
+IFC     H1J     H       H       0       -13.155     12.648      50.355      
+IFC     H1B     H       H       0       -11.959     9.537       49.463      
+IFC     H1BA    H       H       0       -13.273     10.413      49.561      
+IFC     H1BB    H       H       0       -12.798     9.558       50.807      
+IFC     HN1U    H       H       0       -9.193      9.727       50.203      
+IFC     H1I     H       H       0       -9.684      6.014       52.567      
+IFC     H1H     H       H       0       -8.096      4.655       51.193      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IFC         C1A         C1Y      SINGLE       n     1.495  0.0100     1.495  0.0100
+IFC         C1Y         C1Q      DOUBLE       y     1.361  0.0100     1.361  0.0100
+IFC         C1Y         N1S      SINGLE       y     1.377  0.0100     1.377  0.0100
+IFC         C1Q         N2G      SINGLE       y     1.374  0.0119     1.374  0.0119
+IFC         N1S         C1L      DOUBLE       y     1.310  0.0102     1.310  0.0102
+IFC         C1L         N2G      SINGLE       y     1.354  0.0114     1.354  0.0114
+IFC         N2G         C2C      SINGLE       n     1.427  0.0100     1.427  0.0100
+IFC         C2C         C1M      DOUBLE       y     1.390  0.0200     1.390  0.0200
+IFC         C2C         C1P      SINGLE       y     1.382  0.0100     1.382  0.0100
+IFC         C1M         C2B      SINGLE       y     1.389  0.0100     1.389  0.0100
+IFC         C1P         C2D      DOUBLE       y     1.386  0.0100     1.386  0.0100
+IFC         C2D         C2H      SINGLE       n     1.495  0.0100     1.495  0.0100
+IFC         C2D         C1O      SINGLE       y     1.385  0.0100     1.385  0.0100
+IFC         C2H         F1F      SINGLE       n     1.329  0.0183     1.329  0.0183
+IFC         C2H         F1G      SINGLE       n     1.329  0.0183     1.329  0.0183
+IFC         C2H         F1E      SINGLE       n     1.329  0.0183     1.329  0.0183
+IFC         C1O         C2B      DOUBLE       y     1.392  0.0100     1.392  0.0100
+IFC         C2B         C1W      SINGLE       n     1.496  0.0100     1.496  0.0100
+IFC         C1W         O1C      DOUBLE       n     1.226  0.0100     1.226  0.0100
+IFC         C1W         N1T      SINGLE       n     1.351  0.0126     1.351  0.0126
+IFC         N1T         C2A      SINGLE       n     1.411  0.0100     1.411  0.0100
+IFC         C2A         C1N      DOUBLE       y     1.388  0.0100     1.388  0.0100
+IFC         C2A         C1K      SINGLE       y     1.391  0.0100     1.391  0.0100
+IFC         C1N         C2E      SINGLE       y     1.390  0.0100     1.390  0.0100
+IFC         C1K         C1J      DOUBLE       y     1.383  0.0100     1.383  0.0100
+IFC         C1J         C1Z      SINGLE       y     1.393  0.0100     1.393  0.0100
+IFC         C1Z         C1B      SINGLE       n     1.499  0.0139     1.499  0.0139
+IFC         C1Z         C2E      DOUBLE       y     1.401  0.0100     1.401  0.0100
+IFC         C2E         N1U      SINGLE       n     1.412  0.0103     1.412  0.0103
+IFC         N1U         C1X      SINGLE       n     1.357  0.0100     1.357  0.0100
+IFC         C1X         O1D      DOUBLE       n     1.227  0.0100     1.227  0.0100
+IFC         C1X         C2F      SINGLE       n     1.466  0.0100     1.466  0.0100
+IFC         C2F         C1I      DOUBLE       y     1.350  0.0130     1.350  0.0130
+IFC         C2F         O1V      SINGLE       y     1.358  0.0100     1.358  0.0100
+IFC         C1I         C1H      SINGLE       y     1.390  0.0100     1.390  0.0100
+IFC         C1H         N1R      DOUBLE       y     1.294  0.0100     1.294  0.0100
+IFC         N1R         O1V      SINGLE       y     1.414  0.0100     1.414  0.0100
+IFC         C1A         H1A      SINGLE       n     1.089  0.0100     0.970  0.0153
+IFC         C1A        H1AA      SINGLE       n     1.089  0.0100     0.970  0.0153
+IFC         C1A        H1AB      SINGLE       n     1.089  0.0100     0.970  0.0153
+IFC         C1Q         H1Q      SINGLE       n     1.082  0.0130     0.943  0.0200
+IFC         C1L         H1L      SINGLE       n     1.082  0.0130     0.938  0.0161
+IFC         C1M         H1M      SINGLE       n     1.082  0.0130     0.942  0.0102
+IFC         C1P         H1P      SINGLE       n     1.082  0.0130     0.943  0.0110
+IFC         C1O         H1O      SINGLE       n     1.082  0.0130     0.944  0.0147
+IFC         N1T        HN1T      SINGLE       n     1.016  0.0100     0.876  0.0200
+IFC         C1N         H1N      SINGLE       n     1.082  0.0130     0.949  0.0200
+IFC         C1K         H1K      SINGLE       n     1.082  0.0130     0.942  0.0183
+IFC         C1J         H1J      SINGLE       n     1.082  0.0130     0.943  0.0173
+IFC         C1B         H1B      SINGLE       n     1.089  0.0100     0.971  0.0135
+IFC         C1B        H1BA      SINGLE       n     1.089  0.0100     0.971  0.0135
+IFC         C1B        H1BB      SINGLE       n     1.089  0.0100     0.971  0.0135
+IFC         N1U        HN1U      SINGLE       n     1.016  0.0100     0.874  0.0200
+IFC         C1I         H1I      SINGLE       n     1.082  0.0130     0.942  0.0154
+IFC         C1H         H1H      SINGLE       n     1.082  0.0130     0.944  0.0171
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IFC         C1Y         C1A         H1A     109.456    1.50
+IFC         C1Y         C1A        H1AA     109.456    1.50
+IFC         C1Y         C1A        H1AB     109.456    1.50
+IFC         H1A         C1A        H1AA     109.354    1.50
+IFC         H1A         C1A        H1AB     109.354    1.50
+IFC        H1AA         C1A        H1AB     109.354    1.50
+IFC         C1A         C1Y         C1Q     129.215    2.48
+IFC         C1A         C1Y         N1S     121.408    1.50
+IFC         C1Q         C1Y         N1S     109.377    1.50
+IFC         C1Y         C1Q         N2G     107.649    2.30
+IFC         C1Y         C1Q         H1Q     127.364    2.40
+IFC         N2G         C1Q         H1Q     124.986    1.79
+IFC         C1Y         N1S         C1L     105.849    1.50
+IFC         N1S         C1L         N2G     110.820    1.50
+IFC         N1S         C1L         H1L     124.859    1.50
+IFC         N2G         C1L         H1L     124.321    1.50
+IFC         C1Q         N2G         C1L     106.305    1.50
+IFC         C1Q         N2G         C2C     126.423    1.50
+IFC         C1L         N2G         C2C     127.272    1.50
+IFC         N2G         C2C         C1M     119.410    1.50
+IFC         N2G         C2C         C1P     119.410    1.50
+IFC         C1M         C2C         C1P     121.180    1.50
+IFC         C2C         C1M         C2B     119.777    1.50
+IFC         C2C         C1M         H1M     120.306    1.50
+IFC         C2B         C1M         H1M     119.917    1.50
+IFC         C2C         C1P         C2D     120.496    1.50
+IFC         C2C         C1P         H1P     120.123    1.50
+IFC         C2D         C1P         H1P     119.380    1.50
+IFC         C1P         C2D         C2H     120.617    1.50
+IFC         C1P         C2D         C1O     118.563    1.50
+IFC         C2H         C2D         C1O     120.820    1.50
+IFC         C2D         C2H         F1F     112.813    1.50
+IFC         C2D         C2H         F1G     112.813    1.50
+IFC         C2D         C2H         F1E     112.813    1.50
+IFC         F1F         C2H         F1G     105.974    1.50
+IFC         F1F         C2H         F1E     105.974    1.50
+IFC         F1G         C2H         F1E     105.974    1.50
+IFC         C2D         C1O         C2B     120.970    1.50
+IFC         C2D         C1O         H1O     120.064    1.50
+IFC         C2B         C1O         H1O     118.967    1.50
+IFC         C1M         C2B         C1O     119.013    1.50
+IFC         C1M         C2B         C1W     120.212    2.89
+IFC         C1O         C2B         C1W     120.774    2.69
+IFC         C2B         C1W         O1C     120.916    1.50
+IFC         C2B         C1W         N1T     115.948    1.50
+IFC         O1C         C1W         N1T     123.137    1.50
+IFC         C1W         N1T         C2A     126.750    1.50
+IFC         C1W         N1T        HN1T     117.086    2.38
+IFC         C2A         N1T        HN1T     116.164    1.66
+IFC         N1T         C2A         C1N     120.141    3.00
+IFC         N1T         C2A         C1K     119.720    2.93
+IFC         C1N         C2A         C1K     120.139    1.50
+IFC         C2A         C1N         C2E     119.110    1.76
+IFC         C2A         C1N         H1N     120.509    1.50
+IFC         C2E         C1N         H1N     120.382    1.50
+IFC         C2A         C1K         C1J     120.452    1.50
+IFC         C2A         C1K         H1K     119.674    1.50
+IFC         C1J         C1K         H1K     119.874    1.50
+IFC         C1K         C1J         C1Z     121.311    1.50
+IFC         C1K         C1J         H1J     119.359    1.50
+IFC         C1Z         C1J         H1J     119.330    1.50
+IFC         C1J         C1Z         C1B     120.674    1.50
+IFC         C1J         C1Z         C2E     117.677    1.50
+IFC         C1B         C1Z         C2E     121.650    1.50
+IFC         C1Z         C1B         H1B     109.584    1.50
+IFC         C1Z         C1B        H1BA     109.584    1.50
+IFC         C1Z         C1B        H1BB     109.584    1.50
+IFC         H1B         C1B        H1BA     109.348    1.50
+IFC         H1B         C1B        H1BB     109.348    1.50
+IFC        H1BA         C1B        H1BB     109.348    1.50
+IFC         C1N         C2E         C1Z     121.312    1.50
+IFC         C1N         C2E         N1U     120.155    3.00
+IFC         C1Z         C2E         N1U     118.533    1.50
+IFC         C2E         N1U         C1X     127.121    2.35
+IFC         C2E         N1U        HN1U     116.378    2.05
+IFC         C1X         N1U        HN1U     116.501    1.81
+IFC         N1U         C1X         O1D     124.733    1.50
+IFC         N1U         C1X         C2F     114.341    1.53
+IFC         O1D         C1X         C2F     120.926    1.50
+IFC         C1X         C2F         C1I     132.982    1.84
+IFC         C1X         C2F         O1V     117.477    3.00
+IFC         C1I         C2F         O1V     109.542    1.50
+IFC         C2F         C1I         C1H     107.785    2.27
+IFC         C2F         C1I         H1I     125.647    1.50
+IFC         C1H         C1I         H1I     126.568    1.50
+IFC         C1I         C1H         N1R     108.733    2.56
+IFC         C1I         C1H         H1H     126.313    2.10
+IFC         N1R         C1H         H1H     124.955    1.50
+IFC         C1H         N1R         O1V     105.630    1.50
+IFC         C2F         O1V         N1R     108.311    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IFC             sp2_sp3_1         C1Q         C1Y         C1A         H1A     150.000    10.0     6
+IFC              const_55         C2D         C1O         C2B         C1W     180.000    10.0     2
+IFC             sp2_sp2_7         O1C         C1W         C2B         C1M       0.000     5.0     2
+IFC            sp2_sp2_11         O1C         C1W         N1T         C2A       0.000     5.0     2
+IFC            sp2_sp2_13         C1N         C2A         N1T         C1W     180.000     5.0     2
+IFC              const_13         C2E         C1N         C2A         N1T     180.000    10.0     2
+IFC              const_73         C1J         C1K         C2A         N1T     180.000    10.0     2
+IFC              const_33         N2G         C1Q         C1Y         C1A     180.000    10.0     2
+IFC              const_67         C1A         C1Y         N1S         C1L     180.000    10.0     2
+IFC              const_17         C2A         C1N         C2E         N1U     180.000    10.0     2
+IFC              const_28         C1Z         C1J         C1K         C2A       0.000    10.0     2
+IFC              const_25         C1K         C1J         C1Z         C1B     180.000    10.0     2
+IFC            sp2_sp3_13         C1J         C1Z         C1B         H1B     150.000    10.0     6
+IFC              const_23         C1B         C1Z         C2E         N1U       0.000    10.0     2
+IFC            sp2_sp2_17         C1N         C2E         N1U         C1X     180.000     5.0     2
+IFC            sp2_sp2_23         O1D         C1X         N1U         C2E       0.000     5.0     2
+IFC            sp2_sp2_25         N1U         C1X         C2F         C1I     180.000     5.0     2
+IFC       const_sp2_sp2_2         C1H         C1I         C2F         C1X     180.000     5.0     2
+IFC              const_77         C1X         C2F         O1V         N1R     180.000    10.0     2
+IFC              const_36         C1Y         C1Q         N2G         C1L       0.000    10.0     2
+IFC       const_sp2_sp2_5         N1R         C1H         C1I         C2F       0.000     5.0     2
+IFC       const_sp2_sp2_9         C1I         C1H         N1R         O1V       0.000     5.0     2
+IFC              const_11         C1H         N1R         O1V         C2F       0.000    10.0     2
+IFC              const_44         N2G         C1L         N1S         C1Y       0.000    10.0     2
+IFC              const_40         N1S         C1L         N2G         C1Q       0.000    10.0     2
+IFC             sp2_sp2_1         C1M         C2C         N2G         C1Q     180.000     5.0     2
+IFC              const_47         C2B         C1M         C2C         N2G     180.000    10.0     2
+IFC              const_69         C2D         C1P         C2C         N2G     180.000    10.0     2
+IFC              const_51         C2C         C1M         C2B         C1W     180.000    10.0     2
+IFC              const_63         C2C         C1P         C2D         C2H     180.000    10.0     2
+IFC             sp2_sp3_7         C1P         C2D         C2H         F1F     150.000    10.0     6
+IFC              const_59         C2B         C1O         C2D         C2H     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IFC    chir_1    C2H    F1F    F1G    F1E    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IFC    plan-1         C1M   0.020
+IFC    plan-1         C1O   0.020
+IFC    plan-1         C1P   0.020
+IFC    plan-1         C1W   0.020
+IFC    plan-1         C2B   0.020
+IFC    plan-1         C2C   0.020
+IFC    plan-1         C2D   0.020
+IFC    plan-1         C2H   0.020
+IFC    plan-1         H1M   0.020
+IFC    plan-1         H1O   0.020
+IFC    plan-1         H1P   0.020
+IFC    plan-1         N2G   0.020
+IFC    plan-2         C1B   0.020
+IFC    plan-2         C1J   0.020
+IFC    plan-2         C1K   0.020
+IFC    plan-2         C1N   0.020
+IFC    plan-2         C1Z   0.020
+IFC    plan-2         C2A   0.020
+IFC    plan-2         C2E   0.020
+IFC    plan-2         H1J   0.020
+IFC    plan-2         H1K   0.020
+IFC    plan-2         H1N   0.020
+IFC    plan-2         N1T   0.020
+IFC    plan-2         N1U   0.020
+IFC    plan-3         C1A   0.020
+IFC    plan-3         C1L   0.020
+IFC    plan-3         C1Q   0.020
+IFC    plan-3         C1Y   0.020
+IFC    plan-3         C2C   0.020
+IFC    plan-3         H1L   0.020
+IFC    plan-3         H1Q   0.020
+IFC    plan-3         N1S   0.020
+IFC    plan-3         N2G   0.020
+IFC    plan-4         C1H   0.020
+IFC    plan-4         C1I   0.020
+IFC    plan-4         C1X   0.020
+IFC    plan-4         C2F   0.020
+IFC    plan-4         H1H   0.020
+IFC    plan-4         H1I   0.020
+IFC    plan-4         N1R   0.020
+IFC    plan-4         O1V   0.020
+IFC    plan-5         C1W   0.020
+IFC    plan-5         C2B   0.020
+IFC    plan-5         N1T   0.020
+IFC    plan-5         O1C   0.020
+IFC    plan-6         C1W   0.020
+IFC    plan-6         C2A   0.020
+IFC    plan-6        HN1T   0.020
+IFC    plan-6         N1T   0.020
+IFC    plan-7         C1X   0.020
+IFC    plan-7         C2E   0.020
+IFC    plan-7        HN1U   0.020
+IFC    plan-7         N1U   0.020
+IFC    plan-8         C1X   0.020
+IFC    plan-8         C2F   0.020
+IFC    plan-8         N1U   0.020
+IFC    plan-8         O1D   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IFC           SMILES              ACDLabs 10.04                                                                                                    O=C(Nc3cc(NC(=O)c2cc(n1cc(nc1)C)cc(c2)C(F)(F)F)ccc3C)c4oncc4
+IFC SMILES_CANONICAL               CACTVS 3.341                                                                                                  Cc1cn(cn1)c2cc(cc(c2)C(F)(F)F)C(=O)Nc3ccc(C)c(NC(=O)c4oncc4)c3
+IFC           SMILES               CACTVS 3.341                                                                                                  Cc1cn(cn1)c2cc(cc(c2)C(F)(F)F)C(=O)Nc3ccc(C)c(NC(=O)c4oncc4)c3
+IFC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                    Cc1ccc(cc1NC(=O)c2ccno2)NC(=O)c3cc(cc(c3)n4cc(nc4)C)C(F)(F)F
+IFC           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                    Cc1ccc(cc1NC(=O)c2ccno2)NC(=O)c3cc(cc(c3)n4cc(nc4)C)C(F)(F)F
+IFC            InChI                InChI  1.03 InChI=1S/C23H18F3N5O3/c1-13-3-4-17(10-19(13)30-22(33)20-5-6-28-34-20)29-21(32)15-7-16(23(24,25)26)9-18(8-15)31-11-14(2)27-12-31/h3-12H,1-2H3,(H,29,32)(H,30,33)
+IFC         InChIKey                InChI  1.03                                                                                                                                     IYUFHBXMTTXZBE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IFC acedrg               243         "dictionary generator"                  
+IFC acedrg_database      11          "data source"                           
+IFC rdkit                2017.03.2   "Chemoinformatics tool"
+IFC refmac5              5.8.0238    "optimization tool"                     

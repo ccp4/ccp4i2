@@ -1,0 +1,465 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PQN     PQN      PHYLLOQUINONE     NON-POLYMER     79     33     .     
+#
+data_comp_PQN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PQN     C1      C       CR6     0       90.415      124.405     66.448      
+PQN     O1      O       O       0       90.417      123.891     67.567      
+PQN     C2      C       CR6     0       89.609      125.639     66.198      
+PQN     C2M     C       CH3     0       88.916      126.248     67.386      
+PQN     C3      C       CR6     0       89.505      126.150     64.887      
+PQN     C4      C       CR6     0       90.332      125.557     63.785      
+PQN     O4      O       O       0       90.301      126.055     62.660      
+PQN     C5      C       CR66    0       91.183      124.368     64.061      
+PQN     C6      C       CR16    0       91.947      123.799     63.037      
+PQN     C7      C       CR16    0       92.739      122.695     63.290      
+PQN     C8      C       CR16    0       92.780      122.142     64.568      
+PQN     C9      C       CR16    0       92.029      122.695     65.589      
+PQN     C10     C       CR66    0       91.223      123.812     65.346      
+PQN     C11     C       CH2     0       88.605      127.322     64.546      
+PQN     C12     C       C1      0       89.299      128.654     64.663      
+PQN     C13     C       C       0       89.475      129.591     63.734      
+PQN     C14     C       CH3     0       88.917      129.542     62.337      
+PQN     C15     C       CH2     0       90.296      130.818     64.028      
+PQN     C16     C       CH2     0       89.473      131.990     64.470      
+PQN     C17     C       CH2     0       88.802      131.803     65.822      
+PQN     C18     C       CH1     0       88.165      133.059     66.430      
+PQN     C19     C       CH3     0       87.955      132.909     67.932      
+PQN     C20     C       CH2     0       86.860      133.429     65.714      
+PQN     C21     C       CH2     0       86.293      134.787     66.046      
+PQN     C22     C       CH2     0       85.162      135.213     65.133      
+PQN     C23     C       CH1     0       84.478      136.545     65.474      
+PQN     C24     C       CH3     0       85.444      137.717     65.372      
+PQN     C25     C       CH2     0       83.785      136.502     66.839      
+PQN     C26     C       CH2     0       82.747      137.569     67.078      
+PQN     C27     C       CH2     0       82.052      137.460     68.413      
+PQN     C28     C       CH1     0       80.897      138.437     68.638      
+PQN     C29     C       CH3     0       80.057      138.032     69.839      
+PQN     C30     C       CH3     0       81.402      139.862     68.801      
+PQN     H2M1    H       H       0       88.748      127.188     67.230      
+PQN     H2M2    H       H       0       89.475      126.159     68.172      
+PQN     H2M3    H       H       0       88.075      125.792     67.539      
+PQN     H6      H       H       0       91.925      124.167     62.172      
+PQN     H7      H       H       0       93.253      122.316     62.596      
+PQN     H8      H       H       0       93.321      121.388     64.738      
+PQN     H9      H       H       0       92.063      122.315     66.448      
+PQN     H111    H       H       0       87.825      127.315     65.136      
+PQN     H112    H       H       0       88.268      127.205     63.638      
+PQN     H12     H       H       0       89.653      128.854     65.517      
+PQN     H141    H       H       0       88.108      129.007     62.320      
+PQN     H142    H       H       0       89.574      129.152     61.738      
+PQN     H143    H       H       0       88.708      130.443     62.041      
+PQN     H151    H       H       0       90.794      131.065     63.220      
+PQN     H152    H       H       0       90.953      130.606     64.725      
+PQN     H161    H       H       0       88.785      132.159     63.794      
+PQN     H162    H       H       0       90.052      132.780     64.510      
+PQN     H171    H       H       0       89.471      131.458     66.451      
+PQN     H172    H       H       0       88.103      131.122     65.731      
+PQN     H18     H       H       0       88.798      133.805     66.282      
+PQN     H191    H       H       0       87.677      133.761     68.310      
+PQN     H192    H       H       0       88.786      132.628     68.353      
+PQN     H193    H       H       0       87.267      132.242     68.099      
+PQN     H201    H       H       0       86.186      132.751     65.934      
+PQN     H202    H       H       0       87.014      133.390     64.747      
+PQN     H211    H       H       0       87.014      135.450     65.991      
+PQN     H212    H       H       0       85.969      134.774     66.971      
+PQN     H221    H       H       0       84.480      134.508     65.140      
+PQN     H222    H       H       0       85.513      135.274     64.219      
+PQN     H23     H       H       0       83.768      136.680     64.799      
+PQN     H241    H       H       0       84.948      138.553     65.412      
+PQN     H242    H       H       0       85.927      137.669     64.529      
+PQN     H243    H       H       0       86.078      137.682     66.110      
+PQN     H251    H       H       0       84.472      136.577     67.536      
+PQN     H252    H       H       0       83.356      135.625     66.940      
+PQN     H261    H       H       0       82.073      137.519     66.367      
+PQN     H262    H       H       0       83.178      138.448     67.018      
+PQN     H271    H       H       0       82.717      137.601     69.121      
+PQN     H272    H       H       0       81.707      136.547     68.508      
+PQN     H28     H       H       0       80.317      138.409     67.837      
+PQN     H291    H       H       0       79.334      138.671     69.961      
+PQN     H292    H       H       0       80.615      138.018     70.636      
+PQN     H293    H       H       0       79.683      137.146     69.691      
+PQN     H301    H       H       0       81.798      140.164     67.966      
+PQN     H302    H       H       0       82.073      139.890     69.506      
+PQN     H303    H       H       0       80.660      140.445     69.038      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PQN          C1          O1      DOUBLE       n     1.229  0.0101     1.229  0.0101
+PQN          C1          C2      SINGLE       n     1.485  0.0118     1.485  0.0118
+PQN          C1         C10      SINGLE       n     1.484  0.0102     1.484  0.0102
+PQN          C2         C2M      SINGLE       n     1.499  0.0100     1.499  0.0100
+PQN          C2          C3      DOUBLE       n     1.369  0.0200     1.369  0.0200
+PQN          C3          C4      SINGLE       n     1.480  0.0186     1.480  0.0186
+PQN          C3         C11      SINGLE       n     1.512  0.0100     1.512  0.0100
+PQN          C4          O4      DOUBLE       n     1.229  0.0101     1.229  0.0101
+PQN          C4          C5      SINGLE       n     1.484  0.0102     1.484  0.0102
+PQN          C5          C6      SINGLE       y     1.392  0.0100     1.392  0.0100
+PQN          C5         C10      DOUBLE       y     1.396  0.0100     1.396  0.0100
+PQN          C6          C7      DOUBLE       y     1.380  0.0100     1.380  0.0100
+PQN          C7          C8      SINGLE       y     1.389  0.0136     1.389  0.0136
+PQN          C8          C9      DOUBLE       y     1.380  0.0100     1.380  0.0100
+PQN          C9         C10      SINGLE       y     1.392  0.0100     1.392  0.0100
+PQN         C11         C12      SINGLE       n     1.504  0.0100     1.504  0.0100
+PQN         C12         C13      DOUBLE       n     1.323  0.0117     1.323  0.0117
+PQN         C13         C14      SINGLE       n     1.499  0.0156     1.499  0.0156
+PQN         C13         C15      SINGLE       n     1.502  0.0126     1.502  0.0126
+PQN         C15         C16      SINGLE       n     1.497  0.0200     1.497  0.0200
+PQN         C16         C17      SINGLE       n     1.519  0.0164     1.519  0.0164
+PQN         C17         C18      SINGLE       n     1.530  0.0200     1.530  0.0200
+PQN         C18         C19      SINGLE       n     1.521  0.0151     1.521  0.0151
+PQN         C18         C20      SINGLE       n     1.530  0.0200     1.530  0.0200
+PQN         C20         C21      SINGLE       n     1.509  0.0200     1.509  0.0200
+PQN         C21         C22      SINGLE       n     1.509  0.0200     1.509  0.0200
+PQN         C22         C23      SINGLE       n     1.530  0.0200     1.530  0.0200
+PQN         C23         C24      SINGLE       n     1.521  0.0151     1.521  0.0151
+PQN         C23         C25      SINGLE       n     1.530  0.0200     1.530  0.0200
+PQN         C25         C26      SINGLE       n     1.509  0.0200     1.509  0.0200
+PQN         C26         C27      SINGLE       n     1.509  0.0200     1.509  0.0200
+PQN         C27         C28      SINGLE       n     1.529  0.0177     1.529  0.0177
+PQN         C28         C29      SINGLE       n     1.521  0.0151     1.521  0.0151
+PQN         C28         C30      SINGLE       n     1.521  0.0151     1.521  0.0151
+PQN         C2M        H2M1      SINGLE       n     1.089  0.0100     0.969  0.0130
+PQN         C2M        H2M2      SINGLE       n     1.089  0.0100     0.969  0.0130
+PQN         C2M        H2M3      SINGLE       n     1.089  0.0100     0.969  0.0130
+PQN          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0157
+PQN          C7          H7      SINGLE       n     1.082  0.0130     0.943  0.0198
+PQN          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0198
+PQN          C9          H9      SINGLE       n     1.082  0.0130     0.941  0.0157
+PQN         C11        H111      SINGLE       n     1.089  0.0100     0.980  0.0173
+PQN         C11        H112      SINGLE       n     1.089  0.0100     0.980  0.0173
+PQN         C12         H12      SINGLE       n     1.082  0.0130     0.946  0.0103
+PQN         C14        H141      SINGLE       n     1.089  0.0100     0.971  0.0140
+PQN         C14        H142      SINGLE       n     1.089  0.0100     0.971  0.0140
+PQN         C14        H143      SINGLE       n     1.089  0.0100     0.971  0.0140
+PQN         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0185
+PQN         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0185
+PQN         C16        H161      SINGLE       n     1.089  0.0100     0.980  0.0160
+PQN         C16        H162      SINGLE       n     1.089  0.0100     0.980  0.0160
+PQN         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0160
+PQN         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0160
+PQN         C18         H18      SINGLE       n     1.089  0.0100     0.989  0.0162
+PQN         C19        H191      SINGLE       n     1.089  0.0100     0.973  0.0146
+PQN         C19        H192      SINGLE       n     1.089  0.0100     0.973  0.0146
+PQN         C19        H193      SINGLE       n     1.089  0.0100     0.973  0.0146
+PQN         C20        H201      SINGLE       n     1.089  0.0100     0.981  0.0160
+PQN         C20        H202      SINGLE       n     1.089  0.0100     0.981  0.0160
+PQN         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0163
+PQN         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0163
+PQN         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0160
+PQN         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0160
+PQN         C23         H23      SINGLE       n     1.089  0.0100     0.989  0.0162
+PQN         C24        H241      SINGLE       n     1.089  0.0100     0.973  0.0146
+PQN         C24        H242      SINGLE       n     1.089  0.0100     0.973  0.0146
+PQN         C24        H243      SINGLE       n     1.089  0.0100     0.973  0.0146
+PQN         C25        H251      SINGLE       n     1.089  0.0100     0.981  0.0160
+PQN         C25        H252      SINGLE       n     1.089  0.0100     0.981  0.0160
+PQN         C26        H261      SINGLE       n     1.089  0.0100     0.981  0.0163
+PQN         C26        H262      SINGLE       n     1.089  0.0100     0.981  0.0163
+PQN         C27        H271      SINGLE       n     1.089  0.0100     0.981  0.0160
+PQN         C27        H272      SINGLE       n     1.089  0.0100     0.981  0.0160
+PQN         C28         H28      SINGLE       n     1.089  0.0100     0.989  0.0162
+PQN         C29        H291      SINGLE       n     1.089  0.0100     0.973  0.0146
+PQN         C29        H292      SINGLE       n     1.089  0.0100     0.973  0.0146
+PQN         C29        H293      SINGLE       n     1.089  0.0100     0.973  0.0146
+PQN         C30        H301      SINGLE       n     1.089  0.0100     0.973  0.0146
+PQN         C30        H302      SINGLE       n     1.089  0.0100     0.973  0.0146
+PQN         C30        H303      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PQN          O1          C1          C2     119.936    1.50
+PQN          O1          C1         C10     120.541    1.50
+PQN          C2          C1         C10     119.523    1.50
+PQN          C1          C2         C2M     117.824    1.50
+PQN          C1          C2          C3     119.679    1.50
+PQN         C2M          C2          C3     122.497    2.03
+PQN          C2         C2M        H2M1     109.593    1.50
+PQN          C2         C2M        H2M2     109.593    1.50
+PQN          C2         C2M        H2M3     109.593    1.50
+PQN        H2M1         C2M        H2M2     109.339    1.50
+PQN        H2M1         C2M        H2M3     109.339    1.50
+PQN        H2M2         C2M        H2M3     109.339    1.50
+PQN          C2          C3          C4     119.679    1.50
+PQN          C2          C3         C11     120.791    1.70
+PQN          C4          C3         C11     119.530    1.80
+PQN          C3          C4          O4     119.936    1.50
+PQN          C3          C4          C5     119.523    1.50
+PQN          O4          C4          C5     120.541    1.50
+PQN          C4          C5          C6     119.428    1.50
+PQN          C4          C5         C10     120.798    1.50
+PQN          C6          C5         C10     119.773    1.50
+PQN          C5          C6          C7     120.102    1.50
+PQN          C5          C6          H6     119.921    1.50
+PQN          C7          C6          H6     119.977    1.50
+PQN          C6          C7          C8     120.125    1.50
+PQN          C6          C7          H7     119.901    1.50
+PQN          C8          C7          H7     119.974    1.50
+PQN          C7          C8          C9     120.125    1.50
+PQN          C7          C8          H8     119.974    1.50
+PQN          C9          C8          H8     119.901    1.50
+PQN          C8          C9         C10     120.102    1.50
+PQN          C8          C9          H9     119.977    1.50
+PQN         C10          C9          H9     119.921    1.50
+PQN          C1         C10          C5     120.798    1.50
+PQN          C1         C10          C9     119.428    1.50
+PQN          C5         C10          C9     119.773    1.50
+PQN          C3         C11         C12     113.484    1.50
+PQN          C3         C11        H111     108.683    1.50
+PQN          C3         C11        H112     108.683    1.50
+PQN         C12         C11        H111     108.894    1.50
+PQN         C12         C11        H112     108.894    1.50
+PQN        H111         C11        H112     107.186    1.50
+PQN         C11         C12         C13     127.247    1.50
+PQN         C11         C12         H12     116.515    1.50
+PQN         C13         C12         H12     116.224    1.50
+PQN         C12         C13         C14     122.925    2.01
+PQN         C12         C13         C15     121.648    1.82
+PQN         C14         C13         C15     115.427    1.50
+PQN         C13         C14        H141     109.541    1.50
+PQN         C13         C14        H142     109.541    1.50
+PQN         C13         C14        H143     109.541    1.50
+PQN        H141         C14        H142     109.342    1.50
+PQN        H141         C14        H143     109.342    1.50
+PQN        H142         C14        H143     109.342    1.50
+PQN         C13         C15         C16     113.243    1.53
+PQN         C13         C15        H151     108.816    1.50
+PQN         C13         C15        H152     108.816    1.50
+PQN         C16         C15        H151     109.153    1.50
+PQN         C16         C15        H152     109.153    1.50
+PQN        H151         C15        H152     107.710    1.94
+PQN         C15         C16         C17     113.314    2.25
+PQN         C15         C16        H161     108.548    1.50
+PQN         C15         C16        H162     108.548    1.50
+PQN         C17         C16        H161     108.762    1.50
+PQN         C17         C16        H162     108.762    1.50
+PQN        H161         C16        H162     107.646    1.50
+PQN         C16         C17         C18     115.586    1.50
+PQN         C16         C17        H171     108.469    1.50
+PQN         C16         C17        H172     108.469    1.50
+PQN         C18         C17        H171     108.410    1.50
+PQN         C18         C17        H172     108.410    1.50
+PQN        H171         C17        H172     107.657    1.50
+PQN         C17         C18         C19     111.605    1.50
+PQN         C17         C18         C20     111.631    1.85
+PQN         C17         C18         H18     107.002    1.69
+PQN         C19         C18         C20     111.605    1.50
+PQN         C19         C18         H18     108.064    1.50
+PQN         C20         C18         H18     107.002    1.69
+PQN         C18         C19        H191     109.656    1.50
+PQN         C18         C19        H192     109.656    1.50
+PQN         C18         C19        H193     109.656    1.50
+PQN        H191         C19        H192     109.411    1.50
+PQN        H191         C19        H193     109.411    1.50
+PQN        H192         C19        H193     109.411    1.50
+PQN         C18         C20         C21     115.586    1.50
+PQN         C18         C20        H201     108.410    1.50
+PQN         C18         C20        H202     108.410    1.50
+PQN         C21         C20        H201     108.469    1.50
+PQN         C21         C20        H202     108.469    1.50
+PQN        H201         C20        H202     107.657    1.50
+PQN         C20         C21         C22     114.183    2.57
+PQN         C20         C21        H211     108.762    1.50
+PQN         C20         C21        H212     108.762    1.50
+PQN         C22         C21        H211     108.762    1.50
+PQN         C22         C21        H212     108.762    1.50
+PQN        H211         C21        H212     107.646    1.50
+PQN         C21         C22         C23     115.586    1.50
+PQN         C21         C22        H221     108.469    1.50
+PQN         C21         C22        H222     108.469    1.50
+PQN         C23         C22        H221     108.410    1.50
+PQN         C23         C22        H222     108.410    1.50
+PQN        H221         C22        H222     107.657    1.50
+PQN         C22         C23         C24     111.605    1.50
+PQN         C22         C23         C25     111.631    1.85
+PQN         C22         C23         H23     107.002    1.69
+PQN         C24         C23         C25     111.605    1.50
+PQN         C24         C23         H23     108.064    1.50
+PQN         C25         C23         H23     107.002    1.69
+PQN         C23         C24        H241     109.656    1.50
+PQN         C23         C24        H242     109.656    1.50
+PQN         C23         C24        H243     109.656    1.50
+PQN        H241         C24        H242     109.411    1.50
+PQN        H241         C24        H243     109.411    1.50
+PQN        H242         C24        H243     109.411    1.50
+PQN         C23         C25         C26     115.586    1.50
+PQN         C23         C25        H251     108.410    1.50
+PQN         C23         C25        H252     108.410    1.50
+PQN         C26         C25        H251     108.469    1.50
+PQN         C26         C25        H252     108.469    1.50
+PQN        H251         C25        H252     107.657    1.50
+PQN         C25         C26         C27     114.183    2.57
+PQN         C25         C26        H261     108.762    1.50
+PQN         C25         C26        H262     108.762    1.50
+PQN         C27         C26        H261     108.762    1.50
+PQN         C27         C26        H262     108.762    1.50
+PQN        H261         C26        H262     107.646    1.50
+PQN         C26         C27         C28     115.585    1.50
+PQN         C26         C27        H271     108.469    1.50
+PQN         C26         C27        H272     108.469    1.50
+PQN         C28         C27        H271     108.407    1.50
+PQN         C28         C27        H272     108.407    1.50
+PQN        H271         C27        H272     107.657    1.50
+PQN         C27         C28         C29     111.368    1.50
+PQN         C27         C28         C30     111.368    1.50
+PQN         C27         C28         H28     107.933    1.50
+PQN         C29         C28         C30     110.507    1.50
+PQN         C29         C28         H28     108.052    1.50
+PQN         C30         C28         H28     108.052    1.50
+PQN         C28         C29        H291     109.488    1.50
+PQN         C28         C29        H292     109.488    1.50
+PQN         C28         C29        H293     109.488    1.50
+PQN        H291         C29        H292     109.411    1.50
+PQN        H291         C29        H293     109.411    1.50
+PQN        H292         C29        H293     109.411    1.50
+PQN         C28         C30        H301     109.488    1.50
+PQN         C28         C30        H302     109.488    1.50
+PQN         C28         C30        H303     109.488    1.50
+PQN        H301         C30        H302     109.411    1.50
+PQN        H301         C30        H303     109.411    1.50
+PQN        H302         C30        H303     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PQN            sp2_sp2_19          O1          C1         C10          C5     180.000     5.0     2
+PQN             sp2_sp2_4          O1          C1          C2         C2M       0.000     5.0     2
+PQN              const_17          C7          C8          C9         C10       0.000    10.0     2
+PQN              const_23          C1         C10          C9          C8     180.000    10.0     2
+PQN            sp2_sp3_14         C13         C12         C11          C3     120.000    10.0     6
+PQN            sp2_sp2_22         C11         C12         C13         C14       0.000     5.0     2
+PQN            sp2_sp3_19         C12         C13         C14        H141       0.000    10.0     6
+PQN            sp2_sp3_26         C12         C13         C15         C16     120.000    10.0     6
+PQN             sp3_sp3_1         C13         C15         C16         C17     180.000    10.0     3
+PQN            sp3_sp3_10         C15         C16         C17         C18     180.000    10.0     3
+PQN            sp3_sp3_19         C16         C17         C18         C19     180.000    10.0     3
+PQN            sp3_sp3_28         C17         C18         C19        H191     180.000    10.0     3
+PQN            sp3_sp3_37         C17         C18         C20         C21     180.000    10.0     3
+PQN            sp3_sp3_46         C18         C20         C21         C22     180.000    10.0     3
+PQN            sp3_sp3_55         C20         C21         C22         C23     180.000    10.0     3
+PQN            sp3_sp3_64         C21         C22         C23         C24     180.000    10.0     3
+PQN            sp3_sp3_73         C22         C23         C24        H241     180.000    10.0     3
+PQN            sp3_sp3_82         C22         C23         C25         C26     180.000    10.0     3
+PQN            sp3_sp3_91         C23         C25         C26         C27     180.000    10.0     3
+PQN           sp3_sp3_100         C25         C26         C27         C28     180.000    10.0     3
+PQN           sp3_sp3_110         C26         C27         C28         C29     -60.000    10.0     3
+PQN             sp2_sp3_1          C1          C2         C2M        H2M1     150.000    10.0     6
+PQN             sp2_sp2_8         C2M          C2          C3         C11       0.000     5.0     2
+PQN           sp3_sp3_118         C27         C28         C29        H291     180.000    10.0     3
+PQN           sp3_sp3_130         C27         C28         C30        H301      60.000    10.0     3
+PQN             sp2_sp3_8          C2          C3         C11         C12     -90.000    10.0     6
+PQN            sp2_sp2_12         C11          C3          C4          O4       0.000     5.0     2
+PQN            sp2_sp2_16          O4          C4          C5          C6       0.000     5.0     2
+PQN       const_sp2_sp2_1          C1         C10          C5          C4       0.000     5.0     2
+PQN       const_sp2_sp2_7          C4          C5          C6          C7     180.000     5.0     2
+PQN       const_sp2_sp2_9          C5          C6          C7          C8       0.000     5.0     2
+PQN              const_13          C6          C7          C8          C9       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PQN    chir_1    C18    C17    C20    C19    negative
+PQN    chir_2    C23    C22    C25    C24    negative
+PQN    chir_3    C28    C27    C29    C30    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PQN    plan-1          C1   0.020
+PQN    plan-1         C10   0.020
+PQN    plan-1          C4   0.020
+PQN    plan-1          C5   0.020
+PQN    plan-1          C6   0.020
+PQN    plan-1          C7   0.020
+PQN    plan-1          C8   0.020
+PQN    plan-1          C9   0.020
+PQN    plan-1          H6   0.020
+PQN    plan-1          H7   0.020
+PQN    plan-1          H8   0.020
+PQN    plan-1          H9   0.020
+PQN    plan-2          C1   0.020
+PQN    plan-2         C10   0.020
+PQN    plan-2          C2   0.020
+PQN    plan-2          O1   0.020
+PQN    plan-3          C1   0.020
+PQN    plan-3          C2   0.020
+PQN    plan-3         C2M   0.020
+PQN    plan-3          C3   0.020
+PQN    plan-4         C11   0.020
+PQN    plan-4          C2   0.020
+PQN    plan-4          C3   0.020
+PQN    plan-4          C4   0.020
+PQN    plan-5          C3   0.020
+PQN    plan-5          C4   0.020
+PQN    plan-5          C5   0.020
+PQN    plan-5          O4   0.020
+PQN    plan-6         C11   0.020
+PQN    plan-6         C12   0.020
+PQN    plan-6         C13   0.020
+PQN    plan-6         H12   0.020
+PQN    plan-7         C12   0.020
+PQN    plan-7         C13   0.020
+PQN    plan-7         C14   0.020
+PQN    plan-7         C15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PQN           SMILES              ACDLabs 10.04                                                                                                                   O=C2c1c(cccc1)C(=O)C(=C2C)C\C=C(/C)CCCC(C)CCCC(C)CCCC(C)C
+PQN SMILES_CANONICAL               CACTVS 3.341                                                                                                           CC(C)CCC[C@@H](C)CCC[C@@H](C)CCCC(/C)=C/CC1=C(C)C(=O)c2ccccc2C1=O
+PQN           SMILES               CACTVS 3.341                                                                                                                 CC(C)CCC[CH](C)CCC[CH](C)CCCC(C)=CCC1=C(C)C(=O)c2ccccc2C1=O
+PQN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                            CC1=C(C(=O)c2ccccc2C1=O)C\C=C(/C)\CCC[C@H](C)CCC[C@H](C)CCCC(C)C
+PQN           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                       CC1=C(C(=O)c2ccccc2C1=O)CC=C(C)CCCC(C)CCCC(C)CCCC(C)C
+PQN            InChI                InChI  1.03 InChI=1S/C31H46O2/c1-22(2)12-9-13-23(3)14-10-15-24(4)16-11-17-25(5)20-21-27-26(6)30(32)28-18-7-8-19-29(28)31(27)33/h7-8,18-20,22-24H,9-17,21H2,1-6H3/b25-20+/t23-,24-/m1/s1
+PQN         InChIKey                InChI  1.03                                                                                                                                                 MBWXNTAXLNYFJB-NKFFZRIASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PQN acedrg               243         "dictionary generator"                  
+PQN acedrg_database      11          "data source"                           
+PQN rdkit                2017.03.2   "Chemoinformatics tool"
+PQN refmac5              5.8.0238    "optimization tool"                     

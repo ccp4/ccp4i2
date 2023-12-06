@@ -1,0 +1,251 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PFT     PFT      4-(1,3-dihydro-2H-isoindol-2-ylcarbonyl)benzene-1,3-diol     NON-POLYMER     32     19     .     
+#
+data_comp_PFT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PFT     N1      N       NR5     0       47.487      72.303      63.849      
+PFT     C2      C       C       0       47.113      72.260      65.152      
+PFT     C3      C       CH2     0       47.870      73.584      63.221      
+PFT     C4      C       CH2     0       47.584      71.156      62.920      
+PFT     C5      C       CR6     0       46.632      70.962      65.733      
+PFT     O6      O       O       0       47.139      73.268      65.859      
+PFT     C7      C       CR56    0       48.196      73.179      61.814      
+PFT     C8      C       CR56    0       48.035      71.805      61.643      
+PFT     C9      C       CR6     0       47.339      70.285      66.747      
+PFT     C10     C       CR16    0       45.410      70.421      65.291      
+PFT     C11     C       CR16    0       48.610      73.985      60.753      
+PFT     C12     C       CR16    0       48.284      71.210      60.405      
+PFT     C13     C       CR16    0       46.849      69.096      67.271      
+PFT     O14     O       OH1     0       48.530      70.778      67.228      
+PFT     C15     C       CR16    0       44.933      69.243      65.809      
+PFT     C16     C       CR16    0       48.857      73.385      59.523      
+PFT     C17     C       CR16    0       48.697      72.020      59.352      
+PFT     C18     C       CR6     0       45.652      68.576      66.806      
+PFT     O19     O       OH1     0       45.173      67.398      67.328      
+PFT     H3      H       H       0       47.124      74.233      63.246      
+PFT     H2      H       H       0       48.655      73.985      63.672      
+PFT     H4      H       H       0       46.708      70.710      62.804      
+PFT     H41     H       H       0       48.241      70.488      63.239      
+PFT     H10     H       H       0       44.923      70.861      64.619      
+PFT     H11     H       H       0       48.721      74.923      60.868      
+PFT     H12     H       H       0       48.175      70.272      60.285      
+PFT     H13     H       H       0       47.330      68.646      67.939      
+PFT     HO14    H       H       0       48.685      70.779      68.076      
+PFT     H15     H       H       0       44.120      68.886      65.497      
+PFT     H16     H       H       0       49.138      73.915      58.794      
+PFT     H17     H       H       0       48.870      71.634      58.508      
+PFT     HO19    H       H       0       44.337      67.203      67.266      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PFT          N1          C2      SINGLE       n     1.348  0.0117     1.348  0.0117
+PFT          N1          C3      SINGLE       n     1.475  0.0135     1.475  0.0135
+PFT          N1          C4      SINGLE       n     1.475  0.0135     1.475  0.0135
+PFT          C2          C5      SINGLE       n     1.499  0.0100     1.499  0.0100
+PFT          C2          O6      DOUBLE       n     1.230  0.0100     1.230  0.0100
+PFT          C3          C7      SINGLE       n     1.501  0.0100     1.501  0.0100
+PFT          C4          C8      SINGLE       n     1.501  0.0100     1.501  0.0100
+PFT          C5          C9      DOUBLE       y     1.404  0.0100     1.404  0.0100
+PFT          C5         C10      SINGLE       y     1.400  0.0131     1.400  0.0131
+PFT          C7          C8      DOUBLE       y     1.389  0.0100     1.389  0.0100
+PFT          C7         C11      SINGLE       y     1.391  0.0100     1.391  0.0100
+PFT          C8         C12      SINGLE       y     1.391  0.0100     1.391  0.0100
+PFT          C9         C13      SINGLE       y     1.385  0.0100     1.385  0.0100
+PFT          C9         O14      SINGLE       n     1.374  0.0155     1.374  0.0155
+PFT         C10         C15      DOUBLE       y     1.369  0.0104     1.369  0.0104
+PFT         C11         C16      DOUBLE       y     1.388  0.0101     1.388  0.0101
+PFT         C12         C17      DOUBLE       y     1.388  0.0101     1.388  0.0101
+PFT         C13         C18      DOUBLE       y     1.382  0.0100     1.382  0.0100
+PFT         C15         C18      SINGLE       y     1.396  0.0100     1.396  0.0100
+PFT         C16         C17      SINGLE       y     1.382  0.0104     1.382  0.0104
+PFT         C18         O19      SINGLE       n     1.374  0.0155     1.374  0.0155
+PFT          C3          H3      SINGLE       n     1.089  0.0100     0.990  0.0100
+PFT          C3          H2      SINGLE       n     1.089  0.0100     0.990  0.0100
+PFT          C4          H4      SINGLE       n     1.089  0.0100     0.990  0.0100
+PFT          C4         H41      SINGLE       n     1.089  0.0100     0.990  0.0100
+PFT         C10         H10      SINGLE       n     1.082  0.0130     0.940  0.0176
+PFT         C11         H11      SINGLE       n     1.082  0.0130     0.952  0.0200
+PFT         C12         H12      SINGLE       n     1.082  0.0130     0.952  0.0200
+PFT         C13         H13      SINGLE       n     1.082  0.0130     0.939  0.0167
+PFT         O14        HO14      SINGLE       n     0.966  0.0059     0.861  0.0200
+PFT         C15         H15      SINGLE       n     1.082  0.0130     0.941  0.0179
+PFT         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0193
+PFT         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0193
+PFT         O19        HO19      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PFT          C2          N1          C3     123.418    2.91
+PFT          C2          N1          C4     123.418    2.91
+PFT          C3          N1          C4     113.164    1.70
+PFT          N1          C2          C5     117.576    1.50
+PFT          N1          C2          O6     121.660    1.50
+PFT          C5          C2          O6     120.764    1.50
+PFT          N1          C3          C7     101.401    1.50
+PFT          N1          C3          H3     111.391    1.50
+PFT          N1          C3          H2     111.391    1.50
+PFT          C7          C3          H3     111.477    1.50
+PFT          C7          C3          H2     111.477    1.50
+PFT          H3          C3          H2     108.797    1.63
+PFT          N1          C4          C8     101.401    1.50
+PFT          N1          C4          H4     111.391    1.50
+PFT          N1          C4         H41     111.391    1.50
+PFT          C8          C4          H4     111.477    1.50
+PFT          C8          C4         H41     111.477    1.50
+PFT          H4          C4         H41     108.797    1.63
+PFT          C2          C5          C9     121.949    2.27
+PFT          C2          C5         C10     119.376    2.06
+PFT          C9          C5         C10     118.675    1.50
+PFT          C3          C7          C8     110.047    1.50
+PFT          C3          C7         C11     129.191    1.50
+PFT          C8          C7         C11     120.762    1.50
+PFT          C4          C8          C7     110.047    1.50
+PFT          C4          C8         C12     129.191    1.50
+PFT          C7          C8         C12     120.762    1.50
+PFT          C5          C9         C13     120.293    1.50
+PFT          C5          C9         O14     119.852    3.00
+PFT         C13          C9         O14     119.852    3.00
+PFT          C5         C10         C15     120.642    1.50
+PFT          C5         C10         H10     119.830    1.50
+PFT         C15         C10         H10     119.528    1.50
+PFT          C7         C11         C16     118.162    1.50
+PFT          C7         C11         H11     120.932    1.50
+PFT         C16         C11         H11     120.906    1.50
+PFT          C8         C12         C17     118.162    1.50
+PFT          C8         C12         H12     120.932    1.50
+PFT         C17         C12         H12     120.906    1.50
+PFT          C9         C13         C18     119.957    1.50
+PFT          C9         C13         H13     119.884    1.50
+PFT         C18         C13         H13     120.158    1.50
+PFT          C9         O14        HO14     120.000    3.00
+PFT         C10         C15         C18     119.962    1.50
+PFT         C10         C15         H15     120.100    1.50
+PFT         C18         C15         H15     119.938    1.50
+PFT         C11         C16         C17     121.085    1.50
+PFT         C11         C16         H16     119.493    1.50
+PFT         C17         C16         H16     119.412    1.50
+PFT         C12         C17         C16     121.085    1.50
+PFT         C12         C17         H17     119.493    1.50
+PFT         C16         C17         H17     119.412    1.50
+PFT         C13         C18         C15     120.473    1.50
+PFT         C13         C18         O19     119.764    3.00
+PFT         C15         C18         O19     119.764    3.00
+PFT         C18         O19        HO19     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PFT             sp2_sp2_3          O6          C2          N1          C3       0.000     5.0     2
+PFT             sp2_sp3_4          C2          N1          C3          C7     180.000    10.0     6
+PFT            sp2_sp3_22          C2          N1          C4          C8     180.000    10.0     6
+PFT              const_37          C7         C11         C16         C17       0.000    10.0     2
+PFT              const_29          C8         C12         C17         C16       0.000    10.0     2
+PFT              const_10          C9         C13         C18         O19     180.000    10.0     2
+PFT              const_14         C10         C15         C18         O19     180.000    10.0     2
+PFT              const_33         C11         C16         C17         C12       0.000    10.0     2
+PFT            sp2_sp2_11         C13         C18         O19        HO19     180.000     5.0     2
+PFT             sp2_sp2_7          O6          C2          C5          C9       0.000     5.0     2
+PFT             sp2_sp3_7          C8          C7          C3          N1       0.000    10.0     6
+PFT            sp2_sp3_13          C7          C8          C4          N1       0.000    10.0     6
+PFT       const_sp2_sp2_4          C2          C5          C9         O14       0.000     5.0     2
+PFT              const_42         C15         C10          C5          C2     180.000    10.0     2
+PFT              const_46         C16         C11          C7          C3     180.000    10.0     2
+PFT              const_21          C3          C7          C8          C4       0.000    10.0     2
+PFT              const_26         C17         C12          C8          C4     180.000    10.0     2
+PFT       const_sp2_sp2_6         C18         C13          C9         O14     180.000     5.0     2
+PFT             sp2_sp2_9          C5          C9         O14        HO14     180.000     5.0     2
+PFT              const_17          C5         C10         C15         C18       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PFT    plan-1         C11   0.020
+PFT    plan-1         C12   0.020
+PFT    plan-1         C16   0.020
+PFT    plan-1         C17   0.020
+PFT    plan-1          C3   0.020
+PFT    plan-1          C4   0.020
+PFT    plan-1          C7   0.020
+PFT    plan-1          C8   0.020
+PFT    plan-1         H11   0.020
+PFT    plan-1         H12   0.020
+PFT    plan-1         H16   0.020
+PFT    plan-1         H17   0.020
+PFT    plan-2         C10   0.020
+PFT    plan-2         C13   0.020
+PFT    plan-2         C15   0.020
+PFT    plan-2         C18   0.020
+PFT    plan-2          C2   0.020
+PFT    plan-2          C5   0.020
+PFT    plan-2          C9   0.020
+PFT    plan-2         H10   0.020
+PFT    plan-2         H13   0.020
+PFT    plan-2         H15   0.020
+PFT    plan-2         O14   0.020
+PFT    plan-2         O19   0.020
+PFT    plan-3          C2   0.020
+PFT    plan-3          C3   0.020
+PFT    plan-3          C4   0.020
+PFT    plan-3          N1   0.020
+PFT    plan-4          C2   0.020
+PFT    plan-4          C5   0.020
+PFT    plan-4          N1   0.020
+PFT    plan-4          O6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PFT           SMILES              ACDLabs 11.02                                                                 O=C(c1ccc(O)cc1O)N3Cc2ccccc2C3
+PFT SMILES_CANONICAL               CACTVS 3.352                                                               Oc1ccc(c(O)c1)C(=O)N2Cc3ccccc3C2
+PFT           SMILES               CACTVS 3.352                                                               Oc1ccc(c(O)c1)C(=O)N2Cc3ccccc3C2
+PFT SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                             c1ccc2c(c1)CN(C2)C(=O)c3ccc(cc3O)O
+PFT           SMILES "OpenEye OEToolkits" 1.7.0                                                             c1ccc2c(c1)CN(C2)C(=O)c3ccc(cc3O)O
+PFT            InChI                InChI  1.03 InChI=1S/C15H13NO3/c17-12-5-6-13(14(18)7-12)15(19)16-8-10-3-1-2-4-11(10)9-16/h1-7,17-18H,8-9H2
+PFT         InChIKey                InChI  1.03                                                                    FYANAIGOGAIFAF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PFT acedrg               243         "dictionary generator"                  
+PFT acedrg_database      11          "data source"                           
+PFT rdkit                2017.03.2   "Chemoinformatics tool"
+PFT refmac5              5.8.0238    "optimization tool"                     

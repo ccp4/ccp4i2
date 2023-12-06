@@ -1,0 +1,318 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TMI     TMI      1-[PHENYL-(4-PHENYLPHENYL)-METHYL]IMIDAZOLE     NON-POLYMER     42     24     .     
+#
+data_comp_TMI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TMI     CBB     C       CR16    0       92.179      30.671      13.608      
+TMI     CBC     C       CR16    0       92.687      29.405      13.871      
+TMI     CBD     C       CR16    0       92.330      28.334      13.077      
+TMI     CBE     C       CR16    0       91.465      28.523      12.021      
+TMI     CBF     C       CR16    0       90.952      29.786      11.752      
+TMI     CBA     C       CR6     0       91.300      30.878      12.546      
+TMI     CAA     C       CH1     0       90.761      32.281      12.277      
+TMI     NAB     N       NR5     0       89.359      32.251      11.790      
+TMI     CAF     C       CR15    0       88.258      32.135      12.594      
+TMI     CAE     C       CR15    0       87.186      32.141      11.778      
+TMI     NAD     N       NRD5    0       87.581      32.255      10.473      
+TMI     CAC     C       CR15    0       88.895      32.317      10.514      
+TMI     CCA     C       CR6     0       91.670      33.120      11.380      
+TMI     CCB     C       CR16    0       91.950      34.443      11.705      
+TMI     CCC     C       CR16    0       92.778      35.219      10.905      
+TMI     CCF     C       CR16    0       92.252      32.598      10.228      
+TMI     CCE     C       CR16    0       93.079      33.373      9.427       
+TMI     CCD     C       CR6     0       93.357      34.702      9.747       
+TMI     CDA     C       CR6     0       94.247      35.538      8.897       
+TMI     CDB     C       CR16    0       95.308      36.250      9.459       
+TMI     CDC     C       CR16    0       96.143      37.035      8.673       
+TMI     CDD     C       CR16    0       95.931      37.122      7.312       
+TMI     CDE     C       CR16    0       94.886      36.427      6.734       
+TMI     CDF     C       CR16    0       94.047      35.644      7.518       
+TMI     HBB     H       H       0       92.427      31.398      14.156      
+TMI     HBC     H       H       0       93.278      29.277      14.595      
+TMI     HBD     H       H       0       92.676      27.475      13.258      
+TMI     HBE     H       H       0       91.220      27.791      11.477      
+TMI     HBF     H       H       0       90.364      29.903      11.025      
+TMI     HAA     H       H       0       90.726      32.739      13.152      
+TMI     HAF     H       H       0       88.265      32.068      13.531      
+TMI     HAE     H       H       0       86.289      32.076      12.059      
+TMI     HAC     H       H       0       89.448      32.399      9.757       
+TMI     HCB     H       H       0       91.571      34.821      12.482      
+TMI     HCC     H       H       0       92.950      36.114      11.148      
+TMI     HCF     H       H       0       92.079      31.705      9.981       
+TMI     HCE     H       H       0       93.457      32.993      8.651       
+TMI     HDB     H       H       0       95.461      36.196      10.390      
+TMI     HDC     H       H       0       96.856      37.507      9.070       
+TMI     HDD     H       H       0       96.498      37.655      6.777       
+TMI     HDE     H       H       0       94.739      36.486      5.804       
+TMI     HDF     H       H       0       93.337      35.171      7.113       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TMI         CBB         CBC      DOUBLE       y     1.386  0.0100     1.386  0.0100
+TMI         CBB         CBA      SINGLE       y     1.389  0.0100     1.389  0.0100
+TMI         CBC         CBD      SINGLE       y     1.376  0.0124     1.376  0.0124
+TMI         CBD         CBE      DOUBLE       y     1.374  0.0127     1.374  0.0127
+TMI         CBE         CBF      SINGLE       y     1.386  0.0100     1.386  0.0100
+TMI         CBF         CBA      DOUBLE       y     1.389  0.0100     1.389  0.0100
+TMI         CBA         CAA      SINGLE       n     1.522  0.0100     1.522  0.0100
+TMI         CAA         NAB      SINGLE       n     1.480  0.0100     1.480  0.0100
+TMI         CAA         CCA      SINGLE       n     1.522  0.0100     1.522  0.0100
+TMI         NAB         CAF      SINGLE       y     1.369  0.0134     1.369  0.0134
+TMI         NAB         CAC      SINGLE       y     1.355  0.0146     1.355  0.0146
+TMI         CAF         CAE      DOUBLE       y     1.349  0.0100     1.349  0.0100
+TMI         CAE         NAD      SINGLE       y     1.369  0.0102     1.369  0.0102
+TMI         NAD         CAC      DOUBLE       y     1.314  0.0111     1.314  0.0111
+TMI         CCA         CCB      DOUBLE       y     1.384  0.0123     1.384  0.0123
+TMI         CCA         CCF      SINGLE       y     1.384  0.0123     1.384  0.0123
+TMI         CCB         CCC      SINGLE       y     1.385  0.0100     1.385  0.0100
+TMI         CCC         CCD      DOUBLE       y     1.391  0.0104     1.391  0.0104
+TMI         CCF         CCE      DOUBLE       y     1.385  0.0100     1.385  0.0100
+TMI         CCE         CCD      SINGLE       y     1.391  0.0104     1.391  0.0104
+TMI         CCD         CDA      SINGLE       n     1.486  0.0100     1.486  0.0100
+TMI         CDA         CDB      DOUBLE       y     1.392  0.0100     1.392  0.0100
+TMI         CDA         CDF      SINGLE       y     1.392  0.0100     1.392  0.0100
+TMI         CDB         CDC      SINGLE       y     1.386  0.0100     1.386  0.0100
+TMI         CDC         CDD      DOUBLE       y     1.376  0.0114     1.376  0.0114
+TMI         CDD         CDE      SINGLE       y     1.376  0.0124     1.376  0.0124
+TMI         CDE         CDF      DOUBLE       y     1.386  0.0100     1.386  0.0100
+TMI         CBB         HBB      SINGLE       n     1.082  0.0130     0.944  0.0174
+TMI         CBC         HBC      SINGLE       n     1.082  0.0130     0.944  0.0175
+TMI         CBD         HBD      SINGLE       n     1.082  0.0130     0.944  0.0161
+TMI         CBE         HBE      SINGLE       n     1.082  0.0130     0.944  0.0175
+TMI         CBF         HBF      SINGLE       n     1.082  0.0130     0.944  0.0174
+TMI         CAA         HAA      SINGLE       n     1.089  0.0100     0.988  0.0188
+TMI         CAF         HAF      SINGLE       n     1.082  0.0130     0.939  0.0102
+TMI         CAE         HAE      SINGLE       n     1.082  0.0130     0.941  0.0200
+TMI         CAC         HAC      SINGLE       n     1.082  0.0130     0.942  0.0181
+TMI         CCB         HCB      SINGLE       n     1.082  0.0130     0.943  0.0173
+TMI         CCC         HCC      SINGLE       n     1.082  0.0130     0.943  0.0170
+TMI         CCF         HCF      SINGLE       n     1.082  0.0130     0.943  0.0173
+TMI         CCE         HCE      SINGLE       n     1.082  0.0130     0.943  0.0170
+TMI         CDB         HDB      SINGLE       n     1.082  0.0130     0.945  0.0170
+TMI         CDC         HDC      SINGLE       n     1.082  0.0130     0.943  0.0180
+TMI         CDD         HDD      SINGLE       n     1.082  0.0130     0.944  0.0161
+TMI         CDE         HDE      SINGLE       n     1.082  0.0130     0.943  0.0180
+TMI         CDF         HDF      SINGLE       n     1.082  0.0130     0.945  0.0170
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TMI         CBC         CBB         CBA     120.458    1.50
+TMI         CBC         CBB         HBB     119.880    1.50
+TMI         CBA         CBB         HBB     119.661    1.50
+TMI         CBB         CBC         CBD     120.312    1.50
+TMI         CBB         CBC         HBC     119.798    1.50
+TMI         CBD         CBC         HBC     119.889    1.50
+TMI         CBC         CBD         CBE     120.030    1.50
+TMI         CBC         CBD         HBD     119.985    1.50
+TMI         CBE         CBD         HBD     119.985    1.50
+TMI         CBD         CBE         CBF     120.312    1.50
+TMI         CBD         CBE         HBE     119.889    1.50
+TMI         CBF         CBE         HBE     119.798    1.50
+TMI         CBE         CBF         CBA     120.458    1.50
+TMI         CBE         CBF         HBF     119.880    1.50
+TMI         CBA         CBF         HBF     119.661    1.50
+TMI         CBB         CBA         CBF     118.429    1.50
+TMI         CBB         CBA         CAA     120.786    1.96
+TMI         CBF         CBA         CAA     120.786    1.96
+TMI         CBA         CAA         NAB     110.802    1.50
+TMI         CBA         CAA         CCA     111.838    2.49
+TMI         CBA         CAA         HAA     107.082    1.50
+TMI         NAB         CAA         CCA     110.802    1.50
+TMI         NAB         CAA         HAA     106.277    1.58
+TMI         CCA         CAA         HAA     107.082    1.50
+TMI         CAA         NAB         CAF     126.569    2.34
+TMI         CAA         NAB         CAC     126.569    2.34
+TMI         CAF         NAB         CAC     106.862    1.50
+TMI         NAB         CAF         CAE     106.722    1.50
+TMI         NAB         CAF         HAF     125.835    1.86
+TMI         CAE         CAF         HAF     127.444    1.85
+TMI         CAF         CAE         NAD     110.389    1.50
+TMI         CAF         CAE         HAE     125.249    1.50
+TMI         NAD         CAE         HAE     124.362    1.50
+TMI         CAE         NAD         CAC     104.736    1.50
+TMI         NAB         CAC         NAD     111.292    1.50
+TMI         NAB         CAC         HAC     123.835    1.54
+TMI         NAD         CAC         HAC     124.873    1.50
+TMI         CAA         CCA         CCB     120.919    1.96
+TMI         CAA         CCA         CCF     120.919    1.96
+TMI         CCB         CCA         CCF     118.163    1.50
+TMI         CCA         CCB         CCC     120.932    1.50
+TMI         CCA         CCB         HCB     119.489    1.50
+TMI         CCC         CCB         HCB     119.579    1.50
+TMI         CCB         CCC         CCD     121.158    1.50
+TMI         CCB         CCC         HCC     119.413    1.50
+TMI         CCD         CCC         HCC     119.428    1.50
+TMI         CCA         CCF         CCE     120.932    1.50
+TMI         CCA         CCF         HCF     119.489    1.50
+TMI         CCE         CCF         HCF     119.579    1.50
+TMI         CCF         CCE         CCD     121.158    1.50
+TMI         CCF         CCE         HCE     119.413    1.50
+TMI         CCD         CCE         HCE     119.428    1.50
+TMI         CCC         CCD         CCE     117.657    1.50
+TMI         CCC         CCD         CDA     121.172    1.50
+TMI         CCE         CCD         CDA     121.172    1.50
+TMI         CCD         CDA         CDB     121.096    1.50
+TMI         CCD         CDA         CDF     121.096    1.50
+TMI         CDB         CDA         CDF     117.808    1.50
+TMI         CDA         CDB         CDC     120.887    1.50
+TMI         CDA         CDB         HDB     119.477    1.50
+TMI         CDC         CDB         HDB     119.636    1.50
+TMI         CDB         CDC         CDD     120.251    1.50
+TMI         CDB         CDC         HDC     119.823    1.50
+TMI         CDD         CDC         HDC     119.926    1.50
+TMI         CDC         CDD         CDE     119.915    1.50
+TMI         CDC         CDD         HDD     120.043    1.50
+TMI         CDE         CDD         HDD     120.043    1.50
+TMI         CDD         CDE         CDF     120.251    1.50
+TMI         CDD         CDE         HDE     119.926    1.50
+TMI         CDF         CDE         HDE     119.823    1.50
+TMI         CDA         CDF         CDE     120.887    1.50
+TMI         CDA         CDF         HDF     119.477    1.50
+TMI         CDE         CDF         HDF     119.636    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TMI              const_13         CBA         CBB         CBC         CBD       0.000    10.0     2
+TMI              const_75         CAA         CBA         CBB         CBC     180.000    10.0     2
+TMI              const_11         NAB         CAC         NAD         CAE       0.000    10.0     2
+TMI              const_35         CAA         CCA         CCB         CCC     180.000    10.0     2
+TMI              const_83         CAA         CCA         CCF         CCE     180.000    10.0     2
+TMI              const_37         CCA         CCB         CCC         CCD       0.000    10.0     2
+TMI              const_41         CCB         CCC         CCD         CCE       0.000    10.0     2
+TMI              const_49         CCD         CCE         CCF         CCA       0.000    10.0     2
+TMI              const_45         CCC         CCD         CCE         CCF       0.000    10.0     2
+TMI             sp2_sp2_1         CCC         CCD         CDA         CDB     180.000     5.0     2
+TMI              const_55         CCD         CDA         CDB         CDC     180.000    10.0     2
+TMI              const_87         CCD         CDA         CDF         CDE     180.000    10.0     2
+TMI              const_57         CDA         CDB         CDC         CDD       0.000    10.0     2
+TMI              const_17         CBB         CBC         CBD         CBE       0.000    10.0     2
+TMI              const_61         CDB         CDC         CDD         CDE       0.000    10.0     2
+TMI              const_65         CDC         CDD         CDE         CDF       0.000    10.0     2
+TMI              const_69         CDD         CDE         CDF         CDA       0.000    10.0     2
+TMI              const_21         CBC         CBD         CBE         CBF       0.000    10.0     2
+TMI              const_25         CBD         CBE         CBF         CBA       0.000    10.0     2
+TMI              const_31         CAA         CBA         CBF         CBE     180.000    10.0     2
+TMI             sp2_sp3_1         CBB         CBA         CAA         NAB     150.000    10.0     6
+TMI            sp2_sp3_13         CCB         CCA         CAA         CBA     150.000    10.0     6
+TMI             sp2_sp3_7         CAF         NAB         CAA         CBA     150.000    10.0     6
+TMI              const_78         NAD         CAC         NAB         CAA     180.000    10.0     2
+TMI       const_sp2_sp2_2         CAE         CAF         NAB         CAA     180.000     5.0     2
+TMI       const_sp2_sp2_5         NAD         CAE         CAF         NAB       0.000     5.0     2
+TMI       const_sp2_sp2_9         CAF         CAE         NAD         CAC       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TMI    chir_1    CAA    NAB    CCA    CBA    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TMI    plan-1         CAA   0.020
+TMI    plan-1         CBA   0.020
+TMI    plan-1         CBB   0.020
+TMI    plan-1         CBC   0.020
+TMI    plan-1         CBD   0.020
+TMI    plan-1         CBE   0.020
+TMI    plan-1         CBF   0.020
+TMI    plan-1         HBB   0.020
+TMI    plan-1         HBC   0.020
+TMI    plan-1         HBD   0.020
+TMI    plan-1         HBE   0.020
+TMI    plan-1         HBF   0.020
+TMI    plan-2         CAA   0.020
+TMI    plan-2         CAC   0.020
+TMI    plan-2         CAE   0.020
+TMI    plan-2         CAF   0.020
+TMI    plan-2         HAC   0.020
+TMI    plan-2         HAE   0.020
+TMI    plan-2         HAF   0.020
+TMI    plan-2         NAB   0.020
+TMI    plan-2         NAD   0.020
+TMI    plan-3         CAA   0.020
+TMI    plan-3         CCA   0.020
+TMI    plan-3         CCB   0.020
+TMI    plan-3         CCC   0.020
+TMI    plan-3         CCD   0.020
+TMI    plan-3         CCE   0.020
+TMI    plan-3         CCF   0.020
+TMI    plan-3         CDA   0.020
+TMI    plan-3         HCB   0.020
+TMI    plan-3         HCC   0.020
+TMI    plan-3         HCE   0.020
+TMI    plan-3         HCF   0.020
+TMI    plan-4         CCD   0.020
+TMI    plan-4         CDA   0.020
+TMI    plan-4         CDB   0.020
+TMI    plan-4         CDC   0.020
+TMI    plan-4         CDD   0.020
+TMI    plan-4         CDE   0.020
+TMI    plan-4         CDF   0.020
+TMI    plan-4         HDB   0.020
+TMI    plan-4         HDC   0.020
+TMI    plan-4         HDD   0.020
+TMI    plan-4         HDE   0.020
+TMI    plan-4         HDF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TMI           SMILES              ACDLabs 10.04                                                                            n1ccn(c1)C(c3ccc(c2ccccc2)cc3)c4ccccc4
+TMI SMILES_CANONICAL               CACTVS 3.341                                                                        c1ccc(cc1)[C@H](n2ccnc2)c3ccc(cc3)c4ccccc4
+TMI           SMILES               CACTVS 3.341                                                                         c1ccc(cc1)[CH](n2ccnc2)c3ccc(cc3)c4ccccc4
+TMI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                        c1ccc(cc1)c2ccc(cc2)[C@H](c3ccccc3)n4ccnc4
+TMI           SMILES "OpenEye OEToolkits" 1.5.0                                                                            c1ccc(cc1)c2ccc(cc2)C(c3ccccc3)n4ccnc4
+TMI            InChI                InChI  1.03 InChI=1S/C22H18N2/c1-3-7-18(8-4-1)19-11-13-21(14-12-19)22(24-16-15-23-17-24)20-9-5-2-6-10-20/h1-17,22H/t22-/m0/s1
+TMI         InChIKey                InChI  1.03                                                                                       OCAPBUJLXMYKEJ-QFIPXVFZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TMI acedrg               243         "dictionary generator"                  
+TMI acedrg_database      11          "data source"                           
+TMI rdkit                2017.03.2   "Chemoinformatics tool"
+TMI refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,238 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LJM     LJM      5-ethyl-N-[(4-fluorophenyl)methyl]-1,3-thiazole-2-carboxamide     NON-POLYMER     31     18     .     
+#
+data_comp_LJM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LJM     N1      N       NRD5    0       -39.322     23.542      76.030      
+LJM     C4      C       CR15    0       -38.656     24.507      75.294      
+LJM     C5      C       CR5     0       -38.482     22.616      76.515      
+LJM     C6      C       C       0       -38.858     21.447      77.346      
+LJM     C7      C       CH2     0       -40.659     20.269      78.532      
+LJM     C8      C       CR6     0       -40.292     20.457      79.983      
+LJM     C10     C       CR16    0       -39.122     19.726      81.973      
+LJM     C13     C       CR16    0       -40.774     21.544      80.700      
+LJM     C1      C       CH3     0       -35.368     25.848      75.483      
+LJM     C11     C       CR6     0       -39.625     20.813      82.634      
+LJM     C12     C       CR16    0       -40.443     21.731      82.036      
+LJM     C2      C       CH2     0       -36.293     25.125      74.533      
+LJM     C3      C       CR5     0       -37.330     24.314      75.224      
+LJM     C9      C       CR16    0       -39.463     19.554      80.637      
+LJM     F1      F       F       0       -39.296     20.988      83.943      
+LJM     N2      N       NH1     0       -40.153     21.341      77.680      
+LJM     O1      O       O       0       -38.000     20.639      77.706      
+LJM     S1      S       S2      0       -36.908     22.945      76.065      
+LJM     H1      H       H       0       -39.099     25.229      74.882      
+LJM     H2      H       H       0       -41.635     20.235      78.452      
+LJM     H3      H       H       0       -40.304     19.412      78.215      
+LJM     H4      H       H       0       -38.562     19.112      82.412      
+LJM     H5      H       H       0       -41.338     22.167      80.271      
+LJM     H6      H       H       0       -34.787     26.445      74.980      
+LJM     H7      H       H       0       -34.826     25.200      75.966      
+LJM     H8      H       H       0       -35.894     26.367      76.117      
+LJM     H9      H       H       0       -40.773     22.468      82.518      
+LJM     H10     H       H       0       -35.765     24.540      73.961      
+LJM     H11     H       H       0       -36.734     25.779      73.962      
+LJM     H12     H       H       0       -39.125     18.810      80.167      
+LJM     H13     H       H       0       -40.723     21.928      77.380      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LJM          C1          C2      SINGLE       n     1.510  0.0200     1.510  0.0200
+LJM          C2          C3      SINGLE       n     1.486  0.0100     1.486  0.0100
+LJM          C4          C3      DOUBLE       y     1.339  0.0100     1.339  0.0100
+LJM          C3          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+LJM          N1          C4      SINGLE       y     1.373  0.0100     1.373  0.0100
+LJM          N1          C5      DOUBLE       y     1.334  0.0121     1.334  0.0121
+LJM          C5          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+LJM          C5          C6      SINGLE       n     1.473  0.0191     1.473  0.0191
+LJM          C6          N2      SINGLE       n     1.337  0.0100     1.337  0.0100
+LJM          C6          O1      DOUBLE       n     1.231  0.0100     1.231  0.0100
+LJM          C7          N2      SINGLE       n     1.458  0.0100     1.458  0.0100
+LJM          C7          C8      SINGLE       n     1.508  0.0100     1.508  0.0100
+LJM          C8          C9      SINGLE       y     1.384  0.0111     1.384  0.0111
+LJM          C8         C13      DOUBLE       y     1.384  0.0111     1.384  0.0111
+LJM         C10          C9      DOUBLE       y     1.386  0.0100     1.386  0.0100
+LJM         C13         C12      SINGLE       y     1.386  0.0100     1.386  0.0100
+LJM         C10         C11      SINGLE       y     1.363  0.0118     1.363  0.0118
+LJM         C11         C12      DOUBLE       y     1.363  0.0118     1.363  0.0118
+LJM         C11          F1      SINGLE       n     1.361  0.0100     1.361  0.0100
+LJM          C4          H1      SINGLE       n     1.082  0.0130     0.942  0.0176
+LJM          C7          H2      SINGLE       n     1.089  0.0100     0.980  0.0169
+LJM          C7          H3      SINGLE       n     1.089  0.0100     0.980  0.0169
+LJM         C10          H4      SINGLE       n     1.082  0.0130     0.940  0.0141
+LJM         C13          H5      SINGLE       n     1.082  0.0130     0.943  0.0173
+LJM          C1          H6      SINGLE       n     1.089  0.0100     0.973  0.0120
+LJM          C1          H7      SINGLE       n     1.089  0.0100     0.973  0.0120
+LJM          C1          H8      SINGLE       n     1.089  0.0100     0.973  0.0120
+LJM         C12          H9      SINGLE       n     1.082  0.0130     0.940  0.0141
+LJM          C2         H10      SINGLE       n     1.089  0.0100     0.974  0.0100
+LJM          C2         H11      SINGLE       n     1.089  0.0100     0.974  0.0100
+LJM          C9         H12      SINGLE       n     1.082  0.0130     0.943  0.0173
+LJM          N2         H13      SINGLE       n     1.016  0.0100     0.871  0.0122
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LJM          C4          N1          C5     105.443    1.50
+LJM          C3          C4          N1     109.442    1.50
+LJM          C3          C4          H1     126.268    2.00
+LJM          N1          C4          H1     124.289    1.50
+LJM          N1          C5          S1     108.372    3.00
+LJM          N1          C5          C6     127.870    3.00
+LJM          S1          C5          C6     123.758    3.00
+LJM          C5          C6          N2     116.338    2.93
+LJM          C5          C6          O1     120.593    1.50
+LJM          N2          C6          O1     123.068    1.50
+LJM          N2          C7          C8     112.746    1.93
+LJM          N2          C7          H2     108.967    1.50
+LJM          N2          C7          H3     108.967    1.50
+LJM          C8          C7          H2     109.073    1.50
+LJM          C8          C7          H3     109.073    1.50
+LJM          H2          C7          H3     107.860    1.50
+LJM          C7          C8          C9     120.793    1.50
+LJM          C7          C8         C13     120.793    1.50
+LJM          C9          C8         C13     118.415    1.50
+LJM          C9         C10         C11     118.175    1.50
+LJM          C9         C10          H4     120.983    1.50
+LJM         C11         C10          H4     120.843    1.50
+LJM          C8         C13         C12     121.162    1.50
+LJM          C8         C13          H5     119.441    1.50
+LJM         C12         C13          H5     119.398    1.50
+LJM          C2          C1          H6     109.517    1.50
+LJM          C2          C1          H7     109.517    1.50
+LJM          C2          C1          H8     109.517    1.50
+LJM          H6          C1          H7     109.422    1.50
+LJM          H6          C1          H8     109.422    1.50
+LJM          H7          C1          H8     109.422    1.50
+LJM         C10         C11         C12     122.920    1.50
+LJM         C10         C11          F1     118.537    1.50
+LJM         C12         C11          F1     118.537    1.50
+LJM         C13         C12         C11     118.175    1.50
+LJM         C13         C12          H9     120.983    1.50
+LJM         C11         C12          H9     120.843    1.50
+LJM          C1          C2          C3     113.284    1.50
+LJM          C1          C2         H10     108.959    1.50
+LJM          C1          C2         H11     108.959    1.50
+LJM          C3          C2         H10     108.883    1.50
+LJM          C3          C2         H11     108.883    1.50
+LJM         H10          C2         H11     107.724    1.50
+LJM          C2          C3          C4     130.366    3.00
+LJM          C2          C3          S1     121.263    3.00
+LJM          C4          C3          S1     108.372    3.00
+LJM          C8          C9         C10     121.162    1.50
+LJM          C8          C9         H12     119.441    1.50
+LJM         C10          C9         H12     119.398    1.50
+LJM          C6          N2          C7     121.712    1.50
+LJM          C6          N2         H13     119.561    1.50
+LJM          C7          N2         H13     118.727    1.76
+LJM          C3          S1          C5     108.372    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LJM              const_21          C3          C4          N1          C5       0.000    10.0     2
+LJM              const_32          C6          C5          N1          C4     180.000    10.0     2
+LJM             sp2_sp3_2          C4          C3          C2          C1     -90.000    10.0     6
+LJM              const_28          C2          C3          S1          C5     180.000    10.0     2
+LJM              const_25          C2          C3          C4          N1     180.000    10.0     2
+LJM              const_30          C6          C5          S1          C3     180.000    10.0     2
+LJM             sp2_sp2_1          N1          C5          C6          N2     180.000     5.0     2
+LJM             sp2_sp2_7          O1          C6          N2          C7       0.000     5.0     2
+LJM             sp2_sp3_8          C6          N2          C7          C8     120.000    10.0     6
+LJM            sp2_sp3_14          C9          C8          C7          N2     -90.000    10.0     6
+LJM       const_sp2_sp2_3          C7          C8          C9         C10     180.000     5.0     2
+LJM              const_34         C12         C13          C8          C7     180.000    10.0     2
+LJM       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+LJM              const_10          C9         C10         C11          F1     180.000    10.0     2
+LJM              const_17         C11         C12         C13          C8       0.000    10.0     2
+LJM             sp3_sp3_1          H6          C1          C2          C3     180.000    10.0     3
+LJM              const_15          F1         C11         C12         C13     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LJM    plan-1          C2   0.020
+LJM    plan-1          C3   0.020
+LJM    plan-1          C4   0.020
+LJM    plan-1          C5   0.020
+LJM    plan-1          C6   0.020
+LJM    plan-1          H1   0.020
+LJM    plan-1          N1   0.020
+LJM    plan-1          S1   0.020
+LJM    plan-2         C10   0.020
+LJM    plan-2         C11   0.020
+LJM    plan-2         C12   0.020
+LJM    plan-2         C13   0.020
+LJM    plan-2          C7   0.020
+LJM    plan-2          C8   0.020
+LJM    plan-2          C9   0.020
+LJM    plan-2          F1   0.020
+LJM    plan-2         H12   0.020
+LJM    plan-2          H4   0.020
+LJM    plan-2          H5   0.020
+LJM    plan-2          H9   0.020
+LJM    plan-3          C5   0.020
+LJM    plan-3          C6   0.020
+LJM    plan-3          N2   0.020
+LJM    plan-3          O1   0.020
+LJM    plan-4          C6   0.020
+LJM    plan-4          C7   0.020
+LJM    plan-4         H13   0.020
+LJM    plan-4          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LJM           SMILES              ACDLabs 12.01                                                                     n2c(C(NCc1ccc(F)cc1)=O)sc(c2)CC
+LJM            InChI                InChI  1.03 InChI=1S/C13H13FN2OS/c1-2-11-8-16-13(18-11)12(17)15-7-9-3-5-10(14)6-4-9/h3-6,8H,2,7H2,1H3,(H,15,17)
+LJM         InChIKey                InChI  1.03                                                                         RQZLQKRNRVOGMG-UHFFFAOYSA-N
+LJM SMILES_CANONICAL               CACTVS 3.385                                                                       CCc1sc(nc1)C(=O)NCc2ccc(F)cc2
+LJM           SMILES               CACTVS 3.385                                                                       CCc1sc(nc1)C(=O)NCc2ccc(F)cc2
+LJM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                       CCc1cnc(s1)C(=O)NCc2ccc(cc2)F
+LJM           SMILES "OpenEye OEToolkits" 2.0.6                                                                       CCc1cnc(s1)C(=O)NCc2ccc(cc2)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LJM acedrg               243         "dictionary generator"                  
+LJM acedrg_database      11          "data source"                           
+LJM rdkit                2017.03.2   "Chemoinformatics tool"
+LJM refmac5              5.8.0238    "optimization tool"                     

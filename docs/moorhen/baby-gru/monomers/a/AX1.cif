@@ -1,0 +1,251 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AX1     AX1      2-amino-6-(1,3-benzodioxol-5-yl)-4-oxo-4,7-dihydro-3H-pyrrolo[2,3-d]pyrimidine-5-carbonitrile     NON-POLYMER     31     22     .     
+#
+data_comp_AX1
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AX1     CAG     C       CR16    0       -20.552     16.951      54.111      
+AX1     CAQ     C       CR56    0       -19.244     17.187      54.419      
+AX1     OAM     O       O2      0       -18.601     16.966      55.616      
+AX1     CAH     C       CH2     0       -17.266     17.438      55.429      
+AX1     OAL     O       O2      0       -17.113     17.848      54.069      
+AX1     CAP     C       CR56    0       -18.358     17.712      53.499      
+AX1     CAF     C       CR16    0       -18.749     18.023      52.227      
+AX1     CAE     C       CR16    0       -20.083     17.786      51.895      
+AX1     CAO     C       CR6     0       -20.989     17.257      52.819      
+AX1     CAS     C       CR5     0       -22.389     17.020      52.434      
+AX1     NAK     N       NR5     0       -23.035     15.854      52.786      
+AX1     CAU     C       CR56    0       -24.316     15.876      52.315      
+AX1     NAI     N       NRD6    0       -25.241     14.893      52.475      
+AX1     CAN     C       CR6     0       -26.436     15.137      51.925      
+AX1     NAB     N       NH2     0       -27.414     14.226      52.030      
+AX1     NAJ     N       NR6     0       -26.737     16.293      51.239      
+AX1     CAT     C       CR6     0       -25.824     17.334      51.046      
+AX1     OAC     O       O       0       -26.166     18.349      50.416      
+AX1     CAV     C       CR56    0       -24.542     17.098      51.624      
+AX1     CAR     C       CR5     0       -23.316     17.828      51.698      
+AX1     CAD     C       CSP     0       -23.070     19.116      51.143      
+AX1     NAA     N       NSP     0       -22.867     20.140      50.663      
+AX1     HAG     H       H       0       -21.143     16.594      54.746      
+AX1     HAH     H       H       0       -16.628     16.724      55.635      
+AX1     HAHA    H       H       0       -17.092     18.193      56.027      
+AX1     HAF     H       H       0       -18.147     18.379      51.603      
+AX1     HAE     H       H       0       -20.376     17.992      51.026      
+AX1     HNAK    H       H       0       -22.677     15.192      53.246      
+AX1     HNAB    H       H       0       -27.957     14.087      51.356      
+AX1     HNAA    H       H       0       -27.507     13.769      52.773      
+AX1     HNAJ    H       H       0       -27.559     16.390      50.896      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AX1         CAG         CAQ      DOUBLE       y     1.361  0.0103     1.361  0.0103
+AX1         CAG         CAO      SINGLE       y     1.394  0.0100     1.394  0.0100
+AX1         CAQ         OAM      SINGLE       n     1.377  0.0100     1.377  0.0100
+AX1         CAQ         CAP      SINGLE       y     1.379  0.0100     1.379  0.0100
+AX1         OAM         CAH      SINGLE       n     1.428  0.0104     1.428  0.0104
+AX1         CAH         OAL      SINGLE       n     1.428  0.0104     1.428  0.0104
+AX1         OAL         CAP      SINGLE       n     1.376  0.0100     1.376  0.0100
+AX1         CAP         CAF      DOUBLE       y     1.363  0.0100     1.363  0.0100
+AX1         CAF         CAE      SINGLE       y     1.390  0.0100     1.390  0.0100
+AX1         CAE         CAO      DOUBLE       y     1.393  0.0100     1.393  0.0100
+AX1         CAO         CAS      SINGLE       n     1.471  0.0100     1.471  0.0100
+AX1         CAS         NAK      SINGLE       y     1.375  0.0103     1.375  0.0103
+AX1         CAS         CAR      DOUBLE       y     1.438  0.0200     1.438  0.0200
+AX1         NAK         CAU      SINGLE       y     1.362  0.0100     1.362  0.0100
+AX1         CAU         NAI      SINGLE       y     1.355  0.0100     1.355  0.0100
+AX1         CAU         CAV      DOUBLE       y     1.417  0.0153     1.417  0.0153
+AX1         NAI         CAN      DOUBLE       y     1.332  0.0108     1.332  0.0108
+AX1         CAN         NAB      SINGLE       n     1.340  0.0101     1.340  0.0101
+AX1         CAN         NAJ      SINGLE       y     1.374  0.0100     1.374  0.0100
+AX1         NAJ         CAT      SINGLE       y     1.395  0.0119     1.395  0.0119
+AX1         CAT         OAC      DOUBLE       n     1.242  0.0112     1.242  0.0112
+AX1         CAT         CAV      SINGLE       y     1.422  0.0154     1.422  0.0154
+AX1         CAV         CAR      SINGLE       y     1.433  0.0100     1.433  0.0100
+AX1         CAR         CAD      SINGLE       n     1.424  0.0100     1.424  0.0100
+AX1         CAD         NAA      TRIPLE       n     1.149  0.0200     1.149  0.0200
+AX1         CAG         HAG      SINGLE       n     1.082  0.0130     0.938  0.0101
+AX1         CAH         HAH      SINGLE       n     1.089  0.0100     0.979  0.0146
+AX1         CAH        HAHA      SINGLE       n     1.089  0.0100     0.979  0.0146
+AX1         CAF         HAF      SINGLE       n     1.082  0.0130     0.937  0.0107
+AX1         CAE         HAE      SINGLE       n     1.082  0.0130     0.940  0.0104
+AX1         NAK        HNAK      SINGLE       n     1.016  0.0100     0.882  0.0200
+AX1         NAB        HNAB      SINGLE       n     1.016  0.0100     0.877  0.0200
+AX1         NAB        HNAA      SINGLE       n     1.016  0.0100     0.877  0.0200
+AX1         NAJ        HNAJ      SINGLE       n     1.016  0.0100     0.895  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AX1         CAQ         CAG         CAO     118.032    1.50
+AX1         CAQ         CAG         HAG     121.176    1.50
+AX1         CAO         CAG         HAG     120.792    1.50
+AX1         CAG         CAQ         OAM     127.771    1.50
+AX1         CAG         CAQ         CAP     122.446    1.50
+AX1         OAM         CAQ         CAP     109.783    1.50
+AX1         CAQ         OAM         CAH     105.409    1.50
+AX1         OAM         CAH         OAL     108.187    1.50
+AX1         OAM         CAH         HAH     109.983    1.50
+AX1         OAM         CAH        HAHA     109.983    1.50
+AX1         OAL         CAH         HAH     109.983    1.50
+AX1         OAL         CAH        HAHA     109.983    1.50
+AX1         HAH         CAH        HAHA     108.633    1.82
+AX1         CAH         OAL         CAP     105.409    1.50
+AX1         CAQ         CAP         OAL     109.927    1.50
+AX1         CAQ         CAP         CAF     121.841    1.50
+AX1         OAL         CAP         CAF     128.232    1.50
+AX1         CAP         CAF         CAE     116.821    1.50
+AX1         CAP         CAF         HAF     121.619    1.50
+AX1         CAE         CAF         HAF     121.560    1.50
+AX1         CAF         CAE         CAO     121.517    1.50
+AX1         CAF         CAE         HAE     118.880    1.50
+AX1         CAO         CAE         HAE     119.603    1.50
+AX1         CAG         CAO         CAE     119.343    1.50
+AX1         CAG         CAO         CAS     120.378    1.50
+AX1         CAE         CAO         CAS     120.279    1.50
+AX1         CAO         CAS         NAK     121.428    1.93
+AX1         CAO         CAS         CAR     131.064    2.80
+AX1         NAK         CAS         CAR     107.508    1.50
+AX1         CAS         NAK         CAU     108.306    1.55
+AX1         CAS         NAK        HNAK     126.008    1.50
+AX1         CAU         NAK        HNAK     125.686    1.50
+AX1         NAK         CAU         NAI     126.278    1.65
+AX1         NAK         CAU         CAV     108.745    1.50
+AX1         NAI         CAU         CAV     124.978    1.50
+AX1         CAU         NAI         CAN     114.066    1.50
+AX1         NAI         CAN         NAB     119.871    1.50
+AX1         NAI         CAN         NAJ     123.503    1.50
+AX1         NAB         CAN         NAJ     116.626    1.50
+AX1         CAN         NAB        HNAB     119.868    1.50
+AX1         CAN         NAB        HNAA     119.868    1.50
+AX1        HNAB         NAB        HNAA     120.263    1.96
+AX1         CAN         NAJ         CAT     123.892    1.50
+AX1         CAN         NAJ        HNAJ     118.339    2.71
+AX1         CAT         NAJ        HNAJ     117.769    1.86
+AX1         NAJ         CAT         OAC     119.634    1.50
+AX1         NAJ         CAT         CAV     114.445    1.50
+AX1         OAC         CAT         CAV     125.921    1.50
+AX1         CAU         CAV         CAT     119.116    1.50
+AX1         CAU         CAV         CAR     107.001    1.50
+AX1         CAT         CAV         CAR     133.883    2.09
+AX1         CAS         CAR         CAV     108.441    1.50
+AX1         CAS         CAR         CAD     125.750    2.00
+AX1         CAV         CAR         CAD     125.809    1.50
+AX1         CAR         CAD         NAA     178.257    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AX1       const_sp2_sp2_2         CAO         CAG         CAQ         OAM     180.000     5.0     2
+AX1              const_53         CAQ         CAG         CAO         CAE       0.000    10.0     2
+AX1              const_43         NAI         CAU         NAK         CAS     180.000    10.0     2
+AX1              const_22         NAK         CAU         NAI         CAN     180.000    10.0     2
+AX1              const_46         NAK         CAU         CAV         CAT     180.000    10.0     2
+AX1              const_24         NAB         CAN         NAI         CAU     180.000    10.0     2
+AX1            sp2_sp2_11         NAI         CAN         NAB        HNAB       0.000     5.0     2
+AX1              const_27         NAB         CAN         NAJ         CAT     180.000    10.0     2
+AX1              const_31         OAC         CAT         NAJ         CAN     180.000    10.0     2
+AX1              const_35         OAC         CAT         CAV         CAU     180.000    10.0     2
+AX1              const_51         CAD         CAR         CAV         CAU     180.000    10.0     2
+AX1           other_tor_1         NAA         CAD         CAR         CAS      90.000    10.0     1
+AX1             sp2_sp2_2         CAG         CAQ         OAM         CAH     180.000     5.0     2
+AX1       const_sp2_sp2_6         OAL         CAP         CAQ         CAG     180.000     5.0     2
+AX1             sp3_sp3_1         OAL         CAH         OAM         CAQ     -60.000    10.0     3
+AX1             sp3_sp3_4         OAM         CAH         OAL         CAP      60.000    10.0     3
+AX1             sp2_sp2_3         CAQ         CAP         OAL         CAH       0.000     5.0     2
+AX1       const_sp2_sp2_9         CAE         CAF         CAP         CAQ       0.000     5.0     2
+AX1              const_13         CAO         CAE         CAF         CAP       0.000    10.0     2
+AX1              const_17         CAF         CAE         CAO         CAG       0.000    10.0     2
+AX1             sp2_sp2_5         CAG         CAO         CAS         NAK     180.000     5.0     2
+AX1              const_39         CAO         CAS         NAK         CAU     180.000    10.0     2
+AX1              const_60         CAD         CAR         CAS         CAO       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AX1    plan-1         CAD   0.020
+AX1    plan-1         CAN   0.020
+AX1    plan-1         CAO   0.020
+AX1    plan-1         CAR   0.020
+AX1    plan-1         CAS   0.020
+AX1    plan-1         CAT   0.020
+AX1    plan-1         CAU   0.020
+AX1    plan-1         CAV   0.020
+AX1    plan-1        HNAJ   0.020
+AX1    plan-1        HNAK   0.020
+AX1    plan-1         NAB   0.020
+AX1    plan-1         NAI   0.020
+AX1    plan-1         NAJ   0.020
+AX1    plan-1         NAK   0.020
+AX1    plan-1         OAC   0.020
+AX1    plan-2         CAE   0.020
+AX1    plan-2         CAF   0.020
+AX1    plan-2         CAG   0.020
+AX1    plan-2         CAO   0.020
+AX1    plan-2         CAP   0.020
+AX1    plan-2         CAQ   0.020
+AX1    plan-2         CAS   0.020
+AX1    plan-2         HAE   0.020
+AX1    plan-2         HAF   0.020
+AX1    plan-2         HAG   0.020
+AX1    plan-2         OAL   0.020
+AX1    plan-2         OAM   0.020
+AX1    plan-3         CAN   0.020
+AX1    plan-3        HNAA   0.020
+AX1    plan-3        HNAB   0.020
+AX1    plan-3         NAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AX1           SMILES              ACDLabs 10.04                                                                               N#Cc4c1C(=O)NC(=Nc1nc4c2ccc3OCOc3c2)N
+AX1 SMILES_CANONICAL               CACTVS 3.341                                                                          NC1=Nc2[nH]c(c3ccc4OCOc4c3)c(C#N)c2C(=O)N1
+AX1           SMILES               CACTVS 3.341                                                                          NC1=Nc2[nH]c(c3ccc4OCOc4c3)c(C#N)c2C(=O)N1
+AX1 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                        c1cc2c(cc1c3c(c4c([nH]3)N=C(NC4=O)N)C#N)OCO2
+AX1           SMILES "OpenEye OEToolkits" 1.5.0                                                                        c1cc2c(cc1c3c(c4c([nH]3)N=C(NC4=O)N)C#N)OCO2
+AX1            InChI                InChI  1.03 InChI=1S/C14H9N5O3/c15-4-7-10-12(18-14(16)19-13(10)20)17-11(7)6-1-2-8-9(3-6)22-5-21-8/h1-3H,5H2,(H4,16,17,18,19,20)
+AX1         InChIKey                InChI  1.03                                                                                         LODZVZHIOMSXPI-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AX1 acedrg               243         "dictionary generator"                  
+AX1 acedrg_database      11          "data source"                           
+AX1 rdkit                2017.03.2   "Chemoinformatics tool"
+AX1 refmac5              5.8.0238    "optimization tool"                     

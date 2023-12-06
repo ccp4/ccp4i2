@@ -1,0 +1,236 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FOG     FOG      "(4S,5S)-5-amino-4-hydroxy-6-phenylhexanoic acid"     NON-POLYMER     32     16     .     
+#
+data_comp_FOG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FOG     C       C       C       0       2.234       31.844      15.994      
+FOG     O1      O       O       0       1.194       32.275      16.529      
+FOG     CA1     C       CH2     0       2.474       30.344      15.995      
+FOG     CM      C       CH2     0       3.244       29.828      17.200      
+FOG     CH      C       CH1     0       3.785       28.407      17.062      
+FOG     OH      O       OH1     0       2.689       27.546      16.747      
+FOG     CA      C       CH1     0       4.507       27.866      18.312      
+FOG     N       N       NT2     0       4.637       26.396      18.264      
+FOG     CB      C       CH2     0       5.869       28.543      18.534      
+FOG     CG      C       CR6     0       6.586       28.077      19.782      
+FOG     CD1     C       CR16    0       6.075       28.364      21.042      
+FOG     CD2     C       CR16    0       7.770       27.351      19.699      
+FOG     CE1     C       CR16    0       6.730       27.938      22.190      
+FOG     CE2     C       CR16    0       8.425       26.926      20.849      
+FOG     CZ      C       CR16    0       7.904       27.219      22.093      
+FOG     OXT     O       OC      -1      3.089       32.577      15.458      
+FOG     HA1     H       H       0       2.965       30.108      15.180      
+FOG     HA2     H       H       0       1.604       29.892      15.957      
+FOG     HM      H       H       0       2.658       29.861      17.985      
+FOG     HM1     H       H       0       3.995       30.432      17.370      
+FOG     HCH     H       H       0       4.426       28.392      16.304      
+FOG     HO1     H       H       0       2.947       26.966      16.184      
+FOG     HA      H       H       0       3.944       28.085      19.090      
+FOG     H       H       H       0       4.618       26.058      19.085      
+FOG     H2      H       H       0       5.405       26.156      17.886      
+FOG     HB2     H       H       0       5.735       29.512      18.595      
+FOG     HB3     H       H       0       6.438       28.369      17.754      
+FOG     HD1     H       H       0       5.272       28.855      21.117      
+FOG     HD2     H       H       0       8.133       27.146      18.852      
+FOG     HE1     H       H       0       6.371       28.140      23.040      
+FOG     HE2     H       H       0       9.227       26.434      20.778      
+FOG     HZ      H       H       0       8.349       26.930      22.873      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FOG           C          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+FOG           C         CA1      SINGLE       n     1.519  0.0109     1.519  0.0109
+FOG           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+FOG         CA1          CM      SINGLE       n     1.518  0.0200     1.518  0.0200
+FOG          CM          CH      SINGLE       n     1.525  0.0100     1.525  0.0100
+FOG          CH          OH      SINGLE       n     1.424  0.0199     1.424  0.0199
+FOG          CH          CA      SINGLE       n     1.540  0.0100     1.540  0.0100
+FOG          CA           N      SINGLE       n     1.473  0.0130     1.473  0.0130
+FOG          CA          CB      SINGLE       n     1.535  0.0100     1.535  0.0100
+FOG          CB          CG      SINGLE       n     1.512  0.0103     1.512  0.0103
+FOG          CG         CD1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+FOG          CG         CD2      SINGLE       y     1.385  0.0111     1.385  0.0111
+FOG         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+FOG         CD2         CE2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+FOG         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FOG         CE2          CZ      SINGLE       y     1.376  0.0124     1.376  0.0124
+FOG         CA1         HA1      SINGLE       n     1.089  0.0100     0.981  0.0185
+FOG         CA1         HA2      SINGLE       n     1.089  0.0100     0.981  0.0185
+FOG          CM          HM      SINGLE       n     1.089  0.0100     0.980  0.0160
+FOG          CM         HM1      SINGLE       n     1.089  0.0100     0.980  0.0160
+FOG          CH         HCH      SINGLE       n     1.089  0.0100     0.992  0.0184
+FOG          OH         HO1      SINGLE       n     0.970  0.0120     0.848  0.0200
+FOG          CA          HA      SINGLE       n     1.089  0.0100     0.985  0.0149
+FOG           N           H      SINGLE       n     1.036  0.0160     0.888  0.0200
+FOG           N          H2      SINGLE       n     1.036  0.0160     0.888  0.0200
+FOG          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0150
+FOG          CB         HB3      SINGLE       n     1.089  0.0100     0.981  0.0150
+FOG         CD1         HD1      SINGLE       n     1.082  0.0130     0.944  0.0174
+FOG         CD2         HD2      SINGLE       n     1.082  0.0130     0.944  0.0174
+FOG         CE1         HE1      SINGLE       n     1.082  0.0130     0.944  0.0175
+FOG         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+FOG          CZ          HZ      SINGLE       n     1.082  0.0130     0.944  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FOG          O1           C         CA1     118.214    1.64
+FOG          O1           C         OXT     123.571    1.50
+FOG         CA1           C         OXT     118.214    1.64
+FOG           C         CA1          CM     114.629    2.24
+FOG           C         CA1         HA1     108.404    1.50
+FOG           C         CA1         HA2     108.404    1.50
+FOG          CM         CA1         HA1     108.934    1.50
+FOG          CM         CA1         HA2     108.934    1.50
+FOG         HA1         CA1         HA2     107.521    1.50
+FOG         CA1          CM          CH     114.669    1.86
+FOG         CA1          CM          HM     108.675    1.50
+FOG         CA1          CM         HM1     108.675    1.50
+FOG          CH          CM          HM     108.468    1.50
+FOG          CH          CM         HM1     108.468    1.50
+FOG          HM          CM         HM1     107.428    1.50
+FOG          CM          CH          OH     109.024    2.32
+FOG          CM          CH          CA     114.793    1.69
+FOG          CM          CH         HCH     108.603    1.50
+FOG          OH          CH          CA     109.040    1.72
+FOG          OH          CH         HCH     108.700    1.50
+FOG          CA          CH         HCH     108.500    1.50
+FOG          CH          OH         HO1     108.640    2.32
+FOG          CH          CA           N     111.883    2.59
+FOG          CH          CA          CB     112.266    1.50
+FOG          CH          CA          HA     107.639    1.50
+FOG           N          CA          CB     111.883    2.59
+FOG           N          CA          HA     107.944    1.55
+FOG          CB          CA          HA     107.624    1.50
+FOG          CA           N           H     109.715    3.00
+FOG          CA           N          H2     109.715    3.00
+FOG           H           N          H2     107.559    3.00
+FOG          CA          CB          CG     113.565    1.50
+FOG          CA          CB         HB2     108.839    1.50
+FOG          CA          CB         HB3     108.839    1.50
+FOG          CG          CB         HB2     108.862    1.50
+FOG          CG          CB         HB3     108.862    1.50
+FOG         HB2          CB         HB3     107.782    1.50
+FOG          CB          CG         CD1     120.970    1.50
+FOG          CB          CG         CD2     120.970    1.50
+FOG         CD1          CG         CD2     118.060    1.50
+FOG          CG         CD1         CE1     120.624    1.50
+FOG          CG         CD1         HD1     119.591    1.50
+FOG         CE1         CD1         HD1     119.786    1.50
+FOG          CG         CD2         CE2     120.624    1.50
+FOG          CG         CD2         HD2     119.591    1.50
+FOG         CE2         CD2         HD2     119.786    1.50
+FOG         CD1         CE1          CZ     120.325    1.50
+FOG         CD1         CE1         HE1     119.792    1.50
+FOG          CZ         CE1         HE1     119.883    1.50
+FOG         CD2         CE2          CZ     120.325    1.50
+FOG         CD2         CE2         HE2     119.792    1.50
+FOG          CZ         CE2         HE2     119.883    1.50
+FOG         CE1          CZ         CE2     120.043    1.50
+FOG         CE1          CZ          HZ     119.979    1.50
+FOG         CE2          CZ          HZ     119.979    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FOG             sp2_sp3_2          O1           C         CA1          CM     120.000    10.0     6
+FOG       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+FOG              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+FOG       const_sp2_sp2_9         CD1         CE1          CZ         CE2       0.000     5.0     2
+FOG              const_13         CD2         CE2          CZ         CE1       0.000    10.0     2
+FOG             sp3_sp3_1           C         CA1          CM          CH     180.000    10.0     3
+FOG            sp3_sp3_10          OH          CH          CM         CA1     180.000    10.0     3
+FOG            sp3_sp3_19          CM          CH          OH         HO1     180.000    10.0     3
+FOG            sp3_sp3_22           N          CA          CH          CM     180.000    10.0     3
+FOG            sp3_sp3_31          CH          CA           N           H     180.000    10.0     3
+FOG            sp3_sp3_37          CH          CA          CB          CG     180.000    10.0     3
+FOG             sp2_sp3_8         CD1          CG          CB          CA     -90.000    10.0     6
+FOG       const_sp2_sp2_2         CE1         CD1          CG          CB     180.000     5.0     2
+FOG              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FOG    chir_1    CH    OH    CA    CM    positive
+FOG    chir_2    CA    N    CH    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FOG    plan-1          CB   0.020
+FOG    plan-1         CD1   0.020
+FOG    plan-1         CD2   0.020
+FOG    plan-1         CE1   0.020
+FOG    plan-1         CE2   0.020
+FOG    plan-1          CG   0.020
+FOG    plan-1          CZ   0.020
+FOG    plan-1         HD1   0.020
+FOG    plan-1         HD2   0.020
+FOG    plan-1         HE1   0.020
+FOG    plan-1         HE2   0.020
+FOG    plan-1          HZ   0.020
+FOG    plan-2           C   0.020
+FOG    plan-2         CA1   0.020
+FOG    plan-2          O1   0.020
+FOG    plan-2         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FOG           SMILES              ACDLabs 12.01                                                                                     O=C(O)CCC(O)C(N)Cc1ccccc1
+FOG            InChI                InChI  1.03 InChI=1S/C12H17NO3/c13-10(11(14)6-7-12(15)16)8-9-4-2-1-3-5-9/h1-5,10-11,14H,6-8,13H2,(H,15,16)/t10-,11-/m0/s1
+FOG         InChIKey                InChI  1.03                                                                                   RZDSOGPADIZKDQ-QWRGUYRKSA-N
+FOG SMILES_CANONICAL               CACTVS 3.385                                                                           N[C@@H](Cc1ccccc1)[C@@H](O)CCC(O)=O
+FOG           SMILES               CACTVS 3.385                                                                               N[CH](Cc1ccccc1)[CH](O)CCC(O)=O
+FOG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                          c1ccc(cc1)C[C@@H]([C@H](CCC(=O)O)O)N
+FOG           SMILES "OpenEye OEToolkits" 1.7.6                                                                                   c1ccc(cc1)CC(C(CCC(=O)O)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FOG acedrg               243         "dictionary generator"                  
+FOG acedrg_database      11          "data source"                           
+FOG rdkit                2017.03.2   "Chemoinformatics tool"
+FOG refmac5              5.8.0238    "optimization tool"                     

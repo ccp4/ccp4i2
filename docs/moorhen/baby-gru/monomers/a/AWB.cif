@@ -1,0 +1,469 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AWB     AWB      "[(2R,3S,6S,7R,8R)-3-[(3-formamido-2-oxidanyl-phenyl)carbonylamino]-8-hexyl-2,6-dimethyl-4,9-bis(oxidanylidene)-1,5-dioxonan-7-yl] 3-methylbutanoate"     NON-POLYMER     79     39     .     
+#
+data_comp_AWB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AWB     C       C       CH3     0       26.708      85.388      -26.147     
+AWB     N       N       NH1     0       17.266      88.152      -27.867     
+AWB     O       O       O2      0       19.657      86.437      -29.822     
+AWB     C1      C       CH2     0       26.940      86.669      -26.912     
+AWB     N1      N       NH1     0       13.575      87.873      -24.068     
+AWB     O1      O       O       0       18.607      85.672      -27.978     
+AWB     C2      C       CH2     0       25.708      87.188      -27.607     
+AWB     O2      O       O2      0       21.043      88.250      -27.850     
+AWB     C3      C       CH2     0       25.940      88.424      -28.442     
+AWB     O3      O       O       0       21.316      89.527      -29.703     
+AWB     C4      C       CH2     0       24.676      89.060      -28.968     
+AWB     O4      O       O       0       17.090      90.393      -28.127     
+AWB     C5      C       CH2     0       23.899      88.228      -29.985     
+AWB     O5      O       O       0       12.939      85.956      -23.022     
+AWB     C6      C       CH1     0       22.640      87.518      -29.446     
+AWB     O6      O       OH1     0       16.071      87.828      -25.282     
+AWB     C7      C       CH1     0       22.016      86.469      -30.387     
+AWB     O7      O       O2      0       23.073      85.513      -30.751     
+AWB     C8      C       CH1     0       20.877      85.637      -29.797     
+AWB     O8      O       O       0       23.057      85.985      -32.971     
+AWB     C9      C       C       0       18.947      86.579      -28.693     
+AWB     C10     C       CH1     0       18.609      88.040      -28.431     
+AWB     C11     C       CH1     0       19.682      88.699      -27.536     
+AWB     C12     C       C       0       21.599      88.562      -29.038     
+AWB     C13     C       CH3     0       19.476      88.406      -26.065     
+AWB     C14     C       C       0       16.626      89.324      -27.727     
+AWB     C15     C       CR6     0       15.305      89.304      -27.026     
+AWB     C16     C       CR6     0       15.067      88.580      -25.847     
+AWB     C17     C       CR6     0       13.791      88.618      -25.250     
+AWB     C18     C       CR16    0       12.773      89.370      -25.815     
+AWB     C19     C       CR16    0       13.013      90.090      -26.978     
+AWB     C20     C       CR16    0       14.257      90.055      -27.569     
+AWB     C21     C       C1      0       13.400      86.552      -23.984     
+AWB     C22     C       CH3     0       20.573      84.364      -30.560     
+AWB     C23     C       C       0       23.545      85.435      -32.015     
+AWB     C24     C       CH2     0       24.787      84.573      -32.078     
+AWB     C25     C       CH1     0       24.619      83.293      -32.896     
+AWB     C26     C       CH3     0       23.440      82.460      -32.407     
+AWB     C27     C       CH3     0       24.495      83.593      -34.384     
+AWB     H       H       H       0       27.542      85.097      -25.738     
+AWB     HA      H       H       0       26.388      84.699      -26.755     
+AWB     HB      H       H       0       26.044      85.539      -25.452     
+AWB     HN      H       H       0       16.863      87.416      -27.623     
+AWB     H1      H       H       0       27.640      86.516      -27.583     
+AWB     H1A     H       H       0       27.266      87.356      -26.290     
+AWB     HN1     H       H       0       13.554      88.327      -23.313     
+AWB     H2      H       H       0       25.028      87.390      -26.929     
+AWB     H2A     H       H       0       25.352      86.480      -28.185     
+AWB     H3      H       H       0       26.513      88.187      -29.202     
+AWB     H3A     H       H       0       26.422      89.084      -27.899     
+AWB     H4      H       H       0       24.912      89.916      -29.385     
+AWB     H4A     H       H       0       24.095      89.258      -28.205     
+AWB     H5      H       H       0       24.509      87.555      -30.349     
+AWB     H5A     H       H       0       23.636      88.813      -30.725     
+AWB     H6      H       H       0       22.905      87.043      -28.630     
+AWB     HO6     H       H       0       16.295      87.957      -24.461     
+AWB     H7      H       H       0       21.678      86.940      -31.188     
+AWB     H8      H       H       0       21.119      85.408      -28.863     
+AWB     H10     H       H       0       18.611      88.515      -29.309     
+AWB     H11     H       H       0       19.628      89.677      -27.677     
+AWB     H13     H       H       0       18.745      88.951      -25.724     
+AWB     H13A    H       H       0       20.291      88.616      -25.573     
+AWB     H13B    H       H       0       19.261      87.463      -25.946     
+AWB     H18     H       H       0       11.923      89.392      -25.411     
+AWB     H19     H       H       0       12.323      90.600      -27.362     
+AWB     H20     H       H       0       14.408      90.548      -28.357     
+AWB     H21     H       H       0       13.657      86.034      -24.737     
+AWB     H22     H       H       0       20.677      84.525      -31.515     
+AWB     H22A    H       H       0       19.658      84.084      -30.377     
+AWB     H22B    H       H       0       21.187      83.662      -30.281     
+AWB     H24     H       H       0       25.056      84.326      -31.167     
+AWB     H24A    H       H       0       25.518      85.099      -32.467     
+AWB     H25     H       H       0       25.440      82.756      -32.766     
+AWB     H26     H       H       0       23.558      81.536      -32.689     
+AWB     H26A    H       H       0       22.613      82.808      -32.782     
+AWB     H26B    H       H       0       23.396      82.497      -31.436     
+AWB     H27     H       H       0       25.154      84.262      -34.638     
+AWB     H27A    H       H       0       23.603      83.927      -34.578     
+AWB     H27B    H       H       0       24.652      82.778      -34.892     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AWB           C          C1      SINGLE       n     1.510  0.0200     1.510  0.0200
+AWB           N         C10      SINGLE       n     1.456  0.0100     1.456  0.0100
+AWB           N         C14      SINGLE       n     1.337  0.0101     1.337  0.0101
+AWB           O          C8      SINGLE       n     1.454  0.0123     1.454  0.0123
+AWB           O          C9      SINGLE       n     1.337  0.0113     1.337  0.0113
+AWB          C1          C2      SINGLE       n     1.507  0.0200     1.507  0.0200
+AWB          N1         C17      SINGLE       n     1.413  0.0100     1.413  0.0100
+AWB          N1         C21      SINGLE       n     1.335  0.0107     1.335  0.0107
+AWB          O1          C9      DOUBLE       n     1.203  0.0150     1.203  0.0150
+AWB          C2          C3      SINGLE       n     1.509  0.0200     1.509  0.0200
+AWB          O2         C11      SINGLE       n     1.459  0.0137     1.459  0.0137
+AWB          O2         C12      SINGLE       n     1.343  0.0132     1.343  0.0132
+AWB          C3          C4      SINGLE       n     1.509  0.0200     1.509  0.0200
+AWB          O3         C12      DOUBLE       n     1.203  0.0150     1.203  0.0150
+AWB          C4          C5      SINGLE       n     1.523  0.0116     1.523  0.0116
+AWB          O4         C14      DOUBLE       n     1.230  0.0114     1.230  0.0114
+AWB          C5          C6      SINGLE       n     1.538  0.0100     1.538  0.0100
+AWB          O5         C21      DOUBLE       n     1.222  0.0100     1.222  0.0100
+AWB          C6          C7      SINGLE       n     1.536  0.0100     1.536  0.0100
+AWB          C6         C12      SINGLE       n     1.516  0.0186     1.516  0.0186
+AWB          O6         C16      SINGLE       n     1.374  0.0155     1.374  0.0155
+AWB          C7          O7      SINGLE       n     1.459  0.0137     1.459  0.0137
+AWB          C7          C8      SINGLE       n     1.522  0.0115     1.522  0.0115
+AWB          O7         C23      SINGLE       n     1.342  0.0131     1.342  0.0131
+AWB          C8         C22      SINGLE       n     1.513  0.0100     1.513  0.0100
+AWB          O8         C23      DOUBLE       n     1.203  0.0150     1.203  0.0150
+AWB          C9         C10      SINGLE       n     1.516  0.0118     1.516  0.0118
+AWB         C10         C11      SINGLE       n     1.538  0.0100     1.538  0.0100
+AWB         C11         C13      SINGLE       n     1.512  0.0100     1.512  0.0100
+AWB         C14         C15      SINGLE       n     1.492  0.0102     1.492  0.0102
+AWB         C15         C16      DOUBLE       y     1.397  0.0100     1.397  0.0100
+AWB         C15         C20      SINGLE       y     1.394  0.0100     1.394  0.0100
+AWB         C16         C17      SINGLE       y     1.404  0.0100     1.404  0.0100
+AWB         C17         C18      DOUBLE       y     1.383  0.0100     1.383  0.0100
+AWB         C18         C19      SINGLE       y     1.384  0.0132     1.384  0.0132
+AWB         C19         C20      DOUBLE       y     1.375  0.0100     1.375  0.0100
+AWB         C23         C24      SINGLE       n     1.503  0.0175     1.503  0.0175
+AWB         C24         C25      SINGLE       n     1.518  0.0159     1.518  0.0159
+AWB         C25         C26      SINGLE       n     1.519  0.0152     1.519  0.0152
+AWB         C25         C27      SINGLE       n     1.519  0.0152     1.519  0.0152
+AWB           C           H      SINGLE       n     1.089  0.0100     0.973  0.0157
+AWB           C          HA      SINGLE       n     1.089  0.0100     0.973  0.0157
+AWB           C          HB      SINGLE       n     1.089  0.0100     0.973  0.0157
+AWB           N          HN      SINGLE       n     1.016  0.0100     0.872  0.0200
+AWB          C1          H1      SINGLE       n     1.089  0.0100     0.982  0.0155
+AWB          C1         H1A      SINGLE       n     1.089  0.0100     0.982  0.0155
+AWB          N1         HN1      SINGLE       n     1.016  0.0100     0.882  0.0200
+AWB          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0163
+AWB          C2         H2A      SINGLE       n     1.089  0.0100     0.981  0.0163
+AWB          C3          H3      SINGLE       n     1.089  0.0100     0.981  0.0163
+AWB          C3         H3A      SINGLE       n     1.089  0.0100     0.981  0.0163
+AWB          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0163
+AWB          C4         H4A      SINGLE       n     1.089  0.0100     0.981  0.0163
+AWB          C5          H5      SINGLE       n     1.089  0.0100     0.980  0.0160
+AWB          C5         H5A      SINGLE       n     1.089  0.0100     0.980  0.0160
+AWB          C6          H6      SINGLE       n     1.089  0.0100     0.980  0.0100
+AWB          O6         HO6      SINGLE       n     0.966  0.0059     0.861  0.0200
+AWB          C7          H7      SINGLE       n     1.089  0.0100     0.989  0.0161
+AWB          C8          H8      SINGLE       n     1.089  0.0100     0.990  0.0148
+AWB         C10         H10      SINGLE       n     1.089  0.0100     0.997  0.0200
+AWB         C11         H11      SINGLE       n     1.089  0.0100     0.990  0.0186
+AWB         C13         H13      SINGLE       n     1.089  0.0100     0.974  0.0145
+AWB         C13        H13A      SINGLE       n     1.089  0.0100     0.974  0.0145
+AWB         C13        H13B      SINGLE       n     1.089  0.0100     0.974  0.0145
+AWB         C18         H18      SINGLE       n     1.082  0.0130     0.942  0.0170
+AWB         C19         H19      SINGLE       n     1.082  0.0130     0.940  0.0164
+AWB         C20         H20      SINGLE       n     1.082  0.0130     0.941  0.0168
+AWB         C21         H21      SINGLE       n     1.082  0.0130     0.949  0.0200
+AWB         C22         H22      SINGLE       n     1.089  0.0100     0.974  0.0145
+AWB         C22        H22A      SINGLE       n     1.089  0.0100     0.974  0.0145
+AWB         C22        H22B      SINGLE       n     1.089  0.0100     0.974  0.0145
+AWB         C24         H24      SINGLE       n     1.089  0.0100     0.981  0.0185
+AWB         C24        H24A      SINGLE       n     1.089  0.0100     0.981  0.0185
+AWB         C25         H25      SINGLE       n     1.089  0.0100     0.989  0.0148
+AWB         C26         H26      SINGLE       n     1.089  0.0100     0.973  0.0146
+AWB         C26        H26A      SINGLE       n     1.089  0.0100     0.973  0.0146
+AWB         C26        H26B      SINGLE       n     1.089  0.0100     0.973  0.0146
+AWB         C27         H27      SINGLE       n     1.089  0.0100     0.973  0.0146
+AWB         C27        H27A      SINGLE       n     1.089  0.0100     0.973  0.0146
+AWB         C27        H27B      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AWB          C1           C           H     109.554    1.50
+AWB          C1           C          HA     109.554    1.50
+AWB          C1           C          HB     109.554    1.50
+AWB           H           C          HA     109.380    1.50
+AWB           H           C          HB     109.380    1.50
+AWB          HA           C          HB     109.380    1.50
+AWB         C10           N         C14     121.852    1.50
+AWB         C10           N          HN     118.788    1.91
+AWB         C14           N          HN     119.360    1.94
+AWB          C8           O          C9     117.944    1.50
+AWB           C          C1          C2     113.719    3.00
+AWB           C          C1          H1     108.918    1.50
+AWB           C          C1         H1A     108.918    1.50
+AWB          C2          C1          H1     108.758    1.50
+AWB          C2          C1         H1A     108.758    1.50
+AWB          H1          C1         H1A     107.763    1.50
+AWB         C17          N1         C21     126.582    2.43
+AWB         C17          N1         HN1     116.590    2.05
+AWB         C21          N1         HN1     116.828    1.76
+AWB          C1          C2          C3     114.362    3.00
+AWB          C1          C2          H2     108.653    1.50
+AWB          C1          C2         H2A     108.653    1.50
+AWB          C3          C2          H2     108.698    1.50
+AWB          C3          C2         H2A     108.698    1.50
+AWB          H2          C2         H2A     107.646    1.50
+AWB         C11          O2         C12     117.944    1.50
+AWB          C2          C3          C4     114.243    1.69
+AWB          C2          C3          H3     108.698    1.50
+AWB          C2          C3         H3A     108.698    1.50
+AWB          C4          C3          H3     108.698    1.50
+AWB          C4          C3         H3A     108.698    1.50
+AWB          H3          C3         H3A     107.646    1.50
+AWB          C3          C4          C5     115.535    2.06
+AWB          C3          C4          H4     108.698    1.50
+AWB          C3          C4         H4A     108.698    1.50
+AWB          C5          C4          H4     108.762    1.50
+AWB          C5          C4         H4A     108.762    1.50
+AWB          H4          C4         H4A     107.646    1.50
+AWB          C4          C5          C6     114.798    1.57
+AWB          C4          C5          H5     108.469    1.50
+AWB          C4          C5         H5A     108.469    1.50
+AWB          C6          C5          H5     108.632    1.50
+AWB          C6          C5         H5A     108.632    1.50
+AWB          H5          C5         H5A     107.657    1.50
+AWB          C5          C6          C7     114.669    1.50
+AWB          C5          C6         C12     109.716    2.03
+AWB          C5          C6          H6     107.780    1.50
+AWB          C7          C6         C12     110.587    2.32
+AWB          C7          C6          H6     107.398    1.50
+AWB         C12          C6          H6     107.456    2.04
+AWB         C16          O6         HO6     120.000    3.00
+AWB          C6          C7          O7     106.864    2.42
+AWB          C6          C7          C8     115.018    1.61
+AWB          C6          C7          H7     107.902    1.50
+AWB          O7          C7          C8     106.851    2.25
+AWB          O7          C7          H7     109.221    1.50
+AWB          C8          C7          H7     108.450    1.83
+AWB          C7          O7         C23     117.944    1.50
+AWB           O          C8          C7     106.851    2.25
+AWB           O          C8         C22     108.070    1.99
+AWB           O          C8          H8     109.709    1.50
+AWB          C7          C8         C22     112.647    2.72
+AWB          C7          C8          H8     108.450    1.83
+AWB         C22          C8          H8     109.484    1.50
+AWB           O          C9          O1     124.654    1.50
+AWB           O          C9         C10     111.191    1.50
+AWB          O1          C9         C10     124.156    1.72
+AWB           N         C10          C9     110.537    1.50
+AWB           N         C10         C11     111.308    2.28
+AWB           N         C10         H10     108.209    1.50
+AWB          C9         C10         C11     109.534    1.50
+AWB          C9         C10         H10     107.874    1.50
+AWB         C11         C10         H10     108.179    1.50
+AWB          O2         C11         C10     107.754    2.90
+AWB          O2         C11         C13     107.386    2.05
+AWB          O2         C11         H11     109.221    1.50
+AWB         C10         C11         C13     112.076    1.65
+AWB         C10         C11         H11     108.267    2.06
+AWB         C13         C11         H11     109.478    1.50
+AWB          O2         C12          O3     124.099    2.59
+AWB          O2         C12          C6     111.965    1.81
+AWB          O3         C12          C6     123.936    2.15
+AWB         C11         C13         H13     109.471    1.50
+AWB         C11         C13        H13A     109.471    1.50
+AWB         C11         C13        H13B     109.471    1.50
+AWB         H13         C13        H13A     109.425    1.50
+AWB         H13         C13        H13B     109.425    1.50
+AWB        H13A         C13        H13B     109.425    1.50
+AWB           N         C14          O4     122.654    1.50
+AWB           N         C14         C15     117.026    1.50
+AWB          O4         C14         C15     120.321    1.50
+AWB         C14         C15         C16     122.712    3.00
+AWB         C14         C15         C20     118.820    3.00
+AWB         C16         C15         C20     118.468    1.50
+AWB          O6         C16         C15     120.356    3.00
+AWB          O6         C16         C17     120.356    3.00
+AWB         C15         C16         C17     119.288    1.64
+AWB          N1         C17         C16     118.002    2.41
+AWB          N1         C17         C18     121.552    3.00
+AWB         C16         C17         C18     120.446    1.59
+AWB         C17         C18         C19     119.905    1.50
+AWB         C17         C18         H18     119.993    1.50
+AWB         C19         C18         H18     120.102    1.50
+AWB         C18         C19         C20     120.321    1.50
+AWB         C18         C19         H19     119.744    1.50
+AWB         C20         C19         H19     119.935    1.50
+AWB         C15         C20         C19     121.572    1.50
+AWB         C15         C20         H20     118.927    1.50
+AWB         C19         C20         H20     119.501    1.50
+AWB          N1         C21          O5     125.585    1.50
+AWB          N1         C21         H21     116.999    1.50
+AWB          O5         C21         H21     117.417    1.50
+AWB          C8         C22         H22     109.489    1.50
+AWB          C8         C22        H22A     109.489    1.50
+AWB          C8         C22        H22B     109.489    1.50
+AWB         H22         C22        H22A     109.425    1.50
+AWB         H22         C22        H22B     109.425    1.50
+AWB        H22A         C22        H22B     109.425    1.50
+AWB          O7         C23          O8     123.263    2.43
+AWB          O7         C23         C24     112.160    1.92
+AWB          O8         C23         C24     124.577    1.60
+AWB         C23         C24         C25     112.397    1.50
+AWB         C23         C24         H24     108.993    1.50
+AWB         C23         C24        H24A     108.993    1.50
+AWB         C25         C24         H24     108.689    1.50
+AWB         C25         C24        H24A     108.689    1.50
+AWB         H24         C24        H24A     107.639    1.50
+AWB         C24         C25         C26     110.659    1.50
+AWB         C24         C25         C27     110.659    1.50
+AWB         C24         C25         H25     107.526    1.50
+AWB         C26         C25         C27     110.507    1.50
+AWB         C26         C25         H25     108.052    1.50
+AWB         C27         C25         H25     108.052    1.50
+AWB         C25         C26         H26     109.488    1.50
+AWB         C25         C26        H26A     109.488    1.50
+AWB         C25         C26        H26B     109.488    1.50
+AWB         H26         C26        H26A     109.411    1.50
+AWB         H26         C26        H26B     109.411    1.50
+AWB        H26A         C26        H26B     109.411    1.50
+AWB         C25         C27         H27     109.488    1.50
+AWB         C25         C27        H27A     109.488    1.50
+AWB         C25         C27        H27B     109.488    1.50
+AWB         H27         C27        H27A     109.411    1.50
+AWB         H27         C27        H27B     109.411    1.50
+AWB        H27A         C27        H27B     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AWB             sp3_sp3_1           H           C          C1          C2     180.000    10.0     3
+AWB            sp3_sp3_43          C3          C4          C5          C6     180.000    10.0     3
+AWB            sp3_sp3_52          C4          C5          C6          C7     180.000    10.0     3
+AWB            sp3_sp3_61          C5          C6          C7          O7     180.000    10.0     3
+AWB             sp2_sp3_7          O2         C12          C6          C5       0.000    10.0     6
+AWB            sp2_sp2_17         C15         C16          O6         HO6     180.000     5.0     2
+AWB            sp3_sp3_70          C6          C7          O7         C23     180.000    10.0     3
+AWB            sp3_sp3_73          C6          C7          C8           O     180.000    10.0     3
+AWB            sp2_sp2_19          O8         C23          O7          C7     180.000     5.0     2
+AWB            sp3_sp3_82         H22         C22          C8           O     180.000    10.0     3
+AWB             sp2_sp3_1         C14           N         C10          C9       0.000    10.0     6
+AWB             sp2_sp2_3          O4         C14           N         C10       0.000     5.0     2
+AWB            sp2_sp3_13           O          C9         C10           N       0.000    10.0     6
+AWB            sp3_sp3_91           N         C10         C11          O2     180.000    10.0     3
+AWB           sp3_sp3_100          O2         C11         C13         H13     180.000    10.0     3
+AWB            sp2_sp2_21           N         C14         C15         C16     180.000     5.0     2
+AWB       const_sp2_sp2_4         C14         C15         C16          O6       0.000     5.0     2
+AWB              const_23         C14         C15         C20         C19     180.000    10.0     2
+AWB       const_sp2_sp2_8          O6         C16         C17          N1       0.000     5.0     2
+AWB              const_11          N1         C17         C18         C19     180.000    10.0     2
+AWB              const_13         C17         C18         C19         C20       0.000    10.0     2
+AWB            sp3_sp3_10          C7          C8           O          C9     180.000    10.0     3
+AWB             sp2_sp2_5          O1          C9           O          C8     180.000     5.0     2
+AWB              const_17         C18         C19         C20         C15       0.000    10.0     2
+AWB            sp2_sp3_20          O7         C23         C24         C25     120.000    10.0     6
+AWB           sp3_sp3_110         C23         C24         C25         C26     -60.000    10.0     3
+AWB           sp3_sp3_118         C24         C25         C26         H26     180.000    10.0     3
+AWB           sp3_sp3_130         C24         C25         C27         H27      60.000    10.0     3
+AWB            sp3_sp3_13           C          C1          C2          C3     180.000    10.0     3
+AWB             sp2_sp2_7         C16         C17          N1         C21     180.000     5.0     2
+AWB            sp2_sp2_11          O5         C21          N1         C17     180.000     5.0     2
+AWB            sp3_sp3_22          C1          C2          C3          C4     180.000    10.0     3
+AWB            sp3_sp3_31         C10         C11          O2         C12     180.000    10.0     3
+AWB            sp2_sp2_15          O3         C12          O2         C11     180.000     5.0     2
+AWB            sp3_sp3_34          C2          C3          C4          C5     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AWB    chir_1    C6    C12    C7    C5    negative
+AWB    chir_2    C7    O7    C8    C6    negative
+AWB    chir_3    C8    O    C7    C22    positive
+AWB    chir_4    C10    N    C9    C11    positive
+AWB    chir_5    C11    O2    C10    C13    negative
+AWB    chir_6    C25    C24    C26    C27    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AWB    plan-1         C14   0.020
+AWB    plan-1         C15   0.020
+AWB    plan-1         C16   0.020
+AWB    plan-1         C17   0.020
+AWB    plan-1         C18   0.020
+AWB    plan-1         C19   0.020
+AWB    plan-1         C20   0.020
+AWB    plan-1         H18   0.020
+AWB    plan-1         H19   0.020
+AWB    plan-1         H20   0.020
+AWB    plan-1          N1   0.020
+AWB    plan-1          O6   0.020
+AWB    plan-2         C10   0.020
+AWB    plan-2         C14   0.020
+AWB    plan-2          HN   0.020
+AWB    plan-2           N   0.020
+AWB    plan-3         C17   0.020
+AWB    plan-3         C21   0.020
+AWB    plan-3         HN1   0.020
+AWB    plan-3          N1   0.020
+AWB    plan-4         C10   0.020
+AWB    plan-4          C9   0.020
+AWB    plan-4           O   0.020
+AWB    plan-4          O1   0.020
+AWB    plan-5         C12   0.020
+AWB    plan-5          C6   0.020
+AWB    plan-5          O2   0.020
+AWB    plan-5          O3   0.020
+AWB    plan-6         C14   0.020
+AWB    plan-6         C15   0.020
+AWB    plan-6           N   0.020
+AWB    plan-6          O4   0.020
+AWB    plan-7         C21   0.020
+AWB    plan-7         H21   0.020
+AWB    plan-7          N1   0.020
+AWB    plan-7          O5   0.020
+AWB    plan-8         C23   0.020
+AWB    plan-8         C24   0.020
+AWB    plan-8          O7   0.020
+AWB    plan-8          O8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AWB            InChI                InChI  1.03 InChI=1S/C28H40N2O9/c1-6-7-8-9-11-20-25(39-22(32)14-16(2)3)18(5)38-28(36)23(17(4)37-27(20)35)30-26(34)19-12-10-13-21(24(19)33)29-15-31/h10,12-13,15-18,20,23,25,33H,6-9,11,14H2,1-5H3,(H,29,31)(H,30,34)/t17-,18+,20-,23+,25+/m1/s1
+AWB         InChIKey                InChI  1.03                                                                                                                                                                                                         UIFFUZWRFRDZJC-SBOOETFBSA-N
+AWB SMILES_CANONICAL               CACTVS 3.385                                                                                                                                          CCCCCC[C@@H]1[C@@H](OC(=O)CC(C)C)[C@H](C)OC(=O)[C@@H](NC(=O)c2cccc(NC=O)c2O)[C@@H](C)OC1=O
+AWB           SMILES               CACTVS 3.385                                                                                                                                                   CCCCCC[CH]1[CH](OC(=O)CC(C)C)[CH](C)OC(=O)[CH](NC(=O)c2cccc(NC=O)c2O)[CH](C)OC1=O
+AWB SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                            CCCCCC[C@@H]1[C@H]([C@@H](OC(=O)[C@H]([C@H](OC1=O)C)NC(=O)c2cccc(c2O)NC=O)C)OC(=O)CC(C)C
+AWB           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                  CCCCCCC1C(C(OC(=O)C(C(OC1=O)C)NC(=O)c2cccc(c2O)NC=O)C)OC(=O)CC(C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AWB acedrg               243         "dictionary generator"                  
+AWB acedrg_database      11          "data source"                           
+AWB rdkit                2017.03.2   "Chemoinformatics tool"
+AWB refmac5              5.8.0238    "optimization tool"                     

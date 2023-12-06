@@ -1,0 +1,246 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TER     TER      N-(3-AMINO-PROPYL)-N-(5-AMINOPROPYL)-1,4-DIAMINOBUTANE     NON-POLYMER     40     14     .     
+#
+data_comp_TER
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TER     N1      N       NT2     0       20.727      25.955      11.512      
+TER     C2      C       CH2     0       21.614      27.117      11.632      
+TER     C3      C       CH2     0       21.936      27.727      10.297      
+TER     C4      C       CH2     0       20.838      28.609      9.741       
+TER     N5      N       NT1     0       19.682      27.823      9.306       
+TER     C6      C       CH2     0       19.763      27.291      7.945       
+TER     C7      C       CH2     0       18.647      26.308      7.665       
+TER     C8      C       CH2     0       18.708      25.071      8.533       
+TER     N9      N       NT1     0       17.690      24.093      8.145       
+TER     C10     C       CH2     0       17.751      22.817      8.859       
+TER     C11     C       CH2     0       18.737      21.855      8.214       
+TER     C12     C       CH2     0       18.795      20.513      8.923       
+TER     C13     C       CH2     0       19.750      19.527      8.268       
+TER     N14     N       NT2     0       19.351      19.092      6.926       
+TER     HN11    H       H       0       20.559      25.602      12.309      
+TER     HN12    H       H       0       21.103      25.321      11.016      
+TER     H21     H       H       0       22.444      26.837      12.071      
+TER     H22     H       H       0       21.184      27.786      12.203      
+TER     H31     H       H       0       22.120      27.010      9.656       
+TER     H32     H       H       0       22.754      28.259      10.381      
+TER     H41     H       H       0       21.187      29.123      8.983       
+TER     H42     H       H       0       20.554      29.246      10.429      
+TER     HN5     H       H       0       18.952      28.346      9.358       
+TER     H61     H       H       0       20.626      26.844      7.820       
+TER     H62     H       H       0       19.712      28.030      7.304       
+TER     H71     H       H       0       18.688      26.040      6.725       
+TER     H72     H       H       0       17.788      26.755      7.808       
+TER     H81     H       H       0       18.573      25.324      9.470       
+TER     H82     H       H       0       19.595      24.663      8.456       
+TER     HN9     H       H       0       16.881      24.458      8.293       
+TER     H101    H       H       0       16.860      22.407      8.866       
+TER     H102    H       H       0       18.016      22.975      9.789       
+TER     H111    H       H       0       19.630      22.260      8.222       
+TER     H112    H       H       0       18.478      21.712      7.279       
+TER     H121    H       H       0       17.896      20.118      8.936       
+TER     H122    H       H       0       19.077      20.653      9.852       
+TER     H131    H       H       0       19.827      18.739      8.843       
+TER     H132    H       H       0       20.635      19.942      8.212       
+TER     HN41    H       H       0       19.512      19.727      6.327       
+TER     HN42    H       H       0       18.481      18.916      6.896       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TER          N1          C2      SINGLE       n     1.466  0.0117     1.466  0.0117
+TER          C2          C3      SINGLE       n     1.502  0.0191     1.502  0.0191
+TER          C3          C4      SINGLE       n     1.512  0.0200     1.512  0.0200
+TER          C4          N5      SINGLE       n     1.463  0.0111     1.463  0.0111
+TER          N5          C6      SINGLE       n     1.463  0.0111     1.463  0.0111
+TER          C6          C7      SINGLE       n     1.512  0.0200     1.512  0.0200
+TER          C7          C8      SINGLE       n     1.512  0.0200     1.512  0.0200
+TER          C8          N9      SINGLE       n     1.463  0.0111     1.463  0.0111
+TER          N9         C10      SINGLE       n     1.463  0.0111     1.463  0.0111
+TER         C10         C11      SINGLE       n     1.521  0.0100     1.521  0.0100
+TER         C11         C12      SINGLE       n     1.519  0.0150     1.519  0.0150
+TER         C12         C13      SINGLE       n     1.521  0.0102     1.521  0.0102
+TER         C13         N14      SINGLE       n     1.466  0.0117     1.466  0.0117
+TER          N1        HN11      SINGLE       n     1.036  0.0160     0.888  0.0200
+TER          N1        HN12      SINGLE       n     1.036  0.0160     0.888  0.0200
+TER          C2         H21      SINGLE       n     1.089  0.0100     0.979  0.0106
+TER          C2         H22      SINGLE       n     1.089  0.0100     0.979  0.0106
+TER          C3         H31      SINGLE       n     1.089  0.0100     0.979  0.0161
+TER          C3         H32      SINGLE       n     1.089  0.0100     0.979  0.0161
+TER          C4         H41      SINGLE       n     1.089  0.0100     0.980  0.0143
+TER          C4         H42      SINGLE       n     1.089  0.0100     0.980  0.0143
+TER          N5         HN5      SINGLE       n     1.036  0.0160     0.899  0.0200
+TER          C6         H61      SINGLE       n     1.089  0.0100     0.980  0.0143
+TER          C6         H62      SINGLE       n     1.089  0.0100     0.980  0.0143
+TER          C7         H71      SINGLE       n     1.089  0.0100     0.979  0.0161
+TER          C7         H72      SINGLE       n     1.089  0.0100     0.979  0.0161
+TER          C8         H81      SINGLE       n     1.089  0.0100     0.980  0.0143
+TER          C8         H82      SINGLE       n     1.089  0.0100     0.980  0.0143
+TER          N9         HN9      SINGLE       n     1.036  0.0160     0.899  0.0200
+TER         C10        H101      SINGLE       n     1.089  0.0100     0.980  0.0143
+TER         C10        H102      SINGLE       n     1.089  0.0100     0.980  0.0143
+TER         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0160
+TER         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0160
+TER         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0160
+TER         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0160
+TER         C13        H131      SINGLE       n     1.089  0.0100     0.979  0.0106
+TER         C13        H132      SINGLE       n     1.089  0.0100     0.979  0.0106
+TER         N14        HN41      SINGLE       n     1.036  0.0160     0.888  0.0200
+TER         N14        HN42      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TER          C2          N1        HN11     110.839    3.00
+TER          C2          N1        HN12     110.839    3.00
+TER        HN11          N1        HN12     107.243    3.00
+TER          N1          C2          C3     111.621    2.46
+TER          N1          C2         H21     108.763    1.50
+TER          N1          C2         H22     108.763    1.50
+TER          C3          C2         H21     109.330    1.50
+TER          C3          C2         H22     109.330    1.50
+TER         H21          C2         H22     107.806    1.50
+TER          C2          C3          C4     114.005    1.96
+TER          C2          C3         H31     109.108    1.50
+TER          C2          C3         H32     109.108    1.50
+TER          C4          C3         H31     108.958    1.50
+TER          C4          C3         H32     108.958    1.50
+TER         H31          C3         H32     107.594    1.73
+TER          C3          C4          N5     111.530    1.50
+TER          C3          C4         H41     109.350    1.50
+TER          C3          C4         H42     109.350    1.50
+TER          N5          C4         H41     109.338    1.50
+TER          N5          C4         H42     109.338    1.50
+TER         H41          C4         H42     107.877    1.50
+TER          C4          N5          C6     114.187    2.61
+TER          C4          N5         HN5     108.180    3.00
+TER          C6          N5         HN5     108.180    3.00
+TER          N5          C6          C7     111.530    1.50
+TER          N5          C6         H61     109.338    1.50
+TER          N5          C6         H62     109.338    1.50
+TER          C7          C6         H61     109.350    1.50
+TER          C7          C6         H62     109.350    1.50
+TER         H61          C6         H62     107.877    1.50
+TER          C6          C7          C8     113.258    1.75
+TER          C6          C7         H71     108.958    1.50
+TER          C6          C7         H72     108.958    1.50
+TER          C8          C7         H71     108.958    1.50
+TER          C8          C7         H72     108.958    1.50
+TER         H71          C7         H72     107.594    1.73
+TER          C7          C8          N9     111.530    1.50
+TER          C7          C8         H81     109.350    1.50
+TER          C7          C8         H82     109.350    1.50
+TER          N9          C8         H81     109.338    1.50
+TER          N9          C8         H82     109.338    1.50
+TER         H81          C8         H82     107.877    1.50
+TER          C8          N9         C10     114.187    2.61
+TER          C8          N9         HN9     108.180    3.00
+TER         C10          N9         HN9     108.180    3.00
+TER          N9         C10         C11     111.754    2.01
+TER          N9         C10        H101     109.338    1.50
+TER          N9         C10        H102     109.338    1.50
+TER         C11         C10        H101     109.197    1.51
+TER         C11         C10        H102     109.197    1.51
+TER        H101         C10        H102     107.877    1.50
+TER         C10         C11         C12     112.652    1.50
+TER         C10         C11        H111     108.956    1.50
+TER         C10         C11        H112     108.956    1.50
+TER         C12         C11        H111     108.999    1.50
+TER         C12         C11        H112     108.999    1.50
+TER        H111         C11        H112     107.927    1.57
+TER         C11         C12         C13     113.118    2.03
+TER         C11         C12        H121     108.999    1.50
+TER         C11         C12        H122     108.999    1.50
+TER         C13         C12        H121     108.630    1.50
+TER         C13         C12        H122     108.630    1.50
+TER        H121         C12        H122     107.927    1.57
+TER         C12         C13         N14     114.751    2.00
+TER         C12         C13        H131     108.627    1.50
+TER         C12         C13        H132     108.627    1.50
+TER         N14         C13        H131     108.763    1.50
+TER         N14         C13        H132     108.763    1.50
+TER        H131         C13        H132     107.806    1.50
+TER         C13         N14        HN41     110.839    3.00
+TER         C13         N14        HN42     110.839    3.00
+TER        HN41         N14        HN42     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TER             sp3_sp3_1          C3          C2          N1        HN11     180.000    10.0     3
+TER            sp3_sp3_76         C10         C11         C12         C13     180.000    10.0     3
+TER            sp3_sp3_85         C11         C12         C13         N14     180.000    10.0     3
+TER            sp3_sp3_94         C12         C13         N14        HN41     180.000    10.0     3
+TER             sp3_sp3_7          N1          C2          C3          C4     180.000    10.0     3
+TER            sp3_sp3_16          C2          C3          C4          N5     180.000    10.0     3
+TER            sp3_sp3_25          C3          C4          N5          C6     180.000    10.0     3
+TER            sp3_sp3_32          C7          C6          N5          C4     -60.000    10.0     3
+TER            sp3_sp3_37          N5          C6          C7          C8     180.000    10.0     3
+TER            sp3_sp3_46          C6          C7          C8          N9     180.000    10.0     3
+TER            sp3_sp3_56          C7          C8          N9         C10     -60.000    10.0     3
+TER            sp3_sp3_61         C11         C10          N9          C8     180.000    10.0     3
+TER            sp3_sp3_67          N9         C10         C11         C12     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TER    chir_1    N5    C6    C4    HN5    both
+TER    chir_2    N9    C8    C10    HN9    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TER           SMILES              ACDLabs 10.04                                                   N(CCCCN)CCCNCCCN
+TER SMILES_CANONICAL               CACTVS 3.341                                                     NCCCCNCCCNCCCN
+TER           SMILES               CACTVS 3.341                                                     NCCCCNCCCNCCCN
+TER SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                   C(CCNCCCNCCCN)CN
+TER           SMILES "OpenEye OEToolkits" 1.5.0                                                   C(CCNCCCNCCCN)CN
+TER            InChI                InChI  1.03 InChI=1S/C10H26N4/c11-5-1-2-7-13-9-4-10-14-8-3-6-12/h13-14H,1-12H2
+TER         InChIKey                InChI  1.03                                        DODDBCGMRAFLEB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TER acedrg               243         "dictionary generator"                  
+TER acedrg_database      11          "data source"                           
+TER rdkit                2017.03.2   "Chemoinformatics tool"
+TER refmac5              5.8.0238    "optimization tool"                     

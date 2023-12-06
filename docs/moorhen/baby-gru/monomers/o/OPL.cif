@@ -1,0 +1,166 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OPL     OPL      (2R,3R)-2,4,4-trihydroxy-3-methylbutanal     NON-POLYMER     19     9     .     
+#
+data_comp_OPL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OPL     C1      C       CH1     0       -24.209     14.957      -18.318     
+OPL     O1      O       OH1     0       -24.931     14.555      -17.163     
+OPL     C2      C       CH1     0       -24.908     16.111      -19.043     
+OPL     O2      O       OH1     0       -24.043     13.878      -19.231     
+OPL     C3      C       CH1     0       -26.398     15.873      -19.354     
+OPL     O3      O       O       0       -27.278     15.752      -17.153     
+OPL     C4      C       C1      0       -27.383     16.240      -18.234     
+OPL     O4      O       OH1     0       -26.598     14.525      -19.758     
+OPL     C5      C       CH3     0       -24.696     17.415      -18.282     
+OPL     H9      H       H       0       -23.308     15.261      -18.031     
+OPL     H8      H       H       0       -24.475     13.983      -16.733     
+OPL     H2      H       H       0       -24.459     16.215      -19.918     
+OPL     H10     H       H       0       -24.786     13.488      -19.350     
+OPL     H3      H       H       0       -26.604     16.453      -20.127     
+OPL     H4      H       H       0       -28.079     16.857      -18.412     
+OPL     HO4     H       H       0       -27.295     14.482      -20.240     
+OPL     H5      H       H       0       -25.281     18.104      -18.643     
+OPL     H5A     H       H       0       -23.770     17.697      -18.376     
+OPL     H5B     H       H       0       -24.896     17.280      -17.339     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OPL          C1          O1      SINGLE       n     1.421  0.0162     1.421  0.0162
+OPL          C1          C2      SINGLE       n     1.525  0.0139     1.525  0.0139
+OPL          C1          O2      SINGLE       n     1.421  0.0162     1.421  0.0162
+OPL          C2          C3      SINGLE       n     1.534  0.0100     1.534  0.0100
+OPL          C2          C5      SINGLE       n     1.521  0.0135     1.521  0.0135
+OPL          C3          C4      SINGLE       n     1.533  0.0100     1.533  0.0100
+OPL          C3          O4      SINGLE       n     1.419  0.0162     1.419  0.0162
+OPL          O3          C4      DOUBLE       n     1.191  0.0200     1.191  0.0200
+OPL          C1          H9      SINGLE       n     1.089  0.0100     0.993  0.0200
+OPL          O1          H8      SINGLE       n     0.970  0.0120     0.848  0.0200
+OPL          C2          H2      SINGLE       n     1.089  0.0100     0.989  0.0175
+OPL          O2         H10      SINGLE       n     0.970  0.0120     0.848  0.0200
+OPL          C3          H3      SINGLE       n     1.089  0.0100     0.988  0.0129
+OPL          C4          H4      SINGLE       n     1.082  0.0130     0.947  0.0200
+OPL          O4         HO4      SINGLE       n     0.970  0.0120     0.848  0.0200
+OPL          C5          H5      SINGLE       n     1.089  0.0100     0.973  0.0146
+OPL          C5         H5A      SINGLE       n     1.089  0.0100     0.973  0.0146
+OPL          C5         H5B      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OPL          O1          C1          C2     109.482    3.00
+OPL          O1          C1          O2     111.904    1.92
+OPL          O1          C1          H9     108.816    1.50
+OPL          C2          C1          O2     109.482    3.00
+OPL          C2          C1          H9     109.168    1.50
+OPL          O2          C1          H9     108.816    1.50
+OPL          C1          O1          H8     109.233    2.58
+OPL          C1          C2          C3     111.094    2.85
+OPL          C1          C2          C5     110.949    1.50
+OPL          C1          C2          H2     108.007    1.50
+OPL          C3          C2          C5     111.041    1.50
+OPL          C3          C2          H2     107.221    1.50
+OPL          C5          C2          H2     107.863    1.50
+OPL          C1          O2         H10     109.233    2.58
+OPL          C2          C3          C4     111.511    2.91
+OPL          C2          C3          O4     110.114    2.85
+OPL          C2          C3          H3     108.757    2.66
+OPL          C4          C3          O4     111.343    1.72
+OPL          C4          C3          H3     108.312    1.50
+OPL          O4          C3          H3     108.675    1.50
+OPL          C3          C4          O3     120.147    1.51
+OPL          C3          C4          H4     119.619    2.53
+OPL          O3          C4          H4     120.235    1.50
+OPL          C3          O4         HO4     108.894    3.00
+OPL          C2          C5          H5     109.513    1.50
+OPL          C2          C5         H5A     109.513    1.50
+OPL          C2          C5         H5B     109.513    1.50
+OPL          H5          C5         H5A     109.411    1.50
+OPL          H5          C5         H5B     109.411    1.50
+OPL         H5A          C5         H5B     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OPL             sp3_sp3_1          C2          C1          O1          H8     180.000    10.0     3
+OPL             sp3_sp3_7          O1          C1          C2          C3      60.000    10.0     3
+OPL            sp3_sp3_13          O1          C1          O2         H10     180.000    10.0     3
+OPL            sp3_sp3_16          C1          C2          C3          C4     180.000    10.0     3
+OPL            sp3_sp3_25          C1          C2          C5          H5     180.000    10.0     3
+OPL             sp2_sp3_1          O3          C4          C3          C2       0.000    10.0     6
+OPL            sp3_sp3_34          C2          C3          O4         HO4     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OPL    chir_1    C1    O1    O2    C2    both
+OPL    chir_2    C2    C1    C3    C5    negative
+OPL    chir_3    C3    O4    C4    C2    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OPL    plan-1          C3   0.020
+OPL    plan-1          C4   0.020
+OPL    plan-1          H4   0.020
+OPL    plan-1          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OPL           SMILES              ACDLabs 12.01                                               O=CC(O)C(C)C(O)O
+OPL            InChI                InChI  1.03 InChI=1S/C5H10O4/c1-3(5(8)9)4(7)2-6/h2-5,7-9H,1H3/t3-,4+/m1/s1
+OPL         InChIKey                InChI  1.03                                    NTSABUYTFOFFJR-DMTCNVIQSA-N
+OPL SMILES_CANONICAL               CACTVS 3.370                                     C[C@@H](C(O)O)[C@@H](O)C=O
+OPL           SMILES               CACTVS 3.370                                         C[CH](C(O)O)[CH](O)C=O
+OPL SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                       C[C@H]([C@H](C=O)O)C(O)O
+OPL           SMILES "OpenEye OEToolkits" 1.7.6                                               CC(C(C=O)O)C(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OPL acedrg               243         "dictionary generator"                  
+OPL acedrg_database      11          "data source"                           
+OPL rdkit                2017.03.2   "Chemoinformatics tool"
+OPL refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,378 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MXP     MXP      "Myxopyronin B"     NON-POLYMER     61     30     .     
+#
+data_comp_MXP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MXP     O1      O       O2      0       -11.322     56.848      2.785       
+MXP     C1      C       CR16    0       -9.615      58.228      1.933       
+MXP     N1      N       NH1     0       -7.686      55.565      8.126       
+MXP     C2      C       CR6     0       -10.437     59.378      2.144       
+MXP     C3      C       CR6     0       -11.736     59.225      2.673       
+MXP     O2      O       OH1     0       -9.947      60.618      1.806       
+MXP     C4      C       CR6     0       -12.188     57.923      3.020       
+MXP     C5      C       CR6     0       -10.076     57.014      2.247       
+MXP     C6      C       C       0       -12.611     60.405      2.945       
+MXP     C7      C       C       0       -12.790     60.871      4.311       
+MXP     O3      O       O       0       -13.253     57.594      3.497       
+MXP     C8      C       C1      0       -12.067     60.324      5.377       
+MXP     C9      C       C1      0       -12.229     60.518      6.805       
+MXP     C10     C       C       0       -11.580     59.869      7.775       
+MXP     C11     C       CH2     0       -11.783     60.255      9.221       
+MXP     C12     C       CH2     0       -10.630     61.021      9.797       
+MXP     C13     C       CH2     0       -10.513     62.439      9.265       
+MXP     C14     C       CH3     0       -9.454      63.258      9.962       
+MXP     C15     C       CH3     0       -13.788     61.969      4.606       
+MXP     C16     C       CH3     0       -10.626     58.726      7.554       
+MXP     C17     C       CH2     0       -9.322      55.733      2.102       
+MXP     C18     C       CH2     0       -8.350      55.468      3.260       
+MXP     C19     C       CH2     0       -9.039      55.167      4.595       
+MXP     C20     C       C1      0       -8.121      55.270      5.776       
+MXP     C21     C       C1      0       -8.526      55.475      7.019       
+MXP     C22     C       C       0       -8.082      55.780      9.433       
+MXP     C23     C       CH3     0       -7.225      55.912      11.648      
+MXP     O4      O       O       0       -13.195     60.943      2.002       
+MXP     O5      O       O2      0       -6.998      55.805      10.224      
+MXP     O6      O       O       0       -9.230      55.926      9.807       
+MXP     H1      H       H       0       -8.761      58.323      1.572       
+MXP     HN1     H       H       0       -6.822      55.478      7.978       
+MXP     HO2     H       H       0       -10.291     61.052      1.147       
+MXP     H8      H       H       0       -11.341     59.787      5.125       
+MXP     H9      H       H       0       -12.854     61.169      7.074       
+MXP     H11     H       H       0       -11.923     59.441      9.749       
+MXP     H11A    H       H       0       -12.598     60.796      9.300       
+MXP     H12     H       H       0       -9.799      60.539      9.601       
+MXP     H12A    H       H       0       -10.733     61.056      10.771      
+MXP     H13     H       H       0       -11.381     62.888      9.367       
+MXP     H13A    H       H       0       -10.305     62.403      8.306       
+MXP     H14     H       H       0       -9.417      64.147      9.567       
+MXP     H14A    H       H       0       -8.589      62.824      9.862       
+MXP     H14B    H       H       0       -9.671      63.334      10.907      
+MXP     H15     H       H       0       -14.009     62.450      3.796       
+MXP     H15A    H       H       0       -13.408     62.589      5.246       
+MXP     H15B    H       H       0       -14.595     61.582      4.977       
+MXP     H16     H       H       0       -10.915     58.198      6.792       
+MXP     H16A    H       H       0       -10.603     58.159      8.342       
+MXP     H16B    H       H       0       -9.735      59.075      7.384       
+MXP     H17     H       H       0       -8.809      55.757      1.253       
+MXP     H17A    H       H       0       -9.967      54.981      2.047       
+MXP     H18     H       H       0       -7.770      56.256      3.370       
+MXP     H18A    H       H       0       -7.775      54.706      3.019       
+MXP     H19     H       H       0       -9.416      54.261      4.559       
+MXP     H19A    H       H       0       -9.784      55.793      4.722       
+MXP     H20     H       H       0       -7.182      55.181      5.617       
+MXP     H21     H       H       0       -9.445      55.568      7.174       
+MXP     H23     H       H       0       -7.772      55.168      11.947      
+MXP     H23A    H       H       0       -7.678      56.748      11.842      
+MXP     H23B    H       H       0       -6.373      55.892      12.111      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MXP          O1          C4      SINGLE       y     1.397  0.0100     1.397  0.0100
+MXP          O1          C5      SINGLE       y     1.363  0.0100     1.363  0.0100
+MXP          C1          C2      SINGLE       y     1.426  0.0100     1.426  0.0100
+MXP          C1          C5      DOUBLE       y     1.334  0.0100     1.334  0.0100
+MXP          N1         C21      SINGLE       n     1.389  0.0135     1.389  0.0135
+MXP          N1         C22      SINGLE       n     1.379  0.0101     1.379  0.0101
+MXP          C2          C3      DOUBLE       y     1.407  0.0100     1.407  0.0100
+MXP          C2          O2      SINGLE       n     1.374  0.0155     1.374  0.0155
+MXP          C3          C4      SINGLE       y     1.406  0.0200     1.406  0.0200
+MXP          C3          C6      SINGLE       n     1.490  0.0138     1.490  0.0138
+MXP          C4          O3      DOUBLE       n     1.212  0.0100     1.212  0.0100
+MXP          C5         C17      SINGLE       n     1.493  0.0100     1.493  0.0100
+MXP          C6          C7      SINGLE       n     1.419  0.0200     1.419  0.0200
+MXP          C6          O4      DOUBLE       n     1.230  0.0165     1.230  0.0165
+MXP          C7          C8      DOUBLE       n     1.372  0.0200     1.372  0.0200
+MXP          C7         C15      SINGLE       n     1.498  0.0200     1.498  0.0200
+MXP          C8          C9      SINGLE       n     1.439  0.0200     1.439  0.0200
+MXP          C9         C10      DOUBLE       n     1.329  0.0111     1.329  0.0111
+MXP         C10         C11      SINGLE       n     1.507  0.0100     1.507  0.0100
+MXP         C10         C16      SINGLE       n     1.502  0.0100     1.502  0.0100
+MXP         C11         C12      SINGLE       n     1.497  0.0200     1.497  0.0200
+MXP         C12         C13      SINGLE       n     1.519  0.0164     1.519  0.0164
+MXP         C13         C14      SINGLE       n     1.510  0.0200     1.510  0.0200
+MXP         C17         C18      SINGLE       n     1.526  0.0196     1.526  0.0196
+MXP         C18         C19      SINGLE       n     1.524  0.0187     1.524  0.0187
+MXP         C19         C20      SINGLE       n     1.497  0.0154     1.497  0.0154
+MXP         C20         C21      DOUBLE       n     1.322  0.0100     1.322  0.0100
+MXP         C22          O5      SINGLE       n     1.337  0.0114     1.337  0.0114
+MXP         C22          O6      DOUBLE       n     1.214  0.0100     1.214  0.0100
+MXP         C23          O5      SINGLE       n     1.443  0.0101     1.443  0.0101
+MXP          C1          H1      SINGLE       n     1.082  0.0130     0.932  0.0100
+MXP          N1         HN1      SINGLE       n     1.016  0.0100     0.878  0.0200
+MXP          O2         HO2      SINGLE       n     0.966  0.0059     0.861  0.0200
+MXP          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0196
+MXP          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0200
+MXP         C11         H11      SINGLE       n     1.089  0.0100     0.981  0.0185
+MXP         C11        H11A      SINGLE       n     1.089  0.0100     0.981  0.0185
+MXP         C12         H12      SINGLE       n     1.089  0.0100     0.980  0.0160
+MXP         C12        H12A      SINGLE       n     1.089  0.0100     0.980  0.0160
+MXP         C13         H13      SINGLE       n     1.089  0.0100     0.982  0.0155
+MXP         C13        H13A      SINGLE       n     1.089  0.0100     0.982  0.0155
+MXP         C14         H14      SINGLE       n     1.089  0.0100     0.973  0.0157
+MXP         C14        H14A      SINGLE       n     1.089  0.0100     0.973  0.0157
+MXP         C14        H14B      SINGLE       n     1.089  0.0100     0.973  0.0157
+MXP         C15         H15      SINGLE       n     1.089  0.0100     0.969  0.0177
+MXP         C15        H15A      SINGLE       n     1.089  0.0100     0.969  0.0177
+MXP         C15        H15B      SINGLE       n     1.089  0.0100     0.969  0.0177
+MXP         C16         H16      SINGLE       n     1.089  0.0100     0.971  0.0140
+MXP         C16        H16A      SINGLE       n     1.089  0.0100     0.971  0.0140
+MXP         C16        H16B      SINGLE       n     1.089  0.0100     0.971  0.0140
+MXP         C17         H17      SINGLE       n     1.089  0.0100     0.992  0.0100
+MXP         C17        H17A      SINGLE       n     1.089  0.0100     0.992  0.0100
+MXP         C18         H18      SINGLE       n     1.089  0.0100     0.984  0.0164
+MXP         C18        H18A      SINGLE       n     1.089  0.0100     0.984  0.0164
+MXP         C19         H19      SINGLE       n     1.089  0.0100     0.983  0.0180
+MXP         C19        H19A      SINGLE       n     1.089  0.0100     0.983  0.0180
+MXP         C20         H20      SINGLE       n     1.082  0.0130     0.957  0.0200
+MXP         C21         H21      SINGLE       n     1.082  0.0130     0.937  0.0100
+MXP         C23         H23      SINGLE       n     1.089  0.0100     0.970  0.0175
+MXP         C23        H23A      SINGLE       n     1.089  0.0100     0.970  0.0175
+MXP         C23        H23B      SINGLE       n     1.089  0.0100     0.970  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MXP          C4          O1          C5     121.900    1.50
+MXP          C2          C1          C5     120.104    1.50
+MXP          C2          C1          H1     120.067    1.50
+MXP          C5          C1          H1     119.828    1.50
+MXP         C21          N1         C22     126.210    2.13
+MXP         C21          N1         HN1     117.245    1.50
+MXP         C22          N1         HN1     116.545    2.75
+MXP          C1          C2          C3     120.270    1.50
+MXP          C1          C2          O2     119.865    3.00
+MXP          C3          C2          O2     119.865    3.00
+MXP          C2          C3          C4     119.123    1.50
+MXP          C2          C3          C6     120.241    2.32
+MXP          C4          C3          C6     120.636    2.71
+MXP          C2          O2         HO2     120.000    3.00
+MXP          O1          C4          C3     117.501    1.50
+MXP          O1          C4          O3     113.941    1.50
+MXP          C3          C4          O3     128.558    1.50
+MXP          O1          C5          C1     121.101    1.50
+MXP          O1          C5         C17     113.480    1.50
+MXP          C1          C5         C17     125.418    1.75
+MXP          C3          C6          C7     120.504    1.66
+MXP          C3          C6          O4     119.993    1.74
+MXP          C7          C6          O4     119.503    2.24
+MXP          C6          C7          C8     123.260    3.00
+MXP          C6          C7         C15     117.597    3.00
+MXP          C8          C7         C15     119.143    1.98
+MXP          C7          C8          C9     127.106    2.42
+MXP          C7          C8          H8     115.988    1.90
+MXP          C9          C8          H8     116.906    1.50
+MXP          C8          C9         C10     125.993    3.00
+MXP          C8          C9          H9     116.925    1.50
+MXP         C10          C9          H9     117.081    1.50
+MXP          C9         C10         C11     120.611    1.79
+MXP          C9         C10         C16     123.789    2.49
+MXP         C11         C10         C16     115.600    1.50
+MXP         C10         C11         C12     113.243    1.53
+MXP         C10         C11         H11     108.816    1.50
+MXP         C10         C11        H11A     108.816    1.50
+MXP         C12         C11         H11     109.153    1.50
+MXP         C12         C11        H11A     109.153    1.50
+MXP         H11         C11        H11A     107.710    1.94
+MXP         C11         C12         C13     113.146    1.68
+MXP         C11         C12         H12     108.548    1.50
+MXP         C11         C12        H12A     108.548    1.50
+MXP         C13         C12         H12     108.653    1.50
+MXP         C13         C12        H12A     108.653    1.50
+MXP         H12         C12        H12A     107.646    1.50
+MXP         C12         C13         C14     113.719    3.00
+MXP         C12         C13         H13     108.758    1.50
+MXP         C12         C13        H13A     108.758    1.50
+MXP         C14         C13         H13     108.918    1.50
+MXP         C14         C13        H13A     108.918    1.50
+MXP         H13         C13        H13A     107.763    1.50
+MXP         C13         C14         H14     109.554    1.50
+MXP         C13         C14        H14A     109.554    1.50
+MXP         C13         C14        H14B     109.554    1.50
+MXP         H14         C14        H14A     109.380    1.50
+MXP         H14         C14        H14B     109.380    1.50
+MXP        H14A         C14        H14B     109.380    1.50
+MXP          C7         C15         H15     109.619    1.50
+MXP          C7         C15        H15A     109.619    1.50
+MXP          C7         C15        H15B     109.619    1.50
+MXP         H15         C15        H15A     109.342    1.50
+MXP         H15         C15        H15B     109.342    1.50
+MXP        H15A         C15        H15B     109.342    1.50
+MXP         C10         C16         H16     109.541    1.50
+MXP         C10         C16        H16A     109.541    1.50
+MXP         C10         C16        H16B     109.541    1.50
+MXP         H16         C16        H16A     109.342    1.50
+MXP         H16         C16        H16B     109.342    1.50
+MXP        H16A         C16        H16B     109.342    1.50
+MXP          C5         C17         C18     113.824    2.48
+MXP          C5         C17         H17     108.742    1.50
+MXP          C5         C17        H17A     108.742    1.50
+MXP         C18         C17         H17     108.612    1.50
+MXP         C18         C17        H17A     108.612    1.50
+MXP         H17         C17        H17A     107.735    1.50
+MXP         C17         C18         C19     112.984    1.80
+MXP         C17         C18         H18     108.750    1.50
+MXP         C17         C18        H18A     108.750    1.50
+MXP         C19         C18         H18     109.047    1.50
+MXP         C19         C18        H18A     109.047    1.50
+MXP         H18         C18        H18A     107.749    1.50
+MXP         C18         C19         C20     113.132    2.43
+MXP         C18         C19         H19     109.091    1.50
+MXP         C18         C19        H19A     109.091    1.50
+MXP         C20         C19         H19     109.560    1.82
+MXP         C20         C19        H19A     109.560    1.82
+MXP         H19         C19        H19A     107.922    1.50
+MXP         C19         C20         C21     124.896    3.00
+MXP         C19         C20         H20     117.380    1.85
+MXP         C21         C20         H20     117.724    2.09
+MXP          N1         C21         C20     124.443    1.50
+MXP          N1         C21         H21     116.933    1.69
+MXP         C20         C21         H21     118.624    2.68
+MXP          N1         C22          O5     109.006    1.50
+MXP          N1         C22          O6     125.951    1.50
+MXP          O5         C22          O6     125.043    1.50
+MXP          O5         C23         H23     109.384    1.50
+MXP          O5         C23        H23A     109.384    1.50
+MXP          O5         C23        H23B     109.384    1.50
+MXP         H23         C23        H23A     109.532    1.53
+MXP         H23         C23        H23B     109.532    1.53
+MXP        H23A         C23        H23B     109.532    1.53
+MXP         C22          O5         C23     115.328    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MXP       const_sp2_sp2_2          O3          C4          O1          C5     180.000     5.0     2
+MXP              const_20         C17          C5          O1          C4     180.000    10.0     2
+MXP            sp2_sp2_23          C7          C8          C9         C10     180.000     5.0     2
+MXP            sp2_sp2_27         C11         C10          C9          C8     180.000     5.0     2
+MXP            sp2_sp3_14          C9         C10         C11         C12     120.000    10.0     6
+MXP            sp2_sp3_19          C9         C10         C16         H16       0.000    10.0     6
+MXP             sp3_sp3_1         C10         C11         C12         C13     180.000    10.0     3
+MXP            sp3_sp3_10         C11         C12         C13         C14     180.000    10.0     3
+MXP            sp3_sp3_19         C12         C13         C14         H14     180.000    10.0     3
+MXP              const_12          C5          C1          C2          O2     180.000    10.0     2
+MXP              const_16          C2          C1          C5         C17     180.000    10.0     2
+MXP            sp3_sp3_28          C5         C17         C18         C19     180.000    10.0     3
+MXP            sp3_sp3_37         C17         C18         C19         C20     180.000    10.0     3
+MXP            sp2_sp3_26         C21         C20         C19         C18     120.000    10.0     6
+MXP            sp2_sp2_31         C19         C20         C21          N1     180.000     5.0     2
+MXP            sp2_sp2_35          N1         C22          O5         C23     180.000     5.0     2
+MXP            sp3_sp3_47         H23         C23          O5         C22     -60.000    10.0     3
+MXP             sp2_sp2_1         C20         C21          N1         C22     180.000     5.0     2
+MXP             sp2_sp2_5          O5         C22          N1         C21     180.000     5.0     2
+MXP              const_10          O2          C2          C3          C6       0.000    10.0     2
+MXP             sp2_sp2_9          C1          C2          O2         HO2     180.000     5.0     2
+MXP       const_sp2_sp2_6          C6          C3          C4          O3       0.000     5.0     2
+MXP            sp2_sp2_11          C2          C3          C6          C7     180.000     5.0     2
+MXP             sp2_sp3_2          O1          C5         C17         C18     -90.000    10.0     6
+MXP            sp2_sp2_17          O4          C6          C7          C8       0.000     5.0     2
+MXP            sp2_sp2_21          C6          C7          C8          C9       0.000     5.0     2
+MXP             sp2_sp3_7          C6          C7         C15         H15       0.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MXP    plan-1          C1   0.020
+MXP    plan-1         C17   0.020
+MXP    plan-1          C2   0.020
+MXP    plan-1          C3   0.020
+MXP    plan-1          C4   0.020
+MXP    plan-1          C5   0.020
+MXP    plan-1          C6   0.020
+MXP    plan-1          H1   0.020
+MXP    plan-1          O1   0.020
+MXP    plan-1          O2   0.020
+MXP    plan-1          O3   0.020
+MXP    plan-2         C21   0.020
+MXP    plan-2         C22   0.020
+MXP    plan-2         HN1   0.020
+MXP    plan-2          N1   0.020
+MXP    plan-3          C3   0.020
+MXP    plan-3          C6   0.020
+MXP    plan-3          C7   0.020
+MXP    plan-3          O4   0.020
+MXP    plan-4         C15   0.020
+MXP    plan-4          C6   0.020
+MXP    plan-4          C7   0.020
+MXP    plan-4          C8   0.020
+MXP    plan-5          C7   0.020
+MXP    plan-5          C8   0.020
+MXP    plan-5          C9   0.020
+MXP    plan-5          H8   0.020
+MXP    plan-6         C10   0.020
+MXP    plan-6          C8   0.020
+MXP    plan-6          C9   0.020
+MXP    plan-6          H9   0.020
+MXP    plan-7         C10   0.020
+MXP    plan-7         C11   0.020
+MXP    plan-7         C16   0.020
+MXP    plan-7          C9   0.020
+MXP    plan-8         C19   0.020
+MXP    plan-8         C20   0.020
+MXP    plan-8         C21   0.020
+MXP    plan-8         H20   0.020
+MXP    plan-9         C20   0.020
+MXP    plan-9         C21   0.020
+MXP    plan-9         H21   0.020
+MXP    plan-9          N1   0.020
+MXP   plan-10         C22   0.020
+MXP   plan-10          N1   0.020
+MXP   plan-10          O5   0.020
+MXP   plan-10          O6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MXP           SMILES              ACDLabs 10.04                                                                                                             O=C(C1=C(O)C=C(OC1=O)CCC\C=C\NC(=O)OC)\C(=C\C=C(/C)CCCC)C
+MXP SMILES_CANONICAL               CACTVS 3.341                                                                                                             CCCC/C(C)=C/C=C(C)/C(=O)C1=C(O)C=C(CCC\C=C\NC(=O)OC)OC1=O
+MXP           SMILES               CACTVS 3.341                                                                                                                  CCCCC(C)=CC=C(C)C(=O)C1=C(O)C=C(CCCC=CNC(=O)OC)OC1=O
+MXP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                           CCCC/C(=C/C=C(\C)/C(=O)C1=C(C=C(OC1=O)CCC\C=C\NC(=O)OC)O)/C
+MXP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                  CCCCC(=CC=C(C)C(=O)C1=C(C=C(OC1=O)CCCC=CNC(=O)OC)O)C
+MXP            InChI                InChI  1.03 InChI=1S/C23H31NO6/c1-5-6-10-16(2)12-13-17(3)21(26)20-19(25)15-18(30-22(20)27)11-8-7-9-14-24-23(28)29-4/h9,12-15,25H,5-8,10-11H2,1-4H3,(H,24,28)/b14-9+,16-12+,17-13+
+MXP         InChIKey                InChI  1.03                                                                                                                                           QBIHIGNYQFSBGW-NOTXRLOZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MXP acedrg               243         "dictionary generator"                  
+MXP acedrg_database      11          "data source"                           
+MXP rdkit                2017.03.2   "Chemoinformatics tool"
+MXP refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,412 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DMY     DMY      "DISTAMYCIN A"     NON-POLYMER     62     35     .     
+#
+data_comp_DMY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DMY     C1      C       C1      0       11.110      -4.095      19.241      
+DMY     O1      O       O       0       11.946      -4.969      19.448      
+DMY     N1      N       NH1     0       11.280      -3.051      18.421      
+DMY     C2      C       CR5     0       12.363      -2.153      18.460      
+DMY     C3      C       CR15    0       12.690      -1.223      17.448      
+DMY     C4      C       CR5     0       13.804      -0.530      17.851      
+DMY     N2      N       NT      0       14.175      -1.032      19.127      
+DMY     C5      C       CR15    0       13.277      -2.023      19.473      
+DMY     C6      C       CH3     0       15.288      -0.632      19.982      
+DMY     C7      C       C       0       14.538      0.546       17.159      
+DMY     O2      O       O       0       15.687      0.839       17.486      
+DMY     N3      N       NH1     0       13.870      1.197       16.148      
+DMY     C8      C       CR5     0       14.445      1.865       15.051      
+DMY     C9      C       CR15    0       13.797      2.831       14.272      
+DMY     C10     C       CR5     0       14.685      3.243       13.311      
+DMY     N4      N       NR5     0       15.869      2.534       13.505      
+DMY     C11     C       CR15    0       15.713      1.701       14.556      
+DMY     C12     C       CH3     0       17.124      2.605       12.749      
+DMY     C13     C       C       0       14.509      4.251       12.242      
+DMY     O3      O       O       0       15.405      4.490       11.434      
+DMY     N5      N       NH1     0       13.311      4.924       12.214      
+DMY     C14     C       CR5     0       12.676      5.476       11.086      
+DMY     C15     C       CR15    0       11.625      6.399       11.149      
+DMY     C16     C       CR5     0       11.281      6.710       9.860       
+DMY     N6      N       NR5     0       12.107      5.977       9.014       
+DMY     C17     C       CR15    0       12.949      5.233       9.762       
+DMY     C18     C       CH3     0       12.128      5.959       7.548       
+DMY     C19     C       C       0       10.235      7.619       9.355       
+DMY     O4      O       O       0       9.687       7.444       8.265       
+DMY     N7      N       NH1     0       9.874       8.627       10.160      
+DMY     C20     C       CH2     0       8.782       9.548       9.860       
+DMY     C21     C       CH2     0       7.416       8.891       9.976       
+DMY     C22     C       C       0       6.278       9.819       9.629       
+DMY     N8      N       NH1     0       6.265       10.405      8.493       
+DMY     N9      N       NH2     0       5.312       9.983       10.541      
+DMY     H1      H       H       0       10.281      -4.159      19.693      
+DMY     HN1     H       H       0       10.660      -2.919      17.809      
+DMY     H3      H       H       0       12.223      -1.099      16.639      
+DMY     H5      H       H       0       13.306      -2.515      20.275      
+DMY     H61     H       H       0       15.217      -1.082      20.838      
+DMY     H62     H       H       0       15.261      0.327       20.118      
+DMY     H63     H       H       0       16.124      -0.875      19.556      
+DMY     HN3     H       H       0       13.000      1.222       16.201      
+DMY     H9      H       H       0       12.916      3.141       14.388      
+DMY     H11     H       H       0       16.370      1.115       14.888      
+DMY     H121    H       H       0       17.772      1.998       13.136      
+DMY     H122    H       H       0       17.471      3.509       12.783      
+DMY     H123    H       H       0       16.961      2.355       11.827      
+DMY     HN5     H       H       0       12.913      5.055       12.977      
+DMY     H15     H       H       0       11.234      6.747       11.932      
+DMY     H17     H       H       0       13.610      4.654       9.425       
+DMY     H181    H       H       0       12.901      5.463       7.239       
+DMY     H182    H       H       0       12.173      6.868       7.215       
+DMY     H183    H       H       0       11.321      5.535       7.219       
+DMY     HN7     H       H       0       10.319      8.758       10.900      
+DMY     H201    H       H       0       8.895       9.898       8.952       
+DMY     H202    H       H       0       8.824       10.306      10.480      
+DMY     H211    H       H       0       7.303       8.556       10.891      
+DMY     H212    H       H       0       7.379       8.118       9.374       
+DMY     HN8     H       H       0       5.588       10.923      8.352       
+DMY     HN91    H       H       0       4.628       10.525      10.368      
+DMY     HN92    H       H       0       5.349       9.552       11.317      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DMY          C1          O1      DOUBLE       n     1.227  0.0200     1.227  0.0200
+DMY          C1          N1      SINGLE       n     1.338  0.0145     1.338  0.0145
+DMY          N1          C2      SINGLE       n     1.406  0.0100     1.406  0.0100
+DMY          C2          C3      SINGLE       y     1.401  0.0200     1.401  0.0200
+DMY          C2          C5      DOUBLE       y     1.372  0.0169     1.372  0.0169
+DMY          C3          C4      DOUBLE       y     1.369  0.0100     1.369  0.0100
+DMY          C4          N2      SINGLE       y     1.412  0.0200     1.412  0.0200
+DMY          C4          C7      SINGLE       n     1.467  0.0130     1.467  0.0130
+DMY          N2          C5      SINGLE       y     1.392  0.0176     1.392  0.0176
+DMY          N2          C6      SINGLE       n     1.458  0.0100     1.458  0.0100
+DMY          C7          O2      DOUBLE       n     1.229  0.0124     1.229  0.0124
+DMY          C7          N3      SINGLE       n     1.363  0.0146     1.363  0.0146
+DMY          N3          C8      SINGLE       n     1.404  0.0100     1.404  0.0100
+DMY          C8          C9      SINGLE       y     1.401  0.0200     1.401  0.0200
+DMY          C8         C11      DOUBLE       y     1.372  0.0169     1.372  0.0169
+DMY          C9         C10      DOUBLE       y     1.369  0.0100     1.369  0.0100
+DMY         C10          N4      SINGLE       y     1.388  0.0100     1.388  0.0100
+DMY         C10         C13      SINGLE       n     1.467  0.0130     1.467  0.0130
+DMY          N4         C11      SINGLE       y     1.349  0.0129     1.349  0.0129
+DMY          N4         C12      SINGLE       n     1.464  0.0100     1.464  0.0100
+DMY         C13          O3      DOUBLE       n     1.229  0.0124     1.229  0.0124
+DMY         C13          N5      SINGLE       n     1.363  0.0146     1.363  0.0146
+DMY          N5         C14      SINGLE       n     1.404  0.0100     1.404  0.0100
+DMY         C14         C15      SINGLE       y     1.401  0.0200     1.401  0.0200
+DMY         C14         C17      DOUBLE       y     1.372  0.0169     1.372  0.0169
+DMY         C15         C16      DOUBLE       y     1.369  0.0100     1.369  0.0100
+DMY         C16          N6      SINGLE       y     1.388  0.0100     1.388  0.0100
+DMY         C16         C19      SINGLE       n     1.469  0.0100     1.469  0.0100
+DMY          N6         C17      SINGLE       y     1.349  0.0129     1.349  0.0129
+DMY          N6         C18      SINGLE       n     1.464  0.0100     1.464  0.0100
+DMY         C19          O4      DOUBLE       n     1.231  0.0100     1.231  0.0100
+DMY         C19          N7      SINGLE       n     1.333  0.0106     1.333  0.0106
+DMY          N7         C20      SINGLE       n     1.454  0.0139     1.454  0.0139
+DMY         C20         C21      SINGLE       n     1.518  0.0130     1.518  0.0130
+DMY         C21         C22      SINGLE       n     1.505  0.0120     1.505  0.0120
+DMY         C22          N8      DOUBLE       n     1.269  0.0200     1.269  0.0200
+DMY         C22          N9      SINGLE       n     1.335  0.0101     1.335  0.0101
+DMY          C1          H1      SINGLE       n     1.082  0.0130     0.946  0.0200
+DMY          N1         HN1      SINGLE       n     1.016  0.0100     0.881  0.0200
+DMY          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0102
+DMY          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0105
+DMY          C6         H61      SINGLE       n     1.089  0.0100     0.969  0.0162
+DMY          C6         H62      SINGLE       n     1.089  0.0100     0.969  0.0162
+DMY          C6         H63      SINGLE       n     1.089  0.0100     0.969  0.0162
+DMY          N3         HN3      SINGLE       n     1.016  0.0100     0.872  0.0200
+DMY          C9          H9      SINGLE       n     1.082  0.0130     0.942  0.0102
+DMY         C11         H11      SINGLE       n     1.082  0.0130     0.941  0.0105
+DMY         C12        H121      SINGLE       n     1.089  0.0100     0.969  0.0162
+DMY         C12        H122      SINGLE       n     1.089  0.0100     0.969  0.0162
+DMY         C12        H123      SINGLE       n     1.089  0.0100     0.969  0.0162
+DMY          N5         HN5      SINGLE       n     1.016  0.0100     0.872  0.0200
+DMY         C15         H15      SINGLE       n     1.082  0.0130     0.942  0.0102
+DMY         C17         H17      SINGLE       n     1.082  0.0130     0.941  0.0105
+DMY         C18        H181      SINGLE       n     1.089  0.0100     0.969  0.0162
+DMY         C18        H182      SINGLE       n     1.089  0.0100     0.969  0.0162
+DMY         C18        H183      SINGLE       n     1.089  0.0100     0.969  0.0162
+DMY          N7         HN7      SINGLE       n     1.016  0.0100     0.873  0.0200
+DMY         C20        H201      SINGLE       n     1.089  0.0100     0.980  0.0159
+DMY         C20        H202      SINGLE       n     1.089  0.0100     0.980  0.0159
+DMY         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0185
+DMY         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0185
+DMY          N8         HN8      SINGLE       n     1.016  0.0100     0.864  0.0200
+DMY          N9        HN91      SINGLE       n     1.016  0.0100     0.889  0.0200
+DMY          N9        HN92      SINGLE       n     1.016  0.0100     0.889  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DMY          O1          C1          N1     124.902    2.27
+DMY          O1          C1          H1     117.942    2.29
+DMY          N1          C1          H1     117.156    1.50
+DMY          C1          N1          C2     124.445    2.96
+DMY          C1          N1         HN1     117.238    2.28
+DMY          C2          N1         HN1     118.317    2.72
+DMY          N1          C2          C3     126.209    3.00
+DMY          N1          C2          C5     126.209    3.00
+DMY          C3          C2          C5     107.583    1.50
+DMY          C2          C3          C4     106.618    1.50
+DMY          C2          C3          H3     126.694    1.50
+DMY          C4          C3          H3     126.698    1.50
+DMY          C3          C4          N2     107.591    1.50
+DMY          C3          C4          C7     130.287    2.26
+DMY          N2          C4          C7     122.123    1.89
+DMY          C4          N2          C5     109.079    1.50
+DMY          C4          N2          C6     124.835    2.75
+DMY          C5          N2          C6     123.481    2.04
+DMY          C2          C5          N2     109.153    1.50
+DMY          C2          C5          H5     126.424    2.60
+DMY          N2          C5          H5     124.423    1.80
+DMY          N2          C6         H61     109.303    1.50
+DMY          N2          C6         H62     109.303    1.50
+DMY          N2          C6         H63     109.303    1.50
+DMY         H61          C6         H62     109.448    1.52
+DMY         H61          C6         H63     109.448    1.52
+DMY         H62          C6         H63     109.448    1.52
+DMY          C4          C7          O2     121.174    1.50
+DMY          C4          C7          N3     115.582    2.50
+DMY          O2          C7          N3     123.245    1.77
+DMY          C7          N3          C8     125.281    2.23
+DMY          C7          N3         HN3     116.567    2.52
+DMY          C8          N3         HN3     118.152    2.72
+DMY          N3          C8          C9     125.803    3.00
+DMY          N3          C8         C11     125.803    3.00
+DMY          C9          C8         C11     108.394    1.50
+DMY          C8          C9         C10     106.933    1.50
+DMY          C8          C9          H9     126.531    1.50
+DMY         C10          C9          H9     126.536    1.50
+DMY          C9         C10          N4     107.996    1.50
+DMY          C9         C10         C13     130.274    2.26
+DMY          N4         C10         C13     121.729    1.50
+DMY         C10          N4         C11     108.893    1.50
+DMY         C10          N4         C12     127.826    1.50
+DMY         C11          N4         C12     123.280    1.50
+DMY          C8         C11          N4     107.784    1.50
+DMY          C8         C11         H11     126.707    2.60
+DMY          N4         C11         H11     125.509    1.50
+DMY          N4         C12        H121     109.475    1.50
+DMY          N4         C12        H122     109.475    1.50
+DMY          N4         C12        H123     109.475    1.50
+DMY        H121         C12        H122     109.448    1.52
+DMY        H121         C12        H123     109.448    1.52
+DMY        H122         C12        H123     109.448    1.52
+DMY         C10         C13          O3     121.174    1.50
+DMY         C10         C13          N5     115.582    2.50
+DMY          O3         C13          N5     123.245    1.77
+DMY         C13          N5         C14     125.281    2.23
+DMY         C13          N5         HN5     116.567    2.52
+DMY         C14          N5         HN5     118.152    2.72
+DMY          N5         C14         C15     125.803    3.00
+DMY          N5         C14         C17     125.803    3.00
+DMY         C15         C14         C17     108.394    1.50
+DMY         C14         C15         C16     106.933    1.50
+DMY         C14         C15         H15     126.531    1.50
+DMY         C16         C15         H15     126.536    1.50
+DMY         C15         C16          N6     107.996    1.50
+DMY         C15         C16         C19     130.274    2.26
+DMY          N6         C16         C19     121.729    1.50
+DMY         C16          N6         C17     108.893    1.50
+DMY         C16          N6         C18     127.826    1.50
+DMY         C17          N6         C18     123.280    1.50
+DMY         C14         C17          N6     107.784    1.50
+DMY         C14         C17         H17     126.707    2.60
+DMY          N6         C17         H17     125.509    1.50
+DMY          N6         C18        H181     109.475    1.50
+DMY          N6         C18        H182     109.475    1.50
+DMY          N6         C18        H183     109.475    1.50
+DMY        H181         C18        H182     109.448    1.52
+DMY        H181         C18        H183     109.448    1.52
+DMY        H182         C18        H183     109.448    1.52
+DMY         C16         C19          O4     122.532    1.50
+DMY         C16         C19          N7     115.960    1.50
+DMY          O4         C19          N7     121.509    1.50
+DMY         C19          N7         C20     122.820    2.00
+DMY         C19          N7         HN7     118.777    1.50
+DMY         C20          N7         HN7     118.403    1.50
+DMY          N7         C20         C21     112.092    1.50
+DMY          N7         C20        H201     109.121    1.50
+DMY          N7         C20        H202     109.121    1.50
+DMY         C21         C20        H201     109.053    1.50
+DMY         C21         C20        H202     109.053    1.50
+DMY        H201         C20        H202     107.877    1.50
+DMY         C20         C21         C22     113.270    1.50
+DMY         C20         C21        H211     109.090    1.50
+DMY         C20         C21        H212     109.090    1.50
+DMY         C22         C21        H211     109.138    1.86
+DMY         C22         C21        H212     109.138    1.86
+DMY        H211         C21        H212     107.705    1.50
+DMY         C21         C22          N8     122.024    3.00
+DMY         C21         C22          N9     116.927    1.50
+DMY          N8         C22          N9     121.049    3.00
+DMY         C22          N8         HN8     112.238    3.00
+DMY         C22          N9        HN91     119.751    2.25
+DMY         C22          N9        HN92     119.751    2.25
+DMY        HN91          N9        HN92     120.498    1.86
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DMY             sp2_sp2_1          O1          C1          N1          C2     180.000     5.0     2
+DMY            sp2_sp2_17          C9          C8          N3          C7     180.000     5.0     2
+DMY       const_sp2_sp2_3          N3          C8          C9         C10     180.000     5.0     2
+DMY              const_54          N4         C11          C8          N3     180.000    10.0     2
+DMY       const_sp2_sp2_7         C13         C10          C9          C8     180.000     5.0     2
+DMY              const_12         C13         C10          N4         C12       0.000    10.0     2
+DMY            sp2_sp2_22          C9         C10         C13          O3       0.000     5.0     2
+DMY              const_14          C8         C11          N4         C12     180.000    10.0     2
+DMY             sp2_sp3_7         C10          N4         C12        H121     150.000    10.0     6
+DMY            sp2_sp2_27          O3         C13          N5         C14       0.000     5.0     2
+DMY            sp2_sp2_29         C15         C14          N5         C13     180.000     5.0     2
+DMY              const_19          N5         C14         C15         C16     180.000    10.0     2
+DMY              const_59          N5         C14         C17          N6     180.000    10.0     2
+DMY              const_22         C14         C15         C16         C19     180.000    10.0     2
+DMY              const_28         C19         C16          N6         C18       0.000    10.0     2
+DMY            sp2_sp2_34         C15         C16         C19          O4       0.000     5.0     2
+DMY              const_30         C14         C17          N6         C18     180.000    10.0     2
+DMY            sp2_sp3_13         C16          N6         C18        H181     150.000    10.0     6
+DMY            sp2_sp2_39          O4         C19          N7         C20       0.000     5.0     2
+DMY            sp2_sp3_20         C19          N7         C20         C21     120.000    10.0     6
+DMY             sp2_sp2_5          C3          C2          N1          C1     180.000     5.0     2
+DMY             sp3_sp3_1          N7         C20         C21         C22     180.000    10.0     3
+DMY            sp2_sp3_26          N8         C22         C21         C20     120.000    10.0     6
+DMY            sp2_sp2_41         C21         C22          N8         HN8     180.000     5.0     2
+DMY            sp2_sp2_43         C21         C22          N9        HN91     180.000     5.0     2
+DMY              const_35          N1          C2          C3          C4     180.000    10.0     2
+DMY              const_51          N1          C2          C5          N2     180.000    10.0     2
+DMY              const_38          C2          C3          C4          C7     180.000    10.0     2
+DMY              const_44          C7          C4          N2          C6       0.000    10.0     2
+DMY            sp2_sp2_10          C3          C4          C7          O2       0.000     5.0     2
+DMY              const_46          C2          C5          N2          C6     180.000    10.0     2
+DMY             sp2_sp3_1          C4          N2          C6         H61     150.000    10.0     6
+DMY            sp2_sp2_15          O2          C7          N3          C8       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DMY    plan-1         C10   0.020
+DMY    plan-1         C11   0.020
+DMY    plan-1         C12   0.020
+DMY    plan-1         C13   0.020
+DMY    plan-1          C8   0.020
+DMY    plan-1          C9   0.020
+DMY    plan-1         H11   0.020
+DMY    plan-1          H9   0.020
+DMY    plan-1          N3   0.020
+DMY    plan-1          N4   0.020
+DMY    plan-2         C14   0.020
+DMY    plan-2         C15   0.020
+DMY    plan-2         C16   0.020
+DMY    plan-2         C17   0.020
+DMY    plan-2         C18   0.020
+DMY    plan-2         C19   0.020
+DMY    plan-2         H15   0.020
+DMY    plan-2         H17   0.020
+DMY    plan-2          N5   0.020
+DMY    plan-2          N6   0.020
+DMY    plan-3          C2   0.020
+DMY    plan-3          C3   0.020
+DMY    plan-3          C4   0.020
+DMY    plan-3          C5   0.020
+DMY    plan-3          C6   0.020
+DMY    plan-3          C7   0.020
+DMY    plan-3          H3   0.020
+DMY    plan-3          H5   0.020
+DMY    plan-3          N1   0.020
+DMY    plan-3          N2   0.020
+DMY    plan-4          C1   0.020
+DMY    plan-4          H1   0.020
+DMY    plan-4          N1   0.020
+DMY    plan-4          O1   0.020
+DMY    plan-5          C1   0.020
+DMY    plan-5          C2   0.020
+DMY    plan-5         HN1   0.020
+DMY    plan-5          N1   0.020
+DMY    plan-6          C4   0.020
+DMY    plan-6          C7   0.020
+DMY    plan-6          N3   0.020
+DMY    plan-6          O2   0.020
+DMY    plan-7          C7   0.020
+DMY    plan-7          C8   0.020
+DMY    plan-7         HN3   0.020
+DMY    plan-7          N3   0.020
+DMY    plan-8         C10   0.020
+DMY    plan-8         C13   0.020
+DMY    plan-8          N5   0.020
+DMY    plan-8          O3   0.020
+DMY    plan-9         C13   0.020
+DMY    plan-9         C14   0.020
+DMY    plan-9         HN5   0.020
+DMY    plan-9          N5   0.020
+DMY   plan-10         C16   0.020
+DMY   plan-10         C19   0.020
+DMY   plan-10          N7   0.020
+DMY   plan-10          O4   0.020
+DMY   plan-11         C19   0.020
+DMY   plan-11         C20   0.020
+DMY   plan-11         HN7   0.020
+DMY   plan-11          N7   0.020
+DMY   plan-12         C21   0.020
+DMY   plan-12         C22   0.020
+DMY   plan-12          N8   0.020
+DMY   plan-12          N9   0.020
+DMY   plan-13         C22   0.020
+DMY   plan-13        HN91   0.020
+DMY   plan-13        HN92   0.020
+DMY   plan-13          N9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DMY           SMILES              ACDLabs 10.04                                                                                                                              O=C(Nc1cc(C(=O)NCCC(=[N@H])N)n(c1)C)c3cc(NC(=O)c2cc(NC=O)cn2C)cn3C
+DMY SMILES_CANONICAL               CACTVS 3.341                                                                                                                                Cn1cc(NC=O)cc1C(=O)Nc2cn(C)c(c2)C(=O)Nc3cn(C)c(c3)C(=O)NCCC(N)=N
+DMY           SMILES               CACTVS 3.341                                                                                                                                Cn1cc(NC=O)cc1C(=O)Nc2cn(C)c(c2)C(=O)Nc3cn(C)c(c3)C(=O)NCCC(N)=N
+DMY SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                Cn1cc(cc1C(=O)Nc2cc(n(c2)C)C(=O)Nc3cc(n(c3)C)C(=O)NCCC(=N)N)NC=O
+DMY           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                Cn1cc(cc1C(=O)Nc2cc(n(c2)C)C(=O)Nc3cc(n(c3)C)C(=O)NCCC(=N)N)NC=O
+DMY            InChI                InChI  1.03 InChI=1S/C22H27N9O4/c1-29-9-13(26-12-32)6-17(29)21(34)28-15-8-18(31(3)11-15)22(35)27-14-7-16(30(2)10-14)20(33)25-5-4-19(23)24/h6-12H,4-5H2,1-3H3,(H3,23,24)(H,25,33)(H,26,32)(H,27,35)(H,28,34)
+DMY         InChIKey                InChI  1.03                                                                                                                                                                     UPBAOYRENQEPJO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DMY acedrg               243         "dictionary generator"                  
+DMY acedrg_database      11          "data source"                           
+DMY rdkit                2017.03.2   "Chemoinformatics tool"
+DMY refmac5              5.8.0238    "optimization tool"                     

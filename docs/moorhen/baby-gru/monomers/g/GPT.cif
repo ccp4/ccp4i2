@@ -1,0 +1,299 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GPT     GPT      (2R,3S,4R)-2-[(S)-(1S)-cyclohex-2-en-1-yl(hydroxy)methyl]-4-(2-fluoroethyl)-3-hydroxy-3-methyl-5-oxopyrrolidine-2-carbaldehyde     NON-POLYMER     43     21     .     
+#
+data_comp_GPT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GPT     C1      C       CH2     0       43.430      -143.949    57.133      
+GPT     C2      C       CH2     0       44.840      -143.636    57.611      
+GPT     C3      C       CH1     0       45.066      -142.258    58.265      
+GPT     C4      C       CT      0       44.912      -142.192    59.813      
+GPT     C6      C       CH3     0       46.138      -142.700    60.561      
+GPT     F21     F       F       0       43.235      -145.332    57.045      
+GPT     C19     C       CR5     0       44.195      -141.108    57.785      
+GPT     O20     O       O       0       43.804      -140.930    56.617      
+GPT     N18     N       NR5     0       43.915      -140.309    58.820      
+GPT     C7      C       CT      0       44.562      -140.668    60.076      
+GPT     C16     C       C1      0       43.588      -140.592    61.259      
+GPT     O17     O       O       0       42.417      -140.756    61.164      
+GPT     C8      C       CH1     0       45.723      -139.661    60.320      
+GPT     O15     O       OH1     0       46.787      -139.965    59.410      
+GPT     C9      C       CH1     0       45.407      -138.137    60.232      
+GPT     C14     C       CH2     0       44.329      -137.627    61.221      
+GPT     C13     C       CH2     0       44.358      -136.142    61.440      
+GPT     C12     C       CH2     0       45.707      -135.679    61.937      
+GPT     C11     C       CR16    0       46.814      -136.261    61.128      
+GPT     C10     C       CR16    0       46.676      -137.332    60.363      
+GPT     O5      O       OH1     0       43.833      -143.046    60.201      
+GPT     H1      H       H       0       43.285      -143.546    56.241      
+GPT     H1A     H       H       0       42.766      -143.572    57.756      
+GPT     H2      H       H       0       45.444      -143.706    56.841      
+GPT     H2A     H       H       0       45.112      -144.331    58.248      
+GPT     H3      H       H       0       45.991      -141.987    58.048      
+GPT     H6      H       H       0       46.172      -142.297    61.445      
+GPT     H6A     H       H       0       46.951      -142.479    60.081      
+GPT     H6B     H       H       0       46.082      -143.665    60.657      
+GPT     HN18    H       H       0       43.391      -139.633    58.747      
+GPT     H16     H       H       0       43.945      -140.409    62.109      
+GPT     H8      H       H       0       46.088      -139.826    61.228      
+GPT     HO15    H       H       0       47.515      -140.046    59.840      
+GPT     H9      H       H       0       45.060      -137.969    59.322      
+GPT     H14     H       H       0       43.440      -137.876    60.877      
+GPT     H14A    H       H       0       44.454      -138.077    62.088      
+GPT     H13     H       H       0       43.670      -135.895    62.097      
+GPT     H13A    H       H       0       44.150      -135.683    60.595      
+GPT     H12     H       H       0       45.817      -135.945    62.874      
+GPT     H12A    H       H       0       45.753      -134.701    61.892      
+GPT     H11     H       H       0       47.664      -135.839    61.165      
+GPT     H10     H       H       0       47.422      -137.597    59.844      
+GPT     HO5     H       H       0       43.101      -142.864    59.815      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GPT          C1          C2      SINGLE       n     1.511  0.0200     1.511  0.0200
+GPT          C1         F21      SINGLE       n     1.399  0.0124     1.399  0.0124
+GPT          C2          C3      SINGLE       n     1.527  0.0141     1.527  0.0141
+GPT          C3          C4      SINGLE       n     1.548  0.0137     1.548  0.0137
+GPT          C3         C19      SINGLE       n     1.517  0.0100     1.517  0.0100
+GPT          C4          C6      SINGLE       n     1.519  0.0100     1.519  0.0100
+GPT          C4          C7      SINGLE       n     1.552  0.0200     1.552  0.0200
+GPT          C4          O5      SINGLE       n     1.425  0.0111     1.425  0.0111
+GPT         C19         O20      DOUBLE       n     1.243  0.0200     1.243  0.0200
+GPT         C19         N18      SINGLE       n     1.335  0.0100     1.335  0.0100
+GPT         N18          C7      SINGLE       n     1.457  0.0100     1.457  0.0100
+GPT          C7         C16      SINGLE       n     1.529  0.0183     1.529  0.0183
+GPT          C7          C8      SINGLE       n     1.532  0.0142     1.532  0.0142
+GPT         C16         O17      DOUBLE       n     1.185  0.0182     1.185  0.0182
+GPT          C8         O15      SINGLE       n     1.426  0.0165     1.426  0.0165
+GPT          C8          C9      SINGLE       n     1.544  0.0118     1.544  0.0118
+GPT          C9         C14      SINGLE       n     1.525  0.0200     1.525  0.0200
+GPT          C9         C10      SINGLE       n     1.502  0.0100     1.502  0.0100
+GPT         C14         C13      SINGLE       n     1.495  0.0200     1.495  0.0200
+GPT         C13         C12      SINGLE       n     1.510  0.0114     1.510  0.0114
+GPT         C12         C11      SINGLE       n     1.490  0.0131     1.490  0.0131
+GPT         C11         C10      DOUBLE       n     1.317  0.0200     1.317  0.0200
+GPT          C1          H1      SINGLE       n     1.089  0.0100     0.990  0.0200
+GPT          C1         H1A      SINGLE       n     1.089  0.0100     0.990  0.0200
+GPT          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0178
+GPT          C2         H2A      SINGLE       n     1.089  0.0100     0.981  0.0178
+GPT          C3          H3      SINGLE       n     1.089  0.0100     0.990  0.0175
+GPT          C6          H6      SINGLE       n     1.089  0.0100     0.971  0.0169
+GPT          C6         H6A      SINGLE       n     1.089  0.0100     0.971  0.0169
+GPT          C6         H6B      SINGLE       n     1.089  0.0100     0.971  0.0169
+GPT         N18        HN18      SINGLE       n     1.016  0.0100     0.858  0.0100
+GPT         C16         H16      SINGLE       n     1.082  0.0130     0.940  0.0157
+GPT          C8          H8      SINGLE       n     1.089  0.0100     0.991  0.0193
+GPT         O15        HO15      SINGLE       n     0.970  0.0120     0.848  0.0200
+GPT          C9          H9      SINGLE       n     1.089  0.0100     0.989  0.0200
+GPT         C14         H14      SINGLE       n     1.089  0.0100     0.986  0.0200
+GPT         C14        H14A      SINGLE       n     1.089  0.0100     0.986  0.0200
+GPT         C13         H13      SINGLE       n     1.089  0.0100     0.983  0.0200
+GPT         C13        H13A      SINGLE       n     1.089  0.0100     0.983  0.0200
+GPT         C12         H12      SINGLE       n     1.089  0.0100     0.980  0.0200
+GPT         C12        H12A      SINGLE       n     1.089  0.0100     0.980  0.0200
+GPT         C11         H11      SINGLE       n     1.082  0.0130     0.950  0.0200
+GPT         C10         H10      SINGLE       n     1.082  0.0130     0.948  0.0200
+GPT          O5         HO5      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GPT          C2          C1         F21     110.693    1.50
+GPT          C2          C1          H1     109.545    1.50
+GPT          C2          C1         H1A     109.545    1.50
+GPT         F21          C1          H1     109.076    1.66
+GPT         F21          C1         H1A     109.076    1.66
+GPT          H1          C1         H1A     108.400    1.50
+GPT          C1          C2          C3     113.649    1.79
+GPT          C1          C2          H2     108.861    1.50
+GPT          C1          C2         H2A     108.861    1.50
+GPT          C3          C2          H2     108.650    1.50
+GPT          C3          C2         H2A     108.650    1.50
+GPT          H2          C2         H2A     107.535    1.50
+GPT          C2          C3          C4     113.745    2.48
+GPT          C2          C3         C19     113.425    2.50
+GPT          C2          C3          H3     108.314    1.50
+GPT          C4          C3         C19     104.009    1.83
+GPT          C4          C3          H3     107.890    1.50
+GPT         C19          C3          H3     107.886    2.47
+GPT          C3          C4          C6     113.745    2.48
+GPT          C3          C4          C7     104.443    2.26
+GPT          C3          C4          O5     109.250    2.39
+GPT          C6          C4          C7     113.745    2.48
+GPT          C6          C4          O5     109.843    2.13
+GPT          C7          C4          O5     110.722    2.96
+GPT          C4          C6          H6     110.573    3.00
+GPT          C4          C6         H6A     110.573    3.00
+GPT          C4          C6         H6B     110.573    3.00
+GPT          H6          C6         H6A     109.473    1.50
+GPT          H6          C6         H6B     109.473    1.50
+GPT         H6A          C6         H6B     109.473    1.50
+GPT          C3         C19         O20     125.691    1.65
+GPT          C3         C19         N18     108.702    1.50
+GPT         O20         C19         N18     125.607    1.50
+GPT         C19         N18          C7     114.638    1.50
+GPT         C19         N18        HN18     122.492    1.50
+GPT          C7         N18        HN18     122.870    1.50
+GPT          C4          C7         N18     102.354    1.84
+GPT          C4          C7         C16     112.424    2.46
+GPT          C4          C7          C8     113.745    2.48
+GPT         N18          C7         C16     111.417    2.02
+GPT         N18          C7          C8     109.797    2.76
+GPT         C16          C7          C8     109.981    2.26
+GPT          C7         C16         O17     123.684    2.73
+GPT          C7         C16         H16     117.829    1.78
+GPT         O17         C16         H16     118.487    1.50
+GPT          C7          C8         O15     109.648    2.81
+GPT          C7          C8          C9     113.749    2.62
+GPT          C7          C8          H8     109.253    1.50
+GPT         O15          C8          C9     110.902    1.50
+GPT         O15          C8          H8     106.464    1.50
+GPT          C9          C8          H8     107.953    1.50
+GPT          C8         O15        HO15     108.256    3.00
+GPT          C8          C9         C14     112.892    1.92
+GPT          C8          C9         C10     110.115    2.66
+GPT          C8          C9          H9     107.068    1.50
+GPT         C14          C9         C10     110.737    1.50
+GPT         C14          C9          H9     107.216    1.50
+GPT         C10          C9          H9     107.287    1.59
+GPT          C9         C14         C13     112.626    1.70
+GPT          C9         C14         H14     109.045    1.50
+GPT          C9         C14        H14A     109.045    1.50
+GPT         C13         C14         H14     109.267    1.50
+GPT         C13         C14        H14A     109.267    1.50
+GPT         H14         C14        H14A     107.919    1.50
+GPT         C14         C13         C12     112.153    2.77
+GPT         C14         C13         H13     109.388    1.50
+GPT         C14         C13        H13A     109.388    1.50
+GPT         C12         C13         H13     109.193    1.50
+GPT         C12         C13        H13A     109.193    1.50
+GPT         H13         C13        H13A     108.036    1.50
+GPT         C13         C12         C11     111.825    1.50
+GPT         C13         C12         H12     109.281    1.50
+GPT         C13         C12        H12A     109.281    1.50
+GPT         C11         C12         H12     109.096    1.50
+GPT         C11         C12        H12A     109.096    1.50
+GPT         H12         C12        H12A     107.871    1.50
+GPT         C12         C11         C10     123.728    1.50
+GPT         C12         C11         H11     117.980    1.50
+GPT         C10         C11         H11     118.291    1.50
+GPT          C9         C10         C11     124.266    1.50
+GPT          C9         C10         H10     117.612    1.50
+GPT         C11         C10         H10     118.140    1.50
+GPT          C4          O5         HO5     110.317    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GPT            sp3_sp3_46         F21          C1          C2          C3     180.000    10.0     3
+GPT            sp3_sp3_85          C7          C8         O15        HO15     180.000    10.0     3
+GPT            sp3_sp3_91         O15          C8          C9         C14      60.000    10.0     3
+GPT             sp3_sp3_2         C13         C14          C9          C8     180.000    10.0     3
+GPT            sp2_sp3_26         C11         C10          C9          C8     120.000    10.0     6
+GPT            sp3_sp3_10         C12         C13         C14          C9     -60.000    10.0     3
+GPT            sp3_sp3_19         C11         C12         C13         C14      60.000    10.0     3
+GPT             sp2_sp3_1         C10         C11         C12         C13       0.000    10.0     6
+GPT             sp2_sp2_1          C9         C10         C11         C12       0.000     5.0     2
+GPT            sp3_sp3_55          C1          C2          C3          C4     180.000    10.0     3
+GPT            sp3_sp3_32          C2          C3          C4          C6      60.000    10.0     3
+GPT            sp2_sp3_17         O20         C19          C3          C2     -60.000    10.0     6
+GPT            sp3_sp3_74          C6          C4          O5         HO5      60.000    10.0     3
+GPT            sp3_sp3_70          O5          C4          C6          H6     -60.000    10.0     3
+GPT            sp3_sp3_41          C6          C4          C7         C16     -60.000    10.0     3
+GPT             sp2_sp2_7         O20         C19         N18          C7     180.000     5.0     2
+GPT             sp2_sp3_8         C19         N18          C7         C16     120.000    10.0     6
+GPT            sp2_sp3_21         O17         C16          C7          C8    -120.000    10.0     6
+GPT            sp3_sp3_82         C16          C7          C8         O15     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GPT    chir_1    C3    C19    C4    C2    negative
+GPT    chir_2    C4    O5    C7    C3    positive
+GPT    chir_3    C7    N18    C16    C4    negative
+GPT    chir_4    C8    O15    C7    C9    positive
+GPT    chir_5    C9    C8    C10    C14    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GPT    plan-1         C19   0.020
+GPT    plan-1          C3   0.020
+GPT    plan-1         N18   0.020
+GPT    plan-1         O20   0.020
+GPT    plan-2         C19   0.020
+GPT    plan-2          C7   0.020
+GPT    plan-2        HN18   0.020
+GPT    plan-2         N18   0.020
+GPT    plan-3         C16   0.020
+GPT    plan-3          C7   0.020
+GPT    plan-3         H16   0.020
+GPT    plan-3         O17   0.020
+GPT    plan-4         C10   0.020
+GPT    plan-4         C11   0.020
+GPT    plan-4         C12   0.020
+GPT    plan-4         H11   0.020
+GPT    plan-5         C10   0.020
+GPT    plan-5         C11   0.020
+GPT    plan-5          C9   0.020
+GPT    plan-5         H10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GPT           SMILES              ACDLabs 10.04                                                                                                               O=CC1(NC(=O)C(C1(O)C)CCF)C(O)C2C=CCCC2
+GPT SMILES_CANONICAL               CACTVS 3.341                                                                                           C[C@]1(O)[C@@H](CCF)C(=O)N[C@]1(C=O)[C@@H](O)[C@H]2CCCC=C2
+GPT           SMILES               CACTVS 3.341                                                                                                  C[C]1(O)[CH](CCF)C(=O)N[C]1(C=O)[CH](O)[CH]2CCCC=C2
+GPT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                            C[C@@]1([C@H](C(=O)N[C@]1(C=O)[C@H]([C@H]2CCCC=C2)O)CCF)O
+GPT           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                               CC1(C(C(=O)NC1(C=O)C(C2CCCC=C2)O)CCF)O
+GPT            InChI                InChI  1.03 InChI=1S/C15H22FNO4/c1-14(21)11(7-8-16)13(20)17-15(14,9-18)12(19)10-5-3-2-4-6-10/h3,5,9-12,19,21H,2,4,6-8H2,1H3,(H,17,20)/t10-,11+,12+,14+,15-/m1/s1
+GPT         InChIKey                InChI  1.03                                                                                                                          XVSPEIROBXUXKM-FUQNVFFISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GPT acedrg               243         "dictionary generator"                  
+GPT acedrg_database      11          "data source"                           
+GPT rdkit                2017.03.2   "Chemoinformatics tool"
+GPT refmac5              5.8.0238    "optimization tool"                     

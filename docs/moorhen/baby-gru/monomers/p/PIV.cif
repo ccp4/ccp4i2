@@ -1,0 +1,152 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PIV     PIV      "PIVALIC ACID"     NON-POLYMER     16     7     .     
+#
+data_comp_PIV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PIV     CT      C       CT      0       31.923      84.266      -3.104      
+PIV     C1      C       CH3     0       32.960      84.787      -2.106      
+PIV     C2      C       CH3     0       31.265      83.005      -2.548      
+PIV     C3      C       CH3     0       30.853      85.339      -3.321      
+PIV     C       C       C       0       32.613      83.910      -4.443      
+PIV     O1      O       O       0       33.734      83.362      -4.391      
+PIV     O2      O       OC      -1      32.003      84.166      -5.504      
+PIV     H11     H       H       0       33.483      85.494      -2.521      
+PIV     H12     H       H       0       33.552      84.062      -1.840      
+PIV     H13     H       H       0       32.509      85.138      -1.319      
+PIV     H21     H       H       0       30.727      82.585      -3.242      
+PIV     H22     H       H       0       30.694      83.241      -1.797      
+PIV     H23     H       H       0       31.950      82.383      -2.250      
+PIV     H31     H       H       0       31.229      86.078      -3.831      
+PIV     H32     H       H       0       30.541      85.668      -2.460      
+PIV     H33     H       H       0       30.102      84.957      -3.809      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PIV          CT          C1      SINGLE       n     1.525  0.0153     1.525  0.0153
+PIV          CT          C2      SINGLE       n     1.525  0.0153     1.525  0.0153
+PIV          CT          C3      SINGLE       n     1.525  0.0153     1.525  0.0153
+PIV          CT           C      SINGLE       n     1.536  0.0149     1.536  0.0149
+PIV           C          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+PIV           C          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+PIV          C1         H11      SINGLE       n     1.089  0.0100     0.973  0.0141
+PIV          C1         H12      SINGLE       n     1.089  0.0100     0.973  0.0141
+PIV          C1         H13      SINGLE       n     1.089  0.0100     0.973  0.0141
+PIV          C2         H21      SINGLE       n     1.089  0.0100     0.973  0.0141
+PIV          C2         H22      SINGLE       n     1.089  0.0100     0.973  0.0141
+PIV          C2         H23      SINGLE       n     1.089  0.0100     0.973  0.0141
+PIV          C3         H31      SINGLE       n     1.089  0.0100     0.973  0.0141
+PIV          C3         H32      SINGLE       n     1.089  0.0100     0.973  0.0141
+PIV          C3         H33      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PIV          C1          CT          C2     109.837    1.50
+PIV          C1          CT          C3     109.837    1.50
+PIV          C1          CT           C     109.039    2.00
+PIV          C2          CT          C3     109.837    1.50
+PIV          C2          CT           C     109.039    2.00
+PIV          C3          CT           C     109.039    2.00
+PIV          CT          C1         H11     109.504    1.50
+PIV          CT          C1         H12     109.504    1.50
+PIV          CT          C1         H13     109.504    1.50
+PIV         H11          C1         H12     109.377    1.50
+PIV         H11          C1         H13     109.377    1.50
+PIV         H12          C1         H13     109.377    1.50
+PIV          CT          C2         H21     109.504    1.50
+PIV          CT          C2         H22     109.504    1.50
+PIV          CT          C2         H23     109.504    1.50
+PIV         H21          C2         H22     109.377    1.50
+PIV         H21          C2         H23     109.377    1.50
+PIV         H22          C2         H23     109.377    1.50
+PIV          CT          C3         H31     109.504    1.50
+PIV          CT          C3         H32     109.504    1.50
+PIV          CT          C3         H33     109.504    1.50
+PIV         H31          C3         H32     109.377    1.50
+PIV         H31          C3         H33     109.377    1.50
+PIV         H32          C3         H33     109.377    1.50
+PIV          CT           C          O1     117.497    1.50
+PIV          CT           C          O2     117.497    1.50
+PIV          O1           C          O2     125.006    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PIV             sp3_sp3_2         H11          C1          CT          C2     -60.000    10.0     3
+PIV            sp3_sp3_10         H21          C2          CT          C1     180.000    10.0     3
+PIV            sp3_sp3_20         H31          C3          CT          C1     -60.000    10.0     3
+PIV             sp2_sp3_2          O1           C          CT          C1     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PIV    chir_1    CT    C    C1    C2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PIV    plan-1           C   0.020
+PIV    plan-1          CT   0.020
+PIV    plan-1          O1   0.020
+PIV    plan-1          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PIV           SMILES              ACDLabs 10.04                                 O=C(O)C(C)(C)C
+PIV SMILES_CANONICAL               CACTVS 3.341                                 CC(C)(C)C(O)=O
+PIV           SMILES               CACTVS 3.341                                 CC(C)(C)C(O)=O
+PIV SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                 CC(C)(C)C(=O)O
+PIV           SMILES "OpenEye OEToolkits" 1.5.0                                 CC(C)(C)C(=O)O
+PIV            InChI                InChI  1.03 InChI=1S/C5H10O2/c1-5(2,3)4(6)7/h1-3H3,(H,6,7)
+PIV         InChIKey                InChI  1.03                    IUGYQRQAERSCNH-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PIV acedrg               243         "dictionary generator"                  
+PIV acedrg_database      11          "data source"                           
+PIV rdkit                2017.03.2   "Chemoinformatics tool"
+PIV refmac5              5.8.0238    "optimization tool"                     

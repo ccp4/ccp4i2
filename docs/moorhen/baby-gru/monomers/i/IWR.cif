@@ -1,0 +1,381 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IWR     IWR      4-[(3aR,4S,7R,7aS)-1,3-dioxo-1,3,3a,4,7,7a-hexahydro-2H-4,7-methanoisoindol-2-yl]-N-(quinolin-8-yl)benzamide     NON-POLYMER     50     31     .     
+#
+data_comp_IWR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IWR     CAF     C       CR66    0       -1.229      -41.073     25.486      
+IWR     NAG     N       NRD6    0       -2.079      -41.568     26.439      
+IWR     CAH     C       CR16    0       -1.732      -41.419     27.706      
+IWR     CAI     C       CR16    0       -0.547      -40.786     28.137      
+IWR     CAJ     C       CR16    0       0.307       -40.288     27.199      
+IWR     CAA     C       CR66    0       -0.018      -40.421     25.831      
+IWR     CAB     C       CR16    0       0.823       -39.928     24.808      
+IWR     CAC     C       CR16    0       0.471       -40.078     23.495      
+IWR     CAD     C       CR16    0       -0.729      -40.721     23.136      
+IWR     CAE     C       CR6     0       -1.581      -41.212     24.101      
+IWR     NAK     N       NH1     0       -2.792      -41.878     23.831      
+IWR     CAL     C       C       0       -3.041      -42.787     22.853      
+IWR     OAM     O       O       0       -2.160      -43.500     22.382      
+IWR     CAN     C       CR6     0       -4.447      -42.883     22.340      
+IWR     CAS     C       CR16    0       -5.315      -41.792     22.299      
+IWR     CAO     C       CR16    0       -6.607      -41.925     21.806      
+IWR     CAR     C       CR16    0       -4.905      -44.110     21.859      
+IWR     CAQ     C       CR16    0       -6.195      -44.247     21.365      
+IWR     CAP     C       CR6     0       -7.041      -43.154     21.343      
+IWR     NAT     N       NR5     0       -8.374      -43.297     20.823      
+IWR     CAW     C       CR5     0       -8.644      -43.659     19.504      
+IWR     OBE     O       O       0       -7.803      -43.865     18.662      
+IWR     CAV     C       CH1     0       -10.140     -43.733     19.332      
+IWR     CBB     C       CH1     0       -10.773     -42.669     18.363      
+IWR     CBC     C       CH2     0       -12.164     -42.536     19.002      
+IWR     CBA     C       CR56    0       -10.198     -41.317     18.727      
+IWR     CAZ     C       CR56    0       -10.687     -40.978     19.910      
+IWR     CAY     C       CH1     0       -11.608     -42.090     20.363      
+IWR     CAU     C       CH1     0       -10.721     -43.343     20.702      
+IWR     CAX     C       CR5     0       -9.524      -43.092     21.582      
+IWR     OBD     O       O       0       -9.530      -42.773     22.747      
+IWR     H1      H       H       0       -2.316      -41.761     28.363      
+IWR     H2      H       H       0       -0.352      -40.709     29.056      
+IWR     H3      H       H       0       1.106       -39.860     27.456      
+IWR     H4      H       H       0       1.629       -39.494     25.030      
+IWR     H5      H       H       0       1.040       -39.744     22.816      
+IWR     H6      H       H       0       -0.951      -40.813     22.222      
+IWR     H7      H       H       0       -3.450      -41.682     24.379      
+IWR     H8      H       H       0       -5.027      -40.954     22.616      
+IWR     H9      H       H       0       -7.182      -41.188     21.788      
+IWR     H10     H       H       0       -4.338      -44.860     21.871      
+IWR     H11     H       H       0       -6.492      -45.075     21.048      
+IWR     H12     H       H       0       -10.414     -44.655     19.075      
+IWR     H13     H       H       0       -10.758     -42.901     17.399      
+IWR     H14     H       H       0       -12.722     -41.848     18.570      
+IWR     H15     H       H       0       -12.655     -43.390     19.044      
+IWR     H17     H       H       0       -9.598      -40.807     18.203      
+IWR     H18     H       H       0       -10.495     -40.184     20.386      
+IWR     H20     H       H       0       -12.282     -41.842     21.048      
+IWR     H21     H       H       0       -11.278     -44.080     21.075      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IWR         CAW         OBE      DOUBLE       n     1.207  0.0100     1.207  0.0100
+IWR         CAV         CBB      SINGLE       n     1.568  0.0100     1.568  0.0100
+IWR         CBB         CBA      SINGLE       n     1.511  0.0100     1.511  0.0100
+IWR         CBB         CBC      SINGLE       n     1.536  0.0100     1.536  0.0100
+IWR         CAW         CAV      SINGLE       n     1.506  0.0100     1.506  0.0100
+IWR         NAT         CAW      SINGLE       n     1.391  0.0100     1.391  0.0100
+IWR         CAV         CAU      SINGLE       n     1.538  0.0100     1.538  0.0100
+IWR         CBA         CAZ      DOUBLE       n     1.323  0.0129     1.323  0.0129
+IWR         CBC         CAY      SINGLE       n     1.536  0.0100     1.536  0.0100
+IWR         CAP         NAT      SINGLE       n     1.435  0.0100     1.435  0.0100
+IWR         NAT         CAX      SINGLE       n     1.391  0.0100     1.391  0.0100
+IWR         CAY         CAU      SINGLE       n     1.568  0.0100     1.568  0.0100
+IWR         CAU         CAX      SINGLE       n     1.506  0.0100     1.506  0.0100
+IWR         CAQ         CAP      DOUBLE       y     1.379  0.0105     1.379  0.0105
+IWR         CAO         CAP      SINGLE       y     1.379  0.0105     1.379  0.0105
+IWR         CAR         CAQ      SINGLE       y     1.385  0.0100     1.385  0.0100
+IWR         CAZ         CAY      SINGLE       n     1.511  0.0100     1.511  0.0100
+IWR         CAS         CAO      DOUBLE       y     1.385  0.0100     1.385  0.0100
+IWR         CAN         CAR      DOUBLE       y     1.390  0.0100     1.390  0.0100
+IWR         CAX         OBD      DOUBLE       n     1.207  0.0100     1.207  0.0100
+IWR         CAL         OAM      DOUBLE       n     1.226  0.0100     1.226  0.0100
+IWR         CAN         CAS      SINGLE       y     1.390  0.0100     1.390  0.0100
+IWR         CAL         CAN      SINGLE       n     1.494  0.0100     1.494  0.0100
+IWR         NAK         CAL      SINGLE       n     1.355  0.0100     1.355  0.0100
+IWR         CAE         NAK      SINGLE       n     1.404  0.0100     1.404  0.0100
+IWR         CAD         CAE      DOUBLE       y     1.373  0.0100     1.373  0.0100
+IWR         CAC         CAD      SINGLE       y     1.403  0.0100     1.403  0.0100
+IWR         CAF         CAE      SINGLE       y     1.429  0.0100     1.429  0.0100
+IWR         CAB         CAC      DOUBLE       y     1.362  0.0128     1.362  0.0128
+IWR         CAF         NAG      DOUBLE       y     1.365  0.0100     1.365  0.0100
+IWR         CAF         CAA      SINGLE       y     1.414  0.0100     1.414  0.0100
+IWR         CAA         CAB      SINGLE       y     1.411  0.0100     1.411  0.0100
+IWR         NAG         CAH      SINGLE       y     1.317  0.0100     1.317  0.0100
+IWR         CAJ         CAA      DOUBLE       y     1.411  0.0100     1.411  0.0100
+IWR         CAH         CAI      DOUBLE       y     1.406  0.0100     1.406  0.0100
+IWR         CAI         CAJ      SINGLE       y     1.358  0.0112     1.358  0.0112
+IWR         CAH          H1      SINGLE       n     1.082  0.0130     0.943  0.0200
+IWR         CAI          H2      SINGLE       n     1.082  0.0130     0.942  0.0187
+IWR         CAJ          H3      SINGLE       n     1.082  0.0130     0.942  0.0169
+IWR         CAB          H4      SINGLE       n     1.082  0.0130     0.942  0.0169
+IWR         CAC          H5      SINGLE       n     1.082  0.0130     0.947  0.0200
+IWR         CAD          H6      SINGLE       n     1.082  0.0130     0.945  0.0196
+IWR         NAK          H7      SINGLE       n     1.016  0.0100     0.877  0.0200
+IWR         CAS          H8      SINGLE       n     1.082  0.0130     0.941  0.0168
+IWR         CAO          H9      SINGLE       n     1.082  0.0130     0.935  0.0124
+IWR         CAR         H10      SINGLE       n     1.082  0.0130     0.941  0.0168
+IWR         CAQ         H11      SINGLE       n     1.082  0.0130     0.935  0.0124
+IWR         CAV         H12      SINGLE       n     1.089  0.0100     0.996  0.0100
+IWR         CBB         H13      SINGLE       n     1.089  0.0100     0.992  0.0131
+IWR         CBC         H14      SINGLE       n     1.089  0.0100     0.985  0.0121
+IWR         CBC         H15      SINGLE       n     1.089  0.0100     0.985  0.0121
+IWR         CBA         H17      SINGLE       n     1.082  0.0130     0.945  0.0166
+IWR         CAZ         H18      SINGLE       n     1.082  0.0130     0.945  0.0166
+IWR         CAY         H20      SINGLE       n     1.089  0.0100     0.992  0.0131
+IWR         CAU         H21      SINGLE       n     1.089  0.0100     0.996  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IWR         CAE         CAF         NAG     117.751    1.50
+IWR         CAE         CAF         CAA     119.684    1.50
+IWR         NAG         CAF         CAA     122.566    1.50
+IWR         CAF         NAG         CAH     116.860    1.50
+IWR         NAG         CAH         CAI     123.755    1.50
+IWR         NAG         CAH          H1     117.900    1.50
+IWR         CAI         CAH          H1     118.345    1.50
+IWR         CAH         CAI         CAJ     118.434    1.50
+IWR         CAH         CAI          H2     120.643    1.50
+IWR         CAJ         CAI          H2     120.923    1.50
+IWR         CAA         CAJ         CAI     119.381    1.50
+IWR         CAA         CAJ          H3     120.059    1.50
+IWR         CAI         CAJ          H3     120.560    1.50
+IWR         CAF         CAA         CAB     119.470    1.50
+IWR         CAF         CAA         CAJ     119.004    1.50
+IWR         CAB         CAA         CAJ     121.526    1.50
+IWR         CAC         CAB         CAA     120.368    1.50
+IWR         CAC         CAB          H4     119.736    1.50
+IWR         CAA         CAB          H4     119.895    1.50
+IWR         CAD         CAC         CAB     120.657    1.50
+IWR         CAD         CAC          H5     119.537    1.50
+IWR         CAB         CAC          H5     119.806    1.50
+IWR         CAE         CAD         CAC     120.153    1.50
+IWR         CAE         CAD          H6     120.111    1.50
+IWR         CAC         CAD          H6     119.736    1.50
+IWR         NAK         CAE         CAD     125.225    1.50
+IWR         NAK         CAE         CAF     115.107    1.50
+IWR         CAD         CAE         CAF     119.668    1.50
+IWR         CAL         NAK         CAE     128.473    1.50
+IWR         CAL         NAK          H7     116.952    1.92
+IWR         CAE         NAK          H7     114.575    2.60
+IWR         OAM         CAL         CAN     120.816    1.50
+IWR         OAM         CAL         NAK     123.232    1.50
+IWR         CAN         CAL         NAK     115.952    1.50
+IWR         CAR         CAN         CAS     118.992    1.50
+IWR         CAR         CAN         CAL     120.504    2.90
+IWR         CAS         CAN         CAL     120.504    2.90
+IWR         CAO         CAS         CAN     120.756    1.50
+IWR         CAO         CAS          H8     119.437    1.50
+IWR         CAN         CAS          H8     119.807    1.50
+IWR         CAP         CAO         CAS     119.499    1.50
+IWR         CAP         CAO          H9     120.195    1.50
+IWR         CAS         CAO          H9     120.309    1.50
+IWR         CAQ         CAR         CAN     120.756    1.50
+IWR         CAQ         CAR         H10     119.437    1.50
+IWR         CAN         CAR         H10     119.807    1.50
+IWR         CAP         CAQ         CAR     119.499    1.50
+IWR         CAP         CAQ         H11     120.195    1.50
+IWR         CAR         CAQ         H11     120.309    1.50
+IWR         NAT         CAP         CAQ     119.755    1.50
+IWR         NAT         CAP         CAO     119.755    1.50
+IWR         CAQ         CAP         CAO     120.490    1.50
+IWR         CAW         NAT         CAP     123.429    1.50
+IWR         CAW         NAT         CAX     113.142    1.50
+IWR         CAP         NAT         CAX     123.429    1.50
+IWR         OBE         CAW         CAV     127.577    1.50
+IWR         OBE         CAW         NAT     124.353    1.50
+IWR         CAV         CAW         NAT     108.070    1.50
+IWR         CBB         CAV         CAW     115.328    1.50
+IWR         CBB         CAV         CAU     102.952    1.50
+IWR         CBB         CAV         H12     111.415    1.50
+IWR         CAW         CAV         CAU     105.205    1.50
+IWR         CAW         CAV         H12     110.906    1.50
+IWR         CAU         CAV         H12     111.482    1.50
+IWR         CAV         CBB         CBA     106.173    1.50
+IWR         CAV         CBB         CBC      99.618    1.50
+IWR         CAV         CBB         H13     115.932    1.50
+IWR         CBA         CBB         CBC     100.087    1.50
+IWR         CBA         CBB         H13     116.135    1.50
+IWR         CBC         CBB         H13     116.142    1.50
+IWR         CBB         CBC         CAY      93.894    1.50
+IWR         CBB         CBC         H14     112.986    1.50
+IWR         CBB         CBC         H15     112.986    1.50
+IWR         CAY         CBC         H14     112.986    1.50
+IWR         CAY         CBC         H15     112.986    1.50
+IWR         H14         CBC         H15     110.177    1.50
+IWR         CBB         CBA         CAZ     107.810    1.50
+IWR         CBB         CBA         H17     126.056    1.50
+IWR         CAZ         CBA         H17     126.134    1.50
+IWR         CBA         CAZ         CAY     107.810    1.50
+IWR         CBA         CAZ         H18     126.134    1.50
+IWR         CAY         CAZ         H18     126.056    1.50
+IWR         CBC         CAY         CAU      99.618    1.50
+IWR         CBC         CAY         CAZ     100.087    1.50
+IWR         CBC         CAY         H20     116.142    1.50
+IWR         CAU         CAY         CAZ     106.173    1.50
+IWR         CAU         CAY         H20     115.932    1.50
+IWR         CAZ         CAY         H20     116.135    1.50
+IWR         CAV         CAU         CAY     102.952    1.50
+IWR         CAV         CAU         CAX     105.205    1.50
+IWR         CAV         CAU         H21     111.482    1.50
+IWR         CAY         CAU         CAX     115.328    1.50
+IWR         CAY         CAU         H21     111.415    1.50
+IWR         CAX         CAU         H21     110.906    1.50
+IWR         NAT         CAX         CAU     108.070    1.50
+IWR         NAT         CAX         OBD     124.353    1.50
+IWR         CAU         CAX         OBD     127.577    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IWR              const_22         CAE         CAF         NAG         CAH     180.000    10.0     2
+IWR              const_61         CAB         CAA         CAF         CAE       0.000    10.0     2
+IWR       const_sp2_sp2_4         NAK         CAE         CAF         NAG       0.000     5.0     2
+IWR            sp2_sp2_23         OAM         CAL         NAK         CAE       0.000     5.0     2
+IWR            sp2_sp2_19         OAM         CAL         CAN         CAR       0.000     5.0     2
+IWR              const_59         CAL         CAN         CAS         CAO     180.000    10.0     2
+IWR              const_39         CAL         CAN         CAR         CAQ     180.000    10.0     2
+IWR              const_53         CAP         CAO         CAS         CAN       0.000    10.0     2
+IWR              const_50         CAS         CAO         CAP         NAT     180.000    10.0     2
+IWR              const_41         CAP         CAQ         CAR         CAN       0.000    10.0     2
+IWR              const_47         NAT         CAP         CAQ         CAR     180.000    10.0     2
+IWR             sp2_sp2_9         CAQ         CAP         NAT         CAW     180.000     5.0     2
+IWR             sp2_sp2_4         OBE         CAW         NAT         CAP       0.000     5.0     2
+IWR            sp2_sp2_15         OBD         CAX         NAT         CAW     180.000     5.0     2
+IWR              const_23         CAI         CAH         NAG         CAF       0.000    10.0     2
+IWR             sp2_sp3_5         OBE         CAW         CAV         CBB     -60.000    10.0     6
+IWR            sp3_sp3_13         CAW         CAV         CBB         CBA     -60.000    10.0     3
+IWR             sp3_sp3_1         CAY         CAU         CAV         CBB      60.000    10.0     3
+IWR            sp3_sp3_28         CAV         CBB         CBC         CAY     -60.000    10.0     3
+IWR            sp2_sp3_13         CAZ         CBA         CBB         CAV       0.000    10.0     6
+IWR            sp3_sp3_37         CAU         CAY         CBC         CBB      60.000    10.0     3
+IWR             sp2_sp2_5         CAY         CAZ         CBA         CBB       0.000     5.0     2
+IWR            sp2_sp3_19         CBA         CAZ         CAY         CBC       0.000    10.0     6
+IWR            sp3_sp3_19         CAV         CAU         CAY         CBC      60.000    10.0     3
+IWR            sp2_sp3_10         OBD         CAX         CAU         CAV     180.000    10.0     6
+IWR              const_25         NAG         CAH         CAI         CAJ       0.000    10.0     2
+IWR              const_29         CAH         CAI         CAJ         CAA       0.000    10.0     2
+IWR              const_33         CAF         CAA         CAJ         CAI       0.000    10.0     2
+IWR              const_17         CAF         CAA         CAB         CAC       0.000    10.0     2
+IWR              const_13         CAA         CAB         CAC         CAD       0.000    10.0     2
+IWR       const_sp2_sp2_9         CAB         CAC         CAD         CAE       0.000     5.0     2
+IWR       const_sp2_sp2_6         CAC         CAD         CAE         NAK     180.000     5.0     2
+IWR            sp2_sp2_25         CAD         CAE         NAK         CAL     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IWR    chir_1    CAV    CAW    CAU    CBB    negative
+IWR    chir_2    CBB    CAV    CBA    CBC    positive
+IWR    chir_3    CAY    CAU    CAZ    CBC    negative
+IWR    chir_4    CAU    CAX    CAV    CAY    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IWR    plan-1         CAA   0.020
+IWR    plan-1         CAB   0.020
+IWR    plan-1         CAC   0.020
+IWR    plan-1         CAD   0.020
+IWR    plan-1         CAE   0.020
+IWR    plan-1         CAF   0.020
+IWR    plan-1         CAH   0.020
+IWR    plan-1         CAI   0.020
+IWR    plan-1         CAJ   0.020
+IWR    plan-1          H1   0.020
+IWR    plan-1          H2   0.020
+IWR    plan-1          H3   0.020
+IWR    plan-1          H4   0.020
+IWR    plan-1          H5   0.020
+IWR    plan-1          H6   0.020
+IWR    plan-1         NAG   0.020
+IWR    plan-1         NAK   0.020
+IWR    plan-2         CAL   0.020
+IWR    plan-2         CAN   0.020
+IWR    plan-2         CAO   0.020
+IWR    plan-2         CAP   0.020
+IWR    plan-2         CAQ   0.020
+IWR    plan-2         CAR   0.020
+IWR    plan-2         CAS   0.020
+IWR    plan-2         H10   0.020
+IWR    plan-2         H11   0.020
+IWR    plan-2          H8   0.020
+IWR    plan-2          H9   0.020
+IWR    plan-2         NAT   0.020
+IWR    plan-3         CAE   0.020
+IWR    plan-3         CAL   0.020
+IWR    plan-3          H7   0.020
+IWR    plan-3         NAK   0.020
+IWR    plan-4         CAL   0.020
+IWR    plan-4         CAN   0.020
+IWR    plan-4         NAK   0.020
+IWR    plan-4         OAM   0.020
+IWR    plan-5         CAP   0.020
+IWR    plan-5         CAW   0.020
+IWR    plan-5         CAX   0.020
+IWR    plan-5         NAT   0.020
+IWR    plan-6         CAV   0.020
+IWR    plan-6         CAW   0.020
+IWR    plan-6         NAT   0.020
+IWR    plan-6         OBE   0.020
+IWR    plan-7         CAZ   0.020
+IWR    plan-7         CBA   0.020
+IWR    plan-7         CBB   0.020
+IWR    plan-7         H17   0.020
+IWR    plan-8         CAY   0.020
+IWR    plan-8         CAZ   0.020
+IWR    plan-8         CBA   0.020
+IWR    plan-8         H18   0.020
+IWR    plan-9         CAU   0.020
+IWR    plan-9         CAX   0.020
+IWR    plan-9         NAT   0.020
+IWR    plan-9         OBD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IWR           SMILES              ACDLabs 12.01                                                                                                                       O=C(Nc2c1ncccc1ccc2)c3ccc(cc3)N5C(=O)C6C4C=CC(C4)C6C5=O
+IWR            InChI                InChI  1.03 InChI=1S/C25H19N3O3/c29-23(27-19-5-1-3-14-4-2-12-26-22(14)19)15-8-10-18(11-9-15)28-24(30)20-16-6-7-17(13-16)21(20)25(28)31/h1-12,16-17,20-21H,13H2,(H,27,29)/t16-,17+,20-,21+
+IWR         InChIKey                InChI  1.03                                                                                                                                                   ZGSXEXBYLJIOGF-ALFLXDJESA-N
+IWR SMILES_CANONICAL               CACTVS 3.370                                                                                                     O=C(Nc1cccc2cccnc12)c3ccc(cc3)N4C(=O)[C@@H]5[C@H]6C[C@H](C=C6)[C@@H]5C4=O
+IWR           SMILES               CACTVS 3.370                                                                                                           O=C(Nc1cccc2cccnc12)c3ccc(cc3)N4C(=O)[CH]5[CH]6C[CH](C=C6)[CH]5C4=O
+IWR SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                    c1cc2cccnc2c(c1)NC(=O)c3ccc(cc3)N4C(=O)[C@H]5[C@@H]6C[C@H]([C@H]5C4=O)C=C6
+IWR           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                     c1cc2cccnc2c(c1)NC(=O)c3ccc(cc3)N4C(=O)C5C6CC(C5C4=O)C=C6
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IWR acedrg               243         "dictionary generator"                  
+IWR acedrg_database      11          "data source"                           
+IWR rdkit                2017.03.2   "Chemoinformatics tool"
+IWR refmac5              5.8.0238    "optimization tool"                     

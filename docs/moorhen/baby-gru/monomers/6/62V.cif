@@ -1,0 +1,273 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+62V     62V      6-(4-chlorophenyl)-1-methyl-4H-[1,2]oxazolo[5,4-d][2]benzazepine     NON-POLYMER     35     22     .     
+#
+data_comp_62V
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+62V     CAQ     C       CR16    0       -10.098     7.114       -4.892      
+62V     CAR     C       CR16    0       -9.447      6.713       -6.050      
+62V     CAS     C       CR6     0       -8.544      5.674       -5.990      
+62V     CLAV    CL      CL      0       -7.725      5.169       -7.441      
+62V     CAT     C       CR16    0       -8.278      5.025       -4.802      
+62V     CAU     C       CR16    0       -8.934      5.427       -3.647      
+62V     CAP     C       CR6     0       -9.856      6.477       -3.672      
+62V     CAG     C       C       0       -10.560     6.919       -2.429      
+62V     NAH     N       N       0       -11.786     7.293       -2.553      
+62V     CAI     C       CH2     0       -12.833     7.354       -1.522      
+62V     CAJ     C       CR5     0       -12.731     6.211       -0.579      
+62V     OAL     O       O2      0       -13.791     5.428       -0.319      
+62V     NAM     N       NRD5    0       -13.376     4.433       0.596       
+62V     CAN     C       CR5     0       -12.110     4.641       0.849       
+62V     CAO     C       CH3     0       -11.416     3.713       1.795       
+62V     CAK     C       CR5     0       -11.662     5.762       0.110       
+62V     CAF     C       CR6     0       -10.326     6.388       0.062       
+62V     CAE     C       CR6     0       -9.815      6.955       -1.131      
+62V     CAD     C       CR16    0       -8.554      7.558       -1.108      
+62V     CAC     C       CR16    0       -7.815      7.620       0.058       
+62V     CAB     C       CR16    0       -8.319      7.086       1.227       
+62V     CAA     C       CR16    0       -9.566      6.483       1.235       
+62V     H1      H       H       0       -10.713     7.825       -4.936      
+62V     H2      H       H       0       -9.618      7.146       -6.865      
+62V     H3      H       H       0       -7.662      4.318       -4.777      
+62V     H4      H       H       0       -8.751      4.983       -2.838      
+62V     H5      H       H       0       -13.722     7.344       -1.958      
+62V     H6      H       H       0       -12.748     8.204       -1.022      
+62V     H7      H       H       0       -12.068     3.133       2.221       
+62V     H8      H       H       0       -10.954     4.222       2.476       
+62V     H9      H       H       0       -10.776     3.171       1.308       
+62V     H10     H       H       0       -8.198      7.925       -1.898      
+62V     H11     H       H       0       -6.965      8.030       0.056       
+62V     H12     H       H       0       -7.815      7.130       2.022       
+62V     H13     H       H       0       -9.899      6.128       2.035       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+62V         CAS        CLAV      SINGLE       n     1.741  0.0100     1.741  0.0100
+62V         CAR         CAS      SINGLE       y     1.376  0.0100     1.376  0.0100
+62V         CAQ         CAR      DOUBLE       y     1.384  0.0100     1.384  0.0100
+62V         CAS         CAT      DOUBLE       y     1.376  0.0100     1.376  0.0100
+62V         CAQ         CAP      SINGLE       y     1.392  0.0100     1.392  0.0100
+62V         CAT         CAU      SINGLE       y     1.384  0.0100     1.384  0.0100
+62V         CAU         CAP      DOUBLE       y     1.392  0.0100     1.392  0.0100
+62V         CAP         CAG      SINGLE       n     1.488  0.0100     1.488  0.0100
+62V         CAG         NAH      DOUBLE       n     1.281  0.0100     1.281  0.0100
+62V         NAH         CAI      SINGLE       n     1.466  0.0124     1.466  0.0124
+62V         CAG         CAE      SINGLE       n     1.485  0.0118     1.485  0.0118
+62V         CAI         CAJ      SINGLE       n     1.487  0.0100     1.487  0.0100
+62V         CAE         CAD      DOUBLE       y     1.392  0.0100     1.392  0.0100
+62V         CAF         CAE      SINGLE       y     1.397  0.0130     1.397  0.0130
+62V         CAD         CAC      SINGLE       y     1.380  0.0100     1.380  0.0100
+62V         CAJ         OAL      SINGLE       y     1.347  0.0110     1.347  0.0110
+62V         CAJ         CAK      DOUBLE       y     1.354  0.0104     1.354  0.0104
+62V         OAL         NAM      SINGLE       y     1.414  0.0109     1.414  0.0109
+62V         CAK         CAF      SINGLE       n     1.473  0.0100     1.473  0.0100
+62V         CAF         CAA      DOUBLE       y     1.396  0.0100     1.396  0.0100
+62V         CAC         CAB      DOUBLE       y     1.378  0.0129     1.378  0.0129
+62V         CAN         CAK      SINGLE       y     1.404  0.0158     1.404  0.0158
+62V         NAM         CAN      DOUBLE       y     1.304  0.0100     1.304  0.0100
+62V         CAN         CAO      SINGLE       n     1.494  0.0100     1.494  0.0100
+62V         CAB         CAA      SINGLE       y     1.383  0.0100     1.383  0.0100
+62V         CAQ          H1      SINGLE       n     1.082  0.0130     0.941  0.0168
+62V         CAR          H2      SINGLE       n     1.082  0.0130     0.938  0.0140
+62V         CAT          H3      SINGLE       n     1.082  0.0130     0.938  0.0140
+62V         CAU          H4      SINGLE       n     1.082  0.0130     0.941  0.0168
+62V         CAI          H5      SINGLE       n     1.089  0.0100     0.990  0.0100
+62V         CAI          H6      SINGLE       n     1.089  0.0100     0.990  0.0100
+62V         CAO          H7      SINGLE       n     1.089  0.0100     0.970  0.0153
+62V         CAO          H8      SINGLE       n     1.089  0.0100     0.970  0.0153
+62V         CAO          H9      SINGLE       n     1.089  0.0100     0.970  0.0153
+62V         CAD         H10      SINGLE       n     1.082  0.0130     0.941  0.0168
+62V         CAC         H11      SINGLE       n     1.082  0.0130     0.943  0.0180
+62V         CAB         H12      SINGLE       n     1.082  0.0130     0.943  0.0180
+62V         CAA         H13      SINGLE       n     1.082  0.0130     0.939  0.0154
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+62V         CAR         CAQ         CAP     120.786    1.50
+62V         CAR         CAQ          H1     119.450    1.50
+62V         CAP         CAQ          H1     119.770    1.50
+62V         CAS         CAR         CAQ     119.110    1.50
+62V         CAS         CAR          H2     120.415    1.50
+62V         CAQ         CAR          H2     120.471    1.50
+62V        CLAV         CAS         CAR     119.337    1.50
+62V        CLAV         CAS         CAT     119.337    1.50
+62V         CAR         CAS         CAT     121.327    1.50
+62V         CAS         CAT         CAU     119.110    1.50
+62V         CAS         CAT          H3     120.415    1.50
+62V         CAU         CAT          H3     120.471    1.50
+62V         CAT         CAU         CAP     120.786    1.50
+62V         CAT         CAU          H4     119.450    1.50
+62V         CAP         CAU          H4     119.770    1.50
+62V         CAQ         CAP         CAU     118.878    1.50
+62V         CAQ         CAP         CAG     120.561    1.50
+62V         CAU         CAP         CAG     120.561    1.50
+62V         CAP         CAG         NAH     120.626    3.00
+62V         CAP         CAG         CAE     118.748    2.15
+62V         NAH         CAG         CAE     120.626    3.00
+62V         CAG         NAH         CAI     119.132    2.76
+62V         NAH         CAI         CAJ     111.244    1.50
+62V         NAH         CAI          H5     109.308    1.50
+62V         NAH         CAI          H6     109.308    1.50
+62V         CAJ         CAI          H5     109.564    1.50
+62V         CAJ         CAI          H6     109.564    1.50
+62V          H5         CAI          H6     107.972    1.50
+62V         CAI         CAJ         OAL     119.295    1.50
+62V         CAI         CAJ         CAK     131.819    3.00
+62V         OAL         CAJ         CAK     108.887    1.50
+62V         CAJ         OAL         NAM     108.602    1.50
+62V         OAL         NAM         CAN     106.490    1.50
+62V         CAK         CAN         NAM     109.405    1.50
+62V         CAK         CAN         CAO     131.262    2.46
+62V         NAM         CAN         CAO     119.333    1.54
+62V         CAN         CAO          H7     109.591    1.50
+62V         CAN         CAO          H8     109.591    1.50
+62V         CAN         CAO          H9     109.591    1.50
+62V          H7         CAO          H8     109.354    1.50
+62V          H7         CAO          H9     109.354    1.50
+62V          H8         CAO          H9     109.354    1.50
+62V         CAJ         CAK         CAF     126.692    1.78
+62V         CAJ         CAK         CAN     106.616    1.50
+62V         CAF         CAK         CAN     126.692    1.78
+62V         CAE         CAF         CAK     121.266    1.96
+62V         CAE         CAF         CAA     118.994    1.50
+62V         CAK         CAF         CAA     119.741    1.50
+62V         CAG         CAE         CAD     119.153    1.50
+62V         CAG         CAE         CAF     121.382    2.06
+62V         CAD         CAE         CAF     119.465    1.50
+62V         CAE         CAD         CAC     120.555    1.50
+62V         CAE         CAD         H10     119.723    1.50
+62V         CAC         CAD         H10     119.722    1.50
+62V         CAD         CAC         CAB     120.149    1.50
+62V         CAD         CAC         H11     119.880    1.50
+62V         CAB         CAC         H11     119.971    1.50
+62V         CAC         CAB         CAA     120.311    1.50
+62V         CAC         CAB         H12     119.945    1.50
+62V         CAA         CAB         H12     119.744    1.50
+62V         CAF         CAA         CAB     120.528    1.50
+62V         CAF         CAA         H13     119.691    1.50
+62V         CAB         CAA         H13     119.782    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+62V              const_30         CAP         CAQ         CAR         CAS       0.000    10.0     2
+62V              const_52         CAG         CAP         CAQ         CAR     180.000    10.0     2
+62V              const_22         CAI         CAJ         OAL         NAM     180.000    10.0     2
+62V              const_57         CAI         CAJ         CAK         CAF       0.000    10.0     2
+62V              const_23         CAN         NAM         OAL         CAJ       0.000    10.0     2
+62V              const_25         CAO         CAN         NAM         OAL     180.000    10.0     2
+62V            sp2_sp3_10         CAK         CAN         CAO          H7     150.000    10.0     6
+62V              const_27         CAJ         CAK         CAN         CAO     180.000    10.0     2
+62V            sp2_sp2_11         CAE         CAF         CAK         CAJ     180.000     5.0     2
+62V       const_sp2_sp2_4         CAG         CAE         CAF         CAK       0.000     5.0     2
+62V              const_58         CAB         CAA         CAF         CAE       0.000    10.0     2
+62V       const_sp2_sp2_6         CAC         CAD         CAE         CAG     180.000     5.0     2
+62V       const_sp2_sp2_9         CAB         CAC         CAD         CAE       0.000     5.0     2
+62V              const_13         CAA         CAB         CAC         CAD       0.000    10.0     2
+62V              const_35         CAQ         CAR         CAS        CLAV     180.000    10.0     2
+62V              const_17         CAF         CAA         CAB         CAC       0.000    10.0     2
+62V              const_40        CLAV         CAS         CAT         CAU     180.000    10.0     2
+62V              const_42         CAS         CAT         CAU         CAP       0.000    10.0     2
+62V              const_48         CAG         CAP         CAU         CAT     180.000    10.0     2
+62V             sp2_sp2_3         NAH         CAG         CAP         CAQ       0.000     5.0     2
+62V             sp2_sp2_8         CAD         CAE         CAG         NAH       0.000     5.0     2
+62V             sp2_sp2_5         CAP         CAG         NAH         CAI     180.000     5.0     2
+62V             sp2_sp3_2         CAG         NAH         CAI         CAJ     120.000    10.0     6
+62V             sp2_sp3_5         OAL         CAJ         CAI         NAH     -90.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+62V    plan-1         CAG   0.020
+62V    plan-1         CAP   0.020
+62V    plan-1         CAQ   0.020
+62V    plan-1         CAR   0.020
+62V    plan-1         CAS   0.020
+62V    plan-1         CAT   0.020
+62V    plan-1         CAU   0.020
+62V    plan-1        CLAV   0.020
+62V    plan-1          H1   0.020
+62V    plan-1          H2   0.020
+62V    plan-1          H3   0.020
+62V    plan-1          H4   0.020
+62V    plan-2         CAF   0.020
+62V    plan-2         CAI   0.020
+62V    plan-2         CAJ   0.020
+62V    plan-2         CAK   0.020
+62V    plan-2         CAN   0.020
+62V    plan-2         CAO   0.020
+62V    plan-2         NAM   0.020
+62V    plan-2         OAL   0.020
+62V    plan-3         CAA   0.020
+62V    plan-3         CAB   0.020
+62V    plan-3         CAC   0.020
+62V    plan-3         CAD   0.020
+62V    plan-3         CAE   0.020
+62V    plan-3         CAF   0.020
+62V    plan-3         CAG   0.020
+62V    plan-3         CAK   0.020
+62V    plan-3         H10   0.020
+62V    plan-3         H11   0.020
+62V    plan-3         H12   0.020
+62V    plan-3         H13   0.020
+62V    plan-4         CAE   0.020
+62V    plan-4         CAG   0.020
+62V    plan-4         CAP   0.020
+62V    plan-4         NAH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+62V           SMILES              ACDLabs 12.01                                                                 c1c(ccc(c1)Cl)C=2c4c(c3c(CN=2)onc3C)cccc4
+62V            InChI                InChI  1.03 InChI=1S/C18H13ClN2O/c1-11-17-14-4-2-3-5-15(14)18(20-10-16(17)22-21-11)12-6-8-13(19)9-7-12/h2-9H,10H2,1H3
+62V         InChIKey                InChI  1.03                                                                               LVBAGZIAQBWUJP-UHFFFAOYSA-N
+62V SMILES_CANONICAL               CACTVS 3.385                                                                      Cc1noc2CN=C(c3ccc(Cl)cc3)c4ccccc4c12
+62V           SMILES               CACTVS 3.385                                                                      Cc1noc2CN=C(c3ccc(Cl)cc3)c4ccccc4c12
+62V SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                   Cc1c-2c(on1)CN=C(c3c2cccc3)c4ccc(cc4)Cl
+62V           SMILES "OpenEye OEToolkits" 2.0.4                                                                   Cc1c-2c(on1)CN=C(c3c2cccc3)c4ccc(cc4)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+62V acedrg               243         "dictionary generator"                  
+62V acedrg_database      11          "data source"                           
+62V rdkit                2017.03.2   "Chemoinformatics tool"
+62V refmac5              5.8.0238    "optimization tool"                     

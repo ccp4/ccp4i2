@@ -1,0 +1,482 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BAV     BAV      "(3S,14R,16S)-16-[(1R)-1-hydroxy-2-{[3-(1-methylethyl)benzyl]amino}ethyl]-3,4,14-trimethyl-1,4-diazacyclohexadecane-2,5-dione"     NON-POLYMER     84     35     .     
+#
+data_comp_BAV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BAV     N1      N       N       0       27.341      6.585       16.149      
+BAV     C2      C       CH1     0       27.896      5.715       15.090      
+BAV     C4      C       C       0       29.199      6.261       14.488      
+BAV     N5      N       NH1     0       30.301      6.120       15.242      
+BAV     C7      C       CH1     0       31.670      6.424       14.815      
+BAV     C9      C       CH2     0       32.370      7.329       15.843      
+BAV     C12     C       CH1     0       31.601      8.578       16.305      
+BAV     C14     C       CH2     0       32.416      9.347       17.363      
+BAV     C17     C       CH2     0       31.701      10.457      18.116      
+BAV     C20     C       CH2     0       30.434      10.077      18.852      
+BAV     C23     C       CH2     0       30.607      8.979       19.879      
+BAV     C26     C       CH2     0       29.406      8.752       20.779      
+BAV     C29     C       CH2     0       28.096      8.474       20.065      
+BAV     C32     C       CH2     0       28.148      7.330       19.060      
+BAV     C35     C       CH2     0       26.800      6.908       18.554      
+BAV     C38     C       C       0       26.876      6.046       17.311      
+BAV     O39     O       O       0       26.471      4.885       17.367      
+BAV     C40     C       CH3     0       31.217      9.466       15.127      
+BAV     C44     C       CH1     0       32.434      5.112       14.564      
+BAV     O46     O       OH1     0       33.754      5.414       14.111      
+BAV     C48     C       CH2     0       31.746      4.217       13.545      
+BAV     N51     N       NT1     0       32.578      3.059       13.192      
+BAV     C53     C       CH2     0       31.827      1.938       12.642      
+BAV     C56     C       CR6     0       31.076      2.292       11.380      
+BAV     C57     C       CR16    0       31.763      2.592       10.209      
+BAV     C59     C       CR6     0       31.097      2.930       9.032       
+BAV     C60     C       CR16    0       29.703      2.968       9.046       
+BAV     C62     C       CR16    0       29.004      2.676       10.206      
+BAV     C64     C       CR16    0       29.684      2.342       11.367      
+BAV     C66     C       CH1     0       31.879      3.248       7.766       
+BAV     C68     C       CH3     0       32.616      2.024       7.224       
+BAV     C72     C       CH3     0       32.853      4.409       7.971       
+BAV     O76     O       O       0       29.194      6.812       13.388      
+BAV     C77     C       CH3     0       26.866      5.440       13.999      
+BAV     C81     C       CH3     0       27.231      8.016       15.843      
+BAV     H2      H       H       0       28.116      4.854       15.509      
+BAV     HN5     H       H       0       30.215      5.827       16.060      
+BAV     H7      H       H       0       31.638      6.917       13.953      
+BAV     H9      H       H       0       33.224      7.624       15.461      
+BAV     H9A     H       H       0       32.578      6.787       16.634      
+BAV     H12     H       H       0       30.771      8.271       16.742      
+BAV     H14     H       H       0       33.196      9.739       16.915      
+BAV     H14A    H       H       0       32.752      8.700       18.019      
+BAV     H17     H       H       0       31.483      11.171      17.481      
+BAV     H17A    H       H       0       32.328      10.835      18.769      
+BAV     H20     H       H       0       29.764      9.792       18.195      
+BAV     H20A    H       H       0       30.084      10.874      19.303      
+BAV     H23     H       H       0       31.379      9.201       20.443      
+BAV     H23A    H       H       0       30.815      8.142       19.413      
+BAV     H26     H       H       0       29.288      9.545       21.344      
+BAV     H26A    H       H       0       29.602      7.996       21.372      
+BAV     H29     H       H       0       27.811      9.289       19.599      
+BAV     H29A    H       H       0       27.413      8.266       20.738      
+BAV     H32     H       H       0       28.581      6.560       19.482      
+BAV     H32A    H       H       0       28.703      7.604       18.301      
+BAV     H35     H       H       0       26.256      7.705       18.382      
+BAV     H35A    H       H       0       26.351      6.391       19.257      
+BAV     H40     H       H       0       30.790      10.277      15.449      
+BAV     H40A    H       H       0       30.598      8.991       14.546      
+BAV     H40B    H       H       0       32.015      9.701       14.623      
+BAV     H44     H       H       0       32.503      4.618       15.422      
+BAV     HO46    H       H       0       34.295      4.827       14.397      
+BAV     H48     H       H       0       31.557      4.743       12.739      
+BAV     H48A    H       H       0       30.892      3.907       13.912      
+BAV     HN51    H       H       0       33.182      3.317       12.591      
+BAV     H53     H       H       0       31.191      1.619       13.318      
+BAV     H53A    H       H       0       32.449      1.205       12.447      
+BAV     H57     H       H       0       32.704      2.565       10.208      
+BAV     H60     H       H       0       29.232      3.193       8.259       
+BAV     H62     H       H       0       28.060      2.704       10.206      
+BAV     H64     H       H       0       29.199      2.145       12.153      
+BAV     H66     H       H       0       31.223      3.530       7.075       
+BAV     H68     H       H       0       32.057      1.234       7.327       
+BAV     H68A    H       H       0       33.447      1.896       7.714       
+BAV     H68B    H       H       0       32.816      2.157       6.281       
+BAV     H72     H       H       0       32.415      5.116       8.477       
+BAV     H72A    H       H       0       33.131      4.756       7.106       
+BAV     H72B    H       H       0       33.635      4.099       8.461       
+BAV     H77     H       H       0       27.274      4.919       13.287      
+BAV     H77A    H       H       0       26.540      6.280       13.635      
+BAV     H77B    H       H       0       26.121      4.941       14.374      
+BAV     H81     H       H       0       26.397      8.367       16.194      
+BAV     H81A    H       H       0       27.244      8.158       14.883      
+BAV     H81B    H       H       0       27.973      8.496       16.244      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BAV          N1          C2      SINGLE       n     1.470  0.0100     1.470  0.0100
+BAV          N1         C38      SINGLE       n     1.349  0.0120     1.349  0.0120
+BAV          N1         C81      SINGLE       n     1.461  0.0100     1.461  0.0100
+BAV          C2          C4      SINGLE       n     1.530  0.0100     1.530  0.0100
+BAV          C2         C77      SINGLE       n     1.523  0.0100     1.523  0.0100
+BAV          C4          N5      SINGLE       n     1.337  0.0102     1.337  0.0102
+BAV          C4         O76      DOUBLE       n     1.229  0.0102     1.229  0.0102
+BAV          N5          C7      SINGLE       n     1.462  0.0100     1.462  0.0100
+BAV          C7          C9      SINGLE       n     1.535  0.0100     1.535  0.0100
+BAV          C7         C44      SINGLE       n     1.537  0.0100     1.537  0.0100
+BAV          C9         C12      SINGLE       n     1.528  0.0200     1.528  0.0200
+BAV         C12         C14      SINGLE       n     1.530  0.0200     1.530  0.0200
+BAV         C12         C40      SINGLE       n     1.521  0.0151     1.521  0.0151
+BAV         C14         C17      SINGLE       n     1.509  0.0200     1.509  0.0200
+BAV         C17         C20      SINGLE       n     1.509  0.0200     1.509  0.0200
+BAV         C20         C23      SINGLE       n     1.509  0.0200     1.509  0.0200
+BAV         C23         C26      SINGLE       n     1.509  0.0200     1.509  0.0200
+BAV         C26         C29      SINGLE       n     1.509  0.0200     1.509  0.0200
+BAV         C29         C32      SINGLE       n     1.523  0.0117     1.523  0.0117
+BAV         C32         C35      SINGLE       n     1.497  0.0200     1.497  0.0200
+BAV         C35         C38      SINGLE       n     1.510  0.0100     1.510  0.0100
+BAV         C38         O39      DOUBLE       n     1.229  0.0102     1.229  0.0102
+BAV         C44         O46      SINGLE       n     1.424  0.0199     1.424  0.0199
+BAV         C44         C48      SINGLE       n     1.519  0.0100     1.519  0.0100
+BAV         C48         N51      SINGLE       n     1.465  0.0137     1.465  0.0137
+BAV         N51         C53      SINGLE       n     1.454  0.0100     1.454  0.0100
+BAV         C53         C56      SINGLE       n     1.509  0.0100     1.509  0.0100
+BAV         C56         C57      DOUBLE       y     1.388  0.0100     1.388  0.0100
+BAV         C56         C64      SINGLE       y     1.389  0.0100     1.389  0.0100
+BAV         C57         C59      SINGLE       y     1.388  0.0134     1.388  0.0134
+BAV         C59         C60      DOUBLE       y     1.390  0.0100     1.390  0.0100
+BAV         C59         C66      SINGLE       n     1.520  0.0100     1.520  0.0100
+BAV         C60         C62      SINGLE       y     1.382  0.0100     1.382  0.0100
+BAV         C62         C64      DOUBLE       y     1.382  0.0100     1.382  0.0100
+BAV         C66         C68      SINGLE       n     1.527  0.0115     1.527  0.0115
+BAV         C66         C72      SINGLE       n     1.527  0.0115     1.527  0.0115
+BAV          C2          H2      SINGLE       n     1.089  0.0100     0.983  0.0142
+BAV          N5         HN5      SINGLE       n     1.016  0.0100     0.872  0.0200
+BAV          C7          H7      SINGLE       n     1.089  0.0100     0.994  0.0100
+BAV          C9          H9      SINGLE       n     1.089  0.0100     0.981  0.0160
+BAV          C9         H9A      SINGLE       n     1.089  0.0100     0.981  0.0160
+BAV         C12         H12      SINGLE       n     1.089  0.0100     0.989  0.0162
+BAV         C14         H14      SINGLE       n     1.089  0.0100     0.981  0.0160
+BAV         C14        H14A      SINGLE       n     1.089  0.0100     0.981  0.0160
+BAV         C17         H17      SINGLE       n     1.089  0.0100     0.981  0.0163
+BAV         C17        H17A      SINGLE       n     1.089  0.0100     0.981  0.0163
+BAV         C20         H20      SINGLE       n     1.089  0.0100     0.981  0.0163
+BAV         C20        H20A      SINGLE       n     1.089  0.0100     0.981  0.0163
+BAV         C23         H23      SINGLE       n     1.089  0.0100     0.981  0.0163
+BAV         C23        H23A      SINGLE       n     1.089  0.0100     0.981  0.0163
+BAV         C26         H26      SINGLE       n     1.089  0.0100     0.981  0.0163
+BAV         C26        H26A      SINGLE       n     1.089  0.0100     0.981  0.0163
+BAV         C29         H29      SINGLE       n     1.089  0.0100     0.981  0.0163
+BAV         C29        H29A      SINGLE       n     1.089  0.0100     0.981  0.0163
+BAV         C32         H32      SINGLE       n     1.089  0.0100     0.980  0.0160
+BAV         C32        H32A      SINGLE       n     1.089  0.0100     0.980  0.0160
+BAV         C35         H35      SINGLE       n     1.089  0.0100     0.981  0.0185
+BAV         C35        H35A      SINGLE       n     1.089  0.0100     0.981  0.0185
+BAV         C40         H40      SINGLE       n     1.089  0.0100     0.973  0.0146
+BAV         C40        H40A      SINGLE       n     1.089  0.0100     0.973  0.0146
+BAV         C40        H40B      SINGLE       n     1.089  0.0100     0.973  0.0146
+BAV         C44         H44      SINGLE       n     1.089  0.0100     0.992  0.0184
+BAV         O46        HO46      SINGLE       n     0.970  0.0120     0.848  0.0200
+BAV         C48         H48      SINGLE       n     1.089  0.0100     0.980  0.0143
+BAV         C48        H48A      SINGLE       n     1.089  0.0100     0.980  0.0143
+BAV         N51        HN51      SINGLE       n     1.036  0.0160     0.890  0.0200
+BAV         C53         H53      SINGLE       n     1.089  0.0100     0.981  0.0172
+BAV         C53        H53A      SINGLE       n     1.089  0.0100     0.981  0.0172
+BAV         C57         H57      SINGLE       n     1.082  0.0130     0.941  0.0156
+BAV         C60         H60      SINGLE       n     1.082  0.0130     0.944  0.0174
+BAV         C62         H62      SINGLE       n     1.082  0.0130     0.945  0.0132
+BAV         C64         H64      SINGLE       n     1.082  0.0130     0.944  0.0174
+BAV         C66         H66      SINGLE       n     1.089  0.0100     0.994  0.0142
+BAV         C68         H68      SINGLE       n     1.089  0.0100     0.973  0.0141
+BAV         C68        H68A      SINGLE       n     1.089  0.0100     0.973  0.0141
+BAV         C68        H68B      SINGLE       n     1.089  0.0100     0.973  0.0141
+BAV         C72         H72      SINGLE       n     1.089  0.0100     0.973  0.0141
+BAV         C72        H72A      SINGLE       n     1.089  0.0100     0.973  0.0141
+BAV         C72        H72B      SINGLE       n     1.089  0.0100     0.973  0.0141
+BAV         C77         H77      SINGLE       n     1.089  0.0100     0.972  0.0152
+BAV         C77        H77A      SINGLE       n     1.089  0.0100     0.972  0.0152
+BAV         C77        H77B      SINGLE       n     1.089  0.0100     0.972  0.0152
+BAV         C81         H81      SINGLE       n     1.089  0.0100     0.971  0.0181
+BAV         C81        H81A      SINGLE       n     1.089  0.0100     0.971  0.0181
+BAV         C81        H81B      SINGLE       n     1.089  0.0100     0.971  0.0181
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BAV          C2          N1         C38     121.159    3.00
+BAV          C2          N1         C81     117.493    1.75
+BAV         C38          N1         C81     121.349    3.00
+BAV          N1          C2          C4     110.547    2.68
+BAV          N1          C2         C77     111.308    2.28
+BAV          N1          C2          H2     106.680    1.50
+BAV          C4          C2         C77     109.980    1.50
+BAV          C4          C2          H2     108.061    1.50
+BAV         C77          C2          H2     108.119    1.50
+BAV          C2          C4          N5     116.417    1.50
+BAV          C2          C4         O76     120.430    1.50
+BAV          N5          C4         O76     123.154    1.50
+BAV          C4          N5          C7     123.632    1.63
+BAV          C4          N5         HN5     118.879    1.83
+BAV          C7          N5         HN5     117.489    3.00
+BAV          N5          C7          C9     110.353    1.50
+BAV          N5          C7         C44     109.748    1.50
+BAV          N5          C7          H7     108.194    1.50
+BAV          C9          C7         C44     112.607    1.50
+BAV          C9          C7          H7     107.815    1.50
+BAV         C44          C7          H7     107.639    1.50
+BAV          C7          C9         C12     115.419    1.50
+BAV          C7          C9          H9     108.489    1.50
+BAV          C7          C9         H9A     108.489    1.50
+BAV         C12          C9          H9     108.471    1.50
+BAV         C12          C9         H9A     108.471    1.50
+BAV          H9          C9         H9A     107.542    1.50
+BAV          C9         C12         C14     111.631    1.85
+BAV          C9         C12         C40     111.118    1.50
+BAV          C9         C12         H12     107.675    1.50
+BAV         C14         C12         C40     111.605    1.50
+BAV         C14         C12         H12     107.002    1.69
+BAV         C40         C12         H12     108.064    1.50
+BAV         C12         C14         C17     115.586    1.50
+BAV         C12         C14         H14     108.410    1.50
+BAV         C12         C14        H14A     108.410    1.50
+BAV         C17         C14         H14     108.469    1.50
+BAV         C17         C14        H14A     108.469    1.50
+BAV         H14         C14        H14A     107.657    1.50
+BAV         C14         C17         C20     115.535    2.06
+BAV         C14         C17         H17     108.762    1.50
+BAV         C14         C17        H17A     108.762    1.50
+BAV         C20         C17         H17     108.698    1.50
+BAV         C20         C17        H17A     108.698    1.50
+BAV         H17         C17        H17A     107.646    1.50
+BAV         C17         C20         C23     114.243    1.69
+BAV         C17         C20         H20     108.698    1.50
+BAV         C17         C20        H20A     108.698    1.50
+BAV         C23         C20         H20     108.698    1.50
+BAV         C23         C20        H20A     108.698    1.50
+BAV         H20         C20        H20A     107.646    1.50
+BAV         C20         C23         C26     114.243    1.69
+BAV         C20         C23         H23     108.698    1.50
+BAV         C20         C23        H23A     108.698    1.50
+BAV         C26         C23         H23     108.698    1.50
+BAV         C26         C23        H23A     108.698    1.50
+BAV         H23         C23        H23A     107.646    1.50
+BAV         C23         C26         C29     114.243    1.69
+BAV         C23         C26         H26     108.698    1.50
+BAV         C23         C26        H26A     108.698    1.50
+BAV         C29         C26         H26     108.698    1.50
+BAV         C29         C26        H26A     108.698    1.50
+BAV         H26         C26        H26A     107.646    1.50
+BAV         C26         C29         C32     114.243    1.69
+BAV         C26         C29         H29     108.698    1.50
+BAV         C26         C29        H29A     108.698    1.50
+BAV         C32         C29         H29     108.698    1.50
+BAV         C32         C29        H29A     108.698    1.50
+BAV         H29         C29        H29A     107.646    1.50
+BAV         C29         C32         C35     113.472    1.51
+BAV         C29         C32         H32     108.698    1.50
+BAV         C29         C32        H32A     108.698    1.50
+BAV         C35         C32         H32     108.795    1.50
+BAV         C35         C32        H32A     108.795    1.50
+BAV         H32         C32        H32A     107.646    1.50
+BAV         C32         C35         C38     113.114    1.86
+BAV         C32         C35         H35     108.897    1.50
+BAV         C32         C35        H35A     108.897    1.50
+BAV         C38         C35         H35     108.617    2.19
+BAV         C38         C35        H35A     108.617    2.19
+BAV         H35         C35        H35A     107.846    1.50
+BAV          N1         C38         C35     117.917    1.50
+BAV          N1         C38         O39     121.670    2.26
+BAV         C35         C38         O39     120.414    1.50
+BAV         C12         C40         H40     109.656    1.50
+BAV         C12         C40        H40A     109.656    1.50
+BAV         C12         C40        H40B     109.656    1.50
+BAV         H40         C40        H40A     109.411    1.50
+BAV         H40         C40        H40B     109.411    1.50
+BAV        H40A         C40        H40B     109.411    1.50
+BAV          C7         C44         O46     109.040    1.72
+BAV          C7         C44         C48     112.581    1.77
+BAV          C7         C44         H44     108.500    1.50
+BAV         O46         C44         C48     109.290    2.07
+BAV         O46         C44         H44     108.183    1.96
+BAV         C48         C44         H44     108.552    1.50
+BAV         C44         O46        HO46     109.265    3.00
+BAV         C44         C48         N51     110.916    1.50
+BAV         C44         C48         H48     109.093    1.50
+BAV         C44         C48        H48A     109.093    1.50
+BAV         N51         C48         H48     109.402    1.50
+BAV         N51         C48        H48A     109.402    1.50
+BAV         H48         C48        H48A     107.997    1.50
+BAV         C48         N51         C53     112.912    1.50
+BAV         C48         N51        HN51     108.280    3.00
+BAV         C53         N51        HN51     107.963    3.00
+BAV         N51         C53         C56     112.480    1.50
+BAV         N51         C53         H53     108.965    1.50
+BAV         N51         C53        H53A     108.965    1.50
+BAV         C56         C53         H53     109.073    1.50
+BAV         C56         C53        H53A     109.073    1.50
+BAV         H53         C53        H53A     107.860    1.50
+BAV         C53         C56         C57     120.585    1.50
+BAV         C53         C56         C64     120.724    1.50
+BAV         C57         C56         C64     118.691    1.50
+BAV         C56         C57         C59     121.890    1.50
+BAV         C56         C57         H57     119.220    1.50
+BAV         C59         C57         H57     118.890    1.50
+BAV         C57         C59         C60     118.568    1.50
+BAV         C57         C59         C66     120.627    1.50
+BAV         C60         C59         C66     120.805    1.50
+BAV         C59         C60         C62     120.307    1.50
+BAV         C59         C60         H60     119.743    1.50
+BAV         C62         C60         H60     119.950    1.50
+BAV         C60         C62         C64     120.137    1.50
+BAV         C60         C62         H62     119.932    1.50
+BAV         C64         C62         H62     119.932    1.50
+BAV         C56         C64         C62     120.406    1.50
+BAV         C56         C64         H64     119.760    1.50
+BAV         C62         C64         H64     119.833    1.50
+BAV         C59         C66         C68     111.943    1.70
+BAV         C59         C66         C72     111.943    1.70
+BAV         C59         C66         H66     107.079    2.04
+BAV         C68         C66         C72     110.194    1.50
+BAV         C68         C66         H66     107.649    1.50
+BAV         C72         C66         H66     107.649    1.50
+BAV         C66         C68         H68     109.530    1.50
+BAV         C66         C68        H68A     109.530    1.50
+BAV         C66         C68        H68B     109.530    1.50
+BAV         H68         C68        H68A     109.411    1.50
+BAV         H68         C68        H68B     109.411    1.50
+BAV        H68A         C68        H68B     109.411    1.50
+BAV         C66         C72         H72     109.530    1.50
+BAV         C66         C72        H72A     109.530    1.50
+BAV         C66         C72        H72B     109.530    1.50
+BAV         H72         C72        H72A     109.411    1.50
+BAV         H72         C72        H72B     109.411    1.50
+BAV        H72A         C72        H72B     109.411    1.50
+BAV          C2         C77         H77     109.749    1.54
+BAV          C2         C77        H77A     109.749    1.54
+BAV          C2         C77        H77B     109.749    1.54
+BAV         H77         C77        H77A     109.386    1.50
+BAV         H77         C77        H77B     109.386    1.50
+BAV        H77A         C77        H77B     109.386    1.50
+BAV          N1         C81         H81     110.029    1.50
+BAV          N1         C81        H81A     110.029    1.50
+BAV          N1         C81        H81B     110.029    1.50
+BAV         H81         C81        H81A     109.408    1.50
+BAV         H81         C81        H81B     109.408    1.50
+BAV        H81A         C81        H81B     109.408    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BAV             sp2_sp3_1         C38          N1          C2          C4       0.000    10.0     6
+BAV             sp2_sp2_1         C35         C38          N1          C2     180.000     5.0     2
+BAV             sp2_sp3_7          C2          N1         C81         H81       0.000    10.0     6
+BAV            sp3_sp3_82         C20         C23         C26         C29     180.000    10.0     3
+BAV            sp3_sp3_91         C23         C26         C29         C32     180.000    10.0     3
+BAV           sp3_sp3_100         C26         C29         C32         C35     180.000    10.0     3
+BAV           sp3_sp3_109         C29         C32         C35         C38     180.000    10.0     3
+BAV            sp2_sp3_26          N1         C38         C35         C32     120.000    10.0     6
+BAV           sp3_sp3_118          C7         C44         O46        HO46     180.000    10.0     3
+BAV           sp3_sp3_121          C7         C44         C48         N51     180.000    10.0     3
+BAV            sp2_sp3_13          N5          C4          C2          N1       0.000    10.0     6
+BAV             sp3_sp3_1          N1          C2         C77         H77     180.000    10.0     3
+BAV           sp3_sp3_131         C44         C48         N51         C53     -60.000    10.0     3
+BAV           sp3_sp3_136         C56         C53         N51         C48     180.000    10.0     3
+BAV            sp2_sp3_32         C57         C56         C53         N51     -90.000    10.0     6
+BAV       const_sp2_sp2_3         C53         C56         C57         C59     180.000     5.0     2
+BAV              const_23         C53         C56         C64         C62     180.000    10.0     2
+BAV       const_sp2_sp2_6         C56         C57         C59         C66     180.000     5.0     2
+BAV              const_11         C66         C59         C60         C62     180.000    10.0     2
+BAV            sp2_sp3_38         C57         C59         C66         C68     -90.000    10.0     6
+BAV              const_13         C59         C60         C62         C64       0.000    10.0     2
+BAV              const_17         C60         C62         C64         C56       0.000    10.0     2
+BAV           sp3_sp3_145         C72         C66         C68         H68      60.000    10.0     3
+BAV           sp3_sp3_151         C68         C66         C72         H72     180.000    10.0     3
+BAV             sp2_sp2_5          C2          C4          N5          C7     180.000     5.0     2
+BAV            sp2_sp3_19          C4          N5          C7          C9       0.000    10.0     6
+BAV            sp3_sp3_19         O46         C44          C7          N5     180.000    10.0     3
+BAV            sp3_sp3_10          N5          C7          C9         C12     180.000    10.0     3
+BAV            sp3_sp3_28         C14         C12          C9          C7     180.000    10.0     3
+BAV            sp3_sp3_46          C9         C12         C40         H40     180.000    10.0     3
+BAV            sp3_sp3_37          C9         C12         C14         C17     180.000    10.0     3
+BAV            sp3_sp3_55         C12         C14         C17         C20     180.000    10.0     3
+BAV            sp3_sp3_64         C14         C17         C20         C23     180.000    10.0     3
+BAV            sp3_sp3_73         C17         C20         C23         C26     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BAV    chir_1    C2    N1    C4    C77    positive
+BAV    chir_2    C7    N5    C44    C9    positive
+BAV    chir_3    C12    C9    C14    C40    negative
+BAV    chir_4    C44    O46    C7    C48    negative
+BAV    chir_5    C66    C59    C68    C72    both
+BAV    chir_6    N51    C48    C53    HN51    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BAV    plan-1         C53   0.020
+BAV    plan-1         C56   0.020
+BAV    plan-1         C57   0.020
+BAV    plan-1         C59   0.020
+BAV    plan-1         C60   0.020
+BAV    plan-1         C62   0.020
+BAV    plan-1         C64   0.020
+BAV    plan-1         C66   0.020
+BAV    plan-1         H57   0.020
+BAV    plan-1         H60   0.020
+BAV    plan-1         H62   0.020
+BAV    plan-1         H64   0.020
+BAV    plan-2          C2   0.020
+BAV    plan-2         C38   0.020
+BAV    plan-2         C81   0.020
+BAV    plan-2          N1   0.020
+BAV    plan-3          C2   0.020
+BAV    plan-3          C4   0.020
+BAV    plan-3          N5   0.020
+BAV    plan-3         O76   0.020
+BAV    plan-4          C4   0.020
+BAV    plan-4          C7   0.020
+BAV    plan-4         HN5   0.020
+BAV    plan-4          N5   0.020
+BAV    plan-5         C35   0.020
+BAV    plan-5         C38   0.020
+BAV    plan-5          N1   0.020
+BAV    plan-5         O39   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BAV           SMILES              ACDLabs 10.04                                                                                                                                                                 O=C2NC(C(O)CNCc1cccc(c1)C(C)C)CC(C)CCCCCCCCC(=O)N(C)C2C
+BAV SMILES_CANONICAL               CACTVS 3.341                                                                                                                                            CC(C)c1cccc(CNC[C@@H](O)[C@@H]2C[C@H](C)CCCCCCCCC(=O)N(C)[C@@H](C)C(=O)N2)c1
+BAV           SMILES               CACTVS 3.341                                                                                                                                                   CC(C)c1cccc(CNC[CH](O)[CH]2C[CH](C)CCCCCCCCC(=O)N(C)[CH](C)C(=O)N2)c1
+BAV SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                            C[C@@H]1CCCCCCCCC(=O)N([C@H](C(=O)N[C@@H](C1)[C@@H](CNCc2cccc(c2)C(C)C)O)C)C
+BAV           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                               CC1CCCCCCCCC(=O)N(C(C(=O)NC(C1)C(CNCc2cccc(c2)C(C)C)O)C)C
+BAV            InChI                InChI  1.03 InChI=1S/C29H49N3O3/c1-21(2)25-15-12-14-24(18-25)19-30-20-27(33)26-17-22(3)13-10-8-6-7-9-11-16-28(34)32(5)23(4)29(35)31-26/h12,14-15,18,21-23,26-27,30,33H,6-11,13,16-17,19-20H2,1-5H3,(H,31,35)/t22-,23+,26+,27-/m1/s1
+BAV         InChIKey                InChI  1.03                                                                                                                                                                                             LHBBUGLYVFZUTH-GXVHRJHYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BAV acedrg               243         "dictionary generator"                  
+BAV acedrg_database      11          "data source"                           
+BAV rdkit                2017.03.2   "Chemoinformatics tool"
+BAV refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,214 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CUQ     CUQ      "[3,4-bis(oxidanyl)phenyl]-phenyl-methanone"     NON-POLYMER     26     16     .     
+#
+data_comp_CUQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CUQ     C10     C       CR16    0       9.287       12.859      30.191      
+CUQ     C13     C       CR16    0       6.916       13.369      31.558      
+CUQ     C01     C       CR16    0       14.359      12.850      31.667      
+CUQ     C02     C       CR16    0       14.189      14.105      31.117      
+CUQ     C03     C       CR16    0       12.929      14.683      31.071      
+CUQ     C04     C       CR6     0       11.821      14.004      31.578      
+CUQ     C05     C       CR16    0       12.007      12.739      32.135      
+CUQ     C06     C       CR16    0       13.271      12.168      32.174      
+CUQ     C07     C       C       0       10.473      14.639      31.527      
+CUQ     C09     C       CR6     0       9.264       13.848      31.186      
+CUQ     C11     C       CR6     0       8.140       12.133      29.889      
+CUQ     C12     C       CR6     0       6.949       12.393      30.579      
+CUQ     C14     C       CR16    0       8.066       14.090      31.858      
+CUQ     O08     O       O       0       10.363      15.835      31.766      
+CUQ     O15     O       OH1     0       5.811       11.679      30.284      
+CUQ     O16     O       OH1     0       8.186       11.166      28.913      
+CUQ     H101    H       H       0       10.084      12.680      29.725      
+CUQ     H131    H       H       0       6.116       13.541      32.021      
+CUQ     H011    H       H       0       15.218      12.459      31.696      
+CUQ     H021    H       H       0       14.932      14.571      30.770      
+CUQ     H031    H       H       0       12.822      15.538      30.695      
+CUQ     H051    H       H       0       11.272      12.266      32.483      
+CUQ     H061    H       H       0       13.387      11.311      32.550      
+CUQ     H141    H       H       0       8.031       14.751      32.526      
+CUQ     H151    H       H       0       5.051       11.906      30.621      
+CUQ     H161    H       H       0       7.737       10.437      29.006      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CUQ         C11         O16      SINGLE       n     1.374  0.0155     1.374  0.0155
+CUQ         C10         C11      DOUBLE       y     1.381  0.0147     1.381  0.0147
+CUQ         C11         C12      SINGLE       y     1.396  0.0100     1.396  0.0100
+CUQ         C12         O15      SINGLE       n     1.374  0.0155     1.374  0.0155
+CUQ         C10         C09      SINGLE       y     1.398  0.0100     1.398  0.0100
+CUQ         C13         C12      DOUBLE       y     1.379  0.0100     1.379  0.0100
+CUQ         C07         C09      SINGLE       n     1.481  0.0100     1.481  0.0100
+CUQ         C09         C14      DOUBLE       y     1.391  0.0100     1.391  0.0100
+CUQ         C13         C14      SINGLE       y     1.386  0.0100     1.386  0.0100
+CUQ         C02         C03      SINGLE       y     1.384  0.0100     1.384  0.0100
+CUQ         C03         C04      DOUBLE       y     1.390  0.0100     1.390  0.0100
+CUQ         C01         C02      DOUBLE       y     1.376  0.0124     1.376  0.0124
+CUQ         C04         C07      SINGLE       n     1.488  0.0100     1.488  0.0100
+CUQ         C04         C05      SINGLE       y     1.390  0.0100     1.390  0.0100
+CUQ         C07         O08      DOUBLE       n     1.224  0.0110     1.224  0.0110
+CUQ         C01         C06      SINGLE       y     1.376  0.0124     1.376  0.0124
+CUQ         C05         C06      DOUBLE       y     1.384  0.0100     1.384  0.0100
+CUQ         C10        H101      SINGLE       n     1.082  0.0130     0.941  0.0168
+CUQ         C13        H131      SINGLE       n     1.082  0.0130     0.940  0.0196
+CUQ         C01        H011      SINGLE       n     1.082  0.0130     0.944  0.0161
+CUQ         C02        H021      SINGLE       n     1.082  0.0130     0.943  0.0180
+CUQ         C03        H031      SINGLE       n     1.082  0.0130     0.941  0.0168
+CUQ         C05        H051      SINGLE       n     1.082  0.0130     0.941  0.0168
+CUQ         C06        H061      SINGLE       n     1.082  0.0130     0.943  0.0180
+CUQ         C14        H141      SINGLE       n     1.082  0.0130     0.941  0.0168
+CUQ         O15        H151      SINGLE       n     0.966  0.0059     0.861  0.0200
+CUQ         O16        H161      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CUQ         C11         C10         C09     120.385    1.50
+CUQ         C11         C10        H101     119.677    1.50
+CUQ         C09         C10        H101     119.937    1.50
+CUQ         C12         C13         C14     119.842    1.50
+CUQ         C12         C13        H131     119.901    1.50
+CUQ         C14         C13        H131     120.257    1.50
+CUQ         C02         C01         C06     119.940    1.50
+CUQ         C02         C01        H011     120.030    1.50
+CUQ         C06         C01        H011     120.030    1.50
+CUQ         C03         C02         C01     120.223    1.50
+CUQ         C03         C02        H021     119.843    1.50
+CUQ         C01         C02        H021     119.934    1.50
+CUQ         C02         C03         C04     120.306    1.50
+CUQ         C02         C03        H031     119.803    1.50
+CUQ         C04         C03        H031     119.891    1.50
+CUQ         C03         C04         C07     120.499    2.06
+CUQ         C03         C04         C05     119.002    1.50
+CUQ         C07         C04         C05     120.499    2.06
+CUQ         C04         C05         C06     120.306    1.50
+CUQ         C04         C05        H051     119.891    1.50
+CUQ         C06         C05        H051     119.803    1.50
+CUQ         C01         C06         C05     120.223    1.50
+CUQ         C01         C06        H061     119.934    1.50
+CUQ         C05         C06        H061     119.843    1.50
+CUQ         C09         C07         C04     120.070    1.79
+CUQ         C09         C07         O08     119.965    1.50
+CUQ         C04         C07         O08     119.965    1.50
+CUQ         C10         C09         C07     120.459    2.92
+CUQ         C10         C09         C14     119.305    1.50
+CUQ         C07         C09         C14     120.236    2.06
+CUQ         O16         C11         C10     120.315    3.00
+CUQ         O16         C11         C12     120.315    3.00
+CUQ         C10         C11         C12     119.371    1.50
+CUQ         C11         C12         O15     120.098    3.00
+CUQ         C11         C12         C13     119.805    1.50
+CUQ         O15         C12         C13     120.098    3.00
+CUQ         C09         C14         C13     121.292    1.50
+CUQ         C09         C14        H141     119.549    1.50
+CUQ         C13         C14        H141     119.159    1.50
+CUQ         C12         O15        H151     120.000    3.00
+CUQ         C11         O16        H161     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CUQ              const_22         C09         C10         C11         O16     180.000    10.0     2
+CUQ              const_43         C07         C09         C10         C11     180.000    10.0     2
+CUQ              const_28         O16         C11         C12         O15       0.000    10.0     2
+CUQ             sp2_sp2_1         C10         C11         O16        H161     180.000     5.0     2
+CUQ             sp2_sp2_3         C11         C12         O15        H151     180.000     5.0     2
+CUQ              const_31         O15         C12         C13         C14     180.000    10.0     2
+CUQ              const_33         C12         C13         C14         C09       0.000    10.0     2
+CUQ       const_sp2_sp2_1         C06         C01         C02         C03       0.000     5.0     2
+CUQ              const_45         C02         C01         C06         C05       0.000    10.0     2
+CUQ       const_sp2_sp2_5         C01         C02         C03         C04       0.000     5.0     2
+CUQ              const_10         C02         C03         C04         C07     180.000    10.0     2
+CUQ              const_15         C07         C04         C05         C06     180.000    10.0     2
+CUQ            sp2_sp2_10         C03         C04         C07         O08       0.000     5.0     2
+CUQ              const_17         C04         C05         C06         C01       0.000    10.0     2
+CUQ             sp2_sp2_7         O08         C07         C09         C10       0.000     5.0     2
+CUQ              const_39         C07         C09         C14         C13     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CUQ    plan-1         C07   0.020
+CUQ    plan-1         C09   0.020
+CUQ    plan-1         C10   0.020
+CUQ    plan-1         C11   0.020
+CUQ    plan-1         C12   0.020
+CUQ    plan-1         C13   0.020
+CUQ    plan-1         C14   0.020
+CUQ    plan-1        H101   0.020
+CUQ    plan-1        H131   0.020
+CUQ    plan-1        H141   0.020
+CUQ    plan-1         O15   0.020
+CUQ    plan-1         O16   0.020
+CUQ    plan-2         C01   0.020
+CUQ    plan-2         C02   0.020
+CUQ    plan-2         C03   0.020
+CUQ    plan-2         C04   0.020
+CUQ    plan-2         C05   0.020
+CUQ    plan-2         C06   0.020
+CUQ    plan-2         C07   0.020
+CUQ    plan-2        H011   0.020
+CUQ    plan-2        H021   0.020
+CUQ    plan-2        H031   0.020
+CUQ    plan-2        H051   0.020
+CUQ    plan-2        H061   0.020
+CUQ    plan-3         C04   0.020
+CUQ    plan-3         C07   0.020
+CUQ    plan-3         C09   0.020
+CUQ    plan-3         O08   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CUQ            InChI                InChI  1.03 InChI=1S/C13H10O3/c14-11-7-6-10(8-12(11)15)13(16)9-4-2-1-3-5-9/h1-8,14-15H
+CUQ         InChIKey                InChI  1.03                                                ARWCZKJISXFBGI-UHFFFAOYSA-N
+CUQ SMILES_CANONICAL               CACTVS 3.385                                                  Oc1ccc(cc1O)C(=O)c2ccccc2
+CUQ           SMILES               CACTVS 3.385                                                  Oc1ccc(cc1O)C(=O)c2ccccc2
+CUQ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                              c1ccc(cc1)C(=O)c2ccc(c(c2)O)O
+CUQ           SMILES "OpenEye OEToolkits" 2.0.6                                              c1ccc(cc1)C(=O)c2ccc(c(c2)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CUQ acedrg               243         "dictionary generator"                  
+CUQ acedrg_database      11          "data source"                           
+CUQ rdkit                2017.03.2   "Chemoinformatics tool"
+CUQ refmac5              5.8.0238    "optimization tool"                     

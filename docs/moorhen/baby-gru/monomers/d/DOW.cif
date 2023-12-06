@@ -1,0 +1,563 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DOW     DOW      "(1R,2R,3S,4R,6S)-4,6-diamino-2,3-dihydroxycyclohexyl 2-amino-2,6-dideoxy-6-[({3-hydroxy-2-methyl-5-[(phosphonooxy)methyl]pyridin-4-yl}methyl)amino]-alpha-D-glucopyranoside"     NON-POLYMER     73     37     .     
+#
+data_comp_DOW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DOW     O2P     O       OP      -1      34.687      34.040      188.066     
+DOW     P       P       P       0       33.559      34.645      187.252     
+DOW     O3P     O       O       0       33.735      34.443      185.759     
+DOW     O1P     O       OP      -1      33.273      36.089      187.622     
+DOW     O4P     O       O2      0       32.233      33.818      187.655     
+DOW     C5A     C       CH2     0       30.931      34.126      187.066     
+DOW     C5      C       CR6     0       29.826      33.472      187.845     
+DOW     C4      C       CR6     0       29.381      33.959      189.095     
+DOW     C3      C       CR6     0       28.337      33.278      189.746     
+DOW     O3      O       OH1     0       27.858      33.709      190.963     
+DOW     C2      C       CR6     0       27.766      32.135      189.154     
+DOW     C2A     C       CH3     0       26.655      31.395      189.835     
+DOW     N1      N       NRD6    0       28.206      31.691      187.975     
+DOW     C6      C       CR16    0       29.202      32.336      187.341     
+DOW     C4A     C       CH2     0       29.991      35.198      189.739     
+DOW     N5A     N       NT1     0       29.221      36.406      189.484     
+DOW     C16     C       CH2     0       29.703      37.572      190.234     
+DOW     C15     C       CH1     0       28.906      38.834      189.982     
+DOW     C14     C       CH1     0       27.490      38.811      190.574     
+DOW     O4A     O       OH1     0       27.565      38.722      191.994     
+DOW     O61     O       O2      0       28.832      39.014      188.550     
+DOW     C11     C       CH1     0       28.175      40.218      188.130     
+DOW     C12     C       CH1     0       26.760      40.296      188.681     
+DOW     N2A     N       NT2     0       26.087      41.550      188.314     
+DOW     C13     C       CH1     0       26.747      40.088      190.200     
+DOW     O3A     O       OH1     0       25.406      40.048      190.671     
+DOW     O1A     O       O2      0       28.886      41.366      188.551     
+DOW     C24     C       CH1     0       29.978      41.914      187.783     
+DOW     C25     C       CH1     0       29.413      42.732      186.622     
+DOW     N5B     N       NT3     1       28.503      43.805      187.141     
+DOW     C26     C       CH2     0       30.534      43.356      185.793     
+DOW     C21     C       CH1     0       31.543      42.314      185.313     
+DOW     N2B     N       NT3     1       32.653      42.977      184.556     
+DOW     C22     C       CH1     0       32.102      41.508      186.492     
+DOW     O2B     O       OH1     0       33.038      40.545      186.015     
+DOW     C23     C       CH1     0       30.927      40.849      187.225     
+DOW     O3B     O       OH1     0       31.404      40.010      188.277     
+DOW     H3      H       H       0       30.921      33.806      186.138     
+DOW     H4      H       H       0       30.804      35.099      187.054     
+DOW     H5      H       H       0       27.061      34.031      191.023     
+DOW     H6      H       H       0       26.409      30.616      189.310     
+DOW     H7      H       H       0       25.884      31.979      189.925     
+DOW     H8      H       H       0       26.947      31.110      190.716     
+DOW     H9      H       H       0       29.487      31.996      186.513     
+DOW     H10     H       H       0       30.903      35.328      189.410     
+DOW     H11     H       H       0       30.048      35.059      190.708     
+DOW     H12     H       H       0       28.378      36.239      189.711     
+DOW     H14     H       H       0       30.637      37.741      189.991     
+DOW     H15     H       H       0       29.677      37.367      191.192     
+DOW     H16     H       H       0       29.398      39.597      190.376     
+DOW     H17     H       H       0       26.994      38.028      190.224     
+DOW     H18     H       H       0       26.811      38.513      192.303     
+DOW     H19     H       H       0       28.127      40.228      187.143     
+DOW     H20     H       H       0       26.249      39.550      188.283     
+DOW     H21     H       H       0       26.116      41.664      187.433     
+DOW     H22     H       H       0       25.236      41.524      188.570     
+DOW     H24     H       H       0       27.209      40.854      190.628     
+DOW     H25     H       H       0       25.017      39.386      190.326     
+DOW     H26     H       H       0       30.500      42.524      188.362     
+DOW     H27     H       H       0       28.883      42.125      186.030     
+DOW     H28     H       H       0       28.478      44.498      186.568     
+DOW     H29     H       H       0       28.791      44.100      187.941     
+DOW     HB30    H       H       0       27.671      43.480      187.232     
+DOW     H31     H       H       0       30.997      44.033      186.335     
+DOW     H32     H       H       0       30.146      43.815      185.014     
+DOW     H33     H       H       0       31.073      41.683      184.695     
+DOW     H34     H       H       0       33.421      42.519      184.662     
+DOW     H35     H       H       0       32.778      43.819      184.848     
+DOW     HB36    H       H       0       32.452      43.001      183.680     
+DOW     H37     H       H       0       32.566      42.127      187.116     
+DOW     H38     H       H       0       32.633      40.001      185.515     
+DOW     H39     H       H       0       30.444      40.290      186.567     
+DOW     H40     H       H       0       31.832      40.476      188.833     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DOW         C21         N2B      SINGLE       n     1.496  0.0100     1.496  0.0100
+DOW         C26         C21      SINGLE       n     1.525  0.0100     1.525  0.0100
+DOW         C25         C26      SINGLE       n     1.525  0.0100     1.525  0.0100
+DOW         C21         C22      SINGLE       n     1.532  0.0100     1.532  0.0100
+DOW         C25         N5B      SINGLE       n     1.496  0.0100     1.496  0.0100
+DOW         C24         C25      SINGLE       n     1.524  0.0103     1.524  0.0103
+DOW          N1          C6      SINGLE       y     1.342  0.0100     1.342  0.0100
+DOW          C5          C6      DOUBLE       y     1.383  0.0136     1.383  0.0136
+DOW           P         O3P      DOUBLE       n     1.517  0.0192     1.517  0.0192
+DOW         C5A          C5      SINGLE       n     1.498  0.0100     1.498  0.0100
+DOW         O4P         C5A      SINGLE       n     1.462  0.0104     1.462  0.0104
+DOW          C2          N1      DOUBLE       y     1.331  0.0100     1.331  0.0100
+DOW         C22         O2B      SINGLE       n     1.424  0.0100     1.424  0.0100
+DOW         C22         C23      SINGLE       n     1.532  0.0100     1.532  0.0100
+DOW          C5          C4      SINGLE       y     1.403  0.0108     1.403  0.0108
+DOW         C24         C23      SINGLE       n     1.521  0.0165     1.521  0.0165
+DOW         O1A         C24      SINGLE       n     1.436  0.0105     1.436  0.0105
+DOW         C23         O3B      SINGLE       n     1.427  0.0125     1.427  0.0125
+DOW           P         O4P      SINGLE       n     1.614  0.0178     1.614  0.0178
+DOW          C2         C2A      SINGLE       n     1.497  0.0100     1.497  0.0100
+DOW          C3          C2      SINGLE       y     1.400  0.0136     1.400  0.0136
+DOW           P         O1P      SINGLE       n     1.517  0.0192     1.517  0.0192
+DOW         O2P           P      SINGLE       n     1.517  0.0192     1.517  0.0192
+DOW          C4          C3      DOUBLE       y     1.399  0.0100     1.399  0.0100
+DOW          C4         C4A      SINGLE       n     1.508  0.0184     1.508  0.0184
+DOW         C11         O1A      SINGLE       n     1.406  0.0151     1.406  0.0151
+DOW         O61         C11      SINGLE       n     1.422  0.0172     1.422  0.0172
+DOW         C11         C12      SINGLE       n     1.512  0.0200     1.512  0.0200
+DOW          C3          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+DOW         C15         O61      SINGLE       n     1.441  0.0100     1.441  0.0100
+DOW         C4A         N5A      SINGLE       n     1.454  0.0100     1.454  0.0100
+DOW         C12         N2A      SINGLE       n     1.470  0.0107     1.470  0.0107
+DOW         C12         C13      SINGLE       n     1.532  0.0100     1.532  0.0100
+DOW         N5A         C16      SINGLE       n     1.466  0.0139     1.466  0.0139
+DOW         C16         C15      SINGLE       n     1.510  0.0128     1.510  0.0128
+DOW         C15         C14      SINGLE       n     1.524  0.0192     1.524  0.0192
+DOW         C14         C13      SINGLE       n     1.523  0.0100     1.523  0.0100
+DOW         C13         O3A      SINGLE       n     1.421  0.0106     1.421  0.0106
+DOW         C14         O4A      SINGLE       n     1.425  0.0100     1.425  0.0100
+DOW         C5A          H3      SINGLE       n     1.089  0.0100     0.982  0.0107
+DOW         C5A          H4      SINGLE       n     1.089  0.0100     0.982  0.0107
+DOW          O3          H5      SINGLE       n     0.966  0.0059     0.861  0.0200
+DOW         C2A          H6      SINGLE       n     1.089  0.0100     0.971  0.0138
+DOW         C2A          H7      SINGLE       n     1.089  0.0100     0.971  0.0138
+DOW         C2A          H8      SINGLE       n     1.089  0.0100     0.971  0.0138
+DOW          C6          H9      SINGLE       n     1.082  0.0130     0.940  0.0200
+DOW         C4A         H10      SINGLE       n     1.089  0.0100     0.981  0.0172
+DOW         C4A         H11      SINGLE       n     1.089  0.0100     0.981  0.0172
+DOW         N5A         H12      SINGLE       n     1.036  0.0160     0.890  0.0200
+DOW         C16         H14      SINGLE       n     1.089  0.0100     0.980  0.0100
+DOW         C16         H15      SINGLE       n     1.089  0.0100     0.980  0.0100
+DOW         C15         H16      SINGLE       n     1.089  0.0100     0.990  0.0106
+DOW         C14         H17      SINGLE       n     1.089  0.0100     0.991  0.0105
+DOW         O4A         H18      SINGLE       n     0.970  0.0120     0.841  0.0200
+DOW         C11         H19      SINGLE       n     1.089  0.0100     0.989  0.0183
+DOW         C12         H20      SINGLE       n     1.089  0.0100     0.988  0.0199
+DOW         N2A         H21      SINGLE       n     1.036  0.0160     0.889  0.0200
+DOW         N2A         H22      SINGLE       n     1.036  0.0160     0.889  0.0200
+DOW         C13         H24      SINGLE       n     1.089  0.0100     0.992  0.0104
+DOW         O3A         H25      SINGLE       n     0.970  0.0120     0.841  0.0200
+DOW         C24         H26      SINGLE       n     1.089  0.0100     0.989  0.0181
+DOW         C25         H27      SINGLE       n     1.089  0.0100     1.000  0.0100
+DOW         N5B         H28      SINGLE       n     1.036  0.0160     0.899  0.0200
+DOW         N5B         H29      SINGLE       n     1.036  0.0160     0.899  0.0200
+DOW         N5B        HB30      SINGLE       n     1.036  0.0160     0.899  0.0200
+DOW         C26         H31      SINGLE       n     1.089  0.0100     0.983  0.0138
+DOW         C26         H32      SINGLE       n     1.089  0.0100     0.983  0.0138
+DOW         C21         H33      SINGLE       n     1.089  0.0100     1.000  0.0100
+DOW         N2B         H34      SINGLE       n     1.036  0.0160     0.899  0.0200
+DOW         N2B         H35      SINGLE       n     1.036  0.0160     0.899  0.0200
+DOW         N2B        HB36      SINGLE       n     1.036  0.0160     0.899  0.0200
+DOW         C22         H37      SINGLE       n     1.089  0.0100     0.994  0.0160
+DOW         O2B         H38      SINGLE       n     0.970  0.0120     0.841  0.0200
+DOW         C23         H39      SINGLE       n     1.089  0.0100     0.990  0.0140
+DOW         O3B         H40      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DOW         O3P           P         O4P     105.808    2.07
+DOW         O3P           P         O1P     112.864    1.69
+DOW         O3P           P         O2P     112.864    1.69
+DOW         O4P           P         O1P     105.808    2.07
+DOW         O4P           P         O2P     105.808    2.07
+DOW         O1P           P         O2P     112.864    1.69
+DOW         C5A         O4P           P     121.496    2.55
+DOW          C5         C5A         O4P     110.538    2.24
+DOW          C5         C5A          H3     109.800    1.50
+DOW          C5         C5A          H4     109.800    1.50
+DOW         O4P         C5A          H3     108.933    1.90
+DOW         O4P         C5A          H4     108.933    1.90
+DOW          H3         C5A          H4     108.248    1.50
+DOW          C6          C5         C5A     120.930    1.59
+DOW          C6          C5          C4     117.885    1.50
+DOW         C5A          C5          C4     121.186    1.51
+DOW          C5          C4          C3     119.036    1.50
+DOW          C5          C4         C4A     120.452    1.50
+DOW          C3          C4         C4A     120.512    1.50
+DOW          C2          C3          C4     119.866    1.50
+DOW          C2          C3          O3     120.067    3.00
+DOW          C4          C3          O3     120.067    3.00
+DOW          C3          O3          H5     120.000    3.00
+DOW          N1          C2         C2A     118.993    1.50
+DOW          N1          C2          C3     120.416    1.50
+DOW         C2A          C2          C3     120.591    1.50
+DOW          C2         C2A          H6     109.484    1.50
+DOW          C2         C2A          H7     109.484    1.50
+DOW          C2         C2A          H8     109.484    1.50
+DOW          H6         C2A          H7     109.339    1.66
+DOW          H6         C2A          H8     109.339    1.66
+DOW          H7         C2A          H8     109.339    1.66
+DOW          C6          N1          C2     119.476    1.60
+DOW          N1          C6          C5     123.320    1.50
+DOW          N1          C6          H9     118.075    1.50
+DOW          C5          C6          H9     118.605    1.50
+DOW          C4         C4A         N5A     112.898    1.76
+DOW          C4         C4A         H10     109.005    1.50
+DOW          C4         C4A         H11     109.005    1.50
+DOW         N5A         C4A         H10     108.941    1.50
+DOW         N5A         C4A         H11     108.941    1.50
+DOW         H10         C4A         H11     107.860    1.50
+DOW         C4A         N5A         C16     113.485    3.00
+DOW         C4A         N5A         H12     107.918    3.00
+DOW         C16         N5A         H12     108.898    3.00
+DOW         N5A         C16         C15     111.631    2.90
+DOW         N5A         C16         H14     109.366    1.50
+DOW         N5A         C16         H15     109.366    1.50
+DOW         C15         C16         H14     109.036    1.50
+DOW         C15         C16         H15     109.036    1.50
+DOW         H14         C16         H15     108.244    1.51
+DOW         O61         C15         C16     107.379    2.66
+DOW         O61         C15         C14     109.378    1.54
+DOW         O61         C15         H16     108.995    1.50
+DOW         C16         C15         C14     113.398    1.51
+DOW         C16         C15         H16     108.949    1.50
+DOW         C14         C15         H16     108.898    1.50
+DOW         C15         C14         C13     110.072    1.92
+DOW         C15         C14         O4A     109.153    2.02
+DOW         C15         C14         H17     109.550    1.50
+DOW         C13         C14         O4A     109.301    2.14
+DOW         C13         C14         H17     109.514    1.50
+DOW         O4A         C14         H17     109.194    1.50
+DOW         C14         O4A         H18     109.564    3.00
+DOW         C11         O61         C15     113.097    1.50
+DOW         O1A         C11         O61     110.325    1.95
+DOW         O1A         C11         C12     108.367    1.50
+DOW         O1A         C11         H19     107.875    2.12
+DOW         O61         C11         C12     111.350    3.00
+DOW         O61         C11         H19     109.272    1.61
+DOW         C12         C11         H19     108.848    1.50
+DOW         C11         C12         N2A     111.865    2.42
+DOW         C11         C12         C13     111.124    1.57
+DOW         C11         C12         H20     107.511    1.55
+DOW         N2A         C12         C13     111.315    2.25
+DOW         N2A         C12         H20     108.113    1.50
+DOW         C13         C12         H20     107.258    1.68
+DOW         C12         N2A         H21     109.984    3.00
+DOW         C12         N2A         H22     109.984    3.00
+DOW         H21         N2A         H22     108.673    3.00
+DOW         C12         C13         C14     110.742    1.50
+DOW         C12         C13         O3A     110.124    1.87
+DOW         C12         C13         H24     108.987    1.50
+DOW         C14         C13         O3A     110.984    1.55
+DOW         C14         C13         H24     108.714    1.50
+DOW         O3A         C13         H24     108.954    1.50
+DOW         C13         O3A         H25     108.064    2.53
+DOW         C24         O1A         C11     117.169    1.96
+DOW         C25         C24         C23     108.862    1.50
+DOW         C25         C24         O1A     107.953    1.94
+DOW         C25         C24         H26     108.664    1.50
+DOW         C23         C24         O1A     108.580    2.45
+DOW         C23         C24         H26     109.166    1.50
+DOW         O1A         C24         H26     109.522    1.50
+DOW         C26         C25         N5B     109.461    1.50
+DOW         C26         C25         C24     111.392    1.50
+DOW         C26         C25         H27     108.719    1.50
+DOW         N5B         C25         C24     109.671    1.50
+DOW         N5B         C25         H27     108.734    1.50
+DOW         C24         C25         H27     108.763    1.50
+DOW         C25         N5B         H28     109.908    1.75
+DOW         C25         N5B         H29     109.908    1.75
+DOW         C25         N5B        HB30     109.908    1.75
+DOW         H28         N5B         H29     109.122    2.58
+DOW         H28         N5B        HB30     109.122    2.58
+DOW         H29         N5B        HB30     109.122    2.58
+DOW         C21         C26         C25     112.567    1.88
+DOW         C21         C26         H31     109.552    1.50
+DOW         C21         C26         H32     109.552    1.50
+DOW         C25         C26         H31     109.552    1.50
+DOW         C25         C26         H32     109.552    1.50
+DOW         H31         C26         H32     107.784    1.50
+DOW         N2B         C21         C26     109.461    1.50
+DOW         N2B         C21         C22     110.002    1.50
+DOW         N2B         C21         H33     108.734    1.50
+DOW         C26         C21         C22     111.166    1.50
+DOW         C26         C21         H33     108.719    1.50
+DOW         C22         C21         H33     108.719    1.50
+DOW         C21         N2B         H34     109.908    1.75
+DOW         C21         N2B         H35     109.908    1.75
+DOW         C21         N2B        HB36     109.908    1.75
+DOW         H34         N2B         H35     109.122    2.58
+DOW         H34         N2B        HB36     109.122    2.58
+DOW         H35         N2B        HB36     109.122    2.58
+DOW         C21         C22         O2B     109.484    1.50
+DOW         C21         C22         C23     108.438    1.50
+DOW         C21         C22         H37     108.942    1.50
+DOW         O2B         C22         C23     111.630    1.78
+DOW         O2B         C22         H37     108.954    1.50
+DOW         C23         C22         H37     108.943    1.50
+DOW         C22         O2B         H38     108.064    2.53
+DOW         C22         C23         C24     110.796    1.54
+DOW         C22         C23         O3B     110.219    1.72
+DOW         C22         C23         H39     107.830    1.50
+DOW         C24         C23         O3B     110.081    2.02
+DOW         C24         C23         H39     109.166    1.50
+DOW         O3B         C23         H39     108.767    1.50
+DOW         C23         O3B         H40     108.895    2.41
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DOW                   nu0         C15         O61         C11         C12     -61.946    10.0     3
+DOW                   nu1         O61         C11         C12         C13      55.786    10.0     3
+DOW                   nu2         C11         C12         C13         C14     -51.774    10.0     3
+DOW                   nu3         C12         C13         C14         C15      52.098    10.0     3
+DOW                   nu4         C13         C14         C15         O61     -57.982    10.0     3
+DOW                   nu5         C14         C15         O61         C11      63.786    10.0     3
+DOW            sp3_sp3_34         C23         C24         C25         C26      60.000    10.0     3
+DOW            sp3_sp3_35         C23         C24         C25         N5B     180.000    10.0     3
+DOW            sp3_sp3_36         C23         C24         C25         H27     -60.000    10.0     3
+DOW            sp3_sp3_37         O1A         C24         C25         C26     -60.000    10.0     3
+DOW            sp3_sp3_38         O1A         C24         C25         N5B      60.000    10.0     3
+DOW            sp3_sp3_39         O1A         C24         C25         H27     180.000    10.0     3
+DOW            sp3_sp3_40         H26         C24         C25         C26     180.000    10.0     3
+DOW            sp3_sp3_41         H26         C24         C25         N5B     -60.000    10.0     3
+DOW            sp3_sp3_42         H26         C24         C25         H27      60.000    10.0     3
+DOW            sp3_sp3_43         C24         C25         C26         C21     -60.000    10.0     3
+DOW            sp3_sp3_44         C24         C25         C26         H31      60.000    10.0     3
+DOW            sp3_sp3_45         C24         C25         C26         H32     180.000    10.0     3
+DOW            sp3_sp3_46         N5B         C25         C26         C21     180.000    10.0     3
+DOW            sp3_sp3_47         N5B         C25         C26         H31     -60.000    10.0     3
+DOW            sp3_sp3_48         N5B         C25         C26         H32      60.000    10.0     3
+DOW            sp3_sp3_49         H27         C25         C26         C21      60.000    10.0     3
+DOW            sp3_sp3_50         H27         C25         C26         H31     180.000    10.0     3
+DOW            sp3_sp3_51         H27         C25         C26         H32     -60.000    10.0     3
+DOW            sp3_sp3_52         C22         C21         C26         C25      60.000    10.0     3
+DOW            sp3_sp3_53         C22         C21         C26         H31     180.000    10.0     3
+DOW            sp3_sp3_54         C22         C21         C26         H32     -60.000    10.0     3
+DOW            sp3_sp3_55         N2B         C21         C26         C25     -60.000    10.0     3
+DOW            sp3_sp3_56         N2B         C21         C26         H31      60.000    10.0     3
+DOW            sp3_sp3_57         N2B         C21         C26         H32     180.000    10.0     3
+DOW            sp3_sp3_58         H33         C21         C26         C25     180.000    10.0     3
+DOW            sp3_sp3_59         H33         C21         C26         H31     -60.000    10.0     3
+DOW            sp3_sp3_60         H33         C21         C26         H32      60.000    10.0     3
+DOW            sp3_sp3_61         C26         C21         C22         C23     -60.000    10.0     3
+DOW            sp3_sp3_62         C26         C21         C22         O2B      60.000    10.0     3
+DOW            sp3_sp3_63         C26         C21         C22         H37     180.000    10.0     3
+DOW            sp3_sp3_64         N2B         C21         C22         C23     180.000    10.0     3
+DOW            sp3_sp3_65         N2B         C21         C22         O2B     -60.000    10.0     3
+DOW            sp3_sp3_66         N2B         C21         C22         H37      60.000    10.0     3
+DOW            sp3_sp3_67         H33         C21         C22         C23      60.000    10.0     3
+DOW            sp3_sp3_68         H33         C21         C22         O2B     180.000    10.0     3
+DOW            sp3_sp3_69         H33         C21         C22         H37     -60.000    10.0     3
+DOW            sp3_sp3_70         C21         C22         C23         C24      60.000    10.0     3
+DOW            sp3_sp3_71         C21         C22         C23         O3B     180.000    10.0     3
+DOW            sp3_sp3_72         C21         C22         C23         H39     -60.000    10.0     3
+DOW            sp3_sp3_73         O2B         C22         C23         C24     -60.000    10.0     3
+DOW            sp3_sp3_74         O2B         C22         C23         O3B      60.000    10.0     3
+DOW            sp3_sp3_75         O2B         C22         C23         H39     180.000    10.0     3
+DOW            sp3_sp3_76         H37         C22         C23         C24     180.000    10.0     3
+DOW            sp3_sp3_77         H37         C22         C23         O3B     -60.000    10.0     3
+DOW            sp3_sp3_78         H37         C22         C23         H39      60.000    10.0     3
+DOW       const_sp2_sp2_1          C4          C5          C6          N1       0.000     5.0     2
+DOW       const_sp2_sp2_2          C4          C5          C6          H9     180.000     5.0     2
+DOW       const_sp2_sp2_3         C5A          C5          C6          N1     180.000     5.0     2
+DOW       const_sp2_sp2_4         C5A          C5          C6          H9       0.000     5.0     2
+DOW       const_sp2_sp2_5          C5          C6          N1          C2       0.000     5.0     2
+DOW       const_sp2_sp2_6          H9          C6          N1          C2     180.000     5.0     2
+DOW       const_sp2_sp2_7          C3          C2          N1          C6       0.000     5.0     2
+DOW       const_sp2_sp2_8         C2A          C2          N1          C6     180.000     5.0     2
+DOW       const_sp2_sp2_9          N1          C2          C3          C4       0.000     5.0     2
+DOW              const_10          N1          C2          C3          O3     180.000    10.0     2
+DOW              const_11         C2A          C2          C3          C4     180.000    10.0     2
+DOW              const_12         C2A          C2          C3          O3       0.000    10.0     2
+DOW              const_13          C2          C3          C4          C5       0.000    10.0     2
+DOW              const_14          C2          C3          C4         C4A     180.000    10.0     2
+DOW              const_15          O3          C3          C4          C5     180.000    10.0     2
+DOW              const_16          O3          C3          C4         C4A       0.000    10.0     2
+DOW            sp3_sp3_79         C26         C21         N2B         H34     180.000    10.0     3
+DOW            sp3_sp3_80         C26         C21         N2B         H35     -60.000    10.0     3
+DOW            sp3_sp3_81         C26         C21         N2B        HB36      60.000    10.0     3
+DOW            sp3_sp3_82         C22         C21         N2B         H34      60.000    10.0     3
+DOW            sp3_sp3_83         C22         C21         N2B         H35     180.000    10.0     3
+DOW            sp3_sp3_84         C22         C21         N2B        HB36     -60.000    10.0     3
+DOW            sp3_sp3_85         H33         C21         N2B         H34     -60.000    10.0     3
+DOW            sp3_sp3_86         H33         C21         N2B         H35      60.000    10.0     3
+DOW            sp3_sp3_87         H33         C21         N2B        HB36     180.000    10.0     3
+DOW            sp3_sp3_88         C26         C25         N5B         H28     180.000    10.0     3
+DOW            sp3_sp3_89         C26         C25         N5B         H29     -60.000    10.0     3
+DOW            sp3_sp3_90         C26         C25         N5B        HB30      60.000    10.0     3
+DOW            sp3_sp3_91         C24         C25         N5B         H28      60.000    10.0     3
+DOW            sp3_sp3_92         C24         C25         N5B         H29     180.000    10.0     3
+DOW            sp3_sp3_93         C24         C25         N5B        HB30     -60.000    10.0     3
+DOW            sp3_sp3_94         H27         C25         N5B         H28     -60.000    10.0     3
+DOW            sp3_sp3_95         H27         C25         N5B         H29      60.000    10.0     3
+DOW            sp3_sp3_96         H27         C25         N5B        HB30     180.000    10.0     3
+DOW             sp2_sp3_1          C6          C5         C5A          H3     150.000    10.0     6
+DOW             sp2_sp3_2          C6          C5         C5A         O4P     -90.000    10.0     6
+DOW             sp2_sp3_3          C6          C5         C5A          H4      30.000    10.0     6
+DOW             sp2_sp3_4          C4          C5         C5A          H3     -30.000    10.0     6
+DOW             sp2_sp3_5          C4          C5         C5A         O4P      90.000    10.0     6
+DOW             sp2_sp3_6          C4          C5         C5A          H4    -150.000    10.0     6
+DOW            sp3_sp3_97          C5         C5A         O4P           P     180.000    10.0     3
+DOW            sp3_sp3_98          H3         C5A         O4P           P      60.000    10.0     3
+DOW            sp3_sp3_99          H4         C5A         O4P           P     -60.000    10.0     3
+DOW           sp3_sp3_100         C21         C22         O2B         H38     180.000    10.0     3
+DOW           sp3_sp3_101         C23         C22         O2B         H38      60.000    10.0     3
+DOW           sp3_sp3_102         H37         C22         O2B         H38     -60.000    10.0     3
+DOW              const_17          C3          C4          C5          C6       0.000    10.0     2
+DOW              const_18          C3          C4          C5         C5A     180.000    10.0     2
+DOW              const_19         C4A          C4          C5          C6     180.000    10.0     2
+DOW              const_20         C4A          C4          C5         C5A       0.000    10.0     2
+DOW           sp3_sp3_103         C22         C23         C24         C25     180.000    10.0     3
+DOW           sp3_sp3_104         C22         C23         C24         O1A     -60.000    10.0     3
+DOW           sp3_sp3_105         C22         C23         C24         H26      60.000    10.0     3
+DOW           sp3_sp3_106         O3B         C23         C24         C25      60.000    10.0     3
+DOW           sp3_sp3_107         O3B         C23         C24         O1A     180.000    10.0     3
+DOW           sp3_sp3_108         O3B         C23         C24         H26     -60.000    10.0     3
+DOW           sp3_sp3_109         H39         C23         C24         C25     -60.000    10.0     3
+DOW           sp3_sp3_110         H39         C23         C24         O1A      60.000    10.0     3
+DOW           sp3_sp3_111         H39         C23         C24         H26     180.000    10.0     3
+DOW           sp3_sp3_112         C25         C24         O1A         C11     180.000    10.0     3
+DOW           sp3_sp3_113         C23         C24         O1A         C11      60.000    10.0     3
+DOW           sp3_sp3_114         H26         C24         O1A         C11     -60.000    10.0     3
+DOW           sp3_sp3_115         C22         C23         O3B         H40     180.000    10.0     3
+DOW           sp3_sp3_116         C24         C23         O3B         H40      60.000    10.0     3
+DOW           sp3_sp3_117         H39         C23         O3B         H40     -60.000    10.0     3
+DOW           sp3_sp3_118         C5A         O4P           P         O2P     180.000    10.0     3
+DOW           sp3_sp3_119         C5A         O4P           P         O1P     -60.000    10.0     3
+DOW           sp3_sp3_120         C5A         O4P           P         O3P      60.000    10.0     3
+DOW             sp2_sp3_7          N1          C2         C2A          H6     150.000    10.0     6
+DOW             sp2_sp3_8          N1          C2         C2A          H7     -90.000    10.0     6
+DOW             sp2_sp3_9          N1          C2         C2A          H8      30.000    10.0     6
+DOW            sp2_sp3_10          C3          C2         C2A          H6     -30.000    10.0     6
+DOW            sp2_sp3_11          C3          C2         C2A          H7      90.000    10.0     6
+DOW            sp2_sp3_12          C3          C2         C2A          H8    -150.000    10.0     6
+DOW            sp2_sp3_13          C5          C4         C4A         H10     150.000    10.0     6
+DOW            sp2_sp3_14          C5          C4         C4A         N5A     -90.000    10.0     6
+DOW            sp2_sp3_15          C5          C4         C4A         H11      30.000    10.0     6
+DOW            sp2_sp3_16          C3          C4         C4A         H10     -30.000    10.0     6
+DOW            sp2_sp3_17          C3          C4         C4A         N5A      90.000    10.0     6
+DOW            sp2_sp3_18          C3          C4         C4A         H11    -150.000    10.0     6
+DOW           sp3_sp3_121         O61         C11         O1A         C24     180.000    10.0     3
+DOW           sp3_sp3_122         C12         C11         O1A         C24      60.000    10.0     3
+DOW           sp3_sp3_123         H19         C11         O1A         C24     -60.000    10.0     3
+DOW             sp2_sp2_1          C2          C3          O3          H5     180.000     5.0     2
+DOW             sp2_sp2_2          C4          C3          O3          H5       0.000     5.0     2
+DOW           sp3_sp3_124          C4         C4A         N5A         C16     180.000    10.0     3
+DOW           sp3_sp3_125          C4         C4A         N5A         H12     -60.000    10.0     3
+DOW           sp3_sp3_126         H10         C4A         N5A         C16      60.000    10.0     3
+DOW           sp3_sp3_127         H10         C4A         N5A         H12     180.000    10.0     3
+DOW           sp3_sp3_128         H11         C4A         N5A         C16     -60.000    10.0     3
+DOW           sp3_sp3_129         H11         C4A         N5A         H12      60.000    10.0     3
+DOW           sp3_sp3_130         C11         C12         N2A         H21     180.000    10.0     3
+DOW           sp3_sp3_131         C11         C12         N2A         H22     -60.000    10.0     3
+DOW           sp3_sp3_132         C13         C12         N2A         H21      60.000    10.0     3
+DOW           sp3_sp3_133         C13         C12         N2A         H22     180.000    10.0     3
+DOW           sp3_sp3_134         H20         C12         N2A         H21     -60.000    10.0     3
+DOW           sp3_sp3_135         H20         C12         N2A         H22      60.000    10.0     3
+DOW           sp3_sp3_136         C15         C16         N5A         H12     180.000    10.0     3
+DOW           sp3_sp3_137         C15         C16         N5A         C4A     -60.000    10.0     3
+DOW           sp3_sp3_138         H14         C16         N5A         H12      60.000    10.0     3
+DOW           sp3_sp3_139         H14         C16         N5A         C4A     180.000    10.0     3
+DOW           sp3_sp3_140         H15         C16         N5A         H12     -60.000    10.0     3
+DOW           sp3_sp3_141         H15         C16         N5A         C4A      60.000    10.0     3
+DOW           sp3_sp3_142         O61         C15         C16         N5A     180.000    10.0     3
+DOW           sp3_sp3_143         O61         C15         C16         H14     -60.000    10.0     3
+DOW           sp3_sp3_144         O61         C15         C16         H15      60.000    10.0     3
+DOW           sp3_sp3_145         C14         C15         C16         N5A      60.000    10.0     3
+DOW           sp3_sp3_146         C14         C15         C16         H14     180.000    10.0     3
+DOW           sp3_sp3_147         C14         C15         C16         H15     -60.000    10.0     3
+DOW           sp3_sp3_148         H16         C15         C16         N5A     -60.000    10.0     3
+DOW           sp3_sp3_149         H16         C15         C16         H14      60.000    10.0     3
+DOW           sp3_sp3_150         H16         C15         C16         H15     180.000    10.0     3
+DOW           sp3_sp3_160         C12         C13         O3A         H25     180.000    10.0     3
+DOW           sp3_sp3_161         C14         C13         O3A         H25      60.000    10.0     3
+DOW           sp3_sp3_162         H24         C13         O3A         H25     -60.000    10.0     3
+DOW           sp3_sp3_163         C15         C14         O4A         H18     180.000    10.0     3
+DOW           sp3_sp3_164         C13         C14         O4A         H18      60.000    10.0     3
+DOW           sp3_sp3_165         H17         C14         O4A         H18     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DOW    chir_1    P    O4P    O1P    O2P    both
+DOW    chir_2    C15    O61    C14    C16    negative
+DOW    chir_3    C14    O4A    C15    C13    positive
+DOW    chir_4    C11    O1A    O61    C12    negative
+DOW    chir_5    C12    N2A    C11    C13    negative
+DOW    chir_6    C13    O3A    C14    C12    negative
+DOW    chir_7    C24    O1A    C23    C25    negative
+DOW    chir_8    C25    N5B    C24    C26    positive
+DOW    chir_9    C21    N2B    C22    C26    negative
+DOW    chir_10    C22    O2B    C23    C21    positive
+DOW    chir_11    C23    O3B    C24    C22    negative
+DOW    chir_12    N5A    C16    C4A    H12    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DOW    plan-1          C2   0.020
+DOW    plan-1         C2A   0.020
+DOW    plan-1          C3   0.020
+DOW    plan-1          C4   0.020
+DOW    plan-1         C4A   0.020
+DOW    plan-1          C5   0.020
+DOW    plan-1         C5A   0.020
+DOW    plan-1          C6   0.020
+DOW    plan-1          H9   0.020
+DOW    plan-1          N1   0.020
+DOW    plan-1          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DOW           SMILES              ACDLabs 12.01                                                                                                                                                                         OP(O)(=O)OCc1c(c(O)c(C)nc1)CNCC2C(O)C(C(C(O2)OC3C(C(C(CC3N)N)O)O)N)O
+DOW            InChI                InChI  1.03 InChI=1S/C20H36N5O11P/c1-7-14(26)9(8(3-25-7)6-34-37(31,32)33)4-24-5-12-16(28)17(29)13(23)20(35-12)36-19-11(22)2-10(21)15(27)18(19)30/h3,10-13,15-20,24,26-30H,2,4-6,21-23H2,1H3,(H2,31,32,33)/t10-,11+,12-,13-,15+,16-,17-,18-,19-,20-/m1/s1
+DOW         InChIKey                InChI  1.03                                                                                                                                                                                                                  YAANPRCSTYUZOJ-GMRNZWOESA-N
+DOW SMILES_CANONICAL               CACTVS 3.385                                                                                                                              Cc1ncc(CO[P](O)(O)=O)c(CNC[C@H]2O[C@H](O[C@@H]3[C@@H](N)C[C@@H](N)[C@H](O)[C@H]3O)[C@H](N)[C@@H](O)[C@@H]2O)c1O
+DOW           SMILES               CACTVS 3.385                                                                                                                                             Cc1ncc(CO[P](O)(O)=O)c(CNC[CH]2O[CH](O[CH]3[CH](N)C[CH](N)[CH](O)[CH]3O)[CH](N)[CH](O)[CH]2O)c1O
+DOW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                             Cc1c(c(c(cn1)COP(=O)(O)O)CNC[C@@H]2[C@H]([C@@H]([C@H]([C@H](O2)O[C@@H]3[C@H](C[C@H]([C@@H]([C@H]3O)O)N)N)N)O)O)O
+DOW           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                         Cc1c(c(c(cn1)COP(=O)(O)O)CNCC2C(C(C(C(O2)OC3C(CC(C(C3O)O)N)N)N)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DOW acedrg               243         "dictionary generator"                  
+DOW acedrg_database      11          "data source"                           
+DOW rdkit                2017.03.2   "Chemoinformatics tool"
+DOW refmac5              5.8.0238    "optimization tool"                     

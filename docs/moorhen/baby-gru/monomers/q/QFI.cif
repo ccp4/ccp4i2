@@ -1,0 +1,498 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+QFI     QFI      "({4-[(2S,3R)-2-({[(3R,3AS,6AR)-HEXAHYDROFURO[2,3-B]FURAN-3-YLOXY]CARBONYL}AMINO)-3-HYDROXY-4-{ISOBUTYL[(4-METHOXYPHENYL)SULFONYL]AMINO}BUTYL]PHENOXY}METHYL)PHOSPHONIC ACID"     NON-POLYMER     84     45     .     
+#
+data_comp_QFI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+QFI     C       C       CH1     0       11.876      18.260      18.314      
+QFI     O       O       O2      0       10.364      19.035      19.969      
+QFI     C5      C       CH1     0       12.585      19.213      19.279      
+QFI     O4      O       O2      0       12.631      20.590      18.814      
+QFI     C4      C       C       0       13.742      21.062      18.163      
+QFI     N1      N       NH1     0       13.594      22.366      17.926      
+QFI     C6      C       CH1     0       14.515      23.188      17.146      
+QFI     C7      C       CH1     0       15.024      24.344      18.029      
+QFI     C15     C       CH2     0       16.246      25.060      17.473      
+QFI     N2      N       NT      0       17.501      24.275      17.496      
+QFI     C16     C       CH2     0       18.427      24.547      18.618      
+QFI     C17     C       CH1     0       17.912      24.201      20.013      
+QFI     C24     C       CH3     0       17.611      22.716      20.150      
+QFI     C25     C       CH3     0       18.923      24.641      21.059      
+QFI     S       S       S3      0       18.173      23.849      16.067      
+QFI     C18     C       CR6     0       19.062      25.266      15.504      
+QFI     C19     C       CR16    0       18.439      26.204      14.690      
+QFI     C20     C       CR16    0       19.136      27.318      14.257      
+QFI     C21     C       CR6     0       20.458      27.515      14.642      
+QFI     O1      O       O2      0       21.045      28.652      14.144      
+QFI     C26     C       CH3     0       22.282      29.114      14.684      
+QFI     C22     C       CR16    0       21.078      26.573      15.463      
+QFI     C23     C       CR16    0       20.381      25.459      15.895      
+QFI     O7      O       O       0       17.114      23.589      15.139      
+QFI     O8      O       O       0       19.120      22.808      16.330      
+QFI     O6      O       OH1     0       13.982      25.297      18.234      
+QFI     C8      C       CH2     0       13.831      23.649      15.847      
+QFI     C9      C       CR6     0       13.234      22.510      15.047      
+QFI     C10     C       CR16    0       14.044      21.545      14.461      
+QFI     C12     C       CR16    0       13.512      20.494      13.727      
+QFI     C14     C       CR6     0       12.131      20.384      13.575      
+QFI     O40     O       O2      0       11.532      19.376      12.855      
+QFI     C41     C       CH2     0       12.072      18.045      12.904      
+QFI     P42     P       P       0       10.776      16.852      12.433      
+QFI     O45     O       OP      -1      9.713       16.932      13.475      
+QFI     O44     O       OP      -1      11.421      15.508      12.405      
+QFI     O43     O       O       0       10.266      17.246      11.090      
+QFI     C13     C       CR16    0       11.305      21.342      14.153      
+QFI     C11     C       CR16    0       11.860      22.386      14.882      
+QFI     O5      O       O       0       14.696      20.372      17.850      
+QFI     C3      C       CH2     0       11.681      19.183      20.498      
+QFI     C27     C       CH1     0       10.444      18.172      18.862      
+QFI     O9      O       O2      0       9.574       18.591      17.836      
+QFI     C2      C       CH2     0       10.329      19.318      16.869      
+QFI     C1      C       CH2     0       11.664      18.647      16.848      
+QFI     H       H       H       0       12.325      17.383      18.351      
+QFI     H5      H       H       0       13.483      18.870      19.492      
+QFI     HN1     H       H       0       12.901      22.786      18.254      
+QFI     H6      H       H       0       15.297      22.643      16.902      
+QFI     H7      H       H       0       15.258      23.972      18.915      
+QFI     H151    H       H       0       16.384      25.876      17.997      
+QFI     H152    H       H       0       16.053      25.343      16.555      
+QFI     H161    H       H       0       18.650      25.491      18.606      
+QFI     H162    H       H       0       19.251      24.056      18.478      
+QFI     H17     H       H       0       17.076      24.703      20.168      
+QFI     H241    H       H       0       17.260      22.538      21.040      
+QFI     H242    H       H       0       18.429      22.206      20.017      
+QFI     H243    H       H       0       16.953      22.452      19.484      
+QFI     H251    H       H       0       19.100      25.593      20.958      
+QFI     H252    H       H       0       19.751      24.144      20.940      
+QFI     H253    H       H       0       18.567      24.470      21.948      
+QFI     H19     H       H       0       17.546      26.084      14.426      
+QFI     H20     H       H       0       18.713      27.945      13.703      
+QFI     H261    H       H       0       22.985      28.476      14.475      
+QFI     H262    H       H       0       22.203      29.205      15.648      
+QFI     H263    H       H       0       22.502      29.976      14.295      
+QFI     H22     H       H       0       21.969      26.689      15.728      
+QFI     H23     H       H       0       20.806      24.833      16.450      
+QFI     HO6     H       H       0       14.170      25.778      18.907      
+QFI     H81     H       H       0       14.488      24.116      15.289      
+QFI     H82     H       H       0       13.119      24.286      16.066      
+QFI     H10     H       H       0       14.980      21.608      14.560      
+QFI     H12     H       H       0       14.086      19.856      13.337      
+QFI     H411    H       H       0       12.390      17.832      13.806      
+QFI     H412    H       H       0       12.827      17.958      12.286      
+QFI     H13     H       H       0       10.369      21.280      14.053      
+QFI     H11     H       H       0       11.288      23.026      15.273      
+QFI     H31     H       H       0       11.757      20.008      21.007      
+QFI     H32     H       H       0       11.905      18.433      21.074      
+QFI     H27     H       H       0       10.232      17.248      19.133      
+QFI     H21     H       H       0       10.414      20.254      17.130      
+QFI     H22A    H       H       0       9.902       19.272      15.994      
+QFI     H11A    H       H       0       11.650      17.850      16.277      
+QFI     H12A    H       H       0       12.364      19.251      16.531      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+QFI           C          C1      SINGLE       n     1.530  0.0108     1.530  0.0108
+QFI           C         C27      SINGLE       n     1.534  0.0111     1.534  0.0111
+QFI           C          C5      SINGLE       n     1.527  0.0102     1.527  0.0102
+QFI           O         C27      SINGLE       n     1.405  0.0155     1.405  0.0155
+QFI           O          C3      SINGLE       n     1.428  0.0115     1.428  0.0115
+QFI          C5          O4      SINGLE       n     1.449  0.0100     1.449  0.0100
+QFI          C5          C3      SINGLE       n     1.520  0.0161     1.520  0.0161
+QFI          O4          C4      SINGLE       n     1.366  0.0108     1.366  0.0108
+QFI          C4          N1      SINGLE       n     1.329  0.0100     1.329  0.0100
+QFI          C4          O5      DOUBLE       n     1.216  0.0100     1.216  0.0100
+QFI          N1          C6      SINGLE       n     1.457  0.0100     1.457  0.0100
+QFI          C6          C8      SINGLE       n     1.536  0.0100     1.536  0.0100
+QFI          C6          C7      SINGLE       n     1.538  0.0100     1.538  0.0100
+QFI          C7         C15      SINGLE       n     1.519  0.0100     1.519  0.0100
+QFI          C7          O6      SINGLE       n     1.424  0.0199     1.424  0.0199
+QFI         C15          N2      SINGLE       n     1.475  0.0100     1.475  0.0100
+QFI          N2           S      SINGLE       n     1.627  0.0121     1.627  0.0121
+QFI          N2         C16      SINGLE       n     1.475  0.0100     1.475  0.0100
+QFI         C16         C17      SINGLE       n     1.525  0.0130     1.525  0.0130
+QFI         C17         C24      SINGLE       n     1.520  0.0129     1.520  0.0129
+QFI         C17         C25      SINGLE       n     1.520  0.0129     1.520  0.0129
+QFI           S          O7      DOUBLE       n     1.431  0.0100     1.431  0.0100
+QFI           S         C18      SINGLE       n     1.763  0.0100     1.763  0.0100
+QFI           S          O8      DOUBLE       n     1.431  0.0100     1.431  0.0100
+QFI         C18         C19      DOUBLE       y     1.386  0.0100     1.386  0.0100
+QFI         C18         C23      SINGLE       y     1.386  0.0100     1.386  0.0100
+QFI         C19         C20      SINGLE       y     1.380  0.0100     1.380  0.0100
+QFI         C20         C21      DOUBLE       y     1.386  0.0109     1.386  0.0109
+QFI         C21          O1      SINGLE       n     1.369  0.0100     1.369  0.0100
+QFI         C21         C22      SINGLE       y     1.386  0.0109     1.386  0.0109
+QFI          O1         C26      SINGLE       n     1.424  0.0117     1.424  0.0117
+QFI         C22         C23      DOUBLE       y     1.380  0.0100     1.380  0.0100
+QFI          C8          C9      SINGLE       n     1.512  0.0103     1.512  0.0103
+QFI          C9         C10      DOUBLE       y     1.385  0.0110     1.385  0.0110
+QFI          C9         C11      SINGLE       y     1.385  0.0110     1.385  0.0110
+QFI         C10         C12      SINGLE       y     1.385  0.0100     1.385  0.0100
+QFI         C12         C14      DOUBLE       y     1.386  0.0109     1.386  0.0109
+QFI         C14         O40      SINGLE       n     1.373  0.0102     1.373  0.0102
+QFI         C14         C13      SINGLE       y     1.386  0.0109     1.386  0.0109
+QFI         O40         C41      SINGLE       n     1.434  0.0114     1.434  0.0114
+QFI         C41         P42      SINGLE       n     1.823  0.0200     1.823  0.0200
+QFI         P42         O43      DOUBLE       n     1.492  0.0200     1.492  0.0200
+QFI         P42         O45      SINGLE       n     1.492  0.0200     1.492  0.0200
+QFI         P42         O44      SINGLE       n     1.492  0.0200     1.492  0.0200
+QFI         C13         C11      DOUBLE       y     1.385  0.0100     1.385  0.0100
+QFI         C27          O9      SINGLE       n     1.406  0.0121     1.406  0.0121
+QFI          O9          C2      SINGLE       n     1.425  0.0104     1.425  0.0104
+QFI          C2          C1      SINGLE       n     1.499  0.0191     1.499  0.0191
+QFI           C           H      SINGLE       n     1.089  0.0100     0.986  0.0200
+QFI          C5          H5      SINGLE       n     1.089  0.0100     0.985  0.0180
+QFI          N1         HN1      SINGLE       n     1.016  0.0100     0.872  0.0200
+QFI          C6          H6      SINGLE       n     1.089  0.0100     0.984  0.0181
+QFI          C7          H7      SINGLE       n     1.089  0.0100     0.992  0.0184
+QFI         C15        H151      SINGLE       n     1.089  0.0100     0.980  0.0143
+QFI         C15        H152      SINGLE       n     1.089  0.0100     0.980  0.0143
+QFI         C16        H161      SINGLE       n     1.089  0.0100     0.970  0.0100
+QFI         C16        H162      SINGLE       n     1.089  0.0100     0.970  0.0100
+QFI         C17         H17      SINGLE       n     1.089  0.0100     0.988  0.0114
+QFI         C24        H241      SINGLE       n     1.089  0.0100     0.973  0.0146
+QFI         C24        H242      SINGLE       n     1.089  0.0100     0.973  0.0146
+QFI         C24        H243      SINGLE       n     1.089  0.0100     0.973  0.0146
+QFI         C25        H251      SINGLE       n     1.089  0.0100     0.973  0.0146
+QFI         C25        H252      SINGLE       n     1.089  0.0100     0.973  0.0146
+QFI         C25        H253      SINGLE       n     1.089  0.0100     0.973  0.0146
+QFI         C19         H19      SINGLE       n     1.082  0.0130     0.939  0.0200
+QFI         C20         H20      SINGLE       n     1.082  0.0130     0.937  0.0102
+QFI         C26        H261      SINGLE       n     1.089  0.0100     0.971  0.0157
+QFI         C26        H262      SINGLE       n     1.089  0.0100     0.971  0.0157
+QFI         C26        H263      SINGLE       n     1.089  0.0100     0.971  0.0157
+QFI         C22         H22      SINGLE       n     1.082  0.0130     0.937  0.0102
+QFI         C23         H23      SINGLE       n     1.082  0.0130     0.939  0.0200
+QFI          O6         HO6      SINGLE       n     0.970  0.0120     0.848  0.0200
+QFI          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0150
+QFI          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0150
+QFI         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0173
+QFI         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0169
+QFI         C41        H411      SINGLE       n     1.089  0.0100     0.980  0.0129
+QFI         C41        H412      SINGLE       n     1.089  0.0100     0.980  0.0129
+QFI         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0169
+QFI         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0173
+QFI          C3         H31      SINGLE       n     1.089  0.0100     0.972  0.0114
+QFI          C3         H32      SINGLE       n     1.089  0.0100     0.972  0.0114
+QFI         C27         H27      SINGLE       n     1.089  0.0100     0.985  0.0172
+QFI          C2         H21      SINGLE       n     1.089  0.0100     0.975  0.0100
+QFI          C2        H22A      SINGLE       n     1.089  0.0100     0.975  0.0100
+QFI          C1        H11A      SINGLE       n     1.089  0.0100     0.980  0.0164
+QFI          C1        H12A      SINGLE       n     1.089  0.0100     0.980  0.0164
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+QFI          C1           C         C27     104.424    1.81
+QFI          C1           C          C5     116.412    3.00
+QFI          C1           C           H     109.658    2.16
+QFI         C27           C          C5     104.424    1.81
+QFI         C27           C           H     111.975    2.66
+QFI          C5           C           H     109.366    2.07
+QFI         C27           O          C3     107.499    1.99
+QFI           C          C5          O4     109.761    3.00
+QFI           C          C5          C3     103.933    1.82
+QFI           C          C5          H5     109.923    1.50
+QFI          O4          C5          C3     107.632    1.50
+QFI          O4          C5          H5     110.994    1.56
+QFI          C3          C5          H5     111.691    1.57
+QFI          C5          O4          C4     116.687    1.81
+QFI          O4          C4          N1     109.725    1.50
+QFI          O4          C4          O5     123.666    1.58
+QFI          N1          C4          O5     126.608    1.50
+QFI          C4          N1          C6     122.427    2.35
+QFI          C4          N1         HN1     119.438    1.50
+QFI          C6          N1         HN1     118.136    3.00
+QFI          N1          C6          C8     110.274    1.50
+QFI          N1          C6          C7     109.748    1.50
+QFI          N1          C6          H6     108.194    1.50
+QFI          C8          C6          C7     112.266    1.50
+QFI          C8          C6          H6     108.431    1.50
+QFI          C7          C6          H6     107.639    1.50
+QFI          C6          C7         C15     112.581    1.77
+QFI          C6          C7          O6     109.040    1.72
+QFI          C6          C7          H7     108.500    1.50
+QFI         C15          C7          O6     109.290    2.07
+QFI         C15          C7          H7     108.552    1.50
+QFI          O6          C7          H7     108.183    1.96
+QFI          C7         C15          N2     113.251    3.00
+QFI          C7         C15        H151     109.093    1.50
+QFI          C7         C15        H152     109.093    1.50
+QFI          N2         C15        H151     109.008    1.50
+QFI          N2         C15        H152     109.008    1.50
+QFI        H151         C15        H152     107.873    1.50
+QFI         C15          N2           S     117.775    1.76
+QFI         C15          N2         C16     117.992    1.71
+QFI           S          N2         C16     117.775    1.76
+QFI          N2         C16         C17     114.901    1.89
+QFI          N2         C16        H161     108.794    1.50
+QFI          N2         C16        H162     108.794    1.50
+QFI         C17         C16        H161     108.663    1.50
+QFI         C17         C16        H162     108.663    1.50
+QFI        H161         C16        H162     107.873    1.50
+QFI         C16         C17         C24     110.627    2.32
+QFI         C16         C17         C25     110.627    2.32
+QFI         C16         C17         H17     107.960    1.50
+QFI         C24         C17         C25     110.933    1.50
+QFI         C24         C17         H17     108.132    1.50
+QFI         C25         C17         H17     108.132    1.50
+QFI         C17         C24        H241     109.450    1.50
+QFI         C17         C24        H242     109.450    1.50
+QFI         C17         C24        H243     109.450    1.50
+QFI        H241         C24        H242     109.411    1.50
+QFI        H241         C24        H243     109.411    1.50
+QFI        H242         C24        H243     109.411    1.50
+QFI         C17         C25        H251     109.450    1.50
+QFI         C17         C25        H252     109.450    1.50
+QFI         C17         C25        H253     109.450    1.50
+QFI        H251         C25        H252     109.411    1.50
+QFI        H251         C25        H253     109.411    1.50
+QFI        H252         C25        H253     109.411    1.50
+QFI          N2           S          O7     106.873    1.50
+QFI          N2           S         C18     107.222    1.50
+QFI          N2           S          O8     106.873    1.50
+QFI          O7           S         C18     107.820    1.50
+QFI          O7           S          O8     119.635    1.50
+QFI         C18           S          O8     107.820    1.50
+QFI           S         C18         C19     119.838    1.50
+QFI           S         C18         C23     119.838    1.50
+QFI         C19         C18         C23     120.325    1.50
+QFI         C18         C19         C20     120.012    1.50
+QFI         C18         C19         H19     120.218    1.50
+QFI         C20         C19         H19     119.770    1.50
+QFI         C19         C20         C21     119.912    1.50
+QFI         C19         C20         H20     119.982    1.50
+QFI         C21         C20         H20     120.098    1.50
+QFI         C20         C21          O1     120.080    3.00
+QFI         C20         C21         C22     119.841    1.50
+QFI          O1         C21         C22     120.080    3.00
+QFI         C21          O1         C26     117.529    1.50
+QFI          O1         C26        H261     109.428    1.50
+QFI          O1         C26        H262     109.428    1.50
+QFI          O1         C26        H263     109.428    1.50
+QFI        H261         C26        H262     109.509    1.50
+QFI        H261         C26        H263     109.509    1.50
+QFI        H262         C26        H263     109.509    1.50
+QFI         C21         C22         C23     119.912    1.50
+QFI         C21         C22         H22     120.098    1.50
+QFI         C23         C22         H22     119.982    1.50
+QFI         C18         C23         C22     120.012    1.50
+QFI         C18         C23         H23     120.218    1.50
+QFI         C22         C23         H23     119.770    1.50
+QFI          C7          O6         HO6     109.265    3.00
+QFI          C6          C8          C9     113.215    1.50
+QFI          C6          C8         H81     108.892    1.50
+QFI          C6          C8         H82     108.892    1.50
+QFI          C9          C8         H81     108.862    1.50
+QFI          C9          C8         H82     108.862    1.50
+QFI         H81          C8         H82     107.782    1.50
+QFI          C8          C9         C10     121.080    1.50
+QFI          C8          C9         C11     121.080    1.50
+QFI         C10          C9         C11     117.841    1.50
+QFI          C9         C10         C12     121.479    1.50
+QFI          C9         C10         H10     119.314    1.50
+QFI         C12         C10         H10     119.207    1.50
+QFI         C10         C12         C14     119.690    1.50
+QFI         C10         C12         H12     120.174    1.50
+QFI         C14         C12         H12     120.137    1.50
+QFI         C12         C14         O40     120.089    3.00
+QFI         C12         C14         C13     119.823    1.50
+QFI         O40         C14         C13     120.089    3.00
+QFI         C14         O40         C41     117.459    1.76
+QFI         O40         C41         P42     106.152    3.00
+QFI         O40         C41        H411     110.001    1.50
+QFI         O40         C41        H412     110.001    1.50
+QFI         P42         C41        H411     108.528    1.50
+QFI         P42         C41        H412     108.528    1.50
+QFI        H411         C41        H412     107.527    1.50
+QFI         C41         P42         O43     110.326    3.00
+QFI         C41         P42         O45     110.326    3.00
+QFI         C41         P42         O44     110.326    3.00
+QFI         O43         P42         O45     112.502    1.50
+QFI         O43         P42         O44     112.502    1.50
+QFI         O45         P42         O44     112.502    1.50
+QFI         C14         C13         C11     119.690    1.50
+QFI         C14         C13         H13     120.137    1.50
+QFI         C11         C13         H13     120.174    1.50
+QFI          C9         C11         C13     121.479    1.50
+QFI          C9         C11         H11     119.314    1.50
+QFI         C13         C11         H11     119.207    1.50
+QFI           O          C3          C5     105.158    1.50
+QFI           O          C3         H31     110.615    1.50
+QFI           O          C3         H32     110.615    1.50
+QFI          C5          C3         H31     110.668    1.50
+QFI          C5          C3         H32     110.668    1.50
+QFI         H31          C3         H32     108.924    1.50
+QFI           C         C27           O     107.233    1.50
+QFI           C         C27          O9     107.233    1.50
+QFI           C         C27         H27     111.464    1.84
+QFI           O         C27          O9     111.281    1.50
+QFI           O         C27         H27     110.879    1.50
+QFI          O9         C27         H27     110.879    1.50
+QFI         C27          O9          C2     107.499    1.99
+QFI          O9          C2          C1     105.099    1.50
+QFI          O9          C2         H21     110.765    1.50
+QFI          O9          C2        H22A     110.765    1.50
+QFI          C1          C2         H21     110.956    1.50
+QFI          C1          C2        H22A     110.956    1.50
+QFI         H21          C2        H22A     108.953    1.50
+QFI           C          C1          C2     103.933    1.82
+QFI           C          C1        H11A     110.793    1.50
+QFI           C          C1        H12A     110.793    1.50
+QFI          C2          C1        H11A     111.126    1.50
+QFI          C2          C1        H12A     111.126    1.50
+QFI        H11A          C1        H12A     108.883    1.55
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+QFI            sp3_sp3_53          C1           C          C5          O4     180.000    10.0     3
+QFI            sp3_sp3_26          C1           C         C27           O     180.000    10.0     3
+QFI             sp3_sp3_1         C27           C          C1          C2      60.000    10.0     3
+QFI           sp3_sp3_110          N2         C16         C17         C24     -60.000    10.0     3
+QFI           sp3_sp3_118         C16         C17         C24        H241     180.000    10.0     3
+QFI           sp3_sp3_130         C16         C17         C25        H251      60.000    10.0     3
+QFI             sp2_sp3_9         C19         C18           S          N2      30.000    10.0     6
+QFI              const_23           S         C18         C19         C20     180.000    10.0     2
+QFI              const_43           S         C18         C23         C22     180.000    10.0     2
+QFI              const_25         C18         C19         C20         C21       0.000    10.0     2
+QFI              const_30         C19         C20         C21          O1     180.000    10.0     2
+QFI             sp2_sp2_7         C20         C21          O1         C26     180.000     5.0     2
+QFI              const_35          O1         C21         C22         C23     180.000    10.0     2
+QFI           sp3_sp3_137        H261         C26          O1         C21     -60.000    10.0     3
+QFI            sp3_sp3_37          C5          C3           O         C27      60.000    10.0     3
+QFI            sp3_sp3_34           C         C27           O          C3     -60.000    10.0     3
+QFI              const_37         C21         C22         C23         C18       0.000    10.0     2
+QFI            sp2_sp3_14         C10          C9          C8          C6     -90.000    10.0     6
+QFI       const_sp2_sp2_2         C12         C10          C9          C8     180.000     5.0     2
+QFI              const_46         C13         C11          C9          C8     180.000    10.0     2
+QFI       const_sp2_sp2_5          C9         C10         C12         C14       0.000     5.0     2
+QFI              const_10         C10         C12         C14         O40     180.000    10.0     2
+QFI            sp3_sp3_58           C          C5          O4          C4     180.000    10.0     3
+QFI            sp3_sp3_41           O          C3          C5          O4      60.000    10.0     3
+QFI             sp2_sp2_9         C12         C14         O40         C41     180.000     5.0     2
+QFI              const_14         C11         C13         C14         O40     180.000    10.0     2
+QFI           sp3_sp3_140         P42         C41         O40         C14     180.000    10.0     3
+QFI           sp3_sp3_145         O40         C41         P42         O43      60.000    10.0     3
+QFI              const_17          C9         C11         C13         C14       0.000    10.0     2
+QFI             sp2_sp2_1          N1          C4          O4          C5     180.000     5.0     2
+QFI            sp3_sp3_22           C         C27          O9          C2     -60.000    10.0     3
+QFI            sp3_sp3_19          C1          C2          O9         C27      60.000    10.0     3
+QFI            sp3_sp3_10           C          C1          C2          O9     -60.000    10.0     3
+QFI             sp2_sp2_3          O4          C4          N1          C6     180.000     5.0     2
+QFI             sp2_sp3_1          C4          N1          C6          C8       0.000    10.0     6
+QFI            sp3_sp3_61          N1          C6          C8          C9     180.000    10.0     3
+QFI            sp3_sp3_70          N1          C6          C7         C15     180.000    10.0     3
+QFI            sp3_sp3_88          C6          C7          O6         HO6     180.000    10.0     3
+QFI            sp3_sp3_79          N2         C15          C7          C6     180.000    10.0     3
+QFI            sp3_sp3_91          C7         C15          N2           S     180.000    10.0     3
+QFI           sp3_sp3_103         C17         C16          N2         C15     180.000    10.0     3
+QFI            sp3_sp3_98         C15          N2           S          O7     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+QFI    chir_1    C    C27    C5    C1    positive
+QFI    chir_2    C5    O4    C3    C    negative
+QFI    chir_3    C6    N1    C7    C8    positive
+QFI    chir_4    C7    O6    C6    C15    negative
+QFI    chir_5    N2    S    C15    C16    positive
+QFI    chir_6    C17    C16    C24    C25    both
+QFI    chir_7    S    O7    O8    N2    both
+QFI    chir_8    P42    O45    O44    O43    both
+QFI    chir_9    C27    O    O9    C    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+QFI    plan-1         C18   0.020
+QFI    plan-1         C19   0.020
+QFI    plan-1         C20   0.020
+QFI    plan-1         C21   0.020
+QFI    plan-1         C22   0.020
+QFI    plan-1         C23   0.020
+QFI    plan-1         H19   0.020
+QFI    plan-1         H20   0.020
+QFI    plan-1         H22   0.020
+QFI    plan-1         H23   0.020
+QFI    plan-1          O1   0.020
+QFI    plan-1           S   0.020
+QFI    plan-2         C10   0.020
+QFI    plan-2         C11   0.020
+QFI    plan-2         C12   0.020
+QFI    plan-2         C13   0.020
+QFI    plan-2         C14   0.020
+QFI    plan-2          C8   0.020
+QFI    plan-2          C9   0.020
+QFI    plan-2         H10   0.020
+QFI    plan-2         H11   0.020
+QFI    plan-2         H12   0.020
+QFI    plan-2         H13   0.020
+QFI    plan-2         O40   0.020
+QFI    plan-3          C4   0.020
+QFI    plan-3          N1   0.020
+QFI    plan-3          O4   0.020
+QFI    plan-3          O5   0.020
+QFI    plan-4          C4   0.020
+QFI    plan-4          C6   0.020
+QFI    plan-4         HN1   0.020
+QFI    plan-4          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+QFI           SMILES              ACDLabs 10.04                                                                                                                                                                      O=S(=O)(c1ccc(OC)cc1)N(CC(C)C)CC(O)C(NC(=O)OC2COC3OCCC23)Cc4ccc(OCP(=O)(O)O)cc4
+QFI SMILES_CANONICAL               CACTVS 3.341                                                                                                                                            COc1ccc(cc1)[S](=O)(=O)N(CC(C)C)C[C@@H](O)[C@H](Cc2ccc(OC[P](O)(O)=O)cc2)NC(=O)O[C@H]3CO[C@H]4OCC[C@@H]34
+QFI           SMILES               CACTVS 3.341                                                                                                                                                   COc1ccc(cc1)[S](=O)(=O)N(CC(C)C)C[CH](O)[CH](Cc2ccc(OC[P](O)(O)=O)cc2)NC(=O)O[CH]3CO[CH]4OCC[CH]34
+QFI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                             CC(C)C[N@@](C[C@H]([C@H](Cc1ccc(cc1)OCP(=O)(O)O)NC(=O)O[C@H]2CO[C@@H]3[C@H]2CCO3)O)S(=O)(=O)c4ccc(cc4)OC
+QFI           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                      CC(C)CN(CC(C(Cc1ccc(cc1)OCP(=O)(O)O)NC(=O)OC2COC3C2CCO3)O)S(=O)(=O)c4ccc(cc4)OC
+QFI            InChI                InChI  1.03 InChI=1S/C29H41N2O12PS/c1-19(2)15-31(45(37,38)23-10-8-21(39-3)9-11-23)16-26(32)25(14-20-4-6-22(7-5-20)42-18-44(34,35)36)30-29(33)43-27-17-41-28-24(27)12-13-40-28/h4-11,19,24-28,32H,12-18H2,1-3H3,(H,30,33)(H2,34,35,36)/t24-,25-,26+,27-,28+/m0/s1
+QFI         InChIKey                InChI  1.03                                                                                                                                                                                                                          VGMTVMSJTCIQMF-AJIIGFCHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+QFI acedrg               243         "dictionary generator"                  
+QFI acedrg_database      11          "data source"                           
+QFI rdkit                2017.03.2   "Chemoinformatics tool"
+QFI refmac5              5.8.0238    "optimization tool"                     

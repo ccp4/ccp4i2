@@ -1,0 +1,204 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MYI     MYI      "(5-methoxy-1H-indol-3-yl)acetic acid"     NON-POLYMER     25     15     .     
+#
+data_comp_MYI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MYI     CAA     C       CH3     0       17.776      64.900      9.764       
+MYI     OAB     O       O       0       11.144      60.394      13.738      
+MYI     OAC     O       OC      -1      13.200      60.236      12.939      
+MYI     CAD     C       CR16    0       17.139      64.619      12.579      
+MYI     CAE     C       CR16    0       16.801      64.477      13.906      
+MYI     CAF     C       CR15    0       13.745      63.092      15.199      
+MYI     CAG     C       CR16    0       15.033      63.651      11.851      
+MYI     CAH     C       CH2     0       12.285      62.408      13.216      
+MYI     NAI     N       NR5     0       14.973      63.655      15.417      
+MYI     OAJ     O       O2      0       16.544      64.326      10.200      
+MYI     CAK     C       C       0       12.204      60.886      13.307      
+MYI     CAL     C       CR6     0       16.261      64.209      11.549      
+MYI     CAM     C       CR5     0       13.510      62.972      13.859      
+MYI     CAN     C       CR56    0       15.563      63.914      14.208      
+MYI     CAO     C       CR56    0       14.670      63.497      13.202      
+MYI     HAA     H       H       0       18.518      64.373      10.103      
+MYI     HAAA    H       H       0       17.845      65.810      10.094      
+MYI     HAAB    H       H       0       17.802      64.906      8.794       
+MYI     HAD     H       H       0       17.972      64.998      12.361      
+MYI     HAE     H       H       0       17.389      64.751      14.589      
+MYI     HAF     H       H       0       13.149      62.826      15.883      
+MYI     HAG     H       H       0       14.448      63.377      11.162      
+MYI     HAH     H       H       0       11.491      62.795      13.646      
+MYI     HAHA    H       H       0       12.272      62.669      12.270      
+MYI     HNAI    H       H       0       15.324      63.822      16.203      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MYI         CAA         OAJ      SINGLE       n     1.424  0.0117     1.424  0.0117
+MYI         OAB         CAK      DOUBLE       n     1.244  0.0200     1.244  0.0200
+MYI         OAC         CAK      SINGLE       n     1.244  0.0200     1.244  0.0200
+MYI         CAD         CAE      DOUBLE       y     1.373  0.0100     1.373  0.0100
+MYI         CAD         CAL      SINGLE       y     1.406  0.0100     1.406  0.0100
+MYI         CAE         CAN      SINGLE       y     1.391  0.0102     1.391  0.0102
+MYI         CAF         NAI      SINGLE       y     1.369  0.0100     1.369  0.0100
+MYI         CAF         CAM      DOUBLE       y     1.365  0.0100     1.365  0.0100
+MYI         CAG         CAL      DOUBLE       y     1.378  0.0100     1.378  0.0100
+MYI         CAG         CAO      SINGLE       y     1.404  0.0100     1.404  0.0100
+MYI         CAH         CAK      SINGLE       n     1.525  0.0126     1.525  0.0126
+MYI         CAH         CAM      SINGLE       n     1.494  0.0100     1.494  0.0100
+MYI         NAI         CAN      SINGLE       y     1.370  0.0100     1.370  0.0100
+MYI         OAJ         CAL      SINGLE       n     1.377  0.0100     1.377  0.0100
+MYI         CAM         CAO      SINGLE       y     1.432  0.0100     1.432  0.0100
+MYI         CAN         CAO      DOUBLE       y     1.406  0.0100     1.406  0.0100
+MYI         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+MYI         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+MYI         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0157
+MYI         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0200
+MYI         CAE         HAE      SINGLE       n     1.082  0.0130     0.942  0.0200
+MYI         CAF         HAF      SINGLE       n     1.082  0.0130     0.945  0.0191
+MYI         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0200
+MYI         CAH         HAH      SINGLE       n     1.089  0.0100     0.982  0.0200
+MYI         CAH        HAHA      SINGLE       n     1.089  0.0100     0.982  0.0200
+MYI         NAI        HNAI      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MYI         OAJ         CAA         HAA     109.428    1.50
+MYI         OAJ         CAA        HAAA     109.428    1.50
+MYI         OAJ         CAA        HAAB     109.428    1.50
+MYI         HAA         CAA        HAAA     109.509    1.50
+MYI         HAA         CAA        HAAB     109.509    1.50
+MYI        HAAA         CAA        HAAB     109.509    1.50
+MYI         CAE         CAD         CAL     121.193    1.50
+MYI         CAE         CAD         HAD     119.445    1.50
+MYI         CAL         CAD         HAD     119.365    1.50
+MYI         CAD         CAE         CAN     117.770    1.50
+MYI         CAD         CAE         HAE     121.115    1.50
+MYI         CAN         CAE         HAE     121.117    1.50
+MYI         NAI         CAF         CAM     110.404    1.50
+MYI         NAI         CAF         HAF     124.437    1.50
+MYI         CAM         CAF         HAF     125.159    1.59
+MYI         CAL         CAG         CAO     118.185    1.50
+MYI         CAL         CAG         HAG     120.888    1.50
+MYI         CAO         CAG         HAG     120.927    1.50
+MYI         CAK         CAH         CAM     112.079    2.81
+MYI         CAK         CAH         HAH     108.731    1.50
+MYI         CAK         CAH        HAHA     108.731    1.50
+MYI         CAM         CAH         HAH     108.953    1.50
+MYI         CAM         CAH        HAHA     108.953    1.50
+MYI         HAH         CAH        HAHA     107.797    1.50
+MYI         CAF         NAI         CAN     109.042    1.50
+MYI         CAF         NAI        HNAI     125.328    1.77
+MYI         CAN         NAI        HNAI     125.630    1.60
+MYI         CAA         OAJ         CAL     117.346    1.50
+MYI         OAB         CAK         OAC     125.371    1.75
+MYI         OAB         CAK         CAH     117.315    1.72
+MYI         OAC         CAK         CAH     117.315    1.72
+MYI         CAD         CAL         CAG     121.291    1.50
+MYI         CAD         CAL         OAJ     116.475    3.00
+MYI         CAG         CAL         OAJ     122.234    3.00
+MYI         CAF         CAM         CAH     126.617    1.73
+MYI         CAF         CAM         CAO     106.112    1.50
+MYI         CAH         CAM         CAO     127.271    1.50
+MYI         CAE         CAN         NAI     130.315    1.50
+MYI         CAE         CAN         CAO     122.229    1.50
+MYI         NAI         CAN         CAO     107.455    1.50
+MYI         CAG         CAO         CAM     133.686    1.50
+MYI         CAG         CAO         CAN     119.327    1.50
+MYI         CAM         CAO         CAN     106.987    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MYI             sp3_sp3_2         HAA         CAA         OAJ         CAL     -60.000    10.0     3
+MYI              const_32         CAH         CAM         CAO         CAG       0.000    10.0     2
+MYI       const_sp2_sp2_9         CAE         CAN         CAO         CAG       0.000     5.0     2
+MYI              const_34         CAE         CAD         CAL         OAJ     180.000    10.0     2
+MYI       const_sp2_sp2_1         CAL         CAD         CAE         CAN       0.000     5.0     2
+MYI       const_sp2_sp2_6         CAD         CAE         CAN         NAI     180.000     5.0     2
+MYI              const_38         NAI         CAF         CAM         CAH     180.000    10.0     2
+MYI              const_21         CAM         CAF         NAI         CAN       0.000    10.0     2
+MYI              const_18         CAO         CAG         CAL         OAJ     180.000    10.0     2
+MYI              const_14         CAL         CAG         CAO         CAM     180.000    10.0     2
+MYI             sp2_sp3_2         OAB         CAK         CAH         CAM     120.000    10.0     6
+MYI             sp2_sp3_8         CAF         CAM         CAH         CAK     -90.000    10.0     6
+MYI              const_27         CAE         CAN         NAI         CAF     180.000    10.0     2
+MYI             sp2_sp2_1         CAD         CAL         OAJ         CAA     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MYI    plan-1         CAD   0.020
+MYI    plan-1         CAE   0.020
+MYI    plan-1         CAF   0.020
+MYI    plan-1         CAG   0.020
+MYI    plan-1         CAH   0.020
+MYI    plan-1         CAL   0.020
+MYI    plan-1         CAM   0.020
+MYI    plan-1         CAN   0.020
+MYI    plan-1         CAO   0.020
+MYI    plan-1         HAD   0.020
+MYI    plan-1         HAE   0.020
+MYI    plan-1         HAF   0.020
+MYI    plan-1         HAG   0.020
+MYI    plan-1        HNAI   0.020
+MYI    plan-1         NAI   0.020
+MYI    plan-1         OAJ   0.020
+MYI    plan-2         CAH   0.020
+MYI    plan-2         CAK   0.020
+MYI    plan-2         OAB   0.020
+MYI    plan-2         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MYI SMILES_CANONICAL               CACTVS 3.352                                                                 COc1ccc2[nH]cc(CC(O)=O)c2c1
+MYI           SMILES               CACTVS 3.352                                                                 COc1ccc2[nH]cc(CC(O)=O)c2c1
+MYI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                               COc1ccc2c(c1)c(c[nH]2)CC(=O)O
+MYI           SMILES "OpenEye OEToolkits" 1.7.0                                                               COc1ccc2c(c1)c(c[nH]2)CC(=O)O
+MYI            InChI                InChI  1.03 InChI=1S/C11H11NO3/c1-15-8-2-3-10-9(5-8)7(6-12-10)4-11(13)14/h2-3,5-6,12H,4H2,1H3,(H,13,14)
+MYI         InChIKey                InChI  1.03                                                                 COCNDHOPIHDTHK-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MYI acedrg               243         "dictionary generator"                  
+MYI acedrg_database      11          "data source"                           
+MYI rdkit                2017.03.2   "Chemoinformatics tool"
+MYI refmac5              5.8.0238    "optimization tool"                     

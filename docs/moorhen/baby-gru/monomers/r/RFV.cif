@@ -1,0 +1,582 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RFV     RFV      "rifamycin SV"     NON-POLYMER     99     50     .     
+#
+data_comp_RFV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RFV     C1      C       CR6     0       13.957      -12.802     77.275      
+RFV     C2      C       CR6     0       13.123      -12.102     78.190      
+RFV     C3      C       CR16    0       11.869      -11.636     77.771      
+RFV     C4      C       CR6     0       11.424      -11.845     76.486      
+RFV     C5      C       CR56    0       11.833      -12.793     74.185      
+RFV     C6      C       CR56    0       12.659      -13.477     73.310      
+RFV     C7      C       CR6     0       13.908      -13.947     73.685      
+RFV     C8      C       CR6     0       14.338      -13.730     74.984      
+RFV     C9      C       CR66    0       13.520      -13.029     75.930      
+RFV     C10     C       CR66    0       12.233      -12.548     75.523      
+RFV     C11     C       CH1     0       10.577      -12.436     73.435      
+RFV     C12     C       CT      0       10.917      -12.829     71.976      
+RFV     C13     C       CH3     0       9.848       -13.689     71.352      
+RFV     C14     C       CH3     0       14.786      -14.689     72.709      
+RFV     C15     C       C       0       14.610      -11.086     79.895      
+RFV     C16     C       C       0       14.975      -10.840     81.337      
+RFV     C17     C       C1      0       15.729      -9.798      81.765      
+RFV     C18     C       C1      0       16.049      -8.513      81.155      
+RFV     C19     C       C1      0       15.379      -7.925      80.172      
+RFV     C20     C       CH1     0       15.827      -6.756      79.334      
+RFV     C21     C       CH1     0       15.799      -7.145      77.845      
+RFV     C22     C       CH1     0       16.207      -6.043      76.837      
+RFV     C23     C       CH1     0       16.186      -6.527      75.362      
+RFV     C24     C       CH1     0       14.834      -7.096      74.851      
+RFV     C25     C       CH1     0       14.911      -7.577      73.383      
+RFV     C26     C       CH1     0       13.854      -8.643      73.025      
+RFV     C27     C       CH1     0       13.445      -8.736      71.534      
+RFV     C28     C       C1      0       12.210      -9.580      71.340      
+RFV     C29     C       C1      0       12.215      -10.902     71.224      
+RFV     C30     C       CH3     0       14.377      -11.820     82.312      
+RFV     C31     C       CH3     0       14.952      -5.542      79.622      
+RFV     C32     C       CH3     0       17.567      -5.419      77.193      
+RFV     C33     C       CH3     0       13.693      -6.086      75.058      
+RFV     C34     C       CH3     0       14.284      -10.011     73.556      
+RFV     C35     C       C       0       15.765      -5.793      71.921      
+RFV     C36     C       CH3     0       15.296      -4.849      70.869      
+RFV     C37     C       CH3     0       14.518      -8.725      69.354      
+RFV     N1      N       NH1     0       13.578      -11.873     79.514      
+RFV     O1      O       OH1     0       15.192      -13.255     77.683      
+RFV     O2      O       OH1     0       15.573      -14.189     75.389      
+RFV     O3      O       O2      0       12.128      -13.638     72.050      
+RFV     O4      O       OH1     0       10.246      -11.057     73.564      
+RFV     O5      O       O2      0       11.112      -11.693     71.078      
+RFV     O6      O       O2      0       14.541      -9.202      70.697      
+RFV     O7      O       O2      0       14.720      -6.409      72.523      
+RFV     O8      O       O       0       16.919      -5.976      72.206      
+RFV     O9      O       OH1     0       17.234      -7.483      75.180      
+RFV     O10     O       OH1     0       16.616      -8.307      77.651      
+RFV     O11     O       O       0       15.332      -10.622     79.014      
+RFV     O12     O       OH1     0       10.180      -11.358     76.163      
+RFV     H1      H       H       0       11.319      -11.173     78.381      
+RFV     H2      H       H       0       9.819       -12.982     73.773      
+RFV     H3      H       H       0       9.722       -14.488     71.890      
+RFV     H4      H       H       0       10.120      -13.942     70.454      
+RFV     H5      H       H       0       9.016       -13.190     71.310      
+RFV     H6      H       H       0       15.719      -14.441     72.842      
+RFV     H7      H       H       0       14.533      -14.471     71.794      
+RFV     H8      H       H       0       14.691      -15.650     72.843      
+RFV     H10     H       H       0       16.135      -9.908      82.609      
+RFV     H12     H       H       0       16.808      -8.077      81.507      
+RFV     H13     H       H       0       14.514      -8.252      79.995      
+RFV     H14     H       H       0       16.759      -6.537      79.586      
+RFV     H15     H       H       0       14.862      -7.401      77.637      
+RFV     H16     H       H       0       15.542      -5.319      76.913      
+RFV     H17     H       H       0       16.399      -5.741      74.797      
+RFV     H18     H       H       0       14.621      -7.883      75.404      
+RFV     H19     H       H       0       15.804      -7.966      73.214      
+RFV     H20     H       H       0       13.031      -8.407      73.518      
+RFV     H21     H       H       0       13.210      -7.825      71.234      
+RFV     H22     H       H       0       11.380      -9.140      71.299      
+RFV     H23     H       H       0       13.053      -11.329     71.233      
+RFV     H24     H       H       0       14.508      -12.723     81.985      
+RFV     H25     H       H       0       13.428      -11.646     82.406      
+RFV     H26     H       H       0       14.807      -11.728     83.176      
+RFV     H27     H       H       0       14.680      -5.543      80.557      
+RFV     H28     H       H       0       14.159      -5.568      79.059      
+RFV     H29     H       H       0       15.451      -4.728      79.436      
+RFV     H30     H       H       0       18.149      -6.096      77.578      
+RFV     H31     H       H       0       17.434      -4.704      77.840      
+RFV     H32     H       H       0       17.982      -5.055      76.392      
+RFV     H33     H       H       0       14.000      -5.195      74.814      
+RFV     H34     H       H       0       13.425      -6.089      75.993      
+RFV     H35     H       H       0       12.932      -6.329      74.504      
+RFV     H36     H       H       0       14.934      -9.901      74.271      
+RFV     H37     H       H       0       14.680      -10.538     72.842      
+RFV     H38     H       H       0       13.505      -10.477     73.903      
+RFV     H39     H       H       0       14.400      -4.540      71.080      
+RFV     H40     H       H       0       15.289      -5.299      70.009      
+RFV     H41     H       H       0       15.897      -4.087      70.828      
+RFV     H42     H       H       0       15.215      -9.167      68.843      
+RFV     H43     H       H       0       14.672      -7.766      69.349      
+RFV     H44     H       H       0       13.654      -8.917      68.956      
+RFV     H45     H       H       0       13.122      -12.280     80.136      
+RFV     H46     H       H       0       15.261      -13.735     78.395      
+RFV     H47     H       H       0       16.202      -13.630     75.568      
+RFV     H48     H       H       0       9.755       -10.948     74.242      
+RFV     H49     H       H       0       17.017      -8.241      75.495      
+RFV     H50     H       H       0       17.367      -8.241      78.039      
+RFV     H51     H       H       0       9.496       -11.575     76.638      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RFV         C12         C13      SINGLE       n     1.508  0.0100     1.508  0.0100
+RFV         C12          O5      SINGLE       n     1.446  0.0157     1.446  0.0157
+RFV         C29          O5      SINGLE       n     1.351  0.0200     1.351  0.0200
+RFV         C12          O3      SINGLE       n     1.442  0.0200     1.442  0.0200
+RFV         C11         C12      SINGLE       n     1.535  0.0159     1.535  0.0159
+RFV          C6          O3      SINGLE       n     1.375  0.0100     1.375  0.0100
+RFV         C28         C29      DOUBLE       n     1.323  0.0147     1.323  0.0147
+RFV         C11          O4      SINGLE       n     1.420  0.0200     1.420  0.0200
+RFV          C5         C11      SINGLE       n     1.506  0.0100     1.506  0.0100
+RFV          C5          C6      DOUBLE       y     1.381  0.0100     1.381  0.0100
+RFV          C6          C7      SINGLE       y     1.379  0.0100     1.379  0.0100
+RFV          C7         C14      SINGLE       n     1.505  0.0100     1.505  0.0100
+RFV         C27         C28      SINGLE       n     1.499  0.0172     1.499  0.0172
+RFV         C37          O6      SINGLE       n     1.422  0.0157     1.422  0.0157
+RFV          C5         C10      SINGLE       y     1.409  0.0100     1.409  0.0100
+RFV          C7          C8      DOUBLE       y     1.380  0.0100     1.380  0.0100
+RFV         C27          O6      SINGLE       n     1.444  0.0200     1.444  0.0200
+RFV         C26         C27      SINGLE       n     1.540  0.0120     1.540  0.0120
+RFV          C4         O12      SINGLE       n     1.374  0.0155     1.374  0.0155
+RFV          C4         C10      DOUBLE       y     1.429  0.0115     1.429  0.0115
+RFV          C9         C10      SINGLE       y     1.427  0.0100     1.427  0.0100
+RFV          C8          C9      SINGLE       y     1.426  0.0112     1.426  0.0112
+RFV          C8          O2      SINGLE       n     1.374  0.0155     1.374  0.0155
+RFV         C26         C34      SINGLE       n     1.521  0.0135     1.521  0.0135
+RFV         C25         C26      SINGLE       n     1.534  0.0116     1.534  0.0116
+RFV          C3          C4      SINGLE       y     1.371  0.0100     1.371  0.0100
+RFV          C1          C9      DOUBLE       y     1.426  0.0112     1.426  0.0112
+RFV         C35         C36      SINGLE       n     1.487  0.0164     1.487  0.0164
+RFV         C35          O8      DOUBLE       n     1.199  0.0170     1.199  0.0170
+RFV         C35          O7      SINGLE       n     1.346  0.0123     1.346  0.0123
+RFV         C25          O7      SINGLE       n     1.454  0.0123     1.454  0.0123
+RFV         C24         C25      SINGLE       n     1.539  0.0104     1.539  0.0104
+RFV          C2          C3      DOUBLE       y     1.395  0.0130     1.395  0.0130
+RFV          C1          C2      SINGLE       y     1.412  0.0165     1.412  0.0165
+RFV          C1          O1      SINGLE       n     1.374  0.0155     1.374  0.0155
+RFV          C2          N1      SINGLE       n     1.414  0.0116     1.414  0.0116
+RFV         C24         C33      SINGLE       n     1.534  0.0118     1.534  0.0118
+RFV         C23         C24      SINGLE       n     1.542  0.0135     1.542  0.0135
+RFV         C23          O9      SINGLE       n     1.424  0.0199     1.424  0.0199
+RFV         C22         C23      SINGLE       n     1.542  0.0135     1.542  0.0135
+RFV         C15          N1      SINGLE       n     1.343  0.0113     1.343  0.0113
+RFV         C15         O11      DOUBLE       n     1.228  0.0122     1.228  0.0122
+RFV         C15         C16      SINGLE       n     1.499  0.0100     1.499  0.0100
+RFV         C21         C22      SINGLE       n     1.539  0.0120     1.539  0.0120
+RFV         C22         C32      SINGLE       n     1.534  0.0118     1.534  0.0118
+RFV         C21         O10      SINGLE       n     1.426  0.0179     1.426  0.0179
+RFV         C20         C21      SINGLE       n     1.535  0.0100     1.535  0.0100
+RFV         C16         C30      SINGLE       n     1.503  0.0128     1.503  0.0128
+RFV         C16         C17      DOUBLE       n     1.342  0.0135     1.342  0.0135
+RFV         C19         C20      SINGLE       n     1.505  0.0125     1.505  0.0125
+RFV         C20         C31      SINGLE       n     1.521  0.0173     1.521  0.0173
+RFV         C18         C19      DOUBLE       n     1.325  0.0126     1.325  0.0126
+RFV         C17         C18      SINGLE       n     1.439  0.0200     1.439  0.0200
+RFV          C3          H1      SINGLE       n     1.082  0.0130     0.943  0.0168
+RFV         C11          H2      SINGLE       n     1.089  0.0100     0.993  0.0169
+RFV         C13          H3      SINGLE       n     1.089  0.0100     0.971  0.0169
+RFV         C13          H4      SINGLE       n     1.089  0.0100     0.971  0.0169
+RFV         C13          H5      SINGLE       n     1.089  0.0100     0.971  0.0169
+RFV         C14          H6      SINGLE       n     1.089  0.0100     0.975  0.0172
+RFV         C14          H7      SINGLE       n     1.089  0.0100     0.975  0.0172
+RFV         C14          H8      SINGLE       n     1.089  0.0100     0.975  0.0172
+RFV         C17         H10      SINGLE       n     1.082  0.0130     0.943  0.0196
+RFV         C18         H12      SINGLE       n     1.082  0.0130     0.943  0.0200
+RFV         C19         H13      SINGLE       n     1.082  0.0130     0.943  0.0181
+RFV         C20         H14      SINGLE       n     1.089  0.0100     0.990  0.0142
+RFV         C21         H15      SINGLE       n     1.089  0.0100     0.995  0.0200
+RFV         C22         H16      SINGLE       n     1.089  0.0100     0.988  0.0186
+RFV         C23         H17      SINGLE       n     1.089  0.0100     0.992  0.0184
+RFV         C24         H18      SINGLE       n     1.089  0.0100     0.988  0.0186
+RFV         C25         H19      SINGLE       n     1.089  0.0100     0.990  0.0148
+RFV         C26         H20      SINGLE       n     1.089  0.0100     0.989  0.0175
+RFV         C27         H21      SINGLE       n     1.089  0.0100     0.988  0.0129
+RFV         C28         H22      SINGLE       n     1.082  0.0130     0.940  0.0110
+RFV         C29         H23      SINGLE       n     1.082  0.0130     0.940  0.0112
+RFV         C30         H24      SINGLE       n     1.089  0.0100     0.969  0.0177
+RFV         C30         H25      SINGLE       n     1.089  0.0100     0.969  0.0177
+RFV         C30         H26      SINGLE       n     1.089  0.0100     0.969  0.0177
+RFV         C31         H27      SINGLE       n     1.089  0.0100     0.973  0.0141
+RFV         C31         H28      SINGLE       n     1.089  0.0100     0.973  0.0141
+RFV         C31         H29      SINGLE       n     1.089  0.0100     0.973  0.0141
+RFV         C32         H30      SINGLE       n     1.089  0.0100     0.973  0.0146
+RFV         C32         H31      SINGLE       n     1.089  0.0100     0.973  0.0146
+RFV         C32         H32      SINGLE       n     1.089  0.0100     0.973  0.0146
+RFV         C33         H33      SINGLE       n     1.089  0.0100     0.973  0.0146
+RFV         C33         H34      SINGLE       n     1.089  0.0100     0.973  0.0146
+RFV         C33         H35      SINGLE       n     1.089  0.0100     0.973  0.0146
+RFV         C34         H36      SINGLE       n     1.089  0.0100     0.973  0.0146
+RFV         C34         H37      SINGLE       n     1.089  0.0100     0.973  0.0146
+RFV         C34         H38      SINGLE       n     1.089  0.0100     0.973  0.0146
+RFV         C36         H39      SINGLE       n     1.089  0.0100     0.971  0.0140
+RFV         C36         H40      SINGLE       n     1.089  0.0100     0.971  0.0140
+RFV         C36         H41      SINGLE       n     1.089  0.0100     0.971  0.0140
+RFV         C37         H42      SINGLE       n     1.089  0.0100     0.971  0.0146
+RFV         C37         H43      SINGLE       n     1.089  0.0100     0.971  0.0146
+RFV         C37         H44      SINGLE       n     1.089  0.0100     0.971  0.0146
+RFV          N1         H45      SINGLE       n     1.016  0.0100     0.876  0.0200
+RFV          O1         H46      SINGLE       n     0.966  0.0059     0.861  0.0200
+RFV          O2         H47      SINGLE       n     0.966  0.0059     0.861  0.0200
+RFV          O4         H48      SINGLE       n     0.970  0.0120     0.844  0.0200
+RFV          O9         H49      SINGLE       n     0.970  0.0120     0.848  0.0200
+RFV         O10         H50      SINGLE       n     0.970  0.0120     0.848  0.0200
+RFV         O12         H51      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RFV          C9          C1          C2     120.602    1.68
+RFV          C9          C1          O1     118.081    2.50
+RFV          C2          C1          O1     121.317    3.00
+RFV          C3          C2          C1     119.494    1.58
+RFV          C3          C2          N1     121.753    3.00
+RFV          C1          C2          N1     118.752    2.76
+RFV          C4          C3          C2     120.266    1.50
+RFV          C4          C3          H1     119.851    1.50
+RFV          C2          C3          H1     119.883    1.50
+RFV         O12          C4         C10     118.124    2.50
+RFV         O12          C4          C3     121.360    3.00
+RFV         C10          C4          C3     120.517    1.50
+RFV         C11          C5          C6     110.404    1.65
+RFV         C11          C5         C10     128.967    2.25
+RFV          C6          C5         C10     120.630    1.50
+RFV          O3          C6          C5     114.566    1.50
+RFV          O3          C6          C7     124.588    3.00
+RFV          C5          C6          C7     120.846    1.50
+RFV          C6          C7         C14     121.438    1.50
+RFV          C6          C7          C8     118.239    1.50
+RFV         C14          C7          C8     120.323    1.50
+RFV          C7          C8          C9     121.493    1.50
+RFV          C7          C8          O2     120.871    3.00
+RFV          C9          C8          O2     117.635    2.50
+RFV         C10          C9          C8     120.139    1.50
+RFV         C10          C9          C1     119.757    1.50
+RFV          C8          C9          C1     120.103    1.63
+RFV          C5         C10          C4     121.985    1.60
+RFV          C5         C10          C9     118.652    1.50
+RFV          C4         C10          C9     119.363    1.50
+RFV         C12         C11          O4     110.722    2.96
+RFV         C12         C11          C5     103.611    1.51
+RFV         C12         C11          H2     110.594    1.50
+RFV          O4         C11          C5     112.020    1.59
+RFV          O4         C11          H2     109.436    1.50
+RFV          C5         C11          H2     110.329    1.64
+RFV         C13         C12          O5     107.760    1.73
+RFV         C13         C12          O3     108.001    1.52
+RFV         C13         C12         C11     113.745    2.48
+RFV          O5         C12          O3     109.636    2.12
+RFV          O5         C12         C11     109.403    2.79
+RFV          O3         C12         C11     104.870    1.50
+RFV         C12         C13          H3     109.365    1.50
+RFV         C12         C13          H4     109.365    1.50
+RFV         C12         C13          H5     109.365    1.50
+RFV          H3         C13          H4     109.532    1.50
+RFV          H3         C13          H5     109.532    1.50
+RFV          H4         C13          H5     109.532    1.50
+RFV          C7         C14          H6     109.855    1.50
+RFV          C7         C14          H7     109.855    1.50
+RFV          C7         C14          H8     109.855    1.50
+RFV          H6         C14          H7     109.071    1.50
+RFV          H6         C14          H8     109.071    1.50
+RFV          H7         C14          H8     109.071    1.50
+RFV          N1         C15         O11     120.900    1.88
+RFV          N1         C15         C16     118.570    3.00
+RFV         O11         C15         C16     120.530    1.50
+RFV         C15         C16         C30     114.824    2.33
+RFV         C15         C16         C17     121.762    3.00
+RFV         C30         C16         C17     123.413    1.50
+RFV         C16         C17         C18     128.659    1.50
+RFV         C16         C17         H10     116.133    1.50
+RFV         C18         C17         H10     115.208    2.90
+RFV         C19         C18         C17     124.335    1.58
+RFV         C19         C18         H12     118.935    1.50
+RFV         C17         C18         H12     116.731    2.93
+RFV         C20         C19         C18     126.728    2.96
+RFV         C20         C19         H13     116.415    1.50
+RFV         C18         C19         H13     116.857    1.85
+RFV         C21         C20         C19     112.063    3.00
+RFV         C21         C20         C31     111.290    1.50
+RFV         C21         C20         H14     107.966    1.50
+RFV         C19         C20         C31     109.455    2.23
+RFV         C19         C20         H14     108.126    1.50
+RFV         C31         C20         H14     108.191    1.50
+RFV         C22         C21         O10     109.669    1.94
+RFV         C22         C21         C20     114.575    1.50
+RFV         C22         C21         H15     107.659    1.50
+RFV         O10         C21         C20     108.225    1.99
+RFV         O10         C21         H15     108.007    1.50
+RFV         C20         C21         H15     107.784    1.50
+RFV         C23         C22         C21     112.625    1.50
+RFV         C23         C22         C32     111.031    1.54
+RFV         C23         C22         H16     107.296    1.50
+RFV         C21         C22         C32     111.031    1.54
+RFV         C21         C22         H16     107.296    1.50
+RFV         C32         C22         H16     107.070    1.50
+RFV         C24         C23          O9     109.669    1.94
+RFV         C24         C23         C22     115.460    1.50
+RFV         C24         C23         H17     107.659    1.50
+RFV          O9         C23         C22     109.669    1.94
+RFV          O9         C23         H17     108.007    1.50
+RFV         C22         C23         H17     107.659    1.50
+RFV         C25         C24         C33     110.589    1.50
+RFV         C25         C24         C23     110.273    1.50
+RFV         C25         C24         H18     107.580    1.50
+RFV         C33         C24         C23     111.031    1.54
+RFV         C33         C24         H18     107.070    1.50
+RFV         C23         C24         H18     107.296    1.50
+RFV         C26         C25          O7     107.136    1.50
+RFV         C26         C25         C24     115.331    1.81
+RFV         C26         C25         H19     108.887    1.50
+RFV          O7         C25         C24     107.136    1.50
+RFV          O7         C25         H19     108.952    1.50
+RFV         C24         C25         H19     108.887    1.50
+RFV         C27         C26         C34     110.455    2.02
+RFV         C27         C26         C25     114.414    1.50
+RFV         C27         C26         H20     107.157    1.50
+RFV         C34         C26         C25     110.589    1.50
+RFV         C34         C26         H20     107.070    1.50
+RFV         C25         C26         H20     107.580    1.50
+RFV         C28         C27          O6     110.119    1.82
+RFV         C28         C27         C26     112.809    2.71
+RFV         C28         C27         H21     107.633    1.50
+RFV          O6         C27         C26     110.708    2.25
+RFV          O6         C27         H21     107.626    1.50
+RFV         C26         C27         H21     107.676    1.50
+RFV         C29         C28         C27     122.223    2.77
+RFV         C29         C28         H22     118.899    1.50
+RFV         C27         C28         H22     118.878    1.50
+RFV          O5         C29         C28     126.459    2.96
+RFV          O5         C29         H23     116.779    1.50
+RFV         C28         C29         H23     116.762    1.50
+RFV         C16         C30         H24     109.464    1.50
+RFV         C16         C30         H25     109.464    1.50
+RFV         C16         C30         H26     109.464    1.50
+RFV         H24         C30         H25     109.342    1.50
+RFV         H24         C30         H26     109.342    1.50
+RFV         H25         C30         H26     109.342    1.50
+RFV         C20         C31         H27     109.820    1.50
+RFV         C20         C31         H28     109.820    1.50
+RFV         C20         C31         H29     109.820    1.50
+RFV         H27         C31         H28     109.411    1.50
+RFV         H27         C31         H29     109.411    1.50
+RFV         H28         C31         H29     109.411    1.50
+RFV         C22         C32         H30     109.455    1.50
+RFV         C22         C32         H31     109.455    1.50
+RFV         C22         C32         H32     109.455    1.50
+RFV         H30         C32         H31     109.411    1.50
+RFV         H30         C32         H32     109.411    1.50
+RFV         H31         C32         H32     109.411    1.50
+RFV         C24         C33         H33     109.455    1.50
+RFV         C24         C33         H34     109.455    1.50
+RFV         C24         C33         H35     109.455    1.50
+RFV         H33         C33         H34     109.411    1.50
+RFV         H33         C33         H35     109.411    1.50
+RFV         H34         C33         H35     109.411    1.50
+RFV         C26         C34         H36     109.455    1.50
+RFV         C26         C34         H37     109.455    1.50
+RFV         C26         C34         H38     109.455    1.50
+RFV         H36         C34         H37     109.411    1.50
+RFV         H36         C34         H38     109.411    1.50
+RFV         H37         C34         H38     109.411    1.50
+RFV         C36         C35          O8     125.639    2.23
+RFV         C36         C35          O7     111.151    1.50
+RFV          O8         C35          O7     123.209    1.50
+RFV         C35         C36         H39     109.509    1.50
+RFV         C35         C36         H40     109.509    1.50
+RFV         C35         C36         H41     109.509    1.50
+RFV         H39         C36         H40     109.424    1.50
+RFV         H39         C36         H41     109.424    1.50
+RFV         H40         C36         H41     109.424    1.50
+RFV          O6         C37         H42     109.461    1.50
+RFV          O6         C37         H43     109.461    1.50
+RFV          O6         C37         H44     109.461    1.50
+RFV         H42         C37         H43     109.532    1.53
+RFV         H42         C37         H44     109.532    1.53
+RFV         H43         C37         H44     109.532    1.53
+RFV          C2          N1         C15     127.371    2.72
+RFV          C2          N1         H45     116.379    2.05
+RFV         C15          N1         H45     116.250    2.52
+RFV          C1          O1         H46     120.000    3.00
+RFV          C8          O2         H47     120.000    3.00
+RFV         C12          O3          C6     105.603    1.50
+RFV         C11          O4         H48     109.349    2.27
+RFV         C12          O5         C29     116.971    1.50
+RFV         C37          O6         C27     113.343    1.90
+RFV         C35          O7         C25     118.648    1.50
+RFV         C23          O9         H49     110.295    3.00
+RFV         C21         O10         H50     110.295    3.00
+RFV          C4         O12         H51     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RFV              const_44          O1          C1          C2          N1       0.000    10.0     2
+RFV            sp2_sp2_15          C9          C1          O1         H46     180.000     5.0     2
+RFV       const_sp2_sp2_3          O1          C1          C9         C10     180.000     5.0     2
+RFV             sp3_sp3_5          O4         C11         C12         C13     -60.000    10.0     3
+RFV            sp3_sp3_25         C12         C11          O4         H48     180.000    10.0     3
+RFV            sp3_sp3_13          O5         C12         C13          H3     180.000    10.0     3
+RFV            sp3_sp3_11         C13         C12          O3          C6     180.000    10.0     3
+RFV            sp3_sp3_22         C13         C12          O5         C29     180.000    10.0     3
+RFV            sp2_sp2_26          N1         C15         C16         C30       0.000     5.0     2
+RFV            sp2_sp2_23         O11         C15          N1          C2       0.000     5.0     2
+RFV            sp2_sp2_31         C15         C16         C17         C18       0.000     5.0     2
+RFV            sp2_sp3_25         C15         C16         C30         H24       0.000    10.0     6
+RFV            sp2_sp2_37         C16         C17         C18         C19     180.000     5.0     2
+RFV            sp2_sp2_33         C17         C18         C19         C20     180.000     5.0     2
+RFV            sp2_sp3_31         C18         C19         C20         C21       0.000    10.0     6
+RFV           sp3_sp3_124         C19         C20         C21         C22     180.000    10.0     3
+RFV           sp3_sp3_133         C21         C20         C31         H27     180.000    10.0     3
+RFV              const_19          N1          C2          C3          C4     180.000    10.0     2
+RFV            sp2_sp2_17          C3          C2          N1         C15     180.000     5.0     2
+RFV           sp3_sp3_103         O10         C21         C22         C23     180.000    10.0     3
+RFV           sp3_sp3_121         C22         C21         O10         H50     180.000    10.0     3
+RFV            sp3_sp3_94         C21         C22         C23         C24     180.000    10.0     3
+RFV           sp3_sp3_112         C23         C22         C32         H30     180.000    10.0     3
+RFV            sp3_sp3_82          O9         C23         C24         C25     180.000    10.0     3
+RFV            sp3_sp3_91         C24         C23          O9         H49     180.000    10.0     3
+RFV            sp3_sp3_64         C33         C24         C25         C26     180.000    10.0     3
+RFV            sp3_sp3_73         C25         C24         C33         H33     180.000    10.0     3
+RFV            sp3_sp3_52          O7         C25         C26         C27     180.000    10.0     3
+RFV            sp3_sp3_61         C26         C25          O7         C35     180.000    10.0     3
+RFV            sp3_sp3_34         C34         C26         C27         C28     180.000    10.0     3
+RFV            sp3_sp3_43         C27         C26         C34         H36     180.000    10.0     3
+RFV            sp2_sp3_13         C29         C28         C27          O6       0.000    10.0     6
+RFV            sp3_sp3_31         C28         C27          O6         C37     180.000    10.0     3
+RFV             sp2_sp2_5         C27         C28         C29          O5     180.000     5.0     2
+RFV             sp2_sp2_3         C28         C29          O5         C12     180.000     5.0     2
+RFV              const_14          C2          C3          C4         O12     180.000    10.0     2
+RFV            sp2_sp3_19          O8         C35         C36         H39       0.000    10.0     6
+RFV            sp2_sp2_13         C36         C35          O7         C25     180.000     5.0     2
+RFV            sp3_sp3_28         H42         C37          O6         C27     180.000    10.0     3
+RFV             sp2_sp2_9         C10          C4         O12         H51     180.000     5.0     2
+RFV              const_12          C5         C10          C4         O12       0.000    10.0     2
+RFV             sp2_sp3_2          C6          C5         C11          O4     120.000    10.0     6
+RFV              const_21         C11          C5          C6          O3       0.000    10.0     2
+RFV              const_40          C4         C10          C5         C11       0.000    10.0     2
+RFV             sp2_sp2_1          C5          C6          O3         C12       0.000     5.0     2
+RFV              const_28          O3          C6          C7         C14       0.000    10.0     2
+RFV             sp2_sp3_7          C6          C7         C14          H6     150.000    10.0     6
+RFV              const_32         C14          C7          C8          O2       0.000    10.0     2
+RFV            sp2_sp2_11          C7          C8          O2         H47     180.000     5.0     2
+RFV              const_35          O2          C8          C9         C10     180.000    10.0     2
+RFV       const_sp2_sp2_5          C5         C10          C9          C8       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RFV    chir_1    C11    O4    C12    C5    negative
+RFV    chir_2    C12    O3    O5    C11    positive
+RFV    chir_3    C20    C21    C19    C31    positive
+RFV    chir_4    C21    O10    C22    C20    positive
+RFV    chir_5    C22    C23    C21    C32    negative
+RFV    chir_6    C23    O9    C24    C22    negative
+RFV    chir_7    C24    C25    C23    C33    negative
+RFV    chir_8    C25    O7    C26    C24    positive
+RFV    chir_9    C26    C25    C27    C34    negative
+RFV    chir_10    C27    O6    C28    C26    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RFV    plan-1          C1   0.020
+RFV    plan-1         C10   0.020
+RFV    plan-1         C11   0.020
+RFV    plan-1         C14   0.020
+RFV    plan-1          C2   0.020
+RFV    plan-1          C3   0.020
+RFV    plan-1          C4   0.020
+RFV    plan-1          C5   0.020
+RFV    plan-1          C6   0.020
+RFV    plan-1          C7   0.020
+RFV    plan-1          C8   0.020
+RFV    plan-1          C9   0.020
+RFV    plan-1          H1   0.020
+RFV    plan-1          N1   0.020
+RFV    plan-1          O1   0.020
+RFV    plan-1         O12   0.020
+RFV    plan-1          O2   0.020
+RFV    plan-1          O3   0.020
+RFV    plan-2         C15   0.020
+RFV    plan-2         C16   0.020
+RFV    plan-2          N1   0.020
+RFV    plan-2         O11   0.020
+RFV    plan-3         C15   0.020
+RFV    plan-3         C16   0.020
+RFV    plan-3         C17   0.020
+RFV    plan-3         C30   0.020
+RFV    plan-4         C16   0.020
+RFV    plan-4         C17   0.020
+RFV    plan-4         C18   0.020
+RFV    plan-4         H10   0.020
+RFV    plan-5         C17   0.020
+RFV    plan-5         C18   0.020
+RFV    plan-5         C19   0.020
+RFV    plan-5         H12   0.020
+RFV    plan-6         C18   0.020
+RFV    plan-6         C19   0.020
+RFV    plan-6         C20   0.020
+RFV    plan-6         H13   0.020
+RFV    plan-7         C27   0.020
+RFV    plan-7         C28   0.020
+RFV    plan-7         C29   0.020
+RFV    plan-7         H22   0.020
+RFV    plan-8         C28   0.020
+RFV    plan-8         C29   0.020
+RFV    plan-8         H23   0.020
+RFV    plan-8          O5   0.020
+RFV    plan-9         C35   0.020
+RFV    plan-9         C36   0.020
+RFV    plan-9          O7   0.020
+RFV    plan-9          O8   0.020
+RFV   plan-10         C15   0.020
+RFV   plan-10          C2   0.020
+RFV   plan-10         H45   0.020
+RFV   plan-10          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RFV           SMILES              ACDLabs 12.01                                                                                                                                                                                                         O=C(OC4C(C)C(OC)C=COC3(Oc2c(c(O)c1c(O)c(cc(O)c1c2C3O)NC(=O)C(=CC=CC(C)C(O)C(C)C(O)C4C)C)C)C)C
+RFV            InChI                InChI  1.03 InChI=1S/C37H49NO12/c1-16-11-10-12-17(2)36(46)38-23-15-24(40)26-27(32(23)44)31(43)21(6)34-28(26)35(45)37(8,50-34)48-14-13-25(47-9)18(3)33(49-22(7)39)20(5)30(42)19(4)29(16)41/h10-16,18-20,25,29-30,33,35,40-45H,1-9H3,(H,38,46)/b11-10+,14-13+,17-12-/t16-,18+,19+,20+,25-,29-,30+,33+,35+,37-/m0/s1
+RFV         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                           OUOULRWGQDSKTQ-ZVFQNIRDSA-N
+RFV SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                        CO[C@H]1/C=C/O[C@@]2(C)Oc3c(C)c(O)c4c(O)c(NC(=O)\C(=C/C=C/[C@H](C)[C@H](O)[C@@H](C)[C@@H](O)[C@@H](C)[C@H](OC(C)=O)[C@@H]1C)C)cc(O)c4c3[C@H]2O
+RFV           SMILES               CACTVS 3.385                                                                                                                                                                            CO[CH]1C=CO[C]2(C)Oc3c(C)c(O)c4c(O)c(NC(=O)C(=CC=C[CH](C)[CH](O)[CH](C)[CH](O)[CH](C)[CH](OC(C)=O)[CH]1C)C)cc(O)c4c3[CH]2O
+RFV SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                      Cc1c(c2c3c(cc(c2O)NC(=O)C(=C/C=C/[C@@H]([C@@H]([C@H]([C@H]([C@H]([C@@H]([C@@H]([C@H](/C=C/O[C@@]4([C@@H](c3c1O4)O)C)OC)C)OC(=O)C)C)O)C)O)C)C)O)O
+RFV           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                       Cc1c(c2c3c(cc(c2O)NC(=O)C(=CC=CC(C(C(C(C(C(C(C(C=COC4(C(c3c1O4)O)C)OC)C)OC(=O)C)C)O)C)O)C)C)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RFV acedrg               243         "dictionary generator"                  
+RFV acedrg_database      11          "data source"                           
+RFV rdkit                2017.03.2   "Chemoinformatics tool"
+RFV refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,272 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FOF     FOF      (2E,6E)-3,7,11-trimethyldodeca-2,6,10-trien-1-ol     NON-POLYMER     42     16     .     
+#
+data_comp_FOF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FOF     C1      C       CH3     0       41.518      38.141      25.365      
+FOF     C2      C       C       0       40.247      37.339      25.308      
+FOF     C3      C       CH3     0       39.101      38.062      24.656      
+FOF     C4      C       C1      0       40.166      36.100      25.782      
+FOF     C5      C       CH2     0       38.986      35.171      25.832      
+FOF     C6      C       CH2     0       38.326      35.124      27.200      
+FOF     C7      C       C       0       37.684      36.416      27.631      
+FOF     C8      C       CH3     0       36.260      36.591      27.180      
+FOF     C9      C       C1      0       38.361      37.311      28.351      
+FOF     C10     C       CH2     0       37.895      38.628      28.898      
+FOF     C11     C       CH2     0       37.072      38.472      30.162      
+FOF     C12     C       C       0       36.470      39.759      30.654      
+FOF     C13     C       CH3     0       37.201      40.406      31.800      
+FOF     C14     C       C1      0       35.367      40.252      30.092      
+FOF     C15     C       CH2     0       34.646      41.500      30.475      
+FOF     O1      O       OH1     0       34.097      41.400      31.785      
+FOF     H1      H       H       0       42.189      37.664      25.880      
+FOF     H2      H       H       0       41.343      38.999      25.786      
+FOF     H3      H       H       0       41.850      38.288      24.465      
+FOF     H4      H       H       0       38.259      37.750      25.023      
+FOF     H5      H       H       0       39.115      37.897      23.698      
+FOF     H6      H       H       0       39.182      39.017      24.816      
+FOF     H7      H       H       0       40.965      35.744      26.139      
+FOF     H8      H       H       0       39.286      34.269      25.598      
+FOF     H9      H       H       0       38.323      35.443      25.167      
+FOF     H10     H       H       0       38.999      34.869      27.864      
+FOF     H11     H       H       0       37.645      34.421      27.194      
+FOF     H12     H       H       0       35.861      37.357      27.621      
+FOF     H13     H       H       0       35.749      35.795      27.400      
+FOF     H14     H       H       0       36.240      36.728      26.218      
+FOF     H15     H       H       0       39.261      37.094      28.545      
+FOF     H16     H       H       0       37.357      39.087      28.221      
+FOF     H17     H       H       0       38.674      39.188      29.093      
+FOF     H18     H       H       0       37.641      38.097      30.865      
+FOF     H19     H       H       0       36.351      37.832      29.992      
+FOF     H20     H       H       0       36.869      41.305      31.947      
+FOF     H21     H       H       0       38.150      40.446      31.596      
+FOF     H22     H       H       0       37.069      39.879      32.606      
+FOF     H23     H       H       0       34.999      39.760      29.374      
+FOF     H24     H       H       0       33.919      41.661      29.824      
+FOF     H25     H       H       0       35.279      42.259      30.440      
+FOF     H26     H       H       0       33.456      40.845      31.764      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FOF          C1          C2      SINGLE       n     1.499  0.0156     1.499  0.0156
+FOF          C2          C3      SINGLE       n     1.499  0.0156     1.499  0.0156
+FOF          C2          C4      DOUBLE       n     1.324  0.0100     1.324  0.0100
+FOF          C4          C5      SINGLE       n     1.498  0.0141     1.498  0.0141
+FOF          C5          C6      SINGLE       n     1.516  0.0200     1.516  0.0200
+FOF          C6          C7      SINGLE       n     1.503  0.0104     1.503  0.0104
+FOF          C7          C8      SINGLE       n     1.499  0.0156     1.499  0.0156
+FOF          C7          C9      DOUBLE       n     1.330  0.0100     1.330  0.0100
+FOF          C9         C10      SINGLE       n     1.498  0.0141     1.498  0.0141
+FOF         C14         C15      SINGLE       n     1.488  0.0200     1.488  0.0200
+FOF         C15          O1      SINGLE       n     1.424  0.0100     1.424  0.0100
+FOF         C10         C11      SINGLE       n     1.516  0.0200     1.516  0.0200
+FOF         C12         C14      DOUBLE       n     1.329  0.0100     1.329  0.0100
+FOF         C12         C13      SINGLE       n     1.499  0.0156     1.499  0.0156
+FOF         C11         C12      SINGLE       n     1.503  0.0104     1.503  0.0104
+FOF          C1          H1      SINGLE       n     1.089  0.0100     0.971  0.0140
+FOF          C1          H2      SINGLE       n     1.089  0.0100     0.971  0.0140
+FOF          C1          H3      SINGLE       n     1.089  0.0100     0.971  0.0140
+FOF          C3          H4      SINGLE       n     1.089  0.0100     0.971  0.0140
+FOF          C3          H5      SINGLE       n     1.089  0.0100     0.971  0.0140
+FOF          C3          H6      SINGLE       n     1.089  0.0100     0.971  0.0140
+FOF          C4          H7      SINGLE       n     1.082  0.0130     0.945  0.0200
+FOF          C5          H8      SINGLE       n     1.089  0.0100     0.979  0.0159
+FOF          C5          H9      SINGLE       n     1.089  0.0100     0.979  0.0159
+FOF          C6         H10      SINGLE       n     1.089  0.0100     0.979  0.0159
+FOF          C6         H11      SINGLE       n     1.089  0.0100     0.979  0.0159
+FOF          C8         H12      SINGLE       n     1.089  0.0100     0.971  0.0140
+FOF          C8         H13      SINGLE       n     1.089  0.0100     0.971  0.0140
+FOF          C8         H14      SINGLE       n     1.089  0.0100     0.971  0.0140
+FOF          C9         H15      SINGLE       n     1.082  0.0130     0.945  0.0200
+FOF         C10         H16      SINGLE       n     1.089  0.0100     0.979  0.0159
+FOF         C10         H17      SINGLE       n     1.089  0.0100     0.979  0.0159
+FOF         C11         H18      SINGLE       n     1.089  0.0100     0.979  0.0159
+FOF         C11         H19      SINGLE       n     1.089  0.0100     0.979  0.0159
+FOF         C13         H20      SINGLE       n     1.089  0.0100     0.971  0.0140
+FOF         C13         H21      SINGLE       n     1.089  0.0100     0.971  0.0140
+FOF         C13         H22      SINGLE       n     1.089  0.0100     0.971  0.0140
+FOF         C14         H23      SINGLE       n     1.082  0.0130     0.945  0.0200
+FOF         C15         H24      SINGLE       n     1.089  0.0100     0.989  0.0200
+FOF         C15         H25      SINGLE       n     1.089  0.0100     0.989  0.0200
+FOF          O1         H26      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FOF          C2          C1          H1     109.600    1.50
+FOF          C2          C1          H2     109.600    1.50
+FOF          C2          C1          H3     109.600    1.50
+FOF          H1          C1          H2     109.342    1.50
+FOF          H1          C1          H3     109.342    1.50
+FOF          H2          C1          H3     109.342    1.50
+FOF          C1          C2          C3     114.618    1.50
+FOF          C1          C2          C4     122.691    1.63
+FOF          C3          C2          C4     122.691    1.63
+FOF          C2          C3          H4     109.600    1.50
+FOF          C2          C3          H5     109.600    1.50
+FOF          C2          C3          H6     109.600    1.50
+FOF          H4          C3          H5     109.342    1.50
+FOF          H4          C3          H6     109.342    1.50
+FOF          H5          C3          H6     109.342    1.50
+FOF          C2          C4          C5     128.282    1.50
+FOF          C2          C4          H7     116.082    1.50
+FOF          C5          C4          H7     115.635    1.60
+FOF          C4          C5          C6     112.751    2.50
+FOF          C4          C5          H8     109.181    1.50
+FOF          C4          C5          H9     109.181    1.50
+FOF          C6          C5          H8     109.013    1.50
+FOF          C6          C5          H9     109.013    1.50
+FOF          H8          C5          H9     107.922    1.50
+FOF          C5          C6          C7     113.520    2.62
+FOF          C5          C6         H10     108.867    1.50
+FOF          C5          C6         H11     108.867    1.50
+FOF          C7          C6         H10     108.816    1.50
+FOF          C7          C6         H11     108.816    1.50
+FOF         H10          C6         H11     107.710    1.94
+FOF          C6          C7          C8     115.131    1.50
+FOF          C6          C7          C9     121.188    1.50
+FOF          C8          C7          C9     123.681    1.50
+FOF          C7          C8         H12     109.541    1.50
+FOF          C7          C8         H13     109.541    1.50
+FOF          C7          C8         H14     109.541    1.50
+FOF         H12          C8         H13     109.342    1.50
+FOF         H12          C8         H14     109.342    1.50
+FOF         H13          C8         H14     109.342    1.50
+FOF          C7          C9         C10     128.114    1.50
+FOF          C7          C9         H15     116.261    1.50
+FOF         C10          C9         H15     115.635    1.60
+FOF          C9         C10         C11     112.751    2.50
+FOF          C9         C10         H16     109.181    1.50
+FOF          C9         C10         H17     109.181    1.50
+FOF         C11         C10         H16     109.013    1.50
+FOF         C11         C10         H17     109.013    1.50
+FOF         H16         C10         H17     107.922    1.50
+FOF         C10         C11         C12     113.520    2.62
+FOF         C10         C11         H18     108.867    1.50
+FOF         C10         C11         H19     108.867    1.50
+FOF         C12         C11         H18     108.816    1.50
+FOF         C12         C11         H19     108.816    1.50
+FOF         H18         C11         H19     107.710    1.94
+FOF         C14         C12         C13     123.007    1.73
+FOF         C14         C12         C11     121.607    1.82
+FOF         C13         C12         C11     115.386    1.50
+FOF         C12         C13         H20     109.541    1.50
+FOF         C12         C13         H21     109.541    1.50
+FOF         C12         C13         H22     109.541    1.50
+FOF         H20         C13         H21     109.342    1.50
+FOF         H20         C13         H22     109.342    1.50
+FOF         H21         C13         H22     109.342    1.50
+FOF         C15         C14         C12     124.396    3.00
+FOF         C15         C14         H23     118.040    2.26
+FOF         C12         C14         H23     117.563    1.50
+FOF         C14         C15          O1     111.028    2.17
+FOF         C14         C15         H24     108.499    2.46
+FOF         C14         C15         H25     108.499    2.46
+FOF          O1         C15         H24     109.296    1.54
+FOF          O1         C15         H25     109.296    1.54
+FOF         H24         C15         H25     108.641    1.50
+FOF         C15          O1         H26     108.330    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FOF             sp2_sp3_1          C3          C2          C1          H1       0.000    10.0     6
+FOF            sp2_sp3_50         C14         C12         C11         C10     120.000    10.0     6
+FOF            sp2_sp3_43         C14         C12         C13         H20       0.000    10.0     6
+FOF            sp2_sp2_11         C13         C12         C14         C15       0.000     5.0     2
+FOF            sp2_sp3_38         C12         C14         C15          O1     120.000    10.0     6
+FOF            sp3_sp3_10         C14         C15          O1         H26     180.000    10.0     3
+FOF             sp2_sp3_7          C1          C2          C3          H4       0.000    10.0     6
+FOF             sp2_sp2_1          C1          C2          C4          C5     180.000     5.0     2
+FOF            sp2_sp3_14          C2          C4          C5          C6     120.000    10.0     6
+FOF             sp3_sp3_1          C4          C5          C6          C7     180.000    10.0     3
+FOF            sp2_sp3_20          C8          C7          C6          C5     120.000    10.0     6
+FOF            sp2_sp3_25          C6          C7          C8         H12       0.000    10.0     6
+FOF             sp2_sp2_5          C6          C7          C9         C10     180.000     5.0     2
+FOF            sp2_sp3_32          C7          C9         C10         C11     120.000    10.0     6
+FOF            sp3_sp3_13          C9         C10         C11         C12     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FOF    plan-1          C1   0.020
+FOF    plan-1          C2   0.020
+FOF    plan-1          C3   0.020
+FOF    plan-1          C4   0.020
+FOF    plan-2          C2   0.020
+FOF    plan-2          C4   0.020
+FOF    plan-2          C5   0.020
+FOF    plan-2          H7   0.020
+FOF    plan-3          C6   0.020
+FOF    plan-3          C7   0.020
+FOF    plan-3          C8   0.020
+FOF    plan-3          C9   0.020
+FOF    plan-4         C10   0.020
+FOF    plan-4          C7   0.020
+FOF    plan-4          C9   0.020
+FOF    plan-4         H15   0.020
+FOF    plan-5         C11   0.020
+FOF    plan-5         C12   0.020
+FOF    plan-5         C13   0.020
+FOF    plan-5         C14   0.020
+FOF    plan-6         C12   0.020
+FOF    plan-6         C14   0.020
+FOF    plan-6         C15   0.020
+FOF    plan-6         H23   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FOF           SMILES              ACDLabs 12.01                                                                      C\C(=C\CC\C(=C\CCC(C)=[C@H]CO)C)C
+FOF            InChI                InChI  1.03 InChI=1S/C15H26O/c1-13(2)7-5-8-14(3)9-6-10-15(4)11-12-16/h7,9,11,16H,5-6,8,10,12H2,1-4H3/b14-9+,15-11+
+FOF         InChIKey                InChI  1.03                                                                            CRDAMVZIKSXKFV-YFVJMOTDSA-N
+FOF SMILES_CANONICAL               CACTVS 3.385                                                                          CC(C)=CCC\C(C)=C\CC/C(C)=C/CO
+FOF           SMILES               CACTVS 3.385                                                                              CC(C)=CCCC(C)=CCCC(C)=CCO
+FOF SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                        CC(=CCC/C(=C/CC/C(=C/CO)/C)/C)C
+FOF           SMILES "OpenEye OEToolkits" 2.0.7                                                                              CC(=CCCC(=CCCC(=CCO)C)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FOF acedrg               243         "dictionary generator"                  
+FOF acedrg_database      11          "data source"                           
+FOF rdkit                2017.03.2   "Chemoinformatics tool"
+FOF refmac5              5.8.0238    "optimization tool"                     

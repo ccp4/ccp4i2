@@ -1,0 +1,315 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+B9R     B9R      N-[(2S)-1-hydroxy-3-(1H-indol-3-yl)propan-2-yl]-N~2~-methyl-L-valinamide     NON-POLYMER     47     22     .     
+#
+data_comp_B9R
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+B9R     N       N       NT1     0       47.402      84.366      130.334     
+B9R     CA      C       CH1     0       47.646      84.304      128.881     
+B9R     C       C       C       0       48.425      85.517      128.373     
+B9R     O       O       O       0       49.326      85.356      127.551     
+B9R     CB      C       CH1     0       46.334      84.082      128.089     
+B9R     CG1     C       CH3     0       46.602      83.818      126.612     
+B9R     CG2     C       CH3     0       45.343      85.229      128.259     
+B9R     CAA     C       CR16    0       43.308      88.264      129.370     
+B9R     CAB     C       CR16    0       42.564      88.368      128.191     
+B9R     CAC     C       CR16    0       43.156      88.705      126.992     
+B9R     CAD     C       CR56    0       44.534      88.940      126.999     
+B9R     CAE     C       CR56    0       45.307      88.843      128.178     
+B9R     CAF     C       CR16    0       44.669      88.496      129.378     
+B9R     CAH     C       CR15    0       46.651      89.406      126.475     
+B9R     CAI     C       CR5     0       46.666      89.148      127.815     
+B9R     CAJ     C       CH2     0       47.854      89.169      128.727     
+B9R     CAK     C       CH1     0       48.793      87.964      128.564     
+B9R     CAL     C       CH2     0       50.012      88.117      129.466     
+B9R     CAU     C       CH3     0       48.578      84.097      131.166     
+B9R     NAG     N       NR5     0       45.381      89.286      125.979     
+B9R     NAM     N       NH1     0       48.100      86.719      128.875     
+B9R     OAV     O       OH1     0       49.669      88.040      130.839     
+B9R     H1      H       H       0       46.783      83.762      130.545     
+B9R     H3      H       H       0       48.215      83.512      128.708     
+B9R     H4      H       H       0       45.903      83.270      128.454     
+B9R     H5      H       H       0       47.410      83.285      126.516     
+B9R     H6      H       H       0       46.717      84.663      126.142     
+B9R     H7      H       H       0       45.850      83.335      126.227     
+B9R     H8      H       H       0       45.292      85.484      129.196     
+B9R     H9      H       H       0       44.464      84.944      127.955     
+B9R     H10     H       H       0       45.633      85.993      127.732     
+B9R     H11     H       H       0       42.871      88.031      130.173     
+B9R     H12     H       H       0       41.638      88.204      128.215     
+B9R     H13     H       H       0       42.654      88.775      126.198     
+B9R     H14     H       H       0       45.163      88.424      130.179     
+B9R     H15     H       H       0       47.407      89.638      125.957     
+B9R     H16     H       H       0       47.539      89.198      129.657     
+B9R     H17     H       H       0       48.366      89.990      128.561     
+B9R     H18     H       H       0       49.105      87.936      127.627     
+B9R     H19     H       H       0       50.438      88.983      129.287     
+B9R     H20     H       H       0       50.660      87.412      129.254     
+B9R     H21     H       H       0       48.318      84.055      132.107     
+B9R     H22     H       H       0       49.240      84.806      131.053     
+B9R     H23     H       H       0       48.980      83.243      130.912     
+B9R     H24     H       H       0       45.149      89.410      125.142     
+B9R     H25     H       H       0       47.427      86.782      129.426     
+B9R     H26     H       H       0       50.337      88.285      131.298     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+B9R          CB         CG1      SINGLE       n     1.521  0.0135     1.521  0.0135
+B9R         CAH         NAG      SINGLE       y     1.369  0.0100     1.369  0.0100
+B9R         CAD         NAG      SINGLE       y     1.370  0.0100     1.370  0.0100
+B9R         CAH         CAI      DOUBLE       y     1.365  0.0100     1.365  0.0100
+B9R         CAC         CAD      DOUBLE       y     1.394  0.0100     1.394  0.0100
+B9R         CAB         CAC      SINGLE       y     1.376  0.0100     1.376  0.0100
+B9R           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+B9R         CAD         CAE      SINGLE       y     1.411  0.0100     1.411  0.0100
+B9R          CB         CG2      SINGLE       n     1.521  0.0135     1.521  0.0135
+B9R          CA          CB      SINGLE       n     1.543  0.0100     1.543  0.0100
+B9R         CAE         CAI      SINGLE       y     1.439  0.0100     1.439  0.0100
+B9R         CAI         CAJ      SINGLE       n     1.498  0.0100     1.498  0.0100
+B9R         CAA         CAB      DOUBLE       y     1.394  0.0106     1.394  0.0106
+B9R          CA           C      SINGLE       n     1.524  0.0100     1.524  0.0100
+B9R           C         NAM      SINGLE       n     1.337  0.0102     1.337  0.0102
+B9R         CAE         CAF      DOUBLE       y     1.399  0.0100     1.399  0.0100
+B9R           N          CA      SINGLE       n     1.468  0.0128     1.468  0.0128
+B9R         CAK         NAM      SINGLE       n     1.455  0.0100     1.455  0.0100
+B9R         CAJ         CAK      SINGLE       n     1.535  0.0118     1.535  0.0118
+B9R         CAK         CAL      SINGLE       n     1.523  0.0136     1.523  0.0136
+B9R         CAA         CAF      SINGLE       y     1.377  0.0100     1.377  0.0100
+B9R         CAL         OAV      SINGLE       n     1.417  0.0200     1.417  0.0200
+B9R           N         CAU      SINGLE       n     1.463  0.0141     1.463  0.0141
+B9R           N          H1      SINGLE       n     1.036  0.0160     0.890  0.0200
+B9R          CA          H3      SINGLE       n     1.089  0.0100     0.990  0.0200
+B9R          CB          H4      SINGLE       n     1.089  0.0100     0.989  0.0175
+B9R         CG1          H5      SINGLE       n     1.089  0.0100     0.973  0.0146
+B9R         CG1          H6      SINGLE       n     1.089  0.0100     0.973  0.0146
+B9R         CG1          H7      SINGLE       n     1.089  0.0100     0.973  0.0146
+B9R         CG2          H8      SINGLE       n     1.089  0.0100     0.973  0.0146
+B9R         CG2          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+B9R         CG2         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+B9R         CAA         H11      SINGLE       n     1.082  0.0130     0.944  0.0181
+B9R         CAB         H12      SINGLE       n     1.082  0.0130     0.941  0.0181
+B9R         CAC         H13      SINGLE       n     1.082  0.0130     0.942  0.0188
+B9R         CAF         H14      SINGLE       n     1.082  0.0130     0.944  0.0200
+B9R         CAH         H15      SINGLE       n     1.082  0.0130     0.945  0.0191
+B9R         CAJ         H16      SINGLE       n     1.089  0.0100     0.982  0.0147
+B9R         CAJ         H17      SINGLE       n     1.089  0.0100     0.982  0.0147
+B9R         CAK         H18      SINGLE       n     1.089  0.0100     0.988  0.0127
+B9R         CAL         H19      SINGLE       n     1.089  0.0100     0.981  0.0174
+B9R         CAL         H20      SINGLE       n     1.089  0.0100     0.981  0.0174
+B9R         CAU         H21      SINGLE       n     1.089  0.0100     0.977  0.0113
+B9R         CAU         H22      SINGLE       n     1.089  0.0100     0.977  0.0113
+B9R         CAU         H23      SINGLE       n     1.089  0.0100     0.977  0.0113
+B9R         NAG         H24      SINGLE       n     1.016  0.0100     0.877  0.0200
+B9R         NAM         H25      SINGLE       n     1.016  0.0100     0.872  0.0200
+B9R         OAV         H26      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+B9R          CA           N         CAU     112.615    2.70
+B9R          CA           N          H1     106.958    3.00
+B9R         CAU           N          H1     108.144    3.00
+B9R          CB          CA           C     111.464    1.50
+B9R          CB          CA           N     111.154    1.91
+B9R          CB          CA          H3     107.774    1.50
+B9R           C          CA           N     112.148    1.50
+B9R           C          CA          H3     107.690    1.50
+B9R           N          CA          H3     108.712    1.50
+B9R           O           C          CA     120.387    1.50
+B9R           O           C         NAM     122.945    1.50
+B9R          CA           C         NAM     116.668    1.50
+B9R         CG1          CB         CG2     110.676    1.50
+B9R         CG1          CB          CA     111.317    1.50
+B9R         CG1          CB          H4     107.603    1.50
+B9R         CG2          CB          CA     111.317    1.50
+B9R         CG2          CB          H4     107.603    1.50
+B9R          CA          CB          H4     107.640    1.50
+B9R          CB         CG1          H5     109.507    1.50
+B9R          CB         CG1          H6     109.507    1.50
+B9R          CB         CG1          H7     109.507    1.50
+B9R          H5         CG1          H6     109.411    1.50
+B9R          H5         CG1          H7     109.411    1.50
+B9R          H6         CG1          H7     109.411    1.50
+B9R          CB         CG2          H8     109.507    1.50
+B9R          CB         CG2          H9     109.507    1.50
+B9R          CB         CG2         H10     109.507    1.50
+B9R          H8         CG2          H9     109.411    1.50
+B9R          H8         CG2         H10     109.411    1.50
+B9R          H9         CG2         H10     109.411    1.50
+B9R         CAB         CAA         CAF     121.212    1.50
+B9R         CAB         CAA         H11     119.316    1.50
+B9R         CAF         CAA         H11     119.471    1.50
+B9R         CAC         CAB         CAA     121.628    1.50
+B9R         CAC         CAB         H12     119.132    1.50
+B9R         CAA         CAB         H12     119.240    1.50
+B9R         CAD         CAC         CAB     117.385    1.50
+B9R         CAD         CAC         H13     121.137    1.50
+B9R         CAB         CAC         H13     121.477    1.50
+B9R         NAG         CAD         CAC     130.294    1.50
+B9R         NAG         CAD         CAE     107.455    1.50
+B9R         CAC         CAD         CAE     122.250    1.50
+B9R         CAD         CAE         CAI     106.987    1.50
+B9R         CAD         CAE         CAF     118.706    1.50
+B9R         CAI         CAE         CAF     134.307    1.50
+B9R         CAE         CAF         CAA     118.817    1.50
+B9R         CAE         CAF         H14     120.505    1.50
+B9R         CAA         CAF         H14     120.678    1.50
+B9R         NAG         CAH         CAI     110.404    1.50
+B9R         NAG         CAH         H15     124.437    1.50
+B9R         CAI         CAH         H15     125.159    1.59
+B9R         CAH         CAI         CAE     106.112    1.50
+B9R         CAH         CAI         CAJ     127.068    1.62
+B9R         CAE         CAI         CAJ     126.820    1.50
+B9R         CAI         CAJ         CAK     114.435    1.50
+B9R         CAI         CAJ         H16     109.029    1.50
+B9R         CAI         CAJ         H17     109.029    1.50
+B9R         CAK         CAJ         H16     108.744    1.50
+B9R         CAK         CAJ         H17     108.744    1.50
+B9R         H16         CAJ         H17     107.759    1.50
+B9R         NAM         CAK         CAJ     110.142    1.50
+B9R         NAM         CAK         CAL     109.157    1.65
+B9R         NAM         CAK         H18     108.194    1.50
+B9R         CAJ         CAK         CAL     109.839    1.50
+B9R         CAJ         CAK         H18     108.202    1.50
+B9R         CAL         CAK         H18     107.627    1.50
+B9R         CAK         CAL         OAV     111.903    1.66
+B9R         CAK         CAL         H19     109.343    1.50
+B9R         CAK         CAL         H20     109.343    1.50
+B9R         OAV         CAL         H19     109.411    1.50
+B9R         OAV         CAL         H20     109.411    1.50
+B9R         H19         CAL         H20     108.070    1.50
+B9R           N         CAU         H21     110.215    1.50
+B9R           N         CAU         H22     110.215    1.50
+B9R           N         CAU         H23     110.215    1.50
+B9R         H21         CAU         H22     109.279    1.79
+B9R         H21         CAU         H23     109.279    1.79
+B9R         H22         CAU         H23     109.279    1.79
+B9R         CAH         NAG         CAD     109.042    1.50
+B9R         CAH         NAG         H24     125.328    1.77
+B9R         CAD         NAG         H24     125.630    1.60
+B9R           C         NAM         CAK     123.632    1.63
+B9R           C         NAM         H25     118.879    1.83
+B9R         CAK         NAM         H25     117.489    3.00
+B9R         CAL         OAV         H26     108.529    2.94
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+B9R            sp3_sp3_29          CB          CA           N         CAU     -60.000    10.0     3
+B9R            sp3_sp3_55         H21         CAU           N          CA     180.000    10.0     3
+B9R              const_13         NAG         CAD         CAE         CAI       0.000    10.0     2
+B9R              const_23         CAC         CAD         NAG         CAH     180.000    10.0     2
+B9R              const_17         CAD         CAE         CAF         CAA       0.000    10.0     2
+B9R              const_34         CAD         CAE         CAI         CAJ     180.000    10.0     2
+B9R              const_30         NAG         CAH         CAI         CAJ     180.000    10.0     2
+B9R              const_25         CAI         CAH         NAG         CAD       0.000    10.0     2
+B9R             sp2_sp3_2         CAH         CAI         CAJ         CAK     -90.000    10.0     6
+B9R            sp3_sp3_34         CAI         CAJ         CAK         NAM     180.000    10.0     3
+B9R            sp3_sp3_43         NAM         CAK         CAL         OAV     180.000    10.0     3
+B9R            sp2_sp3_13           C         NAM         CAK         CAJ       0.000    10.0     6
+B9R            sp3_sp3_52         CAK         CAL         OAV         H26     180.000    10.0     3
+B9R             sp2_sp3_7           O           C          CA          CB       0.000    10.0     6
+B9R            sp3_sp3_20           C          CA          CB         CG1     -60.000    10.0     3
+B9R             sp2_sp2_3           O           C         NAM         CAK       0.000     5.0     2
+B9R             sp3_sp3_4         CG2          CB         CG1          H5      60.000    10.0     3
+B9R            sp3_sp3_10         CG1          CB         CG2          H8     180.000    10.0     3
+B9R              const_37         CAB         CAA         CAF         CAE       0.000    10.0     2
+B9R       const_sp2_sp2_1         CAF         CAA         CAB         CAC       0.000     5.0     2
+B9R       const_sp2_sp2_5         CAA         CAB         CAC         CAD       0.000     5.0     2
+B9R              const_10         CAB         CAC         CAD         NAG     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+B9R    chir_1    CA    N    C    CB    positive
+B9R    chir_2    CB    CA    CG1    CG2    both
+B9R    chir_3    CAK    NAM    CAL    CAJ    positive
+B9R    chir_4    N    CA    CAU    H1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+B9R    plan-1         CAA   0.020
+B9R    plan-1         CAB   0.020
+B9R    plan-1         CAC   0.020
+B9R    plan-1         CAD   0.020
+B9R    plan-1         CAE   0.020
+B9R    plan-1         CAF   0.020
+B9R    plan-1         CAH   0.020
+B9R    plan-1         CAI   0.020
+B9R    plan-1         CAJ   0.020
+B9R    plan-1         H11   0.020
+B9R    plan-1         H12   0.020
+B9R    plan-1         H13   0.020
+B9R    plan-1         H14   0.020
+B9R    plan-1         H15   0.020
+B9R    plan-1         H24   0.020
+B9R    plan-1         NAG   0.020
+B9R    plan-2           C   0.020
+B9R    plan-2          CA   0.020
+B9R    plan-2         NAM   0.020
+B9R    plan-2           O   0.020
+B9R    plan-3           C   0.020
+B9R    plan-3         CAK   0.020
+B9R    plan-3         H25   0.020
+B9R    plan-3         NAM   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+B9R           SMILES              ACDLabs 12.01                                                                                                             N(C)C(C(NC(Cc2c1c(cccc1)nc2)CO)=O)C(C)C
+B9R            InChI                InChI  1.03 InChI=1S/C17H25N3O2/c1-11(2)16(18-3)17(22)20-13(10-21)8-12-9-19-15-7-5-4-6-14(12)15/h4-7,9,11,13,16,18-19,21H,8,10H2,1-3H3,(H,20,22)/t13-,16-/m0/s1
+B9R         InChIKey                InChI  1.03                                                                                                                         OQYFURUBPANIIX-BBRMVZONSA-N
+B9R SMILES_CANONICAL               CACTVS 3.385                                                                                                     CN[C@@H](C(C)C)C(=O)N[C@H](CO)Cc1c[nH]c2ccccc12
+B9R           SMILES               CACTVS 3.385                                                                                                        CN[CH](C(C)C)C(=O)N[CH](CO)Cc1c[nH]c2ccccc12
+B9R SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                    CC(C)[C@@H](C(=O)N[C@@H](Cc1c[nH]c2c1cccc2)CO)NC
+B9R           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                              CC(C)C(C(=O)NC(Cc1c[nH]c2c1cccc2)CO)NC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+B9R acedrg               243         "dictionary generator"                  
+B9R acedrg_database      11          "data source"                           
+B9R rdkit                2017.03.2   "Chemoinformatics tool"
+B9R refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,331 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OMA     OMA      "10-{(1R,2R)-2-[(2E)-hex-2-en-1-yl]cyclopropyl}decanoic acid"     NON-POLYMER     54     21     .     
+#
+data_comp_OMA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OMA     O1      O       OC      -1      -30.706     3.853       -1.187      
+OMA     C18     C       C       0       -30.315     5.010       -0.935      
+OMA     O       O       O       0       -30.852     6.036       -1.397      
+OMA     C17     C       CH2     0       -29.119     5.178       -0.014      
+OMA     C16     C       CH2     0       -27.791     5.143       -0.705      
+OMA     C15     C       CH2     0       -26.627     5.426       0.237       
+OMA     C14     C       CH2     0       -26.252     4.264       1.125       
+OMA     C13     C       CH2     0       -25.074     4.532       2.029       
+OMA     C12     C       CH2     0       -23.736     4.493       1.332       
+OMA     C11     C       CH2     0       -22.553     4.636       2.258       
+OMA     C10     C       CH2     0       -21.203     4.674       1.584       
+OMA     C9      C       CH2     0       -20.033     4.779       2.543       
+OMA     C8      C       CH1     0       -18.693     4.749       1.852       
+OMA     C7      C       CH2     0       -17.852     3.498       1.865       
+OMA     C6      C       CH1     0       -17.406     4.702       2.647       
+OMA     C5      C       CH2     0       -17.434     4.661       4.159       
+OMA     C4      C       C1      0       -16.070     4.456       4.738       
+OMA     C3      C       C1      0       -15.078     5.322       4.701       
+OMA     C2      C       CH2     0       -13.727     5.129       5.314       
+OMA     C1      C       CH2     0       -13.749     5.085       6.799       
+OMA     C       C       CH3     0       -12.392     4.866       7.444       
+OMA     H2      H       H       0       -29.145     4.466       0.660       
+OMA     H3      H       H       0       -29.209     6.034       0.457       
+OMA     H4      H       H       0       -27.783     5.808       -1.425      
+OMA     H5      H       H       0       -27.661     4.261       -1.111      
+OMA     H6      H       H       0       -26.859     6.192       0.804       
+OMA     H7      H       H       0       -25.845     5.678       -0.298      
+OMA     H8      H       H       0       -26.044     3.490       0.559       
+OMA     H9      H       H       0       -27.026     4.029       1.679       
+OMA     H10     H       H       0       -25.072     3.866       2.749       
+OMA     H11     H       H       0       -25.188     5.415       2.441       
+OMA     H12     H       H       0       -23.705     5.216       0.670       
+OMA     H13     H       H       0       -23.657     3.643       0.849       
+OMA     H14     H       H       0       -22.558     3.885       2.890       
+OMA     H15     H       H       0       -22.659     5.461       2.777       
+OMA     H16     H       H       0       -21.181     5.442       0.974       
+OMA     H17     H       H       0       -21.099     3.859       1.048       
+OMA     H18     H       H       0       -20.076     4.040       3.179       
+OMA     H19     H       H       0       -20.109     5.611       3.048       
+OMA     H20     H       H       0       -18.643     5.290       1.027       
+OMA     H21     H       H       0       -18.189     2.729       2.367       
+OMA     H22     H       H       0       -17.356     3.276       1.052       
+OMA     H23     H       H       0       -16.664     5.217       2.250       
+OMA     H24     H       H       0       -18.020     3.927       4.450       
+OMA     H25     H       H       0       -17.802     5.507       4.497       
+OMA     H26     H       H       0       -15.912     3.632       5.174       
+OMA     H27     H       H       0       -15.232     6.141       4.254       
+OMA     H28     H       H       0       -13.138     5.864       5.035       
+OMA     H29     H       H       0       -13.341     4.286       4.985       
+OMA     H30     H       H       0       -14.351     4.365       7.081       
+OMA     H31     H       H       0       -14.122     5.929       7.130       
+OMA     H32     H       H       0       -11.713     4.752       6.756       
+OMA     H33     H       H       0       -12.422     4.068       8.001       
+OMA     H34     H       H       0       -12.166     5.635       7.995       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OMA         C18           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+OMA          O1         C18      SINGLE       n     1.247  0.0187     1.247  0.0187
+OMA         C18         C17      SINGLE       n     1.519  0.0109     1.519  0.0109
+OMA         C16         C15      SINGLE       n     1.523  0.0117     1.523  0.0117
+OMA         C17         C16      SINGLE       n     1.497  0.0200     1.497  0.0200
+OMA         C15         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+OMA          C8          C6      SINGLE       n     1.512  0.0132     1.512  0.0132
+OMA          C8          C7      SINGLE       n     1.509  0.0100     1.509  0.0100
+OMA          C9          C8      SINGLE       n     1.508  0.0100     1.508  0.0100
+OMA          C7          C6      SINGLE       n     1.503  0.0100     1.503  0.0100
+OMA          C6          C5      SINGLE       n     1.512  0.0115     1.512  0.0115
+OMA         C13         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+OMA         C12         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+OMA         C14         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+OMA         C10          C9      SINGLE       n     1.517  0.0100     1.517  0.0100
+OMA         C11         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+OMA          C5          C4      SINGLE       n     1.496  0.0167     1.496  0.0167
+OMA          C4          C3      DOUBLE       n     1.318  0.0100     1.318  0.0100
+OMA          C3          C2      SINGLE       n     1.497  0.0127     1.497  0.0127
+OMA          C2          C1      SINGLE       n     1.483  0.0200     1.483  0.0200
+OMA          C1           C      SINGLE       n     1.515  0.0200     1.515  0.0200
+OMA         C17          H2      SINGLE       n     1.089  0.0100     0.981  0.0185
+OMA         C17          H3      SINGLE       n     1.089  0.0100     0.981  0.0185
+OMA         C16          H4      SINGLE       n     1.089  0.0100     0.980  0.0160
+OMA         C16          H5      SINGLE       n     1.089  0.0100     0.980  0.0160
+OMA         C15          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+OMA         C15          H7      SINGLE       n     1.089  0.0100     0.981  0.0163
+OMA         C14          H8      SINGLE       n     1.089  0.0100     0.981  0.0163
+OMA         C14          H9      SINGLE       n     1.089  0.0100     0.981  0.0163
+OMA         C13         H10      SINGLE       n     1.089  0.0100     0.981  0.0163
+OMA         C13         H11      SINGLE       n     1.089  0.0100     0.981  0.0163
+OMA         C12         H12      SINGLE       n     1.089  0.0100     0.981  0.0163
+OMA         C12         H13      SINGLE       n     1.089  0.0100     0.981  0.0163
+OMA         C11         H14      SINGLE       n     1.089  0.0100     0.981  0.0163
+OMA         C11         H15      SINGLE       n     1.089  0.0100     0.981  0.0163
+OMA         C10         H16      SINGLE       n     1.089  0.0100     0.981  0.0160
+OMA         C10         H17      SINGLE       n     1.089  0.0100     0.981  0.0160
+OMA          C9         H18      SINGLE       n     1.089  0.0100     0.976  0.0131
+OMA          C9         H19      SINGLE       n     1.089  0.0100     0.976  0.0131
+OMA          C8         H20      SINGLE       n     1.089  0.0100     0.988  0.0138
+OMA          C7         H21      SINGLE       n     1.089  0.0100     0.978  0.0171
+OMA          C7         H22      SINGLE       n     1.089  0.0100     0.978  0.0171
+OMA          C6         H23      SINGLE       n     1.089  0.0100     0.987  0.0172
+OMA          C5         H24      SINGLE       n     1.089  0.0100     0.983  0.0100
+OMA          C5         H25      SINGLE       n     1.089  0.0100     0.983  0.0100
+OMA          C4         H26      SINGLE       n     1.082  0.0130     0.945  0.0200
+OMA          C3         H27      SINGLE       n     1.082  0.0130     0.945  0.0200
+OMA          C2         H28      SINGLE       n     1.089  0.0100     0.983  0.0180
+OMA          C2         H29      SINGLE       n     1.089  0.0100     0.983  0.0180
+OMA          C1         H30      SINGLE       n     1.089  0.0100     0.980  0.0160
+OMA          C1         H31      SINGLE       n     1.089  0.0100     0.980  0.0160
+OMA           C         H32      SINGLE       n     1.089  0.0100     0.973  0.0157
+OMA           C         H33      SINGLE       n     1.089  0.0100     0.973  0.0157
+OMA           C         H34      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OMA           O         C18          O1     123.571    1.50
+OMA           O         C18         C17     118.214    1.64
+OMA          O1         C18         C17     118.214    1.64
+OMA         C18         C17         C16     114.612    2.19
+OMA         C18         C17          H2     108.404    1.50
+OMA         C18         C17          H3     108.404    1.50
+OMA         C16         C17          H2     108.815    1.50
+OMA         C16         C17          H3     108.815    1.50
+OMA          H2         C17          H3     107.521    1.50
+OMA         C15         C16         C17     112.553    1.50
+OMA         C15         C16          H4     108.698    1.50
+OMA         C15         C16          H5     108.698    1.50
+OMA         C17         C16          H4     109.164    1.50
+OMA         C17         C16          H5     109.164    1.50
+OMA          H4         C16          H5     107.646    1.50
+OMA         C16         C15         C14     114.243    1.69
+OMA         C16         C15          H6     108.698    1.50
+OMA         C16         C15          H7     108.698    1.50
+OMA         C14         C15          H6     108.698    1.50
+OMA         C14         C15          H7     108.698    1.50
+OMA          H6         C15          H7     107.646    1.50
+OMA         C15         C14         C13     114.243    1.69
+OMA         C15         C14          H8     108.698    1.50
+OMA         C15         C14          H9     108.698    1.50
+OMA         C13         C14          H8     108.698    1.50
+OMA         C13         C14          H9     108.698    1.50
+OMA          H8         C14          H9     107.646    1.50
+OMA         C12         C13         C14     114.243    1.69
+OMA         C12         C13         H10     108.698    1.50
+OMA         C12         C13         H11     108.698    1.50
+OMA         C14         C13         H10     108.698    1.50
+OMA         C14         C13         H11     108.698    1.50
+OMA         H10         C13         H11     107.646    1.50
+OMA         C13         C12         C11     114.243    1.69
+OMA         C13         C12         H12     108.698    1.50
+OMA         C13         C12         H13     108.698    1.50
+OMA         C11         C12         H12     108.698    1.50
+OMA         C11         C12         H13     108.698    1.50
+OMA         H12         C12         H13     107.646    1.50
+OMA         C12         C11         C10     115.502    1.50
+OMA         C12         C11         H14     108.698    1.50
+OMA         C12         C11         H15     108.698    1.50
+OMA         C10         C11         H14     108.261    1.50
+OMA         C10         C11         H15     108.261    1.50
+OMA         H14         C11         H15     107.646    1.50
+OMA          C9         C10         C11     114.268    1.50
+OMA          C9         C10         H16     108.707    1.50
+OMA          C9         C10         H17     108.707    1.50
+OMA         C11         C10         H16     108.509    1.50
+OMA         C11         C10         H17     108.509    1.50
+OMA         H16         C10         H17     107.934    1.50
+OMA          C8          C9         C10     113.071    1.50
+OMA          C8          C9         H18     108.805    1.50
+OMA          C8          C9         H19     108.805    1.50
+OMA         C10          C9         H18     108.983    1.50
+OMA         C10          C9         H19     108.983    1.50
+OMA         H18          C9         H19     107.781    1.50
+OMA          C6          C8          C7      59.743    1.50
+OMA          C6          C8          C9     120.756    1.64
+OMA          C6          C8         H20     114.282    1.50
+OMA          C7          C8          C9     120.388    1.50
+OMA          C7          C8         H20     115.552    1.50
+OMA          C9          C8         H20     114.423    1.50
+OMA          C8          C7          C6      60.515    1.50
+OMA          C8          C7         H21     117.722    1.50
+OMA          C8          C7         H22     117.722    1.50
+OMA          C6          C7         H21     117.722    1.50
+OMA          C6          C7         H22     117.722    1.50
+OMA         H21          C7         H22     115.209    1.50
+OMA          C8          C6          C7      59.743    1.50
+OMA          C8          C6          C5     120.272    3.00
+OMA          C8          C6         H23     114.282    1.50
+OMA          C7          C6          C5     119.500    1.50
+OMA          C7          C6         H23     115.552    1.50
+OMA          C5          C6         H23     115.432    1.50
+OMA          C6          C5          C4     111.264    3.00
+OMA          C6          C5         H24     109.067    1.50
+OMA          C6          C5         H25     109.067    1.50
+OMA          C4          C5         H24     108.973    1.50
+OMA          C4          C5         H25     108.973    1.50
+OMA         H24          C5         H25     108.415    1.50
+OMA          C5          C4          C3     125.791    2.61
+OMA          C5          C4         H26     116.787    1.77
+OMA          C3          C4         H26     117.422    1.78
+OMA          C4          C3          C2     125.716    2.53
+OMA          C4          C3         H27     117.355    1.78
+OMA          C2          C3         H27     116.930    1.61
+OMA          C3          C2          C1     113.132    2.43
+OMA          C3          C2         H28     108.886    1.50
+OMA          C3          C2         H29     108.886    1.50
+OMA          C1          C2         H28     107.998    1.91
+OMA          C1          C2         H29     107.998    1.91
+OMA         H28          C2         H29     107.922    1.50
+OMA          C2          C1           C     113.809    2.58
+OMA          C2          C1         H30     108.798    1.50
+OMA          C2          C1         H31     108.798    1.50
+OMA           C          C1         H30     108.918    1.50
+OMA           C          C1         H31     108.918    1.50
+OMA         H30          C1         H31     107.763    1.50
+OMA          C1           C         H32     109.554    1.50
+OMA          C1           C         H33     109.554    1.50
+OMA          C1           C         H34     109.554    1.50
+OMA         H32           C         H33     109.380    1.50
+OMA         H32           C         H34     109.380    1.50
+OMA         H33           C         H34     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OMA           sp3_sp3_100         C11         C10          C9          C8     180.000    10.0     3
+OMA            sp3_sp3_58          C7          C8          C9         C10      60.000    10.0     3
+OMA            sp3_sp3_50         H21          C7          C8          C9     180.000    10.0     3
+OMA             sp3_sp3_6          C5          C6          C8         H20     180.000    10.0     3
+OMA            sp3_sp3_15          C5          C6          C7         H22      60.000    10.0     3
+OMA            sp3_sp3_67         H24          C5          C6          C8      60.000    10.0     3
+OMA            sp2_sp3_11         H26          C4          C5          C6     -60.000    10.0     6
+OMA             sp2_sp2_4         H27          C3          C4         H26     180.000     5.0     2
+OMA            sp2_sp3_17         H27          C3          C2          C1     -60.000    10.0     6
+OMA           sp3_sp3_121         H30          C1          C2          C3      60.000    10.0     3
+OMA           sp3_sp3_130         H33           C          C1          C2      60.000    10.0     3
+OMA             sp2_sp3_4          O1         C18         C17          H2     180.000    10.0     6
+OMA            sp3_sp3_30         C15         C16         C17          H3      60.000    10.0     3
+OMA            sp3_sp3_21         C14         C15         C16          H5      60.000    10.0     3
+OMA            sp3_sp3_39         C13         C14         C15          H7      60.000    10.0     3
+OMA            sp3_sp3_94         H10         C13         C14         C15      60.000    10.0     3
+OMA            sp3_sp3_76         H12         C12         C13         C14      60.000    10.0     3
+OMA            sp3_sp3_85         H14         C11         C12         C13      60.000    10.0     3
+OMA           sp3_sp3_112         H16         C10         C11         C12      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OMA    chir_1    C8    C6    C7    C9    negative
+OMA    chir_2    C6    C8    C5    C7    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OMA    plan-1         C17   0.020
+OMA    plan-1         C18   0.020
+OMA    plan-1           O   0.020
+OMA    plan-1          O1   0.020
+OMA    plan-2          C3   0.020
+OMA    plan-2          C4   0.020
+OMA    plan-2          C5   0.020
+OMA    plan-2         H26   0.020
+OMA    plan-3          C2   0.020
+OMA    plan-3          C3   0.020
+OMA    plan-3          C4   0.020
+OMA    plan-3         H27   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OMA           SMILES              ACDLabs 12.01                                                                                                                O=C(O)CCCCCCCCCC1CC1C/C=C/CCC
+OMA            InChI                InChI  1.03 InChI=1S/C19H34O2/c1-2-3-4-10-13-17-16-18(17)14-11-8-6-5-7-9-12-15-19(20)21/h4,10,17-18H,2-3,5-9,11-16H2,1H3,(H,20,21)/b10-4+/t17-,18+/m0/s1
+OMA         InChIKey                InChI  1.03                                                                                                                  MGOIQHKBDDJUJK-XVSUHRFUSA-N
+OMA SMILES_CANONICAL               CACTVS 3.385                                                                                                        CCC/C=C/C[C@H]1C[C@H]1CCCCCCCCCC(O)=O
+OMA           SMILES               CACTVS 3.385                                                                                                            CCCC=CC[CH]1C[CH]1CCCCCCCCCC(O)=O
+OMA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                        CCC/C=C/C[C@H]1C[C@H]1CCCCCCCCCC(=O)O
+OMA           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                  CCCC=CCC1CC1CCCCCCCCCC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OMA acedrg               243         "dictionary generator"                  
+OMA acedrg_database      11          "data source"                           
+OMA rdkit                2017.03.2   "Chemoinformatics tool"
+OMA refmac5              5.8.0238    "optimization tool"                     

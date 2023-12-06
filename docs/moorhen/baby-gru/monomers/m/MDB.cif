@@ -1,0 +1,406 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MDB     MDB      (S)-N-(cyclopentylmethyl)-N-(2-(hydroxyamino)-2-oxoethyl)-2-(3-(2-methoxyphenyl)ureido)-3,3-dimethylbutanamide     NON-POLYMER     65     31     .     
+#
+data_comp_MDB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MDB     C       C       C       0       -16.897     84.765      68.441      
+MDB     N       N       NH1     0       -16.162     86.079      70.390      
+MDB     O       O       O       0       -16.400     85.554      67.633      
+MDB     CA      C       CH1     0       -17.275     85.298      69.840      
+MDB     CB      C       CT      0       -18.625     86.091      69.861      
+MDB     CAA     C       CH3     0       -18.613     87.300      68.915      
+MDB     CAC     C       CH3     0       -18.896     86.603      71.280      
+MDB     CAD     C       CH3     0       -19.785     85.172      69.456      
+MDB     CAG     C       C       0       -15.440     85.735      71.483      
+MDB     OAH     O       O       0       -15.642     84.690      72.117      
+MDB     NAI     N       NH1     0       -14.469     86.634      71.855      
+MDB     CAJ     C       CR6     0       -13.856     86.731      73.125      
+MDB     CAK     C       CR16    0       -14.625     86.808      74.278      
+MDB     CAL     C       CR16    0       -14.016     86.895      75.524      
+MDB     CAM     C       CR16    0       -12.641     86.907      75.626      
+MDB     CAN     C       CR16    0       -11.851     86.829      74.491      
+MDB     CAP     C       CR6     0       -12.448     86.744      73.229      
+MDB     OAP     O       O2      0       -11.780     86.657      72.039      
+MDB     CAQ     C       CH3     0       -10.469     87.210      71.926      
+MDB     NAS     N       N       0       -17.171     83.478      68.060      
+MDB     CAT     C       CH2     0       -17.188     83.126      66.642      
+MDB     CAU     C       C       0       -18.435     83.644      65.932      
+MDB     OAV     O       O       0       -18.341     84.533      65.077      
+MDB     NAW     N       NH1     0       -19.580     83.086      66.290      
+MDB     OAX     O       OH1     0       -20.771     83.476      65.690      
+MDB     CAY     C       CH2     0       -17.369     82.380      69.018      
+MDB     CAZ     C       CH1     0       -16.092     82.032      69.756      
+MDB     CBA     C       CH2     0       -16.265     80.950      70.819      
+MDB     CBB     C       CH2     0       -14.868     80.377      71.024      
+MDB     CBC     C       CH2     0       -14.079     80.687      69.778      
+MDB     CBD     C       CH2     0       -15.003     81.463      68.848      
+MDB     HN      H       H       0       -15.950     86.813      69.971      
+MDB     HA      H       H       0       -17.416     84.530      70.433      
+MDB     HAA     H       H       0       -19.386     87.862      69.097      
+MDB     HAAA    H       H       0       -18.649     86.996      67.992      
+MDB     HAAB    H       H       0       -17.802     87.817      69.053      
+MDB     HAC     H       H       0       -18.265     87.310      71.499      
+MDB     HACA    H       H       0       -18.793     85.872      71.915      
+MDB     HACB    H       H       0       -19.802     86.953      71.336      
+MDB     HAD     H       H       0       -20.632     85.618      69.630      
+MDB     HADA    H       H       0       -19.743     84.348      69.973      
+MDB     HADB    H       H       0       -19.724     84.961      68.508      
+MDB     HNAI    H       H       0       -14.182     87.196      71.241      
+MDB     HAK     H       H       0       -15.565     86.799      74.215      
+MDB     HAL     H       H       0       -14.547     86.948      76.301      
+MDB     HAM     H       H       0       -12.233     86.967      76.474      
+MDB     HAN     H       H       0       -10.913     86.837      74.573      
+MDB     HAQ     H       H       0       -9.841      86.650      72.410      
+MDB     HAQA    H       H       0       -10.459     88.106      72.300      
+MDB     HAQB    H       H       0       -10.214     87.247      70.990      
+MDB     HAT     H       H       0       -17.151     82.146      66.539      
+MDB     HATA    H       H       0       -16.390     83.499      66.200      
+MDB     HNAW    H       H       0       -19.624     82.465      66.906      
+MDB     HOAX    H       H       0       -20.991     84.254      66.005      
+MDB     HAY     H       H       0       -17.665     81.577      68.541      
+MDB     HAYA    H       H       0       -18.073     82.623      69.653      
+MDB     HAZ     H       H       0       -15.740     82.847      70.195      
+MDB     HBA     H       H       0       -16.609     81.337      71.657      
+MDB     HBAA    H       H       0       -16.888     80.253      70.511      
+MDB     HBB     H       H       0       -14.913     79.406      71.167      
+MDB     HBBA    H       H       0       -14.441     80.784      71.809      
+MDB     HBC     H       H       0       -13.778     79.857      69.348      
+MDB     HBCA    H       H       0       -13.287     81.224      70.000      
+MDB     HBD     H       H       0       -14.514     82.188      68.395      
+MDB     HBDA    H       H       0       -15.393     80.868      68.167      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MDB           C           O      DOUBLE       n     1.232  0.0100     1.232  0.0100
+MDB           C          CA      SINGLE       n     1.536  0.0100     1.536  0.0100
+MDB           C         NAS      SINGLE       n     1.352  0.0118     1.352  0.0118
+MDB           N          CA      SINGLE       n     1.456  0.0127     1.456  0.0127
+MDB           N         CAG      SINGLE       n     1.345  0.0100     1.345  0.0100
+MDB          CA          CB      SINGLE       n     1.559  0.0100     1.559  0.0100
+MDB          CB         CAA      SINGLE       n     1.531  0.0109     1.531  0.0109
+MDB          CB         CAC      SINGLE       n     1.531  0.0109     1.531  0.0109
+MDB          CB         CAD      SINGLE       n     1.531  0.0109     1.531  0.0109
+MDB         CAG         OAH      DOUBLE       n     1.235  0.0158     1.235  0.0158
+MDB         CAG         NAI      SINGLE       n     1.360  0.0168     1.360  0.0168
+MDB         NAI         CAJ      SINGLE       n     1.410  0.0100     1.410  0.0100
+MDB         CAJ         CAK      DOUBLE       y     1.383  0.0100     1.383  0.0100
+MDB         CAJ         CAP      SINGLE       y     1.405  0.0100     1.405  0.0100
+MDB         CAK         CAL      SINGLE       y     1.387  0.0100     1.387  0.0100
+MDB         CAL         CAM      DOUBLE       y     1.376  0.0124     1.376  0.0124
+MDB         CAM         CAN      SINGLE       y     1.383  0.0100     1.383  0.0100
+MDB         CAN         CAP      DOUBLE       y     1.391  0.0100     1.391  0.0100
+MDB         CAP         OAP      SINGLE       n     1.363  0.0100     1.363  0.0100
+MDB         OAP         CAQ      SINGLE       n     1.424  0.0117     1.424  0.0117
+MDB         NAS         CAT      SINGLE       n     1.450  0.0121     1.450  0.0121
+MDB         NAS         CAY      SINGLE       n     1.463  0.0100     1.463  0.0100
+MDB         CAT         CAU      SINGLE       n     1.524  0.0113     1.524  0.0113
+MDB         CAU         OAV      DOUBLE       n     1.236  0.0101     1.236  0.0101
+MDB         CAU         NAW      SINGLE       n     1.321  0.0100     1.321  0.0100
+MDB         NAW         OAX      SINGLE       n     1.389  0.0110     1.389  0.0110
+MDB         CAY         CAZ      SINGLE       n     1.514  0.0100     1.514  0.0100
+MDB         CAZ         CBA      SINGLE       n     1.530  0.0200     1.530  0.0200
+MDB         CAZ         CBD      SINGLE       n     1.530  0.0200     1.530  0.0200
+MDB         CBA         CBB      SINGLE       n     1.523  0.0200     1.523  0.0200
+MDB         CBB         CBC      SINGLE       n     1.503  0.0200     1.503  0.0200
+MDB         CBC         CBD      SINGLE       n     1.523  0.0200     1.523  0.0200
+MDB           N          HN      SINGLE       n     1.016  0.0100     0.873  0.0200
+MDB          CA          HA      SINGLE       n     1.089  0.0100     0.991  0.0200
+MDB         CAA         HAA      SINGLE       n     1.089  0.0100     0.973  0.0146
+MDB         CAA        HAAA      SINGLE       n     1.089  0.0100     0.973  0.0146
+MDB         CAA        HAAB      SINGLE       n     1.089  0.0100     0.973  0.0146
+MDB         CAC         HAC      SINGLE       n     1.089  0.0100     0.973  0.0146
+MDB         CAC        HACA      SINGLE       n     1.089  0.0100     0.973  0.0146
+MDB         CAC        HACB      SINGLE       n     1.089  0.0100     0.973  0.0146
+MDB         CAD         HAD      SINGLE       n     1.089  0.0100     0.973  0.0146
+MDB         CAD        HADA      SINGLE       n     1.089  0.0100     0.973  0.0146
+MDB         CAD        HADB      SINGLE       n     1.089  0.0100     0.973  0.0146
+MDB         NAI        HNAI      SINGLE       n     1.016  0.0100     0.879  0.0200
+MDB         CAK         HAK      SINGLE       n     1.082  0.0130     0.942  0.0170
+MDB         CAL         HAL      SINGLE       n     1.082  0.0130     0.943  0.0172
+MDB         CAM         HAM      SINGLE       n     1.082  0.0130     0.943  0.0183
+MDB         CAN         HAN      SINGLE       n     1.082  0.0130     0.942  0.0151
+MDB         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.971  0.0157
+MDB         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.971  0.0157
+MDB         CAQ        HAQB      SINGLE       n     1.089  0.0100     0.971  0.0157
+MDB         CAT         HAT      SINGLE       n     1.089  0.0100     0.986  0.0117
+MDB         CAT        HATA      SINGLE       n     1.089  0.0100     0.986  0.0117
+MDB         NAW        HNAW      SINGLE       n     1.016  0.0100     0.875  0.0200
+MDB         OAX        HOAX      SINGLE       n     0.970  0.0120     0.867  0.0200
+MDB         CAY         HAY      SINGLE       n     1.089  0.0100     0.980  0.0123
+MDB         CAY        HAYA      SINGLE       n     1.089  0.0100     0.980  0.0123
+MDB         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.992  0.0133
+MDB         CBA         HBA      SINGLE       n     1.089  0.0100     0.985  0.0118
+MDB         CBA        HBAA      SINGLE       n     1.089  0.0100     0.985  0.0118
+MDB         CBB         HBB      SINGLE       n     1.089  0.0100     0.982  0.0145
+MDB         CBB        HBBA      SINGLE       n     1.089  0.0100     0.982  0.0145
+MDB         CBC         HBC      SINGLE       n     1.089  0.0100     0.982  0.0145
+MDB         CBC        HBCA      SINGLE       n     1.089  0.0100     0.982  0.0145
+MDB         CBD         HBD      SINGLE       n     1.089  0.0100     0.985  0.0118
+MDB         CBD        HBDA      SINGLE       n     1.089  0.0100     0.985  0.0118
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MDB           O           C          CA     120.170    1.50
+MDB           O           C         NAS     121.414    2.26
+MDB          CA           C         NAS     118.416    1.96
+MDB          CA           N         CAG     122.563    3.00
+MDB          CA           N          HN     118.841    1.92
+MDB         CAG           N          HN     118.596    1.50
+MDB           C          CA           N     111.106    2.53
+MDB           C          CA          CB     111.511    2.91
+MDB           C          CA          HA     108.061    1.50
+MDB           N          CA          CB     111.308    2.28
+MDB           N          CA          HA     108.161    1.50
+MDB          CB          CA          HA     106.840    1.50
+MDB          CA          CB         CAA     109.638    1.92
+MDB          CA          CB         CAC     109.638    1.92
+MDB          CA          CB         CAD     109.638    1.92
+MDB         CAA          CB         CAC     108.477    1.50
+MDB         CAA          CB         CAD     108.477    1.50
+MDB         CAC          CB         CAD     108.477    1.50
+MDB          CB         CAA         HAA     109.547    1.50
+MDB          CB         CAA        HAAA     109.547    1.50
+MDB          CB         CAA        HAAB     109.547    1.50
+MDB         HAA         CAA        HAAA     109.377    1.50
+MDB         HAA         CAA        HAAB     109.377    1.50
+MDB        HAAA         CAA        HAAB     109.377    1.50
+MDB          CB         CAC         HAC     109.547    1.50
+MDB          CB         CAC        HACA     109.547    1.50
+MDB          CB         CAC        HACB     109.547    1.50
+MDB         HAC         CAC        HACA     109.377    1.50
+MDB         HAC         CAC        HACB     109.377    1.50
+MDB        HACA         CAC        HACB     109.377    1.50
+MDB          CB         CAD         HAD     109.547    1.50
+MDB          CB         CAD        HADA     109.547    1.50
+MDB          CB         CAD        HADB     109.547    1.50
+MDB         HAD         CAD        HADA     109.377    1.50
+MDB         HAD         CAD        HADB     109.377    1.50
+MDB        HADA         CAD        HADB     109.377    1.50
+MDB           N         CAG         OAH     122.699    1.50
+MDB           N         CAG         NAI     114.050    1.67
+MDB         OAH         CAG         NAI     123.251    1.50
+MDB         CAG         NAI         CAJ     126.588    2.10
+MDB         CAG         NAI        HNAI     116.766    1.50
+MDB         CAJ         NAI        HNAI     116.646    1.72
+MDB         NAI         CAJ         CAK     122.207    3.00
+MDB         NAI         CAJ         CAP     118.658    2.41
+MDB         CAK         CAJ         CAP     119.134    1.50
+MDB         CAJ         CAK         CAL     120.053    1.50
+MDB         CAJ         CAK         HAK     119.919    1.50
+MDB         CAL         CAK         HAK     120.028    1.50
+MDB         CAK         CAL         CAM     120.503    1.50
+MDB         CAK         CAL         HAL     119.607    1.50
+MDB         CAM         CAL         HAL     119.890    1.50
+MDB         CAL         CAM         CAN     120.678    1.50
+MDB         CAL         CAM         HAM     119.846    1.50
+MDB         CAN         CAM         HAM     119.477    1.50
+MDB         CAM         CAN         CAP     119.819    1.50
+MDB         CAM         CAN         HAN     120.157    1.50
+MDB         CAP         CAN         HAN     120.024    1.50
+MDB         CAJ         CAP         CAN     119.813    1.50
+MDB         CAJ         CAP         OAP     115.046    1.50
+MDB         CAN         CAP         OAP     125.140    1.50
+MDB         CAP         OAP         CAQ     117.777    1.50
+MDB         OAP         CAQ         HAQ     109.428    1.50
+MDB         OAP         CAQ        HAQA     109.428    1.50
+MDB         OAP         CAQ        HAQB     109.428    1.50
+MDB         HAQ         CAQ        HAQA     109.509    1.50
+MDB         HAQ         CAQ        HAQB     109.509    1.50
+MDB        HAQA         CAQ        HAQB     109.509    1.50
+MDB           C         NAS         CAT     122.261    2.70
+MDB           C         NAS         CAY     119.829    2.89
+MDB         CAT         NAS         CAY     117.910    1.50
+MDB         NAS         CAT         CAU     111.993    1.67
+MDB         NAS         CAT         HAT     109.037    1.50
+MDB         NAS         CAT        HATA     109.037    1.50
+MDB         CAU         CAT         HAT     108.884    1.50
+MDB         CAU         CAT        HATA     108.884    1.50
+MDB         HAT         CAT        HATA     107.938    1.50
+MDB         CAT         CAU         OAV     120.640    1.50
+MDB         CAT         CAU         NAW     115.826    1.90
+MDB         OAV         CAU         NAW     123.547    1.50
+MDB         CAU         NAW         OAX     120.051    1.50
+MDB         CAU         NAW        HNAW     122.120    2.48
+MDB         OAX         NAW        HNAW     117.829    2.59
+MDB         NAW         OAX        HOAX     108.051    2.18
+MDB         NAS         CAY         CAZ     111.113    2.62
+MDB         NAS         CAY         HAY     108.457    1.50
+MDB         NAS         CAY        HAYA     108.457    1.50
+MDB         CAZ         CAY         HAY     107.722    2.74
+MDB         CAZ         CAY        HAYA     107.722    2.74
+MDB         HAY         CAY        HAYA     108.010    1.71
+MDB         CAY         CAZ         CBA     113.421    1.85
+MDB         CAY         CAZ         CBD     113.421    1.85
+MDB         CAY         CAZ         HAZ     108.491    1.83
+MDB         CBA         CAZ         CBD     104.276    2.97
+MDB         CBA         CAZ         HAZ     108.453    1.91
+MDB         CBD         CAZ         HAZ     108.453    1.91
+MDB         CAZ         CBA         CBB     105.018    1.50
+MDB         CAZ         CBA         HBA     110.718    1.50
+MDB         CAZ         CBA        HBAA     110.718    1.50
+MDB         CBB         CBA         HBA     110.744    1.50
+MDB         CBB         CBA        HBAA     110.744    1.50
+MDB         HBA         CBA        HBAA     108.821    1.50
+MDB         CBA         CBB         CBC     106.544    3.00
+MDB         CBA         CBB         HBB     110.704    1.50
+MDB         CBA         CBB        HBBA     110.704    1.50
+MDB         CBC         CBB         HBB     110.679    1.50
+MDB         CBC         CBB        HBBA     110.679    1.50
+MDB         HBB         CBB        HBBA     108.634    1.62
+MDB         CBB         CBC         CBD     106.544    3.00
+MDB         CBB         CBC         HBC     110.679    1.50
+MDB         CBB         CBC        HBCA     110.679    1.50
+MDB         CBD         CBC         HBC     110.704    1.50
+MDB         CBD         CBC        HBCA     110.704    1.50
+MDB         HBC         CBC        HBCA     108.634    1.62
+MDB         CAZ         CBD         CBC     105.018    1.50
+MDB         CAZ         CBD         HBD     110.718    1.50
+MDB         CAZ         CBD        HBDA     110.718    1.50
+MDB         CBC         CBD         HBD     110.744    1.50
+MDB         CBC         CBD        HBDA     110.744    1.50
+MDB         HBD         CBD        HBDA     108.821    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MDB             sp2_sp2_3           O           C         NAS         CAT       0.000     5.0     2
+MDB             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+MDB            sp2_sp2_13         CAK         CAJ         NAI         CAG     180.000     5.0     2
+MDB       const_sp2_sp2_3         NAI         CAJ         CAK         CAL     180.000     5.0     2
+MDB              const_24         NAI         CAJ         CAP         OAP       0.000    10.0     2
+MDB       const_sp2_sp2_5         CAJ         CAK         CAL         CAM       0.000     5.0     2
+MDB       const_sp2_sp2_9         CAK         CAL         CAM         CAN       0.000     5.0     2
+MDB              const_13         CAL         CAM         CAN         CAP       0.000    10.0     2
+MDB              const_18         CAM         CAN         CAP         OAP     180.000    10.0     2
+MDB            sp2_sp2_17         CAJ         CAP         OAP         CAQ     180.000     5.0     2
+MDB            sp3_sp3_74         HAQ         CAQ         OAP         CAP     -60.000    10.0     3
+MDB            sp2_sp3_14           C         NAS         CAT         CAU     120.000    10.0     6
+MDB            sp2_sp3_20           C         NAS         CAY         CAZ     120.000    10.0     6
+MDB             sp2_sp3_7         CAG           N          CA           C       0.000    10.0     6
+MDB             sp2_sp2_7         OAH         CAG           N          CA       0.000     5.0     2
+MDB            sp2_sp3_26         OAV         CAU         CAT         NAS     120.000    10.0     6
+MDB            sp2_sp2_19         CAT         CAU         NAW         OAX     180.000     5.0     2
+MDB            sp3_sp3_78         NAS         CAY         CAZ         CBA     -60.000    10.0     3
+MDB             sp3_sp3_7         CAY         CAZ         CBA         CBB     180.000    10.0     3
+MDB            sp3_sp3_89         CAY         CAZ         CBD         CBC      60.000    10.0     3
+MDB            sp3_sp3_10         CAZ         CBA         CBB         CBC     -60.000    10.0     3
+MDB            sp3_sp3_19         CBA         CBB         CBC         CBD      60.000    10.0     3
+MDB            sp3_sp3_28         CBB         CBC         CBD         CAZ     -60.000    10.0     3
+MDB            sp3_sp3_38           C          CA          CB         CAA     -60.000    10.0     3
+MDB            sp3_sp3_46         HAA         CAA          CB          CA     180.000    10.0     3
+MDB            sp3_sp3_56         HAC         CAC          CB          CA     -60.000    10.0     3
+MDB            sp3_sp3_64         HAD         CAD          CB          CA     180.000    10.0     3
+MDB             sp2_sp2_9           N         CAG         NAI         CAJ     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MDB    chir_1    CA    N    C    CB    positive
+MDB    chir_2    CB    CA    CAA    CAC    both
+MDB    chir_3    CAZ    CAY    CBA    CBD    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MDB    plan-1         CAJ   0.020
+MDB    plan-1         CAK   0.020
+MDB    plan-1         CAL   0.020
+MDB    plan-1         CAM   0.020
+MDB    plan-1         CAN   0.020
+MDB    plan-1         CAP   0.020
+MDB    plan-1         HAK   0.020
+MDB    plan-1         HAL   0.020
+MDB    plan-1         HAM   0.020
+MDB    plan-1         HAN   0.020
+MDB    plan-1         NAI   0.020
+MDB    plan-1         OAP   0.020
+MDB    plan-2           C   0.020
+MDB    plan-2          CA   0.020
+MDB    plan-2         NAS   0.020
+MDB    plan-2           O   0.020
+MDB    plan-3          CA   0.020
+MDB    plan-3         CAG   0.020
+MDB    plan-3          HN   0.020
+MDB    plan-3           N   0.020
+MDB    plan-4         CAG   0.020
+MDB    plan-4           N   0.020
+MDB    plan-4         NAI   0.020
+MDB    plan-4         OAH   0.020
+MDB    plan-5         CAG   0.020
+MDB    plan-5         CAJ   0.020
+MDB    plan-5        HNAI   0.020
+MDB    plan-5         NAI   0.020
+MDB    plan-6           C   0.020
+MDB    plan-6         CAT   0.020
+MDB    plan-6         CAY   0.020
+MDB    plan-6         NAS   0.020
+MDB    plan-7         CAT   0.020
+MDB    plan-7         CAU   0.020
+MDB    plan-7         NAW   0.020
+MDB    plan-7         OAV   0.020
+MDB    plan-8         CAU   0.020
+MDB    plan-8        HNAW   0.020
+MDB    plan-8         NAW   0.020
+MDB    plan-8         OAX   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MDB           SMILES              ACDLabs 12.01                                                                                                                                         O=C(Nc1ccccc1OC)NC(C(=O)N(CC(=O)NO)CC2CCCC2)C(C)(C)C
+MDB            InChI                InChI  1.03 InChI=1S/C22H34N4O5/c1-22(2,3)19(24-21(29)23-16-11-7-8-12-17(16)31-4)20(28)26(14-18(27)25-30)13-15-9-5-6-10-15/h7-8,11-12,15,19,30H,5-6,9-10,13-14H2,1-4H3,(H,25,27)(H2,23,24,29)/t19-/m1/s1
+MDB         InChIKey                InChI  1.03                                                                                                                                                                  SGGVRJBZDBEGBH-LJQANCHMSA-N
+MDB SMILES_CANONICAL               CACTVS 3.370                                                                                                                                     COc1ccccc1NC(=O)N[C@H](C(=O)N(CC2CCCC2)CC(=O)NO)C(C)(C)C
+MDB           SMILES               CACTVS 3.370                                                                                                                                      COc1ccccc1NC(=O)N[CH](C(=O)N(CC2CCCC2)CC(=O)NO)C(C)(C)C
+MDB SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                                    CC(C)(C)[C@@H](C(=O)N(CC1CCCC1)CC(=O)NO)NC(=O)Nc2ccccc2OC
+MDB           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                                         CC(C)(C)C(C(=O)N(CC1CCCC1)CC(=O)NO)NC(=O)Nc2ccccc2OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MDB acedrg               243         "dictionary generator"                  
+MDB acedrg_database      11          "data source"                           
+MDB rdkit                2017.03.2   "Chemoinformatics tool"
+MDB refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,161 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3HM     3HM      "5-hydroxy-6-methylpyridine-3-carboxylic acid"     NON-POLYMER     17     11     .     
+#
+data_comp_3HM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3HM     CAH     C       CH3     0       20.722      37.074      -21.144     
+3HM     CAI     C       CR6     0       21.248      37.757      -19.917     
+3HM     NAJ     N       NRD6    0       22.332      38.529      -20.039     
+3HM     CAK     C       CR16    0       22.837      39.158      -18.967     
+3HM     CAE     C       CR6     0       22.283      39.056      -17.694     
+3HM     CAF     C       C       0       22.871      39.773      -16.512     
+3HM     OAA     O       OC      -1      22.866      39.184      -15.416     
+3HM     OAG     O       O       0       23.327      40.917      -16.695     
+3HM     CAD     C       CR16    0       21.144      38.247      -17.554     
+3HM     CAC     C       CR6     0       20.626      37.601      -18.657     
+3HM     OAB     O       OH1     0       19.509      36.817      -18.478     
+3HM     HAH     H       H       0       19.944      36.538      -20.924     
+3HM     HAHA    H       H       0       21.412      36.500      -21.514     
+3HM     HAHB    H       H       0       20.474      37.743      -21.804     
+3HM     HAK     H       H       0       23.596      39.691      -19.086     
+3HM     HAD     H       H       0       20.736      38.149      -16.711     
+3HM     HOAB    H       H       0       18.943      36.997      -17.853     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3HM         CAH         CAI      SINGLE       n     1.497  0.0100     1.497  0.0100
+3HM         CAI         NAJ      DOUBLE       y     1.331  0.0100     1.331  0.0100
+3HM         CAI         CAC      SINGLE       y     1.400  0.0136     1.400  0.0136
+3HM         NAJ         CAK      SINGLE       y     1.338  0.0100     1.338  0.0100
+3HM         CAK         CAE      DOUBLE       y     1.386  0.0137     1.386  0.0137
+3HM         CAE         CAD      SINGLE       y     1.399  0.0137     1.399  0.0137
+3HM         CAE         CAF      SINGLE       n     1.498  0.0200     1.498  0.0200
+3HM         CAF         OAG      DOUBLE       n     1.244  0.0200     1.244  0.0200
+3HM         CAF         OAA      SINGLE       n     1.244  0.0200     1.244  0.0200
+3HM         CAD         CAC      DOUBLE       y     1.375  0.0100     1.375  0.0100
+3HM         CAC         OAB      SINGLE       n     1.374  0.0155     1.374  0.0155
+3HM         CAH         HAH      SINGLE       n     1.089  0.0100     0.971  0.0138
+3HM         CAH        HAHA      SINGLE       n     1.089  0.0100     0.971  0.0138
+3HM         CAH        HAHB      SINGLE       n     1.089  0.0100     0.971  0.0138
+3HM         CAK         HAK      SINGLE       n     1.082  0.0130     0.935  0.0100
+3HM         CAD         HAD      SINGLE       n     1.082  0.0130     0.942  0.0174
+3HM         OAB        HOAB      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3HM         CAI         CAH         HAH     109.484    1.50
+3HM         CAI         CAH        HAHA     109.484    1.50
+3HM         CAI         CAH        HAHB     109.484    1.50
+3HM         HAH         CAH        HAHA     109.339    1.66
+3HM         HAH         CAH        HAHB     109.339    1.66
+3HM        HAHA         CAH        HAHB     109.339    1.66
+3HM         CAH         CAI         NAJ     119.196    1.50
+3HM         CAH         CAI         CAC     120.635    1.50
+3HM         NAJ         CAI         CAC     120.169    1.50
+3HM         CAI         NAJ         CAK     119.229    1.60
+3HM         NAJ         CAK         CAE     123.306    1.50
+3HM         NAJ         CAK         HAK     118.037    1.50
+3HM         CAE         CAK         HAK     118.657    1.50
+3HM         CAK         CAE         CAD     117.733    1.50
+3HM         CAK         CAE         CAF     121.584    1.50
+3HM         CAD         CAE         CAF     120.683    1.50
+3HM         CAE         CAF         OAG     117.675    1.50
+3HM         CAE         CAF         OAA     117.675    1.50
+3HM         OAG         CAF         OAA     124.650    1.50
+3HM         CAE         CAD         CAC     119.603    1.50
+3HM         CAE         CAD         HAD     120.011    1.50
+3HM         CAC         CAD         HAD     120.387    1.50
+3HM         CAI         CAC         CAD     119.962    1.50
+3HM         CAI         CAC         OAB     120.019    3.00
+3HM         CAD         CAC         OAB     120.019    3.00
+3HM         CAC         OAB        HOAB     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3HM             sp2_sp3_1         NAJ         CAI         CAH         HAH     150.000    10.0     6
+3HM       const_sp2_sp2_2         CAH         CAI         NAJ         CAK     180.000     5.0     2
+3HM              const_20         OAB         CAC         CAI         CAH       0.000    10.0     2
+3HM       const_sp2_sp2_3         CAE         CAK         NAJ         CAI       0.000     5.0     2
+3HM       const_sp2_sp2_7         CAF         CAE         CAK         NAJ     180.000     5.0     2
+3HM             sp2_sp2_1         CAK         CAE         CAF         OAG     180.000     5.0     2
+3HM              const_10         CAC         CAD         CAE         CAF     180.000    10.0     2
+3HM              const_15         OAB         CAC         CAD         CAE     180.000    10.0     2
+3HM             sp2_sp2_5         CAI         CAC         OAB        HOAB     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3HM    plan-1         CAC   0.020
+3HM    plan-1         CAD   0.020
+3HM    plan-1         CAE   0.020
+3HM    plan-1         CAF   0.020
+3HM    plan-1         CAH   0.020
+3HM    plan-1         CAI   0.020
+3HM    plan-1         CAK   0.020
+3HM    plan-1         HAD   0.020
+3HM    plan-1         HAK   0.020
+3HM    plan-1         NAJ   0.020
+3HM    plan-1         OAB   0.020
+3HM    plan-2         CAE   0.020
+3HM    plan-2         CAF   0.020
+3HM    plan-2         OAA   0.020
+3HM    plan-2         OAG   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3HM           SMILES              ACDLabs 10.04                                              O=C(O)c1cnc(c(O)c1)C
+3HM SMILES_CANONICAL               CACTVS 3.341                                                Cc1ncc(cc1O)C(O)=O
+3HM           SMILES               CACTVS 3.341                                                Cc1ncc(cc1O)C(O)=O
+3HM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                              Cc1c(cc(cn1)C(=O)O)O
+3HM           SMILES "OpenEye OEToolkits" 1.5.0                                              Cc1c(cc(cn1)C(=O)O)O
+3HM            InChI                InChI  1.03 InChI=1S/C7H7NO3/c1-4-6(9)2-5(3-8-4)7(10)11/h2-3,9H,1H3,(H,10,11)
+3HM         InChIKey                InChI  1.03                                       NYEFWJFPBFRRKU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3HM acedrg               243         "dictionary generator"                  
+3HM acedrg_database      11          "data source"                           
+3HM rdkit                2017.03.2   "Chemoinformatics tool"
+3HM refmac5              5.8.0238    "optimization tool"                     

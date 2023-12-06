@@ -1,0 +1,158 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+M5Y     M5Y      1-(2,4-difluorophenyl)methanamine     NON-POLYMER     17     10     .     
+#
+data_comp_M5Y
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+M5Y     C29     C       CH2     0       69.788      -32.840     193.488     
+M5Y     C30     C       CR6     0       69.159      -32.032     192.378     
+M5Y     C31     C       CR16    0       69.525      -32.256     191.050     
+M5Y     C32     C       CR16    0       68.961      -31.524     190.013     
+M5Y     C33     C       CR6     0       68.026      -30.565     190.322     
+M5Y     C35     C       CR16    0       67.622      -30.295     191.611     
+M5Y     C36     C       CR6     0       68.207      -31.045     192.622     
+M5Y     F34     F       F       0       67.471      -29.847     189.313     
+M5Y     F37     F       F       0       67.827      -30.797     193.897     
+M5Y     N28     N       NT2     0       71.009      -32.227     194.023     
+M5Y     H24     H       H       0       70.020      -33.734     193.145     
+M5Y     H25     H       H       0       69.142      -32.956     194.221     
+M5Y     H26     H       H       0       70.168      -32.917     190.850     
+M5Y     H27     H       H       0       69.211      -31.680     189.120     
+M5Y     H28     H       H       0       66.981      -29.634     191.799     
+M5Y     H31     H       H       0       71.350      -32.870     194.656     
+M5Y     H2      H       H       0       71.623      -32.208     193.278     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+M5Y         C29         C30      SINGLE       n     1.509  0.0100     1.509  0.0100
+M5Y         C29         N28      SINGLE       n     1.467  0.0144     1.467  0.0144
+M5Y         C30         C31      DOUBLE       y     1.391  0.0116     1.391  0.0116
+M5Y         C30         C36      SINGLE       y     1.385  0.0121     1.385  0.0121
+M5Y         C31         C32      SINGLE       y     1.386  0.0101     1.386  0.0101
+M5Y         C32         C33      DOUBLE       y     1.365  0.0159     1.365  0.0159
+M5Y         C33         F34      SINGLE       n     1.357  0.0100     1.357  0.0100
+M5Y         C33         C35      SINGLE       y     1.368  0.0158     1.368  0.0158
+M5Y         C35         C36      DOUBLE       y     1.380  0.0148     1.380  0.0148
+M5Y         C36         F37      SINGLE       n     1.354  0.0100     1.354  0.0100
+M5Y         C29         H24      SINGLE       n     1.089  0.0100     0.985  0.0198
+M5Y         C29         H25      SINGLE       n     1.089  0.0100     0.985  0.0198
+M5Y         C31         H26      SINGLE       n     1.082  0.0130     0.943  0.0173
+M5Y         C32         H27      SINGLE       n     1.082  0.0130     0.940  0.0141
+M5Y         C35         H28      SINGLE       n     1.082  0.0130     0.940  0.0146
+M5Y         N28         H31      SINGLE       n     1.036  0.0160     0.965  0.0200
+M5Y         N28          H2      SINGLE       n     1.036  0.0160     0.965  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+M5Y         C30         C29         N28     112.424    2.20
+M5Y         C30         C29         H24     109.005    1.50
+M5Y         C30         C29         H25     109.005    1.50
+M5Y         N28         C29         H24     107.542    2.93
+M5Y         N28         C29         H25     107.542    2.93
+M5Y         H24         C29         H25     107.838    1.50
+M5Y         C29         C30         C31     120.623    1.50
+M5Y         C29         C30         C36     121.774    1.50
+M5Y         C31         C30         C36     117.603    1.50
+M5Y         C30         C31         C32     121.013    1.50
+M5Y         C30         C31         H26     119.714    1.50
+M5Y         C32         C31         H26     119.272    1.50
+M5Y         C31         C32         C33     118.323    1.50
+M5Y         C31         C32         H27     120.909    1.50
+M5Y         C33         C32         H27     120.768    1.50
+M5Y         C32         C33         F34     118.668    1.50
+M5Y         C32         C33         C35     123.195    1.50
+M5Y         F34         C33         C35     118.137    1.50
+M5Y         C33         C35         C36     116.717    1.50
+M5Y         C33         C35         H28     121.784    1.50
+M5Y         C36         C35         H28     121.500    1.50
+M5Y         C30         C36         C35     123.148    1.50
+M5Y         C30         C36         F37     118.686    1.50
+M5Y         C35         C36         F37     118.166    1.50
+M5Y         C29         N28         H31     104.789    3.00
+M5Y         C29         N28          H2     104.789    3.00
+M5Y         H31         N28          H2     107.163    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+M5Y             sp2_sp3_2         C31         C30         C29         N28     -90.000    10.0     6
+M5Y             sp3_sp3_1         C30         C29         N28         H31     180.000    10.0     3
+M5Y       const_sp2_sp2_3         C29         C30         C31         C32     180.000     5.0     2
+M5Y              const_24         C29         C30         C36         F37       0.000    10.0     2
+M5Y       const_sp2_sp2_5         C30         C31         C32         C33       0.000     5.0     2
+M5Y              const_10         C31         C32         C33         F34     180.000    10.0     2
+M5Y              const_15         F34         C33         C35         C36     180.000    10.0     2
+M5Y              const_18         C33         C35         C36         F37     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+M5Y    plan-1         C29   0.020
+M5Y    plan-1         C30   0.020
+M5Y    plan-1         C31   0.020
+M5Y    plan-1         C32   0.020
+M5Y    plan-1         C33   0.020
+M5Y    plan-1         C35   0.020
+M5Y    plan-1         C36   0.020
+M5Y    plan-1         F34   0.020
+M5Y    plan-1         F37   0.020
+M5Y    plan-1         H26   0.020
+M5Y    plan-1         H27   0.020
+M5Y    plan-1         H28   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+M5Y           SMILES              ACDLabs 12.01                                      C(c1ccc(F)cc1F)N
+M5Y            InChI                InChI  1.03 InChI=1S/C7H7F2N/c8-6-2-1-5(4-10)7(9)3-6/h1-3H,4,10H2
+M5Y         InChIKey                InChI  1.03                           QDZZDVQGBKTLHV-UHFFFAOYSA-N
+M5Y SMILES_CANONICAL               CACTVS 3.385                                        NCc1ccc(F)cc1F
+M5Y           SMILES               CACTVS 3.385                                        NCc1ccc(F)cc1F
+M5Y SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                      c1cc(c(cc1F)F)CN
+M5Y           SMILES "OpenEye OEToolkits" 2.0.7                                      c1cc(c(cc1F)F)CN
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+M5Y acedrg               243         "dictionary generator"                  
+M5Y acedrg_database      11          "data source"                           
+M5Y rdkit                2017.03.2   "Chemoinformatics tool"
+M5Y refmac5              5.8.0238    "optimization tool"                     

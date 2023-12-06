@@ -1,0 +1,853 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EIS     EIS      N-{(2S,3R,4E)-3-hydroxy-1-[(3-O-sulfo-beta-D-galactopyranosyl)oxy]octadec-4-en-2-yl}dodecanamide     NON-POLYMER     117     49     .     
+#
+data_comp_EIS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EIS     C43     C       CH1     0       36.326      -14.089     50.606      
+EIS     O       O       O2      0       35.789      -13.264     49.608      
+EIS     C44     C       CH1     0       37.146      -13.237     51.569      
+EIS     O3      O       OH1     0       38.250      -12.648     50.888      
+EIS     C45     C       CH1     0       37.639      -14.093     52.735      
+EIS     C46     C       CH1     0       36.487      -14.846     53.395      
+EIS     O5      O       OH1     0       35.616      -13.935     54.074      
+EIS     C47     C       CH1     0       35.702      -15.631     52.333      
+EIS     C48     C       CH2     0       34.468      -16.313     52.880      
+EIS     O7      O       OH1     0       33.959      -17.276     51.959      
+EIS     O6      O       O2      0       35.260      -14.724     51.294      
+EIS     O1      O       OH1     0       32.478      -13.607     48.631      
+EIS     C2      C       CH1     0       33.307      -12.542     48.187      
+EIS     C1      C       CH1     0       34.573      -13.086     47.490      
+EIS     N       N       NH1     0       35.345      -11.976     46.943      
+EIS     C       C       CH2     0       35.415      -13.959     48.401      
+EIS     C3      C       C1      0       32.540      -11.649     47.260      
+EIS     C4      C       C1      0       32.569      -10.348     47.273      
+EIS     C5      C       CH2     0       31.836      -9.445      46.330      
+EIS     C6      C       CH2     0       30.387      -9.271      46.669      
+EIS     C7      C       CH2     0       29.499      -10.418     46.214      
+EIS     C8      C       CH2     0       28.024      -10.208     46.467      
+EIS     C9      C       CH2     0       27.375      -9.146      45.603      
+EIS     C10     C       CH2     0       27.109      -7.835      46.308      
+EIS     C11     C       CH2     0       26.910      -6.653      45.385      
+EIS     C12     C       CH2     0       25.644      -6.698      44.555      
+EIS     C13     C       CH2     0       24.370      -6.396      45.320      
+EIS     C14     C       CH2     0       23.799      -5.018      45.079      
+EIS     C15     C       CH2     0       24.645      -3.893      45.622      
+EIS     C16     C       CH2     0       23.996      -2.534      45.535      
+EIS     C17     C       CH3     0       24.839      -1.400      46.078      
+EIS     C29     C       CH3     0       27.623      -6.115      41.005      
+EIS     C28     C       CH2     0       28.839      -5.871      41.873      
+EIS     C27     C       CH2     0       29.624      -7.112      42.219      
+EIS     C26     C       CH2     0       30.713      -6.897      43.242      
+EIS     C25     C       CH2     0       31.888      -6.093      42.737      
+EIS     C24     C       CH2     0       33.041      -6.001      43.708      
+EIS     C23     C       CH2     0       33.980      -7.183      43.671      
+EIS     C22     C       CH2     0       35.158      -7.071      44.612      
+EIS     C21     C       CH2     0       36.104      -8.249      44.570      
+EIS     C20     C       CH2     0       35.547      -9.514      45.198      
+EIS     C19     C       CH2     0       36.548      -10.625     45.327      
+EIS     C18     C       C       0       35.903      -11.938     45.719      
+EIS     O2      O       O       0       35.873      -12.892     44.943      
+EIS     S       S       S3      0       39.598      -13.644     54.483      
+EIS     O4      O       O2      0       38.259      -13.196     53.738      
+EIS     O10     O       OS      -1      39.393      -15.020     54.877      
+EIS     O9      O       O       0       39.734      -12.749     55.611      
+EIS     O8      O       O       0       40.655      -13.488     53.509      
+EIS     H1      H       H       0       36.901      -14.765     50.208      
+EIS     H2      H       H       0       36.570      -12.514     51.918      
+EIS     H3      H       H       0       38.623      -12.092     51.397      
+EIS     H4      H       H       0       38.306      -14.743     52.402      
+EIS     H5      H       H       0       36.857      -15.482     54.052      
+EIS     H6      H       H       0       35.118      -13.524     53.534      
+EIS     H7      H       H       0       36.298      -16.311     51.935      
+EIS     H8      H       H       0       33.778      -15.642     53.060      
+EIS     H9      H       H       0       34.690      -16.759     53.724      
+EIS     H10     H       H       0       33.688      -16.882     51.259      
+EIS     H11     H       H       0       32.258      -14.094     47.970      
+EIS     H12     H       H       0       33.587      -12.014     48.973      
+EIS     H13     H       H       0       34.259      -13.644     46.738      
+EIS     H14     H       H       0       35.417      -11.274     47.456      
+EIS     H15     H       H       0       34.910      -14.766     48.634      
+EIS     H16     H       H       0       36.225      -14.235     47.927      
+EIS     H17     H       H       0       32.003      -12.072     46.607      
+EIS     H20     H       H       0       33.107      -9.931      47.929      
+EIS     H21     H       H       0       31.906      -9.811      45.421      
+EIS     H22     H       H       0       32.269      -8.563      46.334      
+EIS     H23     H       H       0       30.066      -8.442      46.257      
+EIS     H24     H       H       0       30.299      -9.172      47.640      
+EIS     H25     H       H       0       29.779      -11.235     46.678      
+EIS     H26     H       H       0       29.637      -10.561     45.253      
+EIS     H27     H       H       0       27.900      -9.968      47.411      
+EIS     H28     H       H       0       27.559      -11.058     46.317      
+EIS     H29     H       H       0       26.523      -9.497      45.266      
+EIS     H30     H       H       0       27.949      -8.972      44.826      
+EIS     H31     H       H       0       27.864      -7.642      46.904      
+EIS     H32     H       H       0       26.310      -7.937      46.867      
+EIS     H33     H       H       0       27.679      -6.597      44.779      
+EIS     H34     H       H       0       26.900      -5.834      45.926      
+EIS     H35     H       H       0       25.562      -7.587      44.152      
+EIS     H36     H       H       0       25.732      -6.052      43.821      
+EIS     H37     H       H       0       24.545      -6.497      46.280      
+EIS     H38     H       H       0       23.693      -7.062      45.073      
+EIS     H39     H       H       0       22.911      -4.970      45.492      
+EIS     H40     H       H       0       23.685      -4.889      44.113      
+EIS     H41     H       H       0       25.492      -3.869      45.128      
+EIS     H42     H       H       0       24.854      -4.081      46.562      
+EIS     H43     H       H       0       23.148      -2.560      46.028      
+EIS     H44     H       H       0       23.787      -2.347      44.594      
+EIS     H45     H       H       0       25.677      -1.749      46.428      
+EIS     H46     H       H       0       24.355      -0.949      46.791      
+EIS     H47     H       H       0       25.027      -0.765      45.365      
+EIS     H48     H       H       0       27.548      -7.064      40.801      
+EIS     H49     H       H       0       27.708      -5.613      40.177      
+EIS     H50     H       H       0       26.823      -5.824      41.478      
+EIS     H51     H       H       0       28.550      -5.442      42.707      
+EIS     H52     H       H       0       29.436      -5.244      41.408      
+EIS     H53     H       H       0       30.029      -7.466      41.398      
+EIS     H54     H       H       0       29.003      -7.791      42.560      
+EIS     H55     H       H       0       31.038      -7.772      43.544      
+EIS     H56     H       H       0       30.328      -6.437      44.018      
+EIS     H57     H       H       0       31.580      -5.185      42.528      
+EIS     H58     H       H       0       32.210      -6.497      41.903      
+EIS     H59     H       H       0       32.681      -5.914      44.617      
+EIS     H60     H       H       0       33.552      -5.187      43.512      
+EIS     H61     H       H       0       34.318      -7.287      42.756      
+EIS     H62     H       H       0       33.474      -7.992      43.894      
+EIS     H63     H       H       0       34.819      -6.973      45.527      
+EIS     H64     H       H       0       35.659      -6.257      44.392      
+EIS     H65     H       H       0       36.932      -8.004      45.035      
+EIS     H66     H       H       0       36.333      -8.436      43.634      
+EIS     H67     H       H       0       34.794      -9.828      44.655      
+EIS     H68     H       H       0       35.201      -9.296      46.089      
+EIS     H69     H       H       0       37.214      -10.379     46.004      
+EIS     H70     H       H       0       37.013      -10.738     44.471      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EIS         C29         C28      SINGLE       n     1.510  0.0200     1.510  0.0200
+EIS         C28         C27      SINGLE       n     1.507  0.0200     1.507  0.0200
+EIS         C27         C26      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS         C26         C25      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS         C25         C24      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS         C24         C23      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS         C23         C22      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS         C22         C21      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS         C21         C20      SINGLE       n     1.519  0.0164     1.519  0.0164
+EIS         C20         C19      SINGLE       n     1.497  0.0200     1.497  0.0200
+EIS         C18          O2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+EIS         C19         C18      SINGLE       n     1.514  0.0100     1.514  0.0100
+EIS           N         C18      SINGLE       n     1.339  0.0121     1.339  0.0121
+EIS          C8          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS          C9         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS          C1           N      SINGLE       n     1.455  0.0100     1.455  0.0100
+EIS         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS         C12         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS          C7          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS          C6          C7      SINGLE       n     1.519  0.0164     1.519  0.0164
+EIS          C3          C4      DOUBLE       n     1.299  0.0200     1.299  0.0200
+EIS          C2          C3      SINGLE       n     1.497  0.0113     1.497  0.0113
+EIS         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+EIS          C4          C5      SINGLE       n     1.497  0.0127     1.497  0.0127
+EIS          C5          C6      SINGLE       n     1.497  0.0200     1.497  0.0200
+EIS          C2          C1      SINGLE       n     1.538  0.0159     1.538  0.0159
+EIS          C1           C      SINGLE       n     1.515  0.0117     1.515  0.0117
+EIS         C15         C16      SINGLE       n     1.507  0.0200     1.507  0.0200
+EIS         C16         C17      SINGLE       n     1.510  0.0200     1.510  0.0200
+EIS          O1          C2      SINGLE       n     1.419  0.0162     1.419  0.0162
+EIS           O           C      SINGLE       n     1.439  0.0100     1.439  0.0100
+EIS         C43           O      SINGLE       n     1.399  0.0118     1.399  0.0118
+EIS         C43          O6      SINGLE       n     1.415  0.0124     1.415  0.0124
+EIS         C43         C44      SINGLE       n     1.523  0.0106     1.523  0.0106
+EIS         C44          O3      SINGLE       n     1.425  0.0112     1.425  0.0112
+EIS         C47          O6      SINGLE       n     1.440  0.0195     1.440  0.0195
+EIS         C44         C45      SINGLE       n     1.520  0.0200     1.520  0.0200
+EIS         C47         C48      SINGLE       n     1.511  0.0142     1.511  0.0142
+EIS         C46         C47      SINGLE       n     1.524  0.0200     1.524  0.0200
+EIS         C48          O7      SINGLE       n     1.426  0.0200     1.426  0.0200
+EIS         C45         C46      SINGLE       n     1.520  0.0152     1.520  0.0152
+EIS         C45          O4      SINGLE       n     1.480  0.0100     1.480  0.0100
+EIS         C46          O5      SINGLE       n     1.425  0.0176     1.425  0.0176
+EIS           S          O4      SINGLE       n     1.592  0.0200     1.592  0.0200
+EIS           S          O8      DOUBLE       n     1.446  0.0158     1.446  0.0158
+EIS           S          O9      DOUBLE       n     1.446  0.0158     1.446  0.0158
+EIS           S         O10      SINGLE       n     1.446  0.0158     1.446  0.0158
+EIS         C43          H1      SINGLE       n     1.089  0.0100     0.971  0.0193
+EIS         C44          H2      SINGLE       n     1.089  0.0100     0.987  0.0140
+EIS          O3          H3      SINGLE       n     0.970  0.0120     0.841  0.0200
+EIS         C45          H4      SINGLE       n     1.089  0.0100     0.989  0.0181
+EIS         C46          H5      SINGLE       n     1.089  0.0100     0.986  0.0131
+EIS          O5          H6      SINGLE       n     0.970  0.0120     0.841  0.0200
+EIS         C47          H7      SINGLE       n     1.089  0.0100     0.988  0.0182
+EIS         C48          H8      SINGLE       n     1.089  0.0100     0.980  0.0184
+EIS         C48          H9      SINGLE       n     1.089  0.0100     0.980  0.0184
+EIS          O7         H10      SINGLE       n     0.970  0.0120     0.848  0.0200
+EIS          O1         H11      SINGLE       n     0.970  0.0120     0.848  0.0200
+EIS          C2         H12      SINGLE       n     1.089  0.0100     0.988  0.0129
+EIS          C1         H13      SINGLE       n     1.089  0.0100     0.988  0.0127
+EIS           N         H14      SINGLE       n     1.016  0.0100     0.872  0.0200
+EIS           C         H15      SINGLE       n     1.089  0.0100     0.979  0.0200
+EIS           C         H16      SINGLE       n     1.089  0.0100     0.979  0.0200
+EIS          C3         H17      SINGLE       n     1.082  0.0130     0.945  0.0200
+EIS          C4         H20      SINGLE       n     1.082  0.0130     0.945  0.0200
+EIS          C5         H21      SINGLE       n     1.089  0.0100     0.983  0.0180
+EIS          C5         H22      SINGLE       n     1.089  0.0100     0.983  0.0180
+EIS          C6         H23      SINGLE       n     1.089  0.0100     0.980  0.0160
+EIS          C6         H24      SINGLE       n     1.089  0.0100     0.980  0.0160
+EIS          C7         H25      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS          C7         H26      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS          C8         H27      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS          C8         H28      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS          C9         H29      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS          C9         H30      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C10         H31      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C10         H32      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C11         H33      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C11         H34      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C12         H35      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C12         H36      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C13         H37      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C13         H38      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C14         H39      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C14         H40      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C15         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C15         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C16         H43      SINGLE       n     1.089  0.0100     0.982  0.0155
+EIS         C16         H44      SINGLE       n     1.089  0.0100     0.982  0.0155
+EIS         C17         H45      SINGLE       n     1.089  0.0100     0.973  0.0157
+EIS         C17         H46      SINGLE       n     1.089  0.0100     0.973  0.0157
+EIS         C17         H47      SINGLE       n     1.089  0.0100     0.973  0.0157
+EIS         C29         H48      SINGLE       n     1.089  0.0100     0.973  0.0157
+EIS         C29         H49      SINGLE       n     1.089  0.0100     0.973  0.0157
+EIS         C29         H50      SINGLE       n     1.089  0.0100     0.973  0.0157
+EIS         C28         H51      SINGLE       n     1.089  0.0100     0.982  0.0155
+EIS         C28         H52      SINGLE       n     1.089  0.0100     0.982  0.0155
+EIS         C27         H53      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C27         H54      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C26         H55      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C26         H56      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C25         H57      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C25         H58      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C24         H59      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C24         H60      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C23         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C23         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C22         H63      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C22         H64      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C21         H65      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C21         H66      SINGLE       n     1.089  0.0100     0.981  0.0163
+EIS         C20         H67      SINGLE       n     1.089  0.0100     0.980  0.0160
+EIS         C20         H68      SINGLE       n     1.089  0.0100     0.980  0.0160
+EIS         C19         H69      SINGLE       n     1.089  0.0100     0.981  0.0185
+EIS         C19         H70      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EIS           O         C43          O6     108.518    1.66
+EIS           O         C43         C44     108.855    1.50
+EIS           O         C43          H1     109.834    1.50
+EIS          O6         C43         C44     110.404    1.50
+EIS          O6         C43          H1     109.385    1.50
+EIS         C44         C43          H1     109.511    1.50
+EIS           C           O         C43     113.687    1.50
+EIS         C43         C44          O3     110.083    1.70
+EIS         C43         C44         C45     110.229    1.69
+EIS         C43         C44          H2     108.545    1.50
+EIS          O3         C44         C45     110.081    2.02
+EIS          O3         C44          H2     108.551    1.50
+EIS         C45         C44          H2     109.166    1.50
+EIS         C44          O3          H3     109.126    2.06
+EIS         C44         C45         C46     110.796    1.54
+EIS         C44         C45          O4     107.426    2.20
+EIS         C44         C45          H4     109.166    1.50
+EIS         C46         C45          O4     107.426    2.20
+EIS         C46         C45          H4     109.166    1.50
+EIS          O4         C45          H4     109.284    1.99
+EIS         C47         C46         C45     110.316    1.64
+EIS         C47         C46          O5     109.072    2.07
+EIS         C47         C46          H5     109.223    1.50
+EIS         C45         C46          O5     110.081    2.02
+EIS         C45         C46          H5     109.166    1.50
+EIS          O5         C46          H5     109.194    1.50
+EIS         C46          O5          H6     109.564    3.00
+EIS          O6         C47         C48     106.879    1.50
+EIS          O6         C47         C46     109.140    1.86
+EIS          O6         C47          H7     109.134    1.50
+EIS         C48         C47         C46     112.996    1.59
+EIS         C48         C47          H7     109.269    1.50
+EIS         C46         C47          H7     108.960    1.50
+EIS         C47         C48          O7     111.299    2.09
+EIS         C47         C48          H8     109.363    1.50
+EIS         C47         C48          H9     109.363    1.50
+EIS          O7         C48          H8     109.265    1.50
+EIS          O7         C48          H9     109.265    1.50
+EIS          H8         C48          H9     108.155    1.50
+EIS         C48          O7         H10     109.472    2.41
+EIS         C43          O6         C47     112.999    1.58
+EIS          C2          O1         H11     108.894    3.00
+EIS          C3          C2          C1     111.511    2.91
+EIS          C3          C2          O1     109.951    2.10
+EIS          C3          C2         H12     108.883    1.50
+EIS          C1          C2          O1     110.423    2.15
+EIS          C1          C2         H12     108.277    1.50
+EIS          O1          C2         H12     108.675    1.50
+EIS           N          C1          C2     111.308    2.28
+EIS           N          C1           C     111.308    2.28
+EIS           N          C1         H13     108.194    1.50
+EIS          C2          C1           C     111.094    2.85
+EIS          C2          C1         H13     107.549    1.55
+EIS           C          C1         H13     108.763    1.50
+EIS         C18           N          C1     123.741    1.63
+EIS         C18           N         H14     118.656    1.50
+EIS          C1           N         H14     117.592    3.00
+EIS          C1           C           O     109.482    3.00
+EIS          C1           C         H15     109.865    1.50
+EIS          C1           C         H16     109.865    1.50
+EIS           O           C         H15     109.586    1.50
+EIS           O           C         H16     109.586    1.50
+EIS         H15           C         H16     108.500    1.50
+EIS          C4          C3          C2     125.212    1.80
+EIS          C4          C3         H17     117.843    1.50
+EIS          C2          C3         H17     116.945    1.63
+EIS          C3          C4          C5     125.662    2.06
+EIS          C3          C4         H20     117.471    1.50
+EIS          C5          C4         H20     116.866    1.61
+EIS          C4          C5          C6     113.226    1.94
+EIS          C4          C5         H21     108.886    1.50
+EIS          C4          C5         H22     108.886    1.50
+EIS          C6          C5         H21     108.819    1.50
+EIS          C6          C5         H22     108.819    1.50
+EIS         H21          C5         H22     107.922    1.50
+EIS          C7          C6          C5     114.266    1.80
+EIS          C7          C6         H23     108.698    1.50
+EIS          C7          C6         H24     108.698    1.50
+EIS          C5          C6         H23     108.805    1.50
+EIS          C5          C6         H24     108.805    1.50
+EIS         H23          C6         H24     107.646    1.50
+EIS          C8          C7          C6     114.243    1.69
+EIS          C8          C7         H25     108.698    1.50
+EIS          C8          C7         H26     108.698    1.50
+EIS          C6          C7         H25     108.698    1.50
+EIS          C6          C7         H26     108.698    1.50
+EIS         H25          C7         H26     107.646    1.50
+EIS          C9          C8          C7     114.243    1.69
+EIS          C9          C8         H27     108.698    1.50
+EIS          C9          C8         H28     108.698    1.50
+EIS          C7          C8         H27     108.698    1.50
+EIS          C7          C8         H28     108.698    1.50
+EIS         H27          C8         H28     107.646    1.50
+EIS          C8          C9         C10     114.243    1.69
+EIS          C8          C9         H29     108.698    1.50
+EIS          C8          C9         H30     108.698    1.50
+EIS         C10          C9         H29     108.698    1.50
+EIS         C10          C9         H30     108.698    1.50
+EIS         H29          C9         H30     107.646    1.50
+EIS          C9         C10         C11     114.243    1.69
+EIS          C9         C10         H31     108.698    1.50
+EIS          C9         C10         H32     108.698    1.50
+EIS         C11         C10         H31     108.698    1.50
+EIS         C11         C10         H32     108.698    1.50
+EIS         H31         C10         H32     107.646    1.50
+EIS         C12         C11         C10     114.243    1.69
+EIS         C12         C11         H33     108.698    1.50
+EIS         C12         C11         H34     108.698    1.50
+EIS         C10         C11         H33     108.698    1.50
+EIS         C10         C11         H34     108.698    1.50
+EIS         H33         C11         H34     107.646    1.50
+EIS         C11         C12         C13     114.243    1.69
+EIS         C11         C12         H35     108.698    1.50
+EIS         C11         C12         H36     108.698    1.50
+EIS         C13         C12         H35     108.698    1.50
+EIS         C13         C12         H36     108.698    1.50
+EIS         H35         C12         H36     107.646    1.50
+EIS         C12         C13         C14     114.243    1.69
+EIS         C12         C13         H37     108.698    1.50
+EIS         C12         C13         H38     108.698    1.50
+EIS         C14         C13         H37     108.698    1.50
+EIS         C14         C13         H38     108.698    1.50
+EIS         H37         C13         H38     107.646    1.50
+EIS         C13         C14         C15     114.243    1.69
+EIS         C13         C14         H39     108.698    1.50
+EIS         C13         C14         H40     108.698    1.50
+EIS         C15         C14         H39     108.698    1.50
+EIS         C15         C14         H40     108.698    1.50
+EIS         H39         C14         H40     107.646    1.50
+EIS         C14         C15         C16     114.362    3.00
+EIS         C14         C15         H41     108.698    1.50
+EIS         C14         C15         H42     108.698    1.50
+EIS         C16         C15         H41     108.653    1.50
+EIS         C16         C15         H42     108.653    1.50
+EIS         H41         C15         H42     107.646    1.50
+EIS         C15         C16         C17     113.719    3.00
+EIS         C15         C16         H43     108.758    1.50
+EIS         C15         C16         H44     108.758    1.50
+EIS         C17         C16         H43     108.918    1.50
+EIS         C17         C16         H44     108.918    1.50
+EIS         H43         C16         H44     107.763    1.50
+EIS         C16         C17         H45     109.554    1.50
+EIS         C16         C17         H46     109.554    1.50
+EIS         C16         C17         H47     109.554    1.50
+EIS         H45         C17         H46     109.380    1.50
+EIS         H45         C17         H47     109.380    1.50
+EIS         H46         C17         H47     109.380    1.50
+EIS         C28         C29         H48     109.554    1.50
+EIS         C28         C29         H49     109.554    1.50
+EIS         C28         C29         H50     109.554    1.50
+EIS         H48         C29         H49     109.380    1.50
+EIS         H48         C29         H50     109.380    1.50
+EIS         H49         C29         H50     109.380    1.50
+EIS         C29         C28         C27     113.719    3.00
+EIS         C29         C28         H51     108.918    1.50
+EIS         C29         C28         H52     108.918    1.50
+EIS         C27         C28         H51     108.758    1.50
+EIS         C27         C28         H52     108.758    1.50
+EIS         H51         C28         H52     107.763    1.50
+EIS         C28         C27         C26     114.362    3.00
+EIS         C28         C27         H53     108.653    1.50
+EIS         C28         C27         H54     108.653    1.50
+EIS         C26         C27         H53     108.698    1.50
+EIS         C26         C27         H54     108.698    1.50
+EIS         H53         C27         H54     107.646    1.50
+EIS         C27         C26         C25     114.243    1.69
+EIS         C27         C26         H55     108.698    1.50
+EIS         C27         C26         H56     108.698    1.50
+EIS         C25         C26         H55     108.698    1.50
+EIS         C25         C26         H56     108.698    1.50
+EIS         H55         C26         H56     107.646    1.50
+EIS         C26         C25         C24     114.243    1.69
+EIS         C26         C25         H57     108.698    1.50
+EIS         C26         C25         H58     108.698    1.50
+EIS         C24         C25         H57     108.698    1.50
+EIS         C24         C25         H58     108.698    1.50
+EIS         H57         C25         H58     107.646    1.50
+EIS         C25         C24         C23     114.243    1.69
+EIS         C25         C24         H59     108.698    1.50
+EIS         C25         C24         H60     108.698    1.50
+EIS         C23         C24         H59     108.698    1.50
+EIS         C23         C24         H60     108.698    1.50
+EIS         H59         C24         H60     107.646    1.50
+EIS         C24         C23         C22     114.243    1.69
+EIS         C24         C23         H61     108.698    1.50
+EIS         C24         C23         H62     108.698    1.50
+EIS         C22         C23         H61     108.698    1.50
+EIS         C22         C23         H62     108.698    1.50
+EIS         H61         C23         H62     107.646    1.50
+EIS         C23         C22         C21     114.243    1.69
+EIS         C23         C22         H63     108.698    1.50
+EIS         C23         C22         H64     108.698    1.50
+EIS         C21         C22         H63     108.698    1.50
+EIS         C21         C22         H64     108.698    1.50
+EIS         H63         C22         H64     107.646    1.50
+EIS         C22         C21         C20     114.243    1.69
+EIS         C22         C21         H65     108.698    1.50
+EIS         C22         C21         H66     108.698    1.50
+EIS         C20         C21         H65     108.698    1.50
+EIS         C20         C21         H66     108.698    1.50
+EIS         H65         C21         H66     107.646    1.50
+EIS         C21         C20         C19     113.472    1.51
+EIS         C21         C20         H67     108.698    1.50
+EIS         C21         C20         H68     108.698    1.50
+EIS         C19         C20         H67     108.795    1.50
+EIS         C19         C20         H68     108.795    1.50
+EIS         H67         C20         H68     107.646    1.50
+EIS         C20         C19         C18     112.836    1.50
+EIS         C20         C19         H69     108.897    1.50
+EIS         C20         C19         H70     108.897    1.50
+EIS         C18         C19         H69     108.930    1.50
+EIS         C18         C19         H70     108.930    1.50
+EIS         H69         C19         H70     107.846    1.50
+EIS          O2         C18         C19     121.831    1.50
+EIS          O2         C18           N     122.033    1.50
+EIS         C19         C18           N     116.136    1.50
+EIS          O4           S          O8     105.111    2.79
+EIS          O4           S          O9     105.111    2.79
+EIS          O4           S         O10     105.111    2.79
+EIS          O8           S          O9     112.746    1.50
+EIS          O8           S         O10     112.746    1.50
+EIS          O9           S         O10     112.746    1.50
+EIS         C45          O4           S     119.421    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EIS                   nu0         C47          O6         C43         C44     -65.177    10.0     3
+EIS                   nu1          O6         C43         C44         C45      57.469    10.0     3
+EIS                   nu2         C43         C44         C45         C46     -51.320    10.0     3
+EIS                   nu3         C44         C45         C46         C47      51.616    10.0     3
+EIS                   nu4         C45         C46         C47          O6     -58.798    10.0     3
+EIS                   nu5         C46         C47          O6         C43      66.137    10.0     3
+EIS            sp3_sp3_34         C27         C28         C29         H48     180.000    10.0     3
+EIS            sp3_sp3_35         C27         C28         C29         H49     -60.000    10.0     3
+EIS            sp3_sp3_36         C27         C28         C29         H50      60.000    10.0     3
+EIS            sp3_sp3_37         H51         C28         C29         H48      60.000    10.0     3
+EIS            sp3_sp3_38         H51         C28         C29         H49     180.000    10.0     3
+EIS            sp3_sp3_39         H51         C28         C29         H50     -60.000    10.0     3
+EIS            sp3_sp3_40         H52         C28         C29         H48     -60.000    10.0     3
+EIS            sp3_sp3_41         H52         C28         C29         H49      60.000    10.0     3
+EIS            sp3_sp3_42         H52         C28         C29         H50     180.000    10.0     3
+EIS            sp3_sp3_43         C26         C27         C28         C29     180.000    10.0     3
+EIS            sp3_sp3_44         C26         C27         C28         H51     -60.000    10.0     3
+EIS            sp3_sp3_45         C26         C27         C28         H52      60.000    10.0     3
+EIS            sp3_sp3_46         H53         C27         C28         C29      60.000    10.0     3
+EIS            sp3_sp3_47         H53         C27         C28         H51     180.000    10.0     3
+EIS            sp3_sp3_48         H53         C27         C28         H52     -60.000    10.0     3
+EIS            sp3_sp3_49         H54         C27         C28         C29     -60.000    10.0     3
+EIS            sp3_sp3_50         H54         C27         C28         H51      60.000    10.0     3
+EIS            sp3_sp3_51         H54         C27         C28         H52     180.000    10.0     3
+EIS            sp3_sp3_52         C25         C26         C27         C28     180.000    10.0     3
+EIS            sp3_sp3_53         C25         C26         C27         H53     -60.000    10.0     3
+EIS            sp3_sp3_54         C25         C26         C27         H54      60.000    10.0     3
+EIS            sp3_sp3_55         H55         C26         C27         C28      60.000    10.0     3
+EIS            sp3_sp3_56         H55         C26         C27         H53     180.000    10.0     3
+EIS            sp3_sp3_57         H55         C26         C27         H54     -60.000    10.0     3
+EIS            sp3_sp3_58         H56         C26         C27         C28     -60.000    10.0     3
+EIS            sp3_sp3_59         H56         C26         C27         H53      60.000    10.0     3
+EIS            sp3_sp3_60         H56         C26         C27         H54     180.000    10.0     3
+EIS            sp3_sp3_61         C24         C25         C26         C27     180.000    10.0     3
+EIS            sp3_sp3_62         C24         C25         C26         H55     -60.000    10.0     3
+EIS            sp3_sp3_63         C24         C25         C26         H56      60.000    10.0     3
+EIS            sp3_sp3_64         H57         C25         C26         C27      60.000    10.0     3
+EIS            sp3_sp3_65         H57         C25         C26         H55     180.000    10.0     3
+EIS            sp3_sp3_66         H57         C25         C26         H56     -60.000    10.0     3
+EIS            sp3_sp3_67         H58         C25         C26         C27     -60.000    10.0     3
+EIS            sp3_sp3_68         H58         C25         C26         H55      60.000    10.0     3
+EIS            sp3_sp3_69         H58         C25         C26         H56     180.000    10.0     3
+EIS            sp3_sp3_70         C23         C24         C25         C26     180.000    10.0     3
+EIS            sp3_sp3_71         C23         C24         C25         H57     -60.000    10.0     3
+EIS            sp3_sp3_72         C23         C24         C25         H58      60.000    10.0     3
+EIS            sp3_sp3_73         H59         C24         C25         C26      60.000    10.0     3
+EIS            sp3_sp3_74         H59         C24         C25         H57     180.000    10.0     3
+EIS            sp3_sp3_75         H59         C24         C25         H58     -60.000    10.0     3
+EIS            sp3_sp3_76         H60         C24         C25         C26     -60.000    10.0     3
+EIS            sp3_sp3_77         H60         C24         C25         H57      60.000    10.0     3
+EIS            sp3_sp3_78         H60         C24         C25         H58     180.000    10.0     3
+EIS            sp3_sp3_79         C22         C23         C24         C25     180.000    10.0     3
+EIS            sp3_sp3_80         C22         C23         C24         H59     -60.000    10.0     3
+EIS            sp3_sp3_81         C22         C23         C24         H60      60.000    10.0     3
+EIS            sp3_sp3_82         H61         C23         C24         C25      60.000    10.0     3
+EIS            sp3_sp3_83         H61         C23         C24         H59     180.000    10.0     3
+EIS            sp3_sp3_84         H61         C23         C24         H60     -60.000    10.0     3
+EIS            sp3_sp3_85         H62         C23         C24         C25     -60.000    10.0     3
+EIS            sp3_sp3_86         H62         C23         C24         H59      60.000    10.0     3
+EIS            sp3_sp3_87         H62         C23         C24         H60     180.000    10.0     3
+EIS            sp3_sp3_88         C21         C22         C23         C24     180.000    10.0     3
+EIS            sp3_sp3_89         C21         C22         C23         H61     -60.000    10.0     3
+EIS            sp3_sp3_90         C21         C22         C23         H62      60.000    10.0     3
+EIS            sp3_sp3_91         H63         C22         C23         C24      60.000    10.0     3
+EIS            sp3_sp3_92         H63         C22         C23         H61     180.000    10.0     3
+EIS            sp3_sp3_93         H63         C22         C23         H62     -60.000    10.0     3
+EIS            sp3_sp3_94         H64         C22         C23         C24     -60.000    10.0     3
+EIS            sp3_sp3_95         H64         C22         C23         H61      60.000    10.0     3
+EIS            sp3_sp3_96         H64         C22         C23         H62     180.000    10.0     3
+EIS            sp3_sp3_97         C20         C21         C22         C23     180.000    10.0     3
+EIS            sp3_sp3_98         C20         C21         C22         H63     -60.000    10.0     3
+EIS            sp3_sp3_99         C20         C21         C22         H64      60.000    10.0     3
+EIS           sp3_sp3_100         H65         C21         C22         C23      60.000    10.0     3
+EIS           sp3_sp3_101         H65         C21         C22         H63     180.000    10.0     3
+EIS           sp3_sp3_102         H65         C21         C22         H64     -60.000    10.0     3
+EIS           sp3_sp3_103         H66         C21         C22         C23     -60.000    10.0     3
+EIS           sp3_sp3_104         H66         C21         C22         H63      60.000    10.0     3
+EIS           sp3_sp3_105         H66         C21         C22         H64     180.000    10.0     3
+EIS           sp3_sp3_106         C19         C20         C21         C22     180.000    10.0     3
+EIS           sp3_sp3_107         C19         C20         C21         H65     -60.000    10.0     3
+EIS           sp3_sp3_108         C19         C20         C21         H66      60.000    10.0     3
+EIS           sp3_sp3_109         H67         C20         C21         C22      60.000    10.0     3
+EIS           sp3_sp3_110         H67         C20         C21         H65     180.000    10.0     3
+EIS           sp3_sp3_111         H67         C20         C21         H66     -60.000    10.0     3
+EIS           sp3_sp3_112         H68         C20         C21         C22     -60.000    10.0     3
+EIS           sp3_sp3_113         H68         C20         C21         H65      60.000    10.0     3
+EIS           sp3_sp3_114         H68         C20         C21         H66     180.000    10.0     3
+EIS           sp3_sp3_115         C18         C19         C20         C21     180.000    10.0     3
+EIS           sp3_sp3_116         C18         C19         C20         H67     -60.000    10.0     3
+EIS           sp3_sp3_117         C18         C19         C20         H68      60.000    10.0     3
+EIS           sp3_sp3_118         H69         C19         C20         C21      60.000    10.0     3
+EIS           sp3_sp3_119         H69         C19         C20         H67     180.000    10.0     3
+EIS           sp3_sp3_120         H69         C19         C20         H68     -60.000    10.0     3
+EIS           sp3_sp3_121         H70         C19         C20         C21     -60.000    10.0     3
+EIS           sp3_sp3_122         H70         C19         C20         H67      60.000    10.0     3
+EIS           sp3_sp3_123         H70         C19         C20         H68     180.000    10.0     3
+EIS             sp2_sp3_1          O2         C18         C19         H69       0.000    10.0     6
+EIS             sp2_sp3_2          O2         C18         C19         C20     120.000    10.0     6
+EIS             sp2_sp3_3          O2         C18         C19         H70    -120.000    10.0     6
+EIS             sp2_sp3_4           N         C18         C19         H69     180.000    10.0     6
+EIS             sp2_sp3_5           N         C18         C19         C20     -60.000    10.0     6
+EIS             sp2_sp3_6           N         C18         C19         H70      60.000    10.0     6
+EIS             sp2_sp2_1         C19         C18           N          C1     180.000     5.0     2
+EIS             sp2_sp2_2         C19         C18           N         H14       0.000     5.0     2
+EIS             sp2_sp2_3          O2         C18           N          C1       0.000     5.0     2
+EIS             sp2_sp2_4          O2         C18           N         H14     180.000     5.0     2
+EIS           sp3_sp3_124          C7          C8          C9         C10     180.000    10.0     3
+EIS           sp3_sp3_125          C7          C8          C9         H29     -60.000    10.0     3
+EIS           sp3_sp3_126          C7          C8          C9         H30      60.000    10.0     3
+EIS           sp3_sp3_127         H27          C8          C9         C10      60.000    10.0     3
+EIS           sp3_sp3_128         H27          C8          C9         H29     180.000    10.0     3
+EIS           sp3_sp3_129         H27          C8          C9         H30     -60.000    10.0     3
+EIS           sp3_sp3_130         H28          C8          C9         C10     -60.000    10.0     3
+EIS           sp3_sp3_131         H28          C8          C9         H29      60.000    10.0     3
+EIS           sp3_sp3_132         H28          C8          C9         H30     180.000    10.0     3
+EIS           sp3_sp3_133         C11         C10          C9          C8     180.000    10.0     3
+EIS           sp3_sp3_134         C11         C10          C9         H29     -60.000    10.0     3
+EIS           sp3_sp3_135         C11         C10          C9         H30      60.000    10.0     3
+EIS           sp3_sp3_136         H31         C10          C9          C8      60.000    10.0     3
+EIS           sp3_sp3_137         H31         C10          C9         H29     180.000    10.0     3
+EIS           sp3_sp3_138         H31         C10          C9         H30     -60.000    10.0     3
+EIS           sp3_sp3_139         H32         C10          C9          C8     -60.000    10.0     3
+EIS           sp3_sp3_140         H32         C10          C9         H29      60.000    10.0     3
+EIS           sp3_sp3_141         H32         C10          C9         H30     180.000    10.0     3
+EIS             sp2_sp3_7         C18           N          C1          C2       0.000    10.0     6
+EIS             sp2_sp3_8         C18           N          C1           C     120.000    10.0     6
+EIS             sp2_sp3_9         C18           N          C1         H13    -120.000    10.0     6
+EIS            sp2_sp3_10         H14           N          C1          C2     180.000    10.0     6
+EIS            sp2_sp3_11         H14           N          C1           C     -60.000    10.0     6
+EIS            sp2_sp3_12         H14           N          C1         H13      60.000    10.0     6
+EIS           sp3_sp3_142         C10         C11         C12         C13     180.000    10.0     3
+EIS           sp3_sp3_143         C10         C11         C12         H35     -60.000    10.0     3
+EIS           sp3_sp3_144         C10         C11         C12         H36      60.000    10.0     3
+EIS           sp3_sp3_145         H33         C11         C12         C13      60.000    10.0     3
+EIS           sp3_sp3_146         H33         C11         C12         H35     180.000    10.0     3
+EIS           sp3_sp3_147         H33         C11         C12         H36     -60.000    10.0     3
+EIS           sp3_sp3_148         H34         C11         C12         C13     -60.000    10.0     3
+EIS           sp3_sp3_149         H34         C11         C12         H35      60.000    10.0     3
+EIS           sp3_sp3_150         H34         C11         C12         H36     180.000    10.0     3
+EIS           sp3_sp3_151         C11         C12         C13         C14     180.000    10.0     3
+EIS           sp3_sp3_152         C11         C12         C13         H37     -60.000    10.0     3
+EIS           sp3_sp3_153         C11         C12         C13         H38      60.000    10.0     3
+EIS           sp3_sp3_154         H35         C12         C13         C14      60.000    10.0     3
+EIS           sp3_sp3_155         H35         C12         C13         H37     180.000    10.0     3
+EIS           sp3_sp3_156         H35         C12         C13         H38     -60.000    10.0     3
+EIS           sp3_sp3_157         H36         C12         C13         C14     -60.000    10.0     3
+EIS           sp3_sp3_158         H36         C12         C13         H37      60.000    10.0     3
+EIS           sp3_sp3_159         H36         C12         C13         H38     180.000    10.0     3
+EIS           sp3_sp3_160          C9         C10         C11         C12     180.000    10.0     3
+EIS           sp3_sp3_161          C9         C10         C11         H33     -60.000    10.0     3
+EIS           sp3_sp3_162          C9         C10         C11         H34      60.000    10.0     3
+EIS           sp3_sp3_163         H31         C10         C11         C12      60.000    10.0     3
+EIS           sp3_sp3_164         H31         C10         C11         H33     180.000    10.0     3
+EIS           sp3_sp3_165         H31         C10         C11         H34     -60.000    10.0     3
+EIS           sp3_sp3_166         H32         C10         C11         C12     -60.000    10.0     3
+EIS           sp3_sp3_167         H32         C10         C11         H33      60.000    10.0     3
+EIS           sp3_sp3_168         H32         C10         C11         H34     180.000    10.0     3
+EIS           sp3_sp3_169          C6          C7          C8          C9     180.000    10.0     3
+EIS           sp3_sp3_170          C6          C7          C8         H27     -60.000    10.0     3
+EIS           sp3_sp3_171          C6          C7          C8         H28      60.000    10.0     3
+EIS           sp3_sp3_172         H25          C7          C8          C9      60.000    10.0     3
+EIS           sp3_sp3_173         H25          C7          C8         H27     180.000    10.0     3
+EIS           sp3_sp3_174         H25          C7          C8         H28     -60.000    10.0     3
+EIS           sp3_sp3_175         H26          C7          C8          C9     -60.000    10.0     3
+EIS           sp3_sp3_176         H26          C7          C8         H27      60.000    10.0     3
+EIS           sp3_sp3_177         H26          C7          C8         H28     180.000    10.0     3
+EIS           sp3_sp3_178          C5          C6          C7          C8     180.000    10.0     3
+EIS           sp3_sp3_179          C5          C6          C7         H25     -60.000    10.0     3
+EIS           sp3_sp3_180          C5          C6          C7         H26      60.000    10.0     3
+EIS           sp3_sp3_181         H23          C6          C7          C8      60.000    10.0     3
+EIS           sp3_sp3_182         H23          C6          C7         H25     180.000    10.0     3
+EIS           sp3_sp3_183         H23          C6          C7         H26     -60.000    10.0     3
+EIS           sp3_sp3_184         H24          C6          C7          C8     -60.000    10.0     3
+EIS           sp3_sp3_185         H24          C6          C7         H25      60.000    10.0     3
+EIS           sp3_sp3_186         H24          C6          C7         H26     180.000    10.0     3
+EIS             sp2_sp2_5          C2          C3          C4          C5     180.000     5.0     2
+EIS             sp2_sp2_6          C2          C3          C4         H20       0.000     5.0     2
+EIS             sp2_sp2_7         H17          C3          C4          C5       0.000     5.0     2
+EIS             sp2_sp2_8         H17          C3          C4         H20     180.000     5.0     2
+EIS            sp2_sp3_13          C4          C3          C2          C1       0.000    10.0     6
+EIS            sp2_sp3_14          C4          C3          C2          O1     120.000    10.0     6
+EIS            sp2_sp3_15          C4          C3          C2         H12    -120.000    10.0     6
+EIS            sp2_sp3_16         H17          C3          C2          C1     180.000    10.0     6
+EIS            sp2_sp3_17         H17          C3          C2          O1     -60.000    10.0     6
+EIS            sp2_sp3_18         H17          C3          C2         H12      60.000    10.0     6
+EIS           sp3_sp3_187         C12         C13         C14         C15     180.000    10.0     3
+EIS           sp3_sp3_188         C12         C13         C14         H39     -60.000    10.0     3
+EIS           sp3_sp3_189         C12         C13         C14         H40      60.000    10.0     3
+EIS           sp3_sp3_190         H37         C13         C14         C15      60.000    10.0     3
+EIS           sp3_sp3_191         H37         C13         C14         H39     180.000    10.0     3
+EIS           sp3_sp3_192         H37         C13         C14         H40     -60.000    10.0     3
+EIS           sp3_sp3_193         H38         C13         C14         C15     -60.000    10.0     3
+EIS           sp3_sp3_194         H38         C13         C14         H39      60.000    10.0     3
+EIS           sp3_sp3_195         H38         C13         C14         H40     180.000    10.0     3
+EIS           sp3_sp3_196         C13         C14         C15         C16     180.000    10.0     3
+EIS           sp3_sp3_197         C13         C14         C15         H41     -60.000    10.0     3
+EIS           sp3_sp3_198         C13         C14         C15         H42      60.000    10.0     3
+EIS           sp3_sp3_199         H39         C14         C15         C16      60.000    10.0     3
+EIS           sp3_sp3_200         H39         C14         C15         H41     180.000    10.0     3
+EIS           sp3_sp3_201         H39         C14         C15         H42     -60.000    10.0     3
+EIS           sp3_sp3_202         H40         C14         C15         C16     -60.000    10.0     3
+EIS           sp3_sp3_203         H40         C14         C15         H41      60.000    10.0     3
+EIS           sp3_sp3_204         H40         C14         C15         H42     180.000    10.0     3
+EIS            sp2_sp3_19          C3          C4          C5         H21       0.000    10.0     6
+EIS            sp2_sp3_20          C3          C4          C5          C6     120.000    10.0     6
+EIS            sp2_sp3_21          C3          C4          C5         H22    -120.000    10.0     6
+EIS            sp2_sp3_22         H20          C4          C5         H21     180.000    10.0     6
+EIS            sp2_sp3_23         H20          C4          C5          C6     -60.000    10.0     6
+EIS            sp2_sp3_24         H20          C4          C5         H22      60.000    10.0     6
+EIS           sp3_sp3_205          C4          C5          C6          C7     180.000    10.0     3
+EIS           sp3_sp3_206          C4          C5          C6         H23     -60.000    10.0     3
+EIS           sp3_sp3_207          C4          C5          C6         H24      60.000    10.0     3
+EIS           sp3_sp3_208         H21          C5          C6          C7      60.000    10.0     3
+EIS           sp3_sp3_209         H21          C5          C6         H23     180.000    10.0     3
+EIS           sp3_sp3_210         H21          C5          C6         H24     -60.000    10.0     3
+EIS           sp3_sp3_211         H22          C5          C6          C7     -60.000    10.0     3
+EIS           sp3_sp3_212         H22          C5          C6         H23      60.000    10.0     3
+EIS           sp3_sp3_213         H22          C5          C6         H24     180.000    10.0     3
+EIS           sp3_sp3_214           N          C1          C2          C3     180.000    10.0     3
+EIS           sp3_sp3_215           N          C1          C2          O1     -60.000    10.0     3
+EIS           sp3_sp3_216           N          C1          C2         H12      60.000    10.0     3
+EIS           sp3_sp3_217           C          C1          C2          C3      60.000    10.0     3
+EIS           sp3_sp3_218           C          C1          C2          O1     180.000    10.0     3
+EIS           sp3_sp3_219           C          C1          C2         H12     -60.000    10.0     3
+EIS           sp3_sp3_220         H13          C1          C2          C3     -60.000    10.0     3
+EIS           sp3_sp3_221         H13          C1          C2          O1      60.000    10.0     3
+EIS           sp3_sp3_222         H13          C1          C2         H12     180.000    10.0     3
+EIS           sp3_sp3_223           O           C          C1           N     180.000    10.0     3
+EIS           sp3_sp3_224           O           C          C1          C2     -60.000    10.0     3
+EIS           sp3_sp3_225           O           C          C1         H13      60.000    10.0     3
+EIS           sp3_sp3_226         H15           C          C1           N      60.000    10.0     3
+EIS           sp3_sp3_227         H15           C          C1          C2     180.000    10.0     3
+EIS           sp3_sp3_228         H15           C          C1         H13     -60.000    10.0     3
+EIS           sp3_sp3_229         H16           C          C1           N     -60.000    10.0     3
+EIS           sp3_sp3_230         H16           C          C1          C2      60.000    10.0     3
+EIS           sp3_sp3_231         H16           C          C1         H13     180.000    10.0     3
+EIS           sp3_sp3_232         C14         C15         C16         C17     180.000    10.0     3
+EIS           sp3_sp3_233         C14         C15         C16         H43     -60.000    10.0     3
+EIS           sp3_sp3_234         C14         C15         C16         H44      60.000    10.0     3
+EIS           sp3_sp3_235         H41         C15         C16         C17      60.000    10.0     3
+EIS           sp3_sp3_236         H41         C15         C16         H43     180.000    10.0     3
+EIS           sp3_sp3_237         H41         C15         C16         H44     -60.000    10.0     3
+EIS           sp3_sp3_238         H42         C15         C16         C17     -60.000    10.0     3
+EIS           sp3_sp3_239         H42         C15         C16         H43      60.000    10.0     3
+EIS           sp3_sp3_240         H42         C15         C16         H44     180.000    10.0     3
+EIS           sp3_sp3_241         C15         C16         C17         H45     180.000    10.0     3
+EIS           sp3_sp3_242         C15         C16         C17         H46     -60.000    10.0     3
+EIS           sp3_sp3_243         C15         C16         C17         H47      60.000    10.0     3
+EIS           sp3_sp3_244         H43         C16         C17         H45      60.000    10.0     3
+EIS           sp3_sp3_245         H43         C16         C17         H46     180.000    10.0     3
+EIS           sp3_sp3_246         H43         C16         C17         H47     -60.000    10.0     3
+EIS           sp3_sp3_247         H44         C16         C17         H45     -60.000    10.0     3
+EIS           sp3_sp3_248         H44         C16         C17         H46      60.000    10.0     3
+EIS           sp3_sp3_249         H44         C16         C17         H47     180.000    10.0     3
+EIS           sp3_sp3_250          C3          C2          O1         H11     180.000    10.0     3
+EIS           sp3_sp3_251          C1          C2          O1         H11      60.000    10.0     3
+EIS           sp3_sp3_252         H12          C2          O1         H11     -60.000    10.0     3
+EIS           sp3_sp3_253          C1           C           O         C43     180.000    10.0     3
+EIS           sp3_sp3_254         H15           C           O         C43      60.000    10.0     3
+EIS           sp3_sp3_255         H16           C           O         C43     -60.000    10.0     3
+EIS           sp3_sp3_256          O6         C43           O           C     180.000    10.0     3
+EIS           sp3_sp3_257         C44         C43           O           C      60.000    10.0     3
+EIS           sp3_sp3_258          H1         C43           O           C     -60.000    10.0     3
+EIS           sp3_sp3_268         C43         C44          O3          H3     180.000    10.0     3
+EIS           sp3_sp3_269         C45         C44          O3          H3      60.000    10.0     3
+EIS           sp3_sp3_270          H2         C44          O3          H3     -60.000    10.0     3
+EIS           sp3_sp3_271          O6         C47         C48          O7     180.000    10.0     3
+EIS           sp3_sp3_272          O6         C47         C48          H8     -60.000    10.0     3
+EIS           sp3_sp3_273          O6         C47         C48          H9      60.000    10.0     3
+EIS           sp3_sp3_274         C46         C47         C48          O7      60.000    10.0     3
+EIS           sp3_sp3_275         C46         C47         C48          H8     180.000    10.0     3
+EIS           sp3_sp3_276         C46         C47         C48          H9     -60.000    10.0     3
+EIS           sp3_sp3_277          H7         C47         C48          O7     -60.000    10.0     3
+EIS           sp3_sp3_278          H7         C47         C48          H8      60.000    10.0     3
+EIS           sp3_sp3_279          H7         C47         C48          H9     180.000    10.0     3
+EIS           sp3_sp3_280         C47         C48          O7         H10     180.000    10.0     3
+EIS           sp3_sp3_281          H8         C48          O7         H10      60.000    10.0     3
+EIS           sp3_sp3_282          H9         C48          O7         H10     -60.000    10.0     3
+EIS           sp3_sp3_283         C44         C45          O4           S     180.000    10.0     3
+EIS           sp3_sp3_284         C46         C45          O4           S      60.000    10.0     3
+EIS           sp3_sp3_285          H4         C45          O4           S     -60.000    10.0     3
+EIS           sp3_sp3_286         C47         C46          O5          H6     180.000    10.0     3
+EIS           sp3_sp3_287         C45         C46          O5          H6      60.000    10.0     3
+EIS           sp3_sp3_288          H5         C46          O5          H6     -60.000    10.0     3
+EIS           sp3_sp3_289         C45          O4           S          O9     180.000    10.0     3
+EIS           sp3_sp3_290         C45          O4           S          O8     -60.000    10.0     3
+EIS           sp3_sp3_291         C45          O4           S         O10      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EIS    chir_1    C43    O6    O    C44    negative
+EIS    chir_2    C44    O3    C43    C45    negative
+EIS    chir_3    C45    O4    C44    C46    positive
+EIS    chir_4    C46    O5    C45    C47    positive
+EIS    chir_5    C47    O6    C46    C48    negative
+EIS    chir_6    C2    O1    C1    C3    negative
+EIS    chir_7    C1    N    C2    C    positive
+EIS    chir_8    S    O8    O9    O4    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EIS    plan-1          C1   0.020
+EIS    plan-1         C18   0.020
+EIS    plan-1         H14   0.020
+EIS    plan-1           N   0.020
+EIS    plan-2          C2   0.020
+EIS    plan-2          C3   0.020
+EIS    plan-2          C4   0.020
+EIS    plan-2         H17   0.020
+EIS    plan-3          C3   0.020
+EIS    plan-3          C4   0.020
+EIS    plan-3          C5   0.020
+EIS    plan-3         H20   0.020
+EIS    plan-4         C18   0.020
+EIS    plan-4         C19   0.020
+EIS    plan-4           N   0.020
+EIS    plan-4          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EIS           SMILES              ACDLabs 12.01                                                                                                                                                                                                                 O=S(=O)(O)OC1C(O)C(OC(OCC(NC(=O)CCCCCCCCCCC)C(O)/C=C/CCCCCCCCCCCCC)C1O)CO
+EIS            InChI                InChI  1.03 InChI=1S/C36H69NO11S/c1-3-5-7-9-11-13-14-15-16-18-19-21-23-25-30(39)29(37-32(40)26-24-22-20-17-12-10-8-6-4-2)28-46-36-34(42)35(48-49(43,44)45)33(41)31(27-38)47-36/h23,25,29-31,33-36,38-39,41-42H,3-22,24,26-28H2,1-2H3,(H,37,40)(H,43,44,45)/b25-23+/t29-,30+,31+,33-,34+,35-,36+/m0/s1
+EIS         InChIKey                InChI  1.03                                                                                                                                                                                                                                                               FWVDYZZBQLRRDU-AZNTWQPMSA-N
+EIS SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                                 CCCCCCCCCCCCC/C=C/[C@@H](O)[C@H](CO[C@@H]1O[C@H](CO)[C@H](O)[C@H](O[S](O)(=O)=O)[C@H]1O)NC(=O)CCCCCCCCCCC
+EIS           SMILES               CACTVS 3.370                                                                                                                                                                                            CCCCCCCCCCCCCC=C[CH](O)[CH](CO[CH]1O[CH](CO)[CH](O)[CH](O[S](O)(=O)=O)[CH]1O)NC(=O)CCCCCCCCCCC
+EIS SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                    CCCCCCCCCCCCCC=C[C@H]([C@H](CO[C@H]1[C@@H]([C@H]([C@H]([C@H](O1)CO)O)OS(=O)(=O)O)O)NC(=O)CCCCCCCCCCC)O
+EIS           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                                 CCCCCCCCCCCCCC=CC(C(COC1C(C(C(C(O1)CO)O)OS(=O)(=O)O)O)NC(=O)CCCCCCCCCCC)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EIS acedrg               243         "dictionary generator"                  
+EIS acedrg_database      11          "data source"                           
+EIS rdkit                2017.03.2   "Chemoinformatics tool"
+EIS refmac5              5.8.0238    "optimization tool"                     

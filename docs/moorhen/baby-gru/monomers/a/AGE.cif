@@ -1,0 +1,274 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AGE     AGE      (2E)-N-hydroxy-3-[1-methyl-4-(phenylacetyl)-1H-pyrrol-2-yl]prop-2-enamide     NON-POLYMER     37     21     .     
+#
+data_comp_AGE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AGE     N1      N       NT      0       -27.501     30.575      -40.568     
+AGE     C2      C       CR16    0       -23.425     31.899      -45.276     
+AGE     N2      N       NH1     0       -27.731     25.223      -37.596     
+AGE     C4      C       CR16    0       -22.639     31.568      -43.033     
+AGE     C5      C       CR6     0       -23.598     32.445      -42.540     
+AGE     C6      C       CR16    0       -24.467     33.048      -43.444     
+AGE     O1      O       OH1     0       -28.451     24.126      -37.145     
+AGE     O2      O       O       0       -29.532     26.147      -38.579     
+AGE     O3      O       O       0       -23.064     31.011      -39.545     
+AGE     C1      C       CR16    0       -24.381     32.775      -44.803     
+AGE     C3      C       CR16    0       -22.555     31.296      -44.393     
+AGE     C7      C       CH2     0       -23.685     32.741      -41.061     
+AGE     C8      C       C       0       -23.951     31.509      -40.217     
+AGE     C9      C       CR5     0       -25.298     30.933      -40.228     
+AGE     C10     C       CR15    0       -26.452     31.444      -40.795     
+AGE     C11     C       CH3     0       -28.864     30.811      -41.032     
+AGE     C12     C       CR5     0       -27.011     29.473      -39.834     
+AGE     C13     C       CR15    0       -25.673     29.688      -39.627     
+AGE     C14     C       C1      0       -27.824     28.382      -39.427     
+AGE     C15     C       C1      0       -27.437     27.288      -38.710     
+AGE     C16     C       C       0       -28.335     26.179      -38.298     
+AGE     H2      H       H       0       -23.367     31.714      -46.200     
+AGE     H151    H       H       0       -26.887     25.255      -37.403     
+AGE     H4      H       H       0       -22.040     31.150      -42.435     
+AGE     H6      H       H       0       -25.124     33.649      -43.129     
+AGE     H16     H       H       0       -28.904     24.370      -36.448     
+AGE     H1      H       H       0       -24.978     33.190      -45.405     
+AGE     H3      H       H       0       -21.900     30.696      -44.713     
+AGE     H7      H       H       0       -24.385     33.382      -40.904     
+AGE     H7A     H       H       0       -22.857     33.137      -40.773     
+AGE     H10     H       H       0       -26.518     32.255      -41.261     
+AGE     H11     H       H       0       -28.963     31.741      -41.283     
+AGE     H11A    H       H       0       -29.487     30.599      -40.321     
+AGE     H11B    H       H       0       -29.044     30.247      -41.800     
+AGE     H13     H       H       0       -25.095     29.108      -39.163     
+AGE     H14     H       H       0       -28.742     28.418      -39.686     
+AGE     H15     H       H       0       -26.531     27.233      -38.457     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AGE          N1         C12      SINGLE       y     1.412  0.0200     1.412  0.0200
+AGE          C2          C1      DOUBLE       y     1.376  0.0124     1.376  0.0124
+AGE          C2          C3      SINGLE       y     1.374  0.0127     1.374  0.0127
+AGE          N2          O1      SINGLE       n     1.387  0.0100     1.387  0.0100
+AGE          C4          C5      SINGLE       y     1.386  0.0100     1.386  0.0100
+AGE          C5          C7      SINGLE       n     1.509  0.0107     1.509  0.0107
+AGE          C5          C6      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AGE          O2         C16      DOUBLE       n     1.229  0.0129     1.229  0.0129
+AGE          C6          C1      SINGLE       y     1.386  0.0100     1.386  0.0100
+AGE          C4          C3      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AGE          C7          C8      SINGLE       n     1.515  0.0145     1.515  0.0145
+AGE          O3          C8      DOUBLE       n     1.219  0.0140     1.219  0.0140
+AGE          C8          C9      SINGLE       n     1.458  0.0200     1.458  0.0200
+AGE          C9         C13      SINGLE       y     1.423  0.0179     1.423  0.0179
+AGE          N1         C10      SINGLE       y     1.389  0.0200     1.389  0.0200
+AGE          C9         C10      DOUBLE       y     1.383  0.0100     1.383  0.0100
+AGE          N1         C11      SINGLE       n     1.458  0.0100     1.458  0.0100
+AGE         C12         C14      SINGLE       n     1.414  0.0200     1.414  0.0200
+AGE         C12         C13      DOUBLE       y     1.370  0.0100     1.370  0.0100
+AGE         C14         C15      DOUBLE       n     1.359  0.0200     1.359  0.0200
+AGE         C15         C16      SINGLE       n     1.481  0.0116     1.481  0.0116
+AGE          N2         C16      SINGLE       n     1.327  0.0100     1.327  0.0100
+AGE          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0161
+AGE          N2        H151      SINGLE       n     1.016  0.0100     0.865  0.0163
+AGE          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+AGE          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0174
+AGE          O1         H16      SINGLE       n     0.970  0.0120     0.867  0.0200
+AGE          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0175
+AGE          C3          H3      SINGLE       n     1.082  0.0130     0.944  0.0175
+AGE          C7          H7      SINGLE       n     1.089  0.0100     0.962  0.0100
+AGE          C7         H7A      SINGLE       n     1.089  0.0100     0.962  0.0100
+AGE         C10         H10      SINGLE       n     1.082  0.0130     0.938  0.0100
+AGE         C11         H11      SINGLE       n     1.089  0.0100     0.969  0.0162
+AGE         C11        H11A      SINGLE       n     1.089  0.0100     0.969  0.0162
+AGE         C11        H11B      SINGLE       n     1.089  0.0100     0.969  0.0162
+AGE         C13         H13      SINGLE       n     1.082  0.0130     0.941  0.0194
+AGE         C14         H14      SINGLE       n     1.082  0.0130     0.956  0.0200
+AGE         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0196
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AGE         C12          N1         C10     109.079    1.50
+AGE         C12          N1         C11     124.835    2.75
+AGE         C10          N1         C11     123.481    2.04
+AGE          C1          C2          C3     120.043    1.50
+AGE          C1          C2          H2     119.979    1.50
+AGE          C3          C2          H2     119.979    1.50
+AGE          O1          N2         C16     120.023    1.50
+AGE          O1          N2        H151     118.713    2.59
+AGE         C16          N2        H151     121.264    2.28
+AGE          C5          C4          C3     120.624    1.50
+AGE          C5          C4          H4     119.591    1.50
+AGE          C3          C4          H4     119.786    1.50
+AGE          C4          C5          C7     120.970    1.50
+AGE          C4          C5          C6     118.060    1.50
+AGE          C7          C5          C6     120.970    1.50
+AGE          C5          C6          C1     120.624    1.50
+AGE          C5          C6          H6     119.591    1.50
+AGE          C1          C6          H6     119.786    1.50
+AGE          N2          O1         H16     108.051    2.18
+AGE          C2          C1          C6     120.325    1.50
+AGE          C2          C1          H1     119.883    1.50
+AGE          C6          C1          H1     119.792    1.50
+AGE          C2          C3          C4     120.325    1.50
+AGE          C2          C3          H3     119.883    1.50
+AGE          C4          C3          H3     119.792    1.50
+AGE          C5          C7          C8     113.540    2.05
+AGE          C5          C7          H7     109.487    1.50
+AGE          C5          C7         H7A     109.487    1.50
+AGE          C8          C7          H7     109.078    1.50
+AGE          C8          C7         H7A     109.078    1.50
+AGE          H7          C7         H7A     108.126    1.50
+AGE          C7          C8          O3     121.198    1.50
+AGE          C7          C8          C9     117.675    1.99
+AGE          O3          C8          C9     121.127    1.50
+AGE          C8          C9         C13     126.962    2.77
+AGE          C8          C9         C10     127.839    3.00
+AGE         C13          C9         C10     105.199    1.50
+AGE          N1         C10          C9     109.634    1.50
+AGE          N1         C10         H10     124.904    1.80
+AGE          C9         C10         H10     125.462    1.50
+AGE          N1         C11         H11     109.303    1.50
+AGE          N1         C11        H11A     109.303    1.50
+AGE          N1         C11        H11B     109.303    1.50
+AGE         H11         C11        H11A     109.448    1.52
+AGE         H11         C11        H11B     109.448    1.52
+AGE        H11A         C11        H11B     109.448    1.52
+AGE          N1         C12         C14     122.074    1.89
+AGE          N1         C12         C13     107.542    1.50
+AGE         C14         C12         C13     130.383    2.38
+AGE          C9         C13         C12     108.186    1.50
+AGE          C9         C13         H13     126.066    1.50
+AGE         C12         C13         H13     125.747    1.50
+AGE         C12         C14         C15     127.687    3.00
+AGE         C12         C14         H14     115.794    2.03
+AGE         C15         C14         H14     116.519    1.77
+AGE         C14         C15         C16     124.231    3.00
+AGE         C14         C15         H15     118.142    2.05
+AGE         C16         C15         H15     117.628    2.14
+AGE          O2         C16         C15     123.296    1.50
+AGE          O2         C16          N2     123.171    1.53
+AGE         C15         C16          N2     113.532    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AGE              const_42          C9         C10          N1         C11     180.000    10.0     2
+AGE            sp2_sp3_15         C12          N1         C11         H11     150.000    10.0     6
+AGE       const_sp2_sp2_4         C14         C12          N1         C11       0.000     5.0     2
+AGE            sp2_sp3_10          O3          C8          C7          C5     120.000    10.0     6
+AGE             sp2_sp2_1          C7          C8          C9         C13     180.000     5.0     2
+AGE              const_14          N1         C10          C9          C8     180.000    10.0     2
+AGE              const_10         C12         C13          C9          C8     180.000    10.0     2
+AGE       const_sp2_sp2_7         C14         C12         C13          C9     180.000     5.0     2
+AGE             sp2_sp2_5          N1         C12         C14         C15     180.000     5.0     2
+AGE             sp2_sp2_9         C12         C14         C15         C16     180.000     5.0     2
+AGE            sp2_sp2_14         C14         C15         C16          O2       0.000     5.0     2
+AGE              const_37          C1          C2          C3          C4       0.000    10.0     2
+AGE              const_17          C6          C1          C2          C3       0.000    10.0     2
+AGE            sp2_sp2_19          O2         C16          N2          O1       0.000     5.0     2
+AGE              const_33          C2          C3          C4          C5       0.000    10.0     2
+AGE              const_30          C3          C4          C5          C7     180.000    10.0     2
+AGE             sp2_sp3_4          C4          C5          C7          C8     -90.000    10.0     6
+AGE              const_27          C7          C5          C6          C1     180.000    10.0     2
+AGE              const_21          C2          C1          C6          C5       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AGE    plan-1         C10   0.020
+AGE    plan-1         C11   0.020
+AGE    plan-1         C12   0.020
+AGE    plan-1         C13   0.020
+AGE    plan-1         C14   0.020
+AGE    plan-1          C8   0.020
+AGE    plan-1          C9   0.020
+AGE    plan-1         H10   0.020
+AGE    plan-1         H13   0.020
+AGE    plan-1          N1   0.020
+AGE    plan-2          C1   0.020
+AGE    plan-2          C2   0.020
+AGE    plan-2          C3   0.020
+AGE    plan-2          C4   0.020
+AGE    plan-2          C5   0.020
+AGE    plan-2          C6   0.020
+AGE    plan-2          C7   0.020
+AGE    plan-2          H1   0.020
+AGE    plan-2          H2   0.020
+AGE    plan-2          H3   0.020
+AGE    plan-2          H4   0.020
+AGE    plan-2          H6   0.020
+AGE    plan-3         C16   0.020
+AGE    plan-3        H151   0.020
+AGE    plan-3          N2   0.020
+AGE    plan-3          O1   0.020
+AGE    plan-4          C7   0.020
+AGE    plan-4          C8   0.020
+AGE    plan-4          C9   0.020
+AGE    plan-4          O3   0.020
+AGE    plan-5         C12   0.020
+AGE    plan-5         C14   0.020
+AGE    plan-5         C15   0.020
+AGE    plan-5         H14   0.020
+AGE    plan-6         C14   0.020
+AGE    plan-6         C15   0.020
+AGE    plan-6         C16   0.020
+AGE    plan-6         H15   0.020
+AGE    plan-7         C15   0.020
+AGE    plan-7         C16   0.020
+AGE    plan-7          N2   0.020
+AGE    plan-7          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AGE           SMILES              ACDLabs 10.04                                                                                  O=C(c1cc(\C=C\C(=O)NO)n(c1)C)Cc2ccccc2
+AGE SMILES_CANONICAL               CACTVS 3.341                                                                                    Cn1cc(cc1\C=C\C(=O)NO)C(=O)Cc2ccccc2
+AGE           SMILES               CACTVS 3.341                                                                                      Cn1cc(cc1C=CC(=O)NO)C(=O)Cc2ccccc2
+AGE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                    Cn1cc(cc1\C=C\C(=O)NO)C(=O)Cc2ccccc2
+AGE           SMILES "OpenEye OEToolkits" 1.5.0                                                                                      Cn1cc(cc1C=CC(=O)NO)C(=O)Cc2ccccc2
+AGE            InChI                InChI  1.03 InChI=1S/C16H16N2O3/c1-18-11-13(10-14(18)7-8-16(20)17-21)15(19)9-12-5-3-2-4-6-12/h2-8,10-11,21H,9H2,1H3,(H,17,20)/b8-7+
+AGE         InChIKey                InChI  1.03                                                                                             UFQOXIMRSMFQRI-BQYQJAHWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AGE acedrg               243         "dictionary generator"                  
+AGE acedrg_database      11          "data source"                           
+AGE rdkit                2017.03.2   "Chemoinformatics tool"
+AGE refmac5              5.8.0238    "optimization tool"                     

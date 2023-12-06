@@ -29,6 +29,7 @@ except ImportError:
 import os
 #from lxml import etree
 import xml.etree.ElementTree as etree
+etree.register_namespace('ccp4','http://www.ccp4.ac.uk/ccp4ns')
 
 from lxml import html as lxml_html
 
@@ -500,7 +501,7 @@ function onMouseOut(event,id) {
                                     loadMapsData(this.mapData,this.responseText.substr(1,this.responseText.length-2));
                                 } 
                             }
-                            clients[i].open("GET", \""""+htmlBase.rstrip("/report_files/0.1.0")+"""/database/?getProjectJobFile?projectId="+projectId+"?fileName="+theData+"?jobNumber="+jobNumber, true);
+                            clients[i].open("GET", \""""+htmlBase.rstrip("/report_files/0.1.0")+"""/database/getProjectJobFile?projectId="+projectId+"&fileName="+theData+"&jobNumber="+jobNumber, true);
                             
                             clients[i].send(null);
                         }
@@ -2299,7 +2300,7 @@ class Table(BaseTable):
   def as_data_etree(self):
     root = super().as_data_etree()
     root.set('transpose', 'True' if self.transpose else 'False')
-    for child in self.data_as_etree().findall('//table'):
+    for child in self.data_as_etree().findall('.//table'):
       root.append(child)
     return root
 
@@ -2893,7 +2894,11 @@ class Graph(ReportClass):
       eleList = xmlnode.findall(key)
       for ele in eleList:
         #print('addPimpleData',key,ele.get('id'))
-        self.pimpleData.append(deepcopy(ele))
+        if isinstance(ele, etree.Element):
+          self.pimpleData.append(etree.fromstring(etree.tostring(ele)))
+        else:
+          from lxml import etree as lxmlEtree
+          self.pimpleData.append(etree.fromstring(lxmlEtree.tostring(ele)))
     for attr in list(xmlnode.attrib.keys()):
       #print('addPimpleData',attr,xmlnode.get(attr))
       self.pimpleData.set(attr,xmlnode.get(attr))

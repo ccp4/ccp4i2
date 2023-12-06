@@ -1,0 +1,318 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JZH     JZH      (3S)-3-(4-hydroxyphenyl)-1,5-dihydro-1,5,12-triazabenzo[4,5]cycloocta[1,2,3-cd]inden-4(3H)-one     NON-POLYMER     41     26     .     
+#
+data_comp_JZH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JZH     O1      O       OH1     0       8.590       17.707      0.412       
+JZH     C2      C       CR6     0       9.528       16.808      0.860       
+JZH     C3      C       CR16    0       9.716       16.619      2.220       
+JZH     C4      C       CR16    0       10.663      15.710      2.673       
+JZH     C5      C       CR6     0       11.436      14.967      1.782       
+JZH     C6      C       CR16    0       11.241      15.181      0.417       
+JZH     C7      C       CR16    0       10.292      16.085      -0.042      
+JZH     C8      C       CH1     0       12.479      13.983      2.299       
+JZH     C9      C       C       0       13.910      14.367      1.894       
+JZH     O10     O       O       0       14.129      15.230      1.055       
+JZH     N11     N       NT1     0       14.915      13.707      2.517       
+JZH     C12     C       CR6     0       14.969      13.499      3.912       
+JZH     C13     C       CR16    0       15.507      14.505      4.720       
+JZH     C14     C       CR16    0       15.551      14.347      6.089       
+JZH     C15     C       CR16    0       15.047      13.201      6.666       
+JZH     C16     C       CR16    0       14.492      12.206      5.875       
+JZH     C17     C       CR6     0       14.428      12.327      4.482       
+JZH     C18     C       CR6     0       13.834      11.226      3.665       
+JZH     C19     C       CR16    0       14.189      9.904       3.961       
+JZH     C20     C       CR16    0       13.651      8.837       3.231       
+JZH     N21     N       NRD6    0       12.785      8.986       2.217       
+JZH     C22     C       CR56    0       12.446      10.252      1.931       
+JZH     N23     N       NR5     0       11.588      10.640      0.949       
+JZH     C25     C       CR15    0       11.495      12.005      0.964       
+JZH     C26     C       CR5     0       12.279      12.531      1.946       
+JZH     C27     C       CR56    0       12.915      11.412      2.602       
+JZH     HO1     H       H       0       8.653       18.043      -0.379      
+JZH     H3      H       H       0       9.198       17.108      2.838       
+JZH     H4      H       H       0       10.778      15.592      3.601       
+JZH     H6      H       H       0       11.752      14.692      -0.206      
+JZH     H7      H       H       0       10.169      16.210      -0.969      
+JZH     H8      H       H       0       12.451      14.040      3.277       
+JZH     HN11    H       H       0       15.685      13.692      2.096       
+JZH     H13     H       H       0       15.851      15.287      4.323       
+JZH     H14     H       H       0       15.926      15.024      6.628       
+JZH     H15     H       H       0       15.078      13.093      7.603       
+JZH     H16     H       H       0       14.155      11.428      6.288       
+JZH     H19     H       H       0       14.792      9.740       4.665       
+JZH     H20     H       H       0       13.910      7.966       3.459       
+JZH     HN23    H       H       0       11.161      10.102      0.393       
+JZH     H25     H       H       0       10.958      12.505      0.374       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JZH          O1          C2      SINGLE       n     1.374  0.0155     1.374  0.0155
+JZH          C2          C3      DOUBLE       y     1.383  0.0100     1.383  0.0100
+JZH          C2          C7      SINGLE       y     1.383  0.0100     1.383  0.0100
+JZH          C3          C4      SINGLE       y     1.385  0.0100     1.385  0.0100
+JZH          C4          C5      DOUBLE       y     1.389  0.0100     1.389  0.0100
+JZH          C5          C6      SINGLE       y     1.389  0.0100     1.389  0.0100
+JZH          C5          C8      SINGLE       n     1.517  0.0100     1.517  0.0100
+JZH          C6          C7      DOUBLE       y     1.385  0.0100     1.385  0.0100
+JZH          C8          C9      SINGLE       n     1.527  0.0100     1.527  0.0100
+JZH          C8         C26      SINGLE       n     1.502  0.0100     1.502  0.0100
+JZH          C9         O10      DOUBLE       n     1.222  0.0100     1.222  0.0100
+JZH          C9         N11      SINGLE       n     1.352  0.0100     1.352  0.0100
+JZH         N11         C12      SINGLE       n     1.413  0.0194     1.413  0.0194
+JZH         C12         C13      DOUBLE       y     1.395  0.0100     1.395  0.0100
+JZH         C12         C17      SINGLE       y     1.405  0.0100     1.405  0.0100
+JZH         C13         C14      SINGLE       y     1.378  0.0101     1.378  0.0101
+JZH         C14         C15      DOUBLE       y     1.376  0.0124     1.376  0.0124
+JZH         C15         C16      SINGLE       y     1.383  0.0100     1.383  0.0100
+JZH         C16         C17      DOUBLE       y     1.392  0.0100     1.392  0.0100
+JZH         C17         C18      SINGLE       n     1.487  0.0100     1.487  0.0100
+JZH         C18         C19      DOUBLE       y     1.392  0.0118     1.392  0.0118
+JZH         C18         C27      SINGLE       y     1.408  0.0100     1.408  0.0100
+JZH         C19         C20      SINGLE       y     1.398  0.0114     1.398  0.0114
+JZH         C20         N21      DOUBLE       y     1.339  0.0100     1.339  0.0100
+JZH         N21         C22      SINGLE       y     1.339  0.0100     1.339  0.0100
+JZH         C22         N23      SINGLE       y     1.363  0.0100     1.363  0.0100
+JZH         C22         C27      DOUBLE       y     1.411  0.0142     1.411  0.0142
+JZH         N23         C25      SINGLE       y     1.369  0.0100     1.369  0.0100
+JZH         C25         C26      DOUBLE       y     1.359  0.0100     1.359  0.0100
+JZH         C26         C27      SINGLE       y     1.438  0.0102     1.438  0.0102
+JZH          O1         HO1      SINGLE       n     0.966  0.0059     0.861  0.0200
+JZH          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0169
+JZH          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0173
+JZH          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0173
+JZH          C7          H7      SINGLE       n     1.082  0.0130     0.943  0.0169
+JZH          C8          H8      SINGLE       n     1.089  0.0100     0.981  0.0100
+JZH         N11        HN11      SINGLE       n     1.016  0.0100     0.877  0.0200
+JZH         C13         H13      SINGLE       n     1.082  0.0130     0.942  0.0198
+JZH         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0172
+JZH         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0180
+JZH         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0154
+JZH         C19         H19      SINGLE       n     1.082  0.0130     0.942  0.0177
+JZH         C20         H20      SINGLE       n     1.082  0.0130     0.937  0.0102
+JZH         N23        HN23      SINGLE       n     1.016  0.0100     0.883  0.0200
+JZH         C25         H25      SINGLE       n     1.082  0.0130     0.945  0.0191
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JZH          C2          O1         HO1     120.000    3.00
+JZH          O1          C2          C3     120.129    3.00
+JZH          O1          C2          C7     120.129    3.00
+JZH          C3          C2          C7     119.741    1.50
+JZH          C2          C3          C4     119.996    1.50
+JZH          C2          C3          H3     119.921    1.50
+JZH          C4          C3          H3     120.083    1.50
+JZH          C3          C4          C5     120.925    1.50
+JZH          C3          C4          H4     119.458    1.50
+JZH          C5          C4          H4     119.616    1.50
+JZH          C4          C5          C6     118.417    1.50
+JZH          C4          C5          C8     120.792    1.57
+JZH          C6          C5          C8     120.792    1.57
+JZH          C5          C6          C7     120.925    1.50
+JZH          C5          C6          H6     119.616    1.50
+JZH          C7          C6          H6     119.458    1.50
+JZH          C2          C7          C6     119.996    1.50
+JZH          C2          C7          H7     119.921    1.50
+JZH          C6          C7          H7     120.083    1.50
+JZH          C5          C8          C9     111.340    2.24
+JZH          C5          C8         C26     114.270    1.86
+JZH          C5          C8          H8     108.308    1.50
+JZH          C9          C8         C26     110.750    3.00
+JZH          C9          C8          H8     107.080    1.56
+JZH         C26          C8          H8     108.316    1.50
+JZH          C8          C9         O10     120.905    1.50
+JZH          C8          C9         N11     116.192    1.95
+JZH         O10          C9         N11     122.903    1.50
+JZH          C9         N11         C12     124.521    2.50
+JZH          C9         N11        HN11     115.434    2.56
+JZH         C12         N11        HN11     115.665    3.00
+JZH         N11         C12         C13     119.826    2.51
+JZH         N11         C12         C17     119.797    1.58
+JZH         C13         C12         C17     120.377    1.85
+JZH         C12         C13         C14     120.548    1.50
+JZH         C12         C13         H13     119.509    1.50
+JZH         C14         C13         H13     119.943    1.50
+JZH         C13         C14         C15     120.474    1.50
+JZH         C13         C14         H14     119.622    1.50
+JZH         C15         C14         H14     119.904    1.50
+JZH         C14         C15         C16     120.202    1.50
+JZH         C14         C15         H15     119.951    1.50
+JZH         C16         C15         H15     119.847    1.50
+JZH         C15         C16         C17     120.725    1.50
+JZH         C15         C16         H16     119.674    1.50
+JZH         C17         C16         H16     119.601    1.50
+JZH         C12         C17         C16     117.674    1.50
+JZH         C12         C17         C18     121.689    1.91
+JZH         C16         C17         C18     120.636    1.50
+JZH         C17         C18         C19     120.933    1.84
+JZH         C17         C18         C27     121.587    2.41
+JZH         C19         C18         C27     117.479    1.50
+JZH         C18         C19         C20     120.458    1.50
+JZH         C18         C19         H19     118.873    1.50
+JZH         C20         C19         H19     120.669    1.50
+JZH         C19         C20         N21     123.697    1.50
+JZH         C19         C20         H20     118.473    1.50
+JZH         N21         C20         H20     117.831    1.50
+JZH         C20         N21         C22     114.371    1.50
+JZH         N21         C22         N23     126.373    1.50
+JZH         N21         C22         C27     125.301    1.50
+JZH         N23         C22         C27     108.325    1.50
+JZH         C22         N23         C25     108.127    1.50
+JZH         C22         N23        HN23     126.059    1.50
+JZH         C25         N23        HN23     125.814    1.67
+JZH         N23         C25         C26     109.821    1.50
+JZH         N23         C25         H25     125.097    1.50
+JZH         C26         C25         H25     125.081    1.50
+JZH          C8         C26         C25     127.739    1.66
+JZH          C8         C26         C27     125.637    1.52
+JZH         C25         C26         C27     106.628    1.50
+JZH         C18         C27         C22     118.693    1.50
+JZH         C18         C27         C26     134.209    3.00
+JZH         C22         C27         C26     107.098    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JZH             sp2_sp2_1          C3          C2          O1         HO1     180.000     5.0     2
+JZH             sp2_sp2_7         C13         C12         N11          C9     180.000     5.0     2
+JZH       const_sp2_sp2_3         N11         C12         C13         C14     180.000     5.0     2
+JZH              const_79         N11         C12         C17         C16     180.000    10.0     2
+JZH       const_sp2_sp2_5         C12         C13         C14         C15       0.000     5.0     2
+JZH       const_sp2_sp2_9         C13         C14         C15         C16       0.000     5.0     2
+JZH              const_13         C14         C15         C16         C17       0.000    10.0     2
+JZH              const_17         C15         C16         C17         C12       0.000    10.0     2
+JZH            sp2_sp2_11         C12         C17         C18         C19     180.000     5.0     2
+JZH              const_23         C17         C18         C19         C20     180.000    10.0     2
+JZH              const_83         C17         C18         C27         C22     180.000    10.0     2
+JZH              const_25         C18         C19         C20         N21       0.000    10.0     2
+JZH              const_29         C19         C20         N21         C22       0.000    10.0     2
+JZH              const_55          O1          C2          C3          C4     180.000    10.0     2
+JZH              const_75          O1          C2          C7          C6     180.000    10.0     2
+JZH              const_32         N23         C22         N21         C20     180.000    10.0     2
+JZH              const_39         N21         C22         N23         C25     180.000    10.0     2
+JZH              const_33         N21         C22         C27         C18       0.000    10.0     2
+JZH              const_41         C26         C25         N23         C22       0.000    10.0     2
+JZH              const_46         N23         C25         C26          C8     180.000    10.0     2
+JZH              const_52          C8         C26         C27         C18       0.000    10.0     2
+JZH              const_57          C2          C3          C4          C5       0.000    10.0     2
+JZH              const_62          C3          C4          C5          C8     180.000    10.0     2
+JZH              const_67          C8          C5          C6          C7     180.000    10.0     2
+JZH             sp2_sp3_1          C4          C5          C8          C9     150.000    10.0     6
+JZH              const_69          C5          C6          C7          C2       0.000    10.0     2
+JZH            sp2_sp3_14         C25         C26          C8          C9     -90.000    10.0     6
+JZH             sp2_sp3_7         O10          C9          C8          C5       0.000    10.0     6
+JZH             sp2_sp2_3          C8          C9         N11         C12     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JZH    chir_1    C8    C9    C26    C5    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JZH    plan-1         C17   0.020
+JZH    plan-1         C18   0.020
+JZH    plan-1         C19   0.020
+JZH    plan-1         C20   0.020
+JZH    plan-1         C22   0.020
+JZH    plan-1         C25   0.020
+JZH    plan-1         C26   0.020
+JZH    plan-1         C27   0.020
+JZH    plan-1          C8   0.020
+JZH    plan-1         H19   0.020
+JZH    plan-1         H20   0.020
+JZH    plan-1         H25   0.020
+JZH    plan-1        HN23   0.020
+JZH    plan-1         N21   0.020
+JZH    plan-1         N23   0.020
+JZH    plan-2         C12   0.020
+JZH    plan-2         C13   0.020
+JZH    plan-2         C14   0.020
+JZH    plan-2         C15   0.020
+JZH    plan-2         C16   0.020
+JZH    plan-2         C17   0.020
+JZH    plan-2         C18   0.020
+JZH    plan-2         H13   0.020
+JZH    plan-2         H14   0.020
+JZH    plan-2         H15   0.020
+JZH    plan-2         H16   0.020
+JZH    plan-2         N11   0.020
+JZH    plan-3          C2   0.020
+JZH    plan-3          C3   0.020
+JZH    plan-3          C4   0.020
+JZH    plan-3          C5   0.020
+JZH    plan-3          C6   0.020
+JZH    plan-3          C7   0.020
+JZH    plan-3          C8   0.020
+JZH    plan-3          H3   0.020
+JZH    plan-3          H4   0.020
+JZH    plan-3          H6   0.020
+JZH    plan-3          H7   0.020
+JZH    plan-3          O1   0.020
+JZH    plan-4          C8   0.020
+JZH    plan-4          C9   0.020
+JZH    plan-4         N11   0.020
+JZH    plan-4         O10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JZH           SMILES              ACDLabs 11.02                                                                                                           O=C5Nc1ccccc1c2c3c(ncc2)ncc3C5c4ccc(O)cc4
+JZH SMILES_CANONICAL               CACTVS 3.352                                                                                                   Oc1ccc(cc1)[C@@H]2C(=O)Nc3ccccc3c4ccnc5[nH]cc2c45
+JZH           SMILES               CACTVS 3.352                                                                                                     Oc1ccc(cc1)[CH]2C(=O)Nc3ccccc3c4ccnc5[nH]cc2c45
+JZH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                            c1ccc2c(c1)-c3ccnc4c3c(c[nH]4)[C@@H](C(=O)N2)c5ccc(cc5)O
+JZH           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                 c1ccc2c(c1)-c3ccnc4c3c(c[nH]4)C(C(=O)N2)c5ccc(cc5)O
+JZH            InChI                InChI  1.03 InChI=1S/C21H15N3O2/c25-13-7-5-12(6-8-13)18-16-11-23-20-19(16)15(9-10-22-20)14-3-1-2-4-17(14)24-21(18)26/h1-11,18,25H,(H,22,23)(H,24,26)/t18-/m0/s1
+JZH         InChIKey                InChI  1.03                                                                                                                         LGIBDQRYOFBMTC-SFHVURJKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JZH acedrg               243         "dictionary generator"                  
+JZH acedrg_database      11          "data source"                           
+JZH rdkit                2017.03.2   "Chemoinformatics tool"
+JZH refmac5              5.8.0238    "optimization tool"                     

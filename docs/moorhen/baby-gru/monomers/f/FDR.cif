@@ -1,0 +1,203 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FDR     FDR      2-methyl-3,5,6,7-tetrahydro-4H-cyclopenta[4,5]thieno[2,3-d]pyrimidin-4-one     NON-POLYMER     24     14     .     
+#
+data_comp_FDR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FDR     CAA     C       CH3     0       20.348      -10.242     -16.236     
+FDR     OAB     O       O       0       21.112      -6.291      -13.705     
+FDR     CAC     C       CH2     0       22.586      -7.326      -9.025      
+FDR     CAD     C       CH2     0       22.575      -8.864      -9.088      
+FDR     CAE     C       CH2     0       22.147      -6.769      -10.409     
+FDR     NAF     N       NRD6    0       21.063      -10.324     -13.953     
+FDR     NAG     N       NR6     0       20.757      -8.195      -14.883     
+FDR     SAH     S       S2      0       21.875      -10.497     -11.360     
+FDR     CAI     C       CR6     0       20.743      -9.577      -14.960     
+FDR     CAJ     C       CR55    0       22.137      -9.092      -10.493     
+FDR     CAK     C       CR55    0       21.893      -7.990      -11.248     
+FDR     CAL     C       CR6     0       21.120      -7.523      -13.710     
+FDR     CAM     C       CR56    0       21.425      -9.745      -12.784     
+FDR     CAN     C       CR56    0       21.473      -8.336      -12.598     
+FDR     HAA     H       H       0       20.147      -9.576      -16.903     
+FDR     HAAA    H       H       0       19.568      -10.789     -16.086     
+FDR     HAAB    H       H       0       21.072      -10.797     -16.547     
+FDR     HAC     H       H       0       21.965      -7.014      -8.327      
+FDR     HACA    H       H       0       23.491      -7.005      -8.806      
+FDR     HAD     H       H       0       23.466      -9.236      -8.925      
+FDR     HADA    H       H       0       21.940      -9.245      -8.448      
+FDR     HAE     H       H       0       22.856      -6.215      -10.803     
+FDR     HAEA    H       H       0       21.333      -6.227      -10.325     
+FDR     HNAG    H       H       0       20.531      -7.717      -15.595     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FDR         CAA         CAI      SINGLE       n     1.490  0.0157     1.490  0.0157
+FDR         OAB         CAL      DOUBLE       n     1.231  0.0132     1.231  0.0132
+FDR         CAC         CAE      SINGLE       n     1.543  0.0151     1.543  0.0151
+FDR         CAC         CAD      SINGLE       n     1.537  0.0132     1.537  0.0132
+FDR         CAD         CAJ      SINGLE       n     1.494  0.0100     1.494  0.0100
+FDR         CAE         CAK      SINGLE       n     1.500  0.0144     1.500  0.0144
+FDR         NAF         CAI      DOUBLE       y     1.289  0.0106     1.289  0.0106
+FDR         NAF         CAM      SINGLE       y     1.338  0.0200     1.338  0.0200
+FDR         NAG         CAI      SINGLE       y     1.371  0.0161     1.371  0.0161
+FDR         NAG         CAL      SINGLE       y     1.395  0.0119     1.395  0.0119
+FDR         SAH         CAM      SINGLE       y     1.695  0.0200     1.695  0.0200
+FDR         SAH         CAJ      SINGLE       y     1.695  0.0200     1.695  0.0200
+FDR         CAJ         CAK      DOUBLE       y     1.362  0.0156     1.362  0.0156
+FDR         CAK         CAN      SINGLE       y     1.424  0.0200     1.424  0.0200
+FDR         CAL         CAN      SINGLE       y     1.417  0.0172     1.417  0.0172
+FDR         CAM         CAN      DOUBLE       y     1.401  0.0200     1.401  0.0200
+FDR         CAA         HAA      SINGLE       n     1.089  0.0100     0.964  0.0148
+FDR         CAA        HAAA      SINGLE       n     1.089  0.0100     0.964  0.0148
+FDR         CAA        HAAB      SINGLE       n     1.089  0.0100     0.964  0.0148
+FDR         CAC         HAC      SINGLE       n     1.089  0.0100     0.985  0.0100
+FDR         CAC        HACA      SINGLE       n     1.089  0.0100     0.985  0.0100
+FDR         CAD         HAD      SINGLE       n     1.089  0.0100     0.979  0.0102
+FDR         CAD        HADA      SINGLE       n     1.089  0.0100     0.979  0.0102
+FDR         CAE         HAE      SINGLE       n     1.089  0.0100     0.982  0.0102
+FDR         CAE        HAEA      SINGLE       n     1.089  0.0100     0.982  0.0102
+FDR         NAG        HNAG      SINGLE       n     1.016  0.0100     0.886  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FDR         CAI         CAA         HAA     109.512    1.50
+FDR         CAI         CAA        HAAA     109.512    1.50
+FDR         CAI         CAA        HAAB     109.512    1.50
+FDR         HAA         CAA        HAAA     109.397    1.50
+FDR         HAA         CAA        HAAB     109.397    1.50
+FDR        HAAA         CAA        HAAB     109.397    1.50
+FDR         CAE         CAC         CAD     106.961    1.66
+FDR         CAE         CAC         HAC     110.200    1.50
+FDR         CAE         CAC        HACA     110.200    1.50
+FDR         CAD         CAC         HAC     110.200    1.50
+FDR         CAD         CAC        HACA     110.200    1.50
+FDR         HAC         CAC        HACA     108.877    1.50
+FDR         CAC         CAD         CAJ     102.160    1.50
+FDR         CAC         CAD         HAD     111.138    1.50
+FDR         CAC         CAD        HADA     111.138    1.50
+FDR         CAJ         CAD         HAD     111.126    1.50
+FDR         CAJ         CAD        HADA     111.126    1.50
+FDR         HAD         CAD        HADA     109.123    1.50
+FDR         CAC         CAE         CAK     103.294    1.50
+FDR         CAC         CAE         HAE     111.138    1.50
+FDR         CAC         CAE        HAEA     111.138    1.50
+FDR         CAK         CAE         HAE     111.251    1.50
+FDR         CAK         CAE        HAEA     111.251    1.50
+FDR         HAE         CAE        HAEA     109.123    1.50
+FDR         CAI         NAF         CAM     118.290    1.50
+FDR         CAI         NAG         CAL     121.321    2.37
+FDR         CAI         NAG        HNAG     119.565    2.18
+FDR         CAL         NAG        HNAG     119.114    1.86
+FDR         CAM         SAH         CAJ     108.119    3.00
+FDR         CAA         CAI         NAF     118.986    1.50
+FDR         CAA         CAI         NAG     119.979    2.34
+FDR         NAF         CAI         NAG     121.035    2.80
+FDR         CAD         CAJ         SAH     129.767    3.00
+FDR         CAD         CAJ         CAK     122.114    2.23
+FDR         SAH         CAJ         CAK     108.119    3.00
+FDR         CAE         CAK         CAJ     111.940    2.23
+FDR         CAE         CAK         CAN     139.957    1.92
+FDR         CAJ         CAK         CAN     108.103    1.50
+FDR         OAB         CAL         NAG     118.708    1.50
+FDR         OAB         CAL         CAN     124.809    1.50
+FDR         NAG         CAL         CAN     116.483    1.76
+FDR         NAF         CAM         SAH     128.607    3.00
+FDR         NAF         CAM         CAN     123.274    2.68
+FDR         SAH         CAM         CAN     108.119    3.00
+FDR         CAK         CAN         CAL     132.864    3.00
+FDR         CAK         CAN         CAM     107.539    1.50
+FDR         CAL         CAN         CAM     119.597    2.44
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FDR            sp2_sp3_13         NAF         CAI         CAA         HAA     150.000    10.0     6
+FDR              const_28         CAE         CAK         CAN         CAL       0.000    10.0     2
+FDR              const_18         OAB         CAL         CAN         CAK       0.000    10.0     2
+FDR              const_20         NAF         CAM         CAN         CAK     180.000    10.0     2
+FDR            sp3_sp3_10         CAE         CAC         CAD         CAJ     180.000    10.0     3
+FDR             sp3_sp3_1         CAD         CAC         CAE         CAK      60.000    10.0     3
+FDR            sp2_sp3_10         SAH         CAJ         CAD         CAC     180.000    10.0     6
+FDR             sp2_sp3_1         CAJ         CAK         CAE         CAC       0.000    10.0     6
+FDR              const_30         SAH         CAM         NAF         CAI     180.000    10.0     2
+FDR       const_sp2_sp2_6         CAA         CAI         NAF         CAM     180.000     5.0     2
+FDR              const_13         OAB         CAL         NAG         CAI     180.000    10.0     2
+FDR       const_sp2_sp2_9         CAA         CAI         NAG         CAL     180.000     5.0     2
+FDR              const_24         NAF         CAM         SAH         CAJ     180.000    10.0     2
+FDR              const_32         CAD         CAJ         SAH         CAM     180.000    10.0     2
+FDR       const_sp2_sp2_1         CAD         CAJ         CAK         CAE       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FDR    plan-1         CAA   0.020
+FDR    plan-1         CAD   0.020
+FDR    plan-1         CAE   0.020
+FDR    plan-1         CAI   0.020
+FDR    plan-1         CAJ   0.020
+FDR    plan-1         CAK   0.020
+FDR    plan-1         CAL   0.020
+FDR    plan-1         CAM   0.020
+FDR    plan-1         CAN   0.020
+FDR    plan-1        HNAG   0.020
+FDR    plan-1         NAF   0.020
+FDR    plan-1         NAG   0.020
+FDR    plan-1         OAB   0.020
+FDR    plan-1         SAH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FDR           SMILES              ACDLabs 12.01                                                          O=C1c2c3c(sc2N=C(N1)C)CCC3
+FDR            InChI                InChI  1.03 InChI=1S/C10H10N2OS/c1-5-11-9(13)8-6-3-2-4-7(6)14-10(8)12-5/h2-4H2,1H3,(H,11,12,13)
+FDR         InChIKey                InChI  1.03                                                         SSAMSKJKRMKXFV-UHFFFAOYSA-N
+FDR SMILES_CANONICAL               CACTVS 3.370                                                            CC1=Nc2sc3CCCc3c2C(=O)N1
+FDR           SMILES               CACTVS 3.370                                                            CC1=Nc2sc3CCCc3c2C(=O)N1
+FDR SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                        CC1=Nc2c(c3c(s2)CCC3)C(=O)N1
+FDR           SMILES "OpenEye OEToolkits" 1.7.2                                                        CC1=Nc2c(c3c(s2)CCC3)C(=O)N1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FDR acedrg               243         "dictionary generator"                  
+FDR acedrg_database      11          "data source"                           
+FDR rdkit                2017.03.2   "Chemoinformatics tool"
+FDR refmac5              5.8.0238    "optimization tool"                     

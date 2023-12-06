@@ -1,0 +1,325 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ESM     ESM      "1,3,5(10)-ESTRATRIEN-2,3,17-BETA-TRIOL 2-METHYL ETHER"     NON-POLYMER     48     22     .     
+#
+data_comp_ESM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ESM     C1      C       CR16    0       20.540      8.945       33.412      
+ESM     C10     C       CR66    0       20.922      10.298      33.446      
+ESM     C11     C       CH2     0       23.176      9.851       32.223      
+ESM     C12     C       CH2     0       24.616      10.326      32.017      
+ESM     C13     C       CT      0       24.693      11.796      31.600      
+ESM     C14     C       CH1     0       23.937      12.616      32.667      
+ESM     C15     C       CH2     0       24.337      14.068      32.371      
+ESM     C16     C       CH2     0       25.786      13.950      31.837      
+ESM     C17     C       CH1     0       26.086      12.441      31.757      
+ESM     C18     C       CH3     0       24.170      11.993      30.165      
+ESM     C2      C       CR6     0       19.229      8.551       33.631      
+ESM     C3      C       CR6     0       18.250      9.525       33.914      
+ESM     C4      C       CR16    0       18.614      10.858      33.961      
+ESM     C5      C       CR66    0       19.936      11.255      33.738      
+ESM     C6      C       CH2     0       20.240      12.736      33.810      
+ESM     C7      C       CH2     0       21.725      13.055      33.858      
+ESM     C8      C       CH1     0       22.466      12.225      32.818      
+ESM     C9      C       CH1     0       22.376      10.732      33.208      
+ESM     O17     O       OH1     0       27.067      12.068      30.789      
+ESM     O3      O       OH1     0       16.937      9.181       34.142      
+ESM     O2      O       O2      0       18.755      7.261       33.615      
+ESM     C19     C       CH3     0       19.605      6.198       33.186      
+ESM     HC1     H       H       0       21.182      8.297       33.230      
+ESM     H111    H       H       0       22.713      9.837       31.355      
+ESM     H112    H       H       0       23.205      8.931       32.563      
+ESM     H121    H       H       0       25.112      10.204      32.848      
+ESM     H122    H       H       0       25.041      9.775       31.335      
+ESM     H14C    H       H       0       24.358      12.391      33.538      
+ESM     H151    H       H       0       24.307      14.616      33.188      
+ESM     H152    H       H       0       23.744      14.467      31.695      
+ESM     H161    H       H       0       26.418      14.393      32.447      
+ESM     H162    H       H       0       25.862      14.376      30.953      
+ESM     H17C    H       H       0       26.443      12.172      32.636      
+ESM     H181    H       H       0       24.850      12.410      29.611      
+ESM     H182    H       H       0       23.383      12.562      30.172      
+ESM     H183    H       H       0       23.933      11.132      29.776      
+ESM     HC4     H       H       0       17.959      11.513      34.149      
+ESM     HC61    H       H       0       19.810      13.107      34.609      
+ESM     HC62    H       H       0       19.845      13.178      33.030      
+ESM     HC71    H       H       0       22.076      12.856      34.748      
+ESM     HC72    H       H       0       21.860      14.006      33.682      
+ESM     HC8     H       H       0       22.008      12.347      31.950      
+ESM     HC9     H       H       0       22.828      10.652      34.076      
+ESM     H17O    H       H       0       27.114      12.651      30.174      
+ESM     HO3     H       H       0       16.457      9.640       34.690      
+ESM     H191    H       H       0       20.353      6.113       33.800      
+ESM     H192    H       H       0       19.937      6.387       32.293      
+ESM     H193    H       H       0       19.101      5.368       33.174      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ESM          C1         C10      DOUBLE       y     1.398  0.0102     1.398  0.0102
+ESM          C1          C2      SINGLE       y     1.377  0.0100     1.377  0.0100
+ESM         C10          C5      SINGLE       y     1.397  0.0100     1.397  0.0100
+ESM         C10          C9      SINGLE       n     1.526  0.0100     1.526  0.0100
+ESM         C11         C12      SINGLE       n     1.527  0.0100     1.527  0.0100
+ESM         C11          C9      SINGLE       n     1.538  0.0100     1.538  0.0100
+ESM         C12         C13      SINGLE       n     1.527  0.0100     1.527  0.0100
+ESM         C13         C14      SINGLE       n     1.537  0.0100     1.537  0.0100
+ESM         C13         C17      SINGLE       n     1.538  0.0100     1.538  0.0100
+ESM         C13         C18      SINGLE       n     1.532  0.0100     1.532  0.0100
+ESM         C14         C15      SINGLE       n     1.534  0.0100     1.534  0.0100
+ESM         C14          C8      SINGLE       n     1.525  0.0100     1.525  0.0100
+ESM         C15         C16      SINGLE       n     1.549  0.0100     1.549  0.0100
+ESM         C16         C17      SINGLE       n     1.538  0.0100     1.538  0.0100
+ESM         C17         O17      SINGLE       n     1.425  0.0100     1.425  0.0100
+ESM          C2          C3      DOUBLE       y     1.405  0.0100     1.405  0.0100
+ESM          C2          O2      SINGLE       n     1.369  0.0100     1.369  0.0100
+ESM          C3          C4      SINGLE       y     1.381  0.0100     1.381  0.0100
+ESM          C3          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+ESM          C4          C5      DOUBLE       y     1.396  0.0100     1.396  0.0100
+ESM          C5          C6      SINGLE       n     1.512  0.0100     1.512  0.0100
+ESM          C6          C7      SINGLE       n     1.520  0.0125     1.520  0.0125
+ESM          C7          C8      SINGLE       n     1.523  0.0100     1.523  0.0100
+ESM          C8          C9      SINGLE       n     1.540  0.0100     1.540  0.0100
+ESM          O2         C19      SINGLE       n     1.424  0.0117     1.424  0.0117
+ESM          C1         HC1      SINGLE       n     1.082  0.0130     0.937  0.0193
+ESM         C11        H111      SINGLE       n     1.089  0.0100     0.984  0.0176
+ESM         C11        H112      SINGLE       n     1.089  0.0100     0.984  0.0176
+ESM         C12        H121      SINGLE       n     1.089  0.0100     0.975  0.0159
+ESM         C12        H122      SINGLE       n     1.089  0.0100     0.975  0.0159
+ESM         C14        H14C      SINGLE       n     1.089  0.0100     0.992  0.0200
+ESM         C15        H151      SINGLE       n     1.089  0.0100     0.984  0.0200
+ESM         C15        H152      SINGLE       n     1.089  0.0100     0.984  0.0200
+ESM         C16        H161      SINGLE       n     1.089  0.0100     0.984  0.0200
+ESM         C16        H162      SINGLE       n     1.089  0.0100     0.984  0.0200
+ESM         C17        H17C      SINGLE       n     1.089  0.0100     0.985  0.0200
+ESM         C18        H181      SINGLE       n     1.089  0.0100     0.974  0.0200
+ESM         C18        H182      SINGLE       n     1.089  0.0100     0.974  0.0200
+ESM         C18        H183      SINGLE       n     1.089  0.0100     0.974  0.0200
+ESM          C4         HC4      SINGLE       n     1.082  0.0130     0.945  0.0164
+ESM          C6        HC61      SINGLE       n     1.089  0.0100     0.980  0.0174
+ESM          C6        HC62      SINGLE       n     1.089  0.0100     0.980  0.0174
+ESM          C7        HC71      SINGLE       n     1.089  0.0100     0.977  0.0154
+ESM          C7        HC72      SINGLE       n     1.089  0.0100     0.977  0.0154
+ESM          C8         HC8      SINGLE       n     1.089  0.0100     0.992  0.0200
+ESM          C9         HC9      SINGLE       n     1.089  0.0100     0.982  0.0165
+ESM         O17        H17O      SINGLE       n     0.970  0.0120     0.849  0.0200
+ESM          O3         HO3      SINGLE       n     0.966  0.0059     0.861  0.0200
+ESM         C19        H191      SINGLE       n     1.089  0.0100     0.971  0.0157
+ESM         C19        H192      SINGLE       n     1.089  0.0100     0.971  0.0157
+ESM         C19        H193      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ESM         C10          C1          C2     121.056    1.50
+ESM         C10          C1         HC1     119.406    1.50
+ESM          C2          C1         HC1     119.539    1.50
+ESM          C1         C10          C5     118.825    1.50
+ESM          C1         C10          C9     120.815    1.50
+ESM          C5         C10          C9     120.360    1.50
+ESM         C12         C11          C9     112.391    1.50
+ESM         C12         C11        H111     109.065    1.50
+ESM         C12         C11        H112     109.065    1.50
+ESM          C9         C11        H111     109.131    1.50
+ESM          C9         C11        H112     109.131    1.50
+ESM        H111         C11        H112     107.896    1.50
+ESM         C11         C12         C13     111.450    1.50
+ESM         C11         C12        H121     109.332    1.50
+ESM         C11         C12        H122     109.332    1.50
+ESM         C13         C12        H121     109.391    1.50
+ESM         C13         C12        H122     109.391    1.50
+ESM        H121         C12        H122     107.979    1.50
+ESM         C12         C13         C14     108.203    1.50
+ESM         C12         C13         C17     115.428    1.50
+ESM         C12         C13         C18     110.879    1.50
+ESM         C14         C13         C17      99.007    1.50
+ESM         C14         C13         C18     113.135    1.50
+ESM         C17         C13         C18     109.672    1.50
+ESM         C13         C14         C15     103.977    1.50
+ESM         C13         C14          C8     112.816    1.50
+ESM         C13         C14        H14C     105.978    1.50
+ESM         C15         C14          C8     120.099    1.50
+ESM         C15         C14        H14C     106.241    1.50
+ESM          C8         C14        H14C     106.178    1.50
+ESM         C14         C15         C16     103.819    1.50
+ESM         C14         C15        H151     110.972    1.50
+ESM         C14         C15        H152     110.972    1.50
+ESM         C16         C15        H151     110.936    1.50
+ESM         C16         C15        H152     110.936    1.50
+ESM        H151         C15        H152     109.060    1.50
+ESM         C15         C16         C17     106.890    2.06
+ESM         C15         C16        H161     110.701    1.50
+ESM         C15         C16        H162     110.701    1.50
+ESM         C17         C16        H161     110.666    2.30
+ESM         C17         C16        H162     110.666    2.30
+ESM        H161         C16        H162     108.478    1.88
+ESM         C13         C17         C16     104.391    1.50
+ESM         C13         C17         O17     115.794    1.50
+ESM         C13         C17        H17C     108.241    2.10
+ESM         C16         C17         O17     112.071    2.53
+ESM         C16         C17        H17C     108.733    2.67
+ESM         O17         C17        H17C     108.154    1.81
+ESM         C13         C18        H181     109.573    1.50
+ESM         C13         C18        H182     109.573    1.50
+ESM         C13         C18        H183     109.573    1.50
+ESM        H181         C18        H182     109.337    1.50
+ESM        H181         C18        H183     109.337    1.50
+ESM        H182         C18        H183     109.337    1.50
+ESM          C1          C2          C3     119.827    1.50
+ESM          C1          C2          O2     124.866    1.50
+ESM          C3          C2          O2     115.307    1.50
+ESM          C2          C3          C4     119.129    1.50
+ESM          C2          C3          O3     120.435    3.00
+ESM          C4          C3          O3     120.435    3.00
+ESM          C3          C4          C5     120.953    1.50
+ESM          C3          C4         HC4     119.586    1.50
+ESM          C5          C4         HC4     119.461    1.50
+ESM         C10          C5          C4     120.210    1.50
+ESM         C10          C5          C6     121.612    1.50
+ESM          C4          C5          C6     118.178    1.50
+ESM          C5          C6          C7     113.363    1.50
+ESM          C5          C6        HC61     108.904    1.50
+ESM          C5          C6        HC62     108.904    1.50
+ESM          C7          C6        HC61     109.031    1.50
+ESM          C7          C6        HC62     109.031    1.50
+ESM        HC61          C6        HC62     107.700    1.74
+ESM          C6          C7          C8     110.477    1.50
+ESM          C6          C7        HC71     109.582    1.50
+ESM          C6          C7        HC72     109.582    1.50
+ESM          C8          C7        HC71     109.549    1.50
+ESM          C8          C7        HC72     109.549    1.50
+ESM        HC71          C7        HC72     108.081    1.50
+ESM         C14          C8          C7     113.365    1.50
+ESM         C14          C8          C9     108.263    1.50
+ESM         C14          C8         HC8     108.799    1.50
+ESM          C7          C8          C9     109.320    1.50
+ESM          C7          C8         HC8     108.433    1.50
+ESM          C9          C8         HC8     108.561    1.50
+ESM         C10          C9         C11     113.944    1.50
+ESM         C10          C9          C8     111.335    1.50
+ESM         C10          C9         HC9     106.474    1.50
+ESM         C11          C9          C8     111.686    1.50
+ESM         C11          C9         HC9     106.633    1.50
+ESM          C8          C9         HC9     106.283    1.50
+ESM         C17         O17        H17O     108.677    2.16
+ESM          C3          O3         HO3     120.000    3.00
+ESM          C2          O2         C19     116.964    1.50
+ESM          O2         C19        H191     109.428    1.50
+ESM          O2         C19        H192     109.428    1.50
+ESM          O2         C19        H193     109.428    1.50
+ESM        H191         C19        H192     109.509    1.50
+ESM        H191         C19        H193     109.509    1.50
+ESM        H192         C19        H193     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ESM       const_sp2_sp2_1          C2          C1         C10          C5       0.000     5.0     2
+ESM              const_22         C10          C1          C2          O2     180.000    10.0     2
+ESM              const_20          O2          C2          C3          O3       0.000    10.0     2
+ESM             sp2_sp2_1          C1          C2          O2         C19     180.000     5.0     2
+ESM              const_15          O3          C3          C4          C5     180.000    10.0     2
+ESM             sp2_sp2_3          C2          C3          O3         HO3     180.000     5.0     2
+ESM       const_sp2_sp2_9          C3          C4          C5         C10       0.000     5.0     2
+ESM             sp2_sp3_1         C10          C5          C6          C7       0.000    10.0     6
+ESM             sp3_sp3_1          C5          C6          C7          C8      60.000    10.0     3
+ESM            sp3_sp3_11          C6          C7          C8         C14      60.000    10.0     3
+ESM            sp3_sp3_20         C14          C8          C9         C10     180.000    10.0     3
+ESM       const_sp2_sp2_5          C1         C10          C5          C4       0.000     5.0     2
+ESM            sp2_sp3_11          C1         C10          C9         C11     -60.000    10.0     6
+ESM           sp3_sp3_122        H191         C19          O2          C2     -60.000    10.0     3
+ESM            sp3_sp3_92         C12         C11          C9         C10     -60.000    10.0     3
+ESM            sp3_sp3_28          C9         C11         C12         C13      60.000    10.0     3
+ESM            sp3_sp3_39         C11         C12         C13         C18     180.000    10.0     3
+ESM            sp3_sp3_53         C18         C13         C14         C15     -60.000    10.0     3
+ESM           sp3_sp3_107         C18         C13         C17         O17      60.000    10.0     3
+ESM           sp3_sp3_109         C12         C13         C18        H181     180.000    10.0     3
+ESM            sp3_sp3_56         C13         C14          C8          C7      60.000    10.0     3
+ESM            sp3_sp3_64         C13         C14         C15         C16     -60.000    10.0     3
+ESM            sp3_sp3_73         C14         C15         C16         C17      60.000    10.0     3
+ESM            sp3_sp3_83         C15         C16         C17         O17      60.000    10.0     3
+ESM           sp3_sp3_118         C13         C17         O17        H17O     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ESM    chir_1    C13    C17    C14    C12    positive
+ESM    chir_2    C14    C13    C8    C15    positive
+ESM    chir_3    C17    O17    C13    C16    positive
+ESM    chir_4    C8    C14    C9    C7    negative
+ESM    chir_5    C9    C10    C8    C11    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ESM    plan-1          C1   0.020
+ESM    plan-1         C10   0.020
+ESM    plan-1          C2   0.020
+ESM    plan-1          C3   0.020
+ESM    plan-1          C4   0.020
+ESM    plan-1          C5   0.020
+ESM    plan-1          C6   0.020
+ESM    plan-1          C9   0.020
+ESM    plan-1         HC1   0.020
+ESM    plan-1         HC4   0.020
+ESM    plan-1          O2   0.020
+ESM    plan-1          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ESM           SMILES              ACDLabs 10.04                                                                                                                    Oc1cc4c(cc1OC)C3CCC2(C(CCC2O)C3CC4)C
+ESM SMILES_CANONICAL               CACTVS 3.341                                                                                                 COc1cc2[C@H]3CC[C@]4(C)[C@@H](O)CC[C@H]4[C@@H]3CCc2cc1O
+ESM           SMILES               CACTVS 3.341                                                                                                        COc1cc2[CH]3CC[C]4(C)[CH](O)CC[CH]4[CH]3CCc2cc1O
+ESM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                C[C@]12CC[C@@H]3c4cc(c(cc4CC[C@H]3[C@@H]1CC[C@@H]2O)O)OC
+ESM           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                      CC12CCC3c4cc(c(cc4CCC3C1CCC2O)O)OC
+ESM            InChI                InChI  1.03 InChI=1S/C19H26O3/c1-19-8-7-12-13(15(19)5-6-18(19)21)4-3-11-9-16(20)17(22-2)10-14(11)12/h9-10,12-13,15,18,20-21H,3-8H2,1-2H3/t12-,13+,15-,18-,19-/m0/s1
+ESM         InChIKey                InChI  1.03                                                                                                                             CQOQDQWUFQDJMK-SSTWWWIQSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ESM acedrg               243         "dictionary generator"                  
+ESM acedrg_database      11          "data source"                           
+ESM rdkit                2017.03.2   "Chemoinformatics tool"
+ESM refmac5              5.8.0238    "optimization tool"                     

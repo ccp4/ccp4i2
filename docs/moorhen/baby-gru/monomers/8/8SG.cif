@@ -1,0 +1,197 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8SG     8SG      N-(3-methyl-1,2-oxazol-5-yl)furan-2-carboxamide     NON-POLYMER     22     14     .     
+#
+data_comp_8SG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8SG     N1      N       NH1     0       -30.444     2.797       4.194       
+8SG     C4      C       CR5     0       -29.625     2.831       5.309       
+8SG     C5      C       C       0       -31.785     2.517       4.151       
+8SG     C6      C       CR5     0       -32.524     3.127       3.039       
+8SG     C7      C       CR15    0       -33.828     3.070       2.702       
+8SG     C8      C       CR15    0       -33.977     3.849       1.528       
+8SG     C1      C       CH3     0       -28.349     2.642       8.761       
+8SG     C2      C       CR5     0       -28.646     2.775       7.304       
+8SG     C3      C       CR15    0       -29.863     2.595       6.635       
+8SG     C9      C       CR15    0       -32.730     4.338       1.223       
+8SG     O1      O       O2      0       -31.831     3.898       2.145       
+8SG     O2      O       O       0       -32.357     1.792       4.963       
+8SG     O3      O       O2      0       -28.324     3.139       5.164       
+8SG     N2      N       NRD5    0       -27.711     3.099       6.460       
+8SG     H1      H       H       0       -30.048     2.967       3.432       
+8SG     H2      H       H       0       -34.503     2.607       3.155       
+8SG     H3      H       H       0       -34.772     4.003       1.053       
+8SG     H4      H       H       0       -27.390     2.586       8.896       
+8SG     H5      H       H       0       -28.768     1.838       9.106       
+8SG     H6      H       H       0       -28.695     3.413       9.236       
+8SG     H7      H       H       0       -30.687     2.358       7.025       
+8SG     H8      H       H       0       -32.514     4.891       0.493       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8SG          C8          C9      DOUBLE       y     1.384  0.0200     1.384  0.0200
+8SG          C9          O1      SINGLE       y     1.363  0.0110     1.363  0.0110
+8SG          C7          C8      SINGLE       y     1.416  0.0136     1.416  0.0136
+8SG          C6          O1      SINGLE       y     1.367  0.0100     1.367  0.0100
+8SG          C6          C7      DOUBLE       y     1.344  0.0127     1.344  0.0127
+8SG          C5          C6      SINGLE       n     1.465  0.0100     1.465  0.0100
+8SG          N1          C5      SINGLE       n     1.363  0.0143     1.363  0.0143
+8SG          N1          C4      SINGLE       n     1.382  0.0112     1.382  0.0112
+8SG          C5          O2      DOUBLE       n     1.229  0.0124     1.229  0.0124
+8SG          C4          O3      SINGLE       y     1.344  0.0100     1.344  0.0100
+8SG          O3          N2      SINGLE       y     1.432  0.0114     1.432  0.0114
+8SG          C4          C3      DOUBLE       y     1.369  0.0200     1.369  0.0200
+8SG          C2          C3      SINGLE       y     1.402  0.0118     1.402  0.0118
+8SG          C2          N2      DOUBLE       y     1.300  0.0100     1.300  0.0100
+8SG          C1          C2      SINGLE       n     1.492  0.0100     1.492  0.0100
+8SG          N1          H1      SINGLE       n     1.016  0.0100     0.873  0.0200
+8SG          C7          H2      SINGLE       n     1.082  0.0130     0.936  0.0163
+8SG          C8          H3      SINGLE       n     1.082  0.0130     0.938  0.0166
+8SG          C1          H4      SINGLE       n     1.089  0.0100     0.970  0.0153
+8SG          C1          H5      SINGLE       n     1.089  0.0100     0.970  0.0153
+8SG          C1          H6      SINGLE       n     1.089  0.0100     0.970  0.0153
+8SG          C3          H7      SINGLE       n     1.082  0.0130     0.942  0.0153
+8SG          C9          H8      SINGLE       n     1.082  0.0130     0.941  0.0191
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8SG          C5          N1          C4     125.718    2.40
+8SG          C5          N1          H1     117.469    2.52
+8SG          C4          N1          H1     116.813    2.55
+8SG          N1          C4          O3     119.830    1.55
+8SG          N1          C4          C3     131.383    3.00
+8SG          O3          C4          C3     108.786    1.50
+8SG          C6          C5          N1     114.888    1.50
+8SG          C6          C5          O2     121.480    1.50
+8SG          N1          C5          O2     123.632    1.77
+8SG          O1          C6          C7     109.897    1.50
+8SG          O1          C6          C5     117.987    1.80
+8SG          C7          C6          C5     132.116    1.84
+8SG          C8          C7          C6     105.976    1.50
+8SG          C8          C7          H2     126.983    1.50
+8SG          C6          C7          H2     127.040    1.50
+8SG          C9          C8          C7     106.812    1.50
+8SG          C9          C8          H3     126.553    1.50
+8SG          C7          C8          H3     126.635    1.50
+8SG          C2          C1          H4     109.696    1.50
+8SG          C2          C1          H5     109.696    1.50
+8SG          C2          C1          H6     109.696    1.50
+8SG          H4          C1          H5     109.354    1.50
+8SG          H4          C1          H6     109.354    1.50
+8SG          H5          C1          H6     109.354    1.50
+8SG          C3          C2          N2     110.388    1.50
+8SG          C3          C2          C1     128.898    1.50
+8SG          N2          C2          C1     120.714    1.50
+8SG          C4          C3          C2     107.470    2.27
+8SG          C4          C3          H7     126.347    1.50
+8SG          C2          C3          H7     126.182    1.50
+8SG          C8          C9          O1     110.437    1.50
+8SG          C8          C9          H8     125.649    2.87
+8SG          O1          C9          H8     123.914    2.84
+8SG          C9          O1          C6     106.878    1.50
+8SG          C4          O3          N2     107.317    1.50
+8SG          O3          N2          C2     106.039    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8SG            sp2_sp2_11          O3          C4          N1          C5       0.000     5.0     2
+8SG             sp2_sp2_7          O2          C5          N1          C4       0.000     5.0     2
+8SG       const_sp2_sp2_3          C2          N2          O3          C4       0.000     5.0     2
+8SG       const_sp2_sp2_2          N1          C4          O3          N2     180.000     5.0     2
+8SG              const_27          C2          C3          C4          N1     180.000    10.0     2
+8SG             sp2_sp2_2          N1          C5          C6          O1       0.000     5.0     2
+8SG              const_11          C5          C6          O1          C9     180.000    10.0     2
+8SG              const_24          C5          C6          C7          C8     180.000    10.0     2
+8SG              const_18          C6          C7          C8          C9       0.000    10.0     2
+8SG              const_14          C7          C8          C9          O1       0.000    10.0     2
+8SG             sp2_sp3_1          C3          C2          C1          H4     150.000    10.0     6
+8SG       const_sp2_sp2_5          C1          C2          N2          O3     180.000     5.0     2
+8SG       const_sp2_sp2_8          C1          C2          C3          C4     180.000     5.0     2
+8SG              const_12          C8          C9          O1          C6       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8SG    plan-1          C5   0.020
+8SG    plan-1          C6   0.020
+8SG    plan-1          C7   0.020
+8SG    plan-1          C8   0.020
+8SG    plan-1          C9   0.020
+8SG    plan-1          H2   0.020
+8SG    plan-1          H3   0.020
+8SG    plan-1          H8   0.020
+8SG    plan-1          O1   0.020
+8SG    plan-2          C1   0.020
+8SG    plan-2          C2   0.020
+8SG    plan-2          C3   0.020
+8SG    plan-2          C4   0.020
+8SG    plan-2          H7   0.020
+8SG    plan-2          N1   0.020
+8SG    plan-2          N2   0.020
+8SG    plan-2          O3   0.020
+8SG    plan-3          C4   0.020
+8SG    plan-3          C5   0.020
+8SG    plan-3          H1   0.020
+8SG    plan-3          N1   0.020
+8SG    plan-4          C5   0.020
+8SG    plan-4          C6   0.020
+8SG    plan-4          N1   0.020
+8SG    plan-4          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8SG           SMILES              ACDLabs 12.01                                                   N(C(=O)c1ccco1)c2cc(C)no2
+8SG            InChI                InChI  1.03 InChI=1S/C9H8N2O3/c1-6-5-8(14-11-6)10-9(12)7-3-2-4-13-7/h2-5H,1H3,(H,10,12)
+8SG         InChIKey                InChI  1.03                                                 DXEANZHOQJCTFV-UHFFFAOYSA-N
+8SG SMILES_CANONICAL               CACTVS 3.385                                                     Cc1cc(NC(=O)c2occc2)on1
+8SG           SMILES               CACTVS 3.385                                                     Cc1cc(NC(=O)c2occc2)on1
+8SG SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                     Cc1cc(on1)NC(=O)c2ccco2
+8SG           SMILES "OpenEye OEToolkits" 2.0.6                                                     Cc1cc(on1)NC(=O)c2ccco2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8SG acedrg               243         "dictionary generator"                  
+8SG acedrg_database      11          "data source"                           
+8SG rdkit                2017.03.2   "Chemoinformatics tool"
+8SG refmac5              5.8.0238    "optimization tool"                     

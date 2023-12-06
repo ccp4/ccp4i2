@@ -1,0 +1,503 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LNC     LNC      "(3S)-5-(3-CARBOXY-3-HYDROXYPROPYL) NICOTINAMIDE-ADENINE-DINUCLEOTIDE"     NON-POLYMER     82     51     .     
+#
+data_comp_LNC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LNC     N7N     N       NH2     0       13.514      22.221      10.770      
+LNC     C7N     C       C       0       12.584      23.056      11.218      
+LNC     O7N     O       O       0       12.390      23.237      12.431      
+LNC     C3N     C       CR6     0       11.749      23.794      10.218      
+LNC     C4N     C       CR16    0       11.678      25.194      10.259      
+LNC     C5N     C       CR6     0       10.907      25.894      9.337       
+LNC     CGS     C       CH2     0       10.824      27.406      9.377       
+LNC     CBS     C       CH2     0       11.673      28.140      8.322       
+LNC     CAS     C       CH1     0       13.202      28.003      8.422       
+LNC     OAS     O       OH1     0       13.596      27.661      9.746       
+LNC     CS      C       C       0       13.777      26.981      7.432       
+LNC     O1S     O       O       0       14.307      27.427      6.394       
+LNC     O2S     O       OC      -1      13.681      25.773      7.727       
+LNC     C6N     C       CR16    0       10.201      25.168      8.380       
+LNC     N1N     N       NR6     1       10.265      23.790      8.324       
+LNC     C2N     C       CR16    0       11.031      23.100      9.246       
+LNC     C1D     C       CH1     0       9.503       23.031      7.298       
+LNC     O4D     O       O2      0       9.519       23.750      6.063       
+LNC     C4D     C       CH1     0       8.172       24.096      5.674       
+LNC     C5D     C       CH2     0       8.168       25.447      5.001       
+LNC     O5D     O       O2      0       6.798       25.881      4.792       
+LNC     PN      P       P       0       6.506       27.269      4.038       
+LNC     O1N     O       OP      -1      7.766       28.065      3.940       
+LNC     O2N     O       O       0       5.747       26.997      2.781       
+LNC     O3      O       O2      0       5.526       27.993      5.082       
+LNC     PA      P       P       0       5.699       28.440      6.614       
+LNC     O1A     O       OP      -1      6.772       27.612      7.240       
+LNC     O2A     O       O       0       5.862       29.924      6.651       
+LNC     O5B     O       O2      0       4.278       28.051      7.258       
+LNC     C5B     C       CH2     0       3.603       26.788      6.988       
+LNC     C4B     C       CH1     0       3.625       25.914      8.219       
+LNC     O4B     O       O2      0       4.993       25.604      8.576       
+LNC     C1B     C       CH1     0       5.050       25.253      9.941       
+LNC     C2B     C       CH1     0       3.699       25.605      10.569      
+LNC     O2B     O       OH1     0       2.946       24.439      10.828      
+LNC     C3B     C       CH1     0       3.053       26.506      9.510       
+LNC     O3B     O       OH1     0       1.632       26.441      9.519       
+LNC     N9A     N       NR5     0       6.179       25.950      10.550      
+LNC     C8A     C       CR15    0       6.411       27.303      10.536      
+LNC     N7A     N       NRD5    0       7.504       27.651      11.168      
+LNC     C5A     C       CR56    0       8.029       26.455      11.634      
+LNC     C6A     C       CR6     0       9.186       26.153      12.385      
+LNC     N6A     N       NH2     0       10.052      27.071      12.809      
+LNC     N1A     N       NRD6    0       9.420       24.848      12.683      
+LNC     C2A     C       CR16    0       8.545       23.926      12.253      
+LNC     N3A     N       NRD6    0       7.428       24.095      11.544      
+LNC     C4A     C       CR56    0       7.219       25.396      11.260      
+LNC     C3D     C       CH1     0       7.356       23.987      6.970       
+LNC     O3D     O       OH1     0       5.982       23.748      6.694       
+LNC     C2D     C       CH1     0       8.033       22.805      7.673       
+LNC     O2D     O       OH1     0       7.605       21.544      7.181       
+LNC     HN71    H       H       0       13.644      22.105      9.895       
+LNC     HN72    H       H       0       14.018      21.765      11.347      
+LNC     H4      H       H       0       12.159      25.672      10.915      
+LNC     HGS1    H       H       0       11.090      27.711      10.270      
+LNC     HGS2    H       H       0       9.886       27.662      9.249       
+LNC     HBS1    H       H       0       11.458      29.095      8.371       
+LNC     HBS2    H       H       0       11.397      27.825      7.435       
+LNC     HAS     H       H       0       13.604      28.879      8.205       
+LNC     H1      H       H       0       14.414      27.863      9.843       
+LNC     H6      H       H       0       9.673       25.632      7.752       
+LNC     H2      H       H       0       11.076      22.158      9.216       
+LNC     "H1'"   H       H       0       9.944       22.154      7.160       
+LNC     "H4'"   H       H       0       7.850       23.430      5.030       
+LNC     "H5'1"  H       H       0       8.638       25.386      4.132       
+LNC     "H5'2"  H       H       0       8.645       26.101      5.569       
+LNC     H11     H       H       0       4.047       26.312      6.245       
+LNC     H12     H       H       0       2.665       26.962      6.727       
+LNC     H5      H       H       0       3.155       25.079      8.010       
+LNC     H7      H       H       0       5.190       24.282      10.019      
+LNC     "H2'"   H       H       0       3.832       26.111      11.415      
+LNC     H8      H       H       0       2.210       24.658      11.191      
+LNC     "H3'"   H       H       0       3.352       27.443      9.632       
+LNC     H9      H       H       0       1.350       26.723      10.269      
+LNC     H10     H       H       0       5.841       27.919      10.110      
+LNC     HN61    H       H       0       10.688      26.847      13.371      
+LNC     HN62    H       H       0       9.983       27.899      12.525      
+LNC     H111    H       H       0       8.748       23.033      12.484      
+LNC     H122    H       H       0       7.459       24.810      7.513       
+LNC     H13     H       H       0       5.575       23.615      7.427       
+LNC     H14     H       H       0       7.909       22.863      8.652       
+LNC     H15     H       H       0       6.769       21.461      7.303       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LNC         N7N         C7N      SINGLE       n     1.326  0.0100     1.326  0.0100
+LNC         C7N         O7N      DOUBLE       n     1.241  0.0105     1.241  0.0105
+LNC         C7N         C3N      SINGLE       n     1.497  0.0100     1.497  0.0100
+LNC         C3N         C4N      DOUBLE       y     1.396  0.0134     1.396  0.0134
+LNC         C3N         C2N      SINGLE       y     1.390  0.0105     1.390  0.0105
+LNC         C4N         C5N      SINGLE       y     1.388  0.0100     1.388  0.0100
+LNC         C5N         CGS      SINGLE       n     1.513  0.0100     1.513  0.0100
+LNC         C5N         C6N      DOUBLE       y     1.391  0.0103     1.391  0.0103
+LNC         CGS         CBS      SINGLE       n     1.528  0.0200     1.528  0.0200
+LNC         CBS         CAS      SINGLE       n     1.532  0.0104     1.532  0.0104
+LNC         CAS         OAS      SINGLE       n     1.419  0.0162     1.419  0.0162
+LNC         CAS          CS      SINGLE       n     1.533  0.0100     1.533  0.0100
+LNC          CS         O1S      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LNC          CS         O2S      SINGLE       n     1.247  0.0187     1.247  0.0187
+LNC         C6N         N1N      SINGLE       y     1.375  0.0105     1.375  0.0105
+LNC         N1N         C2N      DOUBLE       y     1.377  0.0105     1.377  0.0105
+LNC         N1N         C1D      SINGLE       n     1.477  0.0138     1.477  0.0138
+LNC         C1D         O4D      SINGLE       n     1.425  0.0141     1.425  0.0141
+LNC         C1D         C2D      SINGLE       n     1.533  0.0100     1.533  0.0100
+LNC         O4D         C4D      SINGLE       n     1.443  0.0107     1.443  0.0107
+LNC         C4D         C5D      SINGLE       n     1.509  0.0100     1.509  0.0100
+LNC         C4D         C3D      SINGLE       n     1.535  0.0100     1.535  0.0100
+LNC         C5D         O5D      SINGLE       n     1.450  0.0166     1.450  0.0166
+LNC         O5D          PN      SINGLE       n     1.604  0.0133     1.604  0.0133
+LNC          PN         O1N      SINGLE       n     1.493  0.0122     1.493  0.0122
+LNC          PN         O2N      DOUBLE       n     1.493  0.0122     1.493  0.0122
+LNC          PN          O3      SINGLE       n     1.604  0.0133     1.604  0.0133
+LNC          O3          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+LNC          PA         O1A      SINGLE       n     1.493  0.0122     1.493  0.0122
+LNC          PA         O2A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+LNC          PA         O5B      SINGLE       n     1.604  0.0133     1.604  0.0133
+LNC         O5B         C5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+LNC         C5B         C4B      SINGLE       n     1.509  0.0100     1.509  0.0100
+LNC         C4B         O4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+LNC         C4B         C3B      SINGLE       n     1.535  0.0100     1.535  0.0100
+LNC         O4B         C1B      SINGLE       n     1.409  0.0100     1.409  0.0100
+LNC         C1B         C2B      SINGLE       n     1.525  0.0100     1.525  0.0100
+LNC         C1B         N9A      SINGLE       n     1.458  0.0100     1.458  0.0100
+LNC         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+LNC         C2B         C3B      SINGLE       n     1.531  0.0100     1.531  0.0100
+LNC         C3B         O3B      SINGLE       n     1.422  0.0100     1.422  0.0100
+LNC         N9A         C8A      SINGLE       y     1.372  0.0100     1.372  0.0100
+LNC         N9A         C4A      SINGLE       y     1.374  0.0101     1.374  0.0101
+LNC         C8A         N7A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+LNC         N7A         C5A      SINGLE       y     1.388  0.0100     1.388  0.0100
+LNC         C5A         C6A      SINGLE       y     1.408  0.0100     1.408  0.0100
+LNC         C5A         C4A      DOUBLE       y     1.381  0.0100     1.381  0.0100
+LNC         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+LNC         C6A         N1A      DOUBLE       y     1.354  0.0100     1.354  0.0100
+LNC         N1A         C2A      SINGLE       y     1.339  0.0100     1.339  0.0100
+LNC         C2A         N3A      DOUBLE       y     1.330  0.0100     1.330  0.0100
+LNC         N3A         C4A      SINGLE       y     1.343  0.0100     1.343  0.0100
+LNC         C3D         O3D      SINGLE       n     1.422  0.0100     1.422  0.0100
+LNC         C3D         C2D      SINGLE       n     1.533  0.0100     1.533  0.0100
+LNC         C2D         O2D      SINGLE       n     1.419  0.0101     1.419  0.0101
+LNC         N7N        HN71      SINGLE       n     1.016  0.0100     0.891  0.0200
+LNC         N7N        HN72      SINGLE       n     1.016  0.0100     0.891  0.0200
+LNC         C4N          H4      SINGLE       n     1.082  0.0130     0.944  0.0147
+LNC         CGS        HGS1      SINGLE       n     1.089  0.0100     0.981  0.0150
+LNC         CGS        HGS2      SINGLE       n     1.089  0.0100     0.981  0.0150
+LNC         CBS        HBS1      SINGLE       n     1.089  0.0100     0.980  0.0178
+LNC         CBS        HBS2      SINGLE       n     1.089  0.0100     0.980  0.0178
+LNC         CAS         HAS      SINGLE       n     1.089  0.0100     0.988  0.0129
+LNC         OAS          H1      SINGLE       n     0.970  0.0120     0.848  0.0200
+LNC         C6N          H6      SINGLE       n     1.082  0.0130     0.943  0.0169
+LNC         C2N          H2      SINGLE       n     1.082  0.0130     0.943  0.0170
+LNC         C1D       "H1'"      SINGLE       n     1.089  0.0100     0.990  0.0173
+LNC         C4D       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+LNC         C5D      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+LNC         C5D      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+LNC         C5B         H11      SINGLE       n     1.089  0.0100     0.989  0.0200
+LNC         C5B         H12      SINGLE       n     1.089  0.0100     0.989  0.0200
+LNC         C4B          H5      SINGLE       n     1.089  0.0100     0.981  0.0200
+LNC         C1B          H7      SINGLE       n     1.089  0.0100     0.984  0.0200
+LNC         C2B       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+LNC         O2B          H8      SINGLE       n     0.970  0.0120     0.849  0.0200
+LNC         C3B       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+LNC         O3B          H9      SINGLE       n     0.970  0.0120     0.849  0.0200
+LNC         C8A         H10      SINGLE       n     1.082  0.0130     0.942  0.0170
+LNC         N6A        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+LNC         N6A        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+LNC         C2A        H111      SINGLE       n     1.082  0.0130     0.945  0.0200
+LNC         C3D        H122      SINGLE       n     1.089  0.0100     0.992  0.0200
+LNC         O3D         H13      SINGLE       n     0.970  0.0120     0.849  0.0200
+LNC         C2D         H14      SINGLE       n     1.089  0.0100     0.989  0.0200
+LNC         O2D         H15      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LNC         C7N         N7N        HN71     120.236    2.75
+LNC         C7N         N7N        HN72     120.236    2.75
+LNC        HN71         N7N        HN72     119.529    2.83
+LNC         N7N         C7N         O7N     122.238    1.50
+LNC         N7N         C7N         C3N     118.032    1.50
+LNC         O7N         C7N         C3N     119.730    1.50
+LNC         C7N         C3N         C4N     120.489    2.89
+LNC         C7N         C3N         C2N     120.420    2.75
+LNC         C4N         C3N         C2N     119.091    1.64
+LNC         C3N         C4N         C5N     120.636    1.50
+LNC         C3N         C4N          H4     120.122    1.50
+LNC         C5N         C4N          H4     119.243    1.50
+LNC         C4N         C5N         CGS     120.709    1.50
+LNC         C4N         C5N         C6N     118.722    1.74
+LNC         CGS         C5N         C6N     120.569    1.50
+LNC         C5N         CGS         CBS     114.108    2.12
+LNC         C5N         CGS        HGS1     108.582    1.50
+LNC         C5N         CGS        HGS2     108.582    1.50
+LNC         CBS         CGS        HGS1     108.742    1.50
+LNC         CBS         CGS        HGS2     108.742    1.50
+LNC        HGS1         CGS        HGS2     107.745    1.50
+LNC         CGS         CBS         CAS     111.094    2.85
+LNC         CGS         CBS        HBS1     108.959    1.50
+LNC         CGS         CBS        HBS2     108.959    1.50
+LNC         CAS         CBS        HBS1     108.460    1.50
+LNC         CAS         CBS        HBS2     108.460    1.50
+LNC        HBS1         CBS        HBS2     108.047    1.50
+LNC         CBS         CAS         OAS     108.204    2.17
+LNC         CBS         CAS          CS     111.511    2.91
+LNC         CBS         CAS         HAS     108.868    1.50
+LNC         OAS         CAS          CS     110.439    2.49
+LNC         OAS         CAS         HAS     108.401    1.50
+LNC          CS         CAS         HAS     107.755    1.52
+LNC         CAS         OAS          H1     108.308    3.00
+LNC         CAS          CS         O1S     117.318    2.01
+LNC         CAS          CS         O2S     117.318    2.01
+LNC         O1S          CS         O2S     125.364    1.50
+LNC         C5N         C6N         N1N     122.034    1.50
+LNC         C5N         C6N          H6     119.211    1.50
+LNC         N1N         C6N          H6     118.755    1.53
+LNC         C6N         N1N         C2N     120.279    1.50
+LNC         C6N         N1N         C1D     119.860    1.50
+LNC         C2N         N1N         C1D     119.860    1.50
+LNC         C3N         C2N         N1N     119.238    3.00
+LNC         C3N         C2N          H2     120.176    1.50
+LNC         N1N         C2N          H2     120.586    1.53
+LNC         N1N         C1D         O4D     108.092    1.50
+LNC         N1N         C1D         C2D     113.620    1.99
+LNC         N1N         C1D       "H1'"     108.901    1.50
+LNC         O4D         C1D         C2D     106.825    1.50
+LNC         O4D         C1D       "H1'"     109.327    1.50
+LNC         C2D         C1D       "H1'"     109.776    1.83
+LNC         C1D         O4D         C4D     109.578    1.50
+LNC         O4D         C4D         C5D     109.615    1.50
+LNC         O4D         C4D         C3D     104.439    1.50
+LNC         O4D         C4D       "H4'"     108.698    1.50
+LNC         C5D         C4D         C3D     116.008    1.52
+LNC         C5D         C4D       "H4'"     108.268    1.50
+LNC         C3D         C4D       "H4'"     109.363    1.86
+LNC         C4D         C5D         O5D     109.342    1.50
+LNC         C4D         C5D      "H5'1"     109.624    1.50
+LNC         C4D         C5D      "H5'2"     109.624    1.50
+LNC         O5D         C5D      "H5'1"     109.845    1.50
+LNC         O5D         C5D      "H5'2"     109.845    1.50
+LNC      "H5'1"         C5D      "H5'2"     108.472    1.50
+LNC         C5D         O5D          PN     118.553    2.41
+LNC         O5D          PN         O1N     109.410    1.50
+LNC         O5D          PN         O2N     109.410    1.50
+LNC         O5D          PN          O3     101.065    1.97
+LNC         O1N          PN         O2N     118.411    2.35
+LNC         O1N          PN          O3     108.816    2.14
+LNC         O2N          PN          O3     108.816    2.14
+LNC          PN          O3          PA     132.542    3.00
+LNC          O3          PA         O1A     108.816    2.14
+LNC          O3          PA         O2A     108.816    2.14
+LNC          O3          PA         O5B     101.065    1.97
+LNC         O1A          PA         O2A     118.411    2.35
+LNC         O1A          PA         O5B     109.410    1.50
+LNC         O2A          PA         O5B     109.410    1.50
+LNC          PA         O5B         C5B     118.553    2.41
+LNC         O5B         C5B         C4B     109.342    1.50
+LNC         O5B         C5B         H11     109.845    1.50
+LNC         O5B         C5B         H12     109.845    1.50
+LNC         C4B         C5B         H11     109.624    1.50
+LNC         C4B         C5B         H12     109.624    1.50
+LNC         H11         C5B         H12     108.472    1.50
+LNC         C5B         C4B         O4B     109.123    1.50
+LNC         C5B         C4B         C3B     116.008    1.52
+LNC         C5B         C4B          H5     108.268    1.50
+LNC         O4B         C4B         C3B     105.388    1.50
+LNC         O4B         C4B          H5     108.947    1.50
+LNC         C3B         C4B          H5     109.363    1.86
+LNC         C4B         O4B         C1B     109.903    1.50
+LNC         O4B         C1B         C2B     106.047    1.50
+LNC         O4B         C1B         N9A     108.477    1.50
+LNC         O4B         C1B          H7     109.807    1.50
+LNC         C2B         C1B         N9A     113.824    1.50
+LNC         C2B         C1B          H7     109.015    1.50
+LNC         N9A         C1B          H7     109.561    1.50
+LNC         C1B         C2B         O2B     111.715    2.69
+LNC         C1B         C2B         C3B     101.239    1.50
+LNC         C1B         C2B       "H2'"     110.636    1.70
+LNC         O2B         C2B         C3B     112.782    2.45
+LNC         O2B         C2B       "H2'"     110.448    1.97
+LNC         C3B         C2B       "H2'"     110.596    1.51
+LNC         C2B         O2B          H8     109.103    2.13
+LNC         C4B         C3B         C2B     102.602    1.50
+LNC         C4B         C3B         O3B     111.281    2.46
+LNC         C4B         C3B       "H3'"     110.452    2.54
+LNC         C2B         C3B         O3B     111.581    2.83
+LNC         C2B         C3B       "H3'"     110.504    1.75
+LNC         O3B         C3B       "H3'"     110.380    1.67
+LNC         C3B         O3B          H9     108.744    3.00
+LNC         C1B         N9A         C8A     126.848    1.91
+LNC         C1B         N9A         C4A     127.459    1.80
+LNC         C8A         N9A         C4A     105.693    1.50
+LNC         N9A         C8A         N7A     113.469    1.50
+LNC         N9A         C8A         H10     123.206    1.50
+LNC         N7A         C8A         H10     123.326    1.50
+LNC         C8A         N7A         C5A     104.739    1.50
+LNC         N7A         C5A         C6A     132.250    1.50
+LNC         N7A         C5A         C4A     110.483    1.50
+LNC         C6A         C5A         C4A     117.267    1.50
+LNC         C5A         C6A         N6A     123.792    1.50
+LNC         C5A         C6A         N1A     117.409    1.50
+LNC         N6A         C6A         N1A     118.799    1.50
+LNC         C6A         N6A        HN61     119.723    1.50
+LNC         C6A         N6A        HN62     119.723    1.50
+LNC        HN61         N6A        HN62     120.554    1.88
+LNC         C6A         N1A         C2A     118.521    1.50
+LNC         N1A         C2A         N3A     129.332    1.50
+LNC         N1A         C2A        H111     115.313    1.50
+LNC         N3A         C2A        H111     115.355    1.50
+LNC         C2A         N3A         C4A     110.982    1.50
+LNC         N9A         C4A         C5A     105.616    1.50
+LNC         N9A         C4A         N3A     127.895    1.50
+LNC         C5A         C4A         N3A     126.489    1.50
+LNC         C4D         C3D         O3D     111.281    2.46
+LNC         C4D         C3D         C2D     102.071    1.50
+LNC         C4D         C3D        H122     110.452    2.54
+LNC         O3D         C3D         C2D     111.993    3.00
+LNC         O3D         C3D        H122     110.380    1.67
+LNC         C2D         C3D        H122     110.108    1.66
+LNC         C3D         O3D         H13     108.744    3.00
+LNC         C1D         C2D         C3D     101.269    1.50
+LNC         C1D         C2D         O2D     109.476    3.00
+LNC         C1D         C2D         H14     110.760    1.63
+LNC         C3D         C2D         O2D     112.861    2.52
+LNC         C3D         C2D         H14     110.799    1.82
+LNC         O2D         C2D         H14     111.022    1.77
+LNC         C2D         O2D         H15     109.449    1.85
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LNC             sp2_sp2_3         O7N         C7N         N7N        HN71       0.000     5.0     2
+LNC              const_25         C5N         C6N         N1N         C2N       0.000    10.0     2
+LNC              const_29         C3N         C2N         N1N         C6N       0.000    10.0     2
+LNC            sp2_sp3_13         C6N         N1N         C1D         O4D     150.000    10.0     6
+LNC            sp3_sp3_26         N1N         C1D         O4D         C4D     -60.000    10.0     3
+LNC            sp3_sp3_74         N1N         C1D         C2D         O2D     180.000    10.0     3
+LNC            sp3_sp3_29         C5D         C4D         O4D         C1D     180.000    10.0     3
+LNC            sp3_sp3_79         O4D         C4D         C5D         O5D     180.000    10.0     3
+LNC            sp3_sp3_35         O3D         C3D         C4D         C5D      60.000    10.0     3
+LNC            sp3_sp3_88         C4D         C5D         O5D          PN     180.000    10.0     3
+LNC             sp2_sp2_5         C4N         C3N         C7N         N7N     180.000     5.0     2
+LNC            sp3_sp3_92         C5D         O5D          PN         O1N     -60.000    10.0     3
+LNC            sp3_sp3_95          PA          O3          PN         O5D     -60.000    10.0     3
+LNC            sp3_sp3_97          PN          O3          PA         O1A     180.000    10.0     3
+LNC           sp3_sp3_100         C5B         O5B          PA          O3     180.000    10.0     3
+LNC           sp3_sp3_103         C4B         C5B         O5B          PA     180.000    10.0     3
+LNC           sp3_sp3_106         O4B         C4B         C5B         O5B     180.000    10.0     3
+LNC             sp3_sp3_2         C5B         C4B         O4B         C1B     -60.000    10.0     3
+LNC           sp3_sp3_119         O3B         C3B         C4B         C5B     180.000    10.0     3
+LNC             sp3_sp3_4         C2B         C1B         O4B         C4B     -60.000    10.0     3
+LNC             sp3_sp3_8         O4B         C1B         C2B         O2B     180.000    10.0     3
+LNC            sp2_sp3_19         C8A         N9A         C1B         O4B     150.000    10.0     6
+LNC           sp3_sp3_124         C1B         C2B         O2B          H8     180.000    10.0     3
+LNC            sp3_sp3_20         O2B         C2B         C3B         O3B     -60.000    10.0     3
+LNC           sp3_sp3_127         C4B         C3B         O3B          H9     180.000    10.0     3
+LNC              const_34         N7A         C8A         N9A         C1B     180.000    10.0     2
+LNC              const_50         C5A         C4A         N9A         C1B     180.000    10.0     2
+LNC              const_37         N9A         C8A         N7A         C5A       0.000    10.0     2
+LNC              const_40         C6A         C5A         N7A         C8A     180.000    10.0     2
+LNC              const_46         N1N         C2N         C3N         C7N     180.000    10.0     2
+LNC              const_15         C7N         C3N         C4N         C5N     180.000    10.0     2
+LNC       const_sp2_sp2_4         N7A         C5A         C6A         N6A       0.000     5.0     2
+LNC              const_41         N9A         C4A         C5A         N7A       0.000    10.0     2
+LNC             sp2_sp2_9         C5A         C6A         N6A        HN61     180.000     5.0     2
+LNC       const_sp2_sp2_6         N6A         C6A         N1A         C2A     180.000     5.0     2
+LNC       const_sp2_sp2_7         N3A         C2A         N1A         C6A       0.000     5.0     2
+LNC       const_sp2_sp2_9         N1A         C2A         N3A         C4A       0.000     5.0     2
+LNC              const_12         N9A         C4A         N3A         C2A     180.000    10.0     2
+LNC           sp3_sp3_130         C4D         C3D         O3D         H13     180.000    10.0     3
+LNC            sp3_sp3_44         O2D         C2D         C3D         O3D     -60.000    10.0     3
+LNC           sp3_sp3_133         C1D         C2D         O2D         H15     180.000    10.0     3
+LNC              const_18         C3N         C4N         C5N         CGS     180.000    10.0     2
+LNC              const_23         CGS         C5N         C6N         N1N     180.000    10.0     2
+LNC             sp2_sp3_2         C4N         C5N         CGS         CBS     -90.000    10.0     6
+LNC            sp3_sp3_49         CAS         CBS         CGS         C5N     180.000    10.0     3
+LNC            sp3_sp3_58         OAS         CAS         CBS         CGS     180.000    10.0     3
+LNC             sp2_sp3_7         O1S          CS         CAS         CBS       0.000    10.0     6
+LNC            sp3_sp3_67         CBS         CAS         OAS          H1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LNC    chir_1    CAS    OAS    CS    CBS    negative
+LNC    chir_2    C1D    O4D    N1N    C2D    negative
+LNC    chir_3    C4D    O4D    C3D    C5D    negative
+LNC    chir_4    PN    O3    O5D    O1N    both
+LNC    chir_5    PA    O3    O5B    O1A    both
+LNC    chir_6    C4B    O4B    C3B    C5B    negative
+LNC    chir_7    C1B    O4B    N9A    C2B    negative
+LNC    chir_8    C2B    O2B    C1B    C3B    negative
+LNC    chir_9    C3B    O3B    C4B    C2B    positive
+LNC    chir_10    C3D    O3D    C4D    C2D    positive
+LNC    chir_11    C2D    O2D    C1D    C3D    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LNC    plan-1         C1B   0.020
+LNC    plan-1         C2A   0.020
+LNC    plan-1         C4A   0.020
+LNC    plan-1         C5A   0.020
+LNC    plan-1         C6A   0.020
+LNC    plan-1         C8A   0.020
+LNC    plan-1         H10   0.020
+LNC    plan-1        H111   0.020
+LNC    plan-1         N1A   0.020
+LNC    plan-1         N3A   0.020
+LNC    plan-1         N6A   0.020
+LNC    plan-1         N7A   0.020
+LNC    plan-1         N9A   0.020
+LNC    plan-2         C1D   0.020
+LNC    plan-2         C2N   0.020
+LNC    plan-2         C3N   0.020
+LNC    plan-2         C4N   0.020
+LNC    plan-2         C5N   0.020
+LNC    plan-2         C6N   0.020
+LNC    plan-2         C7N   0.020
+LNC    plan-2         CGS   0.020
+LNC    plan-2          H2   0.020
+LNC    plan-2          H4   0.020
+LNC    plan-2          H6   0.020
+LNC    plan-2         N1N   0.020
+LNC    plan-3         C7N   0.020
+LNC    plan-3        HN71   0.020
+LNC    plan-3        HN72   0.020
+LNC    plan-3         N7N   0.020
+LNC    plan-4         C3N   0.020
+LNC    plan-4         C7N   0.020
+LNC    plan-4         N7N   0.020
+LNC    plan-4         O7N   0.020
+LNC    plan-5         CAS   0.020
+LNC    plan-5          CS   0.020
+LNC    plan-5         O1S   0.020
+LNC    plan-5         O2S   0.020
+LNC    plan-6         C6A   0.020
+LNC    plan-6        HN61   0.020
+LNC    plan-6        HN62   0.020
+LNC    plan-6         N6A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LNC SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                     NC(=O)c1cc(CC[C@H](O)C(O)=O)c[n+](c1)[C@@H]2O[C@H](CO[P@@](O)(=O)O[P]([O-])(=O)OC[C@H]3O[C@H]([C@H](O)[C@@H]3O)n4cnc5c(N)ncnc45)[C@@H](O)[C@H]2O
+LNC           SMILES               CACTVS 3.341                                                                                                                                                                                   NC(=O)c1cc(CC[CH](O)C(O)=O)c[n+](c1)[CH]2O[CH](CO[P](O)(=O)O[P]([O-])(=O)OC[CH]3O[CH]([CH](O)[CH]3O)n4cnc5c(N)ncnc45)[CH](O)[CH]2O
+LNC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                 c1c(c[n+](cc1C(=O)N)[C@H]2[C@@H]([C@@H]([C@H](O2)CO[P@](=O)(O)O[P@](=O)([O-])OC[C@@H]3[C@H]([C@H]([C@@H](O3)n4cnc5c4ncnc5N)O)O)O)O)CC[C@@H](C(=O)O)O
+LNC           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                c1c(c[n+](cc1C(=O)N)C2C(C(C(O2)COP(=O)(O)OP(=O)([O-])OCC3C(C(C(O3)n4cnc5c4ncnc5N)O)O)O)O)CCC(C(=O)O)O
+LNC            InChI                InChI  1.03 InChI=1S/C25H33N7O17P2/c26-20-15-22(29-8-28-20)32(9-30-15)24-19(37)17(35)14(48-24)7-46-51(43,44)49-50(41,42)45-6-13-16(34)18(36)23(47-13)31-4-10(1-2-12(33)25(39)40)3-11(5-31)21(27)38/h3-5,8-9,12-14,16-19,23-24,33-37H,1-2,6-7H2,(H6-,26,27,28,29,38,39,40,41,42,43,44)/t12-,13+,14+,16+,17+,18+,19+,23+,24+/m0/s1
+LNC         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                          PLMTVPOYALSQOL-AMUFZZJCSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LNC acedrg               243         "dictionary generator"                  
+LNC acedrg_database      11          "data source"                           
+LNC rdkit                2017.03.2   "Chemoinformatics tool"
+LNC refmac5              5.8.0238    "optimization tool"                     

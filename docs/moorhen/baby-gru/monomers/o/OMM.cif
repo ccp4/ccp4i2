@@ -1,0 +1,409 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OMM     OMM      "4-({(2S)-2-[2-(4-chlorophenyl)-5,6-difluoro-1H-benzimidazol-1-yl]-2-cyclohexylacetyl}amino)-3-fluorobenzoic acid"     NON-POLYMER     60     38     .     
+#
+data_comp_OMM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OMM     N1      N       NT      0       12.815      24.362      3.582       
+OMM     C2      C       CR5     0       13.675      25.080      2.772       
+OMM     N3      N       NRD5    0       13.170      26.227      2.361       
+OMM     C4      C       CR56    0       11.670      25.149      3.691       
+OMM     C5      C       CR56    0       11.903      26.292      2.923       
+OMM     C6      C       C       0       11.958      22.047      3.866       
+OMM     C7      C       CH1     0       13.047      23.069      4.239       
+OMM     C8      C       CR16    0       10.458      24.984      4.359       
+OMM     N9      N       NH1     0       12.093      21.444      2.665       
+OMM     C10     C       CR16    0       10.917      27.276      2.824       
+OMM     C11     C       CR6     0       9.497       25.967      4.247       
+OMM     C12     C       CR6     0       11.313      20.368      2.171       
+OMM     C13     C       C       0       8.918       17.120      0.669       
+OMM     C14     C       CR6     0       15.037      24.664      2.389       
+OMM     C15     C       CR6     0       9.727       27.098      3.488       
+OMM     C16     C       CR6     0       9.752       18.250      1.195       
+OMM     C17     C       CR6     0       11.311      19.118      2.791       
+OMM     C18     C       CR16    0       10.550      18.064      2.321       
+OMM     O19     O       O       0       11.036      21.790      4.639       
+OMM     O20     O       O       0       8.189       16.513      1.474       
+OMM     C21     C       CR16    0       10.505      20.534      1.047       
+OMM     C22     C       CR16    0       9.737       19.489      0.566       
+OMM     C23     C       CH1     0       13.230      23.230      5.765       
+OMM     C24     C       CR16    0       16.115      25.450      2.794       
+OMM     C25     C       CR16    0       15.295      23.533      1.617       
+OMM     F26     F       F       0       8.324       25.810      4.891       
+OMM     F27     F       F       0       8.777       28.049      3.390       
+OMM     F28     F       F       0       12.087      18.935      3.886       
+OMM     O29     O       OC      -1      9.002       16.853      -0.543      
+OMM     C30     C       CR6     0       17.638      23.980      1.698       
+OMM     C31     C       CR16    0       16.592      23.185      1.276       
+OMM     C32     C       CR16    0       17.414      25.111      2.454       
+OMM     CL33    CL      CL      0       19.269      23.548      1.268       
+OMM     C34     C       CH2     0       13.737      21.936      6.411       
+OMM     C35     C       CH2     0       14.178      24.377      6.131       
+OMM     C36     C       CH2     0       14.372      24.518      7.640       
+OMM     C37     C       CH2     0       13.928      22.072      7.921       
+OMM     C38     C       CH2     0       14.858      23.221      8.262       
+OMM     H7      H       H       0       13.889      22.699      3.889       
+OMM     H8      H       H       0       10.300      24.219      4.876       
+OMM     HN9     H       H       0       12.712      21.747      2.127       
+OMM     H10     H       H       0       11.071      28.048      2.306       
+OMM     H18     H       H       0       10.570      17.237      2.755       
+OMM     H21     H       H       0       10.484      21.368      0.609       
+OMM     H22     H       H       0       9.200       19.621      -0.196      
+OMM     H23     H       H       0       12.345      23.439      6.161       
+OMM     H24     H       H       0       15.961      26.218      3.308       
+OMM     H25     H       H       0       14.585      22.994      1.334       
+OMM     H31     H       H       0       16.757      22.418      0.762       
+OMM     H32     H       H       0       18.132      25.644      2.736       
+OMM     H34     H       H       0       13.102      21.214      6.239       
+OMM     H34A    H       H       0       14.589      21.687      6.001       
+OMM     H35     H       H       0       13.822      25.218      5.783       
+OMM     H35A    H       H       0       15.047      24.222      5.708       
+OMM     H36     H       H       0       13.520      24.777      8.054       
+OMM     H36A    H       H       0       15.025      25.229      7.820       
+OMM     H37     H       H       0       14.299      21.236      8.278       
+OMM     H37A    H       H       0       13.056      22.222      8.347       
+OMM     H38     H       H       0       14.906      23.324      9.236       
+OMM     H38A    H       H       0       15.760      23.020      7.933       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OMM          N1          C2      SINGLE       y     1.376  0.0100     1.376  0.0100
+OMM          N1          C4      SINGLE       y     1.387  0.0135     1.387  0.0135
+OMM          N1          C7      SINGLE       n     1.462  0.0102     1.462  0.0102
+OMM          C2          N3      DOUBLE       y     1.319  0.0100     1.319  0.0100
+OMM          C2         C14      SINGLE       n     1.472  0.0100     1.472  0.0100
+OMM          N3          C5      SINGLE       y     1.390  0.0100     1.390  0.0100
+OMM          C4          C5      DOUBLE       y     1.397  0.0100     1.397  0.0100
+OMM          C4          C8      SINGLE       y     1.390  0.0100     1.390  0.0100
+OMM          C5         C10      SINGLE       y     1.393  0.0100     1.393  0.0100
+OMM          C6          C7      SINGLE       n     1.531  0.0108     1.531  0.0108
+OMM          C6          N9      SINGLE       n     1.347  0.0100     1.347  0.0100
+OMM          C6         O19      DOUBLE       n     1.229  0.0107     1.229  0.0107
+OMM          C7         C23      SINGLE       n     1.532  0.0150     1.532  0.0150
+OMM          C8         C11      DOUBLE       y     1.374  0.0107     1.374  0.0107
+OMM          N9         C12      SINGLE       n     1.415  0.0110     1.415  0.0110
+OMM         C10         C15      DOUBLE       y     1.369  0.0100     1.369  0.0100
+OMM         C11         C15      SINGLE       y     1.375  0.0100     1.375  0.0100
+OMM         C11         F26      SINGLE       n     1.348  0.0100     1.348  0.0100
+OMM         C12         C17      DOUBLE       y     1.385  0.0129     1.385  0.0129
+OMM         C12         C21      SINGLE       y     1.389  0.0100     1.389  0.0100
+OMM         C13         C16      SINGLE       n     1.498  0.0200     1.498  0.0200
+OMM         C13         O20      DOUBLE       n     1.244  0.0200     1.244  0.0200
+OMM         C13         O29      SINGLE       n     1.244  0.0200     1.244  0.0200
+OMM         C14         C24      DOUBLE       y     1.390  0.0100     1.390  0.0100
+OMM         C14         C25      SINGLE       y     1.390  0.0100     1.390  0.0100
+OMM         C15         F27      SINGLE       n     1.348  0.0100     1.348  0.0100
+OMM         C16         C18      DOUBLE       y     1.391  0.0100     1.391  0.0100
+OMM         C16         C22      SINGLE       y     1.387  0.0103     1.387  0.0103
+OMM         C17         C18      SINGLE       y     1.370  0.0188     1.370  0.0188
+OMM         C17         F28      SINGLE       n     1.354  0.0100     1.354  0.0100
+OMM         C21         C22      DOUBLE       y     1.379  0.0100     1.379  0.0100
+OMM         C23         C34      SINGLE       n     1.528  0.0100     1.528  0.0100
+OMM         C23         C35      SINGLE       n     1.528  0.0100     1.528  0.0100
+OMM         C24         C32      SINGLE       y     1.381  0.0100     1.381  0.0100
+OMM         C25         C31      DOUBLE       y     1.381  0.0100     1.381  0.0100
+OMM         C30         C31      SINGLE       y     1.376  0.0100     1.376  0.0100
+OMM         C30         C32      DOUBLE       y     1.376  0.0100     1.376  0.0100
+OMM         C30        CL33      SINGLE       n     1.741  0.0100     1.741  0.0100
+OMM         C34         C37      SINGLE       n     1.527  0.0100     1.527  0.0100
+OMM         C35         C36      SINGLE       n     1.527  0.0100     1.527  0.0100
+OMM         C36         C38      SINGLE       n     1.517  0.0112     1.517  0.0112
+OMM         C37         C38      SINGLE       n     1.517  0.0112     1.517  0.0112
+OMM          C7          H7      SINGLE       n     1.089  0.0100     0.988  0.0164
+OMM          C8          H8      SINGLE       n     1.082  0.0130     0.941  0.0170
+OMM          N9         HN9      SINGLE       n     1.016  0.0100     0.874  0.0200
+OMM         C10         H10      SINGLE       n     1.082  0.0130     0.942  0.0173
+OMM         C18         H18      SINGLE       n     1.082  0.0130     0.934  0.0200
+OMM         C21         H21      SINGLE       n     1.082  0.0130     0.942  0.0186
+OMM         C22         H22      SINGLE       n     1.082  0.0130     0.941  0.0168
+OMM         C23         H23      SINGLE       n     1.089  0.0100     0.992  0.0136
+OMM         C24         H24      SINGLE       n     1.082  0.0130     0.936  0.0125
+OMM         C25         H25      SINGLE       n     1.082  0.0130     0.936  0.0125
+OMM         C31         H31      SINGLE       n     1.082  0.0130     0.938  0.0140
+OMM         C32         H32      SINGLE       n     1.082  0.0130     0.938  0.0140
+OMM         C34         H34      SINGLE       n     1.089  0.0100     0.978  0.0143
+OMM         C34        H34A      SINGLE       n     1.089  0.0100     0.978  0.0143
+OMM         C35         H35      SINGLE       n     1.089  0.0100     0.978  0.0143
+OMM         C35        H35A      SINGLE       n     1.089  0.0100     0.978  0.0143
+OMM         C36         H36      SINGLE       n     1.089  0.0100     0.982  0.0142
+OMM         C36        H36A      SINGLE       n     1.089  0.0100     0.982  0.0142
+OMM         C37         H37      SINGLE       n     1.089  0.0100     0.982  0.0142
+OMM         C37        H37A      SINGLE       n     1.089  0.0100     0.982  0.0142
+OMM         C38         H38      SINGLE       n     1.089  0.0100     0.981  0.0138
+OMM         C38        H38A      SINGLE       n     1.089  0.0100     0.981  0.0138
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OMM          C2          N1          C4     106.123    1.50
+OMM          C2          N1          C7     124.795    3.00
+OMM          C4          N1          C7     124.908    2.72
+OMM          N1          C2          N3     113.363    1.50
+OMM          N1          C2         C14     123.903    1.50
+OMM          N3          C2         C14     122.734    1.50
+OMM          C2          N3          C5     105.182    1.50
+OMM          N1          C4          C5     106.423    1.50
+OMM          N1          C4          C8     131.680    1.50
+OMM          C5          C4          C8     121.897    1.50
+OMM          N3          C5          C4     109.805    1.50
+OMM          N3          C5         C10     129.982    1.50
+OMM          C4          C5         C10     120.213    1.50
+OMM          C7          C6          N9     115.056    1.97
+OMM          C7          C6         O19     121.156    1.50
+OMM          N9          C6         O19     123.788    1.50
+OMM          N1          C7          C6     112.849    2.16
+OMM          N1          C7         C23     112.573    1.57
+OMM          N1          C7          H7     109.177    1.50
+OMM          C6          C7         C23     113.355    2.65
+OMM          C6          C7          H7     107.903    1.50
+OMM         C23          C7          H7     109.342    1.50
+OMM          C4          C8         C11     119.004    1.50
+OMM          C4          C8          H8     120.216    1.50
+OMM         C11          C8          H8     120.780    1.50
+OMM          C6          N9         C12     126.781    2.46
+OMM          C6          N9         HN9     117.010    1.95
+OMM         C12          N9         HN9     116.210    1.50
+OMM          C5         C10         C15     118.604    1.50
+OMM          C5         C10         H10     120.282    1.50
+OMM         C15         C10         H10     121.114    1.50
+OMM          C8         C11         C15     120.141    1.50
+OMM          C8         C11         F26     119.277    1.50
+OMM         C15         C11         F26     120.582    1.84
+OMM          N9         C12         C17     121.316    2.30
+OMM          N9         C12         C21     121.504    3.00
+OMM         C17         C12         C21     117.180    1.50
+OMM         C16         C13         O20     117.791    1.50
+OMM         C16         C13         O29     117.791    1.50
+OMM         O20         C13         O29     124.418    1.50
+OMM          C2         C14         C24     120.727    2.67
+OMM          C2         C14         C25     120.727    2.67
+OMM         C24         C14         C25     118.546    1.50
+OMM         C10         C15         C11     120.141    1.50
+OMM         C10         C15         F27     119.277    1.50
+OMM         C11         C15         F27     120.582    1.84
+OMM         C13         C16         C18     119.706    1.50
+OMM         C13         C16         C22     120.208    1.50
+OMM         C18         C16         C22     120.086    1.50
+OMM         C12         C17         C18     121.983    1.82
+OMM         C12         C17         F28     118.498    1.50
+OMM         C18         C17         F28     119.519    1.50
+OMM         C16         C18         C17     119.476    1.50
+OMM         C16         C18         H18     120.281    1.50
+OMM         C17         C18         H18     120.244    1.50
+OMM         C12         C21         C22     120.298    1.50
+OMM         C12         C21         H21     119.772    1.50
+OMM         C22         C21         H21     119.930    1.50
+OMM         C16         C22         C21     120.977    1.50
+OMM         C16         C22         H22     119.703    1.50
+OMM         C21         C22         H22     119.320    1.50
+OMM          C7         C23         C34     111.163    2.25
+OMM          C7         C23         C35     111.163    2.25
+OMM          C7         C23         H23     107.642    1.65
+OMM         C34         C23         C35     109.460    1.50
+OMM         C34         C23         H23     107.583    1.50
+OMM         C35         C23         H23     107.583    1.50
+OMM         C14         C24         C32     120.891    1.50
+OMM         C14         C24         H24     119.657    1.50
+OMM         C32         C24         H24     119.454    1.50
+OMM         C14         C25         C31     120.891    1.50
+OMM         C14         C25         H25     119.657    1.50
+OMM         C31         C25         H25     119.454    1.50
+OMM         C31         C30         C32     121.283    1.50
+OMM         C31         C30        CL33     119.358    1.50
+OMM         C32         C30        CL33     119.358    1.50
+OMM         C25         C31         C30     119.201    1.50
+OMM         C25         C31         H31     120.375    1.50
+OMM         C30         C31         H31     120.415    1.50
+OMM         C24         C32         C30     119.201    1.50
+OMM         C24         C32         H32     120.375    1.50
+OMM         C30         C32         H32     120.415    1.50
+OMM         C23         C34         C37     112.072    1.50
+OMM         C23         C34         H34     109.162    1.50
+OMM         C23         C34        H34A     109.162    1.50
+OMM         C37         C34         H34     109.267    1.50
+OMM         C37         C34        H34A     109.267    1.50
+OMM         H34         C34        H34A     107.919    1.50
+OMM         C23         C35         C36     112.072    1.50
+OMM         C23         C35         H35     109.162    1.50
+OMM         C23         C35        H35A     109.162    1.50
+OMM         C36         C35         H35     109.267    1.50
+OMM         C36         C35        H35A     109.267    1.50
+OMM         H35         C35        H35A     107.919    1.50
+OMM         C35         C36         C38     111.360    1.50
+OMM         C35         C36         H36     109.388    1.50
+OMM         C35         C36        H36A     109.388    1.50
+OMM         C38         C36         H36     109.386    1.50
+OMM         C38         C36        H36A     109.386    1.50
+OMM         H36         C36        H36A     108.036    1.50
+OMM         C34         C37         C38     111.360    1.50
+OMM         C34         C37         H37     109.388    1.50
+OMM         C34         C37        H37A     109.388    1.50
+OMM         C38         C37         H37     109.386    1.50
+OMM         C38         C37        H37A     109.386    1.50
+OMM         H37         C37        H37A     108.036    1.50
+OMM         C36         C38         C37     111.038    1.50
+OMM         C36         C38         H38     109.386    1.50
+OMM         C36         C38        H38A     109.386    1.50
+OMM         C37         C38         H38     109.386    1.50
+OMM         C37         C38        H38A     109.386    1.50
+OMM         H38         C38        H38A     108.036    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OMM              const_62          N3          C2          N1          C7     180.000    10.0     2
+OMM              const_70          C5          C4          N1          C7     180.000    10.0     2
+OMM             sp2_sp3_1          C2          N1          C7          C6     150.000    10.0     6
+OMM              const_16         F26         C11         C15         F27       0.000    10.0     2
+OMM              const_24          N9         C12         C17         F28       0.000    10.0     2
+OMM              const_79          N9         C12         C21         C22     180.000    10.0     2
+OMM            sp2_sp2_13         O20         C13         C16         C18     180.000     5.0     2
+OMM              const_43          C2         C14         C24         C32     180.000    10.0     2
+OMM              const_83          C2         C14         C25         C31     180.000    10.0     2
+OMM              const_31         C13         C16         C18         C17     180.000    10.0     2
+OMM              const_35         C13         C16         C22         C21     180.000    10.0     2
+OMM              const_27         F28         C17         C18         C16     180.000    10.0     2
+OMM             sp2_sp2_1         C24         C14          C2          N1     180.000     5.0     2
+OMM              const_65          N1          C2          N3          C5       0.000    10.0     2
+OMM              const_37         C12         C21         C22         C16       0.000    10.0     2
+OMM             sp3_sp3_7          C7         C23         C34         C37     180.000    10.0     3
+OMM            sp3_sp3_58          C7         C23         C35         C36      60.000    10.0     3
+OMM              const_45         C14         C24         C32         C30       0.000    10.0     2
+OMM              const_57         C14         C25         C31         C30       0.000    10.0     2
+OMM              const_55        CL33         C30         C31         C25     180.000    10.0     2
+OMM              const_51        CL33         C30         C32         C24     180.000    10.0     2
+OMM              const_67          C4          C5          N3          C2       0.000    10.0     2
+OMM            sp3_sp3_10         C23         C34         C37         C38     -60.000    10.0     3
+OMM            sp3_sp3_37         C23         C35         C36         C38      60.000    10.0     3
+OMM            sp3_sp3_28         C35         C36         C38         C37     -60.000    10.0     3
+OMM            sp3_sp3_19         C34         C37         C38         C36      60.000    10.0     3
+OMM       const_sp2_sp2_1          N1          C4          C5          N3       0.000     5.0     2
+OMM              const_75          N1          C4          C8         C11     180.000    10.0     2
+OMM       const_sp2_sp2_6         C15         C10          C5          N3     180.000     5.0     2
+OMM             sp2_sp3_7          N9          C6          C7          N1       0.000    10.0     6
+OMM             sp2_sp2_5          C7          C6          N9         C12     180.000     5.0     2
+OMM            sp3_sp3_50         C34         C23          C7          C6     180.000    10.0     3
+OMM              const_19         F26         C11          C8          C4     180.000    10.0     2
+OMM             sp2_sp2_9         C17         C12          N9          C6     180.000     5.0     2
+OMM              const_10          C5         C10         C15         F27     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OMM    chir_1    C7    N1    C6    C23    positive
+OMM    chir_2    C23    C7    C34    C35    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OMM    plan-1         C10   0.020
+OMM    plan-1         C11   0.020
+OMM    plan-1         C14   0.020
+OMM    plan-1         C15   0.020
+OMM    plan-1          C2   0.020
+OMM    plan-1          C4   0.020
+OMM    plan-1          C5   0.020
+OMM    plan-1          C7   0.020
+OMM    plan-1          C8   0.020
+OMM    plan-1         F26   0.020
+OMM    plan-1         F27   0.020
+OMM    plan-1         H10   0.020
+OMM    plan-1          H8   0.020
+OMM    plan-1          N1   0.020
+OMM    plan-1          N3   0.020
+OMM    plan-2         C12   0.020
+OMM    plan-2         C13   0.020
+OMM    plan-2         C16   0.020
+OMM    plan-2         C17   0.020
+OMM    plan-2         C18   0.020
+OMM    plan-2         C21   0.020
+OMM    plan-2         C22   0.020
+OMM    plan-2         F28   0.020
+OMM    plan-2         H18   0.020
+OMM    plan-2         H21   0.020
+OMM    plan-2         H22   0.020
+OMM    plan-2          N9   0.020
+OMM    plan-3         C14   0.020
+OMM    plan-3          C2   0.020
+OMM    plan-3         C24   0.020
+OMM    plan-3         C25   0.020
+OMM    plan-3         C30   0.020
+OMM    plan-3         C31   0.020
+OMM    plan-3         C32   0.020
+OMM    plan-3        CL33   0.020
+OMM    plan-3         H24   0.020
+OMM    plan-3         H25   0.020
+OMM    plan-3         H31   0.020
+OMM    plan-3         H32   0.020
+OMM    plan-4          C6   0.020
+OMM    plan-4          C7   0.020
+OMM    plan-4          N9   0.020
+OMM    plan-4         O19   0.020
+OMM    plan-5         C12   0.020
+OMM    plan-5          C6   0.020
+OMM    plan-5         HN9   0.020
+OMM    plan-5          N9   0.020
+OMM    plan-6         C13   0.020
+OMM    plan-6         C16   0.020
+OMM    plan-6         O20   0.020
+OMM    plan-6         O29   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OMM           SMILES              ACDLabs 12.01                                                                                                                            O=C(O)c1ccc(c(F)c1)NC(=O)C(n3c4cc(F)c(F)cc4nc3c2ccc(Cl)cc2)C5CCCCC5
+OMM SMILES_CANONICAL               CACTVS 3.370                                                                                                                        OC(=O)c1ccc(NC(=O)[C@H](C2CCCCC2)n3c4cc(F)c(F)cc4nc3c5ccc(Cl)cc5)c(F)c1
+OMM           SMILES               CACTVS 3.370                                                                                                                         OC(=O)c1ccc(NC(=O)[CH](C2CCCCC2)n3c4cc(F)c(F)cc4nc3c5ccc(Cl)cc5)c(F)c1
+OMM SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                         c1cc(ccc1c2nc3cc(c(cc3n2[C@@H](C4CCCCC4)C(=O)Nc5ccc(cc5F)C(=O)O)F)F)Cl
+OMM           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                              c1cc(ccc1c2nc3cc(c(cc3n2C(C4CCCCC4)C(=O)Nc5ccc(cc5F)C(=O)O)F)F)Cl
+OMM            InChI                InChI  1.03 InChI=1S/C28H23ClF3N3O3/c29-18-9-6-16(7-10-18)26-33-23-13-19(30)20(31)14-24(23)35(26)25(15-4-2-1-3-5-15)27(36)34-22-11-8-17(28(37)38)12-21(22)32/h6-15,25H,1-5H2,(H,34,36)(H,37,38)/t25-/m0/s1
+OMM         InChIKey                InChI  1.03                                                                                                                                                                    DGVNGMXASUNRAO-VWLOTQADSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OMM acedrg               243         "dictionary generator"                  
+OMM acedrg_database      11          "data source"                           
+OMM rdkit                2017.03.2   "Chemoinformatics tool"
+OMM refmac5              5.8.0238    "optimization tool"                     

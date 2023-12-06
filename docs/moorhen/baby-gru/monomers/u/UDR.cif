@@ -1,0 +1,410 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+UDR     UDR      "(E)-S-Methyl5-(1-(3,7-Dimethyl-2-oxo-2,3-dihydrobenzo[d]oxazol-5-yl)-5-(5-methyl-1,3,4-oxadiazol-2-yl)pent-1-enyl)-2-methoxy-3-methylbenzothioate"     NON-POLYMER     65     36     .     
+#
+data_comp_UDR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+UDR     CAA     C       CH3     0       -51.694     -31.976     -34.435     
+UDR     CAB     C       CH3     0       -53.692     -30.549     -37.800     
+UDR     CAC     C       CH3     0       -48.364     -32.445     -35.450     
+UDR     CAD     C       CH3     0       -53.019     -25.000     -38.550     
+UDR     CAE     C       CH3     0       -46.247     -31.830     -43.302     
+UDR     CAF     C       CH3     0       -51.848     -33.673     -41.562     
+UDR     OAG     O       O       0       -51.830     -28.034     -34.971     
+UDR     OAH     O       O       0       -50.418     -35.043     -43.806     
+UDR     CAI     C       C1      0       -48.256     -28.279     -39.783     
+UDR     CAJ     C       CR16    0       -48.581     -30.948     -37.453     
+UDR     CAK     C       CR16    0       -47.514     -30.716     -41.409     
+UDR     CAL     C       CR16    0       -50.285     -29.256     -37.633     
+UDR     CAM     C       CR16    0       -49.732     -31.453     -40.731     
+UDR     CAN     C       CH2     0       -47.775     -27.250     -38.785     
+UDR     CAO     C       CH2     0       -47.330     -25.920     -39.400     
+UDR     CAP     C       CH2     0       -48.426     -25.166     -40.162     
+UDR     NAQ     N       NRD5    0       -50.902     -23.871     -37.834     
+UDR     NAR     N       NRD5    0       -49.563     -23.918     -38.302     
+UDR     OAS     O       O2      0       -50.656     -30.998     -34.414     
+UDR     OAT     O       O2      0       -50.790     -25.236     -39.519     
+UDR     OAU     O       O2      0       -48.738     -33.572     -43.429     
+UDR     SAV     S       S2      0       -53.522     -29.273     -36.529     
+UDR     CAW     C       C       0       -51.949     -28.873     -35.838     
+UDR     CAX     C       C       0       -48.667     -29.526     -39.521     
+UDR     CAY     C       CR6     0       -49.046     -31.329     -36.206     
+UDR     CAZ     C       CR5     0       -51.585     -24.661     -38.580     
+UDR     CBA     C       CR6     0       -47.447     -31.691     -42.406     
+UDR     CBB     C       CR6     0       -49.186     -29.918     -38.178     
+UDR     CBC     C       CR6     0       -48.637     -30.592     -40.572     
+UDR     CBD     C       CR5     0       -49.546     -24.734     -39.295     
+UDR     CBE     C       CR6     0       -50.785     -29.609     -36.382     
+UDR     CBF     C       CR6     0       -50.158     -30.652     -35.664     
+UDR     CBG     C       CR5     0       -49.978     -34.111     -43.174     
+UDR     CBH     C       CR56    0       -49.661     -32.432     -41.732     
+UDR     CBI     C       CR56    0       -48.546     -32.533     -42.535     
+UDR     NBJ     N       NR5     0       -50.538     -33.423     -42.146     
+UDR     HAA     H       H       0       -51.369     -32.788     -34.856     
+UDR     HAAA    H       H       0       -52.453     -31.634     -34.934     
+UDR     HAAB    H       H       0       -51.969     -32.172     -33.524     
+UDR     HAB     H       H       0       -54.115     -31.330     -37.413     
+UDR     HABA    H       H       0       -52.815     -30.784     -38.136     
+UDR     HABB    H       H       0       -54.238     -30.207     -38.524     
+UDR     HAC     H       H       0       -49.026     -32.981     -34.985     
+UDR     HACA    H       H       0       -47.744     -32.069     -34.805     
+UDR     HACB    H       H       0       -47.876     -33.010     -36.072     
+UDR     HAD     H       H       0       -53.213     -25.653     -39.234     
+UDR     HADA    H       H       0       -53.544     -24.206     -38.710     
+UDR     HADB    H       H       0       -53.249     -25.365     -37.687     
+UDR     HAE     H       H       0       -46.426     -32.484     -43.997     
+UDR     HAEA    H       H       0       -45.484     -32.119     -42.776     
+UDR     HAEB    H       H       0       -46.050     -30.972     -43.711     
+UDR     HAF     H       H       0       -51.828     -33.454     -40.619     
+UDR     HAFA    H       H       0       -52.078     -34.607     -41.671     
+UDR     HAFB    H       H       0       -52.510     -33.124     -42.006     
+UDR     HAI     H       H       0       -48.257     -28.010     -40.688     
+UDR     HAJ     H       H       0       -47.837     -31.401     -37.818     
+UDR     HAK     H       H       0       -46.778     -30.133     -41.303     
+UDR     HAL     H       H       0       -50.697     -28.558     -38.120     
+UDR     HAM     H       H       0       -50.489     -31.376     -40.179     
+UDR     HAN     H       H       0       -47.018     -27.631     -38.288     
+UDR     HANA    H       H       0       -48.495     -27.076     -38.140     
+UDR     HAO     H       H       0       -46.582     -26.093     -40.016     
+UDR     HAOA    H       H       0       -46.990     -25.340     -38.682     
+UDR     HAP     H       H       0       -48.785     -25.733     -40.867     
+UDR     HAPA    H       H       0       -48.040     -24.374     -40.576     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+UDR         CAA         OAS      SINGLE       n     1.424  0.0117     1.424  0.0117
+UDR         CAB         SAV      SINGLE       n     1.809  0.0191     1.809  0.0191
+UDR         CAC         CAY      SINGLE       n     1.509  0.0100     1.509  0.0100
+UDR         CAD         CAZ      SINGLE       n     1.474  0.0100     1.474  0.0100
+UDR         CAE         CBA      SINGLE       n     1.502  0.0100     1.502  0.0100
+UDR         CAF         NBJ      SINGLE       n     1.456  0.0100     1.456  0.0100
+UDR         OAG         CAW      DOUBLE       n     1.213  0.0100     1.213  0.0100
+UDR         OAH         CBG      DOUBLE       n     1.209  0.0100     1.209  0.0100
+UDR         CAI         CAX      DOUBLE       n     1.337  0.0100     1.337  0.0100
+UDR         CAI         CAN      SINGLE       n     1.507  0.0192     1.507  0.0192
+UDR         CAJ         CBB      DOUBLE       y     1.393  0.0131     1.393  0.0131
+UDR         CAJ         CAY      SINGLE       y     1.379  0.0100     1.379  0.0100
+UDR         CAK         CBA      DOUBLE       y     1.389  0.0107     1.389  0.0107
+UDR         CAK         CBC      SINGLE       y     1.396  0.0128     1.396  0.0128
+UDR         CAL         CBB      SINGLE       y     1.391  0.0100     1.391  0.0100
+UDR         CAL         CBE      DOUBLE       y     1.389  0.0100     1.389  0.0100
+UDR         CAM         CBH      SINGLE       y     1.396  0.0200     1.396  0.0200
+UDR         CAM         CBC      DOUBLE       y     1.398  0.0100     1.398  0.0100
+UDR         CAN         CAO      SINGLE       n     1.527  0.0142     1.527  0.0142
+UDR         CAO         CAP      SINGLE       n     1.525  0.0196     1.525  0.0196
+UDR         CAP         CBD      SINGLE       n     1.480  0.0100     1.480  0.0100
+UDR         NAQ         NAR      SINGLE       y     1.417  0.0100     1.417  0.0100
+UDR         NAQ         CAZ      DOUBLE       y     1.281  0.0124     1.281  0.0124
+UDR         NAR         CBD      DOUBLE       y     1.285  0.0100     1.285  0.0100
+UDR         OAS         CBF      SINGLE       n     1.387  0.0100     1.387  0.0100
+UDR         OAT         CBD      SINGLE       y     1.362  0.0100     1.362  0.0100
+UDR         OAT         CAZ      SINGLE       y     1.360  0.0100     1.360  0.0100
+UDR         OAU         CBG      SINGLE       y     1.376  0.0100     1.376  0.0100
+UDR         OAU         CBI      SINGLE       y     1.384  0.0109     1.384  0.0109
+UDR         SAV         CAW      SINGLE       n     1.762  0.0200     1.762  0.0200
+UDR         CAW         CBE      SINGLE       n     1.475  0.0184     1.475  0.0184
+UDR         CAX         CBC      SINGLE       n     1.493  0.0100     1.493  0.0100
+UDR         CAX         CBB      SINGLE       n     1.491  0.0100     1.491  0.0100
+UDR         CAY         CBF      DOUBLE       y     1.403  0.0105     1.403  0.0105
+UDR         CBA         CBI      SINGLE       y     1.385  0.0100     1.385  0.0100
+UDR         CBE         CBF      SINGLE       y     1.405  0.0115     1.405  0.0115
+UDR         CBG         NBJ      SINGLE       y     1.356  0.0149     1.356  0.0149
+UDR         CBH         CBI      DOUBLE       y     1.377  0.0102     1.377  0.0102
+UDR         CBH         NBJ      SINGLE       y     1.386  0.0100     1.386  0.0100
+UDR         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+UDR         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+UDR         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0157
+UDR         CAB         HAB      SINGLE       n     1.089  0.0100     0.969  0.0157
+UDR         CAB        HABA      SINGLE       n     1.089  0.0100     0.969  0.0157
+UDR         CAB        HABB      SINGLE       n     1.089  0.0100     0.969  0.0157
+UDR         CAC         HAC      SINGLE       n     1.089  0.0100     0.971  0.0135
+UDR         CAC        HACA      SINGLE       n     1.089  0.0100     0.971  0.0135
+UDR         CAC        HACB      SINGLE       n     1.089  0.0100     0.971  0.0135
+UDR         CAD         HAD      SINGLE       n     1.089  0.0100     0.965  0.0176
+UDR         CAD        HADA      SINGLE       n     1.089  0.0100     0.965  0.0176
+UDR         CAD        HADB      SINGLE       n     1.089  0.0100     0.965  0.0176
+UDR         CAE         HAE      SINGLE       n     1.089  0.0100     0.971  0.0120
+UDR         CAE        HAEA      SINGLE       n     1.089  0.0100     0.971  0.0120
+UDR         CAE        HAEB      SINGLE       n     1.089  0.0100     0.971  0.0120
+UDR         CAF         HAF      SINGLE       n     1.089  0.0100     0.968  0.0155
+UDR         CAF        HAFA      SINGLE       n     1.089  0.0100     0.968  0.0155
+UDR         CAF        HAFB      SINGLE       n     1.089  0.0100     0.968  0.0155
+UDR         CAI         HAI      SINGLE       n     1.082  0.0130     0.944  0.0100
+UDR         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.944  0.0147
+UDR         CAK         HAK      SINGLE       n     1.082  0.0130     0.945  0.0100
+UDR         CAL         HAL      SINGLE       n     1.082  0.0130     0.946  0.0200
+UDR         CAM         HAM      SINGLE       n     1.082  0.0130     0.940  0.0104
+UDR         CAN         HAN      SINGLE       n     1.089  0.0100     0.983  0.0180
+UDR         CAN        HANA      SINGLE       n     1.089  0.0100     0.983  0.0180
+UDR         CAO         HAO      SINGLE       n     1.089  0.0100     0.984  0.0200
+UDR         CAO        HAOA      SINGLE       n     1.089  0.0100     0.984  0.0200
+UDR         CAP         HAP      SINGLE       n     1.089  0.0100     0.974  0.0100
+UDR         CAP        HAPA      SINGLE       n     1.089  0.0100     0.974  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+UDR         OAS         CAA         HAA     109.428    1.50
+UDR         OAS         CAA        HAAA     109.428    1.50
+UDR         OAS         CAA        HAAB     109.428    1.50
+UDR         HAA         CAA        HAAA     109.509    1.50
+UDR         HAA         CAA        HAAB     109.509    1.50
+UDR        HAAA         CAA        HAAB     109.509    1.50
+UDR         SAV         CAB         HAB     109.066    1.50
+UDR         SAV         CAB        HABA     109.066    1.50
+UDR         SAV         CAB        HABB     109.066    1.50
+UDR         HAB         CAB        HABA     109.509    1.50
+UDR         HAB         CAB        HABB     109.509    1.50
+UDR        HABA         CAB        HABB     109.509    1.50
+UDR         CAY         CAC         HAC     109.597    1.50
+UDR         CAY         CAC        HACA     109.597    1.50
+UDR         CAY         CAC        HACB     109.597    1.50
+UDR         HAC         CAC        HACA     109.348    1.50
+UDR         HAC         CAC        HACB     109.348    1.50
+UDR        HACA         CAC        HACB     109.348    1.50
+UDR         CAZ         CAD         HAD     109.606    1.50
+UDR         CAZ         CAD        HADA     109.606    1.50
+UDR         CAZ         CAD        HADB     109.606    1.50
+UDR         HAD         CAD        HADA     109.215    1.50
+UDR         HAD         CAD        HADB     109.215    1.50
+UDR        HADA         CAD        HADB     109.215    1.50
+UDR         CBA         CAE         HAE     109.471    1.50
+UDR         CBA         CAE        HAEA     109.471    1.50
+UDR         CBA         CAE        HAEB     109.471    1.50
+UDR         HAE         CAE        HAEA     109.424    1.50
+UDR         HAE         CAE        HAEB     109.424    1.50
+UDR        HAEA         CAE        HAEB     109.424    1.50
+UDR         NBJ         CAF         HAF     109.510    1.50
+UDR         NBJ         CAF        HAFA     109.510    1.50
+UDR         NBJ         CAF        HAFB     109.510    1.50
+UDR         HAF         CAF        HAFA     109.427    1.50
+UDR         HAF         CAF        HAFB     109.427    1.50
+UDR        HAFA         CAF        HAFB     109.427    1.50
+UDR         CAX         CAI         CAN     126.685    2.24
+UDR         CAX         CAI         HAI     117.152    2.22
+UDR         CAN         CAI         HAI     116.164    1.73
+UDR         CBB         CAJ         CAY     121.432    1.50
+UDR         CBB         CAJ         HAJ     119.775    1.50
+UDR         CAY         CAJ         HAJ     118.793    1.50
+UDR         CBA         CAK         CBC     120.776    1.50
+UDR         CBA         CAK         HAK     118.916    1.50
+UDR         CBC         CAK         HAK     120.308    1.50
+UDR         CBB         CAL         CBE     120.992    1.50
+UDR         CBB         CAL         HAL     119.504    1.50
+UDR         CBE         CAL         HAL     119.504    1.50
+UDR         CBH         CAM         CBC     118.474    1.50
+UDR         CBH         CAM         HAM     121.209    1.50
+UDR         CBC         CAM         HAM     120.318    1.50
+UDR         CAI         CAN         CAO     113.769    2.23
+UDR         CAI         CAN         HAN     108.797    1.50
+UDR         CAI         CAN        HANA     108.797    1.50
+UDR         CAO         CAN         HAN     108.844    1.50
+UDR         CAO         CAN        HANA     108.844    1.50
+UDR         HAN         CAN        HANA     107.922    1.50
+UDR         CAN         CAO         CAP     113.144    1.72
+UDR         CAN         CAO         HAO     108.915    1.50
+UDR         CAN         CAO        HAOA     108.915    1.50
+UDR         CAP         CAO         HAO     108.882    1.50
+UDR         CAP         CAO        HAOA     108.882    1.50
+UDR         HAO         CAO        HAOA     107.698    1.77
+UDR         CAO         CAP         CBD     110.747    2.16
+UDR         CAO         CAP         HAP     108.831    1.50
+UDR         CAO         CAP        HAPA     108.831    1.50
+UDR         CBD         CAP         HAP     107.910    1.50
+UDR         CBD         CAP        HAPA     107.910    1.50
+UDR         HAP         CAP        HAPA     107.697    2.10
+UDR         NAR         NAQ         CAZ     105.976    1.50
+UDR         NAQ         NAR         CBD     105.976    1.50
+UDR         CAA         OAS         CBF     114.087    1.50
+UDR         CBD         OAT         CAZ     106.695    1.75
+UDR         CBG         OAU         CBI     107.543    1.50
+UDR         CAB         SAV         CAW     120.000    3.00
+UDR         OAG         CAW         SAV     122.337    2.65
+UDR         OAG         CAW         CBE     122.208    1.50
+UDR         SAV         CAW         CBE     115.454    2.78
+UDR         CAI         CAX         CBC     121.717    2.10
+UDR         CAI         CAX         CBB     122.420    1.50
+UDR         CBC         CAX         CBB     115.867    1.99
+UDR         CAC         CAY         CAJ     120.749    1.50
+UDR         CAC         CAY         CBF     120.829    1.50
+UDR         CAJ         CAY         CBF     118.422    1.50
+UDR         CAD         CAZ         NAQ     130.302    1.50
+UDR         CAD         CAZ         OAT     119.022    1.50
+UDR         NAQ         CAZ         OAT     110.677    1.50
+UDR         CAE         CBA         CAK     122.673    1.50
+UDR         CAE         CBA         CBI     121.078    1.50
+UDR         CAK         CBA         CBI     116.249    1.50
+UDR         CAJ         CBB         CAL     119.476    1.50
+UDR         CAJ         CBB         CAX     120.262    1.50
+UDR         CAL         CBB         CAX     120.262    1.50
+UDR         CAK         CBC         CAM     120.521    1.50
+UDR         CAK         CBC         CAX     119.811    1.50
+UDR         CAM         CBC         CAX     119.669    1.50
+UDR         CAP         CBD         NAR     130.165    1.50
+UDR         CAP         CBD         OAT     119.159    1.50
+UDR         NAR         CBD         OAT     110.677    1.50
+UDR         CAL         CBE         CAW     120.052    2.71
+UDR         CAL         CBE         CBF     118.987    1.50
+UDR         CAW         CBE         CBF     120.961    1.72
+UDR         OAS         CBF         CAY     120.595    1.50
+UDR         OAS         CBF         CBE     118.713    2.15
+UDR         CAY         CBF         CBE     120.691    1.50
+UDR         OAH         CBG         OAU     122.296    1.50
+UDR         OAH         CBG         NBJ     129.568    1.50
+UDR         OAU         CBG         NBJ     108.136    1.50
+UDR         CAM         CBH         CBI     121.093    1.50
+UDR         CAM         CBH         NBJ     132.578    1.50
+UDR         CBI         CBH         NBJ     106.329    1.50
+UDR         OAU         CBI         CBA     128.107    1.50
+UDR         OAU         CBI         CBH     109.005    1.50
+UDR         CBA         CBI         CBH     122.888    1.50
+UDR         CAF         NBJ         CBG     126.012    1.50
+UDR         CAF         NBJ         CBH     124.999    1.65
+UDR         CBG         NBJ         CBH     108.988    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+UDR             sp3_sp3_2         HAA         CAA         OAS         CBF     -60.000    10.0     3
+UDR              const_22         CBC         CAK         CBA         CAE     180.000    10.0     2
+UDR              const_63         CBA         CAK         CBC         CAX     180.000    10.0     2
+UDR       const_sp2_sp2_6         CBE         CAL         CBB         CAX     180.000     5.0     2
+UDR              const_10         CBB         CAL         CBE         CAW     180.000    10.0     2
+UDR              const_38         CBH         CAM         CBC         CAX     180.000    10.0     2
+UDR              const_33         CBC         CAM         CBH         CBI       0.000    10.0     2
+UDR             sp3_sp3_9         CAI         CAN         CAO         CAP     180.000    10.0     3
+UDR            sp3_sp3_18         CAN         CAO         CAP         CBD     180.000    10.0     3
+UDR            sp2_sp3_32         NAR         CBD         CAP         CAO     -90.000    10.0     6
+UDR              const_41         CAZ         NAQ         NAR         CBD       0.000    10.0     2
+UDR              const_67         CAD         CAZ         NAQ         NAR     180.000    10.0     2
+UDR              const_43         CAP         CBD         NAR         NAQ     180.000    10.0     2
+UDR             sp2_sp2_5         CAY         CBF         OAS         CAA     180.000     5.0     2
+UDR              const_47         CAD         CAZ         OAT         CBD     180.000    10.0     2
+UDR              const_45         CAP         CBD         OAT         CAZ     180.000    10.0     2
+UDR             sp3_sp3_6         HAB         CAB         SAV         CAW     -60.000    10.0     3
+UDR              const_49         OAH         CBG         OAU         CBI     180.000    10.0     2
+UDR              const_69         CBA         CBI         OAU         CBG     180.000    10.0     2
+UDR             sp2_sp2_7         OAG         CAW         SAV         CAB     180.000     5.0     2
+UDR            sp2_sp2_11         OAG         CAW         CBE         CAL       0.000     5.0     2
+UDR            sp2_sp2_17         CAI         CAX         CBB         CAJ     180.000     5.0     2
+UDR            sp2_sp2_13         CAI         CAX         CBC         CAK     180.000     5.0     2
+UDR              const_20         CAC         CAY         CBF         OAS       0.000    10.0     2
+UDR              const_28         CAE         CBA         CBI         OAU       0.000    10.0     2
+UDR             sp2_sp3_1         CAJ         CAY         CAC         HAC     150.000    10.0     6
+UDR              const_16         CAW         CBE         CBF         OAS       0.000    10.0     2
+UDR              const_53         OAH         CBG         NBJ         CAF       0.000    10.0     2
+UDR              const_30         CAM         CBH         CBI         OAU     180.000    10.0     2
+UDR              const_57         CAM         CBH         NBJ         CAF       0.000    10.0     2
+UDR             sp2_sp3_7         NAQ         CAZ         CAD         HAD     150.000    10.0     6
+UDR            sp2_sp3_13         CAK         CBA         CAE         HAE     150.000    10.0     6
+UDR            sp2_sp3_19         CBG         NBJ         CAF         HAF     150.000    10.0     6
+UDR            sp2_sp3_26         CAX         CAI         CAN         CAO     120.000    10.0     6
+UDR             sp2_sp2_1         CAN         CAI         CAX         CBC     180.000     5.0     2
+UDR              const_59         CBB         CAJ         CAY         CAC     180.000    10.0     2
+UDR       const_sp2_sp2_2         CAY         CAJ         CBB         CAX     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+UDR    plan-1         CAE   0.020
+UDR    plan-1         CAF   0.020
+UDR    plan-1         CAK   0.020
+UDR    plan-1         CAM   0.020
+UDR    plan-1         CAX   0.020
+UDR    plan-1         CBA   0.020
+UDR    plan-1         CBC   0.020
+UDR    plan-1         CBG   0.020
+UDR    plan-1         CBH   0.020
+UDR    plan-1         CBI   0.020
+UDR    plan-1         HAK   0.020
+UDR    plan-1         HAM   0.020
+UDR    plan-1         NBJ   0.020
+UDR    plan-1         OAH   0.020
+UDR    plan-1         OAU   0.020
+UDR    plan-2         CAC   0.020
+UDR    plan-2         CAJ   0.020
+UDR    plan-2         CAL   0.020
+UDR    plan-2         CAW   0.020
+UDR    plan-2         CAX   0.020
+UDR    plan-2         CAY   0.020
+UDR    plan-2         CBB   0.020
+UDR    plan-2         CBE   0.020
+UDR    plan-2         CBF   0.020
+UDR    plan-2         HAJ   0.020
+UDR    plan-2         HAL   0.020
+UDR    plan-2         OAS   0.020
+UDR    plan-3         CAD   0.020
+UDR    plan-3         CAP   0.020
+UDR    plan-3         CAZ   0.020
+UDR    plan-3         CBD   0.020
+UDR    plan-3         NAQ   0.020
+UDR    plan-3         NAR   0.020
+UDR    plan-3         OAT   0.020
+UDR    plan-4         CAI   0.020
+UDR    plan-4         CAN   0.020
+UDR    plan-4         CAX   0.020
+UDR    plan-4         HAI   0.020
+UDR    plan-5         CAW   0.020
+UDR    plan-5         CBE   0.020
+UDR    plan-5         OAG   0.020
+UDR    plan-5         SAV   0.020
+UDR    plan-6         CAI   0.020
+UDR    plan-6         CAX   0.020
+UDR    plan-6         CBB   0.020
+UDR    plan-6         CBC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+UDR           SMILES              ACDLabs 11.02                                                                                                  O=C(SC)c1c(OC)c(cc(c1)C(\c3cc2c(OC(=O)N2C)c(c3)C)=C/CCCc4nnc(o4)C)C
+UDR SMILES_CANONICAL               CACTVS 3.352                                                                                                    COc1c(C)cc(cc1C(=O)SC)\C(=C/CCCc2oc(C)nn2)c3cc(C)c4OC(=O)N(C)c4c3
+UDR           SMILES               CACTVS 3.352                                                                                                      COc1c(C)cc(cc1C(=O)SC)C(=CCCCc2oc(C)nn2)c3cc(C)c4OC(=O)N(C)c4c3
+UDR SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                   Cc1cc(cc2c1OC(=O)N2C)/C(=C/CCCc3nnc(o3)C)/c4cc(c(c(c4)C(=O)SC)OC)C
+UDR           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                      Cc1cc(cc2c1OC(=O)N2C)C(=CCCCc3nnc(o3)C)c4cc(c(c(c4)C(=O)SC)OC)C
+UDR            InChI                InChI  1.03 InChI=1S/C27H29N3O5S/c1-15-11-18(13-21(24(15)33-5)26(31)36-6)20(9-7-8-10-23-29-28-17(3)34-23)19-12-16(2)25-22(14-19)30(4)27(32)35-25/h9,11-14H,7-8,10H2,1-6H3/b20-9+
+UDR         InChIKey                InChI  1.03                                                                                                                                          OIXOQSQILWVOGS-AWQFTUOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+UDR acedrg               243         "dictionary generator"                  
+UDR acedrg_database      11          "data source"                           
+UDR rdkit                2017.03.2   "Chemoinformatics tool"
+UDR refmac5              5.8.0238    "optimization tool"                     

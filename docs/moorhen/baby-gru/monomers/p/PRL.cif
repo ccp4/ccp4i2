@@ -1,0 +1,228 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PRL     PRL      PROFLAVIN     NON-POLYMER     27     16     .     
+#
+data_comp_PRL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PRL     C1      C       CR16    0       9.353       23.273      49.805      
+PRL     C2      C       CR16    0       9.938       23.715      48.653      
+PRL     C3      C       CR6     0       10.584      22.815      47.760      
+PRL     C4      C       CR16    0       10.619      21.468      48.064      
+PRL     C5      C       CR16    0       9.589       17.764      50.883      
+PRL     C6      C       CR6     0       9.027       17.218      52.021      
+PRL     C7      C       CR16    0       8.368       18.068      52.952      
+PRL     C8      C       CR16    0       8.280       19.415      52.742      
+PRL     C9      C       CR16    0       8.794       21.374      51.304      
+PRL     N10     N       NRD6    0       10.084      19.642      49.501      
+PRL     C11     C       CR66    0       10.020      20.967      49.255      
+PRL     C12     C       CR66    0       8.850       20.010      51.576      
+PRL     C13     C       CR66    0       9.372       21.888      50.147      
+PRL     C14     C       CR66    0       9.518       19.163      50.628      
+PRL     N15     N       NH2     0       11.164      23.293      46.609      
+PRL     N16     N       NH2     0       9.099       15.866      52.262      
+PRL     H1      H       H       0       8.933       23.889      50.378      
+PRL     H2      H       H       0       9.915       24.630      48.445      
+PRL     H4      H       H       0       11.045      20.868      47.477      
+PRL     H5      H       H       0       10.026      17.206      50.265      
+PRL     H7      H       H       0       7.988       17.696      53.724      
+PRL     H8      H       H       0       7.839       19.955      53.373      
+PRL     H9      H       H       0       8.363       21.952      51.907      
+PRL     HNF1    H       H       0       11.546      22.741      46.044      
+PRL     HNF2    H       H       0       11.154      24.152      46.433      
+PRL     HNG1    H       H       0       9.492       15.334      51.686      
+PRL     HNG2    H       H       0       8.751       15.529      52.994      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PRL          C1          C2      DOUBLE       y     1.362  0.0108     1.362  0.0108
+PRL          C1         C13      SINGLE       y     1.424  0.0100     1.424  0.0100
+PRL          C2          C3      SINGLE       y     1.417  0.0114     1.417  0.0114
+PRL          C3          C4      DOUBLE       y     1.376  0.0122     1.376  0.0122
+PRL          C3         N15      SINGLE       n     1.372  0.0200     1.372  0.0200
+PRL          C4         C11      SINGLE       y     1.421  0.0100     1.421  0.0100
+PRL          C5          C6      SINGLE       y     1.376  0.0122     1.376  0.0122
+PRL          C5         C14      DOUBLE       y     1.421  0.0100     1.421  0.0100
+PRL          C6          C7      DOUBLE       y     1.417  0.0114     1.417  0.0114
+PRL          C6         N16      SINGLE       n     1.372  0.0200     1.372  0.0200
+PRL          C7          C8      SINGLE       y     1.362  0.0108     1.362  0.0108
+PRL          C8         C12      DOUBLE       y     1.424  0.0100     1.424  0.0100
+PRL          C9         C12      SINGLE       y     1.388  0.0100     1.388  0.0100
+PRL          C9         C13      DOUBLE       y     1.388  0.0100     1.388  0.0100
+PRL         N10         C11      DOUBLE       y     1.345  0.0100     1.345  0.0100
+PRL         N10         C14      SINGLE       y     1.345  0.0100     1.345  0.0100
+PRL         C11         C13      SINGLE       y     1.431  0.0100     1.431  0.0100
+PRL         C12         C14      SINGLE       y     1.431  0.0100     1.431  0.0100
+PRL          C1          H1      SINGLE       n     1.082  0.0130     0.940  0.0117
+PRL          C2          H2      SINGLE       n     1.082  0.0130     0.938  0.0125
+PRL          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0128
+PRL          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0128
+PRL          C7          H7      SINGLE       n     1.082  0.0130     0.938  0.0125
+PRL          C8          H8      SINGLE       n     1.082  0.0130     0.940  0.0117
+PRL          C9          H9      SINGLE       n     1.082  0.0130     0.940  0.0181
+PRL         N15        HNF1      SINGLE       n     1.016  0.0100     0.877  0.0200
+PRL         N15        HNF2      SINGLE       n     1.016  0.0100     0.877  0.0200
+PRL         N16        HNG1      SINGLE       n     1.016  0.0100     0.877  0.0200
+PRL         N16        HNG2      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PRL          C2          C1         C13     120.701    1.50
+PRL          C2          C1          H1     119.521    1.50
+PRL         C13          C1          H1     119.778    1.50
+PRL          C1          C2          C3     121.034    1.50
+PRL          C1          C2          H2     119.588    1.50
+PRL          C3          C2          H2     119.378    1.50
+PRL          C2          C3          C4     119.257    2.03
+PRL          C2          C3         N15     119.891    1.50
+PRL          C4          C3         N15     120.852    1.50
+PRL          C3          C4         C11     121.050    1.50
+PRL          C3          C4          H4     119.693    1.50
+PRL         C11          C4          H4     119.258    1.50
+PRL          C6          C5         C14     121.050    1.50
+PRL          C6          C5          H5     119.693    1.50
+PRL         C14          C5          H5     119.258    1.50
+PRL          C5          C6          C7     119.257    2.03
+PRL          C5          C6         N16     120.852    1.50
+PRL          C7          C6         N16     119.891    1.50
+PRL          C6          C7          C8     121.034    1.50
+PRL          C6          C7          H7     119.378    1.50
+PRL          C8          C7          H7     119.588    1.50
+PRL          C7          C8         C12     120.701    1.50
+PRL          C7          C8          H8     119.521    1.50
+PRL         C12          C8          H8     119.778    1.50
+PRL         C12          C9         C13     120.662    1.50
+PRL         C12          C9          H9     119.669    1.50
+PRL         C13          C9          H9     119.669    1.50
+PRL         C11         N10         C14     118.398    1.50
+PRL          C4         C11         N10     118.328    1.50
+PRL          C4         C11         C13     119.174    1.50
+PRL         N10         C11         C13     122.499    1.50
+PRL          C8         C12          C9     123.244    1.50
+PRL          C8         C12         C14     118.785    1.50
+PRL          C9         C12         C14     117.971    1.50
+PRL          C1         C13          C9     123.244    1.50
+PRL          C1         C13         C11     118.785    1.50
+PRL          C9         C13         C11     117.971    1.50
+PRL          C5         C14         N10     118.328    1.50
+PRL          C5         C14         C12     119.174    1.50
+PRL         N10         C14         C12     122.499    1.50
+PRL          C3         N15        HNF1     120.146    2.42
+PRL          C3         N15        HNF2     120.146    2.42
+PRL        HNF1         N15        HNF2     119.708    3.00
+PRL          C6         N16        HNG1     120.146    2.42
+PRL          C6         N16        HNG2     120.146    2.42
+PRL        HNG1         N16        HNG2     119.708    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PRL              const_17         C13          C1          C2          C3       0.000    10.0     2
+PRL              const_50          C2          C1         C13          C9     180.000    10.0     2
+PRL              const_13          C4         C11         C13          C1       0.000    10.0     2
+PRL       const_sp2_sp2_5          C8         C12         C14          C5       0.000     5.0     2
+PRL              const_22          C1          C2          C3         N15     180.000    10.0     2
+PRL             sp2_sp2_1          C2          C3         N15        HNF1     180.000     5.0     2
+PRL              const_27         N15          C3          C4         C11     180.000    10.0     2
+PRL              const_31         N10         C11          C4          C3     180.000    10.0     2
+PRL              const_55         N10         C14          C5          C6     180.000    10.0     2
+PRL              const_34         C14          C5          C6         N16     180.000    10.0     2
+PRL             sp2_sp2_5          C5          C6         N16        HNG1     180.000     5.0     2
+PRL              const_39         N16          C6          C7          C8     180.000    10.0     2
+PRL              const_41          C6          C7          C8         C12       0.000    10.0     2
+PRL              const_47          C9         C12          C8          C7     180.000    10.0     2
+PRL       const_sp2_sp2_3          C8         C12          C9         C13     180.000     5.0     2
+PRL              const_59          C1         C13          C9         C12     180.000    10.0     2
+PRL              const_12          C4         C11         N10         C14     180.000    10.0     2
+PRL              const_10          C5         C14         N10         C11     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PRL    plan-1          C1   0.020
+PRL    plan-1         C11   0.020
+PRL    plan-1         C12   0.020
+PRL    plan-1         C13   0.020
+PRL    plan-1         C14   0.020
+PRL    plan-1          C2   0.020
+PRL    plan-1          C3   0.020
+PRL    plan-1          C4   0.020
+PRL    plan-1          C5   0.020
+PRL    plan-1          C6   0.020
+PRL    plan-1          C7   0.020
+PRL    plan-1          C8   0.020
+PRL    plan-1          C9   0.020
+PRL    plan-1          H1   0.020
+PRL    plan-1          H2   0.020
+PRL    plan-1          H4   0.020
+PRL    plan-1          H5   0.020
+PRL    plan-1          H7   0.020
+PRL    plan-1          H8   0.020
+PRL    plan-1          H9   0.020
+PRL    plan-1         N10   0.020
+PRL    plan-1         N15   0.020
+PRL    plan-1         N16   0.020
+PRL    plan-2          C3   0.020
+PRL    plan-2        HNF1   0.020
+PRL    plan-2        HNF2   0.020
+PRL    plan-2         N15   0.020
+PRL    plan-3          C6   0.020
+PRL    plan-3        HNG1   0.020
+PRL    plan-3        HNG2   0.020
+PRL    plan-3         N16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PRL           SMILES              ACDLabs 10.04                                                   n1c3c(cc2c1cc(N)cc2)ccc(c3)N
+PRL SMILES_CANONICAL               CACTVS 3.341                                                       Nc1ccc2cc3ccc(N)cc3nc2c1
+PRL           SMILES               CACTVS 3.341                                                       Nc1ccc2cc3ccc(N)cc3nc2c1
+PRL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                     c1cc(cc2c1cc3ccc(cc3n2)N)N
+PRL           SMILES "OpenEye OEToolkits" 1.5.0                                                     c1cc(cc2c1cc3ccc(cc3n2)N)N
+PRL            InChI                InChI  1.03 InChI=1S/C13H11N3/c14-10-3-1-8-5-9-2-4-11(15)7-13(9)16-12(8)6-10/h1-7H,14-15H2
+PRL         InChIKey                InChI  1.03                                                    WDVSHHCDHLJJJR-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PRL acedrg               243         "dictionary generator"                  
+PRL acedrg_database      11          "data source"                           
+PRL rdkit                2017.03.2   "Chemoinformatics tool"
+PRL refmac5              5.8.0238    "optimization tool"                     

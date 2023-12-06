@@ -1,0 +1,215 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JCL     JCL      "4-(6-CHLORO-2,4-DIOXO-1,2,3,4-TETRAHYDROPYRIMIDIN-5-YL) BUTYL PHOSPHATE"     NON-POLYMER     28     18     .     
+#
+data_comp_JCL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JCL     N3      N       NR6     0       -23.431     -2.927      4.696       
+JCL     N1      N       NR6     0       -21.149     -3.270      4.370       
+JCL     C6      C       CR6     0       -20.969     -1.990      3.921       
+JCL     CL      CL      CL      0       -19.384     -1.531      3.470       
+JCL     C5      C       CR6     0       -22.097     -1.113      3.850       
+JCL     C7      C       CH2     0       -21.985     0.318       3.368       
+JCL     C2      C       CR6     0       -22.362     -3.783      4.768       
+JCL     C4      C       CR6     0       -23.395     -1.612      4.263       
+JCL     O1      O       O       0       -22.480     -4.934      5.164       
+JCL     O2      O       O       0       -24.444     -0.959      4.253       
+JCL     C8      C       CH2     0       -21.596     1.305       4.455       
+JCL     C9      C       CH2     0       -21.516     2.738       3.961       
+JCL     C10     C       CH2     0       -20.294     3.017       3.124       
+JCL     O27     O       O2      0       -20.198     4.452       2.895       
+JCL     P       P       P       0       -19.024     5.005       1.936       
+JCL     O1P     O       OP      -1      -19.160     6.516       1.944       
+JCL     O2P     O       OP      -1      -17.724     4.527       2.556       
+JCL     O3P     O       O       0       -19.284     4.397       0.571       
+JCL     H3      H       H       0       -24.219     -3.255      4.952       
+JCL     H1      H       H       0       -20.473     -3.811      4.416       
+JCL     H7C1    H       H       0       -22.843     0.598       2.984       
+JCL     H7C2    H       H       0       -21.317     0.362       2.652       
+JCL     H8C1    H       H       0       -20.729     1.035       4.823       
+JCL     H8C2    H       H       0       -22.253     1.243       5.179       
+JCL     H9C1    H       H       0       -21.512     3.344       4.731       
+JCL     H9C2    H       H       0       -22.313     2.938       3.427       
+JCL     H101    H       H       0       -20.361     2.547       2.266       
+JCL     H102    H       H       0       -19.490     2.700       3.588       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JCL          N3          C2      SINGLE       y     1.370  0.0100     1.370  0.0100
+JCL          N3          C4      SINGLE       y     1.383  0.0100     1.383  0.0100
+JCL          N1          C6      SINGLE       y     1.363  0.0100     1.363  0.0100
+JCL          N1          C2      SINGLE       y     1.372  0.0100     1.372  0.0100
+JCL          C6          CL      SINGLE       n     1.711  0.0100     1.711  0.0100
+JCL          C6          C5      DOUBLE       y     1.408  0.0200     1.408  0.0200
+JCL          C5          C7      SINGLE       n     1.512  0.0100     1.512  0.0100
+JCL          C5          C4      SINGLE       y     1.446  0.0100     1.446  0.0100
+JCL          C7          C8      SINGLE       n     1.519  0.0200     1.519  0.0200
+JCL          C2          O1      DOUBLE       n     1.223  0.0100     1.223  0.0100
+JCL          C4          O2      DOUBLE       n     1.234  0.0141     1.234  0.0141
+JCL          C8          C9      SINGLE       n     1.517  0.0200     1.517  0.0200
+JCL          C9         C10      SINGLE       n     1.507  0.0151     1.507  0.0151
+JCL         C10         O27      SINGLE       n     1.456  0.0100     1.456  0.0100
+JCL         O27           P      SINGLE       n     1.614  0.0178     1.614  0.0178
+JCL           P         O1P      SINGLE       n     1.517  0.0192     1.517  0.0192
+JCL           P         O2P      SINGLE       n     1.517  0.0192     1.517  0.0192
+JCL           P         O3P      DOUBLE       n     1.517  0.0192     1.517  0.0192
+JCL          N3          H3      SINGLE       n     1.016  0.0100     0.889  0.0200
+JCL          N1          H1      SINGLE       n     1.016  0.0100     0.866  0.0200
+JCL          C7        H7C1      SINGLE       n     1.089  0.0100     0.981  0.0150
+JCL          C7        H7C2      SINGLE       n     1.089  0.0100     0.981  0.0150
+JCL          C8        H8C1      SINGLE       n     1.089  0.0100     0.980  0.0160
+JCL          C8        H8C2      SINGLE       n     1.089  0.0100     0.980  0.0160
+JCL          C9        H9C1      SINGLE       n     1.089  0.0100     0.980  0.0166
+JCL          C9        H9C2      SINGLE       n     1.089  0.0100     0.980  0.0166
+JCL         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0100
+JCL         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JCL          C2          N3          C4     126.769    1.50
+JCL          C2          N3          H3     116.001    2.30
+JCL          C4          N3          H3     117.230    1.81
+JCL          C6          N1          C2     122.879    2.07
+JCL          C6          N1          H1     120.907    2.63
+JCL          C2          N1          H1     116.214    1.94
+JCL          N1          C6          CL     118.173    1.50
+JCL          N1          C6          C5     118.184    2.33
+JCL          CL          C6          C5     123.643    1.50
+JCL          C6          C5          C7     122.540    1.50
+JCL          C6          C5          C4     119.192    1.74
+JCL          C7          C5          C4     118.268    1.50
+JCL          C5          C7          C8     114.108    2.12
+JCL          C5          C7        H7C1     108.906    1.50
+JCL          C5          C7        H7C2     108.906    1.50
+JCL          C8          C7        H7C1     108.665    1.50
+JCL          C8          C7        H7C2     108.665    1.50
+JCL        H7C1          C7        H7C2     107.745    1.50
+JCL          N3          C2          N1     116.396    1.50
+JCL          N3          C2          O1     121.783    1.50
+JCL          N1          C2          O1     121.821    1.50
+JCL          N3          C4          C5     116.580    1.50
+JCL          N3          C4          O2     118.896    1.50
+JCL          C5          C4          O2     124.524    1.50
+JCL          C7          C8          C9     113.764    1.91
+JCL          C7          C8        H8C1     108.763    1.50
+JCL          C7          C8        H8C2     108.763    1.50
+JCL          C9          C8        H8C1     110.031    1.50
+JCL          C9          C8        H8C2     110.031    1.50
+JCL        H8C1          C8        H8C2     107.749    1.50
+JCL          C8          C9         C10     113.691    3.00
+JCL          C8          C9        H9C1     109.204    1.50
+JCL          C8          C9        H9C2     109.204    1.50
+JCL         C10          C9        H9C1     108.650    1.50
+JCL         C10          C9        H9C2     108.650    1.50
+JCL        H9C1          C9        H9C2     107.788    1.50
+JCL          C9         C10         O27     108.936    1.50
+JCL          C9         C10        H101     110.079    1.50
+JCL          C9         C10        H102     110.079    1.50
+JCL         O27         C10        H101     109.902    1.50
+JCL         O27         C10        H102     109.902    1.50
+JCL        H101         C10        H102     108.388    1.50
+JCL         C10         O27           P     118.671    1.50
+JCL         O27           P         O1P     105.795    2.09
+JCL         O27           P         O2P     105.795    2.09
+JCL         O27           P         O3P     105.795    2.09
+JCL         O1P           P         O2P     112.864    1.69
+JCL         O1P           P         O3P     112.864    1.69
+JCL         O2P           P         O3P     112.864    1.69
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JCL       const_sp2_sp2_3          O1          C2          N3          C4     180.000     5.0     2
+JCL              const_23          O2          C4          N3          C2     180.000    10.0     2
+JCL            sp3_sp3_10          C7          C8          C9         C10     180.000    10.0     3
+JCL            sp3_sp3_19         O27         C10          C9          C8     180.000    10.0     3
+JCL            sp3_sp3_28          C9         C10         O27           P     180.000    10.0     3
+JCL            sp3_sp3_32         C10         O27           P         O1P     -60.000    10.0     3
+JCL              const_11          CL          C6          N1          C2     180.000    10.0     2
+JCL       const_sp2_sp2_7          O1          C2          N1          C6     180.000     5.0     2
+JCL              const_16          C7          C5          C6          CL       0.000    10.0     2
+JCL             sp2_sp3_2          C6          C5          C7          C8     -90.000    10.0     6
+JCL              const_20          O2          C4          C5          C7       0.000    10.0     2
+JCL             sp3_sp3_1          C5          C7          C8          C9     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JCL    chir_1    P    O27    O1P    O2P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JCL    plan-1          C2   0.020
+JCL    plan-1          C4   0.020
+JCL    plan-1          C5   0.020
+JCL    plan-1          C6   0.020
+JCL    plan-1          C7   0.020
+JCL    plan-1          CL   0.020
+JCL    plan-1          H1   0.020
+JCL    plan-1          H3   0.020
+JCL    plan-1          N1   0.020
+JCL    plan-1          N3   0.020
+JCL    plan-1          O1   0.020
+JCL    plan-1          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JCL           SMILES              ACDLabs 10.04                                                                        ClC1=C(C(=O)NC(=O)N1)CCCCOP(=O)(O)O
+JCL SMILES_CANONICAL               CACTVS 3.341                                                                        O[P](O)(=O)OCCCCC1=C(Cl)NC(=O)NC1=O
+JCL           SMILES               CACTVS 3.341                                                                        O[P](O)(=O)OCCCCC1=C(Cl)NC(=O)NC1=O
+JCL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                        C(CCOP(=O)(O)O)CC1=C(NC(=O)NC1=O)Cl
+JCL           SMILES "OpenEye OEToolkits" 1.5.0                                                                        C(CCOP(=O)(O)O)CC1=C(NC(=O)NC1=O)Cl
+JCL            InChI                InChI  1.03 InChI=1S/C8H12ClN2O6P/c9-6-5(7(12)11-8(13)10-6)3-1-2-4-17-18(14,15)16/h1-4H2,(H2,14,15,16)(H2,10,11,12,13)
+JCL         InChIKey                InChI  1.03                                                                                DAUATIBSDSXXHA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JCL acedrg               243         "dictionary generator"                  
+JCL acedrg_database      11          "data source"                           
+JCL rdkit                2017.03.2   "Chemoinformatics tool"
+JCL refmac5              5.8.0238    "optimization tool"                     

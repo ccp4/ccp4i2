@@ -1,0 +1,227 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZEA     ZEA      (2E)-2-methyl-4-(9H-purin-6-ylamino)but-2-en-1-ol     NON-POLYMER     29     16     .     
+#
+data_comp_ZEA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZEA     O16     O       OH1     0       67.971      33.663      18.995      
+ZEA     C14     C       CH2     0       67.869      33.423      20.383      
+ZEA     C13     C       C       0       68.950      34.167      21.152      
+ZEA     C15     C       CH3     0       68.548      35.335      21.992      
+ZEA     C12     C       C1      0       70.210      33.754      21.050      
+ZEA     C11     C       CH2     0       71.410      34.337      21.723      
+ZEA     N10     N       NH1     0       72.662      33.672      21.426      
+ZEA     C6      C       CR6     0       73.878      34.043      21.926      
+ZEA     C5      C       CR56    0       74.087      35.123      22.822      
+ZEA     N9      N       NRD5    0       73.232      36.047      23.414      
+ZEA     C4      C       CR56    0       75.393      35.360      23.232      
+ZEA     N7      N       NR5     0       75.336      36.432      24.076      
+ZEA     C8      C       CR15    0       74.028      36.794      24.143      
+ZEA     N3      N       NRD6    0       76.487      34.661      22.861      
+ZEA     C2      C       CR16    0       76.171      33.675      22.022      
+ZEA     N1      N       NRD6    0       74.967      33.328      21.542      
+ZEA     H16     H       H       0       67.703      34.449      18.824      
+ZEA     H141    H       H       0       67.952      32.453      20.552      
+ZEA     H142    H       H       0       66.976      33.704      20.697      
+ZEA     H151    H       H       0       67.603      35.522      21.871      
+ZEA     H152    H       H       0       69.065      36.114      21.731      
+ZEA     H153    H       H       0       68.719      35.135      22.927      
+ZEA     H12     H       H       0       70.361      33.016      20.494      
+ZEA     H111    H       H       0       71.263      34.311      22.699      
+ZEA     H112    H       H       0       71.486      35.285      21.459      
+ZEA     H10     H       H       0       72.638      32.986      20.890      
+ZEA     H7      H       H       0       76.022      36.813      24.496      
+ZEA     H8      H       H       0       73.721      37.518      24.668      
+ZEA     H2      H       H       0       76.896      33.147      21.723      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZEA         O16         C14      SINGLE       n     1.412  0.0134     1.412  0.0134
+ZEA         C14         C13      SINGLE       n     1.514  0.0200     1.514  0.0200
+ZEA         C13         C15      SINGLE       n     1.490  0.0139     1.490  0.0139
+ZEA         C13         C12      DOUBLE       n     1.329  0.0100     1.329  0.0100
+ZEA         C12         C11      SINGLE       n     1.489  0.0200     1.489  0.0200
+ZEA         C11         N10      SINGLE       n     1.446  0.0100     1.446  0.0100
+ZEA         N10          C6      SINGLE       n     1.348  0.0172     1.348  0.0172
+ZEA          C6          C5      DOUBLE       y     1.409  0.0100     1.409  0.0100
+ZEA          C6          N1      SINGLE       y     1.353  0.0100     1.353  0.0100
+ZEA          C5          N9      SINGLE       y     1.390  0.0100     1.390  0.0100
+ZEA          C5          C4      SINGLE       y     1.385  0.0100     1.385  0.0100
+ZEA          N9          C8      DOUBLE       y     1.313  0.0100     1.313  0.0100
+ZEA          C4          N7      SINGLE       y     1.365  0.0100     1.365  0.0100
+ZEA          C4          N3      DOUBLE       y     1.347  0.0100     1.347  0.0100
+ZEA          N7          C8      SINGLE       y     1.360  0.0100     1.360  0.0100
+ZEA          N3          C2      SINGLE       y     1.330  0.0100     1.330  0.0100
+ZEA          C2          N1      DOUBLE       y     1.339  0.0100     1.339  0.0100
+ZEA         O16         H16      SINGLE       n     0.970  0.0120     0.848  0.0200
+ZEA         C14        H141      SINGLE       n     1.089  0.0100     0.988  0.0200
+ZEA         C14        H142      SINGLE       n     1.089  0.0100     0.988  0.0200
+ZEA         C15        H151      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZEA         C15        H152      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZEA         C15        H153      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZEA         C12         H12      SINGLE       n     1.082  0.0130     0.937  0.0102
+ZEA         C11        H111      SINGLE       n     1.089  0.0100     0.987  0.0100
+ZEA         C11        H112      SINGLE       n     1.089  0.0100     0.987  0.0100
+ZEA         N10         H10      SINGLE       n     1.016  0.0100     0.870  0.0200
+ZEA          N7          H7      SINGLE       n     1.016  0.0100     0.890  0.0200
+ZEA          C8          H8      SINGLE       n     1.082  0.0130     0.946  0.0200
+ZEA          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZEA         C14         O16         H16     109.406    2.02
+ZEA         O16         C14         C13     111.541    2.26
+ZEA         O16         C14        H141     109.361    1.50
+ZEA         O16         C14        H142     109.361    1.50
+ZEA         C13         C14        H141     109.653    1.50
+ZEA         C13         C14        H142     109.653    1.50
+ZEA        H141         C14        H142     107.740    1.50
+ZEA         C14         C13         C15     116.706    3.00
+ZEA         C14         C13         C12     119.905    3.00
+ZEA         C15         C13         C12     123.388    1.73
+ZEA         C13         C15        H151     109.477    1.50
+ZEA         C13         C15        H152     109.477    1.50
+ZEA         C13         C15        H153     109.477    1.50
+ZEA        H151         C15        H152     109.342    1.50
+ZEA        H151         C15        H153     109.342    1.50
+ZEA        H152         C15        H153     109.342    1.50
+ZEA         C13         C12         C11     127.580    1.80
+ZEA         C13         C12         H12     116.135    1.50
+ZEA         C11         C12         H12     116.285    1.83
+ZEA         C12         C11         N10     114.045    1.87
+ZEA         C12         C11        H111     108.974    1.50
+ZEA         C12         C11        H112     108.974    1.50
+ZEA         N10         C11        H111     108.890    1.50
+ZEA         N10         C11        H112     108.890    1.50
+ZEA        H111         C11        H112     107.738    1.50
+ZEA         C11         N10          C6     122.995    1.50
+ZEA         C11         N10         H10     118.705    1.97
+ZEA          C6         N10         H10     118.300    1.50
+ZEA         N10          C6          C5     122.837    1.50
+ZEA         N10          C6          N1     119.277    1.50
+ZEA          C5          C6          N1     117.886    1.50
+ZEA          C6          C5          N9     132.287    1.50
+ZEA          C6          C5          C4     117.407    1.50
+ZEA          N9          C5          C4     110.305    1.50
+ZEA          C5          N9          C8     103.666    1.50
+ZEA          C5          C4          N7     105.803    1.50
+ZEA          C5          C4          N3     126.308    1.50
+ZEA          N7          C4          N3     127.889    1.50
+ZEA          C4          N7          C8     106.220    1.50
+ZEA          C4          N7          H7     126.597    1.50
+ZEA          C8          N7          H7     127.183    1.50
+ZEA          N9          C8          N7     114.007    1.50
+ZEA          N9          C8          H8     123.113    1.50
+ZEA          N7          C8          H8     122.880    1.50
+ZEA          C4          N3          C2     111.018    1.50
+ZEA          N3          C2          N1     129.133    1.50
+ZEA          N3          C2          H2     115.455    1.50
+ZEA          N1          C2          H2     115.412    1.50
+ZEA          C6          N1          C2     118.248    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZEA             sp3_sp3_1         C13         C14         O16         H16     180.000    10.0     3
+ZEA              const_23          C5          C4          N7          C8       0.000    10.0     2
+ZEA       const_sp2_sp2_9          C5          C4          N3          C2       0.000     5.0     2
+ZEA              const_19          N9          C8          N7          C4       0.000    10.0     2
+ZEA              const_11          N1          C2          N3          C4       0.000    10.0     2
+ZEA              const_13          N3          C2          N1          C6       0.000    10.0     2
+ZEA             sp2_sp3_2         C15         C13         C14         O16     120.000    10.0     6
+ZEA             sp2_sp3_7         C14         C13         C15        H151       0.000    10.0     6
+ZEA             sp2_sp2_1         C11         C12         C13         C14     180.000     5.0     2
+ZEA            sp2_sp3_14         C13         C12         C11         N10     120.000    10.0     6
+ZEA            sp2_sp3_20          C6         N10         C11         C12     120.000    10.0     6
+ZEA             sp2_sp2_5          C5          C6         N10         C11     180.000     5.0     2
+ZEA              const_28         N10          C6          N1          C2     180.000    10.0     2
+ZEA       const_sp2_sp2_4          N9          C5          C6         N10       0.000     5.0     2
+ZEA       const_sp2_sp2_6          N7          C4          C5          C6     180.000     5.0     2
+ZEA              const_16          C6          C5          N9          C8     180.000    10.0     2
+ZEA              const_17          N7          C8          N9          C5       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZEA    plan-1          C2   0.020
+ZEA    plan-1          C4   0.020
+ZEA    plan-1          C5   0.020
+ZEA    plan-1          C6   0.020
+ZEA    plan-1          C8   0.020
+ZEA    plan-1          H2   0.020
+ZEA    plan-1          H7   0.020
+ZEA    plan-1          H8   0.020
+ZEA    plan-1          N1   0.020
+ZEA    plan-1         N10   0.020
+ZEA    plan-1          N3   0.020
+ZEA    plan-1          N7   0.020
+ZEA    plan-1          N9   0.020
+ZEA    plan-2         C12   0.020
+ZEA    plan-2         C13   0.020
+ZEA    plan-2         C14   0.020
+ZEA    plan-2         C15   0.020
+ZEA    plan-3         C11   0.020
+ZEA    plan-3         C12   0.020
+ZEA    plan-3         C13   0.020
+ZEA    plan-3         H12   0.020
+ZEA    plan-4         C11   0.020
+ZEA    plan-4          C6   0.020
+ZEA    plan-4         H10   0.020
+ZEA    plan-4         N10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZEA           SMILES              ACDLabs 10.04                                                                                 n2c1c(ncn1)c(nc2)NC\C=C(/C)CO
+ZEA            InChI                InChI  1.03 InChI=1S/C10H13N5O/c1-7(4-16)2-3-11-9-8-10(13-5-12-8)15-6-14-9/h2,5-6,16H,3-4H2,1H3,(H2,11,12,13,14,15)/b7-2+
+ZEA         InChIKey                InChI  1.03                                                                                   UZKQTCBAMSWPJD-FARCUNLSSA-N
+ZEA SMILES_CANONICAL               CACTVS 3.385                                                                                  CC(/CO)=C\CNc1ncnc2[nH]cnc12
+ZEA           SMILES               CACTVS 3.385                                                                                    CC(CO)=CCNc1ncnc2[nH]cnc12
+ZEA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                               C/C(=C\CNc1c2c([nH]cn2)ncn1)/CO
+ZEA           SMILES "OpenEye OEToolkits" 1.7.5                                                                                  CC(=CCNc1c2c([nH]cn2)ncn1)CO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZEA acedrg               243         "dictionary generator"                  
+ZEA acedrg_database      11          "data source"                           
+ZEA rdkit                2017.03.2   "Chemoinformatics tool"
+ZEA refmac5              5.8.0238    "optimization tool"                     

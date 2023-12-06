@@ -1,0 +1,448 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EEG     EEG      N-{3-[4-(4-phenylthiophen-2-yl)phenyl]propanoyl}-L-alpha-glutamyl-L-alpha-glutamyl-amide     NON-POLYMER     69     40     .     
+#
+data_comp_EEG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EEG     O2      O       O       0       0.921       -0.692      2.085       
+EEG     S7      S       S2      0       5.431       6.500       -2.369      
+EEG     C11     C       C       0       0.162       0.176       1.660       
+EEG     C12     C       CH2     0       0.724       1.528       1.273       
+EEG     C13     C       CH2     0       1.054       1.690       -0.208      
+EEG     C14     C       CR16    0       3.243       2.885       -0.632      
+EEG     C15     C       CR16    0       1.954       5.307       -0.959      
+EEG     C16     C       CR6     0       3.343       5.260       -1.080      
+EEG     C17     C       CR16    0       3.980       4.028       -0.910      
+EEG     C18     C       CR5     0       4.087       6.489       -1.375      
+EEG     C19     C       CR15    0       3.808       7.800       -0.936      
+EEG     C20     C       CR5     0       4.744       8.750       -1.441      
+EEG     C21     C       CR6     0       4.689       10.193      -1.142      
+EEG     C22     C       CR16    0       3.466       10.867      -1.104      
+EEG     C23     C       CR16    0       3.412       12.225      -0.826      
+EEG     C24     C       CR16    0       4.571       12.933      -0.585      
+EEG     C25     C       CR16    0       5.790       12.284      -0.621      
+EEG     C26     C       CR16    0       5.853       10.926      -0.898      
+EEG     C27     C       CR6     0       1.858       2.933       -0.514      
+EEG     C28     C       CR16    0       1.228       4.160       -0.681      
+EEG     C29     C       CR15    0       5.705       8.140       -2.261      
+EEG     N2      N       NH1     0       -1.168      -0.011      1.700       
+EEG     C7      C       CH1     0       -2.128      0.686       0.844       
+EEG     C6      C       C       0       -3.526      0.776       1.481       
+EEG     O1      O       O       0       -3.939      1.891       1.793       
+EEG     C8      C       CH2     0       -2.172      0.121       -0.584      
+EEG     C9      C       CH2     0       -2.716      1.108       -1.603      
+EEG     C10     C       C       0       -2.759      0.581       -3.028      
+EEG     O4E     O       O       0       -3.867      0.270       -3.511      
+EEG     O4      O       OC      -1      -1.684      0.484       -3.652      
+EEG     N1      N       NH1     0       -4.337      -0.298      1.564       
+EEG     C2      C       CH1     0       -3.929      -1.697      1.628       
+EEG     C1      C       C       0       -4.824      -2.546      0.716       
+EEG     O9      O       O       0       -6.048      -2.450      0.794       
+EEG     C3      C       CH2     0       -4.004      -2.207      3.071       
+EEG     C4      C       CH2     0       -3.286      -3.528      3.291       
+EEG     C5      C       C       0       -3.216      -3.966      4.744       
+EEG     O8E     O       O       0       -2.098      -4.007      5.297       
+EEG     O8      O       OC      -1      -4.281      -4.265      5.320       
+EEG     N9      N       NH2     0       -4.210      -3.365      -0.129      
+EEG     H12     H       H       0       1.540       1.664       1.779       
+EEG     H12A    H       H       0       0.100       2.219       1.535       
+EEG     H13     H       H       0       0.217       1.721       -0.717      
+EEG     H13A    H       H       0       1.559       0.903       -0.506      
+EEG     H14     H       H       0       3.689       2.062       -0.521      
+EEG     H15     H       H       0       1.504       6.126       -1.070      
+EEG     H17     H       H       0       4.916       3.969       -0.984      
+EEG     H19     H       H       0       3.093       8.035       -0.372      
+EEG     H22     H       H       0       2.668       10.393      -1.267      
+EEG     H23     H       H       0       2.578       12.665      -0.802      
+EEG     H24     H       H       0       4.532       13.857      -0.396      
+EEG     H25     H       H       0       6.584       12.765      -0.456      
+EEG     H26     H       H       0       6.689       10.492      -0.920      
+EEG     H28     H       H       0       0.289       4.213       -0.604      
+EEG     H29     H       H       0       6.425       8.549       -2.710      
+EEG     HN2     H       H       0       -1.473      -0.556      2.306       
+EEG     H7      H       H       0       -1.821      1.617       0.759       
+EEG     H8      H       H       0       -2.727      -0.680      -0.602      
+EEG     H8A     H       H       0       -1.266      -0.139      -0.850      
+EEG     H9      H       H       0       -2.163      1.917       -1.589      
+EEG     H9A     H       H       0       -3.626      1.368       -1.343      
+EEG     HN1     H       H       0       -5.196      -0.130      1.583       
+EEG     H2      H       H       0       -3.006      -1.788      1.322       
+EEG     H3      H       H       0       -4.946      -2.313      3.321       
+EEG     H3A     H       H       0       -3.612      -1.532      3.664       
+EEG     H4      H       H       0       -2.372      -3.455      2.942       
+EEG     H4A     H       H       0       -3.743      -4.230      2.780       
+EEG     HN9     H       H       0       -4.696      -3.865      -0.673      
+EEG     HN9A    H       H       0       -3.329      -3.426      -0.159      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EEG          C2          C1      SINGLE       n     1.531  0.0100     1.531  0.0100
+EEG          C1          N9      SINGLE       n     1.325  0.0100     1.325  0.0100
+EEG          C1          O9      DOUBLE       n     1.230  0.0100     1.230  0.0100
+EEG          N1          C2      SINGLE       n     1.453  0.0100     1.453  0.0100
+EEG          C6          N1      SINGLE       n     1.337  0.0100     1.337  0.0100
+EEG          C6          O1      DOUBLE       n     1.229  0.0102     1.229  0.0102
+EEG          C2          C3      SINGLE       n     1.531  0.0110     1.531  0.0110
+EEG          N2          C7      SINGLE       n     1.453  0.0100     1.453  0.0100
+EEG         C11          N2      SINGLE       n     1.334  0.0100     1.334  0.0100
+EEG          O2         C11      DOUBLE       n     1.229  0.0102     1.229  0.0102
+EEG          C3          C4      SINGLE       n     1.518  0.0153     1.518  0.0153
+EEG          C4          C5      SINGLE       n     1.519  0.0109     1.519  0.0109
+EEG         C10          O4      SINGLE       n     1.247  0.0187     1.247  0.0187
+EEG          C5          O8      SINGLE       n     1.247  0.0187     1.247  0.0187
+EEG          C5         O8E      DOUBLE       n     1.247  0.0187     1.247  0.0187
+EEG          C7          C6      SINGLE       n     1.530  0.0100     1.530  0.0100
+EEG          C7          C8      SINGLE       n     1.531  0.0110     1.531  0.0110
+EEG          S7         C18      SINGLE       y     1.695  0.0200     1.695  0.0200
+EEG          S7         C29      SINGLE       y     1.695  0.0200     1.695  0.0200
+EEG          C8          C9      SINGLE       n     1.518  0.0153     1.518  0.0153
+EEG          C9         C10      SINGLE       n     1.519  0.0109     1.519  0.0109
+EEG         C10         O4E      DOUBLE       n     1.247  0.0187     1.247  0.0187
+EEG         C11         C12      SINGLE       n     1.508  0.0116     1.508  0.0116
+EEG         C12         C13      SINGLE       n     1.524  0.0200     1.524  0.0200
+EEG         C13         C27      SINGLE       n     1.510  0.0100     1.510  0.0100
+EEG         C14         C17      DOUBLE       y     1.383  0.0100     1.383  0.0100
+EEG         C14         C27      SINGLE       y     1.385  0.0110     1.385  0.0110
+EEG         C15         C16      DOUBLE       y     1.392  0.0100     1.392  0.0100
+EEG         C15         C28      SINGLE       y     1.383  0.0100     1.383  0.0100
+EEG         C16         C17      SINGLE       y     1.392  0.0100     1.392  0.0100
+EEG         C16         C18      SINGLE       n     1.464  0.0100     1.464  0.0100
+EEG         C18         C19      DOUBLE       y     1.392  0.0200     1.392  0.0200
+EEG         C19         C20      SINGLE       y     1.386  0.0200     1.386  0.0200
+EEG         C20         C21      SINGLE       n     1.473  0.0100     1.473  0.0100
+EEG         C20         C29      DOUBLE       y     1.389  0.0200     1.389  0.0200
+EEG         C21         C22      DOUBLE       y     1.393  0.0100     1.393  0.0100
+EEG         C21         C26      SINGLE       y     1.393  0.0100     1.393  0.0100
+EEG         C22         C23      SINGLE       y     1.384  0.0100     1.384  0.0100
+EEG         C23         C24      DOUBLE       y     1.376  0.0114     1.376  0.0114
+EEG         C24         C25      SINGLE       y     1.376  0.0124     1.376  0.0124
+EEG         C25         C26      DOUBLE       y     1.384  0.0100     1.384  0.0100
+EEG         C27         C28      DOUBLE       y     1.385  0.0110     1.385  0.0110
+EEG         C12         H12      SINGLE       n     1.089  0.0100     0.970  0.0190
+EEG         C12        H12A      SINGLE       n     1.089  0.0100     0.970  0.0190
+EEG         C13         H13      SINGLE       n     1.089  0.0100     0.981  0.0169
+EEG         C13        H13A      SINGLE       n     1.089  0.0100     0.981  0.0169
+EEG         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0173
+EEG         C15         H15      SINGLE       n     1.082  0.0130     0.941  0.0147
+EEG         C17         H17      SINGLE       n     1.082  0.0130     0.941  0.0147
+EEG         C19         H19      SINGLE       n     1.082  0.0130     0.941  0.0169
+EEG         C22         H22      SINGLE       n     1.082  0.0130     0.942  0.0125
+EEG         C23         H23      SINGLE       n     1.082  0.0130     0.943  0.0180
+EEG         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0161
+EEG         C25         H25      SINGLE       n     1.082  0.0130     0.943  0.0180
+EEG         C26         H26      SINGLE       n     1.082  0.0130     0.942  0.0125
+EEG         C28         H28      SINGLE       n     1.082  0.0130     0.943  0.0173
+EEG         C29         H29      SINGLE       n     1.082  0.0130     0.942  0.0200
+EEG          N2         HN2      SINGLE       n     1.016  0.0100     0.873  0.0200
+EEG          C7          H7      SINGLE       n     1.089  0.0100     0.991  0.0200
+EEG          C8          H8      SINGLE       n     1.089  0.0100     0.980  0.0178
+EEG          C8         H8A      SINGLE       n     1.089  0.0100     0.980  0.0178
+EEG          C9          H9      SINGLE       n     1.089  0.0100     0.981  0.0185
+EEG          C9         H9A      SINGLE       n     1.089  0.0100     0.981  0.0185
+EEG          N1         HN1      SINGLE       n     1.016  0.0100     0.873  0.0200
+EEG          C2          H2      SINGLE       n     1.089  0.0100     0.991  0.0200
+EEG          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0178
+EEG          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0178
+EEG          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0185
+EEG          C4         H4A      SINGLE       n     1.089  0.0100     0.981  0.0185
+EEG          N9         HN9      SINGLE       n     1.016  0.0100     0.884  0.0200
+EEG          N9        HN9A      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EEG         C18          S7         C29     108.409    3.00
+EEG          N2         C11          O2     122.114    1.50
+EEG          N2         C11         C12     116.391    1.50
+EEG          O2         C11         C12     121.496    1.50
+EEG         C11         C12         C13     112.429    2.96
+EEG         C11         C12         H12     108.712    1.50
+EEG         C11         C12        H12A     108.712    1.50
+EEG         C13         C12         H12     108.976    1.50
+EEG         C13         C12        H12A     108.976    1.50
+EEG         H12         C12        H12A     108.535    1.50
+EEG         C12         C13         C27     113.835    1.79
+EEG         C12         C13         H13     108.600    1.50
+EEG         C12         C13        H13A     108.600    1.50
+EEG         C27         C13         H13     108.803    1.50
+EEG         C27         C13        H13A     108.803    1.50
+EEG         H13         C13        H13A     107.745    1.50
+EEG         C17         C14         C27     120.900    1.50
+EEG         C17         C14         H14     119.533    1.50
+EEG         C27         C14         H14     119.567    1.50
+EEG         C16         C15         C28     120.625    1.50
+EEG         C16         C15         H15     119.637    1.50
+EEG         C28         C15         H15     119.738    1.50
+EEG         C15         C16         C17     118.970    1.50
+EEG         C15         C16         C18     120.515    1.61
+EEG         C17         C16         C18     120.515    1.61
+EEG         C14         C17         C16     120.625    1.50
+EEG         C14         C17         H17     119.738    1.50
+EEG         C16         C17         H17     119.637    1.50
+EEG          S7         C18         C16     120.538    3.00
+EEG          S7         C18         C19     108.409    3.00
+EEG         C16         C18         C19     131.053    2.36
+EEG         C18         C19         C20     107.877    1.50
+EEG         C18         C19         H19     126.863    1.50
+EEG         C20         C19         H19     125.260    1.50
+EEG         C19         C20         C21     125.340    1.62
+EEG         C19         C20         C29     106.897    1.50
+EEG         C21         C20         C29     127.763    2.56
+EEG         C20         C21         C22     120.900    1.50
+EEG         C20         C21         C26     120.900    1.50
+EEG         C22         C21         C26     118.199    1.50
+EEG         C21         C22         C23     120.682    1.50
+EEG         C21         C22         H22     119.564    1.50
+EEG         C23         C22         H22     119.764    1.50
+EEG         C22         C23         C24     120.287    1.50
+EEG         C22         C23         H23     119.756    1.50
+EEG         C24         C23         H23     119.957    1.50
+EEG         C23         C24         C25     119.842    1.50
+EEG         C23         C24         H24     120.079    1.50
+EEG         C25         C24         H24     120.079    1.50
+EEG         C24         C25         C26     120.287    1.50
+EEG         C24         C25         H25     119.957    1.50
+EEG         C26         C25         H25     119.756    1.50
+EEG         C21         C26         C25     120.682    1.50
+EEG         C21         C26         H26     119.564    1.50
+EEG         C25         C26         H26     119.764    1.50
+EEG         C13         C27         C14     121.010    1.50
+EEG         C13         C27         C28     121.010    1.50
+EEG         C14         C27         C28     117.980    1.50
+EEG         C15         C28         C27     120.900    1.50
+EEG         C15         C28         H28     119.533    1.50
+EEG         C27         C28         H28     119.567    1.50
+EEG          S7         C29         C20     108.409    3.00
+EEG          S7         C29         H29     122.600    3.00
+EEG         C20         C29         H29     128.991    3.00
+EEG          C7          N2         C11     120.808    1.50
+EEG          C7          N2         HN2     120.076    1.64
+EEG         C11          N2         HN2     119.115    1.50
+EEG          N2          C7          C6     111.371    2.04
+EEG          N2          C7          C8     111.528    2.08
+EEG          N2          C7          H7     107.954    1.50
+EEG          C6          C7          C8     111.390    2.17
+EEG          C6          C7          H7     107.852    1.50
+EEG          C8          C7          H7     108.242    1.50
+EEG          N1          C6          O1     123.016    1.50
+EEG          N1          C6          C7     116.639    1.50
+EEG          O1          C6          C7     120.345    1.50
+EEG          C7          C8          C9     113.079    1.50
+EEG          C7          C8          H8     108.827    1.50
+EEG          C7          C8         H8A     108.827    1.50
+EEG          C9          C8          H8     108.890    1.50
+EEG          C9          C8         H8A     108.890    1.50
+EEG          H8          C8         H8A     107.844    1.50
+EEG          C8          C9         C10     114.629    2.24
+EEG          C8          C9          H9     108.906    1.50
+EEG          C8          C9         H9A     108.906    1.50
+EEG         C10          C9          H9     108.404    1.50
+EEG         C10          C9         H9A     108.404    1.50
+EEG          H9          C9         H9A     107.521    1.50
+EEG          O4         C10          C9     118.214    1.64
+EEG          O4         C10         O4E     123.571    1.50
+EEG          C9         C10         O4E     118.214    1.64
+EEG          C2          N1          C6     121.028    1.58
+EEG          C2          N1         HN1     119.803    1.64
+EEG          C6          N1         HN1     119.169    1.83
+EEG          C1          C2          N1     111.106    2.53
+EEG          C1          C2          C3     110.281    1.60
+EEG          C1          C2          H2     108.061    1.50
+EEG          N1          C2          C3     111.528    2.08
+EEG          N1          C2          H2     107.954    1.50
+EEG          C3          C2          H2     108.242    1.50
+EEG          C2          C1          N9     115.746    1.60
+EEG          C2          C1          O9     120.522    1.50
+EEG          N9          C1          O9     123.732    1.50
+EEG          C2          C3          C4     113.079    1.50
+EEG          C2          C3          H3     108.827    1.50
+EEG          C2          C3         H3A     108.827    1.50
+EEG          C4          C3          H3     108.890    1.50
+EEG          C4          C3         H3A     108.890    1.50
+EEG          H3          C3         H3A     107.844    1.50
+EEG          C3          C4          C5     114.629    2.24
+EEG          C3          C4          H4     108.906    1.50
+EEG          C3          C4         H4A     108.906    1.50
+EEG          C5          C4          H4     108.404    1.50
+EEG          C5          C4         H4A     108.404    1.50
+EEG          H4          C4         H4A     107.521    1.50
+EEG          C4          C5          O8     118.214    1.64
+EEG          C4          C5         O8E     118.214    1.64
+EEG          O8          C5         O8E     123.571    1.50
+EEG          C1          N9         HN9     120.017    3.00
+EEG          C1          N9        HN9A     120.017    3.00
+EEG         HN9          N9        HN9A     119.966    2.38
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EEG              const_28         C18         C19         C20         C21     180.000    10.0     2
+EEG            sp2_sp2_17         C19         C20         C21         C22     180.000     5.0     2
+EEG              const_31         C19         C20         C29          S7       0.000    10.0     2
+EEG              const_37         C20         C21         C22         C23     180.000    10.0     2
+EEG              const_63         C20         C21         C26         C25     180.000    10.0     2
+EEG              const_39         C21         C22         C23         C24       0.000    10.0     2
+EEG              const_43         C22         C23         C24         C25       0.000    10.0     2
+EEG              const_47         C23         C24         C25         C26       0.000    10.0     2
+EEG              const_51         C24         C25         C26         C21       0.000    10.0     2
+EEG              const_19         C13         C27         C28         C15     180.000    10.0     2
+EEG              const_55         C20         C29          S7         C18       0.000    10.0     2
+EEG              const_22         C16         C18          S7         C29     180.000    10.0     2
+EEG            sp2_sp3_13         C11          N2          C7          C6       0.000    10.0     6
+EEG            sp2_sp3_25          N1          C6          C7          N2       0.000    10.0     6
+EEG            sp3_sp3_19          N2          C7          C8          C9     180.000    10.0     3
+EEG             sp2_sp2_7          O1          C6          N1          C2       0.000     5.0     2
+EEG            sp3_sp3_28          C7          C8          C9         C10     180.000    10.0     3
+EEG            sp2_sp3_32          O4         C10          C9          C8     120.000    10.0     6
+EEG            sp2_sp2_11          O2         C11          N2          C7       0.000     5.0     2
+EEG            sp2_sp3_38          N2         C11         C12         C13     120.000    10.0     6
+EEG             sp2_sp3_7          C6          N1          C2          C1       0.000    10.0     6
+EEG             sp2_sp3_1          N9          C1          C2          N1       0.000    10.0     6
+EEG             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+EEG             sp2_sp2_1          C2          C1          N9         HN9     180.000     5.0     2
+EEG            sp3_sp3_10          C2          C3          C4          C5     180.000    10.0     3
+EEG            sp2_sp3_20          O8          C5          C4          C3     120.000    10.0     6
+EEG            sp3_sp3_37         C11         C12         C13         C27     180.000    10.0     3
+EEG            sp2_sp3_44         C14         C27         C13         C12     -90.000    10.0     6
+EEG              const_58         C17         C14         C27         C13     180.000    10.0     2
+EEG       const_sp2_sp2_1         C27         C14         C17         C16       0.000     5.0     2
+EEG              const_13         C16         C15         C28         C27       0.000    10.0     2
+EEG       const_sp2_sp2_9         C28         C15         C16         C17       0.000     5.0     2
+EEG       const_sp2_sp2_5         C15         C16         C17         C14       0.000     5.0     2
+EEG            sp2_sp2_14         C15         C16         C18          S7       0.000     5.0     2
+EEG              const_23          S7         C18         C19         C20       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EEG    chir_1    C7    N2    C6    C8    positive
+EEG    chir_2    C2    N1    C1    C3    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EEG    plan-1         C16   0.020
+EEG    plan-1         C18   0.020
+EEG    plan-1         C19   0.020
+EEG    plan-1         C20   0.020
+EEG    plan-1         C21   0.020
+EEG    plan-1         C29   0.020
+EEG    plan-1         H19   0.020
+EEG    plan-1         H29   0.020
+EEG    plan-1          S7   0.020
+EEG    plan-2         C20   0.020
+EEG    plan-2         C21   0.020
+EEG    plan-2         C22   0.020
+EEG    plan-2         C23   0.020
+EEG    plan-2         C24   0.020
+EEG    plan-2         C25   0.020
+EEG    plan-2         C26   0.020
+EEG    plan-2         H22   0.020
+EEG    plan-2         H23   0.020
+EEG    plan-2         H24   0.020
+EEG    plan-2         H25   0.020
+EEG    plan-2         H26   0.020
+EEG    plan-3         C13   0.020
+EEG    plan-3         C14   0.020
+EEG    plan-3         C15   0.020
+EEG    plan-3         C16   0.020
+EEG    plan-3         C17   0.020
+EEG    plan-3         C18   0.020
+EEG    plan-3         C27   0.020
+EEG    plan-3         C28   0.020
+EEG    plan-3         H14   0.020
+EEG    plan-3         H15   0.020
+EEG    plan-3         H17   0.020
+EEG    plan-3         H28   0.020
+EEG    plan-4         C11   0.020
+EEG    plan-4         C12   0.020
+EEG    plan-4          N2   0.020
+EEG    plan-4          O2   0.020
+EEG    plan-5         C11   0.020
+EEG    plan-5          C7   0.020
+EEG    plan-5         HN2   0.020
+EEG    plan-5          N2   0.020
+EEG    plan-6          C6   0.020
+EEG    plan-6          C7   0.020
+EEG    plan-6          N1   0.020
+EEG    plan-6          O1   0.020
+EEG    plan-7         C10   0.020
+EEG    plan-7          C9   0.020
+EEG    plan-7          O4   0.020
+EEG    plan-7         O4E   0.020
+EEG    plan-8          C2   0.020
+EEG    plan-8          C6   0.020
+EEG    plan-8         HN1   0.020
+EEG    plan-8          N1   0.020
+EEG    plan-9          C1   0.020
+EEG    plan-9          C2   0.020
+EEG    plan-9          N9   0.020
+EEG    plan-9          O9   0.020
+EEG   plan-10          C4   0.020
+EEG   plan-10          C5   0.020
+EEG   plan-10          O8   0.020
+EEG   plan-10         O8E   0.020
+EEG   plan-11          C1   0.020
+EEG   plan-11         HN9   0.020
+EEG   plan-11        HN9A   0.020
+EEG   plan-11          N9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EEG           SMILES              ACDLabs 12.01                                                                                                                                                                        O=C(O)CCC(C(=O)N)NC(=O)C(NC(=O)CCc3ccc(c2scc(c1ccccc1)c2)cc3)CCC(=O)O
+EEG SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                NC(=O)[C@H](CCC(O)=O)NC(=O)[C@H](CCC(O)=O)NC(=O)CCc1ccc(cc1)c2scc(c2)c3ccccc3
+EEG           SMILES               CACTVS 3.370                                                                                                                                                                  NC(=O)[CH](CCC(O)=O)NC(=O)[CH](CCC(O)=O)NC(=O)CCc1ccc(cc1)c2scc(c2)c3ccccc3
+EEG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                            c1ccc(cc1)c2cc(sc2)c3ccc(cc3)CCC(=O)N[C@@H](CCC(=O)O)C(=O)N[C@@H](CCC(=O)O)C(=O)N
+EEG           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                      c1ccc(cc1)c2cc(sc2)c3ccc(cc3)CCC(=O)NC(CCC(=O)O)C(=O)NC(CCC(=O)O)C(=O)N
+EEG            InChI                InChI  1.03 InChI=1S/C29H31N3O7S/c30-28(38)22(11-14-26(34)35)32-29(39)23(12-15-27(36)37)31-25(33)13-8-18-6-9-20(10-7-18)24-16-21(17-40-24)19-4-2-1-3-5-19/h1-7,9-10,16-17,22-23H,8,11-15H2,(H2,30,38)(H,31,33)(H,32,39)(H,34,35)(H,36,37)/t22-,23-/m0/s1
+EEG         InChIKey                InChI  1.03                                                                                                                                                                                                                  MMIHYNVQXYWTFM-GOTSBHOMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EEG acedrg               243         "dictionary generator"                  
+EEG acedrg_database      11          "data source"                           
+EEG rdkit                2017.03.2   "Chemoinformatics tool"
+EEG refmac5              5.8.0238    "optimization tool"                     

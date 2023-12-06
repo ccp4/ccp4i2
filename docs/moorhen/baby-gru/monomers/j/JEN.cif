@@ -1,0 +1,289 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JEN     JEN      3-METHOXY-6-[4-(3-METHYLPHENYL)-1-PIPERAZINYL]PYRIDAZINE     NON-POLYMER     41     21     .     
+#
+data_comp_JEN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JEN     C1      C       CH3     0       36.128      8.044       126.707     
+JEN     O2      O       O2      0       36.482      7.818       125.332     
+JEN     C3      C       CR6     0       37.308      6.797       125.031     
+JEN     N4      N       NRD6    0       37.186      5.624       125.658     
+JEN     N5      N       NRD6    0       38.020      4.582       125.347     
+JEN     C6      C       CR6     0       38.963      4.734       124.404     
+JEN     C7      C       CR16    0       39.109      5.969       123.714     
+JEN     C8      C       CR16    0       38.268      7.003       124.035     
+JEN     N9      N       NR6     0       39.768      3.657       124.132     
+JEN     C10     C       CH2     0       40.546      2.955       125.154     
+JEN     C11     C       CH2     0       40.367      1.455       125.053     
+JEN     N12     N       NR6     0       40.689      1.002       123.695     
+JEN     C13     C       CH2     0       39.834      1.650       122.694     
+JEN     C14     C       CH2     0       39.979      3.157       122.773     
+JEN     C15     C       CR6     0       41.702      0.099       123.390     
+JEN     C16     C       CR16    0       42.990      0.258       123.930     
+JEN     C17     C       CR6     0       44.011      -0.649      123.621     
+JEN     C18     C       CR16    0       43.727      -1.704      122.766     
+JEN     C19     C       CR16    0       42.464      -1.871      122.223     
+JEN     C20     C       CR16    0       41.449      -0.982      122.526     
+JEN     C21     C       CH3     0       45.385      -0.470      124.212     
+JEN     H11     H       H       0       36.920      7.971       127.266     
+JEN     H12     H       H       0       35.473      7.382       126.984     
+JEN     H13     H       H       0       35.748      8.933       126.799     
+JEN     H7      H       H       0       39.768      6.083       123.047     
+JEN     H8      H       H       0       38.342      7.835       123.594     
+JEN     H101    H       H       0       41.495      3.175       125.043     
+JEN     H102    H       H       0       40.269      3.255       126.046     
+JEN     H111    H       H       0       39.439      1.222       125.264     
+JEN     H112    H       H       0       40.950      1.009       125.703     
+JEN     H131    H       H       0       38.899      1.404       122.854     
+JEN     H132    H       H       0       40.081      1.347       121.796     
+JEN     H141    H       H       0       40.878      3.412       122.474     
+JEN     H142    H       H       0       39.329      3.574       122.167     
+JEN     H16     H       H       0       43.164      0.977       124.507     
+JEN     H18     H       H       0       44.410      -2.320      122.552     
+JEN     H19     H       H       0       42.293      -2.596      121.645     
+JEN     H20     H       H       0       40.595      -1.096      122.156     
+JEN     H211    H       H       0       45.715      0.419       124.003     
+JEN     H212    H       H       0       45.991      -1.132      123.841     
+JEN     H213    H       H       0       45.341      -0.578      125.176     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JEN          C1          O2      SINGLE       n     1.435  0.0110     1.435  0.0110
+JEN          O2          C3      SINGLE       n     1.344  0.0100     1.344  0.0100
+JEN          C3          N4      DOUBLE       y     1.326  0.0129     1.326  0.0129
+JEN          C3          C8      SINGLE       y     1.392  0.0133     1.392  0.0133
+JEN          N4          N5      SINGLE       y     1.349  0.0200     1.349  0.0200
+JEN          N5          C6      DOUBLE       y     1.339  0.0100     1.339  0.0100
+JEN          C6          C7      SINGLE       y     1.419  0.0100     1.419  0.0100
+JEN          C6          N9      SINGLE       n     1.364  0.0160     1.364  0.0160
+JEN          C7          C8      DOUBLE       y     1.366  0.0139     1.366  0.0139
+JEN          N9         C10      SINGLE       n     1.458  0.0100     1.458  0.0100
+JEN          N9         C14      SINGLE       n     1.458  0.0100     1.458  0.0100
+JEN         C10         C11      SINGLE       n     1.512  0.0100     1.512  0.0100
+JEN         C11         N12      SINGLE       n     1.466  0.0100     1.466  0.0100
+JEN         N12         C13      SINGLE       n     1.466  0.0100     1.466  0.0100
+JEN         N12         C15      SINGLE       n     1.379  0.0200     1.379  0.0200
+JEN         C13         C14      SINGLE       n     1.514  0.0100     1.514  0.0100
+JEN         C15         C16      DOUBLE       y     1.401  0.0100     1.401  0.0100
+JEN         C15         C20      SINGLE       y     1.404  0.0100     1.404  0.0100
+JEN         C16         C17      SINGLE       y     1.396  0.0100     1.396  0.0100
+JEN         C17         C18      DOUBLE       y     1.382  0.0114     1.382  0.0114
+JEN         C17         C21      SINGLE       n     1.505  0.0143     1.505  0.0143
+JEN         C18         C19      SINGLE       y     1.380  0.0131     1.380  0.0131
+JEN         C19         C20      DOUBLE       y     1.381  0.0100     1.381  0.0100
+JEN          C1         H11      SINGLE       n     1.089  0.0100     0.971  0.0157
+JEN          C1         H12      SINGLE       n     1.089  0.0100     0.971  0.0157
+JEN          C1         H13      SINGLE       n     1.089  0.0100     0.971  0.0157
+JEN          C7          H7      SINGLE       n     1.082  0.0130     0.945  0.0127
+JEN          C8          H8      SINGLE       n     1.082  0.0130     0.945  0.0196
+JEN         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0152
+JEN         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0152
+JEN         C11        H111      SINGLE       n     1.089  0.0100     0.980  0.0138
+JEN         C11        H112      SINGLE       n     1.089  0.0100     0.980  0.0138
+JEN         C13        H131      SINGLE       n     1.089  0.0100     0.980  0.0138
+JEN         C13        H132      SINGLE       n     1.089  0.0100     0.980  0.0138
+JEN         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0152
+JEN         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0152
+JEN         C16         H16      SINGLE       n     1.082  0.0130     0.938  0.0110
+JEN         C18         H18      SINGLE       n     1.082  0.0130     0.944  0.0174
+JEN         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0185
+JEN         C20         H20      SINGLE       n     1.082  0.0130     0.938  0.0146
+JEN         C21        H211      SINGLE       n     1.089  0.0100     0.971  0.0135
+JEN         C21        H212      SINGLE       n     1.089  0.0100     0.971  0.0135
+JEN         C21        H213      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JEN          O2          C1         H11     109.390    1.50
+JEN          O2          C1         H12     109.390    1.50
+JEN          O2          C1         H13     109.390    1.50
+JEN         H11          C1         H12     109.509    1.50
+JEN         H11          C1         H13     109.509    1.50
+JEN         H12          C1         H13     109.509    1.50
+JEN          C1          O2          C3     117.471    1.50
+JEN          O2          C3          N4     119.468    1.50
+JEN          O2          C3          C8     118.763    3.00
+JEN          N4          C3          C8     121.769    1.50
+JEN          C3          N4          N5     119.600    1.50
+JEN          N4          N5          C6     119.797    1.50
+JEN          N5          C6          C7     121.521    1.50
+JEN          N5          C6          N9     116.624    1.50
+JEN          C7          C6          N9     121.855    1.50
+JEN          C6          C7          C8     118.789    1.50
+JEN          C6          C7          H7     121.207    1.50
+JEN          C8          C7          H7     120.004    1.50
+JEN          C3          C8          C7     118.524    1.50
+JEN          C3          C8          H8     121.003    1.52
+JEN          C7          C8          H8     120.473    1.50
+JEN          C6          N9         C10     123.295    1.63
+JEN          C6          N9         C14     123.295    1.63
+JEN         C10          N9         C14     113.410    1.54
+JEN          N9         C10         C11     110.612    1.50
+JEN          N9         C10        H101     109.309    1.50
+JEN          N9         C10        H102     109.309    1.50
+JEN         C11         C10        H101     109.479    1.50
+JEN         C11         C10        H102     109.479    1.50
+JEN        H101         C10        H102     108.196    1.50
+JEN         C10         C11         N12     110.581    1.50
+JEN         C10         C11        H111     109.479    1.50
+JEN         C10         C11        H112     109.479    1.50
+JEN         N12         C11        H111     109.542    1.50
+JEN         N12         C11        H112     109.542    1.50
+JEN        H111         C11        H112     108.196    1.50
+JEN         C11         N12         C13     113.487    2.47
+JEN         C11         N12         C15     123.256    1.50
+JEN         C13         N12         C15     123.256    1.50
+JEN         N12         C13         C14     110.581    1.50
+JEN         N12         C13        H131     109.542    1.50
+JEN         N12         C13        H132     109.542    1.50
+JEN         C14         C13        H131     109.479    1.50
+JEN         C14         C13        H132     109.479    1.50
+JEN        H131         C13        H132     108.196    1.50
+JEN          N9         C14         C13     110.612    1.50
+JEN          N9         C14        H141     109.309    1.50
+JEN          N9         C14        H142     109.309    1.50
+JEN         C13         C14        H141     109.479    1.50
+JEN         C13         C14        H142     109.479    1.50
+JEN        H141         C14        H142     108.196    1.50
+JEN         N12         C15         C16     120.406    1.79
+JEN         N12         C15         C20     119.909    1.52
+JEN         C16         C15         C20     119.684    2.20
+JEN         C15         C16         C17     120.183    1.50
+JEN         C15         C16         H16     119.831    1.50
+JEN         C17         C16         H16     119.986    1.50
+JEN         C16         C17         C18     118.239    1.50
+JEN         C16         C17         C21     120.512    1.50
+JEN         C18         C17         C21     121.249    1.50
+JEN         C17         C18         C19     121.281    1.50
+JEN         C17         C18         H18     119.206    1.50
+JEN         C19         C18         H18     119.513    1.50
+JEN         C18         C19         C20     120.564    1.50
+JEN         C18         C19         H19     119.834    1.50
+JEN         C20         C19         H19     119.601    1.50
+JEN         C15         C20         C19     120.048    1.50
+JEN         C15         C20         H20     119.809    1.50
+JEN         C19         C20         H20     120.143    1.50
+JEN         C17         C21        H211     109.567    1.50
+JEN         C17         C21        H212     109.567    1.50
+JEN         C17         C21        H213     109.567    1.50
+JEN        H211         C21        H212     109.348    1.50
+JEN        H211         C21        H213     109.348    1.50
+JEN        H212         C21        H213     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JEN            sp3_sp3_20         H11          C1          O2          C3     -60.000    10.0     3
+JEN             sp2_sp3_7         C13         N12         C11         C10       0.000    10.0     6
+JEN            sp2_sp3_13         C11         N12         C13         C14       0.000    10.0     6
+JEN             sp2_sp2_7         C16         C15         N12         C11     180.000     5.0     2
+JEN            sp3_sp3_10         N12         C13         C14          N9      60.000    10.0     3
+JEN       const_sp2_sp2_3         N12         C15         C16         C17     180.000     5.0     2
+JEN              const_40         N12         C15         C20         C19     180.000    10.0     2
+JEN       const_sp2_sp2_6         C15         C16         C17         C21     180.000     5.0     2
+JEN              const_11         C21         C17         C18         C19     180.000    10.0     2
+JEN            sp2_sp3_25         C16         C17         C21        H211     150.000    10.0     6
+JEN              const_13         C17         C18         C19         C20       0.000    10.0     2
+JEN              const_17         C18         C19         C20         C15       0.000    10.0     2
+JEN             sp2_sp2_1          N4          C3          O2          C1     180.000     5.0     2
+JEN              const_22          O2          C3          N4          N5     180.000    10.0     2
+JEN              const_36          O2          C3          C8          C7     180.000    10.0     2
+JEN              const_23          C3          N4          N5          C6       0.000    10.0     2
+JEN              const_24          C7          C6          N5          N4       0.000    10.0     2
+JEN              const_26          N5          C6          C7          C8       0.000    10.0     2
+JEN             sp2_sp2_5          N5          C6          N9         C10       0.000     5.0     2
+JEN              const_30          C6          C7          C8          C3       0.000    10.0     2
+JEN            sp2_sp3_22          C6          N9         C14         C13     180.000    10.0     6
+JEN             sp2_sp3_4          C6          N9         C10         C11     180.000    10.0     6
+JEN             sp3_sp3_1          N9         C10         C11         N12     -60.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JEN    plan-1         C15   0.020
+JEN    plan-1         C16   0.020
+JEN    plan-1         C17   0.020
+JEN    plan-1         C18   0.020
+JEN    plan-1         C19   0.020
+JEN    plan-1         C20   0.020
+JEN    plan-1         C21   0.020
+JEN    plan-1         H16   0.020
+JEN    plan-1         H18   0.020
+JEN    plan-1         H19   0.020
+JEN    plan-1         H20   0.020
+JEN    plan-1         N12   0.020
+JEN    plan-2          C3   0.020
+JEN    plan-2          C6   0.020
+JEN    plan-2          C7   0.020
+JEN    plan-2          C8   0.020
+JEN    plan-2          H7   0.020
+JEN    plan-2          H8   0.020
+JEN    plan-2          N4   0.020
+JEN    plan-2          N5   0.020
+JEN    plan-2          N9   0.020
+JEN    plan-2          O2   0.020
+JEN    plan-3         C10   0.020
+JEN    plan-3         C14   0.020
+JEN    plan-3          C6   0.020
+JEN    plan-3          N9   0.020
+JEN    plan-4         C11   0.020
+JEN    plan-4         C13   0.020
+JEN    plan-4         C15   0.020
+JEN    plan-4         N12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JEN           SMILES              ACDLabs 10.04                                                                        n1nc(ccc1OC)N3CCN(c2cc(ccc2)C)CC3
+JEN SMILES_CANONICAL               CACTVS 3.341                                                                        COc1ccc(nn1)N2CCN(CC2)c3cccc(C)c3
+JEN           SMILES               CACTVS 3.341                                                                        COc1ccc(nn1)N2CCN(CC2)c3cccc(C)c3
+JEN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                        Cc1cccc(c1)N2CCN(CC2)c3ccc(nn3)OC
+JEN           SMILES "OpenEye OEToolkits" 1.5.0                                                                        Cc1cccc(c1)N2CCN(CC2)c3ccc(nn3)OC
+JEN            InChI                InChI  1.03 InChI=1S/C16H20N4O/c1-13-4-3-5-14(12-13)19-8-10-20(11-9-19)15-6-7-16(21-2)18-17-15/h3-7,12H,8-11H2,1-2H3
+JEN         InChIKey                InChI  1.03                                                                              DDOAUTHWSCUHQA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JEN acedrg               243         "dictionary generator"                  
+JEN acedrg_database      11          "data source"                           
+JEN rdkit                2017.03.2   "Chemoinformatics tool"
+JEN refmac5              5.8.0238    "optimization tool"                     

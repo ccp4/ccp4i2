@@ -1,0 +1,398 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PSM     PSM      N-[DIHYDROXY(PROPYL)-LAMBDA~4~-SULFANYL]THREONYL-N~1~-{4-[AMINO(IMINO)METHYL]BENZYL}METHIONINAMIDE     NON-POLYMER     65     32     .     
+#
+data_comp_PSM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PSM     C15     C       C       0       35.914      6.705       10.350      
+PSM     O1      O       O       0       35.161      6.996       11.279      
+PSM     C1      C       CH1     0       38.124      6.830       11.552      
+PSM     O2      O       OH1     0       39.305      6.090       11.865      
+PSM     N4      N       NT1     0       36.978      4.653       11.260      
+PSM     C5      C       CH1     0       37.220      5.970       10.645      
+PSM     C3      C       CH3     0       38.511      8.148       10.915      
+PSM     S1      S       S3      0       36.692      3.320       10.383      
+PSM     O4      O       O       0       36.813      2.204       11.268      
+PSM     O3      O       O       0       37.518      3.372       9.217       
+PSM     C9      C       CH2     0       34.995      3.400       9.849       
+PSM     C8      C       CH2     0       34.002      3.434       10.998      
+PSM     C7      C       CH3     0       32.571      3.312       10.531      
+PSM     N17     N       NH1     0       35.686      7.057       9.075       
+PSM     C18     C       CH1     0       34.619      7.976       8.702       
+PSM     C28     C       C       0       33.247      7.290       8.732       
+PSM     O30     O       O       0       32.976      6.431       7.894       
+PSM     C19     C       CH2     0       34.870      8.585       7.320       
+PSM     C20     C       CH2     0       36.151      9.403       7.221       
+PSM     S2      S       S2      0       36.052      10.999      8.074       
+PSM     C6      C       CH3     0       35.189      11.978      6.846       
+PSM     N31     N       NH1     0       32.396      7.676       9.695       
+PSM     C32     C       CH2     0       31.057      7.108       9.874       
+PSM     C25     C       CR6     0       30.634      7.066       11.321      
+PSM     C16     C       CR16    0       31.448      6.466       12.273      
+PSM     C17     C       CR16    0       31.073      6.422       13.607      
+PSM     C22     C       CR6     0       29.867      6.981       14.022      
+PSM     C26     C       C       0       29.461      6.934       15.450      
+PSM     N1      N       NH1     0       29.289      5.823       16.087      
+PSM     N2      N       NH2     0       29.273      8.111       16.085      
+PSM     C23     C       CR16    0       29.049      7.584       13.069      
+PSM     C24     C       CR16    0       29.431      7.625       11.735      
+PSM     H1      H       H       0       37.634      7.015       12.389      
+PSM     HO2     H       H       0       39.688      6.437       12.538      
+PSM     HN4     H       H       0       36.408      4.715       11.945      
+PSM     H5      H       H       0       37.699      5.836       9.793       
+PSM     H31A    H       H       0       38.618      8.029       9.954       
+PSM     H32     H       H       0       39.350      8.462       11.297      
+PSM     H33     H       H       0       37.814      8.808       11.083      
+PSM     H91     H       H       0       34.818      2.621       9.291       
+PSM     H92     H       H       0       34.886      4.198       9.301       
+PSM     H81     H       H       0       34.107      4.283       11.494      
+PSM     H82     H       H       0       34.200      2.694       11.623      
+PSM     H71     H       H       0       31.980      3.254       11.302      
+PSM     H72     H       H       0       32.473      2.510       9.988       
+PSM     H73     H       H       0       32.334      4.092       10.000      
+PSM     H17     H       H       0       36.185      6.713       8.445       
+PSM     H18     H       H       0       34.610      8.715       9.361       
+PSM     H191    H       H       0       34.111      9.158       7.090       
+PSM     H192    H       H       0       34.905      7.862       6.663       
+PSM     H201    H       H       0       36.352      9.566       6.275       
+PSM     H202    H       H       0       36.895      8.889       7.600       
+PSM     H61     H       H       0       35.017      12.859      7.201       
+PSM     H62     H       H       0       34.352      11.551      6.626       
+PSM     H63     H       H       0       35.733      12.050      6.053       
+PSM     H31     H       H       0       32.648      8.303       10.249      
+PSM     H321    H       H       0       31.037      6.197       9.515       
+PSM     H322    H       H       0       30.415      7.645       9.364       
+PSM     H16     H       H       0       32.268      6.083       12.008      
+PSM     H2      H       H       0       31.639      6.010       14.236      
+PSM     HN1     H       H       0       29.416      5.131       15.658      
+PSM     HN21    H       H       0       29.391      8.876       15.650      
+PSM     HN22    H       H       0       29.031      8.120       16.939      
+PSM     H23     H       H       0       28.230      7.967       13.330      
+PSM     H24     H       H       0       28.866      8.037       11.103      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PSM         C15          O1      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PSM         C15         N17      SINGLE       n     1.337  0.0100     1.337  0.0100
+PSM         C15          C5      SINGLE       n     1.524  0.0100     1.524  0.0100
+PSM         N17         C18      SINGLE       n     1.453  0.0100     1.453  0.0100
+PSM         C18         C19      SINGLE       n     1.529  0.0100     1.529  0.0100
+PSM         C18         C28      SINGLE       n     1.530  0.0100     1.530  0.0100
+PSM         C19         C20      SINGLE       n     1.517  0.0200     1.517  0.0200
+PSM         C20          S2      SINGLE       n     1.811  0.0200     1.811  0.0200
+PSM         C28         O30      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PSM         C28         N31      SINGLE       n     1.336  0.0103     1.336  0.0103
+PSM         N31         C32      SINGLE       n     1.455  0.0186     1.455  0.0186
+PSM         C32         C25      SINGLE       n     1.508  0.0100     1.508  0.0100
+PSM         C16         C17      SINGLE       y     1.383  0.0100     1.383  0.0100
+PSM         C25         C16      DOUBLE       y     1.385  0.0100     1.385  0.0100
+PSM         C17         C22      DOUBLE       y     1.390  0.0100     1.390  0.0100
+PSM         C22         C23      SINGLE       y     1.390  0.0100     1.390  0.0100
+PSM         C22         C26      SINGLE       n     1.484  0.0100     1.484  0.0100
+PSM         C23         C24      DOUBLE       y     1.384  0.0100     1.384  0.0100
+PSM         C25         C24      SINGLE       y     1.385  0.0100     1.385  0.0100
+PSM         C26          N1      DOUBLE       n     1.287  0.0200     1.287  0.0200
+PSM         C26          N2      SINGLE       n     1.347  0.0152     1.347  0.0152
+PSM          S2          C6      SINGLE       n     1.792  0.0100     1.792  0.0100
+PSM          C1          O2      SINGLE       n     1.428  0.0100     1.428  0.0100
+PSM          C1          C5      SINGLE       n     1.541  0.0100     1.541  0.0100
+PSM          C1          C3      SINGLE       n     1.513  0.0100     1.513  0.0100
+PSM          N4          C5      SINGLE       n     1.469  0.0127     1.469  0.0127
+PSM          N4          S1      SINGLE       n     1.618  0.0100     1.618  0.0100
+PSM          S1          O4      DOUBLE       n     1.430  0.0100     1.430  0.0100
+PSM          S1          O3      DOUBLE       n     1.430  0.0100     1.430  0.0100
+PSM          S1          C9      SINGLE       n     1.779  0.0138     1.779  0.0138
+PSM          C9          C8      SINGLE       n     1.517  0.0200     1.517  0.0200
+PSM          C8          C7      SINGLE       n     1.511  0.0200     1.511  0.0200
+PSM          C1          H1      SINGLE       n     1.089  0.0100     0.987  0.0200
+PSM          O2         HO2      SINGLE       n     0.970  0.0120     0.848  0.0200
+PSM          N4         HN4      SINGLE       n     1.036  0.0160     0.892  0.0200
+PSM          C5          H5      SINGLE       n     1.089  0.0100     0.990  0.0200
+PSM          C3        H31A      SINGLE       n     1.089  0.0100     0.974  0.0145
+PSM          C3         H32      SINGLE       n     1.089  0.0100     0.974  0.0145
+PSM          C3         H33      SINGLE       n     1.089  0.0100     0.974  0.0145
+PSM          C9         H91      SINGLE       n     1.089  0.0100     0.975  0.0200
+PSM          C9         H92      SINGLE       n     1.089  0.0100     0.975  0.0200
+PSM          C8         H81      SINGLE       n     1.089  0.0100     0.989  0.0171
+PSM          C8         H82      SINGLE       n     1.089  0.0100     0.989  0.0171
+PSM          C7         H71      SINGLE       n     1.089  0.0100     0.973  0.0157
+PSM          C7         H72      SINGLE       n     1.089  0.0100     0.973  0.0157
+PSM          C7         H73      SINGLE       n     1.089  0.0100     0.973  0.0157
+PSM         N17         H17      SINGLE       n     1.016  0.0100     0.873  0.0200
+PSM         C18         H18      SINGLE       n     1.089  0.0100     0.991  0.0200
+PSM         C19        H191      SINGLE       n     1.089  0.0100     0.978  0.0200
+PSM         C19        H192      SINGLE       n     1.089  0.0100     0.978  0.0200
+PSM         C20        H201      SINGLE       n     1.089  0.0100     0.981  0.0122
+PSM         C20        H202      SINGLE       n     1.089  0.0100     0.981  0.0122
+PSM          C6         H61      SINGLE       n     1.089  0.0100     0.965  0.0170
+PSM          C6         H62      SINGLE       n     1.089  0.0100     0.965  0.0170
+PSM          C6         H63      SINGLE       n     1.089  0.0100     0.965  0.0170
+PSM         N31         H31      SINGLE       n     1.016  0.0100     0.873  0.0200
+PSM         C32        H321      SINGLE       n     1.089  0.0100     0.980  0.0169
+PSM         C32        H322      SINGLE       n     1.089  0.0100     0.980  0.0169
+PSM         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0173
+PSM         C17          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+PSM          N1         HN1      SINGLE       n     1.016  0.0100     0.823  0.0200
+PSM          N2        HN21      SINGLE       n     1.016  0.0100     0.887  0.0200
+PSM          N2        HN22      SINGLE       n     1.016  0.0100     0.887  0.0200
+PSM         C23         H23      SINGLE       n     1.082  0.0130     0.941  0.0168
+PSM         C24         H24      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PSM          O1         C15         N17     123.154    1.50
+PSM          O1         C15          C5     120.430    1.50
+PSM         N17         C15          C5     116.417    1.50
+PSM          O2          C1          C5     108.919    1.50
+PSM          O2          C1          C3     109.779    2.11
+PSM          O2          C1          H1     108.878    1.50
+PSM          C5          C1          C3     112.076    1.65
+PSM          C5          C1          H1     108.267    2.06
+PSM          C3          C1          H1     108.799    1.50
+PSM          C1          O2         HO2     109.608    2.55
+PSM          C5          N4          S1     118.416    2.52
+PSM          C5          N4         HN4     111.283    3.00
+PSM          S1          N4         HN4     110.892    3.00
+PSM         C15          C5          C1     111.511    2.91
+PSM         C15          C5          N4     111.676    1.90
+PSM         C15          C5          H5     108.061    1.50
+PSM          C1          C5          N4     111.883    2.59
+PSM          C1          C5          H5     108.179    1.50
+PSM          N4          C5          H5     108.621    1.50
+PSM          C1          C3        H31A     109.564    1.50
+PSM          C1          C3         H32     109.564    1.50
+PSM          C1          C3         H33     109.564    1.50
+PSM        H31A          C3         H32     109.425    1.50
+PSM        H31A          C3         H33     109.425    1.50
+PSM         H32          C3         H33     109.425    1.50
+PSM          N4          S1          O4     107.110    1.50
+PSM          N4          S1          O3     107.110    1.50
+PSM          N4          S1          C9     106.340    1.53
+PSM          O4          S1          O3     119.199    1.50
+PSM          O4          S1          C9     107.501    2.06
+PSM          O3          S1          C9     107.501    2.06
+PSM          S1          C9          C8     111.256    2.92
+PSM          S1          C9         H91     107.816    1.50
+PSM          S1          C9         H92     107.816    1.50
+PSM          C8          C9         H91     109.242    1.50
+PSM          C8          C9         H92     109.242    1.50
+PSM         H91          C9         H92     108.043    1.50
+PSM          C9          C8          C7     113.191    3.00
+PSM          C9          C8         H81     109.334    1.50
+PSM          C9          C8         H82     109.334    1.50
+PSM          C7          C8         H81     109.107    1.50
+PSM          C7          C8         H82     109.107    1.50
+PSM         H81          C8         H82     107.897    1.50
+PSM          C8          C7         H71     109.543    1.50
+PSM          C8          C7         H72     109.543    1.50
+PSM          C8          C7         H73     109.543    1.50
+PSM         H71          C7         H72     109.380    1.50
+PSM         H71          C7         H73     109.380    1.50
+PSM         H72          C7         H73     109.380    1.50
+PSM         C15         N17         C18     121.028    1.58
+PSM         C15         N17         H17     119.169    1.83
+PSM         C18         N17         H17     119.803    1.64
+PSM         N17         C18         C19     111.076    1.75
+PSM         N17         C18         C28     111.371    2.04
+PSM         N17         C18         H18     107.954    1.50
+PSM         C19         C18         C28     110.281    1.60
+PSM         C19         C18         H18     108.223    1.50
+PSM         C28         C18         H18     107.852    1.50
+PSM         C18         C28         O30     120.540    1.50
+PSM         C18         C28         N31     116.463    1.50
+PSM         O30         C28         N31     122.977    1.50
+PSM         C18         C19         C20     113.307    1.50
+PSM         C18         C19        H191     108.562    1.50
+PSM         C18         C19        H192     108.562    1.50
+PSM         C20         C19        H191     108.955    1.50
+PSM         C20         C19        H192     108.955    1.50
+PSM        H191         C19        H192     107.698    1.50
+PSM         C19         C20          S2     112.576    2.44
+PSM         C19         C20        H201     109.206    1.50
+PSM         C19         C20        H202     109.206    1.50
+PSM          S2         C20        H201     108.861    1.50
+PSM          S2         C20        H202     108.861    1.50
+PSM        H201         C20        H202     107.939    1.50
+PSM         C20          S2          C6     100.595    1.50
+PSM          S2          C6         H61     109.425    1.50
+PSM          S2          C6         H62     109.425    1.50
+PSM          S2          C6         H63     109.425    1.50
+PSM         H61          C6         H62     109.509    1.50
+PSM         H61          C6         H63     109.509    1.50
+PSM         H62          C6         H63     109.509    1.50
+PSM         C28         N31         C32     122.517    1.50
+PSM         C28         N31         H31     118.873    1.94
+PSM         C32         N31         H31     118.610    1.50
+PSM         N31         C32         C25     113.142    1.52
+PSM         N31         C32        H321     108.921    1.50
+PSM         N31         C32        H322     108.921    1.50
+PSM         C25         C32        H321     109.073    1.50
+PSM         C25         C32        H322     109.073    1.50
+PSM        H321         C32        H322     107.860    1.50
+PSM         C32         C25         C16     120.854    1.50
+PSM         C32         C25         C24     120.854    1.50
+PSM         C16         C25         C24     118.292    1.50
+PSM         C17         C16         C25     120.705    1.50
+PSM         C17         C16         H16     119.661    1.50
+PSM         C25         C16         H16     119.633    1.50
+PSM         C16         C17         C22     120.697    1.50
+PSM         C16         C17          H2     119.526    1.50
+PSM         C22         C17          H2     119.778    1.50
+PSM         C17         C22         C23     118.905    1.50
+PSM         C17         C22         C26     120.548    1.50
+PSM         C23         C22         C26     120.548    1.50
+PSM         C22         C26          N1     121.847    3.00
+PSM         C22         C26          N2     117.501    1.50
+PSM          N1         C26          N2     120.652    2.66
+PSM         C26          N1         HN1     114.748    3.00
+PSM         C26          N2        HN21     119.893    1.50
+PSM         C26          N2        HN22     119.893    1.50
+PSM        HN21          N2        HN22     120.214    2.70
+PSM         C22         C23         C24     120.697    1.50
+PSM         C22         C23         H23     119.778    1.50
+PSM         C24         C23         H23     119.526    1.50
+PSM         C23         C24         C25     120.705    1.50
+PSM         C23         C24         H24     119.661    1.50
+PSM         C25         C24         H24     119.633    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PSM             sp2_sp2_3          O1         C15         N17         C18       0.000     5.0     2
+PSM             sp2_sp3_1          O1         C15          C5          C1       0.000    10.0     6
+PSM            sp3_sp3_67          C7          C8          C9          S1     180.000    10.0     3
+PSM            sp3_sp3_76         H71          C7          C8          C9     180.000    10.0     3
+PSM             sp2_sp3_7         C15         N17         C18         C19       0.000    10.0     6
+PSM            sp2_sp3_13         O30         C28         C18         N17       0.000    10.0     6
+PSM             sp3_sp3_1         N17         C18         C19         C20     180.000    10.0     3
+PSM             sp2_sp2_5         C18         C28         N31         C32     180.000     5.0     2
+PSM            sp3_sp3_10         C18         C19         C20          S2     180.000    10.0     3
+PSM            sp3_sp3_19         C19         C20          S2          C6     180.000    10.0     3
+PSM            sp3_sp3_22         H61          C6          S2         C20     180.000    10.0     3
+PSM            sp2_sp3_20         C28         N31         C32         C25     120.000    10.0     6
+PSM            sp2_sp3_26         C16         C25         C32         N31     -90.000    10.0     6
+PSM       const_sp2_sp2_2         C17         C16         C25         C32     180.000     5.0     2
+PSM              const_22         C23         C24         C25         C32     180.000    10.0     2
+PSM       const_sp2_sp2_5         C25         C16         C17         C22       0.000     5.0     2
+PSM              const_10         C16         C17         C22         C26     180.000    10.0     2
+PSM            sp2_sp2_10         C17         C22         C26          N1       0.000     5.0     2
+PSM              const_15         C26         C22         C23         C24     180.000    10.0     2
+PSM            sp2_sp2_14          N2         C26          N1         HN1       0.000     5.0     2
+PSM            sp2_sp2_17          N1         C26          N2        HN21       0.000     5.0     2
+PSM            sp3_sp3_25          C5          C1          O2         HO2     180.000    10.0     3
+PSM            sp3_sp3_28          O2          C1          C5         C15     180.000    10.0     3
+PSM            sp3_sp3_37          O2          C1          C3        H31A     180.000    10.0     3
+PSM              const_17         C22         C23         C24         C25       0.000    10.0     2
+PSM            sp3_sp3_46         C15          C5          N4          S1     180.000    10.0     3
+PSM            sp3_sp3_56          C5          N4          S1          O4     180.000    10.0     3
+PSM            sp3_sp3_60          C8          C9          S1          N4      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PSM    chir_1    C1    O2    C5    C3    positive
+PSM    chir_2    C5    N4    C15    C1    negative
+PSM    chir_3    S1    O4    O3    N4    both
+PSM    chir_4    C18    N17    C28    C19    positive
+PSM    chir_5    N4    S1    C5    HN4    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PSM    plan-1         C16   0.020
+PSM    plan-1         C17   0.020
+PSM    plan-1         C22   0.020
+PSM    plan-1         C23   0.020
+PSM    plan-1         C24   0.020
+PSM    plan-1         C25   0.020
+PSM    plan-1         C26   0.020
+PSM    plan-1         C32   0.020
+PSM    plan-1         H16   0.020
+PSM    plan-1          H2   0.020
+PSM    plan-1         H23   0.020
+PSM    plan-1         H24   0.020
+PSM    plan-2         C15   0.020
+PSM    plan-2          C5   0.020
+PSM    plan-2         N17   0.020
+PSM    plan-2          O1   0.020
+PSM    plan-3         C15   0.020
+PSM    plan-3         C18   0.020
+PSM    plan-3         H17   0.020
+PSM    plan-3         N17   0.020
+PSM    plan-4         C18   0.020
+PSM    plan-4         C28   0.020
+PSM    plan-4         N31   0.020
+PSM    plan-4         O30   0.020
+PSM    plan-5         C28   0.020
+PSM    plan-5         C32   0.020
+PSM    plan-5         H31   0.020
+PSM    plan-5         N31   0.020
+PSM    plan-6         C22   0.020
+PSM    plan-6         C26   0.020
+PSM    plan-6          N1   0.020
+PSM    plan-6          N2   0.020
+PSM    plan-7         C26   0.020
+PSM    plan-7        HN21   0.020
+PSM    plan-7        HN22   0.020
+PSM    plan-7          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PSM           SMILES              ACDLabs 12.01                                                                                                                                        O=S(=O)(NC(C(=O)NC(C(=O)NCc1ccc(cc1)C(=[N@H])N)CCSC)C(O)C)CCC
+PSM SMILES_CANONICAL               CACTVS 3.370                                                                                                                             CCC[S](=O)(=O)N[C@H]([C@H](C)O)C(=O)N[C@@H](CCSC)C(=O)NCc1ccc(cc1)C(N)=N
+PSM           SMILES               CACTVS 3.370                                                                                                                                 CCC[S](=O)(=O)N[CH]([CH](C)O)C(=O)N[CH](CCSC)C(=O)NCc1ccc(cc1)C(N)=N
+PSM SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                               CCCS(=O)(=O)N[C@H]([C@H](C)O)C(=O)N[C@@H](CCSC)C(=O)NCc1ccc(cc1)C(=N)N
+PSM           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                            CCCS(=O)(=O)NC(C(C)O)C(=O)NC(CCSC)C(=O)NCc1ccc(cc1)C(=N)N
+PSM            InChI                InChI  1.03 InChI=1S/C20H33N5O5S2/c1-4-11-32(29,30)25-17(13(2)26)20(28)24-16(9-10-31-3)19(27)23-12-14-5-7-15(8-6-14)18(21)22/h5-8,13,16-17,25-26H,4,9-12H2,1-3H3,(H3,21,22)(H,23,27)(H,24,28)/t13-,16-,17+/m0/s1
+PSM         InChIKey                InChI  1.03                                                                                                                                                                          AIIJKVORRBMJHS-RRQGHBQHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PSM acedrg               243         "dictionary generator"                  
+PSM acedrg_database      11          "data source"                           
+PSM rdkit                2017.03.2   "Chemoinformatics tool"
+PSM refmac5              5.8.0238    "optimization tool"                     

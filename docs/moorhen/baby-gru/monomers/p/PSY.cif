@@ -1,0 +1,187 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PSY     PSY      "phenyl ethenesulfonate"     NON-POLYMER     20     12     .     
+#
+data_comp_PSY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PSY     C1      C       CR16    0       47.192      15.712      23.229      
+PSY     C2      C       CR16    0       46.654      15.622      24.495      
+PSY     C3      C       CR16    0       46.773      16.714      22.380      
+PSY     C4      C       CR16    0       45.694      16.529      24.924      
+PSY     C5      C       CR16    0       45.814      17.635      22.782      
+PSY     C6      C       CR6     0       45.287      17.522      24.056      
+PSY     O1      O       O2      0       44.307      18.412      24.568      
+PSY     S       S       S3      0       43.588      19.596      23.745      
+PSY     O2      O       O       0       42.572      20.087      24.609      
+PSY     O3      O       O       0       44.608      20.499      23.336      
+PSY     C7      C       C1      0       42.787      18.966      22.325      
+PSY     C8      C       C2      0       42.214      19.757      21.468      
+PSY     H1      H       H       0       47.844      15.091      22.946      
+PSY     H2      H       H       0       46.938      14.938      25.077      
+PSY     H3      H       H       0       47.140      16.777      21.514      
+PSY     H4      H       H       0       45.329      16.463      25.790      
+PSY     H5      H       H       0       45.539      18.312      22.192      
+PSY     H7      H       H       0       42.767      18.032      22.175      
+PSY     H8      H       H       0       41.771      19.388      20.681      
+PSY     H8A     H       H       0       42.226      20.723      21.609      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PSY          C1          C3      DOUBLE       y     1.375  0.0126     1.375  0.0126
+PSY          C1          C2      SINGLE       y     1.375  0.0126     1.375  0.0126
+PSY          C2          C4      DOUBLE       y     1.385  0.0100     1.385  0.0100
+PSY          C3          C5      SINGLE       y     1.385  0.0100     1.385  0.0100
+PSY          C4          C6      SINGLE       y     1.375  0.0100     1.375  0.0100
+PSY          C5          C6      DOUBLE       y     1.375  0.0100     1.375  0.0100
+PSY          C6          O1      SINGLE       n     1.413  0.0100     1.413  0.0100
+PSY          O1           S      SINGLE       n     1.597  0.0200     1.597  0.0200
+PSY           S          O3      DOUBLE       n     1.422  0.0106     1.422  0.0106
+PSY           S          C7      SINGLE       n     1.746  0.0200     1.746  0.0200
+PSY           S          O2      DOUBLE       n     1.422  0.0106     1.422  0.0106
+PSY          C7          C8      DOUBLE       n     1.299  0.0200     1.299  0.0200
+PSY          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0161
+PSY          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0183
+PSY          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0183
+PSY          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0163
+PSY          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0163
+PSY          C7          H7      SINGLE       n     1.082  0.0130     0.946  0.0200
+PSY          C8          H8      SINGLE       n     1.082  0.0130     0.976  0.0200
+PSY          C8         H8A      SINGLE       n     1.082  0.0130     0.976  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PSY          C3          C1          C2     119.971    1.50
+PSY          C3          C1          H1     120.015    1.50
+PSY          C2          C1          H1     120.015    1.50
+PSY          C1          C2          C4     120.754    1.50
+PSY          C1          C2          H2     119.807    1.50
+PSY          C4          C2          H2     119.438    1.50
+PSY          C1          C3          C5     120.754    1.50
+PSY          C1          C3          H3     119.807    1.50
+PSY          C5          C3          H3     119.438    1.50
+PSY          C2          C4          C6     118.046    1.50
+PSY          C2          C4          H4     120.748    1.50
+PSY          C6          C4          H4     121.206    1.50
+PSY          C3          C5          C6     118.046    1.50
+PSY          C3          C5          H5     120.748    1.50
+PSY          C6          C5          H5     121.206    1.50
+PSY          C4          C6          C5     122.429    1.50
+PSY          C4          C6          O1     118.785    1.95
+PSY          C5          C6          O1     118.785    1.95
+PSY          C6          O1           S     119.564    1.78
+PSY          O1           S          O3     106.688    2.31
+PSY          O1           S          C7     109.471    3.00
+PSY          O1           S          O2     106.688    2.31
+PSY          O3           S          C7     109.374    2.60
+PSY          O3           S          O2     119.179    2.13
+PSY          C7           S          O2     109.374    2.60
+PSY           S          C7          C8     121.299    3.00
+PSY           S          C7          H7     119.595    2.43
+PSY          C8          C7          H7     119.106    1.93
+PSY          C7          C8          H8     120.114    1.50
+PSY          C7          C8         H8A     120.114    1.50
+PSY          H8          C8         H8A     119.773    2.01
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PSY              const_21          C3          C1          C2          C4       0.000    10.0     2
+PSY       const_sp2_sp2_1          C2          C1          C3          C5       0.000     5.0     2
+PSY             sp2_sp2_3           S          C7          C8          H8     180.000     5.0     2
+PSY              const_17          C1          C2          C4          C6       0.000    10.0     2
+PSY       const_sp2_sp2_5          C1          C3          C5          C6       0.000     5.0     2
+PSY              const_14          C2          C4          C6          O1     180.000    10.0     2
+PSY              const_10          C3          C5          C6          O1     180.000    10.0     2
+PSY             sp2_sp2_1          C4          C6          O1           S     180.000     5.0     2
+PSY             sp3_sp3_1          O3           S          O1          C6      90.000    10.0     3
+PSY             sp2_sp3_3          C8          C7           S          O1    -120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PSY    chir_1    S    O3    O2    O1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PSY    plan-1          C1   0.020
+PSY    plan-1          C2   0.020
+PSY    plan-1          C3   0.020
+PSY    plan-1          C4   0.020
+PSY    plan-1          C5   0.020
+PSY    plan-1          C6   0.020
+PSY    plan-1          H1   0.020
+PSY    plan-1          H2   0.020
+PSY    plan-1          H3   0.020
+PSY    plan-1          H4   0.020
+PSY    plan-1          H5   0.020
+PSY    plan-1          O1   0.020
+PSY    plan-2          C7   0.020
+PSY    plan-2          C8   0.020
+PSY    plan-2          H7   0.020
+PSY    plan-2           S   0.020
+PSY    plan-3          C7   0.020
+PSY    plan-3          C8   0.020
+PSY    plan-3          H8   0.020
+PSY    plan-3         H8A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PSY           SMILES              ACDLabs 10.04                                   O=S(=O)(Oc1ccccc1)\C=C
+PSY SMILES_CANONICAL               CACTVS 3.341                                  C=C[S](=O)(=O)Oc1ccccc1
+PSY           SMILES               CACTVS 3.341                                  C=C[S](=O)(=O)Oc1ccccc1
+PSY SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                    C=CS(=O)(=O)Oc1ccccc1
+PSY           SMILES "OpenEye OEToolkits" 1.5.0                                    C=CS(=O)(=O)Oc1ccccc1
+PSY            InChI                InChI  1.03 InChI=1S/C8H8O3S/c1-2-12(9,10)11-8-6-4-3-5-7-8/h2-7H,1H2
+PSY         InChIKey                InChI  1.03                              CILDJVVXNMDAGY-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PSY acedrg               243         "dictionary generator"                  
+PSY acedrg_database      11          "data source"                           
+PSY rdkit                2017.03.2   "Chemoinformatics tool"
+PSY refmac5              5.8.0238    "optimization tool"                     

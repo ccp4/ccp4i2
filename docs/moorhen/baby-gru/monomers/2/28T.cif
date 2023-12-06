@@ -1,0 +1,272 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+28T     28T      1-{4-oxo-4-[(2S)-pyrrolidin-2-yl]butanoyl}-L-proline     NON-POLYMER     38     19     .     
+#
+data_comp_28T
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+28T     OAA     O       O       0       -35.263     9.965       -0.833      
+28T     CAN     C       C       0       -34.626     9.998       0.207       
+28T     OAD     O       OC      -1      -35.054     10.353      1.291       
+28T     CAR     C       CH1     0       -33.156     9.555       0.154       
+28T     CAK     C       CH2     0       -32.321     10.604      -0.598      
+28T     CAF     C       CH2     0       -31.340     9.797       -1.407      
+28T     CAL     C       CH2     0       -32.126     8.580       -1.817      
+28T     NAS     N       NR5     0       -32.954     8.322       -0.627      
+28T     CAP     C       C       0       -33.495     7.145       -0.248      
+28T     OAC     O       O       0       -33.994     7.017       0.870       
+28T     CAI     C       CH2     0       -33.433     5.954       -1.187      
+28T     CAH     C       CH2     0       -34.569     4.968       -0.971      
+28T     C       C       C       0       -34.617     3.830       -1.963      
+28T     O       O       O       0       -34.774     4.037       -3.142      
+28T     CA      C       CH1     0       -34.461     2.408       -1.429      
+28T     CB      C       CH2     0       -33.100     2.180       -0.760      
+28T     CG      C       CH2     0       -32.916     0.680       -0.813      
+28T     CD      C       CH2     0       -33.806     0.196       -1.941      
+28T     N       N       NT1     0       -34.447     1.396       -2.490      
+28T     H2      H       H       0       -32.813     9.436       1.064       
+28T     H3      H       H       0       -32.884     11.154      -1.185      
+28T     H4      H       H       0       -31.852     11.192      0.031       
+28T     H5      H       H       0       -30.562     9.546       -0.867      
+28T     H6      H       H       0       -31.036     10.298      -2.193      
+28T     H7      H       H       0       -31.532     7.826       -2.011      
+28T     H8      H       H       0       -32.682     8.763       -2.604      
+28T     H9      H       H       0       -32.583     5.495       -1.062      
+28T     H10     H       H       0       -33.463     6.267       -2.108      
+28T     H11     H       H       0       -35.416     5.447       -1.015      
+28T     H12     H       H       0       -34.497     4.591       -0.076      
+28T     H13     H       H       0       -35.193     2.204       -0.795      
+28T     H14     H       H       0       -32.385     2.639       -1.252      
+28T     H15     H       H       0       -33.107     2.501       0.167       
+28T     H16     H       H       0       -33.181     0.270       0.036       
+28T     H17     H       H       0       -31.980     0.454       -0.992      
+28T     H18     H       H       0       -34.477     -0.428      -1.606      
+28T     H19     H       H       0       -33.279     -0.255      -2.627      
+28T     H20     H       H       0       -35.280     1.165       -2.688      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+28T           C           O      DOUBLE       n     1.207  0.0100     1.207  0.0100
+28T         CAH           C      SINGLE       n     1.510  0.0100     1.510  0.0100
+28T           C          CA      SINGLE       n     1.525  0.0100     1.525  0.0100
+28T         CAF         CAL      SINGLE       n     1.512  0.0163     1.512  0.0163
+28T         CAL         NAS      SINGLE       n     1.472  0.0100     1.472  0.0100
+28T          CD           N      SINGLE       n     1.468  0.0152     1.468  0.0152
+28T          CA           N      SINGLE       n     1.468  0.0148     1.468  0.0148
+28T         CAI         CAH      SINGLE       n     1.516  0.0182     1.516  0.0182
+28T         CAP         CAI      SINGLE       n     1.511  0.0121     1.511  0.0121
+28T         CAK         CAF      SINGLE       n     1.508  0.0200     1.508  0.0200
+28T          CG          CD      SINGLE       n     1.515  0.0118     1.515  0.0118
+28T          CA          CB      SINGLE       n     1.534  0.0126     1.534  0.0126
+28T         NAS         CAP      SINGLE       n     1.342  0.0100     1.342  0.0100
+28T         CAR         NAS      SINGLE       n     1.468  0.0100     1.468  0.0100
+28T         CAP         OAC      DOUBLE       n     1.227  0.0149     1.227  0.0149
+28T         CAR         CAK      SINGLE       n     1.533  0.0100     1.533  0.0100
+28T          CB          CG      SINGLE       n     1.508  0.0200     1.508  0.0200
+28T         OAA         CAN      DOUBLE       n     1.218  0.0200     1.218  0.0200
+28T         CAN         CAR      SINGLE       n     1.527  0.0175     1.527  0.0175
+28T         CAN         OAD      SINGLE       n     1.218  0.0200     1.218  0.0200
+28T         CAR          H2      SINGLE       n     1.089  0.0100     0.979  0.0200
+28T         CAK          H3      SINGLE       n     1.089  0.0100     0.981  0.0200
+28T         CAK          H4      SINGLE       n     1.089  0.0100     0.981  0.0200
+28T         CAF          H5      SINGLE       n     1.089  0.0100     0.980  0.0200
+28T         CAF          H6      SINGLE       n     1.089  0.0100     0.980  0.0200
+28T         CAL          H7      SINGLE       n     1.089  0.0100     0.980  0.0200
+28T         CAL          H8      SINGLE       n     1.089  0.0100     0.980  0.0200
+28T         CAI          H9      SINGLE       n     1.089  0.0100     0.974  0.0141
+28T         CAI         H10      SINGLE       n     1.089  0.0100     0.974  0.0141
+28T         CAH         H11      SINGLE       n     1.089  0.0100     0.974  0.0141
+28T         CAH         H12      SINGLE       n     1.089  0.0100     0.974  0.0141
+28T          CA         H13      SINGLE       n     1.089  0.0100     0.990  0.0121
+28T          CB         H14      SINGLE       n     1.089  0.0100     0.981  0.0193
+28T          CB         H15      SINGLE       n     1.089  0.0100     0.981  0.0193
+28T          CG         H16      SINGLE       n     1.089  0.0100     0.979  0.0132
+28T          CG         H17      SINGLE       n     1.089  0.0100     0.979  0.0132
+28T          CD         H18      SINGLE       n     1.089  0.0100     0.975  0.0100
+28T          CD         H19      SINGLE       n     1.089  0.0100     0.975  0.0100
+28T           N         H20      SINGLE       n     1.036  0.0160     0.887  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+28T         OAA         CAN         CAR     117.066    2.02
+28T         OAA         CAN         OAD     125.868    1.50
+28T         CAR         CAN         OAD     117.066    2.02
+28T         NAS         CAR         CAK     102.601    1.50
+28T         NAS         CAR         CAN     111.417    2.02
+28T         NAS         CAR          H2     110.316    1.50
+28T         CAK         CAR         CAN     110.031    2.42
+28T         CAK         CAR          H2     110.662    1.50
+28T         CAN         CAR          H2     110.011    1.50
+28T         CAF         CAK         CAR     103.507    1.50
+28T         CAF         CAK          H3     110.886    1.50
+28T         CAF         CAK          H4     110.886    1.50
+28T         CAR         CAK          H3     110.902    1.50
+28T         CAR         CAK          H4     110.902    1.50
+28T          H3         CAK          H4     108.922    1.50
+28T         CAL         CAF         CAK     104.327    2.00
+28T         CAL         CAF          H5     110.793    1.50
+28T         CAL         CAF          H6     110.793    1.50
+28T         CAK         CAF          H5     110.864    1.50
+28T         CAK         CAF          H6     110.864    1.50
+28T          H5         CAF          H6     108.899    1.50
+28T         CAF         CAL         NAS     103.293    1.50
+28T         CAF         CAL          H7     111.171    1.50
+28T         CAF         CAL          H8     111.171    1.50
+28T         NAS         CAL          H7     111.063    1.50
+28T         NAS         CAL          H8     111.063    1.50
+28T          H7         CAL          H8     108.998    1.50
+28T         CAL         NAS         CAP     126.446    3.00
+28T         CAL         NAS         CAR     112.636    1.50
+28T         CAP         NAS         CAR     120.918    3.00
+28T         CAI         CAP         NAS     118.489    1.96
+28T         CAI         CAP         OAC     120.679    1.50
+28T         NAS         CAP         OAC     120.832    1.54
+28T         CAH         CAI         CAP     112.242    1.50
+28T         CAH         CAI          H9     109.266    1.50
+28T         CAH         CAI         H10     109.266    1.50
+28T         CAP         CAI          H9     109.096    1.50
+28T         CAP         CAI         H10     109.096    1.50
+28T          H9         CAI         H10     107.543    1.50
+28T           C         CAH         CAI     115.202    1.50
+28T           C         CAH         H11     108.646    1.50
+28T           C         CAH         H12     108.646    1.50
+28T         CAI         CAH         H11     109.266    1.50
+28T         CAI         CAH         H12     109.266    1.50
+28T         H11         CAH         H12     107.659    1.50
+28T           O           C         CAH     121.262    1.50
+28T           O           C          CA     120.594    1.53
+28T         CAH           C          CA     118.145    2.11
+28T           C          CA           N     111.420    2.45
+28T           C          CA          CB     112.424    2.46
+28T           C          CA         H13     110.062    1.50
+28T           N          CA          CB     103.430    2.23
+28T           N          CA         H13     109.296    1.50
+28T          CB          CA         H13     110.393    1.50
+28T          CA          CB          CG     103.507    1.50
+28T          CA          CB         H14     110.853    1.50
+28T          CA          CB         H15     110.853    1.50
+28T          CG          CB         H14     110.886    1.50
+28T          CG          CB         H15     110.886    1.50
+28T         H14          CB         H15     108.922    1.50
+28T          CD          CG          CB     104.503    1.95
+28T          CD          CG         H16     110.804    1.50
+28T          CD          CG         H17     110.804    1.50
+28T          CB          CG         H16     110.864    1.50
+28T          CB          CG         H17     110.864    1.50
+28T         H16          CG         H17     108.899    1.50
+28T           N          CD          CG     105.071    2.33
+28T           N          CD         H18     110.738    1.50
+28T           N          CD         H19     110.738    1.50
+28T          CG          CD         H18     110.867    1.50
+28T          CG          CD         H19     110.867    1.50
+28T         H18          CD         H19     108.731    1.50
+28T          CD           N          CA     109.056    3.00
+28T          CD           N         H20     106.136    2.25
+28T          CA           N         H20     109.307    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+28T            sp3_sp3_49           C         CAH         CAI         CAP     180.000    10.0     3
+28T            sp2_sp3_14           O           C         CAH         CAI     120.000    10.0     6
+28T            sp2_sp3_19           O           C          CA           N       0.000    10.0     6
+28T            sp3_sp3_61           C          CA          CB          CG      60.000    10.0     3
+28T             sp3_sp3_3           C          CA           N          CD     -60.000    10.0     3
+28T            sp3_sp3_22          CA          CB          CG          CD     -60.000    10.0     3
+28T            sp3_sp3_13           N          CD          CG          CB      60.000    10.0     3
+28T             sp3_sp3_7          CG          CD           N          CA     -60.000    10.0     3
+28T            sp2_sp3_31         OAA         CAN         CAR         NAS       0.000    10.0     6
+28T            sp3_sp3_68         CAF         CAK         CAR         CAN     -60.000    10.0     3
+28T             sp2_sp3_5         CAP         NAS         CAR         CAN     -60.000    10.0     6
+28T            sp3_sp3_40         CAL         CAF         CAK         CAR     -60.000    10.0     3
+28T            sp3_sp3_31         CAK         CAF         CAL         NAS      60.000    10.0     3
+28T            sp2_sp3_10         CAP         NAS         CAL         CAF     180.000    10.0     6
+28T             sp2_sp2_1         CAI         CAP         NAS         CAL     180.000     5.0     2
+28T            sp2_sp3_29         OAC         CAP         CAI         CAH     -60.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+28T    chir_1    CAR    NAS    CAN    CAK    positive
+28T    chir_2    CA    N    C    CB    positive
+28T    chir_3    N    CA    CD    H20    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+28T    plan-1         CAN   0.020
+28T    plan-1         CAR   0.020
+28T    plan-1         OAA   0.020
+28T    plan-1         OAD   0.020
+28T    plan-2         CAL   0.020
+28T    plan-2         CAP   0.020
+28T    plan-2         CAR   0.020
+28T    plan-2         NAS   0.020
+28T    plan-3         CAI   0.020
+28T    plan-3         CAP   0.020
+28T    plan-3         NAS   0.020
+28T    plan-3         OAC   0.020
+28T    plan-4           C   0.020
+28T    plan-4          CA   0.020
+28T    plan-4         CAH   0.020
+28T    plan-4           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+28T           SMILES              ACDLabs 12.01                                                                                O=C(N1C(C(=O)O)CCC1)CCC(=O)C2NCCC2
+28T            InChI                InChI  1.03 InChI=1S/C13H20N2O4/c16-11(9-3-1-7-14-9)5-6-12(17)15-8-2-4-10(15)13(18)19/h9-10,14H,1-8H2,(H,18,19)/t9-,10-/m0/s1
+28T         InChIKey                InChI  1.03                                                                                       FCVBOVVXXBUFFZ-UWVGGRQHSA-N
+28T SMILES_CANONICAL               CACTVS 3.385                                                                        OC(=O)[C@@H]1CCCN1C(=O)CCC(=O)[C@@H]2CCCN2
+28T           SMILES               CACTVS 3.385                                                                            OC(=O)[CH]1CCCN1C(=O)CCC(=O)[CH]2CCCN2
+28T SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                        C1C[C@H](NC1)C(=O)CCC(=O)N2CCC[C@H]2C(=O)O
+28T           SMILES "OpenEye OEToolkits" 1.7.6                                                                                C1CC(NC1)C(=O)CCC(=O)N2CCCC2C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+28T acedrg               243         "dictionary generator"                  
+28T acedrg_database      11          "data source"                           
+28T rdkit                2017.03.2   "Chemoinformatics tool"
+28T refmac5              5.8.0238    "optimization tool"                     

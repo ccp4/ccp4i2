@@ -1,0 +1,259 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EWT     EWT      2-azanyl-~{N}-[(3,4-dichlorophenyl)methyl]-1,3-benzothiazole-6-carboxamide     NON-POLYMER     33     22     .     
+#
+data_comp_EWT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EWT     CAG     C       CR16    0       -29.106     -14.330     14.459      
+EWT     CAD     C       CR56    0       -28.380     -13.142     14.499      
+EWT     SAC     S       S2      0       -26.771     -12.864     14.185      
+EWT     CAB     C       CR5     0       -26.864     -11.224     14.486      
+EWT     NAA     N       NH2     0       -25.815     -10.415     14.388      
+EWT     NAF     N       NRD5    0       -28.080     -10.856     14.821      
+EWT     CAE     C       CR56    0       -28.980     -11.929     14.841      
+EWT     CAJ     C       CR16    0       -30.346     -11.903     15.152      
+EWT     CAI     C       CR16    0       -31.060     -13.077     15.109      
+EWT     CAH     C       CR6     0       -30.457     -14.300     14.773      
+EWT     CAR     C       C       0       -31.257     -15.569     14.727      
+EWT     OAU     O       O       0       -31.149     -16.326     13.762      
+EWT     NAS     N       NH1     0       -32.088     -15.804     15.753      
+EWT     CAT     C       CH2     0       -33.025     -16.925     15.790      
+EWT     CAK     C       CR6     0       -32.690     -17.917     16.876      
+EWT     CAP     C       CR16    0       -31.503     -18.639     16.823      
+EWT     CAO     C       CR6     0       -31.196     -19.549     17.822      
+EWT     CL1     CL      CL      0       -29.710     -20.428     17.720      
+EWT     CAN     C       CR6     0       -32.068     -19.747     18.882      
+EWT     CL2     CL      CL      0       -31.704     -20.878     20.140      
+EWT     CAM     C       CR16    0       -33.252     -19.033     18.943      
+EWT     CAL     C       CR16    0       -33.555     -18.124     17.943      
+EWT     H1      H       H       0       -28.695     -15.140     14.228      
+EWT     H2      H       H       0       -25.908     -9.559      14.555      
+EWT     H3      H       H       0       -25.033     -10.738     14.156      
+EWT     H4      H       H       0       -30.767     -11.095     15.384      
+EWT     H5      H       H       0       -31.978     -13.061     15.321      
+EWT     H6      H       H       0       -32.066     -15.273     16.449      
+EWT     H7      H       H       0       -33.031     -17.390     14.927      
+EWT     H8      H       H       0       -33.928     -16.577     15.942      
+EWT     H9      H       H       0       -30.907     -18.513     16.111      
+EWT     H10     H       H       0       -33.843     -19.166     19.660      
+EWT     H11     H       H       0       -34.363     -17.639     17.989      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EWT         CAR         OAU      DOUBLE       n     1.230  0.0114     1.230  0.0114
+EWT         CAD         SAC      SINGLE       y     1.695  0.0200     1.695  0.0200
+EWT         SAC         CAB      SINGLE       y     1.695  0.0200     1.695  0.0200
+EWT         CAG         CAD      DOUBLE       y     1.378  0.0200     1.378  0.0200
+EWT         CAG         CAH      SINGLE       y     1.383  0.0129     1.383  0.0129
+EWT         CAD         CAE      SINGLE       y     1.385  0.0119     1.385  0.0119
+EWT         CAH         CAR      SINGLE       n     1.498  0.0100     1.498  0.0100
+EWT         CAR         NAS      SINGLE       n     1.334  0.0100     1.334  0.0100
+EWT         CAB         NAA      SINGLE       n     1.328  0.0105     1.328  0.0105
+EWT         CAB         NAF      DOUBLE       y     1.300  0.0172     1.300  0.0172
+EWT         CAI         CAH      DOUBLE       y     1.400  0.0130     1.400  0.0130
+EWT         NAF         CAE      SINGLE       y     1.391  0.0100     1.391  0.0100
+EWT         CAE         CAJ      DOUBLE       y     1.396  0.0100     1.396  0.0100
+EWT         CAJ         CAI      SINGLE       y     1.370  0.0116     1.370  0.0116
+EWT         NAS         CAT      SINGLE       n     1.458  0.0100     1.458  0.0100
+EWT         CAT         CAK      SINGLE       n     1.508  0.0100     1.508  0.0100
+EWT         CAK         CAP      DOUBLE       y     1.386  0.0100     1.386  0.0100
+EWT         CAK         CAL      SINGLE       y     1.386  0.0100     1.386  0.0100
+EWT         CAP         CAO      SINGLE       y     1.382  0.0100     1.382  0.0100
+EWT         CAM         CAL      DOUBLE       y     1.382  0.0100     1.382  0.0100
+EWT         CAO         CL1      SINGLE       n     1.729  0.0117     1.729  0.0117
+EWT         CAO         CAN      DOUBLE       y     1.383  0.0100     1.383  0.0100
+EWT         CAN         CAM      SINGLE       y     1.380  0.0100     1.380  0.0100
+EWT         CAN         CL2      SINGLE       n     1.730  0.0100     1.730  0.0100
+EWT         CAG          H1      SINGLE       n     1.082  0.0130     0.937  0.0100
+EWT         NAA          H2      SINGLE       n     1.016  0.0100     0.877  0.0200
+EWT         NAA          H3      SINGLE       n     1.016  0.0100     0.877  0.0200
+EWT         CAJ          H4      SINGLE       n     1.082  0.0130     0.940  0.0191
+EWT         CAI          H5      SINGLE       n     1.082  0.0130     0.942  0.0147
+EWT         NAS          H6      SINGLE       n     1.016  0.0100     0.875  0.0200
+EWT         CAT          H7      SINGLE       n     1.089  0.0100     0.980  0.0169
+EWT         CAT          H8      SINGLE       n     1.089  0.0100     0.980  0.0169
+EWT         CAP          H9      SINGLE       n     1.082  0.0130     0.937  0.0118
+EWT         CAM         H10      SINGLE       n     1.082  0.0130     0.939  0.0109
+EWT         CAL         H11      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EWT         CAD         CAG         CAH     118.675    1.50
+EWT         CAD         CAG          H1     121.103    1.50
+EWT         CAH         CAG          H1     120.222    1.50
+EWT         SAC         CAD         CAG     131.121    3.00
+EWT         SAC         CAD         CAE     108.216    3.00
+EWT         CAG         CAD         CAE     120.663    1.92
+EWT         CAD         SAC         CAB     108.216    3.00
+EWT         SAC         CAB         NAA     124.962    3.00
+EWT         SAC         CAB         NAF     108.216    3.00
+EWT         NAA         CAB         NAF     126.822    2.12
+EWT         CAB         NAA          H2     119.811    1.50
+EWT         CAB         NAA          H3     119.811    1.50
+EWT          H2         NAA          H3     120.377    1.82
+EWT         CAB         NAF         CAE     106.262    1.50
+EWT         CAD         CAE         NAF     109.090    1.50
+EWT         CAD         CAE         CAJ     120.663    1.92
+EWT         NAF         CAE         CAJ     130.247    1.50
+EWT         CAE         CAJ         CAI     118.059    1.50
+EWT         CAE         CAJ          H4     120.909    1.50
+EWT         CAI         CAJ          H4     121.031    1.50
+EWT         CAH         CAI         CAJ     121.821    1.50
+EWT         CAH         CAI          H5     119.172    1.50
+EWT         CAJ         CAI          H5     119.007    1.50
+EWT         CAG         CAH         CAR     119.644    2.70
+EWT         CAG         CAH         CAI     120.118    1.50
+EWT         CAR         CAH         CAI     120.238    2.89
+EWT         OAU         CAR         CAH     120.879    1.50
+EWT         OAU         CAR         NAS     122.397    1.50
+EWT         CAH         CAR         NAS     116.724    1.50
+EWT         CAR         NAS         CAT     121.850    1.50
+EWT         CAR         NAS          H6     119.513    1.50
+EWT         CAT         NAS          H6     118.637    1.50
+EWT         NAS         CAT         CAK     112.551    1.55
+EWT         NAS         CAT          H7     109.133    1.50
+EWT         NAS         CAT          H8     109.133    1.50
+EWT         CAK         CAT          H7     109.073    1.50
+EWT         CAK         CAT          H8     109.073    1.50
+EWT          H7         CAT          H8     107.860    1.50
+EWT         CAT         CAK         CAP     120.375    1.50
+EWT         CAT         CAK         CAL     120.499    1.50
+EWT         CAP         CAK         CAL     119.126    1.50
+EWT         CAK         CAP         CAO     119.961    1.50
+EWT         CAK         CAP          H9     120.289    1.50
+EWT         CAO         CAP          H9     119.750    1.50
+EWT         CAP         CAO         CL1     118.955    1.50
+EWT         CAP         CAO         CAN     120.196    1.50
+EWT         CL1         CAO         CAN     120.849    1.50
+EWT         CAO         CAN         CAM     119.863    1.50
+EWT         CAO         CAN         CL2     121.005    1.50
+EWT         CAM         CAN         CL2     119.131    1.50
+EWT         CAL         CAM         CAN     119.623    1.50
+EWT         CAL         CAM         H10     120.433    1.50
+EWT         CAN         CAM         H10     119.945    1.50
+EWT         CAK         CAL         CAM     121.231    1.50
+EWT         CAK         CAL         H11     119.433    1.50
+EWT         CAM         CAL         H11     119.335    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EWT              const_11         SAC         CAD         CAG         CAH     180.000    10.0     2
+EWT              const_50         CAD         CAG         CAH         CAR     180.000    10.0     2
+EWT             sp2_sp2_7         OAU         CAR         NAS         CAT       0.000     5.0     2
+EWT             sp2_sp3_2         CAR         NAS         CAT         CAK     120.000    10.0     6
+EWT             sp2_sp3_8         CAP         CAK         CAT         NAS     -90.000    10.0     6
+EWT              const_31         CAT         CAK         CAP         CAO     180.000    10.0     2
+EWT              const_55         CAT         CAK         CAL         CAM     180.000    10.0     2
+EWT              const_35         CL1         CAO         CAP         CAK     180.000    10.0     2
+EWT              const_40         CL2         CAN         CAO         CL1       0.000    10.0     2
+EWT              const_42         CAL         CAM         CAN         CL2     180.000    10.0     2
+EWT       const_sp2_sp2_2         CAG         CAD         SAC         CAB     180.000     5.0     2
+EWT              const_13         SAC         CAD         CAE         NAF       0.000    10.0     2
+EWT              const_45         CAK         CAL         CAM         CAN       0.000    10.0     2
+EWT       const_sp2_sp2_4         NAA         CAB         SAC         CAD     180.000     5.0     2
+EWT             sp2_sp2_9         SAC         CAB         NAA          H2     180.000     5.0     2
+EWT       const_sp2_sp2_6         NAA         CAB         NAF         CAE     180.000     5.0     2
+EWT       const_sp2_sp2_7         CAD         CAE         NAF         CAB       0.000     5.0     2
+EWT              const_17         CAD         CAE         CAJ         CAI       0.000    10.0     2
+EWT              const_21         CAH         CAI         CAJ         CAE       0.000    10.0     2
+EWT              const_27         CAR         CAH         CAI         CAJ     180.000    10.0     2
+EWT             sp2_sp2_2         CAG         CAH         CAR         OAU       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EWT    plan-1         CAB   0.020
+EWT    plan-1         CAD   0.020
+EWT    plan-1         CAE   0.020
+EWT    plan-1         CAG   0.020
+EWT    plan-1         CAH   0.020
+EWT    plan-1         CAI   0.020
+EWT    plan-1         CAJ   0.020
+EWT    plan-1         CAR   0.020
+EWT    plan-1          H1   0.020
+EWT    plan-1          H4   0.020
+EWT    plan-1          H5   0.020
+EWT    plan-1         NAA   0.020
+EWT    plan-1         NAF   0.020
+EWT    plan-1         SAC   0.020
+EWT    plan-2         CAK   0.020
+EWT    plan-2         CAL   0.020
+EWT    plan-2         CAM   0.020
+EWT    plan-2         CAN   0.020
+EWT    plan-2         CAO   0.020
+EWT    plan-2         CAP   0.020
+EWT    plan-2         CAT   0.020
+EWT    plan-2         CL1   0.020
+EWT    plan-2         CL2   0.020
+EWT    plan-2         H10   0.020
+EWT    plan-2         H11   0.020
+EWT    plan-2          H9   0.020
+EWT    plan-3         CAB   0.020
+EWT    plan-3          H2   0.020
+EWT    plan-3          H3   0.020
+EWT    plan-3         NAA   0.020
+EWT    plan-4         CAH   0.020
+EWT    plan-4         CAR   0.020
+EWT    plan-4         NAS   0.020
+EWT    plan-4         OAU   0.020
+EWT    plan-5         CAR   0.020
+EWT    plan-5         CAT   0.020
+EWT    plan-5          H6   0.020
+EWT    plan-5         NAS   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EWT            InChI                InChI  1.03 InChI=1S/C15H11Cl2N3OS/c16-10-3-1-8(5-11(10)17)7-19-14(21)9-2-4-12-13(6-9)22-15(18)20-12/h1-6H,7H2,(H2,18,20)(H,19,21)
+EWT         InChIKey                InChI  1.03                                                                                            JOBYYAUGFMYSBN-UHFFFAOYSA-N
+EWT SMILES_CANONICAL               CACTVS 3.385                                                                                Nc1sc2cc(ccc2n1)C(=O)NCc3ccc(Cl)c(Cl)c3
+EWT           SMILES               CACTVS 3.385                                                                                Nc1sc2cc(ccc2n1)C(=O)NCc3ccc(Cl)c(Cl)c3
+EWT SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                              c1cc(c(cc1CNC(=O)c2ccc3c(c2)sc(n3)N)Cl)Cl
+EWT           SMILES "OpenEye OEToolkits" 2.0.6                                                                              c1cc(c(cc1CNC(=O)c2ccc3c(c2)sc(n3)N)Cl)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EWT acedrg               243         "dictionary generator"                  
+EWT acedrg_database      11          "data source"                           
+EWT rdkit                2017.03.2   "Chemoinformatics tool"
+EWT refmac5              5.8.0238    "optimization tool"                     

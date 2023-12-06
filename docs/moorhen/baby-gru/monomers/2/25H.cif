@@ -1,0 +1,243 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+25H     25H      "{2-[2-(2-amino-6-oxo-1,6-dihydro-9H-purin-9-yl)ethoxy]ethyl}phosphonic acid"     NON-POLYMER     32     20     .     
+#
+data_comp_25H
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+25H     N1      N       NR6     0       16.913      17.569      20.906      
+25H     C8      C       CR15    0       18.426      14.343      18.342      
+25H     C6      C       CR6     0       18.090      17.334      20.184      
+25H     N7      N       NRD5    0       18.996      15.472      18.688      
+25H     C5      C       CR56    0       18.051      16.086      19.505      
+25H     C2      C       CR6     0       15.834      16.714      20.968      
+25H     OAD     O       OP      -1      18.482      9.750       14.766      
+25H     PAT     P       P       0       17.725      10.526      13.742      
+25H     OAE     O       OP      -1      16.464      9.832       13.352      
+25H     OAC     O       O       0       18.571      10.831      12.552      
+25H     CAJ     C       CH2     0       17.263      12.099      14.493      
+25H     CAH     C       CH2     0       16.374      11.913      15.696      
+25H     OAN     O       O2      0       16.163      13.189      16.295      
+25H     CAG     C       CH2     0       15.384      13.201      17.487      
+25H     CAI     C       CH2     0       16.294      13.020      18.670      
+25H     N9      N       NT      0       17.179      14.169      18.870      
+25H     C4      C       CR56    0       16.925      15.294      19.626      
+25H     N3      N       NRD6    0       15.790      15.539      20.332      
+25H     N2      N       NH2     0       14.791      17.108      21.711      
+25H     O6      O       O       0       19.005      18.169      20.193      
+25H     HN1     H       H       0       16.864      18.341      21.362      
+25H     H8      H       H       0       18.836      13.701      17.778      
+25H     HAJ     H       H       0       16.793      12.653      13.836      
+25H     HAJA    H       H       0       18.069      12.583      14.768      
+25H     HAH     H       H       0       16.789      11.309      16.349      
+25H     HAHA    H       H       0       15.509      11.527      15.436      
+25H     HAG     H       H       0       14.715      12.483      17.462      
+25H     HAGA    H       H       0       14.904      14.053      17.559      
+25H     HAI     H       H       0       16.839      12.229      18.537      
+25H     HAIA    H       H       0       15.757      12.899      19.469      
+25H     HN2     H       H       0       13.974      16.989      21.416      
+25H     HN2A    H       H       0       14.928      17.485      22.491      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+25H          N1          C6      SINGLE       y     1.396  0.0107     1.396  0.0107
+25H          N1          C2      SINGLE       y     1.374  0.0100     1.374  0.0100
+25H          C8          N7      DOUBLE       y     1.310  0.0100     1.310  0.0100
+25H          C8          N9      SINGLE       y     1.368  0.0147     1.368  0.0147
+25H          C6          C5      SINGLE       y     1.417  0.0103     1.417  0.0103
+25H          C6          O6      DOUBLE       n     1.239  0.0100     1.239  0.0100
+25H          N7          C5      SINGLE       y     1.390  0.0100     1.390  0.0100
+25H          C5          C4      DOUBLE       y     1.380  0.0100     1.380  0.0100
+25H          C2          N3      DOUBLE       y     1.333  0.0104     1.333  0.0104
+25H          C2          N2      SINGLE       n     1.340  0.0101     1.340  0.0101
+25H         OAD         PAT      SINGLE       n     1.492  0.0200     1.492  0.0200
+25H         PAT         OAE      SINGLE       n     1.492  0.0200     1.492  0.0200
+25H         PAT         OAC      DOUBLE       n     1.492  0.0200     1.492  0.0200
+25H         PAT         CAJ      SINGLE       n     1.803  0.0200     1.803  0.0200
+25H         CAJ         CAH      SINGLE       n     1.508  0.0200     1.508  0.0200
+25H         CAH         OAN      SINGLE       n     1.424  0.0100     1.424  0.0100
+25H         OAN         CAG      SINGLE       n     1.422  0.0111     1.422  0.0111
+25H         CAG         CAI      SINGLE       n     1.503  0.0100     1.503  0.0100
+25H         CAI          N9      SINGLE       n     1.464  0.0101     1.464  0.0101
+25H          N9          C4      SINGLE       y     1.384  0.0181     1.384  0.0181
+25H          C4          N3      SINGLE       y     1.355  0.0100     1.355  0.0100
+25H          N1         HN1      SINGLE       n     1.016  0.0100     0.897  0.0200
+25H          C8          H8      SINGLE       n     1.082  0.0130     0.948  0.0200
+25H         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.980  0.0122
+25H         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.980  0.0122
+25H         CAH         HAH      SINGLE       n     1.089  0.0100     0.982  0.0200
+25H         CAH        HAHA      SINGLE       n     1.089  0.0100     0.982  0.0200
+25H         CAG         HAG      SINGLE       n     1.089  0.0100     0.981  0.0174
+25H         CAG        HAGA      SINGLE       n     1.089  0.0100     0.981  0.0174
+25H         CAI         HAI      SINGLE       n     1.089  0.0100     0.970  0.0119
+25H         CAI        HAIA      SINGLE       n     1.089  0.0100     0.970  0.0119
+25H          N2         HN2      SINGLE       n     1.016  0.0100     0.877  0.0200
+25H          N2        HN2A      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+25H          C6          N1          C2     125.374    1.50
+25H          C6          N1         HN1     116.964    2.44
+25H          C2          N1         HN1     117.663    2.71
+25H          N7          C8          N9     114.617    1.50
+25H          N7          C8          H8     123.146    1.50
+25H          N9          C8          H8     122.237    1.50
+25H          N1          C6          C5     111.384    1.50
+25H          N1          C6          O6     120.380    1.50
+25H          C5          C6          O6     128.236    1.50
+25H          C8          N7          C5     104.148    1.50
+25H          C6          C5          N7     130.146    1.50
+25H          C6          C5          C4     119.083    1.50
+25H          N7          C5          C4     110.771    1.50
+25H          N1          C2          N3     123.612    1.50
+25H          N1          C2          N2     116.575    1.50
+25H          N3          C2          N2     119.821    1.50
+25H         OAD         PAT         OAE     111.786    1.50
+25H         OAD         PAT         OAC     111.786    1.50
+25H         OAD         PAT         CAJ     108.625    3.00
+25H         OAE         PAT         OAC     111.786    1.50
+25H         OAE         PAT         CAJ     108.625    3.00
+25H         OAC         PAT         CAJ     108.625    3.00
+25H         PAT         CAJ         CAH     111.410    2.87
+25H         PAT         CAJ         HAJ     109.545    1.50
+25H         PAT         CAJ        HAJA     109.545    1.50
+25H         CAH         CAJ         HAJ     108.552    1.50
+25H         CAH         CAJ        HAJA     108.552    1.50
+25H         HAJ         CAJ        HAJA     107.498    1.50
+25H         CAJ         CAH         OAN     109.379    2.50
+25H         CAJ         CAH         HAH     111.612    1.91
+25H         CAJ         CAH        HAHA     111.612    1.91
+25H         OAN         CAH         HAH     109.837    1.50
+25H         OAN         CAH        HAHA     109.837    1.50
+25H         HAH         CAH        HAHA     108.281    1.50
+25H         CAH         OAN         CAG     113.198    3.00
+25H         OAN         CAG         CAI     109.380    2.71
+25H         OAN         CAG         HAG     110.037    1.50
+25H         OAN         CAG        HAGA     110.037    1.50
+25H         CAI         CAG         HAG     110.359    1.50
+25H         CAI         CAG        HAGA     110.359    1.50
+25H         HAG         CAG        HAGA     108.313    2.12
+25H         CAG         CAI          N9     111.989    1.71
+25H         CAG         CAI         HAI     108.995    1.50
+25H         CAG         CAI        HAIA     108.995    1.50
+25H          N9         CAI         HAI     108.458    1.53
+25H          N9         CAI        HAIA     108.458    1.53
+25H         HAI         CAI        HAIA     108.606    1.72
+25H          C8          N9         CAI     124.795    3.00
+25H          C8          N9          C4     107.594    1.50
+25H         CAI          N9          C4     124.908    2.72
+25H          C5          C4          N9     106.681    1.69
+25H          C5          C4          N3     128.446    1.50
+25H          N9          C4          N3     124.873    1.56
+25H          C2          N3          C4     112.093    1.50
+25H          C2          N2         HN2     119.868    1.50
+25H          C2          N2        HN2A     119.868    1.50
+25H         HN2          N2        HN2A     120.263    1.96
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+25H       const_sp2_sp2_3          O6          C6          N1          C2     180.000     5.0     2
+25H              const_27          N2          C2          N1          C6     180.000    10.0     2
+25H            sp3_sp3_10         OAN         CAH         CAJ         PAT     180.000    10.0     3
+25H            sp3_sp3_19         CAJ         CAH         OAN         CAG     180.000    10.0     3
+25H            sp3_sp3_22         CAI         CAG         OAN         CAH     180.000    10.0     3
+25H            sp3_sp3_25         OAN         CAG         CAI          N9     180.000    10.0     3
+25H             sp2_sp3_2          C8          N9         CAI         CAG     -90.000    10.0     6
+25H              const_22          C5          C4          N9         CAI     180.000    10.0     2
+25H              const_13          C5          C4          N3          C2       0.000    10.0     2
+25H              const_30          N7          C8          N9         CAI     180.000    10.0     2
+25H              const_17          N9          C8          N7          C5       0.000    10.0     2
+25H       const_sp2_sp2_8          N7          C5          C6          O6       0.000     5.0     2
+25H              const_20          C6          C5          N7          C8     180.000    10.0     2
+25H              const_10          N9          C4          C5          C6     180.000    10.0     2
+25H              const_16          N2          C2          N3          C4     180.000    10.0     2
+25H             sp2_sp2_1          N1          C2          N2         HN2     180.000     5.0     2
+25H             sp3_sp3_1         CAH         CAJ         PAT         OAD     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+25H    chir_1    PAT    OAD    OAE    OAC    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+25H    plan-1          C2   0.020
+25H    plan-1          C4   0.020
+25H    plan-1          C5   0.020
+25H    plan-1          C6   0.020
+25H    plan-1          C8   0.020
+25H    plan-1         CAI   0.020
+25H    plan-1          H8   0.020
+25H    plan-1         HN1   0.020
+25H    plan-1          N1   0.020
+25H    plan-1          N2   0.020
+25H    plan-1          N3   0.020
+25H    plan-1          N7   0.020
+25H    plan-1          N9   0.020
+25H    plan-1          O6   0.020
+25H    plan-2          C2   0.020
+25H    plan-2         HN2   0.020
+25H    plan-2        HN2A   0.020
+25H    plan-2          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+25H           SMILES              ACDLabs 10.04                                                                                 O=P(O)(O)CCOCCn1c2N=C(NC(=O)c2nc1)N
+25H SMILES_CANONICAL               CACTVS 3.341                                                                               NC1=Nc2n(CCOCC[P](O)(O)=O)cnc2C(=O)N1
+25H           SMILES               CACTVS 3.341                                                                               NC1=Nc2n(CCOCC[P](O)(O)=O)cnc2C(=O)N1
+25H SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                 c1nc2c(n1CCOCCP(=O)(O)O)N=C(NC2=O)N
+25H           SMILES "OpenEye OEToolkits" 1.5.0                                                                                 c1nc2c(n1CCOCCP(=O)(O)O)N=C(NC2=O)N
+25H            InChI                InChI  1.03 InChI=1S/C9H14N5O5P/c10-9-12-7-6(8(15)13-9)11-5-14(7)1-2-19-3-4-20(16,17)18/h5H,1-4H2,(H2,16,17,18)(H3,10,12,13,15)
+25H         InChIKey                InChI  1.03                                                                                         KDWYBFCNTYIRFX-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+25H acedrg               243         "dictionary generator"                  
+25H acedrg_database      11          "data source"                           
+25H rdkit                2017.03.2   "Chemoinformatics tool"
+25H refmac5              5.8.0238    "optimization tool"                     

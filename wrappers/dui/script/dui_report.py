@@ -38,9 +38,9 @@ class dui_report(Report):
             rfilepath = mfile[1].get('report') # is the dict.
             jobNumber = os.path.basename(os.path.dirname(rfilepath))[4:]
             rfileurl = (
-                "/database/?getProjectJobFile?projectId="
+                "/database/getProjectJobFile?projectId="
                 + projectid
-                + "?fileName="+os.path.basename(rfilepath)+"?jobNumber="
+                + "&fileName="+os.path.basename(rfilepath)+"&jobNumber="
                 + jobNumber
             )
             xia2HtmlFold.append('<br></br>')

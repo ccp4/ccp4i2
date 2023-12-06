@@ -1,0 +1,251 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JO5     JO5      4-azanyl-2-[(3~{S})-2,5-bis(oxidanylidene)pyrrolidin-3-yl]isoindole-1,3-dione     NON-POLYMER     28     19     .     
+#
+data_comp_JO5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JO5     C4      C       CR16    0       27.293      -15.540     5.417       
+JO5     C5      C       CR16    0       27.127      -14.219     5.807       
+JO5     C6      C       CR16    0       26.581      -13.274     4.936       
+JO5     C11     C       CR5     0       25.061      -14.794     -1.792      
+JO5     C7      C       CR56    0       26.213      -13.708     3.675       
+JO5     C8      C       CR5     0       25.615      -12.938     2.559       
+JO5     C9      C       CH1     0       24.843      -13.505     0.224       
+JO5     C10     C       CH2     0       25.773      -13.753     -0.974      
+JO5     C12     C       CR5     0       23.601      -14.314     -0.089      
+JO5     N1      N       NH2     0       27.090      -17.291     3.771       
+JO5     N2      N       NR5     0       25.424      -13.850     1.513       
+JO5     C3      C       CR6     0       26.919      -15.976     4.140       
+JO5     N3      N       NR5     0       23.823      -15.018     -1.239      
+JO5     O1      O       O       0       25.846      -16.095     1.138       
+JO5     C1      C       CR5     0       25.872      -15.129     1.863       
+JO5     C2      C       CR56    0       26.368      -15.031     3.259       
+JO5     O2      O       O       0       25.330      -11.763     2.511       
+JO5     O3      O       O       0       25.479      -15.363     -2.786      
+JO5     O4      O       O       0       22.579      -14.334     0.571       
+JO5     H1      H       H       0       27.666      -16.160     6.028       
+JO5     H2      H       H       0       27.390      -13.959     6.674       
+JO5     H3      H       H       0       26.468      -12.376     5.200       
+JO5     H4      H       H       0       24.582      -12.553     0.242       
+JO5     H5      H       H       0       26.648      -14.078     -0.684      
+JO5     H6      H       H       0       25.901      -12.933     -1.493      
+JO5     H7      H       H       0       27.502      -17.836     4.299       
+JO5     H8      H       H       0       26.785      -17.573     3.015       
+JO5     H9      H       H       0       23.226      -15.571     -1.600      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JO5         C11          O3      DOUBLE       n     1.219  0.0100     1.219  0.0100
+JO5         C11          N3      SINGLE       n     1.375  0.0100     1.375  0.0100
+JO5         C11         C10      SINGLE       n     1.502  0.0100     1.502  0.0100
+JO5         C12          N3      SINGLE       n     1.367  0.0102     1.367  0.0102
+JO5          C9         C10      SINGLE       n     1.535  0.0100     1.535  0.0100
+JO5          C9         C12      SINGLE       n     1.514  0.0102     1.514  0.0102
+JO5         C12          O4      DOUBLE       n     1.217  0.0149     1.217  0.0149
+JO5          C9          N2      SINGLE       n     1.449  0.0100     1.449  0.0100
+JO5          O1          C1      DOUBLE       n     1.207  0.0100     1.207  0.0100
+JO5          N2          C1      SINGLE       n     1.396  0.0100     1.396  0.0100
+JO5          C8          N2      SINGLE       n     1.396  0.0100     1.396  0.0100
+JO5          C1          C2      SINGLE       n     1.485  0.0100     1.485  0.0100
+JO5          C8          O2      DOUBLE       n     1.209  0.0100     1.209  0.0100
+JO5          C7          C8      SINGLE       n     1.482  0.0100     1.482  0.0100
+JO5          C7          C2      DOUBLE       y     1.393  0.0100     1.393  0.0100
+JO5          C3          C2      SINGLE       y     1.401  0.0100     1.401  0.0100
+JO5          C6          C7      SINGLE       y     1.380  0.0100     1.380  0.0100
+JO5          N1          C3      SINGLE       n     1.370  0.0200     1.370  0.0200
+JO5          C4          C3      DOUBLE       y     1.389  0.0186     1.389  0.0186
+JO5          C5          C6      DOUBLE       y     1.392  0.0100     1.392  0.0100
+JO5          C4          C5      SINGLE       y     1.384  0.0100     1.384  0.0100
+JO5          C4          H1      SINGLE       n     1.082  0.0130     0.947  0.0138
+JO5          C5          H2      SINGLE       n     1.082  0.0130     0.943  0.0125
+JO5          C6          H3      SINGLE       n     1.082  0.0130     0.943  0.0179
+JO5          C9          H4      SINGLE       n     1.089  0.0100     0.988  0.0200
+JO5         C10          H5      SINGLE       n     1.089  0.0100     0.978  0.0150
+JO5         C10          H6      SINGLE       n     1.089  0.0100     0.978  0.0150
+JO5          N1          H7      SINGLE       n     1.016  0.0100     0.863  0.0100
+JO5          N1          H8      SINGLE       n     1.016  0.0100     0.863  0.0100
+JO5          N3          H9      SINGLE       n     1.016  0.0100     0.890  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JO5          C3          C4          C5     121.463    1.50
+JO5          C3          C4          H1     119.286    1.50
+JO5          C5          C4          H1     119.251    1.60
+JO5          C6          C5          C4     120.896    1.50
+JO5          C6          C5          H2     119.815    1.50
+JO5          C4          C5          H2     119.290    1.50
+JO5          C7          C6          C5     116.944    1.50
+JO5          C7          C6          H3     121.690    1.50
+JO5          C5          C6          H3     121.366    1.50
+JO5          O3         C11          N3     124.191    1.50
+JO5          O3         C11         C10     127.405    1.56
+JO5          N3         C11         C10     108.404    1.50
+JO5          C8          C7          C2     108.150    1.50
+JO5          C8          C7          C6     129.339    1.50
+JO5          C2          C7          C6     122.511    1.50
+JO5          N2          C8          O2     124.454    1.50
+JO5          N2          C8          C7     105.750    1.50
+JO5          O2          C8          C7     129.795    1.50
+JO5         C10          C9         C12     104.009    1.83
+JO5         C10          C9          N2     113.039    1.91
+JO5         C10          C9          H4     109.775    1.50
+JO5         C12          C9          N2     111.817    1.50
+JO5         C12          C9          H4     108.995    2.52
+JO5          N2          C9          H4     107.359    2.24
+JO5         C11         C10          C9     104.009    1.83
+JO5         C11         C10          H5     110.971    1.50
+JO5         C11         C10          H6     110.971    1.50
+JO5          C9         C10          H5     111.145    1.50
+JO5          C9         C10          H6     111.145    1.50
+JO5          H5         C10          H6     108.871    1.50
+JO5          N3         C12          C9     108.441    1.71
+JO5          N3         C12          O4     125.701    1.50
+JO5          C9         C12          O4     125.858    1.50
+JO5          C3          N1          H7     119.884    1.50
+JO5          C3          N1          H8     119.884    1.50
+JO5          H7          N1          H8     120.231    2.83
+JO5          C9          N2          C1     124.142    1.50
+JO5          C9          N2          C8     124.142    1.50
+JO5          C1          N2          C8     111.716    1.50
+JO5          C2          C3          N1     120.935    1.50
+JO5          C2          C3          C4     118.371    2.75
+JO5          N1          C3          C4     120.694    1.50
+JO5         C11          N3         C12     113.412    1.50
+JO5         C11          N3          H9     122.879    2.59
+JO5         C12          N3          H9     123.709    2.60
+JO5          O1          C1          N2     124.542    1.50
+JO5          O1          C1          C2     129.225    1.50
+JO5          N2          C1          C2     106.233    1.50
+JO5          C1          C2          C7     108.150    1.50
+JO5          C1          C2          C3     132.034    2.29
+JO5          C7          C2          C3     119.816    1.79
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JO5              const_21          C3          C4          C5          C6       0.000    10.0     2
+JO5       const_sp2_sp2_3          N1          C3          C4          C5     180.000     5.0     2
+JO5            sp2_sp2_20          O1          C1          N2          C9       0.000     5.0     2
+JO5       const_sp2_sp2_8          C1          C2          C3          N1       0.000     5.0     2
+JO5            sp2_sp2_23          O1          C1          C2          C7     180.000     5.0     2
+JO5              const_17          C4          C5          C6          C7       0.000    10.0     2
+JO5              const_14          C5          C6          C7          C8     180.000    10.0     2
+JO5             sp2_sp2_3          O3         C11          N3         C12     180.000     5.0     2
+JO5            sp2_sp3_10          O3         C11         C10          C9     180.000    10.0     6
+JO5       const_sp2_sp2_9          C1          C2          C7          C8       0.000     5.0     2
+JO5            sp2_sp2_10          C2          C7          C8          O2     180.000     5.0     2
+JO5            sp2_sp2_16          O2          C8          N2          C9       0.000     5.0     2
+JO5            sp2_sp3_13          C1          N2          C9         C10     150.000    10.0     6
+JO5             sp3_sp3_1         C11         C10          C9         C12     -60.000    10.0     3
+JO5             sp2_sp3_4          O4         C12          C9         C10     180.000    10.0     6
+JO5             sp2_sp2_7          O4         C12          N3         C11     180.000     5.0     2
+JO5            sp2_sp2_25          C2          C3          N1          H7     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JO5    chir_1    C9    N2    C12    C10    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JO5    plan-1          C1   0.020
+JO5    plan-1          C2   0.020
+JO5    plan-1          C3   0.020
+JO5    plan-1          C4   0.020
+JO5    plan-1          C5   0.020
+JO5    plan-1          C6   0.020
+JO5    plan-1          C7   0.020
+JO5    plan-1          C8   0.020
+JO5    plan-1          H1   0.020
+JO5    plan-1          H2   0.020
+JO5    plan-1          H3   0.020
+JO5    plan-1          N1   0.020
+JO5    plan-2         C10   0.020
+JO5    plan-2         C11   0.020
+JO5    plan-2          N3   0.020
+JO5    plan-2          O3   0.020
+JO5    plan-3          C7   0.020
+JO5    plan-3          C8   0.020
+JO5    plan-3          N2   0.020
+JO5    plan-3          O2   0.020
+JO5    plan-4         C12   0.020
+JO5    plan-4          C9   0.020
+JO5    plan-4          N3   0.020
+JO5    plan-4          O4   0.020
+JO5    plan-5          C3   0.020
+JO5    plan-5          H7   0.020
+JO5    plan-5          H8   0.020
+JO5    plan-5          N1   0.020
+JO5    plan-6          C1   0.020
+JO5    plan-6          C8   0.020
+JO5    plan-6          C9   0.020
+JO5    plan-6          N2   0.020
+JO5    plan-7         C11   0.020
+JO5    plan-7         C12   0.020
+JO5    plan-7          H9   0.020
+JO5    plan-7          N3   0.020
+JO5    plan-8          C1   0.020
+JO5    plan-8          C2   0.020
+JO5    plan-8          N2   0.020
+JO5    plan-8          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JO5            InChI                InChI  1.03 InChI=1S/C12H9N3O4/c13-6-3-1-2-5-9(6)12(19)15(11(5)18)7-4-8(16)14-10(7)17/h1-3,7H,4,13H2,(H,14,16,17)/t7-/m0/s1
+JO5         InChIKey                InChI  1.03                                                                                     MSHTVRYXGFREAN-ZETCQYMHSA-N
+JO5 SMILES_CANONICAL               CACTVS 3.385                                                                       Nc1cccc2C(=O)N([C@H]3CC(=O)NC3=O)C(=O)c12
+JO5           SMILES               CACTVS 3.385                                                                        Nc1cccc2C(=O)N([CH]3CC(=O)NC3=O)C(=O)c12
+JO5 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                     c1cc2c(c(c1)N)C(=O)N(C2=O)[C@H]3CC(=O)NC3=O
+JO5           SMILES "OpenEye OEToolkits" 2.0.7                                                                         c1cc2c(c(c1)N)C(=O)N(C2=O)C3CC(=O)NC3=O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JO5 acedrg               243         "dictionary generator"                  
+JO5 acedrg_database      11          "data source"                           
+JO5 rdkit                2017.03.2   "Chemoinformatics tool"
+JO5 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,243 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EUB     EUB      4-[(2-azanyl-1,3-benzothiazol-6-yl)oxymethyl]benzenecarbonitrile     NON-POLYMER     31     20     .     
+#
+data_comp_EUB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EUB     CAG     C       CR16    0       1.001       15.238      32.234      
+EUB     CAD     C       CR56    0       1.892       14.188      32.405      
+EUB     SAC     S       S2      0       2.757       13.740      33.751      
+EUB     CAB     C       CR5     0       3.493       12.442      33.003      
+EUB     NAA     N       NH2     0       4.356       11.648      33.627      
+EUB     NAF     N       NRD5    0       3.113       12.318      31.751      
+EUB     CAE     C       CR56    0       2.193       13.303      31.369      
+EUB     CAJ     C       CR16    0       1.582       13.475      30.120      
+EUB     CAI     C       CR16    0       0.700       14.509      29.947      
+EUB     CAH     C       CR6     0       0.401       15.403      30.998      
+EUB     OAK     O       O2      0       -0.468      16.471      30.928      
+EUB     CAL     C       CH2     0       -1.095      16.884      29.700      
+EUB     CAM     C       CR6     0       -0.089      17.545      28.798      
+EUB     CAN     C       CR16    0       0.657       18.622      29.249      
+EUB     CAO     C       CR16    0       1.579       19.236      28.438      
+EUB     CAP     C       CR6     0       1.775       18.778      27.142      
+EUB     CAS     C       CSP     0       2.743       19.418      26.288      
+EUB     NAT     N       NSP     0       3.534       19.925      25.625      
+EUB     CAQ     C       CR16    0       1.037       17.699      26.673      
+EUB     CAR     C       CR16    0       0.110       17.091      27.505      
+EUB     H1      H       H       0       0.808       15.827      32.942      
+EUB     H2      H       H       0       4.517       11.763      34.482      
+EUB     H3      H       H       0       4.762       11.010      33.182      
+EUB     H4      H       H       0       1.773       12.888      29.411      
+EUB     H5      H       H       0       0.291       14.623      29.103      
+EUB     H6      H       H       0       -1.813      17.516      29.902      
+EUB     H7      H       H       0       -1.492      16.111      29.252      
+EUB     H8      H       H       0       0.529       18.939      30.128      
+EUB     H9      H       H       0       2.076       19.966      28.764      
+EUB     H10     H       H       0       1.162       17.380      25.796      
+EUB     H11     H       H       0       -0.391      16.359      27.185      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EUB         CAS         NAT      TRIPLE       n     1.149  0.0200     1.149  0.0200
+EUB         CAP         CAS      SINGLE       n     1.441  0.0112     1.441  0.0112
+EUB         CAP         CAQ      DOUBLE       y     1.386  0.0100     1.386  0.0100
+EUB         CAQ         CAR      SINGLE       y     1.383  0.0100     1.383  0.0100
+EUB         CAO         CAP      SINGLE       y     1.386  0.0100     1.386  0.0100
+EUB         CAM         CAR      DOUBLE       y     1.381  0.0100     1.381  0.0100
+EUB         CAN         CAO      DOUBLE       y     1.369  0.0100     1.369  0.0100
+EUB         CAM         CAN      SINGLE       y     1.381  0.0100     1.381  0.0100
+EUB         CAL         CAM      SINGLE       n     1.502  0.0100     1.502  0.0100
+EUB         OAK         CAL      SINGLE       n     1.432  0.0146     1.432  0.0146
+EUB         CAJ         CAI      DOUBLE       y     1.366  0.0100     1.366  0.0100
+EUB         CAI         CAH      SINGLE       y     1.406  0.0100     1.406  0.0100
+EUB         CAE         CAJ      SINGLE       y     1.396  0.0100     1.396  0.0100
+EUB         CAH         OAK      SINGLE       n     1.372  0.0110     1.372  0.0110
+EUB         CAG         CAH      DOUBLE       y     1.381  0.0100     1.381  0.0100
+EUB         NAF         CAE      SINGLE       y     1.391  0.0100     1.391  0.0100
+EUB         CAD         CAE      DOUBLE       y     1.385  0.0119     1.385  0.0119
+EUB         CAB         NAF      DOUBLE       y     1.300  0.0172     1.300  0.0172
+EUB         CAG         CAD      SINGLE       y     1.382  0.0123     1.382  0.0123
+EUB         CAD         SAC      SINGLE       y     1.695  0.0200     1.695  0.0200
+EUB         SAC         CAB      SINGLE       y     1.695  0.0200     1.695  0.0200
+EUB         CAB         NAA      SINGLE       n     1.328  0.0105     1.328  0.0105
+EUB         CAG          H1      SINGLE       n     1.082  0.0130     0.941  0.0170
+EUB         NAA          H2      SINGLE       n     1.016  0.0100     0.877  0.0200
+EUB         NAA          H3      SINGLE       n     1.016  0.0100     0.877  0.0200
+EUB         CAJ          H4      SINGLE       n     1.082  0.0130     0.940  0.0191
+EUB         CAI          H5      SINGLE       n     1.082  0.0130     0.947  0.0200
+EUB         CAL          H6      SINGLE       n     1.089  0.0100     0.978  0.0133
+EUB         CAL          H7      SINGLE       n     1.089  0.0100     0.978  0.0133
+EUB         CAN          H8      SINGLE       n     1.082  0.0130     0.943  0.0173
+EUB         CAO          H9      SINGLE       n     1.082  0.0130     0.941  0.0168
+EUB         CAQ         H10      SINGLE       n     1.082  0.0130     0.941  0.0168
+EUB         CAR         H11      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EUB         CAH         CAG         CAD     118.138    1.50
+EUB         CAH         CAG          H1     120.785    1.50
+EUB         CAD         CAG          H1     121.077    1.50
+EUB         CAE         CAD         CAG     120.710    1.92
+EUB         CAE         CAD         SAC     108.216    3.00
+EUB         CAG         CAD         SAC     131.074    3.00
+EUB         CAD         SAC         CAB     108.216    3.00
+EUB         NAF         CAB         SAC     108.216    3.00
+EUB         NAF         CAB         NAA     126.822    2.12
+EUB         SAC         CAB         NAA     124.962    3.00
+EUB         CAB         NAA          H2     119.811    1.50
+EUB         CAB         NAA          H3     119.811    1.50
+EUB          H2         NAA          H3     120.377    1.82
+EUB         CAE         NAF         CAB     106.262    1.50
+EUB         CAJ         CAE         NAF     130.200    1.50
+EUB         CAJ         CAE         CAD     120.710    1.92
+EUB         NAF         CAE         CAD     109.090    1.50
+EUB         CAI         CAJ         CAE     118.106    1.50
+EUB         CAI         CAJ          H4     120.910    1.50
+EUB         CAE         CAJ          H4     120.984    1.50
+EUB         CAJ         CAI         CAH     121.256    1.50
+EUB         CAJ         CAI          H5     119.412    1.50
+EUB         CAH         CAI          H5     119.332    1.50
+EUB         CAI         CAH         OAK     118.776    3.00
+EUB         CAI         CAH         CAG     121.081    1.50
+EUB         OAK         CAH         CAG     120.143    3.00
+EUB         CAL         OAK         CAH     117.234    1.89
+EUB         CAM         CAL         OAK     109.292    2.21
+EUB         CAM         CAL          H6     109.862    1.50
+EUB         CAM         CAL          H7     109.862    1.50
+EUB         OAK         CAL          H6     109.697    1.50
+EUB         OAK         CAL          H7     109.697    1.50
+EUB          H6         CAL          H7     108.398    1.50
+EUB         CAR         CAM         CAN     118.718    1.50
+EUB         CAR         CAM         CAL     120.641    1.50
+EUB         CAN         CAM         CAL     120.641    1.50
+EUB         CAO         CAN         CAM     120.823    1.50
+EUB         CAO         CAN          H8     119.576    1.50
+EUB         CAM         CAN          H8     119.599    1.50
+EUB         CAP         CAO         CAN     119.790    1.50
+EUB         CAP         CAO          H9     120.368    1.50
+EUB         CAN         CAO          H9     119.842    1.50
+EUB         CAS         CAP         CAQ     119.970    1.50
+EUB         CAS         CAP         CAO     119.970    1.50
+EUB         CAQ         CAP         CAO     120.060    1.50
+EUB         NAT         CAS         CAP     177.968    1.50
+EUB         CAP         CAQ         CAR     119.790    1.50
+EUB         CAP         CAQ         H10     120.368    1.50
+EUB         CAR         CAQ         H10     119.842    1.50
+EUB         CAQ         CAR         CAM     120.823    1.50
+EUB         CAQ         CAR         H11     119.576    1.50
+EUB         CAM         CAR         H11     119.599    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EUB              const_51         CAE         CAD         CAG         CAH       0.000    10.0     2
+EUB              const_12         CAD         CAG         CAH         OAK     180.000    10.0     2
+EUB             sp3_sp3_1         CAM         CAL         OAK         CAH     180.000    10.0     3
+EUB             sp2_sp3_2         CAR         CAM         CAL         OAK     -90.000    10.0     6
+EUB              const_49         CAL         CAM         CAN         CAO     180.000    10.0     2
+EUB              const_29         CAL         CAM         CAR         CAQ     180.000    10.0     2
+EUB              const_43         CAM         CAN         CAO         CAP       0.000    10.0     2
+EUB              const_40         CAN         CAO         CAP         CAS     180.000    10.0     2
+EUB           other_tor_1         NAT         CAS         CAP         CAQ      90.000    10.0     1
+EUB              const_37         CAS         CAP         CAQ         CAR     180.000    10.0     2
+EUB              const_31         CAP         CAQ         CAR         CAM       0.000    10.0     2
+EUB              const_55         CAE         CAD         SAC         CAB       0.000    10.0     2
+EUB       const_sp2_sp2_1         CAG         CAD         CAE         CAJ       0.000     5.0     2
+EUB              const_10         NAA         CAB         SAC         CAD     180.000    10.0     2
+EUB             sp2_sp2_3         NAF         CAB         NAA          H2     180.000     5.0     2
+EUB       const_sp2_sp2_8         NAA         CAB         NAF         CAE     180.000     5.0     2
+EUB       const_sp2_sp2_6         CAJ         CAE         NAF         CAB     180.000     5.0     2
+EUB              const_25         NAF         CAE         CAJ         CAI     180.000    10.0     2
+EUB              const_19         CAH         CAI         CAJ         CAE       0.000    10.0     2
+EUB              const_17         OAK         CAH         CAI         CAJ     180.000    10.0     2
+EUB             sp2_sp2_1         CAI         CAH         OAK         CAL     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EUB    plan-1         CAB   0.020
+EUB    plan-1         CAD   0.020
+EUB    plan-1         CAE   0.020
+EUB    plan-1         CAG   0.020
+EUB    plan-1         CAH   0.020
+EUB    plan-1         CAI   0.020
+EUB    plan-1         CAJ   0.020
+EUB    plan-1          H1   0.020
+EUB    plan-1          H4   0.020
+EUB    plan-1          H5   0.020
+EUB    plan-1         NAA   0.020
+EUB    plan-1         NAF   0.020
+EUB    plan-1         OAK   0.020
+EUB    plan-1         SAC   0.020
+EUB    plan-2         CAL   0.020
+EUB    plan-2         CAM   0.020
+EUB    plan-2         CAN   0.020
+EUB    plan-2         CAO   0.020
+EUB    plan-2         CAP   0.020
+EUB    plan-2         CAQ   0.020
+EUB    plan-2         CAR   0.020
+EUB    plan-2         CAS   0.020
+EUB    plan-2         H10   0.020
+EUB    plan-2         H11   0.020
+EUB    plan-2          H8   0.020
+EUB    plan-2          H9   0.020
+EUB    plan-3         CAB   0.020
+EUB    plan-3          H2   0.020
+EUB    plan-3          H3   0.020
+EUB    plan-3         NAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EUB            InChI                InChI  1.03 InChI=1S/C15H11N3OS/c16-8-10-1-3-11(4-2-10)9-19-12-5-6-13-14(7-12)20-15(17)18-13/h1-7H,9H2,(H2,17,18)
+EUB         InChIKey                InChI  1.03                                                                           ZIROAUYIWZSHKG-UHFFFAOYSA-N
+EUB SMILES_CANONICAL               CACTVS 3.385                                                                       Nc1sc2cc(OCc3ccc(cc3)C#N)ccc2n1
+EUB           SMILES               CACTVS 3.385                                                                       Nc1sc2cc(OCc3ccc(cc3)C#N)ccc2n1
+EUB SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                     c1cc(ccc1COc2ccc3c(c2)sc(n3)N)C#N
+EUB           SMILES "OpenEye OEToolkits" 2.0.6                                                                     c1cc(ccc1COc2ccc3c(c2)sc(n3)N)C#N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EUB acedrg               243         "dictionary generator"                  
+EUB acedrg_database      11          "data source"                           
+EUB rdkit                2017.03.2   "Chemoinformatics tool"
+EUB refmac5              5.8.0238    "optimization tool"                     

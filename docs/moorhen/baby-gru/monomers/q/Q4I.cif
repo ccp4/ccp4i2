@@ -1,0 +1,935 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+Q4I     Q4I      "8-({[4-(3-aminopropoxy)-8-({[4-hydroxy-8-({[4-(2-methylpropoxy)-8-({[4-(3-{[(4-sulfamoylbenzoyl)amino]methyl}phenoxy)butyl]carbamoyl}amino)quinolin-2-yl]carbonyl}amino)quinolin-2-yl]carbonyl}amino)quinolin-2-yl]carbonyl}amino)-4-(carboxymethoxy)quinoline-2-carboxylic acid"     NON-POLYMER     160     97     .     
+#
+data_comp_Q4I
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+Q4I     CCM     C       C       0       -0.548      -7.571      65.720      
+Q4I     CBW     C       CH2     0       -0.277      -6.180      66.273      
+Q4I     OCK     O       O2      0       -0.327      -6.176      67.693      
+Q4I     CDH     C       CR6     0       -0.572      -4.997      68.330      
+Q4I     CBL     C       CR16    0       0.225       -3.888      68.213      
+Q4I     CCY     C       CR6     0       -0.148      -2.729      68.931      
+Q4I     CCN     C       C       0       0.730       -1.508      68.804      
+Q4I     OAF     O       O       0       1.400       -1.264      67.820      
+Q4I     OAO     O       OH1     0       0.709       -0.734      69.897      
+Q4I     NBY     N       NRD6    0       -1.211      -2.636      69.711      
+Q4I     CDO     C       CR66    0       -2.020      -3.735      69.845      
+Q4I     CDL     C       CR66    0       -1.734      -4.955      69.163      
+Q4I     CBH     C       CR16    0       -2.609      -6.060      69.339      
+Q4I     CAU     C       CR16    0       -3.702      -5.960      70.146      
+Q4I     CBB     C       CR16    0       -3.991      -4.765      70.826      
+Q4I     CDE     C       CR6     0       -3.180      -3.657      70.693      
+Q4I     NCH     N       NH1     0       -3.403      -2.417      71.330      
+Q4I     CCR     C       C       0       -4.589      -1.812      71.607      
+Q4I     OAJ     O       O       0       -5.680      -2.375      71.577      
+Q4I     CDA     C       CR6     0       -4.526      -0.355      72.003      
+Q4I     CBM     C       CR16    0       -5.413      0.086       73.015      
+Q4I     CDG     C       CR6     0       -5.404      1.404       73.386      
+Q4I     OCJ     O       O2      0       -6.211      1.917       74.339      
+Q4I     NCB     N       NRD6    0       -3.690      0.458       71.372      
+Q4I     CDQ     C       CR66    0       -3.656      1.785       71.727      
+Q4I     CDK     C       CR66    0       -4.506      2.310       72.745      
+Q4I     CBG     C       CR16    0       -4.428      3.692       73.065      
+Q4I     CAT     C       CR16    0       -3.551      4.508       72.413      
+Q4I     CBC     C       CR16    0       -2.704      4.002       71.412      
+Q4I     CDF     C       CR6     0       -2.744      2.671       71.057      
+Q4I     NCF     N       NT1     0       -1.894      2.153       70.043      
+Q4I     CCQ     C       C       0       -1.731      2.627       68.781      
+Q4I     OAI     O       O       0       -1.825      3.816       68.487      
+Q4I     CCZ     C       CR6     0       -1.388      1.619       67.713      
+Q4I     CBK     C       CR16    0       -0.338      1.921       66.813      
+Q4I     CCV     C       CR6     0       -0.025      1.012       65.841      
+Q4I     OAP     O       OH1     0       0.993       1.273       64.954      
+Q4I     NBZ     N       NRD6    0       -2.093      0.501       67.659      
+Q4I     CDN     C       CR66    0       -1.798      -0.426      66.693      
+Q4I     CDJ     C       CR66    0       -0.757      -0.208      65.746      
+Q4I     CBF     C       CR16    0       -0.489      -1.201      64.770      
+Q4I     CAR     C       CR16    0       -1.223      -2.348      64.734      
+Q4I     CBA     C       CR16    0       -2.252      -2.578      65.665      
+Q4I     CDD     C       CR6     0       -2.560      -1.644      66.634      
+Q4I     NCG     N       NH1     0       -3.574      -1.779      67.609      
+Q4I     CCS     C       C       0       -4.590      -2.678      67.687      
+Q4I     OAK     O       O       0       -4.525      -3.831      67.267      
+Q4I     CDB     C       CR6     0       -5.848      -2.195      68.379      
+Q4I     CBN     C       CR16    0       -6.816      -3.160      68.754      
+Q4I     CDI     C       CR6     0       -7.962      -2.751      69.389      
+Q4I     OCL     O       O2      0       -8.969      -3.554      69.812      
+Q4I     CBX     C       CH2     0       -8.874      -4.999      69.803      
+Q4I     CDR     C       CH1     0       -7.971      -5.455      70.931      
+Q4I     CAA     C       CH3     0       -7.767      -6.956      70.852      
+Q4I     CAB     C       CH3     0       -8.539      -5.044      72.277      
+Q4I     NCA     N       NRD6    0       -6.001      -0.898      68.610      
+Q4I     CDP     C       CR66    0       -7.139      -0.456      69.240      
+Q4I     CDM     C       CR66    0       -8.160      -1.361      69.653      
+Q4I     CBI     C       CR16    0       -9.316      -0.847      70.300      
+Q4I     CAS     C       CR16    0       -9.450      0.490       70.524      
+Q4I     CAZ     C       CR16    0       -8.453      1.394       70.120      
+Q4I     CDC     C       CR6     0       -7.307      0.953       69.490      
+Q4I     NCE     N       NH1     0       -6.256      1.778       69.056      
+Q4I     CCO     C       C       0       -5.947      3.081       69.461      
+Q4I     OAG     O       O       0       -6.356      3.567       70.524      
+Q4I     NCC     N       NH1     0       -5.189      3.781       68.584      
+Q4I     CBS     C       CH2     0       -4.910      5.207       68.748      
+Q4I     CBQ     C       CH2     0       -5.458      6.023       67.592      
+Q4I     CBR     C       CH2     0       -6.987      6.042       67.539      
+Q4I     CBU     C       CH2     0       -7.581      6.213       66.158      
+Q4I     OCI     O       O2      0       -7.066      5.237       65.238      
+Q4I     CCU     C       CR6     0       -7.250      3.891       65.469      
+Q4I     CBJ     C       CR16    0       -6.134      3.067       65.383      
+Q4I     CAW     C       CR16    0       -8.497      3.346       65.762      
+Q4I     CAQ     C       CR16    0       -8.612      1.982       65.980      
+Q4I     CAV     C       CR16    0       -7.500      1.159       65.902      
+Q4I     CCT     C       CR6     0       -6.250      1.694       65.597      
+Q4I     CBV     C       CH2     0       -5.034      0.810       65.518      
+Q4I     NCD     N       NH1     0       -5.130      -0.203      64.468      
+Q4I     CCP     C       C       0       -4.193      -0.365      63.522      
+Q4I     OAH     O       O       0       -3.383      0.523       63.252      
+Q4I     CCW     C       CR6     0       -4.047      -1.731      62.896      
+Q4I     CAX     C       CR16    0       -4.595      -2.889      63.453      
+Q4I     CBD     C       CR16    0       -4.409      -4.128      62.861      
+Q4I     CCX     C       CR6     0       -3.664      -4.228      61.695      
+Q4I     SDS     S       S3      0       -3.414      -5.799      60.924      
+Q4I     OAL     O       O       0       -4.367      -6.721      61.469      
+Q4I     OAM     O       O       0       -3.398      -5.583      59.508      
+Q4I     NAD     N       NT2     0       -1.959      -6.333      61.333      
+Q4I     CBE     C       CR16    0       -3.100      -3.094      61.131      
+Q4I     CAY     C       CR16    0       -3.289      -1.860      61.732      
+Q4I     OAE     O       OC      -1      0.315       -8.445      65.934      
+Q4I     OAN     O       O       0       -1.614      -7.743      65.094      
+Q4I     CBT     C       CH2     0       -7.624      1.652       74.257      
+Q4I     CBP     C       CH2     0       -8.394      2.832       74.789      
+Q4I     CBO     C       CH2     0       -9.116      3.609       73.693      
+Q4I     NAC     N       NT2     0       -9.977      4.672       74.221      
+Q4I     H1      H       H       0       -0.936      -5.559      65.914      
+Q4I     H2      H       H       0       0.604       -5.886      65.978      
+Q4I     H3      H       H       0       0.997       -3.899      67.666      
+Q4I     H4      H       H       0       1.012       -1.036      70.644      
+Q4I     H5      H       H       0       -2.435      -6.874      68.896      
+Q4I     H6      H       H       0       -4.275      -6.707      70.253      
+Q4I     H7      H       H       0       -4.755      -4.726      71.377      
+Q4I     H8      H       H       0       -2.678      -1.994      71.590      
+Q4I     H9      H       H       0       -6.002      -0.527      73.430      
+Q4I     H10     H       H       0       -4.986      4.052       73.734      
+Q4I     H11     H       H       0       -3.509      5.426       72.639      
+Q4I     H12     H       H       0       -2.105      4.588       70.976      
+Q4I     H13     H       H       0       -1.286      1.588       70.345      
+Q4I     H14     H       H       0       0.141       2.734       66.882      
+Q4I     H15     H       H       0       0.979       1.994       64.483      
+Q4I     H16     H       H       0       0.199       -1.068      64.139      
+Q4I     H17     H       H       0       -1.037      -3.003      64.076      
+Q4I     H18     H       H       0       -2.742      -3.378      65.608      
+Q4I     H19     H       H       0       -3.527      -1.198      68.268      
+Q4I     H20     H       H       0       -6.660      -4.075      68.576      
+Q4I     H21     H       H       0       -8.527      -5.317      68.943      
+Q4I     H22     H       H       0       -9.767      -5.386      69.926      
+Q4I     H23     H       H       0       -7.087      -5.023      70.825      
+Q4I     H24     H       H       0       -7.134      -7.235      71.537      
+Q4I     H25     H       H       0       -7.418      -7.191      69.975      
+Q4I     H26     H       H       0       -8.617      -7.407      70.994      
+Q4I     H27     H       H       0       -9.489      -5.249      72.306      
+Q4I     H28     H       H       0       -8.410      -4.088      72.407      
+Q4I     H29     H       H       0       -8.081      -5.531      72.985      
+Q4I     H30     H       H       0       -10.000     -1.432      70.579      
+Q4I     H31     H       H       0       -10.227     0.817       70.956      
+Q4I     H32     H       H       0       -8.576      2.313       70.288      
+Q4I     H33     H       H       0       -5.740      1.410       68.468      
+Q4I     H34     H       H       0       -4.841      3.365       67.902      
+Q4I     H35     H       H       0       -3.941      5.341       68.801      
+Q4I     H36     H       H       0       -5.300      5.537       69.584      
+Q4I     H37     H       H       0       -5.106      5.658       66.755      
+Q4I     H38     H       H       0       -5.134      6.945       67.676      
+Q4I     H39     H       H       0       -7.305      6.780       68.100      
+Q4I     H40     H       H       0       -7.333      5.214       67.930      
+Q4I     H41     H       H       0       -7.372      7.110       65.825      
+Q4I     H42     H       H       0       -8.555      6.135       66.209      
+Q4I     H43     H       H       0       -5.290      3.443       65.182      
+Q4I     H44     H       H       0       -9.256      3.901       65.817      
+Q4I     H45     H       H       0       -9.454      1.613       66.182      
+Q4I     H46     H       H       0       -7.589      0.231       66.051      
+Q4I     H47     H       H       0       -4.921      0.358       66.380      
+Q4I     H48     H       H       0       -4.242      1.368       65.376      
+Q4I     H49     H       H       0       -5.856      -0.688      64.438      
+Q4I     H50     H       H       0       -5.097      -2.837      64.245      
+Q4I     H51     H       H       0       -4.790      -4.892      63.247      
+Q4I     H52     H       H       0       -1.608      -5.892      61.995      
+Q4I     H53     H       H       0       -1.916      -7.199      61.387      
+Q4I     H54     H       H       0       -2.596      -3.161      60.345      
+Q4I     H55     H       H       0       -2.902      -1.099      61.338      
+Q4I     H57     H       H       0       -7.838      0.855       74.784      
+Q4I     H58     H       H       0       -7.880      1.478       73.327      
+Q4I     H59     H       H       0       -7.779      3.435       75.260      
+Q4I     H60     H       H       0       -9.052      2.513       75.442      
+Q4I     H61     H       H       0       -9.666      2.995       73.166      
+Q4I     H62     H       H       0       -8.456      4.010       73.091      
+Q4I     H63     H       H       0       -10.458     5.040       73.571      
+Q4I     H64     H       H       0       -10.547     4.348       74.819      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+Q4I         SDS         OAM      DOUBLE       n     1.433  0.0100     1.433  0.0100
+Q4I         SDS         NAD      SINGLE       n     1.603  0.0110     1.603  0.0110
+Q4I         SDS         OAL      DOUBLE       n     1.433  0.0100     1.433  0.0100
+Q4I         CCX         SDS      SINGLE       n     1.766  0.0100     1.766  0.0100
+Q4I         CCX         CBE      DOUBLE       y     1.384  0.0100     1.384  0.0100
+Q4I         CBD         CCX      SINGLE       y     1.384  0.0100     1.384  0.0100
+Q4I         CBE         CAY      SINGLE       y     1.382  0.0100     1.382  0.0100
+Q4I         CAX         CBD      DOUBLE       y     1.382  0.0100     1.382  0.0100
+Q4I         CCW         CAY      DOUBLE       y     1.389  0.0100     1.389  0.0100
+Q4I         CCW         CAX      SINGLE       y     1.389  0.0100     1.389  0.0100
+Q4I         CCP         CCW      SINGLE       n     1.502  0.0100     1.502  0.0100
+Q4I         CCP         OAH      DOUBLE       n     1.230  0.0114     1.230  0.0114
+Q4I         NCD         CCP      SINGLE       n     1.334  0.0100     1.334  0.0100
+Q4I         CBV         NCD      SINGLE       n     1.458  0.0100     1.458  0.0100
+Q4I         CCT         CBV      SINGLE       n     1.504  0.0100     1.504  0.0100
+Q4I         CAV         CCT      SINGLE       y     1.391  0.0100     1.391  0.0100
+Q4I         CAQ         CAV      DOUBLE       y     1.382  0.0119     1.382  0.0119
+Q4I         CBJ         CCT      DOUBLE       y     1.390  0.0100     1.390  0.0100
+Q4I         CAW         CAQ      SINGLE       y     1.382  0.0111     1.382  0.0111
+Q4I         CCU         CBJ      SINGLE       y     1.386  0.0100     1.386  0.0100
+Q4I         CCU         CAW      DOUBLE       y     1.386  0.0109     1.386  0.0109
+Q4I         OCI         CCU      SINGLE       n     1.375  0.0105     1.375  0.0105
+Q4I         CBU         OCI      SINGLE       n     1.432  0.0101     1.432  0.0101
+Q4I         CBR         CBU      SINGLE       n     1.506  0.0128     1.506  0.0128
+Q4I         CBQ         CBR      SINGLE       n     1.522  0.0187     1.522  0.0187
+Q4I         CBS         CBQ      SINGLE       n     1.517  0.0143     1.517  0.0143
+Q4I         CCV         OAP      SINGLE       n     1.374  0.0155     1.374  0.0155
+Q4I         CBF         CAR      SINGLE       y     1.361  0.0115     1.361  0.0115
+Q4I         CDJ         CBF      DOUBLE       y     1.416  0.0100     1.416  0.0100
+Q4I         NCC         CBS      SINGLE       n     1.453  0.0133     1.453  0.0133
+Q4I         CAR         CBA      DOUBLE       y     1.403  0.0100     1.403  0.0100
+Q4I         CCV         CDJ      SINGLE       y     1.422  0.0100     1.422  0.0100
+Q4I         CBK         CCV      DOUBLE       y     1.365  0.0100     1.365  0.0100
+Q4I         CDN         CDJ      SINGLE       y     1.418  0.0100     1.418  0.0100
+Q4I         CCO         NCC      SINGLE       n     1.344  0.0119     1.344  0.0119
+Q4I         CBA         CDD      SINGLE       y     1.373  0.0100     1.373  0.0100
+Q4I         CCZ         CBK      SINGLE       y     1.412  0.0100     1.412  0.0100
+Q4I         CDN         CDD      DOUBLE       y     1.430  0.0100     1.430  0.0100
+Q4I         NBZ         CDN      SINGLE       y     1.366  0.0100     1.366  0.0100
+Q4I         CDD         NCG      SINGLE       n     1.404  0.0100     1.404  0.0100
+Q4I         CCQ         OAI      DOUBLE       n     1.228  0.0106     1.228  0.0106
+Q4I         CCZ         NBZ      DOUBLE       y     1.318  0.0100     1.318  0.0100
+Q4I         CCQ         CCZ      SINGLE       n     1.508  0.0100     1.508  0.0100
+Q4I         CCO         OAG      DOUBLE       n     1.235  0.0158     1.235  0.0158
+Q4I         NCE         CCO      SINGLE       n     1.388  0.0126     1.388  0.0126
+Q4I         NCG         CCS      SINGLE       n     1.353  0.0100     1.353  0.0100
+Q4I         NCF         CCQ      SINGLE       n     1.354  0.0106     1.354  0.0106
+Q4I         CCS         OAK      DOUBLE       n     1.228  0.0106     1.228  0.0106
+Q4I         CCS         CDB      SINGLE       n     1.508  0.0100     1.508  0.0100
+Q4I         CDC         NCE      SINGLE       n     1.397  0.0100     1.397  0.0100
+Q4I         CDB         NCA      SINGLE       y     1.318  0.0100     1.318  0.0100
+Q4I         NCA         CDP      DOUBLE       y     1.366  0.0100     1.366  0.0100
+Q4I         CDB         CBN      DOUBLE       y     1.412  0.0100     1.412  0.0100
+Q4I         CDP         CDC      SINGLE       y     1.430  0.0100     1.430  0.0100
+Q4I         CAZ         CDC      DOUBLE       y     1.373  0.0100     1.373  0.0100
+Q4I         CBC         CDF      DOUBLE       y     1.373  0.0100     1.373  0.0100
+Q4I         CAT         CBC      SINGLE       y     1.403  0.0100     1.403  0.0100
+Q4I         CDF         NCF      SINGLE       n     1.418  0.0100     1.418  0.0100
+Q4I         CDP         CDM      SINGLE       y     1.418  0.0100     1.418  0.0100
+Q4I         CCM         CBW      SINGLE       n     1.520  0.0100     1.520  0.0100
+Q4I         CBW         OCK      SINGLE       n     1.419  0.0100     1.419  0.0100
+Q4I         CCM         OAN      DOUBLE       n     1.247  0.0187     1.247  0.0187
+Q4I         CCM         OAE      SINGLE       n     1.247  0.0187     1.247  0.0187
+Q4I         CDQ         CDF      SINGLE       y     1.430  0.0100     1.430  0.0100
+Q4I         CCN         OAF      DOUBLE       n     1.214  0.0172     1.214  0.0172
+Q4I         CBG         CAT      DOUBLE       y     1.361  0.0115     1.361  0.0115
+Q4I         CAS         CAZ      SINGLE       y     1.403  0.0100     1.403  0.0100
+Q4I         CBN         CDI      SINGLE       y     1.367  0.0100     1.367  0.0100
+Q4I         CDI         CDM      DOUBLE       y     1.423  0.0100     1.423  0.0100
+Q4I         CDM         CBI      SINGLE       y     1.416  0.0100     1.416  0.0100
+Q4I         CCY         CCN      SINGLE       n     1.506  0.0100     1.506  0.0100
+Q4I         CCN         OAO      SINGLE       n     1.338  0.0153     1.338  0.0153
+Q4I         CBL         CCY      SINGLE       y     1.410  0.0111     1.410  0.0111
+Q4I         CDH         CBL      DOUBLE       y     1.367  0.0100     1.367  0.0100
+Q4I         OCK         CDH      SINGLE       n     1.360  0.0105     1.360  0.0105
+Q4I         CDI         OCL      SINGLE       n     1.347  0.0100     1.347  0.0100
+Q4I         CCY         NBY      DOUBLE       y     1.317  0.0100     1.317  0.0100
+Q4I         CDH         CDL      SINGLE       y     1.423  0.0100     1.423  0.0100
+Q4I         NCB         CDQ      DOUBLE       y     1.366  0.0100     1.366  0.0100
+Q4I         CDQ         CDK      SINGLE       y     1.418  0.0100     1.418  0.0100
+Q4I         CBI         CAS      DOUBLE       y     1.361  0.0115     1.361  0.0115
+Q4I         CDK         CBG      SINGLE       y     1.416  0.0100     1.416  0.0100
+Q4I         CDA         NCB      SINGLE       y     1.318  0.0100     1.318  0.0100
+Q4I         NBY         CDO      SINGLE       y     1.366  0.0100     1.366  0.0100
+Q4I         CDG         CDK      DOUBLE       y     1.423  0.0100     1.423  0.0100
+Q4I         CDO         CDL      DOUBLE       y     1.418  0.0100     1.418  0.0100
+Q4I         CDL         CBH      SINGLE       y     1.416  0.0100     1.416  0.0100
+Q4I         OCL         CBX      SINGLE       n     1.442  0.0100     1.442  0.0100
+Q4I         CDO         CDE      SINGLE       y     1.430  0.0100     1.430  0.0100
+Q4I         CBX         CDR      SINGLE       n     1.512  0.0100     1.512  0.0100
+Q4I         CBH         CAU      DOUBLE       y     1.361  0.0115     1.361  0.0115
+Q4I         CCR         CDA      SINGLE       n     1.508  0.0100     1.508  0.0100
+Q4I         CDA         CBM      DOUBLE       y     1.412  0.0100     1.412  0.0100
+Q4I         CDE         NCH      SINGLE       n     1.404  0.0100     1.404  0.0100
+Q4I         CBB         CDE      DOUBLE       y     1.373  0.0100     1.373  0.0100
+Q4I         CAU         CBB      SINGLE       y     1.403  0.0100     1.403  0.0100
+Q4I         CBM         CDG      SINGLE       y     1.367  0.0100     1.367  0.0100
+Q4I         CDG         OCJ      SINGLE       n     1.347  0.0100     1.347  0.0100
+Q4I         NCH         CCR      SINGLE       n     1.353  0.0100     1.353  0.0100
+Q4I         CBO         NAC      SINGLE       n     1.466  0.0117     1.466  0.0117
+Q4I         CBP         CBO      SINGLE       n     1.523  0.0127     1.523  0.0127
+Q4I         CCR         OAJ      DOUBLE       n     1.228  0.0106     1.228  0.0106
+Q4I         OCJ         CBT      SINGLE       n     1.436  0.0100     1.436  0.0100
+Q4I         CDR         CAA      SINGLE       n     1.517  0.0156     1.517  0.0156
+Q4I         CDR         CAB      SINGLE       n     1.517  0.0156     1.517  0.0156
+Q4I         CBT         CBP      SINGLE       n     1.504  0.0100     1.504  0.0100
+Q4I         CBW          H1      SINGLE       n     1.089  0.0100     0.974  0.0102
+Q4I         CBW          H2      SINGLE       n     1.089  0.0100     0.974  0.0102
+Q4I         CBL          H3      SINGLE       n     1.082  0.0130     0.946  0.0120
+Q4I         OAO          H4      SINGLE       n     0.966  0.0059     0.861  0.0200
+Q4I         CBH          H5      SINGLE       n     1.082  0.0130     0.944  0.0200
+Q4I         CAU          H6      SINGLE       n     1.082  0.0130     0.947  0.0200
+Q4I         CBB          H7      SINGLE       n     1.082  0.0130     0.945  0.0196
+Q4I         NCH          H8      SINGLE       n     1.016  0.0100     0.877  0.0200
+Q4I         CBM          H9      SINGLE       n     1.082  0.0130     0.946  0.0120
+Q4I         CBG         H10      SINGLE       n     1.082  0.0130     0.944  0.0200
+Q4I         CAT         H11      SINGLE       n     1.082  0.0130     0.947  0.0200
+Q4I         CBC         H12      SINGLE       n     1.082  0.0130     0.945  0.0196
+Q4I         NCF         H13      SINGLE       n     1.016  0.0100     0.883  0.0200
+Q4I         CBK         H14      SINGLE       n     1.082  0.0130     0.946  0.0120
+Q4I         OAP         H15      SINGLE       n     0.966  0.0059     0.861  0.0200
+Q4I         CBF         H16      SINGLE       n     1.082  0.0130     0.944  0.0200
+Q4I         CAR         H17      SINGLE       n     1.082  0.0130     0.947  0.0200
+Q4I         CBA         H18      SINGLE       n     1.082  0.0130     0.945  0.0196
+Q4I         NCG         H19      SINGLE       n     1.016  0.0100     0.877  0.0200
+Q4I         CBN         H20      SINGLE       n     1.082  0.0130     0.946  0.0120
+Q4I         CBX         H21      SINGLE       n     1.089  0.0100     0.981  0.0108
+Q4I         CBX         H22      SINGLE       n     1.089  0.0100     0.981  0.0108
+Q4I         CDR         H23      SINGLE       n     1.089  0.0100     0.992  0.0191
+Q4I         CAA         H24      SINGLE       n     1.089  0.0100     0.973  0.0146
+Q4I         CAA         H25      SINGLE       n     1.089  0.0100     0.973  0.0146
+Q4I         CAA         H26      SINGLE       n     1.089  0.0100     0.973  0.0146
+Q4I         CAB         H27      SINGLE       n     1.089  0.0100     0.973  0.0146
+Q4I         CAB         H28      SINGLE       n     1.089  0.0100     0.973  0.0146
+Q4I         CAB         H29      SINGLE       n     1.089  0.0100     0.973  0.0146
+Q4I         CBI         H30      SINGLE       n     1.082  0.0130     0.944  0.0200
+Q4I         CAS         H31      SINGLE       n     1.082  0.0130     0.947  0.0200
+Q4I         CAZ         H32      SINGLE       n     1.082  0.0130     0.945  0.0196
+Q4I         NCE         H33      SINGLE       n     1.016  0.0100     0.862  0.0200
+Q4I         NCC         H34      SINGLE       n     1.016  0.0100     0.872  0.0200
+Q4I         CBS         H35      SINGLE       n     1.089  0.0100     0.981  0.0152
+Q4I         CBS         H36      SINGLE       n     1.089  0.0100     0.981  0.0152
+Q4I         CBQ         H37      SINGLE       n     1.089  0.0100     0.981  0.0160
+Q4I         CBQ         H38      SINGLE       n     1.089  0.0100     0.981  0.0160
+Q4I         CBR         H39      SINGLE       n     1.089  0.0100     0.980  0.0166
+Q4I         CBR         H40      SINGLE       n     1.089  0.0100     0.980  0.0166
+Q4I         CBU         H41      SINGLE       n     1.089  0.0100     0.979  0.0131
+Q4I         CBU         H42      SINGLE       n     1.089  0.0100     0.979  0.0131
+Q4I         CBJ         H43      SINGLE       n     1.082  0.0130     0.945  0.0164
+Q4I         CAW         H44      SINGLE       n     1.082  0.0130     0.942  0.0163
+Q4I         CAQ         H45      SINGLE       n     1.082  0.0130     0.941  0.0152
+Q4I         CAV         H46      SINGLE       n     1.082  0.0130     0.944  0.0174
+Q4I         CBV         H47      SINGLE       n     1.089  0.0100     0.980  0.0169
+Q4I         CBV         H48      SINGLE       n     1.089  0.0100     0.980  0.0169
+Q4I         NCD         H49      SINGLE       n     1.016  0.0100     0.875  0.0200
+Q4I         CAX         H50      SINGLE       n     1.082  0.0130     0.941  0.0168
+Q4I         CBD         H51      SINGLE       n     1.082  0.0130     0.937  0.0111
+Q4I         NAD         H52      SINGLE       n     1.036  0.0160     0.869  0.0200
+Q4I         NAD         H53      SINGLE       n     1.036  0.0160     0.869  0.0200
+Q4I         CBE         H54      SINGLE       n     1.082  0.0130     0.937  0.0111
+Q4I         CAY         H55      SINGLE       n     1.082  0.0130     0.941  0.0168
+Q4I         CBT         H57      SINGLE       n     1.089  0.0100     0.979  0.0131
+Q4I         CBT         H58      SINGLE       n     1.089  0.0100     0.979  0.0131
+Q4I         CBP         H59      SINGLE       n     1.089  0.0100     0.981  0.0122
+Q4I         CBP         H60      SINGLE       n     1.089  0.0100     0.981  0.0122
+Q4I         CBO         H61      SINGLE       n     1.089  0.0100     0.979  0.0106
+Q4I         CBO         H62      SINGLE       n     1.089  0.0100     0.979  0.0106
+Q4I         NAC         H63      SINGLE       n     1.036  0.0160     0.888  0.0200
+Q4I         NAC         H64      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+Q4I         CBW         CCM         OAN     117.215    2.48
+Q4I         CBW         CCM         OAE     117.215    2.48
+Q4I         OAN         CCM         OAE     125.570    1.50
+Q4I         CCM         CBW         OCK     111.564    2.57
+Q4I         CCM         CBW          H1     109.314    1.50
+Q4I         CCM         CBW          H2     109.314    1.50
+Q4I         OCK         CBW          H1     109.675    1.50
+Q4I         OCK         CBW          H2     109.675    1.50
+Q4I          H1         CBW          H2     108.052    1.50
+Q4I         CBW         OCK         CDH     117.598    1.50
+Q4I         CBL         CDH         OCK     124.771    1.50
+Q4I         CBL         CDH         CDL     120.145    1.50
+Q4I         OCK         CDH         CDL     115.085    2.31
+Q4I         CCY         CBL         CDH     117.665    1.50
+Q4I         CCY         CBL          H3     121.166    1.50
+Q4I         CDH         CBL          H3     121.169    1.50
+Q4I         CCN         CCY         CBL     117.982    2.10
+Q4I         CCN         CCY         NBY     116.739    1.72
+Q4I         CBL         CCY         NBY     125.280    1.50
+Q4I         OAF         CCN         CCY     123.407    1.50
+Q4I         OAF         CCN         OAO     124.193    1.64
+Q4I         CCY         CCN         OAO     112.400    1.50
+Q4I         CCN         OAO          H4     120.000    3.00
+Q4I         CCY         NBY         CDO     117.768    1.50
+Q4I         NBY         CDO         CDL     121.466    1.50
+Q4I         NBY         CDO         CDE     119.073    1.50
+Q4I         CDL         CDO         CDE     119.461    1.50
+Q4I         CDH         CDL         CDO     117.676    1.50
+Q4I         CDH         CDL         CBH     122.948    1.50
+Q4I         CDO         CDL         CBH     119.376    1.50
+Q4I         CDL         CBH         CAU     120.758    1.50
+Q4I         CDL         CBH          H5     119.569    1.50
+Q4I         CAU         CBH          H5     119.673    1.50
+Q4I         CBH         CAU         CBB     120.633    1.50
+Q4I         CBH         CAU          H6     119.818    1.50
+Q4I         CBB         CAU          H6     119.549    1.50
+Q4I         CDE         CBB         CAU     120.129    1.50
+Q4I         CDE         CBB          H7     120.123    1.50
+Q4I         CAU         CBB          H7     119.748    1.50
+Q4I         CDO         CDE         NCH     115.120    1.50
+Q4I         CDO         CDE         CBB     119.644    1.50
+Q4I         NCH         CDE         CBB     125.237    1.50
+Q4I         CDE         NCH         CCR     128.665    1.83
+Q4I         CDE         NCH          H8     115.132    2.60
+Q4I         CCR         NCH          H8     116.203    1.50
+Q4I         CDA         CCR         NCH     114.037    1.50
+Q4I         CDA         CCR         OAJ     121.006    1.50
+Q4I         NCH         CCR         OAJ     124.957    1.50
+Q4I         NCB         CDA         CCR     118.096    1.50
+Q4I         NCB         CDA         CBM     122.728    1.50
+Q4I         CCR         CDA         CBM     119.176    1.50
+Q4I         CDA         CBM         CDG     118.540    1.50
+Q4I         CDA         CBM          H9     120.396    1.50
+Q4I         CDG         CBM          H9     121.064    1.50
+Q4I         CDK         CDG         CBM     120.564    1.50
+Q4I         CDK         CDG         OCJ     114.875    2.31
+Q4I         CBM         CDG         OCJ     124.561    1.50
+Q4I         CDG         OCJ         CBT     117.596    1.75
+Q4I         CDQ         NCB         CDA     118.187    1.50
+Q4I         CDF         CDQ         NCB     118.654    1.50
+Q4I         CDF         CDQ         CDK     119.461    1.50
+Q4I         NCB         CDQ         CDK     121.885    1.50
+Q4I         CDQ         CDK         CBG     119.376    1.50
+Q4I         CDQ         CDK         CDG     118.095    1.50
+Q4I         CBG         CDK         CDG     122.529    1.50
+Q4I         CAT         CBG         CDK     120.758    1.50
+Q4I         CAT         CBG         H10     119.673    1.50
+Q4I         CDK         CBG         H10     119.569    1.50
+Q4I         CBC         CAT         CBG     120.633    1.50
+Q4I         CBC         CAT         H11     119.549    1.50
+Q4I         CBG         CAT         H11     119.818    1.50
+Q4I         CDF         CBC         CAT     120.129    1.50
+Q4I         CDF         CBC         H12     120.123    1.50
+Q4I         CAT         CBC         H12     119.748    1.50
+Q4I         CBC         CDF         NCF     122.060    1.82
+Q4I         CBC         CDF         CDQ     119.644    1.50
+Q4I         NCF         CDF         CDQ     118.296    1.83
+Q4I         CCQ         NCF         CDF     125.488    2.46
+Q4I         CCQ         NCF         H13     117.365    2.65
+Q4I         CDF         NCF         H13     113.695    2.15
+Q4I         OAI         CCQ         CCZ     120.632    1.50
+Q4I         OAI         CCQ         NCF     122.934    1.50
+Q4I         CCZ         CCQ         NCF     116.435    1.78
+Q4I         CBK         CCZ         NBZ     122.728    1.50
+Q4I         CBK         CCZ         CCQ     119.176    1.50
+Q4I         NBZ         CCZ         CCQ     118.096    1.50
+Q4I         CCV         CBK         CCZ     118.540    1.50
+Q4I         CCV         CBK         H14     120.607    1.50
+Q4I         CCZ         CBK         H14     120.853    1.50
+Q4I         OAP         CCV         CDJ     118.100    2.50
+Q4I         OAP         CCV         CBK     121.336    3.00
+Q4I         CDJ         CCV         CBK     120.564    1.50
+Q4I         CCV         OAP         H15     120.000    3.00
+Q4I         CDN         NBZ         CCZ     118.187    1.50
+Q4I         CDJ         CDN         CDD     119.461    1.50
+Q4I         CDJ         CDN         NBZ     121.885    1.50
+Q4I         CDD         CDN         NBZ     118.654    1.50
+Q4I         CBF         CDJ         CCV     122.529    1.50
+Q4I         CBF         CDJ         CDN     119.376    1.50
+Q4I         CCV         CDJ         CDN     118.095    1.50
+Q4I         CAR         CBF         CDJ     120.758    1.50
+Q4I         CAR         CBF         H16     119.673    1.50
+Q4I         CDJ         CBF         H16     119.569    1.50
+Q4I         CBF         CAR         CBA     120.633    1.50
+Q4I         CBF         CAR         H17     119.818    1.50
+Q4I         CBA         CAR         H17     119.549    1.50
+Q4I         CAR         CBA         CDD     120.129    1.50
+Q4I         CAR         CBA         H18     119.748    1.50
+Q4I         CDD         CBA         H18     120.123    1.50
+Q4I         CBA         CDD         CDN     119.644    1.50
+Q4I         CBA         CDD         NCG     125.237    1.50
+Q4I         CDN         CDD         NCG     115.120    1.50
+Q4I         CDD         NCG         CCS     128.665    1.83
+Q4I         CDD         NCG         H19     115.132    2.60
+Q4I         CCS         NCG         H19     116.203    1.50
+Q4I         NCG         CCS         OAK     124.957    1.50
+Q4I         NCG         CCS         CDB     114.037    1.50
+Q4I         OAK         CCS         CDB     121.006    1.50
+Q4I         CCS         CDB         NCA     118.096    1.50
+Q4I         CCS         CDB         CBN     119.176    1.50
+Q4I         NCA         CDB         CBN     122.728    1.50
+Q4I         CDB         CBN         CDI     118.540    1.50
+Q4I         CDB         CBN         H20     120.396    1.50
+Q4I         CDI         CBN         H20     121.064    1.50
+Q4I         CBN         CDI         CDM     120.564    1.50
+Q4I         CBN         CDI         OCL     124.561    1.50
+Q4I         CDM         CDI         OCL     114.875    2.31
+Q4I         CDI         OCL         CBX     118.153    1.50
+Q4I         OCL         CBX         CDR     107.846    1.50
+Q4I         OCL         CBX         H21     110.128    1.50
+Q4I         OCL         CBX         H22     110.128    1.50
+Q4I         CDR         CBX         H21     109.971    1.50
+Q4I         CDR         CBX         H22     109.971    1.50
+Q4I         H21         CBX         H22     108.397    1.50
+Q4I         CBX         CDR         CAA     110.253    1.67
+Q4I         CBX         CDR         CAB     110.253    1.67
+Q4I         CBX         CDR         H23     108.204    1.50
+Q4I         CAA         CDR         CAB     111.532    1.50
+Q4I         CAA         CDR         H23     108.179    1.50
+Q4I         CAB         CDR         H23     108.179    1.50
+Q4I         CDR         CAA         H24     109.473    1.50
+Q4I         CDR         CAA         H25     109.473    1.50
+Q4I         CDR         CAA         H26     109.473    1.50
+Q4I         H24         CAA         H25     109.411    1.50
+Q4I         H24         CAA         H26     109.411    1.50
+Q4I         H25         CAA         H26     109.411    1.50
+Q4I         CDR         CAB         H27     109.473    1.50
+Q4I         CDR         CAB         H28     109.473    1.50
+Q4I         CDR         CAB         H29     109.473    1.50
+Q4I         H27         CAB         H28     109.411    1.50
+Q4I         H27         CAB         H29     109.411    1.50
+Q4I         H28         CAB         H29     109.411    1.50
+Q4I         CDB         NCA         CDP     118.187    1.50
+Q4I         NCA         CDP         CDC     118.654    1.50
+Q4I         NCA         CDP         CDM     121.885    1.50
+Q4I         CDC         CDP         CDM     119.461    1.50
+Q4I         CDP         CDM         CDI     118.095    1.50
+Q4I         CDP         CDM         CBI     119.376    1.50
+Q4I         CDI         CDM         CBI     122.529    1.50
+Q4I         CDM         CBI         CAS     120.758    1.50
+Q4I         CDM         CBI         H30     119.569    1.50
+Q4I         CAS         CBI         H30     119.673    1.50
+Q4I         CAZ         CAS         CBI     120.633    1.50
+Q4I         CAZ         CAS         H31     119.549    1.50
+Q4I         CBI         CAS         H31     119.818    1.50
+Q4I         CDC         CAZ         CAS     120.129    1.50
+Q4I         CDC         CAZ         H32     120.123    1.50
+Q4I         CAS         CAZ         H32     119.748    1.50
+Q4I         NCE         CDC         CDP     114.779    1.50
+Q4I         NCE         CDC         CAZ     125.577    1.50
+Q4I         CDP         CDC         CAZ     119.644    1.50
+Q4I         CCO         NCE         CDC     126.804    2.48
+Q4I         CCO         NCE         H33     117.820    1.98
+Q4I         CDC         NCE         H33     115.377    2.89
+Q4I         NCC         CCO         OAG     122.787    1.50
+Q4I         NCC         CCO         NCE     113.811    1.67
+Q4I         OAG         CCO         NCE     123.402    1.50
+Q4I         CBS         NCC         CCO     121.149    1.50
+Q4I         CBS         NCC         H34     119.602    1.50
+Q4I         CCO         NCC         H34     119.249    1.50
+Q4I         CBQ         CBS         NCC     111.917    1.50
+Q4I         CBQ         CBS         H35     109.197    1.51
+Q4I         CBQ         CBS         H36     109.197    1.51
+Q4I         NCC         CBS         H35     109.194    1.50
+Q4I         NCC         CBS         H36     109.194    1.50
+Q4I         H35         CBS         H36     107.877    1.50
+Q4I         CBR         CBQ         CBS     113.118    2.03
+Q4I         CBR         CBQ         H37     108.937    1.50
+Q4I         CBR         CBQ         H38     108.937    1.50
+Q4I         CBS         CBQ         H37     108.956    1.50
+Q4I         CBS         CBQ         H38     108.956    1.50
+Q4I         H37         CBQ         H38     107.927    1.57
+Q4I         CBU         CBR         CBQ     113.301    2.18
+Q4I         CBU         CBR         H39     108.916    1.50
+Q4I         CBU         CBR         H40     108.916    1.50
+Q4I         CBQ         CBR         H39     109.064    1.50
+Q4I         CBQ         CBR         H40     109.064    1.50
+Q4I         H39         CBR         H40     107.788    1.50
+Q4I         OCI         CBU         CBR     107.985    2.03
+Q4I         OCI         CBU         H41     109.943    1.50
+Q4I         OCI         CBU         H42     109.943    1.50
+Q4I         CBR         CBU         H41     110.162    1.50
+Q4I         CBR         CBU         H42     110.162    1.50
+Q4I         H41         CBU         H42     108.474    1.50
+Q4I         CCU         OCI         CBU     118.103    1.50
+Q4I         CBJ         CCU         CAW     120.132    1.50
+Q4I         CBJ         CCU         OCI     119.661    3.00
+Q4I         CAW         CCU         OCI     120.207    3.00
+Q4I         CCT         CBJ         CCU     120.285    1.50
+Q4I         CCT         CBJ         H43     119.874    1.50
+Q4I         CCU         CBJ         H43     119.841    1.50
+Q4I         CAQ         CAW         CCU     119.321    1.50
+Q4I         CAQ         CAW         H44     120.374    1.50
+Q4I         CCU         CAW         H44     120.305    1.50
+Q4I         CAV         CAQ         CAW     120.471    1.50
+Q4I         CAV         CAQ         H45     119.907    1.50
+Q4I         CAW         CAQ         H45     119.629    1.50
+Q4I         CCT         CAV         CAQ     120.410    1.50
+Q4I         CCT         CAV         H46     119.759    1.50
+Q4I         CAQ         CAV         H46     119.832    1.50
+Q4I         CBV         CCT         CAV     120.800    1.50
+Q4I         CBV         CCT         CBJ     119.826    1.50
+Q4I         CAV         CCT         CBJ     119.375    1.50
+Q4I         NCD         CBV         CCT     112.551    1.55
+Q4I         NCD         CBV         H47     109.133    1.50
+Q4I         NCD         CBV         H48     109.133    1.50
+Q4I         CCT         CBV         H47     109.073    1.50
+Q4I         CCT         CBV         H48     109.073    1.50
+Q4I         H47         CBV         H48     107.860    1.50
+Q4I         CCP         NCD         CBV     121.850    1.50
+Q4I         CCP         NCD         H49     119.513    1.50
+Q4I         CBV         NCD         H49     118.637    1.50
+Q4I         CCW         CCP         OAH     120.965    1.50
+Q4I         CCW         CCP         NCD     116.722    1.50
+Q4I         OAH         CCP         NCD     122.313    1.50
+Q4I         CAY         CCW         CAX     119.014    1.50
+Q4I         CAY         CCW         CCP     120.493    2.80
+Q4I         CAX         CCW         CCP     120.493    2.80
+Q4I         CBD         CAX         CCW     120.778    1.50
+Q4I         CBD         CAX         H50     119.373    1.50
+Q4I         CCW         CAX         H50     119.849    1.50
+Q4I         CCX         CBD         CAX     119.499    1.50
+Q4I         CCX         CBD         H51     120.203    1.50
+Q4I         CAX         CBD         H51     120.298    1.50
+Q4I         SDS         CCX         CBE     119.784    1.50
+Q4I         SDS         CCX         CBD     119.784    1.50
+Q4I         CBE         CCX         CBD     120.433    1.50
+Q4I         OAM         SDS         NAD     107.154    1.50
+Q4I         OAM         SDS         OAL     118.954    1.50
+Q4I         OAM         SDS         CCX     107.472    1.50
+Q4I         NAD         SDS         OAL     107.154    1.50
+Q4I         NAD         SDS         CCX     108.480    1.50
+Q4I         OAL         SDS         CCX     107.472    1.50
+Q4I         SDS         NAD         H52     113.070    3.00
+Q4I         SDS         NAD         H53     113.070    3.00
+Q4I         H52         NAD         H53     115.993    3.00
+Q4I         CCX         CBE         CAY     119.499    1.50
+Q4I         CCX         CBE         H54     120.203    1.50
+Q4I         CAY         CBE         H54     120.298    1.50
+Q4I         CBE         CAY         CCW     120.778    1.50
+Q4I         CBE         CAY         H55     119.373    1.50
+Q4I         CCW         CAY         H55     119.849    1.50
+Q4I         OCJ         CBT         CBP     108.230    2.17
+Q4I         OCJ         CBT         H57     109.896    1.50
+Q4I         OCJ         CBT         H58     109.896    1.50
+Q4I         CBP         CBT         H57     110.092    1.50
+Q4I         CBP         CBT         H58     110.092    1.50
+Q4I         H57         CBT         H58     108.474    1.50
+Q4I         CBO         CBP         CBT     112.303    1.50
+Q4I         CBO         CBP         H59     109.322    1.50
+Q4I         CBO         CBP         H60     109.322    1.50
+Q4I         CBT         CBP         H59     109.121    1.50
+Q4I         CBT         CBP         H60     109.121    1.50
+Q4I         H59         CBP         H60     107.717    1.50
+Q4I         NAC         CBO         CBP     113.282    2.68
+Q4I         NAC         CBO         H61     108.763    1.50
+Q4I         NAC         CBO         H62     108.763    1.50
+Q4I         CBP         CBO         H61     109.475    1.50
+Q4I         CBP         CBO         H62     109.475    1.50
+Q4I         H61         CBO         H62     107.806    1.50
+Q4I         CBO         NAC         H63     110.839    3.00
+Q4I         CBO         NAC         H64     110.839    3.00
+Q4I         H63         NAC         H64     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+Q4I            sp2_sp3_26         OAN         CCM         CBW         OCK     120.000    10.0     6
+Q4I              const_81         CDH         CDL         CDO         NBY       0.000    10.0     2
+Q4I             const_204         NCH         CDE         CDO         NBY       0.000    10.0     2
+Q4I              const_86         CAU         CBH         CDL         CDH     180.000    10.0     2
+Q4I              const_89         CBB         CAU         CBH         CDL       0.000    10.0     2
+Q4I              const_93         CBH         CAU         CBB         CDE       0.000    10.0     2
+Q4I              const_98         CAU         CBB         CDE         NCH     180.000    10.0     2
+Q4I            sp2_sp2_63         CDO         CDE         NCH         CCR     180.000     5.0     2
+Q4I            sp2_sp2_71         OAJ         CCR         NCH         CDE       0.000     5.0     2
+Q4I            sp2_sp2_60         NCH         CCR         CDA         NCB       0.000     5.0     2
+Q4I             const_206         CDG         CBM         CDA         CCR     180.000    10.0     2
+Q4I             const_148         CCR         CDA         NCB         CDQ     180.000    10.0     2
+Q4I            sp3_sp3_37         CCM         CBW         OCK         CDH     180.000    10.0     3
+Q4I             const_160         CDA         CBM         CDG         OCJ     180.000    10.0     2
+Q4I            sp2_sp2_67         CDK         CDG         OCJ         CBT     180.000     5.0     2
+Q4I             const_157         OCJ         CDG         CDK         CDQ     180.000    10.0     2
+Q4I            sp3_sp3_67         CBP         CBT         OCJ         CDG     180.000    10.0     3
+Q4I             const_150         CDF         CDQ         NCB         CDA     180.000    10.0     2
+Q4I             const_151         CBG         CDK         CDQ         CDF       0.000    10.0     2
+Q4I              const_64         NCF         CDF         CDQ         NCB       0.000    10.0     2
+Q4I              const_77         CAT         CBG         CDK         CDQ       0.000    10.0     2
+Q4I              const_73         CBC         CAT         CBG         CDK       0.000    10.0     2
+Q4I              const_69         CBG         CAT         CBC         CDF       0.000    10.0     2
+Q4I              const_66         CAT         CBC         CDF         NCF     180.000    10.0     2
+Q4I            sp2_sp2_45         CBC         CDF         NCF         CCQ     180.000     5.0     2
+Q4I            sp2_sp2_55         CBL         CDH         OCK         CBW     180.000     5.0     2
+Q4I            sp2_sp2_35         OAI         CCQ         NCF         CDF       0.000     5.0     2
+Q4I            sp2_sp2_23         OAI         CCQ         CCZ         CBK       0.000     5.0     2
+Q4I             const_122         CCV         CBK         CCZ         CCQ     180.000    10.0     2
+Q4I             const_192         CCQ         CCZ         NBZ         CDN     180.000    10.0     2
+Q4I             const_126         CCZ         CBK         CCV         OAP     180.000    10.0     2
+Q4I            sp2_sp2_11         CDJ         CCV         OAP         H15     180.000     5.0     2
+Q4I             const_132         OAP         CCV         CDJ         CBF       0.000    10.0     2
+Q4I             const_133         CDJ         CDN         NBZ         CCZ       0.000    10.0     2
+Q4I              const_21         CBF         CDJ         CDN         CDD       0.000    10.0     2
+Q4I             const_189         NCG         CDD         CDN         CDJ     180.000    10.0     2
+Q4I              const_26         CAR         CBF         CDJ         CCV     180.000    10.0     2
+Q4I             const_199         OCK         CDH         CDL         CDO     180.000    10.0     2
+Q4I             const_136         CCY         CBL         CDH         OCK     180.000    10.0     2
+Q4I              const_29         CBA         CAR         CBF         CDJ       0.000    10.0     2
+Q4I              const_33         CBF         CAR         CBA         CDD       0.000    10.0     2
+Q4I              const_38         CAR         CBA         CDD         NCG     180.000    10.0     2
+Q4I            sp2_sp2_17         CBA         CDD         NCG         CCS     180.000     5.0     2
+Q4I            sp2_sp2_31         OAK         CCS         NCG         CDD       0.000     5.0     2
+Q4I            sp2_sp2_38         NCG         CCS         CDB         NCA       0.000     5.0     2
+Q4I             const_194         CDI         CBN         CDB         CCS     180.000    10.0     2
+Q4I             const_164         CCS         CDB         NCA         CDP     180.000    10.0     2
+Q4I             const_176         CDB         CBN         CDI         OCL     180.000    10.0     2
+Q4I            sp2_sp2_57         CBN         CDI         OCL         CBX     180.000     5.0     2
+Q4I             const_173         OCL         CDI         CDM         CDP     180.000    10.0     2
+Q4I             const_140         CDH         CBL         CCY         CCN     180.000    10.0     2
+Q4I            sp3_sp3_40         CDR         CBX         OCL         CDI     180.000    10.0     3
+Q4I            sp3_sp3_44         OCL         CBX         CDR         CAA     -60.000    10.0     3
+Q4I            sp3_sp3_70         H24         CAA         CDR         CBX     180.000    10.0     3
+Q4I            sp3_sp3_80         H27         CAB         CDR         CBX     -60.000    10.0     3
+Q4I             const_166         CDC         CDP         NCA         CDB     180.000    10.0     2
+Q4I             const_167         CDI         CDM         CDP         NCA       0.000    10.0     2
+Q4I              const_44         NCE         CDC         CDP         NCA       0.000    10.0     2
+Q4I              const_57         CAS         CBI         CDM         CDP       0.000    10.0     2
+Q4I              const_53         CAZ         CAS         CBI         CDM       0.000    10.0     2
+Q4I              const_49         CBI         CAS         CAZ         CDC       0.000    10.0     2
+Q4I            sp2_sp2_51         OAF         CCN         CCY         CBL       0.000     5.0     2
+Q4I             const_144         CCN         CCY         NBY         CDO     180.000    10.0     2
+Q4I              const_46         CAS         CAZ         CDC         NCE     180.000    10.0     2
+Q4I            sp2_sp2_41         CDP         CDC         NCE         CCO     180.000     5.0     2
+Q4I            sp2_sp2_25         NCC         CCO         NCE         CDC     180.000     5.0     2
+Q4I            sp2_sp2_15         OAG         CCO         NCC         CBS       0.000     5.0     2
+Q4I            sp2_sp3_20         CCO         NCC         CBS         CBQ     120.000    10.0     6
+Q4I            sp3_sp3_28         CBR         CBQ         CBS         NCC     180.000    10.0     3
+Q4I            sp3_sp3_19         CBS         CBQ         CBR         CBU     180.000    10.0     3
+Q4I            sp3_sp3_10         CBQ         CBR         CBU         OCI     180.000    10.0     3
+Q4I             sp3_sp3_7         CBR         CBU         OCI         CCU     180.000    10.0     3
+Q4I            sp2_sp2_53         OAF         CCN         OAO          H4     180.000     5.0     2
+Q4I             sp2_sp2_9         CBJ         CCU         OCI         CBU     180.000     5.0     2
+Q4I       const_sp2_sp2_2         CCT         CBJ         CCU         OCI     180.000     5.0     2
+Q4I             const_184         CAQ         CAW         CCU         OCI     180.000    10.0     2
+Q4I       const_sp2_sp2_6         CCU         CBJ         CCT         CBV     180.000     5.0     2
+Q4I              const_17         CAV         CAQ         CAW         CCU       0.000    10.0     2
+Q4I              const_13         CAW         CAQ         CAV         CCT       0.000    10.0     2
+Q4I              const_10         CAQ         CAV         CCT         CBV     180.000    10.0     2
+Q4I            sp2_sp3_14         CAV         CCT         CBV         NCD     -90.000    10.0     6
+Q4I             sp2_sp3_8         CCP         NCD         CBV         CCT     120.000    10.0     6
+Q4I             sp2_sp2_7         OAH         CCP         NCD         CBV       0.000     5.0     2
+Q4I             sp2_sp2_3         OAH         CCP         CCW         CAY       0.000     5.0     2
+Q4I             const_180         CBD         CAX         CCW         CCP     180.000    10.0     2
+Q4I             const_102         CBE         CAY         CCW         CCP     180.000    10.0     2
+Q4I             const_117         CCW         CAX         CBD         CCX       0.000    10.0     2
+Q4I             const_114         CAX         CBD         CCX         SDS     180.000    10.0     2
+Q4I             sp2_sp3_1         CBE         CCX         SDS         OAM     150.000    10.0     6
+Q4I             const_110         CAY         CBE         CCX         SDS     180.000    10.0     2
+Q4I             sp3_sp3_2         H52         NAD         SDS         OAM     -60.000    10.0     3
+Q4I             const_105         CCW         CAY         CBE         CCX       0.000    10.0     2
+Q4I            sp3_sp3_88         CBO         CBP         CBT         OCJ     180.000    10.0     3
+Q4I            sp3_sp3_58         NAC         CBO         CBP         CBT     180.000    10.0     3
+Q4I            sp3_sp3_52         CBP         CBO         NAC         H63     180.000    10.0     3
+Q4I             const_145         CDL         CDO         NBY         CCY       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+Q4I    chir_1    CDR    CBX    CAA    CAB    both
+Q4I    chir_2    SDS    OAM    OAL    NAD    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+Q4I    plan-1         CAU   0.020
+Q4I    plan-1         CBB   0.020
+Q4I    plan-1         CBH   0.020
+Q4I    plan-1         CBL   0.020
+Q4I    plan-1         CCN   0.020
+Q4I    plan-1         CCY   0.020
+Q4I    plan-1         CDE   0.020
+Q4I    plan-1         CDH   0.020
+Q4I    plan-1         CDL   0.020
+Q4I    plan-1         CDO   0.020
+Q4I    plan-1          H3   0.020
+Q4I    plan-1          H5   0.020
+Q4I    plan-1          H6   0.020
+Q4I    plan-1          H7   0.020
+Q4I    plan-1         NBY   0.020
+Q4I    plan-1         NCH   0.020
+Q4I    plan-1         OCK   0.020
+Q4I    plan-2         CAT   0.020
+Q4I    plan-2         CBC   0.020
+Q4I    plan-2         CBG   0.020
+Q4I    plan-2         CBM   0.020
+Q4I    plan-2         CCR   0.020
+Q4I    plan-2         CDA   0.020
+Q4I    plan-2         CDF   0.020
+Q4I    plan-2         CDG   0.020
+Q4I    plan-2         CDK   0.020
+Q4I    plan-2         CDQ   0.020
+Q4I    plan-2         H10   0.020
+Q4I    plan-2         H11   0.020
+Q4I    plan-2         H12   0.020
+Q4I    plan-2          H9   0.020
+Q4I    plan-2         NCB   0.020
+Q4I    plan-2         NCF   0.020
+Q4I    plan-2         OCJ   0.020
+Q4I    plan-3         CAR   0.020
+Q4I    plan-3         CBA   0.020
+Q4I    plan-3         CBF   0.020
+Q4I    plan-3         CBK   0.020
+Q4I    plan-3         CCQ   0.020
+Q4I    plan-3         CCV   0.020
+Q4I    plan-3         CCZ   0.020
+Q4I    plan-3         CDD   0.020
+Q4I    plan-3         CDJ   0.020
+Q4I    plan-3         CDN   0.020
+Q4I    plan-3         H14   0.020
+Q4I    plan-3         H16   0.020
+Q4I    plan-3         H17   0.020
+Q4I    plan-3         H18   0.020
+Q4I    plan-3         NBZ   0.020
+Q4I    plan-3         NCG   0.020
+Q4I    plan-3         OAP   0.020
+Q4I    plan-4         CAS   0.020
+Q4I    plan-4         CAZ   0.020
+Q4I    plan-4         CBI   0.020
+Q4I    plan-4         CBN   0.020
+Q4I    plan-4         CCS   0.020
+Q4I    plan-4         CDB   0.020
+Q4I    plan-4         CDC   0.020
+Q4I    plan-4         CDI   0.020
+Q4I    plan-4         CDM   0.020
+Q4I    plan-4         CDP   0.020
+Q4I    plan-4         H20   0.020
+Q4I    plan-4         H30   0.020
+Q4I    plan-4         H31   0.020
+Q4I    plan-4         H32   0.020
+Q4I    plan-4         NCA   0.020
+Q4I    plan-4         NCE   0.020
+Q4I    plan-4         OCL   0.020
+Q4I    plan-5         CAQ   0.020
+Q4I    plan-5         CAV   0.020
+Q4I    plan-5         CAW   0.020
+Q4I    plan-5         CBJ   0.020
+Q4I    plan-5         CBV   0.020
+Q4I    plan-5         CCT   0.020
+Q4I    plan-5         CCU   0.020
+Q4I    plan-5         H43   0.020
+Q4I    plan-5         H44   0.020
+Q4I    plan-5         H45   0.020
+Q4I    plan-5         H46   0.020
+Q4I    plan-5         OCI   0.020
+Q4I    plan-6         CAX   0.020
+Q4I    plan-6         CAY   0.020
+Q4I    plan-6         CBD   0.020
+Q4I    plan-6         CBE   0.020
+Q4I    plan-6         CCP   0.020
+Q4I    plan-6         CCW   0.020
+Q4I    plan-6         CCX   0.020
+Q4I    plan-6         H50   0.020
+Q4I    plan-6         H51   0.020
+Q4I    plan-6         H54   0.020
+Q4I    plan-6         H55   0.020
+Q4I    plan-6         SDS   0.020
+Q4I    plan-7         CBW   0.020
+Q4I    plan-7         CCM   0.020
+Q4I    plan-7         OAE   0.020
+Q4I    plan-7         OAN   0.020
+Q4I    plan-8         CCN   0.020
+Q4I    plan-8         CCY   0.020
+Q4I    plan-8         OAF   0.020
+Q4I    plan-8         OAO   0.020
+Q4I    plan-9         CCR   0.020
+Q4I    plan-9         CDE   0.020
+Q4I    plan-9          H8   0.020
+Q4I    plan-9         NCH   0.020
+Q4I   plan-10         CCR   0.020
+Q4I   plan-10         CDA   0.020
+Q4I   plan-10         NCH   0.020
+Q4I   plan-10         OAJ   0.020
+Q4I   plan-11         CCQ   0.020
+Q4I   plan-11         CCZ   0.020
+Q4I   plan-11         NCF   0.020
+Q4I   plan-11         OAI   0.020
+Q4I   plan-12         CCS   0.020
+Q4I   plan-12         CDD   0.020
+Q4I   plan-12         H19   0.020
+Q4I   plan-12         NCG   0.020
+Q4I   plan-13         CCS   0.020
+Q4I   plan-13         CDB   0.020
+Q4I   plan-13         NCG   0.020
+Q4I   plan-13         OAK   0.020
+Q4I   plan-14         CCO   0.020
+Q4I   plan-14         CDC   0.020
+Q4I   plan-14         H33   0.020
+Q4I   plan-14         NCE   0.020
+Q4I   plan-15         CCO   0.020
+Q4I   plan-15         NCC   0.020
+Q4I   plan-15         NCE   0.020
+Q4I   plan-15         OAG   0.020
+Q4I   plan-16         CBS   0.020
+Q4I   plan-16         CCO   0.020
+Q4I   plan-16         H34   0.020
+Q4I   plan-16         NCC   0.020
+Q4I   plan-17         CBV   0.020
+Q4I   plan-17         CCP   0.020
+Q4I   plan-17         H49   0.020
+Q4I   plan-17         NCD   0.020
+Q4I   plan-18         CCP   0.020
+Q4I   plan-18         CCW   0.020
+Q4I   plan-18         NCD   0.020
+Q4I   plan-18         OAH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+Q4I           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                                                                                                   O=S(=O)(N)c1ccc(cc1)C(=O)NCc%10cc(OCCCCNC(=O)Nc3cccc2c(OCC(C)C)cc(nc23)C(=O)Nc5cccc4c(O)cc(nc45)C(=O)Nc7cccc6c(OCCCN)cc(nc67)C(=O)Nc8cccc9c(OCC(=O)O)cc(nc89)C(=O)O)ccc%10
+Q4I            InChI                InChI  1.03 InChI=1S/C68H64N12O16S/c1-37(2)35-95-56-32-52(75-62-44(56)16-9-20-49(62)80-68(90)71-26-3-4-27-93-40-12-5-11-38(29-40)34-72-63(84)39-21-23-41(24-22-39)97(70,91)92)66(87)77-46-17-6-13-42-54(81)30-50(73-59(42)46)64(85)78-47-18-7-14-43-55(94-28-10-25-69)31-51(74-60(43)47)65(86)79-48-19-8-15-45-57(96-36-58(82)83)33-53(67(88)89)76-61(45)48/h5-9,11-24,29-33,37H,3-4,10,25-28,34-36,69H2,1-2H3,(H,72,84)(H,73,81)(H,77,87)(H,78,85)(H,79,86)(H,82,83)(H,88,89)(H2,70,91,92)(H2,71,80,90)
+Q4I         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                                                                                                                                  QYOLDZJQZAEMKE-UHFFFAOYSA-N
+Q4I SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                                                                                                                                                 CC(C)COc1cc(nc2c(NC(=O)NCCCCOc3cccc(CNC(=O)c4ccc(cc4)[S](N)(=O)=O)c3)cccc12)C(=O)Nc5cccc6c(O)cc(nc56)C(=O)Nc7cccc8c(OCCCN)cc(nc78)C(=O)Nc9cccc%10c(OCC(O)=O)cc(nc9%10)C(O)=O
+Q4I           SMILES               CACTVS 3.385                                                                                                                                                                                                                                                                                                                 CC(C)COc1cc(nc2c(NC(=O)NCCCCOc3cccc(CNC(=O)c4ccc(cc4)[S](N)(=O)=O)c3)cccc12)C(=O)Nc5cccc6c(O)cc(nc56)C(=O)Nc7cccc8c(OCCCN)cc(nc78)C(=O)Nc9cccc%10c(OCC(O)=O)cc(nc9%10)C(O)=O
+Q4I SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                                                                                                                                               CC(C)COc1cc(nc2c1cccc2NC(=O)NCCCCOc3cccc(c3)CNC(=O)c4ccc(cc4)S(=O)(=O)N)C(=O)Nc5cccc6c5nc(cc6O)C(=O)Nc7cccc8c7nc(cc8OCCCN)C(=O)Nc9cccc1c9nc(cc1OCC(=O)O)C(=O)O
+Q4I           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                                                                                                                                               CC(C)COc1cc(nc2c1cccc2NC(=O)NCCCCOc3cccc(c3)CNC(=O)c4ccc(cc4)S(=O)(=O)N)C(=O)Nc5cccc6c5nc(cc6O)C(=O)Nc7cccc8c7nc(cc8OCCCN)C(=O)Nc9cccc1c9nc(cc1OCC(=O)O)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+Q4I acedrg               243         "dictionary generator"                  
+Q4I acedrg_database      11          "data source"                           
+Q4I rdkit                2017.03.2   "Chemoinformatics tool"
+Q4I refmac5              5.8.0238    "optimization tool"                     

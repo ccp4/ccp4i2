@@ -1,0 +1,216 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MJ5     MJ5      5-methyl-2-phenoxyphenol     NON-POLYMER     27     15     .     
+#
+data_comp_MJ5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MJ5     CAA     C       CH3     0       4.121       36.415      -23.374     
+MJ5     OAB     O       OH1     0       7.106       39.955      -24.961     
+MJ5     CAC     C       CR16    0       10.964      39.489      -28.155     
+MJ5     CAD     C       CR16    0       10.506      38.460      -27.359     
+MJ5     CAE     C       CR16    0       10.059      40.341      -28.752     
+MJ5     CAF     C       CR16    0       9.145       38.274      -27.154     
+MJ5     CAG     C       CR16    0       8.695       40.171      -28.558     
+MJ5     CAH     C       CR16    0       4.736       36.670      -25.804     
+MJ5     CAI     C       CR16    0       5.404       37.306      -26.849     
+MJ5     CAJ     C       CR16    0       5.655       38.221      -24.236     
+MJ5     OAK     O       O2      0       6.868       39.047      -27.624     
+MJ5     CAL     C       CR6     0       4.849       37.111      -24.494     
+MJ5     CAM     C       CR6     0       6.326       38.865      -25.266     
+MJ5     CAN     C       CR6     0       8.252       39.138      -27.758     
+MJ5     CAO     C       CR6     0       6.201       38.396      -26.590     
+MJ5     HAA     H       H       0       4.455       36.732      -22.518     
+MJ5     HAAA    H       H       0       4.263       35.457      -23.439     
+MJ5     HAAB    H       H       0       3.170       36.604      -23.437     
+MJ5     HOAB    H       H       0       7.126       40.633      -25.492     
+MJ5     HAC     H       H       0       11.890      39.609      -28.291     
+MJ5     HAD     H       H       0       11.122      37.875      -26.949     
+MJ5     HAE     H       H       0       10.367      41.046      -29.297     
+MJ5     HAF     H       H       0       8.842       37.568      -26.609     
+MJ5     HAG     H       H       0       8.080       40.755      -28.968     
+MJ5     HAH     H       H       0       4.195       35.920      -25.993     
+MJ5     HAI     H       H       0       5.313       36.987      -27.733     
+MJ5     HAJ     H       H       0       5.746       38.540      -23.351     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MJ5         CAA         CAL      SINGLE       n     1.506  0.0100     1.506  0.0100
+MJ5         OAB         CAM      SINGLE       n     1.374  0.0155     1.374  0.0155
+MJ5         CAC         CAD      DOUBLE       y     1.375  0.0126     1.375  0.0126
+MJ5         CAC         CAE      SINGLE       y     1.375  0.0126     1.375  0.0126
+MJ5         CAD         CAF      SINGLE       y     1.385  0.0100     1.385  0.0100
+MJ5         CAE         CAG      DOUBLE       y     1.385  0.0100     1.385  0.0100
+MJ5         CAF         CAN      DOUBLE       y     1.375  0.0100     1.375  0.0100
+MJ5         CAG         CAN      SINGLE       y     1.375  0.0100     1.375  0.0100
+MJ5         CAH         CAI      DOUBLE       y     1.391  0.0100     1.391  0.0100
+MJ5         CAH         CAL      SINGLE       y     1.384  0.0115     1.384  0.0115
+MJ5         CAI         CAO      SINGLE       y     1.372  0.0100     1.372  0.0100
+MJ5         CAJ         CAL      DOUBLE       y     1.391  0.0100     1.391  0.0100
+MJ5         CAJ         CAM      SINGLE       y     1.383  0.0100     1.383  0.0100
+MJ5         OAK         CAN      SINGLE       n     1.390  0.0100     1.390  0.0100
+MJ5         OAK         CAO      SINGLE       n     1.389  0.0100     1.389  0.0100
+MJ5         CAM         CAO      DOUBLE       y     1.405  0.0100     1.405  0.0100
+MJ5         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0135
+MJ5         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0135
+MJ5         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0135
+MJ5         OAB        HOAB      SINGLE       n     0.966  0.0059     0.861  0.0200
+MJ5         CAC         HAC      SINGLE       n     1.082  0.0130     0.944  0.0161
+MJ5         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0183
+MJ5         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0183
+MJ5         CAF         HAF      SINGLE       n     1.082  0.0130     0.942  0.0163
+MJ5         CAG         HAG      SINGLE       n     1.082  0.0130     0.942  0.0163
+MJ5         CAH         HAH      SINGLE       n     1.082  0.0130     0.943  0.0173
+MJ5         CAI         HAI      SINGLE       n     1.082  0.0130     0.944  0.0200
+MJ5         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.945  0.0164
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MJ5         CAL         CAA         HAA     109.567    1.50
+MJ5         CAL         CAA        HAAA     109.567    1.50
+MJ5         CAL         CAA        HAAB     109.567    1.50
+MJ5         HAA         CAA        HAAA     109.348    1.50
+MJ5         HAA         CAA        HAAB     109.348    1.50
+MJ5        HAAA         CAA        HAAB     109.348    1.50
+MJ5         CAM         OAB        HOAB     120.000    3.00
+MJ5         CAD         CAC         CAE     119.908    1.50
+MJ5         CAD         CAC         HAC     120.046    1.50
+MJ5         CAE         CAC         HAC     120.046    1.50
+MJ5         CAC         CAD         CAF     120.691    1.50
+MJ5         CAC         CAD         HAD     119.839    1.50
+MJ5         CAF         CAD         HAD     119.470    1.50
+MJ5         CAC         CAE         CAG     120.691    1.50
+MJ5         CAC         CAE         HAE     119.839    1.50
+MJ5         CAG         CAE         HAE     119.470    1.50
+MJ5         CAD         CAF         CAN     118.805    1.50
+MJ5         CAD         CAF         HAF     120.526    1.50
+MJ5         CAN         CAF         HAF     120.669    1.50
+MJ5         CAE         CAG         CAN     118.805    1.50
+MJ5         CAE         CAG         HAG     120.526    1.50
+MJ5         CAN         CAG         HAG     120.669    1.50
+MJ5         CAI         CAH         CAL     121.841    1.50
+MJ5         CAI         CAH         HAH     119.082    1.50
+MJ5         CAL         CAH         HAH     119.077    1.50
+MJ5         CAH         CAI         CAO     120.035    1.50
+MJ5         CAH         CAI         HAI     120.036    1.50
+MJ5         CAO         CAI         HAI     119.929    1.50
+MJ5         CAL         CAJ         CAM     120.301    1.50
+MJ5         CAL         CAJ         HAJ     119.985    1.50
+MJ5         CAM         CAJ         HAJ     119.713    1.50
+MJ5         CAN         OAK         CAO     115.723    3.00
+MJ5         CAA         CAL         CAH     121.180    1.50
+MJ5         CAA         CAL         CAJ     120.423    1.50
+MJ5         CAH         CAL         CAJ     118.397    1.50
+MJ5         OAB         CAM         CAJ     120.144    3.00
+MJ5         OAB         CAM         CAO     120.144    3.00
+MJ5         CAJ         CAM         CAO     119.713    1.50
+MJ5         CAF         CAN         CAG     121.100    1.50
+MJ5         CAF         CAN         OAK     119.450    3.00
+MJ5         CAG         CAN         OAK     119.450    3.00
+MJ5         CAI         CAO         OAK     121.847    2.43
+MJ5         CAI         CAO         CAM     119.713    1.50
+MJ5         OAK         CAO         CAM     118.440    2.23
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MJ5             sp2_sp3_1         CAH         CAL         CAA         HAA     150.000    10.0     6
+MJ5             sp2_sp2_3         CAF         CAN         OAK         CAO     180.000     5.0     2
+MJ5             sp2_sp2_5         CAI         CAO         OAK         CAN     180.000     5.0     2
+MJ5              const_32         OAB         CAM         CAO         OAK       0.000    10.0     2
+MJ5             sp2_sp2_1         CAJ         CAM         OAB        HOAB     180.000     5.0     2
+MJ5       const_sp2_sp2_1         CAE         CAC         CAD         CAF       0.000     5.0     2
+MJ5              const_41         CAD         CAC         CAE         CAG       0.000    10.0     2
+MJ5       const_sp2_sp2_5         CAC         CAD         CAF         CAN       0.000     5.0     2
+MJ5              const_17         CAC         CAE         CAG         CAN       0.000    10.0     2
+MJ5              const_10         CAD         CAF         CAN         OAK     180.000    10.0     2
+MJ5              const_14         CAE         CAG         CAN         OAK     180.000    10.0     2
+MJ5              const_46         CAI         CAH         CAL         CAA     180.000    10.0     2
+MJ5              const_21         CAL         CAH         CAI         CAO       0.000    10.0     2
+MJ5              const_26         CAH         CAI         CAO         OAK     180.000    10.0     2
+MJ5              const_38         CAM         CAJ         CAL         CAA     180.000    10.0     2
+MJ5              const_34         CAL         CAJ         CAM         OAB     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MJ5    plan-1         CAA   0.020
+MJ5    plan-1         CAH   0.020
+MJ5    plan-1         CAI   0.020
+MJ5    plan-1         CAJ   0.020
+MJ5    plan-1         CAL   0.020
+MJ5    plan-1         CAM   0.020
+MJ5    plan-1         CAO   0.020
+MJ5    plan-1         HAH   0.020
+MJ5    plan-1         HAI   0.020
+MJ5    plan-1         HAJ   0.020
+MJ5    plan-1         OAB   0.020
+MJ5    plan-1         OAK   0.020
+MJ5    plan-2         CAC   0.020
+MJ5    plan-2         CAD   0.020
+MJ5    plan-2         CAE   0.020
+MJ5    plan-2         CAF   0.020
+MJ5    plan-2         CAG   0.020
+MJ5    plan-2         CAN   0.020
+MJ5    plan-2         HAC   0.020
+MJ5    plan-2         HAD   0.020
+MJ5    plan-2         HAE   0.020
+MJ5    plan-2         HAF   0.020
+MJ5    plan-2         HAG   0.020
+MJ5    plan-2         OAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MJ5           SMILES              ACDLabs 12.01                                                   O(c1ccccc1)c2ccc(cc2O)C
+MJ5            InChI                InChI  1.03 InChI=1S/C13H12O2/c1-10-7-8-13(12(14)9-10)15-11-5-3-2-4-6-11/h2-9,14H,1H3
+MJ5         InChIKey                InChI  1.03                                               HUPPMDCSGSHZHI-UHFFFAOYSA-N
+MJ5 SMILES_CANONICAL               CACTVS 3.370                                                   Cc1ccc(Oc2ccccc2)c(O)c1
+MJ5           SMILES               CACTVS 3.370                                                   Cc1ccc(Oc2ccccc2)c(O)c1
+MJ5 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                   Cc1ccc(c(c1)O)Oc2ccccc2
+MJ5           SMILES "OpenEye OEToolkits" 1.7.6                                                   Cc1ccc(c(c1)O)Oc2ccccc2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MJ5 acedrg               243         "dictionary generator"                  
+MJ5 acedrg_database      11          "data source"                           
+MJ5 rdkit                2017.03.2   "Chemoinformatics tool"
+MJ5 refmac5              5.8.0238    "optimization tool"                     

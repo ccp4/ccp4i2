@@ -1,0 +1,194 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SCL     SCL      "ACETIC ACID SALICYLOYL-AMINO-ESTER"     NON-POLYMER     23     14     .     
+#
+data_comp_SCL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SCL     C1      C       CR6     0       25.659      34.209      199.169     
+SCL     C2      C       CR6     0       24.612      34.056      198.239     
+SCL     C3      C       CR16    0       24.672      34.694      197.001     
+SCL     C4      C       CR16    0       25.755      35.481      196.677     
+SCL     C5      C       CR16    0       26.790      35.646      197.574     
+SCL     C6      C       CR16    0       26.740      35.021      198.799     
+SCL     C7      C       C       0       25.660      33.560      200.512     
+SCL     C8      C       C       0       28.024      31.909      202.536     
+SCL     C9      C       CH3     0       27.975      31.291      203.888     
+SCL     N1      N       NH1     0       26.714      32.748      200.769     
+SCL     O1      O       OH1     0       23.519      33.276      198.537     
+SCL     O2      O       O       0       24.738      33.759      201.314     
+SCL     O3      O       O2      0       26.764      32.066      202.022     
+SCL     O4      O       O       0       29.034      32.228      201.962     
+SCL     H3      H       H       0       23.968      34.583      196.386     
+SCL     H4      H       H       0       25.787      35.909      195.837     
+SCL     H5      H       H       0       27.530      36.186      197.349     
+SCL     H6      H       H       0       27.449      35.137      199.406     
+SCL     H91     H       H       0       28.849      30.929      204.110     
+SCL     H92     H       H       0       27.319      30.576      203.895     
+SCL     H93     H       H       0       27.728      31.963      204.543     
+SCL     HN1     H       H       0       27.371      32.610      200.192     
+SCL     HO1     H       H       0       23.109      32.847      197.912     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SCL          C1          C2      DOUBLE       y     1.403  0.0100     1.403  0.0100
+SCL          C1          C6      SINGLE       y     1.397  0.0100     1.397  0.0100
+SCL          C1          C7      SINGLE       n     1.490  0.0109     1.490  0.0109
+SCL          C2          C3      SINGLE       y     1.390  0.0100     1.390  0.0100
+SCL          C2          O1      SINGLE       n     1.374  0.0155     1.374  0.0155
+SCL          C3          C4      DOUBLE       y     1.375  0.0106     1.375  0.0106
+SCL          C4          C5      SINGLE       y     1.376  0.0124     1.376  0.0124
+SCL          C5          C6      DOUBLE       y     1.373  0.0108     1.373  0.0108
+SCL          C7          N1      SINGLE       n     1.351  0.0116     1.351  0.0116
+SCL          C7          O2      DOUBLE       n     1.238  0.0100     1.238  0.0100
+SCL          C8          C9      SINGLE       n     1.487  0.0165     1.487  0.0165
+SCL          C8          O3      SINGLE       n     1.357  0.0200     1.357  0.0200
+SCL          C8          O4      DOUBLE       n     1.203  0.0150     1.203  0.0150
+SCL          N1          O3      SINGLE       n     1.415  0.0200     1.415  0.0200
+SCL          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0179
+SCL          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0183
+SCL          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0180
+SCL          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+SCL          C9         H91      SINGLE       n     1.089  0.0100     0.971  0.0140
+SCL          C9         H92      SINGLE       n     1.089  0.0100     0.971  0.0140
+SCL          C9         H93      SINGLE       n     1.089  0.0100     0.971  0.0140
+SCL          N1         HN1      SINGLE       n     1.016  0.0100     0.883  0.0200
+SCL          O1         HO1      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SCL          C2          C1          C6     117.249    1.50
+SCL          C2          C1          C7     123.274    3.00
+SCL          C6          C1          C7     119.477    2.89
+SCL          C1          C2          C3     119.925    1.50
+SCL          C1          C2          O1     120.038    3.00
+SCL          C3          C2          O1     120.038    3.00
+SCL          C2          C3          C4     120.216    1.50
+SCL          C2          C3          H3     119.654    1.50
+SCL          C4          C3          H3     120.131    1.50
+SCL          C3          C4          C5     120.690    1.50
+SCL          C3          C4          H4     119.471    1.50
+SCL          C5          C4          H4     119.840    1.50
+SCL          C4          C5          C6     120.189    1.50
+SCL          C4          C5          H5     119.951    1.50
+SCL          C6          C5          H5     119.860    1.50
+SCL          C1          C6          C5     121.732    1.50
+SCL          C1          C6          H6     118.847    1.50
+SCL          C5          C6          H6     119.421    1.50
+SCL          C1          C7          N1     115.202    1.50
+SCL          C1          C7          O2     121.266    1.50
+SCL          N1          C7          O2     123.533    1.50
+SCL          C9          C8          O3     111.312    1.50
+SCL          C9          C8          O4     125.515    2.35
+SCL          O3          C8          O4     123.173    2.07
+SCL          C8          C9         H91     109.466    1.50
+SCL          C8          C9         H92     109.466    1.50
+SCL          C8          C9         H93     109.466    1.50
+SCL         H91          C9         H92     109.424    1.50
+SCL         H91          C9         H93     109.424    1.50
+SCL         H92          C9         H93     109.424    1.50
+SCL          C7          N1          O3     118.439    3.00
+SCL          C7          N1         HN1     123.122    3.00
+SCL          O3          N1         HN1     118.439    3.00
+SCL          C2          O1         HO1     120.000    3.00
+SCL          C8          O3          N1     112.922    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SCL       const_sp2_sp2_4          C7          C1          C2          O1       0.000     5.0     2
+SCL              const_23          C7          C1          C6          C5     180.000    10.0     2
+SCL             sp2_sp2_1          C2          C1          C7          N1     180.000     5.0     2
+SCL             sp2_sp2_5          C1          C2          O1         HO1     180.000     5.0     2
+SCL       const_sp2_sp2_7          O1          C2          C3          C4     180.000     5.0     2
+SCL       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+SCL              const_13          C3          C4          C5          C6       0.000    10.0     2
+SCL              const_17          C4          C5          C6          C1       0.000    10.0     2
+SCL             sp2_sp2_9          O2          C7          N1          O3       0.000     5.0     2
+SCL            sp2_sp2_11          C9          C8          O3          N1     180.000     5.0     2
+SCL             sp2_sp3_1          O3          C8          C9         H91       0.000    10.0     6
+SCL            sp2_sp2_13          C7          N1          O3          C8     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SCL    plan-1          C1   0.020
+SCL    plan-1          C2   0.020
+SCL    plan-1          C3   0.020
+SCL    plan-1          C4   0.020
+SCL    plan-1          C5   0.020
+SCL    plan-1          C6   0.020
+SCL    plan-1          C7   0.020
+SCL    plan-1          H3   0.020
+SCL    plan-1          H4   0.020
+SCL    plan-1          H5   0.020
+SCL    plan-1          H6   0.020
+SCL    plan-1          O1   0.020
+SCL    plan-2          C1   0.020
+SCL    plan-2          C7   0.020
+SCL    plan-2          N1   0.020
+SCL    plan-2          O2   0.020
+SCL    plan-3          C8   0.020
+SCL    plan-3          C9   0.020
+SCL    plan-3          O3   0.020
+SCL    plan-3          O4   0.020
+SCL    plan-4          C7   0.020
+SCL    plan-4         HN1   0.020
+SCL    plan-4          N1   0.020
+SCL    plan-4          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SCL           SMILES              ACDLabs 10.04                                                      O=C(c1ccccc1O)NOC(=O)C
+SCL SMILES_CANONICAL               CACTVS 3.341                                                      CC(=O)ONC(=O)c1ccccc1O
+SCL           SMILES               CACTVS 3.341                                                      CC(=O)ONC(=O)c1ccccc1O
+SCL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                      CC(=O)ONC(=O)c1ccccc1O
+SCL           SMILES "OpenEye OEToolkits" 1.5.0                                                      CC(=O)ONC(=O)c1ccccc1O
+SCL            InChI                InChI  1.03 InChI=1S/C9H9NO4/c1-6(11)14-10-9(13)7-4-2-3-5-8(7)12/h2-5,12H,1H3,(H,10,13)
+SCL         InChIKey                InChI  1.03                                                 PCFWLDHLJWUGSU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SCL acedrg               243         "dictionary generator"                  
+SCL acedrg_database      11          "data source"                           
+SCL rdkit                2017.03.2   "Chemoinformatics tool"
+SCL refmac5              5.8.0238    "optimization tool"                     

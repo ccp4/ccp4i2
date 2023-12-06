@@ -1,0 +1,217 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DR0     DR0      N-(HYDROXYMETHYL)-N,N-DIMETHYLHEXAN-1-AMINIUM     NON-POLYMER     33     11     .     
+#
+data_comp_DR0
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DR0     CAJ     C       CH3     0       13.162      57.724      6.428       
+DR0     CAI     C       CH2     0       13.630      56.636      7.364       
+DR0     CAH     C       CH2     0       14.214      57.157      8.652       
+DR0     CAG     C       CH2     0       14.675      56.082      9.605       
+DR0     CAF     C       CH2     0       15.296      56.617      10.879      
+DR0     CAE     C       CH2     0       15.738      55.463      11.763      
+DR0     NAD     N       NT      1       16.301      55.796      13.136      
+DR0     CAC     C       CH3     0       15.270      56.472      13.982      
+DR0     CAK     C       CH3     0       17.498      56.686      13.006      
+DR0     CAB     C       CH2     0       16.756      54.513      13.811      
+DR0     OAA     O       OH1     0       15.694      53.590      14.027      
+DR0     HAJ1    H       H       0       12.793      57.324      5.622       
+DR0     HAJ2    H       H       0       13.913      58.296      6.190       
+DR0     HAJ3    H       H       0       12.476      58.258      6.866       
+DR0     HAI1    H       H       0       14.309      56.094      6.907       
+DR0     HAI2    H       H       0       12.871      56.050      7.576       
+DR0     HAH1    H       H       0       13.538      57.708      9.103       
+DR0     HAH2    H       H       0       14.976      57.737      8.439       
+DR0     HAG1    H       H       0       15.332      55.516      9.147       
+DR0     HAG2    H       H       0       13.907      55.519      9.840       
+DR0     HAF1    H       H       0       14.638      57.171      11.348      
+DR0     HAF2    H       H       0       16.064      57.180      10.648      
+DR0     HAE1    H       H       0       16.416      54.956      11.277      
+DR0     HAE2    H       H       0       14.971      54.874      11.886      
+DR0     HAC1    H       H       0       15.587      56.519      14.896      
+DR0     HAC2    H       H       0       14.446      55.964      13.948      
+DR0     HAC3    H       H       0       15.112      57.368      13.648      
+DR0     HAK1    H       H       0       17.918      56.790      13.873      
+DR0     HAK2    H       H       0       17.224      57.555      12.676      
+DR0     HAK3    H       H       0       18.126      56.286      12.386      
+DR0     HAB1    H       H       0       17.165      54.737      14.675      
+DR0     HAB2    H       H       0       17.441      54.089      13.251      
+DR0     HAA     H       H       0       15.377      53.702      14.806      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DR0         CAJ         CAI      SINGLE       n     1.510  0.0200     1.510  0.0200
+DR0         CAI         CAH      SINGLE       n     1.507  0.0200     1.507  0.0200
+DR0         CAH         CAG      SINGLE       n     1.509  0.0200     1.509  0.0200
+DR0         CAG         CAF      SINGLE       n     1.514  0.0200     1.514  0.0200
+DR0         CAF         CAE      SINGLE       n     1.516  0.0105     1.516  0.0105
+DR0         CAE         NAD      SINGLE       n     1.516  0.0100     1.516  0.0100
+DR0         NAD         CAC      SINGLE       n     1.488  0.0165     1.488  0.0165
+DR0         NAD         CAK      SINGLE       n     1.488  0.0165     1.488  0.0165
+DR0         NAD         CAB      SINGLE       n     1.511  0.0166     1.511  0.0166
+DR0         CAB         OAA      SINGLE       n     1.419  0.0200     1.419  0.0200
+DR0         CAJ        HAJ1      SINGLE       n     1.089  0.0100     0.973  0.0157
+DR0         CAJ        HAJ2      SINGLE       n     1.089  0.0100     0.973  0.0157
+DR0         CAJ        HAJ3      SINGLE       n     1.089  0.0100     0.973  0.0157
+DR0         CAI        HAI1      SINGLE       n     1.089  0.0100     0.982  0.0155
+DR0         CAI        HAI2      SINGLE       n     1.089  0.0100     0.982  0.0155
+DR0         CAH        HAH1      SINGLE       n     1.089  0.0100     0.981  0.0163
+DR0         CAH        HAH2      SINGLE       n     1.089  0.0100     0.981  0.0163
+DR0         CAG        HAG1      SINGLE       n     1.089  0.0100     0.981  0.0163
+DR0         CAG        HAG2      SINGLE       n     1.089  0.0100     0.981  0.0163
+DR0         CAF        HAF1      SINGLE       n     1.089  0.0100     0.981  0.0160
+DR0         CAF        HAF2      SINGLE       n     1.089  0.0100     0.981  0.0160
+DR0         CAE        HAE1      SINGLE       n     1.089  0.0100     0.976  0.0165
+DR0         CAE        HAE2      SINGLE       n     1.089  0.0100     0.976  0.0165
+DR0         CAC        HAC1      SINGLE       n     1.089  0.0100     0.969  0.0145
+DR0         CAC        HAC2      SINGLE       n     1.089  0.0100     0.969  0.0145
+DR0         CAC        HAC3      SINGLE       n     1.089  0.0100     0.969  0.0145
+DR0         CAK        HAK1      SINGLE       n     1.089  0.0100     0.969  0.0145
+DR0         CAK        HAK2      SINGLE       n     1.089  0.0100     0.969  0.0145
+DR0         CAK        HAK3      SINGLE       n     1.089  0.0100     0.969  0.0145
+DR0         CAB        HAB1      SINGLE       n     1.089  0.0100     0.981  0.0167
+DR0         CAB        HAB2      SINGLE       n     1.089  0.0100     0.981  0.0167
+DR0         OAA         HAA      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DR0         CAI         CAJ        HAJ1     109.554    1.50
+DR0         CAI         CAJ        HAJ2     109.554    1.50
+DR0         CAI         CAJ        HAJ3     109.554    1.50
+DR0        HAJ1         CAJ        HAJ2     109.380    1.50
+DR0        HAJ1         CAJ        HAJ3     109.380    1.50
+DR0        HAJ2         CAJ        HAJ3     109.380    1.50
+DR0         CAJ         CAI         CAH     113.719    3.00
+DR0         CAJ         CAI        HAI1     108.918    1.50
+DR0         CAJ         CAI        HAI2     108.918    1.50
+DR0         CAH         CAI        HAI1     108.758    1.50
+DR0         CAH         CAI        HAI2     108.758    1.50
+DR0        HAI1         CAI        HAI2     107.763    1.50
+DR0         CAI         CAH         CAG     114.362    3.00
+DR0         CAI         CAH        HAH1     108.653    1.50
+DR0         CAI         CAH        HAH2     108.653    1.50
+DR0         CAG         CAH        HAH1     108.698    1.50
+DR0         CAG         CAH        HAH2     108.698    1.50
+DR0        HAH1         CAH        HAH2     107.646    1.50
+DR0         CAH         CAG         CAF     113.853    2.32
+DR0         CAH         CAG        HAG1     108.698    1.50
+DR0         CAH         CAG        HAG2     108.698    1.50
+DR0         CAF         CAG        HAG1     108.806    1.50
+DR0         CAF         CAG        HAG2     108.806    1.50
+DR0        HAG1         CAG        HAG2     107.646    1.50
+DR0         CAG         CAF         CAE     109.864    1.50
+DR0         CAG         CAF        HAF1     109.041    1.50
+DR0         CAG         CAF        HAF2     109.041    1.50
+DR0         CAE         CAF        HAF1     109.624    1.50
+DR0         CAE         CAF        HAF2     109.624    1.50
+DR0        HAF1         CAF        HAF2     107.927    1.57
+DR0         CAF         CAE         NAD     115.972    1.50
+DR0         CAF         CAE        HAE1     108.393    1.50
+DR0         CAF         CAE        HAE2     108.393    1.50
+DR0         NAD         CAE        HAE1     108.242    1.50
+DR0         NAD         CAE        HAE2     108.242    1.50
+DR0        HAE1         CAE        HAE2     107.519    1.50
+DR0         CAE         NAD         CAC     109.603    1.93
+DR0         CAE         NAD         CAK     109.603    1.93
+DR0         CAE         NAD         CAB     110.351    2.60
+DR0         CAC         NAD         CAK     109.320    1.50
+DR0         CAC         NAD         CAB     110.351    2.60
+DR0         CAK         NAD         CAB     110.351    2.60
+DR0         NAD         CAC        HAC1     109.204    1.50
+DR0         NAD         CAC        HAC2     109.204    1.50
+DR0         NAD         CAC        HAC3     109.204    1.50
+DR0        HAC1         CAC        HAC2     109.693    1.55
+DR0        HAC1         CAC        HAC3     109.693    1.55
+DR0        HAC2         CAC        HAC3     109.693    1.55
+DR0         NAD         CAK        HAK1     109.204    1.50
+DR0         NAD         CAK        HAK2     109.204    1.50
+DR0         NAD         CAK        HAK3     109.204    1.50
+DR0        HAK1         CAK        HAK2     109.693    1.55
+DR0        HAK1         CAK        HAK3     109.693    1.55
+DR0        HAK2         CAK        HAK3     109.693    1.55
+DR0         NAD         CAB         OAA     109.471    3.00
+DR0         NAD         CAB        HAB1     108.765    1.50
+DR0         NAD         CAB        HAB2     108.765    1.50
+DR0         OAA         CAB        HAB1     109.252    1.50
+DR0         OAA         CAB        HAB2     109.252    1.50
+DR0        HAB1         CAB        HAB2     108.278    1.50
+DR0         CAB         OAA         HAA     108.940    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DR0             sp3_sp3_1         CAH         CAI         CAJ        HAJ1     180.000    10.0     3
+DR0            sp3_sp3_10         CAG         CAH         CAI         CAJ     180.000    10.0     3
+DR0            sp3_sp3_19         CAF         CAG         CAH         CAI     180.000    10.0     3
+DR0            sp3_sp3_28         CAE         CAF         CAG         CAH     180.000    10.0     3
+DR0            sp3_sp3_37         NAD         CAE         CAF         CAG     180.000    10.0     3
+DR0            sp3_sp3_47         CAF         CAE         NAD         CAC     -60.000    10.0     3
+DR0            sp3_sp3_55        HAC1         CAC         NAD         CAE     180.000    10.0     3
+DR0            sp3_sp3_65        HAK1         CAK         NAD         CAE     -60.000    10.0     3
+DR0            sp3_sp3_74         OAA         CAB         NAD         CAE     -60.000    10.0     3
+DR0            sp3_sp3_82         NAD         CAB         OAA         HAA     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DR0    chir_1    NAD    CAB    CAE    CAC    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DR0           SMILES              ACDLabs 10.04                                             OC[N+](CCCCCC)(C)C
+DR0 SMILES_CANONICAL               CACTVS 3.341                                             CCCCCC[N+](C)(C)CO
+DR0           SMILES               CACTVS 3.341                                             CCCCCC[N+](C)(C)CO
+DR0 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                             CCCCCC[N+](C)(C)CO
+DR0           SMILES "OpenEye OEToolkits" 1.5.0                                             CCCCCC[N+](C)(C)CO
+DR0            InChI                InChI  1.03 InChI=1S/C9H22NO/c1-4-5-6-7-8-10(2,3)9-11/h11H,4-9H2,1-3H3/q+1
+DR0         InChIKey                InChI  1.03                                    HSCKPPPLTPBXED-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DR0 acedrg               243         "dictionary generator"                  
+DR0 acedrg_database      11          "data source"                           
+DR0 rdkit                2017.03.2   "Chemoinformatics tool"
+DR0 refmac5              5.8.0238    "optimization tool"                     

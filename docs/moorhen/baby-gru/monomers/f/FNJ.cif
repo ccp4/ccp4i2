@@ -1,0 +1,323 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FNJ     FNJ      "4,4'-[(1R,2R)-1-phenylbutane-1,2-diyl]diphenol"     NON-POLYMER     46     24     .     
+#
+data_comp_FNJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FNJ     CAQ     C       CR16    0       -18.268     5.294       49.454      
+FNJ     CAR     C       CR16    0       -19.539     4.933       49.879      
+FNJ     CAS     C       CR6     0       -19.702     4.261       51.081      
+FNJ     OAX     O       OH1     0       -20.960     3.903       51.503      
+FNJ     CAT     C       CR16    0       -18.589     3.955       51.851      
+FNJ     CAU     C       CR16    0       -17.323     4.322       51.415      
+FNJ     CAP     C       CR6     0       -17.136     4.998       50.211      
+FNJ     CAI     C       CH1     0       -15.744     5.398       49.734      
+FNJ     CAV     C       CH2     0       -15.608     6.934       49.691      
+FNJ     CAW     C       CH3     0       -15.836     7.611       51.031      
+FNJ     CAH     C       CH1     0       -15.408     4.750       48.381      
+FNJ     CAE     C       CR6     0       -13.974     5.017       47.924      
+FNJ     CAD     C       CR16    0       -12.880     4.721       48.738      
+FNJ     CAC     C       CR16    0       -11.578     4.963       48.321      
+FNJ     CAB     C       CR6     0       -11.343     5.510       47.069      
+FNJ     OAG     O       OH1     0       -10.053     5.750       46.658      
+FNJ     CAA     C       CR16    0       -12.413     5.813       46.241      
+FNJ     CAF     C       CR16    0       -13.711     5.566       46.668      
+FNJ     CAJ     C       CR6     0       -15.689     3.248       48.352      
+FNJ     CAK     C       CR16    0       -16.438     2.684       47.318      
+FNJ     CAL     C       CR16    0       -16.694     1.319       47.285      
+FNJ     CAM     C       CR16    0       -16.205     0.496       48.280      
+FNJ     CAN     C       CR16    0       -15.461     1.033       49.308      
+FNJ     CAO     C       CR16    0       -15.201     2.397       49.345      
+FNJ     H1      H       H       0       -18.169     5.750       48.635      
+FNJ     H2      H       H       0       -20.292     5.143       49.352      
+FNJ     H3      H       H       0       -21.061     3.314       52.123      
+FNJ     H4      H       H       0       -18.694     3.499       52.670      
+FNJ     H5      H       H       0       -16.575     4.108       51.948      
+FNJ     H6      H       H       0       -15.101     5.077       50.411      
+FNJ     H7      H       H       0       -16.252     7.289       49.044      
+FNJ     H8      H       H       0       -14.710     7.167       49.378      
+FNJ     H9      H       H       0       -15.415     8.488       51.029      
+FNJ     H10     H       H       0       -15.448     7.069       51.740      
+FNJ     H11     H       H       0       -16.791     7.713       51.188      
+FNJ     H12     H       H       0       -15.999     5.157       47.690      
+FNJ     H13     H       H       0       -13.024     4.349       49.591      
+FNJ     H14     H       H       0       -10.853     4.756       48.888      
+FNJ     H15     H       H       0       -9.881      5.905       45.829      
+FNJ     H16     H       H       0       -12.258     6.185       45.388      
+FNJ     H17     H       H       0       -14.429     5.777       46.094      
+FNJ     H18     H       H       0       -16.778     3.236       46.632      
+FNJ     H19     H       H       0       -17.205     0.953       46.579      
+FNJ     H20     H       H       0       -16.380     -0.431      48.256      
+FNJ     H21     H       H       0       -15.125     0.472       49.990      
+FNJ     H22     H       H       0       -14.692     2.753       50.055      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FNJ         CAA         CAF      DOUBLE       y     1.385  0.0100     1.385  0.0100
+FNJ         CAB         CAA      SINGLE       y     1.383  0.0100     1.383  0.0100
+FNJ         CAE         CAF      SINGLE       y     1.391  0.0100     1.391  0.0100
+FNJ         CAK         CAL      DOUBLE       y     1.386  0.0100     1.386  0.0100
+FNJ         CAL         CAM      SINGLE       y     1.376  0.0124     1.376  0.0124
+FNJ         CAJ         CAK      SINGLE       y     1.391  0.0100     1.391  0.0100
+FNJ         CAB         OAG      SINGLE       n     1.374  0.0155     1.374  0.0155
+FNJ         CAC         CAB      DOUBLE       y     1.383  0.0100     1.383  0.0100
+FNJ         CAM         CAN      DOUBLE       y     1.374  0.0127     1.374  0.0127
+FNJ         CAH         CAE      SINGLE       n     1.524  0.0100     1.524  0.0100
+FNJ         CAE         CAD      DOUBLE       y     1.391  0.0100     1.391  0.0100
+FNJ         CAH         CAJ      SINGLE       n     1.524  0.0100     1.524  0.0100
+FNJ         CAJ         CAO      DOUBLE       y     1.391  0.0100     1.391  0.0100
+FNJ         CAI         CAH      SINGLE       n     1.526  0.0127     1.526  0.0127
+FNJ         CAN         CAO      SINGLE       y     1.386  0.0100     1.386  0.0100
+FNJ         CAD         CAC      SINGLE       y     1.385  0.0100     1.385  0.0100
+FNJ         CAI         CAV      SINGLE       n     1.534  0.0147     1.534  0.0147
+FNJ         CAV         CAW      SINGLE       n     1.515  0.0200     1.515  0.0200
+FNJ         CAP         CAI      SINGLE       n     1.521  0.0100     1.521  0.0100
+FNJ         CAQ         CAP      DOUBLE       y     1.390  0.0100     1.390  0.0100
+FNJ         CAQ         CAR      SINGLE       y     1.385  0.0100     1.385  0.0100
+FNJ         CAU         CAP      SINGLE       y     1.390  0.0100     1.390  0.0100
+FNJ         CAR         CAS      DOUBLE       y     1.383  0.0100     1.383  0.0100
+FNJ         CAT         CAU      DOUBLE       y     1.385  0.0100     1.385  0.0100
+FNJ         CAS         CAT      SINGLE       y     1.383  0.0100     1.383  0.0100
+FNJ         CAS         OAX      SINGLE       n     1.374  0.0155     1.374  0.0155
+FNJ         CAQ          H1      SINGLE       n     1.082  0.0130     0.943  0.0173
+FNJ         CAR          H2      SINGLE       n     1.082  0.0130     0.943  0.0169
+FNJ         OAX          H3      SINGLE       n     0.966  0.0059     0.861  0.0200
+FNJ         CAT          H4      SINGLE       n     1.082  0.0130     0.943  0.0169
+FNJ         CAU          H5      SINGLE       n     1.082  0.0130     0.943  0.0173
+FNJ         CAI          H6      SINGLE       n     1.089  0.0100     0.989  0.0200
+FNJ         CAV          H7      SINGLE       n     1.089  0.0100     0.980  0.0160
+FNJ         CAV          H8      SINGLE       n     1.089  0.0100     0.980  0.0160
+FNJ         CAW          H9      SINGLE       n     1.089  0.0100     0.973  0.0157
+FNJ         CAW         H10      SINGLE       n     1.089  0.0100     0.973  0.0157
+FNJ         CAW         H11      SINGLE       n     1.089  0.0100     0.973  0.0157
+FNJ         CAH         H12      SINGLE       n     1.089  0.0100     0.996  0.0100
+FNJ         CAD         H13      SINGLE       n     1.082  0.0130     0.943  0.0173
+FNJ         CAC         H14      SINGLE       n     1.082  0.0130     0.943  0.0169
+FNJ         OAG         H15      SINGLE       n     0.966  0.0059     0.861  0.0200
+FNJ         CAA         H16      SINGLE       n     1.082  0.0130     0.943  0.0169
+FNJ         CAF         H17      SINGLE       n     1.082  0.0130     0.943  0.0173
+FNJ         CAK         H18      SINGLE       n     1.082  0.0130     0.944  0.0174
+FNJ         CAL         H19      SINGLE       n     1.082  0.0130     0.944  0.0175
+FNJ         CAM         H20      SINGLE       n     1.082  0.0130     0.944  0.0161
+FNJ         CAN         H21      SINGLE       n     1.082  0.0130     0.944  0.0175
+FNJ         CAO         H22      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FNJ         CAP         CAQ         CAR     121.478    1.50
+FNJ         CAP         CAQ          H1     119.308    1.50
+FNJ         CAR         CAQ          H1     119.214    1.50
+FNJ         CAQ         CAR         CAS     119.804    1.50
+FNJ         CAQ         CAR          H2     120.179    1.50
+FNJ         CAS         CAR          H2     120.017    1.50
+FNJ         CAR         CAS         CAT     119.550    1.50
+FNJ         CAR         CAS         OAX     120.225    3.00
+FNJ         CAT         CAS         OAX     120.225    3.00
+FNJ         CAS         OAX          H3     120.000    3.00
+FNJ         CAU         CAT         CAS     119.804    1.50
+FNJ         CAU         CAT          H4     120.179    1.50
+FNJ         CAS         CAT          H4     120.017    1.50
+FNJ         CAP         CAU         CAT     121.478    1.50
+FNJ         CAP         CAU          H5     119.308    1.50
+FNJ         CAT         CAU          H5     119.214    1.50
+FNJ         CAI         CAP         CAQ     121.057    1.50
+FNJ         CAI         CAP         CAU     121.057    1.50
+FNJ         CAQ         CAP         CAU     117.886    1.50
+FNJ         CAH         CAI         CAV     111.094    2.85
+FNJ         CAH         CAI         CAP     111.525    1.84
+FNJ         CAH         CAI          H6     109.155    1.50
+FNJ         CAV         CAI         CAP     111.511    1.50
+FNJ         CAV         CAI          H6     107.249    1.50
+FNJ         CAP         CAI          H6     107.644    1.50
+FNJ         CAI         CAV         CAW     112.740    3.00
+FNJ         CAI         CAV          H7     108.805    1.50
+FNJ         CAI         CAV          H8     108.805    1.50
+FNJ         CAW         CAV          H7     108.958    1.50
+FNJ         CAW         CAV          H8     108.958    1.50
+FNJ          H7         CAV          H8     108.011    1.50
+FNJ         CAV         CAW          H9     109.619    1.50
+FNJ         CAV         CAW         H10     109.619    1.50
+FNJ         CAV         CAW         H11     109.619    1.50
+FNJ          H9         CAW         H10     109.380    1.50
+FNJ          H9         CAW         H11     109.380    1.50
+FNJ         H10         CAW         H11     109.380    1.50
+FNJ         CAE         CAH         CAJ     111.144    1.76
+FNJ         CAE         CAH         CAI     111.525    1.84
+FNJ         CAE         CAH         H12     106.727    1.50
+FNJ         CAJ         CAH         CAI     111.525    1.84
+FNJ         CAJ         CAH         H12     106.727    1.50
+FNJ         CAI         CAH         H12     109.155    1.50
+FNJ         CAF         CAE         CAH     120.956    1.68
+FNJ         CAF         CAE         CAD     118.089    1.50
+FNJ         CAH         CAE         CAD     120.956    1.68
+FNJ         CAE         CAD         CAC     121.499    1.50
+FNJ         CAE         CAD         H13     119.372    1.50
+FNJ         CAC         CAD         H13     119.129    1.50
+FNJ         CAB         CAC         CAD     119.722    1.50
+FNJ         CAB         CAC         H14     120.058    1.50
+FNJ         CAD         CAC         H14     120.220    1.50
+FNJ         CAA         CAB         OAG     120.266    3.00
+FNJ         CAA         CAB         CAC     119.468    1.50
+FNJ         OAG         CAB         CAC     120.266    3.00
+FNJ         CAB         OAG         H15     120.000    3.00
+FNJ         CAF         CAA         CAB     119.722    1.50
+FNJ         CAF         CAA         H16     120.220    1.50
+FNJ         CAB         CAA         H16     120.058    1.50
+FNJ         CAA         CAF         CAE     121.499    1.50
+FNJ         CAA         CAF         H17     119.129    1.50
+FNJ         CAE         CAF         H17     119.372    1.50
+FNJ         CAK         CAJ         CAH     120.871    1.68
+FNJ         CAK         CAJ         CAO     118.258    1.50
+FNJ         CAH         CAJ         CAO     120.871    1.68
+FNJ         CAL         CAK         CAJ     120.763    1.50
+FNJ         CAL         CAK         H18     119.648    1.50
+FNJ         CAJ         CAK         H18     119.589    1.50
+FNJ         CAK         CAL         CAM     120.166    1.50
+FNJ         CAK         CAL         H19     119.872    1.50
+FNJ         CAM         CAL         H19     119.962    1.50
+FNJ         CAL         CAM         CAN     119.884    1.50
+FNJ         CAL         CAM         H20     120.058    1.50
+FNJ         CAN         CAM         H20     120.058    1.50
+FNJ         CAM         CAN         CAO     120.166    1.50
+FNJ         CAM         CAN         H21     119.962    1.50
+FNJ         CAO         CAN         H21     119.872    1.50
+FNJ         CAJ         CAO         CAN     120.763    1.50
+FNJ         CAJ         CAO         H22     119.589    1.50
+FNJ         CAN         CAO         H22     119.648    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FNJ              const_69         CAP         CAQ         CAR         CAS       0.000    10.0     2
+FNJ              const_43         CAI         CAP         CAQ         CAR     180.000    10.0     2
+FNJ             sp2_sp3_2         CAF         CAE         CAH         CAI     -90.000    10.0     6
+FNJ             sp2_sp3_8         CAK         CAJ         CAH         CAI     -90.000    10.0     6
+FNJ              const_62         CAC         CAD         CAE         CAH     180.000    10.0     2
+FNJ       const_sp2_sp2_3         CAH         CAE         CAF         CAA     180.000     5.0     2
+FNJ              const_17         CAB         CAC         CAD         CAE       0.000    10.0     2
+FNJ              const_15         OAG         CAB         CAC         CAD     180.000    10.0     2
+FNJ             sp2_sp2_1         CAA         CAB         OAG         H15     180.000     5.0     2
+FNJ              const_10         CAF         CAA         CAB         OAG     180.000    10.0     2
+FNJ       const_sp2_sp2_5         CAB         CAA         CAF         CAE       0.000     5.0     2
+FNJ              const_23         CAH         CAJ         CAK         CAL     180.000    10.0     2
+FNJ              const_67         CAH         CAJ         CAO         CAN     180.000    10.0     2
+FNJ              const_25         CAJ         CAK         CAL         CAM       0.000    10.0     2
+FNJ              const_58         CAQ         CAR         CAS         OAX     180.000    10.0     2
+FNJ              const_29         CAK         CAL         CAM         CAN       0.000    10.0     2
+FNJ              const_33         CAL         CAM         CAN         CAO       0.000    10.0     2
+FNJ              const_37         CAM         CAN         CAO         CAJ       0.000    10.0     2
+FNJ             sp2_sp2_3         CAR         CAS         OAX          H3     180.000     5.0     2
+FNJ              const_55         OAX         CAS         CAT         CAU     180.000    10.0     2
+FNJ              const_49         CAS         CAT         CAU         CAP       0.000    10.0     2
+FNJ              const_47         CAI         CAP         CAU         CAT     180.000    10.0     2
+FNJ            sp2_sp3_13         CAQ         CAP         CAI         CAH     150.000    10.0     6
+FNJ             sp3_sp3_1         CAE         CAH         CAI         CAV     180.000    10.0     3
+FNJ            sp3_sp3_10         CAH         CAI         CAV         CAW     180.000    10.0     3
+FNJ            sp3_sp3_19         CAI         CAV         CAW          H9     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FNJ    chir_1    CAI    CAP    CAH    CAV    negative
+FNJ    chir_2    CAH    CAE    CAJ    CAI    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FNJ    plan-1         CAI   0.020
+FNJ    plan-1         CAP   0.020
+FNJ    plan-1         CAQ   0.020
+FNJ    plan-1         CAR   0.020
+FNJ    plan-1         CAS   0.020
+FNJ    plan-1         CAT   0.020
+FNJ    plan-1         CAU   0.020
+FNJ    plan-1          H1   0.020
+FNJ    plan-1          H2   0.020
+FNJ    plan-1          H4   0.020
+FNJ    plan-1          H5   0.020
+FNJ    plan-1         OAX   0.020
+FNJ    plan-2         CAA   0.020
+FNJ    plan-2         CAB   0.020
+FNJ    plan-2         CAC   0.020
+FNJ    plan-2         CAD   0.020
+FNJ    plan-2         CAE   0.020
+FNJ    plan-2         CAF   0.020
+FNJ    plan-2         CAH   0.020
+FNJ    plan-2         H13   0.020
+FNJ    plan-2         H14   0.020
+FNJ    plan-2         H16   0.020
+FNJ    plan-2         H17   0.020
+FNJ    plan-2         OAG   0.020
+FNJ    plan-3         CAH   0.020
+FNJ    plan-3         CAJ   0.020
+FNJ    plan-3         CAK   0.020
+FNJ    plan-3         CAL   0.020
+FNJ    plan-3         CAM   0.020
+FNJ    plan-3         CAN   0.020
+FNJ    plan-3         CAO   0.020
+FNJ    plan-3         H18   0.020
+FNJ    plan-3         H19   0.020
+FNJ    plan-3         H20   0.020
+FNJ    plan-3         H21   0.020
+FNJ    plan-3         H22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FNJ           SMILES              ACDLabs 12.01                                                                                       c1c(ccc(c1)O)C(CC)C(c2ccc(O)cc2)c3ccccc3
+FNJ            InChI                InChI  1.03 InChI=1S/C22H22O2/c1-2-21(16-8-12-19(23)13-9-16)22(17-6-4-3-5-7-17)18-10-14-20(24)15-11-18/h3-15,21-24H,2H2,1H3/t21-,22+/m0/s1
+FNJ         InChIKey                InChI  1.03                                                                                                    KTDYSTOLKGILFR-FCHUYYIVSA-N
+FNJ SMILES_CANONICAL               CACTVS 3.385                                                                                 CC[C@H]([C@H](c1ccccc1)c2ccc(O)cc2)c3ccc(O)cc3
+FNJ           SMILES               CACTVS 3.385                                                                                   CC[CH]([CH](c1ccccc1)c2ccc(O)cc2)c3ccc(O)cc3
+FNJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                CC[C@@H](c1ccc(cc1)O)[C@H](c2ccccc2)c3ccc(cc3)O
+FNJ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                         CCC(c1ccc(cc1)O)C(c2ccccc2)c3ccc(cc3)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FNJ acedrg               243         "dictionary generator"                  
+FNJ acedrg_database      11          "data source"                           
+FNJ rdkit                2017.03.2   "Chemoinformatics tool"
+FNJ refmac5              5.8.0238    "optimization tool"                     

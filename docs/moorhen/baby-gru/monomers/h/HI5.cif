@@ -1,0 +1,276 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HI5     HI5      "2-(BUTYRYLOXY)-1-{[(TETRAHYDROXYPHOSPHORANYL)OXY]METHYL}ETHYL BUTYRATE"     NON-POLYMER     44     21     .     
+#
+data_comp_HI5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HI5     P       P       P1      0       12.267      29.227      9.294       
+HI5     O1P     O       OH1     0       13.030      30.453      9.916       
+HI5     O2P     O       OH1     0       10.863      28.570      9.577       
+HI5     O3P     O       O2      0       13.079      28.566      8.104       
+HI5     O4P     O       OH1     0       11.363      30.419      8.808       
+HI5     O5P     O       OH1     0       12.600      28.635      10.715      
+HI5     C1      C       CH2     0       13.094      27.133      8.030       
+HI5     C2      C       CH1     0       12.314      26.672      6.814       
+HI5     C3      C       CH2     0       12.807      27.232      5.490       
+HI5     O3      O       O2      0       14.238      27.442      5.519       
+HI5     C11     C       C       0       14.860      27.526      4.345       
+HI5     O11     O       O       0       15.375      26.583      3.805       
+HI5     C12     C       CH2     0       14.837      28.928      3.795       
+HI5     C13     C       CH2     0       15.713      29.909      4.524       
+HI5     C14     C       CH3     0       15.015      30.612      5.673       
+HI5     O2      O       O2      0       12.255      25.209      6.838       
+HI5     C31     C       C       0       13.284      24.446      6.409       
+HI5     C32     C       CH2     0       12.797      23.185      5.749       
+HI5     C33     C       CH2     0       12.355      23.359      4.330       
+HI5     C34     C       CH3     0       11.804      22.084      3.723       
+HI5     O31     O       O       0       14.450      24.706      6.557       
+HI5     H1P     H       H       0       13.792      30.545      9.526       
+HI5     H2P     H       H       0       10.586      28.138      8.886       
+HI5     H4P     H       H       0       11.278      30.384      7.953       
+HI5     H5P     H       H       0       13.319      28.163      10.681      
+HI5     H1C1    H       H       0       12.692      26.747      8.838       
+HI5     H1C2    H       H       0       14.021      26.821      7.976       
+HI5     H2      H       H       0       11.388      27.003      6.931       
+HI5     H3C1    H       H       0       12.364      28.093      5.310       
+HI5     H3C2    H       H       0       12.578      26.614      4.755       
+HI5     H121    H       H       0       13.914      29.261      3.810       
+HI5     H122    H       H       0       15.121      28.902      2.856       
+HI5     H131    H       H       0       16.028      30.583      3.887       
+HI5     H132    H       H       0       16.500      29.438      4.871       
+HI5     H141    H       H       0       15.613      31.274      6.061       
+HI5     H142    H       H       0       14.771      29.961      6.354       
+HI5     H143    H       H       0       14.212      31.054      5.346       
+HI5     H321    H       H       0       12.046      22.825      6.267       
+HI5     H322    H       H       0       13.516      22.518      5.771       
+HI5     H331    H       H       0       13.117      23.664      3.794       
+HI5     H332    H       H       0       11.665      24.054      4.294       
+HI5     H341    H       H       0       11.729      22.187      2.759       
+HI5     H342    H       H       0       10.925      21.898      4.098       
+HI5     H343    H       H       0       12.402      21.343      3.923       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HI5           P         O1P      SINGLE       n     1.572  0.0200     1.572  0.0200
+HI5           P         O2P      SINGLE       n     1.572  0.0200     1.572  0.0200
+HI5           P         O3P      SINGLE       n     1.572  0.0200     1.572  0.0200
+HI5           P         O4P      SINGLE       n     1.572  0.0200     1.572  0.0200
+HI5           P         O5P      SINGLE       n     1.572  0.0200     1.572  0.0200
+HI5         O3P          C1      SINGLE       n     1.422  0.0200     1.422  0.0200
+HI5          C1          C2      SINGLE       n     1.512  0.0104     1.512  0.0104
+HI5          C2          C3      SINGLE       n     1.512  0.0104     1.512  0.0104
+HI5          C2          O2      SINGLE       n     1.454  0.0123     1.454  0.0123
+HI5          C3          O3      SINGLE       n     1.444  0.0100     1.444  0.0100
+HI5          O3         C11      SINGLE       n     1.329  0.0116     1.329  0.0116
+HI5         C11         O11      DOUBLE       n     1.203  0.0150     1.203  0.0150
+HI5         C11         C12      SINGLE       n     1.503  0.0174     1.503  0.0174
+HI5         C12         C13      SINGLE       n     1.497  0.0200     1.497  0.0200
+HI5         C13         C14      SINGLE       n     1.515  0.0200     1.515  0.0200
+HI5          O2         C31      SINGLE       n     1.342  0.0131     1.342  0.0131
+HI5         C31         C32      SINGLE       n     1.503  0.0174     1.503  0.0174
+HI5         C31         O31      DOUBLE       n     1.203  0.0150     1.203  0.0150
+HI5         C32         C33      SINGLE       n     1.497  0.0200     1.497  0.0200
+HI5         C33         C34      SINGLE       n     1.515  0.0200     1.515  0.0200
+HI5         O1P         H1P      SINGLE       n     0.970  0.0120     0.860  0.0200
+HI5         O2P         H2P      SINGLE       n     0.970  0.0120     0.860  0.0200
+HI5         O4P         H4P      SINGLE       n     0.970  0.0120     0.860  0.0200
+HI5         O5P         H5P      SINGLE       n     0.970  0.0120     0.860  0.0200
+HI5          C1        H1C1      SINGLE       n     1.089  0.0100     0.981  0.0174
+HI5          C1        H1C2      SINGLE       n     1.089  0.0100     0.981  0.0174
+HI5          C2          H2      SINGLE       n     1.089  0.0100     0.990  0.0148
+HI5          C3        H3C1      SINGLE       n     1.089  0.0100     0.985  0.0188
+HI5          C3        H3C2      SINGLE       n     1.089  0.0100     0.985  0.0188
+HI5         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0185
+HI5         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0185
+HI5         C13        H131      SINGLE       n     1.089  0.0100     0.980  0.0160
+HI5         C13        H132      SINGLE       n     1.089  0.0100     0.980  0.0160
+HI5         C14        H141      SINGLE       n     1.089  0.0100     0.973  0.0157
+HI5         C14        H142      SINGLE       n     1.089  0.0100     0.973  0.0157
+HI5         C14        H143      SINGLE       n     1.089  0.0100     0.973  0.0157
+HI5         C32        H321      SINGLE       n     1.089  0.0100     0.981  0.0185
+HI5         C32        H322      SINGLE       n     1.089  0.0100     0.981  0.0185
+HI5         C33        H331      SINGLE       n     1.089  0.0100     0.980  0.0160
+HI5         C33        H332      SINGLE       n     1.089  0.0100     0.980  0.0160
+HI5         C34        H341      SINGLE       n     1.089  0.0100     0.973  0.0157
+HI5         C34        H342      SINGLE       n     1.089  0.0100     0.973  0.0157
+HI5         C34        H343      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HI5         O1P           P         O2P     109.471    3.00
+HI5         O1P           P         O3P     109.471    3.00
+HI5         O1P           P         O4P     109.471    3.00
+HI5         O1P           P         O5P     109.471    3.00
+HI5         O2P           P         O3P     109.471    3.00
+HI5         O2P           P         O4P     109.471    3.00
+HI5         O2P           P         O5P     109.471    3.00
+HI5         O3P           P         O4P     109.471    3.00
+HI5         O3P           P         O5P     109.471    3.00
+HI5         O4P           P         O5P     109.471    3.00
+HI5           P         O1P         H1P     109.471    3.00
+HI5           P         O2P         H2P     109.471    3.00
+HI5           P         O3P          C1     109.471    3.00
+HI5           P         O4P         H4P     109.471    3.00
+HI5           P         O5P         H5P     109.471    3.00
+HI5         O3P          C1          C2     109.482    3.00
+HI5         O3P          C1        H1C1     109.424    1.50
+HI5         O3P          C1        H1C2     109.424    1.50
+HI5          C2          C1        H1C1     109.582    1.50
+HI5          C2          C1        H1C2     109.582    1.50
+HI5        H1C1          C1        H1C2     108.319    1.50
+HI5          C1          C2          C3     113.504    1.50
+HI5          C1          C2          O2     109.042    2.74
+HI5          C1          C2          H2     108.656    1.50
+HI5          C3          C2          O2     109.042    2.74
+HI5          C3          C2          H2     108.656    1.50
+HI5          O2          C2          H2     109.221    1.50
+HI5          C2          C3          O3     108.641    1.70
+HI5          C2          C3        H3C1     110.376    1.50
+HI5          C2          C3        H3C2     110.376    1.50
+HI5          O3          C3        H3C1     109.514    1.50
+HI5          O3          C3        H3C2     109.514    1.50
+HI5        H3C1          C3        H3C2     108.601    1.50
+HI5          C3          O3         C11     116.187    1.50
+HI5          O3         C11         O11     123.233    1.50
+HI5          O3         C11         C12     111.516    1.50
+HI5         O11         C11         C12     125.251    2.71
+HI5         C11         C12         C13     114.046    1.93
+HI5         C11         C12        H121     108.883    1.50
+HI5         C11         C12        H122     108.883    1.50
+HI5         C13         C12        H121     108.478    1.50
+HI5         C13         C12        H122     108.478    1.50
+HI5        H121         C12        H122     107.521    1.50
+HI5         C12         C13         C14     112.922    2.23
+HI5         C12         C13        H131     108.858    1.50
+HI5         C12         C13        H132     108.858    1.50
+HI5         C14         C13        H131     108.918    1.50
+HI5         C14         C13        H132     108.918    1.50
+HI5        H131         C13        H132     107.763    1.50
+HI5         C13         C14        H141     109.554    1.50
+HI5         C13         C14        H142     109.554    1.50
+HI5         C13         C14        H143     109.554    1.50
+HI5        H141         C14        H142     109.380    1.50
+HI5        H141         C14        H143     109.380    1.50
+HI5        H142         C14        H143     109.380    1.50
+HI5          C2          O2         C31     117.944    1.50
+HI5          O2         C31         C32     113.008    3.00
+HI5          O2         C31         O31     122.278    2.43
+HI5         C32         C31         O31     124.714    2.71
+HI5         C31         C32         C33     114.046    1.93
+HI5         C31         C32        H321     108.883    1.50
+HI5         C31         C32        H322     108.883    1.50
+HI5         C33         C32        H321     108.478    1.50
+HI5         C33         C32        H322     108.478    1.50
+HI5        H321         C32        H322     107.521    1.50
+HI5         C32         C33         C34     112.922    2.23
+HI5         C32         C33        H331     108.858    1.50
+HI5         C32         C33        H332     108.858    1.50
+HI5         C34         C33        H331     108.918    1.50
+HI5         C34         C33        H332     108.918    1.50
+HI5        H331         C33        H332     107.763    1.50
+HI5         C33         C34        H341     109.554    1.50
+HI5         C33         C34        H342     109.554    1.50
+HI5         C33         C34        H343     109.554    1.50
+HI5        H341         C34        H342     109.380    1.50
+HI5        H341         C34        H343     109.380    1.50
+HI5        H342         C34        H343     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HI5             sp3_sp3_1         H1P         O1P           P         O2P     180.000    10.0     3
+HI5             sp3_sp3_5         H2P         O2P           P         O1P     180.000    10.0     3
+HI5             sp3_sp3_9          C1         O3P           P         O1P     180.000    10.0     3
+HI5            sp3_sp3_13         H4P         O4P           P         O1P     180.000    10.0     3
+HI5            sp3_sp3_17         H5P         O5P           P         O1P     180.000    10.0     3
+HI5             sp2_sp3_2          O3         C11         C12         C13     120.000    10.0     6
+HI5            sp3_sp3_48         C11         C12         C13         C14     180.000    10.0     3
+HI5            sp3_sp3_57         C12         C13         C14        H141     180.000    10.0     3
+HI5             sp2_sp2_3         C32         C31          O2          C2     180.000     5.0     2
+HI5             sp2_sp3_8          O2         C31         C32         C33     120.000    10.0     6
+HI5            sp3_sp3_66         C31         C32         C33         C34     180.000    10.0     3
+HI5            sp3_sp3_75         C32         C33         C34        H341     180.000    10.0     3
+HI5            sp3_sp3_21          C2          C1         O3P           P     180.000    10.0     3
+HI5            sp3_sp3_24         O3P          C1          C2          C3     180.000    10.0     3
+HI5            sp3_sp3_42          C1          C2          O2         C31     180.000    10.0     3
+HI5            sp3_sp3_33          C1          C2          C3          O3     180.000    10.0     3
+HI5            sp3_sp3_45          C2          C3          O3         C11     180.000    10.0     3
+HI5             sp2_sp2_1         O11         C11          O3          C3     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HI5    chir_1    C2    O2    C1    C3    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HI5    plan-1         C11   0.020
+HI5    plan-1         C12   0.020
+HI5    plan-1         O11   0.020
+HI5    plan-1          O3   0.020
+HI5    plan-2         C31   0.020
+HI5    plan-2         C32   0.020
+HI5    plan-2          O2   0.020
+HI5    plan-2         O31   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HI5           SMILES              ACDLabs 10.04                                                                       O=C(OCC(OC(=O)CCC)COP(O)(O)(O)O)CCC
+HI5 SMILES_CANONICAL               CACTVS 3.341                                                                 CCCC(=O)OC[C@H](CO[P](O)(O)(O)O)OC(=O)CCC
+HI5           SMILES               CACTVS 3.341                                                                  CCCC(=O)OC[CH](CO[P](O)(O)(O)O)OC(=O)CCC
+HI5 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                   CCCC(=O)OC[C@H](COP(O)(O)(O)O)OC(=O)CCC
+HI5           SMILES "OpenEye OEToolkits" 1.5.0                                                                       CCCC(=O)OCC(COP(O)(O)(O)O)OC(=O)CCC
+HI5            InChI                InChI  1.03 InChI=1S/C11H23O9P/c1-3-5-10(12)18-7-9(20-11(13)6-4-2)8-19-21(14,15,16)17/h9,14-17H,3-8H2,1-2H3/t9-/m1/s1
+HI5         InChIKey                InChI  1.03                                                                               YBSWGBVCGAZBHG-SECBINFHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HI5 acedrg               243         "dictionary generator"                  
+HI5 acedrg_database      11          "data source"                           
+HI5 rdkit                2017.03.2   "Chemoinformatics tool"
+HI5 refmac5              5.8.0238    "optimization tool"                     

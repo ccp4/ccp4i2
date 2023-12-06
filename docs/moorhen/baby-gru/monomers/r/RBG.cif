@@ -1,0 +1,237 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RBG     RBG      (2R)-N-tert-butylpiperidine-2-carboxamide     NON-POLYMER     33     13     .     
+#
+data_comp_RBG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RBG     C4      C       C       0       22.982      0.066       58.993      
+RBG     C5      C       CH1     0       24.177      0.730       59.695      
+RBG     C6      C       CH2     0       25.201      1.270       58.686      
+RBG     N1      N       NT1     0       23.687      1.811       60.584      
+RBG     C7      C       CH2     0       26.339      2.017       59.374      
+RBG     C8      C       CH2     0       25.794      3.069       60.327      
+RBG     C9      C       CH2     0       24.778      2.502       61.299      
+RBG     O       O       O       0       22.005      0.743       58.650      
+RBG     N       N       NH1     0       23.069      -1.257      58.785      
+RBG     C1      C       CT      0       22.047      -2.153      58.176      
+RBG     C3      C       CH3     0       21.774      -1.719      56.741      
+RBG     C2      C       CH3     0       20.765      -2.106      59.000      
+RBG     C       C       CH3     0       22.592      -3.576      58.177      
+RBG     H1      H       H       0       24.625      0.047       60.261      
+RBG     H2      H       H       0       25.572      0.521       58.167      
+RBG     H3      H       H       0       24.748      1.878       58.057      
+RBG     H4      H       H       0       23.236      2.408       60.097      
+RBG     H6      H       H       0       26.905      2.449       58.698      
+RBG     H7      H       H       0       26.896      1.380       59.873      
+RBG     H8      H       H       0       25.370      3.787       59.809      
+RBG     H9      H       H       0       26.535      3.461       60.836      
+RBG     H10     H       H       0       25.233      1.861       61.913      
+RBG     H11     H       H       0       24.399      3.244       61.848      
+RBG     H12     H       H       0       23.832      -1.656      59.026      
+RBG     H13     H       H       0       22.619      -1.529      56.294      
+RBG     H14     H       H       0       21.220      -0.919      56.737      
+RBG     H15     H       H       0       21.312      -2.433      56.266      
+RBG     H16     H       H       0       20.982      -2.205      59.944      
+RBG     H17     H       H       0       20.175      -2.832      58.727      
+RBG     H18     H       H       0       20.313      -1.256      58.861      
+RBG     H19     H       H       0       22.839      -3.830      59.084      
+RBG     H20     H       H       0       23.376      -3.624      57.602      
+RBG     H21     H       H       0       21.910      -4.187      57.844      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RBG          C1           C      SINGLE       n     1.522  0.0113     1.522  0.0113
+RBG          C1          C3      SINGLE       n     1.522  0.0113     1.522  0.0113
+RBG          C1          C2      SINGLE       n     1.522  0.0113     1.522  0.0113
+RBG           N          C1      SINGLE       n     1.483  0.0100     1.483  0.0100
+RBG          C6          C7      SINGLE       n     1.523  0.0135     1.523  0.0135
+RBG          C5          C6      SINGLE       n     1.534  0.0100     1.534  0.0100
+RBG          C7          C8      SINGLE       n     1.518  0.0116     1.518  0.0116
+RBG          C8          C9      SINGLE       n     1.515  0.0100     1.515  0.0100
+RBG          C4           N      SINGLE       n     1.335  0.0100     1.335  0.0100
+RBG          C4          C5      SINGLE       n     1.527  0.0179     1.527  0.0179
+RBG          C4           O      DOUBLE       n     1.235  0.0100     1.235  0.0100
+RBG          C5          N1      SINGLE       n     1.479  0.0140     1.479  0.0140
+RBG          N1          C9      SINGLE       n     1.474  0.0106     1.474  0.0106
+RBG          C5          H1      SINGLE       n     1.089  0.0100     0.994  0.0120
+RBG          C6          H2      SINGLE       n     1.089  0.0100     0.984  0.0117
+RBG          C6          H3      SINGLE       n     1.089  0.0100     0.984  0.0117
+RBG          N1          H4      SINGLE       n     1.036  0.0160     0.892  0.0200
+RBG          C7          H6      SINGLE       n     1.089  0.0100     0.982  0.0103
+RBG          C7          H7      SINGLE       n     1.089  0.0100     0.982  0.0103
+RBG          C8          H8      SINGLE       n     1.089  0.0100     0.981  0.0108
+RBG          C8          H9      SINGLE       n     1.089  0.0100     0.981  0.0108
+RBG          C9         H10      SINGLE       n     1.089  0.0100     0.998  0.0200
+RBG          C9         H11      SINGLE       n     1.089  0.0100     0.998  0.0200
+RBG           N         H12      SINGLE       n     1.016  0.0100     0.893  0.0200
+RBG          C3         H13      SINGLE       n     1.089  0.0100     0.974  0.0147
+RBG          C3         H14      SINGLE       n     1.089  0.0100     0.974  0.0147
+RBG          C3         H15      SINGLE       n     1.089  0.0100     0.974  0.0147
+RBG          C2         H16      SINGLE       n     1.089  0.0100     0.974  0.0147
+RBG          C2         H17      SINGLE       n     1.089  0.0100     0.974  0.0147
+RBG          C2         H18      SINGLE       n     1.089  0.0100     0.974  0.0147
+RBG           C         H19      SINGLE       n     1.089  0.0100     0.974  0.0147
+RBG           C         H20      SINGLE       n     1.089  0.0100     0.974  0.0147
+RBG           C         H21      SINGLE       n     1.089  0.0100     0.974  0.0147
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RBG           N          C4          C5     116.683    1.50
+RBG           N          C4           O     121.711    2.40
+RBG          C5          C4           O     121.607    1.50
+RBG          C6          C5          C4     111.788    1.54
+RBG          C6          C5          N1     111.108    1.69
+RBG          C6          C5          H1     108.538    1.50
+RBG          C4          C5          N1     108.833    1.76
+RBG          C4          C5          H1     107.955    1.50
+RBG          N1          C5          H1     108.275    1.50
+RBG          C7          C6          C5     111.820    1.56
+RBG          C7          C6          H2     109.282    1.50
+RBG          C7          C6          H3     109.282    1.50
+RBG          C5          C6          H2     109.356    1.50
+RBG          C5          C6          H3     109.356    1.50
+RBG          H2          C6          H3     107.988    1.50
+RBG          C5          N1          C9     111.782    3.00
+RBG          C5          N1          H4     108.770    3.00
+RBG          C9          N1          H4     109.383    3.00
+RBG          C6          C7          C8     110.320    1.50
+RBG          C6          C7          H6     109.611    1.50
+RBG          C6          C7          H7     109.611    1.50
+RBG          C8          C7          H6     109.613    1.50
+RBG          C8          C7          H7     109.613    1.50
+RBG          H6          C7          H7     108.036    1.50
+RBG          C7          C8          C9     112.612    3.00
+RBG          C7          C8          H8     109.453    1.50
+RBG          C7          C8          H9     109.453    1.50
+RBG          C9          C8          H8     108.932    1.50
+RBG          C9          C8          H9     108.932    1.50
+RBG          H8          C8          H9     108.022    1.50
+RBG          C8          C9          N1     111.116    1.92
+RBG          C8          C9         H10     109.268    1.50
+RBG          C8          C9         H11     109.268    1.50
+RBG          N1          C9         H10     109.570    1.50
+RBG          N1          C9         H11     109.570    1.50
+RBG         H10          C9         H11     108.210    1.50
+RBG          C1           N          C4     125.591    1.50
+RBG          C1           N         H12     116.762    2.50
+RBG          C4           N         H12     117.647    2.35
+RBG           C          C1          C3     110.075    1.50
+RBG           C          C1          C2     110.075    1.50
+RBG           C          C1           N     108.711    1.90
+RBG          C3          C1          C2     110.075    1.50
+RBG          C3          C1           N     108.711    1.90
+RBG          C2          C1           N     108.711    1.90
+RBG          C1          C3         H13     109.538    1.50
+RBG          C1          C3         H14     109.538    1.50
+RBG          C1          C3         H15     109.538    1.50
+RBG         H13          C3         H14     109.412    1.50
+RBG         H13          C3         H15     109.412    1.50
+RBG         H14          C3         H15     109.412    1.50
+RBG          C1          C2         H16     109.538    1.50
+RBG          C1          C2         H17     109.538    1.50
+RBG          C1          C2         H18     109.538    1.50
+RBG         H16          C2         H17     109.412    1.50
+RBG         H16          C2         H18     109.412    1.50
+RBG         H17          C2         H18     109.412    1.50
+RBG          C1           C         H19     109.538    1.50
+RBG          C1           C         H20     109.538    1.50
+RBG          C1           C         H21     109.538    1.50
+RBG         H19           C         H20     109.412    1.50
+RBG         H19           C         H21     109.412    1.50
+RBG         H20           C         H21     109.412    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RBG             sp2_sp3_7           N          C4          C5          C6       0.000    10.0     6
+RBG             sp2_sp2_3           O          C4           N          C1       0.000     5.0     2
+RBG             sp3_sp3_4          C4          C5          C6          C7     -60.000    10.0     3
+RBG            sp3_sp3_72          C4          C5          N1          C9      60.000    10.0     3
+RBG            sp3_sp3_10          C5          C6          C7          C8     -60.000    10.0     3
+RBG            sp3_sp3_37          C8          C9          N1          C5      60.000    10.0     3
+RBG            sp3_sp3_19          C6          C7          C8          C9      60.000    10.0     3
+RBG            sp3_sp3_28          C7          C8          C9          N1     -60.000    10.0     3
+RBG             sp2_sp3_2          C4           N          C1           C     120.000    10.0     6
+RBG            sp3_sp3_52           C          C1          C3         H13     180.000    10.0     3
+RBG            sp3_sp3_64           C          C1          C2         H16      60.000    10.0     3
+RBG            sp3_sp3_44         H19           C          C1          C3     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RBG    chir_1    C5    N1    C4    C6    negative
+RBG    chir_2    C1    N    C    C3    both
+RBG    chir_3    N1    C5    C9    H4    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RBG    plan-1          C4   0.020
+RBG    plan-1          C5   0.020
+RBG    plan-1           N   0.020
+RBG    plan-1           O   0.020
+RBG    plan-2          C1   0.020
+RBG    plan-2          C4   0.020
+RBG    plan-2         H12   0.020
+RBG    plan-2           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RBG           SMILES              ACDLabs 12.01                                                                   C(C1CCCCN1)(=O)NC(C)(C)C
+RBG            InChI                InChI  1.03 InChI=1S/C10H20N2O/c1-10(2,3)12-9(13)8-6-4-5-7-11-8/h8,11H,4-7H2,1-3H3,(H,12,13)/t8-/m1/s1
+RBG         InChIKey                InChI  1.03                                                                BZRGONFHSWNSQA-MRVPVSSYSA-N
+RBG SMILES_CANONICAL               CACTVS 3.385                                                                 CC(C)(C)NC(=O)[C@H]1CCCCN1
+RBG           SMILES               CACTVS 3.385                                                                  CC(C)(C)NC(=O)[CH]1CCCCN1
+RBG SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                 CC(C)(C)NC(=O)[C@H]1CCCCN1
+RBG           SMILES "OpenEye OEToolkits" 2.0.6                                                                     CC(C)(C)NC(=O)C1CCCCN1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RBG acedrg               243         "dictionary generator"                  
+RBG acedrg_database      11          "data source"                           
+RBG rdkit                2017.03.2   "Chemoinformatics tool"
+RBG refmac5              5.8.0238    "optimization tool"                     

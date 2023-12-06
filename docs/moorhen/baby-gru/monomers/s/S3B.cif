@@ -1,0 +1,208 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+S3B     S3B      "3-methyl-2-(propanoyloxy)benzoic acid"     NON-POLYMER     27     15     .     
+#
+data_comp_S3B
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+S3B     C1      C       CR6     0       -10.560     39.729      3.253       
+S3B     O2      O       O2      0       -10.601     38.489      2.594       
+S3B     C3      C       C       0       -9.537      37.633      2.715       
+S3B     C4      C       CH2     0       -9.764      36.377      1.927       
+S3B     C5      C       CH3     0       -8.961      36.305      0.677       
+S3B     O6      O       O       0       -8.564      37.867      3.369       
+S3B     C7      C       CR6     0       -10.104     40.860      2.539       
+S3B     C8      C       CH3     0       -9.668      40.744      1.098       
+S3B     C9      C       CR16    0       -10.067     42.088      3.200       
+S3B     C10     C       CR16    0       -10.464     42.215      4.522       
+S3B     C11     C       CR16    0       -10.910     41.101      5.214       
+S3B     C12     C       CR6     0       -10.965     39.846      4.594       
+S3B     C13     C       C       0       -11.446     38.673      5.352       
+S3B     O14     O       O       0       -12.419     38.018      5.013       
+S3B     O15     O       OH1     0       -10.701     38.417      6.434       
+S3B     H4      H       H       0       -10.715     36.310      1.695       
+S3B     H4A     H       H       0       -9.539      35.607      2.490       
+S3B     H5      H       H       0       -9.095      35.439      0.253       
+S3B     H5A     H       H       0       -8.018      36.417      0.890       
+S3B     H5B     H       H       0       -9.242      37.010      0.068       
+S3B     H8      H       H       0       -9.335      41.601      0.785       
+S3B     H8A     H       H       0       -10.423     40.475      0.551       
+S3B     H8B     H       H       0       -8.964      40.080      1.024       
+S3B     H9      H       H       0       -9.765      42.849      2.734       
+S3B     H10     H       H       0       -10.430     43.057      4.949       
+S3B     H11     H       H       0       -11.180     41.184      6.111       
+S3B     HO15    H       H       0       -11.078     38.315      7.202       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+S3B          C1          C7      DOUBLE       y     1.404  0.0115     1.404  0.0115
+S3B          C1          O2      SINGLE       n     1.402  0.0100     1.402  0.0100
+S3B          C1         C12      SINGLE       y     1.400  0.0100     1.400  0.0100
+S3B          O2          C3      SINGLE       n     1.367  0.0100     1.367  0.0100
+S3B          C3          C4      SINGLE       n     1.498  0.0119     1.498  0.0119
+S3B          C3          O6      DOUBLE       n     1.195  0.0100     1.195  0.0100
+S3B          C4          C5      SINGLE       n     1.488  0.0200     1.488  0.0200
+S3B          C7          C8      SINGLE       n     1.505  0.0196     1.505  0.0196
+S3B          C7          C9      SINGLE       y     1.389  0.0104     1.389  0.0104
+S3B          C9         C10      DOUBLE       y     1.383  0.0105     1.383  0.0105
+S3B         C10         C11      SINGLE       y     1.381  0.0162     1.381  0.0162
+S3B         C11         C12      DOUBLE       y     1.398  0.0109     1.398  0.0109
+S3B         C12         C13      SINGLE       n     1.475  0.0120     1.475  0.0120
+S3B         C13         O14      DOUBLE       n     1.221  0.0175     1.221  0.0175
+S3B         C13         O15      SINGLE       n     1.338  0.0153     1.338  0.0153
+S3B          C4          H4      SINGLE       n     1.089  0.0100     0.980  0.0158
+S3B          C4         H4A      SINGLE       n     1.089  0.0100     0.980  0.0158
+S3B          C5          H5      SINGLE       n     1.089  0.0100     0.973  0.0141
+S3B          C5         H5A      SINGLE       n     1.089  0.0100     0.973  0.0141
+S3B          C5         H5B      SINGLE       n     1.089  0.0100     0.973  0.0141
+S3B          C8          H8      SINGLE       n     1.089  0.0100     0.971  0.0135
+S3B          C8         H8A      SINGLE       n     1.089  0.0100     0.971  0.0135
+S3B          C8         H8B      SINGLE       n     1.089  0.0100     0.971  0.0135
+S3B          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0173
+S3B         C10         H10      SINGLE       n     1.082  0.0130     0.945  0.0184
+S3B         C11         H11      SINGLE       n     1.082  0.0130     0.941  0.0168
+S3B         O15        HO15      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+S3B          C7          C1          O2     118.892    1.50
+S3B          C7          C1         C12     120.289    1.50
+S3B          O2          C1         C12     120.819    2.23
+S3B          C1          O2          C3     117.768    1.51
+S3B          O2          C3          C4     111.247    2.90
+S3B          O2          C3          O6     122.988    1.97
+S3B          C4          C3          O6     125.765    1.57
+S3B          C3          C4          C5     113.644    1.85
+S3B          C3          C4          H4     108.762    1.50
+S3B          C3          C4         H4A     108.762    1.50
+S3B          C5          C4          H4     108.742    1.50
+S3B          C5          C4         H4A     108.742    1.50
+S3B          H4          C4         H4A     107.791    1.50
+S3B          C4          C5          H5     109.504    1.50
+S3B          C4          C5         H5A     109.504    1.50
+S3B          C4          C5         H5B     109.504    1.50
+S3B          H5          C5         H5A     109.380    1.50
+S3B          H5          C5         H5B     109.380    1.50
+S3B         H5A          C5         H5B     109.380    1.50
+S3B          C1          C7          C8     121.103    1.50
+S3B          C1          C7          C9     117.636    1.71
+S3B          C8          C7          C9     121.261    1.50
+S3B          C7          C8          H8     109.597    1.50
+S3B          C7          C8         H8A     109.597    1.50
+S3B          C7          C8         H8B     109.597    1.50
+S3B          H8          C8         H8A     109.348    1.50
+S3B          H8          C8         H8B     109.348    1.50
+S3B         H8A          C8         H8B     109.348    1.50
+S3B          C7          C9         C10     121.511    1.50
+S3B          C7          C9          H9     119.020    1.50
+S3B         C10          C9          H9     119.469    1.50
+S3B          C9         C10         C11     120.046    1.50
+S3B          C9         C10         H10     119.977    1.50
+S3B         C11         C10         H10     119.977    1.50
+S3B         C10         C11         C12     121.273    1.50
+S3B         C10         C11         H11     119.643    1.50
+S3B         C12         C11         H11     119.083    1.50
+S3B          C1         C12         C11     119.245    1.50
+S3B          C1         C12         C13     120.344    2.17
+S3B         C11         C12         C13     120.411    1.61
+S3B         C12         C13         O14     122.852    1.50
+S3B         C12         C13         O15     112.678    1.50
+S3B         O14         C13         O15     124.470    1.64
+S3B         C13         O15        HO15     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+S3B             sp2_sp2_1          C7          C1          O2          C3     180.000     5.0     2
+S3B              const_24          O2          C1         C12         C13       0.000    10.0     2
+S3B       const_sp2_sp2_4          O2          C1          C7          C8       0.000     5.0     2
+S3B              const_18         C10         C11         C12         C13     180.000    10.0     2
+S3B             sp2_sp2_6          C1         C12         C13         O14       0.000     5.0     2
+S3B            sp2_sp2_10         O14         C13         O15        HO15       0.000     5.0     2
+S3B             sp2_sp2_3          C4          C3          O2          C1     180.000     5.0     2
+S3B             sp2_sp3_2          O2          C3          C4          C5     120.000    10.0     6
+S3B             sp3_sp3_1          C3          C4          C5          H5     180.000    10.0     3
+S3B             sp2_sp3_7          C1          C7          C8          H8     150.000    10.0     6
+S3B       const_sp2_sp2_7          C8          C7          C9         C10     180.000     5.0     2
+S3B       const_sp2_sp2_9         C11         C10          C9          C7       0.000     5.0     2
+S3B              const_13          C9         C10         C11         C12       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+S3B    plan-1          C1   0.020
+S3B    plan-1         C10   0.020
+S3B    plan-1         C11   0.020
+S3B    plan-1         C12   0.020
+S3B    plan-1         C13   0.020
+S3B    plan-1          C7   0.020
+S3B    plan-1          C8   0.020
+S3B    plan-1          C9   0.020
+S3B    plan-1         H10   0.020
+S3B    plan-1         H11   0.020
+S3B    plan-1          H9   0.020
+S3B    plan-1          O2   0.020
+S3B    plan-2          C3   0.020
+S3B    plan-2          C4   0.020
+S3B    plan-2          O2   0.020
+S3B    plan-2          O6   0.020
+S3B    plan-3         C12   0.020
+S3B    plan-3         C13   0.020
+S3B    plan-3         O14   0.020
+S3B    plan-3         O15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+S3B           SMILES              ACDLabs 10.04                                                           O=C(Oc1c(cccc1C)C(=O)O)CC
+S3B SMILES_CANONICAL               CACTVS 3.341                                                           CCC(=O)Oc1c(C)cccc1C(O)=O
+S3B           SMILES               CACTVS 3.341                                                           CCC(=O)Oc1c(C)cccc1C(O)=O
+S3B SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                           CCC(=O)Oc1c(cccc1C(=O)O)C
+S3B           SMILES "OpenEye OEToolkits" 1.5.0                                                           CCC(=O)Oc1c(cccc1C(=O)O)C
+S3B            InChI                InChI  1.03 InChI=1S/C11H12O4/c1-3-9(12)15-10-7(2)5-4-6-8(10)11(13)14/h4-6H,3H2,1-2H3,(H,13,14)
+S3B         InChIKey                InChI  1.03                                                         NFOCQVCAZPKUKW-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+S3B acedrg               243         "dictionary generator"                  
+S3B acedrg_database      11          "data source"                           
+S3B rdkit                2017.03.2   "Chemoinformatics tool"
+S3B refmac5              5.8.0238    "optimization tool"                     

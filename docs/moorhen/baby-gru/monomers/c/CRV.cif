@@ -1,0 +1,380 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CRV     CRV      N-[1-(AMINOMETHYL)CYCLOPROPYL]-3-(BENZYLSULFONYL)-N~2~-[(1S)-2,2,2-TRIFLUORO-1-(4-HYDROXYPHENYL)ETHYL]-L-ALANINAMIDE     NON-POLYMER     59     33     .     
+#
+data_comp_CRV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CRV     C1      C       CT      0       55.080      33.294      126.487     
+CRV     C2      C       CH1     0       56.200      34.254      126.128     
+CRV     N3      N       NT1     0       57.211      34.267      127.208     
+CRV     C4      C       CR6     0       56.863      33.943      124.795     
+CRV     F5      F       F       0       54.382      33.731      127.530     
+CRV     F6      F       F       0       54.222      33.134      125.484     
+CRV     F7      F       F       0       55.543      32.089      126.804     
+CRV     C8      C       CH1     0       57.121      35.380      128.184     
+CRV     C9      C       C       0       57.607      36.682      127.540     
+CRV     C10     C       CH2     0       57.928      35.051      129.446     
+CRV     S11     S       S3      0       57.251      33.737      130.441     
+CRV     C12     C       CH2     0       58.315      32.321      130.169     
+CRV     N13     N       NH1     0       56.713      37.681      127.435     
+CRV     O14     O       O       0       58.759      36.766      127.121     
+CRV     C15     C       CT      0       56.984      38.927      126.735     
+CRV     N17     N       NT2     0       58.230      41.057      126.950     
+CRV     C18     C       CH2     0       55.942      39.439      125.774     
+CRV     C19     C       CH2     0       57.213      38.862      125.246     
+CRV     C20     C       CR16    0       56.683      34.768      123.691     
+CRV     C21     C       CR16    0       57.290      34.491      122.473     
+CRV     C22     C       CR6     0       58.098      33.372      122.343     
+CRV     C23     C       CR16    0       58.294      32.537      123.434     
+CRV     C24     C       CR16    0       57.681      32.829      124.646     
+CRV     O25     O       OH1     0       58.699      33.097      121.138     
+CRV     C26     C       CR6     0       57.713      31.076      130.778     
+CRV     C27     C       CR16    0       58.146      30.613      132.013     
+CRV     C28     C       CR16    0       57.592      29.468      132.572     
+CRV     C29     C       CR16    0       56.603      28.777      131.901     
+CRV     C30     C       CR16    0       56.166      29.228      130.673     
+CRV     C31     C       CR16    0       56.720      30.372      130.112     
+CRV     O32     O       O       0       55.934      33.415      129.953     
+CRV     O33     O       O       0       57.369      34.126      131.824     
+CRV     C16     C       CH2     0       57.704      39.886      127.657     
+CRV     H2      H       H       0       55.805      35.151      126.057     
+CRV     HN3     H       H       0       57.220      33.487      127.665     
+CRV     H8      H       H       0       56.174      35.494      128.443     
+CRV     H101    H       H       0       57.990      35.863      129.992     
+CRV     H102    H       H       0       58.837      34.807      129.173     
+CRV     H121    H       H       0       59.181      32.497      130.573     
+CRV     H122    H       H       0       58.435      32.192      129.214     
+CRV     HN13    H       H       0       55.933      37.582      127.811     
+CRV     H171    H       H       0       57.576      41.636      126.792     
+CRV     H172    H       H       0       58.830      41.472      127.457     
+CRV     H181    H       H       0       55.124      38.913      125.675     
+CRV     H182    H       H       0       55.820      40.408      125.717     
+CRV     H191    H       H       0       57.174      37.980      124.824     
+CRV     H192    H       H       0       57.868      39.475      124.858     
+CRV     H20     H       H       0       56.135      35.531      123.767     
+CRV     H21     H       H       0       57.152      35.061      121.735     
+CRV     H23     H       H       0       58.843      31.775      123.352     
+CRV     H24     H       H       0       57.820      32.255      125.381     
+CRV     HO25    H       H       0       59.254      32.442      121.064     
+CRV     H27     H       H       0       58.822      31.081      132.478     
+CRV     H28     H       H       0       57.893      29.162      133.413     
+CRV     H29     H       H       0       56.227      27.999      132.281     
+CRV     H30     H       H       0       55.490      28.757      130.212     
+CRV     H31     H       H       0       56.414      30.675      129.271     
+CRV     H161    H       H       0       58.447      39.420      128.094     
+CRV     H162    H       H       0       57.085      40.190      128.353     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CRV          C1          C2      SINGLE       n     1.516  0.0100     1.516  0.0100
+CRV          C1          F5      SINGLE       n     1.329  0.0135     1.329  0.0135
+CRV          C1          F6      SINGLE       n     1.329  0.0135     1.329  0.0135
+CRV          C1          F7      SINGLE       n     1.329  0.0135     1.329  0.0135
+CRV          C2          N3      SINGLE       n     1.474  0.0100     1.474  0.0100
+CRV          C2          C4      SINGLE       n     1.519  0.0100     1.519  0.0100
+CRV          N3          C8      SINGLE       n     1.472  0.0190     1.472  0.0190
+CRV          C4         C20      DOUBLE       y     1.386  0.0100     1.386  0.0100
+CRV          C4         C24      SINGLE       y     1.386  0.0100     1.386  0.0100
+CRV          C8          C9      SINGLE       n     1.528  0.0106     1.528  0.0106
+CRV          C8         C10      SINGLE       n     1.530  0.0132     1.530  0.0132
+CRV          C9         N13      SINGLE       n     1.339  0.0100     1.339  0.0100
+CRV          C9         O14      DOUBLE       n     1.227  0.0100     1.227  0.0100
+CRV         C10         S11      SINGLE       n     1.780  0.0100     1.780  0.0100
+CRV         S11         C12      SINGLE       n     1.791  0.0100     1.791  0.0100
+CRV         S11         O32      DOUBLE       n     1.441  0.0100     1.441  0.0100
+CRV         S11         O33      DOUBLE       n     1.441  0.0100     1.441  0.0100
+CRV         C12         C26      SINGLE       n     1.510  0.0100     1.510  0.0100
+CRV         N13         C15      SINGLE       n     1.447  0.0200     1.447  0.0200
+CRV         C15         C18      SINGLE       n     1.507  0.0132     1.507  0.0132
+CRV         C15         C19      SINGLE       n     1.507  0.0132     1.507  0.0132
+CRV         C15         C16      SINGLE       n     1.510  0.0136     1.510  0.0136
+CRV         N17         C16      SINGLE       n     1.464  0.0200     1.464  0.0200
+CRV         C18         C19      SINGLE       n     1.491  0.0140     1.491  0.0140
+CRV         C20         C21      SINGLE       y     1.385  0.0100     1.385  0.0100
+CRV         C21         C22      DOUBLE       y     1.383  0.0100     1.383  0.0100
+CRV         C22         C23      SINGLE       y     1.383  0.0100     1.383  0.0100
+CRV         C22         O25      SINGLE       n     1.374  0.0155     1.374  0.0155
+CRV         C23         C24      DOUBLE       y     1.385  0.0100     1.385  0.0100
+CRV         C26         C27      DOUBLE       y     1.383  0.0114     1.383  0.0114
+CRV         C26         C31      SINGLE       y     1.383  0.0114     1.383  0.0114
+CRV         C27         C28      SINGLE       y     1.386  0.0100     1.386  0.0100
+CRV         C28         C29      DOUBLE       y     1.376  0.0124     1.376  0.0124
+CRV         C29         C30      SINGLE       y     1.374  0.0127     1.374  0.0127
+CRV         C30         C31      DOUBLE       y     1.386  0.0100     1.386  0.0100
+CRV          C2          H2      SINGLE       n     1.089  0.0100     0.983  0.0200
+CRV          N3         HN3      SINGLE       n     1.036  0.0160     0.901  0.0200
+CRV          C8          H8      SINGLE       n     1.089  0.0100     0.990  0.0200
+CRV         C10        H101      SINGLE       n     1.089  0.0100     0.980  0.0160
+CRV         C10        H102      SINGLE       n     1.089  0.0100     0.980  0.0160
+CRV         C12        H121      SINGLE       n     1.089  0.0100     0.972  0.0174
+CRV         C12        H122      SINGLE       n     1.089  0.0100     0.972  0.0174
+CRV         N13        HN13      SINGLE       n     1.016  0.0100     0.872  0.0200
+CRV         N17        H171      SINGLE       n     1.036  0.0160     0.888  0.0200
+CRV         N17        H172      SINGLE       n     1.036  0.0160     0.888  0.0200
+CRV         C18        H181      SINGLE       n     1.089  0.0100     0.978  0.0171
+CRV         C18        H182      SINGLE       n     1.089  0.0100     0.978  0.0171
+CRV         C19        H191      SINGLE       n     1.089  0.0100     0.978  0.0171
+CRV         C19        H192      SINGLE       n     1.089  0.0100     0.978  0.0171
+CRV         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0173
+CRV         C21         H21      SINGLE       n     1.082  0.0130     0.943  0.0169
+CRV         C23         H23      SINGLE       n     1.082  0.0130     0.943  0.0169
+CRV         C24         H24      SINGLE       n     1.082  0.0130     0.943  0.0173
+CRV         O25        HO25      SINGLE       n     0.966  0.0059     0.861  0.0200
+CRV         C27         H27      SINGLE       n     1.082  0.0130     0.944  0.0174
+CRV         C28         H28      SINGLE       n     1.082  0.0130     0.944  0.0175
+CRV         C29         H29      SINGLE       n     1.082  0.0130     0.944  0.0161
+CRV         C30         H30      SINGLE       n     1.082  0.0130     0.944  0.0175
+CRV         C31         H31      SINGLE       n     1.082  0.0130     0.944  0.0174
+CRV         C16        H161      SINGLE       n     1.089  0.0100     0.980  0.0132
+CRV         C16        H162      SINGLE       n     1.089  0.0100     0.980  0.0132
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CRV          C2          C1          F5     111.618    1.98
+CRV          C2          C1          F6     111.618    1.98
+CRV          C2          C1          F7     111.618    1.98
+CRV          F5          C1          F6     107.197    1.50
+CRV          F5          C1          F7     107.197    1.50
+CRV          F6          C1          F7     107.197    1.50
+CRV          C1          C2          N3     108.411    1.50
+CRV          C1          C2          C4     112.825    1.76
+CRV          C1          C2          H2     107.855    1.50
+CRV          N3          C2          C4     111.669    2.84
+CRV          N3          C2          H2     108.280    1.50
+CRV          C4          C2          H2     107.531    1.50
+CRV          C2          N3          C8     112.615    2.70
+CRV          C2          N3         HN3     108.720    3.00
+CRV          C8          N3         HN3     106.958    3.00
+CRV          C2          C4         C20     120.885    1.53
+CRV          C2          C4         C24     120.885    1.53
+CRV         C20          C4         C24     118.229    1.50
+CRV          N3          C8          C9     110.395    1.96
+CRV          N3          C8         C10     109.731    2.61
+CRV          N3          C8          H8     108.712    1.50
+CRV          C9          C8         C10     111.715    1.50
+CRV          C9          C8          H8     108.109    1.50
+CRV         C10          C8          H8     108.224    1.50
+CRV          C8          C9         N13     116.026    2.03
+CRV          C8          C9         O14     121.141    1.62
+CRV         N13          C9         O14     122.833    1.50
+CRV          C8         C10         S11     111.256    2.92
+CRV          C8         C10        H101     108.621    1.50
+CRV          C8         C10        H102     108.621    1.50
+CRV         S11         C10        H101     109.377    1.50
+CRV         S11         C10        H102     109.377    1.50
+CRV        H101         C10        H102     108.043    1.50
+CRV         C10         S11         C12     106.430    3.00
+CRV         C10         S11         O32     108.322    1.50
+CRV         C10         S11         O33     108.322    1.50
+CRV         C12         S11         O32     108.717    1.50
+CRV         C12         S11         O33     108.717    1.50
+CRV         O32         S11         O33     118.392    2.04
+CRV         S11         C12         C26     110.284    1.84
+CRV         S11         C12        H121     108.562    2.21
+CRV         S11         C12        H122     108.562    2.21
+CRV         C26         C12        H121     109.519    1.50
+CRV         C26         C12        H122     109.519    1.50
+CRV        H121         C12        H122     108.679    1.50
+CRV          C9         N13         C15     121.900    2.85
+CRV          C9         N13        HN13     118.788    1.89
+CRV         C15         N13        HN13     119.313    1.50
+CRV         N13         C15         C18     118.171    2.10
+CRV         N13         C15         C19     118.171    2.10
+CRV         N13         C15         C16     109.471    3.00
+CRV         C18         C15         C19      60.077    2.22
+CRV         C18         C15         C16     120.272    3.00
+CRV         C19         C15         C16     120.272    3.00
+CRV         C16         N17        H171     109.971    3.00
+CRV         C16         N17        H172     109.971    3.00
+CRV        H171         N17        H172     107.163    3.00
+CRV         C15         C18         C19      60.077    2.22
+CRV         C15         C18        H181     117.283    1.74
+CRV         C15         C18        H182     117.283    1.74
+CRV         C19         C18        H181     117.823    1.50
+CRV         C19         C18        H182     117.823    1.50
+CRV        H181         C18        H182     114.868    1.50
+CRV         C15         C19         C18      60.077    2.22
+CRV         C15         C19        H191     117.283    1.74
+CRV         C15         C19        H192     117.283    1.74
+CRV         C18         C19        H191     117.823    1.50
+CRV         C18         C19        H192     117.823    1.50
+CRV        H191         C19        H192     114.868    1.50
+CRV          C4         C20         C21     121.447    1.50
+CRV          C4         C20         H20     119.404    1.50
+CRV         C21         C20         H20     119.150    1.50
+CRV         C20         C21         C22     119.711    1.50
+CRV         C20         C21         H21     120.226    1.50
+CRV         C22         C21         H21     120.064    1.50
+CRV         C21         C22         C23     119.456    1.50
+CRV         C21         C22         O25     120.272    3.00
+CRV         C23         C22         O25     120.272    3.00
+CRV         C22         C23         C24     119.711    1.50
+CRV         C22         C23         H23     120.064    1.50
+CRV         C24         C23         H23     120.226    1.50
+CRV          C4         C24         C23     121.447    1.50
+CRV          C4         C24         H24     119.404    1.50
+CRV         C23         C24         H24     119.150    1.50
+CRV         C22         O25        HO25     120.000    3.00
+CRV         C12         C26         C27     120.687    1.50
+CRV         C12         C26         C31     120.687    1.50
+CRV         C27         C26         C31     118.626    1.50
+CRV         C26         C27         C28     120.413    1.50
+CRV         C26         C27         H27     119.793    1.50
+CRV         C28         C27         H27     119.794    1.50
+CRV         C27         C28         C29     120.277    1.50
+CRV         C27         C28         H28     119.816    1.50
+CRV         C29         C28         H28     119.907    1.50
+CRV         C28         C29         C30     119.999    1.50
+CRV         C28         C29         H29     119.998    1.50
+CRV         C30         C29         H29     119.998    1.50
+CRV         C29         C30         C31     120.277    1.50
+CRV         C29         C30         H30     119.907    1.50
+CRV         C31         C30         H30     119.816    1.50
+CRV         C26         C31         C30     120.413    1.50
+CRV         C26         C31         H31     119.793    1.50
+CRV         C30         C31         H31     119.794    1.50
+CRV         C15         C16         N17     110.674    2.42
+CRV         C15         C16        H161     109.257    1.50
+CRV         C15         C16        H162     109.257    1.50
+CRV         N17         C16        H161     108.847    1.50
+CRV         N17         C16        H162     108.847    1.50
+CRV        H161         C16        H162     108.065    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CRV            sp3_sp3_19          F5          C1          C2          N3     180.000    10.0     3
+CRV            sp3_sp3_62        H121         C12         S11         O33     180.000    10.0     3
+CRV            sp2_sp3_16         C31         C26         C12        H121     -30.000    10.0     6
+CRV            sp2_sp3_22        HN13         N13         C15         C18     180.000    10.0     6
+CRV             sp3_sp3_4         N13         C15         C18         C19     -60.000    10.0     3
+CRV            sp3_sp3_69         N13         C15         C19        H192      60.000    10.0     3
+CRV            sp3_sp3_79         C18         C15         C16         N17      60.000    10.0     3
+CRV            sp3_sp3_88        H161         C16         N17        H172     180.000    10.0     3
+CRV       const_sp2_sp2_7         H20         C20         C21         C22     180.000     5.0     2
+CRV              const_12         H21         C21         C22         O25       0.000    10.0     2
+CRV            sp3_sp3_30          C4          C2          N3          C8      60.000    10.0     3
+CRV             sp2_sp3_3         C20          C4          C2          H2      30.000    10.0     6
+CRV              const_17         C22         C23         C24          C4       0.000    10.0     2
+CRV              const_46         C27         C26         C31         H31     180.000    10.0     2
+CRV              const_19         H23         C23         C24          C4     180.000    10.0     2
+CRV              const_25         C26         C27         C28         C29       0.000    10.0     2
+CRV              const_47         C16         C15         C18        H181     180.000    10.0     2
+CRV              const_27         H27         C27         C28         C29     180.000    10.0     2
+CRV              const_31         H28         C28         C29         C30     180.000    10.0     2
+CRV              const_35         H29         C29         C30         C31     180.000    10.0     2
+CRV              const_39         H30         C30         C31         C26     180.000    10.0     2
+CRV            sp3_sp3_37         C10          C8          N3          C2     180.000    10.0     3
+CRV       const_sp2_sp2_4         H20         C20          C4          C2       0.000     5.0     2
+CRV              const_44         H24         C24          C4          C2       0.000    10.0     2
+CRV             sp2_sp3_9         N13          C9          C8          H8    -120.000    10.0     6
+CRV            sp3_sp3_42         S11         C10          C8          H8      60.000    10.0     3
+CRV             sp2_sp2_3         O14          C9         N13         C15       0.000     5.0     2
+CRV            sp3_sp3_53        H101         C10         S11         O32     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CRV    chir_1    C1    F5    F6    F7    both
+CRV    chir_2    C2    N3    C1    C4    positive
+CRV    chir_3    C8    N3    C10    C9    negative
+CRV    chir_4    S11    O32    O33    C10    both
+CRV    chir_5    C15    N13    C16    C18    both
+CRV    chir_6    N3    C8    C2    HN3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CRV    plan-1          C2   0.020
+CRV    plan-1         C20   0.020
+CRV    plan-1         C21   0.020
+CRV    plan-1         C22   0.020
+CRV    plan-1         C23   0.020
+CRV    plan-1         C24   0.020
+CRV    plan-1          C4   0.020
+CRV    plan-1         H20   0.020
+CRV    plan-1         H21   0.020
+CRV    plan-1         H23   0.020
+CRV    plan-1         H24   0.020
+CRV    plan-1         O25   0.020
+CRV    plan-2         C12   0.020
+CRV    plan-2         C26   0.020
+CRV    plan-2         C27   0.020
+CRV    plan-2         C28   0.020
+CRV    plan-2         C29   0.020
+CRV    plan-2         C30   0.020
+CRV    plan-2         C31   0.020
+CRV    plan-2         H27   0.020
+CRV    plan-2         H28   0.020
+CRV    plan-2         H29   0.020
+CRV    plan-2         H30   0.020
+CRV    plan-2         H31   0.020
+CRV    plan-3          C8   0.020
+CRV    plan-3          C9   0.020
+CRV    plan-3         N13   0.020
+CRV    plan-3         O14   0.020
+CRV    plan-4         C15   0.020
+CRV    plan-4          C9   0.020
+CRV    plan-4        HN13   0.020
+CRV    plan-4         N13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CRV           SMILES              ACDLabs 10.04                                                                                                                     O=C(NC1(CN)CC1)C(NC(c2ccc(O)cc2)C(F)(F)F)CS(=O)(=O)Cc3ccccc3
+CRV SMILES_CANONICAL               CACTVS 3.341                                                                                                          NCC1(CC1)NC(=O)[C@H](C[S](=O)(=O)Cc2ccccc2)N[C@@H](c3ccc(O)cc3)C(F)(F)F
+CRV           SMILES               CACTVS 3.341                                                                                                             NCC1(CC1)NC(=O)[CH](C[S](=O)(=O)Cc2ccccc2)N[CH](c3ccc(O)cc3)C(F)(F)F
+CRV SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                         c1ccc(cc1)CS(=O)(=O)C[C@@H](C(=O)NC2(CC2)CN)N[C@@H](c3ccc(cc3)O)C(F)(F)F
+CRV           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                   c1ccc(cc1)CS(=O)(=O)CC(C(=O)NC2(CC2)CN)NC(c3ccc(cc3)O)C(F)(F)F
+CRV            InChI                InChI  1.03 InChI=1S/C22H26F3N3O4S/c23-22(24,25)19(16-6-8-17(29)9-7-16)27-18(20(30)28-21(14-26)10-11-21)13-33(31,32)12-15-4-2-1-3-5-15/h1-9,18-19,27,29H,10-14,26H2,(H,28,30)/t18-,19-/m0/s1
+CRV         InChIKey                InChI  1.03                                                                                                                                                      DWWVPKCSDHDILN-OALUTQOASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CRV acedrg               243         "dictionary generator"                  
+CRV acedrg_database      11          "data source"                           
+CRV rdkit                2017.03.2   "Chemoinformatics tool"
+CRV refmac5              5.8.0238    "optimization tool"                     

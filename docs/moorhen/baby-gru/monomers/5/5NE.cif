@@ -1,0 +1,198 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+5NE     5NE      "5-methylnaphthalene-1-carboxylic acid"     NON-POLYMER     23     14     .     
+#
+data_comp_5NE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+5NE     O1N     O       O       0       26.945      -22.783     -9.567      
+5NE     C1L     C       C       0       25.920      -22.086     -9.679      
+5NE     O1M     O       OC      -1      24.756      -22.508     -9.559      
+5NE     C1J     C       CR6     0       26.104      -20.617     -9.984      
+5NE     C1E     C       CR66    0       26.664      -20.130     -11.204     
+5NE     C1F     C       CR16    0       27.103      -20.992     -12.252     
+5NE     C1A     C       CR16    0       27.635      -20.503     -13.410     
+5NE     C1I     C       CR16    0       25.701      -19.733     -9.014      
+5NE     C1H     C       CR16    0       25.825      -18.343     -9.191      
+5NE     C1G     C       CR16    0       26.355      -17.847     -10.346     
+5NE     C1D     C       CR66    0       26.794      -18.709     -11.392     
+5NE     C1C     C       CR6     0       27.380      -18.205     -12.664     
+5NE     C1O     C       CH3     0       27.567      -16.745     -12.983     
+5NE     C1B     C       CR16    0       27.765      -19.114     -13.602     
+5NE     H2      H       H       0       27.026      -21.926     -12.147     
+5NE     H3      H       H       0       27.918      -21.102     -14.089     
+5NE     H4      H       H       0       25.334      -20.060     -8.214      
+5NE     H5      H       H       0       25.541      -17.753     -8.511      
+5NE     H6      H       H       0       26.430      -16.916     -10.448     
+5NE     H7      H       H       0       27.693      -16.234     -12.169     
+5NE     H8      H       H       0       26.784      -16.409     -13.454     
+5NE     H9      H       H       0       28.351      -16.630     -13.549     
+5NE     H10     H       H       0       28.136      -18.799     -14.411     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+5NE         C1A         C1B      SINGLE       y     1.406  0.0132     1.406  0.0132
+5NE         C1C         C1B      DOUBLE       y     1.352  0.0200     1.352  0.0200
+5NE         C1F         C1A      DOUBLE       y     1.361  0.0115     1.361  0.0115
+5NE         C1C         C1O      SINGLE       n     1.493  0.0200     1.493  0.0200
+5NE         C1D         C1C      SINGLE       y     1.459  0.0200     1.459  0.0200
+5NE         C1E         C1F      SINGLE       y     1.419  0.0100     1.419  0.0100
+5NE         C1E         C1D      SINGLE       y     1.429  0.0100     1.429  0.0100
+5NE         C1G         C1D      DOUBLE       y     1.419  0.0100     1.419  0.0100
+5NE         C1J         C1E      DOUBLE       y     1.420  0.0100     1.420  0.0100
+5NE         C1H         C1G      SINGLE       y     1.361  0.0115     1.361  0.0115
+5NE         C1L         C1J      SINGLE       n     1.509  0.0121     1.509  0.0121
+5NE         C1J         C1I      SINGLE       y     1.370  0.0100     1.370  0.0100
+5NE         O1N         C1L      DOUBLE       n     1.244  0.0200     1.244  0.0200
+5NE         C1L         O1M      SINGLE       n     1.244  0.0200     1.244  0.0200
+5NE         C1I         C1H      DOUBLE       y     1.406  0.0100     1.406  0.0100
+5NE         C1F          H2      SINGLE       n     1.082  0.0130     0.944  0.0160
+5NE         C1A          H3      SINGLE       n     1.082  0.0130     0.948  0.0200
+5NE         C1I          H4      SINGLE       n     1.082  0.0130     0.938  0.0129
+5NE         C1H          H5      SINGLE       n     1.082  0.0130     0.944  0.0158
+5NE         C1G          H6      SINGLE       n     1.082  0.0130     0.943  0.0180
+5NE         C1O          H7      SINGLE       n     1.089  0.0100     0.973  0.0200
+5NE         C1O          H8      SINGLE       n     1.089  0.0100     0.973  0.0200
+5NE         C1O          H9      SINGLE       n     1.089  0.0100     0.973  0.0200
+5NE         C1B         H10      SINGLE       n     1.082  0.0130     0.944  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+5NE         C1J         C1L         O1N     117.540    1.50
+5NE         C1J         C1L         O1M     117.541    1.50
+5NE         O1N         C1L         O1M     124.922    1.50
+5NE         C1E         C1J         C1L     122.300    1.94
+5NE         C1E         C1J         C1I     120.042    1.50
+5NE         C1L         C1J         C1I     117.658    1.68
+5NE         C1F         C1E         C1D     118.244    1.50
+5NE         C1F         C1E         C1J     122.839    1.50
+5NE         C1D         C1E         C1J     118.917    1.50
+5NE         C1A         C1F         C1E     121.019    1.50
+5NE         C1A         C1F          H2     119.609    1.50
+5NE         C1E         C1F          H2     119.373    1.50
+5NE         C1B         C1A         C1F     119.866    1.50
+5NE         C1B         C1A          H3     120.093    1.50
+5NE         C1F         C1A          H3     120.041    1.50
+5NE         C1J         C1I         C1H     121.496    1.50
+5NE         C1J         C1I          H4     119.316    1.50
+5NE         C1H         C1I          H4     119.189    1.50
+5NE         C1G         C1H         C1I     120.005    1.50
+5NE         C1G         C1H          H5     119.972    1.50
+5NE         C1I         C1H          H5     120.023    1.50
+5NE         C1D         C1G         C1H     121.158    1.50
+5NE         C1D         C1G          H6     119.303    1.50
+5NE         C1H         C1G          H6     119.539    1.50
+5NE         C1C         C1D         C1E     119.344    1.50
+5NE         C1C         C1D         C1G     122.273    1.50
+5NE         C1E         C1D         C1G     118.383    1.50
+5NE         C1B         C1C         C1O     119.206    2.26
+5NE         C1B         C1C         C1D     118.912    1.50
+5NE         C1O         C1C         C1D     121.883    1.70
+5NE         C1C         C1O          H7     109.769    1.50
+5NE         C1C         C1O          H8     109.769    1.50
+5NE         C1C         C1O          H9     109.769    1.50
+5NE          H7         C1O          H8     109.180    1.50
+5NE          H7         C1O          H9     109.180    1.50
+5NE          H8         C1O          H9     109.180    1.50
+5NE         C1A         C1B         C1C     122.615    1.50
+5NE         C1A         C1B         H10     118.980    1.50
+5NE         C1C         C1B         H10     118.405    1.54
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+5NE              const_19         C1O         C1C         C1D         C1E     180.000    10.0     2
+5NE             sp2_sp3_1         C1B         C1C         C1O          H7     150.000    10.0     6
+5NE              const_14         C1A         C1B         C1C         C1O     180.000    10.0     2
+5NE             sp2_sp2_1         C1E         C1J         C1L         O1N     180.000     5.0     2
+5NE              const_24         C1F         C1E         C1J         C1L       0.000    10.0     2
+5NE              const_42         C1H         C1I         C1J         C1L     180.000    10.0     2
+5NE              const_25         C1C         C1D         C1E         C1F       0.000    10.0     2
+5NE       const_sp2_sp2_1         C1D         C1E         C1F         C1A       0.000     5.0     2
+5NE       const_sp2_sp2_5         C1B         C1A         C1F         C1E       0.000     5.0     2
+5NE       const_sp2_sp2_9         C1F         C1A         C1B         C1C       0.000     5.0     2
+5NE              const_37         C1G         C1H         C1I         C1J       0.000    10.0     2
+5NE              const_33         C1D         C1G         C1H         C1I       0.000    10.0     2
+5NE              const_31         C1C         C1D         C1G         C1H     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+5NE    plan-1         C1A   0.020
+5NE    plan-1         C1B   0.020
+5NE    plan-1         C1C   0.020
+5NE    plan-1         C1D   0.020
+5NE    plan-1         C1E   0.020
+5NE    plan-1         C1F   0.020
+5NE    plan-1         C1G   0.020
+5NE    plan-1         C1H   0.020
+5NE    plan-1         C1I   0.020
+5NE    plan-1         C1J   0.020
+5NE    plan-1         C1L   0.020
+5NE    plan-1         C1O   0.020
+5NE    plan-1         H10   0.020
+5NE    plan-1          H2   0.020
+5NE    plan-1          H3   0.020
+5NE    plan-1          H4   0.020
+5NE    plan-1          H5   0.020
+5NE    plan-1          H6   0.020
+5NE    plan-2         C1J   0.020
+5NE    plan-2         C1L   0.020
+5NE    plan-2         O1M   0.020
+5NE    plan-2         O1N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+5NE           SMILES              ACDLabs 12.01                                                        O=C(O)c1cccc2c1cccc2C
+5NE            InChI                InChI  1.03 InChI=1S/C12H10O2/c1-8-4-2-6-10-9(8)5-3-7-11(10)12(13)14/h2-7H,1H3,(H,13,14)
+5NE         InChIKey                InChI  1.03                                                  VLEZTIKHFUAVRK-UHFFFAOYSA-N
+5NE SMILES_CANONICAL               CACTVS 3.385                                                        Cc1cccc2c1cccc2C(O)=O
+5NE           SMILES               CACTVS 3.385                                                        Cc1cccc2c1cccc2C(O)=O
+5NE SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                        Cc1cccc2c1cccc2C(=O)O
+5NE           SMILES "OpenEye OEToolkits" 2.0.4                                                        Cc1cccc2c1cccc2C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+5NE acedrg               243         "dictionary generator"                  
+5NE acedrg_database      11          "data source"                           
+5NE rdkit                2017.03.2   "Chemoinformatics tool"
+5NE refmac5              5.8.0238    "optimization tool"                     

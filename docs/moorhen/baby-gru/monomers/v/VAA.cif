@@ -1,0 +1,361 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VAA     VAA      "N-[VALINYL]-N'-[ADENOSYL]-DIAMINOSUFONE"     NON-POLYMER     55     30     .     
+#
+data_comp_VAA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VAA     N       N       NT3     1       181.193     121.755     18.258      
+VAA     CA      C       CH1     0       180.213     120.654     17.968      
+VAA     CB      C       CH1     0       180.346     119.454     18.940      
+VAA     CG1     C       CH3     0       180.070     119.789     20.404      
+VAA     CG2     C       CH3     0       181.699     118.772     18.797      
+VAA     C       C       C       0       178.790     121.220     17.924      
+VAA     O       O       O       0       178.067     120.963     16.963      
+VAA     S       S       S3      0       176.844     122.572     19.164      
+VAA     O1S     O       O       0       176.978     123.559     20.174      
+VAA     O2S     O       O       0       176.305     122.929     17.902      
+VAA     N3S     N       NH1     0       178.371     121.976     18.956      
+VAA     "N5'"   N       NT1     0       175.878     121.426     19.782      
+VAA     "C5'"   C       CH2     0       175.963     120.043     19.289      
+VAA     "C4'"   C       CH1     0       174.992     119.119     19.998      
+VAA     "O4'"   O       O2      0       173.653     119.650     19.867      
+VAA     "C1'"   C       CH1     0       172.860     118.777     19.094      
+VAA     N9      N       NR5     0       172.047     119.582     18.188      
+VAA     C4      C       CR56    0       170.680     119.553     18.036      
+VAA     N3      N       NRD6    0       169.791     118.774     18.683      
+VAA     C2      C       CR16    0       168.545     119.019     18.275      
+VAA     N1      N       NRD6    0       168.114     119.895     17.354      
+VAA     C6      C       CR6     0       169.030     120.669     16.716      
+VAA     N6      N       NH2     0       168.609     121.540     15.802      
+VAA     C5      C       CR56    0       170.388     120.498     17.067      
+VAA     N7      N       NRD5    0       171.550     121.109     16.621      
+VAA     C8      C       CR15    0       172.503     120.537     17.313      
+VAA     "C2'"   C       CH1     0       173.824     117.830     18.387      
+VAA     "O2'"   O       OH1     0       173.204     116.601     18.073      
+VAA     "C3'"   C       CH1     0       174.924     117.698     19.442      
+VAA     "O3'"   O       OH1     0       174.589     116.770     20.466      
+VAA     HN2     H       H       0       180.808     122.581     18.258      
+VAA     H       H       H       0       181.823     121.752     17.600      
+VAA     H3      H       H       0       181.626     121.641     19.046      
+VAA     HA      H       H       0       180.422     120.309     17.068      
+VAA     HB      H       H       0       179.663     118.794     18.665      
+VAA     HG11    H       H       0       180.367     119.052     20.967      
+VAA     HG12    H       H       0       179.115     119.923     20.532      
+VAA     HG13    H       H       0       180.545     120.597     20.657      
+VAA     HG21    H       H       0       182.400     119.371     19.108      
+VAA     HG22    H       H       0       181.854     118.550     17.862      
+VAA     HG23    H       H       0       181.710     117.957     19.328      
+VAA     HNS3    H       H       0       178.927     122.195     19.589      
+VAA     "HN'5"  H       H       0       175.894     121.419     20.623      
+VAA     "H5'1"  H       H       0       176.875     119.706     19.424      
+VAA     "H5'2"  H       H       0       175.775     120.029     18.326      
+VAA     "H4'"   H       H       0       175.232     119.082     20.956      
+VAA     "H1'"   H       H       0       172.275     118.253     19.685      
+VAA     H2      H       H       0       167.872     118.503     18.692      
+VAA     H61     H       H       0       169.194     121.982     15.319      
+VAA     H62     H       H       0       167.748     121.670     15.686      
+VAA     H8      H       H       0       173.414     120.757     17.218      
+VAA     "H2'"   H       H       0       174.185     118.250     17.562      
+VAA     "HO'2"  H       H       0       173.788     116.065     17.770      
+VAA     "H3'"   H       H       0       175.786     117.449     19.017      
+VAA     "HT'3"  H       H       0       175.017     116.048     20.337      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VAA           N          CA      SINGLE       n     1.495  0.0100     1.495  0.0100
+VAA          CA          CB      SINGLE       n     1.542  0.0100     1.542  0.0100
+VAA          CA           C      SINGLE       n     1.526  0.0100     1.526  0.0100
+VAA          CB         CG1      SINGLE       n     1.521  0.0135     1.521  0.0135
+VAA          CB         CG2      SINGLE       n     1.521  0.0135     1.521  0.0135
+VAA           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+VAA           C         N3S      SINGLE       n     1.336  0.0126     1.336  0.0126
+VAA           S         O1S      DOUBLE       n     1.418  0.0100     1.418  0.0100
+VAA           S         O2S      DOUBLE       n     1.418  0.0100     1.418  0.0100
+VAA           S         N3S      SINGLE       n     1.644  0.0144     1.644  0.0144
+VAA           S       "N5'"      SINGLE       n     1.617  0.0151     1.617  0.0151
+VAA       "N5'"       "C5'"      SINGLE       n     1.469  0.0112     1.469  0.0112
+VAA       "C5'"       "C4'"      SINGLE       n     1.516  0.0118     1.516  0.0118
+VAA       "C4'"       "O4'"      SINGLE       n     1.446  0.0100     1.446  0.0100
+VAA       "C4'"       "C3'"      SINGLE       n     1.528  0.0117     1.528  0.0117
+VAA       "O4'"       "C1'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+VAA       "C1'"          N9      SINGLE       n     1.458  0.0100     1.458  0.0100
+VAA       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+VAA          N9          C4      SINGLE       y     1.374  0.0101     1.374  0.0101
+VAA          N9          C8      SINGLE       y     1.372  0.0100     1.372  0.0100
+VAA          C4          N3      DOUBLE       y     1.343  0.0100     1.343  0.0100
+VAA          C4          C5      SINGLE       y     1.381  0.0100     1.381  0.0100
+VAA          N3          C2      SINGLE       y     1.330  0.0100     1.330  0.0100
+VAA          C2          N1      DOUBLE       y     1.339  0.0100     1.339  0.0100
+VAA          N1          C6      SINGLE       y     1.354  0.0100     1.354  0.0100
+VAA          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+VAA          C6          C5      DOUBLE       y     1.408  0.0100     1.408  0.0100
+VAA          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+VAA          N7          C8      DOUBLE       y     1.310  0.0100     1.310  0.0100
+VAA       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+VAA       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+VAA       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+VAA           N         HN2      SINGLE       n     1.036  0.0160     0.911  0.0200
+VAA           N           H      SINGLE       n     1.036  0.0160     0.911  0.0200
+VAA           N          H3      SINGLE       n     1.036  0.0160     0.911  0.0200
+VAA          CA          HA      SINGLE       n     1.089  0.0100     0.986  0.0200
+VAA          CB          HB      SINGLE       n     1.089  0.0100     0.989  0.0175
+VAA         CG1        HG11      SINGLE       n     1.089  0.0100     0.973  0.0146
+VAA         CG1        HG12      SINGLE       n     1.089  0.0100     0.973  0.0146
+VAA         CG1        HG13      SINGLE       n     1.089  0.0100     0.973  0.0146
+VAA         CG2        HG21      SINGLE       n     1.089  0.0100     0.973  0.0146
+VAA         CG2        HG22      SINGLE       n     1.089  0.0100     0.973  0.0146
+VAA         CG2        HG23      SINGLE       n     1.089  0.0100     0.973  0.0146
+VAA         N3S        HNS3      SINGLE       n     1.016  0.0100     0.872  0.0200
+VAA       "N5'"      "HN'5"      SINGLE       n     1.036  0.0160     0.840  0.0200
+VAA       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.982  0.0100
+VAA       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.982  0.0100
+VAA       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.988  0.0100
+VAA       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+VAA          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+VAA          N6         H61      SINGLE       n     1.016  0.0100     0.877  0.0200
+VAA          N6         H62      SINGLE       n     1.016  0.0100     0.877  0.0200
+VAA          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+VAA       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+VAA       "O2'"      "HO'2"      SINGLE       n     0.970  0.0120     0.849  0.0200
+VAA       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+VAA       "O3'"      "HT'3"      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VAA          CA           N         HN2     110.239    2.72
+VAA          CA           N           H     110.239    2.72
+VAA          CA           N          H3     110.239    2.72
+VAA         HN2           N           H     109.028    2.41
+VAA         HN2           N          H3     109.028    2.41
+VAA           H           N          H3     109.028    2.41
+VAA           N          CA          CB     111.094    1.50
+VAA           N          CA           C     107.575    1.50
+VAA           N          CA          HA     109.056    1.50
+VAA          CB          CA           C     112.302    1.58
+VAA          CB          CA          HA     108.547    1.50
+VAA           C          CA          HA     109.286    1.50
+VAA          CA          CB         CG1     111.885    1.50
+VAA          CA          CB         CG2     111.885    1.50
+VAA          CA          CB          HB     107.339    1.50
+VAA         CG1          CB         CG2     110.676    1.50
+VAA         CG1          CB          HB     107.603    1.50
+VAA         CG2          CB          HB     107.603    1.50
+VAA          CB         CG1        HG11     109.507    1.50
+VAA          CB         CG1        HG12     109.507    1.50
+VAA          CB         CG1        HG13     109.507    1.50
+VAA        HG11         CG1        HG12     109.411    1.50
+VAA        HG11         CG1        HG13     109.411    1.50
+VAA        HG12         CG1        HG13     109.411    1.50
+VAA          CB         CG2        HG21     109.507    1.50
+VAA          CB         CG2        HG22     109.507    1.50
+VAA          CB         CG2        HG23     109.507    1.50
+VAA        HG21         CG2        HG22     109.411    1.50
+VAA        HG21         CG2        HG23     109.411    1.50
+VAA        HG22         CG2        HG23     109.411    1.50
+VAA          CA           C           O     121.161    1.50
+VAA          CA           C         N3S     116.687    1.68
+VAA           O           C         N3S     122.151    1.50
+VAA         O1S           S         O2S     120.361    1.50
+VAA         O1S           S         N3S     106.615    2.76
+VAA         O1S           S       "N5'"     107.035    2.04
+VAA         O2S           S         N3S     106.615    2.76
+VAA         O2S           S       "N5'"     107.035    2.04
+VAA         N3S           S       "N5'"     109.471    3.00
+VAA           C         N3S           S     124.092    1.50
+VAA           C         N3S        HNS3     119.835    2.55
+VAA           S         N3S        HNS3     116.073    2.78
+VAA           S       "N5'"       "C5'"     119.410    1.84
+VAA           S       "N5'"      "HN'5"     112.257    3.00
+VAA       "C5'"       "N5'"      "HN'5"     108.898    3.00
+VAA       "N5'"       "C5'"       "C4'"     110.786    2.77
+VAA       "N5'"       "C5'"      "H5'1"     109.366    1.50
+VAA       "N5'"       "C5'"      "H5'2"     109.366    1.50
+VAA       "C4'"       "C5'"      "H5'1"     109.129    1.50
+VAA       "C4'"       "C5'"      "H5'2"     109.129    1.50
+VAA      "H5'1"       "C5'"      "H5'2"     108.010    1.71
+VAA       "C5'"       "C4'"       "O4'"     108.989    1.51
+VAA       "C5'"       "C4'"       "C3'"     115.298    1.50
+VAA       "C5'"       "C4'"       "H4'"     108.793    1.50
+VAA       "O4'"       "C4'"       "C3'"     105.508    1.50
+VAA       "O4'"       "C4'"       "H4'"     109.115    1.50
+VAA       "C3'"       "C4'"       "H4'"     109.143    1.50
+VAA       "C4'"       "O4'"       "C1'"     109.426    1.50
+VAA       "O4'"       "C1'"          N9     108.477    1.50
+VAA       "O4'"       "C1'"       "C2'"     106.047    1.50
+VAA       "O4'"       "C1'"       "H1'"     109.807    1.50
+VAA          N9       "C1'"       "C2'"     113.824    1.50
+VAA          N9       "C1'"       "H1'"     109.561    1.50
+VAA       "C2'"       "C1'"       "H1'"     109.015    1.50
+VAA       "C1'"          N9          C4     127.459    1.80
+VAA       "C1'"          N9          C8     126.848    1.91
+VAA          C4          N9          C8     105.693    1.50
+VAA          N9          C4          N3     127.895    1.50
+VAA          N9          C4          C5     105.616    1.50
+VAA          N3          C4          C5     126.489    1.50
+VAA          C4          N3          C2     110.982    1.50
+VAA          N3          C2          N1     129.332    1.50
+VAA          N3          C2          H2     115.355    1.50
+VAA          N1          C2          H2     115.313    1.50
+VAA          C2          N1          C6     118.521    1.50
+VAA          N1          C6          N6     118.799    1.50
+VAA          N1          C6          C5     117.409    1.50
+VAA          N6          C6          C5     123.792    1.50
+VAA          C6          N6         H61     119.723    1.50
+VAA          C6          N6         H62     119.723    1.50
+VAA         H61          N6         H62     120.554    1.88
+VAA          C4          C5          C6     117.270    1.50
+VAA          C4          C5          N7     110.483    1.50
+VAA          C6          C5          N7     132.247    1.50
+VAA          C5          N7          C8     104.739    1.50
+VAA          N9          C8          N7     113.469    1.50
+VAA          N9          C8          H8     123.206    1.50
+VAA          N7          C8          H8     123.326    1.50
+VAA       "C1'"       "C2'"       "O2'"     111.715    2.69
+VAA       "C1'"       "C2'"       "C3'"     101.239    1.50
+VAA       "C1'"       "C2'"       "H2'"     110.636    1.70
+VAA       "O2'"       "C2'"       "C3'"     112.782    2.45
+VAA       "O2'"       "C2'"       "H2'"     110.448    1.97
+VAA       "C3'"       "C2'"       "H2'"     110.596    1.51
+VAA       "C2'"       "O2'"      "HO'2"     109.103    2.13
+VAA       "C4'"       "C3'"       "C2'"     102.352    1.50
+VAA       "C4'"       "C3'"       "O3'"     110.985    2.41
+VAA       "C4'"       "C3'"       "H3'"     110.624    1.81
+VAA       "C2'"       "C3'"       "O3'"     111.581    2.83
+VAA       "C2'"       "C3'"       "H3'"     110.504    1.75
+VAA       "O3'"       "C3'"       "H3'"     110.380    1.67
+VAA       "C3'"       "O3'"      "HT'3"     108.744    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VAA            sp3_sp3_25          CB          CA           N         HN2     180.000    10.0     3
+VAA            sp3_sp3_67       "C4'"       "C5'"       "N5'"           S     180.000    10.0     3
+VAA            sp3_sp3_73       "O4'"       "C4'"       "C5'"       "N5'"     180.000    10.0     3
+VAA             sp3_sp3_2       "C5'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+VAA            sp3_sp3_86       "O3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+VAA             sp3_sp3_5          N9       "C1'"       "O4'"       "C4'"     180.000    10.0     3
+VAA            sp2_sp3_13          C4          N9       "C1'"       "O4'"     150.000    10.0     6
+VAA             sp3_sp3_8       "O4'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+VAA              const_16          N3          C4          N9       "C1'"       0.000    10.0     2
+VAA              const_26          N7          C8          N9       "C1'"     180.000    10.0     2
+VAA       const_sp2_sp2_2          N9          C4          N3          C2     180.000     5.0     2
+VAA              const_18          N9          C4          C5          C6     180.000    10.0     2
+VAA       const_sp2_sp2_3          N1          C2          N3          C4       0.000     5.0     2
+VAA       const_sp2_sp2_5          N3          C2          N1          C6       0.000     5.0     2
+VAA            sp3_sp3_35           N          CA          CB         CG1     -60.000    10.0     3
+VAA             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+VAA       const_sp2_sp2_8          N6          C6          N1          C2     180.000     5.0     2
+VAA             sp2_sp2_7          N1          C6          N6         H61       0.000     5.0     2
+VAA              const_10          C4          C5          C6          N6     180.000    10.0     2
+VAA              const_21          C4          C5          N7          C8       0.000    10.0     2
+VAA              const_23          N9          C8          N7          C5       0.000    10.0     2
+VAA            sp3_sp3_91       "C1'"       "C2'"       "O2'"      "HO'2"     180.000    10.0     3
+VAA            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+VAA            sp3_sp3_94       "C4'"       "C3'"       "O3'"      "HT'3"     180.000    10.0     3
+VAA            sp3_sp3_43          CA          CB         CG1        HG11     180.000    10.0     3
+VAA            sp3_sp3_55          CA          CB         CG2        HG21      60.000    10.0     3
+VAA             sp2_sp2_1          CA           C         N3S           S     180.000     5.0     2
+VAA             sp2_sp3_8           C         N3S           S         O1S     120.000    10.0     6
+VAA            sp3_sp3_64       "C5'"       "N5'"           S         O1S      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VAA    chir_1    CA    N    C    CB    positive
+VAA    chir_2    CB    CA    CG1    CG2    both
+VAA    chir_3    S    O1S    O2S    N3S    both
+VAA    chir_4    "C4'"    "O4'"    "C3'"    "C5'"    negative
+VAA    chir_5    "C1'"    "O4'"    N9    "C2'"    negative
+VAA    chir_6    "C2'"    "O2'"    "C1'"    "C3'"    negative
+VAA    chir_7    "C3'"    "O3'"    "C4'"    "C2'"    positive
+VAA    chir_8    "N5'"    S    "C5'"    "HN'5"    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VAA    plan-1       "C1'"   0.020
+VAA    plan-1          C2   0.020
+VAA    plan-1          C4   0.020
+VAA    plan-1          C5   0.020
+VAA    plan-1          C6   0.020
+VAA    plan-1          C8   0.020
+VAA    plan-1          H2   0.020
+VAA    plan-1          H8   0.020
+VAA    plan-1          N1   0.020
+VAA    plan-1          N3   0.020
+VAA    plan-1          N6   0.020
+VAA    plan-1          N7   0.020
+VAA    plan-1          N9   0.020
+VAA    plan-2           C   0.020
+VAA    plan-2          CA   0.020
+VAA    plan-2         N3S   0.020
+VAA    plan-2           O   0.020
+VAA    plan-3           C   0.020
+VAA    plan-3        HNS3   0.020
+VAA    plan-3         N3S   0.020
+VAA    plan-3           S   0.020
+VAA    plan-4          C6   0.020
+VAA    plan-4         H61   0.020
+VAA    plan-4         H62   0.020
+VAA    plan-4          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VAA           SMILES              ACDLabs 10.04                                                                                                                                            O=C(NS(=O)(=O)NCC3OC(n2cnc1c(ncnc12)N)C(O)C3O)C(N)C(C)C
+VAA SMILES_CANONICAL               CACTVS 3.341                                                                                                                     CC(C)[C@H](N)C(=O)N[S](=O)(=O)NC[C@H]1O[C@H]([C@H](O)[C@@H]1O)n2cnc3c(N)ncnc23
+VAA           SMILES               CACTVS 3.341                                                                                                                           CC(C)[CH](N)C(=O)N[S](=O)(=O)NC[CH]1O[CH]([CH](O)[CH]1O)n2cnc3c(N)ncnc23
+VAA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                     CC(C)[C@@H](C(=O)NS(=O)(=O)NC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)O)N
+VAA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                            CC(C)C(C(=O)NS(=O)(=O)NCC1C(C(C(O1)n2cnc3c2ncnc3N)O)O)N
+VAA            InChI                InChI  1.03 InChI=1S/C15H24N8O6S/c1-6(2)8(16)14(26)22-30(27,28)21-3-7-10(24)11(25)15(29-7)23-5-20-9-12(17)18-4-19-13(9)23/h4-8,10-11,15,21,24-25H,3,16H2,1-2H3,(H,22,26)(H2,17,18,19)/t7-,8+,10-,11-,15-/m1/s1
+VAA         InChIKey                InChI  1.03                                                                                                                                                                        ILBDFTSSTCBHRF-CYUGOOACSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VAA acedrg               243         "dictionary generator"                  
+VAA acedrg_database      11          "data source"                           
+VAA rdkit                2017.03.2   "Chemoinformatics tool"
+VAA refmac5              5.8.0238    "optimization tool"                     

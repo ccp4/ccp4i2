@@ -1,0 +1,473 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TXP     TXP      "1,4,5,6-TETRAHYDRONICOTINAMIDE ADENINE DINUCLEOTIDE PHOSPHATE"     NON-POLYMER     76     48     .     
+#
+data_comp_TXP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TXP     O2N     O       OP      -1      -22.189     -33.484     10.372      
+TXP     PN      P       P       0       -23.134     -34.548     9.918       
+TXP     O1N     O       O       0       -24.499     -34.136     9.476       
+TXP     "O5'A"  O       O2      0       -23.260     -35.668     11.059      
+TXP     "C5'A"  C       CH2     0       -23.950     -35.329     12.290      
+TXP     "C4'A"  C       CH1     0       -24.031     -36.551     13.173      
+TXP     "C3'A"  C       CH1     0       -24.811     -37.741     12.601      
+TXP     "O3'A"  O       OH1     0       -23.973     -38.557     11.791      
+TXP     "C2'A"  C       CH1     0       -25.301     -38.439     13.873      
+TXP     "O2'A"  O       OH1     0       -24.392     -39.424     14.347      
+TXP     "C1'A"  C       CH1     0       -25.449     -37.305     14.891      
+TXP     N1N     N       NT      0       -26.825     -36.888     15.159      
+TXP     C6N     C       CH2     0       -27.587     -37.812     16.021      
+TXP     C5N     C       CR16    0       -28.979     -37.350     16.273      
+TXP     C4N     C       CR16    0       -29.571     -36.394     15.578      
+TXP     C3N     C       CH1     0       -28.854     -35.651     14.476      
+TXP     C7N     C       C       0       -29.786     -35.379     13.315      
+TXP     O7N     O       O       0       -30.332     -36.317     12.726      
+TXP     N7N     N       NH2     0       -29.995     -34.117     12.961      
+TXP     C2N     C       CH2     0       -27.604     -36.412     14.000      
+TXP     "O4'A"  O       O2      0       -24.712     -36.204     14.405      
+TXP     O3      O       O2      0       -22.440     -35.379     8.733       
+TXP     PA      P       P       0       -22.685     -36.854     8.151       
+TXP     O1A     O       O       0       -24.142     -37.023     7.872       
+TXP     O2A     O       OP      -1      -22.026     -37.839     9.059       
+TXP     "O5'"   O       O2      0       -21.877     -36.788     6.765       
+TXP     "C5'"   C       CH2     0       -22.319     -35.890     5.714       
+TXP     "C4'"   C       CH1     0       -21.558     -36.189     4.445       
+TXP     "C3'"   C       CH1     0       -20.034     -36.043     4.525       
+TXP     "O3'"   O       OH1     0       -19.431     -37.240     5.006       
+TXP     "O4'"   O       O2      0       -21.967     -35.254     3.416       
+TXP     "C1'"   C       CH1     0       -20.871     -34.914     2.596       
+TXP     "C2'"   C       CH1     0       -19.660     -35.707     3.085       
+TXP     "O2'"   O       O2      0       -19.478     -36.889     2.296       
+TXP     P2      P       P       0       -18.370     -36.747     1.123       
+TXP     OP3     O       OP      -1      -17.019     -36.701     1.812       
+TXP     OP2     O       OP      -1      -18.668     -35.465     0.367       
+TXP     OP1     O       O       0       -18.520     -37.974     0.244       
+TXP     N9A     N       NR5     0       -20.686     -33.468     2.659       
+TXP     C4A     C       CR56    0       -20.670     -32.578     1.609       
+TXP     N3A     N       NRD6    0       -20.817     -32.842     0.295       
+TXP     C2A     C       CR16    0       -20.744     -31.729     -0.435      
+TXP     N1A     N       NRD6    0       -20.553     -30.463     -0.031      
+TXP     C6A     C       CR6     0       -20.408     -30.224     1.298       
+TXP     N6A     N       NH2     0       -20.218     -28.972     1.705       
+TXP     C5A     C       CR56    0       -20.467     -31.330     2.174       
+TXP     N7A     N       NRD5    0       -20.360     -31.436     3.552       
+TXP     C8A     C       CR15    0       -20.496     -32.716     3.791       
+TXP     "H5'1"  H       H       0       -24.862     -35.006     12.086      
+TXP     "H5'2"  H       H       0       -23.461     -34.610     12.762      
+TXP     "H4'A"  H       H       0       -23.118     -36.834     13.390      
+TXP     "H3'A"  H       H       0       -25.586     -37.417     12.073      
+TXP     HO3A    H       H       0       -24.397     -39.263     11.582      
+TXP     "H2'A"  H       H       0       -26.179     -38.857     13.699      
+TXP     "HO2'"  H       H       0       -23.628     -39.076     14.475      
+TXP     "H1'A"  H       H       0       -25.052     -37.591     15.751      
+TXP     H6N1    H       H       0       -27.620     -38.698     15.600      
+TXP     H6N2    H       H       0       -27.126     -37.907     16.883      
+TXP     H5N     H       H       0       -29.473     -37.774     16.983      
+TXP     H4N     H       H       0       -30.478     -36.172     15.783      
+TXP     H3N     H       H       0       -28.549     -34.788     14.833      
+TXP     H7N1    H       H       0       -29.601     -33.461     13.387      
+TXP     H7N2    H       H       0       -30.533     -33.933     12.294      
+TXP     H2N1    H       H       0       -27.877     -37.178     13.450      
+TXP     H2N2    H       H       0       -27.056     -35.817     13.445      
+TXP     "H5'A"  H       H       0       -22.159     -34.952     5.984       
+TXP     "H5'B"  H       H       0       -23.288     -36.009     5.554       
+TXP     "H4'"   H       H       0       -21.785     -37.099     4.157       
+TXP     "H3'"   H       H       0       -19.799     -35.286     5.119       
+TXP     "HO3'"  H       H       0       -19.560     -37.867     4.447       
+TXP     "H1'"   H       H       0       -21.068     -35.175     1.668       
+TXP     "H2'"   H       H       0       -18.847     -35.150     3.077       
+TXP     H2A     H       H       0       -20.840     -31.847     -1.368      
+TXP     H6A1    H       H       0       -19.686     -28.811     2.383       
+TXP     H6A2    H       H       0       -20.627     -28.313     1.294       
+TXP     H8A     H       H       0       -20.467     -33.084     4.657       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TXP         O2N          PN      SINGLE       n     1.493  0.0122     1.493  0.0122
+TXP          PN         O1N      DOUBLE       n     1.493  0.0122     1.493  0.0122
+TXP          PN          O3      SINGLE       n     1.604  0.0133     1.604  0.0133
+TXP          PN      "O5'A"      SINGLE       n     1.604  0.0133     1.604  0.0133
+TXP      "O5'A"      "C5'A"      SINGLE       n     1.450  0.0166     1.450  0.0166
+TXP      "C5'A"      "C4'A"      SINGLE       n     1.509  0.0100     1.509  0.0100
+TXP      "C4'A"      "C3'A"      SINGLE       n     1.535  0.0100     1.535  0.0100
+TXP      "C4'A"      "O4'A"      SINGLE       n     1.449  0.0100     1.449  0.0100
+TXP      "C3'A"      "O3'A"      SINGLE       n     1.422  0.0100     1.422  0.0100
+TXP      "C3'A"      "C2'A"      SINGLE       n     1.530  0.0134     1.530  0.0134
+TXP      "C2'A"      "C1'A"      SINGLE       n     1.527  0.0119     1.527  0.0119
+TXP      "C2'A"      "O2'A"      SINGLE       n     1.420  0.0122     1.420  0.0122
+TXP      "C1'A"      "O4'A"      SINGLE       n     1.409  0.0106     1.409  0.0106
+TXP      "C1'A"         N1N      SINGLE       n     1.448  0.0200     1.448  0.0200
+TXP         N1N         C2N      SINGLE       n     1.470  0.0100     1.470  0.0100
+TXP         N1N         C6N      SINGLE       n     1.470  0.0117     1.470  0.0117
+TXP         C6N         C5N      SINGLE       n     1.486  0.0100     1.486  0.0100
+TXP         C5N         C4N      DOUBLE       n     1.319  0.0135     1.319  0.0135
+TXP         C4N         C3N      SINGLE       n     1.509  0.0102     1.509  0.0102
+TXP         C3N         C2N      SINGLE       n     1.535  0.0130     1.535  0.0130
+TXP         C3N         C7N      SINGLE       n     1.511  0.0100     1.511  0.0100
+TXP         C7N         N7N      SINGLE       n     1.324  0.0100     1.324  0.0100
+TXP         C7N         O7N      DOUBLE       n     1.235  0.0107     1.235  0.0107
+TXP          O3          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+TXP          PA       "O5'"      SINGLE       n     1.604  0.0133     1.604  0.0133
+TXP          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+TXP          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+TXP       "O5'"       "C5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+TXP       "C5'"       "C4'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+TXP       "C4'"       "O4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+TXP       "C4'"       "C3'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+TXP       "C3'"       "C2'"      SINGLE       n     1.523  0.0106     1.523  0.0106
+TXP       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+TXP       "O4'"       "C1'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+TXP       "C1'"         N9A      SINGLE       n     1.458  0.0100     1.458  0.0100
+TXP       "C1'"       "C2'"      SINGLE       n     1.524  0.0100     1.524  0.0100
+TXP       "C2'"       "O2'"      SINGLE       n     1.425  0.0152     1.425  0.0152
+TXP       "O2'"          P2      SINGLE       n     1.614  0.0178     1.614  0.0178
+TXP          P2         OP1      DOUBLE       n     1.517  0.0192     1.517  0.0192
+TXP          P2         OP2      SINGLE       n     1.517  0.0192     1.517  0.0192
+TXP          P2         OP3      SINGLE       n     1.517  0.0192     1.517  0.0192
+TXP         N9A         C4A      SINGLE       y     1.374  0.0101     1.374  0.0101
+TXP         N9A         C8A      SINGLE       y     1.372  0.0100     1.372  0.0100
+TXP         C4A         N3A      DOUBLE       y     1.343  0.0100     1.343  0.0100
+TXP         C4A         C5A      SINGLE       y     1.381  0.0100     1.381  0.0100
+TXP         N3A         C2A      SINGLE       y     1.330  0.0100     1.330  0.0100
+TXP         C2A         N1A      DOUBLE       y     1.339  0.0100     1.339  0.0100
+TXP         N1A         C6A      SINGLE       y     1.354  0.0100     1.354  0.0100
+TXP         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+TXP         C6A         C5A      DOUBLE       y     1.408  0.0100     1.408  0.0100
+TXP         C5A         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+TXP         N7A         C8A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+TXP      "C5'A"      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+TXP      "C5'A"      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+TXP      "C4'A"      "H4'A"      SINGLE       n     1.089  0.0100     0.981  0.0200
+TXP      "C3'A"      "H3'A"      SINGLE       n     1.089  0.0100     0.992  0.0200
+TXP      "O3'A"        HO3A      SINGLE       n     0.970  0.0120     0.849  0.0200
+TXP      "C2'A"      "H2'A"      SINGLE       n     1.089  0.0100     0.988  0.0200
+TXP      "O2'A"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+TXP      "C1'A"      "H1'A"      SINGLE       n     1.089  0.0100     0.989  0.0200
+TXP         C6N        H6N1      SINGLE       n     1.089  0.0100     0.982  0.0184
+TXP         C6N        H6N2      SINGLE       n     1.089  0.0100     0.982  0.0184
+TXP         C5N         H5N      SINGLE       n     1.082  0.0130     0.963  0.0198
+TXP         C4N         H4N      SINGLE       n     1.082  0.0130     0.956  0.0199
+TXP         C3N         H3N      SINGLE       n     1.089  0.0100     0.983  0.0178
+TXP         N7N        H7N1      SINGLE       n     1.016  0.0100     0.876  0.0200
+TXP         N7N        H7N2      SINGLE       n     1.016  0.0100     0.876  0.0200
+TXP         C2N        H2N1      SINGLE       n     1.089  0.0100     0.982  0.0165
+TXP         C2N        H2N2      SINGLE       n     1.089  0.0100     0.982  0.0165
+TXP       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.989  0.0200
+TXP       "C5'"      "H5'B"      SINGLE       n     1.089  0.0100     0.989  0.0200
+TXP       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+TXP       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+TXP       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+TXP       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+TXP       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.985  0.0119
+TXP         C2A         H2A      SINGLE       n     1.082  0.0130     0.945  0.0200
+TXP         N6A        H6A1      SINGLE       n     1.016  0.0100     0.877  0.0200
+TXP         N6A        H6A2      SINGLE       n     1.016  0.0100     0.877  0.0200
+TXP         C8A         H8A      SINGLE       n     1.082  0.0130     0.942  0.0170
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TXP         O2N          PN         O1N     118.411    2.35
+TXP         O2N          PN          O3     108.816    2.14
+TXP         O2N          PN      "O5'A"     109.410    1.50
+TXP         O1N          PN          O3     108.816    2.14
+TXP         O1N          PN      "O5'A"     109.410    1.50
+TXP          O3          PN      "O5'A"     101.065    1.97
+TXP          PN      "O5'A"      "C5'A"     118.553    2.41
+TXP      "O5'A"      "C5'A"      "C4'A"     109.342    1.50
+TXP      "O5'A"      "C5'A"      "H5'1"     109.845    1.50
+TXP      "O5'A"      "C5'A"      "H5'2"     109.845    1.50
+TXP      "C4'A"      "C5'A"      "H5'1"     109.624    1.50
+TXP      "C4'A"      "C5'A"      "H5'2"     109.624    1.50
+TXP      "H5'1"      "C5'A"      "H5'2"     108.472    1.50
+TXP      "C5'A"      "C4'A"      "C3'A"     116.008    1.52
+TXP      "C5'A"      "C4'A"      "O4'A"     109.123    1.50
+TXP      "C5'A"      "C4'A"      "H4'A"     108.268    1.50
+TXP      "C3'A"      "C4'A"      "O4'A"     105.508    1.50
+TXP      "C3'A"      "C4'A"      "H4'A"     109.363    1.86
+TXP      "O4'A"      "C4'A"      "H4'A"     108.642    1.50
+TXP      "C4'A"      "C3'A"      "O3'A"     111.281    2.46
+TXP      "C4'A"      "C3'A"      "C2'A"     102.352    1.50
+TXP      "C4'A"      "C3'A"      "H3'A"     110.452    2.54
+TXP      "O3'A"      "C3'A"      "C2'A"     112.463    2.73
+TXP      "O3'A"      "C3'A"      "H3'A"     110.380    1.67
+TXP      "C2'A"      "C3'A"      "H3'A"     110.255    2.04
+TXP      "C3'A"      "O3'A"        HO3A     108.744    3.00
+TXP      "C3'A"      "C2'A"      "C1'A"     104.443    2.26
+TXP      "C3'A"      "C2'A"      "O2'A"     112.463    2.73
+TXP      "C3'A"      "C2'A"      "H2'A"     110.255    2.04
+TXP      "C1'A"      "C2'A"      "O2'A"     111.164    2.38
+TXP      "C1'A"      "C2'A"      "H2'A"     110.518    1.74
+TXP      "O2'A"      "C2'A"      "H2'A"     110.259    1.63
+TXP      "C2'A"      "O2'A"      "HO2'"     109.104    3.00
+TXP      "C2'A"      "C1'A"      "O4'A"     106.204    2.50
+TXP      "C2'A"      "C1'A"         N1N     115.377    2.88
+TXP      "C2'A"      "C1'A"      "H1'A"     109.914    1.68
+TXP      "O4'A"      "C1'A"         N1N     109.168    1.85
+TXP      "O4'A"      "C1'A"      "H1'A"     109.395    1.50
+TXP         N1N      "C1'A"      "H1'A"     108.451    1.50
+TXP      "C1'A"         N1N         C2N     114.946    1.76
+TXP      "C1'A"         N1N         C6N     114.946    1.76
+TXP         C2N         N1N         C6N     111.782    3.00
+TXP         N1N         C6N         C5N     111.438    1.59
+TXP         N1N         C6N        H6N1     109.325    1.50
+TXP         N1N         C6N        H6N2     109.325    1.50
+TXP         C5N         C6N        H6N1     108.709    2.43
+TXP         C5N         C6N        H6N2     108.709    2.43
+TXP        H6N1         C6N        H6N2     107.773    1.50
+TXP         C6N         C5N         C4N     123.523    1.52
+TXP         C6N         C5N         H5N     117.935    1.85
+TXP         C4N         C5N         H5N     118.542    1.54
+TXP         C5N         C4N         C3N     122.079    2.89
+TXP         C5N         C4N         H4N     118.618    1.54
+TXP         C3N         C4N         H4N     119.304    2.38
+TXP         C4N         C3N         C2N     112.021    2.38
+TXP         C4N         C3N         C7N     111.234    2.55
+TXP         C4N         C3N         H3N     108.783    1.50
+TXP         C2N         C3N         C7N     110.474    2.81
+TXP         C2N         C3N         H3N     107.615    1.50
+TXP         C7N         C3N         H3N     107.803    1.50
+TXP         C3N         C7N         N7N     116.721    2.43
+TXP         C3N         C7N         O7N     120.847    1.51
+TXP         N7N         C7N         O7N     122.432    1.50
+TXP         C7N         N7N        H7N1     120.096    1.68
+TXP         C7N         N7N        H7N2     120.096    1.68
+TXP        H7N1         N7N        H7N2     119.807    2.34
+TXP         N1N         C2N         C3N     110.258    1.51
+TXP         N1N         C2N        H2N1     109.742    1.50
+TXP         N1N         C2N        H2N2     109.742    1.50
+TXP         C3N         C2N        H2N1     109.403    1.50
+TXP         C3N         C2N        H2N2     109.403    1.50
+TXP        H2N1         C2N        H2N2     108.194    1.50
+TXP      "C4'A"      "O4'A"      "C1'A"     109.926    1.50
+TXP          PN          O3          PA     132.542    3.00
+TXP          O3          PA       "O5'"     101.065    1.97
+TXP          O3          PA         O1A     108.816    2.14
+TXP          O3          PA         O2A     108.816    2.14
+TXP       "O5'"          PA         O1A     109.410    1.50
+TXP       "O5'"          PA         O2A     109.410    1.50
+TXP         O1A          PA         O2A     118.411    2.35
+TXP          PA       "O5'"       "C5'"     118.553    2.41
+TXP       "O5'"       "C5'"       "C4'"     109.342    1.50
+TXP       "O5'"       "C5'"      "H5'A"     109.845    1.50
+TXP       "O5'"       "C5'"      "H5'B"     109.845    1.50
+TXP       "C4'"       "C5'"      "H5'A"     109.624    1.50
+TXP       "C4'"       "C5'"      "H5'B"     109.624    1.50
+TXP      "H5'A"       "C5'"      "H5'B"     108.472    1.50
+TXP       "C5'"       "C4'"       "O4'"     109.123    1.50
+TXP       "C5'"       "C4'"       "C3'"     116.008    1.52
+TXP       "C5'"       "C4'"       "H4'"     108.268    1.50
+TXP       "O4'"       "C4'"       "C3'"     105.388    1.50
+TXP       "O4'"       "C4'"       "H4'"     108.947    1.50
+TXP       "C3'"       "C4'"       "H4'"     109.363    1.86
+TXP       "C4'"       "C3'"       "C2'"     102.352    1.50
+TXP       "C4'"       "C3'"       "O3'"     111.281    2.46
+TXP       "C4'"       "C3'"       "H3'"     110.452    2.54
+TXP       "C2'"       "C3'"       "O3'"     112.463    2.73
+TXP       "C2'"       "C3'"       "H3'"     110.255    2.04
+TXP       "O3'"       "C3'"       "H3'"     110.380    1.67
+TXP       "C3'"       "O3'"      "HO3'"     108.744    3.00
+TXP       "C4'"       "O4'"       "C1'"     109.903    1.50
+TXP       "O4'"       "C1'"         N9A     108.477    1.50
+TXP       "O4'"       "C1'"       "C2'"     106.416    1.50
+TXP       "O4'"       "C1'"       "H1'"     109.807    1.50
+TXP         N9A       "C1'"       "C2'"     113.659    1.50
+TXP         N9A       "C1'"       "H1'"     109.561    1.50
+TXP       "C2'"       "C1'"       "H1'"     109.319    1.50
+TXP       "C3'"       "C2'"       "C1'"     101.388    1.50
+TXP       "C3'"       "C2'"       "O2'"     110.766    3.00
+TXP       "C3'"       "C2'"       "H2'"     110.255    2.04
+TXP       "C1'"       "C2'"       "O2'"     110.738    2.44
+TXP       "C1'"       "C2'"       "H2'"     111.050    1.62
+TXP       "O2'"       "C2'"       "H2'"     110.343    1.64
+TXP       "C2'"       "O2'"          P2     109.471    3.00
+TXP       "O2'"          P2         OP1     106.518    3.00
+TXP       "O2'"          P2         OP2     106.518    3.00
+TXP       "O2'"          P2         OP3     106.518    3.00
+TXP         OP1          P2         OP2     112.139    1.52
+TXP         OP1          P2         OP3     112.139    1.52
+TXP         OP2          P2         OP3     112.139    1.52
+TXP       "C1'"         N9A         C4A     127.459    1.80
+TXP       "C1'"         N9A         C8A     126.848    1.91
+TXP         C4A         N9A         C8A     105.693    1.50
+TXP         N9A         C4A         N3A     127.895    1.50
+TXP         N9A         C4A         C5A     105.616    1.50
+TXP         N3A         C4A         C5A     126.489    1.50
+TXP         C4A         N3A         C2A     110.982    1.50
+TXP         N3A         C2A         N1A     129.332    1.50
+TXP         N3A         C2A         H2A     115.355    1.50
+TXP         N1A         C2A         H2A     115.313    1.50
+TXP         C2A         N1A         C6A     118.521    1.50
+TXP         N1A         C6A         N6A     118.799    1.50
+TXP         N1A         C6A         C5A     117.409    1.50
+TXP         N6A         C6A         C5A     123.792    1.50
+TXP         C6A         N6A        H6A1     119.723    1.50
+TXP         C6A         N6A        H6A2     119.723    1.50
+TXP        H6A1         N6A        H6A2     120.554    1.88
+TXP         C4A         C5A         C6A     117.270    1.50
+TXP         C4A         C5A         N7A     110.483    1.50
+TXP         C6A         C5A         N7A     132.247    1.50
+TXP         C5A         N7A         C8A     104.739    1.50
+TXP         N9A         C8A         N7A     113.469    1.50
+TXP         N9A         C8A         H8A     123.206    1.50
+TXP         N7A         C8A         H8A     123.326    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TXP            sp3_sp3_97      "C2'A"      "C1'A"         N1N         C2N     180.000    10.0     3
+TXP            sp3_sp3_28      "C2'A"      "C1'A"      "O4'A"      "C4'A"     -60.000    10.0     3
+TXP           sp3_sp3_104         C5N         C6N         N1N      "C1'A"     -60.000    10.0     3
+TXP            sp3_sp3_56         C3N         C2N         N1N      "C1'A"     180.000    10.0     3
+TXP             sp2_sp3_7         C4N         C5N         C6N         N1N       0.000    10.0     6
+TXP             sp2_sp2_1         C3N         C4N         C5N         C6N       0.000     5.0     2
+TXP             sp2_sp3_2         C5N         C4N         C3N         C7N     120.000    10.0     6
+TXP            sp2_sp3_13         N7N         C7N         C3N         C4N       0.000    10.0     6
+TXP            sp3_sp3_62         N1N         C2N         C3N         C7N      60.000    10.0     3
+TXP             sp2_sp2_7         O7N         C7N         N7N        H7N1       0.000     5.0     2
+TXP            sp3_sp3_70          PA          O3          PN         O2N     180.000    10.0     3
+TXP            sp3_sp3_74      "C5'A"      "O5'A"          PN         O2N     -60.000    10.0     3
+TXP           sp3_sp3_110          PN          O3          PA       "O5'"     -60.000    10.0     3
+TXP           sp3_sp3_112       "C5'"       "O5'"          PA          O3     180.000    10.0     3
+TXP           sp3_sp3_115       "C4'"       "C5'"       "O5'"          PA     180.000    10.0     3
+TXP           sp3_sp3_118       "O4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+TXP           sp3_sp3_131       "O3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+TXP            sp3_sp3_32       "C5'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+TXP           sp3_sp3_136       "C4'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+TXP            sp3_sp3_50       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+TXP            sp3_sp3_35         N9A       "C1'"       "O4'"       "C4'"     180.000    10.0     3
+TXP            sp3_sp3_38       "O4'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+TXP            sp2_sp3_19         C4A         N9A       "C1'"       "O4'"     150.000    10.0     6
+TXP           sp3_sp3_139       "C3'"       "C2'"       "O2'"          P2     180.000    10.0     3
+TXP           sp3_sp3_142       "C2'"       "O2'"          P2         OP1     180.000    10.0     3
+TXP              const_16         N3A         C4A         N9A       "C1'"       0.000    10.0     2
+TXP              const_26         N7A         C8A         N9A       "C1'"     180.000    10.0     2
+TXP       const_sp2_sp2_2         N9A         C4A         N3A         C2A     180.000     5.0     2
+TXP              const_18         N9A         C4A         C5A         C6A     180.000    10.0     2
+TXP            sp3_sp3_76      "C4'A"      "C5'A"      "O5'A"          PN     180.000    10.0     3
+TXP       const_sp2_sp2_3         N1A         C2A         N3A         C4A       0.000     5.0     2
+TXP       const_sp2_sp2_5         N3A         C2A         N1A         C6A       0.000     5.0     2
+TXP       const_sp2_sp2_8         N6A         C6A         N1A         C2A     180.000     5.0     2
+TXP            sp2_sp2_11         N1A         C6A         N6A        H6A1       0.000     5.0     2
+TXP              const_10         C4A         C5A         C6A         N6A     180.000    10.0     2
+TXP              const_21         C4A         C5A         N7A         C8A       0.000    10.0     2
+TXP              const_23         N9A         C8A         N7A         C5A       0.000    10.0     2
+TXP            sp3_sp3_79      "C3'A"      "C4'A"      "C5'A"      "O5'A"     180.000    10.0     3
+TXP            sp3_sp3_89      "C5'A"      "C4'A"      "O4'A"      "C1'A"      60.000    10.0     3
+TXP             sp3_sp3_5      "O3'A"      "C3'A"      "C4'A"      "C5'A"      60.000    10.0     3
+TXP            sp3_sp3_91      "C4'A"      "C3'A"      "O3'A"        HO3A     180.000    10.0     3
+TXP            sp3_sp3_14      "O2'A"      "C2'A"      "C3'A"      "O3'A"     -60.000    10.0     3
+TXP            sp3_sp3_20      "O4'A"      "C1'A"      "C2'A"      "O2'A"     180.000    10.0     3
+TXP            sp3_sp3_94      "C3'A"      "C2'A"      "O2'A"      "HO2'"     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TXP    chir_1    PN    O3    "O5'A"    O2N    both
+TXP    chir_2    "C4'A"    "O4'A"    "C3'A"    "C5'A"    negative
+TXP    chir_3    "C3'A"    "O3'A"    "C4'A"    "C2'A"    positive
+TXP    chir_4    "C2'A"    "O2'A"    "C1'A"    "C3'A"    negative
+TXP    chir_5    "C1'A"    "O4'A"    N1N    "C2'A"    negative
+TXP    chir_6    C3N    C7N    C2N    C4N    positive
+TXP    chir_7    PA    O3    "O5'"    O2A    both
+TXP    chir_8    "C4'"    "O4'"    "C3'"    "C5'"    negative
+TXP    chir_9    "C3'"    "O3'"    "C2'"    "C4'"    negative
+TXP    chir_10    "C1'"    "O4'"    N9A    "C2'"    negative
+TXP    chir_11    "C2'"    "O2'"    "C1'"    "C3'"    negative
+TXP    chir_12    N1N    "C1'A"    C2N    C6N    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TXP    plan-1       "C1'"   0.020
+TXP    plan-1         C2A   0.020
+TXP    plan-1         C4A   0.020
+TXP    plan-1         C5A   0.020
+TXP    plan-1         C6A   0.020
+TXP    plan-1         C8A   0.020
+TXP    plan-1         H2A   0.020
+TXP    plan-1         H8A   0.020
+TXP    plan-1         N1A   0.020
+TXP    plan-1         N3A   0.020
+TXP    plan-1         N6A   0.020
+TXP    plan-1         N7A   0.020
+TXP    plan-1         N9A   0.020
+TXP    plan-2         C4N   0.020
+TXP    plan-2         C5N   0.020
+TXP    plan-2         C6N   0.020
+TXP    plan-2         H5N   0.020
+TXP    plan-3         C3N   0.020
+TXP    plan-3         C4N   0.020
+TXP    plan-3         C5N   0.020
+TXP    plan-3         H4N   0.020
+TXP    plan-4         C3N   0.020
+TXP    plan-4         C7N   0.020
+TXP    plan-4         N7N   0.020
+TXP    plan-4         O7N   0.020
+TXP    plan-5         C7N   0.020
+TXP    plan-5        H7N1   0.020
+TXP    plan-5        H7N2   0.020
+TXP    plan-5         N7N   0.020
+TXP    plan-6         C6A   0.020
+TXP    plan-6        H6A1   0.020
+TXP    plan-6        H6A2   0.020
+TXP    plan-6         N6A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TXP SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                        NC(=O)[C@@H]1CN(CC=C1)[C@@H]2O[C@H](CO[P@](O)(=O)O[P@@](O)(=O)OC[C@H]3O[C@H]([C@H](O[P](O)(O)=O)[C@@H]3O)n4cnc5c(N)ncnc45)[C@@H](O)[C@H]2O
+TXP           SMILES               CACTVS 3.341                                                                                                                                                                                        NC(=O)[CH]1CN(CC=C1)[CH]2O[CH](CO[P](O)(=O)O[P](O)(=O)OC[CH]3O[CH]([CH](O[P](O)(O)=O)[CH]3O)n4cnc5c(N)ncnc45)[CH](O)[CH]2O
+TXP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                 c1nc(c2c(n1)n(cn2)[C@H]3[C@@H]([C@@H]([C@H](O3)CO[P@@](=O)(O)O[P@](=O)(O)OC[C@@H]4[C@H]([C@H]([C@@H](O4)N5CC=C[C@@H](C5)C(=O)N)O)O)O)OP(=O)(O)O)N
+TXP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                 c1nc(c2c(n1)n(cn2)C3C(C(C(O3)COP(=O)(O)OP(=O)(O)OCC4C(C(C(O4)N5CC=CC(C5)C(=O)N)O)O)O)OP(=O)(O)O)N
+TXP            InChI                InChI  1.03 InChI=1S/C21H32N7O17P3/c22-17-12-19(25-7-24-17)28(8-26-12)21-16(44-46(33,34)35)14(30)11(43-21)6-41-48(38,39)45-47(36,37)40-5-10-13(29)15(31)20(42-10)27-3-1-2-9(4-27)18(23)32/h1-2,7-11,13-16,20-21,29-31H,3-6H2,(H2,23,32)(H,36,37)(H,38,39)(H2,22,24,25)(H2,33,34,35)/t9-,10+,11+,13+,14+,15+,16+,20+,21+/m0/s1
+TXP         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                       MGWIKFWDIJJFDG-ILTSWSAWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TXP acedrg               243         "dictionary generator"                  
+TXP acedrg_database      11          "data source"                           
+TXP rdkit                2017.03.2   "Chemoinformatics tool"
+TXP refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,339 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BAH     BAH      "BIS(5-AMIDINO-2-BENZIMIDAZOLYL)METHANE KETONE HYDRATE"     NON-POLYMER     45     27     .     
+#
+data_comp_BAH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BAH     C1      C       CR6     0       13.935      -12.883     23.393      
+BAH     C2      C       CR16    0       14.396      -11.553     23.390      
+BAH     C3      C       CR16    0       15.320      -11.110     22.473      
+BAH     C4      C       CR56    0       15.797      -12.017     21.524      
+BAH     C5      C       CR56    0       15.338      -13.338     21.524      
+BAH     C6      C       CR16    0       14.411      -13.786     22.450      
+BAH     C7      C       C       0       12.935      -13.317     24.406      
+BAH     C8      C       CR5     0       16.812      -13.027     19.907      
+BAH     C9      C       CT      0       17.686      -13.283     18.723      
+BAH     N1      N       NH2     0       11.861      -13.983     24.028      
+BAH     N2      N       NH2     1       13.118      -13.036     25.674      
+BAH     N3      N       NRD5    0       16.715      -11.853     20.492      
+BAH     N4      N       NR5     0       15.998      -13.947     20.479      
+BAH     "C1'"   C       CR6     0       14.026      -12.315     14.069      
+BAH     "C2'"   C       CR16    0       14.972      -11.312     13.783      
+BAH     "C3'"   C       CR16    0       16.069      -11.102     14.585      
+BAH     "C4'"   C       CR56    0       16.233      -11.916     15.707      
+BAH     "C5'"   C       CR56    0       15.296      -12.913     15.992      
+BAH     "C6'"   C       CR16    0       14.189      -13.124     15.187      
+BAH     "C7'"   C       C       0       12.854      -12.503     13.173      
+BAH     "C8'"   C       CR5     0       16.905      -12.905     17.508      
+BAH     "N1'"   N       NH2     0       12.545      -13.708     12.734      
+BAH     "N2'"   N       NH2     1       12.125      -11.471     12.820      
+BAH     "N3'"   N       NRD5    0       17.229      -11.934     16.680      
+BAH     "N4'"   N       NR5     0       15.753      -13.517     17.143      
+BAH     O91     O       OH1     0       17.979      -14.644     18.626      
+BAH     O92     O       OH1     0       18.859      -12.523     18.812      
+BAH     HC2     H       H       0       14.071      -10.948     24.035      
+BAH     HC3     H       H       0       15.623      -10.220     22.481      
+BAH     HC6     H       H       0       14.106      -14.670     22.443      
+BAH     HN11    H       H       0       11.722      -14.166     23.170      
+BAH     HN12    H       H       0       11.268      -14.256     24.628      
+BAH     HN21    H       H       0       13.837      -12.604     25.936      
+BAH     HN22    H       H       0       12.520      -13.273     26.275      
+BAH     HN4     H       H       0       15.911      -14.789     20.232      
+BAH     "HC2'"  H       H       0       14.853      -10.766     13.025      
+BAH     "HC3'"  H       H       0       16.694      -10.429     14.385      
+BAH     "HC6'"  H       H       0       13.567      -13.794     15.383      
+BAH     "H1'1"  H       H       0       13.040      -14.410     12.958      
+BAH     "H1'2"  H       H       0       11.837      -13.828     12.213      
+BAH     "H2'1"  H       H       0       12.316      -10.666     13.119      
+BAH     "H2'2"  H       H       0       11.440      -11.573     12.277      
+BAH     "HN4'"  H       H       0       15.368      -14.186     17.568      
+BAH     H91     H       H       0       18.512      -14.869     19.250      
+BAH     H92     H       H       0       18.680      -11.691     18.842      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BAH          C1          C2      DOUBLE       y     1.400  0.0130     1.400  0.0130
+BAH          C1          C6      SINGLE       y     1.383  0.0129     1.383  0.0129
+BAH          C1          C7      SINGLE       n     1.485  0.0110     1.485  0.0110
+BAH          C2          C3      SINGLE       y     1.370  0.0116     1.370  0.0116
+BAH          C3          C4      DOUBLE       y     1.393  0.0100     1.393  0.0100
+BAH          C4          C5      SINGLE       y     1.397  0.0100     1.397  0.0100
+BAH          C4          N3      SINGLE       y     1.393  0.0100     1.393  0.0100
+BAH          C5          C6      DOUBLE       y     1.382  0.0100     1.382  0.0100
+BAH          C5          N4      SINGLE       y     1.378  0.0100     1.378  0.0100
+BAH          C7          N1      SINGLE       n     1.313  0.0150     1.313  0.0150
+BAH          C7          N2      DOUBLE       n     1.309  0.0100     1.309  0.0100
+BAH          C8          C9      SINGLE       n     1.490  0.0111     1.490  0.0111
+BAH          C8          N3      DOUBLE       y     1.314  0.0100     1.314  0.0100
+BAH          C8          N4      SINGLE       y     1.352  0.0101     1.352  0.0101
+BAH          C9       "C8'"      SINGLE       n     1.490  0.0111     1.490  0.0111
+BAH          C9         O91      SINGLE       n     1.394  0.0140     1.394  0.0140
+BAH          C9         O92      SINGLE       n     1.394  0.0140     1.394  0.0140
+BAH       "C1'"       "C2'"      DOUBLE       y     1.400  0.0130     1.400  0.0130
+BAH       "C1'"       "C6'"      SINGLE       y     1.383  0.0129     1.383  0.0129
+BAH       "C1'"       "C7'"      SINGLE       n     1.485  0.0110     1.485  0.0110
+BAH       "C2'"       "C3'"      SINGLE       y     1.370  0.0116     1.370  0.0116
+BAH       "C3'"       "C4'"      DOUBLE       y     1.393  0.0100     1.393  0.0100
+BAH       "C4'"       "C5'"      SINGLE       y     1.397  0.0100     1.397  0.0100
+BAH       "C4'"       "N3'"      SINGLE       y     1.393  0.0100     1.393  0.0100
+BAH       "C5'"       "C6'"      DOUBLE       y     1.382  0.0100     1.382  0.0100
+BAH       "C5'"       "N4'"      SINGLE       y     1.378  0.0100     1.378  0.0100
+BAH       "C7'"       "N1'"      SINGLE       n     1.313  0.0150     1.313  0.0150
+BAH       "C7'"       "N2'"      DOUBLE       n     1.309  0.0100     1.309  0.0100
+BAH       "C8'"       "N3'"      DOUBLE       y     1.314  0.0100     1.314  0.0100
+BAH       "C8'"       "N4'"      SINGLE       y     1.352  0.0101     1.352  0.0101
+BAH          C2         HC2      SINGLE       n     1.082  0.0130     0.942  0.0147
+BAH          C3         HC3      SINGLE       n     1.082  0.0130     0.940  0.0191
+BAH          C6         HC6      SINGLE       n     1.082  0.0130     0.935  0.0104
+BAH          N1        HN11      SINGLE       n     1.016  0.0100     0.887  0.0200
+BAH          N1        HN12      SINGLE       n     1.016  0.0100     0.887  0.0200
+BAH          N2        HN21      SINGLE       n     1.016  0.0100     0.879  0.0200
+BAH          N2        HN22      SINGLE       n     1.016  0.0100     0.879  0.0200
+BAH          N4         HN4      SINGLE       n     1.016  0.0100     0.881  0.0200
+BAH       "C2'"      "HC2'"      SINGLE       n     1.082  0.0130     0.942  0.0147
+BAH       "C3'"      "HC3'"      SINGLE       n     1.082  0.0130     0.940  0.0191
+BAH       "C6'"      "HC6'"      SINGLE       n     1.082  0.0130     0.935  0.0104
+BAH       "N1'"      "H1'1"      SINGLE       n     1.016  0.0100     0.887  0.0200
+BAH       "N1'"      "H1'2"      SINGLE       n     1.016  0.0100     0.887  0.0200
+BAH       "N2'"      "H2'1"      SINGLE       n     1.016  0.0100     0.879  0.0200
+BAH       "N2'"      "H2'2"      SINGLE       n     1.016  0.0100     0.879  0.0200
+BAH       "N4'"      "HN4'"      SINGLE       n     1.016  0.0100     0.881  0.0200
+BAH         O91         H91      SINGLE       n     0.970  0.0120     0.849  0.0200
+BAH         O92         H92      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BAH          C2          C1          C6     120.182    1.50
+BAH          C2          C1          C7     119.683    1.50
+BAH          C6          C1          C7     120.135    1.50
+BAH          C1          C2          C3     121.641    1.50
+BAH          C1          C2         HC2     119.538    1.50
+BAH          C3          C2         HC2     118.821    1.50
+BAH          C2          C3          C4     118.123    1.50
+BAH          C2          C3         HC3     121.087    1.50
+BAH          C4          C3         HC3     120.790    1.50
+BAH          C3          C4          C5     120.118    1.50
+BAH          C3          C4          N3     130.275    1.50
+BAH          C5          C4          N3     109.608    1.50
+BAH          C4          C5          C6     121.802    1.50
+BAH          C4          C5          N4     105.328    1.50
+BAH          C6          C5          N4     132.870    1.50
+BAH          C1          C6          C5     118.137    1.50
+BAH          C1          C6         HC6     120.565    1.50
+BAH          C5          C6         HC6     121.295    1.50
+BAH          C1          C7          N1     120.030    1.50
+BAH          C1          C7          N2     120.030    1.50
+BAH          N1          C7          N2     119.939    1.50
+BAH          C9          C8          N3     123.932    3.00
+BAH          C9          C8          N4     124.411    1.69
+BAH          N3          C8          N4     111.657    1.50
+BAH          C8          C9       "C8'"     111.269    2.00
+BAH          C8          C9         O91     111.149    2.31
+BAH          C8          C9         O92     111.149    2.31
+BAH       "C8'"          C9         O91     111.149    2.31
+BAH       "C8'"          C9         O92     111.149    2.31
+BAH         O91          C9         O92     112.375    1.50
+BAH          C7          N1        HN11     120.106    1.76
+BAH          C7          N1        HN12     120.102    1.76
+BAH        HN11          N1        HN12     119.783    2.70
+BAH          C7          N2        HN21     120.106    1.76
+BAH          C7          N2        HN22     120.102    1.76
+BAH        HN21          N2        HN22     119.783    2.70
+BAH          C4          N3          C8     105.837    1.50
+BAH          C5          N4          C8     107.571    1.50
+BAH          C5          N4         HN4     126.392    1.62
+BAH          C8          N4         HN4     126.037    1.81
+BAH       "C2'"       "C1'"       "C6'"     120.182    1.50
+BAH       "C2'"       "C1'"       "C7'"     119.683    1.50
+BAH       "C6'"       "C1'"       "C7'"     120.135    1.50
+BAH       "C1'"       "C2'"       "C3'"     121.641    1.50
+BAH       "C1'"       "C2'"      "HC2'"     119.538    1.50
+BAH       "C3'"       "C2'"      "HC2'"     118.821    1.50
+BAH       "C2'"       "C3'"       "C4'"     118.123    1.50
+BAH       "C2'"       "C3'"      "HC3'"     121.087    1.50
+BAH       "C4'"       "C3'"      "HC3'"     120.790    1.50
+BAH       "C3'"       "C4'"       "C5'"     120.118    1.50
+BAH       "C3'"       "C4'"       "N3'"     130.275    1.50
+BAH       "C5'"       "C4'"       "N3'"     109.608    1.50
+BAH       "C4'"       "C5'"       "C6'"     121.802    1.50
+BAH       "C4'"       "C5'"       "N4'"     105.328    1.50
+BAH       "C6'"       "C5'"       "N4'"     132.870    1.50
+BAH       "C1'"       "C6'"       "C5'"     118.137    1.50
+BAH       "C1'"       "C6'"      "HC6'"     120.565    1.50
+BAH       "C5'"       "C6'"      "HC6'"     121.295    1.50
+BAH       "C1'"       "C7'"       "N1'"     120.030    1.50
+BAH       "C1'"       "C7'"       "N2'"     120.030    1.50
+BAH       "N1'"       "C7'"       "N2'"     119.939    1.50
+BAH          C9       "C8'"       "N3'"     123.932    3.00
+BAH          C9       "C8'"       "N4'"     124.411    1.69
+BAH       "N3'"       "C8'"       "N4'"     111.657    1.50
+BAH       "C7'"       "N1'"      "H1'1"     120.106    1.76
+BAH       "C7'"       "N1'"      "H1'2"     120.102    1.76
+BAH      "H1'1"       "N1'"      "H1'2"     119.783    2.70
+BAH       "C7'"       "N2'"      "H2'1"     120.106    1.76
+BAH       "C7'"       "N2'"      "H2'2"     120.102    1.76
+BAH      "H2'1"       "N2'"      "H2'2"     119.783    2.70
+BAH       "C4'"       "N3'"       "C8'"     105.837    1.50
+BAH       "C5'"       "N4'"       "C8'"     107.571    1.50
+BAH       "C5'"       "N4'"      "HN4'"     126.392    1.62
+BAH       "C8'"       "N4'"      "HN4'"     126.037    1.81
+BAH          C9         O91         H91     108.663    2.92
+BAH          C9         O92         H92     108.663    2.92
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BAH              const_23          C7          C1          C2          C3     180.000    10.0     2
+BAH              const_63          C7          C1          C6          C5     180.000    10.0     2
+BAH             sp2_sp2_1          C2          C1          C7          N1     180.000     5.0     2
+BAH       const_sp2_sp2_3       "C7'"       "C1'"       "C2'"       "C3'"     180.000     5.0     2
+BAH              const_69       "C7'"       "C1'"       "C6'"       "C5'"     180.000    10.0     2
+BAH            sp2_sp2_13       "C2'"       "C1'"       "C7'"       "N1'"     180.000     5.0     2
+BAH       const_sp2_sp2_5       "C1'"       "C2'"       "C3'"       "C4'"       0.000     5.0     2
+BAH       const_sp2_sp2_9       "C2'"       "C3'"       "C4'"       "C5'"       0.000     5.0     2
+BAH              const_13       "C3'"       "C4'"       "C5'"       "C6'"       0.000    10.0     2
+BAH              const_72       "C3'"       "C4'"       "N3'"       "C8'"     180.000    10.0     2
+BAH              const_17       "C4'"       "C5'"       "C6'"       "C1'"       0.000    10.0     2
+BAH              const_41       "C4'"       "C5'"       "N4'"       "C8'"       0.000    10.0     2
+BAH            sp2_sp2_19       "N2'"       "C7'"       "N1'"      "H1'1"       0.000     5.0     2
+BAH            sp2_sp2_23       "N1'"       "C7'"       "N2'"      "H2'1"       0.000     5.0     2
+BAH              const_25          C1          C2          C3          C4       0.000    10.0     2
+BAH              const_50          C9       "C8'"       "N3'"       "C4'"     180.000    10.0     2
+BAH              const_47          C9       "C8'"       "N4'"       "C5'"     180.000    10.0     2
+BAH              const_29          C2          C3          C4          C5       0.000    10.0     2
+BAH              const_66          C3          C4          N3          C8     180.000    10.0     2
+BAH              const_33          C3          C4          C5          C6       0.000    10.0     2
+BAH              const_51          C4          C5          N4          C8       0.000    10.0     2
+BAH              const_37          C4          C5          C6          C1       0.000    10.0     2
+BAH            sp2_sp2_11          N1          C7          N2        HN21       0.000     5.0     2
+BAH             sp2_sp2_7          N2          C7          N1        HN11       0.000     5.0     2
+BAH              const_60          C9          C8          N3          C4     180.000    10.0     2
+BAH              const_57          C9          C8          N4          C5     180.000    10.0     2
+BAH             sp2_sp3_2          N3          C8          C9         O91     -90.000    10.0     6
+BAH             sp2_sp3_7       "N3'"       "C8'"          C9         O91     150.000    10.0     6
+BAH             sp3_sp3_2         O92          C9         O91         H91      60.000    10.0     3
+BAH             sp3_sp3_4         O91          C9         O92         H92     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BAH    chir_1    C9    O91    O92    C8    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BAH    plan-1          C1   0.020
+BAH    plan-1          C2   0.020
+BAH    plan-1          C3   0.020
+BAH    plan-1          C4   0.020
+BAH    plan-1          C5   0.020
+BAH    plan-1          C6   0.020
+BAH    plan-1          C7   0.020
+BAH    plan-1          C8   0.020
+BAH    plan-1          C9   0.020
+BAH    plan-1         HC2   0.020
+BAH    plan-1         HC3   0.020
+BAH    plan-1         HC6   0.020
+BAH    plan-1         HN4   0.020
+BAH    plan-1          N3   0.020
+BAH    plan-1          N4   0.020
+BAH    plan-2       "C1'"   0.020
+BAH    plan-2       "C2'"   0.020
+BAH    plan-2       "C3'"   0.020
+BAH    plan-2       "C4'"   0.020
+BAH    plan-2       "C5'"   0.020
+BAH    plan-2       "C6'"   0.020
+BAH    plan-2       "C7'"   0.020
+BAH    plan-2       "C8'"   0.020
+BAH    plan-2          C9   0.020
+BAH    plan-2      "HC2'"   0.020
+BAH    plan-2      "HC3'"   0.020
+BAH    plan-2      "HC6'"   0.020
+BAH    plan-2      "HN4'"   0.020
+BAH    plan-2       "N3'"   0.020
+BAH    plan-2       "N4'"   0.020
+BAH    plan-3          C1   0.020
+BAH    plan-3          C7   0.020
+BAH    plan-3          N1   0.020
+BAH    plan-3          N2   0.020
+BAH    plan-4          C7   0.020
+BAH    plan-4        HN11   0.020
+BAH    plan-4        HN12   0.020
+BAH    plan-4          N1   0.020
+BAH    plan-5          C7   0.020
+BAH    plan-5        HN21   0.020
+BAH    plan-5        HN22   0.020
+BAH    plan-5          N2   0.020
+BAH    plan-6       "C1'"   0.020
+BAH    plan-6       "C7'"   0.020
+BAH    plan-6       "N1'"   0.020
+BAH    plan-6       "N2'"   0.020
+BAH    plan-7       "C7'"   0.020
+BAH    plan-7      "H1'1"   0.020
+BAH    plan-7      "H1'2"   0.020
+BAH    plan-7       "N1'"   0.020
+BAH    plan-8       "C7'"   0.020
+BAH    plan-8      "H2'1"   0.020
+BAH    plan-8      "H2'2"   0.020
+BAH    plan-8       "N2'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BAH           SMILES              ACDLabs 10.04                                                                                                 n1c4ccc(C(=[NH2+])\N)cc4nc1C(O)(O)c3nc2ccc(cc2n3)\C(=[NH2+])N
+BAH SMILES_CANONICAL               CACTVS 3.341                                                                                             NC(=[NH2+])c1ccc2nc([nH]c2c1)C(O)(O)c3[nH]c4cc(ccc4n3)C(N)=[NH2+]
+BAH           SMILES               CACTVS 3.341                                                                                             NC(=[NH2+])c1ccc2nc([nH]c2c1)C(O)(O)c3[nH]c4cc(ccc4n3)C(N)=[NH2+]
+BAH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                           c1cc2c(cc1C(=[NH2+])N)[nH]c(n2)C(c3[nH]c4cc(ccc4n3)C(=[NH2+])N)(O)O
+BAH           SMILES "OpenEye OEToolkits" 1.5.0                                                                                           c1cc2c(cc1C(=[NH2+])N)[nH]c(n2)C(c3[nH]c4cc(ccc4n3)C(=[NH2+])N)(O)O
+BAH            InChI                InChI  1.03 InChI=1S/C17H16N8O2/c18-13(19)7-1-3-9-11(5-7)24-15(22-9)17(26,27)16-23-10-4-2-8(14(20)21)6-12(10)25-16/h1-6,26-27H,(H3,18,19)(H3,20,21)(H,22,24)(H,23,25)/p+2
+BAH         InChIKey                InChI  1.03                                                                                                                                   ZLAHDRAQCSQPOC-UHFFFAOYSA-P
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BAH acedrg               243         "dictionary generator"                  
+BAH acedrg_database      11          "data source"                           
+BAH rdkit                2017.03.2   "Chemoinformatics tool"
+BAH refmac5              5.8.0238    "optimization tool"                     

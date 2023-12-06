@@ -1,0 +1,437 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CPX     CPX      N-[(2R,3S)-1-((2S)-2-{[(CYCLOPENTYLAMINO)CARBONYL]AMINO}-3-METHYLBUTANOYL)-2-(1-FORMYL-1-CYCLOBUTYL)PYRROLIDINYL]CYCLOPROPANECARBOXAMIDE     NON-POLYMER     70     32     .     
+#
+data_comp_CPX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CPX     O27     O       O       0       5.711       30.505      10.384      
+CPX     C17     C       CH2     0       7.827       27.007      17.358      
+CPX     C16     C       CH2     0       6.357       26.901      17.271      
+CPX     C12     C       CH1     0       7.201       25.668      17.067      
+CPX     C26     C       C       0       6.462       30.886      11.306      
+CPX     N4      N       NH1     0       6.094       31.884      12.171      
+CPX     C29     C       CH1     0       4.778       32.507      12.146      
+CPX     C30     C       CH2     0       4.493       33.354      13.387      
+CPX     C32     C       CH2     0       5.037       34.740      13.057      
+CPX     C31     C       CH2     0       5.132       34.825      11.543      
+CPX     C28     C       CH2     0       4.614       33.501      10.996      
+CPX     N3      N       NH1     0       7.694       30.353      11.512      
+CPX     C13     C       CH1     0       8.288       29.315      10.679      
+CPX     C19     C       CH1     0       9.382       29.866      9.737       
+CPX     C22     C       CH3     0       9.953       28.772      8.839       
+CPX     C18     C       CH3     0       8.860       31.035      8.909       
+CPX     C14     C       C       0       8.832       28.214      11.600      
+CPX     O15     O       O       0       9.967       28.298      12.070      
+CPX     N2      N       NT      0       8.057       27.130      11.847      
+CPX     C6      C       CH1     0       8.547       25.883      12.477      
+CPX     C8      C       CH1     0       7.279       25.409      13.248      
+CPX     C9      C       CH2     0       6.094       25.919      12.433      
+CPX     C7      C       CH2     0       6.608       27.060      11.576      
+CPX     N1      N       NH1     0       7.263       25.885      14.626      
+CPX     C10     C       C       0       7.362       25.074      15.702      
+CPX     O11     O       O       0       7.594       23.871      15.588      
+CPX     C25     C       CT      0       9.182       24.863      11.543      
+CPX     C24     C       C1      0       9.740       23.725      12.367      
+CPX     O5      O       O       0       9.138       22.724      12.633      
+CPX     C23     C       CH2     0       10.267      25.325      10.511      
+CPX     C21     C       CH2     0       9.360       24.917      9.350       
+CPX     C20     C       CH2     0       8.333       24.345      10.329      
+CPX     H171    H       H       0       8.294       27.457      16.633      
+CPX     H172    H       H       0       8.220       27.140      18.238      
+CPX     H161    H       H       0       5.851       26.968      18.099      
+CPX     H162    H       H       0       5.918       27.288      16.496      
+CPX     H12     H       H       0       7.204       25.017      17.802      
+CPX     HN4     H       H       0       6.677       32.169      12.763      
+CPX     H29     H       H       0       4.101       31.798      12.070      
+CPX     H301    H       H       0       3.533       33.391      13.563      
+CPX     H302    H       H       0       4.943       32.981      14.169      
+CPX     H321    H       H       0       5.918       34.866      13.462      
+CPX     H322    H       H       0       4.438       35.432      13.401      
+CPX     H311    H       H       0       6.059       34.971      11.266      
+CPX     H312    H       H       0       4.590       35.568      11.208      
+CPX     H281    H       H       0       3.675       33.575      10.737      
+CPX     H282    H       H       0       5.134       33.219      10.218      
+CPX     HN3     H       H       0       8.172       30.657      12.178      
+CPX     H13     H       H       0       7.580       28.922      10.109      
+CPX     H19     H       H       0       10.122      30.209      10.297      
+CPX     H221    H       H       0       9.244       28.154      8.587       
+CPX     H222    H       H       0       10.646      28.287      9.319       
+CPX     H223    H       H       0       10.337      29.165      8.036       
+CPX     H181    H       H       0       8.006       30.794      8.510       
+CPX     H182    H       H       0       9.495       31.252      8.205       
+CPX     H183    H       H       0       8.740       31.811      9.483       
+CPX     H6      H       H       0       9.228       26.128      13.153      
+CPX     H8      H       H       0       7.242       24.423      13.244      
+CPX     H91     H       H       0       5.378       26.229      13.032      
+CPX     H92     H       H       0       5.734       25.197      11.870      
+CPX     H71     H       H       0       6.442       26.886      10.626      
+CPX     H72     H       H       0       6.168       27.900      11.821      
+CPX     HN1     H       H       0       7.204       26.751      14.744      
+CPX     H24     H       H       0       10.627      23.819      12.695      
+CPX     H231    H       H       0       10.468      26.270      10.538      
+CPX     H232    H       H       0       11.088      24.800      10.568      
+CPX     H211    H       H       0       9.757       24.243      8.760       
+CPX     H212    H       H       0       9.026       25.673      8.826       
+CPX     H201    H       H       0       7.458       24.758      10.261      
+CPX     H202    H       H       0       8.257       23.374      10.292      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CPX         O27         C26      DOUBLE       n     1.243  0.0179     1.243  0.0179
+CPX         C17         C16      SINGLE       n     1.476  0.0137     1.476  0.0137
+CPX         C17         C12      SINGLE       n     1.505  0.0106     1.505  0.0106
+CPX         C16         C12      SINGLE       n     1.505  0.0106     1.505  0.0106
+CPX         C12         C10      SINGLE       n     1.479  0.0159     1.479  0.0159
+CPX         C26          N4      SINGLE       n     1.351  0.0200     1.351  0.0200
+CPX         C26          N3      SINGLE       n     1.351  0.0100     1.351  0.0100
+CPX          N4         C29      SINGLE       n     1.454  0.0100     1.454  0.0100
+CPX         C29         C30      SINGLE       n     1.533  0.0199     1.533  0.0199
+CPX         C29         C28      SINGLE       n     1.533  0.0199     1.533  0.0199
+CPX         C30         C32      SINGLE       n     1.523  0.0152     1.523  0.0152
+CPX         C32         C31      SINGLE       n     1.512  0.0200     1.512  0.0200
+CPX         C31         C28      SINGLE       n     1.523  0.0152     1.523  0.0152
+CPX          N3         C13      SINGLE       n     1.453  0.0100     1.453  0.0100
+CPX         C13         C19      SINGLE       n     1.541  0.0100     1.541  0.0100
+CPX         C13         C14      SINGLE       n     1.528  0.0100     1.528  0.0100
+CPX         C19         C22      SINGLE       n     1.521  0.0135     1.521  0.0135
+CPX         C19         C18      SINGLE       n     1.521  0.0135     1.521  0.0135
+CPX         C14         O15      DOUBLE       n     1.227  0.0149     1.227  0.0149
+CPX         C14          N2      SINGLE       n     1.345  0.0100     1.345  0.0100
+CPX          N2          C6      SINGLE       n     1.473  0.0107     1.473  0.0107
+CPX          N2          C7      SINGLE       n     1.472  0.0100     1.472  0.0100
+CPX          C6          C8      SINGLE       n     1.546  0.0190     1.546  0.0190
+CPX          C6         C25      SINGLE       n     1.515  0.0100     1.515  0.0100
+CPX          C8          C9      SINGLE       n     1.524  0.0200     1.524  0.0200
+CPX          C8          N1      SINGLE       n     1.454  0.0100     1.454  0.0100
+CPX          C9          C7      SINGLE       n     1.515  0.0149     1.515  0.0149
+CPX          N1         C10      SINGLE       n     1.341  0.0100     1.341  0.0100
+CPX         C10         O11      DOUBLE       n     1.230  0.0100     1.230  0.0100
+CPX         C25         C24      SINGLE       n     1.506  0.0200     1.506  0.0200
+CPX         C25         C23      SINGLE       n     1.566  0.0100     1.566  0.0100
+CPX         C25         C20      SINGLE       n     1.566  0.0100     1.566  0.0100
+CPX         C24          O5      DOUBLE       n     1.195  0.0200     1.195  0.0200
+CPX         C23         C21      SINGLE       n     1.530  0.0135     1.530  0.0135
+CPX         C21         C20      SINGLE       n     1.530  0.0135     1.530  0.0135
+CPX         C17        H171      SINGLE       n     1.089  0.0100     0.973  0.0200
+CPX         C17        H172      SINGLE       n     1.089  0.0100     0.973  0.0200
+CPX         C16        H161      SINGLE       n     1.089  0.0100     0.973  0.0200
+CPX         C16        H162      SINGLE       n     1.089  0.0100     0.973  0.0200
+CPX         C12         H12      SINGLE       n     1.089  0.0100     0.982  0.0185
+CPX          N4         HN4      SINGLE       n     1.016  0.0100     0.878  0.0118
+CPX         C29         H29      SINGLE       n     1.089  0.0100     0.983  0.0188
+CPX         C30        H301      SINGLE       n     1.089  0.0100     0.977  0.0101
+CPX         C30        H302      SINGLE       n     1.089  0.0100     0.977  0.0101
+CPX         C32        H321      SINGLE       n     1.089  0.0100     0.978  0.0100
+CPX         C32        H322      SINGLE       n     1.089  0.0100     0.978  0.0100
+CPX         C31        H311      SINGLE       n     1.089  0.0100     0.978  0.0100
+CPX         C31        H312      SINGLE       n     1.089  0.0100     0.978  0.0100
+CPX         C28        H281      SINGLE       n     1.089  0.0100     0.977  0.0101
+CPX         C28        H282      SINGLE       n     1.089  0.0100     0.977  0.0101
+CPX          N3         HN3      SINGLE       n     1.016  0.0100     0.873  0.0200
+CPX         C13         H13      SINGLE       n     1.089  0.0100     0.992  0.0128
+CPX         C19         H19      SINGLE       n     1.089  0.0100     0.989  0.0175
+CPX         C22        H221      SINGLE       n     1.089  0.0100     0.973  0.0146
+CPX         C22        H222      SINGLE       n     1.089  0.0100     0.973  0.0146
+CPX         C22        H223      SINGLE       n     1.089  0.0100     0.973  0.0146
+CPX         C18        H181      SINGLE       n     1.089  0.0100     0.973  0.0146
+CPX         C18        H182      SINGLE       n     1.089  0.0100     0.973  0.0146
+CPX         C18        H183      SINGLE       n     1.089  0.0100     0.973  0.0146
+CPX          C6          H6      SINGLE       n     1.089  0.0100     0.991  0.0166
+CPX          C8          H8      SINGLE       n     1.089  0.0100     0.990  0.0173
+CPX          C9         H91      SINGLE       n     1.089  0.0100     0.984  0.0106
+CPX          C9         H92      SINGLE       n     1.089  0.0100     0.984  0.0106
+CPX          C7         H71      SINGLE       n     1.089  0.0100     0.980  0.0159
+CPX          C7         H72      SINGLE       n     1.089  0.0100     0.980  0.0159
+CPX          N1         HN1      SINGLE       n     1.016  0.0100     0.878  0.0118
+CPX         C24         H24      SINGLE       n     1.082  0.0130     0.950  0.0200
+CPX         C23        H231      SINGLE       n     1.089  0.0100     0.975  0.0189
+CPX         C23        H232      SINGLE       n     1.089  0.0100     0.975  0.0189
+CPX         C21        H211      SINGLE       n     1.089  0.0100     0.979  0.0141
+CPX         C21        H212      SINGLE       n     1.089  0.0100     0.979  0.0141
+CPX         C20        H201      SINGLE       n     1.089  0.0100     0.975  0.0189
+CPX         C20        H202      SINGLE       n     1.089  0.0100     0.975  0.0189
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CPX         C16         C17         C12      60.870    1.50
+CPX         C16         C17        H171     117.759    1.50
+CPX         C16         C17        H172     117.759    1.50
+CPX         C12         C17        H171     117.683    1.50
+CPX         C12         C17        H172     117.683    1.50
+CPX        H171         C17        H172     114.868    1.50
+CPX         C17         C16         C12      60.870    1.50
+CPX         C17         C16        H161     117.759    1.50
+CPX         C17         C16        H162     117.759    1.50
+CPX         C12         C16        H161     117.683    1.50
+CPX         C12         C16        H162     117.683    1.50
+CPX        H161         C16        H162     114.868    1.50
+CPX         C17         C12         C16      58.261    1.50
+CPX         C17         C12         C10     117.574    1.59
+CPX         C17         C12         H12     116.898    1.50
+CPX         C16         C12         C10     117.574    1.59
+CPX         C16         C12         H12     116.898    1.50
+CPX         C10         C12         H12     115.904    1.65
+CPX         O27         C26          N4     122.490    1.58
+CPX         O27         C26          N3     122.382    1.50
+CPX          N4         C26          N3     115.128    1.50
+CPX         C26          N4         C29     122.572    1.92
+CPX         C26          N4         HN4     118.635    2.02
+CPX         C29          N4         HN4     118.793    1.50
+CPX          N4         C29         C30     113.031    1.50
+CPX          N4         C29         C28     113.031    1.50
+CPX          N4         C29         H29     108.663    1.50
+CPX         C30         C29         C28     104.374    1.55
+CPX         C30         C29         H29     110.021    1.50
+CPX         C28         C29         H29     110.021    1.50
+CPX         C29         C30         C32     104.866    1.82
+CPX         C29         C30        H301     110.625    1.50
+CPX         C29         C30        H302     110.625    1.50
+CPX         C32         C30        H301     110.871    1.50
+CPX         C32         C30        H302     110.871    1.50
+CPX        H301         C30        H302     108.887    1.50
+CPX         C30         C32         C31     105.632    1.63
+CPX         C30         C32        H321     110.660    1.50
+CPX         C30         C32        H322     110.660    1.50
+CPX         C31         C32        H321     110.679    1.50
+CPX         C31         C32        H322     110.679    1.50
+CPX        H321         C32        H322     108.634    1.62
+CPX         C32         C31         C28     105.632    1.63
+CPX         C32         C31        H311     110.679    1.50
+CPX         C32         C31        H312     110.679    1.50
+CPX         C28         C31        H311     110.660    1.50
+CPX         C28         C31        H312     110.660    1.50
+CPX        H311         C31        H312     108.634    1.62
+CPX         C29         C28         C31     104.866    1.82
+CPX         C29         C28        H281     110.625    1.50
+CPX         C29         C28        H282     110.625    1.50
+CPX         C31         C28        H281     110.871    1.50
+CPX         C31         C28        H282     110.871    1.50
+CPX        H281         C28        H282     108.887    1.50
+CPX         C26          N3         C13     121.874    1.70
+CPX         C26          N3         HN3     118.201    1.50
+CPX         C13          N3         HN3     119.925    3.00
+CPX          N3         C13         C19     112.602    1.50
+CPX          N3         C13         C14     109.451    1.98
+CPX          N3         C13         H13     107.870    1.79
+CPX         C19         C13         C14     110.055    1.86
+CPX         C19         C13         H13     108.502    1.50
+CPX         C14         C13         H13     108.319    1.50
+CPX         C13         C19         C22     111.263    1.62
+CPX         C13         C19         C18     111.263    1.62
+CPX         C13         C19         H19     107.750    1.50
+CPX         C22         C19         C18     110.676    1.50
+CPX         C22         C19         H19     107.603    1.50
+CPX         C18         C19         H19     107.603    1.50
+CPX         C19         C22        H221     109.507    1.50
+CPX         C19         C22        H222     109.507    1.50
+CPX         C19         C22        H223     109.507    1.50
+CPX        H221         C22        H222     109.411    1.50
+CPX        H221         C22        H223     109.411    1.50
+CPX        H222         C22        H223     109.411    1.50
+CPX         C19         C18        H181     109.507    1.50
+CPX         C19         C18        H182     109.507    1.50
+CPX         C19         C18        H183     109.507    1.50
+CPX        H181         C18        H182     109.411    1.50
+CPX        H181         C18        H183     109.411    1.50
+CPX        H182         C18        H183     109.411    1.50
+CPX         C13         C14         O15     121.585    1.50
+CPX         C13         C14          N2     117.302    1.50
+CPX         O15         C14          N2     121.113    1.53
+CPX         C14          N2          C6     121.979    3.00
+CPX         C14          N2          C7     124.449    3.00
+CPX          C6          N2          C7     111.831    1.50
+CPX          N2          C6          C8     103.104    2.01
+CPX          N2          C6         C25     113.462    1.97
+CPX          N2          C6          H6     108.744    1.51
+CPX          C8          C6         C25     113.528    2.71
+CPX          C8          C6          H6     108.742    1.50
+CPX         C25          C6          H6     108.735    1.50
+CPX          C6          C8          C9     104.207    1.50
+CPX          C6          C8          N1     112.846    1.50
+CPX          C6          C8          H8     108.742    1.50
+CPX          C9          C8          N1     113.031    1.50
+CPX          C9          C8          H8     108.708    1.50
+CPX          N1          C8          H8     108.663    1.50
+CPX          C8          C9          C7     104.455    1.77
+CPX          C8          C9         H91     110.783    1.50
+CPX          C8          C9         H92     110.783    1.50
+CPX          C7          C9         H91     111.290    1.50
+CPX          C7          C9         H92     111.290    1.50
+CPX         H91          C9         H92     108.877    1.50
+CPX          N2          C7          C9     103.434    1.50
+CPX          N2          C7         H71     111.022    1.50
+CPX          N2          C7         H72     111.022    1.50
+CPX          C9          C7         H71     111.265    1.50
+CPX          C9          C7         H72     111.265    1.50
+CPX         H71          C7         H72     108.998    1.50
+CPX          C8          N1         C10     122.727    1.50
+CPX          C8          N1         HN1     118.578    1.50
+CPX         C10          N1         HN1     118.696    2.01
+CPX         C12         C10          N1     115.328    1.71
+CPX         C12         C10         O11     122.190    1.50
+CPX          N1         C10         O11     122.481    1.50
+CPX          C6         C25         C24     111.681    2.15
+CPX          C6         C25         C23     119.230    2.04
+CPX          C6         C25         C20     119.230    2.04
+CPX         C24         C25         C23     115.831    3.00
+CPX         C24         C25         C20     115.831    3.00
+CPX         C23         C25         C20      89.015    2.00
+CPX         C25         C24          O5     122.799    2.97
+CPX         C25         C24         H24     118.063    1.82
+CPX          O5         C24         H24     119.139    1.63
+CPX         C25         C23         C21      89.137    1.50
+CPX         C25         C23        H231     112.735    3.00
+CPX         C25         C23        H232     112.735    3.00
+CPX         C21         C23        H231     114.223    1.78
+CPX         C21         C23        H232     114.223    1.78
+CPX        H231         C23        H232     111.043    1.50
+CPX         C23         C21         C20      89.467    1.50
+CPX         C23         C21        H211     114.223    1.78
+CPX         C23         C21        H212     114.223    1.78
+CPX         C20         C21        H211     114.223    1.78
+CPX         C20         C21        H212     114.223    1.78
+CPX        H211         C21        H212     110.794    1.50
+CPX         C25         C20         C21      89.137    1.50
+CPX         C25         C20        H201     112.735    3.00
+CPX         C25         C20        H202     112.735    3.00
+CPX         C21         C20        H201     114.223    1.78
+CPX         C21         C20        H202     114.223    1.78
+CPX        H201         C20        H202     111.043    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CPX            sp2_sp3_19         C26          N3         C13         C19       0.000    10.0     6
+CPX           sp3_sp3_131         C14         C13         C19         C22     180.000    10.0     3
+CPX            sp2_sp3_28          N2         C14         C13          N3     180.000    10.0     6
+CPX           sp3_sp3_139         C18         C19         C22        H221      60.000    10.0     3
+CPX           sp3_sp3_149        H182         C18         C19         C13     180.000    10.0     3
+CPX            sp2_sp2_12         O15         C14          N2          C7     180.000     5.0     2
+CPX             sp2_sp3_6         C14          N2          C6          H6      60.000    10.0     6
+CPX           sp3_sp3_154         C24         C25          C6          N2     180.000    10.0     3
+CPX            sp3_sp3_85         C25          C6          C8          C9     180.000    10.0     3
+CPX           sp3_sp3_157         C23         C25          C6          N2      60.000    10.0     3
+CPX           sp3_sp3_111         C10         C12         C17        H172      60.000    10.0     3
+CPX            sp3_sp3_96          N1          C8          C9         H92     180.000    10.0     3
+CPX            sp2_sp3_40         HN1          N1          C8          C6     180.000    10.0     6
+CPX           sp3_sp3_102          N2          C7          C9         H92     180.000    10.0     3
+CPX            sp2_sp3_44          O5         C24         C25          C6     120.000    10.0     6
+CPX            sp2_sp3_47         H24         C24         C25          C6     -60.000    10.0     6
+CPX            sp3_sp3_23        H231         C23         C25          C6      60.000    10.0     3
+CPX           sp3_sp3_167        H201         C20         C25         C24     180.000    10.0     3
+CPX            sp3_sp3_30         C20         C21         C23        H232     180.000    10.0     3
+CPX            sp3_sp3_15         C10         C12         C16        H162      60.000    10.0     3
+CPX            sp3_sp3_39         C25         C20         C21        H212     -60.000    10.0     3
+CPX            sp2_sp3_11         O11         C10         C12         C17     -60.000    10.0     6
+CPX            sp2_sp3_14         C26          N4         C29         C30     120.000    10.0     6
+CPX             sp2_sp2_6          N4         C26          N3         HN3       0.000     5.0     2
+CPX            sp2_sp3_17         HN4          N4         C29         C30     -60.000    10.0     6
+CPX           sp3_sp3_122        H281         C28         C29          N4     180.000    10.0     3
+CPX            sp3_sp3_54          N4         C29         C30        H302      60.000    10.0     3
+CPX            sp3_sp3_57         C29         C30         C32        H322     180.000    10.0     3
+CPX            sp3_sp3_66         C28         C31         C32        H322     -60.000    10.0     3
+CPX            sp3_sp3_75         C29         C28         C31        H312     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CPX    chir_1    C12    C10    C17    C16    both
+CPX    chir_2    C29    N4    C30    C28    both
+CPX    chir_3    C13    N3    C14    C19    positive
+CPX    chir_4    C19    C13    C22    C18    both
+CPX    chir_5    C6    N2    C8    C25    negative
+CPX    chir_6    C8    N1    C6    C9    positive
+CPX    chir_7    C25    C24    C6    C23    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CPX    plan-1         C26   0.020
+CPX    plan-1          N3   0.020
+CPX    plan-1          N4   0.020
+CPX    plan-1         O27   0.020
+CPX    plan-2         C26   0.020
+CPX    plan-2         C29   0.020
+CPX    plan-2         HN4   0.020
+CPX    plan-2          N4   0.020
+CPX    plan-3         C13   0.020
+CPX    plan-3         C26   0.020
+CPX    plan-3         HN3   0.020
+CPX    plan-3          N3   0.020
+CPX    plan-4         C13   0.020
+CPX    plan-4         C14   0.020
+CPX    plan-4          N2   0.020
+CPX    plan-4         O15   0.020
+CPX    plan-5         C10   0.020
+CPX    plan-5          C8   0.020
+CPX    plan-5         HN1   0.020
+CPX    plan-5          N1   0.020
+CPX    plan-6         C10   0.020
+CPX    plan-6         C12   0.020
+CPX    plan-6          N1   0.020
+CPX    plan-6         O11   0.020
+CPX    plan-7         C24   0.020
+CPX    plan-7         C25   0.020
+CPX    plan-7         H24   0.020
+CPX    plan-7          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CPX           SMILES              ACDLabs 10.04                                                                                                                           O=C(N2C(C(NC(=O)C1CC1)CC2)C3(C=O)CCC3)C(NC(=O)NC4CCCC4)C(C)C
+CPX SMILES_CANONICAL               CACTVS 3.341                                                                                                                 CC(C)[C@H](NC(=O)NC1CCCC1)C(=O)N2CC[C@H](NC(=O)C3CC3)[C@H]2C4(CCC4)C=O
+CPX           SMILES               CACTVS 3.341                                                                                                                    CC(C)[CH](NC(=O)NC1CCCC1)C(=O)N2CC[CH](NC(=O)C3CC3)[CH]2C4(CCC4)C=O
+CPX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                               CC(C)[C@@H](C(=O)N1CC[C@@H]([C@H]1C2(CCC2)C=O)NC(=O)C3CC3)NC(=O)NC4CCCC4
+CPX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                             CC(C)C(C(=O)N1CCC(C1C2(CCC2)C=O)NC(=O)C3CC3)NC(=O)NC4CCCC4
+CPX            InChI                InChI  1.03 InChI=1S/C24H38N4O4/c1-15(2)19(27-23(32)25-17-6-3-4-7-17)22(31)28-13-10-18(26-21(30)16-8-9-16)20(28)24(14-29)11-5-12-24/h14-20H,3-13H2,1-2H3,(H,26,30)(H2,25,27,32)/t18-,19-,20-/m0/s1
+CPX         InChIKey                InChI  1.03                                                                                                                                                            GCDRFILPPBOJLM-UFYCRDLUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CPX acedrg               243         "dictionary generator"                  
+CPX acedrg_database      11          "data source"                           
+CPX rdkit                2017.03.2   "Chemoinformatics tool"
+CPX refmac5              5.8.0238    "optimization tool"                     

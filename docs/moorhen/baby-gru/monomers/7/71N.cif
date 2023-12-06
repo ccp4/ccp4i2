@@ -1,0 +1,192 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+71N     71N      2-(trifluoromethyl)-1H-benzimidazol-5-amine     NON-POLYMER     20     14     .     
+#
+data_comp_71N
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+71N     F3      F       F       0       65.233      83.730      81.135      
+71N     F1      F       F       0       66.705      83.107      82.540      
+71N     F2      F       F       0       65.702      81.664      81.340      
+71N     C12     C       CR56    0       62.878      83.134      84.432      
+71N     C11     C       CR16    0       61.879      83.752      85.184      
+71N     C8      C       CR16    0       62.471      80.981      85.517      
+71N     C7      C       CR56    0       63.161      81.773      84.603      
+71N     C9      C       CR16    0       61.489      81.590      86.255      
+71N     C10     C       CR6     0       61.186      82.973      86.096      
+71N     C4      C       CR5     0       64.479      82.650      83.063      
+71N     C1      C       CT      0       65.527      82.788      82.022      
+71N     N5      N       NR5     0       64.183      81.505      83.717      
+71N     N6      N       NRD5    0       63.724      83.655      83.459      
+71N     N13     N       NH2     0       60.191      83.541      86.860      
+71N     H1      H       H       0       61.685      84.659      85.075      
+71N     H2      H       H       0       62.667      80.078      85.623      
+71N     H3      H       H       0       61.001      81.092      86.881      
+71N     H4      H       H       0       64.575      80.725      83.596      
+71N     H6      H       H       0       59.762      83.056      87.452      
+71N     H7      H       H       0       59.986      84.388      86.754      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+71N          F2          C1      SINGLE       n     1.326  0.0147     1.326  0.0147
+71N          F3          C1      SINGLE       n     1.326  0.0147     1.326  0.0147
+71N          F1          C1      SINGLE       n     1.326  0.0147     1.326  0.0147
+71N          C4          C1      SINGLE       n     1.483  0.0100     1.483  0.0100
+71N          C4          N5      SINGLE       y     1.351  0.0100     1.351  0.0100
+71N          C4          N6      DOUBLE       y     1.317  0.0100     1.317  0.0100
+71N          C7          N5      SINGLE       y     1.378  0.0100     1.378  0.0100
+71N         C12          N6      SINGLE       y     1.392  0.0100     1.392  0.0100
+71N         C12          C7      SINGLE       y     1.397  0.0100     1.397  0.0100
+71N          C8          C7      DOUBLE       y     1.389  0.0100     1.389  0.0100
+71N         C12         C11      DOUBLE       y     1.390  0.0100     1.390  0.0100
+71N          C8          C9      SINGLE       y     1.369  0.0100     1.369  0.0100
+71N         C11         C10      SINGLE       y     1.382  0.0100     1.382  0.0100
+71N          C9         C10      DOUBLE       y     1.422  0.0101     1.422  0.0101
+71N         C10         N13      SINGLE       n     1.373  0.0200     1.373  0.0200
+71N         C11          H1      SINGLE       n     1.082  0.0130     0.934  0.0100
+71N          C8          H2      SINGLE       n     1.082  0.0130     0.930  0.0100
+71N          C9          H3      SINGLE       n     1.082  0.0130     0.937  0.0200
+71N          N5          H4      SINGLE       n     1.016  0.0100     0.881  0.0200
+71N         N13          H6      SINGLE       n     1.016  0.0100     0.877  0.0200
+71N         N13          H7      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+71N          N6         C12          C7     109.608    1.50
+71N          N6         C12         C11     130.303    1.50
+71N          C7         C12         C11     120.089    1.50
+71N         C12         C11         C10     117.261    1.50
+71N         C12         C11          H1     121.295    1.50
+71N         C10         C11          H1     121.445    1.50
+71N          C7          C8          C9     117.052    1.50
+71N          C7          C8          H2     121.574    1.50
+71N          C9          C8          H2     121.374    1.50
+71N          N5          C7         C12     105.328    1.50
+71N          N5          C7          C8     132.682    1.50
+71N         C12          C7          C8     121.990    1.50
+71N          C8          C9         C10     122.007    1.50
+71N          C8          C9          H3     119.572    1.50
+71N         C10          C9          H3     118.422    1.50
+71N         C11         C10          C9     121.601    2.27
+71N         C11         C10         N13     119.247    1.50
+71N          C9         C10         N13     119.152    1.50
+71N          C1          C4          N5     125.196    1.50
+71N          C1          C4          N6     123.147    2.32
+71N          N5          C4          N6     111.657    1.50
+71N          F2          C1          F3     106.954    1.50
+71N          F2          C1          F1     106.954    1.50
+71N          F2          C1          C4     112.303    1.50
+71N          F3          C1          F1     106.954    1.50
+71N          F3          C1          C4     112.303    1.50
+71N          F1          C1          C4     112.303    1.50
+71N          C4          N5          C7     107.571    1.50
+71N          C4          N5          H4     126.037    1.81
+71N          C7          N5          H4     126.392    1.62
+71N          C4          N6         C12     105.837    1.50
+71N         C10         N13          H6     119.864    1.50
+71N         C10         N13          H7     119.864    1.50
+71N          H6         N13          H7     120.271    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+71N              const_21          C7         C12          N6          C4       0.000    10.0     2
+71N              const_34         C10         C11         C12          N6     180.000    10.0     2
+71N       const_sp2_sp2_1          N6         C12          C7          N5       0.000     5.0     2
+71N              const_19         N13         C10         C11         C12     180.000    10.0     2
+71N       const_sp2_sp2_7          N5          C7          C8          C9     180.000     5.0     2
+71N       const_sp2_sp2_9          C7          C8          C9         C10       0.000     5.0     2
+71N              const_29         C12          C7          N5          C4       0.000    10.0     2
+71N              const_15         N13         C10          C9          C8     180.000    10.0     2
+71N             sp2_sp2_1         C11         C10         N13          H6     180.000     5.0     2
+71N             sp2_sp3_1          N5          C4          C1          F2     150.000    10.0     6
+71N              const_27          C1          C4          N5          C7     180.000    10.0     2
+71N              const_24          C1          C4          N6         C12     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+71N    chir_1    C1    F2    F3    F1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+71N    plan-1          C1   0.020
+71N    plan-1         C10   0.020
+71N    plan-1         C11   0.020
+71N    plan-1         C12   0.020
+71N    plan-1          C4   0.020
+71N    plan-1          C7   0.020
+71N    plan-1          C8   0.020
+71N    plan-1          C9   0.020
+71N    plan-1          H1   0.020
+71N    plan-1          H2   0.020
+71N    plan-1          H3   0.020
+71N    plan-1          H4   0.020
+71N    plan-1         N13   0.020
+71N    plan-1          N5   0.020
+71N    plan-1          N6   0.020
+71N    plan-2         C10   0.020
+71N    plan-2          H6   0.020
+71N    plan-2          H7   0.020
+71N    plan-2         N13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+71N           SMILES              ACDLabs 12.01                                                   FC(F)(F)c2nc1c(cc(cc1)N)n2
+71N            InChI                InChI  1.03 InChI=1S/C8H6F3N3/c9-8(10,11)7-13-5-2-1-4(12)3-6(5)14-7/h1-3H,12H2,(H,13,14)
+71N         InChIKey                InChI  1.03                                                  CKEKFQLHCAZGSP-UHFFFAOYSA-N
+71N SMILES_CANONICAL               CACTVS 3.385                                                  Nc1ccc2[nH]c(nc2c1)C(F)(F)F
+71N           SMILES               CACTVS 3.385                                                  Nc1ccc2[nH]c(nc2c1)C(F)(F)F
+71N SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                c1cc2c(cc1N)nc([nH]2)C(F)(F)F
+71N           SMILES "OpenEye OEToolkits" 2.0.5                                                c1cc2c(cc1N)nc([nH]2)C(F)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+71N acedrg               243         "dictionary generator"                  
+71N acedrg_database      11          "data source"                           
+71N rdkit                2017.03.2   "Chemoinformatics tool"
+71N refmac5              5.8.0238    "optimization tool"                     

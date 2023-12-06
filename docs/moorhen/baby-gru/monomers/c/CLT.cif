@@ -1,0 +1,188 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CLT     CLT      "4-PHENYL-BUTANOIC ACID"     NON-POLYMER     23     12     .     
+#
+data_comp_CLT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CLT     CA      C       CH2     0       35.680      41.267      -5.327      
+CLT     CB1     C       CH2     0       34.543      40.482      -5.961      
+CLT     CG      C       CH2     0       35.013      39.494      -7.022      
+CLT     CD      C       CR6     0       33.911      38.650      -7.616      
+CLT     CE1     C       CR16    0       33.455      38.874      -8.910      
+CLT     CE2     C       CR16    0       33.325      37.628      -6.878      
+CLT     CZ1     C       CR16    0       32.441      38.094      -9.452      
+CLT     CZ2     C       CR16    0       32.310      36.850      -7.422      
+CLT     CH      C       CR16    0       31.870      37.084      -8.707      
+CLT     CB2     C       C       0       36.261      42.364      -6.203      
+CLT     OG1     O       O       0       35.511      43.295      -6.557      
+CLT     OG2     O       OC      -1      37.462      42.284      -6.528      
+CLT     HA1     H       H       0       36.401      40.645      -5.091      
+CLT     HA2     H       H       0       35.358      41.674      -4.494      
+CLT     HB11    H       H       0       33.909      41.112      -6.372      
+CLT     HB12    H       H       0       34.064      39.988      -5.257      
+CLT     HG1     H       H       0       35.683      38.900      -6.621      
+CLT     HG2     H       H       0       35.453      39.995      -7.742      
+CLT     HE1     H       H       0       33.841      39.563      -9.427      
+CLT     HE2     H       H       0       33.621      37.461      -5.997      
+CLT     HZ1     H       H       0       32.141      38.257      -10.332     
+CLT     HZ2     H       H       0       31.921      36.159      -6.909      
+CLT     HH      H       H       0       31.181      36.555      -9.075      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CLT          CA         CB1      SINGLE       n     1.520  0.0144     1.520  0.0144
+CLT          CA         CB2      SINGLE       n     1.519  0.0109     1.519  0.0109
+CLT         CB1          CG      SINGLE       n     1.524  0.0200     1.524  0.0200
+CLT          CG          CD      SINGLE       n     1.510  0.0100     1.510  0.0100
+CLT          CD         CE1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+CLT          CD         CE2      SINGLE       y     1.385  0.0111     1.385  0.0111
+CLT         CE1         CZ1      SINGLE       y     1.386  0.0100     1.386  0.0100
+CLT         CE2         CZ2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+CLT         CZ1          CH      DOUBLE       y     1.374  0.0127     1.374  0.0127
+CLT         CZ2          CH      SINGLE       y     1.374  0.0127     1.374  0.0127
+CLT         CB2         OG1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+CLT         CB2         OG2      SINGLE       n     1.247  0.0187     1.247  0.0187
+CLT          CA         HA1      SINGLE       n     1.089  0.0100     0.981  0.0185
+CLT          CA         HA2      SINGLE       n     1.089  0.0100     0.981  0.0185
+CLT         CB1        HB11      SINGLE       n     1.089  0.0100     0.984  0.0164
+CLT         CB1        HB12      SINGLE       n     1.089  0.0100     0.984  0.0164
+CLT          CG         HG1      SINGLE       n     1.089  0.0100     0.981  0.0150
+CLT          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0150
+CLT         CE1         HE1      SINGLE       n     1.082  0.0130     0.944  0.0174
+CLT         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0174
+CLT         CZ1         HZ1      SINGLE       n     1.082  0.0130     0.944  0.0175
+CLT         CZ2         HZ2      SINGLE       n     1.082  0.0130     0.944  0.0175
+CLT          CH          HH      SINGLE       n     1.082  0.0130     0.944  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CLT         CB1          CA         CB2     114.629    2.24
+CLT         CB1          CA         HA1     108.844    1.50
+CLT         CB1          CA         HA2     108.844    1.50
+CLT         CB2          CA         HA1     108.404    1.50
+CLT         CB2          CA         HA2     108.404    1.50
+CLT         HA1          CA         HA2     107.521    1.50
+CLT          CA         CB1          CG     112.984    1.80
+CLT          CA         CB1        HB11     108.915    1.50
+CLT          CA         CB1        HB12     108.915    1.50
+CLT          CG         CB1        HB11     108.763    1.50
+CLT          CG         CB1        HB12     108.763    1.50
+CLT        HB11         CB1        HB12     107.749    1.50
+CLT         CB1          CG          CD     114.548    2.35
+CLT         CB1          CG         HG1     108.665    1.50
+CLT         CB1          CG         HG2     108.665    1.50
+CLT          CD          CG         HG1     108.803    1.50
+CLT          CD          CG         HG2     108.803    1.50
+CLT         HG1          CG         HG2     107.745    1.50
+CLT          CG          CD         CE1     120.970    1.50
+CLT          CG          CD         CE2     120.970    1.50
+CLT         CE1          CD         CE2     118.060    1.50
+CLT          CD         CE1         CZ1     120.624    1.50
+CLT          CD         CE1         HE1     119.591    1.50
+CLT         CZ1         CE1         HE1     119.786    1.50
+CLT          CD         CE2         CZ2     120.624    1.50
+CLT          CD         CE2         HE2     119.591    1.50
+CLT         CZ2         CE2         HE2     119.786    1.50
+CLT         CE1         CZ1          CH     120.325    1.50
+CLT         CE1         CZ1         HZ1     119.792    1.50
+CLT          CH         CZ1         HZ1     119.883    1.50
+CLT         CE2         CZ2          CH     120.325    1.50
+CLT         CE2         CZ2         HZ2     119.792    1.50
+CLT          CH         CZ2         HZ2     119.883    1.50
+CLT         CZ1          CH         CZ2     120.043    1.50
+CLT         CZ1          CH          HH     119.979    1.50
+CLT         CZ2          CH          HH     119.979    1.50
+CLT          CA         CB2         OG1     118.214    1.64
+CLT          CA         CB2         OG2     118.214    1.64
+CLT         OG1         CB2         OG2     123.571    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CLT             sp3_sp3_1         CB2          CA         CB1          CG     180.000    10.0     3
+CLT             sp2_sp3_2         OG1         CB2          CA         CB1     120.000    10.0     6
+CLT            sp3_sp3_10          CA         CB1          CG          CD     180.000    10.0     3
+CLT             sp2_sp3_8         CE1          CD          CG         CB1     -90.000    10.0     6
+CLT       const_sp2_sp2_3          CG          CD         CE1         CZ1     180.000     5.0     2
+CLT              const_23          CG          CD         CE2         CZ2     180.000    10.0     2
+CLT       const_sp2_sp2_5          CD         CE1         CZ1          CH       0.000     5.0     2
+CLT              const_17          CD         CE2         CZ2          CH       0.000    10.0     2
+CLT       const_sp2_sp2_9         CZ2          CH         CZ1         CE1       0.000     5.0     2
+CLT              const_13         CZ1          CH         CZ2         CE2       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CLT    plan-1          CD   0.020
+CLT    plan-1         CE1   0.020
+CLT    plan-1         CE2   0.020
+CLT    plan-1          CG   0.020
+CLT    plan-1          CH   0.020
+CLT    plan-1         CZ1   0.020
+CLT    plan-1         CZ2   0.020
+CLT    plan-1         HE1   0.020
+CLT    plan-1         HE2   0.020
+CLT    plan-1          HH   0.020
+CLT    plan-1         HZ1   0.020
+CLT    plan-1         HZ2   0.020
+CLT    plan-2          CA   0.020
+CLT    plan-2         CB2   0.020
+CLT    plan-2         OG1   0.020
+CLT    plan-2         OG2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CLT           SMILES              ACDLabs 10.04                                                           O=C(O)CCCc1ccccc1
+CLT SMILES_CANONICAL               CACTVS 3.341                                                           OC(=O)CCCc1ccccc1
+CLT           SMILES               CACTVS 3.341                                                           OC(=O)CCCc1ccccc1
+CLT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                         c1ccc(cc1)CCCC(=O)O
+CLT           SMILES "OpenEye OEToolkits" 1.5.0                                                         c1ccc(cc1)CCCC(=O)O
+CLT            InChI                InChI  1.03 InChI=1S/C10H12O2/c11-10(12)8-4-7-9-5-2-1-3-6-9/h1-3,5-6H,4,7-8H2,(H,11,12)
+CLT         InChIKey                InChI  1.03                                                 OBKXEAXTFZPCHS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CLT acedrg               243         "dictionary generator"                  
+CLT acedrg_database      11          "data source"                           
+CLT rdkit                2017.03.2   "Chemoinformatics tool"
+CLT refmac5              5.8.0238    "optimization tool"                     

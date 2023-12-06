@@ -1,0 +1,244 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TPR     TPR      TOSYL-D-PROLINE     NON-POLYMER     32     18     .     
+#
+data_comp_TPR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TPR     C1      C       CR16    0       18.918      73.937      79.700      
+TPR     C2      C       CR6     0       17.605      74.325      79.465      
+TPR     C3      C       CR16    0       16.594      73.423      79.771      
+TPR     C4      C       CR16    0       16.873      72.171      80.295      
+TPR     C5      C       CR6     0       18.196      71.803      80.517      
+TPR     C6      C       CR16    0       19.224      72.692      80.223      
+TPR     C7      C       CH3     0       17.292      75.687      78.896      
+TPR     S8      S       S3      0       18.569      70.211      81.193      
+TPR     O9      O       O       0       19.893      69.854      80.783      
+TPR     O10     O       O       0       17.478      69.335      80.890      
+TPR     N       N       NT      0       18.598      70.383      82.813      
+TPR     CD      C       CH2     0       19.659      71.224      83.432      
+TPR     CG      C       CH2     0       18.883      72.370      83.994      
+TPR     CB      C       CH2     0       17.655      71.708      84.560      
+TPR     CA      C       CH1     0       17.323      70.594      83.549      
+TPR     C       C       C       0       16.870      69.312      84.268      
+TPR     O       O       O       0       15.698      68.999      84.153      
+TPR     OXT     O       OC      -1      17.713      68.701      84.902      
+TPR     HC1     H       H       0       19.617      74.536      79.499      
+TPR     HC3     H       H       0       15.697      73.668      79.619      
+TPR     HC4     H       H       0       16.173      71.577      80.495      
+TPR     HC6     H       H       0       20.120      72.450      80.375      
+TPR     HC71    H       H       0       16.330      75.795      78.814      
+TPR     HC72    H       H       0       17.701      75.774      78.019      
+TPR     HC73    H       H       0       17.643      76.374      79.485      
+TPR     HCD1    H       H       0       20.127      70.736      84.138      
+TPR     HCD2    H       H       0       20.309      71.532      82.770      
+TPR     HCG1    H       H       0       18.646      73.012      83.294      
+TPR     HCG2    H       H       0       19.390      72.830      84.694      
+TPR     HCB1    H       H       0       16.917      72.347      84.629      
+TPR     HCB2    H       H       0       17.839      71.340      85.448      
+TPR     HCA     H       H       0       16.616      70.899      82.927      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TPR          C1          C2      DOUBLE       y     1.384  0.0110     1.384  0.0110
+TPR          C1          C6      SINGLE       y     1.382  0.0100     1.382  0.0100
+TPR          C2          C3      SINGLE       y     1.384  0.0110     1.384  0.0110
+TPR          C2          C7      SINGLE       n     1.507  0.0176     1.507  0.0176
+TPR          C3          C4      DOUBLE       y     1.382  0.0100     1.382  0.0100
+TPR          C4          C5      SINGLE       y     1.387  0.0100     1.387  0.0100
+TPR          C5          C6      DOUBLE       y     1.387  0.0100     1.387  0.0100
+TPR          C5          S8      SINGLE       n     1.766  0.0143     1.766  0.0143
+TPR          S8          O9      DOUBLE       n     1.431  0.0100     1.431  0.0100
+TPR          S8         O10      DOUBLE       n     1.431  0.0100     1.431  0.0100
+TPR          S8           N      SINGLE       n     1.625  0.0162     1.625  0.0162
+TPR           N          CD      SINGLE       n     1.488  0.0100     1.488  0.0100
+TPR           N          CA      SINGLE       n     1.475  0.0188     1.475  0.0188
+TPR          CD          CG      SINGLE       n     1.505  0.0200     1.505  0.0200
+TPR          CG          CB      SINGLE       n     1.508  0.0200     1.508  0.0200
+TPR          CB          CA      SINGLE       n     1.534  0.0126     1.534  0.0126
+TPR          CA           C      SINGLE       n     1.536  0.0100     1.536  0.0100
+TPR           C           O      DOUBLE       n     1.218  0.0200     1.218  0.0200
+TPR           C         OXT      SINGLE       n     1.218  0.0200     1.218  0.0200
+TPR          C1         HC1      SINGLE       n     1.082  0.0130     0.943  0.0173
+TPR          C3         HC3      SINGLE       n     1.082  0.0130     0.943  0.0173
+TPR          C4         HC4      SINGLE       n     1.082  0.0130     0.940  0.0163
+TPR          C6         HC6      SINGLE       n     1.082  0.0130     0.940  0.0163
+TPR          C7        HC71      SINGLE       n     1.089  0.0100     0.971  0.0135
+TPR          C7        HC72      SINGLE       n     1.089  0.0100     0.971  0.0135
+TPR          C7        HC73      SINGLE       n     1.089  0.0100     0.971  0.0135
+TPR          CD        HCD1      SINGLE       n     1.089  0.0100     0.978  0.0114
+TPR          CD        HCD2      SINGLE       n     1.089  0.0100     0.978  0.0114
+TPR          CG        HCG1      SINGLE       n     1.089  0.0100     0.979  0.0111
+TPR          CG        HCG2      SINGLE       n     1.089  0.0100     0.979  0.0111
+TPR          CB        HCB1      SINGLE       n     1.089  0.0100     0.979  0.0108
+TPR          CB        HCB2      SINGLE       n     1.089  0.0100     0.979  0.0108
+TPR          CA         HCA      SINGLE       n     1.089  0.0100     0.990  0.0121
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TPR          C2          C1          C6     121.465    1.50
+TPR          C2          C1         HC1     119.278    1.50
+TPR          C6          C1         HC1     119.258    1.50
+TPR          C1          C2          C3     117.946    1.50
+TPR          C1          C2          C7     121.027    1.50
+TPR          C3          C2          C7     121.027    1.50
+TPR          C2          C3          C4     121.465    1.50
+TPR          C2          C3         HC3     119.278    1.50
+TPR          C4          C3         HC3     119.258    1.50
+TPR          C3          C4          C5     119.345    1.50
+TPR          C3          C4         HC4     120.344    1.50
+TPR          C5          C4         HC4     120.311    1.50
+TPR          C4          C5          C6     120.427    1.50
+TPR          C4          C5          S8     119.790    1.50
+TPR          C6          C5          S8     119.790    1.50
+TPR          C1          C6          C5     119.345    1.50
+TPR          C1          C6         HC6     120.344    1.50
+TPR          C5          C6         HC6     120.311    1.50
+TPR          C2          C7        HC71     109.567    1.50
+TPR          C2          C7        HC72     109.567    1.50
+TPR          C2          C7        HC73     109.567    1.50
+TPR        HC71          C7        HC72     109.348    1.50
+TPR        HC71          C7        HC73     109.348    1.50
+TPR        HC72          C7        HC73     109.348    1.50
+TPR          C5          S8          O9     107.941    1.50
+TPR          C5          S8         O10     107.941    1.50
+TPR          C5          S8           N     107.601    1.50
+TPR          O9          S8         O10     120.107    1.50
+TPR          O9          S8           N     107.006    1.65
+TPR         O10          S8           N     107.006    1.65
+TPR          S8           N          CD     118.620    1.85
+TPR          S8           N          CA     119.863    2.56
+TPR          CD           N          CA     108.807    3.00
+TPR           N          CD          CG     103.773    1.50
+TPR           N          CD        HCD1     111.040    1.50
+TPR           N          CD        HCD2     111.040    1.50
+TPR          CG          CD        HCD1     111.030    1.50
+TPR          CG          CD        HCD2     111.030    1.50
+TPR        HCD1          CD        HCD2     109.043    1.50
+TPR          CD          CG          CB     103.846    1.50
+TPR          CD          CG        HCG1     110.900    1.50
+TPR          CD          CG        HCG2     110.900    1.50
+TPR          CB          CG        HCG1     110.864    1.50
+TPR          CB          CG        HCG2     110.864    1.50
+TPR        HCG1          CG        HCG2     108.899    1.50
+TPR          CG          CB          CA     103.507    1.50
+TPR          CG          CB        HCB1     110.886    1.50
+TPR          CG          CB        HCB2     110.886    1.50
+TPR          CA          CB        HCB1     110.995    1.50
+TPR          CA          CB        HCB2     110.995    1.50
+TPR        HCB1          CB        HCB2     108.922    1.50
+TPR           N          CA          CB     102.419    1.50
+TPR           N          CA           C     111.420    2.45
+TPR           N          CA         HCA     110.140    1.50
+TPR          CB          CA           C     110.031    2.42
+TPR          CB          CA         HCA     110.393    1.50
+TPR           C          CA         HCA     110.011    1.50
+TPR          CA           C           O     117.013    1.95
+TPR          CA           C         OXT     117.013    1.95
+TPR           O           C         OXT     125.975    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TPR       const_sp2_sp2_2          C6          C1          C2          C7     180.000     5.0     2
+TPR              const_21          C2          C1          C6          C5       0.000    10.0     2
+TPR             sp3_sp3_2          CG          CD           N          S8     180.000    10.0     3
+TPR            sp3_sp3_43           C          CA           N          S8     180.000    10.0     3
+TPR             sp3_sp3_7           N          CD          CG          CB     -60.000    10.0     3
+TPR            sp3_sp3_16          CA          CB          CG          CD      60.000    10.0     3
+TPR            sp3_sp3_28           C          CA          CB          CG     180.000    10.0     3
+TPR            sp2_sp3_13           O           C          CA           N       0.000    10.0     6
+TPR       const_sp2_sp2_7          C7          C2          C3          C4     180.000     5.0     2
+TPR             sp2_sp3_1          C1          C2          C7        HC71     150.000    10.0     6
+TPR       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+TPR              const_14          C3          C4          C5          S8     180.000    10.0     2
+TPR              const_19          S8          C5          C6          C1     180.000    10.0     2
+TPR             sp2_sp3_7          C4          C5          S8          O9     150.000    10.0     6
+TPR            sp3_sp3_35          CD           N          S8          O9     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TPR    chir_1    S8    O9    O10    N    both
+TPR    chir_2    N    S8    CA    CD    positive
+TPR    chir_3    CA    N    C    CB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TPR    plan-1          C1   0.020
+TPR    plan-1          C2   0.020
+TPR    plan-1          C3   0.020
+TPR    plan-1          C4   0.020
+TPR    plan-1          C5   0.020
+TPR    plan-1          C6   0.020
+TPR    plan-1          C7   0.020
+TPR    plan-1         HC1   0.020
+TPR    plan-1         HC3   0.020
+TPR    plan-1         HC4   0.020
+TPR    plan-1         HC6   0.020
+TPR    plan-1          S8   0.020
+TPR    plan-2           C   0.020
+TPR    plan-2          CA   0.020
+TPR    plan-2           O   0.020
+TPR    plan-2         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TPR           SMILES              ACDLabs 10.04                                                                              O=C(O)C2N(S(=O)(=O)c1ccc(cc1)C)CCC2
+TPR SMILES_CANONICAL               CACTVS 3.341                                                                         Cc1ccc(cc1)[S](=O)(=O)N2CCC[C@@H]2C(O)=O
+TPR           SMILES               CACTVS 3.341                                                                           Cc1ccc(cc1)[S](=O)(=O)N2CCC[CH]2C(O)=O
+TPR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                        Cc1ccc(cc1)S(=O)(=O)[N@]2CCC[C@@H]2C(=O)O
+TPR           SMILES "OpenEye OEToolkits" 1.5.0                                                                                Cc1ccc(cc1)S(=O)(=O)N2CCCC2C(=O)O
+TPR            InChI                InChI  1.03 InChI=1S/C12H15NO4S/c1-9-4-6-10(7-5-9)18(16,17)13-8-2-3-11(13)12(14)15/h4-7,11H,2-3,8H2,1H3,(H,14,15)/t11-/m1/s1
+TPR         InChIKey                InChI  1.03                                                                                      CGPHGPCHVUSFFA-LLVKDONJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TPR acedrg               243         "dictionary generator"                  
+TPR acedrg_database      11          "data source"                           
+TPR rdkit                2017.03.2   "Chemoinformatics tool"
+TPR refmac5              5.8.0238    "optimization tool"                     

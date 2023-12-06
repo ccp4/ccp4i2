@@ -1,0 +1,258 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CIU     CIU      "N-CYCLOHEXYL-N'-(4-IODOPHENYL)UREA"     NON-POLYMER     34     17     .     
+#
+data_comp_CIU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CIU     C1      C       CH2     0       -47.576     -60.722     -52.534     
+CIU     C2      C       CH2     0       -46.372     -61.604     -52.862     
+CIU     C3      C       CH1     0       -45.695     -61.147     -54.143     
+CIU     C4      C       CH2     0       -46.681     -61.133     -55.300     
+CIU     C5      C       CH2     0       -47.895     -60.260     -54.978     
+CIU     C6      C       CH2     0       -48.567     -60.686     -53.684     
+CIU     N1      N       NH1     0       -44.543     -62.003     -54.445     
+CIU     C7      C       C       0       -43.440     -61.579     -55.098     
+CIU     O2      O       O       0       -43.302     -60.424     -55.524     
+CIU     N2      N       NH1     0       -42.486     -62.532     -55.258     
+CIU     C8      C       CR6     0       -41.090     -62.346     -55.184     
+CIU     I4      I       I       0       -36.244     -61.813     -55.067     
+CIU     C9      C       CR16    0       -40.488     -61.609     -54.167     
+CIU     C10     C       CR16    0       -39.108     -61.455     -54.133     
+CIU     C11     C       CR6     0       -38.328     -62.043     -55.117     
+CIU     C12     C       CR16    0       -38.914     -62.781     -56.132     
+CIU     C13     C       CR16    0       -40.293     -62.932     -56.163     
+CIU     HC11    H       H       0       -48.022     -61.067     -51.730     
+CIU     HC12    H       H       0       -47.267     -59.810     -52.341     
+CIU     HC21    H       H       0       -45.728     -61.567     -52.123     
+CIU     HC22    H       H       0       -46.665     -62.534     -52.963     
+CIU     HC31    H       H       0       -45.369     -60.223     -54.003     
+CIU     HC41    H       H       0       -46.979     -62.050     -55.484     
+CIU     HC42    H       H       0       -46.236     -60.791     -56.104     
+CIU     HC51    H       H       0       -48.542     -60.320     -55.715     
+CIU     HC52    H       H       0       -47.609     -59.323     -54.902     
+CIU     HC61    H       H       0       -49.290     -60.059     -53.471     
+CIU     HC62    H       H       0       -48.962     -61.576     -53.801     
+CIU     HN1     H       H       0       -44.577     -62.841     -54.183     
+CIU     HN2     H       H       0       -42.754     -63.349     -55.448     
+CIU     H9      H       H       0       -41.018     -61.211     -53.500     
+CIU     H10     H       H       0       -38.706     -60.954     -53.444     
+CIU     H12     H       H       0       -38.381     -63.179     -56.799     
+CIU     H13     H       H       0       -40.693     -63.433     -56.851     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CIU          C1          C2      SINGLE       n     1.527  0.0100     1.527  0.0100
+CIU          C1          C6      SINGLE       n     1.516  0.0136     1.516  0.0136
+CIU          C2          C3      SINGLE       n     1.518  0.0108     1.518  0.0108
+CIU          C3          C4      SINGLE       n     1.518  0.0108     1.518  0.0108
+CIU          C3          N1      SINGLE       n     1.463  0.0100     1.463  0.0100
+CIU          C4          C5      SINGLE       n     1.527  0.0100     1.527  0.0100
+CIU          C5          C6      SINGLE       n     1.516  0.0136     1.516  0.0136
+CIU          N1          C7      SINGLE       n     1.338  0.0137     1.338  0.0137
+CIU          C7          O2      DOUBLE       n     1.235  0.0158     1.235  0.0158
+CIU          C7          N2      SINGLE       n     1.354  0.0100     1.354  0.0100
+CIU          N2          C8      SINGLE       n     1.407  0.0126     1.407  0.0126
+CIU          C8          C9      DOUBLE       y     1.388  0.0100     1.388  0.0100
+CIU          C8         C13      SINGLE       y     1.388  0.0100     1.388  0.0100
+CIU          I4         C11      SINGLE       n     2.097  0.0157     2.097  0.0157
+CIU          C9         C10      SINGLE       y     1.384  0.0100     1.384  0.0100
+CIU         C10         C11      DOUBLE       y     1.383  0.0112     1.383  0.0112
+CIU         C11         C12      SINGLE       y     1.383  0.0112     1.383  0.0112
+CIU         C12         C13      DOUBLE       y     1.384  0.0100     1.384  0.0100
+CIU          C1        HC11      SINGLE       n     1.089  0.0100     0.982  0.0131
+CIU          C1        HC12      SINGLE       n     1.089  0.0100     0.982  0.0131
+CIU          C2        HC21      SINGLE       n     1.089  0.0100     0.981  0.0121
+CIU          C2        HC22      SINGLE       n     1.089  0.0100     0.981  0.0121
+CIU          C3        HC31      SINGLE       n     1.089  0.0100     0.989  0.0155
+CIU          C4        HC41      SINGLE       n     1.089  0.0100     0.981  0.0121
+CIU          C4        HC42      SINGLE       n     1.089  0.0100     0.981  0.0121
+CIU          C5        HC51      SINGLE       n     1.089  0.0100     0.982  0.0131
+CIU          C5        HC52      SINGLE       n     1.089  0.0100     0.982  0.0131
+CIU          C6        HC61      SINGLE       n     1.089  0.0100     0.981  0.0138
+CIU          C6        HC62      SINGLE       n     1.089  0.0100     0.981  0.0138
+CIU          N1         HN1      SINGLE       n     1.016  0.0100     0.877  0.0200
+CIU          N2         HN2      SINGLE       n     1.016  0.0100     0.879  0.0200
+CIU          C9          H9      SINGLE       n     1.082  0.0130     0.940  0.0142
+CIU         C10         H10      SINGLE       n     1.082  0.0130     0.942  0.0165
+CIU         C12         H12      SINGLE       n     1.082  0.0130     0.942  0.0165
+CIU         C13         H13      SINGLE       n     1.082  0.0130     0.940  0.0142
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CIU          C2          C1          C6     111.328    1.50
+CIU          C2          C1        HC11     109.340    1.50
+CIU          C2          C1        HC12     109.340    1.50
+CIU          C6          C1        HC11     109.386    1.50
+CIU          C6          C1        HC12     109.386    1.50
+CIU        HC11          C1        HC12     108.036    1.50
+CIU          C1          C2          C3     110.796    1.50
+CIU          C1          C2        HC21     109.472    1.50
+CIU          C1          C2        HC22     109.472    1.50
+CIU          C3          C2        HC21     109.338    1.50
+CIU          C3          C2        HC22     109.338    1.50
+CIU        HC21          C2        HC22     108.076    1.50
+CIU          C2          C3          C4     110.870    1.50
+CIU          C2          C3          N1     110.632    1.50
+CIU          C2          C3        HC31     108.306    1.50
+CIU          C4          C3          N1     110.632    1.50
+CIU          C4          C3        HC31     108.306    1.50
+CIU          N1          C3        HC31     107.871    1.50
+CIU          C3          C4          C5     110.796    1.50
+CIU          C3          C4        HC41     109.338    1.50
+CIU          C3          C4        HC42     109.338    1.50
+CIU          C5          C4        HC41     109.472    1.50
+CIU          C5          C4        HC42     109.472    1.50
+CIU        HC41          C4        HC42     108.076    1.50
+CIU          C4          C5          C6     111.328    1.50
+CIU          C4          C5        HC51     109.340    1.50
+CIU          C4          C5        HC52     109.340    1.50
+CIU          C6          C5        HC51     109.386    1.50
+CIU          C6          C5        HC52     109.386    1.50
+CIU        HC51          C5        HC52     108.036    1.50
+CIU          C1          C6          C5     111.038    1.50
+CIU          C1          C6        HC61     109.386    1.50
+CIU          C1          C6        HC62     109.386    1.50
+CIU          C5          C6        HC61     109.386    1.50
+CIU          C5          C6        HC62     109.386    1.50
+CIU        HC61          C6        HC62     108.036    1.50
+CIU          C3          N1          C7     122.752    1.54
+CIU          C3          N1         HN1     118.647    1.50
+CIU          C7          N1         HN1     118.600    1.50
+CIU          N1          C7          O2     123.228    1.53
+CIU          N1          C7          N2     113.665    2.00
+CIU          O2          C7          N2     123.107    1.50
+CIU          C7          N2          C8     125.883    1.50
+CIU          C7          N2         HN2     117.563    1.90
+CIU          C8          N2         HN2     116.554    1.97
+CIU          N2          C8          C9     120.314    3.00
+CIU          N2          C8         C13     120.313    3.00
+CIU          C9          C8         C13     119.371    1.50
+CIU          C8          C9         C10     120.270    1.50
+CIU          C8          C9          H9     119.885    1.50
+CIU         C10          C9          H9     119.846    1.50
+CIU          C9         C10         C11     119.672    1.50
+CIU          C9         C10         H10     120.076    1.50
+CIU         C11         C10         H10     120.251    1.50
+CIU          I4         C11         C10     119.628    1.50
+CIU          I4         C11         C12     119.628    1.50
+CIU         C10         C11         C12     120.744    1.50
+CIU         C11         C12         C13     119.672    1.50
+CIU         C11         C12         H12     120.251    1.50
+CIU         C13         C12         H12     120.076    1.50
+CIU          C8         C13         C12     120.270    1.50
+CIU          C8         C13         H13     119.885    1.50
+CIU         C12         C13         H13     119.846    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CIU             sp3_sp3_1          C6          C1          C2          C3      60.000    10.0     3
+CIU            sp3_sp3_46          C2          C1          C6          C5     180.000    10.0     3
+CIU       const_sp2_sp2_3          N2          C8          C9         C10     180.000     5.0     2
+CIU              const_22         C12         C13          C8          N2     180.000    10.0     2
+CIU       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+CIU              const_10          C9         C10         C11          I4     180.000    10.0     2
+CIU              const_15          I4         C11         C12         C13     180.000    10.0     2
+CIU              const_17         C11         C12         C13          C8       0.000    10.0     2
+CIU            sp3_sp3_12          C1          C2          C3          N1     180.000    10.0     3
+CIU            sp3_sp3_22          N1          C3          C4          C5     -60.000    10.0     3
+CIU             sp2_sp3_2          C7          N1          C3          C2     120.000    10.0     6
+CIU            sp3_sp3_28          C3          C4          C5          C6     -60.000    10.0     3
+CIU            sp3_sp3_37          C4          C5          C6          C1      60.000    10.0     3
+CIU             sp2_sp2_3          O2          C7          N1          C3       0.000     5.0     2
+CIU             sp2_sp2_5          N1          C7          N2          C8     180.000     5.0     2
+CIU             sp2_sp2_9          C9          C8          N2          C7     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CIU    chir_1    C3    N1    C2    C4    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CIU    plan-1         C10   0.020
+CIU    plan-1         C11   0.020
+CIU    plan-1         C12   0.020
+CIU    plan-1         C13   0.020
+CIU    plan-1          C8   0.020
+CIU    plan-1          C9   0.020
+CIU    plan-1         H10   0.020
+CIU    plan-1         H12   0.020
+CIU    plan-1         H13   0.020
+CIU    plan-1          H9   0.020
+CIU    plan-1          I4   0.020
+CIU    plan-1          N2   0.020
+CIU    plan-2          C3   0.020
+CIU    plan-2          C7   0.020
+CIU    plan-2         HN1   0.020
+CIU    plan-2          N1   0.020
+CIU    plan-3          C7   0.020
+CIU    plan-3          N1   0.020
+CIU    plan-3          N2   0.020
+CIU    plan-3          O2   0.020
+CIU    plan-4          C7   0.020
+CIU    plan-4          C8   0.020
+CIU    plan-4         HN2   0.020
+CIU    plan-4          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CIU           SMILES              ACDLabs 10.04                                                                        O=C(NC1CCCCC1)Nc2ccc(I)cc2
+CIU SMILES_CANONICAL               CACTVS 3.341                                                                        Ic1ccc(NC(=O)NC2CCCCC2)cc1
+CIU           SMILES               CACTVS 3.341                                                                        Ic1ccc(NC(=O)NC2CCCCC2)cc1
+CIU SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                        c1cc(ccc1NC(=O)NC2CCCCC2)I
+CIU           SMILES "OpenEye OEToolkits" 1.5.0                                                                        c1cc(ccc1NC(=O)NC2CCCCC2)I
+CIU            InChI                InChI  1.03 InChI=1S/C13H17IN2O/c14-10-6-8-12(9-7-10)16-13(17)15-11-4-2-1-3-5-11/h6-9,11H,1-5H2,(H2,15,16,17)
+CIU         InChIKey                InChI  1.03                                                                       AQTBUVAFYDVTFD-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CIU acedrg               243         "dictionary generator"                  
+CIU acedrg_database      11          "data source"                           
+CIU rdkit                2017.03.2   "Chemoinformatics tool"
+CIU refmac5              5.8.0238    "optimization tool"                     

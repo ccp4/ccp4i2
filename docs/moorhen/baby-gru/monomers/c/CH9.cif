@@ -1,0 +1,199 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CH9     CH9      2-HYDROXYBIPHENYL     NON-POLYMER     23     13     .     
+#
+data_comp_CH9
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CH9     CAH     C       CR16    0       39.837      23.905      -4.224      
+CH9     CAC     C       CR16    0       40.636      24.395      -5.250      
+CH9     CAB     C       CR16    0       41.514      25.433      -5.011      
+CH9     CAD     C       CR16    0       41.593      25.986      -3.748      
+CH9     CAI     C       CR16    0       40.794      25.500      -2.721      
+CH9     CAL     C       CR6     0       39.897      24.454      -2.942      
+CH9     CAM     C       CR6     0       39.047      23.934      -1.841      
+CH9     CAJ     C       CR16    0       39.644      23.498      -0.656      
+CH9     CAF     C       CR16    0       38.895      23.007      0.399       
+CH9     CAE     C       CR16    0       37.521      22.943      0.292       
+CH9     CAG     C       CR16    0       36.896      23.366      -0.861      
+CH9     CAK     C       CR6     0       37.648      23.858      -1.919      
+CH9     OAA     O       OH1     0       36.973      24.267      -3.045      
+CH9     HAH     H       H       0       39.237      23.196      -4.398      
+CH9     HAC     H       H       0       40.580      24.015      -6.111      
+CH9     HAB     H       H       0       42.058      25.763      -5.708      
+CH9     HAD     H       H       0       42.192      26.695      -3.582      
+CH9     HAI     H       H       0       40.855      25.885      -1.861      
+CH9     HAJ     H       H       0       40.585      23.539      -0.577      
+CH9     HAF     H       H       0       39.323      22.717      1.188       
+CH9     HAE     H       H       0       37.006      22.609      1.008       
+CH9     HAG     H       H       0       35.959      23.323      -0.935      
+CH9     HAA     H       H       0       37.052      25.078      -3.323      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CH9         CAH         CAC      DOUBLE       y     1.386  0.0100     1.386  0.0100
+CH9         CAH         CAL      SINGLE       y     1.392  0.0100     1.392  0.0100
+CH9         CAC         CAB      SINGLE       y     1.376  0.0124     1.376  0.0124
+CH9         CAB         CAD      DOUBLE       y     1.376  0.0124     1.376  0.0124
+CH9         CAD         CAI      SINGLE       y     1.386  0.0100     1.386  0.0100
+CH9         CAI         CAL      DOUBLE       y     1.392  0.0100     1.392  0.0100
+CH9         CAL         CAM      SINGLE       n     1.484  0.0100     1.484  0.0100
+CH9         CAM         CAJ      DOUBLE       y     1.392  0.0100     1.392  0.0100
+CH9         CAM         CAK      SINGLE       y     1.396  0.0100     1.396  0.0100
+CH9         CAJ         CAF      SINGLE       y     1.381  0.0100     1.381  0.0100
+CH9         CAF         CAE      DOUBLE       y     1.376  0.0124     1.376  0.0124
+CH9         CAE         CAG      SINGLE       y     1.375  0.0106     1.375  0.0106
+CH9         CAG         CAK      DOUBLE       y     1.384  0.0100     1.384  0.0100
+CH9         CAK         OAA      SINGLE       n     1.374  0.0155     1.374  0.0155
+CH9         CAH         HAH      SINGLE       n     1.082  0.0130     0.945  0.0170
+CH9         CAC         HAC      SINGLE       n     1.082  0.0130     0.943  0.0180
+CH9         CAB         HAB      SINGLE       n     1.082  0.0130     0.944  0.0161
+CH9         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0180
+CH9         CAI         HAI      SINGLE       n     1.082  0.0130     0.945  0.0170
+CH9         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.945  0.0186
+CH9         CAF         HAF      SINGLE       n     1.082  0.0130     0.943  0.0180
+CH9         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0183
+CH9         CAG         HAG      SINGLE       n     1.082  0.0130     0.941  0.0179
+CH9         OAA         HAA      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CH9         CAC         CAH         CAL     120.887    1.50
+CH9         CAC         CAH         HAH     119.636    1.50
+CH9         CAL         CAH         HAH     119.477    1.50
+CH9         CAH         CAC         CAB     120.251    1.50
+CH9         CAH         CAC         HAC     119.823    1.50
+CH9         CAB         CAC         HAC     119.926    1.50
+CH9         CAC         CAB         CAD     119.915    1.50
+CH9         CAC         CAB         HAB     120.043    1.50
+CH9         CAD         CAB         HAB     120.043    1.50
+CH9         CAB         CAD         CAI     120.251    1.50
+CH9         CAB         CAD         HAD     119.926    1.50
+CH9         CAI         CAD         HAD     119.823    1.50
+CH9         CAD         CAI         CAL     120.887    1.50
+CH9         CAD         CAI         HAI     119.636    1.50
+CH9         CAL         CAI         HAI     119.477    1.50
+CH9         CAH         CAL         CAI     117.808    1.50
+CH9         CAH         CAL         CAM     121.096    1.50
+CH9         CAI         CAL         CAM     121.096    1.50
+CH9         CAL         CAM         CAJ     120.196    1.50
+CH9         CAL         CAM         CAK     122.900    1.50
+CH9         CAJ         CAM         CAK     116.903    1.50
+CH9         CAM         CAJ         CAF     121.532    1.50
+CH9         CAM         CAJ         HAJ     118.984    1.50
+CH9         CAF         CAJ         HAJ     119.484    1.50
+CH9         CAJ         CAF         CAE     120.117    1.50
+CH9         CAJ         CAF         HAF     119.894    1.50
+CH9         CAE         CAF         HAF     119.998    1.50
+CH9         CAF         CAE         CAG     120.574    1.50
+CH9         CAF         CAE         HAE     119.898    1.50
+CH9         CAG         CAE         HAE     119.529    1.50
+CH9         CAE         CAG         CAK     119.974    1.50
+CH9         CAE         CAG         HAG     120.294    1.50
+CH9         CAK         CAG         HAG     119.731    1.50
+CH9         CAM         CAK         CAG     120.890    1.50
+CH9         CAM         CAK         OAA     119.555    3.00
+CH9         CAG         CAK         OAA     119.555    3.00
+CH9         CAK         OAA         HAA     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CH9       const_sp2_sp2_1         CAB         CAC         CAH         CAL       0.000     5.0     2
+CH9              const_41         CAC         CAH         CAL         CAI       0.000    10.0     2
+CH9              const_38         CAE         CAG         CAK         OAA     180.000    10.0     2
+CH9             sp2_sp2_5         CAM         CAK         OAA         HAA     180.000     5.0     2
+CH9       const_sp2_sp2_5         CAD         CAB         CAC         CAH       0.000     5.0     2
+CH9       const_sp2_sp2_9         CAC         CAB         CAD         CAI       0.000     5.0     2
+CH9              const_13         CAB         CAD         CAI         CAL       0.000    10.0     2
+CH9              const_17         CAD         CAI         CAL         CAH       0.000    10.0     2
+CH9             sp2_sp2_1         CAH         CAL         CAM         CAJ     180.000     5.0     2
+CH9              const_48         OAA         CAK         CAM         CAL       0.000    10.0     2
+CH9              const_22         CAF         CAJ         CAM         CAL     180.000    10.0     2
+CH9              const_25         CAE         CAF         CAJ         CAM       0.000    10.0     2
+CH9              const_29         CAG         CAE         CAF         CAJ       0.000    10.0     2
+CH9              const_33         CAF         CAE         CAG         CAK       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CH9    plan-1         CAB   0.020
+CH9    plan-1         CAC   0.020
+CH9    plan-1         CAD   0.020
+CH9    plan-1         CAH   0.020
+CH9    plan-1         CAI   0.020
+CH9    plan-1         CAL   0.020
+CH9    plan-1         CAM   0.020
+CH9    plan-1         HAB   0.020
+CH9    plan-1         HAC   0.020
+CH9    plan-1         HAD   0.020
+CH9    plan-1         HAH   0.020
+CH9    plan-1         HAI   0.020
+CH9    plan-2         CAE   0.020
+CH9    plan-2         CAF   0.020
+CH9    plan-2         CAG   0.020
+CH9    plan-2         CAJ   0.020
+CH9    plan-2         CAK   0.020
+CH9    plan-2         CAL   0.020
+CH9    plan-2         CAM   0.020
+CH9    plan-2         HAE   0.020
+CH9    plan-2         HAF   0.020
+CH9    plan-2         HAG   0.020
+CH9    plan-2         HAJ   0.020
+CH9    plan-2         OAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CH9           SMILES              ACDLabs 10.04                                              Oc2ccccc2c1ccccc1
+CH9 SMILES_CANONICAL               CACTVS 3.341                                              Oc1ccccc1c2ccccc2
+CH9           SMILES               CACTVS 3.341                                              Oc1ccccc1c2ccccc2
+CH9 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                            c1ccc(cc1)c2ccccc2O
+CH9           SMILES "OpenEye OEToolkits" 1.5.0                                            c1ccc(cc1)c2ccccc2O
+CH9            InChI                InChI  1.03 InChI=1S/C12H10O/c13-12-9-5-4-8-11(12)10-6-2-1-3-7-10/h1-9,13H
+CH9         InChIKey                InChI  1.03                                    LLEMOWNGBBNAJR-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CH9 acedrg               243         "dictionary generator"                  
+CH9 acedrg_database      11          "data source"                           
+CH9 rdkit                2017.03.2   "Chemoinformatics tool"
+CH9 refmac5              5.8.0238    "optimization tool"                     

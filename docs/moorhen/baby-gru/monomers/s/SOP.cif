@@ -1,0 +1,514 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SOP     SOP      "[(2R,3S,4R,5R)-5-(6-AMINO-9H-PURIN-9-YL)-4-HYDROXY-3-(PHOSPHONOOXY)TETRAHYDROFURAN-2-YL]METHYL(3R)-3-HYDROXY-2,2-DIMETHYL-4-OXO-4-{[3-OXO-3-({2-[(2-OXOPROPYL)THIO]ETHYL}AMINO)PROPYL]AMINO}BUTYL DIHYDROGENDIPHOSPHATE"     NON-POLYMER     88     52     .     
+#
+data_comp_SOP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SOP     N6      N       NH2     0       27.707      -1.335      75.831      
+SOP     C6      C       CR6     0       28.128      -2.110      74.835      
+SOP     N1      N       NRD6    0       29.026      -1.606      73.950      
+SOP     C2      C       CR16    0       29.448      -2.393      72.947      
+SOP     N3      N       NRD6    0       29.109      -3.653      72.667      
+SOP     C4      C       CR56    0       28.219      -4.124      73.562      
+SOP     C5      C       CR56    0       27.694      -3.440      74.641      
+SOP     N7      N       NRD5    0       26.807      -4.250      75.338      
+SOP     C8      C       CR15    0       26.808      -5.387      74.681      
+SOP     N9      N       NT      0       27.658      -5.374      73.595      
+SOP     "C1'"   C       CH1     0       27.903      -6.457      72.633      
+SOP     "O4'"   O       O2      0       26.778      -6.533      71.786      
+SOP     "C2'"   C       CH1     0       28.092      -7.843      73.249      
+SOP     "O2'"   O       OH1     0       29.454      -8.118      73.504      
+SOP     "C3'"   C       CH1     0       27.478      -8.750      72.180      
+SOP     "O3'"   O       O2      0       28.397      -9.020      71.116      
+SOP     P3      P       P       0       28.226      -10.481     70.436      
+SOP     O32     O       OP      -1      26.753      -10.663     70.117      
+SOP     O33     O       OP      -1      29.083      -10.471     69.184      
+SOP     O31     O       O       0       28.718      -11.490     71.456      
+SOP     "C4'"   C       CH1     0       26.313      -7.903      71.688      
+SOP     "C5'"   C       CH2     0       25.033      -8.050      72.473      
+SOP     "O5'"   O       O2      0       24.016      -7.188      71.901      
+SOP     P1      P       P       0       22.562      -7.162      72.578      
+SOP     O11     O       OP      -1      22.646      -6.483      73.905      
+SOP     O12     O       O       0       21.966      -8.530      72.521      
+SOP     O6      O       O2      0       21.759      -6.211      71.564      
+SOP     P2      P       P       0       21.730      -6.098      69.964      
+SOP     O21     O       OP      -1      21.663      -7.468      69.375      
+SOP     O22     O       O       0       22.817      -5.176      69.519      
+SOP     O7      O       O2      0       20.321      -5.368      69.721      
+SOP     CP9     C       CH2     0       19.094      -6.003      70.184      
+SOP     CP8     C       CT      0       17.880      -5.262      69.619      
+SOP     CPB     C       CH3     0       17.899      -3.820      70.145      
+SOP     CPA     C       CH3     0       16.616      -5.949      70.155      
+SOP     CP7     C       CH1     0       17.883      -5.251      68.075      
+SOP     OP3     O       OH1     0       17.983      -6.580      67.562      
+SOP     CP6     C       C       0       16.688      -4.544      67.440      
+SOP     OP2     O       O       0       15.661      -5.181      67.211      
+SOP     NP2     N       NH1     0       16.814      -3.248      67.167      
+SOP     CP5     C       CH2     0       15.740      -2.427      66.619      
+SOP     CP4     C       CH2     0       14.700      -2.078      67.663      
+SOP     CP3     C       C       0       13.555      -1.262      67.098      
+SOP     OP1     O       O       0       12.739      -1.785      66.341      
+SOP     NP1     N       NH1     0       13.470      0.031       67.450      
+SOP     CP2     C       CH2     0       12.391      0.920       67.040      
+SOP     CP1     C       CH2     0       11.088      0.616       67.767      
+SOP     S       S       S2      0       9.725       1.706       67.275      
+SOP     CA1     C       CH2     0       9.899       3.070       68.460      
+SOP     CA2     C       C       0       8.904       4.173       68.236      
+SOP     OA1     O       O       0       9.246       5.234       67.766      
+SOP     CA3     C       CH3     0       7.496       3.898       68.614      
+SOP     HN61    H       H       0       27.602      -1.675      76.632      
+SOP     HN62    H       H       0       27.536      -0.488      75.680      
+SOP     H2      H       H       0       30.072      -1.999      72.356      
+SOP     H8      H       H       0       26.288      -6.128      74.940      
+SOP     "H1'"   H       H       0       28.699      -6.241      72.098      
+SOP     "H2'"   H       H       0       27.572      -7.932      74.089      
+SOP     "HO2'"  H       H       0       29.876      -8.176      72.768      
+SOP     "H3'"   H       H       0       27.154      -9.585      72.592      
+SOP     "H4'"   H       H       0       26.129      -8.114      70.748      
+SOP     "H5'1"  H       H       0       25.192      -7.801      73.417      
+SOP     "H5'2"  H       H       0       24.731      -8.991      72.444      
+SOP     HP91    H       H       0       19.063      -5.984      71.161      
+SOP     HP92    H       H       0       19.074      -6.938      69.899      
+SOP     HPB1    H       H       0       18.564      -3.304      69.657      
+SOP     HPB2    H       H       0       18.124      -3.820      71.092      
+SOP     HPB3    H       H       0       17.025      -3.410      70.026      
+SOP     HPA1    H       H       0       16.528      -6.833      69.760      
+SOP     HPA2    H       H       0       15.829      -5.420      69.937      
+SOP     HPA3    H       H       0       16.681      -6.037      71.122      
+SOP     HP7     H       H       0       18.695      -4.765      67.792      
+SOP     HOP3    H       H       0       17.225      -6.962      67.534      
+SOP     HNP2    H       H       0       17.577      -2.856      67.325      
+SOP     HP51    H       H       0       15.308      -2.908      65.882      
+SOP     HP52    H       H       0       16.121      -1.600      66.258      
+SOP     HP41    H       H       0       15.123      -1.584      68.386      
+SOP     HP42    H       H       0       14.340      -2.898      68.044      
+SOP     HNP1    H       H       0       14.103      0.364       67.950      
+SOP     HP21    H       H       0       12.249      0.832       66.073      
+SOP     HP22    H       H       0       12.652      1.847       67.224      
+SOP     HP11    H       H       0       11.234      0.706       68.735      
+SOP     HP12    H       H       0       10.830      -0.315      67.588      
+SOP     HA11    H       H       0       10.797      3.441       68.387      
+SOP     HA12    H       H       0       9.780       2.723       69.362      
+SOP     HA31    H       H       0       6.971       4.710       68.523      
+SOP     HA32    H       H       0       7.462       3.592       69.535      
+SOP     HA33    H       H       0       7.132       3.211       68.032      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SOP          N6          C6      SINGLE       n     1.330  0.0100     1.330  0.0100
+SOP          C6          N1      DOUBLE       y     1.354  0.0100     1.354  0.0100
+SOP          C6          C5      SINGLE       y     1.408  0.0100     1.408  0.0100
+SOP          N1          C2      SINGLE       y     1.339  0.0100     1.339  0.0100
+SOP          C2          N3      DOUBLE       y     1.330  0.0100     1.330  0.0100
+SOP          N3          C4      SINGLE       y     1.343  0.0100     1.343  0.0100
+SOP          C4          C5      DOUBLE       y     1.381  0.0100     1.381  0.0100
+SOP          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+SOP          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+SOP          N7          C8      DOUBLE       y     1.310  0.0100     1.310  0.0100
+SOP          C8          N9      SINGLE       y     1.372  0.0200     1.372  0.0200
+SOP          N9       "C1'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+SOP       "C1'"       "O4'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+SOP       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+SOP       "O4'"       "C4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+SOP       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+SOP       "C2'"       "C3'"      SINGLE       n     1.529  0.0125     1.529  0.0125
+SOP       "C3'"       "O3'"      SINGLE       n     1.425  0.0152     1.425  0.0152
+SOP       "C3'"       "C4'"      SINGLE       n     1.525  0.0133     1.525  0.0133
+SOP       "O3'"          P3      SINGLE       n     1.614  0.0178     1.614  0.0178
+SOP          P3         O32      SINGLE       n     1.517  0.0192     1.517  0.0192
+SOP          P3         O33      SINGLE       n     1.517  0.0192     1.517  0.0192
+SOP          P3         O31      DOUBLE       n     1.517  0.0192     1.517  0.0192
+SOP       "C4'"       "C5'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+SOP       "C5'"       "O5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+SOP       "O5'"          P1      SINGLE       n     1.604  0.0133     1.604  0.0133
+SOP          P1         O11      SINGLE       n     1.493  0.0122     1.493  0.0122
+SOP          P1         O12      DOUBLE       n     1.493  0.0122     1.493  0.0122
+SOP          P1          O6      SINGLE       n     1.604  0.0133     1.604  0.0133
+SOP          O6          P2      SINGLE       n     1.604  0.0133     1.604  0.0133
+SOP          P2         O21      SINGLE       n     1.493  0.0122     1.493  0.0122
+SOP          P2         O22      DOUBLE       n     1.493  0.0122     1.493  0.0122
+SOP          P2          O7      SINGLE       n     1.604  0.0133     1.604  0.0133
+SOP          O7         CP9      SINGLE       n     1.454  0.0165     1.454  0.0165
+SOP         CP9         CP8      SINGLE       n     1.526  0.0108     1.526  0.0108
+SOP         CP8         CPB      SINGLE       n     1.531  0.0109     1.531  0.0109
+SOP         CP8         CPA      SINGLE       n     1.531  0.0109     1.531  0.0109
+SOP         CP8         CP7      SINGLE       n     1.532  0.0112     1.532  0.0112
+SOP         CP7         OP3      SINGLE       n     1.419  0.0162     1.419  0.0162
+SOP         CP7         CP6      SINGLE       n     1.519  0.0108     1.519  0.0108
+SOP         CP6         OP2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+SOP         CP6         NP2      SINGLE       n     1.326  0.0100     1.326  0.0100
+SOP         NP2         CP5      SINGLE       n     1.457  0.0100     1.457  0.0100
+SOP         CP5         CP4      SINGLE       n     1.513  0.0195     1.513  0.0195
+SOP         CP4         CP3      SINGLE       n     1.514  0.0100     1.514  0.0100
+SOP         CP3         OP1      DOUBLE       n     1.229  0.0102     1.229  0.0102
+SOP         CP3         NP1      SINGLE       n     1.337  0.0118     1.337  0.0118
+SOP         NP1         CP2      SINGLE       n     1.455  0.0100     1.455  0.0100
+SOP         CP2         CP1      SINGLE       n     1.523  0.0100     1.523  0.0100
+SOP         CP1           S      SINGLE       n     1.813  0.0122     1.813  0.0122
+SOP           S         CA1      SINGLE       n     1.816  0.0116     1.816  0.0116
+SOP         CA1         CA2      SINGLE       n     1.502  0.0114     1.502  0.0114
+SOP         CA2         OA1      DOUBLE       n     1.209  0.0200     1.209  0.0200
+SOP         CA2         CA3      SINGLE       n     1.483  0.0200     1.483  0.0200
+SOP          N6        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+SOP          N6        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+SOP          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+SOP          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+SOP       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+SOP       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+SOP       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+SOP       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.985  0.0119
+SOP       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+SOP       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+SOP       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+SOP         CP9        HP91      SINGLE       n     1.089  0.0100     0.978  0.0102
+SOP         CP9        HP92      SINGLE       n     1.089  0.0100     0.978  0.0102
+SOP         CPB        HPB1      SINGLE       n     1.089  0.0100     0.973  0.0146
+SOP         CPB        HPB2      SINGLE       n     1.089  0.0100     0.973  0.0146
+SOP         CPB        HPB3      SINGLE       n     1.089  0.0100     0.973  0.0146
+SOP         CPA        HPA1      SINGLE       n     1.089  0.0100     0.973  0.0146
+SOP         CPA        HPA2      SINGLE       n     1.089  0.0100     0.973  0.0146
+SOP         CPA        HPA3      SINGLE       n     1.089  0.0100     0.973  0.0146
+SOP         CP7         HP7      SINGLE       n     1.089  0.0100     0.988  0.0129
+SOP         OP3        HOP3      SINGLE       n     0.970  0.0120     0.848  0.0200
+SOP         NP2        HNP2      SINGLE       n     1.016  0.0100     0.872  0.0200
+SOP         CP5        HP51      SINGLE       n     1.089  0.0100     0.980  0.0159
+SOP         CP5        HP52      SINGLE       n     1.089  0.0100     0.980  0.0159
+SOP         CP4        HP41      SINGLE       n     1.089  0.0100     0.973  0.0156
+SOP         CP4        HP42      SINGLE       n     1.089  0.0100     0.973  0.0156
+SOP         NP1        HNP1      SINGLE       n     1.016  0.0100     0.872  0.0200
+SOP         CP2        HP21      SINGLE       n     1.089  0.0100     0.981  0.0127
+SOP         CP2        HP22      SINGLE       n     1.089  0.0100     0.981  0.0127
+SOP         CP1        HP11      SINGLE       n     1.089  0.0100     0.983  0.0124
+SOP         CP1        HP12      SINGLE       n     1.089  0.0100     0.983  0.0124
+SOP         CA1        HA11      SINGLE       n     1.089  0.0100     0.974  0.0194
+SOP         CA1        HA12      SINGLE       n     1.089  0.0100     0.974  0.0194
+SOP         CA3        HA31      SINGLE       n     1.089  0.0100     0.971  0.0145
+SOP         CA3        HA32      SINGLE       n     1.089  0.0100     0.971  0.0145
+SOP         CA3        HA33      SINGLE       n     1.089  0.0100     0.971  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SOP          C6          N6        HN61     119.723    1.50
+SOP          C6          N6        HN62     119.723    1.50
+SOP        HN61          N6        HN62     120.554    1.88
+SOP          N6          C6          N1     118.799    1.50
+SOP          N6          C6          C5     123.792    1.50
+SOP          N1          C6          C5     117.409    1.50
+SOP          C6          N1          C2     118.521    1.50
+SOP          N1          C2          N3     129.332    1.50
+SOP          N1          C2          H2     115.313    1.50
+SOP          N3          C2          H2     115.355    1.50
+SOP          C2          N3          C4     110.982    1.50
+SOP          N3          C4          C5     126.489    1.50
+SOP          N3          C4          N9     125.845    1.50
+SOP          C5          C4          N9     107.666    1.69
+SOP          C6          C5          C4     117.267    1.50
+SOP          C6          C5          N7     132.145    1.50
+SOP          C4          C5          N7     110.588    1.50
+SOP          C5          N7          C8     103.927    1.50
+SOP          N7          C8          N9     112.130    1.94
+SOP          N7          C8          H8     123.170    1.50
+SOP          N9          C8          H8     124.701    2.19
+SOP          C4          N9          C8     107.594    1.50
+SOP          C4          N9       "C1'"     125.158    1.54
+SOP          C8          N9       "C1'"     126.078    2.46
+SOP          N9       "C1'"       "O4'"     108.167    1.51
+SOP          N9       "C1'"       "C2'"     113.752    2.20
+SOP          N9       "C1'"       "H1'"     109.246    1.50
+SOP       "O4'"       "C1'"       "C2'"     106.047    1.50
+SOP       "O4'"       "C1'"       "H1'"     109.807    1.50
+SOP       "C2'"       "C1'"       "H1'"     109.015    1.50
+SOP       "C1'"       "O4'"       "C4'"     109.903    1.50
+SOP       "C1'"       "C2'"       "O2'"     111.715    2.69
+SOP       "C1'"       "C2'"       "C3'"     101.388    1.50
+SOP       "C1'"       "C2'"       "H2'"     110.636    1.70
+SOP       "O2'"       "C2'"       "C3'"     112.463    2.73
+SOP       "O2'"       "C2'"       "H2'"     110.448    1.97
+SOP       "C3'"       "C2'"       "H2'"     110.255    2.04
+SOP       "C2'"       "O2'"      "HO2'"     109.103    2.13
+SOP       "C2'"       "C3'"       "O3'"     110.766    3.00
+SOP       "C2'"       "C3'"       "C4'"     102.352    1.50
+SOP       "C2'"       "C3'"       "H3'"     110.255    2.04
+SOP       "O3'"       "C3'"       "C4'"     110.864    2.31
+SOP       "O3'"       "C3'"       "H3'"     110.343    1.64
+SOP       "C4'"       "C3'"       "H3'"     110.624    1.81
+SOP       "C3'"       "O3'"          P3     109.471    3.00
+SOP       "O3'"          P3         O32     106.518    3.00
+SOP       "O3'"          P3         O33     106.518    3.00
+SOP       "O3'"          P3         O31     106.518    3.00
+SOP         O32          P3         O33     112.139    1.52
+SOP         O32          P3         O31     112.139    1.52
+SOP         O33          P3         O31     112.139    1.52
+SOP       "O4'"       "C4'"       "C3'"     105.508    1.50
+SOP       "O4'"       "C4'"       "C5'"     109.123    1.50
+SOP       "O4'"       "C4'"       "H4'"     108.947    1.50
+SOP       "C3'"       "C4'"       "C5'"     114.866    1.63
+SOP       "C3'"       "C4'"       "H4'"     109.143    1.50
+SOP       "C5'"       "C4'"       "H4'"     108.268    1.50
+SOP       "C4'"       "C5'"       "O5'"     109.342    1.50
+SOP       "C4'"       "C5'"      "H5'1"     109.624    1.50
+SOP       "C4'"       "C5'"      "H5'2"     109.624    1.50
+SOP       "O5'"       "C5'"      "H5'1"     109.845    1.50
+SOP       "O5'"       "C5'"      "H5'2"     109.845    1.50
+SOP      "H5'1"       "C5'"      "H5'2"     108.472    1.50
+SOP       "C5'"       "O5'"          P1     118.553    2.41
+SOP       "O5'"          P1         O11     109.410    1.50
+SOP       "O5'"          P1         O12     109.410    1.50
+SOP       "O5'"          P1          O6     101.065    1.97
+SOP         O11          P1         O12     118.411    2.35
+SOP         O11          P1          O6     108.816    2.14
+SOP         O12          P1          O6     108.816    2.14
+SOP          P1          O6          P2     132.542    3.00
+SOP          O6          P2         O21     108.816    2.14
+SOP          O6          P2         O22     108.816    2.14
+SOP          O6          P2          O7     101.065    1.97
+SOP         O21          P2         O22     118.411    2.35
+SOP         O21          P2          O7     107.912    2.57
+SOP         O22          P2          O7     107.912    2.57
+SOP          P2          O7         CP9     119.251    1.51
+SOP          O7         CP9         CP8     108.435    1.69
+SOP          O7         CP9        HP91     109.739    1.50
+SOP          O7         CP9        HP92     109.739    1.50
+SOP         CP8         CP9        HP91     109.473    1.50
+SOP         CP8         CP9        HP92     109.473    1.50
+SOP        HP91         CP9        HP92     108.108    1.50
+SOP         CP9         CP8         CPB     109.385    1.50
+SOP         CP9         CP8         CPA     109.385    1.50
+SOP         CP9         CP8         CP7     111.094    2.85
+SOP         CPB         CP8         CPA     108.765    1.50
+SOP         CPB         CP8         CP7     109.534    1.52
+SOP         CPA         CP8         CP7     109.534    1.52
+SOP         CP8         CPB        HPB1     109.575    1.50
+SOP         CP8         CPB        HPB2     109.575    1.50
+SOP         CP8         CPB        HPB3     109.575    1.50
+SOP        HPB1         CPB        HPB2     109.377    1.50
+SOP        HPB1         CPB        HPB3     109.377    1.50
+SOP        HPB2         CPB        HPB3     109.377    1.50
+SOP         CP8         CPA        HPA1     109.575    1.50
+SOP         CP8         CPA        HPA2     109.575    1.50
+SOP         CP8         CPA        HPA3     109.575    1.50
+SOP        HPA1         CPA        HPA2     109.377    1.50
+SOP        HPA1         CPA        HPA3     109.377    1.50
+SOP        HPA2         CPA        HPA3     109.377    1.50
+SOP         CP8         CP7         OP3     109.482    3.00
+SOP         CP8         CP7         CP6     111.511    2.91
+SOP         CP8         CP7         HP7     107.825    1.50
+SOP         OP3         CP7         CP6     109.850    1.55
+SOP         OP3         CP7         HP7     108.675    1.50
+SOP         CP6         CP7         HP7     108.529    1.70
+SOP         CP7         OP3        HOP3     108.894    3.00
+SOP         CP7         CP6         OP2     119.859    1.78
+SOP         CP7         CP6         NP2     117.147    1.50
+SOP         OP2         CP6         NP2     122.977    1.50
+SOP         CP6         NP2         CP5     122.964    1.80
+SOP         CP6         NP2        HNP2     118.685    1.94
+SOP         CP5         NP2        HNP2     118.351    1.90
+SOP         NP2         CP5         CP4     112.257    1.50
+SOP         NP2         CP5        HP51     108.979    1.50
+SOP         NP2         CP5        HP52     108.979    1.50
+SOP         CP4         CP5        HP51     108.971    1.50
+SOP         CP4         CP5        HP52     108.971    1.50
+SOP        HP51         CP5        HP52     107.877    1.50
+SOP         CP5         CP4         CP3     112.120    2.79
+SOP         CP5         CP4        HP41     109.432    1.50
+SOP         CP5         CP4        HP42     109.432    1.50
+SOP         CP3         CP4        HP41     108.945    1.50
+SOP         CP3         CP4        HP42     108.945    1.50
+SOP        HP41         CP4        HP42     107.745    2.07
+SOP         CP4         CP3         OP1     120.987    1.50
+SOP         CP4         CP3         NP1     117.070    1.96
+SOP         OP1         CP3         NP1     121.943    1.50
+SOP         CP3         NP1         CP2     123.437    1.80
+SOP         CP3         NP1        HNP1     117.862    2.10
+SOP         CP2         NP1        HNP1     118.700    1.83
+SOP         NP1         CP2         CP1     112.117    1.54
+SOP         NP1         CP2        HP21     109.102    1.50
+SOP         NP1         CP2        HP22     109.102    1.50
+SOP         CP1         CP2        HP21     109.038    1.50
+SOP         CP1         CP2        HP22     109.038    1.50
+SOP        HP21         CP2        HP22     107.995    1.50
+SOP         CP2         CP1           S     113.178    2.37
+SOP         CP2         CP1        HP11     108.964    1.50
+SOP         CP2         CP1        HP12     108.964    1.50
+SOP           S         CP1        HP11     108.905    1.50
+SOP           S         CP1        HP12     108.905    1.50
+SOP        HP11         CP1        HP12     107.807    1.50
+SOP         CP1           S         CA1     101.660    1.50
+SOP           S         CA1         CA2     111.968    3.00
+SOP           S         CA1        HA11     108.570    1.78
+SOP           S         CA1        HA12     108.570    1.78
+SOP         CA2         CA1        HA11     108.328    1.50
+SOP         CA2         CA1        HA12     108.328    1.50
+SOP        HA11         CA1        HA12     108.193    1.80
+SOP         CA1         CA2         OA1     120.942    1.66
+SOP         CA1         CA2         CA3     117.132    2.45
+SOP         OA1         CA2         CA3     121.926    1.81
+SOP         CA2         CA3        HA31     109.479    1.50
+SOP         CA2         CA3        HA32     109.479    1.50
+SOP         CA2         CA3        HA33     109.479    1.50
+SOP        HA31         CA3        HA32     109.400    1.50
+SOP        HA31         CA3        HA33     109.400    1.50
+SOP        HA32         CA3        HA33     109.400    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SOP             sp2_sp2_3          N1          C6          N6        HN61       0.000     5.0     2
+SOP             sp3_sp3_2          N9       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+SOP            sp3_sp3_29          N9       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+SOP             sp3_sp3_5       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+SOP            sp3_sp3_34       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+SOP            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+SOP            sp3_sp3_37       "C2'"       "C3'"       "O3'"          P3     180.000    10.0     3
+SOP            sp3_sp3_11       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+SOP            sp3_sp3_41       "C3'"       "O3'"          P3         O32     -60.000    10.0     3
+SOP       const_sp2_sp2_2          N6          C6          N1          C2     180.000     5.0     2
+SOP              const_22          C4          C5          C6          N6     180.000    10.0     2
+SOP            sp3_sp3_43       "O4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+SOP            sp3_sp3_52       "C4'"       "C5'"       "O5'"          P1     180.000    10.0     3
+SOP            sp3_sp3_56       "C5'"       "O5'"          P1         O11     -60.000    10.0     3
+SOP            sp3_sp3_59          P2          O6          P1       "O5'"     -60.000    10.0     3
+SOP            sp3_sp3_61          P1          O6          P2         O21     180.000    10.0     3
+SOP            sp3_sp3_64         CP9          O7          P2          O6     180.000    10.0     3
+SOP       const_sp2_sp2_3          N3          C2          N1          C6       0.000     5.0     2
+SOP            sp3_sp3_67         CP8         CP9          O7          P2     180.000    10.0     3
+SOP            sp3_sp3_73         CPB         CP8         CP9          O7      60.000    10.0     3
+SOP            sp3_sp3_79         CP9         CP8         CPB        HPB1     180.000    10.0     3
+SOP            sp3_sp3_91         CP9         CP8         CPA        HPA1      60.000    10.0     3
+SOP            sp3_sp3_98         OP3         CP7         CP8         CP9     -60.000    10.0     3
+SOP           sp3_sp3_106         CP8         CP7         OP3        HOP3     180.000    10.0     3
+SOP             sp2_sp3_7         OP2         CP6         CP7         CP8       0.000    10.0     6
+SOP             sp2_sp2_5         CP7         CP6         NP2         CP5     180.000     5.0     2
+SOP            sp2_sp3_14         CP6         NP2         CP5         CP4     120.000    10.0     6
+SOP       const_sp2_sp2_5          N1          C2          N3          C4       0.000     5.0     2
+SOP           sp3_sp3_109         CP3         CP4         CP5         NP2     180.000    10.0     3
+SOP            sp2_sp3_20         OP1         CP3         CP4         CP5     120.000    10.0     6
+SOP             sp2_sp2_9         CP4         CP3         NP1         CP2     180.000     5.0     2
+SOP            sp2_sp3_26         CP3         NP1         CP2         CP1     120.000    10.0     6
+SOP           sp3_sp3_118           S         CP1         CP2         NP1     180.000    10.0     3
+SOP           sp3_sp3_127         CP2         CP1           S         CA1     180.000    10.0     3
+SOP           sp3_sp3_130         CA2         CA1           S         CP1     180.000    10.0     3
+SOP            sp2_sp3_32         OA1         CA2         CA1           S     120.000    10.0     6
+SOP            sp2_sp3_37         CA1         CA2         CA3        HA31       0.000    10.0     6
+SOP       const_sp2_sp2_7          C5          C4          N3          C2       0.000     5.0     2
+SOP       const_sp2_sp2_9          N3          C4          C5          C6       0.000     5.0     2
+SOP              const_27          N3          C4          N9          C8     180.000    10.0     2
+SOP              const_14          C6          C5          N7          C8     180.000    10.0     2
+SOP              const_15          N9          C8          N7          C5       0.000    10.0     2
+SOP              const_17          N7          C8          N9          C4       0.000    10.0     2
+SOP             sp2_sp3_1          C4          N9       "C1'"       "O4'"     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SOP    chir_1    "C1'"    "O4'"    N9    "C2'"    negative
+SOP    chir_2    "C2'"    "O2'"    "C1'"    "C3'"    negative
+SOP    chir_3    "C3'"    "O3'"    "C4'"    "C2'"    positive
+SOP    chir_4    P3    "O3'"    O32    O33    both
+SOP    chir_5    "C4'"    "O4'"    "C3'"    "C5'"    negative
+SOP    chir_6    P1    O6    "O5'"    O11    both
+SOP    chir_7    P2    O6    O7    O21    both
+SOP    chir_8    CP8    CP7    CP9    CPB    both
+SOP    chir_9    CP7    OP3    CP6    CP8    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SOP    plan-1       "C1'"   0.020
+SOP    plan-1          C2   0.020
+SOP    plan-1          C4   0.020
+SOP    plan-1          C5   0.020
+SOP    plan-1          C6   0.020
+SOP    plan-1          C8   0.020
+SOP    plan-1          H2   0.020
+SOP    plan-1          H8   0.020
+SOP    plan-1          N1   0.020
+SOP    plan-1          N3   0.020
+SOP    plan-1          N6   0.020
+SOP    plan-1          N7   0.020
+SOP    plan-1          N9   0.020
+SOP    plan-2          C6   0.020
+SOP    plan-2        HN61   0.020
+SOP    plan-2        HN62   0.020
+SOP    plan-2          N6   0.020
+SOP    plan-3         CP6   0.020
+SOP    plan-3         CP7   0.020
+SOP    plan-3         NP2   0.020
+SOP    plan-3         OP2   0.020
+SOP    plan-4         CP5   0.020
+SOP    plan-4         CP6   0.020
+SOP    plan-4        HNP2   0.020
+SOP    plan-4         NP2   0.020
+SOP    plan-5         CP3   0.020
+SOP    plan-5         CP4   0.020
+SOP    plan-5         NP1   0.020
+SOP    plan-5         OP1   0.020
+SOP    plan-6         CP2   0.020
+SOP    plan-6         CP3   0.020
+SOP    plan-6        HNP1   0.020
+SOP    plan-6         NP1   0.020
+SOP    plan-7         CA1   0.020
+SOP    plan-7         CA2   0.020
+SOP    plan-7         CA3   0.020
+SOP    plan-7         OA1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SOP           SMILES              ACDLabs 10.04                                                                                                                                                                                                                        O=C(C)CSCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(=O)(O)OP(=O)(O)OCC3OC(n2cnc1c(ncnc12)N)C(O)C3OP(=O)(O)O
+SOP SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                         CC(=O)CSCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)CO[P@@](O)(=O)O[P@@](O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O[P](O)(O)=O)n2cnc3c(N)ncnc23
+SOP           SMILES               CACTVS 3.341                                                                                                                                                                                                   CC(=O)CSCCNC(=O)CCNC(=O)[CH](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O[P](O)(O)=O)n2cnc3c(N)ncnc23
+SOP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                           CC(=O)CSCCNC(=O)CCNC(=O)[C@@H](C(C)(C)CO[P@](=O)(O)O[P@](=O)(O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O
+SOP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                        CC(=O)CSCCNC(=O)CCNC(=O)C(C(C)(C)COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O
+SOP            InChI                InChI  1.03 InChI=1S/C24H40N7O17P3S/c1-13(32)9-52-7-6-26-15(33)4-5-27-22(36)19(35)24(2,3)10-45-51(42,43)48-50(40,41)44-8-14-18(47-49(37,38)39)17(34)23(46-14)31-12-30-16-20(25)28-11-29-21(16)31/h11-12,14,17-19,23,34-35H,4-10H2,1-3H3,(H,26,33)(H,27,36)(H,40,41)(H,42,43)(H2,25,28,29)(H2,37,38,39)/t14-,17-,18-,19+,23-/m1/s1
+SOP         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                           GAMKENBUYYJLCQ-NDZSKPAWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SOP acedrg               243         "dictionary generator"                  
+SOP acedrg_database      11          "data source"                           
+SOP rdkit                2017.03.2   "Chemoinformatics tool"
+SOP refmac5              5.8.0238    "optimization tool"                     

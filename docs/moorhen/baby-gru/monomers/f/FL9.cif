@@ -1,0 +1,249 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FL9     FL9      "3',5'-DIBROMO-2',4,4',6'-TETRAHYDROXY AURONE"     NON-POLYMER     31     23     .     
+#
+data_comp_FL9
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FL9     C2      C       CR5     0       21.600      43.214      27.002      
+FL9     C3      C       CR5     0       21.736      43.152      28.405      
+FL9     C3A     C       CR56    0       20.728      44.075      28.932      
+FL9     C4      C       CR6     0       20.363      44.492      30.218      
+FL9     C5      C       CR16    0       19.326      45.415      30.354      
+FL9     C6      C       CR6     0       18.667      45.909      29.219      
+FL9     C7      C       CR16    0       19.027      45.497      27.937      
+FL9     C7A     C       CR56    0       20.053      44.588      27.826      
+FL9     C21     C       C1      0       22.330      42.576      26.074      
+FL9     "C1'"   C       CR6     0       22.286      42.646      24.620      
+FL9     "C2'"   C       CR6     0       22.257      41.482      23.822      
+FL9     "C3'"   C       CR6     0       22.214      41.605      22.426      
+FL9     "C4'"   C       CR6     0       22.199      42.861      21.803      
+FL9     "C5'"   C       CR6     0       22.228      43.998      22.622      
+FL9     "C6'"   C       CR16    0       22.272      43.902      23.997      
+FL9     BR1     BR      BR      0       22.176      40.048      21.361      
+FL9     BR2     BR      BR      0       22.209      45.706      21.811      
+FL9     O1      O       O2      0       20.558      44.056      26.659      
+FL9     O3      O       O       0       22.537      42.476      29.034      
+FL9     O4      O       OH1     0       21.024      43.994      31.315      
+FL9     O6      O       OH1     0       17.648      46.817      29.383      
+FL9     "O2'"   O       OH1     0       22.271      40.235      24.404      
+FL9     "O4'"   O       OH1     0       22.157      42.972      20.433      
+FL9     H5      H       H       0       19.068      45.705      31.214      
+FL9     H7      H       H       0       18.575      45.837      27.171      
+FL9     H21     H       H       0       22.977      41.984      26.425      
+FL9     "H6'"   H       H       0       22.290      44.683      24.517      
+FL9     HO4     H       H       0       20.650      44.018      32.091      
+FL9     HO6     H       H       0       17.326      47.241      28.705      
+FL9     "HO2'"  H       H       0       22.974      39.741      24.346      
+FL9     "HO4'"  H       H       0       22.818      43.324      20.009      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FL9          C2          C3      SINGLE       n     1.399  0.0200     1.399  0.0200
+FL9          C2         C21      DOUBLE       n     1.342  0.0100     1.342  0.0100
+FL9          C2          O1      SINGLE       n     1.373  0.0200     1.373  0.0200
+FL9          C3         C3A      SINGLE       n     1.466  0.0100     1.466  0.0100
+FL9          C3          O3      DOUBLE       n     1.222  0.0100     1.222  0.0100
+FL9         C3A          C4      SINGLE       y     1.397  0.0107     1.397  0.0107
+FL9         C3A         C7A      DOUBLE       y     1.393  0.0200     1.393  0.0200
+FL9          C4          C5      DOUBLE       y     1.389  0.0130     1.389  0.0130
+FL9          C4          O4      SINGLE       n     1.374  0.0155     1.374  0.0155
+FL9          C5          C6      SINGLE       y     1.398  0.0100     1.398  0.0100
+FL9          C6          C7      DOUBLE       y     1.389  0.0100     1.389  0.0100
+FL9          C6          O6      SINGLE       n     1.374  0.0155     1.374  0.0155
+FL9          C7         C7A      SINGLE       y     1.372  0.0100     1.372  0.0100
+FL9         C7A          O1      SINGLE       n     1.380  0.0100     1.380  0.0100
+FL9         C21       "C1'"      SINGLE       n     1.455  0.0100     1.455  0.0100
+FL9       "C1'"       "C2'"      DOUBLE       y     1.405  0.0115     1.405  0.0115
+FL9       "C1'"       "C6'"      SINGLE       y     1.398  0.0100     1.398  0.0100
+FL9       "C2'"       "C3'"      SINGLE       y     1.394  0.0122     1.394  0.0122
+FL9       "C2'"       "O2'"      SINGLE       n     1.374  0.0155     1.374  0.0155
+FL9       "C3'"       "C4'"      DOUBLE       y     1.395  0.0129     1.395  0.0129
+FL9       "C3'"         BR1      SINGLE       n     1.886  0.0100     1.886  0.0100
+FL9       "C4'"       "C5'"      SINGLE       y     1.396  0.0134     1.396  0.0134
+FL9       "C4'"       "O4'"      SINGLE       n     1.374  0.0155     1.374  0.0155
+FL9       "C5'"       "C6'"      DOUBLE       y     1.377  0.0100     1.377  0.0100
+FL9       "C5'"         BR2      SINGLE       n     1.891  0.0108     1.891  0.0108
+FL9          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0200
+FL9          C7          H7      SINGLE       n     1.082  0.0130     0.952  0.0177
+FL9         C21         H21      SINGLE       n     1.082  0.0130     0.944  0.0109
+FL9       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.938  0.0122
+FL9          O4         HO4      SINGLE       n     0.966  0.0059     0.861  0.0200
+FL9          O6         HO6      SINGLE       n     0.966  0.0059     0.861  0.0200
+FL9       "O2'"      "HO2'"      SINGLE       n     0.966  0.0059     0.861  0.0200
+FL9       "O4'"      "HO4'"      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FL9          C3          C2         C21     127.687    3.00
+FL9          C3          C2          O1     109.289    1.50
+FL9         C21          C2          O1     123.024    3.00
+FL9          C2          C3         C3A     105.032    1.50
+FL9          C2          C3          O3     126.784    1.50
+FL9         C3A          C3          O3     128.183    2.58
+FL9          C3         C3A          C4     132.871    3.00
+FL9          C3         C3A         C7A     107.262    1.50
+FL9          C4         C3A         C7A     119.867    1.50
+FL9         C3A          C4          C5     118.981    1.52
+FL9         C3A          C4          O4     119.960    3.00
+FL9          C5          C4          O4     121.059    3.00
+FL9          C4          C5          C6     120.191    1.50
+FL9          C4          C5          H5     119.739    1.50
+FL9          C6          C5          H5     120.070    1.50
+FL9          C5          C6          C7     121.148    1.50
+FL9          C5          C6          O6     119.426    3.00
+FL9          C7          C6          O6     119.426    3.00
+FL9          C6          C7         C7A     117.215    1.50
+FL9          C6          C7          H7     121.006    1.50
+FL9         C7A          C7          H7     121.779    1.50
+FL9         C3A         C7A          C7     122.598    1.50
+FL9         C3A         C7A          O1     111.424    1.50
+FL9          C7         C7A          O1     125.978    2.12
+FL9          C2         C21       "C1'"     130.657    1.50
+FL9          C2         C21         H21     114.274    1.50
+FL9       "C1'"         C21         H21     115.069    1.50
+FL9         C21       "C1'"       "C2'"     120.961    3.00
+FL9         C21       "C1'"       "C6'"     120.269    2.98
+FL9       "C2'"       "C1'"       "C6'"     118.770    1.50
+FL9       "C1'"       "C2'"       "C3'"     118.933    1.50
+FL9       "C1'"       "C2'"       "O2'"     120.533    3.00
+FL9       "C3'"       "C2'"       "O2'"     120.533    3.00
+FL9       "C2'"       "C3'"       "C4'"     121.263    1.50
+FL9       "C2'"       "C3'"         BR1     119.368    1.50
+FL9       "C4'"       "C3'"         BR1     119.368    1.50
+FL9       "C3'"       "C4'"       "C5'"     118.379    2.02
+FL9       "C3'"       "C4'"       "O4'"     120.810    3.00
+FL9       "C5'"       "C4'"       "O4'"     120.810    3.00
+FL9       "C4'"       "C5'"       "C6'"     122.291    1.50
+FL9       "C4'"       "C5'"         BR2     118.418    1.50
+FL9       "C6'"       "C5'"         BR2     119.291    1.50
+FL9       "C1'"       "C6'"       "C5'"     120.364    1.50
+FL9       "C1'"       "C6'"       "H6'"     119.902    1.50
+FL9       "C5'"       "C6'"       "H6'"     119.734    1.50
+FL9          C2          O1         C7A     106.993    1.50
+FL9          C4          O4         HO4     120.000    3.00
+FL9          C6          O6         HO6     120.000    3.00
+FL9       "C2'"       "O2'"      "HO2'"     120.000    3.00
+FL9       "C4'"       "O4'"      "HO4'"     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FL9             sp2_sp2_4         C21          C2          C3          O3       0.000     5.0     2
+FL9            sp2_sp2_16         C21          C2          O1         C7A     180.000     5.0     2
+FL9            sp2_sp2_11          C3          C2         C21       "C1'"     180.000     5.0     2
+FL9       const_sp2_sp2_8       "O2'"       "C2'"       "C3'"         BR1       0.000     5.0     2
+FL9            sp2_sp2_25       "C1'"       "C2'"       "O2'"      "HO2'"     180.000     5.0     2
+FL9              const_12         BR1       "C3'"       "C4'"       "O4'"       0.000    10.0     2
+FL9              const_16       "O4'"       "C4'"       "C5'"         BR2       0.000    10.0     2
+FL9            sp2_sp2_27       "C3'"       "C4'"       "O4'"      "HO4'"     180.000     5.0     2
+FL9              const_19         BR2       "C5'"       "C6'"       "C1'"     180.000    10.0     2
+FL9             sp2_sp2_8          O3          C3         C3A          C4       0.000     5.0     2
+FL9              const_28          C3         C3A          C4          O4       0.000    10.0     2
+FL9              const_22          C3         C3A         C7A          C7     180.000    10.0     2
+FL9            sp2_sp2_17         C3A          C4          O4         HO4     180.000     5.0     2
+FL9              const_31          O4          C4          C5          C6     180.000    10.0     2
+FL9              const_34          C4          C5          C6          O6     180.000    10.0     2
+FL9            sp2_sp2_19          C5          C6          O6         HO6     180.000     5.0     2
+FL9              const_39          O6          C6          C7         C7A     180.000    10.0     2
+FL9              const_41          C6          C7         C7A         C3A       0.000    10.0     2
+FL9             sp2_sp2_9         C3A         C7A          O1          C2       0.000     5.0     2
+FL9            sp2_sp2_21       "C2'"       "C1'"         C21          C2     180.000     5.0     2
+FL9       const_sp2_sp2_4         C21       "C1'"       "C2'"       "O2'"       0.000     5.0     2
+FL9              const_47         C21       "C1'"       "C6'"       "C5'"     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FL9    plan-1         BR1   0.020
+FL9    plan-1         BR2   0.020
+FL9    plan-1       "C1'"   0.020
+FL9    plan-1       "C2'"   0.020
+FL9    plan-1         C21   0.020
+FL9    plan-1       "C3'"   0.020
+FL9    plan-1       "C4'"   0.020
+FL9    plan-1       "C5'"   0.020
+FL9    plan-1       "C6'"   0.020
+FL9    plan-1       "H6'"   0.020
+FL9    plan-1       "O2'"   0.020
+FL9    plan-1       "O4'"   0.020
+FL9    plan-2          C3   0.020
+FL9    plan-2         C3A   0.020
+FL9    plan-2          C4   0.020
+FL9    plan-2          C5   0.020
+FL9    plan-2          C6   0.020
+FL9    plan-2          C7   0.020
+FL9    plan-2         C7A   0.020
+FL9    plan-2          H5   0.020
+FL9    plan-2          H7   0.020
+FL9    plan-2          O1   0.020
+FL9    plan-2          O4   0.020
+FL9    plan-2          O6   0.020
+FL9    plan-3          C2   0.020
+FL9    plan-3         C21   0.020
+FL9    plan-3          C3   0.020
+FL9    plan-3          O1   0.020
+FL9    plan-4          C2   0.020
+FL9    plan-4          C3   0.020
+FL9    plan-4         C3A   0.020
+FL9    plan-4          O3   0.020
+FL9    plan-5       "C1'"   0.020
+FL9    plan-5          C2   0.020
+FL9    plan-5         C21   0.020
+FL9    plan-5         H21   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FL9           SMILES              ACDLabs 10.04                                                               Brc1cc(c(O)c(Br)c1O)\C=C3/Oc2cc(O)cc(O)c2C3=O
+FL9 SMILES_CANONICAL               CACTVS 3.341                                                             Oc1cc(O)c2C(=O)\C(Oc2c1)=C\c3cc(Br)c(O)c(Br)c3O
+FL9           SMILES               CACTVS 3.341                                                               Oc1cc(O)c2C(=O)C(Oc2c1)=Cc3cc(Br)c(O)c(Br)c3O
+FL9 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                             c1c(cc2c(c1O)C(=O)C(=Cc3cc(c(c(c3O)Br)O)Br)O2)O
+FL9           SMILES "OpenEye OEToolkits" 1.5.0                                                             c1c(cc2c(c1O)C(=O)C(=Cc3cc(c(c(c3O)Br)O)Br)O2)O
+FL9            InChI                InChI  1.03 InChI=1S/C15H8Br2O6/c16-7-1-5(13(20)12(17)14(7)21)2-10-15(22)11-8(19)3-6(18)4-9(11)23-10/h1-4,18-21H/b10-2-
+FL9         InChIKey                InChI  1.03                                                                                 BRPKBUNFOZFULQ-SGAXSIHGSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FL9 acedrg               243         "dictionary generator"                  
+FL9 acedrg_database      11          "data source"                           
+FL9 rdkit                2017.03.2   "Chemoinformatics tool"
+FL9 refmac5              5.8.0238    "optimization tool"                     

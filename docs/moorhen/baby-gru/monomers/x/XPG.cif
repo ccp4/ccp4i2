@@ -1,0 +1,353 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XPG     XPG      "7-[(1R,3R)-3-hydroxy-2-[(1E,3S)-3-hydroxyoct-1-en-1-yl]-5-oxocyclopentyl]heptanoic acid"     NON-POLYMER     58     25     .     
+#
+data_comp_XPG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XPG     C20     C       CH3     0       6.277       -13.461     32.550      
+XPG     C19     C       CH2     0       7.674       -12.907     32.696      
+XPG     C18     C       CH2     0       8.507       -13.033     31.447      
+XPG     C17     C       CH2     0       9.944       -12.602     31.613      
+XPG     C16     C       CH2     0       10.140      -11.093     31.714      
+XPG     C15     C       CH1     0       11.594      -10.636     31.812      
+XPG     O15     O       OH1     0       12.325      -11.114     30.675      
+XPG     C14     C       C1      0       12.263      -11.103     33.073      
+XPG     C13     C       C1      0       12.488      -10.374     34.143      
+XPG     C12     C       CH1     0       13.200      -10.792     35.392      
+XPG     C11     C       CH1     0       14.660      -11.193     35.132      
+XPG     O11     O       OH1     0       14.711      -12.514     34.620      
+XPG     C10     C       CH2     0       15.293      -11.138     36.516      
+XPG     C9      C       CR5     0       14.580      -10.016     37.218      
+XPG     O9      O       O       0       14.963      -9.454      38.218      
+XPG     C8      C       CH1     0       13.304      -9.680      36.456      
+XPG     C7      C       CH2     0       12.081      -9.448      37.362      
+XPG     C6      C       CH2     0       11.325      -10.671     37.891      
+XPG     C5      C       CH2     0       12.073      -11.665     38.753      
+XPG     C4      C       CH2     0       12.533      -11.118     40.084      
+XPG     C3      C       CH2     0       13.339      -12.099     40.919      
+XPG     C2      C       CH2     0       13.824      -11.504     42.206      
+XPG     C1      C       C       0       12.766      -11.389     43.292      
+XPG     O1A     O       OC      -1      12.280      -12.440     43.753      
+XPG     O1B     O       O       0       12.431      -10.249     43.673      
+XPG     H1      H       H       0       5.793       -13.349     33.387      
+XPG     H2      H       H       0       6.323       -14.407     32.327      
+XPG     H3      H       H       0       5.810       -12.984     31.842      
+XPG     H4      H       H       0       8.128       -13.380     33.427      
+XPG     H5      H       H       0       7.616       -11.959     32.943      
+XPG     H6      H       H       0       8.096       -12.491     30.740      
+XPG     H7      H       H       0       8.491       -13.968     31.152      
+XPG     H8      H       H       0       10.459      -12.938     30.849      
+XPG     H9      H       H       0       10.304      -13.022     32.422      
+XPG     H10     H       H       0       9.657       -10.769     32.502      
+XPG     H11     H       H       0       9.733       -10.673     30.928      
+XPG     H12     H       H       0       11.605      -9.644      31.800      
+XPG     H13     H       H       0       13.066      -10.704     30.633      
+XPG     H14     H       H       0       12.544      -12.004     33.098      
+XPG     H15     H       H       0       12.162      -9.484      34.126      
+XPG     H16     H       H       0       12.741      -11.576     35.775      
+XPG     H17     H       H       0       15.095      -10.560     34.515      
+XPG     H18     H       H       0       15.517      -12.746     34.486      
+XPG     H19     H       H       0       16.251      -10.949     36.458      
+XPG     H20     H       H       0       15.162      -11.979     36.997      
+XPG     H21     H       H       0       13.482      -8.827      35.987      
+XPG     H22     H       H       0       11.438      -8.899      36.865      
+XPG     H23     H       H       0       12.368      -8.919      38.136      
+XPG     H24     H       H       0       10.952      -11.150     37.122      
+XPG     H25     H       H       0       10.564      -10.338     38.413      
+XPG     H26     H       H       0       12.853      -11.991     38.257      
+XPG     H27     H       H       0       11.488      -12.435     38.918      
+XPG     H28     H       H       0       11.745      -10.841     40.598      
+XPG     H29     H       H       0       13.079      -10.319     39.925      
+XPG     H30     H       H       0       14.109      -12.403     40.394      
+XPG     H31     H       H       0       12.782      -12.881     41.113      
+XPG     H32     H       H       0       14.183      -10.609     42.026      
+XPG     H33     H       H       0       14.560      -12.053     42.550      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XPG         C15         O15      SINGLE       n     1.433  0.0103     1.433  0.0103
+XPG         C18         C17      SINGLE       n     1.509  0.0200     1.509  0.0200
+XPG         C19         C18      SINGLE       n     1.507  0.0200     1.507  0.0200
+XPG         C20         C19      SINGLE       n     1.510  0.0200     1.510  0.0200
+XPG         C17         C16      SINGLE       n     1.523  0.0117     1.523  0.0117
+XPG         C16         C15      SINGLE       n     1.525  0.0100     1.525  0.0100
+XPG         C15         C14      SINGLE       n     1.501  0.0100     1.501  0.0100
+XPG         C14         C13      DOUBLE       n     1.314  0.0139     1.314  0.0139
+XPG         C13         C12      SINGLE       n     1.496  0.0100     1.496  0.0100
+XPG         C11         O11      SINGLE       n     1.418  0.0100     1.418  0.0100
+XPG         C12         C11      SINGLE       n     1.538  0.0153     1.538  0.0153
+XPG         C11         C10      SINGLE       n     1.524  0.0100     1.524  0.0100
+XPG         C12          C8      SINGLE       n     1.535  0.0140     1.535  0.0140
+XPG          C9          C8      SINGLE       n     1.521  0.0106     1.521  0.0106
+XPG          C8          C7      SINGLE       n     1.530  0.0125     1.530  0.0125
+XPG         C10          C9      SINGLE       n     1.504  0.0100     1.504  0.0100
+XPG          C9          O9      DOUBLE       n     1.209  0.0100     1.209  0.0100
+XPG          C7          C6      SINGLE       n     1.522  0.0158     1.522  0.0158
+XPG          C6          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+XPG          C5          C4      SINGLE       n     1.509  0.0200     1.509  0.0200
+XPG          C4          C3      SINGLE       n     1.519  0.0164     1.519  0.0164
+XPG          C3          C2      SINGLE       n     1.497  0.0200     1.497  0.0200
+XPG          C2          C1      SINGLE       n     1.519  0.0109     1.519  0.0109
+XPG          C1         O1B      DOUBLE       n     1.247  0.0187     1.247  0.0187
+XPG          C1         O1A      SINGLE       n     1.247  0.0187     1.247  0.0187
+XPG         C20          H1      SINGLE       n     1.089  0.0100     0.973  0.0157
+XPG         C20          H2      SINGLE       n     1.089  0.0100     0.973  0.0157
+XPG         C20          H3      SINGLE       n     1.089  0.0100     0.973  0.0157
+XPG         C19          H4      SINGLE       n     1.089  0.0100     0.982  0.0155
+XPG         C19          H5      SINGLE       n     1.089  0.0100     0.982  0.0155
+XPG         C18          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+XPG         C18          H7      SINGLE       n     1.089  0.0100     0.981  0.0163
+XPG         C17          H8      SINGLE       n     1.089  0.0100     0.981  0.0163
+XPG         C17          H9      SINGLE       n     1.089  0.0100     0.981  0.0163
+XPG         C16         H10      SINGLE       n     1.089  0.0100     0.980  0.0160
+XPG         C16         H11      SINGLE       n     1.089  0.0100     0.980  0.0160
+XPG         C15         H12      SINGLE       n     1.089  0.0100     0.992  0.0103
+XPG         O15         H13      SINGLE       n     0.970  0.0120     0.848  0.0200
+XPG         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0172
+XPG         C13         H15      SINGLE       n     1.082  0.0130     0.948  0.0200
+XPG         C12         H16      SINGLE       n     1.089  0.0100     0.990  0.0170
+XPG         C11         H17      SINGLE       n     1.089  0.0100     0.985  0.0130
+XPG         O11         H18      SINGLE       n     0.970  0.0120     0.849  0.0200
+XPG         C10         H19      SINGLE       n     1.089  0.0100     0.978  0.0179
+XPG         C10         H20      SINGLE       n     1.089  0.0100     0.978  0.0179
+XPG          C8         H21      SINGLE       n     1.089  0.0100     0.989  0.0172
+XPG          C7         H22      SINGLE       n     1.089  0.0100     0.981  0.0178
+XPG          C7         H23      SINGLE       n     1.089  0.0100     0.981  0.0178
+XPG          C6         H24      SINGLE       n     1.089  0.0100     0.981  0.0160
+XPG          C6         H25      SINGLE       n     1.089  0.0100     0.981  0.0160
+XPG          C5         H26      SINGLE       n     1.089  0.0100     0.981  0.0163
+XPG          C5         H27      SINGLE       n     1.089  0.0100     0.981  0.0163
+XPG          C4         H28      SINGLE       n     1.089  0.0100     0.981  0.0163
+XPG          C4         H29      SINGLE       n     1.089  0.0100     0.981  0.0163
+XPG          C3         H30      SINGLE       n     1.089  0.0100     0.980  0.0160
+XPG          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0160
+XPG          C2         H32      SINGLE       n     1.089  0.0100     0.981  0.0185
+XPG          C2         H33      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XPG         C19         C20          H1     109.554    1.50
+XPG         C19         C20          H2     109.554    1.50
+XPG         C19         C20          H3     109.554    1.50
+XPG          H1         C20          H2     109.380    1.50
+XPG          H1         C20          H3     109.380    1.50
+XPG          H2         C20          H3     109.380    1.50
+XPG         C18         C19         C20     113.719    3.00
+XPG         C18         C19          H4     108.758    1.50
+XPG         C18         C19          H5     108.758    1.50
+XPG         C20         C19          H4     108.918    1.50
+XPG         C20         C19          H5     108.918    1.50
+XPG          H4         C19          H5     107.763    1.50
+XPG         C17         C18         C19     114.362    3.00
+XPG         C17         C18          H6     108.698    1.50
+XPG         C17         C18          H7     108.698    1.50
+XPG         C19         C18          H6     108.653    1.50
+XPG         C19         C18          H7     108.653    1.50
+XPG          H6         C18          H7     107.646    1.50
+XPG         C18         C17         C16     114.776    2.10
+XPG         C18         C17          H8     108.698    1.50
+XPG         C18         C17          H9     108.698    1.50
+XPG         C16         C17          H8     108.597    1.50
+XPG         C16         C17          H9     108.597    1.50
+XPG          H8         C17          H9     107.646    1.50
+XPG         C17         C16         C15     113.983    1.50
+XPG         C17         C16         H10     108.572    1.50
+XPG         C17         C16         H11     108.572    1.50
+XPG         C15         C16         H10     108.691    1.50
+XPG         C15         C16         H11     108.691    1.50
+XPG         H10         C16         H11     107.428    1.50
+XPG         O15         C15         C16     109.047    2.08
+XPG         O15         C15         C14     109.820    2.00
+XPG         O15         C15         H12     108.862    1.50
+XPG         C16         C15         C14     111.511    2.91
+XPG         C16         C15         H12     108.382    1.50
+XPG         C14         C15         H12     108.825    1.50
+XPG         C15         O15         H13     108.953    1.50
+XPG         C15         C14         C13     126.271    3.00
+XPG         C15         C14         H14     116.840    3.00
+XPG         C13         C14         H14     116.889    2.64
+XPG         C14         C13         C12     126.983    2.73
+XPG         C14         C13         H15     116.729    1.50
+XPG         C12         C13         H15     116.288    1.50
+XPG         C13         C12         C11     113.147    2.74
+XPG         C13         C12          C8     114.383    2.40
+XPG         C13         C12         H16     108.957    1.50
+XPG         C11         C12          C8     104.443    2.26
+XPG         C11         C12         H16     108.035    1.50
+XPG          C8         C12         H16     108.872    1.50
+XPG         O11         C11         C12     109.572    2.37
+XPG         O11         C11         C10     110.518    2.79
+XPG         O11         C11         H17     110.902    1.50
+XPG         C12         C11         C10     104.443    2.26
+XPG         C12         C11         H17     110.902    1.50
+XPG         C10         C11         H17     111.244    1.50
+XPG         C11         O11         H18     110.222    1.97
+XPG         C11         C10          C9     104.925    1.50
+XPG         C11         C10         H19     110.904    1.50
+XPG         C11         C10         H20     110.904    1.50
+XPG          C9         C10         H19     110.178    1.83
+XPG          C9         C10         H20     110.178    1.83
+XPG         H19         C10         H20     108.871    1.50
+XPG          C8          C9         C10     109.145    1.50
+XPG          C8          C9          O9     125.076    1.50
+XPG         C10          C9          O9     125.780    1.50
+XPG         C12          C8          C9     104.009    1.83
+XPG         C12          C8          C7     113.745    2.48
+XPG         C12          C8         H21     109.010    1.50
+XPG          C9          C8          C7     111.995    3.00
+XPG          C9          C8         H21     107.894    1.87
+XPG          C7          C8         H21     108.314    1.50
+XPG          C8          C7          C6     115.195    1.64
+XPG          C8          C7         H22     108.650    1.50
+XPG          C8          C7         H23     108.650    1.50
+XPG          C6          C7         H22     108.257    1.50
+XPG          C6          C7         H23     108.257    1.50
+XPG         H22          C7         H23     107.607    1.50
+XPG          C7          C6          C5     116.017    3.00
+XPG          C7          C6         H24     108.287    1.50
+XPG          C7          C6         H25     108.287    1.50
+XPG          C5          C6         H24     108.803    1.50
+XPG          C5          C6         H25     108.803    1.50
+XPG         H24          C6         H25     107.696    1.50
+XPG          C6          C5          C4     114.292    1.50
+XPG          C6          C5         H26     108.623    1.50
+XPG          C6          C5         H27     108.623    1.50
+XPG          C4          C5         H26     108.698    1.50
+XPG          C4          C5         H27     108.698    1.50
+XPG         H26          C5         H27     107.646    1.50
+XPG          C5          C4          C3     114.243    1.69
+XPG          C5          C4         H28     108.698    1.50
+XPG          C5          C4         H29     108.698    1.50
+XPG          C3          C4         H28     108.698    1.50
+XPG          C3          C4         H29     108.698    1.50
+XPG         H28          C4         H29     107.646    1.50
+XPG          C4          C3          C2     112.553    1.50
+XPG          C4          C3         H30     108.698    1.50
+XPG          C4          C3         H31     108.698    1.50
+XPG          C2          C3         H30     109.164    1.50
+XPG          C2          C3         H31     109.164    1.50
+XPG         H30          C3         H31     107.646    1.50
+XPG          C3          C2          C1     114.612    2.19
+XPG          C3          C2         H32     108.815    1.50
+XPG          C3          C2         H33     108.815    1.50
+XPG          C1          C2         H32     108.404    1.50
+XPG          C1          C2         H33     108.404    1.50
+XPG         H32          C2         H33     107.521    1.50
+XPG          C2          C1         O1B     118.214    1.64
+XPG          C2          C1         O1A     118.214    1.64
+XPG         O1B          C1         O1A     123.571    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XPG            sp3_sp3_40         C18         C19         C20          H1     180.000    10.0     3
+XPG            sp3_sp3_67         C12         C11         O11         H18     180.000    10.0     3
+XPG            sp3_sp3_11          C9         C10         C11         O11      60.000    10.0     3
+XPG             sp2_sp3_4          O9          C9         C10         C11     180.000    10.0     6
+XPG            sp2_sp3_11          O9          C9          C8          C7     -60.000    10.0     6
+XPG            sp3_sp3_79          C6          C7          C8         C12     180.000    10.0     3
+XPG            sp3_sp3_88          C5          C6          C7          C8     180.000    10.0     3
+XPG            sp3_sp3_97          C4          C5          C6          C7     180.000    10.0     3
+XPG           sp3_sp3_106          C3          C4          C5          C6     180.000    10.0     3
+XPG           sp3_sp3_115          C2          C3          C4          C5     180.000    10.0     3
+XPG            sp3_sp3_31         C17         C18         C19         C20     180.000    10.0     3
+XPG           sp3_sp3_124          C1          C2          C3          C4     180.000    10.0     3
+XPG            sp2_sp3_26         O1B          C1          C2          C3     120.000    10.0     6
+XPG            sp3_sp3_22         C16         C17         C18         C19     180.000    10.0     3
+XPG            sp3_sp3_49         C15         C16         C17         C18     180.000    10.0     3
+XPG            sp3_sp3_58         O15         C15         C16         C17     180.000    10.0     3
+XPG            sp3_sp3_19         C16         C15         O15         H13     180.000    10.0     3
+XPG            sp2_sp3_13         C13         C14         C15         O15       0.000    10.0     6
+XPG             sp2_sp2_1         C12         C13         C14         C15     180.000     5.0     2
+XPG            sp2_sp3_19         C14         C13         C12         C11       0.000    10.0     6
+XPG             sp3_sp3_5         O11         C11         C12         C13      60.000    10.0     3
+XPG            sp3_sp3_74         C13         C12          C8          C7     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+XPG    chir_1    C15    O15    C14    C16    positive
+XPG    chir_2    C12    C11    C8    C13    negative
+XPG    chir_3    C11    O11    C12    C10    negative
+XPG    chir_4    C8    C9    C12    C7    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XPG    plan-1         C13   0.020
+XPG    plan-1         C14   0.020
+XPG    plan-1         C15   0.020
+XPG    plan-1         H14   0.020
+XPG    plan-2         C12   0.020
+XPG    plan-2         C13   0.020
+XPG    plan-2         C14   0.020
+XPG    plan-2         H15   0.020
+XPG    plan-3         C10   0.020
+XPG    plan-3          C8   0.020
+XPG    plan-3          C9   0.020
+XPG    plan-3          O9   0.020
+XPG    plan-4          C1   0.020
+XPG    plan-4          C2   0.020
+XPG    plan-4         O1A   0.020
+XPG    plan-4         O1B   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XPG           SMILES              ACDLabs 12.01                                                                                                                              O=C(O)CCCCCCC1C(=O)CC(O)C1/C=C/C(O)CCCCC
+XPG            InChI                InChI  1.03 InChI=1S/C20H34O5/c1-2-3-6-9-15(21)12-13-17-16(18(22)14-19(17)23)10-7-4-5-8-11-20(24)25/h12-13,15-17,19,21,23H,2-11,14H2,1H3,(H,24,25)/b13-12+/t15-,16+,17+,19+/m0/s1
+XPG         InChIKey                InChI  1.03                                                                                                                                           GMVPRGQOIOIIMI-DWKJAMRDSA-N
+XPG SMILES_CANONICAL               CACTVS 3.385                                                                                                             CCCCC[C@H](O)\C=C\[C@H]1[C@H](O)CC(=O)[C@@H]1CCCCCCC(O)=O
+XPG           SMILES               CACTVS 3.385                                                                                                                    CCCCC[CH](O)C=C[CH]1[CH](O)CC(=O)[CH]1CCCCCCC(O)=O
+XPG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                           CCCCC[C@@H](/C=C/[C@H]1[C@@H](CC(=O)[C@@H]1CCCCCCC(=O)O)O)O
+XPG           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                CCCCCC(C=CC1C(CC(=O)C1CCCCCCC(=O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XPG acedrg               243         "dictionary generator"                  
+XPG acedrg_database      11          "data source"                           
+XPG rdkit                2017.03.2   "Chemoinformatics tool"
+XPG refmac5              5.8.0238    "optimization tool"                     

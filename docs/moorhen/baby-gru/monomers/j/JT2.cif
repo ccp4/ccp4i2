@@ -1,0 +1,270 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JT2     JT2      4-[[(2~{S})-1-azanylpropan-2-yl]amino]-6-(sulfanylmethyl)-1-benzothiophene-2-carboximidamide     NON-POLYMER     37     19     .     
+#
+data_comp_JT2
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JT2     C15     C       CR15    0       19.242      18.498      -5.730      
+JT2     C17     C       C       0       20.301      16.408      -6.798      
+JT2     C02     C       CR56    0       19.869      20.268      -7.187      
+JT2     C03     C       CR56    0       19.163      19.907      -5.994      
+JT2     C04     C       CR6     0       18.512      20.934      -5.275      
+JT2     C05     C       CR16    0       18.580      22.256      -5.728      
+JT2     C06     C       CR6     0       19.272      22.578      -6.896      
+JT2     C07     C       CR16    0       19.917      21.585      -7.624      
+JT2     C08     C       CH2     0       19.323      24.010      -7.367      
+JT2     C11     C       CH1     0       16.518      21.162      -3.729      
+JT2     C12     C       CH2     0       16.606      22.019      -2.459      
+JT2     C14     C       CH3     0       15.525      20.024      -3.570      
+JT2     C16     C       CR5     0       19.971      17.838      -6.678      
+JT2     N10     N       NH1     0       17.832      20.640      -4.124      
+JT2     N13     N       NT2     0       16.867      21.241      -1.241      
+JT2     N18     N       NH1     0       21.001      15.934      -7.783      
+JT2     N19     N       NH2     0       19.868      15.548      -5.846      
+JT2     S01     S       S2      0       20.536      18.897      -7.847      
+JT2     S09     S       SH1     0       20.694      24.925      -6.600      
+JT2     H1      H       H       0       18.838      18.085      -4.988      
+JT2     H2      H       H       0       18.145      22.939      -5.244      
+JT2     H3      H       H       0       20.384      21.812      -8.409      
+JT2     H4      H       H       0       18.483      24.453      -7.146      
+JT2     H5      H       H       0       19.429      24.030      -8.335      
+JT2     H6      H       H       0       16.182      21.751      -4.452      
+JT2     H7      H       H       0       15.764      22.507      -2.345      
+JT2     H8      H       H       0       17.322      22.680      -2.569      
+JT2     H9      H       H       0       14.686      20.371      -3.221      
+JT2     H10     H       H       0       15.883      19.362      -2.954      
+JT2     H11     H       H       0       15.367      19.607      -4.435      
+JT2     H12     H       H       0       18.212      20.081      -3.561      
+JT2     H13     H       H       0       17.278      21.749      -0.640      
+JT2     H14     H       H       0       17.401      20.553      -1.410      
+JT2     H16     H       H       0       21.259      16.536      -8.377      
+JT2     H17     H       H       0       19.399      15.833      -5.174      
+JT2     H18     H       H       0       20.062      14.702      -5.905      
+JT2     H19     H       HSH1    0       21.372      23.981      -6.263      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JT2         C02         S01      SINGLE       y     1.695  0.0200     1.695  0.0200
+JT2         C16         S01      SINGLE       y     1.695  0.0200     1.695  0.0200
+JT2         C17         N18      DOUBLE       n     1.288  0.0200     1.288  0.0200
+JT2         C02         C07      SINGLE       y     1.382  0.0123     1.382  0.0123
+JT2         C06         C07      DOUBLE       y     1.385  0.0100     1.385  0.0100
+JT2         C06         C08      SINGLE       n     1.508  0.0101     1.508  0.0101
+JT2         C08         S09      SINGLE       n     1.817  0.0141     1.817  0.0141
+JT2         C02         C03      DOUBLE       y     1.414  0.0200     1.414  0.0200
+JT2         C05         C06      SINGLE       y     1.391  0.0100     1.391  0.0100
+JT2         C17         C16      SINGLE       n     1.467  0.0100     1.467  0.0100
+JT2         C17         N19      SINGLE       n     1.347  0.0152     1.347  0.0152
+JT2         C15         C16      DOUBLE       y     1.353  0.0144     1.353  0.0144
+JT2         C15         C03      SINGLE       y     1.425  0.0100     1.425  0.0100
+JT2         C03         C04      SINGLE       y     1.410  0.0103     1.410  0.0103
+JT2         C04         C05      DOUBLE       y     1.391  0.0150     1.391  0.0150
+JT2         C04         N10      SINGLE       n     1.361  0.0180     1.361  0.0180
+JT2         C11         N10      SINGLE       n     1.465  0.0100     1.465  0.0100
+JT2         C11         C14      SINGLE       n     1.518  0.0109     1.518  0.0109
+JT2         C11         C12      SINGLE       n     1.531  0.0155     1.531  0.0155
+JT2         C12         N13      SINGLE       n     1.464  0.0200     1.464  0.0200
+JT2         C15          H1      SINGLE       n     1.082  0.0130     0.941  0.0170
+JT2         C05          H2      SINGLE       n     1.082  0.0130     0.943  0.0168
+JT2         C07          H3      SINGLE       n     1.082  0.0130     0.941  0.0170
+JT2         C08          H4      SINGLE       n     1.089  0.0100     0.974  0.0200
+JT2         C08          H5      SINGLE       n     1.089  0.0100     0.974  0.0200
+JT2         C11          H6      SINGLE       n     1.089  0.0100     0.992  0.0164
+JT2         C12          H7      SINGLE       n     1.089  0.0100     0.980  0.0143
+JT2         C12          H8      SINGLE       n     1.089  0.0100     0.980  0.0143
+JT2         C14          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+JT2         C14         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+JT2         C14         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+JT2         N10         H12      SINGLE       n     1.016  0.0100     0.880  0.0200
+JT2         N13         H13      SINGLE       n     1.036  0.0160     0.888  0.0200
+JT2         N13         H14      SINGLE       n     1.036  0.0160     0.888  0.0200
+JT2         N18         H16      SINGLE       n     1.016  0.0100     0.882  0.0200
+JT2         N19         H17      SINGLE       n     1.016  0.0100     0.869  0.0200
+JT2         N19         H18      SINGLE       n     1.016  0.0100     0.869  0.0200
+JT2         S09         H19      SINGLE       n     1.338  0.0100     1.209  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JT2         C16         C15         C03     107.727    1.50
+JT2         C16         C15          H1     126.516    1.56
+JT2         C03         C15          H1     125.757    1.50
+JT2         N18         C17         C16     121.953    3.00
+JT2         N18         C17         N19     121.616    2.66
+JT2         C16         C17         N19     116.431    2.93
+JT2         S01         C02         C07     130.834    3.00
+JT2         S01         C02         C03     108.352    3.00
+JT2         C07         C02         C03     120.814    1.99
+JT2         C02         C03         C15     107.217    1.50
+JT2         C02         C03         C04     119.200    1.51
+JT2         C15         C03         C04     133.583    3.00
+JT2         C03         C04         C05     120.817    1.50
+JT2         C03         C04         N10     120.345    2.29
+JT2         C05         C04         N10     118.839    2.08
+JT2         C06         C05         C04     120.701    1.50
+JT2         C06         C05          H2     119.613    1.50
+JT2         C04         C05          H2     119.686    1.50
+JT2         C07         C06         C08     120.278    1.50
+JT2         C07         C06         C05     119.516    1.50
+JT2         C08         C06         C05     120.206    1.50
+JT2         C02         C07         C06     118.953    1.50
+JT2         C02         C07          H3     120.944    1.50
+JT2         C06         C07          H3     120.103    1.50
+JT2         C06         C08         S09     111.115    3.00
+JT2         C06         C08          H4     109.420    1.50
+JT2         C06         C08          H5     109.420    1.50
+JT2         S09         C08          H4     109.066    1.50
+JT2         S09         C08          H5     109.066    1.50
+JT2          H4         C08          H5     108.105    1.50
+JT2         N10         C11         C14     109.840    1.50
+JT2         N10         C11         C12     111.308    2.28
+JT2         N10         C11          H6     107.866    1.50
+JT2         C14         C11         C12     110.968    1.78
+JT2         C14         C11          H6     107.403    1.50
+JT2         C12         C11          H6     106.738    1.50
+JT2         C11         C12         N13     111.883    2.59
+JT2         C11         C12          H7     109.164    1.50
+JT2         C11         C12          H8     109.164    1.50
+JT2         N13         C12          H7     108.870    1.50
+JT2         N13         C12          H8     108.870    1.50
+JT2          H7         C12          H8     107.873    1.50
+JT2         C11         C14          H9     109.592    1.50
+JT2         C11         C14         H10     109.592    1.50
+JT2         C11         C14         H11     109.592    1.50
+JT2          H9         C14         H10     109.386    1.50
+JT2          H9         C14         H11     109.386    1.50
+JT2         H10         C14         H11     109.386    1.50
+JT2         S01         C16         C17     121.062    3.00
+JT2         S01         C16         C15     108.352    3.00
+JT2         C17         C16         C15     130.586    2.46
+JT2         C04         N10         C11     125.431    1.50
+JT2         C04         N10         H12     117.877    2.27
+JT2         C11         N10         H12     116.692    2.52
+JT2         C12         N13         H13     109.962    3.00
+JT2         C12         N13         H14     109.962    3.00
+JT2         H13         N13         H14     107.243    3.00
+JT2         C17         N18         H16     112.803    3.00
+JT2         C17         N19         H17     119.928    1.50
+JT2         C17         N19         H18     119.928    1.50
+JT2         H17         N19         H18     120.144    2.31
+JT2         C02         S01         C16     108.352    3.00
+JT2         C08         S09         H19      97.885    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JT2              const_22         C03         C15         C16         C17     180.000    10.0     2
+JT2              const_33         C02         C03         C15         C16       0.000    10.0     2
+JT2            sp3_sp3_22         C11         C12         N13         H13     180.000    10.0     3
+JT2              const_26         C17         C16         S01         C02     180.000    10.0     2
+JT2             sp2_sp2_6         S01         C16         C17         N18     180.000     5.0     2
+JT2             sp2_sp2_2         N19         C17         N18         H16       0.000     5.0     2
+JT2             sp2_sp2_9         N18         C17         N19         H17       0.000     5.0     2
+JT2              const_28         C07         C02         S01         C16     180.000    10.0     2
+JT2              const_29         S01         C02         C03         C15       0.000    10.0     2
+JT2       const_sp2_sp2_3         S01         C02         C07         C06     180.000     5.0     2
+JT2              const_18         C02         C03         C04         N10     180.000    10.0     2
+JT2            sp2_sp2_11         C03         C04         N10         C11     180.000     5.0     2
+JT2              const_15         N10         C04         C05         C06     180.000    10.0     2
+JT2              const_10         C04         C05         C06         C08     180.000    10.0     2
+JT2       const_sp2_sp2_7         C08         C06         C07         C02     180.000     5.0     2
+JT2             sp2_sp3_2         C07         C06         C08         S09     -90.000    10.0     6
+JT2             sp3_sp3_1         C06         C08         S09         H19     180.000    10.0     3
+JT2            sp3_sp3_13         N10         C11         C12         N13     180.000    10.0     3
+JT2             sp3_sp3_4         N10         C11         C14          H9     180.000    10.0     3
+JT2             sp2_sp3_7         C04         N10         C11         C14       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JT2    chir_1    C11    N10    C12    C14    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JT2    plan-1         C02   0.020
+JT2    plan-1         C03   0.020
+JT2    plan-1         C04   0.020
+JT2    plan-1         C05   0.020
+JT2    plan-1         C06   0.020
+JT2    plan-1         C07   0.020
+JT2    plan-1         C08   0.020
+JT2    plan-1         C15   0.020
+JT2    plan-1         C16   0.020
+JT2    plan-1         C17   0.020
+JT2    plan-1          H1   0.020
+JT2    plan-1          H2   0.020
+JT2    plan-1          H3   0.020
+JT2    plan-1         N10   0.020
+JT2    plan-1         S01   0.020
+JT2    plan-2         C16   0.020
+JT2    plan-2         C17   0.020
+JT2    plan-2         N18   0.020
+JT2    plan-2         N19   0.020
+JT2    plan-3         C04   0.020
+JT2    plan-3         C11   0.020
+JT2    plan-3         H12   0.020
+JT2    plan-3         N10   0.020
+JT2    plan-4         C17   0.020
+JT2    plan-4         H17   0.020
+JT2    plan-4         H18   0.020
+JT2    plan-4         N19   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JT2            InChI                InChI  1.03 InChI=1S/C13H18N4S2/c1-7(5-14)17-10-2-8(6-18)3-11-9(10)4-12(19-11)13(15)16/h2-4,7,17-18H,5-6,14H2,1H3,(H3,15,16)/t7-/m0/s1
+JT2         InChIKey                InChI  1.03                                                                                                QYPDCDACLUDSPR-ZETCQYMHSA-N
+JT2 SMILES_CANONICAL               CACTVS 3.385                                                                                      C[C@@H](CN)Nc1cc(CS)cc2sc(cc12)C(N)=N
+JT2           SMILES               CACTVS 3.385                                                                                        C[CH](CN)Nc1cc(CS)cc2sc(cc12)C(N)=N
+JT2 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                              "[H]/N=C(\c1cc2c(cc(cc2s1)CS)N[C@@H](C)CN)/N"
+JT2           SMILES "OpenEye OEToolkits" 2.0.7                                                                                           CC(CN)Nc1cc(cc2c1cc(s2)C(=N)N)CS
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JT2 acedrg               243         "dictionary generator"                  
+JT2 acedrg_database      11          "data source"                           
+JT2 rdkit                2017.03.2   "Chemoinformatics tool"
+JT2 refmac5              5.8.0238    "optimization tool"                     

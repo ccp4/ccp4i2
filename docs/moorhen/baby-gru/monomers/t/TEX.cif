@@ -1,0 +1,443 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TEX     TEX      (2S,5S)-9-[(3R)-3,7-dimethylocta-1,6-dien-3-yl]-5-(hydroxymethyl)-1-methyl-2-(propan-2-yl)-1,2,4,5,6,8-hexahydro-3H-[1,4]diazonino[7,6,5-cd]indol-3-one     NON-POLYMER     71     32     .     
+#
+data_comp_TEX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TEX     C1      C       CR16    0       -118.199    -14.284     25.817      
+TEX     C2      C       CR16    0       -118.871    -13.067     25.751      
+TEX     C3      C       CR6     0       -118.390    -11.977     25.017      
+TEX     C4      C       CR56    0       -117.184    -12.193     24.304      
+TEX     C7      C       CH3     0       -119.840    -10.332     26.351      
+TEX     C8      C       C1      0       -118.355    -9.400      24.791      
+TEX     C10     C       CH2     0       -120.378    -10.821     23.968      
+TEX     C11     C       CH2     0       -120.034    -10.925     22.476      
+TEX     C12     C       C1      0       -119.510    -12.255     22.016      
+TEX     C13     C       C       0       -120.089    -13.449     22.052      
+TEX     C14     C       CH3     0       -121.515    -13.664     22.474      
+TEX     C15     C       CH3     0       -119.371    -14.709     21.656      
+TEX     C17     C       CR56    0       -116.478    -13.428     24.343      
+TEX     C19     C       C       0       -114.162    -16.844     25.004      
+TEX     C21     C       CH2     0       -114.197    -14.210     23.192      
+TEX     C22     C       CH1     0       -114.609    -15.646     22.819      
+TEX     C23     C       CH3     0       -117.151    -16.914     24.776      
+TEX     C24     C       CH2     0       -114.240    -15.935     21.365      
+TEX     C25     C       CH1     0       -115.157    -16.193     27.324      
+TEX     C26     C       CH3     0       -115.830    -17.524     27.666      
+TEX     C27     C       CH3     0       -113.806    -16.065     28.029      
+TEX     N1      N       NT1     0       -116.484    -11.337     23.488      
+TEX     C5      C       CR15    0       -115.368    -11.975     23.026      
+TEX     C6      C       CT      0       -119.210    -10.659     24.979      
+TEX     C9      C       C2      0       -118.683    -8.278      24.180      
+TEX     C16     C       CR6     0       -117.007    -14.484     25.130      
+TEX     C18     C       CH1     0       -115.064    -15.883     25.806      
+TEX     N2      N       N       0       -116.419    -15.742     25.235      
+TEX     N3      N       NH1     0       -113.972    -16.638     23.687      
+TEX     C20     C       CR5     0       -115.311    -13.250     23.500      
+TEX     O1      O       O       0       -113.594    -17.775     25.573      
+TEX     O2      O       OH1     0       -114.674    -17.221     20.959      
+TEX     H1      H       H       0       -118.556    -14.986     26.334      
+TEX     H2      H       H       0       -119.678    -12.971     26.233      
+TEX     H3      H       H       0       -119.182    -10.470     27.055      
+TEX     H4      H       H       0       -120.604    -10.912     26.512      
+TEX     H5      H       H       0       -120.140    -9.406      26.373      
+TEX     H6      H       H       0       -117.504    -9.440      25.187      
+TEX     H7      H       H       0       -120.879    -11.616     24.226      
+TEX     H8      H       H       0       -120.977    -10.061     24.087      
+TEX     H9      H       H       0       -119.367    -10.237     22.261      
+TEX     H10     H       H       0       -120.845    -10.716     21.961      
+TEX     H11     H       H       0       -118.641    -12.232     21.645      
+TEX     H12     H       H       0       -122.042    -12.876     22.268      
+TEX     H13     H       H       0       -121.549    -13.833     23.429      
+TEX     H14     H       H       0       -121.884    -14.428     22.000      
+TEX     H15     H       H       0       -118.442    -14.513     21.452      
+TEX     H16     H       H       0       -119.797    -15.093     20.872      
+TEX     H17     H       H       0       -119.410    -15.348     22.386      
+TEX     H18     H       H       0       -113.677    -13.837     22.445      
+TEX     H19     H       H       0       -113.592    -14.245     23.962      
+TEX     H20     H       H       0       -115.587    -15.732     22.889      
+TEX     H21     H       H       0       -117.887    -16.637     24.204      
+TEX     H22     H       H       0       -117.509    -17.397     25.535      
+TEX     H23     H       H       0       -116.569    -17.500     24.270      
+TEX     H24     H       H       0       -113.267    -15.873     21.260      
+TEX     H25     H       H       0       -114.651    -15.257     20.787      
+TEX     H26     H       H       0       -115.734    -15.490     27.713      
+TEX     H27     H       H       0       -115.721    -18.155     26.937      
+TEX     H28     H       H       0       -116.779    -17.372     27.816      
+TEX     H29     H       H       0       -115.436    -17.896     28.475      
+TEX     H30     H       H       0       -113.948    -15.772     28.946      
+TEX     H31     H       H       0       -113.253    -15.412     27.566      
+TEX     H32     H       H       0       -113.352    -16.925     28.033      
+TEX     H33     H       H       0       -116.685    -10.521     23.281      
+TEX     H34     H       H       0       -114.734    -11.575     22.450      
+TEX     H35     H       H       0       -118.057    -7.568      24.118      
+TEX     H36     H       H       0       -119.547    -8.166      23.806      
+TEX     H37     H       H       0       -114.642    -14.995     25.771      
+TEX     H38     H       H       0       -113.392    -17.151     23.282      
+TEX     H39     H       H       0       -114.689    -17.245     20.113      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TEX         C24          O2      SINGLE       n     1.417  0.0200     1.417  0.0200
+TEX         C22         C24      SINGLE       n     1.523  0.0136     1.523  0.0136
+TEX         C13         C15      SINGLE       n     1.499  0.0156     1.499  0.0156
+TEX         C12         C13      DOUBLE       n     1.324  0.0100     1.324  0.0100
+TEX         C11         C12      SINGLE       n     1.499  0.0121     1.499  0.0121
+TEX         C13         C14      SINGLE       n     1.499  0.0156     1.499  0.0156
+TEX         C10         C11      SINGLE       n     1.526  0.0153     1.526  0.0153
+TEX         C21         C22      SINGLE       n     1.535  0.0118     1.535  0.0118
+TEX         C22          N3      SINGLE       n     1.455  0.0100     1.455  0.0100
+TEX          C5         C20      DOUBLE       y     1.365  0.0100     1.365  0.0100
+TEX          N1          C5      SINGLE       y     1.372  0.0100     1.372  0.0100
+TEX         C21         C20      SINGLE       n     1.498  0.0100     1.498  0.0100
+TEX         C19          N3      SINGLE       n     1.337  0.0102     1.337  0.0102
+TEX         C17         C20      SINGLE       y     1.440  0.0100     1.440  0.0100
+TEX          C4          N1      SINGLE       y     1.373  0.0103     1.373  0.0103
+TEX         C10          C6      SINGLE       n     1.547  0.0100     1.547  0.0100
+TEX          C8          C9      DOUBLE       n     1.317  0.0115     1.317  0.0115
+TEX          C4         C17      DOUBLE       y     1.410  0.0100     1.410  0.0100
+TEX          C3          C4      SINGLE       y     1.401  0.0100     1.401  0.0100
+TEX         C17         C16      SINGLE       y     1.410  0.0103     1.410  0.0103
+TEX         C19          O1      DOUBLE       n     1.229  0.0102     1.229  0.0102
+TEX         C19         C18      SINGLE       n     1.526  0.0116     1.526  0.0116
+TEX          C8          C6      SINGLE       n     1.524  0.0134     1.524  0.0134
+TEX          C3          C6      SINGLE       n     1.540  0.0100     1.540  0.0100
+TEX          C7          C6      SINGLE       n     1.539  0.0100     1.539  0.0100
+TEX          C2          C3      DOUBLE       y     1.391  0.0103     1.391  0.0103
+TEX         C23          N2      SINGLE       n     1.448  0.0100     1.448  0.0100
+TEX         C16          N2      SINGLE       n     1.378  0.0200     1.378  0.0200
+TEX          C1         C16      DOUBLE       y     1.391  0.0150     1.391  0.0150
+TEX         C18          N2      SINGLE       n     1.460  0.0148     1.460  0.0148
+TEX         C25         C18      SINGLE       n     1.541  0.0100     1.541  0.0100
+TEX          C1          C2      SINGLE       y     1.394  0.0118     1.394  0.0118
+TEX         C25         C27      SINGLE       n     1.521  0.0135     1.521  0.0135
+TEX         C25         C26      SINGLE       n     1.521  0.0135     1.521  0.0135
+TEX          C1          H1      SINGLE       n     1.082  0.0130     0.942  0.0123
+TEX          C2          H2      SINGLE       n     1.082  0.0130     0.948  0.0200
+TEX          C7          H3      SINGLE       n     1.089  0.0100     0.973  0.0160
+TEX          C7          H4      SINGLE       n     1.089  0.0100     0.973  0.0160
+TEX          C7          H5      SINGLE       n     1.089  0.0100     0.973  0.0160
+TEX          C8          H6      SINGLE       n     1.082  0.0130     0.940  0.0196
+TEX         C10          H7      SINGLE       n     1.089  0.0100     0.975  0.0100
+TEX         C10          H8      SINGLE       n     1.089  0.0100     0.975  0.0100
+TEX         C11          H9      SINGLE       n     1.089  0.0100     0.983  0.0180
+TEX         C11         H10      SINGLE       n     1.089  0.0100     0.983  0.0180
+TEX         C12         H11      SINGLE       n     1.082  0.0130     0.945  0.0200
+TEX         C14         H12      SINGLE       n     1.089  0.0100     0.971  0.0140
+TEX         C14         H13      SINGLE       n     1.089  0.0100     0.971  0.0140
+TEX         C14         H14      SINGLE       n     1.089  0.0100     0.971  0.0140
+TEX         C15         H15      SINGLE       n     1.089  0.0100     0.971  0.0140
+TEX         C15         H16      SINGLE       n     1.089  0.0100     0.971  0.0140
+TEX         C15         H17      SINGLE       n     1.089  0.0100     0.971  0.0140
+TEX         C21         H18      SINGLE       n     1.089  0.0100     0.982  0.0147
+TEX         C21         H19      SINGLE       n     1.089  0.0100     0.982  0.0147
+TEX         C22         H20      SINGLE       n     1.089  0.0100     0.988  0.0127
+TEX         C23         H21      SINGLE       n     1.089  0.0100     0.971  0.0181
+TEX         C23         H22      SINGLE       n     1.089  0.0100     0.971  0.0181
+TEX         C23         H23      SINGLE       n     1.089  0.0100     0.971  0.0181
+TEX         C24         H24      SINGLE       n     1.089  0.0100     0.981  0.0174
+TEX         C24         H25      SINGLE       n     1.089  0.0100     0.981  0.0174
+TEX         C25         H26      SINGLE       n     1.089  0.0100     0.989  0.0175
+TEX         C26         H27      SINGLE       n     1.089  0.0100     0.973  0.0146
+TEX         C26         H28      SINGLE       n     1.089  0.0100     0.973  0.0146
+TEX         C26         H29      SINGLE       n     1.089  0.0100     0.973  0.0146
+TEX         C27         H30      SINGLE       n     1.089  0.0100     0.973  0.0146
+TEX         C27         H31      SINGLE       n     1.089  0.0100     0.973  0.0146
+TEX         C27         H32      SINGLE       n     1.089  0.0100     0.973  0.0146
+TEX          N1         H33      SINGLE       n     1.016  0.0100     0.873  0.0200
+TEX          C5         H34      SINGLE       n     1.082  0.0130     0.945  0.0191
+TEX          C9         H35      SINGLE       n     1.082  0.0130     0.949  0.0200
+TEX          C9         H36      SINGLE       n     1.082  0.0130     0.949  0.0200
+TEX         C18         H37      SINGLE       n     1.089  0.0100     0.990  0.0200
+TEX          N3         H38      SINGLE       n     1.016  0.0100     0.872  0.0200
+TEX          O2         H39      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TEX         C16          C1          C2     120.814    1.50
+TEX         C16          C1          H1     119.321    1.50
+TEX          C2          C1          H1     119.864    1.50
+TEX          C3          C2          C1     121.544    1.50
+TEX          C3          C2          H2     118.621    1.50
+TEX          C1          C2          H2     119.835    1.50
+TEX          C4          C3          C6     122.637    1.83
+TEX          C4          C3          C2     115.833    1.50
+TEX          C6          C3          C2     121.530    1.57
+TEX          N1          C4         C17     108.692    1.50
+TEX          N1          C4          C3     129.892    1.50
+TEX         C17          C4          C3     121.416    1.50
+TEX          C6          C7          H3     109.947    1.50
+TEX          C6          C7          H4     109.947    1.50
+TEX          C6          C7          H5     109.947    1.50
+TEX          H3          C7          H4     109.375    1.50
+TEX          H3          C7          H5     109.375    1.50
+TEX          H4          C7          H5     109.375    1.50
+TEX          C9          C8          C6     127.119    1.50
+TEX          C9          C8          H6     117.626    1.76
+TEX          C6          C8          H6     115.255    2.23
+TEX         C11         C10          C6     116.211    1.50
+TEX         C11         C10          H7     108.915    1.50
+TEX         C11         C10          H8     108.915    1.50
+TEX          C6         C10          H7     108.269    1.50
+TEX          C6         C10          H8     108.269    1.50
+TEX          H7         C10          H8     107.445    1.50
+TEX         C12         C11         C10     113.132    2.43
+TEX         C12         C11          H9     109.181    1.50
+TEX         C12         C11         H10     109.181    1.50
+TEX         C10         C11          H9     108.844    1.50
+TEX         C10         C11         H10     108.844    1.50
+TEX          H9         C11         H10     107.922    1.50
+TEX         C13         C12         C11     128.282    1.50
+TEX         C13         C12         H11     116.082    1.50
+TEX         C11         C12         H11     115.635    1.60
+TEX         C15         C13         C12     122.691    1.63
+TEX         C15         C13         C14     114.618    1.50
+TEX         C12         C13         C14     122.691    1.63
+TEX         C13         C14         H12     109.600    1.50
+TEX         C13         C14         H13     109.600    1.50
+TEX         C13         C14         H14     109.600    1.50
+TEX         H12         C14         H13     109.342    1.50
+TEX         H12         C14         H14     109.342    1.50
+TEX         H13         C14         H14     109.342    1.50
+TEX         C13         C15         H15     109.600    1.50
+TEX         C13         C15         H16     109.600    1.50
+TEX         C13         C15         H17     109.600    1.50
+TEX         H15         C15         H16     109.342    1.50
+TEX         H15         C15         H17     109.342    1.50
+TEX         H16         C15         H17     109.342    1.50
+TEX         C20         C17          C4     106.237    1.50
+TEX         C20         C17         C16     133.739    3.00
+TEX          C4         C17         C16     120.025    2.03
+TEX          N3         C19          O1     123.304    1.50
+TEX          N3         C19         C18     116.442    2.19
+TEX          O1         C19         C18     120.254    1.50
+TEX         C22         C21         C20     114.435    1.50
+TEX         C22         C21         H18     108.744    1.50
+TEX         C22         C21         H19     108.744    1.50
+TEX         C20         C21         H18     109.029    1.50
+TEX         C20         C21         H19     109.029    1.50
+TEX         H18         C21         H19     107.759    1.50
+TEX         C24         C22         C21     109.839    1.50
+TEX         C24         C22          N3     109.157    1.65
+TEX         C24         C22         H20     107.627    1.50
+TEX         C21         C22          N3     110.142    1.50
+TEX         C21         C22         H20     108.202    1.50
+TEX          N3         C22         H20     108.194    1.50
+TEX          N2         C23         H21     109.637    1.50
+TEX          N2         C23         H22     109.637    1.50
+TEX          N2         C23         H23     109.637    1.50
+TEX         H21         C23         H22     109.352    1.56
+TEX         H21         C23         H23     109.352    1.56
+TEX         H22         C23         H23     109.352    1.56
+TEX          O2         C24         C22     111.903    1.66
+TEX          O2         C24         H24     109.411    1.50
+TEX          O2         C24         H25     109.411    1.50
+TEX         C22         C24         H24     109.343    1.50
+TEX         C22         C24         H25     109.343    1.50
+TEX         H24         C24         H25     108.070    1.50
+TEX         C18         C25         C27     111.704    1.50
+TEX         C18         C25         C26     111.704    1.50
+TEX         C18         C25         H26     107.839    1.52
+TEX         C27         C25         C26     110.676    1.50
+TEX         C27         C25         H26     107.603    1.50
+TEX         C26         C25         H26     107.603    1.50
+TEX         C25         C26         H27     109.507    1.50
+TEX         C25         C26         H28     109.507    1.50
+TEX         C25         C26         H29     109.507    1.50
+TEX         H27         C26         H28     109.411    1.50
+TEX         H27         C26         H29     109.411    1.50
+TEX         H28         C26         H29     109.411    1.50
+TEX         C25         C27         H30     109.507    1.50
+TEX         C25         C27         H31     109.507    1.50
+TEX         C25         C27         H32     109.507    1.50
+TEX         H30         C27         H31     109.411    1.50
+TEX         H30         C27         H32     109.411    1.50
+TEX         H31         C27         H32     109.411    1.50
+TEX          C5          N1          C4     108.905    1.50
+TEX          C5          N1         H33     124.887    2.22
+TEX          C4          N1         H33     125.466    3.00
+TEX         C20          C5          N1     110.533    1.50
+TEX         C20          C5         H34     125.514    1.59
+TEX          N1          C5         H34     123.953    2.36
+TEX         C10          C6          C8     111.511    2.91
+TEX         C10          C6          C3     109.950    1.74
+TEX         C10          C6          C7     111.094    2.85
+TEX          C8          C6          C3     110.330    2.06
+TEX          C8          C6          C7     107.481    3.00
+TEX          C3          C6          C7     110.860    2.57
+TEX          C8          C9         H35     120.333    1.50
+TEX          C8          C9         H36     120.333    1.50
+TEX         H35          C9         H36     119.334    2.15
+TEX         C17         C16          N2     120.370    2.29
+TEX         C17         C16          C1     120.368    1.50
+TEX          N2         C16          C1     119.262    1.50
+TEX         C19         C18          N2     111.249    2.34
+TEX         C19         C18         C25     110.879    1.56
+TEX         C19         C18         H37     109.765    1.50
+TEX          N2         C18         C25     111.308    2.28
+TEX          N2         C18         H37     109.172    1.50
+TEX         C25         C18         H37     107.648    1.50
+TEX         C23          N2         C16     121.225    1.50
+TEX         C23          N2         C18     117.318    2.02
+TEX         C16          N2         C18     121.457    2.30
+TEX         C22          N3         C19     123.632    1.63
+TEX         C22          N3         H38     117.489    3.00
+TEX         C19          N3         H38     118.879    1.83
+TEX          C5         C20         C21     127.172    1.62
+TEX          C5         C20         C17     106.523    1.50
+TEX         C21         C20         C17     126.305    1.63
+TEX         C24          O2         H39     108.529    2.94
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TEX              const_37         C16          C1          C2          C3       0.000    10.0     2
+TEX       const_sp2_sp2_2          C2          C1         C16          N2     180.000     5.0     2
+TEX       const_sp2_sp2_8          N2         C16         C17         C20       0.000     5.0     2
+TEX              const_34          C4         C17         C20         C21     180.000    10.0     2
+TEX            sp2_sp3_31          N3         C19         C18          N2       0.000    10.0     6
+TEX             sp2_sp2_7          O1         C19          N3         C22       0.000     5.0     2
+TEX            sp3_sp3_22         C20         C21         C22         C24     180.000    10.0     3
+TEX            sp2_sp3_26          C5         C20         C21         C22     -90.000    10.0     6
+TEX             sp3_sp3_4         C21         C22         C24          O2     180.000    10.0     3
+TEX            sp2_sp3_19         C19          N3         C22         C24       0.000    10.0     6
+TEX            sp2_sp3_52         C18          N2         C23         H21     180.000    10.0     6
+TEX             sp3_sp3_1         C22         C24          O2         H39     180.000    10.0     3
+TEX            sp3_sp3_70         C18         C25         C26         H27      60.000    10.0     3
+TEX            sp3_sp3_58         C18         C25         C27         H30     180.000    10.0     3
+TEX            sp3_sp3_50         C19         C18         C25         C27     -60.000    10.0     3
+TEX              const_18          C1          C2          C3          C6     180.000    10.0     2
+TEX              const_25         C20          C5          N1          C4       0.000    10.0     2
+TEX              const_31         C21         C20          C5          N1     180.000    10.0     2
+TEX            sp2_sp2_14         C17         C16          N2         C23       0.000     5.0     2
+TEX            sp2_sp3_55         C23          N2         C18         C19       0.000    10.0     6
+TEX            sp2_sp3_43          C4          C3          C6         C10     150.000    10.0     6
+TEX              const_16          C6          C3          C4          N1       0.000    10.0     2
+TEX       const_sp2_sp2_9         C20         C17          C4          N1       0.000     5.0     2
+TEX              const_21         C17          C4          N1          C5       0.000    10.0     2
+TEX            sp3_sp3_40         C10          C6          C7          H3     180.000    10.0     3
+TEX            sp2_sp3_37          C9          C8          C6         C10       0.000    10.0     6
+TEX             sp2_sp2_9          C6          C8          C9         H35     180.000     5.0     2
+TEX            sp3_sp3_31         C11         C10          C6          C8     180.000    10.0     3
+TEX            sp3_sp3_13          C6         C10         C11         C12     180.000    10.0     3
+TEX             sp2_sp3_8         C13         C12         C11         C10     120.000    10.0     6
+TEX             sp2_sp2_1         C11         C12         C13         C15     180.000     5.0     2
+TEX            sp2_sp3_13         C15         C13         C14         H12       0.000    10.0     6
+TEX             sp2_sp3_1         C12         C13         C15         H15       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TEX    chir_1    C22    N3    C24    C21    positive
+TEX    chir_2    C25    C18    C27    C26    both
+TEX    chir_3    C6    C3    C8    C10    negative
+TEX    chir_4    C18    N2    C19    C25    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TEX    plan-1          C1   0.020
+TEX    plan-1         C16   0.020
+TEX    plan-1         C17   0.020
+TEX    plan-1          C2   0.020
+TEX    plan-1         C20   0.020
+TEX    plan-1         C21   0.020
+TEX    plan-1          C3   0.020
+TEX    plan-1          C4   0.020
+TEX    plan-1          C5   0.020
+TEX    plan-1          C6   0.020
+TEX    plan-1          H1   0.020
+TEX    plan-1          H2   0.020
+TEX    plan-1         H33   0.020
+TEX    plan-1         H34   0.020
+TEX    plan-1          N1   0.020
+TEX    plan-1          N2   0.020
+TEX    plan-2          C6   0.020
+TEX    plan-2          C8   0.020
+TEX    plan-2          C9   0.020
+TEX    plan-2          H6   0.020
+TEX    plan-3         C11   0.020
+TEX    plan-3         C12   0.020
+TEX    plan-3         C13   0.020
+TEX    plan-3         H11   0.020
+TEX    plan-4         C12   0.020
+TEX    plan-4         C13   0.020
+TEX    plan-4         C14   0.020
+TEX    plan-4         C15   0.020
+TEX    plan-5         C18   0.020
+TEX    plan-5         C19   0.020
+TEX    plan-5          N3   0.020
+TEX    plan-5          O1   0.020
+TEX    plan-6          C8   0.020
+TEX    plan-6          C9   0.020
+TEX    plan-6         H35   0.020
+TEX    plan-6         H36   0.020
+TEX    plan-7         C16   0.020
+TEX    plan-7         C18   0.020
+TEX    plan-7         C23   0.020
+TEX    plan-7          N2   0.020
+TEX    plan-8         C19   0.020
+TEX    plan-8         C22   0.020
+TEX    plan-8         H38   0.020
+TEX    plan-8          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TEX           SMILES              ACDLabs 12.01                                                                                                                                  c1cc(c3c2c1N(C)C(C(=O)NC(Cc2cn3)CO)C(C)C)C(C)([C@H]=C)CC\C=C(/C)C
+TEX            InChI                InChI  1.03 InChI=1S/C27H39N3O2/c1-8-27(6,13-9-10-17(2)3)21-11-12-22-23-19(15-28-24(21)23)14-20(16-31)29-26(32)25(18(4)5)30(22)7/h8,10-12,15,18,20,25,28,31H,1,9,13-14,16H2,2-7H3,(H,29,32)/t20-,25-,27-/m0/s1
+TEX         InChIKey                InChI  1.03                                                                                                                                                                        KISDGNGREAJPQR-OICBGKIFSA-N
+TEX SMILES_CANONICAL               CACTVS 3.385                                                                                                                          CC(C)[C@@H]1N(C)c2ccc(c3[nH]cc(C[C@@H](CO)NC1=O)c23)[C@](C)(CCC=C(C)C)C=C
+TEX           SMILES               CACTVS 3.385                                                                                                                               CC(C)[CH]1N(C)c2ccc(c3[nH]cc(C[CH](CO)NC1=O)c23)[C](C)(CCC=C(C)C)C=C
+TEX SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                                                             CC(C)[C@H]1C(=O)N[C@@H](Cc2c[nH]c3c2c(ccc3[C@](C)(CCC=C(C)C)C=C)N1C)CO
+TEX           SMILES "OpenEye OEToolkits" 2.0.4                                                                                                                                         CC(C)C1C(=O)NC(Cc2c[nH]c3c2c(ccc3C(C)(CCC=C(C)C)C=C)N1C)CO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TEX acedrg               243         "dictionary generator"                  
+TEX acedrg_database      11          "data source"                           
+TEX rdkit                2017.03.2   "Chemoinformatics tool"
+TEX refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,140 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DBU     DBU      "(2Z)-2-AMINOBUT-2-ENOIC ACID"     NON-POLYMER     13     7     .     
+#
+data_comp_DBU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DBU     N       N       NH2     0       0.970       2.232       -1.240      
+DBU     CA      C       C       0       2.091       1.453       -1.202      
+DBU     CB      C       C1      0       2.136       0.224       -0.421      
+DBU     CG      C       CH3     0       1.008       -0.306      0.423       
+DBU     C       C       C       0       3.171       1.897       -1.949      
+DBU     O       O       O       0       4.232       1.268       -1.988      
+DBU     OXT     O       OC      -1      3.073       2.947       -2.590      
+DBU     H       H       H       0       0.971       2.994       -1.699      
+DBU     H2      H       H       0       0.230       1.984       -0.830      
+DBU     HB      H       H       0       2.933       -0.278      -0.449      
+DBU     HG1     H       H       0       0.426       0.419       0.700       
+DBU     HG2     H       H       0       1.372       -0.739      1.213       
+DBU     HG3     H       H       0       0.495       -0.953      -0.088      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DBU           N          CA      SINGLE       n     1.345  0.0200     1.345  0.0200
+DBU          CA          CB      DOUBLE       n     1.429  0.0200     1.429  0.0200
+DBU          CA           C      SINGLE       n     1.361  0.0200     1.361  0.0200
+DBU          CB          CG      SINGLE       n     1.497  0.0199     1.497  0.0199
+DBU           C           O      DOUBLE       n     1.230  0.0200     1.230  0.0200
+DBU           C         OXT      SINGLE       n     1.230  0.0200     1.230  0.0200
+DBU           N           H      SINGLE       n     1.016  0.0100     0.887  0.0200
+DBU           N          H2      SINGLE       n     1.016  0.0100     0.887  0.0200
+DBU          CB          HB      SINGLE       n     1.082  0.0130     0.943  0.0181
+DBU          CG         HG1      SINGLE       n     1.089  0.0100     0.971  0.0140
+DBU          CG         HG2      SINGLE       n     1.089  0.0100     0.971  0.0140
+DBU          CG         HG3      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DBU          CA           N           H     120.090    1.76
+DBU          CA           N          H2     120.090    1.76
+DBU           H           N          H2     119.819    2.06
+DBU           N          CA          CB     118.127    3.00
+DBU           N          CA           C     118.127    3.00
+DBU          CB          CA           C     123.745    3.00
+DBU          CA          CB          CG     122.437    1.98
+DBU          CA          CB          HB     118.203    1.54
+DBU          CG          CB          HB     119.361    1.66
+DBU          CB          CG         HG1     109.567    1.50
+DBU          CB          CG         HG2     109.567    1.50
+DBU          CB          CG         HG3     109.567    1.50
+DBU         HG1          CG         HG2     109.305    1.50
+DBU         HG1          CG         HG3     109.305    1.50
+DBU         HG2          CG         HG3     109.305    1.50
+DBU          CA           C           O     119.840    3.00
+DBU          CA           C         OXT     119.840    3.00
+DBU           O           C         OXT     120.320    1.63
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DBU             sp2_sp2_1          CB          CA           N           H     180.000     5.0     2
+DBU             sp2_sp2_7           N          CA          CB          CG       0.000     5.0     2
+DBU            sp2_sp2_10           O           C          CA           N       0.000     5.0     2
+DBU             sp2_sp3_1          CA          CB          CG         HG1       0.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DBU    plan-1          CA   0.020
+DBU    plan-1           H   0.020
+DBU    plan-1          H2   0.020
+DBU    plan-1           N   0.020
+DBU    plan-2           C   0.020
+DBU    plan-2          CA   0.020
+DBU    plan-2          CB   0.020
+DBU    plan-2           N   0.020
+DBU    plan-3          CA   0.020
+DBU    plan-3          CB   0.020
+DBU    plan-3          CG   0.020
+DBU    plan-3          HB   0.020
+DBU    plan-4           C   0.020
+DBU    plan-4          CA   0.020
+DBU    plan-4           O   0.020
+DBU    plan-4         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DBU           SMILES              ACDLabs 10.04                                           O=C(O)C(=C/C)/N
+DBU SMILES_CANONICAL               CACTVS 3.341                                           C\C=C(/N)C(O)=O
+DBU           SMILES               CACTVS 3.341                                             CC=C(N)C(O)=O
+DBU SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                          C\C=C(\C(=O)O)/N
+DBU           SMILES "OpenEye OEToolkits" 1.5.0                                             CC=C(C(=O)O)N
+DBU            InChI                InChI  1.03 InChI=1S/C4H7NO2/c1-2-3(5)4(6)7/h2H,5H2,1H3,(H,6,7)/b3-2-
+DBU         InChIKey                InChI  1.03                               PAWSVPVNIXFKOS-IHWYPQMZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DBU acedrg               243         "dictionary generator"                  
+DBU acedrg_database      11          "data source"                           
+DBU rdkit                2017.03.2   "Chemoinformatics tool"
+DBU refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,266 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3AC     3AC      (2E)-3-{3-[(5-ETHYL-3-IODO-6-METHYL-2-OXO-1,2-DIHYDROPYRIDIN-4-YL)OXY]PHENYL}ACRYLONITRILE     NON-POLYMER     37     22     .     
+#
+data_comp_3AC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3AC     O11     O       O2      0       143.650     -27.007     74.676      
+3AC     C11     C       CR6     0       142.833     -27.043     73.548      
+3AC     C12     C       CR6     0       143.336     -26.592     72.325      
+3AC     I12     I       I       0       145.300     -25.865     72.200      
+3AC     C13     C       CR6     0       142.529     -26.624     71.183      
+3AC     O13     O       O       0       142.921     -26.235     70.069      
+3AC     N14     N       NR6     0       141.240     -27.111     71.308      
+3AC     C15     C       CR6     0       140.713     -27.564     72.489      
+3AC     C51     C       CH3     0       139.303     -28.063     72.475      
+3AC     C16     C       CR6     0       141.524     -27.531     73.649      
+3AC     C61     C       CH2     0       141.032     -28.011     74.998      
+3AC     C62     C       CH3     0       141.555     -29.373     75.382      
+3AC     C21     C       CR6     0       143.786     -25.904     75.515      
+3AC     C22     C       CR16    0       142.980     -24.777     75.471      
+3AC     C23     C       CR16    0       143.216     -23.746     76.363      
+3AC     C24     C       CR16    0       144.241     -23.835     77.291      
+3AC     C25     C       CR6     0       145.056     -24.966     77.345      
+3AC     C26     C       CR16    0       144.812     -26.005     76.440      
+3AC     C27     C       C1      0       146.142     -25.073     78.320      
+3AC     C28     C       C1      0       146.221     -26.060     79.222      
+3AC     N29     N       NSP     0       147.575     -25.745     81.389      
+3AC     C29     C       CSP     0       146.989     -25.896     80.407      
+3AC     H14     H       H       0       140.745     -27.125     70.585      
+3AC     H511    H       H       0       139.259     -28.921     72.923      
+3AC     H512    H       H       0       138.997     -28.165     71.563      
+3AC     H513    H       H       0       138.732     -27.432     72.936      
+3AC     H611    H       H       0       140.053     -28.041     74.997      
+3AC     H612    H       H       0       141.300     -27.366     75.686      
+3AC     H621    H       H       0       141.243     -29.601     76.274      
+3AC     H622    H       H       0       142.527     -29.364     75.372      
+3AC     H623    H       H       0       141.232     -30.035     74.748      
+3AC     H22     H       H       0       142.281     -24.707     74.845      
+3AC     H23     H       H       0       142.676     -22.980     76.338      
+3AC     H24     H       H       0       144.390     -23.127     77.892      
+3AC     H26     H       H       0       145.353     -26.776     76.462      
+3AC     H27     H       H       0       146.812     -24.413     78.306      
+3AC     H28     H       H       0       145.764     -26.880     79.077      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3AC         O11         C11      SINGLE       n     1.388  0.0129     1.388  0.0129
+3AC         O11         C21      SINGLE       n     1.386  0.0119     1.386  0.0119
+3AC         C11         C12      DOUBLE       y     1.387  0.0131     1.387  0.0131
+3AC         C11         C16      SINGLE       y     1.388  0.0124     1.388  0.0124
+3AC         C12         I12      SINGLE       n     2.096  0.0128     2.096  0.0128
+3AC         C12         C13      SINGLE       y     1.389  0.0199     1.389  0.0199
+3AC         C13         O13      DOUBLE       n     1.242  0.0172     1.242  0.0172
+3AC         C13         N14      SINGLE       y     1.379  0.0122     1.379  0.0122
+3AC         N14         C15      SINGLE       y     1.366  0.0100     1.366  0.0100
+3AC         C15         C51      SINGLE       n     1.493  0.0100     1.493  0.0100
+3AC         C15         C16      DOUBLE       y     1.403  0.0129     1.403  0.0129
+3AC         C16         C61      SINGLE       n     1.509  0.0100     1.509  0.0100
+3AC         C61         C62      SINGLE       n     1.508  0.0200     1.508  0.0200
+3AC         C21         C22      DOUBLE       y     1.379  0.0100     1.379  0.0100
+3AC         C21         C26      SINGLE       y     1.381  0.0100     1.381  0.0100
+3AC         C22         C23      SINGLE       y     1.380  0.0100     1.380  0.0100
+3AC         C23         C24      DOUBLE       y     1.382  0.0100     1.382  0.0100
+3AC         C24         C25      SINGLE       y     1.393  0.0100     1.393  0.0100
+3AC         C25         C26      DOUBLE       y     1.396  0.0100     1.396  0.0100
+3AC         C25         C27      SINGLE       n     1.463  0.0104     1.463  0.0104
+3AC         C27         C28      DOUBLE       n     1.339  0.0100     1.339  0.0100
+3AC         C28         C29      SINGLE       n     1.421  0.0174     1.421  0.0174
+3AC         N29         C29      TRIPLE       n     1.149  0.0200     1.149  0.0200
+3AC         N14         H14      SINGLE       n     1.016  0.0100     0.876  0.0200
+3AC         C51        H511      SINGLE       n     1.089  0.0100     0.968  0.0196
+3AC         C51        H512      SINGLE       n     1.089  0.0100     0.968  0.0196
+3AC         C51        H513      SINGLE       n     1.089  0.0100     0.968  0.0196
+3AC         C61        H611      SINGLE       n     1.089  0.0100     0.981  0.0138
+3AC         C61        H612      SINGLE       n     1.089  0.0100     0.981  0.0138
+3AC         C62        H621      SINGLE       n     1.089  0.0100     0.972  0.0140
+3AC         C62        H622      SINGLE       n     1.089  0.0100     0.972  0.0140
+3AC         C62        H623      SINGLE       n     1.089  0.0100     0.972  0.0140
+3AC         C22         H22      SINGLE       n     1.082  0.0130     0.942  0.0163
+3AC         C23         H23      SINGLE       n     1.082  0.0130     0.938  0.0149
+3AC         C24         H24      SINGLE       n     1.082  0.0130     0.941  0.0168
+3AC         C26         H26      SINGLE       n     1.082  0.0130     0.942  0.0200
+3AC         C27         H27      SINGLE       n     1.082  0.0130     0.941  0.0196
+3AC         C28         H28      SINGLE       n     1.082  0.0130     0.950  0.0142
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3AC         C11         O11         C21     118.469    2.57
+3AC         O11         C11         C12     120.527    2.78
+3AC         O11         C11         C16     119.289    1.60
+3AC         C12         C11         C16     120.184    1.50
+3AC         C11         C12         I12     119.801    1.50
+3AC         C11         C12         C13     119.700    1.50
+3AC         I12         C12         C13     120.499    1.78
+3AC         C12         C13         O13     122.903    3.00
+3AC         C12         C13         N14     118.129    2.98
+3AC         O13         C13         N14     118.968    1.50
+3AC         C13         N14         C15     123.550    1.50
+3AC         C13         N14         H14     117.586    1.78
+3AC         C15         N14         H14     118.863    2.27
+3AC         N14         C15         C51     117.883    1.50
+3AC         N14         C15         C16     119.286    3.00
+3AC         C51         C15         C16     122.831    1.84
+3AC         C15         C51        H511     109.504    1.50
+3AC         C15         C51        H512     109.504    1.50
+3AC         C15         C51        H513     109.504    1.50
+3AC        H511         C51        H512     109.339    1.66
+3AC        H511         C51        H513     109.339    1.66
+3AC        H512         C51        H513     109.339    1.66
+3AC         C11         C16         C15     119.151    1.50
+3AC         C11         C16         C61     118.651    1.68
+3AC         C15         C16         C61     122.198    1.64
+3AC         C16         C61         C62     113.822    2.24
+3AC         C16         C61        H611     108.906    1.50
+3AC         C16         C61        H612     108.906    1.50
+3AC         C62         C61        H611     108.760    1.50
+3AC         C62         C61        H612     108.760    1.50
+3AC        H611         C61        H612     107.696    1.50
+3AC         C61         C62        H621     109.522    1.50
+3AC         C61         C62        H622     109.522    1.50
+3AC         C61         C62        H623     109.522    1.50
+3AC        H621         C62        H622     109.417    1.50
+3AC        H621         C62        H623     109.417    1.50
+3AC        H622         C62        H623     109.417    1.50
+3AC         O11         C21         C22     119.991    3.00
+3AC         O11         C21         C26     119.005    3.00
+3AC         C22         C21         C26     121.005    1.50
+3AC         C21         C22         C23     118.841    1.50
+3AC         C21         C22         H22     120.651    1.50
+3AC         C23         C22         H22     120.508    1.50
+3AC         C22         C23         C24     120.464    1.50
+3AC         C22         C23         H23     119.629    1.50
+3AC         C24         C23         H23     119.907    1.50
+3AC         C23         C24         C25     120.966    1.50
+3AC         C23         C24         H24     119.634    1.50
+3AC         C25         C24         H24     119.401    1.50
+3AC         C24         C25         C26     118.493    1.50
+3AC         C24         C25         C27     121.120    2.00
+3AC         C26         C25         C27     120.384    1.93
+3AC         C21         C26         C25     120.234    1.50
+3AC         C21         C26         H26     120.120    1.50
+3AC         C25         C26         H26     119.646    1.50
+3AC         C25         C27         C28     123.256    3.00
+3AC         C25         C27         H27     117.878    1.50
+3AC         C28         C27         H27     118.866    2.36
+3AC         C27         C28         C29     120.481    1.50
+3AC         C27         C28         H28     120.398    2.33
+3AC         C29         C28         H28     119.121    1.50
+3AC         C28         C29         N29     180.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3AC             sp2_sp2_1         C12         C11         O11         C21     180.000     5.0     2
+3AC             sp2_sp2_3         C22         C21         O11         C11     180.000     5.0     2
+3AC             sp3_sp3_1         C16         C61         C62        H621     180.000    10.0     3
+3AC              const_23         O11         C21         C22         C23     180.000    10.0     2
+3AC              const_47         O11         C21         C26         C25     180.000    10.0     2
+3AC              const_25         C21         C22         C23         C24       0.000    10.0     2
+3AC              const_29         C22         C23         C24         C25       0.000    10.0     2
+3AC              const_34         C23         C24         C25         C27     180.000    10.0     2
+3AC              const_39         C27         C25         C26         C21     180.000    10.0     2
+3AC             sp2_sp2_5         C24         C25         C27         C28     180.000     5.0     2
+3AC             sp2_sp2_9         C25         C27         C28         C29     180.000     5.0     2
+3AC           other_tor_1         N29         C29         C28         C27      90.000    10.0     1
+3AC       const_sp2_sp2_4         O11         C11         C12         I12       0.000     5.0     2
+3AC              const_44         O11         C11         C16         C61       0.000    10.0     2
+3AC       const_sp2_sp2_8         I12         C12         C13         O13       0.000     5.0     2
+3AC              const_11         O13         C13         N14         C15     180.000    10.0     2
+3AC              const_15         C51         C15         N14         C13     180.000    10.0     2
+3AC             sp2_sp3_1         N14         C15         C51        H511     150.000    10.0     6
+3AC              const_20         C51         C15         C16         C61       0.000    10.0     2
+3AC             sp2_sp3_8         C11         C16         C61         C62     -90.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3AC    plan-1         C21   0.020
+3AC    plan-1         C22   0.020
+3AC    plan-1         C23   0.020
+3AC    plan-1         C24   0.020
+3AC    plan-1         C25   0.020
+3AC    plan-1         C26   0.020
+3AC    plan-1         C27   0.020
+3AC    plan-1         H22   0.020
+3AC    plan-1         H23   0.020
+3AC    plan-1         H24   0.020
+3AC    plan-1         H26   0.020
+3AC    plan-1         O11   0.020
+3AC    plan-2         C11   0.020
+3AC    plan-2         C12   0.020
+3AC    plan-2         C13   0.020
+3AC    plan-2         C15   0.020
+3AC    plan-2         C16   0.020
+3AC    plan-2         C51   0.020
+3AC    plan-2         C61   0.020
+3AC    plan-2         H14   0.020
+3AC    plan-2         I12   0.020
+3AC    plan-2         N14   0.020
+3AC    plan-2         O11   0.020
+3AC    plan-2         O13   0.020
+3AC    plan-3         C25   0.020
+3AC    plan-3         C27   0.020
+3AC    plan-3         C28   0.020
+3AC    plan-3         H27   0.020
+3AC    plan-4         C27   0.020
+3AC    plan-4         C28   0.020
+3AC    plan-4         C29   0.020
+3AC    plan-4         H28   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3AC           SMILES              ACDLabs 10.04                                                                               IC2=C(Oc1cc(\C=C\C#N)ccc1)C(=C(NC2=O)C)CC
+3AC SMILES_CANONICAL               CACTVS 3.341                                                                               CCC1=C(C)NC(=O)C(=C1Oc2cccc(\C=C\C#N)c2)I
+3AC           SMILES               CACTVS 3.341                                                                                 CCC1=C(C)NC(=O)C(=C1Oc2cccc(C=CC#N)c2)I
+3AC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                 CCC1=C(NC(=O)C(=C1Oc2cccc(c2)C=CC#N)I)C
+3AC           SMILES "OpenEye OEToolkits" 1.5.0                                                                                 CCC1=C(NC(=O)C(=C1Oc2cccc(c2)C=CC#N)I)C
+3AC            InChI                InChI  1.03 InChI=1S/C17H15IN2O2/c1-3-14-11(2)20-17(21)15(18)16(14)22-13-8-4-6-12(10-13)7-5-9-19/h4-8,10H,3H2,1-2H3,(H,20,21)/b7-5+
+3AC         InChIKey                InChI  1.03                                                                                             XMFUXIRAVPMVRS-FNORWQNLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3AC acedrg               243         "dictionary generator"                  
+3AC acedrg_database      11          "data source"                           
+3AC rdkit                2017.03.2   "Chemoinformatics tool"
+3AC refmac5              5.8.0238    "optimization tool"                     

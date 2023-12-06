@@ -1,0 +1,180 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+231     231      4-PHENYL-1H-IMIDAZOLE     NON-POLYMER     19     11     .     
+#
+data_comp_231
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+231     CAI     C       CR15    0       24.993      60.178      -1.586      
+231     NAJ     N       NR5     0       23.728      60.613      -1.489      
+231     CAK     C       CR15    0       22.987      59.599      -0.953      
+231     NAH     N       NRD5    0       25.109      58.942      -1.144      
+231     CAG     C       CR5     0       23.838      58.551      -0.734      
+231     CAD     C       CR6     0       23.593      57.210      -0.178      
+231     CAB     C       CR16    0       22.314      56.843      0.246       
+231     CAF     C       CR16    0       24.621      56.271      -0.059      
+231     CAE     C       CR16    0       24.371      55.012      0.468       
+231     CAC     C       CR16    0       23.099      54.667      0.882       
+231     CAA     C       CR16    0       22.072      55.582      0.772       
+231     HAI     H       H       0       25.725      60.705      -1.936      
+231     HNAJ    H       H       0       23.403      61.456      -1.739      
+231     HAK     H       H       0       22.062      59.635      -0.776      
+231     HAB     H       H       0       21.606      57.457      0.176       
+231     HAF     H       H       0       25.491      56.490      -0.336      
+231     HAE     H       H       0       25.074      54.388      0.542       
+231     HAC     H       H       0       22.934      53.810      1.240       
+231     HAA     H       H       0       21.203      55.350      1.054       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+231         CAI         NAJ      SINGLE       y     1.339  0.0139     1.339  0.0139
+231         CAI         NAH      DOUBLE       y     1.317  0.0100     1.317  0.0100
+231         NAJ         CAK      SINGLE       y     1.367  0.0100     1.367  0.0100
+231         CAK         CAG      DOUBLE       y     1.369  0.0100     1.369  0.0100
+231         NAH         CAG      SINGLE       y     1.391  0.0109     1.391  0.0109
+231         CAG         CAD      SINGLE       n     1.467  0.0100     1.467  0.0100
+231         CAD         CAB      DOUBLE       y     1.391  0.0100     1.391  0.0100
+231         CAD         CAF      SINGLE       y     1.391  0.0100     1.391  0.0100
+231         CAB         CAA      SINGLE       y     1.384  0.0100     1.384  0.0100
+231         CAF         CAE      DOUBLE       y     1.384  0.0100     1.384  0.0100
+231         CAE         CAC      SINGLE       y     1.376  0.0124     1.376  0.0124
+231         CAC         CAA      DOUBLE       y     1.376  0.0114     1.376  0.0114
+231         CAI         HAI      SINGLE       n     1.082  0.0130     0.967  0.0200
+231         NAJ        HNAJ      SINGLE       n     1.016  0.0100     0.938  0.0200
+231         CAK         HAK      SINGLE       n     1.082  0.0130     0.942  0.0200
+231         CAB         HAB      SINGLE       n     1.082  0.0130     0.940  0.0143
+231         CAF         HAF      SINGLE       n     1.082  0.0130     0.940  0.0143
+231         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0180
+231         CAC         HAC      SINGLE       n     1.082  0.0130     0.944  0.0161
+231         CAA         HAA      SINGLE       n     1.082  0.0130     0.943  0.0180
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+231         NAJ         CAI         NAH     110.685    1.50
+231         NAJ         CAI         HAI     124.604    1.50
+231         NAH         CAI         HAI     124.710    1.50
+231         CAI         NAJ         CAK     107.302    1.50
+231         CAI         NAJ        HNAJ     126.942    3.00
+231         CAK         NAJ        HNAJ     125.756    1.94
+231         NAJ         CAK         CAG     107.516    1.50
+231         NAJ         CAK         HAK     125.110    1.72
+231         CAG         CAK         HAK     127.374    1.80
+231         CAI         NAH         CAG     105.722    1.50
+231         CAK         CAG         NAH     108.774    1.50
+231         CAK         CAG         CAD     130.920    1.50
+231         NAH         CAG         CAD     120.306    1.50
+231         CAG         CAD         CAB     120.828    1.50
+231         CAG         CAD         CAF     120.828    1.50
+231         CAB         CAD         CAF     118.344    1.50
+231         CAD         CAB         CAA     120.590    1.50
+231         CAD         CAB         HAB     119.628    1.50
+231         CAA         CAB         HAB     119.782    1.50
+231         CAD         CAF         CAE     120.590    1.50
+231         CAD         CAF         HAF     119.628    1.50
+231         CAE         CAF         HAF     119.782    1.50
+231         CAF         CAE         CAC     120.307    1.50
+231         CAF         CAE         HAE     119.746    1.50
+231         CAC         CAE         HAE     119.947    1.50
+231         CAE         CAC         CAA     119.863    1.50
+231         CAE         CAC         HAC     120.069    1.50
+231         CAA         CAC         HAC     120.069    1.50
+231         CAB         CAA         CAC     120.307    1.50
+231         CAB         CAA         HAA     119.746    1.50
+231         CAC         CAA         HAA     119.947    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+231              const_21         NAH         CAI         NAJ         CAK       0.000    10.0     2
+231              const_35         NAJ         CAI         NAH         CAG       0.000    10.0     2
+231              const_25         CAG         CAK         NAJ         CAI       0.000    10.0     2
+231              const_29         NAH         CAG         CAK         NAJ       0.000    10.0     2
+231              const_33         CAK         CAG         NAH         CAI       0.000    10.0     2
+231             sp2_sp2_1         CAB         CAD         CAG         CAK     180.000     5.0     2
+231       const_sp2_sp2_2         CAA         CAB         CAD         CAG     180.000     5.0     2
+231              const_39         CAG         CAD         CAF         CAE     180.000    10.0     2
+231       const_sp2_sp2_5         CAC         CAA         CAB         CAD       0.000     5.0     2
+231              const_17         CAC         CAE         CAF         CAD       0.000    10.0     2
+231              const_13         CAA         CAC         CAE         CAF       0.000    10.0     2
+231       const_sp2_sp2_9         CAB         CAA         CAC         CAE       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+231    plan-1         CAD   0.020
+231    plan-1         CAG   0.020
+231    plan-1         CAI   0.020
+231    plan-1         CAK   0.020
+231    plan-1         HAI   0.020
+231    plan-1         HAK   0.020
+231    plan-1        HNAJ   0.020
+231    plan-1         NAH   0.020
+231    plan-1         NAJ   0.020
+231    plan-2         CAA   0.020
+231    plan-2         CAB   0.020
+231    plan-2         CAC   0.020
+231    plan-2         CAD   0.020
+231    plan-2         CAE   0.020
+231    plan-2         CAF   0.020
+231    plan-2         CAG   0.020
+231    plan-2         HAA   0.020
+231    plan-2         HAB   0.020
+231    plan-2         HAC   0.020
+231    plan-2         HAE   0.020
+231    plan-2         HAF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+231           SMILES              ACDLabs 10.04                                            n2c(c1ccccc1)cnc2
+231 SMILES_CANONICAL               CACTVS 3.341                                       "[nH]1cnc(c1)c2ccccc2"
+231           SMILES               CACTVS 3.341                                       "[nH]1cnc(c1)c2ccccc2"
+231 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                         c1ccc(cc1)c2c[nH]cn2
+231           SMILES "OpenEye OEToolkits" 1.5.0                                         c1ccc(cc1)c2c[nH]cn2
+231            InChI                InChI  1.03 InChI=1S/C9H8N2/c1-2-4-8(5-3-1)9-6-10-7-11-9/h1-7H,(H,10,11)
+231         InChIKey                InChI  1.03                                  XHLKOHSAWQPOFO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+231 acedrg               243         "dictionary generator"                  
+231 acedrg_database      11          "data source"                           
+231 rdkit                2017.03.2   "Chemoinformatics tool"
+231 refmac5              5.8.0238    "optimization tool"                     

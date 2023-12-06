@@ -1,0 +1,470 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VDA     VDA      (1R,2R,3R,5Z)-17-{(1S)-1-[(2-ethyl-2-hydroxybutyl)sulfanyl]ethyl}-2-(2-hydroxyethoxy)-9,10-secoestra-5,7,16-triene-1,3-diol     NON-POLYMER     80     34     .     
+#
+data_comp_VDA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VDA     O2      O       OH1     0       15.682      7.692       19.490      
+VDA     C1      C       CH1     0       13.189      6.058       19.646      
+VDA     C2      C       CH1     0       13.373      7.345       18.848      
+VDA     C3      C       CH1     0       14.380      8.273       19.522      
+VDA     C4      C       CH2     0       13.982      8.552       20.957      
+VDA     C5      C       CR6     0       13.780      7.285       21.749      
+VDA     C6      C       C1      0       14.426      7.043       22.921      
+VDA     C7      C       C1      0       14.368      5.888       23.686      
+VDA     C8      C       CR6     0       14.512      5.776       25.014      
+VDA     C9      C       CH2     0       14.732      6.921       25.986      
+VDA     C10     C       CH2     0       12.795      6.358       21.077      
+VDA     C11     C       CH2     0       13.887      6.814       27.269      
+VDA     C12     C       CH2     0       13.829      5.404       27.866      
+VDA     C13     C       CT      0       13.445      4.345       26.837      
+VDA     C14     C       CH1     0       14.535      4.433       25.717      
+VDA     C15     C       CH2     0       14.296      3.103       24.997      
+VDA     C16     C       CR15    0       14.067      2.213       26.177      
+VDA     C17     C       CR5     0       13.631      2.878       27.243      
+VDA     C18     C       CH3     0       12.004      4.582       26.332      
+VDA     C20     C       CH1     0       13.284      2.333       28.608      
+VDA     C21     C       CH3     0       14.180      1.184       29.021      
+VDA     S22     S       S2      0       11.529      1.834       28.708      
+VDA     C23     C       CH2     0       11.275      0.813       27.229      
+VDA     C25     C       CT      0       9.939       0.075       27.162      
+VDA     O3      O       OH1     0       9.881       -0.797      28.307      
+VDA     C26     C       CH2     0       8.713       1.002       27.216      
+VDA     C27     C       CH2     0       9.957       -0.811      25.908      
+VDA     O1      O       OH1     0       12.185      5.253       19.031      
+VDA     O4      O       O2      0       13.835      7.007       17.534      
+VDA     C30     C       CH2     0       13.344      7.847       16.489      
+VDA     C31     C       CH2     0       14.016      7.473       15.202      
+VDA     O5      O       OH1     0       13.681      6.157       14.807      
+VDA     C29     C       CH3     0       8.584       2.020       26.091      
+VDA     C28     C       CH3     0       8.730       -1.679      25.668      
+VDA     HO2     H       H       0       16.250      8.267       19.721      
+VDA     H1      H       H       0       14.033      5.560       19.646      
+VDA     H2      H       H       0       12.500      7.808       18.783      
+VDA     H3      H       H       0       14.404      9.121       19.032      
+VDA     H4      H       H       0       13.161      9.068       20.958      
+VDA     H4A     H       H       0       14.673      9.092       21.372      
+VDA     H6      H       H       0       14.982      7.729       23.242      
+VDA     H7      H       H       0       14.232      5.082       23.225      
+VDA     H9      H       H       0       15.670      6.947       26.231      
+VDA     H9A     H       H       0       14.519      7.759       25.548      
+VDA     H10     H       H       0       12.732      5.521       21.563      
+VDA     H10A    H       H       0       11.916      6.768       21.077      
+VDA     H11     H       H       0       12.975      7.116       27.074      
+VDA     H11A    H       H       0       14.259      7.424       27.940      
+VDA     H12     H       H       0       13.183      5.392       28.597      
+VDA     H12A    H       H       0       14.702      5.183       28.243      
+VDA     H14     H       H       0       15.418      4.365       26.149      
+VDA     H15     H       H       0       15.084      2.826       24.475      
+VDA     H15A    H       H       0       13.510      3.141       24.404      
+VDA     H16     H       H       0       14.215      1.282       26.163      
+VDA     H18     H       H       0       11.519      3.741       26.312      
+VDA     H18A    H       H       0       12.019      4.957       25.438      
+VDA     H18B    H       H       0       11.542      5.198       26.927      
+VDA     H20     H       H       0       13.406      3.053       29.272      
+VDA     H21     H       H       0       15.081      1.329       28.682      
+VDA     H21A    H       H       0       13.831      0.350       28.663      
+VDA     H21B    H       H       0       14.208      1.130       29.992      
+VDA     H23     H       H       0       12.002      0.157       27.186      
+VDA     H23A    H       H       0       11.354      1.388       26.439      
+VDA     HO3     H       H       0       9.913       -0.343      29.025      
+VDA     H26     H       H       0       8.728       1.491       28.073      
+VDA     H26A    H       H       0       7.901       0.442       27.220      
+VDA     H27     H       H       0       10.745      -1.403      25.963      
+VDA     H27A    H       H       0       10.083      -0.228      25.121      
+VDA     HO1     H       H       0       12.192      4.486       19.375      
+VDA     H30     H       H       0       13.533      8.782       16.702      
+VDA     H30A    H       H       0       12.377      7.733       16.403      
+VDA     H31     H       H       0       14.988      7.537       15.310      
+VDA     H31A    H       H       0       13.744      8.097       14.498      
+VDA     HO5     H       H       0       14.023      5.605       15.350      
+VDA     H29     H       H       0       7.784       2.556       26.231      
+VDA     H29A    H       H       0       8.516       1.558       25.238      
+VDA     H29B    H       H       0       9.364       2.601       26.084      
+VDA     H28     H       H       0       8.913       -2.307      24.947      
+VDA     H28A    H       H       0       7.975       -1.117      25.421      
+VDA     H28B    H       H       0       8.514       -2.173      26.478      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VDA          O2          C3      SINGLE       n     1.426  0.0104     1.426  0.0104
+VDA          C1          C2      SINGLE       n     1.523  0.0100     1.523  0.0100
+VDA          C1         C10      SINGLE       n     1.511  0.0128     1.511  0.0128
+VDA          C1          O1      SINGLE       n     1.426  0.0104     1.426  0.0104
+VDA          C2          C3      SINGLE       n     1.523  0.0100     1.523  0.0100
+VDA          C2          O4      SINGLE       n     1.431  0.0100     1.431  0.0100
+VDA          C3          C4      SINGLE       n     1.511  0.0128     1.511  0.0128
+VDA          C4          C5      SINGLE       n     1.502  0.0151     1.502  0.0151
+VDA          C5          C6      DOUBLE       n     1.342  0.0200     1.342  0.0200
+VDA          C5         C10      SINGLE       n     1.502  0.0151     1.502  0.0151
+VDA          C6          C7      SINGLE       n     1.376  0.0200     1.376  0.0200
+VDA          C7          C8      DOUBLE       n     1.334  0.0110     1.334  0.0110
+VDA          C8          C9      SINGLE       n     1.511  0.0100     1.511  0.0100
+VDA          C8         C14      SINGLE       n     1.509  0.0114     1.509  0.0114
+VDA          C9         C11      SINGLE       n     1.532  0.0100     1.532  0.0100
+VDA         C11         C12      SINGLE       n     1.527  0.0100     1.527  0.0100
+VDA         C12         C13      SINGLE       n     1.524  0.0111     1.524  0.0111
+VDA         C13         C14      SINGLE       n     1.559  0.0178     1.559  0.0178
+VDA         C13         C17      SINGLE       n     1.526  0.0133     1.526  0.0133
+VDA         C13         C18      SINGLE       n     1.538  0.0104     1.538  0.0104
+VDA         C14         C15      SINGLE       n     1.533  0.0100     1.533  0.0100
+VDA         C15         C16      SINGLE       n     1.492  0.0200     1.492  0.0200
+VDA         C16         C17      DOUBLE       n     1.326  0.0100     1.326  0.0100
+VDA         C17         C20      SINGLE       n     1.500  0.0161     1.500  0.0161
+VDA         C20         C21      SINGLE       n     1.512  0.0105     1.512  0.0105
+VDA         C20         S22      SINGLE       n     1.825  0.0100     1.825  0.0100
+VDA         S22         C23      SINGLE       n     1.812  0.0118     1.812  0.0118
+VDA         C23         C25      SINGLE       n     1.525  0.0107     1.525  0.0107
+VDA         C25          O3      SINGLE       n     1.437  0.0141     1.437  0.0141
+VDA         C25         C26      SINGLE       n     1.533  0.0100     1.533  0.0100
+VDA         C25         C27      SINGLE       n     1.533  0.0100     1.533  0.0100
+VDA         C26         C29      SINGLE       n     1.521  0.0100     1.521  0.0100
+VDA         C27         C28      SINGLE       n     1.521  0.0100     1.521  0.0100
+VDA          O4         C30      SINGLE       n     1.427  0.0100     1.427  0.0100
+VDA         C30         C31      SINGLE       n     1.499  0.0117     1.499  0.0117
+VDA         C31          O5      SINGLE       n     1.414  0.0200     1.414  0.0200
+VDA          O2         HO2      SINGLE       n     0.970  0.0120     0.841  0.0200
+VDA          C1          H1      SINGLE       n     1.089  0.0100     0.980  0.0100
+VDA          C2          H2      SINGLE       n     1.089  0.0100     0.989  0.0181
+VDA          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0100
+VDA          C4          H4      SINGLE       n     1.089  0.0100     0.970  0.0100
+VDA          C4         H4A      SINGLE       n     1.089  0.0100     0.970  0.0100
+VDA          C6          H6      SINGLE       n     1.082  0.0130     0.940  0.0103
+VDA          C7          H7      SINGLE       n     1.082  0.0130     0.940  0.0103
+VDA          C9          H9      SINGLE       n     1.089  0.0100     0.970  0.0100
+VDA          C9         H9A      SINGLE       n     1.089  0.0100     0.970  0.0100
+VDA         C10         H10      SINGLE       n     1.089  0.0100     0.970  0.0100
+VDA         C10        H10A      SINGLE       n     1.089  0.0100     0.970  0.0100
+VDA         C11         H11      SINGLE       n     1.089  0.0100     0.980  0.0128
+VDA         C11        H11A      SINGLE       n     1.089  0.0100     0.980  0.0128
+VDA         C12         H12      SINGLE       n     1.089  0.0100     0.976  0.0128
+VDA         C12        H12A      SINGLE       n     1.089  0.0100     0.976  0.0128
+VDA         C14         H14      SINGLE       n     1.089  0.0100     0.983  0.0200
+VDA         C15         H15      SINGLE       n     1.089  0.0100     0.985  0.0173
+VDA         C15        H15A      SINGLE       n     1.089  0.0100     0.985  0.0173
+VDA         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0165
+VDA         C18         H18      SINGLE       n     1.089  0.0100     0.972  0.0157
+VDA         C18        H18A      SINGLE       n     1.089  0.0100     0.972  0.0157
+VDA         C18        H18B      SINGLE       n     1.089  0.0100     0.972  0.0157
+VDA         C20         H20      SINGLE       n     1.089  0.0100     0.989  0.0200
+VDA         C21         H21      SINGLE       n     1.089  0.0100     0.973  0.0141
+VDA         C21        H21A      SINGLE       n     1.089  0.0100     0.973  0.0141
+VDA         C21        H21B      SINGLE       n     1.089  0.0100     0.973  0.0141
+VDA         C23         H23      SINGLE       n     1.089  0.0100     0.981  0.0122
+VDA         C23        H23A      SINGLE       n     1.089  0.0100     0.981  0.0122
+VDA          O3         HO3      SINGLE       n     0.970  0.0120     0.848  0.0200
+VDA         C26         H26      SINGLE       n     1.089  0.0100     0.987  0.0100
+VDA         C26        H26A      SINGLE       n     1.089  0.0100     0.987  0.0100
+VDA         C27         H27      SINGLE       n     1.089  0.0100     0.987  0.0100
+VDA         C27        H27A      SINGLE       n     1.089  0.0100     0.987  0.0100
+VDA          O1         HO1      SINGLE       n     0.970  0.0120     0.841  0.0200
+VDA         C30         H30      SINGLE       n     1.089  0.0100     0.977  0.0200
+VDA         C30        H30A      SINGLE       n     1.089  0.0100     0.977  0.0200
+VDA         C31         H31      SINGLE       n     1.089  0.0100     0.980  0.0144
+VDA         C31        H31A      SINGLE       n     1.089  0.0100     0.980  0.0144
+VDA          O5         HO5      SINGLE       n     0.970  0.0120     0.846  0.0200
+VDA         C29         H29      SINGLE       n     1.089  0.0100     0.973  0.0157
+VDA         C29        H29A      SINGLE       n     1.089  0.0100     0.973  0.0157
+VDA         C29        H29B      SINGLE       n     1.089  0.0100     0.973  0.0157
+VDA         C28         H28      SINGLE       n     1.089  0.0100     0.973  0.0157
+VDA         C28        H28A      SINGLE       n     1.089  0.0100     0.973  0.0157
+VDA         C28        H28B      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VDA          C3          O2         HO2     109.387    3.00
+VDA          C2          C1         C10     110.811    1.64
+VDA          C2          C1          O1     110.081    2.02
+VDA          C2          C1          H1     109.166    1.50
+VDA         C10          C1          O1     109.943    1.55
+VDA         C10          C1          H1     109.453    2.12
+VDA          O1          C1          H1     108.933    1.50
+VDA          C1          C2          C3     110.796    1.54
+VDA          C1          C2          O4     109.116    2.14
+VDA          C1          C2          H2     109.166    1.50
+VDA          C3          C2          O4     109.116    2.14
+VDA          C3          C2          H2     109.166    1.50
+VDA          O4          C2          H2     109.096    1.50
+VDA          O2          C3          C2     110.081    2.02
+VDA          O2          C3          C4     109.943    1.55
+VDA          O2          C3          H3     108.933    1.50
+VDA          C2          C3          C4     110.811    1.64
+VDA          C2          C3          H3     109.166    1.50
+VDA          C4          C3          H3     109.453    2.12
+VDA          C3          C4          C5     112.021    2.38
+VDA          C3          C4          H4     108.743    1.50
+VDA          C3          C4         H4A     108.743    1.50
+VDA          C5          C4          H4     109.465    1.50
+VDA          C5          C4         H4A     109.465    1.50
+VDA          H4          C4         H4A     107.887    1.50
+VDA          C4          C5          C6     123.483    1.92
+VDA          C4          C5         C10     113.034    1.50
+VDA          C6          C5         C10     123.483    1.92
+VDA          C5          C6          C7     125.078    2.77
+VDA          C5          C6          H6     117.424    1.50
+VDA          C7          C6          H6     117.498    1.56
+VDA          C6          C7          C8     125.644    2.77
+VDA          C6          C7          H7     118.064    1.56
+VDA          C8          C7          H7     116.291    1.53
+VDA          C7          C8          C9     124.694    1.50
+VDA          C7          C8         C14     121.876    1.50
+VDA          C9          C8         C14     113.430    2.23
+VDA          C8          C9         C11     111.193    1.50
+VDA          C8          C9          H9     108.984    1.50
+VDA          C8          C9         H9A     108.984    1.50
+VDA         C11          C9          H9     109.046    1.50
+VDA         C11          C9         H9A     109.046    1.50
+VDA          H9          C9         H9A     107.904    1.50
+VDA          C1         C10          C5     112.021    2.38
+VDA          C1         C10         H10     108.743    1.50
+VDA          C1         C10        H10A     108.743    1.50
+VDA          C5         C10         H10     109.465    1.50
+VDA          C5         C10        H10A     109.465    1.50
+VDA         H10         C10        H10A     107.887    1.50
+VDA          C9         C11         C12     111.930    1.50
+VDA          C9         C11         H11     109.240    1.50
+VDA          C9         C11        H11A     109.240    1.50
+VDA         C12         C11         H11     109.250    1.50
+VDA         C12         C11        H11A     109.250    1.50
+VDA         H11         C11        H11A     107.912    1.50
+VDA         C11         C12         C13     113.175    1.70
+VDA         C11         C12         H12     109.396    1.50
+VDA         C11         C12        H12A     109.396    1.50
+VDA         C13         C12         H12     109.443    1.50
+VDA         C13         C12        H12A     109.443    1.50
+VDA         H12         C12        H12A     107.912    1.50
+VDA         C12         C13         C14     109.338    1.50
+VDA         C12         C13         C17     112.355    3.00
+VDA         C12         C13         C18     111.272    1.50
+VDA         C14         C13         C17     102.594    2.09
+VDA         C14         C13         C18     112.874    1.72
+VDA         C17         C13         C18     112.137    1.50
+VDA          C8         C14         C13     112.393    3.00
+VDA          C8         C14         C15     112.868    3.00
+VDA          C8         C14         H14     107.579    1.77
+VDA         C13         C14         C15     102.638    2.08
+VDA         C13         C14         H14     107.987    1.50
+VDA         C15         C14         H14     109.394    3.00
+VDA         C14         C15         C16     102.838    2.02
+VDA         C14         C15         H15     111.092    1.50
+VDA         C14         C15        H15A     111.092    1.50
+VDA         C16         C15         H15     111.443    1.50
+VDA         C16         C15        H15A     111.443    1.50
+VDA         H15         C15        H15A     108.755    1.50
+VDA         C15         C16         C17     112.834    1.50
+VDA         C15         C16         H16     123.503    1.50
+VDA         C17         C16         H16     123.663    1.50
+VDA         C13         C17         C16     109.252    2.26
+VDA         C13         C17         C20     123.248    2.05
+VDA         C16         C17         C20     127.500    2.76
+VDA         C13         C18         H18     109.507    1.50
+VDA         C13         C18        H18A     109.507    1.50
+VDA         C13         C18        H18B     109.507    1.50
+VDA         H18         C18        H18A     109.337    1.50
+VDA         H18         C18        H18B     109.337    1.50
+VDA        H18A         C18        H18B     109.337    1.50
+VDA         C17         C20         C21     111.339    2.21
+VDA         C17         C20         S22     112.260    2.46
+VDA         C17         C20         H20     109.382    1.50
+VDA         C21         C20         S22     112.239    3.00
+VDA         C21         C20         H20     108.681    1.50
+VDA         S22         C20         H20     107.632    1.50
+VDA         C20         C21         H21     109.528    1.50
+VDA         C20         C21        H21A     109.528    1.50
+VDA         C20         C21        H21B     109.528    1.50
+VDA         H21         C21        H21A     109.399    1.50
+VDA         H21         C21        H21B     109.399    1.50
+VDA        H21A         C21        H21B     109.399    1.50
+VDA         C20         S22         C23     101.840    1.86
+VDA         S22         C23         C25     112.239    3.00
+VDA         S22         C23         H23     108.654    1.50
+VDA         S22         C23        H23A     108.654    1.50
+VDA         C25         C23         H23     109.408    1.50
+VDA         C25         C23        H23A     109.408    1.50
+VDA         H23         C23        H23A     107.922    1.50
+VDA         C23         C25          O3     107.326    3.00
+VDA         C23         C25         C26     111.094    2.85
+VDA         C23         C25         C27     111.094    2.85
+VDA          O3         C25         C26     107.760    2.12
+VDA          O3         C25         C27     107.760    2.12
+VDA         C26         C25         C27     111.934    1.57
+VDA         C25          O3         HO3     108.877    3.00
+VDA         C25         C26         C29     115.422    1.50
+VDA         C25         C26         H26     108.201    1.50
+VDA         C25         C26        H26A     108.201    1.50
+VDA         C29         C26         H26     108.468    1.50
+VDA         C29         C26        H26A     108.468    1.50
+VDA         H26         C26        H26A     107.500    1.50
+VDA         C25         C27         C28     115.422    1.50
+VDA         C25         C27         H27     108.201    1.50
+VDA         C25         C27        H27A     108.201    1.50
+VDA         C28         C27         H27     108.468    1.50
+VDA         C28         C27        H27A     108.468    1.50
+VDA         H27         C27        H27A     107.500    1.50
+VDA          C1          O1         HO1     109.387    3.00
+VDA          C2          O4         C30     113.954    1.50
+VDA          O4         C30         C31     109.098    1.63
+VDA          O4         C30         H30     109.645    1.50
+VDA          O4         C30        H30A     109.645    1.50
+VDA         C31         C30         H30     109.801    1.50
+VDA         C31         C30        H30A     109.801    1.50
+VDA         H30         C30        H30A     108.739    1.80
+VDA         C30         C31          O5     111.344    1.95
+VDA         C30         C31         H31     109.461    1.50
+VDA         C30         C31        H31A     109.461    1.50
+VDA          O5         C31         H31     109.012    1.50
+VDA          O5         C31        H31A     109.012    1.50
+VDA         H31         C31        H31A     108.093    1.50
+VDA         C31          O5         HO5     109.347    1.86
+VDA         C26         C29         H29     109.481    1.50
+VDA         C26         C29        H29A     109.481    1.50
+VDA         C26         C29        H29B     109.481    1.50
+VDA         H29         C29        H29A     109.380    1.50
+VDA         H29         C29        H29B     109.380    1.50
+VDA        H29A         C29        H29B     109.380    1.50
+VDA         C27         C28         H28     109.481    1.50
+VDA         C27         C28        H28A     109.481    1.50
+VDA         C27         C28        H28B     109.481    1.50
+VDA         H28         C28        H28A     109.380    1.50
+VDA         H28         C28        H28B     109.380    1.50
+VDA        H28A         C28        H28B     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VDA            sp3_sp3_73          C2          C3          O2         HO2     180.000    10.0     3
+VDA            sp3_sp3_37          C9         C11         C12         C13      60.000    10.0     3
+VDA            sp3_sp3_48         C11         C12         C13         C18     180.000    10.0     3
+VDA            sp3_sp3_61         C18         C13         C14          C8     180.000    10.0     3
+VDA            sp2_sp3_36         C20         C17         C13         C18      60.000    10.0     6
+VDA            sp3_sp3_91         C12         C13         C18         H18     180.000    10.0     3
+VDA            sp3_sp3_67          C8         C14         C15         C16     180.000    10.0     3
+VDA            sp2_sp3_19         C17         C16         C15         C14       0.000    10.0     6
+VDA             sp2_sp2_2         C15         C16         C17         C20     180.000     5.0     2
+VDA            sp2_sp3_37         C13         C17         C20         C21     150.000    10.0     6
+VDA           sp3_sp3_103         S22         C20         C21         H21      60.000    10.0     3
+VDA           sp3_sp3_110         C21         C20         S22         C23      60.000    10.0     3
+VDA            sp3_sp3_79          O1          C1         C10          C5      60.000    10.0     3
+VDA             sp3_sp3_6          O1          C1          C2          O4     180.000    10.0     3
+VDA            sp3_sp3_85          C2          C1          O1         HO1     180.000    10.0     3
+VDA           sp3_sp3_112         C25         C23         S22         C20     180.000    10.0     3
+VDA           sp3_sp3_115         S22         C23         C25          O3     180.000    10.0     3
+VDA           sp3_sp3_125         C23         C25          O3         HO3      60.000    10.0     3
+VDA           sp3_sp3_127         C23         C25         C26         C29     180.000    10.0     3
+VDA           sp3_sp3_139         C23         C25         C27         C28      60.000    10.0     3
+VDA           sp3_sp3_145         C25         C26         C29         H29     180.000    10.0     3
+VDA           sp3_sp3_154         C25         C27         C28         H28     180.000    10.0     3
+VDA           sp3_sp3_163         C31         C30          O4          C2     180.000    10.0     3
+VDA           sp3_sp3_166          O4         C30         C31          O5     180.000    10.0     3
+VDA            sp3_sp3_89          C1          C2          O4         C30      60.000    10.0     3
+VDA            sp3_sp3_14          O4          C2          C3          O2     -60.000    10.0     3
+VDA           sp3_sp3_175         C30         C31          O5         HO5     180.000    10.0     3
+VDA            sp3_sp3_22          O2          C3          C4          C5     -60.000    10.0     3
+VDA             sp2_sp3_4          C6          C5          C4          C3     180.000    10.0     6
+VDA            sp2_sp3_10          C6          C5         C10          C1     180.000    10.0     6
+VDA             sp2_sp2_5          C4          C5          C6          C7     180.000     5.0     2
+VDA             sp2_sp2_9          C5          C6          C7          C8     180.000     5.0     2
+VDA            sp2_sp2_13          C6          C7          C8          C9     180.000     5.0     2
+VDA            sp2_sp3_28          C7          C8         C14         C13     180.000    10.0     6
+VDA            sp2_sp3_16          C7          C8          C9         C11     180.000    10.0     6
+VDA            sp3_sp3_28         C12         C11          C9          C8     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VDA    chir_1    C1    O1    C2    C10    negative
+VDA    chir_2    C2    O4    C1    C3    both
+VDA    chir_3    C3    O2    C2    C4    negative
+VDA    chir_4    C13    C17    C14    C12    positive
+VDA    chir_5    C14    C13    C8    C15    positive
+VDA    chir_6    C20    S22    C17    C21    positive
+VDA    chir_7    C25    O3    C23    C26    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VDA    plan-1         C10   0.020
+VDA    plan-1          C4   0.020
+VDA    plan-1          C5   0.020
+VDA    plan-1          C6   0.020
+VDA    plan-2          C5   0.020
+VDA    plan-2          C6   0.020
+VDA    plan-2          C7   0.020
+VDA    plan-2          H6   0.020
+VDA    plan-3          C6   0.020
+VDA    plan-3          C7   0.020
+VDA    plan-3          C8   0.020
+VDA    plan-3          H7   0.020
+VDA    plan-4         C14   0.020
+VDA    plan-4          C7   0.020
+VDA    plan-4          C8   0.020
+VDA    plan-4          C9   0.020
+VDA    plan-5         C15   0.020
+VDA    plan-5         C16   0.020
+VDA    plan-5         C17   0.020
+VDA    plan-5         H16   0.020
+VDA    plan-6         C13   0.020
+VDA    plan-6         C16   0.020
+VDA    plan-6         C17   0.020
+VDA    plan-6         C20   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VDA           SMILES              ACDLabs 10.04                                                                                                                                                 O(CCO)C3C(O)C/C(=C/C=C1\CCCC2(C(=CCC12)C(SCC(O)(CC)CC)C)C)CC3O
+VDA SMILES_CANONICAL               CACTVS 3.341                                                                                                                         CCC(O)(CC)CS[C@@H](C)C1=CC[C@H]2C(/CCC[C@]12C)=C/C=C3/C[C@@H](O)[C@@H](OCCO)[C@H](O)C3
+VDA           SMILES               CACTVS 3.341                                                                                                                                     CCC(O)(CC)CS[CH](C)C1=CC[CH]2C(CCC[C]12C)=CC=C3C[CH](O)[CH](OCCO)[CH](O)C3
+VDA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                               CCC(CC)(CS[C@@H](C)C1=CC[C@@H]2[C@@]1(CCCC2=CC=C3C[C@H](C([C@@H](C3)O)OCCO)O)C)O
+VDA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                      CCC(CC)(CSC(C)C1=CCC2C1(CCCC2=CC=C3CC(C(C(C3)O)OCCO)O)C)O
+VDA            InChI                InChI  1.03 InChI=1S/C28H46O5S/c1-5-28(32,6-2)18-34-19(3)22-11-12-23-21(8-7-13-27(22,23)4)10-9-20-16-24(30)26(25(31)17-20)33-15-14-29/h9-11,19,23-26,29-32H,5-8,12-18H2,1-4H3/b20-9-,21-10+/t19-,23-,24+,25+,26+,27+/m0/s1
+VDA         InChIKey                InChI  1.03                                                                                                                                                                                    DUIYWCMQVXJTIP-YYDWSLPPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VDA acedrg               243         "dictionary generator"                  
+VDA acedrg_database      11          "data source"                           
+VDA rdkit                2017.03.2   "Chemoinformatics tool"
+VDA refmac5              5.8.0238    "optimization tool"                     

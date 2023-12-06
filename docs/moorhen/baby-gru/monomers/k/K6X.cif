@@ -1,0 +1,157 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+K6X     K6X      3,4,5,6,7-pentabromo-1H-indazole     NON-POLYMER     15     14     .     
+#
+data_comp_K6X
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+K6X     C1      C       CR6     0       20.943      8.606       19.909      
+K6X     C2      C       CR56    0       21.685      7.537       20.444      
+K6X     C3      C       CR56    0       22.708      6.933       19.682      
+K6X     C4      C       CR6     0       22.994      7.387       18.396      
+K6X     C5      C       CR6     0       22.260      8.442       17.870      
+K6X     C6      C       CR6     0       21.237      9.050       18.624      
+K6X     BR13    BR      BR      0       19.560      9.464       20.866      
+K6X     BR15    BR      BR      0       20.242      10.492      17.893      
+K6X     BR17    BR      BR      0       22.653      9.057       16.117      
+K6X     BR19    BR      BR      0       24.364      6.590       17.354      
+K6X     N21     N       NR5     0       23.236      5.950       20.445      
+K6X     N23     N       NRD5    0       22.613      5.885       21.656      
+K6X     C25     C       CR5     0       21.679      6.829       21.673      
+K6X     BR28    BR      BR      0       20.581      7.087       23.164      
+K6X     HN21    H       H       0       23.889      5.404       20.236      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+K6X          C1          C6      DOUBLE       y     1.379  0.0134     1.379  0.0134
+K6X          C1          C2      SINGLE       y     1.401  0.0104     1.401  0.0104
+K6X          C1        BR13      SINGLE       n     1.884  0.0167     1.884  0.0167
+K6X          C2          C3      DOUBLE       y     1.410  0.0100     1.410  0.0100
+K6X          C2         C25      SINGLE       y     1.416  0.0100     1.416  0.0100
+K6X          C3          C4      SINGLE       y     1.391  0.0100     1.391  0.0100
+K6X          C3         N21      SINGLE       y     1.353  0.0100     1.353  0.0100
+K6X          C4        BR19      SINGLE       n     1.896  0.0109     1.896  0.0109
+K6X          C4          C5      DOUBLE       y     1.379  0.0134     1.379  0.0134
+K6X          C5        BR17      SINGLE       n     1.897  0.0105     1.897  0.0105
+K6X          C5          C6      SINGLE       y     1.393  0.0161     1.393  0.0161
+K6X          C6        BR15      SINGLE       n     1.897  0.0105     1.897  0.0105
+K6X         N21         N23      SINGLE       y     1.362  0.0100     1.362  0.0100
+K6X         N23         C25      DOUBLE       y     1.326  0.0123     1.326  0.0123
+K6X         C25        BR28      SINGLE       n     1.869  0.0100     1.869  0.0100
+K6X         N21        HN21      SINGLE       n     1.016  0.0100     0.876  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+K6X          C6          C1          C2     119.160    1.50
+K6X          C6          C1        BR13     118.856    1.50
+K6X          C2          C1        BR13     121.984    2.22
+K6X          C1          C2          C3     120.543    1.63
+K6X          C1          C2         C25     133.152    1.50
+K6X          C3          C2         C25     106.305    3.00
+K6X          C2          C3          C4     120.543    1.63
+K6X          C2          C3         N21     106.942    1.50
+K6X          C4          C3         N21     132.515    1.50
+K6X          C3          C4        BR19     121.984    2.22
+K6X          C3          C4          C5     119.160    1.50
+K6X        BR19          C4          C5     118.856    1.50
+K6X          C4          C5        BR17     119.024    1.50
+K6X          C4          C5          C6     120.297    1.50
+K6X        BR17          C5          C6     120.679    1.50
+K6X          C1          C6          C5     120.297    1.50
+K6X          C1          C6        BR15     119.024    1.50
+K6X          C5          C6        BR15     120.679    1.50
+K6X          C3         N21         N23     110.668    1.50
+K6X          C3         N21        HN21     127.677    3.00
+K6X         N23         N21        HN21     121.655    3.00
+K6X         N21         N23         C25     106.390    1.50
+K6X          C2         C25         N23     109.695    1.50
+K6X          C2         C25        BR28     127.400    1.69
+K6X         N23         C25        BR28     122.905    2.14
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+K6X              const_31        BR13          C1          C2          C3     180.000    10.0     2
+K6X       const_sp2_sp2_4        BR13          C1          C6        BR15       0.000     5.0     2
+K6X              const_25          C3         N21         N23         C25       0.000    10.0     2
+K6X              const_28        BR28         C25         N23         N21     180.000    10.0     2
+K6X              const_36          C1          C2         C25        BR28       0.000    10.0     2
+K6X              const_17          C1          C2          C3          C4       0.000    10.0     2
+K6X              const_21          C2          C3         N21         N23       0.000    10.0     2
+K6X              const_14          C2          C3          C4        BR19     180.000    10.0     2
+K6X              const_12        BR19          C4          C5        BR17       0.000    10.0     2
+K6X       const_sp2_sp2_8        BR17          C5          C6        BR15       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+K6X    plan-1        BR13   0.020
+K6X    plan-1        BR15   0.020
+K6X    plan-1        BR17   0.020
+K6X    plan-1        BR19   0.020
+K6X    plan-1        BR28   0.020
+K6X    plan-1          C1   0.020
+K6X    plan-1          C2   0.020
+K6X    plan-1         C25   0.020
+K6X    plan-1          C3   0.020
+K6X    plan-1          C4   0.020
+K6X    plan-1          C5   0.020
+K6X    plan-1          C6   0.020
+K6X    plan-1        HN21   0.020
+K6X    plan-1         N21   0.020
+K6X    plan-1         N23   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+K6X SMILES_CANONICAL               CACTVS 3.352                                 Brc1n[nH]c2c(Br)c(Br)c(Br)c(Br)c12
+K6X           SMILES               CACTVS 3.352                                 Brc1n[nH]c2c(Br)c(Br)c(Br)c(Br)c12
+K6X SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                 c12c(c(c(c(c1Br)Br)Br)Br)[nH]nc2Br
+K6X           SMILES "OpenEye OEToolkits" 1.7.0                                 c12c(c(c(c(c1Br)Br)Br)Br)[nH]nc2Br
+K6X            InChI                InChI  1.03 InChI=1S/C7HBr5N2/c8-2-1-6(13-14-7(1)12)5(11)4(10)3(2)9/h(H,13,14)
+K6X         InChIKey                InChI  1.03                                        WQPXVZWNOLUBMY-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+K6X acedrg               243         "dictionary generator"                  
+K6X acedrg_database      11          "data source"                           
+K6X rdkit                2017.03.2   "Chemoinformatics tool"
+K6X refmac5              5.8.0238    "optimization tool"                     

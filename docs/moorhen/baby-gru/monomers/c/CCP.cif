@@ -1,0 +1,148 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CCP     CCP      BUTYLPHOSPHONATE     NON-POLYMER     17     8     .     
+#
+data_comp_CCP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CCP     P       P       P       0       -1.607      5.214       38.645      
+CCP     O1P     O       O       0       -2.801      4.398       39.014      
+CCP     O2P     O       OP      -1      -0.720      5.446       39.821      
+CCP     O3P     O       OP      -1      -0.860      4.605       37.508      
+CCP     C1      C       CH2     0       -2.201      6.825       38.095      
+CCP     C2      C       CH2     0       -3.172      6.707       36.932      
+CCP     C3      C       CH2     0       -3.552      8.054       36.346      
+CCP     C4      C       CH3     0       -4.498      8.839       37.223      
+CCP     H11     H       H       0       -1.442      7.381       37.821      
+CCP     H12     H       H       0       -2.647      7.284       38.838      
+CCP     H21     H       H       0       -3.985      6.251       37.236      
+CCP     H22     H       H       0       -2.768      6.156       36.230      
+CCP     H31     H       H       0       -3.973      7.913       35.470      
+CCP     H32     H       H       0       -2.737      8.582       36.205      
+CCP     H41     H       H       0       -4.759      9.658       36.769      
+CCP     H42     H       H       0       -4.056      9.062       38.061      
+CCP     H43     H       H       0       -5.290      8.305       37.408      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CCP           P         O1P      DOUBLE       n     1.492  0.0200     1.492  0.0200
+CCP           P         O2P      SINGLE       n     1.492  0.0200     1.492  0.0200
+CCP           P         O3P      SINGLE       n     1.492  0.0200     1.492  0.0200
+CCP           P          C1      SINGLE       n     1.803  0.0200     1.803  0.0200
+CCP          C1          C2      SINGLE       n     1.520  0.0163     1.520  0.0163
+CCP          C2          C3      SINGLE       n     1.517  0.0187     1.517  0.0187
+CCP          C3          C4      SINGLE       n     1.510  0.0200     1.510  0.0200
+CCP          C1         H11      SINGLE       n     1.089  0.0100     0.980  0.0122
+CCP          C1         H12      SINGLE       n     1.089  0.0100     0.980  0.0122
+CCP          C2         H21      SINGLE       n     1.089  0.0100     0.980  0.0160
+CCP          C2         H22      SINGLE       n     1.089  0.0100     0.980  0.0160
+CCP          C3         H31      SINGLE       n     1.089  0.0100     0.982  0.0155
+CCP          C3         H32      SINGLE       n     1.089  0.0100     0.982  0.0155
+CCP          C4         H41      SINGLE       n     1.089  0.0100     0.973  0.0157
+CCP          C4         H42      SINGLE       n     1.089  0.0100     0.973  0.0157
+CCP          C4         H43      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CCP         O1P           P         O2P     111.786    1.50
+CCP         O1P           P         O3P     111.786    1.50
+CCP         O1P           P          C1     108.625    3.00
+CCP         O2P           P         O3P     111.786    1.50
+CCP         O2P           P          C1     108.625    3.00
+CCP         O3P           P          C1     108.625    3.00
+CCP           P          C1          C2     111.410    2.87
+CCP           P          C1         H11     109.545    1.50
+CCP           P          C1         H12     109.545    1.50
+CCP          C2          C1         H11     108.817    1.50
+CCP          C2          C1         H12     108.817    1.50
+CCP         H11          C1         H12     107.240    1.91
+CCP          C1          C2          C3     112.848    1.99
+CCP          C1          C2         H21     109.282    1.50
+CCP          C1          C2         H22     109.282    1.50
+CCP          C3          C2         H21     109.083    1.50
+CCP          C3          C2         H22     109.083    1.50
+CCP         H21          C2         H22     107.744    1.50
+CCP          C2          C3          C4     113.185    1.50
+CCP          C2          C3         H31     108.966    1.50
+CCP          C2          C3         H32     108.966    1.50
+CCP          C4          C3         H31     108.918    1.50
+CCP          C4          C3         H32     108.918    1.50
+CCP         H31          C3         H32     107.763    1.50
+CCP          C3          C4         H41     109.554    1.50
+CCP          C3          C4         H42     109.554    1.50
+CCP          C3          C4         H43     109.554    1.50
+CCP         H41          C4         H42     109.380    1.50
+CCP         H41          C4         H43     109.380    1.50
+CCP         H42          C4         H43     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CCP             sp3_sp3_3          C2          C1           P         O1P      60.000    10.0     3
+CCP            sp3_sp3_10           P          C1          C2          C3     180.000    10.0     3
+CCP            sp3_sp3_19          C1          C2          C3          C4     180.000    10.0     3
+CCP            sp3_sp3_28          C2          C3          C4         H41     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CCP    chir_1    P    O2P    O3P    O1P    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CCP           SMILES              ACDLabs 10.04                                            O=P(O)(O)CCCC
+CCP SMILES_CANONICAL               CACTVS 3.341                                          CCCC[P](O)(O)=O
+CCP           SMILES               CACTVS 3.341                                          CCCC[P](O)(O)=O
+CCP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                            CCCCP(=O)(O)O
+CCP           SMILES "OpenEye OEToolkits" 1.5.0                                            CCCCP(=O)(O)O
+CCP            InChI                InChI  1.03 InChI=1S/C4H11O3P/c1-2-3-4-8(5,6)7/h2-4H2,1H3,(H2,5,6,7)
+CCP         InChIKey                InChI  1.03                              UOKRBSXOBUKDGE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CCP acedrg               243         "dictionary generator"                  
+CCP acedrg_database      11          "data source"                           
+CCP rdkit                2017.03.2   "Chemoinformatics tool"
+CCP refmac5              5.8.0238    "optimization tool"                     

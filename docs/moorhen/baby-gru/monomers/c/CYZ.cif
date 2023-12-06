@@ -1,0 +1,302 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CYZ     CYZ      CYCLOTHIAZIDE     NON-POLYMER     40     24     .     
+#
+data_comp_CYZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CYZ     C1      C       CH1     0       60.938      85.347      55.322      
+CYZ     C2      C       CH1     0       59.597      85.051      56.072      
+CYZ     C3      C       CR56    0       58.464      85.607      55.243      
+CYZ     C4      C       CR56    0       58.549      86.925      55.281      
+CYZ     C5      C       CH1     0       59.722      87.273      56.154      
+CYZ     C6      C       CH2     0       61.001      86.885      55.359      
+CYZ     C7      C       CH2     0       59.654      86.123      57.167      
+CYZ     C8      C       CH1     0       61.113      84.764      53.901      
+CYZ     N1      N       NT1     0       60.820      83.326      53.901      
+CYZ     S1      S       S3      0       60.845      82.608      52.440      
+CYZ     C9      C       CR66    0       62.182      83.369      51.604      
+CYZ     C10     C       CR66    0       62.829      84.476      52.182      
+CYZ     N2      N       NR6     0       62.462      84.992      53.397      
+CYZ     C11     C       CR16    0       62.582      82.869      50.363      
+CYZ     C12     C       CR6     0       63.640      83.452      49.667      
+CYZ     C13     C       CR6     0       64.288      84.560      50.252      
+CYZ     C14     C       CR16    0       63.902      85.062      51.471      
+CYZ     CL      CL      CL      0       65.609      85.360      49.478      
+CYZ     S2      S       S3      0       64.111      82.782      48.101      
+CYZ     O1      O       O       0       59.629      82.944      51.771      
+CYZ     O2      O       O       0       61.151      81.227      52.642      
+CYZ     O3      O       O       0       63.157      81.780      47.725      
+CYZ     O4      O       O       0       65.494      82.419      48.185      
+CYZ     N3      N       NT2     0       63.996      83.961      47.022      
+CYZ     H11A    H       H       0       61.657      84.979      55.885      
+CYZ     H21     H       H       0       59.492      84.123      56.377      
+CYZ     H31A    H       H       0       57.819      85.096      54.785      
+CYZ     H41     H       H       0       57.980      87.538      54.842      
+CYZ     H51     H       H       0       59.723      88.176      56.533      
+CYZ     H61     H       H       0       60.983      87.267      54.456      
+CYZ     H62     H       H       0       61.809      87.197      55.818      
+CYZ     H71     H       H       0       60.450      86.056      57.728      
+CYZ     H72     H       H       0       58.851      86.146      57.722      
+CYZ     H81     H       H       0       60.473      85.213      53.296      
+CYZ     HN1     H       H       0       61.380      82.916      54.456      
+CYZ     HN2     H       H       0       63.021      85.447      53.863      
+CYZ     H11     H       H       0       62.133      82.129      49.995      
+CYZ     H14     H       H       0       64.353      85.802      51.837      
+CYZ     H31     H       H       0       64.482      83.824      46.315      
+CYZ     H32     H       H       0       63.176      84.210      46.877      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CYZ          C1          C2      SINGLE       n     1.563  0.0106     1.563  0.0106
+CYZ          C1          C6      SINGLE       n     1.536  0.0141     1.536  0.0141
+CYZ          C1          C8      SINGLE       n     1.543  0.0200     1.543  0.0200
+CYZ          C2          C3      SINGLE       n     1.506  0.0136     1.506  0.0136
+CYZ          C2          C7      SINGLE       n     1.532  0.0123     1.532  0.0123
+CYZ          C3          C4      DOUBLE       n     1.321  0.0117     1.321  0.0117
+CYZ          C4          C5      SINGLE       n     1.499  0.0163     1.499  0.0163
+CYZ          C5          C6      SINGLE       n     1.550  0.0151     1.550  0.0151
+CYZ          C5          C7      SINGLE       n     1.531  0.0155     1.531  0.0155
+CYZ          C8          N1      SINGLE       n     1.467  0.0110     1.467  0.0110
+CYZ          C8          N2      SINGLE       n     1.457  0.0100     1.457  0.0100
+CYZ          N1          S1      SINGLE       n     1.626  0.0100     1.626  0.0100
+CYZ          S1          C9      SINGLE       n     1.748  0.0100     1.748  0.0100
+CYZ          S1          O1      DOUBLE       n     1.429  0.0100     1.429  0.0100
+CYZ          S1          O2      DOUBLE       n     1.429  0.0100     1.429  0.0100
+CYZ          C9         C10      DOUBLE       y     1.400  0.0100     1.400  0.0100
+CYZ          C9         C11      SINGLE       y     1.391  0.0113     1.391  0.0113
+CYZ         C10          N2      SINGLE       n     1.368  0.0108     1.368  0.0108
+CYZ         C10         C14      SINGLE       y     1.411  0.0100     1.411  0.0100
+CYZ         C11         C12      DOUBLE       y     1.389  0.0100     1.389  0.0100
+CYZ         C12         C13      SINGLE       y     1.406  0.0100     1.406  0.0100
+CYZ         C12          S2      SINGLE       n     1.763  0.0108     1.763  0.0108
+CYZ         C13         C14      DOUBLE       y     1.371  0.0100     1.371  0.0100
+CYZ         C13          CL      SINGLE       n     1.726  0.0122     1.726  0.0122
+CYZ          S2          O3      DOUBLE       n     1.433  0.0100     1.433  0.0100
+CYZ          S2          O4      DOUBLE       n     1.433  0.0100     1.433  0.0100
+CYZ          S2          N3      SINGLE       n     1.603  0.0110     1.603  0.0110
+CYZ          C1        H11A      SINGLE       n     1.089  0.0100     0.985  0.0196
+CYZ          C2         H21      SINGLE       n     1.089  0.0100     0.983  0.0200
+CYZ          C3        H31A      SINGLE       n     1.082  0.0130     0.942  0.0200
+CYZ          C4         H41      SINGLE       n     1.082  0.0130     0.945  0.0107
+CYZ          C5         H51      SINGLE       n     1.089  0.0100     0.979  0.0200
+CYZ          C6         H61      SINGLE       n     1.089  0.0100     0.980  0.0153
+CYZ          C6         H62      SINGLE       n     1.089  0.0100     0.980  0.0153
+CYZ          C7         H71      SINGLE       n     1.089  0.0100     0.976  0.0166
+CYZ          C7         H72      SINGLE       n     1.089  0.0100     0.976  0.0166
+CYZ          C8         H81      SINGLE       n     1.089  0.0100     0.989  0.0151
+CYZ          N1         HN1      SINGLE       n     1.036  0.0160     0.889  0.0200
+CYZ          N2         HN2      SINGLE       n     1.016  0.0100     0.858  0.0200
+CYZ         C11         H11      SINGLE       n     1.082  0.0130     0.941  0.0110
+CYZ         C14         H14      SINGLE       n     1.082  0.0130     0.940  0.0105
+CYZ          N3         H31      SINGLE       n     1.036  0.0160     0.869  0.0200
+CYZ          N3         H32      SINGLE       n     1.036  0.0160     0.869  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CYZ          C2          C1          C6     102.979    1.50
+CYZ          C2          C1          C8     118.146    1.65
+CYZ          C2          C1        H11A     108.971    2.47
+CYZ          C6          C1          C8     114.839    3.00
+CYZ          C6          C1        H11A     110.425    1.69
+CYZ          C8          C1        H11A     108.673    1.50
+CYZ          C1          C2          C3     107.067    1.71
+CYZ          C1          C2          C7     100.693    1.50
+CYZ          C1          C2         H21     115.035    2.03
+CYZ          C3          C2          C7      99.651    1.50
+CYZ          C3          C2         H21     116.100    1.50
+CYZ          C7          C2         H21     116.385    1.50
+CYZ          C2          C3          C4     108.144    1.50
+CYZ          C2          C3        H31A     125.248    1.95
+CYZ          C4          C3        H31A     126.608    1.50
+CYZ          C3          C4          C5     107.782    1.50
+CYZ          C3          C4         H41     126.330    1.50
+CYZ          C5          C4         H41     125.888    1.50
+CYZ          C4          C5          C6     106.087    1.50
+CYZ          C4          C5          C7     100.342    1.50
+CYZ          C4          C5         H51     116.259    1.50
+CYZ          C6          C5          C7     100.632    1.50
+CYZ          C6          C5         H51     115.428    1.50
+CYZ          C7          C5         H51     116.032    1.50
+CYZ          C1          C6          C5     103.047    1.50
+CYZ          C1          C6         H61     111.425    1.50
+CYZ          C1          C6         H62     111.425    1.50
+CYZ          C5          C6         H61     111.114    1.50
+CYZ          C5          C6         H62     111.114    1.50
+CYZ         H61          C6         H62     108.982    1.50
+CYZ          C2          C7          C5      92.996    2.33
+CYZ          C2          C7         H71     112.956    1.50
+CYZ          C2          C7         H72     112.956    1.50
+CYZ          C5          C7         H71     113.140    1.50
+CYZ          C5          C7         H72     113.140    1.50
+CYZ         H71          C7         H72     110.244    1.50
+CYZ          C1          C8          N1     110.063    1.50
+CYZ          C1          C8          N2     110.597    1.59
+CYZ          C1          C8         H81     108.124    1.50
+CYZ          N1          C8          N2     110.362    2.46
+CYZ          N1          C8         H81     108.139    1.50
+CYZ          N2          C8         H81     108.332    1.50
+CYZ          C8          N1          S1     114.854    2.05
+CYZ          C8          N1         HN1     108.969    3.00
+CYZ          S1          N1         HN1     110.403    3.00
+CYZ          N1          S1          C9     103.089    1.50
+CYZ          N1          S1          O1     107.948    1.50
+CYZ          N1          S1          O2     107.948    1.50
+CYZ          C9          S1          O1     109.292    1.50
+CYZ          C9          S1          O2     109.292    1.50
+CYZ          O1          S1          O2     118.775    1.50
+CYZ          S1          C9         C10     118.831    1.50
+CYZ          S1          C9         C11     119.974    1.50
+CYZ         C10          C9         C11     121.195    1.50
+CYZ          C9         C10          N2     121.853    1.50
+CYZ          C9         C10         C14     118.138    1.50
+CYZ          N2         C10         C14     120.009    1.50
+CYZ          C8          N2         C10     119.583    1.86
+CYZ          C8          N2         HN2     119.894    1.57
+CYZ         C10          N2         HN2     120.523    1.76
+CYZ          C9         C11         C12     120.271    1.50
+CYZ          C9         C11         H11     120.174    1.50
+CYZ         C12         C11         H11     119.555    1.50
+CYZ         C11         C12         C13     118.339    1.50
+CYZ         C11         C12          S2     118.404    1.50
+CYZ         C13         C12          S2     123.256    1.50
+CYZ         C12         C13         C14     121.767    1.50
+CYZ         C12         C13          CL     121.643    1.50
+CYZ         C14         C13          CL     116.589    1.50
+CYZ         C10         C14         C13     120.290    1.50
+CYZ         C10         C14         H14     119.732    1.50
+CYZ         C13         C14         H14     119.978    1.50
+CYZ         C12          S2          O3     107.499    1.50
+CYZ         C12          S2          O4     107.499    1.50
+CYZ         C12          S2          N3     107.609    1.67
+CYZ          O3          S2          O4     118.954    1.50
+CYZ          O3          S2          N3     107.154    1.50
+CYZ          O4          S2          N3     107.154    1.50
+CYZ          S2          N3         H31     113.070    3.00
+CYZ          S2          N3         H32     113.070    3.00
+CYZ         H31          N3         H32     115.993    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CYZ            sp3_sp3_13          C6          C1          C2          C3      60.000    10.0     3
+CYZ            sp3_sp3_49          C2          C1          C6          C5     180.000    10.0     3
+CYZ            sp3_sp3_58          C2          C1          C8          N1     180.000    10.0     3
+CYZ       const_sp2_sp2_1          N2         C10          C9          S1       0.000     5.0     2
+CYZ              const_22         C12         C11          C9          S1     180.000    10.0     2
+CYZ             sp2_sp2_1          C9         C10          N2          C8       0.000     5.0     2
+CYZ       const_sp2_sp2_5          C9         C10         C14         C13       0.000     5.0     2
+CYZ              const_18          C9         C11         C12          S2     180.000    10.0     2
+CYZ              const_16          S2         C12         C13          CL       0.000    10.0     2
+CYZ            sp2_sp3_25         C11         C12          S2          O3     150.000    10.0     6
+CYZ              const_11          CL         C13         C14         C10     180.000    10.0     2
+CYZ            sp3_sp3_68         H31          N3          S2          O3     -60.000    10.0     3
+CYZ             sp2_sp3_7          C4          C3          C2          C1       0.000    10.0     6
+CYZ            sp3_sp3_31          C1          C2          C7          C5     -60.000    10.0     3
+CYZ             sp2_sp2_5          C2          C3          C4          C5       0.000     5.0     2
+CYZ            sp2_sp3_13          C3          C4          C5          C6       0.000    10.0     6
+CYZ            sp3_sp3_22          C4          C5          C6          C1      60.000    10.0     3
+CYZ            sp3_sp3_40          C4          C5          C7          C2      60.000    10.0     3
+CYZ            sp2_sp3_20         C10          N2          C8          C1     120.000    10.0     6
+CYZ             sp3_sp3_3          C1          C8          N1          S1     -60.000    10.0     3
+CYZ             sp3_sp3_9          C8          N1          S1          O1     180.000    10.0     3
+CYZ             sp2_sp3_2         C10          C9          S1          O1     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CYZ    chir_1    C1    C8    C2    C6    positive
+CYZ    chir_2    C2    C1    C3    C7    positive
+CYZ    chir_3    C5    C4    C6    C7    positive
+CYZ    chir_4    C8    N1    N2    C1    positive
+CYZ    chir_5    S1    O1    O2    N1    both
+CYZ    chir_6    S2    O3    O4    N3    both
+CYZ    chir_7    N1    S1    C8    HN1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CYZ    plan-1         C10   0.020
+CYZ    plan-1         C11   0.020
+CYZ    plan-1         C12   0.020
+CYZ    plan-1         C13   0.020
+CYZ    plan-1         C14   0.020
+CYZ    plan-1          C9   0.020
+CYZ    plan-1          CL   0.020
+CYZ    plan-1         H11   0.020
+CYZ    plan-1         H14   0.020
+CYZ    plan-1          N2   0.020
+CYZ    plan-1          S1   0.020
+CYZ    plan-1          S2   0.020
+CYZ    plan-2          C2   0.020
+CYZ    plan-2          C3   0.020
+CYZ    plan-2          C4   0.020
+CYZ    plan-2        H31A   0.020
+CYZ    plan-3          C3   0.020
+CYZ    plan-3          C4   0.020
+CYZ    plan-3          C5   0.020
+CYZ    plan-3         H41   0.020
+CYZ    plan-4         C10   0.020
+CYZ    plan-4          C8   0.020
+CYZ    plan-4         HN2   0.020
+CYZ    plan-4          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CYZ           SMILES              ACDLabs 10.04                                                                                                       O=S(=O)(c1c(Cl)cc2c(c1)S(=O)(=O)NC(N2)C4C3C=CC(C3)C4)N
+CYZ SMILES_CANONICAL               CACTVS 3.341                                                                                       N[S](=O)(=O)c1cc2c(N[C@@H](N[S]2(=O)=O)[C@H]3C[C@@H]4C[C@H]3C=C4)cc1Cl
+CYZ           SMILES               CACTVS 3.341                                                                                             N[S](=O)(=O)c1cc2c(N[CH](N[S]2(=O)=O)[CH]3C[CH]4C[CH]3C=C4)cc1Cl
+CYZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                        c1c2c(cc(c1Cl)S(=O)(=O)N)S(=O)(=O)N[C@H](N2)[C@H]3C[C@@H]4C[C@H]3C=C4
+CYZ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                         c1c2c(cc(c1Cl)S(=O)(=O)N)S(=O)(=O)NC(N2)C3CC4CC3C=C4
+CYZ            InChI                InChI  1.03 InChI=1S/C14H16ClN3O4S2/c15-10-5-11-13(6-12(10)23(16,19)20)24(21,22)18-14(17-11)9-4-7-1-2-8(9)3-7/h1-2,5-9,14,17-18H,3-4H2,(H2,16,19,20)/t7-,8+,9-,14-/m0/s1
+CYZ         InChIKey                InChI  1.03                                                                                                                                  BOCUKUHCLICSIY-KSCJFIISSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CYZ acedrg               243         "dictionary generator"                  
+CYZ acedrg_database      11          "data source"                           
+CYZ rdkit                2017.03.2   "Chemoinformatics tool"
+CYZ refmac5              5.8.0238    "optimization tool"                     

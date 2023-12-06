@@ -1,0 +1,323 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+2KV     2KV      1-[cis-4-(aminomethyl)-4-(3-chlorophenyl)cyclohexyl]piperidin-2-one     NON-POLYMER     48     22     .     
+#
+data_comp_2KV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+2KV     C2      C       CR6     0       15.216      29.229      53.254      
+2KV     C3      C       CT      0       18.224      33.651      54.811      
+2KV     C11     C       CH2     0       17.237      31.278      55.195      
+2KV     C12     C       CR6     0       18.782      37.444      54.871      
+2KV     C13     C       CH2     0       17.704      29.058      52.988      
+2KV     C16     C       CH2     0       19.713      33.203      54.861      
+2KV     C17     C       CH2     0       15.118      27.732      53.150      
+2KV     C18     C       CR16    0       17.511      35.560      56.416      
+2KV     C19     C       CR16    0       17.489      36.900      56.782      
+2KV     C20     C       CR16    0       18.126      37.853      56.011      
+2KV     C21     C       CH2     0       17.564      27.599      53.364      
+2KV     C22     C       CH2     0       16.393      27.024      52.751      
+2KV     N1      N       NR6     0       16.481      29.810      53.315      
+2KV     C4      C       CR6     0       18.171      35.136      55.250      
+2KV     C5      C       CH1     0       16.699      31.220      53.773      
+2KV     O6      O       O       0       14.188      29.914      53.347      
+2KV     C7      C       CR16    0       18.815      36.114      54.487      
+2KV     C8      C       CH2     0       17.689      33.508      53.368      
+2KV     C9      C       CH2     0       17.343      32.723      55.684      
+2KV     C10     C       CH2     0       17.577      32.069      52.859      
+2KV     CL1     CL      CL      0       19.593      38.627      53.883      
+2KV     N15     N       NT3     1       20.425      33.413      56.150      
+2KV     H1      H       H       0       16.615      30.780      55.782      
+2KV     H2      H       H       0       18.124      30.842      55.243      
+2KV     H3      H       H       0       17.880      29.129      52.028      
+2KV     H4      H       H       0       18.472      29.437      53.461      
+2KV     H5      H       H       0       20.196      33.692      54.164      
+2KV     H6      H       H       0       19.763      32.253      54.640      
+2KV     H7      H       H       0       14.828      27.387      54.009      
+2KV     H8      H       H       0       14.429      27.517      52.501      
+2KV     H9      H       H       0       17.064      34.932      56.966      
+2KV     H10     H       H       0       17.035      37.163      57.565      
+2KV     H11     H       H       0       18.112      38.761      56.259      
+2KV     H12     H       H       0       17.497      27.518      54.341      
+2KV     H13     H       H       0       18.364      27.108      53.071      
+2KV     H14     H       H       0       16.488      27.062      51.780      
+2KV     H15     H       H       0       16.328      26.084      53.005      
+2KV     H16     H       H       0       15.819      31.666      53.793      
+2KV     H17     H       H       0       19.273      35.867      53.707      
+2KV     H18     H       H       0       18.289      34.011      52.758      
+2KV     H19     H       H       0       16.795      33.937      53.325      
+2KV     H20     H       H       0       16.428      33.107      55.717      
+2KV     H21     H       H       0       17.701      32.723      56.610      
+2KV     H22     H       H       0       17.171      32.073      51.956      
+2KV     H23     H       H       0       18.483      31.676      52.789      
+2KV     H24     H       H       0       21.182      32.913      56.167      
+2KV     H25     H       H       0       19.914      33.169      56.856      
+2KV     H26     H       H       0       20.665      34.282      56.248      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+2KV         C17         C22      SINGLE       n     1.506  0.0200     1.506  0.0200
+2KV         C21         C22      SINGLE       n     1.444  0.0200     1.444  0.0200
+2KV          C2         C17      SINGLE       n     1.500  0.0100     1.500  0.0100
+2KV          C8         C10      SINGLE       n     1.527  0.0100     1.527  0.0100
+2KV          C5         C10      SINGLE       n     1.522  0.0112     1.522  0.0112
+2KV          C2          O6      DOUBLE       n     1.237  0.0107     1.237  0.0107
+2KV          C2          N1      SINGLE       n     1.359  0.0200     1.359  0.0200
+2KV         C13         C21      SINGLE       n     1.513  0.0100     1.513  0.0100
+2KV          C3          C8      SINGLE       n     1.539  0.0100     1.539  0.0100
+2KV         C12         CL1      SINGLE       n     1.742  0.0100     1.742  0.0100
+2KV         C13          N1      SINGLE       n     1.466  0.0100     1.466  0.0100
+2KV          N1          C5      SINGLE       n     1.490  0.0100     1.490  0.0100
+2KV         C11          C5      SINGLE       n     1.522  0.0112     1.522  0.0112
+2KV         C12          C7      DOUBLE       y     1.381  0.0100     1.381  0.0100
+2KV          C4          C7      SINGLE       y     1.389  0.0100     1.389  0.0100
+2KV         C12         C20      SINGLE       y     1.375  0.0126     1.375  0.0126
+2KV          C3         C16      SINGLE       n     1.549  0.0107     1.549  0.0107
+2KV         C16         N15      SINGLE       n     1.483  0.0133     1.483  0.0133
+2KV          C3          C4      SINGLE       n     1.538  0.0100     1.538  0.0100
+2KV          C3          C9      SINGLE       n     1.539  0.0100     1.539  0.0100
+2KV         C18          C4      DOUBLE       y     1.396  0.0100     1.396  0.0100
+2KV         C11          C9      SINGLE       n     1.527  0.0100     1.527  0.0100
+2KV         C19         C20      DOUBLE       y     1.378  0.0126     1.378  0.0126
+2KV         C18         C19      SINGLE       y     1.386  0.0100     1.386  0.0100
+2KV         C11          H1      SINGLE       n     1.089  0.0100     0.990  0.0100
+2KV         C11          H2      SINGLE       n     1.089  0.0100     0.990  0.0100
+2KV         C13          H3      SINGLE       n     1.089  0.0100     0.979  0.0143
+2KV         C13          H4      SINGLE       n     1.089  0.0100     0.979  0.0143
+2KV         C16          H5      SINGLE       n     1.089  0.0100     0.980  0.0160
+2KV         C16          H6      SINGLE       n     1.089  0.0100     0.980  0.0160
+2KV         C17          H7      SINGLE       n     1.089  0.0100     0.970  0.0100
+2KV         C17          H8      SINGLE       n     1.089  0.0100     0.970  0.0100
+2KV         C18          H9      SINGLE       n     1.082  0.0130     0.949  0.0103
+2KV         C19         H10      SINGLE       n     1.082  0.0130     0.943  0.0200
+2KV         C20         H11      SINGLE       n     1.082  0.0130     0.941  0.0166
+2KV         C21         H12      SINGLE       n     1.089  0.0100     0.983  0.0130
+2KV         C21         H13      SINGLE       n     1.089  0.0100     0.983  0.0130
+2KV         C22         H14      SINGLE       n     1.089  0.0100     0.976  0.0100
+2KV         C22         H15      SINGLE       n     1.089  0.0100     0.976  0.0100
+2KV          C5         H16      SINGLE       n     1.089  0.0100     0.987  0.0100
+2KV          C7         H17      SINGLE       n     1.082  0.0130     0.938  0.0100
+2KV          C8         H18      SINGLE       n     1.089  0.0100     0.993  0.0113
+2KV          C8         H19      SINGLE       n     1.089  0.0100     0.993  0.0113
+2KV          C9         H20      SINGLE       n     1.089  0.0100     0.993  0.0113
+2KV          C9         H21      SINGLE       n     1.089  0.0100     0.993  0.0113
+2KV         C10         H22      SINGLE       n     1.089  0.0100     0.990  0.0100
+2KV         C10         H23      SINGLE       n     1.089  0.0100     0.990  0.0100
+2KV         N15         H24      SINGLE       n     1.036  0.0160     0.907  0.0200
+2KV         N15         H25      SINGLE       n     1.036  0.0160     0.907  0.0200
+2KV         N15         H26      SINGLE       n     1.036  0.0160     0.907  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+2KV         C17          C2          O6     122.099    1.72
+2KV         C17          C2          N1     116.984    1.63
+2KV          O6          C2          N1     120.917    1.61
+2KV          C8          C3         C16     110.206    1.93
+2KV          C8          C3          C4     112.236    2.00
+2KV          C8          C3          C9     106.805    1.50
+2KV         C16          C3          C4     110.263    2.03
+2KV         C16          C3          C9     110.206    1.93
+2KV          C4          C3          C9     112.236    2.00
+2KV          C5         C11          C9     111.161    1.50
+2KV          C5         C11          H1     108.671    2.44
+2KV          C5         C11          H2     108.671    2.44
+2KV          C9         C11          H1     109.388    1.50
+2KV          C9         C11          H2     109.388    1.50
+2KV          H1         C11          H2     108.392    1.50
+2KV         CL1         C12          C7     119.011    1.50
+2KV         CL1         C12         C20     119.365    1.50
+2KV          C7         C12         C20     121.625    1.50
+2KV         C21         C13          N1     110.582    1.50
+2KV         C21         C13          H3     109.532    1.50
+2KV         C21         C13          H4     109.532    1.50
+2KV          N1         C13          H3     109.518    1.50
+2KV          N1         C13          H4     109.518    1.50
+2KV          H3         C13          H4     107.996    1.50
+2KV          C3         C16         N15     113.823    1.83
+2KV          C3         C16          H5     107.832    1.50
+2KV          C3         C16          H6     107.832    1.50
+2KV         N15         C16          H5     108.377    1.50
+2KV         N15         C16          H6     108.377    1.50
+2KV          H5         C16          H6     107.850    1.50
+2KV         C22         C17          C2     113.852    1.50
+2KV         C22         C17          H7     109.002    1.50
+2KV         C22         C17          H8     109.002    1.50
+2KV          C2         C17          H7     108.560    1.50
+2KV          C2         C17          H8     108.560    1.50
+2KV          H7         C17          H8     107.867    1.50
+2KV          C4         C18         C19     120.790    1.50
+2KV          C4         C18          H9     119.536    1.50
+2KV         C19         C18          H9     119.674    1.50
+2KV         C20         C19         C18     120.522    1.50
+2KV         C20         C19         H10     119.704    1.50
+2KV         C18         C19         H10     119.773    1.50
+2KV         C12         C20         C19     118.547    1.50
+2KV         C12         C20         H11     120.717    1.50
+2KV         C19         C20         H11     120.736    1.50
+2KV         C22         C21         C13     111.213    1.50
+2KV         C22         C21         H12     109.453    1.50
+2KV         C22         C21         H13     109.453    1.50
+2KV         C13         C21         H12     109.375    1.50
+2KV         C13         C21         H13     109.375    1.50
+2KV         H12         C21         H13     108.022    1.50
+2KV         C17         C22         C21     113.667    3.00
+2KV         C17         C22         H14     109.445    1.50
+2KV         C17         C22         H15     109.445    1.50
+2KV         C21         C22         H14     109.613    1.50
+2KV         C21         C22         H15     109.613    1.50
+2KV         H14         C22         H15     108.036    1.50
+2KV          C2          N1         C13     123.118    2.69
+2KV          C2          N1          C5     122.505    2.62
+2KV         C13          N1          C5     114.385    1.97
+2KV          C7          C4          C3     120.720    1.50
+2KV          C7          C4         C18     118.559    1.50
+2KV          C3          C4         C18     120.720    1.50
+2KV         C10          C5          N1     112.064    2.03
+2KV         C10          C5         C11     110.177    1.50
+2KV         C10          C5         H16     107.277    1.50
+2KV          N1          C5         C11     112.064    2.03
+2KV          N1          C5         H16     107.496    1.50
+2KV         C11          C5         H16     107.277    1.50
+2KV         C12          C7          C4     119.956    1.50
+2KV         C12          C7         H17     120.314    1.50
+2KV          C4          C7         H17     119.730    1.50
+2KV         C10          C8          C3     112.781    1.50
+2KV         C10          C8         H18     109.388    1.50
+2KV         C10          C8         H19     109.388    1.50
+2KV          C3          C8         H18     108.555    1.50
+2KV          C3          C8         H19     108.555    1.50
+2KV         H18          C8         H19     107.799    1.50
+2KV          C3          C9         C11     112.781    1.50
+2KV          C3          C9         H20     108.555    1.50
+2KV          C3          C9         H21     108.555    1.50
+2KV         C11          C9         H20     109.388    1.50
+2KV         C11          C9         H21     109.388    1.50
+2KV         H20          C9         H21     107.799    1.50
+2KV          C8         C10          C5     111.161    1.50
+2KV          C8         C10         H22     109.388    1.50
+2KV          C8         C10         H23     109.388    1.50
+2KV          C5         C10         H22     108.671    2.44
+2KV          C5         C10         H23     108.671    2.44
+2KV         H22         C10         H23     108.392    1.50
+2KV         C16         N15         H24     110.335    2.25
+2KV         C16         N15         H25     110.335    2.25
+2KV         C16         N15         H26     110.335    2.25
+2KV         H24         N15         H25     108.820    2.86
+2KV         H24         N15         H26     108.820    2.86
+2KV         H25         N15         H26     108.820    2.86
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+2KV             sp2_sp2_3          O6          C2          N1         C13     180.000     5.0     2
+2KV             sp2_sp3_4          O6          C2         C17         C22     180.000    10.0     6
+2KV            sp3_sp3_55         C13         C21         C22         C17      60.000    10.0     3
+2KV            sp2_sp3_14          C2          N1          C5         C10     -90.000    10.0     6
+2KV       const_sp2_sp2_7          C3          C4          C7         C12     180.000     5.0     2
+2KV            sp3_sp3_21          C8         C10          C5          N1     -60.000    10.0     3
+2KV            sp3_sp3_10          C5         C10          C8          C3     -60.000    10.0     3
+2KV            sp2_sp3_19          C7          C4          C3         C16     150.000    10.0     6
+2KV             sp3_sp3_7         C16          C3          C8         C10     180.000    10.0     3
+2KV            sp3_sp3_94         C16          C3          C9         C11      60.000    10.0     3
+2KV            sp3_sp3_73         N15         C16          C3          C8     180.000    10.0     3
+2KV            sp3_sp3_28          C9         C11          C5         C10     -60.000    10.0     3
+2KV            sp3_sp3_37          C5         C11          C9          C3      60.000    10.0     3
+2KV       const_sp2_sp2_3         CL1         C12          C7          C4     180.000     5.0     2
+2KV              const_23         CL1         C12         C20         C19     180.000    10.0     2
+2KV            sp3_sp3_64          N1         C13         C21         C22     -60.000    10.0     3
+2KV             sp2_sp3_7          C2          N1         C13         C21       0.000    10.0     6
+2KV            sp3_sp3_82          C3         C16         N15         H24     180.000    10.0     3
+2KV            sp3_sp3_46          C2         C17         C22         C21     -60.000    10.0     3
+2KV       const_sp2_sp2_9         C19         C18          C4          C7       0.000     5.0     2
+2KV              const_13          C4         C18         C19         C20       0.000    10.0     2
+2KV              const_17         C18         C19         C20         C12       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+2KV    chir_1    C3    C16    C4    C8    both
+2KV    chir_2    C5    N1    C10    C11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+2KV    plan-1         C12   0.020
+2KV    plan-1         C18   0.020
+2KV    plan-1         C19   0.020
+2KV    plan-1         C20   0.020
+2KV    plan-1          C3   0.020
+2KV    plan-1          C4   0.020
+2KV    plan-1          C7   0.020
+2KV    plan-1         CL1   0.020
+2KV    plan-1         H10   0.020
+2KV    plan-1         H11   0.020
+2KV    plan-1         H17   0.020
+2KV    plan-1          H9   0.020
+2KV    plan-2         C17   0.020
+2KV    plan-2          C2   0.020
+2KV    plan-2          N1   0.020
+2KV    plan-2          O6   0.020
+2KV    plan-3         C13   0.020
+2KV    plan-3          C2   0.020
+2KV    plan-3          C5   0.020
+2KV    plan-3          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+2KV           SMILES              ACDLabs 12.01                                                                                        Clc1cccc(c1)C3(CCC(N2C(=O)CCCC2)CC3)CN
+2KV            InChI                InChI  1.03 InChI=1S/C18H25ClN2O/c19-15-5-3-4-14(12-15)18(13-20)9-7-16(8-10-18)21-11-2-1-6-17(21)22/h3-5,12,16H,1-2,6-11,13,20H2/t16-,18-
+2KV         InChIKey                InChI  1.03                                                                                                   HPAJLBAQCKXNNT-SAABIXHNSA-N
+2KV SMILES_CANONICAL               CACTVS 3.385                                                                                 NC[C@@]1(CC[C@@H](CC1)N2CCCCC2=O)c3cccc(Cl)c3
+2KV           SMILES               CACTVS 3.385                                                                                     NC[C]1(CC[CH](CC1)N2CCCCC2=O)c3cccc(Cl)c3
+2KV SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                        c1cc(cc(c1)Cl)C2(CCC(CC2)N3CCCCC3=O)CN
+2KV           SMILES "OpenEye OEToolkits" 1.7.6                                                                                        c1cc(cc(c1)Cl)C2(CCC(CC2)N3CCCCC3=O)CN
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+2KV acedrg               243         "dictionary generator"                  
+2KV acedrg_database      11          "data source"                           
+2KV rdkit                2017.03.2   "Chemoinformatics tool"
+2KV refmac5              5.8.0238    "optimization tool"                     

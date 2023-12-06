@@ -1,0 +1,247 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BSO     BSO      BIOTIN-D-SULFOXIDE     NON-POLYMER     32     17     .     
+#
+data_comp_BSO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BSO     C11     C       C       0       30.983      11.574      15.324      
+BSO     O11     O       OC      -1      30.329      12.613      15.108      
+BSO     O12     O       O       0       30.852      10.527      14.658      
+BSO     C10     C       CH2     0       31.992      11.584      16.459      
+BSO     C9      C       CH2     0       33.273      12.295      16.148      
+BSO     C8      C       CH2     0       34.188      11.519      15.216      
+BSO     C7      C       CH2     0       35.563      12.152      15.034      
+BSO     C2      C       CH1     0       36.475      11.447      14.025      
+BSO     S1      S       S3      0       37.175      9.940       14.777      
+BSO     C6      C       CH2     0       38.339      9.868       13.410      
+BSO     C5      C       CH1     0       38.807      11.303      13.134      
+BSO     N1      N       NR5     0       39.893      11.712      13.986      
+BSO     C3      C       CR5     0       39.564      12.747      14.790      
+BSO     O3      O       O       0       40.317      13.284      15.620      
+BSO     N2      N       NR5     0       38.287      13.108      14.539      
+BSO     C4      C       CH1     0       37.666      12.288      13.529      
+BSO     O10     O       O       0       36.187      8.847       14.544      
+BSO     H101    H       H       0       32.196      10.656      16.702      
+BSO     H102    H       H       0       31.576      12.009      17.239      
+BSO     H9C1    H       H       0       33.754      12.470      16.984      
+BSO     H9C2    H       H       0       33.068      13.161      15.736      
+BSO     H8C1    H       H       0       33.756      11.445      14.338      
+BSO     H8C2    H       H       0       34.302      10.611      15.569      
+BSO     H7C1    H       H       0       36.016      12.170      15.904      
+BSO     H7C2    H       H       0       35.443      13.082      14.747      
+BSO     H2      H       H       0       35.935      11.191      13.239      
+BSO     H6C1    H       H       0       37.894      9.486       12.626      
+BSO     H6C2    H       H       0       39.093      9.294       13.657      
+BSO     H5      H       H       0       39.049      11.420      12.183      
+BSO     H1      H       H       0       40.678      11.348      13.996      
+BSO     HA      H       H       0       37.904      13.769      14.947      
+BSO     H4      H       H       0       37.394      12.836      12.753      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BSO         C11         O11      SINGLE       n     1.247  0.0187     1.247  0.0187
+BSO         C11         O12      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BSO         C11         C10      SINGLE       n     1.519  0.0109     1.519  0.0109
+BSO         C10          C9      SINGLE       n     1.497  0.0200     1.497  0.0200
+BSO          C9          C8      SINGLE       n     1.519  0.0164     1.519  0.0164
+BSO          C8          C7      SINGLE       n     1.524  0.0145     1.524  0.0145
+BSO          C7          C2      SINGLE       n     1.530  0.0123     1.530  0.0123
+BSO          C2          S1      SINGLE       n     1.833  0.0200     1.833  0.0200
+BSO          C2          C4      SINGLE       n     1.535  0.0140     1.535  0.0140
+BSO          S1          C6      SINGLE       n     1.800  0.0111     1.800  0.0111
+BSO          S1         O10      DOUBLE       n     1.492  0.0116     1.492  0.0116
+BSO          C6          C5      SINGLE       n     1.531  0.0175     1.531  0.0175
+BSO          C5          N1      SINGLE       n     1.440  0.0100     1.440  0.0100
+BSO          C5          C4      SINGLE       n     1.546  0.0190     1.546  0.0190
+BSO          N1          C3      SINGLE       n     1.351  0.0100     1.351  0.0100
+BSO          C3          O3      DOUBLE       n     1.242  0.0100     1.242  0.0100
+BSO          C3          N2      SINGLE       n     1.351  0.0100     1.351  0.0100
+BSO          N2          C4      SINGLE       n     1.440  0.0100     1.440  0.0100
+BSO         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0185
+BSO         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0185
+BSO          C9        H9C1      SINGLE       n     1.089  0.0100     0.980  0.0160
+BSO          C9        H9C2      SINGLE       n     1.089  0.0100     0.980  0.0160
+BSO          C8        H8C1      SINGLE       n     1.089  0.0100     0.981  0.0160
+BSO          C8        H8C2      SINGLE       n     1.089  0.0100     0.981  0.0160
+BSO          C7        H7C1      SINGLE       n     1.089  0.0100     0.981  0.0178
+BSO          C7        H7C2      SINGLE       n     1.089  0.0100     0.981  0.0178
+BSO          C2          H2      SINGLE       n     1.089  0.0100     0.987  0.0153
+BSO          C6        H6C1      SINGLE       n     1.089  0.0100     0.979  0.0169
+BSO          C6        H6C2      SINGLE       n     1.089  0.0100     0.979  0.0169
+BSO          C5          H5      SINGLE       n     1.089  0.0100     0.988  0.0148
+BSO          N1          H1      SINGLE       n     1.016  0.0100     0.866  0.0173
+BSO          N2          HA      SINGLE       n     1.016  0.0100     0.866  0.0173
+BSO          C4          H4      SINGLE       n     1.089  0.0100     0.988  0.0148
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BSO         O11         C11         O12     123.571    1.50
+BSO         O11         C11         C10     118.214    1.64
+BSO         O12         C11         C10     118.214    1.64
+BSO         C11         C10          C9     114.612    2.19
+BSO         C11         C10        H101     108.404    1.50
+BSO         C11         C10        H102     108.404    1.50
+BSO          C9         C10        H101     108.815    1.50
+BSO          C9         C10        H102     108.815    1.50
+BSO        H101         C10        H102     107.521    1.50
+BSO         C10          C9          C8     113.314    2.25
+BSO         C10          C9        H9C1     109.164    1.50
+BSO         C10          C9        H9C2     109.164    1.50
+BSO          C8          C9        H9C1     108.623    1.50
+BSO          C8          C9        H9C2     108.623    1.50
+BSO        H9C1          C9        H9C2     107.646    1.50
+BSO          C9          C8          C7     114.188    2.10
+BSO          C9          C8        H8C1     108.803    1.50
+BSO          C9          C8        H8C2     108.803    1.50
+BSO          C7          C8        H8C1     108.765    1.50
+BSO          C7          C8        H8C2     108.765    1.50
+BSO        H8C1          C8        H8C2     107.696    1.50
+BSO          C8          C7          C2     114.962    1.91
+BSO          C8          C7        H7C1     108.756    1.50
+BSO          C8          C7        H7C2     108.756    1.50
+BSO          C2          C7        H7C1     108.624    1.50
+BSO          C2          C7        H7C2     108.624    1.50
+BSO        H7C1          C7        H7C2     107.535    1.50
+BSO          C7          C2          S1     109.385    2.31
+BSO          C7          C2          C4     113.984    2.76
+BSO          C7          C2          H2     108.708    1.80
+BSO          S1          C2          C4     107.277    3.00
+BSO          S1          C2          H2     109.124    2.20
+BSO          C4          C2          H2     108.114    1.75
+BSO          C2          S1          C6      91.968    2.15
+BSO          C2          S1         O10     106.645    1.50
+BSO          C6          S1         O10     106.277    1.50
+BSO          S1          C6          C5     107.277    3.00
+BSO          S1          C6        H6C1     109.314    1.86
+BSO          S1          C6        H6C2     109.314    1.86
+BSO          C5          C6        H6C1     111.037    1.50
+BSO          C5          C6        H6C2     111.037    1.50
+BSO        H6C1          C6        H6C2     108.954    1.50
+BSO          C6          C5          N1     113.949    2.21
+BSO          C6          C5          C4     106.826    1.62
+BSO          C6          C5          H5     111.504    1.59
+BSO          N1          C5          C4     103.067    1.50
+BSO          N1          C5          H5     110.900    1.50
+BSO          C4          C5          H5     110.773    1.50
+BSO          C5          N1          C3     112.454    1.50
+BSO          C5          N1          H1     124.974    2.25
+BSO          C3          N1          H1     122.572    2.15
+BSO          N1          C3          O3     125.707    1.50
+BSO          N1          C3          N2     108.587    1.50
+BSO          O3          C3          N2     125.707    1.50
+BSO          C3          N2          C4     112.454    1.50
+BSO          C3          N2          HA     122.572    2.15
+BSO          C4          N2          HA     124.974    2.25
+BSO          C2          C4          C5     104.802    1.87
+BSO          C2          C4          N2     113.949    2.21
+BSO          C2          C4          H4     110.171    1.70
+BSO          C5          C4          N2     103.067    1.50
+BSO          C5          C4          H4     110.773    1.50
+BSO          N2          C4          H4     110.900    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BSO            sp2_sp3_14         O11         C11         C10          C9     120.000    10.0     6
+BSO             sp2_sp3_2          C3          N1          C5          C6     120.000    10.0     6
+BSO            sp3_sp3_22          C2          C4          C5          C6     -60.000    10.0     3
+BSO             sp2_sp2_3          O3          C3          N1          C5     180.000     5.0     2
+BSO             sp2_sp2_7          O3          C3          N2          C4     180.000     5.0     2
+BSO             sp2_sp3_8          C3          N2          C4          C2     120.000    10.0     6
+BSO            sp3_sp3_31         C11         C10          C9          C8     180.000    10.0     3
+BSO            sp3_sp3_40          C7          C8          C9         C10     180.000    10.0     3
+BSO            sp3_sp3_49          C2          C7          C8          C9     180.000    10.0     3
+BSO            sp3_sp3_58          S1          C2          C7          C8     180.000    10.0     3
+BSO            sp3_sp3_70          C7          C2          C4          C5      60.000    10.0     3
+BSO             sp3_sp3_4          C7          C2          S1         O10      60.000    10.0     3
+BSO             sp3_sp3_8          C5          C6          S1         O10      60.000    10.0     3
+BSO            sp3_sp3_16          N1          C5          C6          S1     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BSO    chir_1    C2    S1    C4    C7    positive
+BSO    chir_2    S1    O10    C2    C6    positive
+BSO    chir_3    C5    N1    C6    C4    negative
+BSO    chir_4    C4    N2    C2    C5    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BSO    plan-1         C10   0.020
+BSO    plan-1         C11   0.020
+BSO    plan-1         O11   0.020
+BSO    plan-1         O12   0.020
+BSO    plan-2          C3   0.020
+BSO    plan-2          C5   0.020
+BSO    plan-2          H1   0.020
+BSO    plan-2          N1   0.020
+BSO    plan-3          C3   0.020
+BSO    plan-3          N1   0.020
+BSO    plan-3          N2   0.020
+BSO    plan-3          O3   0.020
+BSO    plan-4          C3   0.020
+BSO    plan-4          C4   0.020
+BSO    plan-4          HA   0.020
+BSO    plan-4          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BSO           SMILES              ACDLabs 10.04                                                                                                 O=S2CC1NC(=O)NC1C2CCCCC(=O)O
+BSO SMILES_CANONICAL               CACTVS 3.341                                                                                  OC(=O)CCCC[C@H]1[C@H]2NC(=O)N[C@H]2C[S@]1=O
+BSO           SMILES               CACTVS 3.341                                                                                      OC(=O)CCCC[CH]1[CH]2NC(=O)N[CH]2C[S]1=O
+BSO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                            C1[C@H]2[C@@H]([C@@H]([S@]1=O)CCCCC(=O)O)NC(=O)N2
+BSO           SMILES "OpenEye OEToolkits" 1.5.0                                                                                             C1C2C(C(S1=O)CCCCC(=O)O)NC(=O)N2
+BSO            InChI                InChI  1.03 InChI=1S/C10H16N2O4S/c13-8(14)4-2-1-3-7-9-6(5-17(7)16)11-10(15)12-9/h6-7,9H,1-5H2,(H,13,14)(H2,11,12,15)/t6-,7-,9-,17-/m0/s1
+BSO         InChIKey                InChI  1.03                                                                                                  KCSKCIQYNAOBNQ-OKPRWBIXSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BSO acedrg               243         "dictionary generator"                  
+BSO acedrg_database      11          "data source"                           
+BSO rdkit                2017.03.2   "Chemoinformatics tool"
+BSO refmac5              5.8.0238    "optimization tool"                     

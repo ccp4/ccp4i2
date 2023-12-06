@@ -1,0 +1,380 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OHT     OHT      4-HYDROXYTAMOXIFEN     NON-POLYMER     58     29     .     
+#
+data_comp_OHT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OHT     C10     C       CH3     0       30.353      1.259       29.620      
+OHT     C9      C       CH2     0       30.647      -0.223      29.409      
+OHT     C8      C       C       0       31.323      -0.512      28.081      
+OHT     C11     C       CR6     0       32.752      -0.067      28.032      
+OHT     C16     C       CR16    0       33.155      0.969       27.190      
+OHT     C15     C       CR16    0       34.481      1.378       27.146      
+OHT     C14     C       CR16    0       35.424      0.761       27.943      
+OHT     C13     C       CR16    0       35.045      -0.265      28.784      
+OHT     C12     C       CR16    0       33.721      -0.678      28.827      
+OHT     C7      C       C       0       30.694      -1.107      27.038      
+OHT     C1      C       CR6     0       29.221      -1.339      26.983      
+OHT     C2      C       CR16    0       28.692      -2.636      26.981      
+OHT     C3      C       CR16    0       27.326      -2.858      26.930      
+OHT     C4      C       CR6     0       26.449      -1.779      26.881      
+OHT     O4      O       OH1     0       25.093      -1.994      26.830      
+OHT     C5      C       CR16    0       26.951      -0.481      26.882      
+OHT     C6      C       CR16    0       28.318      -0.269      26.933      
+OHT     C17     C       CR6     0       31.411      -1.575      25.814      
+OHT     C18     C       CR16    0       32.385      -2.578      25.875      
+OHT     C19     C       CR16    0       33.051      -3.009      24.741      
+OHT     C20     C       CR6     0       32.754      -2.450      23.502      
+OHT     O20     O       O2      0       33.481      -2.959      22.452      
+OHT     C23     C       CH2     0       33.216      -2.543      21.107      
+OHT     C24     C       CH2     0       34.229      -3.213      20.209      
+OHT     N24     N       NT      0       34.288      -4.690      20.348      
+OHT     C25     C       CH3     0       33.174      -5.339      19.645      
+OHT     C26     C       CH3     0       35.565      -5.218      19.849      
+OHT     C21     C       CR16    0       31.784      -1.451      23.416      
+OHT     C22     C       CR16    0       31.128      -1.026      24.558      
+OHT     H101    H       H       0       29.762      1.368       30.386      
+OHT     H102    H       H       0       29.923      1.623       28.826      
+OHT     H103    H       H       0       31.186      1.736       29.784      
+OHT     H91     H       H       0       29.804      -0.722      29.471      
+OHT     H92     H       H       0       31.231      -0.529      30.137      
+OHT     H16     H       H       0       32.519      1.394       26.643      
+OHT     H15     H       H       0       34.737      2.080       26.571      
+OHT     H14     H       H       0       36.325      1.040       27.914      
+OHT     H13     H       H       0       35.687      -0.689      29.329      
+OHT     H12     H       H       0       33.471      -1.378      29.404      
+OHT     H2      H       H       0       29.276      -3.372      27.014      
+OHT     H3      H       H       0       26.991      -3.737      26.929      
+OHT     HO4     H       H       0       24.559      -1.486      27.275      
+OHT     H5      H       H       0       26.361      0.252       26.848      
+OHT     H6      H       H       0       28.647      0.612       26.933      
+OHT     H18     H       H       0       32.598      -2.964      26.707      
+OHT     H19     H       H       0       33.704      -3.683      24.807      
+OHT     H231    H       H       0       33.298      -1.572      21.032      
+OHT     H232    H       H       0       32.311      -2.800      20.847      
+OHT     H241    H       H       0       35.113      -2.839      20.409      
+OHT     H242    H       H       0       34.021      -2.990      19.278      
+OHT     H251    H       H       0       33.213      -6.304      19.792      
+OHT     H252    H       H       0       33.239      -5.154      18.688      
+OHT     H253    H       H       0       32.325      -4.996      19.985      
+OHT     H261    H       H       0       36.300      -4.854      20.380      
+OHT     H262    H       H       0       35.681      -4.960      18.914      
+OHT     H263    H       H       0       35.568      -6.193      19.920      
+OHT     H21     H       H       0       31.573      -1.061      22.587      
+OHT     H22     H       H       0       30.475      -0.351      24.488      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OHT         C10          C9      SINGLE       n     1.526  0.0122     1.526  0.0122
+OHT          C9          C8      SINGLE       n     1.514  0.0100     1.514  0.0100
+OHT          C8         C11      SINGLE       n     1.496  0.0100     1.496  0.0100
+OHT          C8          C7      DOUBLE       n     1.347  0.0100     1.347  0.0100
+OHT         C11         C16      DOUBLE       y     1.390  0.0100     1.390  0.0100
+OHT         C11         C12      SINGLE       y     1.390  0.0100     1.390  0.0100
+OHT         C16         C15      SINGLE       y     1.384  0.0100     1.384  0.0100
+OHT         C15         C14      DOUBLE       y     1.376  0.0124     1.376  0.0124
+OHT         C14         C13      SINGLE       y     1.376  0.0114     1.376  0.0114
+OHT         C13         C12      DOUBLE       y     1.384  0.0100     1.384  0.0100
+OHT          C7          C1      SINGLE       n     1.491  0.0100     1.491  0.0100
+OHT          C7         C17      SINGLE       n     1.491  0.0100     1.491  0.0100
+OHT          C1          C2      DOUBLE       y     1.396  0.0121     1.396  0.0121
+OHT          C1          C6      SINGLE       y     1.396  0.0121     1.396  0.0121
+OHT          C2          C3      SINGLE       y     1.381  0.0100     1.381  0.0100
+OHT          C3          C4      DOUBLE       y     1.388  0.0100     1.388  0.0100
+OHT          C4          O4      SINGLE       n     1.374  0.0155     1.374  0.0155
+OHT          C4          C5      SINGLE       y     1.388  0.0100     1.388  0.0100
+OHT          C5          C6      DOUBLE       y     1.381  0.0100     1.381  0.0100
+OHT         C17         C18      DOUBLE       y     1.396  0.0121     1.396  0.0121
+OHT         C17         C22      SINGLE       y     1.396  0.0121     1.396  0.0121
+OHT         C18         C19      SINGLE       y     1.381  0.0100     1.381  0.0100
+OHT         C19         C20      DOUBLE       y     1.386  0.0109     1.386  0.0109
+OHT         C20         O20      SINGLE       n     1.369  0.0106     1.369  0.0106
+OHT         C20         C21      SINGLE       y     1.386  0.0109     1.386  0.0109
+OHT         O20         C23      SINGLE       n     1.430  0.0100     1.430  0.0100
+OHT         C23         C24      SINGLE       n     1.509  0.0100     1.509  0.0100
+OHT         C24         N24      SINGLE       n     1.472  0.0188     1.472  0.0188
+OHT         N24         C25      SINGLE       n     1.466  0.0117     1.466  0.0117
+OHT         N24         C26      SINGLE       n     1.466  0.0117     1.466  0.0117
+OHT         C21         C22      DOUBLE       y     1.381  0.0100     1.381  0.0100
+OHT         C10        H101      SINGLE       n     1.089  0.0100     0.973  0.0141
+OHT         C10        H102      SINGLE       n     1.089  0.0100     0.973  0.0141
+OHT         C10        H103      SINGLE       n     1.089  0.0100     0.973  0.0141
+OHT          C9         H91      SINGLE       n     1.089  0.0100     0.983  0.0171
+OHT          C9         H92      SINGLE       n     1.089  0.0100     0.983  0.0171
+OHT         C16         H16      SINGLE       n     1.082  0.0130     0.941  0.0168
+OHT         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0180
+OHT         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0161
+OHT         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0180
+OHT         C12         H12      SINGLE       n     1.082  0.0130     0.941  0.0168
+OHT          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+OHT          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0179
+OHT          O4         HO4      SINGLE       n     0.966  0.0059     0.861  0.0200
+OHT          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0179
+OHT          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+OHT         C18         H18      SINGLE       n     1.082  0.0130     0.941  0.0168
+OHT         C19         H19      SINGLE       n     1.082  0.0130     0.941  0.0179
+OHT         C23        H231      SINGLE       n     1.089  0.0100     0.977  0.0111
+OHT         C23        H232      SINGLE       n     1.089  0.0100     0.977  0.0111
+OHT         C24        H241      SINGLE       n     1.089  0.0100     0.980  0.0143
+OHT         C24        H242      SINGLE       n     1.089  0.0100     0.980  0.0143
+OHT         C25        H251      SINGLE       n     1.089  0.0100     0.977  0.0113
+OHT         C25        H252      SINGLE       n     1.089  0.0100     0.977  0.0113
+OHT         C25        H253      SINGLE       n     1.089  0.0100     0.977  0.0113
+OHT         C26        H261      SINGLE       n     1.089  0.0100     0.977  0.0113
+OHT         C26        H262      SINGLE       n     1.089  0.0100     0.977  0.0113
+OHT         C26        H263      SINGLE       n     1.089  0.0100     0.977  0.0113
+OHT         C21         H21      SINGLE       n     1.082  0.0130     0.941  0.0179
+OHT         C22         H22      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OHT          C9         C10        H101     109.501    1.50
+OHT          C9         C10        H102     109.501    1.50
+OHT          C9         C10        H103     109.501    1.50
+OHT        H101         C10        H102     109.380    1.50
+OHT        H101         C10        H103     109.380    1.50
+OHT        H102         C10        H103     109.380    1.50
+OHT         C10          C9          C8     113.296    1.50
+OHT         C10          C9         H91     108.663    1.50
+OHT         C10          C9         H92     108.663    1.50
+OHT          C8          C9         H91     108.960    1.50
+OHT          C8          C9         H92     108.960    1.50
+OHT         H91          C9         H92     108.208    1.50
+OHT          C9          C8         C11     114.823    1.50
+OHT          C9          C8          C7     122.000    1.58
+OHT         C11          C8          C7     123.178    1.50
+OHT          C8         C11         C16     121.022    1.50
+OHT          C8         C11         C12     121.022    1.50
+OHT         C16         C11         C12     117.955    1.50
+OHT         C11         C16         C15     120.849    1.50
+OHT         C11         C16         H16     119.497    1.50
+OHT         C15         C16         H16     119.654    1.50
+OHT         C16         C15         C14     120.210    1.50
+OHT         C16         C15         H15     119.850    1.50
+OHT         C14         C15         H15     119.941    1.50
+OHT         C15         C14         C13     119.927    1.50
+OHT         C15         C14         H14     120.036    1.50
+OHT         C13         C14         H14     120.036    1.50
+OHT         C14         C13         C12     120.210    1.50
+OHT         C14         C13         H13     119.941    1.50
+OHT         C12         C13         H13     119.850    1.50
+OHT         C11         C12         C13     120.849    1.50
+OHT         C11         C12         H12     119.497    1.50
+OHT         C13         C12         H12     119.654    1.50
+OHT          C8          C7          C1     122.127    1.50
+OHT          C8          C7         C17     122.127    1.50
+OHT          C1          C7         C17     115.746    3.00
+OHT          C7          C1          C2     121.052    1.50
+OHT          C7          C1          C6     121.052    1.50
+OHT          C2          C1          C6     117.897    1.50
+OHT          C1          C2          C3     121.520    1.50
+OHT          C1          C2          H2     119.306    1.50
+OHT          C3          C2          H2     119.174    1.50
+OHT          C2          C3          C4     119.772    1.50
+OHT          C2          C3          H3     120.195    1.50
+OHT          C4          C3          H3     120.033    1.50
+OHT          C3          C4          O4     120.241    3.00
+OHT          C3          C4          C5     119.518    1.50
+OHT          O4          C4          C5     120.241    3.00
+OHT          C4          O4         HO4     120.000    3.00
+OHT          C4          C5          C6     119.772    1.50
+OHT          C4          C5          H5     120.033    1.50
+OHT          C6          C5          H5     120.195    1.50
+OHT          C1          C6          C5     121.520    1.50
+OHT          C1          C6          H6     119.306    1.50
+OHT          C5          C6          H6     119.174    1.50
+OHT          C7         C17         C18     121.048    1.50
+OHT          C7         C17         C22     121.048    1.50
+OHT         C18         C17         C22     117.903    1.50
+OHT         C17         C18         C19     121.527    1.50
+OHT         C17         C18         H18     119.303    1.50
+OHT         C19         C18         H18     119.170    1.50
+OHT         C18         C19         C20     119.637    1.50
+OHT         C18         C19         H19     120.200    1.50
+OHT         C20         C19         H19     120.163    1.50
+OHT         C19         C20         O20     120.115    3.00
+OHT         C19         C20         C21     119.770    1.50
+OHT         O20         C20         C21     120.115    3.00
+OHT         C20         O20         C23     118.195    1.50
+OHT         O20         C23         C24     107.287    2.37
+OHT         O20         C23        H231     110.215    1.50
+OHT         O20         C23        H232     110.215    1.50
+OHT         C24         C23        H231     110.227    1.50
+OHT         C24         C23        H232     110.227    1.50
+OHT        H231         C23        H232     108.672    1.50
+OHT         C23         C24         N24     112.681    3.00
+OHT         C23         C24        H241     109.032    1.50
+OHT         C23         C24        H242     109.032    1.50
+OHT         N24         C24        H241     108.917    1.50
+OHT         N24         C24        H242     108.917    1.50
+OHT        H241         C24        H242     107.851    1.50
+OHT         C24         N24         C25     110.678    1.50
+OHT         C24         N24         C26     110.678    1.50
+OHT         C25         N24         C26     109.730    1.50
+OHT         N24         C25        H251     109.516    1.50
+OHT         N24         C25        H252     109.516    1.50
+OHT         N24         C25        H253     109.516    1.50
+OHT        H251         C25        H252     109.408    1.50
+OHT        H251         C25        H253     109.408    1.50
+OHT        H252         C25        H253     109.408    1.50
+OHT         N24         C26        H261     109.516    1.50
+OHT         N24         C26        H262     109.516    1.50
+OHT         N24         C26        H263     109.516    1.50
+OHT        H261         C26        H262     109.408    1.50
+OHT        H261         C26        H263     109.408    1.50
+OHT        H262         C26        H263     109.408    1.50
+OHT         C20         C21         C22     119.637    1.50
+OHT         C20         C21         H21     120.163    1.50
+OHT         C22         C21         H21     120.200    1.50
+OHT         C17         C22         C21     121.527    1.50
+OHT         C17         C22         H22     119.303    1.50
+OHT         C21         C22         H22     119.170    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OHT             sp3_sp3_1        H101         C10          C9          C8     180.000    10.0     3
+OHT              const_43          C7          C1          C2          C3     180.000    10.0     2
+OHT              const_67          C7          C1          C6          C5     180.000    10.0     2
+OHT              const_45          C1          C2          C3          C4       0.000    10.0     2
+OHT              const_50          C2          C3          C4          O4     180.000    10.0     2
+OHT            sp2_sp2_17          C3          C4          O4         HO4     180.000     5.0     2
+OHT              const_55          O4          C4          C5          C6     180.000    10.0     2
+OHT              const_57          C4          C5          C6          C1       0.000    10.0     2
+OHT              const_23          C7         C17         C18         C19     180.000    10.0     2
+OHT              const_71          C7         C17         C22         C21     180.000    10.0     2
+OHT              const_25         C17         C18         C19         C20       0.000    10.0     2
+OHT              const_30         C18         C19         C20         O20     180.000    10.0     2
+OHT             sp2_sp3_5          C7          C8          C9         C10     -60.000    10.0     6
+OHT            sp2_sp2_19         C19         C20         O20         C23     180.000     5.0     2
+OHT              const_35         O20         C20         C21         C22     180.000    10.0     2
+OHT            sp3_sp3_10         C24         C23         O20         C20     180.000    10.0     3
+OHT            sp3_sp3_13         O20         C23         C24         N24     180.000    10.0     3
+OHT            sp3_sp3_23         C23         C24         N24         C25     -60.000    10.0     3
+OHT            sp3_sp3_28        H251         C25         N24         C24     180.000    10.0     3
+OHT            sp3_sp3_35        H261         C26         N24         C24     -60.000    10.0     3
+OHT              const_37         C20         C21         C22         C17       0.000    10.0     2
+OHT             sp2_sp2_1         C16         C11          C8          C9     180.000     5.0     2
+OHT             sp2_sp2_5          C1          C7          C8          C9     180.000     5.0     2
+OHT       const_sp2_sp2_3          C8         C11         C16         C15     180.000     5.0     2
+OHT              const_63          C8         C11         C12         C13     180.000    10.0     2
+OHT       const_sp2_sp2_5         C14         C15         C16         C11       0.000     5.0     2
+OHT       const_sp2_sp2_9         C13         C14         C15         C16       0.000     5.0     2
+OHT              const_13         C12         C13         C14         C15       0.000    10.0     2
+OHT              const_17         C11         C12         C13         C14       0.000    10.0     2
+OHT             sp2_sp2_9          C2          C1          C7          C8     180.000     5.0     2
+OHT            sp2_sp2_13         C18         C17          C7          C8     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OHT    chir_1    N24    C24    C25    C26    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OHT    plan-1          C1   0.020
+OHT    plan-1          C2   0.020
+OHT    plan-1          C3   0.020
+OHT    plan-1          C4   0.020
+OHT    plan-1          C5   0.020
+OHT    plan-1          C6   0.020
+OHT    plan-1          C7   0.020
+OHT    plan-1          H2   0.020
+OHT    plan-1          H3   0.020
+OHT    plan-1          H5   0.020
+OHT    plan-1          H6   0.020
+OHT    plan-1          O4   0.020
+OHT    plan-2         C17   0.020
+OHT    plan-2         C18   0.020
+OHT    plan-2         C19   0.020
+OHT    plan-2         C20   0.020
+OHT    plan-2         C21   0.020
+OHT    plan-2         C22   0.020
+OHT    plan-2          C7   0.020
+OHT    plan-2         H18   0.020
+OHT    plan-2         H19   0.020
+OHT    plan-2         H21   0.020
+OHT    plan-2         H22   0.020
+OHT    plan-2         O20   0.020
+OHT    plan-3         C11   0.020
+OHT    plan-3         C12   0.020
+OHT    plan-3         C13   0.020
+OHT    plan-3         C14   0.020
+OHT    plan-3         C15   0.020
+OHT    plan-3         C16   0.020
+OHT    plan-3          C8   0.020
+OHT    plan-3         H12   0.020
+OHT    plan-3         H13   0.020
+OHT    plan-3         H14   0.020
+OHT    plan-3         H15   0.020
+OHT    plan-3         H16   0.020
+OHT    plan-4         C11   0.020
+OHT    plan-4          C7   0.020
+OHT    plan-4          C8   0.020
+OHT    plan-4          C9   0.020
+OHT    plan-5          C1   0.020
+OHT    plan-5         C17   0.020
+OHT    plan-5          C7   0.020
+OHT    plan-5          C8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OHT           SMILES              ACDLabs 10.04                                                                                           O(c1ccc(cc1)/C(c2ccc(O)cc2)=C(\c3ccccc3)CC)CCN(C)C
+OHT SMILES_CANONICAL               CACTVS 3.341                                                                                             CC\C(c1ccccc1)=C(/c2ccc(O)cc2)c3ccc(OCCN(C)C)cc3
+OHT           SMILES               CACTVS 3.341                                                                                               CCC(c1ccccc1)=C(c2ccc(O)cc2)c3ccc(OCCN(C)C)cc3
+OHT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                           CC/C(=C(\c1ccc(cc1)O)/c2ccc(cc2)OCCN(C)C)/c3ccccc3
+OHT           SMILES "OpenEye OEToolkits" 1.5.0                                                                                               CCC(=C(c1ccc(cc1)O)c2ccc(cc2)OCCN(C)C)c3ccccc3
+OHT            InChI                InChI  1.03 InChI=1S/C26H29NO2/c1-4-25(20-8-6-5-7-9-20)26(21-10-14-23(28)15-11-21)22-12-16-24(17-13-22)29-19-18-27(2)3/h5-17,28H,4,18-19H2,1-3H3/b26-25-
+OHT         InChIKey                InChI  1.03                                                                                                                  TXUZVZSFRXZGTL-QPLCGJKRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OHT acedrg               243         "dictionary generator"                  
+OHT acedrg_database      11          "data source"                           
+OHT rdkit                2017.03.2   "Chemoinformatics tool"
+OHT refmac5              5.8.0238    "optimization tool"                     

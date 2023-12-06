@@ -1,0 +1,193 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+1WC     1WC      4-(2-chlorophenyl)-5-methyl-1H-pyrazole     NON-POLYMER     22     13     .     
+#
+data_comp_1WC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+1WC     C1      C       CH3     0       15.578      32.542      -0.982      
+1WC     C2      C       CR5     0       16.576      32.442      -2.081      
+1WC     C6      C       CR15    0       17.817      31.953      -3.849      
+1WC     C7      C       CR5     0       16.672      31.562      -3.135      
+1WC     C8      C       CR6     0       15.760      30.451      -3.457      
+1WC     C10     C       CR16    0       13.571      29.671      -4.136      
+1WC     C11     C       CR16    0       14.002      28.362      -4.070      
+1WC     C12     C       CR16    0       15.300      28.077      -3.701      
+1WC     C13     C       CR6     0       16.175      29.117      -3.396      
+1WC     N3      N       NR5     0       17.609      33.283      -2.182      
+1WC     N5      N       NRD5    0       18.380      32.996      -3.260      
+1WC     C9      C       CR16    0       14.441      30.706      -3.832      
+1WC     CL1     CL      CL      0       17.789      28.693      -2.939      
+1WC     H16     H       H       0       15.801      33.289      -0.408      
+1WC     H17     H       H       0       15.583      31.725      -0.463      
+1WC     H15     H       H       0       14.696      32.678      -1.357      
+1WC     H18     H       H       0       18.157      31.547      -4.629      
+1WC     H20     H       H       0       12.682      29.863      -4.388      
+1WC     H21     H       H       0       13.412      27.662      -4.276      
+1WC     H22     H       H       0       15.595      27.188      -3.656      
+1WC     H4      H       H       0       17.825      33.967      -1.645      
+1WC     H19     H       H       0       14.141      31.595      -3.879      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+1WC         C11         C12      SINGLE       y     1.372  0.0132     1.372  0.0132
+1WC         C10         C11      DOUBLE       y     1.376  0.0119     1.376  0.0119
+1WC         C12         C13      DOUBLE       y     1.387  0.0114     1.387  0.0114
+1WC         C10          C9      SINGLE       y     1.383  0.0100     1.383  0.0100
+1WC          C6          N5      DOUBLE       y     1.323  0.0100     1.323  0.0100
+1WC          C6          C7      SINGLE       y     1.405  0.0109     1.405  0.0109
+1WC         C13         CL1      SINGLE       n     1.727  0.0200     1.727  0.0200
+1WC          C8         C13      SINGLE       y     1.393  0.0100     1.393  0.0100
+1WC          C8          C9      DOUBLE       y     1.391  0.0100     1.391  0.0100
+1WC          C7          C8      SINGLE       n     1.472  0.0100     1.472  0.0100
+1WC          N3          N5      SINGLE       y     1.355  0.0100     1.355  0.0100
+1WC          C2          C7      DOUBLE       y     1.384  0.0200     1.384  0.0200
+1WC          C2          N3      SINGLE       y     1.336  0.0132     1.336  0.0132
+1WC          C1          C2      SINGLE       n     1.488  0.0100     1.488  0.0100
+1WC          C1         H16      SINGLE       n     1.089  0.0100     0.968  0.0138
+1WC          C1         H17      SINGLE       n     1.089  0.0100     0.968  0.0138
+1WC          C1         H15      SINGLE       n     1.089  0.0100     0.968  0.0138
+1WC          C6         H18      SINGLE       n     1.082  0.0130     0.943  0.0100
+1WC         C10         H20      SINGLE       n     1.082  0.0130     0.943  0.0180
+1WC         C11         H21      SINGLE       n     1.082  0.0130     0.939  0.0165
+1WC         C12         H22      SINGLE       n     1.082  0.0130     0.938  0.0140
+1WC          N3          H4      SINGLE       n     1.016  0.0100     0.896  0.0200
+1WC          C9         H19      SINGLE       n     1.082  0.0130     0.940  0.0177
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+1WC          C2          C1         H16     109.558    1.50
+1WC          C2          C1         H17     109.558    1.50
+1WC          C2          C1         H15     109.558    1.50
+1WC         H16          C1         H17     109.354    1.50
+1WC         H16          C1         H15     109.354    1.50
+1WC         H17          C1         H15     109.354    1.50
+1WC          C7          C2          N3     107.312    1.50
+1WC          C7          C2          C1     130.750    1.50
+1WC          N3          C2          C1     121.937    1.50
+1WC          N5          C6          C7     109.756    1.50
+1WC          N5          C6         H18     123.636    2.33
+1WC          C7          C6         H18     126.608    3.00
+1WC          C6          C7          C8     126.424    2.56
+1WC          C6          C7          C2     106.315    1.50
+1WC          C8          C7          C2     127.261    2.96
+1WC         C13          C8          C9     117.785    1.50
+1WC         C13          C8          C7     121.222    1.50
+1WC          C9          C8          C7     120.993    1.50
+1WC         C11         C10          C9     120.372    1.50
+1WC         C11         C10         H20     119.914    1.50
+1WC          C9         C10         H20     119.713    1.50
+1WC         C12         C11         C10     120.309    1.50
+1WC         C12         C11         H21     119.725    1.50
+1WC         C10         C11         H21     119.967    1.50
+1WC         C11         C12         C13     119.434    1.50
+1WC         C11         C12         H22     120.475    1.50
+1WC         C13         C12         H22     120.092    1.50
+1WC         C12         C13         CL1     118.029    1.50
+1WC         C12         C13          C8     120.974    1.50
+1WC         CL1         C13          C8     120.996    1.50
+1WC          N5          N3          C2     111.251    1.50
+1WC          N5          N3          H4     120.163    3.00
+1WC          C2          N3          H4     128.586    3.00
+1WC          C6          N5          N3     105.365    1.50
+1WC         C10          C9          C8     121.125    1.50
+1WC         C10          C9         H19     119.701    1.50
+1WC          C8          C9         H19     119.173    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+1WC             sp2_sp3_1          C7          C2          C1         H16     150.000    10.0     6
+1WC              const_23          C1          C2          C7          C6     180.000    10.0     2
+1WC              const_39          C1          C2          N3          N5     180.000    10.0     2
+1WC              const_29          C7          C6          N5          N3       0.000    10.0     2
+1WC              const_26          N5          C6          C7          C8     180.000    10.0     2
+1WC             sp2_sp2_1          C6          C7          C8         C13     180.000     5.0     2
+1WC              const_33         C13          C8          C9         C10       0.000    10.0     2
+1WC       const_sp2_sp2_3         CL1         C13          C8          C9     180.000     5.0     2
+1WC              const_17         C11         C10          C9          C8       0.000    10.0     2
+1WC              const_13          C9         C10         C11         C12       0.000    10.0     2
+1WC       const_sp2_sp2_9         C10         C11         C12         C13       0.000     5.0     2
+1WC       const_sp2_sp2_6         C11         C12         C13         CL1     180.000     5.0     2
+1WC              const_31          C2          N3          N5          C6       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+1WC    plan-1          C1   0.020
+1WC    plan-1          C2   0.020
+1WC    plan-1          C6   0.020
+1WC    plan-1          C7   0.020
+1WC    plan-1          C8   0.020
+1WC    plan-1         H18   0.020
+1WC    plan-1          H4   0.020
+1WC    plan-1          N3   0.020
+1WC    plan-1          N5   0.020
+1WC    plan-2         C10   0.020
+1WC    plan-2         C11   0.020
+1WC    plan-2         C12   0.020
+1WC    plan-2         C13   0.020
+1WC    plan-2          C7   0.020
+1WC    plan-2          C8   0.020
+1WC    plan-2          C9   0.020
+1WC    plan-2         CL1   0.020
+1WC    plan-2         H19   0.020
+1WC    plan-2         H20   0.020
+1WC    plan-2         H21   0.020
+1WC    plan-2         H22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+1WC           SMILES              ACDLabs 12.01                                                      Clc1ccccc1c2c(nnc2)C
+1WC            InChI                InChI  1.03 InChI=1S/C10H9ClN2/c1-7-9(6-12-13-7)8-4-2-3-5-10(8)11/h2-6H,1H3,(H,12,13)
+1WC         InChIKey                InChI  1.03                                               COMPGPWYKZNXNH-UHFFFAOYSA-N
+1WC SMILES_CANONICAL               CACTVS 3.370                                                     Cc1[nH]ncc1c2ccccc2Cl
+1WC           SMILES               CACTVS 3.370                                                     Cc1[nH]ncc1c2ccccc2Cl
+1WC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                   Cc1c(cn[nH]1)c2ccccc2Cl
+1WC           SMILES "OpenEye OEToolkits" 1.7.6                                                   Cc1c(cn[nH]1)c2ccccc2Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+1WC acedrg               243         "dictionary generator"                  
+1WC acedrg_database      11          "data source"                           
+1WC rdkit                2017.03.2   "Chemoinformatics tool"
+1WC refmac5              5.8.0238    "optimization tool"                     

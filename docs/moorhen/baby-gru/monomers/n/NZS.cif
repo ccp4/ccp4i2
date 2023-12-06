@@ -1,0 +1,332 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NZS     NZS      6-(1,1-dioxidothiomorpholin-4-yl)-N-(3-methoxyphenyl)-1-methyl-1H-pyrazolo[3,4-d]pyrimidin-4-amine     NON-POLYMER     47     27     .     
+#
+data_comp_NZS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NZS     C1      C       CR56    0       20.072      13.376      23.263      
+NZS     N1      N       NRD6    0       22.370      12.622      22.989      
+NZS     O1      O       O2      0       21.521      19.610      21.710      
+NZS     S1      S       S3      0       25.109      13.494      18.772      
+NZS     C2      C       CR56    0       21.150      12.521      23.543      
+NZS     N2      N       NRD6    0       21.556      14.497      21.750      
+NZS     O2      O       O       0       26.495      13.833      18.879      
+NZS     C3      C       CR6     0       22.546      13.626      22.094      
+NZS     N3      N       NRD5    0       19.407      11.832      24.791      
+NZS     O3      O       O       0       24.630      13.105      17.481      
+NZS     C4      C       CR6     0       20.332      14.412      22.314      
+NZS     N4      N       NT      0       20.721      11.607      24.463      
+NZS     C5      C       CR15    0       19.030      12.878      24.079      
+NZS     N5      N       NH1     0       19.363      15.302      21.956      
+NZS     C6      C       CH3     0       21.470      10.504      25.076      
+NZS     N6      N       NR6     0       23.757      13.763      21.500      
+NZS     C7      C       CR6     0       19.469      16.614      21.430      
+NZS     C8      C       CR16    0       20.468      17.503      21.830      
+NZS     C9      C       CR6     0       20.522      18.779      21.274      
+NZS     C10     C       CR16    0       19.573      19.182      20.338      
+NZS     C11     C       CR16    0       18.587      18.294      19.953      
+NZS     C12     C       CR16    0       18.525      17.018      20.490      
+NZS     C13     C       CH3     0       22.174      20.470      20.776      
+NZS     C14     C       CH2     0       24.729      12.674      21.356      
+NZS     C15     C       CH2     0       24.756      12.177      19.926      
+NZS     C16     C       CH2     0       24.133      14.871      19.356      
+NZS     C17     C       CH2     0       24.217      15.000      20.863      
+NZS     H5      H       H       0       18.175      13.245      24.112      
+NZS     HN5     H       H       0       18.536      15.020      22.069      
+NZS     H6      H       H       0       21.015      10.210      25.889      
+NZS     H6A     H       H       0       22.372      10.805      25.300      
+NZS     H6B     H       H       0       21.525      9.757       24.447      
+NZS     H8      H       H       0       21.110      17.236      22.466      
+NZS     H10     H       H       0       19.603      20.047      19.965      
+NZS     H11     H       H       0       17.946      18.561      19.315      
+NZS     H12     H       H       0       17.846      16.422      20.219      
+NZS     H13     H       H       0       21.602      21.233      20.587      
+NZS     H13A    H       H       0       22.351      19.986      19.952      
+NZS     H13B    H       H       0       23.012      20.780      21.155      
+NZS     H14     H       H       0       24.502      11.929      21.950      
+NZS     H14A    H       H       0       25.623      12.993      21.604      
+NZS     H15     H       H       0       23.902      11.788      19.711      
+NZS     H15A    H       H       0       25.430      11.494      19.842      
+NZS     H16     H       H       0       23.214      14.741      19.099      
+NZS     H16A    H       H       0       24.452      15.682      18.948      
+NZS     H17     H       H       0       25.147      15.181      21.120      
+NZS     H17A    H       H       0       23.672      15.761      21.156      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NZS          C1          C4      SINGLE       y     1.427  0.0100     1.427  0.0100
+NZS          C1          C5      SINGLE       y     1.412  0.0100     1.412  0.0100
+NZS          C1          C2      DOUBLE       y     1.412  0.0120     1.412  0.0120
+NZS          N1          C3      DOUBLE       y     1.348  0.0109     1.348  0.0109
+NZS          N1          C2      SINGLE       y     1.342  0.0100     1.342  0.0100
+NZS          O1         C13      SINGLE       n     1.424  0.0117     1.424  0.0117
+NZS          O1          C9      SINGLE       n     1.366  0.0100     1.366  0.0100
+NZS          S1          O3      DOUBLE       n     1.432  0.0143     1.432  0.0143
+NZS          S1          O2      DOUBLE       n     1.432  0.0143     1.432  0.0143
+NZS          S1         C16      SINGLE       n     1.780  0.0200     1.780  0.0200
+NZS          S1         C15      SINGLE       n     1.780  0.0200     1.780  0.0200
+NZS          C2          N4      SINGLE       y     1.371  0.0122     1.371  0.0122
+NZS          N2          C4      DOUBLE       y     1.344  0.0100     1.344  0.0100
+NZS          N2          C3      SINGLE       y     1.349  0.0117     1.349  0.0117
+NZS          C3          N6      SINGLE       n     1.346  0.0100     1.346  0.0100
+NZS          N3          C5      DOUBLE       y     1.316  0.0100     1.316  0.0100
+NZS          N3          N4      SINGLE       y     1.371  0.0113     1.371  0.0113
+NZS          C4          N5      SINGLE       n     1.360  0.0100     1.360  0.0100
+NZS          N4          C6      SINGLE       n     1.467  0.0100     1.467  0.0100
+NZS          N5          C7      SINGLE       n     1.415  0.0100     1.415  0.0100
+NZS          N6         C17      SINGLE       n     1.461  0.0100     1.461  0.0100
+NZS          N6         C14      SINGLE       n     1.461  0.0100     1.461  0.0100
+NZS          C7         C12      SINGLE       y     1.389  0.0100     1.389  0.0100
+NZS          C7          C8      DOUBLE       y     1.390  0.0100     1.390  0.0100
+NZS          C8          C9      SINGLE       y     1.387  0.0100     1.387  0.0100
+NZS          C9         C10      DOUBLE       y     1.386  0.0109     1.386  0.0109
+NZS         C10         C11      SINGLE       y     1.380  0.0102     1.380  0.0102
+NZS         C11         C12      DOUBLE       y     1.384  0.0100     1.384  0.0100
+NZS         C14         C15      SINGLE       n     1.512  0.0146     1.512  0.0146
+NZS         C16         C17      SINGLE       n     1.512  0.0146     1.512  0.0146
+NZS          C5          H5      SINGLE       n     1.082  0.0130     0.931  0.0100
+NZS          N5         HN5      SINGLE       n     1.016  0.0100     0.879  0.0200
+NZS          C6          H6      SINGLE       n     1.089  0.0100     0.977  0.0200
+NZS          C6         H6A      SINGLE       n     1.089  0.0100     0.977  0.0200
+NZS          C6         H6B      SINGLE       n     1.089  0.0100     0.977  0.0200
+NZS          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0154
+NZS         C10         H10      SINGLE       n     1.082  0.0130     0.942  0.0163
+NZS         C11         H11      SINGLE       n     1.082  0.0130     0.942  0.0141
+NZS         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0178
+NZS         C13         H13      SINGLE       n     1.089  0.0100     0.971  0.0157
+NZS         C13        H13A      SINGLE       n     1.089  0.0100     0.971  0.0157
+NZS         C13        H13B      SINGLE       n     1.089  0.0100     0.971  0.0157
+NZS         C14         H14      SINGLE       n     1.089  0.0100     0.981  0.0161
+NZS         C14        H14A      SINGLE       n     1.089  0.0100     0.981  0.0161
+NZS         C15         H15      SINGLE       n     1.089  0.0100     0.963  0.0173
+NZS         C15        H15A      SINGLE       n     1.089  0.0100     0.963  0.0173
+NZS         C16         H16      SINGLE       n     1.089  0.0100     0.963  0.0173
+NZS         C16        H16A      SINGLE       n     1.089  0.0100     0.963  0.0173
+NZS         C17         H17      SINGLE       n     1.089  0.0100     0.981  0.0161
+NZS         C17        H17A      SINGLE       n     1.089  0.0100     0.981  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NZS          C4          C1          C5     139.227    1.50
+NZS          C4          C1          C2     116.980    1.50
+NZS          C5          C1          C2     103.793    1.50
+NZS          C3          N1          C2     116.218    1.50
+NZS         C13          O1          C9     117.529    1.50
+NZS          O3          S1          O2     118.147    1.72
+NZS          O3          S1         C16     109.470    1.50
+NZS          O3          S1         C15     109.470    1.50
+NZS          O2          S1         C16     109.470    1.50
+NZS          O2          S1         C15     109.470    1.50
+NZS         C16          S1         C15     105.043    2.50
+NZS          C1          C2          N1     125.294    1.50
+NZS          C1          C2          N4     108.603    1.69
+NZS          N1          C2          N4     126.103    1.50
+NZS          C4          N2          C3     118.811    1.50
+NZS          N1          C3          N2     123.162    1.50
+NZS          N1          C3          N6     118.412    1.50
+NZS          N2          C3          N6     118.426    1.50
+NZS          C5          N3          N4     104.511    1.50
+NZS          C1          C4          N2     119.535    1.50
+NZS          C1          C4          N5     121.330    3.00
+NZS          N2          C4          N5     119.134    1.50
+NZS          C2          N4          N3     110.473    1.50
+NZS          C2          N4          C6     124.908    2.72
+NZS          N3          N4          C6     118.244    2.18
+NZS          C1          C5          N3     111.590    1.50
+NZS          C1          C5          H5     124.323    1.50
+NZS          N3          C5          H5     124.087    1.50
+NZS          C4          N5          C7     129.511    1.50
+NZS          C4          N5         HN5     115.551    1.50
+NZS          C7          N5         HN5     114.937    1.50
+NZS          N4          C6          H6     109.462    1.50
+NZS          N4          C6         H6A     109.462    1.50
+NZS          N4          C6         H6B     109.462    1.50
+NZS          H6          C6         H6A     108.986    2.87
+NZS          H6          C6         H6B     108.986    2.87
+NZS         H6A          C6         H6B     108.986    2.87
+NZS          C3          N6         C17     123.118    1.50
+NZS          C3          N6         C14     123.118    1.50
+NZS         C17          N6         C14     113.764    1.54
+NZS          N5          C7         C12     119.702    3.00
+NZS          N5          C7          C8     120.835    2.70
+NZS         C12          C7          C8     119.463    1.50
+NZS          C7          C8          C9     119.164    1.50
+NZS          C7          C8          H8     120.343    1.50
+NZS          C9          C8          H8     120.493    1.50
+NZS          O1          C9          C8     119.707    3.00
+NZS          O1          C9         C10     119.676    3.00
+NZS          C8          C9         C10     120.617    1.50
+NZS          C9         C10         C11     119.347    1.50
+NZS          C9         C10         H10     120.292    1.50
+NZS         C11         C10         H10     120.361    1.50
+NZS         C10         C11         C12     121.339    1.50
+NZS         C10         C11         H11     119.287    1.50
+NZS         C12         C11         H11     119.374    1.50
+NZS          C7         C12         C11     120.070    1.50
+NZS          C7         C12         H12     119.840    1.50
+NZS         C11         C12         H12     120.090    1.50
+NZS          O1         C13         H13     109.428    1.50
+NZS          O1         C13        H13A     109.428    1.50
+NZS          O1         C13        H13B     109.428    1.50
+NZS         H13         C13        H13A     109.509    1.50
+NZS         H13         C13        H13B     109.509    1.50
+NZS        H13A         C13        H13B     109.509    1.50
+NZS          N6         C14         C15     110.569    1.50
+NZS          N6         C14         H14     109.564    1.50
+NZS          N6         C14        H14A     109.564    1.50
+NZS         C15         C14         H14     109.401    1.50
+NZS         C15         C14        H14A     109.401    1.50
+NZS         H14         C14        H14A     108.194    1.50
+NZS          S1         C15         C14     110.645    3.00
+NZS          S1         C15         H15     109.376    1.50
+NZS          S1         C15        H15A     109.376    1.50
+NZS         C14         C15         H15     109.426    1.50
+NZS         C14         C15        H15A     109.426    1.50
+NZS         H15         C15        H15A     108.651    1.76
+NZS          S1         C16         C17     110.645    3.00
+NZS          S1         C16         H16     109.376    1.50
+NZS          S1         C16        H16A     109.376    1.50
+NZS         C17         C16         H16     109.426    1.50
+NZS         C17         C16        H16A     109.426    1.50
+NZS         H16         C16        H16A     108.651    1.76
+NZS          N6         C17         C16     110.569    1.50
+NZS          N6         C17         H17     109.564    1.50
+NZS          N6         C17        H17A     109.564    1.50
+NZS         C16         C17         H17     109.401    1.50
+NZS         C16         C17        H17A     109.401    1.50
+NZS         H17         C17        H17A     108.194    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NZS              const_24          C5          C1          C4          N5       0.000    10.0     2
+NZS              const_35          C4          C1          C5          N3     180.000    10.0     2
+NZS              const_45          C4          C1          C2          N1       0.000    10.0     2
+NZS             sp2_sp2_7          C1          C4          N5          C7     180.000     5.0     2
+NZS            sp2_sp3_13          C2          N4          C6          H6     150.000    10.0     6
+NZS            sp2_sp2_11         C12          C7          N5          C4     180.000     5.0     2
+NZS            sp2_sp3_10          C3          N6         C14         C15     180.000    10.0     6
+NZS             sp2_sp3_4          C3          N6         C17         C16     180.000    10.0     6
+NZS              const_51          N5          C7          C8          C9     180.000    10.0     2
+NZS       const_sp2_sp2_2         C11         C12          C7          N5     180.000     5.0     2
+NZS              const_18          C7          C8          C9          O1     180.000    10.0     2
+NZS              const_14         C11         C10          C9          O1     180.000    10.0     2
+NZS       const_sp2_sp2_9          C9         C10         C11         C12       0.000     5.0     2
+NZS              const_31          C1          C2          N1          C3       0.000    10.0     2
+NZS              const_29          N2          C3          N1          C2       0.000    10.0     2
+NZS       const_sp2_sp2_5         C10         C11         C12          C7       0.000     5.0     2
+NZS            sp3_sp3_19          N6         C14         C15          S1      60.000    10.0     3
+NZS            sp3_sp3_10          S1         C16         C17          N6     -60.000    10.0     3
+NZS             sp2_sp2_1          C8          C9          O1         C13     180.000     5.0     2
+NZS            sp3_sp3_29         H13         C13          O1          C9     -60.000    10.0     3
+NZS            sp3_sp3_33         C14         C15          S1          O3     -60.000    10.0     3
+NZS             sp3_sp3_3         C17         C16          S1          O3     -60.000    10.0     3
+NZS              const_42          C1          C2          N4          C6     180.000    10.0     2
+NZS              const_26          N5          C4          N2          C3     180.000    10.0     2
+NZS              const_27          N1          C3          N2          C4       0.000    10.0     2
+NZS             sp2_sp2_3          N1          C3          N6         C17     180.000     5.0     2
+NZS              const_40          C5          N3          N4          C6     180.000    10.0     2
+NZS              const_37          C1          C5          N3          N4       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NZS    chir_1    S1    O3    O2    C16    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NZS    plan-1          C1   0.020
+NZS    plan-1          C2   0.020
+NZS    plan-1          C3   0.020
+NZS    plan-1          C4   0.020
+NZS    plan-1          C5   0.020
+NZS    plan-1          C6   0.020
+NZS    plan-1          H5   0.020
+NZS    plan-1          N1   0.020
+NZS    plan-1          N2   0.020
+NZS    plan-1          N3   0.020
+NZS    plan-1          N4   0.020
+NZS    plan-1          N5   0.020
+NZS    plan-1          N6   0.020
+NZS    plan-2         C10   0.020
+NZS    plan-2         C11   0.020
+NZS    plan-2         C12   0.020
+NZS    plan-2          C7   0.020
+NZS    plan-2          C8   0.020
+NZS    plan-2          C9   0.020
+NZS    plan-2         H10   0.020
+NZS    plan-2         H11   0.020
+NZS    plan-2         H12   0.020
+NZS    plan-2          H8   0.020
+NZS    plan-2          N5   0.020
+NZS    plan-2          O1   0.020
+NZS    plan-3          C4   0.020
+NZS    plan-3          C7   0.020
+NZS    plan-3         HN5   0.020
+NZS    plan-3          N5   0.020
+NZS    plan-4         C14   0.020
+NZS    plan-4         C17   0.020
+NZS    plan-4          C3   0.020
+NZS    plan-4          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NZS           SMILES              ACDLabs 12.01                                                                                                O=S4(=O)CCN(c2nc(Nc1cccc(OC)c1)c3cnn(c3n2)C)CC4
+NZS SMILES_CANONICAL               CACTVS 3.370                                                                                              COc1cccc(Nc2nc(nc3n(C)ncc23)N4CC[S](=O)(=O)CC4)c1
+NZS           SMILES               CACTVS 3.370                                                                                              COc1cccc(Nc2nc(nc3n(C)ncc23)N4CC[S](=O)(=O)CC4)c1
+NZS SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                              Cn1c2c(cn1)c(nc(n2)N3CCS(=O)(=O)CC3)Nc4cccc(c4)OC
+NZS           SMILES "OpenEye OEToolkits" 1.7.0                                                                                              Cn1c2c(cn1)c(nc(n2)N3CCS(=O)(=O)CC3)Nc4cccc(c4)OC
+NZS            InChI                InChI  1.03 InChI=1S/C17H20N6O3S/c1-22-16-14(11-18-22)15(19-12-4-3-5-13(10-12)26-2)20-17(21-16)23-6-8-27(24,25)9-7-23/h3-5,10-11H,6-9H2,1-2H3,(H,19,20,21)
+NZS         InChIKey                InChI  1.03                                                                                                                    IDYJWHSIWMIDKD-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NZS acedrg               243         "dictionary generator"                  
+NZS acedrg_database      11          "data source"                           
+NZS rdkit                2017.03.2   "Chemoinformatics tool"
+NZS refmac5              5.8.0238    "optimization tool"                     

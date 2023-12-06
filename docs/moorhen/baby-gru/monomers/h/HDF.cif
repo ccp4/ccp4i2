@@ -1,0 +1,306 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HDF     HDF      8-HYDROXY-10-(D-RIBO-2,3,4,5-TETRAHYDROXYPENTYL)-5-DEAZAISOALLOXAZINE     NON-POLYMER     43     26     .     
+#
+data_comp_HDF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HDF     N1      N       NRD6    0       41.951      7.339       65.108      
+HDF     C2      C       CR6     0       41.323      6.342       65.790      
+HDF     O2      O       O       0       40.692      5.469       65.186      
+HDF     N3      N       NR6     0       41.353      6.256       67.158      
+HDF     C4      C       CR6     0       42.021      7.167       67.940      
+HDF     O4      O       O       0       42.013      7.039       69.166      
+HDF     C4A     C       CR66    0       42.708      8.252       67.221      
+HDF     C5      C       CR16    0       43.423      9.243       67.882      
+HDF     C5A     C       CR66    0       44.067      10.262      67.182      
+HDF     C6      C       CR16    0       44.783      11.253      67.884      
+HDF     C7      C       CR16    0       45.425      12.269      67.219      
+HDF     C8      C       CR6     0       45.371      12.322      65.814      
+HDF     O8      O       OH1     0       46.014      13.337      65.146      
+HDF     C9      C       CR16    0       44.673      11.358      65.098      
+HDF     C9A     C       CR66    0       44.000      10.300      65.766      
+HDF     N10     N       NR6     0       43.287      9.301       65.067      
+HDF     C10     C       CR66    0       42.635      8.282       65.785      
+HDF     "C1'"   C       CH2     0       43.192      9.313       63.583      
+HDF     "C2'"   C       CH1     0       44.374      8.622       62.872      
+HDF     "O2'"   O       OH1     0       45.630      9.054       63.407      
+HDF     "C3'"   C       CH1     0       44.296      7.089       62.918      
+HDF     "O3'"   O       OH1     0       44.830      6.610       64.153      
+HDF     "C4'"   C       CH1     0       44.999      6.361       61.766      
+HDF     "O4'"   O       OH1     0       44.282      6.591       60.552      
+HDF     "C5'"   C       CH2     0       46.446      6.773       61.584      
+HDF     "O5'"   O       OH1     0       47.155      5.834       60.780      
+HDF     HN3     H       H       0       40.924      5.586       67.540      
+HDF     H5      H       H       0       43.471      9.224       68.825      
+HDF     H6      H       H       0       44.820      11.222      68.820      
+HDF     H7      H       H       0       45.898      12.925      67.698      
+HDF     HO8     H       H       0       45.685      13.647      64.413      
+HDF     H9      H       H       0       44.656      11.417      64.154      
+HDF     "H1'1"  H       H       0       43.130      10.233      63.272      
+HDF     "H1'2"  H       H       0       42.364      8.878       63.309      
+HDF     "H2'"   H       H       0       44.351      8.893       61.917      
+HDF     "HO2'"  H       H       0       46.112      9.386       62.792      
+HDF     "H3'"   H       H       0       43.341      6.833       62.884      
+HDF     "HO3'"  H       H       0       44.515      5.837       64.303      
+HDF     "H4'"   H       H       0       44.985      5.376       61.958      
+HDF     "HO4'"  H       H       0       44.416      5.967       59.994      
+HDF     "H5'1"  H       H       0       46.882      6.840       62.467      
+HDF     "H5'2"  H       H       0       46.479      7.661       61.152      
+HDF     "HO5'"  H       H       0       47.897      6.178       60.562      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HDF          N1          C2      SINGLE       y     1.349  0.0188     1.349  0.0188
+HDF          N1         C10      DOUBLE       y     1.337  0.0145     1.337  0.0145
+HDF          C2          O2      DOUBLE       n     1.233  0.0164     1.233  0.0164
+HDF          C2          N3      SINGLE       y     1.354  0.0200     1.354  0.0200
+HDF          N3          C4      SINGLE       y     1.369  0.0122     1.369  0.0122
+HDF          C4          O4      DOUBLE       n     1.232  0.0104     1.232  0.0104
+HDF          C4         C4A      SINGLE       y     1.465  0.0128     1.465  0.0128
+HDF         C4A          C5      DOUBLE       y     1.393  0.0200     1.393  0.0200
+HDF         C4A         C10      SINGLE       y     1.423  0.0200     1.423  0.0200
+HDF          C5         C5A      SINGLE       y     1.393  0.0200     1.393  0.0200
+HDF         C5A          C6      SINGLE       y     1.406  0.0100     1.406  0.0100
+HDF         C5A         C9A      DOUBLE       y     1.404  0.0111     1.404  0.0111
+HDF          C6          C7      DOUBLE       y     1.373  0.0100     1.373  0.0100
+HDF          C7          C8      SINGLE       y     1.407  0.0112     1.407  0.0112
+HDF          C8          O8      SINGLE       n     1.374  0.0155     1.374  0.0155
+HDF          C8          C9      DOUBLE       y     1.387  0.0100     1.387  0.0100
+HDF          C9         C9A      SINGLE       y     1.409  0.0100     1.409  0.0100
+HDF         C9A         N10      SINGLE       y     1.393  0.0100     1.393  0.0100
+HDF         N10         C10      SINGLE       y     1.383  0.0127     1.383  0.0127
+HDF         N10       "C1'"      SINGLE       n     1.474  0.0100     1.474  0.0100
+HDF       "C1'"       "C2'"      SINGLE       n     1.517  0.0189     1.517  0.0189
+HDF       "C2'"       "O2'"      SINGLE       n     1.424  0.0199     1.424  0.0199
+HDF       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+HDF       "C3'"       "O3'"      SINGLE       n     1.424  0.0199     1.424  0.0199
+HDF       "C3'"       "C4'"      SINGLE       n     1.530  0.0100     1.530  0.0100
+HDF       "C4'"       "O4'"      SINGLE       n     1.429  0.0100     1.429  0.0100
+HDF       "C4'"       "C5'"      SINGLE       n     1.514  0.0100     1.514  0.0100
+HDF       "C5'"       "O5'"      SINGLE       n     1.425  0.0100     1.425  0.0100
+HDF          N3         HN3      SINGLE       n     1.016  0.0100     0.880  0.0200
+HDF          C5          H5      SINGLE       n     1.082  0.0130     0.945  0.0200
+HDF          C6          H6      SINGLE       n     1.082  0.0130     0.937  0.0126
+HDF          C7          H7      SINGLE       n     1.082  0.0130     0.941  0.0131
+HDF          O8         HO8      SINGLE       n     0.966  0.0059     0.861  0.0200
+HDF          C9          H9      SINGLE       n     1.082  0.0130     0.947  0.0100
+HDF       "C1'"      "H1'1"      SINGLE       n     1.089  0.0100     0.978  0.0200
+HDF       "C1'"      "H1'2"      SINGLE       n     1.089  0.0100     0.978  0.0200
+HDF       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.992  0.0184
+HDF       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+HDF       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0184
+HDF       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+HDF       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     1.004  0.0200
+HDF       "O4'"      "HO4'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+HDF       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.988  0.0200
+HDF       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.988  0.0200
+HDF       "O5'"      "HO5'"      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HDF          C2          N1         C10     118.654    1.50
+HDF          N1          C2          O2     120.916    1.50
+HDF          N1          C2          N3     122.006    2.18
+HDF          O2          C2          N3     117.078    1.50
+HDF          C2          N3          C4     122.083    1.50
+HDF          C2          N3         HN3     118.113    2.31
+HDF          C4          N3         HN3     119.804    1.50
+HDF          N3          C4          O4     119.924    1.50
+HDF          N3          C4         C4A     115.738    1.50
+HDF          O4          C4         C4A     124.338    1.50
+HDF          C4         C4A          C5     122.012    1.50
+HDF          C4         C4A         C10     118.859    1.50
+HDF          C5         C4A         C10     119.129    1.50
+HDF         C4A          C5         C5A     121.203    1.50
+HDF         C4A          C5          H5     119.065    1.50
+HDF         C5A          C5          H5     119.732    1.50
+HDF          C5         C5A          C6     121.469    1.50
+HDF          C5         C5A         C9A     119.311    1.50
+HDF          C6         C5A         C9A     119.220    1.50
+HDF         C5A          C6          C7     120.641    1.50
+HDF         C5A          C6          H6     119.819    1.50
+HDF          C7          C6          H6     119.540    1.50
+HDF          C6          C7          C8     120.097    1.50
+HDF          C6          C7          H7     120.069    1.50
+HDF          C8          C7          H7     119.833    1.50
+HDF          C7          C8          O8     119.715    3.00
+HDF          C7          C8          C9     120.570    1.50
+HDF          O8          C8          C9     119.715    3.00
+HDF          C8          O8         HO8     120.000    3.00
+HDF          C8          C9         C9A     120.077    1.50
+HDF          C8          C9          H9     120.189    1.50
+HDF         C9A          C9          H9     119.734    1.64
+HDF         C5A         C9A          C9     119.395    1.50
+HDF         C5A         C9A         N10     120.345    1.50
+HDF          C9         C9A         N10     120.261    1.50
+HDF         C9A         N10         C10     120.379    1.50
+HDF         C9A         N10       "C1'"     119.872    1.50
+HDF         C10         N10       "C1'"     119.749    1.50
+HDF          N1         C10         C4A     122.660    1.50
+HDF          N1         C10         N10     117.706    1.50
+HDF         C4A         C10         N10     119.634    1.50
+HDF         N10       "C1'"       "C2'"     112.079    1.50
+HDF         N10       "C1'"      "H1'1"     108.897    1.50
+HDF         N10       "C1'"      "H1'2"     108.897    1.50
+HDF       "C2'"       "C1'"      "H1'1"     109.291    1.50
+HDF       "C2'"       "C1'"      "H1'2"     109.291    1.50
+HDF      "H1'1"       "C1'"      "H1'2"     107.893    1.50
+HDF       "C1'"       "C2'"       "O2'"     109.698    2.33
+HDF       "C1'"       "C2'"       "C3'"     110.999    2.33
+HDF       "C1'"       "C2'"       "H2'"     108.757    1.75
+HDF       "O2'"       "C2'"       "C3'"     109.320    2.01
+HDF       "O2'"       "C2'"       "H2'"     108.183    1.96
+HDF       "C3'"       "C2'"       "H2'"     108.450    1.83
+HDF       "C2'"       "O2'"      "HO2'"     109.265    3.00
+HDF       "C2'"       "C3'"       "O3'"     109.320    2.01
+HDF       "C2'"       "C3'"       "C4'"     113.695    2.13
+HDF       "C2'"       "C3'"       "H3'"     108.450    1.83
+HDF       "O3'"       "C3'"       "C4'"     109.164    1.97
+HDF       "O3'"       "C3'"       "H3'"     108.243    1.50
+HDF       "C4'"       "C3'"       "H3'"     108.336    1.50
+HDF       "C3'"       "O3'"      "HO3'"     108.564    3.00
+HDF       "C3'"       "C4'"       "O4'"     109.549    1.85
+HDF       "C3'"       "C4'"       "C5'"     112.159    1.50
+HDF       "C3'"       "C4'"       "H4'"     108.777    1.50
+HDF       "O4'"       "C4'"       "C5'"     109.623    1.60
+HDF       "O4'"       "C4'"       "H4'"     108.591    1.50
+HDF       "C5'"       "C4'"       "H4'"     107.986    1.50
+HDF       "C4'"       "O4'"      "HO4'"     111.202    3.00
+HDF       "C4'"       "C5'"       "O5'"     111.364    1.50
+HDF       "C4'"       "C5'"      "H5'1"     109.234    1.50
+HDF       "C4'"       "C5'"      "H5'2"     109.234    1.50
+HDF       "O5'"       "C5'"      "H5'1"     109.268    1.50
+HDF       "O5'"       "C5'"      "H5'2"     109.268    1.50
+HDF      "H5'1"       "C5'"      "H5'2"     108.313    1.50
+HDF       "C5'"       "O5'"      "HO5'"     108.280    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HDF       const_sp2_sp2_2          O2          C2          N1         C10     180.000     5.0     2
+HDF              const_59         C4A         C10          N1          C2       0.000    10.0     2
+HDF              const_48          C6          C7          C8          O8     180.000    10.0     2
+HDF             sp2_sp2_1          C7          C8          O8         HO8     180.000     5.0     2
+HDF              const_53          O8          C8          C9         C9A     180.000    10.0     2
+HDF              const_55          C8          C9         C9A         C5A       0.000    10.0     2
+HDF              const_32         C5A         C9A         N10       "C1'"     180.000    10.0     2
+HDF              const_38          N1         C10         N10       "C1'"       0.000    10.0     2
+HDF             sp2_sp3_2         C9A         N10       "C1'"       "C2'"     -90.000    10.0     6
+HDF             sp3_sp3_1         N10       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+HDF            sp3_sp3_10       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+HDF            sp3_sp3_13       "C1'"       "C2'"       "C3'"       "O3'"     180.000    10.0     3
+HDF       const_sp2_sp2_5          O2          C2          N3          C4     180.000     5.0     2
+HDF            sp3_sp3_22       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+HDF            sp3_sp3_25       "C2'"       "C3'"       "C4'"       "O4'"     180.000    10.0     3
+HDF            sp3_sp3_34       "C3'"       "C4'"       "O4'"      "HO4'"     180.000    10.0     3
+HDF            sp3_sp3_37       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+HDF            sp3_sp3_46       "C4'"       "C5'"       "O5'"      "HO5'"     180.000    10.0     3
+HDF       const_sp2_sp2_9          O4          C4          N3          C2     180.000     5.0     2
+HDF              const_14          O4          C4         C4A          C5       0.000    10.0     2
+HDF              const_15          N1         C10         C4A          C4       0.000    10.0     2
+HDF              const_21          C4         C4A          C5         C5A     180.000    10.0     2
+HDF              const_24         C4A          C5         C5A          C6     180.000    10.0     2
+HDF              const_28          C5         C5A         C9A          C9     180.000    10.0     2
+HDF              const_41          C5         C5A          C6          C7     180.000    10.0     2
+HDF              const_43         C5A          C6          C7          C8       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HDF    chir_1    "C2'"    "O2'"    "C3'"    "C1'"    negative
+HDF    chir_2    "C3'"    "O3'"    "C4'"    "C2'"    positive
+HDF    chir_3    "C4'"    "O4'"    "C3'"    "C5'"    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HDF    plan-1       "C1'"   0.020
+HDF    plan-1         C10   0.020
+HDF    plan-1          C2   0.020
+HDF    plan-1          C4   0.020
+HDF    plan-1         C4A   0.020
+HDF    plan-1          C5   0.020
+HDF    plan-1         C5A   0.020
+HDF    plan-1          C6   0.020
+HDF    plan-1          C9   0.020
+HDF    plan-1         C9A   0.020
+HDF    plan-1          H5   0.020
+HDF    plan-1         HN3   0.020
+HDF    plan-1          N1   0.020
+HDF    plan-1         N10   0.020
+HDF    plan-1          N3   0.020
+HDF    plan-1          O2   0.020
+HDF    plan-1          O4   0.020
+HDF    plan-2          C5   0.020
+HDF    plan-2         C5A   0.020
+HDF    plan-2          C6   0.020
+HDF    plan-2          C7   0.020
+HDF    plan-2          C8   0.020
+HDF    plan-2          C9   0.020
+HDF    plan-2         C9A   0.020
+HDF    plan-2          H6   0.020
+HDF    plan-2          H7   0.020
+HDF    plan-2          H9   0.020
+HDF    plan-2         N10   0.020
+HDF    plan-2          O8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HDF           SMILES              ACDLabs 10.04                                                                                                     O=C1C=3C(=NC(=O)N1)N(c2c(ccc(O)c2)C=3)CC(O)C(O)C(O)CO
+HDF SMILES_CANONICAL               CACTVS 3.341                                                                                             OC[C@H](O)[C@@H](O)[C@H](O)CN1c2cc(O)ccc2C=C3C(=O)NC(=O)N=C13
+HDF           SMILES               CACTVS 3.341                                                                                                 OC[CH](O)[CH](O)[CH](O)CN1c2cc(O)ccc2C=C3C(=O)NC(=O)N=C13
+HDF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                           c1cc2c(cc1O)N(C3=NC(=O)NC(=O)C3=C2)C[C@H]([C@@H]([C@H](CO)O)O)O
+HDF           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                        c1cc2c(cc1O)N(C3=NC(=O)NC(=O)C3=C2)CC(C(C(CO)O)O)O
+HDF            InChI                InChI  1.03 InChI=1S/C16H17N3O7/c20-6-12(23)13(24)11(22)5-19-10-4-8(21)2-1-7(10)3-9-14(19)17-16(26)18-15(9)25/h1-4,11-13,20-24H,5-6H2,(H,18,25,26)/t11-,12+,13+/m1/s1
+HDF         InChIKey                InChI  1.03                                                                                                                               AUEILLWDYUBWCM-AGIUHOORSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HDF acedrg               243         "dictionary generator"                  
+HDF acedrg_database      11          "data source"                           
+HDF rdkit                2017.03.2   "Chemoinformatics tool"
+HDF refmac5              5.8.0238    "optimization tool"                     

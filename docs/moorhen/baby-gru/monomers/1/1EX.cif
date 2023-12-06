@@ -1,0 +1,287 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+1EX     1EX      (11Z,13Z)-hexadeca-11,13-dien-1-ol     NON-POLYMER     47     17     .     
+#
+data_comp_1EX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+1EX     CAA     C       CH3     0       22.491      -8.490      -4.512      
+1EX     CAH     C       CH2     0       23.791      -7.978      -5.014      
+1EX     CAF     C       C1      0       24.973      -8.602      -4.335      
+1EX     CAD     C       C1      0       25.877      -9.431      -4.862      
+1EX     CAE     C       C1      0       25.831      -10.066     -6.035      
+1EX     CAG     C       C1      0       26.846      -10.578     -6.737      
+1EX     CAJ     C       CH2     0       28.315      -10.340     -6.515      
+1EX     CAL     C       CH2     0       28.864      -9.170      -7.292      
+1EX     CAN     C       CH2     0       28.220      -7.814      -7.013      
+1EX     CAP     C       CH2     0       28.502      -7.241      -5.643      
+1EX     CAQ     C       CH2     0       27.727      -5.981      -5.330      
+1EX     CAO     C       CH2     0       28.015      -5.397      -3.965      
+1EX     CAM     C       CH2     0       27.383      -4.042      -3.701      
+1EX     CAK     C       CH2     0       25.864      -3.986      -3.776      
+1EX     CAI     C       CH2     0       25.141      -4.858      -2.765      
+1EX     CAC     C       CH2     0       25.316      -4.417      -1.331      
+1EX     OAB     O       OH1     0       26.487      -4.962      -0.749      
+1EX     H1      H       H       0       21.766      -8.094      -5.026      
+1EX     H2      H       H       0       22.389      -8.253      -3.574      
+1EX     H3      H       H       0       22.464      -9.458      -4.606      
+1EX     H4      H       H       0       23.822      -7.007      -4.876      
+1EX     H5      H       H       0       23.845      -8.138      -5.980      
+1EX     H6      H       H       0       25.075      -8.373      -3.426      
+1EX     H7      H       H       0       26.635      -9.612      -4.335      
+1EX     H8      H       H       0       24.969      -10.175     -6.400      
+1EX     H9      H       H       0       26.624      -11.152     -7.451      
+1EX     H10     H       H       0       28.806      -11.148     -6.781      
+1EX     H11     H       H       0       28.482      -10.193     -5.560      
+1EX     H12     H       H       0       28.768      -9.364      -8.248      
+1EX     H13     H       H       0       29.823      -9.098      -7.105      
+1EX     H14     H       H       0       27.251      -7.888      -7.129      
+1EX     H15     H       H       0       28.545      -7.176      -7.685      
+1EX     H16     H       H       0       29.460      -7.045      -5.575      
+1EX     H17     H       H       0       28.289      -7.916      -4.966      
+1EX     H18     H       H       0       26.769      -6.181      -5.392      
+1EX     H19     H       H       0       27.936      -5.307      -6.011      
+1EX     H20     H       H       0       28.987      -5.309      -3.866      
+1EX     H21     H       H       0       27.708      -6.029      -3.282      
+1EX     H22     H       H       0       27.745      -3.403      -4.352      
+1EX     H23     H       H       0       27.663      -3.738      -2.812      
+1EX     H24     H       H       0       25.584      -4.250      -4.678      
+1EX     H25     H       H       0       25.583      -3.056      -3.644      
+1EX     H26     H       H       0       25.455      -5.781      -2.851      
+1EX     H27     H       H       0       24.184      -4.853      -2.976      
+1EX     H28     H       H       0       24.535      -4.702      -0.810      
+1EX     H29     H       H       0       25.363      -3.438      -1.297      
+1EX     H30     H       H       0       26.371      -5.791      -0.633      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+1EX         CAE         CAG      DOUBLE       n     1.332  0.0144     1.332  0.0144
+1EX         CAG         CAJ      SINGLE       n     1.499  0.0157     1.499  0.0157
+1EX         CAD         CAE      SINGLE       n     1.325  0.0200     1.325  0.0200
+1EX         CAL         CAN      SINGLE       n     1.519  0.0164     1.519  0.0164
+1EX         CAJ         CAL      SINGLE       n     1.497  0.0200     1.497  0.0200
+1EX         CAN         CAP      SINGLE       n     1.509  0.0200     1.509  0.0200
+1EX         CAF         CAD      DOUBLE       n     1.332  0.0144     1.332  0.0144
+1EX         CAP         CAQ      SINGLE       n     1.509  0.0200     1.509  0.0200
+1EX         CAM         CAK      SINGLE       n     1.509  0.0200     1.509  0.0200
+1EX         CAK         CAI      SINGLE       n     1.509  0.0200     1.509  0.0200
+1EX         CAQ         CAO      SINGLE       n     1.509  0.0200     1.509  0.0200
+1EX         CAO         CAM      SINGLE       n     1.509  0.0200     1.509  0.0200
+1EX         CAH         CAF      SINGLE       n     1.498  0.0100     1.498  0.0100
+1EX         CAA         CAH      SINGLE       n     1.487  0.0200     1.487  0.0200
+1EX         CAI         CAC      SINGLE       n     1.508  0.0200     1.508  0.0200
+1EX         CAC         OAB      SINGLE       n     1.417  0.0200     1.417  0.0200
+1EX         CAA          H1      SINGLE       n     1.089  0.0100     0.973  0.0141
+1EX         CAA          H2      SINGLE       n     1.089  0.0100     0.973  0.0141
+1EX         CAA          H3      SINGLE       n     1.089  0.0100     0.973  0.0141
+1EX         CAH          H4      SINGLE       n     1.089  0.0100     0.981  0.0159
+1EX         CAH          H5      SINGLE       n     1.089  0.0100     0.981  0.0159
+1EX         CAF          H6      SINGLE       n     1.082  0.0130     0.943  0.0181
+1EX         CAD          H7      SINGLE       n     1.082  0.0130     0.943  0.0200
+1EX         CAE          H8      SINGLE       n     1.082  0.0130     0.943  0.0200
+1EX         CAG          H9      SINGLE       n     1.082  0.0130     0.943  0.0181
+1EX         CAJ         H10      SINGLE       n     1.089  0.0100     0.983  0.0180
+1EX         CAJ         H11      SINGLE       n     1.089  0.0100     0.983  0.0180
+1EX         CAL         H12      SINGLE       n     1.089  0.0100     0.980  0.0160
+1EX         CAL         H13      SINGLE       n     1.089  0.0100     0.980  0.0160
+1EX         CAN         H14      SINGLE       n     1.089  0.0100     0.981  0.0163
+1EX         CAN         H15      SINGLE       n     1.089  0.0100     0.981  0.0163
+1EX         CAP         H16      SINGLE       n     1.089  0.0100     0.981  0.0163
+1EX         CAP         H17      SINGLE       n     1.089  0.0100     0.981  0.0163
+1EX         CAQ         H18      SINGLE       n     1.089  0.0100     0.981  0.0163
+1EX         CAQ         H19      SINGLE       n     1.089  0.0100     0.981  0.0163
+1EX         CAO         H20      SINGLE       n     1.089  0.0100     0.981  0.0163
+1EX         CAO         H21      SINGLE       n     1.089  0.0100     0.981  0.0163
+1EX         CAM         H22      SINGLE       n     1.089  0.0100     0.981  0.0163
+1EX         CAM         H23      SINGLE       n     1.089  0.0100     0.981  0.0163
+1EX         CAK         H24      SINGLE       n     1.089  0.0100     0.981  0.0163
+1EX         CAK         H25      SINGLE       n     1.089  0.0100     0.981  0.0163
+1EX         CAI         H26      SINGLE       n     1.089  0.0100     0.980  0.0166
+1EX         CAI         H27      SINGLE       n     1.089  0.0100     0.980  0.0166
+1EX         CAC         H28      SINGLE       n     1.089  0.0100     0.981  0.0174
+1EX         CAC         H29      SINGLE       n     1.089  0.0100     0.981  0.0174
+1EX         OAB         H30      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+1EX         CAH         CAA          H1     109.498    1.50
+1EX         CAH         CAA          H2     109.498    1.50
+1EX         CAH         CAA          H3     109.498    1.50
+1EX          H1         CAA          H2     109.380    1.50
+1EX          H1         CAA          H3     109.380    1.50
+1EX          H2         CAA          H3     109.380    1.50
+1EX         CAF         CAH         CAA     112.824    1.50
+1EX         CAF         CAH          H4     109.018    1.50
+1EX         CAF         CAH          H5     109.018    1.50
+1EX         CAA         CAH          H4     108.933    1.50
+1EX         CAA         CAH          H5     108.933    1.50
+1EX          H4         CAH          H5     107.592    1.50
+1EX         CAD         CAF         CAH     125.958    2.56
+1EX         CAD         CAF          H6     117.775    1.50
+1EX         CAH         CAF          H6     116.267    2.44
+1EX         CAE         CAD         CAF     126.726    2.74
+1EX         CAE         CAD          H7     115.972    1.85
+1EX         CAF         CAD          H7     117.302    1.50
+1EX         CAG         CAE         CAD     126.726    2.74
+1EX         CAG         CAE          H8     117.302    1.50
+1EX         CAD         CAE          H8     115.972    1.85
+1EX         CAE         CAG         CAJ     125.702    2.56
+1EX         CAE         CAG          H9     117.519    1.50
+1EX         CAJ         CAG          H9     116.780    1.61
+1EX         CAG         CAJ         CAL     113.226    1.94
+1EX         CAG         CAJ         H10     108.886    1.50
+1EX         CAG         CAJ         H11     108.886    1.50
+1EX         CAL         CAJ         H10     108.819    1.50
+1EX         CAL         CAJ         H11     108.819    1.50
+1EX         H10         CAJ         H11     107.922    1.50
+1EX         CAN         CAL         CAJ     114.266    1.80
+1EX         CAN         CAL         H12     108.698    1.50
+1EX         CAN         CAL         H13     108.698    1.50
+1EX         CAJ         CAL         H12     108.805    1.50
+1EX         CAJ         CAL         H13     108.805    1.50
+1EX         H12         CAL         H13     107.646    1.50
+1EX         CAL         CAN         CAP     114.243    1.69
+1EX         CAL         CAN         H14     108.698    1.50
+1EX         CAL         CAN         H15     108.698    1.50
+1EX         CAP         CAN         H14     108.698    1.50
+1EX         CAP         CAN         H15     108.698    1.50
+1EX         H14         CAN         H15     107.646    1.50
+1EX         CAN         CAP         CAQ     114.243    1.69
+1EX         CAN         CAP         H16     108.698    1.50
+1EX         CAN         CAP         H17     108.698    1.50
+1EX         CAQ         CAP         H16     108.698    1.50
+1EX         CAQ         CAP         H17     108.698    1.50
+1EX         H16         CAP         H17     107.646    1.50
+1EX         CAP         CAQ         CAO     114.243    1.69
+1EX         CAP         CAQ         H18     108.698    1.50
+1EX         CAP         CAQ         H19     108.698    1.50
+1EX         CAO         CAQ         H18     108.698    1.50
+1EX         CAO         CAQ         H19     108.698    1.50
+1EX         H18         CAQ         H19     107.646    1.50
+1EX         CAQ         CAO         CAM     114.243    1.69
+1EX         CAQ         CAO         H20     108.698    1.50
+1EX         CAQ         CAO         H21     108.698    1.50
+1EX         CAM         CAO         H20     108.698    1.50
+1EX         CAM         CAO         H21     108.698    1.50
+1EX         H20         CAO         H21     107.646    1.50
+1EX         CAK         CAM         CAO     114.243    1.69
+1EX         CAK         CAM         H22     108.698    1.50
+1EX         CAK         CAM         H23     108.698    1.50
+1EX         CAO         CAM         H22     108.698    1.50
+1EX         CAO         CAM         H23     108.698    1.50
+1EX         H22         CAM         H23     107.646    1.50
+1EX         CAM         CAK         CAI     113.259    1.53
+1EX         CAM         CAK         H24     108.698    1.50
+1EX         CAM         CAK         H25     108.698    1.50
+1EX         CAI         CAK         H24     108.902    1.50
+1EX         CAI         CAK         H25     108.902    1.50
+1EX         H24         CAK         H25     107.646    1.50
+1EX         CAK         CAI         CAC     113.583    1.50
+1EX         CAK         CAI         H26     108.944    1.50
+1EX         CAK         CAI         H27     108.944    1.50
+1EX         CAC         CAI         H26     108.717    1.50
+1EX         CAC         CAI         H27     108.717    1.50
+1EX         H26         CAI         H27     107.788    1.50
+1EX         CAI         CAC         OAB     111.456    3.00
+1EX         CAI         CAC         H28     109.269    1.50
+1EX         CAI         CAC         H29     109.269    1.50
+1EX         OAB         CAC         H28     109.258    1.50
+1EX         OAB         CAC         H29     109.258    1.50
+1EX         H28         CAC         H29     108.120    1.50
+1EX         CAC         OAB         H30     108.576    2.78
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+1EX            sp3_sp3_73          H1         CAA         CAH         CAF     180.000    10.0     3
+1EX            sp3_sp3_55         CAM         CAO         CAQ         CAP     180.000    10.0     3
+1EX            sp3_sp3_64         CAK         CAM         CAO         CAQ     180.000    10.0     3
+1EX            sp3_sp3_37         CAI         CAK         CAM         CAO     180.000    10.0     3
+1EX            sp3_sp3_46         CAC         CAI         CAK         CAM     180.000    10.0     3
+1EX            sp3_sp3_82         OAB         CAC         CAI         CAK     180.000    10.0     3
+1EX            sp3_sp3_91         CAI         CAC         OAB         H30     180.000    10.0     3
+1EX             sp2_sp3_8         CAD         CAF         CAH         CAA     120.000    10.0     6
+1EX             sp2_sp2_9         CAE         CAD         CAF         CAH     180.000     5.0     2
+1EX             sp2_sp2_5         CAF         CAD         CAE         CAG     180.000     5.0     2
+1EX             sp2_sp2_1         CAD         CAE         CAG         CAJ     180.000     5.0     2
+1EX             sp2_sp3_2         CAE         CAG         CAJ         CAL     120.000    10.0     6
+1EX            sp3_sp3_10         CAG         CAJ         CAL         CAN     180.000    10.0     3
+1EX             sp3_sp3_1         CAJ         CAL         CAN         CAP     180.000    10.0     3
+1EX            sp3_sp3_19         CAL         CAN         CAP         CAQ     180.000    10.0     3
+1EX            sp3_sp3_28         CAN         CAP         CAQ         CAO     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+1EX    plan-1         CAD   0.020
+1EX    plan-1         CAF   0.020
+1EX    plan-1         CAH   0.020
+1EX    plan-1          H6   0.020
+1EX    plan-2         CAD   0.020
+1EX    plan-2         CAE   0.020
+1EX    plan-2         CAF   0.020
+1EX    plan-2          H7   0.020
+1EX    plan-3         CAD   0.020
+1EX    plan-3         CAE   0.020
+1EX    plan-3         CAG   0.020
+1EX    plan-3          H8   0.020
+1EX    plan-4         CAE   0.020
+1EX    plan-4         CAG   0.020
+1EX    plan-4         CAJ   0.020
+1EX    plan-4          H9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+1EX           SMILES              ACDLabs 12.01                                                                       OCCCCCCCCCC/C=C\C=C/CC
+1EX            InChI                InChI  1.03 InChI=1S/C16H30O/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17/h3-6,17H,2,7-16H2,1H3/b4-3-,6-5-
+1EX         InChIKey                InChI  1.03                                                                  GKFQVSXEEVMHMA-OUPQRBNQSA-N
+1EX SMILES_CANONICAL               CACTVS 3.370                                                                       CC\C=C/C=C\CCCCCCCCCCO
+1EX           SMILES               CACTVS 3.370                                                                          CCC=CC=CCCCCCCCCCCO
+1EX SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                       CC/C=C\C=C/CCCCCCCCCCO
+1EX           SMILES "OpenEye OEToolkits" 1.7.6                                                                          CCC=CC=CCCCCCCCCCCO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+1EX acedrg               243         "dictionary generator"                  
+1EX acedrg_database      11          "data source"                           
+1EX rdkit                2017.03.2   "Chemoinformatics tool"
+1EX refmac5              5.8.0238    "optimization tool"                     

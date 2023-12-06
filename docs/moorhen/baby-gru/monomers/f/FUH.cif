@@ -1,0 +1,432 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FUH     FUH      "[[(2~{R},3~{S},5~{R})-5-[5-methyl-2,4-bis(oxidanylidene)pyrimidin-1-yl]-3-oxidanyl-oxolan-2-yl]methoxy-oxidanyl-phosphoryl] [(2~{R},3~{R},4~{S},5~{R},6~{R})-6-methyl-3,5-bis(oxidanyl)-4-[[(3~{R})-3-oxidanylbutanoyl]amino]oxan-2-yl] hydrogen phosphate"     NON-POLYMER     72     41     .     
+#
+data_comp_FUH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FUH     O1      O       O       0       -9.197      16.578      2.403       
+FUH     C1      C       C       0       -9.791      16.537      3.477       
+FUH     C2      C       CH2     0       -10.726     17.649      3.899       
+FUH     C3      C       CH1     0       -10.036     18.708      4.748       
+FUH     O2      O       OH1     0       -9.660      18.128      6.006       
+FUH     C4      C       CH3     0       -10.885     19.948      4.974       
+FUH     N1      N       NH1     0       -9.628      15.541      4.357       
+FUH     C5      C       CH1     0       -8.682      14.443      4.188       
+FUH     C6      C       CH1     0       -7.263      14.950      4.453       
+FUH     O3      O       OH1     0       -7.191      15.583      5.735       
+FUH     C7      C       CH1     0       -6.273      13.784      4.388       
+FUH     C8      C       CH3     0       -4.868      14.169      4.786       
+FUH     O4      O       O2      0       -6.691      12.736      5.296       
+FUH     C9      C       CH1     0       -9.053      13.238      5.059       
+FUH     O5      O       OH1     0       -10.313     12.662      4.652       
+FUH     C10     C       CH1     0       -7.962      12.163      5.017       
+FUH     O6      O       O2      0       -7.981      11.547      3.751       
+FUH     P1      P       P       0       -7.081      10.280      3.340       
+FUH     O7      O       OP      -1      -5.635      10.584      3.555       
+FUH     O8      O       O       0       -7.489      9.825       1.977       
+FUH     O9      O       O2      0       -7.536      9.173       4.409       
+FUH     P2      P       P       0       -6.785      7.917       5.068       
+FUH     O10     O       O       0       -7.809      6.909       5.474       
+FUH     O11     O       OP      -1      -5.842      8.419       6.111       
+FUH     O12     O       O2      0       -5.945      7.346       3.824       
+FUH     C11     C       CH2     0       -5.041      6.237       4.072       
+FUH     C12     C       CH1     0       -4.389      5.807       2.780       
+FUH     C13     C       CH1     0       -3.608      6.904       2.051       
+FUH     O13     O       OH1     0       -2.315      6.439       1.675       
+FUH     C14     C       CH2     0       -4.442      7.187       0.809       
+FUH     C15     C       CH1     0       -5.147      5.862       0.567       
+FUH     O14     O       O2      0       -5.398      5.332       1.861       
+FUH     N2      N       NR6     0       -6.445      5.975       -0.155      
+FUH     C16     C       CR16    0       -7.527      6.585       0.464       
+FUH     C17     C       CR6     0       -8.734      6.732       -0.115      
+FUH     C18     C       CH3     0       -9.893      7.392       0.574       
+FUH     C19     C       CR6     0       -8.914      6.231       -1.462      
+FUH     O15     O       O       0       -9.963      6.299       -2.111      
+FUH     N3      N       NR6     0       -7.795      5.637       -2.024      
+FUH     C20     C       CR6     0       -6.555      5.478       -1.446      
+FUH     O16     O       O       0       -5.637      4.933       -2.047      
+FUH     H1      H       H       0       -11.475     17.270      4.409       
+FUH     H2      H       H       0       -11.094     18.079      3.098       
+FUH     H3      H       H       0       -9.203      18.984      4.295       
+FUH     H4      H       H       0       -10.350     17.879      6.432       
+FUH     H5      H       H       0       -11.775     19.814      4.601       
+FUH     H6      H       H       0       -10.467     20.713      4.538       
+FUH     H7      H       H       0       -10.962     20.128      5.929       
+FUH     H8      H       H       0       -10.116     15.549      5.086       
+FUH     H9      H       H       0       -8.715      14.142      3.246       
+FUH     H10     H       H       0       -7.029      15.615      3.760       
+FUH     H11     H       H       0       -7.262      15.015      6.352       
+FUH     H12     H       H       0       -6.257      13.428      3.457       
+FUH     H13     H       H       0       -4.629      15.009      4.361       
+FUH     H14     H       H       0       -4.249      13.477      4.503       
+FUH     H15     H       H       0       -4.819      14.271      5.751       
+FUH     H16     H       H       0       -9.144      13.544      5.980       
+FUH     H17     H       H       0       -10.688     13.100      4.039       
+FUH     H18     H       H       0       -8.157      11.480      5.706       
+FUH     H21     H       H       0       -5.542      5.477       4.459       
+FUH     H22     H       H       0       -4.344      6.512       4.718       
+FUH     H23     H       H       0       -3.777      5.059       2.984       
+FUH     H24     H       H       0       -3.534      7.713       2.614       
+FUH     H25     H       H       0       -1.842      6.341       2.373       
+FUH     H26     H       H       0       -3.873      7.430       0.046       
+FUH     H27     H       H       0       -5.085      7.911       0.969       
+FUH     H28     H       H       0       -4.535      5.247       0.081       
+FUH     H29     H       H       0       -7.406      6.915       1.347       
+FUH     H30     H       H       0       -9.720      7.444       1.528       
+FUH     H31     H       H       0       -10.700     6.875       0.422       
+FUH     H32     H       H       0       -10.015     8.288       0.221       
+FUH     H33     H       H       0       -7.877      5.317       -2.855      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FUH         C19         O15      DOUBLE       n     1.234  0.0141     1.234  0.0141
+FUH         C19          N3      SINGLE       y     1.383  0.0100     1.383  0.0100
+FUH          N3         C20      SINGLE       y     1.373  0.0100     1.373  0.0100
+FUH         C17         C19      SINGLE       y     1.446  0.0100     1.446  0.0100
+FUH         C20         O16      DOUBLE       n     1.224  0.0111     1.224  0.0111
+FUH          N2         C20      SINGLE       y     1.379  0.0100     1.379  0.0100
+FUH         C17         C18      SINGLE       n     1.500  0.0100     1.500  0.0100
+FUH         C16         C17      DOUBLE       y     1.343  0.0112     1.343  0.0112
+FUH          N2         C16      SINGLE       y     1.380  0.0107     1.380  0.0107
+FUH         C15          N2      SINGLE       n     1.477  0.0139     1.477  0.0139
+FUH         C15         O14      SINGLE       n     1.422  0.0100     1.422  0.0100
+FUH         C14         C15      SINGLE       n     1.523  0.0130     1.523  0.0130
+FUH          P1          O8      DOUBLE       n     1.493  0.0122     1.493  0.0122
+FUH         C12         O14      SINGLE       n     1.445  0.0100     1.445  0.0100
+FUH         C13         C14      SINGLE       n     1.522  0.0100     1.522  0.0100
+FUH          P1          O7      SINGLE       n     1.493  0.0122     1.493  0.0122
+FUH          P1          O9      SINGLE       n     1.604  0.0133     1.604  0.0133
+FUH          O6          P1      SINGLE       n     1.604  0.0133     1.604  0.0133
+FUH          O9          P2      SINGLE       n     1.604  0.0133     1.604  0.0133
+FUH         C12         C13      SINGLE       n     1.526  0.0115     1.526  0.0115
+FUH         C11         C12      SINGLE       n     1.509  0.0100     1.509  0.0100
+FUH         C13         O13      SINGLE       n     1.424  0.0100     1.424  0.0100
+FUH         O12         C11      SINGLE       n     1.450  0.0166     1.450  0.0166
+FUH          P2         O12      SINGLE       n     1.604  0.0133     1.604  0.0133
+FUH          O1          C1      DOUBLE       n     1.227  0.0100     1.227  0.0100
+FUH         C10          O6      SINGLE       n     1.403  0.0143     1.403  0.0143
+FUH          P2         O10      DOUBLE       n     1.493  0.0122     1.493  0.0122
+FUH          P2         O11      SINGLE       n     1.493  0.0122     1.493  0.0122
+FUH          C3          C4      SINGLE       n     1.510  0.0200     1.510  0.0200
+FUH          C3          O2      SINGLE       n     1.430  0.0200     1.430  0.0200
+FUH          C2          C3      SINGLE       n     1.520  0.0150     1.520  0.0150
+FUH          C9          O5      SINGLE       n     1.432  0.0200     1.432  0.0200
+FUH          C1          C2      SINGLE       n     1.506  0.0190     1.506  0.0190
+FUH          C1          N1      SINGLE       n     1.335  0.0100     1.335  0.0100
+FUH          C9         C10      SINGLE       n     1.522  0.0165     1.522  0.0165
+FUH          O4         C10      SINGLE       n     1.417  0.0109     1.417  0.0109
+FUH          C5          C9      SINGLE       n     1.527  0.0100     1.527  0.0100
+FUH          N1          C5      SINGLE       n     1.456  0.0100     1.456  0.0100
+FUH          C5          C6      SINGLE       n     1.527  0.0100     1.527  0.0100
+FUH          C7          O4      SINGLE       n     1.444  0.0117     1.444  0.0117
+FUH          C6          C7      SINGLE       n     1.525  0.0174     1.525  0.0174
+FUH          C7          C8      SINGLE       n     1.510  0.0100     1.510  0.0100
+FUH          C6          O3      SINGLE       n     1.428  0.0123     1.428  0.0123
+FUH          C2          H1      SINGLE       n     1.089  0.0100     0.981  0.0104
+FUH          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0104
+FUH          C3          H3      SINGLE       n     1.089  0.0100     0.988  0.0200
+FUH          O2          H4      SINGLE       n     0.970  0.0120     0.848  0.0200
+FUH          C4          H5      SINGLE       n     1.089  0.0100     0.974  0.0145
+FUH          C4          H6      SINGLE       n     1.089  0.0100     0.974  0.0145
+FUH          C4          H7      SINGLE       n     1.089  0.0100     0.974  0.0145
+FUH          N1          H8      SINGLE       n     1.016  0.0100     0.876  0.0200
+FUH          C5          H9      SINGLE       n     1.089  0.0100     0.990  0.0147
+FUH          C6         H10      SINGLE       n     1.089  0.0100     0.989  0.0181
+FUH          O3         H11      SINGLE       n     0.970  0.0120     0.841  0.0200
+FUH          C7         H12      SINGLE       n     1.089  0.0100     0.997  0.0100
+FUH          C8         H13      SINGLE       n     1.089  0.0100     0.971  0.0171
+FUH          C8         H14      SINGLE       n     1.089  0.0100     0.971  0.0171
+FUH          C8         H15      SINGLE       n     1.089  0.0100     0.971  0.0171
+FUH          C9         H16      SINGLE       n     1.089  0.0100     0.975  0.0196
+FUH          O5         H17      SINGLE       n     0.970  0.0120     0.841  0.0200
+FUH         C10         H18      SINGLE       n     1.089  0.0100     0.989  0.0153
+FUH         C11         H21      SINGLE       n     1.089  0.0100     0.989  0.0200
+FUH         C11         H22      SINGLE       n     1.089  0.0100     0.989  0.0200
+FUH         C12         H23      SINGLE       n     1.089  0.0100     0.987  0.0170
+FUH         C13         H24      SINGLE       n     1.089  0.0100     0.988  0.0189
+FUH         O13         H25      SINGLE       n     0.970  0.0120     0.849  0.0200
+FUH         C14         H26      SINGLE       n     1.089  0.0100     0.982  0.0200
+FUH         C14         H27      SINGLE       n     1.089  0.0100     0.982  0.0200
+FUH         C15         H28      SINGLE       n     1.089  0.0100     0.996  0.0200
+FUH         C16         H29      SINGLE       n     1.082  0.0130     0.951  0.0200
+FUH         C18         H30      SINGLE       n     1.089  0.0100     0.971  0.0135
+FUH         C18         H31      SINGLE       n     1.089  0.0100     0.971  0.0135
+FUH         C18         H32      SINGLE       n     1.089  0.0100     0.971  0.0135
+FUH          N3         H33      SINGLE       n     1.016  0.0100     0.893  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FUH          O1          C1          C2     122.086    1.50
+FUH          O1          C1          N1     122.487    1.50
+FUH          C2          C1          N1     115.427    1.50
+FUH          C3          C2          C1     112.507    1.79
+FUH          C3          C2          H1     108.544    1.56
+FUH          C3          C2          H2     108.544    1.56
+FUH          C1          C2          H1     108.894    1.50
+FUH          C1          C2          H2     108.894    1.50
+FUH          H1          C2          H2     107.827    1.50
+FUH          C4          C3          O2     109.534    2.02
+FUH          C4          C3          C2     112.969    1.50
+FUH          C4          C3          H3     108.620    2.54
+FUH          O2          C3          C2     108.747    2.04
+FUH          O2          C3          H3     107.545    2.92
+FUH          C2          C3          H3     108.825    1.50
+FUH          C3          O2          H4     109.880    2.07
+FUH          C3          C4          H5     109.852    1.50
+FUH          C3          C4          H6     109.852    1.50
+FUH          C3          C4          H7     109.852    1.50
+FUH          H5          C4          H6     109.425    1.50
+FUH          H5          C4          H7     109.425    1.50
+FUH          H6          C4          H7     109.425    1.50
+FUH          C1          N1          C5     123.555    1.53
+FUH          C1          N1          H8     117.947    1.98
+FUH          C5          N1          H8     118.498    2.07
+FUH          C9          C5          N1     110.454    2.38
+FUH          C9          C5          C6     111.932    2.44
+FUH          C9          C5          H9     107.258    1.68
+FUH          N1          C5          C6     110.454    2.38
+FUH          N1          C5          H9     108.143    1.50
+FUH          C6          C5          H9     107.258    1.68
+FUH          C5          C6          C7     109.627    1.81
+FUH          C5          C6          O3     110.124    1.87
+FUH          C5          C6         H10     108.987    1.50
+FUH          C7          C6          O3     109.153    2.02
+FUH          C7          C6         H10     109.550    1.50
+FUH          O3          C6         H10     108.790    1.50
+FUH          C6          O3         H11     109.099    3.00
+FUH          O4          C7          C6     109.378    1.54
+FUH          O4          C7          C8     106.787    1.50
+FUH          O4          C7         H12     109.141    1.50
+FUH          C6          C7          C8     113.192    1.50
+FUH          C6          C7         H12     108.898    1.50
+FUH          C8          C7         H12     109.193    1.50
+FUH          C7          C8         H13     109.468    1.50
+FUH          C7          C8         H14     109.468    1.50
+FUH          C7          C8         H15     109.468    1.50
+FUH         H13          C8         H14     109.383    1.59
+FUH         H13          C8         H15     109.383    1.59
+FUH         H14          C8         H15     109.383    1.59
+FUH         C10          O4          C7     113.152    1.70
+FUH          O5          C9         C10     109.976    1.78
+FUH          O5          C9          C5     110.124    1.87
+FUH          O5          C9         H16     108.790    1.50
+FUH         C10          C9          C5     111.124    1.57
+FUH         C10          C9         H16     108.925    1.50
+FUH          C5          C9         H16     108.987    1.50
+FUH          C9          O5         H17     109.099    3.00
+FUH          O6         C10          C9     108.240    1.70
+FUH          O6         C10          O4     110.394    2.23
+FUH          O6         C10         H18     109.322    1.50
+FUH          C9         C10          O4     110.164    1.50
+FUH          C9         C10         H18     109.599    1.50
+FUH          O4         C10         H18     109.272    1.61
+FUH          P1          O6         C10     122.306    2.63
+FUH          O8          P1          O7     116.964    2.85
+FUH          O8          P1          O9     108.570    2.41
+FUH          O8          P1          O6     108.530    2.45
+FUH          O7          P1          O9     108.570    2.41
+FUH          O7          P1          O6     108.530    2.45
+FUH          O9          P1          O6     101.077    2.30
+FUH          P1          O9          P2     132.542    3.00
+FUH          O9          P2         O12     101.065    1.97
+FUH          O9          P2         O10     108.816    2.14
+FUH          O9          P2         O11     108.816    2.14
+FUH         O12          P2         O10     109.410    1.50
+FUH         O12          P2         O11     109.410    1.50
+FUH         O10          P2         O11     118.411    2.35
+FUH         C11         O12          P2     118.553    2.41
+FUH         C12         C11         O12     109.342    1.50
+FUH         C12         C11         H21     109.624    1.50
+FUH         C12         C11         H22     109.624    1.50
+FUH         O12         C11         H21     109.845    1.50
+FUH         O12         C11         H22     109.845    1.50
+FUH         H21         C11         H22     108.472    1.50
+FUH         O14         C12         C13     105.770    1.50
+FUH         O14         C12         C11     109.615    1.50
+FUH         O14         C12         H23     108.698    1.50
+FUH         C13         C12         C11     114.866    1.63
+FUH         C13         C12         H23     109.069    1.50
+FUH         C11         C12         H23     108.268    1.50
+FUH         C14         C13         C12     102.800    1.50
+FUH         C14         C13         O13     110.636    2.59
+FUH         C14         C13         H24     110.862    1.50
+FUH         C12         C13         O13     110.527    2.37
+FUH         C12         C13         H24     110.775    1.50
+FUH         O13         C13         H24     110.713    1.50
+FUH         C13         O13         H25     109.026    2.38
+FUH         C15         C14         C13     102.834    1.50
+FUH         C15         C14         H26     111.187    1.50
+FUH         C15         C14         H27     111.187    1.50
+FUH         C13         C14         H26     111.310    1.50
+FUH         C13         C14         H27     111.310    1.50
+FUH         H26         C14         H27     108.952    1.50
+FUH          N2         C15         O14     107.584    1.50
+FUH          N2         C15         C14     114.268    1.50
+FUH          N2         C15         H28     109.342    1.50
+FUH         O14         C15         C14     106.308    1.50
+FUH         O14         C15         H28     109.550    1.50
+FUH         C14         C15         H28     109.741    1.50
+FUH         C15         O14         C12     109.692    1.50
+FUH         C20          N2         C16     121.243    1.50
+FUH         C20          N2         C15     118.265    1.50
+FUH         C16          N2         C15     120.492    1.50
+FUH         C17         C16          N2     123.296    1.50
+FUH         C17         C16         H29     118.779    1.68
+FUH          N2         C16         H29     117.926    1.56
+FUH         C19         C17         C18     118.650    1.50
+FUH         C19         C17         C16     118.305    1.50
+FUH         C18         C17         C16     123.045    1.50
+FUH         C17         C18         H30     109.652    1.50
+FUH         C17         C18         H31     109.652    1.50
+FUH         C17         C18         H32     109.652    1.50
+FUH         H30         C18         H31     109.348    1.50
+FUH         H30         C18         H32     109.348    1.50
+FUH         H31         C18         H32     109.348    1.50
+FUH         O15         C19          N3     119.787    1.50
+FUH         O15         C19         C17     124.948    1.50
+FUH          N3         C19         C17     115.265    1.50
+FUH         C19          N3         C20     127.106    1.50
+FUH         C19          N3         H33     117.311    1.81
+FUH         C20          N3         H33     115.584    1.79
+FUH          N3         C20         O16     122.342    1.50
+FUH          N3         C20          N2     114.786    1.50
+FUH         O16         C20          N2     122.872    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FUH           sp3_sp3_130          O4          C7          C8         H13     180.000    10.0     3
+FUH            sp3_sp3_23          C8          C7          O4         C10     180.000    10.0     3
+FUH            sp3_sp3_20          O6         C10          O4          C7      60.000    10.0     3
+FUH           sp3_sp3_118         C10          C9          O5         H17     180.000    10.0     3
+FUH            sp3_sp3_14          O6         C10          C9          O5     -60.000    10.0     3
+FUH            sp3_sp3_94          C9         C10          O6          P1     180.000    10.0     3
+FUH            sp3_sp3_63         C10          O6          P1          O8      60.000    10.0     3
+FUH            sp3_sp3_60          P2          O9          P1          O8      60.000    10.0     3
+FUH            sp2_sp3_14          O1          C1          C2          C3     120.000    10.0     6
+FUH             sp2_sp2_3          O1          C1          N1          C5       0.000     5.0     2
+FUH            sp3_sp3_65          P1          O9          P2         O12     -60.000    10.0     3
+FUH            sp3_sp3_91         C11         O12          P2          O9     180.000    10.0     3
+FUH            sp3_sp3_88         C12         C11         O12          P2     180.000    10.0     3
+FUH            sp3_sp3_76         O12         C11         C12         O14     180.000    10.0     3
+FUH            sp3_sp3_71         C11         C12         C13         O13     180.000    10.0     3
+FUH            sp3_sp3_35         C11         C12         O14         C15     -60.000    10.0     3
+FUH            sp3_sp3_85         C14         C13         O13         H25     180.000    10.0     3
+FUH            sp3_sp3_52         O13         C13         C14         C15     180.000    10.0     3
+FUH            sp3_sp3_41         C13         C14         C15          N2     180.000    10.0     3
+FUH           sp3_sp3_109          C1          C2          C3          C4     180.000    10.0     3
+FUH            sp3_sp3_38          N2         C15         O14         C12     180.000    10.0     3
+FUH             sp2_sp3_7         C20          N2         C15         O14     150.000    10.0     6
+FUH              const_21         C17         C16          N2         C20       0.000    10.0     2
+FUH       const_sp2_sp2_3         O16         C20          N2         C16     180.000     5.0     2
+FUH              const_18          N2         C16         C17         C18     180.000    10.0     2
+FUH             sp2_sp3_1         C19         C17         C18         H30     150.000    10.0     6
+FUH              const_16         C18         C17         C19         O15       0.000    10.0     2
+FUH              const_11         O15         C19          N3         C20     180.000    10.0     2
+FUH       const_sp2_sp2_7         O16         C20          N3         C19     180.000     5.0     2
+FUH           sp3_sp3_106          C4          C3          O2          H4     180.000    10.0     3
+FUH            sp3_sp3_97          O2          C3          C4          H5     180.000    10.0     3
+FUH            sp2_sp3_19          C1          N1          C5          C9       0.000    10.0     6
+FUH             sp3_sp3_5          N1          C5          C9          O5     180.000    10.0     3
+FUH           sp3_sp3_125          N1          C5          C6          O3     -60.000    10.0     3
+FUH            sp3_sp3_29          O3          C6          C7          C8     180.000    10.0     3
+FUH           sp3_sp3_139          C5          C6          O3         H11     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FUH    chir_1    C3    O2    C2    C4    negative
+FUH    chir_2    C5    N1    C9    C6    positive
+FUH    chir_3    C6    O3    C7    C5    negative
+FUH    chir_4    C7    O4    C6    C8    negative
+FUH    chir_5    C9    O5    C10    C5    negative
+FUH    chir_6    C10    O6    O4    C9    negative
+FUH    chir_7    P1    O9    O6    O7    both
+FUH    chir_8    P2    O9    O12    O11    both
+FUH    chir_9    C12    O14    C13    C11    negative
+FUH    chir_10    C13    O13    C12    C14    positive
+FUH    chir_11    C15    O14    N2    C14    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FUH    plan-1         C15   0.020
+FUH    plan-1         C16   0.020
+FUH    plan-1         C17   0.020
+FUH    plan-1         C18   0.020
+FUH    plan-1         C19   0.020
+FUH    plan-1         C20   0.020
+FUH    plan-1         H29   0.020
+FUH    plan-1         H33   0.020
+FUH    plan-1          N2   0.020
+FUH    plan-1          N3   0.020
+FUH    plan-1         O15   0.020
+FUH    plan-1         O16   0.020
+FUH    plan-2          C1   0.020
+FUH    plan-2          C2   0.020
+FUH    plan-2          N1   0.020
+FUH    plan-2          O1   0.020
+FUH    plan-3          C1   0.020
+FUH    plan-3          C5   0.020
+FUH    plan-3          H8   0.020
+FUH    plan-3          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FUH            InChI                InChI  1.03 InChI=1S/C20H33N3O16P2/c1-8-6-23(20(30)22-18(8)29)14-5-11(25)12(37-14)7-35-40(31,32)39-41(33,34)38-19-17(28)15(16(27)10(3)36-19)21-13(26)4-9(2)24/h6,9-12,14-17,19,24-25,27-28H,4-5,7H2,1-3H3,(H,21,26)(H,31,32)(H,33,34)(H,22,29,30)/t9-,10-,11+,12-,14-,15+,16+,17-,19-/m1/s1
+FUH         InChIKey                InChI  1.03                                                                                                                                                                                                                                                     SFDGKYQEVYNQBU-NKKVZDNESA-N
+FUH SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                      C[C@@H](O)CC(=O)N[C@H]1[C@@H](O)[C@@H](C)O[C@H](O[P](O)(=O)O[P](O)(=O)OC[C@H]2O[C@H](C[C@@H]2O)N3C=C(C)C(=O)NC3=O)[C@@H]1O
+FUH           SMILES               CACTVS 3.385                                                                                                                                                                    C[CH](O)CC(=O)N[CH]1[CH](O)[CH](C)O[CH](O[P](O)(=O)O[P](O)(=O)OC[CH]2O[CH](C[CH]2O)N3C=C(C)C(=O)NC3=O)[CH]1O
+FUH SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                                                                                                                     C[C@@H]1[C@@H]([C@@H]([C@H]([C@H](O1)OP(=O)(O)OP(=O)(O)OC[C@@H]2[C@H](C[C@@H](O2)N3C=C(C(=O)NC3=O)C)O)O)NC(=O)C[C@@H](C)O)O
+FUH           SMILES "OpenEye OEToolkits" 2.0.5                                                                                                                                                                                               CC1C(C(C(C(O1)OP(=O)(O)OP(=O)(O)OCC2C(CC(O2)N3C=C(C(=O)NC3=O)C)O)O)NC(=O)CC(C)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FUH acedrg               243         "dictionary generator"                  
+FUH acedrg_database      11          "data source"                           
+FUH rdkit                2017.03.2   "Chemoinformatics tool"
+FUH refmac5              5.8.0238    "optimization tool"                     

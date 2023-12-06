@@ -1,0 +1,268 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SGP     SGP      "GUANOSINE-2',3'-CYCLOPHOSPHOROTHIOATE"     NON-POLYMER     34     23     .     
+#
+data_comp_SGP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SGP     P       P       P       0       26.880      4.040       22.435      
+SGP     S1P     S       S1      0       28.257      3.872       23.803      
+SGP     O1P     O       OP      -1      26.907      5.460       22.016      
+SGP     "O5'"   O       OH1     0       24.353      -0.335      20.587      
+SGP     "C5'"   C       CH2     0       25.299      0.169       19.659      
+SGP     "C4'"   C       CH1     0       25.551      1.637       19.911      
+SGP     "O4'"   O       O2      0       24.308      2.361       19.803      
+SGP     "C3'"   C       CH1     0       26.104      1.939       21.304      
+SGP     "O3'"   O       O2      0       27.066      2.996       21.246      
+SGP     "C2'"   C       CH1     0       24.918      2.513       22.066      
+SGP     "O2'"   O       O2      0       25.457      3.521       22.928      
+SGP     "C1'"   C       CH1     0       24.048      3.124       20.962      
+SGP     N9      N       NR5     0       22.619      3.061       21.286      
+SGP     C8      C       CR15    0       21.644      2.278       20.712      
+SGP     N7      N       NRD5    0       20.460      2.469       21.246      
+SGP     C5      C       CR56    0       20.665      3.429       22.229      
+SGP     C6      C       CR6     0       19.749      4.029       23.133      
+SGP     O6      O       O       0       18.533      3.817       23.241      
+SGP     N1      N       NR6     0       20.380      4.961       23.967      
+SGP     C2      C       CR6     0       21.723      5.274       23.934      
+SGP     N2      N       NH2     0       22.162      6.194       24.808      
+SGP     N3      N       NRD6    0       22.585      4.708       23.082      
+SGP     C4      C       CR56    0       21.991      3.800       22.263      
+SGP     "HO5'"  H       H       0       24.154      -1.130      20.368      
+SGP     "H5'1"  H       H       0       24.955      0.054       18.741      
+SGP     "H5'2"  H       H       0       26.149      -0.325      19.752      
+SGP     "H4'"   H       H       0       26.181      1.978       19.228      
+SGP     "H3'"   H       H       0       26.474      1.127       21.746      
+SGP     "H2'"   H       H       0       24.418      1.816       22.570      
+SGP     "H1'"   H       H       0       24.305      4.062       20.800      
+SGP     H8      H       H       0       21.806      1.671       20.010      
+SGP     HN1     H       H       0       19.856      5.379       24.565      
+SGP     HN21    H       H       0       23.002      6.448       24.791      
+SGP     HN22    H       H       0       21.612      6.541       25.397      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SGP           P         S1P      DOUBLE       n     1.950  0.0164     1.950  0.0164
+SGP           P         O1P      SINGLE       n     1.481  0.0119     1.481  0.0119
+SGP           P       "O3'"      SINGLE       n     1.597  0.0187     1.597  0.0187
+SGP           P       "O2'"      SINGLE       n     1.597  0.0187     1.597  0.0187
+SGP       "O5'"       "C5'"      SINGLE       n     1.418  0.0100     1.418  0.0100
+SGP       "C5'"       "C4'"      SINGLE       n     1.510  0.0124     1.510  0.0124
+SGP       "C4'"       "O4'"      SINGLE       n     1.440  0.0100     1.440  0.0100
+SGP       "C4'"       "C3'"      SINGLE       n     1.528  0.0100     1.528  0.0100
+SGP       "O4'"       "C1'"      SINGLE       n     1.408  0.0100     1.408  0.0100
+SGP       "C3'"       "O3'"      SINGLE       n     1.430  0.0116     1.430  0.0116
+SGP       "C3'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+SGP       "C2'"       "O2'"      SINGLE       n     1.430  0.0116     1.430  0.0116
+SGP       "C2'"       "C1'"      SINGLE       n     1.534  0.0116     1.534  0.0116
+SGP       "C1'"          N9      SINGLE       n     1.459  0.0152     1.459  0.0152
+SGP          N9          C8      SINGLE       y     1.372  0.0100     1.372  0.0100
+SGP          N9          C4      SINGLE       y     1.376  0.0103     1.376  0.0103
+SGP          C8          N7      DOUBLE       y     1.312  0.0100     1.312  0.0100
+SGP          N7          C5      SINGLE       y     1.390  0.0100     1.390  0.0100
+SGP          C5          C6      SINGLE       y     1.417  0.0103     1.417  0.0103
+SGP          C5          C4      DOUBLE       y     1.377  0.0100     1.377  0.0100
+SGP          C6          O6      DOUBLE       n     1.239  0.0100     1.239  0.0100
+SGP          C6          N1      SINGLE       y     1.396  0.0107     1.396  0.0107
+SGP          N1          C2      SINGLE       y     1.374  0.0100     1.374  0.0100
+SGP          C2          N2      SINGLE       n     1.340  0.0101     1.340  0.0101
+SGP          C2          N3      DOUBLE       y     1.333  0.0104     1.333  0.0104
+SGP          N3          C4      SINGLE       y     1.355  0.0100     1.355  0.0100
+SGP       "O5'"      "HO5'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+SGP       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.987  0.0154
+SGP       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.987  0.0154
+SGP       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.990  0.0155
+SGP       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.995  0.0200
+SGP       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.995  0.0200
+SGP       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.987  0.0200
+SGP          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+SGP          N1         HN1      SINGLE       n     1.016  0.0100     0.897  0.0200
+SGP          N2        HN21      SINGLE       n     1.016  0.0100     0.877  0.0200
+SGP          N2        HN22      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SGP         S1P           P         O1P     109.471    3.00
+SGP         S1P           P       "O3'"     114.506    2.96
+SGP         S1P           P       "O2'"     114.506    2.96
+SGP         O1P           P       "O3'"     116.106    2.00
+SGP         O1P           P       "O2'"     116.106    2.00
+SGP       "O3'"           P       "O2'"      97.199    1.50
+SGP       "C5'"       "O5'"      "HO5'"     108.708    2.78
+SGP       "O5'"       "C5'"       "C4'"     110.226    1.61
+SGP       "O5'"       "C5'"      "H5'1"     109.653    1.50
+SGP       "O5'"       "C5'"      "H5'2"     109.653    1.50
+SGP       "C4'"       "C5'"      "H5'1"     109.191    1.50
+SGP       "C4'"       "C5'"      "H5'2"     109.191    1.50
+SGP      "H5'1"       "C5'"      "H5'2"     109.361    1.61
+SGP       "C5'"       "C4'"       "O4'"     109.275    1.50
+SGP       "C5'"       "C4'"       "C3'"     113.696    1.50
+SGP       "C5'"       "C4'"       "H4'"     108.994    1.50
+SGP       "O4'"       "C4'"       "C3'"     104.779    1.50
+SGP       "O4'"       "C4'"       "H4'"     108.802    1.73
+SGP       "C3'"       "C4'"       "H4'"     109.132    1.50
+SGP       "C4'"       "O4'"       "C1'"     109.401    1.52
+SGP       "C4'"       "C3'"       "O3'"     111.216    2.18
+SGP       "C4'"       "C3'"       "C2'"     105.191    1.50
+SGP       "C4'"       "C3'"       "H3'"     112.341    1.50
+SGP       "O3'"       "C3'"       "C2'"     104.902    1.50
+SGP       "O3'"       "C3'"       "H3'"     112.035    1.50
+SGP       "C2'"       "C3'"       "H3'"     112.228    1.50
+SGP           P       "O3'"       "C3'"     111.477    1.55
+SGP       "C3'"       "C2'"       "O2'"     104.902    1.50
+SGP       "C3'"       "C2'"       "C1'"     104.424    1.81
+SGP       "C3'"       "C2'"       "H2'"     112.228    1.50
+SGP       "O2'"       "C2'"       "C1'"     110.652    2.06
+SGP       "O2'"       "C2'"       "H2'"     112.035    1.50
+SGP       "C1'"       "C2'"       "H2'"     110.691    1.64
+SGP           P       "O2'"       "C2'"     111.477    1.55
+SGP       "O4'"       "C1'"       "C2'"     105.038    1.50
+SGP       "O4'"       "C1'"          N9     108.491    1.50
+SGP       "O4'"       "C1'"       "H1'"     109.180    1.50
+SGP       "C2'"       "C1'"          N9     112.159    2.20
+SGP       "C2'"       "C1'"       "H1'"     110.225    1.62
+SGP          N9       "C1'"       "H1'"     109.246    1.50
+SGP       "C1'"          N9          C8     127.211    2.25
+SGP       "C1'"          N9          C4     126.546    2.09
+SGP          C8          N9          C4     106.244    1.50
+SGP          N9          C8          N7     112.239    1.50
+SGP          N9          C8          H8     123.786    1.50
+SGP          N7          C8          H8     123.975    1.50
+SGP          C8          N7          C5     104.779    1.50
+SGP          N7          C5          C6     130.028    1.50
+SGP          N7          C5          C4     110.575    1.50
+SGP          C6          C5          C4     119.397    1.50
+SGP          C5          C6          O6     128.244    1.50
+SGP          C5          C6          N1     111.367    1.50
+SGP          O6          C6          N1     120.389    1.50
+SGP          C6          N1          C2     125.351    1.50
+SGP          C6          N1         HN1     116.978    2.44
+SGP          C2          N1         HN1     117.677    2.71
+SGP          N1          C2          N2     116.576    1.50
+SGP          N1          C2          N3     123.602    1.50
+SGP          N2          C2          N3     119.821    1.50
+SGP          C2          N2        HN21     119.868    1.50
+SGP          C2          N2        HN22     119.868    1.50
+SGP        HN21          N2        HN22     120.263    1.96
+SGP          C2          N3          C4     112.066    1.50
+SGP          N9          C4          C5     106.163    1.50
+SGP          N9          C4          N3     125.626    1.50
+SGP          C5          C4          N3     128.211    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SGP            sp3_sp3_35       "C2'"       "O2'"           P         S1P     -60.000    10.0     3
+SGP            sp3_sp3_26       "C3'"       "O3'"           P         S1P     180.000    10.0     3
+SGP             sp2_sp3_1          C8          N9       "C1'"       "O4'"     150.000    10.0     6
+SGP              const_18          N7          C8          N9       "C1'"     180.000    10.0     2
+SGP              const_30          C5          C4          N9       "C1'"     180.000    10.0     2
+SGP              const_21          N9          C8          N7          C5       0.000    10.0     2
+SGP              const_24          C6          C5          N7          C8     180.000    10.0     2
+SGP       const_sp2_sp2_4          N7          C5          C6          O6       0.000     5.0     2
+SGP              const_25          N9          C4          C5          N7       0.000    10.0     2
+SGP       const_sp2_sp2_7          O6          C6          N1          C2     180.000     5.0     2
+SGP              const_11          N2          C2          N1          C6     180.000    10.0     2
+SGP             sp2_sp2_1          N1          C2          N2        HN21     180.000     5.0     2
+SGP              const_14          N2          C2          N3          C4     180.000    10.0     2
+SGP              const_16          N9          C4          N3          C2     180.000    10.0     2
+SGP            sp3_sp3_37       "C4'"       "C5'"       "O5'"      "HO5'"     180.000    10.0     3
+SGP            sp3_sp3_40       "O4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+SGP             sp3_sp3_2       "C5'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+SGP            sp3_sp3_53       "O3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+SGP             sp3_sp3_4       "C2'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+SGP            sp3_sp3_29       "C4'"       "C3'"       "O3'"           P     180.000    10.0     3
+SGP            sp3_sp3_17       "O2'"       "C2'"       "C3'"       "C4'"      60.000    10.0     3
+SGP            sp3_sp3_31       "C3'"       "C2'"       "O2'"           P     -60.000    10.0     3
+SGP             sp3_sp3_7       "O4'"       "C1'"       "C2'"       "C3'"      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SGP    chir_1    P    S1P    "O2'"    "O3'"    positive
+SGP    chir_2    "C4'"    "O4'"    "C3'"    "C5'"    negative
+SGP    chir_3    "C3'"    "O3'"    "C2'"    "C4'"    negative
+SGP    chir_4    "C2'"    "O2'"    "C1'"    "C3'"    negative
+SGP    chir_5    "C1'"    "O4'"    N9    "C2'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SGP    plan-1       "C1'"   0.020
+SGP    plan-1          C2   0.020
+SGP    plan-1          C4   0.020
+SGP    plan-1          C5   0.020
+SGP    plan-1          C6   0.020
+SGP    plan-1          C8   0.020
+SGP    plan-1          H8   0.020
+SGP    plan-1         HN1   0.020
+SGP    plan-1          N1   0.020
+SGP    plan-1          N2   0.020
+SGP    plan-1          N3   0.020
+SGP    plan-1          N7   0.020
+SGP    plan-1          N9   0.020
+SGP    plan-1          O6   0.020
+SGP    plan-2          C2   0.020
+SGP    plan-2        HN21   0.020
+SGP    plan-2        HN22   0.020
+SGP    plan-2          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SGP           SMILES              ACDLabs 10.04                                                                                                                    S=P1(OC2C(OC(C2O1)CO)n3c4N=C(N)NC(=O)c4nc3)O
+SGP SMILES_CANONICAL               CACTVS 3.341                                                                                               NC1=Nc2n(cnc2C(=O)N1)[C@@H]3O[C@H](CO)[C@H]4O[P@](O)(=S)O[C@@H]34
+SGP           SMILES               CACTVS 3.341                                                                                                      NC1=Nc2n(cnc2C(=O)N1)[CH]3O[CH](CO)[CH]4O[P](O)(=S)O[CH]34
+SGP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                              c1nc2c(n1[C@H]3[C@H]4[C@@H]([C@H](O3)CO)O[P@](=S)(O4)O)N=C(NC2=O)N
+SGP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                  c1nc2c(n1C3C4C(C(O3)CO)OP(=S)(O4)O)N=C(NC2=O)N
+SGP            InChI                InChI  1.03 InChI=1S/C10H12N5O6PS/c11-10-13-7-4(8(17)14-10)12-2-15(7)9-6-5(3(1-16)19-9)20-22(18,23)21-6/h2-3,5-6,9,16H,1H2,(H,18,23)(H3,11,13,14,17)/t3-,5-,6-,9-,22+/m1/s1
+SGP         InChIKey                InChI  1.03                                                                                                                                     QZEROIIFJLCOOE-FHIGPPGSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SGP acedrg               243         "dictionary generator"                  
+SGP acedrg_database      11          "data source"                           
+SGP rdkit                2017.03.2   "Chemoinformatics tool"
+SGP refmac5              5.8.0238    "optimization tool"                     

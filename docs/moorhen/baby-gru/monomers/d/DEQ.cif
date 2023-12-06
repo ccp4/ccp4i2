@@ -1,0 +1,447 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DEQ     DEQ      DEQUALINIUM     NON-POLYMER     74     34     .     
+#
+data_comp_DEQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DEQ     C1      C       CR16    0       -72.293     -48.760     7.458       
+DEQ     C2      C       CR16    0       -72.520     -49.562     6.376       
+DEQ     C3      C       CR16    0       -72.900     -50.904     6.535       
+DEQ     C4      C       CR16    0       -73.052     -51.433     7.791       
+DEQ     C5      C       CR66    0       -72.442     -49.274     8.791       
+DEQ     C6      C       CR66    0       -72.831     -50.650     8.949       
+DEQ     C7      C       CR6     0       -72.982     -51.178     10.274      
+DEQ     C8      C       CR16    0       -72.754     -50.368     11.363      
+DEQ     C9      C       CR6     0       -72.375     -49.034     11.212      
+DEQ     N1      N       NR6     1       -72.225     -48.477     9.935       
+DEQ     C10     C       CR66    0       -61.332     -46.283     1.112       
+DEQ     C11     C       CR66    0       -61.882     -45.790     2.346       
+DEQ     N2      N       NR6     1       -61.704     -46.531     3.533       
+DEQ     C12     C       CR6     0       -61.004     -47.744     3.499       
+DEQ     C13     C       CR16    0       -60.469     -48.221     2.301       
+DEQ     C14     C       CR6     0       -60.617     -47.526     1.121       
+DEQ     C15     C       CR16    0       -61.518     -45.522     -0.066      
+DEQ     C16     C       CR16    0       -62.208     -44.336     -0.045      
+DEQ     C17     C       CR16    0       -62.741     -43.855     1.146       
+DEQ     C18     C       CR16    0       -62.596     -44.545     2.316       
+DEQ     C19     C       CH2     0       -62.264     -46.052     4.826       
+DEQ     C20     C       CH2     0       -63.748     -46.343     4.968       
+DEQ     C21     C       CH2     0       -64.328     -45.764     6.252       
+DEQ     C22     C       CH2     0       -65.791     -46.077     6.449       
+DEQ     C23     C       CH2     0       -66.392     -45.476     7.695       
+DEQ     C24     C       CH2     0       -67.851     -45.802     7.895       
+DEQ     C25     C       CH2     0       -68.447     -45.234     9.160       
+DEQ     C26     C       CH2     0       -69.936     -45.445     9.291       
+DEQ     C27     C       CH2     0       -70.326     -46.892     9.563       
+DEQ     C28     C       CH2     0       -71.815     -47.052     9.812       
+DEQ     C30     C       CH3     0       -72.140     -48.208     12.460      
+DEQ     C29     C       CH3     0       -60.800     -48.568     4.753       
+DEQ     N4      N       NH2     0       -73.355     -52.497     10.481      
+DEQ     N3      N       NH2     0       -60.067     -48.045     -0.040      
+DEQ     H11     H       H       0       -72.039     -47.868     7.318       
+DEQ     H21     H       H       0       -72.419     -49.207     5.510       
+DEQ     H31     H       H       0       -73.052     -51.443     5.775       
+DEQ     H41     H       H       0       -73.307     -52.337     7.883       
+DEQ     H81     H       H       0       -72.855     -50.722     12.231      
+DEQ     H131    H       H       0       -59.998     -49.037     2.300       
+DEQ     H151    H       H       0       -61.162     -45.834     -0.882      
+DEQ     H161    H       H       0       -62.320     -43.843     -0.842      
+DEQ     H171    H       H       0       -63.212     -43.040     1.148       
+DEQ     H181    H       H       0       -62.970     -44.193     3.102       
+DEQ     H191    H       H       0       -62.119     -45.088     4.905       
+DEQ     H192    H       H       0       -61.792     -46.462     5.574       
+DEQ     H201    H       H       0       -63.887     -47.313     4.961       
+DEQ     H202    H       H       0       -64.225     -45.965     4.200       
+DEQ     H211    H       H       0       -64.213     -44.790     6.242       
+DEQ     H212    H       H       0       -63.824     -46.117     7.016       
+DEQ     H221    H       H       0       -65.901     -47.051     6.485       
+DEQ     H222    H       H       0       -66.290     -45.750     5.670       
+DEQ     H231    H       H       0       -66.290     -44.501     7.655       
+DEQ     H232    H       H       0       -65.888     -45.796     8.473       
+DEQ     H241    H       H       0       -67.955     -46.777     7.909       
+DEQ     H242    H       H       0       -68.358     -45.460     7.128       
+DEQ     H251    H       H       0       -68.262     -44.271     9.190       
+DEQ     H252    H       H       0       -68.002     -45.647     9.930       
+DEQ     H261    H       H       0       -70.371     -45.148     8.464       
+DEQ     H262    H       H       0       -70.270     -44.883     10.022      
+DEQ     H271    H       H       0       -69.834     -47.216     10.346      
+DEQ     H272    H       H       0       -70.069     -47.444     8.796       
+DEQ     H281    H       H       0       -72.053     -46.559     10.619      
+DEQ     H282    H       H       0       -72.308     -46.633     9.079       
+DEQ     H301    H       H       0       -71.256     -47.808     12.429      
+DEQ     H302    H       H       0       -72.201     -48.775     13.246      
+DEQ     H303    H       H       0       -72.812     -47.510     12.522      
+DEQ     H291    H       H       0       -60.372     -49.410     4.529       
+DEQ     H292    H       H       0       -61.659     -48.754     5.168       
+DEQ     H293    H       H       0       -60.235     -48.083     5.376       
+DEQ     HN41    H       H       0       -72.860     -53.022     10.969      
+DEQ     HN42    H       H       0       -74.087     -52.808     10.126      
+DEQ     HN31    H       H       0       -59.514     -47.569     -0.516      
+DEQ     HN32    H       H       0       -60.271     -48.850     -0.302      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DEQ          C1          C2      DOUBLE       y     1.362  0.0100     1.362  0.0100
+DEQ          C1          C5      SINGLE       y     1.416  0.0140     1.416  0.0140
+DEQ          C2          C3      SINGLE       y     1.401  0.0132     1.401  0.0132
+DEQ          C3          C4      DOUBLE       y     1.371  0.0100     1.371  0.0100
+DEQ          C4          C6      SINGLE       y     1.411  0.0100     1.411  0.0100
+DEQ          C5          C6      DOUBLE       y     1.425  0.0134     1.425  0.0134
+DEQ          C5          N1      SINGLE       y     1.395  0.0100     1.395  0.0100
+DEQ          C6          C7      SINGLE       y     1.433  0.0100     1.433  0.0100
+DEQ          C7          C8      DOUBLE       y     1.378  0.0135     1.378  0.0135
+DEQ          C7          N4      SINGLE       n     1.383  0.0200     1.383  0.0200
+DEQ          C8          C9      SINGLE       y     1.391  0.0104     1.391  0.0104
+DEQ          C9          N1      DOUBLE       y     1.384  0.0103     1.384  0.0103
+DEQ          C9         C30      SINGLE       n     1.507  0.0123     1.507  0.0123
+DEQ          N1         C28      SINGLE       n     1.478  0.0100     1.478  0.0100
+DEQ         C10         C11      DOUBLE       y     1.425  0.0134     1.425  0.0134
+DEQ         C10         C14      SINGLE       y     1.433  0.0100     1.433  0.0100
+DEQ         C10         C15      SINGLE       y     1.411  0.0100     1.411  0.0100
+DEQ         C11          N2      SINGLE       y     1.395  0.0100     1.395  0.0100
+DEQ         C11         C18      SINGLE       y     1.416  0.0140     1.416  0.0140
+DEQ          N2         C12      DOUBLE       y     1.384  0.0103     1.384  0.0103
+DEQ          N2         C19      SINGLE       n     1.478  0.0100     1.478  0.0100
+DEQ         C12         C13      SINGLE       y     1.391  0.0104     1.391  0.0104
+DEQ         C12         C29      SINGLE       n     1.507  0.0123     1.507  0.0123
+DEQ         C13         C14      DOUBLE       y     1.378  0.0135     1.378  0.0135
+DEQ         C14          N3      SINGLE       n     1.383  0.0200     1.383  0.0200
+DEQ         C15         C16      DOUBLE       y     1.371  0.0100     1.371  0.0100
+DEQ         C16         C17      SINGLE       y     1.389  0.0100     1.389  0.0100
+DEQ         C17         C18      DOUBLE       y     1.362  0.0100     1.362  0.0100
+DEQ         C19         C20      SINGLE       n     1.519  0.0198     1.519  0.0198
+DEQ         C20         C21      SINGLE       n     1.523  0.0117     1.523  0.0117
+DEQ         C21         C22      SINGLE       n     1.509  0.0200     1.509  0.0200
+DEQ         C22         C23      SINGLE       n     1.509  0.0200     1.509  0.0200
+DEQ         C23         C24      SINGLE       n     1.509  0.0200     1.509  0.0200
+DEQ         C24         C25      SINGLE       n     1.509  0.0200     1.509  0.0200
+DEQ         C25         C26      SINGLE       n     1.509  0.0200     1.509  0.0200
+DEQ         C26         C27      SINGLE       n     1.523  0.0117     1.523  0.0117
+DEQ         C27         C28      SINGLE       n     1.519  0.0198     1.519  0.0198
+DEQ          C1         H11      SINGLE       n     1.082  0.0130     0.944  0.0200
+DEQ          C2         H21      SINGLE       n     1.082  0.0130     0.941  0.0176
+DEQ          C3         H31      SINGLE       n     1.082  0.0130     0.944  0.0184
+DEQ          C4         H41      SINGLE       n     1.082  0.0130     0.944  0.0178
+DEQ          C8         H81      SINGLE       n     1.082  0.0130     0.943  0.0168
+DEQ         C13        H131      SINGLE       n     1.082  0.0130     0.943  0.0168
+DEQ         C15        H151      SINGLE       n     1.082  0.0130     0.944  0.0178
+DEQ         C16        H161      SINGLE       n     1.082  0.0130     0.944  0.0184
+DEQ         C17        H171      SINGLE       n     1.082  0.0130     0.941  0.0176
+DEQ         C18        H181      SINGLE       n     1.082  0.0130     0.944  0.0200
+DEQ         C19        H191      SINGLE       n     1.089  0.0100     0.980  0.0158
+DEQ         C19        H192      SINGLE       n     1.089  0.0100     0.980  0.0158
+DEQ         C20        H201      SINGLE       n     1.089  0.0100     0.980  0.0160
+DEQ         C20        H202      SINGLE       n     1.089  0.0100     0.980  0.0160
+DEQ         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0163
+DEQ         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0163
+DEQ         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0163
+DEQ         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0163
+DEQ         C23        H231      SINGLE       n     1.089  0.0100     0.981  0.0163
+DEQ         C23        H232      SINGLE       n     1.089  0.0100     0.981  0.0163
+DEQ         C24        H241      SINGLE       n     1.089  0.0100     0.981  0.0163
+DEQ         C24        H242      SINGLE       n     1.089  0.0100     0.981  0.0163
+DEQ         C25        H251      SINGLE       n     1.089  0.0100     0.981  0.0163
+DEQ         C25        H252      SINGLE       n     1.089  0.0100     0.981  0.0163
+DEQ         C26        H261      SINGLE       n     1.089  0.0100     0.981  0.0163
+DEQ         C26        H262      SINGLE       n     1.089  0.0100     0.981  0.0163
+DEQ         C27        H271      SINGLE       n     1.089  0.0100     0.980  0.0160
+DEQ         C27        H272      SINGLE       n     1.089  0.0100     0.980  0.0160
+DEQ         C28        H281      SINGLE       n     1.089  0.0100     0.980  0.0158
+DEQ         C28        H282      SINGLE       n     1.089  0.0100     0.980  0.0158
+DEQ         C30        H301      SINGLE       n     1.089  0.0100     0.971  0.0138
+DEQ         C30        H302      SINGLE       n     1.089  0.0100     0.971  0.0138
+DEQ         C30        H303      SINGLE       n     1.089  0.0100     0.971  0.0138
+DEQ         C29        H291      SINGLE       n     1.089  0.0100     0.971  0.0138
+DEQ         C29        H292      SINGLE       n     1.089  0.0100     0.971  0.0138
+DEQ         C29        H293      SINGLE       n     1.089  0.0100     0.971  0.0138
+DEQ          N4        HN41      SINGLE       n     1.016  0.0100     0.871  0.0200
+DEQ          N4        HN42      SINGLE       n     1.016  0.0100     0.871  0.0200
+DEQ          N3        HN31      SINGLE       n     1.016  0.0100     0.871  0.0200
+DEQ          N3        HN32      SINGLE       n     1.016  0.0100     0.871  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DEQ          C2          C1          C5     119.795    1.50
+DEQ          C2          C1         H11     120.225    1.50
+DEQ          C5          C1         H11     119.980    1.50
+DEQ          C1          C2          C3     120.524    1.50
+DEQ          C1          C2         H21     119.664    1.50
+DEQ          C3          C2         H21     119.811    1.50
+DEQ          C2          C3          C4     120.129    1.50
+DEQ          C2          C3         H31     119.907    1.50
+DEQ          C4          C3         H31     119.964    1.50
+DEQ          C3          C4          C6     121.101    1.50
+DEQ          C3          C4         H41     119.571    1.50
+DEQ          C6          C4         H41     119.328    1.50
+DEQ          C1          C5          C6     119.761    1.50
+DEQ          C1          C5          N1     120.651    1.50
+DEQ          C6          C5          N1     119.588    1.50
+DEQ          C4          C6          C5     118.690    1.50
+DEQ          C4          C6          C7     122.326    1.55
+DEQ          C5          C6          C7     118.983    1.50
+DEQ          C6          C7          C8     119.936    1.61
+DEQ          C6          C7          N4     120.011    1.88
+DEQ          C8          C7          N4     120.052    2.14
+DEQ          C7          C8          C9     120.696    1.50
+DEQ          C7          C8         H81     119.951    1.50
+DEQ          C9          C8         H81     119.353    1.50
+DEQ          C8          C9          N1     120.196    1.50
+DEQ          C8          C9         C30     120.709    1.50
+DEQ          N1          C9         C30     119.095    1.50
+DEQ          C5          N1          C9     120.600    2.19
+DEQ          C5          N1         C28     121.336    1.50
+DEQ          C9          N1         C28     118.064    1.83
+DEQ         C11         C10         C14     118.983    1.50
+DEQ         C11         C10         C15     118.690    1.50
+DEQ         C14         C10         C15     122.326    1.55
+DEQ         C10         C11          N2     119.588    1.50
+DEQ         C10         C11         C18     119.761    1.50
+DEQ          N2         C11         C18     120.651    1.50
+DEQ         C11          N2         C12     120.600    2.19
+DEQ         C11          N2         C19     121.336    1.50
+DEQ         C12          N2         C19     118.064    1.83
+DEQ          N2         C12         C13     120.196    1.50
+DEQ          N2         C12         C29     119.095    1.50
+DEQ         C13         C12         C29     120.709    1.50
+DEQ         C12         C13         C14     120.696    1.50
+DEQ         C12         C13        H131     119.353    1.50
+DEQ         C14         C13        H131     119.951    1.50
+DEQ         C10         C14         C13     119.936    1.61
+DEQ         C10         C14          N3     120.011    1.88
+DEQ         C13         C14          N3     120.052    2.14
+DEQ         C10         C15         C16     121.101    1.50
+DEQ         C10         C15        H151     119.328    1.50
+DEQ         C16         C15        H151     119.571    1.50
+DEQ         C15         C16         C17     120.129    1.50
+DEQ         C15         C16        H161     119.964    1.50
+DEQ         C17         C16        H161     119.907    1.50
+DEQ         C16         C17         C18     120.524    1.50
+DEQ         C16         C17        H171     119.811    1.50
+DEQ         C18         C17        H171     119.664    1.50
+DEQ         C11         C18         C17     119.795    1.50
+DEQ         C11         C18        H181     119.980    1.50
+DEQ         C17         C18        H181     120.225    1.50
+DEQ          N2         C19         C20     112.992    1.50
+DEQ          N2         C19        H191     109.072    1.50
+DEQ          N2         C19        H192     109.072    1.50
+DEQ         C20         C19        H191     109.167    1.50
+DEQ         C20         C19        H192     109.167    1.50
+DEQ        H191         C19        H192     107.813    1.50
+DEQ         C19         C20         C21     112.194    2.18
+DEQ         C19         C20        H201     109.086    1.50
+DEQ         C19         C20        H202     109.086    1.50
+DEQ         C21         C20        H201     109.173    1.50
+DEQ         C21         C20        H202     109.173    1.50
+DEQ        H201         C20        H202     107.954    1.50
+DEQ         C20         C21         C22     113.592    1.50
+DEQ         C20         C21        H211     108.867    1.50
+DEQ         C20         C21        H212     108.867    1.50
+DEQ         C22         C21        H211     108.698    1.50
+DEQ         C22         C21        H212     108.698    1.50
+DEQ        H211         C21        H212     107.646    1.50
+DEQ         C21         C22         C23     114.243    1.69
+DEQ         C21         C22        H221     108.698    1.50
+DEQ         C21         C22        H222     108.698    1.50
+DEQ         C23         C22        H221     108.698    1.50
+DEQ         C23         C22        H222     108.698    1.50
+DEQ        H221         C22        H222     107.646    1.50
+DEQ         C22         C23         C24     114.243    1.69
+DEQ         C22         C23        H231     108.698    1.50
+DEQ         C22         C23        H232     108.698    1.50
+DEQ         C24         C23        H231     108.698    1.50
+DEQ         C24         C23        H232     108.698    1.50
+DEQ        H231         C23        H232     107.646    1.50
+DEQ         C23         C24         C25     114.243    1.69
+DEQ         C23         C24        H241     108.698    1.50
+DEQ         C23         C24        H242     108.698    1.50
+DEQ         C25         C24        H241     108.698    1.50
+DEQ         C25         C24        H242     108.698    1.50
+DEQ        H241         C24        H242     107.646    1.50
+DEQ         C24         C25         C26     114.243    1.69
+DEQ         C24         C25        H251     108.698    1.50
+DEQ         C24         C25        H252     108.698    1.50
+DEQ         C26         C25        H251     108.698    1.50
+DEQ         C26         C25        H252     108.698    1.50
+DEQ        H251         C25        H252     107.646    1.50
+DEQ         C25         C26         C27     113.592    1.50
+DEQ         C25         C26        H261     108.698    1.50
+DEQ         C25         C26        H262     108.698    1.50
+DEQ         C27         C26        H261     108.867    1.50
+DEQ         C27         C26        H262     108.867    1.50
+DEQ        H261         C26        H262     107.646    1.50
+DEQ         C26         C27         C28     112.194    2.18
+DEQ         C26         C27        H271     109.173    1.50
+DEQ         C26         C27        H272     109.173    1.50
+DEQ         C28         C27        H271     109.086    1.50
+DEQ         C28         C27        H272     109.086    1.50
+DEQ        H271         C27        H272     107.954    1.50
+DEQ          N1         C28         C27     112.992    1.50
+DEQ          N1         C28        H281     109.072    1.50
+DEQ          N1         C28        H282     109.072    1.50
+DEQ         C27         C28        H281     109.167    1.50
+DEQ         C27         C28        H282     109.167    1.50
+DEQ        H281         C28        H282     107.813    1.50
+DEQ          C9         C30        H301     109.480    1.50
+DEQ          C9         C30        H302     109.480    1.50
+DEQ          C9         C30        H303     109.480    1.50
+DEQ        H301         C30        H302     109.339    1.66
+DEQ        H301         C30        H303     109.339    1.66
+DEQ        H302         C30        H303     109.339    1.66
+DEQ         C12         C29        H291     109.480    1.50
+DEQ         C12         C29        H292     109.480    1.50
+DEQ         C12         C29        H293     109.480    1.50
+DEQ        H291         C29        H292     109.339    1.66
+DEQ        H291         C29        H293     109.339    1.66
+DEQ        H292         C29        H293     109.339    1.66
+DEQ          C7          N4        HN41     120.319    1.50
+DEQ          C7          N4        HN42     120.319    1.50
+DEQ        HN41          N4        HN42     119.362    2.24
+DEQ         C14          N3        HN31     120.319    1.50
+DEQ         C14          N3        HN32     120.319    1.50
+DEQ        HN31          N3        HN32     119.362    2.24
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DEQ              const_37          C5          C1          C2          C3       0.000    10.0     2
+DEQ              const_73          C2          C1          C5          C6       0.000    10.0     2
+DEQ       const_sp2_sp2_1         C14         C10         C11          N2       0.000     5.0     2
+DEQ              const_82         C11         C10         C14          N3     180.000    10.0     2
+DEQ              const_85         C11         C10         C15         C16       0.000    10.0     2
+DEQ       const_sp2_sp2_6         C10         C11          N2         C19     180.000     5.0     2
+DEQ              const_21         C10         C11         C18         C17       0.000    10.0     2
+DEQ              const_12         C29         C12          N2         C19       0.000    10.0     2
+DEQ            sp2_sp3_14         C11          N2         C19         C20     -90.000    10.0     6
+DEQ              const_15         C29         C12         C13         C14     180.000    10.0     2
+DEQ            sp2_sp3_19          N2         C12         C29        H291     150.000    10.0     6
+DEQ              const_18         C12         C13         C14          N3     180.000    10.0     2
+DEQ             sp2_sp2_5         C10         C14          N3        HN31     180.000     5.0     2
+DEQ              const_33         C10         C15         C16         C17       0.000    10.0     2
+DEQ              const_29         C15         C16         C17         C18       0.000    10.0     2
+DEQ              const_25         C16         C17         C18         C11       0.000    10.0     2
+DEQ              const_41          C1          C2          C3          C4       0.000    10.0     2
+DEQ             sp3_sp3_1          N2         C19         C20         C21     180.000    10.0     3
+DEQ            sp3_sp3_10         C19         C20         C21         C22     180.000    10.0     3
+DEQ            sp3_sp3_19         C20         C21         C22         C23     180.000    10.0     3
+DEQ            sp3_sp3_28         C21         C22         C23         C24     180.000    10.0     3
+DEQ            sp3_sp3_37         C22         C23         C24         C25     180.000    10.0     3
+DEQ            sp3_sp3_46         C23         C24         C25         C26     180.000    10.0     3
+DEQ            sp3_sp3_55         C24         C25         C26         C27     180.000    10.0     3
+DEQ            sp3_sp3_64         C25         C26         C27         C28     180.000    10.0     3
+DEQ            sp3_sp3_73         C26         C27         C28          N1     180.000    10.0     3
+DEQ              const_45          C2          C3          C4          C6       0.000    10.0     2
+DEQ              const_49          C3          C4          C6          C5       0.000    10.0     2
+DEQ              const_53          C1          C5          C6          C4       0.000    10.0     2
+DEQ              const_80          C1          C5          N1         C28       0.000    10.0     2
+DEQ              const_60          C4          C6          C7          N4       0.000    10.0     2
+DEQ             sp2_sp2_1          C6          C7          N4        HN41     180.000     5.0     2
+DEQ              const_63          N4          C7          C8          C9     180.000    10.0     2
+DEQ              const_66          C7          C8          C9         C30     180.000    10.0     2
+DEQ             sp2_sp3_1          C8          C9         C30        H301     150.000    10.0     6
+DEQ              const_72         C30          C9          N1         C28       0.000    10.0     2
+DEQ             sp2_sp3_8          C5          N1         C28         C27     -90.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DEQ    plan-1          C1   0.020
+DEQ    plan-1          C2   0.020
+DEQ    plan-1         C28   0.020
+DEQ    plan-1          C3   0.020
+DEQ    plan-1         C30   0.020
+DEQ    plan-1          C4   0.020
+DEQ    plan-1          C5   0.020
+DEQ    plan-1          C6   0.020
+DEQ    plan-1          C7   0.020
+DEQ    plan-1          C8   0.020
+DEQ    plan-1          C9   0.020
+DEQ    plan-1         H11   0.020
+DEQ    plan-1         H21   0.020
+DEQ    plan-1         H31   0.020
+DEQ    plan-1         H41   0.020
+DEQ    plan-1         H81   0.020
+DEQ    plan-1          N1   0.020
+DEQ    plan-1          N4   0.020
+DEQ    plan-2         C10   0.020
+DEQ    plan-2         C11   0.020
+DEQ    plan-2         C12   0.020
+DEQ    plan-2         C13   0.020
+DEQ    plan-2         C14   0.020
+DEQ    plan-2         C15   0.020
+DEQ    plan-2         C16   0.020
+DEQ    plan-2         C17   0.020
+DEQ    plan-2         C18   0.020
+DEQ    plan-2         C19   0.020
+DEQ    plan-2         C29   0.020
+DEQ    plan-2        H131   0.020
+DEQ    plan-2        H151   0.020
+DEQ    plan-2        H161   0.020
+DEQ    plan-2        H171   0.020
+DEQ    plan-2        H181   0.020
+DEQ    plan-2          N2   0.020
+DEQ    plan-2          N3   0.020
+DEQ    plan-3          C7   0.020
+DEQ    plan-3        HN41   0.020
+DEQ    plan-3        HN42   0.020
+DEQ    plan-3          N4   0.020
+DEQ    plan-4         C14   0.020
+DEQ    plan-4        HN31   0.020
+DEQ    plan-4        HN32   0.020
+DEQ    plan-4          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DEQ           SMILES              ACDLabs 10.04                                                                                                                           c12ccccc1c(cc([n+]2CCCCCCCCCC[n+]4c3ccccc3c(N)cc4C)C)N
+DEQ SMILES_CANONICAL               CACTVS 3.341                                                                                                                           Cc1cc(N)c2ccccc2[n+]1CCCCCCCCCC[n+]3c(C)cc(N)c4ccccc34
+DEQ           SMILES               CACTVS 3.341                                                                                                                           Cc1cc(N)c2ccccc2[n+]1CCCCCCCCCC[n+]3c(C)cc(N)c4ccccc34
+DEQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                           Cc1cc(c2ccccc2[n+]1CCCCCCCCCC[n+]3c(cc(c4c3cccc4)N)C)N
+DEQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                           Cc1cc(c2ccccc2[n+]1CCCCCCCCCC[n+]3c(cc(c4c3cccc4)N)C)N
+DEQ            InChI                InChI  1.03 InChI=1S/C30H38N4/c1-23-21-27(31)25-15-9-11-17-29(25)33(23)19-13-7-5-3-4-6-8-14-20-34-24(2)22-28(32)26-16-10-12-18-30(26)34/h9-12,15-18,21-22,31-32H,3-8,13-14,19-20H2,1-2H3/p+2
+DEQ         InChIKey                InChI  1.03                                                                                                                                                      PCSWXVJAIHCTMO-UHFFFAOYSA-P
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DEQ acedrg               243         "dictionary generator"                  
+DEQ acedrg_database      11          "data source"                           
+DEQ rdkit                2017.03.2   "Chemoinformatics tool"
+DEQ refmac5              5.8.0238    "optimization tool"                     

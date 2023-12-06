@@ -1,0 +1,292 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FNM     FNM      (5S)-5-methyl-2-(methylsulfanyl)-5-phenyl-3-(phenylamino)-3,5-dihydro-4H-imidazol-4-one     NON-POLYMER     39     22     .     
+#
+data_comp_FNM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FNM     N1      N       NH1     0       9.902       135.214     78.727      
+FNM     N2      N       NT      0       10.775      134.390     79.420      
+FNM     C3      C       CR5     0       11.482      134.699     80.580      
+FNM     S3      S       S2      0       11.413      136.259     81.366      
+FNM     N4      N       NRD5    0       12.193      133.713     81.000      
+FNM     C5      C       CT      0       12.315      132.711     79.914      
+FNM     C6      C       CR5     0       11.186      133.136     78.988      
+FNM     O6      O       O       0       10.755      132.545     78.020      
+FNM     C7      C       CH3     0       13.632      132.981     79.184      
+FNM     C8      C       CR6     0       12.141      131.292     80.468      
+FNM     C9      C       CR16    0       10.966      130.949     81.143      
+FNM     C10     C       CR16    0       10.783      129.669     81.656      
+FNM     C11     C       CR16    0       11.764      128.712     81.507      
+FNM     C12     C       CR16    0       12.931      129.028     80.847      
+FNM     C13     C       CR16    0       13.123      130.304     80.331      
+FNM     C21     C       CR6     0       8.563       135.492     79.114      
+FNM     C22     C       CR16    0       7.893       136.552     78.480      
+FNM     C23     C       CR16    0       6.584       136.858     78.829      
+FNM     C24     C       CR16    0       5.928       136.128     79.800      
+FNM     C25     C       CR16    0       6.574       135.084     80.431      
+FNM     C26     C       CR16    0       7.883       134.757     80.100      
+FNM     C27     C       CH3     0       10.673      137.770     80.695      
+FNM     HN1     H       H       0       10.187      135.593     77.990      
+FNM     H7      H       H       0       13.650      133.904     78.866      
+FNM     H7A     H       H       0       13.712      132.375     78.423      
+FNM     H7B     H       H       0       14.379      132.835     79.795      
+FNM     H9      H       H       0       10.287      131.592     81.253      
+FNM     H10     H       H       0       9.982       129.456     82.108      
+FNM     H11     H       H       0       11.637      127.844     81.857      
+FNM     H12     H       H       0       13.605      128.375     80.744      
+FNM     H13     H       H       0       13.928      130.498     79.884      
+FNM     H22     H       H       0       8.341       137.051     77.818      
+FNM     H23     H       H       0       6.142       137.571     78.398      
+FNM     H24     H       H       0       5.038       136.342     80.031      
+FNM     H25     H       H       0       6.124       134.586     81.093      
+FNM     H26     H       H       0       8.322       134.044     80.533      
+FNM     H27     H       H       0       10.345      137.602     79.801      
+FNM     H27A    H       H       0       11.346      138.467     80.666      
+FNM     H27B    H       H       0       9.941       138.048     81.265      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FNM          N1          N2      SINGLE       n     1.384  0.0100     1.384  0.0100
+FNM          N1         C21      SINGLE       n     1.406  0.0200     1.406  0.0200
+FNM          N2          C3      SINGLE       n     1.389  0.0200     1.389  0.0200
+FNM          N2          C6      SINGLE       n     1.394  0.0146     1.394  0.0146
+FNM          C3          S3      SINGLE       n     1.746  0.0119     1.746  0.0119
+FNM          C3          N4      DOUBLE       n     1.277  0.0159     1.277  0.0159
+FNM          S3         C27      SINGLE       n     1.809  0.0191     1.809  0.0191
+FNM          N4          C5      SINGLE       n     1.470  0.0200     1.470  0.0200
+FNM          C5          C6      SINGLE       n     1.521  0.0174     1.521  0.0174
+FNM          C5          C7      SINGLE       n     1.526  0.0112     1.526  0.0112
+FNM          C5          C8      SINGLE       n     1.526  0.0100     1.526  0.0100
+FNM          C6          O6      DOUBLE       n     1.214  0.0106     1.214  0.0106
+FNM          C8          C9      DOUBLE       y     1.391  0.0100     1.391  0.0100
+FNM          C8         C13      SINGLE       y     1.391  0.0100     1.391  0.0100
+FNM          C9         C10      SINGLE       y     1.387  0.0100     1.387  0.0100
+FNM         C10         C11      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FNM         C11         C12      SINGLE       y     1.374  0.0127     1.374  0.0127
+FNM         C12         C13      DOUBLE       y     1.387  0.0100     1.387  0.0100
+FNM         C21         C22      DOUBLE       y     1.396  0.0142     1.396  0.0142
+FNM         C21         C26      SINGLE       y     1.396  0.0142     1.396  0.0142
+FNM         C22         C23      SINGLE       y     1.385  0.0100     1.385  0.0100
+FNM         C23         C24      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FNM         C24         C25      SINGLE       y     1.376  0.0112     1.376  0.0112
+FNM         C25         C26      DOUBLE       y     1.385  0.0100     1.385  0.0100
+FNM          N1         HN1      SINGLE       n     1.016  0.0100     0.876  0.0200
+FNM          C7          H7      SINGLE       n     1.089  0.0100     0.976  0.0200
+FNM          C7         H7A      SINGLE       n     1.089  0.0100     0.976  0.0200
+FNM          C7         H7B      SINGLE       n     1.089  0.0100     0.976  0.0200
+FNM          C9          H9      SINGLE       n     1.082  0.0130     0.942  0.0101
+FNM         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0175
+FNM         C11         H11      SINGLE       n     1.082  0.0130     0.944  0.0161
+FNM         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0175
+FNM         C13         H13      SINGLE       n     1.082  0.0130     0.942  0.0101
+FNM         C22         H22      SINGLE       n     1.082  0.0130     0.943  0.0178
+FNM         C23         H23      SINGLE       n     1.082  0.0130     0.943  0.0172
+FNM         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0161
+FNM         C25         H25      SINGLE       n     1.082  0.0130     0.943  0.0172
+FNM         C26         H26      SINGLE       n     1.082  0.0130     0.943  0.0178
+FNM         C27         H27      SINGLE       n     1.089  0.0100     0.969  0.0156
+FNM         C27        H27A      SINGLE       n     1.089  0.0100     0.969  0.0156
+FNM         C27        H27B      SINGLE       n     1.089  0.0100     0.969  0.0156
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FNM          N2          N1         C21     121.538    3.00
+FNM          N2          N1         HN1     120.474    2.32
+FNM         C21          N1         HN1     117.988    2.16
+FNM          N1          N2          C3     121.419    2.10
+FNM          N1          N2          C6     121.419    2.10
+FNM          C3          N2          C6     109.935    2.71
+FNM          N2          C3          S3     121.549    1.50
+FNM          N2          C3          N4     113.863    2.45
+FNM          S3          C3          N4     124.589    2.78
+FNM          C3          S3         C27     120.000    3.00
+FNM          C3          N4          C5     107.937    1.96
+FNM          N4          C5          C6     104.276    2.66
+FNM          N4          C5          C7     109.897    1.96
+FNM          N4          C5          C8     110.227    2.19
+FNM          C6          C5          C7     111.539    2.78
+FNM          C6          C5          C8     112.135    3.00
+FNM          C7          C5          C8     114.362    1.83
+FNM          N2          C6          C5     108.365    1.65
+FNM          N2          C6          O6     124.945    1.50
+FNM          C5          C6          O6     126.690    1.96
+FNM          C5          C7          H7     109.447    1.50
+FNM          C5          C7         H7A     109.447    1.50
+FNM          C5          C7         H7B     109.447    1.50
+FNM          H7          C7         H7A     109.475    1.50
+FNM          H7          C7         H7B     109.475    1.50
+FNM         H7A          C7         H7B     109.475    1.50
+FNM          C5          C8          C9     120.819    2.23
+FNM          C5          C8         C13     120.819    2.23
+FNM          C9          C8         C13     118.363    1.50
+FNM          C8          C9         C10     120.616    1.50
+FNM          C8          C9          H9     119.643    1.50
+FNM         C10          C9          H9     119.738    1.50
+FNM          C9         C10         C11     120.260    1.50
+FNM          C9         C10         H10     119.787    1.50
+FNM         C11         C10         H10     119.953    1.50
+FNM         C10         C11         C12     119.889    1.50
+FNM         C10         C11         H11     120.055    1.50
+FNM         C12         C11         H11     120.055    1.50
+FNM         C11         C12         C13     120.260    1.50
+FNM         C11         C12         H12     119.953    1.50
+FNM         C13         C12         H12     119.787    1.50
+FNM          C8         C13         C12     120.616    1.50
+FNM          C8         C13         H13     119.643    1.50
+FNM         C12         C13         H13     119.738    1.50
+FNM          N1         C21         C22     120.389    2.92
+FNM          N1         C21         C26     120.389    2.92
+FNM         C22         C21         C26     119.221    1.50
+FNM         C21         C22         C23     120.019    1.50
+FNM         C21         C22         H22     119.272    2.76
+FNM         C23         C22         H22     120.709    1.50
+FNM         C22         C23         C24     120.449    1.50
+FNM         C22         C23         H23     119.634    1.50
+FNM         C24         C23         H23     119.916    1.50
+FNM         C23         C24         C25     119.841    1.50
+FNM         C23         C24         H24     120.080    1.50
+FNM         C25         C24         H24     120.080    1.50
+FNM         C24         C25         C26     120.449    1.50
+FNM         C24         C25         H25     119.916    1.50
+FNM         C26         C25         H25     119.634    1.50
+FNM         C21         C26         C25     120.019    1.50
+FNM         C21         C26         H26     119.272    2.76
+FNM         C25         C26         H26     120.709    1.50
+FNM          S3         C27         H27     109.066    1.50
+FNM          S3         C27        H27A     109.066    1.50
+FNM          S3         C27        H27B     109.066    1.50
+FNM         H27         C27        H27A     109.437    1.50
+FNM         H27         C27        H27B     109.437    1.50
+FNM        H27A         C27        H27B     109.437    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FNM             sp2_sp2_7         C21          N1          N2          C3     180.000     5.0     2
+FNM            sp2_sp2_11         C22         C21          N1          N2     180.000     5.0     2
+FNM       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+FNM       const_sp2_sp2_9          C9         C10         C11         C12       0.000     5.0     2
+FNM              const_13         C10         C11         C12         C13       0.000    10.0     2
+FNM              const_17         C11         C12         C13          C8       0.000    10.0     2
+FNM              const_23          N1         C21         C22         C23     180.000    10.0     2
+FNM              const_47          N1         C21         C26         C25     180.000    10.0     2
+FNM              const_25         C21         C22         C23         C24       0.000    10.0     2
+FNM              const_29         C22         C23         C24         C25       0.000    10.0     2
+FNM              const_33         C23         C24         C25         C26       0.000    10.0     2
+FNM              const_37         C24         C25         C26         C21       0.000    10.0     2
+FNM             sp2_sp2_4          S3          C3          N2          N1       0.000     5.0     2
+FNM            sp2_sp2_18          O6          C6          N2          N1       0.000     5.0     2
+FNM            sp2_sp2_19          N2          C3          S3         C27     180.000     5.0     2
+FNM             sp2_sp2_6          S3          C3          N4          C5     180.000     5.0     2
+FNM             sp3_sp3_2         H27         C27          S3          C3     -60.000    10.0     3
+FNM             sp2_sp3_2          C3          N4          C5          C7     120.000    10.0     6
+FNM             sp2_sp3_8          O6          C6          C5          C7     -60.000    10.0     6
+FNM             sp3_sp3_5          N4          C5          C7          H7     180.000    10.0     3
+FNM            sp2_sp3_12          C9          C8          C5          C7      30.000    10.0     6
+FNM       const_sp2_sp2_3          C5          C8          C9         C10     180.000     5.0     2
+FNM              const_42         C12         C13          C8          C5     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FNM    chir_1    C5    N4    C6    C8    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FNM    plan-1         C10   0.020
+FNM    plan-1         C11   0.020
+FNM    plan-1         C12   0.020
+FNM    plan-1         C13   0.020
+FNM    plan-1          C5   0.020
+FNM    plan-1          C8   0.020
+FNM    plan-1          C9   0.020
+FNM    plan-1         H10   0.020
+FNM    plan-1         H11   0.020
+FNM    plan-1         H12   0.020
+FNM    plan-1         H13   0.020
+FNM    plan-1          H9   0.020
+FNM    plan-2         C21   0.020
+FNM    plan-2         C22   0.020
+FNM    plan-2         C23   0.020
+FNM    plan-2         C24   0.020
+FNM    plan-2         C25   0.020
+FNM    plan-2         C26   0.020
+FNM    plan-2         H22   0.020
+FNM    plan-2         H23   0.020
+FNM    plan-2         H24   0.020
+FNM    plan-2         H25   0.020
+FNM    plan-2         H26   0.020
+FNM    plan-2          N1   0.020
+FNM    plan-3         C21   0.020
+FNM    plan-3         HN1   0.020
+FNM    plan-3          N1   0.020
+FNM    plan-3          N2   0.020
+FNM    plan-4          C3   0.020
+FNM    plan-4          N2   0.020
+FNM    plan-4          N4   0.020
+FNM    plan-4          S3   0.020
+FNM    plan-5          C5   0.020
+FNM    plan-5          C6   0.020
+FNM    plan-5          N2   0.020
+FNM    plan-5          O6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FNM SMILES_CANONICAL               CACTVS 3.352                                                                           CSC1=N[C@](C)(C(=O)N1Nc2ccccc2)c3ccccc3
+FNM           SMILES               CACTVS 3.352                                                                            CSC1=N[C](C)(C(=O)N1Nc2ccccc2)c3ccccc3
+FNM SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                        C[C@@]1(C(=O)N(C(=N1)SC)Nc2ccccc2)c3ccccc3
+FNM           SMILES "OpenEye OEToolkits" 1.7.0                                                                            CC1(C(=O)N(C(=N1)SC)Nc2ccccc2)c3ccccc3
+FNM            InChI                InChI  1.03 InChI=1S/C17H17N3OS/c1-17(13-9-5-3-6-10-13)15(21)20(16(18-17)22-2)19-14-11-7-4-8-12-14/h3-12,19H,1-2H3/t17-/m0/s1
+FNM         InChIKey                InChI  1.03                                                                                       LMVPQMGRYSRMIW-KRWDZBQOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FNM acedrg               243         "dictionary generator"                  
+FNM acedrg_database      11          "data source"                           
+FNM rdkit                2017.03.2   "Chemoinformatics tool"
+FNM refmac5              5.8.0238    "optimization tool"                     

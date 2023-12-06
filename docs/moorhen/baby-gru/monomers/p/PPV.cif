@@ -1,0 +1,114 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PPV     PPV      PYROPHOSPHATE     NON-POLYMER     9     9     .     
+#
+data_comp_PPV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PPV     O11     O       OP      -1      21.228      23.670      14.719      
+PPV     P1      P       P       0       20.757      22.323      15.211      
+PPV     O21     O       OP      -1      21.880      21.478      15.760      
+PPV     O31     O       O       0       19.921      21.590      14.192      
+PPV     OPP     O       O2      0       19.777      22.624      16.457      
+PPV     P2      P       P       0       18.391      23.442      16.584      
+PPV     O12     O       OP      -1      18.710      24.864      16.193      
+PPV     O22     O       O       0       17.428      22.778      15.631      
+PPV     O32     O       OP      -1      17.965      23.316      18.026      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PPV         O11          P1      SINGLE       n     1.509  0.0200     1.509  0.0200
+PPV          P1         O21      SINGLE       n     1.509  0.0200     1.509  0.0200
+PPV          P1         O31      DOUBLE       n     1.509  0.0200     1.509  0.0200
+PPV          P1         OPP      SINGLE       n     1.614  0.0178     1.614  0.0178
+PPV         OPP          P2      SINGLE       n     1.614  0.0178     1.614  0.0178
+PPV          P2         O12      SINGLE       n     1.509  0.0200     1.509  0.0200
+PPV          P2         O22      DOUBLE       n     1.509  0.0200     1.509  0.0200
+PPV          P2         O32      SINGLE       n     1.509  0.0200     1.509  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PPV         O11          P1         O21     112.716    1.50
+PPV         O11          P1         O31     112.716    1.50
+PPV         O11          P1         OPP     105.965    2.38
+PPV         O21          P1         O31     112.716    1.50
+PPV         O21          P1         OPP     105.965    2.38
+PPV         O31          P1         OPP     105.965    2.38
+PPV          P1         OPP          P2     132.584    3.00
+PPV         OPP          P2         O12     105.965    2.38
+PPV         OPP          P2         O22     105.965    2.38
+PPV         OPP          P2         O32     105.965    2.38
+PPV         O12          P2         O22     112.716    1.50
+PPV         O12          P2         O32     112.716    1.50
+PPV         O22          P2         O32     112.716    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PPV             sp3_sp3_2          P2         OPP          P1         O11     -60.000    10.0     3
+PPV             sp3_sp3_5          P1         OPP          P2         O12     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PPV    chir_1    P1    OPP    O11    O21    both
+PPV    chir_2    P2    OPP    O12    O32    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PPV           SMILES              ACDLabs 10.04                                      O=P(O)(O)OP(=O)(O)O
+PPV SMILES_CANONICAL               CACTVS 3.341                                  O[P](O)(=O)O[P](O)(O)=O
+PPV           SMILES               CACTVS 3.341                                  O[P](O)(=O)O[P](O)(O)=O
+PPV SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                      OP(=O)(O)OP(=O)(O)O
+PPV           SMILES "OpenEye OEToolkits" 1.5.0                                      OP(=O)(O)OP(=O)(O)O
+PPV            InChI                InChI  1.03 InChI=1S/H4O7P2/c1-8(2,3)7-9(4,5)6/h(H2,1,2,3)(H2,4,5,6)
+PPV         InChIKey                InChI  1.03                              XPPKVPWEQAFLFU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PPV acedrg               243         "dictionary generator"                  
+PPV acedrg_database      11          "data source"                           
+PPV rdkit                2017.03.2   "Chemoinformatics tool"
+PPV refmac5              5.8.0238    "optimization tool"                     

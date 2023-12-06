@@ -1,0 +1,178 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+01R     01R      N-(pyridin-4-yl)ethane-1,2-diamine     NON-POLYMER     21     10     .     
+#
+data_comp_01R
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+01R     N19     N       NT2     0       16.099      -12.650     20.869      
+01R     C20     C       CH2     0       15.064      -11.908     20.153      
+01R     C30     C       CH2     0       14.174      -11.117     21.095      
+01R     N27     N       NH1     0       13.321      -11.992     21.871      
+01R     C21     C       CR6     0       12.410      -11.590     22.820      
+01R     C22     C       CR16    0       11.632      -12.544     23.516      
+01R     C23     C       CR16    0       10.733      -12.106     24.456      
+01R     N24     N       NRD6    0       10.534      -10.818     24.770      
+01R     C25     C       CR16    0       11.273      -9.916      24.109      
+01R     C26     C       CR16    0       12.203      -10.229     23.149      
+01R     H19     H       H       0       15.721      -13.249     21.405      
+01R     H2      H       H       0       16.565      -12.094     21.382      
+01R     H201    H       H       0       14.518      -12.536     19.643      
+01R     H202    H       H       0       15.489      -11.298     19.521      
+01R     H301    H       H       0       13.618      -10.498     20.574      
+01R     H302    H       H       0       14.733      -10.586     21.701      
+01R     H27     H       H       0       13.381      -12.860     21.730      
+01R     H22     H       H       0       11.727      -13.462     23.338      
+01R     H23     H       H       0       10.222      -12.754     24.911      
+01R     H25     H       H       0       11.146      -9.006      24.318      
+01R     H26     H       H       0       12.689      -9.548      22.722      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+01R         N19         C20      SINGLE       n     1.461  0.0200     1.461  0.0200
+01R         C20         C30      SINGLE       n     1.517  0.0145     1.517  0.0145
+01R         C30         N27      SINGLE       n     1.445  0.0100     1.445  0.0100
+01R         N27         C21      SINGLE       n     1.362  0.0186     1.362  0.0186
+01R         C21         C22      DOUBLE       y     1.409  0.0105     1.409  0.0105
+01R         C21         C26      SINGLE       y     1.409  0.0105     1.409  0.0105
+01R         C22         C23      SINGLE       y     1.369  0.0100     1.369  0.0100
+01R         C23         N24      DOUBLE       y     1.337  0.0100     1.337  0.0100
+01R         N24         C25      SINGLE       y     1.337  0.0100     1.337  0.0100
+01R         C25         C26      DOUBLE       y     1.369  0.0100     1.369  0.0100
+01R         N19         H19      SINGLE       n     1.036  0.0160     0.888  0.0200
+01R         N19          H2      SINGLE       n     1.036  0.0160     0.888  0.0200
+01R         C20        H201      SINGLE       n     1.089  0.0100     0.976  0.0131
+01R         C20        H202      SINGLE       n     1.089  0.0100     0.976  0.0131
+01R         C30        H301      SINGLE       n     1.089  0.0100     0.981  0.0128
+01R         C30        H302      SINGLE       n     1.089  0.0100     0.981  0.0128
+01R         N27         H27      SINGLE       n     1.016  0.0100     0.880  0.0200
+01R         C22         H22      SINGLE       n     1.082  0.0130     0.940  0.0166
+01R         C23         H23      SINGLE       n     1.082  0.0130     0.943  0.0178
+01R         C25         H25      SINGLE       n     1.082  0.0130     0.943  0.0178
+01R         C26         H26      SINGLE       n     1.082  0.0130     0.940  0.0166
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+01R         C20         N19         H19     109.540    3.00
+01R         C20         N19          H2     109.540    3.00
+01R         H19         N19          H2     107.243    3.00
+01R         N19         C20         C30     111.320    2.66
+01R         N19         C20        H201     108.883    1.50
+01R         N19         C20        H202     108.883    1.50
+01R         C30         C20        H201     109.201    1.50
+01R         C30         C20        H202     109.201    1.50
+01R        H201         C20        H202     107.734    1.50
+01R         C20         C30         N27     110.288    1.90
+01R         C20         C30        H301     109.260    1.50
+01R         C20         C30        H302     109.260    1.50
+01R         N27         C30        H301     109.324    1.50
+01R         N27         C30        H302     109.324    1.50
+01R        H301         C30        H302     108.000    1.50
+01R         C30         N27         C21     124.126    2.16
+01R         C30         N27         H27     118.472    1.50
+01R         C21         N27         H27     117.386    2.17
+01R         N27         C21         C22     121.314    1.76
+01R         N27         C21         C26     121.314    1.76
+01R         C22         C21         C26     117.372    1.50
+01R         C21         C22         C23     118.697    1.50
+01R         C21         C22         H22     120.716    1.50
+01R         C23         C22         H22     120.587    1.50
+01R         C22         C23         N24     124.383    1.50
+01R         C22         C23         H23     117.800    1.50
+01R         N24         C23         H23     117.817    1.50
+01R         C23         N24         C25     116.469    1.50
+01R         N24         C25         C26     124.383    1.50
+01R         N24         C25         H25     117.817    1.50
+01R         C26         C25         H25     117.800    1.50
+01R         C21         C26         C25     118.697    1.50
+01R         C21         C26         H26     120.716    1.50
+01R         C25         C26         H26     120.587    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+01R             sp3_sp3_1         C30         C20         N19         H19     180.000    10.0     3
+01R             sp3_sp3_7         N19         C20         C30         N27     180.000    10.0     3
+01R             sp2_sp3_2         C21         N27         C30         C20     120.000    10.0     6
+01R             sp2_sp2_1         C22         C21         N27         C30     180.000     5.0     2
+01R       const_sp2_sp2_3         N27         C21         C22         C23     180.000     5.0     2
+01R              const_19         N27         C21         C26         C25     180.000    10.0     2
+01R       const_sp2_sp2_5         C21         C22         C23         N24       0.000     5.0     2
+01R       const_sp2_sp2_9         C22         C23         N24         C25       0.000     5.0     2
+01R              const_11         C26         C25         N24         C23       0.000    10.0     2
+01R              const_13         N24         C25         C26         C21       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+01R    plan-1         C21   0.020
+01R    plan-1         C22   0.020
+01R    plan-1         C23   0.020
+01R    plan-1         C25   0.020
+01R    plan-1         C26   0.020
+01R    plan-1         H22   0.020
+01R    plan-1         H23   0.020
+01R    plan-1         H25   0.020
+01R    plan-1         H26   0.020
+01R    plan-1         N24   0.020
+01R    plan-1         N27   0.020
+01R    plan-2         C21   0.020
+01R    plan-2         C30   0.020
+01R    plan-2         H27   0.020
+01R    plan-2         N27   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+01R           SMILES              ACDLabs 12.01                                                      n1ccc(NCCN)cc1
+01R SMILES_CANONICAL               CACTVS 3.370                                                        NCCNc1ccncc1
+01R           SMILES               CACTVS 3.370                                                        NCCNc1ccncc1
+01R SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                        c1cnccc1NCCN
+01R           SMILES "OpenEye OEToolkits" 1.7.0                                                        c1cnccc1NCCN
+01R            InChI                InChI  1.03 InChI=1S/C7H11N3/c8-3-6-10-7-1-4-9-5-2-7/h1-2,4-5H,3,6,8H2,(H,9,10)
+01R         InChIKey                InChI  1.03                                         HWVWEGOXLGPYDB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+01R acedrg               243         "dictionary generator"                  
+01R acedrg_database      11          "data source"                           
+01R rdkit                2017.03.2   "Chemoinformatics tool"
+01R refmac5              5.8.0238    "optimization tool"                     

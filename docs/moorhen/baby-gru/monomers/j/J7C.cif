@@ -1,0 +1,308 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+J7C     J7C      9-(6-carbamimidamido-5,6-dideoxy-beta-D-ribo-hexofuranosyl)-9H-purin-6-amine     NON-POLYMER     42     23     .     
+#
+data_comp_J7C
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+J7C     N1      N       NRD6    0       -27.533     9.806       -20.789     
+J7C     C2      C       CR16    0       -26.870     10.752      -20.103     
+J7C     N3      N       NRD6    0       -25.756     10.639      -19.378     
+J7C     C4      C       CR56    0       -25.301     9.371       -19.390     
+J7C     C5      C       CR56    0       -25.868     8.295       -20.044     
+J7C     C6      C       CR6     0       -27.048     8.537       -20.780     
+J7C     N6      N       NH2     0       -27.701     7.597       -21.459     
+J7C     N7      N       NRD5    0       -25.114     7.149       -19.823     
+J7C     C8      C       CR15    0       -24.125     7.542       -19.054     
+J7C     N9      N       NT      0       -24.184     8.889       -18.761     
+J7C     "C1'"   C       CH1     0       -23.267     9.679       -17.934     
+J7C     "C2'"   C       CH1     0       -23.705     9.770       -16.476     
+J7C     "O2'"   O       OH1     0       -24.539     10.889      -16.264     
+J7C     "C3'"   C       CH1     0       -22.362     9.875       -15.746     
+J7C     "O3'"   O       OH1     0       -21.869     11.208      -15.672     
+J7C     "C4'"   C       CH1     0       -21.456     8.996       -16.608     
+J7C     "O4'"   O       O2      0       -21.997     9.065       -17.948     
+J7C     "C5'"   C       CH2     0       -21.379     7.547       -16.168     
+J7C     "C6'"   C       CH2     0       -20.339     6.726       -16.901     
+J7C     "N7'"   N       NH1     0       -20.293     5.338       -16.463     
+J7C     "C8'"   C       C       0       -19.465     4.400       -16.932     
+J7C     "N9'"   N       NH2     1       -18.581     4.679       -17.881     
+J7C     N9+     N       NH2     0       -19.524     3.169       -16.445     
+J7C     H2      H       H       0       -27.246     11.618      -20.139     
+J7C     HN6     H       H       0       -27.260     6.915       -21.791     
+J7C     HN6A    H       H       0       -28.569     7.662       -21.569     
+J7C     H8      H       H       0       -23.452     6.959       -18.747     
+J7C     "H1'"   H       H       0       -23.199     10.589      -18.305     
+J7C     "H2'"   H       H       0       -24.180     8.939       -16.206     
+J7C     "HO2'"  H       H       0       -24.702     10.962      -15.435     
+J7C     "H3'"   H       H       0       -22.442     9.495       -14.833     
+J7C     "HO3'"  H       H       0       -21.741     11.521      -16.451     
+J7C     "H4'"   H       H       0       -20.543     9.375       -16.609     
+J7C     "H5'"   H       H       0       -22.257     7.135       -16.300     
+J7C     "H5'A"  H       H       0       -21.181     7.522       -15.210     
+J7C     "H6'"   H       H       0       -19.457     7.133       -16.763     
+J7C     "H6'A"  H       H       0       -20.534     6.751       -17.863     
+J7C     "HN7'"  H       H       0       -20.856     5.097       -15.840     
+J7C     "HN9'"  H       H       0       -18.042     4.050       -18.177     
+J7C     H1      H       H       0       -18.526     5.484       -18.222     
+J7C     HN9+    H       H       0       -18.980     2.547       -16.751     
+J7C     HN9A    H       H       0       -20.106     2.967       -15.815     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+J7C          N1          C6      DOUBLE       y     1.354  0.0100     1.354  0.0100
+J7C          N1          C2      SINGLE       y     1.339  0.0100     1.339  0.0100
+J7C          C2          N3      DOUBLE       y     1.330  0.0100     1.330  0.0100
+J7C          N3          C4      SINGLE       y     1.343  0.0100     1.343  0.0100
+J7C          C4          C5      DOUBLE       y     1.381  0.0100     1.381  0.0100
+J7C          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+J7C          C5          C6      SINGLE       y     1.408  0.0100     1.408  0.0100
+J7C          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+J7C          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+J7C          N7          C8      DOUBLE       y     1.310  0.0100     1.310  0.0100
+J7C          C8          N9      SINGLE       y     1.372  0.0200     1.372  0.0200
+J7C          N9       "C1'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+J7C       "C1'"       "O4'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+J7C       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+J7C       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+J7C       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+J7C       "C3'"       "C4'"      SINGLE       n     1.528  0.0117     1.528  0.0117
+J7C       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+J7C       "C4'"       "O4'"      SINGLE       n     1.447  0.0100     1.447  0.0100
+J7C       "C4'"       "C5'"      SINGLE       n     1.515  0.0200     1.515  0.0200
+J7C       "C5'"       "C6'"      SINGLE       n     1.513  0.0171     1.513  0.0171
+J7C       "C6'"       "N7'"      SINGLE       n     1.454  0.0103     1.454  0.0103
+J7C       "N7'"       "C8'"      SINGLE       n     1.328  0.0112     1.328  0.0112
+J7C       "C8'"       "N9'"      DOUBLE       n     1.322  0.0100     1.322  0.0100
+J7C       "C8'"         N9+      SINGLE       n     1.321  0.0100     1.321  0.0100
+J7C          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+J7C          N6         HN6      SINGLE       n     1.016  0.0100     0.877  0.0200
+J7C          N6        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+J7C          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+J7C       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+J7C       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+J7C       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+J7C       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+J7C       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+J7C       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.989  0.0197
+J7C       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.979  0.0139
+J7C       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.979  0.0139
+J7C       "C6'"       "H6'"      SINGLE       n     1.089  0.0100     0.981  0.0152
+J7C       "C6'"      "H6'A"      SINGLE       n     1.089  0.0100     0.981  0.0152
+J7C       "N7'"      "HN7'"      SINGLE       n     1.016  0.0100     0.872  0.0200
+J7C       "N9'"      "HN9'"      SINGLE       n     1.016  0.0100     0.879  0.0200
+J7C       "N9'"          H1      SINGLE       n     1.016  0.0100     0.879  0.0200
+J7C         N9+        HN9+      SINGLE       n     1.016  0.0100     0.881  0.0200
+J7C         N9+        HN9A      SINGLE       n     1.016  0.0100     0.881  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+J7C          C6          N1          C2     118.521    1.50
+J7C          N1          C2          N3     129.332    1.50
+J7C          N1          C2          H2     115.313    1.50
+J7C          N3          C2          H2     115.355    1.50
+J7C          C2          N3          C4     110.982    1.50
+J7C          N3          C4          C5     126.489    1.50
+J7C          N3          C4          N9     125.845    1.50
+J7C          C5          C4          N9     107.666    1.69
+J7C          C4          C5          C6     117.267    1.50
+J7C          C4          C5          N7     110.588    1.50
+J7C          C6          C5          N7     132.145    1.50
+J7C          N1          C6          C5     117.409    1.50
+J7C          N1          C6          N6     118.799    1.50
+J7C          C5          C6          N6     123.792    1.50
+J7C          C6          N6         HN6     119.723    1.50
+J7C          C6          N6        HN6A     119.723    1.50
+J7C         HN6          N6        HN6A     120.554    1.88
+J7C          C5          N7          C8     103.927    1.50
+J7C          N7          C8          N9     112.130    1.94
+J7C          N7          C8          H8     123.170    1.50
+J7C          N9          C8          H8     124.701    2.19
+J7C          C4          N9          C8     107.594    1.50
+J7C          C4          N9       "C1'"     125.158    1.54
+J7C          C8          N9       "C1'"     126.078    2.46
+J7C          N9       "C1'"       "O4'"     108.167    1.51
+J7C          N9       "C1'"       "C2'"     113.752    2.20
+J7C          N9       "C1'"       "H1'"     109.246    1.50
+J7C       "O4'"       "C1'"       "C2'"     106.047    1.50
+J7C       "O4'"       "C1'"       "H1'"     109.807    1.50
+J7C       "C2'"       "C1'"       "H1'"     109.015    1.50
+J7C       "C1'"       "C2'"       "C3'"     101.239    1.50
+J7C       "C1'"       "C2'"       "O2'"     111.715    2.69
+J7C       "C1'"       "C2'"       "H2'"     110.636    1.70
+J7C       "C3'"       "C2'"       "O2'"     112.782    2.45
+J7C       "C3'"       "C2'"       "H2'"     110.596    1.51
+J7C       "O2'"       "C2'"       "H2'"     110.448    1.97
+J7C       "C2'"       "O2'"      "HO2'"     109.103    2.13
+J7C       "C2'"       "C3'"       "C4'"     102.352    1.50
+J7C       "C2'"       "C3'"       "O3'"     111.581    2.83
+J7C       "C2'"       "C3'"       "H3'"     110.504    1.75
+J7C       "C4'"       "C3'"       "O3'"     110.985    2.41
+J7C       "C4'"       "C3'"       "H3'"     110.624    1.81
+J7C       "O3'"       "C3'"       "H3'"     110.380    1.67
+J7C       "C3'"       "O3'"      "HO3'"     108.744    3.00
+J7C       "C3'"       "C4'"       "O4'"     105.508    1.50
+J7C       "C3'"       "C4'"       "C5'"     114.308    1.50
+J7C       "C3'"       "C4'"       "H4'"     109.143    1.50
+J7C       "O4'"       "C4'"       "C5'"     109.832    2.52
+J7C       "O4'"       "C4'"       "H4'"     109.115    1.50
+J7C       "C5'"       "C4'"       "H4'"     108.791    1.87
+J7C       "C1'"       "O4'"       "C4'"     109.426    1.50
+J7C       "C4'"       "C5'"       "C6'"     115.084    2.94
+J7C       "C4'"       "C5'"       "H5'"     108.430    1.50
+J7C       "C4'"       "C5'"      "H5'A"     108.430    1.50
+J7C       "C6'"       "C5'"       "H5'"     108.758    1.50
+J7C       "C6'"       "C5'"      "H5'A"     108.758    1.50
+J7C       "H5'"       "C5'"      "H5'A"     107.535    1.50
+J7C       "C5'"       "C6'"       "N7'"     112.569    1.73
+J7C       "C5'"       "C6'"       "H6'"     109.017    1.50
+J7C       "C5'"       "C6'"      "H6'A"     109.017    1.50
+J7C       "N7'"       "C6'"       "H6'"     109.102    1.50
+J7C       "N7'"       "C6'"      "H6'A"     109.102    1.50
+J7C       "H6'"       "C6'"      "H6'A"     107.965    1.50
+J7C       "C6'"       "N7'"       "C8'"     124.469    1.50
+J7C       "C6'"       "N7'"      "HN7'"     118.185    1.83
+J7C       "C8'"       "N7'"      "HN7'"     117.345    1.50
+J7C       "N7'"       "C8'"       "N9'"     120.052    1.50
+J7C       "N7'"       "C8'"         N9+     120.052    1.50
+J7C       "N9'"       "C8'"         N9+     119.896    1.50
+J7C       "C8'"       "N9'"      "HN9'"     119.855    2.01
+J7C       "C8'"       "N9'"          H1     119.855    2.01
+J7C      "HN9'"       "N9'"          H1     120.290    2.09
+J7C       "C8'"         N9+        HN9+     119.855    2.01
+J7C       "C8'"         N9+        HN9A     119.855    2.01
+J7C        HN9+         N9+        HN9A     120.290    2.09
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+J7C              const_23          N3          C2          N1          C6       0.000    10.0     2
+J7C       const_sp2_sp2_2          N6          C6          N1          C2     180.000     5.0     2
+J7C            sp3_sp3_29          N9       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+J7C             sp3_sp3_2          N9       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+J7C            sp3_sp3_34       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+J7C            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+J7C            sp3_sp3_37       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+J7C            sp3_sp3_11       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+J7C             sp3_sp3_5       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+J7C            sp3_sp3_40       "C3'"       "C4'"       "C5'"       "C6'"     180.000    10.0     3
+J7C            sp3_sp3_49       "C4'"       "C5'"       "C6'"       "N7'"     180.000    10.0     3
+J7C             sp2_sp3_8       "C8'"       "N7'"       "C6'"       "C5'"     120.000    10.0     6
+J7C             sp2_sp2_5       "N9'"       "C8'"       "N7'"       "C6'"     180.000     5.0     2
+J7C              const_13          N1          C2          N3          C4       0.000    10.0     2
+J7C             sp2_sp2_9       "N7'"       "C8'"       "N9'"      "HN9'"     180.000     5.0     2
+J7C            sp2_sp2_13       "N7'"       "C8'"         N9+        HN9+     180.000     5.0     2
+J7C              const_11          C5          C4          N3          C2       0.000    10.0     2
+J7C       const_sp2_sp2_7          N3          C4          C5          C6       0.000     5.0     2
+J7C              const_27          N3          C4          N9          C8     180.000    10.0     2
+J7C       const_sp2_sp2_4          C4          C5          C6          N6     180.000     5.0     2
+J7C              const_15          C4          C5          N7          C8       0.000    10.0     2
+J7C             sp2_sp2_3          N1          C6          N6         HN6       0.000     5.0     2
+J7C              const_17          N9          C8          N7          C5       0.000    10.0     2
+J7C              const_19          N7          C8          N9          C4       0.000    10.0     2
+J7C             sp2_sp3_1          C4          N9       "C1'"       "O4'"     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+J7C    chir_1    "C1'"    "O4'"    N9    "C2'"    negative
+J7C    chir_2    "C2'"    "O2'"    "C1'"    "C3'"    negative
+J7C    chir_3    "C3'"    "O3'"    "C4'"    "C2'"    positive
+J7C    chir_4    "C4'"    "O4'"    "C3'"    "C5'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+J7C    plan-1       "C1'"   0.020
+J7C    plan-1          C2   0.020
+J7C    plan-1          C4   0.020
+J7C    plan-1          C5   0.020
+J7C    plan-1          C6   0.020
+J7C    plan-1          C8   0.020
+J7C    plan-1          H2   0.020
+J7C    plan-1          H8   0.020
+J7C    plan-1          N1   0.020
+J7C    plan-1          N3   0.020
+J7C    plan-1          N6   0.020
+J7C    plan-1          N7   0.020
+J7C    plan-1          N9   0.020
+J7C    plan-2          C6   0.020
+J7C    plan-2         HN6   0.020
+J7C    plan-2        HN6A   0.020
+J7C    plan-2          N6   0.020
+J7C    plan-3       "C6'"   0.020
+J7C    plan-3       "C8'"   0.020
+J7C    plan-3      "HN7'"   0.020
+J7C    plan-3       "N7'"   0.020
+J7C    plan-4       "C8'"   0.020
+J7C    plan-4       "N7'"   0.020
+J7C    plan-4       "N9'"   0.020
+J7C    plan-4         N9+   0.020
+J7C    plan-5       "C8'"   0.020
+J7C    plan-5          H1   0.020
+J7C    plan-5      "HN9'"   0.020
+J7C    plan-5       "N9'"   0.020
+J7C    plan-6       "C8'"   0.020
+J7C    plan-6        HN9+   0.020
+J7C    plan-6        HN9A   0.020
+J7C    plan-6         N9+   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+J7C           SMILES              ACDLabs 12.01                                                                                                                   n1c(c2c(nc1)n(cn2)C3C(C(O)C(CCN/C(N)=N)O3)O)N
+J7C            InChI                InChI  1.03 InChI=1S/C12H18N8O3/c13-9-6-10(18-3-17-9)20(4-19-6)11-8(22)7(21)5(23-11)1-2-16-12(14)15/h3-5,7-8,11,21-22H,1-2H2,(H2,13,17,18)(H4,14,15,16)/t5-,7-,8-,11-/m1/s1
+J7C         InChIKey                InChI  1.03                                                                                                                                     OIGRVZYOOMUALG-IOSLPCCCSA-N
+J7C SMILES_CANONICAL               CACTVS 3.385                                                                                                         NC(=N)NCC[C@H]1O[C@H]([C@H](O)[C@@H]1O)n2cnc3c(N)ncnc23
+J7C           SMILES               CACTVS 3.385                                                                                                              NC(=N)NCC[CH]1O[CH]([CH](O)[CH]1O)n2cnc3c(N)ncnc23
+J7C SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                "[H]/N=C(\N)/NCC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)O"
+J7C           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                    c1nc(c2c(n1)n(cn2)C3C(C(C(O3)CCNC(=N)N)O)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+J7C acedrg               243         "dictionary generator"                  
+J7C acedrg_database      11          "data source"                           
+J7C rdkit                2017.03.2   "Chemoinformatics tool"
+J7C refmac5              5.8.0238    "optimization tool"                     

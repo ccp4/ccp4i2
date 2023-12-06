@@ -1,0 +1,228 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+A4N     A4N      "[3-chloranyl-4-(2-methylphenyl)phenyl]methanamine"     NON-POLYMER     30     16     .     
+#
+data_comp_A4N
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+A4N     CL      CL      CL      0       13.578      121.400     370.011     
+A4N     C13     C       CR6     0       13.746      119.829     370.737     
+A4N     C12     C       CR16    0       12.736      119.389     371.587     
+A4N     C10     C       CR6     0       12.829      118.140     372.188     
+A4N     C11     C       CH2     0       11.741      117.653     373.113     
+A4N     N       N       NT2     0       10.622      117.042     372.386     
+A4N     C9      C       CR16    0       13.941      117.350     371.924     
+A4N     C8      C       CR16    0       14.945      117.793     371.076     
+A4N     C7      C       CR6     0       14.867      119.043     370.461     
+A4N     C6      C       CR6     0       15.966      119.503     369.551     
+A4N     C1      C       CR6     0       16.106      118.976     368.250     
+A4N     C       C       CH3     0       15.169      117.933     367.697     
+A4N     C5      C       CR16    0       16.879      120.470     369.989     
+A4N     C4      C       CR16    0       17.907      120.917     369.174     
+A4N     C3      C       CR16    0       18.046      120.405     367.902     
+A4N     C2      C       CR16    0       17.160      119.449     367.443     
+A4N     H1      H       H       0       11.989      119.936     371.756     
+A4N     H2      H       H       0       11.376      118.397     373.646     
+A4N     H3      H       H       0       12.090      116.977     373.738     
+A4N     H4      H       H       0       10.018      116.739     373.075     
+A4N     H5      H       H       0       10.997      116.256     371.970     
+A4N     H7      H       H       0       14.014      116.501     372.327     
+A4N     H8      H       H       0       15.681      117.248     370.912     
+A4N     H9      H       H       0       15.182      117.149     368.270     
+A4N     H10     H       H       0       15.447      117.679     366.802     
+A4N     H11     H       H       0       14.268      118.291     367.664     
+A4N     H12     H       H       0       16.790      120.824     370.858     
+A4N     H13     H       H       0       18.510      121.570     369.490     
+A4N     H14     H       H       0       18.745      120.707     367.344     
+A4N     H15     H       H       0       17.264      119.105     366.571     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+A4N          C3          C2      SINGLE       y     1.379  0.0108     1.379  0.0108
+A4N          C1          C2      DOUBLE       y     1.399  0.0132     1.399  0.0132
+A4N          C1           C      SINGLE       n     1.498  0.0200     1.498  0.0200
+A4N          C4          C3      DOUBLE       y     1.376  0.0124     1.376  0.0124
+A4N          C6          C1      SINGLE       y     1.404  0.0100     1.404  0.0100
+A4N          C5          C4      SINGLE       y     1.383  0.0100     1.383  0.0100
+A4N          C6          C5      DOUBLE       y     1.396  0.0100     1.396  0.0100
+A4N          C7          C6      SINGLE       n     1.497  0.0100     1.497  0.0100
+A4N          CL         C13      SINGLE       n     1.738  0.0114     1.738  0.0114
+A4N         C13          C7      DOUBLE       y     1.391  0.0100     1.391  0.0100
+A4N          C8          C7      SINGLE       y     1.392  0.0100     1.392  0.0100
+A4N         C13         C12      SINGLE       y     1.387  0.0117     1.387  0.0117
+A4N          C9          C8      DOUBLE       y     1.384  0.0100     1.384  0.0100
+A4N         C12         C10      DOUBLE       y     1.386  0.0100     1.386  0.0100
+A4N         C10          C9      SINGLE       y     1.386  0.0100     1.386  0.0100
+A4N         C10         C11      SINGLE       n     1.509  0.0100     1.509  0.0100
+A4N         C11           N      SINGLE       n     1.467  0.0144     1.467  0.0144
+A4N         C12          H1      SINGLE       n     1.082  0.0130     0.941  0.0158
+A4N         C11          H2      SINGLE       n     1.089  0.0100     0.985  0.0198
+A4N         C11          H3      SINGLE       n     1.089  0.0100     0.985  0.0198
+A4N           N          H4      SINGLE       n     1.036  0.0160     0.965  0.0200
+A4N           N          H5      SINGLE       n     1.036  0.0160     0.965  0.0200
+A4N          C9          H7      SINGLE       n     1.082  0.0130     0.943  0.0173
+A4N          C8          H8      SINGLE       n     1.082  0.0130     0.930  0.0100
+A4N           C          H9      SINGLE       n     1.089  0.0100     0.971  0.0135
+A4N           C         H10      SINGLE       n     1.089  0.0100     0.971  0.0135
+A4N           C         H11      SINGLE       n     1.089  0.0100     0.971  0.0135
+A4N          C5         H12      SINGLE       n     1.082  0.0130     0.943  0.0170
+A4N          C4         H13      SINGLE       n     1.082  0.0130     0.943  0.0180
+A4N          C3         H14      SINGLE       n     1.082  0.0130     0.944  0.0175
+A4N          C2         H15      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+A4N          CL         C13          C7     119.894    1.50
+A4N          CL         C13         C12     118.395    1.50
+A4N          C7         C13         C12     121.711    1.50
+A4N         C13         C12         C10     119.914    1.50
+A4N         C13         C12          H1     120.172    1.50
+A4N         C10         C12          H1     119.914    1.50
+A4N         C12         C10          C9     119.079    1.50
+A4N         C12         C10         C11     120.391    1.50
+A4N          C9         C10         C11     120.531    2.59
+A4N         C10         C11           N     112.424    2.20
+A4N         C10         C11          H2     110.855    3.00
+A4N         C10         C11          H3     110.855    3.00
+A4N           N         C11          H2     107.542    2.93
+A4N           N         C11          H3     107.542    2.93
+A4N          H2         C11          H3     107.838    1.50
+A4N         C11           N          H4     104.789    3.00
+A4N         C11           N          H5     104.789    3.00
+A4N          H4           N          H5     107.163    3.00
+A4N          C8          C9         C10     121.097    1.50
+A4N          C8          C9          H7     119.423    1.50
+A4N         C10          C9          H7     119.480    1.50
+A4N          C7          C8          C9     120.798    1.50
+A4N          C7          C8          H8     119.514    1.50
+A4N          C9          C8          H8     119.688    1.50
+A4N          C6          C7         C13     122.138    1.50
+A4N          C6          C7          C8     120.461    1.52
+A4N         C13          C7          C8     117.402    1.50
+A4N          C1          C6          C5     118.492    1.50
+A4N          C1          C6          C7     120.669    1.56
+A4N          C5          C6          C7     120.839    1.52
+A4N          C2          C1           C     119.440    1.50
+A4N          C2          C1          C6     118.278    1.50
+A4N           C          C1          C6     122.283    1.50
+A4N          C1           C          H9     109.524    1.50
+A4N          C1           C         H10     109.524    1.50
+A4N          C1           C         H11     109.524    1.50
+A4N          H9           C         H10     109.348    1.50
+A4N          H9           C         H11     109.348    1.50
+A4N         H10           C         H11     109.348    1.50
+A4N          C4          C5          C6     121.521    1.50
+A4N          C4          C5         H12     119.426    1.50
+A4N          C6          C5         H12     119.053    1.50
+A4N          C3          C4          C5     120.285    1.50
+A4N          C3          C4         H13     119.909    1.50
+A4N          C5          C4         H13     119.806    1.50
+A4N          C2          C3          C4     120.231    1.50
+A4N          C2          C3         H14     119.839    1.50
+A4N          C4          C3         H14     119.930    1.50
+A4N          C3          C2          C1     121.193    1.50
+A4N          C3          C2         H15     119.503    1.50
+A4N          C1          C2         H15     119.304    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+A4N             sp2_sp3_1          C2          C1           C          H9     150.000    10.0     6
+A4N              const_27           C          C1          C2          C3     180.000    10.0     2
+A4N              const_37          C3          C4          C5          C6       0.000    10.0     2
+A4N              const_33          C2          C3          C4          C5       0.000    10.0     2
+A4N              const_29          C1          C2          C3          C4       0.000    10.0     2
+A4N              const_46         C10         C12         C13          CL     180.000    10.0     2
+A4N       const_sp2_sp2_4          CL         C13          C7          C6       0.000     5.0     2
+A4N              const_19         C11         C10         C12         C13     180.000    10.0     2
+A4N             sp2_sp3_8         C12         C10         C11           N     -90.000    10.0     6
+A4N              const_15         C11         C10          C9          C8     180.000    10.0     2
+A4N             sp3_sp3_1         C10         C11           N          H4     180.000    10.0     3
+A4N       const_sp2_sp2_9          C7          C8          C9         C10       0.000     5.0     2
+A4N       const_sp2_sp2_7          C6          C7          C8          C9     180.000     5.0     2
+A4N             sp2_sp2_1          C1          C6          C7         C13     180.000     5.0     2
+A4N              const_23           C          C1          C6          C5     180.000    10.0     2
+A4N              const_41          C4          C5          C6          C1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+A4N    plan-1           C   0.020
+A4N    plan-1          C1   0.020
+A4N    plan-1          C2   0.020
+A4N    plan-1          C3   0.020
+A4N    plan-1          C4   0.020
+A4N    plan-1          C5   0.020
+A4N    plan-1          C6   0.020
+A4N    plan-1          C7   0.020
+A4N    plan-1         H12   0.020
+A4N    plan-1         H13   0.020
+A4N    plan-1         H14   0.020
+A4N    plan-1         H15   0.020
+A4N    plan-2         C10   0.020
+A4N    plan-2         C11   0.020
+A4N    plan-2         C12   0.020
+A4N    plan-2         C13   0.020
+A4N    plan-2          C6   0.020
+A4N    plan-2          C7   0.020
+A4N    plan-2          C8   0.020
+A4N    plan-2          C9   0.020
+A4N    plan-2          CL   0.020
+A4N    plan-2          H1   0.020
+A4N    plan-2          H7   0.020
+A4N    plan-2          H8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+A4N            InChI                InChI  1.03 InChI=1S/C14H14ClN/c1-10-4-2-3-5-12(10)13-7-6-11(9-16)8-14(13)15/h2-8H,9,16H2,1H3
+A4N         InChIKey                InChI  1.03                                                       KEDHDUMTTSHKCU-UHFFFAOYSA-N
+A4N SMILES_CANONICAL               CACTVS 3.385                                                           Cc1ccccc1c2ccc(CN)cc2Cl
+A4N           SMILES               CACTVS 3.385                                                           Cc1ccccc1c2ccc(CN)cc2Cl
+A4N SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                           Cc1ccccc1c2ccc(cc2Cl)CN
+A4N           SMILES "OpenEye OEToolkits" 2.0.6                                                           Cc1ccccc1c2ccc(cc2Cl)CN
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+A4N acedrg               243         "dictionary generator"                  
+A4N acedrg_database      11          "data source"                           
+A4N rdkit                2017.03.2   "Chemoinformatics tool"
+A4N refmac5              5.8.0238    "optimization tool"                     

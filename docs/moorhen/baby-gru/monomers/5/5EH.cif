@@ -1,0 +1,303 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+5EH     5EH      (3E)-3-(dibenzo[b,e]oxepin-11(6H)-ylidene)-N,N-dimethylpropan-1-amine     NON-POLYMER     42     21     .     
+#
+data_comp_5EH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+5EH     C01     C       CH3     0       16.117      31.424      19.814      
+5EH     N02     N       NT      0       15.385      32.698      19.771      
+5EH     C03     C       CH3     0       14.168      32.564      18.949      
+5EH     C04     C       CH2     0       16.251      33.798      19.317      
+5EH     C05     C       CH2     0       15.781      35.168      19.777      
+5EH     C06     C       C1      0       15.793      35.310      21.286      
+5EH     C07     C       C       0       16.608      36.042      22.062      
+5EH     C08     C       CR6     0       17.683      36.907      21.495      
+5EH     C09     C       CR16    0       18.770      36.359      20.807      
+5EH     C10     C       CR16    0       19.753      37.174      20.271      
+5EH     C11     C       CR16    0       19.659      38.545      20.410      
+5EH     C12     C       CR16    0       18.584      39.101      21.082      
+5EH     C13     C       CR6     0       17.576      38.295      21.613      
+5EH     C14     C       CH2     0       16.424      38.896      22.361      
+5EH     O15     O       O2      0       16.604      38.567      23.748      
+5EH     C16     C       CR6     0       16.409      37.314      24.292      
+5EH     C17     C       CR16    0       16.241      37.246      25.675      
+5EH     C18     C       CR16    0       16.066      36.040      26.317      
+5EH     C19     C       CR16    0       16.067      34.865      25.606      
+5EH     C20     C       CR16    0       16.249      34.899      24.246      
+5EH     C21     C       CR6     0       16.433      36.105      23.552      
+5EH     H01     H       H       0       16.508      31.242      18.937      
+5EH     H01A    H       H       0       15.504      30.701      20.052      
+5EH     H01B    H       H       0       16.828      31.477      20.481      
+5EH     H03     H       H       0       14.278      31.833      18.309      
+5EH     H03A    H       H       0       13.994      33.392      18.461      
+5EH     H03B    H       H       0       13.407      32.370      19.530      
+5EH     H04     H       H       0       16.297      33.791      18.335      
+5EH     H04A    H       H       0       17.162      33.654      19.656      
+5EH     H05     H       H       0       14.864      35.314      19.449      
+5EH     H05A    H       H       0       16.358      35.851      19.370      
+5EH     H06     H       H       0       15.121      34.820      21.733      
+5EH     H09     H       H       0       18.834      35.425      20.710      
+5EH     H10     H       H       0       20.484      36.793      19.814      
+5EH     H11     H       H       0       20.328      39.104      20.048      
+5EH     H12     H       H       0       18.524      40.037      21.175      
+5EH     H14     H       H       0       15.571      38.543      22.035      
+5EH     H14A    H       H       0       16.418      39.867      22.251      
+5EH     H17     H       H       0       16.239      38.041      26.179      
+5EH     H18     H       H       0       15.945      36.024      27.252      
+5EH     H19     H       H       0       15.947      34.041      26.048      
+5EH     H20     H       H       0       16.245      34.090      23.765      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+5EH         C01         N02      SINGLE       n     1.466  0.0117     1.466  0.0117
+5EH         N02         C03      SINGLE       n     1.466  0.0117     1.466  0.0117
+5EH         N02         C04      SINGLE       n     1.467  0.0100     1.467  0.0100
+5EH         C04         C05      SINGLE       n     1.518  0.0129     1.518  0.0129
+5EH         C05         C06      SINGLE       n     1.507  0.0192     1.507  0.0192
+5EH         C06         C07      DOUBLE       n     1.337  0.0100     1.337  0.0100
+5EH         C07         C08      SINGLE       n     1.493  0.0100     1.493  0.0100
+5EH         C07         C21      SINGLE       n     1.495  0.0100     1.495  0.0100
+5EH         C08         C09      DOUBLE       y     1.395  0.0114     1.395  0.0114
+5EH         C08         C13      SINGLE       y     1.400  0.0100     1.400  0.0100
+5EH         C09         C10      SINGLE       y     1.381  0.0100     1.381  0.0100
+5EH         C10         C11      DOUBLE       y     1.377  0.0103     1.377  0.0103
+5EH         C11         C12      SINGLE       y     1.379  0.0108     1.379  0.0108
+5EH         C12         C13      DOUBLE       y     1.391  0.0100     1.391  0.0100
+5EH         C13         C14      SINGLE       n     1.502  0.0100     1.502  0.0100
+5EH         C14         O15      SINGLE       n     1.432  0.0146     1.432  0.0146
+5EH         O15         C16      SINGLE       n     1.369  0.0100     1.369  0.0100
+5EH         C16         C17      DOUBLE       y     1.388  0.0100     1.388  0.0100
+5EH         C16         C21      SINGLE       y     1.397  0.0100     1.397  0.0100
+5EH         C17         C18      SINGLE       y     1.375  0.0106     1.375  0.0106
+5EH         C18         C19      DOUBLE       y     1.376  0.0124     1.376  0.0124
+5EH         C19         C20      SINGLE       y     1.373  0.0108     1.373  0.0108
+5EH         C20         C21      DOUBLE       y     1.395  0.0111     1.395  0.0111
+5EH         C01         H01      SINGLE       n     1.089  0.0100     0.977  0.0113
+5EH         C01        H01A      SINGLE       n     1.089  0.0100     0.977  0.0113
+5EH         C01        H01B      SINGLE       n     1.089  0.0100     0.977  0.0113
+5EH         C03         H03      SINGLE       n     1.089  0.0100     0.977  0.0113
+5EH         C03        H03A      SINGLE       n     1.089  0.0100     0.977  0.0113
+5EH         C03        H03B      SINGLE       n     1.089  0.0100     0.977  0.0113
+5EH         C04         H04      SINGLE       n     1.089  0.0100     0.982  0.0143
+5EH         C04        H04A      SINGLE       n     1.089  0.0100     0.982  0.0143
+5EH         C05         H05      SINGLE       n     1.089  0.0100     0.985  0.0177
+5EH         C05        H05A      SINGLE       n     1.089  0.0100     0.985  0.0177
+5EH         C06         H06      SINGLE       n     1.082  0.0130     0.944  0.0100
+5EH         C09         H09      SINGLE       n     1.082  0.0130     0.941  0.0168
+5EH         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0180
+5EH         C11         H11      SINGLE       n     1.082  0.0130     0.944  0.0175
+5EH         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0173
+5EH         C14         H14      SINGLE       n     1.089  0.0100     0.978  0.0133
+5EH         C14        H14A      SINGLE       n     1.089  0.0100     0.978  0.0133
+5EH         C17         H17      SINGLE       n     1.082  0.0130     0.941  0.0179
+5EH         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0183
+5EH         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0180
+5EH         C20         H20      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+5EH         N02         C01         H01     109.516    1.50
+5EH         N02         C01        H01A     109.516    1.50
+5EH         N02         C01        H01B     109.516    1.50
+5EH         H01         C01        H01A     109.408    1.50
+5EH         H01         C01        H01B     109.408    1.50
+5EH        H01A         C01        H01B     109.408    1.50
+5EH         C01         N02         C03     109.730    1.50
+5EH         C01         N02         C04     110.729    1.50
+5EH         C03         N02         C04     110.729    1.50
+5EH         N02         C03         H03     109.516    1.50
+5EH         N02         C03        H03A     109.516    1.50
+5EH         N02         C03        H03B     109.516    1.50
+5EH         H03         C03        H03A     109.408    1.50
+5EH         H03         C03        H03B     109.408    1.50
+5EH        H03A         C03        H03B     109.408    1.50
+5EH         N02         C04         C05     113.130    1.75
+5EH         N02         C04         H04     108.882    1.50
+5EH         N02         C04        H04A     108.882    1.50
+5EH         C05         C04         H04     108.787    1.50
+5EH         C05         C04        H04A     108.787    1.50
+5EH         H04         C04        H04A     107.673    1.50
+5EH         C04         C05         C06     112.694    1.50
+5EH         C04         C05         H05     108.796    1.50
+5EH         C04         C05        H05A     108.796    1.50
+5EH         C06         C05         H05     109.381    1.50
+5EH         C06         C05        H05A     109.381    1.50
+5EH         H05         C05        H05A     108.298    1.50
+5EH         C05         C06         C07     126.685    2.24
+5EH         C05         C06         H06     116.164    1.73
+5EH         C07         C06         H06     117.152    2.22
+5EH         C06         C07         C08     122.304    2.76
+5EH         C06         C07         C21     121.774    2.10
+5EH         C08         C07         C21     115.922    1.99
+5EH         C07         C08         C09     119.621    1.50
+5EH         C07         C08         C13     121.404    1.59
+5EH         C09         C08         C13     118.975    1.50
+5EH         C08         C09         C10     121.252    1.50
+5EH         C08         C09         H09     119.215    1.50
+5EH         C10         C09         H09     119.533    1.50
+5EH         C09         C10         C11     119.967    1.50
+5EH         C09         C10         H10     119.971    1.50
+5EH         C11         C10         H10     120.062    1.50
+5EH         C10         C11         C12     119.967    1.50
+5EH         C10         C11         H11     120.062    1.50
+5EH         C12         C11         H11     119.971    1.50
+5EH         C11         C12         C13     121.105    1.50
+5EH         C11         C12         H12     119.677    1.50
+5EH         C13         C12         H12     119.218    1.50
+5EH         C08         C13         C12     118.735    1.50
+5EH         C08         C13         C14     121.986    1.50
+5EH         C12         C13         C14     119.279    1.55
+5EH         C13         C14         O15     109.567    2.18
+5EH         C13         C14         H14     110.054    1.50
+5EH         C13         C14        H14A     110.054    1.50
+5EH         O15         C14         H14     109.697    1.50
+5EH         O15         C14        H14A     109.697    1.50
+5EH         H14         C14        H14A     108.398    1.50
+5EH         C14         O15         C16     118.066    1.50
+5EH         O15         C16         C17     123.294    1.58
+5EH         O15         C16         C21     117.004    2.15
+5EH         C17         C16         C21     119.702    1.50
+5EH         C16         C17         C18     119.595    1.50
+5EH         C16         C17         H17     120.167    1.50
+5EH         C18         C17         H17     120.238    1.50
+5EH         C17         C18         C19     120.620    1.50
+5EH         C17         C18         H18     119.506    1.50
+5EH         C19         C18         H18     119.875    1.50
+5EH         C18         C19         C20     120.119    1.50
+5EH         C18         C19         H19     119.986    1.50
+5EH         C20         C19         H19     119.895    1.50
+5EH         C19         C20         C21     121.407    1.50
+5EH         C19         C20         H20     119.456    1.50
+5EH         C21         C20         H20     119.138    1.50
+5EH         C07         C21         C16     120.940    1.50
+5EH         C07         C21         C20     120.502    1.50
+5EH         C16         C21         C20     118.558    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+5EH             sp3_sp3_2         H01         C01         N02         C03     -60.000    10.0     3
+5EH              const_13         C10         C11         C12         C13       0.000    10.0     2
+5EH              const_18         C11         C12         C13         C14     180.000    10.0     2
+5EH             sp2_sp3_8         C08         C13         C14         O15     -90.000    10.0     6
+5EH            sp3_sp3_28         C13         C14         O15         C16     180.000    10.0     3
+5EH            sp2_sp2_13         C17         C16         O15         C14     180.000     5.0     2
+5EH              const_23         O15         C16         C17         C18     180.000    10.0     2
+5EH              const_48         O15         C16         C21         C07       0.000    10.0     2
+5EH              const_25         C16         C17         C18         C19       0.000    10.0     2
+5EH              const_29         C17         C18         C19         C20       0.000    10.0     2
+5EH              const_33         C18         C19         C20         C21       0.000    10.0     2
+5EH              const_38         C19         C20         C21         C07     180.000    10.0     2
+5EH             sp3_sp3_7         H03         C03         N02         C01     180.000    10.0     3
+5EH            sp3_sp3_14         C05         C04         N02         C01     -60.000    10.0     3
+5EH            sp3_sp3_19         N02         C04         C05         C06     180.000    10.0     3
+5EH             sp2_sp3_2         C07         C06         C05         C04     120.000    10.0     6
+5EH             sp2_sp2_1         C05         C06         C07         C08     180.000     5.0     2
+5EH             sp2_sp2_9         C06         C07         C21         C16     180.000     5.0     2
+5EH             sp2_sp2_5         C06         C07         C08         C09     180.000     5.0     2
+5EH              const_44         C07         C08         C13         C14       0.000    10.0     2
+5EH       const_sp2_sp2_3         C07         C08         C09         C10     180.000     5.0     2
+5EH       const_sp2_sp2_5         C08         C09         C10         C11       0.000     5.0     2
+5EH       const_sp2_sp2_9         C09         C10         C11         C12       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+5EH    chir_1    N02    C04    C01    C03    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+5EH    plan-1         C07   0.020
+5EH    plan-1         C08   0.020
+5EH    plan-1         C09   0.020
+5EH    plan-1         C10   0.020
+5EH    plan-1         C11   0.020
+5EH    plan-1         C12   0.020
+5EH    plan-1         C13   0.020
+5EH    plan-1         C14   0.020
+5EH    plan-1         H09   0.020
+5EH    plan-1         H10   0.020
+5EH    plan-1         H11   0.020
+5EH    plan-1         H12   0.020
+5EH    plan-2         C07   0.020
+5EH    plan-2         C16   0.020
+5EH    plan-2         C17   0.020
+5EH    plan-2         C18   0.020
+5EH    plan-2         C19   0.020
+5EH    plan-2         C20   0.020
+5EH    plan-2         C21   0.020
+5EH    plan-2         H17   0.020
+5EH    plan-2         H18   0.020
+5EH    plan-2         H19   0.020
+5EH    plan-2         H20   0.020
+5EH    plan-2         O15   0.020
+5EH    plan-3         C05   0.020
+5EH    plan-3         C06   0.020
+5EH    plan-3         C07   0.020
+5EH    plan-3         H06   0.020
+5EH    plan-4         C06   0.020
+5EH    plan-4         C07   0.020
+5EH    plan-4         C08   0.020
+5EH    plan-4         C21   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+5EH           SMILES              ACDLabs 12.01                                                                                 O3c1ccccc1/C(c2c(cccc2)C3)=C/CCN(C)C
+5EH SMILES_CANONICAL               CACTVS 3.370                                                                                     CN(C)CC\C=C1/c2ccccc2COc3ccccc13
+5EH           SMILES               CACTVS 3.370                                                                                       CN(C)CCC=C1c2ccccc2COc3ccccc13
+5EH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                    CN(C)CC/C=C/1\c2ccccc2COc3c1cccc3
+5EH           SMILES "OpenEye OEToolkits" 1.7.2                                                                                       CN(C)CCC=C1c2ccccc2COc3c1cccc3
+5EH            InChI                InChI  1.03 InChI=1S/C19H21NO/c1-20(2)13-7-11-17-16-9-4-3-8-15(16)14-21-19-12-6-5-10-18(17)19/h3-6,8-12H,7,13-14H2,1-2H3/b17-11+
+5EH         InChIKey                InChI  1.03                                                                                          ODQWQRRAPPTVAG-GZTJUZNOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+5EH acedrg               243         "dictionary generator"                  
+5EH acedrg_database      11          "data source"                           
+5EH rdkit                2017.03.2   "Chemoinformatics tool"
+5EH refmac5              5.8.0238    "optimization tool"                     

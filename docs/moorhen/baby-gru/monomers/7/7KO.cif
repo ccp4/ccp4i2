@@ -1,0 +1,283 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+7KO     7KO      6-chloro-N~4~,N~4~-bis[(pyridin-3-yl)methyl]pyrimidine-2,4-diamine     NON-POLYMER     38     23     .     
+#
+data_comp_7KO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+7KO     C5      C       CR16    0       14.302      108.009     134.258     
+7KO     C6      C       CR6     0       13.763      106.829     133.783     
+7KO     N1      N       NRD6    0       12.961      106.004     134.449     
+7KO     C2      C       CR6     0       12.676      106.411     135.711     
+7KO     N3      N       NRD6    0       13.127      107.535     136.296     
+7KO     C4      C       CR6     0       13.946      108.350     135.585     
+7KO     CAK     C       CR16    0       13.958      111.417     133.236     
+7KO     CAL     C       CR16    0       12.977      112.045     132.483     
+7KO     CAQ     C       CR16    0       11.888      112.581     133.139     
+7KO     NAP     N       NRD6    0       11.732      112.524     134.475     
+7KO     CAO     C       CR16    0       12.700      111.909     135.182     
+7KO     CAJ     C       CR6     0       13.832      111.336     134.618     
+7KO     CAI     C       CH2     0       14.883      110.663     135.469     
+7KO     NAH     N       N       0       14.397      109.495     136.218     
+7KO     NAA     N       NH2     0       11.871      105.620     136.434     
+7KO     CL6     CL      CL      0       14.144      106.327     132.155     
+7KO     CAN     C       CH2     0       14.416      109.609     137.684     
+7KO     CAS     C       CR6     0       15.375      108.664     138.368     
+7KO     CAT     C       CR16    0       16.749      108.796     138.216     
+7KO     CAW     C       CR16    0       17.609      107.915     138.856     
+7KO     CAV     C       CR16    0       17.065      106.918     139.640     
+7KO     NAU     N       NRD6    0       15.740      106.759     139.812     
+7KO     CAR     C       CR16    0       14.928      107.627     139.179     
+7KO     H1      H       H       0       14.866      108.546     133.727     
+7KO     H2      H       H       0       14.711      111.043     132.810     
+7KO     H3      H       H       0       13.052      112.103     131.545     
+7KO     H4      H       H       0       11.219      113.008     132.631     
+7KO     H5      H       H       0       12.602      111.863     136.115     
+7KO     H6      H       H       0       15.244      111.327     136.093     
+7KO     H7      H       H       0       15.625      110.382     134.893     
+7KO     H8      H       H       0       11.821      105.724     137.305     
+7KO     H9      H       H       0       11.396      104.997     136.038     
+7KO     H10     H       H       0       13.511      109.446     138.026     
+7KO     H11     H       H       0       14.653      110.525     137.939     
+7KO     H12     H       H       0       17.097      109.485     137.675     
+7KO     H13     H       H       0       18.543      107.996     138.758     
+7KO     H14     H       H       0       17.646      106.318     140.076     
+7KO     H15     H       H       0       14.000      107.525     139.293     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+7KO          C6         CL6      SINGLE       n     1.746  0.0100     1.746  0.0100
+7KO         CAK         CAL      DOUBLE       y     1.375  0.0185     1.375  0.0185
+7KO         CAL         CAQ      SINGLE       y     1.368  0.0200     1.368  0.0200
+7KO         CAK         CAJ      SINGLE       y     1.380  0.0155     1.380  0.0155
+7KO         CAQ         NAP      DOUBLE       y     1.338  0.0156     1.338  0.0156
+7KO          C5          C6      DOUBLE       y     1.375  0.0136     1.375  0.0136
+7KO          C6          N1      SINGLE       y     1.327  0.0100     1.327  0.0100
+7KO          C5          C4      SINGLE       y     1.408  0.0100     1.408  0.0100
+7KO          N1          C2      DOUBLE       y     1.353  0.0100     1.353  0.0100
+7KO         CAJ         CAI      SINGLE       n     1.510  0.0100     1.510  0.0100
+7KO         CAO         CAJ      DOUBLE       y     1.378  0.0171     1.378  0.0171
+7KO         NAP         CAO      SINGLE       y     1.342  0.0117     1.342  0.0117
+7KO         CAI         NAH      SINGLE       n     1.462  0.0100     1.462  0.0100
+7KO          C4         NAH      SINGLE       n     1.361  0.0147     1.361  0.0147
+7KO          N3          C4      DOUBLE       y     1.349  0.0100     1.349  0.0100
+7KO          C2          N3      SINGLE       y     1.340  0.0100     1.340  0.0100
+7KO          C2         NAA      SINGLE       n     1.338  0.0107     1.338  0.0107
+7KO         NAH         CAN      SINGLE       n     1.462  0.0100     1.462  0.0100
+7KO         CAN         CAS      SINGLE       n     1.510  0.0100     1.510  0.0100
+7KO         CAS         CAT      DOUBLE       y     1.380  0.0155     1.380  0.0155
+7KO         CAT         CAW      SINGLE       y     1.375  0.0185     1.375  0.0185
+7KO         CAS         CAR      SINGLE       y     1.378  0.0171     1.378  0.0171
+7KO         CAW         CAV      DOUBLE       y     1.368  0.0200     1.368  0.0200
+7KO         NAU         CAR      DOUBLE       y     1.342  0.0117     1.342  0.0117
+7KO         CAV         NAU      SINGLE       y     1.338  0.0156     1.338  0.0156
+7KO          C5          H1      SINGLE       n     1.082  0.0130     0.943  0.0101
+7KO         CAK          H2      SINGLE       n     1.082  0.0130     0.943  0.0173
+7KO         CAL          H3      SINGLE       n     1.082  0.0130     0.942  0.0124
+7KO         CAQ          H4      SINGLE       n     1.082  0.0130     0.942  0.0166
+7KO         CAO          H5      SINGLE       n     1.082  0.0130     0.940  0.0200
+7KO         CAI          H6      SINGLE       n     1.089  0.0100     0.981  0.0161
+7KO         CAI          H7      SINGLE       n     1.089  0.0100     0.981  0.0161
+7KO         NAA          H8      SINGLE       n     1.016  0.0100     0.877  0.0200
+7KO         NAA          H9      SINGLE       n     1.016  0.0100     0.877  0.0200
+7KO         CAN         H10      SINGLE       n     1.089  0.0100     0.981  0.0161
+7KO         CAN         H11      SINGLE       n     1.089  0.0100     0.981  0.0161
+7KO         CAT         H12      SINGLE       n     1.082  0.0130     0.943  0.0173
+7KO         CAW         H13      SINGLE       n     1.082  0.0130     0.942  0.0124
+7KO         CAV         H14      SINGLE       n     1.082  0.0130     0.942  0.0166
+7KO         CAR         H15      SINGLE       n     1.082  0.0130     0.940  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+7KO          C6          C5          C4     115.229    1.50
+7KO          C6          C5          H1     122.388    1.50
+7KO          C4          C5          H1     122.383    1.50
+7KO         CL6          C6          C5     118.672    1.50
+7KO         CL6          C6          N1     114.762    1.50
+7KO          C5          C6          N1     126.566    1.50
+7KO          C6          N1          C2     114.175    1.50
+7KO          N1          C2          N3     126.042    1.50
+7KO          N1          C2         NAA     116.656    1.50
+7KO          N3          C2         NAA     117.301    1.50
+7KO          C4          N3          C2     117.315    1.50
+7KO          C5          C4         NAH     122.233    1.50
+7KO          C5          C4          N3     120.673    1.50
+7KO         NAH          C4          N3     117.094    1.50
+7KO         CAL         CAK         CAJ     119.978    1.83
+7KO         CAL         CAK          H2     120.105    1.50
+7KO         CAJ         CAK          H2     119.917    1.50
+7KO         CAK         CAL         CAQ     118.535    1.50
+7KO         CAK         CAL          H3     120.734    1.50
+7KO         CAQ         CAL          H3     120.722    1.50
+7KO         CAL         CAQ         NAP     123.287    1.50
+7KO         CAL         CAQ          H4     118.584    1.50
+7KO         NAP         CAQ          H4     118.129    1.50
+7KO         CAQ         NAP         CAO     117.026    1.50
+7KO         CAJ         CAO         NAP     124.145    1.50
+7KO         CAJ         CAO          H5     117.934    1.50
+7KO         NAP         CAO          H5     117.921    1.50
+7KO         CAK         CAJ         CAI     121.370    1.50
+7KO         CAK         CAJ         CAO     117.038    1.50
+7KO         CAI         CAJ         CAO     121.593    1.50
+7KO         CAJ         CAI         NAH     114.250    1.50
+7KO         CAJ         CAI          H6     109.005    1.50
+7KO         CAJ         CAI          H7     109.005    1.50
+7KO         NAH         CAI          H6     108.922    1.50
+7KO         NAH         CAI          H7     108.922    1.50
+7KO          H6         CAI          H7     107.736    1.50
+7KO         CAI         NAH          C4     121.809    1.50
+7KO         CAI         NAH         CAN     116.382    2.12
+7KO          C4         NAH         CAN     121.809    1.50
+7KO          C2         NAA          H8     119.826    1.50
+7KO          C2         NAA          H9     119.826    1.50
+7KO          H8         NAA          H9     120.348    1.96
+7KO         NAH         CAN         CAS     114.250    1.50
+7KO         NAH         CAN         H10     108.922    1.50
+7KO         NAH         CAN         H11     108.922    1.50
+7KO         CAS         CAN         H10     109.005    1.50
+7KO         CAS         CAN         H11     109.005    1.50
+7KO         H10         CAN         H11     107.736    1.50
+7KO         CAN         CAS         CAT     121.370    1.50
+7KO         CAN         CAS         CAR     121.593    1.50
+7KO         CAT         CAS         CAR     117.038    1.50
+7KO         CAS         CAT         CAW     119.978    1.83
+7KO         CAS         CAT         H12     119.917    1.50
+7KO         CAW         CAT         H12     120.105    1.50
+7KO         CAT         CAW         CAV     118.535    1.50
+7KO         CAT         CAW         H13     120.734    1.50
+7KO         CAV         CAW         H13     120.722    1.50
+7KO         CAW         CAV         NAU     123.287    1.50
+7KO         CAW         CAV         H14     118.584    1.50
+7KO         NAU         CAV         H14     118.129    1.50
+7KO         CAR         NAU         CAV     117.026    1.50
+7KO         CAS         CAR         NAU     124.145    1.50
+7KO         CAS         CAR         H15     117.934    1.50
+7KO         NAU         CAR         H15     117.921    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+7KO       const_sp2_sp2_2          C4          C5          C6         CL6     180.000     5.0     2
+7KO              const_51         NAH          C4          C5          C6     180.000    10.0     2
+7KO              const_27         CAI         CAJ         CAO         NAP     180.000    10.0     2
+7KO             sp2_sp3_2         CAK         CAJ         CAI         NAH     -90.000    10.0     6
+7KO            sp2_sp3_11         CAN         NAH         CAI         CAJ     -60.000    10.0     6
+7KO            sp2_sp3_14         CAI         NAH         CAN         CAS     120.000    10.0     6
+7KO            sp2_sp3_20         CAT         CAS         CAN         NAH     -90.000    10.0     6
+7KO              const_31         CAN         CAS         CAT         CAW     180.000    10.0     2
+7KO              const_54         NAU         CAR         CAS         CAN     180.000    10.0     2
+7KO              const_33         CAS         CAT         CAW         CAV       0.000    10.0     2
+7KO              const_37         NAU         CAV         CAW         CAT       0.000    10.0     2
+7KO       const_sp2_sp2_6         CL6          C6          N1          C2     180.000     5.0     2
+7KO              const_41         CAW         CAV         NAU         CAR       0.000    10.0     2
+7KO              const_43         CAS         CAR         NAU         CAV       0.000    10.0     2
+7KO       const_sp2_sp2_8         NAA          C2          N1          C6     180.000     5.0     2
+7KO             sp2_sp2_5          N1          C2         NAA          H8     180.000     5.0     2
+7KO              const_10         NAA          C2          N3          C4     180.000    10.0     2
+7KO              const_12         NAH          C4          N3          C2     180.000    10.0     2
+7KO             sp2_sp2_1          C5          C4         NAH         CAI     180.000     5.0     2
+7KO              const_47         CAI         CAJ         CAK         CAL     180.000    10.0     2
+7KO              const_13         CAJ         CAK         CAL         CAQ       0.000    10.0     2
+7KO              const_17         CAK         CAL         CAQ         NAP       0.000    10.0     2
+7KO              const_21         CAL         CAQ         NAP         CAO       0.000    10.0     2
+7KO              const_23         CAJ         CAO         NAP         CAQ       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+7KO    plan-1          C2   0.020
+7KO    plan-1          C4   0.020
+7KO    plan-1          C5   0.020
+7KO    plan-1          C6   0.020
+7KO    plan-1         CL6   0.020
+7KO    plan-1          H1   0.020
+7KO    plan-1          N1   0.020
+7KO    plan-1          N3   0.020
+7KO    plan-1         NAA   0.020
+7KO    plan-1         NAH   0.020
+7KO    plan-2         CAI   0.020
+7KO    plan-2         CAJ   0.020
+7KO    plan-2         CAK   0.020
+7KO    plan-2         CAL   0.020
+7KO    plan-2         CAO   0.020
+7KO    plan-2         CAQ   0.020
+7KO    plan-2          H2   0.020
+7KO    plan-2          H3   0.020
+7KO    plan-2          H4   0.020
+7KO    plan-2          H5   0.020
+7KO    plan-2         NAP   0.020
+7KO    plan-3         CAN   0.020
+7KO    plan-3         CAR   0.020
+7KO    plan-3         CAS   0.020
+7KO    plan-3         CAT   0.020
+7KO    plan-3         CAV   0.020
+7KO    plan-3         CAW   0.020
+7KO    plan-3         H12   0.020
+7KO    plan-3         H13   0.020
+7KO    plan-3         H14   0.020
+7KO    plan-3         H15   0.020
+7KO    plan-3         NAU   0.020
+7KO    plan-4          C4   0.020
+7KO    plan-4         CAI   0.020
+7KO    plan-4         CAN   0.020
+7KO    plan-4         NAH   0.020
+7KO    plan-5          C2   0.020
+7KO    plan-5          H8   0.020
+7KO    plan-5          H9   0.020
+7KO    plan-5         NAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+7KO           SMILES              ACDLabs 12.01                                                                                  c1c(nc(nc1Cl)N)N(Cc2cccnc2)Cc3cnccc3
+7KO            InChI                InChI  1.03 InChI=1S/C16H15ClN6/c17-14-7-15(22-16(18)21-14)23(10-12-3-1-5-19-8-12)11-13-4-2-6-20-9-13/h1-9H,10-11H2,(H2,18,21,22)
+7KO         InChIKey                InChI  1.03                                                                                           JDMRUOFJLDXEIQ-UHFFFAOYSA-N
+7KO SMILES_CANONICAL               CACTVS 3.385                                                                                  Nc1nc(Cl)cc(n1)N(Cc2cccnc2)Cc3cccnc3
+7KO           SMILES               CACTVS 3.385                                                                                  Nc1nc(Cl)cc(n1)N(Cc2cccnc2)Cc3cccnc3
+7KO SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                c1cc(cnc1)CN(Cc2cccnc2)c3cc(nc(n3)N)Cl
+7KO           SMILES "OpenEye OEToolkits" 2.0.6                                                                                c1cc(cnc1)CN(Cc2cccnc2)c3cc(nc(n3)N)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+7KO acedrg               243         "dictionary generator"                  
+7KO acedrg_database      11          "data source"                           
+7KO rdkit                2017.03.2   "Chemoinformatics tool"
+7KO refmac5              5.8.0238    "optimization tool"                     

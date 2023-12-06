@@ -1,0 +1,289 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+K6T     K6T      5-[(3-aminophenyl)amino]-4-phenyl-thiophene-2-carboximidamide     NON-POLYMER     38     22     .     
+#
+data_comp_K6T
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+K6T     C10     C       CR16    0       16.796      20.699      -4.639      
+K6T     C13     C       CR16    0       16.820      19.930      -1.982      
+K6T     C17     C       CR16    0       20.414      23.429      -7.168      
+K6T     C20     C       CR16    0       19.592      22.588      -9.688      
+K6T     C21     C       CR16    0       19.347      21.788      -8.585      
+K6T     S01     S       S2      0       20.607      19.076      -6.856      
+K6T     C02     C       CR5     0       19.572      20.071      -6.010      
+K6T     C03     C       CR5     0       18.804      19.292      -5.124      
+K6T     C04     C       CR15    0       19.118      17.903      -5.201      
+K6T     C05     C       CR5     0       20.115      17.649      -6.139      
+K6T     C06     C       C       0       20.739      16.379      -6.545      
+K6T     N07     N       NH2     0       20.342      15.233      -5.945      
+K6T     N08     N       NH1     0       21.660      16.315      -7.458      
+K6T     C09     C       CR6     0       17.784      19.815      -4.199      
+K6T     C11     C       CR16    0       15.839      21.188      -3.761      
+K6T     C12     C       CR16    0       15.851      20.804      -2.435      
+K6T     C14     C       CR16    0       17.780      19.438      -2.854      
+K6T     N15     N       NH1     0       19.528      21.417      -6.182      
+K6T     C16     C       CR6     0       19.763      22.204      -7.325      
+K6T     C18     C       CR6     0       20.658      24.238      -8.283      
+K6T     C19     C       CR16    0       20.240      23.804      -9.543      
+K6T     N22     N       NH2     0       21.304      25.450      -8.139      
+K6T     H1      H       H       0       16.781      20.966      -5.542      
+K6T     H2      H       H       0       16.830      19.666      -1.077      
+K6T     H3      H       H       0       20.691      23.711      -6.309      
+K6T     H4      H       H       0       19.313      22.304      -10.547     
+K6T     H5      H       H       0       18.907      20.960      -8.689      
+K6T     H6      H       H       0       18.695      17.247      -4.675      
+K6T     H7      H       H       0       20.704      14.476      -6.174      
+K6T     H8      H       H       0       19.730      15.245      -5.330      
+K6T     H9      H       H       0       21.880      17.091      -7.816      
+K6T     H10     H       H       0       15.179      21.784      -4.072      
+K6T     H11     H       H       0       15.199      21.137      -1.839      
+K6T     H12     H       H       0       18.437      18.843      -2.537      
+K6T     H13     H       H       0       19.324      21.869      -5.450      
+K6T     H14     H       H       0       20.402      24.345      -10.298     
+K6T     H15     H       H       0       21.332      25.840      -7.353      
+K6T     H16     H       H       0       21.684      25.829      -8.833      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+K6T         C20         C19      DOUBLE       y     1.383  0.0100     1.383  0.0100
+K6T         C20         C21      SINGLE       y     1.383  0.0100     1.383  0.0100
+K6T         C18         C19      SINGLE       y     1.393  0.0100     1.393  0.0100
+K6T         C21         C16      DOUBLE       y     1.385  0.0107     1.385  0.0107
+K6T         C18         N22      SINGLE       n     1.381  0.0128     1.381  0.0128
+K6T         C17         C18      DOUBLE       y     1.393  0.0100     1.393  0.0100
+K6T         C06         N08      DOUBLE       n     1.288  0.0200     1.288  0.0200
+K6T         C17         C16      SINGLE       y     1.391  0.0100     1.391  0.0100
+K6T         N15         C16      SINGLE       n     1.397  0.0200     1.397  0.0200
+K6T         S01         C05      SINGLE       y     1.695  0.0200     1.695  0.0200
+K6T         S01         C02      SINGLE       y     1.695  0.0200     1.695  0.0200
+K6T         C05         C06      SINGLE       n     1.467  0.0100     1.467  0.0100
+K6T         C06         N07      SINGLE       n     1.347  0.0152     1.347  0.0152
+K6T         C02         N15      SINGLE       n     1.353  0.0132     1.353  0.0132
+K6T         C04         C05      DOUBLE       y     1.371  0.0200     1.371  0.0200
+K6T         C02         C03      DOUBLE       y     1.389  0.0200     1.389  0.0200
+K6T         C03         C04      SINGLE       y     1.386  0.0200     1.386  0.0200
+K6T         C03         C09      SINGLE       n     1.473  0.0100     1.473  0.0100
+K6T         C10         C09      DOUBLE       y     1.393  0.0100     1.393  0.0100
+K6T         C10         C11      SINGLE       y     1.384  0.0100     1.384  0.0100
+K6T         C09         C14      SINGLE       y     1.393  0.0100     1.393  0.0100
+K6T         C11         C12      DOUBLE       y     1.376  0.0114     1.376  0.0114
+K6T         C13         C14      DOUBLE       y     1.384  0.0100     1.384  0.0100
+K6T         C13         C12      SINGLE       y     1.376  0.0124     1.376  0.0124
+K6T         C10          H1      SINGLE       n     1.082  0.0130     0.942  0.0125
+K6T         C13          H2      SINGLE       n     1.082  0.0130     0.943  0.0180
+K6T         C17          H3      SINGLE       n     1.082  0.0130     0.946  0.0200
+K6T         C20          H4      SINGLE       n     1.082  0.0130     0.947  0.0200
+K6T         C21          H5      SINGLE       n     1.082  0.0130     0.943  0.0178
+K6T         C04          H6      SINGLE       n     1.082  0.0130     0.941  0.0169
+K6T         N07          H7      SINGLE       n     1.016  0.0100     0.869  0.0200
+K6T         N07          H8      SINGLE       n     1.016  0.0100     0.869  0.0200
+K6T         N08          H9      SINGLE       n     1.016  0.0100     0.882  0.0200
+K6T         C11         H10      SINGLE       n     1.082  0.0130     0.943  0.0180
+K6T         C12         H11      SINGLE       n     1.082  0.0130     0.944  0.0161
+K6T         C14         H12      SINGLE       n     1.082  0.0130     0.942  0.0125
+K6T         N15         H13      SINGLE       n     1.016  0.0100     0.884  0.0200
+K6T         C19         H14      SINGLE       n     1.082  0.0130     0.943  0.0178
+K6T         N22         H15      SINGLE       n     1.016  0.0100     0.877  0.0200
+K6T         N22         H16      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+K6T         C09         C10         C11     120.682    1.50
+K6T         C09         C10          H1     119.564    1.50
+K6T         C11         C10          H1     119.764    1.50
+K6T         C14         C13         C12     120.287    1.50
+K6T         C14         C13          H2     119.756    1.50
+K6T         C12         C13          H2     119.957    1.50
+K6T         C18         C17         C16     118.858    1.76
+K6T         C18         C17          H3     120.562    1.50
+K6T         C16         C17          H3     120.581    1.50
+K6T         C19         C20         C21     121.067    1.50
+K6T         C19         C20          H4     119.467    1.50
+K6T         C21         C20          H4     119.467    1.50
+K6T         C20         C21         C16     120.198    1.50
+K6T         C20         C21          H5     119.982    1.50
+K6T         C16         C21          H5     119.820    1.50
+K6T         C05         S01         C02     108.511    3.00
+K6T         S01         C02         N15     123.130    3.00
+K6T         S01         C02         C03     108.511    3.00
+K6T         N15         C02         C03     128.360    2.72
+K6T         C02         C03         C04     107.171    1.62
+K6T         C02         C03         C09     128.585    2.89
+K6T         C04         C03         C09     124.243    1.62
+K6T         C05         C04         C03     107.297    1.50
+K6T         C05         C04          H6     127.121    1.56
+K6T         C03         C04          H6     125.582    1.50
+K6T         S01         C05         C06     120.983    3.00
+K6T         S01         C05         C04     108.511    3.00
+K6T         C06         C05         C04     130.507    2.46
+K6T         N08         C06         C05     121.953    3.00
+K6T         N08         C06         N07     121.616    2.66
+K6T         C05         C06         N07     116.431    2.93
+K6T         C06         N07          H7     119.928    1.50
+K6T         C06         N07          H8     119.928    1.50
+K6T          H7         N07          H8     120.144    2.31
+K6T         C06         N08          H9     112.803    3.00
+K6T         C03         C09         C10     120.900    1.50
+K6T         C03         C09         C14     120.900    1.50
+K6T         C10         C09         C14     118.199    1.50
+K6T         C10         C11         C12     120.287    1.50
+K6T         C10         C11         H10     119.756    1.50
+K6T         C12         C11         H10     119.957    1.50
+K6T         C11         C12         C13     119.842    1.50
+K6T         C11         C12         H11     120.079    1.50
+K6T         C13         C12         H11     120.079    1.50
+K6T         C09         C14         C13     120.682    1.50
+K6T         C09         C14         H12     119.564    1.50
+K6T         C13         C14         H12     119.764    1.50
+K6T         C16         N15         C02     128.216    2.57
+K6T         C16         N15         H13     116.307    2.03
+K6T         C02         N15         H13     115.477    2.55
+K6T         C21         C16         C17     120.382    2.01
+K6T         C21         C16         N15     119.809    2.40
+K6T         C17         C16         N15     119.809    2.40
+K6T         C19         C18         N22     120.637    1.50
+K6T         C19         C18         C17     118.718    1.50
+K6T         N22         C18         C17     120.645    1.50
+K6T         C20         C19         C18     120.777    1.50
+K6T         C20         C19         H14     119.865    1.50
+K6T         C18         C19         H14     119.358    1.50
+K6T         C18         N22         H15     119.811    2.73
+K6T         C18         N22         H16     119.811    2.73
+K6T         H15         N22         H16     120.379    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+K6T              const_17         C03         C09         C10         C11     180.000    10.0     2
+K6T              const_61         C09         C10         C11         C12       0.000    10.0     2
+K6T            sp2_sp2_17         N08         C06         N07          H7       0.000     5.0     2
+K6T             sp2_sp2_6         N07         C06         N08          H9       0.000     5.0     2
+K6T              const_21         C03         C09         C14         C13     180.000    10.0     2
+K6T              const_31         C10         C11         C12         C13       0.000    10.0     2
+K6T             sp2_sp2_7         C21         C16         N15         C02     180.000     5.0     2
+K6T              const_41         N22         C18         C19         C20     180.000    10.0     2
+K6T             sp2_sp2_1         C19         C18         N22         H15     180.000     5.0     2
+K6T              const_27         C11         C12         C13         C14       0.000    10.0     2
+K6T              const_23         C12         C13         C14         C09       0.000    10.0     2
+K6T              const_57         N15         C16         C17         C18     180.000    10.0     2
+K6T              const_36         C16         C17         C18         N22     180.000    10.0     2
+K6T              const_43         C18         C19         C20         C21       0.000    10.0     2
+K6T              const_47         C19         C20         C21         C16       0.000    10.0     2
+K6T              const_53         N15         C16         C21         C20     180.000    10.0     2
+K6T              const_60         N15         C02         S01         C05     180.000    10.0     2
+K6T       const_sp2_sp2_2         C06         C05         S01         C02     180.000     5.0     2
+K6T            sp2_sp2_21         S01         C02         N15         C16       0.000     5.0     2
+K6T              const_13         N15         C02         C03         C04     180.000    10.0     2
+K6T            sp2_sp2_23         C02         C03         C09         C10     180.000     5.0     2
+K6T       const_sp2_sp2_7         C02         C03         C04         C05       0.000     5.0     2
+K6T       const_sp2_sp2_4         C03         C04         C05         C06     180.000     5.0     2
+K6T            sp2_sp2_14         S01         C05         C06         N08     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+K6T    plan-1         C03   0.020
+K6T    plan-1         C09   0.020
+K6T    plan-1         C10   0.020
+K6T    plan-1         C11   0.020
+K6T    plan-1         C12   0.020
+K6T    plan-1         C13   0.020
+K6T    plan-1         C14   0.020
+K6T    plan-1          H1   0.020
+K6T    plan-1         H10   0.020
+K6T    plan-1         H11   0.020
+K6T    plan-1         H12   0.020
+K6T    plan-1          H2   0.020
+K6T    plan-2         C16   0.020
+K6T    plan-2         C17   0.020
+K6T    plan-2         C18   0.020
+K6T    plan-2         C19   0.020
+K6T    plan-2         C20   0.020
+K6T    plan-2         C21   0.020
+K6T    plan-2         H14   0.020
+K6T    plan-2          H3   0.020
+K6T    plan-2          H4   0.020
+K6T    plan-2          H5   0.020
+K6T    plan-2         N15   0.020
+K6T    plan-2         N22   0.020
+K6T    plan-3         C02   0.020
+K6T    plan-3         C03   0.020
+K6T    plan-3         C04   0.020
+K6T    plan-3         C05   0.020
+K6T    plan-3         C06   0.020
+K6T    plan-3         C09   0.020
+K6T    plan-3          H6   0.020
+K6T    plan-3         N15   0.020
+K6T    plan-3         S01   0.020
+K6T    plan-4         C05   0.020
+K6T    plan-4         C06   0.020
+K6T    plan-4         N07   0.020
+K6T    plan-4         N08   0.020
+K6T    plan-5         C06   0.020
+K6T    plan-5          H7   0.020
+K6T    plan-5          H8   0.020
+K6T    plan-5         N07   0.020
+K6T    plan-6         C02   0.020
+K6T    plan-6         C16   0.020
+K6T    plan-6         H13   0.020
+K6T    plan-6         N15   0.020
+K6T    plan-7         C18   0.020
+K6T    plan-7         H15   0.020
+K6T    plan-7         H16   0.020
+K6T    plan-7         N22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+K6T            InChI                InChI  1.03 InChI=1S/C17H16N4S/c18-12-7-4-8-13(9-12)21-17-14(10-15(22-17)16(19)20)11-5-2-1-3-6-11/h1-10,21H,18H2,(H3,19,20)
+K6T         InChIKey                InChI  1.03                                                                                     LZGYXCFYIGRPJS-UHFFFAOYSA-N
+K6T SMILES_CANONICAL               CACTVS 3.385                                                                           NC(=N)c1sc(Nc2cccc(N)c2)c(c1)c3ccccc3
+K6T           SMILES               CACTVS 3.385                                                                           NC(=N)c1sc(Nc2cccc(N)c2)c(c1)c3ccccc3
+K6T SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                   "[H]/N=C(\c1cc(c(s1)Nc2cccc(c2)N)c3ccccc3)/N"
+K6T           SMILES "OpenEye OEToolkits" 2.0.7                                                                           c1ccc(cc1)c2cc(sc2Nc3cccc(c3)N)C(=N)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+K6T acedrg               243         "dictionary generator"                  
+K6T acedrg_database      11          "data source"                           
+K6T rdkit                2017.03.2   "Chemoinformatics tool"
+K6T refmac5              5.8.0238    "optimization tool"                     

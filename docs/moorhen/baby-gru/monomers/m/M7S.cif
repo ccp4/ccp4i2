@@ -1,0 +1,521 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+M7S     M7S      "(2S)-2-benzyl-3-(4-propoxy-3-{[({4-[(3S,5S,7S)-tricyclo[3.3.1.1~3,7~]dec-1-yl]phenyl}carbonyl)amino]methyl}phenyl)propanoic acid"     NON-POLYMER     84     42     .     
+#
+data_comp_M7S
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+M7S     C1      C       C       0       19.158      66.620      17.668      
+M7S     O1      O       O       0       20.285      66.119      17.857      
+M7S     C2      C       CH1     0       18.855      67.209      16.285      
+M7S     O2      O       OC      -1      18.265      66.670      18.536      
+M7S     C3      C       CH2     0       19.762      68.437      15.992      
+M7S     O3      O       O2      0       16.933      67.643      10.108      
+M7S     C4      C       CR6     0       19.528      69.601      16.926      
+M7S     C5      C       CH2     0       18.963      66.104      15.198      
+M7S     C6      C       CR6     0       18.445      66.510      13.839      
+M7S     C7      C       CR16    0       17.117      66.909      13.665      
+M7S     C8      C       CR6     0       16.606      67.285      12.421      
+M7S     C9      C       CR6     0       17.475      67.269      11.315      
+M7S     C10     C       CR16    0       18.797      66.864      11.473      
+M7S     C11     C       CR16    0       19.268      66.495      12.722      
+M7S     C12     C       CH2     0       17.730      68.376      9.164       
+M7S     C13     C       CH2     0       16.889      68.805      7.993       
+M7S     C14     C       CH3     0       17.726      69.399      6.886       
+M7S     C15     C       CH2     0       15.167      67.718      12.285      
+M7S     C17     C       CR16    0       14.393      71.697      9.482       
+M7S     C19     C       CR16    0       14.994      72.793      8.877       
+M7S     C22     C       CR16    0       16.417      71.228      10.645      
+M7S     C23     C       CT      0       17.043      74.338      8.490       
+M7S     C24     C       CH2     0       18.312      73.860      7.739       
+M7S     C25     C       CH2     0       17.490      75.369      9.556       
+M7S     C26     C       CH2     0       16.165      75.094      7.461       
+M7S     C27     C       CH1     0       19.075      75.033      7.105       
+M7S     C28     C       CH1     0       18.252      76.543      8.918       
+M7S     C29     C       CH1     0       16.924      76.268      6.820       
+M7S     C30     C       CH2     0       19.498      76.018      8.199       
+M7S     C31     C       CH2     0       18.168      75.744      6.096       
+M7S     C32     C       CH2     0       17.347      77.258      7.909       
+M7S     C51     C       CR16    0       20.493      69.984      17.851      
+M7S     C52     C       CR16    0       20.272      71.055      18.708      
+M7S     C53     C       CR16    0       19.084      71.755      18.651      
+M7S     C54     C       CR16    0       18.117      71.388      17.740      
+M7S     C55     C       CR16    0       18.337      70.318      16.882      
+M7S     C87     C       CR6     0       15.088      70.909      10.391      
+M7S     C97     C       C       0       14.444      69.697      11.012      
+M7S     C98     C       CR6     0       16.328      73.142      9.144       
+M7S     C99     C       CR16    0       17.017      72.323      10.046      
+M7S     N99     N       NH1     0       15.065      69.159      12.068      
+M7S     O99     O       O       0       13.509      69.133      10.442      
+M7S     H2      H       H       0       17.925      67.522      16.303      
+M7S     H3      H       H       0       19.605      68.740      15.073      
+M7S     H3A     H       H       0       20.700      68.160      16.058      
+M7S     H5      H       H       0       18.461      65.317      15.500      
+M7S     H5A     H       H       0       19.904      65.839      15.113      
+M7S     H7      H       H       0       16.545      66.925      14.418      
+M7S     H10     H       H       0       19.379      66.843      10.734      
+M7S     H11     H       H       0       20.168      66.228      12.813      
+M7S     H12     H       H       0       18.463      67.814      8.842       
+M7S     H12A    H       H       0       18.117      69.163      9.598       
+M7S     H13     H       H       0       16.233      69.468      8.290       
+M7S     H13A    H       H       0       16.399      68.029      7.646       
+M7S     H14     H       H       0       17.145      69.719      6.174       
+M7S     H14A    H       H       0       18.327      68.721      6.532       
+M7S     H14B    H       H       0       18.248      70.143      7.235       
+M7S     H15     H       H       0       14.680      67.482      13.102      
+M7S     H15A    H       H       0       14.755      67.232      11.540      
+M7S     H17     H       H       0       13.497      71.494      9.281       
+M7S     H19     H       H       0       14.488      73.313      8.277       
+M7S     H22     H       H       0       16.918      70.705      11.244      
+M7S     H24     H       H       0       18.914      73.392      8.365       
+M7S     H24A    H       H       0       18.053      73.220      7.034       
+M7S     H25     H       H       0       16.696      75.714      10.031      
+M7S     H25A    H       H       0       18.072      74.927      10.219      
+M7S     H26     H       H       0       15.357      75.442      7.909       
+M7S     H26A    H       H       0       15.876      74.470      6.752       
+M7S     H27     H       H       0       19.881      74.688      6.640       
+M7S     H28     H       H       0       18.524      77.182      9.629       
+M7S     H29     H       H       0       16.331      76.726      6.169       
+M7S     H30     H       H       0       20.089      75.566      8.844       
+M7S     H30A    H       H       0       19.994      76.768      7.800       
+M7S     H31     H       H       0       17.902      75.116      5.387       
+M7S     H31A    H       H       0       18.653      76.492      5.680       
+M7S     H32     H       H       0       17.831      78.013      7.504       
+M7S     H32A    H       H       0       16.551      77.611      8.367       
+M7S     H51     H       H       0       21.308      69.510      17.897      
+M7S     H52     H       H       0       20.936      71.304      19.331      
+M7S     H53     H       H       0       18.934      72.483      19.233      
+M7S     H54     H       H       0       17.304      71.865      17.698      
+M7S     H55     H       H       0       17.670      70.072      16.260      
+M7S     H99     H       H       0       17.918      72.522      10.252      
+M7S     HN99    H       H       0       15.391      69.687      12.685      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+M7S          C1          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+M7S          C1          C2      SINGLE       n     1.533  0.0100     1.533  0.0100
+M7S          C1          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+M7S          C2          C3      SINGLE       n     1.552  0.0103     1.552  0.0103
+M7S          C2          C5      SINGLE       n     1.552  0.0103     1.552  0.0103
+M7S          C3          C4      SINGLE       n     1.509  0.0100     1.509  0.0100
+M7S          O3          C9      SINGLE       n     1.368  0.0107     1.368  0.0107
+M7S          O3         C12      SINGLE       n     1.432  0.0101     1.432  0.0101
+M7S          C4         C51      DOUBLE       y     1.385  0.0111     1.385  0.0111
+M7S          C4         C55      SINGLE       y     1.385  0.0111     1.385  0.0111
+M7S          C5          C6      SINGLE       n     1.509  0.0100     1.509  0.0100
+M7S          C6          C7      DOUBLE       y     1.394  0.0100     1.394  0.0100
+M7S          C6         C11      SINGLE       y     1.385  0.0110     1.385  0.0110
+M7S          C7          C8      SINGLE       y     1.391  0.0100     1.391  0.0100
+M7S          C8          C9      DOUBLE       y     1.396  0.0100     1.396  0.0100
+M7S          C8         C15      SINGLE       n     1.504  0.0128     1.504  0.0128
+M7S          C9         C10      SINGLE       y     1.385  0.0100     1.385  0.0100
+M7S         C10         C11      DOUBLE       y     1.383  0.0100     1.383  0.0100
+M7S         C12         C13      SINGLE       n     1.503  0.0136     1.503  0.0136
+M7S         C13         C14      SINGLE       n     1.508  0.0200     1.508  0.0200
+M7S         C15         N99      SINGLE       n     1.458  0.0100     1.458  0.0100
+M7S         C17         C19      DOUBLE       y     1.384  0.0100     1.384  0.0100
+M7S         C17         C87      SINGLE       y     1.386  0.0100     1.386  0.0100
+M7S         C19         C98      SINGLE       y     1.395  0.0100     1.395  0.0100
+M7S         C22         C87      DOUBLE       y     1.386  0.0100     1.386  0.0100
+M7S         C22         C99      SINGLE       y     1.384  0.0100     1.384  0.0100
+M7S         C23         C24      SINGLE       n     1.543  0.0100     1.543  0.0100
+M7S         C23         C25      SINGLE       n     1.543  0.0100     1.543  0.0100
+M7S         C23         C26      SINGLE       n     1.543  0.0100     1.543  0.0100
+M7S         C23         C98      SINGLE       n     1.531  0.0100     1.531  0.0100
+M7S         C24         C27      SINGLE       n     1.534  0.0100     1.534  0.0100
+M7S         C25         C28      SINGLE       n     1.534  0.0100     1.534  0.0100
+M7S         C26         C29      SINGLE       n     1.534  0.0100     1.534  0.0100
+M7S         C27         C30      SINGLE       n     1.529  0.0100     1.529  0.0100
+M7S         C27         C31      SINGLE       n     1.529  0.0100     1.529  0.0100
+M7S         C28         C30      SINGLE       n     1.529  0.0100     1.529  0.0100
+M7S         C28         C32      SINGLE       n     1.529  0.0100     1.529  0.0100
+M7S         C29         C31      SINGLE       n     1.529  0.0100     1.529  0.0100
+M7S         C29         C32      SINGLE       n     1.529  0.0100     1.529  0.0100
+M7S         C51         C52      SINGLE       y     1.386  0.0100     1.386  0.0100
+M7S         C52         C53      DOUBLE       y     1.376  0.0124     1.376  0.0124
+M7S         C53         C54      SINGLE       y     1.374  0.0127     1.374  0.0127
+M7S         C54         C55      DOUBLE       y     1.386  0.0100     1.386  0.0100
+M7S         C87         C97      SINGLE       n     1.502  0.0100     1.502  0.0100
+M7S         C97         N99      SINGLE       n     1.334  0.0100     1.334  0.0100
+M7S         C97         O99      DOUBLE       n     1.230  0.0114     1.230  0.0114
+M7S         C98         C99      DOUBLE       y     1.395  0.0100     1.395  0.0100
+M7S          C2          H2      SINGLE       n     1.089  0.0100     0.982  0.0200
+M7S          C3          H3      SINGLE       n     1.089  0.0100     0.981  0.0169
+M7S          C3         H3A      SINGLE       n     1.089  0.0100     0.981  0.0169
+M7S          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0169
+M7S          C5         H5A      SINGLE       n     1.089  0.0100     0.981  0.0169
+M7S          C7          H7      SINGLE       n     1.082  0.0130     0.946  0.0164
+M7S         C10         H10      SINGLE       n     1.082  0.0130     0.942  0.0141
+M7S         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0173
+M7S         C12         H12      SINGLE       n     1.089  0.0100     0.979  0.0131
+M7S         C12        H12A      SINGLE       n     1.089  0.0100     0.979  0.0131
+M7S         C13         H13      SINGLE       n     1.089  0.0100     0.981  0.0133
+M7S         C13        H13A      SINGLE       n     1.089  0.0100     0.981  0.0133
+M7S         C14         H14      SINGLE       n     1.089  0.0100     0.973  0.0157
+M7S         C14        H14A      SINGLE       n     1.089  0.0100     0.973  0.0157
+M7S         C14        H14B      SINGLE       n     1.089  0.0100     0.973  0.0157
+M7S         C15         H15      SINGLE       n     1.089  0.0100     0.980  0.0169
+M7S         C15        H15A      SINGLE       n     1.089  0.0100     0.980  0.0169
+M7S         C17         H17      SINGLE       n     1.082  0.0130     0.941  0.0168
+M7S         C19         H19      SINGLE       n     1.082  0.0130     0.945  0.0176
+M7S         C22         H22      SINGLE       n     1.082  0.0130     0.941  0.0168
+M7S         C24         H24      SINGLE       n     1.089  0.0100     0.987  0.0124
+M7S         C24        H24A      SINGLE       n     1.089  0.0100     0.987  0.0124
+M7S         C25         H25      SINGLE       n     1.089  0.0100     0.987  0.0124
+M7S         C25        H25A      SINGLE       n     1.089  0.0100     0.987  0.0124
+M7S         C26         H26      SINGLE       n     1.089  0.0100     0.987  0.0124
+M7S         C26        H26A      SINGLE       n     1.089  0.0100     0.987  0.0124
+M7S         C27         H27      SINGLE       n     1.089  0.0100     0.993  0.0134
+M7S         C28         H28      SINGLE       n     1.089  0.0100     0.993  0.0134
+M7S         C29         H29      SINGLE       n     1.089  0.0100     0.993  0.0134
+M7S         C30         H30      SINGLE       n     1.089  0.0100     0.984  0.0144
+M7S         C30        H30A      SINGLE       n     1.089  0.0100     0.984  0.0144
+M7S         C31         H31      SINGLE       n     1.089  0.0100     0.984  0.0144
+M7S         C31        H31A      SINGLE       n     1.089  0.0100     0.984  0.0144
+M7S         C32         H32      SINGLE       n     1.089  0.0100     0.984  0.0144
+M7S         C32        H32A      SINGLE       n     1.089  0.0100     0.984  0.0144
+M7S         C51         H51      SINGLE       n     1.082  0.0130     0.944  0.0174
+M7S         C52         H52      SINGLE       n     1.082  0.0130     0.944  0.0175
+M7S         C53         H53      SINGLE       n     1.082  0.0130     0.944  0.0161
+M7S         C54         H54      SINGLE       n     1.082  0.0130     0.944  0.0175
+M7S         C55         H55      SINGLE       n     1.082  0.0130     0.944  0.0174
+M7S         C99         H99      SINGLE       n     1.082  0.0130     0.945  0.0176
+M7S         N99        HN99      SINGLE       n     1.016  0.0100     0.875  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+M7S          O1          C1          C2     118.051    1.50
+M7S          O1          C1          O2     123.899    1.50
+M7S          C2          C1          O2     118.051    1.50
+M7S          C1          C2          C3     111.500    2.27
+M7S          C1          C2          C5     111.500    2.27
+M7S          C1          C2          H2     107.706    1.93
+M7S          C3          C2          C5     112.434    1.50
+M7S          C3          C2          H2     107.967    1.50
+M7S          C5          C2          H2     107.967    1.50
+M7S          C2          C3          C4     113.495    1.50
+M7S          C2          C3          H3     108.792    1.50
+M7S          C2          C3         H3A     108.792    1.50
+M7S          C4          C3          H3     108.738    1.50
+M7S          C4          C3         H3A     108.738    1.50
+M7S          H3          C3         H3A     107.709    1.50
+M7S          C9          O3         C12     118.290    1.50
+M7S          C3          C4         C51     120.970    1.50
+M7S          C3          C4         C55     120.970    1.50
+M7S         C51          C4         C55     118.060    1.50
+M7S          C2          C5          C6     113.495    1.50
+M7S          C2          C5          H5     108.792    1.50
+M7S          C2          C5         H5A     108.792    1.50
+M7S          C6          C5          H5     108.738    1.50
+M7S          C6          C5         H5A     108.738    1.50
+M7S          H5          C5         H5A     107.709    1.50
+M7S          C5          C6          C7     120.837    1.50
+M7S          C5          C6         C11     121.175    1.50
+M7S          C7          C6         C11     117.988    1.50
+M7S          C6          C7          C8     121.792    1.50
+M7S          C6          C7          H7     119.061    1.50
+M7S          C8          C7          H7     119.148    1.50
+M7S          C7          C8          C9     118.013    1.50
+M7S          C7          C8         C15     121.497    1.50
+M7S          C9          C8         C15     120.490    1.51
+M7S          O3          C9          C8     115.691    1.50
+M7S          O3          C9         C10     123.605    1.50
+M7S          C8          C9         C10     120.704    1.50
+M7S          C9         C10         C11     119.994    1.50
+M7S          C9         C10         H10     119.984    1.50
+M7S         C11         C10         H10     120.023    1.50
+M7S          C6         C11         C10     121.511    1.50
+M7S          C6         C11         H11     119.298    1.50
+M7S         C10         C11         H11     119.191    1.50
+M7S          O3         C12         C13     109.363    2.29
+M7S          O3         C12         H12     109.943    1.50
+M7S          O3         C12        H12A     109.943    1.50
+M7S         C13         C12         H12     109.925    1.50
+M7S         C13         C12        H12A     109.925    1.50
+M7S         H12         C12        H12A     108.474    1.50
+M7S         C12         C13         C14     111.939    1.73
+M7S         C12         C13         H13     109.095    1.50
+M7S         C12         C13        H13A     109.095    1.50
+M7S         C14         C13         H13     109.194    1.50
+M7S         C14         C13        H13A     109.194    1.50
+M7S         H13         C13        H13A     107.894    1.50
+M7S         C13         C14         H14     109.599    1.50
+M7S         C13         C14        H14A     109.599    1.50
+M7S         C13         C14        H14B     109.599    1.50
+M7S         H14         C14        H14A     109.380    1.50
+M7S         H14         C14        H14B     109.380    1.50
+M7S        H14A         C14        H14B     109.380    1.50
+M7S          C8         C15         N99     112.746    1.93
+M7S          C8         C15         H15     108.972    1.50
+M7S          C8         C15        H15A     108.972    1.50
+M7S         N99         C15         H15     109.133    1.50
+M7S         N99         C15        H15A     109.133    1.50
+M7S         H15         C15        H15A     107.860    1.50
+M7S         C19         C17         C87     120.849    1.50
+M7S         C19         C17         H17     119.587    1.50
+M7S         C87         C17         H17     119.564    1.50
+M7S         C17         C19         C98     121.079    1.50
+M7S         C17         C19         H19     119.765    1.50
+M7S         C98         C19         H19     119.156    1.50
+M7S         C87         C22         C99     120.849    1.50
+M7S         C87         C22         H22     119.564    1.50
+M7S         C99         C22         H22     119.587    1.50
+M7S         C24         C23         C25     107.874    1.50
+M7S         C24         C23         C26     107.874    1.50
+M7S         C24         C23         C98     111.031    1.51
+M7S         C25         C23         C26     107.874    1.50
+M7S         C25         C23         C98     111.031    1.51
+M7S         C26         C23         C98     111.031    1.51
+M7S         C23         C24         C27     110.839    1.50
+M7S         C23         C24         H24     109.520    1.50
+M7S         C23         C24        H24A     109.520    1.50
+M7S         C27         C24         H24     109.455    1.50
+M7S         C27         C24        H24A     109.455    1.50
+M7S         H24         C24        H24A     107.991    1.50
+M7S         C23         C25         C28     110.839    1.50
+M7S         C23         C25         H25     109.520    1.50
+M7S         C23         C25        H25A     109.520    1.50
+M7S         C28         C25         H25     109.455    1.50
+M7S         C28         C25        H25A     109.455    1.50
+M7S         H25         C25        H25A     107.991    1.50
+M7S         C23         C26         C29     110.839    1.50
+M7S         C23         C26         H26     109.520    1.50
+M7S         C23         C26        H26A     109.520    1.50
+M7S         C29         C26         H26     109.455    1.50
+M7S         C29         C26        H26A     109.455    1.50
+M7S         H26         C26        H26A     107.991    1.50
+M7S         C24         C27         C30     109.593    1.50
+M7S         C24         C27         C31     109.593    1.50
+M7S         C24         C27         H27     109.302    1.50
+M7S         C30         C27         C31     109.627    1.50
+M7S         C30         C27         H27     109.490    1.50
+M7S         C31         C27         H27     109.490    1.50
+M7S         C25         C28         C30     109.593    1.50
+M7S         C25         C28         C32     109.593    1.50
+M7S         C25         C28         H28     109.302    1.50
+M7S         C30         C28         C32     109.627    1.50
+M7S         C30         C28         H28     109.490    1.50
+M7S         C32         C28         H28     109.490    1.50
+M7S         C26         C29         C31     109.593    1.50
+M7S         C26         C29         C32     109.593    1.50
+M7S         C26         C29         H29     109.302    1.50
+M7S         C31         C29         C32     109.627    1.50
+M7S         C31         C29         H29     109.490    1.50
+M7S         C32         C29         H29     109.490    1.50
+M7S         C27         C30         C28     109.494    1.50
+M7S         C27         C30         H30     109.767    1.50
+M7S         C27         C30        H30A     109.767    1.50
+M7S         C28         C30         H30     109.767    1.50
+M7S         C28         C30        H30A     109.767    1.50
+M7S         H30         C30        H30A     108.211    1.50
+M7S         C27         C31         C29     109.494    1.50
+M7S         C27         C31         H31     109.767    1.50
+M7S         C27         C31        H31A     109.767    1.50
+M7S         C29         C31         H31     109.767    1.50
+M7S         C29         C31        H31A     109.767    1.50
+M7S         H31         C31        H31A     108.211    1.50
+M7S         C28         C32         C29     109.494    1.50
+M7S         C28         C32         H32     109.767    1.50
+M7S         C28         C32        H32A     109.767    1.50
+M7S         C29         C32         H32     109.767    1.50
+M7S         C29         C32        H32A     109.767    1.50
+M7S         H32         C32        H32A     108.211    1.50
+M7S          C4         C51         C52     120.624    1.50
+M7S          C4         C51         H51     119.591    1.50
+M7S         C52         C51         H51     119.786    1.50
+M7S         C51         C52         C53     120.325    1.50
+M7S         C51         C52         H52     119.792    1.50
+M7S         C53         C52         H52     119.883    1.50
+M7S         C52         C53         C54     120.043    1.50
+M7S         C52         C53         H53     119.979    1.50
+M7S         C54         C53         H53     119.979    1.50
+M7S         C53         C54         C55     120.325    1.50
+M7S         C53         C54         H54     119.883    1.50
+M7S         C55         C54         H54     119.792    1.50
+M7S          C4         C55         C54     120.624    1.50
+M7S          C4         C55         H55     119.591    1.50
+M7S         C54         C55         H55     119.786    1.50
+M7S         C17         C87         C22     119.085    1.50
+M7S         C17         C87         C97     120.458    2.80
+M7S         C22         C87         C97     120.458    2.80
+M7S         C87         C97         N99     116.722    1.50
+M7S         C87         C97         O99     120.965    1.50
+M7S         N99         C97         O99     122.313    1.50
+M7S         C19         C98         C23     121.470    1.56
+M7S         C19         C98         C99     117.060    1.50
+M7S         C23         C98         C99     121.470    1.56
+M7S         C22         C99         C98     121.079    1.50
+M7S         C22         C99         H99     119.765    1.50
+M7S         C98         C99         H99     119.156    1.50
+M7S         C15         N99         C97     121.850    1.50
+M7S         C15         N99        HN99     118.637    1.50
+M7S         C97         N99        HN99     119.513    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+M7S             sp2_sp3_1          O1          C1          C2          C3       0.000    10.0     6
+M7S              const_12         C15          C8          C9          O3       0.000    10.0     2
+M7S            sp2_sp3_20          C7          C8         C15         N99     -90.000    10.0     6
+M7S              const_14         C11         C10          C9          O3     180.000    10.0     2
+M7S              const_17          C9         C10         C11          C6       0.000    10.0     2
+M7S           sp3_sp3_121          O3         C12         C13         C14     180.000    10.0     3
+M7S           sp3_sp3_130         C12         C13         C14         H14     180.000    10.0     3
+M7S            sp2_sp3_26         C97         N99         C15          C8     120.000    10.0     6
+M7S              const_21         C87         C17         C19         C98       0.000    10.0     2
+M7S              const_70         C19         C17         C87         C97     180.000    10.0     2
+M7S              const_26         C17         C19         C98         C23     180.000    10.0     2
+M7S              const_38         C99         C22         C87         C97     180.000    10.0     2
+M7S              const_33         C87         C22         C99         C98       0.000    10.0     2
+M7S             sp3_sp3_1         C25         C23         C24         C27      60.000    10.0     3
+M7S            sp3_sp3_73         C24         C23         C25         C28      60.000    10.0     3
+M7S           sp3_sp3_139         C24         C23         C26         C29     180.000    10.0     3
+M7S            sp2_sp3_32         C19         C98         C23         C24     -90.000    10.0     6
+M7S            sp3_sp3_10         C23         C24         C27         C30     -60.000    10.0     3
+M7S            sp3_sp3_37         C23         C25         C28         C30      60.000    10.0     3
+M7S            sp3_sp3_64         C23         C26         C29         C31      60.000    10.0     3
+M7S            sp3_sp3_19         C24         C27         C30         C28      60.000    10.0     3
+M7S            sp3_sp3_46         C24         C27         C31         C29      60.000    10.0     3
+M7S            sp3_sp3_28         C25         C28         C30         C27     -60.000    10.0     3
+M7S            sp3_sp3_82         C25         C28         C32         C29      60.000    10.0     3
+M7S            sp3_sp3_55         C26         C29         C31         C27     -60.000    10.0     3
+M7S            sp3_sp3_91         C26         C29         C32         C28     -60.000    10.0     3
+M7S           sp3_sp3_100          C1          C2          C3          C4     180.000    10.0     3
+M7S           sp3_sp3_109          C1          C2          C5          C6     180.000    10.0     3
+M7S              const_45          C4         C51         C52         C53       0.000    10.0     2
+M7S              const_49         C51         C52         C53         C54       0.000    10.0     2
+M7S              const_53         C52         C53         C54         C55       0.000    10.0     2
+M7S              const_57         C53         C54         C55          C4       0.000    10.0     2
+M7S             sp2_sp2_3         C17         C87         C97         N99     180.000     5.0     2
+M7S             sp2_sp2_9         O99         C97         N99         C15       0.000     5.0     2
+M7S              const_29         C19         C98         C99         C22       0.000    10.0     2
+M7S             sp2_sp3_8         C51          C4          C3          C2     -90.000    10.0     6
+M7S             sp2_sp2_1          C8          C9          O3         C12     180.000     5.0     2
+M7S           sp3_sp3_118         C13         C12          O3          C9     180.000    10.0     3
+M7S              const_43          C3          C4         C51         C52     180.000    10.0     2
+M7S              const_63          C3          C4         C55         C54     180.000    10.0     2
+M7S            sp2_sp3_14          C7          C6          C5          C2     -90.000    10.0     6
+M7S              const_66         C10         C11          C6          C5     180.000    10.0     2
+M7S       const_sp2_sp2_3          C5          C6          C7          C8     180.000     5.0     2
+M7S       const_sp2_sp2_6          C6          C7          C8         C15     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+M7S    chir_1    C2    C1    C5    C3    positive
+M7S    chir_2    C23    C98    C24    C25    both
+M7S    chir_3    C27    C24    C30    C31    both
+M7S    chir_4    C28    C25    C30    C32    both
+M7S    chir_5    C29    C26    C31    C32    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+M7S    plan-1         C10   0.020
+M7S    plan-1         C11   0.020
+M7S    plan-1         C15   0.020
+M7S    plan-1          C5   0.020
+M7S    plan-1          C6   0.020
+M7S    plan-1          C7   0.020
+M7S    plan-1          C8   0.020
+M7S    plan-1          C9   0.020
+M7S    plan-1         H10   0.020
+M7S    plan-1         H11   0.020
+M7S    plan-1          H7   0.020
+M7S    plan-1          O3   0.020
+M7S    plan-2         C17   0.020
+M7S    plan-2         C19   0.020
+M7S    plan-2         C22   0.020
+M7S    plan-2         C23   0.020
+M7S    plan-2         C87   0.020
+M7S    plan-2         C97   0.020
+M7S    plan-2         C98   0.020
+M7S    plan-2         C99   0.020
+M7S    plan-2         H17   0.020
+M7S    plan-2         H19   0.020
+M7S    plan-2         H22   0.020
+M7S    plan-2         H99   0.020
+M7S    plan-3          C3   0.020
+M7S    plan-3          C4   0.020
+M7S    plan-3         C51   0.020
+M7S    plan-3         C52   0.020
+M7S    plan-3         C53   0.020
+M7S    plan-3         C54   0.020
+M7S    plan-3         C55   0.020
+M7S    plan-3         H51   0.020
+M7S    plan-3         H52   0.020
+M7S    plan-3         H53   0.020
+M7S    plan-3         H54   0.020
+M7S    plan-3         H55   0.020
+M7S    plan-4          C1   0.020
+M7S    plan-4          C2   0.020
+M7S    plan-4          O1   0.020
+M7S    plan-4          O2   0.020
+M7S    plan-5         C87   0.020
+M7S    plan-5         C97   0.020
+M7S    plan-5         N99   0.020
+M7S    plan-5         O99   0.020
+M7S    plan-6         C15   0.020
+M7S    plan-6         C97   0.020
+M7S    plan-6        HN99   0.020
+M7S    plan-6         N99   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+M7S           SMILES              ACDLabs 12.01                                                                                                                                                                        O=C(O)C(Cc1ccccc1)Cc2cc(c(OCCC)cc2)CNC(=O)c3ccc(cc3)C46CC5CC(CC(C4)C5)C6
+M7S SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                      CCCOc1ccc(C[C@H](Cc2ccccc2)C(O)=O)cc1CNC(=O)c3ccc(cc3)[C]45C[CH]6[CH2]C([CH2][CH](C6)C4)C5
+M7S           SMILES               CACTVS 3.370                                                                                                                                                       CCCOc1ccc(C[CH](Cc2ccccc2)C(O)=O)cc1CNC(=O)c3ccc(cc3)[C]45C[CH]6[CH2]C([CH2][CH](C6)C4)C5
+M7S SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                                      CCCOc1ccc(cc1CNC(=O)c2ccc(cc2)C34CC5CC(C3)CC(C5)C4)C[C@H](Cc6ccccc6)C(=O)O
+M7S           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                          CCCOc1ccc(cc1CNC(=O)c2ccc(cc2)C34CC5CC(C3)CC(C5)C4)CC(Cc6ccccc6)C(=O)O
+M7S            InChI                InChI  1.03 InChI=1S/C37H43NO4/c1-2-14-42-34-13-8-26(19-31(36(40)41)18-25-6-4-3-5-7-25)20-32(34)24-38-35(39)30-9-11-33(12-10-30)37-21-27-15-28(22-37)17-29(16-27)23-37/h3-13,20,27-29,31H,2,14-19,21-24H2,1H3,(H,38,39)(H,40,41)/t27-,28+,29-,31-,37-/m0/s1
+M7S         InChIKey                InChI  1.03                                                                                                                                                                                                                     XYMQLACGAYNBRX-JIKNKQOGSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+M7S acedrg               243         "dictionary generator"                  
+M7S acedrg_database      11          "data source"                           
+M7S rdkit                2017.03.2   "Chemoinformatics tool"
+M7S refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,411 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3QL     3QL      N-[(1R,2S,3R,4R,5R)-2-[(2S,3R,4R,5S,6R)-3-acetamido-6-(hydroxymethyl)-4,5-bis(oxidanyl)oxan-2-yl]oxy-3-oxidanyl-6,8-dioxabicyclo[3.2.1]octan-4-yl]ethanamide     NON-POLYMER     54     28     .     
+#
+data_comp_3QL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3QL     O7A     O       O       0       -31.222     29.413      4.339       
+3QL     C7A     C       C       0       -30.176     28.855      4.017       
+3QL     C8A     C       CH3     0       -30.129     27.909      2.853       
+3QL     N2A     N       NH1     0       -29.024     29.055      4.677       
+3QL     C2A     C       CH1     0       -28.856     29.923      5.829       
+3QL     C3A     C       CH1     0       -28.508     31.350      5.407       
+3QL     O3A     O       OH1     0       -29.565     31.899      4.632       
+3QL     C4A     C       CH1     0       -28.222     32.232      6.619       
+3QL     O4A     O       OH1     0       -27.742     33.500      6.177       
+3QL     C5A     C       CH1     0       -27.174     31.571      7.515       
+3QL     C6A     C       CH2     0       -26.931     32.327      8.802       
+3QL     O6A     O       OH1     0       -25.944     31.683      9.607       
+3QL     O5A     O       O2      0       -27.623     30.251      7.887       
+3QL     C1A     C       CH1     0       -27.804     29.377      6.776       
+3QL     O1A     O       O2      0       -28.209     28.100      7.223       
+3QL     C4B     C       CH1     0       -27.196     27.245      7.778       
+3QL     C3B     C       CH1     0       -27.836     26.356      8.855       
+3QL     O3B     O       OH1     0       -27.995     27.115      10.054      
+3QL     C5B     C       CH1     0       -26.559     26.426      6.654       
+3QL     O5B     O       O2      0       -27.041     25.068      6.714       
+3QL     C1B     C       CH1     0       -26.332     24.560      7.832       
+3QL     O1B     O       O2      0       -24.997     25.050      7.703       
+3QL     C6B     C       CH2     0       -25.059     26.199      6.833       
+3QL     C2B     C       CH1     0       -26.988     25.105      9.124       
+3QL     N2B     N       NH1     0       -27.793     24.071      9.778       
+3QL     C7B     C       C       0       -27.532     23.552      10.990      
+3QL     O7B     O       O       0       -26.577     23.907      11.674      
+3QL     C8B     C       CH3     0       -28.482     22.498      11.473      
+3QL     H1      H       H       0       -29.227     27.866      2.496       
+3QL     H2      H       H       0       -30.733     28.221      2.159       
+3QL     H3      H       H       0       -30.404     27.024      3.143       
+3QL     H4      H       H       0       -28.314     28.626      4.392       
+3QL     H5      H       H       0       -29.707     29.958      6.328       
+3QL     H6      H       H       0       -27.690     31.309      4.847       
+3QL     H7      H       H       0       -29.285     32.607      4.273       
+3QL     H8      H       H       0       -29.056     32.363      7.137       
+3QL     H9      H       H       0       -27.019     33.412      5.755       
+3QL     H10     H       H       0       -26.325     31.495      7.015       
+3QL     H11     H       H       0       -27.769     32.388      9.306       
+3QL     H12     H       H       0       -26.633     33.236      8.595       
+3QL     H13     H       H       0       -26.226     30.918      9.842       
+3QL     H14     H       H       0       -26.949     29.296      6.285       
+3QL     H15     H       H       0       -26.509     27.802      8.204       
+3QL     H16     H       H       0       -28.731     26.072      8.541       
+3QL     H17     H       H       0       -28.456     26.671      10.601      
+3QL     H18     H       H       0       -26.766     26.839      5.747       
+3QL     H19     H       H       0       -26.344     23.555      7.834       
+3QL     H20     H       H       0       -24.618     26.981      7.256       
+3QL     H21     H       H       0       -24.623     25.995      5.965       
+3QL     H22     H       H       0       -26.275     25.374      9.754       
+3QL     H23     H       H       0       -28.496     23.764      9.352       
+3QL     H24     H       H       0       -28.250     22.242      12.381      
+3QL     H25     H       H       0       -28.425     21.720      10.895      
+3QL     H26     H       H       0       -29.389     22.845      11.457      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3QL         C7A         C8A      SINGLE       n     1.498  0.0100     1.498  0.0100
+3QL         O7A         C7A      DOUBLE       n     1.227  0.0100     1.227  0.0100
+3QL         C7A         N2A      SINGLE       n     1.334  0.0119     1.334  0.0119
+3QL         N2A         C2A      SINGLE       n     1.448  0.0100     1.448  0.0100
+3QL         C3A         O3A      SINGLE       n     1.421  0.0106     1.421  0.0106
+3QL         C2A         C3A      SINGLE       n     1.526  0.0102     1.526  0.0102
+3QL         C3A         C4A      SINGLE       n     1.523  0.0100     1.523  0.0100
+3QL         C2A         C1A      SINGLE       n     1.512  0.0200     1.512  0.0200
+3QL         C5B         C6B      SINGLE       n     1.526  0.0100     1.526  0.0100
+3QL         C5B         O5B      SINGLE       n     1.441  0.0100     1.441  0.0100
+3QL         C4B         C5B      SINGLE       n     1.524  0.0100     1.524  0.0100
+3QL         O1B         C6B      SINGLE       n     1.442  0.0100     1.442  0.0100
+3QL         C1A         O1A      SINGLE       n     1.410  0.0148     1.410  0.0148
+3QL         O5A         C1A      SINGLE       n     1.422  0.0172     1.422  0.0172
+3QL         O5B         C1B      SINGLE       n     1.416  0.0100     1.416  0.0100
+3QL         O1A         C4B      SINGLE       n     1.435  0.0121     1.435  0.0121
+3QL         C4A         O4A      SINGLE       n     1.425  0.0100     1.425  0.0100
+3QL         C4A         C5A      SINGLE       n     1.525  0.0100     1.525  0.0100
+3QL         C1B         O1B      SINGLE       n     1.427  0.0100     1.427  0.0100
+3QL         C4B         C3B      SINGLE       n     1.533  0.0114     1.533  0.0114
+3QL         C1B         C2B      SINGLE       n     1.539  0.0163     1.539  0.0163
+3QL         C5A         O5A      SINGLE       n     1.441  0.0100     1.441  0.0100
+3QL         C5A         C6A      SINGLE       n     1.511  0.0142     1.511  0.0142
+3QL         C3B         C2B      SINGLE       n     1.529  0.0161     1.529  0.0161
+3QL         C3B         O3B      SINGLE       n     1.428  0.0123     1.428  0.0123
+3QL         C2B         N2B      SINGLE       n     1.460  0.0100     1.460  0.0100
+3QL         C6A         O6A      SINGLE       n     1.426  0.0200     1.426  0.0200
+3QL         N2B         C7B      SINGLE       n     1.336  0.0116     1.336  0.0116
+3QL         C7B         O7B      DOUBLE       n     1.227  0.0100     1.227  0.0100
+3QL         C7B         C8B      SINGLE       n     1.498  0.0100     1.498  0.0100
+3QL         C8A          H1      SINGLE       n     1.089  0.0100     0.971  0.0140
+3QL         C8A          H2      SINGLE       n     1.089  0.0100     0.971  0.0140
+3QL         C8A          H3      SINGLE       n     1.089  0.0100     0.971  0.0140
+3QL         N2A          H4      SINGLE       n     1.016  0.0100     0.876  0.0200
+3QL         C2A          H5      SINGLE       n     1.089  0.0100     0.987  0.0166
+3QL         C3A          H6      SINGLE       n     1.089  0.0100     0.992  0.0104
+3QL         O3A          H7      SINGLE       n     0.970  0.0120     0.841  0.0200
+3QL         C4A          H8      SINGLE       n     1.089  0.0100     0.991  0.0105
+3QL         O4A          H9      SINGLE       n     0.970  0.0120     0.841  0.0200
+3QL         C5A         H10      SINGLE       n     1.089  0.0100     0.988  0.0182
+3QL         C6A         H11      SINGLE       n     1.089  0.0100     0.980  0.0184
+3QL         C6A         H12      SINGLE       n     1.089  0.0100     0.980  0.0184
+3QL         O6A         H13      SINGLE       n     0.970  0.0120     0.848  0.0200
+3QL         C1A         H14      SINGLE       n     1.089  0.0100     0.989  0.0183
+3QL         C4B         H15      SINGLE       n     1.089  0.0100     0.981  0.0200
+3QL         C3B         H16      SINGLE       n     1.089  0.0100     0.989  0.0181
+3QL         O3B         H17      SINGLE       n     0.970  0.0120     0.841  0.0200
+3QL         C5B         H18      SINGLE       n     1.089  0.0100     1.018  0.0200
+3QL         C1B         H19      SINGLE       n     1.089  0.0100     1.005  0.0200
+3QL         C6B         H20      SINGLE       n     1.089  0.0100     0.993  0.0200
+3QL         C6B         H21      SINGLE       n     1.089  0.0100     0.993  0.0200
+3QL         C2B         H22      SINGLE       n     1.089  0.0100     0.990  0.0148
+3QL         N2B         H23      SINGLE       n     1.016  0.0100     0.876  0.0200
+3QL         C8B         H24      SINGLE       n     1.089  0.0100     0.971  0.0140
+3QL         C8B         H25      SINGLE       n     1.089  0.0100     0.971  0.0140
+3QL         C8B         H26      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3QL         C8A         C7A         O7A     122.067    1.50
+3QL         C8A         C7A         N2A     115.988    1.50
+3QL         O7A         C7A         N2A     121.945    1.50
+3QL         C7A         C8A          H1     109.527    1.50
+3QL         C7A         C8A          H2     109.527    1.50
+3QL         C7A         C8A          H3     109.527    1.50
+3QL          H1         C8A          H2     109.365    1.50
+3QL          H1         C8A          H3     109.365    1.50
+3QL          H2         C8A          H3     109.365    1.50
+3QL         C7A         N2A         C2A     123.083    2.48
+3QL         C7A         N2A          H4     118.617    2.66
+3QL         C2A         N2A          H4     118.300    1.53
+3QL         N2A         C2A         C3A     110.454    2.38
+3QL         N2A         C2A         C1A     111.780    3.00
+3QL         N2A         C2A          H5     107.121    2.62
+3QL         C3A         C2A         C1A     111.124    1.57
+3QL         C3A         C2A          H5     107.579    2.24
+3QL         C1A         C2A          H5     107.511    1.55
+3QL         O3A         C3A         C2A     109.400    2.63
+3QL         O3A         C3A         C4A     110.984    1.55
+3QL         O3A         C3A          H6     108.954    1.50
+3QL         C2A         C3A         C4A     110.882    1.54
+3QL         C2A         C3A          H6     108.177    2.01
+3QL         C4A         C3A          H6     108.714    1.50
+3QL         C3A         O3A          H7     108.064    2.53
+3QL         C3A         C4A         O4A     109.301    2.14
+3QL         C3A         C4A         C5A     109.454    1.50
+3QL         C3A         C4A          H8     109.514    1.50
+3QL         O4A         C4A         C5A     109.072    2.07
+3QL         O4A         C4A          H8     109.194    1.50
+3QL         C5A         C4A          H8     109.223    1.50
+3QL         C4A         O4A          H9     109.564    3.00
+3QL         C4A         C5A         O5A     109.140    1.86
+3QL         C4A         C5A         C6A     112.996    1.59
+3QL         C4A         C5A         H10     108.960    1.50
+3QL         O5A         C5A         C6A     106.879    1.50
+3QL         O5A         C5A         H10     109.134    1.50
+3QL         C6A         C5A         H10     109.269    1.50
+3QL         C5A         C6A         O6A     111.299    2.09
+3QL         C5A         C6A         H11     109.363    1.50
+3QL         C5A         C6A         H12     109.363    1.50
+3QL         O6A         C6A         H11     109.265    1.50
+3QL         O6A         C6A         H12     109.265    1.50
+3QL         H11         C6A         H12     108.155    1.50
+3QL         C6A         O6A         H13     109.472    2.41
+3QL         C1A         O5A         C5A     113.097    1.50
+3QL         C2A         C1A         O1A     108.367    1.50
+3QL         C2A         C1A         O5A     111.350    3.00
+3QL         C2A         C1A         H14     108.848    1.50
+3QL         O1A         C1A         O5A     110.325    1.95
+3QL         O1A         C1A         H14     109.322    1.50
+3QL         O5A         C1A         H14     109.272    1.61
+3QL         C1A         O1A         C4B     117.135    1.97
+3QL         C5B         C4B         O1A     109.614    2.70
+3QL         C5B         C4B         C3B     111.722    1.50
+3QL         C5B         C4B         H15     109.370    1.50
+3QL         O1A         C4B         C3B     108.860    2.21
+3QL         O1A         C4B         H15     109.150    1.50
+3QL         C3B         C4B         H15     109.114    1.50
+3QL         C4B         C3B         C2B     110.991    2.40
+3QL         C4B         C3B         O3B     109.571    2.33
+3QL         C4B         C3B         H16     108.836    1.50
+3QL         C2B         C3B         O3B     110.652    2.09
+3QL         C2B         C3B         H16     108.832    1.50
+3QL         O3B         C3B         H16     108.790    1.50
+3QL         C3B         O3B         H17     109.099    3.00
+3QL         C6B         C5B         O5B     101.519    1.50
+3QL         C6B         C5B         C4B     113.067    1.50
+3QL         C6B         C5B         H18     111.501    1.50
+3QL         O5B         C5B         C4B     109.077    1.50
+3QL         O5B         C5B         H18     110.560    1.50
+3QL         C4B         C5B         H18     110.608    1.50
+3QL         C5B         O5B         C1B     101.794    1.50
+3QL         O5B         C1B         O1B     105.802    1.50
+3QL         O5B         C1B         C2B     107.740    1.55
+3QL         O5B         C1B         H19     110.159    1.50
+3QL         O1B         C1B         C2B     109.996    2.10
+3QL         O1B         C1B         H19     110.240    1.50
+3QL         C2B         C1B         H19     109.016    2.07
+3QL         C6B         O1B         C1B     106.772    1.50
+3QL         C5B         C6B         O1B     103.502    1.50
+3QL         C5B         C6B         H20     111.165    1.50
+3QL         C5B         C6B         H21     111.165    1.50
+3QL         O1B         C6B         H20     110.302    2.21
+3QL         O1B         C6B         H21     110.302    2.21
+3QL         H20         C6B         H21     110.124    2.57
+3QL         C1B         C2B         C3B     111.476    2.14
+3QL         C1B         C2B         N2B     110.879    2.08
+3QL         C1B         C2B         H22     109.008    1.50
+3QL         C3B         C2B         N2B     110.565    2.00
+3QL         C3B         C2B         H22     107.253    1.50
+3QL         N2B         C2B         H22     106.651    1.50
+3QL         C2B         N2B         C7B     122.828    1.50
+3QL         C2B         N2B         H23     118.975    1.50
+3QL         C7B         N2B         H23     118.197    2.17
+3QL         N2B         C7B         O7B     121.799    1.50
+3QL         N2B         C7B         C8B     116.225    1.50
+3QL         O7B         C7B         C8B     121.977    1.50
+3QL         C7B         C8B         H24     109.527    1.50
+3QL         C7B         C8B         H25     109.527    1.50
+3QL         C7B         C8B         H26     109.527    1.50
+3QL         H24         C8B         H25     109.365    1.50
+3QL         H24         C8B         H26     109.365    1.50
+3QL         H25         C8B         H26     109.365    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3QL                  nu0A         C5A         O5A         C1A         C2A     -66.299    10.0     3
+3QL                  nu1A         O5A         C1A         C2A         C3A      58.143    10.0     3
+3QL                  nu2A         C1A         C2A         C3A         C4A     -51.133    10.0     3
+3QL                  nu3A         C2A         C3A         C4A         C5A      50.422    10.0     3
+3QL                  nu4A         C3A         C4A         C5A         O5A     -57.013    10.0     3
+3QL                  nu5A         C4A         C5A         O5A         C1A      65.768    10.0     3
+3QL                  nu0B         C5B         O5B         C1B         C2B      78.872    10.0     3
+3QL                  nu1B         O5B         C1B         C2B         C3B     -20.276    10.0     3
+3QL                  nu2B         C1B         C2B         C3B         C4B     -35.129    10.0     3
+3QL                  nu3B         C2B         C3B         C4B         C5B      35.592    10.0     3
+3QL                  nu4B         C3B         C4B         C5B         O5B      19.703    10.0     3
+3QL                  nu5B         C4B         C5B         O5B         C1B     -78.254    10.0     3
+3QL            sp3_sp3_67         O5B         C5B         C6B         O1B      60.000    10.0     3
+3QL            sp3_sp3_68         O5B         C5B         C6B         H20     180.000    10.0     3
+3QL            sp3_sp3_69         O5B         C5B         C6B         H21     -60.000    10.0     3
+3QL            sp3_sp3_70         C4B         C5B         C6B         O1B     -60.000    10.0     3
+3QL            sp3_sp3_71         C4B         C5B         C6B         H20      60.000    10.0     3
+3QL            sp3_sp3_72         C4B         C5B         C6B         H21     180.000    10.0     3
+3QL            sp3_sp3_73         H18         C5B         C6B         O1B     180.000    10.0     3
+3QL            sp3_sp3_74         H18         C5B         C6B         H20     -60.000    10.0     3
+3QL            sp3_sp3_75         H18         C5B         C6B         H21      60.000    10.0     3
+3QL            sp3_sp3_76         C5B         C6B         O1B         C1B     -60.000    10.0     3
+3QL            sp3_sp3_77         H20         C6B         O1B         C1B     180.000    10.0     3
+3QL            sp3_sp3_78         H21         C6B         O1B         C1B      60.000    10.0     3
+3QL            sp3_sp3_79         O5B         C1B         O1B         C6B      60.000    10.0     3
+3QL            sp3_sp3_80         C2B         C1B         O1B         C6B     -60.000    10.0     3
+3QL            sp3_sp3_81         H19         C1B         O1B         C6B     180.000    10.0     3
+3QL             sp2_sp3_1         O7A         C7A         C8A          H1       0.000    10.0     6
+3QL             sp2_sp3_2         O7A         C7A         C8A          H2     120.000    10.0     6
+3QL             sp2_sp3_3         O7A         C7A         C8A          H3    -120.000    10.0     6
+3QL             sp2_sp3_4         N2A         C7A         C8A          H1     180.000    10.0     6
+3QL             sp2_sp3_5         N2A         C7A         C8A          H2     -60.000    10.0     6
+3QL             sp2_sp3_6         N2A         C7A         C8A          H3      60.000    10.0     6
+3QL             sp2_sp2_1         C8A         C7A         N2A         C2A     180.000     5.0     2
+3QL             sp2_sp2_2         C8A         C7A         N2A          H4       0.000     5.0     2
+3QL             sp2_sp2_3         O7A         C7A         N2A         C2A       0.000     5.0     2
+3QL             sp2_sp2_4         O7A         C7A         N2A          H4     180.000     5.0     2
+3QL             sp2_sp3_7         C7A         N2A         C2A         C3A       0.000    10.0     6
+3QL             sp2_sp3_8         C7A         N2A         C2A         C1A     120.000    10.0     6
+3QL             sp2_sp3_9         C7A         N2A         C2A          H5    -120.000    10.0     6
+3QL            sp2_sp3_10          H4         N2A         C2A         C3A     180.000    10.0     6
+3QL            sp2_sp3_11          H4         N2A         C2A         C1A     -60.000    10.0     6
+3QL            sp2_sp3_12          H4         N2A         C2A          H5      60.000    10.0     6
+3QL            sp3_sp3_82         C2A         C3A         O3A          H7     180.000    10.0     3
+3QL            sp3_sp3_83         C4A         C3A         O3A          H7      60.000    10.0     3
+3QL            sp3_sp3_84          H6         C3A         O3A          H7     -60.000    10.0     3
+3QL            sp3_sp3_94         C2A         C1A         O1A         C4B     180.000    10.0     3
+3QL            sp3_sp3_95         O5A         C1A         O1A         C4B      60.000    10.0     3
+3QL            sp3_sp3_96         H14         C1A         O1A         C4B     -60.000    10.0     3
+3QL            sp3_sp3_97         C5B         C4B         O1A         C1A     180.000    10.0     3
+3QL            sp3_sp3_98         C3B         C4B         O1A         C1A      60.000    10.0     3
+3QL            sp3_sp3_99         H15         C4B         O1A         C1A     -60.000    10.0     3
+3QL           sp3_sp3_100         C3A         C4A         O4A          H9     180.000    10.0     3
+3QL           sp3_sp3_101         C5A         C4A         O4A          H9      60.000    10.0     3
+3QL           sp3_sp3_102          H8         C4A         O4A          H9     -60.000    10.0     3
+3QL           sp3_sp3_112         C4A         C5A         C6A         O6A     180.000    10.0     3
+3QL           sp3_sp3_113         C4A         C5A         C6A         H11     -60.000    10.0     3
+3QL           sp3_sp3_114         C4A         C5A         C6A         H12      60.000    10.0     3
+3QL           sp3_sp3_115         O5A         C5A         C6A         O6A      60.000    10.0     3
+3QL           sp3_sp3_116         O5A         C5A         C6A         H11     180.000    10.0     3
+3QL           sp3_sp3_117         O5A         C5A         C6A         H12     -60.000    10.0     3
+3QL           sp3_sp3_118         H10         C5A         C6A         O6A     -60.000    10.0     3
+3QL           sp3_sp3_119         H10         C5A         C6A         H11      60.000    10.0     3
+3QL           sp3_sp3_120         H10         C5A         C6A         H12     180.000    10.0     3
+3QL           sp3_sp3_121         C4B         C3B         O3B         H17     180.000    10.0     3
+3QL           sp3_sp3_122         C2B         C3B         O3B         H17      60.000    10.0     3
+3QL           sp3_sp3_123         H16         C3B         O3B         H17     -60.000    10.0     3
+3QL            sp2_sp3_13         C7B         N2B         C2B         C1B       0.000    10.0     6
+3QL            sp2_sp3_14         C7B         N2B         C2B         C3B     120.000    10.0     6
+3QL            sp2_sp3_15         C7B         N2B         C2B         H22    -120.000    10.0     6
+3QL            sp2_sp3_16         H23         N2B         C2B         C1B     180.000    10.0     6
+3QL            sp2_sp3_17         H23         N2B         C2B         C3B     -60.000    10.0     6
+3QL            sp2_sp3_18         H23         N2B         C2B         H22      60.000    10.0     6
+3QL           sp3_sp3_124         C5A         C6A         O6A         H13     180.000    10.0     3
+3QL           sp3_sp3_125         H11         C6A         O6A         H13      60.000    10.0     3
+3QL           sp3_sp3_126         H12         C6A         O6A         H13     -60.000    10.0     3
+3QL             sp2_sp2_5         C8B         C7B         N2B         C2B     180.000     5.0     2
+3QL             sp2_sp2_6         C8B         C7B         N2B         H23       0.000     5.0     2
+3QL             sp2_sp2_7         O7B         C7B         N2B         C2B       0.000     5.0     2
+3QL             sp2_sp2_8         O7B         C7B         N2B         H23     180.000     5.0     2
+3QL            sp2_sp3_19         N2B         C7B         C8B         H24       0.000    10.0     6
+3QL            sp2_sp3_20         N2B         C7B         C8B         H25     120.000    10.0     6
+3QL            sp2_sp3_21         N2B         C7B         C8B         H26    -120.000    10.0     6
+3QL            sp2_sp3_22         O7B         C7B         C8B         H24     180.000    10.0     6
+3QL            sp2_sp3_23         O7B         C7B         C8B         H25     -60.000    10.0     6
+3QL            sp2_sp3_24         O7B         C7B         C8B         H26      60.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+3QL    chir_1    C2A    N2A    C1A    C3A    negative
+3QL    chir_2    C3A    O3A    C4A    C2A    negative
+3QL    chir_3    C4A    O4A    C5A    C3A    positive
+3QL    chir_4    C5A    O5A    C4A    C6A    negative
+3QL    chir_5    C1A    O1A    O5A    C2A    positive
+3QL    chir_6    C4B    O1A    C5B    C3B    positive
+3QL    chir_7    C3B    O3B    C4B    C2B    negative
+3QL    chir_8    C5B    O5B    C4B    C6B    negative
+3QL    chir_9    C1B    O5B    O1B    C2B    negative
+3QL    chir_10    C2B    N2B    C1B    C3B    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3QL    plan-1         C7A   0.020
+3QL    plan-1         C8A   0.020
+3QL    plan-1         N2A   0.020
+3QL    plan-1         O7A   0.020
+3QL    plan-2         C2A   0.020
+3QL    plan-2         C7A   0.020
+3QL    plan-2          H4   0.020
+3QL    plan-2         N2A   0.020
+3QL    plan-3         C2B   0.020
+3QL    plan-3         C7B   0.020
+3QL    plan-3         H23   0.020
+3QL    plan-3         N2B   0.020
+3QL    plan-4         C7B   0.020
+3QL    plan-4         C8B   0.020
+3QL    plan-4         N2B   0.020
+3QL    plan-4         O7B   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3QL           SMILES              ACDLabs 12.01                                                                                                                                                 O=C(NC3C(O)C(O)C(OC3OC1C(O)C(NC(=O)C)C2OC1CO2)CO)C
+3QL            InChI                InChI  1.03 InChI=1S/C16H26N2O10/c1-5(20)17-9-12(23)11(22)7(3-19)26-16(9)28-14-8-4-25-15(27-8)10(13(14)24)18-6(2)21/h7-16,19,22-24H,3-4H2,1-2H3,(H,17,20)(H,18,21)/t7-,8-,9-,10-,11-,12-,13-,14-,15-,16+/m1/s1
+3QL         InChIKey                InChI  1.03                                                                                                                                                                        UVQRTGABPMLDOA-KSKNGZLJSA-N
+3QL SMILES_CANONICAL               CACTVS 3.385                                                                                                    CC(=O)N[C@@H]1[C@@H](O)[C@H](O[C@@H]2O[C@H](CO)[C@@H](O)[C@H](O)[C@H]2NC(C)=O)[C@H]3CO[C@@H]1O3
+3QL           SMILES               CACTVS 3.385                                                                                                                   CC(=O)N[CH]1[CH](O)[CH](O[CH]2O[CH](CO)[CH](O)[CH](O)[CH]2NC(C)=O)[CH]3CO[CH]1O3
+3QL SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                  CC(=O)N[C@@H]1[C@H]([C@@H]([C@H]2CO[C@@H]1O2)O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)NC(=O)C)O
+3QL           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                                               CC(=O)NC1C(C(C2COC1O2)OC3C(C(C(C(O3)CO)O)O)NC(=O)C)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3QL acedrg               243         "dictionary generator"                  
+3QL acedrg_database      11          "data source"                           
+3QL rdkit                2017.03.2   "Chemoinformatics tool"
+3QL refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,236 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OGY     OGY      "[2-(3-phenylpropyl)-1H-imidazol-4-yl]methanol"     NON-POLYMER     32     16     .     
+#
+data_comp_OGY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OGY     C10     C       CR6     0       -111.778    -17.450     25.142      
+OGY     C13     C       CR16    0       -109.375    -17.727     26.539      
+OGY     C15     C       CR16    0       -111.759    -17.461     26.532      
+OGY     O01     O       OH1     0       -117.231    -24.233     22.622      
+OGY     C02     C       CH2     0       -117.390    -22.920     23.134      
+OGY     C03     C       CR5     0       -116.085    -22.327     23.558      
+OGY     C04     C       CR15    0       -114.845    -22.891     23.540      
+OGY     N05     N       NR5     0       -113.980    -21.953     24.025      
+OGY     C06     C       CR5     0       -114.693    -20.848     24.327      
+OGY     C07     C       CH2     0       -114.104    -19.600     24.886      
+OGY     C08     C       CH2     0       -113.621    -18.618     23.818      
+OGY     C09     C       CH2     0       -113.078    -17.305     24.386      
+OGY     C11     C       CR16    0       -110.572    -17.584     24.464      
+OGY     C12     C       CR16    0       -109.377    -17.720     25.159      
+OGY     C14     C       CR16    0       -110.563    -17.598     27.226      
+OGY     N16     N       NRD5    0       -115.976    -21.039     24.057      
+OGY     H1      H       H       0       -108.562    -17.820     27.011      
+OGY     H2      H       H       0       -112.569    -17.373     27.009      
+OGY     H3      H       H       0       -116.849    -24.186     21.847      
+OGY     H4      H       H       0       -118.000    -22.947     23.901      
+OGY     H5      H       H       0       -117.796    -22.354     22.444      
+OGY     H6      H       H       0       -114.612    -23.760     23.251      
+OGY     H7      H       H       0       -113.104    -22.050     24.125      
+OGY     H8      H       H       0       -113.353    -19.838     25.458      
+OGY     H9      H       H       0       -114.771    -19.157     25.440      
+OGY     H10     H       H       0       -114.366    -18.415     23.215      
+OGY     H11     H       H       0       -112.917    -19.047     23.288      
+OGY     H12     H       H       0       -112.943    -16.677     23.645      
+OGY     H13     H       H       0       -113.752    -16.920     24.985      
+OGY     H14     H       H       0       -110.566    -17.580     23.520      
+OGY     H15     H       H       0       -108.565    -17.809     24.686      
+OGY     H16     H       H       0       -110.565    -17.602     28.170      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OGY         O01         C02      SINGLE       n     1.417  0.0163     1.417  0.0163
+OGY         C02         C03      SINGLE       n     1.494  0.0100     1.494  0.0100
+OGY         C03         C04      DOUBLE       y     1.362  0.0100     1.362  0.0100
+OGY         C03         N16      SINGLE       y     1.386  0.0126     1.386  0.0126
+OGY         C04         N05      SINGLE       y     1.366  0.0167     1.366  0.0167
+OGY         C06         N16      DOUBLE       y     1.324  0.0100     1.324  0.0100
+OGY         N05         C06      SINGLE       y     1.348  0.0148     1.348  0.0148
+OGY         C08         C09      SINGLE       n     1.529  0.0117     1.529  0.0117
+OGY         C07         C08      SINGLE       n     1.527  0.0200     1.527  0.0200
+OGY         C06         C07      SINGLE       n     1.490  0.0100     1.490  0.0100
+OGY         C11         C12      SINGLE       y     1.386  0.0100     1.386  0.0100
+OGY         C10         C11      DOUBLE       y     1.385  0.0111     1.385  0.0111
+OGY         C10         C09      SINGLE       n     1.510  0.0100     1.510  0.0100
+OGY         C13         C12      DOUBLE       y     1.376  0.0124     1.376  0.0124
+OGY         C10         C15      SINGLE       y     1.385  0.0111     1.385  0.0111
+OGY         C13         C14      SINGLE       y     1.374  0.0127     1.374  0.0127
+OGY         C15         C14      DOUBLE       y     1.386  0.0100     1.386  0.0100
+OGY         C13          H1      SINGLE       n     1.082  0.0130     0.944  0.0161
+OGY         C15          H2      SINGLE       n     1.082  0.0130     0.944  0.0174
+OGY         O01          H3      SINGLE       n     0.970  0.0120     0.866  0.0200
+OGY         C02          H4      SINGLE       n     1.089  0.0100     0.980  0.0156
+OGY         C02          H5      SINGLE       n     1.089  0.0100     0.980  0.0156
+OGY         C04          H6      SINGLE       n     1.082  0.0130     0.945  0.0191
+OGY         N05          H7      SINGLE       n     1.016  0.0100     0.887  0.0200
+OGY         C07          H8      SINGLE       n     1.089  0.0100     0.974  0.0100
+OGY         C07          H9      SINGLE       n     1.089  0.0100     0.974  0.0100
+OGY         C08         H10      SINGLE       n     1.089  0.0100     0.980  0.0178
+OGY         C08         H11      SINGLE       n     1.089  0.0100     0.980  0.0178
+OGY         C09         H12      SINGLE       n     1.089  0.0100     0.981  0.0150
+OGY         C09         H13      SINGLE       n     1.089  0.0100     0.981  0.0150
+OGY         C11         H14      SINGLE       n     1.082  0.0130     0.944  0.0174
+OGY         C12         H15      SINGLE       n     1.082  0.0130     0.944  0.0175
+OGY         C14         H16      SINGLE       n     1.082  0.0130     0.944  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OGY         C11         C10         C09     120.970    1.50
+OGY         C11         C10         C15     118.060    1.50
+OGY         C09         C10         C15     120.970    1.50
+OGY         C12         C13         C14     120.043    1.50
+OGY         C12         C13          H1     119.979    1.50
+OGY         C14         C13          H1     119.979    1.50
+OGY         C10         C15         C14     120.624    1.50
+OGY         C10         C15          H2     119.591    1.50
+OGY         C14         C15          H2     119.786    1.50
+OGY         C02         O01          H3     108.825    3.00
+OGY         O01         C02         C03     111.519    1.50
+OGY         O01         C02          H4     109.192    1.50
+OGY         O01         C02          H5     109.192    1.50
+OGY         C03         C02          H4     109.578    1.50
+OGY         C03         C02          H5     109.578    1.50
+OGY          H4         C02          H5     108.101    1.50
+OGY         C02         C03         C04     128.517    1.50
+OGY         C02         C03         N16     122.682    1.50
+OGY         C04         C03         N16     108.801    1.50
+OGY         C03         C04         N05     106.799    1.50
+OGY         C03         C04          H6     127.509    1.50
+OGY         N05         C04          H6     125.692    1.72
+OGY         C04         N05         C06     107.741    1.50
+OGY         C04         N05          H7     126.226    1.94
+OGY         C06         N05          H7     126.033    2.25
+OGY         N16         C06         N05     110.229    1.50
+OGY         N16         C06         C07     125.564    1.64
+OGY         N05         C06         C07     124.208    1.50
+OGY         C08         C07         C06     113.748    1.50
+OGY         C08         C07          H8     108.831    1.50
+OGY         C08         C07          H9     108.831    1.50
+OGY         C06         C07          H8     108.894    1.50
+OGY         C06         C07          H9     108.894    1.50
+OGY          H8         C07          H9     107.822    1.50
+OGY         C09         C08         C07     113.440    2.25
+OGY         C09         C08         H10     108.750    1.50
+OGY         C09         C08         H11     108.750    1.50
+OGY         C07         C08         H10     108.882    1.50
+OGY         C07         C08         H11     108.882    1.50
+OGY         H10         C08         H11     107.715    1.50
+OGY         C08         C09         C10     114.108    2.12
+OGY         C08         C09         H12     108.612    1.50
+OGY         C08         C09         H13     108.612    1.50
+OGY         C10         C09         H12     108.803    1.50
+OGY         C10         C09         H13     108.803    1.50
+OGY         H12         C09         H13     107.745    1.50
+OGY         C12         C11         C10     120.624    1.50
+OGY         C12         C11         H14     119.786    1.50
+OGY         C10         C11         H14     119.591    1.50
+OGY         C11         C12         C13     120.325    1.50
+OGY         C11         C12         H15     119.792    1.50
+OGY         C13         C12         H15     119.883    1.50
+OGY         C13         C14         C15     120.325    1.50
+OGY         C13         C14         H16     119.883    1.50
+OGY         C15         C14         H16     119.792    1.50
+OGY         C03         N16         C06     106.431    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OGY            sp2_sp3_14         C11         C10         C09         C08     -90.000    10.0     6
+OGY              const_17         C09         C10         C11         C12     180.000    10.0     2
+OGY              const_39         C09         C10         C15         C14     180.000    10.0     2
+OGY             sp3_sp3_4         C07         C08         C09         C10     180.000    10.0     3
+OGY              const_19         C10         C11         C12         C13       0.000    10.0     2
+OGY              const_23         C11         C12         C13         C14       0.000    10.0     2
+OGY              const_27         C12         C13         C14         C15       0.000    10.0     2
+OGY              const_31         C13         C14         C15         C10       0.000    10.0     2
+OGY             sp3_sp3_1         C03         C02         O01          H3     180.000    10.0     3
+OGY             sp2_sp3_2         C04         C03         C02         O01     -90.000    10.0     6
+OGY              const_36         C02         C03         N16         C06     180.000    10.0     2
+OGY       const_sp2_sp2_3         C02         C03         C04         N05     180.000     5.0     2
+OGY       const_sp2_sp2_5         C03         C04         N05         C06       0.000     5.0     2
+OGY              const_11         C07         C06         N05         C04     180.000    10.0     2
+OGY              const_14         C07         C06         N16         C03     180.000    10.0     2
+OGY             sp2_sp3_8         N16         C06         C07         C08     -90.000    10.0     6
+OGY            sp3_sp3_13         C06         C07         C08         C09     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OGY    plan-1         C09   0.020
+OGY    plan-1         C10   0.020
+OGY    plan-1         C11   0.020
+OGY    plan-1         C12   0.020
+OGY    plan-1         C13   0.020
+OGY    plan-1         C14   0.020
+OGY    plan-1         C15   0.020
+OGY    plan-1          H1   0.020
+OGY    plan-1         H14   0.020
+OGY    plan-1         H15   0.020
+OGY    plan-1         H16   0.020
+OGY    plan-1          H2   0.020
+OGY    plan-2         C02   0.020
+OGY    plan-2         C03   0.020
+OGY    plan-2         C04   0.020
+OGY    plan-2         C06   0.020
+OGY    plan-2         C07   0.020
+OGY    plan-2          H6   0.020
+OGY    plan-2          H7   0.020
+OGY    plan-2         N05   0.020
+OGY    plan-2         N16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OGY           SMILES              ACDLabs 12.01                                                                             c1(ccccc1)CCCc2ncc(CO)n2
+OGY            InChI                InChI  1.03 InChI=1S/C13H16N2O/c16-10-12-9-14-13(15-12)8-4-7-11-5-2-1-3-6-11/h1-3,5-6,9,16H,4,7-8,10H2,(H,14,15)
+OGY         InChIKey                InChI  1.03                                                                          YJBVUMXRLPWRCM-UHFFFAOYSA-N
+OGY SMILES_CANONICAL               CACTVS 3.385                                                                            OCc1c[nH]c(CCCc2ccccc2)n1
+OGY           SMILES               CACTVS 3.385                                                                            OCc1c[nH]c(CCCc2ccccc2)n1
+OGY SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                          c1ccc(cc1)CCCc2[nH]cc(n2)CO
+OGY           SMILES "OpenEye OEToolkits" 2.0.7                                                                          c1ccc(cc1)CCCc2[nH]cc(n2)CO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OGY acedrg               243         "dictionary generator"                  
+OGY acedrg_database      11          "data source"                           
+OGY rdkit                2017.03.2   "Chemoinformatics tool"
+OGY refmac5              5.8.0238    "optimization tool"                     

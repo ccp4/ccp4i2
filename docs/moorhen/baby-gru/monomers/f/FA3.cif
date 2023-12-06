@@ -1,0 +1,188 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FA3     FA3      "2-ANHYDRO-3-FLUORO-QUINIC ACID"     NON-POLYMER     21     13     .     
+#
+data_comp_FA3
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FA3     C2      C       CH2     0       29.010      51.646      57.791      
+FA3     F1      F       F       0       28.258      49.805      61.470      
+FA3     C3      C       CH1     0       28.330      50.291      57.790      
+FA3     O3      O       OH1     0       28.843      49.532      56.697      
+FA3     C4      C       CH1     0       28.602      49.562      59.105      
+FA3     O4      O       OH1     0       27.771      48.403      59.202      
+FA3     C5      C       CR6     0       28.392      50.459      60.300      
+FA3     C6      C       CR16    0       28.355      51.782      60.243      
+FA3     C       C       C       0       29.409      53.753      59.112      
+FA3     O1      O       OC      -1      30.500      53.577      59.615      
+FA3     O30     O       OH1     0       27.181      52.994      58.528      
+FA3     O2      O       O       0       29.067      54.866      58.762      
+FA3     C1      C       CT      0       28.476      52.552      58.917      
+FA3     H2C1    H       H       0       29.977      51.527      57.910      
+FA3     H2C2    H       H       0       28.861      52.091      56.930      
+FA3     H3      H       H       0       27.365      50.413      57.672      
+FA3     HB      H       H       0       28.401      48.820      56.619      
+FA3     H4      H       H       0       29.545      49.262      59.106      
+FA3     HA      H       H       0       26.959      48.631      59.187      
+FA3     H6      H       H       0       28.251      52.277      61.045      
+FA3     H30     H       H       0       26.853      53.478      59.140      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FA3          C2          C3      SINGLE       n     1.512  0.0129     1.512  0.0129
+FA3          C2          C1      SINGLE       n     1.534  0.0154     1.534  0.0154
+FA3          F1          C5      SINGLE       n     1.347  0.0171     1.347  0.0171
+FA3          C3          O3      SINGLE       n     1.426  0.0104     1.426  0.0104
+FA3          C3          C4      SINGLE       n     1.523  0.0120     1.523  0.0120
+FA3          C4          O4      SINGLE       n     1.427  0.0125     1.427  0.0125
+FA3          C4          C5      SINGLE       n     1.502  0.0146     1.502  0.0146
+FA3          C5          C6      DOUBLE       n     1.320  0.0140     1.320  0.0140
+FA3          C6          C1      SINGLE       n     1.525  0.0200     1.525  0.0200
+FA3           C          O1      SINGLE       n     1.213  0.0200     1.213  0.0200
+FA3           C          O2      DOUBLE       n     1.213  0.0200     1.213  0.0200
+FA3           C          C1      SINGLE       n     1.526  0.0153     1.526  0.0153
+FA3         O30          C1      SINGLE       n     1.417  0.0170     1.417  0.0170
+FA3          C2        H2C1      SINGLE       n     1.089  0.0100     0.981  0.0161
+FA3          C2        H2C2      SINGLE       n     1.089  0.0100     0.981  0.0161
+FA3          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0100
+FA3          O3          HB      SINGLE       n     0.970  0.0120     0.841  0.0200
+FA3          C4          H4      SINGLE       n     1.089  0.0100     0.989  0.0200
+FA3          O4          HA      SINGLE       n     0.970  0.0120     0.843  0.0200
+FA3          C6          H6      SINGLE       n     1.082  0.0130     0.948  0.0200
+FA3         O30         H30      SINGLE       n     0.970  0.0120     0.845  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FA3          C3          C2          C1     111.124    1.57
+FA3          C3          C2        H2C1     109.399    1.50
+FA3          C3          C2        H2C2     109.399    1.50
+FA3          C1          C2        H2C1     108.565    1.50
+FA3          C1          C2        H2C2     108.565    1.50
+FA3        H2C1          C2        H2C2     107.908    1.50
+FA3          C2          C3          O3     108.177    1.76
+FA3          C2          C3          C4     108.398    2.24
+FA3          C2          C3          H3     108.952    1.50
+FA3          O3          C3          C4     109.779    1.72
+FA3          O3          C3          H3     108.933    1.50
+FA3          C4          C3          H3     109.434    1.50
+FA3          C3          O3          HB     109.387    3.00
+FA3          C3          C4          O4     110.170    1.75
+FA3          C3          C4          C5     111.458    1.50
+FA3          C3          C4          H4     108.836    1.50
+FA3          O4          C4          C5     110.237    2.20
+FA3          O4          C4          H4     108.370    1.50
+FA3          C5          C4          H4     108.566    1.50
+FA3          C4          O4          HA     108.734    2.82
+FA3          F1          C5          C4     114.430    1.50
+FA3          F1          C5          C6     121.532    1.50
+FA3          C4          C5          C6     124.038    1.68
+FA3          C5          C6          C1     121.762    3.00
+FA3          C5          C6          H6     119.459    1.55
+FA3          C1          C6          H6     118.779    1.79
+FA3          O1           C          O2     120.713    1.50
+FA3          O1           C          C1     119.643    2.54
+FA3          O2           C          C1     119.643    2.54
+FA3          C1         O30         H30     108.823    1.62
+FA3          C2          C1          C6     112.021    2.38
+FA3          C2          C1           C     111.056    2.52
+FA3          C2          C1         O30     109.247    2.43
+FA3          C6          C1           C     109.919    2.81
+FA3          C6          C1         O30     109.527    2.40
+FA3           C          C1         O30     108.672    2.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FA3            sp3_sp3_22           C          C1          C2          C3      60.000    10.0     3
+FA3             sp3_sp3_2          C1          C2          C3          O3     180.000    10.0     3
+FA3            sp3_sp3_36           C          C1         O30         H30     -60.000    10.0     3
+FA3            sp3_sp3_28          C2          C3          O3          HB     180.000    10.0     3
+FA3            sp3_sp3_14          O3          C3          C4          O4     -60.000    10.0     3
+FA3            sp3_sp3_31          C3          C4          O4          HA     180.000    10.0     3
+FA3             sp2_sp3_5          F1          C5          C4          O4     -60.000    10.0     6
+FA3             sp2_sp2_3          F1          C5          C6          C1     180.000     5.0     2
+FA3             sp2_sp3_8          C5          C6          C1           C     120.000    10.0     6
+FA3            sp2_sp3_15          O1           C          C1         O30    -120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FA3    chir_1    C3    O3    C4    C2    negative
+FA3    chir_2    C4    O4    C5    C3    positive
+FA3    chir_3    C1    O30    C    C6    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FA3    plan-1          C4   0.020
+FA3    plan-1          C5   0.020
+FA3    plan-1          C6   0.020
+FA3    plan-1          F1   0.020
+FA3    plan-2          C1   0.020
+FA3    plan-2          C5   0.020
+FA3    plan-2          C6   0.020
+FA3    plan-2          H6   0.020
+FA3    plan-3           C   0.020
+FA3    plan-3          C1   0.020
+FA3    plan-3          O1   0.020
+FA3    plan-3          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FA3           SMILES              ACDLabs 10.04                                                                       FC1=CC(O)(C(=O)O)CC(O)C1O
+FA3 SMILES_CANONICAL               CACTVS 3.341                                                          O[C@@H]1C[C@@](O)(C=C(F)[C@H]1O)C(O)=O
+FA3           SMILES               CACTVS 3.341                                                               O[CH]1C[C](O)(C=C(F)[CH]1O)C(O)=O
+FA3 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                         C1[C@H]([C@@H](C(=C[C@]1(C(=O)O)O)F)O)O
+FA3           SMILES "OpenEye OEToolkits" 1.5.0                                                                     C1C(C(C(=CC1(C(=O)O)O)F)O)O
+FA3            InChI                InChI  1.03 InChI=1S/C7H9FO5/c8-3-1-7(13,6(11)12)2-4(9)5(3)10/h1,4-5,9-10,13H,2H2,(H,11,12)/t4-,5-,7+/m1/s1
+FA3         InChIKey                InChI  1.03                                                                     DGZQZSSRYAJDAX-XAHCXIQSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FA3 acedrg               243         "dictionary generator"                  
+FA3 acedrg_database      11          "data source"                           
+FA3 rdkit                2017.03.2   "Chemoinformatics tool"
+FA3 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,199 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CCO     CCO      CARBOXYMETHYLTHIO-3-(3-CHLOROPHENYL)-1,2,4-OXADIAZOL     NON-POLYMER     23     17     .     
+#
+data_comp_CCO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CCO     C1      C       CR6     0       133.174     2.865       186.151     
+CCO     C2      C       CR16    0       133.461     1.567       185.740     
+CCO     C3      C       CR16    0       134.372     1.339       184.721     
+CCO     C4      C       CR16    0       135.007     2.391       184.089     
+CCO     C5      C       CR6     0       134.714     3.681       184.494     
+CCO     C6      C       CR16    0       133.805     3.929       185.512     
+CCO     CL5     CL      CL      0       135.502     5.023       183.713     
+CCO     O1      O       O2      0       130.583     3.903       188.394     
+CCO     C2A     C       CR5     0       131.070     2.820       189.048     
+CCO     S3      S       S2      0       130.361     2.279       190.545     
+CCO     N3      N       NRD5    0       132.052     2.289       188.322     
+CCO     C1A     C       CR5     0       132.197     3.099       187.221     
+CCO     N2      N       NRD5    0       131.341     4.079       187.208     
+CCO     C1B     C       CH2     0       128.769     2.994       191.014     
+CCO     C       C       C       0       127.678     2.548       190.054     
+CCO     O2      O       OC      -1      127.465     3.271       189.061     
+CCO     O3      O       O       0       127.081     1.488       190.329     
+CCO     HC2     H       H       0       133.037     0.840       186.159     
+CCO     HC3     H       H       0       134.561     0.459       184.458     
+CCO     HC4     H       H       0       135.626     2.233       183.398     
+CCO     HC6     H       H       0       133.618     4.805       185.773     
+CCO     H1B1    H       H       0       128.838     3.966       191.005     
+CCO     H1B2    H       H       0       128.545     2.715       191.919     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CCO          C1          C2      DOUBLE       y     1.388  0.0100     1.388  0.0100
+CCO          C1          C6      SINGLE       y     1.388  0.0100     1.388  0.0100
+CCO          C1         C1A      SINGLE       n     1.467  0.0100     1.467  0.0100
+CCO          C2          C3      SINGLE       y     1.383  0.0100     1.383  0.0100
+CCO          C3          C4      DOUBLE       y     1.378  0.0114     1.378  0.0114
+CCO          C4          C5      SINGLE       y     1.378  0.0136     1.378  0.0136
+CCO          C5          C6      DOUBLE       y     1.380  0.0133     1.380  0.0133
+CCO          C5         CL5      SINGLE       n     1.742  0.0100     1.742  0.0100
+CCO          O1         C2A      SINGLE       y     1.356  0.0200     1.356  0.0200
+CCO          O1          N2      SINGLE       y     1.418  0.0116     1.418  0.0116
+CCO         C2A          S3      SINGLE       n     1.744  0.0119     1.744  0.0119
+CCO         C2A          N3      DOUBLE       y     1.338  0.0200     1.338  0.0200
+CCO          S3         C1B      SINGLE       n     1.809  0.0191     1.809  0.0191
+CCO          N3         C1A      SINGLE       y     1.376  0.0106     1.376  0.0106
+CCO         C1A          N2      DOUBLE       y     1.300  0.0100     1.300  0.0100
+CCO         C1B           C      SINGLE       n     1.520  0.0100     1.520  0.0100
+CCO           C          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+CCO           C          O3      DOUBLE       n     1.247  0.0187     1.247  0.0187
+CCO          C2         HC2      SINGLE       n     1.082  0.0130     0.940  0.0200
+CCO          C3         HC3      SINGLE       n     1.082  0.0130     0.937  0.0120
+CCO          C4         HC4      SINGLE       n     1.082  0.0130     0.941  0.0166
+CCO          C6         HC6      SINGLE       n     1.082  0.0130     0.933  0.0100
+CCO         C1B        H1B1      SINGLE       n     1.089  0.0100     0.974  0.0125
+CCO         C1B        H1B2      SINGLE       n     1.089  0.0100     0.974  0.0125
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CCO          C2          C1          C6     118.861    1.50
+CCO          C2          C1         C1A     120.686    1.50
+CCO          C6          C1         C1A     120.453    1.50
+CCO          C1          C2          C3     120.274    1.50
+CCO          C1          C2         HC2     119.809    1.50
+CCO          C3          C2         HC2     119.916    1.50
+CCO          C2          C3          C4     120.886    1.50
+CCO          C2          C3         HC3     119.577    1.50
+CCO          C4          C3         HC3     119.537    1.50
+CCO          C3          C4          C5     118.629    1.50
+CCO          C3          C4         HC4     120.695    1.50
+CCO          C5          C4         HC4     120.676    1.50
+CCO          C4          C5          C6     121.471    1.50
+CCO          C4          C5         CL5     119.382    1.50
+CCO          C6          C5         CL5     119.153    1.50
+CCO          C1          C6          C5     119.876    1.50
+CCO          C1          C6         HC6     119.811    1.50
+CCO          C5          C6         HC6     120.314    1.50
+CCO         C2A          O1          N2     107.717    1.63
+CCO          O1         C2A          S3     121.167    1.50
+CCO          O1         C2A          N3     108.917    1.50
+CCO          S3         C2A          N3     129.916    3.00
+CCO         C2A          S3         C1B     120.000    3.00
+CCO         C2A          N3         C1A     106.732    1.65
+CCO          C1         C1A          N3     124.199    1.50
+CCO          C1         C1A          N2     123.240    1.50
+CCO          N3         C1A          N2     112.562    1.50
+CCO          O1          N2         C1A     104.073    1.50
+CCO          S3         C1B           C     111.968    3.00
+CCO          S3         C1B        H1B1     109.066    1.50
+CCO          S3         C1B        H1B2     109.066    1.50
+CCO           C         C1B        H1B1     109.577    1.50
+CCO           C         C1B        H1B2     109.577    1.50
+CCO        H1B1         C1B        H1B2     107.907    1.50
+CCO         C1B           C          O2     117.009    2.32
+CCO         C1B           C          O3     117.009    2.32
+CCO          O2           C          O3     125.982    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CCO       const_sp2_sp2_9          C6          C1          C2          C3       0.000     5.0     2
+CCO             sp2_sp2_1          C2          C1         C1A          N3     180.000     5.0     2
+CCO              const_29          C2          C1          C6          C5       0.000    10.0     2
+CCO       const_sp2_sp2_6          C1         C1A          N3         C2A     180.000     5.0     2
+CCO       const_sp2_sp2_8          C1         C1A          N2          O1     180.000     5.0     2
+CCO             sp2_sp3_2          O2           C         C1B          S3     120.000    10.0     6
+CCO              const_13          C1          C2          C3          C4       0.000    10.0     2
+CCO              const_17          C2          C3          C4          C5       0.000    10.0     2
+CCO              const_22          C3          C4          C5         CL5     180.000    10.0     2
+CCO              const_27         CL5          C5          C6          C1     180.000    10.0     2
+CCO              const_33         C1A          N2          O1         C2A       0.000    10.0     2
+CCO       const_sp2_sp2_2          S3         C2A          O1          N2     180.000     5.0     2
+CCO       const_sp2_sp2_4          S3         C2A          N3         C1A     180.000     5.0     2
+CCO             sp2_sp2_5          O1         C2A          S3         C1B     180.000     5.0     2
+CCO             sp3_sp3_1           C         C1B          S3         C2A     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CCO    plan-1          C1   0.020
+CCO    plan-1         C1A   0.020
+CCO    plan-1          C2   0.020
+CCO    plan-1          C3   0.020
+CCO    plan-1          C4   0.020
+CCO    plan-1          C5   0.020
+CCO    plan-1          C6   0.020
+CCO    plan-1         CL5   0.020
+CCO    plan-1         HC2   0.020
+CCO    plan-1         HC3   0.020
+CCO    plan-1         HC4   0.020
+CCO    plan-1         HC6   0.020
+CCO    plan-2          C1   0.020
+CCO    plan-2         C1A   0.020
+CCO    plan-2         C2A   0.020
+CCO    plan-2          N2   0.020
+CCO    plan-2          N3   0.020
+CCO    plan-2          O1   0.020
+CCO    plan-2          S3   0.020
+CCO    plan-3           C   0.020
+CCO    plan-3         C1B   0.020
+CCO    plan-3          O2   0.020
+CCO    plan-3          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CCO           SMILES              ACDLabs 10.04                                                            Clc1cccc(c1)c2nc(SCC(=O)O)on2
+CCO SMILES_CANONICAL               CACTVS 3.341                                                            OC(=O)CSc1onc(n1)c2cccc(Cl)c2
+CCO           SMILES               CACTVS 3.341                                                            OC(=O)CSc1onc(n1)c2cccc(Cl)c2
+CCO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                          c1cc(cc(c1)Cl)c2nc(on2)SCC(=O)O
+CCO           SMILES "OpenEye OEToolkits" 1.5.0                                                          c1cc(cc(c1)Cl)c2nc(on2)SCC(=O)O
+CCO            InChI                InChI  1.03 InChI=1S/C10H7ClN2O3S/c11-7-3-1-2-6(4-7)9-12-10(16-13-9)17-5-8(14)15/h1-4H,5H2,(H,14,15)
+CCO         InChIKey                InChI  1.03                                                              BGDMJXZYDKFEGJ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CCO acedrg               243         "dictionary generator"                  
+CCO acedrg_database      11          "data source"                           
+CCO rdkit                2017.03.2   "Chemoinformatics tool"
+CCO refmac5              5.8.0238    "optimization tool"                     

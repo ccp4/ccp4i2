@@ -1,0 +1,362 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+2DJ     2DJ      "(2-{[(4-tert-butylphenyl)sulfonyl]carbamoyl}-5-methoxy-1H-indol-1-yl)acetic acid"     NON-POLYMER     54     31     .     
+#
+data_comp_2DJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+2DJ     O       O       OC      -1      18.982      11.101      -2.265      
+2DJ     C       C       C       0       18.920      10.667      -1.097      
+2DJ     OXT     O       O       0       19.590      11.081      -0.129      
+2DJ     CA      C       CH2     0       17.939      9.527       -0.832      
+2DJ     N       N       NT      0       16.541      9.961       -0.876      
+2DJ     CBB     C       CR56    0       15.695      9.751       -1.961      
+2DJ     CAO     C       CR16    0       15.917      9.103       -3.174      
+2DJ     CAN     C       CR16    0       14.879      9.030       -4.070      
+2DJ     CAW     C       CR6     0       13.619      9.596       -3.787      
+2DJ     OAT     O       O2      0       12.696      9.418       -4.799      
+2DJ     CAA     C       CH3     0       11.657      10.380      -4.970      
+2DJ     CAP     C       CR16    0       13.382      10.236      -2.586      
+2DJ     CBA     C       CR56    0       14.438      10.321      -1.655      
+2DJ     CAQ     C       CR15    0       14.539      10.896      -0.362      
+2DJ     CAZ     C       CR5     0       15.815      10.711      0.110       
+2DJ     CAV     C       C       0       16.351      11.120      1.421       
+2DJ     OAF     O       O       0       17.384      10.623      1.868       
+2DJ     NAS     N       NH1     0       15.661      12.107      2.117       
+2DJ     SBE     S       S3      0       16.045      12.665      3.624       
+2DJ     OAG     O       O       0       15.165      13.763      3.874       
+2DJ     OAH     O       O       0       17.458      12.871      3.684       
+2DJ     CAY     C       CR6     0       15.613      11.363      4.734       
+2DJ     CAL     C       CR16    0       14.414      10.691      4.565       
+2DJ     CAJ     C       CR16    0       14.074      9.672       5.439       
+2DJ     CAX     C       CR6     0       14.900      9.285       6.497       
+2DJ     CBD     C       CT      0       14.470      8.144       7.440       
+2DJ     CAC     C       CH3     0       14.256      6.853       6.639       
+2DJ     CAD     C       CH3     0       15.498      7.839       8.541       
+2DJ     CAB     C       CH3     0       13.145      8.503       8.124       
+2DJ     CAK     C       CR16    0       16.102      9.991       6.636       
+2DJ     CAM     C       CR16    0       16.461      11.015      5.774       
+2DJ     H2      H       H       0       18.129      9.140       0.042       
+2DJ     H3      H       H       0       18.084      8.832       -1.500      
+2DJ     H4      H       H       0       16.748      8.726       -3.376      
+2DJ     H5      H       H       0       15.012      8.594       -4.895      
+2DJ     H6      H       H       0       12.036      11.274      -4.965      
+2DJ     H7      H       H       0       11.017      10.296      -4.244      
+2DJ     H8      H       H       0       11.208      10.223      -5.816      
+2DJ     H9      H       H       0       12.527      10.618      -2.390      
+2DJ     H10     H       H       0       13.840      11.349      0.094       
+2DJ     H11     H       H       0       14.976      12.499      1.751       
+2DJ     H12     H       H       0       13.836      10.926      3.862       
+2DJ     H13     H       H       0       13.255      9.221       5.312       
+2DJ     H14     H       H       0       15.054      6.658       6.118       
+2DJ     H15     H       H       0       13.498      6.960       6.039       
+2DJ     H16     H       H       0       14.081      6.115       7.248       
+2DJ     H17     H       H       0       15.628      8.628       9.095       
+2DJ     H18     H       H       0       16.345      7.582       8.137       
+2DJ     H19     H       H       0       15.174      7.109       9.096       
+2DJ     H20     H       H       0       13.221      9.380       8.538       
+2DJ     H21     H       H       0       12.939      7.841       8.807       
+2DJ     H22     H       H       0       12.430      8.518       7.465       
+2DJ     H23     H       H       0       16.692      9.770       7.333       
+2DJ     H24     H       H       0       17.275      11.469      5.894       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+2DJ         OAT         CAA      SINGLE       n     1.424  0.0117     1.424  0.0117
+2DJ         CAW         OAT      SINGLE       n     1.377  0.0100     1.377  0.0100
+2DJ         CAN         CAW      DOUBLE       y     1.406  0.0100     1.406  0.0100
+2DJ         CAO         CAN      SINGLE       y     1.369  0.0100     1.369  0.0100
+2DJ         CAW         CAP      SINGLE       y     1.376  0.0100     1.376  0.0100
+2DJ         CBB         CAO      DOUBLE       y     1.388  0.0100     1.388  0.0100
+2DJ         CAP         CBA      DOUBLE       y     1.407  0.0100     1.407  0.0100
+2DJ         CBB         CBA      SINGLE       y     1.412  0.0100     1.412  0.0100
+2DJ           N         CBB      SINGLE       y     1.387  0.0135     1.387  0.0135
+2DJ         CBA         CAQ      SINGLE       y     1.420  0.0100     1.420  0.0100
+2DJ          CA           N      SINGLE       n     1.460  0.0111     1.460  0.0111
+2DJ           C          CA      SINGLE       n     1.527  0.0103     1.527  0.0103
+2DJ           N         CAZ      SINGLE       y     1.409  0.0200     1.409  0.0200
+2DJ           C         OXT      DOUBLE       n     1.247  0.0187     1.247  0.0187
+2DJ           O           C      SINGLE       n     1.247  0.0187     1.247  0.0187
+2DJ         CAQ         CAZ      DOUBLE       y     1.370  0.0100     1.370  0.0100
+2DJ         CAZ         CAV      SINGLE       n     1.467  0.0100     1.467  0.0100
+2DJ         CAV         OAF      DOUBLE       n     1.231  0.0100     1.231  0.0100
+2DJ         CAV         NAS      SINGLE       n     1.369  0.0200     1.369  0.0200
+2DJ         NAS         SBE      SINGLE       n     1.650  0.0100     1.650  0.0100
+2DJ         SBE         OAH      DOUBLE       n     1.429  0.0100     1.429  0.0100
+2DJ         SBE         OAG      DOUBLE       n     1.429  0.0100     1.429  0.0100
+2DJ         SBE         CAY      SINGLE       n     1.762  0.0153     1.762  0.0153
+2DJ         CAY         CAM      SINGLE       y     1.383  0.0100     1.383  0.0100
+2DJ         CAY         CAL      DOUBLE       y     1.383  0.0100     1.383  0.0100
+2DJ         CAK         CAM      DOUBLE       y     1.382  0.0100     1.382  0.0100
+2DJ         CAL         CAJ      SINGLE       y     1.382  0.0100     1.382  0.0100
+2DJ         CAX         CAK      SINGLE       y     1.391  0.0100     1.391  0.0100
+2DJ         CAJ         CAX      DOUBLE       y     1.391  0.0100     1.391  0.0100
+2DJ         CAX         CBD      SINGLE       n     1.533  0.0100     1.533  0.0100
+2DJ         CBD         CAC      SINGLE       n     1.532  0.0112     1.532  0.0112
+2DJ         CBD         CAD      SINGLE       n     1.532  0.0112     1.532  0.0112
+2DJ         CBD         CAB      SINGLE       n     1.532  0.0112     1.532  0.0112
+2DJ          CA          H2      SINGLE       n     1.089  0.0100     0.976  0.0149
+2DJ          CA          H3      SINGLE       n     1.089  0.0100     0.976  0.0149
+2DJ         CAO          H4      SINGLE       n     1.082  0.0130     0.935  0.0100
+2DJ         CAN          H5      SINGLE       n     1.082  0.0130     0.943  0.0200
+2DJ         CAA          H6      SINGLE       n     1.089  0.0100     0.971  0.0157
+2DJ         CAA          H7      SINGLE       n     1.089  0.0100     0.971  0.0157
+2DJ         CAA          H8      SINGLE       n     1.089  0.0100     0.971  0.0157
+2DJ         CAP          H9      SINGLE       n     1.082  0.0130     0.957  0.0200
+2DJ         CAQ         H10      SINGLE       n     1.082  0.0130     0.950  0.0100
+2DJ         NAS         H11      SINGLE       n     1.016  0.0100     0.872  0.0200
+2DJ         CAL         H12      SINGLE       n     1.082  0.0130     0.940  0.0163
+2DJ         CAJ         H13      SINGLE       n     1.082  0.0130     0.943  0.0173
+2DJ         CAC         H14      SINGLE       n     1.089  0.0100     0.973  0.0141
+2DJ         CAC         H15      SINGLE       n     1.089  0.0100     0.973  0.0141
+2DJ         CAC         H16      SINGLE       n     1.089  0.0100     0.973  0.0141
+2DJ         CAD         H17      SINGLE       n     1.089  0.0100     0.973  0.0141
+2DJ         CAD         H18      SINGLE       n     1.089  0.0100     0.973  0.0141
+2DJ         CAD         H19      SINGLE       n     1.089  0.0100     0.973  0.0141
+2DJ         CAB         H20      SINGLE       n     1.089  0.0100     0.973  0.0141
+2DJ         CAB         H21      SINGLE       n     1.089  0.0100     0.973  0.0141
+2DJ         CAB         H22      SINGLE       n     1.089  0.0100     0.973  0.0141
+2DJ         CAK         H23      SINGLE       n     1.082  0.0130     0.943  0.0173
+2DJ         CAM         H24      SINGLE       n     1.082  0.0130     0.940  0.0163
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+2DJ          CA           C         OXT     117.074    1.50
+2DJ          CA           C           O     117.068    1.50
+2DJ         OXT           C           O     125.846    1.50
+2DJ           N          CA           C     112.849    2.16
+2DJ           N          CA          H2     109.048    1.50
+2DJ           N          CA          H3     109.048    1.50
+2DJ           C          CA          H2     108.899    1.50
+2DJ           C          CA          H3     108.899    1.50
+2DJ          H2          CA          H3     108.376    1.50
+2DJ         CBB           N          CA     125.430    2.73
+2DJ         CBB           N         CAZ     107.557    1.50
+2DJ          CA           N         CAZ     125.163    2.33
+2DJ         CAO         CBB         CBA     121.996    1.50
+2DJ         CAO         CBB           N     130.457    1.50
+2DJ         CBA         CBB           N     107.546    1.50
+2DJ         CAN         CAO         CBB     117.644    1.50
+2DJ         CAN         CAO          H4     121.090    1.50
+2DJ         CBB         CAO          H4     121.266    1.50
+2DJ         CAW         CAN         CAO     121.151    1.50
+2DJ         CAW         CAN          H5     119.385    1.50
+2DJ         CAO         CAN          H5     119.464    1.50
+2DJ         OAT         CAW         CAN     116.498    3.00
+2DJ         OAT         CAW         CAP     122.257    3.00
+2DJ         CAN         CAW         CAP     121.246    1.50
+2DJ         CAA         OAT         CAW     117.346    1.50
+2DJ         OAT         CAA          H6     109.428    1.50
+2DJ         OAT         CAA          H7     109.428    1.50
+2DJ         OAT         CAA          H8     109.428    1.50
+2DJ          H6         CAA          H7     109.509    1.50
+2DJ          H6         CAA          H8     109.509    1.50
+2DJ          H7         CAA          H8     109.509    1.50
+2DJ         CAW         CAP         CBA     117.914    1.50
+2DJ         CAW         CAP          H9     120.982    1.50
+2DJ         CBA         CAP          H9     121.104    1.50
+2DJ         CAP         CBA         CBB     120.049    1.50
+2DJ         CAP         CBA         CAQ     133.475    1.50
+2DJ         CBB         CBA         CAQ     106.477    1.50
+2DJ         CBA         CAQ         CAZ     107.666    1.50
+2DJ         CBA         CAQ         H10     126.095    1.50
+2DJ         CAZ         CAQ         H10     126.239    1.50
+2DJ           N         CAZ         CAQ     107.588    1.50
+2DJ           N         CAZ         CAV     122.120    1.89
+2DJ         CAQ         CAZ         CAV     130.292    2.58
+2DJ         CAZ         CAV         OAF     120.907    1.50
+2DJ         CAZ         CAV         NAS     116.612    2.63
+2DJ         OAF         CAV         NAS     122.481    1.58
+2DJ         CAV         NAS         SBE     124.283    1.60
+2DJ         CAV         NAS         H11     119.055    2.02
+2DJ         SBE         NAS         H11     116.663    2.75
+2DJ         NAS         SBE         OAH     106.615    2.76
+2DJ         NAS         SBE         OAG     106.615    2.76
+2DJ         NAS         SBE         CAY     105.557    1.50
+2DJ         OAH         SBE         OAG     119.599    1.50
+2DJ         OAH         SBE         CAY     107.960    1.50
+2DJ         OAG         SBE         CAY     107.960    1.50
+2DJ         SBE         CAY         CAM     119.808    1.50
+2DJ         SBE         CAY         CAL     119.808    1.50
+2DJ         CAM         CAY         CAL     120.384    1.50
+2DJ         CAY         CAL         CAJ     119.446    1.50
+2DJ         CAY         CAL         H12     120.231    1.50
+2DJ         CAJ         CAL         H12     120.326    1.50
+2DJ         CAL         CAJ         CAX     121.856    1.50
+2DJ         CAL         CAJ         H13     119.109    1.50
+2DJ         CAX         CAJ         H13     119.036    1.50
+2DJ         CAK         CAX         CAJ     117.005    1.50
+2DJ         CAK         CAX         CBD     121.498    1.50
+2DJ         CAJ         CAX         CBD     121.498    1.50
+2DJ         CAX         CBD         CAC     110.353    1.57
+2DJ         CAX         CBD         CAD     110.353    1.57
+2DJ         CAX         CBD         CAB     110.353    1.57
+2DJ         CAC         CBD         CAD     108.339    1.50
+2DJ         CAC         CBD         CAB     108.339    1.50
+2DJ         CAD         CBD         CAB     108.339    1.50
+2DJ         CBD         CAC         H14     109.561    1.50
+2DJ         CBD         CAC         H15     109.561    1.50
+2DJ         CBD         CAC         H16     109.561    1.50
+2DJ         H14         CAC         H15     109.375    1.50
+2DJ         H14         CAC         H16     109.375    1.50
+2DJ         H15         CAC         H16     109.375    1.50
+2DJ         CBD         CAD         H17     109.561    1.50
+2DJ         CBD         CAD         H18     109.561    1.50
+2DJ         CBD         CAD         H19     109.561    1.50
+2DJ         H17         CAD         H18     109.375    1.50
+2DJ         H17         CAD         H19     109.375    1.50
+2DJ         H18         CAD         H19     109.375    1.50
+2DJ         CBD         CAB         H20     109.561    1.50
+2DJ         CBD         CAB         H21     109.561    1.50
+2DJ         CBD         CAB         H22     109.561    1.50
+2DJ         H20         CAB         H21     109.375    1.50
+2DJ         H20         CAB         H22     109.375    1.50
+2DJ         H21         CAB         H22     109.375    1.50
+2DJ         CAM         CAK         CAX     121.856    1.50
+2DJ         CAM         CAK         H23     119.109    1.50
+2DJ         CAX         CAK         H23     119.036    1.50
+2DJ         CAY         CAM         CAK     119.446    1.50
+2DJ         CAY         CAM         H24     120.231    1.50
+2DJ         CAK         CAM         H24     120.326    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+2DJ              const_37         CAW         CAP         CBA         CBB       0.000    10.0     2
+2DJ              const_50         CAZ         CAQ         CBA         CAP     180.000    10.0     2
+2DJ              const_54         CBA         CAQ         CAZ         CAV     180.000    10.0     2
+2DJ             sp2_sp2_5         OAF         CAV         CAZ           N       0.000     5.0     2
+2DJ             sp2_sp2_9         OAF         CAV         NAS         SBE       0.000     5.0     2
+2DJ            sp2_sp3_14         CAV         NAS         SBE         OAH     120.000    10.0     6
+2DJ            sp2_sp3_21         CAM         CAY         SBE         NAS      30.000    10.0     6
+2DJ             sp2_sp3_8         OXT           C          CA           N     120.000    10.0     6
+2DJ              const_62         CAJ         CAL         CAY         SBE     180.000    10.0     2
+2DJ       const_sp2_sp2_2         CAK         CAM         CAY         SBE     180.000     5.0     2
+2DJ              const_17         CAX         CAJ         CAL         CAY       0.000    10.0     2
+2DJ              const_14         CAL         CAJ         CAX         CBD     180.000    10.0     2
+2DJ            sp2_sp3_26         CAK         CAX         CBD         CAC     -90.000    10.0     6
+2DJ              const_10         CAM         CAK         CAX         CBD     180.000    10.0     2
+2DJ             sp3_sp3_6         H14         CAC         CBD         CAD     -60.000    10.0     3
+2DJ            sp3_sp3_14         H17         CAD         CBD         CAC     180.000    10.0     3
+2DJ            sp3_sp3_24         H20         CAB         CBD         CAC     -60.000    10.0     3
+2DJ       const_sp2_sp2_5         CAX         CAK         CAM         CAY       0.000     5.0     2
+2DJ             sp2_sp3_2         CBB           N          CA           C     -90.000    10.0     6
+2DJ              const_60         CAV         CAZ           N          CA       0.000    10.0     2
+2DJ              const_44         CAO         CBB           N          CA       0.000    10.0     2
+2DJ              const_45         CAP         CBA         CBB         CAO       0.000    10.0     2
+2DJ              const_21         CAN         CAO         CBB         CBA       0.000    10.0     2
+2DJ              const_25         CAW         CAN         CAO         CBB       0.000    10.0     2
+2DJ              const_30         CAO         CAN         CAW         OAT     180.000    10.0     2
+2DJ              const_34         CBA         CAP         CAW         OAT     180.000    10.0     2
+2DJ             sp2_sp2_1         CAN         CAW         OAT         CAA     180.000     5.0     2
+2DJ             sp3_sp3_2          H6         CAA         OAT         CAW     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+2DJ    chir_1    SBE    OAH    OAG    NAS    both
+2DJ    chir_2    CBD    CAX    CAC    CAD    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+2DJ    plan-1          CA   0.020
+2DJ    plan-1         CAN   0.020
+2DJ    plan-1         CAO   0.020
+2DJ    plan-1         CAP   0.020
+2DJ    plan-1         CAQ   0.020
+2DJ    plan-1         CAV   0.020
+2DJ    plan-1         CAW   0.020
+2DJ    plan-1         CAZ   0.020
+2DJ    plan-1         CBA   0.020
+2DJ    plan-1         CBB   0.020
+2DJ    plan-1         H10   0.020
+2DJ    plan-1          H4   0.020
+2DJ    plan-1          H5   0.020
+2DJ    plan-1          H9   0.020
+2DJ    plan-1           N   0.020
+2DJ    plan-1         OAT   0.020
+2DJ    plan-2         CAJ   0.020
+2DJ    plan-2         CAK   0.020
+2DJ    plan-2         CAL   0.020
+2DJ    plan-2         CAM   0.020
+2DJ    plan-2         CAX   0.020
+2DJ    plan-2         CAY   0.020
+2DJ    plan-2         CBD   0.020
+2DJ    plan-2         H12   0.020
+2DJ    plan-2         H13   0.020
+2DJ    plan-2         H23   0.020
+2DJ    plan-2         H24   0.020
+2DJ    plan-2         SBE   0.020
+2DJ    plan-3           C   0.020
+2DJ    plan-3          CA   0.020
+2DJ    plan-3           O   0.020
+2DJ    plan-3         OXT   0.020
+2DJ    plan-4         CAV   0.020
+2DJ    plan-4         CAZ   0.020
+2DJ    plan-4         NAS   0.020
+2DJ    plan-4         OAF   0.020
+2DJ    plan-5         CAV   0.020
+2DJ    plan-5         H11   0.020
+2DJ    plan-5         NAS   0.020
+2DJ    plan-5         SBE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+2DJ           SMILES              ACDLabs 12.01                                                                                               O=S(=O)(c1ccc(cc1)C(C)(C)C)NC(=O)c3cc2cc(OC)ccc2n3CC(=O)O
+2DJ            InChI                InChI  1.03 InChI=1S/C22H24N2O6S/c1-22(2,3)15-5-8-17(9-6-15)31(28,29)23-21(27)19-12-14-11-16(30-4)7-10-18(14)24(19)13-20(25)26/h5-12H,13H2,1-4H3,(H,23,27)(H,25,26)
+2DJ         InChIKey                InChI  1.03                                                                                                                             MOBCJUUCVPLZOG-UHFFFAOYSA-N
+2DJ SMILES_CANONICAL               CACTVS 3.385                                                                                           COc1ccc2n(CC(O)=O)c(cc2c1)C(=O)N[S](=O)(=O)c3ccc(cc3)C(C)(C)C
+2DJ           SMILES               CACTVS 3.385                                                                                           COc1ccc2n(CC(O)=O)c(cc2c1)C(=O)N[S](=O)(=O)c3ccc(cc3)C(C)(C)C
+2DJ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                               CC(C)(C)c1ccc(cc1)S(=O)(=O)NC(=O)c2cc3cc(ccc3n2CC(=O)O)OC
+2DJ           SMILES "OpenEye OEToolkits" 1.7.6                                                                                               CC(C)(C)c1ccc(cc1)S(=O)(=O)NC(=O)c2cc3cc(ccc3n2CC(=O)O)OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+2DJ acedrg               243         "dictionary generator"                  
+2DJ acedrg_database      11          "data source"                           
+2DJ rdkit                2017.03.2   "Chemoinformatics tool"
+2DJ refmac5              5.8.0238    "optimization tool"                     

@@ -127,7 +127,7 @@ class pointless_report(Report):
   # - - - - - - - - - - - - - - - - -
   def solutionWarning(self,parent=None):
     if len(self.xmlnode.findall('SolutionWarning'))>0:
-      solutionwarning = html_linebreak(self.xmlnode.findall('SolutionWarning')[0].text)
+      solutionwarning = html_linebreak(self.xmlnode.xpath('SolutionWarning')[0].text)
       parent.append('<div style="color:red">'+solutionwarning+'</div>')
 
   # - - - - - - - - - - - - - - - - -
@@ -720,7 +720,7 @@ class pointless_report(Report):
              possiblelattice
       text += " is "+ meanE2absent + " instead of the ideal value 1.0"
       fold.append(text)
-      self.Graphs(fold, select="LatticeCentering")
+      self.Graphs(fold, select="LatticeCentering")[0].text
 
   # - - - - - - - - - - - - - - - - -
   def ElementScores(self,parent=None, open1=False):

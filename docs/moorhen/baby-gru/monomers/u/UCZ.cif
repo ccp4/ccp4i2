@@ -1,0 +1,278 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+UCZ     UCZ      (1E,3S)-1-(4-chlorophenyl)-4,4-dimethyl-2-(1H-1,2,4-triazol-1-yl)pent-1-en-3-ol     NON-POLYMER     38     20     .     
+#
+data_comp_UCZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+UCZ     C01     C       CH3     0       8.651       -16.508     21.242      
+UCZ     C02     C       CT      0       8.367       -17.462     20.079      
+UCZ     C03     C       CH3     0       9.052       -16.929     18.818      
+UCZ     C04     C       CH3     0       6.856       -17.497     19.832      
+UCZ     C05     C       CH1     0       8.873       -18.899     20.384      
+UCZ     C06     C       C       0       10.369      -19.042     20.637      
+UCZ     C07     C       C1      0       11.267      -19.357     19.709      
+UCZ     C08     C       CR6     0       11.078      -19.758     18.305      
+UCZ     C09     C       CR16    0       11.541      -18.951     17.261      
+UCZ     C10     C       CR16    0       11.374      -19.318     15.934      
+UCZ     C11     C       CR6     0       10.741      -20.509     15.640      
+UCZ     C12     C       CR16    0       10.274      -21.335     16.640      
+UCZ     C13     C       CR16    0       10.447      -20.959     17.965      
+UCZ     C16     C       CR15    0       10.750      -19.591     23.055      
+UCZ     C18     C       CR15    0       11.903      -17.909     23.490      
+UCZ     N15     N       NT      0       10.871      -18.829     21.938      
+UCZ     N17     N       NRD5    0       11.386      -19.028     24.055      
+UCZ     N19     N       NRD5    0       11.630      -17.743     22.221      
+UCZ     O20     O       OH1     0       8.116       -19.454     21.456      
+UCZ     CL1     CL      CL      0       10.529      -20.976     13.977      
+UCZ     H013    H       H       0       8.437       -16.941     22.086      
+UCZ     H011    H       H       0       8.107       -15.707     21.148      
+UCZ     H012    H       H       0       9.589       -16.256     21.241      
+UCZ     H032    H       H       0       8.969       -17.581     18.101      
+UCZ     H033    H       H       0       9.995       -16.766     18.995      
+UCZ     H031    H       H       0       8.632       -16.096     18.543      
+UCZ     H043    H       H       0       6.639       -18.233     19.233      
+UCZ     H041    H       H       0       6.567       -16.660     19.429      
+UCZ     H042    H       H       0       6.387       -17.621     20.676      
+UCZ     H051    H       H       0       8.663       -19.440     19.587      
+UCZ     H071    H       H       0       12.173      -19.320     19.981      
+UCZ     H091    H       H       0       11.972      -18.139     17.464      
+UCZ     H101    H       H       0       11.687      -18.765     15.244      
+UCZ     H121    H       H       0       9.845       -22.142     16.427      
+UCZ     H131    H       H       0       10.127      -21.521     18.649      
+UCZ     H161    H       H       0       10.270      -20.397     23.111      
+UCZ     H181    H       H       0       12.420      -17.297     23.973      
+UCZ     H201    H       H       0       8.178       -20.299     21.438      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+UCZ         C11         CL1      SINGLE       n     1.741  0.0100     1.741  0.0100
+UCZ         C10         C11      SINGLE       y     1.376  0.0100     1.376  0.0100
+UCZ         C11         C12      DOUBLE       y     1.376  0.0100     1.376  0.0100
+UCZ         C09         C10      DOUBLE       y     1.384  0.0100     1.384  0.0100
+UCZ         C12         C13      SINGLE       y     1.384  0.0100     1.384  0.0100
+UCZ         C08         C09      SINGLE       y     1.395  0.0100     1.395  0.0100
+UCZ         C08         C13      DOUBLE       y     1.395  0.0100     1.395  0.0100
+UCZ         C07         C08      SINGLE       n     1.470  0.0137     1.470  0.0137
+UCZ         C02         C03      SINGLE       n     1.529  0.0100     1.529  0.0100
+UCZ         C06         C07      DOUBLE       n     1.325  0.0100     1.325  0.0100
+UCZ         C02         C04      SINGLE       n     1.529  0.0100     1.529  0.0100
+UCZ         C02         C05      SINGLE       n     1.548  0.0100     1.548  0.0100
+UCZ         C05         C06      SINGLE       n     1.512  0.0146     1.512  0.0146
+UCZ         C05         O20      SINGLE       n     1.423  0.0113     1.423  0.0113
+UCZ         C01         C02      SINGLE       n     1.529  0.0100     1.529  0.0100
+UCZ         C06         N15      SINGLE       n     1.400  0.0189     1.400  0.0189
+UCZ         N15         N19      SINGLE       y     1.366  0.0181     1.366  0.0181
+UCZ         C16         N15      SINGLE       y     1.364  0.0167     1.364  0.0167
+UCZ         C18         N19      DOUBLE       y     1.308  0.0100     1.308  0.0100
+UCZ         C16         N17      DOUBLE       y     1.310  0.0100     1.310  0.0100
+UCZ         C18         N17      SINGLE       y     1.351  0.0107     1.351  0.0107
+UCZ         C01        H013      SINGLE       n     1.089  0.0100     0.973  0.0146
+UCZ         C01        H011      SINGLE       n     1.089  0.0100     0.973  0.0146
+UCZ         C01        H012      SINGLE       n     1.089  0.0100     0.973  0.0146
+UCZ         C03        H032      SINGLE       n     1.089  0.0100     0.973  0.0146
+UCZ         C03        H033      SINGLE       n     1.089  0.0100     0.973  0.0146
+UCZ         C03        H031      SINGLE       n     1.089  0.0100     0.973  0.0146
+UCZ         C04        H043      SINGLE       n     1.089  0.0100     0.973  0.0146
+UCZ         C04        H041      SINGLE       n     1.089  0.0100     0.973  0.0146
+UCZ         C04        H042      SINGLE       n     1.089  0.0100     0.973  0.0146
+UCZ         C05        H051      SINGLE       n     1.089  0.0100     0.989  0.0200
+UCZ         C07        H071      SINGLE       n     1.082  0.0130     0.946  0.0187
+UCZ         C09        H091      SINGLE       n     1.082  0.0130     0.941  0.0168
+UCZ         C10        H101      SINGLE       n     1.082  0.0130     0.938  0.0140
+UCZ         C12        H121      SINGLE       n     1.082  0.0130     0.938  0.0140
+UCZ         C13        H131      SINGLE       n     1.082  0.0130     0.941  0.0168
+UCZ         C16        H161      SINGLE       n     1.082  0.0130     0.939  0.0178
+UCZ         C18        H181      SINGLE       n     1.082  0.0130     0.936  0.0108
+UCZ         O20        H201      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+UCZ         C02         C01        H013     109.751    1.50
+UCZ         C02         C01        H011     109.751    1.50
+UCZ         C02         C01        H012     109.751    1.50
+UCZ        H013         C01        H011     109.377    1.50
+UCZ        H013         C01        H012     109.377    1.50
+UCZ        H011         C01        H012     109.377    1.50
+UCZ         C03         C02         C04     109.163    1.50
+UCZ         C03         C02         C05     109.608    2.37
+UCZ         C03         C02         C01     109.163    1.50
+UCZ         C04         C02         C05     109.608    2.37
+UCZ         C04         C02         C01     109.163    1.50
+UCZ         C05         C02         C01     109.608    2.37
+UCZ         C02         C03        H032     109.751    1.50
+UCZ         C02         C03        H033     109.751    1.50
+UCZ         C02         C03        H031     109.751    1.50
+UCZ        H032         C03        H033     109.377    1.50
+UCZ        H032         C03        H031     109.377    1.50
+UCZ        H033         C03        H031     109.377    1.50
+UCZ         C02         C04        H043     109.751    1.50
+UCZ         C02         C04        H041     109.751    1.50
+UCZ         C02         C04        H042     109.751    1.50
+UCZ        H043         C04        H041     109.377    1.50
+UCZ        H043         C04        H042     109.377    1.50
+UCZ        H041         C04        H042     109.377    1.50
+UCZ         C02         C05         C06     115.103    1.50
+UCZ         C02         C05         O20     109.113    1.50
+UCZ         C02         C05        H051     107.036    1.50
+UCZ         C06         C05         O20     111.369    1.50
+UCZ         C06         C05        H051     107.197    1.50
+UCZ         O20         C05        H051     107.439    1.50
+UCZ         C07         C06         C05     124.227    1.50
+UCZ         C07         C06         N15     117.886    3.00
+UCZ         C05         C06         N15     117.886    3.00
+UCZ         C08         C07         C06     128.387    3.00
+UCZ         C08         C07        H071     115.165    1.50
+UCZ         C06         C07        H071     116.448    1.50
+UCZ         C09         C08         C13     117.699    1.50
+UCZ         C09         C08         C07     121.150    3.00
+UCZ         C13         C08         C07     121.150    3.00
+UCZ         C10         C09         C08     121.358    1.50
+UCZ         C10         C09        H091     119.352    1.50
+UCZ         C08         C09        H091     119.290    1.50
+UCZ         C11         C10         C09     119.118    1.50
+UCZ         C11         C10        H101     120.415    1.50
+UCZ         C09         C10        H101     120.471    1.50
+UCZ         CL1         C11         C10     119.329    1.50
+UCZ         CL1         C11         C12     119.329    1.50
+UCZ         C10         C11         C12     121.342    1.50
+UCZ         C11         C12         C13     119.118    1.50
+UCZ         C11         C12        H121     120.415    1.50
+UCZ         C13         C12        H121     120.471    1.50
+UCZ         C12         C13         C08     121.358    1.50
+UCZ         C12         C13        H131     119.352    1.50
+UCZ         C08         C13        H131     119.290    1.50
+UCZ         N15         C16         N17     111.544    1.94
+UCZ         N15         C16        H161     124.115    2.19
+UCZ         N17         C16        H161     124.342    1.50
+UCZ         N19         C18         N17     115.547    1.50
+UCZ         N19         C18        H181     122.090    1.50
+UCZ         N17         C18        H181     122.363    1.50
+UCZ         C06         N15         N19     118.601    2.16
+UCZ         C06         N15         C16     125.448    2.76
+UCZ         N19         N15         C16     111.346    1.50
+UCZ         C16         N17         C18     102.344    1.50
+UCZ         N15         N19         C18     104.747    1.50
+UCZ         C05         O20        H201     109.453    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+UCZ            sp3_sp3_32        H013         C01         C02         C03     -60.000    10.0     3
+UCZ              const_15         CL1         C11         C12         C13     180.000    10.0     2
+UCZ              const_17         C11         C12         C13         C08       0.000    10.0     2
+UCZ              const_22         N17         C16         N15         C06     180.000    10.0     2
+UCZ              const_35         N15         C16         N17         C18       0.000    10.0     2
+UCZ              const_29         N19         C18         N17         C16       0.000    10.0     2
+UCZ              const_27         N17         C18         N19         N15       0.000    10.0     2
+UCZ              const_26         C06         N15         N19         C18     180.000    10.0     2
+UCZ             sp3_sp3_4         C04         C02         C03        H032      60.000    10.0     3
+UCZ            sp3_sp3_10         C03         C02         C04        H043     180.000    10.0     3
+UCZ            sp3_sp3_22         C03         C02         C05         C06      60.000    10.0     3
+UCZ            sp3_sp3_28         C02         C05         O20        H201     180.000    10.0     3
+UCZ             sp2_sp3_1         C07         C06         C05         C02       0.000    10.0     6
+UCZ            sp2_sp2_12         C07         C06         N15         N19     180.000     5.0     2
+UCZ             sp2_sp2_5         C05         C06         C07         C08     180.000     5.0     2
+UCZ             sp2_sp2_1         C06         C07         C08         C09     180.000     5.0     2
+UCZ              const_33         C07         C08         C13         C12     180.000    10.0     2
+UCZ       const_sp2_sp2_3         C07         C08         C09         C10     180.000     5.0     2
+UCZ       const_sp2_sp2_5         C08         C09         C10         C11       0.000     5.0     2
+UCZ              const_10         C09         C10         C11         CL1     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+UCZ    chir_1    C02    C05    C03    C04    both
+UCZ    chir_2    C05    O20    C06    C02    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+UCZ    plan-1         C07   0.020
+UCZ    plan-1         C08   0.020
+UCZ    plan-1         C09   0.020
+UCZ    plan-1         C10   0.020
+UCZ    plan-1         C11   0.020
+UCZ    plan-1         C12   0.020
+UCZ    plan-1         C13   0.020
+UCZ    plan-1         CL1   0.020
+UCZ    plan-1        H091   0.020
+UCZ    plan-1        H101   0.020
+UCZ    plan-1        H121   0.020
+UCZ    plan-1        H131   0.020
+UCZ    plan-2         C06   0.020
+UCZ    plan-2         C16   0.020
+UCZ    plan-2         C18   0.020
+UCZ    plan-2        H161   0.020
+UCZ    plan-2        H181   0.020
+UCZ    plan-2         N15   0.020
+UCZ    plan-2         N17   0.020
+UCZ    plan-2         N19   0.020
+UCZ    plan-3         C05   0.020
+UCZ    plan-3         C06   0.020
+UCZ    plan-3         C07   0.020
+UCZ    plan-3         N15   0.020
+UCZ    plan-4         C06   0.020
+UCZ    plan-4         C07   0.020
+UCZ    plan-4         C08   0.020
+UCZ    plan-4        H071   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+UCZ           SMILES              ACDLabs 12.01                                                                            CC(C)(C)C(C(n1cncn1)=[C@H]c2ccc(cc2)Cl)O
+UCZ            InChI                InChI  1.03 InChI=1S/C15H18ClN3O/c1-15(2,3)14(20)13(19-10-17-9-18-19)8-11-4-6-12(16)7-5-11/h4-10,14,20H,1-3H3/b13-8+/t14-/m1/s1
+UCZ         InChIKey                InChI  1.03                                                                                         YNWVFADWVLCOPU-MAUPQMMJSA-N
+UCZ SMILES_CANONICAL               CACTVS 3.385                                                                          CC(C)(C)[C@H](O)\C(=C/c1ccc(Cl)cc1)n2cncn2
+UCZ           SMILES               CACTVS 3.385                                                                             CC(C)(C)[CH](O)C(=Cc1ccc(Cl)cc1)n2cncn2
+UCZ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                        CC(C)(C)[C@@H](/C(=C\c1ccc(cc1)Cl)/n2cncn2)O
+UCZ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                CC(C)(C)C(C(=Cc1ccc(cc1)Cl)n2cncn2)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+UCZ acedrg               243         "dictionary generator"                  
+UCZ acedrg_database      11          "data source"                           
+UCZ rdkit                2017.03.2   "Chemoinformatics tool"
+UCZ refmac5              5.8.0238    "optimization tool"                     

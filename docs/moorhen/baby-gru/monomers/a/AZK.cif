@@ -1,0 +1,181 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AZK     AZK      "(S)-2-AMINO-6-AZIDOHEXANOIC ACID"     NON-POLYMER     25     11     .     
+#
+data_comp_AZK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AZK     N       N       NT2     0       23.363      -7.553      5.011       
+AZK     CA      C       CH1     0       23.153      -7.764      3.564       
+AZK     CB      C       CH2     0       24.471      -7.917      2.830       
+AZK     CG      C       CH2     0       25.330      -6.675      2.828       
+AZK     CD      C       CH2     0       26.619      -6.828      2.031       
+AZK     CE      C       CH2     0       27.423      -5.547      1.961       
+AZK     NZ      N       N       0       28.049      -5.280      3.269       
+AZK     NZ2     N       NSP     1       28.821      -6.218      3.712       
+AZK     NZ3     N       NSP     -1      29.533      -7.034      4.063       
+AZK     C       C       CH2     0       22.241      -8.965      3.302       
+AZK     O       O       OH1     0       21.666      -8.916      2.008       
+AZK     H       H       H       0       23.650      -6.727      5.163       
+AZK     H2      H       H       0       23.972      -8.117      5.327       
+AZK     HA      H       H       0       22.698      -6.959      3.203       
+AZK     HB2     H       H       0       24.283      -8.169      1.901       
+AZK     HB3     H       H       0       24.977      -8.648      3.244       
+AZK     HG2     H       H       0       25.555      -6.445      3.755       
+AZK     HG3     H       H       0       24.810      -5.933      2.453       
+AZK     HD2     H       H       0       26.399      -7.116      1.121       
+AZK     HD3     H       H       0       27.169      -7.527      2.444       
+AZK     HE2     H       H       0       26.830      -4.803      1.723       
+AZK     HE3     H       H       0       28.120      -5.637      1.276       
+AZK     HC1     H       H       0       21.527      -8.980      3.974       
+AZK     HC2     H       H       0       22.762      -9.791      3.395       
+AZK     HO      H       H       0       21.329      -9.672      1.835       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AZK           N          CA      SINGLE       n     1.476  0.0134     1.476  0.0134
+AZK          CA          CB      SINGLE       n     1.513  0.0200     1.513  0.0200
+AZK          CA           C      SINGLE       n     1.530  0.0118     1.530  0.0118
+AZK          CB          CG      SINGLE       n     1.509  0.0200     1.509  0.0200
+AZK          CG          CD      SINGLE       n     1.523  0.0117     1.523  0.0117
+AZK          CD          CE      SINGLE       n     1.514  0.0200     1.514  0.0200
+AZK          CE          NZ      SINGLE       n     1.474  0.0186     1.474  0.0186
+AZK          NZ         NZ2      DOUBLE       n     1.293  0.0200     1.293  0.0200
+AZK         NZ2         NZ3      DOUBLE       n     1.135  0.0160     1.135  0.0160
+AZK           C           O      SINGLE       n     1.417  0.0200     1.417  0.0200
+AZK           N           H      SINGLE       n     1.036  0.0160     0.888  0.0200
+AZK           N          H2      SINGLE       n     1.036  0.0160     0.888  0.0200
+AZK          CA          HA      SINGLE       n     1.089  0.0100     0.992  0.0135
+AZK          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0160
+AZK          CB         HB3      SINGLE       n     1.089  0.0100     0.981  0.0160
+AZK          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0163
+AZK          CG         HG3      SINGLE       n     1.089  0.0100     0.981  0.0163
+AZK          CD         HD2      SINGLE       n     1.089  0.0100     0.980  0.0160
+AZK          CD         HD3      SINGLE       n     1.089  0.0100     0.980  0.0160
+AZK          CE         HE2      SINGLE       n     1.089  0.0100     0.981  0.0135
+AZK          CE         HE3      SINGLE       n     1.089  0.0100     0.981  0.0135
+AZK           C         HC1      SINGLE       n     1.089  0.0100     0.981  0.0174
+AZK           C         HC2      SINGLE       n     1.089  0.0100     0.981  0.0174
+AZK           O          HO      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AZK          CA           N           H     109.715    3.00
+AZK          CA           N          H2     109.715    3.00
+AZK           H           N          H2     107.559    3.00
+AZK           N          CA          CB     110.129    2.63
+AZK           N          CA           C     111.883    2.59
+AZK           N          CA          HA     107.944    1.55
+AZK          CB          CA           C     111.010    1.56
+AZK          CB          CA          HA     107.815    1.50
+AZK           C          CA          HA     107.627    1.50
+AZK          CA          CB          CG     113.909    2.09
+AZK          CA          CB         HB2     108.489    1.50
+AZK          CA          CB         HB3     108.489    1.50
+AZK          CG          CB         HB2     108.650    1.50
+AZK          CG          CB         HB3     108.650    1.50
+AZK         HB2          CB         HB3     107.844    1.50
+AZK          CB          CG          CD     113.328    2.00
+AZK          CB          CG         HG2     108.601    1.50
+AZK          CB          CG         HG3     108.601    1.50
+AZK          CD          CG         HG2     108.806    1.50
+AZK          CD          CG         HG3     108.806    1.50
+AZK         HG2          CG         HG3     107.646    1.50
+AZK          CG          CD          CE     112.881    1.50
+AZK          CG          CD         HD2     109.041    1.50
+AZK          CG          CD         HD3     109.041    1.50
+AZK          CE          CD         HD2     109.004    1.50
+AZK          CE          CD         HD3     109.004    1.50
+AZK         HD2          CD         HD3     107.927    1.57
+AZK          CD          CE          NZ     109.662    2.15
+AZK          CD          CE         HE2     109.405    1.50
+AZK          CD          CE         HE3     109.405    1.50
+AZK          NZ          CE         HE2     109.598    1.50
+AZK          NZ          CE         HE3     109.598    1.50
+AZK         HE2          CE         HE3     109.398    2.65
+AZK          CE          NZ         NZ2     115.160    1.71
+AZK          NZ         NZ2         NZ3     180.000    3.00
+AZK          CA           C           O     111.903    1.66
+AZK          CA           C         HC1     109.343    1.50
+AZK          CA           C         HC2     109.343    1.50
+AZK           O           C         HC1     109.411    1.50
+AZK           O           C         HC2     109.411    1.50
+AZK         HC1           C         HC2     108.070    1.50
+AZK           C           O          HO     108.529    2.94
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AZK             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+AZK             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+AZK            sp3_sp3_16           O           C          CA           N     180.000    10.0     3
+AZK            sp3_sp3_25          CA          CB          CG          CD     180.000    10.0     3
+AZK            sp3_sp3_34          CE          CD          CG          CB     180.000    10.0     3
+AZK            sp3_sp3_43          CG          CD          CE          NZ     180.000    10.0     3
+AZK             sp2_sp3_2         NZ2          NZ          CE          CD     120.000    10.0     6
+AZK           other_tor_1         NZ3         NZ2          NZ          CE      90.000    10.0     1
+AZK            sp3_sp3_52          CA           C           O          HO     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AZK    chir_1    CA    N    C    CB    positive
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AZK           SMILES              ACDLabs 10.04                                            "[N-]=[N+]=N/CCCCC(N)CO"
+AZK SMILES_CANONICAL               CACTVS 3.341                                           N[C@H](CO)CCCCN=[N+]=[N-]
+AZK           SMILES               CACTVS 3.341                                            N[CH](CO)CCCCN=[N+]=[N-]
+AZK SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                        C(CCN=[N+]=[N-])C[C@@H](CO)N
+AZK           SMILES "OpenEye OEToolkits" 1.5.0                                             C(CCN=[N+]=[N-])CC(CO)N
+AZK            InChI                InChI  1.03 InChI=1S/C6H14N4O/c7-6(5-11)3-1-2-4-9-10-8/h6,11H,1-5,7H2/t6-/m0/s1
+AZK         InChIKey                InChI  1.03                                         RZPRHTBHWVNFLM-LURJTMIESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AZK acedrg               243         "dictionary generator"                  
+AZK acedrg_database      11          "data source"                           
+AZK rdkit                2017.03.2   "Chemoinformatics tool"
+AZK refmac5              5.8.0238    "optimization tool"                     

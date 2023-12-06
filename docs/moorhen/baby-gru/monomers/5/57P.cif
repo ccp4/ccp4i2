@@ -1,0 +1,360 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+57P     57P      "3-(5-cyclopropyl-2,3-diphenyl-1H-indol-1-yl)propanoic acid"     NON-POLYMER     51     29     .     
+#
+data_comp_57P
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+57P     C8      C       CR56    0       -11.393     -7.395      -19.095     
+57P     C2      C       CR16    0       -15.681     -5.915      -18.834     
+57P     C4      C       CR6     0       -13.799     -7.272      -18.147     
+57P     C5      C       CR16    0       -14.700     -8.242      -17.712     
+57P     C6      C       CR16    0       -16.069     -8.049      -17.835     
+57P     C11     C       CR16    0       -9.107      -7.390      -20.689     
+57P     C1      C       CR16    0       -16.559     -6.886      -18.396     
+57P     C21     C       CH2     0       -9.151      -8.135      -16.267     
+57P     C22     C       CH2     0       -8.417      -6.875      -15.854     
+57P     C24     C       CH1     0       -10.465     -6.885      -22.727     
+57P     C25     C       CH2     0       -11.419     -7.628      -23.604     
+57P     O1      O       O       0       -9.759      -4.917      -15.701     
+57P     C23     C       C       0       -9.271      -5.883      -15.082     
+57P     O2      O       OC      -1      -9.446      -6.081      -13.863     
+57P     N       N       NT      0       -10.272     -7.855      -17.182     
+57P     C14     C       CR5     0       -11.634     -7.747      -16.866     
+57P     C15     C       CR6     0       -12.148     -7.920      -15.492     
+57P     C16     C       CR16    0       -12.121     -9.167      -14.867     
+57P     C17     C       CR16    0       -12.612     -9.324      -13.579     
+57P     C18     C       CR16    0       -13.151     -8.248      -12.904     
+57P     C19     C       CR16    0       -13.197     -7.010      -13.514     
+57P     C20     C       CR16    0       -12.704     -6.845      -14.800     
+57P     C7      C       CR5     0       -12.340     -7.470      -18.019     
+57P     C3      C       CR16    0       -14.312     -6.105      -18.711     
+57P     C13     C       CR56    0       -10.119     -7.638      -18.541     
+57P     C9      C       CR16    0       -11.498     -7.148      -20.470     
+57P     C10     C       CR6     0       -10.354     -7.147      -21.263     
+57P     C12     C       CR16    0       -8.972      -7.637      -19.335     
+57P     C26     C       CH2     0       -9.976      -7.853      -23.754     
+57P     H1      H       H       0       -16.011     -5.119      -19.217     
+57P     H2      H       H       0       -14.374     -9.037      -17.328     
+57P     H3      H       H       0       -16.665     -8.715      -17.535     
+57P     H4      H       H       0       -8.339      -7.387      -21.236     
+57P     H5      H       H       0       -17.490     -6.756      -18.480     
+57P     H6      H       H       0       -9.482      -8.591      -15.476     
+57P     H7      H       H       0       -8.529      -8.736      -16.717     
+57P     H8      H       H       0       -8.075      -6.432      -16.650     
+57P     H9      H       H       0       -7.655      -7.119      -15.301     
+57P     H10     H       H       0       -10.344     -5.947      -22.973     
+57P     H11     H       H       0       -11.951     -8.330      -23.197     
+57P     H12     H       H       0       -11.878     -7.128      -24.296     
+57P     H14     H       H       0       -11.752     -9.906      -15.319     
+57P     H15     H       H       0       -12.580     -10.171     -13.165     
+57P     H16     H       H       0       -13.488     -8.358      -12.029     
+57P     H17     H       H       0       -13.564     -6.272      -13.055     
+57P     H18     H       H       0       -12.738     -5.997      -15.208     
+57P     H19     H       H       0       -13.720     -5.438      -19.012     
+57P     H20     H       H       0       -12.337     -6.983      -20.866     
+57P     H21     H       H       0       -8.127      -7.799      -18.960     
+57P     H22     H       H       0       -9.610      -8.695      -23.441     
+57P     H23     H       H       0       -9.537      -7.493      -24.541     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+57P         C25         C26      SINGLE       n     1.469  0.0119     1.469  0.0119
+57P         C24         C26      SINGLE       n     1.494  0.0189     1.494  0.0189
+57P         C24         C25      SINGLE       n     1.494  0.0189     1.494  0.0189
+57P         C24         C10      SINGLE       n     1.492  0.0100     1.492  0.0100
+57P         C11         C10      DOUBLE       y     1.389  0.0100     1.389  0.0100
+57P          C9         C10      SINGLE       y     1.388  0.0100     1.388  0.0100
+57P         C11         C12      SINGLE       y     1.378  0.0101     1.378  0.0101
+57P          C8          C9      DOUBLE       y     1.399  0.0100     1.399  0.0100
+57P         C13         C12      DOUBLE       y     1.392  0.0100     1.392  0.0100
+57P          C8         C13      SINGLE       y     1.410  0.0100     1.410  0.0100
+57P          C8          C7      SINGLE       y     1.438  0.0100     1.438  0.0100
+57P          C2          C3      DOUBLE       y     1.384  0.0100     1.384  0.0100
+57P          C2          C1      SINGLE       y     1.376  0.0124     1.376  0.0124
+57P          C4          C3      SINGLE       y     1.390  0.0100     1.390  0.0100
+57P           N         C13      SINGLE       y     1.384  0.0100     1.384  0.0100
+57P          C6          C1      DOUBLE       y     1.376  0.0124     1.376  0.0124
+57P          C4          C7      SINGLE       n     1.477  0.0100     1.477  0.0100
+57P          C4          C5      DOUBLE       y     1.390  0.0100     1.390  0.0100
+57P         C14          C7      DOUBLE       y     1.379  0.0100     1.379  0.0100
+57P          C5          C6      SINGLE       y     1.384  0.0100     1.384  0.0100
+57P           N         C14      SINGLE       y     1.393  0.0123     1.393  0.0123
+57P         C21           N      SINGLE       n     1.470  0.0111     1.470  0.0111
+57P         C14         C15      SINGLE       n     1.476  0.0100     1.476  0.0100
+57P         C21         C22      SINGLE       n     1.515  0.0116     1.515  0.0116
+57P         C22         C23      SINGLE       n     1.519  0.0109     1.519  0.0109
+57P          O1         C23      DOUBLE       n     1.247  0.0187     1.247  0.0187
+57P         C23          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+57P         C15         C16      DOUBLE       y     1.391  0.0100     1.391  0.0100
+57P         C15         C20      SINGLE       y     1.391  0.0100     1.391  0.0100
+57P         C16         C17      SINGLE       y     1.384  0.0100     1.384  0.0100
+57P         C19         C20      DOUBLE       y     1.384  0.0100     1.384  0.0100
+57P         C17         C18      DOUBLE       y     1.376  0.0114     1.376  0.0114
+57P         C18         C19      SINGLE       y     1.376  0.0124     1.376  0.0124
+57P          C2          H1      SINGLE       n     1.082  0.0130     0.943  0.0180
+57P          C5          H2      SINGLE       n     1.082  0.0130     0.942  0.0125
+57P          C6          H3      SINGLE       n     1.082  0.0130     0.943  0.0180
+57P         C11          H4      SINGLE       n     1.082  0.0130     0.943  0.0168
+57P          C1          H5      SINGLE       n     1.082  0.0130     0.944  0.0161
+57P         C21          H6      SINGLE       n     1.089  0.0100     0.975  0.0160
+57P         C21          H7      SINGLE       n     1.089  0.0100     0.975  0.0160
+57P         C22          H8      SINGLE       n     1.089  0.0100     0.973  0.0100
+57P         C22          H9      SINGLE       n     1.089  0.0100     0.973  0.0100
+57P         C24         H10      SINGLE       n     1.089  0.0100     0.977  0.0200
+57P         C25         H11      SINGLE       n     1.089  0.0100     0.970  0.0100
+57P         C25         H12      SINGLE       n     1.089  0.0100     0.970  0.0100
+57P         C16         H14      SINGLE       n     1.082  0.0130     0.942  0.0147
+57P         C17         H15      SINGLE       n     1.082  0.0130     0.943  0.0180
+57P         C18         H16      SINGLE       n     1.082  0.0130     0.944  0.0161
+57P         C19         H17      SINGLE       n     1.082  0.0130     0.943  0.0180
+57P         C20         H18      SINGLE       n     1.082  0.0130     0.942  0.0147
+57P          C3         H19      SINGLE       n     1.082  0.0130     0.942  0.0125
+57P          C9         H20      SINGLE       n     1.082  0.0130     0.942  0.0173
+57P         C12         H21      SINGLE       n     1.082  0.0130     0.938  0.0185
+57P         C26         H22      SINGLE       n     1.089  0.0100     0.970  0.0100
+57P         C26         H23      SINGLE       n     1.089  0.0100     0.970  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+57P          C9          C8         C13     119.650    1.50
+57P          C9          C8          C7     133.647    2.20
+57P         C13          C8          C7     106.704    1.50
+57P          C3          C2          C1     120.285    1.50
+57P          C3          C2          H1     119.757    1.50
+57P          C1          C2          H1     119.958    1.50
+57P          C3          C4          C7     121.037    1.50
+57P          C3          C4          C5     117.926    1.50
+57P          C7          C4          C5     121.037    1.50
+57P          C4          C5          C6     120.832    1.50
+57P          C4          C5          H2     119.455    1.50
+57P          C6          C5          H2     119.713    1.50
+57P          C1          C6          C5     120.285    1.50
+57P          C1          C6          H3     119.958    1.50
+57P          C5          C6          H3     119.757    1.50
+57P         C10         C11         C12     120.794    1.50
+57P         C10         C11          H4     119.662    1.50
+57P         C12         C11          H4     119.545    1.50
+57P          C2          C1          C6     119.840    1.50
+57P          C2          C1          H5     120.080    1.50
+57P          C6          C1          H5     120.080    1.50
+57P           N         C21         C22     111.989    1.71
+57P           N         C21          H6     108.458    1.53
+57P           N         C21          H7     108.458    1.53
+57P         C22         C21          H6     109.239    1.50
+57P         C22         C21          H7     109.239    1.50
+57P          H6         C21          H7     107.797    1.50
+57P         C21         C22         C23     113.936    1.58
+57P         C21         C22          H8     109.091    1.50
+57P         C21         C22          H9     109.091    1.50
+57P         C23         C22          H8     108.416    1.50
+57P         C23         C22          H9     108.416    1.50
+57P          H8         C22          H9     107.701    1.50
+57P         C26         C24         C25      58.853    1.50
+57P         C26         C24         C10     122.784    1.68
+57P         C26         C24         H10     114.403    1.50
+57P         C25         C24         C10     122.784    1.68
+57P         C25         C24         H10     114.403    1.50
+57P         C10         C24         H10     114.411    1.50
+57P         C26         C25         C24      60.077    2.22
+57P         C26         C25         H11     118.050    1.50
+57P         C26         C25         H12     118.050    1.50
+57P         C24         C25         H11     117.642    1.50
+57P         C24         C25         H12     117.642    1.50
+57P         H11         C25         H12     114.395    1.72
+57P         C22         C23          O1     118.187    1.67
+57P         C22         C23          O2     118.187    1.67
+57P          O1         C23          O2     123.625    1.50
+57P         C13           N         C14     107.557    1.50
+57P         C13           N         C21     124.544    1.50
+57P         C14           N         C21     121.545    3.00
+57P          C7         C14           N     108.520    1.50
+57P          C7         C14         C15     129.776    1.50
+57P           N         C14         C15     121.703    1.50
+57P         C14         C15         C16     120.828    1.50
+57P         C14         C15         C20     120.828    1.50
+57P         C16         C15         C20     118.344    1.50
+57P         C15         C16         C17     120.590    1.50
+57P         C15         C16         H14     119.628    1.50
+57P         C17         C16         H14     119.782    1.50
+57P         C16         C17         C18     120.307    1.50
+57P         C16         C17         H15     119.746    1.50
+57P         C18         C17         H15     119.947    1.50
+57P         C17         C18         C19     119.863    1.50
+57P         C17         C18         H16     120.069    1.50
+57P         C19         C18         H16     120.069    1.50
+57P         C20         C19         C18     120.307    1.50
+57P         C20         C19         H17     119.746    1.50
+57P         C18         C19         H17     119.947    1.50
+57P         C15         C20         C19     120.590    1.50
+57P         C15         C20         H18     119.628    1.50
+57P         C19         C20         H18     119.782    1.50
+57P          C8          C7          C4     125.817    1.50
+57P          C8          C7         C14     106.907    1.50
+57P          C4          C7         C14     127.276    1.50
+57P          C2          C3          C4     120.832    1.50
+57P          C2          C3         H19     119.713    1.50
+57P          C4          C3         H19     119.455    1.50
+57P         C12         C13          C8     122.105    1.50
+57P         C12         C13           N     130.403    1.50
+57P          C8         C13           N     107.492    1.50
+57P         C10          C9          C8     119.902    1.50
+57P         C10          C9         H20     119.405    1.50
+57P          C8          C9         H20     120.693    1.50
+57P         C24         C10         C11     120.182    2.38
+57P         C24         C10          C9     120.380    2.53
+57P         C11         C10          C9     119.438    1.74
+57P         C11         C12         C13     118.111    1.50
+57P         C11         C12         H21     120.889    1.50
+57P         C13         C12         H21     121.000    1.50
+57P         C25         C26         C24      60.077    2.22
+57P         C25         C26         H22     118.050    1.50
+57P         C25         C26         H23     118.050    1.50
+57P         C24         C26         H22     117.642    1.50
+57P         C24         C26         H23     117.642    1.50
+57P         H22         C26         H23     114.395    1.72
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+57P              const_80          C4          C7          C8          C9       0.000    10.0     2
+57P              const_21         C12         C13          C8          C9       0.000    10.0     2
+57P       const_sp2_sp2_1         C13          C8          C9         C10       0.000     5.0     2
+57P              const_30          C7         C14           N         C21     180.000    10.0     2
+57P              const_28         C12         C13           N         C21       0.000    10.0     2
+57P             sp2_sp2_8           N         C14         C15         C20     180.000     5.0     2
+57P              const_33           N         C14          C7          C8       0.000    10.0     2
+57P              const_39         C14         C15         C16         C17     180.000    10.0     2
+57P              const_87         C13          C8          C9         H20     180.000    10.0     2
+57P              const_41         C15         C16         C17         C18       0.000    10.0     2
+57P              const_45         C16         C17         C18         C19       0.000    10.0     2
+57P              const_49         C17         C18         C19         C20       0.000    10.0     2
+57P              const_57          C1          C2          C3          C4       0.000    10.0     2
+57P              const_84          H5          C1          C2          H1       0.000    10.0     2
+57P              const_53         C18         C19         C20         C15       0.000    10.0     2
+57P              const_17         C11         C12         C13          C8       0.000    10.0     2
+57P       const_sp2_sp2_7         C24         C10          C9          C8     180.000     5.0     2
+57P             sp2_sp2_4          C5          C4          C7         C14     180.000     5.0     2
+57P              const_62          C2          C3          C4          C7     180.000    10.0     2
+57P              const_65          C3          C4          C5          C6       0.000    10.0     2
+57P              const_69          C4          C5          C6          C1       0.000    10.0     2
+57P              const_73          C2          C1          C6          C5       0.000    10.0     2
+57P              const_11         C24         C10         C11         C12     180.000    10.0     2
+57P              const_13         C10         C11         C12         C13       0.000    10.0     2
+57P            sp2_sp3_11         C14           N         C21         C22      90.000    10.0     6
+57P            sp3_sp3_31          H6         C21         C22         C23      60.000    10.0     3
+57P            sp2_sp3_17          O2         C23         C22         C21     -60.000    10.0     6
+57P             sp2_sp3_5          C9         C10         C24         C26      90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+57P    chir_1    C24    C10    C26    C25    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+57P    plan-1         C10   0.020
+57P    plan-1         C11   0.020
+57P    plan-1         C12   0.020
+57P    plan-1         C13   0.020
+57P    plan-1         C14   0.020
+57P    plan-1         C15   0.020
+57P    plan-1         C21   0.020
+57P    plan-1         C24   0.020
+57P    plan-1          C4   0.020
+57P    plan-1          C7   0.020
+57P    plan-1          C8   0.020
+57P    plan-1          C9   0.020
+57P    plan-1         H20   0.020
+57P    plan-1         H21   0.020
+57P    plan-1          H4   0.020
+57P    plan-1           N   0.020
+57P    plan-2         C14   0.020
+57P    plan-2         C15   0.020
+57P    plan-2         C16   0.020
+57P    plan-2         C17   0.020
+57P    plan-2         C18   0.020
+57P    plan-2         C19   0.020
+57P    plan-2         C20   0.020
+57P    plan-2         H14   0.020
+57P    plan-2         H15   0.020
+57P    plan-2         H16   0.020
+57P    plan-2         H17   0.020
+57P    plan-2         H18   0.020
+57P    plan-3          C1   0.020
+57P    plan-3          C2   0.020
+57P    plan-3          C3   0.020
+57P    plan-3          C4   0.020
+57P    plan-3          C5   0.020
+57P    plan-3          C6   0.020
+57P    plan-3          C7   0.020
+57P    plan-3          H1   0.020
+57P    plan-3         H19   0.020
+57P    plan-3          H2   0.020
+57P    plan-3          H3   0.020
+57P    plan-3          H5   0.020
+57P    plan-4         C22   0.020
+57P    plan-4         C23   0.020
+57P    plan-4          O1   0.020
+57P    plan-4          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+57P           SMILES              ACDLabs 12.01                                                                                                          c25c(n(CCC(=O)O)c(c1ccccc1)c2c3ccccc3)ccc(C4CC4)c5
+57P            InChI                InChI  1.03 InChI=1S/C26H23NO2/c28-24(29)15-16-27-23-14-13-21(18-11-12-18)17-22(23)25(19-7-3-1-4-8-19)26(27)20-9-5-2-6-10-20/h1-10,13-14,17-18H,11-12,15-16H2,(H,28,29)
+57P         InChIKey                InChI  1.03                                                                                                                                 VTCPSZSCIMRYND-UHFFFAOYSA-N
+57P SMILES_CANONICAL               CACTVS 3.385                                                                                                              OC(=O)CCn1c2ccc(cc2c(c3ccccc3)c1c4ccccc4)C5CC5
+57P           SMILES               CACTVS 3.385                                                                                                              OC(=O)CCn1c2ccc(cc2c(c3ccccc3)c1c4ccccc4)C5CC5
+57P SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                            c1ccc(cc1)c2c3cc(ccc3n(c2c4ccccc4)CCC(=O)O)C5CC5
+57P           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                            c1ccc(cc1)c2c3cc(ccc3n(c2c4ccccc4)CCC(=O)O)C5CC5
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+57P acedrg               243         "dictionary generator"                  
+57P acedrg_database      11          "data source"                           
+57P rdkit                2017.03.2   "Chemoinformatics tool"
+57P refmac5              5.8.0238    "optimization tool"                     

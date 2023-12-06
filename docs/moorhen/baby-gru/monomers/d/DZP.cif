@@ -1,0 +1,259 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DZP     DZP      7-CHLORO-1-METHYL-5-PHENYL-1,3-DIHYDRO-2H-1,4-BENZODIAZEPIN-2-ONE     NON-POLYMER     33     20     .     
+#
+data_comp_DZP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DZP     C1      C       CR16    0       9.703       -3.551      -15.227     
+DZP     C2      C       CR16    0       9.360       -3.880      -13.931     
+DZP     C3      C       CR16    0       8.927       -2.898      -13.061     
+DZP     C4      C       CR16    0       8.835       -1.580      -13.485     
+DZP     C5      C       C       0       9.085       0.180       -15.259     
+DZP     C6      C       CR6     0       8.966       2.422       -14.076     
+DZP     C7      C       CR16    0       9.595       3.407       -13.303     
+DZP     C8      C       CR16    0       10.897      3.248       -12.875     
+DZP     C9      C       CR6     0       11.598      2.105       -13.222     
+DZP     C11     C       CR16    0       9.615       -2.236      -15.661     
+DZP     C12     C       CR6     0       9.179       -1.232      -14.793     
+DZP     C13     C       CR6     0       9.683       1.256       -14.422     
+DZP     C14     C       CR16    0       11.009      1.124       -13.986     
+DZP     N15     N       N       0       8.491       0.456       -16.370     
+DZP     C17     C       CH2     0       8.099       1.803       -16.796     
+DZP     C18     C       C       0       7.166       2.481       -15.816     
+DZP     C20     C       CH3     0       6.601       3.034       -13.500     
+DZP     N2      N       N       0       7.588       2.623       -14.510     
+DZP     O1      O       O       0       6.083       2.905       -16.189     
+DZP     CL      CL      CL      0       13.243      1.910       -12.684     
+DZP     H1      H       H       0       9.998       -4.222      -15.820     
+DZP     H2      H       H       0       9.421       -4.776      -13.639     
+DZP     H3      H       H       0       8.693       -3.124      -12.176     
+DZP     H4      H       H       0       8.539       -0.918      -12.885     
+DZP     H7      H       H       0       9.116       4.189       -13.063     
+DZP     H8      H       H       0       11.306      3.914       -12.354     
+DZP     H11     H       H       0       9.851       -2.021      -16.546     
+DZP     H14     H       H       0       11.498      0.354       -14.214     
+DZP     H171    H       H       0       7.643       1.738       -17.666     
+DZP     H172    H       H       0       8.903       2.358       -16.913     
+DZP     H201    H       H       0       6.952       2.880       -12.609     
+DZP     H202    H       H       0       5.785       2.520       -13.610     
+DZP     H203    H       H       0       6.402       3.977       -13.607     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DZP          C1          C2      DOUBLE       y     1.376  0.0114     1.376  0.0114
+DZP          C1         C11      SINGLE       y     1.384  0.0100     1.384  0.0100
+DZP          C2          C3      SINGLE       y     1.376  0.0124     1.376  0.0124
+DZP          C3          C4      DOUBLE       y     1.384  0.0100     1.384  0.0100
+DZP          C4         C12      SINGLE       y     1.393  0.0100     1.393  0.0100
+DZP          C5         C12      SINGLE       n     1.488  0.0100     1.488  0.0100
+DZP          C5         C13      SINGLE       n     1.486  0.0100     1.486  0.0100
+DZP          C5         N15      DOUBLE       n     1.286  0.0100     1.286  0.0100
+DZP          C6          C7      DOUBLE       y     1.393  0.0100     1.393  0.0100
+DZP          C6         C13      SINGLE       y     1.405  0.0100     1.405  0.0100
+DZP          C6          N2      SINGLE       n     1.434  0.0192     1.434  0.0192
+DZP          C7          C8      SINGLE       y     1.376  0.0100     1.376  0.0100
+DZP          C8          C9      DOUBLE       y     1.383  0.0100     1.383  0.0100
+DZP          C9         C14      SINGLE       y     1.375  0.0100     1.375  0.0100
+DZP          C9          CL      SINGLE       n     1.742  0.0100     1.742  0.0100
+DZP         C11         C12      DOUBLE       y     1.393  0.0100     1.393  0.0100
+DZP         C13         C14      DOUBLE       y     1.398  0.0104     1.398  0.0104
+DZP         N15         C17      SINGLE       n     1.462  0.0103     1.462  0.0103
+DZP         C17         C18      SINGLE       n     1.508  0.0117     1.508  0.0117
+DZP         C18          N2      SINGLE       n     1.359  0.0158     1.359  0.0158
+DZP         C18          O1      DOUBLE       n     1.220  0.0113     1.220  0.0113
+DZP         C20          N2      SINGLE       n     1.466  0.0100     1.466  0.0100
+DZP          C1          H1      SINGLE       n     1.082  0.0130     0.943  0.0180
+DZP          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0161
+DZP          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0180
+DZP          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0168
+DZP          C7          H7      SINGLE       n     1.082  0.0130     0.948  0.0200
+DZP          C8          H8      SINGLE       n     1.082  0.0130     0.939  0.0138
+DZP         C11         H11      SINGLE       n     1.082  0.0130     0.941  0.0168
+DZP         C14         H14      SINGLE       n     1.082  0.0130     0.940  0.0137
+DZP         C17        H171      SINGLE       n     1.089  0.0100     0.984  0.0185
+DZP         C17        H172      SINGLE       n     1.089  0.0100     0.984  0.0185
+DZP         C20        H201      SINGLE       n     1.089  0.0100     0.970  0.0149
+DZP         C20        H202      SINGLE       n     1.089  0.0100     0.970  0.0149
+DZP         C20        H203      SINGLE       n     1.089  0.0100     0.970  0.0149
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DZP          C2          C1         C11     120.186    1.50
+DZP          C2          C1          H1     119.952    1.50
+DZP         C11          C1          H1     119.861    1.50
+DZP          C1          C2          C3     119.904    1.50
+DZP          C1          C2          H2     120.048    1.50
+DZP          C3          C2          H2     120.048    1.50
+DZP          C2          C3          C4     120.186    1.50
+DZP          C2          C3          H3     119.952    1.50
+DZP          C4          C3          H3     119.861    1.50
+DZP          C3          C4         C12     120.421    1.50
+DZP          C3          C4          H4     119.715    1.50
+DZP         C12          C4          H4     119.864    1.50
+DZP         C12          C5         C13     118.435    1.50
+DZP         C12          C5         N15     121.095    2.99
+DZP         C13          C5         N15     120.470    3.00
+DZP          C7          C6         C13     119.139    1.50
+DZP          C7          C6          N2     119.366    1.50
+DZP         C13          C6          N2     121.495    1.50
+DZP          C6          C7          C8     120.216    1.50
+DZP          C6          C7          H7     119.719    1.50
+DZP          C8          C7          H7     120.065    1.50
+DZP          C7          C8          C9     119.623    1.50
+DZP          C7          C8          H8     120.119    1.50
+DZP          C9          C8          H8     120.258    1.50
+DZP          C8          C9         C14     121.349    1.50
+DZP          C8          C9          CL     119.232    1.50
+DZP         C14          C9          CL     119.419    1.50
+DZP          C1         C11         C12     120.421    1.50
+DZP          C1         C11         H11     119.715    1.50
+DZP         C12         C11         H11     119.864    1.50
+DZP          C4         C12          C5     120.559    1.50
+DZP          C4         C12         C11     118.882    1.50
+DZP          C5         C12         C11     120.559    1.50
+DZP          C5         C13          C6     122.570    1.64
+DZP          C5         C13         C14     118.822    1.50
+DZP          C6         C13         C14     118.608    1.50
+DZP          C9         C14         C13     121.065    1.50
+DZP          C9         C14         H14     119.672    1.50
+DZP         C13         C14         H14     119.263    1.50
+DZP          C5         N15         C17     119.132    2.76
+DZP         N15         C17         C18     112.077    1.94
+DZP         N15         C17        H171     109.222    1.50
+DZP         N15         C17        H172     109.222    1.50
+DZP         C18         C17        H171     108.830    1.50
+DZP         C18         C17        H172     108.830    1.50
+DZP        H171         C17        H172     108.549    1.50
+DZP         C17         C18          N2     116.826    1.50
+DZP         C17         C18          O1     121.570    1.50
+DZP          N2         C18          O1     121.604    1.50
+DZP          N2         C20        H201     109.578    1.50
+DZP          N2         C20        H202     109.578    1.50
+DZP          N2         C20        H203     109.578    1.50
+DZP        H201         C20        H202     109.352    1.56
+DZP        H201         C20        H203     109.352    1.56
+DZP        H202         C20        H203     109.352    1.56
+DZP          C6          N2         C18     123.244    1.50
+DZP          C6          N2         C20     118.070    1.50
+DZP         C18          N2         C20     118.686    1.64
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DZP       const_sp2_sp2_1         C11          C1          C2          C3       0.000     5.0     2
+DZP              const_41          C2          C1         C11         C12       0.000    10.0     2
+DZP              const_39          C5         C13         C14          C9     180.000    10.0     2
+DZP             sp2_sp3_2          C5         N15         C17         C18     120.000    10.0     6
+DZP             sp2_sp3_5          N2         C18         C17         N15     120.000    10.0     6
+DZP            sp2_sp2_16         C17         C18          N2         C20       0.000     5.0     2
+DZP            sp2_sp3_13         C18          N2         C20        H201     180.000    10.0     6
+DZP       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+DZP       const_sp2_sp2_9          C2          C3          C4         C12       0.000     5.0     2
+DZP              const_15          C5         C12          C4          C3     180.000    10.0     2
+DZP             sp2_sp2_2          C4         C12          C5         N15       0.000     5.0     2
+DZP             sp2_sp2_6          C6         C13          C5         N15       0.000     5.0     2
+DZP             sp2_sp2_9         C12          C5         N15         C17     180.000     5.0     2
+DZP              const_48          C5         C13          C6          N2       0.000    10.0     2
+DZP            sp2_sp2_11          C7          C6          N2         C18     180.000     5.0     2
+DZP              const_23          N2          C6          C7          C8     180.000    10.0     2
+DZP              const_25          C6          C7          C8          C9       0.000    10.0     2
+DZP              const_30          C7          C8          C9          CL     180.000    10.0     2
+DZP              const_34         C13         C14          C9          CL     180.000    10.0     2
+DZP              const_18          C1         C11         C12          C5     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DZP    plan-1          C1   0.020
+DZP    plan-1         C11   0.020
+DZP    plan-1         C12   0.020
+DZP    plan-1          C2   0.020
+DZP    plan-1          C3   0.020
+DZP    plan-1          C4   0.020
+DZP    plan-1          C5   0.020
+DZP    plan-1          H1   0.020
+DZP    plan-1         H11   0.020
+DZP    plan-1          H2   0.020
+DZP    plan-1          H3   0.020
+DZP    plan-1          H4   0.020
+DZP    plan-2         C13   0.020
+DZP    plan-2         C14   0.020
+DZP    plan-2          C5   0.020
+DZP    plan-2          C6   0.020
+DZP    plan-2          C7   0.020
+DZP    plan-2          C8   0.020
+DZP    plan-2          C9   0.020
+DZP    plan-2          CL   0.020
+DZP    plan-2         H14   0.020
+DZP    plan-2          H7   0.020
+DZP    plan-2          H8   0.020
+DZP    plan-2          N2   0.020
+DZP    plan-3         C12   0.020
+DZP    plan-3         C13   0.020
+DZP    plan-3          C5   0.020
+DZP    plan-3         N15   0.020
+DZP    plan-4         C17   0.020
+DZP    plan-4         C18   0.020
+DZP    plan-4          N2   0.020
+DZP    plan-4          O1   0.020
+DZP    plan-5         C18   0.020
+DZP    plan-5         C20   0.020
+DZP    plan-5          C6   0.020
+DZP    plan-5          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DZP           SMILES              ACDLabs 10.04                                                              Clc3cc1c(N(C(=O)CN=C1c2ccccc2)C)cc3
+DZP SMILES_CANONICAL               CACTVS 3.341                                                              CN1C(=O)CN=C(c2ccccc2)c3cc(Cl)ccc13
+DZP           SMILES               CACTVS 3.341                                                              CN1C(=O)CN=C(c2ccccc2)c3cc(Cl)ccc13
+DZP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                CN1c2ccc(cc2C(=NCC1=O)c3ccccc3)Cl
+DZP           SMILES "OpenEye OEToolkits" 1.5.0                                                                CN1c2ccc(cc2C(=NCC1=O)c3ccccc3)Cl
+DZP            InChI                InChI  1.03 InChI=1S/C16H13ClN2O/c1-19-14-8-7-12(17)9-13(14)16(18-10-15(19)20)11-5-3-2-4-6-11/h2-9H,10H2,1H3
+DZP         InChIKey                InChI  1.03                                                                      AAOVKJBEBIDNHE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DZP acedrg               243         "dictionary generator"                  
+DZP acedrg_database      11          "data source"                           
+DZP rdkit                2017.03.2   "Chemoinformatics tool"
+DZP refmac5              5.8.0238    "optimization tool"                     

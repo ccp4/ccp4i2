@@ -1,0 +1,160 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HMB     HMB      "(4S)-4-hydroxy-4-methoxybutanoic acid"     NON-POLYMER     18     9     .     
+#
+data_comp_HMB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HMB     CA      C       CH2     0       -4.252      45.861      -2.219      
+HMB     CB      C       CH2     0       -4.333      46.108      -0.715      
+HMB     CG      C       CH1     0       -3.059      45.738      0.031       
+HMB     CE      C       CH3     0       -1.620      43.877      0.420       
+HMB     C       C       C       0       -4.519      44.440      -2.694      
+HMB     OD1     O       OH1     0       -3.145      46.272      1.344       
+HMB     OD2     O       O2      0       -2.912      44.338      0.049       
+HMB     O       O       O       0       -3.868      44.018      -3.671      
+HMB     O4      O       OC      -1      -5.378      43.759      -2.097      
+HMB     HA1     H       H       0       -3.358      46.121      -2.528      
+HMB     HA2     H       H       0       -4.895      46.453      -2.664      
+HMB     HB1     H       H       0       -5.080      45.597      -0.341      
+HMB     HB2     H       H       0       -4.520      47.058      -0.562      
+HMB     HG      H       H       0       -2.278      46.147      -0.428      
+HMB     HE1     H       H       0       -1.620      42.906      0.446       
+HMB     HE2     H       H       0       -1.391      44.224      1.298       
+HMB     HE3     H       H       0       -0.967      44.183      -0.230      
+HMB     HD1     H       H       0       -2.363      46.390      1.651       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HMB          CA          CB      SINGLE       n     1.517  0.0200     1.517  0.0200
+HMB          CA           C      SINGLE       n     1.519  0.0109     1.519  0.0109
+HMB          CB          CG      SINGLE       n     1.519  0.0200     1.519  0.0200
+HMB          CG         OD1      SINGLE       n     1.421  0.0162     1.421  0.0162
+HMB          CG         OD2      SINGLE       n     1.405  0.0128     1.405  0.0128
+HMB          CE         OD2      SINGLE       n     1.417  0.0200     1.417  0.0200
+HMB           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+HMB           C          O4      SINGLE       n     1.247  0.0187     1.247  0.0187
+HMB          CA         HA1      SINGLE       n     1.089  0.0100     0.981  0.0185
+HMB          CA         HA2      SINGLE       n     1.089  0.0100     0.981  0.0185
+HMB          CB         HB1      SINGLE       n     1.089  0.0100     0.980  0.0160
+HMB          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0160
+HMB          CG          HG      SINGLE       n     1.089  0.0100     0.993  0.0200
+HMB          CE         HE1      SINGLE       n     1.089  0.0100     0.971  0.0146
+HMB          CE         HE2      SINGLE       n     1.089  0.0100     0.971  0.0146
+HMB          CE         HE3      SINGLE       n     1.089  0.0100     0.971  0.0146
+HMB         OD1         HD1      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HMB          CB          CA           C     114.629    2.24
+HMB          CB          CA         HA1     108.844    1.50
+HMB          CB          CA         HA2     108.844    1.50
+HMB           C          CA         HA1     108.404    1.50
+HMB           C          CA         HA2     108.404    1.50
+HMB         HA1          CA         HA2     107.521    1.50
+HMB          CA          CB          CG     111.094    2.85
+HMB          CA          CB         HB1     108.915    1.50
+HMB          CA          CB         HB2     108.915    1.50
+HMB          CG          CB         HB1     108.875    1.50
+HMB          CG          CB         HB2     108.875    1.50
+HMB         HB1          CB         HB2     107.715    1.50
+HMB          CB          CG         OD1     109.482    3.00
+HMB          CB          CG         OD2     109.324    2.90
+HMB          CB          CG          HG     109.778    2.07
+HMB         OD1          CG         OD2     111.904    1.92
+HMB         OD1          CG          HG     108.816    1.50
+HMB         OD2          CG          HG     109.306    1.50
+HMB         OD2          CE         HE1     109.428    1.50
+HMB         OD2          CE         HE2     109.428    1.50
+HMB         OD2          CE         HE3     109.428    1.50
+HMB         HE1          CE         HE2     109.532    1.53
+HMB         HE1          CE         HE3     109.532    1.53
+HMB         HE2          CE         HE3     109.532    1.53
+HMB          CA           C           O     118.214    1.64
+HMB          CA           C          O4     118.214    1.64
+HMB           O           C          O4     123.571    1.50
+HMB          CG         OD1         HD1     109.233    2.58
+HMB          CG         OD2          CE     114.208    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HMB             sp3_sp3_1           C          CA          CB          CG     180.000    10.0     3
+HMB             sp2_sp3_2           O           C          CA          CB     120.000    10.0     6
+HMB            sp3_sp3_10          CA          CB          CG         OD1     180.000    10.0     3
+HMB            sp3_sp3_19          CB          CG         OD1         HD1     180.000    10.0     3
+HMB            sp3_sp3_22          CB          CG         OD2          CE     180.000    10.0     3
+HMB            sp3_sp3_25         HE1          CE         OD2          CG     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HMB    chir_1    CG    OD2    OD1    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HMB    plan-1           C   0.020
+HMB    plan-1          CA   0.020
+HMB    plan-1           O   0.020
+HMB    plan-1          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HMB           SMILES              ACDLabs 12.01                                                        O=C(O)CCC(O)OC
+HMB SMILES_CANONICAL               CACTVS 3.370                                                    CO[C@H](O)CCC(O)=O
+HMB           SMILES               CACTVS 3.370                                                     CO[CH](O)CCC(O)=O
+HMB SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                        COC(CCC(=O)O)O
+HMB           SMILES "OpenEye OEToolkits" 1.7.0                                                        COC(CCC(=O)O)O
+HMB            InChI                InChI  1.03 InChI=1S/C5H10O4/c1-9-5(8)3-2-4(6)7/h5,8H,2-3H2,1H3,(H,6,7)/t5-/m0/s1
+HMB         InChIKey                InChI  1.03                                           ONECVBBAMLSRPV-YFKPBYRVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HMB acedrg               243         "dictionary generator"                  
+HMB acedrg_database      11          "data source"                           
+HMB rdkit                2017.03.2   "Chemoinformatics tool"
+HMB refmac5              5.8.0238    "optimization tool"                     

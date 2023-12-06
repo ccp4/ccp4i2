@@ -1,0 +1,447 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NFD     NFD      "Nicotinamide 2-fluoro-adenine dinucleotide"     NON-POLYMER     70     45     .     
+#
+data_comp_NFD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NFD     PA      P       P       0       1.424       2.368       20.996      
+NFD     PN      P       P       0       0.202       5.037       21.222      
+NFD     N1A     N       NRD6    0       8.584       5.723       19.357      
+NFD     O1A     O       O       0       1.121       1.210       20.104      
+NFD     NN1     N       NR6     1       4.274       7.879       18.690      
+NFD     O1N     O       O       0       -1.094      5.215       21.941      
+NFD     C2A     C       CR6     0       7.724       4.837       19.826      
+NFD     F2A     F       F       0       7.738       4.600       21.143      
+NFD     O2A     O       OP      -1      1.539       2.118       22.463      
+NFD     C2N     C       CR16    0       5.416       8.585       18.365      
+NFD     O2N     O       OP      -1      1.457       5.418       21.936      
+NFD     O3      O       O2      0       0.320       3.507       20.753      
+NFD     N3A     N       NRD6    0       6.841       4.160       19.092      
+NFD     C3N     C       CR6     0       6.438       8.732       19.303      
+NFD     C4A     C       CR56    0       6.864       4.430       17.775      
+NFD     C4N     C       CR16    0       6.311       8.154       20.560      
+NFD     C5A     C       CR56    0       7.715       5.334       17.176      
+NFD     C5N     C       CR16    0       5.167       7.443       20.876      
+NFD     C6A     C       CR6     0       8.617       6.006       18.028      
+NFD     N6A     N       NH2     0       9.500       6.905       17.596      
+NFD     C6N     C       CR16    0       4.158       7.305       19.940      
+NFD     N7A     N       NRD5    0       7.482       5.379       15.807      
+NFD     C7N     C       C       0       7.675       9.501       18.952      
+NFD     NN7     N       NH2     0       7.543       10.689      18.373      
+NFD     O7N     O       O       0       8.789       9.016       19.207      
+NFD     C8A     C       CR15    0       6.510       4.517       15.609      
+NFD     N9A     N       NT      0       6.087       3.911       16.772      
+NFD     "C1'A"  C       CH1     0       5.028       2.898       16.894      
+NFD     "C1'N"  C       CH1     0       3.199       7.737       17.672      
+NFD     "C2'A"  C       CH1     0       5.557       1.467       17.011      
+NFD     "O2'A"  O       OH1     0       4.817       0.588       16.190      
+NFD     "C2'N"  C       CH1     0       3.332       6.481       16.805      
+NFD     "O2'N"  O       OH1     0       4.158       6.757       15.684      
+NFD     "C3'A"  C       CH1     0       5.392       1.164       18.504      
+NFD     "O3'A"  O       OH1     0       5.195       -0.220      18.768      
+NFD     "C3'N"  C       CH1     0       1.865       6.229       16.436      
+NFD     "O3'N"  O       OH1     0       1.406       7.034       15.354      
+NFD     "C4'A"  C       CH1     0       4.141       1.975       18.856      
+NFD     "O4'A"  O       O2      0       4.253       3.168       18.043      
+NFD     "C4'N"  C       CH1     0       1.156       6.570       17.754      
+NFD     "O4'N"  O       O2      0       1.925       7.657       18.315      
+NFD     "C5'A"  C       CH2     0       3.988       2.367       20.306      
+NFD     "O5'A"  O       O2      0       2.751       3.109       20.477      
+NFD     "C5'N"  C       CH2     0       1.060       5.444       18.754      
+NFD     "O5'N"  O       O2      0       0.138       5.808       19.814      
+NFD     HC2     H       H       0       5.504       8.978       17.513      
+NFD     HC4     H       H       0       6.998       8.247       21.196      
+NFD     HC5     H       H       0       5.072       7.049       21.727      
+NFD     HAN6    H       H       0       9.306       7.406       16.903      
+NFD     HANA    H       H       0       10.272      6.991       18.006      
+NFD     HC6     H       H       0       3.381       6.821       20.157      
+NFD     HNN7    H       H       0       8.269       11.152      18.143      
+NFD     HNNA    H       H       0       6.740       11.044      18.219      
+NFD     HC8     H       H       0       6.146       4.342       14.757      
+NFD     "HC1'"  H       H       0       4.452       2.953       16.097      
+NFD     HC1A    H       H       0       3.210       8.537       17.088      
+NFD     "HC2'"  H       H       0       6.518       1.432       16.758      
+NFD     "HO2'"  H       H       0       5.102       -0.204      16.303      
+NFD     HC2A    H       H       0       3.694       5.728       17.333      
+NFD     HO2A    H       H       0       4.111       6.113       15.132      
+NFD     "HC3'"  H       H       0       6.173       1.500       19.013      
+NFD     "HO3'"  H       H       0       5.093       -0.326      19.604      
+NFD     HC3A    H       H       0       1.733       5.269       16.223      
+NFD     HO3A    H       H       0       1.285       7.837       15.604      
+NFD     "HC4'"  H       H       0       3.341       1.477       18.585      
+NFD     HC4A    H       H       0       0.248       6.891       17.564      
+NFD     "HC5'"  H       H       0       4.755       2.928       20.579      
+NFD     HC5A    H       H       0       3.979       1.554       20.871      
+NFD     HC5B    H       H       0       1.954       5.263       19.132      
+NFD     HC5C    H       H       0       0.742       4.624       18.300      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NFD          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+NFD          PA      "O5'A"      SINGLE       n     1.604  0.0133     1.604  0.0133
+NFD          PA          O3      SINGLE       n     1.604  0.0133     1.604  0.0133
+NFD          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+NFD          PN      "O5'N"      SINGLE       n     1.604  0.0133     1.604  0.0133
+NFD          PN          O3      SINGLE       n     1.604  0.0133     1.604  0.0133
+NFD          PN         O1N      DOUBLE       n     1.493  0.0122     1.493  0.0122
+NFD          PN         O2N      SINGLE       n     1.493  0.0122     1.493  0.0122
+NFD         N1A         C6A      DOUBLE       y     1.352  0.0100     1.352  0.0100
+NFD         N1A         C2A      SINGLE       y     1.313  0.0100     1.313  0.0100
+NFD         NN1         C2N      DOUBLE       y     1.377  0.0105     1.377  0.0105
+NFD         NN1      "C1'N"      SINGLE       n     1.477  0.0138     1.477  0.0138
+NFD         NN1         C6N      SINGLE       y     1.375  0.0105     1.375  0.0105
+NFD         C2A         N3A      DOUBLE       y     1.327  0.0100     1.327  0.0100
+NFD         C2A         F2A      SINGLE       n     1.338  0.0144     1.338  0.0144
+NFD         C2N         C3N      SINGLE       y     1.390  0.0105     1.390  0.0105
+NFD         N3A         C4A      SINGLE       y     1.342  0.0100     1.342  0.0100
+NFD         C3N         C7N      SINGLE       n     1.497  0.0100     1.497  0.0100
+NFD         C3N         C4N      DOUBLE       y     1.385  0.0100     1.385  0.0100
+NFD         C4A         N9A      SINGLE       y     1.372  0.0100     1.372  0.0100
+NFD         C4A         C5A      DOUBLE       y     1.383  0.0100     1.383  0.0100
+NFD         C4N         C5N      SINGLE       y     1.380  0.0100     1.380  0.0100
+NFD         C5A         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+NFD         C5A         C6A      SINGLE       y     1.409  0.0100     1.409  0.0100
+NFD         C5N         C6N      DOUBLE       y     1.380  0.0128     1.380  0.0128
+NFD         C6A         N6A      SINGLE       n     1.332  0.0100     1.332  0.0100
+NFD         N7A         C8A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+NFD         C7N         NN7      SINGLE       n     1.326  0.0100     1.326  0.0100
+NFD         C7N         O7N      DOUBLE       n     1.241  0.0105     1.241  0.0105
+NFD         C8A         N9A      SINGLE       y     1.372  0.0200     1.372  0.0200
+NFD         N9A      "C1'A"      SINGLE       n     1.458  0.0200     1.458  0.0200
+NFD      "C1'A"      "O4'A"      SINGLE       n     1.409  0.0100     1.409  0.0100
+NFD      "C1'A"      "C2'A"      SINGLE       n     1.525  0.0100     1.525  0.0100
+NFD      "C1'N"      "C2'N"      SINGLE       n     1.533  0.0100     1.533  0.0100
+NFD      "C1'N"      "O4'N"      SINGLE       n     1.425  0.0141     1.425  0.0141
+NFD      "C2'A"      "O2'A"      SINGLE       n     1.411  0.0100     1.411  0.0100
+NFD      "C2'A"      "C3'A"      SINGLE       n     1.531  0.0100     1.531  0.0100
+NFD      "C2'N"      "O2'N"      SINGLE       n     1.419  0.0101     1.419  0.0101
+NFD      "C2'N"      "C3'N"      SINGLE       n     1.533  0.0100     1.533  0.0100
+NFD      "C3'A"      "C4'A"      SINGLE       n     1.535  0.0100     1.535  0.0100
+NFD      "C3'A"      "O3'A"      SINGLE       n     1.422  0.0100     1.422  0.0100
+NFD      "C3'N"      "O3'N"      SINGLE       n     1.422  0.0100     1.422  0.0100
+NFD      "C3'N"      "C4'N"      SINGLE       n     1.535  0.0100     1.535  0.0100
+NFD      "C4'A"      "O4'A"      SINGLE       n     1.451  0.0100     1.451  0.0100
+NFD      "C4'A"      "C5'A"      SINGLE       n     1.509  0.0100     1.509  0.0100
+NFD      "C4'N"      "C5'N"      SINGLE       n     1.509  0.0100     1.509  0.0100
+NFD      "C4'N"      "O4'N"      SINGLE       n     1.443  0.0107     1.443  0.0107
+NFD      "C5'A"      "O5'A"      SINGLE       n     1.450  0.0166     1.450  0.0166
+NFD      "C5'N"      "O5'N"      SINGLE       n     1.450  0.0166     1.450  0.0166
+NFD         C2N         HC2      SINGLE       n     1.082  0.0130     0.943  0.0170
+NFD         C4N         HC4      SINGLE       n     1.082  0.0130     0.941  0.0168
+NFD         C5N         HC5      SINGLE       n     1.082  0.0130     0.943  0.0190
+NFD         N6A        HAN6      SINGLE       n     1.016  0.0100     0.877  0.0200
+NFD         N6A        HANA      SINGLE       n     1.016  0.0100     0.877  0.0200
+NFD         C6N         HC6      SINGLE       n     1.082  0.0130     0.943  0.0169
+NFD         NN7        HNN7      SINGLE       n     1.016  0.0100     0.891  0.0200
+NFD         NN7        HNNA      SINGLE       n     1.016  0.0100     0.891  0.0200
+NFD         C8A         HC8      SINGLE       n     1.082  0.0130     0.942  0.0170
+NFD      "C1'A"      "HC1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+NFD      "C1'N"        HC1A      SINGLE       n     1.089  0.0100     0.990  0.0173
+NFD      "C2'A"      "HC2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+NFD      "O2'A"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+NFD      "C2'N"        HC2A      SINGLE       n     1.089  0.0100     0.989  0.0200
+NFD      "O2'N"        HO2A      SINGLE       n     0.970  0.0120     0.849  0.0200
+NFD      "C3'A"      "HC3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+NFD      "O3'A"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+NFD      "C3'N"        HC3A      SINGLE       n     1.089  0.0100     0.992  0.0200
+NFD      "O3'N"        HO3A      SINGLE       n     0.970  0.0120     0.849  0.0200
+NFD      "C4'A"      "HC4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+NFD      "C4'N"        HC4A      SINGLE       n     1.089  0.0100     0.981  0.0200
+NFD      "C5'A"      "HC5'"      SINGLE       n     1.089  0.0100     0.989  0.0200
+NFD      "C5'A"        HC5A      SINGLE       n     1.089  0.0100     0.989  0.0200
+NFD      "C5'N"        HC5B      SINGLE       n     1.089  0.0100     0.989  0.0200
+NFD      "C5'N"        HC5C      SINGLE       n     1.089  0.0100     0.989  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NFD         O1A          PA      "O5'A"     109.410    1.50
+NFD         O1A          PA          O3     108.816    2.14
+NFD         O1A          PA         O2A     118.411    2.35
+NFD      "O5'A"          PA          O3     101.065    1.97
+NFD      "O5'A"          PA         O2A     109.410    1.50
+NFD          O3          PA         O2A     108.816    2.14
+NFD      "O5'N"          PN          O3     101.065    1.97
+NFD      "O5'N"          PN         O1N     109.410    1.50
+NFD      "O5'N"          PN         O2N     109.410    1.50
+NFD          O3          PN         O1N     108.816    2.14
+NFD          O3          PN         O2N     108.816    2.14
+NFD         O1N          PN         O2N     118.411    2.35
+NFD         C6A         N1A         C2A     118.728    1.50
+NFD         C2N         NN1      "C1'N"     119.705    1.50
+NFD         C2N         NN1         C6N     120.590    1.50
+NFD      "C1'N"         NN1         C6N     119.705    1.50
+NFD         N1A         C2A         N3A     124.542    1.50
+NFD         N1A         C2A         F2A     117.794    1.50
+NFD         N3A         C2A         F2A     117.664    1.50
+NFD         NN1         C2N         C3N     119.549    3.00
+NFD         NN1         C2N         HC2     120.430    1.53
+NFD         C3N         C2N         HC2     120.021    1.50
+NFD          PA          O3          PN     132.542    3.00
+NFD         C2A         N3A         C4A     115.525    1.50
+NFD         C2N         C3N         C7N     119.660    2.75
+NFD         C2N         C3N         C4N     119.402    1.64
+NFD         C7N         C3N         C4N     120.938    2.50
+NFD         N3A         C4A         N9A     126.419    1.50
+NFD         N3A         C4A         C5A     125.340    1.50
+NFD         N9A         C4A         C5A     108.241    1.69
+NFD         C3N         C4N         C5N     119.166    1.50
+NFD         C3N         C4N         HC4     120.513    1.50
+NFD         C5N         C4N         HC4     120.320    1.50
+NFD         C4A         C5A         N7A     110.543    1.50
+NFD         C4A         C5A         C6A     117.356    1.50
+NFD         N7A         C5A         C6A     132.101    1.50
+NFD         C4N         C5N         C6N     120.016    1.50
+NFD         C4N         C5N         HC5     120.300    1.50
+NFD         C6N         C5N         HC5     119.683    1.50
+NFD         N1A         C6A         C5A     118.509    1.50
+NFD         N1A         C6A         N6A     118.179    1.50
+NFD         C5A         C6A         N6A     123.312    1.50
+NFD         C6A         N6A        HAN6     119.723    1.50
+NFD         C6A         N6A        HANA     119.723    1.50
+NFD        HAN6         N6A        HANA     120.554    1.88
+NFD         NN1         C6N         C5N     121.277    1.50
+NFD         NN1         C6N         HC6     118.693    1.53
+NFD         C5N         C6N         HC6     120.031    1.59
+NFD         C5A         N7A         C8A     103.927    1.50
+NFD         C3N         C7N         NN7     118.032    1.50
+NFD         C3N         C7N         O7N     119.730    1.50
+NFD         NN7         C7N         O7N     122.238    1.50
+NFD         C7N         NN7        HNN7     120.236    2.75
+NFD         C7N         NN7        HNNA     120.236    2.75
+NFD        HNN7         NN7        HNNA     119.529    2.83
+NFD         N7A         C8A         N9A     112.130    1.94
+NFD         N7A         C8A         HC8     123.170    1.50
+NFD         N9A         C8A         HC8     124.701    2.19
+NFD         C4A         N9A         C8A     107.594    1.50
+NFD         C4A         N9A      "C1'A"     125.158    1.54
+NFD         C8A         N9A      "C1'A"     126.078    2.46
+NFD         N9A      "C1'A"      "O4'A"     108.167    1.51
+NFD         N9A      "C1'A"      "C2'A"     113.752    2.20
+NFD         N9A      "C1'A"      "HC1'"     109.246    1.50
+NFD      "O4'A"      "C1'A"      "C2'A"     106.047    1.50
+NFD      "O4'A"      "C1'A"      "HC1'"     109.807    1.50
+NFD      "C2'A"      "C1'A"      "HC1'"     109.015    1.50
+NFD         NN1      "C1'N"      "C2'N"     113.620    1.99
+NFD         NN1      "C1'N"      "O4'N"     108.092    1.50
+NFD         NN1      "C1'N"        HC1A     108.901    1.50
+NFD      "C2'N"      "C1'N"      "O4'N"     106.825    1.50
+NFD      "C2'N"      "C1'N"        HC1A     109.776    1.83
+NFD      "O4'N"      "C1'N"        HC1A     109.327    1.50
+NFD      "C1'A"      "C2'A"      "O2'A"     111.715    2.69
+NFD      "C1'A"      "C2'A"      "C3'A"     101.239    1.50
+NFD      "C1'A"      "C2'A"      "HC2'"     110.636    1.70
+NFD      "O2'A"      "C2'A"      "C3'A"     112.782    2.45
+NFD      "O2'A"      "C2'A"      "HC2'"     110.448    1.97
+NFD      "C3'A"      "C2'A"      "HC2'"     110.596    1.51
+NFD      "C2'A"      "O2'A"      "HO2'"     109.103    2.13
+NFD      "C1'N"      "C2'N"      "O2'N"     109.476    3.00
+NFD      "C1'N"      "C2'N"      "C3'N"     101.269    1.50
+NFD      "C1'N"      "C2'N"        HC2A     110.760    1.63
+NFD      "O2'N"      "C2'N"      "C3'N"     112.861    2.52
+NFD      "O2'N"      "C2'N"        HC2A     111.022    1.77
+NFD      "C3'N"      "C2'N"        HC2A     110.799    1.82
+NFD      "C2'N"      "O2'N"        HO2A     109.449    1.85
+NFD      "C2'A"      "C3'A"      "C4'A"     102.602    1.50
+NFD      "C2'A"      "C3'A"      "O3'A"     111.581    2.83
+NFD      "C2'A"      "C3'A"      "HC3'"     110.504    1.75
+NFD      "C4'A"      "C3'A"      "O3'A"     111.281    2.46
+NFD      "C4'A"      "C3'A"      "HC3'"     110.452    2.54
+NFD      "O3'A"      "C3'A"      "HC3'"     110.380    1.67
+NFD      "C3'A"      "O3'A"      "HO3'"     108.744    3.00
+NFD      "C2'N"      "C3'N"      "O3'N"     111.993    3.00
+NFD      "C2'N"      "C3'N"      "C4'N"     102.071    1.50
+NFD      "C2'N"      "C3'N"        HC3A     110.108    1.66
+NFD      "O3'N"      "C3'N"      "C4'N"     111.281    2.46
+NFD      "O3'N"      "C3'N"        HC3A     110.380    1.67
+NFD      "C4'N"      "C3'N"        HC3A     110.452    2.54
+NFD      "C3'N"      "O3'N"        HO3A     108.744    3.00
+NFD      "C3'A"      "C4'A"      "O4'A"     105.388    1.50
+NFD      "C3'A"      "C4'A"      "C5'A"     116.008    1.52
+NFD      "C3'A"      "C4'A"      "HC4'"     109.363    1.86
+NFD      "O4'A"      "C4'A"      "C5'A"     109.123    1.50
+NFD      "O4'A"      "C4'A"      "HC4'"     108.947    1.50
+NFD      "C5'A"      "C4'A"      "HC4'"     108.268    1.50
+NFD      "C1'A"      "O4'A"      "C4'A"     109.903    1.50
+NFD      "C3'N"      "C4'N"      "C5'N"     116.008    1.52
+NFD      "C3'N"      "C4'N"      "O4'N"     104.439    1.50
+NFD      "C3'N"      "C4'N"        HC4A     109.363    1.86
+NFD      "C5'N"      "C4'N"      "O4'N"     109.615    1.50
+NFD      "C5'N"      "C4'N"        HC4A     108.268    1.50
+NFD      "O4'N"      "C4'N"        HC4A     108.698    1.50
+NFD      "C1'N"      "O4'N"      "C4'N"     109.578    1.50
+NFD      "C4'A"      "C5'A"      "O5'A"     109.342    1.50
+NFD      "C4'A"      "C5'A"      "HC5'"     109.624    1.50
+NFD      "C4'A"      "C5'A"        HC5A     109.624    1.50
+NFD      "O5'A"      "C5'A"      "HC5'"     109.845    1.50
+NFD      "O5'A"      "C5'A"        HC5A     109.845    1.50
+NFD      "HC5'"      "C5'A"        HC5A     108.472    1.50
+NFD          PA      "O5'A"      "C5'A"     118.553    2.41
+NFD      "C4'N"      "C5'N"      "O5'N"     109.342    1.50
+NFD      "C4'N"      "C5'N"        HC5B     109.624    1.50
+NFD      "C4'N"      "C5'N"        HC5C     109.624    1.50
+NFD      "O5'N"      "C5'N"        HC5B     109.845    1.50
+NFD      "O5'N"      "C5'N"        HC5C     109.845    1.50
+NFD        HC5B      "C5'N"        HC5C     108.472    1.50
+NFD          PN      "O5'N"      "C5'N"     118.553    2.41
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NFD            sp3_sp3_60          PN          O3          PA         O1A      60.000    10.0     3
+NFD            sp3_sp3_57      "C5'A"      "O5'A"          PA         O1A      60.000    10.0     3
+NFD              const_12         N9A         C4A         N3A         C2A     180.000    10.0     2
+NFD              const_25         C7N         C3N         C4N         C5N     180.000    10.0     2
+NFD             sp2_sp2_1         C2N         C3N         C7N         NN7     180.000     5.0     2
+NFD       const_sp2_sp2_8         N3A         C4A         C5A         N7A     180.000     5.0     2
+NFD              const_37         N3A         C4A         N9A         C8A     180.000    10.0     2
+NFD              const_27         C3N         C4N         C5N         C6N       0.000    10.0     2
+NFD       const_sp2_sp2_4         C4A         C5A         C6A         N6A     180.000     5.0     2
+NFD              const_45         C4A         C5A         N7A         C8A       0.000    10.0     2
+NFD              const_31         C4N         C5N         C6N         NN1       0.000    10.0     2
+NFD             sp2_sp2_7         N1A         C6A         N6A        HAN6       0.000     5.0     2
+NFD            sp3_sp3_65          PA          O3          PN      "O5'N"     -60.000    10.0     3
+NFD            sp3_sp3_61      "C5'N"      "O5'N"          PN          O3     180.000    10.0     3
+NFD              const_43         N9A         C8A         N7A         C5A       0.000    10.0     2
+NFD            sp2_sp2_11         O7N         C7N         NN7        HNN7       0.000     5.0     2
+NFD              const_39         N7A         C8A         N9A         C4A       0.000    10.0     2
+NFD             sp2_sp3_7         C4A         N9A      "C1'A"      "O4'A"     150.000    10.0     6
+NFD            sp3_sp3_71         N9A      "C1'A"      "C2'A"      "O2'A"     180.000    10.0     3
+NFD             sp3_sp3_2         N9A      "C1'A"      "O4'A"      "C4'A"     -60.000    10.0     3
+NFD            sp3_sp3_29         NN1      "C1'N"      "C2'N"      "O2'N"      60.000    10.0     3
+NFD            sp3_sp3_77         NN1      "C1'N"      "O4'N"      "C4'N"      60.000    10.0     3
+NFD            sp3_sp3_79      "C1'A"      "C2'A"      "O2'A"      "HO2'"     180.000    10.0     3
+NFD            sp3_sp3_20      "O2'A"      "C2'A"      "C3'A"      "O3'A"     -60.000    10.0     3
+NFD       const_sp2_sp2_2         N6A         C6A         N1A         C2A     180.000     5.0     2
+NFD              const_48         F2A         C2A         N1A         C6A     180.000    10.0     2
+NFD            sp3_sp3_82      "C1'N"      "C2'N"      "O2'N"        HO2A     180.000    10.0     3
+NFD            sp3_sp3_38      "O2'N"      "C2'N"      "C3'N"      "O3'N"     -60.000    10.0     3
+NFD            sp3_sp3_85      "C2'A"      "C3'A"      "O3'A"      "HO3'"     180.000    10.0     3
+NFD            sp3_sp3_11      "O3'A"      "C3'A"      "C4'A"      "C5'A"      60.000    10.0     3
+NFD            sp3_sp3_88      "C2'N"      "C3'N"      "O3'N"        HO3A     180.000    10.0     3
+NFD            sp3_sp3_47      "O3'N"      "C3'N"      "C4'N"      "C5'N"      60.000    10.0     3
+NFD             sp3_sp3_5      "C5'A"      "C4'A"      "O4'A"      "C1'A"     180.000    10.0     3
+NFD            sp3_sp3_91      "C3'A"      "C4'A"      "C5'A"      "O5'A"     180.000    10.0     3
+NFD            sp3_sp3_53      "C5'N"      "C4'N"      "O4'N"      "C1'N"     180.000    10.0     3
+NFD           sp3_sp3_100      "C3'N"      "C4'N"      "C5'N"      "O5'N"     180.000    10.0     3
+NFD           sp3_sp3_109      "C4'A"      "C5'A"      "O5'A"          PA     180.000    10.0     3
+NFD           sp3_sp3_112      "C4'N"      "C5'N"      "O5'N"          PN     180.000    10.0     3
+NFD              const_49         C5N         C6N         NN1         C2N       0.000    10.0     2
+NFD             sp2_sp3_1         C2N         NN1      "C1'N"      "C2'N"     150.000    10.0     6
+NFD              const_16         C3N         C2N         NN1      "C1'N"     180.000    10.0     2
+NFD              const_14         F2A         C2A         N3A         C4A     180.000    10.0     2
+NFD              const_20         NN1         C2N         C3N         C7N     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NFD    chir_1    PA    O3    "O5'A"    O2A    both
+NFD    chir_2    PN    O3    "O5'N"    O2N    both
+NFD    chir_3    "C1'A"    "O4'A"    N9A    "C2'A"    negative
+NFD    chir_4    "C1'N"    "O4'N"    NN1    "C2'N"    negative
+NFD    chir_5    "C2'A"    "O2'A"    "C1'A"    "C3'A"    negative
+NFD    chir_6    "C2'N"    "O2'N"    "C1'N"    "C3'N"    negative
+NFD    chir_7    "C3'A"    "O3'A"    "C4'A"    "C2'A"    positive
+NFD    chir_8    "C3'N"    "O3'N"    "C4'N"    "C2'N"    positive
+NFD    chir_9    "C4'A"    "O4'A"    "C3'A"    "C5'A"    negative
+NFD    chir_10    "C4'N"    "O4'N"    "C3'N"    "C5'N"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NFD    plan-1      "C1'A"   0.020
+NFD    plan-1         C2A   0.020
+NFD    plan-1         C4A   0.020
+NFD    plan-1         C5A   0.020
+NFD    plan-1         C6A   0.020
+NFD    plan-1         C8A   0.020
+NFD    plan-1         F2A   0.020
+NFD    plan-1         HC8   0.020
+NFD    plan-1         N1A   0.020
+NFD    plan-1         N3A   0.020
+NFD    plan-1         N6A   0.020
+NFD    plan-1         N7A   0.020
+NFD    plan-1         N9A   0.020
+NFD    plan-2      "C1'N"   0.020
+NFD    plan-2         C2N   0.020
+NFD    plan-2         C3N   0.020
+NFD    plan-2         C4N   0.020
+NFD    plan-2         C5N   0.020
+NFD    plan-2         C6N   0.020
+NFD    plan-2         C7N   0.020
+NFD    plan-2         HC2   0.020
+NFD    plan-2         HC4   0.020
+NFD    plan-2         HC5   0.020
+NFD    plan-2         HC6   0.020
+NFD    plan-2         NN1   0.020
+NFD    plan-3         C6A   0.020
+NFD    plan-3        HAN6   0.020
+NFD    plan-3        HANA   0.020
+NFD    plan-3         N6A   0.020
+NFD    plan-4         C3N   0.020
+NFD    plan-4         C7N   0.020
+NFD    plan-4         NN7   0.020
+NFD    plan-4         O7N   0.020
+NFD    plan-5         C7N   0.020
+NFD    plan-5        HNN7   0.020
+NFD    plan-5        HNNA   0.020
+NFD    plan-5         NN7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NFD SMILES_CANONICAL               CACTVS 3.352                                                                                                                                                  NC(=O)c1ccc[n+](c1)[C@@H]2O[C@H](CO[P]([O-])(=O)O[P](O)(=O)OC[C@H]3O[C@H]([C@H](O)[C@@H]3O)n4cnc5c(N)nc(F)nc45)[C@@H](O)[C@H]2O
+NFD           SMILES               CACTVS 3.352                                                                                                                                                             NC(=O)c1ccc[n+](c1)[CH]2O[CH](CO[P]([O-])(=O)O[P](O)(=O)OC[CH]3O[CH]([CH](O)[CH]3O)n4cnc5c(N)nc(F)nc45)[CH](O)[CH]2O
+NFD SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                           c1cc(c[n+](c1)[C@H]2[C@@H]([C@@H]([C@H](O2)CO[P@](=O)([O-])O[P@](=O)(O)OC[C@@H]3[C@H]([C@H]([C@@H](O3)n4cnc5c4nc(nc5N)F)O)O)O)O)C(=O)N
+NFD           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                                     c1cc(c[n+](c1)C2C(C(C(O2)COP(=O)([O-])OP(=O)(O)OCC3C(C(C(O3)n4cnc5c4nc(nc5N)F)O)O)O)O)C(=O)N
+NFD            InChI                InChI  1.03 InChI=1S/C21H26FN7O14P2/c22-21-26-16(23)11-18(27-21)29(7-25-11)20-15(33)13(31)10(42-20)6-40-45(37,38)43-44(35,36)39-5-9-12(30)14(32)19(41-9)28-3-1-2-8(4-28)17(24)34/h1-4,7,9-10,12-15,19-20,30-33H,5-6H2,(H5-,23,24,26,27,34,35,36,37,38)/t9-,10-,12-,13-,14-,15-,19-,20-/m1/s1
+NFD         InChIKey                InChI  1.03                                                                                                                                                                                                                                                      JDJGJQAJEVFTBI-NAJQWHGHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NFD acedrg               243         "dictionary generator"                  
+NFD acedrg_database      11          "data source"                           
+NFD rdkit                2017.03.2   "Chemoinformatics tool"
+NFD refmac5              5.8.0238    "optimization tool"                     

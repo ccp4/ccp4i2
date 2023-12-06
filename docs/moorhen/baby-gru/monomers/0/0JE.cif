@@ -1,0 +1,319 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+0JE     0JE      3-[5-(5-ethoxy-6-fluoro-1H-benzimidazol-2-yl)-1H-pyrazol-4-yl]-1,1-diethylurea     NON-POLYMER     47     26     .     
+#
+data_comp_0JE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+0JE     CAZ     C       CH3     0       5.545       -1.873      -18.025     
+0JE     CAY     C       CH2     0       5.440       -0.378      -17.966     
+0JE     OAX     O       O2      0       5.074       -0.006      -16.628     
+0JE     CAB     C       CR6     0       3.803       -0.181      -16.133     
+0JE     CAC     C       CR16    0       2.677       -0.543      -16.860     
+0JE     CAA     C       CR6     0       3.713       0.056       -14.759     
+0JE     FAW     F       F       0       4.809       0.410       -14.057     
+0JE     CAD     C       CR16    0       2.512       -0.069      -14.094     
+0JE     CAH     C       CR56    0       1.384       -0.435      -14.819     
+0JE     NAG     N       NR5     0       0.067       -0.642      -14.473     
+0JE     CAI     C       CR56    0       1.456       -0.672      -16.189     
+0JE     NAE     N       NRD5    0       0.194       -1.016      -16.650     
+0JE     CAF     C       CR5     0       -0.615      -0.989      -15.600     
+0JE     CAJ     C       CR5     0       -2.030      -1.294      -15.683     
+0JE     NAK     N       NR5     0       -2.565      -2.092      -16.634     
+0JE     NAL     N       NRD5    0       -3.909      -2.203      -16.480     
+0JE     CAM     C       CR15    0       -4.246      -1.470      -15.424     
+0JE     CAN     C       CR5     0       -3.119      -0.863      -14.872     
+0JE     NAO     N       NH1     0       -3.023      -0.018      -13.751     
+0JE     CAP     C       C       0       -3.916      0.013       -12.680     
+0JE     OAR     O       O       0       -4.439      -1.029      -12.259     
+0JE     NAQ     N       N       0       -4.159      1.227       -12.081     
+0JE     CAU     C       CH2     0       -3.762      2.522       -12.659     
+0JE     CAV     C       CH3     0       -4.497      2.843       -13.937     
+0JE     CAS     C       CH2     0       -4.911      1.270       -10.816     
+0JE     CAT     C       CH3     0       -6.403      1.296       -11.032     
+0JE     H1      H       H       0       6.004       -2.134      -18.840     
+0JE     H2      H       H       0       4.656       -2.263      -18.018     
+0JE     H3      H       H       0       6.045       -2.194      -17.257     
+0JE     H4      H       H       0       4.775       -0.055      -18.607     
+0JE     H5      H       H       0       6.303       0.025       -18.194     
+0JE     H6      H       H       0       2.729       -0.704      -17.794     
+0JE     H7      H       H       0       2.452       0.088       -13.169     
+0JE     H8      H       H       0       -0.271      -0.566      -13.667     
+0JE     H10     H       H       0       -2.129      -2.510      -17.292     
+0JE     H11     H       H       0       -5.140      -1.389      -15.115     
+0JE     H12     H       H       0       -2.321      0.504       -13.704     
+0JE     H13     H       H       0       -2.798      2.517       -12.835     
+0JE     H14     H       H       0       -3.935      3.238       -12.012     
+0JE     H15     H       H       0       -4.323      3.765       -14.188     
+0JE     H16     H       H       0       -5.450      2.720       -13.802     
+0JE     H17     H       H       0       -4.192      2.254       -14.645     
+0JE     H18     H       H       0       -4.650      2.066       -10.307     
+0JE     H19     H       H       0       -4.680      0.488       -10.270     
+0JE     H20     H       H       0       -6.857      1.202       -10.179     
+0JE     H21     H       H       0       -6.660      0.565       -11.617     
+0JE     H22     H       H       0       -6.657      2.140       -11.441     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+0JE         CAZ         CAY      SINGLE       n     1.498  0.0164     1.498  0.0164
+0JE         NAK         NAL      SINGLE       y     1.354  0.0100     1.354  0.0100
+0JE         CAJ         NAK      SINGLE       y     1.352  0.0100     1.352  0.0100
+0JE         CAY         OAX      SINGLE       n     1.432  0.0104     1.432  0.0104
+0JE         NAL         CAM      DOUBLE       y     1.326  0.0106     1.326  0.0106
+0JE         CAI         NAE      SINGLE       y     1.388  0.0100     1.388  0.0100
+0JE         NAE         CAF      DOUBLE       y     1.322  0.0100     1.322  0.0100
+0JE         CAC         CAI      SINGLE       y     1.395  0.0100     1.395  0.0100
+0JE         CAB         CAC      DOUBLE       y     1.378  0.0100     1.378  0.0100
+0JE         OAX         CAB      SINGLE       n     1.368  0.0103     1.368  0.0103
+0JE         CAH         CAI      DOUBLE       y     1.397  0.0100     1.397  0.0100
+0JE         CAF         CAJ      SINGLE       n     1.449  0.0166     1.449  0.0166
+0JE         CAJ         CAN      DOUBLE       y     1.436  0.0200     1.436  0.0200
+0JE         CAB         CAA      SINGLE       y     1.389  0.0100     1.389  0.0100
+0JE         NAG         CAF      SINGLE       y     1.356  0.0140     1.356  0.0140
+0JE         CAM         CAN      SINGLE       y     1.396  0.0100     1.396  0.0100
+0JE         CAN         NAO      SINGLE       n     1.405  0.0100     1.405  0.0100
+0JE         CAH         NAG      SINGLE       y     1.379  0.0100     1.379  0.0100
+0JE         CAD         CAH      SINGLE       y     1.389  0.0100     1.389  0.0100
+0JE         CAA         CAD      DOUBLE       y     1.374  0.0107     1.374  0.0107
+0JE         CAA         FAW      SINGLE       n     1.348  0.0100     1.348  0.0100
+0JE         CAP         OAR      DOUBLE       n     1.235  0.0158     1.235  0.0158
+0JE         NAO         CAP      SINGLE       n     1.379  0.0200     1.379  0.0200
+0JE         CAP         NAQ      SINGLE       n     1.356  0.0134     1.356  0.0134
+0JE         CAS         CAT      SINGLE       n     1.508  0.0173     1.508  0.0173
+0JE         CAU         CAV      SINGLE       n     1.508  0.0173     1.508  0.0173
+0JE         NAQ         CAS      SINGLE       n     1.466  0.0100     1.466  0.0100
+0JE         NAQ         CAU      SINGLE       n     1.466  0.0100     1.466  0.0100
+0JE         CAZ          H1      SINGLE       n     1.089  0.0100     0.971  0.0156
+0JE         CAZ          H2      SINGLE       n     1.089  0.0100     0.971  0.0156
+0JE         CAZ          H3      SINGLE       n     1.089  0.0100     0.971  0.0156
+0JE         CAY          H4      SINGLE       n     1.089  0.0100     0.979  0.0127
+0JE         CAY          H5      SINGLE       n     1.089  0.0100     0.979  0.0127
+0JE         CAC          H6      SINGLE       n     1.082  0.0130     0.951  0.0170
+0JE         CAD          H7      SINGLE       n     1.082  0.0130     0.941  0.0170
+0JE         NAG          H8      SINGLE       n     1.016  0.0100     0.878  0.0200
+0JE         NAK         H10      SINGLE       n     1.016  0.0100     0.893  0.0200
+0JE         CAM         H11      SINGLE       n     1.082  0.0130     0.949  0.0120
+0JE         NAO         H12      SINGLE       n     1.016  0.0100     0.881  0.0200
+0JE         CAU         H13      SINGLE       n     1.089  0.0100     0.981  0.0152
+0JE         CAU         H14      SINGLE       n     1.089  0.0100     0.981  0.0152
+0JE         CAV         H15      SINGLE       n     1.089  0.0100     0.971  0.0145
+0JE         CAV         H16      SINGLE       n     1.089  0.0100     0.971  0.0145
+0JE         CAV         H17      SINGLE       n     1.089  0.0100     0.971  0.0145
+0JE         CAS         H18      SINGLE       n     1.089  0.0100     0.981  0.0152
+0JE         CAS         H19      SINGLE       n     1.089  0.0100     0.981  0.0152
+0JE         CAT         H20      SINGLE       n     1.089  0.0100     0.971  0.0145
+0JE         CAT         H21      SINGLE       n     1.089  0.0100     0.971  0.0145
+0JE         CAT         H22      SINGLE       n     1.089  0.0100     0.971  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+0JE         CAY         CAZ          H1     109.553    1.50
+0JE         CAY         CAZ          H2     109.553    1.50
+0JE         CAY         CAZ          H3     109.553    1.50
+0JE          H1         CAZ          H2     109.410    1.50
+0JE          H1         CAZ          H3     109.410    1.50
+0JE          H2         CAZ          H3     109.410    1.50
+0JE         CAZ         CAY         OAX     107.613    1.50
+0JE         CAZ         CAY          H4     110.271    1.50
+0JE         CAZ         CAY          H5     110.271    1.50
+0JE         OAX         CAY          H4     110.040    1.50
+0JE         OAX         CAY          H5     110.040    1.50
+0JE          H4         CAY          H5     108.599    1.50
+0JE         CAY         OAX         CAB     117.464    1.77
+0JE         CAC         CAB         OAX     121.394    3.00
+0JE         CAC         CAB         CAA     120.147    1.50
+0JE         OAX         CAB         CAA     118.460    2.86
+0JE         CAI         CAC         CAB     118.120    1.50
+0JE         CAI         CAC          H6     121.060    1.50
+0JE         CAB         CAC          H6     120.820    1.50
+0JE         CAB         CAA         CAD     120.233    1.50
+0JE         CAB         CAA         FAW     120.327    1.50
+0JE         CAD         CAA         FAW     119.440    1.50
+0JE         CAH         CAD         CAA     119.133    1.50
+0JE         CAH         CAD          H7     120.151    1.50
+0JE         CAA         CAD          H7     120.716    1.50
+0JE         CAI         CAH         NAG     106.171    1.50
+0JE         CAI         CAH         CAD     122.026    1.50
+0JE         NAG         CAH         CAD     131.803    1.50
+0JE         CAF         NAG         CAH     108.000    1.50
+0JE         CAF         NAG          H8     125.895    2.28
+0JE         CAH         NAG          H8     126.105    1.93
+0JE         NAE         CAI         CAC     130.118    1.50
+0JE         NAE         CAI         CAH     109.540    1.50
+0JE         CAC         CAI         CAH     120.342    1.50
+0JE         CAI         NAE         CAF     106.420    1.50
+0JE         NAE         CAF         CAJ     124.197    2.44
+0JE         NAE         CAF         NAG     109.869    1.50
+0JE         CAJ         CAF         NAG     125.934    3.00
+0JE         NAK         CAJ         CAF     124.054    3.00
+0JE         NAK         CAJ         CAN     106.814    1.50
+0JE         CAF         CAJ         CAN     129.132    3.00
+0JE         NAL         NAK         CAJ     109.969    1.50
+0JE         NAL         NAK         H10     122.498    3.00
+0JE         CAJ         NAK         H10     127.533    3.00
+0JE         NAK         NAL         CAM     105.046    1.50
+0JE         NAL         CAM         CAN     109.816    1.50
+0JE         NAL         CAM         H11     123.366    2.33
+0JE         CAN         CAM         H11     126.818    2.33
+0JE         CAJ         CAN         CAM     108.355    3.00
+0JE         CAJ         CAN         NAO     123.828    3.00
+0JE         CAM         CAN         NAO     127.817    2.73
+0JE         CAN         NAO         CAP     125.211    2.23
+0JE         CAN         NAO         H12     118.083    2.72
+0JE         CAP         NAO         H12     116.706    1.50
+0JE         OAR         CAP         NAO     122.487    1.50
+0JE         OAR         CAP         NAQ     121.597    1.74
+0JE         NAO         CAP         NAQ     115.899    1.51
+0JE         CAP         NAQ         CAS     121.076    3.00
+0JE         CAP         NAQ         CAU     121.076    3.00
+0JE         CAS         NAQ         CAU     117.848    1.50
+0JE         CAV         CAU         NAQ     112.668    1.50
+0JE         CAV         CAU         H13     109.135    1.50
+0JE         CAV         CAU         H14     109.135    1.50
+0JE         NAQ         CAU         H13     109.029    1.50
+0JE         NAQ         CAU         H14     109.029    1.50
+0JE         H13         CAU         H14     107.838    1.50
+0JE         CAU         CAV         H15     109.529    1.50
+0JE         CAU         CAV         H16     109.529    1.50
+0JE         CAU         CAV         H17     109.529    1.50
+0JE         H15         CAV         H16     109.415    1.50
+0JE         H15         CAV         H17     109.415    1.50
+0JE         H16         CAV         H17     109.415    1.50
+0JE         CAT         CAS         NAQ     112.668    1.50
+0JE         CAT         CAS         H18     109.135    1.50
+0JE         CAT         CAS         H19     109.135    1.50
+0JE         NAQ         CAS         H18     109.029    1.50
+0JE         NAQ         CAS         H19     109.029    1.50
+0JE         H18         CAS         H19     107.838    1.50
+0JE         CAS         CAT         H20     109.529    1.50
+0JE         CAS         CAT         H21     109.529    1.50
+0JE         CAS         CAT         H22     109.529    1.50
+0JE         H20         CAT         H21     109.415    1.50
+0JE         H20         CAT         H22     109.415    1.50
+0JE         H21         CAT         H22     109.415    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+0JE             sp3_sp3_1         OAX         CAY         CAZ          H1     180.000    10.0     3
+0JE              const_22         CAC         CAI         NAE         CAF     180.000    10.0     2
+0JE              const_24         CAJ         CAF         NAE         CAI     180.000    10.0     2
+0JE             sp2_sp2_5         NAE         CAF         CAJ         NAK       0.000     5.0     2
+0JE              const_31         CAF         CAJ         NAK         NAL     180.000    10.0     2
+0JE              const_42         NAK         CAJ         CAN         NAO     180.000    10.0     2
+0JE              const_33         CAJ         NAK         NAL         CAM       0.000    10.0     2
+0JE              const_35         CAN         CAM         NAL         NAK       0.000    10.0     2
+0JE              const_38         NAL         CAM         CAN         NAO     180.000    10.0     2
+0JE             sp2_sp2_7         CAJ         CAN         NAO         CAP     180.000     5.0     2
+0JE            sp2_sp2_13         OAR         CAP         NAO         CAN       0.000     5.0     2
+0JE            sp2_sp2_17         OAR         CAP         NAQ         CAS       0.000     5.0     2
+0JE            sp3_sp3_10         CAZ         CAY         OAX         CAB     180.000    10.0     3
+0JE             sp2_sp3_8         CAP         NAQ         CAU         CAV     120.000    10.0     6
+0JE             sp2_sp3_2         CAP         NAQ         CAS         CAT     120.000    10.0     6
+0JE            sp3_sp3_22         NAQ         CAU         CAV         H15     180.000    10.0     3
+0JE            sp3_sp3_13         NAQ         CAS         CAT         H20     180.000    10.0     3
+0JE             sp2_sp2_1         CAC         CAB         OAX         CAY     180.000     5.0     2
+0JE       const_sp2_sp2_3         OAX         CAB         CAC         CAI     180.000     5.0     2
+0JE              const_48         FAW         CAA         CAB         OAX       0.000    10.0     2
+0JE       const_sp2_sp2_6         CAB         CAC         CAI         NAE     180.000     5.0     2
+0JE              const_19         FAW         CAA         CAD         CAH     180.000    10.0     2
+0JE              const_13         CAA         CAD         CAH         CAI       0.000    10.0     2
+0JE       const_sp2_sp2_9         NAG         CAH         CAI         NAE       0.000     5.0     2
+0JE              const_49         CAI         CAH         NAG         CAF       0.000    10.0     2
+0JE              const_25         NAE         CAF         NAG         CAH       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+0JE    plan-1         CAA   0.020
+0JE    plan-1         CAB   0.020
+0JE    plan-1         CAC   0.020
+0JE    plan-1         CAD   0.020
+0JE    plan-1         CAF   0.020
+0JE    plan-1         CAH   0.020
+0JE    plan-1         CAI   0.020
+0JE    plan-1         CAJ   0.020
+0JE    plan-1         FAW   0.020
+0JE    plan-1          H6   0.020
+0JE    plan-1          H7   0.020
+0JE    plan-1          H8   0.020
+0JE    plan-1         NAE   0.020
+0JE    plan-1         NAG   0.020
+0JE    plan-1         OAX   0.020
+0JE    plan-2         CAF   0.020
+0JE    plan-2         CAJ   0.020
+0JE    plan-2         CAM   0.020
+0JE    plan-2         CAN   0.020
+0JE    plan-2         H10   0.020
+0JE    plan-2         H11   0.020
+0JE    plan-2         NAK   0.020
+0JE    plan-2         NAL   0.020
+0JE    plan-2         NAO   0.020
+0JE    plan-3         CAN   0.020
+0JE    plan-3         CAP   0.020
+0JE    plan-3         H12   0.020
+0JE    plan-3         NAO   0.020
+0JE    plan-4         CAP   0.020
+0JE    plan-4         NAO   0.020
+0JE    plan-4         NAQ   0.020
+0JE    plan-4         OAR   0.020
+0JE    plan-5         CAP   0.020
+0JE    plan-5         CAS   0.020
+0JE    plan-5         CAU   0.020
+0JE    plan-5         NAQ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+0JE           SMILES              ACDLabs 12.01                                                                                                       O=C(Nc3c(c2nc1cc(OCC)c(F)cc1n2)nnc3)N(CC)CC
+0JE            InChI                InChI  1.03 InChI=1S/C17H21FN6O2/c1-4-24(5-2)17(25)22-13-9-19-23-15(13)16-20-11-7-10(18)14(26-6-3)8-12(11)21-16/h7-9H,4-6H2,1-3H3,(H,19,23)(H,20,21)(H,22,25)
+0JE         InChIKey                InChI  1.03                                                                                                                       UJXIKUVGGQECLJ-UHFFFAOYSA-N
+0JE SMILES_CANONICAL               CACTVS 3.370                                                                                                     CCOc1cc2nc([nH]c2cc1F)c3[nH]ncc3NC(=O)N(CC)CC
+0JE           SMILES               CACTVS 3.370                                                                                                     CCOc1cc2nc([nH]c2cc1F)c3[nH]ncc3NC(=O)N(CC)CC
+0JE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                   CCN(CC)C(=O)Nc1cn[nH]c1c2[nH]c3cc(c(cc3n2)OCC)F
+0JE           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                   CCN(CC)C(=O)Nc1cn[nH]c1c2[nH]c3cc(c(cc3n2)OCC)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+0JE acedrg               243         "dictionary generator"                  
+0JE acedrg_database      11          "data source"                           
+0JE rdkit                2017.03.2   "Chemoinformatics tool"
+0JE refmac5              5.8.0238    "optimization tool"                     

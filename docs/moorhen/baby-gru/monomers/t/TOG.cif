@@ -1,0 +1,344 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TOG     TOG      "4-[3-[(4-azanyl-2-methyl-pyrimidin-5-yl)methyl]-4-methyl-5-[2-[oxidanyl(phosphonooxy)phosphoryl]oxyethyl]-1,3-thiazol-3-ium-2-yl]-4-oxidanyl-butanoic acid"     NON-POLYMER     53     33     .     
+#
+data_comp_TOG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TOG     O21     O       OP      -1      -29.049     17.455      -17.296     
+TOG     P2      P       P       0       -29.527     16.041      -17.519     
+TOG     O22     O       O       0       -28.681     15.290      -18.518     
+TOG     O23     O       OP      -1      -31.002     15.967      -17.833     
+TOG     O11     O       O2      0       -29.332     15.279      -16.110     
+TOG     P1      P       P       0       -30.155     15.305      -14.732     
+TOG     O12     O       O       0       -29.474     14.422      -13.739     
+TOG     O13     O       OP      -1      -30.439     16.722      -14.360     
+TOG     O5G     O       O2      0       -31.536     14.614      -15.172     
+TOG     C5B     C       CH2     0       -31.514     13.271      -15.710     
+TOG     C5A     C       CH2     0       -32.924     12.763      -15.869     
+TOG     C5      C       CR5     0       -32.909     11.328      -16.253     
+TOG     S1      S       S2      0       -33.276     10.844      -17.802     
+TOG     C2      C       CR5     0       -33.084     9.194       -17.562     
+TOG     C4      C       CR5     0       -32.591     10.191      -15.512     
+TOG     C4A     C       CH3     0       -32.194     10.233      -14.064     
+TOG     N3      N       NR5     1       -32.680     8.967       -16.252     
+TOG     C35     C       CH2     0       -32.369     7.670       -15.643     
+TOG     "C5'"   C       CR6     0       -30.925     7.558       -15.188     
+TOG     "C6'"   C       CR16    0       -30.602     7.205       -13.888     
+TOG     "N1'"   N       NRD6    0       -29.336     7.112       -13.447     
+TOG     "C4'"   C       CR6     0       -29.822     7.840       -16.033     
+TOG     "N4'"   N       NH2     0       -29.984     8.203       -17.317     
+TOG     "N3'"   N       NRD6    0       -28.550     7.748       -15.591     
+TOG     "C2'"   C       CR6     0       -28.355     7.389       -14.317     
+TOG     C2A     C       CH3     0       -26.944     7.291       -13.836     
+TOG     O4      O       O       0       -32.962     7.850       -23.316     
+TOG     C51     C       C       0       -32.156     7.975       -22.373     
+TOG     O3      O       OC      -1      -31.012     8.455       -22.502     
+TOG     C41     C       CH2     0       -32.591     7.519       -20.991     
+TOG     C3      C       CH2     0       -33.209     8.616       -20.139     
+TOG     C21     C       C       -1      -33.274     8.252       -18.677     
+TOG     O5      O       OH1     0       -33.648     6.944       -18.390     
+TOG     H4      H       H       0       -31.016     12.682      -15.105     
+TOG     H5      H       H       0       -31.063     13.270      -16.580     
+TOG     H6      H       H       0       -33.384     13.281      -16.554     
+TOG     H7      H       H       0       -33.407     12.869      -15.030     
+TOG     H8      H       H       0       -32.610     9.499       -13.586     
+TOG     H9      H       H       0       -32.482     11.070      -13.671     
+TOG     H10     H       H       0       -31.229     10.161      -13.989     
+TOG     H11     H       H       0       -32.550     6.956       -16.279     
+TOG     H12     H       H       0       -32.960     7.538       -14.874     
+TOG     H13     H       H       0       -31.299     7.014       -13.288     
+TOG     H14     H       H       0       -30.464     7.704       -17.854     
+TOG     H15     H       H       0       -29.611     8.940       -17.613     
+TOG     H16     H       H       0       -26.922     7.373       -12.868     
+TOG     H17     H       H       0       -26.416     8.004       -14.231     
+TOG     H18     H       H       0       -26.571     6.432       -14.095     
+TOG     H20     H       H       0       -31.808     7.154       -20.524     
+TOG     H21     H       H       0       -33.241     6.791       -21.093     
+TOG     H22     H       H       0       -34.116     8.802       -20.457     
+TOG     H23     H       H       0       -32.681     9.433       -20.241     
+TOG     H25     H       H       0       -34.412     6.785       -18.026     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TOG          O4         C51      DOUBLE       n     1.247  0.0187     1.247  0.0187
+TOG         C51          O3      SINGLE       n     1.247  0.0187     1.247  0.0187
+TOG         C51         C41      SINGLE       n     1.519  0.0109     1.519  0.0109
+TOG         C41          C3      SINGLE       n     1.517  0.0180     1.517  0.0180
+TOG          P2         O22      DOUBLE       n     1.509  0.0200     1.509  0.0200
+TOG          C3         C21      SINGLE       n     1.505  0.0100     1.505  0.0100
+TOG          P2         O23      SINGLE       n     1.509  0.0200     1.509  0.0200
+TOG          P2         O11      SINGLE       n     1.614  0.0178     1.614  0.0178
+TOG         O21          P2      SINGLE       n     1.509  0.0200     1.509  0.0200
+TOG         O11          P1      SINGLE       n     1.604  0.0133     1.604  0.0133
+TOG         C21          O5      SINGLE       n     1.389  0.0200     1.389  0.0200
+TOG          C2         C21      SINGLE       n     1.462  0.0132     1.462  0.0132
+TOG          S1          C2      SINGLE       y     1.695  0.0200     1.695  0.0200
+TOG          C5          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+TOG          C2          N3      DOUBLE       y     1.376  0.0109     1.376  0.0109
+TOG       "C4'"       "N4'"      SINGLE       n     1.343  0.0151     1.343  0.0151
+TOG          P1         O12      DOUBLE       n     1.493  0.0122     1.493  0.0122
+TOG          P1         O5G      SINGLE       n     1.604  0.0133     1.604  0.0133
+TOG          P1         O13      SINGLE       n     1.493  0.0122     1.493  0.0122
+TOG         O5G         C5B      SINGLE       n     1.447  0.0162     1.447  0.0162
+TOG         C5B         C5A      SINGLE       n     1.505  0.0199     1.505  0.0199
+TOG         C5A          C5      SINGLE       n     1.486  0.0100     1.486  0.0100
+TOG          C5          C4      DOUBLE       y     1.389  0.0200     1.389  0.0200
+TOG          N3         C35      SINGLE       n     1.461  0.0100     1.461  0.0100
+TOG          C4          N3      SINGLE       y     1.378  0.0200     1.378  0.0200
+TOG       "C4'"       "N3'"      DOUBLE       y     1.343  0.0133     1.343  0.0133
+TOG       "C5'"       "C4'"      SINGLE       y     1.410  0.0130     1.410  0.0130
+TOG       "N3'"       "C2'"      SINGLE       y     1.333  0.0107     1.333  0.0107
+TOG         C35       "C5'"      SINGLE       n     1.515  0.0100     1.515  0.0100
+TOG          C4         C4A      SINGLE       n     1.499  0.0100     1.499  0.0100
+TOG       "C5'"       "C6'"      DOUBLE       y     1.382  0.0100     1.382  0.0100
+TOG       "C2'"         C2A      SINGLE       n     1.494  0.0103     1.494  0.0103
+TOG       "N1'"       "C2'"      DOUBLE       y     1.335  0.0101     1.335  0.0101
+TOG       "C6'"       "N1'"      SINGLE       y     1.340  0.0100     1.340  0.0100
+TOG         C5B          H4      SINGLE       n     1.089  0.0100     0.980  0.0143
+TOG         C5B          H5      SINGLE       n     1.089  0.0100     0.980  0.0143
+TOG         C5A          H6      SINGLE       n     1.089  0.0100     0.974  0.0100
+TOG         C5A          H7      SINGLE       n     1.089  0.0100     0.974  0.0100
+TOG         C4A          H8      SINGLE       n     1.089  0.0100     0.970  0.0153
+TOG         C4A          H9      SINGLE       n     1.089  0.0100     0.970  0.0153
+TOG         C4A         H10      SINGLE       n     1.089  0.0100     0.970  0.0153
+TOG         C35         H11      SINGLE       n     1.089  0.0100     0.979  0.0157
+TOG         C35         H12      SINGLE       n     1.089  0.0100     0.979  0.0157
+TOG       "C6'"         H13      SINGLE       n     1.082  0.0130     0.940  0.0200
+TOG       "N4'"         H14      SINGLE       n     1.016  0.0100     0.877  0.0200
+TOG       "N4'"         H15      SINGLE       n     1.016  0.0100     0.877  0.0200
+TOG         C2A         H16      SINGLE       n     1.089  0.0100     0.971  0.0138
+TOG         C2A         H17      SINGLE       n     1.089  0.0100     0.971  0.0138
+TOG         C2A         H18      SINGLE       n     1.089  0.0100     0.971  0.0138
+TOG         C41         H20      SINGLE       n     1.089  0.0100     0.981  0.0185
+TOG         C41         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+TOG          C3         H22      SINGLE       n     1.089  0.0100     0.979  0.0150
+TOG          C3         H23      SINGLE       n     1.089  0.0100     0.979  0.0150
+TOG          O5         H25      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TOG         O22          P2         O23     112.716    1.50
+TOG         O22          P2         O11     105.965    2.38
+TOG         O22          P2         O21     112.716    1.50
+TOG         O23          P2         O11     105.965    2.38
+TOG         O23          P2         O21     112.716    1.50
+TOG         O11          P2         O21     105.965    2.38
+TOG          P2         O11          P1     132.584    3.00
+TOG         O11          P1         O12     108.816    2.14
+TOG         O11          P1         O5G     101.065    1.97
+TOG         O11          P1         O13     108.816    2.14
+TOG         O12          P1         O5G     107.912    2.57
+TOG         O12          P1         O13     118.411    2.35
+TOG         O5G          P1         O13     107.912    2.57
+TOG          P1         O5G         C5B     119.251    1.51
+TOG         O5G         C5B         C5A     108.926    2.01
+TOG         O5G         C5B          H4     109.739    1.50
+TOG         O5G         C5B          H5     109.739    1.50
+TOG         C5A         C5B          H4     109.702    1.50
+TOG         C5A         C5B          H5     109.702    1.50
+TOG          H4         C5B          H5     108.319    1.50
+TOG         C5B         C5A          C5     110.747    2.16
+TOG         C5B         C5A          H6     109.160    1.50
+TOG         C5B         C5A          H7     109.160    1.50
+TOG          C5         C5A          H6     108.883    1.50
+TOG          C5         C5A          H7     108.883    1.50
+TOG          H6         C5A          H7     107.724    1.50
+TOG          S1          C5         C5A     120.286    3.00
+TOG          S1          C5          C4     108.002    3.00
+TOG         C5A          C5          C4     131.713    3.00
+TOG          C2          S1          C5     108.002    3.00
+TOG         C21          C2          S1     123.217    3.00
+TOG         C21          C2          N3     128.781    1.50
+TOG          S1          C2          N3     108.002    3.00
+TOG          C5          C4          N3     107.872    2.30
+TOG          C5          C4         C4A     129.754    2.46
+TOG          N3          C4         C4A     122.365    1.50
+TOG          C4         C4A          H8     109.558    1.50
+TOG          C4         C4A          H9     109.558    1.50
+TOG          C4         C4A         H10     109.558    1.50
+TOG          H8         C4A          H9     109.354    1.50
+TOG          H8         C4A         H10     109.354    1.50
+TOG          H9         C4A         H10     109.354    1.50
+TOG          C2          N3         C35     127.856    1.50
+TOG          C2          N3          C4     108.133    2.04
+TOG         C35          N3          C4     124.012    1.50
+TOG          N3         C35       "C5'"     112.991    1.50
+TOG          N3         C35         H11     108.720    1.50
+TOG          N3         C35         H12     108.720    1.50
+TOG       "C5'"         C35         H11     109.154    1.50
+TOG       "C5'"         C35         H12     109.154    1.50
+TOG         H11         C35         H12     107.959    1.50
+TOG       "C4'"       "C5'"         C35     122.046    1.77
+TOG       "C4'"       "C5'"       "C6'"     116.265    1.50
+TOG         C35       "C5'"       "C6'"     121.689    1.50
+TOG       "C5'"       "C6'"       "N1'"     123.147    1.50
+TOG       "C5'"       "C6'"         H13     118.404    1.50
+TOG       "N1'"       "C6'"         H13     118.449    1.50
+TOG       "C2'"       "N1'"       "C6'"     117.093    1.65
+TOG       "N4'"       "C4'"       "N3'"     116.812    1.55
+TOG       "N4'"       "C4'"       "C5'"     121.236    1.50
+TOG       "N3'"       "C4'"       "C5'"     121.951    1.50
+TOG       "C4'"       "N4'"         H14     119.860    1.50
+TOG       "C4'"       "N4'"         H15     119.860    1.50
+TOG         H14       "N4'"         H15     120.280    1.85
+TOG       "C4'"       "N3'"       "C2'"     117.145    1.69
+TOG       "N3'"       "C2'"         C2A     117.695    1.52
+TOG       "N3'"       "C2'"       "N1'"     124.399    1.50
+TOG         C2A       "C2'"       "N1'"     117.906    1.50
+TOG       "C2'"         C2A         H16     109.546    1.50
+TOG       "C2'"         C2A         H17     109.546    1.50
+TOG       "C2'"         C2A         H18     109.546    1.50
+TOG         H16         C2A         H17     109.397    1.50
+TOG         H16         C2A         H18     109.397    1.50
+TOG         H17         C2A         H18     109.397    1.50
+TOG          O4         C51          O3     123.571    1.50
+TOG          O4         C51         C41     118.214    1.64
+TOG          O3         C51         C41     118.214    1.64
+TOG         C51         C41          C3     113.936    1.58
+TOG         C51         C41         H20     108.404    1.50
+TOG         C51         C41         H21     108.404    1.50
+TOG          C3         C41         H20     108.813    1.50
+TOG          C3         C41         H21     108.813    1.50
+TOG         H20         C41         H21     107.521    1.50
+TOG         C41          C3         C21     111.511    2.91
+TOG         C41          C3         H22     109.091    1.50
+TOG         C41          C3         H23     109.091    1.50
+TOG         C21          C3         H22     108.443    1.50
+TOG         C21          C3         H23     108.443    1.50
+TOG         H22          C3         H23     107.616    1.50
+TOG          C3         C21          O5     117.462    1.62
+TOG          C3         C21          C2     124.357    2.21
+TOG          O5         C21          C2     118.182    1.50
+TOG         C21          O5         H25     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TOG            sp2_sp3_14          S1          C5         C5A         C5B     -90.000    10.0     6
+TOG              const_14         C5A          C5          S1          C2     180.000    10.0     2
+TOG              const_28         C4A          C4          C5         C5A       0.000    10.0     2
+TOG              const_16         C21          C2          S1          C5     180.000    10.0     2
+TOG              const_20         C21          C2          N3         C35       0.000    10.0     2
+TOG             sp2_sp2_5          S1          C2         C21          C3       0.000     5.0     2
+TOG            sp2_sp3_31          C5          C4         C4A          H8     150.000    10.0     6
+TOG              const_24         C4A          C4          N3         C35       0.000    10.0     2
+TOG            sp2_sp3_20          C2          N3         C35       "C5'"     -90.000    10.0     6
+TOG            sp2_sp3_26       "C4'"       "C5'"         C35          N3     -90.000    10.0     6
+TOG              const_31         C35       "C5'"       "C6'"       "N1'"     180.000    10.0     2
+TOG       const_sp2_sp2_4       "N4'"       "C4'"       "C5'"         C35       0.000     5.0     2
+TOG              const_11       "C5'"       "C6'"       "N1'"       "C2'"       0.000    10.0     2
+TOG            sp3_sp3_12          P1         O11          P2         O22      60.000    10.0     3
+TOG              const_10         C2A       "C2'"       "N1'"       "C6'"     180.000    10.0     2
+TOG             sp2_sp2_9       "N3'"       "C4'"       "N4'"         H14       0.000     5.0     2
+TOG       const_sp2_sp2_6       "N4'"       "C4'"       "N3'"       "C2'"     180.000     5.0     2
+TOG       const_sp2_sp2_8         C2A       "C2'"       "N3'"       "C4'"     180.000     5.0     2
+TOG            sp2_sp3_37       "N3'"       "C2'"         C2A         H16     150.000    10.0     6
+TOG             sp2_sp3_2          O4         C51         C41          C3     120.000    10.0     6
+TOG             sp3_sp3_1         C21          C3         C41         C51     180.000    10.0     3
+TOG             sp2_sp3_8          O5         C21          C3         C41     120.000    10.0     6
+TOG             sp2_sp2_1          C3         C21          O5         H25     180.000     5.0     2
+TOG            sp3_sp3_15          P2         O11          P1         O12      60.000    10.0     3
+TOG            sp3_sp3_16         C5B         O5G          P1         O11     180.000    10.0     3
+TOG            sp3_sp3_19         C5A         C5B         O5G          P1     180.000    10.0     3
+TOG            sp3_sp3_22          C5         C5A         C5B         O5G     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TOG    chir_1    P2    O11    O23    O21    both
+TOG    chir_2    P1    O11    O5G    O13    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TOG    plan-1          C2   0.020
+TOG    plan-1         C21   0.020
+TOG    plan-1         C35   0.020
+TOG    plan-1          C4   0.020
+TOG    plan-1         C4A   0.020
+TOG    plan-1          C5   0.020
+TOG    plan-1         C5A   0.020
+TOG    plan-1          N3   0.020
+TOG    plan-1          S1   0.020
+TOG    plan-2       "C2'"   0.020
+TOG    plan-2         C2A   0.020
+TOG    plan-2         C35   0.020
+TOG    plan-2       "C4'"   0.020
+TOG    plan-2       "C5'"   0.020
+TOG    plan-2       "C6'"   0.020
+TOG    plan-2         H13   0.020
+TOG    plan-2       "N1'"   0.020
+TOG    plan-2       "N3'"   0.020
+TOG    plan-2       "N4'"   0.020
+TOG    plan-3       "C4'"   0.020
+TOG    plan-3         H14   0.020
+TOG    plan-3         H15   0.020
+TOG    plan-3       "N4'"   0.020
+TOG    plan-4         C41   0.020
+TOG    plan-4         C51   0.020
+TOG    plan-4          O3   0.020
+TOG    plan-4          O4   0.020
+TOG    plan-5          C2   0.020
+TOG    plan-5         C21   0.020
+TOG    plan-5          C3   0.020
+TOG    plan-5          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TOG            InChI                InChI  1.03 InChI=1S/C16H24N4O10P2S/c1-9-13(5-6-29-32(27,28)30-31(24,25)26)33-16(12(21)3-4-14(22)23)20(9)8-11-7-18-10(2)19-15(11)17/h7,21H,3-6,8H2,1-2H3,(H,22,23)(H,27,28)(H2,17,18,19)(H2,24,25,26)
+TOG         InChIKey                InChI  1.03                                                                                                                                                               VGWJMSNWDAXPBE-UHFFFAOYSA-N
+TOG SMILES_CANONICAL               CACTVS 3.385                                                                                                                    Cc1ncc(C[n+]2c(C)c(CCO[P](O)(=O)O[P](O)(O)=O)sc2[C-](O)CCC(O)=O)c(N)n1
+TOG           SMILES               CACTVS 3.385                                                                                                                    Cc1ncc(C[n+]2c(C)c(CCO[P](O)(=O)O[P](O)(O)=O)sc2[C-](O)CCC(O)=O)c(N)n1
+TOG SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                                                          Cc1c(sc([n+]1Cc2cnc(nc2N)C)[C-](CCC(=O)O)O)CCOP(=O)(O)OP(=O)(O)O
+TOG           SMILES "OpenEye OEToolkits" 2.0.4                                                                                                                          Cc1c(sc([n+]1Cc2cnc(nc2N)C)[C-](CCC(=O)O)O)CCOP(=O)(O)OP(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TOG acedrg               243         "dictionary generator"                  
+TOG acedrg_database      11          "data source"                           
+TOG rdkit                2017.03.2   "Chemoinformatics tool"
+TOG refmac5              5.8.0238    "optimization tool"                     

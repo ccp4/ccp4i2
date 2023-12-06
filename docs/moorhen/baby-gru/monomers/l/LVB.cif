@@ -1,0 +1,235 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LVB     LVB      3-deoxytolcapone     NON-POLYMER     30     19     .     
+#
+data_comp_LVB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LVB     C1      C       CR6     0       21.261      42.874      42.863      
+LVB     C2      C       CR16    0       21.377      43.937      41.965      
+LVB     C3      C       CR16    0       21.358      43.715      40.603      
+LVB     C4      C       CR6     0       21.230      42.428      40.079      
+LVB     C5      C       CR16    0       21.111      41.355      40.962      
+LVB     C6      C       CR6     0       21.128      41.573      42.340      
+LVB     O10     O       O       0       21.870      39.557      43.174      
+LVB     N9      N       N       1       21.000      40.413      43.214      
+LVB     O11     O       OC      -1      20.027      40.347      43.949      
+LVB     O8      O       OH1     0       21.278      43.090      44.220      
+LVB     C12     C       C       0       21.206      42.184      38.607      
+LVB     O13     O       O       0       20.444      41.341      38.149      
+LVB     C14     C       CR6     0       22.088      42.950      37.681      
+LVB     C15     C       CR16    0       21.594      43.397      36.456      
+LVB     C16     C       CR16    0       22.408      44.107      35.585      
+LVB     C17     C       CR6     0       23.729      44.391      35.902      
+LVB     C20     C       CH3     0       24.603      45.165      34.945      
+LVB     C18     C       CR16    0       24.217      43.942      37.121      
+LVB     C19     C       CR16    0       23.417      43.229      38.002      
+LVB     H1      H       H       0       21.467      44.812      42.296      
+LVB     H2      H       H       0       21.438      44.449      40.020      
+LVB     H3      H       H       0       21.020      40.478      40.629      
+LVB     H4      H       H       0       21.804      42.629      44.723      
+LVB     H5      H       H       0       20.702      43.218      36.217      
+LVB     H6      H       H       0       22.059      44.404      34.762      
+LVB     H7      H       H       0       25.446      45.382      35.375      
+LVB     H8      H       H       0       24.154      45.985      34.686      
+LVB     H9      H       H       0       24.774      44.628      34.155      
+LVB     H10     H       H       0       25.112      44.125      37.354      
+LVB     H11     H       H       0       23.773      42.937      38.822      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LVB         C17         C20      SINGLE       n     1.507  0.0176     1.507  0.0176
+LVB         C16         C17      SINGLE       y     1.383  0.0109     1.383  0.0109
+LVB         C15         C16      DOUBLE       y     1.384  0.0100     1.384  0.0100
+LVB         C17         C18      DOUBLE       y     1.383  0.0109     1.383  0.0109
+LVB         C14         C15      SINGLE       y     1.391  0.0100     1.391  0.0100
+LVB         C18         C19      SINGLE       y     1.383  0.0100     1.383  0.0100
+LVB         C14         C19      DOUBLE       y     1.391  0.0100     1.391  0.0100
+LVB         C12         C14      SINGLE       n     1.488  0.0100     1.488  0.0100
+LVB         C12         O13      DOUBLE       n     1.224  0.0110     1.224  0.0110
+LVB          C4         C12      SINGLE       n     1.489  0.0100     1.489  0.0100
+LVB          C3          C4      DOUBLE       y     1.391  0.0100     1.391  0.0100
+LVB          C4          C5      SINGLE       y     1.391  0.0100     1.391  0.0100
+LVB          C2          C3      SINGLE       y     1.376  0.0100     1.376  0.0100
+LVB          C5          C6      DOUBLE       y     1.392  0.0104     1.392  0.0104
+LVB         O10          N9      DOUBLE       n     1.221  0.0162     1.221  0.0162
+LVB          C1          C2      DOUBLE       y     1.391  0.0109     1.391  0.0109
+LVB          C6          N9      SINGLE       n     1.457  0.0200     1.457  0.0200
+LVB          C1          C6      SINGLE       y     1.404  0.0100     1.404  0.0100
+LVB          N9         O11      SINGLE       n     1.221  0.0162     1.221  0.0162
+LVB          C1          O8      SINGLE       n     1.374  0.0155     1.374  0.0155
+LVB          C2          H1      SINGLE       n     1.082  0.0130     0.940  0.0174
+LVB          C3          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+LVB          C5          H3      SINGLE       n     1.082  0.0130     0.943  0.0184
+LVB          O8          H4      SINGLE       n     0.966  0.0059     0.861  0.0200
+LVB         C15          H5      SINGLE       n     1.082  0.0130     0.941  0.0168
+LVB         C16          H6      SINGLE       n     1.082  0.0130     0.943  0.0173
+LVB         C20          H7      SINGLE       n     1.089  0.0100     0.971  0.0135
+LVB         C20          H8      SINGLE       n     1.089  0.0100     0.971  0.0135
+LVB         C20          H9      SINGLE       n     1.089  0.0100     0.971  0.0135
+LVB         C18         H10      SINGLE       n     1.082  0.0130     0.943  0.0173
+LVB         C19         H11      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LVB          C2          C1          C6     117.790    1.50
+LVB          C2          C1          O8     121.105    3.00
+LVB          C6          C1          O8     121.105    3.00
+LVB          C3          C2          C1     120.279    1.50
+LVB          C3          C2          H1     120.093    1.50
+LVB          C1          C2          H1     119.628    1.50
+LVB          C4          C3          C2     121.339    1.50
+LVB          C4          C3          H2     119.526    1.50
+LVB          C2          C3          H2     119.135    1.50
+LVB         C12          C4          C3     120.276    2.06
+LVB         C12          C4          C5     120.350    3.00
+LVB          C3          C4          C5     119.375    1.50
+LVB          C4          C5          C6     120.378    1.50
+LVB          C4          C5          H3     119.929    1.50
+LVB          C6          C5          H3     119.693    1.50
+LVB          C5          C6          N9     117.764    1.50
+LVB          C5          C6          C1     120.840    1.59
+LVB          N9          C6          C1     121.396    1.50
+LVB         O10          N9          C6     118.308    1.50
+LVB         O10          N9         O11     123.383    1.50
+LVB          C6          N9         O11     118.308    1.50
+LVB          C1          O8          H4     120.000    3.00
+LVB         C14         C12         O13     119.965    1.50
+LVB         C14         C12          C4     120.070    1.79
+LVB         O13         C12          C4     119.965    1.50
+LVB         C15         C14         C19     118.845    1.50
+LVB         C15         C14         C12     120.578    2.06
+LVB         C19         C14         C12     120.578    2.06
+LVB         C16         C15         C14     120.379    1.50
+LVB         C16         C15          H5     119.744    1.50
+LVB         C14         C15          H5     119.877    1.50
+LVB         C17         C16         C15     121.272    1.50
+LVB         C17         C16          H6     119.233    1.50
+LVB         C15         C16          H6     119.495    1.50
+LVB         C20         C17         C16     121.073    1.50
+LVB         C20         C17         C18     121.073    1.50
+LVB         C16         C17         C18     117.853    1.50
+LVB         C17         C20          H7     109.567    1.50
+LVB         C17         C20          H8     109.567    1.50
+LVB         C17         C20          H9     109.567    1.50
+LVB          H7         C20          H8     109.348    1.50
+LVB          H7         C20          H9     109.348    1.50
+LVB          H8         C20          H9     109.348    1.50
+LVB         C17         C18         C19     121.272    1.50
+LVB         C17         C18         H10     119.233    1.50
+LVB         C19         C18         H10     119.495    1.50
+LVB         C18         C19         C14     120.379    1.50
+LVB         C18         C19         H11     119.744    1.50
+LVB         C14         C19         H11     119.877    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LVB              const_23          O8          C1          C2          C3     180.000    10.0     2
+LVB              const_48          O8          C1          C6          N9       0.000    10.0     2
+LVB            sp2_sp2_13          C2          C1          O8          H4     180.000     5.0     2
+LVB             sp2_sp2_3         O13         C12         C14         C15       0.000     5.0     2
+LVB       const_sp2_sp2_3         C12         C14         C15         C16     180.000     5.0     2
+LVB              const_43         C12         C14         C19         C18     180.000    10.0     2
+LVB       const_sp2_sp2_5         C14         C15         C16         C17       0.000     5.0     2
+LVB              const_10         C15         C16         C17         C20     180.000    10.0     2
+LVB             sp2_sp3_1         C16         C17         C20          H7     150.000    10.0     6
+LVB              const_15         C20         C17         C18         C19     180.000    10.0     2
+LVB              const_17         C17         C18         C19         C14       0.000    10.0     2
+LVB              const_25          C1          C2          C3          C4       0.000    10.0     2
+LVB              const_30          C2          C3          C4         C12     180.000    10.0     2
+LVB             sp2_sp2_7         O13         C12          C4          C3       0.000     5.0     2
+LVB              const_35         C12          C4          C5          C6     180.000    10.0     2
+LVB              const_38          C4          C5          C6          N9     180.000    10.0     2
+LVB             sp2_sp2_9          C5          C6          N9         O10     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LVB    plan-1          C1   0.020
+LVB    plan-1         C12   0.020
+LVB    plan-1          C2   0.020
+LVB    plan-1          C3   0.020
+LVB    plan-1          C4   0.020
+LVB    plan-1          C5   0.020
+LVB    plan-1          C6   0.020
+LVB    plan-1          H1   0.020
+LVB    plan-1          H2   0.020
+LVB    plan-1          H3   0.020
+LVB    plan-1          N9   0.020
+LVB    plan-1          O8   0.020
+LVB    plan-2         C12   0.020
+LVB    plan-2         C14   0.020
+LVB    plan-2         C15   0.020
+LVB    plan-2         C16   0.020
+LVB    plan-2         C17   0.020
+LVB    plan-2         C18   0.020
+LVB    plan-2         C19   0.020
+LVB    plan-2         C20   0.020
+LVB    plan-2         H10   0.020
+LVB    plan-2         H11   0.020
+LVB    plan-2          H5   0.020
+LVB    plan-2          H6   0.020
+LVB    plan-3          C6   0.020
+LVB    plan-3          N9   0.020
+LVB    plan-3         O10   0.020
+LVB    plan-3         O11   0.020
+LVB    plan-4         C12   0.020
+LVB    plan-4         C14   0.020
+LVB    plan-4          C4   0.020
+LVB    plan-4         O13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LVB            InChI                InChI  1.03 InChI=1S/C14H11NO4/c1-9-2-4-10(5-3-9)14(17)11-6-7-13(16)12(8-11)15(18)19/h2-8,16H,1H3
+LVB         InChIKey                InChI  1.03                                                           OYCADSVKEVKERJ-UHFFFAOYSA-N
+LVB SMILES_CANONICAL               CACTVS 3.385                                             Cc1ccc(cc1)C(=O)c2ccc(O)c(c2)[N+]([O-])=O
+LVB           SMILES               CACTVS 3.385                                             Cc1ccc(cc1)C(=O)c2ccc(O)c(c2)[N+]([O-])=O
+LVB SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                             Cc1ccc(cc1)C(=O)c2ccc(c(c2)[N+](=O)[O-])O
+LVB           SMILES "OpenEye OEToolkits" 2.0.7                                             Cc1ccc(cc1)C(=O)c2ccc(c(c2)[N+](=O)[O-])O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LVB acedrg               243         "dictionary generator"                  
+LVB acedrg_database      11          "data source"                           
+LVB rdkit                2017.03.2   "Chemoinformatics tool"
+LVB refmac5              5.8.0238    "optimization tool"                     

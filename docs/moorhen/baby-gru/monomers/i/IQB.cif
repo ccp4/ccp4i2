@@ -1,0 +1,329 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IQB     IQB      "N-[2-(4-BROMOCINNAMYLAMINO)ETHYL]-5-ISOQUINOLINE SULFONAMIDE"     NON-POLYMER     47     27     .     
+#
+data_comp_IQB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IQB     C1      C       CR6     0       7.168       10.490      3.527       
+IQB     C2      C       CR16    0       7.631       11.130      2.402       
+IQB     C3      C       CR16    0       6.823       11.235      1.253       
+IQB     C4      C       CR16    0       5.571       10.710      1.225       
+IQB     C5      C       CR66    0       5.050       10.042      2.358       
+IQB     C6      C       CR16    0       3.744       9.470       2.390       
+IQB     N7      N       NRD6    0       3.232       8.841       3.430       
+IQB     C8      C       CR16    0       4.012       8.736       4.551       
+IQB     C9      C       CR16    0       5.276       9.236       4.655       
+IQB     C10     C       CR66    0       5.846       9.919       3.543       
+IQB     S       S       S3      0       8.269       10.413      4.924       
+IQB     O1      O       O       0       7.571       10.943      6.055       
+IQB     O2      O       O       0       9.525       11.003      4.574       
+IQB     "N1'"   N       NT1     0       8.559       8.854       5.243       
+IQB     "C2'"   C       CH2     0       8.665       7.829       4.189       
+IQB     "C3'"   C       CH2     0       9.892       8.012       3.305       
+IQB     "N4'"   N       NT1     0       11.159      7.703       3.993       
+IQB     "C5'"   C       CH2     0       12.124      8.785       4.182       
+IQB     "C6'"   C       C1      0       12.656      9.363       2.902       
+IQB     "C7'"   C       C1      0       12.634      10.646      2.582       
+IQB     "C1'"   C       CR6     0       12.998      11.250      1.292       
+IQB     C2B     C       CR16    0       14.099      10.794      0.559       
+IQB     C3B     C       CR16    0       14.446      11.364      -0.657      
+IQB     "C4'"   C       CR6     0       13.687      12.408      -1.151      
+IQB     "BR4'"  BR      BR      0       14.154      13.195      -2.814      
+IQB     C5B     C       CR16    0       12.593      12.890      -0.457      
+IQB     C6B     C       CR16    0       12.257      12.310      0.758       
+IQB     H2      H       H       0       8.488       11.501      2.393       
+IQB     H3      H       H       0       7.155       11.675      0.497       
+IQB     H4      H       H       0       5.049       10.793      0.445       
+IQB     H6      H       H       0       3.207       9.545       1.612       
+IQB     H8      H       H       0       3.644       8.286       5.292       
+IQB     H9      H       H       0       5.775       9.128       5.469       
+IQB     HN1     H       H       0       9.070       8.766       5.933       
+IQB     "H2'1"  H       H       0       7.866       7.853       3.629       
+IQB     "H2'2"  H       H       0       8.713       6.948       4.613       
+IQB     "H3'1"  H       H       0       9.912       8.931       2.971       
+IQB     "H3'2"  H       H       0       9.805       7.422       2.527       
+IQB     HN4     H       H       0       11.003      7.369       4.804       
+IQB     "H5'1"  H       H       0       12.867      8.444       4.707       
+IQB     "H5'2"  H       H       0       11.703      9.487       4.700       
+IQB     "H6'"   H       H       0       13.028      8.768       2.286       
+IQB     "H7'"   H       H       0       12.355      11.244      3.259       
+IQB     "H2'"   H       H       0       14.613      10.083      0.898       
+IQB     "H3'"   H       H       0       15.189      11.045      -1.140      
+IQB     "H5'"   H       H       0       12.084      13.601      -0.804      
+IQB     H6B     H       H       0       11.513      12.635      1.234       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IQB          C1          C2      DOUBLE       y     1.369  0.0100     1.369  0.0100
+IQB          C1         C10      SINGLE       y     1.433  0.0100     1.433  0.0100
+IQB          C1           S      SINGLE       n     1.774  0.0100     1.774  0.0100
+IQB          C2          C3      SINGLE       y     1.405  0.0100     1.405  0.0100
+IQB          C3          C4      DOUBLE       y     1.354  0.0106     1.354  0.0106
+IQB          C4          C5      SINGLE       y     1.411  0.0100     1.411  0.0100
+IQB          C5          C6      SINGLE       y     1.419  0.0200     1.419  0.0200
+IQB          C5         C10      DOUBLE       y     1.428  0.0100     1.428  0.0100
+IQB          C6          N7      DOUBLE       y     1.307  0.0186     1.307  0.0186
+IQB          N7          C8      SINGLE       y     1.365  0.0100     1.365  0.0100
+IQB          C8          C9      DOUBLE       y     1.358  0.0100     1.358  0.0100
+IQB          C9         C10      SINGLE       y     1.418  0.0100     1.418  0.0100
+IQB           S          O1      DOUBLE       n     1.431  0.0100     1.431  0.0100
+IQB           S          O2      DOUBLE       n     1.431  0.0100     1.431  0.0100
+IQB           S       "N1'"      SINGLE       n     1.613  0.0107     1.613  0.0107
+IQB       "N1'"       "C2'"      SINGLE       n     1.470  0.0104     1.470  0.0104
+IQB       "C2'"       "C3'"      SINGLE       n     1.512  0.0200     1.512  0.0200
+IQB       "C3'"       "N4'"      SINGLE       n     1.466  0.0147     1.466  0.0147
+IQB       "N4'"       "C5'"      SINGLE       n     1.459  0.0126     1.459  0.0126
+IQB       "C5'"       "C6'"      SINGLE       n     1.501  0.0100     1.501  0.0100
+IQB       "C6'"       "C7'"      DOUBLE       n     1.321  0.0108     1.321  0.0108
+IQB       "C7'"       "C1'"      SINGLE       n     1.470  0.0132     1.470  0.0132
+IQB       "C1'"         C2B      DOUBLE       y     1.395  0.0103     1.395  0.0103
+IQB       "C1'"         C6B      SINGLE       y     1.395  0.0103     1.395  0.0103
+IQB         C2B         C3B      SINGLE       y     1.384  0.0100     1.384  0.0100
+IQB         C3B       "C4'"      DOUBLE       y     1.378  0.0111     1.378  0.0111
+IQB       "C4'"      "BR4'"      SINGLE       n     1.899  0.0100     1.899  0.0100
+IQB       "C4'"         C5B      SINGLE       y     1.378  0.0111     1.378  0.0111
+IQB         C5B         C6B      DOUBLE       y     1.384  0.0100     1.384  0.0100
+IQB          C2          H2      SINGLE       n     1.082  0.0130     0.935  0.0100
+IQB          C3          H3      SINGLE       n     1.082  0.0130     0.935  0.0125
+IQB          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0169
+IQB          C6          H6      SINGLE       n     1.082  0.0130     0.948  0.0200
+IQB          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0128
+IQB          C9          H9      SINGLE       n     1.082  0.0130     0.965  0.0200
+IQB       "N1'"         HN1      SINGLE       n     1.036  0.0160     0.862  0.0200
+IQB       "C2'"      "H2'1"      SINGLE       n     1.089  0.0100     0.979  0.0198
+IQB       "C2'"      "H2'2"      SINGLE       n     1.089  0.0100     0.979  0.0198
+IQB       "C3'"      "H3'1"      SINGLE       n     1.089  0.0100     0.980  0.0143
+IQB       "C3'"      "H3'2"      SINGLE       n     1.089  0.0100     0.980  0.0143
+IQB       "N4'"         HN4      SINGLE       n     1.036  0.0160     0.889  0.0200
+IQB       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.971  0.0200
+IQB       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.971  0.0200
+IQB       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.934  0.0200
+IQB       "C7'"       "H7'"      SINGLE       n     1.082  0.0130     0.946  0.0187
+IQB         C2B       "H2'"      SINGLE       n     1.082  0.0130     0.941  0.0168
+IQB         C3B       "H3'"      SINGLE       n     1.082  0.0130     0.941  0.0149
+IQB         C5B       "H5'"      SINGLE       n     1.082  0.0130     0.941  0.0149
+IQB         C6B         H6B      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IQB          C2          C1         C10     121.590    1.50
+IQB          C2          C1           S     116.631    1.50
+IQB         C10          C1           S     121.779    1.50
+IQB          C1          C2          C3     120.489    1.50
+IQB          C1          C2          H2     119.747    1.50
+IQB          C3          C2          H2     119.763    1.50
+IQB          C2          C3          C4     120.462    1.50
+IQB          C2          C3          H3     119.724    1.50
+IQB          C4          C3          H3     119.814    1.50
+IQB          C3          C4          C5     119.738    1.50
+IQB          C3          C4          H4     119.897    1.50
+IQB          C5          C4          H4     120.365    1.50
+IQB          C4          C5          C6     122.987    1.50
+IQB          C4          C5         C10     119.253    1.50
+IQB          C6          C5         C10     117.761    1.50
+IQB          C5          C6          N7     124.423    1.50
+IQB          C5          C6          H6     117.901    1.50
+IQB          N7          C6          H6     117.676    1.50
+IQB          C6          N7          C8     116.463    1.50
+IQB          N7          C8          C9     123.515    1.50
+IQB          N7          C8          H8     117.615    1.50
+IQB          C9          C8          H8     118.870    1.51
+IQB          C8          C9         C10     119.112    1.50
+IQB          C8          C9          H9     120.940    1.50
+IQB         C10          C9          H9     119.948    1.50
+IQB          C1         C10          C5     118.467    1.50
+IQB          C1         C10          C9     122.806    1.50
+IQB          C5         C10          C9     118.726    1.50
+IQB          C1           S          O1     107.957    1.74
+IQB          C1           S          O2     107.957    1.74
+IQB          C1           S       "N1'"     106.584    1.50
+IQB          O1           S          O2     118.871    1.50
+IQB          O1           S       "N1'"     106.989    1.50
+IQB          O2           S       "N1'"     106.989    1.50
+IQB           S       "N1'"       "C2'"     119.594    1.75
+IQB           S       "N1'"         HN1     111.936    3.00
+IQB       "C2'"       "N1'"         HN1     118.088    3.00
+IQB       "N1'"       "C2'"       "C3'"     111.167    1.88
+IQB       "N1'"       "C2'"      "H2'1"     109.230    1.50
+IQB       "N1'"       "C2'"      "H2'2"     109.230    1.50
+IQB       "C3'"       "C2'"      "H2'1"     109.104    1.50
+IQB       "C3'"       "C2'"      "H2'2"     109.104    1.50
+IQB      "H2'1"       "C2'"      "H2'2"     108.843    1.50
+IQB       "C2'"       "C3'"       "N4'"     111.556    2.19
+IQB       "C2'"       "C3'"      "H3'1"     109.104    1.50
+IQB       "C2'"       "C3'"      "H3'2"     109.104    1.50
+IQB       "N4'"       "C3'"      "H3'1"     109.410    1.50
+IQB       "N4'"       "C3'"      "H3'2"     109.410    1.50
+IQB      "H3'1"       "C3'"      "H3'2"     107.909    1.50
+IQB       "C3'"       "N4'"       "C5'"     113.917    3.00
+IQB       "C3'"       "N4'"         HN4     108.452    3.00
+IQB       "C5'"       "N4'"         HN4     106.682    3.00
+IQB       "N4'"       "C5'"       "C6'"     114.120    1.50
+IQB       "N4'"       "C5'"      "H5'1"     108.963    1.50
+IQB       "N4'"       "C5'"      "H5'2"     108.963    1.50
+IQB       "C6'"       "C5'"      "H5'1"     109.594    1.50
+IQB       "C6'"       "C5'"      "H5'2"     109.594    1.50
+IQB      "H5'1"       "C5'"      "H5'2"     107.869    1.50
+IQB       "C5'"       "C6'"       "C7'"     124.931    2.85
+IQB       "C5'"       "C6'"       "H6'"     117.393    2.60
+IQB       "C7'"       "C6'"       "H6'"     117.676    1.50
+IQB       "C6'"       "C7'"       "C1'"     127.021    1.92
+IQB       "C6'"       "C7'"       "H7'"     116.600    1.50
+IQB       "C1'"       "C7'"       "H7'"     116.380    1.50
+IQB       "C7'"       "C1'"         C2B     121.163    2.00
+IQB       "C7'"       "C1'"         C6B     121.163    2.00
+IQB         C2B       "C1'"         C6B     117.675    1.50
+IQB       "C1'"         C2B         C3B     121.429    1.50
+IQB       "C1'"         C2B       "H2'"     119.225    1.50
+IQB         C3B         C2B       "H2'"     119.345    1.50
+IQB         C2B         C3B       "C4'"     119.035    1.50
+IQB         C2B         C3B       "H3'"     120.506    1.50
+IQB       "C4'"         C3B       "H3'"     120.450    1.50
+IQB         C3B       "C4'"      "BR4'"     119.292    1.50
+IQB         C3B       "C4'"         C5B     121.416    1.50
+IQB      "BR4'"       "C4'"         C5B     119.292    1.50
+IQB       "C4'"         C5B         C6B     119.035    1.50
+IQB       "C4'"         C5B       "H5'"     120.450    1.50
+IQB         C6B         C5B       "H5'"     120.506    1.50
+IQB       "C1'"         C6B         C5B     121.429    1.50
+IQB       "C1'"         C6B         H6B     119.225    1.50
+IQB         C5B         C6B         H6B     119.345    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IQB              const_23           S          C1          C2          C3     180.000    10.0     2
+IQB             sp2_sp3_1          C2          C1           S          O1     150.000    10.0     6
+IQB              const_59           S          C1         C10          C5     180.000    10.0     2
+IQB             sp3_sp3_5       "C2'"       "N1'"           S          O1     180.000    10.0     3
+IQB             sp3_sp3_7       "C3'"       "C2'"       "N1'"           S     180.000    10.0     3
+IQB            sp3_sp3_13       "N1'"       "C2'"       "C3'"       "N4'"     180.000    10.0     3
+IQB            sp3_sp3_23       "C2'"       "C3'"       "N4'"       "C5'"     -60.000    10.0     3
+IQB            sp3_sp3_28       "C6'"       "C5'"       "N4'"       "C3'"     180.000    10.0     3
+IQB             sp2_sp3_8       "C7'"       "C6'"       "C5'"       "N4'"     120.000    10.0     6
+IQB             sp2_sp2_1       "C5'"       "C6'"       "C7'"       "C1'"     180.000     5.0     2
+IQB             sp2_sp2_5         C2B       "C1'"       "C7'"       "C6'"     180.000     5.0     2
+IQB              const_25          C1          C2          C3          C4       0.000    10.0     2
+IQB       const_sp2_sp2_3       "C7'"       "C1'"         C2B         C3B     180.000     5.0     2
+IQB              const_63       "C7'"       "C1'"         C6B         C5B     180.000    10.0     2
+IQB       const_sp2_sp2_5       "C1'"         C2B         C3B       "C4'"       0.000     5.0     2
+IQB              const_10         C2B         C3B       "C4'"      "BR4'"     180.000    10.0     2
+IQB              const_15      "BR4'"       "C4'"         C5B         C6B     180.000    10.0     2
+IQB              const_17       "C4'"         C5B         C6B       "C1'"       0.000    10.0     2
+IQB              const_29          C2          C3          C4          C5       0.000    10.0     2
+IQB              const_34          C3          C4          C5          C6     180.000    10.0     2
+IQB              const_43          C4          C5          C6          N7     180.000    10.0     2
+IQB              const_37          C1         C10          C5          C4       0.000    10.0     2
+IQB              const_45          C5          C6          N7          C8       0.000    10.0     2
+IQB              const_47          C9          C8          N7          C6       0.000    10.0     2
+IQB              const_49          N7          C8          C9         C10       0.000    10.0     2
+IQB              const_55          C1         C10          C9          C8     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IQB    chir_1    S    O1    O2    "N1'"    both
+IQB    chir_2    "N1'"    S    "C2'"    HN1    both
+IQB    chir_3    "N4'"    "C3'"    "C5'"    HN4    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IQB    plan-1          C1   0.020
+IQB    plan-1         C10   0.020
+IQB    plan-1          C2   0.020
+IQB    plan-1          C3   0.020
+IQB    plan-1          C4   0.020
+IQB    plan-1          C5   0.020
+IQB    plan-1          C6   0.020
+IQB    plan-1          C8   0.020
+IQB    plan-1          C9   0.020
+IQB    plan-1          H2   0.020
+IQB    plan-1          H3   0.020
+IQB    plan-1          H4   0.020
+IQB    plan-1          H6   0.020
+IQB    plan-1          H8   0.020
+IQB    plan-1          H9   0.020
+IQB    plan-1          N7   0.020
+IQB    plan-1           S   0.020
+IQB    plan-2      "BR4'"   0.020
+IQB    plan-2       "C1'"   0.020
+IQB    plan-2         C2B   0.020
+IQB    plan-2         C3B   0.020
+IQB    plan-2       "C4'"   0.020
+IQB    plan-2         C5B   0.020
+IQB    plan-2         C6B   0.020
+IQB    plan-2       "C7'"   0.020
+IQB    plan-2       "H2'"   0.020
+IQB    plan-2       "H3'"   0.020
+IQB    plan-2       "H5'"   0.020
+IQB    plan-2         H6B   0.020
+IQB    plan-3       "C5'"   0.020
+IQB    plan-3       "C6'"   0.020
+IQB    plan-3       "C7'"   0.020
+IQB    plan-3       "H6'"   0.020
+IQB    plan-4       "C1'"   0.020
+IQB    plan-4       "C6'"   0.020
+IQB    plan-4       "C7'"   0.020
+IQB    plan-4       "H7'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IQB           SMILES              ACDLabs 10.04                                                                                                Brc1ccc(cc1)\C=C\CNCCNS(=O)(=O)c2cccc3c2ccnc3
+IQB SMILES_CANONICAL               CACTVS 3.341                                                                                              Brc1ccc(/C=C/CNCCN[S](=O)(=O)c2cccc3cnccc23)cc1
+IQB           SMILES               CACTVS 3.341                                                                                                Brc1ccc(C=CCNCCN[S](=O)(=O)c2cccc3cnccc23)cc1
+IQB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                              c1cc2cnccc2c(c1)S(=O)(=O)NCCNC\C=C\c3ccc(cc3)Br
+IQB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                c1cc2cnccc2c(c1)S(=O)(=O)NCCNCC=Cc3ccc(cc3)Br
+IQB            InChI                InChI  1.03 InChI=1S/C20H20BrN3O2S/c21-18-8-6-16(7-9-18)3-2-11-22-13-14-24-27(25,26)20-5-1-4-17-15-23-12-10-19(17)20/h1-10,12,15,22,24H,11,13-14H2/b3-2+
+IQB         InChIKey                InChI  1.03                                                                                                                  ZKZXNDJNWUTGDK-NSCUHMNNSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IQB acedrg               243         "dictionary generator"                  
+IQB acedrg_database      11          "data source"                           
+IQB rdkit                2017.03.2   "Chemoinformatics tool"
+IQB refmac5              5.8.0238    "optimization tool"                     

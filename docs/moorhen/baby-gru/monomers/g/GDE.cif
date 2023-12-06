@@ -1,0 +1,161 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GDE     GDE      "3,4,5-trihydroxybenzoic acid"     NON-POLYMER     17     12     .     
+#
+data_comp_GDE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GDE     OAA     O       OC      -1      49.802      -48.641     -4.134      
+GDE     OAB     O       O       0       49.449      -47.340     -2.394      
+GDE     OAC     O       OH1     0       45.741      -46.999     -6.876      
+GDE     OAD     O       OH1     0       48.078      -43.163     -5.137      
+GDE     OAE     O       OH1     0       46.119      -44.232     -6.805      
+GDE     CAF     C       CR16    0       47.480      -47.281     -5.275      
+GDE     CAG     C       CR16    0       48.658      -45.354     -4.398      
+GDE     CAH     C       C       0       49.301      -47.640     -3.593      
+GDE     CAI     C       CR6     0       46.701      -46.443     -6.062      
+GDE     CAJ     C       CR6     0       47.876      -44.522     -5.187      
+GDE     CAK     C       CR6     0       48.458      -46.735     -4.442      
+GDE     CAL     C       CR6     0       46.893      -45.058     -6.024      
+GDE     HOAC    H       H       0       45.260      -46.504     -7.394      
+GDE     HOAD    H       H       0       48.065      -42.699     -5.862      
+GDE     HOAE    H       H       0       45.669      -43.594     -6.442      
+GDE     HAF     H       H       0       47.345      -48.212     -5.305      
+GDE     HAG     H       H       0       49.318      -44.986     -3.837      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GDE         OAA         CAH      SINGLE       n     1.244  0.0200     1.244  0.0200
+GDE         OAB         CAH      DOUBLE       n     1.244  0.0200     1.244  0.0200
+GDE         OAC         CAI      SINGLE       n     1.374  0.0155     1.374  0.0155
+GDE         OAD         CAJ      SINGLE       n     1.374  0.0155     1.374  0.0155
+GDE         OAE         CAL      SINGLE       n     1.374  0.0155     1.374  0.0155
+GDE         CAF         CAI      DOUBLE       y     1.381  0.0147     1.381  0.0147
+GDE         CAF         CAK      SINGLE       y     1.393  0.0100     1.393  0.0100
+GDE         CAG         CAJ      SINGLE       y     1.381  0.0147     1.381  0.0147
+GDE         CAG         CAK      DOUBLE       y     1.393  0.0100     1.393  0.0100
+GDE         CAH         CAK      SINGLE       n     1.498  0.0200     1.498  0.0200
+GDE         CAI         CAL      SINGLE       y     1.393  0.0100     1.393  0.0100
+GDE         CAJ         CAL      DOUBLE       y     1.393  0.0100     1.393  0.0100
+GDE         OAC        HOAC      SINGLE       n     0.966  0.0059     0.861  0.0200
+GDE         OAD        HOAD      SINGLE       n     0.966  0.0059     0.861  0.0200
+GDE         OAE        HOAE      SINGLE       n     0.966  0.0059     0.861  0.0200
+GDE         CAF         HAF      SINGLE       n     1.082  0.0130     0.941  0.0168
+GDE         CAG         HAG      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GDE         CAI         OAC        HOAC     120.000    3.00
+GDE         CAJ         OAD        HOAD     120.000    3.00
+GDE         CAL         OAE        HOAE     120.000    3.00
+GDE         CAI         CAF         CAK     119.678    1.50
+GDE         CAI         CAF         HAF     119.912    1.50
+GDE         CAK         CAF         HAF     120.410    1.50
+GDE         CAJ         CAG         CAK     119.678    1.50
+GDE         CAJ         CAG         HAG     119.912    1.50
+GDE         CAK         CAG         HAG     120.410    1.50
+GDE         OAA         CAH         OAB     124.418    1.50
+GDE         OAA         CAH         CAK     117.791    1.50
+GDE         OAB         CAH         CAK     117.791    1.50
+GDE         OAC         CAI         CAF     119.866    3.00
+GDE         OAC         CAI         CAL     119.866    3.00
+GDE         CAF         CAI         CAL     120.269    1.50
+GDE         OAD         CAJ         CAG     119.866    3.00
+GDE         OAD         CAJ         CAL     119.866    3.00
+GDE         CAG         CAJ         CAL     120.269    1.50
+GDE         CAF         CAK         CAG     120.692    1.50
+GDE         CAF         CAK         CAH     119.654    1.50
+GDE         CAG         CAK         CAH     119.654    1.50
+GDE         OAE         CAL         CAI     120.293    3.00
+GDE         OAE         CAL         CAJ     120.293    3.00
+GDE         CAI         CAL         CAJ     119.414    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GDE             sp2_sp2_1         CAF         CAI         OAC        HOAC     180.000     5.0     2
+GDE             sp2_sp2_3         CAG         CAJ         OAD        HOAD     180.000     5.0     2
+GDE             sp2_sp2_5         CAI         CAL         OAE        HOAE     180.000     5.0     2
+GDE              const_22         CAI         CAF         CAK         CAH     180.000    10.0     2
+GDE       const_sp2_sp2_2         CAK         CAF         CAI         OAC     180.000     5.0     2
+GDE              const_18         CAJ         CAG         CAK         CAH     180.000    10.0     2
+GDE              const_14         CAK         CAG         CAJ         OAD     180.000    10.0     2
+GDE             sp2_sp2_7         OAA         CAH         CAK         CAF     180.000     5.0     2
+GDE       const_sp2_sp2_8         OAC         CAI         CAL         OAE       0.000     5.0     2
+GDE              const_12         OAD         CAJ         CAL         OAE       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GDE    plan-1         CAF   0.020
+GDE    plan-1         CAG   0.020
+GDE    plan-1         CAH   0.020
+GDE    plan-1         CAI   0.020
+GDE    plan-1         CAJ   0.020
+GDE    plan-1         CAK   0.020
+GDE    plan-1         CAL   0.020
+GDE    plan-1         HAF   0.020
+GDE    plan-1         HAG   0.020
+GDE    plan-1         OAC   0.020
+GDE    plan-1         OAD   0.020
+GDE    plan-1         OAE   0.020
+GDE    plan-2         CAH   0.020
+GDE    plan-2         CAK   0.020
+GDE    plan-2         OAA   0.020
+GDE    plan-2         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GDE           SMILES              ACDLabs 12.01                                            O=C(O)c1cc(O)c(O)c(O)c1
+GDE            InChI                InChI  1.03 InChI=1S/C7H6O5/c8-4-1-3(7(11)12)2-5(9)6(4)10/h1-2,8-10H,(H,11,12)
+GDE         InChIKey                InChI  1.03                                        LNTHITQWFMADLM-UHFFFAOYSA-N
+GDE SMILES_CANONICAL               CACTVS 3.370                                            OC(=O)c1cc(O)c(O)c(O)c1
+GDE           SMILES               CACTVS 3.370                                            OC(=O)c1cc(O)c(O)c(O)c1
+GDE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                            c1c(cc(c(c1O)O)O)C(=O)O
+GDE           SMILES "OpenEye OEToolkits" 1.7.2                                            c1c(cc(c(c1O)O)O)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GDE acedrg               243         "dictionary generator"                  
+GDE acedrg_database      11          "data source"                           
+GDE rdkit                2017.03.2   "Chemoinformatics tool"
+GDE refmac5              5.8.0238    "optimization tool"                     

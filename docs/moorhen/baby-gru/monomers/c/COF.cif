@@ -1,0 +1,515 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+COF     COF      "TRIFLUOROACETONYL COENZYME A"     NON-POLYMER     88     55     .     
+#
+data_comp_COF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+COF     N1A     N       NRD6    0       13.363      16.360      17.054      
+COF     C2A     C       CR16    0       13.087      17.536      17.643      
+COF     N3A     N       NRD6    0       12.556      18.638      17.112      
+COF     C4A     C       CR56    0       12.291      18.462      15.804      
+COF     C5A     C       CR56    0       12.518      17.320      15.060      
+COF     C6A     C       CR6     0       13.085      16.215      15.732      
+COF     N6A     N       NH2     0       13.356      15.053      15.143      
+COF     N7A     N       NRD5    0       12.117      17.517      13.744      
+COF     C8A     C       CR15    0       11.665      18.750      13.714      
+COF     N9A     N       NT      0       11.740      19.373      14.942      
+COF     C1B     C       CH1     0       11.344      20.741      15.285      
+COF     C2B     C       CH1     0       12.474      21.746      15.094      
+COF     O2B     O       OH1     0       13.255      21.847      16.266      
+COF     C3B     C       CH1     0       11.722      23.037      14.750      
+COF     O3B     O       O2      0       11.429      23.815      15.918      
+COF     P3B     P       P       0       11.496      25.417      15.684      
+COF     O7A     O       O       0       12.961      25.767      15.501      
+COF     O8A     O       OP      -1      10.910      26.055      16.929      
+COF     O9A     O       OP      -1      10.675      25.725      14.446      
+COF     C4B     C       CH1     0       10.434      22.545      14.089      
+COF     O4B     O       O2      0       10.302      21.140      14.426      
+COF     C5B     C       CH2     0       10.386      22.700      12.588      
+COF     O5B     O       O2      0       11.447      21.916      11.984      
+COF     P1A     P       P       0       11.407      21.630      10.406      
+COF     O1A     O       O       0       10.788      22.791      9.701       
+COF     O2A     O       OP      -1      10.838      20.271      10.163      
+COF     O3A     O       O2      0       12.973      21.600      10.062      
+COF     P2A     P       P       0       14.201      22.519      10.530      
+COF     O4A     O       O       0       15.185      22.612      9.410       
+COF     O5A     O       OP      -1      13.665      23.785      11.113      
+COF     O6A     O       O2      0       14.805      21.638      11.730      
+COF     CBP     C       CT      0       16.538      20.387      12.923      
+COF     CCP     C       CH2     0       16.138      21.060      11.608      
+COF     CDP     C       CH3     0       17.942      19.792      12.746      
+COF     CEP     C       CH3     0       16.603      21.463      14.017      
+COF     CAP     C       CH1     0       15.535      19.290      13.338      
+COF     OAP     O       OH1     0       15.348      18.357      12.279      
+COF     C9P     C       C       0       15.905      18.539      14.612      
+COF     O9P     O       O       0       15.495      18.957      15.693      
+COF     N8P     N       NH1     0       16.671      17.459      14.491      
+COF     C7P     C       CH2     0       17.158      16.674      15.620      
+COF     C6P     C       CH2     0       18.319      17.345      16.331      
+COF     C5P     C       C       0       18.629      16.727      17.682      
+COF     O5P     O       O       0       18.199      17.273      18.696      
+COF     N4P     N       NH1     0       19.361      15.600      17.778      
+COF     C3P     C       CH2     0       19.955      14.822      16.695      
+COF     C2P     C       CH2     0       21.472      14.961      16.657      
+COF     S1P     S       S2      0       22.040      16.571      16.047      
+COF     C1I     C       CH2     0       22.252      16.239      14.274      
+COF     C2I     C       C       0       22.116      17.477      13.430      
+COF     O1I     O       O       0       22.851      18.422      13.610      
+COF     C3I     C       CT      0       21.057      17.496      12.377      
+COF     F1I     F       F       0       21.263      16.574      11.453      
+COF     F2I     F       F       0       19.856      17.270      12.880      
+COF     F3I     F       F       0       20.992      18.658      11.747      
+COF     H2A     H       H       0       13.298      17.588      18.563      
+COF     H61A    H       H       0       13.005      14.869      14.359      
+COF     H62A    H       H       0       13.887      14.475      15.538      
+COF     H8A     H       H       0       11.324      19.151      12.933      
+COF     H1B     H       H       0       11.038      20.771      16.220      
+COF     H2B     H       H       0       13.048      21.478      14.328      
+COF     HO2A    H       H       0       13.817      22.477      16.173      
+COF     H3B     H       H       0       12.258      23.559      14.108      
+COF     H4B     H       H       0       9.671       23.033      14.469      
+COF     H51A    H       H       0       10.496      23.654      12.350      
+COF     H52A    H       H       0       9.508       22.394      12.251      
+COF     H121    H       H       0       16.783      21.762      11.391      
+COF     H122    H       H       0       16.151      20.404      10.882      
+COF     H131    H       H       0       17.892      18.988      12.202      
+COF     H132    H       H       0       18.322      19.570      13.613      
+COF     H133    H       H       0       18.518      20.441      12.304      
+COF     H141    H       H       0       15.701      21.720      14.276      
+COF     H142    H       H       0       17.074      22.244      13.680      
+COF     H143    H       H       0       17.073      21.118      14.795      
+COF     H10     H       H       0       14.669      19.734      13.505      
+COF     HO1     H       H       0       14.601      17.970      12.380      
+COF     HN8     H       H       0       16.898      17.199      13.690      
+COF     H71     H       H       0       17.443      15.795      15.297      
+COF     H72     H       H       0       16.426      16.537      16.258      
+COF     H61     H       H       0       18.110      18.286      16.464      
+COF     H62     H       H       0       19.111      17.311      15.768      
+COF     HN4     H       H       0       19.493      15.303      18.588      
+COF     H31     H       H       0       19.587      15.098      15.832      
+COF     H32     H       H       0       19.730      13.877      16.826      
+COF     H21     H       H       0       21.841      14.256      16.080      
+COF     H22     H       H       0       21.827      14.822      17.563      
+COF     HI11    H       H       0       21.587      15.583      13.994      
+COF     HI12    H       H       0       23.138      15.861      14.128      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+COF         N1A         C2A      DOUBLE       y     1.339  0.0100     1.339  0.0100
+COF         N1A         C6A      SINGLE       y     1.354  0.0100     1.354  0.0100
+COF         C2A         N3A      SINGLE       y     1.330  0.0100     1.330  0.0100
+COF         N3A         C4A      DOUBLE       y     1.343  0.0100     1.343  0.0100
+COF         C4A         C5A      SINGLE       y     1.381  0.0100     1.381  0.0100
+COF         C4A         N9A      SINGLE       y     1.372  0.0100     1.372  0.0100
+COF         C5A         C6A      DOUBLE       y     1.408  0.0100     1.408  0.0100
+COF         C5A         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+COF         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+COF         N7A         C8A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+COF         C8A         N9A      SINGLE       y     1.372  0.0200     1.372  0.0200
+COF         N9A         C1B      SINGLE       n     1.458  0.0200     1.458  0.0200
+COF         C1B         C2B      SINGLE       n     1.525  0.0100     1.525  0.0100
+COF         C1B         O4B      SINGLE       n     1.409  0.0100     1.409  0.0100
+COF         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+COF         C2B         C3B      SINGLE       n     1.529  0.0125     1.529  0.0125
+COF         C3B         O3B      SINGLE       n     1.425  0.0152     1.425  0.0152
+COF         C3B         C4B      SINGLE       n     1.525  0.0133     1.525  0.0133
+COF         O3B         P3B      SINGLE       n     1.614  0.0178     1.614  0.0178
+COF         P3B         O7A      DOUBLE       n     1.517  0.0192     1.517  0.0192
+COF         P3B         O8A      SINGLE       n     1.517  0.0192     1.517  0.0192
+COF         P3B         O9A      SINGLE       n     1.517  0.0192     1.517  0.0192
+COF         C4B         O4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+COF         C4B         C5B      SINGLE       n     1.509  0.0100     1.509  0.0100
+COF         C5B         O5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+COF         O5B         P1A      SINGLE       n     1.604  0.0133     1.604  0.0133
+COF         P1A         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+COF         P1A         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+COF         P1A         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+COF         O3A         P2A      SINGLE       n     1.604  0.0133     1.604  0.0133
+COF         P2A         O4A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+COF         P2A         O5A      SINGLE       n     1.493  0.0122     1.493  0.0122
+COF         P2A         O6A      SINGLE       n     1.604  0.0133     1.604  0.0133
+COF         O6A         CCP      SINGLE       n     1.454  0.0165     1.454  0.0165
+COF         CBP         CCP      SINGLE       n     1.526  0.0108     1.526  0.0108
+COF         CBP         CDP      SINGLE       n     1.531  0.0109     1.531  0.0109
+COF         CBP         CEP      SINGLE       n     1.531  0.0109     1.531  0.0109
+COF         CBP         CAP      SINGLE       n     1.532  0.0112     1.532  0.0112
+COF         CAP         OAP      SINGLE       n     1.419  0.0162     1.419  0.0162
+COF         CAP         C9P      SINGLE       n     1.519  0.0108     1.519  0.0108
+COF         C9P         O9P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+COF         C9P         N8P      SINGLE       n     1.326  0.0100     1.326  0.0100
+COF         N8P         C7P      SINGLE       n     1.457  0.0100     1.457  0.0100
+COF         C7P         C6P      SINGLE       n     1.513  0.0195     1.513  0.0195
+COF         C6P         C5P      SINGLE       n     1.514  0.0100     1.514  0.0100
+COF         C5P         O5P      DOUBLE       n     1.229  0.0102     1.229  0.0102
+COF         C5P         N4P      SINGLE       n     1.337  0.0118     1.337  0.0118
+COF         N4P         C3P      SINGLE       n     1.455  0.0100     1.455  0.0100
+COF         C3P         C2P      SINGLE       n     1.523  0.0100     1.523  0.0100
+COF         C2P         S1P      SINGLE       n     1.813  0.0122     1.813  0.0122
+COF         S1P         C1I      SINGLE       n     1.816  0.0116     1.816  0.0116
+COF         C1I         C2I      SINGLE       n     1.502  0.0114     1.502  0.0114
+COF         C2I         O1I      DOUBLE       n     1.209  0.0200     1.209  0.0200
+COF         C2I         C3I      SINGLE       n     1.484  0.0200     1.484  0.0200
+COF         C3I         F1I      SINGLE       n     1.322  0.0175     1.322  0.0175
+COF         C3I         F2I      SINGLE       n     1.322  0.0175     1.322  0.0175
+COF         C3I         F3I      SINGLE       n     1.322  0.0175     1.322  0.0175
+COF         C2A         H2A      SINGLE       n     1.082  0.0130     0.945  0.0200
+COF         N6A        H61A      SINGLE       n     1.016  0.0100     0.877  0.0200
+COF         N6A        H62A      SINGLE       n     1.016  0.0100     0.877  0.0200
+COF         C8A         H8A      SINGLE       n     1.082  0.0130     0.942  0.0170
+COF         C1B         H1B      SINGLE       n     1.089  0.0100     0.984  0.0200
+COF         C2B         H2B      SINGLE       n     1.089  0.0100     0.994  0.0200
+COF         O2B        HO2A      SINGLE       n     0.970  0.0120     0.849  0.0200
+COF         C3B         H3B      SINGLE       n     1.089  0.0100     0.985  0.0119
+COF         C4B         H4B      SINGLE       n     1.089  0.0100     0.981  0.0200
+COF         C5B        H51A      SINGLE       n     1.089  0.0100     0.989  0.0200
+COF         C5B        H52A      SINGLE       n     1.089  0.0100     0.989  0.0200
+COF         CCP        H121      SINGLE       n     1.089  0.0100     0.978  0.0102
+COF         CCP        H122      SINGLE       n     1.089  0.0100     0.978  0.0102
+COF         CDP        H131      SINGLE       n     1.089  0.0100     0.973  0.0146
+COF         CDP        H132      SINGLE       n     1.089  0.0100     0.973  0.0146
+COF         CDP        H133      SINGLE       n     1.089  0.0100     0.973  0.0146
+COF         CEP        H141      SINGLE       n     1.089  0.0100     0.973  0.0146
+COF         CEP        H142      SINGLE       n     1.089  0.0100     0.973  0.0146
+COF         CEP        H143      SINGLE       n     1.089  0.0100     0.973  0.0146
+COF         CAP         H10      SINGLE       n     1.089  0.0100     0.988  0.0129
+COF         OAP         HO1      SINGLE       n     0.970  0.0120     0.848  0.0200
+COF         N8P         HN8      SINGLE       n     1.016  0.0100     0.872  0.0200
+COF         C7P         H71      SINGLE       n     1.089  0.0100     0.980  0.0159
+COF         C7P         H72      SINGLE       n     1.089  0.0100     0.980  0.0159
+COF         C6P         H61      SINGLE       n     1.089  0.0100     0.973  0.0156
+COF         C6P         H62      SINGLE       n     1.089  0.0100     0.973  0.0156
+COF         N4P         HN4      SINGLE       n     1.016  0.0100     0.872  0.0200
+COF         C3P         H31      SINGLE       n     1.089  0.0100     0.981  0.0127
+COF         C3P         H32      SINGLE       n     1.089  0.0100     0.981  0.0127
+COF         C2P         H21      SINGLE       n     1.089  0.0100     0.983  0.0124
+COF         C2P         H22      SINGLE       n     1.089  0.0100     0.983  0.0124
+COF         C1I        HI11      SINGLE       n     1.089  0.0100     0.974  0.0194
+COF         C1I        HI12      SINGLE       n     1.089  0.0100     0.974  0.0194
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+COF         C2A         N1A         C6A     118.521    1.50
+COF         N1A         C2A         N3A     129.332    1.50
+COF         N1A         C2A         H2A     115.313    1.50
+COF         N3A         C2A         H2A     115.355    1.50
+COF         C2A         N3A         C4A     110.982    1.50
+COF         N3A         C4A         C5A     126.489    1.50
+COF         N3A         C4A         N9A     125.845    1.50
+COF         C5A         C4A         N9A     107.666    1.69
+COF         C4A         C5A         C6A     117.267    1.50
+COF         C4A         C5A         N7A     110.588    1.50
+COF         C6A         C5A         N7A     132.145    1.50
+COF         N1A         C6A         C5A     117.409    1.50
+COF         N1A         C6A         N6A     118.799    1.50
+COF         C5A         C6A         N6A     123.792    1.50
+COF         C6A         N6A        H61A     119.723    1.50
+COF         C6A         N6A        H62A     119.723    1.50
+COF        H61A         N6A        H62A     120.554    1.88
+COF         C5A         N7A         C8A     103.927    1.50
+COF         N7A         C8A         N9A     112.130    1.94
+COF         N7A         C8A         H8A     123.170    1.50
+COF         N9A         C8A         H8A     124.701    2.19
+COF         C4A         N9A         C8A     107.594    1.50
+COF         C4A         N9A         C1B     125.158    1.54
+COF         C8A         N9A         C1B     126.078    2.46
+COF         N9A         C1B         C2B     113.752    2.20
+COF         N9A         C1B         O4B     108.167    1.51
+COF         N9A         C1B         H1B     109.246    1.50
+COF         C2B         C1B         O4B     106.047    1.50
+COF         C2B         C1B         H1B     109.015    1.50
+COF         O4B         C1B         H1B     109.807    1.50
+COF         C1B         C2B         O2B     111.715    2.69
+COF         C1B         C2B         C3B     101.388    1.50
+COF         C1B         C2B         H2B     110.636    1.70
+COF         O2B         C2B         C3B     112.463    2.73
+COF         O2B         C2B         H2B     110.448    1.97
+COF         C3B         C2B         H2B     110.255    2.04
+COF         C2B         O2B        HO2A     109.103    2.13
+COF         C2B         C3B         O3B     110.766    3.00
+COF         C2B         C3B         C4B     102.352    1.50
+COF         C2B         C3B         H3B     110.255    2.04
+COF         O3B         C3B         C4B     110.864    2.31
+COF         O3B         C3B         H3B     110.343    1.64
+COF         C4B         C3B         H3B     110.624    1.81
+COF         C3B         O3B         P3B     109.471    3.00
+COF         O3B         P3B         O7A     106.518    3.00
+COF         O3B         P3B         O8A     106.518    3.00
+COF         O3B         P3B         O9A     106.518    3.00
+COF         O7A         P3B         O8A     112.139    1.52
+COF         O7A         P3B         O9A     112.139    1.52
+COF         O8A         P3B         O9A     112.139    1.52
+COF         C3B         C4B         O4B     105.508    1.50
+COF         C3B         C4B         C5B     114.866    1.63
+COF         C3B         C4B         H4B     109.143    1.50
+COF         O4B         C4B         C5B     109.123    1.50
+COF         O4B         C4B         H4B     108.947    1.50
+COF         C5B         C4B         H4B     108.268    1.50
+COF         C1B         O4B         C4B     109.903    1.50
+COF         C4B         C5B         O5B     109.342    1.50
+COF         C4B         C5B        H51A     109.624    1.50
+COF         C4B         C5B        H52A     109.624    1.50
+COF         O5B         C5B        H51A     109.845    1.50
+COF         O5B         C5B        H52A     109.845    1.50
+COF        H51A         C5B        H52A     108.472    1.50
+COF         C5B         O5B         P1A     118.553    2.41
+COF         O5B         P1A         O1A     109.410    1.50
+COF         O5B         P1A         O2A     109.410    1.50
+COF         O5B         P1A         O3A     101.065    1.97
+COF         O1A         P1A         O2A     118.411    2.35
+COF         O1A         P1A         O3A     108.816    2.14
+COF         O2A         P1A         O3A     108.816    2.14
+COF         P1A         O3A         P2A     132.542    3.00
+COF         O3A         P2A         O4A     108.816    2.14
+COF         O3A         P2A         O5A     108.816    2.14
+COF         O3A         P2A         O6A     101.065    1.97
+COF         O4A         P2A         O5A     118.411    2.35
+COF         O4A         P2A         O6A     107.912    2.57
+COF         O5A         P2A         O6A     107.912    2.57
+COF         P2A         O6A         CCP     119.251    1.51
+COF         CCP         CBP         CDP     109.385    1.50
+COF         CCP         CBP         CEP     109.385    1.50
+COF         CCP         CBP         CAP     111.094    2.85
+COF         CDP         CBP         CEP     108.765    1.50
+COF         CDP         CBP         CAP     109.534    1.52
+COF         CEP         CBP         CAP     109.534    1.52
+COF         O6A         CCP         CBP     108.435    1.69
+COF         O6A         CCP        H121     109.739    1.50
+COF         O6A         CCP        H122     109.739    1.50
+COF         CBP         CCP        H121     109.473    1.50
+COF         CBP         CCP        H122     109.473    1.50
+COF        H121         CCP        H122     108.108    1.50
+COF         CBP         CDP        H131     109.575    1.50
+COF         CBP         CDP        H132     109.575    1.50
+COF         CBP         CDP        H133     109.575    1.50
+COF        H131         CDP        H132     109.377    1.50
+COF        H131         CDP        H133     109.377    1.50
+COF        H132         CDP        H133     109.377    1.50
+COF         CBP         CEP        H141     109.575    1.50
+COF         CBP         CEP        H142     109.575    1.50
+COF         CBP         CEP        H143     109.575    1.50
+COF        H141         CEP        H142     109.377    1.50
+COF        H141         CEP        H143     109.377    1.50
+COF        H142         CEP        H143     109.377    1.50
+COF         CBP         CAP         OAP     109.482    3.00
+COF         CBP         CAP         C9P     111.511    2.91
+COF         CBP         CAP         H10     107.825    1.50
+COF         OAP         CAP         C9P     109.850    1.55
+COF         OAP         CAP         H10     108.675    1.50
+COF         C9P         CAP         H10     108.529    1.70
+COF         CAP         OAP         HO1     108.894    3.00
+COF         CAP         C9P         O9P     119.859    1.78
+COF         CAP         C9P         N8P     117.147    1.50
+COF         O9P         C9P         N8P     122.977    1.50
+COF         C9P         N8P         C7P     122.964    1.80
+COF         C9P         N8P         HN8     118.685    1.94
+COF         C7P         N8P         HN8     118.351    1.90
+COF         N8P         C7P         C6P     112.257    1.50
+COF         N8P         C7P         H71     108.979    1.50
+COF         N8P         C7P         H72     108.979    1.50
+COF         C6P         C7P         H71     108.971    1.50
+COF         C6P         C7P         H72     108.971    1.50
+COF         H71         C7P         H72     107.877    1.50
+COF         C7P         C6P         C5P     112.120    2.79
+COF         C7P         C6P         H61     109.432    1.50
+COF         C7P         C6P         H62     109.432    1.50
+COF         C5P         C6P         H61     108.945    1.50
+COF         C5P         C6P         H62     108.945    1.50
+COF         H61         C6P         H62     107.745    2.07
+COF         C6P         C5P         O5P     120.987    1.50
+COF         C6P         C5P         N4P     117.070    1.96
+COF         O5P         C5P         N4P     121.943    1.50
+COF         C5P         N4P         C3P     123.437    1.80
+COF         C5P         N4P         HN4     117.862    2.10
+COF         C3P         N4P         HN4     118.700    1.83
+COF         N4P         C3P         C2P     112.117    1.54
+COF         N4P         C3P         H31     109.102    1.50
+COF         N4P         C3P         H32     109.102    1.50
+COF         C2P         C3P         H31     109.038    1.50
+COF         C2P         C3P         H32     109.038    1.50
+COF         H31         C3P         H32     107.995    1.50
+COF         C3P         C2P         S1P     113.178    2.37
+COF         C3P         C2P         H21     108.964    1.50
+COF         C3P         C2P         H22     108.964    1.50
+COF         S1P         C2P         H21     108.905    1.50
+COF         S1P         C2P         H22     108.905    1.50
+COF         H21         C2P         H22     107.807    1.50
+COF         C2P         S1P         C1I     101.660    1.50
+COF         S1P         C1I         C2I     111.968    3.00
+COF         S1P         C1I        HI11     108.570    1.78
+COF         S1P         C1I        HI12     108.570    1.78
+COF         C2I         C1I        HI11     108.328    1.50
+COF         C2I         C1I        HI12     108.328    1.50
+COF        HI11         C1I        HI12     108.193    1.80
+COF         C1I         C2I         O1I     120.948    1.66
+COF         C1I         C2I         C3I     117.138    2.45
+COF         O1I         C2I         C3I     121.914    1.76
+COF         C2I         C3I         F1I     112.072    1.73
+COF         C2I         C3I         F2I     112.072    1.73
+COF         C2I         C3I         F3I     112.072    1.73
+COF         F1I         C3I         F2I     106.822    1.50
+COF         F1I         C3I         F3I     106.822    1.50
+COF         F2I         C3I         F3I     106.822    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+COF       const_sp2_sp2_1         N3A         C2A         N1A         C6A       0.000     5.0     2
+COF              const_24         N6A         C6A         N1A         C2A     180.000    10.0     2
+COF             sp3_sp3_5         N9A         C1B         C2B         O2B      60.000    10.0     3
+COF            sp3_sp3_32         N9A         C1B         O4B         C4B      60.000    10.0     3
+COF            sp3_sp3_34         C1B         C2B         O2B        HO2A     180.000    10.0     3
+COF            sp3_sp3_14         O2B         C2B         C3B         O3B     -60.000    10.0     3
+COF            sp3_sp3_37         C2B         C3B         O3B         P3B     180.000    10.0     3
+COF            sp3_sp3_23         O3B         C3B         C4B         C5B      60.000    10.0     3
+COF            sp3_sp3_42         C3B         O3B         P3B         O7A      60.000    10.0     3
+COF            sp3_sp3_29         C5B         C4B         O4B         C1B     180.000    10.0     3
+COF            sp3_sp3_43         C3B         C4B         C5B         O5B     180.000    10.0     3
+COF       const_sp2_sp2_3         N1A         C2A         N3A         C4A       0.000     5.0     2
+COF            sp3_sp3_52         C4B         C5B         O5B         P1A     180.000    10.0     3
+COF            sp3_sp3_57         C5B         O5B         P1A         O1A      60.000    10.0     3
+COF            sp3_sp3_59         P2A         O3A         P1A         O5B     -60.000    10.0     3
+COF            sp3_sp3_63         P1A         O3A         P2A         O4A      60.000    10.0     3
+COF            sp3_sp3_64         CCP         O6A         P2A         O3A     180.000    10.0     3
+COF       const_sp2_sp2_5         C5A         C4A         N3A         C2A       0.000     5.0     2
+COF            sp3_sp3_67         CBP         CCP         O6A         P2A     180.000    10.0     3
+COF            sp3_sp3_73         CDP         CBP         CCP         O6A      60.000    10.0     3
+COF            sp3_sp3_79         CCP         CBP         CDP        H131     180.000    10.0     3
+COF            sp3_sp3_91         CCP         CBP         CEP        H141      60.000    10.0     3
+COF            sp3_sp3_98         OAP         CAP         CBP         CCP     -60.000    10.0     3
+COF           sp3_sp3_106         CBP         CAP         OAP         HO1     180.000    10.0     3
+COF             sp2_sp3_7         O9P         C9P         CAP         CBP       0.000    10.0     6
+COF             sp2_sp2_5         CAP         C9P         N8P         C7P     180.000     5.0     2
+COF            sp2_sp3_14         C9P         N8P         C7P         C6P     120.000    10.0     6
+COF       const_sp2_sp2_7         N3A         C4A         C5A         C6A       0.000     5.0     2
+COF              const_27         N3A         C4A         N9A         C8A     180.000    10.0     2
+COF           sp3_sp3_109         C5P         C6P         C7P         N8P     180.000    10.0     3
+COF            sp2_sp3_20         O5P         C5P         C6P         C7P     120.000    10.0     6
+COF             sp2_sp2_9         C6P         C5P         N4P         C3P     180.000     5.0     2
+COF            sp2_sp3_26         C5P         N4P         C3P         C2P     120.000    10.0     6
+COF           sp3_sp3_118         S1P         C2P         C3P         N4P     180.000    10.0     3
+COF           sp3_sp3_127         C3P         C2P         S1P         C1I     180.000    10.0     3
+COF           sp3_sp3_130         C2I         C1I         S1P         C2P     180.000    10.0     3
+COF            sp2_sp3_32         O1I         C2I         C1I         S1P     120.000    10.0     6
+COF            sp2_sp3_37         C1I         C2I         C3I         F1I       0.000    10.0     6
+COF              const_12         C4A         C5A         C6A         N6A     180.000    10.0     2
+COF              const_15         C4A         C5A         N7A         C8A       0.000    10.0     2
+COF             sp2_sp2_3         N1A         C6A         N6A        H61A       0.000     5.0     2
+COF              const_17         N9A         C8A         N7A         C5A       0.000    10.0     2
+COF              const_19         N7A         C8A         N9A         C4A       0.000    10.0     2
+COF             sp2_sp3_1         C4A         N9A         C1B         C2B     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+COF    chir_1    C1B    O4B    N9A    C2B    negative
+COF    chir_2    C2B    O2B    C1B    C3B    negative
+COF    chir_3    C3B    O3B    C4B    C2B    positive
+COF    chir_4    P3B    O3B    O8A    O9A    both
+COF    chir_5    C4B    O4B    C3B    C5B    negative
+COF    chir_6    P1A    O3A    O5B    O2A    both
+COF    chir_7    P2A    O3A    O6A    O5A    both
+COF    chir_8    CBP    CAP    CCP    CDP    both
+COF    chir_9    CAP    OAP    C9P    CBP    negative
+COF    chir_10    C3I    F1I    F2I    F3I    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+COF    plan-1         C1B   0.020
+COF    plan-1         C2A   0.020
+COF    plan-1         C4A   0.020
+COF    plan-1         C5A   0.020
+COF    plan-1         C6A   0.020
+COF    plan-1         C8A   0.020
+COF    plan-1         H2A   0.020
+COF    plan-1         H8A   0.020
+COF    plan-1         N1A   0.020
+COF    plan-1         N3A   0.020
+COF    plan-1         N6A   0.020
+COF    plan-1         N7A   0.020
+COF    plan-1         N9A   0.020
+COF    plan-2         C6A   0.020
+COF    plan-2        H61A   0.020
+COF    plan-2        H62A   0.020
+COF    plan-2         N6A   0.020
+COF    plan-3         C9P   0.020
+COF    plan-3         CAP   0.020
+COF    plan-3         N8P   0.020
+COF    plan-3         O9P   0.020
+COF    plan-4         C7P   0.020
+COF    plan-4         C9P   0.020
+COF    plan-4         HN8   0.020
+COF    plan-4         N8P   0.020
+COF    plan-5         C5P   0.020
+COF    plan-5         C6P   0.020
+COF    plan-5         N4P   0.020
+COF    plan-5         O5P   0.020
+COF    plan-6         C3P   0.020
+COF    plan-6         C5P   0.020
+COF    plan-6         HN4   0.020
+COF    plan-6         N4P   0.020
+COF    plan-7         C1I   0.020
+COF    plan-7         C2I   0.020
+COF    plan-7         C3I   0.020
+COF    plan-7         O1I   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+COF           SMILES              ACDLabs 10.04                                                                                                                                                                                                                        FC(F)(F)C(=O)CSCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(=O)(O)OP(=O)(O)OCC3OC(n2cnc1c(ncnc12)N)C(O)C3OP(=O)(O)O
+COF SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                         CC(C)(CO[P@@](O)(=O)O[P@](O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O[P](O)(O)=O)n2cnc3c(N)ncnc23)[C@@H](O)C(=O)NCCC(=O)NCCSCC(=O)C(F)(F)F
+COF           SMILES               CACTVS 3.341                                                                                                                                                                                                   CC(C)(CO[P](O)(=O)O[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O[P](O)(O)=O)n2cnc3c(N)ncnc23)[CH](O)C(=O)NCCC(=O)NCCSCC(=O)C(F)(F)F
+COF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                           CC(C)(CO[P@](=O)(O)O[P@@](=O)(O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)[C@H](C(=O)NCCC(=O)NCCSCC(=O)C(F)(F)F)O
+COF           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                        CC(C)(COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)C(C(=O)NCCC(=O)NCCSCC(=O)C(F)(F)F)O
+COF            InChI                InChI  1.03 InChI=1S/C24H37F3N7O17P3S/c1-23(2,18(38)21(39)30-4-3-14(36)29-5-6-55-8-13(35)24(25,26)27)9-48-54(45,46)51-53(43,44)47-7-12-17(50-52(40,41)42)16(37)22(49-12)34-11-33-15-19(28)31-10-32-20(15)34/h10-12,16-18,22,37-38H,3-9H2,1-2H3,(H,29,36)(H,30,39)(H,43,44)(H,45,46)(H2,28,31,32)(H2,40,41,42)/t12-,16-,17-,18+,22-/m1/s1
+COF         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                  XDIQTPZOIIYCTR-GRFIIANRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+COF acedrg               243         "dictionary generator"                  
+COF acedrg_database      11          "data source"                           
+COF rdkit                2017.03.2   "Chemoinformatics tool"
+COF refmac5              5.8.0238    "optimization tool"                     

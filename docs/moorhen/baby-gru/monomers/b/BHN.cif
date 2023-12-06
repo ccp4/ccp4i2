@@ -1,0 +1,331 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BHN     BHN      "2-[2-[carboxymethyl-[(2-hydroxyphenyl)methyl]amino]ethyl-[(2-hydroxyphenyl)methyl]amino]ethanoic acid"     NON-POLYMER     50     28     .     
+#
+data_comp_BHN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BHN     C1      C       CR6     0       4.126       -2.458      32.803      
+BHN     C2      C       CR16    0       5.327       -1.765      32.626      
+BHN     C3      C       CR16    0       5.599       -0.604      33.333      
+BHN     C4      C       CR16    0       4.673       -0.117      34.232      
+BHN     C5      C       CR16    0       3.476       -0.785      34.430      
+BHN     C6      C       CR6     0       3.199       -1.950      33.722      
+BHN     O6      O       OH1     0       2.001       -2.591      33.943      
+BHN     C7      C       CH2     0       3.837       -3.723      32.034      
+BHN     N8      N       NT      0       3.974       -4.946      32.851      
+BHN     C9      C       CH2     0       3.325       -6.113      32.226      
+BHN     C10     C       CH2     0       2.759       -7.082      33.246      
+BHN     N11     N       NT      0       1.551       -6.574      33.922      
+BHN     C12     C       CH2     0       1.328       -7.219      35.230      
+BHN     C13     C       CR6     0       0.362       -6.466      36.110      
+BHN     C14     C       CR16    0       -0.889      -7.001      36.434      
+BHN     C15     C       CR16    0       -1.780      -6.310      37.242      
+BHN     C16     C       CR16    0       -1.433      -5.071      37.739      
+BHN     C17     C       CR16    0       -0.201      -4.517      37.433      
+BHN     C18     C       CR6     0       0.695       -5.207      36.623      
+BHN     O18     O       OH1     0       1.910       -4.632      36.337      
+BHN     C19     C       CH2     0       5.364       -5.211      33.280      
+BHN     C20     C       C       0       5.624       -4.779      34.723      
+BHN     O20     O       O       0       6.705       -4.202      34.959      
+BHN     C21     C       CH2     0       0.353       -6.580      33.057      
+BHN     O21     O       OC      -1      4.739       -5.036      35.565      
+BHN     C22     C       C       0       -0.160      -5.160      32.825      
+BHN     O22     O       O       0       0.168       -4.603      31.758      
+BHN     O23     O       OC      -1      -0.871      -4.658      33.718      
+BHN     H2      H       H       0       5.962       -2.095      32.012      
+BHN     H3      H       H       0       6.415       -0.148      33.198      
+BHN     H4      H       H       0       4.853       0.672       34.715      
+BHN     H5      H       H       0       2.843       -0.451      35.045      
+BHN     HO6     H       H       0       1.323       -2.156      34.250      
+BHN     H7      H       H       0       4.449       -3.781      31.269      
+BHN     H7A     H       H       0       2.924       -3.669      31.681      
+BHN     H9      H       H       0       3.977       -6.586      31.667      
+BHN     H9A     H       H       0       2.599       -5.815      31.640      
+BHN     H10     H       H       0       3.453       -7.267      33.913      
+BHN     H10A    H       H       0       2.546       -7.928      32.799      
+BHN     H12     H       H       0       2.184       -7.293      35.704      
+BHN     H12A    H       H       0       0.990       -8.128      35.082      
+BHN     H14     H       H       0       -1.130      -7.848      36.097      
+BHN     H15     H       H       0       -2.619      -6.687      37.451      
+BHN     H16     H       H       0       -2.035      -4.597      38.289      
+BHN     H17     H       H       0       0.035       -3.669      37.773      
+BHN     HO18    H       H       0       1.962       -3.785      36.189      
+BHN     H19     H       H       0       5.993       -4.744      32.704      
+BHN     H19A    H       H       0       5.569       -6.158      33.214      
+BHN     H21     H       H       0       -0.367      -7.103      33.448      
+BHN     H21A    H       H       0       0.552       -6.974      32.191      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BHN          C1          C2      DOUBLE       y     1.393  0.0106     1.393  0.0106
+BHN          C1          C6      SINGLE       y     1.394  0.0100     1.394  0.0100
+BHN          C1          C7      SINGLE       n     1.506  0.0100     1.506  0.0100
+BHN          C2          C3      SINGLE       y     1.384  0.0100     1.384  0.0100
+BHN          C3          C4      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BHN          C4          C5      SINGLE       y     1.382  0.0106     1.382  0.0106
+BHN          C5          C6      DOUBLE       y     1.387  0.0100     1.387  0.0100
+BHN          C6          O6      SINGLE       n     1.374  0.0155     1.374  0.0155
+BHN          C7          N8      SINGLE       n     1.470  0.0102     1.470  0.0102
+BHN          N8          C9      SINGLE       n     1.468  0.0100     1.468  0.0100
+BHN          N8         C19      SINGLE       n     1.467  0.0129     1.467  0.0129
+BHN          C9         C10      SINGLE       n     1.512  0.0200     1.512  0.0200
+BHN         C10         N11      SINGLE       n     1.468  0.0100     1.468  0.0100
+BHN         N11         C12      SINGLE       n     1.470  0.0102     1.470  0.0102
+BHN         N11         C21      SINGLE       n     1.467  0.0129     1.467  0.0129
+BHN         C12         C13      SINGLE       n     1.506  0.0100     1.506  0.0100
+BHN         C13         C14      DOUBLE       y     1.393  0.0106     1.393  0.0106
+BHN         C13         C18      SINGLE       y     1.394  0.0100     1.394  0.0100
+BHN         C14         C15      SINGLE       y     1.384  0.0100     1.384  0.0100
+BHN         C15         C16      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BHN         C16         C17      SINGLE       y     1.382  0.0106     1.382  0.0106
+BHN         C17         C18      DOUBLE       y     1.387  0.0100     1.387  0.0100
+BHN         C18         O18      SINGLE       n     1.374  0.0155     1.374  0.0155
+BHN         C19         C20      SINGLE       n     1.527  0.0103     1.527  0.0103
+BHN         C20         O20      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BHN         C20         O21      SINGLE       n     1.247  0.0187     1.247  0.0187
+BHN         C21         C22      SINGLE       n     1.527  0.0103     1.527  0.0103
+BHN         C22         O22      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BHN         C22         O23      SINGLE       n     1.247  0.0187     1.247  0.0187
+BHN          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0173
+BHN          C3          H3      SINGLE       n     1.082  0.0130     0.944  0.0175
+BHN          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0183
+BHN          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0169
+BHN          O6         HO6      SINGLE       n     0.966  0.0059     0.861  0.0200
+BHN          C7          H7      SINGLE       n     1.089  0.0100     0.981  0.0172
+BHN          C7         H7A      SINGLE       n     1.089  0.0100     0.981  0.0172
+BHN          C9          H9      SINGLE       n     1.089  0.0100     0.980  0.0143
+BHN          C9         H9A      SINGLE       n     1.089  0.0100     0.980  0.0143
+BHN         C10         H10      SINGLE       n     1.089  0.0100     0.980  0.0143
+BHN         C10        H10A      SINGLE       n     1.089  0.0100     0.980  0.0143
+BHN         C12         H12      SINGLE       n     1.089  0.0100     0.981  0.0172
+BHN         C12        H12A      SINGLE       n     1.089  0.0100     0.981  0.0172
+BHN         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0173
+BHN         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0175
+BHN         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0183
+BHN         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0169
+BHN         O18        HO18      SINGLE       n     0.966  0.0059     0.861  0.0200
+BHN         C19         H19      SINGLE       n     1.089  0.0100     0.971  0.0200
+BHN         C19        H19A      SINGLE       n     1.089  0.0100     0.971  0.0200
+BHN         C21         H21      SINGLE       n     1.089  0.0100     0.971  0.0200
+BHN         C21        H21A      SINGLE       n     1.089  0.0100     0.971  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BHN          C2          C1          C6     117.942    1.50
+BHN          C2          C1          C7     121.394    1.50
+BHN          C6          C1          C7     120.664    1.50
+BHN          C1          C2          C3     121.214    1.50
+BHN          C1          C2          H2     119.231    1.50
+BHN          C3          C2          H2     119.555    1.50
+BHN          C2          C3          C4     120.067    1.50
+BHN          C2          C3          H3     119.921    1.50
+BHN          C4          C3          H3     120.012    1.50
+BHN          C3          C4          C5     120.568    1.50
+BHN          C3          C4          H4     119.900    1.50
+BHN          C5          C4          H4     119.531    1.50
+BHN          C4          C5          C6     120.094    1.50
+BHN          C4          C5          H5     120.191    1.50
+BHN          C6          C5          H5     119.714    1.50
+BHN          C1          C6          C5     120.114    1.50
+BHN          C1          C6          O6     119.943    3.00
+BHN          C5          C6          O6     119.943    3.00
+BHN          C6          O6         HO6     120.000    3.00
+BHN          C1          C7          N8     113.051    1.50
+BHN          C1          C7          H7     109.094    1.50
+BHN          C1          C7         H7A     109.094    1.50
+BHN          N8          C7          H7     108.847    1.50
+BHN          N8          C7         H7A     108.847    1.50
+BHN          H7          C7         H7A     107.928    1.50
+BHN          C7          N8          C9     110.729    1.50
+BHN          C7          N8         C19     111.627    1.76
+BHN          C9          N8         C19     112.133    1.68
+BHN          N8          C9         C10     113.437    1.77
+BHN          N8          C9          H9     108.954    1.50
+BHN          N8          C9         H9A     108.954    1.50
+BHN         C10          C9          H9     108.926    1.50
+BHN         C10          C9         H9A     108.926    1.50
+BHN          H9          C9         H9A     107.844    1.50
+BHN          C9         C10         N11     113.437    1.77
+BHN          C9         C10         H10     108.926    1.50
+BHN          C9         C10        H10A     108.926    1.50
+BHN         N11         C10         H10     108.954    1.50
+BHN         N11         C10        H10A     108.954    1.50
+BHN         H10         C10        H10A     107.844    1.50
+BHN         C10         N11         C12     110.729    1.50
+BHN         C10         N11         C21     112.133    1.68
+BHN         C12         N11         C21     111.627    1.76
+BHN         N11         C12         C13     113.051    1.50
+BHN         N11         C12         H12     108.847    1.50
+BHN         N11         C12        H12A     108.847    1.50
+BHN         C13         C12         H12     109.094    1.50
+BHN         C13         C12        H12A     109.094    1.50
+BHN         H12         C12        H12A     107.928    1.50
+BHN         C12         C13         C14     121.394    1.50
+BHN         C12         C13         C18     120.664    1.50
+BHN         C14         C13         C18     117.942    1.50
+BHN         C13         C14         C15     121.214    1.50
+BHN         C13         C14         H14     119.231    1.50
+BHN         C15         C14         H14     119.555    1.50
+BHN         C14         C15         C16     120.067    1.50
+BHN         C14         C15         H15     119.921    1.50
+BHN         C16         C15         H15     120.012    1.50
+BHN         C15         C16         C17     120.568    1.50
+BHN         C15         C16         H16     119.900    1.50
+BHN         C17         C16         H16     119.531    1.50
+BHN         C16         C17         C18     120.094    1.50
+BHN         C16         C17         H17     120.191    1.50
+BHN         C18         C17         H17     119.714    1.50
+BHN         C13         C18         C17     120.114    1.50
+BHN         C13         C18         O18     119.943    3.00
+BHN         C17         C18         O18     119.943    3.00
+BHN         C18         O18        HO18     120.000    3.00
+BHN          N8         C19         C20     112.134    2.59
+BHN          N8         C19         H19     109.686    2.71
+BHN          N8         C19        H19A     109.686    2.71
+BHN         C20         C19         H19     108.544    1.50
+BHN         C20         C19        H19A     108.544    1.50
+BHN         H19         C19        H19A     107.487    1.50
+BHN         C19         C20         O20     117.146    1.78
+BHN         C19         C20         O21     117.146    1.78
+BHN         O20         C20         O21     125.708    1.50
+BHN         N11         C21         C22     112.134    2.59
+BHN         N11         C21         H21     109.686    2.71
+BHN         N11         C21        H21A     109.686    2.71
+BHN         C22         C21         H21     108.544    1.50
+BHN         C22         C21        H21A     108.544    1.50
+BHN         H21         C21        H21A     107.487    1.50
+BHN         C21         C22         O22     117.146    1.78
+BHN         C21         C22         O23     117.146    1.78
+BHN         O22         C22         O23     125.708    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BHN              const_23          C7          C1          C2          C3     180.000    10.0     2
+BHN              const_44          C7          C1          C6          O6       0.000    10.0     2
+BHN             sp2_sp3_2          C2          C1          C7          N8     -90.000    10.0     6
+BHN            sp3_sp3_28          C9         C10         N11         C12     180.000    10.0     3
+BHN            sp3_sp3_34         C13         C12         N11         C10     180.000    10.0     3
+BHN            sp3_sp3_40         C22         C21         N11         C10     180.000    10.0     3
+BHN             sp2_sp3_8         C14         C13         C12         N11     -90.000    10.0     6
+BHN       const_sp2_sp2_3         C12         C13         C14         C15     180.000     5.0     2
+BHN              const_48         C12         C13         C18         O18       0.000    10.0     2
+BHN       const_sp2_sp2_5         C13         C14         C15         C16       0.000     5.0     2
+BHN       const_sp2_sp2_9         C14         C15         C16         C17       0.000     5.0     2
+BHN              const_13         C15         C16         C17         C18       0.000    10.0     2
+BHN              const_18         C16         C17         C18         O18     180.000    10.0     2
+BHN             sp2_sp2_3         C13         C18         O18        HO18     180.000     5.0     2
+BHN              const_25          C1          C2          C3          C4       0.000    10.0     2
+BHN            sp2_sp3_14         O20         C20         C19          N8     120.000    10.0     6
+BHN            sp2_sp3_20         O22         C22         C21         N11     120.000    10.0     6
+BHN              const_29          C2          C3          C4          C5       0.000    10.0     2
+BHN              const_33          C3          C4          C5          C6       0.000    10.0     2
+BHN              const_38          C4          C5          C6          O6     180.000    10.0     2
+BHN             sp2_sp2_1          C1          C6          O6         HO6     180.000     5.0     2
+BHN             sp3_sp3_1          C1          C7          N8          C9     180.000    10.0     3
+BHN            sp3_sp3_13         C20         C19          N8          C7     180.000    10.0     3
+BHN             sp3_sp3_7         C10          C9          N8          C7     180.000    10.0     3
+BHN            sp3_sp3_19         N11         C10          C9          N8     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BHN    chir_1    N8    C19    C9    C7    positive
+BHN    chir_2    N11    C21    C10    C12    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BHN    plan-1          C1   0.020
+BHN    plan-1          C2   0.020
+BHN    plan-1          C3   0.020
+BHN    plan-1          C4   0.020
+BHN    plan-1          C5   0.020
+BHN    plan-1          C6   0.020
+BHN    plan-1          C7   0.020
+BHN    plan-1          H2   0.020
+BHN    plan-1          H3   0.020
+BHN    plan-1          H4   0.020
+BHN    plan-1          H5   0.020
+BHN    plan-1          O6   0.020
+BHN    plan-2         C12   0.020
+BHN    plan-2         C13   0.020
+BHN    plan-2         C14   0.020
+BHN    plan-2         C15   0.020
+BHN    plan-2         C16   0.020
+BHN    plan-2         C17   0.020
+BHN    plan-2         C18   0.020
+BHN    plan-2         H14   0.020
+BHN    plan-2         H15   0.020
+BHN    plan-2         H16   0.020
+BHN    plan-2         H17   0.020
+BHN    plan-2         O18   0.020
+BHN    plan-3         C19   0.020
+BHN    plan-3         C20   0.020
+BHN    plan-3         O20   0.020
+BHN    plan-3         O21   0.020
+BHN    plan-4         C21   0.020
+BHN    plan-4         C22   0.020
+BHN    plan-4         O22   0.020
+BHN    plan-4         O23   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BHN           SMILES              ACDLabs 12.01                                                                                                  O=C(O)CN(Cc1ccccc1O)CCN(Cc2ccccc2O)CC(=O)O
+BHN SMILES_CANONICAL               CACTVS 3.370                                                                                                  OC(=O)CN(CCN(CC(O)=O)Cc1ccccc1O)Cc2ccccc2O
+BHN           SMILES               CACTVS 3.370                                                                                                  OC(=O)CN(CCN(CC(O)=O)Cc1ccccc1O)Cc2ccccc2O
+BHN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                       c1ccc(c(c1)C[N@@](CC[N@](Cc2ccccc2O)CC(=O)O)CC(=O)O)O
+BHN           SMILES "OpenEye OEToolkits" 1.7.0                                                                                              c1ccc(c(c1)CN(CCN(Cc2ccccc2O)CC(=O)O)CC(=O)O)O
+BHN            InChI                InChI  1.03 InChI=1S/C20H24N2O6/c23-17-7-3-1-5-15(17)11-21(13-19(25)26)9-10-22(14-20(27)28)12-16-6-2-4-8-18(16)24/h1-8,23-24H,9-14H2,(H,25,26)(H,27,28)
+BHN         InChIKey                InChI  1.03                                                                                                                 GRUVVLWKPGIYEG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BHN acedrg               243         "dictionary generator"                  
+BHN acedrg_database      11          "data source"                           
+BHN rdkit                2017.03.2   "Chemoinformatics tool"
+BHN refmac5              5.8.0238    "optimization tool"                     

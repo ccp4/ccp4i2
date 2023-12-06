@@ -1,0 +1,289 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LLX     LLX      N-(4-aminobiphenyl-3-yl)benzamide     NON-POLYMER     38     22     .     
+#
+data_comp_LLX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LLX     N1      N       NH2     0       47.522      18.209      -42.488     
+LLX     C2      C       CR6     0       48.476      17.686      -43.312     
+LLX     C3      C       CR16    0       49.166      18.549      -44.186     
+LLX     C4      C       CR16    0       50.141      18.049      -45.033     
+LLX     C5      C       CR6     0       50.469      16.693      -45.053     
+LLX     C6      C       CR16    0       49.791      15.830      -44.190     
+LLX     C7      C       CR6     0       48.799      16.307      -43.323     
+LLX     N8      N       NH1     0       48.145      15.380      -42.470     
+LLX     C9      C       C       0       46.806      15.187      -42.344     
+LLX     O10     O       O       0       46.000      15.576      -43.183     
+LLX     C11     C       CR6     0       46.336      14.473      -41.114     
+LLX     C12     C       CR16    0       46.944      14.662      -39.874     
+LLX     C13     C       CR16    0       46.482      13.987      -38.753     
+LLX     C14     C       CR16    0       45.406      13.128      -38.853     
+LLX     C15     C       CR16    0       44.790      12.938      -40.073     
+LLX     C16     C       CR16    0       45.248      13.606      -41.200     
+LLX     C17     C       CR6     0       51.518      16.175      -45.964     
+LLX     C18     C       CR16    0       52.587      15.423      -45.474     
+LLX     C19     C       CR16    0       53.571      14.940      -46.328     
+LLX     C20     C       CR16    0       53.505      15.201      -47.681     
+LLX     C21     C       CR16    0       52.457      15.945      -48.186     
+LLX     C22     C       CR16    0       51.471      16.430      -47.336     
+LLX     HN1     H       H       0       47.510      17.987      -41.640     
+LLX     HN1A    H       H       0       46.925      18.764      -42.812     
+LLX     H3      H       H       0       48.960      19.463      -44.188     
+LLX     H4      H       H       0       50.594      18.641      -45.611     
+LLX     H6      H       H       0       50.002      14.913      -44.192     
+LLX     HN8     H       H       0       48.677      14.867      -41.999     
+LLX     H12     H       H       0       47.680      15.243      -39.796     
+LLX     H13     H       H       0       46.903      14.118      -37.920     
+LLX     H14     H       H       0       45.093      12.672      -38.088     
+LLX     H15     H       H       0       44.055      12.351      -40.142     
+LLX     H16     H       H       0       44.821      13.469      -42.027     
+LLX     H18     H       H       0       52.640      15.239      -44.549     
+LLX     H19     H       H       0       54.285      14.432      -45.980     
+LLX     H20     H       H       0       54.175      14.872      -48.260     
+LLX     H21     H       H       0       52.410      16.125      -49.110     
+LLX     H22     H       H       0       50.758      16.938      -47.690     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LLX          N1          C2      SINGLE       n     1.363  0.0200     1.363  0.0200
+LLX          C2          C3      DOUBLE       y     1.401  0.0172     1.401  0.0172
+LLX          C2          C7      SINGLE       y     1.406  0.0129     1.406  0.0129
+LLX          C3          C4      SINGLE       y     1.383  0.0100     1.383  0.0100
+LLX          C4          C5      DOUBLE       y     1.392  0.0100     1.392  0.0100
+LLX          C5         C17      SINGLE       n     1.483  0.0100     1.483  0.0100
+LLX          C5          C6      SINGLE       y     1.392  0.0100     1.392  0.0100
+LLX          C6          C7      DOUBLE       y     1.394  0.0127     1.394  0.0127
+LLX          C7          N8      SINGLE       n     1.416  0.0112     1.416  0.0112
+LLX          N8          C9      SINGLE       n     1.351  0.0126     1.351  0.0126
+LLX          C9         O10      DOUBLE       n     1.226  0.0100     1.226  0.0100
+LLX          C9         C11      SINGLE       n     1.494  0.0100     1.494  0.0100
+LLX         C11         C16      SINGLE       y     1.389  0.0100     1.389  0.0100
+LLX         C11         C12      DOUBLE       y     1.389  0.0100     1.389  0.0100
+LLX         C12         C13      SINGLE       y     1.384  0.0100     1.384  0.0100
+LLX         C13         C14      DOUBLE       y     1.376  0.0114     1.376  0.0114
+LLX         C14         C15      SINGLE       y     1.376  0.0124     1.376  0.0124
+LLX         C15         C16      DOUBLE       y     1.384  0.0100     1.384  0.0100
+LLX         C17         C22      SINGLE       y     1.392  0.0100     1.392  0.0100
+LLX         C17         C18      DOUBLE       y     1.392  0.0100     1.392  0.0100
+LLX         C18         C19      SINGLE       y     1.386  0.0100     1.386  0.0100
+LLX         C19         C20      DOUBLE       y     1.376  0.0114     1.376  0.0114
+LLX         C20         C21      SINGLE       y     1.376  0.0124     1.376  0.0124
+LLX         C21         C22      DOUBLE       y     1.386  0.0100     1.386  0.0100
+LLX          N1         HN1      SINGLE       n     1.016  0.0100     0.877  0.0200
+LLX          N1        HN1A      SINGLE       n     1.016  0.0100     0.877  0.0200
+LLX          C3          H3      SINGLE       n     1.082  0.0130     0.937  0.0104
+LLX          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0154
+LLX          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0147
+LLX          N8         HN8      SINGLE       n     1.016  0.0100     0.876  0.0200
+LLX         C12         H12      SINGLE       n     1.082  0.0130     0.941  0.0168
+LLX         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0180
+LLX         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0161
+LLX         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0180
+LLX         C16         H16      SINGLE       n     1.082  0.0130     0.941  0.0168
+LLX         C18         H18      SINGLE       n     1.082  0.0130     0.945  0.0170
+LLX         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0180
+LLX         C20         H20      SINGLE       n     1.082  0.0130     0.944  0.0161
+LLX         C21         H21      SINGLE       n     1.082  0.0130     0.943  0.0180
+LLX         C22         H22      SINGLE       n     1.082  0.0130     0.945  0.0170
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LLX          C2          N1         HN1     119.716    2.26
+LLX          C2          N1        HN1A     119.716    2.26
+LLX         HN1          N1        HN1A     120.568    3.00
+LLX          N1          C2          C3     119.360    1.50
+LLX          N1          C2          C7     121.209    2.52
+LLX          C3          C2          C7     119.430    2.53
+LLX          C2          C3          C4     120.394    1.50
+LLX          C2          C3          H3     119.290    1.50
+LLX          C4          C3          H3     120.316    1.50
+LLX          C3          C4          C5     121.943    1.50
+LLX          C3          C4          H4     118.898    1.50
+LLX          C5          C4          H4     119.160    1.50
+LLX          C4          C5         C17     121.058    1.50
+LLX          C4          C5          C6     118.480    1.50
+LLX         C17          C5          C6     120.462    1.53
+LLX          C5          C6          C7     120.322    1.81
+LLX          C5          C6          H6     119.885    1.50
+LLX          C7          C6          H6     119.793    1.50
+LLX          C2          C7          C6     119.430    2.53
+LLX          C2          C7          N8     120.109    2.06
+LLX          C6          C7          N8     120.461    3.00
+LLX          C7          N8          C9     126.075    2.37
+LLX          C7          N8         HN8     116.468    2.06
+LLX          C9          N8         HN8     117.457    2.38
+LLX          N8          C9         O10     123.137    1.50
+LLX          N8          C9         C11     115.948    1.50
+LLX         O10          C9         C11     120.916    1.50
+LLX          C9         C11         C16     120.497    2.90
+LLX          C9         C11         C12     120.497    2.90
+LLX         C16         C11         C12     119.007    1.50
+LLX         C11         C12         C13     120.300    1.50
+LLX         C11         C12         H12     119.925    1.50
+LLX         C13         C12         H12     119.776    1.50
+LLX         C12         C13         C14     120.226    1.50
+LLX         C12         C13         H13     119.842    1.50
+LLX         C14         C13         H13     119.933    1.50
+LLX         C13         C14         C15     119.943    1.50
+LLX         C13         C14         H14     120.028    1.50
+LLX         C15         C14         H14     120.028    1.50
+LLX         C14         C15         C16     120.226    1.50
+LLX         C14         C15         H15     119.933    1.50
+LLX         C16         C15         H15     119.842    1.50
+LLX         C11         C16         C15     120.300    1.50
+LLX         C11         C16         H16     119.925    1.50
+LLX         C15         C16         H16     119.776    1.50
+LLX          C5         C17         C22     121.096    1.50
+LLX          C5         C17         C18     121.096    1.50
+LLX         C22         C17         C18     117.808    1.50
+LLX         C17         C18         C19     120.887    1.50
+LLX         C17         C18         H18     119.477    1.50
+LLX         C19         C18         H18     119.636    1.50
+LLX         C18         C19         C20     120.251    1.50
+LLX         C18         C19         H19     119.823    1.50
+LLX         C20         C19         H19     119.926    1.50
+LLX         C19         C20         C21     119.915    1.50
+LLX         C19         C20         H20     120.043    1.50
+LLX         C21         C20         H20     120.043    1.50
+LLX         C20         C21         C22     120.251    1.50
+LLX         C20         C21         H21     119.926    1.50
+LLX         C22         C21         H21     119.823    1.50
+LLX         C17         C22         C21     120.887    1.50
+LLX         C17         C22         H22     119.477    1.50
+LLX         C21         C22         H22     119.636    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LLX             sp2_sp2_1          C3          C2          N1         HN1     180.000     5.0     2
+LLX              const_67          C9         C11         C12         C13     180.000    10.0     2
+LLX       const_sp2_sp2_3          C9         C11         C16         C15     180.000     5.0     2
+LLX              const_17         C11         C12         C13         C14       0.000    10.0     2
+LLX              const_13         C12         C13         C14         C15       0.000    10.0     2
+LLX       const_sp2_sp2_9         C13         C14         C15         C16       0.000     5.0     2
+LLX       const_sp2_sp2_5         C14         C15         C16         C11       0.000     5.0     2
+LLX              const_71          C5         C17         C18         C19     180.000    10.0     2
+LLX              const_23          C5         C17         C22         C21     180.000    10.0     2
+LLX              const_37         C17         C18         C19         C20       0.000    10.0     2
+LLX              const_33         C18         C19         C20         C21       0.000    10.0     2
+LLX              const_29         C19         C20         C21         C22       0.000    10.0     2
+LLX              const_43          N1          C2          C3          C4     180.000    10.0     2
+LLX              const_64          N1          C2          C7          N8       0.000    10.0     2
+LLX              const_25         C20         C21         C22         C17       0.000    10.0     2
+LLX              const_45          C2          C3          C4          C5       0.000    10.0     2
+LLX              const_50          C3          C4          C5         C17     180.000    10.0     2
+LLX             sp2_sp2_5         C22         C17          C5          C4     180.000     5.0     2
+LLX              const_53          C4          C5          C6          C7       0.000    10.0     2
+LLX              const_58          C5          C6          C7          N8     180.000    10.0     2
+LLX             sp2_sp2_9          C2          C7          N8          C9     180.000     5.0     2
+LLX            sp2_sp2_15         O10          C9          N8          C7       0.000     5.0     2
+LLX            sp2_sp2_17         C16         C11          C9          N8     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LLX    plan-1         C11   0.020
+LLX    plan-1         C12   0.020
+LLX    plan-1         C13   0.020
+LLX    plan-1         C14   0.020
+LLX    plan-1         C15   0.020
+LLX    plan-1         C16   0.020
+LLX    plan-1          C9   0.020
+LLX    plan-1         H12   0.020
+LLX    plan-1         H13   0.020
+LLX    plan-1         H14   0.020
+LLX    plan-1         H15   0.020
+LLX    plan-1         H16   0.020
+LLX    plan-2         C17   0.020
+LLX    plan-2         C18   0.020
+LLX    plan-2         C19   0.020
+LLX    plan-2         C20   0.020
+LLX    plan-2         C21   0.020
+LLX    plan-2         C22   0.020
+LLX    plan-2          C5   0.020
+LLX    plan-2         H18   0.020
+LLX    plan-2         H19   0.020
+LLX    plan-2         H20   0.020
+LLX    plan-2         H21   0.020
+LLX    plan-2         H22   0.020
+LLX    plan-3         C17   0.020
+LLX    plan-3          C2   0.020
+LLX    plan-3          C3   0.020
+LLX    plan-3          C4   0.020
+LLX    plan-3          C5   0.020
+LLX    plan-3          C6   0.020
+LLX    plan-3          C7   0.020
+LLX    plan-3          H3   0.020
+LLX    plan-3          H4   0.020
+LLX    plan-3          H6   0.020
+LLX    plan-3          N1   0.020
+LLX    plan-3          N8   0.020
+LLX    plan-4          C2   0.020
+LLX    plan-4         HN1   0.020
+LLX    plan-4        HN1A   0.020
+LLX    plan-4          N1   0.020
+LLX    plan-5          C7   0.020
+LLX    plan-5          C9   0.020
+LLX    plan-5         HN8   0.020
+LLX    plan-5          N8   0.020
+LLX    plan-6         C11   0.020
+LLX    plan-6          C9   0.020
+LLX    plan-6          N8   0.020
+LLX    plan-6         O10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LLX           SMILES              ACDLabs 12.01                                                                           O=C(Nc1cc(ccc1N)c2ccccc2)c3ccccc3
+LLX SMILES_CANONICAL               CACTVS 3.370                                                                           Nc1ccc(cc1NC(=O)c2ccccc2)c3ccccc3
+LLX           SMILES               CACTVS 3.370                                                                           Nc1ccc(cc1NC(=O)c2ccccc2)c3ccccc3
+LLX SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                       c1ccc(cc1)c2ccc(c(c2)NC(=O)c3ccccc3)N
+LLX           SMILES "OpenEye OEToolkits" 1.7.0                                                                       c1ccc(cc1)c2ccc(c(c2)NC(=O)c3ccccc3)N
+LLX            InChI                InChI  1.03 InChI=1S/C19H16N2O/c20-17-12-11-16(14-7-3-1-4-8-14)13-18(17)21-19(22)15-9-5-2-6-10-15/h1-13H,20H2,(H,21,22)
+LLX         InChIKey                InChI  1.03                                                                                 ZWLFHHHQRUYIBT-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LLX acedrg               243         "dictionary generator"                  
+LLX acedrg_database      11          "data source"                           
+LLX rdkit                2017.03.2   "Chemoinformatics tool"
+LLX refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,278 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RAZ     RAZ      (1R)-N,4-DIMETHYL-N-(4-METHYLPENT-3-ENYL)CYCLOHEX-3-ENAMINIUM     NON-POLYMER     41     15     .     
+#
+data_comp_RAZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RAZ     C01     C       CH1     0       -21.584     109.205     16.805      
+RAZ     C02     C       CH2     0       -20.816     110.373     17.428      
+RAZ     C03     C       CH2     0       -22.846     108.922     17.634      
+RAZ     C05     C       CR16    0       -21.739     111.527     17.685      
+RAZ     C07     C       CH2     0       -23.779     110.126     17.651      
+RAZ     N08     N       NT1     1       -20.714     107.958     16.620      
+RAZ     C09     C       C1      0       -18.617     108.524     13.422      
+RAZ     C10     C       CH2     0       -19.833     108.509     14.303      
+RAZ     C11     C       CH2     0       -19.510     108.113     15.728      
+RAZ     C14     C       C       0       -17.681     109.460     13.319      
+RAZ     C17     C       CH3     0       -17.700     110.750     14.092      
+RAZ     C18     C       CH3     0       -16.492     109.320     12.412      
+RAZ     C19     C       CH3     0       -20.366     107.243     17.905      
+RAZ     C31     C       CR6     0       -23.064     111.434     17.808      
+RAZ     C32     C       CH3     0       -23.924     112.632     18.096      
+RAZ     H01     H       H       0       -21.882     109.491     15.904      
+RAZ     H021    H       H       0       -20.401     110.094     18.282      
+RAZ     H022    H       H       0       -20.095     110.668     16.818      
+RAZ     H031    H       H       0       -22.595     108.704     18.558      
+RAZ     H032    H       H       0       -23.320     108.150     17.256      
+RAZ     H05     H       H       0       -21.351     112.386     17.765      
+RAZ     H071    H       H       0       -24.416     110.025     18.386      
+RAZ     H072    H       H       0       -24.289     110.145     16.816      
+RAZ     H08     H       H       0       -21.234     107.367     16.161      
+RAZ     H09     H       H       0       -18.506     107.768     12.866      
+RAZ     H101    H       H       0       -20.487     107.871     13.937      
+RAZ     H102    H       H       0       -20.240     109.405     14.300      
+RAZ     H111    H       H       0       -19.025     107.263     15.701      
+RAZ     H112    H       H       0       -18.909     108.782     16.113      
+RAZ     H171    H       H       0       -18.350     110.703     14.809      
+RAZ     H172    H       H       0       -17.932     111.481     13.496      
+RAZ     H173    H       H       0       -16.820     110.913     14.470      
+RAZ     H181    H       H       0       -16.479     108.433     12.015      
+RAZ     H182    H       H       0       -15.677     109.453     12.922      
+RAZ     H183    H       H       0       -16.541     109.986     11.707      
+RAZ     H191    H       H       0       -20.384     107.871     18.641      
+RAZ     H192    H       H       0       -19.481     106.854     17.835      
+RAZ     H193    H       H       0       -21.019     106.543     18.056      
+RAZ     H321    H       H       0       -23.713     112.979     18.976      
+RAZ     H322    H       H       0       -24.859     112.380     18.066      
+RAZ     H323    H       H       0       -23.756     113.319     17.432      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RAZ         C01         C02      SINGLE       n     1.526  0.0100     1.526  0.0100
+RAZ         C01         C03      SINGLE       n     1.533  0.0107     1.533  0.0107
+RAZ         C01         N08      SINGLE       n     1.523  0.0100     1.523  0.0100
+RAZ         C02         C05      SINGLE       n     1.496  0.0108     1.496  0.0108
+RAZ         C03         C07      SINGLE       n     1.521  0.0112     1.521  0.0112
+RAZ         C05         C31      DOUBLE       n     1.329  0.0123     1.329  0.0123
+RAZ         C07         C31      SINGLE       n     1.487  0.0200     1.487  0.0200
+RAZ         N08         C11      SINGLE       n     1.500  0.0100     1.500  0.0100
+RAZ         N08         C19      SINGLE       n     1.488  0.0183     1.488  0.0183
+RAZ         C09         C10      SINGLE       n     1.501  0.0100     1.501  0.0100
+RAZ         C09         C14      DOUBLE       n     1.324  0.0100     1.324  0.0100
+RAZ         C10         C11      SINGLE       n     1.510  0.0159     1.510  0.0159
+RAZ         C14         C17      SINGLE       n     1.499  0.0156     1.499  0.0156
+RAZ         C14         C18      SINGLE       n     1.499  0.0156     1.499  0.0156
+RAZ         C31         C32      SINGLE       n     1.502  0.0100     1.502  0.0100
+RAZ         C01         H01      SINGLE       n     1.089  0.0100     0.993  0.0165
+RAZ         C02        H021      SINGLE       n     1.089  0.0100     0.990  0.0139
+RAZ         C02        H022      SINGLE       n     1.089  0.0100     0.990  0.0139
+RAZ         C03        H031      SINGLE       n     1.089  0.0100     0.982  0.0142
+RAZ         C03        H032      SINGLE       n     1.089  0.0100     0.982  0.0142
+RAZ         C05         H05      SINGLE       n     1.082  0.0130     0.946  0.0100
+RAZ         C07        H071      SINGLE       n     1.089  0.0100     0.978  0.0148
+RAZ         C07        H072      SINGLE       n     1.089  0.0100     0.978  0.0148
+RAZ         N08         H08      SINGLE       n     1.036  0.0160     0.911  0.0200
+RAZ         C09         H09      SINGLE       n     1.082  0.0130     0.945  0.0200
+RAZ         C10        H101      SINGLE       n     1.089  0.0100     0.985  0.0177
+RAZ         C10        H102      SINGLE       n     1.089  0.0100     0.985  0.0177
+RAZ         C11        H111      SINGLE       n     1.089  0.0100     0.979  0.0152
+RAZ         C11        H112      SINGLE       n     1.089  0.0100     0.979  0.0152
+RAZ         C17        H171      SINGLE       n     1.089  0.0100     0.971  0.0140
+RAZ         C17        H172      SINGLE       n     1.089  0.0100     0.971  0.0140
+RAZ         C17        H173      SINGLE       n     1.089  0.0100     0.971  0.0140
+RAZ         C18        H181      SINGLE       n     1.089  0.0100     0.971  0.0140
+RAZ         C18        H182      SINGLE       n     1.089  0.0100     0.971  0.0140
+RAZ         C18        H183      SINGLE       n     1.089  0.0100     0.971  0.0140
+RAZ         C19        H191      SINGLE       n     1.089  0.0100     0.969  0.0145
+RAZ         C19        H192      SINGLE       n     1.089  0.0100     0.969  0.0145
+RAZ         C19        H193      SINGLE       n     1.089  0.0100     0.969  0.0145
+RAZ         C32        H321      SINGLE       n     1.089  0.0100     0.969  0.0158
+RAZ         C32        H322      SINGLE       n     1.089  0.0100     0.969  0.0158
+RAZ         C32        H323      SINGLE       n     1.089  0.0100     0.969  0.0158
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RAZ         C02         C01         C03     109.685    1.50
+RAZ         C02         C01         N08     110.019    1.64
+RAZ         C02         C01         H01     108.255    1.50
+RAZ         C03         C01         N08     111.143    1.50
+RAZ         C03         C01         H01     108.531    1.50
+RAZ         N08         C01         H01     107.523    1.50
+RAZ         C01         C02         C05     109.488    1.50
+RAZ         C01         C02        H021     109.718    1.50
+RAZ         C01         C02        H022     109.718    1.50
+RAZ         C05         C02        H021     109.241    1.50
+RAZ         C05         C02        H022     109.241    1.50
+RAZ        H021         C02        H022     108.033    1.87
+RAZ         C01         C03         C07     112.053    1.50
+RAZ         C01         C03        H031     109.448    1.50
+RAZ         C01         C03        H032     109.448    1.50
+RAZ         C07         C03        H031     109.315    1.50
+RAZ         C07         C03        H032     109.315    1.50
+RAZ        H031         C03        H032     108.076    1.50
+RAZ         C02         C05         C31     124.312    1.50
+RAZ         C02         C05         H05     117.696    1.50
+RAZ         C31         C05         H05     117.992    1.92
+RAZ         C03         C07         C31     113.289    1.74
+RAZ         C03         C07        H071     109.292    1.50
+RAZ         C03         C07        H072     109.292    1.50
+RAZ         C31         C07        H071     109.027    1.50
+RAZ         C31         C07        H072     109.027    1.50
+RAZ        H071         C07        H072     107.973    1.50
+RAZ         C01         N08         C11     114.317    2.62
+RAZ         C01         N08         C19     113.121    1.50
+RAZ         C01         N08         H08     106.713    1.64
+RAZ         C11         N08         C19     111.483    1.83
+RAZ         C11         N08         H08     106.775    2.75
+RAZ         C19         N08         H08     106.851    2.17
+RAZ         C10         C09         C14     127.730    1.50
+RAZ         C10         C09         H09     116.401    1.85
+RAZ         C14         C09         H09     115.869    1.50
+RAZ         C09         C10         C11     112.952    2.17
+RAZ         C09         C10        H101     109.013    1.50
+RAZ         C09         C10        H102     109.013    1.50
+RAZ         C11         C10        H101     108.805    1.53
+RAZ         C11         C10        H102     108.805    1.53
+RAZ        H101         C10        H102     108.298    1.50
+RAZ         N08         C11         C10     113.046    1.79
+RAZ         N08         C11        H111     108.975    1.50
+RAZ         N08         C11        H112     108.975    1.50
+RAZ         C10         C11        H111     108.869    1.50
+RAZ         C10         C11        H112     108.869    1.50
+RAZ        H111         C11        H112     107.921    1.50
+RAZ         C09         C14         C17     122.691    1.63
+RAZ         C09         C14         C18     122.691    1.63
+RAZ         C17         C14         C18     114.618    1.50
+RAZ         C14         C17        H171     109.600    1.50
+RAZ         C14         C17        H172     109.600    1.50
+RAZ         C14         C17        H173     109.600    1.50
+RAZ        H171         C17        H172     109.342    1.50
+RAZ        H171         C17        H173     109.342    1.50
+RAZ        H172         C17        H173     109.342    1.50
+RAZ         C14         C18        H181     109.600    1.50
+RAZ         C14         C18        H182     109.600    1.50
+RAZ         C14         C18        H183     109.600    1.50
+RAZ        H181         C18        H182     109.342    1.50
+RAZ        H181         C18        H183     109.342    1.50
+RAZ        H182         C18        H183     109.342    1.50
+RAZ         N08         C19        H191     108.608    1.58
+RAZ         N08         C19        H192     108.608    1.58
+RAZ         N08         C19        H193     108.608    1.58
+RAZ        H191         C19        H192     110.253    3.00
+RAZ        H191         C19        H193     110.253    3.00
+RAZ        H192         C19        H193     110.253    3.00
+RAZ         C05         C31         C07     121.266    1.50
+RAZ         C05         C31         C32     122.456    1.51
+RAZ         C07         C31         C32     116.277    1.50
+RAZ         C31         C32        H321     109.524    1.50
+RAZ         C31         C32        H322     109.524    1.50
+RAZ         C31         C32        H323     109.524    1.50
+RAZ        H321         C32        H322     109.339    1.50
+RAZ        H321         C32        H323     109.339    1.50
+RAZ        H322         C32        H323     109.339    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RAZ             sp3_sp3_4         N08         C01         C02         C05     -60.000    10.0     3
+RAZ            sp3_sp3_22         N08         C01         C03         C07      60.000    10.0     3
+RAZ            sp3_sp3_28         C02         C01         N08         C11     180.000    10.0     3
+RAZ            sp2_sp3_31         C05         C31         C32        H321     150.000    10.0     6
+RAZ             sp2_sp3_1         C31         C05         C02         C01       0.000    10.0     6
+RAZ            sp3_sp3_10         C01         C03         C07         C31      60.000    10.0     3
+RAZ             sp2_sp2_2         C02         C05         C31         C32     180.000     5.0     2
+RAZ            sp2_sp3_10         C32         C31         C07         C03     180.000    10.0     6
+RAZ            sp3_sp3_47        H191         C19         N08         C11     -60.000    10.0     3
+RAZ            sp3_sp3_38         C10         C11         N08         C19     -60.000    10.0     3
+RAZ            sp2_sp3_14         C14         C09         C10         C11     120.000    10.0     6
+RAZ             sp2_sp2_5         C10         C09         C14         C17     180.000     5.0     2
+RAZ            sp3_sp3_55         C09         C10         C11         N08     180.000    10.0     3
+RAZ            sp2_sp3_19         C09         C14         C17        H171       0.000    10.0     6
+RAZ            sp2_sp3_25         C09         C14         C18        H181       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RAZ    chir_1    C01    N08    C02    C03    positive
+RAZ    chir_2    N08    C01    C11    C19    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RAZ    plan-1         C02   0.020
+RAZ    plan-1         C05   0.020
+RAZ    plan-1         C31   0.020
+RAZ    plan-1         H05   0.020
+RAZ    plan-2         C09   0.020
+RAZ    plan-2         C10   0.020
+RAZ    plan-2         C14   0.020
+RAZ    plan-2         H09   0.020
+RAZ    plan-3         C09   0.020
+RAZ    plan-3         C14   0.020
+RAZ    plan-3         C17   0.020
+RAZ    plan-3         C18   0.020
+RAZ    plan-4         C05   0.020
+RAZ    plan-4         C07   0.020
+RAZ    plan-4         C31   0.020
+RAZ    plan-4         C32   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RAZ           SMILES              ACDLabs 10.04                                                               C1=C(C)CCC([NH+](C)CC\C=C(/C)C)C1
+RAZ            InChI                InChI  1.03 InChI=1S/C14H25N/c1-12(2)6-5-11-15(4)14-9-7-13(3)8-10-14/h6-7,14H,5,8-11H2,1-4H3/p+1/t14-/m1/s1
+RAZ         InChIKey                InChI  1.03                                                                     GGPFTSMJRHEOJG-CQSZACIVSA-O
+RAZ SMILES_CANONICAL               CACTVS 3.385                                                               C[NH+](CCC=C(C)C)[C@H]1CCC(=CC1)C
+RAZ           SMILES               CACTVS 3.385                                                                C[NH+](CCC=C(C)C)[CH]1CCC(=CC1)C
+RAZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                               CC1=CC[C@H](CC1)[NH+](C)CCC=C(C)C
+RAZ           SMILES "OpenEye OEToolkits" 1.7.5                                                                   CC1=CCC(CC1)[NH+](C)CCC=C(C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RAZ acedrg               243         "dictionary generator"                  
+RAZ acedrg_database      11          "data source"                           
+RAZ rdkit                2017.03.2   "Chemoinformatics tool"
+RAZ refmac5              5.8.0238    "optimization tool"                     

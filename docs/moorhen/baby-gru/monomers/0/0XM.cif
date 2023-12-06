@@ -1,0 +1,225 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+0XM     0XM      1,1-diphenylmethanamine     NON-POLYMER     27     14     .     
+#
+data_comp_0XM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+0XM     NAV     N       NT2     0       5.521       12.136      -50.102     
+0XM     CBF     C       CH1     0       4.967       11.572      -51.346     
+0XM     CBG     C       CR6     0       4.585       12.619      -52.388     
+0XM     CBH     C       CR6     0       5.897       10.508      -51.919     
+0XM     CBI     C       CR16    0       5.536       9.166       -51.917     
+0XM     CBJ     C       CR16    0       6.385       8.199       -52.441     
+0XM     CBK     C       CR16    0       7.606       8.564       -52.973     
+0XM     CBL     C       CR16    0       7.978       9.891       -52.982     
+0XM     CBM     C       CR16    0       7.128       10.858      -52.458     
+0XM     CBN     C       CR16    0       3.804       12.255      -53.477     
+0XM     CBO     C       CR16    0       3.442       13.186      -54.443     
+0XM     CBP     C       CR16    0       3.860       14.496      -54.331     
+0XM     CBQ     C       CR16    0       4.638       14.876      -53.259     
+0XM     CBR     C       CR16    0       5.000       13.944      -52.293     
+0XM     H12     H       H       0       6.346       12.446      -50.207     
+0XM     H2      H       H       0       5.548       11.535      -49.450     
+0XM     H26     H       H       0       4.129       11.110      -51.117     
+0XM     H27     H       H       0       4.704       8.906       -51.555     
+0XM     H28     H       H       0       6.127       7.291       -52.432     
+0XM     H29     H       H       0       8.183       7.907       -53.328     
+0XM     H30     H       H       0       8.812       10.145      -53.345     
+0XM     H31     H       H       0       7.391       11.764      -52.469     
+0XM     H32     H       H       0       3.513       11.360      -53.560     
+0XM     H33     H       H       0       2.909       12.921      -55.175     
+0XM     H34     H       H       0       3.615       15.129      -54.987     
+0XM     H35     H       H       0       4.926       15.771      -53.179     
+0XM     H36     H       H       0       5.533       14.219      -51.565     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+0XM         CBO         CBP      SINGLE       y     1.376  0.0124     1.376  0.0124
+0XM         CBN         CBO      DOUBLE       y     1.386  0.0100     1.386  0.0100
+0XM         CBP         CBQ      DOUBLE       y     1.374  0.0127     1.374  0.0127
+0XM         CBG         CBN      SINGLE       y     1.385  0.0100     1.385  0.0100
+0XM         CBQ         CBR      SINGLE       y     1.386  0.0100     1.386  0.0100
+0XM         CBJ         CBK      SINGLE       y     1.376  0.0124     1.376  0.0124
+0XM         CBK         CBL      DOUBLE       y     1.374  0.0127     1.374  0.0127
+0XM         CBI         CBJ      DOUBLE       y     1.386  0.0100     1.386  0.0100
+0XM         CBL         CBM      SINGLE       y     1.386  0.0100     1.386  0.0100
+0XM         CBG         CBR      DOUBLE       y     1.385  0.0100     1.385  0.0100
+0XM         CBF         CBG      SINGLE       n     1.523  0.0100     1.523  0.0100
+0XM         CBH         CBI      SINGLE       y     1.385  0.0100     1.385  0.0100
+0XM         CBH         CBM      DOUBLE       y     1.385  0.0100     1.385  0.0100
+0XM         CBF         CBH      SINGLE       n     1.523  0.0100     1.523  0.0100
+0XM         NAV         CBF      SINGLE       n     1.469  0.0200     1.469  0.0200
+0XM         NAV         H12      SINGLE       n     1.036  0.0160     0.888  0.0200
+0XM         NAV          H2      SINGLE       n     1.036  0.0160     0.888  0.0200
+0XM         CBF         H26      SINGLE       n     1.089  0.0100     0.984  0.0171
+0XM         CBI         H27      SINGLE       n     1.082  0.0130     0.944  0.0174
+0XM         CBJ         H28      SINGLE       n     1.082  0.0130     0.944  0.0175
+0XM         CBK         H29      SINGLE       n     1.082  0.0130     0.944  0.0161
+0XM         CBL         H30      SINGLE       n     1.082  0.0130     0.944  0.0175
+0XM         CBM         H31      SINGLE       n     1.082  0.0130     0.944  0.0174
+0XM         CBN         H32      SINGLE       n     1.082  0.0130     0.944  0.0174
+0XM         CBO         H33      SINGLE       n     1.082  0.0130     0.944  0.0175
+0XM         CBP         H34      SINGLE       n     1.082  0.0130     0.944  0.0161
+0XM         CBQ         H35      SINGLE       n     1.082  0.0130     0.944  0.0175
+0XM         CBR         H36      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+0XM         CBF         NAV         H12     111.861    3.00
+0XM         CBF         NAV          H2     111.861    3.00
+0XM         H12         NAV          H2     107.163    3.00
+0XM         CBG         CBF         CBH     113.492    1.93
+0XM         CBG         CBF         NAV     112.424    2.20
+0XM         CBG         CBF         H26     107.074    1.50
+0XM         CBH         CBF         NAV     112.424    2.20
+0XM         CBH         CBF         H26     107.074    1.50
+0XM         NAV         CBF         H26     109.140    1.50
+0XM         CBN         CBG         CBR     118.324    1.50
+0XM         CBN         CBG         CBF     120.838    1.55
+0XM         CBR         CBG         CBF     120.838    1.55
+0XM         CBI         CBH         CBM     118.324    1.50
+0XM         CBI         CBH         CBF     120.838    1.55
+0XM         CBM         CBH         CBF     120.838    1.55
+0XM         CBJ         CBI         CBH     120.739    1.50
+0XM         CBJ         CBI         H27     119.684    1.50
+0XM         CBH         CBI         H27     119.577    1.50
+0XM         CBK         CBJ         CBI     120.161    1.50
+0XM         CBK         CBJ         H28     119.965    1.50
+0XM         CBI         CBJ         H28     119.874    1.50
+0XM         CBJ         CBK         CBL     119.878    1.50
+0XM         CBJ         CBK         H29     120.061    1.50
+0XM         CBL         CBK         H29     120.061    1.50
+0XM         CBK         CBL         CBM     120.161    1.50
+0XM         CBK         CBL         H30     119.965    1.50
+0XM         CBM         CBL         H30     119.874    1.50
+0XM         CBL         CBM         CBH     120.739    1.50
+0XM         CBL         CBM         H31     119.684    1.50
+0XM         CBH         CBM         H31     119.577    1.50
+0XM         CBO         CBN         CBG     120.739    1.50
+0XM         CBO         CBN         H32     119.684    1.50
+0XM         CBG         CBN         H32     119.577    1.50
+0XM         CBP         CBO         CBN     120.161    1.50
+0XM         CBP         CBO         H33     119.965    1.50
+0XM         CBN         CBO         H33     119.874    1.50
+0XM         CBO         CBP         CBQ     119.878    1.50
+0XM         CBO         CBP         H34     120.061    1.50
+0XM         CBQ         CBP         H34     120.061    1.50
+0XM         CBP         CBQ         CBR     120.161    1.50
+0XM         CBP         CBQ         H35     119.965    1.50
+0XM         CBR         CBQ         H35     119.874    1.50
+0XM         CBQ         CBR         CBG     120.739    1.50
+0XM         CBQ         CBR         H36     119.684    1.50
+0XM         CBG         CBR         H36     119.577    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+0XM             sp3_sp3_3         CBG         CBF         NAV         H12      60.000    10.0     3
+0XM       const_sp2_sp2_9         CBN         CBO         CBP         CBQ       0.000     5.0     2
+0XM              const_13         CBO         CBP         CBQ         CBR       0.000    10.0     2
+0XM              const_17         CBP         CBQ         CBR         CBG       0.000    10.0     2
+0XM             sp2_sp3_1         CBN         CBG         CBF         NAV     150.000    10.0     6
+0XM             sp2_sp3_8         CBI         CBH         CBF         NAV     -90.000    10.0     6
+0XM              const_43         CBF         CBG         CBR         CBQ     180.000    10.0     2
+0XM       const_sp2_sp2_3         CBF         CBG         CBN         CBO     180.000     5.0     2
+0XM              const_23         CBF         CBH         CBI         CBJ     180.000    10.0     2
+0XM              const_47         CBF         CBH         CBM         CBL     180.000    10.0     2
+0XM              const_25         CBH         CBI         CBJ         CBK       0.000    10.0     2
+0XM              const_29         CBI         CBJ         CBK         CBL       0.000    10.0     2
+0XM              const_33         CBJ         CBK         CBL         CBM       0.000    10.0     2
+0XM              const_37         CBK         CBL         CBM         CBH       0.000    10.0     2
+0XM       const_sp2_sp2_5         CBG         CBN         CBO         CBP       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+0XM    chir_1    CBF    NAV    CBG    CBH    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+0XM    plan-1         CBF   0.020
+0XM    plan-1         CBG   0.020
+0XM    plan-1         CBN   0.020
+0XM    plan-1         CBO   0.020
+0XM    plan-1         CBP   0.020
+0XM    plan-1         CBQ   0.020
+0XM    plan-1         CBR   0.020
+0XM    plan-1         H32   0.020
+0XM    plan-1         H33   0.020
+0XM    plan-1         H34   0.020
+0XM    plan-1         H35   0.020
+0XM    plan-1         H36   0.020
+0XM    plan-2         CBF   0.020
+0XM    plan-2         CBH   0.020
+0XM    plan-2         CBI   0.020
+0XM    plan-2         CBJ   0.020
+0XM    plan-2         CBK   0.020
+0XM    plan-2         CBL   0.020
+0XM    plan-2         CBM   0.020
+0XM    plan-2         H27   0.020
+0XM    plan-2         H28   0.020
+0XM    plan-2         H29   0.020
+0XM    plan-2         H30   0.020
+0XM    plan-2         H31   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+0XM           SMILES              ACDLabs 12.01                                                  c1(ccccc1)C(N)c2ccccc2
+0XM            InChI                InChI  1.03 InChI=1S/C13H13N/c14-13(11-7-3-1-4-8-11)12-9-5-2-6-10-12/h1-10,13H,14H2
+0XM         InChIKey                InChI  1.03                                             MGHPNCMVUAKAIE-UHFFFAOYSA-N
+0XM SMILES_CANONICAL               CACTVS 3.370                                                    NC(c1ccccc1)c2ccccc2
+0XM           SMILES               CACTVS 3.370                                                    NC(c1ccccc1)c2ccccc2
+0XM SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                  c1ccc(cc1)C(c2ccccc2)N
+0XM           SMILES "OpenEye OEToolkits" 1.7.6                                                  c1ccc(cc1)C(c2ccccc2)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+0XM acedrg               243         "dictionary generator"                  
+0XM acedrg_database      11          "data source"                           
+0XM rdkit                2017.03.2   "Chemoinformatics tool"
+0XM refmac5              5.8.0238    "optimization tool"                     

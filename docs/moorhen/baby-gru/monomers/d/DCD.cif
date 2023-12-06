@@ -1,0 +1,159 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DCD     DCD      "DIETHYLCARBAMODITHIOIC ACID"     NON-POLYMER     19     8     .     
+#
+data_comp_DCD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DCD     C5      C       CH3     0       64.263      11.143      71.813      
+DCD     C3      C       CH2     0       65.236      11.311      72.956      
+DCD     N1      N       N       0       65.755      10.021      73.452      
+DCD     C1      C       C       0       65.076      9.258       74.325      
+DCD     S2      S       S1      0       65.616      7.810       74.940      
+DCD     S1      S       SH1     0       63.482      9.770       74.904      
+DCD     C2      C       CH2     0       67.075      9.632       72.917      
+DCD     C4      C       CH3     0       68.204      9.985       73.856      
+DCD     H5C1    H       H       0       63.963      12.016      71.511      
+DCD     H5C2    H       H       0       63.498      10.624      72.107      
+DCD     H5C3    H       H       0       64.702      10.682      71.079      
+DCD     H3C1    H       H       0       64.795      11.792      73.687      
+DCD     H3C2    H       H       0       65.985      11.868      72.654      
+DCD     HS      H       HSH1    0       62.868      9.073       75.702      
+DCD     H2C1    H       H       0       67.224      10.083      72.059      
+DCD     H2C2    H       H       0       67.089      8.667       72.743      
+DCD     H4C1    H       H       0       69.053      9.765       73.439      
+DCD     H4C2    H       H       0       68.112      9.484       74.682      
+DCD     H4C3    H       H       0       68.178      10.936      74.051      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DCD          C5          C3      SINGLE       n     1.508  0.0173     1.508  0.0173
+DCD          C3          N1      SINGLE       n     1.470  0.0100     1.470  0.0100
+DCD          N1          C1      SINGLE       n     1.333  0.0100     1.333  0.0100
+DCD          N1          C2      SINGLE       n     1.470  0.0100     1.470  0.0100
+DCD          C1          S2      DOUBLE       n     1.660  0.0106     1.660  0.0106
+DCD          C1          S1      SINGLE       n     1.762  0.0200     1.762  0.0200
+DCD          C2          C4      SINGLE       n     1.508  0.0173     1.508  0.0173
+DCD          C5        H5C1      SINGLE       n     1.089  0.0100     0.971  0.0145
+DCD          C5        H5C2      SINGLE       n     1.089  0.0100     0.971  0.0145
+DCD          C5        H5C3      SINGLE       n     1.089  0.0100     0.971  0.0145
+DCD          C3        H3C1      SINGLE       n     1.089  0.0100     0.981  0.0152
+DCD          C3        H3C2      SINGLE       n     1.089  0.0100     0.981  0.0152
+DCD          S1          HS      SINGLE       n     1.345  0.0041     1.224  0.0200
+DCD          C2        H2C1      SINGLE       n     1.089  0.0100     0.981  0.0152
+DCD          C2        H2C2      SINGLE       n     1.089  0.0100     0.981  0.0152
+DCD          C4        H4C1      SINGLE       n     1.089  0.0100     0.971  0.0145
+DCD          C4        H4C2      SINGLE       n     1.089  0.0100     0.971  0.0145
+DCD          C4        H4C3      SINGLE       n     1.089  0.0100     0.971  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DCD          C3          C5        H5C1     109.529    1.50
+DCD          C3          C5        H5C2     109.529    1.50
+DCD          C3          C5        H5C3     109.529    1.50
+DCD        H5C1          C5        H5C2     109.415    1.50
+DCD        H5C1          C5        H5C3     109.415    1.50
+DCD        H5C2          C5        H5C3     109.415    1.50
+DCD          C5          C3          N1     112.299    1.50
+DCD          C5          C3        H3C1     109.135    1.50
+DCD          C5          C3        H3C2     109.135    1.50
+DCD          N1          C3        H3C1     108.987    1.50
+DCD          N1          C3        H3C2     108.987    1.50
+DCD        H3C1          C3        H3C2     107.838    1.50
+DCD          C3          N1          C1     121.898    1.50
+DCD          C3          N1          C2     116.205    1.50
+DCD          C1          N1          C2     121.898    1.50
+DCD          N1          C1          S2     123.423    1.50
+DCD          N1          C1          S1     114.204    3.00
+DCD          S2          C1          S1     122.373    3.00
+DCD          C1          S1          HS     120.000    3.00
+DCD          N1          C2          C4     112.299    1.50
+DCD          N1          C2        H2C1     108.987    1.50
+DCD          N1          C2        H2C2     108.987    1.50
+DCD          C4          C2        H2C1     109.135    1.50
+DCD          C4          C2        H2C2     109.135    1.50
+DCD        H2C1          C2        H2C2     107.838    1.50
+DCD          C2          C4        H4C1     109.529    1.50
+DCD          C2          C4        H4C2     109.529    1.50
+DCD          C2          C4        H4C3     109.529    1.50
+DCD        H4C1          C4        H4C2     109.415    1.50
+DCD        H4C1          C4        H4C3     109.415    1.50
+DCD        H4C2          C4        H4C3     109.415    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DCD             sp3_sp3_1          N1          C3          C5        H5C1     180.000    10.0     3
+DCD             sp2_sp3_2          C1          N1          C3          C5     120.000    10.0     6
+DCD             sp2_sp2_3          S2          C1          N1          C3       0.000     5.0     2
+DCD             sp2_sp3_8          C3          N1          C2          C4     120.000    10.0     6
+DCD             sp2_sp2_5          N1          C1          S1          HS     180.000     5.0     2
+DCD            sp3_sp3_10          N1          C2          C4        H4C1     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DCD    plan-1          C1   0.020
+DCD    plan-1          C2   0.020
+DCD    plan-1          C3   0.020
+DCD    plan-1          N1   0.020
+DCD    plan-2          C1   0.020
+DCD    plan-2          N1   0.020
+DCD    plan-2          S1   0.020
+DCD    plan-2          S2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DCD           SMILES              ACDLabs 10.04                                           S=C(S)N(CC)CC
+DCD SMILES_CANONICAL               CACTVS 3.341                                           CCN(CC)C(S)=S
+DCD           SMILES               CACTVS 3.341                                           CCN(CC)C(S)=S
+DCD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                           CCN(CC)C(=S)S
+DCD           SMILES "OpenEye OEToolkits" 1.5.0                                           CCN(CC)C(=S)S
+DCD            InChI                InChI  1.03 InChI=1S/C5H11NS2/c1-3-6(4-2)5(7)8/h3-4H2,1-2H3,(H,7,8)
+DCD         InChIKey                InChI  1.03                             LMBWSYZSUOEYSN-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DCD acedrg               243         "dictionary generator"                  
+DCD acedrg_database      11          "data source"                           
+DCD rdkit                2017.03.2   "Chemoinformatics tool"
+DCD refmac5              5.8.0238    "optimization tool"                     

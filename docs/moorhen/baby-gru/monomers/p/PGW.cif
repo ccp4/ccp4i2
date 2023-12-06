@@ -1,0 +1,643 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PGW     PGW      "(1R)-2-{[(S)-{[(2S)-2,3-dihydroxypropyl]oxy}(hydroxy)phosphoryl]oxy}-1-[(hexadecanoyloxy)methyl]ethyl(9Z)-octadec-9-enoate"     NON-POLYMER     127     51     .     
+#
+data_comp_PGW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PGW     CAD     C       CH2     0       -23.199     62.704      147.744     
+PGW     OAE     O       OH1     0       -23.733     63.043      146.467     
+PGW     OAF     O       OH1     0       -21.492     61.324      146.753     
+PGW     P       P       P       0       -23.602     57.592      147.148     
+PGW     C01     C       CH2     0       -20.376     54.878      148.666     
+PGW     C1      C       C       0       -22.325     54.512      151.729     
+PGW     O01     O       O2      0       -21.416     55.012      150.867     
+PGW     C02     C       CH1     0       -21.677     55.000      149.433     
+PGW     C2      C       CH2     0       -21.697     54.107      153.034     
+PGW     O02     O       O       0       -23.505     54.413      151.499     
+PGW     C03     C       CH2     0       -22.436     56.272      149.122     
+PGW     C3      C       CH2     0       -20.996     55.232      153.735     
+PGW     O03     O       O2      0       -19.461     53.986      149.351     
+PGW     C04     C       CH2     0       -23.499     60.215      147.433     
+PGW     C4      C       CH2     0       -20.335     54.798      155.029     
+PGW     O04     O       O       0       -20.481     52.111      148.654     
+PGW     C05     C       CH1     0       -22.535     61.343      147.727     
+PGW     C5      C       CH2     0       -19.493     55.869      155.671     
+PGW     C06     C       CH2     0       -14.876     55.569      160.754     
+PGW     C6      C       CH2     0       -18.666     55.388      156.833     
+PGW     C07     C       CH2     0       -13.828     55.665      161.817     
+PGW     C7      C       CH2     0       -17.932     56.494      157.578     
+PGW     C08     C       CH2     0       -12.578     56.422      161.400     
+PGW     C8      C       CH2     0       -16.986     55.991      158.619     
+PGW     C09     C       CH2     0       -11.332     56.030      162.158     
+PGW     C9      C       C1      0       -16.366     57.076      159.443     
+PGW     C10     C       C1      0       -15.456     56.893      160.364     
+PGW     C11     C       CH2     0       -11.367     56.367      163.630     
+PGW     O11     O       O2      0       -22.657     56.411      147.690     
+PGW     C12     C       CH2     0       -10.073     56.099      164.355     
+PGW     O12     O       O2      0       -22.845     58.928      147.620     
+PGW     C13     C       CH2     0       -9.796      54.639      164.608     
+PGW     O13     O       OP      -1      -24.917     57.527      147.875     
+PGW     C14     C       CH3     0       -8.509      54.388      165.356     
+PGW     O14     O       O       0       -23.575     57.552      145.645     
+PGW     C15     C       CH2     0       -13.455     52.382      159.005     
+PGW     C16     C       CH2     0       -12.170     52.879      159.622     
+PGW     C17     C       CH2     0       -10.930     52.178      159.121     
+PGW     C18     C       CH2     0       -9.655      52.604      159.808     
+PGW     C19     C       C       0       -19.760     52.685      149.431     
+PGW     C20     C       CH2     0       -19.081     51.988      150.598     
+PGW     C21     C       CH2     0       -18.309     52.884      151.535     
+PGW     C22     C       CH2     0       -17.743     52.131      152.729     
+PGW     C23     C       CH2     0       -16.783     52.936      153.573     
+PGW     C24     C       CH2     0       -16.421     52.293      154.891     
+PGW     C25     C       CH2     0       -15.295     52.979      155.627     
+PGW     C26     C       CH2     0       -14.992     52.394      156.987     
+PGW     C27     C       CH2     0       -13.734     52.930      157.626     
+PGW     C28     C       CH2     0       -9.180      53.987      159.435     
+PGW     C29     C       CH3     0       -7.646      54.485      161.381     
+PGW     C30     C       CH2     0       -7.778      54.306      159.887     
+PGW     HAD     H       H       0       -23.928     62.701      148.411     
+PGW     HADA    H       H       0       -22.536     63.385      148.011     
+PGW     HOAE    H       H       0       -24.245     63.710      146.562     
+PGW     HOAF    H       H       0       -20.981     60.672      146.931     
+PGW     H01     H       H       0       -19.954     55.764      148.583     
+PGW     H01A    H       H       0       -20.549     54.538      147.757     
+PGW     H02     H       H       0       -22.250     54.225      149.202     
+PGW     H2      H       H       0       -21.054     53.385      152.869     
+PGW     H2A     H       H       0       -22.395     53.752      153.626     
+PGW     H03     H       H       0       -21.927     57.044      149.446     
+PGW     H03A    H       H       0       -23.300     56.260      149.583     
+PGW     H3      H       H       0       -21.641     55.943      153.933     
+PGW     H3A     H       H       0       -20.309     55.607      153.145     
+PGW     H04     H       H       0       -23.818     60.287      146.509     
+PGW     H04A    H       H       0       -24.272     60.278      148.032     
+PGW     H4      H       H       0       -19.768     54.018      154.847     
+PGW     H4A     H       H       0       -21.031     54.521      155.662     
+PGW     H05     H       H       0       -22.135     61.186      148.615     
+PGW     H5      H       H       0       -20.082     56.590      155.981     
+PGW     H5A     H       H       0       -18.892     56.246      154.993     
+PGW     H06     H       H       0       -15.600     54.987      161.075     
+PGW     H06A    H       H       0       -14.481     55.148      159.958     
+PGW     H6      H       H       0       -18.008     54.740      156.504     
+PGW     H6A     H       H       0       -19.254     54.920      157.465     
+PGW     H07     H       H       0       -13.572     54.759      162.088     
+PGW     H07A    H       H       0       -14.215     56.109      162.601     
+PGW     H7      H       H       0       -18.592     57.079      158.005     
+PGW     H7A     H       H       0       -17.432     57.033      156.929     
+PGW     H08     H       H       0       -12.734     57.382      161.527     
+PGW     H08A    H       H       0       -12.422     56.271      160.443     
+PGW     H8      H       H       0       -16.271     55.481      158.177     
+PGW     H8A     H       H       0       -17.470     55.378      159.216     
+PGW     H09     H       H       0       -10.562     56.481      161.751     
+PGW     H09A    H       H       0       -11.196     55.063      162.060     
+PGW     H9      H       H       0       -16.656     57.961      159.283     
+PGW     H10     H       H       0       -15.137     57.656      160.822     
+PGW     H11     H       H       0       -12.079     55.844      164.057     
+PGW     H11A    H       H       0       -11.594     57.316      163.730     
+PGW     H12     H       H       0       -10.092     56.568      165.217     
+PGW     H12A    H       H       0       -9.334      56.473      163.829     
+PGW     H13     H       H       0       -9.759      54.171      163.745     
+PGW     H13A    H       H       0       -10.542     54.261      165.122     
+PGW     H14     H       H       0       -8.385      53.431      165.477     
+PGW     H14A    H       H       0       -8.548      54.822      166.226     
+PGW     H14B    H       H       0       -7.761      54.749      164.848     
+PGW     H15     H       H       0       -14.201     52.623      159.595     
+PGW     H15A    H       H       0       -13.421     51.403      158.953     
+PGW     H16     H       H       0       -12.223     52.765      160.595     
+PGW     H16A    H       H       0       -12.084     53.839      159.440     
+PGW     H17     H       H       0       -10.841     52.347      158.159     
+PGW     H17A    H       H       0       -11.045     51.212      159.243     
+PGW     H18     H       H       0       -8.949      51.959      159.589     
+PGW     H18A    H       H       0       -9.796      52.572      160.779     
+PGW     H20     H       H       0       -18.467     51.311      150.241     
+PGW     H20A    H       H       0       -19.765     51.513      151.116     
+PGW     H21     H       H       0       -18.896     53.596      151.865     
+PGW     H21A    H       H       0       -17.569     53.304      151.050     
+PGW     H22     H       H       0       -17.279     51.330      152.403     
+PGW     H22A    H       H       0       -18.487     51.834      153.295     
+PGW     H23     H       H       0       -17.184     53.814      153.752     
+PGW     H23A    H       H       0       -15.961     53.084      153.059     
+PGW     H24     H       H       0       -16.166     51.360      154.726     
+PGW     H24A    H       H       0       -17.215     52.287      155.467     
+PGW     H25     H       H       0       -15.523     53.927      155.737     
+PGW     H25A    H       H       0       -14.484     52.930      155.077     
+PGW     H26     H       H       0       -14.911     51.421      156.899     
+PGW     H26A    H       H       0       -15.750     52.577      157.583     
+PGW     H27     H       H       0       -12.972     52.720      157.045     
+PGW     H27A    H       H       0       -13.802     53.907      157.684     
+PGW     H28     H       H       0       -9.793      54.647      159.825     
+PGW     H28A    H       H       0       -9.223      54.082      158.459     
+PGW     H29     H       H       0       -6.732      54.736      161.600     
+PGW     H29A    H       H       0       -7.869      53.652      161.830     
+PGW     H29B    H       H       0       -8.253      55.185      161.680     
+PGW     H30     H       H       0       -7.482      55.130      159.441     
+PGW     H30A    H       H       0       -7.181      53.581      159.600     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PGW         CAD         C05      SINGLE       n     1.514  0.0105     1.514  0.0105
+PGW         CAD         OAE      SINGLE       n     1.425  0.0100     1.425  0.0100
+PGW         OAF         C05      SINGLE       n     1.427  0.0100     1.427  0.0100
+PGW           P         O13      SINGLE       n     1.504  0.0115     1.504  0.0115
+PGW           P         O11      SINGLE       n     1.606  0.0100     1.606  0.0100
+PGW         C01         O03      SINGLE       n     1.444  0.0100     1.444  0.0100
+PGW         C01         C02      SINGLE       n     1.512  0.0104     1.512  0.0104
+PGW          C1          C2      SINGLE       n     1.503  0.0174     1.503  0.0174
+PGW          C1         O01      SINGLE       n     1.342  0.0131     1.342  0.0131
+PGW         O01         C02      SINGLE       n     1.454  0.0123     1.454  0.0123
+PGW          C2          C3      SINGLE       n     1.497  0.0200     1.497  0.0200
+PGW          C1         O02      DOUBLE       n     1.203  0.0150     1.203  0.0150
+PGW         C02         C03      SINGLE       n     1.512  0.0104     1.512  0.0104
+PGW          C3          C4      SINGLE       n     1.519  0.0164     1.519  0.0164
+PGW         C04         C05      SINGLE       n     1.512  0.0104     1.512  0.0104
+PGW         C04         O12      SINGLE       n     1.454  0.0165     1.454  0.0165
+PGW          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW         O04         C19      DOUBLE       n     1.203  0.0150     1.203  0.0150
+PGW          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW         C06         C07      SINGLE       n     1.497  0.0200     1.497  0.0200
+PGW          C6          C7      SINGLE       n     1.523  0.0117     1.523  0.0117
+PGW          C7          C8      SINGLE       n     1.497  0.0200     1.497  0.0200
+PGW         C07         C08      SINGLE       n     1.519  0.0164     1.519  0.0164
+PGW          C8          C9      SINGLE       n     1.497  0.0127     1.497  0.0127
+PGW         C08         C09      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW         C09         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW          C9         C10      DOUBLE       n     1.308  0.0200     1.308  0.0200
+PGW         C06         C10      SINGLE       n     1.497  0.0127     1.497  0.0127
+PGW         C03         O11      SINGLE       n     1.454  0.0165     1.454  0.0165
+PGW         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW           P         O12      SINGLE       n     1.606  0.0100     1.606  0.0100
+PGW         C12         C13      SINGLE       n     1.507  0.0200     1.507  0.0200
+PGW         C13         C14      SINGLE       n     1.510  0.0200     1.510  0.0200
+PGW           P         O14      DOUBLE       n     1.504  0.0115     1.504  0.0115
+PGW         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW         C16         C17      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW         C17         C18      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW         C18         C28      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW         O03         C19      SINGLE       n     1.329  0.0116     1.329  0.0116
+PGW         C19         C20      SINGLE       n     1.503  0.0174     1.503  0.0174
+PGW         C20         C21      SINGLE       n     1.497  0.0200     1.497  0.0200
+PGW         C21         C22      SINGLE       n     1.519  0.0164     1.519  0.0164
+PGW         C22         C23      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW         C23         C24      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW         C24         C25      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW         C25         C26      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW         C26         C27      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW         C15         C27      SINGLE       n     1.509  0.0200     1.509  0.0200
+PGW         C28         C30      SINGLE       n     1.507  0.0200     1.507  0.0200
+PGW         C29         C30      SINGLE       n     1.510  0.0200     1.510  0.0200
+PGW         CAD         HAD      SINGLE       n     1.089  0.0100     0.988  0.0200
+PGW         CAD        HADA      SINGLE       n     1.089  0.0100     0.988  0.0200
+PGW         OAE        HOAE      SINGLE       n     0.970  0.0120     0.846  0.0200
+PGW         OAF        HOAF      SINGLE       n     0.970  0.0120     0.848  0.0200
+PGW         C01         H01      SINGLE       n     1.089  0.0100     0.985  0.0188
+PGW         C01        H01A      SINGLE       n     1.089  0.0100     0.985  0.0188
+PGW         C02         H02      SINGLE       n     1.089  0.0100     0.990  0.0148
+PGW          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0185
+PGW          C2         H2A      SINGLE       n     1.089  0.0100     0.981  0.0185
+PGW         C03         H03      SINGLE       n     1.089  0.0100     0.980  0.0146
+PGW         C03        H03A      SINGLE       n     1.089  0.0100     0.980  0.0146
+PGW          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0160
+PGW          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0160
+PGW         C04         H04      SINGLE       n     1.089  0.0100     0.980  0.0146
+PGW         C04        H04A      SINGLE       n     1.089  0.0100     0.980  0.0146
+PGW          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW          C4         H4A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C05         H05      SINGLE       n     1.089  0.0100     0.987  0.0186
+PGW          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW          C5         H5A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C06         H06      SINGLE       n     1.089  0.0100     0.983  0.0180
+PGW         C06        H06A      SINGLE       n     1.089  0.0100     0.983  0.0180
+PGW          C6          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW          C6         H6A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C07         H07      SINGLE       n     1.089  0.0100     0.980  0.0160
+PGW         C07        H07A      SINGLE       n     1.089  0.0100     0.980  0.0160
+PGW          C7          H7      SINGLE       n     1.089  0.0100     0.980  0.0160
+PGW          C7         H7A      SINGLE       n     1.089  0.0100     0.980  0.0160
+PGW         C08         H08      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C08        H08A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW          C8          H8      SINGLE       n     1.089  0.0100     0.983  0.0180
+PGW          C8         H8A      SINGLE       n     1.089  0.0100     0.983  0.0180
+PGW         C09         H09      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C09        H09A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW          C9          H9      SINGLE       n     1.082  0.0130     0.945  0.0200
+PGW         C10         H10      SINGLE       n     1.082  0.0130     0.945  0.0200
+PGW         C11         H11      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C11        H11A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C12         H12      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C12        H12A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C13         H13      SINGLE       n     1.089  0.0100     0.982  0.0155
+PGW         C13        H13A      SINGLE       n     1.089  0.0100     0.982  0.0155
+PGW         C14         H14      SINGLE       n     1.089  0.0100     0.973  0.0157
+PGW         C14        H14A      SINGLE       n     1.089  0.0100     0.973  0.0157
+PGW         C14        H14B      SINGLE       n     1.089  0.0100     0.973  0.0157
+PGW         C15         H15      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C15        H15A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C16         H16      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C16        H16A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C17         H17      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C17        H17A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C18         H18      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C18        H18A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C20         H20      SINGLE       n     1.089  0.0100     0.981  0.0185
+PGW         C20        H20A      SINGLE       n     1.089  0.0100     0.981  0.0185
+PGW         C21         H21      SINGLE       n     1.089  0.0100     0.980  0.0160
+PGW         C21        H21A      SINGLE       n     1.089  0.0100     0.980  0.0160
+PGW         C22         H22      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C22        H22A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C23         H23      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C23        H23A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C24         H24      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C24        H24A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C25         H25      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C25        H25A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C26         H26      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C26        H26A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C27         H27      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C27        H27A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C28         H28      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C28        H28A      SINGLE       n     1.089  0.0100     0.981  0.0163
+PGW         C29         H29      SINGLE       n     1.089  0.0100     0.973  0.0157
+PGW         C29        H29A      SINGLE       n     1.089  0.0100     0.973  0.0157
+PGW         C29        H29B      SINGLE       n     1.089  0.0100     0.973  0.0157
+PGW         C30         H30      SINGLE       n     1.089  0.0100     0.982  0.0155
+PGW         C30        H30A      SINGLE       n     1.089  0.0100     0.982  0.0155
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PGW         C05         CAD         OAE     111.586    1.51
+PGW         C05         CAD         HAD     109.193    1.50
+PGW         C05         CAD        HADA     109.193    1.50
+PGW         OAE         CAD         HAD     109.268    1.50
+PGW         OAE         CAD        HADA     109.268    1.50
+PGW         HAD         CAD        HADA     108.313    1.50
+PGW         CAD         OAE        HOAE     108.280    3.00
+PGW         C05         OAF        HOAF     107.936    3.00
+PGW         O13           P         O11     107.777    3.00
+PGW         O13           P         O12     107.777    3.00
+PGW         O13           P         O14     119.782    1.83
+PGW         O11           P         O12     102.789    2.10
+PGW         O11           P         O14     107.777    3.00
+PGW         O12           P         O14     107.777    3.00
+PGW         O03         C01         C02     108.641    1.70
+PGW         O03         C01         H01     109.514    1.50
+PGW         O03         C01        H01A     109.514    1.50
+PGW         C02         C01         H01     110.376    1.50
+PGW         C02         C01        H01A     110.376    1.50
+PGW         H01         C01        H01A     108.601    1.50
+PGW          C2          C1         O01     113.008    3.00
+PGW          C2          C1         O02     124.714    2.71
+PGW         O01          C1         O02     122.278    2.43
+PGW          C1         O01         C02     117.944    1.50
+PGW         C01         C02         O01     109.042    2.74
+PGW         C01         C02         C03     113.504    1.50
+PGW         C01         C02         H02     108.656    1.50
+PGW         O01         C02         C03     109.042    2.74
+PGW         O01         C02         H02     109.221    1.50
+PGW         C03         C02         H02     108.656    1.50
+PGW          C1          C2          C3     113.365    1.50
+PGW          C1          C2          H2     108.883    1.50
+PGW          C1          C2         H2A     108.883    1.50
+PGW          C3          C2          H2     108.815    1.50
+PGW          C3          C2         H2A     108.815    1.50
+PGW          H2          C2         H2A     107.521    1.50
+PGW         C02         C03         O11     109.438    2.56
+PGW         C02         C03         H03     109.582    1.50
+PGW         C02         C03        H03A     109.582    1.50
+PGW         O11         C03         H03     109.393    1.91
+PGW         O11         C03        H03A     109.393    1.91
+PGW         H03         C03        H03A     108.319    1.50
+PGW          C2          C3          C4     112.553    1.50
+PGW          C2          C3          H3     109.164    1.50
+PGW          C2          C3         H3A     109.164    1.50
+PGW          C4          C3          H3     108.698    1.50
+PGW          C4          C3         H3A     108.698    1.50
+PGW          H3          C3         H3A     107.646    1.50
+PGW         C01         O03         C19     116.187    1.50
+PGW         C05         C04         O12     109.438    2.56
+PGW         C05         C04         H04     109.582    1.50
+PGW         C05         C04        H04A     109.582    1.50
+PGW         O12         C04         H04     109.393    1.91
+PGW         O12         C04        H04A     109.393    1.91
+PGW         H04         C04        H04A     108.319    1.50
+PGW          C3          C4          C5     114.243    1.69
+PGW          C3          C4          H4     108.698    1.50
+PGW          C3          C4         H4A     108.698    1.50
+PGW          C5          C4          H4     108.698    1.50
+PGW          C5          C4         H4A     108.698    1.50
+PGW          H4          C4         H4A     107.646    1.50
+PGW         CAD         C05         OAF     110.247    1.72
+PGW         CAD         C05         C04     113.504    1.50
+PGW         CAD         C05         H05     108.441    1.50
+PGW         OAF         C05         C04     109.314    1.96
+PGW         OAF         C05         H05     108.721    1.50
+PGW         C04         C05         H05     108.656    1.50
+PGW          C4          C5          C6     114.243    1.69
+PGW          C4          C5          H5     108.698    1.50
+PGW          C4          C5         H5A     108.698    1.50
+PGW          C6          C5          H5     108.698    1.50
+PGW          C6          C5         H5A     108.698    1.50
+PGW          H5          C5         H5A     107.646    1.50
+PGW         C07         C06         C10     113.226    1.94
+PGW         C07         C06         H06     108.819    1.50
+PGW         C07         C06        H06A     108.819    1.50
+PGW         C10         C06         H06     108.886    1.50
+PGW         C10         C06        H06A     108.886    1.50
+PGW         H06         C06        H06A     107.922    1.50
+PGW          C5          C6          C7     114.243    1.69
+PGW          C5          C6          H6     108.698    1.50
+PGW          C5          C6         H6A     108.698    1.50
+PGW          C7          C6          H6     108.698    1.50
+PGW          C7          C6         H6A     108.698    1.50
+PGW          H6          C6         H6A     107.646    1.50
+PGW         C06         C07         C08     114.266    1.80
+PGW         C06         C07         H07     108.805    1.50
+PGW         C06         C07        H07A     108.805    1.50
+PGW         C08         C07         H07     108.698    1.50
+PGW         C08         C07        H07A     108.698    1.50
+PGW         H07         C07        H07A     107.646    1.50
+PGW          C6          C7          C8     114.266    1.80
+PGW          C6          C7          H7     108.698    1.50
+PGW          C6          C7         H7A     108.698    1.50
+PGW          C8          C7          H7     108.805    1.50
+PGW          C8          C7         H7A     108.805    1.50
+PGW          H7          C7         H7A     107.646    1.50
+PGW         C07         C08         C09     114.243    1.69
+PGW         C07         C08         H08     108.698    1.50
+PGW         C07         C08        H08A     108.698    1.50
+PGW         C09         C08         H08     108.698    1.50
+PGW         C09         C08        H08A     108.698    1.50
+PGW         H08         C08        H08A     107.646    1.50
+PGW          C7          C8          C9     113.226    1.94
+PGW          C7          C8          H8     108.819    1.50
+PGW          C7          C8         H8A     108.819    1.50
+PGW          C9          C8          H8     108.886    1.50
+PGW          C9          C8         H8A     108.886    1.50
+PGW          H8          C8         H8A     107.922    1.50
+PGW         C08         C09         C11     114.243    1.69
+PGW         C08         C09         H09     108.698    1.50
+PGW         C08         C09        H09A     108.698    1.50
+PGW         C11         C09         H09     108.698    1.50
+PGW         C11         C09        H09A     108.698    1.50
+PGW         H09         C09        H09A     107.646    1.50
+PGW          C8          C9         C10     125.684    3.00
+PGW          C8          C9          H9     117.007    1.61
+PGW         C10          C9          H9     117.310    2.16
+PGW          C9         C10         C06     125.684    3.00
+PGW          C9         C10         H10     117.310    2.16
+PGW         C06         C10         H10     117.007    1.61
+PGW         C09         C11         C12     114.243    1.69
+PGW         C09         C11         H11     108.698    1.50
+PGW         C09         C11        H11A     108.698    1.50
+PGW         C12         C11         H11     108.698    1.50
+PGW         C12         C11        H11A     108.698    1.50
+PGW         H11         C11        H11A     107.646    1.50
+PGW           P         O11         C03     119.251    1.51
+PGW         C11         C12         C13     114.362    3.00
+PGW         C11         C12         H12     108.698    1.50
+PGW         C11         C12        H12A     108.698    1.50
+PGW         C13         C12         H12     108.653    1.50
+PGW         C13         C12        H12A     108.653    1.50
+PGW         H12         C12        H12A     107.646    1.50
+PGW         C04         O12           P     119.251    1.51
+PGW         C12         C13         C14     113.719    3.00
+PGW         C12         C13         H13     108.758    1.50
+PGW         C12         C13        H13A     108.758    1.50
+PGW         C14         C13         H13     108.918    1.50
+PGW         C14         C13        H13A     108.918    1.50
+PGW         H13         C13        H13A     107.763    1.50
+PGW         C13         C14         H14     109.554    1.50
+PGW         C13         C14        H14A     109.554    1.50
+PGW         C13         C14        H14B     109.554    1.50
+PGW         H14         C14        H14A     109.380    1.50
+PGW         H14         C14        H14B     109.380    1.50
+PGW        H14A         C14        H14B     109.380    1.50
+PGW         C16         C15         C27     114.243    1.69
+PGW         C16         C15         H15     108.698    1.50
+PGW         C16         C15        H15A     108.698    1.50
+PGW         C27         C15         H15     108.698    1.50
+PGW         C27         C15        H15A     108.698    1.50
+PGW         H15         C15        H15A     107.646    1.50
+PGW         C15         C16         C17     114.243    1.69
+PGW         C15         C16         H16     108.698    1.50
+PGW         C15         C16        H16A     108.698    1.50
+PGW         C17         C16         H16     108.698    1.50
+PGW         C17         C16        H16A     108.698    1.50
+PGW         H16         C16        H16A     107.646    1.50
+PGW         C16         C17         C18     114.243    1.69
+PGW         C16         C17         H17     108.698    1.50
+PGW         C16         C17        H17A     108.698    1.50
+PGW         C18         C17         H17     108.698    1.50
+PGW         C18         C17        H17A     108.698    1.50
+PGW         H17         C17        H17A     107.646    1.50
+PGW         C17         C18         C28     114.243    1.69
+PGW         C17         C18         H18     108.698    1.50
+PGW         C17         C18        H18A     108.698    1.50
+PGW         C28         C18         H18     108.698    1.50
+PGW         C28         C18        H18A     108.698    1.50
+PGW         H18         C18        H18A     107.646    1.50
+PGW         O04         C19         O03     123.233    1.50
+PGW         O04         C19         C20     125.251    2.71
+PGW         O03         C19         C20     111.516    1.50
+PGW         C19         C20         C21     113.365    1.50
+PGW         C19         C20         H20     108.883    1.50
+PGW         C19         C20        H20A     108.883    1.50
+PGW         C21         C20         H20     108.815    1.50
+PGW         C21         C20        H20A     108.815    1.50
+PGW         H20         C20        H20A     107.521    1.50
+PGW         C20         C21         C22     112.553    1.50
+PGW         C20         C21         H21     109.164    1.50
+PGW         C20         C21        H21A     109.164    1.50
+PGW         C22         C21         H21     108.698    1.50
+PGW         C22         C21        H21A     108.698    1.50
+PGW         H21         C21        H21A     107.646    1.50
+PGW         C21         C22         C23     114.243    1.69
+PGW         C21         C22         H22     108.698    1.50
+PGW         C21         C22        H22A     108.698    1.50
+PGW         C23         C22         H22     108.698    1.50
+PGW         C23         C22        H22A     108.698    1.50
+PGW         H22         C22        H22A     107.646    1.50
+PGW         C22         C23         C24     114.243    1.69
+PGW         C22         C23         H23     108.698    1.50
+PGW         C22         C23        H23A     108.698    1.50
+PGW         C24         C23         H23     108.698    1.50
+PGW         C24         C23        H23A     108.698    1.50
+PGW         H23         C23        H23A     107.646    1.50
+PGW         C23         C24         C25     114.243    1.69
+PGW         C23         C24         H24     108.698    1.50
+PGW         C23         C24        H24A     108.698    1.50
+PGW         C25         C24         H24     108.698    1.50
+PGW         C25         C24        H24A     108.698    1.50
+PGW         H24         C24        H24A     107.646    1.50
+PGW         C24         C25         C26     114.243    1.69
+PGW         C24         C25         H25     108.698    1.50
+PGW         C24         C25        H25A     108.698    1.50
+PGW         C26         C25         H25     108.698    1.50
+PGW         C26         C25        H25A     108.698    1.50
+PGW         H25         C25        H25A     107.646    1.50
+PGW         C25         C26         C27     114.243    1.69
+PGW         C25         C26         H26     108.698    1.50
+PGW         C25         C26        H26A     108.698    1.50
+PGW         C27         C26         H26     108.698    1.50
+PGW         C27         C26        H26A     108.698    1.50
+PGW         H26         C26        H26A     107.646    1.50
+PGW         C26         C27         C15     114.243    1.69
+PGW         C26         C27         H27     108.698    1.50
+PGW         C26         C27        H27A     108.698    1.50
+PGW         C15         C27         H27     108.698    1.50
+PGW         C15         C27        H27A     108.698    1.50
+PGW         H27         C27        H27A     107.646    1.50
+PGW         C18         C28         C30     114.362    3.00
+PGW         C18         C28         H28     108.698    1.50
+PGW         C18         C28        H28A     108.698    1.50
+PGW         C30         C28         H28     108.653    1.50
+PGW         C30         C28        H28A     108.653    1.50
+PGW         H28         C28        H28A     107.646    1.50
+PGW         C30         C29         H29     109.554    1.50
+PGW         C30         C29        H29A     109.554    1.50
+PGW         C30         C29        H29B     109.554    1.50
+PGW         H29         C29        H29A     109.380    1.50
+PGW         H29         C29        H29B     109.380    1.50
+PGW        H29A         C29        H29B     109.380    1.50
+PGW         C28         C30         C29     113.719    3.00
+PGW         C28         C30         H30     108.758    1.50
+PGW         C28         C30        H30A     108.758    1.50
+PGW         C29         C30         H30     108.918    1.50
+PGW         C29         C30        H30A     108.918    1.50
+PGW         H30         C30        H30A     107.763    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PGW            sp3_sp3_10         C05         CAD         OAE        HOAE     180.000    10.0     3
+PGW             sp3_sp3_1         OAF         C05         CAD         OAE     180.000    10.0     3
+PGW           sp3_sp3_145         C02         C03         O11           P     180.000    10.0     3
+PGW            sp3_sp3_52          C2          C3          C4          C5     180.000    10.0     3
+PGW             sp2_sp2_7         O04         C19         O03         C01     180.000     5.0     2
+PGW            sp3_sp3_61         O12         C04         C05         CAD     180.000    10.0     3
+PGW            sp3_sp3_70         C05         C04         O12           P     180.000    10.0     3
+PGW            sp3_sp3_73          C3          C4          C5          C6     180.000    10.0     3
+PGW            sp3_sp3_82          C4          C5          C6          C7     180.000    10.0     3
+PGW            sp3_sp3_91         C10         C06         C07         C08     180.000    10.0     3
+PGW            sp2_sp3_14          C9         C10         C06         C07     120.000    10.0     6
+PGW           sp3_sp3_100          C5          C6          C7          C8     180.000    10.0     3
+PGW           sp3_sp3_118         C06         C07         C08         C09     180.000    10.0     3
+PGW           sp3_sp3_109          C6          C7          C8          C9     180.000    10.0     3
+PGW           sp3_sp3_127         C07         C08         C09         C11     180.000    10.0     3
+PGW             sp2_sp3_8         C10          C9          C8          C7     120.000    10.0     6
+PGW           sp3_sp3_136         C08         C09         C11         C12     180.000    10.0     3
+PGW             sp2_sp2_3         C06         C10          C9          C8     180.000     5.0     2
+PGW           sp3_sp3_148         C09         C11         C12         C13     180.000    10.0     3
+PGW           sp3_sp3_160         C11         C12         C13         C14     180.000    10.0     3
+PGW            sp3_sp3_13         CAD         C05         OAF        HOAF     180.000    10.0     3
+PGW           sp3_sp3_169         C12         C13         C14         H14     180.000    10.0     3
+PGW           sp3_sp3_178         C27         C15         C16         C17     180.000    10.0     3
+PGW           sp3_sp3_277         C16         C15         C27         C26     180.000    10.0     3
+PGW           sp3_sp3_187         C15         C16         C17         C18     180.000    10.0     3
+PGW           sp3_sp3_196         C16         C17         C18         C28     180.000    10.0     3
+PGW           sp3_sp3_205         C17         C18         C28         C30     180.000    10.0     3
+PGW            sp2_sp3_20         O04         C19         C20         C21     120.000    10.0     6
+PGW            sp3_sp3_16         C03         O11           P         O13     180.000    10.0     3
+PGW           sp3_sp3_158         C04         O12           P         O13     -60.000    10.0     3
+PGW           sp3_sp3_214         C19         C20         C21         C22     180.000    10.0     3
+PGW           sp3_sp3_223         C20         C21         C22         C23     180.000    10.0     3
+PGW           sp3_sp3_232         C21         C22         C23         C24     180.000    10.0     3
+PGW           sp3_sp3_241         C22         C23         C24         C25     180.000    10.0     3
+PGW           sp3_sp3_250         C23         C24         C25         C26     180.000    10.0     3
+PGW           sp3_sp3_259         C24         C25         C26         C27     180.000    10.0     3
+PGW           sp3_sp3_268         C25         C26         C27         C15     180.000    10.0     3
+PGW           sp3_sp3_286         C18         C28         C30         C29     180.000    10.0     3
+PGW           sp3_sp3_295         H29         C29         C30         C28     180.000    10.0     3
+PGW            sp3_sp3_19         C02         C01         O03         C19     180.000    10.0     3
+PGW            sp3_sp3_22         O03         C01         C02         O01     180.000    10.0     3
+PGW             sp2_sp2_1          C2          C1         O01         C02     180.000     5.0     2
+PGW             sp2_sp3_2         O01          C1          C2          C3     120.000    10.0     6
+PGW            sp3_sp3_31         C01         C02         O01          C1     180.000    10.0     3
+PGW            sp3_sp3_43         C01         C02         C03         O11     180.000    10.0     3
+PGW            sp3_sp3_34          C1          C2          C3          C4     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PGW    chir_1    P    O11    O12    O13    both
+PGW    chir_2    C02    O01    C03    C01    negative
+PGW    chir_3    C05    OAF    C04    CAD    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PGW    plan-1          C1   0.020
+PGW    plan-1          C2   0.020
+PGW    plan-1         O01   0.020
+PGW    plan-1         O02   0.020
+PGW    plan-2         C10   0.020
+PGW    plan-2          C8   0.020
+PGW    plan-2          C9   0.020
+PGW    plan-2          H9   0.020
+PGW    plan-3         C06   0.020
+PGW    plan-3         C10   0.020
+PGW    plan-3          C9   0.020
+PGW    plan-3         H10   0.020
+PGW    plan-4         C19   0.020
+PGW    plan-4         C20   0.020
+PGW    plan-4         O03   0.020
+PGW    plan-4         O04   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PGW           SMILES              ACDLabs 10.04                                                                                                                                                                        O=C(OC(COP(=O)(OCC(O)CO)O)COC(=O)CCCCCCCCCCCCCCC)CCCCCCC\C=C/CCCCCCCC
+PGW SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                            CCCCCCCCCCCCCCCC(=O)OC[C@H](CO[P@](O)(=O)OC[C@@H](O)CO)OC(=O)CCCCCCC\C=C/CCCCCCCC
+PGW           SMILES               CACTVS 3.341                                                                                                                                                                  CCCCCCCCCCCCCCCC(=O)OC[CH](CO[P](O)(=O)OC[CH](O)CO)OC(=O)CCCCCCCC=CCCCCCCCC
+PGW SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                              CCCCCCCCCCCCCCCC(=O)OC[C@H](CO[P@@](=O)(O)OC[C@H](CO)O)OC(=O)CCCCCCCC=CCCCCCCCC
+PGW           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                          CCCCCCCCCCCCCCCC(=O)OCC(COP(=O)(O)OCC(CO)O)OC(=O)CCCCCCCC=CCCCCCCCC
+PGW            InChI                InChI  1.03 InChI=1S/C40H77O10P/c1-3-5-7-9-11-13-15-17-18-20-22-24-26-28-30-32-40(44)50-38(36-49-51(45,46)48-34-37(42)33-41)35-47-39(43)31-29-27-25-23-21-19-16-14-12-10-8-6-4-2/h17-18,37-38,41-42H,3-16,19-36H2,1-2H3,(H,45,46)/b18-17-/t37-,38+/m0/s1
+PGW         InChIKey                InChI  1.03                                                                                                                                                                                                                  PAZGBAOHGQRCBP-HGWHEPCSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PGW acedrg               243         "dictionary generator"                  
+PGW acedrg_database      11          "data source"                           
+PGW rdkit                2017.03.2   "Chemoinformatics tool"
+PGW refmac5              5.8.0238    "optimization tool"                     

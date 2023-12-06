@@ -1,0 +1,373 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AG8     AG8      "S-[(2E,6E,10E)-14-(dimethylamino)-3,7,11-trimethyltetradeca-2,6,10-trien-1-yl] trihydrogen thiodiphosphate"     NON-POLYMER     63     29     .     
+#
+data_comp_AG8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AG8     C01     C       CH2     0       21.636      21.492      14.752      
+AG8     C02     C       C1      0       21.026      22.328      13.678      
+AG8     C03     C       C       0       20.684      23.613      13.760      
+AG8     C04     C       CH2     0       20.083      24.335      12.583      
+AG8     C05     C       CH2     0       18.566      24.375      12.608      
+AG8     C06     C       C1      0       17.953      23.019      12.415      
+AG8     C07     C       C       0       17.730      22.353      11.282      
+AG8     C08     C       CH2     0       17.153      20.964      11.315      
+AG8     C09     C       CH2     0       15.684      20.910      11.690      
+AG8     C10     C       C1      0       15.224      19.504      11.930      
+AG8     C11     C       C       0       15.348      18.763      13.030      
+AG8     C12     C       CH2     0       14.901      17.327      13.041      
+AG8     C13     C       CH2     0       15.902      16.387      12.378      
+AG8     C14     C       CH2     0       15.435      14.933      12.367      
+AG8     N15     N       NT      0       16.341      13.954      11.736      
+AG8     C16     C       CH3     0       20.848      24.449      15.000      
+AG8     C17     C       CH3     0       18.011      22.893      9.905       
+AG8     C18     C       CH3     0       15.920      19.262      14.328      
+AG8     C19     C       CH3     0       17.638      13.864      12.420      
+AG8     C20     C       CH3     0       16.527      14.203      10.299      
+AG8     S21     S       S2      0       23.093      20.597      14.134      
+AG8     P22     P       P       0       24.618      22.011      14.311      
+AG8     O23     O       O2      0       24.148      23.236      13.395      
+AG8     P24     P       P       0       24.741      24.719      13.163      
+AG8     O25     O       OP      -1      26.225      24.546      12.955      
+AG8     O26     O       OP      -1      25.895      21.479      13.752      
+AG8     O27     O       O       0       24.689      22.502      15.719      
+AG8     O28     O       OP      -1      24.041      25.259      11.940      
+AG8     O29     O       O       0       24.414      25.498      14.413      
+AG8     H01     H       H       0       20.990      20.840      15.076      
+AG8     H01A    H       H       0       21.912      22.037      15.507      
+AG8     H02     H       H       0       20.860      21.897      12.853      
+AG8     H04     H       H       0       20.374      23.898      11.756      
+AG8     H04A    H       H       0       20.423      25.253      12.566      
+AG8     H05     H       H       0       18.250      24.977      11.905      
+AG8     H05A    H       H       0       18.273      24.738      13.469      
+AG8     H06     H       H       0       17.689      22.582      13.210      
+AG8     H08     H       H       0       17.660      20.430      11.961      
+AG8     H08A    H       H       0       17.268      20.547      10.437      
+AG8     H09     H       H       0       15.155      21.305      10.968      
+AG8     H09A    H       H       0       15.539      21.442      12.499      
+AG8     H10     H       H       0       14.787      19.093      11.199      
+AG8     H12     H       H       0       14.042      17.259      12.572      
+AG8     H12A    H       H       0       14.759      17.040      13.969      
+AG8     H13     H       H       0       16.754      16.451      12.856      
+AG8     H13A    H       H       0       16.049      16.687      11.457      
+AG8     H14     H       H       0       14.571      14.892      11.907      
+AG8     H14A    H       H       0       15.281      14.654      13.294      
+AG8     H16     H       H       0       20.543      23.947      15.773      
+AG8     H16A    H       H       0       20.325      25.263      14.921      
+AG8     H16B    H       H       0       21.785      24.678      15.115      
+AG8     H17     H       H       0       18.549      23.698      9.965       
+AG8     H17A    H       H       0       17.173      23.100      9.461       
+AG8     H17B    H       H       0       18.493      22.228      9.387       
+AG8     H18     H       H       0       16.517      20.009      14.161      
+AG8     H18A    H       H       0       16.415      18.548      14.760      
+AG8     H18B    H       H       0       15.198      19.551      14.910      
+AG8     H19     H       H       0       18.117      13.072      12.105      
+AG8     H19A    H       H       0       17.497      13.793      13.384      
+AG8     H19B    H       H       0       18.171      14.660      12.228      
+AG8     H20     H       H       0       17.080      14.998      10.170      
+AG8     H20A    H       H       0       15.658      14.340      9.874       
+AG8     H20B    H       H       0       16.969      13.433      9.891       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AG8         C01         C02      SINGLE       n     1.483  0.0191     1.483  0.0191
+AG8         C01         S21      SINGLE       n     1.818  0.0116     1.818  0.0116
+AG8         C02         C03      DOUBLE       n     1.329  0.0100     1.329  0.0100
+AG8         C03         C04      SINGLE       n     1.503  0.0104     1.503  0.0104
+AG8         C03         C16      SINGLE       n     1.499  0.0156     1.499  0.0156
+AG8         C04         C05      SINGLE       n     1.516  0.0200     1.516  0.0200
+AG8         C05         C06      SINGLE       n     1.498  0.0141     1.498  0.0141
+AG8         C06         C07      DOUBLE       n     1.330  0.0100     1.330  0.0100
+AG8         C07         C08      SINGLE       n     1.503  0.0104     1.503  0.0104
+AG8         C07         C17      SINGLE       n     1.499  0.0156     1.499  0.0156
+AG8         C08         C09      SINGLE       n     1.516  0.0200     1.516  0.0200
+AG8         C09         C10      SINGLE       n     1.498  0.0141     1.498  0.0141
+AG8         C10         C11      DOUBLE       n     1.330  0.0100     1.330  0.0100
+AG8         C11         C12      SINGLE       n     1.502  0.0126     1.502  0.0126
+AG8         C11         C18      SINGLE       n     1.499  0.0156     1.499  0.0156
+AG8         C12         C13      SINGLE       n     1.525  0.0200     1.525  0.0200
+AG8         C13         C14      SINGLE       n     1.517  0.0197     1.517  0.0197
+AG8         C14         N15      SINGLE       n     1.468  0.0114     1.468  0.0114
+AG8         N15         C19      SINGLE       n     1.466  0.0117     1.466  0.0117
+AG8         N15         C20      SINGLE       n     1.466  0.0117     1.466  0.0117
+AG8         S21         P22      SINGLE       n     2.088  0.0171     2.088  0.0171
+AG8         P22         O23      SINGLE       n     1.601  0.0114     1.601  0.0114
+AG8         P22         O26      SINGLE       n     1.493  0.0157     1.493  0.0157
+AG8         P22         O27      DOUBLE       n     1.493  0.0157     1.493  0.0157
+AG8         O23         P24      SINGLE       n     1.614  0.0178     1.614  0.0178
+AG8         P24         O25      SINGLE       n     1.509  0.0200     1.509  0.0200
+AG8         P24         O28      SINGLE       n     1.509  0.0200     1.509  0.0200
+AG8         P24         O29      DOUBLE       n     1.509  0.0200     1.509  0.0200
+AG8         C01         H01      SINGLE       n     1.089  0.0100     0.973  0.0149
+AG8         C01        H01A      SINGLE       n     1.089  0.0100     0.973  0.0149
+AG8         C02         H02      SINGLE       n     1.082  0.0130     0.945  0.0200
+AG8         C04         H04      SINGLE       n     1.089  0.0100     0.979  0.0159
+AG8         C04        H04A      SINGLE       n     1.089  0.0100     0.979  0.0159
+AG8         C05         H05      SINGLE       n     1.089  0.0100     0.979  0.0159
+AG8         C05        H05A      SINGLE       n     1.089  0.0100     0.979  0.0159
+AG8         C06         H06      SINGLE       n     1.082  0.0130     0.945  0.0200
+AG8         C08         H08      SINGLE       n     1.089  0.0100     0.979  0.0159
+AG8         C08        H08A      SINGLE       n     1.089  0.0100     0.979  0.0159
+AG8         C09         H09      SINGLE       n     1.089  0.0100     0.979  0.0159
+AG8         C09        H09A      SINGLE       n     1.089  0.0100     0.979  0.0159
+AG8         C10         H10      SINGLE       n     1.082  0.0130     0.945  0.0200
+AG8         C12         H12      SINGLE       n     1.089  0.0100     0.981  0.0185
+AG8         C12        H12A      SINGLE       n     1.089  0.0100     0.981  0.0185
+AG8         C13         H13      SINGLE       n     1.089  0.0100     0.980  0.0160
+AG8         C13        H13A      SINGLE       n     1.089  0.0100     0.980  0.0160
+AG8         C14         H14      SINGLE       n     1.089  0.0100     0.980  0.0143
+AG8         C14        H14A      SINGLE       n     1.089  0.0100     0.980  0.0143
+AG8         C16         H16      SINGLE       n     1.089  0.0100     0.971  0.0140
+AG8         C16        H16A      SINGLE       n     1.089  0.0100     0.971  0.0140
+AG8         C16        H16B      SINGLE       n     1.089  0.0100     0.971  0.0140
+AG8         C17         H17      SINGLE       n     1.089  0.0100     0.971  0.0140
+AG8         C17        H17A      SINGLE       n     1.089  0.0100     0.971  0.0140
+AG8         C17        H17B      SINGLE       n     1.089  0.0100     0.971  0.0140
+AG8         C18         H18      SINGLE       n     1.089  0.0100     0.971  0.0140
+AG8         C18        H18A      SINGLE       n     1.089  0.0100     0.971  0.0140
+AG8         C18        H18B      SINGLE       n     1.089  0.0100     0.971  0.0140
+AG8         C19         H19      SINGLE       n     1.089  0.0100     0.977  0.0113
+AG8         C19        H19A      SINGLE       n     1.089  0.0100     0.977  0.0113
+AG8         C19        H19B      SINGLE       n     1.089  0.0100     0.977  0.0113
+AG8         C20         H20      SINGLE       n     1.089  0.0100     0.977  0.0113
+AG8         C20        H20A      SINGLE       n     1.089  0.0100     0.977  0.0113
+AG8         C20        H20B      SINGLE       n     1.089  0.0100     0.977  0.0113
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AG8         C02         C01         S21     111.474    1.50
+AG8         C02         C01         H01     110.543    1.78
+AG8         C02         C01        H01A     110.543    1.78
+AG8         S21         C01         H01     108.707    1.51
+AG8         S21         C01        H01A     108.707    1.51
+AG8         H01         C01        H01A     108.193    1.80
+AG8         C01         C02         C03     124.496    3.00
+AG8         C01         C02         H02     117.841    1.50
+AG8         C03         C02         H02     117.663    1.50
+AG8         C02         C03         C04     121.607    1.82
+AG8         C02         C03         C16     123.007    1.73
+AG8         C04         C03         C16     115.386    1.50
+AG8         C03         C04         C05     113.520    2.62
+AG8         C03         C04         H04     108.816    1.50
+AG8         C03         C04        H04A     108.816    1.50
+AG8         C05         C04         H04     108.867    1.50
+AG8         C05         C04        H04A     108.867    1.50
+AG8         H04         C04        H04A     107.710    1.94
+AG8         C04         C05         C06     112.751    2.50
+AG8         C04         C05         H05     109.013    1.50
+AG8         C04         C05        H05A     109.013    1.50
+AG8         C06         C05         H05     109.181    1.50
+AG8         C06         C05        H05A     109.181    1.50
+AG8         H05         C05        H05A     107.922    1.50
+AG8         C05         C06         C07     128.114    1.50
+AG8         C05         C06         H06     115.635    1.60
+AG8         C07         C06         H06     116.261    1.50
+AG8         C06         C07         C08     121.188    1.50
+AG8         C06         C07         C17     123.681    1.50
+AG8         C08         C07         C17     115.131    1.50
+AG8         C07         C08         C09     113.520    2.62
+AG8         C07         C08         H08     108.816    1.50
+AG8         C07         C08        H08A     108.816    1.50
+AG8         C09         C08         H08     108.867    1.50
+AG8         C09         C08        H08A     108.867    1.50
+AG8         H08         C08        H08A     107.710    1.94
+AG8         C08         C09         C10     112.751    2.50
+AG8         C08         C09         H09     109.013    1.50
+AG8         C08         C09        H09A     109.013    1.50
+AG8         C10         C09         H09     109.181    1.50
+AG8         C10         C09        H09A     109.181    1.50
+AG8         H09         C09        H09A     107.922    1.50
+AG8         C09         C10         C11     128.114    1.50
+AG8         C09         C10         H10     115.635    1.60
+AG8         C11         C10         H10     116.261    1.50
+AG8         C10         C11         C12     121.188    1.50
+AG8         C10         C11         C18     123.681    1.50
+AG8         C12         C11         C18     115.131    1.50
+AG8         C11         C12         C13     113.243    1.53
+AG8         C11         C12         H12     108.816    1.50
+AG8         C11         C12        H12A     108.816    1.50
+AG8         C13         C12         H12     108.844    1.50
+AG8         C13         C12        H12A     108.844    1.50
+AG8         H12         C12        H12A     107.710    1.94
+AG8         C12         C13         C14     113.078    1.50
+AG8         C12         C13         H13     108.915    1.50
+AG8         C12         C13        H13A     108.915    1.50
+AG8         C14         C13         H13     108.945    1.50
+AG8         C14         C13        H13A     108.945    1.50
+AG8         H13         C13        H13A     107.927    1.57
+AG8         C13         C14         N15     113.952    1.84
+AG8         C13         C14         H14     108.873    1.50
+AG8         C13         C14        H14A     108.873    1.50
+AG8         N15         C14         H14     108.882    1.50
+AG8         N15         C14        H14A     108.882    1.50
+AG8         H14         C14        H14A     107.673    1.50
+AG8         C14         N15         C19     110.729    1.50
+AG8         C14         N15         C20     110.729    1.50
+AG8         C19         N15         C20     109.730    1.50
+AG8         C03         C16         H16     109.541    1.50
+AG8         C03         C16        H16A     109.541    1.50
+AG8         C03         C16        H16B     109.541    1.50
+AG8         H16         C16        H16A     109.342    1.50
+AG8         H16         C16        H16B     109.342    1.50
+AG8        H16A         C16        H16B     109.342    1.50
+AG8         C07         C17         H17     109.541    1.50
+AG8         C07         C17        H17A     109.541    1.50
+AG8         C07         C17        H17B     109.541    1.50
+AG8         H17         C17        H17A     109.342    1.50
+AG8         H17         C17        H17B     109.342    1.50
+AG8        H17A         C17        H17B     109.342    1.50
+AG8         C11         C18         H18     109.541    1.50
+AG8         C11         C18        H18A     109.541    1.50
+AG8         C11         C18        H18B     109.541    1.50
+AG8         H18         C18        H18A     109.342    1.50
+AG8         H18         C18        H18B     109.342    1.50
+AG8        H18A         C18        H18B     109.342    1.50
+AG8         N15         C19         H19     109.516    1.50
+AG8         N15         C19        H19A     109.516    1.50
+AG8         N15         C19        H19B     109.516    1.50
+AG8         H19         C19        H19A     109.408    1.50
+AG8         H19         C19        H19B     109.408    1.50
+AG8        H19A         C19        H19B     109.408    1.50
+AG8         N15         C20         H20     109.516    1.50
+AG8         N15         C20        H20A     109.516    1.50
+AG8         N15         C20        H20B     109.516    1.50
+AG8         H20         C20        H20A     109.408    1.50
+AG8         H20         C20        H20B     109.408    1.50
+AG8        H20A         C20        H20B     109.408    1.50
+AG8         C01         S21         P22     103.636    3.00
+AG8         S21         P22         O23     105.685    3.00
+AG8         S21         P22         O26     111.281    3.00
+AG8         S21         P22         O27     111.281    3.00
+AG8         O23         P22         O26     108.530    2.45
+AG8         O23         P22         O27     108.530    2.45
+AG8         O26         P22         O27     116.964    2.85
+AG8         P22         O23         P24     132.584    3.00
+AG8         O23         P24         O25     105.965    2.38
+AG8         O23         P24         O28     105.965    2.38
+AG8         O23         P24         O29     105.965    2.38
+AG8         O25         P24         O28     112.716    1.50
+AG8         O25         P24         O29     112.716    1.50
+AG8         O28         P24         O29     112.716    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AG8             sp2_sp3_2         C03         C02         C01         S21     120.000    10.0     6
+AG8             sp3_sp3_1         C02         C01         S21         P22     180.000    10.0     3
+AG8            sp2_sp3_44         C10         C11         C12         C13     120.000    10.0     6
+AG8            sp2_sp3_49         C10         C11         C18         H18       0.000    10.0     6
+AG8            sp3_sp3_22         C11         C12         C13         C14     180.000    10.0     3
+AG8            sp3_sp3_31         C12         C13         C14         N15     180.000    10.0     3
+AG8            sp3_sp3_41         C13         C14         N15         C19     -60.000    10.0     3
+AG8            sp3_sp3_46         H19         C19         N15         C14     180.000    10.0     3
+AG8            sp3_sp3_53         H20         C20         N15         C14     -60.000    10.0     3
+AG8             sp2_sp2_1         C01         C02         C03         C04     180.000     5.0     2
+AG8            sp3_sp3_59         O23         P22         S21         C01      60.000    10.0     3
+AG8            sp3_sp3_61         P24         O23         P22         S21     180.000    10.0     3
+AG8            sp3_sp3_65         P22         O23         P24         O25     -60.000    10.0     3
+AG8            sp2_sp3_13         C02         C03         C16         H16       0.000    10.0     6
+AG8             sp2_sp3_8         C02         C03         C04         C05     120.000    10.0     6
+AG8             sp3_sp3_4         C03         C04         C05         C06     180.000    10.0     3
+AG8            sp2_sp3_20         C07         C06         C05         C04     120.000    10.0     6
+AG8             sp2_sp2_5         C05         C06         C07         C08     180.000     5.0     2
+AG8            sp2_sp3_31         C06         C07         C17         H17       0.000    10.0     6
+AG8            sp2_sp3_26         C06         C07         C08         C09     120.000    10.0     6
+AG8            sp3_sp3_13         C07         C08         C09         C10     180.000    10.0     3
+AG8            sp2_sp3_38         C11         C10         C09         C08     120.000    10.0     6
+AG8             sp2_sp2_9         C09         C10         C11         C12     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AG8    chir_1    N15    C14    C19    C20    both
+AG8    chir_2    P22    S21    O23    O26    both
+AG8    chir_3    P24    O23    O25    O28    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AG8    plan-1         C01   0.020
+AG8    plan-1         C02   0.020
+AG8    plan-1         C03   0.020
+AG8    plan-1         H02   0.020
+AG8    plan-2         C02   0.020
+AG8    plan-2         C03   0.020
+AG8    plan-2         C04   0.020
+AG8    plan-2         C16   0.020
+AG8    plan-3         C05   0.020
+AG8    plan-3         C06   0.020
+AG8    plan-3         C07   0.020
+AG8    plan-3         H06   0.020
+AG8    plan-4         C06   0.020
+AG8    plan-4         C07   0.020
+AG8    plan-4         C08   0.020
+AG8    plan-4         C17   0.020
+AG8    plan-5         C09   0.020
+AG8    plan-5         C10   0.020
+AG8    plan-5         C11   0.020
+AG8    plan-5         H10   0.020
+AG8    plan-6         C10   0.020
+AG8    plan-6         C11   0.020
+AG8    plan-6         C12   0.020
+AG8    plan-6         C18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AG8           SMILES              ACDLabs 12.01                                                                                                                             O=P(O)(OP(=O)(O)SC/C=C(/CC\C=C(/C)CC\C=C(/C)CCCN(C)C)C)O
+AG8 SMILES_CANONICAL               CACTVS 3.370                                                                                                                         CN(C)CCC/C(C)=C/CC/C(C)=C/CC/C(C)=C/CS[P](O)(=O)O[P](O)(O)=O
+AG8           SMILES               CACTVS 3.370                                                                                                                               CN(C)CCCC(C)=CCCC(C)=CCCC(C)=CCS[P](O)(=O)O[P](O)(O)=O
+AG8 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                      C/C(=C\CC/C(=C/CC/C(=C/CS[P@@](=O)(O)OP(=O)(O)O)/C)/C)/CCCN(C)C
+AG8           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                   CC(=CCCC(=CCCC(=CCSP(=O)(O)OP(=O)(O)O)C)C)CCCN(C)C
+AG8            InChI                InChI  1.03 InChI=1S/C19H37NO6P2S/c1-17(9-6-11-18(2)13-8-15-20(4)5)10-7-12-19(3)14-16-29-28(24,25)26-27(21,22)23/h10-11,14H,6-9,12-13,15-16H2,1-5H3,(H,24,25)(H2,21,22,23)/b17-10+,18-11+,19-14+
+AG8         InChIKey                InChI  1.03                                                                                                                                                          WNRLOKILDUQQLN-WNWLUAIZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AG8 acedrg               243         "dictionary generator"                  
+AG8 acedrg_database      11          "data source"                           
+AG8 rdkit                2017.03.2   "Chemoinformatics tool"
+AG8 refmac5              5.8.0238    "optimization tool"                     

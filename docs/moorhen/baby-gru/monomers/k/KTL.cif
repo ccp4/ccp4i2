@@ -1,0 +1,302 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KTL     KTL      "(1S,2R,3R,4S)-1-{(1S)-2-[(2R,3S,4S)-3,4-dihydroxy-2-(hydroxymethyl)tetrahydrothiophenium-1-yl]-1-hydroxyethyl}-2,3,4,5-tetrahydroxypentyl sulfate"     NON-POLYMER     50     26     .     
+#
+data_comp_KTL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KTL     OAA     O       OH1     0       41.754      83.870      30.496      
+KTL     OAB     O       OH1     0       42.230      95.418      35.834      
+KTL     OAC     O       OH1     0       43.164      86.390      30.125      
+KTL     OAD     O       OH1     0       47.095      95.258      34.037      
+KTL     OAE     O       OH1     0       44.096      91.027      32.116      
+KTL     OAF     O       OH1     0       44.425      86.446      32.664      
+KTL     OAG     O       OH1     0       45.856      95.410      36.750      
+KTL     OAH     O       OH1     0       41.497      88.634      32.374      
+KTL     OAI     O       O       0       44.260      86.818      35.414      
+KTL     OAJ     O       OS      -1      44.888      89.000      36.232      
+KTL     OAK     O       O       0       42.885      87.932      37.056      
+KTL     CAL     C       CH2     0       42.491      84.541      31.515      
+KTL     CAM     C       CH2     0       42.916      94.425      36.582      
+KTL     CAN     C       CH2     0       45.242      93.814      33.476      
+KTL     CAO     C       CH2     0       44.037      91.491      34.472      
+KTL     OAP     O       O2      0       42.930      88.762      34.796      
+KTL     CAQ     C       CH1     0       42.459      86.043      31.320      
+KTL     CAR     C       CH1     0       46.158      94.336      34.574      
+KTL     CAS     C       CH1     0       43.444      90.667      33.335      
+KTL     CAT     C       CH1     0       43.045      86.795      32.520      
+KTL     CAU     C       CH1     0       45.198      95.003      35.559      
+KTL     CAV     C       CH1     0       42.890      88.318      32.408      
+KTL     CAW     C       CH1     0       44.148      93.923      35.852      
+KTL     CAX     C       CH1     0       43.559      89.135      33.542      
+KTL     SAY     S       S3      1       43.682      93.238      34.225      
+KTL     SAZ     S       S3      0       43.808      88.080      35.953      
+KTL     HOAA    H       H       0       41.929      83.044      30.542      
+KTL     HOAB    H       H       0       41.464      95.541      36.177      
+KTL     HOAC    H       H       0       43.948      86.066      30.102      
+KTL     HOAD    H       H       0       47.571      95.570      34.667      
+KTL     HOAE    H       H       0       44.918      90.818      32.155      
+KTL     HOAF    H       H       0       44.893      86.868      32.095      
+KTL     HOAG    H       H       0       45.332      95.903      37.202      
+KTL     HOAH    H       H       0       41.139      88.408      33.110      
+KTL     HAL     H       H       0       43.428      84.228      31.499      
+KTL     HALA    H       H       0       42.104      84.319      32.396      
+KTL     HAM     H       H       0       42.308      93.673      36.750      
+KTL     HAMA    H       H       0       43.182      94.802      37.448      
+KTL     HAN     H       H       0       45.039      94.521      32.828      
+KTL     H22     H       H       0       45.661      93.067      32.999      
+KTL     HAO     H       H       0       45.005      91.348      34.506      
+KTL     H23     H       H       0       43.655      91.198      35.323      
+KTL     HAQ     H       H       0       41.499      86.311      31.208      
+KTL     HAR     H       H       0       46.632      93.589      35.015      
+KTL     HAS     H       H       0       42.485      90.902      33.249      
+KTL     HAT     H       H       0       42.566      86.493      33.335      
+KTL     HAU     H       H       0       44.766      95.780      35.129      
+KTL     HAV     H       H       0       43.288      88.606      31.548      
+KTL     H24     H       H       0       44.570      93.206      36.388      
+KTL     HAX     H       H       0       44.523      88.903      33.570      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KTL         OAA         CAL      SINGLE       n     1.425  0.0100     1.425  0.0100
+KTL         OAB         CAM      SINGLE       n     1.420  0.0125     1.420  0.0125
+KTL         OAC         CAQ      SINGLE       n     1.429  0.0100     1.429  0.0100
+KTL         OAD         CAR      SINGLE       n     1.420  0.0122     1.420  0.0122
+KTL         OAE         CAS      SINGLE       n     1.424  0.0199     1.424  0.0199
+KTL         OAF         CAT      SINGLE       n     1.424  0.0199     1.424  0.0199
+KTL         OAG         CAU      SINGLE       n     1.420  0.0122     1.420  0.0122
+KTL         OAH         CAV      SINGLE       n     1.424  0.0199     1.424  0.0199
+KTL         OAI         SAZ      DOUBLE       n     1.446  0.0158     1.446  0.0158
+KTL         OAJ         SAZ      SINGLE       n     1.446  0.0158     1.446  0.0158
+KTL         OAK         SAZ      DOUBLE       n     1.446  0.0158     1.446  0.0158
+KTL         CAL         CAQ      SINGLE       n     1.514  0.0100     1.514  0.0100
+KTL         CAM         CAW      SINGLE       n     1.515  0.0147     1.515  0.0147
+KTL         CAN         CAR      SINGLE       n     1.521  0.0111     1.521  0.0111
+KTL         CAN         SAY      SINGLE       n     1.823  0.0113     1.823  0.0113
+KTL         CAO         CAS      SINGLE       n     1.521  0.0130     1.521  0.0130
+KTL         CAO         SAY      SINGLE       n     1.798  0.0121     1.798  0.0121
+KTL         OAP         CAX      SINGLE       n     1.441  0.0189     1.441  0.0189
+KTL         OAP         SAZ      SINGLE       n     1.592  0.0200     1.592  0.0200
+KTL         CAQ         CAT      SINGLE       n     1.530  0.0100     1.530  0.0100
+KTL         CAR         CAU      SINGLE       n     1.529  0.0127     1.529  0.0127
+KTL         CAS         CAX      SINGLE       n     1.535  0.0200     1.535  0.0200
+KTL         CAT         CAV      SINGLE       n     1.531  0.0100     1.531  0.0100
+KTL         CAU         CAW      SINGLE       n     1.536  0.0131     1.536  0.0131
+KTL         CAV         CAX      SINGLE       n     1.535  0.0200     1.535  0.0200
+KTL         CAW         SAY      SINGLE       n     1.828  0.0192     1.828  0.0192
+KTL         OAA        HOAA      SINGLE       n     0.970  0.0120     0.846  0.0200
+KTL         OAB        HOAB      SINGLE       n     0.970  0.0120     0.848  0.0200
+KTL         OAC        HOAC      SINGLE       n     0.970  0.0120     0.848  0.0200
+KTL         OAD        HOAD      SINGLE       n     0.970  0.0120     0.849  0.0200
+KTL         OAE        HOAE      SINGLE       n     0.970  0.0120     0.848  0.0200
+KTL         OAF        HOAF      SINGLE       n     0.970  0.0120     0.848  0.0200
+KTL         OAG        HOAG      SINGLE       n     0.970  0.0120     0.849  0.0200
+KTL         OAH        HOAH      SINGLE       n     0.970  0.0120     0.848  0.0200
+KTL         CAL         HAL      SINGLE       n     1.089  0.0100     0.988  0.0200
+KTL         CAL        HALA      SINGLE       n     1.089  0.0100     0.988  0.0200
+KTL         CAM         HAM      SINGLE       n     1.089  0.0100     0.981  0.0200
+KTL         CAM        HAMA      SINGLE       n     1.089  0.0100     0.981  0.0200
+KTL         CAN         HAN      SINGLE       n     1.089  0.0100     0.980  0.0174
+KTL         CAN         H22      SINGLE       n     1.089  0.0100     0.980  0.0174
+KTL         CAO         HAO      SINGLE       n     1.089  0.0100     0.979  0.0150
+KTL         CAO         H23      SINGLE       n     1.089  0.0100     0.979  0.0150
+KTL         CAQ         HAQ      SINGLE       n     1.089  0.0100     1.004  0.0200
+KTL         CAR         HAR      SINGLE       n     1.089  0.0100     0.988  0.0200
+KTL         CAS         HAS      SINGLE       n     1.089  0.0100     0.992  0.0184
+KTL         CAT         HAT      SINGLE       n     1.089  0.0100     0.992  0.0184
+KTL         CAU         HAU      SINGLE       n     1.089  0.0100     0.988  0.0200
+KTL         CAV         HAV      SINGLE       n     1.089  0.0100     0.992  0.0184
+KTL         CAW         H24      SINGLE       n     1.089  0.0100     0.990  0.0167
+KTL         CAX         HAX      SINGLE       n     1.089  0.0100     0.992  0.0184
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KTL         CAL         OAA        HOAA     108.280    3.00
+KTL         CAM         OAB        HOAB     108.898    3.00
+KTL         CAQ         OAC        HOAC     111.202    3.00
+KTL         CAR         OAD        HOAD     109.104    3.00
+KTL         CAS         OAE        HOAE     109.265    3.00
+KTL         CAT         OAF        HOAF     108.564    3.00
+KTL         CAU         OAG        HOAG     109.104    3.00
+KTL         CAV         OAH        HOAH     108.564    3.00
+KTL         OAA         CAL         CAQ     111.364    1.50
+KTL         OAA         CAL         HAL     109.268    1.50
+KTL         OAA         CAL        HALA     109.268    1.50
+KTL         CAQ         CAL         HAL     109.234    1.50
+KTL         CAQ         CAL        HALA     109.234    1.50
+KTL         HAL         CAL        HALA     108.313    1.50
+KTL         OAB         CAM         CAW     111.149    1.71
+KTL         OAB         CAM         HAM     109.269    1.50
+KTL         OAB         CAM        HAMA     109.269    1.50
+KTL         CAW         CAM         HAM     109.599    1.50
+KTL         CAW         CAM        HAMA     109.599    1.50
+KTL         HAM         CAM        HAMA     108.335    1.56
+KTL         CAR         CAN         SAY     108.009    3.00
+KTL         CAR         CAN         HAN     111.014    1.50
+KTL         CAR         CAN         H22     111.014    1.50
+KTL         SAY         CAN         HAN     109.175    1.88
+KTL         SAY         CAN         H22     109.175    1.88
+KTL         HAN         CAN         H22     108.707    1.50
+KTL         CAS         CAO         SAY     109.471    3.00
+KTL         CAS         CAO         HAO     108.906    1.50
+KTL         CAS         CAO         H23     108.906    1.50
+KTL         SAY         CAO         HAO     109.440    1.50
+KTL         SAY         CAO         H23     109.440    1.50
+KTL         HAO         CAO         H23     107.814    1.50
+KTL         CAX         OAP         SAZ     118.012    1.52
+KTL         OAC         CAQ         CAL     109.623    1.60
+KTL         OAC         CAQ         CAT     109.549    1.85
+KTL         OAC         CAQ         HAQ     108.591    1.50
+KTL         CAL         CAQ         CAT     112.159    1.50
+KTL         CAL         CAQ         HAQ     107.986    1.50
+KTL         CAT         CAQ         HAQ     108.777    1.50
+KTL         OAD         CAR         CAN     110.640    2.30
+KTL         OAD         CAR         CAU     112.463    2.73
+KTL         OAD         CAR         HAR     110.259    1.63
+KTL         CAN         CAR         CAU     103.148    1.99
+KTL         CAN         CAR         HAR     110.683    1.50
+KTL         CAU         CAR         HAR     110.255    2.04
+KTL         OAE         CAS         CAO     109.698    2.33
+KTL         OAE         CAS         CAX     109.320    2.01
+KTL         OAE         CAS         HAS     108.183    1.96
+KTL         CAO         CAS         CAX     110.999    2.33
+KTL         CAO         CAS         HAS     108.757    1.75
+KTL         CAX         CAS         HAS     108.450    1.83
+KTL         OAF         CAT         CAQ     109.164    1.97
+KTL         OAF         CAT         CAV     109.024    2.24
+KTL         OAF         CAT         HAT     108.243    1.50
+KTL         CAQ         CAT         CAV     112.413    1.50
+KTL         CAQ         CAT         HAT     108.336    1.50
+KTL         CAV         CAT         HAT     108.569    1.50
+KTL         OAG         CAU         CAR     112.463    2.73
+KTL         OAG         CAU         CAW     111.462    2.58
+KTL         OAG         CAU         HAU     110.259    1.63
+KTL         CAR         CAU         CAW     104.666    1.50
+KTL         CAR         CAU         HAU     110.255    2.04
+KTL         CAW         CAU         HAU     109.734    1.50
+KTL         OAH         CAV         CAT     109.024    2.24
+KTL         OAH         CAV         CAX     109.320    2.01
+KTL         OAH         CAV         HAV     108.243    1.50
+KTL         CAT         CAV         CAX     113.695    2.13
+KTL         CAT         CAV         HAV     108.569    1.50
+KTL         CAX         CAV         HAV     108.450    1.83
+KTL         CAM         CAW         CAU     113.947    1.79
+KTL         CAM         CAW         SAY     109.385    2.31
+KTL         CAM         CAW         H24     109.227    1.50
+KTL         CAU         CAW         SAY     108.009    3.00
+KTL         CAU         CAW         H24     108.976    1.50
+KTL         SAY         CAW         H24     109.124    2.20
+KTL         OAP         CAX         CAS     108.530    2.33
+KTL         OAP         CAX         CAV     108.530    2.33
+KTL         OAP         CAX         HAX     109.082    1.50
+KTL         CAS         CAX         CAV     113.695    2.13
+KTL         CAS         CAX         HAX     108.450    1.83
+KTL         CAV         CAX         HAX     108.450    1.83
+KTL         CAN         SAY         CAO     100.834    1.50
+KTL         CAN         SAY         CAW      91.968    2.15
+KTL         CAO         SAY         CAW     100.834    1.50
+KTL         OAI         SAZ         OAJ     113.532    1.50
+KTL         OAI         SAZ         OAK     113.532    1.50
+KTL         OAI         SAZ         OAP     104.945    2.70
+KTL         OAJ         SAZ         OAK     113.532    1.50
+KTL         OAJ         SAZ         OAP     104.945    2.70
+KTL         OAK         SAZ         OAP     104.945    2.70
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KTL            sp3_sp3_34         CAQ         CAL         OAA        HOAA     180.000    10.0     3
+KTL            sp3_sp3_58         OAA         CAL         CAQ         OAC     180.000    10.0     3
+KTL            sp3_sp3_67         OAB         CAM         CAW         CAU     180.000    10.0     3
+KTL             sp3_sp3_2         SAY         CAN         CAR         OAD     180.000    10.0     3
+KTL            sp3_sp3_77         CAR         CAN         SAY         CAO     -60.000    10.0     3
+KTL            sp3_sp3_82         SAY         CAO         CAS         OAE     180.000    10.0     3
+KTL            sp3_sp3_91         CAS         CAO         SAY         CAN     180.000    10.0     3
+KTL            sp3_sp3_97         CAS         CAX         OAP         SAZ     180.000    10.0     3
+KTL           sp3_sp3_101         CAX         OAP         SAZ         OAI     -60.000    10.0     3
+KTL           sp3_sp3_103         OAC         CAQ         CAT         OAF     180.000    10.0     3
+KTL            sp3_sp3_14         OAD         CAR         CAU         OAG     -60.000    10.0     3
+KTL           sp3_sp3_112         OAE         CAS         CAX         OAP     180.000    10.0     3
+KTL           sp3_sp3_121         OAF         CAT         CAV         OAH     180.000    10.0     3
+KTL            sp3_sp3_37         CAW         CAM         OAB        HOAB     180.000    10.0     3
+KTL            sp3_sp3_23         OAG         CAU         CAW         CAM      60.000    10.0     3
+KTL           sp3_sp3_130         OAH         CAV         CAX         OAP     180.000    10.0     3
+KTL            sp3_sp3_31         CAM         CAW         SAY         CAO     -60.000    10.0     3
+KTL            sp3_sp3_40         CAL         CAQ         OAC        HOAC     180.000    10.0     3
+KTL            sp3_sp3_43         CAN         CAR         OAD        HOAD     180.000    10.0     3
+KTL            sp3_sp3_46         CAO         CAS         OAE        HOAE     180.000    10.0     3
+KTL            sp3_sp3_49         CAQ         CAT         OAF        HOAF     180.000    10.0     3
+KTL            sp3_sp3_52         CAR         CAU         OAG        HOAG     180.000    10.0     3
+KTL            sp3_sp3_55         CAT         CAV         OAH        HOAH     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KTL    chir_1    CAQ    OAC    CAT    CAL    positive
+KTL    chir_2    CAR    OAD    CAN    CAU    positive
+KTL    chir_3    CAS    OAE    CAO    CAX    positive
+KTL    chir_4    CAT    OAF    CAV    CAQ    negative
+KTL    chir_5    CAU    OAG    CAW    CAR    positive
+KTL    chir_6    CAV    OAH    CAX    CAT    negative
+KTL    chir_7    CAW    SAY    CAU    CAM    negative
+KTL    chir_8    CAX    OAP    CAS    CAV    positive
+KTL    chir_9    SAY    CAW    CAO    CAN    positive
+KTL    chir_10    SAZ    OAI    OAK    OAP    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KTL SMILES_CANONICAL               CACTVS 3.352                                                     OC[C@H](O)[C@@H](O)[C@@H](O)[C@H](O[S]([O-])(=O)=O)[C@H](O)C[S@+]1C[C@@H](O)[C@H](O)[C@H]1CO
+KTL           SMILES               CACTVS 3.352                                                                 OC[CH](O)[CH](O)[CH](O)[CH](O[S]([O-])(=O)=O)[CH](O)C[S+]1C[CH](O)[CH](O)[CH]1CO
+KTL SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                    C1[C@H]([C@@H]([C@H]([S@@+]1C[C@H]([C@H]([C@@H]([C@@H]([C@H](CO)O)O)O)OS(=O)(=O)[O-])O)CO)O)O
+KTL           SMILES "OpenEye OEToolkits" 1.7.0                                                                                         C1C(C(C([S+]1CC(C(C(C(C(CO)O)O)O)OS(=O)(=O)[O-])O)CO)O)O
+KTL            InChI                InChI  1.03 InChI=1S/C12H24O12S2/c13-1-5(15)10(19)11(20)12(24-26(21,22)23)7(17)4-25-3-6(16)9(18)8(25)2-14/h5-20H,1-4H2/t5-,6+,7+,8+,9-,10+,11+,12+,25-/m0/s1
+KTL         InChIKey                InChI  1.03                                                                                                                      OMKXVFDVAGCPBS-QTIKZJLFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KTL acedrg               243         "dictionary generator"                  
+KTL acedrg_database      11          "data source"                           
+KTL rdkit                2017.03.2   "Chemoinformatics tool"
+KTL refmac5              5.8.0238    "optimization tool"                     

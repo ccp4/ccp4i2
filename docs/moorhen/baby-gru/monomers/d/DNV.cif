@@ -1,0 +1,336 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DNV     DNV      "2-{(S)-(2-chlorophenyl)[2-(1-methyl-1H-imidazol-2-yl)ethoxy]methyl}-1H-pyrrolo[3,2-b]pyridine-7-carboxylic acid"     NON-POLYMER     47     29     .     
+#
+data_comp_DNV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DNV     C10     C       CH2     0       -25.442     24.129      2.462       
+DNV     C15     C       CR15    0       -28.311     22.593      -0.613      
+DNV     C17     C       CH3     0       -25.941     21.766      -0.690      
+DNV     C20     C       CR15    0       -25.201     19.833      3.708       
+DNV     C21     C       CR56    0       -24.446     18.911      4.407       
+DNV     C22     C       CR56    0       -23.916     19.562      5.540       
+DNV     C24     C       C       0       -22.484     19.441      7.672       
+DNV     C28     C       CR16    0       -23.430     16.928      4.981       
+DNV     C02     C       CR6     0       -27.935     22.583      5.407       
+DNV     C03     C       CR16    0       -29.314     22.522      5.548       
+DNV     C04     C       CR16    0       -30.093     22.147      4.476       
+DNV     C05     C       CR16    0       -29.505     21.833      3.269       
+DNV     C06     C       CR16    0       -28.128     21.892      3.129       
+DNV     C07     C       CR6     0       -27.307     22.275      4.196       
+DNV     C08     C       CH1     0       -25.796     22.335      4.038       
+DNV     C18     C       CR5     0       -25.142     21.028      4.384       
+DNV     C23     C       CR6     0       -23.100     18.841      6.433       
+DNV     C27     C       CR16    0       -22.863     17.496      6.130       
+DNV     N19     N       NR5     0       -24.359     20.855      5.502       
+DNV     N29     N       NRD6    0       -24.211     17.601      4.120       
+DNV     O09     O       O2      0       -25.427     22.716      2.716       
+DNV     O25     O       OC      -1      -22.556     18.798      8.734       
+DNV     O26     O       O       0       -21.933     20.552      7.575       
+DNV     CL1     CL      CL      0       -27.007     23.065      6.808       
+DNV     C11     C       CH2     0       -25.550     24.370      0.971       
+DNV     C12     C       CR5     0       -26.835     23.857      0.423       
+DNV     C14     C       CR15    0       -28.928     23.663      -0.072      
+DNV     N13     N       NRD5    0       -28.007     24.455      0.579       
+DNV     N16     N       NR5     0       -26.980     22.714      -0.299      
+DNV     H1      H       H       0       -24.616     24.535      2.803       
+DNV     H2      H       H       0       -26.204     24.549      2.919       
+DNV     H3      H       H       0       -28.701     21.897      -1.109      
+DNV     H4      H       H       0       -25.324     21.641      0.046       
+DNV     H5      H       H       0       -25.461     22.112      -1.458      
+DNV     H6      H       H       0       -26.348     20.917      -0.919      
+DNV     H7      H       H       0       -25.676     19.685      2.908       
+DNV     H8      H       H       0       -23.256     16.021      4.800       
+DNV     H9      H       H       0       -29.712     22.737      6.370       
+DNV     H10     H       H       0       -31.026     22.106      4.570       
+DNV     H11     H       H       0       -30.042     21.576      2.536       
+DNV     H12     H       H       0       -27.739     21.674      2.299       
+DNV     H13     H       H       0       -25.437     23.016      4.663       
+DNV     H14     H       H       0       -22.322     16.982      6.705       
+DNV     H15     H       H       0       -24.174     21.483      6.096       
+DNV     H17     H       H       0       -24.805     23.936      0.518       
+DNV     H18     H       H       0       -25.490     25.326      0.795       
+DNV     H19     H       H       0       -29.849     23.846      -0.126      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DNV         C17         N16      SINGLE       n     1.459  0.0110     1.459  0.0110
+DNV         C15         N16      SINGLE       y     1.372  0.0100     1.372  0.0100
+DNV         C15         C14      DOUBLE       y     1.349  0.0100     1.349  0.0100
+DNV         C12         N16      SINGLE       y     1.357  0.0100     1.357  0.0100
+DNV         C14         N13      SINGLE       y     1.379  0.0100     1.379  0.0100
+DNV         C12         N13      DOUBLE       y     1.325  0.0100     1.325  0.0100
+DNV         C11         C12      SINGLE       n     1.486  0.0100     1.486  0.0100
+DNV         C10         C11      SINGLE       n     1.513  0.0132     1.513  0.0132
+DNV         C10         O09      SINGLE       n     1.425  0.0196     1.425  0.0196
+DNV         C08         O09      SINGLE       n     1.421  0.0100     1.421  0.0100
+DNV         C05         C06      DOUBLE       y     1.382  0.0103     1.382  0.0103
+DNV         C06         C07      SINGLE       y     1.394  0.0100     1.394  0.0100
+DNV         C20         C21      SINGLE       y     1.379  0.0200     1.379  0.0200
+DNV         C20         C18      DOUBLE       y     1.375  0.0120     1.375  0.0120
+DNV         C21         N29      DOUBLE       y     1.355  0.0100     1.355  0.0100
+DNV         C28         N29      SINGLE       y     1.337  0.0109     1.337  0.0109
+DNV         C04         C05      SINGLE       y     1.376  0.0124     1.376  0.0124
+DNV         C07         C08      SINGLE       n     1.516  0.0100     1.516  0.0100
+DNV         C08         C18      SINGLE       n     1.502  0.0100     1.502  0.0100
+DNV         C21         C22      SINGLE       y     1.405  0.0100     1.405  0.0100
+DNV         C02         C07      DOUBLE       y     1.390  0.0100     1.390  0.0100
+DNV         C18         N19      SINGLE       y     1.377  0.0112     1.377  0.0112
+DNV         C28         C27      DOUBLE       y     1.398  0.0114     1.398  0.0114
+DNV         C03         C04      DOUBLE       y     1.373  0.0113     1.373  0.0113
+DNV         C22         N19      SINGLE       y     1.367  0.0100     1.367  0.0100
+DNV         C22         C23      DOUBLE       y     1.406  0.0100     1.406  0.0100
+DNV         C02         C03      SINGLE       y     1.384  0.0100     1.384  0.0100
+DNV         C02         CL1      SINGLE       n     1.746  0.0134     1.746  0.0134
+DNV         C23         C27      SINGLE       y     1.397  0.0113     1.397  0.0113
+DNV         C24         C23      SINGLE       n     1.509  0.0113     1.509  0.0113
+DNV         C24         O26      DOUBLE       n     1.244  0.0200     1.244  0.0200
+DNV         C24         O25      SINGLE       n     1.244  0.0200     1.244  0.0200
+DNV         C10          H1      SINGLE       n     1.089  0.0100     0.982  0.0200
+DNV         C10          H2      SINGLE       n     1.089  0.0100     0.982  0.0200
+DNV         C15          H3      SINGLE       n     1.082  0.0130     0.939  0.0102
+DNV         C17          H4      SINGLE       n     1.089  0.0100     0.969  0.0162
+DNV         C17          H5      SINGLE       n     1.089  0.0100     0.969  0.0162
+DNV         C17          H6      SINGLE       n     1.089  0.0100     0.969  0.0162
+DNV         C20          H7      SINGLE       n     1.082  0.0130     0.942  0.0149
+DNV         C28          H8      SINGLE       n     1.082  0.0130     0.942  0.0183
+DNV         C03          H9      SINGLE       n     1.082  0.0130     0.939  0.0176
+DNV         C04         H10      SINGLE       n     1.082  0.0130     0.939  0.0165
+DNV         C05         H11      SINGLE       n     1.082  0.0130     0.944  0.0175
+DNV         C06         H12      SINGLE       n     1.082  0.0130     0.943  0.0173
+DNV         C08         H13      SINGLE       n     1.089  0.0100     0.994  0.0200
+DNV         C27         H14      SINGLE       n     1.082  0.0130     0.942  0.0177
+DNV         N19         H15      SINGLE       n     1.016  0.0100     0.884  0.0200
+DNV         C11         H17      SINGLE       n     1.089  0.0100     0.974  0.0100
+DNV         C11         H18      SINGLE       n     1.089  0.0100     0.974  0.0100
+DNV         C14         H19      SINGLE       n     1.082  0.0130     0.941  0.0103
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DNV         C11         C10         O09     108.926    2.01
+DNV         C11         C10          H1     109.702    1.50
+DNV         C11         C10          H2     109.702    1.50
+DNV         O09         C10          H1     109.668    1.50
+DNV         O09         C10          H2     109.668    1.50
+DNV          H1         C10          H2     108.319    1.50
+DNV         N16         C15         C14     106.210    1.50
+DNV         N16         C15          H3     126.131    2.34
+DNV         C14         C15          H3     127.659    1.85
+DNV         N16         C17          H4     109.448    1.50
+DNV         N16         C17          H5     109.448    1.50
+DNV         N16         C17          H6     109.448    1.50
+DNV          H4         C17          H5     109.448    1.52
+DNV          H4         C17          H6     109.448    1.52
+DNV          H5         C17          H6     109.448    1.52
+DNV         C21         C20         C18     107.749    1.50
+DNV         C21         C20          H7     127.007    1.50
+DNV         C18         C20          H7     125.244    1.50
+DNV         C20         C21         N29     129.530    1.50
+DNV         C20         C21         C22     107.600    1.70
+DNV         N29         C21         C22     122.871    1.50
+DNV         C21         C22         N19     106.792    1.50
+DNV         C21         C22         C23     119.685    1.51
+DNV         N19         C22         C23     133.524    1.50
+DNV         C23         C24         O26     118.166    2.93
+DNV         C23         C24         O25     118.166    2.93
+DNV         O26         C24         O25     123.668    1.50
+DNV         N29         C28         C27     123.920    1.50
+DNV         N29         C28          H8     117.836    1.50
+DNV         C27         C28          H8     118.244    1.50
+DNV         C07         C02         C03     121.736    1.50
+DNV         C07         C02         CL1     119.996    1.50
+DNV         C03         C02         CL1     118.268    1.50
+DNV         C04         C03         C02     119.401    1.50
+DNV         C04         C03          H9     120.413    1.50
+DNV         C02         C03          H9     120.187    1.50
+DNV         C05         C04         C03     120.246    1.50
+DNV         C05         C04         H10     119.998    1.50
+DNV         C03         C04         H10     119.756    1.50
+DNV         C06         C05         C04     120.147    1.50
+DNV         C06         C05         H11     119.881    1.50
+DNV         C04         C05         H11     119.972    1.50
+DNV         C05         C06         C07     120.904    1.50
+DNV         C05         C06         H12     119.724    1.50
+DNV         C07         C06         H12     119.371    1.50
+DNV         C06         C07         C08     121.314    1.80
+DNV         C06         C07         C02     117.567    1.50
+DNV         C08         C07         C02     121.119    1.50
+DNV         O09         C08         C07     109.457    2.31
+DNV         O09         C08         C18     111.468    3.00
+DNV         O09         C08         H13     108.433    1.65
+DNV         C07         C08         C18     112.812    1.50
+DNV         C07         C08         H13     108.291    1.50
+DNV         C18         C08         H13     107.482    1.50
+DNV         C20         C18         C08     128.752    2.17
+DNV         C20         C18         N19     108.570    1.50
+DNV         C08         C18         N19     122.678    1.69
+DNV         C22         C23         C27     117.828    1.50
+DNV         C22         C23         C24     122.908    3.00
+DNV         C27         C23         C24     119.265    1.55
+DNV         C28         C27         C23     120.681    1.50
+DNV         C28         C27         H14     120.409    1.50
+DNV         C23         C27         H14     118.909    1.50
+DNV         C18         N19         C22     109.290    1.50
+DNV         C18         N19         H15     124.977    1.50
+DNV         C22         N19         H15     125.733    1.93
+DNV         C21         N29         C28     115.016    1.50
+DNV         C10         O09         C08     113.591    1.55
+DNV         C12         C11         C10     110.747    2.16
+DNV         C12         C11         H17     108.854    1.50
+DNV         C12         C11         H18     108.854    1.50
+DNV         C10         C11         H17     109.160    1.50
+DNV         C10         C11         H18     109.160    1.50
+DNV         H17         C11         H18     107.724    1.50
+DNV         N16         C12         N13     110.379    1.50
+DNV         N16         C12         C11     124.577    1.50
+DNV         N13         C12         C11     125.044    1.64
+DNV         C15         C14         N13     110.099    1.50
+DNV         C15         C14         H19     125.310    1.50
+DNV         N13         C14         H19     124.591    1.50
+DNV         C14         N13         C12     106.100    1.50
+DNV         C17         N16         C15     125.450    1.50
+DNV         C17         N16         C12     127.339    1.50
+DNV         C15         N16         C12     107.211    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DNV            sp3_sp3_10         C11         C10         O09         C08     180.000    10.0     3
+DNV             sp3_sp3_1         O09         C10         C11         C12     180.000    10.0     3
+DNV              const_13         C03         C04         C05         C06       0.000    10.0     2
+DNV       const_sp2_sp2_9         C04         C05         C06         C07       0.000     5.0     2
+DNV       const_sp2_sp2_6         C05         C06         C07         C08     180.000     5.0     2
+DNV            sp2_sp3_13         C06         C07         C08         O09     150.000    10.0     6
+DNV            sp2_sp3_19         C20         C18         C08         O09     150.000    10.0     6
+DNV            sp3_sp3_13         C07         C08         O09         C10     180.000    10.0     3
+DNV              const_47         C08         C18         N19         C22     180.000    10.0     2
+DNV              const_59         C24         C23         C27         C28     180.000    10.0     2
+DNV              const_65         N13         C14         C15         N16       0.000    10.0     2
+DNV              const_22         C14         C15         N16         C17     180.000    10.0     2
+DNV             sp2_sp3_8         N16         C12         C11         C10     -90.000    10.0     6
+DNV              const_30         C11         C12         N13         C14     180.000    10.0     2
+DNV              const_28         C11         C12         N16         C17       0.000    10.0     2
+DNV              const_31         C15         C14         N13         C12       0.000    10.0     2
+DNV             sp2_sp3_1         C15         N16         C17          H4     150.000    10.0     6
+DNV              const_71         C08         C18         C20         C21     180.000    10.0     2
+DNV              const_34         C18         C20         C21         N29     180.000    10.0     2
+DNV              const_50         C20         C21         N29         C28     180.000    10.0     2
+DNV              const_37         C20         C21         C22         N19       0.000    10.0     2
+DNV              const_62         C21         C22         C23         C24     180.000    10.0     2
+DNV              const_41         C21         C22         N19         C18       0.000    10.0     2
+DNV             sp2_sp2_1         C22         C23         C24         O26     180.000     5.0     2
+DNV              const_53         C23         C27         C28         N29       0.000    10.0     2
+DNV              const_51         C27         C28         N29         C21       0.000    10.0     2
+DNV       const_sp2_sp2_4         CL1         C02         C07         C08       0.000     5.0     2
+DNV              const_75         CL1         C02         C03         C04     180.000    10.0     2
+DNV              const_17         C02         C03         C04         C05       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DNV    chir_1    C08    O09    C18    C07    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DNV    plan-1         C08   0.020
+DNV    plan-1         C18   0.020
+DNV    plan-1         C20   0.020
+DNV    plan-1         C21   0.020
+DNV    plan-1         C22   0.020
+DNV    plan-1         C23   0.020
+DNV    plan-1         C24   0.020
+DNV    plan-1         C27   0.020
+DNV    plan-1         C28   0.020
+DNV    plan-1         H14   0.020
+DNV    plan-1         H15   0.020
+DNV    plan-1          H7   0.020
+DNV    plan-1          H8   0.020
+DNV    plan-1         N19   0.020
+DNV    plan-1         N29   0.020
+DNV    plan-2         C02   0.020
+DNV    plan-2         C03   0.020
+DNV    plan-2         C04   0.020
+DNV    plan-2         C05   0.020
+DNV    plan-2         C06   0.020
+DNV    plan-2         C07   0.020
+DNV    plan-2         C08   0.020
+DNV    plan-2         CL1   0.020
+DNV    plan-2         H10   0.020
+DNV    plan-2         H11   0.020
+DNV    plan-2         H12   0.020
+DNV    plan-2          H9   0.020
+DNV    plan-3         C11   0.020
+DNV    plan-3         C12   0.020
+DNV    plan-3         C14   0.020
+DNV    plan-3         C15   0.020
+DNV    plan-3         C17   0.020
+DNV    plan-3         H19   0.020
+DNV    plan-3          H3   0.020
+DNV    plan-3         N13   0.020
+DNV    plan-3         N16   0.020
+DNV    plan-4         C23   0.020
+DNV    plan-4         C24   0.020
+DNV    plan-4         O25   0.020
+DNV    plan-4         O26   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DNV           SMILES              ACDLabs 12.01                                                                                                                  C(OC(c1c(cccc1)Cl)c2cc3c(n2)c(C(=O)O)ccn3)Cc4nccn4C
+DNV            InChI                InChI  1.03 InChI=1S/C21H19ClN4O3/c1-26-10-9-24-18(26)7-11-29-20(13-4-2-3-5-15(13)22)17-12-16-19(25-17)14(21(27)28)6-8-23-16/h2-6,8-10,12,20,25H,7,11H2,1H3,(H,27,28)/t20-/m0/s1
+DNV         InChIKey                InChI  1.03                                                                                                                                          ULBCSYUKODTPKF-FQEVSTJZSA-N
+DNV SMILES_CANONICAL               CACTVS 3.385                                                                                                                 Cn1ccnc1CCO[C@H](c2[nH]c3c(c2)nccc3C(O)=O)c4ccccc4Cl
+DNV           SMILES               CACTVS 3.385                                                                                                                  Cn1ccnc1CCO[CH](c2[nH]c3c(c2)nccc3C(O)=O)c4ccccc4Cl
+DNV SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                              Cn1ccnc1CCO[C@@H](c2ccccc2Cl)c3cc4c([nH]3)c(ccn4)C(=O)O
+DNV           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                   Cn1ccnc1CCOC(c2ccccc2Cl)c3cc4c([nH]3)c(ccn4)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DNV acedrg               243         "dictionary generator"                  
+DNV acedrg_database      11          "data source"                           
+DNV rdkit                2017.03.2   "Chemoinformatics tool"
+DNV refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,657 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MYA     MYA      TETRADECANOYL-COA     NON-POLYMER     121     63     .     
+#
+data_comp_MYA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MYA     S1      S       S2      0       25.893      -5.684      8.319       
+MYA     C2      C       CH2     0       26.107      -4.771      9.868       
+MYA     C3      C       CH2     0       27.518      -4.836      10.414      
+MYA     N4      N       NH1     0       27.700      -5.902      11.391      
+MYA     C5      C       C       0       28.753      -5.984      12.222      
+MYA     O5      O       O       0       29.674      -5.169      12.182      
+MYA     C6      C       CH2     0       28.757      -7.104      13.245      
+MYA     C7      C       CH2     0       30.126      -7.716      13.475      
+MYA     N8      N       NH1     0       30.631      -8.410      12.296      
+MYA     C9      C       C       0       30.215      -9.614      11.913      
+MYA     O9      O       O       0       29.341      -10.242     12.508      
+MYA     C10     C       CH1     0       30.854      -10.238     10.676      
+MYA     O10     O       OH1     0       32.240      -9.880      10.623      
+MYA     C11     C       CT      0       30.101      -9.948      9.357       
+MYA     C12     C       CH2     0       30.905      -10.394     8.132       
+MYA     C13     C       CH3     0       29.802      -8.448      9.216       
+MYA     C14     C       CH3     0       28.766      -10.705     9.353       
+MYA     N1A     N       NRD6    0       28.666      -4.545      4.438       
+MYA     O1A     O       OP      -1      29.653      -14.260     5.250       
+MYA     P1A     P       P       0       30.893      -13.557     4.805       
+MYA     C1X     C       CH1     0       30.630      -8.792      2.221       
+MYA     C2A     C       CR16    0       28.742      -4.930      3.154       
+MYA     O2A     O       O       0       32.107      -14.378     4.520       
+MYA     P2A     P       P       0       32.243      -12.462     7.170       
+MYA     C2M     C       C       0       24.326      -6.381      7.913       
+MYA     O2M     O       O       0       23.366      -6.302      8.641       
+MYA     C2X     C       CH1     0       32.110      -8.922      1.875       
+MYA     O2X     O       OH1     0       32.577      -7.798      1.160       
+MYA     N3A     N       NRD6    0       29.265      -6.045      2.641       
+MYA     O3A     O       O2      0       31.271      -12.441     5.894       
+MYA     C3M     C       CH2     0       24.308      -7.077      6.580       
+MYA     C3X     C       CH1     0       32.108      -10.207     1.046       
+MYA     O3X     O       O2      0       31.695      -9.965      -0.303      
+MYA     P3X     P       P       0       32.373      -10.944     -1.401      
+MYA     C4A     C       CR56    0       29.763      -6.843      3.606       
+MYA     O4A     O       O       0       33.412      -11.571     6.911       
+MYA     C4M     C       CH2     0       25.028      -8.402      6.540       
+MYA     C4X     C       CH1     0       31.079      -11.053     1.788       
+MYA     O4X     O       O2      0       30.142      -10.107     2.365       
+MYA     C5A     C       CR56    0       29.757      -6.582      4.967       
+MYA     O5A     O       OP      -1      32.493      -13.879     7.569       
+MYA     C5M     C       CH2     0       26.095      -8.488      5.459       
+MYA     C5X     C       CH2     0       31.640      -11.928     2.882       
+MYA     O5X     O       O2      0       30.558      -12.643     3.530       
+MYA     C6A     C       CR6     0       29.176      -5.367      5.391       
+MYA     N6A     N       NH2     0       29.102      -4.991      6.664       
+MYA     O6A     O       O2      0       31.314      -11.783     8.288       
+MYA     C6M     C       CH2     0       26.926      -9.751      5.504       
+MYA     N7A     N       NRD5    0       30.355      -7.623      5.661       
+MYA     O7A     O       OP      -1      32.216      -12.366     -0.897      
+MYA     C7M     C       CH2     0       27.473      -10.185     4.164       
+MYA     C8A     C       CR15    0       30.704      -8.476      4.730       
+MYA     O8A     O       OP      -1      33.829      -10.531     -1.502      
+MYA     C8M     C       CH2     0       26.496      -10.967     3.320       
+MYA     N9A     N       NR5     0       30.375      -8.066      3.461       
+MYA     O9A     O       O       0       31.623      -10.712     -2.699      
+MYA     C9M     C       CH2     0       27.076      -11.495     2.030       
+MYA     CAM     C       CH2     0       26.075      -12.195     1.143       
+MYA     CBM     C       CH2     0       25.714      -13.588     1.595       
+MYA     CCM     C       CH2     0       24.686      -14.274     0.729       
+MYA     CDM     C       CH2     0       25.239      -14.853     -0.550      
+MYA     CEM     C       CH2     0       24.241      -15.646     -1.354      
+MYA     CFM     C       CH3     0       24.764      -16.090     -2.699      
+MYA     H2      H       H       0       25.488      -5.129      10.536      
+MYA     H2A     H       H       0       25.871      -3.834      9.718       
+MYA     H3      H       H       0       27.732      -3.975      10.833      
+MYA     H3A     H       H       0       28.144      -4.973      9.671       
+MYA     HN4     H       H       0       27.095      -6.529      11.435      
+MYA     H6      H       H       0       28.144      -7.801      12.956      
+MYA     H6A     H       H       0       28.418      -6.755      14.088      
+MYA     H7      H       H       0       30.072      -8.348      14.223      
+MYA     H7A     H       H       0       30.758      -7.010      13.726      
+MYA     HN8     H       H       0       31.235      -8.004      11.819      
+MYA     H10     H       H       0       30.815      -11.216     10.810      
+MYA     HO10    H       H       0       32.389      -9.150      10.219      
+MYA     H12     H       H       0       31.693      -9.823      8.030       
+MYA     H12A    H       H       0       30.357      -10.299     7.328       
+MYA     H13     H       H       0       29.622      -8.236      8.284       
+MYA     H13A    H       H       0       30.567      -7.931      9.520       
+MYA     H13B    H       H       0       29.023      -8.212      9.751       
+MYA     H14     H       H       0       28.323      -10.578     8.497       
+MYA     H14A    H       H       0       28.192      -10.369     10.063      
+MYA     H14B    H       H       0       28.926      -11.655     9.493       
+MYA     H1X     H       H       0       30.167      -8.347      1.476       
+MYA     H2AA    H       H       0       28.375      -4.327      2.527       
+MYA     H2X     H       H       0       32.651      -9.052      2.699       
+MYA     HO2X    H       H       0       33.375      -7.941      0.909       
+MYA     H3M     H       H       0       24.694      -6.491      5.939       
+MYA     H3MA    H       H       0       23.401      -7.215      6.334       
+MYA     H3X     H       H       0       32.997      -10.631     1.077       
+MYA     H4M     H       H       0       24.371      -9.113      6.388       
+MYA     H4MA    H       H       0       25.449      -8.569      7.410       
+MYA     H4X     H       H       0       30.604      -11.624     1.147       
+MYA     H5M     H       H       0       26.695      -7.716      5.546       
+MYA     H5MA    H       H       0       25.659      -8.428      4.582       
+MYA     H5X     H       H       0       32.117      -11.368     3.543       
+MYA     H5XA    H       H       0       32.284      -12.572     2.495       
+MYA     HN6A    H       H       0       29.817      -5.030      7.171       
+MYA     HN6B    H       H       0       28.340      -4.705      6.990       
+MYA     H6M     H       H       0       26.376      -10.477     5.869       
+MYA     H6MA    H       H       0       27.677      -9.610      6.118       
+MYA     H7M     H       H       0       28.271      -10.736     4.314       
+MYA     H7MA    H       H       0       27.752      -9.388      3.665       
+MYA     H8A     H       H       0       31.138      -9.291      4.912       
+MYA     H8M     H       H       0       25.731      -10.391     3.109       
+MYA     H8MA    H       H       0       26.162      -11.724     3.847       
+MYA     H9M     H       H       0       27.799      -12.121     2.244       
+MYA     H9MA    H       H       0       27.468      -10.746     1.532       
+MYA     HAM     H       H       0       26.442      -12.244     0.234       
+MYA     HAMA    H       H       0       25.257      -11.654     1.104       
+MYA     HBM     H       H       0       25.370      -13.542     2.513       
+MYA     HBMA    H       H       0       26.528      -14.135     1.610       
+MYA     HCM     H       H       0       23.983      -13.627     0.503       
+MYA     HCMA    H       H       0       24.269      -14.996     1.246       
+MYA     HDM     H       H       0       25.997      -15.434     -0.330      
+MYA     HDMA    H       H       0       25.578      -14.119     -1.107      
+MYA     HEM     H       H       0       23.438      -15.097     -1.491      
+MYA     HEMA    H       H       0       23.978      -16.438     -0.838      
+MYA     HFM     H       H       0       24.072      -16.587     -3.170      
+MYA     HFMA    H       H       0       25.542      -16.661     -2.574      
+MYA     HFMB    H       H       0       25.016      -15.311     -3.225      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MYA          S1         C2M      SINGLE       n     1.762  0.0200     1.762  0.0200
+MYA          S1          C2      SINGLE       n     1.809  0.0191     1.809  0.0191
+MYA          C2          C3      SINGLE       n     1.510  0.0158     1.510  0.0158
+MYA          C3          N4      SINGLE       n     1.455  0.0100     1.455  0.0100
+MYA          N4          C5      SINGLE       n     1.337  0.0118     1.337  0.0118
+MYA          C5          O5      DOUBLE       n     1.229  0.0102     1.229  0.0102
+MYA          C5          C6      SINGLE       n     1.514  0.0100     1.514  0.0100
+MYA          C6          C7      SINGLE       n     1.513  0.0195     1.513  0.0195
+MYA          C7          N8      SINGLE       n     1.457  0.0100     1.457  0.0100
+MYA          N8          C9      SINGLE       n     1.326  0.0100     1.326  0.0100
+MYA          C9         C10      SINGLE       n     1.519  0.0108     1.519  0.0108
+MYA          C9          O9      DOUBLE       n     1.229  0.0102     1.229  0.0102
+MYA         C10         C11      SINGLE       n     1.532  0.0112     1.532  0.0112
+MYA         C10         O10      SINGLE       n     1.419  0.0162     1.419  0.0162
+MYA         C11         C12      SINGLE       n     1.526  0.0108     1.526  0.0108
+MYA         C11         C13      SINGLE       n     1.531  0.0109     1.531  0.0109
+MYA         C11         C14      SINGLE       n     1.531  0.0109     1.531  0.0109
+MYA         C12         O6A      SINGLE       n     1.454  0.0165     1.454  0.0165
+MYA         N1A         C2A      DOUBLE       y     1.339  0.0100     1.339  0.0100
+MYA         N1A         C6A      SINGLE       y     1.354  0.0100     1.354  0.0100
+MYA         O1A         P1A      SINGLE       n     1.493  0.0122     1.493  0.0122
+MYA         P1A         O5X      SINGLE       n     1.604  0.0133     1.604  0.0133
+MYA         P1A         O2A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+MYA         P1A         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+MYA         C1X         C2X      SINGLE       n     1.525  0.0100     1.525  0.0100
+MYA         C1X         O4X      SINGLE       n     1.409  0.0100     1.409  0.0100
+MYA         C1X         N9A      SINGLE       n     1.458  0.0100     1.458  0.0100
+MYA         C2A         N3A      SINGLE       y     1.330  0.0100     1.330  0.0100
+MYA         P2A         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+MYA         P2A         O6A      SINGLE       n     1.604  0.0133     1.604  0.0133
+MYA         P2A         O4A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+MYA         P2A         O5A      SINGLE       n     1.493  0.0122     1.493  0.0122
+MYA         C2M         C3M      SINGLE       n     1.502  0.0151     1.502  0.0151
+MYA         C2M         O2M      DOUBLE       n     1.207  0.0100     1.207  0.0100
+MYA         C2X         O2X      SINGLE       n     1.411  0.0100     1.411  0.0100
+MYA         C2X         C3X      SINGLE       n     1.529  0.0125     1.529  0.0125
+MYA         N3A         C4A      DOUBLE       y     1.343  0.0100     1.343  0.0100
+MYA         C3M         C4M      SINGLE       n     1.497  0.0200     1.497  0.0200
+MYA         C3X         O3X      SINGLE       n     1.425  0.0152     1.425  0.0152
+MYA         C3X         C4X      SINGLE       n     1.525  0.0133     1.525  0.0133
+MYA         O3X         P3X      SINGLE       n     1.614  0.0178     1.614  0.0178
+MYA         P3X         O9A      DOUBLE       n     1.517  0.0192     1.517  0.0192
+MYA         P3X         O8A      SINGLE       n     1.517  0.0192     1.517  0.0192
+MYA         P3X         O7A      SINGLE       n     1.517  0.0192     1.517  0.0192
+MYA         C4A         N9A      SINGLE       y     1.374  0.0101     1.374  0.0101
+MYA         C4A         C5A      SINGLE       y     1.381  0.0100     1.381  0.0100
+MYA         C4M         C5M      SINGLE       n     1.519  0.0164     1.519  0.0164
+MYA         C4X         O4X      SINGLE       n     1.451  0.0100     1.451  0.0100
+MYA         C4X         C5X      SINGLE       n     1.509  0.0100     1.509  0.0100
+MYA         C5A         C6A      DOUBLE       y     1.408  0.0100     1.408  0.0100
+MYA         C5A         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+MYA         C5M         C6M      SINGLE       n     1.509  0.0200     1.509  0.0200
+MYA         C5X         O5X      SINGLE       n     1.450  0.0166     1.450  0.0166
+MYA         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+MYA         C6M         C7M      SINGLE       n     1.509  0.0200     1.509  0.0200
+MYA         N7A         C8A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+MYA         C7M         C8M      SINGLE       n     1.509  0.0200     1.509  0.0200
+MYA         C8A         N9A      SINGLE       y     1.372  0.0100     1.372  0.0100
+MYA         C8M         C9M      SINGLE       n     1.509  0.0200     1.509  0.0200
+MYA         C9M         CAM      SINGLE       n     1.509  0.0200     1.509  0.0200
+MYA         CAM         CBM      SINGLE       n     1.509  0.0200     1.509  0.0200
+MYA         CBM         CCM      SINGLE       n     1.509  0.0200     1.509  0.0200
+MYA         CCM         CDM      SINGLE       n     1.509  0.0200     1.509  0.0200
+MYA         CDM         CEM      SINGLE       n     1.507  0.0200     1.507  0.0200
+MYA         CEM         CFM      SINGLE       n     1.510  0.0200     1.510  0.0200
+MYA          C2          H2      SINGLE       n     1.089  0.0100     0.978  0.0177
+MYA          C2         H2A      SINGLE       n     1.089  0.0100     0.978  0.0177
+MYA          C3          H3      SINGLE       n     1.089  0.0100     0.981  0.0127
+MYA          C3         H3A      SINGLE       n     1.089  0.0100     0.981  0.0127
+MYA          N4         HN4      SINGLE       n     1.016  0.0100     0.872  0.0200
+MYA          C6          H6      SINGLE       n     1.089  0.0100     0.973  0.0156
+MYA          C6         H6A      SINGLE       n     1.089  0.0100     0.973  0.0156
+MYA          C7          H7      SINGLE       n     1.089  0.0100     0.980  0.0159
+MYA          C7         H7A      SINGLE       n     1.089  0.0100     0.980  0.0159
+MYA          N8         HN8      SINGLE       n     1.016  0.0100     0.872  0.0200
+MYA         C10         H10      SINGLE       n     1.089  0.0100     0.988  0.0129
+MYA         O10        HO10      SINGLE       n     0.970  0.0120     0.848  0.0200
+MYA         C12         H12      SINGLE       n     1.089  0.0100     0.978  0.0102
+MYA         C12        H12A      SINGLE       n     1.089  0.0100     0.978  0.0102
+MYA         C13         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+MYA         C13        H13A      SINGLE       n     1.089  0.0100     0.973  0.0146
+MYA         C13        H13B      SINGLE       n     1.089  0.0100     0.973  0.0146
+MYA         C14         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+MYA         C14        H14A      SINGLE       n     1.089  0.0100     0.973  0.0146
+MYA         C14        H14B      SINGLE       n     1.089  0.0100     0.973  0.0146
+MYA         C1X         H1X      SINGLE       n     1.089  0.0100     0.984  0.0200
+MYA         C2A        H2AA      SINGLE       n     1.082  0.0130     0.945  0.0200
+MYA         C2X         H2X      SINGLE       n     1.089  0.0100     0.994  0.0200
+MYA         O2X        HO2X      SINGLE       n     0.970  0.0120     0.849  0.0200
+MYA         C3M         H3M      SINGLE       n     1.089  0.0100     0.950  0.0162
+MYA         C3M        H3MA      SINGLE       n     1.089  0.0100     0.950  0.0162
+MYA         C3X         H3X      SINGLE       n     1.089  0.0100     0.985  0.0119
+MYA         C4M         H4M      SINGLE       n     1.089  0.0100     0.980  0.0160
+MYA         C4M        H4MA      SINGLE       n     1.089  0.0100     0.980  0.0160
+MYA         C4X         H4X      SINGLE       n     1.089  0.0100     0.981  0.0200
+MYA         C5M         H5M      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         C5M        H5MA      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         C5X         H5X      SINGLE       n     1.089  0.0100     0.989  0.0200
+MYA         C5X        H5XA      SINGLE       n     1.089  0.0100     0.989  0.0200
+MYA         N6A        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+MYA         N6A        HN6B      SINGLE       n     1.016  0.0100     0.877  0.0200
+MYA         C6M         H6M      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         C6M        H6MA      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         C7M         H7M      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         C7M        H7MA      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         C8A         H8A      SINGLE       n     1.082  0.0130     0.942  0.0170
+MYA         C8M         H8M      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         C8M        H8MA      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         C9M         H9M      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         C9M        H9MA      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         CAM         HAM      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         CAM        HAMA      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         CBM         HBM      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         CBM        HBMA      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         CCM         HCM      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         CCM        HCMA      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         CDM         HDM      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         CDM        HDMA      SINGLE       n     1.089  0.0100     0.981  0.0163
+MYA         CEM         HEM      SINGLE       n     1.089  0.0100     0.982  0.0155
+MYA         CEM        HEMA      SINGLE       n     1.089  0.0100     0.982  0.0155
+MYA         CFM         HFM      SINGLE       n     1.089  0.0100     0.973  0.0157
+MYA         CFM        HFMA      SINGLE       n     1.089  0.0100     0.973  0.0157
+MYA         CFM        HFMB      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MYA         C2M          S1          C2     120.000    3.00
+MYA          S1          C2          C3     112.239    3.00
+MYA          S1          C2          H2     109.066    1.50
+MYA          S1          C2         H2A     109.066    1.50
+MYA          C3          C2          H2     108.964    1.50
+MYA          C3          C2         H2A     108.964    1.50
+MYA          H2          C2         H2A     107.807    1.50
+MYA          C2          C3          N4     112.117    1.54
+MYA          C2          C3          H3     109.038    1.50
+MYA          C2          C3         H3A     109.038    1.50
+MYA          N4          C3          H3     109.102    1.50
+MYA          N4          C3         H3A     109.102    1.50
+MYA          H3          C3         H3A     107.995    1.50
+MYA          C3          N4          C5     123.437    1.80
+MYA          C3          N4         HN4     118.700    1.83
+MYA          C5          N4         HN4     117.862    2.10
+MYA          N4          C5          O5     121.943    1.50
+MYA          N4          C5          C6     117.070    1.96
+MYA          O5          C5          C6     120.987    1.50
+MYA          C5          C6          C7     112.120    2.79
+MYA          C5          C6          H6     108.945    1.50
+MYA          C5          C6         H6A     108.945    1.50
+MYA          C7          C6          H6     109.432    1.50
+MYA          C7          C6         H6A     109.432    1.50
+MYA          H6          C6         H6A     107.745    2.07
+MYA          C6          C7          N8     112.257    1.50
+MYA          C6          C7          H7     108.971    1.50
+MYA          C6          C7         H7A     108.971    1.50
+MYA          N8          C7          H7     108.979    1.50
+MYA          N8          C7         H7A     108.979    1.50
+MYA          H7          C7         H7A     107.877    1.50
+MYA          C7          N8          C9     122.964    1.80
+MYA          C7          N8         HN8     118.351    1.90
+MYA          C9          N8         HN8     118.685    1.94
+MYA          N8          C9         C10     117.155    1.50
+MYA          N8          C9          O9     122.977    1.50
+MYA         C10          C9          O9     119.851    1.78
+MYA          C9         C10         C11     111.511    2.91
+MYA          C9         C10         O10     109.850    1.55
+MYA          C9         C10         H10     108.529    1.70
+MYA         C11         C10         O10     109.482    3.00
+MYA         C11         C10         H10     107.825    1.50
+MYA         O10         C10         H10     108.675    1.50
+MYA         C10         O10        HO10     108.894    3.00
+MYA         C10         C11         C12     111.094    2.85
+MYA         C10         C11         C13     109.534    1.52
+MYA         C10         C11         C14     109.534    1.52
+MYA         C12         C11         C13     109.385    1.50
+MYA         C12         C11         C14     109.385    1.50
+MYA         C13         C11         C14     108.765    1.50
+MYA         C11         C12         O6A     108.435    1.69
+MYA         C11         C12         H12     109.473    1.50
+MYA         C11         C12        H12A     109.473    1.50
+MYA         O6A         C12         H12     109.739    1.50
+MYA         O6A         C12        H12A     109.739    1.50
+MYA         H12         C12        H12A     108.108    1.50
+MYA         C11         C13         H13     109.575    1.50
+MYA         C11         C13        H13A     109.575    1.50
+MYA         C11         C13        H13B     109.575    1.50
+MYA         H13         C13        H13A     109.377    1.50
+MYA         H13         C13        H13B     109.377    1.50
+MYA        H13A         C13        H13B     109.377    1.50
+MYA         C11         C14         H14     109.575    1.50
+MYA         C11         C14        H14A     109.575    1.50
+MYA         C11         C14        H14B     109.575    1.50
+MYA         H14         C14        H14A     109.377    1.50
+MYA         H14         C14        H14B     109.377    1.50
+MYA        H14A         C14        H14B     109.377    1.50
+MYA         C2A         N1A         C6A     118.521    1.50
+MYA         O1A         P1A         O5X     109.410    1.50
+MYA         O1A         P1A         O2A     118.411    2.35
+MYA         O1A         P1A         O3A     108.816    2.14
+MYA         O5X         P1A         O2A     109.410    1.50
+MYA         O5X         P1A         O3A     101.065    1.97
+MYA         O2A         P1A         O3A     108.816    2.14
+MYA         C2X         C1X         O4X     106.047    1.50
+MYA         C2X         C1X         N9A     113.824    1.50
+MYA         C2X         C1X         H1X     109.015    1.50
+MYA         O4X         C1X         N9A     108.477    1.50
+MYA         O4X         C1X         H1X     109.807    1.50
+MYA         N9A         C1X         H1X     109.561    1.50
+MYA         N1A         C2A         N3A     129.332    1.50
+MYA         N1A         C2A        H2AA     115.313    1.50
+MYA         N3A         C2A        H2AA     115.355    1.50
+MYA         O3A         P2A         O6A     101.065    1.97
+MYA         O3A         P2A         O4A     108.816    2.14
+MYA         O3A         P2A         O5A     108.816    2.14
+MYA         O6A         P2A         O4A     107.912    2.57
+MYA         O6A         P2A         O5A     107.912    2.57
+MYA         O4A         P2A         O5A     118.411    2.35
+MYA          S1         C2M         C3M     113.307    2.65
+MYA          S1         C2M         O2M     122.927    2.65
+MYA         C3M         C2M         O2M     123.766    1.64
+MYA         C1X         C2X         O2X     111.715    2.69
+MYA         C1X         C2X         C3X     101.388    1.50
+MYA         C1X         C2X         H2X     110.636    1.70
+MYA         O2X         C2X         C3X     112.463    2.73
+MYA         O2X         C2X         H2X     110.448    1.97
+MYA         C3X         C2X         H2X     110.255    2.04
+MYA         C2X         O2X        HO2X     109.103    2.13
+MYA         C2A         N3A         C4A     110.982    1.50
+MYA         P1A         O3A         P2A     132.542    3.00
+MYA         C2M         C3M         C4M     113.932    1.92
+MYA         C2M         C3M         H3M     108.026    1.59
+MYA         C2M         C3M        H3MA     108.026    1.59
+MYA         C4M         C3M         H3M     108.844    1.50
+MYA         C4M         C3M        H3MA     108.844    1.50
+MYA         H3M         C3M        H3MA     107.705    1.50
+MYA         C2X         C3X         O3X     110.766    3.00
+MYA         C2X         C3X         C4X     102.352    1.50
+MYA         C2X         C3X         H3X     110.255    2.04
+MYA         O3X         C3X         C4X     110.864    2.31
+MYA         O3X         C3X         H3X     110.343    1.64
+MYA         C4X         C3X         H3X     110.624    1.81
+MYA         C3X         O3X         P3X     109.471    3.00
+MYA         O3X         P3X         O9A     106.518    3.00
+MYA         O3X         P3X         O8A     106.518    3.00
+MYA         O3X         P3X         O7A     106.518    3.00
+MYA         O9A         P3X         O8A     112.139    1.52
+MYA         O9A         P3X         O7A     112.139    1.52
+MYA         O8A         P3X         O7A     112.139    1.52
+MYA         N3A         C4A         N9A     127.895    1.50
+MYA         N3A         C4A         C5A     126.489    1.50
+MYA         N9A         C4A         C5A     105.616    1.50
+MYA         C3M         C4M         C5M     113.146    1.68
+MYA         C3M         C4M         H4M     108.915    1.50
+MYA         C3M         C4M        H4MA     108.915    1.50
+MYA         C5M         C4M         H4M     108.698    1.50
+MYA         C5M         C4M        H4MA     108.698    1.50
+MYA         H4M         C4M        H4MA     107.646    1.50
+MYA         C3X         C4X         O4X     105.508    1.50
+MYA         C3X         C4X         C5X     114.866    1.63
+MYA         C3X         C4X         H4X     109.143    1.50
+MYA         O4X         C4X         C5X     109.123    1.50
+MYA         O4X         C4X         H4X     108.947    1.50
+MYA         C5X         C4X         H4X     108.268    1.50
+MYA         C1X         O4X         C4X     109.903    1.50
+MYA         C4A         C5A         C6A     117.270    1.50
+MYA         C4A         C5A         N7A     110.483    1.50
+MYA         C6A         C5A         N7A     132.247    1.50
+MYA         C4M         C5M         C6M     114.243    1.69
+MYA         C4M         C5M         H5M     108.698    1.50
+MYA         C4M         C5M        H5MA     108.698    1.50
+MYA         C6M         C5M         H5M     108.698    1.50
+MYA         C6M         C5M        H5MA     108.698    1.50
+MYA         H5M         C5M        H5MA     107.646    1.50
+MYA         C4X         C5X         O5X     109.342    1.50
+MYA         C4X         C5X         H5X     109.624    1.50
+MYA         C4X         C5X        H5XA     109.624    1.50
+MYA         O5X         C5X         H5X     109.845    1.50
+MYA         O5X         C5X        H5XA     109.845    1.50
+MYA         H5X         C5X        H5XA     108.472    1.50
+MYA         P1A         O5X         C5X     118.553    2.41
+MYA         N1A         C6A         C5A     117.409    1.50
+MYA         N1A         C6A         N6A     118.799    1.50
+MYA         C5A         C6A         N6A     123.792    1.50
+MYA         C6A         N6A        HN6A     119.723    1.50
+MYA         C6A         N6A        HN6B     119.723    1.50
+MYA        HN6A         N6A        HN6B     120.554    1.88
+MYA         C12         O6A         P2A     119.251    1.51
+MYA         C5M         C6M         C7M     114.243    1.69
+MYA         C5M         C6M         H6M     108.698    1.50
+MYA         C5M         C6M        H6MA     108.698    1.50
+MYA         C7M         C6M         H6M     108.698    1.50
+MYA         C7M         C6M        H6MA     108.698    1.50
+MYA         H6M         C6M        H6MA     107.646    1.50
+MYA         C5A         N7A         C8A     104.739    1.50
+MYA         C6M         C7M         C8M     114.243    1.69
+MYA         C6M         C7M         H7M     108.698    1.50
+MYA         C6M         C7M        H7MA     108.698    1.50
+MYA         C8M         C7M         H7M     108.698    1.50
+MYA         C8M         C7M        H7MA     108.698    1.50
+MYA         H7M         C7M        H7MA     107.646    1.50
+MYA         N7A         C8A         N9A     113.469    1.50
+MYA         N7A         C8A         H8A     123.326    1.50
+MYA         N9A         C8A         H8A     123.206    1.50
+MYA         C7M         C8M         C9M     114.243    1.69
+MYA         C7M         C8M         H8M     108.698    1.50
+MYA         C7M         C8M        H8MA     108.698    1.50
+MYA         C9M         C8M         H8M     108.698    1.50
+MYA         C9M         C8M        H8MA     108.698    1.50
+MYA         H8M         C8M        H8MA     107.646    1.50
+MYA         C1X         N9A         C4A     127.459    1.80
+MYA         C1X         N9A         C8A     126.848    1.91
+MYA         C4A         N9A         C8A     105.693    1.50
+MYA         C8M         C9M         CAM     114.243    1.69
+MYA         C8M         C9M         H9M     108.698    1.50
+MYA         C8M         C9M        H9MA     108.698    1.50
+MYA         CAM         C9M         H9M     108.698    1.50
+MYA         CAM         C9M        H9MA     108.698    1.50
+MYA         H9M         C9M        H9MA     107.646    1.50
+MYA         C9M         CAM         CBM     114.243    1.69
+MYA         C9M         CAM         HAM     108.698    1.50
+MYA         C9M         CAM        HAMA     108.698    1.50
+MYA         CBM         CAM         HAM     108.698    1.50
+MYA         CBM         CAM        HAMA     108.698    1.50
+MYA         HAM         CAM        HAMA     107.646    1.50
+MYA         CAM         CBM         CCM     114.243    1.69
+MYA         CAM         CBM         HBM     108.698    1.50
+MYA         CAM         CBM        HBMA     108.698    1.50
+MYA         CCM         CBM         HBM     108.698    1.50
+MYA         CCM         CBM        HBMA     108.698    1.50
+MYA         HBM         CBM        HBMA     107.646    1.50
+MYA         CBM         CCM         CDM     114.243    1.69
+MYA         CBM         CCM         HCM     108.698    1.50
+MYA         CBM         CCM        HCMA     108.698    1.50
+MYA         CDM         CCM         HCM     108.698    1.50
+MYA         CDM         CCM        HCMA     108.698    1.50
+MYA         HCM         CCM        HCMA     107.646    1.50
+MYA         CCM         CDM         CEM     114.362    3.00
+MYA         CCM         CDM         HDM     108.698    1.50
+MYA         CCM         CDM        HDMA     108.698    1.50
+MYA         CEM         CDM         HDM     108.653    1.50
+MYA         CEM         CDM        HDMA     108.653    1.50
+MYA         HDM         CDM        HDMA     107.646    1.50
+MYA         CDM         CEM         CFM     113.719    3.00
+MYA         CDM         CEM         HEM     108.758    1.50
+MYA         CDM         CEM        HEMA     108.758    1.50
+MYA         CFM         CEM         HEM     108.918    1.50
+MYA         CFM         CEM        HEMA     108.918    1.50
+MYA         HEM         CEM        HEMA     107.763    1.50
+MYA         CEM         CFM         HFM     109.554    1.50
+MYA         CEM         CFM        HFMA     109.554    1.50
+MYA         CEM         CFM        HFMB     109.554    1.50
+MYA         HFM         CFM        HFMA     109.380    1.50
+MYA         HFM         CFM        HFMB     109.380    1.50
+MYA        HFMA         CFM        HFMB     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MYA            sp3_sp3_31          C3          C2          S1         C2M     180.000    10.0     3
+MYA             sp2_sp2_1         C3M         C2M          S1          C2     180.000     5.0     2
+MYA            sp3_sp3_61          C9         C10         O10        HO10     180.000    10.0     3
+MYA            sp3_sp3_53          C9         C10         C11         C12     -60.000    10.0     3
+MYA            sp3_sp3_64         C10         C11         C12         O6A     180.000    10.0     3
+MYA            sp3_sp3_76         C10         C11         C13         H13      60.000    10.0     3
+MYA            sp3_sp3_82         C10         C11         C14         H14     180.000    10.0     3
+MYA            sp3_sp3_91         C11         C12         O6A         P2A     180.000    10.0     3
+MYA       const_sp2_sp2_1         N3A         C2A         N1A         C6A       0.000     5.0     2
+MYA              const_28         N6A         C6A         N1A         C2A     180.000    10.0     2
+MYA            sp3_sp3_97         P2A         O3A         P1A         O1A     180.000    10.0     3
+MYA            sp3_sp3_95         C5X         O5X         P1A         O1A     -60.000    10.0     3
+MYA            sp3_sp3_34          S1          C2          C3          N4     180.000    10.0     3
+MYA             sp3_sp3_2         O4X         C1X         C2X         O2X     180.000    10.0     3
+MYA           sp3_sp3_100         C2X         C1X         O4X         C4X     180.000    10.0     3
+MYA            sp2_sp3_25         C4A         N9A         C1X         C2X     150.000    10.0     6
+MYA       const_sp2_sp2_3         N1A         C2A         N3A         C4A       0.000     5.0     2
+MYA           sp3_sp3_104         P1A         O3A         P2A         O6A     -60.000    10.0     3
+MYA           sp3_sp3_106         C12         O6A         P2A         O3A     180.000    10.0     3
+MYA            sp2_sp3_32          S1         C2M         C3M         C4M     120.000    10.0     6
+MYA           sp3_sp3_109         C1X         C2X         O2X        HO2X     180.000    10.0     3
+MYA            sp3_sp3_14         O2X         C2X         C3X         O3X     -60.000    10.0     3
+MYA       const_sp2_sp2_6         N9A         C4A         N3A         C2A     180.000     5.0     2
+MYA             sp2_sp3_2          C5          N4          C3          C2     120.000    10.0     6
+MYA           sp3_sp3_112         C2M         C3M         C4M         C5M     180.000    10.0     3
+MYA           sp3_sp3_121         C2X         C3X         O3X         P3X     180.000    10.0     3
+MYA            sp3_sp3_23         O3X         C3X         C4X         C5X      60.000    10.0     3
+MYA           sp3_sp3_126         C3X         O3X         P3X         O9A      60.000    10.0     3
+MYA       const_sp2_sp2_7         N3A         C4A         C5A         C6A       0.000     5.0     2
+MYA              const_18         N3A         C4A         N9A         C1X       0.000    10.0     2
+MYA           sp3_sp3_127         C3M         C4M         C5M         C6M     180.000    10.0     3
+MYA            sp3_sp3_29         C5X         C4X         O4X         C1X     180.000    10.0     3
+MYA           sp3_sp3_136         C3X         C4X         C5X         O5X     180.000    10.0     3
+MYA              const_12         C4A         C5A         C6A         N6A     180.000    10.0     2
+MYA              const_25         C4A         C5A         N7A         C8A       0.000    10.0     2
+MYA             sp2_sp2_5          O5          C5          N4          C3       0.000     5.0     2
+MYA           sp3_sp3_145         C4M         C5M         C6M         C7M     180.000    10.0     3
+MYA           sp3_sp3_154         C4X         C5X         O5X         P1A     180.000    10.0     3
+MYA            sp2_sp2_13         N1A         C6A         N6A        HN6A       0.000     5.0     2
+MYA           sp3_sp3_157         C5M         C6M         C7M         C8M     180.000    10.0     3
+MYA              const_23         N9A         C8A         N7A         C5A       0.000    10.0     2
+MYA             sp2_sp3_8          N4          C5          C6          C7     120.000    10.0     6
+MYA           sp3_sp3_166         C6M         C7M         C8M         C9M     180.000    10.0     3
+MYA              const_20         N7A         C8A         N9A         C1X     180.000    10.0     2
+MYA           sp3_sp3_175         C7M         C8M         C9M         CAM     180.000    10.0     3
+MYA           sp3_sp3_184         C8M         C9M         CAM         CBM     180.000    10.0     3
+MYA           sp3_sp3_193         C9M         CAM         CBM         CCM     180.000    10.0     3
+MYA           sp3_sp3_202         CAM         CBM         CCM         CDM     180.000    10.0     3
+MYA           sp3_sp3_211         CBM         CCM         CDM         CEM     180.000    10.0     3
+MYA           sp3_sp3_220         CCM         CDM         CEM         CFM     180.000    10.0     3
+MYA           sp3_sp3_229         CDM         CEM         CFM         HFM     180.000    10.0     3
+MYA            sp3_sp3_43          C5          C6          C7          N8     180.000    10.0     3
+MYA            sp2_sp3_14          C9          N8          C7          C6     120.000    10.0     6
+MYA             sp2_sp2_7         C10          C9          N8          C7     180.000     5.0     2
+MYA            sp2_sp3_19          N8          C9         C10         C11       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MYA    chir_1    C10    O10    C9    C11    negative
+MYA    chir_2    C11    C10    C12    C13    both
+MYA    chir_3    P1A    O3A    O5X    O1A    both
+MYA    chir_4    C1X    O4X    N9A    C2X    negative
+MYA    chir_5    P2A    O3A    O6A    O5A    both
+MYA    chir_6    C2X    O2X    C1X    C3X    negative
+MYA    chir_7    C3X    O3X    C4X    C2X    positive
+MYA    chir_8    P3X    O3X    O8A    O7A    both
+MYA    chir_9    C4X    O4X    C3X    C5X    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MYA    plan-1         C1X   0.020
+MYA    plan-1         C2A   0.020
+MYA    plan-1         C4A   0.020
+MYA    plan-1         C5A   0.020
+MYA    plan-1         C6A   0.020
+MYA    plan-1         C8A   0.020
+MYA    plan-1        H2AA   0.020
+MYA    plan-1         H8A   0.020
+MYA    plan-1         N1A   0.020
+MYA    plan-1         N3A   0.020
+MYA    plan-1         N6A   0.020
+MYA    plan-1         N7A   0.020
+MYA    plan-1         N9A   0.020
+MYA    plan-2          C3   0.020
+MYA    plan-2          C5   0.020
+MYA    plan-2         HN4   0.020
+MYA    plan-2          N4   0.020
+MYA    plan-3          C5   0.020
+MYA    plan-3          C6   0.020
+MYA    plan-3          N4   0.020
+MYA    plan-3          O5   0.020
+MYA    plan-4          C7   0.020
+MYA    plan-4          C9   0.020
+MYA    plan-4         HN8   0.020
+MYA    plan-4          N8   0.020
+MYA    plan-5         C10   0.020
+MYA    plan-5          C9   0.020
+MYA    plan-5          N8   0.020
+MYA    plan-5          O9   0.020
+MYA    plan-6         C2M   0.020
+MYA    plan-6         C3M   0.020
+MYA    plan-6         O2M   0.020
+MYA    plan-6          S1   0.020
+MYA    plan-7         C6A   0.020
+MYA    plan-7        HN6A   0.020
+MYA    plan-7        HN6B   0.020
+MYA    plan-7         N6A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MYA           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                                                     O=C(SCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(=O)(O)OP(=O)(O)OCC3OC(n2cnc1c(ncnc12)N)C(O)C3OP(=O)(O)O)CCCCCCCCCCCCC
+MYA            InChI                InChI 1.02b InChI=1/C35H62N7O17P3S/c1-4-5-6-7-8-9-10-11-12-13-14-15-26(44)63-19-18-37-25(43)16-17-38-33(47)30(46)35(2,3)21-56-62(53,54)59-61(51,52)55-20-24-29(58-60(48,49)50)28(45)34(57-24)42-23-41-27-31(36)39-22-40-32(27)42/h22-24,28-30,34,45-46H,4-21H2,1-3H3,(H,37,43)(H,38,47)(H,51,52)(H,53,54)(H2,36,39,40)(H2,48,49,50)/t24-,28-,29-,30+,34-/m1/s1/f/h37-38,48-49,51,53H,36H2
+MYA         InChIKey                InChI 1.02b                                                                                                                                                                                                                                                                                                                                                     DUAFKXOFBZQTQE-GLTUGWJXDB
+MYA SMILES_CANONICAL               CACTVS 3.352                                                                                                                                                                                                                                          CCCCCCCCCCCCCC(=O)SCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O[P](O)(O)=O)n2cnc3c(N)ncnc23
+MYA           SMILES               CACTVS 3.352                                                                                                                                                                                                                                                CCCCCCCCCCCCCC(=O)SCCNC(=O)CCNC(=O)[CH](O)C(C)(C)CO[P](O)(=O)O[P](O)(=O)OC[CH]1O[CH]([CH](O)[CH]1O[P](O)(O)=O)n2cnc3c(N)ncnc23
+MYA SMILES_CANONICAL "OpenEye OEToolkits" 1.6.1                                                                                                                                                                                                                                      CCCCCCCCCCCCCC(=O)SCCNC(=O)CCNC(=O)[C@@H](C(C)(C)CO[P@@](=O)(O)O[P@@](=O)(O)OC[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O
+MYA           SMILES "OpenEye OEToolkits" 1.6.1                                                                                                                                                                                                                                                                     CCCCCCCCCCCCCC(=O)SCCNC(=O)CCNC(=O)C(C(C)(C)COP(=O)(O)OP(=O)(O)OCC1C(C(C(O1)n2cnc3c2ncnc3N)O)OP(=O)(O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MYA acedrg               243         "dictionary generator"                  
+MYA acedrg_database      11          "data source"                           
+MYA rdkit                2017.03.2   "Chemoinformatics tool"
+MYA refmac5              5.8.0238    "optimization tool"                     

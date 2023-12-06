@@ -1,0 +1,300 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BYS     BYS      "2-BENZO[1,3]DIOXOL-5-YLMETHYL-3-BENZYL-SUCCINIC ACID"     NON-POLYMER     41     25     .     
+#
+data_comp_BYS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BYS     C1      C       CH1     0       24.359      -2.545      16.149      
+BYS     C2      C       C       0       25.429      -2.784      15.073      
+BYS     O3      O       O       0       25.064      -2.843      13.882      
+BYS     O4      O       OC      -1      26.614      -2.909      15.444      
+BYS     C5      C       CH2     0       24.206      -3.793      17.035      
+BYS     C6      C       CR6     0       23.941      -5.066      16.266      
+BYS     C7      C       CR16    0       24.892      -6.080      16.208      
+BYS     C8      C       CR16    0       24.643      -7.248      15.498      
+BYS     C9      C       CR16    0       23.442      -7.417      14.839      
+BYS     C10     C       CR16    0       22.489      -6.420      14.887      
+BYS     C11     C       CR16    0       22.737      -5.251      15.596      
+BYS     C12     C       CH1     0       24.664      -1.235      16.937      
+BYS     C13     C       C       0       24.873      -0.063      15.967      
+BYS     O14     O       O       0       23.915      0.280       15.247      
+BYS     O15     O       OC      -1      25.992      0.488       15.947      
+BYS     C16     C       CH2     0       23.605      -0.872      17.991      
+BYS     C17     C       CR6     0       23.894      0.410       18.736      
+BYS     C18     C       CR16    0       23.068      1.528       18.560      
+BYS     C19     C       CR56    0       23.365      2.672       19.254      
+BYS     O20     O       O2      0       22.697      3.875       19.234      
+BYS     C21     C       CH2     0       23.427      4.738       20.108      
+BYS     O22     O       O2      0       24.513      4.002       20.673      
+BYS     C23     C       CR56    0       24.446      2.748       20.110      
+BYS     C24     C       CR16    0       25.280      1.685       20.313      
+BYS     C25     C       CR16    0       24.991      0.506       19.612      
+BYS     HC11    H       H       0       23.504      -2.398      15.689      
+BYS     HC51    H       H       0       23.463      -3.654      17.658      
+BYS     HC52    H       H       0       25.022      -3.906      17.567      
+BYS     HC71    H       H       0       25.715      -5.972      16.656      
+BYS     HC81    H       H       0       25.297      -7.928      15.468      
+BYS     HC91    H       H       0       23.274      -8.211      14.357      
+BYS     H101    H       H       0       21.667      -6.532      14.437      
+BYS     H111    H       H       0       22.080      -4.574      15.624      
+BYS     H121    H       H       0       25.514      -1.384      17.406      
+BYS     H161    H       H       0       23.544      -1.598      18.646      
+BYS     H162    H       H       0       22.732      -0.797      17.549      
+BYS     H181    H       H       0       22.328      1.489       17.979      
+BYS     H211    H       H       0       22.840      5.066       20.820      
+BYS     H212    H       H       0       23.770      5.507       19.608      
+BYS     H241    H       H       0       26.014      1.742       20.898      
+BYS     H251    H       H       0       25.550      -0.248      19.732      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BYS          C1          C2      SINGLE       n     1.533  0.0100     1.533  0.0100
+BYS          C1          C5      SINGLE       n     1.534  0.0100     1.534  0.0100
+BYS          C1         C12      SINGLE       n     1.547  0.0146     1.547  0.0146
+BYS          C2          O3      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BYS          C2          O4      SINGLE       n     1.247  0.0187     1.247  0.0187
+BYS          C5          C6      SINGLE       n     1.509  0.0100     1.509  0.0100
+BYS          C6          C7      DOUBLE       y     1.385  0.0111     1.385  0.0111
+BYS          C6         C11      SINGLE       y     1.385  0.0111     1.385  0.0111
+BYS          C7          C8      SINGLE       y     1.386  0.0100     1.386  0.0100
+BYS          C8          C9      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BYS          C9         C10      SINGLE       y     1.376  0.0124     1.376  0.0124
+BYS         C10         C11      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BYS         C12         C13      SINGLE       n     1.533  0.0100     1.533  0.0100
+BYS         C12         C16      SINGLE       n     1.534  0.0100     1.534  0.0100
+BYS         C13         O14      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BYS         C13         O15      SINGLE       n     1.247  0.0187     1.247  0.0187
+BYS         C16         C17      SINGLE       n     1.509  0.0100     1.509  0.0100
+BYS         C17         C18      DOUBLE       y     1.397  0.0100     1.397  0.0100
+BYS         C17         C25      SINGLE       y     1.398  0.0151     1.398  0.0151
+BYS         C18         C19      SINGLE       y     1.367  0.0100     1.367  0.0100
+BYS         C19         O20      SINGLE       n     1.377  0.0100     1.377  0.0100
+BYS         C19         C23      DOUBLE       y     1.379  0.0100     1.379  0.0100
+BYS         O20         C21      SINGLE       n     1.428  0.0104     1.428  0.0104
+BYS         C21         O22      SINGLE       n     1.428  0.0104     1.428  0.0104
+BYS         O22         C23      SINGLE       n     1.376  0.0100     1.376  0.0100
+BYS         C23         C24      SINGLE       y     1.362  0.0100     1.362  0.0100
+BYS         C24         C25      DOUBLE       y     1.397  0.0100     1.397  0.0100
+BYS          C1        HC11      SINGLE       n     1.089  0.0100     0.982  0.0200
+BYS          C5        HC51      SINGLE       n     1.089  0.0100     0.981  0.0169
+BYS          C5        HC52      SINGLE       n     1.089  0.0100     0.981  0.0169
+BYS          C7        HC71      SINGLE       n     1.082  0.0130     0.944  0.0174
+BYS          C8        HC81      SINGLE       n     1.082  0.0130     0.944  0.0175
+BYS          C9        HC91      SINGLE       n     1.082  0.0130     0.944  0.0161
+BYS         C10        H101      SINGLE       n     1.082  0.0130     0.944  0.0175
+BYS         C11        H111      SINGLE       n     1.082  0.0130     0.944  0.0174
+BYS         C12        H121      SINGLE       n     1.089  0.0100     0.982  0.0200
+BYS         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0169
+BYS         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0169
+BYS         C18        H181      SINGLE       n     1.082  0.0130     0.941  0.0105
+BYS         C21        H211      SINGLE       n     1.089  0.0100     0.979  0.0146
+BYS         C21        H212      SINGLE       n     1.089  0.0100     0.979  0.0146
+BYS         C24        H241      SINGLE       n     1.082  0.0130     0.940  0.0128
+BYS         C25        H251      SINGLE       n     1.082  0.0130     0.947  0.0107
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BYS          C2          C1          C5     111.500    2.27
+BYS          C2          C1         C12     110.812    2.86
+BYS          C2          C1        HC11     107.706    1.93
+BYS          C5          C1         C12     111.094    2.85
+BYS          C5          C1        HC11     107.967    1.50
+BYS         C12          C1        HC11     106.992    2.49
+BYS          C1          C2          O3     118.051    1.50
+BYS          C1          C2          O4     118.051    1.50
+BYS          O3          C2          O4     123.899    1.50
+BYS          C1          C5          C6     113.495    1.50
+BYS          C1          C5        HC51     108.879    1.50
+BYS          C1          C5        HC52     108.879    1.50
+BYS          C6          C5        HC51     108.738    1.50
+BYS          C6          C5        HC52     108.738    1.50
+BYS        HC51          C5        HC52     107.709    1.50
+BYS          C5          C6          C7     120.970    1.50
+BYS          C5          C6         C11     120.970    1.50
+BYS          C7          C6         C11     118.060    1.50
+BYS          C6          C7          C8     120.624    1.50
+BYS          C6          C7        HC71     119.591    1.50
+BYS          C8          C7        HC71     119.786    1.50
+BYS          C7          C8          C9     120.325    1.50
+BYS          C7          C8        HC81     119.792    1.50
+BYS          C9          C8        HC81     119.883    1.50
+BYS          C8          C9         C10     120.043    1.50
+BYS          C8          C9        HC91     119.979    1.50
+BYS         C10          C9        HC91     119.979    1.50
+BYS          C9         C10         C11     120.325    1.50
+BYS          C9         C10        H101     119.883    1.50
+BYS         C11         C10        H101     119.792    1.50
+BYS          C6         C11         C10     120.624    1.50
+BYS          C6         C11        H111     119.591    1.50
+BYS         C10         C11        H111     119.786    1.50
+BYS          C1         C12         C13     110.812    2.86
+BYS          C1         C12         C16     111.094    2.85
+BYS          C1         C12        H121     106.992    2.49
+BYS         C13         C12         C16     111.500    2.27
+BYS         C13         C12        H121     107.706    1.93
+BYS         C16         C12        H121     107.967    1.50
+BYS         C12         C13         O14     118.051    1.50
+BYS         C12         C13         O15     118.051    1.50
+BYS         O14         C13         O15     123.899    1.50
+BYS         C12         C16         C17     113.495    1.50
+BYS         C12         C16        H161     108.879    1.50
+BYS         C12         C16        H162     108.879    1.50
+BYS         C17         C16        H161     108.906    1.50
+BYS         C17         C16        H162     108.906    1.50
+BYS        H161         C16        H162     107.709    1.50
+BYS         C16         C17         C18     119.858    1.64
+BYS         C16         C17         C25     121.156    1.50
+BYS         C18         C17         C25     118.986    1.50
+BYS         C17         C18         C19     118.357    1.50
+BYS         C17         C18        H181     120.370    1.50
+BYS         C19         C18        H181     121.273    1.50
+BYS         C18         C19         O20     127.957    1.50
+BYS         C18         C19         C23     122.315    1.50
+BYS         O20         C19         C23     109.728    1.50
+BYS         C19         O20         C21     105.409    1.50
+BYS         O20         C21         O22     108.187    1.50
+BYS         O20         C21        H211     109.983    1.50
+BYS         O20         C21        H212     109.983    1.50
+BYS         O22         C21        H211     109.983    1.50
+BYS         O22         C21        H212     109.983    1.50
+BYS        H211         C21        H212     108.633    1.82
+BYS         C21         O22         C23     105.409    1.50
+BYS         C19         C23         O22     109.880    1.50
+BYS         C19         C23         C24     121.936    1.50
+BYS         O22         C23         C24     128.184    1.50
+BYS         C23         C24         C25     116.645    1.50
+BYS         C23         C24        H241     121.617    1.50
+BYS         C25         C24        H241     121.738    1.50
+BYS         C17         C25         C24     121.762    1.50
+BYS         C17         C25        H251     119.092    1.50
+BYS         C24         C25        H251     119.147    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BYS             sp2_sp3_1          O3          C2          C1          C5       0.000    10.0     6
+BYS            sp3_sp3_16          C2          C1         C12         C13     180.000    10.0     3
+BYS             sp3_sp3_7          C2          C1          C5          C6     180.000    10.0     3
+BYS            sp2_sp3_13         O14         C13         C12          C1       0.000    10.0     6
+BYS            sp3_sp3_25          C1         C12         C16         C17     180.000    10.0     3
+BYS            sp2_sp3_20         C18         C17         C16         C12     -90.000    10.0     6
+BYS              const_23         C16         C17         C18         C19     180.000    10.0     2
+BYS              const_47         C16         C17         C25         C24     180.000    10.0     2
+BYS              const_26         C17         C18         C19         O20     180.000    10.0     2
+BYS             sp2_sp2_2         C18         C19         O20         C21     180.000     5.0     2
+BYS              const_30         C18         C19         C23         O22     180.000    10.0     2
+BYS             sp3_sp3_1         O22         C21         O20         C19     -60.000    10.0     3
+BYS             sp3_sp3_4         O20         C21         O22         C23      60.000    10.0     3
+BYS             sp2_sp2_3         C19         C23         O22         C21       0.000     5.0     2
+BYS              const_33         C19         C23         C24         C25       0.000    10.0     2
+BYS              const_37         C23         C24         C25         C17       0.000    10.0     2
+BYS             sp2_sp3_8          C7          C6          C5          C1     -90.000    10.0     6
+BYS              const_42         C10         C11          C6          C5     180.000    10.0     2
+BYS       const_sp2_sp2_3          C5          C6          C7          C8     180.000     5.0     2
+BYS       const_sp2_sp2_5          C6          C7          C8          C9       0.000     5.0     2
+BYS       const_sp2_sp2_9          C7          C8          C9         C10       0.000     5.0     2
+BYS              const_13         C11         C10          C9          C8       0.000    10.0     2
+BYS              const_17          C9         C10         C11          C6       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BYS    chir_1    C1    C2    C12    C5    positive
+BYS    chir_2    C12    C13    C1    C16    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BYS    plan-1         C10   0.020
+BYS    plan-1         C11   0.020
+BYS    plan-1          C5   0.020
+BYS    plan-1          C6   0.020
+BYS    plan-1          C7   0.020
+BYS    plan-1          C8   0.020
+BYS    plan-1          C9   0.020
+BYS    plan-1        H101   0.020
+BYS    plan-1        H111   0.020
+BYS    plan-1        HC71   0.020
+BYS    plan-1        HC81   0.020
+BYS    plan-1        HC91   0.020
+BYS    plan-2         C16   0.020
+BYS    plan-2         C17   0.020
+BYS    plan-2         C18   0.020
+BYS    plan-2         C19   0.020
+BYS    plan-2         C23   0.020
+BYS    plan-2         C24   0.020
+BYS    plan-2         C25   0.020
+BYS    plan-2        H181   0.020
+BYS    plan-2        H241   0.020
+BYS    plan-2        H251   0.020
+BYS    plan-2         O20   0.020
+BYS    plan-2         O22   0.020
+BYS    plan-3          C1   0.020
+BYS    plan-3          C2   0.020
+BYS    plan-3          O3   0.020
+BYS    plan-3          O4   0.020
+BYS    plan-4         C12   0.020
+BYS    plan-4         C13   0.020
+BYS    plan-4         O14   0.020
+BYS    plan-4         O15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BYS           SMILES              ACDLabs 10.04                                                                                                               O=C(O)C(Cc1ccccc1)C(C(=O)O)Cc2ccc3OCOc3c2
+BYS SMILES_CANONICAL               CACTVS 3.341                                                                                                      OC(=O)[C@@H](Cc1ccccc1)[C@H](Cc2ccc3OCOc3c2)C(O)=O
+BYS           SMILES               CACTVS 3.341                                                                                                         OC(=O)[CH](Cc1ccccc1)[CH](Cc2ccc3OCOc3c2)C(O)=O
+BYS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                  c1ccc(cc1)C[C@@H]([C@H](Cc2ccc3c(c2)OCO3)C(=O)O)C(=O)O
+BYS           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                           c1ccc(cc1)CC(C(Cc2ccc3c(c2)OCO3)C(=O)O)C(=O)O
+BYS            InChI                InChI  1.03 InChI=1S/C19H18O6/c20-18(21)14(8-12-4-2-1-3-5-12)15(19(22)23)9-13-6-7-16-17(10-13)25-11-24-16/h1-7,10,14-15H,8-9,11H2,(H,20,21)(H,22,23)/t14-,15-/m0/s1
+BYS         InChIKey                InChI  1.03                                                                                                                             ASEJDWRSZYAIOT-GJZGRUSLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BYS acedrg               243         "dictionary generator"                  
+BYS acedrg_database      11          "data source"                           
+BYS rdkit                2017.03.2   "Chemoinformatics tool"
+BYS refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,473 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NMB     NMB      2,7-DIBENZYL-1,1-DIOXO-3,6-BIS-PHENOXYMETHYL-[1,2,7]THIADIAZEPANE-4,5-DIOL     NON-POLYMER     75     41     .     
+#
+data_comp_NMB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NMB     N01     N       NT      0       11.093      23.317      6.366       
+NMB     S02     S       S3      0       11.714      21.880      6.908       
+NMB     N03     N       NT      0       13.311      21.702      6.482       
+NMB     C04     C       CH1     0       13.653      21.524      5.038       
+NMB     C05     C       CH1     0       13.741      22.855      4.259       
+NMB     C06     C       CH1     0       12.890      24.042      4.791       
+NMB     C07     C       CH1     0       11.376      23.820      4.983       
+NMB     C08     C       CH2     0       9.757       23.686      6.894       
+NMB     C09     C       CR6     0       9.510       25.175      7.000       
+NMB     C10     C       CR16    0       8.367       25.746      6.451       
+NMB     C11     C       CR16    0       8.146       27.114      6.545       
+NMB     C12     C       CR16    0       9.063       27.923      7.185       
+NMB     C13     C       CR16    0       10.202      27.369      7.730       
+NMB     C14     C       CR16    0       10.428      26.001      7.638       
+NMB     O15     O       O       0       10.993      20.848      6.256       
+NMB     O16     O       O2      0       15.092      20.396      3.467       
+NMB     C17     C       CR6     0       16.144      19.623      3.039       
+NMB     C18     C       CR16    0       17.112      19.042      3.858       
+NMB     C19     C       CR16    0       18.126      18.282      3.288       
+NMB     C20     C       CR16    0       18.185      18.097      1.922       
+NMB     C21     C       CR16    0       17.228      18.673      1.114       
+NMB     C22     C       CR16    0       16.206      19.436      1.661       
+NMB     C23     C       CH2     0       14.349      22.367      7.308       
+NMB     C24     C       CR6     0       15.213      21.405      8.093       
+NMB     C25     C       CR16    0       14.642      20.431      8.905       
+NMB     C26     C       CR16    0       15.443      19.550      9.623       
+NMB     C27     C       CR16    0       16.818      19.632      9.535       
+NMB     C28     C       CR16    0       17.396      20.592      8.733       
+NMB     C29     C       CR16    0       16.600      21.475      8.015       
+NMB     O30     O       OH1     0       15.101      23.292      4.166       
+NMB     O31     O       OH1     0       13.068      25.143      3.897       
+NMB     C32     C       CH2     0       10.772      23.014      3.842       
+NMB     O33     O       O2      0       9.343       23.175      3.795       
+NMB     C34     C       CR6     0       8.736       24.282      3.250       
+NMB     C35     C       CR16    0       9.373       25.411      2.733       
+NMB     C36     C       CR16    0       8.613       26.454      2.221       
+NMB     C37     C       CR16    0       7.235       26.388      2.220       
+NMB     C38     C       CR16    0       6.606       25.274      2.733       
+NMB     C39     C       CR16    0       7.346       24.219      3.251       
+NMB     O40     O       O       0       11.678      21.930      8.324       
+NMB     C41     C       CH2     0       14.875      20.631      4.868       
+NMB     H04     H       H       0       12.892      21.029      4.644       
+NMB     H05     H       H       0       13.465      22.678      3.322       
+NMB     H06     H       H       0       13.273      24.334      5.658       
+NMB     H07     H       H       0       10.973      24.722      4.944       
+NMB     H081    H       H       0       9.645       23.296      7.785       
+NMB     H082    H       H       0       9.072       23.290      6.319       
+NMB     H10     H       H       0       7.735       25.199      6.012       
+NMB     H11     H       H       0       7.365       27.491      6.171       
+NMB     H12     H       H       0       8.911       28.852      7.248       
+NMB     H13     H       H       0       10.831      27.920      8.168       
+NMB     H14     H       H       0       11.210      25.629      8.013       
+NMB     H18     H       H       0       17.085      19.160      4.791       
+NMB     H19     H       H       0       18.779      17.890      3.843       
+NMB     H20     H       H       0       18.877      17.579      1.543       
+NMB     H21     H       H       0       17.266      18.548      0.180       
+NMB     H22     H       H       0       15.556      19.826      1.102       
+NMB     H231    H       H       0       13.919      22.986      7.935       
+NMB     H232    H       H       0       14.926      22.902      6.729       
+NMB     H25     H       H       0       13.704      20.367      8.971       
+NMB     H26     H       H       0       15.044      18.893      10.171      
+NMB     H27     H       H       0       17.360      19.033      10.023      
+NMB     H28     H       H       0       18.336      20.651      8.672       
+NMB     H29     H       H       0       17.005      22.129      7.468       
+NMB     HO3     H       H       0       15.159      23.874      3.552       
+NMB     HO1     H       H       0       12.970      25.869      4.326       
+NMB     H321    H       H       0       10.986      22.059      3.959       
+NMB     H322    H       H       0       11.172      23.303      2.987       
+NMB     H35     H       H       0       10.313      25.470      2.728       
+NMB     H36     H       H       0       9.046       27.215      1.870       
+NMB     H37     H       H       0       6.726       27.101      1.869       
+NMB     H38     H       H       0       5.665       25.225      2.734       
+NMB     H39     H       H       0       6.908       23.461      3.600       
+NMB     H411    H       H       0       14.726      19.774      5.332       
+NMB     H412    H       H       0       15.672      21.059      5.264       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NMB         N01         S02      SINGLE       n     1.634  0.0200     1.634  0.0200
+NMB         N01         C07      SINGLE       n     1.478  0.0132     1.478  0.0132
+NMB         N01         C08      SINGLE       n     1.470  0.0123     1.470  0.0123
+NMB         S02         N03      SINGLE       n     1.634  0.0200     1.634  0.0200
+NMB         S02         O15      DOUBLE       n     1.418  0.0100     1.418  0.0100
+NMB         S02         O40      DOUBLE       n     1.418  0.0100     1.418  0.0100
+NMB         N03         C04      SINGLE       n     1.478  0.0132     1.478  0.0132
+NMB         N03         C23      SINGLE       n     1.470  0.0123     1.470  0.0123
+NMB         C04         C05      SINGLE       n     1.537  0.0100     1.537  0.0100
+NMB         C04         C41      SINGLE       n     1.515  0.0117     1.515  0.0117
+NMB         C05         C06      SINGLE       n     1.535  0.0200     1.535  0.0200
+NMB         C05         O30      SINGLE       n     1.424  0.0199     1.424  0.0199
+NMB         C06         C07      SINGLE       n     1.537  0.0100     1.537  0.0100
+NMB         C06         O31      SINGLE       n     1.424  0.0199     1.424  0.0199
+NMB         C07         C32      SINGLE       n     1.515  0.0117     1.515  0.0117
+NMB         C08         C09      SINGLE       n     1.510  0.0100     1.510  0.0100
+NMB         C09         C10      DOUBLE       y     1.386  0.0100     1.386  0.0100
+NMB         C09         C14      SINGLE       y     1.386  0.0100     1.386  0.0100
+NMB         C10         C11      SINGLE       y     1.386  0.0100     1.386  0.0100
+NMB         C11         C12      DOUBLE       y     1.376  0.0124     1.376  0.0124
+NMB         C12         C13      SINGLE       y     1.374  0.0127     1.374  0.0127
+NMB         C13         C14      DOUBLE       y     1.386  0.0100     1.386  0.0100
+NMB         O16         C17      SINGLE       n     1.369  0.0106     1.369  0.0106
+NMB         O16         C41      SINGLE       n     1.434  0.0113     1.434  0.0113
+NMB         C17         C18      DOUBLE       y     1.386  0.0109     1.386  0.0109
+NMB         C17         C22      SINGLE       y     1.386  0.0109     1.386  0.0109
+NMB         C18         C19      SINGLE       y     1.385  0.0100     1.385  0.0100
+NMB         C19         C20      DOUBLE       y     1.376  0.0124     1.376  0.0124
+NMB         C20         C21      SINGLE       y     1.375  0.0126     1.375  0.0126
+NMB         C21         C22      DOUBLE       y     1.385  0.0100     1.385  0.0100
+NMB         C23         C24      SINGLE       n     1.510  0.0100     1.510  0.0100
+NMB         C24         C25      DOUBLE       y     1.386  0.0100     1.386  0.0100
+NMB         C24         C29      SINGLE       y     1.386  0.0100     1.386  0.0100
+NMB         C25         C26      SINGLE       y     1.386  0.0100     1.386  0.0100
+NMB         C26         C27      DOUBLE       y     1.376  0.0124     1.376  0.0124
+NMB         C27         C28      SINGLE       y     1.374  0.0127     1.374  0.0127
+NMB         C28         C29      DOUBLE       y     1.386  0.0100     1.386  0.0100
+NMB         C32         O33      SINGLE       n     1.434  0.0113     1.434  0.0113
+NMB         O33         C34      SINGLE       n     1.369  0.0106     1.369  0.0106
+NMB         C34         C35      DOUBLE       y     1.386  0.0109     1.386  0.0109
+NMB         C34         C39      SINGLE       y     1.386  0.0109     1.386  0.0109
+NMB         C35         C36      SINGLE       y     1.385  0.0100     1.385  0.0100
+NMB         C36         C37      DOUBLE       y     1.376  0.0124     1.376  0.0124
+NMB         C37         C38      SINGLE       y     1.375  0.0126     1.375  0.0126
+NMB         C38         C39      DOUBLE       y     1.385  0.0100     1.385  0.0100
+NMB         C04         H04      SINGLE       n     1.089  0.0100     0.992  0.0135
+NMB         C05         H05      SINGLE       n     1.089  0.0100     0.992  0.0184
+NMB         C06         H06      SINGLE       n     1.089  0.0100     0.992  0.0184
+NMB         C07         H07      SINGLE       n     1.089  0.0100     0.992  0.0135
+NMB         C08        H081      SINGLE       n     1.089  0.0100     0.981  0.0172
+NMB         C08        H082      SINGLE       n     1.089  0.0100     0.981  0.0172
+NMB         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0174
+NMB         C11         H11      SINGLE       n     1.082  0.0130     0.944  0.0175
+NMB         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0161
+NMB         C13         H13      SINGLE       n     1.082  0.0130     0.944  0.0175
+NMB         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0174
+NMB         C18         H18      SINGLE       n     1.082  0.0130     0.942  0.0163
+NMB         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0183
+NMB         C20         H20      SINGLE       n     1.082  0.0130     0.944  0.0161
+NMB         C21         H21      SINGLE       n     1.082  0.0130     0.943  0.0183
+NMB         C22         H22      SINGLE       n     1.082  0.0130     0.942  0.0163
+NMB         C23        H231      SINGLE       n     1.089  0.0100     0.981  0.0172
+NMB         C23        H232      SINGLE       n     1.089  0.0100     0.981  0.0172
+NMB         C25         H25      SINGLE       n     1.082  0.0130     0.944  0.0174
+NMB         C26         H26      SINGLE       n     1.082  0.0130     0.944  0.0175
+NMB         C27         H27      SINGLE       n     1.082  0.0130     0.944  0.0161
+NMB         C28         H28      SINGLE       n     1.082  0.0130     0.944  0.0175
+NMB         C29         H29      SINGLE       n     1.082  0.0130     0.944  0.0174
+NMB         O30         HO3      SINGLE       n     0.970  0.0120     0.848  0.0200
+NMB         O31         HO1      SINGLE       n     0.970  0.0120     0.848  0.0200
+NMB         C32        H321      SINGLE       n     1.089  0.0100     0.987  0.0100
+NMB         C32        H322      SINGLE       n     1.089  0.0100     0.987  0.0100
+NMB         C35         H35      SINGLE       n     1.082  0.0130     0.942  0.0163
+NMB         C36         H36      SINGLE       n     1.082  0.0130     0.943  0.0183
+NMB         C37         H37      SINGLE       n     1.082  0.0130     0.944  0.0161
+NMB         C38         H38      SINGLE       n     1.082  0.0130     0.943  0.0183
+NMB         C39         H39      SINGLE       n     1.082  0.0130     0.942  0.0163
+NMB         C41        H411      SINGLE       n     1.089  0.0100     0.987  0.0100
+NMB         C41        H412      SINGLE       n     1.089  0.0100     0.987  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NMB         S02         N01         C07     118.040    2.28
+NMB         S02         N01         C08     117.389    2.06
+NMB         C07         N01         C08     113.356    1.65
+NMB         N01         S02         N03     107.815    3.00
+NMB         N01         S02         O15     107.265    1.50
+NMB         N01         S02         O40     107.265    1.50
+NMB         N03         S02         O15     107.265    1.50
+NMB         N03         S02         O40     107.265    1.50
+NMB         O15         S02         O40     120.615    1.78
+NMB         S02         N03         C04     118.040    2.28
+NMB         S02         N03         C23     117.389    2.06
+NMB         C04         N03         C23     113.356    1.65
+NMB         N03         C04         C05     108.671    2.94
+NMB         N03         C04         C41     111.883    2.59
+NMB         N03         C04         H04     106.479    1.50
+NMB         C05         C04         C41     111.094    2.85
+NMB         C05         C04         H04     107.639    1.50
+NMB         C41         C04         H04     108.763    1.50
+NMB         C04         C05         C06     115.018    1.61
+NMB         C04         C05         O30     109.040    1.72
+NMB         C04         C05         H05     108.500    1.50
+NMB         C06         C05         O30     109.320    2.01
+NMB         C06         C05         H05     108.450    1.83
+NMB         O30         C05         H05     108.081    2.87
+NMB         C05         C06         C07     115.018    1.61
+NMB         C05         C06         O31     109.320    2.01
+NMB         C05         C06         H06     108.450    1.83
+NMB         C07         C06         O31     109.040    1.72
+NMB         C07         C06         H06     108.500    1.50
+NMB         O31         C06         H06     108.081    2.87
+NMB         N01         C07         C06     108.671    2.94
+NMB         N01         C07         C32     111.883    2.59
+NMB         N01         C07         H07     106.479    1.50
+NMB         C06         C07         C32     111.094    2.85
+NMB         C06         C07         H07     107.639    1.50
+NMB         C32         C07         H07     108.763    1.50
+NMB         N01         C08         C09     113.267    1.60
+NMB         N01         C08        H081     108.919    1.50
+NMB         N01         C08        H082     108.919    1.50
+NMB         C09         C08        H081     109.101    1.50
+NMB         C09         C08        H082     109.101    1.50
+NMB        H081         C08        H082     107.859    1.50
+NMB         C08         C09         C10     120.710    1.50
+NMB         C08         C09         C14     120.710    1.50
+NMB         C10         C09         C14     118.580    1.50
+NMB         C09         C10         C11     120.442    1.50
+NMB         C09         C10         H10     119.742    1.50
+NMB         C11         C10         H10     119.815    1.50
+NMB         C10         C11         C12     120.273    1.50
+NMB         C10         C11         H11     119.818    1.50
+NMB         C12         C11         H11     119.909    1.50
+NMB         C11         C12         C13     119.997    1.50
+NMB         C11         C12         H12     119.998    1.50
+NMB         C13         C12         H12     119.998    1.50
+NMB         C12         C13         C14     120.273    1.50
+NMB         C12         C13         H13     119.909    1.50
+NMB         C14         C13         H13     119.818    1.50
+NMB         C09         C14         C13     120.442    1.50
+NMB         C09         C14         H14     119.742    1.50
+NMB         C13         C14         H14     119.815    1.50
+NMB         C17         O16         C41     117.464    1.77
+NMB         O16         C17         C18     120.025    3.00
+NMB         O16         C17         C22     120.025    3.00
+NMB         C18         C17         C22     119.950    1.50
+NMB         C17         C18         C19     119.315    1.50
+NMB         C17         C18         H18     120.308    1.50
+NMB         C19         C18         H18     120.377    1.50
+NMB         C18         C19         C20     120.734    1.50
+NMB         C18         C19         H19     119.448    1.50
+NMB         C20         C19         H19     119.817    1.50
+NMB         C19         C20         C21     119.951    1.50
+NMB         C19         C20         H20     120.024    1.50
+NMB         C21         C20         H20     120.024    1.50
+NMB         C20         C21         C22     120.734    1.50
+NMB         C20         C21         H21     119.817    1.50
+NMB         C22         C21         H21     119.448    1.50
+NMB         C17         C22         C21     119.315    1.50
+NMB         C17         C22         H22     120.308    1.50
+NMB         C21         C22         H22     120.377    1.50
+NMB         N03         C23         C24     113.267    1.60
+NMB         N03         C23        H231     108.919    1.50
+NMB         N03         C23        H232     108.919    1.50
+NMB         C24         C23        H231     109.101    1.50
+NMB         C24         C23        H232     109.101    1.50
+NMB        H231         C23        H232     107.859    1.50
+NMB         C23         C24         C25     120.710    1.50
+NMB         C23         C24         C29     120.710    1.50
+NMB         C25         C24         C29     118.580    1.50
+NMB         C24         C25         C26     120.442    1.50
+NMB         C24         C25         H25     119.742    1.50
+NMB         C26         C25         H25     119.815    1.50
+NMB         C25         C26         C27     120.273    1.50
+NMB         C25         C26         H26     119.818    1.50
+NMB         C27         C26         H26     119.909    1.50
+NMB         C26         C27         C28     119.997    1.50
+NMB         C26         C27         H27     119.998    1.50
+NMB         C28         C27         H27     119.998    1.50
+NMB         C27         C28         C29     120.273    1.50
+NMB         C27         C28         H28     119.909    1.50
+NMB         C29         C28         H28     119.818    1.50
+NMB         C24         C29         C28     120.442    1.50
+NMB         C24         C29         H29     119.742    1.50
+NMB         C28         C29         H29     119.815    1.50
+NMB         C05         O30         HO3     108.522    3.00
+NMB         C06         O31         HO1     108.522    3.00
+NMB         C07         C32         O33     108.648    2.49
+NMB         C07         C32        H321     109.865    1.50
+NMB         C07         C32        H322     109.865    1.50
+NMB         O33         C32        H321     110.147    1.50
+NMB         O33         C32        H322     110.147    1.50
+NMB        H321         C32        H322     108.331    1.50
+NMB         C32         O33         C34     117.464    1.77
+NMB         O33         C34         C35     120.025    3.00
+NMB         O33         C34         C39     120.025    3.00
+NMB         C35         C34         C39     119.950    1.50
+NMB         C34         C35         C36     119.315    1.50
+NMB         C34         C35         H35     120.308    1.50
+NMB         C36         C35         H35     120.377    1.50
+NMB         C35         C36         C37     120.734    1.50
+NMB         C35         C36         H36     119.448    1.50
+NMB         C37         C36         H36     119.817    1.50
+NMB         C36         C37         C38     119.951    1.50
+NMB         C36         C37         H37     120.024    1.50
+NMB         C38         C37         H37     120.024    1.50
+NMB         C37         C38         C39     120.734    1.50
+NMB         C37         C38         H38     119.817    1.50
+NMB         C39         C38         H38     119.448    1.50
+NMB         C34         C39         C38     119.315    1.50
+NMB         C34         C39         H39     120.308    1.50
+NMB         C38         C39         H39     120.377    1.50
+NMB         C04         C41         O16     108.648    2.49
+NMB         C04         C41        H411     109.865    1.50
+NMB         C04         C41        H412     109.865    1.50
+NMB         O16         C41        H411     110.147    1.50
+NMB         O16         C41        H412     110.147    1.50
+NMB        H411         C41        H412     108.331    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NMB             sp3_sp3_3         C07         N01         S02         N03      60.000    10.0     3
+NMB             sp3_sp3_7         C06         C07         N01         S02     180.000    10.0     3
+NMB            sp3_sp3_13         C09         C08         N01         S02     180.000    10.0     3
+NMB       const_sp2_sp2_9         C10         C11         C12         C13       0.000     5.0     2
+NMB              const_13         C11         C12         C13         C14       0.000    10.0     2
+NMB              const_17         C12         C13         C14         C09       0.000    10.0     2
+NMB             sp2_sp2_1         C18         C17         O16         C41     180.000     5.0     2
+NMB            sp3_sp3_88         C04         C41         O16         C17     180.000    10.0     3
+NMB              const_23         O16         C17         C18         C19     180.000    10.0     2
+NMB              const_87         O16         C17         C22         C21     180.000    10.0     2
+NMB              const_25         C17         C18         C19         C20       0.000    10.0     2
+NMB              const_29         C18         C19         C20         C21       0.000    10.0     2
+NMB              const_33         C19         C20         C21         C22       0.000    10.0     2
+NMB            sp3_sp3_21         C04         N03         S02         N01      60.000    10.0     3
+NMB              const_37         C20         C21         C22         C17       0.000    10.0     2
+NMB             sp2_sp3_8         C25         C24         C23         N03     -90.000    10.0     6
+NMB              const_43         C23         C24         C25         C26     180.000    10.0     2
+NMB              const_91         C23         C24         C29         C28     180.000    10.0     2
+NMB              const_45         C24         C25         C26         C27       0.000    10.0     2
+NMB              const_49         C25         C26         C27         C28       0.000    10.0     2
+NMB              const_53         C26         C27         C28         C29       0.000    10.0     2
+NMB              const_57         C27         C28         C29         C24       0.000    10.0     2
+NMB            sp3_sp3_31         C24         C23         N03         S02     180.000    10.0     3
+NMB            sp3_sp3_25         C05         C04         N03         S02     180.000    10.0     3
+NMB            sp3_sp3_91         C07         C32         O33         C34     180.000    10.0     3
+NMB             sp2_sp2_3         C35         C34         O33         C32     180.000     5.0     2
+NMB              const_63         O33         C34         C35         C36     180.000    10.0     2
+NMB              const_95         O33         C34         C39         C38     180.000    10.0     2
+NMB              const_65         C34         C35         C36         C37       0.000    10.0     2
+NMB              const_69         C35         C36         C37         C38       0.000    10.0     2
+NMB              const_73         C36         C37         C38         C39       0.000    10.0     2
+NMB              const_77         C37         C38         C39         C34       0.000    10.0     2
+NMB            sp3_sp3_37         N03         C04         C05         C06     180.000    10.0     3
+NMB            sp3_sp3_46         N03         C04         C41         O16     180.000    10.0     3
+NMB            sp3_sp3_64         C04         C05         O30         HO3     180.000    10.0     3
+NMB            sp3_sp3_55         C04         C05         C06         C07     180.000    10.0     3
+NMB            sp3_sp3_76         C05         C06         O31         HO1     180.000    10.0     3
+NMB            sp3_sp3_67         C05         C06         C07         N01     180.000    10.0     3
+NMB            sp3_sp3_79         N01         C07         C32         O33     180.000    10.0     3
+NMB             sp2_sp3_2         C10         C09         C08         N01     -90.000    10.0     6
+NMB              const_83         C08         C09         C14         C13     180.000    10.0     2
+NMB       const_sp2_sp2_3         C08         C09         C10         C11     180.000     5.0     2
+NMB       const_sp2_sp2_5         C09         C10         C11         C12       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NMB    chir_1    N01    S02    C07    C08    negative
+NMB    chir_2    S02    O15    O40    N01    both
+NMB    chir_3    N03    S02    C04    C23    negative
+NMB    chir_4    C04    N03    C05    C41    negative
+NMB    chir_5    C05    O30    C06    C04    positive
+NMB    chir_6    C06    O31    C05    C07    positive
+NMB    chir_7    C07    N01    C06    C32    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NMB    plan-1         C08   0.020
+NMB    plan-1         C09   0.020
+NMB    plan-1         C10   0.020
+NMB    plan-1         C11   0.020
+NMB    plan-1         C12   0.020
+NMB    plan-1         C13   0.020
+NMB    plan-1         C14   0.020
+NMB    plan-1         H10   0.020
+NMB    plan-1         H11   0.020
+NMB    plan-1         H12   0.020
+NMB    plan-1         H13   0.020
+NMB    plan-1         H14   0.020
+NMB    plan-2         C17   0.020
+NMB    plan-2         C18   0.020
+NMB    plan-2         C19   0.020
+NMB    plan-2         C20   0.020
+NMB    plan-2         C21   0.020
+NMB    plan-2         C22   0.020
+NMB    plan-2         H18   0.020
+NMB    plan-2         H19   0.020
+NMB    plan-2         H20   0.020
+NMB    plan-2         H21   0.020
+NMB    plan-2         H22   0.020
+NMB    plan-2         O16   0.020
+NMB    plan-3         C23   0.020
+NMB    plan-3         C24   0.020
+NMB    plan-3         C25   0.020
+NMB    plan-3         C26   0.020
+NMB    plan-3         C27   0.020
+NMB    plan-3         C28   0.020
+NMB    plan-3         C29   0.020
+NMB    plan-3         H25   0.020
+NMB    plan-3         H26   0.020
+NMB    plan-3         H27   0.020
+NMB    plan-3         H28   0.020
+NMB    plan-3         H29   0.020
+NMB    plan-4         C34   0.020
+NMB    plan-4         C35   0.020
+NMB    plan-4         C36   0.020
+NMB    plan-4         C37   0.020
+NMB    plan-4         C38   0.020
+NMB    plan-4         C39   0.020
+NMB    plan-4         H35   0.020
+NMB    plan-4         H36   0.020
+NMB    plan-4         H37   0.020
+NMB    plan-4         H38   0.020
+NMB    plan-4         H39   0.020
+NMB    plan-4         O33   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NMB           SMILES              ACDLabs 10.04                                                                                                                                        O=S2(=O)N(C(C(O)C(O)C(N2Cc1ccccc1)COc3ccccc3)COc4ccccc4)Cc5ccccc5
+NMB SMILES_CANONICAL               CACTVS 3.341                                                                                                                  O[C@@H]1[C@@H](O)[C@@H](COc2ccccc2)N(Cc3ccccc3)[S](=O)(=O)N(Cc4ccccc4)[C@@H]1COc5ccccc5
+NMB           SMILES               CACTVS 3.341                                                                                                                          O[CH]1[CH](O)[CH](COc2ccccc2)N(Cc3ccccc3)[S](=O)(=O)N(Cc4ccccc4)[CH]1COc5ccccc5
+NMB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                             c1ccc(cc1)C[N@@]2[C@@H]([C@@H]([C@H]([C@H]([N@](S2(=O)=O)Cc3ccccc3)COc4ccccc4)O)O)COc5ccccc5
+NMB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                      c1ccc(cc1)CN2C(C(C(C(N(S2(=O)=O)Cc3ccccc3)COc4ccccc4)O)O)COc5ccccc5
+NMB            InChI                InChI  1.03 InChI=1S/C32H34N2O6S/c35-31-29(23-39-27-17-9-3-10-18-27)33(21-25-13-5-1-6-14-25)41(37,38)34(22-26-15-7-2-8-16-26)30(32(31)36)24-40-28-19-11-4-12-20-28/h1-20,29-32,35-36H,21-24H2/t29-,30-,31+,32+/m1/s1
+NMB         InChIKey                InChI  1.03                                                                                                                                                                              CAGHBXQSDLNCES-ZRTHHSRSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NMB acedrg               243         "dictionary generator"                  
+NMB acedrg_database      11          "data source"                           
+NMB rdkit                2017.03.2   "Chemoinformatics tool"
+NMB refmac5              5.8.0238    "optimization tool"                     

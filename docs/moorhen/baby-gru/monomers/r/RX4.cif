@@ -1,0 +1,405 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RX4     RX4      N~2~-acetyl-N-{(1R)-1-[(S)-[(2S)-3-{[(2S)-1-amino-1-oxopropan-2-yl]amino}-2-methyl-3-oxopropyl](hydroxy)phosphoryl]-2-phenylethyl}-L-alpha-asparagine     NON-POLYMER     64     34     .     
+#
+data_comp_RX4
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RX4     CAX     C       C       0       25.650      4.729       47.413      
+RX4     CAA     C       CH3     0       25.019      6.062       47.153      
+RX4     OAE     O       O       0       26.846      4.644       47.685      
+RX4     CBB     C       C       0       25.239      1.516       46.202      
+RX4     OAI     O       O       0       24.168      1.451       45.602      
+RX4     CBF     C       CH1     0       25.313      2.275       47.525      
+RX4     CAR     C       CH2     0       24.521      1.539       48.605      
+RX4     CAZ     C       C       0       24.608      2.212       49.965      
+RX4     OAK     O       OC      -1      25.709      2.208       50.550      
+RX4     OAG     O       O       0       23.574      2.736       50.428      
+RX4     NAU     N       NH1     0       24.852      3.652       47.340      
+RX4     CAP     C       CR16    0       27.420      3.776       44.215      
+RX4     CAN     C       CR16    0       26.929      5.073       44.138      
+RX4     CAM     C       CR16    0       25.889      5.371       43.283      
+RX4     CAO     C       CR16    0       25.338      4.377       42.504      
+RX4     CAQ     C       CR16    0       25.827      3.078       42.579      
+RX4     CBC     C       CR6     0       26.876      2.762       43.433      
+RX4     CAS     C       CH2     0       27.405      1.351       43.520      
+RX4     CBG     C       CH1     0       26.560      0.419       44.399      
+RX4     P1      P       P       0       27.352      -1.223      44.541      
+RX4     O4      O       OH1     0       26.412      -2.078      45.442      
+RX4     O3      O       O       0       28.706      -1.096      45.143      
+RX4     NAW     N       NH1     0       26.386      0.993       45.726      
+RX4     CAT     C       CH2     0       27.375      -2.021      42.908      
+RX4     CBD     C       CH1     0       27.734      -3.520      42.929      
+RX4     CAB     C       CH3     0       27.499      -4.173      41.558      
+RX4     CBA     C       C       0       29.185      -3.714      43.367      
+RX4     OAH     O       O       0       30.098      -3.220      42.706      
+RX4     N       N       NH1     0       29.397      -4.444      44.470      
+RX4     CA      C       CH1     0       30.720      -4.627      45.054      
+RX4     CB      C       CH3     0       30.629      -5.033      46.527      
+RX4     C       C       C       0       31.516      -5.668      44.254      
+RX4     O       O       O       0       31.061      -6.800      44.094      
+RX4     NAD     N       NH2     0       32.682      -5.275      43.758      
+RX4     HAA1    H       H       0       24.090      5.952       46.895      
+RX4     HAA2    H       H       0       25.498      6.511       46.437      
+RX4     HAA3    H       H       0       25.065      6.605       47.956      
+RX4     HBF     H       H       0       26.256      2.292       47.819      
+RX4     HAR1    H       H       0       24.863      0.626       48.691      
+RX4     HAR2    H       H       0       23.580      1.490       48.339      
+RX4     HAU     H       H       0       24.004      3.776       47.174      
+RX4     HAP     H       H       0       28.132      3.579       44.802      
+RX4     HAN     H       H       0       27.309      5.752       44.672      
+RX4     HAM     H       H       0       25.557      6.253       43.231      
+RX4     HAO     H       H       0       24.626      4.578       41.917      
+RX4     HAQ     H       H       0       25.444      2.402       42.042      
+RX4     HAS1    H       H       0       28.319      1.376       43.877      
+RX4     HAS2    H       H       0       27.450      0.974       42.615      
+RX4     HBG     H       H       0       25.681      0.304       43.969      
+RX4     HAL     H       H       0       25.855      -2.518      44.995      
+RX4     HAW     H       H       0       27.091      0.978       46.241      
+RX4     HAT1    H       H       0       28.020      -1.548      42.344      
+RX4     HAT2    H       H       0       26.490      -1.914      42.504      
+RX4     HBD     H       H       0       27.142      -3.964      43.578      
+RX4     HAB1    H       H       0       28.268      -4.717      41.311      
+RX4     HAB2    H       H       0       27.365      -3.483      40.884      
+RX4     HAB3    H       H       0       26.708      -4.737      41.600      
+RX4     H       H       H       0       28.716      -4.847      44.838      
+RX4     HA      H       H       0       31.199      -3.763      45.010      
+RX4     HB1C    H       H       0       30.955      -5.942      46.644      
+RX4     HB2C    H       H       0       29.708      -4.982      46.832      
+RX4     HB3C    H       H       0       31.173      -4.429      47.061      
+RX4     HAD1    H       H       0       33.165      -5.849      43.290      
+RX4     HAD2    H       H       0       32.989      -4.456      43.885      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RX4         CAP         CAN      DOUBLE       y     1.386  0.0100     1.386  0.0100
+RX4         CAP         CBC      SINGLE       y     1.385  0.0111     1.385  0.0111
+RX4         CAN         CAM      SINGLE       y     1.374  0.0127     1.374  0.0127
+RX4         CAM         CAO      DOUBLE       y     1.374  0.0127     1.374  0.0127
+RX4         CAO         CAQ      SINGLE       y     1.386  0.0100     1.386  0.0100
+RX4         CAQ         CBC      DOUBLE       y     1.385  0.0111     1.385  0.0111
+RX4         CBC         CAS      SINGLE       n     1.509  0.0100     1.509  0.0100
+RX4         CAS         CBG      SINGLE       n     1.534  0.0100     1.534  0.0100
+RX4         CBG         NAW      SINGLE       n     1.453  0.0100     1.453  0.0100
+RX4         CBG          P1      SINGLE       n     1.829  0.0200     1.829  0.0200
+RX4         CBB         NAW      SINGLE       n     1.341  0.0100     1.341  0.0100
+RX4         CBB         OAI      DOUBLE       n     1.229  0.0102     1.229  0.0102
+RX4         CBB         CBF      SINGLE       n     1.525  0.0105     1.525  0.0105
+RX4         CBF         CAR      SINGLE       n     1.529  0.0100     1.529  0.0100
+RX4         CBF         NAU      SINGLE       n     1.459  0.0100     1.459  0.0100
+RX4         CAR         CAZ      SINGLE       n     1.519  0.0109     1.519  0.0109
+RX4         CAZ         OAK      SINGLE       n     1.247  0.0187     1.247  0.0187
+RX4         CAZ         OAG      DOUBLE       n     1.247  0.0187     1.247  0.0187
+RX4         CAX         NAU      SINGLE       n     1.335  0.0100     1.335  0.0100
+RX4         CAX         CAA      SINGLE       n     1.495  0.0100     1.495  0.0100
+RX4         CAX         OAE      DOUBLE       n     1.229  0.0102     1.229  0.0102
+RX4          P1          O4      SINGLE       n     1.557  0.0168     1.557  0.0168
+RX4          P1          O3      DOUBLE       n     1.485  0.0198     1.485  0.0198
+RX4          P1         CAT      SINGLE       n     1.814  0.0200     1.814  0.0200
+RX4         CAT         CBD      SINGLE       n     1.540  0.0100     1.540  0.0100
+RX4         CBD         CAB      SINGLE       n     1.532  0.0131     1.532  0.0131
+RX4         CBD         CBA      SINGLE       n     1.525  0.0100     1.525  0.0100
+RX4         CBA         OAH      DOUBLE       n     1.229  0.0102     1.229  0.0102
+RX4         CBA           N      SINGLE       n     1.334  0.0100     1.334  0.0100
+RX4           N          CA      SINGLE       n     1.453  0.0100     1.453  0.0100
+RX4          CA          CB      SINGLE       n     1.525  0.0113     1.525  0.0113
+RX4          CA           C      SINGLE       n     1.532  0.0100     1.532  0.0100
+RX4           C           O      DOUBLE       n     1.230  0.0100     1.230  0.0100
+RX4           C         NAD      SINGLE       n     1.325  0.0100     1.325  0.0100
+RX4         CAA        HAA1      SINGLE       n     1.089  0.0100     0.971  0.0140
+RX4         CAA        HAA2      SINGLE       n     1.089  0.0100     0.971  0.0140
+RX4         CAA        HAA3      SINGLE       n     1.089  0.0100     0.971  0.0140
+RX4         CBF         HBF      SINGLE       n     1.089  0.0100     0.989  0.0122
+RX4         CAR        HAR1      SINGLE       n     1.089  0.0100     0.979  0.0159
+RX4         CAR        HAR2      SINGLE       n     1.089  0.0100     0.979  0.0159
+RX4         NAU         HAU      SINGLE       n     1.016  0.0100     0.873  0.0200
+RX4         CAP         HAP      SINGLE       n     1.082  0.0130     0.944  0.0174
+RX4         CAN         HAN      SINGLE       n     1.082  0.0130     0.944  0.0175
+RX4         CAM         HAM      SINGLE       n     1.082  0.0130     0.944  0.0161
+RX4         CAO         HAO      SINGLE       n     1.082  0.0130     0.944  0.0175
+RX4         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.944  0.0174
+RX4         CAS        HAS1      SINGLE       n     1.089  0.0100     0.981  0.0169
+RX4         CAS        HAS2      SINGLE       n     1.089  0.0100     0.981  0.0169
+RX4         CBG         HBG      SINGLE       n     1.089  0.0100     0.986  0.0200
+RX4          O4         HAL      SINGLE       n     0.970  0.0120     0.839  0.0200
+RX4         NAW         HAW      SINGLE       n     1.016  0.0100     0.873  0.0200
+RX4         CAT        HAT1      SINGLE       n     1.089  0.0100     0.979  0.0200
+RX4         CAT        HAT2      SINGLE       n     1.089  0.0100     0.979  0.0200
+RX4         CBD         HBD      SINGLE       n     1.089  0.0100     0.985  0.0200
+RX4         CAB        HAB1      SINGLE       n     1.089  0.0100     0.973  0.0141
+RX4         CAB        HAB2      SINGLE       n     1.089  0.0100     0.973  0.0141
+RX4         CAB        HAB3      SINGLE       n     1.089  0.0100     0.973  0.0141
+RX4           N           H      SINGLE       n     1.016  0.0100     0.873  0.0200
+RX4          CA          HA      SINGLE       n     1.089  0.0100     0.989  0.0200
+RX4          CB        HB1C      SINGLE       n     1.089  0.0100     0.972  0.0152
+RX4          CB        HB2C      SINGLE       n     1.089  0.0100     0.972  0.0152
+RX4          CB        HB3C      SINGLE       n     1.089  0.0100     0.972  0.0152
+RX4         NAD        HAD1      SINGLE       n     1.016  0.0100     0.884  0.0200
+RX4         NAD        HAD2      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RX4         NAU         CAX         CAA     116.420    1.50
+RX4         NAU         CAX         OAE     121.667    1.50
+RX4         CAA         CAX         OAE     121.913    1.50
+RX4         CAX         CAA        HAA1     109.678    1.50
+RX4         CAX         CAA        HAA2     109.678    1.50
+RX4         CAX         CAA        HAA3     109.678    1.50
+RX4        HAA1         CAA        HAA2     109.365    1.50
+RX4        HAA1         CAA        HAA3     109.365    1.50
+RX4        HAA2         CAA        HAA3     109.365    1.50
+RX4         NAW         CBB         OAI     122.987    1.50
+RX4         NAW         CBB         CBF     116.463    1.50
+RX4         OAI         CBB         CBF     120.530    1.50
+RX4         CBB         CBF         CAR     111.511    2.91
+RX4         CBB         CBF         NAU     111.371    2.04
+RX4         CBB         CBF         HBF     107.852    1.50
+RX4         CAR         CBF         NAU     112.687    1.50
+RX4         CAR         CBF         HBF     107.587    1.50
+RX4         NAU         CBF         HBF     107.954    1.50
+RX4         CBF         CAR         CAZ     111.511    2.91
+RX4         CBF         CAR        HAR1     108.988    1.50
+RX4         CBF         CAR        HAR2     108.988    1.50
+RX4         CAZ         CAR        HAR1     107.840    2.14
+RX4         CAZ         CAR        HAR2     107.840    2.14
+RX4        HAR1         CAR        HAR2     107.891    1.66
+RX4         CAR         CAZ         OAK     117.986    1.50
+RX4         CAR         CAZ         OAG     117.986    1.50
+RX4         OAK         CAZ         OAG     124.027    1.50
+RX4         CBF         NAU         CAX     121.618    1.76
+RX4         CBF         NAU         HAU     119.334    1.64
+RX4         CAX         NAU         HAU     119.048    2.25
+RX4         CAN         CAP         CBC     120.624    1.50
+RX4         CAN         CAP         HAP     119.786    1.50
+RX4         CBC         CAP         HAP     119.591    1.50
+RX4         CAP         CAN         CAM     120.325    1.50
+RX4         CAP         CAN         HAN     119.792    1.50
+RX4         CAM         CAN         HAN     119.883    1.50
+RX4         CAN         CAM         CAO     120.043    1.50
+RX4         CAN         CAM         HAM     119.979    1.50
+RX4         CAO         CAM         HAM     119.979    1.50
+RX4         CAM         CAO         CAQ     120.325    1.50
+RX4         CAM         CAO         HAO     119.883    1.50
+RX4         CAQ         CAO         HAO     119.792    1.50
+RX4         CAO         CAQ         CBC     120.624    1.50
+RX4         CAO         CAQ         HAQ     119.786    1.50
+RX4         CBC         CAQ         HAQ     119.591    1.50
+RX4         CAP         CBC         CAQ     118.060    1.50
+RX4         CAP         CBC         CAS     120.970    1.50
+RX4         CAQ         CBC         CAS     120.970    1.50
+RX4         CBC         CAS         CBG     113.900    1.50
+RX4         CBC         CAS        HAS1     108.906    1.50
+RX4         CBC         CAS        HAS2     108.906    1.50
+RX4         CBG         CAS        HAS1     108.744    1.50
+RX4         CBG         CAS        HAS2     108.744    1.50
+RX4        HAS1         CAS        HAS2     107.735    1.50
+RX4         CAS         CBG         NAW     110.142    1.50
+RX4         CAS         CBG          P1     111.410    2.87
+RX4         CAS         CBG         HBG     108.202    1.50
+RX4         NAW         CBG          P1     108.817    2.81
+RX4         NAW         CBG         HBG     106.481    2.65
+RX4          P1         CBG         HBG     108.528    1.50
+RX4         CBG          P1          O4     105.177    2.72
+RX4         CBG          P1          O3     110.326    3.00
+RX4         CBG          P1         CAT     109.194    3.00
+RX4          O4          P1          O3     110.226    3.00
+RX4          O4          P1         CAT     105.177    2.72
+RX4          O3          P1         CAT     110.326    3.00
+RX4          P1          O4         HAL     112.398    3.00
+RX4         CBG         NAW         CBB     123.657    1.62
+RX4         CBG         NAW         HAW     117.696    2.87
+RX4         CBB         NAW         HAW     118.647    1.94
+RX4          P1         CAT         CBD     111.410    2.87
+RX4          P1         CAT        HAT1     107.633    1.97
+RX4          P1         CAT        HAT2     107.633    1.97
+RX4         CBD         CAT        HAT1     108.507    1.50
+RX4         CBD         CAT        HAT2     108.507    1.50
+RX4        HAT1         CAT        HAT2     107.498    1.50
+RX4         CAT         CBD         CAB     111.206    1.79
+RX4         CAT         CBD         CBA     110.780    2.19
+RX4         CAT         CBD         HBD     108.236    1.50
+RX4         CAB         CBD         CBA     109.731    1.50
+RX4         CAB         CBD         HBD     108.016    1.51
+RX4         CBA         CBD         HBD     108.369    1.50
+RX4         CBD         CAB        HAB1     109.591    1.50
+RX4         CBD         CAB        HAB2     109.591    1.50
+RX4         CBD         CAB        HAB3     109.591    1.50
+RX4        HAB1         CAB        HAB2     109.411    1.50
+RX4        HAB1         CAB        HAB3     109.411    1.50
+RX4        HAB2         CAB        HAB3     109.411    1.50
+RX4         CBD         CBA         OAH     121.196    1.75
+RX4         CBD         CBA           N     116.228    1.50
+RX4         OAH         CBA           N     122.576    1.50
+RX4         CBA           N          CA     121.942    1.76
+RX4         CBA           N           H     118.853    2.34
+RX4          CA           N           H     119.206    1.50
+RX4           N          CA          CB     110.370    1.50
+RX4           N          CA           C     111.106    2.53
+RX4           N          CA          HA     108.310    1.50
+RX4          CB          CA           C     109.980    1.50
+RX4          CB          CA          HA     108.358    1.50
+RX4           C          CA          HA     108.061    1.50
+RX4          CA          CB        HB1C     109.620    1.50
+RX4          CA          CB        HB2C     109.620    1.50
+RX4          CA          CB        HB3C     109.620    1.50
+RX4        HB1C          CB        HB2C     109.386    1.50
+RX4        HB1C          CB        HB3C     109.386    1.50
+RX4        HB2C          CB        HB3C     109.386    1.50
+RX4          CA           C           O     120.522    1.50
+RX4          CA           C         NAD     115.746    1.60
+RX4           O           C         NAD     123.732    1.50
+RX4           C         NAD        HAD1     120.017    3.00
+RX4           C         NAD        HAD2     120.017    3.00
+RX4        HAD1         NAD        HAD2     119.966    2.38
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RX4            sp2_sp3_31         NAU         CAX         CAA        HAA1       0.000    10.0     6
+RX4             sp2_sp2_5         CAA         CAX         NAU         CBF     180.000     5.0     2
+RX4       const_sp2_sp2_1         CAM         CAN         CAP         CBC       0.000     5.0     2
+RX4              const_22         CAN         CAP         CBC         CAS     180.000    10.0     2
+RX4       const_sp2_sp2_5         CAO         CAM         CAN         CAP       0.000     5.0     2
+RX4       const_sp2_sp2_9         CAN         CAM         CAO         CAQ       0.000     5.0     2
+RX4              const_13         CAM         CAO         CAQ         CBC       0.000    10.0     2
+RX4              const_18         CAO         CAQ         CBC         CAS     180.000    10.0     2
+RX4             sp2_sp3_2         CAP         CBC         CAS         CBG     -90.000    10.0     6
+RX4             sp3_sp3_1         CBC         CAS         CBG         NAW     180.000    10.0     3
+RX4            sp3_sp3_10         CAS         CBG          P1          O4     180.000    10.0     3
+RX4             sp2_sp3_7         CBB         NAW         CBG         CAS       0.000    10.0     6
+RX4            sp3_sp3_28         HAL          O4          P1         CBG     180.000    10.0     3
+RX4            sp3_sp3_31         CBD         CAT          P1         CBG     180.000    10.0     3
+RX4            sp3_sp3_40          P1         CAT         CBD         CAB     180.000    10.0     3
+RX4            sp3_sp3_49        HAB1         CAB         CBD         CAT     180.000    10.0     3
+RX4            sp2_sp3_37         OAH         CBA         CBD         CAT       0.000    10.0     6
+RX4             sp2_sp2_9         CBD         CBA           N          CA     180.000     5.0     2
+RX4            sp2_sp3_43         CBA           N          CA          CB       0.000    10.0     6
+RX4            sp3_sp3_58           N          CA          CB        HB1C     180.000    10.0     3
+RX4            sp2_sp3_49           O           C          CA           N       0.000    10.0     6
+RX4            sp2_sp2_13          CA           C         NAD        HAD1     180.000     5.0     2
+RX4             sp2_sp2_3         OAI         CBB         NAW         CBG       0.000     5.0     2
+RX4            sp2_sp3_13         NAW         CBB         CBF         CAR       0.000    10.0     6
+RX4            sp2_sp3_19         CAX         NAU         CBF         CBB       0.000    10.0     6
+RX4            sp3_sp3_19         CAZ         CAR         CBF         CBB     180.000    10.0     3
+RX4            sp2_sp3_26         OAK         CAZ         CAR         CBF     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RX4    chir_1    CBF    NAU    CBB    CAR    positive
+RX4    chir_2    CBG    P1    NAW    CAS    negative
+RX4    chir_3    P1    O4    O3    CBG    positive
+RX4    chir_4    CBD    CAT    CBA    CAB    positive
+RX4    chir_5    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RX4    plan-1         CAM   0.020
+RX4    plan-1         CAN   0.020
+RX4    plan-1         CAO   0.020
+RX4    plan-1         CAP   0.020
+RX4    plan-1         CAQ   0.020
+RX4    plan-1         CAS   0.020
+RX4    plan-1         CBC   0.020
+RX4    plan-1         HAM   0.020
+RX4    plan-1         HAN   0.020
+RX4    plan-1         HAO   0.020
+RX4    plan-1         HAP   0.020
+RX4    plan-1         HAQ   0.020
+RX4    plan-2         CAA   0.020
+RX4    plan-2         CAX   0.020
+RX4    plan-2         NAU   0.020
+RX4    plan-2         OAE   0.020
+RX4    plan-3         CBB   0.020
+RX4    plan-3         CBF   0.020
+RX4    plan-3         NAW   0.020
+RX4    plan-3         OAI   0.020
+RX4    plan-4         CAR   0.020
+RX4    plan-4         CAZ   0.020
+RX4    plan-4         OAG   0.020
+RX4    plan-4         OAK   0.020
+RX4    plan-5         CAX   0.020
+RX4    plan-5         CBF   0.020
+RX4    plan-5         HAU   0.020
+RX4    plan-5         NAU   0.020
+RX4    plan-6         CBB   0.020
+RX4    plan-6         CBG   0.020
+RX4    plan-6         HAW   0.020
+RX4    plan-6         NAW   0.020
+RX4    plan-7         CBA   0.020
+RX4    plan-7         CBD   0.020
+RX4    plan-7           N   0.020
+RX4    plan-7         OAH   0.020
+RX4    plan-8          CA   0.020
+RX4    plan-8         CBA   0.020
+RX4    plan-8           H   0.020
+RX4    plan-8           N   0.020
+RX4    plan-9           C   0.020
+RX4    plan-9          CA   0.020
+RX4    plan-9         NAD   0.020
+RX4    plan-9           O   0.020
+RX4   plan-10           C   0.020
+RX4   plan-10        HAD1   0.020
+RX4   plan-10        HAD2   0.020
+RX4   plan-10         NAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RX4           SMILES              ACDLabs 12.01                                                                                                                                                                    O=C(N)C(NC(=O)C(C)CP(=O)(O)C(NC(=O)C(NC(=O)C)CC(=O)O)Cc1ccccc1)C
+RX4 SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                 C[C@H](C[P](O)(=O)[C@H](Cc1ccccc1)NC(=O)[C@H](CC(O)=O)NC(C)=O)C(=O)N[C@@H](C)C(N)=O
+RX4           SMILES               CACTVS 3.370                                                                                                                                                      C[CH](C[P](O)(=O)[CH](Cc1ccccc1)NC(=O)[CH](CC(O)=O)NC(C)=O)C(=O)N[CH](C)C(N)=O
+RX4 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                               C[C@H](C[P@@](=O)([C@H](Cc1ccccc1)NC(=O)[C@H](CC(=O)O)NC(=O)C)O)C(=O)N[C@@H](C)C(=O)N
+RX4           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                    CC(CP(=O)(C(Cc1ccccc1)NC(=O)C(CC(=O)O)NC(=O)C)O)C(=O)NC(C)C(=O)N
+RX4            InChI                InChI  1.03 InChI=1S/C21H31N4O8P/c1-12(20(30)23-13(2)19(22)29)11-34(32,33)17(9-15-7-5-4-6-8-15)25-21(31)16(10-18(27)28)24-14(3)26/h4-8,12-13,16-17H,9-11H2,1-3H3,(H2,22,29)(H,23,30)(H,24,26)(H,25,31)(H,27,28)(H,32,33)/t12-,13+,16+,17-/m1/s1
+RX4         InChIKey                InChI  1.03                                                                                                                                                                                                         OCAZUTUOYLAIOA-OSRSDYAFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RX4 acedrg               243         "dictionary generator"                  
+RX4 acedrg_database      11          "data source"                           
+RX4 rdkit                2017.03.2   "Chemoinformatics tool"
+RX4 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,172 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+0XC     0XC      "(2E)-6-amino-2-iminohexanoic acid"     NON-POLYMER     22     10     .     
+#
+data_comp_0XC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+0XC     O       O       OC      -1      -7.114      -13.606     -25.577     
+0XC     C       C       C       0       -7.525      -12.442     -25.597     
+0XC     OXT     O       O       0       -8.728      -12.186     -25.494     
+0XC     CA      C       C       0       -6.625      -11.438     -25.736     
+0XC     N       N       NH1     0       -5.359      -11.778     -25.806     
+0XC     CB      C       CH2     0       -7.003      -9.982      -25.802     
+0XC     CG      C       CH2     0       -6.998      -9.314      -24.433     
+0XC     CD      C       CH2     0       -8.174      -9.704      -23.554     
+0XC     CE      C       CH2     0       -8.261      -8.885      -22.283     
+0XC     NZ      N       NT3     1       -9.356      -9.357      -21.402     
+0XC     H3      H       H       0       -4.793      -11.105     -25.886     
+0XC     H6      H       H       0       -7.890      -9.892      -26.197     
+0XC     H7      H       H       0       -6.378      -9.513      -26.385     
+0XC     H8      H       H       0       -7.006      -8.342      -24.558     
+0XC     H9      H       H       0       -6.165      -9.547      -23.971     
+0XC     H10     H       H       0       -8.093      -10.652     -23.315     
+0XC     H11     H       H       0       -9.005      -9.591      -24.062     
+0XC     H12     H       H       0       -8.417      -7.949      -22.508     
+0XC     H13     H       H       0       -7.416      -8.944      -21.798     
+0XC     H14     H       H       0       -9.374      -8.862      -20.642     
+0XC     H15     H       H       0       -9.223      -10.228     -21.186     
+0XC     HZ16    H       H       0       -10.151     -9.274      -21.829     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+0XC           C         OXT      DOUBLE       n     1.230  0.0200     1.230  0.0200
+0XC           O           C      SINGLE       n     1.230  0.0200     1.230  0.0200
+0XC           C          CA      SINGLE       n     1.331  0.0200     1.331  0.0200
+0XC          CA          CB      SINGLE       n     1.502  0.0100     1.502  0.0100
+0XC          CB          CG      SINGLE       n     1.522  0.0200     1.522  0.0200
+0XC          CA           N      DOUBLE       n     1.299  0.0200     1.299  0.0200
+0XC          CG          CD      SINGLE       n     1.519  0.0164     1.519  0.0164
+0XC          CD          CE      SINGLE       n     1.514  0.0111     1.514  0.0111
+0XC          CE          NZ      SINGLE       n     1.482  0.0123     1.482  0.0123
+0XC           N          H3      SINGLE       n     1.016  0.0100     0.882  0.0200
+0XC          CB          H6      SINGLE       n     1.089  0.0100     0.975  0.0121
+0XC          CB          H7      SINGLE       n     1.089  0.0100     0.975  0.0121
+0XC          CG          H8      SINGLE       n     1.089  0.0100     0.980  0.0160
+0XC          CG          H9      SINGLE       n     1.089  0.0100     0.980  0.0160
+0XC          CD         H10      SINGLE       n     1.089  0.0100     0.981  0.0160
+0XC          CD         H11      SINGLE       n     1.089  0.0100     0.981  0.0160
+0XC          CE         H12      SINGLE       n     1.089  0.0100     0.976  0.0165
+0XC          CE         H13      SINGLE       n     1.089  0.0100     0.976  0.0165
+0XC          NZ         H14      SINGLE       n     1.036  0.0160     0.907  0.0200
+0XC          NZ         H15      SINGLE       n     1.036  0.0160     0.907  0.0200
+0XC          NZ        HZ16      SINGLE       n     1.036  0.0160     0.907  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+0XC         OXT           C           O     122.692    1.63
+0XC         OXT           C          CA     118.654    3.00
+0XC           O           C          CA     118.654    3.00
+0XC           C          CA          CB     121.335    3.00
+0XC           C          CA           N     117.980    3.00
+0XC          CB          CA           N     120.685    3.00
+0XC          CA           N          H3     112.238    3.00
+0XC          CA          CB          CG     112.175    1.50
+0XC          CA          CB          H6     108.936    1.50
+0XC          CA          CB          H7     108.936    1.50
+0XC          CG          CB          H6     108.832    1.50
+0XC          CG          CB          H7     108.832    1.50
+0XC          H6          CB          H7     107.424    1.50
+0XC          CB          CG          CD     113.314    2.25
+0XC          CB          CG          H8     108.615    1.50
+0XC          CB          CG          H9     108.615    1.50
+0XC          CD          CG          H8     108.806    1.50
+0XC          CD          CG          H9     108.806    1.50
+0XC          H8          CG          H9     107.646    1.50
+0XC          CG          CD          CE     113.073    1.98
+0XC          CG          CD         H10     109.041    1.50
+0XC          CG          CD         H11     109.041    1.50
+0XC          CE          CD         H10     108.889    1.50
+0XC          CE          CD         H11     108.889    1.50
+0XC         H10          CD         H11     107.927    1.57
+0XC          CD          CE          NZ     111.734    1.84
+0XC          CD          CE         H12     109.576    1.50
+0XC          CD          CE         H13     109.576    1.50
+0XC          NZ          CE         H12     108.989    1.50
+0XC          NZ          CE         H13     108.989    1.50
+0XC         H12          CE         H13     108.067    1.50
+0XC          CE          NZ         H14     109.775    1.81
+0XC          CE          NZ         H15     109.775    1.81
+0XC          CE          NZ        HZ16     109.775    1.81
+0XC         H14          NZ         H15     109.021    2.83
+0XC         H14          NZ        HZ16     109.021    2.83
+0XC         H15          NZ        HZ16     109.021    2.83
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+0XC             sp2_sp2_1         OXT           C          CA          CB     180.000     5.0     2
+0XC             sp2_sp2_5           C          CA           N          H3     180.000     5.0     2
+0XC             sp2_sp3_2           C          CA          CB          CG     120.000    10.0     6
+0XC             sp3_sp3_1          CA          CB          CG          CD     180.000    10.0     3
+0XC            sp3_sp3_10          CE          CD          CG          CB     180.000    10.0     3
+0XC            sp3_sp3_19          CG          CD          CE          NZ     180.000    10.0     3
+0XC            sp3_sp3_28          CD          CE          NZ         H14     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+0XC    plan-1           C   0.020
+0XC    plan-1          CA   0.020
+0XC    plan-1           O   0.020
+0XC    plan-1         OXT   0.020
+0XC    plan-2           C   0.020
+0XC    plan-2          CA   0.020
+0XC    plan-2          CB   0.020
+0XC    plan-2           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+0XC           SMILES              ACDLabs 12.01                                                O=C(O)C(=[N@H])CCCCN
+0XC            InChI                InChI  1.03 InChI=1S/C6H12N2O2/c7-4-2-1-3-5(8)6(9)10/h8H,1-4,7H2,(H,9,10)/b8-5+
+0XC         InChIKey                InChI  1.03                                         ONJCPSHPCDMDIU-VMPITWQZSA-N
+0XC SMILES_CANONICAL               CACTVS 3.370                                                    NCCCCC(=N)C(O)=O
+0XC           SMILES               CACTVS 3.370                                                    NCCCCC(=N)C(O)=O
+0XC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                            "[H]/N=C(\CCCCN)/C(=O)O"
+0XC           SMILES "OpenEye OEToolkits" 1.7.6                                                  C(CCN)CC(=N)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+0XC acedrg               243         "dictionary generator"                  
+0XC acedrg_database      11          "data source"                           
+0XC rdkit                2017.03.2   "Chemoinformatics tool"
+0XC refmac5              5.8.0238    "optimization tool"                     

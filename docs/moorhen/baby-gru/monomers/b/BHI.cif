@@ -1,0 +1,187 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BHI     BHI      "4-BROMO-3-HYDROXY-3-METHYL BUTYL DIPHOSPHATE"     NON-POLYMER     26     16     .     
+#
+data_comp_BHI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BHI     O1      O       OH1     0       8.350       10.113      13.504      
+BHI     O2      O       OP      -1      11.932      2.692       11.765      
+BHI     O3      O       O       0       9.915       1.456       12.610      
+BHI     O4      O       OP      -1      11.886      1.828       14.123      
+BHI     P5      P       P       0       11.078      2.351       12.961      
+BHI     O6      O       O2      0       10.434      3.744       13.459      
+BHI     O7      O       OP      -1      12.228      5.484       13.802      
+BHI     O8      O       O       0       11.036      4.420       15.815      
+BHI     P9      P       P       0       10.988      4.913       14.407      
+BHI     C10     C       CH2     0       10.322      9.142       14.418      
+BHI     C11     C       CH3     0       10.034      9.450       11.942      
+BHI     C12     C       CH2     0       9.437       6.516       12.983      
+BHI     C13     C       CH2     0       8.592       7.756       13.156      
+BHI     C14     C       CT      0       9.339       9.098       13.251      
+BHI     O15     O       O2      0       9.811       5.999       14.293      
+BHI     BR      BR      BR      0       9.435       8.994       16.150      
+BHI     HO1     H       H       0       7.790       10.148      12.866      
+BHI     H101    H       H       0       10.818      9.993       14.389      
+BHI     H102    H       H       0       10.977      8.413       14.329      
+BHI     H111    H       H       0       10.954      9.136       11.966      
+BHI     H112    H       H       0       10.026      10.414      11.817      
+BHI     H113    H       H       0       9.570       9.026       11.199      
+BHI     H121    H       H       0       10.243      6.724       12.464      
+BHI     H122    H       H       0       8.926       5.837       12.494      
+BHI     H131    H       H       0       8.048       7.652       13.964      
+BHI     H132    H       H       0       7.972       7.813       12.397      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BHI          O1         C14      SINGLE       n     1.437  0.0141     1.437  0.0141
+BHI          O2          P5      SINGLE       n     1.509  0.0200     1.509  0.0200
+BHI          O3          P5      DOUBLE       n     1.509  0.0200     1.509  0.0200
+BHI          O4          P5      SINGLE       n     1.509  0.0200     1.509  0.0200
+BHI          P5          O6      SINGLE       n     1.614  0.0178     1.614  0.0178
+BHI          O6          P9      SINGLE       n     1.604  0.0133     1.604  0.0133
+BHI          O7          P9      SINGLE       n     1.493  0.0122     1.493  0.0122
+BHI          O8          P9      DOUBLE       n     1.493  0.0122     1.493  0.0122
+BHI          P9         O15      SINGLE       n     1.604  0.0133     1.604  0.0133
+BHI         C10         C14      SINGLE       n     1.522  0.0111     1.522  0.0111
+BHI         C10          BR      SINGLE       n     1.950  0.0156     1.950  0.0156
+BHI         C11         C14      SINGLE       n     1.520  0.0101     1.520  0.0101
+BHI         C12         C13      SINGLE       n     1.500  0.0200     1.500  0.0200
+BHI         C12         O15      SINGLE       n     1.456  0.0100     1.456  0.0100
+BHI         C13         C14      SINGLE       n     1.533  0.0100     1.533  0.0100
+BHI          O1         HO1      SINGLE       n     0.970  0.0120     0.848  0.0200
+BHI         C10        H101      SINGLE       n     1.089  0.0100     0.985  0.0100
+BHI         C10        H102      SINGLE       n     1.089  0.0100     0.985  0.0100
+BHI         C11        H111      SINGLE       n     1.089  0.0100     0.972  0.0148
+BHI         C11        H112      SINGLE       n     1.089  0.0100     0.972  0.0148
+BHI         C11        H113      SINGLE       n     1.089  0.0100     0.972  0.0148
+BHI         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0100
+BHI         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0100
+BHI         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0160
+BHI         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0160
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BHI         C14          O1         HO1     108.877    3.00
+BHI          O2          P5          O3     112.716    1.50
+BHI          O2          P5          O4     112.716    1.50
+BHI          O2          P5          O6     105.965    2.38
+BHI          O3          P5          O4     112.716    1.50
+BHI          O3          P5          O6     105.965    2.38
+BHI          O4          P5          O6     105.965    2.38
+BHI          P5          O6          P9     132.584    3.00
+BHI          O6          P9          O7     108.816    2.14
+BHI          O6          P9          O8     108.816    2.14
+BHI          O6          P9         O15     101.065    1.97
+BHI          O7          P9          O8     118.411    2.35
+BHI          O7          P9         O15     107.912    2.57
+BHI          O8          P9         O15     107.912    2.57
+BHI         C14         C10          BR     109.720    2.68
+BHI         C14         C10        H101     109.497    1.50
+BHI         C14         C10        H102     109.497    1.50
+BHI          BR         C10        H101     109.034    1.50
+BHI          BR         C10        H102     109.034    1.50
+BHI        H101         C10        H102     108.016    1.50
+BHI         C14         C11        H111     109.483    1.50
+BHI         C14         C11        H112     109.483    1.50
+BHI         C14         C11        H113     109.483    1.50
+BHI        H111         C11        H112     109.441    1.50
+BHI        H111         C11        H113     109.441    1.50
+BHI        H112         C11        H113     109.441    1.50
+BHI         C13         C12         O15     109.312    1.50
+BHI         C13         C12        H121     109.787    1.50
+BHI         C13         C12        H122     109.787    1.50
+BHI         O15         C12        H121     109.902    1.50
+BHI         O15         C12        H122     109.902    1.50
+BHI        H121         C12        H122     108.388    1.50
+BHI         C12         C13         C14     111.094    2.85
+BHI         C12         C13        H131     108.802    1.50
+BHI         C12         C13        H132     108.802    1.50
+BHI         C14         C13        H131     108.201    1.50
+BHI         C14         C13        H132     108.201    1.50
+BHI        H131         C13        H132     107.715    1.50
+BHI          O1         C14         C10     107.805    2.10
+BHI          O1         C14         C11     107.769    1.96
+BHI          O1         C14         C13     107.760    2.12
+BHI         C10         C14         C11     111.379    1.50
+BHI         C10         C14         C13     110.581    2.00
+BHI         C11         C14         C13     111.119    1.58
+BHI          P9         O15         C12     119.251    1.51
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BHI             sp3_sp3_1         C10         C14          O1         HO1     180.000    10.0     3
+BHI            sp3_sp3_22        H111         C11         C14          O1     180.000    10.0     3
+BHI            sp3_sp3_31         O15         C12         C13         C14     180.000    10.0     3
+BHI            sp3_sp3_40         C13         C12         O15          P9     180.000    10.0     3
+BHI            sp3_sp3_43         C12         C13         C14          O1     180.000    10.0     3
+BHI             sp3_sp3_4          P9          O6          P5          O2     180.000    10.0     3
+BHI             sp3_sp3_7          P5          O6          P9          O7     180.000    10.0     3
+BHI            sp3_sp3_10         C12         O15          P9          O6     180.000    10.0     3
+BHI            sp3_sp3_13          BR         C10         C14          O1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BHI    chir_1    P9    O6    O15    O7    both
+BHI    chir_2    C14    O1    C10    C13    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BHI           SMILES              ACDLabs 10.04                                                                           O=P(OP(=O)(OCCC(O)(C)CBr)O)(O)O
+BHI SMILES_CANONICAL               CACTVS 3.341                                                                  C[C@](O)(CBr)CCO[P@@](O)(=O)O[P](O)(O)=O
+BHI           SMILES               CACTVS 3.341                                                                     C[C](O)(CBr)CCO[P](O)(=O)O[P](O)(O)=O
+BHI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                    C[C@@](CCO[P@](=O)(O)OP(=O)(O)O)(CBr)O
+BHI           SMILES "OpenEye OEToolkits" 1.5.0                                                                           CC(CCOP(=O)(O)OP(=O)(O)O)(CBr)O
+BHI            InChI                InChI  1.03 InChI=1S/C5H13BrO8P2/c1-5(7,4-6)2-3-13-16(11,12)14-15(8,9)10/h7H,2-4H2,1H3,(H,11,12)(H2,8,9,10)/t5-/m1/s1
+BHI         InChIKey                InChI  1.03                                                                               YKAYCWPQDPILSA-RXMQYKEDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BHI acedrg               243         "dictionary generator"                  
+BHI acedrg_database      11          "data source"                           
+BHI rdkit                2017.03.2   "Chemoinformatics tool"
+BHI refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,341 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BLP     BLP      "(5-HYDROXY-6-METHYL-4-((2-(2-(2-NITROBENZAMIDO)ACETYL)HYDRAZINYL)METHYL)PYRIDIN-3-YL)METHYL DIHYDROGEN PHOSPHATE"     NON-POLYMER     50     32     .     
+#
+data_comp_BLP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BLP     O8      O       OC      -1      -13.098     5.723       51.215      
+BLP     N5      N       N       1       -13.464     6.706       50.590      
+BLP     O7      O       O       0       -14.585     7.182       50.679      
+BLP     C16     C       CR6     0       -12.512     7.346       49.690      
+BLP     C15     C       CR16    0       -12.236     6.693       48.494      
+BLP     C14     C       CR16    0       -11.336     7.268       47.610      
+BLP     C13     C       CR16    0       -10.721     8.472       47.913      
+BLP     C12     C       CR16    0       -10.999     9.113       49.106      
+BLP     C11     C       CR6     0       -11.907     8.575       50.023      
+BLP     C10     C       C       0       -12.163     9.313       51.308      
+BLP     O6      O       O       0       -12.044     8.734       52.389      
+BLP     N4      N       NH1     0       -12.403     10.630      51.219      
+BLP     C9      C       CH2     0       -12.227     11.530      52.347      
+BLP     C8      C       C       0       -10.793     11.610      52.843      
+BLP     O5      O       O       0       -10.534     11.536      54.039      
+BLP     N3      N       NH1     0       -9.870      11.767      51.897      
+BLP     N2      N       NT1     0       -8.515      11.480      52.113      
+BLP     C7      C       CH2     0       -8.256      10.149      51.587      
+BLP     C6      C       CR6     0       -6.849      9.652       51.840      
+BLP     C17     C       CR6     0       -6.501      9.182       53.117      
+BLP     O9      O       OH1     0       -7.420      9.176       54.142      
+BLP     C2      C       CR6     0       -5.196      8.713       53.364      
+BLP     C1      C       CH3     0       -4.808      8.211       54.720      
+BLP     C4      C       CR6     0       -5.865      9.636       50.823      
+BLP     C3      C       CR16    0       -4.605      9.154       51.162      
+BLP     N1      N       NRD6    0       -4.283      8.709       52.390      
+BLP     C5      C       CH2     0       -6.133      10.112      49.425      
+BLP     O1      O       O2      0       -6.452      11.539      49.406      
+BLP     P1      P       P       0       -6.934      12.276      48.054      
+BLP     O2      O       OP      -1      -8.309      11.713      47.744      
+BLP     O3      O       OP      -1      -6.963      13.758      48.377      
+BLP     O4      O       O       0       -5.902      11.922      47.000      
+BLP     H15     H       H       0       -12.653     5.876       48.285      
+BLP     H14     H       H       0       -11.143     6.834       46.795      
+BLP     H13     H       H       0       -10.110     8.855       47.306      
+BLP     H12     H       H       0       -10.577     9.931       49.303      
+BLP     HN4     H       H       0       -12.690     10.971      50.459      
+BLP     H91     H       H       0       -12.800     11.233      53.084      
+BLP     H92     H       H       0       -12.519     12.428      52.085      
+BLP     HN3     H       H       0       -10.094     12.066      51.110      
+BLP     HN2     H       H       0       -8.251      11.658      52.941      
+BLP     H71     H       H       0       -8.440      10.153      50.628      
+BLP     H72     H       H       0       -8.888      9.522       52.000      
+BLP     HO9     H       H       0       -7.717      8.428       54.449      
+BLP     H11     H       H       0       -3.886      7.905       54.706      
+BLP     H12A    H       H       0       -5.387      7.473       54.971      
+BLP     H13A    H       H       0       -4.899      8.927       55.370      
+BLP     H3      H       H       0       -3.937      9.136       50.501      
+BLP     H51     H       H       0       -6.883      9.610       49.037      
+BLP     H52     H       H       0       -5.344      9.962       48.860      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BLP          O8          N5      SINGLE       n     1.221  0.0162     1.221  0.0162
+BLP          N5          O7      DOUBLE       n     1.221  0.0162     1.221  0.0162
+BLP          N5         C16      SINGLE       n     1.457  0.0200     1.457  0.0200
+BLP         C16         C15      DOUBLE       y     1.380  0.0192     1.380  0.0192
+BLP         C16         C11      SINGLE       y     1.405  0.0125     1.405  0.0125
+BLP         C15         C14      SINGLE       y     1.382  0.0100     1.382  0.0100
+BLP         C14         C13      DOUBLE       y     1.381  0.0102     1.381  0.0102
+BLP         C13         C12      SINGLE       y     1.378  0.0104     1.378  0.0104
+BLP         C12         C11      DOUBLE       y     1.394  0.0100     1.394  0.0100
+BLP         C11         C10      SINGLE       n     1.502  0.0100     1.502  0.0100
+BLP         C10          O6      DOUBLE       n     1.230  0.0114     1.230  0.0114
+BLP         C10          N4      SINGLE       n     1.337  0.0102     1.337  0.0102
+BLP          N4          C9      SINGLE       n     1.450  0.0124     1.450  0.0124
+BLP          C9          C8      SINGLE       n     1.518  0.0100     1.518  0.0100
+BLP          C8          O5      DOUBLE       n     1.226  0.0100     1.226  0.0100
+BLP          C8          N3      SINGLE       n     1.328  0.0100     1.328  0.0100
+BLP          N3          N2      SINGLE       n     1.401  0.0100     1.401  0.0100
+BLP          N2          C7      SINGLE       n     1.454  0.0100     1.454  0.0100
+BLP          C7          C6      SINGLE       n     1.509  0.0100     1.509  0.0100
+BLP          C6         C17      DOUBLE       y     1.399  0.0100     1.399  0.0100
+BLP          C6          C4      SINGLE       y     1.403  0.0108     1.403  0.0108
+BLP         C17          O9      SINGLE       n     1.374  0.0155     1.374  0.0155
+BLP         C17          C2      SINGLE       y     1.400  0.0136     1.400  0.0136
+BLP          C2          C1      SINGLE       n     1.497  0.0100     1.497  0.0100
+BLP          C2          N1      DOUBLE       y     1.331  0.0100     1.331  0.0100
+BLP          C4          C3      DOUBLE       y     1.383  0.0136     1.383  0.0136
+BLP          C4          C5      SINGLE       n     1.498  0.0100     1.498  0.0100
+BLP          C3          N1      SINGLE       y     1.342  0.0100     1.342  0.0100
+BLP          C5          O1      SINGLE       n     1.462  0.0104     1.462  0.0104
+BLP          O1          P1      SINGLE       n     1.614  0.0178     1.614  0.0178
+BLP          P1          O2      SINGLE       n     1.517  0.0192     1.517  0.0192
+BLP          P1          O3      SINGLE       n     1.517  0.0192     1.517  0.0192
+BLP          P1          O4      DOUBLE       n     1.517  0.0192     1.517  0.0192
+BLP         C15         H15      SINGLE       n     1.082  0.0130     0.941  0.0200
+BLP         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0172
+BLP         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0180
+BLP         C12         H12      SINGLE       n     1.082  0.0130     0.941  0.0168
+BLP          N4         HN4      SINGLE       n     1.016  0.0100     0.880  0.0200
+BLP          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0145
+BLP          C9         H92      SINGLE       n     1.089  0.0100     0.980  0.0145
+BLP          N3         HN3      SINGLE       n     1.016  0.0100     0.871  0.0200
+BLP          N2         HN2      SINGLE       n     1.036  0.0160     0.886  0.0200
+BLP          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0172
+BLP          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0172
+BLP          O9         HO9      SINGLE       n     0.966  0.0059     0.861  0.0200
+BLP          C1         H11      SINGLE       n     1.089  0.0100     0.971  0.0138
+BLP          C1        H12A      SINGLE       n     1.089  0.0100     0.971  0.0138
+BLP          C1        H13A      SINGLE       n     1.089  0.0100     0.971  0.0138
+BLP          C3          H3      SINGLE       n     1.082  0.0130     0.940  0.0200
+BLP          C5         H51      SINGLE       n     1.089  0.0100     0.982  0.0107
+BLP          C5         H52      SINGLE       n     1.089  0.0100     0.982  0.0107
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BLP          O8          N5          O7     123.502    1.50
+BLP          O8          N5         C16     118.249    1.50
+BLP          O7          N5         C16     118.249    1.50
+BLP          N5         C16         C15     117.075    1.50
+BLP          N5         C16         C11     120.616    1.50
+BLP         C15         C16         C11     122.309    1.50
+BLP         C16         C15         C14     118.697    1.50
+BLP         C16         C15         H15     120.799    1.50
+BLP         C14         C15         H15     120.504    1.50
+BLP         C15         C14         C13     120.113    1.50
+BLP         C15         C14         H14     119.802    1.50
+BLP         C13         C14         H14     120.085    1.50
+BLP         C14         C13         C12     119.787    1.50
+BLP         C14         C13         H13     120.152    1.50
+BLP         C12         C13         H13     120.061    1.50
+BLP         C13         C12         C11     121.020    1.50
+BLP         C13         C12         H12     119.719    1.50
+BLP         C11         C12         H12     119.261    1.50
+BLP         C16         C11         C12     118.075    1.50
+BLP         C16         C11         C10     122.537    2.83
+BLP         C12         C11         C10     119.388    2.23
+BLP         C11         C10          O6     120.962    1.50
+BLP         C11         C10          N4     116.871    1.50
+BLP          O6         C10          N4     122.167    1.50
+BLP         C10          N4          C9     121.545    1.50
+BLP         C10          N4         HN4     119.654    1.77
+BLP          C9          N4         HN4     118.801    2.56
+BLP          N4          C9          C8     114.793    1.50
+BLP          N4          C9         H91     109.070    1.50
+BLP          N4          C9         H92     109.070    1.50
+BLP          C8          C9         H91     108.884    1.50
+BLP          C8          C9         H92     108.884    1.50
+BLP         H91          C9         H92     107.845    1.50
+BLP          C9          C8          O5     120.962    1.50
+BLP          C9          C8          N3     115.747    1.50
+BLP          O5          C8          N3     123.291    1.50
+BLP          C8          N3          N2     121.039    2.19
+BLP          C8          N3         HN3     120.443    2.41
+BLP          N2          N3         HN3     118.519    2.73
+BLP          N3          N2          C7     112.177    3.00
+BLP          N3          N2         HN2     111.153    3.00
+BLP          C7          N2         HN2     117.419    2.72
+BLP          N2          C7          C6     112.908    2.23
+BLP          N2          C7         H71     108.790    1.50
+BLP          N2          C7         H72     108.790    1.50
+BLP          C6          C7         H71     109.005    1.50
+BLP          C6          C7         H72     109.005    1.50
+BLP         H71          C7         H72     107.838    1.50
+BLP          C7          C6         C17     120.512    1.50
+BLP          C7          C6          C4     120.452    1.50
+BLP         C17          C6          C4     119.036    1.50
+BLP          C6         C17          O9     120.067    3.00
+BLP          C6         C17          C2     119.866    1.50
+BLP          O9         C17          C2     120.067    3.00
+BLP         C17          O9         HO9     120.000    3.00
+BLP         C17          C2          C1     120.591    1.50
+BLP         C17          C2          N1     120.416    1.50
+BLP          C1          C2          N1     118.993    1.50
+BLP          C2          C1         H11     109.484    1.50
+BLP          C2          C1        H12A     109.484    1.50
+BLP          C2          C1        H13A     109.484    1.50
+BLP         H11          C1        H12A     109.339    1.66
+BLP         H11          C1        H13A     109.339    1.66
+BLP        H12A          C1        H13A     109.339    1.66
+BLP          C6          C4          C3     117.885    1.50
+BLP          C6          C4          C5     121.186    1.51
+BLP          C3          C4          C5     120.930    1.59
+BLP          C4          C3          N1     123.320    1.50
+BLP          C4          C3          H3     118.605    1.50
+BLP          N1          C3          H3     118.075    1.50
+BLP          C2          N1          C3     119.476    1.60
+BLP          C4          C5          O1     110.538    2.24
+BLP          C4          C5         H51     109.800    1.50
+BLP          C4          C5         H52     109.800    1.50
+BLP          O1          C5         H51     108.933    1.90
+BLP          O1          C5         H52     108.933    1.90
+BLP         H51          C5         H52     108.248    1.50
+BLP          C5          O1          P1     121.496    2.55
+BLP          O1          P1          O2     105.808    2.07
+BLP          O1          P1          O3     105.808    2.07
+BLP          O1          P1          O4     105.808    2.07
+BLP          O2          P1          O3     112.864    1.69
+BLP          O2          P1          O4     112.864    1.69
+BLP          O3          P1          O4     112.864    1.69
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BLP             sp2_sp3_2         C10          N4          C9          C8     120.000    10.0     6
+BLP             sp2_sp3_8          O5          C8          C9          N4     120.000    10.0     6
+BLP            sp2_sp2_13          C9          C8          N3          N2     180.000     5.0     2
+BLP            sp2_sp3_14          C8          N3          N2          C7     120.000    10.0     6
+BLP             sp3_sp3_1          C6          C7          N2          N3     180.000    10.0     3
+BLP            sp2_sp3_18         C17          C6          C7          N2     -90.000    10.0     6
+BLP              const_24          O9         C17          C6          C7       0.000    10.0     2
+BLP              const_44          C5          C4          C6          C7       0.000    10.0     2
+BLP            sp2_sp2_17          C6         C17          O9         HO9     180.000     5.0     2
+BLP              const_28          O9         C17          C2          C1       0.000    10.0     2
+BLP             sp2_sp2_1         C15         C16          N5          O8     180.000     5.0     2
+BLP            sp2_sp3_23         C17          C2          C1         H11     150.000    10.0     6
+BLP              const_30          C1          C2          N1          C3     180.000    10.0     2
+BLP              const_34          N1          C3          C4          C5     180.000    10.0     2
+BLP            sp2_sp3_30          C6          C4          C5          O1     -90.000    10.0     6
+BLP              const_31          C4          C3          N1          C2       0.000    10.0     2
+BLP             sp3_sp3_7          C4          C5          O1          P1     180.000    10.0     3
+BLP            sp3_sp3_11          C5          O1          P1          O2     -60.000    10.0     3
+BLP       const_sp2_sp2_2         C14         C15         C16          N5     180.000     5.0     2
+BLP              const_40         C10         C11         C16          N5       0.000    10.0     2
+BLP       const_sp2_sp2_5         C13         C14         C15         C16       0.000     5.0     2
+BLP       const_sp2_sp2_9         C12         C13         C14         C15       0.000     5.0     2
+BLP              const_13         C11         C12         C13         C14       0.000    10.0     2
+BLP              const_19         C10         C11         C12         C13     180.000    10.0     2
+BLP             sp2_sp2_7          O6         C10         C11         C16       0.000     5.0     2
+BLP            sp2_sp2_11          O6         C10          N4          C9       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BLP    chir_1    P1    O1    O2    O3    both
+BLP    chir_2    N2    N3    C7    HN2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BLP    plan-1          C1   0.020
+BLP    plan-1         C17   0.020
+BLP    plan-1          C2   0.020
+BLP    plan-1          C3   0.020
+BLP    plan-1          C4   0.020
+BLP    plan-1          C5   0.020
+BLP    plan-1          C6   0.020
+BLP    plan-1          C7   0.020
+BLP    plan-1          H3   0.020
+BLP    plan-1          N1   0.020
+BLP    plan-1          O9   0.020
+BLP    plan-2         C10   0.020
+BLP    plan-2         C11   0.020
+BLP    plan-2         C12   0.020
+BLP    plan-2         C13   0.020
+BLP    plan-2         C14   0.020
+BLP    plan-2         C15   0.020
+BLP    plan-2         C16   0.020
+BLP    plan-2         H12   0.020
+BLP    plan-2         H13   0.020
+BLP    plan-2         H14   0.020
+BLP    plan-2         H15   0.020
+BLP    plan-2          N5   0.020
+BLP    plan-3         C16   0.020
+BLP    plan-3          N5   0.020
+BLP    plan-3          O7   0.020
+BLP    plan-3          O8   0.020
+BLP    plan-4         C10   0.020
+BLP    plan-4         C11   0.020
+BLP    plan-4          N4   0.020
+BLP    plan-4          O6   0.020
+BLP    plan-5         C10   0.020
+BLP    plan-5          C9   0.020
+BLP    plan-5         HN4   0.020
+BLP    plan-5          N4   0.020
+BLP    plan-6          C8   0.020
+BLP    plan-6          C9   0.020
+BLP    plan-6          N3   0.020
+BLP    plan-6          O5   0.020
+BLP    plan-7          C8   0.020
+BLP    plan-7         HN3   0.020
+BLP    plan-7          N2   0.020
+BLP    plan-7          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BLP           SMILES              ACDLabs 10.04                                                                                                           "[O-][N+](=O)c1ccccc1C(=O)NCC(=O)NNCc2c(cnc(c2O)C)COP(=O)(O)O"
+BLP SMILES_CANONICAL               CACTVS 3.341                                                                                                           Cc1ncc(CO[P](O)(O)=O)c(CNNC(=O)CNC(=O)c2ccccc2[N+]([O-])=O)c1O
+BLP           SMILES               CACTVS 3.341                                                                                                           Cc1ncc(CO[P](O)(O)=O)c(CNNC(=O)CNC(=O)c2ccccc2[N+]([O-])=O)c1O
+BLP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                           Cc1c(c(c(cn1)COP(=O)(O)O)CNNC(=O)CNC(=O)c2ccccc2[N+](=O)[O-])O
+BLP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                           Cc1c(c(c(cn1)COP(=O)(O)O)CNNC(=O)CNC(=O)c2ccccc2[N+](=O)[O-])O
+BLP            InChI                InChI  1.03 InChI=1S/C17H20N5O9P/c1-10-16(24)13(11(6-18-10)9-31-32(28,29)30)7-20-21-15(23)8-19-17(25)12-4-2-3-5-14(12)22(26)27/h2-6,20,24H,7-9H2,1H3,(H,19,25)(H,21,23)(H2,28,29,30)
+BLP         InChIKey                InChI  1.03                                                                                                                                              AJHNLRARXNOGMZ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BLP acedrg               243         "dictionary generator"                  
+BLP acedrg_database      11          "data source"                           
+BLP rdkit                2017.03.2   "Chemoinformatics tool"
+BLP refmac5              5.8.0238    "optimization tool"                     

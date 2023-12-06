@@ -1,0 +1,315 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+1YR     1YR      (2E)-3-(3-bromo-5-{4-chloro-2-[2-(2,4-dioxo-3,4-dihydropyrimidin-1(2H)-yl)ethoxy]phenoxy}phenyl)prop-2-enenitrile     NON-POLYMER     45     30     .     
+#
+data_comp_1YR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+1YR     C15     C       C1      0       463.572     -19.913     125.782     
+1YR     C17     C       CSP     0       463.970     -20.563     126.983     
+1YR     C00     C       CR16    0       460.128     -19.480     117.666     
+1YR     C01     C       CR6     0       461.233     -18.783     117.214     
+1YR     C02     C       CR16    0       462.227     -18.382     118.081     
+1YR     C03     C       CR16    0       462.121     -18.685     119.425     
+1YR     C04     C       CR6     0       461.028     -19.376     119.905     
+1YR     C05     C       CR6     0       460.019     -19.786     119.019     
+1YR     CL1     CL      CL      0       461.365     -18.406     115.521     
+1YR     O0A     O       O2      0       460.877     -19.702     121.251     
+1YR     O0B     O       O2      0       458.951     -20.476     119.529     
+1YR     C0C     C       CR6     0       461.111     -18.807     122.295     
+1YR     C0D     C       CR16    0       460.806     -17.458     122.231     
+1YR     C0E     C       CR6     0       461.077     -16.653     123.327     
+1YR     C0F     C       CR16    0       461.633     -17.157     124.477     
+1YR     C0G     C       CR6     0       461.941     -18.518     124.554     
+1YR     C0H     C       CR16    0       461.670     -19.340     123.448     
+1YR     BR1     BR      BR      0       460.658     -14.803     123.219     
+1YR     C0M     C       C1      0       462.531     -19.070     125.775     
+1YR     C0O     C       CH2     0       458.595     -21.717     118.914     
+1YR     C0P     C       CH2     0       457.869     -22.563     119.930     
+1YR     N0S     N       NR6     0       458.779     -23.343     120.796     
+1YR     C0V     C       CR6     0       459.397     -24.475     120.275     
+1YR     N0W     N       NR6     0       460.228     -25.142     121.148     
+1YR     C0X     C       CR6     0       460.498     -24.807     122.463     
+1YR     C0Y     C       CR16    0       459.820     -23.629     122.926     
+1YR     C0Z     C       CR16    0       459.003     -22.955     122.094     
+1YR     O10     O       O       0       459.233     -24.861     119.125     
+1YR     O12     O       O       0       461.266     -25.506     123.124     
+1YR     N19     N       NSP     0       464.242     -21.109     127.961     
+1YR     H1      H       H       0       464.056     -20.084     124.982     
+1YR     H3      H       H       0       459.452     -19.751     117.061     
+1YR     H4      H       H       0       462.972     -17.908     117.761     
+1YR     H5      H       H       0       462.805     -18.407     120.021     
+1YR     H9      H       H       0       460.426     -17.094     121.450     
+1YR     H10     H       H       0       461.806     -16.591     125.208     
+1YR     H11     H       H       0       461.874     -20.258     123.490     
+1YR     H12     H       H       0       462.153     -18.812     126.598     
+1YR     H14     H       H       0       459.405     -22.191     118.598     
+1YR     H15     H       H       0       458.006     -21.553     118.136     
+1YR     H16     H       H       0       457.267     -23.181     119.458     
+1YR     H17     H       H       0       457.310     -21.979     120.490     
+1YR     H18     H       H       0       460.630     -25.867     120.824     
+1YR     H19     H       H       0       459.945     -23.331     123.803     
+1YR     H20     H       H       0       458.572     -22.193     122.415     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+1YR         C15         C17      SINGLE       n     1.421  0.0174     1.421  0.0174
+1YR         C15         C0M      DOUBLE       n     1.339  0.0100     1.339  0.0100
+1YR         C17         N19      TRIPLE       n     1.149  0.0200     1.149  0.0200
+1YR         C00         C01      DOUBLE       y     1.381  0.0107     1.381  0.0107
+1YR         C00         C05      SINGLE       y     1.385  0.0110     1.385  0.0110
+1YR         C01         C02      SINGLE       y     1.376  0.0106     1.376  0.0106
+1YR         C02         C03      DOUBLE       y     1.378  0.0100     1.378  0.0100
+1YR         C03         C04      SINGLE       y     1.372  0.0100     1.372  0.0100
+1YR         C04         C05      DOUBLE       y     1.398  0.0100     1.398  0.0100
+1YR         C04         O0A      SINGLE       n     1.389  0.0100     1.389  0.0100
+1YR         C05         O0B      SINGLE       n     1.367  0.0100     1.367  0.0100
+1YR         O0A         C0C      SINGLE       n     1.390  0.0110     1.390  0.0110
+1YR         O0B         C0O      SINGLE       n     1.427  0.0103     1.427  0.0103
+1YR         C0C         C0D      DOUBLE       y     1.377  0.0108     1.377  0.0108
+1YR         C0C         C0H      SINGLE       y     1.382  0.0100     1.382  0.0100
+1YR         C0D         C0E      SINGLE       y     1.383  0.0102     1.383  0.0102
+1YR         C0E         C0F      DOUBLE       y     1.371  0.0120     1.371  0.0120
+1YR         C0E         BR1      SINGLE       n     1.899  0.0100     1.899  0.0100
+1YR         C0F         C0G      SINGLE       y     1.395  0.0100     1.395  0.0100
+1YR         C0G         C0H      DOUBLE       y     1.399  0.0100     1.399  0.0100
+1YR         C0G         C0M      SINGLE       n     1.463  0.0104     1.463  0.0104
+1YR         C0O         C0P      SINGLE       n     1.504  0.0170     1.504  0.0170
+1YR         C0P         N0S      SINGLE       n     1.471  0.0138     1.471  0.0138
+1YR         N0S         C0V      SINGLE       y     1.383  0.0100     1.383  0.0100
+1YR         N0S         C0Z      SINGLE       y     1.367  0.0110     1.367  0.0110
+1YR         C0V         N0W      SINGLE       y     1.373  0.0104     1.373  0.0104
+1YR         C0V         O10      DOUBLE       n     1.222  0.0104     1.222  0.0104
+1YR         N0W         C0X      SINGLE       y     1.381  0.0100     1.381  0.0100
+1YR         C0X         C0Y      SINGLE       y     1.434  0.0100     1.434  0.0100
+1YR         C0X         O12      DOUBLE       n     1.231  0.0100     1.231  0.0100
+1YR         C0Y         C0Z      DOUBLE       y     1.343  0.0119     1.343  0.0119
+1YR         C01         CL1      SINGLE       n     1.739  0.0115     1.739  0.0115
+1YR         C15          H1      SINGLE       n     1.082  0.0130     0.950  0.0142
+1YR         C00          H3      SINGLE       n     1.082  0.0130     0.947  0.0108
+1YR         C02          H4      SINGLE       n     1.082  0.0130     0.939  0.0186
+1YR         C03          H5      SINGLE       n     1.082  0.0130     0.948  0.0100
+1YR         C0D          H9      SINGLE       n     1.082  0.0130     0.942  0.0101
+1YR         C0F         H10      SINGLE       n     1.082  0.0130     0.940  0.0141
+1YR         C0H         H11      SINGLE       n     1.082  0.0130     0.942  0.0200
+1YR         C0M         H12      SINGLE       n     1.082  0.0130     0.941  0.0196
+1YR         C0O         H14      SINGLE       n     1.089  0.0100     0.990  0.0100
+1YR         C0O         H15      SINGLE       n     1.089  0.0100     0.990  0.0100
+1YR         C0P         H16      SINGLE       n     1.089  0.0100     0.983  0.0100
+1YR         C0P         H17      SINGLE       n     1.089  0.0100     0.983  0.0100
+1YR         N0W         H18      SINGLE       n     1.016  0.0100     0.889  0.0200
+1YR         C0Y         H19      SINGLE       n     1.082  0.0130     0.935  0.0100
+1YR         C0Z         H20      SINGLE       n     1.082  0.0130     0.933  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+1YR         C17         C15         C0M     120.481    1.50
+1YR         C17         C15          H1     119.121    1.50
+1YR         C0M         C15          H1     120.398    2.33
+1YR         C15         C17         N19     180.000    3.00
+1YR         C01         C00         C05     119.609    1.50
+1YR         C01         C00          H3     120.380    1.50
+1YR         C05         C00          H3     120.011    1.50
+1YR         C00         C01         C02     121.660    1.50
+1YR         C00         C01         CL1     118.979    1.50
+1YR         C02         C01         CL1     119.361    1.50
+1YR         C01         C02         C03     119.455    1.50
+1YR         C01         C02          H4     120.350    1.50
+1YR         C03         C02          H4     120.195    1.50
+1YR         C02         C03         C04     119.974    1.50
+1YR         C02         C03          H5     119.886    1.50
+1YR         C04         C03          H5     120.141    1.50
+1YR         C03         C04         C05     119.651    1.50
+1YR         C03         C04         O0A     122.467    2.43
+1YR         C05         C04         O0A     117.882    2.02
+1YR         C00         C05         C04     119.651    1.50
+1YR         C00         C05         O0B     122.699    3.00
+1YR         C04         C05         O0B     117.649    2.33
+1YR         C04         O0A         C0C     115.723    3.00
+1YR         C05         O0B         C0O     117.255    1.53
+1YR         O0A         C0C         C0D     120.549    3.00
+1YR         O0A         C0C         C0H     119.484    3.00
+1YR         C0D         C0C         C0H     119.966    1.50
+1YR         C0C         C0D         C0E     119.103    1.50
+1YR         C0C         C0D          H9     120.047    1.50
+1YR         C0E         C0D          H9     120.850    1.50
+1YR         C0D         C0E         C0F     122.244    1.50
+1YR         C0D         C0E         BR1     118.330    1.50
+1YR         C0F         C0E         BR1     119.426    1.50
+1YR         C0E         C0F         C0G     119.867    1.50
+1YR         C0E         C0F         H10     120.107    1.50
+1YR         C0G         C0F         H10     120.027    1.50
+1YR         C0F         C0G         C0H     118.870    1.50
+1YR         C0F         C0G         C0M     120.410    2.02
+1YR         C0H         C0G         C0M     120.720    1.93
+1YR         C0C         C0H         C0G     119.950    1.50
+1YR         C0C         C0H         H11     120.262    1.50
+1YR         C0G         C0H         H11     119.788    1.50
+1YR         C15         C0M         C0G     123.256    3.00
+1YR         C15         C0M         H12     118.866    2.36
+1YR         C0G         C0M         H12     117.878    1.50
+1YR         O0B         C0O         C0P     107.560    1.73
+1YR         O0B         C0O         H14     109.991    1.50
+1YR         O0B         C0O         H15     109.991    1.50
+1YR         C0P         C0O         H14     109.619    1.50
+1YR         C0P         C0O         H15     109.619    1.50
+1YR         H14         C0O         H15     108.319    1.50
+1YR         C0O         C0P         N0S     112.567    1.89
+1YR         C0O         C0P         H16     109.062    1.50
+1YR         C0O         C0P         H17     109.062    1.50
+1YR         N0S         C0P         H16     108.980    1.50
+1YR         N0S         C0P         H17     108.980    1.50
+1YR         H16         C0P         H17     107.833    1.50
+1YR         C0P         N0S         C0V     118.165    1.50
+1YR         C0P         N0S         C0Z     120.778    1.50
+1YR         C0V         N0S         C0Z     121.057    1.50
+1YR         N0S         C0V         N0W     114.881    1.50
+1YR         N0S         C0V         O10     122.932    1.50
+1YR         N0W         C0V         O10     122.187    1.50
+1YR         C0V         N0W         C0X     126.946    1.50
+1YR         C0V         N0W         H18     115.970    1.50
+1YR         C0X         N0W         H18     117.080    1.73
+1YR         N0W         C0X         C0Y     114.483    1.50
+1YR         N0W         C0X         O12     119.489    1.50
+1YR         C0Y         C0X         O12     126.028    1.50
+1YR         C0X         C0Y         C0Z     119.971    1.50
+1YR         C0X         C0Y         H19     119.958    1.50
+1YR         C0Z         C0Y         H19     120.072    1.50
+1YR         N0S         C0Z         C0Y     122.666    1.50
+1YR         N0S         C0Z         H20     118.649    1.50
+1YR         C0Y         C0Z         H20     118.685    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+1YR           other_tor_1         N19         C17         C15         C0M      90.000    10.0     1
+1YR             sp2_sp2_1         C0G         C0M         C15         C17     180.000     5.0     2
+1YR             sp3_sp3_1         C0P         C0O         O0B         C05     180.000    10.0     3
+1YR              const_23         O0A         C0C         C0D         C0E     180.000    10.0     2
+1YR              const_67         O0A         C0C         C0H         C0G     180.000    10.0     2
+1YR              const_26         C0C         C0D         C0E         BR1     180.000    10.0     2
+1YR              const_31         BR1         C0E         C0F         C0G     180.000    10.0     2
+1YR              const_34         C0E         C0F         C0G         C0M     180.000    10.0     2
+1YR              const_39         C0M         C0G         C0H         C0C     180.000    10.0     2
+1YR            sp2_sp2_11         C0F         C0G         C0M         C15     180.000     5.0     2
+1YR             sp3_sp3_4         O0B         C0O         C0P         N0S     180.000    10.0     3
+1YR             sp2_sp3_2         C0V         N0S         C0P         C0O     -90.000    10.0     6
+1YR              const_44         O10         C0V         N0S         C0P       0.000    10.0     2
+1YR              const_70         C0Y         C0Z         N0S         C0P     180.000    10.0     2
+1YR              const_47         O10         C0V         N0W         C0X     180.000    10.0     2
+1YR              const_51         O12         C0X         N0W         C0V     180.000    10.0     2
+1YR              const_55         O12         C0X         C0Y         C0Z     180.000    10.0     2
+1YR              const_57         C0X         C0Y         C0Z         N0S       0.000    10.0     2
+1YR       const_sp2_sp2_2         C05         C00         C01         CL1     180.000     5.0     2
+1YR              const_62         C01         C00         C05         O0B     180.000    10.0     2
+1YR       const_sp2_sp2_7         CL1         C01         C02         C03     180.000     5.0     2
+1YR       const_sp2_sp2_9         C01         C02         C03         C04       0.000     5.0     2
+1YR              const_14         C02         C03         C04         O0A     180.000    10.0     2
+1YR              const_20         O0A         C04         C05         O0B       0.000    10.0     2
+1YR             sp2_sp2_5         C03         C04         O0A         C0C     180.000     5.0     2
+1YR             sp2_sp2_7         C00         C05         O0B         C0O     180.000     5.0     2
+1YR             sp2_sp2_9         C0D         C0C         O0A         C04     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+1YR    plan-1         BR1   0.020
+1YR    plan-1         C0C   0.020
+1YR    plan-1         C0D   0.020
+1YR    plan-1         C0E   0.020
+1YR    plan-1         C0F   0.020
+1YR    plan-1         C0G   0.020
+1YR    plan-1         C0H   0.020
+1YR    plan-1         C0M   0.020
+1YR    plan-1         H10   0.020
+1YR    plan-1         H11   0.020
+1YR    plan-1          H9   0.020
+1YR    plan-1         O0A   0.020
+1YR    plan-2         C0P   0.020
+1YR    plan-2         C0V   0.020
+1YR    plan-2         C0X   0.020
+1YR    plan-2         C0Y   0.020
+1YR    plan-2         C0Z   0.020
+1YR    plan-2         H18   0.020
+1YR    plan-2         H19   0.020
+1YR    plan-2         H20   0.020
+1YR    plan-2         N0S   0.020
+1YR    plan-2         N0W   0.020
+1YR    plan-2         O10   0.020
+1YR    plan-2         O12   0.020
+1YR    plan-3         C00   0.020
+1YR    plan-3         C01   0.020
+1YR    plan-3         C02   0.020
+1YR    plan-3         C03   0.020
+1YR    plan-3         C04   0.020
+1YR    plan-3         C05   0.020
+1YR    plan-3         CL1   0.020
+1YR    plan-3          H3   0.020
+1YR    plan-3          H4   0.020
+1YR    plan-3          H5   0.020
+1YR    plan-3         O0A   0.020
+1YR    plan-3         O0B   0.020
+1YR    plan-4         C0M   0.020
+1YR    plan-4         C15   0.020
+1YR    plan-4         C17   0.020
+1YR    plan-4          H1   0.020
+1YR    plan-5         C0G   0.020
+1YR    plan-5         C0M   0.020
+1YR    plan-5         C15   0.020
+1YR    plan-5         H12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+1YR           SMILES              ACDLabs 12.01                                                                                                     N#C\C=C\c3cc(Oc2ccc(Cl)cc2OCCN1C=CC(=O)NC1=O)cc(Br)c3
+1YR            InChI                InChI  1.03 InChI=1S/C21H15BrClN3O4/c22-15-10-14(2-1-6-24)11-17(12-15)30-18-4-3-16(23)13-19(18)29-9-8-26-7-5-20(27)25-21(26)28/h1-5,7,10-13H,8-9H2,(H,25,27,28)/b2-1+
+1YR         InChIKey                InChI  1.03                                                                                                                               CDXBVRNWNVMMGU-OWOJBTEDSA-N
+1YR SMILES_CANONICAL               CACTVS 3.385                                                                                                   Clc1ccc(Oc2cc(Br)cc(/C=C/C#N)c2)c(OCCN3C=CC(=O)NC3=O)c1
+1YR           SMILES               CACTVS 3.385                                                                                                     Clc1ccc(Oc2cc(Br)cc(C=CC#N)c2)c(OCCN3C=CC(=O)NC3=O)c1
+1YR SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                   c1cc(c(cc1Cl)OCCN2C=CC(=O)NC2=O)Oc3cc(cc(c3)Br)/C=C/C#N
+1YR           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                     c1cc(c(cc1Cl)OCCN2C=CC(=O)NC2=O)Oc3cc(cc(c3)Br)C=CC#N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+1YR acedrg               243         "dictionary generator"                  
+1YR acedrg_database      11          "data source"                           
+1YR rdkit                2017.03.2   "Chemoinformatics tool"
+1YR refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,273 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LCB     LCB      4-[(6-ethyl-7~{H}-purin-2-yl)amino]benzenesulfonamide     NON-POLYMER     36     22     .     
+#
+data_comp_LCB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LCB     C22     C       CR56    0       24.549      7.035       -17.420     
+LCB     C20     C       CR15    0       23.328      5.499       -16.484     
+LCB     C18     C       CR56    0       24.089      6.125       -18.373     
+LCB     C16     C       CR16    0       25.686      9.820       -21.853     
+LCB     C15     C       CR16    0       26.297      10.853      -22.540     
+LCB     C10     C       CR6     0       27.337      10.581      -23.424     
+LCB     C01     C       CH3     0       26.629      10.306      -17.545     
+LCB     C02     C       CH2     0       25.908      9.140       -16.894     
+LCB     C03     C       CR6     0       25.362      8.108       -17.846     
+LCB     C05     C       CR6     0       25.184      7.300       -20.020     
+LCB     C07     C       CR6     0       26.110      8.496       -22.031     
+LCB     C08     C       CR16    0       27.156      8.238       -22.926     
+LCB     C09     C       CR16    0       27.764      9.271       -23.616     
+LCB     N04     N       NRD6    0       25.669      8.215       -19.147     
+LCB     N06     N       NH1     0       25.500      7.424       -21.337     
+LCB     N12     N       NT2     0       28.129      13.198      -23.356     
+LCB     N17     N       NRD6    0       24.403      6.252       -19.676     
+LCB     N19     N       NRD5    0       23.319      5.162       -17.764     
+LCB     N21     N       NR5     0       24.043      6.604       -16.218     
+LCB     O13     O       O       0       27.278      12.217      -25.426     
+LCB     O14     O       O       0       29.475      11.534      -24.533     
+LCB     S11     S       S3      0       28.110      11.904      -24.303     
+LCB     H1      H       H       0       22.873      5.009       -15.814     
+LCB     H2      H       H       0       24.985      10.006      -21.253     
+LCB     H3      H       H       0       26.007      11.739      -22.411     
+LCB     H4      H       H       0       26.895      10.944      -16.861     
+LCB     H5      H       H       0       26.036      10.744      -18.179     
+LCB     H6      H       H       0       27.420      9.984       -18.008     
+LCB     H7      H       H       0       25.167      9.496       -16.359     
+LCB     H8      H       H       0       26.529      8.699       -16.276     
+LCB     H9      H       H       0       27.447      7.352       -23.056     
+LCB     H10     H       H       0       28.467      9.085       -24.213     
+LCB     H11     H       H       0       25.298      6.729       -21.830     
+LCB     H12     H       H       0       28.873      13.644      -23.403     
+LCB     H13     H       H       0       27.400      13.668      -23.407     
+LCB     H15     H       H       0       24.170      6.992       -15.412     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LCB         O13         S11      DOUBLE       n     1.433  0.0100     1.433  0.0100
+LCB         O14         S11      DOUBLE       n     1.433  0.0100     1.433  0.0100
+LCB         N12         S11      SINGLE       n     1.603  0.0110     1.603  0.0110
+LCB         C10         S11      SINGLE       n     1.766  0.0100     1.766  0.0100
+LCB         C10         C09      DOUBLE       y     1.388  0.0100     1.388  0.0100
+LCB         C08         C09      SINGLE       y     1.380  0.0100     1.380  0.0100
+LCB         C15         C10      SINGLE       y     1.388  0.0100     1.388  0.0100
+LCB         C07         C08      DOUBLE       y     1.397  0.0100     1.397  0.0100
+LCB         C16         C15      DOUBLE       y     1.380  0.0100     1.380  0.0100
+LCB         C16         C07      SINGLE       y     1.397  0.0100     1.397  0.0100
+LCB         C07         N06      SINGLE       n     1.413  0.0102     1.413  0.0102
+LCB         C05         N06      SINGLE       n     1.353  0.0130     1.353  0.0130
+LCB         C05         N17      SINGLE       y     1.343  0.0120     1.343  0.0120
+LCB         C05         N04      DOUBLE       y     1.343  0.0119     1.343  0.0119
+LCB         C18         N17      DOUBLE       y     1.344  0.0101     1.344  0.0101
+LCB         C03         N04      SINGLE       y     1.332  0.0112     1.332  0.0112
+LCB         C18         N19      SINGLE       y     1.375  0.0100     1.375  0.0100
+LCB         C22         C18      SINGLE       y     1.401  0.0200     1.401  0.0200
+LCB         C22         C03      DOUBLE       y     1.407  0.0130     1.407  0.0130
+LCB         C02         C03      SINGLE       n     1.504  0.0100     1.504  0.0100
+LCB         C20         N19      DOUBLE       y     1.322  0.0100     1.322  0.0100
+LCB         C22         N21      SINGLE       y     1.375  0.0100     1.375  0.0100
+LCB         C01         C02      SINGLE       n     1.509  0.0200     1.509  0.0200
+LCB         C20         N21      SINGLE       y     1.341  0.0100     1.341  0.0100
+LCB         C20          H1      SINGLE       n     1.082  0.0130     0.946  0.0200
+LCB         C16          H2      SINGLE       n     1.082  0.0130     0.941  0.0200
+LCB         C15          H3      SINGLE       n     1.082  0.0130     0.941  0.0197
+LCB         C01          H4      SINGLE       n     1.089  0.0100     0.972  0.0140
+LCB         C01          H5      SINGLE       n     1.089  0.0100     0.972  0.0140
+LCB         C01          H6      SINGLE       n     1.089  0.0100     0.972  0.0140
+LCB         C02          H7      SINGLE       n     1.089  0.0100     0.981  0.0150
+LCB         C02          H8      SINGLE       n     1.089  0.0100     0.981  0.0150
+LCB         C08          H9      SINGLE       n     1.082  0.0130     0.941  0.0200
+LCB         C09         H10      SINGLE       n     1.082  0.0130     0.941  0.0197
+LCB         N06         H11      SINGLE       n     1.016  0.0100     0.874  0.0200
+LCB         N12         H12      SINGLE       n     1.036  0.0160     0.869  0.0200
+LCB         N12         H13      SINGLE       n     1.036  0.0160     0.869  0.0200
+LCB         N21         H15      SINGLE       n     1.016  0.0100     0.904  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LCB         C18         C22         C03     119.325    2.02
+LCB         C18         C22         N21     106.097    1.50
+LCB         C03         C22         N21     134.578    1.50
+LCB         N19         C20         N21     113.493    1.50
+LCB         N19         C20          H1     123.496    1.50
+LCB         N21         C20          H1     123.012    1.50
+LCB         N17         C18         N19     127.874    1.50
+LCB         N17         C18         C22     122.284    1.50
+LCB         N19         C18         C22     109.842    1.50
+LCB         C15         C16         C07     120.439    1.50
+LCB         C15         C16          H2     119.946    1.50
+LCB         C07         C16          H2     119.615    1.50
+LCB         C10         C15         C16     119.973    1.50
+LCB         C10         C15          H3     120.159    1.50
+LCB         C16         C15          H3     119.868    1.50
+LCB         S11         C10         C09     119.816    1.50
+LCB         S11         C10         C15     119.816    1.50
+LCB         C09         C10         C15     120.368    1.50
+LCB         C02         C01          H4     109.526    1.50
+LCB         C02         C01          H5     109.526    1.50
+LCB         C02         C01          H6     109.526    1.50
+LCB          H4         C01          H5     109.417    1.50
+LCB          H4         C01          H6     109.417    1.50
+LCB          H5         C01          H6     109.417    1.50
+LCB         C03         C02         C01     112.991    1.83
+LCB         C03         C02          H7     109.052    1.50
+LCB         C03         C02          H8     109.052    1.50
+LCB         C01         C02          H7     108.786    1.50
+LCB         C01         C02          H8     108.786    1.50
+LCB          H7         C02          H8     107.735    1.50
+LCB         N04         C03         C22     119.059    1.70
+LCB         N04         C03         C02     117.394    1.50
+LCB         C22         C03         C02     123.547    1.83
+LCB         N06         C05         N17     117.559    2.85
+LCB         N06         C05         N04     117.874    2.95
+LCB         N17         C05         N04     124.567    1.50
+LCB         C08         C07         C16     118.808    1.50
+LCB         C08         C07         N06     120.596    3.00
+LCB         C16         C07         N06     120.596    3.00
+LCB         C09         C08         C07     120.439    1.50
+LCB         C09         C08          H9     119.946    1.50
+LCB         C07         C08          H9     119.615    1.50
+LCB         C10         C09         C08     119.973    1.50
+LCB         C10         C09         H10     120.159    1.50
+LCB         C08         C09         H10     119.868    1.50
+LCB         C05         N04         C03     117.388    1.50
+LCB         C07         N06         C05     129.051    2.10
+LCB         C07         N06         H11     115.917    1.50
+LCB         C05         N06         H11     115.032    1.60
+LCB         S11         N12         H12     113.070    3.00
+LCB         S11         N12         H13     113.070    3.00
+LCB         H12         N12         H13     115.993    3.00
+LCB         C05         N17         C18     117.379    2.19
+LCB         C18         N19         C20     103.761    1.50
+LCB         C22         N21         C20     106.807    1.50
+LCB         C22         N21         H15     126.277    1.93
+LCB         C20         N21         H15     126.916    2.71
+LCB         O13         S11         O14     118.954    1.50
+LCB         O13         S11         N12     107.154    1.50
+LCB         O13         S11         C10     107.472    1.50
+LCB         O14         S11         N12     107.154    1.50
+LCB         O14         S11         C10     107.472    1.50
+LCB         N12         S11         C10     108.480    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LCB              const_49         C18         C22         N21         C20       0.000    10.0     2
+LCB       const_sp2_sp2_1         N17         C18         C22         C03       0.000     5.0     2
+LCB              const_47         C02         C03         C22         C18     180.000    10.0     2
+LCB              const_31         N06         C07         C08         C09     180.000    10.0     2
+LCB             sp2_sp2_1         C08         C07         N06         C05     180.000     5.0     2
+LCB              const_25         C07         C08         C09         C10       0.000    10.0     2
+LCB             sp3_sp3_2         H12         N12         S11         O13     -60.000    10.0     3
+LCB              const_35         N21         C20         N19         C18       0.000    10.0     2
+LCB              const_37         N19         C20         N21         C22       0.000    10.0     2
+LCB       const_sp2_sp2_6         N19         C18         N17         C05     180.000     5.0     2
+LCB              const_34         N17         C18         N19         C20     180.000    10.0     2
+LCB              const_43         N06         C07         C16         C15     180.000    10.0     2
+LCB              const_13         C10         C15         C16         C07       0.000    10.0     2
+LCB              const_19         S11         C10         C15         C16     180.000    10.0     2
+LCB              const_22         C08         C09         C10         S11     180.000    10.0     2
+LCB             sp2_sp3_1         C09         C10         S11         O13     150.000    10.0     6
+LCB             sp3_sp3_7          H4         C01         C02         C03     180.000    10.0     3
+LCB             sp2_sp3_8         N04         C03         C02         C01     -90.000    10.0     6
+LCB              const_12         C02         C03         N04         C05     180.000    10.0     2
+LCB              const_10         N06         C05         N04         C03     180.000    10.0     2
+LCB             sp2_sp2_5         N17         C05         N06         C07     180.000     5.0     2
+LCB       const_sp2_sp2_8         N06         C05         N17         C18     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LCB    chir_1    S11    O13    O14    N12    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LCB    plan-1         C02   0.020
+LCB    plan-1         C03   0.020
+LCB    plan-1         C05   0.020
+LCB    plan-1         C18   0.020
+LCB    plan-1         C20   0.020
+LCB    plan-1         C22   0.020
+LCB    plan-1          H1   0.020
+LCB    plan-1         H15   0.020
+LCB    plan-1         N04   0.020
+LCB    plan-1         N06   0.020
+LCB    plan-1         N17   0.020
+LCB    plan-1         N19   0.020
+LCB    plan-1         N21   0.020
+LCB    plan-2         C07   0.020
+LCB    plan-2         C08   0.020
+LCB    plan-2         C09   0.020
+LCB    plan-2         C10   0.020
+LCB    plan-2         C15   0.020
+LCB    plan-2         C16   0.020
+LCB    plan-2         H10   0.020
+LCB    plan-2          H2   0.020
+LCB    plan-2          H3   0.020
+LCB    plan-2          H9   0.020
+LCB    plan-2         N06   0.020
+LCB    plan-2         S11   0.020
+LCB    plan-3         C05   0.020
+LCB    plan-3         C07   0.020
+LCB    plan-3         H11   0.020
+LCB    plan-3         N06   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LCB            InChI                InChI  1.03 InChI=1S/C13H14N6O2S/c1-2-10-11-12(16-7-15-11)19-13(18-10)17-8-3-5-9(6-4-8)22(14,20)21/h3-7H,2H2,1H3,(H2,14,20,21)(H2,15,16,17,18,19)
+LCB         InChIKey                InChI  1.03                                                                                                           UZLCQAXOQKFVGP-UHFFFAOYSA-N
+LCB SMILES_CANONICAL               CACTVS 3.385                                                                                           CCc1nc(Nc2ccc(cc2)[S](N)(=O)=O)nc3nc[nH]c13
+LCB           SMILES               CACTVS 3.385                                                                                           CCc1nc(Nc2ccc(cc2)[S](N)(=O)=O)nc3nc[nH]c13
+LCB SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                           CCc1c2c(nc[nH]2)nc(n1)Nc3ccc(cc3)S(=O)(=O)N
+LCB           SMILES "OpenEye OEToolkits" 2.0.7                                                                                           CCc1c2c(nc[nH]2)nc(n1)Nc3ccc(cc3)S(=O)(=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LCB acedrg               243         "dictionary generator"                  
+LCB acedrg_database      11          "data source"                           
+LCB rdkit                2017.03.2   "Chemoinformatics tool"
+LCB refmac5              5.8.0238    "optimization tool"                     

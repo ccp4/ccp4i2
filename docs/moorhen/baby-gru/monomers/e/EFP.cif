@@ -1,0 +1,331 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EFP     EFP      N-{1-[cis-3-(acetylamino)cyclobutyl]-1H-imidazol-4-yl}-2-(4-methoxyphenyl)acetamide     NON-POLYMER     47     25     .     
+#
+data_comp_EFP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EFP     C1      C       CH1     0       -1.580      31.325      8.114       
+EFP     N3      N       NR5     0       -0.322      30.800      7.578       
+EFP     C4      C       CR15    0       0.433       29.775      8.080       
+EFP     C6      C       CR5     0       1.497       29.654      7.238       
+EFP     N7      N       NH1     0       2.575       28.762      7.291       
+EFP     C9      C       C       0       2.570       27.497      7.806       
+EFP     C10     C       CH2     0       3.931       26.846      7.938       
+EFP     C13     C       CR6     0       4.315       26.106      6.678       
+EFP     C14     C       CR16    0       5.405       26.501      5.911       
+EFP     C16     C       CR16    0       5.764       25.825      4.752       
+EFP     C18     C       CR6     0       5.018       24.724      4.332       
+EFP     O19     O       O2      0       5.264       23.963      3.216       
+EFP     C20     C       CH3     0       6.176       24.427      2.221       
+EFP     C24     C       CR16    0       3.926       24.315      5.090       
+EFP     C26     C       CR16    0       3.586       25.004      6.246       
+EFP     O28     O       O       0       1.543       26.902      8.130       
+EFP     N29     N       NRD5    0       1.417       30.566      6.249       
+EFP     C30     C       CR15    0       0.313       31.250      6.465       
+EFP     C32     C       CH2     0       -1.599      31.554      9.641       
+EFP     C35     C       CH1     0       -2.635      30.431      9.810       
+EFP     N37     N       NH1     0       -2.283      29.291      10.627      
+EFP     C39     C       C       0       -2.977      28.842      11.687      
+EFP     C40     C       CH3     0       -2.422      27.640      12.390      
+EFP     O44     O       O       0       -4.018      29.381      12.072      
+EFP     C45     C       CH2     0       -2.672      30.248      8.284       
+EFP     H1      H       H       0       -1.942      32.119      7.634       
+EFP     H4      H       H       0       0.209       29.285      8.856       
+EFP     HN7     H       H       0       3.330       29.056      6.942       
+EFP     H10     H       H       0       3.912       26.219      8.687       
+EFP     H10A    H       H       0       4.601       27.530      8.134       
+EFP     H14     H       H       0       5.916       27.246      6.184       
+EFP     H16     H       H       0       6.509       26.116      4.254       
+EFP     H20     H       H       0       7.072       24.458      2.593       
+EFP     H20A    H       H       0       5.914       25.316      1.930       
+EFP     H20B    H       H       0       6.161       23.821      1.463       
+EFP     H24     H       H       0       3.416       23.570      4.818       
+EFP     H26     H       H       0       2.842       24.718      6.749       
+EFP     H30     H       H       0       -0.005      31.958      5.929       
+EFP     H32     H       H       0       -0.742      31.372      10.082      
+EFP     H32A    H       H       0       -1.933      32.441      9.899       
+EFP     H35     H       H       0       -3.488      30.814      10.113      
+EFP     HN37    H       H       0       -1.555      28.864      10.405      
+EFP     H40     H       H       0       -3.010      27.388      13.120      
+EFP     H40A    H       H       0       -1.542      27.846      12.745      
+EFP     H40B    H       H       0       -2.350      26.900      11.766      
+EFP     H45     H       H       0       -2.396      29.354      7.986       
+EFP     H45A    H       H       0       -3.531      30.493      7.877       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EFP          C1          N3      SINGLE       n     1.460  0.0156     1.460  0.0156
+EFP          C1         C45      SINGLE       n     1.541  0.0191     1.541  0.0191
+EFP          C1         C32      SINGLE       n     1.541  0.0191     1.541  0.0191
+EFP          N3         C30      SINGLE       y     1.355  0.0146     1.355  0.0146
+EFP          N3          C4      SINGLE       y     1.369  0.0134     1.369  0.0134
+EFP          C4          C6      DOUBLE       y     1.366  0.0199     1.366  0.0199
+EFP          C6         N29      SINGLE       y     1.350  0.0200     1.350  0.0200
+EFP          C6          N7      SINGLE       n     1.397  0.0144     1.397  0.0144
+EFP          N7          C9      SINGLE       n     1.357  0.0146     1.357  0.0146
+EFP          C9         C10      SINGLE       n     1.514  0.0100     1.514  0.0100
+EFP          C9         O28      DOUBLE       n     1.230  0.0104     1.230  0.0104
+EFP         C10         C13      SINGLE       n     1.510  0.0100     1.510  0.0100
+EFP         C13         C14      DOUBLE       y     1.387  0.0100     1.387  0.0100
+EFP         C13         C26      SINGLE       y     1.387  0.0100     1.387  0.0100
+EFP         C14         C16      SINGLE       y     1.385  0.0100     1.385  0.0100
+EFP         C16         C18      DOUBLE       y     1.386  0.0109     1.386  0.0109
+EFP         C18         O19      SINGLE       n     1.369  0.0100     1.369  0.0100
+EFP         C18         C24      SINGLE       y     1.386  0.0109     1.386  0.0109
+EFP         O19         C20      SINGLE       n     1.424  0.0117     1.424  0.0117
+EFP         C24         C26      DOUBLE       y     1.385  0.0100     1.385  0.0100
+EFP         N29         C30      DOUBLE       y     1.316  0.0104     1.316  0.0104
+EFP         C32         C35      SINGLE       n     1.536  0.0140     1.536  0.0140
+EFP         C35         C45      SINGLE       n     1.536  0.0140     1.536  0.0140
+EFP         C35         N37      SINGLE       n     1.442  0.0100     1.442  0.0100
+EFP         N37         C39      SINGLE       n     1.339  0.0100     1.339  0.0100
+EFP         C39         C40      SINGLE       n     1.498  0.0100     1.498  0.0100
+EFP         C39         O44      DOUBLE       n     1.233  0.0100     1.233  0.0100
+EFP          C1          H1      SINGLE       n     1.089  0.0100     0.996  0.0100
+EFP          C4          H4      SINGLE       n     1.082  0.0130     0.945  0.0191
+EFP          N7         HN7      SINGLE       n     1.016  0.0100     0.881  0.0200
+EFP         C10         H10      SINGLE       n     1.089  0.0100     0.977  0.0143
+EFP         C10        H10A      SINGLE       n     1.089  0.0100     0.977  0.0143
+EFP         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0173
+EFP         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0169
+EFP         C20         H20      SINGLE       n     1.089  0.0100     0.971  0.0157
+EFP         C20        H20A      SINGLE       n     1.089  0.0100     0.971  0.0157
+EFP         C20        H20B      SINGLE       n     1.089  0.0100     0.971  0.0157
+EFP         C24         H24      SINGLE       n     1.082  0.0130     0.943  0.0169
+EFP         C26         H26      SINGLE       n     1.082  0.0130     0.943  0.0173
+EFP         C30         H30      SINGLE       n     1.082  0.0130     0.943  0.0200
+EFP         C32         H32      SINGLE       n     1.089  0.0100     0.982  0.0177
+EFP         C32        H32A      SINGLE       n     1.089  0.0100     0.982  0.0177
+EFP         C35         H35      SINGLE       n     1.089  0.0100     0.983  0.0141
+EFP         N37        HN37      SINGLE       n     1.016  0.0100     0.872  0.0200
+EFP         C40         H40      SINGLE       n     1.089  0.0100     0.971  0.0140
+EFP         C40        H40A      SINGLE       n     1.089  0.0100     0.971  0.0140
+EFP         C40        H40B      SINGLE       n     1.089  0.0100     0.971  0.0140
+EFP         C45         H45      SINGLE       n     1.089  0.0100     0.982  0.0177
+EFP         C45        H45A      SINGLE       n     1.089  0.0100     0.982  0.0177
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EFP          N3          C1         C45     109.471    3.00
+EFP          N3          C1         C32     109.471    3.00
+EFP          N3          C1          H1     109.471    3.00
+EFP         C45          C1         C32      87.816    1.50
+EFP         C45          C1          H1     109.613    1.50
+EFP         C32          C1          H1     109.613    1.50
+EFP          C1          N3         C30     126.620    3.00
+EFP          C1          N3          C4     126.620    3.00
+EFP         C30          N3          C4     106.759    1.50
+EFP          N3          C4          C6     105.916    1.50
+EFP          N3          C4          H4     123.853    1.71
+EFP          C6          C4          H4     130.230    2.87
+EFP          C4          C6         N29     111.045    1.50
+EFP          C4          C6          N7     127.977    3.00
+EFP         N29          C6          N7     120.978    3.00
+EFP          C6          N7          C9     125.242    2.96
+EFP          C6          N7         HN7     116.606    1.72
+EFP          C9          N7         HN7     118.152    2.44
+EFP          N7          C9         C10     114.956    1.58
+EFP          N7          C9         O28     123.014    1.50
+EFP         C10          C9         O28     122.030    1.50
+EFP          C9         C10         C13     111.650    2.25
+EFP          C9         C10         H10     109.007    1.50
+EFP          C9         C10        H10A     109.007    1.50
+EFP         C13         C10         H10     109.288    1.50
+EFP         C13         C10        H10A     109.288    1.50
+EFP         H10         C10        H10A     108.049    1.50
+EFP         C10         C13         C14     121.080    1.50
+EFP         C10         C13         C26     121.080    1.50
+EFP         C14         C13         C26     117.841    1.50
+EFP         C13         C14         C16     121.479    1.50
+EFP         C13         C14         H14     119.314    1.50
+EFP         C16         C14         H14     119.207    1.50
+EFP         C14         C16         C18     119.690    1.50
+EFP         C14         C16         H16     120.174    1.50
+EFP         C18         C16         H16     120.137    1.50
+EFP         C16         C18         O19     120.089    3.00
+EFP         C16         C18         C24     119.823    1.50
+EFP         O19         C18         C24     120.089    3.00
+EFP         C18         O19         C20     117.529    1.50
+EFP         O19         C20         H20     109.428    1.50
+EFP         O19         C20        H20A     109.428    1.50
+EFP         O19         C20        H20B     109.428    1.50
+EFP         H20         C20        H20A     109.509    1.50
+EFP         H20         C20        H20B     109.509    1.50
+EFP        H20A         C20        H20B     109.509    1.50
+EFP         C18         C24         C26     119.690    1.50
+EFP         C18         C24         H24     120.137    1.50
+EFP         C26         C24         H24     120.174    1.50
+EFP         C13         C26         C24     121.479    1.50
+EFP         C13         C26         H26     119.314    1.50
+EFP         C24         C26         H26     119.207    1.50
+EFP          C6         N29         C30     106.081    1.50
+EFP          N3         C30         N29     110.198    1.50
+EFP          N3         C30         H30     124.155    1.50
+EFP         N29         C30         H30     125.647    1.50
+EFP          C1         C32         C35      89.015    2.00
+EFP          C1         C32         H32     113.753    1.84
+EFP          C1         C32        H32A     113.753    1.84
+EFP         C35         C32         H32     113.912    1.57
+EFP         C35         C32        H32A     113.912    1.57
+EFP         H32         C32        H32A     110.546    1.50
+EFP         C32         C35         C45      88.454    1.50
+EFP         C32         C35         N37     118.450    1.50
+EFP         C32         C35         H35     109.718    1.50
+EFP         C45         C35         N37     118.450    1.50
+EFP         C45         C35         H35     109.718    1.50
+EFP         N37         C35         H35     109.411    1.50
+EFP         C35         N37         C39     122.153    2.50
+EFP         C35         N37        HN37     117.859    1.69
+EFP         C39         N37        HN37     119.989    2.51
+EFP         N37         C39         C40     116.747    1.50
+EFP         N37         C39         O44     121.466    1.50
+EFP         C40         C39         O44     121.787    1.50
+EFP         C39         C40         H40     109.802    1.50
+EFP         C39         C40        H40A     109.802    1.50
+EFP         C39         C40        H40B     109.802    1.50
+EFP         H40         C40        H40A     109.365    1.50
+EFP         H40         C40        H40B     109.365    1.50
+EFP        H40A         C40        H40B     109.365    1.50
+EFP          C1         C45         C35      89.015    2.00
+EFP          C1         C45         H45     113.753    1.84
+EFP          C1         C45        H45A     113.753    1.84
+EFP         C35         C45         H45     113.912    1.57
+EFP         C35         C45        H45A     113.912    1.57
+EFP         H45         C45        H45A     110.546    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EFP             sp2_sp3_2         C30          N3          C1         C45     -90.000    10.0     6
+EFP            sp3_sp3_31          N3          C1         C32         C35      60.000    10.0     3
+EFP             sp3_sp3_7          N3          C1         C45         C35     180.000    10.0     3
+EFP             sp2_sp2_9         C16         C18         O19         C20     180.000     5.0     2
+EFP              const_15         O19         C18         C24         C26     180.000    10.0     2
+EFP            sp3_sp3_38         H20         C20         O19         C18     -60.000    10.0     3
+EFP              const_17         C18         C24         C26         C13       0.000    10.0     2
+EFP              const_25          N3         C30         N29          C6       0.000    10.0     2
+EFP            sp3_sp3_21          C1         C32         C35         N37     -60.000    10.0     3
+EFP            sp2_sp3_20         C39         N37         C35         C32     120.000    10.0     6
+EFP            sp3_sp3_13         N37         C35         C45          C1     180.000    10.0     3
+EFP              const_22         N29         C30          N3          C1     180.000    10.0     2
+EFP              const_34          C6          C4          N3          C1     180.000    10.0     2
+EFP            sp2_sp2_11         C40         C39         N37         C35     180.000     5.0     2
+EFP            sp2_sp3_25         N37         C39         C40         H40       0.000    10.0     6
+EFP              const_30          N3          C4          C6          N7     180.000    10.0     2
+EFP              const_28          N7          C6         N29         C30     180.000    10.0     2
+EFP             sp2_sp2_1          C4          C6          N7          C9     180.000     5.0     2
+EFP             sp2_sp2_5         C10          C9          N7          C6     180.000     5.0     2
+EFP             sp2_sp3_8          N7          C9         C10         C13     120.000    10.0     6
+EFP            sp2_sp3_14         C14         C13         C10          C9     -90.000    10.0     6
+EFP              const_39         C10         C13         C26         C24     180.000    10.0     2
+EFP       const_sp2_sp2_3         C10         C13         C14         C16     180.000     5.0     2
+EFP       const_sp2_sp2_5         C13         C14         C16         C18       0.000     5.0     2
+EFP              const_10         C14         C16         C18         O19     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EFP    chir_1    C1    N3    C45    C32    both
+EFP    chir_2    C35    N37    C32    C45    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EFP    plan-1         C10   0.020
+EFP    plan-1         C13   0.020
+EFP    plan-1         C14   0.020
+EFP    plan-1         C16   0.020
+EFP    plan-1         C18   0.020
+EFP    plan-1         C24   0.020
+EFP    plan-1         C26   0.020
+EFP    plan-1         H14   0.020
+EFP    plan-1         H16   0.020
+EFP    plan-1         H24   0.020
+EFP    plan-1         H26   0.020
+EFP    plan-1         O19   0.020
+EFP    plan-2          C1   0.020
+EFP    plan-2         C30   0.020
+EFP    plan-2          C4   0.020
+EFP    plan-2          C6   0.020
+EFP    plan-2         H30   0.020
+EFP    plan-2          H4   0.020
+EFP    plan-2         N29   0.020
+EFP    plan-2          N3   0.020
+EFP    plan-2          N7   0.020
+EFP    plan-3          C6   0.020
+EFP    plan-3          C9   0.020
+EFP    plan-3         HN7   0.020
+EFP    plan-3          N7   0.020
+EFP    plan-4         C10   0.020
+EFP    plan-4          C9   0.020
+EFP    plan-4          N7   0.020
+EFP    plan-4         O28   0.020
+EFP    plan-5         C35   0.020
+EFP    plan-5         C39   0.020
+EFP    plan-5        HN37   0.020
+EFP    plan-5         N37   0.020
+EFP    plan-6         C39   0.020
+EFP    plan-6         C40   0.020
+EFP    plan-6         N37   0.020
+EFP    plan-6         O44   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EFP           SMILES              ACDLabs 11.02                                                                                                               O=C(NC3CC(n1cc(nc1)NC(=O)Cc2ccc(OC)cc2)C3)C
+EFP SMILES_CANONICAL               CACTVS 3.352                                                                                                     COc1ccc(CC(=O)Nc2cn(cn2)[C@@H]3C[C@@H](C3)NC(C)=O)cc1
+EFP           SMILES               CACTVS 3.352                                                                                                         COc1ccc(CC(=O)Nc2cn(cn2)[CH]3C[CH](C3)NC(C)=O)cc1
+EFP SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                               CC(=O)NC1CC(C1)n2cc(nc2)NC(=O)Cc3ccc(cc3)OC
+EFP           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                               CC(=O)NC1CC(C1)n2cc(nc2)NC(=O)Cc3ccc(cc3)OC
+EFP            InChI                InChI  1.03 InChI=1S/C18H22N4O3/c1-12(23)20-14-8-15(9-14)22-10-17(19-11-22)21-18(24)7-13-3-5-16(25-2)6-4-13/h3-6,10-11,14-15H,7-9H2,1-2H3,(H,20,23)(H,21,24)/t14-,15+
+EFP         InChIKey                InChI  1.03                                                                                                                               PUVVKKBHOWNLRX-GASCZTMLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EFP acedrg               243         "dictionary generator"                  
+EFP acedrg_database      11          "data source"                           
+EFP rdkit                2017.03.2   "Chemoinformatics tool"
+EFP refmac5              5.8.0238    "optimization tool"                     

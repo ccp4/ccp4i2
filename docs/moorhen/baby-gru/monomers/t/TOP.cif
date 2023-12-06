@@ -1,0 +1,273 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TOP     TOP      TRIMETHOPRIM     NON-POLYMER     39     21     .     
+#
+data_comp_TOP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TOP     C1      C       CR16    0       17.616      3.792       -5.144      
+TOP     N2      N       NRD6    0       17.102      2.596       -4.819      
+TOP     C3      C       CR6     0       16.506      2.483       -3.607      
+TOP     N4      N       NH2     0       15.990      1.299       -3.271      
+TOP     N5      N       NRD6    0       16.399      3.488       -2.719      
+TOP     C6      C       CR6     0       16.921      4.688       -3.058      
+TOP     N7      N       NH2     0       16.799      5.669       -2.147      
+TOP     C8      C       CR6     0       17.558      4.900       -4.309      
+TOP     C9      C       CH2     0       18.157      6.241       -4.704      
+TOP     C10     C       CR6     0       18.037      6.632       -6.163      
+TOP     C11     C       CR16    0       19.124      6.484       -7.025      
+TOP     C12     C       CR6     0       19.026      6.848       -8.368      
+TOP     O13     O       O2      0       20.036      6.733       -9.288      
+TOP     C14     C       CH3     0       21.368      7.049       -8.885      
+TOP     C15     C       CR6     0       17.818      7.358       -8.867      
+TOP     O16     O       O2      0       17.714      7.719       -10.195     
+TOP     C17     C       CH3     0       17.108      6.752       -11.052     
+TOP     C18     C       CR6     0       16.724      7.508       -8.002      
+TOP     O19     O       O2      0       15.586      8.016       -8.569      
+TOP     C20     C       CH3     0       14.413      7.206       -8.533      
+TOP     C21     C       CR16    0       16.839      7.146       -6.663      
+TOP     H1      H       H       0       18.033      3.881       -5.980      
+TOP     HN41    H       H       0       16.068      1.007       -2.447      
+TOP     HN42    H       H       0       15.575      0.816       -3.874      
+TOP     HN71    H       H       0       16.009      5.867       -1.822      
+TOP     HN72    H       H       0       17.510      6.108       -1.881      
+TOP     H91     H       H       0       19.110      6.226       -4.461      
+TOP     H92     H       H       0       17.727      6.939       -4.164      
+TOP     H11     H       H       0       19.938      6.137       -6.693      
+TOP     H141    H       H       0       21.714      6.334       -8.326      
+TOP     H142    H       H       0       21.369      7.881       -8.383      
+TOP     H143    H       H       0       21.929      7.146       -9.671      
+TOP     H171    H       H       0       16.165      6.959       -11.155     
+TOP     H172    H       H       0       17.205      5.862       -10.673     
+TOP     H173    H       H       0       17.540      6.779       -11.922     
+TOP     H201    H       H       0       14.107      7.123       -7.615      
+TOP     H202    H       H       0       14.615      6.325       -8.888      
+TOP     H203    H       H       0       13.719      7.620       -9.070      
+TOP     H21     H       H       0       16.097      7.249       -6.087      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TOP          C1          N2      DOUBLE       y     1.338  0.0100     1.338  0.0100
+TOP          C1          C8      SINGLE       y     1.382  0.0100     1.382  0.0100
+TOP          N2          C3      SINGLE       y     1.352  0.0100     1.352  0.0100
+TOP          C3          N4      SINGLE       n     1.334  0.0100     1.334  0.0100
+TOP          C3          N5      DOUBLE       y     1.342  0.0100     1.342  0.0100
+TOP          N5          C6      SINGLE       y     1.348  0.0100     1.348  0.0100
+TOP          C6          N7      SINGLE       n     1.343  0.0151     1.343  0.0151
+TOP          C6          C8      DOUBLE       y     1.410  0.0130     1.410  0.0130
+TOP          C8          C9      SINGLE       n     1.517  0.0100     1.517  0.0100
+TOP          C9         C10      SINGLE       n     1.514  0.0100     1.514  0.0100
+TOP         C10         C11      DOUBLE       y     1.392  0.0100     1.392  0.0100
+TOP         C10         C21      SINGLE       y     1.392  0.0100     1.392  0.0100
+TOP         C11         C12      SINGLE       y     1.389  0.0100     1.389  0.0100
+TOP         C12         O13      SINGLE       n     1.368  0.0100     1.368  0.0100
+TOP         C12         C15      DOUBLE       y     1.397  0.0100     1.397  0.0100
+TOP         O13         C14      SINGLE       n     1.424  0.0117     1.424  0.0117
+TOP         C15         O16      SINGLE       n     1.377  0.0100     1.377  0.0100
+TOP         C15         C18      SINGLE       y     1.397  0.0100     1.397  0.0100
+TOP         O16         C17      SINGLE       n     1.424  0.0117     1.424  0.0117
+TOP         C18         O19      SINGLE       n     1.368  0.0100     1.368  0.0100
+TOP         C18         C21      DOUBLE       y     1.389  0.0100     1.389  0.0100
+TOP         O19         C20      SINGLE       n     1.424  0.0117     1.424  0.0117
+TOP          C1          H1      SINGLE       n     1.082  0.0130     0.940  0.0200
+TOP          N4        HN41      SINGLE       n     1.016  0.0100     0.877  0.0200
+TOP          N4        HN42      SINGLE       n     1.016  0.0100     0.877  0.0200
+TOP          N7        HN71      SINGLE       n     1.016  0.0100     0.877  0.0200
+TOP          N7        HN72      SINGLE       n     1.016  0.0100     0.877  0.0200
+TOP          C9         H91      SINGLE       n     1.089  0.0100     0.983  0.0146
+TOP          C9         H92      SINGLE       n     1.089  0.0100     0.983  0.0146
+TOP         C11         H11      SINGLE       n     1.082  0.0130     0.945  0.0164
+TOP         C14        H141      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOP         C14        H142      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOP         C14        H143      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOP         C17        H171      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOP         C17        H172      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOP         C17        H173      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOP         C20        H201      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOP         C20        H202      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOP         C20        H203      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOP         C21         H21      SINGLE       n     1.082  0.0130     0.945  0.0164
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TOP          N2          C1          C8     123.172    1.50
+TOP          N2          C1          H1     118.436    1.50
+TOP          C8          C1          H1     118.392    1.50
+TOP          C1          N2          C3     116.793    1.50
+TOP          N2          C3          N4     117.980    1.50
+TOP          N2          C3          N5     124.293    1.50
+TOP          N4          C3          N5     117.727    1.50
+TOP          C3          N4        HN41     119.826    1.50
+TOP          C3          N4        HN42     119.826    1.50
+TOP        HN41          N4        HN42     120.348    1.96
+TOP          C3          N5          C6     117.476    1.50
+TOP          N5          C6          N7     116.800    1.55
+TOP          N5          C6          C8     121.976    1.50
+TOP          N7          C6          C8     121.224    1.50
+TOP          C6          N7        HN71     119.860    1.50
+TOP          C6          N7        HN72     119.860    1.50
+TOP        HN71          N7        HN72     120.280    1.85
+TOP          C1          C8          C6     116.290    1.50
+TOP          C1          C8          C9     121.676    1.50
+TOP          C6          C8          C9     122.034    1.77
+TOP          C8          C9         C10     113.189    2.84
+TOP          C8          C9         H91     108.007    1.50
+TOP          C8          C9         H92     108.007    1.50
+TOP         C10          C9         H91     108.797    1.50
+TOP         C10          C9         H92     108.797    1.50
+TOP         H91          C9         H92     107.770    1.50
+TOP          C9         C10         C11     120.624    1.50
+TOP          C9         C10         C21     120.624    1.50
+TOP         C11         C10         C21     118.752    1.50
+TOP         C10         C11         C12     120.447    1.50
+TOP         C10         C11         H11     119.855    1.50
+TOP         C12         C11         H11     119.688    1.50
+TOP         C11         C12         O13     124.641    1.50
+TOP         C11         C12         C15     120.274    1.50
+TOP         O13         C12         C15     115.085    1.50
+TOP         C12         O13         C14     117.276    1.50
+TOP         O13         C14        H141     109.428    1.50
+TOP         O13         C14        H142     109.428    1.50
+TOP         O13         C14        H143     109.428    1.50
+TOP        H141         C14        H142     109.509    1.50
+TOP        H141         C14        H143     109.509    1.50
+TOP        H142         C14        H143     109.509    1.50
+TOP         C12         C15         O16     120.087    1.50
+TOP         C12         C15         C18     119.826    1.50
+TOP         O16         C15         C18     120.087    1.50
+TOP         C15         O16         C17     114.431    1.50
+TOP         O16         C17        H171     109.428    1.50
+TOP         O16         C17        H172     109.428    1.50
+TOP         O16         C17        H173     109.428    1.50
+TOP        H171         C17        H172     109.509    1.50
+TOP        H171         C17        H173     109.509    1.50
+TOP        H172         C17        H173     109.509    1.50
+TOP         C15         C18         O19     115.085    1.50
+TOP         C15         C18         C21     120.274    1.50
+TOP         O19         C18         C21     124.641    1.50
+TOP         C18         O19         C20     117.276    1.50
+TOP         O19         C20        H201     109.428    1.50
+TOP         O19         C20        H202     109.428    1.50
+TOP         O19         C20        H203     109.428    1.50
+TOP        H201         C20        H202     109.509    1.50
+TOP        H201         C20        H203     109.509    1.50
+TOP        H202         C20        H203     109.509    1.50
+TOP         C10         C21         C18     120.447    1.50
+TOP         C10         C21         H21     119.855    1.50
+TOP         C18         C21         H21     119.688    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TOP              const_21          C8          C1          N2          C3       0.000    10.0     2
+TOP              const_34          N2          C1          C8          C9     180.000    10.0     2
+TOP       const_sp2_sp2_6         C10         C11         C12         O13     180.000     5.0     2
+TOP             sp2_sp2_9         C11         C12         O13         C14     180.000     5.0     2
+TOP              const_12         O13         C12         C15         O16       0.000    10.0     2
+TOP             sp3_sp3_2        H141         C14         O13         C12     -60.000    10.0     3
+TOP            sp2_sp2_11         C12         C15         O16         C17     180.000     5.0     2
+TOP              const_16         O16         C15         C18         O19       0.000    10.0     2
+TOP             sp3_sp3_6        H171         C17         O16         C15     -60.000    10.0     3
+TOP            sp2_sp2_13         C15         C18         O19         C20     180.000     5.0     2
+TOP              const_19         O19         C18         C21         C10     180.000    10.0     2
+TOP            sp3_sp3_10        H201         C20         O19         C18     -60.000    10.0     3
+TOP              const_24          N4          C3          N2          C1     180.000    10.0     2
+TOP             sp2_sp2_1          N2          C3          N4        HN41     180.000     5.0     2
+TOP              const_26          N4          C3          N5          C6     180.000    10.0     2
+TOP              const_28          N7          C6          N5          C3     180.000    10.0     2
+TOP             sp2_sp2_7          N5          C6          N7        HN71       0.000     5.0     2
+TOP              const_32          N7          C6          C8          C9       0.000    10.0     2
+TOP             sp2_sp3_2          C1          C8          C9         C10     -90.000    10.0     6
+TOP             sp2_sp3_8         C11         C10          C9          C8     -90.000    10.0     6
+TOP       const_sp2_sp2_3          C9         C10         C11         C12     180.000     5.0     2
+TOP              const_39          C9         C10         C21         C18     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TOP    plan-1          C1   0.020
+TOP    plan-1          C3   0.020
+TOP    plan-1          C6   0.020
+TOP    plan-1          C8   0.020
+TOP    plan-1          C9   0.020
+TOP    plan-1          H1   0.020
+TOP    plan-1          N2   0.020
+TOP    plan-1          N4   0.020
+TOP    plan-1          N5   0.020
+TOP    plan-1          N7   0.020
+TOP    plan-2         C10   0.020
+TOP    plan-2         C11   0.020
+TOP    plan-2         C12   0.020
+TOP    plan-2         C15   0.020
+TOP    plan-2         C18   0.020
+TOP    plan-2         C21   0.020
+TOP    plan-2          C9   0.020
+TOP    plan-2         H11   0.020
+TOP    plan-2         H21   0.020
+TOP    plan-2         O13   0.020
+TOP    plan-2         O16   0.020
+TOP    plan-2         O19   0.020
+TOP    plan-3          C3   0.020
+TOP    plan-3        HN41   0.020
+TOP    plan-3        HN42   0.020
+TOP    plan-3          N4   0.020
+TOP    plan-4          C6   0.020
+TOP    plan-4        HN71   0.020
+TOP    plan-4        HN72   0.020
+TOP    plan-4          N7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TOP           SMILES              ACDLabs 10.04                                                                              n1c(N)c(cnc1N)Cc2cc(OC)c(OC)c(OC)c2
+TOP SMILES_CANONICAL               CACTVS 3.341                                                                                  COc1cc(Cc2cnc(N)nc2N)cc(OC)c1OC
+TOP           SMILES               CACTVS 3.341                                                                                  COc1cc(Cc2cnc(N)nc2N)cc(OC)c1OC
+TOP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                  COc1cc(cc(c1OC)OC)Cc2cnc(nc2N)N
+TOP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                  COc1cc(cc(c1OC)OC)Cc2cnc(nc2N)N
+TOP            InChI                InChI  1.03 InChI=1S/C14H18N4O3/c1-19-10-5-8(6-11(20-2)12(10)21-3)4-9-7-17-14(16)18-13(9)15/h5-7H,4H2,1-3H3,(H4,15,16,17,18)
+TOP         InChIKey                InChI  1.03                                                                                      IEDVJHCEMCRBQM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TOP acedrg               243         "dictionary generator"                  
+TOP acedrg_database      11          "data source"                           
+TOP rdkit                2017.03.2   "Chemoinformatics tool"
+TOP refmac5              5.8.0238    "optimization tool"                     

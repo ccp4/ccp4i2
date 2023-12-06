@@ -1,0 +1,216 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MIG     MIG      (2R,3R,4R,5S)-1-(2-hydroxyethyl)-2-(hydroxymethyl)piperidine-3,4,5-triol     NON-POLYMER     31     14     .     
+#
+data_comp_MIG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MIG     OAA     O       OH1     0       41.966      89.676      34.252      
+MIG     OAB     O       OH1     0       43.406      94.057      36.379      
+MIG     OAC     O       OH1     0       47.784      92.351      32.545      
+MIG     OAD     O       OH1     0       48.427      93.901      34.892      
+MIG     OAE     O       OH1     0       46.857      93.162      37.213      
+MIG     CAF     C       CH2     0       43.223      90.233      34.574      
+MIG     CAG     C       CH2     0       44.002      92.833      36.801      
+MIG     CAH     C       CH2     0       43.297      91.683      34.141      
+MIG     CAI     C       CH2     0       45.637      91.848      33.494      
+MIG     CAJ     C       CH1     0       46.808      92.804      33.486      
+MIG     CAK     C       CH1     0       47.396      92.909      34.887      
+MIG     CAL     C       CH1     0       46.316      93.279      35.899      
+MIG     CAM     C       CH1     0       45.069      92.385      35.807      
+MIG     NAN     N       NT      0       44.592      92.345      34.395      
+MIG     HOAA    H       H       0       41.995      88.843      34.397      
+MIG     HOAB    H       H       0       42.879      94.314      36.991      
+MIG     HOAC    H       H       0       48.370      92.951      32.478      
+MIG     HOAD    H       H       0       48.830      93.870      35.629      
+MIG     HOAE    H       H       0       47.078      92.359      37.342      
+MIG     HAF     H       H       0       43.926      89.721      34.128      
+MIG     HAFA    H       H       0       43.365      90.170      35.538      
+MIG     HAG     H       H       0       43.317      92.137      36.875      
+MIG     HAGA    H       H       0       44.407      92.950      37.684      
+MIG     HAH     H       H       0       42.592      92.181      34.598      
+MIG     HAHA    H       H       0       43.103      91.730      33.185      
+MIG     HAI     H       H       0       45.281      91.769      32.576      
+MIG     HAIA    H       H       0       45.943      90.960      33.802      
+MIG     HAJ     H       H       0       46.495      93.692      33.214      
+MIG     HAK     H       H       0       47.794      92.039      35.139      
+MIG     HAL     H       H       0       46.039      94.206      35.734      
+MIG     HAM     H       H       0       45.335      91.472      36.053      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MIG         OAA         CAF      SINGLE       n     1.412  0.0124     1.412  0.0124
+MIG         OAB         CAG      SINGLE       n     1.425  0.0187     1.425  0.0187
+MIG         OAC         CAJ      SINGLE       n     1.429  0.0100     1.429  0.0100
+MIG         OAD         CAK      SINGLE       n     1.430  0.0100     1.430  0.0100
+MIG         OAE         CAL      SINGLE       n     1.423  0.0100     1.423  0.0100
+MIG         CAF         CAH      SINGLE       n     1.509  0.0178     1.509  0.0178
+MIG         CAG         CAM      SINGLE       n     1.520  0.0100     1.520  0.0100
+MIG         CAH         NAN      SINGLE       n     1.467  0.0119     1.467  0.0119
+MIG         CAI         CAJ      SINGLE       n     1.512  0.0125     1.512  0.0125
+MIG         CAI         NAN      SINGLE       n     1.461  0.0101     1.461  0.0101
+MIG         CAJ         CAK      SINGLE       n     1.524  0.0100     1.524  0.0100
+MIG         CAK         CAL      SINGLE       n     1.521  0.0165     1.521  0.0165
+MIG         CAL         CAM      SINGLE       n     1.530  0.0100     1.530  0.0100
+MIG         CAM         NAN      SINGLE       n     1.480  0.0100     1.480  0.0100
+MIG         OAA        HOAA      SINGLE       n     0.970  0.0120     0.846  0.0200
+MIG         OAB        HOAB      SINGLE       n     0.970  0.0120     0.848  0.0200
+MIG         OAC        HOAC      SINGLE       n     0.970  0.0120     0.841  0.0200
+MIG         OAD        HOAD      SINGLE       n     0.970  0.0120     0.841  0.0200
+MIG         OAE        HOAE      SINGLE       n     0.970  0.0120     0.841  0.0200
+MIG         CAF         HAF      SINGLE       n     1.089  0.0100     0.978  0.0200
+MIG         CAF        HAFA      SINGLE       n     1.089  0.0100     0.978  0.0200
+MIG         CAG         HAG      SINGLE       n     1.089  0.0100     0.980  0.0170
+MIG         CAG        HAGA      SINGLE       n     1.089  0.0100     0.980  0.0170
+MIG         CAH         HAH      SINGLE       n     1.089  0.0100     0.977  0.0152
+MIG         CAH        HAHA      SINGLE       n     1.089  0.0100     0.977  0.0152
+MIG         CAI         HAI      SINGLE       n     1.089  0.0100     0.988  0.0123
+MIG         CAI        HAIA      SINGLE       n     1.089  0.0100     0.988  0.0123
+MIG         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.980  0.0200
+MIG         CAK         HAK      SINGLE       n     1.089  0.0100     0.990  0.0200
+MIG         CAL         HAL      SINGLE       n     1.089  0.0100     0.982  0.0200
+MIG         CAM         HAM      SINGLE       n     1.089  0.0100     0.982  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MIG         CAF         OAA        HOAA     108.643    2.83
+MIG         CAG         OAB        HOAB     107.864    2.31
+MIG         CAJ         OAC        HOAC     107.637    2.41
+MIG         CAK         OAD        HOAD     108.895    2.41
+MIG         CAL         OAE        HOAE     105.772    3.00
+MIG         OAA         CAF         CAH     111.219    2.30
+MIG         OAA         CAF         HAF     109.427    1.50
+MIG         OAA         CAF        HAFA     109.427    1.50
+MIG         CAH         CAF         HAF     109.353    1.50
+MIG         CAH         CAF        HAFA     109.353    1.50
+MIG         HAF         CAF        HAFA     108.203    1.50
+MIG         OAB         CAG         CAM     110.487    1.50
+MIG         OAB         CAG         HAG     109.894    1.50
+MIG         OAB         CAG        HAGA     109.894    1.50
+MIG         CAM         CAG         HAG     109.076    1.50
+MIG         CAM         CAG        HAGA     109.076    1.50
+MIG         HAG         CAG        HAGA     108.331    1.50
+MIG         CAF         CAH         NAN     113.936    1.71
+MIG         CAF         CAH         HAH     108.992    1.50
+MIG         CAF         CAH        HAHA     108.992    1.50
+MIG         NAN         CAH         HAH     108.913    1.50
+MIG         NAN         CAH        HAHA     108.913    1.50
+MIG         HAH         CAH        HAHA     107.745    1.50
+MIG         CAJ         CAI         NAN     109.674    1.80
+MIG         CAJ         CAI         HAI     109.333    1.50
+MIG         CAJ         CAI        HAIA     109.333    1.50
+MIG         NAN         CAI         HAI     109.490    1.50
+MIG         NAN         CAI        HAIA     109.490    1.50
+MIG         HAI         CAI        HAIA     109.290    1.64
+MIG         OAC         CAJ         CAI     109.653    2.18
+MIG         OAC         CAJ         CAK     111.445    1.50
+MIG         OAC         CAJ         HAJ     109.251    2.36
+MIG         CAI         CAJ         CAK     110.559    1.78
+MIG         CAI         CAJ         HAJ     109.232    1.50
+MIG         CAK         CAJ         HAJ     108.539    1.50
+MIG         OAD         CAK         CAJ     109.464    2.12
+MIG         OAD         CAK         CAL     110.081    2.02
+MIG         OAD         CAK         HAK     108.767    1.50
+MIG         CAJ         CAK         CAL     110.796    1.54
+MIG         CAJ         CAK         HAK     109.462    1.50
+MIG         CAL         CAK         HAK     109.166    1.50
+MIG         OAE         CAL         CAK     110.081    2.02
+MIG         OAE         CAL         CAM     107.407    1.50
+MIG         OAE         CAL         HAL     110.494    1.50
+MIG         CAK         CAL         CAM     112.745    1.50
+MIG         CAK         CAL         HAL     109.166    1.50
+MIG         CAM         CAL         HAL     108.784    1.50
+MIG         CAG         CAM         CAL     111.706    1.78
+MIG         CAG         CAM         NAN     111.959    2.31
+MIG         CAG         CAM         HAM     107.660    1.50
+MIG         CAL         CAM         NAN     108.576    2.88
+MIG         CAL         CAM         HAM     107.957    1.50
+MIG         NAN         CAM         HAM     107.651    1.50
+MIG         CAH         NAN         CAI     111.219    1.66
+MIG         CAH         NAN         CAM     111.960    2.41
+MIG         CAI         NAN         CAM     110.581    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MIG            sp3_sp3_43         CAH         CAF         OAA        HOAA     180.000    10.0     3
+MIG            sp3_sp3_23         OAD         CAK         CAL         OAE      60.000    10.0     3
+MIG            sp3_sp3_32         OAE         CAL         CAM         CAG     -60.000    10.0     3
+MIG            sp3_sp3_40         CAG         CAM         NAN         CAH      60.000    10.0     3
+MIG            sp3_sp3_46         CAM         CAG         OAB        HOAB     180.000    10.0     3
+MIG            sp3_sp3_49         CAI         CAJ         OAC        HOAC     180.000    10.0     3
+MIG            sp3_sp3_52         CAJ         CAK         OAD        HOAD     180.000    10.0     3
+MIG            sp3_sp3_55         CAK         CAL         OAE        HOAE     180.000    10.0     3
+MIG            sp3_sp3_58         OAA         CAF         CAH         NAN     180.000    10.0     3
+MIG            sp3_sp3_67         OAB         CAG         CAM         CAL     180.000    10.0     3
+MIG            sp3_sp3_76         CAF         CAH         NAN         CAI     180.000    10.0     3
+MIG            sp3_sp3_83         CAJ         CAI         NAN         CAH     -60.000    10.0     3
+MIG             sp3_sp3_2         NAN         CAI         CAJ         OAC     180.000    10.0     3
+MIG            sp3_sp3_14         OAC         CAJ         CAK         OAD     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MIG    chir_1    CAJ    OAC    CAK    CAI    positive
+MIG    chir_2    CAK    OAD    CAL    CAJ    negative
+MIG    chir_3    CAL    OAE    CAK    CAM    negative
+MIG    chir_4    CAM    NAN    CAL    CAG    negative
+MIG    chir_5    NAN    CAM    CAI    CAH    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MIG SMILES_CANONICAL               CACTVS 3.352                                                    OCCN1C[C@H](O)[C@@H](O)[C@H](O)[C@H]1CO
+MIG           SMILES               CACTVS 3.352                                                         OCCN1C[CH](O)[CH](O)[CH](O)[CH]1CO
+MIG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                             C1[C@@H]([C@H]([C@@H]([C@H]([N@@]1CCO)CO)O)O)O
+MIG           SMILES "OpenEye OEToolkits" 1.7.0                                                                   C1C(C(C(C(N1CCO)CO)O)O)O
+MIG            InChI                InChI  1.03 InChI=1S/C8H17NO5/c10-2-1-9-3-6(12)8(14)7(13)5(9)4-11/h5-8,10-14H,1-4H2/t5-,6+,7-,8-/m1/s1
+MIG         InChIKey                InChI  1.03                                                                IBAQFPQHRJAVAV-ULAWRXDQSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MIG acedrg               243         "dictionary generator"                  
+MIG acedrg_database      11          "data source"                           
+MIG rdkit                2017.03.2   "Chemoinformatics tool"
+MIG refmac5              5.8.0238    "optimization tool"                     

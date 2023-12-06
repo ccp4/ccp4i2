@@ -1,0 +1,153 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3NJ     3NJ      4-fluorooxepine-2,7-dione     NON-POLYMER     13     10     .     
+#
+data_comp_3NJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3NJ     C1      C       C       0       -9.789      -15.462     -39.461     
+3NJ     C2      C       C       0       -9.029      -13.786     -41.075     
+3NJ     C3      C       C1      0       -10.279     -13.116     -41.481     
+3NJ     C4      C       C       0       -11.581     -13.528     -41.197     
+3NJ     C5      C       C1      0       -11.988     -14.446     -40.226     
+3NJ     C6      C       C1      0       -11.244     -15.210     -39.426     
+3NJ     O3      O       O2      0       -9.026      -15.048     -40.528     
+3NJ     F4      F       F       0       -12.582     -12.885     -41.877     
+3NJ     O2      O       O       0       -7.959      -13.235     -41.215     
+3NJ     O1      O       O       0       -9.194      -16.034     -38.576     
+3NJ     H1      H       H       0       -10.184     -12.325     -41.986     
+3NJ     H2      H       H       0       -12.919     -14.545     -40.115     
+3NJ     H3      H       H       0       -11.731     -15.644     -38.746     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3NJ          C4          F4      SINGLE       n     1.370  0.0119     1.370  0.0119
+3NJ          C3          C4      DOUBLE       n     1.392  0.0200     1.392  0.0200
+3NJ          C2          C3      SINGLE       n     1.476  0.0170     1.476  0.0170
+3NJ          C4          C5      SINGLE       n     1.392  0.0200     1.392  0.0200
+3NJ          C2          O3      SINGLE       n     1.377  0.0192     1.377  0.0192
+3NJ          C1          O3      SINGLE       n     1.377  0.0192     1.377  0.0192
+3NJ          C2          O2      DOUBLE       n     1.211  0.0160     1.211  0.0160
+3NJ          C5          C6      DOUBLE       n     1.331  0.0100     1.331  0.0100
+3NJ          C1          C6      SINGLE       n     1.476  0.0170     1.476  0.0170
+3NJ          C1          O1      DOUBLE       n     1.211  0.0160     1.211  0.0160
+3NJ          C3          H1      SINGLE       n     1.082  0.0130     0.943  0.0196
+3NJ          C5          H2      SINGLE       n     1.082  0.0130     0.943  0.0196
+3NJ          C6          H3      SINGLE       n     1.082  0.0130     0.943  0.0196
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3NJ          O3          C1          C6     118.715    3.00
+3NJ          O3          C1          O1     117.646    3.00
+3NJ          C6          C1          O1     123.639    1.50
+3NJ          C3          C2          O3     119.665    3.00
+3NJ          C3          C2          O2     121.741    3.00
+3NJ          O3          C2          O2     118.595    3.00
+3NJ          C4          C3          C2     124.627    2.47
+3NJ          C4          C3          H1     117.742    2.00
+3NJ          C2          C3          H1     117.631    2.39
+3NJ          F4          C4          C3     118.615    3.00
+3NJ          F4          C4          C5     118.615    3.00
+3NJ          C3          C4          C5     122.770    3.00
+3NJ          C4          C5          C6     125.305    3.00
+3NJ          C4          C5          H2     117.804    2.00
+3NJ          C6          C5          H2     116.892    2.10
+3NJ          C5          C6          C1     126.424    3.00
+3NJ          C5          C6          H3     115.930    2.10
+3NJ          C1          C6          H3     117.646    1.62
+3NJ          C2          O3          C1     120.521    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3NJ            sp2_sp2_21          O3          C1          C6          C5     180.000     5.0     2
+3NJ            sp2_sp2_15          C6          C1          O3          C2     180.000     5.0     2
+3NJ             sp2_sp2_5          O3          C2          C3          C4     180.000     5.0     2
+3NJ            sp2_sp2_13          C3          C2          O3          C1     180.000     5.0     2
+3NJ             sp2_sp2_2          C2          C3          C4          F4       0.000     5.0     2
+3NJ            sp2_sp2_11          F4          C4          C5          C6       0.000     5.0     2
+3NJ            sp2_sp2_17          C4          C5          C6          C1     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3NJ    plan-1          C1   0.020
+3NJ    plan-1          C6   0.020
+3NJ    plan-1          O1   0.020
+3NJ    plan-1          O3   0.020
+3NJ    plan-2          C2   0.020
+3NJ    plan-2          C3   0.020
+3NJ    plan-2          O2   0.020
+3NJ    plan-2          O3   0.020
+3NJ    plan-3          C2   0.020
+3NJ    plan-3          C3   0.020
+3NJ    plan-3          C4   0.020
+3NJ    plan-3          H1   0.020
+3NJ    plan-4          C3   0.020
+3NJ    plan-4          C4   0.020
+3NJ    plan-4          C5   0.020
+3NJ    plan-4          F4   0.020
+3NJ    plan-5          C4   0.020
+3NJ    plan-5          C5   0.020
+3NJ    plan-5          C6   0.020
+3NJ    plan-5          H2   0.020
+3NJ    plan-6          C1   0.020
+3NJ    plan-6          C5   0.020
+3NJ    plan-6          C6   0.020
+3NJ    plan-6          H3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3NJ           SMILES              ACDLabs 12.01                          FC=1C=CC(=O)OC(=O)C=1
+3NJ            InChI                InChI  1.03 InChI=1S/C6H3FO3/c7-4-1-2-5(8)10-6(9)3-4/h1-3H
+3NJ         InChIKey                InChI  1.03                    MARYQJLDFKFFCO-UHFFFAOYSA-N
+3NJ SMILES_CANONICAL               CACTVS 3.385                           FC1=CC(=O)OC(=O)C=C1
+3NJ           SMILES               CACTVS 3.385                           FC1=CC(=O)OC(=O)C=C1
+3NJ SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                           C1=CC(=O)OC(=O)C=C1F
+3NJ           SMILES "OpenEye OEToolkits" 1.9.2                           C1=CC(=O)OC(=O)C=C1F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3NJ acedrg               243         "dictionary generator"                  
+3NJ acedrg_database      11          "data source"                           
+3NJ rdkit                2017.03.2   "Chemoinformatics tool"
+3NJ refmac5              5.8.0238    "optimization tool"                     

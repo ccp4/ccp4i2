@@ -1,0 +1,336 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MZL     MZL      N-[4-(5-ethyl-3-pyridin-3-yl-1H-pyrazol-1-yl)phenyl]pyridine-3-carboxamide     NON-POLYMER     47     28     .     
+#
+data_comp_MZL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MZL     N1      N       NR5     0       75.035      -11.541     70.114      
+MZL     C2      C       CR6     0       75.023      -10.840     68.864      
+MZL     C3      C       CR5     0       74.809      -12.872     70.394      
+MZL     N4      N       NRD5    0       75.333      -10.860     71.265      
+MZL     C5      C       CR16    0       73.909      -10.901     68.041      
+MZL     C6      C       CR16    0       76.137      -10.108     68.484      
+MZL     C7      C       CR15    0       74.960      -13.015     71.735      
+MZL     C8      C       CH2     0       74.466      -13.921     69.386      
+MZL     C9      C       CR5     0       75.283      -11.754     72.257      
+MZL     C10     C       CR16    0       73.907      -10.230     66.830      
+MZL     C11     C       CR16    0       76.139      -9.430      67.276      
+MZL     C12     C       CH3     0       75.620      -14.279     68.492      
+MZL     C13     C       CR6     0       75.552      -11.372     73.651      
+MZL     C14     C       CR6     0       75.022      -9.483      66.434      
+MZL     C15     C       CR16    0       75.554      -12.322     74.677      
+MZL     C16     C       CR16    0       75.828      -10.056     74.013      
+MZL     N17     N       NH1     0       74.983      -8.819      65.184      
+MZL     C18     C       CR16    0       75.817      -11.923     75.977      
+MZL     N19     N       NRD6    0       76.084      -9.655      75.266      
+MZL     C20     C       C       0       76.013      -8.665      64.308      
+MZL     C21     C       CR16    0       76.075      -10.591     76.226      
+MZL     C22     C       CR6     0       75.964      -7.505      63.346      
+MZL     O23     O       O       0       76.962      -9.444      64.277      
+MZL     C24     C       CR16    0       76.852      -7.473      62.274      
+MZL     C25     C       CR16    0       75.079      -6.435      63.461      
+MZL     C26     C       CR16    0       76.823      -6.415      61.384      
+MZL     N27     N       NRD6    0       75.036      -5.402      62.606      
+MZL     C28     C       CR16    0       75.905      -5.408      61.586      
+MZL     H5      H       H       0       73.154      -11.401     68.301      
+MZL     H6      H       H       0       76.892      -10.067     69.046      
+MZL     H7      H       H       0       74.862      -13.817     72.218      
+MZL     H8      H       H       0       73.724      -13.609     68.836      
+MZL     H8A     H       H       0       74.174      -14.725     69.857      
+MZL     H10     H       H       0       73.149      -10.272     66.269      
+MZL     H11     H       H       0       76.899      -8.933      67.018      
+MZL     H12     H       H       0       75.347      -14.976     67.870      
+MZL     H12A    H       H       0       76.362      -14.602     69.031      
+MZL     H12B    H       H       0       75.902      -13.493     67.992      
+MZL     H15     H       H       0       75.376      -13.225     74.489      
+MZL     H16     H       H       0       75.834      -9.398      73.336      
+MZL     HN17    H       H       0       74.196      -8.528      64.940      
+MZL     H18     H       H       0       75.819      -12.552     76.678      
+MZL     H21     H       H       0       76.254      -10.323     77.112      
+MZL     H24     H       H       0       77.472      -8.169      62.148      
+MZL     H25     H       H       0       74.474      -6.428      64.173      
+MZL     H26     H       H       0       77.417      -6.385      60.654      
+MZL     H28     H       H       0       75.885      -4.687      60.980      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MZL          N1          C2      SINGLE       n     1.431  0.0100     1.431  0.0100
+MZL          N1          C3      SINGLE       y     1.376  0.0101     1.376  0.0101
+MZL          N1          N4      SINGLE       y     1.367  0.0137     1.367  0.0137
+MZL          C2          C5      DOUBLE       y     1.383  0.0100     1.383  0.0100
+MZL          C2          C6      SINGLE       y     1.383  0.0100     1.383  0.0100
+MZL          C3          C7      DOUBLE       y     1.358  0.0100     1.358  0.0100
+MZL          C3          C8      SINGLE       n     1.494  0.0100     1.494  0.0100
+MZL          N4          C9      DOUBLE       y     1.335  0.0100     1.335  0.0100
+MZL          C5         C10      SINGLE       y     1.381  0.0100     1.381  0.0100
+MZL          C6         C11      DOUBLE       y     1.381  0.0100     1.381  0.0100
+MZL          C7          C9      SINGLE       y     1.403  0.0100     1.403  0.0100
+MZL          C8         C12      SINGLE       n     1.503  0.0200     1.503  0.0200
+MZL          C9         C13      SINGLE       n     1.466  0.0100     1.466  0.0100
+MZL         C10         C14      DOUBLE       y     1.395  0.0100     1.395  0.0100
+MZL         C11         C14      SINGLE       y     1.395  0.0100     1.395  0.0100
+MZL         C13         C15      DOUBLE       y     1.393  0.0100     1.393  0.0100
+MZL         C13         C16      SINGLE       y     1.386  0.0100     1.386  0.0100
+MZL         C14         N17      SINGLE       n     1.411  0.0105     1.411  0.0105
+MZL         C15         C18      SINGLE       y     1.380  0.0128     1.380  0.0128
+MZL         C16         N19      DOUBLE       y     1.337  0.0100     1.337  0.0100
+MZL         N17         C20      SINGLE       n     1.351  0.0126     1.351  0.0126
+MZL         C18         C21      DOUBLE       y     1.374  0.0152     1.374  0.0152
+MZL         N19         C21      SINGLE       y     1.336  0.0134     1.336  0.0134
+MZL         C20         C22      SINGLE       n     1.494  0.0126     1.494  0.0126
+MZL         C20         O23      DOUBLE       n     1.226  0.0100     1.226  0.0100
+MZL         C22         C24      DOUBLE       y     1.385  0.0100     1.385  0.0100
+MZL         C22         C25      SINGLE       y     1.386  0.0100     1.386  0.0100
+MZL         C24         C26      SINGLE       y     1.379  0.0104     1.379  0.0104
+MZL         C25         N27      DOUBLE       y     1.337  0.0100     1.337  0.0100
+MZL         C26         C28      DOUBLE       y     1.374  0.0152     1.374  0.0152
+MZL         N27         C28      SINGLE       y     1.336  0.0134     1.336  0.0134
+MZL          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0172
+MZL          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0172
+MZL          C7          H7      SINGLE       n     1.082  0.0130     0.941  0.0104
+MZL          C8          H8      SINGLE       n     1.089  0.0100     0.976  0.0100
+MZL          C8         H8A      SINGLE       n     1.089  0.0100     0.976  0.0100
+MZL         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0200
+MZL         C11         H11      SINGLE       n     1.082  0.0130     0.944  0.0200
+MZL         C12         H12      SINGLE       n     1.089  0.0100     0.973  0.0120
+MZL         C12        H12A      SINGLE       n     1.089  0.0100     0.973  0.0120
+MZL         C12        H12B      SINGLE       n     1.089  0.0100     0.973  0.0120
+MZL         C15         H15      SINGLE       n     1.082  0.0130     0.940  0.0200
+MZL         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0100
+MZL         N17        HN17      SINGLE       n     1.016  0.0100     0.876  0.0200
+MZL         C18         H18      SINGLE       n     1.082  0.0130     0.942  0.0155
+MZL         C21         H21      SINGLE       n     1.082  0.0130     0.942  0.0166
+MZL         C24         H24      SINGLE       n     1.082  0.0130     0.941  0.0168
+MZL         C25         H25      SINGLE       n     1.082  0.0130     0.935  0.0100
+MZL         C26         H26      SINGLE       n     1.082  0.0130     0.942  0.0155
+MZL         C28         H28      SINGLE       n     1.082  0.0130     0.942  0.0166
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MZL          C2          N1          C3     130.086    1.50
+MZL          C2          N1          N4     119.671    1.50
+MZL          C3          N1          N4     110.244    1.50
+MZL          N1          C2          C5     119.579    1.50
+MZL          N1          C2          C6     119.579    1.50
+MZL          C5          C2          C6     120.841    1.50
+MZL          N1          C3          C7     106.354    1.50
+MZL          N1          C3          C8     124.228    1.69
+MZL          C7          C3          C8     129.418    2.31
+MZL          N1          N4          C9     105.951    1.50
+MZL          C2          C5         C10     119.752    1.50
+MZL          C2          C5          H5     120.272    1.50
+MZL         C10          C5          H5     119.976    1.50
+MZL          C2          C6         C11     119.752    1.50
+MZL          C2          C6          H6     120.272    1.50
+MZL         C11          C6          H6     119.976    1.50
+MZL          C3          C7          C9     107.241    1.50
+MZL          C3          C7          H7     125.927    1.50
+MZL          C9          C7          H7     126.831    1.50
+MZL          C3          C8         C12     112.989    1.50
+MZL          C3          C8          H8     108.947    1.50
+MZL          C3          C8         H8A     108.947    1.50
+MZL         C12          C8          H8     108.833    1.50
+MZL         C12          C8         H8A     108.833    1.50
+MZL          H8          C8         H8A     108.101    1.50
+MZL          N4          C9          C7     110.210    1.50
+MZL          N4          C9         C13     120.328    1.50
+MZL          C7          C9         C13     129.463    1.50
+MZL          C5         C10         C14     120.097    1.50
+MZL          C5         C10         H10     120.086    1.50
+MZL         C14         C10         H10     119.817    1.50
+MZL          C6         C11         C14     120.097    1.50
+MZL          C6         C11         H11     120.086    1.50
+MZL         C14         C11         H11     119.817    1.50
+MZL          C8         C12         H12     109.659    1.50
+MZL          C8         C12        H12A     109.659    1.50
+MZL          C8         C12        H12B     109.659    1.50
+MZL         H12         C12        H12A     109.422    1.50
+MZL         H12         C12        H12B     109.422    1.50
+MZL        H12A         C12        H12B     109.422    1.50
+MZL          C9         C13         C15     121.851    1.50
+MZL          C9         C13         C16     120.841    1.50
+MZL         C15         C13         C16     117.308    1.50
+MZL         C10         C14         C11     119.460    1.50
+MZL         C10         C14         N17     120.270    2.93
+MZL         C11         C14         N17     120.270    2.93
+MZL         C13         C15         C18     119.118    1.50
+MZL         C13         C15         H15     120.462    1.50
+MZL         C18         C15         H15     120.420    1.50
+MZL         C13         C16         N19     124.288    1.50
+MZL         C13         C16         H16     117.870    1.50
+MZL         N19         C16         H16     117.842    1.50
+MZL         C14         N17         C20     126.750    1.50
+MZL         C14         N17        HN17     116.164    1.66
+MZL         C20         N17        HN17     117.086    2.38
+MZL         C15         C18         C21     118.948    1.50
+MZL         C15         C18         H18     120.439    1.50
+MZL         C21         C18         H18     120.613    1.50
+MZL         C16         N19         C21     117.043    1.50
+MZL         N17         C20         C22     116.219    1.50
+MZL         N17         C20         O23     123.360    1.50
+MZL         C22         C20         O23     120.421    1.50
+MZL         C18         C21         N19     123.295    1.50
+MZL         C18         C21         H21     118.580    1.50
+MZL         N19         C21         H21     118.125    1.50
+MZL         C20         C22         C24     122.129    3.00
+MZL         C20         C22         C25     120.079    3.00
+MZL         C24         C22         C25     117.792    1.50
+MZL         C22         C24         C26     119.324    1.50
+MZL         C22         C24         H24     120.435    1.50
+MZL         C26         C24         H24     120.242    1.50
+MZL         C22         C25         N27     123.770    1.50
+MZL         C22         C25         H25     118.321    1.50
+MZL         N27         C25         H25     117.909    1.50
+MZL         C24         C26         C28     118.619    1.50
+MZL         C24         C26         H26     120.697    1.50
+MZL         C28         C26         H26     120.685    1.50
+MZL         C25         N27         C28     117.118    1.50
+MZL         C26         C28         N27     123.378    1.50
+MZL         C26         C28         H28     118.538    1.50
+MZL         N27         C28         H28     118.084    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MZL             sp2_sp2_1          C5          C2          N1          C3     180.000     5.0     2
+MZL              const_56          C8          C3          N1          C2       0.000    10.0     2
+MZL              const_68          C2          N1          N4          C9     180.000    10.0     2
+MZL              const_14          C6         C11         C14         N17     180.000    10.0     2
+MZL              const_23          C9         C13         C15         C18     180.000    10.0     2
+MZL              const_75          C9         C13         C16         N19     180.000    10.0     2
+MZL             sp2_sp2_9         C10         C14         N17         C20     180.000     5.0     2
+MZL              const_25         C13         C15         C18         C21       0.000    10.0     2
+MZL              const_35         C13         C16         N19         C21       0.000    10.0     2
+MZL            sp2_sp2_15         O23         C20         N17         C14       0.000     5.0     2
+MZL              const_29         C15         C18         C21         N19       0.000    10.0     2
+MZL              const_33         C18         C21         N19         C16       0.000    10.0     2
+MZL            sp2_sp2_17         N17         C20         C22         C24     180.000     5.0     2
+MZL       const_sp2_sp2_3          N1          C2          C5         C10     180.000     5.0     2
+MZL              const_71          N1          C2          C6         C11     180.000    10.0     2
+MZL              const_39         C20         C22         C24         C26     180.000    10.0     2
+MZL              const_79         C20         C22         C25         N27     180.000    10.0     2
+MZL              const_41         C22         C24         C26         C28       0.000    10.0     2
+MZL              const_51         C22         C25         N27         C28       0.000    10.0     2
+MZL              const_45         C24         C26         C28         N27       0.000    10.0     2
+MZL              const_49         C26         C28         N27         C25       0.000    10.0     2
+MZL              const_59          C8          C3          C7          C9     180.000    10.0     2
+MZL             sp2_sp3_2          N1          C3          C8         C12     -90.000    10.0     6
+MZL              const_65          C7          C9          N4          N1       0.000    10.0     2
+MZL       const_sp2_sp2_5         C14         C10          C5          C2       0.000     5.0     2
+MZL              const_17         C14         C11          C6          C2       0.000    10.0     2
+MZL              const_61          C3          C7          C9          N4       0.000    10.0     2
+MZL             sp3_sp3_1         H12         C12          C8          C3     180.000    10.0     3
+MZL             sp2_sp2_6         C15         C13          C9          N4       0.000     5.0     2
+MZL              const_10          C5         C10         C14         N17     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MZL    plan-1         C13   0.020
+MZL    plan-1          C2   0.020
+MZL    plan-1          C3   0.020
+MZL    plan-1          C7   0.020
+MZL    plan-1          C8   0.020
+MZL    plan-1          C9   0.020
+MZL    plan-1          H7   0.020
+MZL    plan-1          N1   0.020
+MZL    plan-1          N4   0.020
+MZL    plan-2         C10   0.020
+MZL    plan-2         C11   0.020
+MZL    plan-2         C14   0.020
+MZL    plan-2          C2   0.020
+MZL    plan-2          C5   0.020
+MZL    plan-2          C6   0.020
+MZL    plan-2         H10   0.020
+MZL    plan-2         H11   0.020
+MZL    plan-2          H5   0.020
+MZL    plan-2          H6   0.020
+MZL    plan-2          N1   0.020
+MZL    plan-2         N17   0.020
+MZL    plan-3         C13   0.020
+MZL    plan-3         C15   0.020
+MZL    plan-3         C16   0.020
+MZL    plan-3         C18   0.020
+MZL    plan-3         C21   0.020
+MZL    plan-3          C9   0.020
+MZL    plan-3         H15   0.020
+MZL    plan-3         H16   0.020
+MZL    plan-3         H18   0.020
+MZL    plan-3         H21   0.020
+MZL    plan-3         N19   0.020
+MZL    plan-4         C20   0.020
+MZL    plan-4         C22   0.020
+MZL    plan-4         C24   0.020
+MZL    plan-4         C25   0.020
+MZL    plan-4         C26   0.020
+MZL    plan-4         C28   0.020
+MZL    plan-4         H24   0.020
+MZL    plan-4         H25   0.020
+MZL    plan-4         H26   0.020
+MZL    plan-4         H28   0.020
+MZL    plan-4         N27   0.020
+MZL    plan-5         C14   0.020
+MZL    plan-5         C20   0.020
+MZL    plan-5        HN17   0.020
+MZL    plan-5         N17   0.020
+MZL    plan-6         C20   0.020
+MZL    plan-6         C22   0.020
+MZL    plan-6         N17   0.020
+MZL    plan-6         O23   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MZL           SMILES              ACDLabs 12.01                                                                                         O=C(c1cccnc1)Nc2ccc(cc2)n3nc(cc3CC)c4cccnc4
+MZL SMILES_CANONICAL               CACTVS 3.370                                                                                         CCc1cc(nn1c2ccc(NC(=O)c3cccnc3)cc2)c4cccnc4
+MZL           SMILES               CACTVS 3.370                                                                                         CCc1cc(nn1c2ccc(NC(=O)c3cccnc3)cc2)c4cccnc4
+MZL SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                         CCc1cc(nn1c2ccc(cc2)NC(=O)c3cccnc3)c4cccnc4
+MZL           SMILES "OpenEye OEToolkits" 1.7.0                                                                                         CCc1cc(nn1c2ccc(cc2)NC(=O)c3cccnc3)c4cccnc4
+MZL            InChI                InChI  1.03 InChI=1S/C22H19N5O/c1-2-19-13-21(16-5-3-11-23-14-16)26-27(19)20-9-7-18(8-10-20)25-22(28)17-6-4-12-24-15-17/h3-15H,2H2,1H3,(H,25,28)
+MZL         InChIKey                InChI  1.03                                                                                                         CCAFHMPMIJBDRP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MZL acedrg               243         "dictionary generator"                  
+MZL acedrg_database      11          "data source"                           
+MZL rdkit                2017.03.2   "Chemoinformatics tool"
+MZL refmac5              5.8.0238    "optimization tool"                     

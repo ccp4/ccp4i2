@@ -1,0 +1,567 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LPP     LPP      "2-(HEXADECANOYLOXY)-1-[(PHOSPHONOOXY)METHYL]ETHYL HEXADECANOATE"     NON-POLYMER     111     44     .     
+#
+data_comp_LPP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LPP     P1      P       P       0       18.143      -14.423     12.301      
+LPP     O2      O       OP      -1      17.983      -15.160     13.617      
+LPP     O3      O       O       0       19.514      -14.616     11.680      
+LPP     O4      O       OP      -1      17.735      -12.965     12.388      
+LPP     O5      O       O2      0       17.098      -15.112     11.281      
+LPP     C6      C       CH2     0       15.687      -15.123     11.633      
+LPP     C7      C       CH1     0       14.872      -15.713     10.504      
+LPP     C8      C       CH2     0       13.395      -15.789     10.817      
+LPP     O9      O       O2      0       15.059      -14.877     9.323       
+LPP     O27     O       O2      0       12.734      -16.531     9.766       
+LPP     C11     C       C       0       15.664      -15.370     8.223       
+LPP     O10     O       O       0       16.520      -16.219     8.233       
+LPP     C12     C       CH2     0       15.180      -14.697     6.968       
+LPP     C13     C       CH2     0       13.805      -15.119     6.548       
+LPP     C14     C       CH2     0       13.357      -14.459     5.254       
+LPP     C15     C       CH2     0       13.026      -12.991     5.387       
+LPP     C16     C       CH2     0       12.296      -12.404     4.203       
+LPP     C17     C       CH2     0       12.113      -10.907     4.273       
+LPP     C18     C       CH2     0       11.112      -10.352     3.289       
+LPP     C19     C       CH2     0       11.523      -10.490     1.839       
+LPP     C20     C       CH2     0       10.665      -9.718      0.854       
+LPP     C21     C       CH2     0       9.620       -10.545     0.130       
+LPP     C22     C       CH2     0       8.574       -11.192     1.015       
+LPP     C23     C       CH2     0       7.710       -10.222     1.786       
+LPP     C24     C       CH2     0       6.548       -10.864     2.505       
+LPP     C25     C       CH2     0       5.763       -9.920      3.378       
+LPP     C26     C       CH3     0       4.884       -8.969      2.602       
+LPP     C29     C       C       0       11.404      -16.624     9.815       
+LPP     O28     O       O       0       10.763      -16.561     10.835      
+LPP     C30     C       CH2     0       10.810      -16.854     8.446       
+LPP     C31     C       CH2     0       9.627       -15.979     8.138       
+LPP     C32     C       CH2     0       10.026      -14.582     7.697       
+LPP     C33     C       CH2     0       8.862       -13.664     7.413       
+LPP     C34     C       CH2     0       9.260       -12.272     6.990       
+LPP     C35     C       CH2     0       8.113       -11.293     6.915       
+LPP     C36     C       CH2     0       8.495       -9.922      6.409       
+LPP     C37     C       CH2     0       9.375       -9.131      7.349       
+LPP     C38     C       CH2     0       9.343       -7.635      7.127       
+LPP     C39     C       CH2     0       9.956       -7.175      5.819       
+LPP     C40     C       CH2     0       8.962       -6.938      4.705       
+LPP     C41     C       CH2     0       9.567       -6.356      3.450       
+LPP     C42     C       CH2     0       8.599       -6.226      2.300       
+LPP     C43     C       CH2     0       9.209       -5.690      1.031       
+LPP     C44     C       CH3     0       8.243       -5.635      -0.128      
+LPP     HC61    H       H       0       15.387      -14.207     11.812      
+LPP     HC62    H       H       0       15.557      -15.655     12.446      
+LPP     HC7     H       H       0       15.198      -16.632     10.329      
+LPP     HC81    H       H       0       13.011      -14.882     10.875      
+LPP     HC82    H       H       0       13.254      -16.244     11.680      
+LPP     H121    H       H       0       15.807      -14.893     6.240       
+LPP     H122    H       H       0       15.185      -13.726     7.108       
+LPP     H131    H       H       0       13.166      -14.893     7.256       
+LPP     H132    H       H       0       13.787      -16.092     6.429       
+LPP     H141    H       H       0       12.565      -14.930     4.918       
+LPP     H142    H       H       0       14.068      -14.561     4.586       
+LPP     H151    H       H       0       13.860      -12.492     5.520       
+LPP     H152    H       H       0       12.474      -12.865     6.189       
+LPP     H161    H       H       0       11.413      -12.827     4.136       
+LPP     H162    H       H       0       12.794      -12.623     3.386       
+LPP     H171    H       H       0       12.980      -10.477     4.113       
+LPP     H172    H       H       0       11.826      -10.668     5.180       
+LPP     H181    H       H       0       10.972      -9.402      3.489       
+LPP     H182    H       H       0       10.256      -10.812     3.419       
+LPP     H191    H       H       0       11.501      -11.441     1.597       
+LPP     H192    H       H       0       12.451      -10.185     1.748       
+LPP     H201    H       H       0       11.255      -9.313      0.183       
+LPP     H202    H       H       0       10.216      -8.987      1.327       
+LPP     H211    H       H       0       10.078      -11.250     -0.376      
+LPP     H212    H       H       0       9.163       -9.969      -0.519      
+LPP     H221    H       H       0       9.022       -11.789     1.651       
+LPP     H222    H       H       0       7.992       -11.747     0.453       
+LPP     H231    H       H       0       7.361       -9.548      1.164       
+LPP     H232    H       H       0       8.267       -9.758      2.446       
+LPP     H241    H       H       0       6.889       -11.596     3.062       
+LPP     H242    H       H       0       5.943       -11.254     1.839       
+LPP     H251    H       H       0       6.390       -9.399      3.925       
+LPP     H252    H       H       0       5.201       -10.447     3.987       
+LPP     H261    H       H       0       4.374       -8.417      3.221       
+LPP     H262    H       H       0       4.271       -9.475      2.041       
+LPP     H263    H       H       0       5.437       -8.397      2.042       
+LPP     H301    H       H       0       10.533      -17.792     8.376       
+LPP     H302    H       H       0       11.500      -16.700     7.765       
+LPP     H311    H       H       0       9.054       -15.910     8.930       
+LPP     H312    H       H       0       9.098       -16.394     7.425       
+LPP     H321    H       H       0       10.575      -14.653     6.887       
+LPP     H322    H       H       0       10.582      -14.177     8.397       
+LPP     H331    H       H       0       8.307       -13.601     8.220       
+LPP     H332    H       H       0       8.312       -14.063     6.705       
+LPP     H341    H       H       0       9.689       -12.321     6.109       
+LPP     H342    H       H       0       9.925       -11.930     7.625       
+LPP     H351    H       H       0       7.719       -11.201     7.809       
+LPP     H352    H       H       0       7.423       -11.665     6.325       
+LPP     H361    H       H       0       7.674       -9.411      6.240       
+LPP     H362    H       H       0       8.962       -10.023     5.552       
+LPP     H371    H       H       0       10.299      -9.444      7.251       
+LPP     H372    H       H       0       9.095       -9.315      8.271       
+LPP     H381    H       H       0       9.823       -7.201      7.864       
+LPP     H382    H       H       0       8.411       -7.333      7.164       
+LPP     H391    H       H       0       10.606      -7.846      5.520       
+LPP     H392    H       H       0       10.446      -6.341      5.981       
+LPP     H401    H       H       0       8.265       -6.328      5.028       
+LPP     H402    H       H       0       8.532       -7.790      4.480       
+LPP     H411    H       H       0       10.315      -6.925      3.169       
+LPP     H412    H       H       0       9.929       -5.469      3.658       
+LPP     H421    H       H       0       7.867       -5.632      2.571       
+LPP     H422    H       H       0       8.212       -7.108      2.114       
+LPP     H431    H       H       0       9.972       -6.256      0.784       
+LPP     H432    H       H       0       9.551       -4.785      1.203       
+LPP     H441    H       H       0       8.696       -5.281      -0.913      
+LPP     H442    H       H       0       7.493       -5.059      0.099       
+LPP     H443    H       H       0       7.916       -6.531      -0.322      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LPP          P1          O2      SINGLE       n     1.517  0.0192     1.517  0.0192
+LPP          P1          O3      DOUBLE       n     1.517  0.0192     1.517  0.0192
+LPP          P1          O4      SINGLE       n     1.517  0.0192     1.517  0.0192
+LPP          P1          O5      SINGLE       n     1.614  0.0178     1.614  0.0178
+LPP          O5          C6      SINGLE       n     1.454  0.0165     1.454  0.0165
+LPP          C6          C7      SINGLE       n     1.512  0.0104     1.512  0.0104
+LPP          C7          C8      SINGLE       n     1.512  0.0104     1.512  0.0104
+LPP          C7          O9      SINGLE       n     1.454  0.0123     1.454  0.0123
+LPP          C8         O27      SINGLE       n     1.444  0.0100     1.444  0.0100
+LPP          O9         C11      SINGLE       n     1.342  0.0131     1.342  0.0131
+LPP         O27         C29      SINGLE       n     1.329  0.0116     1.329  0.0116
+LPP         C11         O10      DOUBLE       n     1.203  0.0150     1.203  0.0150
+LPP         C11         C12      SINGLE       n     1.503  0.0174     1.503  0.0174
+LPP         C12         C13      SINGLE       n     1.497  0.0200     1.497  0.0200
+LPP         C13         C14      SINGLE       n     1.519  0.0164     1.519  0.0164
+LPP         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C16         C17      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C17         C18      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C18         C19      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C19         C20      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C20         C21      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C21         C22      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C22         C23      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C23         C24      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C24         C25      SINGLE       n     1.507  0.0200     1.507  0.0200
+LPP         C25         C26      SINGLE       n     1.510  0.0200     1.510  0.0200
+LPP         C29         O28      DOUBLE       n     1.203  0.0150     1.203  0.0150
+LPP         C29         C30      SINGLE       n     1.503  0.0174     1.503  0.0174
+LPP         C30         C31      SINGLE       n     1.497  0.0200     1.497  0.0200
+LPP         C31         C32      SINGLE       n     1.519  0.0164     1.519  0.0164
+LPP         C32         C33      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C33         C34      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C34         C35      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C35         C36      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C36         C37      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C37         C38      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C38         C39      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C39         C40      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C40         C41      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C41         C42      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPP         C42         C43      SINGLE       n     1.507  0.0200     1.507  0.0200
+LPP         C43         C44      SINGLE       n     1.510  0.0200     1.510  0.0200
+LPP          C6        HC61      SINGLE       n     1.089  0.0100     0.980  0.0146
+LPP          C6        HC62      SINGLE       n     1.089  0.0100     0.980  0.0146
+LPP          C7         HC7      SINGLE       n     1.089  0.0100     0.990  0.0148
+LPP          C8        HC81      SINGLE       n     1.089  0.0100     0.985  0.0188
+LPP          C8        HC82      SINGLE       n     1.089  0.0100     0.985  0.0188
+LPP         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0185
+LPP         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0185
+LPP         C13        H131      SINGLE       n     1.089  0.0100     0.980  0.0160
+LPP         C13        H132      SINGLE       n     1.089  0.0100     0.980  0.0160
+LPP         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C18        H181      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C18        H182      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C19        H191      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C19        H192      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C20        H201      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C20        H202      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C23        H231      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C23        H232      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C24        H241      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C24        H242      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C25        H251      SINGLE       n     1.089  0.0100     0.982  0.0155
+LPP         C25        H252      SINGLE       n     1.089  0.0100     0.982  0.0155
+LPP         C26        H261      SINGLE       n     1.089  0.0100     0.973  0.0157
+LPP         C26        H262      SINGLE       n     1.089  0.0100     0.973  0.0157
+LPP         C26        H263      SINGLE       n     1.089  0.0100     0.973  0.0157
+LPP         C30        H301      SINGLE       n     1.089  0.0100     0.981  0.0185
+LPP         C30        H302      SINGLE       n     1.089  0.0100     0.981  0.0185
+LPP         C31        H311      SINGLE       n     1.089  0.0100     0.980  0.0160
+LPP         C31        H312      SINGLE       n     1.089  0.0100     0.980  0.0160
+LPP         C32        H321      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C32        H322      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C33        H331      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C33        H332      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C34        H341      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C34        H342      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C35        H351      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C35        H352      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C36        H361      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C36        H362      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C37        H371      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C37        H372      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C38        H381      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C38        H382      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C39        H391      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C39        H392      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C40        H401      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C40        H402      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C41        H411      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C41        H412      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C42        H421      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C42        H422      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPP         C43        H431      SINGLE       n     1.089  0.0100     0.982  0.0155
+LPP         C43        H432      SINGLE       n     1.089  0.0100     0.982  0.0155
+LPP         C44        H441      SINGLE       n     1.089  0.0100     0.973  0.0157
+LPP         C44        H442      SINGLE       n     1.089  0.0100     0.973  0.0157
+LPP         C44        H443      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LPP          O2          P1          O3     112.864    1.69
+LPP          O2          P1          O4     112.864    1.69
+LPP          O2          P1          O5     105.795    2.09
+LPP          O3          P1          O4     112.864    1.69
+LPP          O3          P1          O5     105.795    2.09
+LPP          O4          P1          O5     105.795    2.09
+LPP          P1          O5          C6     118.671    1.50
+LPP          O5          C6          C7     109.438    2.56
+LPP          O5          C6        HC61     109.393    1.91
+LPP          O5          C6        HC62     109.393    1.91
+LPP          C7          C6        HC61     109.582    1.50
+LPP          C7          C6        HC62     109.582    1.50
+LPP        HC61          C6        HC62     108.319    1.50
+LPP          C6          C7          C8     113.504    1.50
+LPP          C6          C7          O9     109.042    2.74
+LPP          C6          C7         HC7     108.656    1.50
+LPP          C8          C7          O9     109.042    2.74
+LPP          C8          C7         HC7     108.656    1.50
+LPP          O9          C7         HC7     109.221    1.50
+LPP          C7          C8         O27     108.641    1.70
+LPP          C7          C8        HC81     110.376    1.50
+LPP          C7          C8        HC82     110.376    1.50
+LPP         O27          C8        HC81     109.514    1.50
+LPP         O27          C8        HC82     109.514    1.50
+LPP        HC81          C8        HC82     108.601    1.50
+LPP          C7          O9         C11     117.944    1.50
+LPP          C8         O27         C29     116.187    1.50
+LPP          O9         C11         O10     122.278    2.43
+LPP          O9         C11         C12     113.008    3.00
+LPP         O10         C11         C12     124.714    2.71
+LPP         C11         C12         C13     113.365    1.50
+LPP         C11         C12        H121     108.883    1.50
+LPP         C11         C12        H122     108.883    1.50
+LPP         C13         C12        H121     108.815    1.50
+LPP         C13         C12        H122     108.815    1.50
+LPP        H121         C12        H122     107.521    1.50
+LPP         C12         C13         C14     112.553    1.50
+LPP         C12         C13        H131     109.164    1.50
+LPP         C12         C13        H132     109.164    1.50
+LPP         C14         C13        H131     108.698    1.50
+LPP         C14         C13        H132     108.698    1.50
+LPP        H131         C13        H132     107.646    1.50
+LPP         C13         C14         C15     114.243    1.69
+LPP         C13         C14        H141     108.698    1.50
+LPP         C13         C14        H142     108.698    1.50
+LPP         C15         C14        H141     108.698    1.50
+LPP         C15         C14        H142     108.698    1.50
+LPP        H141         C14        H142     107.646    1.50
+LPP         C14         C15         C16     114.243    1.69
+LPP         C14         C15        H151     108.698    1.50
+LPP         C14         C15        H152     108.698    1.50
+LPP         C16         C15        H151     108.698    1.50
+LPP         C16         C15        H152     108.698    1.50
+LPP        H151         C15        H152     107.646    1.50
+LPP         C15         C16         C17     114.243    1.69
+LPP         C15         C16        H161     108.698    1.50
+LPP         C15         C16        H162     108.698    1.50
+LPP         C17         C16        H161     108.698    1.50
+LPP         C17         C16        H162     108.698    1.50
+LPP        H161         C16        H162     107.646    1.50
+LPP         C16         C17         C18     114.243    1.69
+LPP         C16         C17        H171     108.698    1.50
+LPP         C16         C17        H172     108.698    1.50
+LPP         C18         C17        H171     108.698    1.50
+LPP         C18         C17        H172     108.698    1.50
+LPP        H171         C17        H172     107.646    1.50
+LPP         C17         C18         C19     114.243    1.69
+LPP         C17         C18        H181     108.698    1.50
+LPP         C17         C18        H182     108.698    1.50
+LPP         C19         C18        H181     108.698    1.50
+LPP         C19         C18        H182     108.698    1.50
+LPP        H181         C18        H182     107.646    1.50
+LPP         C18         C19         C20     114.243    1.69
+LPP         C18         C19        H191     108.698    1.50
+LPP         C18         C19        H192     108.698    1.50
+LPP         C20         C19        H191     108.698    1.50
+LPP         C20         C19        H192     108.698    1.50
+LPP        H191         C19        H192     107.646    1.50
+LPP         C19         C20         C21     114.243    1.69
+LPP         C19         C20        H201     108.698    1.50
+LPP         C19         C20        H202     108.698    1.50
+LPP         C21         C20        H201     108.698    1.50
+LPP         C21         C20        H202     108.698    1.50
+LPP        H201         C20        H202     107.646    1.50
+LPP         C20         C21         C22     114.243    1.69
+LPP         C20         C21        H211     108.698    1.50
+LPP         C20         C21        H212     108.698    1.50
+LPP         C22         C21        H211     108.698    1.50
+LPP         C22         C21        H212     108.698    1.50
+LPP        H211         C21        H212     107.646    1.50
+LPP         C21         C22         C23     114.243    1.69
+LPP         C21         C22        H221     108.698    1.50
+LPP         C21         C22        H222     108.698    1.50
+LPP         C23         C22        H221     108.698    1.50
+LPP         C23         C22        H222     108.698    1.50
+LPP        H221         C22        H222     107.646    1.50
+LPP         C22         C23         C24     114.243    1.69
+LPP         C22         C23        H231     108.698    1.50
+LPP         C22         C23        H232     108.698    1.50
+LPP         C24         C23        H231     108.698    1.50
+LPP         C24         C23        H232     108.698    1.50
+LPP        H231         C23        H232     107.646    1.50
+LPP         C23         C24         C25     114.362    3.00
+LPP         C23         C24        H241     108.698    1.50
+LPP         C23         C24        H242     108.698    1.50
+LPP         C25         C24        H241     108.653    1.50
+LPP         C25         C24        H242     108.653    1.50
+LPP        H241         C24        H242     107.646    1.50
+LPP         C24         C25         C26     113.719    3.00
+LPP         C24         C25        H251     108.758    1.50
+LPP         C24         C25        H252     108.758    1.50
+LPP         C26         C25        H251     108.918    1.50
+LPP         C26         C25        H252     108.918    1.50
+LPP        H251         C25        H252     107.763    1.50
+LPP         C25         C26        H261     109.554    1.50
+LPP         C25         C26        H262     109.554    1.50
+LPP         C25         C26        H263     109.554    1.50
+LPP        H261         C26        H262     109.380    1.50
+LPP        H261         C26        H263     109.380    1.50
+LPP        H262         C26        H263     109.380    1.50
+LPP         O27         C29         O28     123.233    1.50
+LPP         O27         C29         C30     111.516    1.50
+LPP         O28         C29         C30     125.251    2.71
+LPP         C29         C30         C31     113.365    1.50
+LPP         C29         C30        H301     108.883    1.50
+LPP         C29         C30        H302     108.883    1.50
+LPP         C31         C30        H301     108.815    1.50
+LPP         C31         C30        H302     108.815    1.50
+LPP        H301         C30        H302     107.521    1.50
+LPP         C30         C31         C32     112.553    1.50
+LPP         C30         C31        H311     109.164    1.50
+LPP         C30         C31        H312     109.164    1.50
+LPP         C32         C31        H311     108.698    1.50
+LPP         C32         C31        H312     108.698    1.50
+LPP        H311         C31        H312     107.646    1.50
+LPP         C31         C32         C33     114.243    1.69
+LPP         C31         C32        H321     108.698    1.50
+LPP         C31         C32        H322     108.698    1.50
+LPP         C33         C32        H321     108.698    1.50
+LPP         C33         C32        H322     108.698    1.50
+LPP        H321         C32        H322     107.646    1.50
+LPP         C32         C33         C34     114.243    1.69
+LPP         C32         C33        H331     108.698    1.50
+LPP         C32         C33        H332     108.698    1.50
+LPP         C34         C33        H331     108.698    1.50
+LPP         C34         C33        H332     108.698    1.50
+LPP        H331         C33        H332     107.646    1.50
+LPP         C33         C34         C35     114.243    1.69
+LPP         C33         C34        H341     108.698    1.50
+LPP         C33         C34        H342     108.698    1.50
+LPP         C35         C34        H341     108.698    1.50
+LPP         C35         C34        H342     108.698    1.50
+LPP        H341         C34        H342     107.646    1.50
+LPP         C34         C35         C36     114.243    1.69
+LPP         C34         C35        H351     108.698    1.50
+LPP         C34         C35        H352     108.698    1.50
+LPP         C36         C35        H351     108.698    1.50
+LPP         C36         C35        H352     108.698    1.50
+LPP        H351         C35        H352     107.646    1.50
+LPP         C35         C36         C37     114.243    1.69
+LPP         C35         C36        H361     108.698    1.50
+LPP         C35         C36        H362     108.698    1.50
+LPP         C37         C36        H361     108.698    1.50
+LPP         C37         C36        H362     108.698    1.50
+LPP        H361         C36        H362     107.646    1.50
+LPP         C36         C37         C38     114.243    1.69
+LPP         C36         C37        H371     108.698    1.50
+LPP         C36         C37        H372     108.698    1.50
+LPP         C38         C37        H371     108.698    1.50
+LPP         C38         C37        H372     108.698    1.50
+LPP        H371         C37        H372     107.646    1.50
+LPP         C37         C38         C39     114.243    1.69
+LPP         C37         C38        H381     108.698    1.50
+LPP         C37         C38        H382     108.698    1.50
+LPP         C39         C38        H381     108.698    1.50
+LPP         C39         C38        H382     108.698    1.50
+LPP        H381         C38        H382     107.646    1.50
+LPP         C38         C39         C40     114.243    1.69
+LPP         C38         C39        H391     108.698    1.50
+LPP         C38         C39        H392     108.698    1.50
+LPP         C40         C39        H391     108.698    1.50
+LPP         C40         C39        H392     108.698    1.50
+LPP        H391         C39        H392     107.646    1.50
+LPP         C39         C40         C41     114.243    1.69
+LPP         C39         C40        H401     108.698    1.50
+LPP         C39         C40        H402     108.698    1.50
+LPP         C41         C40        H401     108.698    1.50
+LPP         C41         C40        H402     108.698    1.50
+LPP        H401         C40        H402     107.646    1.50
+LPP         C40         C41         C42     114.243    1.69
+LPP         C40         C41        H411     108.698    1.50
+LPP         C40         C41        H412     108.698    1.50
+LPP         C42         C41        H411     108.698    1.50
+LPP         C42         C41        H412     108.698    1.50
+LPP        H411         C41        H412     107.646    1.50
+LPP         C41         C42         C43     114.362    3.00
+LPP         C41         C42        H421     108.698    1.50
+LPP         C41         C42        H422     108.698    1.50
+LPP         C43         C42        H421     108.653    1.50
+LPP         C43         C42        H422     108.653    1.50
+LPP        H421         C42        H422     107.646    1.50
+LPP         C42         C43         C44     113.719    3.00
+LPP         C42         C43        H431     108.758    1.50
+LPP         C42         C43        H432     108.758    1.50
+LPP         C44         C43        H431     108.918    1.50
+LPP         C44         C43        H432     108.918    1.50
+LPP        H431         C43        H432     107.763    1.50
+LPP         C43         C44        H441     109.554    1.50
+LPP         C43         C44        H442     109.554    1.50
+LPP         C43         C44        H443     109.554    1.50
+LPP        H441         C44        H442     109.380    1.50
+LPP        H441         C44        H443     109.380    1.50
+LPP        H442         C44        H443     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LPP             sp3_sp3_2          C6          O5          P1          O2     -60.000    10.0     3
+LPP             sp2_sp3_2          O9         C11         C12         C13     120.000    10.0     6
+LPP            sp3_sp3_31         C11         C12         C13         C14     180.000    10.0     3
+LPP            sp3_sp3_40         C12         C13         C14         C15     180.000    10.0     3
+LPP            sp3_sp3_49         C13         C14         C15         C16     180.000    10.0     3
+LPP            sp3_sp3_58         C14         C15         C16         C17     180.000    10.0     3
+LPP            sp3_sp3_67         C15         C16         C17         C18     180.000    10.0     3
+LPP            sp3_sp3_76         C16         C17         C18         C19     180.000    10.0     3
+LPP            sp3_sp3_85         C17         C18         C19         C20     180.000    10.0     3
+LPP            sp3_sp3_94         C18         C19         C20         C21     180.000    10.0     3
+LPP           sp3_sp3_103         C19         C20         C21         C22     180.000    10.0     3
+LPP           sp3_sp3_112         C20         C21         C22         C23     180.000    10.0     3
+LPP           sp3_sp3_121         C21         C22         C23         C24     180.000    10.0     3
+LPP           sp3_sp3_130         C22         C23         C24         C25     180.000    10.0     3
+LPP           sp3_sp3_139         C23         C24         C25         C26     180.000    10.0     3
+LPP           sp3_sp3_148         C24         C25         C26        H261     180.000    10.0     3
+LPP             sp2_sp3_8         O27         C29         C30         C31     120.000    10.0     6
+LPP           sp3_sp3_157         C29         C30         C31         C32     180.000    10.0     3
+LPP           sp3_sp3_166         C30         C31         C32         C33     180.000    10.0     3
+LPP           sp3_sp3_175         C31         C32         C33         C34     180.000    10.0     3
+LPP           sp3_sp3_184         C32         C33         C34         C35     180.000    10.0     3
+LPP           sp3_sp3_193         C33         C34         C35         C36     180.000    10.0     3
+LPP           sp3_sp3_202         C34         C35         C36         C37     180.000    10.0     3
+LPP           sp3_sp3_211         C35         C36         C37         C38     180.000    10.0     3
+LPP           sp3_sp3_220         C36         C37         C38         C39     180.000    10.0     3
+LPP           sp3_sp3_229         C37         C38         C39         C40     180.000    10.0     3
+LPP           sp3_sp3_238         C38         C39         C40         C41     180.000    10.0     3
+LPP           sp3_sp3_247         C39         C40         C41         C42     180.000    10.0     3
+LPP           sp3_sp3_256         C40         C41         C42         C43     180.000    10.0     3
+LPP           sp3_sp3_265         C41         C42         C43         C44     180.000    10.0     3
+LPP           sp3_sp3_274         C42         C43         C44        H441     180.000    10.0     3
+LPP             sp3_sp3_4          C7          C6          O5          P1     180.000    10.0     3
+LPP             sp3_sp3_7          O5          C6          C7          C8     180.000    10.0     3
+LPP            sp3_sp3_16          C6          C7          C8         O27     180.000    10.0     3
+LPP            sp3_sp3_25          C6          C7          O9         C11     180.000    10.0     3
+LPP            sp3_sp3_28          C7          C8         O27         C29     180.000    10.0     3
+LPP             sp2_sp2_1         O10         C11          O9          C7     180.000     5.0     2
+LPP             sp2_sp2_3         O28         C29         O27          C8     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LPP    chir_1    P1    O5    O2    O4    both
+LPP    chir_2    C7    O9    C6    C8    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LPP    plan-1         C11   0.020
+LPP    plan-1         C12   0.020
+LPP    plan-1         O10   0.020
+LPP    plan-1          O9   0.020
+LPP    plan-2         C29   0.020
+LPP    plan-2         C30   0.020
+LPP    plan-2         O27   0.020
+LPP    plan-2         O28   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LPP           SMILES              ACDLabs 10.04                                                                                                                                 O=P(O)(OCC(OC(=O)CCCCCCCCCCCCCCC)COC(=O)CCCCCCCCCCCCCCC)O
+LPP SMILES_CANONICAL               CACTVS 3.341                                                                                                                           CCCCCCCCCCCCCCCC(=O)OC[C@H](CO[P](O)(O)=O)OC(=O)CCCCCCCCCCCCCCC
+LPP           SMILES               CACTVS 3.341                                                                                                                            CCCCCCCCCCCCCCCC(=O)OC[CH](CO[P](O)(O)=O)OC(=O)CCCCCCCCCCCCCCC
+LPP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                             CCCCCCCCCCCCCCCC(=O)OC[C@H](COP(=O)(O)O)OC(=O)CCCCCCCCCCCCCCC
+LPP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                 CCCCCCCCCCCCCCCC(=O)OCC(COP(=O)(O)O)OC(=O)CCCCCCCCCCCCCCC
+LPP            InChI                InChI  1.03 InChI=1S/C35H69O8P/c1-3-5-7-9-11-13-15-17-19-21-23-25-27-29-34(36)41-31-33(32-42-44(38,39)40)43-35(37)30-28-26-24-22-20-18-16-14-12-10-8-6-4-2/h33H,3-32H2,1-2H3,(H2,38,39,40)/t33-/m1/s1
+LPP         InChIKey                InChI  1.03                                                                                                                                                               PORPENFLTBBHSG-MGBGTMOVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LPP acedrg               243         "dictionary generator"                  
+LPP acedrg_database      11          "data source"                           
+LPP rdkit                2017.03.2   "Chemoinformatics tool"
+LPP refmac5              5.8.0238    "optimization tool"                     

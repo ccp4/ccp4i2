@@ -1,0 +1,224 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+WV7     WV7      2-(trifluoroacetyl)-1,2,3,4-tetrahydroisoquinolin-6-ol     NON-POLYMER     27     17     .     
+#
+data_comp_WV7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+WV7     OAA     O       O       0       -3.794      27.821      10.880      
+WV7     OAB     O       OH1     0       3.254       31.776      12.160      
+WV7     FAC     F       F       0       -3.582      26.069      8.974       
+WV7     FAD     F       F       0       -1.451      26.233      9.107       
+WV7     FAE     F       F       0       -2.514      24.911      10.427      
+WV7     CAF     C       CR16    0       0.914       31.711      12.659      
+WV7     CAG     C       CR16    0       -0.284      31.012      12.692      
+WV7     CAH     C       CR16    0       2.013       29.769      11.768      
+WV7     CAI     C       CH2     0       0.758       27.624      11.332      
+WV7     CAJ     C       CH2     0       -0.430      26.887      11.921      
+WV7     CAK     C       CH2     0       -1.680      28.969      12.324      
+WV7     CAL     C       C       0       -2.716      27.250      10.860      
+WV7     CAM     C       CR6     0       2.065       31.088      12.195      
+WV7     CAN     C       CR66    0       -0.351      29.685      12.264      
+WV7     CAO     C       CR66    0       0.804       29.057      11.801      
+WV7     NAP     N       NR6     0       -1.665      27.634      11.647      
+WV7     CAQ     C       CT      0       -2.562      26.106      9.834       
+WV7     HOAB    H       H       0       3.994       31.366      12.318      
+WV7     HAF     H       H       0       0.948       32.606      12.949      
+WV7     HAG     H       H       0       -1.056      31.439      13.006      
+WV7     HAH     H       H       0       2.799       29.345      11.452      
+WV7     HAI     H       H       0       1.585       27.171      11.595      
+WV7     HAIA    H       H       0       0.700       27.605      10.355      
+WV7     HAJ     H       H       0       -0.475      25.990      11.552      
+WV7     HAJA    H       H       0       -0.312      26.805      12.884      
+WV7     HAK     H       H       0       -2.357      29.544      11.913      
+WV7     HAKA    H       H       0       -1.930      28.847      13.263      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+WV7         OAA         CAL      DOUBLE       n     1.218  0.0100     1.218  0.0100
+WV7         OAB         CAM      SINGLE       n     1.374  0.0155     1.374  0.0155
+WV7         FAC         CAQ      SINGLE       n     1.334  0.0116     1.334  0.0116
+WV7         FAD         CAQ      SINGLE       n     1.334  0.0116     1.334  0.0116
+WV7         FAE         CAQ      SINGLE       n     1.334  0.0116     1.334  0.0116
+WV7         CAF         CAG      DOUBLE       y     1.385  0.0100     1.385  0.0100
+WV7         CAF         CAM      SINGLE       y     1.386  0.0100     1.386  0.0100
+WV7         CAG         CAN      SINGLE       y     1.393  0.0100     1.393  0.0100
+WV7         CAH         CAM      DOUBLE       y     1.383  0.0100     1.383  0.0100
+WV7         CAH         CAO      SINGLE       y     1.399  0.0100     1.399  0.0100
+WV7         CAI         CAJ      SINGLE       n     1.516  0.0100     1.516  0.0100
+WV7         CAI         CAO      SINGLE       n     1.506  0.0100     1.506  0.0100
+WV7         CAJ         NAP      SINGLE       n     1.463  0.0100     1.463  0.0100
+WV7         CAK         CAN      SINGLE       n     1.506  0.0100     1.506  0.0100
+WV7         CAK         NAP      SINGLE       n     1.473  0.0184     1.473  0.0184
+WV7         CAL         NAP      SINGLE       n     1.356  0.0100     1.356  0.0100
+WV7         CAL         CAQ      SINGLE       n     1.540  0.0100     1.540  0.0100
+WV7         CAN         CAO      DOUBLE       y     1.387  0.0100     1.387  0.0100
+WV7         OAB        HOAB      SINGLE       n     0.966  0.0059     0.861  0.0200
+WV7         CAF         HAF      SINGLE       n     1.082  0.0130     0.941  0.0116
+WV7         CAG         HAG      SINGLE       n     1.082  0.0130     0.937  0.0156
+WV7         CAH         HAH      SINGLE       n     1.082  0.0130     0.947  0.0200
+WV7         CAI         HAI      SINGLE       n     1.089  0.0100     0.979  0.0162
+WV7         CAI        HAIA      SINGLE       n     1.089  0.0100     0.979  0.0162
+WV7         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.973  0.0100
+WV7         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.973  0.0100
+WV7         CAK         HAK      SINGLE       n     1.089  0.0100     0.979  0.0103
+WV7         CAK        HAKA      SINGLE       n     1.089  0.0100     0.979  0.0103
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+WV7         CAM         OAB        HOAB     120.000    3.00
+WV7         CAG         CAF         CAM     119.944    1.50
+WV7         CAG         CAF         HAF     120.147    1.50
+WV7         CAM         CAF         HAF     119.909    1.50
+WV7         CAF         CAG         CAN     121.026    1.50
+WV7         CAF         CAG         HAG     119.241    1.50
+WV7         CAN         CAG         HAG     119.733    1.50
+WV7         CAM         CAH         CAO     119.972    1.50
+WV7         CAM         CAH         HAH     120.085    1.50
+WV7         CAO         CAH         HAH     119.944    1.50
+WV7         CAJ         CAI         CAO     111.249    1.50
+WV7         CAJ         CAI         HAI     109.435    1.50
+WV7         CAJ         CAI        HAIA     109.435    1.50
+WV7         CAO         CAI         HAI     109.345    1.50
+WV7         CAO         CAI        HAIA     109.345    1.50
+WV7         HAI         CAI        HAIA     107.965    1.50
+WV7         CAI         CAJ         NAP     110.003    1.50
+WV7         CAI         CAJ         HAJ     109.593    1.50
+WV7         CAI         CAJ        HAJA     109.593    1.50
+WV7         NAP         CAJ         HAJ     109.531    1.50
+WV7         NAP         CAJ        HAJA     109.531    1.50
+WV7         HAJ         CAJ        HAJA     108.037    1.50
+WV7         CAN         CAK         NAP     111.390    1.77
+WV7         CAN         CAK         HAK     109.194    1.50
+WV7         CAN         CAK        HAKA     109.194    1.50
+WV7         NAP         CAK         HAK     109.329    1.50
+WV7         NAP         CAK        HAKA     109.329    1.50
+WV7         HAK         CAK        HAKA     107.777    1.50
+WV7         OAA         CAL         NAP     123.116    1.50
+WV7         OAA         CAL         CAQ     118.134    1.50
+WV7         NAP         CAL         CAQ     118.750    1.50
+WV7         OAB         CAM         CAF     120.126    3.00
+WV7         OAB         CAM         CAH     120.126    3.00
+WV7         CAF         CAM         CAH     119.749    1.50
+WV7         CAG         CAN         CAK     120.358    2.20
+WV7         CAG         CAN         CAO     119.898    1.50
+WV7         CAK         CAN         CAO     119.744    2.43
+WV7         CAH         CAO         CAI     120.708    1.50
+WV7         CAH         CAO         CAN     119.412    1.50
+WV7         CAI         CAO         CAN     119.880    1.99
+WV7         CAJ         NAP         CAK     114.772    1.50
+WV7         CAJ         NAP         CAL     122.769    3.00
+WV7         CAK         NAP         CAL     122.459    2.86
+WV7         FAC         CAQ         FAD     107.178    1.50
+WV7         FAC         CAQ         FAE     107.178    1.50
+WV7         FAC         CAQ         CAL     111.701    1.54
+WV7         FAD         CAQ         FAE     107.178    1.50
+WV7         FAD         CAQ         CAL     111.701    1.54
+WV7         FAE         CAQ         CAL     111.701    1.54
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+WV7            sp2_sp3_16         CAG         CAN         CAK         NAP     180.000    10.0     6
+WV7            sp2_sp3_10         CAL         NAP         CAK         CAN     180.000    10.0     6
+WV7             sp2_sp2_5         OAA         CAL         NAP         CAJ       0.000     5.0     2
+WV7            sp2_sp3_25         OAA         CAL         CAQ         FAC       0.000    10.0     6
+WV7       const_sp2_sp2_9         CAG         CAN         CAO         CAH       0.000     5.0     2
+WV7             sp2_sp2_1         CAF         CAM         OAB        HOAB     180.000     5.0     2
+WV7              const_22         CAG         CAF         CAM         OAB     180.000    10.0     2
+WV7       const_sp2_sp2_1         CAM         CAF         CAG         CAN       0.000     5.0     2
+WV7       const_sp2_sp2_6         CAF         CAG         CAN         CAK     180.000     5.0     2
+WV7              const_18         CAO         CAH         CAM         OAB     180.000    10.0     2
+WV7              const_14         CAM         CAH         CAO         CAI     180.000    10.0     2
+WV7            sp2_sp3_22         CAH         CAO         CAI         CAJ     180.000    10.0     6
+WV7             sp3_sp3_1         CAO         CAI         CAJ         NAP      60.000    10.0     3
+WV7             sp2_sp3_4         CAL         NAP         CAJ         CAI     180.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+WV7    chir_1    CAQ    FAC    FAD    FAE    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+WV7    plan-1         CAF   0.020
+WV7    plan-1         CAG   0.020
+WV7    plan-1         CAH   0.020
+WV7    plan-1         CAI   0.020
+WV7    plan-1         CAK   0.020
+WV7    plan-1         CAM   0.020
+WV7    plan-1         CAN   0.020
+WV7    plan-1         CAO   0.020
+WV7    plan-1         HAF   0.020
+WV7    plan-1         HAG   0.020
+WV7    plan-1         HAH   0.020
+WV7    plan-1         OAB   0.020
+WV7    plan-2         CAL   0.020
+WV7    plan-2         CAQ   0.020
+WV7    plan-2         NAP   0.020
+WV7    plan-2         OAA   0.020
+WV7    plan-3         CAJ   0.020
+WV7    plan-3         CAK   0.020
+WV7    plan-3         CAL   0.020
+WV7    plan-3         NAP   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+WV7           SMILES              ACDLabs 12.01                                                        FC(F)(F)C(=O)N2Cc1c(cc(O)cc1)CC2
+WV7 SMILES_CANONICAL               CACTVS 3.370                                                          Oc1ccc2CN(CCc2c1)C(=O)C(F)(F)F
+WV7           SMILES               CACTVS 3.370                                                          Oc1ccc2CN(CCc2c1)C(=O)C(F)(F)F
+WV7 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                        c1cc2c(cc1O)CCN(C2)C(=O)C(F)(F)F
+WV7           SMILES "OpenEye OEToolkits" 1.7.0                                                        c1cc2c(cc1O)CCN(C2)C(=O)C(F)(F)F
+WV7            InChI                InChI  1.03 InChI=1S/C11H10F3NO2/c12-11(13,14)10(17)15-4-3-7-5-9(16)2-1-8(7)6-15/h1-2,5,16H,3-4,6H2
+WV7         InChIKey                InChI  1.03                                                             QNFSENFVEFYGPS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+WV7 acedrg               243         "dictionary generator"                  
+WV7 acedrg_database      11          "data source"                           
+WV7 rdkit                2017.03.2   "Chemoinformatics tool"
+WV7 refmac5              5.8.0238    "optimization tool"                     

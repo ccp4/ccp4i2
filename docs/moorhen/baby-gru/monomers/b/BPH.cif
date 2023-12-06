@@ -1,0 +1,796 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BPH     BPH      "BACTERIOPHEOPHYTIN A"     NON-POLYMER     141     65     .     
+#
+data_comp_BPH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BPH     O1D     O       O       0       4.625       90.069      -145.101    
+BPH     CGD     C       C       0       5.202       90.675      -145.962    
+BPH     O2D     O       O2      0       5.541       91.967      -145.881    
+BPH     CED     C       CH3     0       5.706       92.535      -144.556    
+BPH     CBD     C       CH1     0       5.612       90.068      -147.279    
+BPH     CHA     C       CR5     0       7.094       90.241      -147.602    
+BPH     C4D     C       CR55    0       7.160       91.204      -148.674    
+BPH     C3D     C       CR55    0       5.903       91.543      -149.183    
+BPH     CAD     C       CR5     0       4.887       90.775      -148.449    
+BPH     OBD     O       O       0       3.698       90.680      -148.672    
+BPH     C2D     C       CR5     0       6.120       92.489      -150.210    
+BPH     CMD     C       CH3     0       5.058       93.138      -151.046    
+BPH     C1D     C       CR5     0       7.512       92.701      -150.292    
+BPH     ND      N       NR5     0       8.110       91.905      -149.343    
+BPH     CHD     C       C1      0       8.225       93.554      -151.164    
+BPH     C4C     C       CR5     0       9.625       93.768      -151.255    
+BPH     C3C     C       CH1     0       10.289      94.811      -152.128    
+BPH     CAC     C       CH2     0       10.407      94.339      -153.580    
+BPH     CBC     C       CH3     0       9.087       94.349      -154.324    
+BPH     C2C     C       CH1     0       11.639      95.017      -151.410    
+BPH     CMC     C       CH3     0       11.837      96.371      -150.729    
+BPH     C1C     C       CR5     0       11.673      93.848      -150.439    
+BPH     NC      N       NRD5    0       10.564      93.048      -150.558    
+BPH     CHC     C       C1      0       12.711      93.591      -149.524    
+BPH     C4B     C       CR5     0       12.832      92.496      -148.588    
+BPH     C3B     C       CR5     0       14.011      91.772      -148.271    
+BPH     CAB     C       C       0       15.349      91.970      -148.835    
+BPH     CBB     C       CH3     0       16.063      93.266      -148.611    
+BPH     OBB     O       O       0       15.889      91.082      -149.486    
+BPH     C2B     C       CR5     0       13.677      90.806      -147.308    
+BPH     CMB     C       CH3     0       14.600      89.805      -146.673    
+BPH     C1B     C       CR5     0       12.281      90.934      -147.032    
+BPH     NB      N       NT1     0       11.814      91.971      -147.817    
+BPH     CHB     C       C1      0       11.535      90.197      -146.132    
+BPH     C4A     C       CR5     0       10.221      89.701      -146.262    
+BPH     C3A     C       CH1     0       9.493       88.917      -145.183    
+BPH     CMA     C       CH3     0       9.536       89.630      -143.831    
+BPH     C2A     C       CH1     0       8.099       88.710      -145.801    
+BPH     C1A     C       CR5     0       8.165       89.643      -146.983    
+BPH     NA      N       NRD5    0       9.445       89.879      -147.383    
+BPH     CAA     C       CH2     0       7.770       87.277      -146.215    
+BPH     CBA     C       CH2     0       7.409       86.388      -145.030    
+BPH     CGA     C       C       0       6.923       85.016      -145.421    
+BPH     O1A     O       O       0       6.730       84.640      -146.552    
+BPH     O2A     O       O2      0       6.719       84.258      -144.327    
+BPH     C1      C       CH2     0       6.494       82.840      -144.477    
+BPH     C2      C       C1      0       7.755       82.136      -144.893    
+BPH     C3      C       C       0       8.868       81.994      -144.174    
+BPH     C4      C       CH3     0       9.057       82.540      -142.785    
+BPH     C5      C       CH2     0       10.049      81.249      -144.730    
+BPH     C6      C       CH2     0       9.903       79.763      -144.639    
+BPH     C7      C       CH2     0       11.095      78.998      -145.191    
+BPH     C8      C       CH1     0       10.866      77.501      -145.457    
+BPH     C9      C       CH3     0       10.441      76.772      -144.188    
+BPH     C10     C       CH2     0       12.091      76.822      -146.105    
+BPH     C11     C       CH2     0       12.501      77.309      -147.483    
+BPH     C12     C       CH2     0       11.441      77.194      -148.554    
+BPH     C13     C       CH1     0       11.914      77.474      -149.988    
+BPH     C14     C       CH3     0       10.783      77.999      -150.862    
+BPH     C15     C       CH2     0       12.583      76.247      -150.616    
+BPH     C16     C       CH2     0       13.492      76.527      -151.788    
+BPH     C17     C       CH2     0       14.184      75.303      -152.338    
+BPH     C18     C       CH1     0       15.194      75.563      -153.458    
+BPH     C19     C       CH3     0       14.499      75.977      -154.746    
+BPH     C20     C       CH3     0       16.075      74.347      -153.699    
+BPH     HED1    H       H       0       6.302       91.974      -144.033    
+BPH     HED2    H       H       0       4.842       92.587      -144.119    
+BPH     HED3    H       H       0       6.084       93.425      -144.634    
+BPH     HBD     H       H       0       5.372       89.112      -147.277    
+BPH     HMD1    H       H       0       5.378       94.001      -151.372    
+BPH     HMD2    H       H       0       4.256       93.274      -150.503    
+BPH     HMD3    H       H       0       4.843       92.562      -151.805    
+BPH     HD      H       H       0       8.962       91.852      -149.187    
+BPH     HHD     H       H       0       7.684       94.050      -151.777    
+BPH     H3C     H       H       0       9.760       95.648      -152.109    
+BPH     HAC1    H       H       0       10.769      93.428      -153.586    
+BPH     HAC2    H       H       0       11.041      94.921      -154.050    
+BPH     HBC1    H       H       0       9.252       94.280      -155.280    
+BPH     HBC2    H       H       0       8.611       95.177      -154.139    
+BPH     HBC3    H       H       0       8.544       93.595      -154.037    
+BPH     H2C     H       H       0       12.365      94.899      -152.074    
+BPH     HMC1    H       H       0       11.707      96.281      -149.771    
+BPH     HMC2    H       H       0       11.201      97.013      -151.079    
+BPH     HMC3    H       H       0       12.738      96.688      -150.901    
+BPH     HHC     H       H       0       13.435      94.217      -149.518    
+BPH     HBB1    H       H       0       15.468      93.897      -148.179    
+BPH     HBB2    H       H       0       16.352      93.627      -149.463    
+BPH     HBB3    H       H       0       16.837      93.116      -148.047    
+BPH     HMB1    H       H       0       14.092      89.165      -146.150    
+BPH     HMB2    H       H       0       15.229      90.263      -146.092    
+BPH     HMB3    H       H       0       15.092      89.331      -147.363    
+BPH     HB      H       H       0       10.960      92.259      -147.830    
+BPH     HHB     H       H       0       11.979      89.995      -145.309    
+BPH     H3A     H       H       0       9.928       88.033      -145.079    
+BPH     HMA1    H       H       0       8.723       89.444      -143.336    
+BPH     HMA2    H       H       0       9.617       90.588      -143.967    
+BPH     HMA3    H       H       0       10.299      89.312      -143.324    
+BPH     H2A     H       H       0       7.409       89.019      -145.155    
+BPH     HAA1    H       H       0       8.545       86.895      -146.679    
+BPH     HAA2    H       H       0       7.021       87.293      -146.846    
+BPH     HBA1    H       H       0       6.710       86.832      -144.503    
+BPH     HBA2    H       H       0       8.198       86.292      -144.455    
+BPH     H1C1    H       H       0       5.790       82.683      -145.145    
+BPH     H1C2    H       H       0       6.182       82.471      -143.621    
+BPH     H2      H       H       0       7.754       81.754      -145.757    
+BPH     H4C1    H       H       0       8.198       82.757      -142.390    
+BPH     H4C2    H       H       0       9.604       83.342      -142.824    
+BPH     H4C3    H       H       0       9.503       81.876      -142.235    
+BPH     H5C1    H       H       0       10.857      81.523      -144.245    
+BPH     H5C2    H       H       0       10.168      81.503      -145.670    
+BPH     H6C1    H       H       0       9.098       79.496      -145.132    
+BPH     H6C2    H       H       0       9.774       79.517      -143.699    
+BPH     H7C1    H       H       0       11.840      79.088      -144.559    
+BPH     H7C2    H       H       0       11.366      79.426      -146.030    
+BPH     H8      H       H       0       10.120      77.436      -146.102    
+BPH     H9C1    H       H       0       10.488      75.811      -144.329    
+BPH     H9C2    H       H       0       9.528       77.019      -143.959    
+BPH     H9C3    H       H       0       11.034      77.019      -143.457    
+BPH     H101    H       H       0       11.910      75.860      -146.167    
+BPH     H102    H       H       0       12.856      76.937      -145.502    
+BPH     H111    H       H       0       13.286      76.795      -147.770    
+BPH     H112    H       H       0       12.777      78.247      -147.417    
+BPH     H121    H       H       0       10.717      77.819      -148.338    
+BPH     H122    H       H       0       11.067      76.287      -148.524    
+BPH     H13     H       H       0       12.605      78.179      -149.929    
+BPH     H141    H       H       0       11.123      78.204      -151.749    
+BPH     H142    H       H       0       10.412      78.807      -150.466    
+BPH     H143    H       H       0       10.085      77.325      -150.931    
+BPH     H151    H       H       0       11.880      75.629      -150.910    
+BPH     H152    H       H       0       13.106      75.790      -149.922    
+BPH     H161    H       H       0       14.174      77.176      -151.510    
+BPH     H162    H       H       0       12.965      76.939      -152.505    
+BPH     H171    H       H       0       13.500      74.687      -152.677    
+BPH     H172    H       H       0       14.649      74.853      -151.601    
+BPH     H18     H       H       0       15.777      76.309      -153.172    
+BPH     H191    H       H       0       15.152      76.031      -155.465    
+BPH     H192    H       H       0       14.079      76.846      -154.623    
+BPH     H193    H       H       0       13.820      75.319      -154.974    
+BPH     H201    H       H       0       15.520      73.588      -153.952    
+BPH     H202    H       H       0       16.564      74.133      -152.885    
+BPH     H203    H       H       0       16.706      74.539      -154.414    
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BPH         O1D         CGD      DOUBLE       n     1.200  0.0100     1.200  0.0100
+BPH         CGD         O2D      SINGLE       n     1.332  0.0119     1.332  0.0119
+BPH         CGD         CBD      SINGLE       n     1.498  0.0200     1.498  0.0200
+BPH         O2D         CED      SINGLE       n     1.448  0.0108     1.448  0.0108
+BPH         CBD         CHA      SINGLE       n     1.515  0.0200     1.515  0.0200
+BPH         CBD         CAD      SINGLE       n     1.530  0.0200     1.530  0.0200
+BPH         CHA         C4D      DOUBLE       n     1.457  0.0200     1.457  0.0200
+BPH         CHA         C1A      SINGLE       n     1.364  0.0200     1.364  0.0200
+BPH         C4D         C3D      SINGLE       y     1.419  0.0200     1.419  0.0200
+BPH         C4D          ND      SINGLE       y     1.370  0.0200     1.370  0.0200
+BPH         C3D         CAD      SINGLE       n     1.469  0.0146     1.469  0.0146
+BPH         C3D         C2D      DOUBLE       y     1.414  0.0200     1.414  0.0200
+BPH         CAD         OBD      DOUBLE       n     1.214  0.0128     1.214  0.0128
+BPH         C2D         CMD      SINGLE       n     1.499  0.0100     1.499  0.0100
+BPH         C2D         C1D      SINGLE       y     1.395  0.0200     1.395  0.0200
+BPH         C1D          ND      SINGLE       y     1.374  0.0100     1.374  0.0100
+BPH         C1D         CHD      DOUBLE       n     1.397  0.0200     1.397  0.0200
+BPH         CHD         C4C      SINGLE       n     1.401  0.0200     1.401  0.0200
+BPH         C4C         C3C      SINGLE       n     1.516  0.0118     1.516  0.0118
+BPH         C4C          NC      DOUBLE       n     1.371  0.0200     1.371  0.0200
+BPH         C3C         CAC      SINGLE       n     1.529  0.0129     1.529  0.0129
+BPH         C3C         C2C      SINGLE       n     1.537  0.0162     1.537  0.0162
+BPH         CAC         CBC      SINGLE       n     1.514  0.0200     1.514  0.0200
+BPH         C2C         CMC      SINGLE       n     1.526  0.0100     1.526  0.0100
+BPH         C2C         C1C      SINGLE       n     1.516  0.0118     1.516  0.0118
+BPH         C1C          NC      SINGLE       n     1.371  0.0200     1.371  0.0200
+BPH         C1C         CHC      DOUBLE       n     1.401  0.0200     1.401  0.0200
+BPH         CHC         C4B      SINGLE       n     1.436  0.0200     1.436  0.0200
+BPH         C4B         C3B      DOUBLE       y     1.421  0.0200     1.421  0.0200
+BPH         C4B          NB      SINGLE       y     1.379  0.0124     1.379  0.0124
+BPH         C3B         CAB      SINGLE       n     1.463  0.0183     1.463  0.0183
+BPH         C3B         C2B      SINGLE       y     1.404  0.0200     1.404  0.0200
+BPH         CAB         CBB      SINGLE       n     1.495  0.0100     1.495  0.0100
+BPH         CAB         OBB      DOUBLE       n     1.227  0.0163     1.227  0.0163
+BPH         C2B         CMB      SINGLE       n     1.501  0.0100     1.501  0.0100
+BPH         C2B         C1B      DOUBLE       y     1.419  0.0200     1.419  0.0200
+BPH         C1B          NB      SINGLE       y     1.379  0.0100     1.379  0.0100
+BPH         C1B         CHB      SINGLE       n     1.375  0.0146     1.375  0.0146
+BPH         CHB         C4A      DOUBLE       n     1.401  0.0200     1.401  0.0200
+BPH         C4A         C3A      SINGLE       n     1.516  0.0118     1.516  0.0118
+BPH         C4A          NA      SINGLE       n     1.371  0.0200     1.371  0.0200
+BPH         C3A         CMA      SINGLE       n     1.526  0.0100     1.526  0.0100
+BPH         C3A         C2A      SINGLE       n     1.535  0.0200     1.535  0.0200
+BPH         C2A         C1A      SINGLE       n     1.509  0.0100     1.509  0.0100
+BPH         C2A         CAA      SINGLE       n     1.527  0.0107     1.527  0.0107
+BPH         C1A          NA      DOUBLE       n     1.360  0.0100     1.360  0.0100
+BPH         CAA         CBA      SINGLE       n     1.524  0.0101     1.524  0.0101
+BPH         CBA         CGA      SINGLE       n     1.503  0.0175     1.503  0.0175
+BPH         CGA         O1A      DOUBLE       n     1.203  0.0150     1.203  0.0150
+BPH         CGA         O2A      SINGLE       n     1.328  0.0200     1.328  0.0200
+BPH         O2A          C1      SINGLE       n     1.439  0.0116     1.439  0.0116
+BPH          C1          C2      SINGLE       n     1.496  0.0200     1.496  0.0200
+BPH          C2          C3      DOUBLE       n     1.329  0.0100     1.329  0.0100
+BPH          C3          C4      SINGLE       n     1.499  0.0156     1.499  0.0156
+BPH          C3          C5      SINGLE       n     1.502  0.0126     1.502  0.0126
+BPH          C5          C6      SINGLE       n     1.497  0.0200     1.497  0.0200
+BPH          C6          C7      SINGLE       n     1.519  0.0164     1.519  0.0164
+BPH          C7          C8      SINGLE       n     1.530  0.0200     1.530  0.0200
+BPH          C8          C9      SINGLE       n     1.521  0.0151     1.521  0.0151
+BPH          C8         C10      SINGLE       n     1.530  0.0200     1.530  0.0200
+BPH         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+BPH         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+BPH         C12         C13      SINGLE       n     1.530  0.0200     1.530  0.0200
+BPH         C13         C14      SINGLE       n     1.521  0.0151     1.521  0.0151
+BPH         C13         C15      SINGLE       n     1.530  0.0200     1.530  0.0200
+BPH         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+BPH         C16         C17      SINGLE       n     1.509  0.0200     1.509  0.0200
+BPH         C17         C18      SINGLE       n     1.529  0.0177     1.529  0.0177
+BPH         C18         C19      SINGLE       n     1.521  0.0151     1.521  0.0151
+BPH         C18         C20      SINGLE       n     1.521  0.0151     1.521  0.0151
+BPH         CED        HED1      SINGLE       n     1.089  0.0100     0.970  0.0175
+BPH         CED        HED2      SINGLE       n     1.089  0.0100     0.970  0.0175
+BPH         CED        HED3      SINGLE       n     1.089  0.0100     0.970  0.0175
+BPH         CBD         HBD      SINGLE       n     1.089  0.0100     0.986  0.0200
+BPH         CMD        HMD1      SINGLE       n     1.089  0.0100     0.977  0.0100
+BPH         CMD        HMD2      SINGLE       n     1.089  0.0100     0.977  0.0100
+BPH         CMD        HMD3      SINGLE       n     1.089  0.0100     0.977  0.0100
+BPH          ND          HD      SINGLE       n     1.016  0.0100     0.874  0.0161
+BPH         CHD         HHD      SINGLE       n     1.082  0.0130     0.957  0.0200
+BPH         C3C         H3C      SINGLE       n     1.089  0.0100     0.991  0.0103
+BPH         CAC        HAC1      SINGLE       n     1.089  0.0100     0.981  0.0178
+BPH         CAC        HAC2      SINGLE       n     1.089  0.0100     0.981  0.0178
+BPH         CBC        HBC1      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH         CBC        HBC2      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH         CBC        HBC3      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH         C2C         H2C      SINGLE       n     1.089  0.0100     0.991  0.0103
+BPH         CMC        HMC1      SINGLE       n     1.089  0.0100     0.970  0.0163
+BPH         CMC        HMC2      SINGLE       n     1.089  0.0100     0.970  0.0163
+BPH         CMC        HMC3      SINGLE       n     1.089  0.0100     0.970  0.0163
+BPH         CHC         HHC      SINGLE       n     1.082  0.0130     0.957  0.0200
+BPH         CBB        HBB1      SINGLE       n     1.089  0.0100     0.969  0.0198
+BPH         CBB        HBB2      SINGLE       n     1.089  0.0100     0.969  0.0198
+BPH         CBB        HBB3      SINGLE       n     1.089  0.0100     0.969  0.0198
+BPH         CMB        HMB1      SINGLE       n     1.089  0.0100     0.971  0.0172
+BPH         CMB        HMB2      SINGLE       n     1.089  0.0100     0.971  0.0172
+BPH         CMB        HMB3      SINGLE       n     1.089  0.0100     0.971  0.0172
+BPH          NB          HB      SINGLE       n     1.016  0.0100     0.902  0.0200
+BPH         CHB         HHB      SINGLE       n     1.082  0.0130     0.957  0.0200
+BPH         C3A         H3A      SINGLE       n     1.089  0.0100     0.991  0.0103
+BPH         CMA        HMA1      SINGLE       n     1.089  0.0100     0.970  0.0163
+BPH         CMA        HMA2      SINGLE       n     1.089  0.0100     0.970  0.0163
+BPH         CMA        HMA3      SINGLE       n     1.089  0.0100     0.970  0.0163
+BPH         C2A         H2A      SINGLE       n     1.089  0.0100     0.996  0.0120
+BPH         CAA        HAA1      SINGLE       n     1.089  0.0100     0.980  0.0152
+BPH         CAA        HAA2      SINGLE       n     1.089  0.0100     0.980  0.0152
+BPH         CBA        HBA1      SINGLE       n     1.089  0.0100     0.981  0.0185
+BPH         CBA        HBA2      SINGLE       n     1.089  0.0100     0.981  0.0185
+BPH          C1        H1C1      SINGLE       n     1.089  0.0100     0.983  0.0145
+BPH          C1        H1C2      SINGLE       n     1.089  0.0100     0.983  0.0145
+BPH          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+BPH          C4        H4C1      SINGLE       n     1.089  0.0100     0.971  0.0140
+BPH          C4        H4C2      SINGLE       n     1.089  0.0100     0.971  0.0140
+BPH          C4        H4C3      SINGLE       n     1.089  0.0100     0.971  0.0140
+BPH          C5        H5C1      SINGLE       n     1.089  0.0100     0.981  0.0185
+BPH          C5        H5C2      SINGLE       n     1.089  0.0100     0.981  0.0185
+BPH          C6        H6C1      SINGLE       n     1.089  0.0100     0.980  0.0160
+BPH          C6        H6C2      SINGLE       n     1.089  0.0100     0.980  0.0160
+BPH          C7        H7C1      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPH          C7        H7C2      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPH          C8          H8      SINGLE       n     1.089  0.0100     0.989  0.0162
+BPH          C9        H9C1      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH          C9        H9C2      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH          C9        H9C3      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPH         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPH         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0163
+BPH         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0163
+BPH         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPH         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPH         C13         H13      SINGLE       n     1.089  0.0100     0.989  0.0162
+BPH         C14        H141      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH         C14        H142      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH         C14        H143      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPH         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPH         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0163
+BPH         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0163
+BPH         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPH         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPH         C18         H18      SINGLE       n     1.089  0.0100     0.989  0.0162
+BPH         C19        H191      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH         C19        H192      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH         C19        H193      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH         C20        H201      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH         C20        H202      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPH         C20        H203      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BPH         O1D         CGD         O2D     124.098    1.50
+BPH         O1D         CGD         CBD     124.260    1.50
+BPH         O2D         CGD         CBD     111.642    1.50
+BPH         CGD         O2D         CED     116.214    1.50
+BPH         O2D         CED        HED1     109.361    1.50
+BPH         O2D         CED        HED2     109.361    1.50
+BPH         O2D         CED        HED3     109.361    1.50
+BPH        HED1         CED        HED2     109.532    1.53
+BPH        HED1         CED        HED3     109.532    1.53
+BPH        HED2         CED        HED3     109.532    1.53
+BPH         CGD         CBD         CHA     110.962    3.00
+BPH         CGD         CBD         CAD     110.962    3.00
+BPH         CGD         CBD         HBD     109.314    3.00
+BPH         CHA         CBD         CAD     102.792    1.88
+BPH         CHA         CBD         HBD     110.367    1.60
+BPH         CAD         CBD         HBD     109.707    2.75
+BPH         CBD         CHA         C4D     106.805    1.50
+BPH         CBD         CHA         C1A     123.954    3.00
+BPH         C4D         CHA         C1A     129.241    3.00
+BPH         CHA         C4D         C3D     113.369    3.00
+BPH         CHA         C4D          ND     138.266    1.79
+BPH         C3D         C4D          ND     108.364    1.50
+BPH         C4D         C3D         CAD     109.766    3.00
+BPH         C4D         C3D         C2D     108.034    3.00
+BPH         CAD         C3D         C2D     142.200    2.48
+BPH         CBD         CAD         C3D     106.653    1.50
+BPH         CBD         CAD         OBD     124.388    1.50
+BPH         C3D         CAD         OBD     128.959    1.50
+BPH         C3D         C2D         CMD     126.585    1.99
+BPH         C3D         C2D         C1D     107.464    1.50
+BPH         CMD         C2D         C1D     125.951    2.21
+BPH         C2D         CMD        HMD1     109.471    1.50
+BPH         C2D         CMD        HMD2     109.471    1.50
+BPH         C2D         CMD        HMD3     109.471    1.50
+BPH        HMD1         CMD        HMD2     109.472    1.50
+BPH        HMD1         CMD        HMD3     109.472    1.50
+BPH        HMD2         CMD        HMD3     109.472    1.50
+BPH         C2D         C1D          ND     107.800    1.50
+BPH         C2D         C1D         CHD     128.108    3.00
+BPH          ND         C1D         CHD     124.092    3.00
+BPH         C4D          ND         C1D     108.338    1.50
+BPH         C4D          ND          HD     127.109    3.00
+BPH         C1D          ND          HD     124.553    3.00
+BPH         C1D         CHD         C4C     127.326    1.86
+BPH         C1D         CHD         HHD     115.805    1.77
+BPH         C4C         CHD         HHD     116.868    1.50
+BPH         CHD         C4C         C3C     124.565    3.00
+BPH         CHD         C4C          NC     122.917    1.50
+BPH         C3C         C4C          NC     112.517    1.55
+BPH         C4C         C3C         CAC     111.539    2.78
+BPH         C4C         C3C         C2C     104.009    1.83
+BPH         C4C         C3C         H3C     109.292    1.96
+BPH         CAC         C3C         C2C     113.745    2.48
+BPH         CAC         C3C         H3C     108.314    1.50
+BPH         C2C         C3C         H3C     108.299    2.27
+BPH         C3C         CAC         CBC     113.036    1.50
+BPH         C3C         CAC        HAC1     108.650    1.50
+BPH         C3C         CAC        HAC2     108.650    1.50
+BPH         CBC         CAC        HAC1     108.877    1.50
+BPH         CBC         CAC        HAC2     108.877    1.50
+BPH        HAC1         CAC        HAC2     107.947    1.50
+BPH         CAC         CBC        HBC1     110.017    2.30
+BPH         CAC         CBC        HBC2     110.017    2.30
+BPH         CAC         CBC        HBC3     110.017    2.30
+BPH        HBC1         CBC        HBC2     109.441    1.50
+BPH        HBC1         CBC        HBC3     109.441    1.50
+BPH        HBC2         CBC        HBC3     109.441    1.50
+BPH         C3C         C2C         CMC     115.350    1.50
+BPH         C3C         C2C         C1C     104.009    1.83
+BPH         C3C         C2C         H2C     108.299    2.27
+BPH         CMC         C2C         C1C     111.539    2.78
+BPH         CMC         C2C         H2C     108.374    1.50
+BPH         C1C         C2C         H2C     109.292    1.96
+BPH         C2C         CMC        HMC1     109.458    1.50
+BPH         C2C         CMC        HMC2     109.458    1.50
+BPH         C2C         CMC        HMC3     109.458    1.50
+BPH        HMC1         CMC        HMC2     109.347    1.50
+BPH        HMC1         CMC        HMC3     109.347    1.50
+BPH        HMC2         CMC        HMC3     109.347    1.50
+BPH         C2C         C1C          NC     112.517    1.55
+BPH         C2C         C1C         CHC     124.565    3.00
+BPH          NC         C1C         CHC     122.917    1.50
+BPH         C4C          NC         C1C     107.157    3.00
+BPH         C1C         CHC         C4B     127.285    1.86
+BPH         C1C         CHC         HHC     116.827    1.50
+BPH         C4B         CHC         HHC     115.888    1.52
+BPH         CHC         C4B         C3B     128.668    3.00
+BPH         CHC         C4B          NB     124.086    2.47
+BPH         C3B         C4B          NB     107.246    1.50
+BPH         C4B         C3B         CAB     127.230    1.50
+BPH         C4B         C3B         C2B     106.858    3.00
+BPH         CAB         C3B         C2B     125.912    3.00
+BPH         C3B         CAB         CBB     119.486    1.98
+BPH         C3B         CAB         OBB     120.615    1.50
+BPH         CBB         CAB         OBB     119.899    1.50
+BPH         CAB         CBB        HBB1     109.525    1.50
+BPH         CAB         CBB        HBB2     109.525    1.50
+BPH         CAB         CBB        HBB3     109.525    1.50
+BPH        HBB1         CBB        HBB2     109.390    1.59
+BPH        HBB1         CBB        HBB3     109.390    1.59
+BPH        HBB2         CBB        HBB3     109.390    1.59
+BPH         C3B         C2B         CMB     127.661    1.50
+BPH         C3B         C2B         C1B     107.316    1.50
+BPH         CMB         C2B         C1B     125.023    1.50
+BPH         C2B         CMB        HMB1     109.746    1.50
+BPH         C2B         CMB        HMB2     109.746    1.50
+BPH         C2B         CMB        HMB3     109.746    1.50
+BPH        HMB1         CMB        HMB2     109.190    1.68
+BPH        HMB1         CMB        HMB3     109.190    1.68
+BPH        HMB2         CMB        HMB3     109.190    1.68
+BPH         C2B         C1B          NB     106.758    1.50
+BPH         C2B         C1B         CHB     128.337    2.44
+BPH          NB         C1B         CHB     124.905    2.47
+BPH         C4B          NB         C1B     110.017    1.50
+BPH         C4B          NB          HB     123.041    2.38
+BPH         C1B          NB          HB     123.041    2.38
+BPH         C1B         CHB         C4A     127.285    1.86
+BPH         C1B         CHB         HHB     115.888    1.52
+BPH         C4A         CHB         HHB     116.827    1.50
+BPH         CHB         C4A         C3A     124.565    3.00
+BPH         CHB         C4A          NA     122.917    1.50
+BPH         C3A         C4A          NA     112.517    1.55
+BPH         C4A         C3A         CMA     111.539    2.78
+BPH         C4A         C3A         C2A     104.009    1.83
+BPH         C4A         C3A         H3A     109.292    1.96
+BPH         CMA         C3A         C2A     115.051    3.00
+BPH         CMA         C3A         H3A     108.374    1.50
+BPH         C2A         C3A         H3A     108.733    1.50
+BPH         C3A         CMA        HMA1     109.458    1.50
+BPH         C3A         CMA        HMA2     109.458    1.50
+BPH         C3A         CMA        HMA3     109.458    1.50
+BPH        HMA1         CMA        HMA2     109.347    1.50
+BPH        HMA1         CMA        HMA3     109.347    1.50
+BPH        HMA2         CMA        HMA3     109.347    1.50
+BPH         C3A         C2A         C1A     104.009    1.83
+BPH         C3A         C2A         CAA     114.843    3.00
+BPH         C3A         C2A         H2A     108.690    1.50
+BPH         C1A         C2A         CAA     111.539    2.78
+BPH         C1A         C2A         H2A     110.367    1.60
+BPH         CAA         C2A         H2A     108.695    1.50
+BPH         CHA         C1A         C2A     124.291    3.00
+BPH         CHA         C1A          NA     121.640    2.67
+BPH         C2A         C1A          NA     114.070    1.55
+BPH         C4A          NA         C1A     107.157    3.00
+BPH         C2A         CAA         CBA     112.518    2.73
+BPH         C2A         CAA        HAA1     108.649    1.50
+BPH         C2A         CAA        HAA2     108.649    1.50
+BPH         CBA         CAA        HAA1     108.954    1.50
+BPH         CBA         CAA        HAA2     108.954    1.50
+BPH        HAA1         CAA        HAA2     107.607    1.50
+BPH         CAA         CBA         CGA     112.403    2.11
+BPH         CAA         CBA        HBA1     108.941    1.50
+BPH         CAA         CBA        HBA2     108.941    1.50
+BPH         CGA         CBA        HBA1     108.955    1.50
+BPH         CGA         CBA        HBA2     108.955    1.50
+BPH        HBA1         CBA        HBA2     107.765    1.50
+BPH         CBA         CGA         O1A     125.266    1.50
+BPH         CBA         CGA         O2A     111.605    1.92
+BPH         O1A         CGA         O2A     123.129    1.50
+BPH         CGA         O2A          C1     116.057    1.73
+BPH         O2A          C1          C2     110.121    2.20
+BPH         O2A          C1        H1C1     109.547    1.50
+BPH         O2A          C1        H1C2     109.547    1.50
+BPH          C2          C1        H1C1     109.840    1.50
+BPH          C2          C1        H1C2     109.840    1.50
+BPH        H1C1          C1        H1C2     108.221    1.50
+BPH          C1          C2          C3     124.396    3.00
+BPH          C1          C2          H2     118.040    2.26
+BPH          C3          C2          H2     117.563    1.50
+BPH          C2          C3          C4     123.007    1.73
+BPH          C2          C3          C5     121.607    1.82
+BPH          C4          C3          C5     115.386    1.50
+BPH          C3          C4        H4C1     109.541    1.50
+BPH          C3          C4        H4C2     109.541    1.50
+BPH          C3          C4        H4C3     109.541    1.50
+BPH        H4C1          C4        H4C2     109.342    1.50
+BPH        H4C1          C4        H4C3     109.342    1.50
+BPH        H4C2          C4        H4C3     109.342    1.50
+BPH          C3          C5          C6     113.243    1.53
+BPH          C3          C5        H5C1     108.816    1.50
+BPH          C3          C5        H5C2     108.816    1.50
+BPH          C6          C5        H5C1     109.153    1.50
+BPH          C6          C5        H5C2     109.153    1.50
+BPH        H5C1          C5        H5C2     107.710    1.94
+BPH          C5          C6          C7     113.314    2.25
+BPH          C5          C6        H6C1     108.548    1.50
+BPH          C5          C6        H6C2     108.548    1.50
+BPH          C7          C6        H6C1     108.762    1.50
+BPH          C7          C6        H6C2     108.762    1.50
+BPH        H6C1          C6        H6C2     107.646    1.50
+BPH          C6          C7          C8     115.586    1.50
+BPH          C6          C7        H7C1     108.469    1.50
+BPH          C6          C7        H7C2     108.469    1.50
+BPH          C8          C7        H7C1     108.410    1.50
+BPH          C8          C7        H7C2     108.410    1.50
+BPH        H7C1          C7        H7C2     107.657    1.50
+BPH          C7          C8          C9     111.605    1.50
+BPH          C7          C8         C10     111.631    1.85
+BPH          C7          C8          H8     107.002    1.69
+BPH          C9          C8         C10     111.605    1.50
+BPH          C9          C8          H8     108.064    1.50
+BPH         C10          C8          H8     107.002    1.69
+BPH          C8          C9        H9C1     109.656    1.50
+BPH          C8          C9        H9C2     109.656    1.50
+BPH          C8          C9        H9C3     109.656    1.50
+BPH        H9C1          C9        H9C2     109.411    1.50
+BPH        H9C1          C9        H9C3     109.411    1.50
+BPH        H9C2          C9        H9C3     109.411    1.50
+BPH          C8         C10         C11     115.586    1.50
+BPH          C8         C10        H101     108.410    1.50
+BPH          C8         C10        H102     108.410    1.50
+BPH         C11         C10        H101     108.469    1.50
+BPH         C11         C10        H102     108.469    1.50
+BPH        H101         C10        H102     107.657    1.50
+BPH         C10         C11         C12     114.183    2.57
+BPH         C10         C11        H111     108.762    1.50
+BPH         C10         C11        H112     108.762    1.50
+BPH         C12         C11        H111     108.762    1.50
+BPH         C12         C11        H112     108.762    1.50
+BPH        H111         C11        H112     107.646    1.50
+BPH         C11         C12         C13     115.586    1.50
+BPH         C11         C12        H121     108.469    1.50
+BPH         C11         C12        H122     108.469    1.50
+BPH         C13         C12        H121     108.410    1.50
+BPH         C13         C12        H122     108.410    1.50
+BPH        H121         C12        H122     107.657    1.50
+BPH         C12         C13         C14     111.605    1.50
+BPH         C12         C13         C15     111.631    1.85
+BPH         C12         C13         H13     107.002    1.69
+BPH         C14         C13         C15     111.605    1.50
+BPH         C14         C13         H13     108.064    1.50
+BPH         C15         C13         H13     107.002    1.69
+BPH         C13         C14        H141     109.656    1.50
+BPH         C13         C14        H142     109.656    1.50
+BPH         C13         C14        H143     109.656    1.50
+BPH        H141         C14        H142     109.411    1.50
+BPH        H141         C14        H143     109.411    1.50
+BPH        H142         C14        H143     109.411    1.50
+BPH         C13         C15         C16     115.586    1.50
+BPH         C13         C15        H151     108.410    1.50
+BPH         C13         C15        H152     108.410    1.50
+BPH         C16         C15        H151     108.469    1.50
+BPH         C16         C15        H152     108.469    1.50
+BPH        H151         C15        H152     107.657    1.50
+BPH         C15         C16         C17     114.183    2.57
+BPH         C15         C16        H161     108.762    1.50
+BPH         C15         C16        H162     108.762    1.50
+BPH         C17         C16        H161     108.762    1.50
+BPH         C17         C16        H162     108.762    1.50
+BPH        H161         C16        H162     107.646    1.50
+BPH         C16         C17         C18     115.585    1.50
+BPH         C16         C17        H171     108.469    1.50
+BPH         C16         C17        H172     108.469    1.50
+BPH         C18         C17        H171     108.407    1.50
+BPH         C18         C17        H172     108.407    1.50
+BPH        H171         C17        H172     107.657    1.50
+BPH         C17         C18         C19     111.368    1.50
+BPH         C17         C18         C20     111.368    1.50
+BPH         C17         C18         H18     107.933    1.50
+BPH         C19         C18         C20     110.507    1.50
+BPH         C19         C18         H18     108.052    1.50
+BPH         C20         C18         H18     108.052    1.50
+BPH         C18         C19        H191     109.488    1.50
+BPH         C18         C19        H192     109.488    1.50
+BPH         C18         C19        H193     109.488    1.50
+BPH        H191         C19        H192     109.411    1.50
+BPH        H191         C19        H193     109.411    1.50
+BPH        H192         C19        H193     109.411    1.50
+BPH         C18         C20        H201     109.488    1.50
+BPH         C18         C20        H202     109.488    1.50
+BPH         C18         C20        H203     109.488    1.50
+BPH        H201         C20        H202     109.411    1.50
+BPH        H201         C20        H203     109.411    1.50
+BPH        H202         C20        H203     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BPH            sp2_sp3_43         C3D         C2D         CMD        HMD1     150.000    10.0     6
+BPH              const_28         CHD         C1D         C2D         CMD       0.000    10.0     2
+BPH              const_31         CHD         C1D          ND         C4D     180.000    10.0     2
+BPH            sp2_sp2_19         C2D         C1D         CHD         C4C     180.000     5.0     2
+BPH            sp2_sp2_23         C3C         C4C         CHD         C1D     180.000     5.0     2
+BPH            sp2_sp3_17         CHD         C4C         C3C         CAC     -60.000    10.0     6
+BPH            sp2_sp2_28         CHD         C4C          NC         C1C     180.000     5.0     2
+BPH            sp3_sp3_23         C4C         C3C         CAC         CBC     180.000    10.0     3
+BPH            sp3_sp3_14         CMC         C2C         C3C         CAC     -60.000    10.0     3
+BPH            sp3_sp3_32         C3C         CAC         CBC        HBC1     180.000    10.0     3
+BPH            sp3_sp3_41         C3C         C2C         CMC        HMC1     180.000    10.0     3
+BPH            sp2_sp3_23         CHC         C1C         C2C         CMC     -60.000    10.0     6
+BPH            sp2_sp2_13         O1D         CGD         O2D         CED     180.000     5.0     2
+BPH            sp2_sp3_31         O1D         CGD         CBD         CHA       0.000    10.0     6
+BPH             sp2_sp2_4         CHC         C1C          NC         C4C     180.000     5.0     2
+BPH            sp2_sp2_29         C2C         C1C         CHC         C4B     180.000     5.0     2
+BPH            sp2_sp2_33         C3B         C4B         CHC         C1C     180.000     5.0     2
+BPH       const_sp2_sp2_4         CAB         C3B         C4B         CHC       0.000     5.0     2
+BPH              const_39         CHC         C4B          NB         C1B     180.000    10.0     2
+BPH            sp2_sp2_37         C4B         C3B         CAB         CBB     180.000     5.0     2
+BPH       const_sp2_sp2_8         CMB         C2B         C3B         CAB       0.000     5.0     2
+BPH            sp2_sp3_52         OBB         CAB         CBB        HBB1     180.000    10.0     6
+BPH            sp2_sp3_55         C3B         C2B         CMB        HMB1     150.000    10.0     6
+BPH              const_12         CHB         C1B         C2B         CMB       0.000    10.0     2
+BPH            sp3_sp3_20        HED1         CED         O2D         CGD     -60.000    10.0     3
+BPH              const_15         CHB         C1B          NB         C4B     180.000    10.0     2
+BPH            sp2_sp2_41         C2B         C1B         CHB         C4A     180.000     5.0     2
+BPH            sp2_sp2_45         C3A         C4A         CHB         C1B     180.000     5.0     2
+BPH             sp2_sp3_5         CHB         C4A         C3A         CMA     -60.000    10.0     6
+BPH            sp2_sp2_50         CHB         C4A          NA         C1A     180.000     5.0     2
+BPH            sp3_sp3_50         C4A         C3A         CMA        HMA1     180.000    10.0     3
+BPH             sp3_sp3_5         CAA         C2A         C3A         CMA     -60.000    10.0     3
+BPH            sp2_sp3_11         CHA         C1A         C2A         CAA     -60.000    10.0     6
+BPH            sp3_sp3_59         C3A         C2A         CAA         CBA     180.000    10.0     3
+BPH             sp2_sp2_2         CHA         C1A          NA         C4A     180.000     5.0     2
+BPH            sp3_sp3_68         C2A         CAA         CBA         CGA     180.000    10.0     3
+BPH            sp2_sp3_62         O1A         CGA         CBA         CAA     120.000    10.0     6
+BPH            sp2_sp2_51         CBA         CGA         O2A          C1     180.000     5.0     2
+BPH            sp3_sp3_77          C2          C1         O2A         CGA     180.000    10.0     3
+BPH            sp2_sp3_68          C3          C2          C1         O2A     120.000    10.0     6
+BPH            sp2_sp2_54          C1          C2          C3          C4       0.000     5.0     2
+BPH            sp2_sp3_73          C2          C3          C4        H4C1       0.000    10.0     6
+BPH            sp2_sp3_80          C2          C3          C5          C6     120.000    10.0     6
+BPH            sp3_sp3_80          C3          C5          C6          C7     180.000    10.0     3
+BPH            sp2_sp3_26         C4D         CHA         CBD         CGD     120.000    10.0     6
+BPH            sp2_sp3_41         OBD         CAD         CBD         CGD     -60.000    10.0     6
+BPH            sp3_sp3_89          C5          C6          C7          C8     180.000    10.0     3
+BPH            sp3_sp3_98          C6          C7          C8          C9     180.000    10.0     3
+BPH           sp3_sp3_107          C7          C8          C9        H9C1     180.000    10.0     3
+BPH           sp3_sp3_116         C11         C10          C8          C7     180.000    10.0     3
+BPH           sp3_sp3_125          C8         C10         C11         C12     180.000    10.0     3
+BPH           sp3_sp3_134         C10         C11         C12         C13     180.000    10.0     3
+BPH           sp3_sp3_143         C11         C12         C13         C14     180.000    10.0     3
+BPH           sp3_sp3_152         C12         C13         C14        H141     180.000    10.0     3
+BPH           sp3_sp3_161         C12         C13         C15         C16     180.000    10.0     3
+BPH           sp3_sp3_170         C13         C15         C16         C17     180.000    10.0     3
+BPH            sp2_sp2_15         C2A         C1A         CHA         CBD     180.000     5.0     2
+BPH             sp2_sp2_5         C3D         C4D         CHA         CBD       0.000     5.0     2
+BPH           sp3_sp3_179         C15         C16         C17         C18     180.000    10.0     3
+BPH           sp3_sp3_189         C16         C17         C18         C19     -60.000    10.0     3
+BPH           sp3_sp3_197         C17         C18         C19        H191     180.000    10.0     3
+BPH           sp3_sp3_209         C17         C18         C20        H201      60.000    10.0     3
+BPH              const_35         CHA         C4D          ND         C1D     180.000    10.0     2
+BPH              const_17         CAD         C3D         C4D         CHA       0.000    10.0     2
+BPH              const_23         CMD         C2D         C3D         C4D     180.000    10.0     2
+BPH            sp2_sp2_10         C4D         C3D         CAD         OBD     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BPH    chir_1    CBD    CGD    CAD    CHA    negative
+BPH    chir_2    C3C    C4C    C2C    CAC    negative
+BPH    chir_3    C2C    C1C    C3C    CMC    negative
+BPH    chir_4    C3A    C4A    C2A    CMA    positive
+BPH    chir_5    C2A    C1A    C3A    CAA    positive
+BPH    chir_6    C8    C7    C10    C9    negative
+BPH    chir_7    C13    C12    C15    C14    negative
+BPH    chir_8    C18    C17    C19    C20    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BPH    plan-1         C1D   0.020
+BPH    plan-1         C2D   0.020
+BPH    plan-1         C3D   0.020
+BPH    plan-1         C4D   0.020
+BPH    plan-1         CAD   0.020
+BPH    plan-1         CHA   0.020
+BPH    plan-1         CHD   0.020
+BPH    plan-1         CMD   0.020
+BPH    plan-1          HD   0.020
+BPH    plan-1          ND   0.020
+BPH    plan-2         C1B   0.020
+BPH    plan-2         C2B   0.020
+BPH    plan-2         C3B   0.020
+BPH    plan-2         C4B   0.020
+BPH    plan-2         CAB   0.020
+BPH    plan-2         CHB   0.020
+BPH    plan-2         CHC   0.020
+BPH    plan-2         CMB   0.020
+BPH    plan-2          HB   0.020
+BPH    plan-2          NB   0.020
+BPH    plan-3         CBD   0.020
+BPH    plan-3         CGD   0.020
+BPH    plan-3         O1D   0.020
+BPH    plan-3         O2D   0.020
+BPH    plan-4         C1A   0.020
+BPH    plan-4         C4D   0.020
+BPH    plan-4         CBD   0.020
+BPH    plan-4         CHA   0.020
+BPH    plan-5         C3D   0.020
+BPH    plan-5         CAD   0.020
+BPH    plan-5         CBD   0.020
+BPH    plan-5         OBD   0.020
+BPH    plan-6         C1D   0.020
+BPH    plan-6         C4C   0.020
+BPH    plan-6         CHD   0.020
+BPH    plan-6         HHD   0.020
+BPH    plan-7         C3C   0.020
+BPH    plan-7         C4C   0.020
+BPH    plan-7         CHD   0.020
+BPH    plan-7          NC   0.020
+BPH    plan-8         C1C   0.020
+BPH    plan-8         C2C   0.020
+BPH    plan-8         CHC   0.020
+BPH    plan-8          NC   0.020
+BPH    plan-9         C1C   0.020
+BPH    plan-9         C4B   0.020
+BPH    plan-9         CHC   0.020
+BPH    plan-9         HHC   0.020
+BPH   plan-10         C3B   0.020
+BPH   plan-10         CAB   0.020
+BPH   plan-10         CBB   0.020
+BPH   plan-10         OBB   0.020
+BPH   plan-11         C1B   0.020
+BPH   plan-11         C4A   0.020
+BPH   plan-11         CHB   0.020
+BPH   plan-11         HHB   0.020
+BPH   plan-12         C3A   0.020
+BPH   plan-12         C4A   0.020
+BPH   plan-12         CHB   0.020
+BPH   plan-12          NA   0.020
+BPH   plan-13         C1A   0.020
+BPH   plan-13         C2A   0.020
+BPH   plan-13         CHA   0.020
+BPH   plan-13          NA   0.020
+BPH   plan-14         CBA   0.020
+BPH   plan-14         CGA   0.020
+BPH   plan-14         O1A   0.020
+BPH   plan-14         O2A   0.020
+BPH   plan-15          C1   0.020
+BPH   plan-15          C2   0.020
+BPH   plan-15          C3   0.020
+BPH   plan-15          H2   0.020
+BPH   plan-16          C2   0.020
+BPH   plan-16          C3   0.020
+BPH   plan-16          C4   0.020
+BPH   plan-16          C5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BPH           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                                           O=C(OC\C=C(/C)CCCC(C)CCCC(C)CCCC(C)C)CCC6c4nc(cc1c(c(C(=O)C)c(n1)cc5nc(cc3c(c2C(=O)C(c4c2n3)C(=O)OC)C)C(CC)C5C)C)C6C
+BPH            InChI                InChI  1.03 InChI=1S/C55H76N4O6/c1-13-39-34(7)41-29-46-48(38(11)60)36(9)43(57-46)27-42-35(8)40(52(58-42)50-51(55(63)64-12)54(62)49-37(10)44(59-53(49)50)28-45(39)56-41)23-24-47(61)65-26-25-33(6)22-16-21-32(5)20-15-19-31(4)18-14-17-30(2)3/h25,27-32,34-35,39-40,51,57,59H,13-24,26H2,1-12H3/b33-25+,41-29-,42-27-,43-27-,44-28-,45-28-,46-29-,52-50-/t31-,32-,34-,35+,39-,40+,51-/m1/s1
+BPH         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                    KWOZSBGNAHVCKG-SZQBJALDSA-N
+BPH SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                                                                    CC[C@@H]1[C@@H](C)c2cc3[nH]c(cc4nc([C@@H](CCC(=O)OC\C=C(/C)CCC[C@H](C)CCC[C@H](C)CCCC(C)C)[C@@H]4C)c5[C@@H](C(=O)OC)C(=O)c6c(C)c([nH]c56)cc1n2)c(C)c3C(C)=O
+BPH           SMILES               CACTVS 3.370                                                                                                                                                                                                                                  CC[CH]1[CH](C)c2cc3[nH]c(cc4nc([CH](CCC(=O)OCC=C(C)CCC[CH](C)CCC[CH](C)CCCC(C)C)[CH]4C)c5[CH](C(=O)OC)C(=O)c6c(C)c([nH]c56)cc1n2)c(C)c3C(C)=O
+BPH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                                                         CCC1c2/cc\3/c(c4c([nH]3)c(c5n/c(c\c6c(c(c([nH]6)/cc(\n2)/C1C)C(=O)C)C)/C(C5CCC(=O)OC/C=C(\C)/CCCC(C)CCCC(C)CCCC(C)C)C)C(C4=O)C(=O)OC)C
+BPH           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                                                                     CCC1c2cc3c(c4c([nH]3)c(c5nc(cc6c(c(c([nH]6)cc(n2)C1C)C(=O)C)C)C(C5CCC(=O)OCC=C(C)CCCC(C)CCCC(C)CCCC(C)C)C)C(C4=O)C(=O)OC)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BPH acedrg               243         "dictionary generator"                  
+BPH acedrg_database      11          "data source"                           
+BPH rdkit                2017.03.2   "Chemoinformatics tool"
+BPH refmac5              5.8.0238    "optimization tool"                     

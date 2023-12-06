@@ -1,0 +1,179 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TRJ     TRJ      META-DI(AMINOMETHYL)BENZENE     NON-POLYMER     22     10     .     
+#
+data_comp_TRJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TRJ     N       N       NT2     0       -18.100     71.538      42.320      
+TRJ     CA      C       CH2     0       -18.057     72.832      41.631      
+TRJ     CG      C       CR6     0       -18.460     72.724      40.181      
+TRJ     CD1     C       CR16    0       -17.604     72.145      39.249      
+TRJ     CD2     C       CR16    0       -19.694     73.201      39.746      
+TRJ     CE1     C       CR6     0       -17.952     72.034      37.907      
+TRJ     CE2     C       CR16    0       -20.056     73.098      38.412      
+TRJ     CZ      C       CR16    0       -19.191     72.518      37.497      
+TRJ     CB      C       CH2     0       -17.004     71.401      36.917      
+TRJ     N2      N       NT2     0       -17.222     69.957      36.756      
+TRJ     HN1     H       H       0       -17.826     71.731      43.225      
+TRJ     HN2     H       H       0       -17.396     71.019      41.914      
+TRJ     HA1     H       H       0       -17.140     73.180      41.713      
+TRJ     HA2     H       H       0       -18.657     73.445      42.116      
+TRJ     HD11    H       H       0       -16.768     71.820      39.535      
+TRJ     HD21    H       H       0       -20.287     73.597      40.364      
+TRJ     HE21    H       H       0       -20.895     73.424      38.125      
+TRJ     HZ1     H       H       0       -19.444     72.451      36.590      
+TRJ     HB1     H       H       0       -16.070     71.526      37.203      
+TRJ     HB2     H       H       0       -17.104     71.813      36.029      
+TRJ     HN21    H       H       0       -18.146     69.864      36.492      
+TRJ     HN22    H       H       0       -17.134     69.583      37.641      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TRJ           N          CA      SINGLE       n     1.467  0.0144     1.467  0.0144
+TRJ          CA          CG      SINGLE       n     1.509  0.0100     1.509  0.0100
+TRJ          CG         CD1      DOUBLE       y     1.388  0.0100     1.388  0.0100
+TRJ          CG         CD2      SINGLE       y     1.389  0.0100     1.389  0.0100
+TRJ         CD1         CE1      SINGLE       y     1.388  0.0100     1.388  0.0100
+TRJ         CD2         CE2      DOUBLE       y     1.382  0.0100     1.382  0.0100
+TRJ         CE1          CZ      DOUBLE       y     1.389  0.0100     1.389  0.0100
+TRJ         CE1          CB      SINGLE       n     1.509  0.0100     1.509  0.0100
+TRJ         CE2          CZ      SINGLE       y     1.382  0.0100     1.382  0.0100
+TRJ          CB          N2      SINGLE       n     1.467  0.0144     1.467  0.0144
+TRJ           N         HN1      SINGLE       n     1.036  0.0160     0.965  0.0200
+TRJ           N         HN2      SINGLE       n     1.036  0.0160     0.965  0.0200
+TRJ          CA         HA1      SINGLE       n     1.089  0.0100     0.985  0.0198
+TRJ          CA         HA2      SINGLE       n     1.089  0.0100     0.985  0.0198
+TRJ         CD1        HD11      SINGLE       n     1.082  0.0130     0.941  0.0156
+TRJ         CD2        HD21      SINGLE       n     1.082  0.0130     0.944  0.0174
+TRJ         CE2        HE21      SINGLE       n     1.082  0.0130     0.945  0.0132
+TRJ          CZ         HZ1      SINGLE       n     1.082  0.0130     0.944  0.0174
+TRJ          CB         HB1      SINGLE       n     1.089  0.0100     0.985  0.0198
+TRJ          CB         HB2      SINGLE       n     1.089  0.0100     0.985  0.0198
+TRJ          N2        HN21      SINGLE       n     1.036  0.0160     0.965  0.0200
+TRJ          N2        HN22      SINGLE       n     1.036  0.0160     0.965  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TRJ          CA           N         HN1     104.789    3.00
+TRJ          CA           N         HN2     104.789    3.00
+TRJ         HN1           N         HN2     107.163    3.00
+TRJ           N          CA          CG     112.424    2.20
+TRJ           N          CA         HA1     107.542    2.93
+TRJ           N          CA         HA2     107.542    2.93
+TRJ          CG          CA         HA1     110.855    3.00
+TRJ          CG          CA         HA2     110.855    3.00
+TRJ         HA1          CA         HA2     107.838    1.50
+TRJ          CA          CG         CD1     120.596    1.50
+TRJ          CA          CG         CD2     120.736    2.59
+TRJ         CD1          CG         CD2     118.668    1.50
+TRJ          CG         CD1         CE1     121.786    1.50
+TRJ          CG         CD1        HD11     119.107    1.50
+TRJ         CE1         CD1        HD11     119.107    1.50
+TRJ          CG         CD2         CE2     120.383    1.50
+TRJ          CG         CD2        HD21     119.772    1.50
+TRJ         CE2         CD2        HD21     119.845    1.50
+TRJ         CD1         CE1          CZ     118.668    1.50
+TRJ         CD1         CE1          CB     120.596    1.50
+TRJ          CZ         CE1          CB     120.736    2.59
+TRJ         CD2         CE2          CZ     120.113    1.50
+TRJ         CD2         CE2        HE21     119.943    1.50
+TRJ          CZ         CE2        HE21     119.943    1.50
+TRJ         CE1          CZ         CE2     120.383    1.50
+TRJ         CE1          CZ         HZ1     119.772    1.50
+TRJ         CE2          CZ         HZ1     119.845    1.50
+TRJ         CE1          CB          N2     112.424    2.20
+TRJ         CE1          CB         HB1     110.855    3.00
+TRJ         CE1          CB         HB2     110.855    3.00
+TRJ          N2          CB         HB1     107.542    2.93
+TRJ          N2          CB         HB2     107.542    2.93
+TRJ         HB1          CB         HB2     107.838    1.50
+TRJ          CB          N2        HN21     104.789    3.00
+TRJ          CB          N2        HN22     104.789    3.00
+TRJ        HN21          N2        HN22     107.163    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TRJ             sp3_sp3_1          CG          CA           N         HN1     180.000    10.0     3
+TRJ             sp2_sp3_2         CD1          CG          CA           N     -90.000    10.0     6
+TRJ       const_sp2_sp2_2         CE1         CD1          CG          CA     180.000     5.0     2
+TRJ              const_22         CE2         CD2          CG          CA     180.000    10.0     2
+TRJ       const_sp2_sp2_6          CG         CD1         CE1          CB     180.000     5.0     2
+TRJ              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+TRJ              const_11          CB         CE1          CZ         CE2     180.000    10.0     2
+TRJ             sp2_sp3_8         CD1         CE1          CB          N2     -90.000    10.0     6
+TRJ              const_13         CD2         CE2          CZ         CE1       0.000    10.0     2
+TRJ             sp3_sp3_7         CE1          CB          N2        HN21     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TRJ    plan-1          CA   0.020
+TRJ    plan-1          CB   0.020
+TRJ    plan-1         CD1   0.020
+TRJ    plan-1         CD2   0.020
+TRJ    plan-1         CE1   0.020
+TRJ    plan-1         CE2   0.020
+TRJ    plan-1          CG   0.020
+TRJ    plan-1          CZ   0.020
+TRJ    plan-1        HD11   0.020
+TRJ    plan-1        HD21   0.020
+TRJ    plan-1        HE21   0.020
+TRJ    plan-1         HZ1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TRJ           SMILES              ACDLabs 10.04                                            NCc1cccc(c1)CN
+TRJ SMILES_CANONICAL               CACTVS 3.341                                            NCc1cccc(CN)c1
+TRJ           SMILES               CACTVS 3.341                                            NCc1cccc(CN)c1
+TRJ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                          c1cc(cc(c1)CN)CN
+TRJ           SMILES "OpenEye OEToolkits" 1.5.0                                          c1cc(cc(c1)CN)CN
+TRJ            InChI                InChI  1.03 InChI=1S/C8H12N2/c9-5-7-2-1-3-8(4-7)6-10/h1-4H,5-6,9-10H2
+TRJ         InChIKey                InChI  1.03                               FDLQZKYLHJJBHD-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TRJ acedrg               243         "dictionary generator"                  
+TRJ acedrg_database      11          "data source"                           
+TRJ rdkit                2017.03.2   "Chemoinformatics tool"
+TRJ refmac5              5.8.0238    "optimization tool"                     

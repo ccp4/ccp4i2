@@ -1,0 +1,171 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+02N     02N      1-(4-methylphenyl)methanamine     NON-POLYMER     20     9     .     
+#
+data_comp_02N
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+02N     C20     C       CH2     0       10.657      -135.878    12.849      
+02N     C21     C       CR6     0       9.953       -134.550    13.000      
+02N     C22     C       CR16    0       10.341      -133.447    12.249      
+02N     C24     C       CR6     0       8.638       -132.073    13.279      
+02N     C26     C       CR16    0       8.897       -134.398    13.891      
+02N     N16     N       NT2     0       11.507      -136.217    13.998      
+02N     C23     C       CR16    0       9.691       -132.229    12.390      
+02N     C27     C       CH3     0       7.938       -130.745    13.425      
+02N     C25     C       CR16    0       8.253       -133.177    14.027      
+02N     H20     H       H       0       11.233      -135.877    12.051      
+02N     H20A    H       H       0       10.002      -136.606    12.746      
+02N     H22     H       H       0       11.054      -133.527    11.639      
+02N     H26     H       H       0       8.618       -135.133    14.411      
+02N     HN16    H       H       0       10.914      -136.245    14.759      
+02N     H2      H       H       0       12.097      -135.462    14.118      
+02N     H23     H       H       0       9.969       -131.493    11.873      
+02N     H27     H       H       0       7.214       -130.824    14.068      
+02N     H27A    H       H       0       7.576       -130.472    12.566      
+02N     H27B    H       H       0       8.570       -130.076    13.735      
+02N     H25     H       H       0       7.541       -133.094    14.637      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+02N         C20         C21      SINGLE       n     1.510  0.0100     1.510  0.0100
+02N         C20         N16      SINGLE       n     1.467  0.0144     1.467  0.0144
+02N         C21         C22      DOUBLE       y     1.386  0.0100     1.386  0.0100
+02N         C21         C26      SINGLE       y     1.386  0.0100     1.386  0.0100
+02N         C22         C23      SINGLE       y     1.384  0.0100     1.384  0.0100
+02N         C24         C23      DOUBLE       y     1.382  0.0115     1.382  0.0115
+02N         C24         C27      SINGLE       n     1.507  0.0176     1.507  0.0176
+02N         C24         C25      SINGLE       y     1.382  0.0115     1.382  0.0115
+02N         C26         C25      DOUBLE       y     1.384  0.0100     1.384  0.0100
+02N         C20         H20      SINGLE       n     1.089  0.0100     0.985  0.0198
+02N         C20        H20A      SINGLE       n     1.089  0.0100     0.985  0.0198
+02N         C22         H22      SINGLE       n     1.082  0.0130     0.942  0.0167
+02N         C26         H26      SINGLE       n     1.082  0.0130     0.942  0.0167
+02N         N16        HN16      SINGLE       n     1.036  0.0160     0.965  0.0200
+02N         N16          H2      SINGLE       n     1.036  0.0160     0.965  0.0200
+02N         C23         H23      SINGLE       n     1.082  0.0130     0.942  0.0167
+02N         C27         H27      SINGLE       n     1.089  0.0100     0.971  0.0135
+02N         C27        H27A      SINGLE       n     1.089  0.0100     0.971  0.0135
+02N         C27        H27B      SINGLE       n     1.089  0.0100     0.971  0.0135
+02N         C25         H25      SINGLE       n     1.082  0.0130     0.942  0.0167
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+02N         C21         C20         N16     112.424    2.20
+02N         C21         C20         H20     110.855    3.00
+02N         C21         C20        H20A     110.855    3.00
+02N         N16         C20         H20     107.542    2.93
+02N         N16         C20        H20A     107.542    2.93
+02N         H20         C20        H20A     107.838    1.50
+02N         C20         C21         C22     120.842    2.59
+02N         C20         C21         C26     120.842    2.59
+02N         C22         C21         C26     118.316    1.50
+02N         C21         C22         C23     120.729    1.50
+02N         C21         C22         H22     119.622    1.50
+02N         C23         C22         H22     119.650    1.50
+02N         C23         C24         C27     121.102    1.50
+02N         C23         C24         C25     117.796    1.50
+02N         C27         C24         C25     121.102    1.50
+02N         C21         C26         C25     120.729    1.50
+02N         C21         C26         H26     119.622    1.50
+02N         C25         C26         H26     119.650    1.50
+02N         C20         N16        HN16     104.789    3.00
+02N         C20         N16          H2     104.789    3.00
+02N        HN16         N16          H2     107.163    3.00
+02N         C22         C23         C24     121.215    1.50
+02N         C22         C23         H23     119.523    1.50
+02N         C24         C23         H23     119.262    1.50
+02N         C24         C27         H27     109.567    1.50
+02N         C24         C27        H27A     109.567    1.50
+02N         C24         C27        H27B     109.567    1.50
+02N         H27         C27        H27A     109.348    1.50
+02N         H27         C27        H27B     109.348    1.50
+02N        H27A         C27        H27B     109.348    1.50
+02N         C24         C25         C26     121.215    1.50
+02N         C24         C25         H25     119.262    1.50
+02N         C26         C25         H25     119.523    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+02N             sp2_sp3_2         C22         C21         C20         N16     -90.000    10.0     6
+02N             sp3_sp3_1         C21         C20         N16        HN16     180.000    10.0     3
+02N       const_sp2_sp2_3         C20         C21         C22         C23     180.000     5.0     2
+02N              const_23         C20         C21         C26         C25     180.000    10.0     2
+02N       const_sp2_sp2_5         C21         C22         C23         C24       0.000     5.0     2
+02N              const_10         C22         C23         C24         C27     180.000    10.0     2
+02N             sp2_sp3_7         C23         C24         C27         H27     150.000    10.0     6
+02N              const_15         C27         C24         C25         C26     180.000    10.0     2
+02N              const_17         C24         C25         C26         C21       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+02N    plan-1         C20   0.020
+02N    plan-1         C21   0.020
+02N    plan-1         C22   0.020
+02N    plan-1         C23   0.020
+02N    plan-1         C24   0.020
+02N    plan-1         C25   0.020
+02N    plan-1         C26   0.020
+02N    plan-1         C27   0.020
+02N    plan-1         H22   0.020
+02N    plan-1         H23   0.020
+02N    plan-1         H25   0.020
+02N    plan-1         H26   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+02N           SMILES              ACDLabs 12.01                                        NCc1ccc(cc1)C
+02N            InChI                InChI  1.03 InChI=1S/C8H11N/c1-7-2-4-8(6-9)5-3-7/h2-5H,6,9H2,1H3
+02N         InChIKey                InChI  1.03                          HMTSWYPNXFHGEP-UHFFFAOYSA-N
+02N SMILES_CANONICAL               CACTVS 3.370                                        Cc1ccc(CN)cc1
+02N           SMILES               CACTVS 3.370                                        Cc1ccc(CN)cc1
+02N SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                        Cc1ccc(cc1)CN
+02N           SMILES "OpenEye OEToolkits" 1.7.2                                        Cc1ccc(cc1)CN
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+02N acedrg               243         "dictionary generator"                  
+02N acedrg_database      11          "data source"                           
+02N rdkit                2017.03.2   "Chemoinformatics tool"
+02N refmac5              5.8.0238    "optimization tool"                     

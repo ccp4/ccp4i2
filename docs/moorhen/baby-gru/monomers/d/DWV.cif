@@ -1,0 +1,283 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DWV     DWV      (5Z)-5-(3,4-dichlorobenzylidene)-2-(4-methylpiperazin-1-yl)-1,3-thiazol-4(5H)-one     NON-POLYMER     37     22     .     
+#
+data_comp_DWV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DWV     CAK     C       CH2     0       15.658      39.684      18.467      
+DWV     CAI     C       CH2     0       17.035      39.209      18.869      
+DWV     NAU     N       NT      0       18.042      39.638      17.898      
+DWV     CAA     C       CH3     0       19.383      39.247      18.330      
+DWV     CAJ     C       CH2     0       17.724      39.061      16.592      
+DWV     CAL     C       CH2     0       16.371      39.524      16.105      
+DWV     NAV     N       NR6     0       15.315      39.258      17.099      
+DWV     CAR     C       CR5     0       14.108      38.772      16.774      
+DWV     SAN     S       S2      0       13.484      38.484      15.183      
+DWV     NAM     N       NRD5    0       13.129      38.452      17.598      
+DWV     CAS     C       CR5     0       12.429      37.348      17.142      
+DWV     OAB     O       O       0       11.905      36.500      17.858      
+DWV     CAT     C       CR5     0       12.284      37.354      15.646      
+DWV     CAE     C       C1      0       11.456      36.610      14.889      
+DWV     CAO     C       CR6     0       11.251      36.576      13.450      
+DWV     CAH     C       CR16    0       11.130      37.760      12.715      
+DWV     CAQ     C       CR6     0       10.936      37.718      11.347      
+DWV     CLD     CL      CL      0       10.797      39.208      10.481      
+DWV     CAP     C       CR6     0       10.855      36.498      10.686      
+DWV     CLC     CL      CL      0       10.610      36.426      8.974       
+DWV     CAG     C       CR16    0       10.969      35.315      11.399      
+DWV     CAF     C       CR16    0       11.165      35.358      12.771      
+DWV     H1      H       H       0       15.007      39.334      19.094      
+DWV     H2      H       H       0       15.627      40.652      18.510      
+DWV     H3      H       H       0       17.257      39.572      19.750      
+DWV     H4      H       H       0       17.037      38.233      18.933      
+DWV     H6      H       H       0       20.038      39.551      17.675      
+DWV     H7      H       H       0       19.430      38.277      18.409      
+DWV     H8      H       H       0       19.578      39.653      19.195      
+DWV     H9      H       H       0       17.730      38.085      16.657      
+DWV     H10     H       H       0       18.408      39.326      15.945      
+DWV     H11     H       H       0       16.165      39.070      15.274      
+DWV     H12     H       H       0       16.402      40.477      15.928      
+DWV     H13     H       H       0       10.917      36.015      15.373      
+DWV     H15     H       H       0       11.186      38.591      13.153      
+DWV     H16     H       H       0       10.914      34.489      10.950      
+DWV     H17     H       H       0       11.243      34.553      13.254      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DWV         CAP         CLC      SINGLE       n     1.730  0.0100     1.730  0.0100
+DWV         CAQ         CLD      SINGLE       n     1.729  0.0100     1.729  0.0100
+DWV         CAQ         CAP      SINGLE       y     1.386  0.0100     1.386  0.0100
+DWV         CAP         CAG      DOUBLE       y     1.382  0.0100     1.382  0.0100
+DWV         CAH         CAQ      DOUBLE       y     1.377  0.0105     1.377  0.0105
+DWV         CAG         CAF      SINGLE       y     1.384  0.0100     1.384  0.0100
+DWV         CAO         CAH      SINGLE       y     1.395  0.0100     1.395  0.0100
+DWV         CAO         CAF      DOUBLE       y     1.395  0.0100     1.395  0.0100
+DWV         CAE         CAO      SINGLE       n     1.453  0.0100     1.453  0.0100
+DWV         CAT         CAE      DOUBLE       n     1.345  0.0100     1.345  0.0100
+DWV         SAN         CAT      SINGLE       n     1.734  0.0200     1.734  0.0200
+DWV         CAR         SAN      SINGLE       n     1.734  0.0200     1.734  0.0200
+DWV         CAS         CAT      SINGLE       n     1.503  0.0100     1.503  0.0100
+DWV         CAJ         CAL      SINGLE       n     1.509  0.0100     1.509  0.0100
+DWV         CAL         NAV      SINGLE       n     1.466  0.0100     1.466  0.0100
+DWV         NAV         CAR      SINGLE       n     1.333  0.0100     1.333  0.0100
+DWV         CAR         NAM      DOUBLE       n     1.304  0.0155     1.304  0.0155
+DWV         NAU         CAJ      SINGLE       n     1.462  0.0100     1.462  0.0100
+DWV         NAM         CAS      SINGLE       n     1.363  0.0192     1.363  0.0192
+DWV         CAS         OAB      DOUBLE       n     1.228  0.0100     1.228  0.0100
+DWV         CAK         NAV      SINGLE       n     1.466  0.0100     1.466  0.0100
+DWV         NAU         CAA      SINGLE       n     1.462  0.0100     1.462  0.0100
+DWV         CAI         NAU      SINGLE       n     1.462  0.0100     1.462  0.0100
+DWV         CAK         CAI      SINGLE       n     1.509  0.0100     1.509  0.0100
+DWV         CAK          H1      SINGLE       n     1.089  0.0100     0.970  0.0100
+DWV         CAK          H2      SINGLE       n     1.089  0.0100     0.970  0.0100
+DWV         CAI          H3      SINGLE       n     1.089  0.0100     0.978  0.0109
+DWV         CAI          H4      SINGLE       n     1.089  0.0100     0.978  0.0109
+DWV         CAA          H6      SINGLE       n     1.089  0.0100     0.975  0.0100
+DWV         CAA          H7      SINGLE       n     1.089  0.0100     0.975  0.0100
+DWV         CAA          H8      SINGLE       n     1.089  0.0100     0.975  0.0100
+DWV         CAJ          H9      SINGLE       n     1.089  0.0100     0.978  0.0109
+DWV         CAJ         H10      SINGLE       n     1.089  0.0100     0.978  0.0109
+DWV         CAL         H11      SINGLE       n     1.089  0.0100     0.970  0.0100
+DWV         CAL         H12      SINGLE       n     1.089  0.0100     0.970  0.0100
+DWV         CAE         H13      SINGLE       n     1.082  0.0130     0.937  0.0100
+DWV         CAH         H15      SINGLE       n     1.082  0.0130     0.941  0.0132
+DWV         CAG         H16      SINGLE       n     1.082  0.0130     0.941  0.0134
+DWV         CAF         H17      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DWV         NAV         CAK         CAI     110.420    1.50
+DWV         NAV         CAK          H1     109.135    1.50
+DWV         NAV         CAK          H2     109.135    1.50
+DWV         CAI         CAK          H1     109.656    1.50
+DWV         CAI         CAK          H2     109.656    1.50
+DWV          H1         CAK          H2     108.431    1.50
+DWV         NAU         CAI         CAK     111.069    1.50
+DWV         NAU         CAI          H3     109.480    1.50
+DWV         NAU         CAI          H4     109.480    1.50
+DWV         CAK         CAI          H3     109.482    1.50
+DWV         CAK         CAI          H4     109.482    1.50
+DWV          H3         CAI          H4     108.187    1.50
+DWV         CAJ         NAU         CAA     110.746    1.50
+DWV         CAJ         NAU         CAI     109.130    1.50
+DWV         CAA         NAU         CAI     110.746    1.50
+DWV         NAU         CAA          H6     109.526    1.50
+DWV         NAU         CAA          H7     109.526    1.50
+DWV         NAU         CAA          H8     109.526    1.50
+DWV          H6         CAA          H7     109.428    1.50
+DWV          H6         CAA          H8     109.428    1.50
+DWV          H7         CAA          H8     109.428    1.50
+DWV         CAL         CAJ         NAU     111.069    1.50
+DWV         CAL         CAJ          H9     109.482    1.50
+DWV         CAL         CAJ         H10     109.482    1.50
+DWV         NAU         CAJ          H9     109.480    1.50
+DWV         NAU         CAJ         H10     109.480    1.50
+DWV          H9         CAJ         H10     108.187    1.50
+DWV         CAJ         CAL         NAV     110.420    1.50
+DWV         CAJ         CAL         H11     109.656    1.50
+DWV         CAJ         CAL         H12     109.656    1.50
+DWV         NAV         CAL         H11     109.135    1.50
+DWV         NAV         CAL         H12     109.135    1.50
+DWV         H11         CAL         H12     108.431    1.50
+DWV         CAL         NAV         CAR     122.778    1.50
+DWV         CAL         NAV         CAK     114.444    1.52
+DWV         CAR         NAV         CAK     122.778    1.50
+DWV         SAN         CAR         NAV     125.862    2.42
+DWV         SAN         CAR         NAM     106.979    2.21
+DWV         NAV         CAR         NAM     127.160    1.98
+DWV         CAT         SAN         CAR     106.979    3.00
+DWV         CAR         NAM         CAS     107.955    1.51
+DWV         CAT         CAS         NAM     111.109    1.50
+DWV         CAT         CAS         OAB     123.323    1.50
+DWV         NAM         CAS         OAB     125.568    1.50
+DWV         CAE         CAT         SAN     126.013    3.00
+DWV         CAE         CAT         CAS     127.008    1.50
+DWV         SAN         CAT         CAS     106.979    3.00
+DWV         CAO         CAE         CAT     130.922    1.50
+DWV         CAO         CAE         H13     114.567    1.50
+DWV         CAT         CAE         H13     114.511    1.50
+DWV         CAH         CAO         CAF     119.070    1.50
+DWV         CAH         CAO         CAE     120.465    2.98
+DWV         CAF         CAO         CAE     120.465    3.00
+DWV         CAQ         CAH         CAO     120.230    1.50
+DWV         CAQ         CAH         H15     119.848    1.50
+DWV         CAO         CAH         H15     119.922    1.50
+DWV         CLD         CAQ         CAP     120.911    1.50
+DWV         CLD         CAQ         CAH     119.018    1.50
+DWV         CAP         CAQ         CAH     120.071    1.50
+DWV         CLC         CAP         CAQ     121.068    1.50
+DWV         CLC         CAP         CAG     119.194    1.50
+DWV         CAQ         CAP         CAG     119.738    1.50
+DWV         CAP         CAG         CAF     119.497    1.50
+DWV         CAP         CAG         H16     120.007    1.50
+DWV         CAF         CAG         H16     120.495    1.50
+DWV         CAG         CAF         CAO     121.394    1.50
+DWV         CAG         CAF         H17     119.342    1.50
+DWV         CAO         CAF         H17     119.264    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DWV            sp3_sp3_28         NAU         CAI         CAK         NAV     180.000    10.0     3
+DWV             sp2_sp3_1         CAL         NAV         CAK         CAI       0.000    10.0     6
+DWV             sp2_sp2_8         OAB         CAS         CAT         CAE       0.000     5.0     2
+DWV            sp2_sp2_16         CAO         CAE         CAT         SAN       0.000     5.0     2
+DWV            sp2_sp2_11         CAT         CAE         CAO         CAH     180.000     5.0     2
+DWV       const_sp2_sp2_2         CAQ         CAH         CAO         CAE     180.000     5.0     2
+DWV              const_22         CAG         CAF         CAO         CAE     180.000    10.0     2
+DWV       const_sp2_sp2_6         CAO         CAH         CAQ         CLD     180.000     5.0     2
+DWV              const_12         CLC         CAP         CAQ         CLD       0.000    10.0     2
+DWV              const_14         CAF         CAG         CAP         CLC     180.000    10.0     2
+DWV            sp3_sp3_17         CAK         CAI         NAU         CAA     180.000    10.0     3
+DWV              const_17         CAO         CAF         CAG         CAP       0.000    10.0     2
+DWV            sp3_sp3_23          H6         CAA         NAU         CAJ     -60.000    10.0     3
+DWV            sp3_sp3_11         CAL         CAJ         NAU         CAA      60.000    10.0     3
+DWV             sp3_sp3_1         NAU         CAJ         CAL         NAV      60.000    10.0     3
+DWV            sp2_sp3_10         CAR         NAV         CAL         CAJ     180.000    10.0     6
+DWV            sp2_sp2_19         SAN         CAR         NAV         CAL     180.000     5.0     2
+DWV             sp2_sp2_2         NAV         CAR         SAN         CAT     180.000     5.0     2
+DWV            sp2_sp2_23         SAN         CAR         NAM         CAS       0.000     5.0     2
+DWV             sp2_sp2_4         CAE         CAT         SAN         CAR     180.000     5.0     2
+DWV            sp2_sp2_10         OAB         CAS         NAM         CAR     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DWV    chir_1    NAU    CAJ    CAI    CAA    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DWV    plan-1         CAE   0.020
+DWV    plan-1         CAF   0.020
+DWV    plan-1         CAG   0.020
+DWV    plan-1         CAH   0.020
+DWV    plan-1         CAO   0.020
+DWV    plan-1         CAP   0.020
+DWV    plan-1         CAQ   0.020
+DWV    plan-1         CLC   0.020
+DWV    plan-1         CLD   0.020
+DWV    plan-1         H15   0.020
+DWV    plan-1         H16   0.020
+DWV    plan-1         H17   0.020
+DWV    plan-2         CAK   0.020
+DWV    plan-2         CAL   0.020
+DWV    plan-2         CAR   0.020
+DWV    plan-2         NAV   0.020
+DWV    plan-3         CAR   0.020
+DWV    plan-3         NAM   0.020
+DWV    plan-3         NAV   0.020
+DWV    plan-3         SAN   0.020
+DWV    plan-4         CAS   0.020
+DWV    plan-4         CAT   0.020
+DWV    plan-4         NAM   0.020
+DWV    plan-4         OAB   0.020
+DWV    plan-5         CAE   0.020
+DWV    plan-5         CAS   0.020
+DWV    plan-5         CAT   0.020
+DWV    plan-5         SAN   0.020
+DWV    plan-6         CAE   0.020
+DWV    plan-6         CAO   0.020
+DWV    plan-6         CAT   0.020
+DWV    plan-6         H13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DWV           SMILES              ACDLabs 12.01                                                                            Clc1ccc(cc1Cl)\C=C2/SC(=NC2=O)N3CCN(C)CC3
+DWV            InChI                InChI  1.03 InChI=1S/C15H15Cl2N3OS/c1-19-4-6-20(7-5-19)15-18-14(21)13(22-15)9-10-2-3-11(16)12(17)8-10/h2-3,8-9H,4-7H2,1H3/b13-9-
+DWV         InChIKey                InChI  1.03                                                                                          BSGZTQWZIBOTMJ-LCYFTJDESA-N
+DWV SMILES_CANONICAL               CACTVS 3.370                                                                        CN1CCN(CC1)C2=NC(=O)C(/S2)=C/c3ccc(Cl)c(Cl)c3
+DWV           SMILES               CACTVS 3.370                                                                          CN1CCN(CC1)C2=NC(=O)C(S2)=Cc3ccc(Cl)c(Cl)c3
+DWV SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                       CN1CCN(CC1)C2=NC(=O)/C(=C/c3ccc(c(c3)Cl)Cl)/S2
+DWV           SMILES "OpenEye OEToolkits" 1.7.6                                                                          CN1CCN(CC1)C2=NC(=O)C(=Cc3ccc(c(c3)Cl)Cl)S2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DWV acedrg               243         "dictionary generator"                  
+DWV acedrg_database      11          "data source"                           
+DWV rdkit                2017.03.2   "Chemoinformatics tool"
+DWV refmac5              5.8.0238    "optimization tool"                     

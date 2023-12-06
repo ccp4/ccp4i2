@@ -1,0 +1,365 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+O2W     O2W      "methyl ({[(3aR,4R,7R,7aR)-2-(4-aminophenyl)-1,3-dioxooctahydro-4H-4,7-ethanoisoindol-4-yl]carbamoyl}oxy)acetate"     NON-POLYMER     52     29     .     
+#
+data_comp_O2W
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+O2W     CAA     C       CH3     0       76.885      0.275       -22.788     
+O2W     NAB     N       NH2     0       67.888      1.544       -15.261     
+O2W     OAC     O       O       0       76.168      -1.387      -24.837     
+O2W     OAD     O       O       0       71.166      -1.569      -24.355     
+O2W     OAE     O       O       0       66.175      -2.448      -19.887     
+O2W     OAF     O       O       0       70.188      -0.480      -20.832     
+O2W     CAG     C       CH2     0       68.747      -4.814      -20.668     
+O2W     CAH     C       CH2     0       70.132      -4.173      -20.920     
+O2W     CAI     C       CR16    0       66.951      0.954       -17.401     
+O2W     CAJ     C       CR16    0       69.044      -0.002      -16.702     
+O2W     CAK     C       CR16    0       67.028      0.246       -18.589     
+O2W     CAL     C       CR16    0       69.113      -0.711      -17.891     
+O2W     CAM     C       CH2     0       68.273      -4.822      -23.111     
+O2W     CAN     C       CH2     0       73.838      -1.006      -24.395     
+O2W     CAO     C       CH2     0       69.683      -4.236      -23.373     
+O2W     NAP     N       NH1     0       71.452      -2.764      -22.438     
+O2W     OAQ     O       O2      0       75.542      -0.223      -23.016     
+O2W     OAR     O       O2      0       73.195      -1.745      -23.336     
+O2W     CAS     C       C       0       75.323      -0.909      -24.137     
+O2W     CAT     C       C       0       71.870      -1.983      -23.459     
+O2W     CAU     C       CR5     0       67.193      -2.216      -20.492     
+O2W     CAV     C       CR5     0       69.250      -1.229      -20.964     
+O2W     CAW     C       CR6     0       67.960      0.840       -16.442     
+O2W     CAX     C       CR6     0       68.108      -0.585      -18.832     
+O2W     CAY     C       CH1     0       67.744      -4.367      -21.743     
+O2W     CAZ     C       CH1     0       67.627      -2.827      -21.803     
+O2W     CBA     C       CH1     0       69.013      -2.197      -22.100     
+O2W     NBB     N       NR5     0       68.182      -1.324      -20.067     
+O2W     CBC     C       CT      0       70.099      -3.315      -22.205     
+O2W     HAA     H       H       0       77.166      0.811       -23.547     
+O2W     HAAA    H       H       0       77.492      -0.474      -22.676     
+O2W     HAAB    H       H       0       76.893      0.820       -21.986     
+O2W     HNAB    H       H       0       68.609      1.661       -14.777     
+O2W     HNAA    H       H       0       67.119      1.874       -14.996     
+O2W     HAG     H       H       0       68.832      -5.798      -20.693     
+O2W     HAGA    H       H       0       68.418      -4.562      -19.772     
+O2W     HAH     H       H       0       70.388      -3.617      -20.152     
+O2W     HAHA    H       H       0       70.807      -4.879      -21.020     
+O2W     HAI     H       H       0       66.214      1.520       -17.235     
+O2W     HAJ     H       H       0       69.732      -0.087      -16.061     
+O2W     HAK     H       H       0       66.348      0.326       -19.224     
+O2W     HAL     H       H       0       69.842      -1.271      -18.058     
+O2W     HAM     H       H       0       67.652      -4.523      -23.819     
+O2W     HAMA    H       H       0       68.313      -5.809      -23.137     
+O2W     HAN     H       H       0       73.454      -0.109      -24.450     
+O2W     HANA    H       H       0       73.685      -1.453      -25.252     
+O2W     HAO     H       H       0       70.335      -4.966      -23.463     
+O2W     HAOA    H       H       0       69.675      -3.727      -24.211     
+O2W     HNAP    H       H       0       72.063      -2.981      -21.815     
+O2W     HAY     H       H       0       66.864      -4.767      -21.571     
+O2W     HAZ     H       H       0       66.981      -2.575      -22.507     
+O2W     HBA     H       H       0       68.975      -1.694      -22.947     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+O2W         CAA         OAQ      SINGLE       n     1.447  0.0130     1.447  0.0130
+O2W         NAB         CAW      SINGLE       n     1.375  0.0178     1.375  0.0178
+O2W         OAC         CAS      DOUBLE       n     1.196  0.0100     1.196  0.0100
+O2W         OAD         CAT      DOUBLE       n     1.210  0.0102     1.210  0.0102
+O2W         OAE         CAU      DOUBLE       n     1.206  0.0100     1.206  0.0100
+O2W         OAF         CAV      DOUBLE       n     1.206  0.0100     1.206  0.0100
+O2W         CAG         CAY      SINGLE       n     1.533  0.0100     1.533  0.0100
+O2W         CAG         CAH      SINGLE       n     1.544  0.0101     1.544  0.0101
+O2W         CAH         CBC      SINGLE       n     1.539  0.0100     1.539  0.0100
+O2W         CAI         CAK      DOUBLE       y     1.382  0.0100     1.382  0.0100
+O2W         CAI         CAW      SINGLE       y     1.392  0.0113     1.392  0.0113
+O2W         CAJ         CAL      SINGLE       y     1.382  0.0100     1.382  0.0100
+O2W         CAJ         CAW      DOUBLE       y     1.392  0.0113     1.392  0.0113
+O2W         CAK         CAX      SINGLE       y     1.379  0.0105     1.379  0.0105
+O2W         CAL         CAX      DOUBLE       y     1.379  0.0105     1.379  0.0105
+O2W         CAM         CAO      SINGLE       n     1.544  0.0101     1.544  0.0101
+O2W         CAM         CAY      SINGLE       n     1.533  0.0100     1.533  0.0100
+O2W         CAN         CAS      SINGLE       n     1.510  0.0103     1.510  0.0103
+O2W         CAN         OAR      SINGLE       n     1.439  0.0115     1.439  0.0115
+O2W         CAO         CBC      SINGLE       n     1.539  0.0100     1.539  0.0100
+O2W         NAP         CAT      SINGLE       n     1.345  0.0111     1.345  0.0111
+O2W         NAP         CBC      SINGLE       n     1.474  0.0100     1.474  0.0100
+O2W         OAQ         CAS      SINGLE       n     1.329  0.0100     1.329  0.0100
+O2W         OAR         CAT      SINGLE       n     1.346  0.0121     1.346  0.0121
+O2W         CAU         CAZ      SINGLE       n     1.510  0.0121     1.510  0.0121
+O2W         CAU         NBB      SINGLE       n     1.394  0.0100     1.394  0.0100
+O2W         CAV         CBA      SINGLE       n     1.510  0.0121     1.510  0.0121
+O2W         CAV         NBB      SINGLE       n     1.394  0.0100     1.394  0.0100
+O2W         CAX         NBB      SINGLE       n     1.438  0.0100     1.438  0.0100
+O2W         CAY         CAZ      SINGLE       n     1.541  0.0100     1.541  0.0100
+O2W         CAZ         CBA      SINGLE       n     1.546  0.0190     1.546  0.0190
+O2W         CBA         CBC      SINGLE       n     1.537  0.0200     1.537  0.0200
+O2W         CAA         HAA      SINGLE       n     1.089  0.0100     0.970  0.0175
+O2W         CAA        HAAA      SINGLE       n     1.089  0.0100     0.970  0.0175
+O2W         CAA        HAAB      SINGLE       n     1.089  0.0100     0.970  0.0175
+O2W         NAB        HNAB      SINGLE       n     1.016  0.0100     0.877  0.0200
+O2W         NAB        HNAA      SINGLE       n     1.016  0.0100     0.877  0.0200
+O2W         CAG         HAG      SINGLE       n     1.089  0.0100     0.988  0.0100
+O2W         CAG        HAGA      SINGLE       n     1.089  0.0100     0.988  0.0100
+O2W         CAH         HAH      SINGLE       n     1.089  0.0100     0.983  0.0200
+O2W         CAH        HAHA      SINGLE       n     1.089  0.0100     0.983  0.0200
+O2W         CAI         HAI      SINGLE       n     1.082  0.0130     0.944  0.0200
+O2W         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.944  0.0200
+O2W         CAK         HAK      SINGLE       n     1.082  0.0130     0.934  0.0100
+O2W         CAL         HAL      SINGLE       n     1.082  0.0130     0.934  0.0100
+O2W         CAM         HAM      SINGLE       n     1.089  0.0100     0.988  0.0100
+O2W         CAM        HAMA      SINGLE       n     1.089  0.0100     0.988  0.0100
+O2W         CAN         HAN      SINGLE       n     1.089  0.0100     0.978  0.0138
+O2W         CAN        HANA      SINGLE       n     1.089  0.0100     0.978  0.0138
+O2W         CAO         HAO      SINGLE       n     1.089  0.0100     0.983  0.0200
+O2W         CAO        HAOA      SINGLE       n     1.089  0.0100     0.983  0.0200
+O2W         NAP        HNAP      SINGLE       n     1.016  0.0100     0.896  0.0200
+O2W         CAY         HAY      SINGLE       n     1.089  0.0100     0.982  0.0100
+O2W         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.988  0.0174
+O2W         CBA         HBA      SINGLE       n     1.089  0.0100     0.988  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+O2W         OAQ         CAA         HAA     109.367    1.50
+O2W         OAQ         CAA        HAAA     109.367    1.50
+O2W         OAQ         CAA        HAAB     109.367    1.50
+O2W         HAA         CAA        HAAA     109.532    1.53
+O2W         HAA         CAA        HAAB     109.532    1.53
+O2W        HAAA         CAA        HAAB     109.532    1.53
+O2W         CAW         NAB        HNAB     119.811    2.73
+O2W         CAW         NAB        HNAA     119.811    2.73
+O2W        HNAB         NAB        HNAA     120.379    3.00
+O2W         CAY         CAG         CAH     110.048    1.50
+O2W         CAY         CAG         HAG     109.631    1.50
+O2W         CAY         CAG        HAGA     109.631    1.50
+O2W         CAH         CAG         HAG     109.832    1.50
+O2W         CAH         CAG        HAGA     109.832    1.50
+O2W         HAG         CAG        HAGA     108.219    1.50
+O2W         CAG         CAH         CBC     109.121    1.55
+O2W         CAG         CAH         HAH     109.832    1.50
+O2W         CAG         CAH        HAHA     109.832    1.50
+O2W         CBC         CAH         HAH     109.561    1.50
+O2W         CBC         CAH        HAHA     109.561    1.50
+O2W         HAH         CAH        HAHA     108.246    1.50
+O2W         CAK         CAI         CAW     120.281    1.50
+O2W         CAK         CAI         HAI     120.109    1.50
+O2W         CAW         CAI         HAI     119.610    1.50
+O2W         CAL         CAJ         CAW     120.281    1.50
+O2W         CAL         CAJ         HAJ     120.109    1.50
+O2W         CAW         CAJ         HAJ     119.610    1.50
+O2W         CAI         CAK         CAX     120.008    1.50
+O2W         CAI         CAK         HAK     119.947    1.50
+O2W         CAX         CAK         HAK     120.045    1.50
+O2W         CAJ         CAL         CAX     120.008    1.50
+O2W         CAJ         CAL         HAL     119.947    1.50
+O2W         CAX         CAL         HAL     120.045    1.50
+O2W         CAO         CAM         CAY     110.048    1.50
+O2W         CAO         CAM         HAM     109.832    1.50
+O2W         CAO         CAM        HAMA     109.832    1.50
+O2W         CAY         CAM         HAM     109.631    1.50
+O2W         CAY         CAM        HAMA     109.631    1.50
+O2W         HAM         CAM        HAMA     108.219    1.50
+O2W         CAS         CAN         OAR     110.178    1.73
+O2W         CAS         CAN         HAN     109.507    1.50
+O2W         CAS         CAN        HANA     109.507    1.50
+O2W         OAR         CAN         HAN     109.547    1.50
+O2W         OAR         CAN        HANA     109.547    1.50
+O2W         HAN         CAN        HANA     107.776    1.50
+O2W         CAM         CAO         CBC     109.121    1.55
+O2W         CAM         CAO         HAO     109.832    1.50
+O2W         CAM         CAO        HAOA     109.832    1.50
+O2W         CBC         CAO         HAO     109.561    1.50
+O2W         CBC         CAO        HAOA     109.561    1.50
+O2W         HAO         CAO        HAOA     108.246    1.50
+O2W         CAT         NAP         CBC     125.695    2.02
+O2W         CAT         NAP        HNAP     118.144    1.94
+O2W         CBC         NAP        HNAP     116.161    1.74
+O2W         CAA         OAQ         CAS     115.969    1.50
+O2W         CAN         OAR         CAT     115.707    1.50
+O2W         OAC         CAS         CAN     125.079    1.50
+O2W         OAC         CAS         OAQ     124.878    1.50
+O2W         CAN         CAS         OAQ     110.043    1.50
+O2W         OAD         CAT         NAP     124.756    1.50
+O2W         OAD         CAT         OAR     125.231    1.50
+O2W         NAP         CAT         OAR     110.013    1.50
+O2W         OAE         CAU         CAZ     127.491    1.50
+O2W         OAE         CAU         NBB     124.147    1.50
+O2W         CAZ         CAU         NBB     108.362    1.50
+O2W         OAF         CAV         CBA     127.491    1.50
+O2W         OAF         CAV         NBB     124.147    1.50
+O2W         CBA         CAV         NBB     108.362    1.50
+O2W         NAB         CAW         CAI     120.648    1.50
+O2W         NAB         CAW         CAJ     120.648    1.50
+O2W         CAI         CAW         CAJ     118.704    1.50
+O2W         CAK         CAX         CAL     120.718    1.50
+O2W         CAK         CAX         NBB     119.641    1.50
+O2W         CAL         CAX         NBB     119.641    1.50
+O2W         CAG         CAY         CAM     109.442    1.50
+O2W         CAG         CAY         CAZ     108.902    2.52
+O2W         CAG         CAY         HAY     110.514    1.50
+O2W         CAM         CAY         CAZ     108.902    2.52
+O2W         CAM         CAY         HAY     110.514    1.50
+O2W         CAZ         CAY         HAY     110.681    1.68
+O2W         CAU         CAZ         CAY     111.864    1.69
+O2W         CAU         CAZ         CBA     104.972    1.50
+O2W         CAU         CAZ         HAZ     109.565    1.50
+O2W         CAY         CAZ         CBA     109.784    1.50
+O2W         CAY         CAZ         HAZ     109.899    1.50
+O2W         CBA         CAZ         HAZ     110.844    1.81
+O2W         CAV         CBA         CAZ     104.972    1.50
+O2W         CAV         CBA         CBC     111.864    1.69
+O2W         CAV         CBA         HBA     109.565    1.50
+O2W         CAZ         CBA         CBC     109.784    1.50
+O2W         CAZ         CBA         HBA     110.844    1.81
+O2W         CBC         CBA         HBA     109.899    1.50
+O2W         CAU         NBB         CAV     112.829    1.50
+O2W         CAU         NBB         CAX     123.586    1.50
+O2W         CAV         NBB         CAX     123.586    1.50
+O2W         CAH         CBC         CAO     108.730    1.50
+O2W         CAH         CBC         NAP     109.792    2.38
+O2W         CAH         CBC         CBA     108.902    2.52
+O2W         CAO         CBC         NAP     109.792    2.38
+O2W         CAO         CBC         CBA     108.902    2.52
+O2W         NAP         CBC         CBA     110.703    2.54
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+O2W            sp3_sp3_74         HAA         CAA         OAQ         CAS     -60.000    10.0     3
+O2W       const_sp2_sp2_5         CAI         CAK         CAX         CAL       0.000     5.0     2
+O2W       const_sp2_sp2_9         CAJ         CAL         CAX         CAK       0.000     5.0     2
+O2W            sp3_sp3_19         CAY         CAM         CAO         CBC      60.000    10.0     3
+O2W            sp3_sp3_10         CAO         CAM         CAY         CAG     -60.000    10.0     3
+O2W            sp3_sp3_86         CAS         CAN         OAR         CAT     180.000    10.0     3
+O2W            sp2_sp3_14         OAC         CAS         CAN         OAR     120.000    10.0     6
+O2W            sp3_sp3_29         CAM         CAO         CBC         NAP      60.000    10.0     3
+O2W            sp2_sp2_11         OAD         CAT         NAP         CBC       0.000     5.0     2
+O2W            sp2_sp3_19         CAT         NAP         CBC         CAH       0.000    10.0     6
+O2W            sp2_sp2_13         OAC         CAS         OAQ         CAA     180.000     5.0     2
+O2W            sp2_sp2_15         OAD         CAT         OAR         CAN     180.000     5.0     2
+O2W             sp2_sp2_5         CAI         CAW         NAB        HNAB     180.000     5.0     2
+O2W             sp2_sp3_5         OAE         CAU         CAZ         CAY     -60.000    10.0     6
+O2W            sp2_sp2_19         OAE         CAU         NBB         CAV     180.000     5.0     2
+O2W            sp2_sp3_10         OAF         CAV         CBA         CAZ     180.000    10.0     6
+O2W             sp2_sp2_3         OAF         CAV         NBB         CAU     180.000     5.0     2
+O2W            sp2_sp2_21         CAK         CAX         NBB         CAU     180.000     5.0     2
+O2W            sp3_sp3_47         CAG         CAY         CAZ         CAU      60.000    10.0     3
+O2W            sp3_sp3_55         CAU         CAZ         CBA         CAV      60.000    10.0     3
+O2W            sp3_sp3_69         CAV         CBA         CBC         NAP      60.000    10.0     3
+O2W             sp3_sp3_1         CAH         CAG         CAY         CAM      60.000    10.0     3
+O2W            sp3_sp3_77         CAY         CAG         CAH         CBC     180.000    10.0     3
+O2W            sp3_sp3_39         CAG         CAH         CBC         NAP     -60.000    10.0     3
+O2W       const_sp2_sp2_1         CAW         CAI         CAK         CAX       0.000     5.0     2
+O2W              const_22         CAK         CAI         CAW         NAB     180.000    10.0     2
+O2W              const_13         CAW         CAJ         CAL         CAX       0.000    10.0     2
+O2W              const_18         CAL         CAJ         CAW         NAB     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+O2W    chir_1    CAY    CAZ    CAG    CAM    both
+O2W    chir_2    CAZ    CAU    CBA    CAY    negative
+O2W    chir_3    CBA    CAV    CBC    CAZ    negative
+O2W    chir_4    CBC    NAP    CBA    CAH    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+O2W    plan-1         CAI   0.020
+O2W    plan-1         CAJ   0.020
+O2W    plan-1         CAK   0.020
+O2W    plan-1         CAL   0.020
+O2W    plan-1         CAW   0.020
+O2W    plan-1         CAX   0.020
+O2W    plan-1         HAI   0.020
+O2W    plan-1         HAJ   0.020
+O2W    plan-1         HAK   0.020
+O2W    plan-1         HAL   0.020
+O2W    plan-1         NAB   0.020
+O2W    plan-1         NBB   0.020
+O2W    plan-2         CAW   0.020
+O2W    plan-2        HNAA   0.020
+O2W    plan-2        HNAB   0.020
+O2W    plan-2         NAB   0.020
+O2W    plan-3         CAT   0.020
+O2W    plan-3         CBC   0.020
+O2W    plan-3        HNAP   0.020
+O2W    plan-3         NAP   0.020
+O2W    plan-4         CAN   0.020
+O2W    plan-4         CAS   0.020
+O2W    plan-4         OAC   0.020
+O2W    plan-4         OAQ   0.020
+O2W    plan-5         CAT   0.020
+O2W    plan-5         NAP   0.020
+O2W    plan-5         OAD   0.020
+O2W    plan-5         OAR   0.020
+O2W    plan-6         CAU   0.020
+O2W    plan-6         CAZ   0.020
+O2W    plan-6         NBB   0.020
+O2W    plan-6         OAE   0.020
+O2W    plan-7         CAV   0.020
+O2W    plan-7         CBA   0.020
+O2W    plan-7         NBB   0.020
+O2W    plan-7         OAF   0.020
+O2W    plan-8         CAU   0.020
+O2W    plan-8         CAV   0.020
+O2W    plan-8         CAX   0.020
+O2W    plan-8         NBB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+O2W           SMILES              ACDLabs 12.01                                                                                                                      O=C(OC)COC(=O)NC24CCC(C1C(=O)N(C(=O)C12)c3ccc(N)cc3)CC4
+O2W SMILES_CANONICAL               CACTVS 3.370                                                                                                               COC(=O)COC(=O)NC12CCC(CC1)[C@@H]3[C@H]2C(=O)N(C3=O)c4ccc(N)cc4
+O2W           SMILES               CACTVS 3.370                                                                                                                  COC(=O)COC(=O)NC12CCC(CC1)[CH]3[CH]2C(=O)N(C3=O)c4ccc(N)cc4
+O2W SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                               COC(=O)COC(=O)NC12CCC(CC1)[C@@H]3[C@H]2C(=O)N(C3=O)c4ccc(cc4)N
+O2W           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                        COC(=O)COC(=O)NC12CCC(CC1)C3C2C(=O)N(C3=O)c4ccc(cc4)N
+O2W            InChI                InChI  1.03 InChI=1S/C20H23N3O6/c1-28-14(24)10-29-19(27)22-20-8-6-11(7-9-20)15-16(20)18(26)23(17(15)25)13-4-2-12(21)3-5-13/h2-5,11,15-16H,6-10,21H2,1H3,(H,22,27)/t11-,15-,16+,20-/m1/s1
+O2W         InChIKey                InChI  1.03                                                                                                                                                  PWUNEFYJETTWLK-KCQBUTHOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+O2W acedrg               243         "dictionary generator"                  
+O2W acedrg_database      11          "data source"                           
+O2W rdkit                2017.03.2   "Chemoinformatics tool"
+O2W refmac5              5.8.0238    "optimization tool"                     

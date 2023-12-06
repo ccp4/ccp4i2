@@ -1,0 +1,370 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BMW     BMW      3-[7-(1H-benzimidazol-5-yl)-2-(morpholin-4-yl)-6,7-dihydro-5H-pyrrolo[2,3-d]pyrimidin-4-yl]phenol     NON-POLYMER     53     31     .     
+#
+data_comp_BMW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BMW     C1      C       CR16    0       46.121      17.401      32.647      
+BMW     C2      C       CR56    0       47.133      18.360      32.624      
+BMW     N3      N       NRD5    0       48.490      18.268      32.919      
+BMW     C5      C       CR15    0       48.948      19.487      32.728      
+BMW     N6      N       NR5     0       48.012      20.366      32.335      
+BMW     C7      C       CR56    0       46.831      19.674      32.258      
+BMW     C8      C       CR16    0       45.539      20.054      31.910      
+BMW     C9      C       CR16    0       44.547      19.089      31.934      
+BMW     C10     C       CR6     0       44.826      17.773      32.295      
+BMW     N11     N       NR5     0       43.764      16.794      32.310      
+BMW     C12     C       CH2     0       42.450      17.051      32.924      
+BMW     C13     C       CH2     0       41.708      15.704      32.855      
+BMW     C14     C       CR56    0       42.652      14.820      32.075      
+BMW     C15     C       CR56    0       43.825      15.504      31.781      
+BMW     N16     N       NRD6    0       44.827      14.924      31.090      
+BMW     C17     C       CR6     0       44.676      13.642      30.666      
+BMW     N18     N       NR6     0       45.690      13.049      29.983      
+BMW     C19     C       CH2     0       45.597      11.698      29.414      
+BMW     C20     C       CH2     0       46.170      11.652      28.025      
+BMW     O21     O       O2      0       47.495      12.171      27.975      
+BMW     C22     C       CH2     0       47.512      13.524      28.420      
+BMW     C23     C       CH2     0       47.021      13.650      29.834      
+BMW     N24     N       NRD6    0       43.548      12.926      30.937      
+BMW     C25     C       CR6     0       42.535      13.501      31.627      
+BMW     C26     C       CR6     0       41.333      12.662      31.874      
+BMW     C27     C       CR16    0       40.676      12.019      30.817      
+BMW     C28     C       CR16    0       40.836      12.489      33.168      
+BMW     C29     C       CR16    0       39.715      11.704      33.395      
+BMW     C30     C       CR16    0       39.072      11.074      32.345      
+BMW     C31     C       CR6     0       39.555      11.232      31.052      
+BMW     O32     O       OH1     0       38.926      10.613      29.998      
+BMW     H1      H       H       0       46.302      16.508      32.889      
+BMW     H5      H       H       0       49.845      19.720      32.855      
+BMW     HN6     H       H       0       48.131      21.201      32.165      
+BMW     H8      H       H       0       45.344      20.930      31.666      
+BMW     H9      H       H       0       43.676      19.332      31.702      
+BMW     H12     H       H       0       42.556      17.347      33.864      
+BMW     H12A    H       H       0       41.960      17.750      32.422      
+BMW     H13     H       H       0       40.844      15.796      32.393      
+BMW     H13A    H       H       0       41.543      15.340      33.754      
+BMW     H19     H       H       0       46.083      11.073      29.985      
+BMW     H19A    H       H       0       44.665      11.407      29.378      
+BMW     H20     H       H       0       45.597      12.168      27.419      
+BMW     H20A    H       H       0       46.181      10.723      27.713      
+BMW     H22     H       H       0       46.949      14.068      27.830      
+BMW     H22A    H       H       0       48.429      13.867      28.366      
+BMW     H23     H       H       0       47.647      13.201      30.435      
+BMW     H23A    H       H       0       47.001      14.596      30.078      
+BMW     H27     H       H       0       41.002      12.124      29.937      
+BMW     H28     H       H       0       41.263      12.913      33.893      
+BMW     H29     H       H       0       39.389      11.597      34.268      
+BMW     H30     H       H       0       38.311      10.541      32.504      
+BMW     HO32    H       H       0       38.266      10.077      30.134      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BMW          C1          C2      DOUBLE       y     1.393  0.0100     1.393  0.0100
+BMW          C1         C10      SINGLE       y     1.386  0.0101     1.386  0.0101
+BMW          C2          N3      SINGLE       y     1.392  0.0100     1.392  0.0100
+BMW          C2          C7      SINGLE       y     1.397  0.0100     1.397  0.0100
+BMW          N3          C5      DOUBLE       y     1.315  0.0130     1.315  0.0130
+BMW          C5          N6      SINGLE       y     1.342  0.0108     1.342  0.0108
+BMW          N6          C7      SINGLE       y     1.372  0.0118     1.372  0.0118
+BMW          C7          C8      DOUBLE       y     1.389  0.0100     1.389  0.0100
+BMW          C8          C9      SINGLE       y     1.378  0.0101     1.378  0.0101
+BMW          C9         C10      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BMW         C10         N11      SINGLE       n     1.437  0.0200     1.437  0.0200
+BMW         N11         C12      SINGLE       n     1.473  0.0100     1.473  0.0100
+BMW         N11         C15      SINGLE       n     1.395  0.0139     1.395  0.0139
+BMW         C12         C13      SINGLE       n     1.536  0.0200     1.536  0.0200
+BMW         C13         C14      SINGLE       n     1.509  0.0100     1.509  0.0100
+BMW         C14         C15      DOUBLE       y     1.389  0.0122     1.389  0.0122
+BMW         C14         C25      SINGLE       y     1.388  0.0179     1.388  0.0179
+BMW         C15         N16      SINGLE       y     1.341  0.0169     1.341  0.0169
+BMW         N16         C17      DOUBLE       y     1.350  0.0117     1.350  0.0117
+BMW         C17         N18      SINGLE       n     1.346  0.0100     1.346  0.0100
+BMW         C17         N24      SINGLE       y     1.350  0.0125     1.350  0.0125
+BMW         N18         C19      SINGLE       n     1.459  0.0100     1.459  0.0100
+BMW         N18         C23      SINGLE       n     1.459  0.0100     1.459  0.0100
+BMW         C19         C20      SINGLE       n     1.500  0.0127     1.500  0.0127
+BMW         C20         O21      SINGLE       n     1.423  0.0105     1.423  0.0105
+BMW         O21         C22      SINGLE       n     1.423  0.0105     1.423  0.0105
+BMW         C22         C23      SINGLE       n     1.500  0.0127     1.500  0.0127
+BMW         N24         C25      DOUBLE       y     1.344  0.0127     1.344  0.0127
+BMW         C25         C26      SINGLE       n     1.486  0.0100     1.486  0.0100
+BMW         C26         C27      DOUBLE       y     1.397  0.0100     1.397  0.0100
+BMW         C26         C28      SINGLE       y     1.393  0.0100     1.393  0.0100
+BMW         C27         C31      SINGLE       y     1.385  0.0120     1.385  0.0120
+BMW         C28         C29      DOUBLE       y     1.384  0.0100     1.384  0.0100
+BMW         C29         C30      SINGLE       y     1.380  0.0100     1.380  0.0100
+BMW         C30         C31      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BMW         C31         O32      SINGLE       n     1.374  0.0155     1.374  0.0155
+BMW          C1          H1      SINGLE       n     1.082  0.0130     0.942  0.0173
+BMW          C5          H5      SINGLE       n     1.082  0.0130     0.936  0.0200
+BMW          N6         HN6      SINGLE       n     1.016  0.0100     0.860  0.0100
+BMW          C8          H8      SINGLE       n     1.082  0.0130     0.930  0.0100
+BMW          C9          H9      SINGLE       n     1.082  0.0130     0.934  0.0100
+BMW         C12         H12      SINGLE       n     1.089  0.0100     0.990  0.0100
+BMW         C12        H12A      SINGLE       n     1.089  0.0100     0.990  0.0100
+BMW         C13         H13      SINGLE       n     1.089  0.0100     0.984  0.0200
+BMW         C13        H13A      SINGLE       n     1.089  0.0100     0.984  0.0200
+BMW         C19         H19      SINGLE       n     1.089  0.0100     0.977  0.0100
+BMW         C19        H19A      SINGLE       n     1.089  0.0100     0.977  0.0100
+BMW         C20         H20      SINGLE       n     1.089  0.0100     0.980  0.0155
+BMW         C20        H20A      SINGLE       n     1.089  0.0100     0.980  0.0155
+BMW         C22         H22      SINGLE       n     1.089  0.0100     0.980  0.0155
+BMW         C22        H22A      SINGLE       n     1.089  0.0100     0.980  0.0155
+BMW         C23         H23      SINGLE       n     1.089  0.0100     0.977  0.0100
+BMW         C23        H23A      SINGLE       n     1.089  0.0100     0.977  0.0100
+BMW         C27         H27      SINGLE       n     1.082  0.0130     0.944  0.0200
+BMW         C28         H28      SINGLE       n     1.082  0.0130     0.942  0.0186
+BMW         C29         H29      SINGLE       n     1.082  0.0130     0.938  0.0149
+BMW         C30         H30      SINGLE       n     1.082  0.0130     0.942  0.0163
+BMW         O32        HO32      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BMW          C2          C1         C10     118.919    1.50
+BMW          C2          C1          H1     121.256    1.50
+BMW         C10          C1          H1     119.825    1.50
+BMW          C1          C2          N3     130.507    1.50
+BMW          C1          C2          C7     120.378    1.50
+BMW          N3          C2          C7     109.115    1.50
+BMW          C2          N3          C5     104.453    1.50
+BMW          N3          C5          N6     113.970    1.50
+BMW          N3          C5          H5     123.031    1.50
+BMW          N6          C5          H5     122.999    1.50
+BMW          C5          N6          C7     106.684    1.50
+BMW          C5          N6         HN6     126.615    2.71
+BMW          C7          N6         HN6     126.702    1.50
+BMW          C2          C7          N6     105.778    1.50
+BMW          C2          C7          C8     122.482    1.50
+BMW          N6          C7          C8     131.740    1.50
+BMW          C7          C8          C9     117.996    1.50
+BMW          C7          C8          H8     121.211    1.50
+BMW          C9          C8          H8     120.793    1.50
+BMW          C8          C9         C10     120.534    1.50
+BMW          C8          C9          H9     119.308    1.50
+BMW         C10          C9          H9     120.157    1.50
+BMW          C1         C10          C9     119.693    1.64
+BMW          C1         C10         N11     120.270    1.50
+BMW          C9         C10         N11     120.038    1.50
+BMW         C10         N11         C12     122.822    1.58
+BMW         C10         N11         C15     125.745    3.00
+BMW         C12         N11         C15     111.433    1.81
+BMW         N11         C12         C13     104.362    1.50
+BMW         N11         C12         H12     110.605    2.25
+BMW         N11         C12        H12A     110.605    2.25
+BMW         C13         C12         H12     110.818    1.50
+BMW         C13         C12        H12A     110.818    1.50
+BMW         H12         C12        H12A     108.870    1.50
+BMW         C12         C13         C14     102.578    1.62
+BMW         C12         C13         H13     111.283    1.50
+BMW         C12         C13        H13A     111.283    1.50
+BMW         C14         C13         H13     111.158    1.50
+BMW         C14         C13        H13A     111.158    1.50
+BMW         H13         C13        H13A     108.439    1.70
+BMW         C13         C14         C15     110.071    1.50
+BMW         C13         C14         C25     130.941    2.27
+BMW         C15         C14         C25     118.988    1.50
+BMW         N11         C15         C14     109.413    2.06
+BMW         N11         C15         N16     128.185    1.94
+BMW         C14         C15         N16     122.401    1.50
+BMW         C15         N16         C17     118.208    1.67
+BMW         N16         C17         N18     118.701    1.50
+BMW         N16         C17         N24     122.583    1.50
+BMW         N18         C17         N24     118.716    1.50
+BMW         C17         N18         C19     123.020    1.50
+BMW         C17         N18         C23     123.020    1.50
+BMW         C19         N18         C23     113.959    1.50
+BMW         N18         C19         C20     109.692    1.50
+BMW         N18         C19         H19     109.723    1.50
+BMW         N18         C19        H19A     109.723    1.50
+BMW         C20         C19         H19     109.720    1.50
+BMW         C20         C19        H19A     109.720    1.50
+BMW         H19         C19        H19A     108.247    1.50
+BMW         C19         C20         O21     111.654    1.50
+BMW         C19         C20         H20     109.316    1.50
+BMW         C19         C20        H20A     109.316    1.50
+BMW         O21         C20         H20     109.195    1.50
+BMW         O21         C20        H20A     109.195    1.50
+BMW         H20         C20        H20A     108.175    1.50
+BMW         C20         O21         C22     109.829    1.50
+BMW         O21         C22         C23     111.654    1.50
+BMW         O21         C22         H22     109.195    1.50
+BMW         O21         C22        H22A     109.195    1.50
+BMW         C23         C22         H22     109.316    1.50
+BMW         C23         C22        H22A     109.316    1.50
+BMW         H22         C22        H22A     108.175    1.50
+BMW         N18         C23         C22     109.692    1.50
+BMW         N18         C23         H23     109.723    1.50
+BMW         N18         C23        H23A     109.723    1.50
+BMW         C22         C23         H23     109.720    1.50
+BMW         C22         C23        H23A     109.720    1.50
+BMW         H23         C23        H23A     108.247    1.50
+BMW         C17         N24         C25     118.007    1.50
+BMW         C14         C25         N24     119.814    1.99
+BMW         C14         C25         C26     123.203    2.53
+BMW         N24         C25         C26     116.983    1.50
+BMW         C25         C26         C27     120.779    1.50
+BMW         C25         C26         C28     120.779    1.50
+BMW         C27         C26         C28     118.442    1.50
+BMW         C26         C27         C31     120.554    1.50
+BMW         C26         C27         H27     119.464    1.50
+BMW         C31         C27         H27     119.982    1.50
+BMW         C26         C28         C29     120.634    1.50
+BMW         C26         C28         H28     119.690    1.50
+BMW         C29         C28         H28     119.676    1.50
+BMW         C28         C29         C30     120.644    1.50
+BMW         C28         C29         H29     119.811    1.50
+BMW         C30         C29         H29     119.545    1.50
+BMW         C29         C30         C31     119.516    1.50
+BMW         C29         C30         H30     120.339    1.50
+BMW         C31         C30         H30     120.145    1.50
+BMW         C27         C31         C30     120.211    1.50
+BMW         C27         C31         O32     119.895    3.00
+BMW         C30         C31         O32     119.895    3.00
+BMW         C31         O32        HO32     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BMW       const_sp2_sp2_2         C10          C1          C2          N3     180.000     5.0     2
+BMW              const_65          C2          C1         C10          C9       0.000    10.0     2
+BMW             sp3_sp3_1         N11         C12         C13         C14     -60.000    10.0     3
+BMW             sp2_sp3_7         C15         C14         C13         C12       0.000    10.0     6
+BMW              const_21         C13         C14         C15         N11       0.000    10.0     2
+BMW              const_71         C13         C14         C25         N24     180.000    10.0     2
+BMW              const_26         N11         C15         N16         C17     180.000    10.0     2
+BMW              const_28         N18         C17         N16         C15     180.000    10.0     2
+BMW             sp2_sp2_9         N16         C17         N18         C19     180.000     5.0     2
+BMW              const_29         N16         C17         N24         C25       0.000    10.0     2
+BMW            sp2_sp3_16         C17         N18         C19         C20     180.000    10.0     6
+BMW            sp2_sp3_22         C17         N18         C23         C22     180.000    10.0     6
+BMW            sp3_sp3_10         N18         C19         C20         O21     -60.000    10.0     3
+BMW            sp3_sp3_19         C19         C20         O21         C22      60.000    10.0     3
+BMW            sp3_sp3_22         C23         C22         O21         C20     -60.000    10.0     3
+BMW              const_54          C1          C2          N3          C5     180.000    10.0     2
+BMW       const_sp2_sp2_6          C1          C2          C7          N6     180.000     5.0     2
+BMW            sp3_sp3_25         O21         C22         C23         N18      60.000    10.0     3
+BMW              const_31         C14         C25         N24         C17       0.000    10.0     2
+BMW            sp2_sp2_13         C14         C25         C26         C27     180.000     5.0     2
+BMW              const_35         C25         C26         C27         C31     180.000    10.0     2
+BMW              const_75         C25         C26         C28         C29     180.000    10.0     2
+BMW              const_38         C26         C27         C31         O32     180.000    10.0     2
+BMW              const_49         C26         C28         C29         C30       0.000    10.0     2
+BMW              const_45         C28         C29         C30         C31       0.000    10.0     2
+BMW              const_42         C29         C30         C31         O32     180.000    10.0     2
+BMW            sp2_sp2_17         C27         C31         O32        HO32     180.000     5.0     2
+BMW              const_55          N6          C5          N3          C2       0.000    10.0     2
+BMW              const_57          N3          C5          N6          C7       0.000    10.0     2
+BMW              const_61          C2          C7          N6          C5       0.000    10.0     2
+BMW       const_sp2_sp2_9          C2          C7          C8          C9       0.000     5.0     2
+BMW              const_13          C7          C8          C9         C10       0.000    10.0     2
+BMW              const_17          C1         C10          C9          C8       0.000    10.0     2
+BMW             sp2_sp2_1          C1         C10         N11         C12     180.000     5.0     2
+BMW             sp2_sp3_4         C10         N11         C12         C13     180.000    10.0     6
+BMW             sp2_sp2_6         C14         C15         N11         C10     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BMW    plan-1          C1   0.020
+BMW    plan-1         C10   0.020
+BMW    plan-1          C2   0.020
+BMW    plan-1          C5   0.020
+BMW    plan-1          C7   0.020
+BMW    plan-1          C8   0.020
+BMW    plan-1          C9   0.020
+BMW    plan-1          H1   0.020
+BMW    plan-1          H5   0.020
+BMW    plan-1          H8   0.020
+BMW    plan-1          H9   0.020
+BMW    plan-1         HN6   0.020
+BMW    plan-1         N11   0.020
+BMW    plan-1          N3   0.020
+BMW    plan-1          N6   0.020
+BMW    plan-2         C13   0.020
+BMW    plan-2         C14   0.020
+BMW    plan-2         C15   0.020
+BMW    plan-2         C17   0.020
+BMW    plan-2         C25   0.020
+BMW    plan-2         C26   0.020
+BMW    plan-2         N11   0.020
+BMW    plan-2         N16   0.020
+BMW    plan-2         N18   0.020
+BMW    plan-2         N24   0.020
+BMW    plan-3         C25   0.020
+BMW    plan-3         C26   0.020
+BMW    plan-3         C27   0.020
+BMW    plan-3         C28   0.020
+BMW    plan-3         C29   0.020
+BMW    plan-3         C30   0.020
+BMW    plan-3         C31   0.020
+BMW    plan-3         H27   0.020
+BMW    plan-3         H28   0.020
+BMW    plan-3         H29   0.020
+BMW    plan-3         H30   0.020
+BMW    plan-3         O32   0.020
+BMW    plan-4         C10   0.020
+BMW    plan-4         C12   0.020
+BMW    plan-4         C15   0.020
+BMW    plan-4         N11   0.020
+BMW    plan-5         C17   0.020
+BMW    plan-5         C19   0.020
+BMW    plan-5         C23   0.020
+BMW    plan-5         N18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BMW           SMILES              ACDLabs 12.01                                                                                                          n1c4c(c(nc1N2CCOCC2)c3cccc(O)c3)CCN4c6ccc5ncnc5c6
+BMW SMILES_CANONICAL               CACTVS 3.370                                                                                                       Oc1cccc(c1)c2nc(nc3N(CCc23)c4ccc5[nH]cnc5c4)N6CCOCC6
+BMW           SMILES               CACTVS 3.370                                                                                                       Oc1cccc(c1)c2nc(nc3N(CCc23)c4ccc5[nH]cnc5c4)N6CCOCC6
+BMW SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                 c1cc(cc(c1)O)c2c3c(nc(n2)N4CCOCC4)N(CC3)c5ccc6c(c5)nc[nH]6
+BMW           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                 c1cc(cc(c1)O)c2c3c(nc(n2)N4CCOCC4)N(CC3)c5ccc6c(c5)nc[nH]6
+BMW            InChI                InChI  1.03 InChI=1S/C23H22N6O2/c30-17-3-1-2-15(12-17)21-18-6-7-29(16-4-5-19-20(13-16)25-14-24-19)22(18)27-23(26-21)28-8-10-31-11-9-28/h1-5,12-14,30H,6-11H2,(H,24,25)
+BMW         InChIKey                InChI  1.03                                                                                                                                NBBUAPYZXMAOGM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BMW acedrg               243         "dictionary generator"                  
+BMW acedrg_database      11          "data source"                           
+BMW rdkit                2017.03.2   "Chemoinformatics tool"
+BMW refmac5              5.8.0238    "optimization tool"                     

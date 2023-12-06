@@ -1,0 +1,206 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DFI     DFI      2,2-DIFLUOROSTATINE     NON-POLYMER     28     14     .     
+#
+data_comp_DFI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DFI     N       N       NT2     0       21.995      10.060      21.095      
+DFI     CA      C       CH1     0       23.452      10.312      21.070      
+DFI     CB      C       CH2     0       24.053      9.866       19.730      
+DFI     CG      C       CH1     0       23.980      8.366       19.423      
+DFI     CD1     C       CH3     0       24.241      8.102       17.947      
+DFI     CD2     C       CH3     0       24.959      7.578       20.283      
+DFI     CH      C       CH1     0       23.781      11.780      21.385      
+DFI     OH      O       OH1     0       23.138      12.607      20.413      
+DFI     CM      C       CT      0       23.355      12.236      22.780      
+DFI     F1      F       F       0       22.049      11.931      22.981      
+DFI     F2      F       F       0       23.435      13.589      22.850      
+DFI     C       C       C       0       24.226      11.613      23.859      
+DFI     O       O       O       0       23.758      10.627      24.466      
+DFI     OXT     O       OC      -1      25.342      12.139      24.046      
+DFI     H       H       H       0       21.621      10.251      20.313      
+DFI     H2      H       H       0       21.834      9.206       21.277      
+DFI     HA      H       H       0       23.864      9.754       21.778      
+DFI     HB2     H       H       0       24.995      10.139      19.710      
+DFI     HB3     H       H       0       23.595      10.350      19.010      
+DFI     HG      H       H       0       23.067      8.052       19.632      
+DFI     HD11    H       H       0       24.177      7.147       17.772      
+DFI     HD12    H       H       0       25.132      8.415       17.713      
+DFI     HD13    H       H       0       23.581      8.574       17.411      
+DFI     HD21    H       H       0       24.657      7.585       21.208      
+DFI     HD22    H       H       0       25.842      7.983       20.227      
+DFI     HD23    H       H       0       25.004      6.660       19.965      
+DFI     HC      H       H       0       24.764      11.907      21.296      
+DFI     HH      H       H       0       23.613      13.294      20.264      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DFI           N          CA      SINGLE       n     1.476  0.0134     1.476  0.0134
+DFI          CA          CB      SINGLE       n     1.526  0.0200     1.526  0.0200
+DFI          CA          CH      SINGLE       n     1.534  0.0100     1.534  0.0100
+DFI          CB          CG      SINGLE       n     1.527  0.0183     1.527  0.0183
+DFI          CG         CD1      SINGLE       n     1.521  0.0151     1.521  0.0151
+DFI          CG         CD2      SINGLE       n     1.521  0.0151     1.521  0.0151
+DFI          CH          OH      SINGLE       n     1.426  0.0179     1.426  0.0179
+DFI          CH          CM      SINGLE       n     1.522  0.0125     1.522  0.0125
+DFI          CM          F1      SINGLE       n     1.356  0.0100     1.356  0.0100
+DFI          CM          F2      SINGLE       n     1.356  0.0100     1.356  0.0100
+DFI          CM           C      SINGLE       n     1.519  0.0106     1.519  0.0106
+DFI           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+DFI           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+DFI           N           H      SINGLE       n     1.036  0.0160     0.888  0.0200
+DFI           N          H2      SINGLE       n     1.036  0.0160     0.888  0.0200
+DFI          CA          HA      SINGLE       n     1.089  0.0100     0.992  0.0135
+DFI          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0160
+DFI          CB         HB3      SINGLE       n     1.089  0.0100     0.981  0.0160
+DFI          CG          HG      SINGLE       n     1.089  0.0100     0.989  0.0162
+DFI         CD1        HD11      SINGLE       n     1.089  0.0100     0.973  0.0146
+DFI         CD1        HD12      SINGLE       n     1.089  0.0100     0.973  0.0146
+DFI         CD1        HD13      SINGLE       n     1.089  0.0100     0.973  0.0146
+DFI         CD2        HD21      SINGLE       n     1.089  0.0100     0.973  0.0146
+DFI         CD2        HD22      SINGLE       n     1.089  0.0100     0.973  0.0146
+DFI         CD2        HD23      SINGLE       n     1.089  0.0100     0.973  0.0146
+DFI          CH          HC      SINGLE       n     1.089  0.0100     0.995  0.0200
+DFI          OH          HH      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DFI          CA           N           H     109.715    3.00
+DFI          CA           N          H2     109.715    3.00
+DFI           H           N          H2     107.559    3.00
+DFI           N          CA          CB     110.129    2.63
+DFI           N          CA          CH     111.883    2.59
+DFI           N          CA          HA     107.944    1.55
+DFI          CB          CA          CH     112.607    1.50
+DFI          CB          CA          HA     107.815    1.50
+DFI          CH          CA          HA     107.639    1.50
+DFI          CA          CB          CG     115.419    1.50
+DFI          CA          CB         HB2     108.489    1.50
+DFI          CA          CB         HB3     108.489    1.50
+DFI          CG          CB         HB2     108.478    1.50
+DFI          CG          CB         HB3     108.478    1.50
+DFI         HB2          CB         HB3     107.542    1.50
+DFI          CB          CG         CD1     110.880    1.50
+DFI          CB          CG         CD2     110.880    1.50
+DFI          CB          CG          HG     108.053    1.50
+DFI         CD1          CG         CD2     110.507    1.50
+DFI         CD1          CG          HG     108.052    1.50
+DFI         CD2          CG          HG     108.052    1.50
+DFI          CG         CD1        HD11     109.488    1.50
+DFI          CG         CD1        HD12     109.488    1.50
+DFI          CG         CD1        HD13     109.488    1.50
+DFI        HD11         CD1        HD12     109.411    1.50
+DFI        HD11         CD1        HD13     109.411    1.50
+DFI        HD12         CD1        HD13     109.411    1.50
+DFI          CG         CD2        HD21     109.488    1.50
+DFI          CG         CD2        HD22     109.488    1.50
+DFI          CG         CD2        HD23     109.488    1.50
+DFI        HD21         CD2        HD22     109.411    1.50
+DFI        HD21         CD2        HD23     109.411    1.50
+DFI        HD22         CD2        HD23     109.411    1.50
+DFI          CA          CH          OH     109.040    1.72
+DFI          CA          CH          CM     112.581    1.77
+DFI          CA          CH          HC     108.500    1.50
+DFI          OH          CH          CM     108.843    2.23
+DFI          OH          CH          HC     108.183    1.96
+DFI          CM          CH          HC     108.718    1.50
+DFI          CH          OH          HH     109.265    3.00
+DFI          CH          CM          F1     110.248    2.29
+DFI          CH          CM          F2     110.248    2.29
+DFI          CH          CM           C     111.511    2.91
+DFI          F1          CM          F2     106.563    1.50
+DFI          F1          CM           C     110.637    1.50
+DFI          F2          CM           C     110.637    1.50
+DFI          CM           C           O     116.593    1.50
+DFI          CM           C         OXT     116.593    1.50
+DFI           O           C         OXT     126.814    1.75
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DFI             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+DFI             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+DFI            sp3_sp3_16           N          CA          CH          OH     180.000    10.0     3
+DFI            sp3_sp3_26          CA          CB          CG         CD1     -60.000    10.0     3
+DFI            sp3_sp3_34        HD11         CD1          CG          CB     180.000    10.0     3
+DFI            sp3_sp3_44        HD21         CD2          CG          CB     -60.000    10.0     3
+DFI            sp3_sp3_52          CA          CH          OH          HH     180.000    10.0     3
+DFI            sp3_sp3_55          CA          CH          CM          F1     180.000    10.0     3
+DFI             sp2_sp3_3           O           C          CM          CH    -120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DFI    chir_1    CA    N    CH    CB    positive
+DFI    chir_2    CG    CB    CD1    CD2    both
+DFI    chir_3    CH    OH    CM    CA    negative
+DFI    chir_4    CM    F1    F2    C    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DFI    plan-1           C   0.020
+DFI    plan-1          CM   0.020
+DFI    plan-1           O   0.020
+DFI    plan-1         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DFI           SMILES              ACDLabs 10.04                                                                        FC(F)(C(=O)O)C(O)C(N)CC(C)C
+DFI SMILES_CANONICAL               CACTVS 3.341                                                               CC(C)C[C@H](N)[C@@H](O)C(F)(F)C(O)=O
+DFI           SMILES               CACTVS 3.341                                                                  CC(C)C[CH](N)[CH](O)C(F)(F)C(O)=O
+DFI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                               CC(C)C[C@@H]([C@H](C(C(=O)O)(F)F)O)N
+DFI           SMILES "OpenEye OEToolkits" 1.5.0                                                                        CC(C)CC(C(C(C(=O)O)(F)F)O)N
+DFI            InChI                InChI  1.03 InChI=1S/C8H15F2NO3/c1-4(2)3-5(11)6(12)8(9,10)7(13)14/h4-6,12H,3,11H2,1-2H3,(H,13,14)/t5-,6+/m0/s1
+DFI         InChIKey                InChI  1.03                                                                        SUJALIOOVGLZNM-NTSWFWBYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DFI acedrg               243         "dictionary generator"                  
+DFI acedrg_database      11          "data source"                           
+DFI rdkit                2017.03.2   "Chemoinformatics tool"
+DFI refmac5              5.8.0238    "optimization tool"                     

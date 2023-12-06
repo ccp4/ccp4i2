@@ -1,0 +1,152 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+THE     THE      "THREONATE ION"     NON-POLYMER     16     9     .     
+#
+data_comp_THE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+THE     C1      C       CH2     0       32.725      31.540      57.645      
+THE     C2      C       CH1     0       33.471      32.854      57.505      
+THE     C3      C       CH1     0       34.993      32.686      57.575      
+THE     C4      C       C       0       35.704      33.991      57.197      
+THE     O1      O       OH1     0       32.957      30.685      56.528      
+THE     O2      O       OH1     0       33.042      33.757      58.525      
+THE     O3      O       OH1     0       35.372      32.256      58.873      
+THE     O4      O       O       0       35.580      34.954      57.980      
+THE     O5      O       OC      -1      36.356      33.997      56.134      
+THE     H11     H       H       0       31.757      31.723      57.717      
+THE     H12     H       H       0       33.016      31.083      58.471      
+THE     H2      H       H       0       33.241      33.244      56.619      
+THE     H3      H       H       0       35.262      31.992      56.925      
+THE     HO1     H       H       0       32.571      29.947      56.674      
+THE     HO2     H       H       0       33.229      33.464      59.299      
+THE     HO3     H       H       0       36.167      31.962      58.845      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+THE          C1          C2      SINGLE       n     1.516  0.0120     1.516  0.0120
+THE          C1          O1      SINGLE       n     1.425  0.0100     1.425  0.0100
+THE          C2          C3      SINGLE       n     1.531  0.0100     1.531  0.0100
+THE          C2          O2      SINGLE       n     1.426  0.0179     1.426  0.0179
+THE          C3          C4      SINGLE       n     1.533  0.0100     1.533  0.0100
+THE          C3          O3      SINGLE       n     1.419  0.0162     1.419  0.0162
+THE          C4          O4      DOUBLE       n     1.247  0.0187     1.247  0.0187
+THE          C4          O5      SINGLE       n     1.247  0.0187     1.247  0.0187
+THE          C1         H11      SINGLE       n     1.089  0.0100     0.988  0.0200
+THE          C1         H12      SINGLE       n     1.089  0.0100     0.988  0.0200
+THE          C2          H2      SINGLE       n     1.089  0.0100     0.995  0.0200
+THE          C3          H3      SINGLE       n     1.089  0.0100     0.988  0.0129
+THE          O1         HO1      SINGLE       n     0.970  0.0120     0.846  0.0200
+THE          O2         HO2      SINGLE       n     0.970  0.0120     0.848  0.0200
+THE          O3         HO3      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+THE          C2          C1          O1     111.364    1.50
+THE          C2          C1         H11     109.234    1.50
+THE          C2          C1         H12     109.234    1.50
+THE          O1          C1         H11     109.268    1.50
+THE          O1          C1         H12     109.268    1.50
+THE         H11          C1         H12     108.313    1.50
+THE          C1          C2          C3     111.094    2.85
+THE          C1          C2          O2     109.623    1.60
+THE          C1          C2          H2     107.986    1.50
+THE          C3          C2          O2     109.317    1.50
+THE          C3          C2          H2     108.238    1.72
+THE          O2          C2          H2     108.591    1.50
+THE          C2          C3          C4     111.511    2.91
+THE          C2          C3          O3     109.434    2.40
+THE          C2          C3          H3     108.687    1.50
+THE          C4          C3          O3     111.490    1.56
+THE          C4          C3          H3     108.467    1.50
+THE          O3          C3          H3     108.747    1.50
+THE          C3          C4          O4     117.159    1.50
+THE          C3          C4          O5     117.159    1.50
+THE          O4          C4          O5     125.683    1.50
+THE          C1          O1         HO1     108.280    3.00
+THE          C2          O2         HO2     111.202    3.00
+THE          C3          O3         HO3     108.941    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+THE             sp3_sp3_1          O1          C1          C2          C3     180.000    10.0     3
+THE            sp3_sp3_10          C2          C1          O1         HO1     180.000    10.0     3
+THE            sp3_sp3_13          C1          C2          C3          C4     180.000    10.0     3
+THE            sp3_sp3_22          C1          C2          O2         HO2     180.000    10.0     3
+THE             sp2_sp3_1          O4          C4          C3          C2       0.000    10.0     6
+THE            sp3_sp3_25          C2          C3          O3         HO3     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+THE    chir_1    C2    O2    C3    C1    negative
+THE    chir_2    C3    O3    C4    C2    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+THE    plan-1          C3   0.020
+THE    plan-1          C4   0.020
+THE    plan-1          O4   0.020
+THE    plan-1          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+THE           SMILES              ACDLabs 10.04                                                     "[O-]C(=O)C(O)C(O)CO"
+THE SMILES_CANONICAL               CACTVS 3.341                                              OC[C@@H](O)[C@H](O)C([O-])=O
+THE           SMILES               CACTVS 3.341                                                 OC[CH](O)[CH](O)C([O-])=O
+THE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                            C([C@H]([C@@H](C(=O)[O-])O)O)O
+THE           SMILES "OpenEye OEToolkits" 1.5.0                                                     C(C(C(C(=O)[O-])O)O)O
+THE            InChI                InChI  1.03 InChI=1S/C4H8O5/c5-1-2(6)3(7)4(8)9/h2-3,5-7H,1H2,(H,8,9)/p-1/t2-,3+/m1/s1
+THE         InChIKey                InChI  1.03                                               JPIJQSOTBSSVTP-GBXIJSLDSA-M
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+THE acedrg               243         "dictionary generator"                  
+THE acedrg_database      11          "data source"                           
+THE rdkit                2017.03.2   "Chemoinformatics tool"
+THE refmac5              5.8.0238    "optimization tool"                     

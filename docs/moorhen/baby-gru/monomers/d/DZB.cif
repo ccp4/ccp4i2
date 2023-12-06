@@ -1,0 +1,290 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DZB     DZB      N-(2,2-Diphenylethyl)-4-hydroxy-1,2,5-thiadiazole-3-carboxamide     NON-POLYMER     38     23     .     
+#
+data_comp_DZB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DZB     C3      C       CR5     0       40.516      74.365      61.180      
+DZB     C4      C       CR5     0       39.795      73.163      61.491      
+DZB     N2      N       NRD5    0       41.579      74.112      60.456      
+DZB     C11     C       CH2     0       38.408      77.486      61.587      
+DZB     C12     C       CH1     0       37.371      77.345      62.708      
+DZB     C13     C       CR6     0       36.145      76.525      62.308      
+DZB     C14     C       CR16    0       35.700      75.473      63.111      
+DZB     C15     C       CR16    0       34.583      74.727      62.755      
+DZB     C16     C       CR16    0       33.889      75.024      61.599      
+DZB     C17     C       CR16    0       34.309      76.062      60.795      
+DZB     C18     C       CR16    0       35.426      76.811      61.147      
+DZB     C19     C       CR6     0       36.975      78.700      63.290      
+DZB     C20     C       CR16    0       36.505      79.724      62.468      
+DZB     C21     C       CR16    0       36.143      80.956      63.000      
+DZB     C22     C       CR16    0       36.244      81.181      64.359      
+DZB     C23     C       CR16    0       36.705      80.181      65.188      
+DZB     C24     C       CR16    0       37.068      78.948      64.661      
+DZB     C9      C       C       0       40.167      75.739      61.592      
+DZB     N10     N       NH1     0       38.966      76.191      61.215      
+DZB     N5      N       NRD5    0       40.354      72.085      60.985      
+DZB     O27     O       O       0       40.951      76.414      62.270      
+DZB     O7      O       OH1     0       38.667      73.114      62.220      
+DZB     S6      S       S2      0       41.695      72.512      60.168      
+DZB     H2      H       H       0       39.125      78.085      61.883      
+DZB     H3      H       H       0       37.991      77.893      60.800      
+DZB     H4      H       H       0       37.813      76.851      63.429      
+DZB     H5      H       H       0       36.167      75.261      63.903      
+DZB     H6      H       H       0       34.297      74.016      63.307      
+DZB     H7      H       H       0       33.130      74.516      61.359      
+DZB     H8      H       H       0       33.836      76.266      60.004      
+DZB     H9      H       H       0       35.702      77.519      60.589      
+DZB     H10     H       H       0       36.432      79.580      61.539      
+DZB     H11     H       H       0       35.828      81.639      62.431      
+DZB     H12     H       H       0       35.998      82.018      64.719      
+DZB     H13     H       H       0       36.775      80.333      66.117      
+DZB     H14     H       H       0       37.382      78.270      65.238      
+DZB     H15     H       H       0       38.469      75.681      60.706      
+DZB     H17     H       H       0       38.200      72.391      62.251      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DZB          C3          C4      SINGLE       y     1.404  0.0200     1.404  0.0200
+DZB          C3          N2      DOUBLE       y     1.307  0.0100     1.307  0.0100
+DZB          C3          C9      SINGLE       n     1.474  0.0158     1.474  0.0158
+DZB          C4          N5      DOUBLE       y     1.304  0.0200     1.304  0.0200
+DZB          C4          O7      SINGLE       n     1.343  0.0156     1.343  0.0156
+DZB          N2          S6      SINGLE       y     1.652  0.0200     1.652  0.0200
+DZB         C11         C12      SINGLE       n     1.531  0.0125     1.531  0.0125
+DZB         C11         N10      SINGLE       n     1.455  0.0100     1.455  0.0100
+DZB         C12         C13      SINGLE       n     1.525  0.0100     1.525  0.0100
+DZB         C12         C19      SINGLE       n     1.525  0.0100     1.525  0.0100
+DZB         C13         C14      DOUBLE       y     1.391  0.0100     1.391  0.0100
+DZB         C13         C18      SINGLE       y     1.391  0.0100     1.391  0.0100
+DZB         C14         C15      SINGLE       y     1.386  0.0100     1.386  0.0100
+DZB         C15         C16      DOUBLE       y     1.376  0.0124     1.376  0.0124
+DZB         C16         C17      SINGLE       y     1.374  0.0127     1.374  0.0127
+DZB         C17         C18      DOUBLE       y     1.386  0.0100     1.386  0.0100
+DZB         C19         C20      DOUBLE       y     1.391  0.0100     1.391  0.0100
+DZB         C19         C24      SINGLE       y     1.391  0.0100     1.391  0.0100
+DZB         C20         C21      SINGLE       y     1.386  0.0100     1.386  0.0100
+DZB         C21         C22      DOUBLE       y     1.376  0.0124     1.376  0.0124
+DZB         C22         C23      SINGLE       y     1.374  0.0127     1.374  0.0127
+DZB         C23         C24      DOUBLE       y     1.386  0.0100     1.386  0.0100
+DZB          C9         N10      SINGLE       n     1.332  0.0105     1.332  0.0105
+DZB          C9         O27      DOUBLE       n     1.235  0.0149     1.235  0.0149
+DZB          N5          S6      SINGLE       y     1.652  0.0200     1.652  0.0200
+DZB         C11          H2      SINGLE       n     1.089  0.0100     0.980  0.0121
+DZB         C11          H3      SINGLE       n     1.089  0.0100     0.980  0.0121
+DZB         C12          H4      SINGLE       n     1.089  0.0100     0.979  0.0200
+DZB         C14          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+DZB         C15          H6      SINGLE       n     1.082  0.0130     0.944  0.0175
+DZB         C16          H7      SINGLE       n     1.082  0.0130     0.944  0.0161
+DZB         C17          H8      SINGLE       n     1.082  0.0130     0.944  0.0175
+DZB         C18          H9      SINGLE       n     1.082  0.0130     0.944  0.0174
+DZB         C20         H10      SINGLE       n     1.082  0.0130     0.944  0.0174
+DZB         C21         H11      SINGLE       n     1.082  0.0130     0.944  0.0175
+DZB         C22         H12      SINGLE       n     1.082  0.0130     0.944  0.0161
+DZB         C23         H13      SINGLE       n     1.082  0.0130     0.944  0.0175
+DZB         C24         H14      SINGLE       n     1.082  0.0130     0.944  0.0174
+DZB         N10         H15      SINGLE       n     1.016  0.0100     0.873  0.0200
+DZB          O7         H17      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DZB          C4          C3          N2     107.606    1.50
+DZB          C4          C3          C9     129.591    3.00
+DZB          N2          C3          C9     122.803    2.35
+DZB          C3          C4          N5     109.234    1.50
+DZB          C3          C4          O7     126.940    3.00
+DZB          N5          C4          O7     123.826    3.00
+DZB          C3          N2          S6     107.720    3.00
+DZB         C12         C11         N10     111.308    2.28
+DZB         C12         C11          H2     109.328    1.50
+DZB         C12         C11          H3     109.328    1.50
+DZB         N10         C11          H2     109.052    1.50
+DZB         N10         C11          H3     109.052    1.50
+DZB          H2         C11          H3     107.873    1.50
+DZB         C11         C12         C13     111.719    2.37
+DZB         C11         C12         C19     111.719    2.37
+DZB         C11         C12          H4     107.048    1.50
+DZB         C13         C12         C19     112.469    2.39
+DZB         C13         C12          H4     106.794    1.50
+DZB         C19         C12          H4     106.794    1.50
+DZB         C12         C13         C14     120.871    1.76
+DZB         C12         C13         C18     120.871    1.76
+DZB         C14         C13         C18     118.258    1.50
+DZB         C13         C14         C15     120.763    1.50
+DZB         C13         C14          H5     119.589    1.50
+DZB         C15         C14          H5     119.648    1.50
+DZB         C14         C15         C16     120.166    1.50
+DZB         C14         C15          H6     119.872    1.50
+DZB         C16         C15          H6     119.962    1.50
+DZB         C15         C16         C17     119.884    1.50
+DZB         C15         C16          H7     120.058    1.50
+DZB         C17         C16          H7     120.058    1.50
+DZB         C16         C17         C18     120.166    1.50
+DZB         C16         C17          H8     119.962    1.50
+DZB         C18         C17          H8     119.872    1.50
+DZB         C13         C18         C17     120.763    1.50
+DZB         C13         C18          H9     119.589    1.50
+DZB         C17         C18          H9     119.648    1.50
+DZB         C12         C19         C20     120.871    1.76
+DZB         C12         C19         C24     120.871    1.76
+DZB         C20         C19         C24     118.258    1.50
+DZB         C19         C20         C21     120.763    1.50
+DZB         C19         C20         H10     119.589    1.50
+DZB         C21         C20         H10     119.648    1.50
+DZB         C20         C21         C22     120.166    1.50
+DZB         C20         C21         H11     119.872    1.50
+DZB         C22         C21         H11     119.962    1.50
+DZB         C21         C22         C23     119.884    1.50
+DZB         C21         C22         H12     120.058    1.50
+DZB         C23         C22         H12     120.058    1.50
+DZB         C22         C23         C24     120.166    1.50
+DZB         C22         C23         H13     119.962    1.50
+DZB         C24         C23         H13     119.872    1.50
+DZB         C19         C24         C23     120.763    1.50
+DZB         C19         C24         H14     119.589    1.50
+DZB         C23         C24         H14     119.648    1.50
+DZB          C3          C9         N10     116.750    1.69
+DZB          C3          C9         O27     121.443    1.50
+DZB         N10          C9         O27     121.807    1.50
+DZB         C11         N10          C9     122.441    2.29
+DZB         C11         N10         H15     118.520    1.89
+DZB          C9         N10         H15     119.039    1.50
+DZB          C4          N5          S6     107.720    3.00
+DZB          C4          O7         H17     120.000    3.00
+DZB          N2          S6          N5     107.720    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DZB              const_44          C9          C3          C4          O7       0.000    10.0     2
+DZB             sp2_sp2_1          C4          C3          C9         N10     180.000     5.0     2
+DZB              const_50          C9          C3          N2          S6     180.000    10.0     2
+DZB              const_23         C12         C19         C20         C21     180.000    10.0     2
+DZB              const_57         C12         C19         C24         C23     180.000    10.0     2
+DZB              const_25         C19         C20         C21         C22       0.000    10.0     2
+DZB              const_29         C20         C21         C22         C23       0.000    10.0     2
+DZB              const_33         C21         C22         C23         C24       0.000    10.0     2
+DZB              const_37         C22         C23         C24         C19       0.000    10.0     2
+DZB             sp2_sp2_9         O27          C9         N10         C11       0.000     5.0     2
+DZB              const_47          C4          N5          S6          N2       0.000    10.0     2
+DZB              const_46          O7          C4          N5          S6     180.000    10.0     2
+DZB             sp2_sp2_5          C3          C4          O7         H17     180.000     5.0     2
+DZB              const_48          C3          N2          S6          N5       0.000    10.0     2
+DZB             sp2_sp3_2          C9         N10         C11         C12     120.000    10.0     6
+DZB             sp3_sp3_2         N10         C11         C12         C13     -60.000    10.0     3
+DZB            sp2_sp3_14         C20         C19         C12         C11     -90.000    10.0     6
+DZB             sp2_sp3_7         C14         C13         C12         C11     150.000    10.0     6
+DZB              const_53         C12         C13         C18         C17     180.000    10.0     2
+DZB       const_sp2_sp2_3         C12         C13         C14         C15     180.000     5.0     2
+DZB       const_sp2_sp2_5         C13         C14         C15         C16       0.000     5.0     2
+DZB       const_sp2_sp2_9         C14         C15         C16         C17       0.000     5.0     2
+DZB              const_13         C15         C16         C17         C18       0.000    10.0     2
+DZB              const_17         C16         C17         C18         C13       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DZB    chir_1    C12    C11    C13    C19    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DZB    plan-1          C3   0.020
+DZB    plan-1          C4   0.020
+DZB    plan-1          C9   0.020
+DZB    plan-1          N2   0.020
+DZB    plan-1          N5   0.020
+DZB    plan-1          O7   0.020
+DZB    plan-1          S6   0.020
+DZB    plan-2         C12   0.020
+DZB    plan-2         C13   0.020
+DZB    plan-2         C14   0.020
+DZB    plan-2         C15   0.020
+DZB    plan-2         C16   0.020
+DZB    plan-2         C17   0.020
+DZB    plan-2         C18   0.020
+DZB    plan-2          H5   0.020
+DZB    plan-2          H6   0.020
+DZB    plan-2          H7   0.020
+DZB    plan-2          H8   0.020
+DZB    plan-2          H9   0.020
+DZB    plan-3         C12   0.020
+DZB    plan-3         C19   0.020
+DZB    plan-3         C20   0.020
+DZB    plan-3         C21   0.020
+DZB    plan-3         C22   0.020
+DZB    plan-3         C23   0.020
+DZB    plan-3         C24   0.020
+DZB    plan-3         H10   0.020
+DZB    plan-3         H11   0.020
+DZB    plan-3         H12   0.020
+DZB    plan-3         H13   0.020
+DZB    plan-3         H14   0.020
+DZB    plan-4          C3   0.020
+DZB    plan-4          C9   0.020
+DZB    plan-4         N10   0.020
+DZB    plan-4         O27   0.020
+DZB    plan-5         C11   0.020
+DZB    plan-5          C9   0.020
+DZB    plan-5         H15   0.020
+DZB    plan-5         N10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DZB            InChI                InChI  1.03 InChI=1S/C17H15N3O2S/c21-16(15-17(22)20-23-19-15)18-11-14(12-7-3-1-4-8-12)13-9-5-2-6-10-13/h1-10,14H,11H2,(H,18,21)(H,20,22)
+DZB         InChIKey                InChI  1.03                                                                                                  UXPRYPMZGKJFSU-UHFFFAOYSA-N
+DZB SMILES_CANONICAL               CACTVS 3.385                                                                                           Oc1nsnc1C(=O)NCC(c2ccccc2)c3ccccc3
+DZB           SMILES               CACTVS 3.385                                                                                           Oc1nsnc1C(=O)NCC(c2ccccc2)c3ccccc3
+DZB SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                       c1ccc(cc1)C(CNC(=O)c2c(nsn2)O)c3ccccc3
+DZB           SMILES "OpenEye OEToolkits" 2.0.6                                                                                       c1ccc(cc1)C(CNC(=O)c2c(nsn2)O)c3ccccc3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DZB acedrg               243         "dictionary generator"                  
+DZB acedrg_database      11          "data source"                           
+DZB rdkit                2017.03.2   "Chemoinformatics tool"
+DZB refmac5              5.8.0238    "optimization tool"                     

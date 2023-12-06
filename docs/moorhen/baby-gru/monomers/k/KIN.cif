@@ -1,0 +1,310 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KIN     KIN      1-[4-(PYRIDIN-4-YLOXY)PHENYL]-3-[3-(TRIFLUOROMETHYL)PHENYL]UREA     NON-POLYMER     41     27     .     
+#
+data_comp_KIN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KIN     C11     C       CR16    0       47.495      30.806      44.203      
+KIN     C13     C       CR16    0       47.438      31.357      42.932      
+KIN     C21     C       CR6     0       48.345      23.764      42.871      
+KIN     C22     C       CR16    0       49.720      23.643      42.698      
+KIN     C24     C       CR16    0       50.270      22.468      42.210      
+KIN     C27     C       CR16    0       48.077      21.499      42.077      
+KIN     C32     C       CR6     0       49.602      19.367      40.488      
+KIN     C33     C       CR16    0       48.774      19.711      39.435      
+KIN     C35     C       CR16    0       48.359      18.705      38.571      
+KIN     F01     F       F       0       46.973      32.375      40.397      
+KIN     C02     C       CT      0       47.230      31.070      40.445      
+KIN     F03     F       F       0       48.366      30.900      39.778      
+KIN     F04     F       F       0       46.287      30.495      39.703      
+KIN     C05     C       CR6     0       47.291      30.516      41.833      
+KIN     C06     C       CR16    0       47.206      29.133      42.009      
+KIN     C08     C       CR6     0       47.269      28.591      43.289      
+KIN     C09     C       CR16    0       47.411      29.433      44.388      
+KIN     N15     N       NH1     0       47.180      27.188      43.451      
+KIN     C17     C       C       0       48.002      26.238      42.882      
+KIN     O18     O       O       0       48.838      26.502      42.024      
+KIN     N19     N       NH1     0       47.796      24.965      43.370      
+KIN     C26     C       CR6     0       49.447      21.404      41.894      
+KIN     C29     C       CR16    0       47.529      22.680      42.559      
+KIN     O31     O       O2      0       50.104      20.267      41.427      
+KIN     N37     N       NRD6    0       48.724      17.419      38.687      
+KIN     C38     C       CR16    0       49.536      17.119      39.711      
+KIN     C40     C       CR16    0       50.002      18.052      40.629      
+KIN     H11     H       H       0       47.592      31.371      44.953      
+KIN     H13     H       H       0       47.497      32.293      42.825      
+KIN     H22     H       H       0       50.282      24.370      42.905      
+KIN     H24     H       H       0       51.202      22.399      42.093      
+KIN     H27     H       H       0       47.516      20.773      41.864      
+KIN     H33     H       H       0       48.493      20.598      39.318      
+KIN     H35     H       H       0       47.790      18.939      37.860      
+KIN     H06     H       H       0       47.112      28.561      41.266      
+KIN     H09     H       H       0       47.451      29.070      45.258      
+KIN     HN15    H       H       0       46.521      26.905      43.960      
+KIN     HN19    H       H       0       47.280      24.879      44.077      
+KIN     H29     H       H       0       46.597      22.748      42.676      
+KIN     H38     H       H       0       49.806      16.224      39.814      
+KIN     H40     H       H       0       50.569      17.800      41.333      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KIN         C11         C13      DOUBLE       y     1.380  0.0131     1.380  0.0131
+KIN         C11         C09      SINGLE       y     1.381  0.0144     1.381  0.0144
+KIN         C13         C05      SINGLE       y     1.386  0.0100     1.386  0.0100
+KIN         C21         C22      DOUBLE       y     1.388  0.0100     1.388  0.0100
+KIN         C21         C29      SINGLE       y     1.388  0.0100     1.388  0.0100
+KIN         C21         N19      SINGLE       n     1.407  0.0126     1.407  0.0126
+KIN         C22         C24      SINGLE       y     1.383  0.0100     1.383  0.0100
+KIN         C24         C26      DOUBLE       y     1.377  0.0120     1.377  0.0120
+KIN         C27         C26      SINGLE       y     1.377  0.0120     1.377  0.0120
+KIN         C27         C29      DOUBLE       y     1.383  0.0100     1.383  0.0100
+KIN         C32         C33      DOUBLE       y     1.377  0.0108     1.377  0.0108
+KIN         C32         C40      SINGLE       y     1.377  0.0108     1.377  0.0108
+KIN         C32         O31      SINGLE       n     1.390  0.0110     1.390  0.0110
+KIN         C33         C35      SINGLE       y     1.382  0.0143     1.382  0.0143
+KIN         C35         N37      DOUBLE       y     1.334  0.0140     1.334  0.0140
+KIN         F01         C02      SINGLE       n     1.329  0.0183     1.329  0.0183
+KIN         C02         F04      SINGLE       n     1.329  0.0183     1.329  0.0183
+KIN         C02         F03      SINGLE       n     1.329  0.0183     1.329  0.0183
+KIN         C02         C05      SINGLE       n     1.491  0.0100     1.491  0.0100
+KIN         C05         C06      DOUBLE       y     1.392  0.0100     1.392  0.0100
+KIN         C06         C08      SINGLE       y     1.388  0.0100     1.388  0.0100
+KIN         C08         N15      SINGLE       n     1.412  0.0105     1.412  0.0105
+KIN         C08         C09      DOUBLE       y     1.388  0.0100     1.388  0.0100
+KIN         N15         C17      SINGLE       n     1.371  0.0114     1.371  0.0114
+KIN         C17         O18      DOUBLE       n     1.225  0.0102     1.225  0.0102
+KIN         C17         N19      SINGLE       n     1.371  0.0114     1.371  0.0114
+KIN         C26         O31      SINGLE       n     1.390  0.0100     1.390  0.0100
+KIN         N37         C38      SINGLE       y     1.334  0.0140     1.334  0.0140
+KIN         C38         C40      DOUBLE       y     1.382  0.0143     1.382  0.0143
+KIN         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0185
+KIN         C13         H13      SINGLE       n     1.082  0.0130     0.944  0.0174
+KIN         C22         H22      SINGLE       n     1.082  0.0130     0.942  0.0170
+KIN         C24         H24      SINGLE       n     1.082  0.0130     0.942  0.0151
+KIN         C27         H27      SINGLE       n     1.082  0.0130     0.942  0.0151
+KIN         C33         H33      SINGLE       n     1.082  0.0130     0.939  0.0138
+KIN         C35         H35      SINGLE       n     1.082  0.0130     0.940  0.0133
+KIN         C06         H06      SINGLE       n     1.082  0.0130     0.942  0.0139
+KIN         C09         H09      SINGLE       n     1.082  0.0130     0.943  0.0178
+KIN         N15        HN15      SINGLE       n     1.016  0.0100     0.879  0.0200
+KIN         N19        HN19      SINGLE       n     1.016  0.0100     0.879  0.0200
+KIN         C29         H29      SINGLE       n     1.082  0.0130     0.942  0.0170
+KIN         C38         H38      SINGLE       n     1.082  0.0130     0.940  0.0133
+KIN         C40         H40      SINGLE       n     1.082  0.0130     0.939  0.0138
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KIN         C13         C11         C09     120.562    1.50
+KIN         C13         C11         H11     119.815    1.50
+KIN         C09         C11         H11     119.623    1.50
+KIN         C11         C13         C05     119.195    1.50
+KIN         C11         C13         H13     120.183    1.50
+KIN         C05         C13         H13     120.622    1.50
+KIN         C22         C21         C29     119.227    1.50
+KIN         C22         C21         N19     120.386    3.00
+KIN         C29         C21         N19     120.386    3.00
+KIN         C21         C22         C24     120.421    1.50
+KIN         C21         C22         H22     119.780    1.50
+KIN         C24         C22         H22     119.799    1.50
+KIN         C22         C24         C26     119.499    1.50
+KIN         C22         C24         H24     120.075    1.50
+KIN         C26         C24         H24     120.426    1.50
+KIN         C26         C27         C29     119.499    1.50
+KIN         C26         C27         H27     120.426    1.50
+KIN         C29         C27         H27     120.075    1.50
+KIN         C33         C32         C40     119.668    1.50
+KIN         C33         C32         O31     120.166    3.00
+KIN         C40         C32         O31     120.166    3.00
+KIN         C32         C33         C35     118.304    1.50
+KIN         C32         C33         H33     120.453    1.50
+KIN         C35         C33         H33     121.243    1.50
+KIN         C33         C35         N37     123.823    1.50
+KIN         C33         C35         H35     118.115    1.50
+KIN         N37         C35         H35     118.062    1.50
+KIN         F01         C02         F04     105.974    1.50
+KIN         F01         C02         F03     105.974    1.50
+KIN         F01         C02         C05     112.813    1.50
+KIN         F04         C02         F03     105.974    1.50
+KIN         F04         C02         C05     112.813    1.50
+KIN         F03         C02         C05     112.813    1.50
+KIN         C13         C05         C02     119.933    1.50
+KIN         C13         C05         C06     120.972    1.50
+KIN         C02         C05         C06     119.090    1.50
+KIN         C05         C06         C08     119.687    1.50
+KIN         C05         C06         H06     120.334    1.50
+KIN         C08         C06         H06     119.978    1.50
+KIN         C06         C08         N15     119.944    3.00
+KIN         C06         C08         C09     119.673    1.50
+KIN         N15         C08         C09     120.383    3.00
+KIN         C11         C09         C08     119.909    1.50
+KIN         C11         C09         H09     120.112    1.50
+KIN         C08         C09         H09     119.979    1.50
+KIN         C08         N15         C17     126.621    1.86
+KIN         C08         N15        HN15     116.583    1.97
+KIN         C17         N15        HN15     116.797    1.80
+KIN         N15         C17         O18     123.894    1.50
+KIN         N15         C17         N19     112.213    1.51
+KIN         O18         C17         N19     123.894    1.50
+KIN         C21         N19         C17     126.621    1.86
+KIN         C21         N19        HN19     116.583    1.97
+KIN         C17         N19        HN19     116.797    1.80
+KIN         C24         C26         C27     120.932    1.50
+KIN         C24         C26         O31     119.534    3.00
+KIN         C27         C26         O31     119.534    3.00
+KIN         C21         C29         C27     120.421    1.50
+KIN         C21         C29         H29     119.780    1.50
+KIN         C27         C29         H29     119.799    1.50
+KIN         C32         O31         C26     119.193    2.13
+KIN         C35         N37         C38     116.078    1.50
+KIN         N37         C38         C40     123.823    1.50
+KIN         N37         C38         H38     118.062    1.50
+KIN         C40         C38         H38     118.115    1.50
+KIN         C32         C40         C38     118.304    1.50
+KIN         C32         C40         H40     120.453    1.50
+KIN         C38         C40         H40     121.243    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KIN       const_sp2_sp2_1         C09         C11         C13         C05       0.000     5.0     2
+KIN              const_57         C08         C09         C11         C13       0.000    10.0     2
+KIN             sp2_sp3_1         C13         C05         C02         F01     150.000    10.0     6
+KIN              const_11         C02         C05         C06         C08     180.000    10.0     2
+KIN              const_14         C05         C06         C08         N15     180.000    10.0     2
+KIN              const_19         N15         C08         C09         C11     180.000    10.0     2
+KIN             sp2_sp2_7         C06         C08         N15         C17     180.000     5.0     2
+KIN            sp2_sp2_13         O18         C17         N15         C08       0.000     5.0     2
+KIN            sp2_sp2_15         N15         C17         N19         C21     180.000     5.0     2
+KIN       const_sp2_sp2_7         C02         C05         C13         C11     180.000     5.0     2
+KIN            sp2_sp2_19         C24         C26         O31         C32     180.000     5.0     2
+KIN              const_51         C40         C38         N37         C35       0.000    10.0     2
+KIN              const_53         N37         C38         C40         C32       0.000    10.0     2
+KIN             sp2_sp2_1         C22         C21         N19         C17     180.000     5.0     2
+KIN              const_63         N19         C21         C29         C27     180.000    10.0     2
+KIN              const_23         N19         C21         C22         C24     180.000    10.0     2
+KIN              const_25         C21         C22         C24         C26       0.000    10.0     2
+KIN              const_30         C22         C24         C26         O31     180.000    10.0     2
+KIN              const_35         O31         C26         C27         C29     180.000    10.0     2
+KIN              const_37         C26         C27         C29         C21       0.000    10.0     2
+KIN             sp2_sp2_5         C33         C32         O31         C26     180.000     5.0     2
+KIN              const_67         O31         C32         C40         C38     180.000    10.0     2
+KIN              const_43         O31         C32         C33         C35     180.000    10.0     2
+KIN              const_45         C32         C33         C35         N37       0.000    10.0     2
+KIN              const_49         C33         C35         N37         C38       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KIN    chir_1    C02    F01    F04    F03    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KIN    plan-1         C02   0.020
+KIN    plan-1         C05   0.020
+KIN    plan-1         C06   0.020
+KIN    plan-1         C08   0.020
+KIN    plan-1         C09   0.020
+KIN    plan-1         C11   0.020
+KIN    plan-1         C13   0.020
+KIN    plan-1         H06   0.020
+KIN    plan-1         H09   0.020
+KIN    plan-1         H11   0.020
+KIN    plan-1         H13   0.020
+KIN    plan-1         N15   0.020
+KIN    plan-2         C21   0.020
+KIN    plan-2         C22   0.020
+KIN    plan-2         C24   0.020
+KIN    plan-2         C26   0.020
+KIN    plan-2         C27   0.020
+KIN    plan-2         C29   0.020
+KIN    plan-2         H22   0.020
+KIN    plan-2         H24   0.020
+KIN    plan-2         H27   0.020
+KIN    plan-2         H29   0.020
+KIN    plan-2         N19   0.020
+KIN    plan-2         O31   0.020
+KIN    plan-3         C32   0.020
+KIN    plan-3         C33   0.020
+KIN    plan-3         C35   0.020
+KIN    plan-3         C38   0.020
+KIN    plan-3         C40   0.020
+KIN    plan-3         H33   0.020
+KIN    plan-3         H35   0.020
+KIN    plan-3         H38   0.020
+KIN    plan-3         H40   0.020
+KIN    plan-3         N37   0.020
+KIN    plan-3         O31   0.020
+KIN    plan-4         C08   0.020
+KIN    plan-4         C17   0.020
+KIN    plan-4        HN15   0.020
+KIN    plan-4         N15   0.020
+KIN    plan-5         C17   0.020
+KIN    plan-5         N15   0.020
+KIN    plan-5         N19   0.020
+KIN    plan-5         O18   0.020
+KIN    plan-6         C17   0.020
+KIN    plan-6         C21   0.020
+KIN    plan-6        HN19   0.020
+KIN    plan-6         N19   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KIN           SMILES              ACDLabs 10.04                                                                                 FC(F)(F)c1cccc(c1)NC(=O)Nc3ccc(Oc2ccncc2)cc3
+KIN SMILES_CANONICAL               CACTVS 3.341                                                                                 FC(F)(F)c1cccc(NC(=O)Nc2ccc(Oc3ccncc3)cc2)c1
+KIN           SMILES               CACTVS 3.341                                                                                 FC(F)(F)c1cccc(NC(=O)Nc2ccc(Oc3ccncc3)cc2)c1
+KIN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                               c1cc(cc(c1)NC(=O)Nc2ccc(cc2)Oc3ccncc3)C(F)(F)F
+KIN           SMILES "OpenEye OEToolkits" 1.5.0                                                                               c1cc(cc(c1)NC(=O)Nc2ccc(cc2)Oc3ccncc3)C(F)(F)F
+KIN            InChI                InChI  1.03 InChI=1S/C19H14F3N3O2/c20-19(21,22)13-2-1-3-15(12-13)25-18(26)24-14-4-6-16(7-5-14)27-17-8-10-23-11-9-17/h1-12H,(H2,24,25,26)
+KIN         InChIKey                InChI  1.03                                                                                                  DDDLGNOZDKDSEG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KIN acedrg               243         "dictionary generator"                  
+KIN acedrg_database      11          "data source"                           
+KIN rdkit                2017.03.2   "Chemoinformatics tool"
+KIN refmac5              5.8.0238    "optimization tool"                     

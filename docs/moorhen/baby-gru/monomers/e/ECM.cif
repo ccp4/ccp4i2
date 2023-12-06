@@ -1,0 +1,542 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ECM     ECM      "7-{8-chloro-11-[3-(4-chloro-3,5-dimethylphenoxy)propyl]-1-oxo-7-(1,3,5-trimethyl-1H-pyrazol-4-yl)-4,5-dihydro-1H-[1,4]diazepino[1,2-a]indol-2(3H)-yl}-1-methyl-1H-indole-3-carboxylic acid"     NON-POLYMER     88     50     .     
+#
+data_comp_ECM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ECM     C10     C       CH2     0       13.650      29.917      33.165      
+ECM     C13     C       CR5     0       15.493      31.956      34.598      
+ECM     C15     C       C       0       14.257      34.091      35.271      
+ECM     C17     C       CR6     0       13.816      36.462      35.737      
+ECM     C20     C       CR16    0       12.102      38.720      35.679      
+ECM     C21     C       CR56    0       13.262      38.697      34.892      
+ECM     C22     C       CR56    0       14.120      37.573      34.919      
+ECM     C24     C       CH3     0       16.297      36.960      33.753      
+ECM     C26     C       CR5     0       13.848      39.638      33.972      
+ECM     C01     C       CH3     0       16.948      24.907      31.686      
+ECM     C02     C       CR6     0       15.850      25.649      32.402      
+ECM     C03     C       CR6     0       14.960      25.001      33.269      
+ECM     C05     C       CR6     0       13.937      25.686      33.937      
+ECM     C06     C       CH3     0       12.983      24.983      34.867      
+ECM     C07     C       CR16    0       13.817      27.059      33.717      
+ECM     C08     C       CR6     0       14.687      27.732      32.861      
+ECM     C11     C       CH2     0       13.879      31.338      32.699      
+ECM     C12     C       CH2     0       15.227      31.920      33.124      
+ECM     C14     C       CR5     0       15.074      32.890      35.516      
+ECM     C18     C       CR16    0       12.660      36.512      36.508      
+ECM     C19     C       CR16    0       11.811      37.635      36.476      
+ECM     C25     C       CR15    0       14.997      39.056      33.500      
+ECM     C27     C       C       0       13.344      40.938      33.604      
+ECM     C30     C       CH2     0       15.895      35.402      36.596      
+ECM     C31     C       CH2     0       15.880      34.734      37.963      
+ECM     C32     C       CH2     0       15.262      33.348      37.992      
+ECM     C35     C       CR56    0       16.302      31.361      36.666      
+ECM     C36     C       CR56    0       16.270      30.986      35.300      
+ECM     C37     C       CR16    0       16.938      29.826      34.874      
+ECM     C38     C       CR16    0       17.624      29.054      35.786      
+ECM     C39     C       CR6     0       17.666      29.407      37.126      
+ECM     C41     C       CR6     0       16.999      30.545      37.590      
+ECM     C42     C       CR5     0       17.119      30.886      39.019      
+ECM     C43     C       CR5     0       18.015      31.806      39.537      
+ECM     C44     C       CH3     0       19.012      32.638      38.807      
+ECM     C46     C       CH3     0       18.481      32.631      41.893      
+ECM     C48     C       CR5     0       16.391      30.374      40.128      
+ECM     C49     C       CH3     0       15.301      29.357      40.208      
+ECM     C50     C       CR16    0       15.691      27.024      32.214      
+ECM     N16     N       N       0       14.633      35.281      35.828      
+ECM     N23     N       NR5     0       15.171      37.836      34.049      
+ECM     N34     N       NT      0       15.560      32.540      36.778      
+ECM     N45     N       NR5     0       17.810      31.833      40.876      
+ECM     N47     N       NRD5    0       16.822      30.959      41.243      
+ECM     O09     O       O2      0       14.654      29.076      32.580      
+ECM     O28     O       OC      -1      13.574      41.368      32.492      
+ECM     O29     O       O       0       12.702      41.584      34.407      
+ECM     O33     O       O       0       13.235      34.008      34.592      
+ECM     CL04    CL      CL      0       15.132      23.271      33.527      
+ECM     CL40    CL      CL      0       18.549      28.391      38.222      
+ECM     H1      H       H       0       12.763      29.613      32.882      
+ECM     H2      H       H       0       13.693      29.858      34.141      
+ECM     H3      H       H       0       11.531      39.467      35.662      
+ECM     H4      H       H       0       15.978      36.057      33.614      
+ECM     H5      H       H       0       16.921      36.973      34.492      
+ECM     H6      H       H       0       16.744      37.268      32.951      
+ECM     H7      H       H       0       17.528      24.478      32.336      
+ECM     H8      H       H       0       17.471      25.526      31.151      
+ECM     H9      H       H       0       16.560      24.231      31.107      
+ECM     H10     H       H       0       12.348      25.619      35.234      
+ECM     H11     H       H       0       13.481      24.573      35.594      
+ECM     H12     H       H       0       12.502      24.294      34.381      
+ECM     H13     H       H       0       13.131      27.533      34.162      
+ECM     H14     H       H       0       13.171      31.895      33.051      
+ECM     H15     H       H       0       13.825      31.357      31.730      
+ECM     H16     H       H       0       15.945      31.404      32.695      
+ECM     H17     H       H       0       15.294      32.837      32.781      
+ECM     H18     H       H       0       12.441      35.781      37.061      
+ECM     H19     H       H       0       11.031      37.641      37.010      
+ECM     H20     H       H       0       15.584      39.450      32.878      
+ECM     H21     H       H       0       16.628      35.025      36.065      
+ECM     H22     H       H       0       16.092      36.354      36.722      
+ECM     H23     H       H       0       15.389      35.306      38.580      
+ECM     H24     H       H       0       16.797      34.674      38.288      
+ECM     H25     H       H       0       14.291      33.439      38.068      
+ECM     H26     H       H       0       15.569      32.879      38.779      
+ECM     H27     H       H       0       16.914      29.580      33.966      
+ECM     H28     H       H       0       18.066      28.281      35.489      
+ECM     H29     H       H       0       19.394      33.297      39.402      
+ECM     H30     H       H       0       18.576      33.088      38.069      
+ECM     H31     H       H       0       19.716      32.070      38.463      
+ECM     H32     H       H       0       18.173      32.364      42.773      
+ECM     H33     H       H       0       18.281      33.568      41.752      
+ECM     H34     H       H       0       19.438      32.493      41.831      
+ECM     H35     H       H       0       15.397      28.840      41.024      
+ECM     H36     H       H       0       15.353      28.762      39.444      
+ECM     H37     H       H       0       14.439      29.803      40.210      
+ECM     H38     H       H       0       16.282      27.481      31.632      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ECM         C01         C02      SINGLE       n     1.505  0.0100     1.505  0.0100
+ECM         C02         C50      DOUBLE       y     1.392  0.0100     1.392  0.0100
+ECM         C02         C03      SINGLE       y     1.396  0.0100     1.396  0.0100
+ECM         C08         C50      SINGLE       y     1.386  0.0100     1.386  0.0100
+ECM         C03        CL04      SINGLE       n     1.757  0.0100     1.757  0.0100
+ECM         C03         C05      DOUBLE       y     1.396  0.0100     1.396  0.0100
+ECM         C27         O29      DOUBLE       n     1.214  0.0200     1.214  0.0200
+ECM         C08         O09      SINGLE       n     1.369  0.0106     1.369  0.0106
+ECM         C07         C08      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ECM         C10         O09      SINGLE       n     1.432  0.0101     1.432  0.0101
+ECM         C11         C12      SINGLE       n     1.526  0.0100     1.526  0.0100
+ECM         C10         C11      SINGLE       n     1.512  0.0100     1.512  0.0100
+ECM         C13         C12      SINGLE       n     1.496  0.0100     1.496  0.0100
+ECM         C25         N23      SINGLE       y     1.346  0.0122     1.346  0.0122
+ECM         C26         C25      DOUBLE       y     1.378  0.0161     1.378  0.0161
+ECM         C24         N23      SINGLE       n     1.456  0.0100     1.456  0.0100
+ECM         C26         C27      SINGLE       n     1.439  0.0187     1.439  0.0187
+ECM         C27         O28      SINGLE       n     1.214  0.0200     1.214  0.0200
+ECM         C22         N23      SINGLE       y     1.381  0.0103     1.381  0.0103
+ECM         C05         C07      SINGLE       y     1.392  0.0100     1.392  0.0100
+ECM         C05         C06      SINGLE       n     1.505  0.0100     1.505  0.0100
+ECM         C21         C26      SINGLE       y     1.444  0.0100     1.444  0.0100
+ECM         C13         C36      SINGLE       y     1.426  0.0100     1.426  0.0100
+ECM         C13         C14      DOUBLE       y     1.381  0.0200     1.381  0.0200
+ECM         C21         C22      SINGLE       y     1.407  0.0100     1.407  0.0100
+ECM         C17         C22      DOUBLE       y     1.404  0.0100     1.404  0.0100
+ECM         C20         C21      DOUBLE       y     1.398  0.0100     1.398  0.0100
+ECM         C36         C37      DOUBLE       y     1.401  0.0100     1.401  0.0100
+ECM         C37         C38      SINGLE       y     1.376  0.0100     1.376  0.0100
+ECM         C15         O33      DOUBLE       n     1.229  0.0124     1.229  0.0124
+ECM         C35         C36      SINGLE       y     1.409  0.0100     1.409  0.0100
+ECM         C15         C14      SINGLE       n     1.467  0.0130     1.467  0.0130
+ECM         C15         N16      SINGLE       n     1.354  0.0115     1.354  0.0115
+ECM         C14         N34      SINGLE       y     1.401  0.0196     1.401  0.0196
+ECM         C17         N16      SINGLE       n     1.436  0.0100     1.436  0.0100
+ECM         C17         C18      SINGLE       y     1.385  0.0135     1.385  0.0135
+ECM         C30         N16      SINGLE       n     1.476  0.0100     1.476  0.0100
+ECM         C20         C19      SINGLE       y     1.376  0.0100     1.376  0.0100
+ECM         C38         C39      DOUBLE       y     1.384  0.0100     1.384  0.0100
+ECM         C30         C31      SINGLE       n     1.520  0.0119     1.520  0.0119
+ECM         C35         N34      SINGLE       y     1.390  0.0100     1.390  0.0100
+ECM         C35         C41      DOUBLE       y     1.403  0.0112     1.403  0.0112
+ECM         C18         C19      DOUBLE       y     1.408  0.0100     1.408  0.0100
+ECM         C32         N34      SINGLE       n     1.473  0.0200     1.473  0.0200
+ECM         C39         C41      SINGLE       y     1.392  0.0100     1.392  0.0100
+ECM         C39        CL40      SINGLE       n     1.734  0.0137     1.734  0.0137
+ECM         C41         C42      SINGLE       n     1.473  0.0100     1.473  0.0100
+ECM         C31         C32      SINGLE       n     1.518  0.0100     1.518  0.0100
+ECM         C43         C44      SINGLE       n     1.488  0.0100     1.488  0.0100
+ECM         C42         C43      DOUBLE       y     1.392  0.0147     1.392  0.0147
+ECM         C42         C48      SINGLE       y     1.425  0.0141     1.425  0.0141
+ECM         C43         N45      SINGLE       y     1.354  0.0100     1.354  0.0100
+ECM         C48         C49      SINGLE       n     1.494  0.0100     1.494  0.0100
+ECM         C48         N47      DOUBLE       y     1.328  0.0100     1.328  0.0100
+ECM         N45         N47      SINGLE       y     1.366  0.0100     1.366  0.0100
+ECM         C46         N45      SINGLE       n     1.455  0.0100     1.455  0.0100
+ECM         C10          H1      SINGLE       n     1.089  0.0100     0.979  0.0131
+ECM         C10          H2      SINGLE       n     1.089  0.0100     0.979  0.0131
+ECM         C20          H3      SINGLE       n     1.082  0.0130     0.940  0.0143
+ECM         C24          H4      SINGLE       n     1.089  0.0100     0.968  0.0155
+ECM         C24          H5      SINGLE       n     1.089  0.0100     0.968  0.0155
+ECM         C24          H6      SINGLE       n     1.089  0.0100     0.968  0.0155
+ECM         C01          H7      SINGLE       n     1.089  0.0100     0.971  0.0135
+ECM         C01          H8      SINGLE       n     1.089  0.0100     0.971  0.0135
+ECM         C01          H9      SINGLE       n     1.089  0.0100     0.971  0.0135
+ECM         C06         H10      SINGLE       n     1.089  0.0100     0.971  0.0135
+ECM         C06         H11      SINGLE       n     1.089  0.0100     0.971  0.0135
+ECM         C06         H12      SINGLE       n     1.089  0.0100     0.971  0.0135
+ECM         C07         H13      SINGLE       n     1.082  0.0130     0.947  0.0170
+ECM         C11         H14      SINGLE       n     1.089  0.0100     0.970  0.0193
+ECM         C11         H15      SINGLE       n     1.089  0.0100     0.970  0.0193
+ECM         C12         H16      SINGLE       n     1.089  0.0100     0.982  0.0147
+ECM         C12         H17      SINGLE       n     1.089  0.0100     0.982  0.0147
+ECM         C18         H18      SINGLE       n     1.082  0.0130     0.942  0.0122
+ECM         C19         H19      SINGLE       n     1.082  0.0130     0.945  0.0137
+ECM         C25         H20      SINGLE       n     1.082  0.0130     0.942  0.0200
+ECM         C30         H21      SINGLE       n     1.089  0.0100     0.980  0.0127
+ECM         C30         H22      SINGLE       n     1.089  0.0100     0.980  0.0127
+ECM         C31         H23      SINGLE       n     1.089  0.0100     0.974  0.0100
+ECM         C31         H24      SINGLE       n     1.089  0.0100     0.974  0.0100
+ECM         C32         H25      SINGLE       n     1.089  0.0100     0.978  0.0180
+ECM         C32         H26      SINGLE       n     1.089  0.0100     0.978  0.0180
+ECM         C37         H27      SINGLE       n     1.082  0.0130     0.942  0.0182
+ECM         C38         H28      SINGLE       n     1.082  0.0130     0.939  0.0105
+ECM         C44         H29      SINGLE       n     1.089  0.0100     0.968  0.0138
+ECM         C44         H30      SINGLE       n     1.089  0.0100     0.968  0.0138
+ECM         C44         H31      SINGLE       n     1.089  0.0100     0.968  0.0138
+ECM         C46         H32      SINGLE       n     1.089  0.0100     0.969  0.0184
+ECM         C46         H33      SINGLE       n     1.089  0.0100     0.969  0.0184
+ECM         C46         H34      SINGLE       n     1.089  0.0100     0.969  0.0184
+ECM         C49         H35      SINGLE       n     1.089  0.0100     0.970  0.0153
+ECM         C49         H36      SINGLE       n     1.089  0.0100     0.970  0.0153
+ECM         C49         H37      SINGLE       n     1.089  0.0100     0.970  0.0153
+ECM         C50         H38      SINGLE       n     1.082  0.0130     0.947  0.0170
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ECM         O09         C10         C11     108.230    2.17
+ECM         O09         C10          H1     109.943    1.50
+ECM         O09         C10          H2     109.943    1.50
+ECM         C11         C10          H1     111.148    2.43
+ECM         C11         C10          H2     111.148    2.43
+ECM          H1         C10          H2     108.474    1.50
+ECM         C12         C13         C36     124.774    1.79
+ECM         C12         C13         C14     128.207    2.58
+ECM         C36         C13         C14     107.019    1.50
+ECM         O33         C15         C14     121.509    1.50
+ECM         O33         C15         N16     121.817    1.50
+ECM         C14         C15         N16     116.674    2.93
+ECM         C22         C17         N16     122.130    2.29
+ECM         C22         C17         C18     118.278    1.50
+ECM         N16         C17         C18     119.592    1.50
+ECM         C21         C20         C19     118.807    1.50
+ECM         C21         C20          H3     120.510    1.50
+ECM         C19         C20          H3     120.682    1.50
+ECM         C26         C21         C22     106.901    1.50
+ECM         C26         C21         C20     133.811    1.50
+ECM         C22         C21         C20     119.288    1.50
+ECM         N23         C22         C21     107.937    1.50
+ECM         N23         C22         C17     131.077    2.46
+ECM         C21         C22         C17     120.986    1.50
+ECM         N23         C24          H4     109.482    1.50
+ECM         N23         C24          H5     109.482    1.50
+ECM         N23         C24          H6     109.482    1.50
+ECM          H4         C24          H5     109.427    1.50
+ECM          H4         C24          H6     109.427    1.50
+ECM          H5         C24          H6     109.427    1.50
+ECM         C25         C26         C27     125.866    3.00
+ECM         C25         C26         C21     106.985    1.50
+ECM         C27         C26         C21     127.149    1.90
+ECM         C02         C01          H7     109.636    1.50
+ECM         C02         C01          H8     109.636    1.50
+ECM         C02         C01          H9     109.636    1.50
+ECM          H7         C01          H8     109.348    1.50
+ECM          H7         C01          H9     109.348    1.50
+ECM          H8         C01          H9     109.348    1.50
+ECM         C01         C02         C50     120.247    1.50
+ECM         C01         C02         C03     122.055    1.50
+ECM         C50         C02         C03     117.698    1.50
+ECM         C02         C03        CL04     118.959    1.50
+ECM         C02         C03         C05     122.082    2.15
+ECM        CL04         C03         C05     118.959    1.50
+ECM         C03         C05         C07     117.698    1.50
+ECM         C03         C05         C06     122.055    1.50
+ECM         C07         C05         C06     120.247    1.50
+ECM         C05         C06         H10     109.636    1.50
+ECM         C05         C06         H11     109.636    1.50
+ECM         C05         C06         H12     109.636    1.50
+ECM         H10         C06         H11     109.348    1.50
+ECM         H10         C06         H12     109.348    1.50
+ECM         H11         C06         H12     109.348    1.50
+ECM         C08         C07         C05     121.096    1.50
+ECM         C08         C07         H13     119.714    1.50
+ECM         C05         C07         H13     119.189    1.50
+ECM         C50         C08         O09     119.836    3.00
+ECM         C50         C08         C07     120.329    1.50
+ECM         O09         C08         C07     119.836    3.00
+ECM         C12         C11         C10     112.546    1.50
+ECM         C12         C11         H14     108.882    1.50
+ECM         C12         C11         H15     108.882    1.50
+ECM         C10         C11         H14     108.663    1.50
+ECM         C10         C11         H15     108.663    1.50
+ECM         H14         C11         H15     108.352    1.50
+ECM         C11         C12         C13     114.548    1.63
+ECM         C11         C12         H16     108.831    1.50
+ECM         C11         C12         H17     108.831    1.50
+ECM         C13         C12         H16     108.295    1.50
+ECM         C13         C12         H17     108.295    1.50
+ECM         H16         C12         H17     107.076    1.55
+ECM         C13         C14         C15     127.320    3.00
+ECM         C13         C14         N34     109.243    1.50
+ECM         C15         C14         N34     123.438    1.89
+ECM         C17         C18         C19     121.229    1.50
+ECM         C17         C18         H18     119.359    1.50
+ECM         C19         C18         H18     119.412    1.50
+ECM         C20         C19         C18     121.411    1.50
+ECM         C20         C19         H19     119.503    1.50
+ECM         C18         C19         H19     119.086    1.50
+ECM         N23         C25         C26     109.858    1.50
+ECM         N23         C25         H20     124.938    1.50
+ECM         C26         C25         H20     125.204    1.50
+ECM         O29         C27         C26     119.362    3.00
+ECM         O29         C27         O28     121.276    1.50
+ECM         C26         C27         O28     119.362    3.00
+ECM         N16         C30         C31     114.236    1.50
+ECM         N16         C30         H21     108.773    1.50
+ECM         N16         C30         H22     108.773    1.50
+ECM         C31         C30         H21     109.077    1.50
+ECM         C31         C30         H22     109.077    1.50
+ECM         H21         C30         H22     107.869    1.50
+ECM         C30         C31         C32     113.440    2.25
+ECM         C30         C31         H23     108.829    1.50
+ECM         C30         C31         H24     108.829    1.50
+ECM         C32         C31         H23     108.995    1.50
+ECM         C32         C31         H24     108.995    1.50
+ECM         H23         C31         H24     107.783    1.50
+ECM         N34         C32         C31     112.729    1.50
+ECM         N34         C32         H25     108.458    1.53
+ECM         N34         C32         H26     108.458    1.53
+ECM         C31         C32         H25     109.073    1.50
+ECM         C31         C32         H26     109.073    1.50
+ECM         H25         C32         H26     107.797    1.50
+ECM         C36         C35         N34     108.052    1.50
+ECM         C36         C35         C41     120.787    2.03
+ECM         N34         C35         C41     131.161    2.26
+ECM         C13         C36         C37     133.410    1.50
+ECM         C13         C36         C35     106.955    1.50
+ECM         C37         C36         C35     119.635    1.50
+ECM         C36         C37         C38     119.323    1.50
+ECM         C36         C37         H27     120.017    1.50
+ECM         C38         C37         H27     120.660    1.50
+ECM         C37         C38         C39     120.538    1.50
+ECM         C37         C38         H28     119.213    1.50
+ECM         C39         C38         H28     120.250    1.50
+ECM         C38         C39         C41     120.632    1.50
+ECM         C38         C39        CL40     119.179    1.50
+ECM         C41         C39        CL40     120.189    1.50
+ECM         C35         C41         C39     119.085    1.74
+ECM         C35         C41         C42     121.470    2.05
+ECM         C39         C41         C42     119.445    1.50
+ECM         C41         C42         C43     127.130    2.96
+ECM         C41         C42         C48     126.194    1.78
+ECM         C43         C42         C48     106.676    1.50
+ECM         C44         C43         C42     129.090    2.21
+ECM         C44         C43         N45     123.751    1.50
+ECM         C42         C43         N45     107.159    1.50
+ECM         C43         C44         H29     109.558    1.50
+ECM         C43         C44         H30     109.558    1.50
+ECM         C43         C44         H31     109.558    1.50
+ECM         H29         C44         H30     109.354    1.50
+ECM         H29         C44         H31     109.354    1.50
+ECM         H30         C44         H31     109.354    1.50
+ECM         N45         C46         H32     109.479    1.50
+ECM         N45         C46         H33     109.479    1.50
+ECM         N45         C46         H34     109.479    1.50
+ECM         H32         C46         H33     109.466    1.50
+ECM         H32         C46         H34     109.466    1.50
+ECM         H33         C46         H34     109.466    1.50
+ECM         C42         C48         C49     130.798    2.46
+ECM         C42         C48         N47     109.637    1.50
+ECM         C49         C48         N47     119.565    1.50
+ECM         C48         C49         H35     109.591    1.50
+ECM         C48         C49         H36     109.591    1.50
+ECM         C48         C49         H37     109.591    1.50
+ECM         H35         C49         H36     109.354    1.50
+ECM         H35         C49         H37     109.354    1.50
+ECM         H36         C49         H37     109.354    1.50
+ECM         C02         C50         C08     121.096    1.50
+ECM         C02         C50         H38     119.189    1.50
+ECM         C08         C50         H38     119.714    1.50
+ECM         C15         N16         C17     123.326    2.15
+ECM         C15         N16         C30     118.942    1.54
+ECM         C17         N16         C30     117.732    1.50
+ECM         C25         N23         C24     125.874    1.50
+ECM         C25         N23         C22     108.320    1.50
+ECM         C24         N23         C22     125.806    1.65
+ECM         C14         N34         C35     107.557    1.50
+ECM         C14         N34         C32     121.545    3.00
+ECM         C35         N34         C32     124.544    1.50
+ECM         C43         N45         N47     111.033    1.50
+ECM         C43         N45         C46     129.197    1.50
+ECM         N47         N45         C46     119.769    1.50
+ECM         C48         N47         N45     105.494    1.50
+ECM         C08         O09         C10     118.103    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ECM            sp3_sp3_13         O09         C10         C11         C12     180.000    10.0     3
+ECM             sp3_sp3_1         C11         C10         O09         C08     180.000    10.0     3
+ECM             const_104         C01         C02         C03        CL04       0.000    10.0     2
+ECM       const_sp2_sp2_3         C01         C02         C50         C08     180.000     5.0     2
+ECM              const_20        CL04         C03         C05         C06       0.000    10.0     2
+ECM            sp2_sp3_19         C03         C05         C06         H10     150.000    10.0     6
+ECM              const_15         C06         C05         C07         C08     180.000    10.0     2
+ECM              const_10         C05         C07         C08         O09     180.000    10.0     2
+ECM       const_sp2_sp2_7         O09         C08         C50         C02     180.000     5.0     2
+ECM             sp2_sp2_1         C50         C08         O09         C10     180.000     5.0     2
+ECM             sp3_sp3_4         C10         C11         C12         C13     180.000    10.0     3
+ECM              const_36         C15         C14         N34         C32       0.000    10.0     2
+ECM              const_53         C17         C18         C19         C20       0.000    10.0     2
+ECM             sp2_sp3_8         C36         C13         C12         C11     -90.000    10.0     6
+ECM             const_108         C12         C13         C14         C15       0.000    10.0     2
+ECM              const_24         C12         C13         C36         C37       0.000    10.0     2
+ECM              const_66         C26         C25         N23         C24     180.000    10.0     2
+ECM            sp3_sp3_22         N16         C30         C31         C32     180.000    10.0     3
+ECM            sp2_sp3_26         C15         N16         C30         C31     120.000    10.0     6
+ECM            sp3_sp3_31         C30         C31         C32         N34     180.000    10.0     3
+ECM            sp2_sp3_32         C14         N34         C32         C31     -90.000    10.0     6
+ECM              const_25         N34         C35         C36         C13       0.000    10.0     2
+ECM             const_113         C36         C35         C41         C39       0.000    10.0     2
+ECM              const_30         C36         C35         N34         C32     180.000    10.0     2
+ECM              const_75         C13         C36         C37         C38     180.000    10.0     2
+ECM              const_77         C36         C37         C38         C39       0.000    10.0     2
+ECM              const_82         C37         C38         C39        CL40     180.000    10.0     2
+ECM             sp2_sp2_8         C13         C14         C15         O33       0.000     5.0     2
+ECM            sp2_sp2_13         O33         C15         N16         C30       0.000     5.0     2
+ECM              const_87        CL40         C39         C41         C35     180.000    10.0     2
+ECM            sp2_sp2_19         C35         C41         C42         C43     180.000     5.0     2
+ECM              const_92         C41         C42         C43         C44       0.000    10.0     2
+ECM             const_120         C41         C42         C48         C49       0.000    10.0     2
+ECM            sp2_sp3_37         C42         C43         C44         H29     150.000    10.0     6
+ECM              const_96         C44         C43         N45         C46       0.000    10.0     2
+ECM            sp2_sp3_49         C43         N45         C46         H32     150.000    10.0     6
+ECM            sp2_sp3_43         C42         C48         C49         H35     150.000    10.0     6
+ECM             const_100         C49         C48         N47         N45     180.000    10.0     2
+ECM             const_111         N16         C17         C18         C19     180.000    10.0     2
+ECM            sp2_sp2_16         C22         C17         N16         C15       0.000     5.0     2
+ECM              const_40         N16         C17         C22         N23       0.000    10.0     2
+ECM              const_98         C46         N45         N47         C48     180.000    10.0     2
+ECM              const_49         C18         C19         C20         C21       0.000    10.0     2
+ECM              const_46         C19         C20         C21         C26     180.000    10.0     2
+ECM              const_41         C26         C21         C22         N23       0.000    10.0     2
+ECM              const_58         C22         C21         C26         C27     180.000    10.0     2
+ECM              const_70         C21         C22         N23         C24     180.000    10.0     2
+ECM            sp2_sp3_13         C25         N23         C24          H4     150.000    10.0     6
+ECM              const_62         N23         C25         C26         C27     180.000    10.0     2
+ECM             sp2_sp2_3         C25         C26         C27         O29     180.000     5.0     2
+ECM             sp2_sp3_1         C50         C02         C01          H7     150.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ECM    plan-1         C12   0.020
+ECM    plan-1         C13   0.020
+ECM    plan-1         C14   0.020
+ECM    plan-1         C15   0.020
+ECM    plan-1         C32   0.020
+ECM    plan-1         C35   0.020
+ECM    plan-1         C36   0.020
+ECM    plan-1         C37   0.020
+ECM    plan-1         C38   0.020
+ECM    plan-1         C39   0.020
+ECM    plan-1         C41   0.020
+ECM    plan-1         C42   0.020
+ECM    plan-1        CL40   0.020
+ECM    plan-1         H27   0.020
+ECM    plan-1         H28   0.020
+ECM    plan-1         N34   0.020
+ECM    plan-2         C17   0.020
+ECM    plan-2         C18   0.020
+ECM    plan-2         C19   0.020
+ECM    plan-2         C20   0.020
+ECM    plan-2         C21   0.020
+ECM    plan-2         C22   0.020
+ECM    plan-2         C24   0.020
+ECM    plan-2         C25   0.020
+ECM    plan-2         C26   0.020
+ECM    plan-2         C27   0.020
+ECM    plan-2         H18   0.020
+ECM    plan-2         H19   0.020
+ECM    plan-2         H20   0.020
+ECM    plan-2          H3   0.020
+ECM    plan-2         N16   0.020
+ECM    plan-2         N23   0.020
+ECM    plan-3         C01   0.020
+ECM    plan-3         C02   0.020
+ECM    plan-3         C03   0.020
+ECM    plan-3         C05   0.020
+ECM    plan-3         C06   0.020
+ECM    plan-3         C07   0.020
+ECM    plan-3         C08   0.020
+ECM    plan-3         C50   0.020
+ECM    plan-3        CL04   0.020
+ECM    plan-3         H13   0.020
+ECM    plan-3         H38   0.020
+ECM    plan-3         O09   0.020
+ECM    plan-4         C41   0.020
+ECM    plan-4         C42   0.020
+ECM    plan-4         C43   0.020
+ECM    plan-4         C44   0.020
+ECM    plan-4         C46   0.020
+ECM    plan-4         C48   0.020
+ECM    plan-4         C49   0.020
+ECM    plan-4         N45   0.020
+ECM    plan-4         N47   0.020
+ECM    plan-5         C14   0.020
+ECM    plan-5         C15   0.020
+ECM    plan-5         N16   0.020
+ECM    plan-5         O33   0.020
+ECM    plan-6         C26   0.020
+ECM    plan-6         C27   0.020
+ECM    plan-6         O28   0.020
+ECM    plan-6         O29   0.020
+ECM    plan-7         C15   0.020
+ECM    plan-7         C17   0.020
+ECM    plan-7         C30   0.020
+ECM    plan-7         N16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ECM           SMILES              ACDLabs 12.01                                                                                                                                              C(CCc1c5c(n4c1C(N(c2cccc3c2n(C)cc3C(O)=O)CCC4)=O)c(c(cc5)Cl)c6c(n(C)nc6C)C)Oc7cc(c(c(C)c7)Cl)C
+ECM            InChI                InChI  1.03 InChI=1S/C39H39Cl2N5O4/c1-21-18-25(19-22(2)34(21)41)50-17-8-11-26-28-13-14-30(40)33(32-23(3)42-44(6)24(32)4)36(28)46-16-9-15-45(38(47)37(26)46)31-12-7-10-27-29(39(48)49)20-43(5)35(27)31/h7,10,12-14,18-20H,8-9,11,15-17H2,1-6H3,(H,48,49)
+ECM         InChIKey                InChI  1.03                                                                                                                                                                                                                 SIUYYHMJPRXSEZ-UHFFFAOYSA-N
+ECM SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                Cn1cc(C(O)=O)c2cccc(N3CCCn4c(C3=O)c(CCCOc5cc(C)c(Cl)c(C)c5)c6ccc(Cl)c(c46)c7c(C)nn(C)c7C)c12
+ECM           SMILES               CACTVS 3.385                                                                                                                                                Cn1cc(C(O)=O)c2cccc(N3CCCn4c(C3=O)c(CCCOc5cc(C)c(Cl)c(C)c5)c6ccc(Cl)c(c46)c7c(C)nn(C)c7C)c12
+ECM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                    Cc1cc(cc(c1Cl)C)OCCCc2c3ccc(c(c3n4c2C(=O)N(CCC4)c5cccc6c5n(cc6C(=O)O)C)c7c(nn(c7C)C)C)Cl
+ECM           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                    Cc1cc(cc(c1Cl)C)OCCCc2c3ccc(c(c3n4c2C(=O)N(CCC4)c5cccc6c5n(cc6C(=O)O)C)c7c(nn(c7C)C)C)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ECM acedrg               243         "dictionary generator"                  
+ECM acedrg_database      11          "data source"                           
+ECM rdkit                2017.03.2   "Chemoinformatics tool"
+ECM refmac5              5.8.0238    "optimization tool"                     

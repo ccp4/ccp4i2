@@ -1,0 +1,370 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LOC     LOC      N-[(7S)-1,2,3,10-tetramethoxy-9-oxo-6,7-dihydro-5H-benzo[d]heptalen-7-yl]ethanamide     NON-POLYMER     54     29     .     
+#
+data_comp_LOC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LOC     O4      O       O       0       256.365     9.752       24.054      
+LOC     C12     C       C       0       255.492     10.094      24.850      
+LOC     C13     C       CH3     0       254.326     10.920      24.405      
+LOC     N1      N       NH1     0       255.518     9.728       26.140      
+LOC     C11     C       CH1     0       256.543     8.848       26.688      
+LOC     C14     C       C       0       256.393     7.381       26.255      
+LOC     C15     C       C1      0       255.076     6.937       26.081      
+LOC     C10     C       CH2     0       256.556     8.864       28.219      
+LOC     C9      C       CH2     0       257.542     7.872       28.894      
+LOC     C8      C       CR6     0       258.854     7.711       28.137      
+LOC     C7      C       CR16    0       260.026     8.223       28.696      
+LOC     C5      C       CR6     0       261.242     8.135       28.042      
+LOC     C3      C       CR6     0       261.311     7.530       26.779      
+LOC     C1      C       CR6     0       260.158     7.029       26.190      
+LOC     O1      O       O2      0       260.230     6.442       24.938      
+LOC     C2      C       CH3     0       260.131     7.349       23.843      
+LOC     O2      O       O2      0       262.519     7.440       26.116      
+LOC     C4      C       CH3     0       263.154     6.163       26.161      
+LOC     O3      O       O2      0       262.428     8.603       28.543      
+LOC     C6      C       CH3     0       263.275     7.688       29.236      
+LOC     C22     C       CR6     0       258.907     7.107       26.861      
+LOC     C21     C       C       0       257.641     6.566       26.242      
+LOC     C20     C       C1      0       257.676     5.212       25.763      
+LOC     C19     C       C1      0       256.700     4.379       25.244      
+LOC     C17     C       C       0       255.317     4.537       25.145      
+LOC     C16     C       C       0       254.506     5.673       25.579      
+LOC     O5      O       O       0       253.276     5.533       25.545      
+LOC     O6      O       O2      0       254.670     3.473       24.573      
+LOC     C18     C       CH3     0       254.092     3.654       23.259      
+LOC     H13     H       H       0       254.015     11.476      25.138      
+LOC     H13A    H       H       0       253.605     10.336      24.116      
+LOC     H13B    H       H       0       254.594     11.488      23.664      
+LOC     HN1     H       H       0       254.895     10.021      26.679      
+LOC     H11     H       H       0       257.411     9.196       26.373      
+LOC     H15     H       H       0       254.426     7.547       26.372      
+LOC     H10     H       H       0       255.650     8.667       28.535      
+LOC     H10A    H       H       0       256.778     9.773       28.513      
+LOC     H9      H       H       0       257.112     6.995       28.984      
+LOC     H9A     H       H       0       257.737     8.193       29.801      
+LOC     H7      H       H       0       259.988     8.631       29.547      
+LOC     H2      H       H       0       260.842     8.010       23.902      
+LOC     H2A     H       H       0       259.270     7.797       23.869      
+LOC     H2B     H       H       0       260.215     6.859       23.009      
+LOC     H4      H       H       0       262.877     5.639       25.392      
+LOC     H4A     H       H       0       262.907     5.696       26.978      
+LOC     H4B     H       H       0       264.117     6.284       26.140      
+LOC     H6      H       H       0       264.106     7.583       28.744      
+LOC     H6A     H       H       0       262.837     6.823       29.317      
+LOC     H6B     H       H       0       263.467     8.036       30.122      
+LOC     H20     H       H       0       258.505     4.780       25.845      
+LOC     H19     H       H       0       257.028     3.567       24.895      
+LOC     H18     H       H       0       254.578     4.344       22.777      
+LOC     H18A    H       H       0       253.163     3.917       23.351      
+LOC     H18B    H       H       0       254.145     2.819       22.768      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LOC          O4         C12      DOUBLE       n     1.229  0.0102     1.229  0.0102
+LOC         C12         C13      SINGLE       n     1.495  0.0100     1.495  0.0100
+LOC         C12          N1      SINGLE       n     1.335  0.0100     1.335  0.0100
+LOC          N1         C11      SINGLE       n     1.454  0.0100     1.454  0.0100
+LOC         C11         C14      SINGLE       n     1.519  0.0173     1.519  0.0173
+LOC         C11         C10      SINGLE       n     1.526  0.0101     1.526  0.0101
+LOC         C14         C15      DOUBLE       n     1.378  0.0200     1.378  0.0200
+LOC         C14         C21      SINGLE       n     1.460  0.0200     1.460  0.0200
+LOC         C15         C16      SINGLE       n     1.475  0.0100     1.475  0.0100
+LOC         C10          C9      SINGLE       n     1.528  0.0200     1.528  0.0200
+LOC          C9          C8      SINGLE       n     1.517  0.0126     1.517  0.0126
+LOC          C8          C7      SINGLE       y     1.392  0.0100     1.392  0.0100
+LOC          C8         C22      DOUBLE       y     1.401  0.0100     1.401  0.0100
+LOC          C7          C5      DOUBLE       y     1.383  0.0100     1.383  0.0100
+LOC          C5          C3      SINGLE       y     1.399  0.0100     1.399  0.0100
+LOC          C5          O3      SINGLE       n     1.368  0.0100     1.368  0.0100
+LOC          C3          C1      DOUBLE       y     1.382  0.0100     1.382  0.0100
+LOC          C3          O2      SINGLE       n     1.378  0.0100     1.378  0.0100
+LOC          C1          O1      SINGLE       n     1.383  0.0100     1.383  0.0100
+LOC          C1         C22      SINGLE       y     1.406  0.0113     1.406  0.0113
+LOC          O1          C2      SINGLE       n     1.424  0.0117     1.424  0.0117
+LOC          O2          C4      SINGLE       n     1.424  0.0117     1.424  0.0117
+LOC          O3          C6      SINGLE       n     1.424  0.0117     1.424  0.0117
+LOC         C22         C21      SINGLE       n     1.462  0.0200     1.462  0.0200
+LOC         C21         C20      DOUBLE       n     1.416  0.0200     1.416  0.0200
+LOC         C20         C19      SINGLE       n     1.385  0.0200     1.385  0.0200
+LOC         C19         C17      DOUBLE       n     1.401  0.0200     1.401  0.0200
+LOC         C17         C16      SINGLE       n     1.463  0.0140     1.463  0.0140
+LOC         C17          O6      SINGLE       n     1.365  0.0113     1.365  0.0113
+LOC         C16          O5      DOUBLE       n     1.235  0.0194     1.235  0.0194
+LOC          O6         C18      SINGLE       n     1.437  0.0196     1.437  0.0196
+LOC         C13         H13      SINGLE       n     1.089  0.0100     0.971  0.0140
+LOC         C13        H13A      SINGLE       n     1.089  0.0100     0.971  0.0140
+LOC         C13        H13B      SINGLE       n     1.089  0.0100     0.971  0.0140
+LOC          N1         HN1      SINGLE       n     1.016  0.0100     0.873  0.0200
+LOC         C11         H11      SINGLE       n     1.089  0.0100     0.989  0.0198
+LOC         C15         H15      SINGLE       n     1.082  0.0130     0.940  0.0178
+LOC         C10         H10      SINGLE       n     1.089  0.0100     0.980  0.0178
+LOC         C10        H10A      SINGLE       n     1.089  0.0100     0.980  0.0178
+LOC          C9          H9      SINGLE       n     1.089  0.0100     0.981  0.0150
+LOC          C9         H9A      SINGLE       n     1.089  0.0100     0.981  0.0150
+LOC          C7          H7      SINGLE       n     1.082  0.0130     0.945  0.0164
+LOC          C2          H2      SINGLE       n     1.089  0.0100     0.971  0.0157
+LOC          C2         H2A      SINGLE       n     1.089  0.0100     0.971  0.0157
+LOC          C2         H2B      SINGLE       n     1.089  0.0100     0.971  0.0157
+LOC          C4          H4      SINGLE       n     1.089  0.0100     0.971  0.0157
+LOC          C4         H4A      SINGLE       n     1.089  0.0100     0.971  0.0157
+LOC          C4         H4B      SINGLE       n     1.089  0.0100     0.971  0.0157
+LOC          C6          H6      SINGLE       n     1.089  0.0100     0.971  0.0157
+LOC          C6         H6A      SINGLE       n     1.089  0.0100     0.971  0.0157
+LOC          C6         H6B      SINGLE       n     1.089  0.0100     0.971  0.0157
+LOC         C20         H20      SINGLE       n     1.082  0.0130     0.940  0.0178
+LOC         C19         H19      SINGLE       n     1.082  0.0130     0.942  0.0111
+LOC         C18         H18      SINGLE       n     1.089  0.0100     0.970  0.0175
+LOC         C18        H18A      SINGLE       n     1.089  0.0100     0.970  0.0175
+LOC         C18        H18B      SINGLE       n     1.089  0.0100     0.970  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LOC          O4         C12         C13     121.913    1.50
+LOC          O4         C12          N1     121.667    1.50
+LOC         C13         C12          N1     116.420    1.50
+LOC         C12         C13         H13     109.678    1.50
+LOC         C12         C13        H13A     109.678    1.50
+LOC         C12         C13        H13B     109.678    1.50
+LOC         H13         C13        H13A     109.365    1.50
+LOC         H13         C13        H13B     109.365    1.50
+LOC        H13A         C13        H13B     109.365    1.50
+LOC         C12          N1         C11     121.834    1.76
+LOC         C12          N1         HN1     119.263    2.25
+LOC         C11          N1         HN1     118.902    1.92
+LOC          N1         C11         C14     111.249    2.34
+LOC          N1         C11         C10     111.076    1.75
+LOC          N1         C11         H11     108.161    1.50
+LOC         C14         C11         C10     111.511    2.91
+LOC         C14         C11         H11     109.227    1.50
+LOC         C10         C11         H11     108.223    1.50
+LOC         C11         C14         C15     119.539    3.00
+LOC         C11         C14         C21     119.539    3.00
+LOC         C15         C14         C21     120.921    3.00
+LOC         C14         C15         C16     126.639    2.42
+LOC         C14         C15         H15     115.522    1.90
+LOC         C16         C15         H15     117.839    2.16
+LOC         C11         C10          C9     111.094    2.85
+LOC         C11         C10         H10     108.562    1.50
+LOC         C11         C10        H10A     108.562    1.50
+LOC          C9         C10         H10     108.891    1.50
+LOC          C9         C10        H10A     108.891    1.50
+LOC         H10         C10        H10A     107.721    1.50
+LOC         C10          C9          C8     114.108    2.12
+LOC         C10          C9          H9     109.192    1.50
+LOC         C10          C9         H9A     109.192    1.50
+LOC          C8          C9          H9     108.911    1.50
+LOC          C8          C9         H9A     108.911    1.50
+LOC          H9          C9         H9A     107.745    1.50
+LOC          C9          C8          C7     119.878    1.50
+LOC          C9          C8         C22     121.148    2.21
+LOC          C7          C8         C22     118.974    1.50
+LOC          C8          C7          C5     121.731    1.50
+LOC          C8          C7          H7     118.877    1.50
+LOC          C5          C7          H7     119.393    1.50
+LOC          C7          C5          C3     120.206    1.50
+LOC          C7          C5          O3     124.675    1.50
+LOC          C3          C5          O3     115.119    1.50
+LOC          C5          C3          C1     119.610    1.50
+LOC          C5          C3          O2     120.370    1.50
+LOC          C1          C3          O2     120.020    1.50
+LOC          C3          C1          O1     121.136    1.50
+LOC          C3          C1         C22     120.198    1.50
+LOC          O1          C1         C22     118.666    2.15
+LOC          C1          O1          C2     114.628    1.85
+LOC          O1          C2          H2     109.428    1.50
+LOC          O1          C2         H2A     109.428    1.50
+LOC          O1          C2         H2B     109.428    1.50
+LOC          H2          C2         H2A     109.509    1.50
+LOC          H2          C2         H2B     109.509    1.50
+LOC         H2A          C2         H2B     109.509    1.50
+LOC          C3          O2          C4     114.431    1.50
+LOC          O2          C4          H4     109.428    1.50
+LOC          O2          C4         H4A     109.428    1.50
+LOC          O2          C4         H4B     109.428    1.50
+LOC          H4          C4         H4A     109.509    1.50
+LOC          H4          C4         H4B     109.509    1.50
+LOC         H4A          C4         H4B     109.509    1.50
+LOC          C5          O3          C6     117.276    1.50
+LOC          O3          C6          H6     109.428    1.50
+LOC          O3          C6         H6A     109.428    1.50
+LOC          O3          C6         H6B     109.428    1.50
+LOC          H6          C6         H6A     109.509    1.50
+LOC          H6          C6         H6B     109.509    1.50
+LOC         H6A          C6         H6B     109.509    1.50
+LOC          C8         C22          C1     119.281    1.50
+LOC          C8         C22         C21     120.407    1.59
+LOC          C1         C22         C21     120.312    1.64
+LOC         C14         C21         C22     121.458    3.00
+LOC         C14         C21         C20     120.294    2.04
+LOC         C22         C21         C20     118.248    2.78
+LOC         C21         C20         C19     127.242    2.58
+LOC         C21         C20         H20     116.602    1.85
+LOC         C19         C20         H20     116.156    2.10
+LOC         C20         C19         C17     129.358    1.59
+LOC         C20         C19         H19     115.479    2.10
+LOC         C17         C19         H19     115.162    2.13
+LOC         C19         C17         C16     127.718    1.50
+LOC         C19         C17          O6     115.864    3.00
+LOC         C16         C17          O6     116.418    3.00
+LOC         C15         C16         C17     122.399    1.50
+LOC         C15         C16          O5     120.670    1.50
+LOC         C17         C16          O5     116.931    1.50
+LOC         C17          O6         C18     116.870    1.50
+LOC          O6         C18         H18     109.329    1.50
+LOC          O6         C18        H18A     109.329    1.50
+LOC          O6         C18        H18B     109.329    1.50
+LOC         H18         C18        H18A     109.532    1.53
+LOC         H18         C18        H18B     109.532    1.53
+LOC        H18A         C18        H18B     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LOC       const_sp2_sp2_7          O3          C5          C7          C8     180.000     5.0     2
+LOC              const_12          O2          C3          C5          O3       0.000    10.0     2
+LOC            sp2_sp2_17          C7          C5          O3          C6     180.000     5.0     2
+LOC              const_16          O1          C1          C3          O2       0.000    10.0     2
+LOC            sp2_sp2_19          C5          C3          O2          C4     180.000     5.0     2
+LOC            sp2_sp2_21          C3          C1          O1          C2     180.000     5.0     2
+LOC              const_20          O1          C1         C22         C21       0.000    10.0     2
+LOC            sp3_sp3_20          H2          C2          O1          C1     -60.000    10.0     3
+LOC            sp3_sp3_24          H4          C4          O2          C3     -60.000    10.0     3
+LOC            sp3_sp3_28          H6          C6          O3          C5     -60.000    10.0     3
+LOC             sp2_sp3_1          O4         C12         C13         H13       0.000    10.0     6
+LOC             sp2_sp2_3          O4         C12          N1         C11       0.000     5.0     2
+LOC            sp2_sp2_23         C14         C21         C22          C8     180.000     5.0     2
+LOC            sp2_sp2_27         C19         C20         C21         C14     180.000     5.0     2
+LOC            sp2_sp2_31         C17         C19         C20         C21     180.000     5.0     2
+LOC            sp2_sp2_35         C16         C17         C19         C20     180.000     5.0     2
+LOC            sp2_sp2_39         C15         C16         C17         C19     180.000     5.0     2
+LOC            sp2_sp2_43         C19         C17          O6         C18     180.000     5.0     2
+LOC            sp3_sp3_32         H18         C18          O6         C17     -60.000    10.0     3
+LOC             sp2_sp3_7         C12          N1         C11         C14       0.000    10.0     6
+LOC            sp2_sp3_13         C15         C14         C11          N1       0.000    10.0     6
+LOC             sp3_sp3_1          C9         C10         C11          N1     180.000    10.0     3
+LOC            sp2_sp2_10         C11         C14         C21         C20       0.000     5.0     2
+LOC             sp2_sp2_5         C11         C14         C15         C16     180.000     5.0     2
+LOC            sp2_sp2_13         C14         C15         C16         C17     180.000     5.0     2
+LOC            sp3_sp3_10         C11         C10          C9          C8     180.000    10.0     3
+LOC            sp2_sp3_20          C7          C8          C9         C10     -90.000    10.0     6
+LOC       const_sp2_sp2_2          C5          C7          C8          C9     180.000     5.0     2
+LOC              const_24         C21         C22          C8          C9       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LOC    chir_1    C11    N1    C14    C10    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LOC    plan-1          C1   0.020
+LOC    plan-1         C21   0.020
+LOC    plan-1         C22   0.020
+LOC    plan-1          C3   0.020
+LOC    plan-1          C5   0.020
+LOC    plan-1          C7   0.020
+LOC    plan-1          C8   0.020
+LOC    plan-1          C9   0.020
+LOC    plan-1          H7   0.020
+LOC    plan-1          O1   0.020
+LOC    plan-1          O2   0.020
+LOC    plan-1          O3   0.020
+LOC    plan-2         C12   0.020
+LOC    plan-2         C13   0.020
+LOC    plan-2          N1   0.020
+LOC    plan-2          O4   0.020
+LOC    plan-3         C11   0.020
+LOC    plan-3         C12   0.020
+LOC    plan-3         HN1   0.020
+LOC    plan-3          N1   0.020
+LOC    plan-4         C11   0.020
+LOC    plan-4         C14   0.020
+LOC    plan-4         C15   0.020
+LOC    plan-4         C21   0.020
+LOC    plan-5         C14   0.020
+LOC    plan-5         C15   0.020
+LOC    plan-5         C16   0.020
+LOC    plan-5         H15   0.020
+LOC    plan-6         C14   0.020
+LOC    plan-6         C20   0.020
+LOC    plan-6         C21   0.020
+LOC    plan-6         C22   0.020
+LOC    plan-7         C19   0.020
+LOC    plan-7         C20   0.020
+LOC    plan-7         C21   0.020
+LOC    plan-7         H20   0.020
+LOC    plan-8         C17   0.020
+LOC    plan-8         C19   0.020
+LOC    plan-8         C20   0.020
+LOC    plan-8         H19   0.020
+LOC    plan-9         C16   0.020
+LOC    plan-9         C17   0.020
+LOC    plan-9         C19   0.020
+LOC    plan-9          O6   0.020
+LOC   plan-10         C15   0.020
+LOC   plan-10         C16   0.020
+LOC   plan-10         C17   0.020
+LOC   plan-10          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LOC           SMILES              ACDLabs 10.04                                                                                                    O=C(NC3C1=CC(=O)C(OC)=CC=C1c2c(cc(OC)c(OC)c2OC)CC3)C
+LOC SMILES_CANONICAL               CACTVS 3.341                                                                                                COC1=CC=C2C(=CC1=O)[C@H](CCc3cc(OC)c(OC)c(OC)c23)NC(C)=O
+LOC           SMILES               CACTVS 3.341                                                                                                 COC1=CC=C2C(=CC1=O)[CH](CCc3cc(OC)c(OC)c(OC)c23)NC(C)=O
+LOC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                CC(=O)N[C@H]1CCc2cc(c(c(c2C3=CC=C(C(=O)C=C13)OC)OC)OC)OC
+LOC           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                    CC(=O)NC1CCc2cc(c(c(c2C3=CC=C(C(=O)C=C13)OC)OC)OC)OC
+LOC            InChI                InChI  1.03 InChI=1S/C22H25NO6/c1-12(24)23-16-8-6-13-10-19(27-3)21(28-4)22(29-5)20(13)14-7-9-18(26-2)17(25)11-15(14)16/h7,9-11,16H,6,8H2,1-5H3,(H,23,24)/t16-/m0/s1
+LOC         InChIKey                InChI  1.03                                                                                                                             IAKHMKGGTNLKSZ-INIZCTEOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LOC acedrg               243         "dictionary generator"                  
+LOC acedrg_database      11          "data source"                           
+LOC rdkit                2017.03.2   "Chemoinformatics tool"
+LOC refmac5              5.8.0238    "optimization tool"                     

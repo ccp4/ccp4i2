@@ -1,0 +1,347 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CGQ     CGQ      "3-[C-[N'-(3-CARBAMIMIDOYL-BENZYLIDENIUM)-HYDRAZINO]-[[AMINOMETHYLIDENE]AMINIUM]-IMINOMETHYL]-BENZAMIDINIUM"     NON-POLYMER     48     26     .     
+#
+data_comp_CGQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CGQ     C1      C       CR6     0       9.635       24.814      5.054       
+CGQ     C2      C       CR16    0       10.116      23.988      6.067       
+CGQ     C3      C       CR6     0       9.271       23.504      7.064       
+CGQ     C4      C       CR16    0       7.920       23.866      7.030       
+CGQ     C5      C       CR16    0       7.435       24.688      6.026       
+CGQ     C6      C       CR16    0       8.286       25.161      5.041       
+CGQ     C7      C       C1      0       9.811       22.637      8.112       
+CGQ     N8      N       N       0       9.084       22.219      9.079       
+CGQ     C9      C       C       0       10.550      25.321      3.998       
+CGQ     N10     N       NH2     1       11.248      24.478      3.276       
+CGQ     N11     N       NH2     0       10.656      26.618      3.788       
+CGQ     N12     N       NH1     0       9.637       21.331      9.979       
+CGQ     C13     C       C       0       8.859       20.860      11.000      
+CGQ     N15     N       NH2     0       7.596       21.214      11.124      
+CGQ     N19     N       NH1     1       9.453       20.010      11.892      
+CGQ     N20     N       N       0       8.691       19.490      12.925      
+CGQ     C21     C       C1      0       9.260       18.707      13.762      
+CGQ     C22     C       CR6     0       8.545       18.172      14.928      
+CGQ     C23     C       CR16    0       7.213       18.507      15.193      
+CGQ     C24     C       CR16    0       6.562       17.989      16.299      
+CGQ     C25     C       CR16    0       7.225       17.130      17.159      
+CGQ     C26     C       CR6     0       8.551       16.781      16.916      
+CGQ     C27     C       CR16    0       9.201       17.306      15.801      
+CGQ     C28     C       C       0       9.265       15.858      17.838      
+CGQ     N29     N       NH2     1       8.759       14.678      18.105      
+CGQ     N30     N       NH2     0       10.403      16.229      18.389      
+CGQ     H21     H       H       0       11.032      23.749      6.080       
+CGQ     H41     H       H       0       7.332       23.551      7.692       
+CGQ     H51     H       H       0       6.522       24.926      6.013       
+CGQ     H61     H       H       0       7.950       25.719      4.362       
+CGQ     H71     H       H       0       10.715      22.389      8.069       
+CGQ     H101    H       H       0       11.177      23.612      3.413       
+CGQ     H102    H       H       0       11.792      24.770      2.649       
+CGQ     H111    H       H       0       10.186      27.191      4.278       
+CGQ     H112    H       H       0       11.195      26.928      3.155       
+CGQ     H121    H       H       0       10.465      21.072      9.902       
+CGQ     H151    H       H       0       7.111       20.909      11.789      
+CGQ     H152    H       H       0       7.227       21.756      10.540      
+CGQ     H191    H       H       0       10.303      19.800      11.809      
+CGQ     H211    H       H       0       10.161      18.462      13.633      
+CGQ     H231    H       H       0       6.752       19.090      14.617      
+CGQ     H241    H       H       0       5.663       18.222      16.468      
+CGQ     H251    H       H       0       6.776       16.781      17.909      
+CGQ     H271    H       H       0       10.102      17.072      15.633      
+CGQ     H291    H       H       0       9.170       14.129      18.655      
+CGQ     H292    H       H       0       8.003       14.425      17.732      
+CGQ     H301    H       H       0       10.834      15.683      18.940      
+CGQ     H302    H       H       0       10.746      17.029      18.214      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CGQ          C1          C2      DOUBLE       y     1.389  0.0100     1.389  0.0100
+CGQ          C1          C6      SINGLE       y     1.390  0.0100     1.390  0.0100
+CGQ          C1          C9      SINGLE       n     1.485  0.0110     1.485  0.0110
+CGQ          C2          C3      SINGLE       y     1.389  0.0100     1.389  0.0100
+CGQ          C3          C4      DOUBLE       y     1.392  0.0100     1.392  0.0100
+CGQ          C3          C7      SINGLE       n     1.460  0.0100     1.460  0.0100
+CGQ          C4          C5      SINGLE       y     1.382  0.0100     1.382  0.0100
+CGQ          C5          C6      DOUBLE       y     1.382  0.0100     1.382  0.0100
+CGQ          C7          N8      DOUBLE       n     1.276  0.0100     1.276  0.0100
+CGQ          N8         N12      SINGLE       n     1.376  0.0100     1.376  0.0100
+CGQ          C9         N10      DOUBLE       n     1.309  0.0100     1.309  0.0100
+CGQ          C9         N11      SINGLE       n     1.313  0.0150     1.313  0.0150
+CGQ         N12         C13      SINGLE       n     1.340  0.0200     1.340  0.0200
+CGQ         C13         N15      SINGLE       n     1.309  0.0100     1.309  0.0100
+CGQ         C13         N19      DOUBLE       n     1.340  0.0200     1.340  0.0200
+CGQ         N19         N20      SINGLE       n     1.376  0.0135     1.376  0.0135
+CGQ         N20         C21      DOUBLE       n     1.277  0.0100     1.277  0.0100
+CGQ         C21         C22      SINGLE       n     1.463  0.0134     1.463  0.0134
+CGQ         C22         C23      DOUBLE       y     1.392  0.0100     1.392  0.0100
+CGQ         C22         C27      SINGLE       y     1.389  0.0100     1.389  0.0100
+CGQ         C23         C24      SINGLE       y     1.382  0.0100     1.382  0.0100
+CGQ         C24         C25      DOUBLE       y     1.382  0.0100     1.382  0.0100
+CGQ         C25         C26      SINGLE       y     1.390  0.0100     1.390  0.0100
+CGQ         C26         C27      DOUBLE       y     1.389  0.0100     1.389  0.0100
+CGQ         C26         C28      SINGLE       n     1.485  0.0110     1.485  0.0110
+CGQ         C28         N29      DOUBLE       n     1.309  0.0100     1.309  0.0100
+CGQ         C28         N30      SINGLE       n     1.313  0.0150     1.313  0.0150
+CGQ          C2         H21      SINGLE       n     1.082  0.0130     0.946  0.0200
+CGQ          C4         H41      SINGLE       n     1.082  0.0130     0.941  0.0168
+CGQ          C5         H51      SINGLE       n     1.082  0.0130     0.944  0.0134
+CGQ          C6         H61      SINGLE       n     1.082  0.0130     0.941  0.0168
+CGQ          C7         H71      SINGLE       n     1.082  0.0130     0.938  0.0156
+CGQ         N10        H101      SINGLE       n     1.016  0.0100     0.879  0.0200
+CGQ         N10        H102      SINGLE       n     1.016  0.0100     0.879  0.0200
+CGQ         N11        H111      SINGLE       n     1.016  0.0100     0.887  0.0200
+CGQ         N11        H112      SINGLE       n     1.016  0.0100     0.887  0.0200
+CGQ         N12        H121      SINGLE       n     1.016  0.0100     0.869  0.0200
+CGQ         N15        H151      SINGLE       n     1.016  0.0100     0.881  0.0200
+CGQ         N15        H152      SINGLE       n     1.016  0.0100     0.881  0.0200
+CGQ         N19        H191      SINGLE       n     1.016  0.0100     0.877  0.0200
+CGQ         C21        H211      SINGLE       n     1.082  0.0130     0.942  0.0200
+CGQ         C23        H231      SINGLE       n     1.082  0.0130     0.941  0.0168
+CGQ         C24        H241      SINGLE       n     1.082  0.0130     0.944  0.0134
+CGQ         C25        H251      SINGLE       n     1.082  0.0130     0.941  0.0168
+CGQ         C27        H271      SINGLE       n     1.082  0.0130     0.946  0.0200
+CGQ         N29        H291      SINGLE       n     1.016  0.0100     0.879  0.0200
+CGQ         N29        H292      SINGLE       n     1.016  0.0100     0.879  0.0200
+CGQ         N30        H301      SINGLE       n     1.016  0.0100     0.887  0.0200
+CGQ         N30        H302      SINGLE       n     1.016  0.0100     0.887  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CGQ          C2          C1          C6     119.239    1.50
+CGQ          C2          C1          C9     120.321    1.50
+CGQ          C6          C1          C9     120.447    1.50
+CGQ          C1          C2          C3     120.763    1.50
+CGQ          C1          C2         H21     119.718    1.50
+CGQ          C3          C2         H21     119.520    1.50
+CGQ          C2          C3          C4     118.874    1.50
+CGQ          C2          C3          C7     120.193    1.50
+CGQ          C4          C3          C7     120.933    1.60
+CGQ          C3          C4          C5     120.533    1.50
+CGQ          C3          C4         H41     119.683    1.50
+CGQ          C5          C4         H41     119.784    1.50
+CGQ          C4          C5          C6     120.219    1.50
+CGQ          C4          C5         H51     119.890    1.50
+CGQ          C6          C5         H51     119.890    1.50
+CGQ          C1          C6          C5     120.364    1.50
+CGQ          C1          C6         H61     119.922    1.50
+CGQ          C5          C6         H61     119.715    1.50
+CGQ          C3          C7          N8     121.480    1.50
+CGQ          C3          C7         H71     119.024    1.50
+CGQ          N8          C7         H71     119.496    1.50
+CGQ          C7          N8         N12     115.561    1.50
+CGQ          C1          C9         N10     120.060    1.50
+CGQ          C1          C9         N11     120.060    1.50
+CGQ         N10          C9         N11     119.881    1.50
+CGQ          C9         N10        H101     120.106    1.76
+CGQ          C9         N10        H102     120.102    1.76
+CGQ        H101         N10        H102     119.783    2.70
+CGQ          C9         N11        H111     120.106    1.76
+CGQ          C9         N11        H112     120.102    1.76
+CGQ        H111         N11        H112     119.783    2.70
+CGQ          N8         N12         C13     117.905    1.50
+CGQ          N8         N12        H121     121.050    1.50
+CGQ         C13         N12        H121     121.051    1.50
+CGQ         N12         C13         N15     120.457    1.50
+CGQ         N12         C13         N19     119.087    3.00
+CGQ         N15         C13         N19     120.457    1.50
+CGQ         C13         N15        H151     119.731    1.71
+CGQ         C13         N15        H152     119.731    1.71
+CGQ        H151         N15        H152     120.538    2.09
+CGQ         C13         N19         N20     117.905    1.50
+CGQ         C13         N19        H191     121.051    1.50
+CGQ         N20         N19        H191     121.050    1.50
+CGQ         N19         N20         C21     115.561    1.50
+CGQ         N20         C21         C22     121.480    1.50
+CGQ         N20         C21        H211     119.496    1.50
+CGQ         C22         C21        H211     119.024    1.50
+CGQ         C21         C22         C23     120.933    1.60
+CGQ         C21         C22         C27     120.193    1.50
+CGQ         C23         C22         C27     118.874    1.50
+CGQ         C22         C23         C24     120.533    1.50
+CGQ         C22         C23        H231     119.683    1.50
+CGQ         C24         C23        H231     119.784    1.50
+CGQ         C23         C24         C25     120.219    1.50
+CGQ         C23         C24        H241     119.890    1.50
+CGQ         C25         C24        H241     119.890    1.50
+CGQ         C24         C25         C26     120.364    1.50
+CGQ         C24         C25        H251     119.715    1.50
+CGQ         C26         C25        H251     119.922    1.50
+CGQ         C25         C26         C27     119.239    1.50
+CGQ         C25         C26         C28     120.447    1.50
+CGQ         C27         C26         C28     120.321    1.50
+CGQ         C22         C27         C26     120.763    1.50
+CGQ         C22         C27        H271     119.520    1.50
+CGQ         C26         C27        H271     119.718    1.50
+CGQ         C26         C28         N29     120.060    1.50
+CGQ         C26         C28         N30     120.060    1.50
+CGQ         N29         C28         N30     119.881    1.50
+CGQ         C28         N29        H291     120.106    1.76
+CGQ         C28         N29        H292     120.102    1.76
+CGQ        H291         N29        H292     119.783    2.70
+CGQ         C28         N30        H301     120.106    1.76
+CGQ         C28         N30        H302     120.102    1.76
+CGQ        H301         N30        H302     119.783    2.70
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CGQ       const_sp2_sp2_3          C9          C1          C2          C3     180.000     5.0     2
+CGQ              const_43          C9          C1          C6          C5     180.000    10.0     2
+CGQ             sp2_sp2_1          C2          C1          C9         N10     180.000     5.0     2
+CGQ            sp2_sp2_23         N15         C13         N12          N8       0.000     5.0     2
+CGQ            sp2_sp2_25         N12         C13         N15        H151     180.000     5.0     2
+CGQ            sp2_sp2_29         N12         C13         N19         N20     180.000     5.0     2
+CGQ            sp2_sp2_33         C13         N19         N20         C21     180.000     5.0     2
+CGQ            sp2_sp2_35         C22         C21         N20         N19     180.000     5.0     2
+CGQ            sp2_sp2_37         N20         C21         C22         C23     180.000     5.0     2
+CGQ              const_23         C21         C22         C23         C24     180.000    10.0     2
+CGQ              const_47         C21         C22         C27         C26     180.000    10.0     2
+CGQ              const_25         C22         C23         C24         C25       0.000    10.0     2
+CGQ              const_29         C23         C24         C25         C26       0.000    10.0     2
+CGQ       const_sp2_sp2_6          C1          C2          C3          C7     180.000     5.0     2
+CGQ              const_34         C24         C25         C26         C28     180.000    10.0     2
+CGQ              const_39         C28         C26         C27         C22     180.000    10.0     2
+CGQ            sp2_sp2_41         C25         C26         C28         N29     180.000     5.0     2
+CGQ            sp2_sp2_47         N30         C28         N29        H291       0.000     5.0     2
+CGQ            sp2_sp2_51         N29         C28         N30        H301       0.000     5.0     2
+CGQ              const_11          C7          C3          C4          C5     180.000    10.0     2
+CGQ             sp2_sp2_5          C2          C3          C7          N8     180.000     5.0     2
+CGQ              const_13          C3          C4          C5          C6       0.000    10.0     2
+CGQ              const_17          C4          C5          C6          C1       0.000    10.0     2
+CGQ             sp2_sp2_9          C3          C7          N8         N12     180.000     5.0     2
+CGQ            sp2_sp2_11         C13         N12          N8          C7     180.000     5.0     2
+CGQ            sp2_sp2_19         N10          C9         N11        H111       0.000     5.0     2
+CGQ            sp2_sp2_15         N11          C9         N10        H101       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CGQ    plan-1          C1   0.020
+CGQ    plan-1          C2   0.020
+CGQ    plan-1          C3   0.020
+CGQ    plan-1          C4   0.020
+CGQ    plan-1          C5   0.020
+CGQ    plan-1          C6   0.020
+CGQ    plan-1          C7   0.020
+CGQ    plan-1          C9   0.020
+CGQ    plan-1         H21   0.020
+CGQ    plan-1         H41   0.020
+CGQ    plan-1         H51   0.020
+CGQ    plan-1         H61   0.020
+CGQ    plan-2         C21   0.020
+CGQ    plan-2         C22   0.020
+CGQ    plan-2         C23   0.020
+CGQ    plan-2         C24   0.020
+CGQ    plan-2         C25   0.020
+CGQ    plan-2         C26   0.020
+CGQ    plan-2         C27   0.020
+CGQ    plan-2         C28   0.020
+CGQ    plan-2        H231   0.020
+CGQ    plan-2        H241   0.020
+CGQ    plan-2        H251   0.020
+CGQ    plan-2        H271   0.020
+CGQ    plan-3          C3   0.020
+CGQ    plan-3          C7   0.020
+CGQ    plan-3         H71   0.020
+CGQ    plan-3          N8   0.020
+CGQ    plan-4          C1   0.020
+CGQ    plan-4          C9   0.020
+CGQ    plan-4         N10   0.020
+CGQ    plan-4         N11   0.020
+CGQ    plan-5          C9   0.020
+CGQ    plan-5        H101   0.020
+CGQ    plan-5        H102   0.020
+CGQ    plan-5         N10   0.020
+CGQ    plan-6          C9   0.020
+CGQ    plan-6        H111   0.020
+CGQ    plan-6        H112   0.020
+CGQ    plan-6         N11   0.020
+CGQ    plan-7         C13   0.020
+CGQ    plan-7        H121   0.020
+CGQ    plan-7         N12   0.020
+CGQ    plan-7          N8   0.020
+CGQ    plan-8         C13   0.020
+CGQ    plan-8         N12   0.020
+CGQ    plan-8         N15   0.020
+CGQ    plan-8         N19   0.020
+CGQ    plan-9         C13   0.020
+CGQ    plan-9        H151   0.020
+CGQ    plan-9        H152   0.020
+CGQ    plan-9         N15   0.020
+CGQ   plan-10         C13   0.020
+CGQ   plan-10        H191   0.020
+CGQ   plan-10         N19   0.020
+CGQ   plan-10         N20   0.020
+CGQ   plan-11         C21   0.020
+CGQ   plan-11         C22   0.020
+CGQ   plan-11        H211   0.020
+CGQ   plan-11         N20   0.020
+CGQ   plan-12         C26   0.020
+CGQ   plan-12         C28   0.020
+CGQ   plan-12         N29   0.020
+CGQ   plan-12         N30   0.020
+CGQ   plan-13         C28   0.020
+CGQ   plan-13        H291   0.020
+CGQ   plan-13        H292   0.020
+CGQ   plan-13         N29   0.020
+CGQ   plan-14         C28   0.020
+CGQ   plan-14        H301   0.020
+CGQ   plan-14        H302   0.020
+CGQ   plan-14         N30   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CGQ           SMILES              ACDLabs 10.04                                                                                     N(\[NH+]=C(/N)N/N=C/c1cccc(C(=[NH2+])\N)c1)=C/c2cccc(\C(=[NH2+])N)c2
+CGQ SMILES_CANONICAL               CACTVS 3.341                                                                                          NC(=[NH2+])c1cccc(\C=N\NC(N)=[NH+]\N=C\c2cccc(c2)C(N)=[NH2+])c1
+CGQ           SMILES               CACTVS 3.341                                                                                              NC(=[NH2+])c1cccc(C=NNC(N)=[NH+]N=Cc2cccc(c2)C(N)=[NH2+])c1
+CGQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                      c1cc(cc(c1)C(=[NH2+])N)\C=N\N/C(=[NH+]/N=C/c2cccc(c2)C(=[NH2+])N)/N
+CGQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                            c1cc(cc(c1)C(=[NH2+])N)C=NNC(=[NH+]N=Cc2cccc(c2)C(=[NH2+])N)N
+CGQ            InChI                InChI  1.03 InChI=1S/C17H19N9/c18-15(19)13-5-1-3-11(7-13)9-23-25-17(22)26-24-10-12-4-2-6-14(8-12)16(20)21/h1-10H,(H3,18,19)(H3,20,21)(H3,22,25,26)/p+3/b23-9+,24-10+
+CGQ         InChIKey                InChI  1.03                                                                                                                              NSHBIZYDZBQOQB-WDBPGAOMSA-Q
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CGQ acedrg               243         "dictionary generator"                  
+CGQ acedrg_database      11          "data source"                           
+CGQ rdkit                2017.03.2   "Chemoinformatics tool"
+CGQ refmac5              5.8.0238    "optimization tool"                     

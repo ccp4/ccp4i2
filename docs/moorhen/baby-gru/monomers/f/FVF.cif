@@ -1,0 +1,463 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FVF     FVF      "O-((((N-PHENYL-METHOXY-CARBONYL)-PHENYL ALANYL-CARBONYL)AMINO)-ISOBUTYL)HYDROXY PHOSPHINYL)-3-PHENYLACETIC ACID"     NON-POLYMER     74     41     .     
+#
+data_comp_FVF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FVF     C1      C       C       0       51.272      13.895      38.650      
+FVF     O1      O       O       0       51.663      12.993      39.357      
+FVF     OA1     O       O2      0       51.817      15.126      38.630      
+FVF     CB1     C       CH2     0       52.735      15.463      39.707      
+FVF     CG1     C       CR6     0       53.175      16.894      39.577      
+FVF     CDB     C       CR16    0       53.718      17.358      38.387      
+FVF     CDC     C       CR16    0       53.055      17.774      40.644      
+FVF     CEB     C       CR16    0       54.129      18.680      38.265      
+FVF     CEC     C       CR16    0       53.466      19.095      40.521      
+FVF     CZ1     C       CR16    0       54.002      19.547      39.332      
+FVF     N2      N       NH1     0       50.236      13.770      37.791      
+FVF     C2      C       C       0       48.895      15.823      37.712      
+FVF     O2      O       O       0       48.201      15.420      38.645      
+FVF     CA2     C       CH1     0       49.753      14.834      36.916      
+FVF     CB2     C       CH2     0       48.935      14.234      35.766      
+FVF     CG2     C       CR6     0       49.714      13.290      34.882      
+FVF     CDL     C       CR16    0       49.451      11.924      34.884      
+FVF     CDM     C       CR16    0       50.713      13.767      34.041      
+FVF     CEL     C       CR16    0       50.169      11.059      34.067      
+FVF     CEM     C       CR16    0       51.431      12.902      33.225      
+FVF     CZ2     C       CR16    0       51.159      11.549      33.239      
+FVF     N3      N       NH1     0       48.958      17.118      37.346      
+FVF     CA3     C       CH1     0       48.275      18.216      38.023      
+FVF     CB3     C       CH1     0       49.216      18.936      39.024      
+FVF     CGD     C       CH3     0       50.480      19.480      38.368      
+FVF     CGN     C       CH3     0       49.577      18.039      40.200      
+FVF     P3      P       P       0       47.521      19.339      36.780      
+FVF     OPV     O       O       0       46.456      18.559      36.059      
+FVF     OPW     O       OP      -1      47.055      20.593      37.465      
+FVF     OPX     O       O2      0       48.630      19.749      35.713      
+FVF     CA4     C       CH1     0       48.288      20.451      34.510      
+FVF     C4      C       C       0       48.044      19.450      33.375      
+FVF     O4      O       O       0       48.961      18.644      33.119      
+FVF     O11     O       OC      -1      46.946      19.512      32.787      
+FVF     CB4     C       CH2     0       49.387      21.451      34.141      
+FVF     CG4     C       CR6     0       48.974      22.417      33.056      
+FVF     CD5     C       CR16    0       48.093      23.458      33.329      
+FVF     CD6     C       CR16    0       49.459      22.287      31.759      
+FVF     CE5     C       CR16    0       47.710      24.347      32.332      
+FVF     CE6     C       CR16    0       49.075      23.177      30.762      
+FVF     CZ4     C       CR16    0       48.201      24.205      31.050      
+FVF     HB11    H       H       0       53.518      14.875      39.667      
+FVF     HB21    H       H       0       52.293      15.327      40.571      
+FVF     HD11    H       H       0       53.807      16.771      37.654      
+FVF     HD21    H       H       0       52.689      17.473      41.461      
+FVF     HE11    H       H       0       54.495      18.985      37.450      
+FVF     HE21    H       H       0       53.378      19.685      41.253      
+FVF     HZ1     H       H       0       54.282      20.444      39.249      
+FVF     HN2     H       H       0       49.826      12.995      37.772      
+FVF     HA2     H       H       0       50.521      15.318      36.527      
+FVF     HB12    H       H       0       48.586      14.965      35.214      
+FVF     HB22    H       H       0       48.167      13.755      36.143      
+FVF     HD12    H       H       0       48.776      11.580      35.447      
+FVF     HD22    H       H       0       50.905      14.691      34.026      
+FVF     HE12    H       H       0       49.980      10.135      34.080      
+FVF     HE22    H       H       0       52.107      13.240      32.660      
+FVF     HZ2     H       H       0       51.647      10.961      32.685      
+FVF     HN3     H       H       0       49.436      17.336      36.649      
+FVF     HA3     H       H       0       47.539      17.822      38.549      
+FVF     HB3     H       H       0       48.716      19.708      39.385      
+FVF     H113    H       H       0       51.083      19.809      39.057      
+FVF     H123    H       H       0       50.250      20.210      37.770      
+FVF     H133    H       H       0       50.922      18.774      37.865      
+FVF     H213    H       H       0       50.041      18.563      40.876      
+FVF     H223    H       H       0       50.157      17.320      39.895      
+FVF     H233    H       H       0       48.766      17.662      40.583      
+FVF     HA4     H       H       0       47.457      20.950      34.658      
+FVF     HB14    H       H       0       50.181      20.957      33.843      
+FVF     HB24    H       H       0       49.635      21.961      34.941      
+FVF     HD14    H       H       0       47.752      23.562      34.203      
+FVF     HD24    H       H       0       50.057      21.586      31.554      
+FVF     HE14    H       H       0       47.112      25.049      32.532      
+FVF     HE24    H       H       0       49.413      23.076      29.887      
+FVF     HZ4     H       H       0       47.940      24.809      30.373      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FVF          C1          O1      DOUBLE       n     1.210  0.0102     1.210  0.0102
+FVF          C1         OA1      SINGLE       n     1.341  0.0100     1.341  0.0100
+FVF          C1          N2      SINGLE       n     1.344  0.0100     1.344  0.0100
+FVF         OA1         CB1      SINGLE       n     1.450  0.0125     1.450  0.0125
+FVF         CB1         CG1      SINGLE       n     1.501  0.0101     1.501  0.0101
+FVF         CG1         CDB      DOUBLE       y     1.383  0.0108     1.383  0.0108
+FVF         CG1         CDC      SINGLE       y     1.383  0.0108     1.383  0.0108
+FVF         CDB         CEB      SINGLE       y     1.386  0.0100     1.386  0.0100
+FVF         CDC         CEC      DOUBLE       y     1.386  0.0100     1.386  0.0100
+FVF         CEB         CZ1      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FVF         CEC         CZ1      SINGLE       y     1.376  0.0124     1.376  0.0124
+FVF          N2         CA2      SINGLE       n     1.454  0.0100     1.454  0.0100
+FVF          C2          O2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+FVF          C2         CA2      SINGLE       n     1.527  0.0118     1.527  0.0118
+FVF          C2          N3      SINGLE       n     1.341  0.0100     1.341  0.0100
+FVF         CA2         CB2      SINGLE       n     1.532  0.0110     1.532  0.0110
+FVF         CB2         CG2      SINGLE       n     1.508  0.0100     1.508  0.0100
+FVF         CG2         CDL      DOUBLE       y     1.385  0.0111     1.385  0.0111
+FVF         CG2         CDM      SINGLE       y     1.385  0.0111     1.385  0.0111
+FVF         CDL         CEL      SINGLE       y     1.386  0.0100     1.386  0.0100
+FVF         CDM         CEM      DOUBLE       y     1.386  0.0100     1.386  0.0100
+FVF         CEL         CZ2      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FVF         CEM         CZ2      SINGLE       y     1.376  0.0124     1.376  0.0124
+FVF          N3         CA3      SINGLE       n     1.453  0.0100     1.453  0.0100
+FVF         CA3         CB3      SINGLE       n     1.541  0.0166     1.541  0.0166
+FVF         CA3          P3      SINGLE       n     1.827  0.0197     1.827  0.0197
+FVF         CB3         CGD      SINGLE       n     1.521  0.0135     1.521  0.0135
+FVF         CB3         CGN      SINGLE       n     1.521  0.0135     1.521  0.0135
+FVF          P3         OPV      DOUBLE       n     1.504  0.0133     1.504  0.0133
+FVF          P3         OPW      SINGLE       n     1.504  0.0133     1.504  0.0133
+FVF          P3         OPX      SINGLE       n     1.590  0.0138     1.590  0.0138
+FVF         OPX         CA4      SINGLE       n     1.427  0.0167     1.427  0.0167
+FVF         CA4          C4      SINGLE       n     1.533  0.0100     1.533  0.0100
+FVF         CA4         CB4      SINGLE       n     1.530  0.0100     1.530  0.0100
+FVF          C4          O4      DOUBLE       n     1.247  0.0187     1.247  0.0187
+FVF          C4         O11      SINGLE       n     1.247  0.0187     1.247  0.0187
+FVF         CB4         CG4      SINGLE       n     1.509  0.0100     1.509  0.0100
+FVF         CG4         CD5      DOUBLE       y     1.385  0.0111     1.385  0.0111
+FVF         CG4         CD6      SINGLE       y     1.385  0.0111     1.385  0.0111
+FVF         CD5         CE5      SINGLE       y     1.386  0.0100     1.386  0.0100
+FVF         CD6         CE6      DOUBLE       y     1.386  0.0100     1.386  0.0100
+FVF         CE5         CZ4      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FVF         CE6         CZ4      SINGLE       y     1.376  0.0124     1.376  0.0124
+FVF         CB1        HB11      SINGLE       n     1.089  0.0100     0.980  0.0157
+FVF         CB1        HB21      SINGLE       n     1.089  0.0100     0.980  0.0157
+FVF         CDB        HD11      SINGLE       n     1.082  0.0130     0.944  0.0174
+FVF         CDC        HD21      SINGLE       n     1.082  0.0130     0.944  0.0174
+FVF         CEB        HE11      SINGLE       n     1.082  0.0130     0.944  0.0175
+FVF         CEC        HE21      SINGLE       n     1.082  0.0130     0.944  0.0175
+FVF         CZ1         HZ1      SINGLE       n     1.082  0.0130     0.944  0.0161
+FVF          N2         HN2      SINGLE       n     1.016  0.0100     0.875  0.0200
+FVF         CA2         HA2      SINGLE       n     1.089  0.0100     0.988  0.0200
+FVF         CB2        HB12      SINGLE       n     1.089  0.0100     0.980  0.0164
+FVF         CB2        HB22      SINGLE       n     1.089  0.0100     0.980  0.0164
+FVF         CDL        HD12      SINGLE       n     1.082  0.0130     0.944  0.0174
+FVF         CDM        HD22      SINGLE       n     1.082  0.0130     0.944  0.0174
+FVF         CEL        HE12      SINGLE       n     1.082  0.0130     0.944  0.0175
+FVF         CEM        HE22      SINGLE       n     1.082  0.0130     0.944  0.0175
+FVF         CZ2         HZ2      SINGLE       n     1.082  0.0130     0.944  0.0161
+FVF          N3         HN3      SINGLE       n     1.016  0.0100     0.873  0.0200
+FVF         CA3         HA3      SINGLE       n     1.089  0.0100     0.988  0.0200
+FVF         CB3         HB3      SINGLE       n     1.089  0.0100     0.989  0.0175
+FVF         CGD        H113      SINGLE       n     1.089  0.0100     0.973  0.0146
+FVF         CGD        H123      SINGLE       n     1.089  0.0100     0.973  0.0146
+FVF         CGD        H133      SINGLE       n     1.089  0.0100     0.973  0.0146
+FVF         CGN        H213      SINGLE       n     1.089  0.0100     0.973  0.0146
+FVF         CGN        H223      SINGLE       n     1.089  0.0100     0.973  0.0146
+FVF         CGN        H233      SINGLE       n     1.089  0.0100     0.973  0.0146
+FVF         CA4         HA4      SINGLE       n     1.089  0.0100     0.980  0.0157
+FVF         CB4        HB14      SINGLE       n     1.089  0.0100     0.981  0.0169
+FVF         CB4        HB24      SINGLE       n     1.089  0.0100     0.981  0.0169
+FVF         CD5        HD14      SINGLE       n     1.082  0.0130     0.944  0.0174
+FVF         CD6        HD24      SINGLE       n     1.082  0.0130     0.944  0.0174
+FVF         CE5        HE14      SINGLE       n     1.082  0.0130     0.944  0.0175
+FVF         CE6        HE24      SINGLE       n     1.082  0.0130     0.944  0.0175
+FVF         CZ4         HZ4      SINGLE       n     1.082  0.0130     0.944  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FVF          O1          C1         OA1     124.295    1.50
+FVF          O1          C1          N2     124.890    1.50
+FVF         OA1          C1          N2     110.815    1.50
+FVF          C1         OA1         CB1     115.730    1.50
+FVF         OA1         CB1         CG1     109.508    2.22
+FVF         OA1         CB1        HB11     109.538    1.50
+FVF         OA1         CB1        HB21     109.538    1.50
+FVF         CG1         CB1        HB11     109.785    1.50
+FVF         CG1         CB1        HB21     109.785    1.50
+FVF        HB11         CB1        HB21     108.275    1.50
+FVF         CB1         CG1         CDB     120.651    1.50
+FVF         CB1         CG1         CDC     120.651    1.50
+FVF         CDB         CG1         CDC     118.697    1.50
+FVF         CG1         CDB         CEB     120.514    1.50
+FVF         CG1         CDB        HD11     119.732    1.50
+FVF         CEB         CDB        HD11     119.754    1.50
+FVF         CG1         CDC         CEC     120.514    1.50
+FVF         CG1         CDC        HD21     119.732    1.50
+FVF         CEC         CDC        HD21     119.754    1.50
+FVF         CDB         CEB         CZ1     120.186    1.50
+FVF         CDB         CEB        HE11     119.862    1.50
+FVF         CZ1         CEB        HE11     119.952    1.50
+FVF         CDC         CEC         CZ1     120.186    1.50
+FVF         CDC         CEC        HE21     119.862    1.50
+FVF         CZ1         CEC        HE21     119.952    1.50
+FVF         CEB         CZ1         CEC     119.903    1.50
+FVF         CEB         CZ1         HZ1     120.048    1.50
+FVF         CEC         CZ1         HZ1     120.048    1.50
+FVF          C1          N2         CA2     121.578    1.53
+FVF          C1          N2         HN2     119.157    2.20
+FVF         CA2          N2         HN2     119.265    1.50
+FVF          O2          C2         CA2     120.683    1.50
+FVF          O2          C2          N3     122.915    1.50
+FVF         CA2          C2          N3     116.402    1.50
+FVF          N2         CA2          C2     109.211    2.19
+FVF          N2         CA2         CB2     109.793    1.66
+FVF          N2         CA2         HA2     108.930    1.50
+FVF          C2         CA2         CB2     110.507    1.62
+FVF          C2         CA2         HA2     108.179    1.50
+FVF         CB2         CA2         HA2     108.341    1.50
+FVF         CA2         CB2         CG2     113.550    1.83
+FVF         CA2         CB2        HB12     108.810    1.50
+FVF         CA2         CB2        HB22     108.810    1.50
+FVF         CG2         CB2        HB12     108.862    1.50
+FVF         CG2         CB2        HB22     108.862    1.50
+FVF        HB12         CB2        HB22     107.782    1.50
+FVF         CB2         CG2         CDL     120.970    1.50
+FVF         CB2         CG2         CDM     120.970    1.50
+FVF         CDL         CG2         CDM     118.060    1.50
+FVF         CG2         CDL         CEL     120.624    1.50
+FVF         CG2         CDL        HD12     119.591    1.50
+FVF         CEL         CDL        HD12     119.786    1.50
+FVF         CG2         CDM         CEM     120.624    1.50
+FVF         CG2         CDM        HD22     119.591    1.50
+FVF         CEM         CDM        HD22     119.786    1.50
+FVF         CDL         CEL         CZ2     120.325    1.50
+FVF         CDL         CEL        HE12     119.792    1.50
+FVF         CZ2         CEL        HE12     119.883    1.50
+FVF         CDM         CEM         CZ2     120.325    1.50
+FVF         CDM         CEM        HE22     119.792    1.50
+FVF         CZ2         CEM        HE22     119.883    1.50
+FVF         CEL         CZ2         CEM     120.043    1.50
+FVF         CEL         CZ2         HZ2     119.979    1.50
+FVF         CEM         CZ2         HZ2     119.979    1.50
+FVF          C2          N3         CA3     123.657    1.62
+FVF          C2          N3         HN3     118.647    1.94
+FVF         CA3          N3         HN3     117.696    2.87
+FVF          N3         CA3         CB3     110.555    1.87
+FVF          N3         CA3          P3     108.817    2.81
+FVF          N3         CA3         HA3     106.481    2.65
+FVF         CB3         CA3          P3     111.410    2.87
+FVF         CB3         CA3         HA3     107.827    1.50
+FVF          P3         CA3         HA3     108.528    1.50
+FVF         CA3         CB3         CGD     111.756    1.50
+FVF         CA3         CB3         CGN     111.756    1.50
+FVF         CA3         CB3         HB3     107.402    1.57
+FVF         CGD         CB3         CGN     110.594    1.50
+FVF         CGD         CB3         HB3     107.863    1.50
+FVF         CGN         CB3         HB3     107.863    1.50
+FVF         CB3         CGD        H113     109.495    1.50
+FVF         CB3         CGD        H123     109.495    1.50
+FVF         CB3         CGD        H133     109.495    1.50
+FVF        H113         CGD        H123     109.411    1.50
+FVF        H113         CGD        H133     109.411    1.50
+FVF        H123         CGD        H133     109.411    1.50
+FVF         CB3         CGN        H213     109.495    1.50
+FVF         CB3         CGN        H223     109.495    1.50
+FVF         CB3         CGN        H233     109.495    1.50
+FVF        H213         CGN        H223     109.411    1.50
+FVF        H213         CGN        H233     109.411    1.50
+FVF        H223         CGN        H233     109.411    1.50
+FVF         CA3          P3         OPV     110.326    3.00
+FVF         CA3          P3         OPW     110.326    3.00
+FVF         CA3          P3         OPX     105.177    2.72
+FVF         OPV          P3         OPW     115.915    1.71
+FVF         OPV          P3         OPX     108.773    3.00
+FVF         OPW          P3         OPX     108.773    3.00
+FVF          P3         OPX         CA4     121.496    2.55
+FVF         OPX         CA4          C4     110.427    2.31
+FVF         OPX         CA4         CB4     109.482    3.00
+FVF         OPX         CA4         HA4     108.941    1.50
+FVF          C4         CA4         CB4     111.511    2.91
+FVF          C4         CA4         HA4     108.330    1.50
+FVF         CB4         CA4         HA4     108.617    1.50
+FVF         CA4          C4          O4     117.167    1.52
+FVF         CA4          C4         O11     117.167    1.52
+FVF          O4          C4         O11     125.666    1.50
+FVF         CA4         CB4         CG4     113.252    1.50
+FVF         CA4         CB4        HB14     108.986    1.50
+FVF         CA4         CB4        HB24     108.986    1.50
+FVF         CG4         CB4        HB14     108.813    1.50
+FVF         CG4         CB4        HB24     108.813    1.50
+FVF        HB14         CB4        HB24     107.755    1.50
+FVF         CB4         CG4         CD5     120.970    1.50
+FVF         CB4         CG4         CD6     120.970    1.50
+FVF         CD5         CG4         CD6     118.060    1.50
+FVF         CG4         CD5         CE5     120.624    1.50
+FVF         CG4         CD5        HD14     119.591    1.50
+FVF         CE5         CD5        HD14     119.786    1.50
+FVF         CG4         CD6         CE6     120.624    1.50
+FVF         CG4         CD6        HD24     119.591    1.50
+FVF         CE6         CD6        HD24     119.786    1.50
+FVF         CD5         CE5         CZ4     120.325    1.50
+FVF         CD5         CE5        HE14     119.792    1.50
+FVF         CZ4         CE5        HE14     119.883    1.50
+FVF         CD6         CE6         CZ4     120.325    1.50
+FVF         CD6         CE6        HE24     119.792    1.50
+FVF         CZ4         CE6        HE24     119.883    1.50
+FVF         CE5         CZ4         CE6     120.043    1.50
+FVF         CE5         CZ4         HZ4     119.979    1.50
+FVF         CE6         CZ4         HZ4     119.979    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FVF             sp2_sp2_5          O1          C1          N2         CA2       0.000     5.0     2
+FVF             sp2_sp2_1          O1          C1         OA1         CB1     180.000     5.0     2
+FVF             sp2_sp3_7          C1          N2         CA2          C2       0.000    10.0     6
+FVF            sp2_sp3_13          O2          C2         CA2          N2       0.000    10.0     6
+FVF             sp2_sp2_9          O2          C2          N3         CA3       0.000     5.0     2
+FVF             sp3_sp3_4          N2         CA2         CB2         CG2     180.000    10.0     3
+FVF            sp2_sp3_20         CDL         CG2         CB2         CA2     -90.000    10.0     6
+FVF              const_42         CEL         CDL         CG2         CB2     180.000    10.0     2
+FVF              const_66         CEM         CDM         CG2         CB2     180.000    10.0     2
+FVF              const_45         CG2         CDL         CEL         CZ2       0.000    10.0     2
+FVF              const_57         CG2         CDM         CEM         CZ2       0.000    10.0     2
+FVF              const_49         CDL         CEL         CZ2         CEM       0.000    10.0     2
+FVF              const_53         CDM         CEM         CZ2         CEL       0.000    10.0     2
+FVF            sp2_sp3_25          C2          N3         CA3         CB3       0.000    10.0     6
+FVF            sp3_sp3_13          N3         CA3         CB3         CGD     180.000    10.0     3
+FVF            sp3_sp3_24          N3         CA3          P3         OPV      60.000    10.0     3
+FVF            sp3_sp3_31         CA3         CB3         CGD        H113     180.000    10.0     3
+FVF            sp3_sp3_40         CA3         CB3         CGN        H213     180.000    10.0     3
+FVF            sp3_sp3_51         CA4         OPX          P3         CA3      60.000    10.0     3
+FVF            sp3_sp3_52          C4         CA4         OPX          P3     180.000    10.0     3
+FVF             sp3_sp3_1         CG1         CB1         OA1          C1     180.000    10.0     3
+FVF            sp2_sp3_31          O4          C4         CA4         OPX       0.000    10.0     6
+FVF            sp3_sp3_55         OPX         CA4         CB4         CG4     180.000    10.0     3
+FVF            sp2_sp3_38         CD5         CG4         CB4         CA4     -90.000    10.0     6
+FVF       const_sp2_sp2_2         CE5         CD5         CG4         CB4     180.000     5.0     2
+FVF              const_70         CE6         CD6         CG4         CB4     180.000    10.0     2
+FVF       const_sp2_sp2_5         CG4         CD5         CE5         CZ4       0.000     5.0     2
+FVF              const_17         CG4         CD6         CE6         CZ4       0.000    10.0     2
+FVF       const_sp2_sp2_9         CD5         CE5         CZ4         CE6       0.000     5.0     2
+FVF              const_13         CD6         CE6         CZ4         CE5       0.000    10.0     2
+FVF             sp2_sp3_2         CDB         CG1         CB1         OA1     -90.000    10.0     6
+FVF              const_22         CEB         CDB         CG1         CB1     180.000    10.0     2
+FVF              const_62         CEC         CDC         CG1         CB1     180.000    10.0     2
+FVF              const_25         CG1         CDB         CEB         CZ1       0.000    10.0     2
+FVF              const_37         CG1         CDC         CEC         CZ1       0.000    10.0     2
+FVF              const_29         CDB         CEB         CZ1         CEC       0.000    10.0     2
+FVF              const_33         CDC         CEC         CZ1         CEB       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FVF    chir_1    CA2    N2    C2    CB2    positive
+FVF    chir_2    CA3    P3    N3    CB3    negative
+FVF    chir_3    P3    OPX    OPW    OPV    both
+FVF    chir_4    CA4    OPX    C4    CB4    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FVF    plan-1         CB2   0.020
+FVF    plan-1         CDL   0.020
+FVF    plan-1         CDM   0.020
+FVF    plan-1         CEL   0.020
+FVF    plan-1         CEM   0.020
+FVF    plan-1         CG2   0.020
+FVF    plan-1         CZ2   0.020
+FVF    plan-1        HD12   0.020
+FVF    plan-1        HD22   0.020
+FVF    plan-1        HE12   0.020
+FVF    plan-1        HE22   0.020
+FVF    plan-1         HZ2   0.020
+FVF    plan-2         CB4   0.020
+FVF    plan-2         CD5   0.020
+FVF    plan-2         CD6   0.020
+FVF    plan-2         CE5   0.020
+FVF    plan-2         CE6   0.020
+FVF    plan-2         CG4   0.020
+FVF    plan-2         CZ4   0.020
+FVF    plan-2        HD14   0.020
+FVF    plan-2        HD24   0.020
+FVF    plan-2        HE14   0.020
+FVF    plan-2        HE24   0.020
+FVF    plan-2         HZ4   0.020
+FVF    plan-3         CB1   0.020
+FVF    plan-3         CDB   0.020
+FVF    plan-3         CDC   0.020
+FVF    plan-3         CEB   0.020
+FVF    plan-3         CEC   0.020
+FVF    plan-3         CG1   0.020
+FVF    plan-3         CZ1   0.020
+FVF    plan-3        HD11   0.020
+FVF    plan-3        HD21   0.020
+FVF    plan-3        HE11   0.020
+FVF    plan-3        HE21   0.020
+FVF    plan-3         HZ1   0.020
+FVF    plan-4          C1   0.020
+FVF    plan-4          N2   0.020
+FVF    plan-4          O1   0.020
+FVF    plan-4         OA1   0.020
+FVF    plan-5          C1   0.020
+FVF    plan-5         CA2   0.020
+FVF    plan-5         HN2   0.020
+FVF    plan-5          N2   0.020
+FVF    plan-6          C2   0.020
+FVF    plan-6         CA2   0.020
+FVF    plan-6          N3   0.020
+FVF    plan-6          O2   0.020
+FVF    plan-7          C2   0.020
+FVF    plan-7         CA3   0.020
+FVF    plan-7         HN3   0.020
+FVF    plan-7          N3   0.020
+FVF    plan-8          C4   0.020
+FVF    plan-8         CA4   0.020
+FVF    plan-8         O11   0.020
+FVF    plan-8          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FVF           SMILES              ACDLabs 10.04                                                                                                                                                                     O=C(O)C(OP(=O)(O)C(NC(=O)C(NC(=O)OCc1ccccc1)Cc2ccccc2)C(C)C)Cc3ccccc3
+FVF SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                     CC(C)[C@H](NC(=O)[C@H](Cc1ccccc1)NC(=O)OCc2ccccc2)[P@](O)(=O)O[C@@H](Cc3ccccc3)C(O)=O
+FVF           SMILES               CACTVS 3.341                                                                                                                                                          CC(C)[CH](NC(=O)[CH](Cc1ccccc1)NC(=O)OCc2ccccc2)[P](O)(=O)O[CH](Cc3ccccc3)C(O)=O
+FVF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                    CC(C)[C@H](NC(=O)[C@H](Cc1ccccc1)NC(=O)OCc2ccccc2)[P@@](=O)(O)O[C@@H](Cc3ccccc3)C(=O)O
+FVF           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                     CC(C)C(NC(=O)C(Cc1ccccc1)NC(=O)OCc2ccccc2)P(=O)(O)OC(Cc3ccccc3)C(=O)O
+FVF            InChI                InChI  1.03 InChI=1S/C30H35N2O8P/c1-21(2)28(41(37,38)40-26(29(34)35)19-23-14-8-4-9-15-23)32-27(33)25(18-22-12-6-3-7-13-22)31-30(36)39-20-24-16-10-5-11-17-24/h3-17,21,25-26,28H,18-20H2,1-2H3,(H,31,36)(H,32,33)(H,34,35)(H,37,38)/t25-,26-,28+/m0/s1
+FVF         InChIKey                InChI  1.03                                                                                                                                                                                                               NXIYKBRAJXXOLO-UNCTUWKVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FVF acedrg               243         "dictionary generator"                  
+FVF acedrg_database      11          "data source"                           
+FVF rdkit                2017.03.2   "Chemoinformatics tool"
+FVF refmac5              5.8.0238    "optimization tool"                     

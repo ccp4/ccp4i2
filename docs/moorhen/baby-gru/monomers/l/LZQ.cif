@@ -1,0 +1,340 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LZQ     LZQ      "4-[3-(dibenzylamino)phenyl]-2,4-dioxobutanoic acid"     NON-POLYMER     49     29     .     
+#
+data_comp_LZQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LZQ     C01     C       CR16    0       46.445      11.924      2.661       
+LZQ     C07     C       C       0       48.197      13.636      3.176       
+LZQ     C09     C       C       0       48.617      16.090      3.776       
+LZQ     C10     C       C       0       47.519      16.677      4.214       
+LZQ     C13     C       CR6     0       48.444      9.347       -1.604      
+LZQ     C19     C       CR6     0       46.284      11.738      -3.416      
+LZQ     N01     N       N       0       47.667      11.703      -1.331      
+LZQ     O01     O       O       0       46.426      16.335      3.755       
+LZQ     C02     C       CR16    0       45.797      11.067      1.785       
+LZQ     C14     C       CR16    0       48.778      8.664       -0.440      
+LZQ     C20     C       CR16    0       46.772      11.624      -4.713      
+LZQ     O02     O       O       0       48.424      13.277      4.316       
+LZQ     O10     O       O       0       49.690      16.419      4.261       
+LZQ     O11     O       OC      -1      47.609      17.562      5.071       
+LZQ     C03     C       CR16    0       46.192      10.985      0.464       
+LZQ     C15     C       CR16    0       48.497      7.310       -0.311      
+LZQ     C21     C       CR16    0       46.067      10.908      -5.673      
+LZQ     C04     C       CR6     0       47.263      11.777      -0.009      
+LZQ     C16     C       CR16    0       47.882      6.628       -1.341      
+LZQ     C22     C       CR16    0       44.872      10.301      -5.346      
+LZQ     C05     C       CR16    0       47.917      12.645      0.892       
+LZQ     C17     C       CR16    0       47.546      7.295       -2.500      
+LZQ     C23     C       CR16    0       44.377      10.406      -4.063      
+LZQ     C06     C       CR6     0       47.503      12.719      2.223       
+LZQ     C18     C       CR16    0       47.824      8.649       -2.633      
+LZQ     C24     C       CR16    0       45.079      11.121      -3.100      
+LZQ     C08     C       CH2     0       48.636      15.017      2.702       
+LZQ     C11     C       CH2     0       48.748      10.819      -1.744      
+LZQ     C12     C       CH2     0       47.046      12.516      -2.368      
+LZQ     H01     H       H       0       46.167      11.971      3.559       
+LZQ     H02     H       H       0       45.083      10.537      2.091       
+LZQ     H14     H       H       0       49.199      9.125       0.268       
+LZQ     H20     H       H       0       47.589      12.037      -4.944      
+LZQ     H03     H       H       0       45.748      10.401      -0.128      
+LZQ     H15     H       H       0       48.729      6.855       0.484       
+LZQ     H21     H       H       0       46.408      10.838      -6.550      
+LZQ     H16     H       H       0       47.692      5.707       -1.253      
+LZQ     H22     H       H       0       44.394      9.814       -5.999      
+LZQ     H05     H       H       0       48.630      13.175      0.588       
+LZQ     H17     H       H       0       47.125      6.830       -3.206      
+LZQ     H23     H       H       0       43.560      9.991       -3.838      
+LZQ     H18     H       H       0       47.592      9.100       -3.430      
+LZQ     H24     H       H       0       44.734      11.189      -2.224      
+LZQ     H08     H       H       0       48.054      15.292      1.963       
+LZQ     H08A    H       H       0       49.545      14.943      2.341       
+LZQ     H11     H       H       0       48.976      11.005      -2.680      
+LZQ     H11A    H       H       0       49.539      11.027      -1.202      
+LZQ     H12     H       H       0       46.429      13.151      -1.943      
+LZQ     H12A    H       H       0       47.747      13.040      -2.811      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LZQ         C01         C06      DOUBLE       y     1.390  0.0100     1.390  0.0100
+LZQ         C01         C02      SINGLE       y     1.384  0.0100     1.384  0.0100
+LZQ         C07         C06      SINGLE       n     1.491  0.0100     1.491  0.0100
+LZQ         C07         C08      SINGLE       n     1.515  0.0199     1.515  0.0199
+LZQ         C07         O02      DOUBLE       n     1.215  0.0100     1.215  0.0100
+LZQ         C09         C08      SINGLE       n     1.506  0.0200     1.506  0.0200
+LZQ         C09         C10      SINGLE       n     1.299  0.0200     1.299  0.0200
+LZQ         C09         O10      DOUBLE       n     1.220  0.0120     1.220  0.0120
+LZQ         C10         O01      DOUBLE       n     1.230  0.0200     1.230  0.0200
+LZQ         C10         O11      SINGLE       n     1.230  0.0200     1.230  0.0200
+LZQ         C13         C18      SINGLE       y     1.386  0.0100     1.386  0.0100
+LZQ         C13         C11      SINGLE       n     1.510  0.0100     1.510  0.0100
+LZQ         C13         C14      DOUBLE       y     1.386  0.0100     1.386  0.0100
+LZQ         C19         C20      DOUBLE       y     1.386  0.0100     1.386  0.0100
+LZQ         C19         C12      SINGLE       n     1.510  0.0100     1.510  0.0100
+LZQ         C19         C24      SINGLE       y     1.386  0.0100     1.386  0.0100
+LZQ         N01         C12      SINGLE       n     1.454  0.0100     1.454  0.0100
+LZQ         N01         C11      SINGLE       n     1.454  0.0100     1.454  0.0100
+LZQ         N01         C04      SINGLE       n     1.381  0.0200     1.381  0.0200
+LZQ         C02         C03      DOUBLE       y     1.379  0.0100     1.379  0.0100
+LZQ         C14         C15      SINGLE       y     1.386  0.0100     1.386  0.0100
+LZQ         C20         C21      SINGLE       y     1.386  0.0100     1.386  0.0100
+LZQ         C03         C04      SINGLE       y     1.409  0.0111     1.409  0.0111
+LZQ         C15         C16      DOUBLE       y     1.376  0.0124     1.376  0.0124
+LZQ         C21         C22      DOUBLE       y     1.376  0.0124     1.376  0.0124
+LZQ         C04         C05      DOUBLE       y     1.396  0.0200     1.396  0.0200
+LZQ         C16         C17      SINGLE       y     1.374  0.0127     1.374  0.0127
+LZQ         C22         C23      SINGLE       y     1.374  0.0127     1.374  0.0127
+LZQ         C05         C06      SINGLE       y     1.391  0.0100     1.391  0.0100
+LZQ         C17         C18      DOUBLE       y     1.386  0.0100     1.386  0.0100
+LZQ         C23         C24      DOUBLE       y     1.386  0.0100     1.386  0.0100
+LZQ         C01         H01      SINGLE       n     1.082  0.0130     0.941  0.0168
+LZQ         C02         H02      SINGLE       n     1.082  0.0130     0.940  0.0164
+LZQ         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0174
+LZQ         C20         H20      SINGLE       n     1.082  0.0130     0.944  0.0174
+LZQ         C03         H03      SINGLE       n     1.082  0.0130     0.943  0.0178
+LZQ         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0175
+LZQ         C21         H21      SINGLE       n     1.082  0.0130     0.944  0.0175
+LZQ         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0161
+LZQ         C22         H22      SINGLE       n     1.082  0.0130     0.944  0.0161
+LZQ         C05         H05      SINGLE       n     1.082  0.0130     0.939  0.0130
+LZQ         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0175
+LZQ         C23         H23      SINGLE       n     1.082  0.0130     0.944  0.0175
+LZQ         C18         H18      SINGLE       n     1.082  0.0130     0.944  0.0174
+LZQ         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0174
+LZQ         C08         H08      SINGLE       n     1.089  0.0100     0.980  0.0200
+LZQ         C08        H08A      SINGLE       n     1.089  0.0100     0.980  0.0200
+LZQ         C11         H11      SINGLE       n     1.089  0.0100     0.981  0.0161
+LZQ         C11        H11A      SINGLE       n     1.089  0.0100     0.981  0.0161
+LZQ         C12         H12      SINGLE       n     1.089  0.0100     0.981  0.0161
+LZQ         C12        H12A      SINGLE       n     1.089  0.0100     0.981  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LZQ         C06         C01         C02     120.736    1.50
+LZQ         C06         C01         H01     119.657    1.50
+LZQ         C02         C01         H01     119.606    1.50
+LZQ         C06         C07         C08     119.276    1.68
+LZQ         C06         C07         O02     120.504    1.50
+LZQ         C08         C07         O02     120.221    1.50
+LZQ         C08         C09         C10     122.941    3.00
+LZQ         C08         C09         O10     118.423    1.50
+LZQ         C10         C09         O10     118.636    3.00
+LZQ         C09         C10         O01     118.654    3.00
+LZQ         C09         C10         O11     118.654    3.00
+LZQ         O01         C10         O11     122.692    1.63
+LZQ         C18         C13         C11     120.710    1.58
+LZQ         C18         C13         C14     118.580    1.50
+LZQ         C11         C13         C14     120.710    1.58
+LZQ         C20         C19         C12     120.710    1.58
+LZQ         C20         C19         C24     118.580    1.50
+LZQ         C12         C19         C24     120.710    1.58
+LZQ         C12         N01         C11     116.399    1.50
+LZQ         C12         N01         C04     121.800    1.50
+LZQ         C11         N01         C04     121.800    1.50
+LZQ         C01         C02         C03     120.738    1.50
+LZQ         C01         C02         H02     119.727    1.50
+LZQ         C03         C02         H02     119.535    1.50
+LZQ         C13         C14         C15     120.442    1.50
+LZQ         C13         C14         H14     119.742    1.50
+LZQ         C15         C14         H14     119.815    1.50
+LZQ         C19         C20         C21     120.442    1.50
+LZQ         C19         C20         H20     119.742    1.50
+LZQ         C21         C20         H20     119.815    1.50
+LZQ         C02         C03         C04     120.465    1.50
+LZQ         C02         C03         H03     119.969    1.50
+LZQ         C04         C03         H03     119.566    1.50
+LZQ         C14         C15         C16     120.273    1.50
+LZQ         C14         C15         H15     119.818    1.50
+LZQ         C16         C15         H15     119.909    1.50
+LZQ         C20         C21         C22     120.273    1.50
+LZQ         C20         C21         H21     119.818    1.50
+LZQ         C22         C21         H21     119.909    1.50
+LZQ         N01         C04         C03     120.620    1.50
+LZQ         N01         C04         C05     120.803    1.50
+LZQ         C03         C04         C05     118.578    1.50
+LZQ         C15         C16         C17     119.997    1.50
+LZQ         C15         C16         H16     119.998    1.50
+LZQ         C17         C16         H16     119.998    1.50
+LZQ         C21         C22         C23     119.997    1.50
+LZQ         C21         C22         H22     119.998    1.50
+LZQ         C23         C22         H22     119.998    1.50
+LZQ         C04         C05         C06     119.768    1.50
+LZQ         C04         C05         H05     119.904    1.50
+LZQ         C06         C05         H05     120.328    1.50
+LZQ         C16         C17         C18     120.273    1.50
+LZQ         C16         C17         H17     119.909    1.50
+LZQ         C18         C17         H17     119.818    1.50
+LZQ         C22         C23         C24     120.273    1.50
+LZQ         C22         C23         H23     119.909    1.50
+LZQ         C24         C23         H23     119.818    1.50
+LZQ         C01         C06         C07     120.233    2.04
+LZQ         C01         C06         C05     119.715    1.50
+LZQ         C07         C06         C05     120.051    2.23
+LZQ         C13         C18         C17     120.442    1.50
+LZQ         C13         C18         H18     119.742    1.50
+LZQ         C17         C18         H18     119.815    1.50
+LZQ         C19         C24         C23     120.442    1.50
+LZQ         C19         C24         H24     119.742    1.50
+LZQ         C23         C24         H24     119.815    1.50
+LZQ         C07         C08         C09     111.575    3.00
+LZQ         C07         C08         H08     108.599    1.50
+LZQ         C07         C08        H08A     108.599    1.50
+LZQ         C09         C08         H08     109.153    1.50
+LZQ         C09         C08        H08A     109.153    1.50
+LZQ         H08         C08        H08A     107.635    1.72
+LZQ         C13         C11         N01     114.718    1.50
+LZQ         C13         C11         H11     108.776    1.50
+LZQ         C13         C11        H11A     108.776    1.50
+LZQ         N01         C11         H11     108.581    1.50
+LZQ         N01         C11        H11A     108.581    1.50
+LZQ         H11         C11        H11A     107.736    1.50
+LZQ         C19         C12         N01     114.718    1.50
+LZQ         C19         C12         H12     108.776    1.50
+LZQ         C19         C12        H12A     108.776    1.50
+LZQ         N01         C12         H12     108.581    1.50
+LZQ         N01         C12        H12A     108.581    1.50
+LZQ         H12         C12        H12A     107.736    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LZQ       const_sp2_sp2_2         C02         C01         C06         C07     180.000     5.0     2
+LZQ              const_61         C06         C01         C02         C03       0.000    10.0     2
+LZQ              const_45         C19         C20         C21         C22       0.000    10.0     2
+LZQ              const_14         C02         C03         C04         N01     180.000    10.0     2
+LZQ              const_33         C14         C15         C16         C17       0.000    10.0     2
+LZQ              const_49         C20         C21         C22         C23       0.000    10.0     2
+LZQ              const_11         N01         C04         C05         C06     180.000    10.0     2
+LZQ              const_29         C15         C16         C17         C18       0.000    10.0     2
+LZQ              const_53         C21         C22         C23         C24       0.000    10.0     2
+LZQ             sp2_sp2_1         C01         C06         C07         C08     180.000     5.0     2
+LZQ             sp2_sp3_5         O02         C07         C08         C09     -60.000    10.0     6
+LZQ       const_sp2_sp2_6         C04         C05         C06         C07     180.000     5.0     2
+LZQ              const_25         C16         C17         C18         C13       0.000    10.0     2
+LZQ              const_57         C22         C23         C24         C19       0.000    10.0     2
+LZQ             sp2_sp3_8         C10         C09         C08         C07     120.000    10.0     6
+LZQ             sp2_sp2_5         C08         C09         C10         O01     180.000     5.0     2
+LZQ              const_23         C11         C13         C18         C17     180.000    10.0     2
+LZQ            sp2_sp3_14         C18         C13         C11         N01     -90.000    10.0     6
+LZQ              const_67         C11         C13         C14         C15     180.000    10.0     2
+LZQ              const_43         C12         C19         C20         C21     180.000    10.0     2
+LZQ              const_71         C12         C19         C24         C23     180.000    10.0     2
+LZQ            sp2_sp3_20         C20         C19         C12         N01     -90.000    10.0     6
+LZQ             sp2_sp2_9         C03         C04         N01         C12     180.000     5.0     2
+LZQ            sp2_sp3_32         C12         N01         C11         C13     120.000    10.0     6
+LZQ            sp2_sp3_26         C11         N01         C12         C19     120.000    10.0     6
+LZQ              const_17         C01         C02         C03         C04       0.000    10.0     2
+LZQ              const_37         C13         C14         C15         C16       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LZQ    plan-1         C01   0.020
+LZQ    plan-1         C02   0.020
+LZQ    plan-1         C03   0.020
+LZQ    plan-1         C04   0.020
+LZQ    plan-1         C05   0.020
+LZQ    plan-1         C06   0.020
+LZQ    plan-1         C07   0.020
+LZQ    plan-1         H01   0.020
+LZQ    plan-1         H02   0.020
+LZQ    plan-1         H03   0.020
+LZQ    plan-1         H05   0.020
+LZQ    plan-1         N01   0.020
+LZQ    plan-2         C12   0.020
+LZQ    plan-2         C19   0.020
+LZQ    plan-2         C20   0.020
+LZQ    plan-2         C21   0.020
+LZQ    plan-2         C22   0.020
+LZQ    plan-2         C23   0.020
+LZQ    plan-2         C24   0.020
+LZQ    plan-2         H20   0.020
+LZQ    plan-2         H21   0.020
+LZQ    plan-2         H22   0.020
+LZQ    plan-2         H23   0.020
+LZQ    plan-2         H24   0.020
+LZQ    plan-3         C11   0.020
+LZQ    plan-3         C13   0.020
+LZQ    plan-3         C14   0.020
+LZQ    plan-3         C15   0.020
+LZQ    plan-3         C16   0.020
+LZQ    plan-3         C17   0.020
+LZQ    plan-3         C18   0.020
+LZQ    plan-3         H14   0.020
+LZQ    plan-3         H15   0.020
+LZQ    plan-3         H16   0.020
+LZQ    plan-3         H17   0.020
+LZQ    plan-3         H18   0.020
+LZQ    plan-4         C06   0.020
+LZQ    plan-4         C07   0.020
+LZQ    plan-4         C08   0.020
+LZQ    plan-4         O02   0.020
+LZQ    plan-5         C08   0.020
+LZQ    plan-5         C09   0.020
+LZQ    plan-5         C10   0.020
+LZQ    plan-5         O10   0.020
+LZQ    plan-6         C09   0.020
+LZQ    plan-6         C10   0.020
+LZQ    plan-6         O01   0.020
+LZQ    plan-6         O11   0.020
+LZQ    plan-7         C04   0.020
+LZQ    plan-7         C11   0.020
+LZQ    plan-7         C12   0.020
+LZQ    plan-7         N01   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LZQ           SMILES              ACDLabs 10.04                                                                                    O=C(O)C(=O)CC(=O)c3cc(N(Cc1ccccc1)Cc2ccccc2)ccc3
+LZQ SMILES_CANONICAL               CACTVS 3.341                                                                                    OC(=O)C(=O)CC(=O)c1cccc(c1)N(Cc2ccccc2)Cc3ccccc3
+LZQ           SMILES               CACTVS 3.341                                                                                    OC(=O)C(=O)CC(=O)c1cccc(c1)N(Cc2ccccc2)Cc3ccccc3
+LZQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                  c1ccc(cc1)CN(Cc2ccccc2)c3cccc(c3)C(=O)CC(=O)C(=O)O
+LZQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                  c1ccc(cc1)CN(Cc2ccccc2)c3cccc(c3)C(=O)CC(=O)C(=O)O
+LZQ            InChI                InChI  1.03 InChI=1S/C24H21NO4/c26-22(15-23(27)24(28)29)20-12-7-13-21(14-20)25(16-18-8-3-1-4-9-18)17-19-10-5-2-6-11-19/h1-14H,15-17H2,(H,28,29)
+LZQ         InChIKey                InChI  1.03                                                                                                         RMWVENXKUQXLPW-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LZQ acedrg               243         "dictionary generator"                  
+LZQ acedrg_database      11          "data source"                           
+LZQ rdkit                2017.03.2   "Chemoinformatics tool"
+LZQ refmac5              5.8.0238    "optimization tool"                     

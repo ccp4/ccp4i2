@@ -1,0 +1,270 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HMN     HMN      "2,4,6,7,8,9-HEXAHYDROXY-5-METHYLCARBOXAMIDO NONANOIC ACID"     NON-POLYMER     41     21     .     
+#
+data_comp_HMN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HMN     C1      C       C       0       -9.572      42.121      21.240      
+HMN     O1A     O       O       0       -10.753     42.220      20.847      
+HMN     O1B     O       OC      -1      -9.216      42.002      22.429      
+HMN     C2      C       CH1     0       -8.467      42.149      20.176      
+HMN     O2      O       OH1     0       -7.808      40.891      20.088      
+HMN     C3      C       CH2     0       -7.427      43.227      20.466      
+HMN     C4      C       CH1     0       -6.398      43.433      19.359      
+HMN     O4      O       OH1     0       -5.549      42.283      19.304      
+HMN     C5      C       CH1     0       -5.547      44.705      19.503      
+HMN     N2      N       NH1     0       -4.905      44.734      20.824      
+HMN     C10     C       C       0       -5.287      45.490      21.862      
+HMN     O10     O       O       0       -6.264      46.236      21.811      
+HMN     C11     C       CH3     0       -4.452      45.387      23.098      
+HMN     C6      C       CH1     0       -4.478      44.866      18.412      
+HMN     O6      O       OH1     0       -5.107      44.820      17.131      
+HMN     C7      C       CH1     0       -3.643      46.150      18.502      
+HMN     O7      O       OH1     0       -4.521      47.272      18.412      
+HMN     C8      C       CH1     0       -2.552      46.279      17.431      
+HMN     O8      O       OH1     0       -1.695      45.136      17.468      
+HMN     C9      C       CH2     0       -1.712      47.530      17.592      
+HMN     O9      O       OH1     0       -1.010      47.537      18.833      
+HMN     HC2     H       H       0       -8.890      42.340      19.303      
+HMN     HO2     H       H       0       -7.450      40.703      20.835      
+HMN     HC31    H       H       0       -6.956      42.993      21.297      
+HMN     HC32    H       H       0       -7.895      44.078      20.621      
+HMN     HC4     H       H       0       -6.890      43.491      18.500      
+HMN     HO4     H       H       0       -5.136      42.194      20.039      
+HMN     HC5     H       H       0       -6.160      45.476      19.429      
+HMN     HN2     H       H       0       -4.215      44.207      20.918      
+HMN     H111    H       H       0       -4.746      46.048      23.746      
+HMN     H112    H       H       0       -3.520      45.547      22.877      
+HMN     H113    H       H       0       -4.543      44.499      23.480      
+HMN     HC6     H       H       0       -3.859      44.094      18.470      
+HMN     HO6     H       H       0       -4.595      44.424      16.583      
+HMN     HC7     H       H       0       -3.204      46.171      19.391      
+HMN     HO7     H       H       0       -4.247      47.884      18.933      
+HMN     HC8     H       H       0       -2.989      46.319      16.529      
+HMN     HO8     H       H       0       -1.183      45.114      16.792      
+HMN     HC91    H       H       0       -2.293      48.327      17.542      
+HMN     HC92    H       H       0       -1.059      47.578      16.852      
+HMN     HO9     H       H       0       -0.615      48.281      18.910      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HMN          C1         O1A      DOUBLE       n     1.247  0.0187     1.247  0.0187
+HMN          C1         O1B      SINGLE       n     1.247  0.0187     1.247  0.0187
+HMN          C1          C2      SINGLE       n     1.533  0.0100     1.533  0.0100
+HMN          C2          O2      SINGLE       n     1.419  0.0162     1.419  0.0162
+HMN          C2          C3      SINGLE       n     1.525  0.0100     1.525  0.0100
+HMN          C3          C4      SINGLE       n     1.525  0.0100     1.525  0.0100
+HMN          C4          O4      SINGLE       n     1.424  0.0199     1.424  0.0199
+HMN          C4          C5      SINGLE       n     1.532  0.0103     1.532  0.0103
+HMN          C5          N2      SINGLE       n     1.464  0.0100     1.464  0.0100
+HMN          C5          C6      SINGLE       n     1.532  0.0103     1.532  0.0103
+HMN          N2         C10      SINGLE       n     1.335  0.0103     1.335  0.0103
+HMN         C10         O10      DOUBLE       n     1.229  0.0102     1.229  0.0102
+HMN         C10         C11      SINGLE       n     1.495  0.0100     1.495  0.0100
+HMN          C6          O6      SINGLE       n     1.424  0.0199     1.424  0.0199
+HMN          C6          C7      SINGLE       n     1.531  0.0100     1.531  0.0100
+HMN          C7          O7      SINGLE       n     1.424  0.0199     1.424  0.0199
+HMN          C7          C8      SINGLE       n     1.530  0.0100     1.530  0.0100
+HMN          C8          O8      SINGLE       n     1.429  0.0100     1.429  0.0100
+HMN          C8          C9      SINGLE       n     1.514  0.0100     1.514  0.0100
+HMN          C9          O9      SINGLE       n     1.425  0.0100     1.425  0.0100
+HMN          C2         HC2      SINGLE       n     1.089  0.0100     0.988  0.0129
+HMN          O2         HO2      SINGLE       n     0.970  0.0120     0.848  0.0200
+HMN          C3        HC31      SINGLE       n     1.089  0.0100     0.983  0.0125
+HMN          C3        HC32      SINGLE       n     1.089  0.0100     0.983  0.0125
+HMN          C4         HC4      SINGLE       n     1.089  0.0100     0.992  0.0184
+HMN          O4         HO4      SINGLE       n     0.970  0.0120     0.848  0.0200
+HMN          C5         HC5      SINGLE       n     1.089  0.0100     0.989  0.0122
+HMN          N2         HN2      SINGLE       n     1.016  0.0100     0.872  0.0200
+HMN         C11        H111      SINGLE       n     1.089  0.0100     0.971  0.0140
+HMN         C11        H112      SINGLE       n     1.089  0.0100     0.971  0.0140
+HMN         C11        H113      SINGLE       n     1.089  0.0100     0.971  0.0140
+HMN          C6         HC6      SINGLE       n     1.089  0.0100     0.992  0.0184
+HMN          O6         HO6      SINGLE       n     0.970  0.0120     0.848  0.0200
+HMN          C7         HC7      SINGLE       n     1.089  0.0100     0.992  0.0184
+HMN          O7         HO7      SINGLE       n     0.970  0.0120     0.848  0.0200
+HMN          C8         HC8      SINGLE       n     1.089  0.0100     1.004  0.0200
+HMN          O8         HO8      SINGLE       n     0.970  0.0120     0.848  0.0200
+HMN          C9        HC91      SINGLE       n     1.089  0.0100     0.988  0.0200
+HMN          C9        HC92      SINGLE       n     1.089  0.0100     0.988  0.0200
+HMN          O9         HO9      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HMN         O1A          C1         O1B     125.364    1.50
+HMN         O1A          C1          C2     117.318    2.01
+HMN         O1B          C1          C2     117.318    2.01
+HMN          C1          C2          O2     110.439    2.49
+HMN          C1          C2          C3     111.511    2.91
+HMN          C1          C2         HC2     107.755    1.52
+HMN          O2          C2          C3     108.204    2.17
+HMN          O2          C2         HC2     108.401    1.50
+HMN          C3          C2         HC2     108.868    1.50
+HMN          C2          O2         HO2     108.308    3.00
+HMN          C2          C3          C4     114.498    3.00
+HMN          C2          C3        HC31     108.460    1.50
+HMN          C2          C3        HC32     108.460    1.50
+HMN          C4          C3        HC31     108.468    1.50
+HMN          C4          C3        HC32     108.468    1.50
+HMN        HC31          C3        HC32     107.406    1.50
+HMN          C3          C4          O4     109.024    2.32
+HMN          C3          C4          C5     114.793    1.69
+HMN          C3          C4         HC4     108.603    1.50
+HMN          O4          C4          C5     109.040    1.72
+HMN          O4          C4         HC4     108.700    1.50
+HMN          C5          C4         HC4     108.500    1.50
+HMN          C4          O4         HO4     108.640    2.32
+HMN          C4          C5          N2     109.748    1.50
+HMN          C4          C5          C6     111.094    2.85
+HMN          C4          C5         HC5     107.639    1.50
+HMN          N2          C5          C6     109.748    1.50
+HMN          N2          C5         HC5     108.194    1.50
+HMN          C6          C5         HC5     107.639    1.50
+HMN          C5          N2         C10     123.516    1.63
+HMN          C5          N2         HN2     117.373    3.00
+HMN         C10          N2         HN2     119.111    2.25
+HMN          N2         C10         O10     121.667    1.50
+HMN          N2         C10         C11     116.420    1.50
+HMN         O10         C10         C11     121.913    1.50
+HMN         C10         C11        H111     109.678    1.50
+HMN         C10         C11        H112     109.678    1.50
+HMN         C10         C11        H113     109.678    1.50
+HMN        H111         C11        H112     109.365    1.50
+HMN        H111         C11        H113     109.365    1.50
+HMN        H112         C11        H113     109.365    1.50
+HMN          C5          C6          O6     109.040    1.72
+HMN          C5          C6          C7     115.018    1.61
+HMN          C5          C6         HC6     108.500    1.50
+HMN          O6          C6          C7     109.320    2.01
+HMN          O6          C6         HC6     108.081    2.87
+HMN          C7          C6         HC6     108.450    1.83
+HMN          C6          O6         HO6     108.522    3.00
+HMN          C6          C7          O7     109.320    2.01
+HMN          C6          C7          C8     113.695    2.13
+HMN          C6          C7         HC7     108.450    1.83
+HMN          O7          C7          C8     109.164    1.97
+HMN          O7          C7         HC7     108.243    1.50
+HMN          C8          C7         HC7     108.336    1.50
+HMN          C7          O7         HO7     108.564    3.00
+HMN          C7          C8          O8     109.549    1.85
+HMN          C7          C8          C9     112.159    1.50
+HMN          C7          C8         HC8     108.777    1.50
+HMN          O8          C8          C9     109.623    1.60
+HMN          O8          C8         HC8     108.591    1.50
+HMN          C9          C8         HC8     107.986    1.50
+HMN          C8          O8         HO8     111.202    3.00
+HMN          C8          C9          O9     111.364    1.50
+HMN          C8          C9        HC91     109.234    1.50
+HMN          C8          C9        HC92     109.234    1.50
+HMN          O9          C9        HC91     109.268    1.50
+HMN          O9          C9        HC92     109.268    1.50
+HMN        HC91          C9        HC92     108.313    1.50
+HMN          C9          O9         HO9     108.280    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HMN             sp2_sp3_1         O1A          C1          C2          O2       0.000    10.0     6
+HMN            sp2_sp3_13          N2         C10         C11        H111       0.000    10.0     6
+HMN            sp3_sp3_43          C5          C6          O6         HO6     180.000    10.0     3
+HMN            sp3_sp3_46          C5          C6          C7          O7     180.000    10.0     3
+HMN            sp3_sp3_55          C6          C7          O7         HO7     180.000    10.0     3
+HMN            sp3_sp3_58          C6          C7          C8          O8     180.000    10.0     3
+HMN            sp3_sp3_67          C7          C8          O8         HO8     180.000    10.0     3
+HMN            sp3_sp3_70          C7          C8          C9          O9     180.000    10.0     3
+HMN            sp3_sp3_79          C8          C9          O9         HO9     180.000    10.0     3
+HMN             sp3_sp3_1          C1          C2          O2         HO2     180.000    10.0     3
+HMN             sp3_sp3_4          C1          C2          C3          C4     180.000    10.0     3
+HMN            sp3_sp3_13          C2          C3          C4          O4     180.000    10.0     3
+HMN            sp3_sp3_22          C3          C4          O4         HO4     180.000    10.0     3
+HMN            sp3_sp3_25          C3          C4          C5          N2     180.000    10.0     3
+HMN            sp3_sp3_34          C4          C5          C6          O6     180.000    10.0     3
+HMN             sp2_sp3_7         C10          N2          C5          C4       0.000    10.0     6
+HMN             sp2_sp2_3         O10         C10          N2          C5       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HMN    chir_1    C2    O2    C1    C3    negative
+HMN    chir_2    C4    O4    C5    C3    positive
+HMN    chir_3    C5    N2    C6    C4    negative
+HMN    chir_4    C6    O6    C7    C5    negative
+HMN    chir_5    C7    O7    C8    C6    positive
+HMN    chir_6    C8    O8    C7    C9    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HMN    plan-1          C1   0.020
+HMN    plan-1          C2   0.020
+HMN    plan-1         O1A   0.020
+HMN    plan-1         O1B   0.020
+HMN    plan-2         C10   0.020
+HMN    plan-2          C5   0.020
+HMN    plan-2         HN2   0.020
+HMN    plan-2          N2   0.020
+HMN    plan-3         C10   0.020
+HMN    plan-3         C11   0.020
+HMN    plan-3          N2   0.020
+HMN    plan-3         O10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HMN           SMILES              ACDLabs 10.04                                                                                                          O=C(O)C(O)CC(O)C(NC(=O)C)C(O)C(O)C(O)CO
+HMN SMILES_CANONICAL               CACTVS 3.341                                                                               CC(=O)N[C@H]([C@@H](O)C[C@@H](O)C(O)=O)[C@@H](O)[C@H](O)[C@H](O)CO
+HMN           SMILES               CACTVS 3.341                                                                                        CC(=O)N[CH]([CH](O)C[CH](O)C(O)=O)[CH](O)[CH](O)[CH](O)CO
+HMN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                CC(=O)N[C@H]([C@H](C[C@H](C(=O)O)O)O)[C@H]([C@@H]([C@@H](CO)O)O)O
+HMN           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                          CC(=O)NC(C(CC(C(=O)O)O)O)C(C(C(CO)O)O)O
+HMN            InChI                InChI  1.03 InChI=1S/C11H21NO9/c1-4(14)12-8(5(15)2-6(16)11(20)21)10(19)9(18)7(17)3-13/h5-10,13,15-19H,2-3H2,1H3,(H,12,14)(H,20,21)/t5-,6+,7+,8+,9+,10+/m0/s1
+HMN         InChIKey                InChI  1.03                                                                                                                      REORMAHRVILHOU-IHICSVBISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HMN acedrg               243         "dictionary generator"                  
+HMN acedrg_database      11          "data source"                           
+HMN rdkit                2017.03.2   "Chemoinformatics tool"
+HMN refmac5              5.8.0238    "optimization tool"                     

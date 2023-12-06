@@ -1,0 +1,336 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+G3S     G3S      "4-{2-[(2,3-dioxo-1-pentyl-2,3-dihydro-1H-indol-5-yl)sulfanyl]ethyl}benzoic acid"     NON-POLYMER     50     28     .     
+#
+data_comp_G3S
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+G3S     C10     C       CH2     0       111.159     31.620      10.136      
+G3S     C13     C       CR6     0       110.709     28.209      11.047      
+G3S     C15     C       CR56    0       111.197     26.835      12.944      
+G3S     C17     C       CR16    0       109.026     27.903      12.764      
+G3S     C20     C       CR5     0       110.819     25.689      15.006      
+G3S     C22     C       CR5     0       111.865     25.950      13.896      
+G3S     C24     C       CH2     0       108.512     26.520      15.477      
+G3S     C26     C       CH2     0       106.124     25.758      15.777      
+G3S     C28     C       CH3     0       104.359     25.244      14.048      
+G3S     C02     C       C       0       107.973     33.673      5.720       
+G3S     C04     C       CR6     0       108.791     33.144      6.859       
+G3S     C05     C       CR16    0       110.153     33.402      6.928       
+G3S     C06     C       CR16    0       110.907     32.911      7.984       
+G3S     C07     C       CR6     0       110.324     32.156      8.994       
+G3S     C08     C       CR16    0       108.960     31.900      8.914       
+G3S     C09     C       CR16    0       108.200     32.388      7.862       
+G3S     C11     C       CH2     0       112.101     30.510      9.726       
+G3S     C14     C       CR16    0       111.599     27.397      11.744      
+G3S     C16     C       CR56    0       109.914     27.091      13.445      
+G3S     C18     C       CR16    0       109.429     28.466      11.563      
+G3S     C25     C       CH2     0       107.383     25.646      14.952      
+G3S     C27     C       CH2     0       105.020     24.831      15.342      
+G3S     N19     N       NR5     0       109.717     26.430      14.669      
+G3S     O01     O       OC      -1      106.928     34.289      5.995       
+G3S     O03     O       O       0       108.384     33.465      4.564       
+G3S     O21     O       O       0       110.961     24.987      15.982      
+G3S     O23     O       O       0       112.976     25.476      13.893      
+G3S     S12     S       S2      0       111.230     28.941      9.523       
+G3S     H1      H       H       0       110.561     31.285      10.838      
+G3S     H2      H       H       0       111.684     32.356      10.517      
+G3S     H3      H       H       0       108.176     28.072      13.100      
+G3S     H4      H       H       0       108.716     26.259      16.399      
+G3S     H5      H       H       0       108.211     27.453      15.494      
+G3S     H6      H       H       0       105.797     26.682      15.729      
+G3S     H7      H       H       0       106.343     25.568      16.714      
+G3S     H8      H       H       0       103.616     24.646      13.857      
+G3S     H9      H       H       0       105.006     25.197      13.323      
+G3S     H10     H       H       0       104.028     26.155      14.128      
+G3S     H11     H       H       0       110.569     33.912      6.255       
+G3S     H12     H       H       0       111.832     33.092      8.018       
+G3S     H13     H       H       0       108.544     31.388      9.588       
+G3S     H14     H       H       0       107.277     32.206      7.829       
+G3S     H15     H       H       0       112.794     30.408      10.413      
+G3S     H16     H       H       0       112.540     30.750      8.883       
+G3S     H17     H       H       0       112.461     27.231      11.397      
+G3S     H18     H       H       0       108.843     29.017      11.091      
+G3S     H19     H       H       0       107.678     24.711      14.945      
+G3S     H20     H       H       0       107.183     25.904      14.027      
+G3S     H21     H       H       0       104.340     24.796      16.049      
+G3S     H22     H       H       0       105.390     23.928      15.236      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+G3S         C02         O03      DOUBLE       n     1.244  0.0200     1.244  0.0200
+G3S         C02         O01      SINGLE       n     1.244  0.0200     1.244  0.0200
+G3S         C02         C04      SINGLE       n     1.498  0.0200     1.498  0.0200
+G3S         C05         C06      SINGLE       y     1.384  0.0100     1.384  0.0100
+G3S         C04         C05      DOUBLE       y     1.385  0.0100     1.385  0.0100
+G3S         C06         C07      DOUBLE       y     1.385  0.0110     1.385  0.0110
+G3S         C04         C09      SINGLE       y     1.385  0.0100     1.385  0.0100
+G3S         C11         S12      SINGLE       n     1.809  0.0191     1.809  0.0191
+G3S         C10         C11      SINGLE       n     1.512  0.0200     1.512  0.0200
+G3S         C13         S12      SINGLE       n     1.772  0.0127     1.772  0.0127
+G3S         C07         C08      SINGLE       y     1.385  0.0110     1.385  0.0110
+G3S         C10         C07      SINGLE       n     1.513  0.0100     1.513  0.0100
+G3S         C08         C09      DOUBLE       y     1.383  0.0100     1.383  0.0100
+G3S         C13         C18      SINGLE       y     1.394  0.0173     1.394  0.0173
+G3S         C13         C14      DOUBLE       y     1.389  0.0110     1.389  0.0110
+G3S         C17         C18      DOUBLE       y     1.380  0.0114     1.380  0.0114
+G3S         C15         C14      SINGLE       y     1.384  0.0100     1.384  0.0100
+G3S         C17         C16      SINGLE       y     1.378  0.0100     1.378  0.0100
+G3S         C15         C16      DOUBLE       y     1.398  0.0100     1.398  0.0100
+G3S         C15         C22      SINGLE       n     1.462  0.0100     1.462  0.0100
+G3S         C16         N19      SINGLE       n     1.404  0.0100     1.404  0.0100
+G3S         C28         C27      SINGLE       n     1.510  0.0200     1.510  0.0200
+G3S         C22         O23      DOUBLE       n     1.208  0.0100     1.208  0.0100
+G3S         C20         C22      SINGLE       n     1.548  0.0132     1.548  0.0132
+G3S         C24         C25      SINGLE       n     1.522  0.0120     1.522  0.0120
+G3S         C26         C25      SINGLE       n     1.510  0.0200     1.510  0.0200
+G3S         C20         N19      SINGLE       n     1.367  0.0107     1.367  0.0107
+G3S         C24         N19      SINGLE       n     1.451  0.0139     1.451  0.0139
+G3S         C26         C27      SINGLE       n     1.507  0.0200     1.507  0.0200
+G3S         C20         O21      DOUBLE       n     1.211  0.0100     1.211  0.0100
+G3S         C10          H1      SINGLE       n     1.089  0.0100     0.981  0.0102
+G3S         C10          H2      SINGLE       n     1.089  0.0100     0.981  0.0102
+G3S         C17          H3      SINGLE       n     1.082  0.0130     0.930  0.0100
+G3S         C24          H4      SINGLE       n     1.089  0.0100     0.980  0.0125
+G3S         C24          H5      SINGLE       n     1.089  0.0100     0.980  0.0125
+G3S         C26          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+G3S         C26          H7      SINGLE       n     1.089  0.0100     0.981  0.0163
+G3S         C28          H8      SINGLE       n     1.089  0.0100     0.973  0.0157
+G3S         C28          H9      SINGLE       n     1.089  0.0100     0.973  0.0157
+G3S         C28         H10      SINGLE       n     1.089  0.0100     0.973  0.0157
+G3S         C05         H11      SINGLE       n     1.082  0.0130     0.941  0.0168
+G3S         C06         H12      SINGLE       n     1.082  0.0130     0.943  0.0173
+G3S         C08         H13      SINGLE       n     1.082  0.0130     0.943  0.0173
+G3S         C09         H14      SINGLE       n     1.082  0.0130     0.941  0.0168
+G3S         C11         H15      SINGLE       n     1.089  0.0100     0.981  0.0167
+G3S         C11         H16      SINGLE       n     1.089  0.0100     0.981  0.0167
+G3S         C14         H17      SINGLE       n     1.082  0.0130     0.944  0.0183
+G3S         C18         H18      SINGLE       n     1.082  0.0130     0.933  0.0102
+G3S         C25         H19      SINGLE       n     1.089  0.0100     0.981  0.0160
+G3S         C25         H20      SINGLE       n     1.089  0.0100     0.981  0.0160
+G3S         C27         H21      SINGLE       n     1.089  0.0100     0.982  0.0155
+G3S         C27         H22      SINGLE       n     1.089  0.0100     0.982  0.0155
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+G3S         C11         C10         C07     114.018    1.72
+G3S         C11         C10          H1     108.745    1.50
+G3S         C11         C10          H2     108.745    1.50
+G3S         C07         C10          H1     108.778    1.50
+G3S         C07         C10          H2     108.778    1.50
+G3S          H1         C10          H2     107.749    1.50
+G3S         S12         C13         C18     119.805    2.83
+G3S         S12         C13         C14     119.805    2.83
+G3S         C18         C13         C14     120.390    1.50
+G3S         C14         C15         C16     120.268    1.50
+G3S         C14         C15         C22     132.536    1.61
+G3S         C16         C15         C22     107.196    1.50
+G3S         C18         C17         C16     118.213    1.50
+G3S         C18         C17          H3     120.676    1.50
+G3S         C16         C17          H3     121.112    1.50
+G3S         C22         C20         N19     105.977    1.50
+G3S         C22         C20         O21     127.004    1.50
+G3S         N19         C20         O21     127.019    1.50
+G3S         C15         C22         O23     130.979    1.50
+G3S         C15         C22         C20     105.225    1.50
+G3S         O23         C22         C20     123.796    1.50
+G3S         C25         C24         N19     112.955    1.50
+G3S         C25         C24          H4     109.147    1.50
+G3S         C25         C24          H5     109.147    1.50
+G3S         N19         C24          H4     109.087    1.50
+G3S         N19         C24          H5     109.087    1.50
+G3S          H4         C24          H5     107.832    1.50
+G3S         C25         C26         C27     114.115    1.50
+G3S         C25         C26          H6     108.746    1.50
+G3S         C25         C26          H7     108.746    1.50
+G3S         C27         C26          H6     108.653    1.50
+G3S         C27         C26          H7     108.653    1.50
+G3S          H6         C26          H7     107.646    1.50
+G3S         C27         C28          H8     109.554    1.50
+G3S         C27         C28          H9     109.554    1.50
+G3S         C27         C28         H10     109.554    1.50
+G3S          H8         C28          H9     109.380    1.50
+G3S          H8         C28         H10     109.380    1.50
+G3S          H9         C28         H10     109.380    1.50
+G3S         O03         C02         O01     124.418    1.50
+G3S         O03         C02         C04     117.791    1.50
+G3S         O01         C02         C04     117.791    1.50
+G3S         C02         C04         C05     120.458    1.50
+G3S         C02         C04         C09     120.458    1.50
+G3S         C05         C04         C09     119.085    1.50
+G3S         C06         C05         C04     120.461    1.50
+G3S         C06         C05         H11     119.696    1.50
+G3S         C04         C05         H11     119.843    1.50
+G3S         C05         C06         C07     121.059    1.50
+G3S         C05         C06         H12     119.545    1.50
+G3S         C07         C06         H12     119.396    1.50
+G3S         C06         C07         C08     117.875    1.50
+G3S         C06         C07         C10     121.063    1.50
+G3S         C08         C07         C10     121.063    1.50
+G3S         C07         C08         C09     121.059    1.50
+G3S         C07         C08         H13     119.396    1.50
+G3S         C09         C08         H13     119.545    1.50
+G3S         C04         C09         C08     120.461    1.50
+G3S         C04         C09         H14     119.843    1.50
+G3S         C08         C09         H14     119.696    1.50
+G3S         S12         C11         C10     112.239    3.00
+G3S         S12         C11         H15     109.066    1.50
+G3S         S12         C11         H16     109.066    1.50
+G3S         C10         C11         H15     108.878    1.50
+G3S         C10         C11         H16     108.878    1.50
+G3S         H15         C11         H16     107.922    1.50
+G3S         C13         C14         C15     119.304    1.50
+G3S         C13         C14         H17     120.065    1.50
+G3S         C15         C14         H17     120.631    1.50
+G3S         C17         C16         C15     121.350    1.50
+G3S         C17         C16         N19     127.886    1.50
+G3S         C15         C16         N19     110.764    1.50
+G3S         C13         C18         C17     120.476    1.50
+G3S         C13         C18         H18     119.724    1.50
+G3S         C17         C18         H18     119.800    1.50
+G3S         C24         C25         C26     112.985    2.18
+G3S         C24         C25         H19     109.077    1.50
+G3S         C24         C25         H20     109.077    1.50
+G3S         C26         C25         H19     108.980    1.50
+G3S         C26         C25         H20     108.980    1.50
+G3S         H19         C25         H20     107.778    1.50
+G3S         C28         C27         C26     113.719    3.00
+G3S         C28         C27         H21     108.918    1.50
+G3S         C28         C27         H22     108.918    1.50
+G3S         C26         C27         H21     108.758    1.50
+G3S         C26         C27         H22     108.758    1.50
+G3S         H21         C27         H22     107.763    1.50
+G3S         C16         N19         C20     110.838    1.50
+G3S         C16         N19         C24     125.297    1.50
+G3S         C20         N19         C24     123.866    1.50
+G3S         C11         S12         C13     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+G3S             sp2_sp3_2         C06         C07         C10         C11     -90.000    10.0     6
+G3S             sp3_sp3_4         C07         C10         C11         S12     180.000    10.0     3
+G3S       const_sp2_sp2_3         C02         C04         C05         C06     180.000     5.0     2
+G3S              const_43         C02         C04         C09         C08     180.000    10.0     2
+G3S       const_sp2_sp2_5         C04         C05         C06         C07       0.000     5.0     2
+G3S              const_10         C05         C06         C07         C10     180.000    10.0     2
+G3S              const_15         C10         C07         C08         C09     180.000    10.0     2
+G3S              const_17         C07         C08         C09         C04       0.000    10.0     2
+G3S             sp3_sp3_1         C10         C11         S12         C13     180.000    10.0     3
+G3S             sp2_sp2_4         C17         C16         N19         C24       0.000     5.0     2
+G3S              const_47         S12         C13         C14         C15     180.000    10.0     2
+G3S              const_23         S12         C13         C18         C17     180.000    10.0     2
+G3S            sp2_sp2_17         C18         C13         S12         C11     180.000     5.0     2
+G3S              const_37         C13         C14         C15         C16       0.000    10.0     2
+G3S              const_33         C14         C15         C16         C17       0.000    10.0     2
+G3S            sp2_sp2_22         C14         C15         C22         O23       0.000     5.0     2
+G3S              const_29         C15         C16         C17         C18       0.000    10.0     2
+G3S              const_25         C16         C17         C18         C13       0.000    10.0     2
+G3S             sp2_sp2_8         O21         C20         N19         C24       0.000     5.0     2
+G3S            sp2_sp2_12         O21         C20         C22         O23       0.000     5.0     2
+G3S            sp3_sp3_22         N19         C24         C25         C26     180.000    10.0     3
+G3S             sp2_sp3_8         C16         N19         C24         C25     -90.000    10.0     6
+G3S            sp3_sp3_31         C24         C25         C26         C27     180.000    10.0     3
+G3S            sp3_sp3_40         C25         C26         C27         C28     180.000    10.0     3
+G3S            sp3_sp3_13         C26         C27         C28          H8     180.000    10.0     3
+G3S            sp2_sp2_13         O03         C02         C04         C05     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+G3S    plan-1         C02   0.020
+G3S    plan-1         C04   0.020
+G3S    plan-1         C05   0.020
+G3S    plan-1         C06   0.020
+G3S    plan-1         C07   0.020
+G3S    plan-1         C08   0.020
+G3S    plan-1         C09   0.020
+G3S    plan-1         C10   0.020
+G3S    plan-1         H11   0.020
+G3S    plan-1         H12   0.020
+G3S    plan-1         H13   0.020
+G3S    plan-1         H14   0.020
+G3S    plan-2         C13   0.020
+G3S    plan-2         C14   0.020
+G3S    plan-2         C15   0.020
+G3S    plan-2         C16   0.020
+G3S    plan-2         C17   0.020
+G3S    plan-2         C18   0.020
+G3S    plan-2         C22   0.020
+G3S    plan-2         H17   0.020
+G3S    plan-2         H18   0.020
+G3S    plan-2          H3   0.020
+G3S    plan-2         N19   0.020
+G3S    plan-2         S12   0.020
+G3S    plan-3         C20   0.020
+G3S    plan-3         C22   0.020
+G3S    plan-3         N19   0.020
+G3S    plan-3         O21   0.020
+G3S    plan-4         C15   0.020
+G3S    plan-4         C20   0.020
+G3S    plan-4         C22   0.020
+G3S    plan-4         O23   0.020
+G3S    plan-5         C02   0.020
+G3S    plan-5         C04   0.020
+G3S    plan-5         O01   0.020
+G3S    plan-5         O03   0.020
+G3S    plan-6         C16   0.020
+G3S    plan-6         C20   0.020
+G3S    plan-6         C24   0.020
+G3S    plan-6         N19   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+G3S           SMILES              ACDLabs 12.01                                                                                            C(c1ccc(C(O)=O)cc1)CSc3ccc2c(C(C(=O)N2CCCCC)=O)c3
+G3S            InChI                InChI  1.03 InChI=1S/C22H23NO4S/c1-2-3-4-12-23-19-10-9-17(14-18(19)20(24)21(23)25)28-13-11-15-5-7-16(8-6-15)22(26)27/h5-10,14H,2-4,11-13H2,1H3,(H,26,27)
+G3S         InChIKey                InChI  1.03                                                                                                                  GQIBDPIOEBGNHW-UHFFFAOYSA-N
+G3S SMILES_CANONICAL               CACTVS 3.385                                                                                              CCCCCN1C(=O)C(=O)c2cc(SCCc3ccc(cc3)C(O)=O)ccc12
+G3S           SMILES               CACTVS 3.385                                                                                              CCCCCN1C(=O)C(=O)c2cc(SCCc3ccc(cc3)C(O)=O)ccc12
+G3S SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                CCCCCN1c2ccc(cc2C(=O)C1=O)SCCc3ccc(cc3)C(=O)O
+G3S           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                CCCCCN1c2ccc(cc2C(=O)C1=O)SCCc3ccc(cc3)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+G3S acedrg               243         "dictionary generator"                  
+G3S acedrg_database      11          "data source"                           
+G3S rdkit                2017.03.2   "Chemoinformatics tool"
+G3S refmac5              5.8.0238    "optimization tool"                     

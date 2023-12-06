@@ -1,0 +1,162 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+5VM     5VM      5-chloranyl-3~{H}-1,3-benzoxazole-2-thione     NON-POLYMER     15     11     .     
+#
+data_comp_5VM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+5VM     OAG     O       O2      0       32.356      11.139      57.851      
+5VM     CAK     C       CR56    0       33.729      11.139      57.670      
+5VM     CAD     C       CR16    0       34.631      10.124      57.912      
+5VM     CAC     C       CR16    0       35.968      10.384      57.643      
+5VM     CAH     C       CR6     0       36.351      11.624      57.153      
+5VM     CLB     CL      CL      0       38.035      11.919      56.826      
+5VM     CAE     C       CR16    0       35.443      12.646      56.910      
+5VM     CAJ     C       CR56    0       34.104      12.378      57.182      
+5VM     NAF     N       NR5     0       32.932      13.116      57.074      
+5VM     CAI     C       CR5     0       31.883      12.377      57.476      
+5VM     SAA     S       S1      0       30.300      12.826      57.527      
+5VM     H1      H       H       0       34.356      9.286       58.245      
+5VM     H2      H       H       0       36.611      9.721       57.794      
+5VM     H3      H       H       0       35.716      13.479      56.578      
+5VM     H4      H       H       0       32.875      13.938      56.790      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+5VM         CAH         CLB      SINGLE       n     1.741  0.0100     1.741  0.0100
+5VM         CAH         CAE      DOUBLE       y     1.385  0.0100     1.385  0.0100
+5VM         CAE         CAJ      SINGLE       y     1.388  0.0100     1.388  0.0100
+5VM         CAJ         NAF      SINGLE       n     1.393  0.0133     1.393  0.0133
+5VM         NAF         CAI      SINGLE       n     1.346  0.0100     1.346  0.0100
+5VM         CAC         CAH      SINGLE       y     1.383  0.0101     1.383  0.0101
+5VM         CAK         CAJ      DOUBLE       y     1.380  0.0101     1.380  0.0101
+5VM         CAI         SAA      DOUBLE       n     1.646  0.0100     1.646  0.0100
+5VM         OAG         CAI      SINGLE       n     1.376  0.0100     1.376  0.0100
+5VM         CAD         CAC      DOUBLE       y     1.384  0.0100     1.384  0.0100
+5VM         OAG         CAK      SINGLE       n     1.383  0.0100     1.383  0.0100
+5VM         CAK         CAD      SINGLE       y     1.376  0.0100     1.376  0.0100
+5VM         CAD          H1      SINGLE       n     1.082  0.0130     0.943  0.0139
+5VM         CAC          H2      SINGLE       n     1.082  0.0130     0.936  0.0100
+5VM         CAE          H3      SINGLE       n     1.082  0.0130     0.938  0.0100
+5VM         NAF          H4      SINGLE       n     1.016  0.0100     0.872  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+5VM         CAI         OAG         CAK     106.819    1.50
+5VM         CAJ         CAK         OAG     107.828    1.50
+5VM         CAJ         CAK         CAD     123.366    1.50
+5VM         OAG         CAK         CAD     128.806    1.50
+5VM         CAC         CAD         CAK     117.004    1.50
+5VM         CAC         CAD          H1     121.192    1.50
+5VM         CAK         CAD          H1     121.804    1.50
+5VM         CAH         CAC         CAD     119.961    1.50
+5VM         CAH         CAC          H2     120.136    1.50
+5VM         CAD         CAC          H2     119.903    1.50
+5VM         CLB         CAH         CAE     118.322    1.50
+5VM         CLB         CAH         CAC     118.991    1.50
+5VM         CAE         CAH         CAC     122.686    1.50
+5VM         CAH         CAE         CAJ     116.832    1.50
+5VM         CAH         CAE          H3     121.748    1.50
+5VM         CAJ         CAE          H3     121.427    1.50
+5VM         CAE         CAJ         NAF     133.617    2.04
+5VM         CAE         CAJ         CAK     120.143    1.50
+5VM         NAF         CAJ         CAK     106.240    1.50
+5VM         CAJ         NAF         CAI     111.263    2.03
+5VM         CAJ         NAF          H4     125.191    2.04
+5VM         CAI         NAF          H4     123.546    3.00
+5VM         NAF         CAI         SAA     127.575    1.50
+5VM         NAF         CAI         OAG     107.850    1.67
+5VM         SAA         CAI         OAG     124.575    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+5VM            sp2_sp2_11         CAJ         CAK         OAG         CAI       0.000     5.0     2
+5VM             sp2_sp2_2         SAA         CAI         OAG         CAK     180.000     5.0     2
+5VM              const_21         CAC         CAD         CAK         CAJ       0.000    10.0     2
+5VM       const_sp2_sp2_2         CAE         CAJ         CAK         OAG     180.000     5.0     2
+5VM              const_17         CAH         CAC         CAD         CAK       0.000    10.0     2
+5VM              const_14         CAD         CAC         CAH         CLB     180.000    10.0     2
+5VM              const_10         CAJ         CAE         CAH         CLB     180.000    10.0     2
+5VM       const_sp2_sp2_6         CAH         CAE         CAJ         NAF     180.000     5.0     2
+5VM             sp2_sp2_9         CAE         CAJ         NAF         CAI     180.000     5.0     2
+5VM             sp2_sp2_5         SAA         CAI         NAF         CAJ     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+5VM    plan-1         CAC   0.020
+5VM    plan-1         CAD   0.020
+5VM    plan-1         CAE   0.020
+5VM    plan-1         CAH   0.020
+5VM    plan-1         CAJ   0.020
+5VM    plan-1         CAK   0.020
+5VM    plan-1         CLB   0.020
+5VM    plan-1          H1   0.020
+5VM    plan-1          H2   0.020
+5VM    plan-1          H3   0.020
+5VM    plan-1         NAF   0.020
+5VM    plan-1         OAG   0.020
+5VM    plan-2         CAI   0.020
+5VM    plan-2         CAJ   0.020
+5VM    plan-2          H4   0.020
+5VM    plan-2         NAF   0.020
+5VM    plan-3         CAI   0.020
+5VM    plan-3         NAF   0.020
+5VM    plan-3         OAG   0.020
+5VM    plan-3         SAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+5VM            InChI                InChI  1.03 InChI=1S/C7H4ClNOS/c8-4-1-2-6-5(3-4)9-7(11)10-6/h1-3H,(H,9,11)
+5VM         InChIKey                InChI  1.03                                    BOBIZYYFYLLRAH-UHFFFAOYSA-N
+5VM SMILES_CANONICAL               CACTVS 3.385                                            Clc1ccc2OC(=S)Nc2c1
+5VM           SMILES               CACTVS 3.385                                            Clc1ccc2OC(=S)Nc2c1
+5VM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                          c1cc2c(cc1Cl)NC(=S)O2
+5VM           SMILES "OpenEye OEToolkits" 2.0.4                                          c1cc2c(cc1Cl)NC(=S)O2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+5VM acedrg               243         "dictionary generator"                  
+5VM acedrg_database      11          "data source"                           
+5VM rdkit                2017.03.2   "Chemoinformatics tool"
+5VM refmac5              5.8.0238    "optimization tool"                     

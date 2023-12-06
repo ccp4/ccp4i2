@@ -1,0 +1,189 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+39Y     39Y      "(2E,5S)-5-methylhept-2-enoic acid"     NON-POLYMER     23     10     .     
+#
+data_comp_39Y
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+39Y     O       O       O       0       -75.874     16.299      54.378      
+39Y     C8      C       C       0       -75.237     15.247      54.281      
+39Y     C9      C       C1      0       -73.846     15.296      53.889      
+39Y     C10     C       C1      0       -73.152     16.393      53.609      
+39Y     C11     C       CH2     0       -71.706     16.421      53.215      
+39Y     C12     C       CH1     0       -71.113     17.821      53.109      
+39Y     C13     C       CH3     0       -70.911     18.419      54.495      
+39Y     C14     C       CH2     0       -69.790     17.818      52.318      
+39Y     C15     C       CH3     0       -69.939     17.737      50.816      
+39Y     OXT     O       OC      -1      -75.724     14.139      54.501      
+39Y     H14     H       H       0       -73.402     14.466      53.830      
+39Y     H15     H       H       0       -73.588     17.227      53.657      
+39Y     H16     H       H       0       -71.608     15.972      52.349      
+39Y     H17     H       H       0       -71.190     15.912      53.876      
+39Y     H18     H       H       0       -71.761     18.388      52.622      
+39Y     H21     H       H       0       -70.528     19.310      54.415      
+39Y     H19     H       H       0       -70.308     17.855      55.009      
+39Y     H20     H       H       0       -71.766     18.479      54.954      
+39Y     H23     H       H       0       -69.253     17.055      52.621      
+39Y     H22     H       H       0       -69.294     18.636      52.537      
+39Y     H26     H       H       0       -69.071     17.868      50.395      
+39Y     H24     H       H       0       -70.553     18.428      50.512      
+39Y     H25     H       H       0       -70.288     16.863      50.570      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+39Y           O          C8      DOUBLE       n     1.230  0.0200     1.230  0.0200
+39Y          C8          C9      SINGLE       n     1.435  0.0200     1.435  0.0200
+39Y          C9         C10      DOUBLE       n     1.322  0.0179     1.322  0.0179
+39Y         C10         C11      SINGLE       n     1.498  0.0152     1.498  0.0152
+39Y         C11         C12      SINGLE       n     1.522  0.0132     1.522  0.0132
+39Y         C12         C13      SINGLE       n     1.521  0.0135     1.521  0.0135
+39Y         C12         C14      SINGLE       n     1.540  0.0100     1.540  0.0100
+39Y         C14         C15      SINGLE       n     1.511  0.0200     1.511  0.0200
+39Y          C8         OXT      SINGLE       n     1.230  0.0200     1.230  0.0200
+39Y          C9         H14      SINGLE       n     1.082  0.0130     0.943  0.0200
+39Y         C10         H15      SINGLE       n     1.082  0.0130     0.943  0.0181
+39Y         C11         H16      SINGLE       n     1.089  0.0100     0.981  0.0185
+39Y         C11         H17      SINGLE       n     1.089  0.0100     0.981  0.0185
+39Y         C12         H18      SINGLE       n     1.089  0.0100     0.989  0.0175
+39Y         C13         H21      SINGLE       n     1.089  0.0100     0.973  0.0146
+39Y         C13         H19      SINGLE       n     1.089  0.0100     0.973  0.0146
+39Y         C13         H20      SINGLE       n     1.089  0.0100     0.973  0.0146
+39Y         C14         H23      SINGLE       n     1.089  0.0100     0.981  0.0160
+39Y         C14         H22      SINGLE       n     1.089  0.0100     0.981  0.0160
+39Y         C15         H26      SINGLE       n     1.089  0.0100     0.973  0.0157
+39Y         C15         H24      SINGLE       n     1.089  0.0100     0.973  0.0157
+39Y         C15         H25      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+39Y           O          C8          C9     118.078    1.84
+39Y           O          C8         OXT     123.843    1.50
+39Y          C9          C8         OXT     118.078    1.84
+39Y          C8          C9         C10     123.021    2.60
+39Y          C8          C9         H14     117.168    1.98
+39Y         C10          C9         H14     119.811    2.67
+39Y          C9         C10         C11     125.915    2.56
+39Y          C9         C10         H15     117.438    2.78
+39Y         C11         C10         H15     116.648    1.70
+39Y         C10         C11         C12     113.813    2.40
+39Y         C10         C11         H16     108.801    1.50
+39Y         C10         C11         H17     108.801    1.50
+39Y         C12         C11         H16     108.639    1.50
+39Y         C12         C11         H17     108.639    1.50
+39Y         H16         C11         H17     107.820    1.50
+39Y         C11         C12         C13     110.532    1.50
+39Y         C11         C12         C14     111.736    1.50
+39Y         C11         C12         H18     107.885    1.50
+39Y         C13         C12         C14     110.047    3.00
+39Y         C13         C12         H18     108.064    1.50
+39Y         C14         C12         H18     108.152    1.50
+39Y         C12         C13         H21     109.656    1.50
+39Y         C12         C13         H19     109.656    1.50
+39Y         C12         C13         H20     109.656    1.50
+39Y         H21         C13         H19     109.411    1.50
+39Y         H21         C13         H20     109.411    1.50
+39Y         H19         C13         H20     109.411    1.50
+39Y         C12         C14         C15     115.201    3.00
+39Y         C12         C14         H23     108.414    1.50
+39Y         C12         C14         H22     108.414    1.50
+39Y         C15         C14         H23     108.717    1.50
+39Y         C15         C14         H22     108.717    1.50
+39Y         H23         C14         H22     107.862    1.50
+39Y         C14         C15         H26     109.566    1.50
+39Y         C14         C15         H24     109.566    1.50
+39Y         C14         C15         H25     109.566    1.50
+39Y         H26         C15         H24     109.380    1.50
+39Y         H26         C15         H25     109.380    1.50
+39Y         H24         C15         H25     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+39Y             sp2_sp2_1           O          C8          C9         C10     180.000     5.0     2
+39Y             sp2_sp2_5         C11         C10          C9          C8     180.000     5.0     2
+39Y             sp2_sp3_2          C9         C10         C11         C12     120.000    10.0     6
+39Y             sp3_sp3_1         C10         C11         C12         C13     180.000    10.0     3
+39Y            sp3_sp3_10         C11         C12         C13         H21     180.000    10.0     3
+39Y            sp3_sp3_19         C11         C12         C14         C15     180.000    10.0     3
+39Y            sp3_sp3_28         C12         C14         C15         H26     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+39Y    chir_1    C12    C11    C14    C13    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+39Y    plan-1          C8   0.020
+39Y    plan-1          C9   0.020
+39Y    plan-1           O   0.020
+39Y    plan-1         OXT   0.020
+39Y    plan-2         C10   0.020
+39Y    plan-2          C8   0.020
+39Y    plan-2          C9   0.020
+39Y    plan-2         H14   0.020
+39Y    plan-3         C10   0.020
+39Y    plan-3         C11   0.020
+39Y    plan-3          C9   0.020
+39Y    plan-3         H15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+39Y           SMILES              ACDLabs 12.01                                                                  O=C(O)/C=C/CC(CC)C
+39Y            InChI                InChI  1.03 InChI=1S/C8H14O2/c1-3-7(2)5-4-6-8(9)10/h4,6-7H,3,5H2,1-2H3,(H,9,10)/b6-4+/t7-/m0/s1
+39Y         InChIKey                InChI  1.03                                                         WCNAROBWFNTKGN-KNIZRNDPSA-N
+39Y SMILES_CANONICAL               CACTVS 3.385                                                              CC[C@H](C)C/C=C/C(O)=O
+39Y           SMILES               CACTVS 3.385                                                                 CC[CH](C)CC=CC(O)=O
+39Y SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                              CC[C@H](C)C/C=C/C(=O)O
+39Y           SMILES "OpenEye OEToolkits" 1.9.2                                                                    CCC(C)CC=CC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+39Y acedrg               243         "dictionary generator"                  
+39Y acedrg_database      11          "data source"                           
+39Y rdkit                2017.03.2   "Chemoinformatics tool"
+39Y refmac5              5.8.0238    "optimization tool"                     

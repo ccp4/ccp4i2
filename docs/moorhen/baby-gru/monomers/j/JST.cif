@@ -1,0 +1,246 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JST     JST      BUT-3-ENYL-[5-(4-CHLORO-PHENYL)-3,6-DIHYDRO-[1,3,4]THIADIAZIN-2-YLIDENE]-AMINE     NON-POLYMER     32     18     .     
+#
+data_comp_JST
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JST     S1      S       S2      0       -1.381      0.119       1.732       
+JST     CL1     CL      CL      0       5.435       -2.990      -2.460      
+JST     N1      N       NRD6    0       1.310       -1.031      2.439       
+JST     N2      N       NR6     0       0.734       -0.089      3.278       
+JST     N3      N       N       0       -1.164      0.669       4.395       
+JST     C1      C       CR16    0       2.630       -0.692      -0.805      
+JST     C2      C       CR16    0       3.628       -1.159      -1.642      
+JST     C3      C       CR6     0       4.178       -2.403      -1.409      
+JST     C4      C       CR16    0       3.752       -3.189      -0.358      
+JST     C5      C       CR16    0       2.752       -2.721      0.476       
+JST     C6      C       CR6     0       2.180       -1.463      0.269       
+JST     C7      C       CR6     0       1.102       -0.964      1.160       
+JST     C8      C       CH2     0       -0.162      -0.456      0.524       
+JST     C9      C       CR6     0       -0.580      0.259       3.272       
+JST     C10     C       CH2     0       -2.588      1.081       4.541       
+JST     C11     C       CH2     0       -2.793      1.773       5.866       
+JST     C12     C       C1      0       -2.929      0.817       7.012       
+JST     C13     C       C2      0       -2.177      0.780       8.067       
+JST     HN2     H       H       0       1.281       0.305       3.855       
+JST     H1      H       H       0       2.258       0.146       -0.961      
+JST     H2      H       H       0       3.928       -0.635      -2.360      
+JST     H4      H       H       0       4.135       -4.032      -0.212      
+JST     H5      H       H       0       2.464       -3.249      1.185       
+JST     H82     H       H       0       -0.565      -1.163      -0.004      
+JST     H81     H       H       0       0.046       0.282       -0.069      
+JST     H101    H       H       0       -3.165      0.291       4.482       
+JST     H102    H       H       0       -2.831      1.688       3.810       
+JST     H111    H       H       0       -3.603      2.321       5.815       
+JST     H112    H       H       0       -2.034      2.367       6.037       
+JST     H12     H       H       0       -3.628      0.184       6.962       
+JST     H131    H       H       0       -2.341      0.136       8.745       
+JST     H132    H       H       0       -1.461      1.395       8.163       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JST          S1          C8      SINGLE       n     1.812  0.0175     1.812  0.0175
+JST          S1          C9      SINGLE       n     1.753  0.0200     1.753  0.0200
+JST         CL1          C3      SINGLE       n     1.741  0.0100     1.741  0.0100
+JST          N1          N2      SINGLE       n     1.366  0.0200     1.366  0.0200
+JST          N1          C7      DOUBLE       n     1.291  0.0100     1.291  0.0100
+JST          N2          C9      SINGLE       n     1.355  0.0200     1.355  0.0200
+JST          N3          C9      DOUBLE       n     1.323  0.0200     1.323  0.0200
+JST          N3         C10      SINGLE       n     1.483  0.0200     1.483  0.0200
+JST          C1          C2      DOUBLE       y     1.380  0.0100     1.380  0.0100
+JST          C1          C6      SINGLE       y     1.393  0.0100     1.393  0.0100
+JST          C2          C3      SINGLE       y     1.376  0.0100     1.376  0.0100
+JST          C3          C4      DOUBLE       y     1.376  0.0100     1.376  0.0100
+JST          C4          C5      SINGLE       y     1.380  0.0100     1.380  0.0100
+JST          C5          C6      DOUBLE       y     1.393  0.0100     1.393  0.0100
+JST          C6          C7      SINGLE       n     1.482  0.0133     1.482  0.0133
+JST          C7          C8      SINGLE       n     1.498  0.0100     1.498  0.0100
+JST         C10         C11      SINGLE       n     1.509  0.0105     1.509  0.0105
+JST         C11         C12      SINGLE       n     1.498  0.0100     1.498  0.0100
+JST         C12         C13      DOUBLE       n     1.296  0.0200     1.296  0.0200
+JST          N2         HN2      SINGLE       n     1.016  0.0100     0.887  0.0200
+JST          C1          H1      SINGLE       n     1.082  0.0130     0.930  0.0100
+JST          C2          H2      SINGLE       n     1.082  0.0130     0.938  0.0140
+JST          C4          H4      SINGLE       n     1.082  0.0130     0.938  0.0140
+JST          C5          H5      SINGLE       n     1.082  0.0130     0.930  0.0100
+JST          C8         H82      SINGLE       n     1.089  0.0100     0.970  0.0200
+JST          C8         H81      SINGLE       n     1.089  0.0100     0.970  0.0200
+JST         C10        H101      SINGLE       n     1.089  0.0100     0.980  0.0129
+JST         C10        H102      SINGLE       n     1.089  0.0100     0.980  0.0129
+JST         C11        H111      SINGLE       n     1.089  0.0100     0.979  0.0159
+JST         C11        H112      SINGLE       n     1.089  0.0100     0.979  0.0159
+JST         C12         H12      SINGLE       n     1.082  0.0130     0.945  0.0200
+JST         C13        H131      SINGLE       n     1.082  0.0130     0.949  0.0200
+JST         C13        H132      SINGLE       n     1.082  0.0130     0.949  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JST          C8          S1          C9     120.000    3.00
+JST          N2          N1          C7     117.415    1.50
+JST          N1          N2          C9     124.861    2.47
+JST          N1          N2         HN2     116.213    2.24
+JST          C9          N2         HN2     118.926    2.28
+JST          C9          N3         C10     123.085    3.00
+JST          C2          C1          C6     120.691    1.50
+JST          C2          C1          H1     119.455    1.50
+JST          C6          C1          H1     119.854    1.50
+JST          C1          C2          C3     119.200    1.50
+JST          C1          C2          H2     120.395    1.50
+JST          C3          C2          H2     120.405    1.50
+JST         CL1          C3          C2     119.338    1.50
+JST         CL1          C3          C4     119.338    1.50
+JST          C2          C3          C4     121.324    1.50
+JST          C3          C4          C5     119.200    1.50
+JST          C3          C4          H4     120.405    1.50
+JST          C5          C4          H4     120.395    1.50
+JST          C4          C5          C6     120.691    1.50
+JST          C4          C5          H5     119.455    1.50
+JST          C6          C5          H5     119.854    1.50
+JST          C1          C6          C5     118.894    1.50
+JST          C1          C6          C7     120.553    1.50
+JST          C5          C6          C7     120.553    1.50
+JST          N1          C7          C6     117.174    1.50
+JST          N1          C7          C8     123.184    1.50
+JST          C6          C7          C8     119.642    2.31
+JST          S1          C8          C7     111.432    2.83
+JST          S1          C8         H82     108.338    1.74
+JST          S1          C8         H81     108.338    1.74
+JST          C7          C8         H82     109.506    1.50
+JST          C7          C8         H81     109.506    1.50
+JST         H82          C8         H81     108.104    1.50
+JST          S1          C9          N2     120.482    2.19
+JST          S1          C9          N3     121.301    3.00
+JST          N2          C9          N3     118.218    3.00
+JST          N3         C10         C11     109.508    2.50
+JST          N3         C10        H101     109.510    1.50
+JST          N3         C10        H102     109.510    1.50
+JST         C11         C10        H101     110.035    1.50
+JST         C11         C10        H102     110.035    1.50
+JST        H101         C10        H102     108.043    1.50
+JST         C10         C11         C12     112.942    2.28
+JST         C10         C11        H111     108.987    1.50
+JST         C10         C11        H112     108.987    1.50
+JST         C12         C11        H111     108.950    1.50
+JST         C12         C11        H112     108.950    1.50
+JST        H111         C11        H112     108.298    1.50
+JST         C11         C12         C13     125.988    2.46
+JST         C11         C12         H12     117.045    1.50
+JST         C13         C12         H12     116.966    2.13
+JST         C12         C13        H131     120.077    2.71
+JST         C12         C13        H132     120.077    2.71
+JST        H131         C13        H132     119.846    2.15
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JST             sp3_sp3_1          C7          C8          S1          C9      60.000    10.0     3
+JST            sp2_sp2_10          N3          C9          S1          C8     180.000     5.0     2
+JST            sp2_sp2_14          C1          C6          C7          N1       0.000     5.0     2
+JST             sp2_sp3_1          N1          C7          C8          S1       0.000    10.0     6
+JST             sp3_sp3_4          N3         C10         C11         C12     180.000    10.0     3
+JST            sp2_sp3_11         C13         C12         C11         C10     120.000    10.0     6
+JST            sp2_sp2_17         C11         C12         C13        H131     180.000     5.0     2
+JST             sp2_sp2_2          C6          C7          N1          N2     180.000     5.0     2
+JST             sp2_sp2_3          C7          N1          N2          C9       0.000     5.0     2
+JST             sp2_sp2_7          N3          C9          N2          N1     180.000     5.0     2
+JST            sp2_sp2_11          S1          C9          N3         C10     180.000     5.0     2
+JST             sp2_sp3_8          C9          N3         C10         C11     120.000    10.0     6
+JST              const_21          C2          C1          C6          C5       0.000    10.0     2
+JST       const_sp2_sp2_1          C6          C1          C2          C3       0.000     5.0     2
+JST       const_sp2_sp2_6          C1          C2          C3         CL1     180.000     5.0     2
+JST              const_11         CL1          C3          C4          C5     180.000    10.0     2
+JST              const_13          C3          C4          C5          C6       0.000    10.0     2
+JST              const_17          C4          C5          C6          C1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JST    plan-1          C1   0.020
+JST    plan-1          C2   0.020
+JST    plan-1          C3   0.020
+JST    plan-1          C4   0.020
+JST    plan-1          C5   0.020
+JST    plan-1          C6   0.020
+JST    plan-1          C7   0.020
+JST    plan-1         CL1   0.020
+JST    plan-1          H1   0.020
+JST    plan-1          H2   0.020
+JST    plan-1          H4   0.020
+JST    plan-1          H5   0.020
+JST    plan-2          C9   0.020
+JST    plan-2         HN2   0.020
+JST    plan-2          N1   0.020
+JST    plan-2          N2   0.020
+JST    plan-3          C6   0.020
+JST    plan-3          C7   0.020
+JST    plan-3          C8   0.020
+JST    plan-3          N1   0.020
+JST    plan-4          C9   0.020
+JST    plan-4          N2   0.020
+JST    plan-4          N3   0.020
+JST    plan-4          S1   0.020
+JST    plan-5         C11   0.020
+JST    plan-5         C12   0.020
+JST    plan-5         C13   0.020
+JST    plan-5         H12   0.020
+JST    plan-6         C12   0.020
+JST    plan-6         C13   0.020
+JST    plan-6        H131   0.020
+JST    plan-6        H132   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JST           SMILES              ACDLabs 10.04                                                                    Clc2ccc(C1=NNC(=N/CC\C=C)/SC1)cc2
+JST SMILES_CANONICAL               CACTVS 3.341                                                                       Clc1ccc(cc1)C2=NNC(SC2)=NCCC=C
+JST           SMILES               CACTVS 3.341                                                                       Clc1ccc(cc1)C2=NNC(SC2)=NCCC=C
+JST SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                       C=CCCN=C1NN=C(CS1)c2ccc(cc2)Cl
+JST           SMILES "OpenEye OEToolkits" 1.5.0                                                                       C=CCCN=C1NN=C(CS1)c2ccc(cc2)Cl
+JST            InChI                InChI  1.03 InChI=1S/C13H14ClN3S/c1-2-3-8-15-13-17-16-12(9-18-13)10-4-6-11(14)7-5-10/h2,4-7H,1,3,8-9H2,(H,15,17)
+JST         InChIKey                InChI  1.03                                                                          ZVZPCRKQNRRBOQ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JST acedrg               243         "dictionary generator"                  
+JST acedrg_database      11          "data source"                           
+JST rdkit                2017.03.2   "Chemoinformatics tool"
+JST refmac5              5.8.0238    "optimization tool"                     

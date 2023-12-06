@@ -1,0 +1,273 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MFM     MFM      "(E)-3-(5((5-(4-CHLOROPHENYL)FURAN-2-YL)METHYLENE)-4-OXO-2-THIOXOTHIAZOLIDIN-3-YL)PROPANOIC ACID"     NON-POLYMER     36     25     .     
+#
+data_comp_MFM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MFM     C4      C       CR16    0       86.119      44.628      140.074     
+MFM     C3      C       CR16    0       86.742      45.860      140.182     
+MFM     C2      C       CR6     0       88.109      45.942      140.021     
+MFM     CL1     CL      CL      0       88.894      47.490      140.156     
+MFM     C1      C       CR16    0       88.867      44.820      139.755     
+MFM     C6      C       CR16    0       88.241      43.590      139.647     
+MFM     C5      C       CR6     0       86.856      43.470      139.802     
+MFM     C7      C       CR5     0       86.214      42.168      139.690     
+MFM     O1      O       O2      0       84.901      42.140      139.302     
+MFM     C8      C       CR15    0       86.649      40.898      139.886     
+MFM     C9      C       CR15    0       85.559      40.043      139.615     
+MFM     C10     C       CR5     0       84.515      40.825      139.267     
+MFM     C11     C       C1      0       83.154      40.518      138.883     
+MFM     C12     C       CR5     0       82.721      39.315      138.193     
+MFM     C14     C       CR5     0       83.315      38.620      137.166     
+MFM     O2      O       O       0       84.386      38.938      136.633     
+MFM     S1      S       S2      0       81.300      38.591      138.651     
+MFM     C13     C       CR5     0       81.445      37.376      137.522     
+MFM     S2      S       S1      0       80.259      36.212      137.434     
+MFM     N1      N       NR5     0       82.574      37.510      136.785     
+MFM     C15     C       CH2     0       83.014      36.616      135.711     
+MFM     C16     C       CH2     0       84.108      35.673      136.170     
+MFM     C17     C       C       0       84.654      34.780      135.069     
+MFM     O4      O       O       0       84.368      33.566      135.096     
+MFM     O3      O       OC      -1      85.364      35.302      134.187     
+MFM     H4      H       H       0       85.185      44.573      140.185     
+MFM     H3      H       H       0       86.238      46.631      140.362     
+MFM     H1      H       H       0       89.796      44.890      139.647     
+MFM     H6      H       H       0       88.757      42.824      139.466     
+MFM     H8      H       H       0       87.510      40.638      140.153     
+MFM     H9      H       H       0       85.560      39.108      139.668     
+MFM     H11     H       H       0       82.491      41.153      139.100     
+MFM     H151    H       H       0       83.344      37.153      134.967     
+MFM     H152    H       H       0       82.257      36.098      135.385     
+MFM     H161    H       H       0       83.763      35.108      136.884     
+MFM     H162    H       H       0       84.844      36.194      136.536     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MFM          C4          C3      DOUBLE       y     1.381  0.0100     1.381  0.0100
+MFM          C4          C5      SINGLE       y     1.394  0.0104     1.394  0.0104
+MFM          C3          C2      SINGLE       y     1.376  0.0100     1.376  0.0100
+MFM          C2         CL1      SINGLE       n     1.741  0.0100     1.741  0.0100
+MFM          C2          C1      DOUBLE       y     1.376  0.0100     1.376  0.0100
+MFM          C1          C6      SINGLE       y     1.381  0.0100     1.381  0.0100
+MFM          C6          C5      DOUBLE       y     1.394  0.0104     1.394  0.0104
+MFM          C5          C7      SINGLE       n     1.454  0.0100     1.454  0.0100
+MFM          C7          O1      SINGLE       y     1.370  0.0100     1.370  0.0100
+MFM          C7          C8      DOUBLE       y     1.356  0.0100     1.356  0.0100
+MFM          O1         C10      SINGLE       y     1.372  0.0132     1.372  0.0132
+MFM          C8          C9      SINGLE       y     1.411  0.0100     1.411  0.0100
+MFM          C9         C10      DOUBLE       y     1.350  0.0131     1.350  0.0131
+MFM         C10         C11      SINGLE       n     1.447  0.0200     1.447  0.0200
+MFM         C11         C12      DOUBLE       n     1.454  0.0200     1.454  0.0200
+MFM         C12         C14      SINGLE       y     1.362  0.0200     1.362  0.0200
+MFM         C12          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+MFM         C14          O2      DOUBLE       n     1.237  0.0126     1.237  0.0126
+MFM         C14          N1      SINGLE       y     1.362  0.0144     1.362  0.0144
+MFM          S1         C13      SINGLE       y     1.695  0.0200     1.695  0.0200
+MFM         C13          S2      DOUBLE       n     1.660  0.0200     1.660  0.0200
+MFM         C13          N1      SINGLE       y     1.347  0.0100     1.347  0.0100
+MFM          N1         C15      SINGLE       n     1.462  0.0100     1.462  0.0100
+MFM         C15         C16      SINGLE       n     1.516  0.0109     1.516  0.0109
+MFM         C16         C17      SINGLE       n     1.519  0.0109     1.519  0.0109
+MFM         C17          O4      DOUBLE       n     1.247  0.0187     1.247  0.0187
+MFM         C17          O3      SINGLE       n     1.247  0.0187     1.247  0.0187
+MFM          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0100
+MFM          C3          H3      SINGLE       n     1.082  0.0130     0.938  0.0140
+MFM          C1          H1      SINGLE       n     1.082  0.0130     0.938  0.0140
+MFM          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0100
+MFM          C8          H8      SINGLE       n     1.082  0.0130     0.939  0.0104
+MFM          C9          H9      SINGLE       n     1.082  0.0130     0.937  0.0166
+MFM         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0200
+MFM         C15        H151      SINGLE       n     1.089  0.0100     0.975  0.0160
+MFM         C15        H152      SINGLE       n     1.089  0.0100     0.975  0.0160
+MFM         C16        H161      SINGLE       n     1.089  0.0100     0.973  0.0100
+MFM         C16        H162      SINGLE       n     1.089  0.0100     0.973  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MFM          C3          C4          C5     120.969    1.50
+MFM          C3          C4          H4     119.430    1.50
+MFM          C5          C4          H4     119.601    1.50
+MFM          C4          C3          C2     119.144    1.50
+MFM          C4          C3          H3     120.408    1.50
+MFM          C2          C3          H3     120.448    1.50
+MFM          C3          C2         CL1     119.382    1.50
+MFM          C3          C2          C1     121.236    1.50
+MFM         CL1          C2          C1     119.382    1.50
+MFM          C2          C1          C6     119.144    1.50
+MFM          C2          C1          H1     120.448    1.50
+MFM          C6          C1          H1     120.408    1.50
+MFM          C1          C6          C5     120.969    1.50
+MFM          C1          C6          H6     119.430    1.50
+MFM          C5          C6          H6     119.601    1.50
+MFM          C4          C5          C6     118.540    1.50
+MFM          C4          C5          C7     120.730    1.50
+MFM          C6          C5          C7     120.730    1.50
+MFM          C5          C7          O1     116.923    1.50
+MFM          C5          C7          C8     133.601    1.50
+MFM          O1          C7          C8     109.477    1.50
+MFM          C7          O1         C10     107.444    1.50
+MFM          C7          C8          C9     106.802    1.50
+MFM          C7          C8          H8     126.616    1.50
+MFM          C9          C8          H8     126.582    1.50
+MFM          C8          C9         C10     106.990    1.50
+MFM          C8          C9          H9     126.542    1.50
+MFM         C10          C9          H9     126.468    1.50
+MFM          O1         C10          C9     109.287    1.50
+MFM          O1         C10         C11     118.070    2.51
+MFM          C9         C10         C11     132.643    3.00
+MFM         C10         C11         C12     126.066    3.00
+MFM         C10         C11         H11     116.967    1.81
+MFM         C12         C11         H11     116.967    1.81
+MFM         C11         C12         C14     131.805    3.00
+MFM         C11         C12          S1     119.742    3.00
+MFM         C14         C12          S1     108.453    3.00
+MFM         C12         C14          O2     129.215    2.84
+MFM         C12         C14          N1     106.899    1.50
+MFM          O2         C14          N1     123.886    1.50
+MFM         C12          S1         C13     108.453    3.00
+MFM          S1         C13          S2     122.535    3.00
+MFM          S1         C13          N1     108.453    3.00
+MFM          S2         C13          N1     129.011    1.50
+MFM         C14          N1         C13     107.742    1.50
+MFM         C14          N1         C15     125.067    1.85
+MFM         C13          N1         C15     127.191    1.50
+MFM          N1         C15         C16     112.085    1.50
+MFM          N1         C15        H151     108.902    1.50
+MFM          N1         C15        H152     108.902    1.50
+MFM         C16         C15        H151     109.239    1.50
+MFM         C16         C15        H152     109.239    1.50
+MFM        H151         C15        H152     107.740    1.50
+MFM         C15         C16         C17     113.936    1.58
+MFM         C15         C16        H161     109.091    1.50
+MFM         C15         C16        H162     109.091    1.50
+MFM         C17         C16        H161     108.416    1.50
+MFM         C17         C16        H162     108.416    1.50
+MFM        H161         C16        H162     107.701    1.50
+MFM         C16         C17          O4     118.187    1.67
+MFM         C16         C17          O3     118.187    1.67
+MFM          O4         C17          O3     123.625    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MFM              const_27          C2          C3          C4          C5       0.000    10.0     2
+MFM              const_47          C3          C4          C5          C6       0.000    10.0     2
+MFM       const_sp2_sp2_7         C11         C10          C9          C8     180.000     5.0     2
+MFM             sp2_sp2_7          O1         C10         C11         C12       0.000     5.0     2
+MFM             sp2_sp2_9         C10         C11         C12         C14     180.000     5.0     2
+MFM              const_16         C11         C12         C14          O2       0.000    10.0     2
+MFM              const_56         C11         C12          S1         C13     180.000    10.0     2
+MFM              const_20          O2         C14          N1         C15       0.000    10.0     2
+MFM              const_26          S2         C13          S1         C12     180.000    10.0     2
+MFM              const_24          S2         C13          N1         C15       0.000    10.0     2
+MFM             sp2_sp3_2         C14          N1         C15         C16     -90.000    10.0     6
+MFM              const_33         CL1          C2          C3          C4     180.000    10.0     2
+MFM             sp3_sp3_1          N1         C15         C16         C17     180.000    10.0     3
+MFM             sp2_sp3_8          O4         C17         C16         C15     120.000    10.0     6
+MFM              const_36          C6          C1          C2         CL1     180.000    10.0     2
+MFM              const_39          C2          C1          C6          C5       0.000    10.0     2
+MFM              const_43          C4          C5          C6          C1       0.000    10.0     2
+MFM             sp2_sp2_2          C4          C5          C7          O1       0.000     5.0     2
+MFM       const_sp2_sp2_2          C5          C7          O1         C10     180.000     5.0     2
+MFM              const_53          C5          C7          C8          C9     180.000    10.0     2
+MFM       const_sp2_sp2_4         C11         C10          O1          C7     180.000     5.0     2
+MFM       const_sp2_sp2_9          C7          C8          C9         C10       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MFM    plan-1          C1   0.020
+MFM    plan-1          C2   0.020
+MFM    plan-1          C3   0.020
+MFM    plan-1          C4   0.020
+MFM    plan-1          C5   0.020
+MFM    plan-1          C6   0.020
+MFM    plan-1          C7   0.020
+MFM    plan-1         CL1   0.020
+MFM    plan-1          H1   0.020
+MFM    plan-1          H3   0.020
+MFM    plan-1          H4   0.020
+MFM    plan-1          H6   0.020
+MFM    plan-2         C10   0.020
+MFM    plan-2         C11   0.020
+MFM    plan-2          C5   0.020
+MFM    plan-2          C7   0.020
+MFM    plan-2          C8   0.020
+MFM    plan-2          C9   0.020
+MFM    plan-2          H8   0.020
+MFM    plan-2          H9   0.020
+MFM    plan-2          O1   0.020
+MFM    plan-3         C11   0.020
+MFM    plan-3         C12   0.020
+MFM    plan-3         C13   0.020
+MFM    plan-3         C14   0.020
+MFM    plan-3         C15   0.020
+MFM    plan-3          N1   0.020
+MFM    plan-3          O2   0.020
+MFM    plan-3          S1   0.020
+MFM    plan-3          S2   0.020
+MFM    plan-4         C10   0.020
+MFM    plan-4         C11   0.020
+MFM    plan-4         C12   0.020
+MFM    plan-4         H11   0.020
+MFM    plan-5         C16   0.020
+MFM    plan-5         C17   0.020
+MFM    plan-5          O3   0.020
+MFM    plan-5          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MFM           SMILES              ACDLabs 12.01                                                                                  S=C1S/C(C(=O)N1CCC(=O)O)=C/c3oc(c2ccc(Cl)cc2)cc3
+MFM            InChI                InChI  1.03 InChI=1S/C17H12ClNO4S2/c18-11-3-1-10(2-4-11)13-6-5-12(23-13)9-14-16(22)19(17(24)25-14)8-7-15(20)21/h1-6,9H,7-8H2,(H,20,21)/b14-9+
+MFM         InChIKey                InChI  1.03                                                                                                       YZLFZFALAZYTCI-NTEUORMPSA-N
+MFM SMILES_CANONICAL               CACTVS 3.370                                                                                  OC(=O)CCN1C(=S)SC(=C/c2oc(cc2)c3ccc(Cl)cc3)/C1=O
+MFM           SMILES               CACTVS 3.370                                                                                    OC(=O)CCN1C(=S)SC(=Cc2oc(cc2)c3ccc(Cl)cc3)C1=O
+MFM SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                               c1cc(ccc1c2ccc(o2)/C=C/3\C(=O)N(C(=S)S3)CCC(=O)O)Cl
+MFM           SMILES "OpenEye OEToolkits" 1.7.2                                                                                  c1cc(ccc1c2ccc(o2)C=C3C(=O)N(C(=S)S3)CCC(=O)O)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MFM acedrg               243         "dictionary generator"                  
+MFM acedrg_database      11          "data source"                           
+MFM rdkit                2017.03.2   "Chemoinformatics tool"
+MFM refmac5              5.8.0238    "optimization tool"                     

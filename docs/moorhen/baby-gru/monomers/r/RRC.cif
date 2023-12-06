@@ -1,0 +1,348 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RRC     RRC      R-ROSCOVITINE     NON-POLYMER     52     26     .     
+#
+data_comp_RRC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RRC     OAP     O       OH1     0       57.395      30.784      29.879      
+RRC     CAQ     C       CH2     0       58.646      30.752      30.544      
+RRC     CAR     C       CH1     0       59.745      30.169      29.655      
+RRC     CAK     C       CH2     0       61.104      30.127      30.363      
+RRC     CAI     C       CH3     0       62.235      29.660      29.476      
+RRC     NAS     N       NH1     0       59.374      28.812      29.233      
+RRC     CAT     C       CR6     0       59.149      28.382      27.976      
+RRC     NAU     N       NRD6    0       58.705      27.114      27.838      
+RRC     CAV     C       CR56    0       58.506      26.754      26.559      
+RRC     NAW     N       NT      0       58.060      25.533      26.103      
+RRC     CAZ     C       CH1     0       57.706      24.372      26.921      
+RRC     CAY     C       CH3     0       56.219      24.336      27.232      
+RRC     CBA     C       CH3     0       58.208      23.080      26.305      
+RRC     CAX     C       CR15    0       58.015      25.644      24.739      
+RRC     CAN     C       CR56    0       58.708      27.533      25.433      
+RRC     NAO     N       NRD5    0       58.394      26.818      24.283      
+RRC     NAL     N       NRD6    0       59.387      29.235      26.948      
+RRC     CAM     C       CR6     0       59.172      28.847      25.670      
+RRC     NAJ     N       NH1     0       59.418      29.711      24.666      
+RRC     CAD     C       CH2     0       59.444      31.154      24.826      
+RRC     CAE     C       CR6     0       60.745      31.668      25.401      
+RRC     CAG     C       CR16    0       60.756      32.460      26.544      
+RRC     CAH     C       CR16    0       61.956      32.923      27.070      
+RRC     CAF     C       CR16    0       63.151      32.597      26.465      
+RRC     CAC     C       CR16    0       63.153      31.808      25.332      
+RRC     CAB     C       CR16    0       61.956      31.343      24.803      
+RRC     HAP     H       H       0       57.453      31.316      29.224      
+RRC     HAQ1    H       H       0       58.570      30.208      31.357      
+RRC     HAQ2    H       H       0       58.899      31.662      30.809      
+RRC     HAR     H       H       0       59.829      30.754      28.849      
+RRC     HAK1    H       H       0       61.038      29.526      31.136      
+RRC     HAK2    H       H       0       61.313      31.024      30.699      
+RRC     HAI1    H       H       0       63.082      29.784      29.937      
+RRC     HAI2    H       H       0       62.237      30.177      28.652      
+RRC     HAI3    H       H       0       62.116      28.717      29.265      
+RRC     HAS     H       H       0       59.296      28.223      29.884      
+RRC     HAZ     H       H       0       58.167      24.453      27.797      
+RRC     HAY1    H       H       0       55.779      25.102      26.823      
+RRC     HAY2    H       H       0       56.091      24.368      28.196      
+RRC     HAY3    H       H       0       55.829      23.516      26.882      
+RRC     HBA1    H       H       0       59.136      23.189      26.037      
+RRC     HBA2    H       H       0       57.668      22.861      25.525      
+RRC     HBA3    H       H       0       58.141      22.362      26.958      
+RRC     HAX     H       H       0       57.736      24.932      24.179      
+RRC     HAJ     H       H       0       59.576      29.384      23.863      
+RRC     HAD1    H       H       0       58.704      31.423      25.411      
+RRC     HAD2    H       H       0       59.298      31.571      23.952      
+RRC     HAG     H       H       0       59.943      32.688      26.964      
+RRC     HAH     H       H       0       61.952      33.463      27.845      
+RRC     HAF     H       H       0       63.965      32.913      26.823      
+RRC     HAC     H       H       0       63.970      31.583      24.916      
+RRC     HAB     H       H       0       61.965      30.803      24.028      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RRC         OAP         CAQ      SINGLE       n     1.417  0.0200     1.417  0.0200
+RRC         CAQ         CAR      SINGLE       n     1.529  0.0100     1.529  0.0100
+RRC         CAR         CAK      SINGLE       n     1.532  0.0100     1.532  0.0100
+RRC         CAR         NAS      SINGLE       n     1.465  0.0100     1.465  0.0100
+RRC         CAK         CAI      SINGLE       n     1.511  0.0200     1.511  0.0200
+RRC         NAS         CAT      SINGLE       n     1.341  0.0100     1.341  0.0100
+RRC         CAT         NAU      DOUBLE       y     1.346  0.0100     1.346  0.0100
+RRC         CAT         NAL      SINGLE       y     1.348  0.0113     1.348  0.0113
+RRC         NAU         CAV      SINGLE       y     1.341  0.0100     1.341  0.0100
+RRC         CAV         NAW      SINGLE       y     1.384  0.0181     1.384  0.0181
+RRC         CAV         CAN      DOUBLE       y     1.384  0.0100     1.384  0.0100
+RRC         NAW         CAZ      SINGLE       n     1.462  0.0101     1.462  0.0101
+RRC         NAW         CAX      SINGLE       y     1.368  0.0147     1.368  0.0147
+RRC         CAZ         CAY      SINGLE       n     1.513  0.0163     1.513  0.0163
+RRC         CAZ         CBA      SINGLE       n     1.513  0.0163     1.513  0.0163
+RRC         CAX         NAO      DOUBLE       y     1.313  0.0100     1.313  0.0100
+RRC         CAN         NAO      SINGLE       y     1.388  0.0100     1.388  0.0100
+RRC         CAN         CAM      SINGLE       y     1.409  0.0100     1.409  0.0100
+RRC         NAL         CAM      DOUBLE       y     1.345  0.0100     1.345  0.0100
+RRC         CAM         NAJ      SINGLE       n     1.343  0.0100     1.343  0.0100
+RRC         NAJ         CAD      SINGLE       n     1.450  0.0100     1.450  0.0100
+RRC         CAD         CAE      SINGLE       n     1.511  0.0100     1.511  0.0100
+RRC         CAE         CAG      DOUBLE       y     1.386  0.0100     1.386  0.0100
+RRC         CAE         CAB      SINGLE       y     1.386  0.0100     1.386  0.0100
+RRC         CAG         CAH      SINGLE       y     1.386  0.0100     1.386  0.0100
+RRC         CAH         CAF      DOUBLE       y     1.374  0.0127     1.374  0.0127
+RRC         CAF         CAC      SINGLE       y     1.376  0.0124     1.376  0.0124
+RRC         CAC         CAB      DOUBLE       y     1.386  0.0100     1.386  0.0100
+RRC         OAP         HAP      SINGLE       n     0.970  0.0120     0.846  0.0200
+RRC         CAQ        HAQ1      SINGLE       n     1.089  0.0100     0.981  0.0174
+RRC         CAQ        HAQ2      SINGLE       n     1.089  0.0100     0.981  0.0174
+RRC         CAR         HAR      SINGLE       n     1.089  0.0100     1.000  0.0100
+RRC         CAK        HAK1      SINGLE       n     1.089  0.0100     0.981  0.0160
+RRC         CAK        HAK2      SINGLE       n     1.089  0.0100     0.981  0.0160
+RRC         CAI        HAI1      SINGLE       n     1.089  0.0100     0.973  0.0157
+RRC         CAI        HAI2      SINGLE       n     1.089  0.0100     0.973  0.0157
+RRC         CAI        HAI3      SINGLE       n     1.089  0.0100     0.973  0.0157
+RRC         NAS         HAS      SINGLE       n     1.016  0.0100     0.880  0.0200
+RRC         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.994  0.0100
+RRC         CAY        HAY1      SINGLE       n     1.089  0.0100     0.973  0.0146
+RRC         CAY        HAY2      SINGLE       n     1.089  0.0100     0.973  0.0146
+RRC         CAY        HAY3      SINGLE       n     1.089  0.0100     0.973  0.0146
+RRC         CBA        HBA1      SINGLE       n     1.089  0.0100     0.973  0.0146
+RRC         CBA        HBA2      SINGLE       n     1.089  0.0100     0.973  0.0146
+RRC         CBA        HBA3      SINGLE       n     1.089  0.0100     0.973  0.0146
+RRC         CAX         HAX      SINGLE       n     1.082  0.0130     0.948  0.0200
+RRC         NAJ         HAJ      SINGLE       n     1.016  0.0100     0.881  0.0100
+RRC         CAD        HAD1      SINGLE       n     1.089  0.0100     0.980  0.0114
+RRC         CAD        HAD2      SINGLE       n     1.089  0.0100     0.980  0.0114
+RRC         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0174
+RRC         CAH         HAH      SINGLE       n     1.082  0.0130     0.944  0.0175
+RRC         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0161
+RRC         CAC         HAC      SINGLE       n     1.082  0.0130     0.944  0.0175
+RRC         CAB         HAB      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RRC         CAQ         OAP         HAP     108.529    2.94
+RRC         OAP         CAQ         CAR     111.676    1.78
+RRC         OAP         CAQ        HAQ1     109.411    1.50
+RRC         OAP         CAQ        HAQ2     109.411    1.50
+RRC         CAR         CAQ        HAQ1     108.980    1.50
+RRC         CAR         CAQ        HAQ2     108.980    1.50
+RRC        HAQ1         CAQ        HAQ2     108.070    1.50
+RRC         CAQ         CAR         CAK     112.238    1.50
+RRC         CAQ         CAR         NAS     109.565    1.79
+RRC         CAQ         CAR         HAR     107.847    1.50
+RRC         CAK         CAR         NAS     109.328    1.50
+RRC         CAK         CAR         HAR     108.261    1.50
+RRC         NAS         CAR         HAR     107.866    1.50
+RRC         CAR         CAK         CAI     113.630    1.50
+RRC         CAR         CAK        HAK1     108.780    1.50
+RRC         CAR         CAK        HAK2     108.780    1.50
+RRC         CAI         CAK        HAK1     108.917    1.50
+RRC         CAI         CAK        HAK2     108.917    1.50
+RRC        HAK1         CAK        HAK2     107.741    1.50
+RRC         CAK         CAI        HAI1     109.526    1.50
+RRC         CAK         CAI        HAI2     109.526    1.50
+RRC         CAK         CAI        HAI3     109.526    1.50
+RRC        HAI1         CAI        HAI2     109.380    1.50
+RRC        HAI1         CAI        HAI3     109.380    1.50
+RRC        HAI2         CAI        HAI3     109.380    1.50
+RRC         CAR         NAS         CAT     122.840    2.30
+RRC         CAR         NAS         HAS     118.349    2.52
+RRC         CAT         NAS         HAS     118.811    2.32
+RRC         NAS         CAT         NAU     117.272    1.62
+RRC         NAS         CAT         NAL     117.366    1.50
+RRC         NAU         CAT         NAL     125.362    1.50
+RRC         CAT         NAU         CAV     113.802    1.50
+RRC         NAU         CAV         NAW     125.423    1.56
+RRC         NAU         CAV         CAN     127.346    1.50
+RRC         NAW         CAV         CAN     107.231    1.69
+RRC         CAV         NAW         CAZ     124.908    2.72
+RRC         CAV         NAW         CAX     107.594    1.50
+RRC         CAZ         NAW         CAX     124.795    3.00
+RRC         NAW         CAZ         CAY     111.989    1.71
+RRC         NAW         CAZ         CBA     111.989    1.71
+RRC         NAW         CAZ         HAZ     109.177    1.50
+RRC         CAY         CAZ         CBA     112.990    2.22
+RRC         CAY         CAZ         HAZ     107.337    1.70
+RRC         CBA         CAZ         HAZ     107.337    1.70
+RRC         CAZ         CAY        HAY1     109.466    1.50
+RRC         CAZ         CAY        HAY2     109.466    1.50
+RRC         CAZ         CAY        HAY3     109.466    1.50
+RRC        HAY1         CAY        HAY2     109.476    1.50
+RRC        HAY1         CAY        HAY3     109.476    1.50
+RRC        HAY2         CAY        HAY3     109.476    1.50
+RRC         CAZ         CBA        HBA1     109.466    1.50
+RRC         CAZ         CBA        HBA2     109.466    1.50
+RRC         CAZ         CBA        HBA3     109.466    1.50
+RRC        HBA1         CBA        HBA2     109.476    1.50
+RRC        HBA1         CBA        HBA3     109.476    1.50
+RRC        HBA2         CBA        HBA3     109.476    1.50
+RRC         NAW         CAX         NAO     114.617    1.50
+RRC         NAW         CAX         HAX     122.237    1.50
+RRC         NAO         CAX         HAX     123.146    1.50
+RRC         CAV         CAN         NAO     110.745    1.50
+RRC         CAV         CAN         CAM     116.122    1.50
+RRC         NAO         CAN         CAM     133.133    1.50
+RRC         CAX         NAO         CAN     103.565    1.50
+RRC         CAT         NAL         CAM     118.998    1.50
+RRC         CAN         CAM         NAL     118.370    1.50
+RRC         CAN         CAM         NAJ     122.572    1.50
+RRC         NAL         CAM         NAJ     119.059    1.50
+RRC         CAM         NAJ         CAD     123.011    1.50
+RRC         CAM         NAJ         HAJ     118.632    1.50
+RRC         CAD         NAJ         HAJ     118.354    1.50
+RRC         NAJ         CAD         CAE     113.274    1.50
+RRC         NAJ         CAD        HAD1     108.829    1.50
+RRC         NAJ         CAD        HAD2     108.829    1.50
+RRC         CAE         CAD        HAD1     108.855    1.50
+RRC         CAE         CAD        HAD2     108.855    1.50
+RRC        HAD1         CAD        HAD2     107.706    1.50
+RRC         CAD         CAE         CAG     120.710    1.50
+RRC         CAD         CAE         CAB     120.710    1.50
+RRC         CAG         CAE         CAB     118.580    1.50
+RRC         CAE         CAG         CAH     120.442    1.50
+RRC         CAE         CAG         HAG     119.742    1.50
+RRC         CAH         CAG         HAG     119.815    1.50
+RRC         CAG         CAH         CAF     120.273    1.50
+RRC         CAG         CAH         HAH     119.818    1.50
+RRC         CAF         CAH         HAH     119.909    1.50
+RRC         CAH         CAF         CAC     119.997    1.50
+RRC         CAH         CAF         HAF     119.998    1.50
+RRC         CAC         CAF         HAF     119.998    1.50
+RRC         CAF         CAC         CAB     120.273    1.50
+RRC         CAF         CAC         HAC     119.909    1.50
+RRC         CAB         CAC         HAC     119.818    1.50
+RRC         CAE         CAB         CAC     120.442    1.50
+RRC         CAE         CAB         HAB     119.742    1.50
+RRC         CAC         CAB         HAB     119.815    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RRC             sp3_sp3_1         CAR         CAQ         OAP         HAP     180.000    10.0     3
+RRC            sp3_sp3_32        HAY1         CAY         CAZ         CBA     -60.000    10.0     3
+RRC            sp3_sp3_40         CAY         CAZ         CBA        HBA1     180.000    10.0     3
+RRC              const_43         NAW         CAX         NAO         CAN       0.000    10.0     2
+RRC              const_45         CAV         CAN         NAO         CAX       0.000    10.0     2
+RRC              const_31         NAJ         CAM         CAN         CAV     180.000    10.0     2
+RRC              const_34         NAJ         CAM         NAL         CAT     180.000    10.0     2
+RRC             sp2_sp2_5         CAN         CAM         NAJ         CAD     180.000     5.0     2
+RRC            sp2_sp3_14         CAM         NAJ         CAD         CAE     120.000    10.0     6
+RRC            sp2_sp3_20         CAG         CAE         CAD         NAJ     -90.000    10.0     6
+RRC             sp3_sp3_4         OAP         CAQ         CAR         CAK     180.000    10.0     3
+RRC       const_sp2_sp2_3         CAD         CAE         CAG         CAH     180.000     5.0     2
+RRC              const_50         CAC         CAB         CAE         CAD     180.000    10.0     2
+RRC       const_sp2_sp2_5         CAE         CAG         CAH         CAF       0.000     5.0     2
+RRC       const_sp2_sp2_9         CAC         CAF         CAH         CAG       0.000     5.0     2
+RRC              const_13         CAB         CAC         CAF         CAH       0.000    10.0     2
+RRC              const_17         CAE         CAB         CAC         CAF       0.000    10.0     2
+RRC            sp3_sp3_13         CAI         CAK         CAR         CAQ     180.000    10.0     3
+RRC             sp2_sp3_1         CAT         NAS         CAR         CAQ       0.000    10.0     6
+RRC            sp3_sp3_22        HAI1         CAI         CAK         CAR     180.000    10.0     3
+RRC             sp2_sp2_1         NAU         CAT         NAS         CAR     180.000     5.0     2
+RRC              const_48         NAS         CAT         NAL         CAM     180.000    10.0     2
+RRC              const_22         NAS         CAT         NAU         CAV     180.000    10.0     2
+RRC              const_24         NAW         CAV         NAU         CAT     180.000    10.0     2
+RRC              const_26         NAO         CAN         CAV         NAU     180.000    10.0     2
+RRC              const_38         NAU         CAV         NAW         CAZ       0.000    10.0     2
+RRC             sp2_sp3_8         CAV         NAW         CAZ         CAY     -90.000    10.0     6
+RRC              const_40         NAO         CAX         NAW         CAZ     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RRC    chir_1    CAR    NAS    CAQ    CAK    negative
+RRC    chir_2    CAZ    NAW    CAY    CBA    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RRC    plan-1         CAM   0.020
+RRC    plan-1         CAN   0.020
+RRC    plan-1         CAT   0.020
+RRC    plan-1         CAV   0.020
+RRC    plan-1         CAX   0.020
+RRC    plan-1         CAZ   0.020
+RRC    plan-1         HAX   0.020
+RRC    plan-1         NAJ   0.020
+RRC    plan-1         NAL   0.020
+RRC    plan-1         NAO   0.020
+RRC    plan-1         NAS   0.020
+RRC    plan-1         NAU   0.020
+RRC    plan-1         NAW   0.020
+RRC    plan-2         CAB   0.020
+RRC    plan-2         CAC   0.020
+RRC    plan-2         CAD   0.020
+RRC    plan-2         CAE   0.020
+RRC    plan-2         CAF   0.020
+RRC    plan-2         CAG   0.020
+RRC    plan-2         CAH   0.020
+RRC    plan-2         HAB   0.020
+RRC    plan-2         HAC   0.020
+RRC    plan-2         HAF   0.020
+RRC    plan-2         HAG   0.020
+RRC    plan-2         HAH   0.020
+RRC    plan-3         CAR   0.020
+RRC    plan-3         CAT   0.020
+RRC    plan-3         HAS   0.020
+RRC    plan-3         NAS   0.020
+RRC    plan-4         CAD   0.020
+RRC    plan-4         CAM   0.020
+RRC    plan-4         HAJ   0.020
+RRC    plan-4         NAJ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RRC           SMILES              ACDLabs 10.04                                                                                                                        n1c(c2ncn(c2nc1NC(CC)CO)C(C)C)NCc3ccccc3
+RRC SMILES_CANONICAL               CACTVS 3.341                                                                                                                    CC[C@H](CO)Nc1nc(NCc2ccccc2)c3ncn(C(C)C)c3n1
+RRC           SMILES               CACTVS 3.341                                                                                                                     CC[CH](CO)Nc1nc(NCc2ccccc2)c3ncn(C(C)C)c3n1
+RRC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                  CC[C@H](CO)Nc1nc(c2c(n1)n(cn2)C(C)C)NCc3ccccc3
+RRC           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                      CCC(CO)Nc1nc(c2c(n1)n(cn2)C(C)C)NCc3ccccc3
+RRC            InChI                InChI  1.03 InChI=1S/C19H26N6O/c1-4-15(11-26)22-19-23-17(20-10-14-8-6-5-7-9-14)16-18(24-19)25(12-21-16)13(2)3/h5-9,12-13,15,26H,4,10-11H2,1-3H3,(H2,20,22,23,24)/t15-/m1/s1
+RRC         InChIKey                InChI  1.03                                                                                                                                     BTIHMVBBUGXLCJ-OAHLLOKOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RRC acedrg               243         "dictionary generator"                  
+RRC acedrg_database      11          "data source"                           
+RRC rdkit                2017.03.2   "Chemoinformatics tool"
+RRC refmac5              5.8.0238    "optimization tool"                     

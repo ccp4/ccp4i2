@@ -1,0 +1,221 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PIC     PIC      "6-(DIFLUORO-PHOSPHONO-METHYL)-NAPHTHALENE-2-CARBOXYLIC ACID"     NON-POLYMER     26     20     .     
+#
+data_comp_PIC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PIC     C1      C       CT      0       46.415      15.961      4.229       
+PIC     C2      C       CR6     0       45.833      14.966      3.242       
+PIC     C3      C       CR16    0       44.726      15.328      2.427       
+PIC     C7      C       CR6     0       44.690      10.928      0.374       
+PIC     C8      C       CR16    0       45.794      10.555      1.189       
+PIC     C9      C       CR16    0       46.333      11.443      2.079       
+PIC     C10     C       CR66    0       45.810      12.755      2.213       
+PIC     C11     C       CR16    0       46.348      13.695      3.127       
+PIC     C12     C       C       0       44.101      9.953       -0.600      
+PIC     C4      C       CR16    0       44.184      14.444      1.536       
+PIC     C5      C       CR66    0       44.704      13.138      1.401       
+PIC     C6      C       CR16    0       44.165      12.193      0.485       
+PIC     O1      O       OC      -1      42.866      9.806       -0.599      
+PIC     O2      O       O       0       44.879      9.345       -1.357      
+PIC     F1      F       F       0       46.350      17.223      3.733       
+PIC     F2      F       F       0       47.731      15.718      4.458       
+PIC     P       P       P       0       45.545      15.936      5.822       
+PIC     OP1     O       OP      -1      45.957      17.173      6.571       
+PIC     OP2     O       OP      -1      45.971      14.684      6.537       
+PIC     OP3     O       O       0       44.071      15.931      5.520       
+PIC     HC3     H       H       0       44.360      16.192      2.498       
+PIC     HC8     H       H       0       46.158      9.687       1.116       
+PIC     HC9     H       H       0       47.066      11.180      2.613       
+PIC     HC11    H       H       0       47.076      13.438      3.661       
+PIC     HC4     H       H       0       43.452      14.709      1.004       
+PIC     HC6     H       H       0       43.434      12.441      -0.054      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PIC          C1          C2      SINGLE       n     1.512  0.0108     1.512  0.0108
+PIC          C1          F1      SINGLE       n     1.357  0.0127     1.357  0.0127
+PIC          C1          F2      SINGLE       n     1.357  0.0127     1.357  0.0127
+PIC          C1           P      SINGLE       n     1.816  0.0183     1.816  0.0183
+PIC          C2          C3      DOUBLE       y     1.416  0.0100     1.416  0.0100
+PIC          C2         C11      SINGLE       y     1.368  0.0105     1.368  0.0105
+PIC          C3          C4      SINGLE       y     1.364  0.0100     1.364  0.0100
+PIC          C7          C8      SINGLE       y     1.419  0.0100     1.419  0.0100
+PIC          C7         C12      SINGLE       n     1.498  0.0200     1.498  0.0200
+PIC          C7          C6      DOUBLE       y     1.371  0.0100     1.371  0.0100
+PIC          C8          C9      DOUBLE       y     1.364  0.0100     1.364  0.0100
+PIC          C9         C10      SINGLE       y     1.415  0.0105     1.415  0.0105
+PIC         C10         C11      DOUBLE       y     1.413  0.0100     1.413  0.0100
+PIC         C10          C5      SINGLE       y     1.418  0.0105     1.418  0.0105
+PIC         C12          O1      SINGLE       n     1.244  0.0200     1.244  0.0200
+PIC         C12          O2      DOUBLE       n     1.244  0.0200     1.244  0.0200
+PIC          C4          C5      DOUBLE       y     1.410  0.0106     1.410  0.0106
+PIC          C5          C6      SINGLE       y     1.417  0.0129     1.417  0.0129
+PIC           P         OP1      SINGLE       n     1.505  0.0200     1.505  0.0200
+PIC           P         OP2      SINGLE       n     1.505  0.0200     1.505  0.0200
+PIC           P         OP3      DOUBLE       n     1.505  0.0200     1.505  0.0200
+PIC          C3         HC3      SINGLE       n     1.082  0.0130     0.941  0.0105
+PIC          C8         HC8      SINGLE       n     1.082  0.0130     0.944  0.0200
+PIC          C9         HC9      SINGLE       n     1.082  0.0130     0.944  0.0160
+PIC         C11        HC11      SINGLE       n     1.082  0.0130     0.939  0.0158
+PIC          C4         HC4      SINGLE       n     1.082  0.0130     0.943  0.0180
+PIC          C6         HC6      SINGLE       n     1.082  0.0130     0.942  0.0163
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PIC          C2          C1          F1     110.594    1.53
+PIC          C2          C1          F2     110.594    1.53
+PIC          C2          C1           P     113.602    3.00
+PIC          F1          C1          F2     106.710    1.50
+PIC          F1          C1           P     108.594    1.85
+PIC          F2          C1           P     108.594    1.85
+PIC          C1          C2          C3     120.544    1.50
+PIC          C1          C2         C11     120.544    1.50
+PIC          C3          C2         C11     118.912    1.50
+PIC          C2          C3          C4     121.146    1.50
+PIC          C2          C3         HC3     119.315    1.50
+PIC          C4          C3         HC3     119.539    1.50
+PIC          C8          C7         C12     120.409    1.50
+PIC          C8          C7          C6     119.614    1.50
+PIC         C12          C7          C6     119.977    1.50
+PIC          C7          C8          C9     120.593    1.50
+PIC          C7          C8         HC8     119.752    1.50
+PIC          C9          C8         HC8     119.655    1.50
+PIC          C8          C9         C10     120.963    1.50
+PIC          C8          C9         HC9     119.606    1.50
+PIC         C10          C9         HC9     119.430    1.50
+PIC          C9         C10         C11     122.458    1.50
+PIC          C9         C10          C5     118.833    1.50
+PIC         C11         C10          C5     118.709    1.50
+PIC          C2         C11         C10     121.300    1.50
+PIC          C2         C11        HC11     119.399    1.50
+PIC         C10         C11        HC11     119.301    1.50
+PIC          C7         C12          O1     117.827    1.50
+PIC          C7         C12          O2     117.827    1.50
+PIC          O1         C12          O2     124.345    1.50
+PIC          C3          C4          C5     121.032    1.50
+PIC          C3          C4         HC4     119.572    1.50
+PIC          C5          C4         HC4     119.396    1.50
+PIC         C10          C5          C4     118.901    1.50
+PIC         C10          C5          C6     118.641    1.50
+PIC          C4          C5          C6     122.458    1.50
+PIC          C7          C6          C5     121.356    1.50
+PIC          C7          C6         HC6     119.493    1.50
+PIC          C5          C6         HC6     119.152    1.50
+PIC          C1           P         OP1     110.326    3.00
+PIC          C1           P         OP2     110.326    3.00
+PIC          C1           P         OP3     110.326    3.00
+PIC         OP1           P         OP2     112.502    1.50
+PIC         OP1           P         OP3     112.502    1.50
+PIC         OP2           P         OP3     112.502    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PIC             sp2_sp3_2          C3          C2          C1          F1     -90.000    10.0     6
+PIC             sp3_sp3_4          F1          C1           P         OP1      60.000    10.0     3
+PIC              const_33         C10          C5          C6          C7       0.000    10.0     2
+PIC       const_sp2_sp2_3          C1          C2          C3          C4     180.000     5.0     2
+PIC              const_38         C10         C11          C2          C1     180.000    10.0     2
+PIC       const_sp2_sp2_5          C2          C3          C4          C5       0.000     5.0     2
+PIC              const_42          C5          C6          C7         C12     180.000    10.0     2
+PIC              const_23         C12          C7          C8          C9     180.000    10.0     2
+PIC             sp2_sp2_1          O1         C12          C7          C8     180.000     5.0     2
+PIC              const_25          C7          C8          C9         C10       0.000    10.0     2
+PIC              const_31         C11         C10          C9          C8     180.000    10.0     2
+PIC              const_14          C9         C10          C5          C4     180.000    10.0     2
+PIC              const_19          C9         C10         C11          C2     180.000    10.0     2
+PIC       const_sp2_sp2_9          C3          C4          C5         C10       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PIC    chir_1    C1    P    F1    F2    both
+PIC    chir_2    P    OP1    OP2    OP3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PIC    plan-1          C1   0.020
+PIC    plan-1         C10   0.020
+PIC    plan-1         C11   0.020
+PIC    plan-1         C12   0.020
+PIC    plan-1          C2   0.020
+PIC    plan-1          C3   0.020
+PIC    plan-1          C4   0.020
+PIC    plan-1          C5   0.020
+PIC    plan-1          C6   0.020
+PIC    plan-1          C7   0.020
+PIC    plan-1          C8   0.020
+PIC    plan-1          C9   0.020
+PIC    plan-1        HC11   0.020
+PIC    plan-1         HC3   0.020
+PIC    plan-1         HC4   0.020
+PIC    plan-1         HC6   0.020
+PIC    plan-1         HC8   0.020
+PIC    plan-1         HC9   0.020
+PIC    plan-2         C12   0.020
+PIC    plan-2          C7   0.020
+PIC    plan-2          O1   0.020
+PIC    plan-2          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PIC           SMILES              ACDLabs 10.04                                                                  FC(F)(c2ccc1c(ccc(c1)C(=O)O)c2)P(=O)(O)O
+PIC SMILES_CANONICAL               CACTVS 3.341                                                                  OC(=O)c1ccc2cc(ccc2c1)C(F)(F)[P](O)(O)=O
+PIC           SMILES               CACTVS 3.341                                                                  OC(=O)c1ccc2cc(ccc2c1)C(F)(F)[P](O)(O)=O
+PIC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                  c1cc(cc2c1cc(cc2)C(F)(F)P(=O)(O)O)C(=O)O
+PIC           SMILES "OpenEye OEToolkits" 1.5.0                                                                  c1cc(cc2c1cc(cc2)C(F)(F)P(=O)(O)O)C(=O)O
+PIC            InChI                InChI  1.03 InChI=1S/C12H9F2O5P/c13-12(14,20(17,18)19)10-4-3-7-5-9(11(15)16)2-1-8(7)6-10/h1-6H,(H,15,16)(H2,17,18,19)
+PIC         InChIKey                InChI  1.03                                                                               NKGNOWNPXBURRW-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PIC acedrg               243         "dictionary generator"                  
+PIC acedrg_database      11          "data source"                           
+PIC rdkit                2017.03.2   "Chemoinformatics tool"
+PIC refmac5              5.8.0238    "optimization tool"                     

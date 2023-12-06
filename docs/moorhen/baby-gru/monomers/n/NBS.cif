@@ -1,0 +1,354 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NBS     NBS      "N6-BENZYL ADENOSINE-5'-DIPHOSPHATE"     NON-POLYMER     52     34     .     
+#
+data_comp_NBS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NBS     PB      P       P       0       -5.156      48.025      -0.493      
+NBS     O4P     O       OP      -1      -6.138      49.144      -0.250      
+NBS     O5P     O       OP      -1      -4.272      47.756      0.701       
+NBS     O6P     O       O       0       -5.816      46.776      -1.023      
+NBS     PA      P       P       0       -3.239      49.835      -1.810      
+NBS     O1P     O       OP      -1      -2.455      49.723      -3.075      
+NBS     O2P     O       O       0       -4.073      51.056      -1.601      
+NBS     O3P     O       O2      0       -4.176      48.541      -1.667      
+NBS     "O5'"   O       O2      0       -2.258      49.640      -0.554      
+NBS     "C5'"   C       CH2     0       -1.171      48.678      -0.623      
+NBS     "C4'"   C       CH1     0       0.104       49.393      -0.996      
+NBS     "O4'"   O       O2      0       0.472       50.292      0.082       
+NBS     "C1'"   C       CH1     0       1.678       49.877      0.684       
+NBS     N9      N       NR5     0       1.517       49.963      2.132       
+NBS     C4      C       CR56    0       2.283       50.679      3.023       
+NBS     N3      N       NRD6    0       3.352       51.456      2.758       
+NBS     C2      C       CR16    0       3.849       51.997      3.871       
+NBS     N1      N       NRD6    0       3.428       51.860      5.138       
+NBS     C6      C       CR6     0       2.345       51.079      5.381       
+NBS     N6      N       NH1     0       1.937       50.933      6.658       
+NBS     CB1     C       CH2     0       0.555       50.769      7.080       
+NBS     CB2     C       CR6     0       -0.393      51.824      6.555       
+NBS     CB3     C       CR16    0       -1.516      51.467      5.817       
+NBS     CB4     C       CR16    0       -2.388      52.439      5.343       
+NBS     CB5     C       CR16    0       -2.149      53.773      5.604       
+NBS     CB6     C       CR16    0       -1.041      54.139      6.339       
+NBS     CB7     C       CR16    0       -0.166      53.170      6.815       
+NBS     C5      C       CR56    0       1.736       50.440      4.274       
+NBS     N7      N       NRD5    0       0.644       49.591      4.163       
+NBS     C8      C       CR15    0       0.552       49.340      2.882       
+NBS     "C2'"   C       CH1     0       1.960       48.464      0.180       
+NBS     "O2'"   O       OH1     0       3.347       48.198      0.160       
+NBS     "C3'"   C       CH1     0       1.335       48.505      -1.217      
+NBS     "O3'"   O       OH1     0       2.205       49.073      -2.190      
+NBS     "H5'1"  H       H       0       -1.372      47.983      -1.299      
+NBS     "H5'2"  H       H       0       -1.059      48.237      0.255       
+NBS     "H4'"   H       H       0       -0.066      49.921      -1.805      
+NBS     "H1'"   H       H       0       2.409       50.468      0.397       
+NBS     H2      H       H       0       4.602       52.555      3.750       
+NBS     H6      H       H       0       2.553       50.933      7.288       
+NBS     HB11    H       H       0       0.527       50.787      8.060       
+NBS     HB12    H       H       0       0.241       49.885      6.797       
+NBS     HB3     H       H       0       -1.687      50.557      5.634       
+NBS     HB4     H       H       0       -3.146      52.186      4.840       
+NBS     HB5     H       H       0       -2.742      54.432      5.281       
+NBS     HB6     H       H       0       -0.876      55.051      6.518       
+NBS     HB7     H       H       0       0.590       53.429      7.317       
+NBS     H8      H       H       0       -0.107      48.779      2.511       
+NBS     "H2'"   H       H       0       1.496       47.791      0.744       
+NBS     "HO'2"  H       H       0       3.480       47.443      -0.204      
+NBS     "H3'"   H       H       0       1.054       47.596      -1.497      
+NBS     "HO'3"  H       H       0       2.638       48.448      -2.567      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NBS          PB         O4P      SINGLE       n     1.509  0.0200     1.509  0.0200
+NBS          PB         O5P      SINGLE       n     1.509  0.0200     1.509  0.0200
+NBS          PB         O6P      DOUBLE       n     1.509  0.0200     1.509  0.0200
+NBS          PB         O3P      SINGLE       n     1.614  0.0178     1.614  0.0178
+NBS          PA         O1P      SINGLE       n     1.493  0.0122     1.493  0.0122
+NBS          PA         O2P      DOUBLE       n     1.493  0.0122     1.493  0.0122
+NBS          PA         O3P      SINGLE       n     1.604  0.0133     1.604  0.0133
+NBS          PA       "O5'"      SINGLE       n     1.604  0.0133     1.604  0.0133
+NBS       "O5'"       "C5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+NBS       "C5'"       "C4'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+NBS       "C4'"       "O4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+NBS       "C4'"       "C3'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+NBS       "O4'"       "C1'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+NBS       "C1'"          N9      SINGLE       n     1.458  0.0100     1.458  0.0100
+NBS       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+NBS          N9          C4      SINGLE       y     1.374  0.0101     1.374  0.0101
+NBS          N9          C8      SINGLE       y     1.372  0.0100     1.372  0.0100
+NBS          C4          N3      DOUBLE       y     1.343  0.0100     1.343  0.0100
+NBS          C4          C5      SINGLE       y     1.381  0.0100     1.381  0.0100
+NBS          N3          C2      SINGLE       y     1.330  0.0100     1.330  0.0100
+NBS          C2          N1      DOUBLE       y     1.339  0.0100     1.339  0.0100
+NBS          N1          C6      SINGLE       y     1.353  0.0100     1.353  0.0100
+NBS          C6          N6      SINGLE       n     1.344  0.0100     1.344  0.0100
+NBS          C6          C5      DOUBLE       y     1.409  0.0100     1.409  0.0100
+NBS          N6         CB1      SINGLE       n     1.450  0.0100     1.450  0.0100
+NBS         CB1         CB2      SINGLE       n     1.511  0.0100     1.511  0.0100
+NBS         CB2         CB3      DOUBLE       y     1.386  0.0100     1.386  0.0100
+NBS         CB2         CB7      SINGLE       y     1.386  0.0100     1.386  0.0100
+NBS         CB3         CB4      SINGLE       y     1.386  0.0100     1.386  0.0100
+NBS         CB4         CB5      DOUBLE       y     1.376  0.0124     1.376  0.0124
+NBS         CB5         CB6      SINGLE       y     1.374  0.0127     1.374  0.0127
+NBS         CB6         CB7      DOUBLE       y     1.386  0.0100     1.386  0.0100
+NBS          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+NBS          N7          C8      DOUBLE       y     1.310  0.0100     1.310  0.0100
+NBS       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+NBS       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+NBS       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+NBS       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+NBS       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+NBS       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+NBS       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+NBS          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+NBS          N6          H6      SINGLE       n     1.016  0.0100     0.881  0.0100
+NBS         CB1        HB11      SINGLE       n     1.089  0.0100     0.980  0.0114
+NBS         CB1        HB12      SINGLE       n     1.089  0.0100     0.980  0.0114
+NBS         CB3         HB3      SINGLE       n     1.082  0.0130     0.944  0.0174
+NBS         CB4         HB4      SINGLE       n     1.082  0.0130     0.944  0.0175
+NBS         CB5         HB5      SINGLE       n     1.082  0.0130     0.944  0.0161
+NBS         CB6         HB6      SINGLE       n     1.082  0.0130     0.944  0.0175
+NBS         CB7         HB7      SINGLE       n     1.082  0.0130     0.944  0.0174
+NBS          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+NBS       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+NBS       "O2'"      "HO'2"      SINGLE       n     0.970  0.0120     0.849  0.0200
+NBS       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+NBS       "O3'"      "HO'3"      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NBS         O4P          PB         O5P     112.716    1.50
+NBS         O4P          PB         O6P     112.716    1.50
+NBS         O4P          PB         O3P     105.965    2.38
+NBS         O5P          PB         O6P     112.716    1.50
+NBS         O5P          PB         O3P     105.965    2.38
+NBS         O6P          PB         O3P     105.965    2.38
+NBS         O1P          PA         O2P     118.411    2.35
+NBS         O1P          PA         O3P     108.816    2.14
+NBS         O1P          PA       "O5'"     109.410    1.50
+NBS         O2P          PA         O3P     108.816    2.14
+NBS         O2P          PA       "O5'"     109.410    1.50
+NBS         O3P          PA       "O5'"     101.065    1.97
+NBS          PB         O3P          PA     132.584    3.00
+NBS          PA       "O5'"       "C5'"     118.553    2.41
+NBS       "O5'"       "C5'"       "C4'"     109.342    1.50
+NBS       "O5'"       "C5'"      "H5'1"     109.845    1.50
+NBS       "O5'"       "C5'"      "H5'2"     109.845    1.50
+NBS       "C4'"       "C5'"      "H5'1"     109.624    1.50
+NBS       "C4'"       "C5'"      "H5'2"     109.624    1.50
+NBS      "H5'1"       "C5'"      "H5'2"     108.472    1.50
+NBS       "C5'"       "C4'"       "O4'"     109.123    1.50
+NBS       "C5'"       "C4'"       "C3'"     116.008    1.52
+NBS       "C5'"       "C4'"       "H4'"     108.268    1.50
+NBS       "O4'"       "C4'"       "C3'"     105.388    1.50
+NBS       "O4'"       "C4'"       "H4'"     108.947    1.50
+NBS       "C3'"       "C4'"       "H4'"     109.363    1.86
+NBS       "C4'"       "O4'"       "C1'"     109.903    1.50
+NBS       "O4'"       "C1'"          N9     108.477    1.50
+NBS       "O4'"       "C1'"       "C2'"     106.047    1.50
+NBS       "O4'"       "C1'"       "H1'"     109.807    1.50
+NBS          N9       "C1'"       "C2'"     113.824    1.50
+NBS          N9       "C1'"       "H1'"     109.561    1.50
+NBS       "C2'"       "C1'"       "H1'"     109.015    1.50
+NBS       "C1'"          N9          C4     127.459    1.80
+NBS       "C1'"          N9          C8     126.848    1.91
+NBS          C4          N9          C8     105.693    1.50
+NBS          N9          C4          N3     128.052    1.50
+NBS          N9          C4          C5     105.616    1.50
+NBS          N3          C4          C5     126.332    1.50
+NBS          C4          N3          C2     110.824    1.50
+NBS          N3          C2          N1     129.179    1.50
+NBS          N3          C2          H2     115.430    1.50
+NBS          N1          C2          H2     115.387    1.50
+NBS          C2          N1          C6     118.291    1.50
+NBS          N1          C6          N6     119.374    1.50
+NBS          N1          C6          C5     117.928    1.50
+NBS          N6          C6          C5     122.698    1.50
+NBS          C6          N6         CB1     123.011    1.50
+NBS          C6          N6          H6     118.632    1.50
+NBS         CB1          N6          H6     118.354    1.50
+NBS          N6         CB1         CB2     113.274    1.50
+NBS          N6         CB1        HB11     108.829    1.50
+NBS          N6         CB1        HB12     108.829    1.50
+NBS         CB2         CB1        HB11     108.855    1.50
+NBS         CB2         CB1        HB12     108.855    1.50
+NBS        HB11         CB1        HB12     107.706    1.50
+NBS         CB1         CB2         CB3     120.710    1.50
+NBS         CB1         CB2         CB7     120.710    1.50
+NBS         CB3         CB2         CB7     118.580    1.50
+NBS         CB2         CB3         CB4     120.442    1.50
+NBS         CB2         CB3         HB3     119.742    1.50
+NBS         CB4         CB3         HB3     119.815    1.50
+NBS         CB3         CB4         CB5     120.273    1.50
+NBS         CB3         CB4         HB4     119.818    1.50
+NBS         CB5         CB4         HB4     119.909    1.50
+NBS         CB4         CB5         CB6     119.997    1.50
+NBS         CB4         CB5         HB5     119.998    1.50
+NBS         CB6         CB5         HB5     119.998    1.50
+NBS         CB5         CB6         CB7     120.273    1.50
+NBS         CB5         CB6         HB6     119.909    1.50
+NBS         CB7         CB6         HB6     119.818    1.50
+NBS         CB2         CB7         CB6     120.442    1.50
+NBS         CB2         CB7         HB7     119.742    1.50
+NBS         CB6         CB7         HB7     119.815    1.50
+NBS          C4          C5          C6     117.450    1.50
+NBS          C4          C5          N7     110.483    1.50
+NBS          C6          C5          N7     132.067    1.50
+NBS          C5          N7          C8     104.739    1.50
+NBS          N9          C8          N7     113.469    1.50
+NBS          N9          C8          H8     123.206    1.50
+NBS          N7          C8          H8     123.326    1.50
+NBS       "C1'"       "C2'"       "O2'"     111.715    2.69
+NBS       "C1'"       "C2'"       "C3'"     101.239    1.50
+NBS       "C1'"       "C2'"       "H2'"     110.636    1.70
+NBS       "O2'"       "C2'"       "C3'"     112.782    2.45
+NBS       "O2'"       "C2'"       "H2'"     110.448    1.97
+NBS       "C3'"       "C2'"       "H2'"     110.596    1.51
+NBS       "C2'"       "O2'"      "HO'2"     109.103    2.13
+NBS       "C4'"       "C3'"       "C2'"     102.602    1.50
+NBS       "C4'"       "C3'"       "O3'"     111.281    2.46
+NBS       "C4'"       "C3'"       "H3'"     110.452    2.54
+NBS       "C2'"       "C3'"       "O3'"     111.581    2.83
+NBS       "C2'"       "C3'"       "H3'"     110.504    1.75
+NBS       "O3'"       "C3'"       "H3'"     110.380    1.67
+NBS       "C3'"       "O3'"      "HO'3"     108.744    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NBS            sp3_sp3_26          PA         O3P          PB         O4P     -60.000    10.0     3
+NBS             sp3_sp3_2       "C5'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+NBS            sp3_sp3_50       "O3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+NBS             sp3_sp3_5          N9       "C1'"       "O4'"       "C4'"     180.000    10.0     3
+NBS             sp2_sp3_1          C4          N9       "C1'"       "O4'"     150.000    10.0     6
+NBS             sp3_sp3_8       "O4'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+NBS              const_16          N3          C4          N9       "C1'"       0.000    10.0     2
+NBS              const_46          N7          C8          N9       "C1'"     180.000    10.0     2
+NBS       const_sp2_sp2_2          N9          C4          N3          C2     180.000     5.0     2
+NBS              const_18          N9          C4          C5          C6     180.000    10.0     2
+NBS       const_sp2_sp2_3          N1          C2          N3          C4       0.000     5.0     2
+NBS       const_sp2_sp2_5          N3          C2          N1          C6       0.000     5.0     2
+NBS       const_sp2_sp2_8          N6          C6          N1          C2     180.000     5.0     2
+NBS             sp2_sp2_3          N1          C6          N6         CB1       0.000     5.0     2
+NBS              const_10          C4          C5          C6          N6     180.000    10.0     2
+NBS             sp2_sp3_8          C6          N6         CB1         CB2     120.000    10.0     6
+NBS            sp2_sp3_14         CB3         CB2         CB1          N6     -90.000    10.0     6
+NBS              const_27         CB1         CB2         CB3         CB4     180.000    10.0     2
+NBS              const_51         CB1         CB2         CB7         CB6     180.000    10.0     2
+NBS              const_29         CB2         CB3         CB4         CB5       0.000    10.0     2
+NBS              const_33         CB3         CB4         CB5         CB6       0.000    10.0     2
+NBS              const_37         CB4         CB5         CB6         CB7       0.000    10.0     2
+NBS              const_41         CB5         CB6         CB7         CB2       0.000    10.0     2
+NBS              const_21          C4          C5          N7          C8       0.000    10.0     2
+NBS              const_23          N9          C8          N7          C5       0.000    10.0     2
+NBS            sp3_sp3_55       "C1'"       "C2'"       "O2'"      "HO'2"     180.000    10.0     3
+NBS            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+NBS            sp3_sp3_58       "C4'"       "C3'"       "O3'"      "HO'3"     180.000    10.0     3
+NBS            sp3_sp3_28          PB         O3P          PA         O1P     180.000    10.0     3
+NBS            sp3_sp3_32       "C5'"       "O5'"          PA         O1P     -60.000    10.0     3
+NBS            sp3_sp3_34       "C4'"       "C5'"       "O5'"          PA     180.000    10.0     3
+NBS            sp3_sp3_37       "O4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NBS    chir_1    PB    O3P    O4P    O5P    both
+NBS    chir_2    PA    O3P    "O5'"    O1P    both
+NBS    chir_3    "C4'"    "O4'"    "C3'"    "C5'"    negative
+NBS    chir_4    "C1'"    "O4'"    N9    "C2'"    negative
+NBS    chir_5    "C2'"    "O2'"    "C1'"    "C3'"    negative
+NBS    chir_6    "C3'"    "O3'"    "C4'"    "C2'"    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NBS    plan-1       "C1'"   0.020
+NBS    plan-1          C2   0.020
+NBS    plan-1          C4   0.020
+NBS    plan-1          C5   0.020
+NBS    plan-1          C6   0.020
+NBS    plan-1          C8   0.020
+NBS    plan-1          H2   0.020
+NBS    plan-1          H8   0.020
+NBS    plan-1          N1   0.020
+NBS    plan-1          N3   0.020
+NBS    plan-1          N6   0.020
+NBS    plan-1          N7   0.020
+NBS    plan-1          N9   0.020
+NBS    plan-2         CB1   0.020
+NBS    plan-2         CB2   0.020
+NBS    plan-2         CB3   0.020
+NBS    plan-2         CB4   0.020
+NBS    plan-2         CB5   0.020
+NBS    plan-2         CB6   0.020
+NBS    plan-2         CB7   0.020
+NBS    plan-2         HB3   0.020
+NBS    plan-2         HB4   0.020
+NBS    plan-2         HB5   0.020
+NBS    plan-2         HB6   0.020
+NBS    plan-2         HB7   0.020
+NBS    plan-3          C6   0.020
+NBS    plan-3         CB1   0.020
+NBS    plan-3          H6   0.020
+NBS    plan-3          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NBS           SMILES              ACDLabs 10.04                                                                                                                                                                   O=P(O)(O)OP(=O)(O)OCC4OC(n2cnc1c(ncnc12)NCc3ccccc3)C(O)C4O
+NBS SMILES_CANONICAL               CACTVS 3.341                                                                                                                                           O[C@H]1[C@@H](O)[C@@H](O[C@@H]1CO[P@](O)(=O)O[P](O)(O)=O)n2cnc3c(NCc4ccccc4)ncnc23
+NBS           SMILES               CACTVS 3.341                                                                                                                                                   O[CH]1[CH](O)[CH](O[CH]1CO[P](O)(=O)O[P](O)(O)=O)n2cnc3c(NCc4ccccc4)ncnc23
+NBS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                       c1ccc(cc1)CNc2c3c(ncn2)n(cn3)[C@H]4[C@@H]([C@@H]([C@H](O4)CO[P@@](=O)(O)OP(=O)(O)O)O)O
+NBS           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                             c1ccc(cc1)CNc2c3c(ncn2)n(cn3)C4C(C(C(O4)COP(=O)(O)OP(=O)(O)O)O)O
+NBS            InChI                InChI  1.03 InChI=1S/C17H21N5O10P2/c23-13-11(7-30-34(28,29)32-33(25,26)27)31-17(14(13)24)22-9-21-12-15(19-8-20-16(12)22)18-6-10-4-2-1-3-5-10/h1-5,8-9,11,13-14,17,23-24H,6-7H2,(H,28,29)(H,18,19,20)(H2,25,26,27)/t11-,13-,14-,17-/m1/s1
+NBS         InChIKey                InChI  1.03                                                                                                                                                                                                  MRHGMAGSDAQUFH-LSCFUAHRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NBS acedrg               243         "dictionary generator"                  
+NBS acedrg_database      11          "data source"                           
+NBS rdkit                2017.03.2   "Chemoinformatics tool"
+NBS refmac5              5.8.0238    "optimization tool"                     

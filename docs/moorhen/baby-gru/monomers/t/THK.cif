@@ -1,0 +1,365 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+THK     THK      4-(4-CHLORO-PHENYL)-1-{3-[2-(4-FLUORO-PHENYL)-[1,3]DITHIOLAN-2-YL]-PROPYL}-PIPERIDIN-4-OL     NON-POLYMER     56     29     .     
+#
+data_comp_THK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+THK     N1      N       NT      0       64.254      39.610      -0.429      
+THK     C2      C       CH2     0       63.464      40.404      -1.378      
+THK     C3      C       CH2     0       62.868      39.527      -2.465      
+THK     C4      C       CT      0       63.937      38.714      -3.219      
+THK     O19     O       OH1     0       64.754      39.651      -3.928      
+THK     C5      C       CH2     0       64.835      38.006      -2.184      
+THK     C6      C       CH2     0       65.367      38.963      -1.134      
+THK     C7      C       CH2     0       64.699      40.417      0.722       
+THK     C8      C       CH2     0       63.651      40.500      1.820       
+THK     C9      C       CH2     0       64.128      41.211      3.087       
+THK     C10     C       CT      0       63.071      41.399      4.195       
+THK     C12     C       CR6     0       62.468      40.059      4.612       
+THK     C13     C       CR16    0       63.300      39.068      5.132       
+THK     C14     C       CR16    0       62.801      37.830      5.519       
+THK     C15     C       CR6     0       61.463      37.596      5.376       
+THK     F18     F       F       0       60.968      36.386      5.755       
+THK     C16     C       CR16    0       60.601      38.527      4.869       
+THK     C17     C       CR16    0       61.111      39.762      4.484       
+THK     C20     C       CR6     0       63.266      37.751      -4.211      
+THK     C21     C       CR16    0       62.448      38.260      -5.226      
+THK     C22     C       CR16    0       61.818      37.428      -6.148      
+THK     C23     C       CR6     0       62.009      36.068      -6.065      
+THK     CL6     CL      CL      0       61.226      35.022      -7.216      
+THK     C24     C       CR16    0       62.807      35.521      -5.088      
+THK     C25     C       CR16    0       63.434      36.358      -4.169      
+THK     S51     S       S2      0       61.880      42.674      3.633       
+THK     C52     C       CH2     0       61.615      43.513      5.211       
+THK     C55     C       CH2     0       62.349      42.785      6.289       
+THK     S58     S       S2      0       63.908      42.177      5.612       
+THK     H21A    H       H       0       62.749      40.855      -0.902      
+THK     H22A    H       H       0       64.029      41.081      -1.781      
+THK     H31     H       H       0       62.391      40.088      -3.095      
+THK     H32     H       H       0       62.228      38.916      -2.067      
+THK     HO9     H       H       0       65.368      39.244      -4.351      
+THK     H51     H       H       0       65.578      37.582      -2.641      
+THK     H52     H       H       0       64.324      37.314      -1.736      
+THK     H61     H       H       0       65.913      38.472      -0.500      
+THK     H62     H       H       0       65.924      39.638      -1.553      
+THK     H71     H       H       0       64.915      41.320      0.416       
+THK     H72     H       H       0       65.514      40.028      1.095       
+THK     H81     H       H       0       63.371      39.589      2.051       
+THK     H82     H       H       0       62.863      40.965      1.469       
+THK     H91     H       H       0       64.470      42.093      2.827       
+THK     H92     H       H       0       64.886      40.706      3.452       
+THK     H13     H       H       0       64.223      39.237      5.225       
+THK     H14     H       H       0       63.369      37.170      5.872       
+THK     H16     H       H       0       59.685      38.336      4.783       
+THK     H17     H       H       0       60.520      40.404      4.135       
+THK     H21     H       H       0       62.313      39.190      -5.287      
+THK     H22     H       H       0       61.271      37.790      -6.819      
+THK     H24     H       H       0       62.930      34.591      -5.042      
+THK     H25     H       H       0       63.976      35.970      -3.508      
+THK     H521    H       H       0       60.673      43.537      5.417       
+THK     H522    H       H       0       61.933      44.423      5.158       
+THK     H551    H       H       0       61.815      42.050      6.612       
+THK     H552    H       H       0       62.520      43.381      7.029       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+THK          N1          C2      SINGLE       n     1.462  0.0143     1.462  0.0143
+THK          N1          C6      SINGLE       n     1.462  0.0143     1.462  0.0143
+THK          N1          C7      SINGLE       n     1.470  0.0100     1.470  0.0100
+THK          C2          C3      SINGLE       n     1.515  0.0100     1.515  0.0100
+THK          C3          C4      SINGLE       n     1.535  0.0100     1.535  0.0100
+THK          C4         O19      SINGLE       n     1.430  0.0100     1.430  0.0100
+THK          C4          C5      SINGLE       n     1.535  0.0100     1.535  0.0100
+THK          C4         C20      SINGLE       n     1.528  0.0100     1.528  0.0100
+THK          C5          C6      SINGLE       n     1.515  0.0100     1.515  0.0100
+THK          C7          C8      SINGLE       n     1.520  0.0116     1.520  0.0116
+THK          C8          C9      SINGLE       n     1.524  0.0148     1.524  0.0148
+THK          C9         C10      SINGLE       n     1.532  0.0162     1.532  0.0162
+THK         C10         C12      SINGLE       n     1.519  0.0100     1.519  0.0100
+THK         C10         S51      SINGLE       n     1.818  0.0200     1.818  0.0200
+THK         C10         S58      SINGLE       n     1.818  0.0200     1.818  0.0200
+THK         C12         C13      DOUBLE       y     1.387  0.0100     1.387  0.0100
+THK         C12         C17      SINGLE       y     1.387  0.0100     1.387  0.0100
+THK         C13         C14      SINGLE       y     1.386  0.0100     1.386  0.0100
+THK         C14         C15      DOUBLE       y     1.363  0.0118     1.363  0.0118
+THK         C15         F18      SINGLE       n     1.361  0.0100     1.361  0.0100
+THK         C15         C16      SINGLE       y     1.363  0.0118     1.363  0.0118
+THK         C16         C17      DOUBLE       y     1.386  0.0100     1.386  0.0100
+THK         C20         C21      DOUBLE       y     1.394  0.0100     1.394  0.0100
+THK         C20         C25      SINGLE       y     1.394  0.0100     1.394  0.0100
+THK         C21         C22      SINGLE       y     1.389  0.0100     1.389  0.0100
+THK         C22         C23      DOUBLE       y     1.373  0.0107     1.373  0.0107
+THK         C23         CL6      SINGLE       n     1.741  0.0100     1.741  0.0100
+THK         C23         C24      SINGLE       y     1.373  0.0107     1.373  0.0107
+THK         C24         C25      DOUBLE       y     1.389  0.0100     1.389  0.0100
+THK         S51         C52      SINGLE       n     1.806  0.0105     1.806  0.0105
+THK         C52         C55      SINGLE       n     1.497  0.0200     1.497  0.0200
+THK         C55         S58      SINGLE       n     1.806  0.0105     1.806  0.0105
+THK          C2        H21A      SINGLE       n     1.089  0.0100     0.970  0.0100
+THK          C2        H22A      SINGLE       n     1.089  0.0100     0.970  0.0100
+THK          C3         H31      SINGLE       n     1.089  0.0100     0.970  0.0100
+THK          C3         H32      SINGLE       n     1.089  0.0100     0.970  0.0100
+THK         O19         HO9      SINGLE       n     0.970  0.0120     0.848  0.0200
+THK          C5         H51      SINGLE       n     1.089  0.0100     0.970  0.0100
+THK          C5         H52      SINGLE       n     1.089  0.0100     0.970  0.0100
+THK          C6         H61      SINGLE       n     1.089  0.0100     0.970  0.0100
+THK          C6         H62      SINGLE       n     1.089  0.0100     0.970  0.0100
+THK          C7         H71      SINGLE       n     1.089  0.0100     0.977  0.0152
+THK          C7         H72      SINGLE       n     1.089  0.0100     0.977  0.0152
+THK          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0100
+THK          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0100
+THK          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0178
+THK          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0178
+THK         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0164
+THK         C14         H14      SINGLE       n     1.082  0.0130     0.940  0.0141
+THK         C16         H16      SINGLE       n     1.082  0.0130     0.940  0.0141
+THK         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0164
+THK         C21         H21      SINGLE       n     1.082  0.0130     0.941  0.0119
+THK         C22         H22      SINGLE       n     1.082  0.0130     0.939  0.0176
+THK         C24         H24      SINGLE       n     1.082  0.0130     0.939  0.0176
+THK         C25         H25      SINGLE       n     1.082  0.0130     0.941  0.0119
+THK         C52        H521      SINGLE       n     1.089  0.0100     0.965  0.0100
+THK         C52        H522      SINGLE       n     1.089  0.0100     0.965  0.0100
+THK         C55        H551      SINGLE       n     1.089  0.0100     0.965  0.0100
+THK         C55        H552      SINGLE       n     1.089  0.0100     0.965  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+THK          C2          N1          C6     109.788    1.50
+THK          C2          N1          C7     110.653    1.50
+THK          C6          N1          C7     110.653    1.50
+THK          N1          C2          C3     111.082    1.50
+THK          N1          C2        H21A     109.353    1.50
+THK          N1          C2        H22A     109.353    1.50
+THK          C3          C2        H21A     109.572    1.50
+THK          C3          C2        H22A     109.572    1.50
+THK        H21A          C2        H22A     108.159    1.50
+THK          C2          C3          C4     111.124    1.57
+THK          C2          C3         H31     109.398    1.50
+THK          C2          C3         H32     109.398    1.50
+THK          C4          C3         H31     109.193    1.50
+THK          C4          C3         H32     109.193    1.50
+THK         H31          C3         H32     107.955    1.50
+THK          C3          C4         O19     108.008    2.32
+THK          C3          C4          C5     108.603    1.50
+THK          C3          C4         C20     110.667    1.53
+THK         O19          C4          C5     108.008    2.32
+THK         O19          C4         C20     110.675    1.50
+THK          C5          C4         C20     110.667    1.53
+THK          C4         O19         HO9     109.001    3.00
+THK          C4          C5          C6     111.124    1.57
+THK          C4          C5         H51     109.193    1.50
+THK          C4          C5         H52     109.193    1.50
+THK          C6          C5         H51     109.398    1.50
+THK          C6          C5         H52     109.398    1.50
+THK         H51          C5         H52     107.955    1.50
+THK          N1          C6          C5     111.082    1.50
+THK          N1          C6         H61     109.353    1.50
+THK          N1          C6         H62     109.353    1.50
+THK          C5          C6         H61     109.572    1.50
+THK          C5          C6         H62     109.572    1.50
+THK         H61          C6         H62     108.159    1.50
+THK          N1          C7          C8     113.885    1.66
+THK          N1          C7         H71     108.728    1.50
+THK          N1          C7         H72     108.728    1.50
+THK          C8          C7         H71     109.078    1.50
+THK          C8          C7         H72     109.078    1.50
+THK         H71          C7         H72     107.831    1.50
+THK          C7          C8          C9     113.759    2.47
+THK          C7          C8         H81     109.057    1.50
+THK          C7          C8         H82     109.057    1.50
+THK          C9          C8         H81     108.816    1.50
+THK          C9          C8         H82     108.816    1.50
+THK         H81          C8         H82     107.320    1.50
+THK          C8          C9         C10     112.518    2.73
+THK          C8          C9         H91     108.506    1.50
+THK          C8          C9         H92     108.506    1.50
+THK         C10          C9         H91     109.253    1.50
+THK         C10          C9         H92     109.253    1.50
+THK         H91          C9         H92     107.535    1.50
+THK          C9         C10         C12     111.938    2.18
+THK          C9         C10         S51     111.156    2.31
+THK          C9         C10         S58     111.156    2.31
+THK         C12         C10         S51     111.631    2.12
+THK         C12         C10         S58     111.631    2.12
+THK         S51         C10         S58     107.727    2.69
+THK         C10         C12         C13     120.689    1.96
+THK         C10         C12         C17     120.689    1.96
+THK         C13         C12         C17     118.622    1.50
+THK         C12         C13         C14     120.971    1.50
+THK         C12         C13         H13     119.496    1.50
+THK         C14         C13         H13     119.533    1.50
+THK         C13         C14         C15     118.264    1.50
+THK         C13         C14         H14     120.916    1.50
+THK         C15         C14         H14     120.816    1.50
+THK         C14         C15         F18     118.541    1.50
+THK         C14         C15         C16     122.918    1.50
+THK         F18         C15         C16     118.537    1.50
+THK         C15         C16         C17     118.264    1.50
+THK         C15         C16         H16     120.816    1.50
+THK         C17         C16         H16     120.916    1.50
+THK         C12         C17         C16     120.971    1.50
+THK         C12         C17         H17     119.496    1.50
+THK         C16         C17         H17     119.533    1.50
+THK          C4         C20         C21     121.018    1.50
+THK          C4         C20         C25     121.018    1.50
+THK         C21         C20         C25     117.964    1.50
+THK         C20         C21         C22     121.280    1.50
+THK         C20         C21         H21     119.397    1.50
+THK         C22         C21         H21     119.323    1.50
+THK         C21         C22         C23     119.117    1.50
+THK         C21         C22         H22     120.437    1.50
+THK         C23         C22         H22     120.446    1.50
+THK         C22         C23         CL6     119.379    1.50
+THK         C22         C23         C24     121.241    1.50
+THK         CL6         C23         C24     119.382    1.50
+THK         C23         C24         C25     119.117    1.50
+THK         C23         C24         H24     120.446    1.50
+THK         C25         C24         H24     120.437    1.50
+THK         C20         C25         C24     121.280    1.50
+THK         C20         C25         H25     119.397    1.50
+THK         C24         C25         H25     119.323    1.50
+THK         C10         S51         C52      92.264    3.00
+THK         S51         C52         C55     108.917    1.62
+THK         S51         C52        H521     110.175    1.50
+THK         S51         C52        H522     110.175    1.50
+THK         C55         C52        H521     109.943    1.50
+THK         C55         C52        H522     109.943    1.50
+THK        H521         C52        H522     108.266    1.50
+THK         C52         C55         S58     108.917    1.62
+THK         C52         C55        H551     109.943    1.50
+THK         C52         C55        H552     109.943    1.50
+THK         S58         C55        H551     110.175    1.50
+THK         S58         C55        H552     110.175    1.50
+THK        H551         C55        H552     108.266    1.50
+THK         C10         S58         C55      92.264    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+THK            sp3_sp3_20          C3          C2          N1          C7     180.000    10.0     3
+THK            sp3_sp3_62          C5          C6          N1          C7     -60.000    10.0     3
+THK            sp3_sp3_68          C8          C7          N1          C2     -60.000    10.0     3
+THK             sp2_sp3_9         C13         C12         C10          C9      30.000    10.0     6
+THK             sp3_sp3_2          C9         C10         S51         C52     -60.000    10.0     3
+THK           sp3_sp3_105          C9         C10         S58         C55     -60.000    10.0     3
+THK       const_sp2_sp2_3         C10         C12         C13         C14     180.000     5.0     2
+THK              const_43         C10         C12         C17         C16     180.000    10.0     2
+THK       const_sp2_sp2_5         C12         C13         C14         C15       0.000     5.0     2
+THK              const_10         C13         C14         C15         F18     180.000    10.0     2
+THK              const_15         F18         C15         C16         C17     180.000    10.0     2
+THK              const_17         C15         C16         C17         C12       0.000    10.0     2
+THK              const_23          C4         C20         C21         C22     180.000    10.0     2
+THK              const_47          C4         C20         C25         C24     180.000    10.0     2
+THK              const_25         C20         C21         C22         C23       0.000    10.0     2
+THK            sp3_sp3_25          N1          C2          C3          C4     -60.000    10.0     3
+THK              const_30         C21         C22         C23         CL6     180.000    10.0     2
+THK              const_35         CL6         C23         C24         C25     180.000    10.0     2
+THK              const_37         C23         C24         C25         C20       0.000    10.0     2
+THK             sp3_sp3_4         C55         C52         S51         C10     -60.000    10.0     3
+THK             sp3_sp3_7         S51         C52         C55         S58      60.000    10.0     3
+THK            sp3_sp3_16         C52         C55         S58         C10     -60.000    10.0     3
+THK            sp3_sp3_36          C2          C3          C4         O19     -60.000    10.0     3
+THK             sp2_sp3_1         C21         C20          C4         O19     150.000    10.0     6
+THK            sp3_sp3_73          C3          C4         O19         HO9     180.000    10.0     3
+THK            sp3_sp3_46         O19          C4          C5          C6     180.000    10.0     3
+THK            sp3_sp3_52          C4          C5          C6          N1      60.000    10.0     3
+THK            sp3_sp3_76          N1          C7          C8          C9     180.000    10.0     3
+THK            sp3_sp3_85          C7          C8          C9         C10     180.000    10.0     3
+THK           sp3_sp3_100         C12         C10          C9          C8     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+THK    chir_1    N1    C2    C6    C7    both
+THK    chir_2    C4    O19    C20    C3    both
+THK    chir_3    C10    S51    S58    C12    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+THK    plan-1         C10   0.020
+THK    plan-1         C12   0.020
+THK    plan-1         C13   0.020
+THK    plan-1         C14   0.020
+THK    plan-1         C15   0.020
+THK    plan-1         C16   0.020
+THK    plan-1         C17   0.020
+THK    plan-1         F18   0.020
+THK    plan-1         H13   0.020
+THK    plan-1         H14   0.020
+THK    plan-1         H16   0.020
+THK    plan-1         H17   0.020
+THK    plan-2         C20   0.020
+THK    plan-2         C21   0.020
+THK    plan-2         C22   0.020
+THK    plan-2         C23   0.020
+THK    plan-2         C24   0.020
+THK    plan-2         C25   0.020
+THK    plan-2          C4   0.020
+THK    plan-2         CL6   0.020
+THK    plan-2         H21   0.020
+THK    plan-2         H22   0.020
+THK    plan-2         H24   0.020
+THK    plan-2         H25   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+THK           SMILES              ACDLabs 10.04                                                                                     Clc1ccc(cc1)C2(O)CCN(CC2)CCCC3(SCCS3)c4ccc(F)cc4
+THK SMILES_CANONICAL               CACTVS 3.341                                                                                     OC1(CCN(CCCC2(SCCS2)c3ccc(F)cc3)CC1)c4ccc(Cl)cc4
+THK           SMILES               CACTVS 3.341                                                                                     OC1(CCN(CCCC2(SCCS2)c3ccc(F)cc3)CC1)c4ccc(Cl)cc4
+THK SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                     c1cc(ccc1C2(SCCS2)CCCN3CCC(CC3)(c4ccc(cc4)Cl)O)F
+THK           SMILES "OpenEye OEToolkits" 1.5.0                                                                                     c1cc(ccc1C2(SCCS2)CCCN3CCC(CC3)(c4ccc(cc4)Cl)O)F
+THK            InChI                InChI  1.03 InChI=1S/C23H27ClFNOS2/c24-20-6-2-18(3-7-20)22(27)11-14-26(15-12-22)13-1-10-23(28-16-17-29-23)19-4-8-21(25)9-5-19/h2-9,27H,1,10-17H2
+THK         InChIKey                InChI  1.03                                                                                                          KVDKNVPAAQKHKD-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+THK acedrg               243         "dictionary generator"                  
+THK acedrg_database      11          "data source"                           
+THK rdkit                2017.03.2   "Chemoinformatics tool"
+THK refmac5              5.8.0238    "optimization tool"                     

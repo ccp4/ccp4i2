@@ -1,0 +1,323 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MOX     MOX      "(2R)-2-[(1R)-1-{[(2S)-2-carboxy-2-(4-hydroxyphenyl)acetyl]amino}-1-methoxy-2-oxoethyl]-5-methylidene-5,6-dihydro-2H-1,3-oxazine-4-carboxylic acid"     NON-POLYMER     45     29     .     
+#
+data_comp_MOX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MOX     C1      C       C1      0       77.837      3.935       29.462      
+MOX     O1      O       O       0       78.576      3.039       29.195      
+MOX     C2      C       CT      0       78.293      5.394       29.638      
+MOX     N2      N       NH1     0       79.619      5.408       30.265      
+MOX     C3      C       CH1     0       78.329      6.029       28.243      
+MOX     O4      O       O2      0       78.481      7.437       28.324      
+MOX     C5      C       CH2     0       78.494      8.068       27.041      
+MOX     C6      C       CR6     0       79.461      7.412       26.096      
+MOX     C7      C       CR6     0       79.900      6.129       26.397      
+MOX     C8      C       C       0       80.956      5.371       25.604      
+MOX     N8      N       NRD6    0       79.417      5.446       27.432      
+MOX     C9      C       C2      0       79.850      8.104       25.035      
+MOX     C21     C       C       0       80.198      6.451       30.878      
+MOX     O21     O       O       0       79.686      7.570       30.969      
+MOX     C22     C       CH1     0       81.576      6.158       31.501      
+MOX     C23     C       CR6     0       81.448      5.429       32.834      
+MOX     C24     C       CR16    0       82.144      4.249       33.073      
+MOX     C25     C       CR16    0       82.037      3.573       34.282      
+MOX     C26     C       CR6     0       81.221      4.075       35.284      
+MOX     O26     O       OH1     0       81.114      3.409       36.482      
+MOX     C27     C       CR16    0       80.518      5.250       35.069      
+MOX     C28     C       CR16    0       80.634      5.913       33.855      
+MOX     C29     C       C       0       82.481      7.405       31.646      
+MOX     O30     O       O       0       83.459      7.480       30.937      
+MOX     O31     O       OC      -1      82.169      8.247       32.459      
+MOX     O61     O       O2      0       77.277      6.100       30.396      
+MOX     C62     C       CH3     0       76.984      5.661       31.727      
+MOX     O81     O       O       0       80.568      4.413       24.967      
+MOX     O82     O       OC      -1      82.092      5.793       25.680      
+MOX     H1      H       H       0       76.916      3.745       29.571      
+MOX     HN2     H       H       0       80.067      4.657       30.231      
+MOX     H3      H       H       0       77.468      5.820       27.795      
+MOX     H5      H       H       0       78.735      9.002       27.150      
+MOX     H5A     H       H       0       77.602      8.033       26.661      
+MOX     H9      H       H       0       80.451      7.736       24.406      
+MOX     H9A     H       H       0       79.524      8.982       24.893      
+MOX     H22     H       H       0       82.052      5.558       30.872      
+MOX     H24     H       H       0       82.703      3.897       32.400      
+MOX     H25     H       H       0       82.519      2.775       34.422      
+MOX     HO26    H       H       0       80.427      3.531       36.988      
+MOX     H27     H       H       0       79.961      5.596       35.746      
+MOX     H28     H       H       0       80.152      6.713       33.722      
+MOX     H62     H       H       0       76.479      6.352       32.186      
+MOX     H62A    H       H       0       77.808      5.493       32.214      
+MOX     H62B    H       H       0       76.456      4.848       31.695      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MOX          C1          O1      DOUBLE       n     1.191  0.0200     1.191  0.0200
+MOX          C1          C2      SINGLE       n     1.526  0.0200     1.526  0.0200
+MOX          C2          C3      SINGLE       n     1.513  0.0200     1.513  0.0200
+MOX          C2          N2      SINGLE       n     1.457  0.0125     1.457  0.0125
+MOX          C2         O61      SINGLE       n     1.443  0.0122     1.443  0.0122
+MOX          N2         C21      SINGLE       n     1.334  0.0100     1.334  0.0100
+MOX          C3          N8      SINGLE       n     1.466  0.0158     1.466  0.0158
+MOX          C3          O4      SINGLE       n     1.414  0.0108     1.414  0.0108
+MOX          O4          C5      SINGLE       n     1.424  0.0137     1.424  0.0137
+MOX          C5          C6      SINGLE       n     1.499  0.0100     1.499  0.0100
+MOX          C6          C9      DOUBLE       n     1.322  0.0100     1.322  0.0100
+MOX          C6          C7      SINGLE       n     1.361  0.0200     1.361  0.0200
+MOX          C7          C8      SINGLE       n     1.521  0.0100     1.521  0.0100
+MOX          C7          N8      DOUBLE       n     1.319  0.0200     1.319  0.0200
+MOX          C8         O81      DOUBLE       n     1.214  0.0200     1.214  0.0200
+MOX          C8         O82      SINGLE       n     1.214  0.0200     1.214  0.0200
+MOX         C21         C22      SINGLE       n     1.533  0.0118     1.533  0.0118
+MOX         C21         O21      DOUBLE       n     1.232  0.0100     1.232  0.0100
+MOX         C22         C29      SINGLE       n     1.539  0.0155     1.539  0.0155
+MOX         C22         C23      SINGLE       n     1.521  0.0100     1.521  0.0100
+MOX         C23         C24      DOUBLE       y     1.387  0.0100     1.387  0.0100
+MOX         C23         C28      SINGLE       y     1.387  0.0100     1.387  0.0100
+MOX         C24         C25      SINGLE       y     1.385  0.0100     1.385  0.0100
+MOX         C25         C26      DOUBLE       y     1.383  0.0100     1.383  0.0100
+MOX         C26         C27      SINGLE       y     1.383  0.0100     1.383  0.0100
+MOX         C26         O26      SINGLE       n     1.374  0.0155     1.374  0.0155
+MOX         C27         C28      DOUBLE       y     1.385  0.0100     1.385  0.0100
+MOX         C29         O30      DOUBLE       n     1.209  0.0200     1.209  0.0200
+MOX         C29         O31      SINGLE       n     1.209  0.0200     1.209  0.0200
+MOX         O61         C62      SINGLE       n     1.422  0.0157     1.422  0.0157
+MOX          C1          H1      SINGLE       n     1.082  0.0130     0.947  0.0200
+MOX          N2         HN2      SINGLE       n     1.016  0.0100     0.873  0.0200
+MOX          C3          H3      SINGLE       n     1.089  0.0100     0.993  0.0157
+MOX          C5          H5      SINGLE       n     1.089  0.0100     0.970  0.0100
+MOX          C5         H5A      SINGLE       n     1.089  0.0100     0.970  0.0100
+MOX          C9          H9      SINGLE       n     1.082  0.0130     0.946  0.0200
+MOX          C9         H9A      SINGLE       n     1.082  0.0130     0.946  0.0200
+MOX         C22         H22      SINGLE       n     1.089  0.0100     0.990  0.0200
+MOX         C24         H24      SINGLE       n     1.082  0.0130     0.943  0.0173
+MOX         C25         H25      SINGLE       n     1.082  0.0130     0.943  0.0169
+MOX         O26        HO26      SINGLE       n     0.966  0.0059     0.861  0.0200
+MOX         C27         H27      SINGLE       n     1.082  0.0130     0.943  0.0169
+MOX         C28         H28      SINGLE       n     1.082  0.0130     0.943  0.0173
+MOX         C62         H62      SINGLE       n     1.089  0.0100     0.971  0.0146
+MOX         C62        H62A      SINGLE       n     1.089  0.0100     0.971  0.0146
+MOX         C62        H62B      SINGLE       n     1.089  0.0100     0.971  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MOX          O1          C1          C2     123.123    3.00
+MOX          O1          C1          H1     118.746    1.50
+MOX          C2          C1          H1     118.130    2.53
+MOX          C1          C2          C3     113.355    2.65
+MOX          C1          C2          N2     111.249    2.34
+MOX          C1          C2         O61     110.427    2.31
+MOX          C3          C2          N2     112.102    2.36
+MOX          C3          C2         O61     110.483    2.43
+MOX          N2          C2         O61     113.213    3.00
+MOX          C2          N2         C21     122.168    2.35
+MOX          C2          N2         HN2     118.756    2.23
+MOX         C21          N2         HN2     119.076    1.94
+MOX          C2          C3          N8     109.088    1.95
+MOX          C2          C3          O4     107.499    2.66
+MOX          C2          C3          H3     107.642    1.65
+MOX          N8          C3          O4     109.471    3.00
+MOX          N8          C3          H3     108.158    1.74
+MOX          O4          C3          H3     109.373    1.50
+MOX          C3          O4          C5     111.559    2.21
+MOX          O4          C5          C6     111.272    1.50
+MOX          O4          C5          H5     109.058    1.50
+MOX          O4          C5         H5A     109.058    1.50
+MOX          C6          C5          H5     109.181    1.50
+MOX          C6          C5         H5A     109.181    1.50
+MOX          H5          C5         H5A     107.863    1.50
+MOX          C5          C6          C9     119.932    3.00
+MOX          C5          C6          C7     120.152    3.00
+MOX          C9          C6          C7     119.916    2.59
+MOX          C6          C7          C8     120.928    2.59
+MOX          C6          C7          N8     122.339    1.66
+MOX          C8          C7          N8     116.733    2.87
+MOX          C7          C8         O81     116.341    1.50
+MOX          C7          C8         O82     116.341    1.50
+MOX         O81          C8         O82     127.319    1.50
+MOX          C3          N8          C7     118.328    2.71
+MOX          C6          C9          H9     120.257    1.50
+MOX          C6          C9         H9A     120.257    1.50
+MOX          H9          C9         H9A     119.487    2.66
+MOX          N2         C21         C22     115.097    1.50
+MOX          N2         C21         O21     123.405    1.50
+MOX         C22         C21         O21     121.498    1.50
+MOX         C21         C22         C29     111.575    3.00
+MOX         C21         C22         C23     111.340    2.24
+MOX         C21         C22         H22     107.080    1.56
+MOX         C29         C22         C23     110.127    3.00
+MOX         C29         C22         H22     107.385    3.00
+MOX         C23         C22         H22     108.067    1.79
+MOX         C22         C23         C24     121.057    1.50
+MOX         C22         C23         C28     121.057    1.50
+MOX         C24         C23         C28     117.886    1.50
+MOX         C23         C24         C25     121.478    1.50
+MOX         C23         C24         H24     119.308    1.50
+MOX         C25         C24         H24     119.214    1.50
+MOX         C24         C25         C26     119.804    1.50
+MOX         C24         C25         H25     120.179    1.50
+MOX         C26         C25         H25     120.017    1.50
+MOX         C25         C26         C27     119.550    1.50
+MOX         C25         C26         O26     120.225    3.00
+MOX         C27         C26         O26     120.225    3.00
+MOX         C26         O26        HO26     120.000    3.00
+MOX         C26         C27         C28     119.804    1.50
+MOX         C26         C27         H27     120.017    1.50
+MOX         C28         C27         H27     120.179    1.50
+MOX         C23         C28         C27     121.478    1.50
+MOX         C23         C28         H28     119.308    1.50
+MOX         C27         C28         H28     119.214    1.50
+MOX         C22         C29         O30     117.835    1.50
+MOX         C22         C29         O31     117.835    1.50
+MOX         O30         C29         O31     124.331    1.63
+MOX          C2         O61         C62     116.232    1.50
+MOX         O61         C62         H62     109.501    1.50
+MOX         O61         C62        H62A     109.501    1.50
+MOX         O61         C62        H62B     109.501    1.50
+MOX         H62         C62        H62A     109.532    1.53
+MOX         H62         C62        H62B     109.532    1.53
+MOX        H62A         C62        H62B     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MOX            sp2_sp3_11          O1          C1          C2          N2     120.000    10.0     6
+MOX            sp2_sp3_22          N2         C21         C22         C29       0.000    10.0     6
+MOX            sp2_sp3_34         C24         C23         C22         C21     150.000    10.0     6
+MOX            sp2_sp3_28         O30         C29         C22         C21       0.000    10.0     6
+MOX       const_sp2_sp2_3         C22         C23         C24         C25     180.000     5.0     2
+MOX              const_23         C22         C23         C28         C27     180.000    10.0     2
+MOX       const_sp2_sp2_5         C23         C24         C25         C26       0.000     5.0     2
+MOX              const_10         C24         C25         C26         O26     180.000    10.0     2
+MOX            sp2_sp2_19         C25         C26         O26        HO26     180.000     5.0     2
+MOX              const_15         O26         C26         C27         C28     180.000    10.0     2
+MOX              const_17         C26         C27         C28         C23       0.000    10.0     2
+MOX            sp3_sp3_19         H62         C62         O61          C2     180.000    10.0     3
+MOX            sp3_sp3_13          C1          C2         O61         C62     180.000    10.0     3
+MOX            sp2_sp3_16         C21          N2          C2          C1       0.000    10.0     6
+MOX             sp3_sp3_4          C1          C2          C3          N8     180.000    10.0     3
+MOX             sp2_sp2_7         C22         C21          N2          C2     180.000     5.0     2
+MOX             sp2_sp3_2          C7          N8          C3          C2     120.000    10.0     6
+MOX            sp3_sp3_17          C2          C3          O4          C5      60.000    10.0     3
+MOX             sp3_sp3_1          C6          C5          O4          C3      60.000    10.0     3
+MOX             sp2_sp3_7          C9          C6          C5          O4     180.000    10.0     6
+MOX            sp2_sp2_11          C5          C6          C9          H9     180.000     5.0     2
+MOX             sp2_sp2_6          C9          C6          C7          C8       0.000     5.0     2
+MOX             sp2_sp2_2          C8          C7          N8          C3     180.000     5.0     2
+MOX            sp2_sp2_15          C6          C7          C8         O81     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MOX    chir_1    C2    O61    N2    C1    negative
+MOX    chir_2    C3    O4    N8    C2    negative
+MOX    chir_3    C22    C29    C21    C23    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MOX    plan-1         C22   0.020
+MOX    plan-1         C23   0.020
+MOX    plan-1         C24   0.020
+MOX    plan-1         C25   0.020
+MOX    plan-1         C26   0.020
+MOX    plan-1         C27   0.020
+MOX    plan-1         C28   0.020
+MOX    plan-1         H24   0.020
+MOX    plan-1         H25   0.020
+MOX    plan-1         H27   0.020
+MOX    plan-1         H28   0.020
+MOX    plan-1         O26   0.020
+MOX    plan-2          C1   0.020
+MOX    plan-2          C2   0.020
+MOX    plan-2          H1   0.020
+MOX    plan-2          O1   0.020
+MOX    plan-3          C2   0.020
+MOX    plan-3         C21   0.020
+MOX    plan-3         HN2   0.020
+MOX    plan-3          N2   0.020
+MOX    plan-4          C5   0.020
+MOX    plan-4          C6   0.020
+MOX    plan-4          C7   0.020
+MOX    plan-4          C9   0.020
+MOX    plan-5          C6   0.020
+MOX    plan-5          C7   0.020
+MOX    plan-5          C8   0.020
+MOX    plan-5          N8   0.020
+MOX    plan-6          C7   0.020
+MOX    plan-6          C8   0.020
+MOX    plan-6         O81   0.020
+MOX    plan-6         O82   0.020
+MOX    plan-7          C6   0.020
+MOX    plan-7          C9   0.020
+MOX    plan-7          H9   0.020
+MOX    plan-7         H9A   0.020
+MOX    plan-8         C21   0.020
+MOX    plan-8         C22   0.020
+MOX    plan-8          N2   0.020
+MOX    plan-8         O21   0.020
+MOX    plan-9         C22   0.020
+MOX    plan-9         C29   0.020
+MOX    plan-9         O30   0.020
+MOX    plan-9         O31   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MOX           SMILES              ACDLabs 12.01                                                                                                                        O=C(O)C(c1ccc(O)cc1)C(=O)NC(OC)(C=O)C2N=C(\C(=C)CO2)C(=O)O
+MOX            InChI                InChI  1.03 InChI=1S/C18H18N2O9/c1-9-7-29-17(19-13(9)16(26)27)18(8-21,28-2)20-14(23)12(15(24)25)10-3-5-11(22)6-4-10/h3-6,8,12,17,22H,1,7H2,2H3,(H,20,23)(H,24,25)(H,26,27)/t12-,17+,18-/m0/s1
+MOX         InChIKey                InChI  1.03                                                                                                                                                       GOYCBKVVHGALFQ-RZAIGCCYSA-N
+MOX SMILES_CANONICAL               CACTVS 3.370                                                                                                            CO[C@@](NC(=O)[C@@H](C(O)=O)c1ccc(O)cc1)(C=O)[C@H]2OCC(=C)C(=N2)C(O)=O
+MOX           SMILES               CACTVS 3.370                                                                                                                 CO[C](NC(=O)[CH](C(O)=O)c1ccc(O)cc1)(C=O)[CH]2OCC(=C)C(=N2)C(O)=O
+MOX SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                            CO[C@@](C=O)([C@@H]1N=C(C(=C)CO1)C(=O)O)NC(=O)[C@H](c2ccc(cc2)O)C(=O)O
+MOX           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                         COC(C=O)(C1N=C(C(=C)CO1)C(=O)O)NC(=O)C(c2ccc(cc2)O)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MOX acedrg               243         "dictionary generator"                  
+MOX acedrg_database      11          "data source"                           
+MOX rdkit                2017.03.2   "Chemoinformatics tool"
+MOX refmac5              5.8.0238    "optimization tool"                     

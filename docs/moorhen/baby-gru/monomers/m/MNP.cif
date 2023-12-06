@@ -1,0 +1,174 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MNP     MNP      "2-(3-NITROPHENYL)ACETIC ACID"     NON-POLYMER     19     13     .     
+#
+data_comp_MNP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MNP     C1      C       C       0       14.040      37.635      36.596      
+MNP     C2      C       CH2     0       14.125      36.493      35.589      
+MNP     "C1'"   C       CR6     0       12.777      36.035      35.088      
+MNP     "C2'"   C       CR16    0       12.360      36.325      33.795      
+MNP     "C3'"   C       CR6     0       11.113      35.895      33.345      
+MNP     "N3'"   N       N       1       10.701      36.213      31.984      
+MNP     "O3'"   O       OC      -1      9.694       36.885      31.827      
+MNP     "O4'"   O       O       0       11.381      35.793      31.060      
+MNP     "C4'"   C       CR16    0       10.250      35.169      34.166      
+MNP     "C5'"   C       CR16    0       10.674      34.885      35.454      
+MNP     "C6'"   C       CR16    0       11.917      35.311      35.907      
+MNP     O1      O       O       0       14.030      37.350      37.807      
+MNP     O2      O       OC      -1      13.984      38.799      36.159      
+MNP     H21     H       H       0       14.581      35.740      36.010      
+MNP     H22     H       H       0       14.669      36.782      34.833      
+MNP     "H2'"   H       H       0       12.926      36.812      33.226      
+MNP     "H4'"   H       H       0       9.408       34.880      33.861      
+MNP     "H5'"   H       H       0       10.111      34.396      36.030      
+MNP     "H6'"   H       H       0       12.184      35.105      36.789      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MNP          C1          C2      SINGLE       n     1.525  0.0126     1.525  0.0126
+MNP          C1          O1      DOUBLE       n     1.244  0.0200     1.244  0.0200
+MNP          C1          O2      SINGLE       n     1.244  0.0200     1.244  0.0200
+MNP          C2       "C1'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+MNP       "C1'"       "C2'"      DOUBLE       y     1.385  0.0100     1.385  0.0100
+MNP       "C1'"       "C6'"      SINGLE       y     1.386  0.0100     1.386  0.0100
+MNP       "C2'"       "C3'"      SINGLE       y     1.392  0.0100     1.392  0.0100
+MNP       "C3'"       "N3'"      SINGLE       n     1.457  0.0200     1.457  0.0200
+MNP       "C3'"       "C4'"      DOUBLE       y     1.393  0.0100     1.393  0.0100
+MNP       "N3'"       "O3'"      SINGLE       n     1.221  0.0162     1.221  0.0162
+MNP       "N3'"       "O4'"      DOUBLE       n     1.221  0.0162     1.221  0.0162
+MNP       "C4'"       "C5'"      SINGLE       y     1.382  0.0100     1.382  0.0100
+MNP       "C5'"       "C6'"      DOUBLE       y     1.380  0.0131     1.380  0.0131
+MNP          C2         H21      SINGLE       n     1.089  0.0100     0.975  0.0113
+MNP          C2         H22      SINGLE       n     1.089  0.0100     0.975  0.0113
+MNP       "C2'"       "H2'"      SINGLE       n     1.082  0.0130     0.939  0.0130
+MNP       "C4'"       "H4'"      SINGLE       n     1.082  0.0130     0.941  0.0200
+MNP       "C5'"       "H5'"      SINGLE       n     1.082  0.0130     0.943  0.0185
+MNP       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MNP          C2          C1          O1     118.115    1.50
+MNP          C2          C1          O2     118.115    1.50
+MNP          O1          C1          O2     123.770    1.50
+MNP          C1          C2       "C1'"     113.444    2.96
+MNP          C1          C2         H21     108.710    1.50
+MNP          C1          C2         H22     108.710    1.50
+MNP       "C1'"          C2         H21     109.081    1.50
+MNP       "C1'"          C2         H22     109.081    1.50
+MNP         H21          C2         H22     107.676    1.52
+MNP          C2       "C1'"       "C2'"     121.018    1.50
+MNP          C2       "C1'"       "C6'"     121.352    1.50
+MNP       "C2'"       "C1'"       "C6'"     117.630    1.50
+MNP       "C1'"       "C2'"       "C3'"     120.661    1.50
+MNP       "C1'"       "C2'"       "H2'"     119.173    1.50
+MNP       "C3'"       "C2'"       "H2'"     120.165    1.50
+MNP       "C2'"       "C3'"       "N3'"     118.632    1.50
+MNP       "C2'"       "C3'"       "C4'"     122.506    1.50
+MNP       "N3'"       "C3'"       "C4'"     118.862    1.50
+MNP       "C3'"       "N3'"       "O3'"     118.257    1.50
+MNP       "C3'"       "N3'"       "O4'"     118.257    1.50
+MNP       "O3'"       "N3'"       "O4'"     123.486    1.50
+MNP       "C3'"       "C4'"       "C5'"     118.048    1.50
+MNP       "C3'"       "C4'"       "H4'"     121.279    1.50
+MNP       "C5'"       "C4'"       "H4'"     120.673    1.50
+MNP       "C4'"       "C5'"       "C6'"     120.574    1.50
+MNP       "C4'"       "C5'"       "H5'"     119.617    1.50
+MNP       "C6'"       "C5'"       "H5'"     119.809    1.50
+MNP       "C1'"       "C6'"       "C5'"     120.581    1.50
+MNP       "C1'"       "C6'"       "H6'"     119.612    1.50
+MNP       "C5'"       "C6'"       "H6'"     119.807    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MNP             sp2_sp3_2          O1          C1          C2       "C1'"     120.000    10.0     6
+MNP             sp2_sp3_8       "C2'"       "C1'"          C2          C1     -90.000    10.0     6
+MNP              const_23          C2       "C1'"       "C6'"       "C5'"     180.000    10.0     2
+MNP       const_sp2_sp2_3          C2       "C1'"       "C2'"       "C3'"     180.000     5.0     2
+MNP       const_sp2_sp2_6       "C1'"       "C2'"       "C3'"       "N3'"     180.000     5.0     2
+MNP             sp2_sp2_1       "C2'"       "C3'"       "N3'"       "O3'"     180.000     5.0     2
+MNP              const_11       "N3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     2
+MNP              const_13       "C3'"       "C4'"       "C5'"       "C6'"       0.000    10.0     2
+MNP              const_17       "C4'"       "C5'"       "C6'"       "C1'"       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MNP    plan-1       "C1'"   0.020
+MNP    plan-1          C2   0.020
+MNP    plan-1       "C2'"   0.020
+MNP    plan-1       "C3'"   0.020
+MNP    plan-1       "C4'"   0.020
+MNP    plan-1       "C5'"   0.020
+MNP    plan-1       "C6'"   0.020
+MNP    plan-1       "H2'"   0.020
+MNP    plan-1       "H4'"   0.020
+MNP    plan-1       "H5'"   0.020
+MNP    plan-1       "H6'"   0.020
+MNP    plan-1       "N3'"   0.020
+MNP    plan-2          C1   0.020
+MNP    plan-2          C2   0.020
+MNP    plan-2          O1   0.020
+MNP    plan-2          O2   0.020
+MNP    plan-3       "C3'"   0.020
+MNP    plan-3       "N3'"   0.020
+MNP    plan-3       "O3'"   0.020
+MNP    plan-3       "O4'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MNP           SMILES              ACDLabs 10.04                                         O=C(O)Cc1cccc(c1)[N+]([O-])=O
+MNP SMILES_CANONICAL               CACTVS 3.341                                         OC(=O)Cc1cccc(c1)[N+]([O-])=O
+MNP           SMILES               CACTVS 3.341                                         OC(=O)Cc1cccc(c1)[N+]([O-])=O
+MNP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                       c1cc(cc(c1)[N+](=O)[O-])CC(=O)O
+MNP           SMILES "OpenEye OEToolkits" 1.5.0                                       c1cc(cc(c1)[N+](=O)[O-])CC(=O)O
+MNP            InChI                InChI  1.03 InChI=1S/C8H7NO4/c10-8(11)5-6-2-1-3-7(4-6)9(12)13/h1-4H,5H2,(H,10,11)
+MNP         InChIKey                InChI  1.03                                           WUKHOVCMWXMOOA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MNP acedrg               243         "dictionary generator"                  
+MNP acedrg_database      11          "data source"                           
+MNP rdkit                2017.03.2   "Chemoinformatics tool"
+MNP refmac5              5.8.0238    "optimization tool"                     

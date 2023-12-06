@@ -1,0 +1,415 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YEN     YEN      N-{(2S)-4-(methylamino)-4-oxo-2-[4-(phosphonooxy)benzyl]butanoyl}-L-alpha-glutamyl-L-aspartamide     NON-POLYMER     65     38     .     
+#
+data_comp_YEN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YEN     C1      C       CR16    0       -0.022      1.014       10.451      
+YEN     C2      C       CR16    0       0.894       1.132       9.414       
+YEN     C3      C       CR6     0       0.889       2.279       8.635       
+YEN     C4      C       CR16    0       -0.013      3.304       8.889       
+YEN     C5      C       CR16    0       -0.919      3.159       9.932       
+YEN     C6      C       CR6     0       -0.945      2.016       10.724      
+YEN     O1      O       O2      0       1.867       2.288       7.625       
+YEN     P1      P       P       0       2.030       3.293       6.401       
+YEN     O2      O       OP      -1      0.716       3.749       5.839       
+YEN     O3      O       O       0       2.822       4.479       6.895       
+YEN     O4      O       OP      -1      2.816       2.533       5.367       
+YEN     C7      C       CH2     0       -1.926      1.873       11.864      
+YEN     C8      C       CH1     0       -2.928      0.717       11.709      
+YEN     C9      C       C       0       -3.717      0.780       10.400      
+YEN     O5      O       O       0       -3.731      -0.193      9.647       
+YEN     C10     C       CH2     0       -3.909      0.667       12.887      
+YEN     C11     C       C       0       -3.270      0.204       14.182      
+YEN     N1      N       NH1     0       -3.125      1.067       15.193      
+YEN     C12     C       CH3     0       -3.539      2.460       15.181      
+YEN     O7      O       O       0       -2.890      -0.960      14.288      
+YEN     N2      N       NH1     0       -4.389      1.911       10.145      
+YEN     C13     C       CH1     0       -5.315      2.067       9.030       
+YEN     C14     C       C       0       -4.682      1.918       7.641       
+YEN     O8      O       O       0       -5.308      1.329       6.761       
+YEN     C15     C       CH2     0       -6.038      3.416       9.117       
+YEN     C16     C       CH2     0       -6.982      3.516       10.301      
+YEN     C17     C       C       0       -7.761      4.818       10.378      
+YEN     O9      O       O       0       -7.120      5.885       10.451      
+YEN     O10     O       OC      -1      -9.007      4.762       10.364      
+YEN     N3      N       NH1     0       -3.479      2.484       7.447       
+YEN     C18     C       CH1     0       -2.743      2.416       6.182       
+YEN     C19     C       C       0       -3.381      3.316       5.107       
+YEN     O12     O       O       0       -2.818      4.357       4.771       
+YEN     C20     C       CH2     0       -2.486      0.983       5.697       
+YEN     C21     C       C       0       -1.362      0.936       4.683       
+YEN     O13     O       O       0       -1.609      0.879       3.480       
+YEN     N4      N       NH2     0       -0.125      0.959       5.154       
+YEN     N5      N       NH2     0       -4.533      2.917       4.582       
+YEN     H1      H       H       0       -0.020      0.233       10.979      
+YEN     H2      H       H       0       1.509       0.438       9.244       
+YEN     H3      H       H       0       -0.019      4.088       8.366       
+YEN     H4      H       H       0       -1.534      3.853       10.104      
+YEN     H7      H       H       0       -2.420      2.713       11.966      
+YEN     H8      H       H       0       -1.414      1.736       12.689      
+YEN     H9      H       H       0       -2.413      -0.120      11.710      
+YEN     H11     H       H       0       -4.634      0.049       12.659      
+YEN     H12     H       H       0       -4.311      1.548       12.993      
+YEN     H13     H       H       0       -2.750      0.773       15.925      
+YEN     H14     H       H       0       -3.105      2.926       14.448      
+YEN     H15     H       H       0       -3.285      2.878       16.020      
+YEN     H16     H       H       0       -4.503      2.514       15.077      
+YEN     H17     H       H       0       -4.279      2.583       10.687      
+YEN     H19     H       H       0       -6.000      1.356       9.116       
+YEN     H20     H       H       0       -6.550      3.559       8.293       
+YEN     H21     H       H       0       -5.370      4.130       9.183       
+YEN     H22     H       H       0       -6.467      3.415       11.129      
+YEN     H23     H       H       0       -7.623      2.774       10.260      
+YEN     H26     H       H       0       -3.124      2.930       8.107       
+YEN     H28     H       H       0       -1.850      2.799       6.369       
+YEN     H29     H       H       0       -3.297      0.621       5.290       
+YEN     H30     H       H       0       -2.253      0.422       6.465       
+YEN     H31     H       H       0       0.562       0.934       4.597       
+YEN     H32     H       H       0       0.019       1.000       6.026       
+YEN     H34     H       H       0       -4.917      3.417       3.961       
+YEN     H35     H       H       0       -4.927      2.171       4.835       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YEN          C1          C2      DOUBLE       y     1.385  0.0100     1.385  0.0100
+YEN          C1          C6      SINGLE       y     1.385  0.0110     1.385  0.0110
+YEN          C2          C3      SINGLE       y     1.384  0.0100     1.384  0.0100
+YEN          C3          C4      DOUBLE       y     1.384  0.0100     1.384  0.0100
+YEN          C3          O1      SINGLE       n     1.398  0.0160     1.398  0.0160
+YEN          C4          C5      SINGLE       y     1.385  0.0100     1.385  0.0100
+YEN          C5          C6      DOUBLE       y     1.385  0.0110     1.385  0.0110
+YEN          C6          C7      SINGLE       n     1.509  0.0100     1.509  0.0100
+YEN          O1          P1      SINGLE       n     1.592  0.0187     1.592  0.0187
+YEN          P1          O2      SINGLE       n     1.509  0.0200     1.509  0.0200
+YEN          P1          O3      DOUBLE       n     1.509  0.0200     1.509  0.0200
+YEN          P1          O4      SINGLE       n     1.509  0.0200     1.509  0.0200
+YEN          C7          C8      SINGLE       n     1.534  0.0100     1.534  0.0100
+YEN          C8          C9      SINGLE       n     1.524  0.0100     1.524  0.0100
+YEN          C8         C10      SINGLE       n     1.531  0.0110     1.531  0.0110
+YEN          C9          O5      DOUBLE       n     1.229  0.0102     1.229  0.0102
+YEN          C9          N2      SINGLE       n     1.334  0.0100     1.334  0.0100
+YEN         C10         C11      SINGLE       n     1.508  0.0116     1.508  0.0116
+YEN         C11          N1      SINGLE       n     1.329  0.0100     1.329  0.0100
+YEN         C11          O7      DOUBLE       n     1.229  0.0102     1.229  0.0102
+YEN          N1         C12      SINGLE       n     1.450  0.0100     1.450  0.0100
+YEN          N2         C13      SINGLE       n     1.453  0.0100     1.453  0.0100
+YEN         C13         C14      SINGLE       n     1.530  0.0100     1.530  0.0100
+YEN         C13         C15      SINGLE       n     1.531  0.0110     1.531  0.0110
+YEN         C14          O8      DOUBLE       n     1.229  0.0102     1.229  0.0102
+YEN         C14          N3      SINGLE       n     1.337  0.0100     1.337  0.0100
+YEN         C15         C16      SINGLE       n     1.518  0.0153     1.518  0.0153
+YEN         C16         C17      SINGLE       n     1.519  0.0109     1.519  0.0109
+YEN         C17          O9      DOUBLE       n     1.247  0.0187     1.247  0.0187
+YEN         C17         O10      SINGLE       n     1.247  0.0187     1.247  0.0187
+YEN          N3         C18      SINGLE       n     1.459  0.0100     1.459  0.0100
+YEN         C18         C19      SINGLE       n     1.529  0.0149     1.529  0.0149
+YEN         C18         C20      SINGLE       n     1.529  0.0100     1.529  0.0100
+YEN         C19         O12      DOUBLE       n     1.230  0.0100     1.230  0.0100
+YEN         C19          N5      SINGLE       n     1.325  0.0100     1.325  0.0100
+YEN         C20         C21      SINGLE       n     1.514  0.0100     1.514  0.0100
+YEN         C21         O13      DOUBLE       n     1.229  0.0102     1.229  0.0102
+YEN         C21          N4      SINGLE       n     1.323  0.0100     1.323  0.0100
+YEN          C1          H1      SINGLE       n     1.082  0.0130     0.943  0.0173
+YEN          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0169
+YEN          C4          H3      SINGLE       n     1.082  0.0130     0.943  0.0169
+YEN          C5          H4      SINGLE       n     1.082  0.0130     0.943  0.0173
+YEN          C7          H7      SINGLE       n     1.089  0.0100     0.981  0.0169
+YEN          C7          H8      SINGLE       n     1.089  0.0100     0.981  0.0169
+YEN          C8          H9      SINGLE       n     1.089  0.0100     0.982  0.0200
+YEN         C10         H11      SINGLE       n     1.089  0.0100     0.979  0.0159
+YEN         C10         H12      SINGLE       n     1.089  0.0100     0.979  0.0159
+YEN          N1         H13      SINGLE       n     1.016  0.0100     0.872  0.0200
+YEN         C12         H14      SINGLE       n     1.089  0.0100     0.971  0.0198
+YEN         C12         H15      SINGLE       n     1.089  0.0100     0.971  0.0198
+YEN         C12         H16      SINGLE       n     1.089  0.0100     0.971  0.0198
+YEN          N2         H17      SINGLE       n     1.016  0.0100     0.873  0.0200
+YEN         C13         H19      SINGLE       n     1.089  0.0100     0.991  0.0200
+YEN         C15         H20      SINGLE       n     1.089  0.0100     0.980  0.0178
+YEN         C15         H21      SINGLE       n     1.089  0.0100     0.980  0.0178
+YEN         C16         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+YEN         C16         H23      SINGLE       n     1.089  0.0100     0.981  0.0185
+YEN          N3         H26      SINGLE       n     1.016  0.0100     0.873  0.0200
+YEN         C18         H28      SINGLE       n     1.089  0.0100     0.989  0.0122
+YEN         C20         H29      SINGLE       n     1.089  0.0100     0.979  0.0159
+YEN         C20         H30      SINGLE       n     1.089  0.0100     0.979  0.0159
+YEN          N4         H31      SINGLE       n     1.016  0.0100     0.884  0.0200
+YEN          N4         H32      SINGLE       n     1.016  0.0100     0.884  0.0200
+YEN          N5         H34      SINGLE       n     1.016  0.0100     0.884  0.0200
+YEN          N5         H35      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YEN          C2          C1          C6     121.394    1.50
+YEN          C2          C1          H1     119.249    1.50
+YEN          C6          C1          H1     119.357    1.50
+YEN          C1          C2          C3     118.985    1.50
+YEN          C1          C2          H2     120.283    1.50
+YEN          C3          C2          H2     120.731    1.50
+YEN          C2          C3          C4     121.485    1.50
+YEN          C2          C3          O1     119.257    3.00
+YEN          C4          C3          O1     119.257    3.00
+YEN          C3          C4          C5     118.985    1.50
+YEN          C3          C4          H3     120.731    1.50
+YEN          C5          C4          H3     120.283    1.50
+YEN          C4          C5          C6     121.394    1.50
+YEN          C4          C5          H4     119.249    1.50
+YEN          C6          C5          H4     119.357    1.50
+YEN          C1          C6          C5     117.756    1.50
+YEN          C1          C6          C7     121.122    1.50
+YEN          C5          C6          C7     121.122    1.50
+YEN          C3          O1          P1     124.779    1.73
+YEN          O1          P1          O2     114.838    3.00
+YEN          O1          P1          O3     114.838    3.00
+YEN          O1          P1          O4     114.838    3.00
+YEN          O2          P1          O3     112.139    1.52
+YEN          O2          P1          O4     112.139    1.52
+YEN          O3          P1          O4     112.139    1.52
+YEN          C6          C7          C8     113.495    1.50
+YEN          C6          C7          H7     108.738    1.50
+YEN          C6          C7          H8     108.738    1.50
+YEN          C8          C7          H7     108.879    1.50
+YEN          C8          C7          H8     108.879    1.50
+YEN          H7          C7          H8     107.709    1.50
+YEN          C7          C8          C9     110.476    1.81
+YEN          C7          C8         C10     111.291    1.60
+YEN          C7          C8          H9     107.967    1.50
+YEN          C9          C8         C10     110.441    2.25
+YEN          C9          C8          H9     108.369    1.50
+YEN         C10          C8          H9     108.361    1.50
+YEN          C8          C9          O5     121.196    1.75
+YEN          C8          C9          N2     116.228    1.50
+YEN          O5          C9          N2     122.576    1.50
+YEN          C8         C10         C11     113.351    1.50
+YEN          C8         C10         H11     108.942    1.50
+YEN          C8         C10         H12     108.942    1.50
+YEN         C11         C10         H11     109.623    1.50
+YEN         C11         C10         H12     109.623    1.50
+YEN         H11         C10         H12     107.705    1.50
+YEN         C10         C11          N1     116.287    1.50
+YEN         C10         C11          O7     121.392    1.50
+YEN          N1         C11          O7     122.320    1.50
+YEN         C11          N1         C12     122.714    1.50
+YEN         C11          N1         H13     118.811    1.50
+YEN         C12          N1         H13     118.475    1.58
+YEN          N1         C12         H14     109.480    1.50
+YEN          N1         C12         H15     109.480    1.50
+YEN          N1         C12         H16     109.480    1.50
+YEN         H14         C12         H15     109.279    1.79
+YEN         H14         C12         H16     109.279    1.79
+YEN         H15         C12         H16     109.279    1.79
+YEN          C9          N2         C13     121.791    1.76
+YEN          C9          N2         H17     118.702    2.34
+YEN         C13          N2         H17     119.506    1.64
+YEN          N2         C13         C14     111.371    2.04
+YEN          N2         C13         C15     111.528    2.08
+YEN          N2         C13         H19     107.954    1.50
+YEN         C14         C13         C15     111.390    2.17
+YEN         C14         C13         H19     107.852    1.50
+YEN         C15         C13         H19     108.242    1.50
+YEN         C13         C14          O8     120.345    1.50
+YEN         C13         C14          N3     116.639    1.50
+YEN          O8         C14          N3     123.016    1.50
+YEN         C13         C15         C16     113.079    1.50
+YEN         C13         C15         H20     108.827    1.50
+YEN         C13         C15         H21     108.827    1.50
+YEN         C16         C15         H20     108.890    1.50
+YEN         C16         C15         H21     108.890    1.50
+YEN         H20         C15         H21     107.844    1.50
+YEN         C15         C16         C17     114.629    2.24
+YEN         C15         C16         H22     108.906    1.50
+YEN         C15         C16         H23     108.906    1.50
+YEN         C17         C16         H22     108.404    1.50
+YEN         C17         C16         H23     108.404    1.50
+YEN         H22         C16         H23     107.521    1.50
+YEN         C16         C17          O9     118.214    1.64
+YEN         C16         C17         O10     118.214    1.64
+YEN          O9         C17         O10     123.571    1.50
+YEN         C14          N3         C18     121.028    1.58
+YEN         C14          N3         H26     119.169    1.83
+YEN         C18          N3         H26     119.803    1.64
+YEN          N3         C18         C19     111.106    2.53
+YEN          N3         C18         C20     112.687    1.50
+YEN          N3         C18         H28     107.954    1.50
+YEN         C19         C18         C20     111.511    2.91
+YEN         C19         C18         H28     108.061    1.50
+YEN         C20         C18         H28     107.587    1.50
+YEN         C18         C19         O12     120.522    1.50
+YEN         C18         C19          N5     115.746    1.60
+YEN         O12         C19          N5     123.732    1.50
+YEN         C18         C20         C21     110.660    1.50
+YEN         C18         C20         H29     108.988    1.50
+YEN         C18         C20         H30     108.988    1.50
+YEN         C21         C20         H29     109.076    1.50
+YEN         C21         C20         H30     109.076    1.50
+YEN         H29         C20         H30     108.069    1.50
+YEN         C20         C21         O13     120.613    1.50
+YEN         C20         C21          N4     116.821    1.50
+YEN         O13         C21          N4     122.566    1.50
+YEN         C21          N4         H31     120.022    1.65
+YEN         C21          N4         H32     120.022    1.65
+YEN         H31          N4         H32     119.956    2.38
+YEN         C19          N5         H34     120.017    3.00
+YEN         C19          N5         H35     120.017    3.00
+YEN         H34          N5         H35     119.966    2.38
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YEN       const_sp2_sp2_1          C6          C1          C2          C3       0.000     5.0     2
+YEN              const_22          C2          C1          C6          C7     180.000    10.0     2
+YEN             sp3_sp3_4          C6          C7          C8          C9     180.000    10.0     3
+YEN             sp2_sp3_7          O5          C9          C8          C7       0.000    10.0     6
+YEN            sp3_sp3_13         C11         C10          C8          C7     180.000    10.0     3
+YEN             sp2_sp2_3          C8          C9          N2         C13     180.000     5.0     2
+YEN            sp2_sp3_14          N1         C11         C10          C8     120.000    10.0     6
+YEN             sp2_sp2_7         C10         C11          N1         C12     180.000     5.0     2
+YEN            sp2_sp3_19         C11          N1         C12         H14       0.000    10.0     6
+YEN       const_sp2_sp2_6          C1          C2          C3          O1     180.000     5.0     2
+YEN            sp2_sp3_25          C9          N2         C13         C14       0.000    10.0     6
+YEN            sp2_sp3_31          O8         C14         C13          N2       0.000    10.0     6
+YEN            sp3_sp3_22          N2         C13         C15         C16     180.000    10.0     3
+YEN            sp2_sp2_11         C13         C14          N3         C18     180.000     5.0     2
+YEN            sp3_sp3_31         C13         C15         C16         C17     180.000    10.0     3
+YEN            sp2_sp3_38          O9         C17         C16         C15     120.000    10.0     6
+YEN            sp2_sp3_43         C14          N3         C18         C19       0.000    10.0     6
+YEN              const_11          O1          C3          C4          C5     180.000    10.0     2
+YEN             sp2_sp2_1          C2          C3          O1          P1     180.000     5.0     2
+YEN            sp2_sp3_49         O12         C19         C18          N3       0.000    10.0     6
+YEN            sp3_sp3_40          N3         C18         C20         C21     180.000    10.0     3
+YEN            sp2_sp2_15         C18         C19          N5         H34     180.000     5.0     2
+YEN            sp2_sp3_56         O13         C21         C20         C18     120.000    10.0     6
+YEN            sp2_sp2_19         C20         C21          N4         H31     180.000     5.0     2
+YEN              const_13          C3          C4          C5          C6       0.000    10.0     2
+YEN              const_18          C4          C5          C6          C7     180.000    10.0     2
+YEN             sp2_sp3_2          C1          C6          C7          C8     -90.000    10.0     6
+YEN             sp3_sp3_1          O2          P1          O1          C3     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+YEN    chir_1    P1    O1    O2    O4    both
+YEN    chir_2    C8    C9    C10    C7    positive
+YEN    chir_3    C13    N2    C14    C15    positive
+YEN    chir_4    C18    N3    C19    C20    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YEN    plan-1          C1   0.020
+YEN    plan-1          C2   0.020
+YEN    plan-1          C3   0.020
+YEN    plan-1          C4   0.020
+YEN    plan-1          C5   0.020
+YEN    plan-1          C6   0.020
+YEN    plan-1          C7   0.020
+YEN    plan-1          H1   0.020
+YEN    plan-1          H2   0.020
+YEN    plan-1          H3   0.020
+YEN    plan-1          H4   0.020
+YEN    plan-1          O1   0.020
+YEN    plan-2          C8   0.020
+YEN    plan-2          C9   0.020
+YEN    plan-2          N2   0.020
+YEN    plan-2          O5   0.020
+YEN    plan-3         C10   0.020
+YEN    plan-3         C11   0.020
+YEN    plan-3          N1   0.020
+YEN    plan-3          O7   0.020
+YEN    plan-4         C11   0.020
+YEN    plan-4         C12   0.020
+YEN    plan-4         H13   0.020
+YEN    plan-4          N1   0.020
+YEN    plan-5         C13   0.020
+YEN    plan-5          C9   0.020
+YEN    plan-5         H17   0.020
+YEN    plan-5          N2   0.020
+YEN    plan-6         C13   0.020
+YEN    plan-6         C14   0.020
+YEN    plan-6          N3   0.020
+YEN    plan-6          O8   0.020
+YEN    plan-7         C16   0.020
+YEN    plan-7         C17   0.020
+YEN    plan-7         O10   0.020
+YEN    plan-7          O9   0.020
+YEN    plan-8         C14   0.020
+YEN    plan-8         C18   0.020
+YEN    plan-8         H26   0.020
+YEN    plan-8          N3   0.020
+YEN    plan-9         C18   0.020
+YEN    plan-9         C19   0.020
+YEN    plan-9          N5   0.020
+YEN    plan-9         O12   0.020
+YEN   plan-10         C20   0.020
+YEN   plan-10         C21   0.020
+YEN   plan-10          N4   0.020
+YEN   plan-10         O13   0.020
+YEN   plan-11         C21   0.020
+YEN   plan-11         H31   0.020
+YEN   plan-11         H32   0.020
+YEN   plan-11          N4   0.020
+YEN   plan-12         C19   0.020
+YEN   plan-12         H34   0.020
+YEN   plan-12         H35   0.020
+YEN   plan-12          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YEN           SMILES              ACDLabs 12.01                                                                                                                                                                               O=C(N)C(NC(=O)C(NC(=O)C(CC(=O)NC)Cc1ccc(OP(=O)(O)O)cc1)CCC(=O)O)CC(=O)N
+YEN SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                               CNC(=O)C[C@H](Cc1ccc(O[P](O)(O)=O)cc1)C(=O)N[C@@H](CCC(O)=O)C(=O)N[C@@H](CC(N)=O)C(N)=O
+YEN           SMILES               CACTVS 3.370                                                                                                                                                                    CNC(=O)C[CH](Cc1ccc(O[P](O)(O)=O)cc1)C(=O)N[CH](CCC(O)=O)C(=O)N[CH](CC(N)=O)C(N)=O
+YEN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                                 CNC(=O)C[C@H](Cc1ccc(cc1)OP(=O)(O)O)C(=O)N[C@@H](CCC(=O)O)C(=O)N[C@@H](CC(=O)N)C(=O)N
+YEN           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                               CNC(=O)CC(Cc1ccc(cc1)OP(=O)(O)O)C(=O)NC(CCC(=O)O)C(=O)NC(CC(=O)N)C(=O)N
+YEN            InChI                InChI  1.03 InChI=1S/C21H30N5O11P/c1-24-17(28)9-12(8-11-2-4-13(5-3-11)37-38(34,35)36)20(32)25-14(6-7-18(29)30)21(33)26-15(19(23)31)10-16(22)27/h2-5,12,14-15H,6-10H2,1H3,(H2,22,27)(H2,23,31)(H,24,28)(H,25,32)(H,26,33)(H,29,30)(H2,34,35,36)/t12-,14-,15-/m0/s1
+YEN         InChIKey                InChI  1.03                                                                                                                                                                                                                           NPYWTYXAKSZNLF-QEJZJMRPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YEN acedrg               243         "dictionary generator"                  
+YEN acedrg_database      11          "data source"                           
+YEN rdkit                2017.03.2   "Chemoinformatics tool"
+YEN refmac5              5.8.0238    "optimization tool"                     

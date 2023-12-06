@@ -1,0 +1,211 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YAC     YAC      "(4Z)-6-oxo-6-phenylhex-4-enoic acid"     NON-POLYMER     26     15     .     
+#
+data_comp_YAC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YAC     C21     C       C       0       -109.769    61.443      103.335     
+YAC     O2      O       O       0       -109.776    60.726      104.355     
+YAC     C22     C       CH2     0       -109.279    62.875      103.466     
+YAC     C23     C       CH2     0       -110.394    63.922      103.618     
+YAC     C24     C       C1      0       -109.945    65.341      103.391     
+YAC     C25     C       C1      0       -109.512    65.934      102.281     
+YAC     C26     C       C       0       -109.482    65.344      100.954     
+YAC     O3      O       O       0       -110.045    64.276      100.700     
+YAC     C27     C       CR6     0       -108.709    66.024      99.872      
+YAC     C28     C       CR16    0       -107.441    66.555      100.119     
+YAC     C29     C       CR16    0       -106.729    67.178      99.105      
+YAC     C30     C       CR16    0       -107.264    67.274      97.836      
+YAC     C31     C       CR16    0       -108.514    66.749      97.575      
+YAC     C32     C       CR16    0       -109.235    66.125      98.583      
+YAC     OXT     O       OC      -1      -110.144    61.048      102.213     
+YAC     H29     H       H       0       -108.744    63.090      102.676     
+YAC     H30     H       H       0       -108.687    62.928      104.244     
+YAC     H31     H       H       0       -110.759    63.853      104.523     
+YAC     H32     H       H       0       -111.114    63.710      102.991     
+YAC     H33     H       H       0       -109.973    65.899      104.150     
+YAC     H34     H       H       0       -109.201    66.821      102.379     
+YAC     H35     H       H       0       -107.067    66.494      100.980     
+YAC     H36     H       H       0       -105.875    67.536      99.283      
+YAC     H37     H       H       0       -106.776    67.699      97.148      
+YAC     H38     H       H       0       -108.880    66.815      96.708      
+YAC     H39     H       H       0       -110.086    65.770      98.397      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YAC         C21          O2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+YAC         C21         C22      SINGLE       n     1.519  0.0109     1.519  0.0109
+YAC         C22         C23      SINGLE       n     1.534  0.0182     1.534  0.0182
+YAC         C23         C24      SINGLE       n     1.502  0.0131     1.502  0.0131
+YAC         C24         C25      DOUBLE       n     1.313  0.0200     1.313  0.0200
+YAC         C25         C26      SINGLE       n     1.432  0.0200     1.432  0.0200
+YAC         C26          O3      DOUBLE       n     1.233  0.0156     1.233  0.0156
+YAC         C26         C27      SINGLE       n     1.492  0.0100     1.492  0.0100
+YAC         C27         C32      DOUBLE       y     1.392  0.0100     1.392  0.0100
+YAC         C27         C28      SINGLE       y     1.392  0.0100     1.392  0.0100
+YAC         C28         C29      DOUBLE       y     1.384  0.0100     1.384  0.0100
+YAC         C29         C30      SINGLE       y     1.376  0.0114     1.376  0.0114
+YAC         C30         C31      DOUBLE       y     1.376  0.0124     1.376  0.0124
+YAC         C31         C32      SINGLE       y     1.384  0.0100     1.384  0.0100
+YAC         C21         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+YAC         C22         H29      SINGLE       n     1.089  0.0100     0.979  0.0159
+YAC         C22         H30      SINGLE       n     1.089  0.0100     0.979  0.0159
+YAC         C23         H31      SINGLE       n     1.089  0.0100     0.979  0.0159
+YAC         C23         H32      SINGLE       n     1.089  0.0100     0.979  0.0159
+YAC         C24         H33      SINGLE       n     1.082  0.0130     0.943  0.0181
+YAC         C25         H34      SINGLE       n     1.082  0.0130     0.945  0.0192
+YAC         C28         H35      SINGLE       n     1.082  0.0130     0.941  0.0168
+YAC         C29         H36      SINGLE       n     1.082  0.0130     0.943  0.0180
+YAC         C30         H37      SINGLE       n     1.082  0.0130     0.944  0.0161
+YAC         C31         H38      SINGLE       n     1.082  0.0130     0.943  0.0180
+YAC         C32         H39      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YAC          O2         C21         C22     118.214    1.64
+YAC          O2         C21         OXT     123.571    1.50
+YAC         C22         C21         OXT     118.214    1.64
+YAC         C21         C22         C23     114.808    1.90
+YAC         C21         C22         H29     108.404    1.50
+YAC         C21         C22         H30     108.404    1.50
+YAC         C23         C22         H29     108.945    1.50
+YAC         C23         C22         H30     108.945    1.50
+YAC         H29         C22         H30     107.521    1.50
+YAC         C22         C23         C24     113.808    3.00
+YAC         C22         C23         H31     108.745    1.50
+YAC         C22         C23         H32     108.745    1.50
+YAC         C24         C23         H31     108.886    1.50
+YAC         C24         C23         H32     108.886    1.50
+YAC         H31         C23         H32     107.922    1.50
+YAC         C23         C24         C25     125.879    2.56
+YAC         C23         C24         H33     116.963    1.61
+YAC         C25         C24         H33     117.170    2.02
+YAC         C24         C25         C26     123.138    1.50
+YAC         C24         C25         H34     118.088    2.29
+YAC         C26         C25         H34     118.774    1.50
+YAC         C25         C26          O3     120.700    1.50
+YAC         C25         C26         C27     119.592    1.50
+YAC          O3         C26         C27     119.708    1.50
+YAC         C26         C27         C32     120.649    2.31
+YAC         C26         C27         C28     120.649    2.31
+YAC         C32         C27         C28     118.703    1.50
+YAC         C27         C28         C29     120.490    1.50
+YAC         C27         C28         H35     119.780    1.50
+YAC         C29         C28         H35     119.730    1.50
+YAC         C28         C29         C30     120.200    1.50
+YAC         C28         C29         H36     119.855    1.50
+YAC         C30         C29         H36     119.945    1.50
+YAC         C29         C30         C31     119.917    1.50
+YAC         C29         C30         H37     120.041    1.50
+YAC         C31         C30         H37     120.041    1.50
+YAC         C30         C31         C32     120.200    1.50
+YAC         C30         C31         H38     119.945    1.50
+YAC         C32         C31         H38     119.855    1.50
+YAC         C27         C32         C31     120.490    1.50
+YAC         C27         C32         H39     119.780    1.50
+YAC         C31         C32         H39     119.730    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YAC             sp2_sp3_2          O2         C21         C22         C23     120.000    10.0     6
+YAC              const_13         C28         C29         C30         C31       0.000    10.0     2
+YAC       const_sp2_sp2_9         C29         C30         C31         C32       0.000     5.0     2
+YAC       const_sp2_sp2_5         C30         C31         C32         C27       0.000     5.0     2
+YAC             sp3_sp3_1         C21         C22         C23         C24     180.000    10.0     3
+YAC             sp2_sp3_8         C25         C24         C23         C22     120.000    10.0     6
+YAC             sp2_sp2_1         C23         C24         C25         C26     180.000     5.0     2
+YAC             sp2_sp2_6         C24         C25         C26          O3       0.000     5.0     2
+YAC             sp2_sp2_9         C25         C26         C27         C32     180.000     5.0     2
+YAC       const_sp2_sp2_3         C26         C27         C32         C31     180.000     5.0     2
+YAC              const_23         C26         C27         C28         C29     180.000    10.0     2
+YAC              const_17         C27         C28         C29         C30       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YAC    plan-1         C26   0.020
+YAC    plan-1         C27   0.020
+YAC    plan-1         C28   0.020
+YAC    plan-1         C29   0.020
+YAC    plan-1         C30   0.020
+YAC    plan-1         C31   0.020
+YAC    plan-1         C32   0.020
+YAC    plan-1         H35   0.020
+YAC    plan-1         H36   0.020
+YAC    plan-1         H37   0.020
+YAC    plan-1         H38   0.020
+YAC    plan-1         H39   0.020
+YAC    plan-2         C21   0.020
+YAC    plan-2         C22   0.020
+YAC    plan-2          O2   0.020
+YAC    plan-2         OXT   0.020
+YAC    plan-3         C23   0.020
+YAC    plan-3         C24   0.020
+YAC    plan-3         C25   0.020
+YAC    plan-3         H33   0.020
+YAC    plan-4         C24   0.020
+YAC    plan-4         C25   0.020
+YAC    plan-4         C26   0.020
+YAC    plan-4         H34   0.020
+YAC    plan-5         C25   0.020
+YAC    plan-5         C26   0.020
+YAC    plan-5         C27   0.020
+YAC    plan-5          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YAC           SMILES              ACDLabs 12.01                                                                O=C(\C=C/CCC(=O)O)c1ccccc1
+YAC            InChI                InChI  1.03 InChI=1S/C12H12O3/c13-11(8-4-5-9-12(14)15)10-6-2-1-3-7-10/h1-4,6-8H,5,9H2,(H,14,15)/b8-4-
+YAC         InChIKey                InChI  1.03                                                               NTFJREPOKYATTH-YWEYNIOJSA-N
+YAC SMILES_CANONICAL               CACTVS 3.385                                                                OC(=O)CC\C=C/C(=O)c1ccccc1
+YAC           SMILES               CACTVS 3.385                                                                  OC(=O)CCC=CC(=O)c1ccccc1
+YAC SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                              c1ccc(cc1)C(=O)/C=C\CCC(=O)O
+YAC           SMILES "OpenEye OEToolkits" 1.9.2                                                                c1ccc(cc1)C(=O)C=CCCC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YAC acedrg               243         "dictionary generator"                  
+YAC acedrg_database      11          "data source"                           
+YAC rdkit                2017.03.2   "Chemoinformatics tool"
+YAC refmac5              5.8.0238    "optimization tool"                     

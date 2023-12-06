@@ -1,0 +1,302 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+9NE     9NE      DANSYL-L-GLUTAMATE     NON-POLYMER     44     26     .     
+#
+data_comp_9NE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+9NE     N       N       NT1     0       26.603      8.768       31.810      
+9NE     CA      C       CH1     0       26.979      7.347       31.774      
+9NE     C       C       C       0       26.657      6.659       30.434      
+9NE     O       O       O       0       25.472      6.690       30.048      
+9NE     CB      C       CH2     0       26.268      6.593       32.907      
+9NE     CG      C       CH2     0       26.793      6.918       34.296      
+9NE     CD      C       C       0       28.157      6.331       34.622      
+9NE     OE1     O       O       0       29.091      7.115       34.888      
+9NE     OE2     O       OC      -1      28.282      5.091       34.608      
+9NE     OXT     O       OC      -1      27.603      6.120       29.827      
+9NE     S1      S       S3      0       27.694      9.943       32.044      
+9NE     O2      O       O       0       26.970      11.176      32.092      
+9NE     O3      O       O       0       28.455      9.548       33.189      
+9NE     C1      C       CR6     0       28.770      10.006      30.625      
+9NE     C2      C       CR16    0       28.244      9.530       29.448      
+9NE     C3      C       CR16    0       29.007      9.535       28.268      
+9NE     C4      C       CR16    0       30.278      10.020      28.267      
+9NE     C5      C       CR66    0       30.871      10.534      29.453      
+9NE     C6      C       CR66    0       30.113      10.539      30.674      
+9NE     C7      C       CR16    0       30.740      11.064      31.843      
+9NE     C8      C       CR16    0       32.016      11.541      31.809      
+9NE     C9      C       CR16    0       32.757      11.534      30.616      
+9NE     C10     C       CR6     0       32.219      11.051      29.446      
+9NE     N1      N       NT      0       32.956      11.031      28.230      
+9NE     C11     C       CH3     0       33.654      12.274      27.863      
+9NE     C12     C       CH3     0       33.805      9.846       28.044      
+9NE     H       H       H       0       25.973      9.003       31.276      
+9NE     HA      H       H       0       27.955      7.272       31.921      
+9NE     HB1C    H       H       0       26.364      5.629       32.753      
+9NE     HB2C    H       H       0       25.313      6.809       32.872      
+9NE     HG1C    H       H       0       26.152      6.585       34.959      
+9NE     HG2C    H       H       0       26.839      7.891       34.400      
+9NE     H2      H       H       0       27.373      9.198       29.424      
+9NE     H3      H       H       0       28.637      9.203       27.476      
+9NE     H4      H       H       0       30.768      10.013      27.463      
+9NE     H7      H       H       0       30.277      11.085      32.651      
+9NE     H8      H       H       0       32.411      11.882      32.599      
+9NE     H9      H       H       0       33.641      11.871      30.617      
+9NE     H111    H       H       0       33.087      13.038      28.056      
+9NE     H112    H       H       0       33.865      12.259      26.915      
+9NE     H113    H       H       0       34.477      12.345      28.375      
+9NE     H121    H       H       0       33.324      9.050       28.327      
+9NE     H122    H       H       0       34.614      9.940       28.573      
+9NE     H123    H       H       0       34.041      9.762       27.106      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+9NE          S1          O2      DOUBLE       n     1.431  0.0100     1.431  0.0100
+9NE          S1          O3      DOUBLE       n     1.431  0.0100     1.431  0.0100
+9NE          S1          C1      SINGLE       n     1.774  0.0100     1.774  0.0100
+9NE           N          S1      SINGLE       n     1.616  0.0107     1.616  0.0107
+9NE           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+9NE         C10          N1      SINGLE       n     1.417  0.0100     1.417  0.0100
+9NE          N1         C11      SINGLE       n     1.468  0.0149     1.468  0.0149
+9NE          N1         C12      SINGLE       n     1.468  0.0149     1.468  0.0149
+9NE          C1          C2      DOUBLE       y     1.369  0.0100     1.369  0.0100
+9NE          C1          C6      SINGLE       y     1.434  0.0100     1.434  0.0100
+9NE          C2          C3      SINGLE       y     1.405  0.0100     1.405  0.0100
+9NE          C3          C4      DOUBLE       y     1.360  0.0100     1.360  0.0100
+9NE          C4          C5      SINGLE       y     1.416  0.0100     1.416  0.0100
+9NE          C5          C6      DOUBLE       y     1.426  0.0100     1.426  0.0100
+9NE          C5         C10      SINGLE       y     1.435  0.0100     1.435  0.0100
+9NE          C6          C7      SINGLE       y     1.420  0.0100     1.420  0.0100
+9NE          C7          C8      DOUBLE       y     1.361  0.0100     1.361  0.0100
+9NE          C8          C9      SINGLE       y     1.403  0.0100     1.403  0.0100
+9NE          C9         C10      DOUBLE       y     1.371  0.0100     1.371  0.0100
+9NE           N          CA      SINGLE       n     1.467  0.0100     1.467  0.0100
+9NE          CA           C      SINGLE       n     1.539  0.0100     1.539  0.0100
+9NE          CA          CB      SINGLE       n     1.533  0.0100     1.533  0.0100
+9NE           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+9NE          CB          CG      SINGLE       n     1.518  0.0153     1.518  0.0153
+9NE          CG          CD      SINGLE       n     1.519  0.0109     1.519  0.0109
+9NE          CD         OE1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+9NE          CD         OE2      SINGLE       n     1.247  0.0187     1.247  0.0187
+9NE           N           H      SINGLE       n     1.036  0.0160     0.857  0.0200
+9NE          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0200
+9NE          CB        HB1C      SINGLE       n     1.089  0.0100     0.980  0.0178
+9NE          CB        HB2C      SINGLE       n     1.089  0.0100     0.980  0.0178
+9NE          CG        HG1C      SINGLE       n     1.089  0.0100     0.981  0.0185
+9NE          CG        HG2C      SINGLE       n     1.089  0.0100     0.981  0.0185
+9NE          C2          H2      SINGLE       n     1.082  0.0130     0.935  0.0100
+9NE          C3          H3      SINGLE       n     1.082  0.0130     0.935  0.0125
+9NE          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0128
+9NE          C7          H7      SINGLE       n     1.082  0.0130     0.935  0.0116
+9NE          C8          H8      SINGLE       n     1.082  0.0130     0.947  0.0200
+9NE          C9          H9      SINGLE       n     1.082  0.0130     0.946  0.0200
+9NE         C11        H111      SINGLE       n     1.089  0.0100     0.971  0.0181
+9NE         C11        H112      SINGLE       n     1.089  0.0100     0.971  0.0181
+9NE         C11        H113      SINGLE       n     1.089  0.0100     0.971  0.0181
+9NE         C12        H121      SINGLE       n     1.089  0.0100     0.971  0.0181
+9NE         C12        H122      SINGLE       n     1.089  0.0100     0.971  0.0181
+9NE         C12        H123      SINGLE       n     1.089  0.0100     0.971  0.0181
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+9NE          S1           N          CA     120.490    1.71
+9NE          S1           N           H     111.936    3.00
+9NE          CA           N           H     114.792    3.00
+9NE           N          CA           C     113.481    2.07
+9NE           N          CA          CB     109.731    2.61
+9NE           N          CA          HA     108.676    1.50
+9NE           C          CA          CB     110.328    1.98
+9NE           C          CA          HA     108.169    1.50
+9NE          CB          CA          HA     108.223    1.50
+9NE         OXT           C          CA     117.226    1.56
+9NE         OXT           C           O     125.548    1.50
+9NE          CA           C           O     117.226    1.56
+9NE          CA          CB          CG     113.079    1.50
+9NE          CA          CB        HB1C     108.562    1.50
+9NE          CA          CB        HB2C     108.562    1.50
+9NE          CG          CB        HB1C     108.890    1.50
+9NE          CG          CB        HB2C     108.890    1.50
+9NE        HB1C          CB        HB2C     107.844    1.50
+9NE          CB          CG          CD     114.629    2.24
+9NE          CB          CG        HG1C     108.906    1.50
+9NE          CB          CG        HG2C     108.906    1.50
+9NE          CD          CG        HG1C     108.404    1.50
+9NE          CD          CG        HG2C     108.404    1.50
+9NE        HG1C          CG        HG2C     107.521    1.50
+9NE          CG          CD         OE1     118.214    1.64
+9NE          CG          CD         OE2     118.214    1.64
+9NE         OE1          CD         OE2     123.571    1.50
+9NE          O2          S1          O3     118.871    1.50
+9NE          O2          S1          C1     107.957    1.74
+9NE          O2          S1           N     106.989    1.50
+9NE          O3          S1          C1     107.957    1.74
+9NE          O3          S1           N     106.989    1.50
+9NE          C1          S1           N     106.584    1.50
+9NE          S1          C1          C2     116.629    1.50
+9NE          S1          C1          C6     121.777    1.50
+9NE          C2          C1          C6     121.593    1.50
+9NE          C1          C2          C3     120.493    1.50
+9NE          C1          C2          H2     119.746    1.50
+9NE          C3          C2          H2     119.762    1.50
+9NE          C2          C3          C4     120.466    1.50
+9NE          C2          C3          H3     119.722    1.50
+9NE          C4          C3          H3     119.812    1.50
+9NE          C3          C4          C5     120.931    1.50
+9NE          C3          C4          H4     119.562    1.50
+9NE          C5          C4          H4     119.508    1.50
+9NE          C4          C5          C6     119.247    1.50
+9NE          C4          C5         C10     121.052    1.55
+9NE          C6          C5         C10     119.701    1.50
+9NE          C1          C6          C5     117.270    1.50
+9NE          C1          C6          C7     124.012    1.50
+9NE          C5          C6          C7     118.718    1.50
+9NE          C6          C7          C8     120.916    1.50
+9NE          C6          C7          H7     119.508    1.50
+9NE          C8          C7          H7     119.576    1.50
+9NE          C7          C8          C9     120.621    1.50
+9NE          C7          C8          H8     119.824    1.50
+9NE          C9          C8          H8     119.555    1.50
+9NE          C8          C9         C10     120.944    1.50
+9NE          C8          C9          H9     119.650    1.50
+9NE         C10          C9          H9     119.406    1.50
+9NE          N1         C10          C5     118.494    1.50
+9NE          N1         C10          C9     122.406    1.50
+9NE          C5         C10          C9     119.100    1.50
+9NE         C10          N1         C11     113.410    2.09
+9NE         C10          N1         C12     113.410    2.09
+9NE         C11          N1         C12     111.416    1.79
+9NE          N1         C11        H111     109.440    1.50
+9NE          N1         C11        H112     109.440    1.50
+9NE          N1         C11        H113     109.440    1.50
+9NE        H111         C11        H112     109.352    1.56
+9NE        H111         C11        H113     109.352    1.56
+9NE        H112         C11        H113     109.352    1.56
+9NE          N1         C12        H121     109.440    1.50
+9NE          N1         C12        H122     109.440    1.50
+9NE          N1         C12        H123     109.440    1.50
+9NE        H121         C12        H122     109.352    1.56
+9NE        H121         C12        H123     109.352    1.56
+9NE        H122         C12        H123     109.352    1.56
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+9NE             sp3_sp3_7           C          CA           N          S1     180.000    10.0     3
+9NE             sp3_sp3_5          CA           N          S1          O2     180.000    10.0     3
+9NE             sp2_sp3_1          C2          C1          S1          O2     150.000    10.0     6
+9NE              const_23          S1          C1          C2          C3     180.000    10.0     2
+9NE              const_39          S1          C1          C6          C5     180.000    10.0     2
+9NE              const_25          C1          C2          C3          C4       0.000    10.0     2
+9NE              const_29          C2          C3          C4          C5       0.000    10.0     2
+9NE              const_33          C3          C4          C5          C6       0.000    10.0     2
+9NE       const_sp2_sp2_1          C4          C5          C6          C1       0.000     5.0     2
+9NE              const_44          N1         C10          C5          C4       0.000    10.0     2
+9NE       const_sp2_sp2_7          C1          C6          C7          C8     180.000     5.0     2
+9NE       const_sp2_sp2_9          C6          C7          C8          C9       0.000     5.0     2
+9NE            sp2_sp3_19         OXT           C          CA           N       0.000    10.0     6
+9NE            sp3_sp3_13           N          CA          CB          CG     180.000    10.0     3
+9NE              const_13          C7          C8          C9         C10       0.000    10.0     2
+9NE              const_19          N1         C10          C9          C8     180.000    10.0     2
+9NE             sp2_sp2_1          C5         C10          N1         C11     180.000     5.0     2
+9NE            sp2_sp3_10         C12          N1         C11        H111     180.000    10.0     6
+9NE            sp2_sp3_16         C11          N1         C12        H121     180.000    10.0     6
+9NE            sp3_sp3_22          CA          CB          CG          CD     180.000    10.0     3
+9NE            sp2_sp3_26         OE1          CD          CG          CB     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+9NE    chir_1    CA    N    C    CB    positive
+9NE    chir_2    S1    O2    O3    N    both
+9NE    chir_3    N    S1    CA    H    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+9NE    plan-1          C1   0.020
+9NE    plan-1         C10   0.020
+9NE    plan-1          C2   0.020
+9NE    plan-1          C3   0.020
+9NE    plan-1          C4   0.020
+9NE    plan-1          C5   0.020
+9NE    plan-1          C6   0.020
+9NE    plan-1          C7   0.020
+9NE    plan-1          C8   0.020
+9NE    plan-1          C9   0.020
+9NE    plan-1          H2   0.020
+9NE    plan-1          H3   0.020
+9NE    plan-1          H4   0.020
+9NE    plan-1          H7   0.020
+9NE    plan-1          H8   0.020
+9NE    plan-1          H9   0.020
+9NE    plan-1          N1   0.020
+9NE    plan-1          S1   0.020
+9NE    plan-2           C   0.020
+9NE    plan-2          CA   0.020
+9NE    plan-2           O   0.020
+9NE    plan-2         OXT   0.020
+9NE    plan-3          CD   0.020
+9NE    plan-3          CG   0.020
+9NE    plan-3         OE1   0.020
+9NE    plan-3         OE2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+9NE           SMILES              ACDLabs 10.04                                                                                                          O=C(O)C(NS(=O)(=O)c1cccc2c1cccc2N(C)C)CCC(=O)O
+9NE SMILES_CANONICAL               CACTVS 3.352                                                                                                   CN(C)c1cccc2c1cccc2[S](=O)(=O)N[C@@H](CCC(O)=O)C(O)=O
+9NE           SMILES               CACTVS 3.352                                                                                                     CN(C)c1cccc2c1cccc2[S](=O)(=O)N[CH](CCC(O)=O)C(O)=O
+9NE SMILES_CANONICAL "OpenEye OEToolkits" 1.6.1                                                                                                     CN(C)c1cccc2c1cccc2S(=O)(=O)N[C@@H](CCC(=O)O)C(=O)O
+9NE           SMILES "OpenEye OEToolkits" 1.6.1                                                                                                          CN(C)c1cccc2c1cccc2S(=O)(=O)NC(CCC(=O)O)C(=O)O
+9NE            InChI                InChI  1.03 InChI=1S/C17H20N2O6S/c1-19(2)14-7-3-6-12-11(14)5-4-8-15(12)26(24,25)18-13(17(22)23)9-10-16(20)21/h3-8,13,18H,9-10H2,1-2H3,(H,20,21)(H,22,23)/t13-/m0/s1
+9NE         InChIKey                InChI  1.03                                                                                                                             OXWKCHDQOLCMPE-ZDUSSCGKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+9NE acedrg               243         "dictionary generator"                  
+9NE acedrg_database      11          "data source"                           
+9NE rdkit                2017.03.2   "Chemoinformatics tool"
+9NE refmac5              5.8.0238    "optimization tool"                     

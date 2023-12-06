@@ -1,0 +1,180 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4OS     4OS      "4-methoxybenzenesulfonic acid"     NON-POLYMER     20     12     .     
+#
+data_comp_4OS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4OS     S       S       S3      0       18.004      32.270      14.711      
+4OS     OB1     O       O       0       17.194      31.090      14.556      
+4OS     OB2     O       O       0       18.181      33.025      13.497      
+4OS     CG      C       CR6     0       17.166      33.325      15.870      
+4OS     CD1     C       CR16    0       17.269      34.708      15.762      
+4OS     CD2     C       CR16    0       16.406      32.769      16.893      
+4OS     CE1     C       CR16    0       16.616      35.527      16.666      
+4OS     CE2     C       CR16    0       15.754      33.587      17.798      
+4OS     CZ      C       CR6     0       15.853      34.970      17.693      
+4OS     OH      O       O2      0       15.157      35.665      18.653      
+4OS     CH      C       CH3     0       15.191      37.091      18.673      
+4OS     OXT     O       OH1     0       19.312      31.933      15.318      
+4OS     HD1     H       H       0       17.780      35.092      15.076      
+4OS     HD2     H       H       0       16.333      31.836      16.973      
+4OS     HE1     H       H       0       16.692      36.457      16.583      
+4OS     HE2     H       H       0       15.243      33.206      18.485      
+4OS     HH1     H       H       0       14.830      37.436      17.839      
+4OS     HH2     H       H       0       16.108      37.392      18.779      
+4OS     HH3     H       H       0       14.656      37.416      19.415      
+4OS     HXT     H       H       0       19.905      31.686      14.658      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4OS           S         OB1      DOUBLE       n     1.440  0.0100     1.440  0.0100
+4OS           S         OB2      DOUBLE       n     1.440  0.0100     1.440  0.0100
+4OS           S         OXT      SINGLE       n     1.482  0.0200     1.482  0.0200
+4OS          CG         CD2      DOUBLE       y     1.388  0.0100     1.388  0.0100
+4OS           S          CG      SINGLE       n     1.774  0.0156     1.774  0.0156
+4OS          CG         CD1      SINGLE       y     1.388  0.0100     1.388  0.0100
+4OS         CD2         CE2      SINGLE       y     1.380  0.0100     1.380  0.0100
+4OS         CD1         CE1      DOUBLE       y     1.380  0.0100     1.380  0.0100
+4OS         CE1          CZ      SINGLE       y     1.386  0.0109     1.386  0.0109
+4OS         CE2          CZ      DOUBLE       y     1.386  0.0109     1.386  0.0109
+4OS          CZ          OH      SINGLE       n     1.369  0.0100     1.369  0.0100
+4OS          OH          CH      SINGLE       n     1.424  0.0117     1.424  0.0117
+4OS         CD1         HD1      SINGLE       n     1.082  0.0130     0.939  0.0200
+4OS         CD2         HD2      SINGLE       n     1.082  0.0130     0.939  0.0200
+4OS         CE1         HE1      SINGLE       n     1.082  0.0130     0.937  0.0102
+4OS         CE2         HE2      SINGLE       n     1.082  0.0130     0.937  0.0102
+4OS          CH         HH1      SINGLE       n     1.089  0.0100     0.971  0.0157
+4OS          CH         HH2      SINGLE       n     1.089  0.0100     0.971  0.0157
+4OS          CH         HH3      SINGLE       n     1.089  0.0100     0.971  0.0157
+4OS         OXT         HXT      SINGLE       n     0.970  0.0120     0.921  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4OS         OB1           S         OB2     114.848    3.00
+4OS         OB1           S         OXT     110.900    2.56
+4OS         OB1           S          CG     106.928    1.50
+4OS         OB2           S         OXT     110.900    2.56
+4OS         OB2           S          CG     106.928    1.50
+4OS         OXT           S          CG     106.633    1.50
+4OS         CD2          CG           S     119.894    1.50
+4OS         CD2          CG         CD1     120.212    1.50
+4OS           S          CG         CD1     119.894    1.50
+4OS          CG         CD1         CE1     120.130    1.50
+4OS          CG         CD1         HD1     120.131    1.50
+4OS         CE1         CD1         HD1     119.739    1.50
+4OS          CG         CD2         CE2     120.130    1.50
+4OS          CG         CD2         HD2     120.131    1.50
+4OS         CE2         CD2         HD2     119.739    1.50
+4OS         CD1         CE1          CZ     119.864    1.50
+4OS         CD1         CE1         HE1     120.010    1.50
+4OS          CZ         CE1         HE1     120.126    1.50
+4OS         CD2         CE2          CZ     119.864    1.50
+4OS         CD2         CE2         HE2     120.010    1.50
+4OS          CZ         CE2         HE2     120.126    1.50
+4OS         CE1          CZ         CE2     119.800    1.50
+4OS         CE1          CZ          OH     120.100    3.00
+4OS         CE2          CZ          OH     120.100    3.00
+4OS          CZ          OH          CH     117.529    1.50
+4OS          OH          CH         HH1     109.428    1.50
+4OS          OH          CH         HH2     109.428    1.50
+4OS          OH          CH         HH3     109.428    1.50
+4OS         HH1          CH         HH2     109.509    1.50
+4OS         HH1          CH         HH3     109.509    1.50
+4OS         HH2          CH         HH3     109.509    1.50
+4OS           S         OXT         HXT     109.599    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4OS             sp3_sp3_2         HXT         OXT           S         OB1     -60.000    10.0     3
+4OS             sp2_sp3_1         CD2          CG           S         OB1     150.000    10.0     6
+4OS              const_22         CE1         CD1          CG           S     180.000    10.0     2
+4OS       const_sp2_sp2_2         CE2         CD2          CG           S     180.000     5.0     2
+4OS              const_17          CG         CD1         CE1          CZ       0.000    10.0     2
+4OS       const_sp2_sp2_5          CG         CD2         CE2          CZ       0.000     5.0     2
+4OS              const_14         CD1         CE1          CZ          OH     180.000    10.0     2
+4OS              const_10         CD2         CE2          CZ          OH     180.000    10.0     2
+4OS             sp2_sp2_1         CE1          CZ          OH          CH     180.000     5.0     2
+4OS             sp3_sp3_5         HH1          CH          OH          CZ     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+4OS    chir_1    S    OB1    OB2    OXT    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4OS    plan-1         CD1   0.020
+4OS    plan-1         CD2   0.020
+4OS    plan-1         CE1   0.020
+4OS    plan-1         CE2   0.020
+4OS    plan-1          CG   0.020
+4OS    plan-1          CZ   0.020
+4OS    plan-1         HD1   0.020
+4OS    plan-1         HD2   0.020
+4OS    plan-1         HE1   0.020
+4OS    plan-1         HE2   0.020
+4OS    plan-1          OH   0.020
+4OS    plan-1           S   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4OS           SMILES              ACDLabs 12.01                                              O=S(=O)(O)c1ccc(OC)cc1
+4OS            InChI                InChI  1.03 InChI=1S/C7H8O4S/c1-11-6-2-4-7(5-3-6)12(8,9)10/h2-5H,1H3,(H,8,9,10)
+4OS         InChIKey                InChI  1.03                                         IWYVYUZADLIDEY-UHFFFAOYSA-N
+4OS SMILES_CANONICAL               CACTVS 3.370                                            COc1ccc(cc1)[S](O)(=O)=O
+4OS           SMILES               CACTVS 3.370                                            COc1ccc(cc1)[S](O)(=O)=O
+4OS SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                              COc1ccc(cc1)S(=O)(=O)O
+4OS           SMILES "OpenEye OEToolkits" 1.7.2                                              COc1ccc(cc1)S(=O)(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4OS acedrg               243         "dictionary generator"                  
+4OS acedrg_database      11          "data source"                           
+4OS rdkit                2017.03.2   "Chemoinformatics tool"
+4OS refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,177 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TNF     TNF      "PICRIC ACID"     NON-POLYMER     19     16     .     
+#
+data_comp_TNF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TNF     C1      C       CR6     0       20.224      9.093       21.218      
+TNF     C2      C       CR6     0       20.750      10.401      21.220      
+TNF     C3      C       CR16    0       21.453      10.915      20.129      
+TNF     C4      C       CR6     0       21.633      10.102      19.013      
+TNF     N4      N       N       1       22.366      10.628      17.867      
+TNF     N2      N       N       1       20.575      11.272      22.376      
+TNF     O1      O       OH1     0       19.533      8.599       22.299      
+TNF     O21     O       OC      -1      21.572      11.646      22.974      
+TNF     O22     O       O       0       19.441      11.590      22.695      
+TNF     O41     O       OC      -1      21.956      11.651      17.340      
+TNF     C6      C       CR6     0       20.434      8.312       20.063      
+TNF     C5      C       CR16    0       21.133      8.803       18.959      
+TNF     O42     O       O       0       23.357      10.026      17.486      
+TNF     N6      N       N       1       19.922      6.950       19.982      
+TNF     O61     O       OC      -1      20.725      6.035       19.882      
+TNF     O62     O       O       0       18.713      6.783       20.017      
+TNF     H3      H       H       0       21.795      11.793      20.153      
+TNF     H1      H       H       0       19.752      7.839       22.638      
+TNF     H5      H       H       0       21.262      8.262       18.198      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TNF          C1          C2      DOUBLE       y     1.401  0.0119     1.401  0.0119
+TNF          C1          O1      SINGLE       n     1.374  0.0155     1.374  0.0155
+TNF          C1          C6      SINGLE       y     1.401  0.0119     1.401  0.0119
+TNF          C2          C3      SINGLE       y     1.392  0.0104     1.392  0.0104
+TNF          C2          N2      SINGLE       n     1.457  0.0200     1.457  0.0200
+TNF          C3          C4      DOUBLE       y     1.392  0.0104     1.392  0.0104
+TNF          C4          N4      SINGLE       n     1.457  0.0200     1.457  0.0200
+TNF          C4          C5      SINGLE       y     1.392  0.0104     1.392  0.0104
+TNF          N4         O41      SINGLE       n     1.221  0.0162     1.221  0.0162
+TNF          N4         O42      DOUBLE       n     1.221  0.0162     1.221  0.0162
+TNF          N2         O21      SINGLE       n     1.221  0.0162     1.221  0.0162
+TNF          N2         O22      DOUBLE       n     1.221  0.0162     1.221  0.0162
+TNF          C6          C5      DOUBLE       y     1.392  0.0104     1.392  0.0104
+TNF          C6          N6      SINGLE       n     1.457  0.0200     1.457  0.0200
+TNF          N6         O61      SINGLE       n     1.221  0.0162     1.221  0.0162
+TNF          N6         O62      DOUBLE       n     1.221  0.0162     1.221  0.0162
+TNF          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0184
+TNF          O1          H1      SINGLE       n     0.966  0.0059     0.861  0.0200
+TNF          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0184
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TNF          C2          C1          O1     122.148    3.00
+TNF          C2          C1          C6     115.705    1.50
+TNF          O1          C1          C6     122.148    3.00
+TNF          C1          C2          C3     121.254    1.59
+TNF          C1          C2          N2     121.018    1.50
+TNF          C3          C2          N2     117.728    1.50
+TNF          C2          C3          C4     119.220    1.50
+TNF          C2          C3          H3     119.988    1.50
+TNF          C4          C3          H3     120.792    1.50
+TNF          C3          C4          N4     118.326    1.50
+TNF          C3          C4          C5     123.348    1.50
+TNF          N4          C4          C5     118.326    1.50
+TNF          C4          N4         O41     118.257    1.50
+TNF          C4          N4         O42     118.257    1.50
+TNF         O41          N4         O42     123.486    1.50
+TNF          C2          N2         O21     118.308    1.50
+TNF          C2          N2         O22     118.308    1.50
+TNF         O21          N2         O22     123.383    1.50
+TNF          C1          O1          H1     120.000    3.00
+TNF          C1          C6          C5     121.254    1.59
+TNF          C1          C6          N6     121.018    1.50
+TNF          C5          C6          N6     117.728    1.50
+TNF          C4          C5          C6     119.220    1.50
+TNF          C4          C5          H5     120.792    1.50
+TNF          C6          C5          H5     119.988    1.50
+TNF          C6          N6         O61     118.308    1.50
+TNF          C6          N6         O62     118.308    1.50
+TNF         O61          N6         O62     123.383    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TNF       const_sp2_sp2_4          O1          C1          C2          N2       0.000     5.0     2
+TNF              const_24          O1          C1          C6          N6       0.000    10.0     2
+TNF             sp2_sp2_1          C2          C1          O1          H1     180.000     5.0     2
+TNF              const_18          C4          C5          C6          N6     180.000    10.0     2
+TNF            sp2_sp2_11          C1          C6          N6         O61     180.000     5.0     2
+TNF       const_sp2_sp2_7          N2          C2          C3          C4     180.000     5.0     2
+TNF             sp2_sp2_3          C1          C2          N2         O21     180.000     5.0     2
+TNF              const_10          C2          C3          C4          N4     180.000    10.0     2
+TNF              const_15          N4          C4          C5          C6     180.000    10.0     2
+TNF             sp2_sp2_7          C3          C4          N4         O41     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TNF    plan-1          C1   0.020
+TNF    plan-1          C2   0.020
+TNF    plan-1          C3   0.020
+TNF    plan-1          C4   0.020
+TNF    plan-1          C5   0.020
+TNF    plan-1          C6   0.020
+TNF    plan-1          H3   0.020
+TNF    plan-1          H5   0.020
+TNF    plan-1          N2   0.020
+TNF    plan-1          N4   0.020
+TNF    plan-1          N6   0.020
+TNF    plan-1          O1   0.020
+TNF    plan-2          C4   0.020
+TNF    plan-2          N4   0.020
+TNF    plan-2         O41   0.020
+TNF    plan-2         O42   0.020
+TNF    plan-3          C2   0.020
+TNF    plan-3          N2   0.020
+TNF    plan-3         O21   0.020
+TNF    plan-3         O22   0.020
+TNF    plan-4          C6   0.020
+TNF    plan-4          N6   0.020
+TNF    plan-4         O61   0.020
+TNF    plan-4         O62   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TNF           SMILES              ACDLabs 10.04                    O=[N+]([O-])c1cc(cc([N+]([O-])=O)c1O)[N+]([O-])=O
+TNF SMILES_CANONICAL               CACTVS 3.341                    Oc1c(cc(cc1[N+]([O-])=O)[N+]([O-])=O)[N+]([O-])=O
+TNF           SMILES               CACTVS 3.341                    Oc1c(cc(cc1[N+]([O-])=O)[N+]([O-])=O)[N+]([O-])=O
+TNF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                  c1c(cc(c(c1[N+](=O)[O-])O)[N+](=O)[O-])[N+](=O)[O-]
+TNF           SMILES "OpenEye OEToolkits" 1.5.0                  c1c(cc(c(c1[N+](=O)[O-])O)[N+](=O)[O-])[N+](=O)[O-]
+TNF            InChI                InChI  1.03 InChI=1S/C6H3N3O7/c10-6-4(8(13)14)1-3(7(11)12)2-5(6)9(15)16/h1-2,10H
+TNF         InChIKey                InChI  1.03                                          OXNIZHLAWKMVMX-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TNF acedrg               243         "dictionary generator"                  
+TNF acedrg_database      11          "data source"                           
+TNF rdkit                2017.03.2   "Chemoinformatics tool"
+TNF refmac5              5.8.0238    "optimization tool"                     

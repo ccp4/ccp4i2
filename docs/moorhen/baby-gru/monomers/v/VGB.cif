@@ -1,0 +1,348 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VGB     VGB      (5R,6R,7R,8S)-6,7-dihydroxy-5-(hydroxymethyl)-2-(2-phenylethyl)-8-(propanoylamino)-5,6,7,8-tetrahydro-1H-imidazo[1,2-a]pyridin-4-ium     NON-POLYMER     52     26     .     
+#
+data_comp_VGB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VGB     CBA     C       CH3     0       37.216      40.813      22.001      
+VGB     CAN     C       CH2     0       36.463      42.071      21.679      
+VGB     CAL     C       C       0       34.957      41.907      21.725      
+VGB     OAM     O       O       0       34.435      40.841      22.045      
+VGB     NAK     N       NH1     0       34.253      43.011      21.399      
+VGB     CAC     C       CH1     0       32.791      43.084      21.328      
+VGB     CAB     C       CH1     0       32.132      42.948      22.711      
+VGB     OAG     O       OH1     0       32.447      44.113      23.483      
+VGB     CAA     C       CH1     0       30.629      42.779      22.595      
+VGB     OAH     O       OH1     0       30.044      42.801      23.902      
+VGB     CAF     C       CH1     0       30.257      41.485      21.863      
+VGB     CAI     C       CH2     0       28.759      41.437      21.534      
+VGB     OAJ     O       OH1     0       28.410      42.368      20.517      
+VGB     NAE     N       NR5     1       31.064      41.352      20.644      
+VGB     CAQ     C       CR15    0       30.849      40.516      19.577      
+VGB     CAD     C       CR56    0       32.217      42.062      20.383      
+VGB     NAO     N       NR5     0       32.691      41.668      19.161      
+VGB     CAP     C       CR5     0       31.849      40.713      18.663      
+VGB     CAR     C       CH2     0       32.052      40.058      17.338      
+VGB     CAS     C       CH2     0       31.368      40.796      16.157      
+VGB     CAT     C       CR6     0       29.902      41.075      16.390      
+VGB     CAU     C       CR16    0       28.958      40.062      16.268      
+VGB     CAV     C       CR16    0       27.611      40.316      16.492      
+VGB     CAW     C       CR16    0       27.193      41.583      16.847      
+VGB     CAX     C       CR16    0       28.119      42.596      16.978      
+VGB     CAY     C       CR16    0       29.466      42.344      16.755      
+VGB     HBA     H       H       0       38.172      40.981      21.940      
+VGB     HBAA    H       H       0       36.969      40.115      21.369      
+VGB     HBAB    H       H       0       36.996      40.524      22.904      
+VGB     HAN     H       H       0       36.719      42.375      20.783      
+VGB     HANA    H       H       0       36.723      42.770      22.317      
+VGB     HNAK    H       H       0       34.704      43.729      21.220      
+VGB     HAC     H       H       0       32.564      43.981      20.985      
+VGB     HAB     H       H       0       32.504      42.159      23.170      
+VGB     HOAG    H       H       0       32.078      44.792      23.148      
+VGB     HAA     H       H       0       30.266      43.542      22.083      
+VGB     HOAH    H       H       0       30.339      42.158      24.358      
+VGB     HAF     H       H       0       30.464      40.726      22.464      
+VGB     HAI     H       H       0       28.240      41.636      22.341      
+VGB     HAIA    H       H       0       28.520      40.534      21.237      
+VGB     HOAJ    H       H       0       27.609      42.227      20.275      
+VGB     HAQ     H       H       0       30.128      39.916      19.486      
+VGB     HNAO    H       H       0       33.415      41.974      18.764      
+VGB     HAR     H       H       0       31.705      39.145      17.384      
+VGB     HARA    H       H       0       33.012      40.001      17.162      
+VGB     HAS     H       H       0       31.463      40.252      15.346      
+VGB     HASA    H       H       0       31.834      41.647      16.002      
+VGB     HAU     H       H       0       29.237      39.193      16.026      
+VGB     HAV     H       H       0       26.980      39.620      16.402      
+VGB     HAW     H       H       0       26.278      41.755      16.999      
+VGB     HAX     H       H       0       27.836      43.463      17.221      
+VGB     HAY     H       H       0       30.094      43.043      16.847      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VGB         CBA         CAN      SINGLE       n     1.498  0.0200     1.498  0.0200
+VGB         CAN         CAL      SINGLE       n     1.506  0.0190     1.506  0.0190
+VGB         CAL         OAM      DOUBLE       n     1.227  0.0100     1.227  0.0100
+VGB         CAL         NAK      SINGLE       n     1.343  0.0102     1.343  0.0102
+VGB         NAK         CAC      SINGLE       n     1.459  0.0100     1.459  0.0100
+VGB         CAC         CAB      SINGLE       n     1.532  0.0111     1.532  0.0111
+VGB         CAC         CAD      SINGLE       n     1.503  0.0100     1.503  0.0100
+VGB         CAB         OAG      SINGLE       n     1.431  0.0107     1.431  0.0107
+VGB         CAB         CAA      SINGLE       n     1.515  0.0100     1.515  0.0100
+VGB         CAA         OAH      SINGLE       n     1.431  0.0107     1.431  0.0107
+VGB         CAA         CAF      SINGLE       n     1.528  0.0100     1.528  0.0100
+VGB         CAF         CAI      SINGLE       n     1.533  0.0100     1.533  0.0100
+VGB         CAF         NAE      SINGLE       n     1.464  0.0100     1.464  0.0100
+VGB         CAI         OAJ      SINGLE       n     1.422  0.0134     1.422  0.0134
+VGB         NAE         CAQ      SINGLE       y     1.373  0.0166     1.373  0.0166
+VGB         NAE         CAD      DOUBLE       y     1.378  0.0200     1.378  0.0200
+VGB         CAQ         CAP      DOUBLE       y     1.369  0.0129     1.369  0.0129
+VGB         CAD         NAO      SINGLE       y     1.367  0.0200     1.367  0.0200
+VGB         NAO         CAP      SINGLE       y     1.367  0.0119     1.367  0.0119
+VGB         CAP         CAR      SINGLE       n     1.491  0.0100     1.491  0.0100
+VGB         CAR         CAS      SINGLE       n     1.546  0.0200     1.546  0.0200
+VGB         CAS         CAT      SINGLE       n     1.509  0.0100     1.509  0.0100
+VGB         CAT         CAU      DOUBLE       y     1.385  0.0111     1.385  0.0111
+VGB         CAT         CAY      SINGLE       y     1.385  0.0111     1.385  0.0111
+VGB         CAU         CAV      SINGLE       y     1.386  0.0100     1.386  0.0100
+VGB         CAV         CAW      DOUBLE       y     1.376  0.0124     1.376  0.0124
+VGB         CAW         CAX      SINGLE       y     1.374  0.0127     1.374  0.0127
+VGB         CAX         CAY      DOUBLE       y     1.386  0.0100     1.386  0.0100
+VGB         CBA         HBA      SINGLE       n     1.089  0.0100     0.973  0.0141
+VGB         CBA        HBAA      SINGLE       n     1.089  0.0100     0.973  0.0141
+VGB         CBA        HBAB      SINGLE       n     1.089  0.0100     0.973  0.0141
+VGB         CAN         HAN      SINGLE       n     1.089  0.0100     0.981  0.0185
+VGB         CAN        HANA      SINGLE       n     1.089  0.0100     0.981  0.0185
+VGB         NAK        HNAK      SINGLE       n     1.016  0.0100     0.866  0.0200
+VGB         CAC         HAC      SINGLE       n     1.089  0.0100     0.987  0.0137
+VGB         CAB         HAB      SINGLE       n     1.089  0.0100     0.988  0.0151
+VGB         OAG        HOAG      SINGLE       n     0.970  0.0120     0.841  0.0200
+VGB         CAA         HAA      SINGLE       n     1.089  0.0100     0.988  0.0151
+VGB         OAH        HOAH      SINGLE       n     0.970  0.0120     0.841  0.0200
+VGB         CAF         HAF      SINGLE       n     1.089  0.0100     0.990  0.0168
+VGB         CAI         HAI      SINGLE       n     1.089  0.0100     0.980  0.0159
+VGB         CAI        HAIA      SINGLE       n     1.089  0.0100     0.980  0.0159
+VGB         OAJ        HOAJ      SINGLE       n     0.970  0.0120     0.848  0.0200
+VGB         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.942  0.0152
+VGB         NAO        HNAO      SINGLE       n     1.016  0.0100     0.880  0.0200
+VGB         CAR         HAR      SINGLE       n     1.089  0.0100     0.978  0.0121
+VGB         CAR        HARA      SINGLE       n     1.089  0.0100     0.978  0.0121
+VGB         CAS         HAS      SINGLE       n     1.089  0.0100     0.982  0.0102
+VGB         CAS        HASA      SINGLE       n     1.089  0.0100     0.982  0.0102
+VGB         CAU         HAU      SINGLE       n     1.082  0.0130     0.944  0.0174
+VGB         CAV         HAV      SINGLE       n     1.082  0.0130     0.944  0.0175
+VGB         CAW         HAW      SINGLE       n     1.082  0.0130     0.944  0.0161
+VGB         CAX         HAX      SINGLE       n     1.082  0.0130     0.944  0.0175
+VGB         CAY         HAY      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VGB         CAN         CBA         HBA     109.502    1.50
+VGB         CAN         CBA        HBAA     109.502    1.50
+VGB         CAN         CBA        HBAB     109.502    1.50
+VGB         HBA         CBA        HBAA     109.380    1.50
+VGB         HBA         CBA        HBAB     109.380    1.50
+VGB        HBAA         CBA        HBAB     109.380    1.50
+VGB         CBA         CAN         CAL     112.924    1.50
+VGB         CBA         CAN         HAN     109.044    1.50
+VGB         CBA         CAN        HANA     109.044    1.50
+VGB         CAL         CAN         HAN     108.894    1.50
+VGB         CAL         CAN        HANA     108.894    1.50
+VGB         HAN         CAN        HANA     107.827    1.50
+VGB         CAN         CAL         OAM     122.056    1.50
+VGB         CAN         CAL         NAK     115.397    1.50
+VGB         OAM         CAL         NAK     122.547    1.56
+VGB         CAL         NAK         CAC     122.746    1.50
+VGB         CAL         NAK        HNAK     118.326    2.17
+VGB         CAC         NAK        HNAK     118.928    1.50
+VGB         NAK         CAC         CAB     110.829    2.03
+VGB         NAK         CAC         CAD     109.471    3.00
+VGB         NAK         CAC         HAC     107.675    1.50
+VGB         CAB         CAC         CAD     109.233    1.61
+VGB         CAB         CAC         HAC     108.050    1.89
+VGB         CAD         CAC         HAC     108.874    1.50
+VGB         CAC         CAB         OAG     108.845    1.54
+VGB         CAC         CAB         CAA     111.124    1.57
+VGB         CAC         CAB         HAB     108.804    1.50
+VGB         OAG         CAB         CAA     110.081    2.02
+VGB         OAG         CAB         HAB     108.790    1.50
+VGB         CAA         CAB         HAB     109.166    1.50
+VGB         CAB         OAG        HOAG     109.099    3.00
+VGB         CAB         CAA         OAH     110.081    2.02
+VGB         CAB         CAA         CAF     111.928    1.50
+VGB         CAB         CAA         HAA     109.166    1.50
+VGB         OAH         CAA         CAF     110.894    1.50
+VGB         OAH         CAA         HAA     108.790    1.50
+VGB         CAF         CAA         HAA     108.977    1.50
+VGB         CAA         OAH        HOAH     109.099    3.00
+VGB         CAA         CAF         CAI     111.163    2.25
+VGB         CAA         CAF         NAE     108.748    1.59
+VGB         CAA         CAF         HAF     107.612    1.50
+VGB         CAI         CAF         NAE     110.288    1.50
+VGB         CAI         CAF         HAF     107.898    1.50
+VGB         NAE         CAF         HAF     108.535    1.50
+VGB         CAF         CAI         OAJ     111.669    2.74
+VGB         CAF         CAI         HAI     109.529    1.50
+VGB         CAF         CAI        HAIA     109.529    1.50
+VGB         OAJ         CAI         HAI     109.275    1.50
+VGB         OAJ         CAI        HAIA     109.275    1.50
+VGB         HAI         CAI        HAIA     108.230    1.50
+VGB         CAI         OAJ        HOAJ     109.039    2.77
+VGB         CAF         NAE         CAQ     127.350    2.38
+VGB         CAF         NAE         CAD     124.561    1.85
+VGB         CAQ         NAE         CAD     108.089    1.50
+VGB         NAE         CAQ         CAP     108.487    1.50
+VGB         NAE         CAQ         HAQ     125.673    1.50
+VGB         CAP         CAQ         HAQ     125.840    1.50
+VGB         CAC         CAD         NAE     123.458    1.50
+VGB         CAC         CAD         NAO     128.643    1.77
+VGB         NAE         CAD         NAO     107.900    1.50
+VGB         CAD         NAO         CAP     107.944    1.50
+VGB         CAD         NAO        HNAO     126.133    1.73
+VGB         CAP         NAO        HNAO     125.924    1.76
+VGB         CAQ         CAP         NAO     107.581    1.50
+VGB         CAQ         CAP         CAR     129.271    2.31
+VGB         NAO         CAP         CAR     123.148    1.50
+VGB         CAP         CAR         CAS     113.880    2.07
+VGB         CAP         CAR         HAR     108.808    1.50
+VGB         CAP         CAR        HARA     108.808    1.50
+VGB         CAS         CAR         HAR     109.039    1.50
+VGB         CAS         CAR        HARA     109.039    1.50
+VGB         HAR         CAR        HARA     107.724    1.50
+VGB         CAR         CAS         CAT     113.028    3.00
+VGB         CAR         CAS         HAS     108.908    1.50
+VGB         CAR         CAS        HASA     108.908    1.50
+VGB         CAT         CAS         HAS     108.988    1.50
+VGB         CAT         CAS        HASA     108.988    1.50
+VGB         HAS         CAS        HASA     107.772    1.50
+VGB         CAS         CAT         CAU     120.970    1.80
+VGB         CAS         CAT         CAY     120.970    1.80
+VGB         CAU         CAT         CAY     118.060    1.50
+VGB         CAT         CAU         CAV     120.624    1.50
+VGB         CAT         CAU         HAU     119.591    1.50
+VGB         CAV         CAU         HAU     119.786    1.50
+VGB         CAU         CAV         CAW     120.325    1.50
+VGB         CAU         CAV         HAV     119.792    1.50
+VGB         CAW         CAV         HAV     119.883    1.50
+VGB         CAV         CAW         CAX     120.043    1.50
+VGB         CAV         CAW         HAW     119.979    1.50
+VGB         CAX         CAW         HAW     119.979    1.50
+VGB         CAW         CAX         CAY     120.325    1.50
+VGB         CAW         CAX         HAX     119.883    1.50
+VGB         CAY         CAX         HAX     119.792    1.50
+VGB         CAT         CAY         CAX     120.624    1.50
+VGB         CAT         CAY         HAY     119.591    1.50
+VGB         CAX         CAY         HAY     119.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VGB            sp3_sp3_28         CAL         CAN         CBA         HBA     180.000    10.0     3
+VGB            sp3_sp3_43         CAA         CAF         CAI         OAJ     180.000    10.0     3
+VGB             sp2_sp3_5         CAQ         NAE         CAF         CAI     -60.000    10.0     6
+VGB            sp3_sp3_52         CAF         CAI         OAJ        HOAJ     180.000    10.0     3
+VGB       const_sp2_sp2_6         CAP         CAQ         NAE         CAF     180.000     5.0     2
+VGB       const_sp2_sp2_1         CAC         CAD         NAE         CAF       0.000     5.0     2
+VGB              const_11         CAR         CAP         CAQ         NAE     180.000    10.0     2
+VGB              const_19         CAC         CAD         NAO         CAP     180.000    10.0     2
+VGB              const_15         CAR         CAP         NAO         CAD     180.000    10.0     2
+VGB            sp2_sp3_26         CAQ         CAP         CAR         CAS     -90.000    10.0     6
+VGB            sp3_sp3_55         CAP         CAR         CAS         CAT     180.000    10.0     3
+VGB            sp2_sp3_32         CAU         CAT         CAS         CAR     -90.000    10.0     6
+VGB             sp2_sp3_8         OAM         CAL         CAN         CBA     120.000    10.0     6
+VGB              const_23         CAS         CAT         CAU         CAV     180.000    10.0     2
+VGB              const_43         CAS         CAT         CAY         CAX     180.000    10.0     2
+VGB              const_25         CAT         CAU         CAV         CAW       0.000    10.0     2
+VGB              const_29         CAU         CAV         CAW         CAX       0.000    10.0     2
+VGB              const_33         CAV         CAW         CAX         CAY       0.000    10.0     2
+VGB              const_37         CAW         CAX         CAY         CAT       0.000    10.0     2
+VGB             sp2_sp2_1         CAN         CAL         NAK         CAC     180.000     5.0     2
+VGB            sp2_sp3_13         CAL         NAK         CAC         CAB       0.000    10.0     6
+VGB            sp2_sp3_20         NAE         CAD         CAC         NAK     120.000    10.0     6
+VGB             sp3_sp3_5         OAG         CAB         CAC         NAK      60.000    10.0     3
+VGB            sp3_sp3_37         CAC         CAB         OAG        HOAG     180.000    10.0     3
+VGB            sp3_sp3_14         OAH         CAA         CAB         OAG     -60.000    10.0     3
+VGB            sp3_sp3_23         OAH         CAA         CAF         CAI      60.000    10.0     3
+VGB            sp3_sp3_40         CAB         CAA         OAH        HOAH     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VGB    chir_1    CAC    NAK    CAB    CAD    positive
+VGB    chir_2    CAB    OAG    CAA    CAC    negative
+VGB    chir_3    CAA    OAH    CAB    CAF    negative
+VGB    chir_4    CAF    NAE    CAA    CAI    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VGB    plan-1         CAC   0.020
+VGB    plan-1         CAD   0.020
+VGB    plan-1         CAF   0.020
+VGB    plan-1         CAP   0.020
+VGB    plan-1         CAQ   0.020
+VGB    plan-1         CAR   0.020
+VGB    plan-1         HAQ   0.020
+VGB    plan-1        HNAO   0.020
+VGB    plan-1         NAE   0.020
+VGB    plan-1         NAO   0.020
+VGB    plan-2         CAS   0.020
+VGB    plan-2         CAT   0.020
+VGB    plan-2         CAU   0.020
+VGB    plan-2         CAV   0.020
+VGB    plan-2         CAW   0.020
+VGB    plan-2         CAX   0.020
+VGB    plan-2         CAY   0.020
+VGB    plan-2         HAU   0.020
+VGB    plan-2         HAV   0.020
+VGB    plan-2         HAW   0.020
+VGB    plan-2         HAX   0.020
+VGB    plan-2         HAY   0.020
+VGB    plan-3         CAL   0.020
+VGB    plan-3         CAN   0.020
+VGB    plan-3         NAK   0.020
+VGB    plan-3         OAM   0.020
+VGB    plan-4         CAC   0.020
+VGB    plan-4         CAL   0.020
+VGB    plan-4        HNAK   0.020
+VGB    plan-4         NAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VGB           SMILES              ACDLabs 10.04                                                                                                                                    O=C(NC3c1[n+](cc(n1)CCc2ccccc2)C(C(O)C3O)CO)CC
+VGB SMILES_CANONICAL               CACTVS 3.341                                                                                                              CCC(=O)N[C@@H]1[C@@H](O)[C@H](O)[C@@H](CO)[n+]2cc(CCc3ccccc3)[nH]c12
+VGB           SMILES               CACTVS 3.341                                                                                                                     CCC(=O)N[CH]1[CH](O)[CH](O)[CH](CO)[n+]2cc(CCc3ccccc3)[nH]c12
+VGB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                 CCC(=O)N[C@H]1c2[nH]c(c[n+]2[C@@H]([C@H]([C@@H]1O)O)CO)CCc3ccccc3
+VGB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                   CCC(=O)NC1c2[nH]c(c[n+]2C(C(C1O)O)CO)CCc3ccccc3
+VGB            InChI                InChI  1.03 InChI=1S/C19H25N3O4/c1-2-15(24)21-16-18(26)17(25)14(11-23)22-10-13(20-19(16)22)9-8-12-6-4-3-5-7-12/h3-7,10,14,16-18,23,25-26H,2,8-9,11H2,1H3,(H,21,24)/p+1/t14-,16-,17-,18-/m1/s1
+VGB         InChIKey                InChI  1.03                                                                                                                                                       QLPMCDAONBPCJU-VDHUWJSZSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VGB acedrg               243         "dictionary generator"                  
+VGB acedrg_database      11          "data source"                           
+VGB rdkit                2017.03.2   "Chemoinformatics tool"
+VGB refmac5              5.8.0238    "optimization tool"                     

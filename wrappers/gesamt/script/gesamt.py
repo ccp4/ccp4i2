@@ -1,6 +1,5 @@
 from __future__ import print_function
 
-import re
 
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
@@ -232,9 +231,7 @@ class gesamt(CPluginScript):
                         if chain != currentChain:
                             chainNode = etree.SubElement(perResidueNode,'Chain')
                             currentChain = chain
-                        name_num = (row[-1].split(":")[1])
-                        resType = re.findall(r'[A-Z]+', name_num)[0]
-                        iRes = re.findall(r'\d+', name_num)[0]
+                        resType = row[-1].strip().split()[-2].split(":")[1]
                         if aminoResidues.count(resType)>0:
                             rowNode = etree.SubElement(chainNode,'Row')
                             equivalenceNode = etree.SubElement(rowNode,"Equivalence")
@@ -243,7 +240,7 @@ class gesamt(CPluginScript):
                             chainIDNode = etree.SubElement(rowNode,"chainID")
                             chainIDNode.text = chain
                             distanceNode.text = row[0].strip()
-                            iResNode.text = iRes
+                            iResNode.text = row[-1].strip().split()[-1]
                             equivalenceNode.text = ("|").join(row)
 
                     if inMultiTransformation:

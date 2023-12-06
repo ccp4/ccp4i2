@@ -1,0 +1,372 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CHI     CHI      "5-CHLORO-1H-INDOLE-2-CARBOXYLIC ACID [1-(4-FLUOROBENZYL)-2-(4-HYDROXYPIPERIDIN-1YL)-2-OXOETHYL]AMIDE"     NON-POLYMER     54     31     .     
+#
+data_comp_CHI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CHI     CL1     CL      CL      0       18.003      7.567       49.794      
+CHI     C1      C       CR6     0       18.184      9.039       50.716      
+CHI     C2      C       CR16    0       18.260      10.255      50.023      
+CHI     C3      C       CR16    0       18.403      11.440      50.713      
+CHI     C4      C       CR56    0       18.470      11.383      52.107      
+CHI     N1      N       NR5     0       18.609      12.386      53.029      
+CHI     C5      C       CR56    0       18.394      10.155      52.809      
+CHI     C6      C       CR16    0       18.248      8.958       52.083      
+CHI     C7      C       CR15    0       18.496      10.470      54.189      
+CHI     C8      C       CR5     0       18.622      11.833      54.292      
+CHI     C9      C       C       0       18.766      12.705      55.468      
+CHI     O1      O       O       0       19.078      13.890      55.340      
+CHI     N2      N       NH1     0       18.571      12.153      56.688      
+CHI     C10     C       CH1     0       18.774      12.893      57.919      
+CHI     C11     C       C       0       20.264      13.130      58.205      
+CHI     O2      O       O       0       21.070      12.229      57.944      
+CHI     N3      N       NR6     0       20.676      14.324      58.696      
+CHI     C12     C       CH2     0       20.056      15.638      58.448      
+CHI     C13     C       CH2     0       21.094      16.700      58.157      
+CHI     C14     C       CH1     0       22.141      16.777      59.241      
+CHI     O3      O       OH1     0       23.135      17.724      58.894      
+CHI     C15     C       CH2     0       22.764      15.418      59.437      
+CHI     C16     C       CH2     0       21.718      14.370      59.738      
+CHI     C17     C       CH2     0       18.143      12.149      59.109      
+CHI     C18     C       CR6     0       18.315      12.849      60.435      
+CHI     C19     C       CR16    0       17.629      14.025      60.717      
+CHI     C20     C       CR16    0       17.786      14.683      61.931      
+CHI     C21     C       CR6     0       18.642      14.145      62.852      
+CHI     F1      F       F       0       18.800      14.783      64.044      
+CHI     C22     C       CR16    0       19.345      12.995      62.626      
+CHI     C23     C       CR16    0       19.176      12.351      61.406      
+CHI     H21     H       H       0       18.212      10.262      49.090      
+CHI     H31     H       H       0       18.455      12.259      50.260      
+CHI     HN1     H       H       0       18.678      13.248      52.840      
+CHI     H61     H       H       0       18.195      8.135       52.523      
+CHI     H7      H       H       0       18.475      9.853       54.903      
+CHI     HN2     H       H       0       18.306      11.324      56.752      
+CHI     H101    H       H       0       18.310      13.754      57.834      
+CHI     H121    H       H       0       19.448      15.581      57.679      
+CHI     H122    H       H       0       19.528      15.903      59.235      
+CHI     H131    H       H       0       20.653      17.571      58.073      
+CHI     H132    H       H       0       21.531      16.502      57.302      
+CHI     H14     H       H       0       21.708      17.060      60.090      
+CHI     HO3     H       H       0       23.562      17.934      59.587      
+CHI     H151    H       H       0       23.406      15.460      60.177      
+CHI     H152    H       H       0       23.255      15.166      58.626      
+CHI     H161    H       H       0       22.156      13.492      59.821      
+CHI     H162    H       H       0       21.296      14.576      60.603      
+CHI     H171    H       H       0       18.543      11.255      59.167      
+CHI     H172    H       H       0       17.186      12.035      58.935      
+CHI     H191    H       H       0       17.043      14.382      60.070      
+CHI     H201    H       H       0       17.315      15.475      62.116      
+CHI     H221    H       H       0       19.926      12.649      63.279      
+CHI     H231    H       H       0       19.654      11.556      61.234      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CHI         CL1          C1      SINGLE       n     1.747  0.0100     1.747  0.0100
+CHI          C1          C2      DOUBLE       y     1.398  0.0100     1.398  0.0100
+CHI          C1          C6      SINGLE       y     1.367  0.0100     1.367  0.0100
+CHI          C2          C3      SINGLE       y     1.375  0.0100     1.375  0.0100
+CHI          C3          C4      DOUBLE       y     1.393  0.0100     1.393  0.0100
+CHI          C4          N1      SINGLE       y     1.369  0.0100     1.369  0.0100
+CHI          C4          C5      SINGLE       y     1.414  0.0100     1.414  0.0100
+CHI          N1          C8      SINGLE       y     1.377  0.0100     1.377  0.0100
+CHI          C5          C6      DOUBLE       y     1.404  0.0100     1.404  0.0100
+CHI          C5          C7      SINGLE       y     1.420  0.0100     1.420  0.0100
+CHI          C7          C8      DOUBLE       y     1.371  0.0100     1.371  0.0100
+CHI          C8          C9      SINGLE       n     1.466  0.0100     1.466  0.0100
+CHI          C9          O1      DOUBLE       n     1.231  0.0100     1.231  0.0100
+CHI          C9          N2      SINGLE       n     1.346  0.0104     1.346  0.0104
+CHI          N2         C10      SINGLE       n     1.446  0.0100     1.446  0.0100
+CHI         C10         C11      SINGLE       n     1.525  0.0130     1.525  0.0130
+CHI         C10         C17      SINGLE       n     1.536  0.0102     1.536  0.0102
+CHI         C11          O2      DOUBLE       n     1.236  0.0100     1.236  0.0100
+CHI         C11          N3      SINGLE       n     1.346  0.0100     1.346  0.0100
+CHI          N3         C12      SINGLE       n     1.465  0.0108     1.465  0.0108
+CHI          N3         C16      SINGLE       n     1.465  0.0108     1.465  0.0108
+CHI         C12         C13      SINGLE       n     1.511  0.0100     1.511  0.0100
+CHI         C13         C14      SINGLE       n     1.509  0.0100     1.509  0.0100
+CHI         C14          O3      SINGLE       n     1.416  0.0145     1.416  0.0145
+CHI         C14         C15      SINGLE       n     1.509  0.0100     1.509  0.0100
+CHI         C15         C16      SINGLE       n     1.511  0.0100     1.511  0.0100
+CHI         C17         C18      SINGLE       n     1.508  0.0100     1.508  0.0100
+CHI         C18         C19      DOUBLE       y     1.385  0.0110     1.385  0.0110
+CHI         C18         C23      SINGLE       y     1.385  0.0110     1.385  0.0110
+CHI         C19         C20      SINGLE       y     1.386  0.0100     1.386  0.0100
+CHI         C20         C21      DOUBLE       y     1.363  0.0118     1.363  0.0118
+CHI         C21          F1      SINGLE       n     1.361  0.0100     1.361  0.0100
+CHI         C21         C22      SINGLE       y     1.363  0.0118     1.363  0.0118
+CHI         C22         C23      DOUBLE       y     1.386  0.0100     1.386  0.0100
+CHI          C2         H21      SINGLE       n     1.082  0.0130     0.935  0.0100
+CHI          C3         H31      SINGLE       n     1.082  0.0130     0.937  0.0100
+CHI          N1         HN1      SINGLE       n     1.016  0.0100     0.885  0.0200
+CHI          C6         H61      SINGLE       n     1.082  0.0130     0.935  0.0100
+CHI          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0200
+CHI          N2         HN2      SINGLE       n     1.016  0.0100     0.873  0.0101
+CHI         C10        H101      SINGLE       n     1.089  0.0100     0.987  0.0159
+CHI         C12        H121      SINGLE       n     1.089  0.0100     0.984  0.0160
+CHI         C12        H122      SINGLE       n     1.089  0.0100     0.984  0.0160
+CHI         C13        H131      SINGLE       n     1.089  0.0100     0.980  0.0102
+CHI         C13        H132      SINGLE       n     1.089  0.0100     0.980  0.0102
+CHI         C14         H14      SINGLE       n     1.089  0.0100     0.994  0.0100
+CHI          O3         HO3      SINGLE       n     0.970  0.0120     0.841  0.0200
+CHI         C15        H151      SINGLE       n     1.089  0.0100     0.980  0.0102
+CHI         C15        H152      SINGLE       n     1.089  0.0100     0.980  0.0102
+CHI         C16        H161      SINGLE       n     1.089  0.0100     0.984  0.0160
+CHI         C16        H162      SINGLE       n     1.089  0.0100     0.984  0.0160
+CHI         C17        H171      SINGLE       n     1.089  0.0100     0.980  0.0164
+CHI         C17        H172      SINGLE       n     1.089  0.0100     0.980  0.0164
+CHI         C19        H191      SINGLE       n     1.082  0.0130     0.943  0.0173
+CHI         C20        H201      SINGLE       n     1.082  0.0130     0.940  0.0141
+CHI         C22        H221      SINGLE       n     1.082  0.0130     0.940  0.0141
+CHI         C23        H231      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CHI         CL1          C1          C2     118.323    1.50
+CHI         CL1          C1          C6     118.764    1.50
+CHI          C2          C1          C6     122.913    1.50
+CHI          C1          C2          C3     120.187    1.50
+CHI          C1          C2         H21     119.874    1.50
+CHI          C3          C2         H21     119.939    1.50
+CHI          C2          C3          C4     117.865    1.50
+CHI          C2          C3         H31     121.052    1.50
+CHI          C4          C3         H31     121.083    1.50
+CHI          C3          C4          N1     130.151    1.50
+CHI          C3          C4          C5     122.090    1.50
+CHI          N1          C4          C5     107.759    1.50
+CHI          C4          N1          C8     108.793    1.50
+CHI          C4          N1         HN1     125.480    1.50
+CHI          C8          N1         HN1     125.727    1.50
+CHI          C4          C5          C6     119.174    1.50
+CHI          C4          C5          C7     106.588    1.50
+CHI          C6          C5          C7     134.237    1.50
+CHI          C1          C6          C5     117.772    1.50
+CHI          C1          C6         H61     121.337    1.50
+CHI          C5          C6         H61     120.892    1.50
+CHI          C5          C7          C8     107.250    1.50
+CHI          C5          C7          H7     126.211    1.50
+CHI          C8          C7          H7     126.539    1.50
+CHI          N1          C8          C7     109.609    1.50
+CHI          N1          C8          C9     118.980    2.61
+CHI          C7          C8          C9     131.411    2.58
+CHI          C8          C9          O1     121.312    1.50
+CHI          C8          C9          N2     117.465    1.50
+CHI          O1          C9          N2     121.223    1.50
+CHI          C9          N2         C10     120.958    1.61
+CHI          C9          N2         HN2     119.901    1.50
+CHI         C10          N2         HN2     119.141    1.91
+CHI          N2         C10         C11     111.523    2.74
+CHI          N2         C10         C17     111.151    1.50
+CHI          N2         C10        H101     108.209    1.50
+CHI         C11         C10         C17     110.020    1.88
+CHI         C11         C10        H101     108.676    1.50
+CHI         C17         C10        H101     108.240    1.50
+CHI         C10         C11          O2     120.623    1.74
+CHI         C10         C11          N3     117.572    1.61
+CHI          O2         C11          N3     121.805    1.50
+CHI         C11          N3         C12     123.243    3.00
+CHI         C11          N3         C16     123.243    3.00
+CHI         C12          N3         C16     113.515    1.50
+CHI          N3         C12         C13     110.373    1.50
+CHI          N3         C12        H121     109.413    1.50
+CHI          N3         C12        H122     109.413    1.50
+CHI         C13         C12        H121     109.517    1.50
+CHI         C13         C12        H122     109.517    1.50
+CHI        H121         C12        H122     108.159    1.50
+CHI         C12         C13         C14     111.868    1.50
+CHI         C12         C13        H131     109.526    1.50
+CHI         C12         C13        H132     109.526    1.50
+CHI         C14         C13        H131     109.359    1.50
+CHI         C14         C13        H132     109.359    1.50
+CHI        H131         C13        H132     108.000    1.50
+CHI         C13         C14          O3     109.852    1.83
+CHI         C13         C14         C15     110.196    1.50
+CHI         C13         C14         H14     108.906    1.50
+CHI          O3         C14         C15     109.852    1.83
+CHI          O3         C14         H14     108.828    1.50
+CHI         C15         C14         H14     108.906    1.50
+CHI         C14          O3         HO3     108.820    1.99
+CHI         C14         C15         C16     111.868    1.50
+CHI         C14         C15        H151     109.359    1.50
+CHI         C14         C15        H152     109.359    1.50
+CHI         C16         C15        H151     109.526    1.50
+CHI         C16         C15        H152     109.526    1.50
+CHI        H151         C15        H152     108.000    1.50
+CHI          N3         C16         C15     110.373    1.50
+CHI          N3         C16        H161     109.413    1.50
+CHI          N3         C16        H162     109.413    1.50
+CHI         C15         C16        H161     109.517    1.50
+CHI         C15         C16        H162     109.517    1.50
+CHI        H161         C16        H162     108.159    1.50
+CHI         C10         C17         C18     113.420    1.89
+CHI         C10         C17        H171     108.793    1.50
+CHI         C10         C17        H172     108.793    1.50
+CHI         C18         C17        H171     108.862    1.50
+CHI         C18         C17        H172     108.862    1.50
+CHI        H171         C17        H172     107.782    1.50
+CHI         C17         C18         C19     121.048    1.50
+CHI         C17         C18         C23     121.048    1.50
+CHI         C19         C18         C23     117.904    1.50
+CHI         C18         C19         C20     121.324    1.50
+CHI         C18         C19        H191     119.298    1.50
+CHI         C20         C19        H191     119.377    1.50
+CHI         C19         C20         C21     118.232    1.50
+CHI         C19         C20        H201     120.956    1.50
+CHI         C21         C20        H201     120.816    1.50
+CHI         C20         C21          F1     118.513    1.50
+CHI         C20         C21         C22     122.975    1.50
+CHI          F1         C21         C22     118.513    1.50
+CHI         C21         C22         C23     118.232    1.50
+CHI         C21         C22        H221     120.816    1.50
+CHI         C23         C22        H221     120.956    1.50
+CHI         C18         C23         C22     121.324    1.50
+CHI         C18         C23        H231     119.298    1.50
+CHI         C22         C23        H231     119.377    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CHI             sp2_sp2_7          O1          C9          N2         C10       0.000     5.0     2
+CHI             sp2_sp3_7          C9          N2         C10         C11       0.000    10.0     6
+CHI            sp2_sp3_13          O2         C11         C10          N2       0.000    10.0     6
+CHI            sp3_sp3_37          N2         C10         C17         C18     180.000    10.0     3
+CHI             sp2_sp2_9         C10         C11          N3         C12     180.000     5.0     2
+CHI             sp2_sp3_4         C11          N3         C12         C13     180.000    10.0     6
+CHI            sp2_sp3_22         C11          N3         C16         C15     180.000    10.0     6
+CHI             sp3_sp3_1          N3         C12         C13         C14     -60.000    10.0     3
+CHI            sp3_sp3_12         C12         C13         C14          O3     -60.000    10.0     3
+CHI            sp3_sp3_47         C13         C14          O3         HO3      60.000    10.0     3
+CHI            sp3_sp3_22          O3         C14         C15         C16     180.000    10.0     3
+CHI              const_23         CL1          C1          C2          C3     180.000    10.0     2
+CHI              const_59         CL1          C1          C6          C5     180.000    10.0     2
+CHI            sp3_sp3_28         C14         C15         C16          N3      60.000    10.0     3
+CHI            sp2_sp3_26         C19         C18         C17         C10     -90.000    10.0     6
+CHI       const_sp2_sp2_3         C17         C18         C19         C20     180.000     5.0     2
+CHI              const_63         C17         C18         C23         C22     180.000    10.0     2
+CHI       const_sp2_sp2_5         C18         C19         C20         C21       0.000     5.0     2
+CHI              const_10         C19         C20         C21          F1     180.000    10.0     2
+CHI              const_15          F1         C21         C22         C23     180.000    10.0     2
+CHI              const_17         C21         C22         C23         C18       0.000    10.0     2
+CHI              const_25          C1          C2          C3          C4       0.000    10.0     2
+CHI              const_30          C2          C3          C4          N1     180.000    10.0     2
+CHI              const_43          C3          C4          N1          C8     180.000    10.0     2
+CHI              const_33          C3          C4          C5          C6       0.000    10.0     2
+CHI              const_47          C9          C8          N1          C4     180.000    10.0     2
+CHI              const_37          C4          C5          C6          C1       0.000    10.0     2
+CHI              const_53          C4          C5          C7          C8       0.000    10.0     2
+CHI              const_50          C5          C7          C8          C9     180.000    10.0     2
+CHI             sp2_sp2_2          N1          C8          C9          O1       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CHI    chir_1    C10    N2    C11    C17    positive
+CHI    chir_2    C14    O3    C13    C15    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CHI    plan-1          C1   0.020
+CHI    plan-1          C2   0.020
+CHI    plan-1          C3   0.020
+CHI    plan-1          C4   0.020
+CHI    plan-1          C5   0.020
+CHI    plan-1          C6   0.020
+CHI    plan-1          C7   0.020
+CHI    plan-1          C8   0.020
+CHI    plan-1          C9   0.020
+CHI    plan-1         CL1   0.020
+CHI    plan-1         H21   0.020
+CHI    plan-1         H31   0.020
+CHI    plan-1         H61   0.020
+CHI    plan-1          H7   0.020
+CHI    plan-1         HN1   0.020
+CHI    plan-1          N1   0.020
+CHI    plan-2         C17   0.020
+CHI    plan-2         C18   0.020
+CHI    plan-2         C19   0.020
+CHI    plan-2         C20   0.020
+CHI    plan-2         C21   0.020
+CHI    plan-2         C22   0.020
+CHI    plan-2         C23   0.020
+CHI    plan-2          F1   0.020
+CHI    plan-2        H191   0.020
+CHI    plan-2        H201   0.020
+CHI    plan-2        H221   0.020
+CHI    plan-2        H231   0.020
+CHI    plan-3          C8   0.020
+CHI    plan-3          C9   0.020
+CHI    plan-3          N2   0.020
+CHI    plan-3          O1   0.020
+CHI    plan-4         C10   0.020
+CHI    plan-4          C9   0.020
+CHI    plan-4         HN2   0.020
+CHI    plan-4          N2   0.020
+CHI    plan-5         C10   0.020
+CHI    plan-5         C11   0.020
+CHI    plan-5          N3   0.020
+CHI    plan-5          O2   0.020
+CHI    plan-6         C11   0.020
+CHI    plan-6         C12   0.020
+CHI    plan-6         C16   0.020
+CHI    plan-6          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CHI           SMILES              ACDLabs 10.04                                                                                                                      O=C(N1CCC(O)CC1)C(NC(=O)c3cc2cc(Cl)ccc2n3)Cc4ccc(F)cc4
+CHI SMILES_CANONICAL               CACTVS 3.341                                                                                                           O[C@H]1CCN(CC1)C(=O)[C@H](Cc2ccc(F)cc2)NC(=O)c3[nH]c4ccc(Cl)cc4c3
+CHI           SMILES               CACTVS 3.341                                                                                                             O[CH]1CCN(CC1)C(=O)[CH](Cc2ccc(F)cc2)NC(=O)c3[nH]c4ccc(Cl)cc4c3
+CHI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                              c1cc(ccc1C[C@@H](C(=O)N2CCC(CC2)O)NC(=O)c3cc4cc(ccc4[nH]3)Cl)F
+CHI           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                   c1cc(ccc1CC(C(=O)N2CCC(CC2)O)NC(=O)c3cc4cc(ccc4[nH]3)Cl)F
+CHI            InChI                InChI  1.03 InChI=1S/C23H23ClFN3O3/c24-16-3-6-19-15(12-16)13-20(26-19)22(30)27-21(11-14-1-4-17(25)5-2-14)23(31)28-9-7-18(29)8-10-28/h1-6,12-13,18,21,26,29H,7-11H2,(H,27,30)/t21-/m0/s1
+CHI         InChIKey                InChI  1.03                                                                                                                                                 YDCGVASFVACWKF-NRFANRHFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CHI acedrg               243         "dictionary generator"                  
+CHI acedrg_database      11          "data source"                           
+CHI rdkit                2017.03.2   "Chemoinformatics tool"
+CHI refmac5              5.8.0238    "optimization tool"                     

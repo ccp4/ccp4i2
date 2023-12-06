@@ -1,0 +1,119 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HAE     HAE      "ACETOHYDROXAMIC ACID"     NON-POLYMER     10     5     .     
+#
+data_comp_HAE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HAE     C1      C       CH3     0       28.827      70.469      75.760      
+HAE     C2      C       C       0       29.339      71.363      74.676      
+HAE     O2      O       O       0       30.161      70.950      73.859      
+HAE     N       N       NH1     0       28.858      72.596      74.652      
+HAE     O       O       OH1     0       29.285      73.502      73.688      
+HAE     H11     H       H       0       29.236      69.592      75.681      
+HAE     H12     H       H       0       27.863      70.382      75.683      
+HAE     H13     H       H       0       29.047      70.849      76.626      
+HAE     HN      H       H       0       28.266      72.878      75.233      
+HAE     HO      H       H       0       28.904      73.295      72.936      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HAE          C1          C2      SINGLE       n     1.495  0.0100     1.495  0.0100
+HAE          C2          O2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+HAE          C2           N      SINGLE       n     1.322  0.0100     1.322  0.0100
+HAE           N           O      SINGLE       n     1.389  0.0110     1.389  0.0110
+HAE          C1         H11      SINGLE       n     1.089  0.0100     0.971  0.0140
+HAE          C1         H12      SINGLE       n     1.089  0.0100     0.971  0.0140
+HAE          C1         H13      SINGLE       n     1.089  0.0100     0.971  0.0140
+HAE           N          HN      SINGLE       n     1.016  0.0100     0.875  0.0200
+HAE           O          HO      SINGLE       n     0.970  0.0120     0.867  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HAE          C2          C1         H11     109.603    1.50
+HAE          C2          C1         H12     109.603    1.50
+HAE          C2          C1         H13     109.603    1.50
+HAE         H11          C1         H12     109.365    1.50
+HAE         H11          C1         H13     109.365    1.50
+HAE         H12          C1         H13     109.365    1.50
+HAE          C1          C2          O2     121.026    2.00
+HAE          C1          C2           N     116.361    1.58
+HAE          O2          C2           N     122.613    1.50
+HAE          C2           N           O     120.051    1.50
+HAE          C2           N          HN     122.120    2.48
+HAE           O           N          HN     117.829    2.59
+HAE           N           O          HO     108.051    2.18
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HAE             sp2_sp3_1          O2          C2          C1         H11       0.000    10.0     6
+HAE             sp2_sp2_1          C1          C2           N           O     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HAE    plan-1          C1   0.020
+HAE    plan-1          C2   0.020
+HAE    plan-1           N   0.020
+HAE    plan-1          O2   0.020
+HAE    plan-2          C2   0.020
+HAE    plan-2          HN   0.020
+HAE    plan-2           N   0.020
+HAE    plan-2           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HAE           SMILES              ACDLabs 10.04                                    O=C(NO)C
+HAE SMILES_CANONICAL               CACTVS 3.341                                    CC(=O)NO
+HAE           SMILES               CACTVS 3.341                                    CC(=O)NO
+HAE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                    CC(=O)NO
+HAE           SMILES "OpenEye OEToolkits" 1.5.0                                    CC(=O)NO
+HAE            InChI                InChI  1.03 InChI=1S/C2H5NO2/c1-2(4)3-5/h5H,1H3,(H,3,4)
+HAE         InChIKey                InChI  1.03                 RRUDCFGSUDOHDG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HAE acedrg               243         "dictionary generator"                  
+HAE acedrg_database      11          "data source"                           
+HAE rdkit                2017.03.2   "Chemoinformatics tool"
+HAE refmac5              5.8.0238    "optimization tool"                     

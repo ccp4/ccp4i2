@@ -1,0 +1,356 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SMM     SMM      "S-ADENOSYLMETHIONINE METHYL ESTER"     NON-POLYMER     55     28     .     
+#
+data_comp_SMM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SMM     N       N       NT3     1       -21.722     -9.348      8.792       
+SMM     CA      C       CH1     0       -20.457     -8.596      9.020       
+SMM     CB      C       CH2     0       -19.435     -8.919      7.923       
+SMM     CG      C       CH2     0       -18.048     -8.339      8.162       
+SMM     SD      S       SH1     0       -16.754     -9.284      7.361       
+SMM     CE      C       CH3     0       -17.385     -9.853      5.753       
+SMM     "C5'"   C       CH2     0       -15.365     -8.161      7.146       
+SMM     "C4'"   C       CH1     0       -15.291     -7.427      5.810       
+SMM     "O4'"   O       O2      0       -16.616     -6.990      5.449       
+SMM     "C1'"   C       CH1     0       -16.509     -5.845      4.646       
+SMM     N9      N       NR5     0       -17.795     -5.159      4.714       
+SMM     C4      C       CR56    0       -18.430     -4.672      5.833       
+SMM     N3      N       NRD6    0       -17.983     -4.670      7.103       
+SMM     C2      C       CR16    0       -18.857     -4.089      7.925       
+SMM     N1      N       NRD6    0       -20.052     -3.547      7.642       
+SMM     C6      C       CR6     0       -20.481     -3.563      6.353       
+SMM     N6      N       NH2     0       -21.666     -3.030      6.066       
+SMM     C5      C       CR56    0       -19.635     -4.153      5.388       
+SMM     N7      N       NRD5    0       -19.761     -4.332      4.019       
+SMM     C8      C       CR15    0       -18.656     -4.941      3.668       
+SMM     "C2'"   C       CH1     0       -15.313     -5.066      5.190       
+SMM     "O2'"   O       OH1     0       -14.686     -4.341      4.151       
+SMM     "C3'"   C       CH1     0       -14.423     -6.161      5.806       
+SMM     "O3'"   O       OH1     0       -13.238     -6.386      5.050       
+SMM     C       C       C       0       -20.791     -7.118      9.076       
+SMM     O       O       O       0       -21.014     -6.453      8.096       
+SMM     OXT     O       O2      0       -20.806     -6.668      10.328      
+SMM     CXT     C       CH3     0       -21.820     -5.687      10.668      
+SMM     HN1     H       H       0       -22.312     -9.184      9.468       
+SMM     HN2     H       H       0       -21.550     -10.242     8.764       
+SMM     H3      H       H       0       -22.099     -9.097      8.001       
+SMM     HA1     H       H       0       -20.092     -8.867      9.895       
+SMM     HB1     H       H       0       -19.779     -8.585      7.071       
+SMM     HB2     H       H       0       -19.364     -9.891      7.848       
+SMM     HG1     H       H       0       -17.870     -8.315      9.125       
+SMM     HG2     H       H       0       -18.021     -7.418      7.826       
+SMM     HD1     H       HSH1    0       -16.429     -10.240     8.055       
+SMM     HE1     H       H       0       -16.648     -9.882      5.119       
+SMM     HE2     H       H       0       -18.069     -9.234      5.442       
+SMM     HE3     H       H       0       -17.766     -10.741     5.864       
+SMM     "H5'1"  H       H       0       -14.534     -8.669      7.257       
+SMM     "H5'2"  H       H       0       -15.399     -7.491      7.860       
+SMM     "H4'"   H       H       0       -14.960     -8.052      5.119       
+SMM     "H1'"   H       H       0       -16.325     -6.108      3.715       
+SMM     H2      H       H       0       -18.601     -4.057      8.834       
+SMM     HN61    H       H       0       -22.091     -3.279      5.340       
+SMM     HN62    H       H       0       -22.019     -2.433      6.605       
+SMM     H8      H       H       0       -18.464     -5.192      2.780       
+SMM     "H2'"   H       H       0       -15.601     -4.432      5.894       
+SMM     "HO2'"  H       H       0       -14.303     -4.880      3.618       
+SMM     "H3'"   H       H       0       -14.179     -5.908      6.734       
+SMM     "HO3'"  H       H       0       -12.640     -5.842      5.310       
+SMM     HXT1    H       H       0       -22.694     -6.018      10.407      
+SMM     HXT2    H       H       0       -21.634     -4.857      10.202      
+SMM     HXT3    H       H       0       -21.806     -5.530      11.626      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SMM           N          CA      SINGLE       n     1.488  0.0100     1.488  0.0100
+SMM          CA          CB      SINGLE       n     1.532  0.0100     1.532  0.0100
+SMM          CA           C      SINGLE       n     1.514  0.0100     1.514  0.0100
+SMM          CB          CG      SINGLE       n     1.521  0.0155     1.521  0.0155
+SMM          CG          SD      SINGLE       n     1.781  0.0200     1.781  0.0200
+SMM          SD          CE      SINGLE       n     1.807  0.0200     1.807  0.0200
+SMM          SD       "C5'"      SINGLE       n     1.781  0.0200     1.781  0.0200
+SMM       "C5'"       "C4'"      SINGLE       n     1.516  0.0192     1.516  0.0192
+SMM       "C4'"       "O4'"      SINGLE       n     1.446  0.0100     1.446  0.0100
+SMM       "C4'"       "C3'"      SINGLE       n     1.528  0.0117     1.528  0.0117
+SMM       "O4'"       "C1'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+SMM       "C1'"          N9      SINGLE       n     1.458  0.0100     1.458  0.0100
+SMM       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+SMM          N9          C4      SINGLE       y     1.374  0.0101     1.374  0.0101
+SMM          N9          C8      SINGLE       y     1.372  0.0100     1.372  0.0100
+SMM          C4          N3      DOUBLE       y     1.343  0.0100     1.343  0.0100
+SMM          C4          C5      SINGLE       y     1.381  0.0100     1.381  0.0100
+SMM          N3          C2      SINGLE       y     1.330  0.0100     1.330  0.0100
+SMM          C2          N1      DOUBLE       y     1.339  0.0100     1.339  0.0100
+SMM          N1          C6      SINGLE       y     1.354  0.0100     1.354  0.0100
+SMM          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+SMM          C6          C5      DOUBLE       y     1.408  0.0100     1.408  0.0100
+SMM          C5          N7      SINGLE       y     1.388  0.0100     1.388  0.0100
+SMM          N7          C8      DOUBLE       y     1.310  0.0100     1.310  0.0100
+SMM       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+SMM       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+SMM       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+SMM           C           O      DOUBLE       n     1.203  0.0150     1.203  0.0150
+SMM           C         OXT      SINGLE       n     1.326  0.0123     1.326  0.0123
+SMM         OXT         CXT      SINGLE       n     1.447  0.0130     1.447  0.0130
+SMM           N         HN1      SINGLE       n     1.036  0.0160     0.911  0.0200
+SMM           N         HN2      SINGLE       n     1.036  0.0160     0.911  0.0200
+SMM           N          H3      SINGLE       n     1.036  0.0160     0.911  0.0200
+SMM          CA         HA1      SINGLE       n     1.089  0.0100     0.985  0.0200
+SMM          CB         HB1      SINGLE       n     1.089  0.0100     0.978  0.0200
+SMM          CB         HB2      SINGLE       n     1.089  0.0100     0.978  0.0200
+SMM          CG         HG1      SINGLE       n     1.089  0.0100     0.980  0.0160
+SMM          CG         HG2      SINGLE       n     1.089  0.0100     0.980  0.0160
+SMM          SD         HD1      SINGLE       n     1.338  0.0100     1.225  0.0200
+SMM          CE         HE1      SINGLE       n     1.089  0.0100     0.973  0.0148
+SMM          CE         HE2      SINGLE       n     1.089  0.0100     0.973  0.0148
+SMM          CE         HE3      SINGLE       n     1.089  0.0100     0.973  0.0148
+SMM       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.980  0.0160
+SMM       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.980  0.0160
+SMM       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.989  0.0197
+SMM       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+SMM          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+SMM          N6        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+SMM          N6        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+SMM          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+SMM       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+SMM       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+SMM       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+SMM       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+SMM         CXT        HXT1      SINGLE       n     1.089  0.0100     0.970  0.0175
+SMM         CXT        HXT2      SINGLE       n     1.089  0.0100     0.970  0.0175
+SMM         CXT        HXT3      SINGLE       n     1.089  0.0100     0.970  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SMM          CA           N         HN1     110.062    1.93
+SMM          CA           N         HN2     110.062    1.93
+SMM          CA           N          H3     110.062    1.93
+SMM         HN1           N         HN2     109.028    2.41
+SMM         HN1           N          H3     109.028    2.41
+SMM         HN2           N          H3     109.028    2.41
+SMM           N          CA          CB     110.906    1.50
+SMM           N          CA           C     108.083    1.50
+SMM           N          CA         HA1     108.487    1.50
+SMM          CB          CA           C     111.776    1.89
+SMM          CB          CA         HA1     109.670    1.50
+SMM           C          CA         HA1     108.404    1.50
+SMM          CA          CB          CG     114.535    1.69
+SMM          CA          CB         HB1     108.666    1.50
+SMM          CA          CB         HB2     108.666    1.50
+SMM          CG          CB         HB1     109.334    1.50
+SMM          CG          CB         HB2     109.334    1.50
+SMM         HB1          CB         HB2     107.698    1.50
+SMM          CB          CG          SD     111.256    2.92
+SMM          CB          CG         HG1     109.242    1.50
+SMM          CB          CG         HG2     109.242    1.50
+SMM          SD          CG         HG1     108.888    1.50
+SMM          SD          CG         HG2     108.888    1.50
+SMM         HG1          CG         HG2     108.043    1.50
+SMM          CG          SD          CE     106.430    3.00
+SMM          CG          SD       "C5'"     106.430    3.00
+SMM          CG          SD         HD1     109.471    3.00
+SMM          CE          SD       "C5'"     106.430    3.00
+SMM          CE          SD         HD1     109.471    3.00
+SMM       "C5'"          SD         HD1     109.471    3.00
+SMM          SD          CE         HE1     107.617    2.23
+SMM          SD          CE         HE2     107.617    2.23
+SMM          SD          CE         HE3     107.617    2.23
+SMM         HE1          CE         HE2     109.571    1.50
+SMM         HE1          CE         HE3     109.571    1.50
+SMM         HE2          CE         HE3     109.571    1.50
+SMM          SD       "C5'"       "C4'"     112.259    3.00
+SMM          SD       "C5'"      "H5'1"     108.888    1.50
+SMM          SD       "C5'"      "H5'2"     108.888    1.50
+SMM       "C4'"       "C5'"      "H5'1"     108.334    1.50
+SMM       "C4'"       "C5'"      "H5'2"     108.334    1.50
+SMM      "H5'1"       "C5'"      "H5'2"     107.859    1.50
+SMM       "C5'"       "C4'"       "O4'"     109.215    2.77
+SMM       "C5'"       "C4'"       "C3'"     114.308    1.50
+SMM       "C5'"       "C4'"       "H4'"     109.052    1.71
+SMM       "O4'"       "C4'"       "C3'"     105.508    1.50
+SMM       "O4'"       "C4'"       "H4'"     109.115    1.50
+SMM       "C3'"       "C4'"       "H4'"     109.143    1.50
+SMM       "C4'"       "O4'"       "C1'"     109.426    1.50
+SMM       "O4'"       "C1'"          N9     108.477    1.50
+SMM       "O4'"       "C1'"       "C2'"     106.047    1.50
+SMM       "O4'"       "C1'"       "H1'"     109.807    1.50
+SMM          N9       "C1'"       "C2'"     113.824    1.50
+SMM          N9       "C1'"       "H1'"     109.561    1.50
+SMM       "C2'"       "C1'"       "H1'"     109.015    1.50
+SMM       "C1'"          N9          C4     127.459    1.80
+SMM       "C1'"          N9          C8     126.848    1.91
+SMM          C4          N9          C8     105.693    1.50
+SMM          N9          C4          N3     127.895    1.50
+SMM          N9          C4          C5     105.616    1.50
+SMM          N3          C4          C5     126.489    1.50
+SMM          C4          N3          C2     110.982    1.50
+SMM          N3          C2          N1     129.332    1.50
+SMM          N3          C2          H2     115.355    1.50
+SMM          N1          C2          H2     115.313    1.50
+SMM          C2          N1          C6     118.521    1.50
+SMM          N1          C6          N6     118.799    1.50
+SMM          N1          C6          C5     117.409    1.50
+SMM          N6          C6          C5     123.792    1.50
+SMM          C6          N6        HN61     119.723    1.50
+SMM          C6          N6        HN62     119.723    1.50
+SMM        HN61          N6        HN62     120.554    1.88
+SMM          C4          C5          C6     117.270    1.50
+SMM          C4          C5          N7     110.483    1.50
+SMM          C6          C5          N7     132.247    1.50
+SMM          C5          N7          C8     104.739    1.50
+SMM          N9          C8          N7     113.469    1.50
+SMM          N9          C8          H8     123.206    1.50
+SMM          N7          C8          H8     123.326    1.50
+SMM       "C1'"       "C2'"       "O2'"     111.715    2.69
+SMM       "C1'"       "C2'"       "C3'"     101.239    1.50
+SMM       "C1'"       "C2'"       "H2'"     110.636    1.70
+SMM       "O2'"       "C2'"       "C3'"     112.782    2.45
+SMM       "O2'"       "C2'"       "H2'"     110.448    1.97
+SMM       "C3'"       "C2'"       "H2'"     110.596    1.51
+SMM       "C2'"       "O2'"      "HO2'"     109.103    2.13
+SMM       "C4'"       "C3'"       "C2'"     102.352    1.50
+SMM       "C4'"       "C3'"       "O3'"     110.985    2.41
+SMM       "C4'"       "C3'"       "H3'"     110.624    1.81
+SMM       "C2'"       "C3'"       "O3'"     111.581    2.83
+SMM       "C2'"       "C3'"       "H3'"     110.504    1.75
+SMM       "O3'"       "C3'"       "H3'"     110.380    1.67
+SMM       "C3'"       "O3'"      "HO3'"     108.744    3.00
+SMM          CA           C           O     123.524    1.50
+SMM          CA           C         OXT     111.385    1.50
+SMM           O           C         OXT     125.091    1.50
+SMM           C         OXT         CXT     116.120    1.50
+SMM         OXT         CXT        HXT1     109.367    1.50
+SMM         OXT         CXT        HXT2     109.367    1.50
+SMM         OXT         CXT        HXT3     109.367    1.50
+SMM        HXT1         CXT        HXT2     109.532    1.53
+SMM        HXT1         CXT        HXT3     109.532    1.53
+SMM        HXT2         CXT        HXT3     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SMM            sp3_sp3_25          CB          CA           N         HN1     180.000    10.0     3
+SMM              const_16          N3          C4          N9       "C1'"       0.000    10.0     2
+SMM              const_26          N7          C8          N9       "C1'"     180.000    10.0     2
+SMM       const_sp2_sp2_2          N9          C4          N3          C2     180.000     5.0     2
+SMM              const_18          N9          C4          C5          C6     180.000    10.0     2
+SMM       const_sp2_sp2_3          N1          C2          N3          C4       0.000     5.0     2
+SMM       const_sp2_sp2_5          N3          C2          N1          C6       0.000     5.0     2
+SMM       const_sp2_sp2_8          N6          C6          N1          C2     180.000     5.0     2
+SMM             sp2_sp2_3          N1          C6          N6        HN61       0.000     5.0     2
+SMM              const_10          C4          C5          C6          N6     180.000    10.0     2
+SMM              const_21          C4          C5          N7          C8       0.000    10.0     2
+SMM              const_23          N9          C8          N7          C5       0.000    10.0     2
+SMM            sp3_sp3_34           N          CA          CB          CG     180.000    10.0     3
+SMM             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+SMM            sp3_sp3_97       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+SMM            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+SMM           sp3_sp3_100       "C4'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+SMM             sp2_sp2_5          CA           C         OXT         CXT     180.000     5.0     2
+SMM           sp3_sp3_104        HXT1         CXT         OXT           C     -60.000    10.0     3
+SMM            sp3_sp3_43          CA          CB          CG          SD     180.000    10.0     3
+SMM            sp3_sp3_52          CB          CG          SD          CE     180.000    10.0     3
+SMM            sp3_sp3_61         HE1          CE          SD          CG     180.000    10.0     3
+SMM            sp3_sp3_70       "C4'"       "C5'"          SD          CG     180.000    10.0     3
+SMM            sp3_sp3_79       "O4'"       "C4'"       "C5'"          SD     180.000    10.0     3
+SMM            sp3_sp3_92       "O3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+SMM             sp3_sp3_2       "C5'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+SMM             sp3_sp3_5          N9       "C1'"       "O4'"       "C4'"     180.000    10.0     3
+SMM             sp2_sp3_7          C4          N9       "C1'"       "O4'"     150.000    10.0     6
+SMM             sp3_sp3_8       "O4'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SMM    chir_1    CA    N    C    CB    positive
+SMM    chir_2    SD    "C5'"    CG    CE    negative
+SMM    chir_3    "C4'"    "O4'"    "C5'"    "C3'"    positive
+SMM    chir_4    "C1'"    "O4'"    N9    "C2'"    negative
+SMM    chir_5    "C2'"    "O2'"    "C1'"    "C3'"    negative
+SMM    chir_6    "C3'"    "O3'"    "C4'"    "C2'"    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SMM    plan-1       "C1'"   0.020
+SMM    plan-1          C2   0.020
+SMM    plan-1          C4   0.020
+SMM    plan-1          C5   0.020
+SMM    plan-1          C6   0.020
+SMM    plan-1          C8   0.020
+SMM    plan-1          H2   0.020
+SMM    plan-1          H8   0.020
+SMM    plan-1          N1   0.020
+SMM    plan-1          N3   0.020
+SMM    plan-1          N6   0.020
+SMM    plan-1          N7   0.020
+SMM    plan-1          N9   0.020
+SMM    plan-2          C6   0.020
+SMM    plan-2        HN61   0.020
+SMM    plan-2        HN62   0.020
+SMM    plan-2          N6   0.020
+SMM    plan-3           C   0.020
+SMM    plan-3          CA   0.020
+SMM    plan-3           O   0.020
+SMM    plan-3         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SMM           SMILES              ACDLabs 10.04                                                                                                                                        O=C(OC)C(N)CCS(C)CC3OC(n2cnc1c(ncnc12)N)C(O)C3O
+SMM SMILES_CANONICAL               CACTVS 3.341                                                                                                               COC(=O)[C@@H](N)CC[SH](C)C[C@H]1O[C@H]([C@H](O)[C@@H]1O)n2cnc3c(N)ncnc23
+SMM           SMILES               CACTVS 3.341                                                                                                                      COC(=O)[CH](N)CC[SH](C)C[CH]1O[CH]([CH](O)[CH]1O)n2cnc3c(N)ncnc23
+SMM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                              COC(=O)[C@H](CC[S@H](C)C[C@@H]1[C@H]([C@H]([C@@H](O1)n2cnc3c2ncnc3N)O)O)N
+SMM           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                        COC(=O)C(CCS(C)CC1C(C(C(O1)n2cnc3c2ncnc3N)O)O)N
+SMM            InChI                InChI  1.03 InChI=1S/C16H26N6O5S/c1-26-16(25)8(17)3-4-28(2)5-9-11(23)12(24)15(27-9)22-7-21-10-13(18)19-6-20-14(10)22/h6-9,11-12,15,23-24,28H,3-5,17H2,1-2H3,(H2,18,19,20)/t8-,9+,11+,12+,15+/m0/s1
+SMM         InChIKey                InChI  1.03                                                                                                                                                            NAKVRMNIKCRDOL-OPYVMVOTSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SMM acedrg               243         "dictionary generator"                  
+SMM acedrg_database      11          "data source"                           
+SMM rdkit                2017.03.2   "Chemoinformatics tool"
+SMM refmac5              5.8.0238    "optimization tool"                     

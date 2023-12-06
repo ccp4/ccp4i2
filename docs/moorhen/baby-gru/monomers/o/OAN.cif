@@ -1,0 +1,309 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OAN     OAN      "O-(2-ACETAMIDO-2-DEOXY D-GLUCOPYRANOSYLIDENE) AMINO-N-PHENYLCARBAMATE"     NON-POLYMER     44     25     .     
+#
+data_comp_OAN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OAN     CAH     C       CH3     0       35.810      41.955      20.287      
+OAN     CAG     C       C       0       34.482      41.652      20.914      
+OAN     OAN     O       O       0       34.154      40.497      21.174      
+OAN     NAI     N       NH1     0       33.678      42.713      21.152      
+OAN     CAB     C       CH1     0       32.370      42.653      21.803      
+OAN     CAC     C       CH1     0       32.503      42.213      23.274      
+OAN     OAJ     O       OH1     0       33.173      43.245      24.006      
+OAN     CAD     C       CH1     0       31.142      41.908      23.890      
+OAN     OAK     O       OH1     0       31.312      41.475      25.239      
+OAN     CAE     C       CH1     0       30.466      40.810      23.070      
+OAN     CAF     C       CH2     0       29.078      40.487      23.526      
+OAN     OAM     O       OH1     0       28.206      41.611      23.413      
+OAN     OAL     O       O2      0       30.363      41.203      21.664      
+OAN     CAA     C       CR6     0       31.378      41.821      20.996      
+OAN     NAY     N       N       0       31.469      41.724      19.654      
+OAN     OAQ     O       O2      0       30.415      40.936      19.109      
+OAN     CAP     C       C       0       30.023      41.333      17.883      
+OAN     OAR     O       O       0       30.063      42.480      17.492      
+OAN     NAO     N       NH1     0       29.560      40.270      17.179      
+OAN     CAS     C       CR6     0       29.391      40.187      15.780      
+OAN     CAT     C       CR16    0       30.489      40.238      14.931      
+OAN     CAU     C       CR16    0       30.307      40.153      13.557      
+OAN     CAV     C       CR16    0       29.039      40.016      13.027      
+OAN     CAW     C       CR16    0       27.948      39.964      13.870      
+OAN     CAX     C       CR16    0       28.117      40.048      15.245      
+OAN     HAH1    H       H       0       36.108      42.839      20.555      
+OAN     HAH2    H       H       0       35.728      41.921      19.320      
+OAN     HAH3    H       H       0       36.462      41.296      20.577      
+OAN     HAI     H       H       0       33.953      43.493      20.893      
+OAN     HAB     H       H       0       32.025      43.588      21.813      
+OAN     HAC     H       H       0       33.047      41.393      23.321      
+OAN     HAJ     H       H       0       32.671      43.919      24.052      
+OAN     HAD     H       H       0       30.584      42.720      23.876      
+OAN     HAK     H       H       0       31.781      40.776      25.266      
+OAN     HAE     H       H       0       31.022      39.989      23.112      
+OAN     HAF1    H       H       0       29.103      40.191      24.460      
+OAN     HAF2    H       H       0       28.725      39.751      22.985      
+OAN     HAM     H       H       0       27.406      41.361      23.538      
+OAN     HAO     H       H       0       29.334      39.566      17.635      
+OAN     HAT     H       H       0       31.357      40.331      15.288      
+OAN     HAU     H       H       0       31.055      40.188      12.984      
+OAN     HAV     H       H       0       28.920      39.958      12.093      
+OAN     HAW     H       H       0       27.081      39.870      13.511      
+OAN     HAX     H       H       0       27.368      40.012      15.817      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OAN         CAH         CAG      SINGLE       n     1.498  0.0100     1.498  0.0100
+OAN         CAG         OAN      DOUBLE       n     1.227  0.0100     1.227  0.0100
+OAN         CAG         NAI      SINGLE       n     1.343  0.0109     1.343  0.0109
+OAN         NAI         CAB      SINGLE       n     1.456  0.0100     1.456  0.0100
+OAN         CAB         CAC      SINGLE       n     1.535  0.0100     1.535  0.0100
+OAN         CAB         CAA      SINGLE       n     1.515  0.0125     1.515  0.0125
+OAN         CAC         OAJ      SINGLE       n     1.431  0.0107     1.431  0.0107
+OAN         CAC         CAD      SINGLE       n     1.523  0.0100     1.523  0.0100
+OAN         CAD         OAK      SINGLE       n     1.425  0.0167     1.425  0.0167
+OAN         CAD         CAE      SINGLE       n     1.525  0.0171     1.525  0.0171
+OAN         CAE         CAF      SINGLE       n     1.494  0.0128     1.494  0.0128
+OAN         CAE         OAL      SINGLE       n     1.461  0.0128     1.461  0.0128
+OAN         CAF         OAM      SINGLE       n     1.426  0.0200     1.426  0.0200
+OAN         OAL         CAA      SINGLE       n     1.348  0.0195     1.348  0.0195
+OAN         CAA         NAY      DOUBLE       n     1.333  0.0200     1.333  0.0200
+OAN         NAY         OAQ      SINGLE       n     1.415  0.0195     1.415  0.0195
+OAN         OAQ         CAP      SINGLE       n     1.338  0.0153     1.338  0.0153
+OAN         CAP         OAR      DOUBLE       n     1.210  0.0111     1.210  0.0111
+OAN         CAP         NAO      SINGLE       n     1.353  0.0121     1.353  0.0121
+OAN         NAO         CAS      SINGLE       n     1.411  0.0100     1.411  0.0100
+OAN         CAS         CAT      DOUBLE       y     1.385  0.0100     1.385  0.0100
+OAN         CAS         CAX      SINGLE       y     1.385  0.0100     1.385  0.0100
+OAN         CAT         CAU      SINGLE       y     1.385  0.0100     1.385  0.0100
+OAN         CAU         CAV      DOUBLE       y     1.376  0.0124     1.376  0.0124
+OAN         CAV         CAW      SINGLE       y     1.376  0.0112     1.376  0.0112
+OAN         CAW         CAX      DOUBLE       y     1.385  0.0100     1.385  0.0100
+OAN         CAH        HAH1      SINGLE       n     1.089  0.0100     0.971  0.0140
+OAN         CAH        HAH2      SINGLE       n     1.089  0.0100     0.971  0.0140
+OAN         CAH        HAH3      SINGLE       n     1.089  0.0100     0.971  0.0140
+OAN         NAI         HAI      SINGLE       n     1.016  0.0100     0.866  0.0200
+OAN         CAB         HAB      SINGLE       n     1.089  0.0100     0.996  0.0100
+OAN         CAC         HAC      SINGLE       n     1.089  0.0100     0.988  0.0151
+OAN         OAJ         HAJ      SINGLE       n     0.970  0.0120     0.841  0.0200
+OAN         CAD         HAD      SINGLE       n     1.089  0.0100     0.986  0.0150
+OAN         OAK         HAK      SINGLE       n     0.970  0.0120     0.841  0.0200
+OAN         CAE         HAE      SINGLE       n     1.089  0.0100     0.993  0.0200
+OAN         CAF        HAF1      SINGLE       n     1.089  0.0100     0.980  0.0184
+OAN         CAF        HAF2      SINGLE       n     1.089  0.0100     0.980  0.0184
+OAN         OAM         HAM      SINGLE       n     0.970  0.0120     0.848  0.0200
+OAN         NAO         HAO      SINGLE       n     1.016  0.0100     0.867  0.0200
+OAN         CAT         HAT      SINGLE       n     1.082  0.0130     0.943  0.0178
+OAN         CAU         HAU      SINGLE       n     1.082  0.0130     0.943  0.0172
+OAN         CAV         HAV      SINGLE       n     1.082  0.0130     0.944  0.0161
+OAN         CAW         HAW      SINGLE       n     1.082  0.0130     0.943  0.0172
+OAN         CAX         HAX      SINGLE       n     1.082  0.0130     0.943  0.0178
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OAN         CAG         CAH        HAH1     109.527    1.50
+OAN         CAG         CAH        HAH2     109.527    1.50
+OAN         CAG         CAH        HAH3     109.527    1.50
+OAN        HAH1         CAH        HAH2     109.365    1.50
+OAN        HAH1         CAH        HAH3     109.365    1.50
+OAN        HAH2         CAH        HAH3     109.365    1.50
+OAN         CAH         CAG         OAN     122.067    1.50
+OAN         CAH         CAG         NAI     115.988    1.50
+OAN         OAN         CAG         NAI     121.945    1.50
+OAN         CAG         NAI         CAB     122.837    1.50
+OAN         CAG         NAI         HAI     118.876    2.66
+OAN         CAB         NAI         HAI     118.287    1.60
+OAN         NAI         CAB         CAC     110.829    2.03
+OAN         NAI         CAB         CAA     110.078    2.01
+OAN         NAI         CAB         HAB     107.589    1.50
+OAN         CAC         CAB         CAA     112.021    2.38
+OAN         CAC         CAB         HAB     108.258    1.50
+OAN         CAA         CAB         HAB     108.678    1.50
+OAN         CAB         CAC         OAJ     109.247    2.43
+OAN         CAB         CAC         CAD     111.124    1.57
+OAN         CAB         CAC         HAC     109.068    1.50
+OAN         OAJ         CAC         CAD     110.984    1.55
+OAN         OAJ         CAC         HAC     108.954    1.50
+OAN         CAD         CAC         HAC     108.714    1.50
+OAN         CAC         OAJ         HAJ     108.064    2.53
+OAN         CAC         CAD         OAK     109.301    2.14
+OAN         CAC         CAD         CAE     109.454    1.50
+OAN         CAC         CAD         HAD     109.514    1.50
+OAN         OAK         CAD         CAE     109.072    2.07
+OAN         OAK         CAD         HAD     109.194    1.50
+OAN         CAE         CAD         HAD     109.223    1.50
+OAN         CAD         OAK         HAK     109.564    3.00
+OAN         CAD         CAE         CAF     112.996    1.59
+OAN         CAD         CAE         OAL     110.938    1.50
+OAN         CAD         CAE         HAE     108.960    1.50
+OAN         CAF         CAE         OAL     106.495    1.50
+OAN         CAF         CAE         HAE     109.269    1.50
+OAN         OAL         CAE         HAE     107.785    2.18
+OAN         CAE         CAF         OAM     111.299    2.09
+OAN         CAE         CAF        HAF1     109.363    1.50
+OAN         CAE         CAF        HAF2     109.363    1.50
+OAN         OAM         CAF        HAF1     109.265    1.50
+OAN         OAM         CAF        HAF2     109.265    1.50
+OAN        HAF1         CAF        HAF2     108.155    1.50
+OAN         CAF         OAM         HAM     109.472    2.41
+OAN         CAE         OAL         CAA     119.296    2.75
+OAN         CAB         CAA         OAL     117.706    1.85
+OAN         CAB         CAA         NAY     122.093    3.00
+OAN         OAL         CAA         NAY     120.201    1.50
+OAN         CAA         NAY         OAQ     110.326    1.71
+OAN         NAY         OAQ         CAP     112.258    1.50
+OAN         OAQ         CAP         OAR     123.909    1.64
+OAN         OAQ         CAP         NAO     109.912    1.61
+OAN         OAR         CAP         NAO     126.160    1.50
+OAN         CAP         NAO         CAS     126.709    1.50
+OAN         CAP         NAO         HAO     116.637    1.76
+OAN         CAS         NAO         HAO     116.654    1.63
+OAN         NAO         CAS         CAT     120.302    3.00
+OAN         NAO         CAS         CAX     120.302    3.00
+OAN         CAT         CAS         CAX     119.396    1.50
+OAN         CAS         CAT         CAU     119.830    1.50
+OAN         CAS         CAT         HAT     120.019    1.50
+OAN         CAU         CAT         HAT     120.151    1.50
+OAN         CAT         CAU         CAV     120.518    1.50
+OAN         CAT         CAU         HAU     119.600    1.50
+OAN         CAV         CAU         HAU     119.882    1.50
+OAN         CAU         CAV         CAW     119.909    1.50
+OAN         CAU         CAV         HAV     120.046    1.50
+OAN         CAW         CAV         HAV     120.046    1.50
+OAN         CAV         CAW         CAX     120.518    1.50
+OAN         CAV         CAW         HAW     119.882    1.50
+OAN         CAX         CAW         HAW     119.600    1.50
+OAN         CAS         CAX         CAW     119.830    1.50
+OAN         CAS         CAX         HAX     120.019    1.50
+OAN         CAW         CAX         HAX     120.151    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OAN             sp2_sp3_1         OAN         CAG         CAH        HAH1       0.000    10.0     6
+OAN            sp3_sp3_46         CAE         CAF         OAM         HAM     180.000    10.0     3
+OAN             sp2_sp2_2         NAY         CAA         OAL         CAE     180.000     5.0     2
+OAN             sp2_sp2_7         CAB         CAA         NAY         OAQ     180.000     5.0     2
+OAN             sp2_sp2_9         CAA         NAY         OAQ         CAP     180.000     5.0     2
+OAN            sp2_sp2_10         OAR         CAP         OAQ         NAY     180.000     5.0     2
+OAN            sp2_sp2_12         OAQ         CAP         NAO         CAS     180.000     5.0     2
+OAN            sp2_sp2_16         CAT         CAS         NAO         CAP     180.000     5.0     2
+OAN       const_sp2_sp2_3         NAO         CAS         CAT         CAU     180.000     5.0     2
+OAN              const_23         NAO         CAS         CAX         CAW     180.000    10.0     2
+OAN             sp2_sp2_3         CAH         CAG         NAI         CAB     180.000     5.0     2
+OAN       const_sp2_sp2_5         CAS         CAT         CAU         CAV       0.000     5.0     2
+OAN       const_sp2_sp2_9         CAT         CAU         CAV         CAW       0.000     5.0     2
+OAN              const_13         CAU         CAV         CAW         CAX       0.000    10.0     2
+OAN              const_17         CAV         CAW         CAX         CAS       0.000    10.0     2
+OAN             sp2_sp3_7         CAG         NAI         CAB         CAC       0.000    10.0     6
+OAN            sp2_sp3_17         NAY         CAA         CAB         NAI     -60.000    10.0     6
+OAN             sp3_sp3_5         NAI         CAB         CAC         OAJ      60.000    10.0     3
+OAN            sp3_sp3_31         CAB         CAC         OAJ         HAJ     180.000    10.0     3
+OAN            sp3_sp3_14         OAJ         CAC         CAD         OAK     -60.000    10.0     3
+OAN            sp3_sp3_34         CAC         CAD         OAK         HAK     180.000    10.0     3
+OAN            sp3_sp3_23         OAK         CAD         CAE         CAF      60.000    10.0     3
+OAN            sp3_sp3_37         CAD         CAE         CAF         OAM     180.000    10.0     3
+OAN            sp3_sp3_29         CAF         CAE         OAL         CAA      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OAN    chir_1    CAB    NAI    CAA    CAC    negative
+OAN    chir_2    CAC    OAJ    CAD    CAB    negative
+OAN    chir_3    CAD    OAK    CAE    CAC    positive
+OAN    chir_4    CAE    OAL    CAD    CAF    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OAN    plan-1         CAS   0.020
+OAN    plan-1         CAT   0.020
+OAN    plan-1         CAU   0.020
+OAN    plan-1         CAV   0.020
+OAN    plan-1         CAW   0.020
+OAN    plan-1         CAX   0.020
+OAN    plan-1         HAT   0.020
+OAN    plan-1         HAU   0.020
+OAN    plan-1         HAV   0.020
+OAN    plan-1         HAW   0.020
+OAN    plan-1         HAX   0.020
+OAN    plan-1         NAO   0.020
+OAN    plan-2         CAG   0.020
+OAN    plan-2         CAH   0.020
+OAN    plan-2         NAI   0.020
+OAN    plan-2         OAN   0.020
+OAN    plan-3         CAB   0.020
+OAN    plan-3         CAG   0.020
+OAN    plan-3         HAI   0.020
+OAN    plan-3         NAI   0.020
+OAN    plan-4         CAA   0.020
+OAN    plan-4         CAB   0.020
+OAN    plan-4         NAY   0.020
+OAN    plan-4         OAL   0.020
+OAN    plan-5         CAP   0.020
+OAN    plan-5         NAO   0.020
+OAN    plan-5         OAQ   0.020
+OAN    plan-5         OAR   0.020
+OAN    plan-6         CAP   0.020
+OAN    plan-6         CAS   0.020
+OAN    plan-6         HAO   0.020
+OAN    plan-6         NAO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OAN           SMILES              ACDLabs 12.01                                                                                                                               O=C(O\N=C1/OC(CO)C(O)C(O)C1NC(=O)C)Nc2ccccc2
+OAN            InChI                InChI  1.03 InChI=1S/C15H19N3O7/c1-8(20)16-11-13(22)12(21)10(7-19)24-14(11)18-25-15(23)17-9-5-3-2-4-6-9/h2-6,10-13,19,21-22H,7H2,1H3,(H,16,20)(H,17,23)/b18-14-/t10-,11-,12-,13-/m1/s1
+OAN         InChIKey                InChI  1.03                                                                                                                                                PBLNJFVQMUMOJY-JXZOILRNSA-N
+OAN SMILES_CANONICAL               CACTVS 3.370                                                                                                           CC(=O)N[C@@H]\1[C@@H](O)[C@H](O)[C@@H](CO)OC\1=N\OC(=O)Nc2ccccc2
+OAN           SMILES               CACTVS 3.370                                                                                                                     CC(=O)N[CH]1[CH](O)[CH](O)[CH](CO)OC1=NOC(=O)Nc2ccccc2
+OAN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                            CC(=O)N[C@@H]\1[C@H]([C@@H]([C@H](O/C1=N\OC(=O)Nc2ccccc2)CO)O)O
+OAN           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                                 CC(=O)NC1C(C(C(OC1=NOC(=O)Nc2ccccc2)CO)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OAN acedrg               243         "dictionary generator"                  
+OAN acedrg_database      11          "data source"                           
+OAN rdkit                2017.03.2   "Chemoinformatics tool"
+OAN refmac5              5.8.0238    "optimization tool"                     

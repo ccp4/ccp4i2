@@ -1,0 +1,309 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DLH     DLH      "2-(4-chlorophenyl)-1-spiro[1,3-benzodioxole-2,4'-piperidine]-1'-yl-ethanone"     NON-POLYMER     42     24     .     
+#
+data_comp_DLH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DLH     C10     C       CH2     0       -233.926    47.077      36.409      
+DLH     C11     C       CH2     0       -235.683    45.838      35.274      
+DLH     C15     C       CR6     0       -235.675    41.892      38.639      
+DLH     C17     C       CR16    0       -235.746    42.477      36.324      
+DLH     C18     C       CR16    0       -233.762    42.849      37.578      
+DLH     C19     C       CR16    0       -236.375    41.956      37.455      
+DLH     C20     C       CR16    0       -234.374    42.332      38.720      
+DLH     C21     C       CR16    0       -238.232    50.185      37.176      
+DLH     C22     C       CR16    0       -237.556    51.464      34.727      
+DLH     C23     C       CR16    0       -238.493    52.018      35.607      
+DLH     C24     C       CR16    0       -238.821    51.397      36.797      
+DLH     C1      C       CT      0       -235.758    48.364      35.257      
+DLH     C12     C       CH2     0       -233.760    43.492      35.145      
+DLH     C14     C       CR6     0       -234.434    42.928      36.367      
+DLH     C3      C       C       0       -233.318    44.941      35.307      
+DLH     C6      C       CR56    0       -236.986    50.276      35.112      
+DLH     C7      C       CR56    0       -237.315    49.654      36.303      
+DLH     C8      C       CH2     0       -234.285    48.356      35.663      
+DLH     C9      C       CH2     0       -236.108    47.082      34.502      
+DLH     N2      N       NR6     0       -234.248    45.890      35.599      
+DLH     O13     O       O       0       -232.113    45.195      35.281      
+DLH     O4      O       O2      0       -236.598    48.483      36.439      
+DLH     O5      O       O2      0       -236.045    49.528      34.433      
+DLH     CL      CL      CL      0       -236.449    41.244      40.058      
+DLH     H1      H       H       0       -232.963    47.090      36.637      
+DLH     H2      H       H       0       -234.436    47.039      37.257      
+DLH     H3      H       H       0       -235.885    45.038      34.729      
+DLH     H4      H       H       0       -236.206    45.776      36.111      
+DLH     H5      H       H       0       -236.223    42.522      35.512      
+DLH     H6      H       H       0       -232.871    43.151      37.630      
+DLH     H7      H       H       0       -237.263    41.653      37.410      
+DLH     H8      H       H       0       -233.904    42.284      39.532      
+DLH     H9      H       H       0       -238.454    49.757      37.990      
+DLH     H10     H       H       0       -237.329    51.886      33.912      
+DLH     H11     H       H       0       -238.910    52.837      35.381      
+DLH     H12     H       H       0       -239.459    51.799      37.370      
+DLH     H13     H       H       0       -234.363    43.424      34.383      
+DLH     H14     H       H       0       -232.976    42.948      34.946      
+DLH     H15     H       H       0       -234.107    49.139      36.245      
+DLH     H16     H       H       0       -233.726    48.431      34.847      
+DLH     H17     H       H       0       -237.088    47.057      34.350      
+DLH     H18     H       H       0       -235.652    47.094      33.621      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DLH          C6          O5      SINGLE       n     1.380  0.0100     1.380  0.0100
+DLH          C1          O5      SINGLE       n     1.455  0.0100     1.455  0.0100
+DLH          C1          C9      SINGLE       n     1.527  0.0134     1.527  0.0134
+DLH         C11          C9      SINGLE       n     1.522  0.0100     1.522  0.0100
+DLH         C22          C6      DOUBLE       y     1.368  0.0118     1.368  0.0118
+DLH         C22         C23      SINGLE       y     1.396  0.0100     1.396  0.0100
+DLH          C6          C7      SINGLE       y     1.380  0.0100     1.380  0.0100
+DLH          C3         O13      DOUBLE       n     1.231  0.0100     1.231  0.0100
+DLH          C1          C8      SINGLE       n     1.527  0.0134     1.527  0.0134
+DLH          C1          O4      SINGLE       n     1.455  0.0100     1.455  0.0100
+DLH         C10          C8      SINGLE       n     1.522  0.0100     1.522  0.0100
+DLH         C12          C3      SINGLE       n     1.520  0.0100     1.520  0.0100
+DLH         C12         C14      SINGLE       n     1.504  0.0100     1.504  0.0100
+DLH          C3          N2      SINGLE       n     1.351  0.0100     1.351  0.0100
+DLH         C11          N2      SINGLE       n     1.465  0.0100     1.465  0.0100
+DLH         C23         C24      DOUBLE       y     1.378  0.0100     1.378  0.0100
+DLH         C10          N2      SINGLE       n     1.465  0.0100     1.465  0.0100
+DLH         C17         C14      DOUBLE       y     1.381  0.0120     1.381  0.0120
+DLH         C17         C19      SINGLE       y     1.380  0.0199     1.380  0.0199
+DLH         C18         C14      SINGLE       y     1.381  0.0120     1.381  0.0120
+DLH          C7          O4      SINGLE       n     1.380  0.0100     1.380  0.0100
+DLH         C21          C7      DOUBLE       y     1.368  0.0118     1.368  0.0118
+DLH         C15         C19      DOUBLE       y     1.373  0.0107     1.373  0.0107
+DLH         C21         C24      SINGLE       y     1.396  0.0100     1.396  0.0100
+DLH         C18         C20      DOUBLE       y     1.380  0.0199     1.380  0.0199
+DLH         C15         C20      SINGLE       y     1.373  0.0107     1.373  0.0107
+DLH         C15          CL      SINGLE       n     1.741  0.0100     1.741  0.0100
+DLH         C10          H1      SINGLE       n     1.089  0.0100     0.990  0.0100
+DLH         C10          H2      SINGLE       n     1.089  0.0100     0.990  0.0100
+DLH         C11          H3      SINGLE       n     1.089  0.0100     0.990  0.0100
+DLH         C11          H4      SINGLE       n     1.089  0.0100     0.990  0.0100
+DLH         C17          H5      SINGLE       n     1.082  0.0130     0.943  0.0173
+DLH         C18          H6      SINGLE       n     1.082  0.0130     0.943  0.0173
+DLH         C19          H7      SINGLE       n     1.082  0.0130     0.939  0.0176
+DLH         C20          H8      SINGLE       n     1.082  0.0130     0.939  0.0176
+DLH         C21          H9      SINGLE       n     1.082  0.0130     0.946  0.0113
+DLH         C22         H10      SINGLE       n     1.082  0.0130     0.946  0.0113
+DLH         C23         H11      SINGLE       n     1.082  0.0130     0.947  0.0172
+DLH         C24         H12      SINGLE       n     1.082  0.0130     0.947  0.0172
+DLH         C12         H13      SINGLE       n     1.089  0.0100     0.975  0.0100
+DLH         C12         H14      SINGLE       n     1.089  0.0100     0.975  0.0100
+DLH          C8         H15      SINGLE       n     1.089  0.0100     0.992  0.0182
+DLH          C8         H16      SINGLE       n     1.089  0.0100     0.992  0.0182
+DLH          C9         H17      SINGLE       n     1.089  0.0100     0.992  0.0182
+DLH          C9         H18      SINGLE       n     1.089  0.0100     0.992  0.0182
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DLH          C8         C10          N2     110.063    1.50
+DLH          C8         C10          H1     109.604    1.50
+DLH          C8         C10          H2     109.604    1.50
+DLH          N2         C10          H1     109.531    1.50
+DLH          N2         C10          H2     109.531    1.50
+DLH          H1         C10          H2     108.135    1.50
+DLH          C9         C11          N2     110.063    1.50
+DLH          C9         C11          H3     109.604    1.50
+DLH          C9         C11          H4     109.604    1.50
+DLH          N2         C11          H3     109.531    1.50
+DLH          N2         C11          H4     109.531    1.50
+DLH          H3         C11          H4     108.135    1.50
+DLH         C19         C15         C20     121.262    1.50
+DLH         C19         C15          CL     119.369    1.50
+DLH         C20         C15          CL     119.369    1.50
+DLH         C14         C17         C19     121.402    1.50
+DLH         C14         C17          H5     119.287    1.50
+DLH         C19         C17          H5     119.311    1.50
+DLH         C14         C18         C20     121.402    1.50
+DLH         C14         C18          H6     119.287    1.50
+DLH         C20         C18          H6     119.311    1.50
+DLH         C17         C19         C15     119.041    1.50
+DLH         C17         C19          H7     120.507    1.50
+DLH         C15         C19          H7     120.452    1.50
+DLH         C18         C20         C15     119.041    1.50
+DLH         C18         C20          H8     120.507    1.50
+DLH         C15         C20          H8     120.452    1.50
+DLH          C7         C21         C24     116.172    1.50
+DLH          C7         C21          H9     122.007    1.50
+DLH         C24         C21          H9     121.821    1.50
+DLH          C6         C22         C23     116.172    1.50
+DLH          C6         C22         H10     122.007    1.50
+DLH         C23         C22         H10     121.821    1.50
+DLH         C22         C23         C24     121.516    1.50
+DLH         C22         C23         H11     119.150    1.50
+DLH         C24         C23         H11     119.334    1.50
+DLH         C23         C24         C21     121.516    1.50
+DLH         C23         C24         H12     119.334    1.50
+DLH         C21         C24         H12     119.150    1.50
+DLH          O5          C1          C9     109.504    1.50
+DLH          O5          C1          C8     109.504    1.50
+DLH          O5          C1          O4     105.675    1.50
+DLH          C9          C1          C8     110.546    1.68
+DLH          C9          C1          O4     109.504    1.50
+DLH          C8          C1          O4     109.504    1.50
+DLH          C3         C12         C14     113.604    1.50
+DLH          C3         C12         H13     108.875    1.50
+DLH          C3         C12         H14     108.875    1.50
+DLH         C14         C12         H13     108.838    1.50
+DLH         C14         C12         H14     108.838    1.50
+DLH         H13         C12         H14     107.743    1.50
+DLH         C12         C14         C17     121.074    1.50
+DLH         C12         C14         C18     121.074    1.50
+DLH         C17         C14         C18     117.852    1.50
+DLH         O13          C3         C12     120.148    1.50
+DLH         O13          C3          N2     122.030    1.50
+DLH         C12          C3          N2     117.823    1.50
+DLH          O5          C6         C22     127.738    1.50
+DLH          O5          C6          C7     109.950    1.50
+DLH         C22          C6          C7     122.312    1.50
+DLH          C6          C7          O4     109.950    1.50
+DLH          C6          C7         C21     122.312    1.50
+DLH          O4          C7         C21     127.738    1.50
+DLH          C1          C8         C10     111.476    2.14
+DLH          C1          C8         H15     108.854    1.50
+DLH          C1          C8         H16     108.854    1.50
+DLH         C10          C8         H15     109.365    1.50
+DLH         C10          C8         H16     109.365    1.50
+DLH         H15          C8         H16     108.621    1.76
+DLH          C1          C9         C11     111.476    2.14
+DLH          C1          C9         H17     108.854    1.50
+DLH          C1          C9         H18     108.854    1.50
+DLH         C11          C9         H17     109.365    1.50
+DLH         C11          C9         H18     109.365    1.50
+DLH         H17          C9         H18     108.621    1.76
+DLH          C3          N2         C11     123.498    3.00
+DLH          C3          N2         C10     123.498    3.00
+DLH         C11          N2         C10     113.005    1.50
+DLH          C1          O4          C7     106.693    1.50
+DLH          C6          O5          C1     106.693    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DLH             sp3_sp3_1          N2         C10          C8          C1      60.000    10.0     3
+DLH            sp2_sp3_22          C3          N2         C10          C8     180.000    10.0     6
+DLH            sp3_sp3_13          O5          C1          C8         C10     180.000    10.0     3
+DLH            sp3_sp3_25          O5          C1          C9         C11     180.000    10.0     3
+DLH            sp3_sp3_40          O5          C1          O4          C7      60.000    10.0     3
+DLH            sp3_sp3_39          C9          C1          O5          C6     -60.000    10.0     3
+DLH            sp2_sp3_14         C17         C14         C12          C3     -90.000    10.0     6
+DLH             sp2_sp3_8         O13          C3         C12         C14     120.000    10.0     6
+DLH             sp2_sp2_7         O13          C3          N2         C11       0.000     5.0     2
+DLH              const_21          O5          C6          C7          O4       0.000    10.0     2
+DLH             sp2_sp2_2         C22          C6          O5          C1     180.000     5.0     2
+DLH             sp2_sp2_3          C6          C7          O4          C1       0.000     5.0     2
+DLH            sp3_sp3_28          N2         C11          C9          C1     -60.000    10.0     3
+DLH             sp2_sp3_4          C3          N2         C11          C9     180.000    10.0     6
+DLH       const_sp2_sp2_3          CL         C15         C19         C17     180.000     5.0     2
+DLH              const_47          CL         C15         C20         C18     180.000    10.0     2
+DLH              const_11         C12         C14         C17         C19     180.000    10.0     2
+DLH       const_sp2_sp2_5         C14         C17         C19         C15       0.000     5.0     2
+DLH              const_15         C12         C14         C18         C20     180.000    10.0     2
+DLH              const_17         C14         C18         C20         C15       0.000    10.0     2
+DLH              const_41          C7         C21         C24         C23       0.000    10.0     2
+DLH              const_25         C24         C21          C7          C6       0.000    10.0     2
+DLH              const_30         C23         C22          C6          O5     180.000    10.0     2
+DLH              const_33          C6         C22         C23         C24       0.000    10.0     2
+DLH              const_37         C22         C23         C24         C21       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DLH    chir_1    C1    O5    O4    C9    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DLH    plan-1         C21   0.020
+DLH    plan-1         C22   0.020
+DLH    plan-1         C23   0.020
+DLH    plan-1         C24   0.020
+DLH    plan-1          C6   0.020
+DLH    plan-1          C7   0.020
+DLH    plan-1         H10   0.020
+DLH    plan-1         H11   0.020
+DLH    plan-1         H12   0.020
+DLH    plan-1          H9   0.020
+DLH    plan-1          O4   0.020
+DLH    plan-1          O5   0.020
+DLH    plan-2         C12   0.020
+DLH    plan-2         C14   0.020
+DLH    plan-2         C15   0.020
+DLH    plan-2         C17   0.020
+DLH    plan-2         C18   0.020
+DLH    plan-2         C19   0.020
+DLH    plan-2         C20   0.020
+DLH    plan-2          CL   0.020
+DLH    plan-2          H5   0.020
+DLH    plan-2          H6   0.020
+DLH    plan-2          H7   0.020
+DLH    plan-2          H8   0.020
+DLH    plan-3         C12   0.020
+DLH    plan-3          C3   0.020
+DLH    plan-3          N2   0.020
+DLH    plan-3         O13   0.020
+DLH    plan-4         C10   0.020
+DLH    plan-4         C11   0.020
+DLH    plan-4          C3   0.020
+DLH    plan-4          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DLH            InChI                InChI  1.03 InChI=1S/C19H18ClNO3/c20-15-7-5-14(6-8-15)13-18(22)21-11-9-19(10-12-21)23-16-3-1-2-4-17(16)24-19/h1-8H,9-13H2
+DLH         InChIKey                InChI  1.03                                                                                   FYEGABNDKDAYPJ-UHFFFAOYSA-N
+DLH SMILES_CANONICAL               CACTVS 3.385                                                                      Clc1ccc(CC(=O)N2CCC3(CC2)Oc4ccccc4O3)cc1
+DLH           SMILES               CACTVS 3.385                                                                      Clc1ccc(CC(=O)N2CCC3(CC2)Oc4ccccc4O3)cc1
+DLH SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                  c1ccc2c(c1)OC3(O2)CCN(CC3)C(=O)Cc4ccc(cc4)Cl
+DLH           SMILES "OpenEye OEToolkits" 2.0.6                                                                  c1ccc2c(c1)OC3(O2)CCN(CC3)C(=O)Cc4ccc(cc4)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DLH acedrg               243         "dictionary generator"                  
+DLH acedrg_database      11          "data source"                           
+DLH rdkit                2017.03.2   "Chemoinformatics tool"
+DLH refmac5              5.8.0238    "optimization tool"                     

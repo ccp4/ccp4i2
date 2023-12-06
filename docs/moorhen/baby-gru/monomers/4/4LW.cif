@@ -1,0 +1,173 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4LW     4LW      "(2Z)-2-fluoro-3-phenylprop-2-enoic acid"     NON-POLYMER     18     12     .     
+#
+data_comp_4LW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4LW     F1      F       F       0       16.307      12.004      25.730      
+4LW     CA      C       C       0       17.330      12.846      25.378      
+4LW     C       C       C       0       17.025      13.924      24.378      
+4LW     OXT     O       O       0       15.873      13.978      23.948      
+4LW     O       O       OC      -1      17.924      14.693      24.035      
+4LW     CB      C       C1      0       18.519      12.652      25.950      
+4LW     CG      C       CR6     0       18.935      11.459      26.697      
+4LW     CD1     C       CR16    0       19.426      11.565      28.000      
+4LW     CE1     C       CR16    0       19.820      10.440      28.709      
+4LW     CZ      C       CR16    0       19.732      9.190       28.131      
+4LW     CE2     C       CR16    0       19.249      9.060       26.845      
+4LW     CD2     C       CR16    0       18.854      10.183      26.132      
+4LW     H2      H       H       0       19.157      13.345      25.881      
+4LW     H3      H       H       0       19.490      12.414      28.402      
+4LW     H4      H       H       0       20.150      10.530      29.588      
+4LW     H5      H       H       0       20.000      8.425       28.615      
+4LW     H6      H       H       0       19.188      8.207       26.448      
+4LW     H7      H       H       0       18.526      10.086      25.255      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4LW           C         OXT      DOUBLE       n     1.230  0.0200     1.230  0.0200
+4LW           C           O      SINGLE       n     1.230  0.0200     1.230  0.0200
+4LW          CA           C      SINGLE       n     1.498  0.0136     1.498  0.0136
+4LW          F1          CA      SINGLE       n     1.370  0.0119     1.370  0.0119
+4LW          CA          CB      DOUBLE       n     1.327  0.0183     1.327  0.0183
+4LW          CB          CG      SINGLE       n     1.467  0.0108     1.467  0.0108
+4LW          CG         CD2      DOUBLE       y     1.394  0.0100     1.394  0.0100
+4LW         CE2         CD2      SINGLE       y     1.384  0.0100     1.384  0.0100
+4LW          CG         CD1      SINGLE       y     1.394  0.0100     1.394  0.0100
+4LW          CZ         CE2      DOUBLE       y     1.376  0.0114     1.376  0.0114
+4LW         CD1         CE1      DOUBLE       y     1.384  0.0100     1.384  0.0100
+4LW         CE1          CZ      SINGLE       y     1.376  0.0114     1.376  0.0114
+4LW          CB          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+4LW         CD1          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+4LW         CE1          H4      SINGLE       n     1.082  0.0130     0.943  0.0180
+4LW          CZ          H5      SINGLE       n     1.082  0.0130     0.944  0.0161
+4LW         CE2          H6      SINGLE       n     1.082  0.0130     0.943  0.0180
+4LW         CD2          H7      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4LW           C          CA          F1     118.628    3.00
+4LW           C          CA          CB     122.743    3.00
+4LW          F1          CA          CB     118.628    3.00
+4LW         OXT           C           O     124.510    1.63
+4LW         OXT           C          CA     117.745    2.67
+4LW           O           C          CA     117.745    2.67
+4LW          CA          CB          CG     125.855    3.00
+4LW          CA          CB          H2     117.572    2.00
+4LW          CG          CB          H2     116.573    1.50
+4LW          CB          CG         CD2     121.141    2.30
+4LW          CB          CG         CD1     121.141    2.30
+4LW         CD2          CG         CD1     117.718    1.50
+4LW          CG         CD1         CE1     120.956    1.50
+4LW          CG         CD1          H3     119.405    1.50
+4LW         CE1         CD1          H3     119.638    1.50
+4LW         CD1         CE1          CZ     120.217    1.50
+4LW         CD1         CE1          H4     119.846    1.50
+4LW          CZ         CE1          H4     119.937    1.50
+4LW         CE2          CZ         CE1     119.935    1.50
+4LW         CE2          CZ          H5     120.033    1.50
+4LW         CE1          CZ          H5     120.033    1.50
+4LW         CD2         CE2          CZ     120.217    1.50
+4LW         CD2         CE2          H6     119.846    1.50
+4LW          CZ         CE2          H6     119.937    1.50
+4LW          CG         CD2         CE2     120.956    1.50
+4LW          CG         CD2          H7     119.405    1.50
+4LW         CE2         CD2          H7     119.638    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4LW       const_sp2_sp2_5          CG         CD2         CE2          CZ       0.000     5.0     2
+4LW             sp2_sp2_2         OXT           C          CA          F1       0.000     5.0     2
+4LW             sp2_sp2_5           C          CA          CB          CG     180.000     5.0     2
+4LW             sp2_sp2_9          CA          CB          CG         CD2     180.000     5.0     2
+4LW       const_sp2_sp2_2         CE2         CD2          CG          CB     180.000     5.0     2
+4LW              const_22         CE1         CD1          CG          CB     180.000    10.0     2
+4LW              const_17          CG         CD1         CE1          CZ       0.000    10.0     2
+4LW              const_13         CD1         CE1          CZ         CE2       0.000    10.0     2
+4LW       const_sp2_sp2_9         CD2         CE2          CZ         CE1       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4LW    plan-1          CB   0.020
+4LW    plan-1         CD1   0.020
+4LW    plan-1         CD2   0.020
+4LW    plan-1         CE1   0.020
+4LW    plan-1         CE2   0.020
+4LW    plan-1          CG   0.020
+4LW    plan-1          CZ   0.020
+4LW    plan-1          H3   0.020
+4LW    plan-1          H4   0.020
+4LW    plan-1          H5   0.020
+4LW    plan-1          H6   0.020
+4LW    plan-1          H7   0.020
+4LW    plan-2           C   0.020
+4LW    plan-2          CA   0.020
+4LW    plan-2          CB   0.020
+4LW    plan-2          F1   0.020
+4LW    plan-3           C   0.020
+4LW    plan-3          CA   0.020
+4LW    plan-3           O   0.020
+4LW    plan-3         OXT   0.020
+4LW    plan-4          CA   0.020
+4LW    plan-4          CB   0.020
+4LW    plan-4          CG   0.020
+4LW    plan-4          H2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4LW           SMILES              ACDLabs 12.01                                               F\C(=C/c1ccccc1)C(O)=O
+4LW            InChI                InChI  1.03 InChI=1S/C9H7FO2/c10-8(9(11)12)6-7-4-2-1-3-5-7/h1-6H,(H,11,12)/b8-6-
+4LW         InChIKey                InChI  1.03                                          QONCEXMULRJPPY-VURMDHGXSA-N
+4LW SMILES_CANONICAL               CACTVS 3.385                                               OC(=O)C(/F)=C/c1ccccc1
+4LW           SMILES               CACTVS 3.385                                                 OC(=O)C(F)=Cc1ccccc1
+4LW SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                            c1ccc(cc1)/C=C(/C(=O)O)\F
+4LW           SMILES "OpenEye OEToolkits" 1.9.2                                               c1ccc(cc1)C=C(C(=O)O)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4LW acedrg               243         "dictionary generator"                  
+4LW acedrg_database      11          "data source"                           
+4LW rdkit                2017.03.2   "Chemoinformatics tool"
+4LW refmac5              5.8.0238    "optimization tool"                     

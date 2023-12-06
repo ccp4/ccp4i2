@@ -1,0 +1,605 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PDJ     PDJ      "(2R)-3-{[(2R)-2-AMINO-3-HYDROXYPROPYL]THIO}PROPANE-1,2-DIYL DIHEXADECANOATE"     NON-POLYMER     120     45     .     
+#
+data_comp_PDJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PDJ     CB      C       CH2     0       -28.464     -11.645     -12.564     
+PDJ     SG      S       S2      0       -27.398     -12.499     -11.377     
+PDJ     C       C       CH2     0       -29.383     -11.459     -14.897     
+PDJ     O       O       OH1     0       -29.314     -11.923     -16.234     
+PDJ     N       N       NT2     0       -26.955     -11.836     -14.529     
+PDJ     CA      C       CH1     0       -28.312     -12.104     -14.016     
+PDJ     C1      C       CH2     0       -27.612     -11.484     -9.895      
+PDJ     C2      C       CH1     0       -26.346     -10.784     -9.456      
+PDJ     O2      O       O2      0       -26.574     -10.374     -8.072      
+PDJ     C3      C       CH2     0       -26.000     -9.593      -10.317     
+PDJ     O3      O       O2      0       -24.720     -9.038      -9.924      
+PDJ     C11     C       CH3     0       -21.042     0.526       -21.180     
+PDJ     C12     C       CH2     0       -21.086     -0.765      -20.398     
+PDJ     C13     C       CH2     0       -19.825     -1.046      -19.623     
+PDJ     C14     C       CH2     0       -19.866     -2.317      -18.810     
+PDJ     C15     C       CH2     0       -18.655     -2.532      -17.936     
+PDJ     C16     C       CH2     0       -18.626     -3.869      -17.235     
+PDJ     C17     C       CH2     0       -19.664     -4.023      -16.151     
+PDJ     C18     C       CH2     0       -19.443     -5.209      -15.243     
+PDJ     C19     C       CH2     0       -18.471     -4.955      -14.117     
+PDJ     C20     C       CH2     0       -18.225     -6.151      -13.230     
+PDJ     C21     C       CH2     0       -19.372     -6.485      -12.307     
+PDJ     C22     C       CH2     0       -19.067     -7.574      -11.308     
+PDJ     C23     C       CH2     0       -20.167     -7.821      -10.306     
+PDJ     C24     C       CH2     0       -21.361     -8.587      -10.861     
+PDJ     C25     C       CH2     0       -22.374     -8.915      -9.809      
+PDJ     C26     C       C       0       -23.593     -9.619      -10.346     
+PDJ     O28     O       O       0       -23.550     -10.594     -11.055     
+PDJ     C31     C       CH3     0       -21.009     0.557       -15.588     
+PDJ     C32     C       CH2     0       -21.235     -0.507      -14.540     
+PDJ     C33     C       CH2     0       -22.228     -1.562      -14.956     
+PDJ     C34     C       CH2     0       -22.413     -2.672      -13.951     
+PDJ     C35     C       CH2     0       -23.348     -3.766      -14.402     
+PDJ     C36     C       CH2     0       -23.457     -4.923      -13.440     
+PDJ     C37     C       CH2     0       -24.211     -4.607      -12.171     
+PDJ     C38     C       CH2     0       -24.571     -5.819      -11.350     
+PDJ     C39     C       CH2     0       -25.279     -5.506      -10.055     
+PDJ     C40     C       CH2     0       -24.354     -5.138      -8.915      
+PDJ     C41     C       CH2     0       -25.046     -4.735      -7.624      
+PDJ     C42     C       CH2     0       -26.036     -5.739      -7.061      
+PDJ     C43     C       CH2     0       -25.481     -7.126      -6.815      
+PDJ     C44     C       CH2     0       -26.491     -8.101      -6.222      
+PDJ     C45     C       CH2     0       -25.919     -9.470      -5.964      
+PDJ     C46     C       C       0       -25.545     -10.239     -7.208      
+PDJ     O47     O       O       0       -24.440     -10.686     -7.385      
+PDJ     HB1     H       H       0       -28.272     -10.685     -12.514     
+PDJ     HB2     H       H       0       -29.396     -11.772     -12.287     
+PDJ     H1      H       H       0       -30.270     -11.662     -14.529     
+PDJ     H2A     H       H       0       -29.267     -10.485     -14.886     
+PDJ     HO      H       H       0       -29.979     -11.619     -16.659     
+PDJ     HN1     H       H       0       -26.905     -12.075     -15.383     
+PDJ     HN2     H       H       0       -26.784     -10.966     -14.484     
+PDJ     HA      H       H       0       -28.457     -13.085     -14.042     
+PDJ     H11     H       H       0       -27.934     -12.061     -9.169      
+PDJ     H12     H       H       0       -28.307     -10.815     -10.074     
+PDJ     H2      H       H       0       -25.604     -11.438     -9.496      
+PDJ     H31     H       H       0       -26.696     -8.904      -10.210     
+PDJ     H32     H       H       0       -25.976     -9.860      -11.265     
+PDJ     H111    H       H       0       -21.878     0.642       -21.665     
+PDJ     H112    H       H       0       -20.303     0.498       -21.813     
+PDJ     H113    H       H       0       -20.916     1.273       -20.570     
+PDJ     H121    H       H       0       -21.247     -1.508      -21.019     
+PDJ     H122    H       H       0       -21.841     -0.730      -19.770     
+PDJ     H131    H       H       0       -19.653     -0.292      -19.020     
+PDJ     H132    H       H       0       -19.075     -1.100      -20.253     
+PDJ     H141    H       H       0       -19.952     -3.079      -19.422     
+PDJ     H142    H       H       0       -20.665     -2.300      -18.242     
+PDJ     H151    H       H       0       -18.624     -1.822      -17.260     
+PDJ     H152    H       H       0       -17.849     -2.450      -18.490     
+PDJ     H161    H       H       0       -17.737     -3.997      -16.840     
+PDJ     H162    H       H       0       -18.760     -4.576      -17.902     
+PDJ     H171    H       H       0       -20.546     -4.109      -16.570     
+PDJ     H172    H       H       0       -19.672     -3.207      -15.606     
+PDJ     H181    H       H       0       -19.112     -5.959      -15.781     
+PDJ     H182    H       H       0       -20.306     -5.476      -14.860     
+PDJ     H191    H       H       0       -18.814     -4.220      -13.565     
+PDJ     H192    H       H       0       -17.615     -4.666      -14.499     
+PDJ     H201    H       H       0       -17.425     -5.982      -12.689     
+PDJ     H202    H       H       0       -18.042     -6.931      -13.797     
+PDJ     H211    H       H       0       -20.141     -6.762      -12.849     
+PDJ     H212    H       H       0       -19.629     -5.673      -11.819     
+PDJ     H221    H       H       0       -18.248     -7.335      -10.824     
+PDJ     H222    H       H       0       -18.892     -8.407      -11.795     
+PDJ     H231    H       H       0       -20.481     -6.956      -9.964      
+PDJ     H232    H       H       0       -19.796     -8.323      -9.549      
+PDJ     H241    H       H       0       -21.041     -9.417      -11.273     
+PDJ     H242    H       H       0       -21.784     -8.049      -11.563     
+PDJ     H251    H       H       0       -22.649     -8.083      -9.366      
+PDJ     H252    H       H       0       -21.952     -9.484      -9.131      
+PDJ     H311    H       H       0       -20.361     1.204       -15.260     
+PDJ     H312    H       H       0       -21.849     1.009       -15.779     
+PDJ     H313    H       H       0       -20.671     0.145       -16.402     
+PDJ     H321    H       H       0       -21.555     -0.080      -13.716     
+PDJ     H322    H       H       0       -20.379     -0.943      -14.339     
+PDJ     H331    H       H       0       -21.934     -1.953      -15.806     
+PDJ     H332    H       H       0       -23.096     -1.131      -15.111     
+PDJ     H341    H       H       0       -22.758     -2.287      -13.117     
+PDJ     H342    H       H       0       -21.536     -3.067      -13.755     
+PDJ     H351    H       H       0       -23.038     -4.106      -15.269     
+PDJ     H352    H       H       0       -24.241     -3.382      -14.535     
+PDJ     H361    H       H       0       -22.553     -5.221      -13.202     
+PDJ     H362    H       H       0       -23.906     -5.668      -13.894     
+PDJ     H371    H       H       0       -25.035     -4.129      -12.405     
+PDJ     H372    H       H       0       -23.664     -4.005      -11.622     
+PDJ     H381    H       H       0       -23.749     -6.316      -11.147     
+PDJ     H382    H       H       0       -25.145     -6.404      -11.889     
+PDJ     H391    H       H       0       -25.808     -6.290      -9.794      
+PDJ     H392    H       H       0       -25.902     -4.764      -10.207     
+PDJ     H401    H       H       0       -23.787     -4.392      -9.207      
+PDJ     H402    H       H       0       -23.764     -5.899      -8.732      
+PDJ     H411    H       H       0       -25.518     -3.889      -7.778      
+PDJ     H412    H       H       0       -24.358     -4.566      -6.946      
+PDJ     H421    H       H       0       -26.796     -5.812      -7.677      
+PDJ     H422    H       H       0       -26.381     -5.390      -6.212      
+PDJ     H431    H       H       0       -24.715     -7.055      -6.206      
+PDJ     H432    H       H       0       -25.154     -7.489      -7.664      
+PDJ     H441    H       H       0       -27.253     -8.175      -6.833      
+PDJ     H442    H       H       0       -26.824     -7.730      -5.379      
+PDJ     H451    H       H       0       -26.575     -9.993      -5.456      
+PDJ     H452    H       H       0       -25.121     -9.375      -5.401      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PDJ          CB          SG      SINGLE       n     1.809  0.0113     1.809  0.0113
+PDJ          CB          CA      SINGLE       n     1.531  0.0108     1.531  0.0108
+PDJ          SG          C1      SINGLE       n     1.809  0.0120     1.809  0.0120
+PDJ           C          CA      SINGLE       n     1.530  0.0118     1.530  0.0118
+PDJ           C           O      SINGLE       n     1.417  0.0200     1.417  0.0200
+PDJ           N          CA      SINGLE       n     1.476  0.0134     1.476  0.0134
+PDJ          C1          C2      SINGLE       n     1.511  0.0100     1.511  0.0100
+PDJ          C2          C3      SINGLE       n     1.507  0.0100     1.507  0.0100
+PDJ          C2          O2      SINGLE       n     1.454  0.0123     1.454  0.0123
+PDJ          O2         C46      SINGLE       n     1.342  0.0131     1.342  0.0131
+PDJ          C3          O3      SINGLE       n     1.444  0.0100     1.444  0.0100
+PDJ          O3         C26      SINGLE       n     1.329  0.0116     1.329  0.0116
+PDJ         C11         C12      SINGLE       n     1.510  0.0200     1.510  0.0200
+PDJ         C12         C13      SINGLE       n     1.507  0.0200     1.507  0.0200
+PDJ         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C16         C17      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C17         C18      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C18         C19      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C19         C20      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C20         C21      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C21         C22      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C22         C23      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C23         C24      SINGLE       n     1.523  0.0117     1.523  0.0117
+PDJ         C24         C25      SINGLE       n     1.497  0.0200     1.497  0.0200
+PDJ         C25         C26      SINGLE       n     1.503  0.0174     1.503  0.0174
+PDJ         C26         O28      DOUBLE       n     1.203  0.0150     1.203  0.0150
+PDJ         C31         C32      SINGLE       n     1.510  0.0200     1.510  0.0200
+PDJ         C32         C33      SINGLE       n     1.507  0.0200     1.507  0.0200
+PDJ         C33         C34      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C34         C35      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C35         C36      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C36         C37      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C37         C38      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C38         C39      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C39         C40      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C40         C41      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C41         C42      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C42         C43      SINGLE       n     1.509  0.0200     1.509  0.0200
+PDJ         C43         C44      SINGLE       n     1.523  0.0117     1.523  0.0117
+PDJ         C44         C45      SINGLE       n     1.497  0.0200     1.497  0.0200
+PDJ         C45         C46      SINGLE       n     1.503  0.0174     1.503  0.0174
+PDJ         C46         O47      DOUBLE       n     1.203  0.0150     1.203  0.0150
+PDJ          CB         HB1      SINGLE       n     1.089  0.0100     0.981  0.0122
+PDJ          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0122
+PDJ           C          H1      SINGLE       n     1.089  0.0100     0.981  0.0174
+PDJ           C         H2A      SINGLE       n     1.089  0.0100     0.981  0.0174
+PDJ           O          HO      SINGLE       n     0.970  0.0120     0.846  0.0200
+PDJ           N         HN1      SINGLE       n     1.036  0.0160     0.888  0.0200
+PDJ           N         HN2      SINGLE       n     1.036  0.0160     0.888  0.0200
+PDJ          CA          HA      SINGLE       n     1.089  0.0100     0.992  0.0135
+PDJ          C1         H11      SINGLE       n     1.089  0.0100     0.981  0.0122
+PDJ          C1         H12      SINGLE       n     1.089  0.0100     0.981  0.0122
+PDJ          C2          H2      SINGLE       n     1.089  0.0100     0.990  0.0148
+PDJ          C3         H31      SINGLE       n     1.089  0.0100     0.985  0.0188
+PDJ          C3         H32      SINGLE       n     1.089  0.0100     0.985  0.0188
+PDJ         C11        H111      SINGLE       n     1.089  0.0100     0.973  0.0157
+PDJ         C11        H112      SINGLE       n     1.089  0.0100     0.973  0.0157
+PDJ         C11        H113      SINGLE       n     1.089  0.0100     0.973  0.0157
+PDJ         C12        H121      SINGLE       n     1.089  0.0100     0.982  0.0155
+PDJ         C12        H122      SINGLE       n     1.089  0.0100     0.982  0.0155
+PDJ         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C18        H181      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C18        H182      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C19        H191      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C19        H192      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C20        H201      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C20        H202      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C23        H231      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C23        H232      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C24        H241      SINGLE       n     1.089  0.0100     0.980  0.0160
+PDJ         C24        H242      SINGLE       n     1.089  0.0100     0.980  0.0160
+PDJ         C25        H251      SINGLE       n     1.089  0.0100     0.981  0.0185
+PDJ         C25        H252      SINGLE       n     1.089  0.0100     0.981  0.0185
+PDJ         C31        H311      SINGLE       n     1.089  0.0100     0.973  0.0157
+PDJ         C31        H312      SINGLE       n     1.089  0.0100     0.973  0.0157
+PDJ         C31        H313      SINGLE       n     1.089  0.0100     0.973  0.0157
+PDJ         C32        H321      SINGLE       n     1.089  0.0100     0.982  0.0155
+PDJ         C32        H322      SINGLE       n     1.089  0.0100     0.982  0.0155
+PDJ         C33        H331      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C33        H332      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C34        H341      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C34        H342      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C35        H351      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C35        H352      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C36        H361      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C36        H362      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C37        H371      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C37        H372      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C38        H381      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C38        H382      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C39        H391      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C39        H392      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C40        H401      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C40        H402      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C41        H411      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C41        H412      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C42        H421      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C42        H422      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C43        H431      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C43        H432      SINGLE       n     1.089  0.0100     0.981  0.0163
+PDJ         C44        H441      SINGLE       n     1.089  0.0100     0.980  0.0160
+PDJ         C44        H442      SINGLE       n     1.089  0.0100     0.980  0.0160
+PDJ         C45        H451      SINGLE       n     1.089  0.0100     0.981  0.0185
+PDJ         C45        H452      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PDJ          SG          CB          CA     115.567    1.72
+PDJ          SG          CB         HB1     108.759    1.50
+PDJ          SG          CB         HB2     108.759    1.50
+PDJ          CA          CB         HB1     109.297    1.50
+PDJ          CA          CB         HB2     109.297    1.50
+PDJ         HB1          CB         HB2     107.812    1.50
+PDJ          CB          SG          C1     102.177    1.97
+PDJ          CA           C           O     111.903    1.66
+PDJ          CA           C          H1     109.343    1.50
+PDJ          CA           C         H2A     109.343    1.50
+PDJ           O           C          H1     109.411    1.50
+PDJ           O           C         H2A     109.411    1.50
+PDJ          H1           C         H2A     108.070    1.50
+PDJ           C           O          HO     108.529    2.94
+PDJ          CA           N         HN1     109.715    3.00
+PDJ          CA           N         HN2     109.715    3.00
+PDJ         HN1           N         HN2     107.559    3.00
+PDJ          CB          CA           C     110.734    1.73
+PDJ          CB          CA           N     111.883    2.59
+PDJ          CB          CA          HA     108.078    1.50
+PDJ           C          CA           N     111.883    2.59
+PDJ           C          CA          HA     107.627    1.50
+PDJ           N          CA          HA     107.944    1.55
+PDJ          SG          C1          C2     112.239    3.00
+PDJ          SG          C1         H11     108.654    1.50
+PDJ          SG          C1         H12     108.654    1.50
+PDJ          C2          C1         H11     109.473    1.50
+PDJ          C2          C1         H12     109.473    1.50
+PDJ         H11          C1         H12     107.886    1.50
+PDJ          C1          C2          C3     113.504    1.50
+PDJ          C1          C2          O2     108.899    2.54
+PDJ          C1          C2          H2     108.682    1.50
+PDJ          C3          C2          O2     109.042    2.74
+PDJ          C3          C2          H2     108.656    1.50
+PDJ          O2          C2          H2     109.221    1.50
+PDJ          C2          O2         C46     117.944    1.50
+PDJ          C2          C3          O3     108.641    1.70
+PDJ          C2          C3         H31     109.582    1.50
+PDJ          C2          C3         H32     109.582    1.50
+PDJ          O3          C3         H31     109.514    1.50
+PDJ          O3          C3         H32     109.514    1.50
+PDJ         H31          C3         H32     108.601    1.50
+PDJ          C3          O3         C26     116.187    1.50
+PDJ         C12         C11        H111     109.554    1.50
+PDJ         C12         C11        H112     109.554    1.50
+PDJ         C12         C11        H113     109.554    1.50
+PDJ        H111         C11        H112     109.380    1.50
+PDJ        H111         C11        H113     109.380    1.50
+PDJ        H112         C11        H113     109.380    1.50
+PDJ         C11         C12         C13     113.719    3.00
+PDJ         C11         C12        H121     108.918    1.50
+PDJ         C11         C12        H122     108.918    1.50
+PDJ         C13         C12        H121     108.758    1.50
+PDJ         C13         C12        H122     108.758    1.50
+PDJ        H121         C12        H122     107.763    1.50
+PDJ         C12         C13         C14     114.362    3.00
+PDJ         C12         C13        H131     108.653    1.50
+PDJ         C12         C13        H132     108.653    1.50
+PDJ         C14         C13        H131     108.698    1.50
+PDJ         C14         C13        H132     108.698    1.50
+PDJ        H131         C13        H132     107.646    1.50
+PDJ         C13         C14         C15     114.243    1.69
+PDJ         C13         C14        H141     108.698    1.50
+PDJ         C13         C14        H142     108.698    1.50
+PDJ         C15         C14        H141     108.698    1.50
+PDJ         C15         C14        H142     108.698    1.50
+PDJ        H141         C14        H142     107.646    1.50
+PDJ         C14         C15         C16     114.243    1.69
+PDJ         C14         C15        H151     108.698    1.50
+PDJ         C14         C15        H152     108.698    1.50
+PDJ         C16         C15        H151     108.698    1.50
+PDJ         C16         C15        H152     108.698    1.50
+PDJ        H151         C15        H152     107.646    1.50
+PDJ         C15         C16         C17     114.243    1.69
+PDJ         C15         C16        H161     108.698    1.50
+PDJ         C15         C16        H162     108.698    1.50
+PDJ         C17         C16        H161     108.698    1.50
+PDJ         C17         C16        H162     108.698    1.50
+PDJ        H161         C16        H162     107.646    1.50
+PDJ         C16         C17         C18     114.243    1.69
+PDJ         C16         C17        H171     108.698    1.50
+PDJ         C16         C17        H172     108.698    1.50
+PDJ         C18         C17        H171     108.698    1.50
+PDJ         C18         C17        H172     108.698    1.50
+PDJ        H171         C17        H172     107.646    1.50
+PDJ         C17         C18         C19     114.243    1.69
+PDJ         C17         C18        H181     108.698    1.50
+PDJ         C17         C18        H182     108.698    1.50
+PDJ         C19         C18        H181     108.698    1.50
+PDJ         C19         C18        H182     108.698    1.50
+PDJ        H181         C18        H182     107.646    1.50
+PDJ         C18         C19         C20     114.243    1.69
+PDJ         C18         C19        H191     108.698    1.50
+PDJ         C18         C19        H192     108.698    1.50
+PDJ         C20         C19        H191     108.698    1.50
+PDJ         C20         C19        H192     108.698    1.50
+PDJ        H191         C19        H192     107.646    1.50
+PDJ         C19         C20         C21     114.243    1.69
+PDJ         C19         C20        H201     108.698    1.50
+PDJ         C19         C20        H202     108.698    1.50
+PDJ         C21         C20        H201     108.698    1.50
+PDJ         C21         C20        H202     108.698    1.50
+PDJ        H201         C20        H202     107.646    1.50
+PDJ         C20         C21         C22     114.243    1.69
+PDJ         C20         C21        H211     108.698    1.50
+PDJ         C20         C21        H212     108.698    1.50
+PDJ         C22         C21        H211     108.698    1.50
+PDJ         C22         C21        H212     108.698    1.50
+PDJ        H211         C21        H212     107.646    1.50
+PDJ         C21         C22         C23     114.243    1.69
+PDJ         C21         C22        H221     108.698    1.50
+PDJ         C21         C22        H222     108.698    1.50
+PDJ         C23         C22        H221     108.698    1.50
+PDJ         C23         C22        H222     108.698    1.50
+PDJ        H221         C22        H222     107.646    1.50
+PDJ         C22         C23         C24     114.243    1.69
+PDJ         C22         C23        H231     108.698    1.50
+PDJ         C22         C23        H232     108.698    1.50
+PDJ         C24         C23        H231     108.698    1.50
+PDJ         C24         C23        H232     108.698    1.50
+PDJ        H231         C23        H232     107.646    1.50
+PDJ         C23         C24         C25     112.553    1.50
+PDJ         C23         C24        H241     108.698    1.50
+PDJ         C23         C24        H242     108.698    1.50
+PDJ         C25         C24        H241     109.164    1.50
+PDJ         C25         C24        H242     109.164    1.50
+PDJ        H241         C24        H242     107.646    1.50
+PDJ         C24         C25         C26     113.365    1.50
+PDJ         C24         C25        H251     108.815    1.50
+PDJ         C24         C25        H252     108.815    1.50
+PDJ         C26         C25        H251     108.883    1.50
+PDJ         C26         C25        H252     108.883    1.50
+PDJ        H251         C25        H252     107.521    1.50
+PDJ          O3         C26         C25     111.516    1.50
+PDJ          O3         C26         O28     123.233    1.50
+PDJ         C25         C26         O28     125.251    2.71
+PDJ         C32         C31        H311     109.554    1.50
+PDJ         C32         C31        H312     109.554    1.50
+PDJ         C32         C31        H313     109.554    1.50
+PDJ        H311         C31        H312     109.380    1.50
+PDJ        H311         C31        H313     109.380    1.50
+PDJ        H312         C31        H313     109.380    1.50
+PDJ         C31         C32         C33     113.719    3.00
+PDJ         C31         C32        H321     108.918    1.50
+PDJ         C31         C32        H322     108.918    1.50
+PDJ         C33         C32        H321     108.758    1.50
+PDJ         C33         C32        H322     108.758    1.50
+PDJ        H321         C32        H322     107.763    1.50
+PDJ         C32         C33         C34     114.362    3.00
+PDJ         C32         C33        H331     108.653    1.50
+PDJ         C32         C33        H332     108.653    1.50
+PDJ         C34         C33        H331     108.698    1.50
+PDJ         C34         C33        H332     108.698    1.50
+PDJ        H331         C33        H332     107.646    1.50
+PDJ         C33         C34         C35     114.243    1.69
+PDJ         C33         C34        H341     108.698    1.50
+PDJ         C33         C34        H342     108.698    1.50
+PDJ         C35         C34        H341     108.698    1.50
+PDJ         C35         C34        H342     108.698    1.50
+PDJ        H341         C34        H342     107.646    1.50
+PDJ         C34         C35         C36     114.243    1.69
+PDJ         C34         C35        H351     108.698    1.50
+PDJ         C34         C35        H352     108.698    1.50
+PDJ         C36         C35        H351     108.698    1.50
+PDJ         C36         C35        H352     108.698    1.50
+PDJ        H351         C35        H352     107.646    1.50
+PDJ         C35         C36         C37     114.243    1.69
+PDJ         C35         C36        H361     108.698    1.50
+PDJ         C35         C36        H362     108.698    1.50
+PDJ         C37         C36        H361     108.698    1.50
+PDJ         C37         C36        H362     108.698    1.50
+PDJ        H361         C36        H362     107.646    1.50
+PDJ         C36         C37         C38     114.243    1.69
+PDJ         C36         C37        H371     108.698    1.50
+PDJ         C36         C37        H372     108.698    1.50
+PDJ         C38         C37        H371     108.698    1.50
+PDJ         C38         C37        H372     108.698    1.50
+PDJ        H371         C37        H372     107.646    1.50
+PDJ         C37         C38         C39     114.243    1.69
+PDJ         C37         C38        H381     108.698    1.50
+PDJ         C37         C38        H382     108.698    1.50
+PDJ         C39         C38        H381     108.698    1.50
+PDJ         C39         C38        H382     108.698    1.50
+PDJ        H381         C38        H382     107.646    1.50
+PDJ         C38         C39         C40     114.243    1.69
+PDJ         C38         C39        H391     108.698    1.50
+PDJ         C38         C39        H392     108.698    1.50
+PDJ         C40         C39        H391     108.698    1.50
+PDJ         C40         C39        H392     108.698    1.50
+PDJ        H391         C39        H392     107.646    1.50
+PDJ         C39         C40         C41     114.243    1.69
+PDJ         C39         C40        H401     108.698    1.50
+PDJ         C39         C40        H402     108.698    1.50
+PDJ         C41         C40        H401     108.698    1.50
+PDJ         C41         C40        H402     108.698    1.50
+PDJ        H401         C40        H402     107.646    1.50
+PDJ         C40         C41         C42     114.243    1.69
+PDJ         C40         C41        H411     108.698    1.50
+PDJ         C40         C41        H412     108.698    1.50
+PDJ         C42         C41        H411     108.698    1.50
+PDJ         C42         C41        H412     108.698    1.50
+PDJ        H411         C41        H412     107.646    1.50
+PDJ         C41         C42         C43     114.243    1.69
+PDJ         C41         C42        H421     108.698    1.50
+PDJ         C41         C42        H422     108.698    1.50
+PDJ         C43         C42        H421     108.698    1.50
+PDJ         C43         C42        H422     108.698    1.50
+PDJ        H421         C42        H422     107.646    1.50
+PDJ         C42         C43         C44     114.243    1.69
+PDJ         C42         C43        H431     108.698    1.50
+PDJ         C42         C43        H432     108.698    1.50
+PDJ         C44         C43        H431     108.698    1.50
+PDJ         C44         C43        H432     108.698    1.50
+PDJ        H431         C43        H432     107.646    1.50
+PDJ         C43         C44         C45     112.553    1.50
+PDJ         C43         C44        H441     108.698    1.50
+PDJ         C43         C44        H442     108.698    1.50
+PDJ         C45         C44        H441     109.164    1.50
+PDJ         C45         C44        H442     109.164    1.50
+PDJ        H441         C44        H442     107.646    1.50
+PDJ         C44         C45         C46     113.365    1.50
+PDJ         C44         C45        H451     108.815    1.50
+PDJ         C44         C45        H452     108.815    1.50
+PDJ         C46         C45        H451     108.883    1.50
+PDJ         C46         C45        H452     108.883    1.50
+PDJ        H451         C45        H452     107.521    1.50
+PDJ          O2         C46         C45     113.008    3.00
+PDJ          O2         C46         O47     122.278    2.43
+PDJ         C45         C46         O47     124.714    2.71
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PDJ             sp3_sp3_1          CA          CB          SG          C1     180.000    10.0     3
+PDJ             sp3_sp3_4           C          CA          CB          SG     180.000    10.0     3
+PDJ             sp2_sp2_3         C25         C26          O3          C3     180.000     5.0     2
+PDJ            sp3_sp3_58        H111         C11         C12         C13     180.000    10.0     3
+PDJ            sp3_sp3_67         C11         C12         C13         C14     180.000    10.0     3
+PDJ            sp3_sp3_76         C12         C13         C14         C15     180.000    10.0     3
+PDJ            sp3_sp3_85         C13         C14         C15         C16     180.000    10.0     3
+PDJ            sp3_sp3_94         C14         C15         C16         C17     180.000    10.0     3
+PDJ           sp3_sp3_103         C15         C16         C17         C18     180.000    10.0     3
+PDJ           sp3_sp3_112         C16         C17         C18         C19     180.000    10.0     3
+PDJ           sp3_sp3_121         C17         C18         C19         C20     180.000    10.0     3
+PDJ           sp3_sp3_130         C18         C19         C20         C21     180.000    10.0     3
+PDJ            sp3_sp3_13          C2          C1          SG          CB     180.000    10.0     3
+PDJ           sp3_sp3_139         C19         C20         C21         C22     180.000    10.0     3
+PDJ           sp3_sp3_148         C20         C21         C22         C23     180.000    10.0     3
+PDJ           sp3_sp3_157         C21         C22         C23         C24     180.000    10.0     3
+PDJ           sp3_sp3_166         C22         C23         C24         C25     180.000    10.0     3
+PDJ           sp3_sp3_175         C23         C24         C25         C26     180.000    10.0     3
+PDJ             sp2_sp3_2          O3         C26         C25         C24     120.000    10.0     6
+PDJ           sp3_sp3_184        H311         C31         C32         C33     180.000    10.0     3
+PDJ           sp3_sp3_193         C31         C32         C33         C34     180.000    10.0     3
+PDJ            sp3_sp3_25          CA           C           O          HO     180.000    10.0     3
+PDJ            sp3_sp3_16           O           C          CA          CB     180.000    10.0     3
+PDJ           sp3_sp3_202         C32         C33         C34         C35     180.000    10.0     3
+PDJ           sp3_sp3_211         C33         C34         C35         C36     180.000    10.0     3
+PDJ           sp3_sp3_220         C34         C35         C36         C37     180.000    10.0     3
+PDJ           sp3_sp3_229         C35         C36         C37         C38     180.000    10.0     3
+PDJ           sp3_sp3_238         C36         C37         C38         C39     180.000    10.0     3
+PDJ           sp3_sp3_247         C37         C38         C39         C40     180.000    10.0     3
+PDJ           sp3_sp3_256         C38         C39         C40         C41     180.000    10.0     3
+PDJ           sp3_sp3_265         C39         C40         C41         C42     180.000    10.0     3
+PDJ           sp3_sp3_274         C40         C41         C42         C43     180.000    10.0     3
+PDJ           sp3_sp3_283         C41         C42         C43         C44     180.000    10.0     3
+PDJ           sp3_sp3_292         C42         C43         C44         C45     180.000    10.0     3
+PDJ           sp3_sp3_301         C43         C44         C45         C46     180.000    10.0     3
+PDJ             sp2_sp3_8          O2         C46         C45         C44     120.000    10.0     6
+PDJ            sp3_sp3_28          CB          CA           N         HN1     180.000    10.0     3
+PDJ            sp3_sp3_34          SG          C1          C2          C3     180.000    10.0     3
+PDJ            sp3_sp3_52          C1          C2          O2         C46     180.000    10.0     3
+PDJ            sp3_sp3_43          C1          C2          C3          O3     180.000    10.0     3
+PDJ             sp2_sp2_1         C45         C46          O2          C2     180.000     5.0     2
+PDJ            sp3_sp3_55          C2          C3          O3         C26     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PDJ    chir_1    CA    N    CB    C    negative
+PDJ    chir_2    C2    O2    C1    C3    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PDJ    plan-1         C25   0.020
+PDJ    plan-1         C26   0.020
+PDJ    plan-1         O28   0.020
+PDJ    plan-1          O3   0.020
+PDJ    plan-2         C45   0.020
+PDJ    plan-2         C46   0.020
+PDJ    plan-2          O2   0.020
+PDJ    plan-2         O47   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PDJ           SMILES              ACDLabs 10.04                                                                                                                                      O=C(OC(CSCC(N)CO)COC(=O)CCCCCCCCCCCCCCC)CCCCCCCCCCCCCCC
+PDJ SMILES_CANONICAL               CACTVS 3.341                                                                                                                              CCCCCCCCCCCCCCCC(=O)OC[C@H](CSC[C@H](N)CO)OC(=O)CCCCCCCCCCCCCCC
+PDJ           SMILES               CACTVS 3.341                                                                                                                                CCCCCCCCCCCCCCCC(=O)OC[CH](CSC[CH](N)CO)OC(=O)CCCCCCCCCCCCCCC
+PDJ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                             CCCCCCCCCCCCCCCC(=O)OC[C@H](CSC[C@@H](CO)N)OC(=O)CCCCCCCCCCCCCCC
+PDJ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                      CCCCCCCCCCCCCCCC(=O)OCC(CSCC(CO)N)OC(=O)CCCCCCCCCCCCCCC
+PDJ            InChI                InChI  1.03 InChI=1S/C38H75NO5S/c1-3-5-7-9-11-13-15-17-19-21-23-25-27-29-37(41)43-32-36(34-45-33-35(39)31-40)44-38(42)30-28-26-24-22-20-18-16-14-12-10-8-6-4-2/h35-36,40H,3-34,39H2,1-2H3/t35-,36-/m1/s1
+PDJ         InChIKey                InChI  1.03                                                                                                                                                                  BRVXVNDGAKVNMP-LQFQNGICSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PDJ acedrg               243         "dictionary generator"                  
+PDJ acedrg_database      11          "data source"                           
+PDJ rdkit                2017.03.2   "Chemoinformatics tool"
+PDJ refmac5              5.8.0238    "optimization tool"                     

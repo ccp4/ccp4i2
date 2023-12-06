@@ -1,0 +1,464 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LPE     LPE      1-O-OCTADECYL-SN-GLYCERO-3-PHOSPHOCHOLINE     NON-POLYMER     90     34     .     
+#
+data_comp_LPE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LPE     C1      C       CH2     0       -13.600     1.892       7.987       
+LPE     O1      O       O2      0       -13.763     0.657       7.296       
+LPE     C2      C       CH1     0       -13.670     3.057       7.026       
+LPE     O2H     O       OH1     0       -14.956     3.075       6.408       
+LPE     C3      C       CH2     0       -13.421     4.387       7.702       
+LPE     C11     C       CH2     0       -13.702     -0.463      8.172       
+LPE     C12     C       CH2     0       -13.882     -1.737      7.386       
+LPE     O3      O       O2      0       -13.543     5.480       6.751       
+LPE     P       P       P       0       -13.519     6.992       7.293       
+LPE     O31     O       O       0       -12.341     7.142       8.216       
+LPE     O32     O       OP      -1      -13.671     7.914       6.114       
+LPE     O33     O       O2      0       -14.860     7.084       8.173       
+LPE     C31     C       CH2     0       -16.149     6.927       7.520       
+LPE     C32     C       CH2     0       -17.253     6.943       8.554       
+LPE     N       N       NT      1       -18.682     6.738       8.078       
+LPE     C1N     C       CH3     0       -19.073     7.790       7.090       
+LPE     C2N     C       CH3     0       -18.846     5.389       7.455       
+LPE     C3N     C       CH3     0       -19.593     6.831       9.257       
+LPE     C13     C       CH2     0       -13.807     -2.966      8.258       
+LPE     C14     C       CH2     0       -13.989     -4.262      7.508       
+LPE     C15     C       CH2     0       -13.911     -5.485      8.388       
+LPE     C16     C       CH2     0       -14.090     -6.796      7.665       
+LPE     C17     C       CH2     0       -14.009     -8.005      8.563       
+LPE     C18     C       CH2     0       -14.186     -9.324      7.853       
+LPE     C19     C       CH2     0       -14.103     -10.528     8.759       
+LPE     C20     C       CH2     0       -14.280     -11.849     8.052       
+LPE     C21     C       CH2     0       -14.197     -13.052     8.958       
+LPE     C22     C       CH2     0       -14.374     -14.372     8.249       
+LPE     C23     C       CH2     0       -14.291     -15.578     9.153       
+LPE     C24     C       CH2     0       -14.469     -16.896     8.440       
+LPE     C25     C       CH2     0       -14.387     -18.104     9.341       
+LPE     C26     C       CH2     0       -14.565     -19.421     8.626       
+LPE     C27     C       CH2     0       -14.484     -20.630     9.522       
+LPE     C28     C       CH3     0       -14.663     -21.938     8.789       
+LPE     H11     H       H       0       -12.732     1.899       8.443       
+LPE     H12     H       H       0       -14.307     1.984       8.662       
+LPE     H21     H       H       0       -12.986     2.928       6.327       
+LPE     HO21    H       H       0       -14.910     3.576       5.725       
+LPE     H31     H       H       0       -12.521     4.394       8.090       
+LPE     H32     H       H       0       -14.069     4.512       8.426       
+LPE     H111    H       H       0       -14.406     -0.391      8.851       
+LPE     H112    H       H       0       -12.834     -0.477      8.631       
+LPE     H121    H       H       0       -13.187     -1.788      6.697       
+LPE     H122    H       H       0       -14.753     -1.714      6.937       
+LPE     H311    H       H       0       -16.166     6.076       7.025       
+LPE     H312    H       H       0       -16.284     7.662       6.877       
+LPE     H321    H       H       0       -17.215     7.802       9.019       
+LPE     H322    H       H       0       -17.058     6.249       9.213       
+LPE     H1N1    H       H       0       -20.022     7.718       6.904       
+LPE     H1N2    H       H       0       -18.572     7.666       6.271       
+LPE     H1N3    H       H       0       -18.879     8.663       7.465       
+LPE     H2N1    H       H       0       -19.786     5.230       7.279       
+LPE     H2N2    H       H       0       -18.509     4.716       8.065       
+LPE     H2N3    H       H       0       -18.350     5.355       6.624       
+LPE     H3N1    H       H       0       -20.507     6.690       8.968       
+LPE     H3N2    H       H       0       -19.508     7.710       9.655       
+LPE     H3N3    H       H       0       -19.345     6.152       9.903       
+LPE     H131    H       H       0       -14.497     -2.906      8.952       
+LPE     H132    H       H       0       -12.935     -2.984      8.707       
+LPE     H141    H       H       0       -13.298     -4.327      6.814       
+LPE     H142    H       H       0       -14.862     -4.249      7.060       
+LPE     H151    H       H       0       -14.601     -5.415      9.083       
+LPE     H152    H       H       0       -13.039     -5.492      8.838       
+LPE     H161    H       H       0       -13.399     -6.870      6.972       
+LPE     H162    H       H       0       -14.963     -6.793      7.217       
+LPE     H171    H       H       0       -14.698     -7.928      9.257       
+LPE     H172    H       H       0       -13.136     -8.005      9.011       
+LPE     H181    H       H       0       -13.496     -9.404      7.160       
+LPE     H182    H       H       0       -15.059     -9.326      7.406       
+LPE     H191    H       H       0       -14.793     -10.448     9.452       
+LPE     H192    H       H       0       -13.230     -10.525     9.207       
+LPE     H201    H       H       0       -13.590     -11.929     7.360       
+LPE     H202    H       H       0       -15.152     -11.852     7.604       
+LPE     H211    H       H       0       -14.887     -12.972     9.651       
+LPE     H212    H       H       0       -13.324     -13.050     9.406       
+LPE     H221    H       H       0       -13.685     -14.451     7.556       
+LPE     H222    H       H       0       -15.247     -14.374     7.802       
+LPE     H231    H       H       0       -14.981     -15.499     9.846       
+LPE     H232    H       H       0       -13.418     -15.577     9.599       
+LPE     H241    H       H       0       -13.780     -16.974     7.747       
+LPE     H242    H       H       0       -15.342     -16.896     7.993       
+LPE     H251    H       H       0       -15.077     -18.027     10.034      
+LPE     H252    H       H       0       -13.514     -18.104     9.789       
+LPE     H261    H       H       0       -13.875     -19.498     7.933       
+LPE     H262    H       H       0       -15.438     -19.420     8.178       
+LPE     H271    H       H       0       -15.175     -20.556     10.215      
+LPE     H272    H       H       0       -13.610     -20.633     9.970       
+LPE     H281    H       H       0       -14.601     -22.676     9.421       
+LPE     H282    H       H       0       -13.968     -22.032     8.114       
+LPE     H283    H       H       0       -15.536     -21.954     8.359       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LPE          C1          O1      SINGLE       n     1.422  0.0110     1.422  0.0110
+LPE          C1          C2      SINGLE       n     1.512  0.0104     1.512  0.0104
+LPE          O1         C11      SINGLE       n     1.422  0.0111     1.422  0.0111
+LPE          C2         O2H      SINGLE       n     1.427  0.0100     1.427  0.0100
+LPE          C2          C3      SINGLE       n     1.512  0.0104     1.512  0.0104
+LPE          C3          O3      SINGLE       n     1.454  0.0165     1.454  0.0165
+LPE         C11         C12      SINGLE       n     1.508  0.0200     1.508  0.0200
+LPE         C12         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE          O3           P      SINGLE       n     1.606  0.0100     1.606  0.0100
+LPE           P         O31      DOUBLE       n     1.504  0.0115     1.504  0.0115
+LPE           P         O32      SINGLE       n     1.504  0.0115     1.504  0.0115
+LPE           P         O33      SINGLE       n     1.606  0.0100     1.606  0.0100
+LPE         O33         C31      SINGLE       n     1.454  0.0165     1.454  0.0165
+LPE         C31         C32      SINGLE       n     1.509  0.0100     1.509  0.0100
+LPE         C32           N      SINGLE       n     1.516  0.0100     1.516  0.0100
+LPE           N         C1N      SINGLE       n     1.488  0.0165     1.488  0.0165
+LPE           N         C2N      SINGLE       n     1.488  0.0165     1.488  0.0165
+LPE           N         C3N      SINGLE       n     1.488  0.0165     1.488  0.0165
+LPE         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE         C16         C17      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE         C17         C18      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE         C18         C19      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE         C19         C20      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE         C20         C21      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE         C21         C22      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE         C22         C23      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE         C23         C24      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE         C24         C25      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE         C25         C26      SINGLE       n     1.509  0.0200     1.509  0.0200
+LPE         C26         C27      SINGLE       n     1.507  0.0200     1.507  0.0200
+LPE         C27         C28      SINGLE       n     1.510  0.0200     1.510  0.0200
+LPE          C1         H11      SINGLE       n     1.089  0.0100     0.981  0.0174
+LPE          C1         H12      SINGLE       n     1.089  0.0100     0.981  0.0174
+LPE          C2         H21      SINGLE       n     1.089  0.0100     0.987  0.0186
+LPE         O2H        HO21      SINGLE       n     0.970  0.0120     0.848  0.0200
+LPE          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0146
+LPE          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0146
+LPE         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0174
+LPE         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0174
+LPE         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0166
+LPE         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0166
+LPE         C31        H311      SINGLE       n     1.089  0.0100     0.986  0.0100
+LPE         C31        H312      SINGLE       n     1.089  0.0100     0.986  0.0100
+LPE         C32        H321      SINGLE       n     1.089  0.0100     0.977  0.0167
+LPE         C32        H322      SINGLE       n     1.089  0.0100     0.977  0.0167
+LPE         C1N        H1N1      SINGLE       n     1.089  0.0100     0.969  0.0145
+LPE         C1N        H1N2      SINGLE       n     1.089  0.0100     0.969  0.0145
+LPE         C1N        H1N3      SINGLE       n     1.089  0.0100     0.969  0.0145
+LPE         C2N        H2N1      SINGLE       n     1.089  0.0100     0.969  0.0145
+LPE         C2N        H2N2      SINGLE       n     1.089  0.0100     0.969  0.0145
+LPE         C2N        H2N3      SINGLE       n     1.089  0.0100     0.969  0.0145
+LPE         C3N        H3N1      SINGLE       n     1.089  0.0100     0.969  0.0145
+LPE         C3N        H3N2      SINGLE       n     1.089  0.0100     0.969  0.0145
+LPE         C3N        H3N3      SINGLE       n     1.089  0.0100     0.969  0.0145
+LPE         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C18        H181      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C18        H182      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C19        H191      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C19        H192      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C20        H201      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C20        H202      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C23        H231      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C23        H232      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C24        H241      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C24        H242      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C25        H251      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C25        H252      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C26        H261      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C26        H262      SINGLE       n     1.089  0.0100     0.981  0.0163
+LPE         C27        H271      SINGLE       n     1.089  0.0100     0.982  0.0155
+LPE         C27        H272      SINGLE       n     1.089  0.0100     0.982  0.0155
+LPE         C28        H281      SINGLE       n     1.089  0.0100     0.973  0.0157
+LPE         C28        H282      SINGLE       n     1.089  0.0100     0.973  0.0157
+LPE         C28        H283      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LPE          O1          C1          C2     109.289    2.60
+LPE          O1          C1         H11     109.546    1.50
+LPE          O1          C1         H12     109.546    1.50
+LPE          C2          C1         H11     109.582    1.50
+LPE          C2          C1         H12     109.582    1.50
+LPE         H11          C1         H12     108.601    1.50
+LPE          C1          O1         C11     113.198    3.00
+LPE          C1          C2         O2H     109.314    1.96
+LPE          C1          C2          C3     113.504    1.50
+LPE          C1          C2         H21     108.656    1.50
+LPE         O2H          C2          C3     109.314    1.96
+LPE         O2H          C2         H21     108.721    1.50
+LPE          C3          C2         H21     108.656    1.50
+LPE          C2         O2H        HO21     107.936    3.00
+LPE          C2          C3          O3     109.438    2.56
+LPE          C2          C3         H31     109.582    1.50
+LPE          C2          C3         H32     109.582    1.50
+LPE          O3          C3         H31     109.393    1.91
+LPE          O3          C3         H32     109.393    1.91
+LPE         H31          C3         H32     108.319    1.50
+LPE          O1         C11         C12     109.174    1.50
+LPE          O1         C11        H111     109.746    1.50
+LPE          O1         C11        H112     109.746    1.50
+LPE         C12         C11        H111     109.912    1.50
+LPE         C12         C11        H112     109.912    1.50
+LPE        H111         C11        H112     108.375    1.50
+LPE         C11         C12         C13     113.402    1.80
+LPE         C11         C12        H121     108.852    1.50
+LPE         C11         C12        H122     108.852    1.50
+LPE         C13         C12        H121     108.944    1.50
+LPE         C13         C12        H122     108.944    1.50
+LPE        H121         C12        H122     107.788    1.50
+LPE          C3          O3           P     119.251    1.51
+LPE          O3           P         O31     107.777    3.00
+LPE          O3           P         O32     107.777    3.00
+LPE          O3           P         O33     102.789    2.10
+LPE         O31           P         O32     119.782    1.83
+LPE         O31           P         O33     107.777    3.00
+LPE         O32           P         O33     107.777    3.00
+LPE           P         O33         C31     119.251    1.51
+LPE         O33         C31         C32     109.379    2.50
+LPE         O33         C31        H311     109.451    1.50
+LPE         O33         C31        H312     109.451    1.50
+LPE         C32         C31        H311     109.175    1.50
+LPE         C32         C31        H312     109.175    1.50
+LPE        H311         C31        H312     107.889    1.50
+LPE         C31         C32           N     115.936    1.50
+LPE         C31         C32        H321     108.150    1.50
+LPE         C31         C32        H322     108.150    1.50
+LPE           N         C32        H321     107.825    1.61
+LPE           N         C32        H322     107.825    1.61
+LPE        H321         C32        H322     107.359    1.69
+LPE         C32           N         C1N     109.961    1.74
+LPE         C32           N         C2N     109.961    1.74
+LPE         C32           N         C3N     109.961    1.74
+LPE         C1N           N         C2N     109.041    1.50
+LPE         C1N           N         C3N     109.041    1.50
+LPE         C2N           N         C3N     109.041    1.50
+LPE           N         C1N        H1N1     108.994    1.50
+LPE           N         C1N        H1N2     108.994    1.50
+LPE           N         C1N        H1N3     108.994    1.50
+LPE        H1N1         C1N        H1N2     109.693    1.55
+LPE        H1N1         C1N        H1N3     109.693    1.55
+LPE        H1N2         C1N        H1N3     109.693    1.55
+LPE           N         C2N        H2N1     108.994    1.50
+LPE           N         C2N        H2N2     108.994    1.50
+LPE           N         C2N        H2N3     108.994    1.50
+LPE        H2N1         C2N        H2N2     109.693    1.55
+LPE        H2N1         C2N        H2N3     109.693    1.55
+LPE        H2N2         C2N        H2N3     109.693    1.55
+LPE           N         C3N        H3N1     108.994    1.50
+LPE           N         C3N        H3N2     108.994    1.50
+LPE           N         C3N        H3N3     108.994    1.50
+LPE        H3N1         C3N        H3N2     109.693    1.55
+LPE        H3N1         C3N        H3N3     109.693    1.55
+LPE        H3N2         C3N        H3N3     109.693    1.55
+LPE         C12         C13         C14     113.259    1.53
+LPE         C12         C13        H131     108.902    1.50
+LPE         C12         C13        H132     108.902    1.50
+LPE         C14         C13        H131     108.698    1.50
+LPE         C14         C13        H132     108.698    1.50
+LPE        H131         C13        H132     107.646    1.50
+LPE         C13         C14         C15     114.243    1.69
+LPE         C13         C14        H141     108.698    1.50
+LPE         C13         C14        H142     108.698    1.50
+LPE         C15         C14        H141     108.698    1.50
+LPE         C15         C14        H142     108.698    1.50
+LPE        H141         C14        H142     107.646    1.50
+LPE         C14         C15         C16     114.243    1.69
+LPE         C14         C15        H151     108.698    1.50
+LPE         C14         C15        H152     108.698    1.50
+LPE         C16         C15        H151     108.698    1.50
+LPE         C16         C15        H152     108.698    1.50
+LPE        H151         C15        H152     107.646    1.50
+LPE         C15         C16         C17     114.243    1.69
+LPE         C15         C16        H161     108.698    1.50
+LPE         C15         C16        H162     108.698    1.50
+LPE         C17         C16        H161     108.698    1.50
+LPE         C17         C16        H162     108.698    1.50
+LPE        H161         C16        H162     107.646    1.50
+LPE         C16         C17         C18     114.243    1.69
+LPE         C16         C17        H171     108.698    1.50
+LPE         C16         C17        H172     108.698    1.50
+LPE         C18         C17        H171     108.698    1.50
+LPE         C18         C17        H172     108.698    1.50
+LPE        H171         C17        H172     107.646    1.50
+LPE         C17         C18         C19     114.243    1.69
+LPE         C17         C18        H181     108.698    1.50
+LPE         C17         C18        H182     108.698    1.50
+LPE         C19         C18        H181     108.698    1.50
+LPE         C19         C18        H182     108.698    1.50
+LPE        H181         C18        H182     107.646    1.50
+LPE         C18         C19         C20     114.243    1.69
+LPE         C18         C19        H191     108.698    1.50
+LPE         C18         C19        H192     108.698    1.50
+LPE         C20         C19        H191     108.698    1.50
+LPE         C20         C19        H192     108.698    1.50
+LPE        H191         C19        H192     107.646    1.50
+LPE         C19         C20         C21     114.243    1.69
+LPE         C19         C20        H201     108.698    1.50
+LPE         C19         C20        H202     108.698    1.50
+LPE         C21         C20        H201     108.698    1.50
+LPE         C21         C20        H202     108.698    1.50
+LPE        H201         C20        H202     107.646    1.50
+LPE         C20         C21         C22     114.243    1.69
+LPE         C20         C21        H211     108.698    1.50
+LPE         C20         C21        H212     108.698    1.50
+LPE         C22         C21        H211     108.698    1.50
+LPE         C22         C21        H212     108.698    1.50
+LPE        H211         C21        H212     107.646    1.50
+LPE         C21         C22         C23     114.243    1.69
+LPE         C21         C22        H221     108.698    1.50
+LPE         C21         C22        H222     108.698    1.50
+LPE         C23         C22        H221     108.698    1.50
+LPE         C23         C22        H222     108.698    1.50
+LPE        H221         C22        H222     107.646    1.50
+LPE         C22         C23         C24     114.243    1.69
+LPE         C22         C23        H231     108.698    1.50
+LPE         C22         C23        H232     108.698    1.50
+LPE         C24         C23        H231     108.698    1.50
+LPE         C24         C23        H232     108.698    1.50
+LPE        H231         C23        H232     107.646    1.50
+LPE         C23         C24         C25     114.243    1.69
+LPE         C23         C24        H241     108.698    1.50
+LPE         C23         C24        H242     108.698    1.50
+LPE         C25         C24        H241     108.698    1.50
+LPE         C25         C24        H242     108.698    1.50
+LPE        H241         C24        H242     107.646    1.50
+LPE         C24         C25         C26     114.243    1.69
+LPE         C24         C25        H251     108.698    1.50
+LPE         C24         C25        H252     108.698    1.50
+LPE         C26         C25        H251     108.698    1.50
+LPE         C26         C25        H252     108.698    1.50
+LPE        H251         C25        H252     107.646    1.50
+LPE         C25         C26         C27     114.362    3.00
+LPE         C25         C26        H261     108.698    1.50
+LPE         C25         C26        H262     108.698    1.50
+LPE         C27         C26        H261     108.653    1.50
+LPE         C27         C26        H262     108.653    1.50
+LPE        H261         C26        H262     107.646    1.50
+LPE         C26         C27         C28     113.719    3.00
+LPE         C26         C27        H271     108.758    1.50
+LPE         C26         C27        H272     108.758    1.50
+LPE         C28         C27        H271     108.918    1.50
+LPE         C28         C27        H272     108.918    1.50
+LPE        H271         C27        H272     107.763    1.50
+LPE         C27         C28        H281     109.554    1.50
+LPE         C27         C28        H282     109.554    1.50
+LPE         C27         C28        H283     109.554    1.50
+LPE        H281         C28        H282     109.380    1.50
+LPE        H281         C28        H283     109.380    1.50
+LPE        H282         C28        H283     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LPE             sp3_sp3_1          C2          C1          O1         C11     180.000    10.0     3
+LPE             sp3_sp3_4          O1          C1          C2         O2H     180.000    10.0     3
+LPE            sp3_sp3_55         C32         C31         O33           P     180.000    10.0     3
+LPE            sp3_sp3_58         O33         C31         C32           N     180.000    10.0     3
+LPE            sp3_sp3_67         C31         C32           N         C1N     180.000    10.0     3
+LPE            sp3_sp3_76        H1N1         C1N           N         C32     180.000    10.0     3
+LPE            sp3_sp3_85        H2N1         C2N           N         C32     180.000    10.0     3
+LPE            sp3_sp3_94        H3N1         C3N           N         C32     180.000    10.0     3
+LPE           sp3_sp3_103         C12         C13         C14         C15     180.000    10.0     3
+LPE           sp3_sp3_112         C13         C14         C15         C16     180.000    10.0     3
+LPE            sp3_sp3_13         C12         C11          O1          C1     180.000    10.0     3
+LPE           sp3_sp3_121         C14         C15         C16         C17     180.000    10.0     3
+LPE           sp3_sp3_130         C15         C16         C17         C18     180.000    10.0     3
+LPE           sp3_sp3_139         C16         C17         C18         C19     180.000    10.0     3
+LPE           sp3_sp3_148         C17         C18         C19         C20     180.000    10.0     3
+LPE           sp3_sp3_157         C18         C19         C20         C21     180.000    10.0     3
+LPE           sp3_sp3_166         C19         C20         C21         C22     180.000    10.0     3
+LPE           sp3_sp3_175         C20         C21         C22         C23     180.000    10.0     3
+LPE           sp3_sp3_184         C21         C22         C23         C24     180.000    10.0     3
+LPE           sp3_sp3_193         C22         C23         C24         C25     180.000    10.0     3
+LPE           sp3_sp3_202         C23         C24         C25         C26     180.000    10.0     3
+LPE            sp3_sp3_16          C1          C2         O2H        HO21     180.000    10.0     3
+LPE            sp3_sp3_19          C1          C2          C3          O3     180.000    10.0     3
+LPE           sp3_sp3_211         C24         C25         C26         C27     180.000    10.0     3
+LPE           sp3_sp3_220         C25         C26         C27         C28     180.000    10.0     3
+LPE           sp3_sp3_229         C26         C27         C28        H281     180.000    10.0     3
+LPE            sp3_sp3_28          C2          C3          O3           P     180.000    10.0     3
+LPE            sp3_sp3_31          O1         C11         C12         C13     180.000    10.0     3
+LPE            sp3_sp3_40         C11         C12         C13         C14     180.000    10.0     3
+LPE            sp3_sp3_51          C3          O3           P         O31      60.000    10.0     3
+LPE            sp3_sp3_52         C31         O33           P          O3     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LPE    chir_1    C2    O2H    C3    C1    negative
+LPE    chir_2    P    O3    O33    O32    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LPE           SMILES              ACDLabs 10.04                                                                                                      O=P(OCC(O)COCCCCCCCCCCCCCCCCCC)(OCC[N+](C)(C)C)O
+LPE SMILES_CANONICAL               CACTVS 3.341                                                                                              CCCCCCCCCCCCCCCCCCOC[C@@H](O)CO[P@](O)(=O)OCC[N+](C)(C)C
+LPE           SMILES               CACTVS 3.341                                                                                                 CCCCCCCCCCCCCCCCCCOC[CH](O)CO[P](O)(=O)OCC[N+](C)(C)C
+LPE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                              CCCCCCCCCCCCCCCCCCOC[C@H](CO[P@@](=O)(O)OCC[N+](C)(C)C)O
+LPE           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                      CCCCCCCCCCCCCCCCCCOCC(COP(=O)(O)OCC[N+](C)(C)C)O
+LPE            InChI                InChI  1.03 InChI=1S/C26H56NO6P/c1-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-22-31-24-26(28)25-33-34(29,30)32-23-21-27(2,3)4/h26,28H,5-25H2,1-4H3/p+1/t26-/m1/s1
+LPE         InChIKey                InChI  1.03                                                                                                                           XKBJVQHMEXMFDZ-AREMUKBSSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LPE acedrg               243         "dictionary generator"                  
+LPE acedrg_database      11          "data source"                           
+LPE rdkit                2017.03.2   "Chemoinformatics tool"
+LPE refmac5              5.8.0238    "optimization tool"                     

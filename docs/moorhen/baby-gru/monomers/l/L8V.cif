@@ -1,0 +1,352 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+L8V     L8V      2-({4-[(2-aminopyridin-4-yl)oxy]-3-fluorophenyl}amino)-N-(2,4-difluorophenyl)pyridine-3-carboxamide     NON-POLYMER     49     33     .     
+#
+data_comp_L8V
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+L8V     N1      N       NRD6    0       0.273       12.694      60.452      
+L8V     C2      C       CR6     0       0.834       13.510      59.513      
+L8V     C3      C       CR16    0       0.909       13.134      58.160      
+L8V     C4      C       CR6     0       0.411       11.904      57.777      
+L8V     O5      O       O2      0       0.510       11.611      56.417      
+L8V     C6      C       CR6     0       0.750       10.334      55.936      
+L8V     C7      C       CR16    0       1.679       9.465       56.493      
+L8V     C8      C       CR16    0       1.873       8.205       55.938      
+L8V     C9      C       CR6     0       1.153       7.803       54.817      
+L8V     C10     C       CR16    0       0.230       8.681       54.250      
+L8V     C11     C       CR6     0       0.053       9.924       54.815      
+L8V     F12     F       F       0       -0.842      10.771      54.265      
+L8V     N13     N       NH1     0       1.378       6.522       54.271      
+L8V     C14     C       CR6     0       1.355       6.109       52.973      
+L8V     C15     C       CR6     0       0.814       4.818       52.601      
+L8V     C16     C       CR16    0       0.823       4.469       51.239      
+L8V     C17     C       CR16    0       1.343       5.352       50.305      
+L8V     C18     C       CR16    0       1.838       6.562       50.748      
+L8V     N19     N       NRD6    0       1.855       6.947       52.036      
+L8V     C20     C       C       0       0.250       3.843       53.577      
+L8V     O21     O       O       0       -0.456      4.270       54.485      
+L8V     N22     N       NH1     0       0.549       2.526       53.445      
+L8V     C23     C       CR6     0       -0.198      1.407       53.914      
+L8V     C24     C       CR16    0       -1.583      1.373       54.071      
+L8V     C25     C       CR16    0       -2.218      0.231       54.537      
+L8V     C26     C       CR6     0       -1.460      -0.876      54.840      
+L8V     C27     C       CR16    0       -0.095      -0.905      54.703      
+L8V     C28     C       CR6     0       0.502       0.247       54.240      
+L8V     F29     F       F       0       -2.085      -1.992      55.294      
+L8V     C30     C       CR16    0       -0.213      11.505      60.047      
+L8V     C31     C       CR16    0       -0.170      11.078      58.723      
+L8V     F32     F       F       0       1.848       0.258       54.092      
+L8V     N33     N       NH2     0       1.317       14.701      59.933      
+L8V     H3      H       H       0       1.299       13.705      57.519      
+L8V     H7      H       H       0       2.165       9.720       57.243      
+L8V     H8      H       H       0       2.499       7.616       56.325      
+L8V     H10     H       H       0       -0.258      8.428       53.499      
+L8V     HN13    H       H       0       1.590       5.905       54.861      
+L8V     H16     H       H       0       0.481       3.637       50.961      
+L8V     H17     H       H       0       1.357       5.131       49.390      
+L8V     H18     H       H       0       2.190       7.160       50.110      
+L8V     HN22    H       H       0       1.296       2.327       53.028      
+L8V     H24     H       H       0       -2.101      2.146       53.860      
+L8V     H25     H       H       0       -3.152      0.214       54.643      
+L8V     H27     H       H       0       0.409       -1.672      54.915      
+L8V     H30     H       H       0       -0.602      10.936      60.692      
+L8V     H31     H       H       0       -0.517      10.242      58.475      
+L8V     HN33    H       H       0       1.526       15.318      59.345      
+L8V     HN3A    H       H       0       1.420       14.855      60.791      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+L8V          N1          C2      DOUBLE       y     1.350  0.0190     1.350  0.0190
+L8V          N1         C30      SINGLE       y     1.343  0.0100     1.343  0.0100
+L8V          C2          C3      SINGLE       y     1.398  0.0170     1.398  0.0170
+L8V          C2         N33      SINGLE       n     1.350  0.0100     1.350  0.0100
+L8V          C3          C4      DOUBLE       y     1.377  0.0108     1.377  0.0108
+L8V          C4          O5      SINGLE       n     1.390  0.0110     1.390  0.0110
+L8V          C4         C31      SINGLE       y     1.377  0.0108     1.377  0.0108
+L8V          O5          C6      SINGLE       n     1.381  0.0100     1.381  0.0100
+L8V          C6          C7      DOUBLE       y     1.382  0.0100     1.382  0.0100
+L8V          C6         C11      SINGLE       y     1.377  0.0100     1.377  0.0100
+L8V          C7          C8      SINGLE       y     1.386  0.0100     1.386  0.0100
+L8V          C8          C9      DOUBLE       y     1.389  0.0100     1.389  0.0100
+L8V          C9         C10      SINGLE       y     1.390  0.0100     1.390  0.0100
+L8V          C9         N13      SINGLE       n     1.407  0.0100     1.407  0.0100
+L8V         C10         C11      DOUBLE       y     1.372  0.0100     1.372  0.0100
+L8V         C11         F12      SINGLE       n     1.349  0.0166     1.349  0.0166
+L8V         N13         C14      SINGLE       n     1.357  0.0100     1.357  0.0100
+L8V         C14         C15      SINGLE       y     1.422  0.0200     1.422  0.0200
+L8V         C14         N19      DOUBLE       y     1.347  0.0100     1.347  0.0100
+L8V         C15         C16      DOUBLE       y     1.400  0.0131     1.400  0.0131
+L8V         C15         C20      SINGLE       n     1.487  0.0100     1.487  0.0100
+L8V         C16         C17      SINGLE       y     1.383  0.0100     1.383  0.0100
+L8V         C17         C18      DOUBLE       y     1.374  0.0152     1.374  0.0152
+L8V         C18         N19      SINGLE       y     1.340  0.0100     1.340  0.0100
+L8V         C20         O21      DOUBLE       n     1.226  0.0100     1.226  0.0100
+L8V         C20         N22      SINGLE       n     1.351  0.0126     1.351  0.0126
+L8V         N22         C23      SINGLE       n     1.410  0.0200     1.410  0.0200
+L8V         C23         C24      DOUBLE       y     1.388  0.0100     1.388  0.0100
+L8V         C23         C28      SINGLE       y     1.385  0.0129     1.385  0.0129
+L8V         C24         C25      SINGLE       y     1.382  0.0108     1.382  0.0108
+L8V         C25         C26      DOUBLE       y     1.368  0.0146     1.368  0.0146
+L8V         C26         C27      SINGLE       y     1.370  0.0105     1.370  0.0105
+L8V         C26         F29      SINGLE       n     1.357  0.0100     1.357  0.0100
+L8V         C27         C28      DOUBLE       y     1.374  0.0105     1.374  0.0105
+L8V         C28         F32      SINGLE       n     1.354  0.0100     1.354  0.0100
+L8V         C30         C31      DOUBLE       y     1.382  0.0143     1.382  0.0143
+L8V          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0168
+L8V          C7          H7      SINGLE       n     1.082  0.0130     0.930  0.0100
+L8V          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+L8V         C10         H10      SINGLE       n     1.082  0.0130     0.930  0.0100
+L8V         N13        HN13      SINGLE       n     1.016  0.0100     0.880  0.0200
+L8V         C16         H16      SINGLE       n     1.082  0.0130     0.941  0.0168
+L8V         C17         H17      SINGLE       n     1.082  0.0130     0.942  0.0155
+L8V         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0178
+L8V         N22        HN22      SINGLE       n     1.016  0.0100     0.876  0.0200
+L8V         C24         H24      SINGLE       n     1.082  0.0130     0.954  0.0200
+L8V         C25         H25      SINGLE       n     1.082  0.0130     0.940  0.0138
+L8V         C27         H27      SINGLE       n     1.082  0.0130     0.942  0.0189
+L8V         C30         H30      SINGLE       n     1.082  0.0130     0.944  0.0200
+L8V         C31         H31      SINGLE       n     1.082  0.0130     0.939  0.0138
+L8V         N33        HN33      SINGLE       n     1.016  0.0100     0.877  0.0200
+L8V         N33        HN3A      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+L8V          C2          N1         C30     117.475    1.50
+L8V          N1          C2          C3     121.919    1.50
+L8V          N1          C2         N33     116.992    1.95
+L8V          C3          C2         N33     121.088    1.50
+L8V          C2          C3          C4     119.089    1.50
+L8V          C2          C3          H3     120.917    1.50
+L8V          C4          C3          H3     119.998    1.50
+L8V          C3          C4          O5     119.958    3.00
+L8V          C3          C4         C31     120.084    1.50
+L8V          O5          C4         C31     119.958    3.00
+L8V          C4          O5          C6     118.887    1.59
+L8V          O5          C6          C7     120.656    3.00
+L8V          O5          C6         C11     120.496    2.10
+L8V          C7          C6         C11     118.848    1.50
+L8V          C6          C7          C8     119.879    1.50
+L8V          C6          C7          H7     120.048    1.50
+L8V          C8          C7          H7     120.073    1.50
+L8V          C7          C8          C9     120.778    1.50
+L8V          C7          C8          H8     119.679    1.50
+L8V          C9          C8          H8     119.543    1.50
+L8V          C8          C9         C10     120.105    2.01
+L8V          C8          C9         N13     119.589    3.00
+L8V         C10          C9         N13     120.307    2.70
+L8V          C9         C10         C11     118.668    1.50
+L8V          C9         C10         H10     120.341    1.50
+L8V         C11         C10         H10     120.991    1.50
+L8V          C6         C11         C10     121.722    1.50
+L8V          C6         C11         F12     118.786    1.50
+L8V         C10         C11         F12     119.492    1.50
+L8V          C9         N13         C14     129.188    2.56
+L8V          C9         N13        HN13     115.498    2.63
+L8V         C14         N13        HN13     115.313    2.34
+L8V         N13         C14         C15     120.511    1.50
+L8V         N13         C14         N19     118.405    1.50
+L8V         C15         C14         N19     121.084    1.50
+L8V         C14         C15         C16     119.124    1.85
+L8V         C14         C15         C20     122.370    2.25
+L8V         C16         C15         C20     118.506    1.50
+L8V         C15         C16         C17     119.831    1.50
+L8V         C15         C16         H16     120.043    1.50
+L8V         C17         C16         H16     120.126    1.50
+L8V         C16         C17         C18     118.512    1.50
+L8V         C16         C17         H17     120.750    1.50
+L8V         C18         C17         H17     120.738    1.50
+L8V         C17         C18         N19     123.921    1.50
+L8V         C17         C18         H18     118.374    1.50
+L8V         N19         C18         H18     117.705    1.50
+L8V         C14         N19         C18     117.528    1.50
+L8V         C15         C20         O21     118.797    1.50
+L8V         C15         C20         N22     118.820    1.50
+L8V         O21         C20         N22     122.383    1.50
+L8V         C20         N22         C23     125.550    3.00
+L8V         C20         N22        HN22     117.805    2.38
+L8V         C23         N22        HN22     116.645    3.00
+L8V         N22         C23         C24     125.158    1.90
+L8V         N22         C23         C28     117.825    2.08
+L8V         C24         C23         C28     117.017    1.50
+L8V         C23         C24         C25     120.135    1.50
+L8V         C23         C24         H24     119.984    1.50
+L8V         C25         C24         H24     119.881    1.50
+L8V         C24         C25         C26     118.715    1.50
+L8V         C24         C25         H25     120.605    1.50
+L8V         C26         C25         H25     120.680    1.50
+L8V         C25         C26         C27     123.178    1.50
+L8V         C25         C26         F29     118.676    1.50
+L8V         C27         C26         F29     118.145    1.50
+L8V         C26         C27         C28     116.880    1.50
+L8V         C26         C27         H27     121.655    1.50
+L8V         C28         C27         H27     121.465    1.50
+L8V         C23         C28         C27     124.074    1.50
+L8V         C23         C28         F32     117.488    1.50
+L8V         C27         C28         F32     118.437    1.50
+L8V          N1         C30         C31     122.709    1.50
+L8V          N1         C30         H30     118.512    1.50
+L8V         C31         C30         H30     118.780    1.50
+L8V          C4         C31         C30     118.721    1.50
+L8V          C4         C31         H31     120.245    1.50
+L8V         C30         C31         H31     121.035    1.50
+L8V          C2         N33        HN33     119.818    1.59
+L8V          C2         N33        HN3A     119.818    1.59
+L8V        HN33         N33        HN3A     120.363    1.85
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+L8V              const_60         N33          C2          N1         C30     180.000    10.0     2
+L8V              const_77         C31         C30          N1          C2       0.000    10.0     2
+L8V            sp2_sp2_13         C15         C14         N13          C9     180.000     5.0     2
+L8V              const_24         N13         C14         C15         C20       0.000    10.0     2
+L8V              const_84         N13         C14         N19         C18     180.000    10.0     2
+L8V              const_27         C20         C15         C16         C17     180.000    10.0     2
+L8V            sp2_sp2_18         C14         C15         C20         O21       0.000     5.0     2
+L8V              const_29         C15         C16         C17         C18       0.000    10.0     2
+L8V              const_33         C16         C17         C18         N19       0.000    10.0     2
+L8V              const_37         C17         C18         N19         C14       0.000    10.0     2
+L8V            sp2_sp2_23         O21         C20         N22         C23       0.000     5.0     2
+L8V              const_63         N33          C2          C3          C4     180.000    10.0     2
+L8V             sp2_sp2_3          N1          C2         N33        HN33       0.000     5.0     2
+L8V            sp2_sp2_25         C24         C23         N22         C20     180.000     5.0     2
+L8V              const_41         N22         C23         C24         C25     180.000    10.0     2
+L8V              const_88         N22         C23         C28         F32       0.000    10.0     2
+L8V              const_43         C23         C24         C25         C26       0.000    10.0     2
+L8V              const_48         C24         C25         C26         F29     180.000    10.0     2
+L8V              const_53         F29         C26         C27         C28     180.000    10.0     2
+L8V              const_56         C26         C27         C28         F32     180.000    10.0     2
+L8V              const_73          N1         C30         C31          C4       0.000    10.0     2
+L8V              const_66          C2          C3          C4          O5     180.000    10.0     2
+L8V              const_70         C30         C31          C4          O5     180.000    10.0     2
+L8V             sp2_sp2_5          C3          C4          O5          C6     180.000     5.0     2
+L8V             sp2_sp2_7          C7          C6          O5          C4     180.000     5.0     2
+L8V              const_82         F12         C11          C6          O5       0.000    10.0     2
+L8V       const_sp2_sp2_3          O5          C6          C7          C8     180.000     5.0     2
+L8V       const_sp2_sp2_5          C6          C7          C8          C9       0.000     5.0     2
+L8V              const_10          C7          C8          C9         N13     180.000    10.0     2
+L8V             sp2_sp2_9          C8          C9         N13         C14     180.000     5.0     2
+L8V              const_14         C11         C10          C9         N13     180.000    10.0     2
+L8V              const_18          C9         C10         C11         F12     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+L8V    plan-1          C2   0.020
+L8V    plan-1          C3   0.020
+L8V    plan-1         C30   0.020
+L8V    plan-1         C31   0.020
+L8V    plan-1          C4   0.020
+L8V    plan-1          H3   0.020
+L8V    plan-1         H30   0.020
+L8V    plan-1         H31   0.020
+L8V    plan-1          N1   0.020
+L8V    plan-1         N33   0.020
+L8V    plan-1          O5   0.020
+L8V    plan-2         C10   0.020
+L8V    plan-2         C11   0.020
+L8V    plan-2          C6   0.020
+L8V    plan-2          C7   0.020
+L8V    plan-2          C8   0.020
+L8V    plan-2          C9   0.020
+L8V    plan-2         F12   0.020
+L8V    plan-2         H10   0.020
+L8V    plan-2          H7   0.020
+L8V    plan-2          H8   0.020
+L8V    plan-2         N13   0.020
+L8V    plan-2          O5   0.020
+L8V    plan-3         C14   0.020
+L8V    plan-3         C15   0.020
+L8V    plan-3         C16   0.020
+L8V    plan-3         C17   0.020
+L8V    plan-3         C18   0.020
+L8V    plan-3         C20   0.020
+L8V    plan-3         H16   0.020
+L8V    plan-3         H17   0.020
+L8V    plan-3         H18   0.020
+L8V    plan-3         N13   0.020
+L8V    plan-3         N19   0.020
+L8V    plan-4         C23   0.020
+L8V    plan-4         C24   0.020
+L8V    plan-4         C25   0.020
+L8V    plan-4         C26   0.020
+L8V    plan-4         C27   0.020
+L8V    plan-4         C28   0.020
+L8V    plan-4         F29   0.020
+L8V    plan-4         F32   0.020
+L8V    plan-4         H24   0.020
+L8V    plan-4         H25   0.020
+L8V    plan-4         H27   0.020
+L8V    plan-4         N22   0.020
+L8V    plan-5         C14   0.020
+L8V    plan-5          C9   0.020
+L8V    plan-5        HN13   0.020
+L8V    plan-5         N13   0.020
+L8V    plan-6         C15   0.020
+L8V    plan-6         C20   0.020
+L8V    plan-6         N22   0.020
+L8V    plan-6         O21   0.020
+L8V    plan-7         C20   0.020
+L8V    plan-7         C23   0.020
+L8V    plan-7        HN22   0.020
+L8V    plan-7         N22   0.020
+L8V    plan-8          C2   0.020
+L8V    plan-8        HN33   0.020
+L8V    plan-8        HN3A   0.020
+L8V    plan-8         N33   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+L8V SMILES_CANONICAL               CACTVS 3.352                                                                                                               Nc1cc(Oc2ccc(Nc3ncccc3C(=O)Nc4ccc(F)cc4F)cc2F)ccn1
+L8V           SMILES               CACTVS 3.352                                                                                                               Nc1cc(Oc2ccc(Nc3ncccc3C(=O)Nc4ccc(F)cc4F)cc2F)ccn1
+L8V SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                         c1cc(c(nc1)Nc2ccc(c(c2)F)Oc3ccnc(c3)N)C(=O)Nc4ccc(cc4F)F
+L8V           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                         c1cc(c(nc1)Nc2ccc(c(c2)F)Oc3ccnc(c3)N)C(=O)Nc4ccc(cc4F)F
+L8V            InChI                InChI  1.03 InChI=1S/C23H16F3N5O2/c24-13-3-5-19(17(25)10-13)31-23(32)16-2-1-8-29-22(16)30-14-4-6-20(18(26)11-14)33-15-7-9-28-21(27)12-15/h1-12H,(H2,27,28)(H,29,30)(H,31,32)
+L8V         InChIKey                InChI  1.03                                                                                                                                      VPOULRXFJKYXDN-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+L8V acedrg               243         "dictionary generator"                  
+L8V acedrg_database      11          "data source"                           
+L8V rdkit                2017.03.2   "Chemoinformatics tool"
+L8V refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,174 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+285     285      (2R,4R,5R)-2,4,5-trimethyl-1,3-oxazolidine     NON-POLYMER     21     8     .     
+#
+data_comp_285
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+285     N1      N       NT1     0       -16.447     -1.801      -3.743      
+285     C2      C       CH1     0       -16.194     -2.170      -2.337      
+285     C2M     C       CH3     0       -15.100     -1.351      -1.666      
+285     C3      C       CH1     0       -17.608     -1.998      -1.744      
+285     C3M     C       CH3     0       -17.998     -0.585      -1.408      
+285     O4      O       O2      0       -18.450     -2.484      -2.807      
+285     C5      C       CH1     0       -17.801     -2.274      -4.080      
+285     C5M     C       CH3     0       -17.781     -3.574      -4.866      
+285     H1      H       H       0       -16.322     -0.948      -3.878      
+285     H2      H       H       0       -15.939     -3.126      -2.307      
+285     H2M1    H       H       0       -15.270     -1.306      -0.711      
+285     H2M2    H       H       0       -15.088     -0.453      -2.033      
+285     H2M3    H       H       0       -14.239     -1.774      -1.820      
+285     H3      H       H       0       -17.719     -2.580      -0.952      
+285     H3M1    H       H       0       -18.965     -0.502      -1.438      
+285     H3M2    H       H       0       -17.600     0.022       -2.052      
+285     H3M3    H       H       0       -17.680     -0.367      -0.516      
+285     H5      H       H       0       -18.293     -1.587      -4.590      
+285     H5M1    H       H       0       -18.167     -3.413      -5.753      
+285     H5M2    H       H       0       -18.306     -4.258      -4.400      
+285     H5M3    H       H       0       -16.856     -3.884      -4.965      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+285          N1          C2      SINGLE       n     1.475  0.0100     1.475  0.0100
+285          N1          C5      SINGLE       n     1.469  0.0170     1.469  0.0170
+285          C2         C2M      SINGLE       n     1.520  0.0100     1.520  0.0100
+285          C2          C3      SINGLE       n     1.545  0.0131     1.545  0.0131
+285          C3         C3M      SINGLE       n     1.502  0.0171     1.502  0.0171
+285          C3          O4      SINGLE       n     1.440  0.0122     1.440  0.0122
+285          O4          C5      SINGLE       n     1.432  0.0200     1.432  0.0200
+285          C5         C5M      SINGLE       n     1.515  0.0200     1.515  0.0200
+285          N1          H1      SINGLE       n     1.036  0.0160     0.874  0.0200
+285          C2          H2      SINGLE       n     1.089  0.0100     0.990  0.0135
+285         C2M        H2M1      SINGLE       n     1.089  0.0100     0.971  0.0169
+285         C2M        H2M2      SINGLE       n     1.089  0.0100     0.971  0.0169
+285         C2M        H2M3      SINGLE       n     1.089  0.0100     0.971  0.0169
+285          C3          H3      SINGLE       n     1.089  0.0100     0.989  0.0197
+285         C3M        H3M1      SINGLE       n     1.089  0.0100     0.971  0.0169
+285         C3M        H3M2      SINGLE       n     1.089  0.0100     0.971  0.0169
+285         C3M        H3M3      SINGLE       n     1.089  0.0100     0.971  0.0169
+285          C5          H5      SINGLE       n     1.089  0.0100     0.987  0.0200
+285         C5M        H5M1      SINGLE       n     1.089  0.0100     0.980  0.0100
+285         C5M        H5M2      SINGLE       n     1.089  0.0100     0.980  0.0100
+285         C5M        H5M3      SINGLE       n     1.089  0.0100     0.980  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+285          C2          N1          C5     109.056    3.00
+285          C2          N1          H1     110.078    2.70
+285          C5          N1          H1     114.884    3.00
+285          N1          C2         C2M     111.633    2.37
+285          N1          C2          C3     103.104    2.01
+285          N1          C2          H2     108.836    1.79
+285         C2M          C2          C3     113.745    2.48
+285         C2M          C2          H2     109.109    1.50
+285          C3          C2          H2     109.729    1.50
+285          C2         C2M        H2M1     109.483    1.50
+285          C2         C2M        H2M2     109.483    1.50
+285          C2         C2M        H2M3     109.483    1.50
+285        H2M1         C2M        H2M2     109.421    1.50
+285        H2M1         C2M        H2M3     109.421    1.50
+285        H2M2         C2M        H2M3     109.421    1.50
+285          C2          C3         C3M     113.745    2.48
+285          C2          C3          O4     105.156    2.45
+285          C2          C3          H3     110.239    2.19
+285         C3M          C3          O4     109.577    1.51
+285         C3M          C3          H3     110.240    2.02
+285          O4          C3          H3     109.115    1.50
+285          C3         C3M        H3M1     109.190    1.50
+285          C3         C3M        H3M2     109.190    1.50
+285          C3         C3M        H3M3     109.190    1.50
+285        H3M1         C3M        H3M2     109.436    1.50
+285        H3M1         C3M        H3M3     109.436    1.50
+285        H3M2         C3M        H3M3     109.436    1.50
+285          C3          O4          C5     108.166    2.62
+285          N1          C5          O4     103.744    1.66
+285          N1          C5         C5M     111.633    2.37
+285          N1          C5          H5     110.535    1.50
+285          O4          C5         C5M     109.091    1.63
+285          O4          C5          H5     109.342    1.50
+285         C5M          C5          H5     109.158    2.24
+285          C5         C5M        H5M1     108.604    3.00
+285          C5         C5M        H5M2     108.604    3.00
+285          C5         C5M        H5M3     108.604    3.00
+285        H5M1         C5M        H5M2     109.422    1.50
+285        H5M1         C5M        H5M3     109.422    1.50
+285        H5M2         C5M        H5M3     109.422    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+285             sp3_sp3_3         C2M          C2          N1          C5     -60.000    10.0     3
+285            sp3_sp3_24         C5M          C5          N1          C2      60.000    10.0     3
+285            sp3_sp3_28          N1          C2         C2M        H2M1     180.000    10.0     3
+285            sp3_sp3_11         C2M          C2          C3         C3M     -60.000    10.0     3
+285            sp3_sp3_37          C2          C3         C3M        H3M1     180.000    10.0     3
+285            sp3_sp3_17         C3M          C3          O4          C5     -60.000    10.0     3
+285            sp3_sp3_20         C5M          C5          O4          C3     180.000    10.0     3
+285            sp3_sp3_46          N1          C5         C5M        H5M1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+285    chir_1    C2    N1    C3    C2M    positive
+285    chir_2    C3    O4    C2    C3M    negative
+285    chir_3    C5    O4    N1    C5M    negative
+285    chir_4    N1    C5    C2    H1    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+285           SMILES              ACDLabs 10.04                                                  O1C(C)C(NC1C)C
+285 SMILES_CANONICAL               CACTVS 3.341                                    C[C@@H]1N[C@H](C)[C@@H](C)O1
+285           SMILES               CACTVS 3.341                                         C[CH]1N[CH](C)[CH](C)O1
+285 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                         CC1[C@H](O[C@@H](N1)C)C
+285           SMILES "OpenEye OEToolkits" 1.5.0                                                  CC1C(OC(N1)C)C
+285            InChI                InChI  1.03 InChI=1S/C6H13NO/c1-4-5(2)8-6(3)7-4/h4-7H,1-3H3/t4-,5-,6-/m1/s1
+285         InChIKey                InChI  1.03                                     KGOJHIRKYWXNFA-HSUXUTPPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+285 acedrg               243         "dictionary generator"                  
+285 acedrg_database      11          "data source"                           
+285 rdkit                2017.03.2   "Chemoinformatics tool"
+285 refmac5              5.8.0238    "optimization tool"                     

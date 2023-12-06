@@ -1,0 +1,184 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HQU     HQU      "3-HYDROXYQUINALDIC ACID"     NON-POLYMER     20     14     .     
+#
+data_comp_HQU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HQU     N1      N       NRD6    0       1.279       -4.548      11.987      
+HQU     C2      C       CR6     0       2.575       -4.803      11.838      
+HQU     C3      C       CR6     0       3.149       -5.064      10.565      
+HQU     C4      C       CR16    0       2.344       -5.055      9.435       
+HQU     C5      C       CR16    0       0.077       -4.756      8.479       
+HQU     C6      C       CR16    0       -1.248      -4.490      8.669       
+HQU     C7      C       CR16    0       -1.748      -4.241      9.962       
+HQU     C8      C       CR16    0       -0.918      -4.260      11.049      
+HQU     C9      C       CR66    0       0.459       -4.532      10.885      
+HQU     C10     C       CR66    0       0.962       -4.783      9.582       
+HQU     C       C       C       0       3.401       -4.802      13.087      
+HQU     O1      O       O       0       4.064       -5.826      13.331      
+HQU     O2      O       OC      -1      3.366       -3.777      13.792      
+HQU     O3      O       OH1     0       4.492       -5.326      10.431      
+HQU     H4      H       H       0       2.712       -5.225      8.587       
+HQU     H5      H       H       0       0.402       -4.922      7.611       
+HQU     H6      H       H       0       -1.834      -4.473      7.929       
+HQU     H7      H       H       0       -2.666      -4.058      10.081      
+HQU     H8      H       H       0       -1.261      -4.092      11.911      
+HQU     HO3     H       H       0       4.925       -5.023      9.750       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HQU          N1          C2      DOUBLE       y     1.321  0.0102     1.321  0.0102
+HQU          N1          C9      SINGLE       y     1.369  0.0100     1.369  0.0100
+HQU          C2          C3      SINGLE       y     1.396  0.0185     1.396  0.0185
+HQU          C2           C      SINGLE       n     1.495  0.0200     1.495  0.0200
+HQU          C3          C4      DOUBLE       y     1.377  0.0200     1.377  0.0200
+HQU          C3          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+HQU          C4         C10      SINGLE       y     1.417  0.0100     1.417  0.0100
+HQU          C5          C6      SINGLE       y     1.361  0.0102     1.361  0.0102
+HQU          C5         C10      DOUBLE       y     1.411  0.0100     1.411  0.0100
+HQU          C6          C7      DOUBLE       y     1.403  0.0120     1.403  0.0120
+HQU          C7          C8      SINGLE       y     1.363  0.0103     1.363  0.0103
+HQU          C8          C9      DOUBLE       y     1.411  0.0100     1.411  0.0100
+HQU          C9         C10      SINGLE       y     1.416  0.0100     1.416  0.0100
+HQU           C          O1      DOUBLE       n     1.244  0.0200     1.244  0.0200
+HQU           C          O2      SINGLE       n     1.244  0.0200     1.244  0.0200
+HQU          C4          H4      SINGLE       n     1.082  0.0130     0.940  0.0143
+HQU          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0169
+HQU          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0184
+HQU          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0200
+HQU          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0197
+HQU          O3         HO3      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HQU          C2          N1          C9     117.885    1.50
+HQU          N1          C2          C3     120.803    1.50
+HQU          N1          C2           C     117.186    1.72
+HQU          C3          C2           C     122.011    2.28
+HQU          C2          C3          C4     119.652    1.50
+HQU          C2          C3          O3     120.174    3.00
+HQU          C4          C3          O3     120.174    3.00
+HQU          C3          C4         C10     119.929    1.50
+HQU          C3          C4          H4     119.949    1.50
+HQU         C10          C4          H4     120.122    1.50
+HQU          C6          C5         C10     120.329    1.50
+HQU          C6          C5          H5     119.756    1.50
+HQU         C10          C5          H5     119.915    1.50
+HQU          C5          C6          C7     120.359    1.50
+HQU          C5          C6          H6     119.851    1.50
+HQU          C7          C6          H6     119.795    1.50
+HQU          C6          C7          C8     120.760    1.50
+HQU          C6          C7          H7     119.694    1.50
+HQU          C8          C7          H7     119.547    1.50
+HQU          C7          C8          C9     120.273    1.50
+HQU          C7          C8          H8     120.147    1.50
+HQU          C9          C8          H8     119.579    1.50
+HQU          N1          C9          C8     118.851    1.50
+HQU          N1          C9         C10     121.931    1.50
+HQU          C8          C9         C10     119.218    1.50
+HQU          C4         C10          C5     121.144    1.50
+HQU          C4         C10          C9     119.800    1.50
+HQU          C5         C10          C9     119.055    1.50
+HQU          C2           C          O1     117.189    1.92
+HQU          C2           C          O2     117.189    1.92
+HQU          O1           C          O2     125.622    1.50
+HQU          C3          O3         HO3     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HQU       const_sp2_sp2_2           C          C2          N1          C9     180.000     5.0     2
+HQU              const_36          C8          C9          N1          C2     180.000    10.0     2
+HQU             sp2_sp2_2          O1           C          C2          N1       0.000     5.0     2
+HQU       const_sp2_sp2_6           C          C2          C3          O3       0.000     5.0     2
+HQU             sp2_sp2_5          C2          C3          O3         HO3     180.000     5.0     2
+HQU       const_sp2_sp2_9          O3          C3          C4         C10     180.000     5.0     2
+HQU              const_13          C5         C10          C4          C3     180.000    10.0     2
+HQU              const_19         C10          C5          C6          C7       0.000    10.0     2
+HQU              const_39          C4         C10          C5          C6     180.000    10.0     2
+HQU              const_23          C5          C6          C7          C8       0.000    10.0     2
+HQU              const_27          C6          C7          C8          C9       0.000    10.0     2
+HQU              const_32          C7          C8          C9          N1     180.000    10.0     2
+HQU              const_15          C4         C10          C9          N1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HQU    plan-1           C   0.020
+HQU    plan-1         C10   0.020
+HQU    plan-1          C2   0.020
+HQU    plan-1          C3   0.020
+HQU    plan-1          C4   0.020
+HQU    plan-1          C5   0.020
+HQU    plan-1          C6   0.020
+HQU    plan-1          C7   0.020
+HQU    plan-1          C8   0.020
+HQU    plan-1          C9   0.020
+HQU    plan-1          H4   0.020
+HQU    plan-1          H5   0.020
+HQU    plan-1          H6   0.020
+HQU    plan-1          H7   0.020
+HQU    plan-1          H8   0.020
+HQU    plan-1          N1   0.020
+HQU    plan-1          O3   0.020
+HQU    plan-2           C   0.020
+HQU    plan-2          C2   0.020
+HQU    plan-2          O1   0.020
+HQU    plan-2          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HQU           SMILES              ACDLabs 10.04                                                      O=C(O)c1nc2ccccc2cc1O
+HQU SMILES_CANONICAL               CACTVS 3.341                                                      OC(=O)c1nc2ccccc2cc1O
+HQU           SMILES               CACTVS 3.341                                                      OC(=O)c1nc2ccccc2cc1O
+HQU SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                c1ccc2c(c1)cc(c(n2)C(=O)O)O
+HQU           SMILES "OpenEye OEToolkits" 1.5.0                                                c1ccc2c(c1)cc(c(n2)C(=O)O)O
+HQU            InChI                InChI  1.03 InChI=1S/C10H7NO3/c12-8-5-6-3-1-2-4-7(6)11-9(8)10(13)14/h1-5,12H,(H,13,14)
+HQU         InChIKey                InChI  1.03                                                WHKZBVQIMVUGIH-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HQU acedrg               243         "dictionary generator"                  
+HQU acedrg_database      11          "data source"                           
+HQU rdkit                2017.03.2   "Chemoinformatics tool"
+HQU refmac5              5.8.0238    "optimization tool"                     

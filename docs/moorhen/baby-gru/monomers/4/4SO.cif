@@ -1,0 +1,179 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4SO     4SO      "4-sulfamoylbenzoic acid"     NON-POLYMER     19     13     .     
+#
+data_comp_4SO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4SO     OAA     O       O       0       14.427      29.165      12.882      
+4SO     OAB     O       O       0       10.143      23.586      10.354      
+4SO     CAC     C       CR16    0       11.601      25.906      12.532      
+4SO     CAD     C       CR16    0       12.659      26.791      12.660      
+4SO     CAE     C       CR6     0       13.290      27.277      11.523      
+4SO     SAF     S       S3      0       14.642      28.405      11.687      
+4SO     NAG     N       NT2     0       15.984      27.556      11.905      
+4SO     CAH     C       C       0       10.019      24.538      11.147      
+4SO     CAI     C       CR6     0       11.165      25.495      11.277      
+4SO     CAJ     C       CR16    0       11.808      25.989      10.147      
+4SO     CAK     C       CR16    0       12.867      26.874      10.263      
+4SO     OAL     O       O       0       14.785      29.105      10.445      
+4SO     OAM     O       OC      -1      9.008       24.747      11.841      
+4SO     HAC     H       H       0       11.174      25.580      13.305      
+4SO     HAD     H       H       0       12.945      27.061      13.511      
+4SO     HNAG    H       H       0       15.921      26.740      11.615      
+4SO     HNAA    H       H       0       16.701      27.989      11.675      
+4SO     HAJ     H       H       0       11.523      25.719      9.292       
+4SO     HAK     H       H       0       13.293      27.199      9.495       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4SO         OAA         SAF      DOUBLE       n     1.433  0.0100     1.433  0.0100
+4SO         OAB         CAH      DOUBLE       n     1.244  0.0200     1.244  0.0200
+4SO         CAC         CAI      DOUBLE       y     1.387  0.0103     1.387  0.0103
+4SO         CAC         CAD      SINGLE       y     1.382  0.0100     1.382  0.0100
+4SO         CAD         CAE      DOUBLE       y     1.384  0.0100     1.384  0.0100
+4SO         CAE         CAK      SINGLE       y     1.384  0.0100     1.384  0.0100
+4SO         CAE         SAF      SINGLE       n     1.766  0.0100     1.766  0.0100
+4SO         SAF         OAL      DOUBLE       n     1.433  0.0100     1.433  0.0100
+4SO         SAF         NAG      SINGLE       n     1.603  0.0110     1.603  0.0110
+4SO         CAH         CAI      SINGLE       n     1.498  0.0200     1.498  0.0200
+4SO         CAH         OAM      SINGLE       n     1.244  0.0200     1.244  0.0200
+4SO         CAI         CAJ      SINGLE       y     1.387  0.0103     1.387  0.0103
+4SO         CAJ         CAK      DOUBLE       y     1.382  0.0100     1.382  0.0100
+4SO         CAC         HAC      SINGLE       n     1.082  0.0130     0.941  0.0168
+4SO         CAD         HAD      SINGLE       n     1.082  0.0130     0.937  0.0111
+4SO         NAG        HNAG      SINGLE       n     1.036  0.0160     0.869  0.0200
+4SO         NAG        HNAA      SINGLE       n     1.036  0.0160     0.869  0.0200
+4SO         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.941  0.0168
+4SO         CAK         HAK      SINGLE       n     1.082  0.0130     0.937  0.0111
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4SO         CAI         CAC         CAD     120.699    1.50
+4SO         CAI         CAC         HAC     119.865    1.50
+4SO         CAD         CAC         HAC     119.436    1.50
+4SO         CAC         CAD         CAE     119.497    1.50
+4SO         CAC         CAD         HAD     120.299    1.50
+4SO         CAE         CAD         HAD     120.204    1.50
+4SO         CAD         CAE         CAK     120.431    1.50
+4SO         CAD         CAE         SAF     119.784    1.50
+4SO         CAK         CAE         SAF     119.784    1.50
+4SO         OAA         SAF         CAE     107.472    1.50
+4SO         OAA         SAF         OAL     118.954    1.50
+4SO         OAA         SAF         NAG     107.154    1.50
+4SO         CAE         SAF         OAL     107.472    1.50
+4SO         CAE         SAF         NAG     108.480    1.50
+4SO         OAL         SAF         NAG     107.154    1.50
+4SO         SAF         NAG        HNAG     113.070    3.00
+4SO         SAF         NAG        HNAA     113.070    3.00
+4SO        HNAG         NAG        HNAA     115.993    3.00
+4SO         OAB         CAH         CAI     117.791    1.50
+4SO         OAB         CAH         OAM     124.418    1.50
+4SO         CAI         CAH         OAM     117.791    1.50
+4SO         CAC         CAI         CAH     120.412    1.50
+4SO         CAC         CAI         CAJ     119.176    1.50
+4SO         CAH         CAI         CAJ     120.412    1.50
+4SO         CAI         CAJ         CAK     120.699    1.50
+4SO         CAI         CAJ         HAJ     119.865    1.50
+4SO         CAK         CAJ         HAJ     119.436    1.50
+4SO         CAE         CAK         CAJ     119.497    1.50
+4SO         CAE         CAK         HAK     120.204    1.50
+4SO         CAJ         CAK         HAK     120.299    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4SO              const_21         CAI         CAC         CAD         CAE       0.000    10.0     2
+4SO       const_sp2_sp2_2         CAD         CAC         CAI         CAH     180.000     5.0     2
+4SO              const_18         CAC         CAD         CAE         SAF     180.000    10.0     2
+4SO              const_15         SAF         CAE         CAK         CAJ     180.000    10.0     2
+4SO             sp2_sp3_1         CAD         CAE         SAF         OAA     150.000    10.0     6
+4SO             sp3_sp3_2        HNAG         NAG         SAF         OAA     -60.000    10.0     3
+4SO             sp2_sp2_1         OAB         CAH         CAI         CAC     180.000     5.0     2
+4SO       const_sp2_sp2_7         CAH         CAI         CAJ         CAK     180.000     5.0     2
+4SO       const_sp2_sp2_9         CAI         CAJ         CAK         CAE       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+4SO    chir_1    SAF    OAA    OAL    NAG    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4SO    plan-1         CAC   0.020
+4SO    plan-1         CAD   0.020
+4SO    plan-1         CAE   0.020
+4SO    plan-1         CAH   0.020
+4SO    plan-1         CAI   0.020
+4SO    plan-1         CAJ   0.020
+4SO    plan-1         CAK   0.020
+4SO    plan-1         HAC   0.020
+4SO    plan-1         HAD   0.020
+4SO    plan-1         HAJ   0.020
+4SO    plan-1         HAK   0.020
+4SO    plan-1         SAF   0.020
+4SO    plan-2         CAH   0.020
+4SO    plan-2         CAI   0.020
+4SO    plan-2         OAB   0.020
+4SO    plan-2         OAM   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4SO           SMILES              ACDLabs 12.01                                                    O=S(=O)(N)c1ccc(C(=O)O)cc1
+4SO SMILES_CANONICAL               CACTVS 3.370                                                  N[S](=O)(=O)c1ccc(cc1)C(O)=O
+4SO           SMILES               CACTVS 3.370                                                  N[S](=O)(=O)c1ccc(cc1)C(O)=O
+4SO SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                    c1cc(ccc1C(=O)O)S(=O)(=O)N
+4SO           SMILES "OpenEye OEToolkits" 1.7.0                                                    c1cc(ccc1C(=O)O)S(=O)(=O)N
+4SO            InChI                InChI  1.03 InChI=1S/C7H7NO4S/c8-13(11,12)6-3-1-5(2-4-6)7(9)10/h1-4H,(H,9,10)(H2,8,11,12)
+4SO         InChIKey                InChI  1.03                                                   UCAGLBKTLXCODC-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4SO acedrg               243         "dictionary generator"                  
+4SO acedrg_database      11          "data source"                           
+4SO rdkit                2017.03.2   "Chemoinformatics tool"
+4SO refmac5              5.8.0238    "optimization tool"                     

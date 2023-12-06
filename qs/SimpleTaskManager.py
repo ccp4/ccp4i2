@@ -110,7 +110,7 @@ TASK_TITLES = {
         'pdb_extract_wrapper'        :    'pdb_extract_wrapper',
         'ProvideAsuContents'        :    'Define AU contents',
         'xia2_run'        :    'Import data processing results from XIA2',
-        'coot_rebuild'        :    'Manual model building - COOT',
+        'coot_rebuild'        :    'Interactive model building - COOT',
         'pisa_xml'        :    'Structure analysis with Pisa',
         'cphasematch'        :    'Match and analyse phases to reference set',
         'import_mosflm'        :    'Import iMosflm X-ray data',

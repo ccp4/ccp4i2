@@ -1,0 +1,448 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ITQ     ITQ      "1,2,3,4-Tetrahydrogen Staurosporine"     NON-POLYMER     63     35     .     
+#
+data_comp_ITQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ITQ     C1      C       CH2     0       -49.518     -1.085      -18.783     
+ITQ     N1      N       NRD5    0       -53.985     2.450       -23.225     
+ITQ     C2      C       CH2     0       -50.374     -0.618      -17.612     
+ITQ     N2      N       NR5     0       -50.402     -2.078      -24.445     
+ITQ     C3      C       CH2     0       -50.880     0.797       -17.804     
+ITQ     N3      N       NR5     0       -49.999     -1.424      -21.267     
+ITQ     C4      C       CH2     0       -51.684     1.021       -19.078     
+ITQ     N4      N       NT1     0       -49.909     -6.173      -21.744     
+ITQ     O4      O       O2      0       -48.627     -2.380      -22.887     
+ITQ     C5      C       CR56    0       -51.195     0.167       -20.212     
+ITQ     O5      O       O       0       -53.821     2.402       -20.940     
+ITQ     C6      C       CR56    0       -51.609     0.140       -21.587     
+ITQ     O6      O       O2      0       -51.419     -4.161      -23.101     
+ITQ     C7      C       CR56    0       -52.567     0.875       -22.356     
+ITQ     C8      C       CR5     0       -53.501     1.969       -22.056     
+ITQ     C9      C       CR15    0       -53.764     1.536       -24.193     
+ITQ     C10     C       CR56    0       -52.721     0.617       -23.730     
+ITQ     C11     C       CR56    0       -51.956     -0.404      -24.362     
+ITQ     C12     C       CR56    0       -51.917     -0.904      -25.701     
+ITQ     C13     C       CR16    0       -52.614     -0.567      -26.872     
+ITQ     C14     C       CR16    0       -52.351     -1.261      -28.034     
+ITQ     C15     C       CR16    0       -51.401     -2.283      -28.046     
+ITQ     C16     C       CR16    0       -50.700     -2.637      -26.912     
+ITQ     C17     C       CR56    0       -50.959     -1.944      -25.723     
+ITQ     C18     C       CR56    0       -51.013     -1.145      -23.608     
+ITQ     C19     C       CR56    0       -50.837     -0.868      -22.218     
+ITQ     C20     C       CR56    0       -50.223     -0.783      -20.059     
+ITQ     C21     C       CT      0       -49.391     -3.048      -23.937     
+ITQ     C22     C       CH1     0       -50.045     -4.351      -23.439     
+ITQ     C23     C       CH1     0       -49.357     -4.876      -22.174     
+ITQ     C24     C       CH2     0       -49.450     -3.838      -21.058     
+ITQ     C25     C       CH1     0       -49.000     -2.470      -21.512     
+ITQ     C26     C       CH3     0       -48.278     -3.316      -24.949     
+ITQ     C27     C       CH3     0       -52.365     -4.749      -23.989     
+ITQ     C28     C       CH3     0       -49.002     -6.981      -20.960     
+ITQ     H1      H       H       0       -48.645     -0.634      -18.766     
+ITQ     H1A     H       H       0       -49.347     -2.050      -18.712     
+ITQ     H2      H       H       0       -51.144     -1.228      -17.513     
+ITQ     H2A     H       H       0       -49.838     -0.662      -16.783     
+ITQ     H3      H       H       0       -50.104     1.413       -17.810     
+ITQ     H3A     H       H       0       -51.448     1.038       -17.029     
+ITQ     H4      H       H       0       -51.626     1.965       -19.334     
+ITQ     H4A     H       H       0       -52.627     0.821       -18.903     
+ITQ     HN4     H       H       0       -50.188     -6.642      -22.474     
+ITQ     H9      H       H       0       -54.212     1.506       -25.021     
+ITQ     H13     H       H       0       -53.257     0.121       -26.863     
+ITQ     H14     H       H       0       -52.814     -1.044      -28.827     
+ITQ     H15     H       H       0       -51.234     -2.744      -28.850     
+ITQ     H16     H       H       0       -50.071     -3.326      -26.943     
+ITQ     H22     H       H       0       -49.977     -5.041      -24.145     
+ITQ     H23     H       H       0       -48.399     -5.003      -22.390     
+ITQ     H24     H       H       0       -48.888     -4.130      -20.308     
+ITQ     H24A    H       H       0       -50.374     -3.795      -20.732     
+ITQ     H25     H       H       0       -48.209     -2.225      -20.973     
+ITQ     H26     H       H       0       -47.456     -3.542      -24.481     
+ITQ     H26A    H       H       0       -48.132     -2.523      -25.488     
+ITQ     H26B    H       H       0       -48.525     -4.055      -25.524     
+ITQ     H27     H       H       0       -53.260     -4.467      -23.738     
+ITQ     H27A    H       H       0       -52.303     -5.716      -23.933     
+ITQ     H27B    H       H       0       -52.179     -4.463      -24.897     
+ITQ     H28     H       H       0       -49.454     -7.803      -20.686     
+ITQ     H28A    H       H       0       -48.723     -6.485      -20.167     
+ITQ     H28B    H       H       0       -48.217     -7.205      -21.497     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ITQ          C1          C2      SINGLE       n     1.521  0.0188     1.521  0.0188
+ITQ          C1         C20      SINGLE       n     1.487  0.0100     1.487  0.0100
+ITQ          N1          C8      SINGLE       n     1.337  0.0200     1.337  0.0200
+ITQ          N1          C9      DOUBLE       n     1.335  0.0200     1.335  0.0200
+ITQ          C2          C3      SINGLE       n     1.511  0.0200     1.511  0.0200
+ITQ          N2         C17      SINGLE       y     1.385  0.0120     1.385  0.0120
+ITQ          N2         C18      SINGLE       y     1.385  0.0135     1.385  0.0135
+ITQ          N2         C21      SINGLE       n     1.467  0.0145     1.467  0.0145
+ITQ          C3          C4      SINGLE       n     1.518  0.0126     1.518  0.0126
+ITQ          N3         C19      SINGLE       y     1.383  0.0149     1.383  0.0149
+ITQ          N3         C20      SINGLE       y     1.382  0.0106     1.382  0.0106
+ITQ          N3         C25      SINGLE       n     1.458  0.0147     1.458  0.0147
+ITQ          C4          C5      SINGLE       n     1.497  0.0100     1.497  0.0100
+ITQ          N4         C23      SINGLE       n     1.468  0.0132     1.468  0.0132
+ITQ          N4         C28      SINGLE       n     1.444  0.0128     1.444  0.0128
+ITQ          O4         C21      SINGLE       n     1.446  0.0137     1.446  0.0137
+ITQ          O4         C25      SINGLE       n     1.412  0.0142     1.412  0.0142
+ITQ          C5          C6      SINGLE       y     1.437  0.0110     1.437  0.0110
+ITQ          C5         C20      DOUBLE       y     1.363  0.0105     1.363  0.0105
+ITQ          O5          C8      DOUBLE       n     1.239  0.0112     1.239  0.0112
+ITQ          C6          C7      SINGLE       y     1.419  0.0200     1.419  0.0200
+ITQ          C6         C19      DOUBLE       y     1.415  0.0138     1.415  0.0138
+ITQ          O6         C22      SINGLE       n     1.423  0.0104     1.423  0.0104
+ITQ          O6         C27      SINGLE       n     1.422  0.0156     1.422  0.0156
+ITQ          C7          C8      SINGLE       n     1.472  0.0200     1.472  0.0200
+ITQ          C7         C10      DOUBLE       y     1.419  0.0200     1.419  0.0200
+ITQ          C9         C10      SINGLE       n     1.472  0.0200     1.472  0.0200
+ITQ         C10         C11      SINGLE       y     1.417  0.0174     1.417  0.0174
+ITQ         C11         C12      SINGLE       y     1.440  0.0156     1.440  0.0156
+ITQ         C11         C18      DOUBLE       y     1.415  0.0138     1.415  0.0138
+ITQ         C12         C13      SINGLE       y     1.401  0.0100     1.401  0.0100
+ITQ         C12         C17      DOUBLE       y     1.408  0.0100     1.408  0.0100
+ITQ         C13         C14      DOUBLE       y     1.377  0.0100     1.377  0.0100
+ITQ         C14         C15      SINGLE       y     1.394  0.0106     1.394  0.0106
+ITQ         C15         C16      DOUBLE       y     1.376  0.0100     1.376  0.0100
+ITQ         C16         C17      SINGLE       y     1.392  0.0100     1.392  0.0100
+ITQ         C18         C19      SINGLE       y     1.417  0.0146     1.417  0.0146
+ITQ         C21         C22      SINGLE       n     1.524  0.0139     1.524  0.0139
+ITQ         C21         C26      SINGLE       n     1.523  0.0103     1.523  0.0103
+ITQ         C22         C23      SINGLE       n     1.529  0.0115     1.529  0.0115
+ITQ         C23         C24      SINGLE       n     1.525  0.0112     1.525  0.0112
+ITQ         C24         C25      SINGLE       n     1.502  0.0147     1.502  0.0147
+ITQ          C1          H1      SINGLE       n     1.089  0.0100     0.983  0.0104
+ITQ          C1         H1A      SINGLE       n     1.089  0.0100     0.983  0.0104
+ITQ          C2          H2      SINGLE       n     1.089  0.0100     0.988  0.0146
+ITQ          C2         H2A      SINGLE       n     1.089  0.0100     0.988  0.0146
+ITQ          C3          H3      SINGLE       n     1.089  0.0100     0.991  0.0137
+ITQ          C3         H3A      SINGLE       n     1.089  0.0100     0.991  0.0137
+ITQ          C4          H4      SINGLE       n     1.089  0.0100     0.980  0.0106
+ITQ          C4         H4A      SINGLE       n     1.089  0.0100     0.980  0.0106
+ITQ          N4         HN4      SINGLE       n     1.036  0.0160     0.911  0.0200
+ITQ          C9          H9      SINGLE       n     1.082  0.0130     0.942  0.0173
+ITQ         C13         H13      SINGLE       n     1.082  0.0130     0.942  0.0177
+ITQ         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0181
+ITQ         C15         H15      SINGLE       n     1.082  0.0130     0.941  0.0181
+ITQ         C16         H16      SINGLE       n     1.082  0.0130     0.941  0.0184
+ITQ         C22         H22      SINGLE       n     1.089  0.0100     0.989  0.0181
+ITQ         C23         H23      SINGLE       n     1.089  0.0100     0.988  0.0199
+ITQ         C24         H24      SINGLE       n     1.089  0.0100     0.981  0.0147
+ITQ         C24        H24A      SINGLE       n     1.089  0.0100     0.981  0.0147
+ITQ         C25         H25      SINGLE       n     1.089  0.0100     0.988  0.0135
+ITQ         C26         H26      SINGLE       n     1.089  0.0100     0.971  0.0171
+ITQ         C26        H26A      SINGLE       n     1.089  0.0100     0.971  0.0171
+ITQ         C26        H26B      SINGLE       n     1.089  0.0100     0.971  0.0171
+ITQ         C27         H27      SINGLE       n     1.089  0.0100     0.971  0.0146
+ITQ         C27        H27A      SINGLE       n     1.089  0.0100     0.971  0.0146
+ITQ         C27        H27B      SINGLE       n     1.089  0.0100     0.971  0.0146
+ITQ         C28         H28      SINGLE       n     1.089  0.0100     0.977  0.0113
+ITQ         C28        H28A      SINGLE       n     1.089  0.0100     0.977  0.0113
+ITQ         C28        H28B      SINGLE       n     1.089  0.0100     0.977  0.0113
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ITQ          C2          C1         C20     109.066    1.50
+ITQ          C2          C1          H1     110.244    1.50
+ITQ          C2          C1         H1A     110.244    1.50
+ITQ         C20          C1          H1     110.082    1.50
+ITQ         C20          C1         H1A     110.082    1.50
+ITQ          H1          C1         H1A     107.380    2.72
+ITQ          C8          N1          C9     105.485    2.31
+ITQ          C1          C2          C3     112.309    2.44
+ITQ          C1          C2          H2     108.610    2.54
+ITQ          C1          C2         H2A     108.610    2.54
+ITQ          C3          C2          H2     109.066    1.50
+ITQ          C3          C2         H2A     109.066    1.50
+ITQ          H2          C2         H2A     107.960    1.50
+ITQ         C17          N2         C18     108.406    1.50
+ITQ         C17          N2         C21     125.797    2.71
+ITQ         C18          N2         C21     125.797    2.71
+ITQ          C2          C3          C4     114.055    2.13
+ITQ          C2          C3          H3     109.066    1.50
+ITQ          C2          C3         H3A     109.066    1.50
+ITQ          C4          C3          H3     108.902    1.50
+ITQ          C4          C3         H3A     108.902    1.50
+ITQ          H3          C3         H3A     107.960    1.50
+ITQ         C19          N3         C20     107.976    1.50
+ITQ         C19          N3         C25     125.753    2.71
+ITQ         C20          N3         C25     126.271    2.45
+ITQ          C3          C4          C5     110.187    1.50
+ITQ          C3          C4          H4     109.580    1.50
+ITQ          C3          C4         H4A     109.580    1.50
+ITQ          C5          C4          H4     109.790    1.50
+ITQ          C5          C4         H4A     109.790    1.50
+ITQ          H4          C4         H4A     107.814    1.50
+ITQ         C23          N4         C28     114.006    1.50
+ITQ         C23          N4         HN4     107.785    2.86
+ITQ         C28          N4         HN4     110.410    2.59
+ITQ         C21          O4         C25     111.559    2.21
+ITQ          C4          C5          C6     130.283    1.50
+ITQ          C4          C5         C20     122.165    1.50
+ITQ          C6          C5         C20     107.552    1.50
+ITQ          C5          C6          C7     132.512    3.00
+ITQ          C5          C6         C19     107.369    1.50
+ITQ          C7          C6         C19     120.119    1.50
+ITQ         C22          O6         C27     114.344    1.50
+ITQ          C6          C7          C8     131.662    1.55
+ITQ          C6          C7         C10     119.756    1.90
+ITQ          C8          C7         C10     108.581    3.00
+ITQ          N1          C8          O5     124.462    1.95
+ITQ          N1          C8          C7     108.676    2.70
+ITQ          O5          C8          C7     126.862    3.00
+ITQ          N1          C9         C10     108.676    2.70
+ITQ          N1          C9          H9     124.895    2.01
+ITQ         C10          C9          H9     126.428    1.50
+ITQ          C7         C10          C9     108.581    3.00
+ITQ          C7         C10         C11     119.756    1.90
+ITQ          C9         C10         C11     131.662    1.55
+ITQ         C10         C11         C12     132.304    1.90
+ITQ         C10         C11         C18     120.119    1.50
+ITQ         C12         C11         C18     107.577    1.50
+ITQ         C11         C12         C13     133.684    1.50
+ITQ         C11         C12         C17     106.861    1.50
+ITQ         C13         C12         C17     119.455    1.50
+ITQ         C12         C13         C14     119.168    1.50
+ITQ         C12         C13         H13     120.424    1.50
+ITQ         C14         C13         H13     120.408    1.50
+ITQ         C13         C14         C15     120.853    1.50
+ITQ         C13         C14         H14     119.725    1.50
+ITQ         C15         C14         H14     119.422    1.50
+ITQ         C14         C15         C16     121.611    1.50
+ITQ         C14         C15         H15     119.249    1.50
+ITQ         C16         C15         H15     119.140    1.50
+ITQ         C15         C16         C17     117.635    1.50
+ITQ         C15         C16         H16     121.330    1.50
+ITQ         C17         C16         H16     121.035    1.50
+ITQ          N2         C17         C12     108.814    1.50
+ITQ          N2         C17         C16     129.908    1.50
+ITQ         C12         C17         C16     121.278    1.50
+ITQ          N2         C18         C11     108.342    1.50
+ITQ          N2         C18         C19     131.157    2.12
+ITQ         C11         C18         C19     120.501    1.50
+ITQ          N3         C19          C6     108.160    1.50
+ITQ          N3         C19         C18     132.092    2.12
+ITQ          C6         C19         C18     119.748    2.95
+ITQ          C1         C20          N3     125.512    1.66
+ITQ          C1         C20          C5     125.544    1.50
+ITQ          N3         C20          C5     108.944    1.50
+ITQ          N2         C21          O4     106.420    1.50
+ITQ          N2         C21         C22     111.653    1.50
+ITQ          N2         C21         C26     110.288    1.50
+ITQ          O4         C21         C22     110.767    1.50
+ITQ          O4         C21         C26     107.499    2.66
+ITQ         C22         C21         C26     111.163    2.25
+ITQ          O6         C22         C21     109.247    2.43
+ITQ          O6         C22         C23     107.272    1.50
+ITQ          O6         C22         H22     109.096    1.50
+ITQ         C21         C22         C23     111.124    1.57
+ITQ         C21         C22         H22     109.200    1.50
+ITQ         C23         C22         H22     108.987    1.50
+ITQ          N4         C23         C22     110.827    2.19
+ITQ          N4         C23         C24     111.820    2.36
+ITQ          N4         C23         H23     108.110    1.50
+ITQ         C22         C23         C24     110.196    1.50
+ITQ         C22         C23         H23     107.258    1.68
+ITQ         C24         C23         H23     107.655    1.50
+ITQ         C23         C24         C25     111.124    1.57
+ITQ         C23         C24         H24     109.341    1.50
+ITQ         C23         C24        H24A     109.341    1.50
+ITQ         C25         C24         H24     109.942    1.50
+ITQ         C25         C24        H24A     109.942    1.50
+ITQ         H24         C24        H24A     108.019    1.50
+ITQ          N3         C25          O4     106.420    1.50
+ITQ          N3         C25         C24     111.653    1.50
+ITQ          N3         C25         H25     107.659    1.93
+ITQ          O4         C25         C24     111.912    1.50
+ITQ          O4         C25         H25     108.978    1.50
+ITQ         C24         C25         H25     108.710    1.50
+ITQ         C21         C26         H26     109.404    1.50
+ITQ         C21         C26        H26A     109.404    1.50
+ITQ         C21         C26        H26B     109.404    1.50
+ITQ         H26         C26        H26A     109.362    1.50
+ITQ         H26         C26        H26B     109.362    1.50
+ITQ        H26A         C26        H26B     109.362    1.50
+ITQ          O6         C27         H27     109.431    1.50
+ITQ          O6         C27        H27A     109.431    1.50
+ITQ          O6         C27        H27B     109.431    1.50
+ITQ         H27         C27        H27A     109.450    1.50
+ITQ         H27         C27        H27B     109.450    1.50
+ITQ        H27A         C27        H27B     109.450    1.50
+ITQ          N4         C28         H28     109.483    1.50
+ITQ          N4         C28        H28A     109.483    1.50
+ITQ          N4         C28        H28B     109.483    1.50
+ITQ         H28         C28        H28A     109.459    1.50
+ITQ         H28         C28        H28B     109.459    1.50
+ITQ        H28A         C28        H28B     109.459    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ITQ             sp3_sp3_1         C20          C1          C2          C3      60.000    10.0     3
+ITQ            sp2_sp3_10          N3         C20          C1          C2     180.000    10.0     6
+ITQ       const_sp2_sp2_4          C5          C6          C7          C8       0.000     5.0     2
+ITQ              const_57          N3         C19          C6          C5       0.000    10.0     2
+ITQ            sp3_sp3_82         C21         C22          O6         C27     180.000    10.0     3
+ITQ            sp3_sp3_85         H27         C27          O6         C22     180.000    10.0     3
+ITQ             sp2_sp2_6          C6          C7          C8          O5       0.000     5.0     2
+ITQ       const_sp2_sp2_6          C9         C10          C7          C6     180.000     5.0     2
+ITQ             sp2_sp2_7          C7         C10          C9          N1       0.000     5.0     2
+ITQ              const_10          C7         C10         C11         C12     180.000    10.0     2
+ITQ              const_32         C10         C11         C12         C13       0.000    10.0     2
+ITQ              const_14         C10         C11         C18          N2     180.000    10.0     2
+ITQ              const_35         C11         C12         C13         C14     180.000    10.0     2
+ITQ              const_25         C11         C12         C17          N2       0.000    10.0     2
+ITQ              const_37         C12         C13         C14         C15       0.000    10.0     2
+ITQ             sp2_sp2_2          O5          C8          N1          C9     180.000     5.0     2
+ITQ            sp2_sp2_11         C10          C9          N1          C8       0.000     5.0     2
+ITQ              const_41         C13         C14         C15         C16       0.000    10.0     2
+ITQ              const_45         C14         C15         C16         C17       0.000    10.0     2
+ITQ              const_50         C15         C16         C17          N2     180.000    10.0     2
+ITQ              const_20          N2         C18         C19          N3       0.000    10.0     2
+ITQ            sp3_sp3_38         C26         C21         C22          O6     180.000    10.0     3
+ITQ            sp3_sp3_88          N2         C21         C26         H26     180.000    10.0     3
+ITQ            sp3_sp3_44          O6         C22         C23          N4      60.000    10.0     3
+ITQ            sp3_sp3_52          N4         C23         C24         C25     180.000    10.0     3
+ITQ            sp3_sp3_10          C1          C2          C3          C4     -60.000    10.0     3
+ITQ            sp3_sp3_59         C23         C24         C25          N3     180.000    10.0     3
+ITQ              const_21         C12         C17          N2         C18       0.000    10.0     2
+ITQ              const_69         C11         C18          N2         C17       0.000    10.0     2
+ITQ            sp2_sp3_15         C17          N2         C21         C26      30.000    10.0     6
+ITQ            sp3_sp3_19          C2          C3          C4          C5      60.000    10.0     3
+ITQ              const_53          C6         C19          N3         C20       0.000    10.0     2
+ITQ              const_75          C1         C20          N3         C19     180.000    10.0     2
+ITQ            sp2_sp3_19         C19          N3         C25          O4     150.000    10.0     6
+ITQ             sp2_sp3_4          C6          C5          C4          C3     180.000    10.0     6
+ITQ            sp3_sp3_68         C22         C23          N4         C28     -60.000    10.0     3
+ITQ            sp3_sp3_73         H28         C28          N4         C23     180.000    10.0     3
+ITQ            sp3_sp3_30         C26         C21          O4         C25     180.000    10.0     3
+ITQ            sp3_sp3_80          N3         C25          O4         C21      60.000    10.0     3
+ITQ              const_64          C4          C5          C6          C7       0.000    10.0     2
+ITQ              const_65          C1         C20          C5          C4       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ITQ    chir_1    C21    O4    N2    C22    positive
+ITQ    chir_2    C22    O6    C21    C23    negative
+ITQ    chir_3    C23    N4    C22    C24    negative
+ITQ    chir_4    C25    O4    N3    C24    negative
+ITQ    chir_5    N4    C23    C28    HN4    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ITQ    plan-1         C10   0.020
+ITQ    plan-1         C11   0.020
+ITQ    plan-1         C12   0.020
+ITQ    plan-1         C18   0.020
+ITQ    plan-1         C19   0.020
+ITQ    plan-1          C5   0.020
+ITQ    plan-1          C6   0.020
+ITQ    plan-1          C7   0.020
+ITQ    plan-1          C8   0.020
+ITQ    plan-1          C9   0.020
+ITQ    plan-1          N2   0.020
+ITQ    plan-1          N3   0.020
+ITQ    plan-2          C1   0.020
+ITQ    plan-2         C18   0.020
+ITQ    plan-2         C19   0.020
+ITQ    plan-2         C20   0.020
+ITQ    plan-2         C25   0.020
+ITQ    plan-2          C4   0.020
+ITQ    plan-2          C5   0.020
+ITQ    plan-2          C6   0.020
+ITQ    plan-2          C7   0.020
+ITQ    plan-2          N3   0.020
+ITQ    plan-3         C10   0.020
+ITQ    plan-3         C11   0.020
+ITQ    plan-3         C12   0.020
+ITQ    plan-3         C13   0.020
+ITQ    plan-3         C16   0.020
+ITQ    plan-3         C17   0.020
+ITQ    plan-3         C18   0.020
+ITQ    plan-3         C19   0.020
+ITQ    plan-3         C21   0.020
+ITQ    plan-3          N2   0.020
+ITQ    plan-4         C11   0.020
+ITQ    plan-4         C12   0.020
+ITQ    plan-4         C13   0.020
+ITQ    plan-4         C14   0.020
+ITQ    plan-4         C15   0.020
+ITQ    plan-4         C16   0.020
+ITQ    plan-4         C17   0.020
+ITQ    plan-4         H13   0.020
+ITQ    plan-4         H14   0.020
+ITQ    plan-4         H15   0.020
+ITQ    plan-4         H16   0.020
+ITQ    plan-4          N2   0.020
+ITQ    plan-5          C7   0.020
+ITQ    plan-5          C8   0.020
+ITQ    plan-5          N1   0.020
+ITQ    plan-5          O5   0.020
+ITQ    plan-6         C10   0.020
+ITQ    plan-6          C9   0.020
+ITQ    plan-6          H9   0.020
+ITQ    plan-6          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ITQ           SMILES              ACDLabs 12.01                                                                                                                                                   O=C4N=Cc3c2c1ccccc1n7c2c5n(c6c(c5c34)CCCC6)C8OC7(C)C(OC)C(NC)C8
+ITQ            InChI                InChI  1.03 InChI=1S/C28H28N4O3/c1-28-26(34-3)17(29-2)12-20(35-28)31-18-10-6-4-8-14(18)22-23-16(13-30-27(23)33)21-15-9-5-7-11-19(15)32(28)25(21)24(22)31/h5,7,9,11,13,17,20,26,29H,4,6,8,10,12H2,1-3H3/t17-,20-,26-,28+/m1/s1
+ITQ         InChIKey                InChI  1.03                                                                                                                                                                                       QHZYTTSLHQFFIQ-FYTWVXJKSA-N
+ITQ SMILES_CANONICAL               CACTVS 3.370                                                                                                                                     CN[C@@H]1C[C@H]2O[C@@](C)([C@@H]1OC)n3c4ccccc4c5c6C=NC(=O)c6c7c8CCCCc8n2c7c35
+ITQ           SMILES               CACTVS 3.370                                                                                                                                            CN[CH]1C[CH]2O[C](C)([CH]1OC)n3c4ccccc4c5c6C=NC(=O)c6c7c8CCCCc8n2c7c35
+ITQ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                     C[C@@]12[C@@H]([C@@H](CC(O1)n3c4c(c5c3c6n2c7ccccc7c6c8c5C(=O)N=C8)CCCC4)NC)OC
+ITQ           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                   CC12C(C(CC(O1)n3c4c(c5c3c6n2c7ccccc7c6c8c5C(=O)N=C8)CCCC4)NC)OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ITQ acedrg               243         "dictionary generator"                  
+ITQ acedrg_database      11          "data source"                           
+ITQ rdkit                2017.03.2   "Chemoinformatics tool"
+ITQ refmac5              5.8.0238    "optimization tool"                     

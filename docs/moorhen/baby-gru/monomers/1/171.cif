@@ -1,0 +1,201 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+171     171      "2-PHENYLAMINO-ETHANESULFONIC ACID"     NON-POLYMER     24     13     .     
+#
+data_comp_171
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+171     "C3'"   C       CR16    0       19.299      24.155      -3.957      
+171     "C2'"   C       CR16    0       20.533      23.673      -3.541      
+171     "C1'"   C       CR6     0       21.258      24.361      -2.553      
+171     "C6'"   C       CR16    0       20.711      25.531      -2.006      
+171     N       N       NH1     0       22.486      23.914      -2.113      
+171     C1      C       CH2     0       23.167      22.720      -2.583      
+171     C2      C       CH2     0       24.508      22.504      -1.909      
+171     S       S       S3      0       25.315      21.026      -2.459      
+171     O1      O       O       0       26.600      20.997      -1.822      
+171     O2      O       O       0       24.402      19.944      -2.226      
+171     O3      O       OH1     0       25.487      21.258      -3.980      
+171     "C5'"   C       CR16    0       19.475      25.991      -2.440      
+171     "C4'"   C       CR16    0       18.772      25.308      -3.410      
+171     "H3'"   H       H       0       18.817      23.688      -4.620      
+171     "H2'"   H       H       0       20.878      22.885      -3.924      
+171     "H6'"   H       H       0       21.184      26.006      -1.342      
+171     HN      H       H       0       22.891      24.395      -1.495      
+171     H11     H       H       0       23.305      22.790      -3.561      
+171     H12     H       H       0       22.591      21.933      -2.415      
+171     H21     H       H       0       24.374      22.452      -0.944      
+171     H22     H       H       0       25.084      23.269      -2.096      
+171     HO      H       H       0       25.475      20.551      -4.377      
+171     "H5'"   H       H       0       19.115      26.779      -2.067      
+171     "H4'"   H       H       0       17.933      25.628      -3.700      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+171       "C3'"       "C2'"      DOUBLE       y     1.385  0.0100     1.385  0.0100
+171       "C3'"       "C4'"      SINGLE       y     1.376  0.0124     1.376  0.0124
+171       "C2'"       "C1'"      SINGLE       y     1.395  0.0124     1.395  0.0124
+171       "C1'"       "C6'"      DOUBLE       y     1.395  0.0124     1.395  0.0124
+171       "C1'"           N      SINGLE       n     1.362  0.0186     1.362  0.0186
+171       "C6'"       "C5'"      SINGLE       y     1.385  0.0100     1.385  0.0100
+171           N          C1      SINGLE       n     1.449  0.0125     1.449  0.0125
+171          C1          C2      SINGLE       n     1.513  0.0200     1.513  0.0200
+171          C2           S      SINGLE       n     1.771  0.0119     1.771  0.0119
+171           S          O1      DOUBLE       n     1.435  0.0100     1.435  0.0100
+171           S          O2      DOUBLE       n     1.435  0.0100     1.435  0.0100
+171           S          O3      SINGLE       n     1.549  0.0200     1.549  0.0200
+171       "C5'"       "C4'"      DOUBLE       y     1.376  0.0112     1.376  0.0112
+171       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.943  0.0172
+171       "C2'"       "H2'"      SINGLE       n     1.082  0.0130     0.943  0.0178
+171       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.943  0.0178
+171           N          HN      SINGLE       n     1.016  0.0100     0.880  0.0200
+171          C1         H11      SINGLE       n     1.089  0.0100     0.990  0.0100
+171          C1         H12      SINGLE       n     1.089  0.0100     0.990  0.0100
+171          C2         H21      SINGLE       n     1.089  0.0100     0.975  0.0200
+171          C2         H22      SINGLE       n     1.089  0.0100     0.975  0.0200
+171          O3          HO      SINGLE       n     0.970  0.0120     0.811  0.0200
+171       "C5'"       "H5'"      SINGLE       n     1.082  0.0130     0.943  0.0172
+171       "C4'"       "H4'"      SINGLE       n     1.082  0.0130     0.944  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+171       "C2'"       "C3'"       "C4'"     120.518    1.50
+171       "C2'"       "C3'"       "H3'"     119.600    1.50
+171       "C4'"       "C3'"       "H3'"     119.882    1.50
+171       "C3'"       "C2'"       "C1'"     119.830    1.50
+171       "C3'"       "C2'"       "H2'"     120.151    1.50
+171       "C1'"       "C2'"       "H2'"     120.019    1.50
+171       "C2'"       "C1'"       "C6'"     119.396    1.50
+171       "C2'"       "C1'"           N     120.302    1.70
+171       "C6'"       "C1'"           N     120.302    1.70
+171       "C1'"       "C6'"       "C5'"     119.830    1.50
+171       "C1'"       "C6'"       "H6'"     120.019    1.50
+171       "C5'"       "C6'"       "H6'"     120.151    1.50
+171       "C1'"           N          C1     124.159    1.50
+171       "C1'"           N          HN     117.576    2.17
+171          C1           N          HN     118.265    2.37
+171           N          C1          C2     112.368    1.79
+171           N          C1         H11     109.157    1.50
+171           N          C1         H12     109.157    1.50
+171          C2          C1         H11     108.974    1.50
+171          C2          C1         H12     108.974    1.50
+171         H11          C1         H12     107.790    1.50
+171          C1          C2           S     111.256    2.92
+171          C1          C2         H21     108.941    1.50
+171          C1          C2         H22     108.941    1.50
+171           S          C2         H21     108.904    1.50
+171           S          C2         H22     108.904    1.50
+171         H21          C2         H22     108.151    1.50
+171          C2           S          O1     106.916    1.50
+171          C2           S          O2     106.916    1.50
+171          C2           S          O3     103.568    2.80
+171          O1           S          O2     119.289    2.60
+171          O1           S          O3     110.306    2.80
+171          O2           S          O3     110.306    2.80
+171           S          O3          HO     110.371    3.00
+171       "C6'"       "C5'"       "C4'"     120.518    1.50
+171       "C6'"       "C5'"       "H5'"     119.600    1.50
+171       "C4'"       "C5'"       "H5'"     119.882    1.50
+171       "C3'"       "C4'"       "C5'"     119.909    1.50
+171       "C3'"       "C4'"       "H4'"     120.046    1.50
+171       "C5'"       "C4'"       "H4'"     120.046    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+171       const_sp2_sp2_1       "C1'"       "C2'"       "C3'"       "C4'"       0.000     5.0     2
+171              const_21       "C2'"       "C3'"       "C4'"       "C5'"       0.000    10.0     2
+171              const_17       "C3'"       "C4'"       "C5'"       "C6'"       0.000    10.0     2
+171       const_sp2_sp2_7           N       "C1'"       "C2'"       "C3'"     180.000     5.0     2
+171              const_11           N       "C1'"       "C6'"       "C5'"     180.000    10.0     2
+171             sp2_sp2_1       "C2'"       "C1'"           N          C1     180.000     5.0     2
+171              const_13       "C4'"       "C5'"       "C6'"       "C1'"       0.000    10.0     2
+171             sp2_sp3_2       "C1'"           N          C1          C2     120.000    10.0     6
+171             sp3_sp3_1           N          C1          C2           S     180.000    10.0     3
+171            sp3_sp3_10          C1          C2           S          O1     180.000    10.0     3
+171            sp3_sp3_21          HO          O3           S          C2      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+171    chir_1    S    O1    O2    O3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+171    plan-1       "C1'"   0.020
+171    plan-1       "C2'"   0.020
+171    plan-1       "C3'"   0.020
+171    plan-1       "C4'"   0.020
+171    plan-1       "C5'"   0.020
+171    plan-1       "C6'"   0.020
+171    plan-1       "H2'"   0.020
+171    plan-1       "H3'"   0.020
+171    plan-1       "H4'"   0.020
+171    plan-1       "H5'"   0.020
+171    plan-1       "H6'"   0.020
+171    plan-1           N   0.020
+171    plan-2          C1   0.020
+171    plan-2       "C1'"   0.020
+171    plan-2          HN   0.020
+171    plan-2           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+171           SMILES              ACDLabs 10.04                                                          O=S(=O)(O)CCNc1ccccc1
+171 SMILES_CANONICAL               CACTVS 3.341                                                        O[S](=O)(=O)CCNc1ccccc1
+171           SMILES               CACTVS 3.341                                                        O[S](=O)(=O)CCNc1ccccc1
+171 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                        c1ccc(cc1)NCCS(=O)(=O)O
+171           SMILES "OpenEye OEToolkits" 1.5.0                                                        c1ccc(cc1)NCCS(=O)(=O)O
+171            InChI                InChI  1.03 InChI=1S/C8H11NO3S/c10-13(11,12)7-6-9-8-4-2-1-3-5-8/h1-5,9H,6-7H2,(H,10,11,12)
+171         InChIKey                InChI  1.03                                                    IAVHKMVGTPXJIC-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+171 acedrg               243         "dictionary generator"                  
+171 acedrg_database      11          "data source"                           
+171 rdkit                2017.03.2   "Chemoinformatics tool"
+171 refmac5              5.8.0238    "optimization tool"                     

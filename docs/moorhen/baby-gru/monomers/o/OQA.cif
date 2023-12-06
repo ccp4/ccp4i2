@@ -1,0 +1,533 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OQA     OQA      "(3R,3aS,6aR)-hexahydrofuro[2,3-b]furan-3-yl [(2S,4S,5S)-4-hydroxy-5-{[N-(methoxycarbonyl)-L-alloisoleucyl]amino}-1,6-diphenylhexan-2-yl]carbamate"     NON-POLYMER     89     44     .     
+#
+data_comp_OQA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OQA     C13     C       CR6     0       22.740      -3.689      14.359      
+OQA     C15     C       CR16    0       22.659      -6.100      14.209      
+OQA     C17     C       CR16    0       23.771      -5.071      16.052      
+OQA     C22     C       CH1     0       23.498      1.045       19.133      
+OQA     C24     C       CR16    0       18.272      2.369       18.900      
+OQA     C26     C       CR16    0       17.869      1.146       20.926      
+OQA     C28     C       CR16    0       17.965      0.002       18.820      
+OQA     C02     C       CH1     0       19.634      0.475       16.164      
+OQA     C03     C       CH2     0       19.720      0.459       14.636      
+OQA     C04     C       CH2     0       18.385      1.222       16.650      
+OQA     C05     C       CH1     0       20.939      -0.229      14.034      
+OQA     C06     C       CH1     0       21.184      -1.676      14.505      
+OQA     C08     C       C       0       19.459      -3.340      15.184      
+OQA     C09     C       CH1     0       18.228      -4.138      14.751      
+OQA     C11     C       CH2     0       22.390      -2.325      13.806      
+OQA     C14     C       CR16    0       22.342      -4.847      13.699      
+OQA     C16     C       CR16    0       23.373      -6.209      15.385      
+OQA     C18     C       CR16    0       23.455      -3.817      15.544      
+OQA     C19     C       C       0       21.536      0.552       17.751      
+OQA     C23     C       CR6     0       18.202      1.198       18.152      
+OQA     C25     C       CR16    0       18.105      2.342       20.279      
+OQA     C27     C       CR16    0       17.799      -0.022      20.199      
+OQA     C30     C       C       0       18.909      -6.245      13.649      
+OQA     C31     C       CH1     0       17.003      -3.870      15.654      
+OQA     C34     C       CH3     0       19.479      -8.433      12.895      
+OQA     C35     C       CH2     0       24.793      1.771       18.816      
+OQA     C37     C       CH1     0       23.955      2.883       20.634      
+OQA     C38     C       CH1     0       23.159      1.573       20.528      
+OQA     C40     C       CH2     0       21.727      3.452       20.484      
+OQA     C41     C       CH2     0       21.732      2.008       20.867      
+OQA     C42     C       CH3     0       15.894      -4.882      15.385      
+OQA     C43     C       CH2     0       16.492      -2.431      15.504      
+OQA     C44     C       CH3     0       15.589      -1.971      16.630      
+OQA     N01     N       NH1     0       20.838      1.069       16.738      
+OQA     N07     N       NH1     0       19.984      -2.480      14.295      
+OQA     N29     N       NH1     0       18.581      -5.550      14.759      
+OQA     O10     O       OH1     0       20.775      -0.217      12.619      
+OQA     O12     O       O       0       19.926      -3.514      16.309      
+OQA     O20     O       O       0       21.330      -0.516      18.300      
+OQA     O21     O       O2      0       22.534      1.422       18.112      
+OQA     O32     O       O2      0       19.183      -7.522      13.977      
+OQA     O33     O       O       0       18.953      -5.788      12.527      
+OQA     O36     O       O2      0       24.646      3.056       19.420      
+OQA     O39     O       O2      0       23.027      3.924       20.832      
+OQA     H151    H       H       0       22.384      -6.877      13.750      
+OQA     H171    H       H       0       24.259      -5.142      16.857      
+OQA     H221    H       H       0       23.634      0.070       19.165      
+OQA     H241    H       H       0       18.433      3.191       18.466      
+OQA     H261    H       H       0       17.756      1.128       21.863      
+OQA     H281    H       H       0       17.916      -0.802      18.328      
+OQA     H021    H       H       0       19.558      -0.460      16.471      
+OQA     H031    H       H       0       19.707      1.390       14.318      
+OQA     H032    H       H       0       18.913      0.017       14.287      
+OQA     H042    H       H       0       17.595      0.819       16.230      
+OQA     H041    H       H       0       18.439      2.154       16.349      
+OQA     H051    H       H       0       21.742      0.309       14.260      
+OQA     H061    H       H       0       21.376      -1.640      15.468      
+OQA     H091    H       H       0       17.985      -3.864      13.824      
+OQA     H112    H       H       0       22.197      -2.413      12.848      
+OQA     H111    H       H       0       23.168      -1.735      13.902      
+OQA     H141    H       H       0       21.854      -4.779      12.895      
+OQA     H161    H       H       0       23.588      -7.061      15.731      
+OQA     H181    H       H       0       23.731      -3.041      16.006      
+OQA     H251    H       H       0       18.154      3.144       20.775      
+OQA     H271    H       H       0       17.638      -0.842      20.638      
+OQA     H311    H       H       0       17.293      -3.988      16.592      
+OQA     H342    H       H       0       20.263      -8.123      12.415      
+OQA     H341    H       H       0       18.721      -8.474      12.289      
+OQA     H343    H       H       0       19.651      -9.316      13.257      
+OQA     H351    H       H       0       25.554      1.299       19.194      
+OQA     H352    H       H       0       24.918      1.855       17.856      
+OQA     H371    H       H       0       24.590      2.844       21.386      
+OQA     H381    H       H       0       23.463      0.917       21.198      
+OQA     H402    H       H       0       21.040      3.940       20.976      
+OQA     H401    H       H       0       21.566      3.558       19.528      
+OQA     H411    H       H       0       21.551      1.894       21.823      
+OQA     H412    H       H       0       21.072      1.499       20.356      
+OQA     H422    H       H       0       15.060      -4.571      15.776      
+OQA     H423    H       H       0       16.130      -5.740      15.778      
+OQA     H421    H       H       0       15.778      -4.990      14.424      
+OQA     H432    H       H       0       15.998      -2.362      14.659      
+OQA     H431    H       H       0       17.256      -1.820      15.453      
+OQA     H443    H       H       0       15.549      -0.999      16.638      
+OQA     H441    H       H       0       15.939      -2.286      17.481      
+OQA     H442    H       H       0       14.694      -2.328      16.497      
+OQA     H011    H       H       0       21.102      1.818       16.373      
+OQA     H071    H       H       0       19.594      -2.376      13.522      
+OQA     H291    H       H       0       18.583      -5.971      15.528      
+OQA     H101    H       H       0       20.948      0.563       12.333      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OQA         C30         O33      DOUBLE       n     1.210  0.0102     1.210  0.0102
+OQA         C34         O32      SINGLE       n     1.443  0.0101     1.443  0.0101
+OQA         C30         O32      SINGLE       n     1.342  0.0100     1.342  0.0100
+OQA         C30         N29      SINGLE       n     1.344  0.0100     1.344  0.0100
+OQA         C15         C14      DOUBLE       y     1.386  0.0100     1.386  0.0100
+OQA         C13         C14      SINGLE       y     1.385  0.0111     1.385  0.0111
+OQA         C05         O10      SINGLE       n     1.424  0.0199     1.424  0.0199
+OQA         C15         C16      SINGLE       y     1.376  0.0124     1.376  0.0124
+OQA         C31         C42      SINGLE       n     1.521  0.0135     1.521  0.0135
+OQA         C09         N29      SINGLE       n     1.451  0.0100     1.451  0.0100
+OQA         C09         C31      SINGLE       n     1.540  0.0100     1.540  0.0100
+OQA         C08         C09      SINGLE       n     1.527  0.0100     1.527  0.0100
+OQA         C06         N07      SINGLE       n     1.455  0.0100     1.455  0.0100
+OQA         C08         N07      SINGLE       n     1.337  0.0102     1.337  0.0102
+OQA         C13         C11      SINGLE       n     1.512  0.0103     1.512  0.0103
+OQA         C06         C11      SINGLE       n     1.536  0.0100     1.536  0.0100
+OQA         C13         C18      DOUBLE       y     1.385  0.0111     1.385  0.0111
+OQA         C05         C06      SINGLE       n     1.538  0.0100     1.538  0.0100
+OQA         C03         C05      SINGLE       n     1.518  0.0200     1.518  0.0200
+OQA         C17         C16      DOUBLE       y     1.374  0.0127     1.374  0.0127
+OQA         C31         C43      SINGLE       n     1.531  0.0100     1.531  0.0100
+OQA         C08         O12      DOUBLE       n     1.229  0.0102     1.229  0.0102
+OQA         C43         C44      SINGLE       n     1.511  0.0200     1.511  0.0200
+OQA         C02         C03      SINGLE       n     1.530  0.0100     1.530  0.0100
+OQA         C17         C18      SINGLE       y     1.386  0.0100     1.386  0.0100
+OQA         C02         N01      SINGLE       n     1.457  0.0100     1.457  0.0100
+OQA         C02         C04      SINGLE       n     1.533  0.0100     1.533  0.0100
+OQA         C19         N01      SINGLE       n     1.329  0.0100     1.329  0.0100
+OQA         C04         C23      SINGLE       n     1.512  0.0103     1.512  0.0103
+OQA         C19         O21      SINGLE       n     1.366  0.0108     1.366  0.0108
+OQA         C19         O20      DOUBLE       n     1.216  0.0100     1.216  0.0100
+OQA         C22         O21      SINGLE       n     1.449  0.0100     1.449  0.0100
+OQA         C24         C23      DOUBLE       y     1.385  0.0111     1.385  0.0111
+OQA         C28         C23      SINGLE       y     1.385  0.0111     1.385  0.0111
+OQA         C35         O36      SINGLE       n     1.428  0.0115     1.428  0.0115
+OQA         C37         O36      SINGLE       n     1.405  0.0155     1.405  0.0155
+OQA         C24         C25      SINGLE       y     1.386  0.0100     1.386  0.0100
+OQA         C22         C35      SINGLE       n     1.520  0.0161     1.520  0.0161
+OQA         C40         O39      SINGLE       n     1.425  0.0104     1.425  0.0104
+OQA         C37         O39      SINGLE       n     1.406  0.0121     1.406  0.0121
+OQA         C22         C38      SINGLE       n     1.527  0.0102     1.527  0.0102
+OQA         C40         C41      SINGLE       n     1.499  0.0191     1.499  0.0191
+OQA         C28         C27      DOUBLE       y     1.386  0.0100     1.386  0.0100
+OQA         C37         C38      SINGLE       n     1.534  0.0111     1.534  0.0111
+OQA         C26         C25      DOUBLE       y     1.376  0.0124     1.376  0.0124
+OQA         C38         C41      SINGLE       n     1.530  0.0108     1.530  0.0108
+OQA         C26         C27      SINGLE       y     1.374  0.0127     1.374  0.0127
+OQA         C15        H151      SINGLE       n     1.082  0.0130     0.944  0.0175
+OQA         C17        H171      SINGLE       n     1.082  0.0130     0.944  0.0175
+OQA         C22        H221      SINGLE       n     1.089  0.0100     0.985  0.0180
+OQA         C24        H241      SINGLE       n     1.082  0.0130     0.944  0.0174
+OQA         C26        H261      SINGLE       n     1.082  0.0130     0.944  0.0161
+OQA         C28        H281      SINGLE       n     1.082  0.0130     0.944  0.0174
+OQA         C02        H021      SINGLE       n     1.089  0.0100     0.988  0.0127
+OQA         C03        H031      SINGLE       n     1.089  0.0100     0.984  0.0147
+OQA         C03        H032      SINGLE       n     1.089  0.0100     0.984  0.0147
+OQA         C04        H042      SINGLE       n     1.089  0.0100     0.981  0.0150
+OQA         C04        H041      SINGLE       n     1.089  0.0100     0.981  0.0150
+OQA         C05        H051      SINGLE       n     1.089  0.0100     0.992  0.0184
+OQA         C06        H061      SINGLE       n     1.089  0.0100     0.984  0.0181
+OQA         C09        H091      SINGLE       n     1.089  0.0100     0.998  0.0200
+OQA         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0150
+OQA         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0150
+OQA         C14        H141      SINGLE       n     1.082  0.0130     0.944  0.0174
+OQA         C16        H161      SINGLE       n     1.082  0.0130     0.944  0.0161
+OQA         C18        H181      SINGLE       n     1.082  0.0130     0.944  0.0174
+OQA         C25        H251      SINGLE       n     1.082  0.0130     0.944  0.0175
+OQA         C27        H271      SINGLE       n     1.082  0.0130     0.944  0.0175
+OQA         C31        H311      SINGLE       n     1.089  0.0100     0.989  0.0175
+OQA         C34        H342      SINGLE       n     1.089  0.0100     0.970  0.0175
+OQA         C34        H341      SINGLE       n     1.089  0.0100     0.970  0.0175
+OQA         C34        H343      SINGLE       n     1.089  0.0100     0.970  0.0175
+OQA         C35        H351      SINGLE       n     1.089  0.0100     0.972  0.0114
+OQA         C35        H352      SINGLE       n     1.089  0.0100     0.972  0.0114
+OQA         C37        H371      SINGLE       n     1.089  0.0100     0.985  0.0172
+OQA         C38        H381      SINGLE       n     1.089  0.0100     0.986  0.0200
+OQA         C40        H402      SINGLE       n     1.089  0.0100     0.975  0.0100
+OQA         C40        H401      SINGLE       n     1.089  0.0100     0.975  0.0100
+OQA         C41        H411      SINGLE       n     1.089  0.0100     0.980  0.0164
+OQA         C41        H412      SINGLE       n     1.089  0.0100     0.980  0.0164
+OQA         C42        H422      SINGLE       n     1.089  0.0100     0.973  0.0146
+OQA         C42        H423      SINGLE       n     1.089  0.0100     0.973  0.0146
+OQA         C42        H421      SINGLE       n     1.089  0.0100     0.973  0.0146
+OQA         C43        H432      SINGLE       n     1.089  0.0100     0.981  0.0160
+OQA         C43        H431      SINGLE       n     1.089  0.0100     0.981  0.0160
+OQA         C44        H443      SINGLE       n     1.089  0.0100     0.973  0.0157
+OQA         C44        H441      SINGLE       n     1.089  0.0100     0.973  0.0157
+OQA         C44        H442      SINGLE       n     1.089  0.0100     0.973  0.0157
+OQA         N01        H011      SINGLE       n     1.016  0.0100     0.872  0.0200
+OQA         N07        H071      SINGLE       n     1.016  0.0100     0.872  0.0200
+OQA         N29        H291      SINGLE       n     1.016  0.0100     0.875  0.0200
+OQA         O10        H101      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OQA         C14         C13         C11     120.970    1.50
+OQA         C14         C13         C18     118.060    1.50
+OQA         C11         C13         C18     120.970    1.50
+OQA         C14         C15         C16     120.325    1.50
+OQA         C14         C15        H151     119.792    1.50
+OQA         C16         C15        H151     119.883    1.50
+OQA         C16         C17         C18     120.325    1.50
+OQA         C16         C17        H171     119.883    1.50
+OQA         C18         C17        H171     119.792    1.50
+OQA         O21         C22         C35     107.632    1.50
+OQA         O21         C22         C38     109.761    3.00
+OQA         O21         C22        H221     110.994    1.56
+OQA         C35         C22         C38     103.933    1.82
+OQA         C35         C22        H221     111.691    1.57
+OQA         C38         C22        H221     109.923    1.50
+OQA         C23         C24         C25     120.624    1.50
+OQA         C23         C24        H241     119.591    1.50
+OQA         C25         C24        H241     119.786    1.50
+OQA         C25         C26         C27     120.043    1.50
+OQA         C25         C26        H261     119.979    1.50
+OQA         C27         C26        H261     119.979    1.50
+OQA         C23         C28         C27     120.624    1.50
+OQA         C23         C28        H281     119.591    1.50
+OQA         C27         C28        H281     119.786    1.50
+OQA         C03         C02         N01     110.353    1.50
+OQA         C03         C02         C04     111.939    1.50
+OQA         C03         C02        H021     107.815    1.50
+OQA         N01         C02         C04     110.274    1.50
+OQA         N01         C02        H021     108.194    1.50
+OQA         C04         C02        H021     107.624    1.50
+OQA         C05         C03         C02     115.661    1.50
+OQA         C05         C03        H031     108.468    1.50
+OQA         C05         C03        H032     108.468    1.50
+OQA         C02         C03        H031     108.489    1.50
+OQA         C02         C03        H032     108.489    1.50
+OQA        H031         C03        H032     107.824    1.50
+OQA         C02         C04         C23     113.636    1.50
+OQA         C02         C04        H042     108.825    1.50
+OQA         C02         C04        H041     108.825    1.50
+OQA         C23         C04        H042     108.862    1.50
+OQA         C23         C04        H041     108.862    1.50
+OQA        H042         C04        H041     107.782    1.50
+OQA         O10         C05         C06     109.040    1.72
+OQA         O10         C05         C03     109.024    2.32
+OQA         O10         C05        H051     108.700    1.50
+OQA         C06         C05         C03     114.793    1.69
+OQA         C06         C05        H051     108.500    1.50
+OQA         C03         C05        H051     108.603    1.50
+OQA         N07         C06         C11     110.274    1.50
+OQA         N07         C06         C05     109.748    1.50
+OQA         N07         C06        H061     108.194    1.50
+OQA         C11         C06         C05     112.266    1.50
+OQA         C11         C06        H061     108.431    1.50
+OQA         C05         C06        H061     107.639    1.50
+OQA         C09         C08         N07     116.668    1.50
+OQA         C09         C08         O12     120.387    1.50
+OQA         N07         C08         O12     122.945    1.50
+OQA         N29         C09         C31     111.159    1.50
+OQA         N29         C09         C08     111.106    2.53
+OQA         N29         C09        H091     108.475    1.50
+OQA         C31         C09         C08     111.419    1.50
+OQA         C31         C09        H091     108.069    1.50
+OQA         C08         C09        H091     107.690    1.50
+OQA         C13         C11         C06     113.215    1.50
+OQA         C13         C11        H112     108.862    1.50
+OQA         C13         C11        H111     108.862    1.50
+OQA         C06         C11        H112     108.892    1.50
+OQA         C06         C11        H111     108.892    1.50
+OQA        H112         C11        H111     107.782    1.50
+OQA         C15         C14         C13     120.624    1.50
+OQA         C15         C14        H141     119.786    1.50
+OQA         C13         C14        H141     119.591    1.50
+OQA         C15         C16         C17     120.043    1.50
+OQA         C15         C16        H161     119.979    1.50
+OQA         C17         C16        H161     119.979    1.50
+OQA         C13         C18         C17     120.624    1.50
+OQA         C13         C18        H181     119.591    1.50
+OQA         C17         C18        H181     119.786    1.50
+OQA         N01         C19         O21     109.725    1.50
+OQA         N01         C19         O20     126.608    1.50
+OQA         O21         C19         O20     123.666    1.58
+OQA         C04         C23         C24     120.970    1.50
+OQA         C04         C23         C28     120.970    1.50
+OQA         C24         C23         C28     118.060    1.50
+OQA         C24         C25         C26     120.325    1.50
+OQA         C24         C25        H251     119.792    1.50
+OQA         C26         C25        H251     119.883    1.50
+OQA         C28         C27         C26     120.325    1.50
+OQA         C28         C27        H271     119.792    1.50
+OQA         C26         C27        H271     119.883    1.50
+OQA         O33         C30         O32     124.970    1.50
+OQA         O33         C30         N29     124.782    1.50
+OQA         O32         C30         N29     110.248    1.50
+OQA         C42         C31         C09     111.023    1.92
+OQA         C42         C31         C43     111.775    1.50
+OQA         C42         C31        H311     107.601    1.50
+OQA         C09         C31         C43     110.508    1.50
+OQA         C09         C31        H311     107.540    1.50
+OQA         C43         C31        H311     107.402    1.50
+OQA         O32         C34        H342     109.384    1.50
+OQA         O32         C34        H341     109.384    1.50
+OQA         O32         C34        H343     109.384    1.50
+OQA        H342         C34        H341     109.532    1.53
+OQA        H342         C34        H343     109.532    1.53
+OQA        H341         C34        H343     109.532    1.53
+OQA         O36         C35         C22     105.158    1.50
+OQA         O36         C35        H351     110.615    1.50
+OQA         O36         C35        H352     110.615    1.50
+OQA         C22         C35        H351     110.668    1.50
+OQA         C22         C35        H352     110.668    1.50
+OQA        H351         C35        H352     108.924    1.50
+OQA         O36         C37         O39     111.281    1.50
+OQA         O36         C37         C38     107.233    1.50
+OQA         O36         C37        H371     110.879    1.50
+OQA         O39         C37         C38     107.233    1.50
+OQA         O39         C37        H371     110.879    1.50
+OQA         C38         C37        H371     111.464    1.84
+OQA         C22         C38         C37     104.424    1.81
+OQA         C22         C38         C41     116.412    3.00
+OQA         C22         C38        H381     109.366    2.07
+OQA         C37         C38         C41     104.424    1.81
+OQA         C37         C38        H381     111.975    2.66
+OQA         C41         C38        H381     109.658    2.16
+OQA         O39         C40         C41     105.099    1.50
+OQA         O39         C40        H402     110.765    1.50
+OQA         O39         C40        H401     110.765    1.50
+OQA         C41         C40        H402     110.956    1.50
+OQA         C41         C40        H401     110.956    1.50
+OQA        H402         C40        H401     108.953    1.50
+OQA         C40         C41         C38     103.933    1.82
+OQA         C40         C41        H411     111.126    1.50
+OQA         C40         C41        H412     111.126    1.50
+OQA         C38         C41        H411     110.793    1.50
+OQA         C38         C41        H412     110.793    1.50
+OQA        H411         C41        H412     108.883    1.55
+OQA         C31         C42        H422     109.662    1.50
+OQA         C31         C42        H423     109.662    1.50
+OQA         C31         C42        H421     109.662    1.50
+OQA        H422         C42        H423     109.411    1.50
+OQA        H422         C42        H421     109.411    1.50
+OQA        H423         C42        H421     109.411    1.50
+OQA         C31         C43         C44     113.965    1.50
+OQA         C31         C43        H432     108.703    1.50
+OQA         C31         C43        H431     108.703    1.50
+OQA         C44         C43        H432     108.717    1.50
+OQA         C44         C43        H431     108.717    1.50
+OQA        H432         C43        H431     107.862    1.50
+OQA         C43         C44        H443     109.566    1.50
+OQA         C43         C44        H441     109.566    1.50
+OQA         C43         C44        H442     109.566    1.50
+OQA        H443         C44        H441     109.380    1.50
+OQA        H443         C44        H442     109.380    1.50
+OQA        H441         C44        H442     109.380    1.50
+OQA         C02         N01         C19     122.427    2.35
+OQA         C02         N01        H011     118.136    3.00
+OQA         C19         N01        H011     119.438    1.50
+OQA         C06         N07         C08     123.632    1.63
+OQA         C06         N07        H071     117.489    3.00
+OQA         C08         N07        H071     118.879    1.83
+OQA         C30         N29         C09     121.531    1.68
+OQA         C30         N29        H291     119.228    2.20
+OQA         C09         N29        H291     119.240    1.50
+OQA         C05         O10        H101     108.640    2.32
+OQA         C19         O21         C22     116.687    1.81
+OQA         C34         O32         C30     115.328    1.50
+OQA         C35         O36         C37     107.499    1.99
+OQA         C40         O39         C37     107.499    1.99
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OQA            sp2_sp3_20         C14         C13         C11         C06     -90.000    10.0     6
+OQA       const_sp2_sp2_3         C11         C13         C14         C15     180.000     5.0     2
+OQA              const_43         C11         C13         C18         C17     180.000    10.0     2
+OQA            sp3_sp3_83         O10         C05         C06         N07     180.000    10.0     3
+OQA            sp3_sp3_53         C06         C05         O10        H101     180.000    10.0     3
+OQA            sp3_sp3_74         N07         C06         C11         C13     180.000    10.0     3
+OQA            sp2_sp3_13         C08         N07         C06         C11       0.000    10.0     6
+OQA             sp2_sp3_7         N07         C08         C09         N29       0.000    10.0     6
+OQA             sp2_sp2_7         C09         C08         N07         C06     180.000     5.0     2
+OQA            sp3_sp3_65         N29         C09         C31         C42     180.000    10.0     3
+OQA             sp2_sp3_1         C30         N29         C09         C31       0.000    10.0     6
+OQA            sp2_sp2_11         O21         C19         N01         C02     180.000     5.0     2
+OQA            sp2_sp2_15         N01         C19         O21         C22     180.000     5.0     2
+OQA       const_sp2_sp2_5         C13         C14         C15         C16       0.000     5.0     2
+OQA       const_sp2_sp2_9         C14         C15         C16         C17       0.000     5.0     2
+OQA             sp2_sp2_5         O33         C30         N29         C09       0.000     5.0     2
+OQA             sp2_sp2_1         O33         C30         O32         C34     180.000     5.0     2
+OQA            sp3_sp3_56         C09         C31         C42        H422     180.000    10.0     3
+OQA           sp3_sp3_101         C42         C31         C43         C44     180.000    10.0     3
+OQA            sp3_sp3_50        H342         C34         O32         C30     -60.000    10.0     3
+OQA            sp3_sp3_10         C22         C35         O36         C37     -60.000    10.0     3
+OQA            sp3_sp3_16         O36         C37         C38         C22     -60.000    10.0     3
+OQA            sp3_sp3_14         O39         C37         O36         C35     -60.000    10.0     3
+OQA            sp3_sp3_26         O36         C37         O39         C40     -60.000    10.0     3
+OQA            sp3_sp3_43         C22         C38         C41         C40     180.000    10.0     3
+OQA            sp3_sp3_31         O39         C40         C41         C38      60.000    10.0     3
+OQA            sp3_sp3_28         C41         C40         O39         C37     -60.000    10.0     3
+OQA              const_13         C15         C16         C17         C18       0.000    10.0     2
+OQA              const_17         C16         C17         C18         C13       0.000    10.0     2
+OQA           sp3_sp3_110         C31         C43         C44        H443     180.000    10.0     3
+OQA             sp3_sp3_4         O21         C22         C35         O36     -60.000    10.0     3
+OQA           sp3_sp3_143         O21         C22         C38         C37      60.000    10.0     3
+OQA           sp3_sp3_137         C35         C22         O21         C19     180.000    10.0     3
+OQA              const_23         C04         C23         C24         C25     180.000    10.0     2
+OQA              const_45         C23         C24         C25         C26       0.000    10.0     2
+OQA              const_37         C24         C25         C26         C27       0.000    10.0     2
+OQA              const_33         C25         C26         C27         C28       0.000    10.0     2
+OQA              const_27         C04         C23         C28         C27     180.000    10.0     2
+OQA              const_29         C26         C27         C28         C23       0.000    10.0     2
+OQA            sp2_sp3_25         C19         N01         C02         C03       0.000    10.0     6
+OQA           sp3_sp3_119         N01         C02         C03         C05     180.000    10.0     3
+OQA           sp3_sp3_128         C03         C02         C04         C23     180.000    10.0     3
+OQA            sp3_sp3_92         C02         C03         C05         O10     180.000    10.0     3
+OQA            sp2_sp3_32         C24         C23         C04         C02     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OQA    chir_1    C22    O21    C35    C38    negative
+OQA    chir_2    C02    N01    C03    C04    positive
+OQA    chir_3    C05    O10    C06    C03    positive
+OQA    chir_4    C06    N07    C05    C11    positive
+OQA    chir_5    C09    N29    C08    C31    positive
+OQA    chir_6    C31    C09    C43    C42    negative
+OQA    chir_7    C37    O36    O39    C38    negative
+OQA    chir_8    C38    C37    C22    C41    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OQA    plan-1         C11   0.020
+OQA    plan-1         C13   0.020
+OQA    plan-1         C14   0.020
+OQA    plan-1         C15   0.020
+OQA    plan-1         C16   0.020
+OQA    plan-1         C17   0.020
+OQA    plan-1         C18   0.020
+OQA    plan-1        H141   0.020
+OQA    plan-1        H151   0.020
+OQA    plan-1        H161   0.020
+OQA    plan-1        H171   0.020
+OQA    plan-1        H181   0.020
+OQA    plan-2         C04   0.020
+OQA    plan-2         C23   0.020
+OQA    plan-2         C24   0.020
+OQA    plan-2         C25   0.020
+OQA    plan-2         C26   0.020
+OQA    plan-2         C27   0.020
+OQA    plan-2         C28   0.020
+OQA    plan-2        H241   0.020
+OQA    plan-2        H251   0.020
+OQA    plan-2        H261   0.020
+OQA    plan-2        H271   0.020
+OQA    plan-2        H281   0.020
+OQA    plan-3         C08   0.020
+OQA    plan-3         C09   0.020
+OQA    plan-3         N07   0.020
+OQA    plan-3         O12   0.020
+OQA    plan-4         C19   0.020
+OQA    plan-4         N01   0.020
+OQA    plan-4         O20   0.020
+OQA    plan-4         O21   0.020
+OQA    plan-5         C30   0.020
+OQA    plan-5         N29   0.020
+OQA    plan-5         O32   0.020
+OQA    plan-5         O33   0.020
+OQA    plan-6         C02   0.020
+OQA    plan-6         C19   0.020
+OQA    plan-6        H011   0.020
+OQA    plan-6         N01   0.020
+OQA    plan-7         C06   0.020
+OQA    plan-7         C08   0.020
+OQA    plan-7        H071   0.020
+OQA    plan-7         N07   0.020
+OQA    plan-8         C09   0.020
+OQA    plan-8         C30   0.020
+OQA    plan-8        H291   0.020
+OQA    plan-8         N29   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OQA           SMILES              ACDLabs 12.01                                                                                                                                                                                          c1(ccccc1)CC(C(CC(NC(OC2C3C(OC2)OCC3)=O)Cc4ccccc4)O)NC(=O)C(C(CC)C)NC(OC)=O
+OQA            InChI                InChI  1.03 InChI=1S/C33H45N3O8/c1-4-21(2)29(36-32(39)41-3)30(38)35-26(18-23-13-9-6-10-14-23)27(37)19-24(17-22-11-7-5-8-12-22)34-33(40)44-28-20-43-31-25(28)15-16-42-31/h5-14,21,24-29,31,37H,4,15-20H2,1-3H3,(H,34,40)(H,35,38)(H,36,39)/t21-,24+,25+,26+,27+,28+,29+,31-/m1/s1
+OQA         InChIKey                InChI  1.03                                                                                                                                                                                                                                          ZTHXXPRDWPPMMG-CDZRAOLRSA-N
+OQA SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                          CC[C@@H](C)[C@H](NC(=O)OC)C(=O)N[C@@H](Cc1ccccc1)[C@@H](O)C[C@H](Cc2ccccc2)NC(=O)O[C@H]3CO[C@H]4OCC[C@@H]34
+OQA           SMILES               CACTVS 3.385                                                                                                                                                                      CC[CH](C)[CH](NC(=O)OC)C(=O)N[CH](Cc1ccccc1)[CH](O)C[CH](Cc2ccccc2)NC(=O)O[CH]3CO[CH]4OCC[CH]34
+OQA SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                                                                          CC[C@@H](C)[C@@H](C(=O)N[C@@H](Cc1ccccc1)[C@H](C[C@H](Cc2ccccc2)NC(=O)O[C@H]3CO[C@@H]4[C@H]3CCO4)O)NC(=O)OC
+OQA           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                                                                                              CCC(C)C(C(=O)NC(Cc1ccccc1)C(CC(Cc2ccccc2)NC(=O)OC3COC4C3CCO4)O)NC(=O)OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OQA acedrg               243         "dictionary generator"                  
+OQA acedrg_database      11          "data source"                           
+OQA rdkit                2017.03.2   "Chemoinformatics tool"
+OQA refmac5              5.8.0238    "optimization tool"                     

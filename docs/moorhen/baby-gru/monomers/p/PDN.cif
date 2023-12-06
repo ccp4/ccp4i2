@@ -1,0 +1,362 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PDN     PDN      17,21-DIHYDROXYPREGNA-1,4-DIENE-3,11,20-TRIONE     NON-POLYMER     52     26     .     
+#
+data_comp_PDN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PDN     C1      C       CR16    0       20.351      11.617      20.922      
+PDN     C2      C       CR16    0       19.837      10.636      21.654      
+PDN     C3      C       CR6     0       20.192      9.243       21.403      
+PDN     C4      C       CR16    0       21.174      9.011       20.354      
+PDN     C5      C       CR66    0       21.779      10.006      19.687      
+PDN     C6      C       CH2     0       22.756      9.714       18.585      
+PDN     C7      C       CH2     0       22.440      10.503      17.322      
+PDN     C8      C       CH1     0       22.401      12.001      17.607      
+PDN     C9      C       CH1     0       21.339      12.303      18.708      
+PDN     C10     C       CT      0       21.545      11.472      20.018      
+PDN     C11     C       CR6     0       21.167      13.819      18.854      
+PDN     C12     C       CH2     0       20.845      14.566      17.570      
+PDN     C13     C       CT      0       21.965      14.328      16.542      
+PDN     C14     C       CH1     0       22.077      12.794      16.341      
+PDN     C15     C       CH2     0       22.962      12.648      15.104      
+PDN     C16     C       CH2     0       22.630      13.879      14.230      
+PDN     C17     C       CT      0       21.682      14.785      15.060      
+PDN     C18     C       CH3     0       23.263      14.982      17.056      
+PDN     C19     C       CH3     0       22.769      11.986      20.835      
+PDN     C20     C       C       0       21.849      16.301      14.801      
+PDN     C21     C       C1      0       20.818      17.354      14.928      
+PDN     O1      O       O       0       19.690      8.315       22.045      
+PDN     O2      O       O       0       21.278      14.435      19.893      
+PDN     O3      O       OH1     0       20.309      14.515      14.752      
+PDN     O4      O       OH1     0       23.104      16.719      14.426      
+PDN     O5      O       OH1     0       21.161      18.623      14.673      
+PDN     HC1     H       H       0       19.937      12.464      20.976      
+PDN     HC2     H       H       0       19.233      10.843      22.348      
+PDN     HC4     H       H       0       21.397      8.124       20.137      
+PDN     HC61    H       H       0       23.655      9.940       18.888      
+PDN     HC62    H       H       0       22.740      8.760       18.378      
+PDN     HC71    H       H       0       21.574      10.218      16.968      
+PDN     HC72    H       H       0       23.122      10.316      16.647      
+PDN     HC8     H       H       0       23.294      12.273      17.934      
+PDN     HC9     H       H       0       20.487      11.997      18.316      
+PDN     H121    H       H       0       20.763      15.519      17.755      
+PDN     H122    H       H       0       19.994      14.250      17.220      
+PDN     HC41    H       H       0       21.167      12.471      16.067      
+PDN     H151    H       H       0       22.757      11.822      14.630      
+PDN     H152    H       H       0       23.903      12.643      15.352      
+PDN     H161    H       H       0       22.198      13.599      13.397      
+PDN     H162    H       H       0       23.452      14.352      14.001      
+PDN     H181    H       H       0       23.937      15.005      16.353      
+PDN     H182    H       H       0       23.618      14.486      17.809      
+PDN     H183    H       H       0       23.075      15.894      17.343      
+PDN     H191    H       H       0       23.421      12.375      20.236      
+PDN     H192    H       H       0       23.176      11.249      21.314      
+PDN     H193    H       H       0       22.482      12.657      21.471      
+PDN     HC12    H       H       0       19.941      17.134      15.186      
+PDN     HO3     H       H       0       20.175      13.750      14.420      
+PDN     HO4     H       H       0       23.657      17.007      15.019      
+PDN     HO5     H       H       0       20.659      19.113      14.173      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PDN          C1          C2      DOUBLE       n     1.325  0.0100     1.325  0.0100
+PDN          C1         C10      SINGLE       n     1.498  0.0100     1.498  0.0100
+PDN          C2          C3      SINGLE       n     1.458  0.0111     1.458  0.0111
+PDN          C3          C4      SINGLE       n     1.453  0.0100     1.453  0.0100
+PDN          C3          O1      DOUBLE       n     1.235  0.0100     1.235  0.0100
+PDN          C4          C5      DOUBLE       n     1.337  0.0100     1.337  0.0100
+PDN          C5          C6      SINGLE       n     1.499  0.0100     1.499  0.0100
+PDN          C5         C10      SINGLE       n     1.512  0.0100     1.512  0.0100
+PDN          C6          C7      SINGLE       n     1.524  0.0116     1.524  0.0116
+PDN          C7          C8      SINGLE       n     1.525  0.0100     1.525  0.0100
+PDN          C8          C9      SINGLE       n     1.551  0.0100     1.551  0.0100
+PDN          C8         C14      SINGLE       n     1.524  0.0105     1.524  0.0105
+PDN          C9         C10      SINGLE       n     1.536  0.0157     1.536  0.0157
+PDN          C9         C11      SINGLE       n     1.520  0.0117     1.520  0.0117
+PDN         C10         C19      SINGLE       n     1.553  0.0100     1.553  0.0100
+PDN         C11         C12      SINGLE       n     1.516  0.0100     1.516  0.0100
+PDN         C11          O2      DOUBLE       n     1.212  0.0100     1.212  0.0100
+PDN         C12         C13      SINGLE       n     1.534  0.0100     1.534  0.0100
+PDN         C13         C14      SINGLE       n     1.545  0.0100     1.545  0.0100
+PDN         C13         C17      SINGLE       n     1.564  0.0109     1.564  0.0109
+PDN         C13         C18      SINGLE       n     1.533  0.0100     1.533  0.0100
+PDN         C14         C15      SINGLE       n     1.527  0.0106     1.527  0.0106
+PDN         C15         C16      SINGLE       n     1.543  0.0107     1.543  0.0107
+PDN         C16         C17      SINGLE       n     1.546  0.0100     1.546  0.0100
+PDN         C17         C20      SINGLE       n     1.528  0.0176     1.528  0.0176
+PDN         C17          O3      SINGLE       n     1.429  0.0106     1.429  0.0106
+PDN         C20         C21      DOUBLE       n     1.472  0.0200     1.472  0.0200
+PDN         C20          O4      SINGLE       n     1.369  0.0200     1.369  0.0200
+PDN         C21          O5      SINGLE       n     1.338  0.0153     1.338  0.0153
+PDN          C1         HC1      SINGLE       n     1.082  0.0130     0.945  0.0100
+PDN          C2         HC2      SINGLE       n     1.082  0.0130     0.943  0.0200
+PDN          C4         HC4      SINGLE       n     1.082  0.0130     0.940  0.0110
+PDN          C6        HC61      SINGLE       n     1.089  0.0100     0.976  0.0111
+PDN          C6        HC62      SINGLE       n     1.089  0.0100     0.976  0.0111
+PDN          C7        HC71      SINGLE       n     1.089  0.0100     0.978  0.0137
+PDN          C7        HC72      SINGLE       n     1.089  0.0100     0.978  0.0137
+PDN          C8         HC8      SINGLE       n     1.089  0.0100     0.990  0.0114
+PDN          C9         HC9      SINGLE       n     1.089  0.0100     0.987  0.0187
+PDN         C12        H121      SINGLE       n     1.089  0.0100     0.974  0.0159
+PDN         C12        H122      SINGLE       n     1.089  0.0100     0.974  0.0159
+PDN         C14        HC41      SINGLE       n     1.089  0.0100     1.004  0.0200
+PDN         C15        H151      SINGLE       n     1.089  0.0100     0.974  0.0200
+PDN         C15        H152      SINGLE       n     1.089  0.0100     0.974  0.0200
+PDN         C16        H161      SINGLE       n     1.089  0.0100     0.979  0.0200
+PDN         C16        H162      SINGLE       n     1.089  0.0100     0.979  0.0200
+PDN         C18        H181      SINGLE       n     1.089  0.0100     0.974  0.0200
+PDN         C18        H182      SINGLE       n     1.089  0.0100     0.974  0.0200
+PDN         C18        H183      SINGLE       n     1.089  0.0100     0.974  0.0200
+PDN         C19        H191      SINGLE       n     1.089  0.0100     0.968  0.0123
+PDN         C19        H192      SINGLE       n     1.089  0.0100     0.968  0.0123
+PDN         C19        H193      SINGLE       n     1.089  0.0100     0.968  0.0123
+PDN         C21        HC12      SINGLE       n     1.082  0.0130     0.941  0.0180
+PDN          O3         HO3      SINGLE       n     0.970  0.0120     0.844  0.0200
+PDN          O4         HO4      SINGLE       n     0.966  0.0059     0.861  0.0200
+PDN          O5         HO5      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PDN          C2          C1         C10     124.503    1.50
+PDN          C2          C1         HC1     117.977    1.50
+PDN         C10          C1         HC1     117.520    1.50
+PDN          C1          C2          C3     121.383    1.50
+PDN          C1          C2         HC2     119.265    1.50
+PDN          C3          C2         HC2     119.352    1.50
+PDN          C2          C3          C4     116.635    1.50
+PDN          C2          C3          O1     121.630    1.50
+PDN          C4          C3          O1     121.739    1.50
+PDN          C3          C4          C5     123.049    1.50
+PDN          C3          C4         HC4     118.614    1.50
+PDN          C5          C4         HC4     118.337    1.50
+PDN          C4          C5          C6     121.296    1.50
+PDN          C4          C5         C10     122.642    1.50
+PDN          C6          C5         C10     116.062    1.50
+PDN          C5          C6          C7     112.028    1.50
+PDN          C5          C6        HC61     109.141    1.50
+PDN          C5          C6        HC62     109.141    1.50
+PDN          C7          C6        HC61     109.205    1.50
+PDN          C7          C6        HC62     109.205    1.50
+PDN        HC61          C6        HC62     107.957    1.50
+PDN          C6          C7          C8     111.699    1.50
+PDN          C6          C7        HC71     109.235    1.50
+PDN          C6          C7        HC72     109.235    1.50
+PDN          C8          C7        HC71     109.128    1.50
+PDN          C8          C7        HC72     109.128    1.50
+PDN        HC71          C7        HC72     107.970    1.50
+PDN          C7          C8          C9     109.789    1.50
+PDN          C7          C8         C14     111.562    1.50
+PDN          C7          C8         HC8     108.639    1.50
+PDN          C9          C8         C14     109.268    1.50
+PDN          C9          C8         HC8     109.043    1.50
+PDN         C14          C8         HC8     108.729    1.50
+PDN          C8          C9         C10     110.307    3.00
+PDN          C8          C9         C11     110.534    1.50
+PDN          C8          C9         HC9     105.380    1.50
+PDN         C10          C9         C11     115.907    1.50
+PDN         C10          C9         HC9     108.380    1.95
+PDN         C11          C9         HC9     105.475    1.50
+PDN          C1         C10          C5     111.758    1.50
+PDN          C1         C10          C9     110.660    1.60
+PDN          C1         C10         C19     106.709    1.50
+PDN          C5         C10          C9     109.664    2.20
+PDN          C5         C10         C19     109.255    1.50
+PDN          C9         C10         C19     111.212    1.50
+PDN          C9         C11         C12     115.603    1.50
+PDN          C9         C11          O2     123.757    1.50
+PDN         C12         C11          O2     120.640    1.50
+PDN         C11         C12         C13     108.707    1.50
+PDN         C11         C12        H121     109.844    1.50
+PDN         C11         C12        H122     109.844    1.50
+PDN         C13         C12        H121     109.908    1.50
+PDN         C13         C12        H122     109.908    1.50
+PDN        H121         C12        H122     108.369    1.50
+PDN         C12         C13         C14     107.974    1.50
+PDN         C12         C13         C17     115.911    1.50
+PDN         C12         C13         C18     109.130    1.50
+PDN         C14         C13         C17      99.605    1.50
+PDN         C14         C13         C18     112.293    1.50
+PDN         C17         C13         C18     109.328    1.50
+PDN          C8         C14         C13     114.014    1.50
+PDN          C8         C14         C15     119.365    1.50
+PDN          C8         C14        HC41     106.057    1.50
+PDN         C13         C14         C15     103.848    1.50
+PDN         C13         C14        HC41     106.469    1.50
+PDN         C15         C14        HC41     106.241    1.50
+PDN         C14         C15         C16     104.122    1.50
+PDN         C14         C15        H151     110.972    1.50
+PDN         C14         C15        H152     110.972    1.50
+PDN         C16         C15        H151     111.069    1.50
+PDN         C16         C15        H152     111.069    1.50
+PDN        H151         C15        H152     109.060    1.50
+PDN         C15         C16         C17     104.443    2.26
+PDN         C15         C16        H161     110.386    1.50
+PDN         C15         C16        H162     110.386    1.50
+PDN         C17         C16        H161     110.324    1.50
+PDN         C17         C16        H162     110.324    1.50
+PDN        H161         C16        H162     108.495    1.50
+PDN         C13         C17         C16     103.245    1.50
+PDN         C13         C17         C20     113.659    2.53
+PDN         C13         C17          O3     107.578    1.50
+PDN         C16         C17         C20     112.424    2.46
+PDN         C16         C17          O3     111.601    1.50
+PDN         C20         C17          O3     109.197    2.32
+PDN         C13         C18        H181     109.651    1.50
+PDN         C13         C18        H182     109.651    1.50
+PDN         C13         C18        H183     109.651    1.50
+PDN        H181         C18        H182     109.337    1.50
+PDN        H181         C18        H183     109.337    1.50
+PDN        H182         C18        H183     109.337    1.50
+PDN         C10         C19        H191     109.457    1.50
+PDN         C10         C19        H192     109.457    1.50
+PDN         C10         C19        H193     109.457    1.50
+PDN        H191         C19        H192     109.398    1.50
+PDN        H191         C19        H193     109.398    1.50
+PDN        H192         C19        H193     109.398    1.50
+PDN         C17         C20         C21     127.679    3.00
+PDN         C17         C20          O4     114.921    1.50
+PDN         C21         C20          O4     117.400    3.00
+PDN         C20         C21          O5     117.671    3.00
+PDN         C20         C21        HC12     120.673    2.38
+PDN          O5         C21        HC12     121.657    3.00
+PDN         C17          O3         HO3     109.819    3.00
+PDN         C20          O4         HO4     120.000    3.00
+PDN         C21          O5         HO5     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PDN             sp2_sp2_1         C10          C1          C2          C3       0.000     5.0     2
+PDN            sp2_sp3_27          C2          C1         C10         C19    -120.000    10.0     6
+PDN            sp2_sp3_22          O2         C11         C12         C13     180.000    10.0     6
+PDN            sp3_sp3_39         C11         C12         C13         C18     180.000    10.0     3
+PDN            sp3_sp3_52         C18         C13         C14          C8     180.000    10.0     3
+PDN           sp3_sp3_107         C18         C13         C17         C20      60.000    10.0     3
+PDN           sp3_sp3_109         C12         C13         C18        H181     180.000    10.0     3
+PDN            sp3_sp3_58          C8         C14         C15         C16     180.000    10.0     3
+PDN            sp3_sp3_64         C14         C15         C16         C17      60.000    10.0     3
+PDN            sp3_sp3_74         C15         C16         C17         C20      60.000    10.0     3
+PDN            sp2_sp3_33         C21         C20         C17          O3    -120.000    10.0     6
+PDN           sp3_sp3_120         C20         C17          O3         HO3     -60.000    10.0     3
+PDN            sp2_sp2_19          O4         C20         C21          O5       0.000     5.0     2
+PDN            sp2_sp2_22         C21         C20          O4         HO4       0.000     5.0     2
+PDN             sp2_sp2_6          C1          C2          C3          O1     180.000     5.0     2
+PDN            sp2_sp2_23         C20         C21          O5         HO5     180.000     5.0     2
+PDN            sp2_sp2_11          O1          C3          C4          C5     180.000     5.0     2
+PDN            sp2_sp2_14          C3          C4          C5          C6     180.000     5.0     2
+PDN            sp2_sp3_10          C4          C5          C6          C7     180.000    10.0     6
+PDN             sp2_sp3_3          C4          C5         C10         C19    -120.000    10.0     6
+PDN             sp3_sp3_1          C5          C6          C7          C8     -60.000    10.0     3
+PDN            sp3_sp3_10          C6          C7          C8          C9      60.000    10.0     3
+PDN            sp3_sp3_83         C13         C14          C8          C7     -60.000    10.0     3
+PDN            sp3_sp3_19          C7          C8          C9         C10     -60.000    10.0     3
+PDN            sp2_sp3_16          O2         C11          C9          C8     180.000    10.0     6
+PDN            sp3_sp3_34         C19         C10          C9          C8     180.000    10.0     3
+PDN            sp3_sp3_91          C1         C10         C19        H191     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PDN    chir_1    C8    C9    C14    C7    positive
+PDN    chir_2    C9    C11    C10    C8    positive
+PDN    chir_3    C10    C5    C9    C1    negative
+PDN    chir_4    C13    C17    C14    C12    positive
+PDN    chir_5    C14    C13    C8    C15    positive
+PDN    chir_6    C17    O3    C20    C13    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PDN    plan-1          C1   0.020
+PDN    plan-1         C10   0.020
+PDN    plan-1          C2   0.020
+PDN    plan-1         HC1   0.020
+PDN    plan-2          C1   0.020
+PDN    plan-2          C2   0.020
+PDN    plan-2          C3   0.020
+PDN    plan-2         HC2   0.020
+PDN    plan-3          C2   0.020
+PDN    plan-3          C3   0.020
+PDN    plan-3          C4   0.020
+PDN    plan-3          O1   0.020
+PDN    plan-4          C3   0.020
+PDN    plan-4          C4   0.020
+PDN    plan-4          C5   0.020
+PDN    plan-4         HC4   0.020
+PDN    plan-5         C10   0.020
+PDN    plan-5          C4   0.020
+PDN    plan-5          C5   0.020
+PDN    plan-5          C6   0.020
+PDN    plan-6         C11   0.020
+PDN    plan-6         C12   0.020
+PDN    plan-6          C9   0.020
+PDN    plan-6          O2   0.020
+PDN    plan-7         C17   0.020
+PDN    plan-7         C20   0.020
+PDN    plan-7         C21   0.020
+PDN    plan-7          O4   0.020
+PDN    plan-8         C20   0.020
+PDN    plan-8         C21   0.020
+PDN    plan-8        HC12   0.020
+PDN    plan-8          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PDN           SMILES              ACDLabs 10.04                                                                                                                                      O=C2CC4(C(C3CCC1=CC(=O)C=CC1(C)C23)CCC4(O)C(\O)=C\O)C
+PDN SMILES_CANONICAL               CACTVS 3.341                                                                                                                 C[C@]12CC(=O)[C@H]3[C@@H](CCC4=CC(=O)C=C[C@]34C)[C@@H]1CC[C@]2(O)\C(O)=C\O
+PDN           SMILES               CACTVS 3.341                                                                                                                           C[C]12CC(=O)[CH]3[CH](CCC4=CC(=O)C=C[C]34C)[CH]1CC[C]2(O)C(O)=CO
+PDN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                   C[C@]12CC(=O)[C@H]3[C@H]([C@@H]1CC[C@@]2(C(=CO)O)O)CCC4=CC(=O)C=C[C@]34C
+PDN           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                          CC12CC(=O)C3C(C1CCC2(C(=CO)O)O)CCC4=CC(=O)C=CC34C
+PDN            InChI                InChI  1.03 InChI=1S/C21H26O5/c1-19-7-5-13(23)9-12(19)3-4-14-15-6-8-21(26,17(25)11-22)20(15,2)10-16(24)18(14)19/h5,7,9,11,14-15,18,22,25-26H,3-4,6,8,10H2,1-2H3/b17-11-/t14-,15-,18+,19-,20-,21-/m0/s1
+PDN         InChIKey                InChI  1.03                                                                                                                                                                WZTZVUUYKIOIRV-LMZHSBCYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PDN acedrg               243         "dictionary generator"                  
+PDN acedrg_database      11          "data source"                           
+PDN rdkit                2017.03.2   "Chemoinformatics tool"
+PDN refmac5              5.8.0238    "optimization tool"                     

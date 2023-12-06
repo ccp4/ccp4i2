@@ -1,0 +1,244 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LCL     LCL      2,2-dichloro-N-[(1S,2S)-1,3-dihydroxy-1-(4-nitrophenyl)propan-2-yl]acetamide     NON-POLYMER     32     20     .     
+#
+data_comp_LCL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LCL     C1      C       CH1     0       -28.750     -55.688     -1.427      
+LCL     CL1     CL      CL      0       -29.728     -57.139     -1.527      
+LCL     CL2     CL      CL      0       -27.134     -56.076     -0.869      
+LCL     C2      C       C       0       -29.393     -54.716     -0.464      
+LCL     O2      O       O       0       -29.752     -53.597     -0.826      
+LCL     N2      N       NH1     0       -29.539     -55.164     0.792       
+LCL     C3      C       CH1     0       -30.133     -54.420     1.899       
+LCL     C4      C       CH2     0       -31.452     -55.075     2.290       
+LCL     O4      O       OH1     0       -31.273     -56.425     2.683       
+LCL     C5      C       CH1     0       -29.166     -54.303     3.093       
+LCL     O5      O       OH1     0       -28.791     -55.618     3.487       
+LCL     C6      C       CR6     0       -27.962     -53.433     2.787       
+LCL     C7      C       CR16    0       -27.928     -52.101     3.208       
+LCL     C8      C       CR16    0       -26.837     -51.290     2.938       
+LCL     C9      C       CR6     0       -25.765     -51.833     2.230       
+LCL     N9      N       N       1       -24.611     -50.992     1.938       
+LCL     O9A     O       OC      -1      -24.785     -49.984     1.270       
+LCL     O9B     O       O       0       -23.522     -51.331     2.374       
+LCL     C10     C       CR16    0       -25.767     -53.158     1.793       
+LCL     C11     C       CR16    0       -26.872     -53.944     2.079       
+LCL     H1      H       H       0       -28.686     -55.291     -2.318      
+LCL     H2      H       H       0       -29.261     -55.969     0.985       
+LCL     H3      H       H       0       -30.336     -53.497     1.599       
+LCL     H4      H       H       0       -32.069     -55.038     1.528       
+LCL     H5      H       H       0       -31.855     -54.572     3.030       
+LCL     H6      H       H       0       -32.034     -56.766     2.826       
+LCL     H7      H       H       0       -29.662     -53.889     3.840       
+LCL     H8      H       H       0       -28.442     -55.574     4.258       
+LCL     H9      H       H       0       -28.658     -51.745     3.687       
+LCL     H10     H       H       0       -26.825     -50.394     3.227       
+LCL     H13     H       H       0       -25.038     -53.513     1.316       
+LCL     H14     H       H       0       -26.885     -54.841     1.789       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LCL          C1         CL1      SINGLE       n     1.753  0.0200     1.753  0.0200
+LCL          C1         CL2      SINGLE       n     1.753  0.0200     1.753  0.0200
+LCL          C1          C2      SINGLE       n     1.508  0.0200     1.508  0.0200
+LCL          C2          O2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+LCL          C2          N2      SINGLE       n     1.337  0.0106     1.337  0.0106
+LCL          N2          C3      SINGLE       n     1.456  0.0100     1.456  0.0100
+LCL          C3          C4      SINGLE       n     1.523  0.0136     1.523  0.0136
+LCL          C4          O4      SINGLE       n     1.417  0.0200     1.417  0.0200
+LCL          C3          C5      SINGLE       n     1.540  0.0100     1.540  0.0100
+LCL         C10         C11      SINGLE       y     1.382  0.0100     1.382  0.0100
+LCL          C6         C11      DOUBLE       y     1.392  0.0100     1.392  0.0100
+LCL          C9         C10      DOUBLE       y     1.393  0.0100     1.393  0.0100
+LCL          C5          C6      SINGLE       n     1.515  0.0100     1.515  0.0100
+LCL          C5          O5      SINGLE       n     1.423  0.0133     1.423  0.0133
+LCL          C6          C7      SINGLE       y     1.392  0.0100     1.392  0.0100
+LCL          N9         O9B      DOUBLE       n     1.221  0.0162     1.221  0.0162
+LCL          C9          N9      SINGLE       n     1.457  0.0200     1.457  0.0200
+LCL          C8          C9      SINGLE       y     1.393  0.0100     1.393  0.0100
+LCL          C7          C8      DOUBLE       y     1.382  0.0100     1.382  0.0100
+LCL          N9         O9A      SINGLE       n     1.221  0.0162     1.221  0.0162
+LCL          C1          H1      SINGLE       n     1.089  0.0100     0.978  0.0100
+LCL          N2          H2      SINGLE       n     1.016  0.0100     0.872  0.0200
+LCL          C3          H3      SINGLE       n     1.089  0.0100     0.992  0.0100
+LCL          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0174
+LCL          C4          H5      SINGLE       n     1.089  0.0100     0.981  0.0174
+LCL          O4          H6      SINGLE       n     0.970  0.0120     0.846  0.0200
+LCL          C5          H7      SINGLE       n     1.089  0.0100     0.987  0.0156
+LCL          O5          H8      SINGLE       n     0.970  0.0120     0.848  0.0200
+LCL          C7          H9      SINGLE       n     1.082  0.0130     0.943  0.0173
+LCL          C8         H10      SINGLE       n     1.082  0.0130     0.941  0.0200
+LCL         C10         H13      SINGLE       n     1.082  0.0130     0.941  0.0200
+LCL         C11         H14      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LCL         CL1          C1         CL2     110.440    1.50
+LCL         CL1          C1          C2     109.320    1.50
+LCL         CL1          C1          H1     108.651    1.58
+LCL         CL2          C1          C2     109.320    1.50
+LCL         CL2          C1          H1     108.651    1.58
+LCL          C2          C1          H1     110.287    2.54
+LCL          C1          C2          O2     122.182    1.50
+LCL          C1          C2          N2     115.446    1.61
+LCL          O2          C2          N2     122.372    1.50
+LCL          C2          N2          C3     123.696    1.63
+LCL          C2          N2          H2     118.752    1.94
+LCL          C3          N2          H2     117.552    3.00
+LCL          N2          C3          C4     109.157    1.65
+LCL          N2          C3          C5     111.504    1.50
+LCL          N2          C3          H3     108.194    1.50
+LCL          C4          C3          C5     112.177    1.50
+LCL          C4          C3          H3     107.627    1.50
+LCL          C5          C3          H3     107.161    1.50
+LCL          C3          C4          O4     111.903    1.66
+LCL          C3          C4          H4     109.343    1.50
+LCL          C3          C4          H5     109.343    1.50
+LCL          O4          C4          H4     109.411    1.50
+LCL          O4          C4          H5     109.411    1.50
+LCL          H4          C4          H5     108.070    1.50
+LCL          C4          O4          H6     108.529    2.94
+LCL          C3          C5          C6     113.018    1.62
+LCL          C3          C5          O5     108.389    2.58
+LCL          C3          C5          H7     108.286    1.50
+LCL          C6          C5          O5     112.050    1.50
+LCL          C6          C5          H7     108.540    1.50
+LCL          O5          C5          H7     108.742    1.50
+LCL          C5          O5          H8     108.178    3.00
+LCL         C11          C6          C5     120.619    1.50
+LCL         C11          C6          C7     118.763    1.50
+LCL          C5          C6          C7     120.619    1.50
+LCL          C6          C7          C8     120.938    1.50
+LCL          C6          C7          H9     119.666    1.50
+LCL          C8          C7          H9     119.396    1.50
+LCL          C9          C8          C7     118.489    1.50
+LCL          C9          C8         H10     121.025    1.50
+LCL          C7          C8         H10     120.487    1.50
+LCL         C10          C9          N9     118.808    1.50
+LCL         C10          C9          C8     122.384    1.50
+LCL          N9          C9          C8     118.808    1.50
+LCL         O9B          N9          C9     118.257    1.50
+LCL         O9B          N9         O9A     123.486    1.50
+LCL          C9          N9         O9A     118.257    1.50
+LCL         C11         C10          C9     118.489    1.50
+LCL         C11         C10         H13     120.487    1.50
+LCL          C9         C10         H13     121.025    1.50
+LCL         C10         C11          C6     120.938    1.50
+LCL         C10         C11         H14     119.396    1.50
+LCL          C6         C11         H14     119.666    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LCL             sp2_sp3_2          O2          C2          C1         CL1     120.000    10.0     6
+LCL              const_23          C5          C6          C7          C8     180.000    10.0     2
+LCL       const_sp2_sp2_2         C10         C11          C6          C5     180.000     5.0     2
+LCL              const_17          C6          C7          C8          C9       0.000    10.0     2
+LCL              const_14          C7          C8          C9          N9     180.000    10.0     2
+LCL             sp2_sp2_5         C10          C9          N9         O9B     180.000     5.0     2
+LCL              const_10         C11         C10          C9          N9     180.000    10.0     2
+LCL       const_sp2_sp2_5          C9         C10         C11          C6       0.000     5.0     2
+LCL             sp2_sp2_1          C1          C2          N2          C3     180.000     5.0     2
+LCL             sp2_sp3_7          C2          N2          C3          C4       0.000    10.0     6
+LCL             sp3_sp3_1          N2          C3          C4          O4     180.000    10.0     3
+LCL            sp3_sp3_14          N2          C3          C5          O5     -60.000    10.0     3
+LCL            sp3_sp3_10          C3          C4          O4          H6     180.000    10.0     3
+LCL            sp3_sp3_22          C3          C5          O5          H8     180.000    10.0     3
+LCL            sp2_sp3_13         C11          C6          C5          C3     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LCL    chir_1    C1    CL1    CL2    C2    both
+LCL    chir_2    C3    N2    C5    C4    positive
+LCL    chir_3    C5    O5    C3    C6    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LCL    plan-1         C10   0.020
+LCL    plan-1         C11   0.020
+LCL    plan-1          C5   0.020
+LCL    plan-1          C6   0.020
+LCL    plan-1          C7   0.020
+LCL    plan-1          C8   0.020
+LCL    plan-1          C9   0.020
+LCL    plan-1         H10   0.020
+LCL    plan-1         H13   0.020
+LCL    plan-1         H14   0.020
+LCL    plan-1          H9   0.020
+LCL    plan-1          N9   0.020
+LCL    plan-2          C1   0.020
+LCL    plan-2          C2   0.020
+LCL    plan-2          N2   0.020
+LCL    plan-2          O2   0.020
+LCL    plan-3          C2   0.020
+LCL    plan-3          C3   0.020
+LCL    plan-3          H2   0.020
+LCL    plan-3          N2   0.020
+LCL    plan-4          C9   0.020
+LCL    plan-4          N9   0.020
+LCL    plan-4         O9A   0.020
+LCL    plan-4         O9B   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LCL           SMILES              ACDLabs 12.01                                                                             O=[N+]([O-])c1ccc(cc1)C(O)C(NC(=O)C(Cl)Cl)CO
+LCL            InChI                InChI  1.03 InChI=1S/C11H12Cl2N2O5/c12-10(13)11(18)14-8(5-16)9(17)6-1-3-7(4-2-6)15(19)20/h1-4,8-10,16-17H,5H2,(H,14,18)/t8-,9-/m0/s1
+LCL         InChIKey                InChI  1.03                                                                                              WIIZWVCIJKGZOK-IUCAKERBSA-N
+LCL SMILES_CANONICAL               CACTVS 3.370                                                                    OC[C@H](NC(=O)C(Cl)Cl)[C@@H](O)c1ccc(cc1)[N+]([O-])=O
+LCL           SMILES               CACTVS 3.370                                                                       OC[CH](NC(=O)C(Cl)Cl)[CH](O)c1ccc(cc1)[N+]([O-])=O
+LCL SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                    c1cc(ccc1[C@@H]([C@H](CO)NC(=O)C(Cl)Cl)O)[N+](=O)[O-]
+LCL           SMILES "OpenEye OEToolkits" 1.7.6                                                                             c1cc(ccc1C(C(CO)NC(=O)C(Cl)Cl)O)[N+](=O)[O-]
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LCL acedrg               243         "dictionary generator"                  
+LCL acedrg_database      11          "data source"                           
+LCL rdkit                2017.03.2   "Chemoinformatics tool"
+LCL refmac5              5.8.0238    "optimization tool"                     

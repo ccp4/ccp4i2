@@ -1,0 +1,346 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DSI     DSI      "4-HYDROXY-6-(1H-INDOLE-2-CARBONYL)-8-METHYL-3,6,7,8-TETRAHYDRO-3,6-DIAZA-AS-INDACENE-2-CARBOXYLIC ACID METHYL ESTER"     NON-POLYMER     48     29     .     
+#
+data_comp_DSI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DSI     C20     C       CR56    0       -0.701      -0.130      2.949       
+DSI     C21     C       CR56    0       -0.801      0.349       1.617       
+DSI     C22     C       CR16    0       0.211       0.142       0.679       
+DSI     C23     C       CR16    0       1.330       -0.552      1.090       
+DSI     C25     C       CR16    0       0.459       -0.834      3.327       
+DSI     C24     C       CR16    0       1.454       -1.035      2.397       
+DSI     C18     C       CR5     0       -2.682      0.949       2.679       
+DSI     C19     C       CR15    0       -1.895      0.254       3.606       
+DSI     N17     N       NR5     0       -2.001      0.995       1.481       
+DSI     C16     C       C       0       -3.980      1.549       2.857       
+DSI     O16     O       O       0       -4.695      1.773       1.882       
+DSI     C6      C       CR6     0       -8.060      1.211       4.683       
+DSI     C7      C       CR16    0       -6.814      1.123       4.071       
+DSI     O6      O       OH1     0       -9.134      0.517       4.179       
+DSI     C8      C       CR56    0       -5.728      1.832       4.587       
+DSI     N12     N       NT      0       -4.383      1.887       4.128       
+DSI     C11     C       CH2     0       -3.566      2.707       5.060       
+DSI     C10     C       CH1     0       -4.560      3.289       6.078       
+DSI     C13     C       CH3     0       -4.607      4.813       6.086       
+DSI     C9      C       CR56    0       -5.872      2.630       5.719       
+DSI     C5      C       CR56    0       -8.231      2.012       5.828       
+DSI     C4      C       CR56    0       -7.137      2.726       6.352       
+DSI     C3      C       CR15    0       -7.599      3.427       7.478       
+DSI     C2      C       CR5     0       -8.933      3.141       7.626       
+DSI     N1      N       NR5     0       -9.315      2.277       6.617       
+DSI     C14     C       C       0       -9.845      3.628       8.645       
+DSI     O15     O       O2      0       -11.080     3.132       8.516       
+DSI     O14     O       O       0       -9.510      4.402       9.511       
+DSI     C15     C       CH3     0       -12.045     3.460       9.544       
+DSI     H22     H       H       0       0.131       0.467       -0.201      
+DSI     H23     H       H       0       2.027       -0.703      0.476       
+DSI     H25     H       H       0       0.551       -1.164      4.205       
+DSI     H24     H       H       0       2.234       -1.506      2.644       
+DSI     H19     H       H       0       -2.116      0.078       4.507       
+DSI     H17     H       H       0       -2.296      1.382       0.742       
+DSI     H7      H       H       0       -6.716      0.584       3.305       
+DSI     H6      H       H       0       -9.902      0.900       4.114       
+DSI     H111    H       H       0       -3.103      3.408       4.557       
+DSI     H112    H       H       0       -2.902      2.137       5.502       
+DSI     H10     H       H       0       -4.291      2.986       6.986       
+DSI     H131    H       H       0       -5.390      5.118       5.600       
+DSI     H132    H       H       0       -3.810      5.179       5.675       
+DSI     H133    H       H       0       -4.661      5.116       7.006       
+DSI     H3      H       H       0       -7.089      3.991       8.033       
+DSI     H1      H       H       0       -10.122     1.952       6.502       
+DSI     H151    H       H       0       -12.181     4.420       9.567       
+DSI     H152    H       H       0       -11.717     3.157       10.406      
+DSI     H153    H       H       0       -12.886     3.019       9.346       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DSI         C20         C21      SINGLE       y     1.415  0.0100     1.415  0.0100
+DSI         C20         C25      DOUBLE       y     1.405  0.0100     1.405  0.0100
+DSI         C20         C19      SINGLE       y     1.417  0.0100     1.417  0.0100
+DSI         C21         C22      DOUBLE       y     1.391  0.0100     1.391  0.0100
+DSI         C21         N17      SINGLE       y     1.369  0.0100     1.369  0.0100
+DSI         C22         C23      SINGLE       y     1.376  0.0100     1.376  0.0100
+DSI         C23         C24      DOUBLE       y     1.395  0.0112     1.395  0.0112
+DSI         C25         C24      SINGLE       y     1.373  0.0100     1.373  0.0100
+DSI         C18         C19      DOUBLE       y     1.402  0.0200     1.402  0.0200
+DSI         C18         N17      SINGLE       y     1.377  0.0100     1.377  0.0100
+DSI         C18         C16      SINGLE       n     1.429  0.0200     1.429  0.0200
+DSI         C16         O16      DOUBLE       n     1.228  0.0115     1.228  0.0115
+DSI         C16         N12      SINGLE       n     1.367  0.0144     1.367  0.0144
+DSI          C6          C7      DOUBLE       y     1.379  0.0132     1.379  0.0132
+DSI          C6          O6      SINGLE       n     1.374  0.0155     1.374  0.0155
+DSI          C6          C5      SINGLE       y     1.404  0.0100     1.404  0.0100
+DSI          C7          C8      SINGLE       y     1.388  0.0100     1.388  0.0100
+DSI          C8         N12      SINGLE       n     1.420  0.0100     1.420  0.0100
+DSI          C8          C9      DOUBLE       y     1.389  0.0102     1.389  0.0102
+DSI         N12         C11      SINGLE       n     1.485  0.0100     1.485  0.0100
+DSI         C11         C10      SINGLE       n     1.533  0.0142     1.533  0.0142
+DSI         C10         C13      SINGLE       n     1.512  0.0200     1.512  0.0200
+DSI         C10          C9      SINGLE       n     1.511  0.0100     1.511  0.0100
+DSI          C9          C4      SINGLE       y     1.414  0.0200     1.414  0.0200
+DSI          C5          C4      DOUBLE       y     1.409  0.0100     1.409  0.0100
+DSI          C5          N1      SINGLE       y     1.366  0.0100     1.366  0.0100
+DSI          C4          C3      SINGLE       y     1.414  0.0200     1.414  0.0200
+DSI          C3          C2      DOUBLE       y     1.371  0.0100     1.371  0.0100
+DSI          C2          N1      SINGLE       y     1.376  0.0100     1.376  0.0100
+DSI          C2         C14      SINGLE       n     1.449  0.0100     1.449  0.0100
+DSI         C14         O15      SINGLE       n     1.333  0.0100     1.333  0.0100
+DSI         C14         O14      DOUBLE       n     1.207  0.0100     1.207  0.0100
+DSI         O15         C15      SINGLE       n     1.445  0.0100     1.445  0.0100
+DSI         C22         H22      SINGLE       n     1.082  0.0130     0.942  0.0188
+DSI         C23         H23      SINGLE       n     1.082  0.0130     0.941  0.0181
+DSI         C25         H25      SINGLE       n     1.082  0.0130     0.942  0.0151
+DSI         C24         H24      SINGLE       n     1.082  0.0130     0.944  0.0181
+DSI         C19         H19      SINGLE       n     1.082  0.0130     0.944  0.0200
+DSI         N17         H17      SINGLE       n     1.016  0.0100     0.885  0.0200
+DSI          C7          H7      SINGLE       n     1.082  0.0130     0.942  0.0171
+DSI          O6          H6      SINGLE       n     0.966  0.0059     0.861  0.0200
+DSI         C11        H111      SINGLE       n     1.089  0.0100     0.980  0.0143
+DSI         C11        H112      SINGLE       n     1.089  0.0100     0.980  0.0143
+DSI         C10         H10      SINGLE       n     1.089  0.0100     0.995  0.0200
+DSI         C13        H131      SINGLE       n     1.089  0.0100     0.970  0.0163
+DSI         C13        H132      SINGLE       n     1.089  0.0100     0.970  0.0163
+DSI         C13        H133      SINGLE       n     1.089  0.0100     0.970  0.0163
+DSI          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0170
+DSI          N1          H1      SINGLE       n     1.016  0.0100     0.878  0.0200
+DSI         C15        H151      SINGLE       n     1.089  0.0100     0.970  0.0175
+DSI         C15        H152      SINGLE       n     1.089  0.0100     0.970  0.0175
+DSI         C15        H153      SINGLE       n     1.089  0.0100     0.970  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DSI         C21         C20         C25     118.479    1.50
+DSI         C21         C20         C19     106.642    1.50
+DSI         C25         C20         C19     134.879    1.50
+DSI         C20         C21         C22     122.245    1.50
+DSI         C20         C21         N17     107.813    1.50
+DSI         C22         C21         N17     129.942    1.50
+DSI         C21         C22         C23     117.421    1.50
+DSI         C21         C22         H22     121.117    1.50
+DSI         C23         C22         H22     121.457    1.50
+DSI         C22         C23         C24     121.659    1.50
+DSI         C22         C23         H23     119.116    1.50
+DSI         C24         C23         H23     119.225    1.50
+DSI         C20         C25         C24     118.959    1.50
+DSI         C20         C25         H25     120.394    1.50
+DSI         C24         C25         H25     120.647    1.50
+DSI         C23         C24         C25     121.243    1.50
+DSI         C23         C24         H24     119.301    1.50
+DSI         C25         C24         H24     119.456    1.50
+DSI         C19         C18         N17     108.898    1.50
+DSI         C19         C18         C16     128.323    3.00
+DSI         N17         C18         C16     122.779    3.00
+DSI         C20         C19         C18     107.799    1.50
+DSI         C20         C19         H19     126.028    1.50
+DSI         C18         C19         H19     126.173    1.50
+DSI         C21         N17         C18     108.847    1.50
+DSI         C21         N17         H17     125.714    1.50
+DSI         C18         N17         H17     125.439    2.15
+DSI         C18         C16         O16     120.829    1.84
+DSI         C18         C16         N12     118.196    2.28
+DSI         O16         C16         N12     120.975    1.65
+DSI          C7          C6          O6     120.737    3.00
+DSI          C7          C6          C5     119.571    1.50
+DSI          O6          C6          C5     119.693    3.00
+DSI          C6          C7          C8     119.175    1.50
+DSI          C6          C7          H7     119.684    1.50
+DSI          C8          C7          H7     121.141    1.50
+DSI          C6          O6          H6     120.000    3.00
+DSI          C7          C8         N12     129.206    1.50
+DSI          C7          C8          C9     120.836    1.50
+DSI         N12          C8          C9     109.957    1.50
+DSI         C16         N12          C8     122.248    1.97
+DSI         C16         N12         C11     123.923    2.61
+DSI          C8         N12         C11     109.024    2.34
+DSI         N12         C11         C10     103.104    2.01
+DSI         N12         C11        H111     109.403    1.50
+DSI         N12         C11        H112     109.403    1.50
+DSI         C10         C11        H111     111.094    1.50
+DSI         C10         C11        H112     111.094    1.50
+DSI        H111         C11        H112     109.055    1.50
+DSI         C11         C10         C13     112.133    1.62
+DSI         C11         C10          C9     103.118    1.50
+DSI         C11         C10         H10     108.548    1.50
+DSI         C13         C10          C9     114.113    2.84
+DSI         C13         C10         H10     109.106    3.00
+DSI          C9         C10         H10     108.945    1.60
+DSI         C10         C13        H131     109.280    2.21
+DSI         C10         C13        H132     109.280    2.21
+DSI         C10         C13        H133     109.280    2.21
+DSI        H131         C13        H132     109.629    1.50
+DSI        H131         C13        H133     109.629    1.50
+DSI        H132         C13        H133     109.629    1.50
+DSI          C8          C9         C10     109.673    1.57
+DSI          C8          C9          C4     120.039    1.50
+DSI         C10          C9          C4     130.288    3.00
+DSI          C6          C5          C4     120.345    1.72
+DSI          C6          C5          N1     131.865    1.56
+DSI          C4          C5          N1     107.790    1.50
+DSI          C9          C4          C5     120.034    2.33
+DSI          C9          C4          C3     132.514    1.50
+DSI          C5          C4          C3     107.452    1.50
+DSI          C4          C3          C2     107.641    1.50
+DSI          C4          C3          H3     126.348    1.50
+DSI          C2          C3          H3     126.010    1.50
+DSI          C3          C2          N1     108.584    1.50
+DSI          C3          C2         C14     130.622    2.29
+DSI          N1          C2         C14     120.794    1.93
+DSI          C5          N1          C2     108.533    1.50
+DSI          C5          N1          H1     126.123    1.93
+DSI          C2          N1          H1     125.344    1.50
+DSI          C2         C14         O15     111.894    1.50
+DSI          C2         C14         O14     124.153    1.61
+DSI         O15         C14         O14     123.953    1.50
+DSI         C14         O15         C15     115.879    1.50
+DSI         O15         C15        H151     109.345    1.50
+DSI         O15         C15        H152     109.345    1.50
+DSI         O15         C15        H153     109.345    1.50
+DSI        H151         C15        H152     109.532    1.53
+DSI        H151         C15        H153     109.532    1.53
+DSI        H152         C15        H153     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DSI       const_sp2_sp2_1         C25         C20         C21         C22       0.000     5.0     2
+DSI              const_65         C21         C20         C25         C24       0.000    10.0     2
+DSI              const_69         C18         C19         C20         C21       0.000    10.0     2
+DSI              const_51          O6          C6          C7          C8     180.000    10.0     2
+DSI            sp2_sp2_13          C7          C6          O6          H6     180.000     5.0     2
+DSI              const_74          C4          C5          C6          O6     180.000    10.0     2
+DSI              const_54          C6          C7          C8         N12     180.000    10.0     2
+DSI             sp2_sp2_4          C7          C8         N12         C16       0.000     5.0     2
+DSI              const_58          C7          C8          C9         C10     180.000    10.0     2
+DSI             sp2_sp3_4         C16         N12         C11         C10     180.000    10.0     6
+DSI             sp3_sp3_4         C13         C10         C11         N12     -60.000    10.0     3
+DSI            sp3_sp3_10         C11         C10         C13        H131     180.000    10.0     3
+DSI             sp2_sp3_8          C8          C9         C10         C13     120.000    10.0     6
+DSI              const_61          C5          C4          C9          C8       0.000    10.0     2
+DSI              const_17         C20         C21         C22         C23       0.000    10.0     2
+DSI       const_sp2_sp2_5         C20         C21         N17         C18       0.000     5.0     2
+DSI              const_33          C9          C4          C5          C6       0.000    10.0     2
+DSI              const_79          C6          C5          N1          C2     180.000    10.0     2
+DSI              const_38          C2          C3          C4          C9     180.000    10.0     2
+DSI              const_43         C14          C2          C3          C4     180.000    10.0     2
+DSI              const_47         C14          C2          N1          C5     180.000    10.0     2
+DSI            sp2_sp2_15         O15         C14          C2          C3     180.000     5.0     2
+DSI            sp2_sp2_20         O14         C14         O15         C15       0.000     5.0     2
+DSI            sp3_sp3_20        H151         C15         O15         C14     -60.000    10.0     3
+DSI              const_21         C21         C22         C23         C24       0.000    10.0     2
+DSI              const_25         C22         C23         C24         C25       0.000    10.0     2
+DSI              const_29         C23         C24         C25         C20       0.000    10.0     2
+DSI              const_15         C16         C18         C19         C20     180.000    10.0     2
+DSI              const_11         C16         C18         N17         C21     180.000    10.0     2
+DSI             sp2_sp2_7         O16         C16         C18         C19       0.000     5.0     2
+DSI            sp2_sp2_12         O16         C16         N12          C8     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DSI    chir_1    C10    C11    C9    C13    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DSI    plan-1         C16   0.020
+DSI    plan-1         C18   0.020
+DSI    plan-1         C19   0.020
+DSI    plan-1         C20   0.020
+DSI    plan-1         C21   0.020
+DSI    plan-1         C22   0.020
+DSI    plan-1         C23   0.020
+DSI    plan-1         C24   0.020
+DSI    plan-1         C25   0.020
+DSI    plan-1         H17   0.020
+DSI    plan-1         H19   0.020
+DSI    plan-1         H22   0.020
+DSI    plan-1         H23   0.020
+DSI    plan-1         H24   0.020
+DSI    plan-1         H25   0.020
+DSI    plan-1         N17   0.020
+DSI    plan-2         C10   0.020
+DSI    plan-2         C14   0.020
+DSI    plan-2          C2   0.020
+DSI    plan-2          C3   0.020
+DSI    plan-2          C4   0.020
+DSI    plan-2          C5   0.020
+DSI    plan-2          C6   0.020
+DSI    plan-2          C7   0.020
+DSI    plan-2          C8   0.020
+DSI    plan-2          C9   0.020
+DSI    plan-2          H1   0.020
+DSI    plan-2          H3   0.020
+DSI    plan-2          H7   0.020
+DSI    plan-2          N1   0.020
+DSI    plan-2         N12   0.020
+DSI    plan-2          O6   0.020
+DSI    plan-3         C16   0.020
+DSI    plan-3         C18   0.020
+DSI    plan-3         N12   0.020
+DSI    plan-3         O16   0.020
+DSI    plan-4         C14   0.020
+DSI    plan-4          C2   0.020
+DSI    plan-4         O14   0.020
+DSI    plan-4         O15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DSI           SMILES              ACDLabs 10.04                                                                                                       O=C(OC)c2nc1c(O)cc3c(c1c2)C(CN3C(=O)c5cc4ccccc4n5)C
+DSI SMILES_CANONICAL               CACTVS 3.341                                                                                            COC(=O)c1[nH]c2c(O)cc3N(C[C@@H](C)c3c2c1)C(=O)c4[nH]c5ccccc5c4
+DSI           SMILES               CACTVS 3.341                                                                                              COC(=O)c1[nH]c2c(O)cc3N(C[CH](C)c3c2c1)C(=O)c4[nH]c5ccccc5c4
+DSI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                            C[C@@H]1CN(c2c1c3cc([nH]c3c(c2)O)C(=O)OC)C(=O)c4cc5ccccc5[nH]4
+DSI           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                 CC1CN(c2c1c3cc([nH]c3c(c2)O)C(=O)OC)C(=O)c4cc5ccccc5[nH]4
+DSI            InChI                InChI  1.03 InChI=1S/C22H19N3O4/c1-11-10-25(21(27)15-7-12-5-3-4-6-14(12)23-15)17-9-18(26)20-13(19(11)17)8-16(24-20)22(28)29-2/h3-9,11,23-24,26H,10H2,1-2H3/t11-/m1/s1
+DSI         InChIKey                InChI  1.03                                                                                                                               SVXVQSGKGYZESS-LLVKDONJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DSI acedrg               243         "dictionary generator"                  
+DSI acedrg_database      11          "data source"                           
+DSI rdkit                2017.03.2   "Chemoinformatics tool"
+DSI refmac5              5.8.0238    "optimization tool"                     

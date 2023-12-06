@@ -1,0 +1,247 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OX5     OX5      "4-HYDROXYBENZALDEHYDE O-(3,3-DIMETHYLBUTANOYL)OXIME"     NON-POLYMER     34     17     .     
+#
+data_comp_OX5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OX5     O1      O       OH1     0       -7.996      8.122       -2.665      
+OX5     C1      C       CR6     0       -6.765      7.512       -2.621      
+OX5     C2      C       CR16    0       -5.637      8.252       -2.277      
+OX5     C3      C       CR16    0       -4.396      7.639       -2.232      
+OX5     C4      C       CR6     0       -4.245      6.285       -2.530      
+OX5     C5      C       CR16    0       -5.388      5.556       -2.869      
+OX5     C6      C       CR16    0       -6.634      6.159       -2.917      
+OX5     C7      C       C1      0       -2.916      5.673       -2.465      
+OX5     N8      N       N       0       -2.607      4.656       -3.170      
+OX5     O9      O       O2      0       -1.541      3.930       -2.523      
+OX5     C10     C       C       0       -1.405      2.638       -2.964      
+OX5     C8      C       CH2     0       0.019       2.159       -2.839      
+OX5     C9      C       CH3     0       0.344       2.579       -0.366      
+OX5     C11     C       CH3     0       -0.552      0.375       -1.129      
+OX5     C12     C       CT      0       0.398       1.528       -1.480      
+OX5     C13     C       CH3     0       1.825       0.978       -1.559      
+OX5     O2      O       O       0       -2.304      1.967       -3.379      
+OX5     HO1     H       H       0       -8.679      7.704       -2.982      
+OX5     H2      H       H       0       -5.719      9.167       -2.075      
+OX5     H3      H       H       0       -3.640      8.149       -1.998      
+OX5     H5      H       H       0       -5.314      4.640       -3.072      
+OX5     H6      H       H       0       -7.393      5.655       -3.150      
+OX5     H7      H       H       0       -2.272      6.054       -1.892      
+OX5     H81     H       H       0       0.618       2.918       -3.006      
+OX5     H82     H       H       0       0.185       1.498       -3.544      
+OX5     H91     H       H       0       0.725       2.209       0.449       
+OX5     H92     H       H       0       -0.579      2.839       -0.201      
+OX5     H93     H       H       0       0.856       3.362       -0.634      
+OX5     H111    H       H       0       -0.696      -0.178      -1.916      
+OX5     H112    H       H       0       -1.404      0.730       -0.824      
+OX5     H113    H       H       0       -0.159      -0.167      -0.422      
+OX5     H131    H       H       0       2.083       0.613       -0.695      
+OX5     H132    H       H       0       2.437       1.695       -1.802      
+OX5     H133    H       H       0       1.866       0.276       -2.232      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OX5          O1          C1      SINGLE       n     1.374  0.0155     1.374  0.0155
+OX5          C1          C2      DOUBLE       y     1.388  0.0100     1.388  0.0100
+OX5          C1          C6      SINGLE       y     1.388  0.0100     1.388  0.0100
+OX5          C2          C3      SINGLE       y     1.381  0.0100     1.381  0.0100
+OX5          C3          C4      DOUBLE       y     1.392  0.0100     1.392  0.0100
+OX5          C4          C7      SINGLE       n     1.462  0.0100     1.462  0.0100
+OX5          C4          C5      SINGLE       y     1.392  0.0100     1.392  0.0100
+OX5          C5          C6      DOUBLE       y     1.381  0.0100     1.381  0.0100
+OX5          C7          N8      DOUBLE       n     1.273  0.0100     1.273  0.0100
+OX5          N8          O9      SINGLE       n     1.441  0.0100     1.441  0.0100
+OX5          O9         C10      SINGLE       n     1.366  0.0153     1.366  0.0153
+OX5         C10          O2      DOUBLE       n     1.194  0.0158     1.194  0.0158
+OX5         C10          C8      SINGLE       n     1.502  0.0148     1.502  0.0148
+OX5          C8         C12      SINGLE       n     1.542  0.0104     1.542  0.0104
+OX5          C9         C12      SINGLE       n     1.531  0.0109     1.531  0.0109
+OX5         C11         C12      SINGLE       n     1.531  0.0109     1.531  0.0109
+OX5         C12         C13      SINGLE       n     1.531  0.0109     1.531  0.0109
+OX5          O1         HO1      SINGLE       n     0.966  0.0059     0.861  0.0200
+OX5          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0179
+OX5          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+OX5          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0168
+OX5          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0179
+OX5          C7          H7      SINGLE       n     1.082  0.0130     0.942  0.0164
+OX5          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0185
+OX5          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0185
+OX5          C9         H91      SINGLE       n     1.089  0.0100     0.973  0.0146
+OX5          C9         H92      SINGLE       n     1.089  0.0100     0.973  0.0146
+OX5          C9         H93      SINGLE       n     1.089  0.0100     0.973  0.0146
+OX5         C11        H111      SINGLE       n     1.089  0.0100     0.973  0.0146
+OX5         C11        H112      SINGLE       n     1.089  0.0100     0.973  0.0146
+OX5         C11        H113      SINGLE       n     1.089  0.0100     0.973  0.0146
+OX5         C13        H131      SINGLE       n     1.089  0.0100     0.973  0.0146
+OX5         C13        H132      SINGLE       n     1.089  0.0100     0.973  0.0146
+OX5         C13        H133      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OX5          C1          O1         HO1     120.000    3.00
+OX5          O1          C1          C2     120.192    3.00
+OX5          O1          C1          C6     120.192    3.00
+OX5          C2          C1          C6     119.617    1.50
+OX5          C1          C2          C3     119.881    1.50
+OX5          C1          C2          H2     119.973    1.50
+OX5          C3          C2          H2     120.135    1.50
+OX5          C2          C3          C4     121.124    1.50
+OX5          C2          C3          H3     119.338    1.50
+OX5          C4          C3          H3     119.538    1.50
+OX5          C3          C4          C7     120.803    1.96
+OX5          C3          C4          C5     118.394    1.50
+OX5          C7          C4          C5     120.803    1.96
+OX5          C4          C5          C6     121.124    1.50
+OX5          C4          C5          H5     119.538    1.50
+OX5          C6          C5          H5     119.338    1.50
+OX5          C1          C6          C5     119.881    1.50
+OX5          C1          C6          H6     119.973    1.50
+OX5          C5          C6          H6     120.135    1.50
+OX5          C4          C7          N8     121.081    1.50
+OX5          C4          C7          H7     119.222    1.50
+OX5          N8          C7          H7     119.697    1.50
+OX5          C7          N8          O9     109.165    2.01
+OX5          N8          O9         C10     112.405    1.50
+OX5          O9         C10          O2     123.486    3.00
+OX5          O9         C10          C8     111.770    1.62
+OX5          O2         C10          C8     124.744    1.60
+OX5         C10          C8         C12     111.511    2.91
+OX5         C10          C8         H81     108.648    1.50
+OX5         C10          C8         H82     108.648    1.50
+OX5         C12          C8         H81     108.689    1.50
+OX5         C12          C8         H82     108.689    1.50
+OX5         H81          C8         H82     107.493    1.50
+OX5         C12          C9         H91     109.509    1.50
+OX5         C12          C9         H92     109.509    1.50
+OX5         C12          C9         H93     109.509    1.50
+OX5         H91          C9         H92     109.377    1.50
+OX5         H91          C9         H93     109.377    1.50
+OX5         H92          C9         H93     109.377    1.50
+OX5         C12         C11        H111     109.509    1.50
+OX5         C12         C11        H112     109.509    1.50
+OX5         C12         C11        H113     109.509    1.50
+OX5        H111         C11        H112     109.377    1.50
+OX5        H111         C11        H113     109.377    1.50
+OX5        H112         C11        H113     109.377    1.50
+OX5          C8         C12          C9     109.647    1.79
+OX5          C8         C12         C11     109.647    1.79
+OX5          C8         C12         C13     109.647    1.79
+OX5          C9         C12         C11     108.674    1.50
+OX5          C9         C12         C13     108.674    1.50
+OX5         C11         C12         C13     108.674    1.50
+OX5         C12         C13        H131     109.509    1.50
+OX5         C12         C13        H132     109.509    1.50
+OX5         C12         C13        H133     109.509    1.50
+OX5        H131         C13        H132     109.377    1.50
+OX5        H131         C13        H133     109.377    1.50
+OX5        H132         C13        H133     109.377    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OX5             sp2_sp2_1          C2          C1          O1         HO1     180.000     5.0     2
+OX5             sp2_sp3_2          O9         C10          C8         C12     120.000    10.0     6
+OX5             sp3_sp3_4          C9         C12          C8         C10      60.000    10.0     3
+OX5            sp3_sp3_10          C8         C12          C9         H91     180.000    10.0     3
+OX5            sp3_sp3_20        H111         C11         C12          C8     -60.000    10.0     3
+OX5            sp3_sp3_28          C8         C12         C13        H131     180.000    10.0     3
+OX5       const_sp2_sp2_3          O1          C1          C2          C3     180.000     5.0     2
+OX5              const_23          O1          C1          C6          C5     180.000    10.0     2
+OX5       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+OX5              const_10          C2          C3          C4          C7     180.000    10.0     2
+OX5              const_15          C7          C4          C5          C6     180.000    10.0     2
+OX5             sp2_sp2_3          C3          C4          C7          N8     180.000     5.0     2
+OX5              const_17          C4          C5          C6          C1       0.000    10.0     2
+OX5             sp2_sp2_7          C4          C7          N8          O9     180.000     5.0     2
+OX5             sp2_sp2_9          C7          N8          O9         C10     180.000     5.0     2
+OX5            sp2_sp2_10          O2         C10          O9          N8     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OX5    chir_1    C12    C8    C9    C11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OX5    plan-1          C1   0.020
+OX5    plan-1          C2   0.020
+OX5    plan-1          C3   0.020
+OX5    plan-1          C4   0.020
+OX5    plan-1          C5   0.020
+OX5    plan-1          C6   0.020
+OX5    plan-1          C7   0.020
+OX5    plan-1          H2   0.020
+OX5    plan-1          H3   0.020
+OX5    plan-1          H5   0.020
+OX5    plan-1          H6   0.020
+OX5    plan-1          O1   0.020
+OX5    plan-2          C4   0.020
+OX5    plan-2          C7   0.020
+OX5    plan-2          H7   0.020
+OX5    plan-2          N8   0.020
+OX5    plan-3         C10   0.020
+OX5    plan-3          C8   0.020
+OX5    plan-3          O2   0.020
+OX5    plan-3          O9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OX5           SMILES              ACDLabs 10.04                                                              O=C(O\N=C\c1ccc(O)cc1)CC(C)(C)C
+OX5 SMILES_CANONICAL               CACTVS 3.341                                                              CC(C)(C)CC(=O)O/N=C/c1ccc(O)cc1
+OX5           SMILES               CACTVS 3.341                                                                CC(C)(C)CC(=O)ON=Cc1ccc(O)cc1
+OX5 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                              CC(C)(C)CC(=O)O/N=C/c1ccc(cc1)O
+OX5           SMILES "OpenEye OEToolkits" 1.5.0                                                                CC(C)(C)CC(=O)ON=Cc1ccc(cc1)O
+OX5            InChI                InChI  1.03 InChI=1S/C13H17NO3/c1-13(2,3)8-12(16)17-14-9-10-4-6-11(15)7-5-10/h4-7,9,15H,8H2,1-3H3/b14-9+
+OX5         InChIKey                InChI  1.03                                                                  IRHAIEVALGHVLW-NTEUORMPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OX5 acedrg               243         "dictionary generator"                  
+OX5 acedrg_database      11          "data source"                           
+OX5 rdkit                2017.03.2   "Chemoinformatics tool"
+OX5 refmac5              5.8.0238    "optimization tool"                     

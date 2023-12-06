@@ -1,0 +1,274 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SPJ     SPJ      "(3R,3'R)-N~1~,N~1~'-butane-1,4-diyldibutane-1,3-diamine"     NON-POLYMER     46     16     .     
+#
+data_comp_SPJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SPJ     N1B     N       NT2     0       117.700     30.577      75.468      
+SPJ     C1C     C       CH1     0       119.075     30.778      74.968      
+SPJ     C1A     C       CH3     0       119.096     30.662      73.467      
+SPJ     C1D     C       CH2     0       120.045     29.788      75.627      
+SPJ     C1E     C       CH2     0       119.749     28.318      75.363      
+SPJ     N1F     N       NT1     0       120.589     27.445      76.183      
+SPJ     C1G     C       CH2     0       120.327     26.017      76.006      
+SPJ     C1H     C       CH2     0       121.271     25.163      76.839      
+SPJ     C1I     C       CH2     0       120.873     23.696      76.866      
+SPJ     C1J     C       CH2     0       121.183     22.979      75.560      
+SPJ     N1K     N       NT1     0       120.823     21.560      75.604      
+SPJ     C1L     C       CH2     0       121.728     20.694      76.361      
+SPJ     C1M     C       CH2     0       121.506     19.224      76.038      
+SPJ     C1N     C       CH1     0       122.217     18.746      74.769      
+SPJ     C1P     C       CH3     0       122.153     17.248      74.644      
+SPJ     N1O     N       NT2     0       121.623     19.388      73.579      
+SPJ     HN1B    H       H       0       117.685     30.630      76.354      
+SPJ     HN1A    H       H       0       117.163     31.210      75.153      
+SPJ     H1C     H       H       0       119.367     31.695      75.215      
+SPJ     H1A     H       H       0       119.961     30.326      73.175      
+SPJ     H1AA    H       H       0       118.941     31.538      73.073      
+SPJ     H1AB    H       H       0       118.397     30.050      73.177      
+SPJ     H1D     H       H       0       120.032     29.941      76.597      
+SPJ     H1DA    H       H       0       120.955     29.987      75.311      
+SPJ     H1E     H       H       0       119.905     28.120      74.416      
+SPJ     H1EA    H       H       0       118.806     28.136      75.558      
+SPJ     HN1F    H       H       0       121.448     27.601      75.968      
+SPJ     H1G     H       H       0       120.430     25.782      75.060      
+SPJ     H1GA    H       H       0       119.402     25.822      76.265      
+SPJ     H1H     H       H       0       121.285     25.506      77.758      
+SPJ     H1HA    H       H       0       122.178     25.241      76.474      
+SPJ     H1I     H       H       0       119.911     23.628      77.047      
+SPJ     H1IA    H       H       0       121.350     23.250      77.597      
+SPJ     H1J     H       H       0       122.139     23.067      75.365      
+SPJ     H1JA    H       H       0       120.689     23.412      74.832      
+SPJ     HN1K    H       H       0       119.997     21.482      75.955      
+SPJ     H1L     H       H       0       121.587     20.836      77.321      
+SPJ     H1LA    H       H       0       122.657     20.930      76.155      
+SPJ     H1M     H       H       0       120.542     19.063      75.936      
+SPJ     H1MA    H       H       0       121.818     18.681      76.795      
+SPJ     H1N     H       H       0       123.170     19.018      74.833      
+SPJ     H1P     H       H       0       122.102     17.000      73.704      
+SPJ     H1PA    H       H       0       121.366     16.911      75.108      
+SPJ     H1PB    H       H       0       122.952     16.856      75.037      
+SPJ     HN1O    H       H       0       122.120     19.229      72.860      
+SPJ     HN1C    H       H       0       120.809     19.067      73.422      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SPJ         N1B         C1C      SINGLE       n     1.476  0.0100     1.476  0.0100
+SPJ         C1C         C1A      SINGLE       n     1.503  0.0107     1.503  0.0107
+SPJ         C1C         C1D      SINGLE       n     1.526  0.0200     1.526  0.0200
+SPJ         C1D         C1E      SINGLE       n     1.521  0.0115     1.521  0.0115
+SPJ         C1E         N1F      SINGLE       n     1.463  0.0111     1.463  0.0111
+SPJ         N1F         C1G      SINGLE       n     1.463  0.0111     1.463  0.0111
+SPJ         C1G         C1H      SINGLE       n     1.521  0.0100     1.521  0.0100
+SPJ         C1H         C1I      SINGLE       n     1.519  0.0150     1.519  0.0150
+SPJ         C1I         C1J      SINGLE       n     1.521  0.0100     1.521  0.0100
+SPJ         C1J         N1K      SINGLE       n     1.463  0.0111     1.463  0.0111
+SPJ         N1K         C1L      SINGLE       n     1.463  0.0111     1.463  0.0111
+SPJ         C1L         C1M      SINGLE       n     1.521  0.0115     1.521  0.0115
+SPJ         C1M         C1N      SINGLE       n     1.526  0.0200     1.526  0.0200
+SPJ         C1N         C1P      SINGLE       n     1.503  0.0107     1.503  0.0107
+SPJ         C1N         N1O      SINGLE       n     1.476  0.0100     1.476  0.0100
+SPJ         N1B        HN1B      SINGLE       n     1.036  0.0160     0.888  0.0200
+SPJ         N1B        HN1A      SINGLE       n     1.036  0.0160     0.888  0.0200
+SPJ         C1C         H1C      SINGLE       n     1.089  0.0100     0.993  0.0104
+SPJ         C1A         H1A      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPJ         C1A        H1AA      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPJ         C1A        H1AB      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPJ         C1D         H1D      SINGLE       n     1.089  0.0100     0.983  0.0200
+SPJ         C1D        H1DA      SINGLE       n     1.089  0.0100     0.983  0.0200
+SPJ         C1E         H1E      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPJ         C1E        H1EA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPJ         N1F        HN1F      SINGLE       n     1.036  0.0160     0.899  0.0200
+SPJ         C1G         H1G      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPJ         C1G        H1GA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPJ         C1H         H1H      SINGLE       n     1.089  0.0100     0.981  0.0160
+SPJ         C1H        H1HA      SINGLE       n     1.089  0.0100     0.981  0.0160
+SPJ         C1I         H1I      SINGLE       n     1.089  0.0100     0.981  0.0160
+SPJ         C1I        H1IA      SINGLE       n     1.089  0.0100     0.981  0.0160
+SPJ         C1J         H1J      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPJ         C1J        H1JA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPJ         N1K        HN1K      SINGLE       n     1.036  0.0160     0.899  0.0200
+SPJ         C1L         H1L      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPJ         C1L        H1LA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPJ         C1M         H1M      SINGLE       n     1.089  0.0100     0.983  0.0200
+SPJ         C1M        H1MA      SINGLE       n     1.089  0.0100     0.983  0.0200
+SPJ         C1N         H1N      SINGLE       n     1.089  0.0100     0.993  0.0104
+SPJ         C1P         H1P      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPJ         C1P        H1PA      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPJ         C1P        H1PB      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPJ         N1O        HN1O      SINGLE       n     1.036  0.0160     0.888  0.0200
+SPJ         N1O        HN1C      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SPJ         C1C         N1B        HN1B     110.246    3.00
+SPJ         C1C         N1B        HN1A     110.246    3.00
+SPJ        HN1B         N1B        HN1A     107.559    3.00
+SPJ         N1B         C1C         C1A     109.538    2.08
+SPJ         N1B         C1C         C1D     110.129    2.63
+SPJ         N1B         C1C         H1C     108.540    1.50
+SPJ         C1A         C1C         C1D     110.573    1.63
+SPJ         C1A         C1C         H1C     108.561    1.50
+SPJ         C1D         C1C         H1C     107.815    1.50
+SPJ         C1C         C1A         H1A     109.460    1.50
+SPJ         C1C         C1A        H1AA     109.460    1.50
+SPJ         C1C         C1A        H1AB     109.460    1.50
+SPJ         H1A         C1A        H1AA     109.386    1.50
+SPJ         H1A         C1A        H1AB     109.386    1.50
+SPJ        H1AA         C1A        H1AB     109.386    1.50
+SPJ         C1C         C1D         C1E     113.808    1.88
+SPJ         C1C         C1D         H1D     108.489    1.50
+SPJ         C1C         C1D        H1DA     108.489    1.50
+SPJ         C1E         C1D         H1D     108.805    1.50
+SPJ         C1E         C1D        H1DA     108.805    1.50
+SPJ         H1D         C1D        H1DA     107.469    1.50
+SPJ         C1D         C1E         N1F     111.754    2.01
+SPJ         C1D         C1E         H1E     109.099    1.50
+SPJ         C1D         C1E        H1EA     109.099    1.50
+SPJ         N1F         C1E         H1E     109.338    1.50
+SPJ         N1F         C1E        H1EA     109.338    1.50
+SPJ         H1E         C1E        H1EA     107.877    1.50
+SPJ         C1E         N1F         C1G     114.187    2.61
+SPJ         C1E         N1F        HN1F     108.180    3.00
+SPJ         C1G         N1F        HN1F     108.180    3.00
+SPJ         N1F         C1G         C1H     111.754    2.01
+SPJ         N1F         C1G         H1G     109.338    1.50
+SPJ         N1F         C1G        H1GA     109.338    1.50
+SPJ         C1H         C1G         H1G     109.197    1.51
+SPJ         C1H         C1G        H1GA     109.197    1.51
+SPJ         H1G         C1G        H1GA     107.877    1.50
+SPJ         C1G         C1H         C1I     112.652    1.50
+SPJ         C1G         C1H         H1H     108.956    1.50
+SPJ         C1G         C1H        H1HA     108.956    1.50
+SPJ         C1I         C1H         H1H     108.999    1.50
+SPJ         C1I         C1H        H1HA     108.999    1.50
+SPJ         H1H         C1H        H1HA     107.927    1.57
+SPJ         C1H         C1I         C1J     112.652    1.50
+SPJ         C1H         C1I         H1I     108.999    1.50
+SPJ         C1H         C1I        H1IA     108.999    1.50
+SPJ         C1J         C1I         H1I     108.956    1.50
+SPJ         C1J         C1I        H1IA     108.956    1.50
+SPJ         H1I         C1I        H1IA     107.927    1.57
+SPJ         C1I         C1J         N1K     111.754    2.01
+SPJ         C1I         C1J         H1J     109.197    1.51
+SPJ         C1I         C1J        H1JA     109.197    1.51
+SPJ         N1K         C1J         H1J     109.338    1.50
+SPJ         N1K         C1J        H1JA     109.338    1.50
+SPJ         H1J         C1J        H1JA     107.877    1.50
+SPJ         C1J         N1K         C1L     114.187    2.61
+SPJ         C1J         N1K        HN1K     108.180    3.00
+SPJ         C1L         N1K        HN1K     108.180    3.00
+SPJ         N1K         C1L         C1M     111.754    2.01
+SPJ         N1K         C1L         H1L     109.338    1.50
+SPJ         N1K         C1L        H1LA     109.338    1.50
+SPJ         C1M         C1L         H1L     109.099    1.50
+SPJ         C1M         C1L        H1LA     109.099    1.50
+SPJ         H1L         C1L        H1LA     107.877    1.50
+SPJ         C1L         C1M         C1N     113.808    1.88
+SPJ         C1L         C1M         H1M     108.805    1.50
+SPJ         C1L         C1M        H1MA     108.805    1.50
+SPJ         C1N         C1M         H1M     108.489    1.50
+SPJ         C1N         C1M        H1MA     108.489    1.50
+SPJ         H1M         C1M        H1MA     107.469    1.50
+SPJ         C1M         C1N         C1P     110.573    1.63
+SPJ         C1M         C1N         N1O     110.129    2.63
+SPJ         C1M         C1N         H1N     107.815    1.50
+SPJ         C1P         C1N         N1O     109.538    2.08
+SPJ         C1P         C1N         H1N     108.561    1.50
+SPJ         N1O         C1N         H1N     108.540    1.50
+SPJ         C1N         C1P         H1P     109.460    1.50
+SPJ         C1N         C1P        H1PA     109.460    1.50
+SPJ         C1N         C1P        H1PB     109.460    1.50
+SPJ         H1P         C1P        H1PA     109.386    1.50
+SPJ         H1P         C1P        H1PB     109.386    1.50
+SPJ        H1PA         C1P        H1PB     109.386    1.50
+SPJ         C1N         N1O        HN1O     110.246    3.00
+SPJ         C1N         N1O        HN1C     110.246    3.00
+SPJ        HN1O         N1O        HN1C     107.559    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SPJ             sp3_sp3_1         C1A         C1C         N1B        HN1B     180.000    10.0     3
+SPJ            sp3_sp3_80         C1M         C1L         N1K         C1J     -60.000    10.0     3
+SPJ            sp3_sp3_85         N1K         C1L         C1M         C1N     180.000    10.0     3
+SPJ            sp3_sp3_94         C1L         C1M         C1N         C1P     180.000    10.0     3
+SPJ           sp3_sp3_103         C1M         C1N         C1P         H1P     180.000    10.0     3
+SPJ           sp3_sp3_112         C1M         C1N         N1O        HN1O     180.000    10.0     3
+SPJ             sp3_sp3_7         H1A         C1A         C1C         N1B     180.000    10.0     3
+SPJ            sp3_sp3_16         N1B         C1C         C1D         C1E     180.000    10.0     3
+SPJ            sp3_sp3_25         C1C         C1D         C1E         N1F     180.000    10.0     3
+SPJ            sp3_sp3_35         C1D         C1E         N1F         C1G     -60.000    10.0     3
+SPJ            sp3_sp3_40         C1H         C1G         N1F         C1E     180.000    10.0     3
+SPJ            sp3_sp3_46         N1F         C1G         C1H         C1I     180.000    10.0     3
+SPJ            sp3_sp3_55         C1G         C1H         C1I         C1J     180.000    10.0     3
+SPJ            sp3_sp3_64         C1H         C1I         C1J         N1K     180.000    10.0     3
+SPJ            sp3_sp3_73         C1I         C1J         N1K         C1L     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SPJ    chir_1    C1C    N1B    C1D    C1A    negative
+SPJ    chir_2    C1N    N1O    C1M    C1P    negative
+SPJ    chir_3    N1F    C1E    C1G    HN1F    both
+SPJ    chir_4    N1K    C1L    C1J    HN1K    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SPJ           SMILES              ACDLabs 10.04                                                                                      NC(CCNCCCCNCCC(N)C)C
+SPJ SMILES_CANONICAL               CACTVS 3.341                                                                            C[C@@H](N)CCNCCCCNCC[C@@H](C)N
+SPJ           SMILES               CACTVS 3.341                                                                                C[CH](N)CCNCCCCNCC[CH](C)N
+SPJ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                             C[C@H](CCNCCCCNCC[C@@H](C)N)N
+SPJ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                      CC(CCNCCCCNCCC(C)N)N
+SPJ            InChI                InChI  1.03 InChI=1S/C12H30N4/c1-11(13)5-9-15-7-3-4-8-16-10-6-12(2)14/h11-12,15-16H,3-10,13-14H2,1-2H3/t11-,12-/m1/s1
+SPJ         InChIKey                InChI  1.03                                                                               LXKFTCVCBKNJNM-VXGBXAGGSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SPJ acedrg               243         "dictionary generator"                  
+SPJ acedrg_database      11          "data source"                           
+SPJ rdkit                2017.03.2   "Chemoinformatics tool"
+SPJ refmac5              5.8.0238    "optimization tool"                     

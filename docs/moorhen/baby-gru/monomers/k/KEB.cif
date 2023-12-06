@@ -1,0 +1,336 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KEB     KEB      (3~{S},6~{S})-3-[(3,5-dimethyl-4-oxidanyl-phenyl)methyl]-6-[(4-hydroxyphenyl)methyl]piperazine-2,5-dione     NON-POLYMER     48     26     .     
+#
+data_comp_KEB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KEB     C01     C       CH3     0       -7.076      15.354      4.797       
+KEB     C02     C       CR6     0       -6.717      16.710      4.244       
+KEB     C03     C       CR16    0       -6.438      16.867      2.888       
+KEB     C04     C       CR6     0       -6.106      18.104      2.338       
+KEB     C05     C       CH2     0       -5.806      18.237      0.866       
+KEB     C06     C       CH1     0       -7.000      18.739      0.014       
+KEB     C08     C       CR6     0       -8.549      20.464      0.939       
+KEB     C10     C       CH1     0       -9.580      19.396      1.246       
+KEB     C11     C       CH2     0       -9.740      19.256      2.781       
+KEB     C12     C       CR6     0       -10.891     18.373      3.191       
+KEB     C13     C       CR16    0       -12.208     18.778      3.000       
+KEB     C14     C       CR16    0       -13.275     17.972      3.375       
+KEB     C15     C       CR6     0       -13.036     16.735      3.953       
+KEB     C17     C       CR16    0       -11.731     16.312      4.153       
+KEB     C18     C       CR16    0       -10.673     17.128      3.773       
+KEB     C20     C       CR6     0       -8.137      17.736      0.068       
+KEB     C22     C       CR16    0       -6.045      19.209      3.184       
+KEB     C23     C       CR6     0       -6.315      19.110      4.548       
+KEB     C24     C       CH3     0       -6.249      20.318      5.445       
+KEB     C25     C       CR6     0       -6.648      17.849      5.059       
+KEB     N07     N       NR6     0       -7.390      20.092      0.397       
+KEB     N19     N       NR6     0       -9.288      18.106      0.628       
+KEB     O09     O       O       0       -8.812      21.643      1.207       
+KEB     O16     O       OH1     0       -14.087     15.932      4.327       
+KEB     O21     O       O       0       -7.962      16.611      -0.418      
+KEB     O26     O       OH1     0       -6.911      17.760      6.409       
+KEB     H1      H       H       0       -7.411      15.436      5.704       
+KEB     H2      H       H       0       -6.288      14.786      4.797       
+KEB     H3      H       H       0       -7.761      14.950      4.240       
+KEB     H4      H       H       0       -6.480      16.108      2.325       
+KEB     H5      H       H       0       -5.521      17.368      0.524       
+KEB     H6      H       H       0       -5.061      18.859      0.754       
+KEB     H7      H       H       0       -6.676      18.772      -0.960      
+KEB     H8      H       H       0       -10.480     19.727      0.878       
+KEB     H9      H       H       0       -9.874      20.144      3.167       
+KEB     H10     H       H       0       -8.912      18.892      3.151       
+KEB     H11     H       H       0       -12.381     19.618      2.608       
+KEB     H12     H       H       0       -14.161     18.265      3.237       
+KEB     H13     H       H       0       -11.563     15.471      4.546       
+KEB     H14     H       H       0       -9.790      16.830      3.913       
+KEB     H15     H       H       0       -5.820      20.055      2.824       
+KEB     H16     H       H       0       -7.087      20.412      5.926       
+KEB     H17     H       H       0       -6.094      21.115      4.913       
+KEB     H18     H       H       0       -5.524      20.211      6.082       
+KEB     H19     H       H       0       -6.816      20.714      0.261       
+KEB     H20     H       H       0       -9.920      17.528      0.613       
+KEB     H21     H       H       0       -14.816     16.285      4.619       
+KEB     H22     H       H       0       -6.274      17.857      6.979       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KEB         C20         O21      DOUBLE       n     1.237  0.0100     1.237  0.0100
+KEB         C06         N07      SINGLE       n     1.457  0.0100     1.457  0.0100
+KEB         C06         C20      SINGLE       n     1.514  0.0100     1.514  0.0100
+KEB         C05         C06      SINGLE       n     1.548  0.0100     1.548  0.0100
+KEB         C08         N07      SINGLE       n     1.330  0.0100     1.330  0.0100
+KEB         C20         N19      SINGLE       n     1.330  0.0100     1.330  0.0100
+KEB         C08         O09      DOUBLE       n     1.237  0.0100     1.237  0.0100
+KEB         C08         C10      SINGLE       n     1.514  0.0100     1.514  0.0100
+KEB         C10         N19      SINGLE       n     1.457  0.0100     1.457  0.0100
+KEB         C04         C05      SINGLE       n     1.507  0.0100     1.507  0.0100
+KEB         C10         C11      SINGLE       n     1.548  0.0100     1.548  0.0100
+KEB         C03         C04      SINGLE       y     1.391  0.0100     1.391  0.0100
+KEB         C04         C22      DOUBLE       y     1.391  0.0100     1.391  0.0100
+KEB         C11         C12      SINGLE       n     1.507  0.0100     1.507  0.0100
+KEB         C02         C03      DOUBLE       y     1.390  0.0100     1.390  0.0100
+KEB         C12         C18      SINGLE       y     1.388  0.0100     1.388  0.0100
+KEB         C12         C13      DOUBLE       y     1.388  0.0100     1.388  0.0100
+KEB         C22         C23      SINGLE       y     1.390  0.0100     1.390  0.0100
+KEB         C17         C18      DOUBLE       y     1.385  0.0100     1.385  0.0100
+KEB         C13         C14      SINGLE       y     1.385  0.0100     1.385  0.0100
+KEB         C15         C17      SINGLE       y     1.383  0.0100     1.383  0.0100
+KEB         C14         C15      DOUBLE       y     1.383  0.0100     1.383  0.0100
+KEB         C15         O16      SINGLE       n     1.374  0.0155     1.374  0.0155
+KEB         C01         C02      SINGLE       n     1.505  0.0100     1.505  0.0100
+KEB         C02         C25      SINGLE       y     1.394  0.0100     1.394  0.0100
+KEB         C23         C25      DOUBLE       y     1.394  0.0100     1.394  0.0100
+KEB         C23         C24      SINGLE       n     1.505  0.0100     1.505  0.0100
+KEB         C25         O26      SINGLE       n     1.374  0.0155     1.374  0.0155
+KEB         C01          H1      SINGLE       n     1.089  0.0100     0.971  0.0135
+KEB         C01          H2      SINGLE       n     1.089  0.0100     0.971  0.0135
+KEB         C01          H3      SINGLE       n     1.089  0.0100     0.971  0.0135
+KEB         C03          H4      SINGLE       n     1.082  0.0130     0.946  0.0164
+KEB         C05          H5      SINGLE       n     1.089  0.0100     0.977  0.0125
+KEB         C05          H6      SINGLE       n     1.089  0.0100     0.977  0.0125
+KEB         C06          H7      SINGLE       n     1.089  0.0100     1.027  0.0200
+KEB         C10          H8      SINGLE       n     1.089  0.0100     1.027  0.0200
+KEB         C11          H9      SINGLE       n     1.089  0.0100     0.977  0.0125
+KEB         C11         H10      SINGLE       n     1.089  0.0100     0.977  0.0125
+KEB         C13         H11      SINGLE       n     1.082  0.0130     0.943  0.0173
+KEB         C14         H12      SINGLE       n     1.082  0.0130     0.943  0.0169
+KEB         C17         H13      SINGLE       n     1.082  0.0130     0.943  0.0169
+KEB         C18         H14      SINGLE       n     1.082  0.0130     0.943  0.0173
+KEB         C22         H15      SINGLE       n     1.082  0.0130     0.946  0.0164
+KEB         C24         H16      SINGLE       n     1.089  0.0100     0.971  0.0135
+KEB         C24         H17      SINGLE       n     1.089  0.0100     0.971  0.0135
+KEB         C24         H18      SINGLE       n     1.089  0.0100     0.971  0.0135
+KEB         N07         H19      SINGLE       n     1.016  0.0100     0.856  0.0200
+KEB         N19         H20      SINGLE       n     1.016  0.0100     0.856  0.0200
+KEB         O16         H21      SINGLE       n     0.966  0.0059     0.861  0.0200
+KEB         O26         H22      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KEB         C02         C01          H1     109.597    1.50
+KEB         C02         C01          H2     109.597    1.50
+KEB         C02         C01          H3     109.597    1.50
+KEB          H1         C01          H2     109.348    1.50
+KEB          H1         C01          H3     109.348    1.50
+KEB          H2         C01          H3     109.348    1.50
+KEB         C03         C02         C01     121.506    1.50
+KEB         C03         C02         C25     117.644    1.50
+KEB         C01         C02         C25     120.850    1.50
+KEB         C04         C03         C02     121.999    1.50
+KEB         C04         C03          H4     119.315    1.50
+KEB         C02         C03          H4     118.686    1.50
+KEB         C05         C04         C03     120.588    1.50
+KEB         C05         C04         C22     120.588    1.50
+KEB         C03         C04         C22     118.823    1.50
+KEB         C06         C05         C04     113.329    1.63
+KEB         C06         C05          H5     108.861    1.50
+KEB         C06         C05          H6     108.861    1.50
+KEB         C04         C05          H5     108.889    1.50
+KEB         C04         C05          H6     108.889    1.50
+KEB          H5         C05          H6     107.905    1.50
+KEB         N07         C06         C20     112.950    1.50
+KEB         N07         C06         C05     110.825    1.50
+KEB         N07         C06          H7     107.861    1.50
+KEB         C20         C06         C05     109.465    1.50
+KEB         C20         C06          H7     107.126    1.50
+KEB         C05         C06          H7     106.969    1.50
+KEB         N07         C08         O09     122.605    1.50
+KEB         N07         C08         C10     118.332    1.50
+KEB         O09         C08         C10     119.063    1.50
+KEB         C08         C10         N19     112.950    1.50
+KEB         C08         C10         C11     109.465    1.50
+KEB         C08         C10          H8     107.126    1.50
+KEB         N19         C10         C11     110.825    1.50
+KEB         N19         C10          H8     107.861    1.50
+KEB         C11         C10          H8     106.969    1.50
+KEB         C10         C11         C12     113.329    1.63
+KEB         C10         C11          H9     108.861    1.50
+KEB         C10         C11         H10     108.861    1.50
+KEB         C12         C11          H9     108.889    1.50
+KEB         C12         C11         H10     108.889    1.50
+KEB          H9         C11         H10     107.905    1.50
+KEB         C11         C12         C18     121.043    1.50
+KEB         C11         C12         C13     121.043    1.50
+KEB         C18         C12         C13     117.915    1.50
+KEB         C12         C13         C14     121.386    1.50
+KEB         C12         C13         H11     119.354    1.50
+KEB         C14         C13         H11     119.261    1.50
+KEB         C13         C14         C15     119.856    1.50
+KEB         C13         C14         H12     120.153    1.50
+KEB         C15         C14         H12     119.991    1.50
+KEB         C17         C15         C14     119.602    1.50
+KEB         C17         C15         O16     120.199    3.00
+KEB         C14         C15         O16     120.199    3.00
+KEB         C18         C17         C15     119.856    1.50
+KEB         C18         C17         H13     120.153    1.50
+KEB         C15         C17         H13     119.991    1.50
+KEB         C12         C18         C17     121.386    1.50
+KEB         C12         C18         H14     119.354    1.50
+KEB         C17         C18         H14     119.261    1.50
+KEB         O21         C20         C06     119.063    1.50
+KEB         O21         C20         N19     122.605    1.50
+KEB         C06         C20         N19     118.332    1.50
+KEB         C04         C22         C23     121.999    1.50
+KEB         C04         C22         H15     119.315    1.50
+KEB         C23         C22         H15     118.686    1.50
+KEB         C22         C23         C25     117.644    1.50
+KEB         C22         C23         C24     121.506    1.50
+KEB         C25         C23         C24     120.850    1.50
+KEB         C23         C24         H16     109.597    1.50
+KEB         C23         C24         H17     109.597    1.50
+KEB         C23         C24         H18     109.597    1.50
+KEB         H16         C24         H17     109.348    1.50
+KEB         H16         C24         H18     109.348    1.50
+KEB         H17         C24         H18     109.348    1.50
+KEB         C02         C25         C23     121.889    1.50
+KEB         C02         C25         O26     119.055    3.00
+KEB         C23         C25         O26     119.055    3.00
+KEB         C06         N07         C08     125.927    1.91
+KEB         C06         N07         H19     117.530    2.11
+KEB         C08         N07         H19     116.543    1.92
+KEB         C20         N19         C10     125.927    1.91
+KEB         C20         N19         H20     116.543    1.92
+KEB         C10         N19         H20     117.530    2.11
+KEB         C15         O16         H21     120.000    3.00
+KEB         C25         O26         H22     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KEB            sp2_sp3_37         C03         C02         C01          H1     150.000    10.0     6
+KEB              const_37         C12         C13         C14         C15       0.000    10.0     2
+KEB              const_34         C13         C14         C15         O16     180.000    10.0     2
+KEB              const_31         O16         C15         C17         C18     180.000    10.0     2
+KEB             sp2_sp2_9         C17         C15         O16         H21     180.000     5.0     2
+KEB              const_25         C15         C17         C18         C12       0.000    10.0     2
+KEB             sp2_sp2_7         O21         C20         N19         C10     180.000     5.0     2
+KEB              const_14         C04         C22         C23         C24     180.000    10.0     2
+KEB            sp2_sp3_43         C22         C23         C24         H16     150.000    10.0     6
+KEB              const_20         C24         C23         C25         O26       0.000    10.0     2
+KEB            sp2_sp2_11         C02         C25         O26         H22     180.000     5.0     2
+KEB              const_48         C01         C02         C25         O26       0.000    10.0     2
+KEB       const_sp2_sp2_3         C01         C02         C03         C04     180.000     5.0     2
+KEB       const_sp2_sp2_6         C02         C03         C04         C05     180.000     5.0     2
+KEB              const_11         C05         C04         C22         C23     180.000    10.0     2
+KEB            sp2_sp3_26         C03         C04         C05         C06     -90.000    10.0     6
+KEB             sp3_sp3_1         C04         C05         C06         N07     180.000    10.0     3
+KEB            sp2_sp3_23         O21         C20         C06         C05     -60.000    10.0     6
+KEB             sp2_sp3_2         C08         N07         C06         C05     120.000    10.0     6
+KEB             sp2_sp2_3         O09         C08         N07         C06     180.000     5.0     2
+KEB            sp2_sp3_11         O09         C08         C10         C11     -60.000    10.0     6
+KEB            sp2_sp3_14         C20         N19         C10         C11     120.000    10.0     6
+KEB            sp3_sp3_10         C08         C10         C11         C12     180.000    10.0     3
+KEB            sp2_sp3_32         C18         C12         C11         C10     -90.000    10.0     6
+KEB              const_43         C11         C12         C13         C14     180.000    10.0     2
+KEB              const_23         C11         C12         C18         C17     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KEB    chir_1    C06    N07    C20    C05    positive
+KEB    chir_2    C10    N19    C08    C11    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KEB    plan-1         C11   0.020
+KEB    plan-1         C12   0.020
+KEB    plan-1         C13   0.020
+KEB    plan-1         C14   0.020
+KEB    plan-1         C15   0.020
+KEB    plan-1         C17   0.020
+KEB    plan-1         C18   0.020
+KEB    plan-1         H11   0.020
+KEB    plan-1         H12   0.020
+KEB    plan-1         H13   0.020
+KEB    plan-1         H14   0.020
+KEB    plan-1         O16   0.020
+KEB    plan-2         C01   0.020
+KEB    plan-2         C02   0.020
+KEB    plan-2         C03   0.020
+KEB    plan-2         C04   0.020
+KEB    plan-2         C05   0.020
+KEB    plan-2         C22   0.020
+KEB    plan-2         C23   0.020
+KEB    plan-2         C24   0.020
+KEB    plan-2         C25   0.020
+KEB    plan-2         H15   0.020
+KEB    plan-2          H4   0.020
+KEB    plan-2         O26   0.020
+KEB    plan-3         C08   0.020
+KEB    plan-3         C10   0.020
+KEB    plan-3         N07   0.020
+KEB    plan-3         O09   0.020
+KEB    plan-4         C06   0.020
+KEB    plan-4         C20   0.020
+KEB    plan-4         N19   0.020
+KEB    plan-4         O21   0.020
+KEB    plan-5         C06   0.020
+KEB    plan-5         C08   0.020
+KEB    plan-5         H19   0.020
+KEB    plan-5         N07   0.020
+KEB    plan-6         C10   0.020
+KEB    plan-6         C20   0.020
+KEB    plan-6         H20   0.020
+KEB    plan-6         N19   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KEB            InChI                InChI  1.03 InChI=1S/C20H22N2O4/c1-11-7-14(8-12(2)18(11)24)10-17-20(26)21-16(19(25)22-17)9-13-3-5-15(23)6-4-13/h3-8,16-17,23-24H,9-10H2,1-2H3,(H,21,26)(H,22,25)/t16-,17-/m0/s1
+KEB         InChIKey                InChI  1.03                                                                                                                                         UCEYENNEMBTPOB-IRXDYDNUSA-N
+KEB SMILES_CANONICAL               CACTVS 3.385                                                                                                               Cc1cc(C[C@@H]2NC(=O)[C@H](Cc3ccc(O)cc3)NC2=O)cc(C)c1O
+KEB           SMILES               CACTVS 3.385                                                                                                                  Cc1cc(C[CH]2NC(=O)[CH](Cc3ccc(O)cc3)NC2=O)cc(C)c1O
+KEB SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                              Cc1cc(cc(c1O)C)C[C@H]2C(=O)N[C@H](C(=O)N2)Cc3ccc(cc3)O
+KEB           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                      Cc1cc(cc(c1O)C)CC2C(=O)NC(C(=O)N2)Cc3ccc(cc3)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KEB acedrg               243         "dictionary generator"                  
+KEB acedrg_database      11          "data source"                           
+KEB rdkit                2017.03.2   "Chemoinformatics tool"
+KEB refmac5              5.8.0238    "optimization tool"                     

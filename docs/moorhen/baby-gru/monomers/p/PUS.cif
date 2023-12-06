@@ -1,0 +1,282 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PUS     PUS      (E)-O-(carbamoylamino)-N-({3-hydroxy-2-methyl-5-[(phosphonooxy)methyl]pyridin-4-yl}methylidene)-L-serine     NON-POLYMER     40     26     .     
+#
+data_comp_PUS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PUS     N       N       N       0       6.610       -3.517      14.661      
+PUS     CA      C       CH1     0       8.081       -3.527      14.702      
+PUS     CB      C       CH2     0       8.547       -4.014      16.065      
+PUS     OG      O       O2      0       8.013       -5.328      16.351      
+PUS     ND      N       NH1     0       8.254       -5.685      17.683      
+PUS     CE      C       C       0       7.286       -5.560      18.577      
+PUS     NZ2     N       NH2     0       6.123       -5.094      18.141      
+PUS     OZ1     O       O       0       7.478       -5.871      19.765      
+PUS     C       C       C       0       8.657       -4.400      13.580      
+PUS     O       O       O       0       8.083       -5.480      13.336      
+PUS     OT      O       OC      -1      9.667       -3.971      12.992      
+PUS     C2      C       CR6     0       2.296       -2.931      14.001      
+PUS     C3      C       CR6     0       3.701       -2.901      13.921      
+PUS     C4      C       CR6     0       4.455       -2.536      15.059      
+PUS     C5      C       CR6     0       3.770       -2.211      16.247      
+PUS     C6      C       CR16    0       2.398       -2.266      16.230      
+PUS     C2A     C       CH3     0       1.471       -3.314      12.814      
+PUS     C4A     C       C1      0       5.918       -2.500      14.995      
+PUS     C5A     C       CH2     0       4.488       -1.808      17.507      
+PUS     N1      N       NRD6    0       1.677       -2.616      15.141      
+PUS     O3      O       OH1     0       4.316       -3.229      12.733      
+PUS     O1P     O       OP      -1      7.215       -0.582      18.670      
+PUS     O2P     O       O       0       6.158       1.644       18.111      
+PUS     O3P     O       OP      -1      5.053       0.106       19.785      
+PUS     O4P     O       O2      0       5.094       -0.486      17.355      
+PUS     P       P       P       0       5.928       0.210       18.549      
+PUS     H1      H       H       0       8.422       -2.601      14.573      
+PUS     H2      H       H       0       8.251       -3.389      16.758      
+PUS     H3      H       H       0       9.525       -4.055      16.086      
+PUS     H4      H       H       0       9.044       -5.987      17.908      
+PUS     H5      H       H       0       5.451       -4.995      18.703      
+PUS     H6      H       H       0       6.021       -4.884      17.291      
+PUS     H8      H       H       0       1.931       -2.052      17.012      
+PUS     H9      H       H       0       0.528       -3.217      13.024      
+PUS     H10     H       H       0       1.655       -4.238      12.576      
+PUS     H11     H       H       0       1.695       -2.739      12.064      
+PUS     H12     H       H       0       6.357       -1.698      15.210      
+PUS     H13     H       H       0       5.191       -2.461      17.717      
+PUS     H14     H       H       0       3.860       -1.783      18.262      
+PUS     H15     H       H       0       4.802       -2.647      12.325      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PUS          C2         C2A      SINGLE       n     1.494  0.0100     1.494  0.0100
+PUS           C           O      DOUBLE       n     1.244  0.0200     1.244  0.0200
+PUS          C3          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+PUS          C2          C3      DOUBLE       y     1.400  0.0136     1.400  0.0136
+PUS          C2          N1      SINGLE       y     1.330  0.0101     1.330  0.0101
+PUS          C3          C4      SINGLE       y     1.405  0.0115     1.405  0.0115
+PUS           C          OT      SINGLE       n     1.244  0.0200     1.244  0.0200
+PUS          CA           C      SINGLE       n     1.533  0.0100     1.533  0.0100
+PUS           N          CA      SINGLE       n     1.469  0.0100     1.469  0.0100
+PUS           N         C4A      DOUBLE       n     1.270  0.0167     1.270  0.0167
+PUS          C6          N1      DOUBLE       y     1.349  0.0100     1.349  0.0100
+PUS          CA          CB      SINGLE       n     1.520  0.0100     1.520  0.0100
+PUS          C4         C4A      SINGLE       n     1.459  0.0148     1.459  0.0148
+PUS          C4          C5      DOUBLE       y     1.403  0.0100     1.403  0.0100
+PUS          C5          C6      SINGLE       y     1.368  0.0100     1.368  0.0100
+PUS          C5         C5A      SINGLE       n     1.503  0.0100     1.503  0.0100
+PUS          CB          OG      SINGLE       n     1.446  0.0100     1.446  0.0100
+PUS          OG          ND      SINGLE       n     1.398  0.0102     1.398  0.0102
+PUS         C5A         O4P      SINGLE       n     1.462  0.0104     1.462  0.0104
+PUS         O4P           P      SINGLE       n     1.614  0.0178     1.614  0.0178
+PUS         O2P           P      DOUBLE       n     1.517  0.0192     1.517  0.0192
+PUS          ND          CE      SINGLE       n     1.310  0.0200     1.310  0.0200
+PUS         O1P           P      SINGLE       n     1.517  0.0192     1.517  0.0192
+PUS         O3P           P      SINGLE       n     1.517  0.0192     1.517  0.0192
+PUS          CE         NZ2      SINGLE       n     1.324  0.0100     1.324  0.0100
+PUS          CE         OZ1      DOUBLE       n     1.242  0.0126     1.242  0.0126
+PUS          CA          H1      SINGLE       n     1.089  0.0100     0.995  0.0100
+PUS          CB          H2      SINGLE       n     1.089  0.0100     0.979  0.0100
+PUS          CB          H3      SINGLE       n     1.089  0.0100     0.979  0.0100
+PUS          ND          H4      SINGLE       n     1.016  0.0100     0.875  0.0200
+PUS         NZ2          H5      SINGLE       n     1.016  0.0100     0.881  0.0200
+PUS         NZ2          H6      SINGLE       n     1.016  0.0100     0.881  0.0200
+PUS          C6          H8      SINGLE       n     1.082  0.0130     0.935  0.0200
+PUS         C2A          H9      SINGLE       n     1.089  0.0100     0.971  0.0138
+PUS         C2A         H10      SINGLE       n     1.089  0.0100     0.971  0.0138
+PUS         C2A         H11      SINGLE       n     1.089  0.0100     0.971  0.0138
+PUS         C4A         H12      SINGLE       n     1.082  0.0130     0.939  0.0187
+PUS         C5A         H13      SINGLE       n     1.089  0.0100     0.982  0.0107
+PUS         C5A         H14      SINGLE       n     1.089  0.0100     0.982  0.0107
+PUS          O3         H15      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PUS          CA           N         C4A     119.132    2.76
+PUS           C          CA           N     110.034    2.57
+PUS           C          CA          CB     111.511    2.91
+PUS           C          CA          H1     108.312    1.50
+PUS           N          CA          CB     109.508    2.50
+PUS           N          CA          H1     109.388    1.50
+PUS          CB          CA          H1     108.282    1.50
+PUS          CA          CB          OG     109.482    3.00
+PUS          CA          CB          H2     109.798    1.50
+PUS          CA          CB          H3     109.798    1.50
+PUS          OG          CB          H2     109.064    1.50
+PUS          OG          CB          H3     109.064    1.50
+PUS          H2          CB          H3     108.319    1.50
+PUS          CB          OG          ND     110.591    2.29
+PUS          OG          ND          CE     117.778    2.10
+PUS          OG          ND          H4     120.514    3.00
+PUS          CE          ND          H4     121.708    2.28
+PUS          ND          CE         NZ2     115.719    1.50
+PUS          ND          CE         OZ1     120.960    1.53
+PUS         NZ2          CE         OZ1     123.321    2.04
+PUS          CE         NZ2          H5     119.938    1.50
+PUS          CE         NZ2          H6     119.938    1.50
+PUS          H5         NZ2          H6     120.124    2.62
+PUS           O           C          OT     125.674    1.50
+PUS           O           C          CA     117.163    1.51
+PUS          OT           C          CA     117.163    1.51
+PUS         C2A          C2          C3     120.589    1.50
+PUS         C2A          C2          N1     118.991    1.50
+PUS          C3          C2          N1     120.420    1.50
+PUS          O3          C3          C2     120.157    3.00
+PUS          O3          C3          C4     120.157    3.00
+PUS          C2          C3          C4     119.687    1.50
+PUS          C3          C4         C4A     120.419    1.50
+PUS          C3          C4          C5     118.980    1.50
+PUS         C4A          C4          C5     120.602    2.10
+PUS          C4          C5          C6     118.109    1.50
+PUS          C4          C5         C5A     121.832    1.50
+PUS          C6          C5         C5A     120.059    1.59
+PUS          N1          C6          C5     123.324    1.50
+PUS          N1          C6          H8     118.073    1.50
+PUS          C5          C6          H8     118.603    1.50
+PUS          C2         C2A          H9     109.484    1.50
+PUS          C2         C2A         H10     109.484    1.50
+PUS          C2         C2A         H11     109.484    1.50
+PUS          H9         C2A         H10     109.339    1.66
+PUS          H9         C2A         H11     109.339    1.66
+PUS         H10         C2A         H11     109.339    1.66
+PUS           N         C4A          C4     122.322    1.52
+PUS           N         C4A         H12     118.962    1.50
+PUS          C4         C4A         H12     118.716    1.50
+PUS          C5         C5A         O4P     110.538    2.24
+PUS          C5         C5A         H13     109.800    1.50
+PUS          C5         C5A         H14     109.800    1.50
+PUS         O4P         C5A         H13     108.933    1.90
+PUS         O4P         C5A         H14     108.933    1.90
+PUS         H13         C5A         H14     108.248    1.50
+PUS          C2          N1          C6     119.480    1.60
+PUS          C3          O3         H15     120.000    3.00
+PUS         C5A         O4P           P     121.496    2.55
+PUS         O4P           P         O2P     105.808    2.07
+PUS         O4P           P         O1P     105.808    2.07
+PUS         O4P           P         O3P     105.808    2.07
+PUS         O2P           P         O1P     112.864    1.69
+PUS         O2P           P         O3P     112.864    1.69
+PUS         O1P           P         O3P     112.864    1.69
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PUS            sp2_sp3_13         C4A           N          CA           C       0.000    10.0     6
+PUS             sp2_sp2_3          C4         C4A           N          CA     180.000     5.0     2
+PUS       const_sp2_sp2_4         C2A          C2          C3          O3       0.000     5.0     2
+PUS             sp2_sp3_1          C3          C2         C2A          H9     150.000    10.0     6
+PUS              const_20         C2A          C2          N1          C6     180.000    10.0     2
+PUS       const_sp2_sp2_8          O3          C3          C4         C4A       0.000     5.0     2
+PUS             sp2_sp2_1          C2          C3          O3         H15     180.000     5.0     2
+PUS              const_12         C4A          C4          C5         C5A       0.000    10.0     2
+PUS             sp2_sp2_5          C3          C4         C4A           N     180.000     5.0     2
+PUS              const_15         C5A          C5          C6          N1     180.000    10.0     2
+PUS            sp2_sp3_17          C4          C5         C5A         O4P     -90.000    10.0     6
+PUS              const_17          C5          C6          N1          C2       0.000    10.0     2
+PUS            sp3_sp3_13          C5         C5A         O4P           P     180.000    10.0     3
+PUS             sp3_sp3_1           C          CA          CB          OG     180.000    10.0     3
+PUS             sp2_sp3_7           O           C          CA           N       0.000    10.0     6
+PUS            sp3_sp3_18         C5A         O4P           P         O2P      60.000    10.0     3
+PUS            sp3_sp3_10          CA          CB          OG          ND     180.000    10.0     3
+PUS             sp2_sp2_9         NZ2          CE          ND          OG     180.000     5.0     2
+PUS            sp2_sp2_13          ND          CE         NZ2          H5     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PUS    chir_1    CA    N    C    CB    positive
+PUS    chir_2    P    O4P    O1P    O3P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PUS    plan-1          C2   0.020
+PUS    plan-1         C2A   0.020
+PUS    plan-1          C3   0.020
+PUS    plan-1          C4   0.020
+PUS    plan-1         C4A   0.020
+PUS    plan-1          C5   0.020
+PUS    plan-1         C5A   0.020
+PUS    plan-1          C6   0.020
+PUS    plan-1          H8   0.020
+PUS    plan-1          N1   0.020
+PUS    plan-1          O3   0.020
+PUS    plan-2          CE   0.020
+PUS    plan-2          H4   0.020
+PUS    plan-2          ND   0.020
+PUS    plan-2          OG   0.020
+PUS    plan-3          CE   0.020
+PUS    plan-3          ND   0.020
+PUS    plan-3         NZ2   0.020
+PUS    plan-3         OZ1   0.020
+PUS    plan-4          CE   0.020
+PUS    plan-4          H5   0.020
+PUS    plan-4          H6   0.020
+PUS    plan-4         NZ2   0.020
+PUS    plan-5           C   0.020
+PUS    plan-5          CA   0.020
+PUS    plan-5           O   0.020
+PUS    plan-5          OT   0.020
+PUS    plan-6          C4   0.020
+PUS    plan-6         C4A   0.020
+PUS    plan-6         H12   0.020
+PUS    plan-6           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PUS           SMILES              ACDLabs 12.01                                                                                                                     N(/C(CONC(N)=O)C(O)=O)=C\c1c(c(ncc1COP(O)(=O)O)C)O
+PUS            InChI                InChI  1.03 InChI=1S/C12H17N4O9P/c1-6-10(17)8(7(2-14-6)4-25-26(21,22)23)3-15-9(11(18)19)5-24-16-12(13)20/h2-3,9,17H,4-5H2,1H3,(H,18,19)(H3,13,16,20)(H2,21,22,23)/b15-3+/t9-/m0/s1
+PUS         InChIKey                InChI  1.03                                                                                                                                            LKTMSPZJJUSLRR-FUOCOAHQSA-N
+PUS SMILES_CANONICAL               CACTVS 3.385                                                                                                                  Cc1ncc(CO[P](O)(O)=O)c(C=N[C@@H](CONC(N)=O)C(O)=O)c1O
+PUS           SMILES               CACTVS 3.385                                                                                                                    Cc1ncc(CO[P](O)(O)=O)c(C=N[CH](CONC(N)=O)C(O)=O)c1O
+PUS SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                Cc1c(c(c(cn1)COP(=O)(O)O)/C=N/[C@@H](CONC(=O)N)C(=O)O)O
+PUS           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                       Cc1c(c(c(cn1)COP(=O)(O)O)C=NC(CONC(=O)N)C(=O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PUS acedrg               243         "dictionary generator"                  
+PUS acedrg_database      11          "data source"                           
+PUS rdkit                2017.03.2   "Chemoinformatics tool"
+PUS refmac5              5.8.0238    "optimization tool"                     

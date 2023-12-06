@@ -1,0 +1,137 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IUR     IUR      5-IODOURACIL     NON-POLYMER     12     9     .     
+#
+data_comp_IUR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IUR     N1      N       NR6     0       64.947      40.981      50.364      
+IUR     C2      C       CR6     0       65.492      42.126      49.845      
+IUR     O2      O       O       0       66.364      42.762      50.426      
+IUR     N3      N       NR6     0       64.997      42.518      48.625      
+IUR     C4      C       CR6     0       64.015      41.847      47.919      
+IUR     O4      O       O       0       63.643      42.294      46.821      
+IUR     C5      C       CR6     0       63.495      40.660      48.525      
+IUR     C6      C       CR16    0       63.969      40.254      49.729      
+IUR     I5      I       I       0       62.014      39.560      47.561      
+IUR     H1      H       H       0       65.255      40.705      51.161      
+IUR     H3      H       H       0       65.337      43.259      48.270      
+IUR     H6      H       H       0       63.635      39.472      50.141      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IUR          N1          C2      SINGLE       y     1.365  0.0100     1.365  0.0100
+IUR          N1          C6      SINGLE       y     1.365  0.0136     1.365  0.0136
+IUR          C2          O2      DOUBLE       n     1.225  0.0100     1.225  0.0100
+IUR          C2          N3      SINGLE       y     1.370  0.0100     1.370  0.0100
+IUR          N3          C4      SINGLE       y     1.381  0.0100     1.381  0.0100
+IUR          C4          O4      DOUBLE       n     1.242  0.0172     1.242  0.0172
+IUR          C4          C5      SINGLE       y     1.426  0.0200     1.426  0.0200
+IUR          C5          C6      DOUBLE       y     1.347  0.0174     1.347  0.0174
+IUR          C5          I5      SINGLE       n     2.081  0.0141     2.081  0.0141
+IUR          N1          H1      SINGLE       n     1.016  0.0100     0.898  0.0200
+IUR          N3          H3      SINGLE       n     1.016  0.0100     0.889  0.0200
+IUR          C6          H6      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IUR          C2          N1          C6     122.251    1.50
+IUR          C2          N1          H1     117.701    2.18
+IUR          C6          N1          H1     120.048    2.19
+IUR          N1          C2          O2     122.644    1.50
+IUR          N1          C2          N3     115.177    1.50
+IUR          O2          C2          N3     122.180    1.50
+IUR          C2          N3          C4     125.246    1.50
+IUR          C2          N3          H3     116.757    2.30
+IUR          C4          N3          H3     117.997    1.78
+IUR          N3          C4          O4     118.749    1.50
+IUR          N3          C4          C5     118.568    2.98
+IUR          O4          C4          C5     122.684    3.00
+IUR          C4          C5          C6     120.192    1.50
+IUR          C4          C5          I5     119.904    1.78
+IUR          C6          C5          I5     119.904    1.78
+IUR          N1          C6          C5     118.568    2.98
+IUR          N1          C6          H6     120.132    1.97
+IUR          C5          C6          H6     121.300    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IUR       const_sp2_sp2_3          O2          C2          N1          C6     180.000     5.0     2
+IUR              const_21          C5          C6          N1          C2       0.000    10.0     2
+IUR       const_sp2_sp2_7          O2          C2          N3          C4     180.000     5.0     2
+IUR              const_11          O4          C4          N3          C2     180.000    10.0     2
+IUR              const_16          O4          C4          C5          I5       0.000    10.0     2
+IUR              const_19          I5          C5          C6          N1     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IUR    plan-1          C2   0.020
+IUR    plan-1          C4   0.020
+IUR    plan-1          C5   0.020
+IUR    plan-1          C6   0.020
+IUR    plan-1          H1   0.020
+IUR    plan-1          H3   0.020
+IUR    plan-1          H6   0.020
+IUR    plan-1          I5   0.020
+IUR    plan-1          N1   0.020
+IUR    plan-1          N3   0.020
+IUR    plan-1          O2   0.020
+IUR    plan-1          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IUR           SMILES              ACDLabs 10.04                                         IC1=CNC(=O)NC1=O
+IUR SMILES_CANONICAL               CACTVS 3.341                                         IC1=CNC(=O)NC1=O
+IUR           SMILES               CACTVS 3.341                                         IC1=CNC(=O)NC1=O
+IUR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                     C1=C(C(=O)NC(=O)N1)I
+IUR           SMILES "OpenEye OEToolkits" 1.5.0                                     C1=C(C(=O)NC(=O)N1)I
+IUR            InChI                InChI  1.03 InChI=1S/C4H3IN2O2/c5-2-1-6-4(9)7-3(2)8/h1H,(H2,6,7,8,9)
+IUR         InChIKey                InChI  1.03                              KSNXJLQDQOIRIP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IUR acedrg               243         "dictionary generator"                  
+IUR acedrg_database      11          "data source"                           
+IUR rdkit                2017.03.2   "Chemoinformatics tool"
+IUR refmac5              5.8.0238    "optimization tool"                     

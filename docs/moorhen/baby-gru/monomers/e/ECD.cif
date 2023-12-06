@@ -1,0 +1,198 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ECD     ECD      (4R)-4-(2-carboxyethyl)imidazolidin-2-iminium     NON-POLYMER     22     11     .     
+#
+data_comp_ECD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ECD     O01     O       OC      -1      22.914      -39.958     25.219      
+ECD     C02     C       C       0       24.033      -40.369     25.586      
+ECD     O03     O       O       0       24.254      -41.544     25.943      
+ECD     C04     C       CH2     0       25.190      -39.384     25.597      
+ECD     C06     C       CH2     0       25.215      -38.441     26.800      
+ECD     C07     C       CH1     0       25.596      -39.103     28.120      
+ECD     C08     C       CH2     0       25.556      -38.144     29.331      
+ECD     N09     N       NR5     0       26.916      -38.203     29.846      
+ECD     C10     C       CR5     0       27.676      -39.012     29.120      
+ECD     N11     N       NH2     1       28.942      -39.248     29.354      
+ECD     N12     N       NR5     0       26.984      -39.550     28.126      
+ECD     H04     H       H       0       25.145      -38.847     24.778      
+ECD     H04A    H       H       0       26.029      -39.891     25.576      
+ECD     H06     H       H       0       24.328      -38.034     26.897      
+ECD     H06A    H       H       0       25.851      -37.718     26.617      
+ECD     H07     H       H       0       25.002      -39.876     28.285      
+ECD     H08     H       H       0       25.318      -37.226     29.048      
+ECD     H08A    H       H       0       24.903      -38.457     30.006      
+ECD     HN09    H       H       0       27.197      -37.767     30.537      
+ECD     HN11    H       H       0       29.380      -39.812     28.841      
+ECD     HN1A    H       H       0       29.342      -38.841     30.023      
+ECD     HN12    H       H       0       27.316      -40.106     27.549      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ECD         O01         C02      SINGLE       n     1.247  0.0187     1.247  0.0187
+ECD         C02         C04      SINGLE       n     1.519  0.0109     1.519  0.0109
+ECD         C02         O03      DOUBLE       n     1.247  0.0187     1.247  0.0187
+ECD         C04         C06      SINGLE       n     1.528  0.0100     1.528  0.0100
+ECD         C06         C07      SINGLE       n     1.525  0.0103     1.525  0.0103
+ECD         C07         N12      SINGLE       n     1.458  0.0100     1.458  0.0100
+ECD         C07         C08      SINGLE       n     1.543  0.0108     1.543  0.0108
+ECD         C08         N09      SINGLE       n     1.455  0.0108     1.455  0.0108
+ECD         N09         C10      SINGLE       n     1.327  0.0114     1.327  0.0114
+ECD         C10         N12      SINGLE       n     1.327  0.0114     1.327  0.0114
+ECD         C10         N11      DOUBLE       n     1.309  0.0100     1.309  0.0100
+ECD         C04         H04      SINGLE       n     1.089  0.0100     0.981  0.0185
+ECD         C04        H04A      SINGLE       n     1.089  0.0100     0.981  0.0185
+ECD         C06         H06      SINGLE       n     1.089  0.0100     0.980  0.0191
+ECD         C06        H06A      SINGLE       n     1.089  0.0100     0.980  0.0191
+ECD         C07         H07      SINGLE       n     1.089  0.0100     0.989  0.0157
+ECD         C08         H08      SINGLE       n     1.089  0.0100     0.990  0.0100
+ECD         C08        H08A      SINGLE       n     1.089  0.0100     0.990  0.0100
+ECD         N09        HN09      SINGLE       n     1.016  0.0100     0.864  0.0100
+ECD         N11        HN11      SINGLE       n     1.016  0.0100     0.879  0.0200
+ECD         N11        HN1A      SINGLE       n     1.016  0.0100     0.879  0.0200
+ECD         N12        HN12      SINGLE       n     1.016  0.0100     0.868  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ECD         O01         C02         C04     118.187    1.67
+ECD         O01         C02         O03     123.625    1.50
+ECD         C04         C02         O03     118.187    1.67
+ECD         C02         C04         C06     114.504    2.22
+ECD         C02         C04         H04     108.416    1.50
+ECD         C02         C04        H04A     108.416    1.50
+ECD         C06         C04         H04     108.756    1.50
+ECD         C06         C04        H04A     108.756    1.50
+ECD         H04         C04        H04A     107.765    1.50
+ECD         C04         C06         C07     113.786    2.33
+ECD         C04         C06         H06     108.716    1.50
+ECD         C04         C06        H06A     108.716    1.50
+ECD         C07         C06         H06     108.748    1.50
+ECD         C07         C06        H06A     108.748    1.50
+ECD         H06         C06        H06A     107.575    1.50
+ECD         C06         C07         N12     111.872    1.50
+ECD         C06         C07         C08     113.745    2.48
+ECD         C06         C07         H07     109.564    1.50
+ECD         N12         C07         C08     102.354    1.84
+ECD         N12         C07         H07     109.448    1.50
+ECD         C08         C07         H07     110.027    1.57
+ECD         C07         C08         N09     102.354    1.84
+ECD         C07         C08         H08     110.688    1.50
+ECD         C07         C08        H08A     110.688    1.50
+ECD         N09         C08         H08     111.109    1.50
+ECD         N09         C08        H08A     111.109    1.50
+ECD         H08         C08        H08A     109.115    1.50
+ECD         C08         N09         C10     111.600    1.50
+ECD         C08         N09        HN09     124.396    2.13
+ECD         C10         N09        HN09     124.004    1.50
+ECD         N09         C10         N12     111.650    2.08
+ECD         N09         C10         N11     124.175    1.50
+ECD         N12         C10         N11     124.175    1.50
+ECD         C10         N11        HN11     119.516    1.89
+ECD         C10         N11        HN1A     119.516    1.89
+ECD        HN11         N11        HN1A     120.967    2.04
+ECD         C07         N12         C10     112.646    2.00
+ECD         C07         N12        HN12     123.587    1.56
+ECD         C10         N12        HN12     123.767    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ECD            sp2_sp3_14         O01         C02         C04         C06     120.000    10.0     6
+ECD             sp3_sp3_1         C02         C04         C06         C07     180.000    10.0     3
+ECD            sp3_sp3_10         C04         C06         C07         N12     180.000    10.0     3
+ECD             sp2_sp3_2         C10         N12         C07         C06     120.000    10.0     6
+ECD            sp3_sp3_22         C06         C07         C08         N09      60.000    10.0     3
+ECD             sp2_sp3_7         C10         N09         C08         C07       0.000    10.0     6
+ECD             sp2_sp2_7         N11         C10         N09         C08     180.000     5.0     2
+ECD             sp2_sp2_3         N11         C10         N12         C07     180.000     5.0     2
+ECD             sp2_sp2_9         N09         C10         N11        HN11     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ECD    chir_1    C07    N12    C08    C06    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ECD    plan-1         C02   0.020
+ECD    plan-1         C04   0.020
+ECD    plan-1         O01   0.020
+ECD    plan-1         O03   0.020
+ECD    plan-2         C08   0.020
+ECD    plan-2         C10   0.020
+ECD    plan-2        HN09   0.020
+ECD    plan-2         N09   0.020
+ECD    plan-3         C10   0.020
+ECD    plan-3         N09   0.020
+ECD    plan-3         N11   0.020
+ECD    plan-3         N12   0.020
+ECD    plan-4         C10   0.020
+ECD    plan-4        HN11   0.020
+ECD    plan-4        HN1A   0.020
+ECD    plan-4         N11   0.020
+ECD    plan-5         C07   0.020
+ECD    plan-5         C10   0.020
+ECD    plan-5        HN12   0.020
+ECD    plan-5         N12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ECD           SMILES              ACDLabs 12.01                                                                 O=C(O)CCC1NC(/NC1)=[NH2+]
+ECD            InChI                InChI  1.03 InChI=1S/C6H11N3O2/c7-6-8-3-4(9-6)1-2-5(10)11/h4H,1-3H2,(H,10,11)(H3,7,8,9)/p+1/t4-/m1/s1
+ECD         InChIKey                InChI  1.03                                                               XWJJYUBXTJRSEQ-SCSAIBSYSA-O
+ECD SMILES_CANONICAL               CACTVS 3.370                                                             OC(=O)CC[C@@H]1CNC(=[NH2+])N1
+ECD           SMILES               CACTVS 3.370                                                               OC(=O)CC[CH]1CNC(=[NH2+])N1
+ECD SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                            C1[C@H](NC(=[NH2+])N1)CCC(=O)O
+ECD           SMILES "OpenEye OEToolkits" 1.7.6                                                                C1C(NC(=[NH2+])N1)CCC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ECD acedrg               243         "dictionary generator"                  
+ECD acedrg_database      11          "data source"                           
+ECD rdkit                2017.03.2   "Chemoinformatics tool"
+ECD refmac5              5.8.0238    "optimization tool"                     

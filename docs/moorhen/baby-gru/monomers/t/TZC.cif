@@ -1,0 +1,153 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TZC     TZC      1,2,4-TRIAZOLE-CARBOXAMIDINE     NON-POLYMER     14     8     .     
+#
+data_comp_TZC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TZC     N1      N       NR5     0       0.512       9.343       67.966      
+TZC     N2      N       NRD5    0       0.718       8.046       68.387      
+TZC     C3      C       CR15    0       1.150       8.202       69.609      
+TZC     N4      N       NRD5    0       1.242       9.485       70.015      
+TZC     C5      C       CR15    0       0.840       10.165      68.969      
+TZC     C6      C       C       0       0.032       9.621       66.651      
+TZC     N7      N       NH2     0       0.019       8.630       65.794      
+TZC     N8      N       NH2     1       -0.373      10.864      66.358      
+TZC     H3      H       H       0       1.377       7.478       70.158      
+TZC     H5      H       H       0       0.787       11.101      68.927      
+TZC     HN71    H       H       0       -0.272      8.767       64.956      
+TZC     HN72    H       H       0       0.297       7.814       66.043      
+TZC     HN81    H       H       0       -0.651      11.050      65.545      
+TZC     HN82    H       H       0       -0.378      11.492      66.969      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TZC          N1          N2      SINGLE       y     1.376  0.0144     1.376  0.0144
+TZC          N1          C5      SINGLE       y     1.334  0.0100     1.334  0.0100
+TZC          N1          C6      SINGLE       n     1.421  0.0108     1.421  0.0108
+TZC          N2          C3      DOUBLE       y     1.308  0.0100     1.308  0.0100
+TZC          C3          N4      SINGLE       y     1.351  0.0107     1.351  0.0107
+TZC          N4          C5      DOUBLE       y     1.310  0.0100     1.310  0.0100
+TZC          C6          N7      SINGLE       n     1.309  0.0100     1.309  0.0100
+TZC          C6          N8      DOUBLE       n     1.329  0.0200     1.329  0.0200
+TZC          C3          H3      SINGLE       n     1.082  0.0130     0.936  0.0108
+TZC          C5          H5      SINGLE       n     1.082  0.0130     0.939  0.0178
+TZC          N7        HN71      SINGLE       n     1.016  0.0100     0.897  0.0100
+TZC          N7        HN72      SINGLE       n     1.016  0.0100     0.897  0.0100
+TZC          N8        HN81      SINGLE       n     1.016  0.0100     0.879  0.0200
+TZC          N8        HN82      SINGLE       n     1.016  0.0100     0.879  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TZC          N2          N1          C5     108.326    1.50
+TZC          N2          N1          C6     121.480    1.84
+TZC          C5          N1          C6     130.194    1.50
+TZC          N1          N2          C3     103.072    1.50
+TZC          N2          C3          N4     115.161    1.50
+TZC          N2          C3          H3     122.283    1.50
+TZC          N4          C3          H3     122.556    1.50
+TZC          C3          N4          C5     103.392    1.50
+TZC          N1          C5          N4     110.049    1.50
+TZC          N1          C5          H5     124.627    1.50
+TZC          N4          C5          H5     125.324    1.50
+TZC          N1          C6          N7     117.499    1.87
+TZC          N1          C6          N8     117.499    1.87
+TZC          N7          C6          N8     125.003    1.50
+TZC          C6          N7        HN71     119.951    1.76
+TZC          C6          N7        HN72     119.951    1.76
+TZC        HN71          N7        HN72     120.098    2.31
+TZC          C6          N8        HN81     119.951    1.76
+TZC          C6          N8        HN82     119.951    1.76
+TZC        HN81          N8        HN82     120.098    2.31
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TZC       const_sp2_sp2_2          C6          N1          N2          C3     180.000     5.0     2
+TZC              const_10          N4          C5          N1          C6     180.000    10.0     2
+TZC             sp2_sp2_2          N7          C6          N1          N2       0.000     5.0     2
+TZC       const_sp2_sp2_3          N4          C3          N2          N1       0.000     5.0     2
+TZC       const_sp2_sp2_5          N2          C3          N4          C5       0.000     5.0     2
+TZC       const_sp2_sp2_7          N1          C5          N4          C3       0.000     5.0     2
+TZC             sp2_sp2_7          N8          C6          N7        HN71       0.000     5.0     2
+TZC            sp2_sp2_11          N7          C6          N8        HN81       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TZC    plan-1          C3   0.020
+TZC    plan-1          C5   0.020
+TZC    plan-1          C6   0.020
+TZC    plan-1          H3   0.020
+TZC    plan-1          H5   0.020
+TZC    plan-1          N1   0.020
+TZC    plan-1          N2   0.020
+TZC    plan-1          N4   0.020
+TZC    plan-2          C6   0.020
+TZC    plan-2          N1   0.020
+TZC    plan-2          N7   0.020
+TZC    plan-2          N8   0.020
+TZC    plan-3          C6   0.020
+TZC    plan-3        HN71   0.020
+TZC    plan-3        HN72   0.020
+TZC    plan-3          N7   0.020
+TZC    plan-4          C6   0.020
+TZC    plan-4        HN81   0.020
+TZC    plan-4        HN82   0.020
+TZC    plan-4          N8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TZC           SMILES              ACDLabs 10.04                                 n1cnn(C(=[NH2+])\N)c1
+TZC SMILES_CANONICAL               CACTVS 3.341                                    NC(=[NH2+])n1cncn1
+TZC           SMILES               CACTVS 3.341                                    NC(=[NH2+])n1cncn1
+TZC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                  c1ncn(n1)C(=[NH2+])N
+TZC           SMILES "OpenEye OEToolkits" 1.5.0                                  c1ncn(n1)C(=[NH2+])N
+TZC            InChI                InChI  1.03 InChI=1S/C3H5N5/c4-3(5)8-2-6-1-7-8/h1-2H,(H3,4,5)/p+1
+TZC         InChIKey                InChI  1.03                           CDIOIIJXUJXYPB-UHFFFAOYSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TZC acedrg               243         "dictionary generator"                  
+TZC acedrg_database      11          "data source"                           
+TZC rdkit                2017.03.2   "Chemoinformatics tool"
+TZC refmac5              5.8.0238    "optimization tool"                     

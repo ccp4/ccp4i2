@@ -1,0 +1,112 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+000     000      "methyl hydrogen carbonate"     NON-POLYMER     9     5     .     
+#
+data_comp_000
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+000     C       C       C       0       32.612      -0.461      51.528      
+000     O       O       O       0       31.573      -0.656      50.972      
+000     OA      O       O2      0       33.764      -1.115      51.365      
+000     CB      C       CH3     0       33.884      -2.092      50.301      
+000     OXT     O       OH1     0       32.802      0.488       52.450      
+000     HB      H       H       0       33.711      -1.664      49.448      
+000     HBA     H       H       0       33.241      -2.804      50.443      
+000     HBB     H       H       0       34.781      -2.460      50.303      
+000     HXT     H       H       0       32.965      0.268       53.267      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+000           C         OXT      SINGLE       n     1.337  0.0193     1.337  0.0193
+000           C           O      DOUBLE       n     1.193  0.0100     1.193  0.0100
+000           C          OA      SINGLE       n     1.332  0.0118     1.332  0.0118
+000          OA          CB      SINGLE       n     1.445  0.0200     1.445  0.0200
+000          CB          HB      SINGLE       n     1.089  0.0100     0.970  0.0175
+000          CB         HBA      SINGLE       n     1.089  0.0100     0.970  0.0175
+000          CB         HBB      SINGLE       n     1.089  0.0100     0.970  0.0175
+000         OXT         HXT      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+000         OXT           C           O     124.245    1.64
+000         OXT           C          OA     108.447    3.00
+000           O           C          OA     127.308    1.50
+000           C          OA          CB     116.416    2.92
+000          OA          CB          HB     109.416    2.43
+000          OA          CB         HBA     109.416    2.43
+000          OA          CB         HBB     109.416    2.43
+000          HB          CB         HBA     109.532    1.53
+000          HB          CB         HBB     109.532    1.53
+000         HBA          CB         HBB     109.532    1.53
+000           C         OXT         HXT     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+000             sp2_sp2_3         OXT           C          OA          CB     180.000     5.0     2
+000             sp2_sp2_1           O           C         OXT         HXT     180.000     5.0     2
+000             sp3_sp3_2          HB          CB          OA           C     -60.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+000    plan-1           C   0.020
+000    plan-1           O   0.020
+000    plan-1          OA   0.020
+000    plan-1         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+000           SMILES              ACDLabs 12.01                                O=C(O)OC
+000 SMILES_CANONICAL               CACTVS 3.370                                COC(O)=O
+000           SMILES               CACTVS 3.370                                COC(O)=O
+000 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                COC(=O)O
+000           SMILES "OpenEye OEToolkits" 1.7.0                                COC(=O)O
+000            InChI                InChI  1.03 InChI=1S/C2H4O3/c1-5-2(3)4/h1H3,(H,3,4)
+000         InChIKey                InChI  1.03             CXHHBNMLPJOKQD-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+000 acedrg               243         "dictionary generator"                  
+000 acedrg_database      11          "data source"                           
+000 rdkit                2017.03.2   "Chemoinformatics tool"
+000 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,605 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+POH     POH      (1Z,4Z,9Z,15Z)-5,10,15,20-tetrakis(1-methylpyridin-1-ium-4-yl)-21,23-dihydroporphyrin     NON-POLYMER     90     52     .     
+#
+data_comp_POH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+POH     CX3     C       CR16    0       7.553       4.770       -0.281      
+POH     C2A     C       CR15    0       6.929       6.542       -5.650      
+POH     C71     C       CR6     0       5.771       5.799       -1.550      
+POH     C81     C       CR16    0       5.699       6.794       -0.574      
+POH     C91     C       CR16    0       6.543       6.768       0.526       
+POH     CXN     C       CH3     0       8.372       5.728       1.848       
+POH     C3A     C       CR15    0       6.768       6.495       -4.299      
+POH     C4A     C       CR5     0       5.451       6.022       -4.008      
+POH     C1A     C       CR5     0       5.720       6.102       -6.273      
+POH     CXD     C       CR16    0       6.714       4.784       -1.386      
+POH     NXT     N       NR6     1       7.477       5.758       0.684       
+POH     NA      N       NT1     0       4.847       5.803       -5.238      
+POH     NB      N       NRD5    0       2.507       6.403       -3.160      
+POH     NC      N       NT1     0       0.577       6.020       -5.735      
+POH     ND      N       NRD5    0       3.055       6.571       -7.765      
+POH     CHB     C       C       0       4.860       5.829       -2.740      
+POH     C1B     C       CR5     0       3.480       5.699       -2.501      
+POH     CX4     C       CR16    0       -3.373      5.104       -2.121      
+POH     C2B     C       CR15    0       2.873       4.824       -1.518      
+POH     C72     C       CR6     0       -1.178      6.050       -2.488      
+POH     C82     C       CR16    0       -1.340      6.790       -1.316      
+POH     C92     C       CR16    0       -2.500      6.677       -0.564      
+POH     CXO     C       CH3     0       -4.757      5.714       -0.164      
+POH     C3B     C       CR15    0       1.548       5.057       -1.558      
+POH     C4B     C       CR5     0       1.312       5.902       -2.711      
+POH     CXE     C       CR16    0       -2.219      5.206       -2.882      
+POH     NXU     N       NR6     1       -3.527      5.834       -0.958      
+POH     CHC     C       C       0       0.068       6.171       -3.313      
+POH     C1C     C       CR5     0       -0.099      6.557       -4.652      
+POH     CX5     C       CR16    0       -2.413      5.394       -10.224     
+POH     C2C     C       CR15    0       -0.967      7.560       -5.179      
+POH     C73     C       CR6     0       -0.368      6.288       -9.292      
+POH     C83     C       CR16    0       -0.255      7.105       -10.418     
+POH     C93     C       CR16    0       -1.206      7.055       -11.426     
+POH     CXP     C       CH3     0       -3.303      6.146       -12.405     
+POH     C3C     C       CR15    0       -0.806      7.607       -6.531      
+POH     C4C     C       CR5     0       0.170       6.635       -6.906      
+POH     CXF     C       CR16    0       -1.469      5.433       -9.209      
+POH     NXV     N       NR6     1       -2.294      6.200       -11.340     
+POH     CHD     C       C       0       0.649       6.340       -8.192      
+POH     C1D     C       CR5     0       2.000       6.100       -8.504      
+POH     CX6     C       CR16    0       8.649       5.101       -9.480      
+POH     C2D     C       CR15    0       2.503       5.321       -9.617      
+POH     C74     C       CR6     0       6.608       6.050       -8.597      
+POH     C84     C       CR16    0       6.756       7.110       -9.493      
+POH     C94     C       CR16    0       7.834       7.155       -10.364     
+POH     CXQ     C       CH3     0       9.933       6.198       -11.288     
+POH     C3D     C       CR15    0       3.806       5.091       -9.367      
+POH     C4D     C       CR5     0       4.160       5.899       -8.218      
+POH     CXG     C       CR16    0       7.575       5.043       -8.604      
+POH     CHA     C       C       0       5.444       6.002       -7.654      
+POH     NXW     N       NR6     1       8.791       6.152       -10.367     
+POH     H51     H       H       0       8.186       4.079       -0.182      
+POH     H11     H       H       0       7.715       6.819       -6.101      
+POH     H31     H       H       0       5.071       7.494       -0.657      
+POH     H41     H       H       0       6.483       7.447       1.178       
+POH     H811    H       H       0       8.158       6.460       2.449       
+POH     H821    H       H       0       9.292       5.816       1.550       
+POH     H831    H       H       0       8.265       4.885       2.317       
+POH     H21     H       H       0       7.424       6.733       -3.658      
+POH     H61     H       H       0       6.788       4.097       -2.030      
+POH     H71     H       H       0       4.014       5.505       -5.347      
+POH     H73     H       H       0       1.186       5.371       -5.684      
+POH     H52     H       H       0       -4.067      4.528       -2.396      
+POH     H12     H       H       0       3.321       4.209       -0.954      
+POH     H32     H       H       0       -0.656      7.371       -1.024      
+POH     H42     H       H       0       -2.595      7.180       0.228       
+POH     H812    H       H       0       -4.658      6.192       0.675       
+POH     H822    H       H       0       -4.933      4.777       0.018       
+POH     H832    H       H       0       -5.501      6.090       -0.663      
+POH     H22     H       H       0       0.899       4.732       -0.948      
+POH     H62     H       H       0       -2.141      4.696       -3.672      
+POH     H53     H       H       0       -3.150      4.809       -10.157     
+POH     H13     H       H       0       -1.558      8.100       -4.672      
+POH     H33     H       H       0       0.476       7.696       -10.502     
+POH     H43     H       H       0       -1.115      7.610       -12.183     
+POH     H813    H       H       0       -3.016      6.683       -13.162     
+POH     H823    H       H       0       -4.147      6.490       -12.068     
+POH     H833    H       H       0       -3.423      5.226       -12.690     
+POH     H23     H       H       0       -1.266      8.185       -7.124      
+POH     H63     H       H       0       -1.576      4.871       -8.458      
+POH     H54     H       H       0       9.295       4.414       -9.476      
+POH     H14     H       H       0       2.014       5.029       -10.375     
+POH     H34     H       H       0       6.119       7.806       -9.512      
+POH     H44     H       H       0       7.920       7.877       -10.965     
+POH     H814    H       H       0       10.758      6.247       -10.778     
+POH     H824    H       H       0       9.865       6.978       -11.864     
+POH     H834    H       H       0       9.941       5.395       -11.835     
+POH     H24     H       H       0       4.380       4.514       -9.853      
+POH     H64     H       H       0       7.503       4.314       -8.009      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+POH         CX3         CXD      DOUBLE       y     1.384  0.0100     1.384  0.0100
+POH         CX3         NXT      SINGLE       y     1.378  0.0177     1.378  0.0177
+POH         C2A         C3A      DOUBLE       y     1.361  0.0130     1.361  0.0130
+POH         C2A         C1A      SINGLE       y     1.427  0.0119     1.427  0.0119
+POH         C71         C81      DOUBLE       y     1.391  0.0100     1.391  0.0100
+POH         C71         CXD      SINGLE       y     1.391  0.0100     1.391  0.0100
+POH         C71         CHB      SINGLE       n     1.497  0.0100     1.497  0.0100
+POH         C81         C91      SINGLE       y     1.384  0.0100     1.384  0.0100
+POH         C91         NXT      DOUBLE       y     1.378  0.0177     1.378  0.0177
+POH         CXN         NXT      SINGLE       n     1.467  0.0100     1.467  0.0100
+POH         C3A         C4A      SINGLE       y     1.427  0.0119     1.427  0.0119
+POH         C4A          NA      SINGLE       y     1.386  0.0100     1.386  0.0100
+POH         C4A         CHB      DOUBLE       n     1.403  0.0144     1.403  0.0144
+POH         C1A          NA      SINGLE       y     1.386  0.0100     1.386  0.0100
+POH         C1A         CHA      DOUBLE       n     1.403  0.0144     1.403  0.0144
+POH          NB         C1B      DOUBLE       n     1.370  0.0115     1.370  0.0115
+POH          NB         C4B      SINGLE       n     1.370  0.0115     1.370  0.0115
+POH          NC         C1C      SINGLE       y     1.386  0.0100     1.386  0.0100
+POH          NC         C4C      SINGLE       y     1.386  0.0100     1.386  0.0100
+POH          ND         C1D      SINGLE       n     1.370  0.0115     1.370  0.0115
+POH          ND         C4D      DOUBLE       n     1.370  0.0115     1.370  0.0115
+POH         CHB         C1B      SINGLE       n     1.404  0.0120     1.404  0.0120
+POH         C1B         C2B      SINGLE       n     1.448  0.0100     1.448  0.0100
+POH         CX4         CXE      DOUBLE       y     1.384  0.0100     1.384  0.0100
+POH         CX4         NXU      SINGLE       y     1.378  0.0177     1.378  0.0177
+POH         C2B         C3B      DOUBLE       n     1.346  0.0102     1.346  0.0102
+POH         C72         C82      DOUBLE       y     1.391  0.0100     1.391  0.0100
+POH         C72         CXE      SINGLE       y     1.391  0.0100     1.391  0.0100
+POH         C72         CHC      SINGLE       n     1.497  0.0100     1.497  0.0100
+POH         C82         C92      SINGLE       y     1.384  0.0100     1.384  0.0100
+POH         C92         NXU      DOUBLE       y     1.378  0.0177     1.378  0.0177
+POH         CXO         NXU      SINGLE       n     1.467  0.0100     1.467  0.0100
+POH         C3B         C4B      SINGLE       n     1.448  0.0100     1.448  0.0100
+POH         C4B         CHC      DOUBLE       n     1.404  0.0120     1.404  0.0120
+POH         CHC         C1C      SINGLE       n     1.403  0.0144     1.403  0.0144
+POH         C1C         C2C      DOUBLE       y     1.427  0.0119     1.427  0.0119
+POH         CX5         CXF      DOUBLE       y     1.384  0.0100     1.384  0.0100
+POH         CX5         NXV      SINGLE       y     1.378  0.0177     1.378  0.0177
+POH         C2C         C3C      SINGLE       y     1.361  0.0130     1.361  0.0130
+POH         C73         C83      DOUBLE       y     1.391  0.0100     1.391  0.0100
+POH         C73         CXF      SINGLE       y     1.391  0.0100     1.391  0.0100
+POH         C73         CHD      SINGLE       n     1.497  0.0100     1.497  0.0100
+POH         C83         C93      SINGLE       y     1.384  0.0100     1.384  0.0100
+POH         C93         NXV      DOUBLE       y     1.378  0.0177     1.378  0.0177
+POH         CXP         NXV      SINGLE       n     1.467  0.0100     1.467  0.0100
+POH         C3C         C4C      DOUBLE       y     1.427  0.0119     1.427  0.0119
+POH         C4C         CHD      SINGLE       n     1.403  0.0144     1.403  0.0144
+POH         CHD         C1D      DOUBLE       n     1.404  0.0120     1.404  0.0120
+POH         C1D         C2D      SINGLE       n     1.448  0.0100     1.448  0.0100
+POH         CX6         CXG      DOUBLE       y     1.384  0.0100     1.384  0.0100
+POH         CX6         NXW      SINGLE       y     1.378  0.0177     1.378  0.0177
+POH         C2D         C3D      DOUBLE       n     1.346  0.0102     1.346  0.0102
+POH         C74         C84      DOUBLE       y     1.391  0.0100     1.391  0.0100
+POH         C74         CXG      SINGLE       y     1.391  0.0100     1.391  0.0100
+POH         C74         CHA      SINGLE       n     1.497  0.0100     1.497  0.0100
+POH         C84         C94      SINGLE       y     1.384  0.0100     1.384  0.0100
+POH         C94         NXW      DOUBLE       y     1.378  0.0177     1.378  0.0177
+POH         CXQ         NXW      SINGLE       n     1.467  0.0100     1.467  0.0100
+POH         C3D         C4D      SINGLE       n     1.448  0.0100     1.448  0.0100
+POH         C4D         CHA      SINGLE       n     1.404  0.0120     1.404  0.0120
+POH         CX3         H51      SINGLE       n     1.082  0.0130     0.943  0.0169
+POH         C2A         H11      SINGLE       n     1.082  0.0130     0.947  0.0136
+POH         C81         H31      SINGLE       n     1.082  0.0130     0.944  0.0103
+POH         C91         H41      SINGLE       n     1.082  0.0130     0.943  0.0169
+POH         CXN        H811      SINGLE       n     1.089  0.0100     0.971  0.0146
+POH         CXN        H821      SINGLE       n     1.089  0.0100     0.971  0.0146
+POH         CXN        H831      SINGLE       n     1.089  0.0100     0.971  0.0146
+POH         C3A         H21      SINGLE       n     1.082  0.0130     0.947  0.0136
+POH         CXD         H61      SINGLE       n     1.082  0.0130     0.944  0.0103
+POH          NA         H71      SINGLE       n     1.016  0.0100     0.892  0.0200
+POH          NC         H73      SINGLE       n     1.016  0.0100     0.892  0.0200
+POH         CX4         H52      SINGLE       n     1.082  0.0130     0.943  0.0169
+POH         C2B         H12      SINGLE       n     1.082  0.0130     0.948  0.0190
+POH         C82         H32      SINGLE       n     1.082  0.0130     0.944  0.0103
+POH         C92         H42      SINGLE       n     1.082  0.0130     0.943  0.0169
+POH         CXO        H812      SINGLE       n     1.089  0.0100     0.971  0.0146
+POH         CXO        H822      SINGLE       n     1.089  0.0100     0.971  0.0146
+POH         CXO        H832      SINGLE       n     1.089  0.0100     0.971  0.0146
+POH         C3B         H22      SINGLE       n     1.082  0.0130     0.948  0.0190
+POH         CXE         H62      SINGLE       n     1.082  0.0130     0.944  0.0103
+POH         CX5         H53      SINGLE       n     1.082  0.0130     0.943  0.0169
+POH         C2C         H13      SINGLE       n     1.082  0.0130     0.947  0.0136
+POH         C83         H33      SINGLE       n     1.082  0.0130     0.944  0.0103
+POH         C93         H43      SINGLE       n     1.082  0.0130     0.943  0.0169
+POH         CXP        H813      SINGLE       n     1.089  0.0100     0.971  0.0146
+POH         CXP        H823      SINGLE       n     1.089  0.0100     0.971  0.0146
+POH         CXP        H833      SINGLE       n     1.089  0.0100     0.971  0.0146
+POH         C3C         H23      SINGLE       n     1.082  0.0130     0.947  0.0136
+POH         CXF         H63      SINGLE       n     1.082  0.0130     0.944  0.0103
+POH         CX6         H54      SINGLE       n     1.082  0.0130     0.943  0.0169
+POH         C2D         H14      SINGLE       n     1.082  0.0130     0.948  0.0190
+POH         C84         H34      SINGLE       n     1.082  0.0130     0.944  0.0103
+POH         C94         H44      SINGLE       n     1.082  0.0130     0.943  0.0169
+POH         CXQ        H814      SINGLE       n     1.089  0.0100     0.971  0.0146
+POH         CXQ        H824      SINGLE       n     1.089  0.0100     0.971  0.0146
+POH         CXQ        H834      SINGLE       n     1.089  0.0100     0.971  0.0146
+POH         C3D         H24      SINGLE       n     1.082  0.0130     0.948  0.0190
+POH         CXG         H64      SINGLE       n     1.082  0.0130     0.944  0.0103
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+POH         CXD         CX3         NXT     121.422    1.50
+POH         CXD         CX3         H51     119.649    1.50
+POH         NXT         CX3         H51     118.929    1.50
+POH         C3A         C2A         C1A     108.143    1.50
+POH         C3A         C2A         H11     125.997    1.50
+POH         C1A         C2A         H11     125.860    1.50
+POH         C81         C71         CXD     117.260    1.50
+POH         C81         C71         CHB     121.371    1.50
+POH         CXD         C71         CHB     121.371    1.50
+POH         C71         C81         C91     120.284    1.50
+POH         C71         C81         H31     120.264    1.50
+POH         C91         C81         H31     119.452    1.50
+POH         C81         C91         NXT     121.422    1.50
+POH         C81         C91         H41     119.649    1.50
+POH         NXT         C91         H41     118.929    1.50
+POH         NXT         CXN        H811     109.498    1.50
+POH         NXT         CXN        H821     109.498    1.50
+POH         NXT         CXN        H831     109.498    1.50
+POH        H811         CXN        H821     109.436    1.85
+POH        H811         CXN        H831     109.436    1.85
+POH        H821         CXN        H831     109.436    1.85
+POH         C2A         C3A         C4A     108.143    1.50
+POH         C2A         C3A         H21     125.997    1.50
+POH         C4A         C3A         H21     125.860    1.50
+POH         C3A         C4A          NA     106.181    1.50
+POH         C3A         C4A         CHB     127.650    1.96
+POH          NA         C4A         CHB     126.170    2.97
+POH         C2A         C1A          NA     106.181    1.50
+POH         C2A         C1A         CHA     127.650    1.96
+POH          NA         C1A         CHA     126.170    2.97
+POH         CX3         CXD         C71     120.284    1.50
+POH         CX3         CXD         H61     119.452    1.50
+POH         C71         CXD         H61     120.264    1.50
+POH         CX3         NXT         C91     119.324    1.50
+POH         CX3         NXT         CXN     120.338    1.50
+POH         C91         NXT         CXN     120.338    1.50
+POH         C4A          NA         C1A     110.017    1.50
+POH         C4A          NA         H71     122.147    3.00
+POH         C1A          NA         H71     122.147    3.00
+POH         C1B          NB         C4B     105.810    1.50
+POH         C1C          NC         C4C     110.017    1.50
+POH         C1C          NC         H73     122.147    3.00
+POH         C4C          NC         H73     122.147    3.00
+POH         C1D          ND         C4D     105.810    1.50
+POH         C71         CHB         C4A     117.063    1.50
+POH         C71         CHB         C1B     117.830    1.50
+POH         C4A         CHB         C1B     125.106    1.50
+POH          NB         C1B         CHB     124.799    1.77
+POH          NB         C1B         C2B     110.138    1.50
+POH         CHB         C1B         C2B     125.064    2.41
+POH         CXE         CX4         NXU     121.422    1.50
+POH         CXE         CX4         H52     119.649    1.50
+POH         NXU         CX4         H52     118.929    1.50
+POH         C1B         C2B         C3B     106.957    1.50
+POH         C1B         C2B         H12     126.603    1.50
+POH         C3B         C2B         H12     126.440    1.50
+POH         C82         C72         CXE     117.260    1.50
+POH         C82         C72         CHC     121.371    1.50
+POH         CXE         C72         CHC     121.371    1.50
+POH         C72         C82         C92     120.284    1.50
+POH         C72         C82         H32     120.264    1.50
+POH         C92         C82         H32     119.452    1.50
+POH         C82         C92         NXU     121.422    1.50
+POH         C82         C92         H42     119.649    1.50
+POH         NXU         C92         H42     118.929    1.50
+POH         NXU         CXO        H812     109.498    1.50
+POH         NXU         CXO        H822     109.498    1.50
+POH         NXU         CXO        H832     109.498    1.50
+POH        H812         CXO        H822     109.436    1.85
+POH        H812         CXO        H832     109.436    1.85
+POH        H822         CXO        H832     109.436    1.85
+POH         C2B         C3B         C4B     106.957    1.50
+POH         C2B         C3B         H22     126.440    1.50
+POH         C4B         C3B         H22     126.603    1.50
+POH          NB         C4B         C3B     110.138    1.50
+POH          NB         C4B         CHC     124.799    1.77
+POH         C3B         C4B         CHC     125.064    2.41
+POH         CX4         CXE         C72     120.284    1.50
+POH         CX4         CXE         H62     119.452    1.50
+POH         C72         CXE         H62     120.264    1.50
+POH         CX4         NXU         C92     119.324    1.50
+POH         CX4         NXU         CXO     120.338    1.50
+POH         C92         NXU         CXO     120.338    1.50
+POH         C72         CHC         C4B     117.830    1.50
+POH         C72         CHC         C1C     117.063    1.50
+POH         C4B         CHC         C1C     125.106    1.50
+POH          NC         C1C         CHC     126.170    2.97
+POH          NC         C1C         C2C     106.181    1.50
+POH         CHC         C1C         C2C     127.650    1.96
+POH         CXF         CX5         NXV     121.422    1.50
+POH         CXF         CX5         H53     119.649    1.50
+POH         NXV         CX5         H53     118.929    1.50
+POH         C1C         C2C         C3C     108.143    1.50
+POH         C1C         C2C         H13     125.860    1.50
+POH         C3C         C2C         H13     125.997    1.50
+POH         C83         C73         CXF     117.260    1.50
+POH         C83         C73         CHD     121.371    1.50
+POH         CXF         C73         CHD     121.371    1.50
+POH         C73         C83         C93     120.284    1.50
+POH         C73         C83         H33     120.264    1.50
+POH         C93         C83         H33     119.452    1.50
+POH         C83         C93         NXV     121.422    1.50
+POH         C83         C93         H43     119.649    1.50
+POH         NXV         C93         H43     118.929    1.50
+POH         NXV         CXP        H813     109.498    1.50
+POH         NXV         CXP        H823     109.498    1.50
+POH         NXV         CXP        H833     109.498    1.50
+POH        H813         CXP        H823     109.436    1.85
+POH        H813         CXP        H833     109.436    1.85
+POH        H823         CXP        H833     109.436    1.85
+POH         C2C         C3C         C4C     108.143    1.50
+POH         C2C         C3C         H23     125.997    1.50
+POH         C4C         C3C         H23     125.860    1.50
+POH          NC         C4C         C3C     106.181    1.50
+POH          NC         C4C         CHD     126.170    2.97
+POH         C3C         C4C         CHD     127.650    1.96
+POH         CX5         CXF         C73     120.284    1.50
+POH         CX5         CXF         H63     119.452    1.50
+POH         C73         CXF         H63     120.264    1.50
+POH         CX5         NXV         C93     119.324    1.50
+POH         CX5         NXV         CXP     120.338    1.50
+POH         C93         NXV         CXP     120.338    1.50
+POH         C73         CHD         C4C     117.063    1.50
+POH         C73         CHD         C1D     117.830    1.50
+POH         C4C         CHD         C1D     125.106    1.50
+POH          ND         C1D         CHD     124.799    1.77
+POH          ND         C1D         C2D     110.138    1.50
+POH         CHD         C1D         C2D     125.064    2.41
+POH         CXG         CX6         NXW     121.422    1.50
+POH         CXG         CX6         H54     119.649    1.50
+POH         NXW         CX6         H54     118.929    1.50
+POH         C1D         C2D         C3D     106.957    1.50
+POH         C1D         C2D         H14     126.603    1.50
+POH         C3D         C2D         H14     126.440    1.50
+POH         C84         C74         CXG     117.260    1.50
+POH         C84         C74         CHA     121.371    1.50
+POH         CXG         C74         CHA     121.371    1.50
+POH         C74         C84         C94     120.284    1.50
+POH         C74         C84         H34     120.264    1.50
+POH         C94         C84         H34     119.452    1.50
+POH         C84         C94         NXW     121.422    1.50
+POH         C84         C94         H44     119.649    1.50
+POH         NXW         C94         H44     118.929    1.50
+POH         NXW         CXQ        H814     109.498    1.50
+POH         NXW         CXQ        H824     109.498    1.50
+POH         NXW         CXQ        H834     109.498    1.50
+POH        H814         CXQ        H824     109.436    1.85
+POH        H814         CXQ        H834     109.436    1.85
+POH        H824         CXQ        H834     109.436    1.85
+POH         C2D         C3D         C4D     106.957    1.50
+POH         C2D         C3D         H24     126.440    1.50
+POH         C4D         C3D         H24     126.603    1.50
+POH          ND         C4D         C3D     110.138    1.50
+POH          ND         C4D         CHA     124.799    1.77
+POH         C3D         C4D         CHA     125.064    2.41
+POH         CX6         CXG         C74     120.284    1.50
+POH         CX6         CXG         H64     119.452    1.50
+POH         C74         CXG         H64     120.264    1.50
+POH         C1A         CHA         C74     117.063    1.50
+POH         C1A         CHA         C4D     125.106    1.50
+POH         C74         CHA         C4D     117.830    1.50
+POH         CX6         NXW         C94     119.324    1.50
+POH         CX6         NXW         CXQ     120.338    1.50
+POH         C94         NXW         CXQ     120.338    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+POH             const_114         CXD         CX3         NXT         CXN     180.000    10.0     2
+POH              const_33         NXT         CX3         CXD         C71       0.000    10.0     2
+POH             sp2_sp2_2         CHB         C1B          NB         C4B     180.000     5.0     2
+POH            sp2_sp2_42         CHC         C4B          NB         C1B     180.000     5.0     2
+POH              const_19         CHC         C1C          NC         C4C     180.000    10.0     2
+POH             const_123         CHD         C4C          NC         C1C     180.000    10.0     2
+POH            sp2_sp2_16         CHD         C1D          ND         C4D     180.000     5.0     2
+POH            sp2_sp2_44         CHA         C4D          ND         C1D     180.000     5.0     2
+POH            sp2_sp2_47          NB         C1B         CHB         C71       0.000     5.0     2
+POH             sp2_sp2_5         CHB         C1B         C2B         C3B     180.000     5.0     2
+POH              const_53         NXU         CX4         CXE         C72       0.000    10.0     2
+POH             const_126         CXE         CX4         NXU         CXO     180.000    10.0     2
+POH             sp2_sp2_7         C1B         C2B         C3B         C4B       0.000     5.0     2
+POH              const_63         CHC         C72         C82         C92     180.000    10.0     2
+POH              const_59         CHC         C72         CXE         CX4     180.000    10.0     2
+POH            sp2_sp2_49         C82         C72         CHC         C4B     180.000     5.0     2
+POH       const_sp2_sp2_1         C1A         C2A         C3A         C4A       0.000     5.0     2
+POH             const_119         CHA         C1A         C2A         C3A     180.000    10.0     2
+POH              const_65         C72         C82         C92         NXU       0.000    10.0     2
+POH              const_70         C82         C92         NXU         CXO     180.000    10.0     2
+POH             sp2_sp3_7         CX4         NXU         CXO        H812     150.000    10.0     6
+POH            sp2_sp2_12         C2B         C3B         C4B         CHC     180.000     5.0     2
+POH            sp2_sp2_55          NB         C4B         CHC         C72       0.000     5.0     2
+POH            sp2_sp2_57          NC         C1C         CHC         C72     180.000     5.0     2
+POH              const_23         CHC         C1C         C2C         C3C     180.000    10.0     2
+POH              const_73         NXV         CX5         CXF         C73       0.000    10.0     2
+POH             const_130         CXF         CX5         NXV         CXP     180.000    10.0     2
+POH            sp2_sp2_29         C81         C71         CHB         C4A     180.000     5.0     2
+POH              const_43         CHB         C71         C81         C91     180.000    10.0     2
+POH              const_39         CHB         C71         CXD         CX3     180.000    10.0     2
+POH              const_25         C1C         C2C         C3C         C4C       0.000    10.0     2
+POH              const_83         CHD         C73         C83         C93     180.000    10.0     2
+POH              const_79         CHD         C73         CXF         CX5     180.000    10.0     2
+POH            sp2_sp2_61         C83         C73         CHD         C4C     180.000     5.0     2
+POH              const_85         C73         C83         C93         NXV       0.000    10.0     2
+POH              const_90         C83         C93         NXV         CXP     180.000    10.0     2
+POH            sp2_sp3_13         CX5         NXV         CXP        H813     150.000    10.0     6
+POH              const_30         C2C         C3C         C4C         CHD     180.000    10.0     2
+POH            sp2_sp2_65          NC         C4C         CHD         C73     180.000     5.0     2
+POH            sp2_sp2_71          ND         C1D         CHD         C73       0.000     5.0     2
+POH              const_45         C71         C81         C91         NXT       0.000    10.0     2
+POH            sp2_sp2_19         CHD         C1D         C2D         C3D     180.000     5.0     2
+POH              const_93         NXW         CX6         CXG         C74       0.000    10.0     2
+POH             const_134         CXG         CX6         NXW         CXQ     180.000    10.0     2
+POH            sp2_sp2_21         C1D         C2D         C3D         C4D       0.000     5.0     2
+POH             const_103         CHA         C74         C84         C94     180.000    10.0     2
+POH              const_99         CHA         C74         CXG         CX6     180.000    10.0     2
+POH            sp2_sp2_73         C84         C74         CHA         C1A     180.000     5.0     2
+POH             const_105         C74         C84         C94         NXW       0.000    10.0     2
+POH             const_110         C84         C94         NXW         CXQ     180.000    10.0     2
+POH            sp2_sp3_19         CX6         NXW         CXQ        H814     150.000    10.0     6
+POH            sp2_sp2_26         C2D         C3D         C4D         CHA     180.000     5.0     2
+POH            sp2_sp2_79          ND         C4D         CHA         C1A       0.000     5.0     2
+POH              const_50         C81         C91         NXT         CXN     180.000    10.0     2
+POH             sp2_sp3_1         CX3         NXT         CXN        H811     150.000    10.0     6
+POH       const_sp2_sp2_6         C2A         C3A         C4A         CHB     180.000     5.0     2
+POH              const_11         CHB         C4A          NA         C1A     180.000    10.0     2
+POH            sp2_sp2_33         C3A         C4A         CHB         C71     180.000     5.0     2
+POH              const_15         CHA         C1A          NA         C4A     180.000    10.0     2
+POH            sp2_sp2_37         C2A         C1A         CHA         C74     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+POH    plan-1         C71   0.020
+POH    plan-1         C81   0.020
+POH    plan-1         C91   0.020
+POH    plan-1         CHB   0.020
+POH    plan-1         CX3   0.020
+POH    plan-1         CXD   0.020
+POH    plan-1         CXN   0.020
+POH    plan-1         H31   0.020
+POH    plan-1         H41   0.020
+POH    plan-1         H51   0.020
+POH    plan-1         H61   0.020
+POH    plan-1         NXT   0.020
+POH    plan-2         C1A   0.020
+POH    plan-2         C2A   0.020
+POH    plan-2         C3A   0.020
+POH    plan-2         C4A   0.020
+POH    plan-2         CHA   0.020
+POH    plan-2         CHB   0.020
+POH    plan-2         H11   0.020
+POH    plan-2         H21   0.020
+POH    plan-2         H71   0.020
+POH    plan-2          NA   0.020
+POH    plan-3         C1C   0.020
+POH    plan-3         C2C   0.020
+POH    plan-3         C3C   0.020
+POH    plan-3         C4C   0.020
+POH    plan-3         CHC   0.020
+POH    plan-3         CHD   0.020
+POH    plan-3         H13   0.020
+POH    plan-3         H23   0.020
+POH    plan-3         H73   0.020
+POH    plan-3          NC   0.020
+POH    plan-4         C72   0.020
+POH    plan-4         C82   0.020
+POH    plan-4         C92   0.020
+POH    plan-4         CHC   0.020
+POH    plan-4         CX4   0.020
+POH    plan-4         CXE   0.020
+POH    plan-4         CXO   0.020
+POH    plan-4         H32   0.020
+POH    plan-4         H42   0.020
+POH    plan-4         H52   0.020
+POH    plan-4         H62   0.020
+POH    plan-4         NXU   0.020
+POH    plan-5         C73   0.020
+POH    plan-5         C83   0.020
+POH    plan-5         C93   0.020
+POH    plan-5         CHD   0.020
+POH    plan-5         CX5   0.020
+POH    plan-5         CXF   0.020
+POH    plan-5         CXP   0.020
+POH    plan-5         H33   0.020
+POH    plan-5         H43   0.020
+POH    plan-5         H53   0.020
+POH    plan-5         H63   0.020
+POH    plan-5         NXV   0.020
+POH    plan-6         C74   0.020
+POH    plan-6         C84   0.020
+POH    plan-6         C94   0.020
+POH    plan-6         CHA   0.020
+POH    plan-6         CX6   0.020
+POH    plan-6         CXG   0.020
+POH    plan-6         CXQ   0.020
+POH    plan-6         H34   0.020
+POH    plan-6         H44   0.020
+POH    plan-6         H54   0.020
+POH    plan-6         H64   0.020
+POH    plan-6         NXW   0.020
+POH    plan-7         C1B   0.020
+POH    plan-7         C4A   0.020
+POH    plan-7         C71   0.020
+POH    plan-7         CHB   0.020
+POH    plan-8         C1B   0.020
+POH    plan-8         C2B   0.020
+POH    plan-8         CHB   0.020
+POH    plan-8          NB   0.020
+POH    plan-9         C1B   0.020
+POH    plan-9         C2B   0.020
+POH    plan-9         C3B   0.020
+POH    plan-9         H12   0.020
+POH   plan-10         C2B   0.020
+POH   plan-10         C3B   0.020
+POH   plan-10         C4B   0.020
+POH   plan-10         H22   0.020
+POH   plan-11         C3B   0.020
+POH   plan-11         C4B   0.020
+POH   plan-11         CHC   0.020
+POH   plan-11          NB   0.020
+POH   plan-12         C1C   0.020
+POH   plan-12         C4B   0.020
+POH   plan-12         C72   0.020
+POH   plan-12         CHC   0.020
+POH   plan-13         C1D   0.020
+POH   plan-13         C4C   0.020
+POH   plan-13         C73   0.020
+POH   plan-13         CHD   0.020
+POH   plan-14         C1D   0.020
+POH   plan-14         C2D   0.020
+POH   plan-14         CHD   0.020
+POH   plan-14          ND   0.020
+POH   plan-15         C1D   0.020
+POH   plan-15         C2D   0.020
+POH   plan-15         C3D   0.020
+POH   plan-15         H14   0.020
+POH   plan-16         C2D   0.020
+POH   plan-16         C3D   0.020
+POH   plan-16         C4D   0.020
+POH   plan-16         H24   0.020
+POH   plan-17         C3D   0.020
+POH   plan-17         C4D   0.020
+POH   plan-17         CHA   0.020
+POH   plan-17          ND   0.020
+POH   plan-18         C1A   0.020
+POH   plan-18         C4D   0.020
+POH   plan-18         C74   0.020
+POH   plan-18         CHA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+POH           SMILES              ACDLabs 12.01                                                                                                                                                                                     n5c6c(c1nc(cc1)c(c2cc[n+](cc2)C)c3nc(C=C3)c(c4cc[n+](cc4)C)c8ccc(c(c5C=C6)c7cc[n+](cc7)C)n8)c9cc[n+](cc9)C
+POH            InChI                InChI  1.03 InChI=1S/C44H37N8/c1-49-21-13-29(14-22-49)41-33-5-7-35(45-33)42(30-15-23-50(2)24-16-30)37-9-11-39(47-37)44(32-19-27-52(4)28-20-32)40-12-10-38(48-40)43(36-8-6-34(41)46-36)31-17-25-51(3)26-18-31/h5-28H,1-4H3,(H,45,46,47,48)/q+3/p+1/b41-33-,41-34-,42-35-,42-37-,43-36-,43-38-,44-39-,44-40-
+POH         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                    ABCGFHPGHXSVKI-LWQDQPMZSA-O
+POH SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                                   C[n+]1ccc(cc1)c2c3[nH]c(cc3)c(c4cc[n+](C)cc4)c5ccc(n5)c(c6[nH]c(cc6)c(c7cc[n+](C)cc7)c8ccc2n8)c9cc[n+](C)cc9
+POH           SMILES               CACTVS 3.370                                                                                                                                                                                   C[n+]1ccc(cc1)c2c3[nH]c(cc3)c(c4cc[n+](C)cc4)c5ccc(n5)c(c6[nH]c(cc6)c(c7cc[n+](C)cc7)c8ccc2n8)c9cc[n+](C)cc9
+POH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                                                                 C[n+]1ccc(cc1)/c/2c\3/nc(/c(c/4\[nH]/c(c(\c5n/c(c(\c6[nH]c2cc6)/c7cc[n+](cc7)C)/C=C5)/c8cc[n+](cc8)C)/cc4)/c9cc[n+](cc9)C)C=C3
+POH           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                                                                                 C[n+]1ccc(cc1)c2c3ccc([nH]3)c(c4nc(c(c5ccc([nH]5)c(c6nc2C=C6)c7cc[n+](cc7)C)c8cc[n+](cc8)C)C=C4)c9cc[n+](cc9)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+POH acedrg               243         "dictionary generator"                  
+POH acedrg_database      11          "data source"                           
+POH rdkit                2017.03.2   "Chemoinformatics tool"
+POH refmac5              5.8.0238    "optimization tool"                     

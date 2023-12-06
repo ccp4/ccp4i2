@@ -1,0 +1,321 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BAK     BAK      "BIS(5-AMIDINO-2-BENZIMIDAZOLYL)METHANE KETONE"     NON-POLYMER     42     26     .     
+#
+data_comp_BAK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BAK     C1      C       CR6     0       45.323      19.650      52.841      
+BAK     C2      C       CR16    0       45.289      19.254      51.492      
+BAK     C3      C       CR16    0       45.127      20.166      50.476      
+BAK     C4      C       CR56    0       44.995      21.515      50.813      
+BAK     C5      C       CR56    0       45.029      21.912      52.154      
+BAK     C6      C       CR16    0       45.191      20.992      53.177      
+BAK     C7      C       C       0       45.500      18.626      53.903      
+BAK     C8      C       CR5     0       44.754      23.660      50.831      
+BAK     C9      C       C       0       44.573      25.056      50.387      
+BAK     N1      N       NH2     1       46.498      18.726      54.748      
+BAK     N2      N       NH2     0       44.656      17.618      53.991      
+BAK     N3      N       NRD5    0       44.824      22.626      50.009      
+BAK     N4      N       NR5     0       44.874      23.275      52.135      
+BAK     "C1'"   C       CR6     0       43.517      27.384      44.976      
+BAK     "C2'"   C       CR16    0       43.651      26.038      44.592      
+BAK     "C3'"   C       CR16    0       43.912      25.049      45.510      
+BAK     "C4'"   C       CR56    0       44.044      25.410      46.852      
+BAK     "C5'"   C       CR56    0       43.911      26.748      47.237      
+BAK     "C6'"   C       CR16    0       43.648      27.745      46.312      
+BAK     "C7'"   C       C       0       43.235      28.418      43.946      
+BAK     "C8'"   C       CR5     0       44.325      25.470      48.991      
+BAK     "N1'"   N       NH2     1       44.036      29.448      43.815      
+BAK     "N2'"   N       NH2     0       42.182      28.295      43.163      
+BAK     "N3'"   N       NRD5    0       44.302      24.634      47.966      
+BAK     "N4'"   N       NR5     0       44.094      26.756      48.597      
+BAK     O9      O       O       0       44.635      25.939      51.241      
+BAK     H2      H       H       0       45.378      18.342      51.273      
+BAK     H3      H       H       0       45.106      19.891      49.577      
+BAK     H6      H       H       0       45.213      21.262      54.073      
+BAK     HH11    H       H       0       47.064      19.398      54.689      
+BAK     HH12    H       H       0       46.611      18.124      55.379      
+BAK     HH21    H       H       0       43.978      17.550      53.421      
+BAK     HH22    H       H       0       44.759      17.000      54.618      
+BAK     HN4     H       H       0       44.856      23.802      52.837      
+BAK     "H2'"   H       H       0       43.560      25.803      43.684      
+BAK     "H3'"   H       H       0       44.000      24.152      45.243      
+BAK     "H6'"   H       H       0       43.560      28.639      46.574      
+BAK     "H1'1"  H       H       0       44.741      29.531      44.335      
+BAK     "H1'2"  H       H       0       43.876      30.065      43.209      
+BAK     "H2'1"  H       H       0       41.636      27.600      43.252      
+BAK     "H2'2"  H       H       0       42.012      28.904      42.541      
+BAK     "HN4'"  H       H       0       44.067      27.463      49.117      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BAK          C1          C2      DOUBLE       y     1.400  0.0130     1.400  0.0130
+BAK          C1          C6      SINGLE       y     1.383  0.0129     1.383  0.0129
+BAK          C1          C7      SINGLE       n     1.485  0.0110     1.485  0.0110
+BAK          C2          C3      SINGLE       y     1.370  0.0116     1.370  0.0116
+BAK          C3          C4      DOUBLE       y     1.393  0.0100     1.393  0.0100
+BAK          C4          C5      SINGLE       y     1.397  0.0100     1.397  0.0100
+BAK          C4          N3      SINGLE       y     1.384  0.0100     1.384  0.0100
+BAK          C5          C6      DOUBLE       y     1.382  0.0100     1.382  0.0100
+BAK          C5          N4      SINGLE       y     1.371  0.0100     1.371  0.0100
+BAK          C7          N1      DOUBLE       n     1.309  0.0100     1.309  0.0100
+BAK          C7          N2      SINGLE       n     1.313  0.0150     1.313  0.0150
+BAK          C8          C9      SINGLE       n     1.473  0.0100     1.473  0.0100
+BAK          C8          N3      DOUBLE       y     1.322  0.0102     1.322  0.0102
+BAK          C8          N4      SINGLE       y     1.362  0.0112     1.362  0.0112
+BAK          C9       "C8'"      SINGLE       n     1.473  0.0100     1.473  0.0100
+BAK          C9          O9      DOUBLE       n     1.228  0.0170     1.228  0.0170
+BAK       "C1'"       "C2'"      DOUBLE       y     1.400  0.0130     1.400  0.0130
+BAK       "C1'"       "C6'"      SINGLE       y     1.383  0.0129     1.383  0.0129
+BAK       "C1'"       "C7'"      SINGLE       n     1.485  0.0110     1.485  0.0110
+BAK       "C2'"       "C3'"      SINGLE       y     1.370  0.0116     1.370  0.0116
+BAK       "C3'"       "C4'"      DOUBLE       y     1.393  0.0100     1.393  0.0100
+BAK       "C4'"       "C5'"      SINGLE       y     1.397  0.0100     1.397  0.0100
+BAK       "C4'"       "N3'"      SINGLE       y     1.384  0.0100     1.384  0.0100
+BAK       "C5'"       "C6'"      DOUBLE       y     1.382  0.0100     1.382  0.0100
+BAK       "C5'"       "N4'"      SINGLE       y     1.371  0.0100     1.371  0.0100
+BAK       "C7'"       "N1'"      DOUBLE       n     1.309  0.0100     1.309  0.0100
+BAK       "C7'"       "N2'"      SINGLE       n     1.313  0.0150     1.313  0.0150
+BAK       "C8'"       "N3'"      DOUBLE       y     1.322  0.0102     1.322  0.0102
+BAK       "C8'"       "N4'"      SINGLE       y     1.362  0.0112     1.362  0.0112
+BAK          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0147
+BAK          C3          H3      SINGLE       n     1.082  0.0130     0.940  0.0191
+BAK          C6          H6      SINGLE       n     1.082  0.0130     0.935  0.0104
+BAK          N1        HH11      SINGLE       n     1.016  0.0100     0.879  0.0200
+BAK          N1        HH12      SINGLE       n     1.016  0.0100     0.879  0.0200
+BAK          N2        HH21      SINGLE       n     1.016  0.0100     0.887  0.0200
+BAK          N2        HH22      SINGLE       n     1.016  0.0100     0.887  0.0200
+BAK          N4         HN4      SINGLE       n     1.016  0.0100     0.878  0.0200
+BAK       "C2'"       "H2'"      SINGLE       n     1.082  0.0130     0.942  0.0147
+BAK       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.940  0.0191
+BAK       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.935  0.0104
+BAK       "N1'"      "H1'1"      SINGLE       n     1.016  0.0100     0.879  0.0200
+BAK       "N1'"      "H1'2"      SINGLE       n     1.016  0.0100     0.879  0.0200
+BAK       "N2'"      "H2'1"      SINGLE       n     1.016  0.0100     0.887  0.0200
+BAK       "N2'"      "H2'2"      SINGLE       n     1.016  0.0100     0.887  0.0200
+BAK       "N4'"      "HN4'"      SINGLE       n     1.016  0.0100     0.878  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BAK          C2          C1          C6     120.182    1.50
+BAK          C2          C1          C7     119.683    1.50
+BAK          C6          C1          C7     120.135    1.50
+BAK          C1          C2          C3     121.641    1.50
+BAK          C1          C2          H2     119.538    1.50
+BAK          C3          C2          H2     118.821    1.50
+BAK          C2          C3          C4     118.123    1.50
+BAK          C2          C3          H3     121.087    1.50
+BAK          C4          C3          H3     120.790    1.50
+BAK          C3          C4          C5     120.118    1.50
+BAK          C3          C4          N3     130.237    1.50
+BAK          C5          C4          N3     109.645    1.50
+BAK          C4          C5          C6     121.802    1.50
+BAK          C4          C5          N4     105.366    1.50
+BAK          C6          C5          N4     132.833    1.50
+BAK          C1          C6          C5     118.137    1.50
+BAK          C1          C6          H6     120.565    1.50
+BAK          C5          C6          H6     121.295    1.50
+BAK          C1          C7          N1     120.030    1.50
+BAK          C1          C7          N2     120.030    1.50
+BAK          N1          C7          N2     119.939    1.50
+BAK          C9          C8          N3     123.483    2.60
+BAK          C9          C8          N4     124.584    2.91
+BAK          N3          C8          N4     111.933    1.50
+BAK          C8          C9       "C8'"     123.044    3.00
+BAK          C8          C9          O9     118.478    1.72
+BAK       "C8'"          C9          O9     118.478    1.72
+BAK          C7          N1        HH11     120.106    1.76
+BAK          C7          N1        HH12     120.102    1.76
+BAK        HH11          N1        HH12     119.783    2.70
+BAK          C7          N2        HH21     120.106    1.76
+BAK          C7          N2        HH22     120.102    1.76
+BAK        HH21          N2        HH22     119.783    2.70
+BAK          C4          N3          C8     105.759    1.50
+BAK          C5          N4          C8     107.298    1.50
+BAK          C5          N4         HN4     126.307    1.62
+BAK          C8          N4         HN4     126.395    1.50
+BAK       "C2'"       "C1'"       "C6'"     120.182    1.50
+BAK       "C2'"       "C1'"       "C7'"     119.683    1.50
+BAK       "C6'"       "C1'"       "C7'"     120.135    1.50
+BAK       "C1'"       "C2'"       "C3'"     121.641    1.50
+BAK       "C1'"       "C2'"       "H2'"     119.538    1.50
+BAK       "C3'"       "C2'"       "H2'"     118.821    1.50
+BAK       "C2'"       "C3'"       "C4'"     118.123    1.50
+BAK       "C2'"       "C3'"       "H3'"     121.087    1.50
+BAK       "C4'"       "C3'"       "H3'"     120.790    1.50
+BAK       "C3'"       "C4'"       "C5'"     120.118    1.50
+BAK       "C3'"       "C4'"       "N3'"     130.237    1.50
+BAK       "C5'"       "C4'"       "N3'"     109.645    1.50
+BAK       "C4'"       "C5'"       "C6'"     121.802    1.50
+BAK       "C4'"       "C5'"       "N4'"     105.366    1.50
+BAK       "C6'"       "C5'"       "N4'"     132.833    1.50
+BAK       "C1'"       "C6'"       "C5'"     118.137    1.50
+BAK       "C1'"       "C6'"       "H6'"     120.565    1.50
+BAK       "C5'"       "C6'"       "H6'"     121.295    1.50
+BAK       "C1'"       "C7'"       "N1'"     120.030    1.50
+BAK       "C1'"       "C7'"       "N2'"     120.030    1.50
+BAK       "N1'"       "C7'"       "N2'"     119.939    1.50
+BAK          C9       "C8'"       "N3'"     123.483    2.60
+BAK          C9       "C8'"       "N4'"     124.584    2.91
+BAK       "N3'"       "C8'"       "N4'"     111.933    1.50
+BAK       "C7'"       "N1'"      "H1'1"     120.106    1.76
+BAK       "C7'"       "N1'"      "H1'2"     120.102    1.76
+BAK      "H1'1"       "N1'"      "H1'2"     119.783    2.70
+BAK       "C7'"       "N2'"      "H2'1"     120.106    1.76
+BAK       "C7'"       "N2'"      "H2'2"     120.102    1.76
+BAK      "H2'1"       "N2'"      "H2'2"     119.783    2.70
+BAK       "C4'"       "N3'"       "C8'"     105.759    1.50
+BAK       "C5'"       "N4'"       "C8'"     107.298    1.50
+BAK       "C5'"       "N4'"      "HN4'"     126.307    1.62
+BAK       "C8'"       "N4'"      "HN4'"     126.395    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BAK              const_23          C7          C1          C2          C3     180.000    10.0     2
+BAK              const_63          C7          C1          C6          C5     180.000    10.0     2
+BAK             sp2_sp2_1          C2          C1          C7          N1     180.000     5.0     2
+BAK       const_sp2_sp2_3       "C7'"       "C1'"       "C2'"       "C3'"     180.000     5.0     2
+BAK              const_69       "C7'"       "C1'"       "C6'"       "C5'"     180.000    10.0     2
+BAK            sp2_sp2_21       "C2'"       "C1'"       "C7'"       "N1'"     180.000     5.0     2
+BAK       const_sp2_sp2_5       "C1'"       "C2'"       "C3'"       "C4'"       0.000     5.0     2
+BAK       const_sp2_sp2_9       "C2'"       "C3'"       "C4'"       "C5'"       0.000     5.0     2
+BAK              const_13       "C3'"       "C4'"       "C5'"       "C6'"       0.000    10.0     2
+BAK              const_72       "C3'"       "C4'"       "N3'"       "C8'"     180.000    10.0     2
+BAK              const_17       "C4'"       "C5'"       "C6'"       "C1'"       0.000    10.0     2
+BAK              const_41       "C4'"       "C5'"       "N4'"       "C8'"       0.000    10.0     2
+BAK            sp2_sp2_27       "N2'"       "C7'"       "N1'"      "H1'1"       0.000     5.0     2
+BAK            sp2_sp2_31       "N1'"       "C7'"       "N2'"      "H2'1"       0.000     5.0     2
+BAK              const_25          C1          C2          C3          C4       0.000    10.0     2
+BAK              const_50          C9       "C8'"       "N3'"       "C4'"     180.000    10.0     2
+BAK              const_47          C9       "C8'"       "N4'"       "C5'"     180.000    10.0     2
+BAK              const_29          C2          C3          C4          C5       0.000    10.0     2
+BAK              const_66          C3          C4          N3          C8     180.000    10.0     2
+BAK              const_33          C3          C4          C5          C6       0.000    10.0     2
+BAK              const_51          C4          C5          N4          C8       0.000    10.0     2
+BAK              const_37          C4          C5          C6          C1       0.000    10.0     2
+BAK            sp2_sp2_11          N1          C7          N2        HH21       0.000     5.0     2
+BAK             sp2_sp2_7          N2          C7          N1        HH11       0.000     5.0     2
+BAK              const_60          C9          C8          N3          C4     180.000    10.0     2
+BAK              const_57          C9          C8          N4          C5     180.000    10.0     2
+BAK            sp2_sp2_16          N3          C8          C9          O9     180.000     5.0     2
+BAK            sp2_sp2_20       "N3'"       "C8'"          C9          O9     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BAK    plan-1          C1   0.020
+BAK    plan-1          C2   0.020
+BAK    plan-1          C3   0.020
+BAK    plan-1          C4   0.020
+BAK    plan-1          C5   0.020
+BAK    plan-1          C6   0.020
+BAK    plan-1          C7   0.020
+BAK    plan-1          C8   0.020
+BAK    plan-1          C9   0.020
+BAK    plan-1          H2   0.020
+BAK    plan-1          H3   0.020
+BAK    plan-1          H6   0.020
+BAK    plan-1         HN4   0.020
+BAK    plan-1          N3   0.020
+BAK    plan-1          N4   0.020
+BAK    plan-2       "C1'"   0.020
+BAK    plan-2       "C2'"   0.020
+BAK    plan-2       "C3'"   0.020
+BAK    plan-2       "C4'"   0.020
+BAK    plan-2       "C5'"   0.020
+BAK    plan-2       "C6'"   0.020
+BAK    plan-2       "C7'"   0.020
+BAK    plan-2       "C8'"   0.020
+BAK    plan-2          C9   0.020
+BAK    plan-2       "H2'"   0.020
+BAK    plan-2       "H3'"   0.020
+BAK    plan-2       "H6'"   0.020
+BAK    plan-2      "HN4'"   0.020
+BAK    plan-2       "N3'"   0.020
+BAK    plan-2       "N4'"   0.020
+BAK    plan-3          C1   0.020
+BAK    plan-3          C7   0.020
+BAK    plan-3          N1   0.020
+BAK    plan-3          N2   0.020
+BAK    plan-4          C8   0.020
+BAK    plan-4       "C8'"   0.020
+BAK    plan-4          C9   0.020
+BAK    plan-4          O9   0.020
+BAK    plan-5          C7   0.020
+BAK    plan-5        HH11   0.020
+BAK    plan-5        HH12   0.020
+BAK    plan-5          N1   0.020
+BAK    plan-6          C7   0.020
+BAK    plan-6        HH21   0.020
+BAK    plan-6        HH22   0.020
+BAK    plan-6          N2   0.020
+BAK    plan-7       "C1'"   0.020
+BAK    plan-7       "C7'"   0.020
+BAK    plan-7       "N1'"   0.020
+BAK    plan-7       "N2'"   0.020
+BAK    plan-8       "C7'"   0.020
+BAK    plan-8      "H1'1"   0.020
+BAK    plan-8      "H1'2"   0.020
+BAK    plan-8       "N1'"   0.020
+BAK    plan-9       "C7'"   0.020
+BAK    plan-9      "H2'1"   0.020
+BAK    plan-9      "H2'2"   0.020
+BAK    plan-9       "N2'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BAK           SMILES              ACDLabs 10.04                                                                                         O=C(c2nc1ccc(cc1n2)\C(=[NH2+])N)c3nc4ccc(C(=[NH2+])\N)cc4n3
+BAK SMILES_CANONICAL               CACTVS 3.341                                                                                     NC(=[NH2+])c1ccc2nc([nH]c2c1)C(=O)c3[nH]c4cc(ccc4n3)C(N)=[NH2+]
+BAK           SMILES               CACTVS 3.341                                                                                     NC(=[NH2+])c1ccc2nc([nH]c2c1)C(=O)c3[nH]c4cc(ccc4n3)C(N)=[NH2+]
+BAK SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                   c1cc2c(cc1C(=[NH2+])N)[nH]c(n2)C(=O)c3[nH]c4cc(ccc4n3)C(=[NH2+])N
+BAK           SMILES "OpenEye OEToolkits" 1.5.0                                                                                   c1cc2c(cc1C(=[NH2+])N)[nH]c(n2)C(=O)c3[nH]c4cc(ccc4n3)C(=[NH2+])N
+BAK            InChI                InChI  1.03 InChI=1S/C17H14N8O/c18-14(19)7-1-3-9-11(5-7)24-16(22-9)13(26)17-23-10-4-2-8(15(20)21)6-12(10)25-17/h1-6H,(H3,18,19)(H3,20,21)(H,22,24)(H,23,25)/p+2
+BAK         InChIKey                InChI  1.03                                                                                                                         VVVXDHROXQUONB-UHFFFAOYSA-P
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BAK acedrg               243         "dictionary generator"                  
+BAK acedrg_database      11          "data source"                           
+BAK rdkit                2017.03.2   "Chemoinformatics tool"
+BAK refmac5              5.8.0238    "optimization tool"                     

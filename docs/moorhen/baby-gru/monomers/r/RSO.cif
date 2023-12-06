@@ -1,0 +1,173 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RSO     RSO      "R-STYRENE OXIDE"     NON-POLYMER     17     9     .     
+#
+data_comp_RSO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RSO     C1      C       CR16    0       67.291      31.436      14.273      
+RSO     C2      C       CR16    0       67.749      31.749      15.536      
+RSO     C3      C       CR16    0       69.083      32.081      15.735      
+RSO     C4      C       CR6     0       69.968      32.100      14.663      
+RSO     C5      C       CR16    0       69.498      31.783      13.394      
+RSO     C6      C       CR16    0       68.162      31.452      13.204      
+RSO     C12     C       CH1     0       71.395      32.454      14.871      
+RSO     C13     C       CH2     0       72.464      31.486      14.611      
+RSO     O14     O       O2      0       72.086      31.815      15.962      
+RSO     HC1     H       H       0       66.384      31.211      14.141      
+RSO     HC2     H       H       0       67.154      31.738      16.269      
+RSO     HC3     H       H       0       69.392      32.294      16.600      
+RSO     HC5     H       H       0       70.090      31.793      12.659      
+RSO     HC6     H       H       0       67.851      31.238      12.339      
+RSO     H12     H       H       0       71.614      33.400      14.743      
+RSO     H131    H       H       0       72.203      30.612      14.267      
+RSO     H132    H       H       0       73.312      31.834      14.280      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RSO          C1          C2      DOUBLE       y     1.374  0.0127     1.374  0.0127
+RSO          C1          C6      SINGLE       y     1.374  0.0127     1.374  0.0127
+RSO          C2          C3      SINGLE       y     1.384  0.0126     1.384  0.0126
+RSO          C3          C4      DOUBLE       y     1.387  0.0100     1.387  0.0100
+RSO          C4          C5      SINGLE       y     1.387  0.0100     1.387  0.0100
+RSO          C4         C12      SINGLE       n     1.484  0.0100     1.484  0.0100
+RSO          C5          C6      DOUBLE       y     1.384  0.0126     1.384  0.0126
+RSO         C12         C13      SINGLE       n     1.465  0.0173     1.465  0.0173
+RSO         C12         O14      SINGLE       n     1.440  0.0168     1.440  0.0168
+RSO         C13         O14      SINGLE       n     1.441  0.0100     1.441  0.0100
+RSO          C1         HC1      SINGLE       n     1.082  0.0130     0.944  0.0161
+RSO          C2         HC2      SINGLE       n     1.082  0.0130     0.944  0.0175
+RSO          C3         HC3      SINGLE       n     1.082  0.0130     0.943  0.0200
+RSO          C5         HC5      SINGLE       n     1.082  0.0130     0.943  0.0200
+RSO          C6         HC6      SINGLE       n     1.082  0.0130     0.944  0.0175
+RSO         C12         H12      SINGLE       n     1.089  0.0100     0.980  0.0195
+RSO         C13        H131      SINGLE       n     1.089  0.0100     0.975  0.0131
+RSO         C13        H132      SINGLE       n     1.089  0.0100     0.975  0.0131
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RSO          C2          C1          C6     119.874    1.50
+RSO          C2          C1         HC1     120.063    1.50
+RSO          C6          C1         HC1     120.063    1.50
+RSO          C1          C2          C3     120.289    1.50
+RSO          C1          C2         HC2     119.942    1.50
+RSO          C3          C2         HC2     119.769    1.50
+RSO          C2          C3          C4     120.253    1.50
+RSO          C2          C3         HC3     119.992    1.50
+RSO          C4          C3         HC3     119.755    1.50
+RSO          C3          C4          C5     119.041    1.50
+RSO          C3          C4         C12     120.480    1.92
+RSO          C5          C4         C12     120.480    1.92
+RSO          C4          C5          C6     120.253    1.50
+RSO          C4          C5         HC5     119.755    1.50
+RSO          C6          C5         HC5     119.992    1.50
+RSO          C1          C6          C5     120.289    1.50
+RSO          C1          C6         HC6     119.942    1.50
+RSO          C5          C6         HC6     119.769    1.50
+RSO          C4         C12         C13     121.179    2.93
+RSO          C4         C12         O14     117.449    1.50
+RSO          C4         C12         H12     115.230    1.50
+RSO         C13         C12         O14      59.407    1.50
+RSO         C13         C12         H12     116.814    1.94
+RSO         O14         C12         H12     114.803    1.50
+RSO         C12         C13         O14      59.407    1.50
+RSO         C12         C13        H131     116.814    1.94
+RSO         C12         C13        H132     116.814    1.94
+RSO         O14         C13        H131     116.339    3.00
+RSO         O14         C13        H132     116.339    3.00
+RSO        H131         C13        H132     114.394    2.24
+RSO         C12         O14         C13      61.189    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RSO       const_sp2_sp2_1          C6          C1          C2          C3       0.000     5.0     2
+RSO              const_23         HC1          C1          C6          C5     180.000    10.0     2
+RSO       const_sp2_sp2_7         HC2          C2          C3          C4     180.000     5.0     2
+RSO              const_11         HC3          C3          C4          C5     180.000    10.0     2
+RSO              const_15         C12          C4          C5          C6     180.000    10.0     2
+RSO             sp2_sp3_3          C3          C4         C12         H12      30.000    10.0     6
+RSO              const_19         HC5          C5          C6          C1     180.000    10.0     2
+RSO             sp3_sp3_1          C4         C12         C13         O14      60.000    10.0     3
+RSO            sp3_sp3_13          C5          C4         C12         H12     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RSO    chir_1    C12    O14    C13    C4    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RSO    plan-1          C1   0.020
+RSO    plan-1         C12   0.020
+RSO    plan-1          C2   0.020
+RSO    plan-1          C3   0.020
+RSO    plan-1          C4   0.020
+RSO    plan-1          C5   0.020
+RSO    plan-1          C6   0.020
+RSO    plan-1         HC1   0.020
+RSO    plan-1         HC2   0.020
+RSO    plan-1         HC3   0.020
+RSO    plan-1         HC5   0.020
+RSO    plan-1         HC6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RSO           SMILES              ACDLabs 10.04                                             O2C(c1ccccc1)C2
+RSO SMILES_CANONICAL               CACTVS 3.341                                          C1O[C@@H]1c2ccccc2
+RSO           SMILES               CACTVS 3.341                                            C1O[CH]1c2ccccc2
+RSO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                        c1ccc(cc1)[C@@H]2CO2
+RSO           SMILES "OpenEye OEToolkits" 1.5.0                                             c1ccc(cc1)C2CO2
+RSO            InChI                InChI  1.03 InChI=1S/C8H8O/c1-2-4-7(5-3-1)8-6-9-8/h1-5,8H,6H2/t8-/m0/s1
+RSO         InChIKey                InChI  1.03                                 AWMVMTVKBNGEAK-QMMMGPOBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RSO acedrg               243         "dictionary generator"                  
+RSO acedrg_database      11          "data source"                           
+RSO rdkit                2017.03.2   "Chemoinformatics tool"
+RSO refmac5              5.8.0238    "optimization tool"                     

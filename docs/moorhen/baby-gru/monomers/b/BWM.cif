@@ -1,0 +1,251 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BWM     BWM      N-{[2-(3,5-dimethyl-4H-1,2,4-triazol-4-yl)phenyl]methyl}acetamide     NON-POLYMER     34     18     .     
+#
+data_comp_BWM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BWM     C4      C       CR16    0       16.503      60.205      6.463       
+BWM     C5      C       CR16    0       16.674      60.026      5.103       
+BWM     C6      C       CR16    0       16.086      58.951      4.470       
+BWM     N1      N       NT      0       14.351      57.279      7.304       
+BWM     C7      C       CR16    0       15.322      58.048      5.194       
+BWM     C8      C       CR6     0       15.143      58.224      6.568       
+BWM     N2      N       NRD5    0       13.758      55.434      8.371       
+BWM     C9      C       CR5     0       14.741      56.017      7.735       
+BWM     C10     C       CH3     0       16.094      55.457      7.487       
+BWM     C11     C       CR5     0       13.032      57.401      7.735       
+BWM     C12     C       CH3     0       12.199      58.605      7.491       
+BWM     N3      N       NRD5    0       12.668      56.317      8.371       
+BWM     O       O       O       0       14.542      58.109      10.945      
+BWM     C1      C       C       0       15.678      57.869      10.538      
+BWM     C       C       CH3     0       16.525      56.827      11.198      
+BWM     N       N       NH1     0       16.239      58.497      9.498       
+BWM     C2      C       CH2     0       15.569      59.533      8.706       
+BWM     C3      C       CR6     0       15.738      59.315      7.222       
+BWM     H1      H       H       0       16.908      60.943      6.888       
+BWM     H2      H       H       0       17.194      60.639      4.608       
+BWM     H3      H       H       0       16.202      58.828      3.542       
+BWM     H4      H       H       0       14.922      57.318      4.763       
+BWM     H5      H       H       0       16.113      54.524      7.755       
+BWM     H6      H       H       0       16.750      55.955      8.002       
+BWM     H7      H       H       0       16.305      55.526      6.542       
+BWM     H8      H       H       0       11.260      58.369      7.568       
+BWM     H9      H       H       0       12.370      58.948      6.599       
+BWM     H10     H       H       0       12.411      59.287      8.148       
+BWM     H11     H       H       0       15.991      56.329      11.838      
+BWM     H12     H       H       0       17.265      57.253      11.660      
+BWM     H13     H       H       0       16.874      56.218      10.527      
+BWM     H14     H       H       0       17.056      58.280      9.277       
+BWM     H15     H       H       0       15.942      60.407      8.949       
+BWM     H16     H       H       0       14.614      59.548      8.916       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BWM          C6          C7      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BWM          C5          C6      SINGLE       y     1.376  0.0124     1.376  0.0124
+BWM          C7          C8      SINGLE       y     1.393  0.0100     1.393  0.0100
+BWM          C4          C5      DOUBLE       y     1.379  0.0111     1.379  0.0111
+BWM          N1          C8      SINGLE       n     1.434  0.0100     1.434  0.0100
+BWM          C8          C3      DOUBLE       y     1.397  0.0100     1.397  0.0100
+BWM          C4          C3      SINGLE       y     1.392  0.0100     1.392  0.0100
+BWM          N1          C9      SINGLE       y     1.396  0.0161     1.396  0.0161
+BWM          N1         C11      SINGLE       y     1.396  0.0161     1.396  0.0161
+BWM          C9         C10      SINGLE       n     1.484  0.0100     1.484  0.0100
+BWM          C2          C3      SINGLE       n     1.508  0.0100     1.508  0.0100
+BWM         C11         C12      SINGLE       n     1.484  0.0100     1.484  0.0100
+BWM          N2          C9      DOUBLE       y     1.306  0.0141     1.306  0.0141
+BWM         C11          N3      DOUBLE       y     1.306  0.0141     1.306  0.0141
+BWM          N2          N3      SINGLE       y     1.399  0.0100     1.399  0.0100
+BWM           N          C2      SINGLE       n     1.455  0.0186     1.455  0.0186
+BWM          C1           N      SINGLE       n     1.333  0.0100     1.333  0.0100
+BWM           O          C1      DOUBLE       n     1.229  0.0102     1.229  0.0102
+BWM          C1           C      SINGLE       n     1.495  0.0100     1.495  0.0100
+BWM          C4          H1      SINGLE       n     1.082  0.0130     0.943  0.0173
+BWM          C5          H2      SINGLE       n     1.082  0.0130     0.944  0.0175
+BWM          C6          H3      SINGLE       n     1.082  0.0130     0.943  0.0172
+BWM          C7          H4      SINGLE       n     1.082  0.0130     0.937  0.0100
+BWM         C10          H5      SINGLE       n     1.089  0.0100     0.971  0.0200
+BWM         C10          H6      SINGLE       n     1.089  0.0100     0.971  0.0200
+BWM         C10          H7      SINGLE       n     1.089  0.0100     0.971  0.0200
+BWM         C12          H8      SINGLE       n     1.089  0.0100     0.971  0.0200
+BWM         C12          H9      SINGLE       n     1.089  0.0100     0.971  0.0200
+BWM         C12         H10      SINGLE       n     1.089  0.0100     0.971  0.0200
+BWM           C         H11      SINGLE       n     1.089  0.0100     0.971  0.0140
+BWM           C         H12      SINGLE       n     1.089  0.0100     0.971  0.0140
+BWM           C         H13      SINGLE       n     1.089  0.0100     0.971  0.0140
+BWM           N         H14      SINGLE       n     1.016  0.0100     0.873  0.0200
+BWM          C2         H15      SINGLE       n     1.089  0.0100     0.980  0.0169
+BWM          C2         H16      SINGLE       n     1.089  0.0100     0.980  0.0169
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BWM          C5          C4          C3     121.050    1.50
+BWM          C5          C4          H1     119.652    1.50
+BWM          C3          C4          H1     119.299    1.50
+BWM          C6          C5          C4     120.292    1.50
+BWM          C6          C5          H2     119.899    1.50
+BWM          C4          C5          H2     119.809    1.50
+BWM          C7          C6          C5     120.661    1.50
+BWM          C7          C6          H3     119.505    1.50
+BWM          C5          C6          H3     119.834    1.50
+BWM          C8          N1          C9     124.897    2.56
+BWM          C8          N1         C11     124.897    2.56
+BWM          C9          N1         C11     108.641    1.96
+BWM          C6          C7          C8     120.084    1.50
+BWM          C6          C7          H4     120.181    1.50
+BWM          C8          C7          H4     119.735    1.50
+BWM          C7          C8          N1     120.167    1.50
+BWM          C7          C8          C3     119.890    1.61
+BWM          N1          C8          C3     119.942    1.50
+BWM          C9          N2          N3     107.540    1.50
+BWM          N1          C9         C10     121.947    1.62
+BWM          N1          C9          N2     111.925    1.94
+BWM         C10          C9          N2     126.128    1.50
+BWM          C9         C10          H5     109.478    1.50
+BWM          C9         C10          H6     109.478    1.50
+BWM          C9         C10          H7     109.478    1.50
+BWM          H5         C10          H6     109.308    2.38
+BWM          H5         C10          H7     109.308    2.38
+BWM          H6         C10          H7     109.308    2.38
+BWM          N1         C11         C12     121.947    1.62
+BWM          N1         C11          N3     111.925    1.94
+BWM         C12         C11          N3     126.128    1.50
+BWM         C11         C12          H8     109.478    1.50
+BWM         C11         C12          H9     109.478    1.50
+BWM         C11         C12         H10     109.478    1.50
+BWM          H8         C12          H9     109.308    2.38
+BWM          H8         C12         H10     109.308    2.38
+BWM          H9         C12         H10     109.308    2.38
+BWM         C11          N3          N2     107.540    1.50
+BWM           N          C1           O     122.594    1.50
+BWM           N          C1           C     115.848    1.50
+BWM           O          C1           C     121.558    1.50
+BWM          C1           C         H11     109.678    1.50
+BWM          C1           C         H12     109.678    1.50
+BWM          C1           C         H13     109.678    1.50
+BWM         H11           C         H12     109.365    1.50
+BWM         H11           C         H13     109.365    1.50
+BWM         H12           C         H13     109.365    1.50
+BWM          C2           N          C1     122.517    1.50
+BWM          C2           N         H14     118.610    1.50
+BWM          C1           N         H14     118.873    1.94
+BWM          C3          C2           N     112.746    1.93
+BWM          C3          C2         H15     109.005    1.50
+BWM          C3          C2         H16     109.005    1.50
+BWM           N          C2         H15     108.921    1.50
+BWM           N          C2         H16     108.921    1.50
+BWM         H15          C2         H16     107.860    1.50
+BWM          C8          C3          C4     118.024    1.50
+BWM          C8          C3          C2     121.470    1.88
+BWM          C4          C3          C2     120.506    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BWM              const_10          C3          C4          C5          C6       0.000    10.0     2
+BWM              const_32          C2          C3          C4          C5     180.000    10.0     2
+BWM            sp2_sp3_25           N          C1           C         H11       0.000    10.0     6
+BWM             sp2_sp2_7           O          C1           N          C2       0.000     5.0     2
+BWM            sp2_sp3_20          C1           N          C2          C3     120.000    10.0     6
+BWM             sp2_sp3_8          C8          C3          C2           N     -90.000    10.0     6
+BWM              const_14          C4          C5          C6          C7       0.000    10.0     2
+BWM              const_18          C5          C6          C7          C8       0.000    10.0     2
+BWM             sp2_sp2_1          C7          C8          N1          C9     180.000     5.0     2
+BWM       const_sp2_sp2_4         C10          C9          N1          C8       0.000     5.0     2
+BWM              const_37         C12         C11          N1          C8       0.000    10.0     2
+BWM              const_23          C6          C7          C8          N1     180.000    10.0     2
+BWM              const_28          C2          C3          C8          C7     180.000    10.0     2
+BWM       const_sp2_sp2_7          C9          N2          N3         C11       0.000     5.0     2
+BWM       const_sp2_sp2_6         C10          C9          N2          N3     180.000     5.0     2
+BWM             sp2_sp3_1          N1          C9         C10          H5     150.000    10.0     6
+BWM            sp2_sp3_13          N1         C11         C12          H8     150.000    10.0     6
+BWM       const_sp2_sp2_9         C12         C11          N3          N2     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BWM    plan-1          C2   0.020
+BWM    plan-1          C3   0.020
+BWM    plan-1          C4   0.020
+BWM    plan-1          C5   0.020
+BWM    plan-1          C6   0.020
+BWM    plan-1          C7   0.020
+BWM    plan-1          C8   0.020
+BWM    plan-1          H1   0.020
+BWM    plan-1          H2   0.020
+BWM    plan-1          H3   0.020
+BWM    plan-1          H4   0.020
+BWM    plan-1          N1   0.020
+BWM    plan-2         C10   0.020
+BWM    plan-2         C11   0.020
+BWM    plan-2         C12   0.020
+BWM    plan-2          C8   0.020
+BWM    plan-2          C9   0.020
+BWM    plan-2          N1   0.020
+BWM    plan-2          N2   0.020
+BWM    plan-2          N3   0.020
+BWM    plan-3           C   0.020
+BWM    plan-3          C1   0.020
+BWM    plan-3           N   0.020
+BWM    plan-3           O   0.020
+BWM    plan-4          C1   0.020
+BWM    plan-4          C2   0.020
+BWM    plan-4         H14   0.020
+BWM    plan-4           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BWM           SMILES              ACDLabs 12.01                                                                 c2c(c(n1c(nnc1C)C)ccc2)CNC(=O)C
+BWM            InChI                InChI  1.03 InChI=1S/C13H16N4O/c1-9-15-16-10(2)17(9)13-7-5-4-6-12(13)8-14-11(3)18/h4-7H,8H2,1-3H3,(H,14,18)
+BWM         InChIKey                InChI  1.03                                                                     FLTCDBPTYKZRMD-UHFFFAOYSA-N
+BWM SMILES_CANONICAL               CACTVS 3.385                                                                     CC(=O)NCc1ccccc1n2c(C)nnc2C
+BWM           SMILES               CACTVS 3.385                                                                     CC(=O)NCc1ccccc1n2c(C)nnc2C
+BWM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                     Cc1nnc(n1c2ccccc2CNC(=O)C)C
+BWM           SMILES "OpenEye OEToolkits" 2.0.6                                                                     Cc1nnc(n1c2ccccc2CNC(=O)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BWM acedrg               243         "dictionary generator"                  
+BWM acedrg_database      11          "data source"                           
+BWM rdkit                2017.03.2   "Chemoinformatics tool"
+BWM refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,242 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JKJ     JKJ      (1R,3R,4S)-3-(methoxymethyl)-2-(methylsulfonyl)-2-azabicyclo[2.2.2]octan-4-ol     NON-POLYMER     35     16     .     
+#
+data_comp_JKJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JKJ     C01     C       CH3     0       -66.856     21.744      12.359      
+JKJ     O02     O       O2      0       -66.375     21.521      13.671      
+JKJ     C03     C       CH2     0       -65.123     20.844      13.702      
+JKJ     C04     C       CH1     0       -64.715     20.505      15.140      
+JKJ     N05     N       NT      0       -65.263     19.231      15.694      
+JKJ     C06     C       CH1     0       -64.196     18.197      15.871      
+JKJ     C07     C       CH2     0       -63.311     18.664      17.039      
+JKJ     C08     C       CH2     0       -62.818     20.100      16.741      
+JKJ     C09     C       CT      0       -63.165     20.476      15.296      
+JKJ     O10     O       OH1     0       -62.567     21.745      14.988      
+JKJ     C11     C       CH2     0       -62.583     19.395      14.374      
+JKJ     C12     C       CH2     0       -63.341     18.065      14.599      
+JKJ     S13     S       S3      0       -66.828     18.752      15.497      
+JKJ     O14     O       O       0       -67.028     17.609      16.329      
+JKJ     O15     O       O       0       -67.083     18.611      14.099      
+JKJ     C16     C       CH3     0       -67.863     20.017      16.126      
+JKJ     H013    H       H       0       -67.690     22.240      12.400      
+JKJ     H011    H       H       0       -67.009     20.892      11.920      
+JKJ     H012    H       H       0       -66.202     22.255      11.854      
+JKJ     H031    H       H       0       -64.447     21.416      13.286      
+JKJ     H032    H       H       0       -65.177     20.022      13.175      
+JKJ     H041    H       H       0       -65.074     21.230      15.707      
+JKJ     H061    H       H       0       -64.609     17.322      16.090      
+JKJ     H072    H       H       0       -63.828     18.655      17.882      
+JKJ     H071    H       H       0       -62.537     18.057      17.143      
+JKJ     H082    H       H       0       -61.844     20.152      16.870      
+JKJ     H081    H       H       0       -63.244     20.735      17.359      
+JKJ     H101    H       H       0       -62.921     22.343      15.452      
+JKJ     H112    H       H       0       -61.630     19.270      14.578      
+JKJ     H111    H       H       0       -62.661     19.673      13.436      
+JKJ     H122    H       H       0       -63.919     17.871      13.820      
+JKJ     H121    H       H       0       -62.696     17.323      14.700      
+JKJ     H162    H       H       0       -67.709     20.112      17.079      
+JKJ     H163    H       H       0       -68.791     19.778      15.971      
+JKJ     H161    H       H       0       -67.667     20.853      15.683      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JKJ         C01         O02      SINGLE       n     1.414  0.0137     1.414  0.0137
+JKJ         O02         C03      SINGLE       n     1.422  0.0148     1.422  0.0148
+JKJ         S13         O15      DOUBLE       n     1.428  0.0100     1.428  0.0100
+JKJ         C03         C04      SINGLE       n     1.521  0.0127     1.521  0.0127
+JKJ         C11         C12      SINGLE       n     1.544  0.0101     1.544  0.0101
+JKJ         C06         C12      SINGLE       n     1.535  0.0100     1.535  0.0100
+JKJ         N05         S13      SINGLE       n     1.631  0.0131     1.631  0.0131
+JKJ         S13         O14      DOUBLE       n     1.428  0.0100     1.428  0.0100
+JKJ         S13         C16      SINGLE       n     1.751  0.0100     1.751  0.0100
+JKJ         C09         C11      SINGLE       n     1.531  0.0112     1.531  0.0112
+JKJ         C04         N05      SINGLE       n     1.479  0.0104     1.479  0.0104
+JKJ         N05         C06      SINGLE       n     1.475  0.0155     1.475  0.0155
+JKJ         C04         C09      SINGLE       n     1.536  0.0157     1.536  0.0157
+JKJ         C06         C07      SINGLE       n     1.535  0.0100     1.535  0.0100
+JKJ         C09         O10      SINGLE       n     1.435  0.0100     1.435  0.0100
+JKJ         C08         C09      SINGLE       n     1.531  0.0112     1.531  0.0112
+JKJ         C07         C08      SINGLE       n     1.544  0.0101     1.544  0.0101
+JKJ         C01        H013      SINGLE       n     1.089  0.0100     0.971  0.0146
+JKJ         C01        H011      SINGLE       n     1.089  0.0100     0.971  0.0146
+JKJ         C01        H012      SINGLE       n     1.089  0.0100     0.971  0.0146
+JKJ         C03        H031      SINGLE       n     1.089  0.0100     0.978  0.0107
+JKJ         C03        H032      SINGLE       n     1.089  0.0100     0.978  0.0107
+JKJ         C04        H041      SINGLE       n     1.089  0.0100     0.987  0.0200
+JKJ         C06        H061      SINGLE       n     1.089  0.0100     0.993  0.0100
+JKJ         C07        H072      SINGLE       n     1.089  0.0100     0.989  0.0100
+JKJ         C07        H071      SINGLE       n     1.089  0.0100     0.989  0.0100
+JKJ         C08        H082      SINGLE       n     1.089  0.0100     0.983  0.0200
+JKJ         C08        H081      SINGLE       n     1.089  0.0100     0.983  0.0200
+JKJ         O10        H101      SINGLE       n     0.970  0.0120     0.835  0.0200
+JKJ         C11        H112      SINGLE       n     1.089  0.0100     0.983  0.0200
+JKJ         C11        H111      SINGLE       n     1.089  0.0100     0.983  0.0200
+JKJ         C12        H122      SINGLE       n     1.089  0.0100     0.989  0.0100
+JKJ         C12        H121      SINGLE       n     1.089  0.0100     0.989  0.0100
+JKJ         C16        H162      SINGLE       n     1.089  0.0100     0.970  0.0152
+JKJ         C16        H163      SINGLE       n     1.089  0.0100     0.970  0.0152
+JKJ         C16        H161      SINGLE       n     1.089  0.0100     0.970  0.0152
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JKJ         O02         C01        H013     109.634    1.50
+JKJ         O02         C01        H011     109.634    1.50
+JKJ         O02         C01        H012     109.634    1.50
+JKJ        H013         C01        H011     109.532    1.53
+JKJ        H013         C01        H012     109.532    1.53
+JKJ        H011         C01        H012     109.532    1.53
+JKJ         C01         O02         C03     112.448    1.50
+JKJ         O02         C03         C04     109.736    2.24
+JKJ         O02         C03        H031     109.395    1.50
+JKJ         O02         C03        H032     109.395    1.50
+JKJ         C04         C03        H031     109.490    1.50
+JKJ         C04         C03        H032     109.490    1.50
+JKJ        H031         C03        H032     108.034    1.50
+JKJ         C03         C04         N05     109.183    3.00
+JKJ         C03         C04         C09     112.178    2.43
+JKJ         C03         C04        H041     107.236    1.50
+JKJ         N05         C04         C09     109.950    1.81
+JKJ         N05         C04        H041     107.945    1.91
+JKJ         C09         C04        H041     109.610    1.50
+JKJ         S13         N05         C04     117.829    2.12
+JKJ         S13         N05         C06     117.829    2.12
+JKJ         C04         N05         C06     110.678    3.00
+JKJ         C12         C06         N05     109.001    2.48
+JKJ         C12         C06         C07     109.386    1.50
+JKJ         C12         C06        H061     110.018    1.50
+JKJ         N05         C06         C07     109.001    2.48
+JKJ         N05         C06        H061     108.815    1.50
+JKJ         C07         C06        H061     110.018    1.50
+JKJ         C06         C07         C08     108.350    1.50
+JKJ         C06         C07        H072     110.035    1.50
+JKJ         C06         C07        H071     110.035    1.50
+JKJ         C08         C07        H072     109.832    1.50
+JKJ         C08         C07        H071     109.832    1.50
+JKJ        H072         C07        H071     108.283    1.50
+JKJ         C09         C08         C07     109.862    1.50
+JKJ         C09         C08        H082     109.555    1.50
+JKJ         C09         C08        H081     109.555    1.50
+JKJ         C07         C08        H082     109.832    1.50
+JKJ         C07         C08        H081     109.832    1.50
+JKJ        H082         C08        H081     108.246    1.50
+JKJ         C11         C09         C04     109.308    1.50
+JKJ         C11         C09         O10     109.364    1.91
+JKJ         C11         C09         C08     109.243    1.50
+JKJ         C04         C09         O10     109.970    2.65
+JKJ         C04         C09         C08     109.308    1.50
+JKJ         O10         C09         C08     109.364    1.91
+JKJ         C09         O10        H101     109.614    2.08
+JKJ         C12         C11         C09     109.862    1.50
+JKJ         C12         C11        H112     109.832    1.50
+JKJ         C12         C11        H111     109.832    1.50
+JKJ         C09         C11        H112     109.555    1.50
+JKJ         C09         C11        H111     109.555    1.50
+JKJ        H112         C11        H111     108.246    1.50
+JKJ         C11         C12         C06     108.350    1.50
+JKJ         C11         C12        H122     109.832    1.50
+JKJ         C11         C12        H121     109.832    1.50
+JKJ         C06         C12        H122     110.035    1.50
+JKJ         C06         C12        H121     110.035    1.50
+JKJ        H122         C12        H121     108.283    1.50
+JKJ         O15         S13         N05     106.818    1.50
+JKJ         O15         S13         O14     118.786    1.50
+JKJ         O15         S13         C16     108.252    1.50
+JKJ         N05         S13         O14     106.818    1.50
+JKJ         N05         S13         C16     107.070    1.78
+JKJ         O14         S13         C16     108.252    1.50
+JKJ         S13         C16        H162     109.398    1.50
+JKJ         S13         C16        H163     109.398    1.50
+JKJ         S13         C16        H161     109.398    1.50
+JKJ        H162         C16        H163     109.571    1.50
+JKJ        H162         C16        H161     109.571    1.50
+JKJ        H163         C16        H161     109.571    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JKJ            sp3_sp3_67        H013         C01         O02         C03     180.000    10.0     3
+JKJ            sp3_sp3_49         C09         C11         C12         C06     -60.000    10.0     3
+JKJ            sp3_sp3_88        H162         C16         S13         O15     180.000    10.0     3
+JKJ            sp3_sp3_70         C04         C03         O02         C01     180.000    10.0     3
+JKJ            sp3_sp3_73         O02         C03         C04         N05     180.000    10.0     3
+JKJ             sp3_sp3_4         C03         C04         N05         S13      60.000    10.0     3
+JKJ           sp3_sp3_102         C03         C04         C09         O10     -60.000    10.0     3
+JKJ            sp3_sp3_83         C04         N05         S13         O15     -60.000    10.0     3
+JKJ             sp3_sp3_8         C12         C06         N05         S13      60.000    10.0     3
+JKJ            sp3_sp3_40         N05         C06         C12         C11      60.000    10.0     3
+JKJ            sp3_sp3_13         C12         C06         C07         C08      60.000    10.0     3
+JKJ            sp3_sp3_22         C06         C07         C08         C09     -60.000    10.0     3
+JKJ            sp3_sp3_32         C07         C08         C09         O10     180.000    10.0     3
+JKJ            sp3_sp3_61         O10         C09         C11         C12     -60.000    10.0     3
+JKJ           sp3_sp3_106         C11         C09         O10        H101     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JKJ    chir_1    C04    N05    C09    C03    negative
+JKJ    chir_2    N05    S13    C04    C06    positive
+JKJ    chir_3    C06    N05    C12    C07    both
+JKJ    chir_4    C09    O10    C04    C11    both
+JKJ    chir_5    S13    O15    O14    N05    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JKJ           SMILES              ACDLabs 12.01                                                                         COCC1C2(CCC(N1S(=O)(C)=O)CC2)O
+JKJ            InChI                InChI  1.03 InChI=1S/C10H19NO4S/c1-15-7-9-10(12)5-3-8(4-6-10)11(9)16(2,13)14/h8-9,12H,3-7H2,1-2H3/t8-,9-,10-/m1/s1
+JKJ         InChIKey                InChI  1.03                                                                            OGRJIDMQZAADCN-OPRDCNLKSA-N
+JKJ SMILES_CANONICAL               CACTVS 3.385                                                                   COC[C@H]1N(C2CCC1(O)CC2)[S](C)(=O)=O
+JKJ           SMILES               CACTVS 3.385                                                                    COC[CH]1N(C2CCC1(O)CC2)[S](C)(=O)=O
+JKJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                    COC[C@@H]1C2(CCC(N1S(=O)(=O)C)CC2)O
+JKJ           SMILES "OpenEye OEToolkits" 2.0.6                                                                         COCC1C2(CCC(N1S(=O)(=O)C)CC2)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JKJ acedrg               243         "dictionary generator"                  
+JKJ acedrg_database      11          "data source"                           
+JKJ rdkit                2017.03.2   "Chemoinformatics tool"
+JKJ refmac5              5.8.0238    "optimization tool"                     

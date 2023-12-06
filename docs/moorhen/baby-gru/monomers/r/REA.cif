@@ -1,0 +1,335 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+REA     REA      "RETINOIC ACID"     NON-POLYMER     49     22     .     
+#
+data_comp_REA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+REA     C1      C       CT      0       21.777      29.858      16.677      
+REA     C2      C       CH2     0       20.668      30.463      15.802      
+REA     C3      C       CH2     0       20.007      29.492      14.885      
+REA     C4      C       CH2     0       19.511      28.266      15.643      
+REA     C5      C       CR6     0       20.522      27.686      16.600      
+REA     C6      C       CR6     0       21.432      28.475      17.230      
+REA     C7      C       C1      0       22.250      28.010      18.367      
+REA     C8      C       C1      0       21.949      27.059      19.318      
+REA     C9      C       C       0       22.826      26.401      20.215      
+REA     C10     C       C1      0       22.310      25.531      21.224      
+REA     C11     C       C1      0       22.945      24.896      22.292      
+REA     C12     C       C1      0       22.364      24.041      23.228      
+REA     C13     C       C       0       22.919      23.387      24.373      
+REA     C14     C       C1      0       22.128      22.462      25.092      
+REA     C15     C       C       0       22.504      21.483      26.171      
+REA     C16     C       CH3     0       22.014      30.864      17.822      
+REA     C17     C       CH3     0       23.066      29.783      15.835      
+REA     C18     C       CH3     0       20.373      26.196      16.783      
+REA     C19     C       CH3     0       24.314      26.570      20.129      
+REA     C20     C       CH3     0       24.299      23.784      24.800      
+REA     O1      O       O       0       23.688      21.338      26.472      
+REA     O2      O       OC      -1      21.590      20.862      26.710      
+REA     H21     H       H       0       19.987      30.851      16.386      
+REA     H22     H       H       0       21.048      31.191      15.272      
+REA     H31     H       H       0       20.641      29.211      14.193      
+REA     H32     H       H       0       19.249      29.928      14.443      
+REA     H41     H       H       0       19.256      27.580      14.995      
+REA     H42     H       H       0       18.713      28.508      16.153      
+REA     H7      H       H       0       23.098      28.402      18.442      
+REA     H8      H       H       0       21.042      26.827      19.420      
+REA     H10     H       H       0       21.387      25.343      21.171      
+REA     H11     H       H       0       23.864      25.061      22.392      
+REA     H12     H       H       0       21.450      23.877      23.063      
+REA     H14     H       H       0       21.213      22.463      24.860      
+REA     H161    H       H       0       21.348      30.731      18.518      
+REA     H162    H       H       0       21.942      31.771      17.483      
+REA     H163    H       H       0       22.900      30.736      18.197      
+REA     H171    H       H       0       23.701      29.181      16.255      
+REA     H172    H       H       0       23.463      30.667      15.765      
+REA     H173    H       H       0       22.859      29.457      14.944      
+REA     H181    H       H       0       21.245      25.791      16.897      
+REA     H182    H       H       0       19.944      25.796      16.012      
+REA     H183    H       H       0       19.835      26.018      17.568      
+REA     H191    H       H       0       24.755      25.750      20.387      
+REA     H192    H       H       0       24.592      27.286      20.721      
+REA     H193    H       H       0       24.569      26.788      19.221      
+REA     H201    H       H       0       24.397      23.655      25.753      
+REA     H202    H       H       0       24.453      24.717      24.596      
+REA     H203    H       H       0       24.952      23.241      24.334      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+REA          C1          C2      SINGLE       n     1.532  0.0100     1.532  0.0100
+REA          C1          C6      SINGLE       n     1.519  0.0100     1.519  0.0100
+REA          C1         C16      SINGLE       n     1.537  0.0100     1.537  0.0100
+REA          C1         C17      SINGLE       n     1.537  0.0100     1.537  0.0100
+REA          C2          C3      SINGLE       n     1.492  0.0200     1.492  0.0200
+REA          C3          C4      SINGLE       n     1.524  0.0139     1.524  0.0139
+REA          C4          C5      SINGLE       n     1.501  0.0100     1.501  0.0100
+REA          C5          C6      DOUBLE       n     1.347  0.0100     1.347  0.0100
+REA          C5         C18      SINGLE       n     1.504  0.0100     1.504  0.0100
+REA          C6          C7      SINGLE       n     1.442  0.0200     1.442  0.0200
+REA          C7          C8      DOUBLE       n     1.365  0.0200     1.365  0.0200
+REA          C8          C9      SINGLE       n     1.397  0.0200     1.397  0.0200
+REA          C9         C10      DOUBLE       n     1.408  0.0200     1.408  0.0200
+REA          C9         C19      SINGLE       n     1.483  0.0200     1.483  0.0200
+REA         C10         C11      SINGLE       n     1.385  0.0200     1.385  0.0200
+REA         C11         C12      DOUBLE       n     1.385  0.0200     1.385  0.0200
+REA         C12         C13      SINGLE       n     1.408  0.0200     1.408  0.0200
+REA         C13         C14      DOUBLE       n     1.392  0.0200     1.392  0.0200
+REA         C13         C20      SINGLE       n     1.483  0.0200     1.483  0.0200
+REA         C14         C15      SINGLE       n     1.492  0.0200     1.492  0.0200
+REA         C15          O1      DOUBLE       n     1.230  0.0200     1.230  0.0200
+REA         C15          O2      SINGLE       n     1.230  0.0200     1.230  0.0200
+REA          C2         H21      SINGLE       n     1.089  0.0100     0.977  0.0105
+REA          C2         H22      SINGLE       n     1.089  0.0100     0.977  0.0105
+REA          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0113
+REA          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0113
+REA          C4         H41      SINGLE       n     1.089  0.0100     0.978  0.0148
+REA          C4         H42      SINGLE       n     1.089  0.0100     0.978  0.0148
+REA          C7          H7      SINGLE       n     1.082  0.0130     0.938  0.0146
+REA          C8          H8      SINGLE       n     1.082  0.0130     0.943  0.0196
+REA         C10         H10      SINGLE       n     1.082  0.0130     0.943  0.0196
+REA         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0196
+REA         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0196
+REA         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0196
+REA         C16        H161      SINGLE       n     1.089  0.0100     0.971  0.0163
+REA         C16        H162      SINGLE       n     1.089  0.0100     0.971  0.0163
+REA         C16        H163      SINGLE       n     1.089  0.0100     0.971  0.0163
+REA         C17        H171      SINGLE       n     1.089  0.0100     0.971  0.0163
+REA         C17        H172      SINGLE       n     1.089  0.0100     0.971  0.0163
+REA         C17        H173      SINGLE       n     1.089  0.0100     0.971  0.0163
+REA         C18        H181      SINGLE       n     1.089  0.0100     0.969  0.0158
+REA         C18        H182      SINGLE       n     1.089  0.0100     0.969  0.0158
+REA         C18        H183      SINGLE       n     1.089  0.0100     0.969  0.0158
+REA         C19        H191      SINGLE       n     1.089  0.0100     0.969  0.0177
+REA         C19        H192      SINGLE       n     1.089  0.0100     0.969  0.0177
+REA         C19        H193      SINGLE       n     1.089  0.0100     0.969  0.0177
+REA         C20        H201      SINGLE       n     1.089  0.0100     0.969  0.0177
+REA         C20        H202      SINGLE       n     1.089  0.0100     0.969  0.0177
+REA         C20        H203      SINGLE       n     1.089  0.0100     0.969  0.0177
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+REA          C2          C1          C6     112.021    2.38
+REA          C2          C1         C16     108.237    2.03
+REA          C2          C1         C17     108.237    2.03
+REA          C6          C1         C16     110.110    1.50
+REA          C6          C1         C17     110.110    1.50
+REA         C16          C1         C17     108.431    1.50
+REA          C1          C2          C3     113.880    1.50
+REA          C1          C2         H21     108.646    1.50
+REA          C1          C2         H22     108.646    1.50
+REA          C3          C2         H21     108.941    1.50
+REA          C3          C2         H22     108.941    1.50
+REA         H21          C2         H22     107.710    1.50
+REA          C2          C3          C4     111.448    2.19
+REA          C2          C3         H31     109.322    1.50
+REA          C2          C3         H32     109.322    1.50
+REA          C4          C3         H31     109.281    1.50
+REA          C4          C3         H32     109.281    1.50
+REA         H31          C3         H32     108.036    1.50
+REA          C3          C4          C5     113.289    1.74
+REA          C3          C4         H41     109.190    1.50
+REA          C3          C4         H42     109.190    1.50
+REA          C5          C4         H41     108.281    1.50
+REA          C5          C4         H42     108.281    1.50
+REA         H41          C4         H42     107.973    1.50
+REA          C4          C5          C6     121.531    1.95
+REA          C4          C5         C18     113.673    1.50
+REA          C6          C5         C18     124.797    1.50
+REA          C1          C6          C5     119.631    3.00
+REA          C1          C6          C7     119.411    3.00
+REA          C5          C6          C7     120.958    1.50
+REA          C6          C7          C8     126.680    1.50
+REA          C6          C7          H7     116.520    1.50
+REA          C8          C7          H7     116.800    1.66
+REA          C7          C8          C9     126.725    3.00
+REA          C7          C8          H8     118.267    2.25
+REA          C9          C8          H8     115.008    1.81
+REA          C8          C9         C10     122.650    3.00
+REA          C8          C9         C19     120.215    3.00
+REA         C10          C9         C19     117.135    1.50
+REA          C9         C10         C11     128.593    1.85
+REA          C9         C10         H10     116.030    1.50
+REA         C11         C10         H10     115.376    2.90
+REA         C10         C11         C12     128.131    3.00
+REA         C10         C11         H11     115.934    2.93
+REA         C12         C11         H11     115.934    2.93
+REA         C11         C12         C13     128.593    1.85
+REA         C11         C12         H12     115.376    2.90
+REA         C13         C12         H12     116.030    1.50
+REA         C12         C13         C14     122.650    3.00
+REA         C12         C13         C20     117.135    1.50
+REA         C14         C13         C20     120.215    3.00
+REA         C13         C14         C15     125.527    3.00
+REA         C13         C14         H14     116.544    1.81
+REA         C15         C14         H14     117.929    1.95
+REA         C14         C15          O1     118.064    1.74
+REA         C14         C15          O2     118.060    1.74
+REA          O1         C15          O2     123.870    1.50
+REA          C1         C16        H161     109.665    1.50
+REA          C1         C16        H162     109.665    1.50
+REA          C1         C16        H163     109.665    1.50
+REA        H161         C16        H162     109.363    1.50
+REA        H161         C16        H163     109.363    1.50
+REA        H162         C16        H163     109.363    1.50
+REA          C1         C17        H171     109.665    1.50
+REA          C1         C17        H172     109.665    1.50
+REA          C1         C17        H173     109.665    1.50
+REA        H171         C17        H172     109.363    1.50
+REA        H171         C17        H173     109.363    1.50
+REA        H172         C17        H173     109.363    1.50
+REA          C5         C18        H181     110.039    1.89
+REA          C5         C18        H182     110.039    1.89
+REA          C5         C18        H183     110.039    1.89
+REA        H181         C18        H182     109.339    1.50
+REA        H181         C18        H183     109.339    1.50
+REA        H182         C18        H183     109.339    1.50
+REA          C9         C19        H191     109.517    1.50
+REA          C9         C19        H192     109.517    1.50
+REA          C9         C19        H193     109.517    1.50
+REA        H191         C19        H192     109.342    1.50
+REA        H191         C19        H193     109.342    1.50
+REA        H192         C19        H193     109.342    1.50
+REA         C13         C20        H201     109.517    1.50
+REA         C13         C20        H202     109.517    1.50
+REA         C13         C20        H203     109.517    1.50
+REA        H201         C20        H202     109.342    1.50
+REA        H201         C20        H203     109.342    1.50
+REA        H202         C20        H203     109.342    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+REA             sp3_sp3_4         C16          C1          C2          C3     -60.000    10.0     3
+REA            sp3_sp3_34         C17          C1         C16        H161     -60.000    10.0     3
+REA            sp3_sp3_43         C16          C1         C17        H171     -60.000    10.0     3
+REA            sp2_sp3_12          C7          C6          C1         C16      60.000    10.0     6
+REA            sp2_sp2_25         C10         C11         C12         C13     180.000     5.0     2
+REA            sp2_sp2_29         C11         C12         C13         C14     180.000     5.0     2
+REA            sp2_sp2_35         C12         C13         C14         C15       0.000     5.0     2
+REA            sp2_sp3_25         C12         C13         C20        H201       0.000    10.0     6
+REA            sp2_sp2_37         C13         C14         C15          O1     180.000     5.0     2
+REA            sp3_sp3_10          C1          C2          C3          C4     -60.000    10.0     3
+REA            sp3_sp3_19          C2          C3          C4          C5      60.000    10.0     3
+REA             sp2_sp3_4         C18          C5          C4          C3     180.000    10.0     6
+REA            sp2_sp3_13          C4          C5         C18        H181     150.000    10.0     6
+REA             sp2_sp2_4         C18          C5          C6          C7       0.000     5.0     2
+REA             sp2_sp2_5          C1          C6          C7          C8     180.000     5.0     2
+REA             sp2_sp2_9          C6          C7          C8          C9     180.000     5.0     2
+REA            sp2_sp2_13          C7          C8          C9         C10     180.000     5.0     2
+REA            sp2_sp3_19          C8          C9         C19        H191       0.000    10.0     6
+REA            sp2_sp2_17         C11         C10          C9          C8     180.000     5.0     2
+REA            sp2_sp2_21          C9         C10         C11         C12     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+REA    chir_1    C1    C6    C2    C16    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+REA    plan-1         C18   0.020
+REA    plan-1          C4   0.020
+REA    plan-1          C5   0.020
+REA    plan-1          C6   0.020
+REA    plan-2          C1   0.020
+REA    plan-2          C5   0.020
+REA    plan-2          C6   0.020
+REA    plan-2          C7   0.020
+REA    plan-3          C6   0.020
+REA    plan-3          C7   0.020
+REA    plan-3          C8   0.020
+REA    plan-3          H7   0.020
+REA    plan-4          C7   0.020
+REA    plan-4          C8   0.020
+REA    plan-4          C9   0.020
+REA    plan-4          H8   0.020
+REA    plan-5         C10   0.020
+REA    plan-5         C19   0.020
+REA    plan-5          C8   0.020
+REA    plan-5          C9   0.020
+REA    plan-6         C10   0.020
+REA    plan-6         C11   0.020
+REA    plan-6          C9   0.020
+REA    plan-6         H10   0.020
+REA    plan-7         C10   0.020
+REA    plan-7         C11   0.020
+REA    plan-7         C12   0.020
+REA    plan-7         H11   0.020
+REA    plan-8         C11   0.020
+REA    plan-8         C12   0.020
+REA    plan-8         C13   0.020
+REA    plan-8         H12   0.020
+REA    plan-9         C12   0.020
+REA    plan-9         C13   0.020
+REA    plan-9         C14   0.020
+REA    plan-9         C20   0.020
+REA   plan-10         C13   0.020
+REA   plan-10         C14   0.020
+REA   plan-10         C15   0.020
+REA   plan-10         H14   0.020
+REA   plan-11         C14   0.020
+REA   plan-11         C15   0.020
+REA   plan-11          O1   0.020
+REA   plan-11          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+REA           SMILES              ACDLabs 12.01                                                                                                     C1(CCCC(=C1\C=C\C(=C\C=C\C(=C\C(=O)O)C)C)C)(C)C
+REA            InChI                InChI  1.03 InChI=1S/C20H28O2/c1-15(8-6-9-16(2)14-19(21)22)11-12-18-17(3)10-7-13-20(18,4)5/h6,8-9,11-12,14H,7,10,13H2,1-5H3,(H,21,22)/b9-6+,12-11+,15-8+,16-14+
+REA         InChIKey                InChI  1.03                                                                                                                         SHGAZHPCJJPHSC-YCNIQYBTSA-N
+REA SMILES_CANONICAL               CACTVS 3.385                                                                                                     CC1=C(\C=C\C(C)=C\C=C\C(C)=C\C(O)=O)C(C)(C)CCC1
+REA           SMILES               CACTVS 3.385                                                                                                          CC1=C(C=CC(C)=CC=CC(C)=CC(O)=O)C(C)(C)CCC1
+REA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                   CC1=C(C(CCC1)(C)C)/C=C/C(=C/C=C/C(=C/C(=O)O)/C)/C
+REA           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                          CC1=C(C(CCC1)(C)C)C=CC(=CC=CC(=CC(=O)O)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+REA acedrg               243         "dictionary generator"                  
+REA acedrg_database      11          "data source"                           
+REA rdkit                2017.03.2   "Chemoinformatics tool"
+REA refmac5              5.8.0238    "optimization tool"                     

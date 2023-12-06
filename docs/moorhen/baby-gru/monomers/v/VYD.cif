@@ -1,0 +1,419 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VYD     VYD      (3S,5R)-5-{[4-(2-chlorophenyl)-2,2-dimethyl-5-oxopiperazin-1-yl]methyl}-N-(3-methylbutyl)piperidine-3-carboxamide     NON-POLYMER     68     31     .     
+#
+data_comp_VYD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VYD     C1      C       CR16    0       175.411     197.853     92.473      
+VYD     C2      C       CR16    0       175.929     196.603     92.192      
+VYD     C3      C       CR16    0       175.914     198.594     93.533      
+VYD     C4      C       CR16    0       176.947     196.085     92.963      
+VYD     C5      C       CR6     0       176.938     198.095     94.324      
+VYD     C6      C       CR6     0       177.456     196.832     94.034      
+VYD     C7      C       CR6     0       177.113     198.542     96.714      
+VYD     C8      C       C       0       178.130     202.404     102.495     
+VYD     C9      C       CH2     0       177.868     199.197     97.832      
+VYD     C10     C       CH2     0       177.834     202.005     100.039     
+VYD     C11     C       CH2     0       176.923     204.122     101.054     
+VYD     C12     C       CH2     0       176.568     203.709     98.699      
+VYD     C13     C       CH2     0       178.272     200.055     95.037      
+VYD     C14     C       CH1     0       178.026     203.069     101.129     
+VYD     C15     C       CH1     0       177.638     202.619     98.653      
+VYD     C16     C       CT      0       179.150     200.557     96.195      
+VYD     C17     C       CH3     0       179.679     201.964     95.868      
+VYD     C18     C       CH3     0       180.375     199.634     96.316      
+VYD     C19     C       CH3     0       178.856     197.111     103.367     
+VYD     C20     C       CH3     0       179.609     198.788     101.658     
+VYD     C21     C       CH2     0       177.289     201.558     97.616      
+VYD     C22     C       CH2     0       178.871     199.581     103.939     
+VYD     C23     C       CH2     0       179.600     200.914     103.917     
+VYD     C24     C       CH1     0       179.548     198.455     103.144     
+VYD     N25     N       NT1     0       176.891     204.721     99.714      
+VYD     N26     N       NR6     0       177.450     198.883     95.430      
+VYD     N27     N       NT      0       178.349     200.538     97.471      
+VYD     N28     N       NH1     0       179.251     201.723     102.750     
+VYD     O29     O       O       0       176.225     197.737     96.972      
+VYD     O30     O       O       0       177.213     202.461     103.321     
+VYD     CL      CL      CL      0       178.739     196.154     94.984      
+VYD     H1      H       H       0       174.714     198.206     91.944      
+VYD     H2      H       H       0       175.588     196.104     91.474      
+VYD     H3      H       H       0       175.560     199.443     93.723      
+VYD     H4      H       H       0       177.306     195.237     92.780      
+VYD     H5      H       H       0       177.292     199.251     98.611      
+VYD     H6      H       H       0       178.618     198.634     98.076      
+VYD     H7      H       H       0       178.615     201.422     100.024     
+VYD     H8      H       H       0       177.057     201.459     100.257     
+VYD     H9      H       H       0       177.087     204.821     101.722     
+VYD     H10     H       H       0       176.056     203.708     101.247     
+VYD     H11     H       H       0       175.701     203.303     98.908      
+VYD     H12     H       H       0       176.503     204.138     97.821      
+VYD     H13     H       H       0       178.850     199.812     94.279      
+VYD     H14     H       H       0       177.676     200.782     94.746      
+VYD     H15     H       H       0       178.879     203.527     100.945     
+VYD     H16     H       H       0       178.492     203.035     98.379      
+VYD     H17     H       H       0       178.959     202.524     95.540      
+VYD     H18     H       H       0       180.368     201.911     95.186      
+VYD     H19     H       H       0       180.054     202.364     96.669      
+VYD     H20     H       H       0       180.099     198.706     96.247      
+VYD     H21     H       H       0       180.806     199.775     97.174      
+VYD     H22     H       H       0       181.009     199.824     95.606      
+VYD     H23     H       H       0       178.267     197.164     104.140     
+VYD     H24     H       H       0       179.528     196.425     103.523     
+VYD     H25     H       H       0       178.331     196.875     102.582     
+VYD     H26     H       H       0       178.736     199.095     101.358     
+VYD     H27     H       H       0       179.863     197.994     101.156     
+VYD     H28     H       H       0       180.267     199.489     101.508     
+VYD     H29     H       H       0       177.121     201.998     96.756      
+VYD     H30     H       H       0       176.450     201.127     97.886      
+VYD     H31     H       H       0       177.959     199.709     103.584     
+VYD     H32     H       H       0       178.780     199.290     104.878     
+VYD     H33     H       H       0       180.568     200.751     103.917     
+VYD     H34     H       H       0       179.379     201.414     104.732     
+VYD     H35     H       H       0       180.477     198.376     103.475     
+VYD     H36     H       H       0       176.279     205.363     99.694      
+VYD     H39     H       H       0       179.887     201.763     102.123     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VYD          C1          C2      DOUBLE       y     1.377  0.0126     1.377  0.0126
+VYD          C2          C4      SINGLE       y     1.374  0.0100     1.374  0.0100
+VYD          C1          C3      SINGLE       y     1.385  0.0100     1.385  0.0100
+VYD          C4          C6      DOUBLE       y     1.392  0.0147     1.392  0.0147
+VYD          C3          C5      DOUBLE       y     1.384  0.0100     1.384  0.0100
+VYD          C5          C6      SINGLE       y     1.390  0.0106     1.390  0.0106
+VYD          C6          CL      SINGLE       n     1.734  0.0100     1.734  0.0100
+VYD          C5         N26      SINGLE       n     1.446  0.0141     1.446  0.0141
+VYD         C13         N26      SINGLE       n     1.478  0.0100     1.478  0.0100
+VYD         C13         C16      SINGLE       n     1.533  0.0100     1.533  0.0100
+VYD          C7         N26      SINGLE       n     1.361  0.0125     1.361  0.0125
+VYD         C16         C17      SINGLE       n     1.533  0.0100     1.533  0.0100
+VYD         C16         C18      SINGLE       n     1.533  0.0100     1.533  0.0100
+VYD         C16         N27      SINGLE       n     1.481  0.0146     1.481  0.0146
+VYD          C7         O29      DOUBLE       n     1.225  0.0100     1.225  0.0100
+VYD          C7          C9      SINGLE       n     1.498  0.0100     1.498  0.0100
+VYD          C9         N27      SINGLE       n     1.462  0.0100     1.462  0.0100
+VYD         C21         N27      SINGLE       n     1.467  0.0100     1.467  0.0100
+VYD         C15         C21      SINGLE       n     1.523  0.0100     1.523  0.0100
+VYD         C12         C15      SINGLE       n     1.525  0.0100     1.525  0.0100
+VYD         C12         N25      SINGLE       n     1.467  0.0111     1.467  0.0111
+VYD         C10         C15      SINGLE       n     1.526  0.0100     1.526  0.0100
+VYD         C11         N25      SINGLE       n     1.467  0.0114     1.467  0.0114
+VYD         C10         C14      SINGLE       n     1.534  0.0100     1.534  0.0100
+VYD         C11         C14      SINGLE       n     1.525  0.0100     1.525  0.0100
+VYD          C8         C14      SINGLE       n     1.520  0.0100     1.520  0.0100
+VYD          C8         O30      DOUBLE       n     1.234  0.0100     1.234  0.0100
+VYD          C8         N28      SINGLE       n     1.335  0.0100     1.335  0.0100
+VYD         C23         N28      SINGLE       n     1.461  0.0143     1.461  0.0143
+VYD         C20         C24      SINGLE       n     1.521  0.0151     1.521  0.0151
+VYD         C22         C23      SINGLE       n     1.518  0.0129     1.518  0.0129
+VYD         C19         C24      SINGLE       n     1.521  0.0151     1.521  0.0151
+VYD         C22         C24      SINGLE       n     1.529  0.0163     1.529  0.0163
+VYD          C1          H1      SINGLE       n     1.082  0.0130     0.943  0.0172
+VYD          C2          H2      SINGLE       n     1.082  0.0130     0.939  0.0165
+VYD          C3          H3      SINGLE       n     1.082  0.0130     0.940  0.0105
+VYD          C4          H4      SINGLE       n     1.082  0.0130     0.939  0.0138
+VYD          C9          H5      SINGLE       n     1.089  0.0100     0.970  0.0100
+VYD          C9          H6      SINGLE       n     1.089  0.0100     0.970  0.0100
+VYD         C10          H7      SINGLE       n     1.089  0.0100     0.975  0.0145
+VYD         C10          H8      SINGLE       n     1.089  0.0100     0.975  0.0145
+VYD         C11          H9      SINGLE       n     1.089  0.0100     0.980  0.0143
+VYD         C11         H10      SINGLE       n     1.089  0.0100     0.980  0.0143
+VYD         C12         H11      SINGLE       n     1.089  0.0100     0.980  0.0172
+VYD         C12         H12      SINGLE       n     1.089  0.0100     0.980  0.0172
+VYD         C13         H13      SINGLE       n     1.089  0.0100     0.984  0.0108
+VYD         C13         H14      SINGLE       n     1.089  0.0100     0.984  0.0108
+VYD         C14         H15      SINGLE       n     1.089  0.0100     0.986  0.0149
+VYD         C15         H16      SINGLE       n     1.089  0.0100     0.988  0.0159
+VYD         C17         H17      SINGLE       n     1.089  0.0100     0.971  0.0171
+VYD         C17         H18      SINGLE       n     1.089  0.0100     0.971  0.0171
+VYD         C17         H19      SINGLE       n     1.089  0.0100     0.971  0.0171
+VYD         C18         H20      SINGLE       n     1.089  0.0100     0.971  0.0171
+VYD         C18         H21      SINGLE       n     1.089  0.0100     0.971  0.0171
+VYD         C18         H22      SINGLE       n     1.089  0.0100     0.971  0.0171
+VYD         C19         H23      SINGLE       n     1.089  0.0100     0.973  0.0146
+VYD         C19         H24      SINGLE       n     1.089  0.0100     0.973  0.0146
+VYD         C19         H25      SINGLE       n     1.089  0.0100     0.973  0.0146
+VYD         C20         H26      SINGLE       n     1.089  0.0100     0.973  0.0146
+VYD         C20         H27      SINGLE       n     1.089  0.0100     0.973  0.0146
+VYD         C20         H28      SINGLE       n     1.089  0.0100     0.973  0.0146
+VYD         C21         H29      SINGLE       n     1.089  0.0100     0.981  0.0150
+VYD         C21         H30      SINGLE       n     1.089  0.0100     0.981  0.0150
+VYD         C22         H31      SINGLE       n     1.089  0.0100     0.987  0.0119
+VYD         C22         H32      SINGLE       n     1.089  0.0100     0.987  0.0119
+VYD         C23         H33      SINGLE       n     1.089  0.0100     0.981  0.0152
+VYD         C23         H34      SINGLE       n     1.089  0.0100     0.981  0.0152
+VYD         C24         H35      SINGLE       n     1.089  0.0100     0.989  0.0162
+VYD         N25         H36      SINGLE       n     1.036  0.0160     0.887  0.0200
+VYD         N28         H39      SINGLE       n     1.016  0.0100     0.893  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VYD          C2          C1          C3     120.198    1.50
+VYD          C2          C1          H1     120.063    1.50
+VYD          C3          C1          H1     119.739    1.50
+VYD          C1          C2          C4     119.943    1.50
+VYD          C1          C2          H2     120.149    1.50
+VYD          C4          C2          H2     119.907    1.50
+VYD          C1          C3          C5     120.903    1.50
+VYD          C1          C3          H3     119.938    1.50
+VYD          C5          C3          H3     119.159    1.50
+VYD          C2          C4          C6     119.218    1.50
+VYD          C2          C4          H4     120.991    1.50
+VYD          C6          C4          H4     119.791    2.36
+VYD          C3          C5          C6     119.184    1.64
+VYD          C3          C5         N26     120.445    1.50
+VYD          C6          C5         N26     120.371    1.50
+VYD          C4          C6          C5     120.554    1.50
+VYD          C4          C6          CL     119.059    1.50
+VYD          C5          C6          CL     120.387    1.50
+VYD         N26          C7         O29     122.069    1.50
+VYD         N26          C7          C9     117.534    1.63
+VYD         O29          C7          C9     120.397    1.72
+VYD         C14          C8         O30     121.615    1.50
+VYD         C14          C8         N28     116.704    2.17
+VYD         O30          C8         N28     121.682    2.40
+VYD          C7          C9         N27     112.324    2.63
+VYD          C7          C9          H5     108.871    1.50
+VYD          C7          C9          H6     108.871    1.50
+VYD         N27          C9          H5     109.384    1.50
+VYD         N27          C9          H6     109.384    1.50
+VYD          H5          C9          H6     107.805    1.72
+VYD         C15         C10         C14     111.841    1.50
+VYD         C15         C10          H7     109.162    1.50
+VYD         C15         C10          H8     109.162    1.50
+VYD         C14         C10          H7     109.320    1.50
+VYD         C14         C10          H8     109.320    1.50
+VYD          H7         C10          H8     107.990    1.50
+VYD         N25         C11         C14     110.258    1.51
+VYD         N25         C11          H9     109.326    1.50
+VYD         N25         C11         H10     109.326    1.50
+VYD         C14         C11          H9     109.575    1.50
+VYD         C14         C11         H10     109.575    1.50
+VYD          H9         C11         H10     108.200    1.50
+VYD         C15         C12         N25     110.258    1.51
+VYD         C15         C12         H11     109.290    1.50
+VYD         C15         C12         H12     109.290    1.50
+VYD         N25         C12         H11     109.326    1.50
+VYD         N25         C12         H12     109.326    1.50
+VYD         H11         C12         H12     108.200    1.50
+VYD         N26         C13         C16     110.160    1.50
+VYD         N26         C13         H13     109.367    1.50
+VYD         N26         C13         H14     109.367    1.50
+VYD         C16         C13         H13     108.972    1.50
+VYD         C16         C13         H14     108.972    1.50
+VYD         H13         C13         H14     108.194    1.50
+VYD         C10         C14         C11     111.124    1.57
+VYD         C10         C14          C8     110.678    1.86
+VYD         C10         C14         H15     107.687    1.74
+VYD         C11         C14          C8     110.500    2.75
+VYD         C11         C14         H15     107.562    1.50
+VYD          C8         C14         H15     108.301    1.50
+VYD         C21         C15         C12     111.213    1.50
+VYD         C21         C15         C10     111.016    1.59
+VYD         C21         C15         H16     107.178    1.50
+VYD         C12         C15         C10     109.844    1.50
+VYD         C12         C15         H16     107.832    1.50
+VYD         C10         C15         H16     107.583    1.50
+VYD         C13         C16         C17     109.949    1.53
+VYD         C13         C16         C18     109.949    1.53
+VYD         C13         C16         N27     110.258    1.51
+VYD         C17         C16         C18     108.959    1.50
+VYD         C17         C16         N27     112.120    3.00
+VYD         C18         C16         N27     112.120    3.00
+VYD         C16         C17         H17     109.684    1.50
+VYD         C16         C17         H18     109.684    1.50
+VYD         C16         C17         H19     109.684    1.50
+VYD         H17         C17         H18     109.254    1.50
+VYD         H17         C17         H19     109.254    1.50
+VYD         H18         C17         H19     109.254    1.50
+VYD         C16         C18         H20     109.684    1.50
+VYD         C16         C18         H21     109.684    1.50
+VYD         C16         C18         H22     109.684    1.50
+VYD         H20         C18         H21     109.254    1.50
+VYD         H20         C18         H22     109.254    1.50
+VYD         H21         C18         H22     109.254    1.50
+VYD         C24         C19         H23     109.488    1.50
+VYD         C24         C19         H24     109.488    1.50
+VYD         C24         C19         H25     109.488    1.50
+VYD         H23         C19         H24     109.411    1.50
+VYD         H23         C19         H25     109.411    1.50
+VYD         H24         C19         H25     109.411    1.50
+VYD         C24         C20         H26     109.488    1.50
+VYD         C24         C20         H27     109.488    1.50
+VYD         C24         C20         H28     109.488    1.50
+VYD         H26         C20         H27     109.411    1.50
+VYD         H26         C20         H28     109.411    1.50
+VYD         H27         C20         H28     109.411    1.50
+VYD         N27         C21         C15     109.471    3.00
+VYD         N27         C21         H29     108.707    1.50
+VYD         N27         C21         H30     108.707    1.50
+VYD         C15         C21         H29     108.865    1.50
+VYD         C15         C21         H30     108.865    1.50
+VYD         H29         C21         H30     107.808    1.50
+VYD         C23         C22         C24     114.728    1.50
+VYD         C23         C22         H31     108.805    1.50
+VYD         C23         C22         H32     108.805    1.50
+VYD         C24         C22         H31     108.471    1.50
+VYD         C24         C22         H32     108.471    1.50
+VYD         H31         C22         H32     107.272    1.50
+VYD         N28         C23         C22     112.211    1.50
+VYD         N28         C23         H33     109.035    1.50
+VYD         N28         C23         H34     109.035    1.50
+VYD         C22         C23         H33     109.099    1.50
+VYD         C22         C23         H34     109.099    1.50
+VYD         H33         C23         H34     107.877    1.50
+VYD         C20         C24         C19     110.507    1.50
+VYD         C20         C24         C22     111.118    1.50
+VYD         C20         C24         H35     108.052    1.50
+VYD         C19         C24         C22     111.118    1.50
+VYD         C19         C24         H35     108.052    1.50
+VYD         C22         C24         H35     107.675    1.50
+VYD         C12         N25         C11     110.415    1.50
+VYD         C12         N25         H36     109.383    3.00
+VYD         C11         N25         H36     109.383    3.00
+VYD          C5         N26         C13     117.548    2.71
+VYD          C5         N26          C7     119.151    1.85
+VYD         C13         N26          C7     123.300    2.69
+VYD         C16         N27          C9     111.782    3.00
+VYD         C16         N27         C21     111.960    2.41
+VYD          C9         N27         C21     111.960    2.41
+VYD          C8         N28         C23     128.671    3.00
+VYD          C8         N28         H39     115.734    2.35
+VYD         C23         N28         H39     115.595    2.38
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VYD       const_sp2_sp2_1          C3          C1          C2          C4       0.000     5.0     2
+VYD              const_21          C2          C1          C3          C5       0.000    10.0     2
+VYD            sp3_sp3_32         N25         C11         C14          C8     180.000    10.0     3
+VYD            sp3_sp3_25         C14         C11         N25         C12     -60.000    10.0     3
+VYD            sp3_sp3_11         N25         C12         C15         C21      60.000    10.0     3
+VYD            sp3_sp3_19         C15         C12         N25         C11      60.000    10.0     3
+VYD            sp3_sp3_41         N26         C13         C16         C17     180.000    10.0     3
+VYD             sp2_sp3_4          C5         N26         C13         C16     180.000    10.0     6
+VYD            sp3_sp3_85         C12         C15         C21         N27     180.000    10.0     3
+VYD            sp3_sp3_67         C18         C16         C17         H17     -60.000    10.0     3
+VYD            sp3_sp3_76         C17         C16         C18         H20     -60.000    10.0     3
+VYD            sp3_sp3_54         C17         C16         N27         C21     180.000    10.0     3
+VYD           sp3_sp3_121         H23         C19         C24         C20     180.000    10.0     3
+VYD           sp3_sp3_104         H26         C20         C24         C19     -60.000    10.0     3
+VYD       const_sp2_sp2_5          C1          C2          C4          C6       0.000     5.0     2
+VYD            sp3_sp3_79         C15         C21         N27         C16     180.000    10.0     3
+VYD           sp3_sp3_112         C24         C22         C23         N28     180.000    10.0     3
+VYD           sp3_sp3_131         C23         C22         C24         C20     -60.000    10.0     3
+VYD            sp2_sp3_20          C8         N28         C23         C22     120.000    10.0     6
+VYD              const_17          C1          C3          C5          C6       0.000    10.0     2
+VYD              const_10          C2          C4          C6          CL     180.000    10.0     2
+VYD             sp2_sp2_5          C3          C5         N26         C13     180.000     5.0     2
+VYD              const_14          C3          C5          C6          CL     180.000    10.0     2
+VYD             sp2_sp2_4         O29          C7         N26          C5       0.000     5.0     2
+VYD            sp2_sp3_10         O29          C7          C9         N27     180.000    10.0     6
+VYD            sp2_sp3_13         O30          C8         C14         C10       0.000    10.0     6
+VYD            sp2_sp2_11         O30          C8         N28         C23       0.000     5.0     2
+VYD            sp3_sp3_56          C7          C9         N27         C21     180.000    10.0     3
+VYD            sp3_sp3_95         C15         C10         C14          C8     -60.000    10.0     3
+VYD             sp3_sp3_2         C14         C10         C15         C21     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VYD    chir_1    C14    C8    C11    C10    positive
+VYD    chir_2    C15    C21    C12    C10    negative
+VYD    chir_3    C16    N27    C13    C17    both
+VYD    chir_4    C24    C22    C20    C19    both
+VYD    chir_5    N27    C16    C9    C21    positive
+VYD    chir_6    N25    C11    C12    H36    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VYD    plan-1          C1   0.020
+VYD    plan-1          C2   0.020
+VYD    plan-1          C3   0.020
+VYD    plan-1          C4   0.020
+VYD    plan-1          C5   0.020
+VYD    plan-1          C6   0.020
+VYD    plan-1          CL   0.020
+VYD    plan-1          H1   0.020
+VYD    plan-1          H2   0.020
+VYD    plan-1          H3   0.020
+VYD    plan-1          H4   0.020
+VYD    plan-1         N26   0.020
+VYD    plan-2          C7   0.020
+VYD    plan-2          C9   0.020
+VYD    plan-2         N26   0.020
+VYD    plan-2         O29   0.020
+VYD    plan-3         C14   0.020
+VYD    plan-3          C8   0.020
+VYD    plan-3         N28   0.020
+VYD    plan-3         O30   0.020
+VYD    plan-4         C13   0.020
+VYD    plan-4          C5   0.020
+VYD    plan-4          C7   0.020
+VYD    plan-4         N26   0.020
+VYD    plan-5         C23   0.020
+VYD    plan-5          C8   0.020
+VYD    plan-5         H39   0.020
+VYD    plan-5         N28   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VYD           SMILES              ACDLabs 12.01                                                                                                                   Clc3ccccc3N2C(=O)CN(CC1CNCC(C(=O)NCCC(C)C)C1)C(C2)(C)C
+VYD            InChI                InChI  1.03 InChI=1S/C24H37ClN4O2/c1-17(2)9-10-27-23(31)19-11-18(12-26-13-19)14-28-15-22(30)29(16-24(28,3)4)21-8-6-5-7-20(21)25/h5-8,17-19,26H,9-16H2,1-4H3,(H,27,31)/t18-,19+/m1/s1
+VYD         InChIKey                InChI  1.03                                                                                                                                              XGYKQWJDBJCEAW-MOPGFXCFSA-N
+VYD SMILES_CANONICAL               CACTVS 3.370                                                                                                           CC(C)CCNC(=O)[C@@H]1CNC[C@@H](C1)CN2CC(=O)N(CC2(C)C)c3ccccc3Cl
+VYD           SMILES               CACTVS 3.370                                                                                                               CC(C)CCNC(=O)[CH]1CNC[CH](C1)CN2CC(=O)N(CC2(C)C)c3ccccc3Cl
+VYD SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                             CC(C)CCNC(=O)[C@H]1C[C@H](CNC1)CN2CC(=O)N(CC2(C)C)c3ccccc3Cl
+VYD           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                     CC(C)CCNC(=O)C1CC(CNC1)CN2CC(=O)N(CC2(C)C)c3ccccc3Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VYD acedrg               243         "dictionary generator"                  
+VYD acedrg_database      11          "data source"                           
+VYD rdkit                2017.03.2   "Chemoinformatics tool"
+VYD refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,640 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SRY     SRY      STREPTOMYCIN     NON-POLYMER     81     40     .     
+#
+data_comp_SRY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SRY     C11     C       CH1     0       5.889       32.824      -0.849      
+SRY     N11     N       NH1     0       6.720       31.757      -0.289      
+SRY     CA1     C       C       0       7.980       31.412      -0.572      
+SRY     NB1     N       NH2     0       8.546       30.411      0.086       
+SRY     NC1     N       NH2     1       8.687       32.047      -1.499      
+SRY     C21     C       CH1     0       5.182       33.567      0.283       
+SRY     O21     O       OH1     0       4.485       32.653      1.142       
+SRY     C31     C       CH1     0       4.237       34.631      -0.275      
+SRY     N31     N       NH1     0       3.497       35.252      0.824       
+SRY     CD1     C       C       0       3.956       36.124      1.723       
+SRY     NE1     N       NT2     0       5.208       36.573      1.695       
+SRY     NF1     N       NT2     1       3.139       36.558      2.680       
+SRY     C41     C       CH1     0       3.288       34.110      -1.356      
+SRY     O41     O       O2      0       2.600       35.253      -1.914      
+SRY     C51     C       CH1     0       4.049       33.393      -2.468      
+SRY     O51     O       OH1     0       3.132       32.864      -3.425      
+SRY     C61     C       CH1     0       4.933       32.275      -1.910      
+SRY     O61     O       OH1     0       5.677       31.645      -2.944      
+SRY     C12     C       CH1     0       1.201       35.194      -1.914      
+SRY     C22     C       CH1     0       0.662       36.483      -2.550      
+SRY     C32     C       CT      0       -0.520      35.986      -3.429      
+SRY     O32     O       OH1     0       -1.701      35.835      -2.641      
+SRY     CG2     C       C1      0       -0.789      36.932      -4.603      
+SRY     OG2     O       O       0       -1.577      36.709      -5.459      
+SRY     C42     C       CH1     0       0.035       34.626      -3.894      
+SRY     CH2     C       CH3     0       -0.981      33.629      -4.343      
+SRY     O42     O       O2      0       0.714       34.121      -2.732      
+SRY     O13     O       O2      0       0.220       37.412      -1.563      
+SRY     C13     C       CH1     0       1.179       38.067      -0.748      
+SRY     C23     C       CH1     0       1.042       39.569      -0.963      
+SRY     N23     N       NT1     0       1.117       39.953      -2.383      
+SRY     CI3     C       CH3     0       2.443       39.933      -2.966      
+SRY     C33     C       CH1     0       -0.253      40.099      -0.336      
+SRY     O33     O       OH1     0       -0.285      41.515      -0.444      
+SRY     C43     C       CH1     0       -0.368      39.662      1.120       
+SRY     O43     O       OH1     0       -1.623      40.079      1.652       
+SRY     C53     C       CH1     0       -0.258      38.140      1.202       
+SRY     O53     O       O2      0       0.998       37.712      0.630       
+SRY     C63     C       CH2     0       -0.307      37.599      2.618       
+SRY     O63     O       OH1     0       0.562       38.295      3.518       
+SRY     H11     H       H       0       6.471       33.484      -1.296      
+SRY     HN11    H       H       0       6.334       31.273      0.332       
+SRY     HB11    H       H       0       8.097       29.975      0.706       
+SRY     HB12    H       H       0       9.377       30.178      -0.095      
+SRY     HC11    H       H       0       8.340       32.705      -1.954      
+SRY     HC12    H       H       0       9.516       31.802      -1.663      
+SRY     H21     H       H       0       5.861       34.011      0.824       
+SRY     HO21    H       H       0       3.867       32.299      0.700       
+SRY     H31     H       H       0       4.798       35.326      -0.702      
+SRY     HN31    H       H       0       2.657       35.015      0.912       
+SRY     HE11    H       H       0       5.792       36.320      1.078       
+SRY     HE12    H       H       0       5.474       37.154      2.316       
+SRY     HF11    H       H       0       2.295       36.270      2.722       
+SRY     HF12    H       H       0       3.430       37.141      3.291       
+SRY     H41     H       H       0       2.636       33.488      -0.946      
+SRY     H51     H       H       0       4.640       34.043      -2.924      
+SRY     HO51    H       H       0       2.634       32.297      -3.051      
+SRY     H61     H       H       0       4.349       31.595      -1.487      
+SRY     HO61    H       H       0       6.157       32.224      -3.323      
+SRY     H12     H       H       0       0.857       35.068      -0.994      
+SRY     H22     H       H       0       1.343       36.903      -3.133      
+SRY     HO32    H       H       0       -2.376      35.778      -3.146      
+SRY     HG21    H       H       0       -0.301      37.734      -4.641      
+SRY     H42     H       H       0       0.695       34.754      -4.617      
+SRY     HH21    H       H       0       -1.599      34.050      -4.964      
+SRY     HH22    H       H       0       -1.472      33.298      -3.574      
+SRY     HH23    H       H       0       -0.535      32.889      -4.785      
+SRY     H13     H       H       0       2.088       37.794      -1.027      
+SRY     H23     H       H       0       1.790       40.006      -0.485      
+SRY     HN23    H       H       0       0.552       39.415      -2.853      
+SRY     HI31    H       H       0       3.072       39.493      -2.362      
+SRY     HI32    H       H       0       2.738       40.850      -3.128      
+SRY     HI33    H       H       0       2.416       39.448      -3.813      
+SRY     H33     H       H       0       -1.018      39.721      -0.842      
+SRY     HO33    H       H       0       -1.054      41.776      -0.228      
+SRY     H43     H       H       0       0.364       40.076      1.644       
+SRY     HO43    H       H       0       -2.256      39.737      1.215       
+SRY     H53     H       H       0       -1.000      37.743      0.687       
+SRY     H631    H       H       0       -0.059      36.651      2.606       
+SRY     H632    H       H       0       -1.226      37.664      2.951       
+SRY     HO63    H       H       0       1.303       38.463      3.143       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SRY         C11         N11      SINGLE       n     1.460  0.0100     1.460  0.0100
+SRY         C11         C21      SINGLE       n     1.525  0.0100     1.525  0.0100
+SRY         C11         C61      SINGLE       n     1.527  0.0100     1.527  0.0100
+SRY         N11         CA1      SINGLE       n     1.327  0.0105     1.327  0.0105
+SRY         CA1         NB1      SINGLE       n     1.321  0.0100     1.321  0.0100
+SRY         CA1         NC1      DOUBLE       n     1.322  0.0100     1.322  0.0100
+SRY         C21         O21      SINGLE       n     1.431  0.0100     1.431  0.0100
+SRY         C21         C31      SINGLE       n     1.525  0.0100     1.525  0.0100
+SRY         C31         N31      SINGLE       n     1.460  0.0100     1.460  0.0100
+SRY         C31         C41      SINGLE       n     1.527  0.0100     1.527  0.0100
+SRY         N31         CD1      SINGLE       n     1.327  0.0105     1.327  0.0105
+SRY         CD1         NE1      SINGLE       n     1.324  0.0120     1.324  0.0120
+SRY         CD1         NF1      DOUBLE       n     1.327  0.0100     1.327  0.0100
+SRY         C41         O41      SINGLE       n     1.436  0.0184     1.436  0.0184
+SRY         C41         C51      SINGLE       n     1.521  0.0165     1.521  0.0165
+SRY         O41         C12      SINGLE       n     1.396  0.0146     1.396  0.0146
+SRY         C51         O51      SINGLE       n     1.427  0.0125     1.427  0.0125
+SRY         C51         C61      SINGLE       n     1.528  0.0111     1.528  0.0111
+SRY         C61         O61      SINGLE       n     1.421  0.0106     1.421  0.0106
+SRY         C12         C22      SINGLE       n     1.533  0.0105     1.533  0.0105
+SRY         C12         O42      SINGLE       n     1.423  0.0192     1.423  0.0192
+SRY         C22         C32      SINGLE       n     1.557  0.0200     1.557  0.0200
+SRY         C22         O13      SINGLE       n     1.423  0.0129     1.423  0.0129
+SRY         C32         O32      SINGLE       n     1.425  0.0101     1.425  0.0101
+SRY         C32         CG2      SINGLE       n     1.526  0.0188     1.526  0.0188
+SRY         C32         C42      SINGLE       n     1.542  0.0200     1.542  0.0200
+SRY         CG2         OG2      DOUBLE       n     1.185  0.0182     1.185  0.0182
+SRY         C42         CH2      SINGLE       n     1.487  0.0200     1.487  0.0200
+SRY         C42         O42      SINGLE       n     1.434  0.0178     1.434  0.0178
+SRY         O13         C13      SINGLE       n     1.415  0.0128     1.415  0.0128
+SRY         C13         C23      SINGLE       n     1.512  0.0200     1.512  0.0200
+SRY         C13         O53      SINGLE       n     1.422  0.0172     1.422  0.0172
+SRY         C23         N23      SINGLE       n     1.468  0.0132     1.468  0.0132
+SRY         C23         C33      SINGLE       n     1.532  0.0100     1.532  0.0100
+SRY         N23         CI3      SINGLE       n     1.444  0.0128     1.444  0.0128
+SRY         C33         O33      SINGLE       n     1.421  0.0106     1.421  0.0106
+SRY         C33         C43      SINGLE       n     1.523  0.0100     1.523  0.0100
+SRY         C43         O43      SINGLE       n     1.425  0.0100     1.425  0.0100
+SRY         C43         C53      SINGLE       n     1.525  0.0100     1.525  0.0100
+SRY         C53         O53      SINGLE       n     1.441  0.0100     1.441  0.0100
+SRY         C53         C63      SINGLE       n     1.511  0.0142     1.511  0.0142
+SRY         C63         O63      SINGLE       n     1.426  0.0200     1.426  0.0200
+SRY         C11         H11      SINGLE       n     1.089  0.0100     0.990  0.0147
+SRY         N11        HN11      SINGLE       n     1.016  0.0100     0.876  0.0200
+SRY         NB1        HB11      SINGLE       n     1.016  0.0100     0.881  0.0200
+SRY         NB1        HB12      SINGLE       n     1.016  0.0100     0.881  0.0200
+SRY         NC1        HC11      SINGLE       n     1.016  0.0100     0.879  0.0200
+SRY         NC1        HC12      SINGLE       n     1.016  0.0100     0.879  0.0200
+SRY         C21         H21      SINGLE       n     1.089  0.0100     0.977  0.0200
+SRY         O21        HO21      SINGLE       n     0.970  0.0120     0.841  0.0200
+SRY         C31         H31      SINGLE       n     1.089  0.0100     0.990  0.0147
+SRY         N31        HN31      SINGLE       n     1.016  0.0100     0.876  0.0200
+SRY         NE1        HE11      SINGLE       n     1.016  0.0100     0.891  0.0200
+SRY         NE1        HE12      SINGLE       n     1.016  0.0100     0.891  0.0200
+SRY         NF1        HF11      SINGLE       n     1.016  0.0100     0.893  0.0200
+SRY         NF1        HF12      SINGLE       n     1.016  0.0100     0.893  0.0200
+SRY         C41         H41      SINGLE       n     1.089  0.0100     0.989  0.0181
+SRY         C51         H51      SINGLE       n     1.089  0.0100     0.990  0.0140
+SRY         O51        HO51      SINGLE       n     0.970  0.0120     0.841  0.0200
+SRY         C61         H61      SINGLE       n     1.089  0.0100     0.992  0.0104
+SRY         O61        HO61      SINGLE       n     0.970  0.0120     0.841  0.0200
+SRY         C12         H12      SINGLE       n     1.089  0.0100     0.990  0.0166
+SRY         C22         H22      SINGLE       n     1.089  0.0100     0.989  0.0200
+SRY         O32        HO32      SINGLE       n     0.970  0.0120     0.844  0.0200
+SRY         CG2        HG21      SINGLE       n     1.082  0.0130     0.940  0.0157
+SRY         C42         H42      SINGLE       n     1.089  0.0100     0.988  0.0134
+SRY         CH2        HH21      SINGLE       n     1.089  0.0100     0.971  0.0169
+SRY         CH2        HH22      SINGLE       n     1.089  0.0100     0.971  0.0169
+SRY         CH2        HH23      SINGLE       n     1.089  0.0100     0.971  0.0169
+SRY         C13         H13      SINGLE       n     1.089  0.0100     0.989  0.0183
+SRY         C23         H23      SINGLE       n     1.089  0.0100     0.988  0.0199
+SRY         N23        HN23      SINGLE       n     1.036  0.0160     0.911  0.0200
+SRY         CI3        HI31      SINGLE       n     1.089  0.0100     0.977  0.0113
+SRY         CI3        HI32      SINGLE       n     1.089  0.0100     0.977  0.0113
+SRY         CI3        HI33      SINGLE       n     1.089  0.0100     0.977  0.0113
+SRY         C33         H33      SINGLE       n     1.089  0.0100     0.992  0.0104
+SRY         O33        HO33      SINGLE       n     0.970  0.0120     0.841  0.0200
+SRY         C43         H43      SINGLE       n     1.089  0.0100     0.991  0.0105
+SRY         O43        HO43      SINGLE       n     0.970  0.0120     0.841  0.0200
+SRY         C53         H53      SINGLE       n     1.089  0.0100     0.988  0.0182
+SRY         C63        H631      SINGLE       n     1.089  0.0100     0.980  0.0184
+SRY         C63        H632      SINGLE       n     1.089  0.0100     0.980  0.0184
+SRY         O63        HO63      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SRY         N11         C11         C21     110.454    2.38
+SRY         N11         C11         C61     110.454    2.38
+SRY         N11         C11         H11     108.143    1.50
+SRY         C21         C11         C61     111.932    2.44
+SRY         C21         C11         H11     107.258    1.68
+SRY         C61         C11         H11     107.258    1.68
+SRY         C11         N11         CA1     123.349    2.85
+SRY         C11         N11        HN11     118.813    2.07
+SRY         CA1         N11        HN11     117.838    2.39
+SRY         N11         CA1         NB1     120.098    1.50
+SRY         N11         CA1         NC1     120.098    1.50
+SRY         NB1         CA1         NC1     119.803    1.50
+SRY         CA1         NB1        HB11     119.866    1.61
+SRY         CA1         NB1        HB12     119.866    1.61
+SRY        HB11         NB1        HB12     120.267    2.09
+SRY         CA1         NC1        HC11     119.866    1.61
+SRY         CA1         NC1        HC12     119.866    1.61
+SRY        HC11         NC1        HC12     120.267    2.09
+SRY         C11         C21         O21     110.124    1.87
+SRY         C11         C21         C31     110.467    1.50
+SRY         C11         C21         H21     108.987    1.50
+SRY         O21         C21         C31     110.124    1.87
+SRY         O21         C21         H21     108.083    1.50
+SRY         C31         C21         H21     108.987    1.50
+SRY         C21         O21        HO21     107.340    1.55
+SRY         C21         C31         N31     110.454    2.38
+SRY         C21         C31         C41     111.932    2.44
+SRY         C21         C31         H31     107.258    1.68
+SRY         N31         C31         C41     110.454    2.38
+SRY         N31         C31         H31     108.143    1.50
+SRY         C41         C31         H31     107.258    1.68
+SRY         C31         N31         CD1     123.349    2.85
+SRY         C31         N31        HN31     118.813    2.07
+SRY         CD1         N31        HN31     117.838    2.39
+SRY         N31         CD1         NE1     120.048    1.83
+SRY         N31         CD1         NF1     120.048    1.83
+SRY         NE1         CD1         NF1     119.903    1.50
+SRY         CD1         NE1        HE11     118.378    3.00
+SRY         CD1         NE1        HE12     118.378    3.00
+SRY        HE11         NE1        HE12     119.669    3.00
+SRY         CD1         NF1        HF11     118.378    3.00
+SRY         CD1         NF1        HF12     118.378    3.00
+SRY        HF11         NF1        HF12     119.669    3.00
+SRY         C31         C41         O41     107.272    1.50
+SRY         C31         C41         C51     110.742    1.50
+SRY         C31         C41         H41     108.987    1.50
+SRY         O41         C41         C51     108.860    2.21
+SRY         O41         C41         H41     109.040    1.50
+SRY         C51         C41         H41     109.166    1.50
+SRY         C41         O41         C12     114.840    1.50
+SRY         C41         C51         O51     110.081    2.02
+SRY         C41         C51         C61     110.796    1.54
+SRY         C41         C51         H51     109.166    1.50
+SRY         O51         C51         C61     110.219    1.72
+SRY         O51         C51         H51     108.767    1.50
+SRY         C61         C51         H51     107.830    1.50
+SRY         C51         O51        HO51     108.895    2.41
+SRY         C11         C61         C51     110.742    1.50
+SRY         C11         C61         O61     110.124    1.87
+SRY         C11         C61         H61     108.987    1.50
+SRY         C51         C61         O61     111.630    1.78
+SRY         C51         C61         H61     108.943    1.50
+SRY         O61         C61         H61     108.954    1.50
+SRY         C61         O61        HO61     108.064    2.53
+SRY         O41         C12         C22     108.741    2.62
+SRY         O41         C12         O42     111.780    1.50
+SRY         O41         C12         H12     111.010    1.50
+SRY         C22         C12         O42     104.988    1.50
+SRY         C22         C12         H12     112.713    2.29
+SRY         O42         C12         H12     109.510    2.59
+SRY         C12         C22         C32     104.443    2.26
+SRY         C12         C22         O13     110.722    2.96
+SRY         C12         C22         H22     110.947    3.00
+SRY         C32         C22         O13     111.118    2.63
+SRY         C32         C22         H22     109.193    1.83
+SRY         O13         C22         H22     110.343    1.64
+SRY         C22         C32         O32     110.834    2.59
+SRY         C22         C32         CG2     112.424    2.46
+SRY         C22         C32         C42     104.443    2.26
+SRY         O32         C32         CG2     109.197    2.32
+SRY         O32         C32         C42     110.722    2.96
+SRY         CG2         C32         C42     112.424    2.46
+SRY         C32         O32        HO32     109.111    1.50
+SRY         C32         CG2         OG2     123.684    2.73
+SRY         C32         CG2        HG21     117.829    1.78
+SRY         OG2         CG2        HG21     118.487    1.50
+SRY         C32         C42         CH2     113.745    2.48
+SRY         C32         C42         O42     105.156    2.45
+SRY         C32         C42         H42     110.594    1.50
+SRY         CH2         C42         O42     109.577    1.51
+SRY         CH2         C42         H42     109.143    1.57
+SRY         O42         C42         H42     109.115    1.50
+SRY         C42         CH2        HH21     109.477    1.50
+SRY         C42         CH2        HH22     109.477    1.50
+SRY         C42         CH2        HH23     109.477    1.50
+SRY        HH21         CH2        HH22     109.436    1.50
+SRY        HH21         CH2        HH23     109.436    1.50
+SRY        HH22         CH2        HH23     109.436    1.50
+SRY         C12         O42         C42     109.722    1.50
+SRY         C22         O13         C13     116.304    2.37
+SRY         O13         C13         C23     108.367    1.50
+SRY         O13         C13         O53     110.394    2.23
+SRY         O13         C13         H13     109.322    1.50
+SRY         C23         C13         O53     111.350    3.00
+SRY         C23         C13         H13     108.848    1.50
+SRY         O53         C13         H13     109.272    1.61
+SRY         C13         C23         N23     111.865    2.42
+SRY         C13         C23         C33     111.124    1.57
+SRY         C13         C23         H23     107.511    1.55
+SRY         N23         C23         C33     110.827    2.19
+SRY         N23         C23         H23     108.110    1.50
+SRY         C33         C23         H23     107.579    2.24
+SRY         C23         N23         CI3     114.006    1.50
+SRY         C23         N23        HN23     107.785    2.86
+SRY         CI3         N23        HN23     110.410    2.59
+SRY         N23         CI3        HI31     109.483    1.50
+SRY         N23         CI3        HI32     109.483    1.50
+SRY         N23         CI3        HI33     109.483    1.50
+SRY        HI31         CI3        HI32     109.459    1.50
+SRY        HI31         CI3        HI33     109.459    1.50
+SRY        HI32         CI3        HI33     109.459    1.50
+SRY         C23         C33         O33     109.400    2.63
+SRY         C23         C33         C43     110.882    1.54
+SRY         C23         C33         H33     108.177    2.01
+SRY         O33         C33         C43     110.984    1.55
+SRY         O33         C33         H33     108.954    1.50
+SRY         C43         C33         H33     108.714    1.50
+SRY         C33         O33        HO33     108.064    2.53
+SRY         C33         C43         O43     109.301    2.14
+SRY         C33         C43         C53     109.454    1.50
+SRY         C33         C43         H43     109.514    1.50
+SRY         O43         C43         C53     109.072    2.07
+SRY         O43         C43         H43     109.194    1.50
+SRY         C53         C43         H43     109.223    1.50
+SRY         C43         O43        HO43     109.564    3.00
+SRY         C43         C53         O53     109.140    1.86
+SRY         C43         C53         C63     112.996    1.59
+SRY         C43         C53         H53     108.960    1.50
+SRY         O53         C53         C63     106.879    1.50
+SRY         O53         C53         H53     109.134    1.50
+SRY         C63         C53         H53     109.269    1.50
+SRY         C13         O53         C53     113.097    1.50
+SRY         C53         C63         O63     111.299    2.09
+SRY         C53         C63        H631     109.363    1.50
+SRY         C53         C63        H632     109.363    1.50
+SRY         O63         C63        H631     109.265    1.50
+SRY         O63         C63        H632     109.265    1.50
+SRY        H631         C63        H632     108.155    1.50
+SRY         C63         O63        HO63     109.472    2.41
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SRY                   nu0         C53         O53         C13         C23      63.121    10.0     3
+SRY                   nu1         O53         C13         C23         C33     -57.112    10.0     3
+SRY                   nu2         C13         C23         C33         C43      52.430    10.0     3
+SRY                   nu3         C23         C33         C43         C53     -51.975    10.0     3
+SRY                   nu4         C33         C43         C53         O53      56.586    10.0     3
+SRY                   nu5         C43         C53         O53         C13     -63.134    10.0     3
+SRY             sp3_sp3_1         C61         C11         C21         C31      60.000    10.0     3
+SRY             sp3_sp3_2         C61         C11         C21         O21     180.000    10.0     3
+SRY             sp3_sp3_3         C61         C11         C21         H21     -60.000    10.0     3
+SRY             sp3_sp3_4         N11         C11         C21         C31     -60.000    10.0     3
+SRY             sp3_sp3_5         N11         C11         C21         O21      60.000    10.0     3
+SRY             sp3_sp3_6         N11         C11         C21         H21     180.000    10.0     3
+SRY             sp3_sp3_7         H11         C11         C21         C31     180.000    10.0     3
+SRY             sp3_sp3_8         H11         C11         C21         O21     -60.000    10.0     3
+SRY             sp3_sp3_9         H11         C11         C21         H21      60.000    10.0     3
+SRY            sp3_sp3_10         C11         C21         C31         C41     -60.000    10.0     3
+SRY            sp3_sp3_11         C11         C21         C31         N31      60.000    10.0     3
+SRY            sp3_sp3_12         C11         C21         C31         H31     180.000    10.0     3
+SRY            sp3_sp3_13         O21         C21         C31         C41     180.000    10.0     3
+SRY            sp3_sp3_14         O21         C21         C31         N31     -60.000    10.0     3
+SRY            sp3_sp3_15         O21         C21         C31         H31      60.000    10.0     3
+SRY            sp3_sp3_16         H21         C21         C31         C41      60.000    10.0     3
+SRY            sp3_sp3_17         H21         C21         C31         N31     180.000    10.0     3
+SRY            sp3_sp3_18         H21         C21         C31         H31     -60.000    10.0     3
+SRY            sp3_sp3_19         C21         C31         C41         C51      60.000    10.0     3
+SRY            sp3_sp3_20         C21         C31         C41         O41     180.000    10.0     3
+SRY            sp3_sp3_21         C21         C31         C41         H41     -60.000    10.0     3
+SRY            sp3_sp3_22         N31         C31         C41         C51     -60.000    10.0     3
+SRY            sp3_sp3_23         N31         C31         C41         O41      60.000    10.0     3
+SRY            sp3_sp3_24         N31         C31         C41         H41     180.000    10.0     3
+SRY            sp3_sp3_25         H31         C31         C41         C51     180.000    10.0     3
+SRY            sp3_sp3_26         H31         C31         C41         O41     -60.000    10.0     3
+SRY            sp3_sp3_27         H31         C31         C41         H41      60.000    10.0     3
+SRY            sp3_sp3_28         C31         C41         C51         C61     -60.000    10.0     3
+SRY            sp3_sp3_29         C31         C41         C51         O51      60.000    10.0     3
+SRY            sp3_sp3_30         C31         C41         C51         H51     180.000    10.0     3
+SRY            sp3_sp3_31         O41         C41         C51         C61     180.000    10.0     3
+SRY            sp3_sp3_32         O41         C41         C51         O51     -60.000    10.0     3
+SRY            sp3_sp3_33         O41         C41         C51         H51      60.000    10.0     3
+SRY            sp3_sp3_34         H41         C41         C51         C61      60.000    10.0     3
+SRY            sp3_sp3_35         H41         C41         C51         O51     180.000    10.0     3
+SRY            sp3_sp3_36         H41         C41         C51         H51     -60.000    10.0     3
+SRY            sp3_sp3_37         C41         C51         C61         C11      60.000    10.0     3
+SRY            sp3_sp3_38         C41         C51         C61         O61     180.000    10.0     3
+SRY            sp3_sp3_39         C41         C51         C61         H61     -60.000    10.0     3
+SRY            sp3_sp3_40         O51         C51         C61         C11     -60.000    10.0     3
+SRY            sp3_sp3_41         O51         C51         C61         O61      60.000    10.0     3
+SRY            sp3_sp3_42         O51         C51         C61         H61     180.000    10.0     3
+SRY            sp3_sp3_43         H51         C51         C61         C11     180.000    10.0     3
+SRY            sp3_sp3_44         H51         C51         C61         O61     -60.000    10.0     3
+SRY            sp3_sp3_45         H51         C51         C61         H61      60.000    10.0     3
+SRY            sp3_sp3_46         O42         C12         C22         C32      60.000    10.0     3
+SRY            sp3_sp3_47         O42         C12         C22         O13     180.000    10.0     3
+SRY            sp3_sp3_48         O42         C12         C22         H22     -60.000    10.0     3
+SRY            sp3_sp3_49         O41         C12         C22         C32     -60.000    10.0     3
+SRY            sp3_sp3_50         O41         C12         C22         O13      60.000    10.0     3
+SRY            sp3_sp3_51         O41         C12         C22         H22     180.000    10.0     3
+SRY            sp3_sp3_52         H12         C12         C22         C32     180.000    10.0     3
+SRY            sp3_sp3_53         H12         C12         C22         O13     -60.000    10.0     3
+SRY            sp3_sp3_54         H12         C12         C22         H22      60.000    10.0     3
+SRY            sp3_sp3_55         C12         C22         C32         C42     -60.000    10.0     3
+SRY            sp3_sp3_56         C12         C22         C32         O32      60.000    10.0     3
+SRY            sp3_sp3_57         C12         C22         C32         CG2     180.000    10.0     3
+SRY            sp3_sp3_58         O13         C22         C32         C42     180.000    10.0     3
+SRY            sp3_sp3_59         O13         C22         C32         O32     -60.000    10.0     3
+SRY            sp3_sp3_60         O13         C22         C32         CG2      60.000    10.0     3
+SRY            sp3_sp3_61         H22         C22         C32         C42      60.000    10.0     3
+SRY            sp3_sp3_62         H22         C22         C32         O32     180.000    10.0     3
+SRY            sp3_sp3_63         H22         C22         C32         CG2     -60.000    10.0     3
+SRY            sp3_sp3_64         C22         C32         C42         O42      60.000    10.0     3
+SRY            sp3_sp3_65         C22         C32         C42         CH2     180.000    10.0     3
+SRY            sp3_sp3_66         C22         C32         C42         H42     -60.000    10.0     3
+SRY            sp3_sp3_67         O32         C32         C42         O42     -60.000    10.0     3
+SRY            sp3_sp3_68         O32         C32         C42         CH2      60.000    10.0     3
+SRY            sp3_sp3_69         O32         C32         C42         H42     180.000    10.0     3
+SRY            sp3_sp3_70         CG2         C32         C42         O42     180.000    10.0     3
+SRY            sp3_sp3_71         CG2         C32         C42         CH2     -60.000    10.0     3
+SRY            sp3_sp3_72         CG2         C32         C42         H42      60.000    10.0     3
+SRY            sp3_sp3_73         C32         C42         O42         C12     -60.000    10.0     3
+SRY            sp3_sp3_74         CH2         C42         O42         C12     180.000    10.0     3
+SRY            sp3_sp3_75         H42         C42         O42         C12      60.000    10.0     3
+SRY             sp2_sp3_1         CA1         N11         C11         C21       0.000    10.0     6
+SRY             sp2_sp3_2         CA1         N11         C11         C61     120.000    10.0     6
+SRY             sp2_sp3_3         CA1         N11         C11         H11    -120.000    10.0     6
+SRY             sp2_sp3_4        HN11         N11         C11         C21     180.000    10.0     6
+SRY             sp2_sp3_5        HN11         N11         C11         C61     -60.000    10.0     6
+SRY             sp2_sp3_6        HN11         N11         C11         H11      60.000    10.0     6
+SRY           sp3_sp3_115         C21         C11         C61         C51     180.000    10.0     3
+SRY           sp3_sp3_116         C21         C11         C61         O61     -60.000    10.0     3
+SRY           sp3_sp3_117         C21         C11         C61         H61      60.000    10.0     3
+SRY           sp3_sp3_118         N11         C11         C61         C51      60.000    10.0     3
+SRY           sp3_sp3_119         N11         C11         C61         O61     180.000    10.0     3
+SRY           sp3_sp3_120         N11         C11         C61         H61     -60.000    10.0     3
+SRY           sp3_sp3_121         H11         C11         C61         C51     -60.000    10.0     3
+SRY           sp3_sp3_122         H11         C11         C61         O61      60.000    10.0     3
+SRY           sp3_sp3_123         H11         C11         C61         H61     180.000    10.0     3
+SRY             sp2_sp2_1         NB1         CA1         N11         C11     180.000     5.0     2
+SRY             sp2_sp2_2         NB1         CA1         N11        HN11       0.000     5.0     2
+SRY             sp2_sp2_3         NC1         CA1         N11         C11       0.000     5.0     2
+SRY             sp2_sp2_4         NC1         CA1         N11        HN11     180.000     5.0     2
+SRY             sp2_sp2_5         N11         CA1         NB1        HB11     180.000     5.0     2
+SRY             sp2_sp2_6         N11         CA1         NB1        HB12       0.000     5.0     2
+SRY             sp2_sp2_7         NC1         CA1         NB1        HB11       0.000     5.0     2
+SRY             sp2_sp2_8         NC1         CA1         NB1        HB12     180.000     5.0     2
+SRY             sp2_sp2_9         N11         CA1         NC1        HC11     180.000     5.0     2
+SRY            sp2_sp2_10         N11         CA1         NC1        HC12       0.000     5.0     2
+SRY            sp2_sp2_11         NB1         CA1         NC1        HC11       0.000     5.0     2
+SRY            sp2_sp2_12         NB1         CA1         NC1        HC12     180.000     5.0     2
+SRY           sp3_sp3_124         C11         C21         O21        HO21     180.000    10.0     3
+SRY           sp3_sp3_125         C31         C21         O21        HO21      60.000    10.0     3
+SRY           sp3_sp3_126         H21         C21         O21        HO21     -60.000    10.0     3
+SRY             sp2_sp3_7         CD1         N31         C31         C21       0.000    10.0     6
+SRY             sp2_sp3_8         CD1         N31         C31         C41     120.000    10.0     6
+SRY             sp2_sp3_9         CD1         N31         C31         H31    -120.000    10.0     6
+SRY            sp2_sp3_10        HN31         N31         C31         C21     180.000    10.0     6
+SRY            sp2_sp3_11        HN31         N31         C31         C41     -60.000    10.0     6
+SRY            sp2_sp3_12        HN31         N31         C31         H31      60.000    10.0     6
+SRY            sp2_sp2_13         NE1         CD1         N31         C31     180.000     5.0     2
+SRY            sp2_sp2_14         NE1         CD1         N31        HN31       0.000     5.0     2
+SRY            sp2_sp2_15         NF1         CD1         N31         C31       0.000     5.0     2
+SRY            sp2_sp2_16         NF1         CD1         N31        HN31     180.000     5.0     2
+SRY            sp2_sp2_17         N31         CD1         NE1        HE11     180.000     5.0     2
+SRY            sp2_sp2_18         N31         CD1         NE1        HE12       0.000     5.0     2
+SRY            sp2_sp2_19         NF1         CD1         NE1        HE11       0.000     5.0     2
+SRY            sp2_sp2_20         NF1         CD1         NE1        HE12     180.000     5.0     2
+SRY            sp2_sp2_21         N31         CD1         NF1        HF11     180.000     5.0     2
+SRY            sp2_sp2_22         N31         CD1         NF1        HF12       0.000     5.0     2
+SRY            sp2_sp2_23         NE1         CD1         NF1        HF11       0.000     5.0     2
+SRY            sp2_sp2_24         NE1         CD1         NF1        HF12     180.000     5.0     2
+SRY           sp3_sp3_127         C31         C41         O41         C12     180.000    10.0     3
+SRY           sp3_sp3_128         C51         C41         O41         C12      60.000    10.0     3
+SRY           sp3_sp3_129         H41         C41         O41         C12     -60.000    10.0     3
+SRY           sp3_sp3_130         C22         C12         O41         C41     180.000    10.0     3
+SRY           sp3_sp3_131         O42         C12         O41         C41      60.000    10.0     3
+SRY           sp3_sp3_132         H12         C12         O41         C41     -60.000    10.0     3
+SRY           sp3_sp3_133         C41         C51         O51        HO51     180.000    10.0     3
+SRY           sp3_sp3_134         C61         C51         O51        HO51      60.000    10.0     3
+SRY           sp3_sp3_135         H51         C51         O51        HO51     -60.000    10.0     3
+SRY           sp3_sp3_136         C11         C61         O61        HO61     180.000    10.0     3
+SRY           sp3_sp3_137         C51         C61         O61        HO61      60.000    10.0     3
+SRY           sp3_sp3_138         H61         C61         O61        HO61     -60.000    10.0     3
+SRY           sp3_sp3_139         C22         C12         O42         C42     180.000    10.0     3
+SRY           sp3_sp3_140         O41         C12         O42         C42      60.000    10.0     3
+SRY           sp3_sp3_141         H12         C12         O42         C42     -60.000    10.0     3
+SRY           sp3_sp3_142         C12         C22         O13         C13     180.000    10.0     3
+SRY           sp3_sp3_143         C32         C22         O13         C13      60.000    10.0     3
+SRY           sp3_sp3_144         H22         C22         O13         C13     -60.000    10.0     3
+SRY           sp3_sp3_145         C22         C32         O32        HO32     180.000    10.0     3
+SRY           sp3_sp3_146         CG2         C32         O32        HO32      60.000    10.0     3
+SRY           sp3_sp3_147         C42         C32         O32        HO32     -60.000    10.0     3
+SRY            sp2_sp3_13         OG2         CG2         C32         C22       0.000    10.0     6
+SRY            sp2_sp3_14         OG2         CG2         C32         O32     120.000    10.0     6
+SRY            sp2_sp3_15         OG2         CG2         C32         C42    -120.000    10.0     6
+SRY            sp2_sp3_16        HG21         CG2         C32         C22     180.000    10.0     6
+SRY            sp2_sp3_17        HG21         CG2         C32         O32     -60.000    10.0     6
+SRY            sp2_sp3_18        HG21         CG2         C32         C42      60.000    10.0     6
+SRY           sp3_sp3_148         C32         C42         CH2        HH21     180.000    10.0     3
+SRY           sp3_sp3_149         C32         C42         CH2        HH22     -60.000    10.0     3
+SRY           sp3_sp3_150         C32         C42         CH2        HH23      60.000    10.0     3
+SRY           sp3_sp3_151         O42         C42         CH2        HH21      60.000    10.0     3
+SRY           sp3_sp3_152         O42         C42         CH2        HH22     180.000    10.0     3
+SRY           sp3_sp3_153         O42         C42         CH2        HH23     -60.000    10.0     3
+SRY           sp3_sp3_154         H42         C42         CH2        HH21     -60.000    10.0     3
+SRY           sp3_sp3_155         H42         C42         CH2        HH22      60.000    10.0     3
+SRY           sp3_sp3_156         H42         C42         CH2        HH23     180.000    10.0     3
+SRY           sp3_sp3_157         C23         C13         O13         C22     180.000    10.0     3
+SRY           sp3_sp3_158         O53         C13         O13         C22      60.000    10.0     3
+SRY           sp3_sp3_159         H13         C13         O13         C22     -60.000    10.0     3
+SRY           sp3_sp3_163         C13         C23         N23        HN23     180.000    10.0     3
+SRY           sp3_sp3_164         C13         C23         N23         CI3     -60.000    10.0     3
+SRY           sp3_sp3_165         C33         C23         N23        HN23      60.000    10.0     3
+SRY           sp3_sp3_166         C33         C23         N23         CI3     180.000    10.0     3
+SRY           sp3_sp3_167         H23         C23         N23        HN23     -60.000    10.0     3
+SRY           sp3_sp3_168         H23         C23         N23         CI3      60.000    10.0     3
+SRY           sp3_sp3_169        HI31         CI3         N23         C23     180.000    10.0     3
+SRY           sp3_sp3_170        HI31         CI3         N23        HN23     -60.000    10.0     3
+SRY           sp3_sp3_171        HI32         CI3         N23         C23      60.000    10.0     3
+SRY           sp3_sp3_172        HI32         CI3         N23        HN23     180.000    10.0     3
+SRY           sp3_sp3_173        HI33         CI3         N23         C23     -60.000    10.0     3
+SRY           sp3_sp3_174        HI33         CI3         N23        HN23      60.000    10.0     3
+SRY           sp3_sp3_175         C23         C33         O33        HO33     180.000    10.0     3
+SRY           sp3_sp3_176         C43         C33         O33        HO33      60.000    10.0     3
+SRY           sp3_sp3_177         H33         C33         O33        HO33     -60.000    10.0     3
+SRY           sp3_sp3_178         C33         C43         O43        HO43     180.000    10.0     3
+SRY           sp3_sp3_179         C53         C43         O43        HO43      60.000    10.0     3
+SRY           sp3_sp3_180         H43         C43         O43        HO43     -60.000    10.0     3
+SRY           sp3_sp3_181         C43         C53         C63         O63     180.000    10.0     3
+SRY           sp3_sp3_182         C43         C53         C63        H631     -60.000    10.0     3
+SRY           sp3_sp3_183         C43         C53         C63        H632      60.000    10.0     3
+SRY           sp3_sp3_184         O53         C53         C63         O63      60.000    10.0     3
+SRY           sp3_sp3_185         O53         C53         C63        H631     180.000    10.0     3
+SRY           sp3_sp3_186         O53         C53         C63        H632     -60.000    10.0     3
+SRY           sp3_sp3_187         H53         C53         C63         O63     -60.000    10.0     3
+SRY           sp3_sp3_188         H53         C53         C63        H631      60.000    10.0     3
+SRY           sp3_sp3_189         H53         C53         C63        H632     180.000    10.0     3
+SRY           sp3_sp3_190         C53         C63         O63        HO63     180.000    10.0     3
+SRY           sp3_sp3_191        H631         C63         O63        HO63      60.000    10.0     3
+SRY           sp3_sp3_192        H632         C63         O63        HO63     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SRY    chir_1    C11    N11    C61    C21    negative
+SRY    chir_2    C21    O21    C31    C11    positive
+SRY    chir_3    C31    N31    C41    C21    positive
+SRY    chir_4    C41    O41    C51    C31    negative
+SRY    chir_5    C51    O51    C41    C61    negative
+SRY    chir_6    C61    O61    C51    C11    positive
+SRY    chir_7    C12    O42    O41    C22    negative
+SRY    chir_8    C22    O13    C12    C32    negative
+SRY    chir_9    C32    O32    CG2    C22    negative
+SRY    chir_10    C42    O42    C32    CH2    positive
+SRY    chir_11    C13    O13    O53    C23    positive
+SRY    chir_12    C23    N23    C13    C33    positive
+SRY    chir_13    C33    O33    C43    C23    positive
+SRY    chir_14    C43    O43    C53    C33    negative
+SRY    chir_15    C53    O53    C43    C63    positive
+SRY    chir_16    N23    C23    CI3    HN23    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SRY    plan-1         C11   0.020
+SRY    plan-1         CA1   0.020
+SRY    plan-1        HN11   0.020
+SRY    plan-1         N11   0.020
+SRY    plan-2         CA1   0.020
+SRY    plan-2         N11   0.020
+SRY    plan-2         NB1   0.020
+SRY    plan-2         NC1   0.020
+SRY    plan-3         CA1   0.020
+SRY    plan-3        HB11   0.020
+SRY    plan-3        HB12   0.020
+SRY    plan-3         NB1   0.020
+SRY    plan-4         CA1   0.020
+SRY    plan-4        HC11   0.020
+SRY    plan-4        HC12   0.020
+SRY    plan-4         NC1   0.020
+SRY    plan-5         C31   0.020
+SRY    plan-5         CD1   0.020
+SRY    plan-5        HN31   0.020
+SRY    plan-5         N31   0.020
+SRY    plan-6         CD1   0.020
+SRY    plan-6         N31   0.020
+SRY    plan-6         NE1   0.020
+SRY    plan-6         NF1   0.020
+SRY    plan-7         C32   0.020
+SRY    plan-7         CG2   0.020
+SRY    plan-7        HG21   0.020
+SRY    plan-7         OG2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SRY           SMILES              ACDLabs 10.04                                                                                                                                                                                  O=CC3(O)C(OC1OC(C(O)C(O)C1NC)CO)C(OC2C(NC(=[N@H])N)C(O)C(NC(=[N@H])N)C(O)C2O)OC3C
+SRY            InChI                InChI  1.03 InChI=1S/C21H39N7O12/c1-5-21(36,4-30)16(40-17-9(26-2)13(34)10(31)6(3-29)38-17)18(37-5)39-15-8(28-20(24)25)11(32)7(27-19(22)23)12(33)14(15)35/h4-18,26,29,31-36H,3H2,1-2H3,(H4,22,23,27)(H4,24,25,28)/t5-,6-,7+,8-,9-,10-,11+,12-,13-,14+,15+,16-,17-,18-,21+/m0/s1
+SRY         InChIKey                InChI  1.03                                                                                                                                                                                                                                        UCSJYZPVAKXKNQ-HZYVHMACSA-N
+SRY SMILES_CANONICAL               CACTVS 3.385                                                                                                                         CN[C@H]1[C@H](O)[C@@H](O)[C@H](CO)O[C@H]1O[C@H]2[C@@H](O[C@@H](C)[C@]2(O)C=O)O[C@H]3[C@H](O)[C@@H](O)[C@H](NC(N)=N)[C@@H](O)[C@@H]3NC(N)=N
+SRY           SMILES               CACTVS 3.385                                                                                                                                              CN[CH]1[CH](O)[CH](O)[CH](CO)O[CH]1O[CH]2[CH](O[CH](C)[C]2(O)C=O)O[CH]3[CH](O)[CH](O)[CH](NC(N)=N)[CH](O)[CH]3NC(N)=N
+SRY SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                                                      "[H]/N=C(/N)\N[C@@H]1[C@H]([C@@H]([C@H]([C@@H]([C@H]1O)O)O[C@H]2[C@@H]([C@]([C@@H](O2)C)(C=O)O)O[C@H]3[C@H]([C@@H]([C@H]([C@@H](O3)CO)O)O)NC)N/C(=N\[H])/N)O"
+SRY           SMILES "OpenEye OEToolkits" 1.7.5                                                                                                                                                                                      CC1C(C(C(O1)OC2C(C(C(C(C2O)O)NC(=N)N)O)NC(=N)N)OC3C(C(C(C(O3)CO)O)O)NC)(C=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SRY acedrg               243         "dictionary generator"                  
+SRY acedrg_database      11          "data source"                           
+SRY rdkit                2017.03.2   "Chemoinformatics tool"
+SRY refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,409 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SIH     SIH      PROGESTERONE-11-ALPHA-OL-HEMISUCCINATE     NON-POLYMER     64     31     .     
+#
+data_comp_SIH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SIH     C1      C       CH2     0       -19.735     42.960      -15.214     
+SIH     C2      C       CH2     0       -18.453     42.411      -15.840     
+SIH     C3      C       CR6     0       -17.252     43.211      -15.461     
+SIH     O3      O       O       0       -16.231     43.213      -16.139     
+SIH     C4      C       CR16    0       -17.362     43.984      -14.237     
+SIH     C5      C       CR66    0       -18.357     43.837      -13.345     
+SIH     C6      C       CH2     0       -18.192     44.340      -11.944     
+SIH     C7      C       CH2     0       -19.352     45.238      -11.546     
+SIH     C8      C       CH1     0       -20.678     44.497      -11.704     
+SIH     C9      C       CH1     0       -20.874     44.055      -13.186     
+SIH     C10     C       CT      0       -19.687     43.146      -13.684     
+SIH     C11     C       CH1     0       -22.308     43.546      -13.482     
+SIH     O11     O       O2      0       -22.641     43.615      -14.907     
+SIH     C12     C       CH2     0       -23.430     44.370      -12.834     
+SIH     C13     C       CT      0       -23.227     44.689      -11.354     
+SIH     C14     C       CH1     0       -21.844     45.361      -11.242     
+SIH     C15     C       CH2     0       -21.826     45.970      -9.837      
+SIH     C16     C       CH2     0       -23.292     46.377      -9.582      
+SIH     C17     C       CH1     0       -24.115     45.838      -10.773     
+SIH     C18     C       CH3     0       -23.381     43.409      -10.513     
+SIH     C19     C       CH3     0       -19.682     41.754      -13.002     
+SIH     C20     C       C       0       -25.556     45.488      -10.467     
+SIH     O20     O       O       0       -25.964     45.364      -9.337      
+SIH     C21     C       CH3     0       -26.484     45.286      -11.627     
+SIH     CH1     C       C       0       -23.157     42.580      -15.558     
+SIH     OH1     O       O       0       -22.650     42.133      -16.546     
+SIH     CH2     C       CH2     0       -24.471     42.050      -15.012     
+SIH     CH3     C       CH2     0       -25.682     42.955      -15.180     
+SIH     CH4     C       C       0       -26.500     42.699      -16.435     
+SIH     OH4     O       O       0       -26.146     43.257      -17.493     
+SIH     OH5     O       OC      -1      -27.488     41.943      -16.350     
+SIH     H11A    H       H       0       -19.947     43.816      -15.629     
+SIH     H12     H       H       0       -20.452     42.342      -15.426     
+SIH     H21     H       H       0       -18.327     41.490      -15.554     
+SIH     H22     H       H       0       -18.544     42.413      -16.809     
+SIH     H41     H       H       0       -16.699     44.627      -14.065     
+SIH     H61     H       H       0       -18.149     43.582      -11.335     
+SIH     H62     H       H       0       -17.359     44.837      -11.866     
+SIH     H71     H       H       0       -19.356     46.038      -12.110     
+SIH     H72     H       H       0       -19.238     45.518      -10.615     
+SIH     H8      H       H       0       -20.640     43.699      -11.136     
+SIH     H9      H       H       0       -20.792     44.882      -13.703     
+SIH     H11     H       H       0       -22.378     42.618      -13.162     
+SIH     H121    H       H       0       -24.283     43.880      -12.926     
+SIH     H122    H       H       0       -23.520     45.223      -13.328     
+SIH     H14     H       H       0       -21.863     46.127      -11.864     
+SIH     H151    H       H       0       -21.235     46.750      -9.802      
+SIH     H152    H       H       0       -21.526     45.313      -9.176      
+SIH     H161    H       H       0       -23.371     47.348      -9.527      
+SIH     H162    H       H       0       -23.604     45.995      -8.742      
+SIH     H17     H       H       0       -24.141     46.544      -11.447     
+SIH     H181    H       H       0       -23.344     43.623      -9.565      
+SIH     H182    H       H       0       -22.671     42.784      -10.728     
+SIH     H183    H       H       0       -24.238     42.991      -10.712     
+SIH     H191    H       H       0       -20.367     41.722      -12.318     
+SIH     H192    H       H       0       -18.819     41.588      -12.593     
+SIH     H193    H       H       0       -19.859     41.062      -13.657     
+SIH     H211    H       H       0       -26.045     45.552      -12.444     
+SIH     H212    H       H       0       -27.278     45.821      -11.501     
+SIH     H213    H       H       0       -26.731     44.355      -11.683     
+SIH     HH21    H       H       0       -24.357     41.846      -14.063     
+SIH     HH22    H       H       0       -24.654     41.198      -15.460     
+SIH     HH31    H       H       0       -25.387     43.888      -15.192     
+SIH     HH32    H       H       0       -26.271     42.846      -14.405     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SIH          C1          C2      SINGLE       n     1.525  0.0100     1.525  0.0100
+SIH          C1         C10      SINGLE       n     1.536  0.0100     1.536  0.0100
+SIH          C2          C3      SINGLE       n     1.492  0.0100     1.492  0.0100
+SIH          C3          O3      DOUBLE       n     1.225  0.0100     1.225  0.0100
+SIH          C3          C4      SINGLE       n     1.452  0.0110     1.452  0.0110
+SIH          C4          C5      DOUBLE       n     1.341  0.0100     1.341  0.0100
+SIH          C5          C6      SINGLE       n     1.498  0.0100     1.498  0.0100
+SIH          C5         C10      SINGLE       n     1.525  0.0100     1.525  0.0100
+SIH          C6          C7      SINGLE       n     1.524  0.0100     1.524  0.0100
+SIH          C7          C8      SINGLE       n     1.527  0.0100     1.527  0.0100
+SIH          C8          C9      SINGLE       n     1.546  0.0104     1.546  0.0104
+SIH          C8         C14      SINGLE       n     1.522  0.0100     1.522  0.0100
+SIH          C9         C10      SINGLE       n     1.559  0.0100     1.559  0.0100
+SIH          C9         C11      SINGLE       n     1.532  0.0111     1.532  0.0111
+SIH         C10         C19      SINGLE       n     1.544  0.0100     1.544  0.0100
+SIH         C11         O11      SINGLE       n     1.456  0.0104     1.456  0.0104
+SIH         C11         C12      SINGLE       n     1.526  0.0116     1.526  0.0116
+SIH         O11         CH1      SINGLE       n     1.314  0.0118     1.314  0.0118
+SIH         C12         C13      SINGLE       n     1.529  0.0100     1.529  0.0100
+SIH         C13         C14      SINGLE       n     1.540  0.0100     1.540  0.0100
+SIH         C13         C17      SINGLE       n     1.559  0.0100     1.559  0.0100
+SIH         C13         C18      SINGLE       n     1.534  0.0100     1.534  0.0100
+SIH         C14         C15      SINGLE       n     1.530  0.0100     1.530  0.0100
+SIH         C15         C16      SINGLE       n     1.543  0.0100     1.543  0.0100
+SIH         C16         C17      SINGLE       n     1.542  0.0105     1.542  0.0105
+SIH         C17         C20      SINGLE       n     1.510  0.0100     1.510  0.0100
+SIH         C20         O20      DOUBLE       n     1.207  0.0100     1.207  0.0100
+SIH         C20         C21      SINGLE       n     1.499  0.0100     1.499  0.0100
+SIH         CH1         OH1      DOUBLE       n     1.197  0.0100     1.197  0.0100
+SIH         CH1         CH2      SINGLE       n     1.504  0.0198     1.504  0.0198
+SIH         CH2         CH3      SINGLE       n     1.516  0.0200     1.516  0.0200
+SIH         CH3         CH4      SINGLE       n     1.519  0.0109     1.519  0.0109
+SIH         CH4         OH4      DOUBLE       n     1.247  0.0187     1.247  0.0187
+SIH         CH4         OH5      SINGLE       n     1.247  0.0187     1.247  0.0187
+SIH          C1        H11A      SINGLE       n     1.089  0.0100     0.974  0.0100
+SIH          C1         H12      SINGLE       n     1.089  0.0100     0.974  0.0100
+SIH          C2         H21      SINGLE       n     1.089  0.0100     0.973  0.0108
+SIH          C2         H22      SINGLE       n     1.089  0.0100     0.973  0.0108
+SIH          C4         H41      SINGLE       n     1.082  0.0130     0.939  0.0146
+SIH          C6         H61      SINGLE       n     1.089  0.0100     0.973  0.0101
+SIH          C6         H62      SINGLE       n     1.089  0.0100     0.973  0.0101
+SIH          C7         H71      SINGLE       n     1.089  0.0100     0.979  0.0128
+SIH          C7         H72      SINGLE       n     1.089  0.0100     0.979  0.0128
+SIH          C8          H8      SINGLE       n     1.089  0.0100     0.982  0.0109
+SIH          C9          H9      SINGLE       n     1.089  0.0100     0.979  0.0120
+SIH         C11         H11      SINGLE       n     1.089  0.0100     0.985  0.0158
+SIH         C12        H121      SINGLE       n     1.089  0.0100     0.990  0.0100
+SIH         C12        H122      SINGLE       n     1.089  0.0100     0.990  0.0100
+SIH         C14         H14      SINGLE       n     1.089  0.0100     0.985  0.0200
+SIH         C15        H151      SINGLE       n     1.089  0.0100     0.979  0.0163
+SIH         C15        H152      SINGLE       n     1.089  0.0100     0.979  0.0163
+SIH         C16        H161      SINGLE       n     1.089  0.0100     0.975  0.0173
+SIH         C16        H162      SINGLE       n     1.089  0.0100     0.975  0.0173
+SIH         C17         H17      SINGLE       n     1.089  0.0100     0.976  0.0200
+SIH         C18        H181      SINGLE       n     1.089  0.0100     0.974  0.0200
+SIH         C18        H182      SINGLE       n     1.089  0.0100     0.974  0.0200
+SIH         C18        H183      SINGLE       n     1.089  0.0100     0.974  0.0200
+SIH         C19        H191      SINGLE       n     1.089  0.0100     0.969  0.0135
+SIH         C19        H192      SINGLE       n     1.089  0.0100     0.969  0.0135
+SIH         C19        H193      SINGLE       n     1.089  0.0100     0.969  0.0135
+SIH         C21        H211      SINGLE       n     1.089  0.0100     0.965  0.0130
+SIH         C21        H212      SINGLE       n     1.089  0.0100     0.965  0.0130
+SIH         C21        H213      SINGLE       n     1.089  0.0100     0.965  0.0130
+SIH         CH2        HH21      SINGLE       n     1.089  0.0100     0.979  0.0159
+SIH         CH2        HH22      SINGLE       n     1.089  0.0100     0.979  0.0159
+SIH         CH3        HH31      SINGLE       n     1.089  0.0100     0.979  0.0159
+SIH         CH3        HH32      SINGLE       n     1.089  0.0100     0.979  0.0159
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SIH          C2          C1         C10     113.653    1.50
+SIH          C2          C1        H11A     108.896    1.50
+SIH          C2          C1         H12     108.896    1.50
+SIH         C10          C1        H11A     108.726    1.50
+SIH         C10          C1         H12     108.726    1.50
+SIH        H11A          C1         H12     107.765    1.50
+SIH          C1          C2          C3     111.567    1.50
+SIH          C1          C2         H21     109.220    1.50
+SIH          C1          C2         H22     109.220    1.50
+SIH          C3          C2         H21     109.137    1.50
+SIH          C3          C2         H22     109.137    1.50
+SIH         H21          C2         H22     107.932    1.50
+SIH          C2          C3          O3     121.837    1.50
+SIH          C2          C3          C4     116.406    1.50
+SIH          O3          C3          C4     121.757    1.50
+SIH          C3          C4          C5     123.941    1.50
+SIH          C3          C4         H41     117.869    1.50
+SIH          C5          C4         H41     118.190    1.50
+SIH          C4          C5          C6     120.906    1.50
+SIH          C4          C5         C10     122.520    1.50
+SIH          C6          C5         C10     116.574    1.50
+SIH          C5          C6          C7     112.028    1.50
+SIH          C5          C6         H61     109.141    1.50
+SIH          C5          C6         H62     109.141    1.50
+SIH          C7          C6         H61     109.205    1.50
+SIH          C7          C6         H62     109.205    1.50
+SIH         H61          C6         H62     107.957    1.50
+SIH          C6          C7          C8     111.699    1.50
+SIH          C6          C7         H71     109.235    1.50
+SIH          C6          C7         H72     109.235    1.50
+SIH          C8          C7         H71     109.128    1.50
+SIH          C8          C7         H72     109.128    1.50
+SIH         H71          C7         H72     107.970    1.50
+SIH          C7          C8          C9     109.725    1.50
+SIH          C7          C8         C14     111.562    1.50
+SIH          C7          C8          H8     108.639    1.50
+SIH          C9          C8         C14     108.879    1.50
+SIH          C9          C8          H8     109.128    1.50
+SIH         C14          C8          H8     108.729    1.50
+SIH          C8          C9         C10     112.501    1.50
+SIH          C8          C9         C11     113.476    1.85
+SIH          C8          C9          H9     105.103    1.50
+SIH         C10          C9         C11     114.325    1.50
+SIH         C10          C9          H9     105.291    1.50
+SIH         C11          C9          H9     105.091    1.50
+SIH          C1         C10          C5     108.894    1.50
+SIH          C1         C10          C9     109.628    1.50
+SIH          C1         C10         C19     109.811    1.50
+SIH          C5         C10          C9     108.239    1.50
+SIH          C5         C10         C19     108.312    1.50
+SIH          C9         C10         C19     112.451    1.66
+SIH          C9         C11         O11     107.934    1.94
+SIH          C9         C11         C12     113.496    1.50
+SIH          C9         C11         H11     108.050    1.50
+SIH         O11         C11         C12     107.499    2.01
+SIH         O11         C11         H11     109.295    1.50
+SIH         C12         C11         H11     108.291    1.50
+SIH         C11         O11         CH1     117.993    1.50
+SIH         C11         C12         C13     113.340    1.50
+SIH         C11         C12        H121     108.945    1.50
+SIH         C11         C12        H122     108.945    1.50
+SIH         C13         C12        H121     108.859    1.50
+SIH         C13         C12        H122     108.859    1.50
+SIH        H121         C12        H122     108.001    1.50
+SIH         C12         C13         C14     107.545    1.50
+SIH         C12         C13         C17     116.188    1.50
+SIH         C12         C13         C18     110.386    1.50
+SIH         C14         C13         C17      99.313    1.50
+SIH         C14         C13         C18     112.380    1.50
+SIH         C17         C13         C18     109.376    1.50
+SIH          C8         C14         C13     114.635    1.50
+SIH          C8         C14         C15     119.365    1.50
+SIH          C8         C14         H14     106.057    1.50
+SIH         C13         C14         C15     104.315    1.50
+SIH         C13         C14         H14     105.965    1.50
+SIH         C15         C14         H14     106.241    1.50
+SIH         C14         C15         C16     103.874    1.50
+SIH         C14         C15        H151     110.972    1.50
+SIH         C14         C15        H152     110.972    1.50
+SIH         C16         C15        H151     111.013    1.50
+SIH         C16         C15        H152     111.013    1.50
+SIH        H151         C15        H152     109.060    1.50
+SIH         C15         C16         C17     106.636    1.50
+SIH         C15         C16        H161     110.428    1.50
+SIH         C15         C16        H162     110.428    1.50
+SIH         C17         C16        H161     110.391    1.50
+SIH         C17         C16        H162     110.391    1.50
+SIH        H161         C16        H162     108.534    1.50
+SIH         C13         C17         C16     104.048    1.50
+SIH         C13         C17         C20     115.585    1.79
+SIH         C13         C17         H17     107.469    1.50
+SIH         C16         C17         C20     114.371    1.50
+SIH         C16         C17         H17     107.958    1.50
+SIH         C20         C17         H17     107.297    1.50
+SIH         C13         C18        H181     109.564    1.50
+SIH         C13         C18        H182     109.564    1.50
+SIH         C13         C18        H183     109.564    1.50
+SIH        H181         C18        H182     109.337    1.50
+SIH        H181         C18        H183     109.337    1.50
+SIH        H182         C18        H183     109.337    1.50
+SIH         C10         C19        H191     109.491    1.50
+SIH         C10         C19        H192     109.491    1.50
+SIH         C10         C19        H193     109.491    1.50
+SIH        H191         C19        H192     109.398    1.50
+SIH        H191         C19        H193     109.398    1.50
+SIH        H192         C19        H193     109.398    1.50
+SIH         C17         C20         O20     121.527    1.50
+SIH         C17         C20         C21     117.775    1.50
+SIH         O20         C20         C21     120.698    1.50
+SIH         C20         C21        H211     109.446    1.50
+SIH         C20         C21        H212     109.446    1.50
+SIH         C20         C21        H213     109.446    1.50
+SIH        H211         C21        H212     109.408    1.50
+SIH        H211         C21        H213     109.408    1.50
+SIH        H212         C21        H213     109.408    1.50
+SIH         O11         CH1         OH1     123.030    1.50
+SIH         O11         CH1         CH2     113.034    1.50
+SIH         OH1         CH1         CH2     123.936    1.50
+SIH         CH1         CH2         CH3     116.167    3.00
+SIH         CH1         CH2        HH21     108.409    1.50
+SIH         CH1         CH2        HH22     108.409    1.50
+SIH         CH3         CH2        HH21     109.308    1.50
+SIH         CH3         CH2        HH22     109.308    1.50
+SIH        HH21         CH2        HH22     107.521    1.50
+SIH         CH2         CH3         CH4     114.787    1.92
+SIH         CH2         CH3        HH31     109.308    1.50
+SIH         CH2         CH3        HH32     109.308    1.50
+SIH         CH4         CH3        HH31     108.404    1.50
+SIH         CH4         CH3        HH32     108.404    1.50
+SIH        HH31         CH3        HH32     107.521    1.50
+SIH         CH3         CH4         OH4     118.214    1.64
+SIH         CH3         CH4         OH5     118.214    1.64
+SIH         OH4         CH4         OH5     123.571    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SIH             sp3_sp3_1         C10          C1          C2          C3      60.000    10.0     3
+SIH           sp3_sp3_111          C2          C1         C10         C19      60.000    10.0     3
+SIH           sp3_sp3_127          C1         C10         C19        H191     180.000    10.0     3
+SIH           sp3_sp3_136          C9         C11         O11         CH1     180.000    10.0     3
+SIH            sp3_sp3_58         O11         C11         C12         C13     -60.000    10.0     3
+SIH             sp2_sp2_9         OH1         CH1         O11         C11     180.000     5.0     2
+SIH            sp3_sp3_66         C11         C12         C13         C18     180.000    10.0     3
+SIH            sp3_sp3_79         C18         C13         C14          C8     180.000    10.0     3
+SIH           sp3_sp3_146         C18         C13         C17         C20      60.000    10.0     3
+SIH           sp3_sp3_148         C12         C13         C18        H181     180.000    10.0     3
+SIH            sp3_sp3_85          C8         C14         C15         C16     180.000    10.0     3
+SIH            sp3_sp3_91         C14         C15         C16         C17      60.000    10.0     3
+SIH           sp3_sp3_101         C15         C16         C17         C20      60.000    10.0     3
+SIH            sp2_sp3_19         O20         C20         C17         C13       0.000    10.0     6
+SIH             sp2_sp3_4          O3          C3          C2          C1     180.000    10.0     6
+SIH            sp2_sp3_28         O20         C20         C21        H211     180.000    10.0     6
+SIH            sp2_sp3_32         O11         CH1         CH2         CH3     120.000    10.0     6
+SIH           sp3_sp3_157         CH1         CH2         CH3         CH4     180.000    10.0     3
+SIH            sp2_sp3_38         OH4         CH4         CH3         CH2     120.000    10.0     6
+SIH             sp2_sp2_3          O3          C3          C4          C5     180.000     5.0     2
+SIH             sp2_sp2_6          C3          C4          C5          C6     180.000     5.0     2
+SIH             sp2_sp3_9          C4          C5         C10         C19    -120.000    10.0     6
+SIH            sp2_sp3_16          C4          C5          C6          C7     180.000    10.0     6
+SIH            sp3_sp3_10          C5          C6          C7          C8     -60.000    10.0     3
+SIH            sp3_sp3_19          C6          C7          C8          C9      60.000    10.0     3
+SIH           sp3_sp3_119         C13         C14          C8          C7     -60.000    10.0     3
+SIH            sp3_sp3_28          C7          C8          C9         C10     -60.000    10.0     3
+SIH            sp3_sp3_43         C19         C10          C9          C8     180.000    10.0     3
+SIH            sp3_sp3_49         O11         C11          C9          C8     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SIH    chir_1    C8    C9    C14    C7    positive
+SIH    chir_2    C9    C11    C10    C8    positive
+SIH    chir_3    C10    C5    C9    C1    negative
+SIH    chir_4    C11    O11    C9    C12    negative
+SIH    chir_5    C13    C17    C14    C12    positive
+SIH    chir_6    C14    C13    C8    C15    positive
+SIH    chir_7    C17    C20    C13    C16    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SIH    plan-1          C2   0.020
+SIH    plan-1          C3   0.020
+SIH    plan-1          C4   0.020
+SIH    plan-1          O3   0.020
+SIH    plan-2          C3   0.020
+SIH    plan-2          C4   0.020
+SIH    plan-2          C5   0.020
+SIH    plan-2         H41   0.020
+SIH    plan-3         C10   0.020
+SIH    plan-3          C4   0.020
+SIH    plan-3          C5   0.020
+SIH    plan-3          C6   0.020
+SIH    plan-4         C17   0.020
+SIH    plan-4         C20   0.020
+SIH    plan-4         C21   0.020
+SIH    plan-4         O20   0.020
+SIH    plan-5         CH1   0.020
+SIH    plan-5         CH2   0.020
+SIH    plan-5         O11   0.020
+SIH    plan-5         OH1   0.020
+SIH    plan-6         CH3   0.020
+SIH    plan-6         CH4   0.020
+SIH    plan-6         OH4   0.020
+SIH    plan-6         OH5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SIH           SMILES              ACDLabs 10.04                                                                                                                                  O=C(O)CCC(=O)OC3CC4(C(C2C3C1(C(=CC(=O)CC1)CC2)C)CCC4C(=O)C)C
+SIH SMILES_CANONICAL               CACTVS 3.341                                                                                                          CC(=O)[C@H]1CC[C@H]2[C@@H]3CCC4=CC(=O)CC[C@]4(C)[C@H]3[C@@H](C[C@]12C)OC(=O)CCC(O)=O
+SIH           SMILES               CACTVS 3.341                                                                                                                   CC(=O)[CH]1CC[CH]2[CH]3CCC4=CC(=O)CC[C]4(C)[CH]3[CH](C[C]12C)OC(=O)CCC(O)=O
+SIH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                          CC(=O)[C@H]1CC[C@@H]2[C@@]1(C[C@H]([C@H]3[C@H]2CCC4=CC(=O)CC[C@]34C)OC(=O)CCC(=O)O)C
+SIH           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                      CC(=O)C1CCC2C1(CC(C3C2CCC4=CC(=O)CCC34C)OC(=O)CCC(=O)O)C
+SIH            InChI                InChI  1.03 InChI=1S/C25H34O6/c1-14(26)18-6-7-19-17-5-4-15-12-16(27)10-11-24(15,2)23(17)20(13-25(18,19)3)31-22(30)9-8-21(28)29/h12,17-20,23H,4-11,13H2,1-3H3,(H,28,29)/t17-,18+,19-,20+,23+,24-,25+/m0/s1
+SIH         InChIKey                InChI  1.03                                                                                                                                                                   JBBNFGYRYNBDIH-DBGGZKJISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SIH acedrg               243         "dictionary generator"                  
+SIH acedrg_database      11          "data source"                           
+SIH rdkit                2017.03.2   "Chemoinformatics tool"
+SIH refmac5              5.8.0238    "optimization tool"                     

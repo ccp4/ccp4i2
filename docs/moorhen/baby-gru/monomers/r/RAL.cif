@@ -1,0 +1,404 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RAL     RAL      RALOXIFENE     NON-POLYMER     61     34     .     
+#
+data_comp_RAL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RAL     C1      C       CR16    0       17.805      29.838      8.333       
+RAL     C2      C       CR16    0       16.900      30.556      7.587       
+RAL     C3      C       CR6     0       16.078      31.529      8.186       
+RAL     O3      O       OH1     0       15.187      32.227      7.406       
+RAL     C4      C       CR16    0       16.159      31.790      9.543       
+RAL     C5      C       CR56    0       17.069      31.069      10.303      
+RAL     S6      S       S2      0       17.380      31.171      11.941      
+RAL     C7      C       CR5     0       18.564      29.994      11.994      
+RAL     C8      C       CR6     0       19.204      29.681      13.276      
+RAL     C9      C       CR16    0       18.445      29.314      14.389      
+RAL     C10     C       CR16    0       19.059      29.016      15.595      
+RAL     C11     C       CR6     0       20.444      29.075      15.708      
+RAL     O11     O       OH1     0       21.054      28.779      16.903      
+RAL     C12     C       CR16    0       21.209      29.436      14.603      
+RAL     C13     C       CR16    0       20.593      29.736      13.399      
+RAL     C14     C       CR56    0       17.908      30.080      9.710       
+RAL     C15     C       CR5     0       18.772      29.465      10.714      
+RAL     C16     C       C       0       19.745      28.412      10.383      
+RAL     O16     O       O       0       19.657      27.309      10.936      
+RAL     C17     C       CR6     0       20.853      28.657      9.407       
+RAL     C18     C       CR16    0       21.494      27.589      8.778       
+RAL     C19     C       CR16    0       22.525      27.795      7.878       
+RAL     C20     C       CR6     0       22.942      29.092      7.582       
+RAL     C21     C       CR16    0       22.316      30.167      8.203       
+RAL     C22     C       CR16    0       21.288      29.948      9.103       
+RAL     O23     O       O2      0       23.949      29.439      6.713       
+RAL     C24     C       CH2     0       24.609      28.432      5.947       
+RAL     C25     C       CH2     0       25.543      29.129      4.994       
+RAL     N26     N       NT      0       24.844      29.855      3.914       
+RAL     C27     C       CH2     0       25.397      29.568      2.582       
+RAL     C28     C       CH2     0       24.572      30.225      1.489       
+RAL     C29     C       CH2     0       24.449      31.721      1.712       
+RAL     C30     C       CH2     0       23.957      32.010      3.117       
+RAL     C31     C       CH2     0       24.815      31.304      4.149       
+RAL     H1      H       H       0       18.349      29.189      7.920       
+RAL     H2      H       H       0       16.829      30.395      6.660       
+RAL     HO3     H       H       0       14.530      32.652      7.767       
+RAL     H4      H       H       0       15.607      32.442      9.939       
+RAL     H9      H       H       0       17.507      29.271      14.323      
+RAL     H10     H       H       0       18.538      28.772      16.340      
+RAL     HO1     H       H       0       21.828      28.402      16.909      
+RAL     H12     H       H       0       22.147      29.478      14.675      
+RAL     H13     H       H       0       21.120      29.978      12.657      
+RAL     H18     H       H       0       21.224      26.708      8.964       
+RAL     H19     H       H       0       22.937      27.056      7.467       
+RAL     H21     H       H       0       22.593      31.046      8.011       
+RAL     H22     H       H       0       20.879      30.689      9.512       
+RAL     H241    H       H       0       23.956      27.905      5.450       
+RAL     H242    H       H       0       25.109      27.836      6.535       
+RAL     H251    H       H       0       26.141      28.461      4.606       
+RAL     H252    H       H       0       26.093      29.757      5.502       
+RAL     H271    H       H       0       26.313      29.894      2.537       
+RAL     H272    H       H       0       25.410      28.606      2.437       
+RAL     H281    H       H       0       23.678      29.824      1.471       
+RAL     H282    H       H       0       24.995      30.060      0.620       
+RAL     H291    H       H       0       23.821      32.100      1.060       
+RAL     H292    H       H       0       25.322      32.147      1.575       
+RAL     H301    H       H       0       23.028      31.711      3.206       
+RAL     H302    H       H       0       23.982      32.976      3.280       
+RAL     H311    H       H       0       25.722      31.654      4.111       
+RAL     H312    H       H       0       24.462      31.479      5.039       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RAL          C1          C2      DOUBLE       y     1.372  0.0100     1.372  0.0100
+RAL          C1         C14      SINGLE       y     1.398  0.0100     1.398  0.0100
+RAL          C2          C3      SINGLE       y     1.405  0.0100     1.405  0.0100
+RAL          C3          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+RAL          C3          C4      DOUBLE       y     1.381  0.0100     1.381  0.0100
+RAL          C4          C5      SINGLE       y     1.382  0.0123     1.382  0.0123
+RAL          C5          S6      SINGLE       y     1.695  0.0200     1.695  0.0200
+RAL          C5         C14      DOUBLE       y     1.400  0.0187     1.400  0.0187
+RAL          S6          C7      SINGLE       y     1.695  0.0200     1.695  0.0200
+RAL          C7          C8      SINGLE       n     1.466  0.0100     1.466  0.0100
+RAL          C7         C15      DOUBLE       y     1.389  0.0200     1.389  0.0200
+RAL          C8          C9      DOUBLE       y     1.392  0.0100     1.392  0.0100
+RAL          C8         C13      SINGLE       y     1.392  0.0100     1.392  0.0100
+RAL          C9         C10      SINGLE       y     1.382  0.0100     1.382  0.0100
+RAL         C10         C11      DOUBLE       y     1.388  0.0100     1.388  0.0100
+RAL         C11         O11      SINGLE       n     1.374  0.0155     1.374  0.0155
+RAL         C11         C12      SINGLE       y     1.388  0.0100     1.388  0.0100
+RAL         C12         C13      DOUBLE       y     1.382  0.0100     1.382  0.0100
+RAL         C14         C15      SINGLE       y     1.443  0.0143     1.443  0.0143
+RAL         C15         C16      SINGLE       n     1.466  0.0200     1.466  0.0200
+RAL         C16         O16      DOUBLE       n     1.234  0.0194     1.234  0.0194
+RAL         C16         C17      SINGLE       n     1.491  0.0100     1.491  0.0100
+RAL         C17         C18      DOUBLE       y     1.391  0.0100     1.391  0.0100
+RAL         C17         C22      SINGLE       y     1.391  0.0100     1.391  0.0100
+RAL         C18         C19      SINGLE       y     1.381  0.0100     1.381  0.0100
+RAL         C19         C20      DOUBLE       y     1.386  0.0109     1.386  0.0109
+RAL         C20         C21      SINGLE       y     1.386  0.0109     1.386  0.0109
+RAL         C20         O23      SINGLE       n     1.369  0.0106     1.369  0.0106
+RAL         C21         C22      DOUBLE       y     1.381  0.0100     1.381  0.0100
+RAL         O23         C24      SINGLE       n     1.425  0.0100     1.425  0.0100
+RAL         C24         C25      SINGLE       n     1.505  0.0100     1.505  0.0100
+RAL         C25         N26      SINGLE       n     1.471  0.0108     1.471  0.0108
+RAL         N26         C27      SINGLE       n     1.462  0.0143     1.462  0.0143
+RAL         N26         C31      SINGLE       n     1.462  0.0143     1.462  0.0143
+RAL         C27         C28      SINGLE       n     1.513  0.0163     1.513  0.0163
+RAL         C28         C29      SINGLE       n     1.515  0.0113     1.515  0.0113
+RAL         C29         C30      SINGLE       n     1.515  0.0113     1.515  0.0113
+RAL         C30         C31      SINGLE       n     1.513  0.0163     1.513  0.0163
+RAL          C1          H1      SINGLE       n     1.082  0.0130     0.942  0.0182
+RAL          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0103
+RAL          O3         HO3      SINGLE       n     0.966  0.0059     0.861  0.0200
+RAL          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0170
+RAL          C9          H9      SINGLE       n     1.082  0.0130     0.941  0.0147
+RAL         C10         H10      SINGLE       n     1.082  0.0130     0.941  0.0179
+RAL         O11         HO1      SINGLE       n     0.966  0.0059     0.861  0.0200
+RAL         C12         H12      SINGLE       n     1.082  0.0130     0.941  0.0179
+RAL         C13         H13      SINGLE       n     1.082  0.0130     0.941  0.0147
+RAL         C18         H18      SINGLE       n     1.082  0.0130     0.941  0.0168
+RAL         C19         H19      SINGLE       n     1.082  0.0130     0.941  0.0179
+RAL         C21         H21      SINGLE       n     1.082  0.0130     0.941  0.0179
+RAL         C22         H22      SINGLE       n     1.082  0.0130     0.941  0.0168
+RAL         C24        H241      SINGLE       n     1.089  0.0100     0.975  0.0100
+RAL         C24        H242      SINGLE       n     1.089  0.0100     0.975  0.0100
+RAL         C25        H251      SINGLE       n     1.089  0.0100     0.977  0.0152
+RAL         C25        H252      SINGLE       n     1.089  0.0100     0.977  0.0152
+RAL         C27        H271      SINGLE       n     1.089  0.0100     0.973  0.0129
+RAL         C27        H272      SINGLE       n     1.089  0.0100     0.973  0.0129
+RAL         C28        H281      SINGLE       n     1.089  0.0100     0.980  0.0120
+RAL         C28        H282      SINGLE       n     1.089  0.0100     0.980  0.0120
+RAL         C29        H291      SINGLE       n     1.089  0.0100     0.981  0.0121
+RAL         C29        H292      SINGLE       n     1.089  0.0100     0.981  0.0121
+RAL         C30        H301      SINGLE       n     1.089  0.0100     0.980  0.0120
+RAL         C30        H302      SINGLE       n     1.089  0.0100     0.980  0.0120
+RAL         C31        H311      SINGLE       n     1.089  0.0100     0.973  0.0129
+RAL         C31        H312      SINGLE       n     1.089  0.0100     0.973  0.0129
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RAL          C2          C1         C14     118.925    1.50
+RAL          C2          C1          H1     120.388    1.50
+RAL         C14          C1          H1     120.688    1.50
+RAL          C1          C2          C3     120.814    1.50
+RAL          C1          C2          H2     119.645    1.50
+RAL          C3          C2          H2     119.541    1.50
+RAL          C2          C3          O3     119.510    3.00
+RAL          C2          C3          C4     120.980    1.50
+RAL          O3          C3          C4     119.510    3.00
+RAL          C3          O3         HO3     120.000    3.00
+RAL          C3          C4          C5     118.037    1.50
+RAL          C3          C4          H4     120.836    1.50
+RAL          C5          C4          H4     121.127    1.50
+RAL          C4          C5          S6     130.971    3.00
+RAL          C4          C5         C14     120.729    1.99
+RAL          S6          C5         C14     108.300    3.00
+RAL          C5          S6          C7     108.300    3.00
+RAL          S6          C7          C8     119.045    3.00
+RAL          S6          C7         C15     108.300    3.00
+RAL          C8          C7         C15     132.654    2.49
+RAL          C7          C8          C9     120.529    1.80
+RAL          C7          C8         C13     120.529    1.80
+RAL          C9          C8         C13     118.942    1.50
+RAL          C8          C9         C10     120.597    1.50
+RAL          C8          C9          H9     119.870    1.50
+RAL         C10          C9          H9     119.534    1.50
+RAL          C9         C10         C11     120.089    1.50
+RAL          C9         C10         H10     120.000    1.50
+RAL         C11         C10         H10     119.912    1.50
+RAL         C10         C11         O11     120.156    3.00
+RAL         C10         C11         C12     119.688    1.50
+RAL         O11         C11         C12     120.156    3.00
+RAL         C11         O11         HO1     120.000    3.00
+RAL         C11         C12         C13     120.089    1.50
+RAL         C11         C12         H12     119.912    1.50
+RAL         C13         C12         H12     120.000    1.50
+RAL          C8         C13         C12     120.597    1.50
+RAL          C8         C13         H13     119.870    1.50
+RAL         C12         C13         H13     119.534    1.50
+RAL          C1         C14          C5     120.515    1.84
+RAL          C1         C14         C15     132.085    1.50
+RAL          C5         C14         C15     107.399    1.50
+RAL          C7         C15         C14     107.700    1.50
+RAL          C7         C15         C16     128.746    3.00
+RAL         C14         C15         C16     123.554    3.00
+RAL         C15         C16         O16     120.372    1.53
+RAL         C15         C16         C17     120.472    1.50
+RAL         O16         C16         C17     119.157    1.50
+RAL         C16         C17         C18     120.626    1.66
+RAL         C16         C17         C22     120.626    1.66
+RAL         C18         C17         C22     118.747    1.50
+RAL         C17         C18         C19     121.201    1.50
+RAL         C17         C18         H18     119.592    1.50
+RAL         C19         C18         H18     119.207    1.50
+RAL         C18         C19         C20     119.573    1.50
+RAL         C18         C19         H19     120.232    1.50
+RAL         C20         C19         H19     120.195    1.50
+RAL         C19         C20         C21     119.699    1.50
+RAL         C19         C20         O23     120.154    3.00
+RAL         C21         C20         O23     120.154    3.00
+RAL         C20         C21         C22     119.573    1.50
+RAL         C20         C21         H21     120.195    1.50
+RAL         C22         C21         H21     120.232    1.50
+RAL         C17         C22         C21     121.201    1.50
+RAL         C17         C22         H22     119.592    1.50
+RAL         C21         C22         H22     119.207    1.50
+RAL         C20         O23         C24     117.255    1.53
+RAL         O23         C24         C25     107.560    1.73
+RAL         O23         C24        H241     110.103    1.50
+RAL         O23         C24        H242     110.103    1.50
+RAL         C25         C24        H241     110.293    1.50
+RAL         C25         C24        H242     110.293    1.50
+RAL        H241         C24        H242     108.653    1.50
+RAL         C24         C25         N26     113.936    1.71
+RAL         C24         C25        H251     108.646    1.50
+RAL         C24         C25        H252     108.646    1.50
+RAL         N26         C25        H251     108.784    1.50
+RAL         N26         C25        H252     108.784    1.50
+RAL        H251         C25        H252     107.745    1.50
+RAL         C25         N26         C27     111.219    1.66
+RAL         C25         N26         C31     111.219    1.66
+RAL         C27         N26         C31     109.788    1.50
+RAL         N26         C27         C28     111.218    1.50
+RAL         N26         C27        H271     109.353    1.50
+RAL         N26         C27        H272     109.353    1.50
+RAL         C28         C27        H271     109.566    1.50
+RAL         C28         C27        H272     109.566    1.50
+RAL        H271         C27        H272     108.159    1.50
+RAL         C27         C28         C29     111.021    1.50
+RAL         C27         C28        H281     109.380    1.50
+RAL         C27         C28        H282     109.380    1.50
+RAL         C29         C28        H281     109.453    1.50
+RAL         C29         C28        H282     109.453    1.50
+RAL        H281         C28        H282     108.022    1.50
+RAL         C28         C29         C30     110.168    1.50
+RAL         C28         C29        H291     109.613    1.50
+RAL         C28         C29        H292     109.613    1.50
+RAL         C30         C29        H291     109.613    1.50
+RAL         C30         C29        H292     109.613    1.50
+RAL        H291         C29        H292     108.036    1.50
+RAL         C29         C30         C31     111.021    1.50
+RAL         C29         C30        H301     109.453    1.50
+RAL         C29         C30        H302     109.453    1.50
+RAL         C31         C30        H301     109.380    1.50
+RAL         C31         C30        H302     109.380    1.50
+RAL        H301         C30        H302     108.022    1.50
+RAL         N26         C31         C30     111.218    1.50
+RAL         N26         C31        H311     109.353    1.50
+RAL         N26         C31        H312     109.353    1.50
+RAL         C30         C31        H311     109.566    1.50
+RAL         C30         C31        H312     109.566    1.50
+RAL        H311         C31        H312     108.159    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RAL              const_33         C14          C1          C2          C3       0.000    10.0     2
+RAL              const_73          C2          C1         C14          C5       0.000    10.0     2
+RAL              const_10          C9         C10         C11         O11     180.000    10.0     2
+RAL             sp2_sp2_7         C10         C11         O11         HO1     180.000     5.0     2
+RAL              const_15         O11         C11         C12         C13     180.000    10.0     2
+RAL              const_17         C11         C12         C13          C8       0.000    10.0     2
+RAL              const_32          C1         C14         C15         C16       0.000    10.0     2
+RAL            sp2_sp2_10          C7         C15         C16         O16       0.000     5.0     2
+RAL            sp2_sp2_15         O16         C16         C17         C18       0.000     5.0     2
+RAL              const_55         C16         C17         C18         C19     180.000    10.0     2
+RAL              const_83         C16         C17         C22         C21     180.000    10.0     2
+RAL              const_38          C1          C2          C3          O3     180.000    10.0     2
+RAL              const_57         C17         C18         C19         C20       0.000    10.0     2
+RAL              const_62         C18         C19         C20         O23     180.000    10.0     2
+RAL              const_67         O23         C20         C21         C22     180.000    10.0     2
+RAL            sp2_sp2_17         C19         C20         O23         C24     180.000     5.0     2
+RAL              const_69         C20         C21         C22         C17       0.000    10.0     2
+RAL            sp3_sp3_43         C25         C24         O23         C20     180.000    10.0     3
+RAL            sp3_sp3_46         O23         C24         C25         N26     180.000    10.0     3
+RAL            sp3_sp3_56         C24         C25         N26         C27     -60.000    10.0     3
+RAL             sp3_sp3_2         C28         C27         N26         C25     180.000    10.0     3
+RAL            sp3_sp3_62         C30         C31         N26         C25     -60.000    10.0     3
+RAL             sp3_sp3_7         N26         C27         C28         C29     -60.000    10.0     3
+RAL             sp2_sp2_1          C2          C3          O3         HO3     180.000     5.0     2
+RAL              const_43          O3          C3          C4          C5     180.000    10.0     2
+RAL            sp3_sp3_16         C27         C28         C29         C30      60.000    10.0     3
+RAL            sp3_sp3_25         C28         C29         C30         C31     -60.000    10.0     3
+RAL            sp3_sp3_34         C29         C30         C31         N26      60.000    10.0     3
+RAL              const_46          C3          C4          C5          S6     180.000    10.0     2
+RAL              const_49          C1         C14          C5          C4       0.000    10.0     2
+RAL              const_22          C4          C5          S6          C7     180.000    10.0     2
+RAL              const_24          C8          C7          S6          C5     180.000    10.0     2
+RAL              const_27         C16         C15          C7          S6     180.000    10.0     2
+RAL             sp2_sp2_5          S6          C7          C8          C9       0.000     5.0     2
+RAL              const_78         C12         C13          C8          C7     180.000    10.0     2
+RAL       const_sp2_sp2_3          C7          C8          C9         C10     180.000     5.0     2
+RAL       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RAL    chir_1    N26    C25    C27    C31    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RAL    plan-1          C1   0.020
+RAL    plan-1         C14   0.020
+RAL    plan-1         C15   0.020
+RAL    plan-1         C16   0.020
+RAL    plan-1          C2   0.020
+RAL    plan-1          C3   0.020
+RAL    plan-1          C4   0.020
+RAL    plan-1          C5   0.020
+RAL    plan-1          C7   0.020
+RAL    plan-1          C8   0.020
+RAL    plan-1          H1   0.020
+RAL    plan-1          H2   0.020
+RAL    plan-1          H4   0.020
+RAL    plan-1          O3   0.020
+RAL    plan-1          S6   0.020
+RAL    plan-2         C10   0.020
+RAL    plan-2         C11   0.020
+RAL    plan-2         C12   0.020
+RAL    plan-2         C13   0.020
+RAL    plan-2          C7   0.020
+RAL    plan-2          C8   0.020
+RAL    plan-2          C9   0.020
+RAL    plan-2         H10   0.020
+RAL    plan-2         H12   0.020
+RAL    plan-2         H13   0.020
+RAL    plan-2          H9   0.020
+RAL    plan-2         O11   0.020
+RAL    plan-3         C16   0.020
+RAL    plan-3         C17   0.020
+RAL    plan-3         C18   0.020
+RAL    plan-3         C19   0.020
+RAL    plan-3         C20   0.020
+RAL    plan-3         C21   0.020
+RAL    plan-3         C22   0.020
+RAL    plan-3         H18   0.020
+RAL    plan-3         H19   0.020
+RAL    plan-3         H21   0.020
+RAL    plan-3         H22   0.020
+RAL    plan-3         O23   0.020
+RAL    plan-4         C15   0.020
+RAL    plan-4         C16   0.020
+RAL    plan-4         C17   0.020
+RAL    plan-4         O16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RAL           SMILES              ACDLabs 10.04                                                                                                        O=C(c1c3ccc(O)cc3sc1c2ccc(O)cc2)c5ccc(OCCN4CCCCC4)cc5
+RAL SMILES_CANONICAL               CACTVS 3.341                                                                                                        Oc1ccc(cc1)c2sc3cc(O)ccc3c2C(=O)c4ccc(OCCN5CCCCC5)cc4
+RAL           SMILES               CACTVS 3.341                                                                                                        Oc1ccc(cc1)c2sc3cc(O)ccc3c2C(=O)c4ccc(OCCN5CCCCC5)cc4
+RAL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                      c1cc(ccc1c2c(c3ccc(cc3s2)O)C(=O)c4ccc(cc4)OCCN5CCCCC5)O
+RAL           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                      c1cc(ccc1c2c(c3ccc(cc3s2)O)C(=O)c4ccc(cc4)OCCN5CCCCC5)O
+RAL            InChI                InChI  1.03 InChI=1S/C28H27NO4S/c30-21-8-4-20(5-9-21)28-26(24-13-10-22(31)18-25(24)34-28)27(32)19-6-11-23(12-7-19)33-17-16-29-14-2-1-3-15-29/h4-13,18,30-31H,1-3,14-17H2
+RAL         InChIKey                InChI  1.03                                                                                                                                  GZUITABIAKMVPG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RAL acedrg               243         "dictionary generator"                  
+RAL acedrg_database      11          "data source"                           
+RAL rdkit                2017.03.2   "Chemoinformatics tool"
+RAL refmac5              5.8.0238    "optimization tool"                     

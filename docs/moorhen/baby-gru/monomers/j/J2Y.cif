@@ -1,0 +1,318 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+J2Y     J2Y      N-{4-[3-(5-methoxypyridin-2-yl)-1H-pyrrolo[3,2-b]pyridin-2-yl]pyridin-2-yl}acetamide     NON-POLYMER     44     27     .     
+#
+data_comp_J2Y
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+J2Y     C18     C       CR16    0       7.831       10.745      5.504       
+J2Y     C16     C       CR6     0       5.572       10.184      5.533       
+J2Y     C15     C       CR16    0       2.435       7.670       3.799       
+J2Y     C19     C       CR6     0       7.699       11.361      4.257       
+J2Y     C20     C       CR16    0       6.453       11.361      3.646       
+J2Y     C21     C       CR16    0       5.376       10.773      4.285       
+J2Y     C23     C       C       0       0.097       6.261       2.227       
+J2Y     C11     C       CR16    0       4.806       7.384       3.883       
+J2Y     C12     C       CR16    0       4.731       6.755       2.654       
+J2Y     C27     C       CH3     0       9.771       12.593      4.303       
+J2Y     C1      C       CR56    0       4.087       9.816       7.574       
+J2Y     C2      C       CR56    0       3.017       8.967       7.879       
+J2Y     C3      C       CR16    0       2.415       9.027       9.133       
+J2Y     C4      C       CR16    0       2.922       9.945       10.029      
+J2Y     C5      C       CR16    0       3.994       10.765      9.662       
+J2Y     N6      N       NRD6    0       4.587       10.720      8.456       
+J2Y     C7      C       CR5     0       4.485       9.539       6.256       
+J2Y     C8      C       CR5     0       3.669       8.533       5.781       
+J2Y     N9      N       NR5     0       2.780       8.193       6.767       
+J2Y     C10     C       CR6     0       3.640       7.859       4.474       
+J2Y     N13     N       NRD6    0       3.577       6.568       1.993       
+J2Y     C14     C       CR6     0       2.439       7.024       2.562       
+J2Y     N17     N       NRD6    0       6.783       10.167      6.135       
+J2Y     N22     N       NH1     0       1.275       6.787       1.806       
+J2Y     O24     O       O       0       -0.016      5.588       3.247       
+J2Y     C25     C       CH3     0       -1.083      6.559       1.346       
+J2Y     O26     O       O2      0       8.728       11.942      3.578       
+J2Y     H35     H       H       0       8.675       10.729      5.932       
+J2Y     H34     H       H       0       1.632       7.980       4.181       
+J2Y     H36     H       H       0       6.339       11.766      2.802       
+J2Y     H37     H       H       0       4.521       10.772      3.878       
+J2Y     H32     H       H       0       5.635       7.496       4.312       
+J2Y     H33     H       H       0       5.529       6.437       2.257       
+J2Y     H42     H       H       0       10.348      11.924      4.708       
+J2Y     H43     H       H       0       9.387       13.154      4.997       
+J2Y     H44     H       H       0       10.292      13.142      3.695       
+J2Y     H28     H       H       0       1.698       8.467       9.353       
+J2Y     H29     H       H       0       2.545       10.024      10.896      
+J2Y     H30     H       H       0       4.323       11.387      10.297      
+J2Y     H31     H       H       0       2.135       7.556       6.695       
+J2Y     H38     H       H       0       1.328       7.006       0.960       
+J2Y     H40     H       H       0       -1.904      6.412       1.842       
+J2Y     H39     H       H       0       -1.065      5.974       0.571       
+J2Y     H41     H       H       0       -1.044      7.484       1.053       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+J2Y         C12         N13      DOUBLE       y     1.337  0.0100     1.337  0.0100
+J2Y         N13         C14      SINGLE       y     1.346  0.0100     1.346  0.0100
+J2Y         C23         C25      SINGLE       n     1.501  0.0141     1.501  0.0141
+J2Y         C14         N22      SINGLE       n     1.408  0.0100     1.408  0.0100
+J2Y         C23         N22      SINGLE       n     1.354  0.0113     1.354  0.0113
+J2Y         C11         C12      SINGLE       y     1.379  0.0100     1.379  0.0100
+J2Y         C15         C14      DOUBLE       y     1.391  0.0118     1.391  0.0118
+J2Y         C23         O24      DOUBLE       n     1.226  0.0169     1.226  0.0169
+J2Y         C11         C10      DOUBLE       y     1.388  0.0100     1.388  0.0100
+J2Y         C15         C10      SINGLE       y     1.392  0.0100     1.392  0.0100
+J2Y         C20         C21      DOUBLE       y     1.381  0.0100     1.381  0.0100
+J2Y         C19         C20      SINGLE       y     1.385  0.0100     1.385  0.0100
+J2Y         C27         O26      SINGLE       n     1.424  0.0117     1.424  0.0117
+J2Y         C19         O26      SINGLE       n     1.358  0.0100     1.358  0.0100
+J2Y          C8         C10      SINGLE       n     1.470  0.0100     1.470  0.0100
+J2Y         C16         C21      SINGLE       y     1.387  0.0130     1.387  0.0130
+J2Y         C18         C19      DOUBLE       y     1.382  0.0157     1.382  0.0157
+J2Y         C16          C7      SINGLE       n     1.455  0.0140     1.455  0.0140
+J2Y         C16         N17      DOUBLE       y     1.346  0.0122     1.346  0.0122
+J2Y          C7          C8      DOUBLE       y     1.379  0.0100     1.379  0.0100
+J2Y          C8          N9      SINGLE       y     1.371  0.0139     1.371  0.0139
+J2Y         C18         N17      SINGLE       y     1.340  0.0166     1.340  0.0166
+J2Y          C1          C7      SINGLE       y     1.403  0.0200     1.403  0.0200
+J2Y          C2          N9      SINGLE       y     1.375  0.0100     1.375  0.0100
+J2Y          C1          C2      SINGLE       y     1.395  0.0100     1.395  0.0100
+J2Y          C1          N6      DOUBLE       y     1.351  0.0106     1.351  0.0106
+J2Y          C2          C3      DOUBLE       y     1.391  0.0100     1.391  0.0100
+J2Y          C5          N6      SINGLE       y     1.338  0.0109     1.338  0.0109
+J2Y          C3          C4      SINGLE       y     1.378  0.0101     1.378  0.0101
+J2Y          C4          C5      DOUBLE       y     1.393  0.0144     1.393  0.0144
+J2Y         C18         H35      SINGLE       n     1.082  0.0130     0.947  0.0102
+J2Y         C15         H34      SINGLE       n     1.082  0.0130     0.942  0.0177
+J2Y         C20         H36      SINGLE       n     1.082  0.0130     0.942  0.0157
+J2Y         C21         H37      SINGLE       n     1.082  0.0130     0.947  0.0200
+J2Y         C11         H32      SINGLE       n     1.082  0.0130     0.940  0.0118
+J2Y         C12         H33      SINGLE       n     1.082  0.0130     0.946  0.0126
+J2Y         C27         H42      SINGLE       n     1.089  0.0100     0.971  0.0157
+J2Y         C27         H43      SINGLE       n     1.089  0.0100     0.971  0.0157
+J2Y         C27         H44      SINGLE       n     1.089  0.0100     0.971  0.0157
+J2Y          C3         H28      SINGLE       n     1.082  0.0130     0.936  0.0156
+J2Y          C4         H29      SINGLE       n     1.082  0.0130     0.949  0.0100
+J2Y          C5         H30      SINGLE       n     1.082  0.0130     0.948  0.0200
+J2Y          N9         H31      SINGLE       n     1.016  0.0100     0.909  0.0200
+J2Y         N22         H38      SINGLE       n     1.016  0.0100     0.874  0.0200
+J2Y         C25         H40      SINGLE       n     1.089  0.0100     0.971  0.0140
+J2Y         C25         H39      SINGLE       n     1.089  0.0100     0.971  0.0140
+J2Y         C25         H41      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+J2Y         C19         C18         N17     122.005    1.50
+J2Y         C19         C18         H35     119.348    1.50
+J2Y         N17         C18         H35     118.646    1.50
+J2Y         C21         C16          C7     121.717    1.64
+J2Y         C21         C16         N17     121.801    1.50
+J2Y          C7         C16         N17     116.482    1.55
+J2Y         C14         C15         C10     119.731    1.50
+J2Y         C14         C15         H34     120.756    1.50
+J2Y         C10         C15         H34     119.513    1.50
+J2Y         C20         C19         O26     120.882    3.00
+J2Y         C20         C19         C18     119.727    1.50
+J2Y         O26         C19         C18     119.390    3.00
+J2Y         C21         C20         C19     119.810    1.50
+J2Y         C21         C20         H36     120.038    1.50
+J2Y         C19         C20         H36     120.152    1.50
+J2Y         C20         C21         C16     119.029    1.50
+J2Y         C20         C21         H37     120.285    1.50
+J2Y         C16         C21         H37     120.686    1.50
+J2Y         C25         C23         N22     114.743    1.50
+J2Y         C25         C23         O24     121.875    1.50
+J2Y         N22         C23         O24     123.382    1.50
+J2Y         C12         C11         C10     119.513    1.50
+J2Y         C12         C11         H32     120.330    1.50
+J2Y         C10         C11         H32     120.156    1.50
+J2Y         N13         C12         C11     122.853    1.50
+J2Y         N13         C12         H33     118.350    1.50
+J2Y         C11         C12         H33     118.797    1.50
+J2Y         O26         C27         H42     109.428    1.50
+J2Y         O26         C27         H43     109.428    1.50
+J2Y         O26         C27         H44     109.428    1.50
+J2Y         H42         C27         H43     109.509    1.50
+J2Y         H42         C27         H44     109.509    1.50
+J2Y         H43         C27         H44     109.509    1.50
+J2Y          C7          C1          C2     107.724    1.50
+J2Y          C7          C1          N6     129.834    1.77
+J2Y          C2          C1          N6     122.442    1.50
+J2Y          N9          C2          C1     106.825    1.50
+J2Y          N9          C2          C3     132.518    1.50
+J2Y          C1          C2          C3     120.657    1.84
+J2Y          C2          C3          C4     117.839    1.50
+J2Y          C2          C3         H28     120.729    1.50
+J2Y          C4          C3         H28     121.432    1.50
+J2Y          C3          C4          C5     120.983    1.50
+J2Y          C3          C4         H29     119.714    1.50
+J2Y          C5          C4         H29     119.304    1.50
+J2Y          N6          C5          C4     123.491    1.50
+J2Y          N6          C5         H30     118.103    1.50
+J2Y          C4          C5         H30     118.405    1.50
+J2Y          C1          N6          C5     114.588    1.50
+J2Y         C16          C7          C8     126.020    1.70
+J2Y         C16          C7          C1     126.198    3.00
+J2Y          C8          C7          C1     107.782    1.50
+J2Y         C10          C8          C7     130.081    1.50
+J2Y         C10          C8          N9     121.324    1.93
+J2Y          C7          C8          N9     108.595    1.50
+J2Y          C8          N9          C2     109.074    1.50
+J2Y          C8          N9         H31     125.264    1.50
+J2Y          C2          N9         H31     125.662    1.93
+J2Y         C11         C10         C15     118.930    1.50
+J2Y         C11         C10          C8     120.535    1.50
+J2Y         C15         C10          C8     120.535    1.50
+J2Y         C12         N13         C14     116.909    1.50
+J2Y         N13         C14         N22     114.310    1.50
+J2Y         N13         C14         C15     122.064    1.50
+J2Y         N22         C14         C15     123.626    2.62
+J2Y         C16         N17         C18     117.627    1.50
+J2Y         C14         N22         C23     127.985    1.50
+J2Y         C14         N22         H38     115.397    1.55
+J2Y         C23         N22         H38     116.618    1.65
+J2Y         C23         C25         H40     109.546    1.50
+J2Y         C23         C25         H39     109.546    1.50
+J2Y         C23         C25         H41     109.546    1.50
+J2Y         H40         C25         H39     109.365    1.50
+J2Y         H40         C25         H41     109.365    1.50
+J2Y         H39         C25         H41     109.365    1.50
+J2Y         C27         O26         C19     117.273    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+J2Y              const_73         C19         C18         N17         C16       0.000    10.0     2
+J2Y              const_18         N17         C18         C19         O26     180.000    10.0     2
+J2Y              const_35          C7          C1          C2          N9       0.000    10.0     2
+J2Y              const_76          C7          C1          N6          C5     180.000    10.0     2
+J2Y              const_54          C2          C1          C7         C16     180.000    10.0     2
+J2Y              const_41          N9          C2          C3          C4     180.000    10.0     2
+J2Y              const_65          C1          C2          N9          C8       0.000    10.0     2
+J2Y              const_43          C2          C3          C4          C5       0.000    10.0     2
+J2Y              const_47          C3          C4          C5          N6       0.000    10.0     2
+J2Y              const_51          C4          C5          N6          C1       0.000    10.0     2
+J2Y              const_60         C16          C7          C8         C10       0.000    10.0     2
+J2Y              const_63         C10          C8          N9          C2     180.000    10.0     2
+J2Y            sp2_sp2_11         C11         C10          C8          C7     180.000     5.0     2
+J2Y            sp2_sp2_15         C21         C16          C7          C8     180.000     5.0     2
+J2Y              const_33         C21         C16         N17         C18       0.000    10.0     2
+J2Y              const_31          C7         C16         C21         C20     180.000    10.0     2
+J2Y       const_sp2_sp2_6         N22         C14         N13         C12     180.000     5.0     2
+J2Y             sp2_sp2_3         N13         C14         N22         C23       0.000     5.0     2
+J2Y              const_69         C11         C10         C15         C14       0.000    10.0     2
+J2Y       const_sp2_sp2_3         N22         C14         C15         C10     180.000     5.0     2
+J2Y             sp2_sp2_9         C20         C19         O26         C27     180.000     5.0     2
+J2Y              const_23         O26         C19         C20         C21     180.000    10.0     2
+J2Y              const_25         C19         C20         C21         C16       0.000    10.0     2
+J2Y             sp2_sp2_5         C25         C23         N22         C14     180.000     5.0     2
+J2Y             sp2_sp3_1         N22         C23         C25         H40       0.000    10.0     6
+J2Y              const_13         C15         C10         C11         C12       0.000    10.0     2
+J2Y       const_sp2_sp2_9         C10         C11         C12         N13       0.000     5.0     2
+J2Y       const_sp2_sp2_7         C11         C12         N13         C14       0.000     5.0     2
+J2Y             sp3_sp3_2         H42         C27         O26         C19     -60.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+J2Y    plan-1          C1   0.020
+J2Y    plan-1         C10   0.020
+J2Y    plan-1         C16   0.020
+J2Y    plan-1          C2   0.020
+J2Y    plan-1          C3   0.020
+J2Y    plan-1          C4   0.020
+J2Y    plan-1          C5   0.020
+J2Y    plan-1          C7   0.020
+J2Y    plan-1          C8   0.020
+J2Y    plan-1         H28   0.020
+J2Y    plan-1         H29   0.020
+J2Y    plan-1         H30   0.020
+J2Y    plan-1         H31   0.020
+J2Y    plan-1          N6   0.020
+J2Y    plan-1          N9   0.020
+J2Y    plan-2         C16   0.020
+J2Y    plan-2         C18   0.020
+J2Y    plan-2         C19   0.020
+J2Y    plan-2         C20   0.020
+J2Y    plan-2         C21   0.020
+J2Y    plan-2          C7   0.020
+J2Y    plan-2         H35   0.020
+J2Y    plan-2         H36   0.020
+J2Y    plan-2         H37   0.020
+J2Y    plan-2         N17   0.020
+J2Y    plan-2         O26   0.020
+J2Y    plan-3         C10   0.020
+J2Y    plan-3         C11   0.020
+J2Y    plan-3         C12   0.020
+J2Y    plan-3         C14   0.020
+J2Y    plan-3         C15   0.020
+J2Y    plan-3          C8   0.020
+J2Y    plan-3         H32   0.020
+J2Y    plan-3         H33   0.020
+J2Y    plan-3         H34   0.020
+J2Y    plan-3         N13   0.020
+J2Y    plan-3         N22   0.020
+J2Y    plan-4         C23   0.020
+J2Y    plan-4         C25   0.020
+J2Y    plan-4         N22   0.020
+J2Y    plan-4         O24   0.020
+J2Y    plan-5         C14   0.020
+J2Y    plan-5         C23   0.020
+J2Y    plan-5         H38   0.020
+J2Y    plan-5         N22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+J2Y           SMILES              ACDLabs 12.01                                                                                          c4nc(c2c1c(cccn1)nc2c3cc(ncc3)NC(=O)C)ccc4OC
+J2Y            InChI                InChI  1.03 InChI=1S/C20H17N5O2/c1-12(26)24-17-10-13(7-9-21-17)19-18(15-6-5-14(27-2)11-23-15)20-16(25-19)4-3-8-22-20/h3-11,25H,1-2H3,(H,21,24,26)
+J2Y         InChIKey                InChI  1.03                                                                                                           VRPRBQAJAQCSCW-UHFFFAOYSA-N
+J2Y SMILES_CANONICAL               CACTVS 3.385                                                                                       COc1ccc(nc1)c2c([nH]c3cccnc23)c4ccnc(NC(C)=O)c4
+J2Y           SMILES               CACTVS 3.385                                                                                       COc1ccc(nc1)c2c([nH]c3cccnc23)c4ccnc(NC(C)=O)c4
+J2Y SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                     CC(=O)Nc1cc(ccn1)c2c(c3c([nH]2)cccn3)c4ccc(cn4)OC
+J2Y           SMILES "OpenEye OEToolkits" 2.0.6                                                                                     CC(=O)Nc1cc(ccn1)c2c(c3c([nH]2)cccn3)c4ccc(cn4)OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+J2Y acedrg               243         "dictionary generator"                  
+J2Y acedrg_database      11          "data source"                           
+J2Y rdkit                2017.03.2   "Chemoinformatics tool"
+J2Y refmac5              5.8.0238    "optimization tool"                     

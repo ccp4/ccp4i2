@@ -1,0 +1,403 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CPA     CPA      "2'-DEOXYCYTIDINE-2'-DEOXYADENOSINE-3',5'-MONOPHOSPHATE"     NON-POLYMER     61     37     .     
+#
+data_comp_CPA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CPA     P       P       P       0       29.384      17.654      5.792       
+CPA     O1P     O       O       0       29.657      18.115      7.197       
+CPA     O2P     O       OP      -1      28.198      18.249      5.083       
+CPA     O5D     O       OH1     0       32.527      13.997      4.741       
+CPA     C5X     C       CH2     0       31.145      13.731      4.545       
+CPA     C4X     C       CH1     0       30.354      13.899      5.823       
+CPA     O4D     O       O2      0       30.950      13.118      6.880       
+CPA     C3X     C       CH1     0       30.309      15.313      6.380       
+CPA     O3D     O       O2      0       29.260      16.050      5.746       
+CPA     C2X     C       CH2     0       30.029      15.070      7.850       
+CPA     C1X     C       CH1     0       30.627      13.698      8.129       
+CPA     N1C     N       NR6     0       31.869      13.736      8.949       
+CPA     CC2     C       CR6     0       31.893      13.161      10.233      
+CPA     N3C     N       NRD6    0       33.043      13.219      10.957      
+CPA     CC4     C       CR6     0       34.140      13.816      10.462      
+CPA     CC5     C       CR16    0       34.131      14.407      9.165       
+CPA     CC6     C       CR16    0       32.989      14.347      8.456       
+CPA     O2C     O       O       0       30.876      12.611      10.686      
+CPA     N4C     N       NH2     0       35.232      13.840      11.216      
+CPA     O5B     O       O2      0       30.691      17.932      4.899       
+CPA     C5B     C       CH2     0       30.737      17.525      3.505       
+CPA     C4B     C       CH1     0       30.539      18.734      2.624       
+CPA     O4B     O       O2      0       31.602      19.679      2.871       
+CPA     C3B     C       CH1     0       30.563      18.446      1.125       
+CPA     O3B     O       OH1     0       29.715      19.349      0.423       
+CPA     C2B     C       CH2     0       32.029      18.676      0.778       
+CPA     C1B     C       CH1     0       32.400      19.828      1.698       
+CPA     N9A     N       NR5     0       33.806      19.853      2.104       
+CPA     C8A     C       CR15    0       34.478      18.886      2.812       
+CPA     N7A     N       NRD5    0       35.734      19.180      3.035       
+CPA     C5A     C       CR56    0       35.909      20.422      2.442       
+CPA     C6A     C       CR6     0       37.030      21.274      2.336       
+CPA     N6A     N       NH2     0       38.226      20.986      2.845       
+CPA     N1A     N       NRD6    0       36.866      22.450      1.676       
+CPA     C2A     C       CR16    0       35.658      22.735      1.166       
+CPA     N3A     N       NRD6    0       34.538      22.012      1.205       
+CPA     C4A     C       CR56    0       34.726      20.852      1.864       
+CPA     HO5C    H       H       0       32.896      14.111      3.986       
+CPA     H51C    H       H       0       31.036      12.813      4.217       
+CPA     H52C    H       H       0       30.791      14.342      3.864       
+CPA     H4D     H       H       0       29.432      13.579      5.675       
+CPA     H3D     H       H       0       31.179      15.758      6.257       
+CPA     H21C    H       H       0       29.062      15.075      8.026       
+CPA     H22C    H       H       0       30.454      15.761      8.404       
+CPA     H1D     H       H       0       29.945      13.133      8.572       
+CPA     H5C     H       H       0       34.896      14.827      8.813       
+CPA     H6C     H       H       0       32.951      14.725      7.601       
+CPA     H41C    H       H       0       35.235      13.443      11.999      
+CPA     H42C    H       H       0       35.951      14.255      10.930      
+CPA     H51A    H       H       0       30.029      16.859      3.318       
+CPA     H52A    H       H       0       31.613      17.112      3.306       
+CPA     H4B     H       H       0       29.676      19.152      2.861       
+CPA     H3B     H       H       0       30.301      17.510      0.944       
+CPA     HO3A    H       H       0       29.582      19.052      -0.361      
+CPA     H21A    H       H       0       32.136      18.923      -0.161      
+CPA     H22A    H       H       0       32.566      17.881      0.965       
+CPA     H1B     H       H       0       32.167      20.686      1.257       
+CPA     H8A     H       H       0       34.074      18.087      3.104       
+CPA     H61A    H       H       0       38.837      21.613      2.910       
+CPA     H62A    H       H       0       38.399      20.168      3.113       
+CPA     H2A     H       H       0       35.592      23.563      0.715       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CPA           P         O1P      DOUBLE       n     1.504  0.0115     1.504  0.0115
+CPA           P         O2P      SINGLE       n     1.504  0.0115     1.504  0.0115
+CPA           P         O3D      SINGLE       n     1.606  0.0100     1.606  0.0100
+CPA           P         O5B      SINGLE       n     1.606  0.0100     1.606  0.0100
+CPA         O5D         C5X      SINGLE       n     1.421  0.0131     1.421  0.0131
+CPA         C5X         C4X      SINGLE       n     1.511  0.0103     1.511  0.0103
+CPA         C4X         O4D      SINGLE       n     1.445  0.0100     1.445  0.0100
+CPA         C4X         C3X      SINGLE       n     1.525  0.0133     1.525  0.0133
+CPA         O4D         C1X      SINGLE       n     1.413  0.0100     1.413  0.0100
+CPA         C3X         O3D      SINGLE       n     1.425  0.0152     1.425  0.0152
+CPA         C3X         C2X      SINGLE       n     1.512  0.0188     1.512  0.0188
+CPA         C2X         C1X      SINGLE       n     1.520  0.0100     1.520  0.0100
+CPA         C1X         N1C      SINGLE       n     1.480  0.0115     1.480  0.0115
+CPA         N1C         CC2      SINGLE       y     1.397  0.0100     1.397  0.0100
+CPA         N1C         CC6      SINGLE       y     1.360  0.0118     1.360  0.0118
+CPA         CC2         N3C      SINGLE       y     1.355  0.0119     1.355  0.0119
+CPA         CC2         O2C      DOUBLE       n     1.241  0.0100     1.241  0.0100
+CPA         N3C         CC4      DOUBLE       y     1.339  0.0110     1.339  0.0110
+CPA         CC4         CC5      SINGLE       y     1.422  0.0123     1.422  0.0123
+CPA         CC4         N4C      SINGLE       n     1.325  0.0109     1.325  0.0109
+CPA         CC5         CC6      DOUBLE       y     1.342  0.0100     1.342  0.0100
+CPA         O5B         C5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+CPA         C5B         C4B      SINGLE       n     1.509  0.0100     1.509  0.0100
+CPA         C4B         O4B      SINGLE       n     1.442  0.0100     1.442  0.0100
+CPA         C4B         C3B      SINGLE       n     1.526  0.0115     1.526  0.0115
+CPA         O4B         C1B      SINGLE       n     1.425  0.0100     1.425  0.0100
+CPA         C3B         O3B      SINGLE       n     1.424  0.0100     1.424  0.0100
+CPA         C3B         C2B      SINGLE       n     1.526  0.0101     1.526  0.0101
+CPA         C2B         C1B      SINGLE       n     1.521  0.0118     1.521  0.0118
+CPA         C1B         N9A      SINGLE       n     1.462  0.0111     1.462  0.0111
+CPA         N9A         C8A      SINGLE       y     1.373  0.0100     1.373  0.0100
+CPA         N9A         C4A      SINGLE       y     1.377  0.0100     1.377  0.0100
+CPA         C8A         N7A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+CPA         N7A         C5A      SINGLE       y     1.388  0.0100     1.388  0.0100
+CPA         C5A         C6A      SINGLE       y     1.408  0.0100     1.408  0.0100
+CPA         C5A         C4A      DOUBLE       y     1.381  0.0100     1.381  0.0100
+CPA         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+CPA         C6A         N1A      DOUBLE       y     1.354  0.0100     1.354  0.0100
+CPA         N1A         C2A      SINGLE       y     1.339  0.0100     1.339  0.0100
+CPA         C2A         N3A      DOUBLE       y     1.330  0.0100     1.330  0.0100
+CPA         N3A         C4A      SINGLE       y     1.343  0.0100     1.343  0.0100
+CPA         O5D        HO5C      SINGLE       n     0.970  0.0120     0.848  0.0200
+CPA         C5X        H51C      SINGLE       n     1.089  0.0100     0.981  0.0200
+CPA         C5X        H52C      SINGLE       n     1.089  0.0100     0.981  0.0200
+CPA         C4X         H4D      SINGLE       n     1.089  0.0100     0.987  0.0170
+CPA         C3X         H3D      SINGLE       n     1.089  0.0100     0.985  0.0119
+CPA         C2X        H21C      SINGLE       n     1.089  0.0100     0.982  0.0200
+CPA         C2X        H22C      SINGLE       n     1.089  0.0100     0.982  0.0200
+CPA         C1X         H1D      SINGLE       n     1.089  0.0100     0.991  0.0103
+CPA         CC5         H5C      SINGLE       n     1.082  0.0130     0.941  0.0174
+CPA         CC6         H6C      SINGLE       n     1.082  0.0130     0.935  0.0143
+CPA         N4C        H41C      SINGLE       n     1.016  0.0100     0.877  0.0200
+CPA         N4C        H42C      SINGLE       n     1.016  0.0100     0.877  0.0200
+CPA         C5B        H51A      SINGLE       n     1.089  0.0100     0.989  0.0200
+CPA         C5B        H52A      SINGLE       n     1.089  0.0100     0.989  0.0200
+CPA         C4B         H4B      SINGLE       n     1.089  0.0100     0.987  0.0170
+CPA         C3B         H3B      SINGLE       n     1.089  0.0100     0.988  0.0189
+CPA         O3B        HO3A      SINGLE       n     0.970  0.0120     0.849  0.0200
+CPA         C2B        H21A      SINGLE       n     1.089  0.0100     0.977  0.0113
+CPA         C2B        H22A      SINGLE       n     1.089  0.0100     0.977  0.0113
+CPA         C1B         H1B      SINGLE       n     1.089  0.0100     0.993  0.0101
+CPA         C8A         H8A      SINGLE       n     1.082  0.0130     0.942  0.0170
+CPA         N6A        H61A      SINGLE       n     1.016  0.0100     0.877  0.0200
+CPA         N6A        H62A      SINGLE       n     1.016  0.0100     0.877  0.0200
+CPA         C2A         H2A      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CPA         O1P           P         O2P     116.964    2.85
+CPA         O1P           P         O3D     108.530    2.45
+CPA         O1P           P         O5B     107.912    2.57
+CPA         O2P           P         O3D     108.530    2.45
+CPA         O2P           P         O5B     107.912    2.57
+CPA         O3D           P         O5B     101.077    2.30
+CPA         C5X         O5D        HO5C     109.007    3.00
+CPA         O5D         C5X         C4X     111.279    1.98
+CPA         O5D         C5X        H51C     109.280    1.50
+CPA         O5D         C5X        H52C     109.280    1.50
+CPA         C4X         C5X        H51C     109.326    2.00
+CPA         C4X         C5X        H52C     109.326    2.00
+CPA        H51C         C5X        H52C     108.248    2.26
+CPA         C5X         C4X         O4D     109.573    1.50
+CPA         C5X         C4X         C3X     114.866    1.63
+CPA         C5X         C4X         H4D     109.037    1.87
+CPA         O4D         C4X         C3X     105.508    1.50
+CPA         O4D         C4X         H4D     108.698    1.50
+CPA         C3X         C4X         H4D     109.143    1.50
+CPA         C4X         O4D         C1X     109.692    1.50
+CPA         C4X         C3X         O3D     110.864    2.31
+CPA         C4X         C3X         C2X     102.708    1.50
+CPA         C4X         C3X         H3D     110.624    1.81
+CPA         O3D         C3X         C2X     111.684    2.44
+CPA         O3D         C3X         H3D     110.343    1.64
+CPA         C2X         C3X         H3D     111.076    1.50
+CPA           P         O3D         C3X     109.471    3.00
+CPA         C3X         C2X         C1X     102.866    1.50
+CPA         C3X         C2X        H21C     110.947    1.50
+CPA         C3X         C2X        H22C     110.947    1.50
+CPA         C1X         C2X        H21C     111.187    1.50
+CPA         C1X         C2X        H22C     111.187    1.50
+CPA        H21C         C2X        H22C     108.952    1.50
+CPA         O4D         C1X         C2X     106.308    1.50
+CPA         O4D         C1X         N1C     107.584    1.50
+CPA         O4D         C1X         H1D     109.550    1.50
+CPA         C2X         C1X         N1C     114.268    1.50
+CPA         C2X         C1X         H1D     109.741    1.50
+CPA         N1C         C1X         H1D     109.342    1.50
+CPA         C1X         N1C         CC2     118.777    1.50
+CPA         C1X         N1C         CC6     120.713    1.50
+CPA         CC2         N1C         CC6     120.510    1.50
+CPA         N1C         CC2         N3C     118.920    1.50
+CPA         N1C         CC2         O2C     118.716    1.50
+CPA         N3C         CC2         O2C     122.370    1.50
+CPA         CC2         N3C         CC4     120.266    1.50
+CPA         N3C         CC4         CC5     121.269    1.50
+CPA         N3C         CC4         N4C     117.855    1.50
+CPA         CC5         CC4         N4C     120.876    1.50
+CPA         CC4         CC5         CC6     117.808    1.50
+CPA         CC4         CC5         H5C     121.350    1.50
+CPA         CC6         CC5         H5C     120.848    1.50
+CPA         N1C         CC6         CC5     121.215    1.50
+CPA         N1C         CC6         H6C     118.510    1.50
+CPA         CC5         CC6         H6C     120.275    1.75
+CPA         CC4         N4C        H41C     119.818    1.59
+CPA         CC4         N4C        H42C     119.818    1.59
+CPA        H41C         N4C        H42C     120.363    1.85
+CPA           P         O5B         C5B     118.553    2.41
+CPA         O5B         C5B         C4B     109.342    1.50
+CPA         O5B         C5B        H51A     109.845    1.50
+CPA         O5B         C5B        H52A     109.845    1.50
+CPA         C4B         C5B        H51A     109.624    1.50
+CPA         C4B         C5B        H52A     109.624    1.50
+CPA        H51A         C5B        H52A     108.472    1.50
+CPA         C5B         C4B         O4B     109.123    1.50
+CPA         C5B         C4B         C3B     114.866    1.63
+CPA         C5B         C4B         H4B     108.268    1.50
+CPA         O4B         C4B         C3B     105.506    1.50
+CPA         O4B         C4B         H4B     108.947    1.50
+CPA         C3B         C4B         H4B     109.069    1.50
+CPA         C4B         O4B         C1B     108.795    1.50
+CPA         C4B         C3B         O3B     110.527    2.37
+CPA         C4B         C3B         C2B     102.433    1.50
+CPA         C4B         C3B         H3B     110.775    1.50
+CPA         O3B         C3B         C2B     111.424    1.96
+CPA         O3B         C3B         H3B     110.713    1.50
+CPA         C2B         C3B         H3B     110.846    1.50
+CPA         C3B         O3B        HO3A     109.026    2.38
+CPA         C3B         C2B         C1B     102.663    1.50
+CPA         C3B         C2B        H21A     111.194    1.50
+CPA         C3B         C2B        H22A     111.194    1.50
+CPA         C1B         C2B        H21A     111.213    1.50
+CPA         C1B         C2B        H22A     111.213    1.50
+CPA        H21A         C2B        H22A     109.148    1.50
+CPA         O4B         C1B         C2B     106.035    1.50
+CPA         O4B         C1B         N9A     108.236    1.50
+CPA         O4B         C1B         H1B     109.059    1.50
+CPA         C2B         C1B         N9A     114.190    1.67
+CPA         C2B         C1B         H1B     109.272    1.50
+CPA         N9A         C1B         H1B     109.282    1.50
+CPA         C1B         N9A         C8A     127.636    2.81
+CPA         C1B         N9A         C4A     126.671    2.93
+CPA         C8A         N9A         C4A     105.693    1.50
+CPA         N9A         C8A         N7A     113.469    1.50
+CPA         N9A         C8A         H8A     123.206    1.50
+CPA         N7A         C8A         H8A     123.326    1.50
+CPA         C8A         N7A         C5A     104.739    1.50
+CPA         N7A         C5A         C6A     132.250    1.50
+CPA         N7A         C5A         C4A     110.483    1.50
+CPA         C6A         C5A         C4A     117.267    1.50
+CPA         C5A         C6A         N6A     123.792    1.50
+CPA         C5A         C6A         N1A     117.409    1.50
+CPA         N6A         C6A         N1A     118.799    1.50
+CPA         C6A         N6A        H61A     119.723    1.50
+CPA         C6A         N6A        H62A     119.723    1.50
+CPA        H61A         N6A        H62A     120.554    1.88
+CPA         C6A         N1A         C2A     118.521    1.50
+CPA         N1A         C2A         N3A     129.332    1.50
+CPA         N1A         C2A         H2A     115.313    1.50
+CPA         N3A         C2A         H2A     115.355    1.50
+CPA         C2A         N3A         C4A     110.982    1.50
+CPA         N9A         C4A         C5A     105.616    1.50
+CPA         N9A         C4A         N3A     127.895    1.50
+CPA         C5A         C4A         N3A     126.489    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CPA            sp3_sp3_54         C5B         O5B           P         O1P      60.000    10.0     3
+CPA            sp3_sp3_51         C3X         O3D           P         O1P      60.000    10.0     3
+CPA             sp2_sp3_1         CC2         N1C         C1X         O4D     150.000    10.0     6
+CPA              const_28         O2C         CC2         N1C         C1X       0.000    10.0     2
+CPA              const_42         CC5         CC6         N1C         C1X     180.000    10.0     2
+CPA              const_30         O2C         CC2         N3C         CC4     180.000    10.0     2
+CPA              const_32         N4C         CC4         N3C         CC2     180.000    10.0     2
+CPA              const_35         N4C         CC4         CC5         CC6     180.000    10.0     2
+CPA             sp2_sp2_3         N3C         CC4         N4C        H41C       0.000     5.0     2
+CPA              const_37         CC4         CC5         CC6         N1C       0.000    10.0     2
+CPA            sp3_sp3_79         C4B         C5B         O5B           P     180.000    10.0     3
+CPA            sp3_sp3_82         O4B         C4B         C5B         O5B     180.000    10.0     3
+CPA             sp3_sp3_2         C5B         C4B         O4B         C1B     -60.000    10.0     3
+CPA            sp3_sp3_95         O3B         C3B         C4B         C5B     180.000    10.0     3
+CPA             sp3_sp3_4         C2B         C1B         O4B         C4B     -60.000    10.0     3
+CPA           sp3_sp3_100         C4B         C3B         O3B        HO3A     180.000    10.0     3
+CPA            sp3_sp3_17         C1B         C2B         C3B         O3B      60.000    10.0     3
+CPA             sp3_sp3_7         O4B         C1B         C2B         C3B      60.000    10.0     3
+CPA             sp2_sp3_7         C8A         N9A         C1B         O4B     150.000    10.0     6
+CPA              const_14         N7A         C8A         N9A         C1B     180.000    10.0     2
+CPA              const_46         C5A         C4A         N9A         C1B     180.000    10.0     2
+CPA              const_17         N9A         C8A         N7A         C5A       0.000    10.0     2
+CPA              const_20         C6A         C5A         N7A         C8A     180.000    10.0     2
+CPA       const_sp2_sp2_4         N7A         C5A         C6A         N6A       0.000     5.0     2
+CPA              const_21         N9A         C4A         C5A         N7A       0.000    10.0     2
+CPA             sp2_sp2_5         C5A         C6A         N6A        H61A     180.000     5.0     2
+CPA       const_sp2_sp2_6         N6A         C6A         N1A         C2A     180.000     5.0     2
+CPA       const_sp2_sp2_7         N3A         C2A         N1A         C6A       0.000     5.0     2
+CPA       const_sp2_sp2_9         N1A         C2A         N3A         C4A       0.000     5.0     2
+CPA              const_12         N9A         C4A         N3A         C2A     180.000    10.0     2
+CPA            sp3_sp3_55         C4X         C5X         O5D        HO5C     180.000    10.0     3
+CPA            sp3_sp3_58         O4D         C4X         C5X         O5D     180.000    10.0     3
+CPA            sp3_sp3_26         C5X         C4X         O4D         C1X     -60.000    10.0     3
+CPA            sp3_sp3_71         O3D         C3X         C4X         C5X     180.000    10.0     3
+CPA            sp3_sp3_28         C2X         C1X         O4D         C4X     -60.000    10.0     3
+CPA            sp3_sp3_76         C4X         C3X         O3D           P     180.000    10.0     3
+CPA            sp3_sp3_41         C1X         C2X         C3X         O3D      60.000    10.0     3
+CPA            sp3_sp3_31         O4D         C1X         C2X         C3X      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CPA    chir_1    P    O3D    O5B    O2P    both
+CPA    chir_2    C4X    O4D    C3X    C5X    negative
+CPA    chir_3    C3X    O3D    C4X    C2X    positive
+CPA    chir_4    C1X    O4D    N1C    C2X    negative
+CPA    chir_5    C4B    O4B    C3B    C5B    negative
+CPA    chir_6    C3B    O3B    C4B    C2B    positive
+CPA    chir_7    C1B    O4B    N9A    C2B    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CPA    plan-1         C1B   0.020
+CPA    plan-1         C2A   0.020
+CPA    plan-1         C4A   0.020
+CPA    plan-1         C5A   0.020
+CPA    plan-1         C6A   0.020
+CPA    plan-1         C8A   0.020
+CPA    plan-1         H2A   0.020
+CPA    plan-1         H8A   0.020
+CPA    plan-1         N1A   0.020
+CPA    plan-1         N3A   0.020
+CPA    plan-1         N6A   0.020
+CPA    plan-1         N7A   0.020
+CPA    plan-1         N9A   0.020
+CPA    plan-2         C1X   0.020
+CPA    plan-2         CC2   0.020
+CPA    plan-2         CC4   0.020
+CPA    plan-2         CC5   0.020
+CPA    plan-2         CC6   0.020
+CPA    plan-2         H5C   0.020
+CPA    plan-2         H6C   0.020
+CPA    plan-2         N1C   0.020
+CPA    plan-2         N3C   0.020
+CPA    plan-2         N4C   0.020
+CPA    plan-2         O2C   0.020
+CPA    plan-3         CC4   0.020
+CPA    plan-3        H41C   0.020
+CPA    plan-3        H42C   0.020
+CPA    plan-3         N4C   0.020
+CPA    plan-4         C6A   0.020
+CPA    plan-4        H61A   0.020
+CPA    plan-4        H62A   0.020
+CPA    plan-4         N6A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CPA           SMILES              ACDLabs 10.04                                                                                                                                                                         O=C1N=C(N)C=CN1C5OC(CO)C(OP(=O)(O)OCC4OC(n3cnc2c(ncnc23)N)CC4O)C5
+CPA SMILES_CANONICAL               CACTVS 3.341                                                                                                                                         NC1=NC(=O)N(C=C1)[C@H]2C[C@H](O[P@@](O)(=O)OC[C@H]3O[C@H](C[C@@H]3O)n4cnc5c(N)ncnc45)[C@@H](CO)O2
+CPA           SMILES               CACTVS 3.341                                                                                                                                                   NC1=NC(=O)N(C=C1)[CH]2C[CH](O[P](O)(=O)OC[CH]3O[CH](C[CH]3O)n4cnc5c(N)ncnc45)[CH](CO)O2
+CPA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                      c1nc(c2c(n1)n(cn2)[C@H]3C[C@@H]([C@H](O3)CO[P@@](=O)(O)O[C@H]4C[C@@H](O[C@@H]4CO)N5C=CC(=NC5=O)N)O)N
+CPA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                     c1nc(c2c(n1)n(cn2)C3CC(C(O3)COP(=O)(O)OC4CC(OC4CO)N5C=CC(=NC5=O)N)O)N
+CPA            InChI                InChI  1.03 InChI=1S/C19H25N8O9P/c20-13-1-2-26(19(30)25-13)15-4-10(11(5-28)34-15)36-37(31,32)33-6-12-9(29)3-14(35-12)27-8-24-16-17(21)22-7-23-18(16)27/h1-2,7-12,14-15,28-29H,3-6H2,(H,31,32)(H2,20,25,30)(H2,21,22,23)/t9-,10-,11+,12+,14+,15+/m0/s1
+CPA         InChIKey                InChI  1.03                                                                                                                                                                                                               LYWWDKIADIGKTH-IDMWBNCISA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CPA acedrg               243         "dictionary generator"                  
+CPA acedrg_database      11          "data source"                           
+CPA rdkit                2017.03.2   "Chemoinformatics tool"
+CPA refmac5              5.8.0238    "optimization tool"                     

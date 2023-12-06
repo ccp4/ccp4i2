@@ -1,0 +1,252 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JJ4     JJ4      3-cyclopentyl-N-(5-methyl-1,3-thiazol-2-yl)propanamide     NON-POLYMER     34     16     .     
+#
+data_comp_JJ4
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JJ4     C10     C       CH2     0       -40.204     33.095      11.945      
+JJ4     C13     C       CH2     0       -41.867     35.941      11.919      
+JJ4     C15     C       CH2     0       -41.729     36.851      9.656       
+JJ4     C01     C       CH3     0       -35.007     27.614      11.074      
+JJ4     C02     C       CR5     0       -35.694     28.910      11.278      
+JJ4     C03     C       CR15    0       -35.197     30.156      11.242      
+JJ4     N04     N       NRD5    0       -36.145     31.146      11.483      
+JJ4     C05     C       CR5     0       -37.370     30.629      11.698      
+JJ4     S06     S       S2      0       -37.322     28.962      11.608      
+JJ4     N07     N       NH1     0       -38.553     31.287      11.975      
+JJ4     C08     C       C       0       -38.759     32.645      12.056      
+JJ4     O09     O       O       0       -37.849     33.445      12.226      
+JJ4     C11     C       CH2     0       -40.456     34.109      10.830      
+JJ4     C12     C       CH1     0       -41.823     34.793      10.915      
+JJ4     C14     C       CH2     0       -41.556     37.197      11.110      
+JJ4     C16     C       CH2     0       -42.283     35.435      9.609       
+JJ4     H102    H       H       0       -40.474     33.496      12.798      
+JJ4     H101    H       H       0       -40.778     32.315      11.791      
+JJ4     H131    H       H       0       -42.758     36.005      12.334      
+JJ4     H132    H       H       0       -41.196     35.808      12.628      
+JJ4     H152    H       H       0       -40.867     36.899      9.187       
+JJ4     H151    H       H       0       -42.351     37.478      9.225       
+JJ4     H011    H       H       0       -34.183     27.757      10.586      
+JJ4     H012    H       H       0       -35.581     27.018      10.569      
+JJ4     H013    H       H       0       -34.807     27.214      11.934      
+JJ4     H031    H       H       0       -34.291     30.349      11.071      
+JJ4     H071    H       H       0       -39.234     30.754      12.129      
+JJ4     H111    H       H       0       -40.384     33.652      9.966       
+JJ4     H112    H       H       0       -39.759     34.798      10.862      
+JJ4     H121    H       H       0       -42.490     34.110      11.184      
+JJ4     H142    H       H       0       -40.637     37.496      11.283      
+JJ4     H141    H       H       0       -42.167     37.924      11.362      
+JJ4     H162    H       H       0       -41.929     34.947      8.831       
+JJ4     H161    H       H       0       -43.266     35.448      9.555       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JJ4         C15         C16      SINGLE       n     1.523  0.0200     1.523  0.0200
+JJ4         C15         C14      SINGLE       n     1.503  0.0200     1.503  0.0200
+JJ4         C12         C16      SINGLE       n     1.526  0.0100     1.526  0.0100
+JJ4         C10         C11      SINGLE       n     1.528  0.0100     1.528  0.0100
+JJ4         C11         C12      SINGLE       n     1.530  0.0100     1.530  0.0100
+JJ4         C13         C14      SINGLE       n     1.523  0.0200     1.523  0.0200
+JJ4         C10         C08      SINGLE       n     1.511  0.0141     1.511  0.0141
+JJ4         C13         C12      SINGLE       n     1.526  0.0100     1.526  0.0100
+JJ4         C05         S06      SINGLE       y     1.695  0.0200     1.695  0.0200
+JJ4         C02         S06      SINGLE       y     1.695  0.0200     1.695  0.0200
+JJ4         N07         C08      SINGLE       n     1.357  0.0187     1.357  0.0187
+JJ4         C08         O09      DOUBLE       n     1.223  0.0143     1.223  0.0143
+JJ4         C05         N07      SINGLE       n     1.367  0.0190     1.367  0.0190
+JJ4         N04         C05      DOUBLE       y     1.335  0.0145     1.335  0.0145
+JJ4         C01         C02      SINGLE       n     1.481  0.0100     1.481  0.0100
+JJ4         C02         C03      DOUBLE       y     1.339  0.0100     1.339  0.0100
+JJ4         C03         N04      SINGLE       y     1.371  0.0139     1.371  0.0139
+JJ4         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0185
+JJ4         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0185
+JJ4         C13        H131      SINGLE       n     1.089  0.0100     0.985  0.0118
+JJ4         C13        H132      SINGLE       n     1.089  0.0100     0.985  0.0118
+JJ4         C15        H152      SINGLE       n     1.089  0.0100     0.982  0.0145
+JJ4         C15        H151      SINGLE       n     1.089  0.0100     0.982  0.0145
+JJ4         C01        H011      SINGLE       n     1.089  0.0100     0.969  0.0144
+JJ4         C01        H012      SINGLE       n     1.089  0.0100     0.969  0.0144
+JJ4         C01        H013      SINGLE       n     1.089  0.0100     0.969  0.0144
+JJ4         C03        H031      SINGLE       n     1.082  0.0130     0.942  0.0176
+JJ4         N07        H071      SINGLE       n     1.016  0.0100     0.878  0.0200
+JJ4         C11        H111      SINGLE       n     1.089  0.0100     0.980  0.0191
+JJ4         C11        H112      SINGLE       n     1.089  0.0100     0.980  0.0191
+JJ4         C12        H121      SINGLE       n     1.089  0.0100     0.992  0.0133
+JJ4         C14        H142      SINGLE       n     1.089  0.0100     0.982  0.0145
+JJ4         C14        H141      SINGLE       n     1.089  0.0100     0.982  0.0145
+JJ4         C16        H162      SINGLE       n     1.089  0.0100     0.985  0.0118
+JJ4         C16        H161      SINGLE       n     1.089  0.0100     0.985  0.0118
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JJ4         C11         C10         C08     113.547    2.22
+JJ4         C11         C10        H102     108.756    1.50
+JJ4         C11         C10        H101     108.756    1.50
+JJ4         C08         C10        H102     108.894    1.50
+JJ4         C08         C10        H101     108.894    1.50
+JJ4        H102         C10        H101     107.705    1.50
+JJ4         C14         C13         C12     105.018    1.50
+JJ4         C14         C13        H131     110.744    1.50
+JJ4         C14         C13        H132     110.744    1.50
+JJ4         C12         C13        H131     110.689    1.50
+JJ4         C12         C13        H132     110.689    1.50
+JJ4        H131         C13        H132     108.821    1.50
+JJ4         C16         C15         C14     106.544    3.00
+JJ4         C16         C15        H152     110.704    1.50
+JJ4         C16         C15        H151     110.704    1.50
+JJ4         C14         C15        H152     110.679    1.50
+JJ4         C14         C15        H151     110.679    1.50
+JJ4        H152         C15        H151     108.634    1.62
+JJ4         C02         C01        H011     109.576    1.50
+JJ4         C02         C01        H012     109.576    1.50
+JJ4         C02         C01        H013     109.576    1.50
+JJ4        H011         C01        H012     109.334    1.50
+JJ4        H011         C01        H013     109.334    1.50
+JJ4        H012         C01        H013     109.334    1.50
+JJ4         S06         C02         C01     121.263    3.00
+JJ4         S06         C02         C03     108.372    3.00
+JJ4         C01         C02         C03     130.366    3.00
+JJ4         C02         C03         N04     109.442    1.50
+JJ4         C02         C03        H031     126.268    2.00
+JJ4         N04         C03        H031     124.289    1.50
+JJ4         C05         N04         C03     105.443    1.50
+JJ4         S06         C05         N07     122.814    3.00
+JJ4         S06         C05         N04     108.372    3.00
+JJ4         N07         C05         N04     128.814    3.00
+JJ4         C05         S06         C02     108.372    3.00
+JJ4         C08         N07         C05     124.557    2.96
+JJ4         C08         N07        H071     118.683    1.66
+JJ4         C05         N07        H071     116.760    2.70
+JJ4         C10         C08         N07     114.884    1.50
+JJ4         C10         C08         O09     122.525    1.50
+JJ4         N07         C08         O09     122.592    1.50
+JJ4         C10         C11         C12     113.850    1.72
+JJ4         C10         C11        H111     108.716    1.50
+JJ4         C10         C11        H112     108.716    1.50
+JJ4         C12         C11        H111     108.408    1.50
+JJ4         C12         C11        H112     108.408    1.50
+JJ4        H111         C11        H112     107.607    1.50
+JJ4         C16         C12         C11     113.255    1.62
+JJ4         C16         C12         C13     104.276    2.97
+JJ4         C16         C12        H121     108.453    1.91
+JJ4         C11         C12         C13     113.255    1.62
+JJ4         C11         C12        H121     107.814    1.50
+JJ4         C13         C12        H121     108.453    1.91
+JJ4         C15         C14         C13     106.544    3.00
+JJ4         C15         C14        H142     110.679    1.50
+JJ4         C15         C14        H141     110.679    1.50
+JJ4         C13         C14        H142     110.704    1.50
+JJ4         C13         C14        H141     110.704    1.50
+JJ4        H142         C14        H141     108.634    1.62
+JJ4         C15         C16         C12     105.018    1.50
+JJ4         C15         C16        H162     110.744    1.50
+JJ4         C15         C16        H161     110.744    1.50
+JJ4         C12         C16        H162     110.689    1.50
+JJ4         C12         C16        H161     110.689    1.50
+JJ4        H162         C16        H161     108.821    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JJ4             sp2_sp3_2         N07         C08         C10         C11     120.000    10.0     6
+JJ4            sp3_sp3_37         C08         C10         C11         C12     180.000    10.0     3
+JJ4            sp3_sp3_47         C10         C11         C12         C16     -60.000    10.0     3
+JJ4            sp3_sp3_34         C11         C12         C16         C15      60.000    10.0     3
+JJ4            sp3_sp3_58         C11         C12         C13         C14      60.000    10.0     3
+JJ4             sp3_sp3_1         C12         C13         C14         C15      60.000    10.0     3
+JJ4            sp3_sp3_10         C13         C14         C15         C16     -60.000    10.0     3
+JJ4            sp3_sp3_19         C14         C15         C16         C12      60.000    10.0     3
+JJ4             sp2_sp3_7         S06         C02         C01        H011     150.000    10.0     6
+JJ4              const_11         C01         C02         C03         N04     180.000    10.0     2
+JJ4       const_sp2_sp2_2         C01         C02         S06         C05     180.000     5.0     2
+JJ4       const_sp2_sp2_7         C02         C03         N04         C05       0.000     5.0     2
+JJ4       const_sp2_sp2_6         N07         C05         N04         C03     180.000     5.0     2
+JJ4       const_sp2_sp2_4         N07         C05         S06         C02     180.000     5.0     2
+JJ4             sp2_sp2_5         S06         C05         N07         C08     180.000     5.0     2
+JJ4             sp2_sp2_1         C10         C08         N07         C05     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JJ4    chir_1    C12    C11    C16    C13    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JJ4    plan-1         C01   0.020
+JJ4    plan-1         C02   0.020
+JJ4    plan-1         C03   0.020
+JJ4    plan-1         C05   0.020
+JJ4    plan-1        H031   0.020
+JJ4    plan-1         N04   0.020
+JJ4    plan-1         N07   0.020
+JJ4    plan-1         S06   0.020
+JJ4    plan-2         C05   0.020
+JJ4    plan-2         C08   0.020
+JJ4    plan-2        H071   0.020
+JJ4    plan-2         N07   0.020
+JJ4    plan-3         C08   0.020
+JJ4    plan-3         C10   0.020
+JJ4    plan-3         N07   0.020
+JJ4    plan-3         O09   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JJ4           SMILES              ACDLabs 12.01                                                                    C(C(Nc1ncc(C)s1)=O)CC2CCCC2
+JJ4            InChI                InChI  1.03 InChI=1S/C12H18N2OS/c1-9-8-13-12(16-9)14-11(15)7-6-10-4-2-3-5-10/h8,10H,2-7H2,1H3,(H,13,14,15)
+JJ4         InChIKey                InChI  1.03                                                                    OCHVUIYGDNVFCO-UHFFFAOYSA-N
+JJ4 SMILES_CANONICAL               CACTVS 3.385                                                                      Cc1sc(NC(=O)CCC2CCCC2)nc1
+JJ4           SMILES               CACTVS 3.385                                                                      Cc1sc(NC(=O)CCC2CCCC2)nc1
+JJ4 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                      Cc1cnc(s1)NC(=O)CCC2CCCC2
+JJ4           SMILES "OpenEye OEToolkits" 2.0.6                                                                      Cc1cnc(s1)NC(=O)CCC2CCCC2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JJ4 acedrg               243         "dictionary generator"                  
+JJ4 acedrg_database      11          "data source"                           
+JJ4 rdkit                2017.03.2   "Chemoinformatics tool"
+JJ4 refmac5              5.8.0238    "optimization tool"                     

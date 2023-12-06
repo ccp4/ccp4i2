@@ -1,0 +1,719 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+D69     D69      "[[(2R,3S,4S)-5-[(4aS,10aS)-4a-[(1S)-3-azanylidene-1,4-diphenyl-butyl]-7,8-dimethyl-2,4-bis(oxidanylidene)-5,10a-dihydro-1H-benzo[g]pteridin-10-yl]-2,3,4-tris(oxidanyl)pentoxy]-oxidanyl-phosphoryl] [(2R,3S,4R,5R)-5-(6-aminopurin-9-yl)-3,4-bis(oxidanyl)oxolan-2-yl]methyl hydrogen phosphate"     NON-POLYMER     120     70     .     
+#
+data_comp_D69
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+D69     P       P       P       0       -6.921      67.021      89.280      
+D69     N1      N       NR6     0       -7.624      58.080      87.798      
+D69     C2      C       CR6     0       -7.592      57.106      88.715      
+D69     O2      O       O       0       -7.370      57.334      89.900      
+D69     N3      N       NR6     0       -7.754      55.844      88.251      
+D69     C4      C       CR6     0       -7.716      55.441      86.936      
+D69     O4      O       O       0       -7.942      54.275      86.661      
+D69     N5      N       NR6     0       -8.109      56.237      84.607      
+D69     C6      C       CR16    0       -8.679      56.971      82.366      
+D69     C7      C       CR6     0       -8.870      57.972      81.446      
+D69     C8      C       CR6     0       -8.681      59.350      81.837      
+D69     C9      C       CR16    0       -8.309      59.654      83.127      
+D69     PA      P       P       0       -7.118      68.427      86.715      
+D69     "C1'"   C       CH2     0       -6.935      60.134      85.806      
+D69     C10     C       CH1     0       -8.025      57.846      86.406      
+D69     N10     N       NR6     0       -7.704      58.922      85.445      
+D69     N1A     N       NRD6    0       -2.032      77.282      88.884      
+D69     O1A     O       O       0       -6.122      68.707      85.638      
+D69     C1B     C       CH1     0       -5.985      73.975      88.396      
+D69     O1P     O       O       0       -5.762      66.615      90.129      
+D69     "C2'"   C       CH1     0       -7.778      61.206      86.504      
+D69     "O2'"   O       OH1     0       -8.821      61.650      85.636      
+D69     C2A     C       CR16    0       -3.297      77.328      89.330      
+D69     O2A     O       OP      -1      -8.349      67.661      86.357      
+D69     C2B     C       CH1     0       -6.880      73.849      87.165      
+D69     O2B     O       OH1     0       -7.431      75.098      86.805      
+D69     O2P     O       OP      -1      -7.966      67.913      89.865      
+D69     "C3'"   C       CH1     0       -6.923      62.398      86.959      
+D69     "O3'"   O       OH1     0       -5.902      61.935      87.848      
+D69     N3A     N       NRD6    0       -4.277      76.438      89.170      
+D69     C3B     C       CH1     0       -7.933      72.847      87.646      
+D69     O3B     O       OH1     0       -8.994      73.453      88.377      
+D69     O3P     O       O2      0       -6.376      67.674      87.921      
+D69     "C4'"   C       CH1     0       -7.712      63.515      87.650      
+D69     "O4'"   O       OH1     0       -8.726      64.008      86.771      
+D69     C4A     C       CR56    0       -3.862      75.376      88.453      
+D69     C4B     C       CH1     0       -7.100      71.908      88.529      
+D69     O4B     O       O2      0       -6.037      72.735      89.068      
+D69     C4X     C       CT      0       -7.422      56.501      85.877      
+D69     "C5'"   C       CH2     0       -6.837      64.673      88.077      
+D69     "O5'"   O       O2      0       -7.640      65.700      88.722      
+D69     C5A     C       CR56    0       -2.594      75.187      87.929      
+D69     C5B     C       CH2     0       -6.486      70.718      87.833      
+D69     O5B     O       O2      0       -7.535      69.802      87.427      
+D69     C5X     C       CR66    0       -8.295      57.262      83.682      
+D69     C6A     C       CR6     0       -1.638      76.200      88.163      
+D69     N6A     N       NH2     0       -0.385      76.148      87.718      
+D69     N7A     N       NRD5    0       -2.527      73.980      87.249      
+D69     C7M     C       CH3     0       -9.281      57.605      80.043      
+D69     C8A     C       CR15    0       -3.727      73.471      87.372      
+D69     C8M     C       CH3     0       -8.886      60.468      80.847      
+D69     C9A     C       CR66    0       -8.107      58.644      84.083      
+D69     N9A     N       NR5     0       -4.589      74.266      88.087      
+D69     NAA     N       NH1     0       -3.168      57.893      85.617      
+D69     CAB     C       CR16    0       -4.717      53.410      82.833      
+D69     CAC     C       CR16    0       -1.537      52.576      84.428      
+D69     CAD     C       CR16    0       -4.900      54.697      82.375      
+D69     CAE     C       CR16    0       -4.902      53.127      84.170      
+D69     CAF     C       CR16    0       -1.384      53.856      83.941      
+D69     CAG     C       CR16    0       -1.974      52.384      85.721      
+D69     CAH     C       CR16    0       -5.267      55.706      83.257      
+D69     CAI     C       CR16    0       -5.271      54.136      85.052      
+D69     CAJ     C       CR16    0       -1.669      54.949      84.749      
+D69     CAK     C       CR16    0       -2.260      53.476      86.532      
+D69     CAL     C       CH2     0       -4.900      56.642      86.776      
+D69     CAM     C       CH1     0       -5.866      56.558      85.568      
+D69     CAN     C       CH2     0       -2.421      55.968      86.933      
+D69     CAO     C       C       0       -3.469      56.900      86.385      
+D69     CAP     C       CR6     0       -5.463      55.441      84.609      
+D69     CAQ     C       CR6     0       -2.109      54.774      86.056      
+D69     HN1     H       H       0       -7.410      58.875      88.070      
+D69     HN3     H       H       0       -7.896      55.230      88.841      
+D69     HN5     H       H       0       -8.397      55.431      84.427      
+D69     H6      H       H       0       -8.807      56.076      82.104      
+D69     H9      H       H       0       -8.185      60.554      83.360      
+D69     "H1'"   H       H       0       -6.536      60.518      84.995      
+D69     "H1'A"  H       H       0       -6.195      59.868      86.394      
+D69     H10     H       H       0       -9.008      57.738      86.405      
+D69     H1B     H       H       0       -6.347      74.679      88.979      
+D69     "H2'"   H       H       0       -8.206      60.812      87.304      
+D69     "HO2'"  H       H       0       -8.509      62.165      85.038      
+D69     H2A     H       H       0       -3.525      78.100      89.826      
+D69     H2B     H       H       0       -6.371      73.472      86.400      
+D69     HO2B    H       H       0       -7.982      74.985      86.169      
+D69     "H3'"   H       H       0       -6.482      62.782      86.158      
+D69     "HO3'"  H       H       0       -6.263      61.593      88.536      
+D69     H3B     H       H       0       -8.299      72.342      86.875      
+D69     HO3B    H       H       0       -8.705      73.782      89.105      
+D69     "H4'"   H       H       0       -8.157      63.135      88.466      
+D69     "HO4'"  H       H       0       -8.394      64.327      86.058      
+D69     H4B     H       H       0       -7.654      71.580      89.269      
+D69     "H5'"   H       H       0       -6.387      65.051      87.293      
+D69     "H5'A"  H       H       0       -6.153      64.360      88.704      
+D69     H5B     H       H       0       -5.860      70.262      88.448      
+D69     H5BA    H       H       0       -5.980      71.022      87.040      
+D69     HN6A    H       H       0       -0.176      75.596      87.069      
+D69     HN6B    H       H       0       0.228       76.665      88.076      
+D69     H7M     H       H       0       -8.891      58.225      79.407      
+D69     H7MA    H       H       0       -10.249     57.636      79.969      
+D69     H7MB    H       H       0       -8.974      56.707      79.837      
+D69     H8A     H       H       0       -3.978      72.642      87.002      
+D69     H8M     H       H       0       -8.804      61.328      81.291      
+D69     H8MA    H       H       0       -9.770      60.397      80.453      
+D69     H8MB    H       H       0       -8.218      60.407      80.145      
+D69     HNAA    H       H       0       -2.298      57.967      85.429      
+D69     HAB     H       H       0       -4.466      52.725      82.234      
+D69     HAC     H       H       0       -1.343      51.833      83.879      
+D69     HAD     H       H       0       -4.774      54.895      81.461      
+D69     HAE     H       H       0       -4.778      52.247      84.487      
+D69     HAF     H       H       0       -1.085      53.990      83.056      
+D69     HAG     H       H       0       -2.080      51.509      86.058      
+D69     HAH     H       H       0       -5.392      56.583      82.933      
+D69     HAI     H       H       0       -5.394      53.932      85.964      
+D69     HAJ     H       H       0       -1.562      55.823      84.408      
+D69     HAK     H       H       0       -2.558      53.335      87.416      
+D69     HAL     H       H       0       -4.942      55.814      87.293      
+D69     HALA    H       H       0       -5.178      57.370      87.362      
+D69     HAM     H       H       0       -5.700      57.386      85.066      
+D69     HAN     H       H       0       -2.714      55.646      87.811      
+D69     HANA    H       H       0       -1.594      56.476      87.068      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+D69           P         O3P      SINGLE       n     1.604  0.0133     1.604  0.0133
+D69           P       "O5'"      SINGLE       n     1.604  0.0133     1.604  0.0133
+D69           P         O1P      DOUBLE       n     1.493  0.0122     1.493  0.0122
+D69           P         O2P      SINGLE       n     1.493  0.0122     1.493  0.0122
+D69          N1         C10      SINGLE       n     1.460  0.0100     1.460  0.0100
+D69          N1          C2      SINGLE       n     1.333  0.0100     1.333  0.0100
+D69          C2          N3      SINGLE       n     1.343  0.0163     1.343  0.0163
+D69          C2          O2      DOUBLE       n     1.226  0.0110     1.226  0.0110
+D69          N3          C4      SINGLE       n     1.371  0.0102     1.371  0.0102
+D69          C4          O4      DOUBLE       n     1.219  0.0100     1.219  0.0100
+D69          C4         C4X      SINGLE       n     1.510  0.0177     1.510  0.0177
+D69          N5         C5X      SINGLE       n     1.382  0.0156     1.382  0.0156
+D69          N5         C4X      SINGLE       n     1.462  0.0153     1.462  0.0153
+D69          C6          C7      SINGLE       y     1.370  0.0100     1.370  0.0100
+D69          C6         C5X      DOUBLE       y     1.399  0.0100     1.399  0.0100
+D69          C7         C7M      SINGLE       n     1.504  0.0100     1.504  0.0100
+D69          C7          C8      DOUBLE       y     1.437  0.0100     1.437  0.0100
+D69          C8         C8M      SINGLE       n     1.504  0.0100     1.504  0.0100
+D69          C8          C9      SINGLE       y     1.370  0.0100     1.370  0.0100
+D69          C9         C9A      DOUBLE       y     1.399  0.0100     1.399  0.0100
+D69          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+D69          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+D69          PA         O5B      SINGLE       n     1.604  0.0133     1.604  0.0133
+D69          PA         O3P      SINGLE       n     1.604  0.0133     1.604  0.0133
+D69       "C1'"         N10      SINGLE       n     1.474  0.0100     1.474  0.0100
+D69       "C1'"       "C2'"      SINGLE       n     1.517  0.0189     1.517  0.0189
+D69         C10         C4X      SINGLE       n     1.543  0.0200     1.543  0.0200
+D69         C10         N10      SINGLE       n     1.465  0.0114     1.465  0.0114
+D69         N10         C9A      SINGLE       n     1.403  0.0200     1.403  0.0200
+D69         N1A         C6A      DOUBLE       y     1.354  0.0100     1.354  0.0100
+D69         N1A         C2A      SINGLE       y     1.339  0.0100     1.339  0.0100
+D69         C1B         C2B      SINGLE       n     1.525  0.0100     1.525  0.0100
+D69         C1B         N9A      SINGLE       n     1.458  0.0100     1.458  0.0100
+D69         C1B         O4B      SINGLE       n     1.409  0.0100     1.409  0.0100
+D69       "C2'"       "O2'"      SINGLE       n     1.424  0.0199     1.424  0.0199
+D69       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+D69         C2A         N3A      DOUBLE       y     1.330  0.0100     1.330  0.0100
+D69         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+D69         C2B         C3B      SINGLE       n     1.531  0.0100     1.531  0.0100
+D69       "C3'"       "O3'"      SINGLE       n     1.424  0.0199     1.424  0.0199
+D69       "C3'"       "C4'"      SINGLE       n     1.530  0.0100     1.530  0.0100
+D69         N3A         C4A      SINGLE       y     1.343  0.0100     1.343  0.0100
+D69         C3B         O3B      SINGLE       n     1.422  0.0100     1.422  0.0100
+D69         C3B         C4B      SINGLE       n     1.535  0.0100     1.535  0.0100
+D69       "C4'"       "O4'"      SINGLE       n     1.429  0.0100     1.429  0.0100
+D69       "C4'"       "C5'"      SINGLE       n     1.511  0.0100     1.511  0.0100
+D69         C4A         N9A      SINGLE       y     1.374  0.0101     1.374  0.0101
+D69         C4A         C5A      DOUBLE       y     1.381  0.0100     1.381  0.0100
+D69         C4B         C5B      SINGLE       n     1.509  0.0100     1.509  0.0100
+D69         C4B         O4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+D69         C4X         CAM      SINGLE       n     1.543  0.0182     1.543  0.0182
+D69       "C5'"       "O5'"      SINGLE       n     1.454  0.0165     1.454  0.0165
+D69         C5A         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+D69         C5A         C6A      SINGLE       y     1.408  0.0100     1.408  0.0100
+D69         C5B         O5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+D69         C5X         C9A      SINGLE       y     1.419  0.0198     1.419  0.0198
+D69         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+D69         N7A         C8A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+D69         C8A         N9A      SINGLE       y     1.372  0.0100     1.372  0.0100
+D69         NAA         CAO      DOUBLE       n     1.284  0.0198     1.284  0.0198
+D69         CAB         CAE      DOUBLE       y     1.374  0.0127     1.374  0.0127
+D69         CAB         CAD      SINGLE       y     1.374  0.0127     1.374  0.0127
+D69         CAC         CAF      DOUBLE       y     1.374  0.0127     1.374  0.0127
+D69         CAC         CAG      SINGLE       y     1.374  0.0127     1.374  0.0127
+D69         CAD         CAH      DOUBLE       y     1.386  0.0100     1.386  0.0100
+D69         CAE         CAI      SINGLE       y     1.386  0.0100     1.386  0.0100
+D69         CAF         CAJ      SINGLE       y     1.386  0.0100     1.386  0.0100
+D69         CAG         CAK      DOUBLE       y     1.386  0.0100     1.386  0.0100
+D69         CAH         CAP      SINGLE       y     1.385  0.0108     1.385  0.0108
+D69         CAI         CAP      DOUBLE       y     1.385  0.0108     1.385  0.0108
+D69         CAJ         CAQ      DOUBLE       y     1.386  0.0100     1.386  0.0100
+D69         CAK         CAQ      SINGLE       y     1.386  0.0100     1.386  0.0100
+D69         CAL         CAM      SINGLE       n     1.535  0.0155     1.535  0.0155
+D69         CAL         CAO      SINGLE       n     1.502  0.0100     1.502  0.0100
+D69         CAM         CAP      SINGLE       n     1.519  0.0100     1.519  0.0100
+D69         CAN         CAO      SINGLE       n     1.503  0.0100     1.503  0.0100
+D69         CAN         CAQ      SINGLE       n     1.513  0.0101     1.513  0.0101
+D69          N1         HN1      SINGLE       n     1.016  0.0100     0.875  0.0194
+D69          N3         HN3      SINGLE       n     1.016  0.0100     0.862  0.0132
+D69          N5         HN5      SINGLE       n     1.016  0.0100     0.875  0.0200
+D69          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0127
+D69          C9          H9      SINGLE       n     1.082  0.0130     0.941  0.0127
+D69       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0191
+D69       "C1'"      "H1'A"      SINGLE       n     1.089  0.0100     0.984  0.0191
+D69         C10         H10      SINGLE       n     1.089  0.0100     0.989  0.0151
+D69         C1B         H1B      SINGLE       n     1.089  0.0100     0.984  0.0200
+D69       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.992  0.0184
+D69       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+D69         C2A         H2A      SINGLE       n     1.082  0.0130     0.945  0.0200
+D69         C2B         H2B      SINGLE       n     1.089  0.0100     0.994  0.0200
+D69         O2B        HO2B      SINGLE       n     0.970  0.0120     0.849  0.0200
+D69       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0184
+D69       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+D69         C3B         H3B      SINGLE       n     1.089  0.0100     0.992  0.0200
+D69         O3B        HO3B      SINGLE       n     0.970  0.0120     0.849  0.0200
+D69       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     1.004  0.0200
+D69       "O4'"      "HO4'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+D69         C4B         H4B      SINGLE       n     1.089  0.0100     0.981  0.0200
+D69       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.980  0.0146
+D69       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.980  0.0146
+D69         C5B         H5B      SINGLE       n     1.089  0.0100     0.989  0.0200
+D69         C5B        H5BA      SINGLE       n     1.089  0.0100     0.989  0.0200
+D69         N6A        HN6A      SINGLE       n     1.016  0.0100     0.877  0.0200
+D69         N6A        HN6B      SINGLE       n     1.016  0.0100     0.877  0.0200
+D69         C7M         H7M      SINGLE       n     1.089  0.0100     0.971  0.0135
+D69         C7M        H7MA      SINGLE       n     1.089  0.0100     0.971  0.0135
+D69         C7M        H7MB      SINGLE       n     1.089  0.0100     0.971  0.0135
+D69         C8A         H8A      SINGLE       n     1.082  0.0130     0.942  0.0170
+D69         C8M         H8M      SINGLE       n     1.089  0.0100     0.971  0.0135
+D69         C8M        H8MA      SINGLE       n     1.089  0.0100     0.971  0.0135
+D69         C8M        H8MB      SINGLE       n     1.089  0.0100     0.971  0.0135
+D69         NAA        HNAA      SINGLE       n     1.016  0.0100     0.892  0.0200
+D69         CAB         HAB      SINGLE       n     1.082  0.0130     0.944  0.0161
+D69         CAC         HAC      SINGLE       n     1.082  0.0130     0.944  0.0161
+D69         CAD         HAD      SINGLE       n     1.082  0.0130     0.944  0.0175
+D69         CAE         HAE      SINGLE       n     1.082  0.0130     0.944  0.0175
+D69         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0175
+D69         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0175
+D69         CAH         HAH      SINGLE       n     1.082  0.0130     0.944  0.0174
+D69         CAI         HAI      SINGLE       n     1.082  0.0130     0.944  0.0174
+D69         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.944  0.0174
+D69         CAK         HAK      SINGLE       n     1.082  0.0130     0.944  0.0174
+D69         CAL         HAL      SINGLE       n     1.089  0.0100     0.979  0.0159
+D69         CAL        HALA      SINGLE       n     1.089  0.0100     0.979  0.0159
+D69         CAM         HAM      SINGLE       n     1.089  0.0100     0.986  0.0200
+D69         CAN         HAN      SINGLE       n     1.089  0.0100     0.980  0.0100
+D69         CAN        HANA      SINGLE       n     1.089  0.0100     0.980  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+D69         O3P           P       "O5'"     101.065    1.97
+D69         O3P           P         O1P     108.816    2.14
+D69         O3P           P         O2P     108.816    2.14
+D69       "O5'"           P         O1P     107.912    2.57
+D69       "O5'"           P         O2P     107.912    2.57
+D69         O1P           P         O2P     118.411    2.35
+D69         C10          N1          C2     124.037    3.00
+D69         C10          N1         HN1     118.500    2.25
+D69          C2          N1         HN1     117.456    2.09
+D69          N1          C2          N3     116.179    1.50
+D69          N1          C2          O2     122.017    1.50
+D69          N3          C2          O2     121.804    1.50
+D69          C2          N3          C4     126.425    1.50
+D69          C2          N3         HN3     116.882    1.92
+D69          C4          N3         HN3     116.693    1.50
+D69          N3          C4          O4     119.776    1.50
+D69          N3          C4         C4X     118.106    1.50
+D69          O4          C4         C4X     122.118    1.93
+D69         C5X          N5         C4X     120.732    3.00
+D69         C5X          N5         HN5     120.202    1.50
+D69         C4X          N5         HN5     119.066    2.25
+D69          C7          C6         C5X     120.539    1.50
+D69          C7          C6          H6     119.380    1.50
+D69         C5X          C6          H6     120.082    1.50
+D69          C6          C7         C7M     119.918    1.50
+D69          C6          C7          C8     119.761    1.50
+D69         C7M          C7          C8     120.321    1.50
+D69          C7          C8         C8M     120.321    1.50
+D69          C7          C8          C9     119.761    1.50
+D69         C8M          C8          C9     119.918    1.50
+D69          C8          C9         C9A     120.539    1.50
+D69          C8          C9          H9     119.380    1.50
+D69         C9A          C9          H9     120.082    1.50
+D69         O1A          PA         O2A     118.411    2.35
+D69         O1A          PA         O5B     109.410    1.50
+D69         O1A          PA         O3P     108.816    2.14
+D69         O2A          PA         O5B     109.410    1.50
+D69         O2A          PA         O3P     108.816    2.14
+D69         O5B          PA         O3P     101.065    1.97
+D69         N10       "C1'"       "C2'"     111.875    1.74
+D69         N10       "C1'"       "H1'"     108.783    1.50
+D69         N10       "C1'"      "H1'A"     108.783    1.50
+D69       "C2'"       "C1'"       "H1'"     109.194    1.50
+D69       "C2'"       "C1'"      "H1'A"     109.194    1.50
+D69       "H1'"       "C1'"      "H1'A"     107.868    1.50
+D69          N1         C10         C4X     109.412    1.55
+D69          N1         C10         N10     110.599    1.50
+D69          N1         C10         H10     108.138    1.50
+D69         C4X         C10         N10     109.412    1.55
+D69         C4X         C10         H10     108.380    1.95
+D69         N10         C10         H10     108.138    1.50
+D69       "C1'"         N10         C10     118.474    2.52
+D69       "C1'"         N10         C9A     120.846    1.50
+D69         C10         N10         C9A     120.680    3.00
+D69         C6A         N1A         C2A     118.521    1.50
+D69         C2B         C1B         N9A     113.824    1.50
+D69         C2B         C1B         O4B     106.047    1.50
+D69         C2B         C1B         H1B     109.015    1.50
+D69         N9A         C1B         O4B     108.477    1.50
+D69         N9A         C1B         H1B     109.561    1.50
+D69         O4B         C1B         H1B     109.807    1.50
+D69       "C1'"       "C2'"       "O2'"     109.698    2.33
+D69       "C1'"       "C2'"       "C3'"     110.999    2.33
+D69       "C1'"       "C2'"       "H2'"     108.757    1.75
+D69       "O2'"       "C2'"       "C3'"     109.320    2.01
+D69       "O2'"       "C2'"       "H2'"     108.183    1.96
+D69       "C3'"       "C2'"       "H2'"     108.450    1.83
+D69       "C2'"       "O2'"      "HO2'"     109.265    3.00
+D69         N1A         C2A         N3A     129.332    1.50
+D69         N1A         C2A         H2A     115.313    1.50
+D69         N3A         C2A         H2A     115.355    1.50
+D69         C1B         C2B         O2B     111.715    2.69
+D69         C1B         C2B         C3B     101.239    1.50
+D69         C1B         C2B         H2B     110.636    1.70
+D69         O2B         C2B         C3B     112.782    2.45
+D69         O2B         C2B         H2B     110.448    1.97
+D69         C3B         C2B         H2B     110.596    1.51
+D69         C2B         O2B        HO2B     109.103    2.13
+D69       "C2'"       "C3'"       "O3'"     109.320    2.01
+D69       "C2'"       "C3'"       "C4'"     113.695    2.13
+D69       "C2'"       "C3'"       "H3'"     108.450    1.83
+D69       "O3'"       "C3'"       "C4'"     109.164    1.97
+D69       "O3'"       "C3'"       "H3'"     108.243    1.50
+D69       "C4'"       "C3'"       "H3'"     108.336    1.50
+D69       "C3'"       "O3'"      "HO3'"     108.564    3.00
+D69         C2A         N3A         C4A     110.982    1.50
+D69         C2B         C3B         O3B     111.581    2.83
+D69         C2B         C3B         C4B     102.602    1.50
+D69         C2B         C3B         H3B     110.504    1.75
+D69         O3B         C3B         C4B     111.281    2.46
+D69         O3B         C3B         H3B     110.380    1.67
+D69         C4B         C3B         H3B     110.452    2.54
+D69         C3B         O3B        HO3B     108.744    3.00
+D69           P         O3P          PA     132.542    3.00
+D69       "C3'"       "C4'"       "O4'"     109.549    1.85
+D69       "C3'"       "C4'"       "C5'"     112.503    1.50
+D69       "C3'"       "C4'"       "H4'"     108.777    1.50
+D69       "O4'"       "C4'"       "C5'"     109.314    1.96
+D69       "O4'"       "C4'"       "H4'"     108.591    1.50
+D69       "C5'"       "C4'"       "H4'"     108.656    1.50
+D69       "C4'"       "O4'"      "HO4'"     111.202    3.00
+D69         N3A         C4A         N9A     127.895    1.50
+D69         N3A         C4A         C5A     126.489    1.50
+D69         N9A         C4A         C5A     105.616    1.50
+D69         C3B         C4B         C5B     116.008    1.52
+D69         C3B         C4B         O4B     105.388    1.50
+D69         C3B         C4B         H4B     109.363    1.86
+D69         C5B         C4B         O4B     109.123    1.50
+D69         C5B         C4B         H4B     108.268    1.50
+D69         O4B         C4B         H4B     108.947    1.50
+D69         C1B         O4B         C4B     109.903    1.50
+D69          C4         C4X          N5     110.220    2.25
+D69          C4         C4X         C10     110.086    2.10
+D69          C4         C4X         CAM     107.604    2.03
+D69          N5         C4X         C10     109.412    1.55
+D69          N5         C4X         CAM     108.715    1.50
+D69         C10         C4X         CAM     111.880    1.93
+D69       "C4'"       "C5'"       "O5'"     109.438    2.56
+D69       "C4'"       "C5'"       "H5'"     109.582    1.50
+D69       "C4'"       "C5'"      "H5'A"     109.582    1.50
+D69       "O5'"       "C5'"       "H5'"     109.393    1.91
+D69       "O5'"       "C5'"      "H5'A"     109.393    1.91
+D69       "H5'"       "C5'"      "H5'A"     108.319    1.50
+D69           P       "O5'"       "C5'"     119.251    1.51
+D69         C4A         C5A         N7A     110.486    1.50
+D69         C4A         C5A         C6A     117.267    1.50
+D69         N7A         C5A         C6A     132.247    1.50
+D69         C4B         C5B         O5B     109.342    1.50
+D69         C4B         C5B         H5B     109.624    1.50
+D69         C4B         C5B        H5BA     109.624    1.50
+D69         O5B         C5B         H5B     109.845    1.50
+D69         O5B         C5B        H5BA     109.845    1.50
+D69         H5B         C5B        H5BA     108.472    1.50
+D69          PA         O5B         C5B     118.553    2.41
+D69          N5         C5X          C6     121.034    1.50
+D69          N5         C5X         C9A     119.265    1.50
+D69          C6         C5X         C9A     119.701    1.50
+D69         N1A         C6A         C5A     117.409    1.50
+D69         N1A         C6A         N6A     118.799    1.50
+D69         C5A         C6A         N6A     123.792    1.50
+D69         C6A         N6A        HN6A     119.723    1.50
+D69         C6A         N6A        HN6B     119.723    1.50
+D69        HN6A         N6A        HN6B     120.554    1.88
+D69         C5A         N7A         C8A     104.739    1.50
+D69          C7         C7M         H7M     109.765    1.50
+D69          C7         C7M        H7MA     109.765    1.50
+D69          C7         C7M        H7MB     109.765    1.50
+D69         H7M         C7M        H7MA     109.348    1.50
+D69         H7M         C7M        H7MB     109.348    1.50
+D69        H7MA         C7M        H7MB     109.348    1.50
+D69         N7A         C8A         N9A     113.469    1.50
+D69         N7A         C8A         H8A     123.326    1.50
+D69         N9A         C8A         H8A     123.206    1.50
+D69          C8         C8M         H8M     109.765    1.50
+D69          C8         C8M        H8MA     109.765    1.50
+D69          C8         C8M        H8MB     109.765    1.50
+D69         H8M         C8M        H8MA     109.348    1.50
+D69         H8M         C8M        H8MB     109.348    1.50
+D69        H8MA         C8M        H8MB     109.348    1.50
+D69          C9         C9A         N10     121.094    1.61
+D69          C9         C9A         C5X     119.701    1.50
+D69         N10         C9A         C5X     119.206    1.50
+D69         C1B         N9A         C4A     127.459    1.80
+D69         C1B         N9A         C8A     126.848    1.91
+D69         C4A         N9A         C8A     105.693    1.50
+D69         CAO         NAA        HNAA     112.238    3.00
+D69         CAE         CAB         CAD     119.766    1.50
+D69         CAE         CAB         HAB     120.117    1.50
+D69         CAD         CAB         HAB     120.117    1.50
+D69         CAF         CAC         CAG     120.043    1.50
+D69         CAF         CAC         HAC     119.979    1.50
+D69         CAG         CAC         HAC     119.979    1.50
+D69         CAB         CAD         CAH     120.048    1.50
+D69         CAB         CAD         HAD     120.021    1.50
+D69         CAH         CAD         HAD     119.930    1.50
+D69         CAB         CAE         CAI     120.048    1.50
+D69         CAB         CAE         HAE     120.021    1.50
+D69         CAI         CAE         HAE     119.930    1.50
+D69         CAC         CAF         CAJ     120.325    1.50
+D69         CAC         CAF         HAF     119.883    1.50
+D69         CAJ         CAF         HAF     119.792    1.50
+D69         CAC         CAG         CAK     120.325    1.50
+D69         CAC         CAG         HAG     119.883    1.50
+D69         CAK         CAG         HAG     119.792    1.50
+D69         CAD         CAH         CAP     120.806    1.50
+D69         CAD         CAH         HAH     119.774    1.50
+D69         CAP         CAH         HAH     119.421    1.50
+D69         CAE         CAI         CAP     120.806    1.50
+D69         CAE         CAI         HAI     119.774    1.50
+D69         CAP         CAI         HAI     119.421    1.50
+D69         CAF         CAJ         CAQ     120.624    1.50
+D69         CAF         CAJ         HAJ     119.786    1.50
+D69         CAQ         CAJ         HAJ     119.591    1.50
+D69         CAG         CAK         CAQ     120.624    1.50
+D69         CAG         CAK         HAK     119.786    1.50
+D69         CAQ         CAK         HAK     119.591    1.50
+D69         CAM         CAL         CAO     111.511    2.91
+D69         CAM         CAL         HAL     109.378    1.50
+D69         CAM         CAL        HALA     109.378    1.50
+D69         CAO         CAL         HAL     108.498    1.50
+D69         CAO         CAL        HALA     108.498    1.50
+D69         HAL         CAL        HALA     107.705    1.50
+D69         C4X         CAM         CAL     114.527    2.12
+D69         C4X         CAM         CAP     111.170    3.00
+D69         C4X         CAM         HAM     109.490    1.50
+D69         CAL         CAM         CAP     112.331    1.70
+D69         CAL         CAM         HAM     107.180    1.50
+D69         CAP         CAM         HAM     106.917    1.50
+D69         CAO         CAN         CAQ     115.016    3.00
+D69         CAO         CAN         HAN     108.385    2.09
+D69         CAO         CAN        HANA     108.385    2.09
+D69         CAQ         CAN         HAN     108.439    1.50
+D69         CAQ         CAN        HANA     108.439    1.50
+D69         HAN         CAN        HANA     107.729    1.50
+D69         NAA         CAO         CAL     121.964    3.00
+D69         NAA         CAO         CAN     121.964    3.00
+D69         CAL         CAO         CAN     116.071    2.45
+D69         CAH         CAP         CAI     118.526    1.50
+D69         CAH         CAP         CAM     120.737    1.50
+D69         CAI         CAP         CAM     120.737    1.50
+D69         CAJ         CAQ         CAK     118.056    1.50
+D69         CAJ         CAQ         CAN     120.974    1.50
+D69         CAK         CAQ         CAN     120.974    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+D69            sp3_sp3_41          PA         O3P           P       "O5'"     -60.000    10.0     3
+D69            sp3_sp3_43       "C5'"       "O5'"           P         O3P     180.000    10.0     3
+D69              const_41         C8M          C8          C9         C9A     180.000    10.0     2
+D69            sp2_sp3_31          C7          C8         C8M         H8M     150.000    10.0     6
+D69              const_44          C8          C9         C9A         N10     180.000    10.0     2
+D69            sp3_sp3_51           P         O3P          PA         O1A      60.000    10.0     3
+D69            sp3_sp3_48         C5B         O5B          PA         O1A      60.000    10.0     3
+D69            sp2_sp3_38         C10         N10       "C1'"       "C2'"     -90.000    10.0     6
+D69            sp3_sp3_52         N10       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+D69            sp2_sp3_17       "C1'"         N10         C10          N1     -60.000    10.0     6
+D69             sp3_sp3_3          N1         C10         C4X         CAM     180.000    10.0     3
+D69            sp2_sp2_16          C9         C9A         N10       "C1'"       0.000     5.0     2
+D69              const_91         N3A         C2A         N1A         C6A       0.000    10.0     2
+D69       const_sp2_sp2_6         N6A         C6A         N1A         C2A     180.000     5.0     2
+D69            sp3_sp3_14         N9A         C1B         C2B         O2B      60.000    10.0     3
+D69            sp3_sp3_61         C2B         C1B         O4B         C4B     180.000    10.0     3
+D69            sp2_sp3_43         C4A         N9A         C1B         C2B     150.000    10.0     6
+D69             sp2_sp3_1          C2          N1         C10         C4X       0.000    10.0     6
+D69            sp2_sp2_19          O2          C2          N1         C10     180.000     5.0     2
+D69            sp3_sp3_64       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+D69            sp3_sp3_67       "C1'"       "C2'"       "C3'"       "O3'"     180.000    10.0     3
+D69              const_17         N1A         C2A         N3A         C4A       0.000    10.0     2
+D69            sp3_sp3_76         C1B         C2B         O2B        HO2B     180.000    10.0     3
+D69            sp3_sp3_23         O2B         C2B         C3B         O3B     -60.000    10.0     3
+D69            sp3_sp3_79       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+D69            sp3_sp3_82       "C2'"       "C3'"       "C4'"       "O4'"     180.000    10.0     3
+D69              const_16         N9A         C4A         N3A         C2A     180.000    10.0     2
+D69             sp2_sp2_7          O2          C2          N3          C4     180.000     5.0     2
+D69            sp3_sp3_91         C2B         C3B         O3B        HO3B     180.000    10.0     3
+D69            sp3_sp3_32         O3B         C3B         C4B         C5B      60.000    10.0     3
+D69            sp3_sp3_94       "C3'"       "C4'"       "O4'"      "HO4'"     180.000    10.0     3
+D69            sp3_sp3_97       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+D69              const_12         N3A         C4A         C5A         N7A     180.000    10.0     2
+D69              const_22         N3A         C4A         N9A         C1B       0.000    10.0     2
+D69            sp3_sp3_38         C5B         C4B         O4B         C1B     180.000    10.0     3
+D69           sp3_sp3_106         C3B         C4B         C5B         O5B     180.000    10.0     3
+D69           sp3_sp3_115          C4         C4X         CAM         CAL     180.000    10.0     3
+D69           sp3_sp3_124       "C4'"       "C5'"       "O5'"           P     180.000    10.0     3
+D69       const_sp2_sp2_8         C4A         C5A         C6A         N6A     180.000     5.0     2
+D69              const_29         C4A         C5A         N7A         C8A       0.000    10.0     2
+D69           sp3_sp3_127         C4B         C5B         O5B          PA     180.000    10.0     3
+D69       const_sp2_sp2_2          N5         C5X         C9A          C9     180.000     5.0     2
+D69            sp2_sp2_23         N1A         C6A         N6A        HN6A       0.000     5.0     2
+D69              const_27         N9A         C8A         N7A         C5A       0.000    10.0     2
+D69              const_24         N7A         C8A         N9A         C1B     180.000    10.0     2
+D69             sp2_sp2_3          O4          C4          N3          C2     180.000     5.0     2
+D69            sp2_sp2_25         CAL         CAO         NAA        HNAA     180.000     5.0     2
+D69              const_93         CAE         CAB         CAD         CAH       0.000    10.0     2
+D69              const_47         CAD         CAB         CAE         CAI       0.000    10.0     2
+D69              const_67         CAG         CAC         CAF         CAJ       0.000    10.0     2
+D69              const_97         CAF         CAC         CAG         CAK       0.000    10.0     2
+D69              const_63         CAB         CAD         CAH         CAP       0.000    10.0     2
+D69              const_51         CAB         CAE         CAI         CAP       0.000    10.0     2
+D69              const_71         CAC         CAF         CAJ         CAQ       0.000    10.0     2
+D69              const_83         CAC         CAG         CAK         CAQ       0.000    10.0     2
+D69            sp2_sp3_12          O4          C4         C4X         CAM      60.000    10.0     6
+D69              const_60         CAD         CAH         CAP         CAM     180.000    10.0     2
+D69              const_56         CAE         CAI         CAP         CAM     180.000    10.0     2
+D69              const_76         CAF         CAJ         CAQ         CAN     180.000    10.0     2
+D69              const_80         CAG         CAK         CAQ         CAN     180.000    10.0     2
+D69           sp3_sp3_130         CAO         CAL         CAM         C4X     180.000    10.0     3
+D69            sp2_sp3_50         NAA         CAO         CAL         CAM     120.000    10.0     6
+D69            sp2_sp3_56         CAH         CAP         CAM         CAL     -90.000    10.0     6
+D69            sp2_sp3_62         NAA         CAO         CAN         CAQ     120.000    10.0     6
+D69            sp2_sp3_68         CAJ         CAQ         CAN         CAO     -90.000    10.0     6
+D69            sp2_sp3_21         C5X          N5         C4X         CAM    -120.000    10.0     6
+D69            sp2_sp2_11          C6         C5X          N5         C4X     180.000     5.0     2
+D69              const_89          N5         C5X          C6          C7     180.000    10.0     2
+D69              const_32         C5X          C6          C7         C7M     180.000    10.0     2
+D69              const_38         C7M          C7          C8         C8M       0.000    10.0     2
+D69            sp2_sp3_25          C6          C7         C7M         H7M     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+D69    chir_1    P    O3P    "O5'"    O2P    both
+D69    chir_2    PA    O3P    O5B    O2A    both
+D69    chir_3    C10    N10    N1    C4X    positive
+D69    chir_4    C1B    O4B    N9A    C2B    negative
+D69    chir_5    "C2'"    "O2'"    "C3'"    "C1'"    positive
+D69    chir_6    C2B    O2B    C1B    C3B    negative
+D69    chir_7    "C3'"    "O3'"    "C4'"    "C2'"    positive
+D69    chir_8    C3B    O3B    C4B    C2B    positive
+D69    chir_9    "C4'"    "O4'"    "C3'"    "C5'"    negative
+D69    chir_10    C4B    O4B    C3B    C5B    negative
+D69    chir_11    C4X    N5    C4    C10    positive
+D69    chir_12    CAM    C4X    CAP    CAL    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+D69    plan-1         C1B   0.020
+D69    plan-1         C2A   0.020
+D69    plan-1         C4A   0.020
+D69    plan-1         C5A   0.020
+D69    plan-1         C6A   0.020
+D69    plan-1         C8A   0.020
+D69    plan-1         H2A   0.020
+D69    plan-1         H8A   0.020
+D69    plan-1         N1A   0.020
+D69    plan-1         N3A   0.020
+D69    plan-1         N6A   0.020
+D69    plan-1         N7A   0.020
+D69    plan-1         N9A   0.020
+D69    plan-2         C5X   0.020
+D69    plan-2          C6   0.020
+D69    plan-2          C7   0.020
+D69    plan-2         C7M   0.020
+D69    plan-2          C8   0.020
+D69    plan-2         C8M   0.020
+D69    plan-2          C9   0.020
+D69    plan-2         C9A   0.020
+D69    plan-2          H6   0.020
+D69    plan-2          H9   0.020
+D69    plan-2         N10   0.020
+D69    plan-2          N5   0.020
+D69    plan-3         CAB   0.020
+D69    plan-3         CAD   0.020
+D69    plan-3         CAE   0.020
+D69    plan-3         CAH   0.020
+D69    plan-3         CAI   0.020
+D69    plan-3         CAM   0.020
+D69    plan-3         CAP   0.020
+D69    plan-3         HAB   0.020
+D69    plan-3         HAD   0.020
+D69    plan-3         HAE   0.020
+D69    plan-3         HAH   0.020
+D69    plan-3         HAI   0.020
+D69    plan-4         CAC   0.020
+D69    plan-4         CAF   0.020
+D69    plan-4         CAG   0.020
+D69    plan-4         CAJ   0.020
+D69    plan-4         CAK   0.020
+D69    plan-4         CAN   0.020
+D69    plan-4         CAQ   0.020
+D69    plan-4         HAC   0.020
+D69    plan-4         HAF   0.020
+D69    plan-4         HAG   0.020
+D69    plan-4         HAJ   0.020
+D69    plan-4         HAK   0.020
+D69    plan-5         C10   0.020
+D69    plan-5          C2   0.020
+D69    plan-5         HN1   0.020
+D69    plan-5          N1   0.020
+D69    plan-6          C2   0.020
+D69    plan-6          N1   0.020
+D69    plan-6          N3   0.020
+D69    plan-6          O2   0.020
+D69    plan-7          C2   0.020
+D69    plan-7          C4   0.020
+D69    plan-7         HN3   0.020
+D69    plan-7          N3   0.020
+D69    plan-8          C4   0.020
+D69    plan-8         C4X   0.020
+D69    plan-8          N3   0.020
+D69    plan-8          O4   0.020
+D69    plan-9         C4X   0.020
+D69    plan-9         C5X   0.020
+D69    plan-9         HN5   0.020
+D69    plan-9          N5   0.020
+D69   plan-10       "C1'"   0.020
+D69   plan-10         C10   0.020
+D69   plan-10         C9A   0.020
+D69   plan-10         N10   0.020
+D69   plan-11         C6A   0.020
+D69   plan-11        HN6A   0.020
+D69   plan-11        HN6B   0.020
+D69   plan-11         N6A   0.020
+D69   plan-12         CAL   0.020
+D69   plan-12         CAN   0.020
+D69   plan-12         CAO   0.020
+D69   plan-12         NAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+D69           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                                                                              O=C2NC(=O)NC5N(c1cc(c(cc1NC25C(c3ccccc3)CC(=[N@H])Cc4ccccc4)C)C)CC(O)C(O)C(O)COP(=O)(O)OP(=O)(O)OCC8OC(n7cnc6c(ncnc67)N)C(O)C8O
+D69            InChI                InChI  1.03 InChI=1S/C43H52N10O15P2/c1-22-13-28-29(14-23(22)2)52(40-43(51-28,41(59)50-42(60)49-40)27(25-11-7-4-8-12-25)16-26(44)15-24-9-5-3-6-10-24)17-30(54)34(56)31(55)18-65-69(61,62)68-70(63,64)66-19-32-35(57)36(58)39(67-32)53-21-48-33-37(45)46-20-47-38(33)53/h3-14,20-21,27,30-32,34-36,39-40,44,51,54-58H,15-19H2,1-2H3,(H,61,62)(H,63,64)(H2,45,46,47)(H2,49,50,59,60)/b44-26+/t27-,30-,31+,32+,34-,35+,36+,39+,40-,43-/m0/s1
+D69         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                                                                  JMWCGSVEJNOEAG-BEOGYRSYSA-N
+D69 SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                                                                                   Cc1cc2N[C@@]3([C@@H](CC(=N)Cc4ccccc4)c5ccccc5)[C@@H](NC(=O)NC3=O)N(C[C@H](O)[C@H](O)[C@H](O)CO[P](O)(=O)O[P](O)(=O)OC[C@H]6O[C@H]([C@H](O)[C@@H]6O)n7cnc8c(N)ncnc78)c2cc1C
+D69           SMILES               CACTVS 3.385                                                                                                                                                                                                                                                                 Cc1cc2N[C]3([CH](CC(=N)Cc4ccccc4)c5ccccc5)[CH](NC(=O)NC3=O)N(C[CH](O)[CH](O)[CH](O)CO[P](O)(=O)O[P](O)(=O)OC[CH]6O[CH]([CH](O)[CH]6O)n7cnc8c(N)ncnc78)c2cc1C
+D69 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                                                          "[H]/N=C(\Cc1ccccc1)/C[C@@H](c2ccccc2)[C@]34[C@@H](NC(=O)NC3=O)N(c5cc(c(cc5N4)C)C)C[C@@H]([C@@H]([C@@H](COP(=O)(O)OP(=O)(O)OC[C@@H]6[C@H]([C@H]([C@@H](O6)n7cnc8c7ncnc8N)O)O)O)O)O"
+D69           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                                                                                                              Cc1cc2c(cc1C)N(C3C(N2)(C(=O)NC(=O)N3)C(CC(=N)Cc4ccccc4)c5ccccc5)CC(C(C(COP(=O)(O)OP(=O)(O)OCC6C(C(C(O6)n7cnc8c7ncnc8N)O)O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+D69 acedrg               243         "dictionary generator"                  
+D69 acedrg_database      11          "data source"                           
+D69 rdkit                2017.03.2   "Chemoinformatics tool"
+D69 refmac5              5.8.0238    "optimization tool"                     

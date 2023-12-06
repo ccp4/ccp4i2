@@ -1,0 +1,518 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FSD     FSD      amicetin     NON-POLYMER     87     44     .     
+#
+data_comp_FSD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FSD     CAA     C       CH3     0       88.894      -42.291     -13.323     
+FSD     CAB     C       CH3     0       85.102      -40.215     -12.059     
+FSD     CAC     C       CH3     0       84.283      -40.704     -15.778     
+FSD     CAD     C       CH3     0       82.104      -40.385     -14.761     
+FSD     CAE     C       CH3     0       102.275     -48.943     -4.858      
+FSD     CAM     C       CR16    0       99.235      -47.165     -8.163      
+FSD     CAN     C       CR16    0       98.819      -45.412     -6.567      
+FSD     CAO     C       CR16    0       98.127      -46.763     -8.886      
+FSD     CAP     C       CR16    0       97.709      -45.022     -7.294      
+FSD     CAQ     C       CR16    0       93.001      -45.176     -9.690      
+FSD     CAR     C       CR16    0       91.853      -45.043     -10.374     
+FSD     CAS     C       CH2     0       103.446     -46.746     -4.716      
+FSD     CAT     C       CH2     0       87.882      -45.837     -12.210     
+FSD     CAU     C       CH2     0       89.228      -46.182     -11.578     
+FSD     CBB     C       C       0       96.142      -45.233     -9.226      
+FSD     CBC     C       C       0       101.965     -47.217     -6.688      
+FSD     CBD     C       CR6     0       99.596      -46.489     -6.995      
+FSD     CBE     C       CR6     0       97.340      -45.695     -8.457      
+FSD     CBF     C       CR6     0       94.013      -45.993     -10.247     
+FSD     CBG     C       CR6     0       92.690      -46.487     -12.108     
+FSD     CBH     C       CH1     0       88.920      -43.792     -13.155     
+FSD     CBI     C       CH1     0       85.068      -41.548     -12.790     
+FSD     CBJ     C       CH1     0       84.105      -44.277     -13.144     
+FSD     CBK     C       CH1     0       83.851      -43.224     -14.221     
+FSD     CBL     C       CH1     0       87.723      -44.335     -12.375     
+FSD     CBM     C       CH1     0       90.373      -45.508     -12.294     
+FSD     CBN     C       CH1     0       85.323      -43.909     -12.302     
+FSD     CBO     C       CH1     0       83.797      -41.821     -13.600     
+FSD     CBR     C       CT      0       102.942     -47.827     -5.670      
+FSD     NAF     N       NT3     1       104.091     -48.434     -6.395      
+FSD     NAV     N       NRD6    0       93.856      -46.617     -11.407     
+FSD     NAW     N       NH1     0       100.732     -46.862     -6.234      
+FSD     NAX     N       NH1     0       95.247      -46.193     -9.610      
+FSD     NBP     N       NT      0       83.522      -40.690     -14.526     
+FSD     NBQ     N       NR6     0       91.663      -45.678     -11.587     
+FSD     OAG     O       O       0       96.002      -44.043     -9.487      
+FSD     OAH     O       O       0       102.312     -47.044     -7.843      
+FSD     OAI     O       O       0       92.529      -47.068     -13.195     
+FSD     OAJ     O       OH1     0       104.266     -45.798     -5.386      
+FSD     OAK     O       OH1     0       84.286      -45.558     -13.744     
+FSD     OAL     O       OH1     0       82.631      -43.525     -14.885     
+FSD     OAY     O       O2      0       90.137      -44.115     -12.444     
+FSD     OAZ     O       O2      0       85.201      -42.572     -11.796     
+FSD     OBA     O       O2      0       86.498      -44.049     -13.072     
+FSD     H2      H       H       0       88.139      -42.040     -13.879     
+FSD     H3      H       H       0       89.718      -41.998     -13.746     
+FSD     H1      H       H       0       88.810      -41.869     -12.453     
+FSD     H4      H       H       0       85.575      -40.313     -11.216     
+FSD     H5      H       H       0       84.194      -39.917     -11.885     
+FSD     H6      H       H       0       85.557      -39.557     -12.608     
+FSD     H7      H       H       0       85.208      -40.960     -15.599     
+FSD     H8      H       H       0       84.266      -39.814     -16.179     
+FSD     H9      H       H       0       83.885      -41.345     -16.399     
+FSD     H10     H       H       0       81.546      -41.150     -14.522     
+FSD     H11     H       H       0       81.954      -40.164     -15.702     
+FSD     H12     H       H       0       81.849      -39.619     -14.211     
+FSD     H13     H       H       0       102.959     -49.476     -4.417      
+FSD     H14     H       H       0       101.755     -49.511     -5.453      
+FSD     H15     H       H       0       101.688     -48.552     -4.187      
+FSD     H16     H       H       0       99.754      -47.891     -8.464      
+FSD     H17     H       H       0       99.053      -44.950     -5.780      
+FSD     H19     H       H       0       97.895      -47.228     -9.671      
+FSD     H20     H       H       0       97.195      -44.293     -6.993      
+FSD     H21     H       H       0       93.120      -44.735     -8.867      
+FSD     H22     H       H       0       91.157      -44.507     -10.028     
+FSD     H23     H       H       0       103.962     -47.168     -3.994      
+FSD     H24     H       H       0       102.679     -46.285     -4.313      
+FSD     H26     H       H       0       87.813      -46.269     -13.090     
+FSD     H25     H       H       0       87.157      -46.179     -11.643     
+FSD     H28     H       H       0       89.222      -45.908     -10.648     
+FSD     H27     H       H       0       89.357      -47.143     -11.604     
+FSD     H31     H       H       0       88.943      -44.218     -14.045     
+FSD     H32     H       H       0       85.833      -41.593     -13.398     
+FSD     H33     H       H       0       83.319      -44.322     -12.550     
+FSD     H34     H       H       0       84.592      -43.261     -14.879     
+FSD     H35     H       H       0       87.700      -43.915     -11.479     
+FSD     H36     H       H       0       90.447      -45.901     -13.197     
+FSD     H37     H       H       0       85.371      -44.531     -11.530     
+FSD     H38     H       H       0       83.056      -41.829     -12.946     
+FSD     H39     H       H       0       104.710     -48.750     -5.806      
+FSD     H29     H       H       0       104.494     -47.816     -6.929      
+FSD     H40     H       H       0       103.809     -49.126     -6.917      
+FSD     H43     H       H       0       100.626     -46.822     -5.366      
+FSD     H44     H       H       0       95.450      -47.033     -9.439      
+FSD     H46     H       H       0       104.496     -45.200     -4.834      
+FSD     H47     H       H       0       84.961      -45.541     -14.246     
+FSD     H48     H       H       0       82.689      -43.265     -15.682     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FSD         CAC         NBP      SINGLE       n     1.461  0.0113     1.461  0.0113
+FSD         CBK         OAL      SINGLE       n     1.421  0.0106     1.421  0.0106
+FSD         CBJ         OAK      SINGLE       n     1.425  0.0110     1.425  0.0110
+FSD         CAA         CBH      SINGLE       n     1.510  0.0100     1.510  0.0100
+FSD         CBJ         CBK      SINGLE       n     1.526  0.0100     1.526  0.0100
+FSD         CBK         CBO      SINGLE       n     1.532  0.0100     1.532  0.0100
+FSD         CAD         NBP      SINGLE       n     1.461  0.0113     1.461  0.0113
+FSD         CBH         OAY      SINGLE       n     1.443  0.0106     1.443  0.0106
+FSD         CBH         CBL      SINGLE       n     1.525  0.0174     1.525  0.0174
+FSD         CBO         NBP      SINGLE       n     1.471  0.0141     1.471  0.0141
+FSD         CBJ         CBN      SINGLE       n     1.522  0.0110     1.522  0.0110
+FSD         CBG         OAI      DOUBLE       n     1.241  0.0134     1.241  0.0134
+FSD         CBL         OBA      SINGLE       n     1.436  0.0105     1.436  0.0105
+FSD         CBN         OBA      SINGLE       n     1.406  0.0135     1.406  0.0135
+FSD         CBI         CBO      SINGLE       n     1.528  0.0100     1.528  0.0100
+FSD         CBM         OAY      SINGLE       n     1.414  0.0125     1.414  0.0125
+FSD         CAT         CBL      SINGLE       n     1.519  0.0100     1.519  0.0100
+FSD         CBN         OAZ      SINGLE       n     1.422  0.0169     1.422  0.0169
+FSD         CBM         NBQ      SINGLE       n     1.473  0.0100     1.473  0.0100
+FSD         CAU         CBM      SINGLE       n     1.502  0.0147     1.502  0.0147
+FSD         CBG         NBQ      SINGLE       y     1.396  0.0100     1.396  0.0100
+FSD         CBG         NAV      SINGLE       y     1.358  0.0139     1.358  0.0139
+FSD         CAT         CAU      SINGLE       n     1.526  0.0100     1.526  0.0100
+FSD         CBI         OAZ      SINGLE       n     1.429  0.0100     1.429  0.0100
+FSD         CAB         CBI      SINGLE       n     1.518  0.0129     1.518  0.0129
+FSD         CAR         NBQ      SINGLE       y     1.375  0.0105     1.375  0.0105
+FSD         CBF         NAV      DOUBLE       y     1.324  0.0100     1.324  0.0100
+FSD         CAQ         CAR      DOUBLE       y     1.340  0.0100     1.340  0.0100
+FSD         CAQ         CBF      SINGLE       y     1.413  0.0103     1.413  0.0103
+FSD         CBF         NAX      SINGLE       n     1.402  0.0100     1.402  0.0100
+FSD         CBB         NAX      SINGLE       n     1.363  0.0100     1.363  0.0100
+FSD         CAO         CBE      SINGLE       y     1.390  0.0100     1.390  0.0100
+FSD         CAM         CAO      DOUBLE       y     1.379  0.0100     1.379  0.0100
+FSD         CBB         OAG      DOUBLE       n     1.226  0.0100     1.226  0.0100
+FSD         CBB         CBE      SINGLE       n     1.494  0.0100     1.494  0.0100
+FSD         CAP         CBE      DOUBLE       y     1.390  0.0100     1.390  0.0100
+FSD         CAM         CBD      SINGLE       y     1.392  0.0100     1.392  0.0100
+FSD         CBC         OAH      DOUBLE       n     1.217  0.0100     1.217  0.0100
+FSD         CAN         CAP      SINGLE       y     1.379  0.0100     1.379  0.0100
+FSD         CAN         CBD      DOUBLE       y     1.392  0.0100     1.392  0.0100
+FSD         CBD         NAW      SINGLE       n     1.414  0.0100     1.414  0.0100
+FSD         CBC         NAW      SINGLE       n     1.354  0.0106     1.354  0.0106
+FSD         CBC         CBR      SINGLE       n     1.532  0.0100     1.532  0.0100
+FSD         CAS         OAJ      SINGLE       n     1.421  0.0200     1.421  0.0200
+FSD         CBR         NAF      SINGLE       n     1.487  0.0147     1.487  0.0147
+FSD         CAS         CBR      SINGLE       n     1.527  0.0100     1.527  0.0100
+FSD         CAE         CBR      SINGLE       n     1.529  0.0127     1.529  0.0127
+FSD         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0171
+FSD         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0171
+FSD         CAA          H1      SINGLE       n     1.089  0.0100     0.971  0.0171
+FSD         CAB          H4      SINGLE       n     1.089  0.0100     0.971  0.0171
+FSD         CAB          H5      SINGLE       n     1.089  0.0100     0.971  0.0171
+FSD         CAB          H6      SINGLE       n     1.089  0.0100     0.971  0.0171
+FSD         CAC          H7      SINGLE       n     1.089  0.0100     0.977  0.0113
+FSD         CAC          H8      SINGLE       n     1.089  0.0100     0.977  0.0113
+FSD         CAC          H9      SINGLE       n     1.089  0.0100     0.977  0.0113
+FSD         CAD         H10      SINGLE       n     1.089  0.0100     0.977  0.0113
+FSD         CAD         H11      SINGLE       n     1.089  0.0100     0.977  0.0113
+FSD         CAD         H12      SINGLE       n     1.089  0.0100     0.977  0.0113
+FSD         CAE         H13      SINGLE       n     1.089  0.0100     0.973  0.0141
+FSD         CAE         H14      SINGLE       n     1.089  0.0100     0.973  0.0141
+FSD         CAE         H15      SINGLE       n     1.089  0.0100     0.973  0.0141
+FSD         CAM         H16      SINGLE       n     1.082  0.0130     0.942  0.0198
+FSD         CAN         H17      SINGLE       n     1.082  0.0130     0.942  0.0198
+FSD         CAO         H19      SINGLE       n     1.082  0.0130     0.941  0.0168
+FSD         CAP         H20      SINGLE       n     1.082  0.0130     0.941  0.0168
+FSD         CAQ         H21      SINGLE       n     1.082  0.0130     0.941  0.0174
+FSD         CAR         H22      SINGLE       n     1.082  0.0130     0.945  0.0200
+FSD         CAS         H23      SINGLE       n     1.089  0.0100     0.982  0.0200
+FSD         CAS         H24      SINGLE       n     1.089  0.0100     0.982  0.0200
+FSD         CAT         H26      SINGLE       n     1.089  0.0100     0.982  0.0174
+FSD         CAT         H25      SINGLE       n     1.089  0.0100     0.982  0.0174
+FSD         CAU         H28      SINGLE       n     1.089  0.0100     0.970  0.0100
+FSD         CAU         H27      SINGLE       n     1.089  0.0100     0.970  0.0100
+FSD         CBH         H31      SINGLE       n     1.089  0.0100     0.987  0.0140
+FSD         CBI         H32      SINGLE       n     1.089  0.0100     0.979  0.0100
+FSD         CBJ         H33      SINGLE       n     1.089  0.0100     0.987  0.0141
+FSD         CBK         H34      SINGLE       n     1.089  0.0100     0.992  0.0104
+FSD         CBL         H35      SINGLE       n     1.089  0.0100     0.989  0.0181
+FSD         CBM         H36      SINGLE       n     1.089  0.0100     0.990  0.0199
+FSD         CBN         H37      SINGLE       n     1.089  0.0100     0.992  0.0127
+FSD         CBO         H38      SINGLE       n     1.089  0.0100     0.988  0.0199
+FSD         NAF         H39      SINGLE       n     1.036  0.0160     0.911  0.0200
+FSD         NAF         H29      SINGLE       n     1.036  0.0160     0.911  0.0200
+FSD         NAF         H40      SINGLE       n     1.036  0.0160     0.911  0.0200
+FSD         NAW         H43      SINGLE       n     1.016  0.0100     0.874  0.0200
+FSD         NAX         H44      SINGLE       n     1.016  0.0100     0.881  0.0200
+FSD         OAJ         H46      SINGLE       n     0.970  0.0120     0.846  0.0200
+FSD         OAK         H47      SINGLE       n     0.970  0.0120     0.841  0.0200
+FSD         OAL         H48      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FSD         CBH         CAA          H2     109.468    1.50
+FSD         CBH         CAA          H3     109.468    1.50
+FSD         CBH         CAA          H1     109.468    1.50
+FSD          H2         CAA          H3     109.383    1.59
+FSD          H2         CAA          H1     109.383    1.59
+FSD          H3         CAA          H1     109.383    1.59
+FSD         CBI         CAB          H4     109.535    1.50
+FSD         CBI         CAB          H5     109.535    1.50
+FSD         CBI         CAB          H6     109.535    1.50
+FSD          H4         CAB          H5     109.383    1.59
+FSD          H4         CAB          H6     109.383    1.59
+FSD          H5         CAB          H6     109.383    1.59
+FSD         NBP         CAC          H7     109.516    1.94
+FSD         NBP         CAC          H8     109.516    1.94
+FSD         NBP         CAC          H9     109.516    1.94
+FSD          H7         CAC          H8     109.377    1.50
+FSD          H7         CAC          H9     109.377    1.50
+FSD          H8         CAC          H9     109.377    1.50
+FSD         NBP         CAD         H10     109.516    1.94
+FSD         NBP         CAD         H11     109.516    1.94
+FSD         NBP         CAD         H12     109.516    1.94
+FSD         H10         CAD         H11     109.377    1.50
+FSD         H10         CAD         H12     109.377    1.50
+FSD         H11         CAD         H12     109.377    1.50
+FSD         CBR         CAE         H13     109.366    1.50
+FSD         CBR         CAE         H14     109.366    1.50
+FSD         CBR         CAE         H15     109.366    1.50
+FSD         H13         CAE         H14     109.412    1.50
+FSD         H13         CAE         H15     109.412    1.50
+FSD         H14         CAE         H15     109.412    1.50
+FSD         CAO         CAM         CBD     120.067    1.50
+FSD         CAO         CAM         H16     120.067    1.50
+FSD         CBD         CAM         H16     119.866    1.50
+FSD         CAP         CAN         CBD     120.067    1.50
+FSD         CAP         CAN         H17     120.067    1.50
+FSD         CBD         CAN         H17     119.866    1.50
+FSD         CBE         CAO         CAM     120.771    1.50
+FSD         CBE         CAO         H19     119.830    1.50
+FSD         CAM         CAO         H19     119.399    1.50
+FSD         CBE         CAP         CAN     120.771    1.50
+FSD         CBE         CAP         H20     119.830    1.50
+FSD         CAN         CAP         H20     119.399    1.50
+FSD         CAR         CAQ         CBF     117.815    1.50
+FSD         CAR         CAQ         H21     120.539    1.50
+FSD         CBF         CAQ         H21     121.646    1.50
+FSD         NBQ         CAR         CAQ     120.503    1.50
+FSD         NBQ         CAR         H22     119.043    1.56
+FSD         CAQ         CAR         H22     120.454    1.59
+FSD         OAJ         CAS         CBR     111.597    2.10
+FSD         OAJ         CAS         H23     109.336    1.50
+FSD         OAJ         CAS         H24     109.336    1.50
+FSD         CBR         CAS         H23     109.188    1.50
+FSD         CBR         CAS         H24     109.188    1.50
+FSD         H23         CAS         H24     108.117    1.50
+FSD         CBL         CAT         CAU     111.244    1.50
+FSD         CBL         CAT         H26     109.270    1.50
+FSD         CBL         CAT         H25     109.270    1.50
+FSD         CAU         CAT         H26     109.388    1.50
+FSD         CAU         CAT         H25     109.388    1.50
+FSD         H26         CAT         H25     108.174    1.50
+FSD         CBM         CAU         CAT     110.841    2.09
+FSD         CBM         CAU         H28     109.270    1.50
+FSD         CBM         CAU         H27     109.270    1.50
+FSD         CAT         CAU         H28     109.388    1.50
+FSD         CAT         CAU         H27     109.388    1.50
+FSD         H28         CAU         H27     108.019    1.50
+FSD         NAX         CBB         OAG     123.578    1.50
+FSD         NAX         CBB         CBE     115.485    1.50
+FSD         OAG         CBB         CBE     120.938    1.50
+FSD         OAH         CBC         NAW     123.190    1.50
+FSD         OAH         CBC         CBR     121.271    1.50
+FSD         NAW         CBC         CBR     115.539    1.50
+FSD         CAM         CBD         CAN     119.374    1.50
+FSD         CAM         CBD         NAW     120.313    3.00
+FSD         CAN         CBD         NAW     120.313    3.00
+FSD         CAO         CBE         CBB     120.525    2.90
+FSD         CAO         CBE         CAP     118.950    1.50
+FSD         CBB         CBE         CAP     120.525    2.90
+FSD         NAV         CBF         CAQ     122.611    1.50
+FSD         NAV         CBF         NAX     114.556    2.68
+FSD         CAQ         CBF         NAX     122.834    2.62
+FSD         OAI         CBG         NBQ     118.676    1.50
+FSD         OAI         CBG         NAV     122.099    1.50
+FSD         NBQ         CBG         NAV     119.225    1.72
+FSD         CAA         CBH         OAY     106.806    1.50
+FSD         CAA         CBH         CBL     113.192    1.50
+FSD         CAA         CBH         H31     109.193    1.50
+FSD         OAY         CBH         CBL     109.378    1.54
+FSD         OAY         CBH         H31     108.995    1.50
+FSD         CBL         CBH         H31     108.898    1.50
+FSD         CBO         CBI         OAZ     107.969    1.58
+FSD         CBO         CBI         CAB     115.626    1.50
+FSD         CBO         CBI         H32     108.738    2.27
+FSD         OAZ         CBI         CAB     107.094    1.50
+FSD         OAZ         CBI         H32     108.843    1.50
+FSD         CAB         CBI         H32     109.260    1.50
+FSD         OAK         CBJ         CBK     110.081    2.02
+FSD         OAK         CBJ         CBN     109.907    1.90
+FSD         OAK         CBJ         H33     108.551    1.50
+FSD         CBK         CBJ         CBN     110.229    1.69
+FSD         CBK         CBJ         H33     109.166    1.50
+FSD         CBN         CBJ         H33     108.647    1.50
+FSD         OAL         CBK         CBJ     110.081    2.02
+FSD         OAL         CBK         CBO     110.124    1.87
+FSD         OAL         CBK         H34     108.954    1.50
+FSD         CBJ         CBK         CBO     110.742    1.50
+FSD         CBJ         CBK         H34     109.166    1.50
+FSD         CBO         CBK         H34     108.987    1.50
+FSD         CBH         CBL         OBA     109.033    2.25
+FSD         CBH         CBL         CAT     109.820    1.63
+FSD         CBH         CBL         H35     109.550    1.50
+FSD         OBA         CBL         CAT     109.852    2.33
+FSD         OBA         CBL         H35     109.522    1.50
+FSD         CAT         CBL         H35     109.129    1.50
+FSD         OAY         CBM         NBQ     107.388    1.50
+FSD         OAY         CBM         CAU     110.740    1.50
+FSD         OAY         CBM         H36     108.552    1.50
+FSD         NBQ         CBM         CAU     112.974    1.50
+FSD         NBQ         CBM         H36     107.809    1.66
+FSD         CAU         CBM         H36     108.729    1.50
+FSD         CBJ         CBN         OBA     108.782    1.93
+FSD         CBJ         CBN         OAZ     110.316    1.50
+FSD         CBJ         CBN         H37     109.438    1.50
+FSD         OBA         CBN         OAZ     110.157    1.98
+FSD         OBA         CBN         H37     109.369    1.50
+FSD         OAZ         CBN         H37     109.132    1.50
+FSD         CBK         CBO         NBP     111.773    3.00
+FSD         CBK         CBO         CBI     111.124    1.57
+FSD         CBK         CBO         H38     107.258    1.68
+FSD         NBP         CBO         CBI     111.865    2.42
+FSD         NBP         CBO         H38     106.228    1.50
+FSD         CBI         CBO         H38     106.721    1.50
+FSD         CBC         CBR         NAF     109.935    2.65
+FSD         CBC         CBR         CAS     111.511    2.91
+FSD         CBC         CBR         CAE     109.552    2.50
+FSD         NAF         CBR         CAS     112.810    3.00
+FSD         NAF         CBR         CAE     108.258    1.50
+FSD         CAS         CBR         CAE     109.654    1.74
+FSD         CBR         NAF         H39     110.627    1.92
+FSD         CBR         NAF         H29     110.627    1.92
+FSD         CBR         NAF         H40     110.627    1.92
+FSD         H39         NAF         H29     108.826    2.42
+FSD         H39         NAF         H40     108.826    2.42
+FSD         H29         NAF         H40     108.826    2.42
+FSD         CBG         NAV         CBF     119.977    1.50
+FSD         CBD         NAW         CBC     127.585    2.00
+FSD         CBD         NAW         H43     116.089    1.69
+FSD         CBC         NAW         H43     116.326    1.50
+FSD         CBF         NAX         CBB     127.374    1.50
+FSD         CBF         NAX         H44     115.614    1.56
+FSD         CBB         NAX         H44     117.012    1.64
+FSD         CAC         NBP         CAD     110.179    1.50
+FSD         CAC         NBP         CBO     113.219    1.66
+FSD         CAD         NBP         CBO     113.219    1.66
+FSD         CBM         NBQ         CBG     120.065    1.50
+FSD         CBM         NBQ         CAR     120.065    1.50
+FSD         CBG         NBQ         CAR     119.870    1.50
+FSD         CAS         OAJ         H46     108.659    2.30
+FSD         CBJ         OAK         H47     109.126    2.06
+FSD         CBK         OAL         H48     108.064    2.53
+FSD         CBH         OAY         CBM     113.071    1.75
+FSD         CBN         OAZ         CBI     113.097    1.50
+FSD         CBL         OBA         CBN     117.169    1.96
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FSD            sp3_sp3_85          H2         CAA         CBH         OAY     180.000    10.0     3
+FSD              const_26         CAQ         CAR         NBQ         CBM     180.000    10.0     2
+FSD           sp3_sp3_145         OAJ         CAS         CBR         CBC     180.000    10.0     3
+FSD           sp3_sp3_133         CBR         CAS         OAJ         H46     180.000    10.0     3
+FSD           sp3_sp3_112         CBL         CAT         CAU         CBM     180.000    10.0     3
+FSD             sp3_sp3_2         CAU         CAT         CBL         OBA     180.000    10.0     3
+FSD            sp3_sp3_25         CAT         CAU         CBM         OAY      60.000    10.0     3
+FSD             sp2_sp2_9         NAX         CBB         CBE         CAO     180.000     5.0     2
+FSD             sp2_sp2_7         OAG         CBB         NAX         CBF       0.000     5.0     2
+FSD             sp2_sp3_7         OAH         CBC         CBR         NAF       0.000    10.0     6
+FSD            sp2_sp2_19         OAH         CBC         NAW         CBD       0.000     5.0     2
+FSD            sp2_sp2_13         CAM         CBD         NAW         CBC     180.000     5.0     2
+FSD              const_36         NAX         CBF         NAV         CBG     180.000    10.0     2
+FSD             sp2_sp2_3         NAV         CBF         NAX         CBB       0.000     5.0     2
+FSD              const_34         OAI         CBG         NAV         CBF     180.000    10.0     2
+FSD              const_32         OAI         CBG         NBQ         CBM       0.000    10.0     2
+FSD           sp3_sp3_124          H4         CAB         CBI         CBO     180.000    10.0     3
+FSD            sp3_sp3_14         CAA         CBH         CBL         OBA     -60.000    10.0     3
+FSD            sp3_sp3_20         CAA         CBH         OAY         CBM     -60.000    10.0     3
+FSD            sp3_sp3_38         CAB         CBI         CBO         NBP     -60.000    10.0     3
+FSD           sp3_sp3_122         CAB         CBI         OAZ         CBN      60.000    10.0     3
+FSD            sp3_sp3_56         OAK         CBJ         CBK         OAL     -60.000    10.0     3
+FSD            sp3_sp3_65         OAK         CBJ         CBN         OBA     180.000    10.0     3
+FSD            sp3_sp3_82         CBK         CBJ         OAK         H47     180.000    10.0     3
+FSD            sp3_sp3_47         OAL         CBK         CBO         NBP     180.000    10.0     3
+FSD            sp3_sp3_79         CBJ         CBK         OAL         H48     180.000    10.0     3
+FSD           sp3_sp3_106         CBH         CBL         OBA         CBN     180.000    10.0     3
+FSD             sp2_sp3_1         CBG         NBQ         CBM         OAY     150.000    10.0     6
+FSD            sp3_sp3_23         NBQ         CBM         OAY         CBH     180.000    10.0     3
+FSD            sp3_sp3_71         OBA         CBN         OAZ         CBI     -60.000    10.0     3
+FSD           sp3_sp3_109         CBJ         CBN         OBA         CBL     180.000    10.0     3
+FSD           sp3_sp3_101         CBK         CBO         NBP         CAC     -60.000    10.0     3
+FSD           sp3_sp3_136         CBC         CBR         NAF         H39     180.000    10.0     3
+FSD            sp3_sp3_74          H7         CAC         NBP         CAD     -60.000    10.0     3
+FSD            sp3_sp3_94         H10         CAD         NBP         CAC     180.000    10.0     3
+FSD           sp3_sp3_154         H13         CAE         CBR         CBC     180.000    10.0     3
+FSD              const_42         CAO         CAM         CBD         NAW     180.000    10.0     2
+FSD       const_sp2_sp2_1         CBD         CAM         CAO         CBE       0.000     5.0     2
+FSD              const_18         CAP         CAN         CBD         NAW     180.000    10.0     2
+FSD              const_13         CBD         CAN         CAP         CBE       0.000    10.0     2
+FSD       const_sp2_sp2_6         CAM         CAO         CBE         CBB     180.000     5.0     2
+FSD              const_10         CAN         CAP         CBE         CBB     180.000    10.0     2
+FSD              const_21         CBF         CAQ         CAR         NBQ       0.000    10.0     2
+FSD              const_38         CAR         CAQ         CBF         NAX     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FSD    chir_1    CBH    OAY    CBL    CAA    negative
+FSD    chir_2    CBI    OAZ    CBO    CAB    negative
+FSD    chir_3    CBJ    OAK    CBN    CBK    negative
+FSD    chir_4    CBK    OAL    CBJ    CBO    positive
+FSD    chir_5    CBL    OBA    CBH    CAT    positive
+FSD    chir_6    CBM    OAY    NBQ    CAU    negative
+FSD    chir_7    CBN    OBA    OAZ    CBJ    negative
+FSD    chir_8    CBO    NBP    CBI    CBK    positive
+FSD    chir_9    CBR    NAF    CBC    CAS    positive
+FSD    chir_10    NBP    CBO    CAC    CAD    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FSD    plan-1         CAQ   0.020
+FSD    plan-1         CAR   0.020
+FSD    plan-1         CBF   0.020
+FSD    plan-1         CBG   0.020
+FSD    plan-1         CBM   0.020
+FSD    plan-1         H21   0.020
+FSD    plan-1         H22   0.020
+FSD    plan-1         NAV   0.020
+FSD    plan-1         NAX   0.020
+FSD    plan-1         NBQ   0.020
+FSD    plan-1         OAI   0.020
+FSD    plan-2         CAM   0.020
+FSD    plan-2         CAN   0.020
+FSD    plan-2         CAO   0.020
+FSD    plan-2         CAP   0.020
+FSD    plan-2         CBB   0.020
+FSD    plan-2         CBD   0.020
+FSD    plan-2         CBE   0.020
+FSD    plan-2         H16   0.020
+FSD    plan-2         H17   0.020
+FSD    plan-2         H19   0.020
+FSD    plan-2         H20   0.020
+FSD    plan-2         NAW   0.020
+FSD    plan-3         CBB   0.020
+FSD    plan-3         CBE   0.020
+FSD    plan-3         NAX   0.020
+FSD    plan-3         OAG   0.020
+FSD    plan-4         CBC   0.020
+FSD    plan-4         CBR   0.020
+FSD    plan-4         NAW   0.020
+FSD    plan-4         OAH   0.020
+FSD    plan-5         CBC   0.020
+FSD    plan-5         CBD   0.020
+FSD    plan-5         H43   0.020
+FSD    plan-5         NAW   0.020
+FSD    plan-6         CBB   0.020
+FSD    plan-6         CBF   0.020
+FSD    plan-6         H44   0.020
+FSD    plan-6         NAX   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FSD           SMILES              ACDLabs 12.01                                                                                                                                                                                                       CC1OC(CCC1OC2C(C(C(C(C)O2)N(C)C)O)O)N4C=CC(NC(=O)c3ccc(cc3)NC(C(C)(CO)N)=O)=NC4=O
+FSD            InChI                InChI  1.03 InChI=1S/C29H42N6O9/c1-15-19(44-26-24(38)23(37)22(34(4)5)16(2)43-26)10-11-21(42-15)35-13-12-20(33-28(35)41)32-25(39)17-6-8-18(9-7-17)31-27(40)29(3,30)14-36/h6-9,12-13,15-16,19,21-24,26,36-38H,10-11,14,30H2,1-5H3,(H,31,40)(H,32,33,39,41)/t15-,16-,19+,21-,22-,23+,24-,26-,29+/m1/s1
+FSD         InChIKey                InChI  1.03                                                                                                                                                                                                                                                             HDNVYHWHCVTDIV-ZENIWSRCSA-N
+FSD SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                    C[C@H]1O[C@H](CC[C@@H]1O[C@H]2O[C@H](C)[C@H]([C@H](O)[C@H]2O)N(C)C)N3C=CC(=NC3=O)NC(=O)c4ccc(NC(=O)[C@@](C)(N)CO)cc4
+FSD           SMILES               CACTVS 3.385                                                                                                                                                                               C[CH]1O[CH](CC[CH]1O[CH]2O[CH](C)[CH]([CH](O)[CH]2O)N(C)C)N3C=CC(=NC3=O)NC(=O)c4ccc(NC(=O)[C](C)(N)CO)cc4
+FSD SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                                                                             C[C@@H]1[C@H](CC[C@@H](O1)N2C=CC(=NC2=O)NC(=O)c3ccc(cc3)NC(=O)[C@](C)(CO)N)O[C@@H]4[C@@H]([C@H]([C@@H]([C@H](O4)C)N(C)C)O)O
+FSD           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                                                                                                     CC1C(CCC(O1)N2C=CC(=NC2=O)NC(=O)c3ccc(cc3)NC(=O)C(C)(CO)N)OC4C(C(C(C(O4)C)N(C)C)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FSD acedrg               243         "dictionary generator"                  
+FSD acedrg_database      11          "data source"                           
+FSD rdkit                2017.03.2   "Chemoinformatics tool"
+FSD refmac5              5.8.0238    "optimization tool"                     

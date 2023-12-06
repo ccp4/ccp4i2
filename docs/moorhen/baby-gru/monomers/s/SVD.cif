@@ -1,0 +1,214 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SVD     SVD      (5~{R})-5-~{tert}-butyl-2-methyl-1-oxidanyl-pyrazolidin-3-one     NON-POLYMER     28     12     .     
+#
+data_comp_SVD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SVD     N1      N       NT      0       35.741      129.392     21.389      
+SVD     C4      C       CH1     0       34.787      128.242     21.338      
+SVD     C5      C       CH2     0       35.357      127.176     22.290      
+SVD     C6      C       CR5     0       36.588      127.798     22.878      
+SVD     C7      C       CH3     0       37.910      129.900     22.516      
+SVD     N       N       NR5     0       36.771      129.016     22.276      
+SVD     C       C       CH3     0       33.524      126.633     19.860      
+SVD     O       O       O       0       37.327      127.311     23.735      
+SVD     C1      C       CT      0       34.534      127.786     19.866      
+SVD     C2      C       CH3     0       33.921      128.950     19.078      
+SVD     C3      C       CH3     0       35.833      127.335     19.178      
+SVD     O1      O       OH1     0       35.129      130.607     21.820      
+SVD     H1      H       H       0       33.904      128.527     21.686      
+SVD     H2      H       H       0       35.584      126.354     21.812      
+SVD     H3      H       H       0       34.710      126.961     22.991      
+SVD     H4      H       H       0       38.643      129.397     22.914      
+SVD     H5      H       H       0       37.643      130.617     23.119      
+SVD     H6      H       H       0       38.205      130.283     21.670      
+SVD     H7      H       H       0       32.745      126.881     20.387      
+SVD     H8      H       H       0       33.930      125.835     20.240      
+SVD     H9      H       H       0       33.248      126.446     18.945      
+SVD     H10     H       H       0       33.143      129.289     19.553      
+SVD     H11     H       H       0       33.651      128.640     18.197      
+SVD     H12     H       H       0       34.575      129.663     18.981      
+SVD     H13     H       H       0       36.577      127.385     19.802      
+SVD     H14     H       H       0       36.020      127.910     18.415      
+SVD     H15     H       H       0       35.741      126.417     18.868      
+SVD     H16     H       H       0       34.833      130.486     22.609      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SVD          C1          C3      SINGLE       n     1.530  0.0100     1.530  0.0100
+SVD          C1          C2      SINGLE       n     1.530  0.0100     1.530  0.0100
+SVD           C          C1      SINGLE       n     1.530  0.0100     1.530  0.0100
+SVD          C4          C1      SINGLE       n     1.550  0.0128     1.550  0.0128
+SVD          N1          O1      SINGLE       n     1.419  0.0200     1.419  0.0200
+SVD          N1          C4      SINGLE       n     1.478  0.0165     1.478  0.0165
+SVD          C4          C5      SINGLE       n     1.530  0.0132     1.530  0.0132
+SVD          N1           N      SINGLE       n     1.401  0.0200     1.401  0.0200
+SVD          C5          C6      SINGLE       n     1.506  0.0147     1.506  0.0147
+SVD          C6           N      SINGLE       n     1.373  0.0163     1.373  0.0163
+SVD          C7           N      SINGLE       n     1.460  0.0118     1.460  0.0118
+SVD          C6           O      DOUBLE       n     1.231  0.0121     1.231  0.0121
+SVD          C4          H1      SINGLE       n     1.089  0.0100     0.990  0.0143
+SVD          C5          H2      SINGLE       n     1.089  0.0100     0.978  0.0179
+SVD          C5          H3      SINGLE       n     1.089  0.0100     0.978  0.0179
+SVD          C7          H4      SINGLE       n     1.089  0.0100     0.974  0.0150
+SVD          C7          H5      SINGLE       n     1.089  0.0100     0.974  0.0150
+SVD          C7          H6      SINGLE       n     1.089  0.0100     0.974  0.0150
+SVD           C          H7      SINGLE       n     1.089  0.0100     0.973  0.0146
+SVD           C          H8      SINGLE       n     1.089  0.0100     0.973  0.0146
+SVD           C          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+SVD          C2         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+SVD          C2         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+SVD          C2         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+SVD          C3         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+SVD          C3         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+SVD          C3         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+SVD          O1         H16      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SVD          O1          N1          C4     111.437    3.00
+SVD          O1          N1           N     109.471    3.00
+SVD          C4          N1           N     103.186    1.50
+SVD          C1          C4          N1     111.633    2.37
+SVD          C1          C4          C5     113.745    2.48
+SVD          C1          C4          H1     107.653    1.76
+SVD          N1          C4          C5     103.104    2.01
+SVD          N1          C4          H1     110.535    1.50
+SVD          C5          C4          H1     109.594    1.50
+SVD          C4          C5          C6     104.457    1.50
+SVD          C4          C5          H2     110.944    1.50
+SVD          C4          C5          H3     110.944    1.50
+SVD          C6          C5          H2     111.040    1.50
+SVD          C6          C5          H3     111.040    1.50
+SVD          H2          C5          H3     109.014    1.50
+SVD          C5          C6           N     107.960    1.50
+SVD          C5          C6           O     127.288    1.56
+SVD           N          C6           O     124.752    1.50
+SVD           N          C7          H4     109.472    1.50
+SVD           N          C7          H5     109.472    1.50
+SVD           N          C7          H6     109.472    1.50
+SVD          H4          C7          H5     109.490    1.50
+SVD          H4          C7          H6     109.490    1.50
+SVD          H5          C7          H6     109.490    1.50
+SVD          N1           N          C6     113.461    2.96
+SVD          N1           N          C7     121.940    1.55
+SVD          C6           N          C7     124.600    1.50
+SVD          C1           C          H7     109.536    1.50
+SVD          C1           C          H8     109.536    1.50
+SVD          C1           C          H9     109.536    1.50
+SVD          H7           C          H8     109.426    1.50
+SVD          H7           C          H9     109.426    1.50
+SVD          H8           C          H9     109.426    1.50
+SVD          C3          C1          C2     109.200    1.50
+SVD          C3          C1           C     109.200    1.50
+SVD          C3          C1          C4     109.751    1.72
+SVD          C2          C1           C     109.200    1.50
+SVD          C2          C1          C4     109.751    1.72
+SVD           C          C1          C4     109.751    1.72
+SVD          C1          C2         H10     109.536    1.50
+SVD          C1          C2         H11     109.536    1.50
+SVD          C1          C2         H12     109.536    1.50
+SVD         H10          C2         H11     109.426    1.50
+SVD         H10          C2         H12     109.426    1.50
+SVD         H11          C2         H12     109.426    1.50
+SVD          C1          C3         H13     109.536    1.50
+SVD          C1          C3         H14     109.536    1.50
+SVD          C1          C3         H15     109.536    1.50
+SVD         H13          C3         H14     109.426    1.50
+SVD         H13          C3         H15     109.426    1.50
+SVD         H14          C3         H15     109.426    1.50
+SVD          N1          O1         H16     106.255    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SVD             sp3_sp3_4          C1          C4          N1          O1      60.000    10.0     3
+SVD            sp3_sp3_52          C4          N1          O1         H16     180.000    10.0     3
+SVD            sp2_sp3_10          C7           N          N1          O1     -60.000    10.0     6
+SVD            sp3_sp3_10          C1          C4          C5          C6     180.000    10.0     3
+SVD            sp3_sp3_46          C3          C1          C4          N1      60.000    10.0     3
+SVD             sp2_sp3_4           O          C6          C5          C4     180.000    10.0     6
+SVD             sp2_sp2_4           O          C6           N          C7       0.000     5.0     2
+SVD            sp2_sp3_11          N1           N          C7          H4     150.000    10.0     6
+SVD            sp3_sp3_35          H7           C          C1          C3     -60.000    10.0     3
+SVD            sp3_sp3_19          C2          C1          C3         H13      60.000    10.0     3
+SVD            sp3_sp3_25          C3          C1          C2         H10     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SVD    chir_1    N1    O1    N    C4    negative
+SVD    chir_2    C4    N1    C1    C5    negative
+SVD    chir_3    C1    C4    C3    C2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SVD    plan-1          C5   0.020
+SVD    plan-1          C6   0.020
+SVD    plan-1           N   0.020
+SVD    plan-1           O   0.020
+SVD    plan-2          C6   0.020
+SVD    plan-2          C7   0.020
+SVD    plan-2           N   0.020
+SVD    plan-2          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SVD            InChI                InChI  1.03 InChI=1S/C8H16N2O2/c1-8(2,3)6-5-7(11)9(4)10(6)12/h6,12H,5H2,1-4H3/t6-/m1/s1
+SVD         InChIKey                InChI  1.03                                                 WSOJYUWEGFKKBH-ZCFIWIBFSA-N
+SVD SMILES_CANONICAL               CACTVS 3.385                                                 CN1N(O)[C@H](CC1=O)C(C)(C)C
+SVD           SMILES               CACTVS 3.385                                                  CN1N(O)[CH](CC1=O)C(C)(C)C
+SVD SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                 CC(C)(C)[C@H]1CC(=O)N(N1O)C
+SVD           SMILES "OpenEye OEToolkits" 2.0.6                                                     CC(C)(C)C1CC(=O)N(N1O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SVD acedrg               243         "dictionary generator"                  
+SVD acedrg_database      11          "data source"                           
+SVD rdkit                2017.03.2   "Chemoinformatics tool"
+SVD refmac5              5.8.0238    "optimization tool"                     

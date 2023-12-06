@@ -1,0 +1,257 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JOP     JOP      "N-[(1R,2S,4S)-bicyclo[2.2.1]heptan-2-yl]-N'-[(2R)-2-hydroxypropyl]thiourea"     NON-POLYMER     35     15     .     
+#
+data_comp_JOP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JOP     C10     C       CH2     0       -58.413     6.429       -5.710      
+JOP     C13     C       CH2     0       -58.646     6.828       -8.635      
+JOP     C15     C       CH2     0       -56.930     7.557       -7.168      
+JOP     C01     C       CH3     0       -65.143     7.464       -8.660      
+JOP     C02     C       CH1     0       -65.125     8.273       -7.375      
+JOP     O03     O       OH1     0       -65.354     7.423       -6.258      
+JOP     C04     C       CH2     0       -63.813     9.025       -7.176      
+JOP     N05     N       NH1     0       -62.695     8.127       -6.892      
+JOP     C06     C       C       0       -61.426     8.507       -6.715      
+JOP     S07     S       S1      0       -60.957     10.142      -6.795      
+JOP     N08     N       NH1     0       -60.566     7.511       -6.469      
+JOP     C09     C       CH1     0       -59.128     7.691       -6.290      
+JOP     C11     C       CH1     0       -57.315     6.143       -6.740      
+JOP     C12     C       CH2     0       -57.958     5.588       -8.020      
+JOP     C14     C       CH1     0       -58.348     7.932       -7.604      
+JOP     H102    H       H       0       -58.022     6.620       -4.824      
+JOP     H101    H       H       0       -59.032     5.665       -5.631      
+JOP     H132    H       H       0       -58.261     7.044       -9.508      
+JOP     H131    H       H       0       -59.606     6.680       -8.746      
+JOP     H152    H       H       0       -56.299     7.571       -7.894      
+JOP     H151    H       H       0       -56.605     8.096       -6.440      
+JOP     H011    H       H       0       -66.024     7.066       -8.782      
+JOP     H012    H       H       0       -64.473     6.759       -8.610      
+JOP     H013    H       H       0       -64.944     8.047       -9.414      
+JOP     H021    H       H       0       -65.864     8.940       -7.417      
+JOP     H031    H       H       0       -65.548     7.903       -5.586      
+JOP     H042    H       H       0       -63.918     9.660       -6.428      
+JOP     H041    H       H       0       -63.616     9.542       -7.992      
+JOP     H051    H       H       0       -62.875     7.281       -6.835      
+JOP     H081    H       H       0       -60.882     6.700       -6.414      
+JOP     H091    H       H       0       -58.973     8.446       -5.684      
+JOP     H111    H       H       0       -56.565     5.597       -6.380      
+JOP     H121    H       H       0       -58.613     4.882       -7.813      
+JOP     H122    H       H       0       -57.275     5.222       -8.629      
+JOP     H141    H       H       0       -58.453     8.856       -7.953      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JOP         C01         C02      SINGLE       n     1.519  0.0100     1.519  0.0100
+JOP         C13         C14      SINGLE       n     1.538  0.0100     1.538  0.0100
+JOP         C13         C12      SINGLE       n     1.544  0.0160     1.544  0.0160
+JOP         C15         C14      SINGLE       n     1.530  0.0100     1.530  0.0100
+JOP         C09         C14      SINGLE       n     1.537  0.0183     1.537  0.0183
+JOP         C04         N05      SINGLE       n     1.459  0.0100     1.459  0.0100
+JOP         C02         C04      SINGLE       n     1.524  0.0100     1.524  0.0100
+JOP         N05         C06      SINGLE       n     1.328  0.0100     1.328  0.0100
+JOP         C02         O03      SINGLE       n     1.422  0.0100     1.422  0.0100
+JOP         C06         N08      SINGLE       n     1.327  0.0107     1.327  0.0107
+JOP         C06         S07      DOUBLE       n     1.694  0.0149     1.694  0.0149
+JOP         C11         C12      SINGLE       n     1.530  0.0200     1.530  0.0200
+JOP         N08         C09      SINGLE       n     1.455  0.0100     1.455  0.0100
+JOP         C15         C11      SINGLE       n     1.523  0.0200     1.523  0.0200
+JOP         C10         C09      SINGLE       n     1.556  0.0162     1.556  0.0162
+JOP         C10         C11      SINGLE       n     1.531  0.0100     1.531  0.0100
+JOP         C10        H102      SINGLE       n     1.089  0.0100     0.987  0.0200
+JOP         C10        H101      SINGLE       n     1.089  0.0100     0.987  0.0200
+JOP         C13        H132      SINGLE       n     1.089  0.0100     0.978  0.0168
+JOP         C13        H131      SINGLE       n     1.089  0.0100     0.978  0.0168
+JOP         C15        H152      SINGLE       n     1.089  0.0100     0.961  0.0200
+JOP         C15        H151      SINGLE       n     1.089  0.0100     0.961  0.0200
+JOP         C01        H011      SINGLE       n     1.089  0.0100     0.974  0.0145
+JOP         C01        H012      SINGLE       n     1.089  0.0100     0.974  0.0145
+JOP         C01        H013      SINGLE       n     1.089  0.0100     0.974  0.0145
+JOP         C02        H021      SINGLE       n     1.089  0.0100     0.997  0.0100
+JOP         O03        H031      SINGLE       n     0.970  0.0120     0.848  0.0200
+JOP         C04        H042      SINGLE       n     1.089  0.0100     0.986  0.0100
+JOP         C04        H041      SINGLE       n     1.089  0.0100     0.986  0.0100
+JOP         N05        H051      SINGLE       n     1.016  0.0100     0.866  0.0182
+JOP         N08        H081      SINGLE       n     1.016  0.0100     0.872  0.0200
+JOP         C09        H091      SINGLE       n     1.089  0.0100     0.981  0.0154
+JOP         C11        H111      SINGLE       n     1.089  0.0100     0.995  0.0200
+JOP         C12        H121      SINGLE       n     1.089  0.0100     0.986  0.0200
+JOP         C12        H122      SINGLE       n     1.089  0.0100     0.986  0.0200
+JOP         C14        H141      SINGLE       n     1.089  0.0100     0.993  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JOP         C09         C10         C11     102.986    1.50
+JOP         C09         C10        H102     111.215    1.50
+JOP         C09         C10        H101     111.215    1.50
+JOP         C11         C10        H102     111.038    1.50
+JOP         C11         C10        H101     111.038    1.50
+JOP        H102         C10        H101     109.365    1.84
+JOP         C14         C13         C12     102.916    1.50
+JOP         C14         C13        H132     111.618    1.67
+JOP         C14         C13        H131     111.618    1.67
+JOP         C12         C13        H132     111.200    1.50
+JOP         C12         C13        H131     111.200    1.50
+JOP        H132         C13        H131     108.958    1.50
+JOP         C14         C15         C11      94.524    1.50
+JOP         C14         C15        H152     113.008    1.50
+JOP         C14         C15        H151     113.008    1.50
+JOP         C11         C15        H152     113.105    1.50
+JOP         C11         C15        H151     113.105    1.50
+JOP        H152         C15        H151     110.244    1.50
+JOP         C02         C01        H011     109.488    1.50
+JOP         C02         C01        H012     109.488    1.50
+JOP         C02         C01        H013     109.488    1.50
+JOP        H011         C01        H012     109.425    1.50
+JOP        H011         C01        H013     109.425    1.50
+JOP        H012         C01        H013     109.425    1.50
+JOP         C01         C02         C04     112.758    1.50
+JOP         C01         C02         O03     110.466    2.07
+JOP         C01         C02        H021     108.424    1.50
+JOP         C04         C02         O03     109.290    2.07
+JOP         C04         C02        H021     108.552    1.50
+JOP         O03         C02        H021     108.535    1.50
+JOP         C02         O03        H031     108.707    1.88
+JOP         N05         C04         C02     111.308    2.28
+JOP         N05         C04        H042     109.102    1.50
+JOP         N05         C04        H041     109.102    1.50
+JOP         C02         C04        H042     109.093    1.50
+JOP         C02         C04        H041     109.093    1.50
+JOP        H042         C04        H041     107.997    1.50
+JOP         C04         N05         C06     124.506    1.50
+JOP         C04         N05        H051     118.169    1.83
+JOP         C06         N05        H051     117.325    1.76
+JOP         N05         C06         N08     114.662    1.50
+JOP         N05         C06         S07     122.643    1.52
+JOP         N08         C06         S07     122.695    1.73
+JOP         C06         N08         C09     122.510    1.50
+JOP         C06         N08        H081     117.847    2.02
+JOP         C09         N08        H081     119.643    2.42
+JOP         C14         C09         N08     112.892    1.89
+JOP         C14         C09         C10     102.358    1.50
+JOP         C14         C09        H091     108.771    1.50
+JOP         N08         C09         C10     112.487    1.50
+JOP         N08         C09        H091     108.555    1.50
+JOP         C10         C09        H091     109.191    1.50
+JOP         C12         C11         C15     101.878    1.50
+JOP         C12         C11         C10     108.593    1.50
+JOP         C12         C11        H111     114.861    1.50
+JOP         C15         C11         C10     100.876    1.50
+JOP         C15         C11        H111     114.875    1.50
+JOP         C10         C11        H111     113.713    2.21
+JOP         C13         C12         C11     103.150    1.50
+JOP         C13         C12        H121     111.200    1.50
+JOP         C13         C12        H122     111.200    1.50
+JOP         C11         C12        H121     111.097    1.50
+JOP         C11         C12        H122     111.097    1.50
+JOP        H121         C12        H122     108.958    1.50
+JOP         C13         C14         C15     101.780    1.50
+JOP         C13         C14         C09     108.511    2.27
+JOP         C13         C14        H141     114.722    1.67
+JOP         C15         C14         C09     101.524    1.50
+JOP         C15         C14        H141     116.337    2.61
+JOP         C09         C14        H141     113.562    2.32
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JOP             sp3_sp3_4         N08         C09         C10         C11     -60.000    10.0     3
+JOP            sp3_sp3_85         C09         C10         C11         C12     180.000    10.0     3
+JOP             sp2_sp3_7         C06         N08         C09         C14       0.000    10.0     6
+JOP            sp3_sp3_13         N08         C09         C14         C13     180.000    10.0     3
+JOP            sp3_sp3_37         C15         C11         C12         C13      60.000    10.0     3
+JOP            sp3_sp3_28         C11         C12         C13         C14     -60.000    10.0     3
+JOP            sp3_sp3_19         C12         C13         C14         C15      60.000    10.0     3
+JOP            sp3_sp3_55         C12         C11         C15         C14     -60.000    10.0     3
+JOP            sp3_sp3_46         C13         C14         C15         C11      60.000    10.0     3
+JOP            sp3_sp3_64        H011         C01         C02         C04     180.000    10.0     3
+JOP            sp3_sp3_82         C01         C02         O03        H031     180.000    10.0     3
+JOP            sp3_sp3_73         C01         C02         C04         N05     180.000    10.0     3
+JOP             sp2_sp3_2         C06         N05         C04         C02     120.000    10.0     6
+JOP             sp2_sp2_1         N08         C06         N05         C04     180.000     5.0     2
+JOP             sp2_sp2_5         N05         C06         N08         C09     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JOP    chir_1    C02    O03    C04    C01    negative
+JOP    chir_2    C09    N08    C14    C10    positive
+JOP    chir_3    C11    C10    C15    C12    positive
+JOP    chir_4    C14    C09    C15    C13    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JOP    plan-1         C04   0.020
+JOP    plan-1         C06   0.020
+JOP    plan-1        H051   0.020
+JOP    plan-1         N05   0.020
+JOP    plan-2         C06   0.020
+JOP    plan-2         N05   0.020
+JOP    plan-2         N08   0.020
+JOP    plan-2         S07   0.020
+JOP    plan-3         C06   0.020
+JOP    plan-3         C09   0.020
+JOP    plan-3        H081   0.020
+JOP    plan-3         N08   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JOP           SMILES              ACDLabs 12.01                                                                                          C1C(NC(NCC(C)O)=S)C2CCC1C2
+JOP            InChI                InChI  1.03 InChI=1S/C11H20N2OS/c1-7(14)6-12-11(15)13-10-5-8-2-3-9(10)4-8/h7-10,14H,2-6H2,1H3,(H2,12,13,15)/t7-,8+,9-,10+/m1/s1
+JOP         InChIKey                InChI  1.03                                                                                         XKFOGPZJONXOKW-RGOKHQFPSA-N
+JOP SMILES_CANONICAL               CACTVS 3.385                                                                          C[C@@H](O)CNC(=S)N[C@H]1C[C@H]2CC[C@@H]1C2
+JOP           SMILES               CACTVS 3.385                                                                                C[CH](O)CNC(=S)N[CH]1C[CH]2CC[CH]1C2
+JOP SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                           C[C@H](CNC(=S)N[C@H]1C[C@H]2CC[C@@H]1C2)O
+JOP           SMILES "OpenEye OEToolkits" 2.0.6                                                                                            CC(CNC(=S)NC1CC2CCC1C2)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JOP acedrg               243         "dictionary generator"                  
+JOP acedrg_database      11          "data source"                           
+JOP rdkit                2017.03.2   "Chemoinformatics tool"
+JOP refmac5              5.8.0238    "optimization tool"                     

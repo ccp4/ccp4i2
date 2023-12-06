@@ -15,7 +15,7 @@ class Ccoot_rebuild(CTaskWidget):
   TASKNAME = 'coot_rebuild'
   TASKVERSION = 0.1
   TASKMODULE='model_building'
-  TASKTITLE='Manual model building - COOT'
+  TASKTITLE='Interactive model building - COOT'
   SHORTTASKTITLE='COOT'
   DESCRIPTION='Interactive building (Coot)'
 

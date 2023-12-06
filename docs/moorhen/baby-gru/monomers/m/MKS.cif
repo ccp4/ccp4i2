@@ -1,0 +1,359 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MKS     MKS      1,3,6-trihydroxy-7-methoxy-2,8-bis(3-methylbut-2-en-1-yl)-9H-xanthen-9-one     NON-POLYMER     56     30     .     
+#
+data_comp_MKS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MKS     CAD     C       CH3     0       -23.931     0.643       -10.180     
+MKS     CAS     C       C       0       -22.951     1.491       -9.416      
+MKS     CAE     C       CH3     0       -22.899     2.927       -9.858      
+MKS     CAK     C       C1      0       -22.196     1.017       -8.431      
+MKS     CAO     C       CH2     0       -22.155     -0.392      -7.903      
+MKS     CAX     C       CR6     0       -21.317     -0.517      -6.630      
+MKS     CBD     C       CR66    0       -21.785     -0.160      -5.314      
+MKS     CAZ     C       CR6     0       -23.137     0.367       -5.041      
+MKS     OAF     O       O       0       -23.996     0.554       -5.932      
+MKS     CBC     C       CR66    0       -23.457     0.679       -3.645      
+MKS     CAV     C       CR6     0       -24.721     1.195       -3.227      
+MKS     OAI     O       OH1     0       -25.689     1.410       -4.183      
+MKS     CAW     C       CR6     0       -24.988     1.485       -1.893      
+MKS     CAN     C       CH2     0       -26.339     2.023       -1.466      
+MKS     CAJ     C       C1      0       -27.409     0.965       -1.438      
+MKS     CAR     C       C       0       -28.697     1.116       -1.151      
+MKS     CAC     C       CH3     0       -29.301     2.434       -0.755      
+MKS     CAB     C       CH3     0       -29.676     -0.024      -1.195      
+MKS     CAT     C       CR6     0       -23.976     1.246       -0.946      
+MKS     OAG     O       OH1     0       -24.157     1.499       0.394       
+MKS     CAL     C       CR16    0       -22.735     0.745       -1.319      
+MKS     CBA     C       CR66    0       -22.495     0.471       -2.649      
+MKS     OAQ     O       O2      0       -21.252     -0.019      -2.938      
+MKS     CBB     C       CR66    0       -20.905     -0.327      -4.233      
+MKS     CAM     C       CR16    0       -19.614     -0.816      -4.392      
+MKS     CAU     C       CR6     0       -19.169     -1.156      -5.658      
+MKS     OAH     O       OH1     0       -17.886     -1.638      -5.784      
+MKS     CAY     C       CR6     0       -20.014     -1.001      -6.769      
+MKS     OAP     O       O2      0       -19.489     -1.368      -7.998      
+MKS     CAA     C       CH3     0       -18.533     -0.507      -8.616      
+MKS     H1      H       H       0       -23.584     -0.259      -10.274     
+MKS     H2      H       H       0       -24.074     1.022       -11.063     
+MKS     H3      H       H       0       -24.776     0.614       -9.703      
+MKS     H4      H       H       0       -22.185     3.392       -9.393      
+MKS     H5      H       H       0       -23.746     3.359       -9.657      
+MKS     H6      H       H       0       -22.738     2.968       -10.814     
+MKS     H7      H       H       0       -21.616     1.635       -8.009      
+MKS     H8      H       H       0       -21.789     -0.973      -8.594      
+MKS     H9      H       H       0       -23.061     -0.699      -7.728      
+MKS     H10     H       H       0       -26.390     0.910       -4.205      
+MKS     H11     H       H       0       -26.608     2.728       -2.085      
+MKS     H12     H       H       0       -26.267     2.425       -0.581      
+MKS     H13     H       H       0       -27.127     0.086       -1.648      
+MKS     H14     H       H       0       -28.654     2.957       -0.255      
+MKS     H15     H       H       0       -30.083     2.281       -0.200      
+MKS     H16     H       H       0       -29.564     2.923       -1.551      
+MKS     H17     H       H       0       -29.242     -0.821      -1.541      
+MKS     H18     H       H       0       -30.421     0.211       -1.772      
+MKS     H19     H       H       0       -30.007     -0.202      -0.300      
+MKS     H20     H       H       0       -23.940     0.904       0.978       
+MKS     H21     H       H       0       -22.076     0.597       -0.675      
+MKS     H22     H       H       0       -19.053     -0.914      -3.651      
+MKS     H23     H       H       0       -17.229     -1.091      -5.883      
+MKS     H24     H       H       0       -17.643     -0.875      -8.493      
+MKS     H25     H       H       0       -18.576     0.378       -8.216      
+MKS     H26     H       H       0       -18.727     -0.441      -9.565      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MKS         CAD         CAS      SINGLE       n     1.499  0.0156     1.499  0.0156
+MKS         CAS         CAE      SINGLE       n     1.499  0.0156     1.499  0.0156
+MKS         CAS         CAK      DOUBLE       n     1.325  0.0112     1.325  0.0112
+MKS         OAP         CAA      SINGLE       n     1.424  0.0117     1.424  0.0117
+MKS         CAK         CAO      SINGLE       n     1.503  0.0100     1.503  0.0100
+MKS         CAY         OAP      SINGLE       n     1.382  0.0100     1.382  0.0100
+MKS         CAO         CAX      SINGLE       n     1.522  0.0100     1.522  0.0100
+MKS         CAX         CAY      DOUBLE       y     1.387  0.0100     1.387  0.0100
+MKS         CAU         CAY      SINGLE       y     1.400  0.0118     1.400  0.0118
+MKS         CAX         CBD      SINGLE       y     1.425  0.0100     1.425  0.0100
+MKS         CAU         OAH      SINGLE       n     1.374  0.0155     1.374  0.0155
+MKS         CAZ         OAF      DOUBLE       n     1.252  0.0100     1.252  0.0100
+MKS         CAM         CAU      DOUBLE       y     1.384  0.0100     1.384  0.0100
+MKS         CBD         CAZ      SINGLE       y     1.464  0.0100     1.464  0.0100
+MKS         CBD         CBB      DOUBLE       y     1.393  0.0100     1.393  0.0100
+MKS         CAZ         CBC      SINGLE       y     1.451  0.0157     1.451  0.0157
+MKS         CBB         CAM      SINGLE       y     1.387  0.0100     1.387  0.0100
+MKS         OAQ         CBB      SINGLE       y     1.372  0.0100     1.372  0.0100
+MKS         CAV         OAI      SINGLE       n     1.374  0.0155     1.374  0.0155
+MKS         CBC         CAV      DOUBLE       y     1.421  0.0100     1.421  0.0100
+MKS         CBC         CBA      SINGLE       y     1.398  0.0100     1.398  0.0100
+MKS         CAV         CAW      SINGLE       y     1.385  0.0100     1.385  0.0100
+MKS         CBA         OAQ      SINGLE       y     1.367  0.0100     1.367  0.0100
+MKS         CAL         CBA      DOUBLE       y     1.376  0.0100     1.376  0.0100
+MKS         CAW         CAN      SINGLE       n     1.512  0.0100     1.512  0.0100
+MKS         CAW         CAT      DOUBLE       y     1.398  0.0100     1.398  0.0100
+MKS         CAN         CAJ      SINGLE       n     1.503  0.0103     1.503  0.0103
+MKS         CAT         CAL      SINGLE       y     1.386  0.0100     1.386  0.0100
+MKS         CAJ         CAR      DOUBLE       n     1.325  0.0112     1.325  0.0112
+MKS         CAT         OAG      SINGLE       n     1.374  0.0155     1.374  0.0155
+MKS         CAR         CAB      SINGLE       n     1.499  0.0156     1.499  0.0156
+MKS         CAR         CAC      SINGLE       n     1.499  0.0156     1.499  0.0156
+MKS         CAD          H1      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKS         CAD          H2      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKS         CAD          H3      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKS         CAE          H4      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKS         CAE          H5      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKS         CAE          H6      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKS         CAK          H7      SINGLE       n     1.082  0.0130     0.947  0.0200
+MKS         CAO          H8      SINGLE       n     1.089  0.0100     0.975  0.0132
+MKS         CAO          H9      SINGLE       n     1.089  0.0100     0.975  0.0132
+MKS         OAI         H10      SINGLE       n     0.966  0.0059     0.861  0.0200
+MKS         CAN         H11      SINGLE       n     1.089  0.0100     0.976  0.0140
+MKS         CAN         H12      SINGLE       n     1.089  0.0100     0.976  0.0140
+MKS         CAJ         H13      SINGLE       n     1.082  0.0130     0.947  0.0200
+MKS         CAC         H14      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKS         CAC         H15      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKS         CAC         H16      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKS         CAB         H17      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKS         CAB         H18      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKS         CAB         H19      SINGLE       n     1.089  0.0100     0.971  0.0140
+MKS         OAG         H20      SINGLE       n     0.966  0.0059     0.861  0.0200
+MKS         CAL         H21      SINGLE       n     1.082  0.0130     0.933  0.0100
+MKS         CAM         H22      SINGLE       n     1.082  0.0130     0.935  0.0100
+MKS         OAH         H23      SINGLE       n     0.966  0.0059     0.861  0.0200
+MKS         CAA         H24      SINGLE       n     1.089  0.0100     0.971  0.0157
+MKS         CAA         H25      SINGLE       n     1.089  0.0100     0.971  0.0157
+MKS         CAA         H26      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MKS         CAS         CAD          H1     109.600    1.50
+MKS         CAS         CAD          H2     109.600    1.50
+MKS         CAS         CAD          H3     109.600    1.50
+MKS          H1         CAD          H2     109.342    1.50
+MKS          H1         CAD          H3     109.342    1.50
+MKS          H2         CAD          H3     109.342    1.50
+MKS         CAD         CAS         CAE     114.705    1.50
+MKS         CAD         CAS         CAK     122.647    1.69
+MKS         CAE         CAS         CAK     122.647    1.69
+MKS         CAS         CAE          H4     109.600    1.50
+MKS         CAS         CAE          H5     109.600    1.50
+MKS         CAS         CAE          H6     109.600    1.50
+MKS          H4         CAE          H5     109.342    1.50
+MKS          H4         CAE          H6     109.342    1.50
+MKS          H5         CAE          H6     109.342    1.50
+MKS         CAS         CAK         CAO     127.137    1.50
+MKS         CAS         CAK          H7     116.591    1.50
+MKS         CAO         CAK          H7     116.272    1.50
+MKS         CAK         CAO         CAX     111.656    2.12
+MKS         CAK         CAO          H8     109.239    1.50
+MKS         CAK         CAO          H9     109.239    1.50
+MKS         CAX         CAO          H8     109.135    1.50
+MKS         CAX         CAO          H9     109.135    1.50
+MKS          H8         CAO          H9     107.961    1.50
+MKS         CAO         CAX         CAY     118.530    2.16
+MKS         CAO         CAX         CBD     122.458    1.50
+MKS         CAY         CAX         CBD     119.012    1.50
+MKS         CAX         CBD         CAZ     121.176    1.50
+MKS         CAX         CBD         CBB     118.811    1.50
+MKS         CAZ         CBD         CBB     120.013    1.50
+MKS         OAF         CAZ         CBD     122.071    1.50
+MKS         OAF         CAZ         CBC     121.070    1.50
+MKS         CBD         CAZ         CBC     116.859    1.50
+MKS         CAZ         CBC         CAV     121.811    1.50
+MKS         CAZ         CBC         CBA     120.293    1.50
+MKS         CAV         CBC         CBA     117.896    1.50
+MKS         OAI         CAV         CBC     117.542    2.50
+MKS         OAI         CAV         CAW     120.778    3.00
+MKS         CBC         CAV         CAW     121.681    1.50
+MKS         CAV         OAI         H10     120.000    3.00
+MKS         CAV         CAW         CAN     121.606    1.50
+MKS         CAV         CAW         CAT     118.022    1.50
+MKS         CAN         CAW         CAT     120.372    1.50
+MKS         CAW         CAN         CAJ     113.225    1.50
+MKS         CAW         CAN         H11     108.917    1.50
+MKS         CAW         CAN         H12     108.917    1.50
+MKS         CAJ         CAN         H11     109.071    1.50
+MKS         CAJ         CAN         H12     109.071    1.50
+MKS         H11         CAN         H12     107.704    1.50
+MKS         CAN         CAJ         CAR     127.274    1.50
+MKS         CAN         CAJ         H13     116.280    1.50
+MKS         CAR         CAJ         H13     116.446    1.50
+MKS         CAJ         CAR         CAB     122.647    1.69
+MKS         CAJ         CAR         CAC     122.647    1.69
+MKS         CAB         CAR         CAC     114.705    1.50
+MKS         CAR         CAC         H14     109.600    1.50
+MKS         CAR         CAC         H15     109.600    1.50
+MKS         CAR         CAC         H16     109.600    1.50
+MKS         H14         CAC         H15     109.342    1.50
+MKS         H14         CAC         H16     109.342    1.50
+MKS         H15         CAC         H16     109.342    1.50
+MKS         CAR         CAB         H17     109.600    1.50
+MKS         CAR         CAB         H18     109.600    1.50
+MKS         CAR         CAB         H19     109.600    1.50
+MKS         H17         CAB         H18     109.342    1.50
+MKS         H17         CAB         H19     109.342    1.50
+MKS         H18         CAB         H19     109.342    1.50
+MKS         CAW         CAT         CAL     120.995    1.50
+MKS         CAW         CAT         OAG     119.503    3.00
+MKS         CAL         CAT         OAG     119.503    3.00
+MKS         CAT         OAG         H20     120.000    3.00
+MKS         CBA         CAL         CAT     118.751    1.50
+MKS         CBA         CAL         H21     120.954    1.50
+MKS         CAT         CAL         H21     120.295    1.50
+MKS         CBC         CBA         OAQ     121.795    1.50
+MKS         CBC         CBA         CAL     122.656    1.50
+MKS         OAQ         CBA         CAL     115.550    1.50
+MKS         CBB         OAQ         CBA     119.254    1.50
+MKS         CBD         CBB         CAM     121.649    1.50
+MKS         CBD         CBB         OAQ     121.787    1.50
+MKS         CAM         CBB         OAQ     116.564    1.50
+MKS         CAU         CAM         CBB     118.852    1.50
+MKS         CAU         CAM         H22     120.618    1.50
+MKS         CBB         CAM         H22     120.530    1.50
+MKS         CAY         CAU         OAH     119.893    3.00
+MKS         CAY         CAU         CAM     120.215    1.50
+MKS         OAH         CAU         CAM     119.893    3.00
+MKS         CAU         OAH         H23     120.000    3.00
+MKS         OAP         CAY         CAX     120.276    2.52
+MKS         OAP         CAY         CAU     118.264    2.33
+MKS         CAX         CAY         CAU     121.460    1.50
+MKS         CAA         OAP         CAY     117.273    1.50
+MKS         OAP         CAA         H24     109.428    1.50
+MKS         OAP         CAA         H25     109.428    1.50
+MKS         OAP         CAA         H26     109.428    1.50
+MKS         H24         CAA         H25     109.509    1.50
+MKS         H24         CAA         H26     109.509    1.50
+MKS         H25         CAA         H26     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MKS             sp2_sp3_1         CAE         CAS         CAD          H1       0.000    10.0     6
+MKS             sp2_sp2_9         CBC         CAV         OAI         H10     180.000     5.0     2
+MKS       const_sp2_sp2_8         OAI         CAV         CAW         CAN       0.000     5.0     2
+MKS            sp2_sp3_26         CAV         CAW         CAN         CAJ     -90.000    10.0     6
+MKS              const_12         OAG         CAT         CAW         CAN       0.000    10.0     2
+MKS            sp2_sp3_32         CAR         CAJ         CAN         CAW     120.000    10.0     6
+MKS            sp2_sp2_11         CAN         CAJ         CAR         CAB     180.000     5.0     2
+MKS            sp2_sp3_43         CAJ         CAR         CAC         H14       0.000    10.0     6
+MKS            sp2_sp3_37         CAJ         CAR         CAB         H17       0.000    10.0     6
+MKS            sp2_sp2_15         CAW         CAT         OAG         H20     180.000     5.0     2
+MKS              const_14         CBA         CAL         CAT         OAG     180.000    10.0     2
+MKS             sp2_sp3_7         CAD         CAS         CAE          H4       0.000    10.0     6
+MKS             sp2_sp2_1         CAO         CAK         CAS         CAD     180.000     5.0     2
+MKS              const_17         CAT         CAL         CBA         CBC       0.000    10.0     2
+MKS              const_53         CBC         CBA         OAQ         CBB       0.000    10.0     2
+MKS              const_55         CBD         CBB         OAQ         CBA       0.000    10.0     2
+MKS              const_33         CAU         CAM         CBB         CBD       0.000    10.0     2
+MKS              const_30         CBB         CAM         CAU         OAH     180.000    10.0     2
+MKS             sp2_sp2_7         CAY         CAU         OAH         H23     180.000     5.0     2
+MKS              const_28         OAH         CAU         CAY         OAP       0.000    10.0     2
+MKS             sp2_sp2_5         CAX         CAY         OAP         CAA     180.000     5.0     2
+MKS             sp3_sp3_2         H24         CAA         OAP         CAY     -60.000    10.0     3
+MKS            sp2_sp3_14         CAS         CAK         CAO         CAX     120.000    10.0     6
+MKS            sp2_sp3_20         CAY         CAX         CAO         CAK     -90.000    10.0     6
+MKS              const_24         CAO         CAX         CAY         OAP       0.000    10.0     2
+MKS              const_60         CAO         CAX         CBD         CAZ       0.000    10.0     2
+MKS              const_37         CAM         CBB         CBD         CAX       0.000    10.0     2
+MKS              const_44         OAF         CAZ         CBD         CAX       0.000    10.0     2
+MKS              const_48         OAF         CAZ         CBC         CAV       0.000    10.0     2
+MKS       const_sp2_sp2_4         OAI         CAV         CBC         CAZ       0.000     5.0     2
+MKS              const_49         OAQ         CBA         CBC         CAZ       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MKS    plan-1         CAL   0.020
+MKS    plan-1         CAM   0.020
+MKS    plan-1         CAN   0.020
+MKS    plan-1         CAO   0.020
+MKS    plan-1         CAT   0.020
+MKS    plan-1         CAU   0.020
+MKS    plan-1         CAV   0.020
+MKS    plan-1         CAW   0.020
+MKS    plan-1         CAX   0.020
+MKS    plan-1         CAY   0.020
+MKS    plan-1         CAZ   0.020
+MKS    plan-1         CBA   0.020
+MKS    plan-1         CBB   0.020
+MKS    plan-1         CBC   0.020
+MKS    plan-1         CBD   0.020
+MKS    plan-1         H21   0.020
+MKS    plan-1         H22   0.020
+MKS    plan-1         OAF   0.020
+MKS    plan-1         OAG   0.020
+MKS    plan-1         OAH   0.020
+MKS    plan-1         OAI   0.020
+MKS    plan-1         OAP   0.020
+MKS    plan-1         OAQ   0.020
+MKS    plan-2         CAD   0.020
+MKS    plan-2         CAE   0.020
+MKS    plan-2         CAK   0.020
+MKS    plan-2         CAS   0.020
+MKS    plan-3         CAK   0.020
+MKS    plan-3         CAO   0.020
+MKS    plan-3         CAS   0.020
+MKS    plan-3          H7   0.020
+MKS    plan-4         CAJ   0.020
+MKS    plan-4         CAN   0.020
+MKS    plan-4         CAR   0.020
+MKS    plan-4         H13   0.020
+MKS    plan-5         CAB   0.020
+MKS    plan-5         CAC   0.020
+MKS    plan-5         CAJ   0.020
+MKS    plan-5         CAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MKS           SMILES              ACDLabs 12.01                                                                                  C\C(=C/Cc3c2C(c1c(c(C\C=C(\C)C)c(O)cc1Oc2cc(O)c3OC)O)=O)C
+MKS            InChI                InChI  1.03 InChI=1S/C24H26O6/c1-12(2)6-8-14-16(25)10-19-21(22(14)27)23(28)20-15(9-7-13(3)4)24(29-5)17(26)11-18(20)30-19/h6-7,10-11,25-27H,8-9H2,1-5H3
+MKS         InChIKey                InChI  1.03                                                                                                                GNRIZKKCNOBBMO-UHFFFAOYSA-N
+MKS SMILES_CANONICAL               CACTVS 3.385                                                                                      COc1c(O)cc2Oc3cc(O)c(CC=C(C)C)c(O)c3C(=O)c2c1CC=C(C)C
+MKS           SMILES               CACTVS 3.385                                                                                      COc1c(O)cc2Oc3cc(O)c(CC=C(C)C)c(O)c3C(=O)c2c1CC=C(C)C
+MKS SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                    CC(=CCc1c(cc2c(c1O)C(=O)c3c(cc(c(c3CC=C(C)C)OC)O)O2)O)C
+MKS           SMILES "OpenEye OEToolkits" 1.9.2                                                                                    CC(=CCc1c(cc2c(c1O)C(=O)c3c(cc(c(c3CC=C(C)C)OC)O)O2)O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MKS acedrg               243         "dictionary generator"                  
+MKS acedrg_database      11          "data source"                           
+MKS rdkit                2017.03.2   "Chemoinformatics tool"
+MKS refmac5              5.8.0238    "optimization tool"                     

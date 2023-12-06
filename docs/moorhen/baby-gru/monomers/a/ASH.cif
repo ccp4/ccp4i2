@@ -1,0 +1,342 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ASH     ASH      3-chloro-N-(4-morpholin-4-ylphenyl)-6-pyridin-3-ylimidazo[1,2-a]pyrazin-8-amine     NON-POLYMER     48     29     .     
+#
+data_comp_ASH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ASH     C10     C       CR16    0       5.559       -30.990     -2.386      
+ASH     C11     C       CR16    0       5.890       -30.389     -1.190      
+ASH     C12     C       CR16    0       5.937       -29.011     -1.132      
+ASH     C14     C       CR16    0       5.357       -28.826     -3.333      
+ASH     C16     C       CR6     0       3.590       -32.435     -5.890      
+ASH     C19     C       CR16    0       3.197       -34.744     -3.831      
+ASH     C21     C       CR6     0       1.447       -35.756     -2.501      
+ASH     C24     C       CH2     0       0.151       -36.218     0.850       
+ASH     CL      CL      CL      0       6.571       -29.706     -9.015      
+ASH     C02     C       CR5     0       5.434       -30.856     -8.480      
+ASH     C03     C       CR15    0       4.720       -31.752     -9.196      
+ASH     N04     N       NRD5    0       3.909       -32.498     -8.364      
+ASH     C05     C       CR56    0       4.138       -32.047     -7.135      
+ASH     N06     N       NR5     0       5.078       -31.027     -7.171      
+ASH     C07     C       CR16    0       5.481       -30.398     -6.009      
+ASH     C08     C       CR6     0       4.919       -30.813     -4.808      
+ASH     C09     C       CR6     0       5.281       -30.204     -3.499      
+ASH     N13     N       NRD6    0       5.676       -28.220     -2.185      
+ASH     N15     N       NRD6    0       3.997       -31.803     -4.770      
+ASH     N17     N       NH1     0       2.654       -33.449     -5.822      
+ASH     C18     C       CR6     0       2.246       -34.226     -4.710      
+ASH     C20     C       CR16    0       2.809       -35.492     -2.746      
+ASH     N22     N       NR6     0       1.063       -36.509     -1.407      
+ASH     C23     C       CH2     0       1.385       -36.130     -0.019      
+ASH     O25     O       O2      0       -0.462      -37.503     0.770       
+ASH     C26     C       CH2     0       -0.849      -37.797     -0.570      
+ASH     C27     C       CH2     0       0.333       -37.785     -1.515      
+ASH     C28     C       CR16    0       0.496       -35.226     -3.398      
+ASH     C29     C       CR16    0       0.892       -34.475     -4.481      
+ASH     H10     H       H       0       5.520       -31.932     -2.449      
+ASH     H11     H       H       0       6.080       -30.910     -0.429      
+ASH     H12     H       H       0       6.163       -28.602     -0.314      
+ASH     H14     H       H       0       5.171       -28.282     -4.077      
+ASH     H19     H       H       0       4.114       -34.576     -3.979      
+ASH     H24     H       H       0       0.399       -36.040     1.782       
+ASH     H24A    H       H       0       -0.493      -35.534     0.571       
+ASH     H03     H       H       0       4.760       -31.862     -10.131     
+ASH     H07     H       H       0       6.120       -29.705     -6.029      
+ASH     HN17    H       H       0       2.245       -33.642     -6.578      
+ASH     H20     H       H       0       3.463       -35.835     -2.161      
+ASH     H23     H       H       0       1.735       -35.214     0.001       
+ASH     H23A    H       H       0       2.078       -36.727     0.332       
+ASH     H26     H       H       0       -1.509      -37.136     -0.869      
+ASH     H26A    H       H       0       -1.271      -38.681     -0.595      
+ASH     H27     H       H       0       0.935       -38.527     -1.296      
+ASH     H27A    H       H       0       0.018       -37.910     -2.435      
+ASH     H28     H       H       0       -0.422      -35.387     -3.256      
+ASH     H29     H       H       0       0.244       -34.127     -5.073      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ASH         C10         C09      DOUBLE       y     1.384  0.0119     1.384  0.0119
+ASH         C10         C11      SINGLE       y     1.375  0.0100     1.375  0.0100
+ASH         C11         C12      DOUBLE       y     1.374  0.0152     1.374  0.0152
+ASH         C12         N13      SINGLE       y     1.336  0.0134     1.336  0.0134
+ASH         C14         C09      SINGLE       y     1.386  0.0100     1.386  0.0100
+ASH         C14         N13      DOUBLE       y     1.333  0.0100     1.333  0.0100
+ASH         C16         C05      SINGLE       y     1.409  0.0109     1.409  0.0109
+ASH         C16         N17      SINGLE       n     1.372  0.0177     1.372  0.0177
+ASH         C16         N15      DOUBLE       y     1.341  0.0106     1.341  0.0106
+ASH         C19         C18      DOUBLE       y     1.390  0.0100     1.390  0.0100
+ASH         C19         C20      SINGLE       y     1.369  0.0129     1.369  0.0129
+ASH         C21         C28      SINGLE       y     1.407  0.0129     1.407  0.0129
+ASH         C21         C20      DOUBLE       y     1.407  0.0129     1.407  0.0129
+ASH         C21         N22      SINGLE       n     1.379  0.0200     1.379  0.0200
+ASH         C24         C23      SINGLE       n     1.511  0.0100     1.511  0.0100
+ASH         C24         O25      SINGLE       n     1.423  0.0105     1.423  0.0105
+ASH          CL         C02      SINGLE       n     1.703  0.0100     1.703  0.0100
+ASH         C02         C03      DOUBLE       y     1.348  0.0118     1.348  0.0118
+ASH         C02         N06      SINGLE       y     1.369  0.0100     1.369  0.0100
+ASH         C03         N04      SINGLE       y     1.378  0.0100     1.378  0.0100
+ASH         N04         C05      DOUBLE       y     1.330  0.0100     1.330  0.0100
+ASH         C05         N06      SINGLE       y     1.389  0.0100     1.389  0.0100
+ASH         N06         C07      SINGLE       y     1.380  0.0109     1.380  0.0109
+ASH         C07         C08      DOUBLE       y     1.385  0.0118     1.385  0.0118
+ASH         C08         N15      SINGLE       y     1.344  0.0127     1.344  0.0127
+ASH         C08         C09      SINGLE       n     1.487  0.0100     1.487  0.0100
+ASH         N17         C18      SINGLE       n     1.415  0.0100     1.415  0.0100
+ASH         C18         C29      SINGLE       y     1.390  0.0100     1.390  0.0100
+ASH         N22         C27      SINGLE       n     1.471  0.0100     1.471  0.0100
+ASH         N22         C23      SINGLE       n     1.471  0.0100     1.471  0.0100
+ASH         O25         C26      SINGLE       n     1.423  0.0105     1.423  0.0105
+ASH         C26         C27      SINGLE       n     1.511  0.0100     1.511  0.0100
+ASH         C28         C29      DOUBLE       y     1.369  0.0129     1.369  0.0129
+ASH         C10         H10      SINGLE       n     1.082  0.0130     0.945  0.0148
+ASH         C11         H11      SINGLE       n     1.082  0.0130     0.942  0.0155
+ASH         C12         H12      SINGLE       n     1.082  0.0130     0.942  0.0166
+ASH         C14         H14      SINGLE       n     1.082  0.0130     0.941  0.0200
+ASH         C19         H19      SINGLE       n     1.082  0.0130     0.944  0.0200
+ASH         C24         H24      SINGLE       n     1.089  0.0100     0.980  0.0155
+ASH         C24        H24A      SINGLE       n     1.089  0.0100     0.980  0.0155
+ASH         C03         H03      SINGLE       n     1.082  0.0130     0.942  0.0176
+ASH         C07         H07      SINGLE       n     1.082  0.0130     0.942  0.0104
+ASH         N17        HN17      SINGLE       n     1.016  0.0100     0.879  0.0200
+ASH         C20         H20      SINGLE       n     1.082  0.0130     0.942  0.0100
+ASH         C23         H23      SINGLE       n     1.089  0.0100     0.980  0.0155
+ASH         C23        H23A      SINGLE       n     1.089  0.0100     0.980  0.0155
+ASH         C26         H26      SINGLE       n     1.089  0.0100     0.980  0.0155
+ASH         C26        H26A      SINGLE       n     1.089  0.0100     0.980  0.0155
+ASH         C27         H27      SINGLE       n     1.089  0.0100     0.980  0.0155
+ASH         C27        H27A      SINGLE       n     1.089  0.0100     0.980  0.0155
+ASH         C28         H28      SINGLE       n     1.082  0.0130     0.942  0.0100
+ASH         C29         H29      SINGLE       n     1.082  0.0130     0.944  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ASH         C09         C10         C11     119.527    1.50
+ASH         C09         C10         H10     120.217    1.50
+ASH         C11         C10         H10     120.257    1.50
+ASH         C10         C11         C12     118.816    1.50
+ASH         C10         C11         H11     120.527    1.50
+ASH         C12         C11         H11     120.657    1.50
+ASH         C11         C12         N13     123.426    1.50
+ASH         C11         C12         H12     118.514    1.50
+ASH         N13         C12         H12     118.059    1.50
+ASH         C09         C14         N13     124.487    1.50
+ASH         C09         C14         H14     117.849    1.50
+ASH         N13         C14         H14     117.664    1.50
+ASH         C05         C16         N17     120.024    3.00
+ASH         C05         C16         N15     118.954    1.50
+ASH         N17         C16         N15     121.023    1.50
+ASH         C18         C19         C20     120.033    1.50
+ASH         C18         C19         H19     119.994    1.50
+ASH         C20         C19         H19     119.973    1.50
+ASH         C28         C21         C20     119.017    1.78
+ASH         C28         C21         N22     120.491    1.52
+ASH         C20         C21         N22     120.491    1.52
+ASH         C23         C24         O25     111.654    1.50
+ASH         C23         C24         H24     109.316    1.50
+ASH         C23         C24        H24A     109.316    1.50
+ASH         O25         C24         H24     109.195    1.50
+ASH         O25         C24        H24A     109.195    1.50
+ASH         H24         C24        H24A     108.175    1.50
+ASH          CL         C02         C03     129.335    2.18
+ASH          CL         C02         N06     123.967    1.50
+ASH         C03         C02         N06     106.699    1.50
+ASH         C02         C03         N04     109.675    1.50
+ASH         C02         C03         H03     126.104    2.40
+ASH         N04         C03         H03     124.221    1.50
+ASH         C03         N04         C05     105.614    1.50
+ASH         C16         C05         N04     129.999    1.50
+ASH         C16         C05         N06     119.539    1.51
+ASH         N04         C05         N06     110.461    1.50
+ASH         C02         N06         C05     107.551    1.50
+ASH         C02         N06         C07     131.080    1.66
+ASH         C05         N06         C07     121.369    1.50
+ASH         N06         C07         C08     119.368    2.13
+ASH         N06         C07         H07     120.426    1.50
+ASH         C08         C07         H07     120.206    1.50
+ASH         C07         C08         N15     121.142    1.50
+ASH         C07         C08         C09     122.603    1.62
+ASH         N15         C08         C09     116.255    1.50
+ASH         C10         C09         C14     117.044    1.50
+ASH         C10         C09         C08     121.351    1.50
+ASH         C14         C09         C08     121.605    1.50
+ASH         C12         N13         C14     116.699    1.50
+ASH         C16         N15         C08     119.628    1.50
+ASH         C16         N17         C18     129.511    1.50
+ASH         C16         N17        HN17     115.551    1.50
+ASH         C18         N17        HN17     114.937    1.50
+ASH         C19         C18         N17     120.584    3.00
+ASH         C19         C18         C29     118.832    1.50
+ASH         N17         C18         C29     120.584    3.00
+ASH         C19         C20         C21     121.042    1.50
+ASH         C19         C20         H20     119.366    1.50
+ASH         C21         C20         H20     119.592    1.50
+ASH         C21         N22         C27     123.474    1.63
+ASH         C21         N22         C23     123.474    1.63
+ASH         C27         N22         C23     113.053    1.54
+ASH         C24         C23         N22     109.868    1.50
+ASH         C24         C23         H23     109.720    1.50
+ASH         C24         C23        H23A     109.720    1.50
+ASH         N22         C23         H23     109.710    1.50
+ASH         N22         C23        H23A     109.710    1.50
+ASH         H23         C23        H23A     108.247    1.50
+ASH         C24         O25         C26     109.829    1.50
+ASH         O25         C26         C27     111.654    1.50
+ASH         O25         C26         H26     109.195    1.50
+ASH         O25         C26        H26A     109.195    1.50
+ASH         C27         C26         H26     109.316    1.50
+ASH         C27         C26        H26A     109.316    1.50
+ASH         H26         C26        H26A     108.175    1.50
+ASH         N22         C27         C26     109.868    1.50
+ASH         N22         C27         H27     109.710    1.50
+ASH         N22         C27        H27A     109.710    1.50
+ASH         C26         C27         H27     109.720    1.50
+ASH         C26         C27        H27A     109.720    1.50
+ASH         H27         C27        H27A     108.247    1.50
+ASH         C21         C28         C29     121.042    1.50
+ASH         C21         C28         H28     119.592    1.50
+ASH         C29         C28         H28     119.366    1.50
+ASH         C18         C29         C28     120.033    1.50
+ASH         C18         C29         H29     119.994    1.50
+ASH         C28         C29         H29     119.973    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ASH              const_63         C09         C10         C11         C12       0.000    10.0     2
+ASH              const_27         C14         C09         C10         C11       0.000    10.0     2
+ASH       const_sp2_sp2_5         C02         C03         N04         C05       0.000     5.0     2
+ASH       const_sp2_sp2_8         C16         C05         N04         C03     180.000     5.0     2
+ASH              const_10         C16         C05         N06         C02     180.000    10.0     2
+ASH              const_18         C08         C07         N06         C02     180.000    10.0     2
+ASH              const_21         N06         C07         C08         N15       0.000    10.0     2
+ASH             sp2_sp2_9         C07         C08         C09         C10     180.000     5.0     2
+ASH              const_25         C07         C08         N15         C16       0.000    10.0     2
+ASH            sp2_sp2_13         C19         C18         N17         C16     180.000     5.0     2
+ASH              const_39         C10         C11         C12         N13       0.000    10.0     2
+ASH              const_49         N17         C18         C29         C28     180.000    10.0     2
+ASH             sp2_sp3_4         C21         N22         C23         C24     180.000    10.0     6
+ASH            sp2_sp3_10         C21         N22         C27         C26     180.000    10.0     6
+ASH            sp3_sp3_19         C27         C26         O25         C24      60.000    10.0     3
+ASH            sp3_sp3_10         O25         C26         C27         N22     -60.000    10.0     3
+ASH              const_51         C21         C28         C29         C18       0.000    10.0     2
+ASH              const_37         C11         C12         N13         C14       0.000    10.0     2
+ASH              const_31         C10         C09         C14         N13       0.000    10.0     2
+ASH              const_35         C09         C14         N13         C12       0.000    10.0     2
+ASH              const_16         N04         C05         C16         N17       0.000    10.0     2
+ASH              const_68         N17         C16         N15         C08     180.000    10.0     2
+ASH             sp2_sp2_1         C05         C16         N17         C18     180.000     5.0     2
+ASH              const_45         N17         C18         C19         C20     180.000    10.0     2
+ASH              const_69         C18         C19         C20         C21       0.000    10.0     2
+ASH              const_59         C19         C20         C21         C28       0.000    10.0     2
+ASH             sp2_sp2_5         C28         C21         N22         C27     180.000     5.0     2
+ASH              const_55         C20         C21         C28         C29       0.000    10.0     2
+ASH             sp3_sp3_1         N22         C23         C24         O25      60.000    10.0     3
+ASH            sp3_sp3_22         C23         C24         O25         C26     180.000    10.0     3
+ASH       const_sp2_sp2_3          CL         C02         C03         N04     180.000     5.0     2
+ASH              const_75          CL         C02         N06         C05     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ASH    plan-1         C02   0.020
+ASH    plan-1         C03   0.020
+ASH    plan-1         C05   0.020
+ASH    plan-1         C07   0.020
+ASH    plan-1         C08   0.020
+ASH    plan-1         C09   0.020
+ASH    plan-1         C16   0.020
+ASH    plan-1          CL   0.020
+ASH    plan-1         H03   0.020
+ASH    plan-1         H07   0.020
+ASH    plan-1         N04   0.020
+ASH    plan-1         N06   0.020
+ASH    plan-1         N15   0.020
+ASH    plan-1         N17   0.020
+ASH    plan-2         C08   0.020
+ASH    plan-2         C09   0.020
+ASH    plan-2         C10   0.020
+ASH    plan-2         C11   0.020
+ASH    plan-2         C12   0.020
+ASH    plan-2         C14   0.020
+ASH    plan-2         H10   0.020
+ASH    plan-2         H11   0.020
+ASH    plan-2         H12   0.020
+ASH    plan-2         H14   0.020
+ASH    plan-2         N13   0.020
+ASH    plan-3         C18   0.020
+ASH    plan-3         C19   0.020
+ASH    plan-3         C20   0.020
+ASH    plan-3         C21   0.020
+ASH    plan-3         C28   0.020
+ASH    plan-3         C29   0.020
+ASH    plan-3         H19   0.020
+ASH    plan-3         H20   0.020
+ASH    plan-3         H28   0.020
+ASH    plan-3         H29   0.020
+ASH    plan-3         N17   0.020
+ASH    plan-3         N22   0.020
+ASH    plan-4         C16   0.020
+ASH    plan-4         C18   0.020
+ASH    plan-4        HN17   0.020
+ASH    plan-4         N17   0.020
+ASH    plan-5         C21   0.020
+ASH    plan-5         C23   0.020
+ASH    plan-5         C27   0.020
+ASH    plan-5         N22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ASH           SMILES              ACDLabs 10.04                                                                                                    Clc1cnc2n1cc(nc2Nc4ccc(N3CCOCC3)cc4)c5cccnc5
+ASH SMILES_CANONICAL               CACTVS 3.352                                                                                                    Clc1cnc2n1cc(nc2Nc3ccc(cc3)N4CCOCC4)c5cccnc5
+ASH           SMILES               CACTVS 3.352                                                                                                    Clc1cnc2n1cc(nc2Nc3ccc(cc3)N4CCOCC4)c5cccnc5
+ASH SMILES_CANONICAL "OpenEye OEToolkits" 1.6.1                                                                                                c1cc(cnc1)c2cn3c(cnc3c(n2)Nc4ccc(cc4)N5CCOCC5)Cl
+ASH           SMILES "OpenEye OEToolkits" 1.6.1                                                                                                c1cc(cnc1)c2cn3c(cnc3c(n2)Nc4ccc(cc4)N5CCOCC5)Cl
+ASH            InChI                InChI  1.03 InChI=1S/C21H19ClN6O/c22-19-13-24-21-20(26-18(14-28(19)21)15-2-1-7-23-12-15)25-16-3-5-17(6-4-16)27-8-10-29-11-9-27/h1-7,12-14H,8-11H2,(H,25,26)
+ASH         InChIKey                InChI  1.03                                                                                                                     FXFAGYZXIGMEEG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ASH acedrg               243         "dictionary generator"                  
+ASH acedrg_database      11          "data source"                           
+ASH rdkit                2017.03.2   "Chemoinformatics tool"
+ASH refmac5              5.8.0238    "optimization tool"                     

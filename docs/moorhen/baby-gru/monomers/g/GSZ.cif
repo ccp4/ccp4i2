@@ -1,0 +1,362 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GSZ     GSZ      N-[(5R,6R,7R,8S)-6,7-DIHYDROXY-5-(HYDROXYMETHYL)-2-(2-PHENYLETHYL)-1,5,6,7,8,8A-HEXAHYDROIMIDAZO[1,2-A]PYRIDIN-8-YL]-2-METHYLPROPANAMIDE     NON-POLYMER     55     27     .     
+#
+data_comp_GSZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GSZ     CAZ     C       CH3     0       37.284      40.598      21.768      
+GSZ     CAN     C       CH1     0       36.625      41.970      21.743      
+GSZ     CBA     C       CH3     0       37.126      42.851      22.880      
+GSZ     CAL     C       C       0       35.111      41.842      21.808      
+GSZ     OAM     O       O       0       34.566      40.815      22.207      
+GSZ     NAK     N       NH1     0       34.427      42.939      21.418      
+GSZ     CAC     C       CH1     0       32.967      43.044      21.352      
+GSZ     CAB     C       CH1     0       32.313      42.992      22.742      
+GSZ     OAG     O       OH1     0       32.659      44.187      23.449      
+GSZ     CAA     C       CH1     0       30.804      42.862      22.644      
+GSZ     OAH     O       OH1     0       30.233      42.953      23.954      
+GSZ     CAF     C       CH1     0       30.388      41.553      21.966      
+GSZ     CAI     C       CH2     0       28.885      41.540      21.652      
+GSZ     OAJ     O       OH1     0       28.556      42.442      20.602      
+GSZ     NAE     N       NR5     1       31.178      41.347      20.746      
+GSZ     CAQ     C       CR15    0       30.923      40.481      19.713      
+GSZ     CAD     C       CR56    0       32.354      42.005      20.452      
+GSZ     NAO     N       NR5     0       32.800      41.554      19.239      
+GSZ     CAP     C       CR5     0       31.921      40.610      18.784      
+GSZ     CAR     C       CH2     0       32.086      39.902      17.481      
+GSZ     CAS     C       CH2     0       31.403      40.617      16.284      
+GSZ     CAT     C       CR6     0       29.949      40.944      16.526      
+GSZ     CAU     C       CR16    0       28.977      39.953      16.459      
+GSZ     CAV     C       CR16    0       27.640      40.252      16.692      
+GSZ     CAW     C       CR16    0       27.261      41.543      17.000      
+GSZ     CAX     C       CR16    0       28.215      42.535      17.076      
+GSZ     CAY     C       CR16    0       29.552      42.238      16.844      
+GSZ     HAZ1    H       H       0       36.867      40.023      21.103      
+GSZ     HAZ2    H       H       0       37.178      40.200      22.650      
+GSZ     HAZ3    H       H       0       38.231      40.691      21.566      
+GSZ     HAN     H       H       0       36.864      42.406      20.888      
+GSZ     HBA1    H       H       0       36.375      43.288      23.319      
+GSZ     HBA2    H       H       0       37.724      43.529      22.521      
+GSZ     HBA3    H       H       0       37.607      42.312      23.531      
+GSZ     HAK     H       H       0       34.892      43.636      21.194      
+GSZ     HAC     H       H       0       32.762      43.933      20.976      
+GSZ     HAB     H       H       0       32.666      42.218      23.241      
+GSZ     HAG     H       H       0       32.411      44.116      24.250      
+GSZ     HAA     H       H       0       30.460      43.615      22.105      
+GSZ     HAH     H       H       0       30.511      42.319      24.432      
+GSZ     HAF     H       H       0       30.576      40.812      22.595      
+GSZ     HAI1    H       H       0       28.381      41.786      22.455      
+GSZ     HAI2    H       H       0       28.615      40.634      21.392      
+GSZ     HAJ     H       H       0       27.734      42.357      20.411      
+GSZ     HAQ     H       H       0       30.182      39.904      19.650      
+GSZ     HAO     H       H       0       33.529      41.820      18.825      
+GSZ     HAR1    H       H       0       31.715      39.001      17.566      
+GSZ     HAR2    H       H       0       33.042      39.812      17.293      
+GSZ     HAS1    H       H       0       31.471      40.041      15.491      
+GSZ     HAS2    H       H       0       31.890      41.448      16.092      
+GSZ     HAU     H       H       0       29.229      39.068      16.249      
+GSZ     HAV     H       H       0       26.990      39.570      16.638      
+GSZ     HAW     H       H       0       26.353      41.746      17.157      
+GSZ     HAX     H       H       0       27.959      43.419      17.286      
+GSZ     HAY     H       H       0       30.199      42.923      16.898      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GSZ         CAZ         CAN      SINGLE       n     1.516  0.0135     1.516  0.0135
+GSZ         CAN         CBA      SINGLE       n     1.516  0.0135     1.516  0.0135
+GSZ         CAN         CAL      SINGLE       n     1.516  0.0100     1.516  0.0100
+GSZ         CAL         OAM      DOUBLE       n     1.227  0.0100     1.227  0.0100
+GSZ         CAL         NAK      SINGLE       n     1.343  0.0102     1.343  0.0102
+GSZ         NAK         CAC      SINGLE       n     1.459  0.0100     1.459  0.0100
+GSZ         CAC         CAB      SINGLE       n     1.532  0.0111     1.532  0.0111
+GSZ         CAC         CAD      SINGLE       n     1.503  0.0100     1.503  0.0100
+GSZ         CAB         OAG      SINGLE       n     1.431  0.0107     1.431  0.0107
+GSZ         CAB         CAA      SINGLE       n     1.515  0.0100     1.515  0.0100
+GSZ         CAA         OAH      SINGLE       n     1.431  0.0107     1.431  0.0107
+GSZ         CAA         CAF      SINGLE       n     1.528  0.0100     1.528  0.0100
+GSZ         CAF         CAI      SINGLE       n     1.533  0.0100     1.533  0.0100
+GSZ         CAF         NAE      SINGLE       n     1.464  0.0100     1.464  0.0100
+GSZ         CAI         OAJ      SINGLE       n     1.422  0.0134     1.422  0.0134
+GSZ         NAE         CAQ      SINGLE       y     1.373  0.0166     1.373  0.0166
+GSZ         NAE         CAD      DOUBLE       y     1.378  0.0200     1.378  0.0200
+GSZ         CAQ         CAP      DOUBLE       y     1.369  0.0129     1.369  0.0129
+GSZ         CAD         NAO      SINGLE       y     1.367  0.0200     1.367  0.0200
+GSZ         NAO         CAP      SINGLE       y     1.367  0.0119     1.367  0.0119
+GSZ         CAP         CAR      SINGLE       n     1.491  0.0100     1.491  0.0100
+GSZ         CAR         CAS      SINGLE       n     1.546  0.0200     1.546  0.0200
+GSZ         CAS         CAT      SINGLE       n     1.509  0.0100     1.509  0.0100
+GSZ         CAT         CAU      DOUBLE       y     1.385  0.0111     1.385  0.0111
+GSZ         CAT         CAY      SINGLE       y     1.385  0.0111     1.385  0.0111
+GSZ         CAU         CAV      SINGLE       y     1.386  0.0100     1.386  0.0100
+GSZ         CAV         CAW      DOUBLE       y     1.376  0.0124     1.376  0.0124
+GSZ         CAW         CAX      SINGLE       y     1.374  0.0127     1.374  0.0127
+GSZ         CAX         CAY      DOUBLE       y     1.386  0.0100     1.386  0.0100
+GSZ         CAZ        HAZ1      SINGLE       n     1.089  0.0100     0.973  0.0141
+GSZ         CAZ        HAZ2      SINGLE       n     1.089  0.0100     0.973  0.0141
+GSZ         CAZ        HAZ3      SINGLE       n     1.089  0.0100     0.973  0.0141
+GSZ         CAN         HAN      SINGLE       n     1.089  0.0100     0.989  0.0184
+GSZ         CBA        HBA1      SINGLE       n     1.089  0.0100     0.973  0.0141
+GSZ         CBA        HBA2      SINGLE       n     1.089  0.0100     0.973  0.0141
+GSZ         CBA        HBA3      SINGLE       n     1.089  0.0100     0.973  0.0141
+GSZ         NAK         HAK      SINGLE       n     1.016  0.0100     0.866  0.0200
+GSZ         CAC         HAC      SINGLE       n     1.089  0.0100     0.987  0.0137
+GSZ         CAB         HAB      SINGLE       n     1.089  0.0100     0.988  0.0151
+GSZ         OAG         HAG      SINGLE       n     0.970  0.0120     0.841  0.0200
+GSZ         CAA         HAA      SINGLE       n     1.089  0.0100     0.988  0.0151
+GSZ         OAH         HAH      SINGLE       n     0.970  0.0120     0.841  0.0200
+GSZ         CAF         HAF      SINGLE       n     1.089  0.0100     0.990  0.0168
+GSZ         CAI        HAI1      SINGLE       n     1.089  0.0100     0.980  0.0159
+GSZ         CAI        HAI2      SINGLE       n     1.089  0.0100     0.980  0.0159
+GSZ         OAJ         HAJ      SINGLE       n     0.970  0.0120     0.848  0.0200
+GSZ         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.942  0.0152
+GSZ         NAO         HAO      SINGLE       n     1.016  0.0100     0.880  0.0200
+GSZ         CAR        HAR1      SINGLE       n     1.089  0.0100     0.978  0.0121
+GSZ         CAR        HAR2      SINGLE       n     1.089  0.0100     0.978  0.0121
+GSZ         CAS        HAS1      SINGLE       n     1.089  0.0100     0.982  0.0102
+GSZ         CAS        HAS2      SINGLE       n     1.089  0.0100     0.982  0.0102
+GSZ         CAU         HAU      SINGLE       n     1.082  0.0130     0.944  0.0174
+GSZ         CAV         HAV      SINGLE       n     1.082  0.0130     0.944  0.0175
+GSZ         CAW         HAW      SINGLE       n     1.082  0.0130     0.944  0.0161
+GSZ         CAX         HAX      SINGLE       n     1.082  0.0130     0.944  0.0175
+GSZ         CAY         HAY      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GSZ         CAN         CAZ        HAZ1     109.497    1.50
+GSZ         CAN         CAZ        HAZ2     109.497    1.50
+GSZ         CAN         CAZ        HAZ3     109.497    1.50
+GSZ        HAZ1         CAZ        HAZ2     109.411    1.50
+GSZ        HAZ1         CAZ        HAZ3     109.411    1.50
+GSZ        HAZ2         CAZ        HAZ3     109.411    1.50
+GSZ         CAZ         CAN         CBA     111.110    1.50
+GSZ         CAZ         CAN         CAL     109.612    1.75
+GSZ         CAZ         CAN         HAN     108.717    1.50
+GSZ         CBA         CAN         CAL     109.612    1.75
+GSZ         CBA         CAN         HAN     108.717    1.50
+GSZ         CAL         CAN         HAN     108.868    1.50
+GSZ         CAN         CBA        HBA1     109.497    1.50
+GSZ         CAN         CBA        HBA2     109.497    1.50
+GSZ         CAN         CBA        HBA3     109.497    1.50
+GSZ        HBA1         CBA        HBA2     109.411    1.50
+GSZ        HBA1         CBA        HBA3     109.411    1.50
+GSZ        HBA2         CBA        HBA3     109.411    1.50
+GSZ         CAN         CAL         OAM     121.754    1.50
+GSZ         CAN         CAL         NAK     115.838    1.98
+GSZ         OAM         CAL         NAK     122.408    1.56
+GSZ         CAL         NAK         CAC     122.746    1.50
+GSZ         CAL         NAK         HAK     118.326    2.17
+GSZ         CAC         NAK         HAK     118.928    1.50
+GSZ         NAK         CAC         CAB     110.829    2.03
+GSZ         NAK         CAC         CAD     109.471    3.00
+GSZ         NAK         CAC         HAC     107.675    1.50
+GSZ         CAB         CAC         CAD     109.233    1.61
+GSZ         CAB         CAC         HAC     108.050    1.89
+GSZ         CAD         CAC         HAC     108.874    1.50
+GSZ         CAC         CAB         OAG     108.845    1.54
+GSZ         CAC         CAB         CAA     111.124    1.57
+GSZ         CAC         CAB         HAB     108.804    1.50
+GSZ         OAG         CAB         CAA     110.081    2.02
+GSZ         OAG         CAB         HAB     108.790    1.50
+GSZ         CAA         CAB         HAB     109.166    1.50
+GSZ         CAB         OAG         HAG     109.099    3.00
+GSZ         CAB         CAA         OAH     110.081    2.02
+GSZ         CAB         CAA         CAF     111.928    1.50
+GSZ         CAB         CAA         HAA     109.166    1.50
+GSZ         OAH         CAA         CAF     110.894    1.50
+GSZ         OAH         CAA         HAA     108.790    1.50
+GSZ         CAF         CAA         HAA     108.977    1.50
+GSZ         CAA         OAH         HAH     109.099    3.00
+GSZ         CAA         CAF         CAI     111.163    2.25
+GSZ         CAA         CAF         NAE     108.748    1.59
+GSZ         CAA         CAF         HAF     107.612    1.50
+GSZ         CAI         CAF         NAE     110.288    1.50
+GSZ         CAI         CAF         HAF     107.898    1.50
+GSZ         NAE         CAF         HAF     108.535    1.50
+GSZ         CAF         CAI         OAJ     111.669    2.74
+GSZ         CAF         CAI        HAI1     109.529    1.50
+GSZ         CAF         CAI        HAI2     109.529    1.50
+GSZ         OAJ         CAI        HAI1     109.275    1.50
+GSZ         OAJ         CAI        HAI2     109.275    1.50
+GSZ        HAI1         CAI        HAI2     108.230    1.50
+GSZ         CAI         OAJ         HAJ     109.039    2.77
+GSZ         CAF         NAE         CAQ     127.350    2.38
+GSZ         CAF         NAE         CAD     124.561    1.85
+GSZ         CAQ         NAE         CAD     108.089    1.50
+GSZ         NAE         CAQ         CAP     108.487    1.50
+GSZ         NAE         CAQ         HAQ     125.673    1.50
+GSZ         CAP         CAQ         HAQ     125.840    1.50
+GSZ         CAC         CAD         NAE     123.458    1.50
+GSZ         CAC         CAD         NAO     128.643    1.77
+GSZ         NAE         CAD         NAO     107.900    1.50
+GSZ         CAD         NAO         CAP     107.944    1.50
+GSZ         CAD         NAO         HAO     126.133    1.73
+GSZ         CAP         NAO         HAO     125.924    1.76
+GSZ         CAQ         CAP         NAO     107.581    1.50
+GSZ         CAQ         CAP         CAR     129.271    2.31
+GSZ         NAO         CAP         CAR     123.148    1.50
+GSZ         CAP         CAR         CAS     113.880    2.07
+GSZ         CAP         CAR        HAR1     108.808    1.50
+GSZ         CAP         CAR        HAR2     108.808    1.50
+GSZ         CAS         CAR        HAR1     109.039    1.50
+GSZ         CAS         CAR        HAR2     109.039    1.50
+GSZ        HAR1         CAR        HAR2     107.724    1.50
+GSZ         CAR         CAS         CAT     113.028    3.00
+GSZ         CAR         CAS        HAS1     108.908    1.50
+GSZ         CAR         CAS        HAS2     108.908    1.50
+GSZ         CAT         CAS        HAS1     108.988    1.50
+GSZ         CAT         CAS        HAS2     108.988    1.50
+GSZ        HAS1         CAS        HAS2     107.772    1.50
+GSZ         CAS         CAT         CAU     120.970    1.80
+GSZ         CAS         CAT         CAY     120.970    1.80
+GSZ         CAU         CAT         CAY     118.060    1.50
+GSZ         CAT         CAU         CAV     120.624    1.50
+GSZ         CAT         CAU         HAU     119.591    1.50
+GSZ         CAV         CAU         HAU     119.786    1.50
+GSZ         CAU         CAV         CAW     120.325    1.50
+GSZ         CAU         CAV         HAV     119.792    1.50
+GSZ         CAW         CAV         HAV     119.883    1.50
+GSZ         CAV         CAW         CAX     120.043    1.50
+GSZ         CAV         CAW         HAW     119.979    1.50
+GSZ         CAX         CAW         HAW     119.979    1.50
+GSZ         CAW         CAX         CAY     120.325    1.50
+GSZ         CAW         CAX         HAX     119.883    1.50
+GSZ         CAY         CAX         HAX     119.792    1.50
+GSZ         CAT         CAY         CAX     120.624    1.50
+GSZ         CAT         CAY         HAY     119.591    1.50
+GSZ         CAX         CAY         HAY     119.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GSZ            sp3_sp3_31         CBA         CAN         CAZ        HAZ1      60.000    10.0     3
+GSZ            sp3_sp3_52         CAA         CAF         CAI         OAJ     180.000    10.0     3
+GSZ             sp2_sp3_5         CAQ         NAE         CAF         CAI     -60.000    10.0     6
+GSZ            sp3_sp3_61         CAF         CAI         OAJ         HAJ     180.000    10.0     3
+GSZ       const_sp2_sp2_6         CAP         CAQ         NAE         CAF     180.000     5.0     2
+GSZ       const_sp2_sp2_1         CAC         CAD         NAE         CAF       0.000     5.0     2
+GSZ              const_11         CAR         CAP         CAQ         NAE     180.000    10.0     2
+GSZ              const_19         CAC         CAD         NAO         CAP     180.000    10.0     2
+GSZ              const_15         CAR         CAP         NAO         CAD     180.000    10.0     2
+GSZ            sp2_sp3_26         CAQ         CAP         CAR         CAS     -90.000    10.0     6
+GSZ            sp3_sp3_64         CAP         CAR         CAS         CAT     180.000    10.0     3
+GSZ            sp3_sp3_37         CAZ         CAN         CBA        HBA1     180.000    10.0     3
+GSZ             sp2_sp3_8         OAM         CAL         CAN         CAZ     120.000    10.0     6
+GSZ            sp2_sp3_32         CAU         CAT         CAS         CAR     -90.000    10.0     6
+GSZ              const_23         CAS         CAT         CAU         CAV     180.000    10.0     2
+GSZ              const_43         CAS         CAT         CAY         CAX     180.000    10.0     2
+GSZ              const_25         CAT         CAU         CAV         CAW       0.000    10.0     2
+GSZ              const_29         CAU         CAV         CAW         CAX       0.000    10.0     2
+GSZ              const_33         CAV         CAW         CAX         CAY       0.000    10.0     2
+GSZ              const_37         CAW         CAX         CAY         CAT       0.000    10.0     2
+GSZ             sp2_sp2_1         CAN         CAL         NAK         CAC     180.000     5.0     2
+GSZ            sp2_sp3_13         CAL         NAK         CAC         CAB       0.000    10.0     6
+GSZ            sp2_sp3_20         NAE         CAD         CAC         NAK     120.000    10.0     6
+GSZ             sp3_sp3_5         OAG         CAB         CAC         NAK      60.000    10.0     3
+GSZ            sp3_sp3_46         CAC         CAB         OAG         HAG     180.000    10.0     3
+GSZ            sp3_sp3_14         OAH         CAA         CAB         OAG     -60.000    10.0     3
+GSZ            sp3_sp3_49         CAB         CAA         OAH         HAH     180.000    10.0     3
+GSZ            sp3_sp3_23         OAH         CAA         CAF         CAI      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GSZ    chir_1    CAN    CAL    CAZ    CBA    both
+GSZ    chir_2    CAC    NAK    CAB    CAD    positive
+GSZ    chir_3    CAB    OAG    CAA    CAC    negative
+GSZ    chir_4    CAA    OAH    CAB    CAF    negative
+GSZ    chir_5    CAF    NAE    CAA    CAI    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GSZ    plan-1         CAC   0.020
+GSZ    plan-1         CAD   0.020
+GSZ    plan-1         CAF   0.020
+GSZ    plan-1         CAP   0.020
+GSZ    plan-1         CAQ   0.020
+GSZ    plan-1         CAR   0.020
+GSZ    plan-1         HAO   0.020
+GSZ    plan-1         HAQ   0.020
+GSZ    plan-1         NAE   0.020
+GSZ    plan-1         NAO   0.020
+GSZ    plan-2         CAS   0.020
+GSZ    plan-2         CAT   0.020
+GSZ    plan-2         CAU   0.020
+GSZ    plan-2         CAV   0.020
+GSZ    plan-2         CAW   0.020
+GSZ    plan-2         CAX   0.020
+GSZ    plan-2         CAY   0.020
+GSZ    plan-2         HAU   0.020
+GSZ    plan-2         HAV   0.020
+GSZ    plan-2         HAW   0.020
+GSZ    plan-2         HAX   0.020
+GSZ    plan-2         HAY   0.020
+GSZ    plan-3         CAL   0.020
+GSZ    plan-3         CAN   0.020
+GSZ    plan-3         NAK   0.020
+GSZ    plan-3         OAM   0.020
+GSZ    plan-4         CAC   0.020
+GSZ    plan-4         CAL   0.020
+GSZ    plan-4         HAK   0.020
+GSZ    plan-4         NAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GSZ           SMILES              ACDLabs 10.04                                                                                                                                 O=C(NC3c1[n+](cc(n1)CCc2ccccc2)C(C(O)C3O)CO)C(C)C
+GSZ SMILES_CANONICAL               CACTVS 3.341                                                                                                           CC(C)C(=O)N[C@@H]1[C@@H](O)[C@H](O)[C@@H](CO)[n+]2cc(CCc3ccccc3)[nH]c12
+GSZ           SMILES               CACTVS 3.341                                                                                                                  CC(C)C(=O)N[CH]1[CH](O)[CH](O)[CH](CO)[n+]2cc(CCc3ccccc3)[nH]c12
+GSZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                              CC(C)C(=O)N[C@H]1c2[nH]c(c[n+]2[C@@H]([C@H]([C@@H]1O)O)CO)CCc3ccccc3
+GSZ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                CC(C)C(=O)NC1c2[nH]c(c[n+]2C(C(C1O)O)CO)CCc3ccccc3
+GSZ            InChI                InChI  1.03 InChI=1S/C20H27N3O4/c1-12(2)20(27)22-16-18(26)17(25)15(11-24)23-10-14(21-19(16)23)9-8-13-6-4-3-5-7-13/h3-7,10,12,15-18,24-26H,8-9,11H2,1-2H3,(H,22,27)/p+1/t15-,16-,17-,18-/m1/s1
+GSZ         InChIKey                InChI  1.03                                                                                                                                                       YCPLHXLUOSXDJD-BRSBDYLESA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GSZ acedrg               243         "dictionary generator"                  
+GSZ acedrg_database      11          "data source"                           
+GSZ rdkit                2017.03.2   "Chemoinformatics tool"
+GSZ refmac5              5.8.0238    "optimization tool"                     

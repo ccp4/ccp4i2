@@ -1,0 +1,370 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GNI     GNI      "(3-{4-[2-(2,4-DICHLORO-PHENOXY)-ETHYLCARBAMOYL]-5-PHENYL-ISOXAZOL-3-YL}-PHENYL)-ACETIC ACID"     NON-POLYMER     54     35     .     
+#
+data_comp_GNI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GNI     O11     O       O       0       -1.195      -6.088      1.774       
+GNI     C10     C       C       0       -1.422      -6.522      0.638       
+GNI     N20     N       NRD5    0       -4.819      -6.286      -0.672      
+GNI     C21     C       CR5     0       -3.914      -6.840      0.094       
+GNI     C28     C       CR6     0       -2.833      -13.055     2.644       
+GNI     C27     C       CR16    0       -2.955      -12.750     1.298       
+GNI     C26     C       CR6     0       -2.170      -11.743     0.768       
+GNI     C25     C       CR6     0       -1.266      -11.029     1.560       
+GNI     C24     C       CR16    0       -1.164      -11.365     2.912       
+GNI     C23     C       CR16    0       -1.951      -12.375     3.450       
+GNI     C13     C       CR5     0       -2.876      -5.198      -0.964      
+GNI     C14     C       CR6     0       -2.044      -4.161      -1.575      
+GNI     C19     C       CR16    0       -2.080      -3.937      -2.950      
+GNI     C18     C       CR16    0       -1.286      -2.955      -3.523      
+GNI     C17     C       CR16    0       -0.449      -2.190      -2.736      
+GNI     C16     C       CR16    0       -0.403      -2.404      -1.374      
+GNI     C15     C       CR16    0       -1.193      -3.384      -0.792      
+GNI     N9      N       NH1     0       -0.582      -7.357      0.021       
+GNI     C8      C       CH2     0       0.566       -7.968      0.677       
+GNI     C7      C       CH2     0       0.158       -9.050      1.646       
+GNI     C5      C       CR16    0       -5.047      -10.158     2.530       
+GNI     C4      C       CR16    0       -5.432      -10.108     1.199       
+GNI     C3      C       CR16    0       -5.067      -9.035      0.405       
+GNI     C30     C       CR6     0       -4.288      -9.129      3.094       
+GNI     C31     C       CR16    0       -3.932      -8.054      2.278       
+GNI     O       O       O       0       -4.479      -7.148      5.625       
+GNI     C       C       C       0       -4.753      -8.351      5.465       
+GNI     O3      O       OC      -1      -5.712      -8.921      6.015       
+GNI     C2      C       CH2     0       -3.862      -9.174      4.541       
+GNI     C9      C       CR6     0       -4.313      -7.989      0.937       
+GNI     O13     O       O2      0       -4.172      -5.233      -1.357      
+GNI     C12     C       CR5     0       -2.677      -6.192      -0.055      
+GNI     O21     O       O2      0       -0.541      -10.061     0.911       
+GNI     CL26    CL      CL      0       -3.816      -14.319     3.319       
+GNI     CL29    CL      CL      0       -2.323      -11.362     -0.915      
+GNI     H27     H       H       0       -3.558      -13.216     0.754       
+GNI     H24     H       H       0       -0.565      -10.907     3.465       
+GNI     H23     H       H       0       -1.878      -12.593     4.361       
+GNI     H19     H       H       0       -2.649      -4.456      -3.493      
+GNI     H18     H       H       0       -1.320      -2.811      -4.454      
+GNI     H17     H       H       0       0.090       -1.522      -3.129      
+GNI     H16     H       H       0       0.168       -1.882      -0.834      
+GNI     H15     H       H       0       -1.156      -3.524      0.138       
+GNI     H9      H       H       0       -0.716      -7.550      -0.821      
+GNI     H8C1    H       H       0       1.071       -7.278      1.160       
+GNI     H8C2    H       H       0       1.154       -8.357      -0.005      
+GNI     H7C1    H       H       0       -0.419      -8.673      2.339       
+GNI     H7C2    H       H       0       0.951       -9.430      2.071       
+GNI     H5      H       H       0       -5.301      -10.895     3.063       
+GNI     H4      H       H       0       -5.945      -10.811     0.831       
+GNI     H3      H       H       0       -5.332      -9.008      -0.497      
+GNI     H31     H       H       0       -3.417      -7.352      2.646       
+GNI     H2C1    H       H       0       -2.947      -8.845      4.614       
+GNI     H2C2    H       H       0       -3.868      -10.100     4.845       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GNI         O11         C10      DOUBLE       n     1.235  0.0149     1.235  0.0149
+GNI         C10          N9      SINGLE       n     1.332  0.0105     1.332  0.0105
+GNI         C10         C12      SINGLE       n     1.469  0.0167     1.469  0.0167
+GNI         N20         C21      DOUBLE       y     1.308  0.0100     1.308  0.0100
+GNI         N20         O13      SINGLE       y     1.412  0.0100     1.412  0.0100
+GNI         C21          C9      SINGLE       n     1.478  0.0100     1.478  0.0100
+GNI         C21         C12      SINGLE       y     1.403  0.0200     1.403  0.0200
+GNI         C28         C27      DOUBLE       y     1.383  0.0100     1.383  0.0100
+GNI         C28         C23      SINGLE       y     1.373  0.0100     1.373  0.0100
+GNI         C28        CL26      SINGLE       n     1.738  0.0100     1.738  0.0100
+GNI         C27         C26      SINGLE       y     1.379  0.0100     1.379  0.0100
+GNI         C26         C25      DOUBLE       y     1.392  0.0100     1.392  0.0100
+GNI         C26        CL29      SINGLE       n     1.731  0.0100     1.731  0.0100
+GNI         C25         C24      SINGLE       y     1.389  0.0100     1.389  0.0100
+GNI         C25         O21      SINGLE       n     1.367  0.0103     1.367  0.0103
+GNI         C24         C23      DOUBLE       y     1.385  0.0100     1.385  0.0100
+GNI         C13         C14      SINGLE       n     1.463  0.0100     1.463  0.0100
+GNI         C13         O13      SINGLE       y     1.354  0.0100     1.354  0.0100
+GNI         C13         C12      DOUBLE       y     1.362  0.0100     1.362  0.0100
+GNI         C14         C19      DOUBLE       y     1.390  0.0100     1.390  0.0100
+GNI         C14         C15      SINGLE       y     1.390  0.0100     1.390  0.0100
+GNI         C19         C18      SINGLE       y     1.383  0.0100     1.383  0.0100
+GNI         C18         C17      DOUBLE       y     1.376  0.0124     1.376  0.0124
+GNI         C17         C16      SINGLE       y     1.376  0.0114     1.376  0.0114
+GNI         C16         C15      DOUBLE       y     1.383  0.0100     1.383  0.0100
+GNI          N9          C8      SINGLE       n     1.455  0.0100     1.455  0.0100
+GNI          C8          C7      SINGLE       n     1.508  0.0100     1.508  0.0100
+GNI          C7         O21      SINGLE       n     1.430  0.0100     1.430  0.0100
+GNI          C5          C4      DOUBLE       y     1.383  0.0105     1.383  0.0105
+GNI          C5         C30      SINGLE       y     1.394  0.0100     1.394  0.0100
+GNI          C4          C3      SINGLE       y     1.383  0.0100     1.383  0.0100
+GNI          C3          C9      DOUBLE       y     1.391  0.0100     1.391  0.0100
+GNI         C30         C31      DOUBLE       y     1.388  0.0120     1.388  0.0120
+GNI         C30          C2      SINGLE       n     1.509  0.0100     1.509  0.0100
+GNI         C31          C9      SINGLE       y     1.391  0.0100     1.391  0.0100
+GNI           O           C      DOUBLE       n     1.244  0.0200     1.244  0.0200
+GNI           C          O3      SINGLE       n     1.244  0.0200     1.244  0.0200
+GNI           C          C2      SINGLE       n     1.525  0.0126     1.525  0.0126
+GNI         C27         H27      SINGLE       n     1.082  0.0130     0.937  0.0113
+GNI         C24         H24      SINGLE       n     1.082  0.0130     0.935  0.0105
+GNI         C23         H23      SINGLE       n     1.082  0.0130     0.939  0.0186
+GNI         C19         H19      SINGLE       n     1.082  0.0130     0.942  0.0133
+GNI         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0180
+GNI         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0161
+GNI         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0180
+GNI         C15         H15      SINGLE       n     1.082  0.0130     0.942  0.0133
+GNI          N9          H9      SINGLE       n     1.016  0.0100     0.873  0.0200
+GNI          C8        H8C1      SINGLE       n     1.089  0.0100     0.982  0.0177
+GNI          C8        H8C2      SINGLE       n     1.089  0.0100     0.982  0.0177
+GNI          C7        H7C1      SINGLE       n     1.089  0.0100     0.977  0.0111
+GNI          C7        H7C2      SINGLE       n     1.089  0.0100     0.977  0.0111
+GNI          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0174
+GNI          C4          H4      SINGLE       n     1.082  0.0130     0.945  0.0184
+GNI          C3          H3      SINGLE       n     1.082  0.0130     0.940  0.0143
+GNI         C31         H31      SINGLE       n     1.082  0.0130     0.946  0.0200
+GNI          C2        H2C1      SINGLE       n     1.089  0.0100     0.975  0.0113
+GNI          C2        H2C2      SINGLE       n     1.089  0.0100     0.975  0.0113
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GNI         O11         C10          N9     121.373    1.50
+GNI         O11         C10         C12     121.334    1.50
+GNI          N9         C10         C12     117.293    2.07
+GNI         C21         N20         O13     106.195    1.50
+GNI         N20         C21          C9     118.081    1.50
+GNI         N20         C21         C12     110.776    1.50
+GNI          C9         C21         C12     131.142    1.50
+GNI         C27         C28         C23     121.523    1.50
+GNI         C27         C28        CL26     119.016    1.50
+GNI         C23         C28        CL26     119.461    1.50
+GNI         C28         C27         C26     119.042    1.50
+GNI         C28         C27         H27     120.681    1.50
+GNI         C26         C27         H27     120.278    1.50
+GNI         C27         C26         C25     121.407    1.50
+GNI         C27         C26        CL29     119.331    1.50
+GNI         C25         C26        CL29     119.261    1.50
+GNI         C26         C25         C24     118.424    1.50
+GNI         C26         C25         O21     116.391    1.50
+GNI         C24         C25         O21     125.185    1.50
+GNI         C25         C24         C23     120.061    1.50
+GNI         C25         C24         H24     119.983    1.50
+GNI         C23         C24         H24     119.955    1.50
+GNI         C28         C23         C24     119.543    1.50
+GNI         C28         C23         H23     120.306    1.50
+GNI         C24         C23         H23     120.151    1.50
+GNI         C14         C13         O13     115.877    1.50
+GNI         C14         C13         C12     135.632    1.50
+GNI         O13         C13         C12     108.491    1.50
+GNI         C13         C14         C19     120.685    1.50
+GNI         C13         C14         C15     120.685    1.50
+GNI         C19         C14         C15     118.629    1.50
+GNI         C14         C19         C18     120.393    1.50
+GNI         C14         C19         H19     119.734    1.50
+GNI         C18         C19         H19     119.873    1.50
+GNI         C19         C18         C17     120.343    1.50
+GNI         C19         C18         H18     119.728    1.50
+GNI         C17         C18         H18     119.929    1.50
+GNI         C18         C17         C16     119.899    1.50
+GNI         C18         C17         H17     120.051    1.50
+GNI         C16         C17         H17     120.051    1.50
+GNI         C17         C16         C15     120.343    1.50
+GNI         C17         C16         H16     119.929    1.50
+GNI         C15         C16         H16     119.728    1.50
+GNI         C14         C15         C16     120.393    1.50
+GNI         C14         C15         H15     119.734    1.50
+GNI         C16         C15         H15     119.873    1.50
+GNI         C10          N9          C8     122.324    2.29
+GNI         C10          N9          H9     119.281    1.50
+GNI          C8          N9          H9     118.411    1.89
+GNI          N9          C8          C7     112.618    1.50
+GNI          N9          C8        H8C1     109.052    1.50
+GNI          N9          C8        H8C2     109.052    1.50
+GNI          C7          C8        H8C1     108.969    1.50
+GNI          C7          C8        H8C2     108.969    1.50
+GNI        H8C1          C8        H8C2     108.238    1.99
+GNI          C8          C7         O21     108.315    1.50
+GNI          C8          C7        H7C1     109.867    1.50
+GNI          C8          C7        H7C2     109.867    1.50
+GNI         O21          C7        H7C1     110.215    1.50
+GNI         O21          C7        H7C2     110.215    1.50
+GNI        H7C1          C7        H7C2     108.672    1.50
+GNI          C4          C5         C30     120.713    1.50
+GNI          C4          C5          H5     119.741    1.50
+GNI         C30          C5          H5     119.546    1.50
+GNI          C5          C4          C3     120.824    1.50
+GNI          C5          C4          H4     119.643    1.50
+GNI          C3          C4          H4     119.533    1.50
+GNI          C4          C3          C9     120.859    1.50
+GNI          C4          C3          H3     119.647    1.50
+GNI          C9          C3          H3     119.493    1.50
+GNI          C5         C30         C31     117.397    1.50
+GNI          C5         C30          C2     121.468    1.50
+GNI         C31         C30          C2     121.134    1.50
+GNI         C30         C31          C9     121.259    1.50
+GNI         C30         C31         H31     119.176    1.50
+GNI          C9         C31         H31     119.566    1.50
+GNI           O           C          O3     123.770    1.50
+GNI           O           C          C2     118.115    1.50
+GNI          O3           C          C2     118.115    1.50
+GNI         C30          C2           C     113.444    2.96
+GNI         C30          C2        H2C1     109.081    1.50
+GNI         C30          C2        H2C2     109.081    1.50
+GNI           C          C2        H2C1     108.710    1.50
+GNI           C          C2        H2C2     108.710    1.50
+GNI        H2C1          C2        H2C2     107.676    1.52
+GNI         C21          C9          C3     120.421    1.50
+GNI         C21          C9         C31     120.632    1.50
+GNI          C3          C9         C31     118.947    1.50
+GNI         N20         O13         C13     108.409    1.50
+GNI         C10         C12         C21     126.935    3.00
+GNI         C10         C12         C13     126.935    3.00
+GNI         C21         C12         C13     106.129    1.50
+GNI         C25         O21          C7     117.464    1.77
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GNI            sp2_sp2_17         O13         C13         C14         C19       0.000     5.0     2
+GNI              const_12         C14         C13         O13         N20     180.000    10.0     2
+GNI              const_10         C10         C12         C13         C14       0.000    10.0     2
+GNI              const_15         C13         C14         C19         C18     180.000    10.0     2
+GNI              const_80         C13         C14         C15         C16     180.000    10.0     2
+GNI              const_17         C17         C18         C19         C14       0.000    10.0     2
+GNI              const_21         C16         C17         C18         C19       0.000    10.0     2
+GNI              const_25         C15         C16         C17         C18       0.000    10.0     2
+GNI              const_29         C14         C15         C16         C17       0.000    10.0     2
+GNI             sp2_sp3_2         C10          N9          C8          C7     120.000    10.0     6
+GNI             sp3_sp3_1         O21          C7          C8          N9     180.000    10.0     3
+GNI            sp3_sp3_10          C8          C7         O21         C25     180.000    10.0     3
+GNI             sp2_sp2_3         O11         C10          N9          C8       0.000     5.0     2
+GNI             sp2_sp2_7         O11         C10         C12         C21       0.000     5.0     2
+GNI              const_53          C3          C4          C5         C30       0.000    10.0     2
+GNI              const_84          C2         C30          C5          C4     180.000    10.0     2
+GNI              const_57          C9          C3          C4          C5       0.000    10.0     2
+GNI              const_62          C4          C3          C9         C21     180.000    10.0     2
+GNI              const_71          C2         C30         C31          C9     180.000    10.0     2
+GNI             sp2_sp3_8          C5         C30          C2           C     -90.000    10.0     6
+GNI              const_66         C30         C31          C9         C21     180.000    10.0     2
+GNI            sp2_sp3_14           O           C          C2         C30     120.000    10.0     6
+GNI       const_sp2_sp2_2          C9         C21         N20         O13     180.000     5.0     2
+GNI              const_73         C21         N20         O13         C13       0.000    10.0     2
+GNI            sp2_sp2_11         N20         C21          C9          C3       0.000     5.0     2
+GNI       const_sp2_sp2_5         C10         C12         C21         N20     180.000     5.0     2
+GNI              const_34         C26         C27         C28        CL26     180.000    10.0     2
+GNI              const_75         C24         C23         C28        CL26     180.000    10.0     2
+GNI              const_39        CL29         C26         C27         C28     180.000    10.0     2
+GNI              const_44         O21         C25         C26        CL29       0.000    10.0     2
+GNI            sp2_sp2_13         C26         C25         O21          C7     180.000     5.0     2
+GNI              const_46         C23         C24         C25         O21     180.000    10.0     2
+GNI              const_49         C28         C23         C24         C25       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GNI    plan-1         C10   0.020
+GNI    plan-1         C12   0.020
+GNI    plan-1         C13   0.020
+GNI    plan-1         C14   0.020
+GNI    plan-1         C21   0.020
+GNI    plan-1          C9   0.020
+GNI    plan-1         N20   0.020
+GNI    plan-1         O13   0.020
+GNI    plan-2         C13   0.020
+GNI    plan-2         C14   0.020
+GNI    plan-2         C15   0.020
+GNI    plan-2         C16   0.020
+GNI    plan-2         C17   0.020
+GNI    plan-2         C18   0.020
+GNI    plan-2         C19   0.020
+GNI    plan-2         H15   0.020
+GNI    plan-2         H16   0.020
+GNI    plan-2         H17   0.020
+GNI    plan-2         H18   0.020
+GNI    plan-2         H19   0.020
+GNI    plan-3          C2   0.020
+GNI    plan-3         C21   0.020
+GNI    plan-3          C3   0.020
+GNI    plan-3         C30   0.020
+GNI    plan-3         C31   0.020
+GNI    plan-3          C4   0.020
+GNI    plan-3          C5   0.020
+GNI    plan-3          C9   0.020
+GNI    plan-3          H3   0.020
+GNI    plan-3         H31   0.020
+GNI    plan-3          H4   0.020
+GNI    plan-3          H5   0.020
+GNI    plan-4         C23   0.020
+GNI    plan-4         C24   0.020
+GNI    plan-4         C25   0.020
+GNI    plan-4         C26   0.020
+GNI    plan-4         C27   0.020
+GNI    plan-4         C28   0.020
+GNI    plan-4        CL26   0.020
+GNI    plan-4        CL29   0.020
+GNI    plan-4         H23   0.020
+GNI    plan-4         H24   0.020
+GNI    plan-4         H27   0.020
+GNI    plan-4         O21   0.020
+GNI    plan-5         C10   0.020
+GNI    plan-5         C12   0.020
+GNI    plan-5          N9   0.020
+GNI    plan-5         O11   0.020
+GNI    plan-6         C10   0.020
+GNI    plan-6          C8   0.020
+GNI    plan-6          H9   0.020
+GNI    plan-6          N9   0.020
+GNI    plan-7           C   0.020
+GNI    plan-7          C2   0.020
+GNI    plan-7           O   0.020
+GNI    plan-7          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GNI           SMILES              ACDLabs 10.04                                                                                                                    Clc4ccc(OCCNC(=O)c2c(onc2c1cc(ccc1)CC(=O)O)c3ccccc3)c(Cl)c4
+GNI SMILES_CANONICAL               CACTVS 3.341                                                                                                                      OC(=O)Cc1cccc(c1)c2noc(c3ccccc3)c2C(=O)NCCOc4ccc(Cl)cc4Cl
+GNI           SMILES               CACTVS 3.341                                                                                                                      OC(=O)Cc1cccc(c1)c2noc(c3ccccc3)c2C(=O)NCCOc4ccc(Cl)cc4Cl
+GNI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                  c1ccc(cc1)c2c(c(no2)c3cccc(c3)CC(=O)O)C(=O)NCCOc4ccc(cc4Cl)Cl
+GNI           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                  c1ccc(cc1)c2c(c(no2)c3cccc(c3)CC(=O)O)C(=O)NCCOc4ccc(cc4Cl)Cl
+GNI            InChI                InChI  1.03 InChI=1S/C26H20Cl2N2O5/c27-19-9-10-21(20(28)15-19)34-12-11-29-26(33)23-24(18-8-4-5-16(13-18)14-22(31)32)30-35-25(23)17-6-2-1-3-7-17/h1-10,13,15H,11-12,14H2,(H,29,33)(H,31,32)
+GNI         InChIKey                InChI  1.03                                                                                                                                                    HINPKGVWVQYESB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GNI acedrg               243         "dictionary generator"                  
+GNI acedrg_database      11          "data source"                           
+GNI rdkit                2017.03.2   "Chemoinformatics tool"
+GNI refmac5              5.8.0238    "optimization tool"                     

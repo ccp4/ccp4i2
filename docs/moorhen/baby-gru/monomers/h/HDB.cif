@@ -1,0 +1,262 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HDB     HDB      (R)-1-(4-(4-(HYDROXYMETHYL)-1,3,2-DIOXABOROLAN-2-YL)BENZYL)GUANIDINE     NON-POLYMER     35     18     .     
+#
+data_comp_HDB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HDB     C01     C       CR6     0       9.862       71.662      81.972      
+HDB     C02     C       CR16    0       9.297       72.823      82.485      
+HDB     C03     C       CR16    0       9.080       72.966      83.847      
+HDB     C04     C       CR6     0       9.415       71.950      84.753      
+HDB     C05     C       CR16    0       9.990       70.788      84.219      
+HDB     C06     C       CR16    0       10.207      70.647      82.856      
+HDB     C07     C       CH2     0       10.101      71.509      80.490      
+HDB     B       B       B       0       9.173       72.121      86.295      
+HDB     N09     N       NH1     0       11.409      72.013      80.066      
+HDB     C10     C       C       0       11.885      71.991      78.820      
+HDB     N11     N       NH2     0       13.093      72.477      78.570      
+HDB     N12     N       NH2     1       11.168      71.493      77.822      
+HDB     O13     O       O2      0       8.132       72.958      86.584      
+HDB     O14     O       O2      0       9.088       70.934      86.969      
+HDB     C15     C       CH1     0       7.100       72.167      87.228      
+HDB     C16     C       CH2     0       7.741       70.810      87.479      
+HDB     C17     C       CH2     0       6.638       72.877      88.480      
+HDB     O18     O       OH1     0       5.986       74.100      88.166      
+HDB     H02     H       H       0       9.058       73.522      81.899      
+HDB     H03     H       H       0       8.696       73.762      84.166      
+HDB     H05     H       H       0       10.233      70.085      84.793      
+HDB     H06     H       H       0       10.592      69.853      82.526      
+HDB     H071    H       H       0       9.401       71.991      80.002      
+HDB     H072    H       H       0       10.034      70.561      80.252      
+HDB     H09     H       H       0       11.927      72.361      80.679      
+HDB     H111    H       H       0       13.412      72.465      77.749      
+HDB     H112    H       H       0       13.581      72.813      79.222      
+HDB     H12     H       H       0       11.498      71.483      77.006      
+HDB     H13     H       H       0       10.365      71.172      77.961      
+HDB     H15     H       H       0       6.337       72.074      86.607      
+HDB     H161    H       H       0       7.754       70.597      88.438      
+HDB     H162    H       H       0       7.256       70.100      87.005      
+HDB     H171    H       H       0       7.410       73.061      89.056      
+HDB     H172    H       H       0       6.019       72.298      88.974      
+HDB     H18     H       H       0       6.551       74.636      87.830      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HDB         C01         C02      DOUBLE       y     1.386  0.0100     1.386  0.0100
+HDB         C01         C06      SINGLE       y     1.386  0.0100     1.386  0.0100
+HDB         C01         C07      SINGLE       n     1.508  0.0100     1.508  0.0100
+HDB         C02         C03      SINGLE       y     1.384  0.0100     1.384  0.0100
+HDB         C03         C04      DOUBLE       y     1.397  0.0100     1.397  0.0100
+HDB         C04         C05      SINGLE       y     1.397  0.0100     1.397  0.0100
+HDB         C04           B      SINGLE       n     1.566  0.0100     1.566  0.0100
+HDB         C05         C06      DOUBLE       y     1.384  0.0100     1.384  0.0100
+HDB         C07         N09      SINGLE       n     1.455  0.0191     1.455  0.0191
+HDB           B         O13      SINGLE       n     1.366  0.0100     1.366  0.0100
+HDB           B         O14      SINGLE       n     1.366  0.0100     1.366  0.0100
+HDB         N09         C10      SINGLE       n     1.327  0.0105     1.327  0.0105
+HDB         C10         N11      SINGLE       n     1.321  0.0100     1.321  0.0100
+HDB         C10         N12      DOUBLE       n     1.322  0.0100     1.322  0.0100
+HDB         O13         C15      SINGLE       n     1.452  0.0123     1.452  0.0123
+HDB         O14         C16      SINGLE       n     1.446  0.0100     1.446  0.0100
+HDB         C15         C16      SINGLE       n     1.522  0.0160     1.522  0.0160
+HDB         C15         C17      SINGLE       n     1.511  0.0110     1.511  0.0110
+HDB         C17         O18      SINGLE       n     1.421  0.0131     1.421  0.0131
+HDB         C02         H02      SINGLE       n     1.082  0.0130     0.943  0.0173
+HDB         C03         H03      SINGLE       n     1.082  0.0130     0.940  0.0103
+HDB         C05         H05      SINGLE       n     1.082  0.0130     0.940  0.0103
+HDB         C06         H06      SINGLE       n     1.082  0.0130     0.943  0.0173
+HDB         C07        H071      SINGLE       n     1.089  0.0100     0.980  0.0169
+HDB         C07        H072      SINGLE       n     1.089  0.0100     0.980  0.0169
+HDB         N09         H09      SINGLE       n     1.016  0.0100     0.873  0.0200
+HDB         N11        H111      SINGLE       n     1.016  0.0100     0.881  0.0200
+HDB         N11        H112      SINGLE       n     1.016  0.0100     0.881  0.0200
+HDB         N12         H12      SINGLE       n     1.016  0.0100     0.879  0.0200
+HDB         N12         H13      SINGLE       n     1.016  0.0100     0.879  0.0200
+HDB         C15         H15      SINGLE       n     1.089  0.0100     0.989  0.0197
+HDB         C16        H161      SINGLE       n     1.089  0.0100     0.982  0.0164
+HDB         C16        H162      SINGLE       n     1.089  0.0100     0.982  0.0164
+HDB         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0200
+HDB         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0200
+HDB         O18         H18      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HDB         C02         C01         C06     118.362    1.50
+HDB         C02         C01         C07     120.819    1.50
+HDB         C06         C01         C07     120.819    1.50
+HDB         C01         C02         C03     120.709    1.50
+HDB         C01         C02         H02     119.686    1.50
+HDB         C03         C02         H02     119.605    1.50
+HDB         C02         C03         C04     121.374    1.50
+HDB         C02         C03         H03     119.218    1.50
+HDB         C04         C03         H03     119.408    1.50
+HDB         C03         C04         C05     117.472    1.50
+HDB         C03         C04           B     121.264    3.00
+HDB         C05         C04           B     121.264    3.00
+HDB         C04         C05         C06     121.374    1.50
+HDB         C04         C05         H05     119.408    1.50
+HDB         C06         C05         H05     119.218    1.50
+HDB         C01         C06         C05     120.709    1.50
+HDB         C01         C06         H06     119.686    1.50
+HDB         C05         C06         H06     119.605    1.50
+HDB         C01         C07         N09     112.746    1.93
+HDB         C01         C07        H071     109.073    1.50
+HDB         C01         C07        H072     109.073    1.50
+HDB         N09         C07        H071     108.967    1.50
+HDB         N09         C07        H072     108.967    1.50
+HDB        H071         C07        H072     107.860    1.50
+HDB         C04           B         O13     109.471    3.00
+HDB         C04           B         O14     109.471    3.00
+HDB         O13           B         O14     109.471    3.00
+HDB         C07         N09         C10     123.963    1.81
+HDB         C07         N09         H09     118.610    1.76
+HDB         C10         N09         H09     117.427    2.01
+HDB         N09         C10         N11     120.013    1.50
+HDB         N09         C10         N12     120.013    1.50
+HDB         N11         C10         N12     119.974    1.50
+HDB         C10         N11        H111     119.855    2.01
+HDB         C10         N11        H112     119.855    2.01
+HDB        H111         N11        H112     120.290    2.09
+HDB         C10         N12         H12     119.855    2.01
+HDB         C10         N12         H13     119.855    2.01
+HDB         H12         N12         H13     120.290    2.09
+HDB           B         O13         C15     107.105    1.50
+HDB           B         O14         C16     107.105    1.50
+HDB         O13         C15         C16     105.156    2.45
+HDB         O13         C15         C17     109.091    1.63
+HDB         O13         C15         H15     108.596    1.50
+HDB         C16         C15         C17     113.779    1.64
+HDB         C16         C15         H15     109.992    1.50
+HDB         C17         C15         H15     108.962    1.72
+HDB         O14         C16         C15     105.156    2.45
+HDB         O14         C16        H161     110.686    1.50
+HDB         O14         C16        H162     110.686    1.50
+HDB         C15         C16        H161     111.058    1.50
+HDB         C15         C16        H162     111.058    1.50
+HDB        H161         C16        H162     108.865    1.50
+HDB         C15         C17         O18     111.261    1.96
+HDB         C15         C17        H171     109.496    1.62
+HDB         C15         C17        H172     109.496    1.62
+HDB         O18         C17        H171     109.280    1.50
+HDB         O18         C17        H172     109.280    1.50
+HDB        H171         C17        H172     108.248    2.26
+HDB         C17         O18         H18     109.007    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HDB       const_sp2_sp2_3         C07         C01         C02         C03     180.000     5.0     2
+HDB              const_23         C07         C01         C06         C05     180.000    10.0     2
+HDB             sp2_sp3_4         C02         C01         C07         N09     -90.000    10.0     6
+HDB             sp3_sp3_2         C17         C15         O13           B     180.000    10.0     3
+HDB            sp3_sp3_13         C15         C16         O14           B     -60.000    10.0     3
+HDB             sp3_sp3_7         C17         C15         C16         O14     -60.000    10.0     3
+HDB            sp3_sp3_16         O13         C15         C17         O18     180.000    10.0     3
+HDB            sp3_sp3_25         C15         C17         O18         H18     180.000    10.0     3
+HDB       const_sp2_sp2_5         C01         C02         C03         C04       0.000     5.0     2
+HDB       const_sp2_sp2_9         C02         C03         C04         C05       0.000     5.0     2
+HDB              const_13         C03         C04         C05         C06       0.000    10.0     2
+HDB             sp2_sp2_1         O13           B         C04         C03     180.000     5.0     2
+HDB              const_17         C04         C05         C06         C01       0.000    10.0     2
+HDB            sp2_sp3_10         C10         N09         C07         C01     120.000    10.0     6
+HDB             sp2_sp2_5         N11         C10         N09         C07     180.000     5.0     2
+HDB             sp2_sp2_9         N09         C10         N11        H111     180.000     5.0     2
+HDB            sp2_sp2_13         N09         C10         N12         H12     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HDB    chir_1    C15    O13    C16    C17    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HDB    plan-1           B   0.020
+HDB    plan-1         C01   0.020
+HDB    plan-1         C02   0.020
+HDB    plan-1         C03   0.020
+HDB    plan-1         C04   0.020
+HDB    plan-1         C05   0.020
+HDB    plan-1         C06   0.020
+HDB    plan-1         C07   0.020
+HDB    plan-1         H02   0.020
+HDB    plan-1         H03   0.020
+HDB    plan-1         H05   0.020
+HDB    plan-1         H06   0.020
+HDB    plan-2         C07   0.020
+HDB    plan-2         C10   0.020
+HDB    plan-2         H09   0.020
+HDB    plan-2         N09   0.020
+HDB    plan-3         C10   0.020
+HDB    plan-3         N09   0.020
+HDB    plan-3         N11   0.020
+HDB    plan-3         N12   0.020
+HDB    plan-4         C10   0.020
+HDB    plan-4        H111   0.020
+HDB    plan-4        H112   0.020
+HDB    plan-4         N11   0.020
+HDB    plan-5         C10   0.020
+HDB    plan-5         H12   0.020
+HDB    plan-5         H13   0.020
+HDB    plan-5         N12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HDB           SMILES              ACDLabs 10.04                                                                                  OCC1OB(OC1)c2ccc(cc2)CNC(=[N@H])N
+HDB SMILES_CANONICAL               CACTVS 3.341                                                                                 NC(=N)NCc1ccc(cc1)B2OC[C@@H](CO)O2
+HDB           SMILES               CACTVS 3.341                                                                                   NC(=N)NCc1ccc(cc1)B2OC[CH](CO)O2
+HDB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                          "[H]/N=C(/N)\NCc1ccc(cc1)B2OC[C@H](O2)CO"
+HDB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                 "[H]N=C(N)NCc1ccc(cc1)B2OCC(O2)CO"
+HDB            InChI                InChI  1.03 InChI=1S/C11H16BN3O3/c13-11(14)15-5-8-1-3-9(4-2-8)12-17-7-10(6-16)18-12/h1-4,10,16H,5-7H2,(H4,13,14,15)/t10-/m1/s1
+HDB         InChIKey                InChI  1.03                                                                                        IIZOWFNBOXPJES-SNVBAGLBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HDB acedrg               243         "dictionary generator"                  
+HDB acedrg_database      11          "data source"                           
+HDB rdkit                2017.03.2   "Chemoinformatics tool"
+HDB refmac5              5.8.0238    "optimization tool"                     

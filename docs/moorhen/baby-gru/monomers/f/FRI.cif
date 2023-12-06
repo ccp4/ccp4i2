@@ -1,0 +1,553 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FRI     FRI      "2-GUANIDINO-4-METHYL-PENTANOIC ACID[2-(4-{5-[4-(4-ACETYLAMINO-BENZYLOXY)-2,3-DICHLORO-PHENYL]-2-METHYL-2H-PYRAZOL-3-YL}-PIPERIDIN-1-YL)-2-OXO-ETHYL]-AMIDE"     NON-POLYMER     90     47     .     
+#
+data_comp_FRI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FRI     O47     O       O       0       15.435      12.823      84.817      
+FRI     C30     C       C       0       15.325      12.673      83.593      
+FRI     C29     C       CH2     0       16.180      11.616      82.908      
+FRI     N3      N       NH1     0       17.144      10.981      83.788      
+FRI     C27     C       C       0       17.291      9.654       83.899      
+FRI     O46     O       O       0       16.654      8.846       83.224      
+FRI     C26     C       CH1     0       18.317      9.138       84.918      
+FRI     C41     C       CH2     0       17.652      8.284       86.004      
+FRI     C32     C       CH1     0       17.257      9.025       87.283      
+FRI     C37     C       CH3     0       16.987      8.046       88.416      
+FRI     C36     C       CH3     0       16.045      9.916       87.053      
+FRI     N7      N       NH1     0       19.372      8.401       84.237      
+FRI     C24     C       C       0       20.617      8.206       84.681      
+FRI     N5      N       NH2     1       20.987      8.579       85.900      
+FRI     N4      N       NH2     0       21.510      7.636       83.885      
+FRI     N2      N       NR6     0       14.488      13.433      82.856      
+FRI     C31     C       CH2     0       14.202      13.286      81.419      
+FRI     C39     C       CH2     0       14.577      14.553      80.669      
+FRI     C19     C       CH1     0       13.864      15.771      81.241      
+FRI     C21     C       CH2     0       14.113      15.856      82.739      
+FRI     C43     C       CH2     0       13.741      14.561      83.438      
+FRI     C23     C       CR5     0       14.229      17.040      80.539      
+FRI     N8      N       NR5     0       13.343      17.955      80.061      
+FRI     C38     C       CH3     0       11.887      17.938      80.089      
+FRI     N6      N       NRD5    0       13.997      19.003      79.487      
+FRI     C13     C       CR15    0       15.477      17.518      80.265      
+FRI     C14     C       CR5     0       15.305      18.749      79.615      
+FRI     C11     C       CR6     0       16.308      19.689      79.084      
+FRI     C15     C       CR16    0       16.244      20.066      77.737      
+FRI     C17     C       CR16    0       17.169      20.946      77.197      
+FRI     C20     C       CR6     0       18.189      21.485      77.988      
+FRI     C33     C       CR6     0       18.253      21.104      79.334      
+FRI     C34     C       CR6     0       17.326      20.219      79.882      
+FRI     CL10    CL      CL      0       17.444      19.784      81.559      
+FRI     CL9     CL      CL      0       19.509      21.756      80.323      
+FRI     O45     O       O2      0       19.168      22.350      77.584      
+FRI     C40     C       CH2     0       19.110      23.013      76.306      
+FRI     C22     C       CR6     0       18.121      24.144      76.350      
+FRI     C28     C       CR16    0       17.018      24.164      75.506      
+FRI     C25     C       CR16    0       16.110      25.211      75.542      
+FRI     C35     C       CR6     0       16.297      26.268      76.426      
+FRI     C18     C       CR16    0       17.400      26.258      77.272      
+FRI     C16     C       CR16    0       18.301      25.205      77.227      
+FRI     N1      N       NH1     0       15.389      27.352      76.489      
+FRI     C12     C       C       0       14.765      27.989      75.469      
+FRI     O44     O       O       0       13.565      28.240      75.474      
+FRI     C42     C       CH3     0       15.645      28.373      74.314      
+FRI     H291    H       H       0       16.666      12.038      82.170      
+FRI     H292    H       H       0       15.584      10.940      82.524      
+FRI     HN3     H       H       0       17.659      11.499      84.267      
+FRI     H26     H       H       0       18.728      9.924       85.355      
+FRI     H411    H       H       0       18.268      7.564       86.248      
+FRI     H412    H       H       0       16.851      7.864       85.632      
+FRI     H32     H       H       0       18.014      9.601       87.553      
+FRI     H371    H       H       0       16.739      8.537       89.218      
+FRI     H372    H       H       0       17.788      7.522       88.592      
+FRI     H373    H       H       0       16.260      7.450       88.164      
+FRI     H361    H       H       0       15.335      9.399       86.633      
+FRI     H362    H       H       0       16.291      10.657      86.473      
+FRI     H363    H       H       0       15.731      10.263      87.905      
+FRI     HN7     H       H       0       19.174      8.035       83.467      
+FRI     HN5     H       H       0       21.824      8.479       86.153      
+FRI     H6      H       H       0       20.408      8.897       86.472      
+FRI     HN41    H       H       0       22.332      7.498       84.171      
+FRI     HN42    H       H       0       21.288      7.395       83.067      
+FRI     H311    H       H       0       14.691      12.533      81.041      
+FRI     H312    H       H       0       13.248      13.115      81.298      
+FRI     H391    H       H       0       14.334      14.450      79.715      
+FRI     H392    H       H       0       15.556      14.687      80.730      
+FRI     H19     H       H       0       12.894      15.626      81.113      
+FRI     H211    H       H       0       13.576      16.597      83.118      
+FRI     H212    H       H       0       15.071      16.049      82.900      
+FRI     H431    H       H       0       13.928      14.646      84.391      
+FRI     H432    H       H       0       12.783      14.403      83.331      
+FRI     H381    H       H       0       11.542      18.641      79.517      
+FRI     H382    H       H       0       11.580      18.081      80.997      
+FRI     H383    H       H       0       11.568      17.080      79.772      
+FRI     H13     H       H       0       16.291      17.098      80.487      
+FRI     H15     H       H       0       15.561      19.712      77.196      
+FRI     H17     H       H       0       17.103      21.180      76.294      
+FRI     H401    H       H       0       18.868      22.378      75.604      
+FRI     H402    H       H       0       19.995      23.369      76.093      
+FRI     H28     H       H       0       16.880      23.454      74.901      
+FRI     H25     H       H       0       15.365      25.208      74.965      
+FRI     H18     H       H       0       17.535      26.968      77.875      
+FRI     H16     H       H       0       19.046      25.210      77.805      
+FRI     HN1     H       H       0       15.210      27.646      77.293      
+FRI     H421    H       H       0       15.252      29.125      73.842      
+FRI     H422    H       H       0       15.732      27.621      73.707      
+FRI     H423    H       H       0       16.524      28.624      74.644      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FRI         O47         C30      DOUBLE       n     1.236  0.0100     1.236  0.0100
+FRI         C30         C29      SINGLE       n     1.517  0.0125     1.517  0.0125
+FRI         C30          N2      SINGLE       n     1.338  0.0100     1.338  0.0100
+FRI         C29          N3      SINGLE       n     1.447  0.0100     1.447  0.0100
+FRI          N3         C27      SINGLE       n     1.333  0.0100     1.333  0.0100
+FRI         C27         O46      DOUBLE       n     1.229  0.0102     1.229  0.0102
+FRI         C27         C26      SINGLE       n     1.530  0.0100     1.530  0.0100
+FRI         C26         C41      SINGLE       n     1.528  0.0100     1.528  0.0100
+FRI         C26          N7      SINGLE       n     1.452  0.0100     1.452  0.0100
+FRI         C41         C32      SINGLE       n     1.528  0.0105     1.528  0.0105
+FRI         C32         C37      SINGLE       n     1.521  0.0151     1.521  0.0151
+FRI         C32         C36      SINGLE       n     1.521  0.0151     1.521  0.0151
+FRI          N7         C24      SINGLE       n     1.327  0.0105     1.327  0.0105
+FRI         C24          N5      DOUBLE       n     1.322  0.0100     1.322  0.0100
+FRI         C24          N4      SINGLE       n     1.321  0.0100     1.321  0.0100
+FRI          N2         C31      SINGLE       n     1.465  0.0108     1.465  0.0108
+FRI          N2         C43      SINGLE       n     1.465  0.0108     1.465  0.0108
+FRI         C31         C39      SINGLE       n     1.517  0.0100     1.517  0.0100
+FRI         C39         C19      SINGLE       n     1.518  0.0168     1.518  0.0168
+FRI         C19         C21      SINGLE       n     1.518  0.0168     1.518  0.0168
+FRI         C19         C23      SINGLE       n     1.494  0.0100     1.494  0.0100
+FRI         C21         C43      SINGLE       n     1.517  0.0100     1.517  0.0100
+FRI         C23          N8      SINGLE       y     1.356  0.0100     1.356  0.0100
+FRI         C23         C13      DOUBLE       y     1.367  0.0186     1.367  0.0186
+FRI          N8         C38      SINGLE       n     1.455  0.0100     1.455  0.0100
+FRI          N8          N6      SINGLE       y     1.360  0.0100     1.360  0.0100
+FRI          N6         C14      DOUBLE       y     1.339  0.0100     1.339  0.0100
+FRI         C13         C14      SINGLE       y     1.405  0.0100     1.405  0.0100
+FRI         C14         C11      SINGLE       n     1.472  0.0100     1.472  0.0100
+FRI         C11         C15      DOUBLE       y     1.397  0.0100     1.397  0.0100
+FRI         C11         C34      SINGLE       y     1.393  0.0100     1.393  0.0100
+FRI         C15         C17      SINGLE       y     1.382  0.0100     1.382  0.0100
+FRI         C17         C20      DOUBLE       y     1.389  0.0100     1.389  0.0100
+FRI         C20         C33      SINGLE       y     1.393  0.0100     1.393  0.0100
+FRI         C20         O45      SINGLE       n     1.360  0.0100     1.360  0.0100
+FRI         C33         C34      DOUBLE       y     1.390  0.0100     1.390  0.0100
+FRI         C33         CL9      SINGLE       n     1.725  0.0100     1.725  0.0100
+FRI         C34        CL10      SINGLE       n     1.734  0.0137     1.734  0.0137
+FRI         O45         C40      SINGLE       n     1.432  0.0146     1.432  0.0146
+FRI         C40         C22      SINGLE       n     1.502  0.0100     1.502  0.0100
+FRI         C22         C28      DOUBLE       y     1.385  0.0100     1.385  0.0100
+FRI         C22         C16      SINGLE       y     1.385  0.0100     1.385  0.0100
+FRI         C28         C25      SINGLE       y     1.383  0.0100     1.383  0.0100
+FRI         C25         C35      DOUBLE       y     1.386  0.0100     1.386  0.0100
+FRI         C35         C18      SINGLE       y     1.386  0.0100     1.386  0.0100
+FRI         C35          N1      SINGLE       n     1.414  0.0100     1.414  0.0100
+FRI         C18         C16      DOUBLE       y     1.383  0.0100     1.383  0.0100
+FRI          N1         C12      SINGLE       n     1.353  0.0110     1.353  0.0110
+FRI         C12         O44      DOUBLE       n     1.226  0.0169     1.226  0.0169
+FRI         C12         C42      SINGLE       n     1.501  0.0141     1.501  0.0141
+FRI         C29        H291      SINGLE       n     1.089  0.0100     0.980  0.0137
+FRI         C29        H292      SINGLE       n     1.089  0.0100     0.980  0.0137
+FRI          N3         HN3      SINGLE       n     1.016  0.0100     0.873  0.0200
+FRI         C26         H26      SINGLE       n     1.089  0.0100     0.991  0.0200
+FRI         C41        H411      SINGLE       n     1.089  0.0100     0.978  0.0119
+FRI         C41        H412      SINGLE       n     1.089  0.0100     0.978  0.0119
+FRI         C32         H32      SINGLE       n     1.089  0.0100     0.989  0.0162
+FRI         C37        H371      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRI         C37        H372      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRI         C37        H373      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRI         C36        H361      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRI         C36        H362      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRI         C36        H363      SINGLE       n     1.089  0.0100     0.973  0.0146
+FRI          N7         HN7      SINGLE       n     1.016  0.0100     0.873  0.0200
+FRI          N5         HN5      SINGLE       n     1.016  0.0100     0.879  0.0200
+FRI          N5          H6      SINGLE       n     1.016  0.0100     0.879  0.0200
+FRI          N4        HN41      SINGLE       n     1.016  0.0100     0.881  0.0200
+FRI          N4        HN42      SINGLE       n     1.016  0.0100     0.881  0.0200
+FRI         C31        H311      SINGLE       n     1.089  0.0100     0.976  0.0118
+FRI         C31        H312      SINGLE       n     1.089  0.0100     0.976  0.0118
+FRI         C39        H391      SINGLE       n     1.089  0.0100     0.990  0.0100
+FRI         C39        H392      SINGLE       n     1.089  0.0100     0.990  0.0100
+FRI         C19         H19      SINGLE       n     1.089  0.0100     0.990  0.0127
+FRI         C21        H211      SINGLE       n     1.089  0.0100     0.990  0.0100
+FRI         C21        H212      SINGLE       n     1.089  0.0100     0.990  0.0100
+FRI         C43        H431      SINGLE       n     1.089  0.0100     0.976  0.0118
+FRI         C43        H432      SINGLE       n     1.089  0.0100     0.976  0.0118
+FRI         C38        H381      SINGLE       n     1.089  0.0100     0.969  0.0184
+FRI         C38        H382      SINGLE       n     1.089  0.0100     0.969  0.0184
+FRI         C38        H383      SINGLE       n     1.089  0.0100     0.969  0.0184
+FRI         C13         H13      SINGLE       n     1.082  0.0130     0.942  0.0169
+FRI         C15         H15      SINGLE       n     1.082  0.0130     0.941  0.0147
+FRI         C17         H17      SINGLE       n     1.082  0.0130     0.937  0.0135
+FRI         C40        H401      SINGLE       n     1.089  0.0100     0.978  0.0133
+FRI         C40        H402      SINGLE       n     1.089  0.0100     0.978  0.0133
+FRI         C28         H28      SINGLE       n     1.082  0.0130     0.943  0.0173
+FRI         C25         H25      SINGLE       n     1.082  0.0130     0.942  0.0183
+FRI         C18         H18      SINGLE       n     1.082  0.0130     0.942  0.0183
+FRI         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0173
+FRI          N1         HN1      SINGLE       n     1.016  0.0100     0.874  0.0200
+FRI         C42        H421      SINGLE       n     1.089  0.0100     0.971  0.0140
+FRI         C42        H422      SINGLE       n     1.089  0.0100     0.971  0.0140
+FRI         C42        H423      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FRI         O47         C30         C29     120.331    1.50
+FRI         O47         C30          N2     121.931    1.50
+FRI         C29         C30          N2     117.738    1.50
+FRI         C30         C29          N3     115.346    2.39
+FRI         C30         C29        H291     108.787    1.50
+FRI         C30         C29        H292     108.787    1.50
+FRI          N3         C29        H291     108.995    1.50
+FRI          N3         C29        H292     108.995    1.50
+FRI        H291         C29        H292     107.908    1.50
+FRI         C29          N3         C27     121.716    1.54
+FRI         C29          N3         HN3     119.301    1.62
+FRI         C27          N3         HN3     118.983    1.52
+FRI          N3         C27         O46     122.611    1.50
+FRI          N3         C27         C26     117.250    1.50
+FRI         O46         C27         C26     120.139    1.50
+FRI         C27         C26         C41     110.666    1.50
+FRI         C27         C26          N7     111.106    2.53
+FRI         C27         C26         H26     107.852    1.50
+FRI         C41         C26          N7     111.076    1.75
+FRI         C41         C26         H26     108.275    1.50
+FRI          N7         C26         H26     108.161    1.50
+FRI         C26         C41         C32     115.210    1.50
+FRI         C26         C41        H411     108.470    1.50
+FRI         C26         C41        H412     108.470    1.50
+FRI         C32         C41        H411     108.478    1.50
+FRI         C32         C41        H412     108.478    1.50
+FRI        H411         C41        H412     107.542    1.50
+FRI         C41         C32         C37     110.880    1.50
+FRI         C41         C32         C36     110.880    1.50
+FRI         C41         C32         H32     108.053    1.50
+FRI         C37         C32         C36     110.507    1.50
+FRI         C37         C32         H32     108.052    1.50
+FRI         C36         C32         H32     108.052    1.50
+FRI         C32         C37        H371     109.488    1.50
+FRI         C32         C37        H372     109.488    1.50
+FRI         C32         C37        H373     109.488    1.50
+FRI        H371         C37        H372     109.411    1.50
+FRI        H371         C37        H373     109.411    1.50
+FRI        H372         C37        H373     109.411    1.50
+FRI         C32         C36        H361     109.488    1.50
+FRI         C32         C36        H362     109.488    1.50
+FRI         C32         C36        H363     109.488    1.50
+FRI        H361         C36        H362     109.411    1.50
+FRI        H361         C36        H363     109.411    1.50
+FRI        H362         C36        H363     109.411    1.50
+FRI         C26          N7         C24     122.478    2.35
+FRI         C26          N7         HN7     119.564    1.92
+FRI         C24          N7         HN7     117.958    2.01
+FRI          N7         C24          N5     120.013    1.50
+FRI          N7         C24          N4     120.013    1.50
+FRI          N5         C24          N4     119.974    1.50
+FRI         C24          N5         HN5     119.855    2.01
+FRI         C24          N5          H6     119.855    2.01
+FRI         HN5          N5          H6     120.290    2.09
+FRI         C24          N4        HN41     119.855    2.01
+FRI         C24          N4        HN42     119.855    2.01
+FRI        HN41          N4        HN42     120.290    2.09
+FRI         C30          N2         C31     122.959    2.77
+FRI         C30          N2         C43     122.959    2.77
+FRI         C31          N2         C43     114.082    1.50
+FRI          N2         C31         C39     110.373    1.50
+FRI          N2         C31        H311     109.413    1.50
+FRI          N2         C31        H312     109.413    1.50
+FRI         C39         C31        H311     109.284    1.50
+FRI         C39         C31        H312     109.284    1.50
+FRI        H311         C31        H312     108.159    1.50
+FRI         C31         C39         C19     111.509    1.50
+FRI         C31         C39        H391     109.157    1.50
+FRI         C31         C39        H392     109.157    1.50
+FRI         C19         C39        H391     109.230    1.50
+FRI         C19         C39        H392     109.230    1.50
+FRI        H391         C39        H392     108.430    1.50
+FRI         C39         C19         C21     110.119    1.94
+FRI         C39         C19         C23     112.379    1.50
+FRI         C39         C19         H19     107.498    1.50
+FRI         C21         C19         C23     112.379    1.50
+FRI         C21         C19         H19     107.498    1.50
+FRI         C23         C19         H19     107.266    1.50
+FRI         C19         C21         C43     111.509    1.50
+FRI         C19         C21        H211     109.230    1.50
+FRI         C19         C21        H212     109.230    1.50
+FRI         C43         C21        H211     109.157    1.50
+FRI         C43         C21        H212     109.157    1.50
+FRI        H211         C21        H212     108.430    1.50
+FRI          N2         C43         C21     110.373    1.50
+FRI          N2         C43        H431     109.413    1.50
+FRI          N2         C43        H432     109.413    1.50
+FRI         C21         C43        H431     109.284    1.50
+FRI         C21         C43        H432     109.284    1.50
+FRI        H431         C43        H432     108.159    1.50
+FRI         C19         C23          N8     123.647    2.89
+FRI         C19         C23         C13     129.358    2.10
+FRI          N8         C23         C13     106.996    1.50
+FRI         C23          N8         C38     129.460    1.50
+FRI         C23          N8          N6     110.087    1.50
+FRI         C38          N8          N6     120.453    1.50
+FRI          N8         C38        H381     109.411    1.50
+FRI          N8         C38        H382     109.411    1.50
+FRI          N8         C38        H383     109.411    1.50
+FRI        H381         C38        H382     109.466    1.50
+FRI        H381         C38        H383     109.466    1.50
+FRI        H382         C38        H383     109.466    1.50
+FRI          N8          N6         C14     105.826    1.50
+FRI         C23         C13         C14     107.061    1.50
+FRI         C23         C13         H13     125.779    1.50
+FRI         C14         C13         H13     127.160    1.50
+FRI          N6         C14         C13     110.029    1.50
+FRI          N6         C14         C11     120.418    1.50
+FRI         C13         C14         C11     129.553    1.50
+FRI         C14         C11         C15     119.606    1.50
+FRI         C14         C11         C34     120.911    1.63
+FRI         C15         C11         C34     119.483    1.64
+FRI         C11         C15         C17     120.523    1.50
+FRI         C11         C15         H15     119.215    1.50
+FRI         C17         C15         H15     120.262    1.50
+FRI         C15         C17         C20     119.915    1.50
+FRI         C15         C17         H17     120.172    1.50
+FRI         C20         C17         H17     119.912    1.50
+FRI         C17         C20         C33     118.991    1.50
+FRI         C17         C20         O45     122.511    3.00
+FRI         C33         C20         O45     118.498    1.87
+FRI         C20         C33         C34     120.765    1.50
+FRI         C20         C33         CL9     118.791    1.50
+FRI         C34         C33         CL9     120.444    1.50
+FRI         C11         C34         C33     120.323    1.50
+FRI         C11         C34        CL10     119.612    1.50
+FRI         C33         C34        CL10     120.066    1.50
+FRI         C20         O45         C40     117.072    1.50
+FRI         O45         C40         C22     109.292    2.21
+FRI         O45         C40        H401     109.697    1.50
+FRI         O45         C40        H402     109.697    1.50
+FRI         C22         C40        H401     109.862    1.50
+FRI         C22         C40        H402     109.862    1.50
+FRI        H401         C40        H402     108.398    1.50
+FRI         C40         C22         C28     120.687    1.50
+FRI         C40         C22         C16     120.687    1.50
+FRI         C28         C22         C16     118.626    1.50
+FRI         C22         C28         C25     121.014    1.50
+FRI         C22         C28         H28     119.623    1.50
+FRI         C25         C28         H28     119.363    1.50
+FRI         C28         C25         C35     120.013    1.50
+FRI         C28         C25         H25     120.094    1.50
+FRI         C35         C25         H25     119.893    1.50
+FRI         C25         C35         C18     119.320    1.50
+FRI         C25         C35          N1     120.340    3.00
+FRI         C18         C35          N1     120.340    3.00
+FRI         C35         C18         C16     120.013    1.50
+FRI         C35         C18         H18     119.893    1.50
+FRI         C16         C18         H18     120.094    1.50
+FRI         C22         C16         C18     121.014    1.50
+FRI         C22         C16         H16     119.623    1.50
+FRI         C18         C16         H16     119.363    1.50
+FRI         C35          N1         C12     127.894    1.50
+FRI         C35          N1         HN1     115.674    1.69
+FRI         C12          N1         HN1     116.432    1.78
+FRI          N1         C12         O44     123.122    1.50
+FRI          N1         C12         C42     115.097    1.50
+FRI         O44         C12         C42     121.781    1.50
+FRI         C12         C42        H421     109.546    1.50
+FRI         C12         C42        H422     109.546    1.50
+FRI         C12         C42        H423     109.546    1.50
+FRI        H421         C42        H422     109.365    1.50
+FRI        H421         C42        H423     109.365    1.50
+FRI        H422         C42        H423     109.365    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FRI             sp2_sp2_9          N5         C24          N7         C26     180.000     5.0     2
+FRI            sp2_sp2_13          N7         C24          N5         HN5     180.000     5.0     2
+FRI            sp2_sp2_17          N7         C24          N4        HN41     180.000     5.0     2
+FRI             sp2_sp3_4         C30          N2         C31         C39     180.000    10.0     6
+FRI            sp2_sp3_34         C30          N2         C43         C21     180.000    10.0     6
+FRI             sp3_sp3_1          N2         C31         C39         C19     -60.000    10.0     3
+FRI            sp3_sp3_10         C21         C19         C39         C31      60.000    10.0     3
+FRI            sp3_sp3_19         C39         C19         C21         C43     -60.000    10.0     3
+FRI            sp2_sp3_38          N8         C23         C19         C39     -90.000    10.0     6
+FRI            sp3_sp3_28         C19         C21         C43          N2      60.000    10.0     3
+FRI             sp2_sp2_3         O47         C30          N2         C31       0.000     5.0     2
+FRI             sp2_sp3_8         O47         C30         C29          N3     120.000    10.0     6
+FRI              const_24         C19         C23          N8         C38       0.000    10.0     2
+FRI              const_54         C14         C13         C23         C19     180.000    10.0     2
+FRI            sp2_sp3_43         C23          N8         C38        H381     150.000    10.0     6
+FRI              const_26         C14          N6          N8         C38     180.000    10.0     2
+FRI              const_27         C13         C14          N6          N8       0.000    10.0     2
+FRI              const_29         C23         C13         C14          N6       0.000    10.0     2
+FRI            sp2_sp2_22         C15         C11         C14          N6       0.000     5.0     2
+FRI       const_sp2_sp2_3         C14         C11         C15         C17     180.000     5.0     2
+FRI              const_60         C14         C11         C34        CL10       0.000    10.0     2
+FRI       const_sp2_sp2_5         C11         C15         C17         C20       0.000     5.0     2
+FRI              const_10         C15         C17         C20         O45     180.000    10.0     2
+FRI            sp2_sp3_14         C27          N3         C29         C30     120.000    10.0     6
+FRI              const_16         O45         C20         C33         CL9       0.000    10.0     2
+FRI            sp2_sp2_25         C17         C20         O45         C40     180.000     5.0     2
+FRI              const_20         CL9         C33         C34        CL10       0.000    10.0     2
+FRI            sp3_sp3_73         C22         C40         O45         C20     180.000    10.0     3
+FRI            sp2_sp3_50         C28         C22         C40         O45     -90.000    10.0     6
+FRI              const_35         C40         C22         C28         C25     180.000    10.0     2
+FRI              const_62         C18         C16         C22         C40     180.000    10.0     2
+FRI              const_37         C35         C25         C28         C22       0.000    10.0     2
+FRI              const_42         C28         C25         C35          N1     180.000    10.0     2
+FRI             sp2_sp2_7         O46         C27          N3         C29       0.000     5.0     2
+FRI              const_46         C16         C18         C35          N1     180.000    10.0     2
+FRI            sp2_sp2_27         C25         C35          N1         C12     180.000     5.0     2
+FRI              const_49         C22         C16         C18         C35       0.000    10.0     2
+FRI            sp2_sp2_33         O44         C12          N1         C35       0.000     5.0     2
+FRI            sp2_sp3_55          N1         C12         C42        H421       0.000    10.0     6
+FRI            sp2_sp3_19          N3         C27         C26         C41       0.000    10.0     6
+FRI            sp2_sp3_25         C24          N7         C26         C27       0.000    10.0     6
+FRI            sp3_sp3_37         C27         C26         C41         C32     180.000    10.0     3
+FRI            sp3_sp3_49         C37         C32         C41         C26      60.000    10.0     3
+FRI            sp3_sp3_67         C41         C32         C36        H361      60.000    10.0     3
+FRI            sp3_sp3_55         C41         C32         C37        H371     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FRI    chir_1    C26    N7    C27    C41    negative
+FRI    chir_2    C32    C41    C37    C36    both
+FRI    chir_3    C19    C23    C39    C21    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FRI    plan-1         C11   0.020
+FRI    plan-1         C13   0.020
+FRI    plan-1         C14   0.020
+FRI    plan-1         C19   0.020
+FRI    plan-1         C23   0.020
+FRI    plan-1         C38   0.020
+FRI    plan-1         H13   0.020
+FRI    plan-1          N6   0.020
+FRI    plan-1          N8   0.020
+FRI    plan-2         C11   0.020
+FRI    plan-2         C14   0.020
+FRI    plan-2         C15   0.020
+FRI    plan-2         C17   0.020
+FRI    plan-2         C20   0.020
+FRI    plan-2         C33   0.020
+FRI    plan-2         C34   0.020
+FRI    plan-2        CL10   0.020
+FRI    plan-2         CL9   0.020
+FRI    plan-2         H15   0.020
+FRI    plan-2         H17   0.020
+FRI    plan-2         O45   0.020
+FRI    plan-3         C16   0.020
+FRI    plan-3         C18   0.020
+FRI    plan-3         C22   0.020
+FRI    plan-3         C25   0.020
+FRI    plan-3         C28   0.020
+FRI    plan-3         C35   0.020
+FRI    plan-3         C40   0.020
+FRI    plan-3         H16   0.020
+FRI    plan-3         H18   0.020
+FRI    plan-3         H25   0.020
+FRI    plan-3         H28   0.020
+FRI    plan-3          N1   0.020
+FRI    plan-4         C29   0.020
+FRI    plan-4         C30   0.020
+FRI    plan-4          N2   0.020
+FRI    plan-4         O47   0.020
+FRI    plan-5         C27   0.020
+FRI    plan-5         C29   0.020
+FRI    plan-5         HN3   0.020
+FRI    plan-5          N3   0.020
+FRI    plan-6         C26   0.020
+FRI    plan-6         C27   0.020
+FRI    plan-6          N3   0.020
+FRI    plan-6         O46   0.020
+FRI    plan-7         C24   0.020
+FRI    plan-7         C26   0.020
+FRI    plan-7         HN7   0.020
+FRI    plan-7          N7   0.020
+FRI    plan-8         C24   0.020
+FRI    plan-8          N4   0.020
+FRI    plan-8          N5   0.020
+FRI    plan-8          N7   0.020
+FRI    plan-9         C24   0.020
+FRI    plan-9          H6   0.020
+FRI    plan-9         HN5   0.020
+FRI    plan-9          N5   0.020
+FRI   plan-10         C24   0.020
+FRI   plan-10        HN41   0.020
+FRI   plan-10        HN42   0.020
+FRI   plan-10          N4   0.020
+FRI   plan-11         C30   0.020
+FRI   plan-11         C31   0.020
+FRI   plan-11         C43   0.020
+FRI   plan-11          N2   0.020
+FRI   plan-12         C12   0.020
+FRI   plan-12         C35   0.020
+FRI   plan-12         HN1   0.020
+FRI   plan-12          N1   0.020
+FRI   plan-13         C12   0.020
+FRI   plan-13         C42   0.020
+FRI   plan-13          N1   0.020
+FRI   plan-13         O44   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FRI           SMILES              ACDLabs 10.04                                                                                                                                                                 O=C(Nc1ccc(cc1)COc4ccc(c2nn(c(c2)C3CCN(C(=O)CNC(=O)C(NC(=[N@H])N)CC(C)C)CC3)C)c(Cl)c4Cl)C
+FRI SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                  CC(C)C[C@@H](NC(N)=N)C(=O)NCC(=O)N1CCC(CC1)c2cc(nn2C)c3ccc(OCc4ccc(NC(C)=O)cc4)c(Cl)c3Cl
+FRI           SMILES               CACTVS 3.341                                                                                                                                                                    CC(C)C[CH](NC(N)=N)C(=O)NCC(=O)N1CCC(CC1)c2cc(nn2C)c3ccc(OCc4ccc(NC(C)=O)cc4)c(Cl)c3Cl
+FRI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                   CC(C)C[C@H](C(=O)NCC(=O)N1CCC(CC1)c2cc(nn2C)c3ccc(c(c3Cl)Cl)OCc4ccc(cc4)NC(=O)C)NC(=N)N
+FRI           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                       CC(C)CC(C(=O)NCC(=O)N1CCC(CC1)c2cc(nn2C)c3ccc(c(c3Cl)Cl)OCc4ccc(cc4)NC(=O)C)NC(=N)N
+FRI            InChI                InChI  1.03 InChI=1S/C33H42Cl2N8O4/c1-19(2)15-26(40-33(36)37)32(46)38-17-29(45)43-13-11-22(12-14-43)27-16-25(41-42(27)4)24-9-10-28(31(35)30(24)34)47-18-21-5-7-23(8-6-21)39-20(3)44/h5-10,16,19,22,26H,11-15,17-18H2,1-4H3,(H,38,46)(H,39,44)(H4,36,37,40)/t26-/m1/s1
+FRI         InChIKey                InChI  1.03                                                                                                                                                                                                                               VCXMTWSYQSVWRK-AREMUKBSSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FRI acedrg               243         "dictionary generator"                  
+FRI acedrg_database      11          "data source"                           
+FRI rdkit                2017.03.2   "Chemoinformatics tool"
+FRI refmac5              5.8.0238    "optimization tool"                     

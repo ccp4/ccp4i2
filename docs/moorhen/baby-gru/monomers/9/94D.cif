@@ -1,0 +1,247 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+94D     94D      "{5-[2-amino-5-(2-methylpropyl)-1,3-thiazol-4-yl]furan-2-yl}phosphonic acid"     NON-POLYMER     32     19     .     
+#
+data_comp_94D
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+94D     C7      C       CR5     0       18.112      60.128      17.240      
+94D     C9      C       CR5     0       16.256      60.358      16.075      
+94D     C10     C       CR15    0       16.890      61.578      16.108      
+94D     C3      C       CR5     0       19.063      59.361      18.026      
+94D     C1      C       CR5     0       19.560      57.806      19.603      
+94D     C4      C       CR5     0       20.429      59.467      17.948      
+94D     C11     C       CR15    0       18.052      61.419      16.844      
+94D     C15     C       CH3     0       22.403      58.501      15.809      
+94D     C14     C       CH1     0       22.607      59.768      16.628      
+94D     C13     C       CH2     0       21.265      60.360      17.096      
+94D     C16     C       CH3     0       23.416      60.799      15.852      
+94D     N2      N       NRD5    0       18.544      58.434      18.946      
+94D     N6      N       NH2     0       19.426      56.871      20.537      
+94D     O17     O       OP      -1      14.087      58.713      16.082      
+94D     O18     O       OP      -1      13.734      60.969      15.253      
+94D     O19     O       O       0       14.953      59.357      13.904      
+94D     O8      O       O2      0       17.005      59.450      16.775      
+94D     P12     P       P       0       14.720      59.836      15.309      
+94D     S5      S       S2      0       21.037      58.384      19.074      
+94D     H1      H       H       0       16.592      62.375      15.706      
+94D     H2      H       H       0       18.689      62.092      17.032      
+94D     H3      H       H       0       21.653      58.624      15.202      
+94D     H4      H       H       0       22.218      57.754      16.403      
+94D     H5      H       H       0       23.207      58.308      15.296      
+94D     H6      H       H       0       23.136      59.525      17.435      
+94D     H7      H       H       0       21.446      61.177      17.594      
+94D     H8      H       H       0       20.752      60.609      16.306      
+94D     H9      H       H       0       23.038      61.686      15.985      
+94D     H10     H       H       0       23.403      60.586      14.902      
+94D     H11     H       H       0       24.336      60.792      16.170      
+94D     H12     H       H       0       20.134      56.572      20.960      
+94D     H13     H       H       0       18.630      56.555      20.727      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+94D         O19         P12      DOUBLE       n     1.508  0.0200     1.508  0.0200
+94D         C15         C14      SINGLE       n     1.519  0.0100     1.519  0.0100
+94D          C9         C10      DOUBLE       y     1.379  0.0200     1.379  0.0200
+94D         C10         C11      SINGLE       y     1.377  0.0200     1.377  0.0200
+94D         O18         P12      SINGLE       n     1.508  0.0200     1.508  0.0200
+94D          C9         P12      SINGLE       n     1.794  0.0200     1.794  0.0200
+94D         O17         P12      SINGLE       n     1.508  0.0200     1.508  0.0200
+94D         C14         C16      SINGLE       n     1.519  0.0100     1.519  0.0100
+94D          C9          O8      SINGLE       y     1.372  0.0110     1.372  0.0110
+94D          C7         C11      DOUBLE       y     1.347  0.0153     1.347  0.0153
+94D         C14         C13      SINGLE       n     1.533  0.0127     1.533  0.0127
+94D          C7          O8      SINGLE       y     1.379  0.0137     1.379  0.0137
+94D          C7          C3      SINGLE       n     1.452  0.0100     1.452  0.0100
+94D          C4         C13      SINGLE       n     1.486  0.0100     1.486  0.0100
+94D          C3          C4      DOUBLE       y     1.358  0.0182     1.358  0.0182
+94D          C3          N2      SINGLE       y     1.388  0.0142     1.388  0.0142
+94D          C4          S5      SINGLE       y     1.695  0.0200     1.695  0.0200
+94D          C1          N2      DOUBLE       y     1.354  0.0165     1.354  0.0165
+94D          C1          S5      SINGLE       y     1.695  0.0200     1.695  0.0200
+94D          C1          N6      SINGLE       n     1.328  0.0105     1.328  0.0105
+94D         C10          H1      SINGLE       n     1.082  0.0130     0.942  0.0154
+94D         C11          H2      SINGLE       n     1.082  0.0130     0.945  0.0130
+94D         C15          H3      SINGLE       n     1.089  0.0100     0.973  0.0146
+94D         C15          H4      SINGLE       n     1.089  0.0100     0.973  0.0146
+94D         C15          H5      SINGLE       n     1.089  0.0100     0.973  0.0146
+94D         C14          H6      SINGLE       n     1.089  0.0100     0.995  0.0100
+94D         C13          H7      SINGLE       n     1.089  0.0100     0.974  0.0100
+94D         C13          H8      SINGLE       n     1.089  0.0100     0.974  0.0100
+94D         C16          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+94D         C16         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+94D         C16         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+94D          N6         H12      SINGLE       n     1.016  0.0100     0.877  0.0200
+94D          N6         H13      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+94D         C11          C7          O8     109.332    1.50
+94D         C11          C7          C3     134.162    1.99
+94D          O8          C7          C3     116.506    1.70
+94D         C10          C9         P12     131.047    3.00
+94D         C10          C9          O8     109.546    1.50
+94D         P12          C9          O8     119.407    1.50
+94D          C9         C10         C11     107.049    1.50
+94D          C9         C10          H1     126.648    1.50
+94D         C11         C10          H1     126.303    1.50
+94D          C7          C3          C4     129.025    3.00
+94D          C7          C3          N2     121.779    2.71
+94D          C4          C3          N2     109.196    2.56
+94D          N2          C1          S5     108.461    3.00
+94D          N2          C1          N6     126.700    2.12
+94D          S5          C1          N6     124.840    3.00
+94D         C13          C4          C3     130.321    3.00
+94D         C13          C4          S5     121.218    3.00
+94D          C3          C4          S5     108.461    3.00
+94D         C10         C11          C7     106.629    1.50
+94D         C10         C11          H2     126.594    1.50
+94D          C7         C11          H2     126.777    1.50
+94D         C14         C15          H3     109.477    1.50
+94D         C14         C15          H4     109.477    1.50
+94D         C14         C15          H5     109.477    1.50
+94D          H3         C15          H4     109.411    1.50
+94D          H3         C15          H5     109.411    1.50
+94D          H4         C15          H5     109.411    1.50
+94D         C15         C14         C16     110.997    1.50
+94D         C15         C14         C13     111.006    1.50
+94D         C15         C14          H6     107.883    1.50
+94D         C16         C14         C13     111.006    1.50
+94D         C16         C14          H6     107.883    1.50
+94D         C13         C14          H6     107.950    1.50
+94D         C14         C13          C4     110.747    2.16
+94D         C14         C13          H7     108.731    1.50
+94D         C14         C13          H8     108.731    1.50
+94D          C4         C13          H7     108.883    1.50
+94D          C4         C13          H8     108.883    1.50
+94D          H7         C13          H8     107.724    1.50
+94D         C14         C16          H9     109.477    1.50
+94D         C14         C16         H10     109.477    1.50
+94D         C14         C16         H11     109.477    1.50
+94D          H9         C16         H10     109.411    1.50
+94D          H9         C16         H11     109.411    1.50
+94D         H10         C16         H11     109.411    1.50
+94D          C3          N2          C1     105.422    1.50
+94D          C1          N6         H12     119.811    1.50
+94D          C1          N6         H13     119.811    1.50
+94D         H12          N6         H13     120.377    1.82
+94D          C9          O8          C7     107.444    1.50
+94D         O19         P12         O18     111.149    3.00
+94D         O19         P12          C9     112.780    1.73
+94D         O19         P12         O17     111.149    3.00
+94D         O18         P12          C9     112.780    1.73
+94D         O18         P12         O17     111.149    3.00
+94D          C9         P12         O17     112.780    1.73
+94D          C4          S5          C1     108.461    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+94D              const_25         C11          C7          O8          C9       0.000    10.0     2
+94D             sp2_sp2_1          C4          C3          C7         C11     180.000     5.0     2
+94D       const_sp2_sp2_1         C10         C11          C7          O8       0.000     5.0     2
+94D              const_14         P12          C9          O8          C7     180.000    10.0     2
+94D             sp2_sp3_3         C10          C9         P12         O19      30.000    10.0     6
+94D              const_10         C11         C10          C9         P12     180.000    10.0     2
+94D       const_sp2_sp2_5          C9         C10         C11          C7       0.000     5.0     2
+94D              const_28          C7          C3          N2          C1     180.000    10.0     2
+94D              const_18          C7          C3          C4         C13       0.000    10.0     2
+94D              const_24          N6          C1          N2          C3     180.000    10.0     2
+94D             sp2_sp2_5          N2          C1          N6         H12     180.000     5.0     2
+94D              const_22          N6          C1          S5          C4     180.000    10.0     2
+94D              const_20         C13          C4          S5          C1     180.000    10.0     2
+94D             sp2_sp3_8          C3          C4         C13         C14     -90.000    10.0     6
+94D             sp3_sp3_4         C16         C14         C15          H3      60.000    10.0     3
+94D            sp3_sp3_10         C15         C14         C16          H9     180.000    10.0     3
+94D            sp3_sp3_20          C4         C13         C14         C15     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+94D    chir_1    C14    C13    C15    C16    both
+94D    chir_2    P12    O18    O17    O19    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+94D    plan-1         C10   0.020
+94D    plan-1         C11   0.020
+94D    plan-1          C3   0.020
+94D    plan-1          C7   0.020
+94D    plan-1          C9   0.020
+94D    plan-1          H1   0.020
+94D    plan-1          H2   0.020
+94D    plan-1          O8   0.020
+94D    plan-1         P12   0.020
+94D    plan-2          C1   0.020
+94D    plan-2         C13   0.020
+94D    plan-2          C3   0.020
+94D    plan-2          C4   0.020
+94D    plan-2          C7   0.020
+94D    plan-2          N2   0.020
+94D    plan-2          N6   0.020
+94D    plan-2          S5   0.020
+94D    plan-3          C1   0.020
+94D    plan-3         H12   0.020
+94D    plan-3         H13   0.020
+94D    plan-3          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+94D           SMILES              ACDLabs 12.01                                                                               c2(c1c(sc(N)n1)CC(C)C)ccc(o2)P(O)(O)=O
+94D            InChI                InChI  1.03 InChI=1S/C11H15N2O4PS/c1-6(2)5-8-10(13-11(12)19-8)7-3-4-9(17-7)18(14,15)16/h3-4,6H,5H2,1-2H3,(H2,12,13)(H2,14,15,16)
+94D         InChIKey                InChI  1.03                                                                                          XJMYIJPPDSZOPN-UHFFFAOYSA-N
+94D SMILES_CANONICAL               CACTVS 3.385                                                                                 CC(C)Cc1sc(N)nc1c2oc(cc2)[P](O)(O)=O
+94D           SMILES               CACTVS 3.385                                                                                 CC(C)Cc1sc(N)nc1c2oc(cc2)[P](O)(O)=O
+94D SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                 CC(C)Cc1c(nc(s1)N)c2ccc(o2)P(=O)(O)O
+94D           SMILES "OpenEye OEToolkits" 2.0.6                                                                                 CC(C)Cc1c(nc(s1)N)c2ccc(o2)P(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+94D acedrg               243         "dictionary generator"                  
+94D acedrg_database      11          "data source"                           
+94D rdkit                2017.03.2   "Chemoinformatics tool"
+94D refmac5              5.8.0238    "optimization tool"                     

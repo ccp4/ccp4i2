@@ -1,0 +1,691 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GGX     GGX      "methyl [(1S)-1-{[(1R,3S,4S)-4-{[(2S)-3,3-dimethyl-2-{3-[(6-methylpyridin-2-yl)methyl]-2-oxo-2,3-dihydro-1H-imidazol-1-yl}butanoyl]amino}-3-hydroxy-5-phenyl-1-(4-pyridin-2-ylbenzyl)pentyl]carbamoyl}-2,2-dimethylpropyl]carbamate"     NON-POLYMER     119     60     .     
+#
+data_comp_GGX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GGX     N1      N       NR5     0       10.452      53.754      32.975      
+GGX     C2      C       CH1     0       9.720       54.834      32.294      
+GGX     C3      C       C       0       8.647       54.275      31.346      
+GGX     N4      N       NH1     0       7.375       54.631      31.595      
+GGX     C5      C       CH1     0       6.196       54.058      30.951      
+GGX     C6      C       CH1     0       5.245       55.180      30.500      
+GGX     C7      C       CH2     0       5.801       56.070      29.397      
+GGX     C8      C       CH1     0       4.759       56.846      28.585      
+GGX     C9      C       CT      0       10.662      55.892      31.638      
+GGX     O10     O       O       0       8.950       53.550      30.399      
+GGX     C11     C       CH2     0       5.515       53.050      31.891      
+GGX     C12     C       CH3     0       11.570      56.505      32.712      
+GGX     C13     C       CH3     0       11.564      55.313      30.542      
+GGX     C14     C       CR16    0       6.945       52.074      33.731      
+GGX     C15     C       CR16    0       7.839       51.126      34.212      
+GGX     C16     C       CR16    0       8.277       50.108      33.390      
+GGX     C17     C       CR16    0       7.826       50.035      32.090      
+GGX     C18     C       CR16    0       6.932       50.982      31.607      
+GGX     C19     C       CR6     0       6.470       52.006      32.426      
+GGX     C20     C       CR5     0       10.670      53.697      34.332      
+GGX     N21     N       NR5     0       11.376      52.547      34.579      
+GGX     C22     C       CR15    0       11.580      51.906      33.391      
+GGX     C23     C       CR15    0       11.014      52.635      32.418      
+GGX     C24     C       CH2     0       11.828      52.090      35.891      
+GGX     C25     C       CR6     0       10.806      51.230      36.600      
+GGX     C26     C       CH2     0       5.398       57.965      27.748      
+GGX     O27     O       O       0       10.310      54.526      35.176      
+GGX     N28     N       NH1     0       3.950       55.940      27.773      
+GGX     C29     C       CR6     0       4.463       58.585      26.733      
+GGX     C30     C       C       0       4.362       55.239      26.701      
+GGX     O31     O       O       0       5.508       55.294      26.259      
+GGX     C32     C       CH1     0       3.315       54.358      26.006      
+GGX     N33     N       NH1     0       3.147       54.835      24.636      
+GGX     C34     C       C       0       1.940       55.099      24.090      
+GGX     O35     O       O2      0       2.092       55.531      22.824      
+GGX     C36     C       CH3     0       0.943       56.147      22.200      
+GGX     C37     C       CT      0       3.604       52.820      26.063      
+GGX     C38     C       CH3     0       2.419       52.055      25.461      
+GGX     C39     C       CH3     0       3.773       52.366      27.518      
+GGX     C40     C       CH3     0       4.864       52.427      25.281      
+GGX     O41     O       O       0       0.874       54.951      24.648      
+GGX     C42     C       CR16    0       3.298       59.224      27.134      
+GGX     C43     C       CR16    0       2.428       59.785      26.213      
+GGX     C44     C       CR6     0       2.696       59.723      24.844      
+GGX     C45     C       CR16    0       3.864       59.075      24.440      
+GGX     C46     C       CR16    0       4.725       58.516      25.370      
+GGX     N47     N       NRD6    0       10.683      49.976      36.136      
+GGX     C48     C       CR6     0       9.789       49.148      36.716      
+GGX     C49     C       CR16    0       8.998       49.569      37.782      
+GGX     C50     C       CR16    0       9.132       50.864      38.253      
+GGX     C51     C       CR16    0       10.050      51.710      37.653      
+GGX     C52     C       CH3     0       9.696       47.758      36.159      
+GGX     C53     C       CH3     0       9.830       57.024      31.021      
+GGX     O54     O       OH1     0       4.922       56.000      31.620      
+GGX     C55     C       CR6     0       1.763       60.321      23.850      
+GGX     N56     N       NRD6    0       1.156       61.480      24.206      
+GGX     C57     C       CR16    0       0.301       62.044      23.335      
+GGX     C58     C       CR16    0       0.011       61.510      22.096      
+GGX     C59     C       CR16    0       0.629       60.332      21.732      
+GGX     C60     C       CR16    0       1.509       59.727      22.610      
+GGX     H2      H       H       0       9.235       55.345      32.997      
+GGX     HN4     H       H       0       7.214       55.261      32.176      
+GGX     H5      H       H       0       6.479       53.576      30.143      
+GGX     H6      H       H       0       4.409       54.760      30.170      
+GGX     H7      H       H       0       6.326       55.511      28.782      
+GGX     H7A     H       H       0       6.416       56.719      29.807      
+GGX     H8      H       H       0       4.154       57.282      29.232      
+GGX     H11     H       H       0       4.791       52.599      31.405      
+GGX     H11A    H       H       0       5.115       53.533      32.645      
+GGX     H12     H       H       0       12.067      57.250      32.334      
+GGX     H12A    H       H       0       12.196      55.834      33.033      
+GGX     H12B    H       H       0       11.028      56.823      33.455      
+GGX     H13     H       H       0       11.023      54.938      29.828      
+GGX     H13A    H       H       0       12.134      54.621      30.914      
+GGX     H13B    H       H       0       12.122      56.022      30.178      
+GGX     H14     H       H       0       6.649       52.768      34.299      
+GGX     H15     H       H       0       8.145       51.178      35.103      
+GGX     H16     H       H       0       8.884       49.464      33.716      
+GGX     H17     H       H       0       8.124       49.339      31.526      
+GGX     H18     H       H       0       6.627       50.926      30.716      
+GGX     H22     H       H       0       12.041      51.084      33.272      
+GGX     H23     H       H       0       11.019      52.413      31.495      
+GGX     H24     H       H       0       12.032      52.872      36.447      
+GGX     H24A    H       H       0       12.656      51.576      35.779      
+GGX     H26     H       H       0       6.184       57.608      27.284      
+GGX     H26A    H       H       0       5.710       58.670      28.356      
+GGX     HN28    H       H       0       3.122       55.866      28.035      
+GGX     H32     H       H       0       2.458       54.484      26.483      
+GGX     HN33    H       H       0       3.868       54.956      24.149      
+GGX     H36     H       H       0       0.627       56.881      22.752      
+GGX     H36A    H       H       0       0.237       55.488      22.101      
+GGX     H36B    H       H       0       1.194       56.485      21.326      
+GGX     H38     H       H       0       2.546       51.100      25.591      
+GGX     H38A    H       H       0       2.359       52.244      24.509      
+GGX     H38B    H       H       0       1.596       52.334      25.898      
+GGX     H39     H       H       0       3.065       52.751      28.063      
+GGX     H39A    H       H       0       4.636       52.659      27.858      
+GGX     H39B    H       H       0       3.725       51.395      27.567      
+GGX     H40     H       H       0       4.912       51.457      25.212      
+GGX     H40A    H       H       0       5.654       52.753      25.743      
+GGX     H40B    H       H       0       4.831       52.808      24.387      
+GGX     H42     H       H       0       3.096       59.280      28.053      
+GGX     H43     H       H       0       1.648       60.214      26.519      
+GGX     H45     H       H       0       4.073       59.015      23.523      
+GGX     H46     H       H       0       5.509       58.084      25.071      
+GGX     H49     H       H       0       8.379       48.975      38.175      
+GGX     H50     H       H       0       8.603       51.168      38.975      
+GGX     H51     H       H       0       10.159      52.597      37.957      
+GGX     H52     H       H       0       8.914       47.312      36.522      
+GGX     H52A    H       H       0       10.493      47.257      36.400      
+GGX     H52B    H       H       0       9.623       47.797      35.192      
+GGX     H53     H       H       0       10.400      57.792      30.842      
+GGX     H53A    H       H       0       9.124       57.284      31.638      
+GGX     H53B    H       H       0       9.433       56.723      30.185      
+GGX     HO54    H       H       0       4.189       56.398      31.462      
+GGX     H57     H       H       0       -0.119      62.852      23.589      
+GGX     H58     H       H       0       -0.594      61.941      21.513      
+GGX     H59     H       H       0       0.452       59.940      20.891      
+GGX     H60     H       H       0       1.940       58.917      22.373      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GGX          N1          C2      SINGLE       n     1.460  0.0112     1.460  0.0112
+GGX          N1         C20      SINGLE       y     1.372  0.0106     1.372  0.0106
+GGX          N1         C23      SINGLE       y     1.367  0.0101     1.367  0.0101
+GGX          C2          C3      SINGLE       n     1.528  0.0100     1.528  0.0100
+GGX          C2          C9      SINGLE       n     1.535  0.0162     1.535  0.0162
+GGX          C3          N4      SINGLE       n     1.337  0.0106     1.337  0.0106
+GGX          C3         O10      DOUBLE       n     1.229  0.0102     1.229  0.0102
+GGX          N4          C5      SINGLE       n     1.455  0.0100     1.455  0.0100
+GGX          C5          C6      SINGLE       n     1.538  0.0100     1.538  0.0100
+GGX          C5         C11      SINGLE       n     1.536  0.0100     1.536  0.0100
+GGX          C6          C7      SINGLE       n     1.518  0.0200     1.518  0.0200
+GGX          C6         O54      SINGLE       n     1.424  0.0199     1.424  0.0199
+GGX          C7          C8      SINGLE       n     1.530  0.0100     1.530  0.0100
+GGX          C8         C26      SINGLE       n     1.533  0.0100     1.533  0.0100
+GGX          C8         N28      SINGLE       n     1.455  0.0100     1.455  0.0100
+GGX          C9         C12      SINGLE       n     1.531  0.0109     1.531  0.0109
+GGX          C9         C13      SINGLE       n     1.531  0.0109     1.531  0.0109
+GGX          C9         C53      SINGLE       n     1.531  0.0109     1.531  0.0109
+GGX         C11         C19      SINGLE       n     1.512  0.0103     1.512  0.0103
+GGX         C14         C15      DOUBLE       y     1.386  0.0100     1.386  0.0100
+GGX         C14         C19      SINGLE       y     1.385  0.0111     1.385  0.0111
+GGX         C15         C16      SINGLE       y     1.376  0.0124     1.376  0.0124
+GGX         C16         C17      DOUBLE       y     1.374  0.0127     1.374  0.0127
+GGX         C17         C18      SINGLE       y     1.386  0.0100     1.386  0.0100
+GGX         C18         C19      DOUBLE       y     1.385  0.0111     1.385  0.0111
+GGX         C20         N21      SINGLE       y     1.372  0.0106     1.372  0.0106
+GGX         C20         O27      DOUBLE       n     1.235  0.0131     1.235  0.0131
+GGX         N21         C22      SINGLE       y     1.367  0.0101     1.367  0.0101
+GGX         N21         C24      SINGLE       n     1.461  0.0100     1.461  0.0100
+GGX         C22         C23      DOUBLE       y     1.341  0.0100     1.341  0.0100
+GGX         C24         C25      SINGLE       n     1.511  0.0100     1.511  0.0100
+GGX         C25         N47      DOUBLE       y     1.339  0.0100     1.339  0.0100
+GGX         C25         C51      SINGLE       y     1.379  0.0100     1.379  0.0100
+GGX         C26         C29      SINGLE       n     1.512  0.0103     1.512  0.0103
+GGX         N28         C30      SINGLE       n     1.337  0.0102     1.337  0.0102
+GGX         C29         C42      DOUBLE       y     1.385  0.0110     1.385  0.0110
+GGX         C29         C46      SINGLE       y     1.385  0.0110     1.385  0.0110
+GGX         C30         O31      DOUBLE       n     1.229  0.0102     1.229  0.0102
+GGX         C30         C32      SINGLE       n     1.529  0.0100     1.529  0.0100
+GGX         C32         N33      SINGLE       n     1.453  0.0114     1.453  0.0114
+GGX         C32         C37      SINGLE       n     1.559  0.0100     1.559  0.0100
+GGX         N33         C34      SINGLE       n     1.344  0.0100     1.344  0.0100
+GGX         C34         O35      SINGLE       n     1.342  0.0100     1.342  0.0100
+GGX         C34         O41      DOUBLE       n     1.210  0.0102     1.210  0.0102
+GGX         O35         C36      SINGLE       n     1.443  0.0101     1.443  0.0101
+GGX         C37         C38      SINGLE       n     1.531  0.0109     1.531  0.0109
+GGX         C37         C39      SINGLE       n     1.531  0.0109     1.531  0.0109
+GGX         C37         C40      SINGLE       n     1.531  0.0109     1.531  0.0109
+GGX         C42         C43      SINGLE       y     1.382  0.0100     1.382  0.0100
+GGX         C43         C44      DOUBLE       y     1.391  0.0100     1.391  0.0100
+GGX         C44         C45      SINGLE       y     1.391  0.0100     1.391  0.0100
+GGX         C44         C55      SINGLE       n     1.485  0.0100     1.485  0.0100
+GGX         C45         C46      DOUBLE       y     1.382  0.0100     1.382  0.0100
+GGX         N47         C48      SINGLE       y     1.345  0.0100     1.345  0.0100
+GGX         C48         C49      DOUBLE       y     1.388  0.0100     1.388  0.0100
+GGX         C48         C52      SINGLE       n     1.501  0.0100     1.501  0.0100
+GGX         C49         C50      SINGLE       y     1.381  0.0102     1.381  0.0102
+GGX         C50         C51      DOUBLE       y     1.381  0.0102     1.381  0.0102
+GGX         C55         N56      DOUBLE       y     1.347  0.0131     1.347  0.0131
+GGX         C55         C60      SINGLE       y     1.382  0.0176     1.382  0.0176
+GGX         N56         C57      SINGLE       y     1.341  0.0100     1.341  0.0100
+GGX         C57         C58      DOUBLE       y     1.376  0.0130     1.376  0.0130
+GGX         C58         C59      SINGLE       y     1.374  0.0129     1.374  0.0129
+GGX         C59         C60      DOUBLE       y     1.379  0.0100     1.379  0.0100
+GGX          C2          H2      SINGLE       n     1.089  0.0100     0.996  0.0100
+GGX          N4         HN4      SINGLE       n     1.016  0.0100     0.872  0.0200
+GGX          C5          H5      SINGLE       n     1.089  0.0100     0.984  0.0181
+GGX          C6          H6      SINGLE       n     1.089  0.0100     0.992  0.0184
+GGX          C7          H7      SINGLE       n     1.089  0.0100     0.984  0.0147
+GGX          C7         H7A      SINGLE       n     1.089  0.0100     0.984  0.0147
+GGX          C8          H8      SINGLE       n     1.089  0.0100     0.988  0.0127
+GGX         C11         H11      SINGLE       n     1.089  0.0100     0.981  0.0150
+GGX         C11        H11A      SINGLE       n     1.089  0.0100     0.981  0.0150
+GGX         C12         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C12        H12A      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C12        H12B      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C13         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C13        H13A      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C13        H13B      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0174
+GGX         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0175
+GGX         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0161
+GGX         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0175
+GGX         C18         H18      SINGLE       n     1.082  0.0130     0.944  0.0174
+GGX         C22         H22      SINGLE       n     1.082  0.0130     0.950  0.0100
+GGX         C23         H23      SINGLE       n     1.082  0.0130     0.950  0.0100
+GGX         C24         H24      SINGLE       n     1.089  0.0100     0.981  0.0101
+GGX         C24        H24A      SINGLE       n     1.089  0.0100     0.981  0.0101
+GGX         C26         H26      SINGLE       n     1.089  0.0100     0.981  0.0150
+GGX         C26        H26A      SINGLE       n     1.089  0.0100     0.981  0.0150
+GGX         N28        HN28      SINGLE       n     1.016  0.0100     0.872  0.0200
+GGX         C32         H32      SINGLE       n     1.089  0.0100     0.991  0.0200
+GGX         N33        HN33      SINGLE       n     1.016  0.0100     0.875  0.0200
+GGX         C36         H36      SINGLE       n     1.089  0.0100     0.970  0.0175
+GGX         C36        H36A      SINGLE       n     1.089  0.0100     0.970  0.0175
+GGX         C36        H36B      SINGLE       n     1.089  0.0100     0.970  0.0175
+GGX         C38         H38      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C38        H38A      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C38        H38B      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C39         H39      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C39        H39A      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C39        H39B      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C40         H40      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C40        H40A      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C40        H40B      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C42         H42      SINGLE       n     1.082  0.0130     0.943  0.0173
+GGX         C43         H43      SINGLE       n     1.082  0.0130     0.942  0.0141
+GGX         C45         H45      SINGLE       n     1.082  0.0130     0.942  0.0141
+GGX         C46         H46      SINGLE       n     1.082  0.0130     0.943  0.0173
+GGX         C49         H49      SINGLE       n     1.082  0.0130     0.944  0.0193
+GGX         C50         H50      SINGLE       n     1.082  0.0130     0.946  0.0190
+GGX         C51         H51      SINGLE       n     1.082  0.0130     0.944  0.0193
+GGX         C52         H52      SINGLE       n     1.089  0.0100     0.971  0.0138
+GGX         C52        H52A      SINGLE       n     1.089  0.0100     0.971  0.0138
+GGX         C52        H52B      SINGLE       n     1.089  0.0100     0.971  0.0138
+GGX         C53         H53      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C53        H53A      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         C53        H53B      SINGLE       n     1.089  0.0100     0.973  0.0146
+GGX         O54        HO54      SINGLE       n     0.970  0.0120     0.848  0.0200
+GGX         C57         H57      SINGLE       n     1.082  0.0130     0.945  0.0200
+GGX         C58         H58      SINGLE       n     1.082  0.0130     0.944  0.0200
+GGX         C59         H59      SINGLE       n     1.082  0.0130     0.944  0.0200
+GGX         C60         H60      SINGLE       n     1.082  0.0130     0.948  0.0199
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GGX          C2          N1         C20     125.816    3.00
+GGX          C2          N1         C23     125.816    3.00
+GGX         C20          N1         C23     108.367    1.50
+GGX          N1          C2          C3     112.037    1.67
+GGX          N1          C2          C9     111.867    1.85
+GGX          N1          C2          H2     109.046    1.50
+GGX          C3          C2          C9     111.511    2.91
+GGX          C3          C2          H2     108.309    1.50
+GGX          C9          C2          H2     106.578    1.50
+GGX          C2          C3          N4     116.048    2.19
+GGX          C2          C3         O10     121.266    1.62
+GGX          N4          C3         O10     122.686    1.50
+GGX          C3          N4          C5     123.696    1.63
+GGX          C3          N4         HN4     118.752    1.94
+GGX          C5          N4         HN4     117.552    3.00
+GGX          N4          C5          C6     109.748    1.50
+GGX          N4          C5         C11     110.274    1.50
+GGX          N4          C5          H5     108.194    1.50
+GGX          C6          C5         C11     112.266    1.50
+GGX          C6          C5          H5     107.639    1.50
+GGX         C11          C5          H5     108.431    1.50
+GGX          C5          C6          C7     114.793    1.69
+GGX          C5          C6         O54     109.040    1.72
+GGX          C5          C6          H6     108.500    1.50
+GGX          C7          C6         O54     109.024    2.32
+GGX          C7          C6          H6     108.603    1.50
+GGX         O54          C6          H6     108.700    1.50
+GGX          C6          C7          C8     115.661    1.50
+GGX          C6          C7          H7     108.468    1.50
+GGX          C6          C7         H7A     108.468    1.50
+GGX          C8          C7          H7     108.489    1.50
+GGX          C8          C7         H7A     108.489    1.50
+GGX          H7          C7         H7A     107.824    1.50
+GGX          C7          C8         C26     111.939    1.50
+GGX          C7          C8         N28     110.353    1.50
+GGX          C7          C8          H8     107.815    1.50
+GGX         C26          C8         N28     110.274    1.50
+GGX         C26          C8          H8     107.624    1.50
+GGX         N28          C8          H8     108.194    1.50
+GGX          C2          C9         C12     109.921    1.92
+GGX          C2          C9         C13     109.921    1.92
+GGX          C2          C9         C53     109.921    1.92
+GGX         C12          C9         C13     108.765    1.50
+GGX         C12          C9         C53     108.765    1.50
+GGX         C13          C9         C53     108.765    1.50
+GGX          C5         C11         C19     113.215    1.50
+GGX          C5         C11         H11     108.892    1.50
+GGX          C5         C11        H11A     108.892    1.50
+GGX         C19         C11         H11     108.862    1.50
+GGX         C19         C11        H11A     108.862    1.50
+GGX         H11         C11        H11A     107.782    1.50
+GGX          C9         C12         H12     109.575    1.50
+GGX          C9         C12        H12A     109.575    1.50
+GGX          C9         C12        H12B     109.575    1.50
+GGX         H12         C12        H12A     109.377    1.50
+GGX         H12         C12        H12B     109.377    1.50
+GGX        H12A         C12        H12B     109.377    1.50
+GGX          C9         C13         H13     109.575    1.50
+GGX          C9         C13        H13A     109.575    1.50
+GGX          C9         C13        H13B     109.575    1.50
+GGX         H13         C13        H13A     109.377    1.50
+GGX         H13         C13        H13B     109.377    1.50
+GGX        H13A         C13        H13B     109.377    1.50
+GGX         C15         C14         C19     120.624    1.50
+GGX         C15         C14         H14     119.786    1.50
+GGX         C19         C14         H14     119.591    1.50
+GGX         C14         C15         C16     120.325    1.50
+GGX         C14         C15         H15     119.792    1.50
+GGX         C16         C15         H15     119.883    1.50
+GGX         C15         C16         C17     120.043    1.50
+GGX         C15         C16         H16     119.979    1.50
+GGX         C17         C16         H16     119.979    1.50
+GGX         C16         C17         C18     120.325    1.50
+GGX         C16         C17         H17     119.883    1.50
+GGX         C18         C17         H17     119.792    1.50
+GGX         C17         C18         C19     120.624    1.50
+GGX         C17         C18         H18     119.786    1.50
+GGX         C19         C18         H18     119.591    1.50
+GGX         C11         C19         C14     120.970    1.50
+GGX         C11         C19         C18     120.970    1.50
+GGX         C14         C19         C18     118.060    1.50
+GGX          N1         C20         N21     106.904    1.50
+GGX          N1         C20         O27     126.548    1.50
+GGX         N21         C20         O27     126.548    1.50
+GGX         C20         N21         C22     108.367    1.50
+GGX         C20         N21         C24     125.436    1.68
+GGX         C22         N21         C24     126.197    1.55
+GGX         N21         C22         C23     108.181    1.50
+GGX         N21         C22         H22     126.083    1.86
+GGX         C23         C22         H22     125.736    1.50
+GGX          N1         C23         C22     108.181    1.50
+GGX          N1         C23         H23     126.083    1.86
+GGX         C22         C23         H23     125.736    1.50
+GGX         N21         C24         C25     112.926    1.50
+GGX         N21         C24         H24     108.720    1.50
+GGX         N21         C24        H24A     108.720    1.50
+GGX         C25         C24         H24     109.018    1.50
+GGX         C25         C24        H24A     109.018    1.50
+GGX         H24         C24        H24A     107.771    1.50
+GGX         C24         C25         N47     115.463    1.50
+GGX         C24         C25         C51     121.948    1.50
+GGX         N47         C25         C51     122.590    1.50
+GGX          C8         C26         C29     113.636    1.50
+GGX          C8         C26         H26     108.825    1.50
+GGX          C8         C26        H26A     108.825    1.50
+GGX         C29         C26         H26     108.862    1.50
+GGX         C29         C26        H26A     108.862    1.50
+GGX         H26         C26        H26A     107.782    1.50
+GGX          C8         N28         C30     123.632    1.63
+GGX          C8         N28        HN28     117.489    3.00
+GGX         C30         N28        HN28     118.879    1.83
+GGX         C26         C29         C42     121.150    1.50
+GGX         C26         C29         C46     121.150    1.50
+GGX         C42         C29         C46     117.701    1.50
+GGX         N28         C30         O31     123.154    1.50
+GGX         N28         C30         C32     116.417    1.50
+GGX         O31         C30         C32     120.430    1.50
+GGX         C30         C32         N33     111.106    2.53
+GGX         C30         C32         C37     111.511    2.91
+GGX         C30         C32         H32     108.061    1.50
+GGX         N33         C32         C37     111.308    2.28
+GGX         N33         C32         H32     108.161    1.50
+GGX         C37         C32         H32     106.840    1.50
+GGX         C32         N33         C34     120.995    1.63
+GGX         C32         N33        HN33     119.380    1.92
+GGX         C34         N33        HN33     119.625    2.20
+GGX         N33         C34         O35     110.248    1.50
+GGX         N33         C34         O41     124.782    1.50
+GGX         O35         C34         O41     124.970    1.50
+GGX         C34         O35         C36     115.328    1.50
+GGX         O35         C36         H36     109.384    1.50
+GGX         O35         C36        H36A     109.384    1.50
+GGX         O35         C36        H36B     109.384    1.50
+GGX         H36         C36        H36A     109.532    1.53
+GGX         H36         C36        H36B     109.532    1.53
+GGX        H36A         C36        H36B     109.532    1.53
+GGX         C32         C37         C38     109.638    1.92
+GGX         C32         C37         C39     109.638    1.92
+GGX         C32         C37         C40     109.638    1.92
+GGX         C38         C37         C39     108.477    1.50
+GGX         C38         C37         C40     108.477    1.50
+GGX         C39         C37         C40     108.477    1.50
+GGX         C37         C38         H38     109.547    1.50
+GGX         C37         C38        H38A     109.547    1.50
+GGX         C37         C38        H38B     109.547    1.50
+GGX         H38         C38        H38A     109.377    1.50
+GGX         H38         C38        H38B     109.377    1.50
+GGX        H38A         C38        H38B     109.377    1.50
+GGX         C37         C39         H39     109.547    1.50
+GGX         C37         C39        H39A     109.547    1.50
+GGX         C37         C39        H39B     109.547    1.50
+GGX         H39         C39        H39A     109.377    1.50
+GGX         H39         C39        H39B     109.377    1.50
+GGX        H39A         C39        H39B     109.377    1.50
+GGX         C37         C40         H40     109.547    1.50
+GGX         C37         C40        H40A     109.547    1.50
+GGX         C37         C40        H40B     109.547    1.50
+GGX         H40         C40        H40A     109.377    1.50
+GGX         H40         C40        H40B     109.377    1.50
+GGX        H40A         C40        H40B     109.377    1.50
+GGX         C29         C42         C43     121.288    1.50
+GGX         C29         C42         H42     119.323    1.50
+GGX         C43         C42         H42     119.389    1.50
+GGX         C42         C43         C44     120.776    1.50
+GGX         C42         C43         H43     119.536    1.50
+GGX         C44         C43         H43     119.688    1.50
+GGX         C43         C44         C45     118.172    1.50
+GGX         C43         C44         C55     120.914    1.50
+GGX         C45         C44         C55     120.914    1.50
+GGX         C44         C45         C46     120.776    1.50
+GGX         C44         C45         H45     119.688    1.50
+GGX         C46         C45         H45     119.536    1.50
+GGX         C29         C46         C45     121.288    1.50
+GGX         C29         C46         H46     119.323    1.50
+GGX         C45         C46         H46     119.389    1.50
+GGX         C25         N47         C48     118.928    1.50
+GGX         N47         C48         C49     121.421    1.50
+GGX         N47         C48         C52     116.651    1.50
+GGX         C49         C48         C52     121.923    1.50
+GGX         C48         C49         C50     119.196    1.50
+GGX         C48         C49         H49     120.140    1.50
+GGX         C50         C49         H49     120.667    1.50
+GGX         C49         C50         C51     119.039    1.50
+GGX         C49         C50         H50     120.480    1.50
+GGX         C51         C50         H50     120.480    1.50
+GGX         C25         C51         C50     118.829    1.50
+GGX         C25         C51         H51     120.517    1.50
+GGX         C50         C51         H51     120.654    1.50
+GGX         C48         C52         H52     109.592    1.50
+GGX         C48         C52        H52A     109.592    1.50
+GGX         C48         C52        H52B     109.592    1.50
+GGX         H52         C52        H52A     109.339    1.66
+GGX         H52         C52        H52B     109.339    1.66
+GGX        H52A         C52        H52B     109.339    1.66
+GGX          C9         C53         H53     109.575    1.50
+GGX          C9         C53        H53A     109.575    1.50
+GGX          C9         C53        H53B     109.575    1.50
+GGX         H53         C53        H53A     109.377    1.50
+GGX         H53         C53        H53B     109.377    1.50
+GGX        H53A         C53        H53B     109.377    1.50
+GGX          C6         O54        HO54     108.640    2.32
+GGX         C44         C55         N56     116.456    1.50
+GGX         C44         C55         C60     122.135    1.50
+GGX         N56         C55         C60     121.410    1.50
+GGX         C55         N56         C57     117.856    1.50
+GGX         N56         C57         C58     123.734    1.50
+GGX         N56         C57         H57     117.809    1.50
+GGX         C58         C57         H57     118.457    1.50
+GGX         C57         C58         C59     118.387    1.50
+GGX         C57         C58         H58     120.736    1.50
+GGX         C59         C58         H58     120.877    1.50
+GGX         C58         C59         C60     119.260    1.50
+GGX         C58         C59         H59     120.469    1.50
+GGX         C60         C59         H59     120.271    1.50
+GGX         C55         C60         C59     119.353    1.50
+GGX         C55         C60         H60     120.113    1.50
+GGX         C59         C60         H60     120.534    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GGX             sp2_sp3_1         C20          N1          C2          C3     150.000    10.0     6
+GGX              const_24         O27         C20          N1          C2       0.000    10.0     2
+GGX              const_90         C22         C23          N1          C2     180.000    10.0     2
+GGX            sp2_sp3_26         C14         C19         C11          C5     -90.000    10.0     6
+GGX       const_sp2_sp2_1         C19         C14         C15         C16       0.000     5.0     2
+GGX              const_94         C15         C14         C19         C11     180.000    10.0     2
+GGX       const_sp2_sp2_5         C14         C15         C16         C17       0.000     5.0     2
+GGX       const_sp2_sp2_9         C15         C16         C17         C18       0.000     5.0     2
+GGX              const_13         C16         C17         C18         C19       0.000    10.0     2
+GGX              const_18         C17         C18         C19         C11     180.000    10.0     2
+GGX              const_28         O27         C20         N21         C24       0.000    10.0     2
+GGX             sp2_sp3_8          N4          C3          C2          C9     120.000    10.0     6
+GGX             sp3_sp3_5          C3          C2          C9         C12     180.000    10.0     3
+GGX              const_30         C23         C22         N21         C24     180.000    10.0     2
+GGX            sp2_sp3_32         C20         N21         C24         C25     -90.000    10.0     6
+GGX              const_33         N21         C22         C23          N1       0.000    10.0     2
+GGX            sp2_sp3_38         N47         C25         C24         N21     -90.000    10.0     6
+GGX              const_38         C24         C25         N47         C48     180.000    10.0     2
+GGX              const_99         C24         C25         C51         C50     180.000    10.0     2
+GGX            sp2_sp3_44         C42         C29         C26          C8     -90.000    10.0     6
+GGX             sp2_sp2_7         O31         C30         N28          C8       0.000     5.0     2
+GGX              const_55         C26         C29         C42         C43     180.000    10.0     2
+GGX             const_103         C26         C29         C46         C45     180.000    10.0     2
+GGX            sp2_sp3_49         N28         C30         C32         N33       0.000    10.0     6
+GGX             sp2_sp2_1          C2          C3          N4          C5     180.000     5.0     2
+GGX            sp2_sp3_55         C34         N33         C32         C30       0.000    10.0     6
+GGX            sp3_sp3_86         C30         C32         C37         C38     -60.000    10.0     3
+GGX             sp2_sp2_9         O35         C34         N33         C32     180.000     5.0     2
+GGX            sp2_sp2_13         N33         C34         O35         C36     180.000     5.0     2
+GGX            sp3_sp3_95         H36         C36         O35         C34     -60.000    10.0     3
+GGX            sp3_sp3_98         C32         C37         C38         H38     180.000    10.0     3
+GGX           sp3_sp3_110         C32         C37         C39         H39      60.000    10.0     3
+GGX           sp3_sp3_116         C32         C37         C40         H40     180.000    10.0     3
+GGX            sp2_sp3_13          C3          N4          C5          C6       0.000    10.0     6
+GGX              const_57         C29         C42         C43         C44       0.000    10.0     2
+GGX              const_61         C42         C43         C44         C45       0.000    10.0     2
+GGX              const_65         C43         C44         C45         C46       0.000    10.0     2
+GGX            sp2_sp2_16         C43         C44         C55         N56       0.000     5.0     2
+GGX              const_69         C44         C45         C46         C29       0.000    10.0     2
+GGX              const_40         C52         C48         N47         C25     180.000    10.0     2
+GGX              const_43         C52         C48         C49         C50     180.000    10.0     2
+GGX            sp2_sp3_61         N47         C48         C52         H52     150.000    10.0     6
+GGX              const_45         C48         C49         C50         C51       0.000    10.0     2
+GGX              const_49         C49         C50         C51         C25       0.000    10.0     2
+GGX            sp3_sp3_19         C19         C11          C5          N4     180.000    10.0     3
+GGX            sp3_sp3_10          N4          C5          C6          C7     180.000    10.0     3
+GGX              const_74         C44         C55         N56         C57     180.000    10.0     2
+GGX             const_107         C44         C55         C60         C59     180.000    10.0     2
+GGX              const_75         C58         C57         N56         C55       0.000    10.0     2
+GGX              const_77         N56         C57         C58         C59       0.000    10.0     2
+GGX              const_81         C57         C58         C59         C60       0.000    10.0     2
+GGX              const_85         C58         C59         C60         C55       0.000    10.0     2
+GGX            sp3_sp3_37          C5          C6         O54        HO54     180.000    10.0     3
+GGX            sp3_sp3_28          C5          C6          C7          C8     180.000    10.0     3
+GGX            sp3_sp3_40          C6          C7          C8         C26     180.000    10.0     3
+GGX            sp3_sp3_49         C29         C26          C8          C7     180.000    10.0     3
+GGX            sp2_sp3_19         C30         N28          C8          C7       0.000    10.0     6
+GGX            sp3_sp3_58         H12         C12          C9          C2     180.000    10.0     3
+GGX            sp3_sp3_68         H13         C13          C9          C2     -60.000    10.0     3
+GGX            sp3_sp3_76         H53         C53          C9          C2     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GGX    chir_1    C2    N1    C3    C9    positive
+GGX    chir_2    C5    N4    C6    C11    positive
+GGX    chir_3    C6    O54    C5    C7    positive
+GGX    chir_4    C8    N28    C7    C26    negative
+GGX    chir_5    C9    C2    C12    C13    both
+GGX    chir_6    C32    N33    C30    C37    positive
+GGX    chir_7    C37    C32    C38    C39    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GGX    plan-1          C2   0.020
+GGX    plan-1         C20   0.020
+GGX    plan-1         C22   0.020
+GGX    plan-1         C23   0.020
+GGX    plan-1         C24   0.020
+GGX    plan-1         H22   0.020
+GGX    plan-1         H23   0.020
+GGX    plan-1          N1   0.020
+GGX    plan-1         N21   0.020
+GGX    plan-1         O27   0.020
+GGX    plan-2         C11   0.020
+GGX    plan-2         C14   0.020
+GGX    plan-2         C15   0.020
+GGX    plan-2         C16   0.020
+GGX    plan-2         C17   0.020
+GGX    plan-2         C18   0.020
+GGX    plan-2         C19   0.020
+GGX    plan-2         H14   0.020
+GGX    plan-2         H15   0.020
+GGX    plan-2         H16   0.020
+GGX    plan-2         H17   0.020
+GGX    plan-2         H18   0.020
+GGX    plan-3         C24   0.020
+GGX    plan-3         C25   0.020
+GGX    plan-3         C48   0.020
+GGX    plan-3         C49   0.020
+GGX    plan-3         C50   0.020
+GGX    plan-3         C51   0.020
+GGX    plan-3         C52   0.020
+GGX    plan-3         H49   0.020
+GGX    plan-3         H50   0.020
+GGX    plan-3         H51   0.020
+GGX    plan-3         N47   0.020
+GGX    plan-4         C26   0.020
+GGX    plan-4         C29   0.020
+GGX    plan-4         C42   0.020
+GGX    plan-4         C43   0.020
+GGX    plan-4         C44   0.020
+GGX    plan-4         C45   0.020
+GGX    plan-4         C46   0.020
+GGX    plan-4         C55   0.020
+GGX    plan-4         H42   0.020
+GGX    plan-4         H43   0.020
+GGX    plan-4         H45   0.020
+GGX    plan-4         H46   0.020
+GGX    plan-5         C44   0.020
+GGX    plan-5         C55   0.020
+GGX    plan-5         C57   0.020
+GGX    plan-5         C58   0.020
+GGX    plan-5         C59   0.020
+GGX    plan-5         C60   0.020
+GGX    plan-5         H57   0.020
+GGX    plan-5         H58   0.020
+GGX    plan-5         H59   0.020
+GGX    plan-5         H60   0.020
+GGX    plan-5         N56   0.020
+GGX    plan-6          C2   0.020
+GGX    plan-6          C3   0.020
+GGX    plan-6          N4   0.020
+GGX    plan-6         O10   0.020
+GGX    plan-7          C3   0.020
+GGX    plan-7          C5   0.020
+GGX    plan-7         HN4   0.020
+GGX    plan-7          N4   0.020
+GGX    plan-8         C30   0.020
+GGX    plan-8          C8   0.020
+GGX    plan-8        HN28   0.020
+GGX    plan-8         N28   0.020
+GGX    plan-9         C30   0.020
+GGX    plan-9         C32   0.020
+GGX    plan-9         N28   0.020
+GGX    plan-9         O31   0.020
+GGX   plan-10         C32   0.020
+GGX   plan-10         C34   0.020
+GGX   plan-10        HN33   0.020
+GGX   plan-10         N33   0.020
+GGX   plan-11         C34   0.020
+GGX   plan-11         N33   0.020
+GGX   plan-11         O35   0.020
+GGX   plan-11         O41   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GGX           SMILES              ACDLabs 10.04                                                                                                                                                                                              O=C(OC)NC(C(=O)NC(Cc2ccc(c1ncccc1)cc2)CC(O)C(NC(=O)C(N3C=CN(C3=O)Cc4nc(ccc4)C)C(C)(C)C)Cc5ccccc5)C(C)(C)C
+GGX SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                        COC(=O)N[C@H](C(=O)N[C@@H](C[C@H](O)[C@H](Cc1ccccc1)NC(=O)[C@@H](N2C=CN(Cc3cccc(C)n3)C2=O)C(C)(C)C)Cc4ccc(cc4)c5ccccn5)C(C)(C)C
+GGX           SMILES               CACTVS 3.341                                                                                                                                                                               COC(=O)N[CH](C(=O)N[CH](C[CH](O)[CH](Cc1ccccc1)NC(=O)[CH](N2C=CN(Cc3cccc(C)n3)C2=O)C(C)(C)C)Cc4ccc(cc4)c5ccccn5)C(C)(C)C
+GGX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                        Cc1cccc(n1)CN2C=CN(C2=O)[C@H](C(=O)N[C@@H](Cc3ccccc3)[C@H](C[C@@H](Cc4ccc(cc4)c5ccccn5)NC(=O)[C@H](C(C)(C)C)NC(=O)OC)O)C(C)(C)C
+GGX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                              Cc1cccc(n1)CN2C=CN(C2=O)C(C(=O)NC(Cc3ccccc3)C(CC(Cc4ccc(cc4)c5ccccn5)NC(=O)C(C(C)(C)C)NC(=O)OC)O)C(C)(C)C
+GGX            InChI                InChI  1.03 InChI=1S/C47H59N7O6/c1-31-15-14-18-35(49-31)30-53-25-26-54(45(53)59)41(47(5,6)7)43(57)51-38(28-32-16-10-9-11-17-32)39(55)29-36(50-42(56)40(46(2,3)4)52-44(58)60-8)27-33-20-22-34(23-21-33)37-19-12-13-24-48-37/h9-26,36,38-41,55H,27-30H2,1-8H3,(H,50,56)(H,51,57)(H,52,58)/t36-,38+,39+,40-,41-/m1/s1
+GGX         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                            BTNNHZWTVQDFCK-YPINIOOUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GGX acedrg               243         "dictionary generator"                  
+GGX acedrg_database      11          "data source"                           
+GGX rdkit                2017.03.2   "Chemoinformatics tool"
+GGX refmac5              5.8.0238    "optimization tool"                     

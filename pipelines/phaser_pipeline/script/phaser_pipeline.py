@@ -211,9 +211,9 @@ class phaser_pipeline(CPluginScript):
                 fphiinList = cootPlugin.container.inputData.FPHIIN
                 fphiinList.append(fphiinList.makeItem())
                 fphiinList[-1].set(MAPIN)
-                cootPlugin.container.controlParameters.SCRIPT = '''fill_partial_residues(MolHandle_1)
-fit_protein(MolHandle_1)
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
+                cootPlugin.container.controlParameters.SCRIPT = '''coot.fill_partial_residues(MolHandle_1)
+coot.fit_protein(MolHandle_1)
+coot.write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
 '''
             except:
                 self.appendErrorReport(204,'coot_script_lines -setup')

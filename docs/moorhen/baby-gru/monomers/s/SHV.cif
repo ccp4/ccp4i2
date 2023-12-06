@@ -1,0 +1,169 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SHV     SHV      "HEPTANOIC ACID"     NON-POLYMER     22     9     .     
+#
+data_comp_SHV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SHV     C1      C       C       0       -0.915      26.766      2.715       
+SHV     O1      O       OC      -1      -1.826      25.933      2.892       
+SHV     O2      O       O       0       -0.602      27.635      3.553       
+SHV     C2      C       CH2     0       -0.143      26.719      1.407       
+SHV     C3      C       CH2     0       -0.745      27.524      0.298       
+SHV     C4      C       CH2     0       0.034       27.407      -1.001      
+SHV     C5      C       CH2     0       -0.427      28.347      -2.091      
+SHV     C6      C       CH2     0       -1.819      28.080      -2.620      
+SHV     C7      C       CH3     0       -2.891      28.972      -2.037      
+SHV     H21     H       H       0       -0.078      25.783      1.120       
+SHV     H22     H       H       0       0.768       27.041      1.573       
+SHV     H31     H       H       0       -0.779      28.467      0.563       
+SHV     H32     H       H       0       -1.665      27.223      0.143       
+SHV     H41     H       H       0       -0.038      26.485      -1.329      
+SHV     H42     H       H       0       0.981       27.583      -0.815      
+SHV     H51     H       H       0       0.205       28.289      -2.838      
+SHV     H52     H       H       0       -0.392      29.265      -1.746      
+SHV     H61     H       H       0       -2.053      27.144      -2.436      
+SHV     H62     H       H       0       -1.809      28.196      -3.595      
+SHV     H71     H       H       0       -3.757      28.720      -2.399      
+SHV     H72     H       H       0       -2.703      29.899      -2.266      
+SHV     H73     H       H       0       -2.905      28.876      -1.069      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SHV          C1          O1      SINGLE       n     1.247  0.0187     1.247  0.0187
+SHV          C1          O2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+SHV          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+SHV          C2          C3      SINGLE       n     1.497  0.0200     1.497  0.0200
+SHV          C3          C4      SINGLE       n     1.519  0.0164     1.519  0.0164
+SHV          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+SHV          C5          C6      SINGLE       n     1.507  0.0200     1.507  0.0200
+SHV          C6          C7      SINGLE       n     1.510  0.0200     1.510  0.0200
+SHV          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+SHV          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+SHV          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0160
+SHV          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0160
+SHV          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+SHV          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+SHV          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0163
+SHV          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0163
+SHV          C6         H61      SINGLE       n     1.089  0.0100     0.982  0.0155
+SHV          C6         H62      SINGLE       n     1.089  0.0100     0.982  0.0155
+SHV          C7         H71      SINGLE       n     1.089  0.0100     0.973  0.0157
+SHV          C7         H72      SINGLE       n     1.089  0.0100     0.973  0.0157
+SHV          C7         H73      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SHV          O1          C1          O2     123.571    1.50
+SHV          O1          C1          C2     118.214    1.64
+SHV          O2          C1          C2     118.214    1.64
+SHV          C1          C2          C3     114.612    2.19
+SHV          C1          C2         H21     108.404    1.50
+SHV          C1          C2         H22     108.404    1.50
+SHV          C3          C2         H21     108.815    1.50
+SHV          C3          C2         H22     108.815    1.50
+SHV         H21          C2         H22     107.521    1.50
+SHV          C2          C3          C4     112.553    1.50
+SHV          C2          C3         H31     109.164    1.50
+SHV          C2          C3         H32     109.164    1.50
+SHV          C4          C3         H31     108.698    1.50
+SHV          C4          C3         H32     108.698    1.50
+SHV         H31          C3         H32     107.646    1.50
+SHV          C3          C4          C5     114.243    1.69
+SHV          C3          C4         H41     108.698    1.50
+SHV          C3          C4         H42     108.698    1.50
+SHV          C5          C4         H41     108.698    1.50
+SHV          C5          C4         H42     108.698    1.50
+SHV         H41          C4         H42     107.646    1.50
+SHV          C4          C5          C6     114.362    3.00
+SHV          C4          C5         H51     108.698    1.50
+SHV          C4          C5         H52     108.698    1.50
+SHV          C6          C5         H51     108.653    1.50
+SHV          C6          C5         H52     108.653    1.50
+SHV         H51          C5         H52     107.646    1.50
+SHV          C5          C6          C7     113.719    3.00
+SHV          C5          C6         H61     108.758    1.50
+SHV          C5          C6         H62     108.758    1.50
+SHV          C7          C6         H61     108.918    1.50
+SHV          C7          C6         H62     108.918    1.50
+SHV         H61          C6         H62     107.763    1.50
+SHV          C6          C7         H71     109.554    1.50
+SHV          C6          C7         H72     109.554    1.50
+SHV          C6          C7         H73     109.554    1.50
+SHV         H71          C7         H72     109.380    1.50
+SHV         H71          C7         H73     109.380    1.50
+SHV         H72          C7         H73     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SHV             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+SHV             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+SHV            sp3_sp3_10          C2          C3          C4          C5     180.000    10.0     3
+SHV            sp3_sp3_19          C3          C4          C5          C6     180.000    10.0     3
+SHV            sp3_sp3_28          C4          C5          C6          C7     180.000    10.0     3
+SHV            sp3_sp3_37          C5          C6          C7         H71     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SHV    plan-1          C1   0.020
+SHV    plan-1          C2   0.020
+SHV    plan-1          O1   0.020
+SHV    plan-1          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SHV           SMILES              ACDLabs 12.01                                           O=C(O)CCCCCC
+SHV            InChI                InChI  1.03 InChI=1S/C7H14O2/c1-2-3-4-5-6-7(8)9/h2-6H2,1H3,(H,8,9)
+SHV         InChIKey                InChI  1.03                            MNWFXJYAOYHMED-UHFFFAOYSA-N
+SHV SMILES_CANONICAL               CACTVS 3.385                                           CCCCCCC(O)=O
+SHV           SMILES               CACTVS 3.385                                           CCCCCCC(O)=O
+SHV SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                           CCCCCCC(=O)O
+SHV           SMILES "OpenEye OEToolkits" 1.7.6                                           CCCCCCC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SHV acedrg               243         "dictionary generator"                  
+SHV acedrg_database      11          "data source"                           
+SHV rdkit                2017.03.2   "Chemoinformatics tool"
+SHV refmac5              5.8.0238    "optimization tool"                     

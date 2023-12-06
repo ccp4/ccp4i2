@@ -1,0 +1,373 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+M98     M98      "(S)-3-(2-(3-CYCLOPROPOXY-4-(DIFLUOROMETHOXY)PHENYL)-2-(5-(1,1,1,3,3,3-HEXAFLUORO-2-HYDROXYPROPAN-2-YL)THIAZOL-2-YL)ETHYL)PYRIDINE 1-OXIDE"     NON-POLYMER     56     38     .     
+#
+data_comp_M98
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+M98     F1      F       F       0       23.273      -1.357      35.266      
+M98     F2      F       F       0       24.897      -2.627      34.726      
+M98     C1      C       CH1     0       23.701      -2.626      35.335      
+M98     O1      O       O2      0       22.844      -3.426      34.656      
+M98     C12     C       CH2     0       21.041      -7.786      34.146      
+M98     C13     C       CH2     0       21.364      -7.615      32.705      
+M98     C8      C       CH1     0       20.634      -6.536      33.437      
+M98     O2      O       O2      0       21.362      -5.344      33.733      
+M98     C2      C       CR6     0       22.570      -3.346      33.311      
+M98     C3      C       CR6     0       21.759      -4.395      32.821      
+M98     C4      C       CR16    0       21.403      -4.428      31.476      
+M98     C5      C       CR6     0       21.833      -3.442      30.594      
+M98     C6      C       CR16    0       22.626      -2.412      31.083      
+M98     C7      C       CR16    0       22.993      -2.357      32.426      
+M98     C9      C       CH1     0       21.437      -3.477      29.118      
+M98     C10     C       CR5     0       22.136      -4.563      28.361      
+M98     C11     C       CR15    0       23.597      -5.516      26.875      
+M98     N1      N       NRD5    0       23.113      -4.353      27.462      
+M98     S1      S       S2      0       21.831      -6.199      28.447      
+M98     C14     C       CR5     0       22.994      -6.632      27.323      
+M98     C15     C       CT      0       23.203      -8.067      26.948      
+M98     O3      O       OH1     0       22.647      -8.965      27.916      
+M98     C16     C       CT      0       24.704      -8.439      26.862      
+M98     F5      F       F       0       24.883      -9.750      26.734      
+M98     F6      F       F       0       25.368      -8.066      27.951      
+M98     F7      F       F       0       25.311      -7.869      25.825      
+M98     C17     C       CT      0       22.478      -8.371      25.617      
+M98     F8      F       F       0       21.176      -8.115      25.695      
+M98     F9      F       F       0       22.597      -9.648      25.264      
+M98     F10     F       F       0       22.956      -7.643      24.612      
+M98     C18     C       CH2     0       19.904      -3.563      28.935      
+M98     C19     C       CR6     0       19.492      -3.436      27.488      
+M98     C20     C       CR16    0       19.576      -2.210      26.828      
+M98     C21     C       CR16    0       19.204      -2.093      25.501      
+M98     C22     C       CR16    0       19.031      -4.550      26.786      
+M98     C23     C       CR16    0       18.745      -3.207      24.819      
+M98     O4      O       OC      -1      18.220      -5.488      24.800      
+M98     N2      N       NR6     1       18.674      -4.394      25.481      
+M98     H1      H       H       0       23.790      -2.910      36.274      
+M98     H121    H       H       0       20.331      -8.415      34.386      
+M98     H122    H       H       0       21.772      -7.716      34.792      
+M98     H131    H       H       0       22.294      -7.439      32.461      
+M98     H132    H       H       0       20.854      -8.137      32.055      
+M98     H8      H       H       0       19.677      -6.406      33.237      
+M98     H4      H       H       0       20.863      -5.129      31.147      
+M98     H6      H       H       0       22.923      -1.735      30.498      
+M98     H7      H       H       0       23.533      -1.649      32.730      
+M98     H9      H       H       0       21.711      -2.605      28.732      
+M98     H11     H       H       0       24.286      -5.513      26.233      
+M98     HO3     H       H       0       21.884      -8.705      28.189      
+M98     H181    H       H       0       19.481      -2.845      29.449      
+M98     H182    H       H       0       19.579      -4.415      29.288      
+M98     H20     H       H       0       19.889      -1.453      27.295      
+M98     H21     H       H       0       19.261      -1.261      25.060      
+M98     H22     H       H       0       18.964      -5.393      27.204      
+M98     H23     H       H       0       18.485      -3.153      23.914      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+M98          F1          C1      SINGLE       n     1.339  0.0165     1.339  0.0165
+M98          F2          C1      SINGLE       n     1.339  0.0165     1.339  0.0165
+M98          C1          O1      SINGLE       n     1.347  0.0121     1.347  0.0121
+M98          O1          C2      SINGLE       n     1.366  0.0100     1.366  0.0100
+M98         C12         C13      SINGLE       n     1.491  0.0140     1.491  0.0140
+M98         C12          C8      SINGLE       n     1.489  0.0200     1.489  0.0200
+M98         C13          C8      SINGLE       n     1.489  0.0200     1.489  0.0200
+M98          C8          O2      SINGLE       n     1.424  0.0141     1.424  0.0141
+M98          O2          C3      SINGLE       n     1.370  0.0110     1.370  0.0110
+M98          C2          C3      DOUBLE       y     1.406  0.0100     1.406  0.0100
+M98          C2          C7      SINGLE       y     1.386  0.0100     1.386  0.0100
+M98          C3          C4      SINGLE       y     1.385  0.0100     1.385  0.0100
+M98          C4          C5      DOUBLE       y     1.387  0.0100     1.387  0.0100
+M98          C5          C6      SINGLE       y     1.385  0.0100     1.385  0.0100
+M98          C5          C9      SINGLE       n     1.525  0.0100     1.525  0.0100
+M98          C6          C7      DOUBLE       y     1.391  0.0100     1.391  0.0100
+M98          C9         C10      SINGLE       n     1.492  0.0140     1.492  0.0140
+M98          C9         C18      SINGLE       n     1.535  0.0200     1.535  0.0200
+M98         C10          N1      DOUBLE       y     1.332  0.0200     1.332  0.0200
+M98         C10          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+M98         C11          N1      SINGLE       y     1.371  0.0139     1.371  0.0139
+M98         C11         C14      DOUBLE       y     1.339  0.0100     1.339  0.0100
+M98          S1         C14      SINGLE       y     1.695  0.0200     1.695  0.0200
+M98         C14         C15      SINGLE       n     1.490  0.0111     1.490  0.0111
+M98         C15          O3      SINGLE       n     1.427  0.0139     1.427  0.0139
+M98         C15         C16      SINGLE       n     1.540  0.0122     1.540  0.0122
+M98         C15         C17      SINGLE       n     1.540  0.0122     1.540  0.0122
+M98         C16          F5      SINGLE       n     1.329  0.0135     1.329  0.0135
+M98         C16          F6      SINGLE       n     1.329  0.0135     1.329  0.0135
+M98         C16          F7      SINGLE       n     1.329  0.0135     1.329  0.0135
+M98         C17          F8      SINGLE       n     1.329  0.0135     1.329  0.0135
+M98         C17          F9      SINGLE       n     1.329  0.0135     1.329  0.0135
+M98         C17         F10      SINGLE       n     1.329  0.0135     1.329  0.0135
+M98         C18         C19      SINGLE       n     1.509  0.0100     1.509  0.0100
+M98         C19         C20      DOUBLE       y     1.392  0.0100     1.392  0.0100
+M98         C19         C22      SINGLE       y     1.391  0.0103     1.391  0.0103
+M98         C20         C21      SINGLE       y     1.376  0.0166     1.376  0.0166
+M98         C21         C23      DOUBLE       y     1.380  0.0129     1.380  0.0129
+M98         C22          N2      DOUBLE       y     1.356  0.0119     1.356  0.0119
+M98         C23          N2      SINGLE       y     1.356  0.0119     1.356  0.0119
+M98          O4          N2      SINGLE       n     1.366  0.0100     1.366  0.0100
+M98          C1          H1      SINGLE       n     1.089  0.0100     0.985  0.0104
+M98         C12        H121      SINGLE       n     1.089  0.0100     0.978  0.0171
+M98         C12        H122      SINGLE       n     1.089  0.0100     0.978  0.0171
+M98         C13        H131      SINGLE       n     1.089  0.0100     0.978  0.0171
+M98         C13        H132      SINGLE       n     1.089  0.0100     0.978  0.0171
+M98          C8          H8      SINGLE       n     1.089  0.0100     0.987  0.0131
+M98          C4          H4      SINGLE       n     1.082  0.0130     0.945  0.0164
+M98          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0173
+M98          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0200
+M98          C9          H9      SINGLE       n     1.089  0.0100     0.992  0.0147
+M98         C11         H11      SINGLE       n     1.082  0.0130     0.942  0.0176
+M98          O3         HO3      SINGLE       n     0.970  0.0120     0.848  0.0200
+M98         C18        H181      SINGLE       n     1.089  0.0100     0.979  0.0191
+M98         C18        H182      SINGLE       n     1.089  0.0100     0.979  0.0191
+M98         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0173
+M98         C21         H21      SINGLE       n     1.082  0.0130     0.943  0.0190
+M98         C22         H22      SINGLE       n     1.082  0.0130     0.943  0.0169
+M98         C23         H23      SINGLE       n     1.082  0.0130     0.943  0.0169
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+M98          F1          C1          F2     104.663    1.50
+M98          F1          C1          O1     108.585    1.50
+M98          F1          C1          H1     111.255    1.50
+M98          F2          C1          O1     108.585    1.50
+M98          F2          C1          H1     111.255    1.50
+M98          O1          C1          H1     112.110    1.50
+M98          C1          O1          C2     116.103    2.19
+M98         C13         C12          C8      60.621    1.50
+M98         C13         C12        H121     117.823    1.50
+M98         C13         C12        H122     117.823    1.50
+M98          C8         C12        H121     116.997    1.50
+M98          C8         C12        H122     116.997    1.50
+M98        H121         C12        H122     114.868    1.50
+M98         C12         C13          C8      60.621    1.50
+M98         C12         C13        H131     117.823    1.50
+M98         C12         C13        H132     117.823    1.50
+M98          C8         C13        H131     116.997    1.50
+M98          C8         C13        H132     116.997    1.50
+M98        H131         C13        H132     114.868    1.50
+M98         C12          C8         C13      58.463    1.50
+M98         C12          C8          O2     115.172    2.29
+M98         C12          C8          H8     117.026    1.60
+M98         C13          C8          O2     115.172    2.29
+M98         C13          C8          H8     117.026    1.60
+M98          O2          C8          H8     109.471    3.00
+M98          C8          O2          C3     120.000    3.00
+M98          O1          C2          C3     117.535    2.33
+M98          O1          C2          C7     122.585    3.00
+M98          C3          C2          C7     119.881    1.50
+M98          O2          C3          C2     117.629    2.46
+M98          O2          C3          C4     122.491    3.00
+M98          C2          C3          C4     119.881    1.50
+M98          C3          C4          C5     120.469    1.50
+M98          C3          C4          H4     120.130    1.50
+M98          C5          C4          H4     119.400    1.50
+M98          C4          C5          C6     118.825    1.50
+M98          C4          C5          C9     120.588    2.12
+M98          C6          C5          C9     120.588    2.12
+M98          C5          C6          C7     121.003    1.50
+M98          C5          C6          H6     119.578    1.50
+M98          C7          C6          H6     119.420    1.50
+M98          C2          C7          C6     119.942    1.50
+M98          C2          C7          H7     119.900    1.50
+M98          C6          C7          H7     120.158    1.50
+M98          C5          C9         C10     111.894    2.22
+M98          C5          C9         C18     111.829    1.94
+M98          C5          C9          H9     107.130    1.50
+M98         C10          C9         C18     110.747    2.16
+M98         C10          C9          H9     109.366    1.50
+M98         C18          C9          H9     107.244    1.50
+M98          C9         C10          N1     127.084    3.00
+M98          C9         C10          S1     124.952    3.00
+M98          N1         C10          S1     107.964    3.00
+M98          N1         C11         C14     109.035    1.50
+M98          N1         C11         H11     124.493    1.50
+M98         C14         C11         H11     126.472    2.00
+M98         C10          N1         C11     107.072    1.65
+M98         C10          S1         C14     107.964    3.00
+M98         C11         C14          S1     107.964    3.00
+M98         C11         C14         C15     130.569    3.00
+M98          S1         C14         C15     121.466    3.00
+M98         C14         C15          O3     111.149    2.31
+M98         C14         C15         C16     110.747    2.16
+M98         C14         C15         C17     110.747    2.16
+M98          O3         C15         C16     107.213    2.15
+M98          O3         C15         C17     107.213    2.15
+M98         C16         C15         C17     110.452    1.50
+M98         C15          O3         HO3     109.469    3.00
+M98         C15         C16          F5     111.948    1.50
+M98         C15         C16          F6     111.948    1.50
+M98         C15         C16          F7     111.948    1.50
+M98          F5         C16          F6     107.197    1.50
+M98          F5         C16          F7     107.197    1.50
+M98          F6         C16          F7     107.197    1.50
+M98         C15         C17          F8     111.948    1.50
+M98         C15         C17          F9     111.948    1.50
+M98         C15         C17         F10     111.948    1.50
+M98          F8         C17          F9     107.197    1.50
+M98          F8         C17         F10     107.197    1.50
+M98          F9         C17         F10     107.197    1.50
+M98          C9         C18         C19     111.525    1.84
+M98          C9         C18        H181     108.999    1.50
+M98          C9         C18        H182     108.999    1.50
+M98         C19         C18        H181     108.868    1.50
+M98         C19         C18        H182     108.868    1.50
+M98        H181         C18        H182     107.725    1.50
+M98         C18         C19         C20     120.544    1.50
+M98         C18         C19         C22     120.169    1.50
+M98         C20         C19         C22     119.287    1.74
+M98         C19         C20         C21     121.075    1.50
+M98         C19         C20         H20     119.326    1.50
+M98         C21         C20         H20     119.599    1.50
+M98         C20         C21         C23     119.739    1.50
+M98         C20         C21         H21     120.401    1.50
+M98         C23         C21         H21     119.861    1.50
+M98         C19         C22          N2     118.279    2.33
+M98         C19         C22         H22     120.974    1.54
+M98          N2         C22         H22     120.747    1.90
+M98         C21         C23          N2     118.647    2.98
+M98         C21         C23         H23     121.187    1.54
+M98          N2         C23         H23     120.166    1.90
+M98         C22          N2         C23     122.974    2.07
+M98         C22          N2          O4     118.513    3.00
+M98         C23          N2          O4     118.513    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+M98              const_40          C3          C4          C5          C9     180.000    10.0     2
+M98              const_47          C5          C6          C7          C2       0.000    10.0     2
+M98             sp2_sp3_5          C6          C5          C9         C18      90.000    10.0     6
+M98              const_49          H6          C6          C7          C2     180.000    10.0     2
+M98            sp2_sp3_11          S1         C10          C9         C18      90.000    10.0     6
+M98            sp3_sp3_37        H181         C18          C9          C5      60.000    10.0     3
+M98       const_sp2_sp2_2          C9         C10          N1         C11     180.000     5.0     2
+M98            sp2_sp3_15         C11         C14         C15         C17      30.000    10.0     6
+M98       const_sp2_sp2_3         C14         C11          N1         C10       0.000     5.0     2
+M98       const_sp2_sp2_6          N1         C11         C14         C15     180.000     5.0     2
+M98              const_10         C15         C14          S1         C10     180.000    10.0     2
+M98            sp2_sp3_16          S1         C14         C15          O3     -30.000    10.0     6
+M98            sp3_sp3_46         C14         C15         C16          F5     180.000    10.0     3
+M98            sp3_sp3_52         C17         C15         C16          F5     -60.000    10.0     3
+M98            sp3_sp3_58         C14         C15         C17          F8      60.000    10.0     3
+M98            sp3_sp3_21          F2          C1          O1          C2      60.000    10.0     3
+M98            sp2_sp3_23         C22         C19         C18          C9      90.000    10.0     6
+M98              const_15         C19         C20         C21         C23       0.000    10.0     2
+M98              const_59         C18         C19         C22          N2     180.000    10.0     2
+M98              const_17         H20         C20         C21         C23     180.000    10.0     2
+M98              const_21         H21         C21         C23          N2     180.000    10.0     2
+M98              const_30         H22         C22          N2          O4       0.000    10.0     2
+M98              const_26         H23         C23          N2          O4       0.000    10.0     2
+M98            sp3_sp3_22         C13         C12          C8          O2     180.000    10.0     3
+M98            sp3_sp3_25        H121         C12          C8          O2      60.000    10.0     3
+M98            sp3_sp3_13        H131         C13          C8         C12     180.000    10.0     3
+M98             sp2_sp2_3          C2          C3          O2          C8     180.000     5.0     2
+M98              const_52          C3          C2          C7          H7     180.000    10.0     2
+M98             sp2_sp3_2          C4          C5          C9         C18     -90.000    10.0     6
+M98              const_36          C2          C3          C4          H4     180.000    10.0     2
+M98              const_39          C3          C4          C5          C6       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+M98    chir_1    C1    F1    F2    O1    both
+M98    chir_2    C8    O2    C12    C13    both
+M98    chir_3    C9    C10    C5    C18    positive
+M98    chir_4    C15    O3    C14    C16    both
+M98    chir_5    C16    F5    F6    F7    both
+M98    chir_6    C17    F8    F9    F10    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+M98    plan-1          C2   0.020
+M98    plan-1          C3   0.020
+M98    plan-1          C4   0.020
+M98    plan-1          C5   0.020
+M98    plan-1          C6   0.020
+M98    plan-1          C7   0.020
+M98    plan-1          C9   0.020
+M98    plan-1          H4   0.020
+M98    plan-1          H6   0.020
+M98    plan-1          H7   0.020
+M98    plan-1          O1   0.020
+M98    plan-1          O2   0.020
+M98    plan-2         C10   0.020
+M98    plan-2         C11   0.020
+M98    plan-2         C14   0.020
+M98    plan-2         C15   0.020
+M98    plan-2          C9   0.020
+M98    plan-2         H11   0.020
+M98    plan-2          N1   0.020
+M98    plan-2          S1   0.020
+M98    plan-3         C18   0.020
+M98    plan-3         C19   0.020
+M98    plan-3         C20   0.020
+M98    plan-3         C21   0.020
+M98    plan-3         C22   0.020
+M98    plan-3         C23   0.020
+M98    plan-3         H20   0.020
+M98    plan-3         H21   0.020
+M98    plan-3         H22   0.020
+M98    plan-3         H23   0.020
+M98    plan-3          N2   0.020
+M98    plan-3          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+M98           SMILES              ACDLabs 10.04                                                                                                                 FC(F)Oc2ccc(cc2OC1CC1)C(c3ncc(s3)C(O)(C(F)(F)F)C(F)(F)F)Cc4c[n+]([O-])ccc4
+M98 SMILES_CANONICAL               CACTVS 3.341                                                                                                          OC(c1sc(nc1)[C@@H](Cc2ccc[n+]([O-])c2)c3ccc(OC(F)F)c(OC4CC4)c3)(C(F)(F)F)C(F)(F)F
+M98           SMILES               CACTVS 3.341                                                                                                            OC(c1sc(nc1)[CH](Cc2ccc[n+]([O-])c2)c3ccc(OC(F)F)c(OC4CC4)c3)(C(F)(F)F)C(F)(F)F
+M98 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                        c1cc(c[n+](c1)[O-])C[C@@H](c2ccc(c(c2)OC3CC3)OC(F)F)c4ncc(s4)C(C(F)(F)F)(C(F)(F)F)O
+M98           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                             c1cc(c[n+](c1)[O-])CC(c2ccc(c(c2)OC3CC3)OC(F)F)c4ncc(s4)C(C(F)(F)F)(C(F)(F)F)O
+M98            InChI                InChI  1.03 InChI=1S/C23H18F8N2O4S/c24-20(25)37-16-6-3-13(9-17(16)36-14-4-5-14)15(8-12-2-1-7-33(35)11-12)19-32-10-18(38-19)21(34,22(26,27)28)23(29,30)31/h1-3,6-7,9-11,14-15,20,34H,4-5,8H2/t15-/m0/s1
+M98         InChIKey                InChI  1.03                                                                                                                                                                SPOLCPORTSDTGD-HNNXBMFYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+M98 acedrg               243         "dictionary generator"                  
+M98 acedrg_database      11          "data source"                           
+M98 rdkit                2017.03.2   "Chemoinformatics tool"
+M98 refmac5              5.8.0238    "optimization tool"                     

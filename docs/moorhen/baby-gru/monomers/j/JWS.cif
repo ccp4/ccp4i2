@@ -1,0 +1,225 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JWS     JWS      2-(4,6-diamino-1,3,5-triazin-2-yl)-4-methoxyphenol     NON-POLYMER     28     17     .     
+#
+data_comp_JWS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JWS     N1      N       NRD6    0       62.297      81.563      -82.413     
+JWS     C2      C       CR6     0       63.551      81.193      -82.093     
+JWS     N3      N       NH2     0       63.877      81.141      -80.799     
+JWS     N4      N       NRD6    0       64.520      80.866      -82.993     
+JWS     C5      C       CR6     0       64.136      80.931      -84.277     
+JWS     C6      C       CR6     0       65.148      80.589      -85.305     
+JWS     C7      C       CR6     0       65.377      81.396      -86.431     
+JWS     O8      O       OH1     0       64.652      82.550      -86.621     
+JWS     C9      C       CR16    0       66.333      81.045      -87.376     
+JWS     C10     C       CR16    0       67.080      79.888      -87.214     
+JWS     C11     C       CR6     0       66.870      79.071      -86.105     
+JWS     O12     O       O2      0       67.543      77.902      -85.827     
+JWS     C13     C       CR16    0       65.911      79.422      -85.160     
+JWS     N14     N       NRD6    0       62.919      81.287      -84.716     
+JWS     C15     C       CR6     0       62.031      81.595      -83.731     
+JWS     N16     N       NH2     0       60.803      81.956      -84.112     
+JWS     C17     C       CH3     0       68.476      77.370      -86.767     
+JWS     HN3     H       H       0       64.695      80.926      -80.560     
+JWS     HN3A    H       H       0       63.274      81.320      -80.186     
+JWS     HO8     H       H       0       64.994      83.213      -87.053     
+JWS     H9      H       H       0       66.474      81.596      -88.124     
+JWS     H10     H       H       0       67.726      79.661      -87.860     
+JWS     H13     H       H       0       65.772      78.868      -84.408     
+JWS     HN16    H       H       0       60.691      82.413      -84.853     
+JWS     HN1A    H       H       0       60.111      81.737      -83.619     
+JWS     H17     H       H       0       69.205      77.999      -86.893     
+JWS     H17A    H       H       0       68.029      77.217      -87.616     
+JWS     H17B    H       H       0       68.828      76.530      -86.431     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JWS          N1          C2      DOUBLE       y     1.341  0.0100     1.341  0.0100
+JWS          N1         C15      SINGLE       y     1.341  0.0100     1.341  0.0100
+JWS          C2          N3      SINGLE       n     1.334  0.0100     1.334  0.0100
+JWS          C2          N4      SINGLE       y     1.357  0.0100     1.357  0.0100
+JWS          N4          C5      DOUBLE       y     1.337  0.0100     1.337  0.0100
+JWS          C5          C6      SINGLE       n     1.480  0.0102     1.480  0.0102
+JWS          C5         N14      SINGLE       y     1.337  0.0100     1.337  0.0100
+JWS          C6          C7      DOUBLE       y     1.399  0.0100     1.399  0.0100
+JWS          C6         C13      SINGLE       y     1.397  0.0100     1.397  0.0100
+JWS          C7          O8      SINGLE       n     1.374  0.0155     1.374  0.0155
+JWS          C7          C9      SINGLE       y     1.386  0.0100     1.386  0.0100
+JWS          C9         C10      DOUBLE       y     1.383  0.0100     1.383  0.0100
+JWS         C10         C11      SINGLE       y     1.386  0.0109     1.386  0.0109
+JWS         C11         O12      SINGLE       n     1.372  0.0100     1.372  0.0100
+JWS         C11         C13      DOUBLE       y     1.387  0.0100     1.387  0.0100
+JWS         O12         C17      SINGLE       n     1.424  0.0117     1.424  0.0117
+JWS         N14         C15      DOUBLE       y     1.357  0.0100     1.357  0.0100
+JWS         C15         N16      SINGLE       n     1.334  0.0100     1.334  0.0100
+JWS          N3         HN3      SINGLE       n     1.016  0.0100     0.877  0.0200
+JWS          N3        HN3A      SINGLE       n     1.016  0.0100     0.877  0.0200
+JWS          O8         HO8      SINGLE       n     0.966  0.0059     0.861  0.0200
+JWS          C9          H9      SINGLE       n     1.082  0.0130     0.940  0.0196
+JWS         C10         H10      SINGLE       n     1.082  0.0130     0.942  0.0174
+JWS         C13         H13      SINGLE       n     1.082  0.0130     0.944  0.0200
+JWS         N16        HN16      SINGLE       n     1.016  0.0100     0.877  0.0200
+JWS         N16        HN1A      SINGLE       n     1.016  0.0100     0.877  0.0200
+JWS         C17         H17      SINGLE       n     1.089  0.0100     0.971  0.0157
+JWS         C17        H17A      SINGLE       n     1.089  0.0100     0.971  0.0157
+JWS         C17        H17B      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JWS          C2          N1         C15     114.891    1.50
+JWS          N1          C2          N3     117.872    1.50
+JWS          N1          C2          N4     125.085    1.50
+JWS          N3          C2          N4     117.043    1.50
+JWS          C2          N3         HN3     119.826    1.50
+JWS          C2          N3        HN3A     119.826    1.50
+JWS         HN3          N3        HN3A     120.348    1.96
+JWS          C2          N4          C5     114.385    1.50
+JWS          N4          C5          C6     116.915    1.50
+JWS          N4          C5         N14     126.169    1.50
+JWS          C6          C5         N14     116.915    1.50
+JWS          C5          C6          C7     122.328    1.50
+JWS          C5          C6         C13     119.454    1.50
+JWS          C7          C6         C13     118.218    1.50
+JWS          C6          C7          O8     119.593    3.00
+JWS          C6          C7          C9     120.814    1.50
+JWS          O8          C7          C9     119.593    3.00
+JWS          C7          O8         HO8     120.000    3.00
+JWS          C7          C9         C10     119.933    1.50
+JWS          C7          C9          H9     119.880    1.50
+JWS         C10          C9          H9     120.188    1.50
+JWS          C9         C10         C11     120.076    1.50
+JWS          C9         C10         H10     119.869    1.50
+JWS         C11         C10         H10     120.055    1.50
+JWS         C10         C11         O12     119.547    3.00
+JWS         C10         C11         C13     120.515    1.50
+JWS         O12         C11         C13     119.938    3.00
+JWS         C11         O12         C17     117.529    1.50
+JWS          C6         C13         C11     120.445    1.50
+JWS          C6         C13         H13     119.578    1.50
+JWS         C11         C13         H13     119.978    1.50
+JWS          C5         N14         C15     114.385    1.50
+JWS          N1         C15         N14     125.085    1.50
+JWS          N1         C15         N16     117.872    1.50
+JWS         N14         C15         N16     117.043    1.50
+JWS         C15         N16        HN16     119.826    1.50
+JWS         C15         N16        HN1A     119.826    1.50
+JWS        HN16         N16        HN1A     120.348    1.96
+JWS         O12         C17         H17     109.428    1.50
+JWS         O12         C17        H17A     109.428    1.50
+JWS         O12         C17        H17B     109.428    1.50
+JWS         H17         C17        H17A     109.509    1.50
+JWS         H17         C17        H17B     109.509    1.50
+JWS        H17A         C17        H17B     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JWS              const_22          N3          C2          N1         C15     180.000    10.0     2
+JWS              const_32         N16         C15          N1          C2     180.000    10.0     2
+JWS            sp2_sp2_11         C10         C11         O12         C17     180.000     5.0     2
+JWS              const_19         O12         C11         C13          C6     180.000    10.0     2
+JWS             sp3_sp3_2         H17         C17         O12         C11     -60.000    10.0     3
+JWS              const_30         N16         C15         N14          C5     180.000    10.0     2
+JWS            sp2_sp2_13          N1         C15         N16        HN16     180.000     5.0     2
+JWS             sp2_sp2_1          N1          C2          N3         HN3     180.000     5.0     2
+JWS              const_24          N3          C2          N4          C5     180.000    10.0     2
+JWS              const_26          C6          C5          N4          C2     180.000    10.0     2
+JWS              const_27          N4          C5         N14         C15       0.000    10.0     2
+JWS             sp2_sp2_5          N4          C5          C6          C7     180.000     5.0     2
+JWS              const_34         C11         C13          C6          C5     180.000    10.0     2
+JWS       const_sp2_sp2_4          C5          C6          C7          O8       0.000     5.0     2
+JWS             sp2_sp2_9          C6          C7          O8         HO8     180.000     5.0     2
+JWS       const_sp2_sp2_7          O8          C7          C9         C10     180.000     5.0     2
+JWS       const_sp2_sp2_9         C11         C10          C9          C7       0.000     5.0     2
+JWS              const_14          C9         C10         C11         O12     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JWS    plan-1         C15   0.020
+JWS    plan-1          C2   0.020
+JWS    plan-1          C5   0.020
+JWS    plan-1          C6   0.020
+JWS    plan-1          N1   0.020
+JWS    plan-1         N14   0.020
+JWS    plan-1         N16   0.020
+JWS    plan-1          N3   0.020
+JWS    plan-1          N4   0.020
+JWS    plan-2         C10   0.020
+JWS    plan-2         C11   0.020
+JWS    plan-2         C13   0.020
+JWS    plan-2          C5   0.020
+JWS    plan-2          C6   0.020
+JWS    plan-2          C7   0.020
+JWS    plan-2          C9   0.020
+JWS    plan-2         H10   0.020
+JWS    plan-2         H13   0.020
+JWS    plan-2          H9   0.020
+JWS    plan-2         O12   0.020
+JWS    plan-2          O8   0.020
+JWS    plan-3          C2   0.020
+JWS    plan-3         HN3   0.020
+JWS    plan-3        HN3A   0.020
+JWS    plan-3          N3   0.020
+JWS    plan-4         C15   0.020
+JWS    plan-4        HN16   0.020
+JWS    plan-4        HN1A   0.020
+JWS    plan-4         N16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JWS           SMILES              ACDLabs 12.01                                                                       n1c(nc(nc1c2c(O)ccc(OC)c2)N)N
+JWS SMILES_CANONICAL               CACTVS 3.370                                                                       COc1ccc(O)c(c1)c2nc(N)nc(N)n2
+JWS           SMILES               CACTVS 3.370                                                                       COc1ccc(O)c(c1)c2nc(N)nc(N)n2
+JWS SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                       COc1ccc(c(c1)c2nc(nc(n2)N)N)O
+JWS           SMILES "OpenEye OEToolkits" 1.7.0                                                                       COc1ccc(c(c1)c2nc(nc(n2)N)N)O
+JWS            InChI                InChI  1.03 InChI=1S/C10H11N5O2/c1-17-5-2-3-7(16)6(4-5)8-13-9(11)15-10(12)14-8/h2-4,16H,1H3,(H4,11,12,13,14,15)
+JWS         InChIKey                InChI  1.03                                                                         OQGZVJIFCDXDFS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JWS acedrg               243         "dictionary generator"                  
+JWS acedrg_database      11          "data source"                           
+JWS rdkit                2017.03.2   "Chemoinformatics tool"
+JWS refmac5              5.8.0238    "optimization tool"                     

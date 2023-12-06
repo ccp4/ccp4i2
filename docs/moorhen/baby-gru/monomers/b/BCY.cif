@@ -1,0 +1,234 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BCY     BCY      CARBOXYAMINO[4.3.0]BICYCLO1,6-DIAZANONAN-2-ONE     NON-POLYMER     30     14     .     
+#
+data_comp_BCY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BCY     N       N       NT3     1       15.779      -17.136     23.577      
+BCY     N2      N       NR5     0       17.721      -14.462     22.149      
+BCY     N3      N       NT      0       18.726      -15.194     21.481      
+BCY     O1      O       O       0       15.964      -14.360     23.576      
+BCY     CB      C       CH3     0       17.715      -16.450     24.928      
+BCY     C1      C       CR6     0       16.875      -15.012     23.071      
+BCY     C2      C       CT      0       17.111      -16.457     23.515      
+BCY     C3      C       CH2     0       18.040      -17.237     22.562      
+BCY     C4      C       CH2     0       19.222      -16.432     22.052      
+BCY     C6      C       CH2     0       19.756      -14.209     21.137      
+BCY     C7      C       CH2     0       18.972      -12.933     20.850      
+BCY     C8      C       CH1     0       17.723      -13.037     21.745      
+BCY     C9      C       C1      0       16.442      -12.659     21.014      
+BCY     O2      O       O       0       16.013      -13.258     20.086      
+BCY     HN1     H       H       0       15.893      -18.004     23.813      
+BCY     HN2     H       H       0       15.376      -17.098     22.765      
+BCY     H3      H       H       0       15.254      -16.725     24.193      
+BCY     HB1     H       H       0       18.662      -16.239     24.877      
+BCY     HB2     H       H       0       17.603      -17.325     25.334      
+BCY     HB3     H       H       0       17.267      -15.783     25.475      
+BCY     H31     H       H       0       17.510      -17.546     21.796      
+BCY     H32     H       H       0       18.372      -18.032     23.031      
+BCY     H41     H       H       0       19.835      -16.239     22.787      
+BCY     H42     H       H       0       19.706      -16.943     21.374      
+BCY     H61     H       H       0       20.263      -14.492     20.346      
+BCY     H62     H       H       0       20.379      -14.076     21.882      
+BCY     H71     H       H       0       18.722      -12.884     19.902      
+BCY     H72     H       H       0       19.501      -12.140     21.081      
+BCY     H8      H       H       0       17.833      -12.446     22.536      
+BCY     H9      H       H       0       15.968      -11.908     21.321      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BCY           N          C2      SINGLE       n     1.494  0.0104     1.494  0.0104
+BCY          N2          N3      SINGLE       n     1.402  0.0200     1.402  0.0200
+BCY          N2          C1      SINGLE       n     1.357  0.0116     1.357  0.0116
+BCY          N2          C8      SINGLE       n     1.477  0.0182     1.477  0.0182
+BCY          N3          C4      SINGLE       n     1.452  0.0161     1.452  0.0161
+BCY          N3          C6      SINGLE       n     1.465  0.0117     1.465  0.0117
+BCY          O1          C1      DOUBLE       n     1.228  0.0100     1.228  0.0100
+BCY          CB          C2      SINGLE       n     1.536  0.0100     1.536  0.0100
+BCY          C1          C2      SINGLE       n     1.522  0.0100     1.522  0.0100
+BCY          C2          C3      SINGLE       n     1.539  0.0100     1.539  0.0100
+BCY          C3          C4      SINGLE       n     1.518  0.0172     1.518  0.0172
+BCY          C6          C7      SINGLE       n     1.525  0.0200     1.525  0.0200
+BCY          C7          C8      SINGLE       n     1.540  0.0100     1.540  0.0100
+BCY          C8          C9      SINGLE       n     1.520  0.0177     1.520  0.0177
+BCY          C9          O2      DOUBLE       n     1.185  0.0182     1.185  0.0182
+BCY           N         HN1      SINGLE       n     1.036  0.0160     0.907  0.0200
+BCY           N         HN2      SINGLE       n     1.036  0.0160     0.907  0.0200
+BCY           N          H3      SINGLE       n     1.036  0.0160     0.907  0.0200
+BCY          CB         HB1      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCY          CB         HB2      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCY          CB         HB3      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCY          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0170
+BCY          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0170
+BCY          C4         H41      SINGLE       n     1.089  0.0100     0.977  0.0125
+BCY          C4         H42      SINGLE       n     1.089  0.0100     0.977  0.0125
+BCY          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0185
+BCY          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0185
+BCY          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0186
+BCY          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0186
+BCY          C8          H8      SINGLE       n     1.089  0.0100     0.994  0.0174
+BCY          C9          H9      SINGLE       n     1.082  0.0130     0.940  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BCY          C2           N         HN1     108.740    2.04
+BCY          C2           N         HN2     108.740    2.04
+BCY          C2           N          H3     108.740    2.04
+BCY         HN1           N         HN2     108.195    2.48
+BCY         HN1           N          H3     108.195    2.48
+BCY         HN2           N          H3     108.195    2.48
+BCY          N3          N2          C1     121.573    3.00
+BCY          N3          N2          C8     112.916    1.50
+BCY          C1          N2          C8     125.512    2.05
+BCY          N2          N3          C4     120.780    3.00
+BCY          N2          N3          C6     103.535    2.61
+BCY          C4          N3          C6     115.191    3.00
+BCY          C2          CB         HB1     109.615    1.50
+BCY          C2          CB         HB2     109.615    1.50
+BCY          C2          CB         HB3     109.615    1.50
+BCY         HB1          CB         HB2     109.408    1.50
+BCY         HB1          CB         HB3     109.408    1.50
+BCY         HB2          CB         HB3     109.408    1.50
+BCY          N2          C1          O1     122.391    1.50
+BCY          N2          C1          C2     116.274    1.83
+BCY          O1          C1          C2     121.335    1.50
+BCY           N          C2          CB     108.364    1.50
+BCY           N          C2          C1     107.591    1.82
+BCY           N          C2          C3     110.019    1.64
+BCY          CB          C2          C1     108.593    1.76
+BCY          CB          C2          C3     109.208    1.83
+BCY          C1          C2          C3     109.285    2.03
+BCY          C2          C3          C4     113.111    2.97
+BCY          C2          C3         H31     108.821    1.50
+BCY          C2          C3         H32     108.821    1.50
+BCY          C4          C3         H31     109.478    1.50
+BCY          C4          C3         H32     109.478    1.50
+BCY         H31          C3         H32     108.019    1.50
+BCY          N3          C4          C3     109.855    2.27
+BCY          N3          C4         H41     109.847    1.50
+BCY          N3          C4         H42     109.847    1.50
+BCY          C3          C4         H41     109.799    1.50
+BCY          C3          C4         H42     109.799    1.50
+BCY         H41          C4         H42     108.087    1.50
+BCY          N3          C6          C7     104.025    1.50
+BCY          N3          C6         H61     111.280    1.50
+BCY          N3          C6         H62     111.280    1.50
+BCY          C7          C6         H61     111.074    1.50
+BCY          C7          C6         H62     111.074    1.50
+BCY         H61          C6         H62     109.061    1.50
+BCY          C6          C7          C8     104.443    2.26
+BCY          C6          C7         H71     110.758    1.50
+BCY          C6          C7         H72     110.758    1.50
+BCY          C8          C7         H71     110.802    1.50
+BCY          C8          C7         H72     110.802    1.50
+BCY         H71          C7         H72     108.877    1.50
+BCY          N2          C8          C7     103.211    1.71
+BCY          N2          C8          C9     110.802    1.81
+BCY          N2          C8          H8     110.729    1.50
+BCY          C7          C8          C9     112.424    2.46
+BCY          C7          C8          H8     109.315    1.50
+BCY          C9          C8          H8     108.963    1.74
+BCY          C8          C9          O2     123.684    2.73
+BCY          C8          C9          H9     117.829    1.78
+BCY          O2          C9          H9     118.487    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BCY            sp3_sp3_49          CB          C2           N         HN1     180.000    10.0     3
+BCY            sp3_sp3_41          C6          C7          C8          C9      60.000    10.0     3
+BCY            sp2_sp3_17          O2          C9          C8          N2       0.000    10.0     6
+BCY            sp2_sp3_12          N3          N2          C8          C9     120.000    10.0     6
+BCY             sp2_sp3_1          C1          N2          N3          C4       0.000    10.0     6
+BCY             sp2_sp2_3          O1          C1          N2          N3     180.000     5.0     2
+BCY             sp3_sp3_1          C3          C4          N3          N2     -60.000    10.0     3
+BCY            sp3_sp3_25          C7          C6          N3          N2     -60.000    10.0     3
+BCY            sp3_sp3_58           N          C2          CB         HB1     180.000    10.0     3
+BCY             sp2_sp3_9          O1          C1          C2           N     -60.000    10.0     6
+BCY            sp3_sp3_19           N          C2          C3          C4     180.000    10.0     3
+BCY             sp3_sp3_7          C2          C3          C4          N3      60.000    10.0     3
+BCY            sp3_sp3_31          N3          C6          C7          C8      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BCY    chir_1    N3    N2    C4    C6    positive
+BCY    chir_2    C2    N    C1    C3    positive
+BCY    chir_3    C8    N2    C9    C7    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BCY    plan-1          C1   0.020
+BCY    plan-1          C8   0.020
+BCY    plan-1          N2   0.020
+BCY    plan-1          N3   0.020
+BCY    plan-2          C1   0.020
+BCY    plan-2          C2   0.020
+BCY    plan-2          N2   0.020
+BCY    plan-2          O1   0.020
+BCY    plan-3          C8   0.020
+BCY    plan-3          C9   0.020
+BCY    plan-3          H9   0.020
+BCY    plan-3          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BCY           SMILES              ACDLabs 10.04                                                                O=CC2N1C(=O)C(N)(CCN1CC2)C
+BCY SMILES_CANONICAL               CACTVS 3.341                                                          C[C@]1(N)CCN2CC[C@@H](C=O)N2C1=O
+BCY           SMILES               CACTVS 3.341                                                             C[C]1(N)CCN2CC[CH](C=O)N2C1=O
+BCY SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                      C[C@@]1(CC[N@@]2CC[C@H](N2C1=O)C=O)N
+BCY           SMILES "OpenEye OEToolkits" 1.5.0                                                                  CC1(CCN2CCC(N2C1=O)C=O)N
+BCY            InChI                InChI  1.03 InChI=1S/C9H15N3O2/c1-9(10)3-5-11-4-2-7(6-13)12(11)8(9)14/h6-7H,2-5,10H2,1H3/t7-,9-/m0/s1
+BCY         InChIKey                InChI  1.03                                                               DBXOZYHJFAKQPU-CBAPKCEASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BCY acedrg               243         "dictionary generator"                  
+BCY acedrg_database      11          "data source"                           
+BCY rdkit                2017.03.2   "Chemoinformatics tool"
+BCY refmac5              5.8.0238    "optimization tool"                     

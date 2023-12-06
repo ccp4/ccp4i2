@@ -1,0 +1,336 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MVG     MVG      "4-{6-[6-(propan-2-ylamino)-1H-indazol-1-yl]pyrazin-2-yl}benzoic acid"     NON-POLYMER     46     28     .     
+#
+data_comp_MVG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MVG     O2      O       OC      -1      -38.354     2.501       3.891       
+MVG     C17     C       C       0       -38.580     2.865       2.723       
+MVG     O1      O       O       0       -37.792     3.534       2.030       
+MVG     C16     C       CR6     0       -39.889     2.473       2.110       
+MVG     C15     C       CR16    0       -39.925     1.817       0.886       
+MVG     C14     C       CR16    0       -41.133     1.452       0.316       
+MVG     C18     C       CR16    0       -41.085     2.758       2.758       
+MVG     C19     C       CR16    0       -42.297     2.398       2.193       
+MVG     C13     C       CR6     0       -42.348     1.735       0.958       
+MVG     C12     C       CR6     0       -43.641     1.346       0.349       
+MVG     N4      N       NRD6    0       -43.760     1.457       -0.985      
+MVG     C20     C       CR16    0       -44.726     0.873       1.093       
+MVG     N5      N       NRD6    0       -45.875     0.531       0.509       
+MVG     C21     C       CR16    0       -45.960     0.650       -0.823      
+MVG     C11     C       CR6     0       -44.899     1.117       -1.588      
+MVG     N3      N       NR5     0       -44.968     1.245       -3.006      
+MVG     C6      C       CR56    0       -44.016     1.629       -3.929      
+MVG     C5      C       CR16    0       -42.688     2.029       -3.785      
+MVG     N2      N       NRD5    0       -46.145     0.944       -3.676      
+MVG     C10     C       CR15    0       -45.944     1.135       -4.961      
+MVG     C7      C       CR56    0       -44.613     1.572       -5.198      
+MVG     C8      C       CR16    0       -43.866     1.920       -6.351      
+MVG     C9      C       CR16    0       -42.561     2.311       -6.213      
+MVG     C4      C       CR6     0       -41.947     2.370       -4.928      
+MVG     N1      N       NH1     0       -40.627     2.777       -4.848      
+MVG     C2      C       CH1     0       -39.762     2.740       -3.659      
+MVG     C3      C       CH3     0       -39.404     1.309       -3.323      
+MVG     C1      C       CH3     0       -38.525     3.578       -3.895      
+MVG     H2      H       H       0       -39.122     1.618       0.438       
+MVG     H3      H       H       0       -41.135     1.007       -0.517      
+MVG     H4      H       H       0       -41.073     3.202       3.587       
+MVG     H5      H       H       0       -43.099     2.601       2.649       
+MVG     H6      H       H       0       -44.647     0.797       2.030       
+MVG     H7      H       H       0       -46.768     0.409       -1.243      
+MVG     H8      H       H       0       -42.297     2.063       -2.941      
+MVG     H9      H       H       0       -46.607     0.995       -5.615      
+MVG     H10     H       H       0       -44.260     1.883       -7.199      
+MVG     H11     H       H       0       -42.067     2.542       -6.980      
+MVG     H12     H       H       0       -40.262     3.091       -5.587      
+MVG     H13     H       H       0       -40.252     3.126       -2.901      
+MVG     H14     H       H       0       -38.943     0.903       -4.078      
+MVG     H15     H       H       0       -40.213     0.805       -3.130      
+MVG     H16     H       H       0       -38.821     1.295       -2.544      
+MVG     H17     H       H       0       -37.977     3.584       -3.091      
+MVG     H18     H       H       0       -38.786     4.490       -4.114      
+MVG     H19     H       H       0       -38.012     3.204       -4.632      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MVG          C8          C9      DOUBLE       y     1.365  0.0100     1.365  0.0100
+MVG          C7          C8      SINGLE       y     1.408  0.0143     1.408  0.0143
+MVG          C9          C4      SINGLE       y     1.422  0.0101     1.422  0.0101
+MVG         C10          C7      SINGLE       y     1.425  0.0104     1.425  0.0104
+MVG          C6          C7      DOUBLE       y     1.401  0.0100     1.401  0.0100
+MVG          N2         C10      DOUBLE       y     1.315  0.0100     1.315  0.0100
+MVG          C4          N1      SINGLE       n     1.361  0.0191     1.361  0.0191
+MVG          C5          C4      DOUBLE       y     1.399  0.0104     1.399  0.0104
+MVG          N1          C2      SINGLE       n     1.466  0.0100     1.466  0.0100
+MVG          C6          C5      SINGLE       y     1.389  0.0100     1.389  0.0100
+MVG          N3          C6      SINGLE       y     1.372  0.0100     1.372  0.0100
+MVG          N3          N2      SINGLE       y     1.383  0.0100     1.383  0.0100
+MVG          C2          C1      SINGLE       n     1.512  0.0108     1.512  0.0108
+MVG          C2          C3      SINGLE       n     1.512  0.0108     1.512  0.0108
+MVG         C11          N3      SINGLE       n     1.414  0.0112     1.414  0.0112
+MVG          N4         C11      DOUBLE       y     1.328  0.0100     1.328  0.0100
+MVG         C21         C11      SINGLE       y     1.381  0.0102     1.381  0.0102
+MVG         C12          N4      SINGLE       y     1.334  0.0158     1.334  0.0158
+MVG          N5         C21      DOUBLE       y     1.333  0.0115     1.333  0.0115
+MVG         C15         C14      SINGLE       y     1.381  0.0100     1.381  0.0100
+MVG         C14         C13      DOUBLE       y     1.398  0.0100     1.398  0.0100
+MVG         C13         C12      SINGLE       n     1.478  0.0100     1.478  0.0100
+MVG         C12         C20      DOUBLE       y     1.393  0.0125     1.393  0.0125
+MVG         C20          N5      SINGLE       y     1.331  0.0100     1.331  0.0100
+MVG         C16         C15      DOUBLE       y     1.385  0.0114     1.385  0.0114
+MVG         C19         C13      SINGLE       y     1.398  0.0100     1.398  0.0100
+MVG         C17          O1      DOUBLE       n     1.244  0.0200     1.244  0.0200
+MVG         C17         C16      SINGLE       n     1.498  0.0200     1.498  0.0200
+MVG         C16         C18      SINGLE       y     1.385  0.0114     1.385  0.0114
+MVG         C18         C19      DOUBLE       y     1.381  0.0100     1.381  0.0100
+MVG          O2         C17      SINGLE       n     1.244  0.0200     1.244  0.0200
+MVG         C15          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+MVG         C14          H3      SINGLE       n     1.082  0.0130     0.945  0.0105
+MVG         C18          H4      SINGLE       n     1.082  0.0130     0.941  0.0168
+MVG         C19          H5      SINGLE       n     1.082  0.0130     0.945  0.0105
+MVG         C20          H6      SINGLE       n     1.082  0.0130     0.944  0.0200
+MVG         C21          H7      SINGLE       n     1.082  0.0130     0.944  0.0200
+MVG          C5          H8      SINGLE       n     1.082  0.0130     0.936  0.0159
+MVG         C10          H9      SINGLE       n     1.082  0.0130     0.942  0.0163
+MVG          C8         H10      SINGLE       n     1.082  0.0130     0.936  0.0100
+MVG          C9         H11      SINGLE       n     1.082  0.0130     0.941  0.0184
+MVG          N1         H12      SINGLE       n     1.016  0.0100     0.880  0.0200
+MVG          C2         H13      SINGLE       n     1.089  0.0100     0.982  0.0100
+MVG          C3         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+MVG          C3         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+MVG          C3         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+MVG          C1         H17      SINGLE       n     1.089  0.0100     0.973  0.0146
+MVG          C1         H18      SINGLE       n     1.089  0.0100     0.973  0.0146
+MVG          C1         H19      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MVG          O1         C17         C16     117.791    1.50
+MVG          O1         C17          O2     124.418    1.50
+MVG         C16         C17          O2     117.791    1.50
+MVG         C15         C16         C17     120.499    1.50
+MVG         C15         C16         C18     119.002    1.50
+MVG         C17         C16         C18     120.499    1.50
+MVG         C14         C15         C16     120.501    1.50
+MVG         C14         C15          H2     119.634    1.50
+MVG         C16         C15          H2     119.865    1.50
+MVG         C15         C14         C13     120.867    1.50
+MVG         C15         C14          H3     119.491    1.50
+MVG         C13         C14          H3     119.642    1.50
+MVG         C16         C18         C19     120.501    1.50
+MVG         C16         C18          H4     119.865    1.50
+MVG         C19         C18          H4     119.634    1.50
+MVG         C13         C19         C18     120.867    1.50
+MVG         C13         C19          H5     119.642    1.50
+MVG         C18         C19          H5     119.491    1.50
+MVG         C14         C13         C12     120.869    1.50
+MVG         C14         C13         C19     118.263    1.50
+MVG         C12         C13         C19     120.869    1.50
+MVG          N4         C12         C13     117.550    1.50
+MVG          N4         C12         C20     120.050    1.50
+MVG         C13         C12         C20     122.400    1.79
+MVG         C11          N4         C12     118.833    1.50
+MVG         C12         C20          N5     121.974    1.50
+MVG         C12         C20          H6     119.084    1.50
+MVG          N5         C20          H6     118.942    1.50
+MVG         C21          N5         C20     117.327    1.50
+MVG         C11         C21          N5     121.584    1.50
+MVG         C11         C21          H7     119.402    1.50
+MVG          N5         C21          H7     119.014    1.50
+MVG          N3         C11          N4     117.482    1.50
+MVG          N3         C11         C21     122.286    1.50
+MVG          N4         C11         C21     120.232    1.50
+MVG          C6          N3          N2     109.550    1.50
+MVG          C6          N3         C11     128.929    2.53
+MVG          N2          N3         C11     121.521    1.62
+MVG          C7          C6          C5     121.494    1.50
+MVG          C7          C6          N3     107.628    1.50
+MVG          C5          C6          N3     130.878    1.50
+MVG          C4          C5          C6     119.119    1.58
+MVG          C4          C5          H8     120.563    1.50
+MVG          C6          C5          H8     120.318    1.50
+MVG         C10          N2          N3     106.576    1.50
+MVG          C7         C10          N2     110.596    1.50
+MVG          C7         C10          H9     126.055    2.49
+MVG          N2         C10          H9     123.349    3.00
+MVG          C8          C7         C10     135.183    1.50
+MVG          C8          C7          C6     119.167    1.50
+MVG         C10          C7          C6     105.650    1.50
+MVG          C9          C8          C7     118.271    1.50
+MVG          C9          C8         H10     120.732    1.50
+MVG          C7          C8         H10     120.996    1.56
+MVG          C8          C9          C4     120.265    1.50
+MVG          C8          C9         H11     119.709    1.50
+MVG          C4          C9         H11     120.026    1.50
+MVG          C9          C4          N1     119.217    1.76
+MVG          C9          C4          C5     121.685    2.27
+MVG          N1          C4          C5     119.098    2.08
+MVG          C4          N1          C2     125.207    1.50
+MVG          C4          N1         H12     117.829    2.04
+MVG          C2          N1         H12     116.964    1.50
+MVG          N1          C2          C1     109.668    1.50
+MVG          N1          C2          C3     109.668    1.50
+MVG          N1          C2         H13     108.349    1.50
+MVG          C1          C2          C3     111.689    1.50
+MVG          C1          C2         H13     108.432    1.50
+MVG          C3          C2         H13     108.432    1.50
+MVG          C2          C3         H14     109.585    1.50
+MVG          C2          C3         H15     109.585    1.50
+MVG          C2          C3         H16     109.585    1.50
+MVG         H14          C3         H15     109.386    1.50
+MVG         H14          C3         H16     109.386    1.50
+MVG         H15          C3         H16     109.386    1.50
+MVG          C2          C1         H17     109.585    1.50
+MVG          C2          C1         H18     109.585    1.50
+MVG          C2          C1         H19     109.585    1.50
+MVG         H17          C1         H18     109.386    1.50
+MVG         H17          C1         H19     109.386    1.50
+MVG         H18          C1         H19     109.386    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MVG              const_18          N3         C11          N4         C12     180.000    10.0     2
+MVG              const_25         C12         C20          N5         C21       0.000    10.0     2
+MVG              const_23         C11         C21          N5         C20       0.000    10.0     2
+MVG              const_21          N3         C11         C21          N5     180.000    10.0     2
+MVG             sp2_sp2_7          N4         C11          N3          C6       0.000     5.0     2
+MVG       const_sp2_sp2_1          C7          C6          N3          N2       0.000     5.0     2
+MVG              const_67         C10          N2          N3          C6       0.000    10.0     2
+MVG              const_63          C4          C5          C6          C7       0.000    10.0     2
+MVG       const_sp2_sp2_5          C5          C6          C7          C8       0.000     5.0     2
+MVG              const_61          N1          C4          C5          C6     180.000    10.0     2
+MVG              const_13          C7         C10          N2          N3       0.000    10.0     2
+MVG              const_10          N2         C10          C7          C8     180.000    10.0     2
+MVG            sp2_sp2_13         C15         C16         C17          O1     180.000     5.0     2
+MVG              const_49         C10          C7          C8          C9     180.000    10.0     2
+MVG              const_51          C7          C8          C9          C4       0.000    10.0     2
+MVG              const_57          N1          C4          C9          C8     180.000    10.0     2
+MVG             sp2_sp2_1          C9          C4          N1          C2     180.000     5.0     2
+MVG             sp2_sp3_2          C4          N1          C2          C1     120.000    10.0     6
+MVG            sp3_sp3_13          N1          C2          C3         H14      60.000    10.0     3
+MVG             sp3_sp3_1         H17          C1          C2          N1     180.000    10.0     3
+MVG              const_28         C14         C15         C16         C17     180.000    10.0     2
+MVG              const_75         C17         C16         C18         C19     180.000    10.0     2
+MVG              const_31         C13         C14         C15         C16       0.000    10.0     2
+MVG              const_37         C12         C13         C14         C15     180.000    10.0     2
+MVG              const_43         C16         C18         C19         C13       0.000    10.0     2
+MVG              const_39         C14         C13         C19         C18       0.000    10.0     2
+MVG            sp2_sp2_11          N4         C12         C13         C14       0.000     5.0     2
+MVG              const_16         C13         C12          N4         C11     180.000    10.0     2
+MVG              const_69          N4         C12         C20          N5       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MVG    chir_1    C2    N1    C1    C3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MVG    plan-1         C10   0.020
+MVG    plan-1         C11   0.020
+MVG    plan-1          C4   0.020
+MVG    plan-1          C5   0.020
+MVG    plan-1          C6   0.020
+MVG    plan-1          C7   0.020
+MVG    plan-1          C8   0.020
+MVG    plan-1          C9   0.020
+MVG    plan-1         H10   0.020
+MVG    plan-1         H11   0.020
+MVG    plan-1          H8   0.020
+MVG    plan-1          H9   0.020
+MVG    plan-1          N1   0.020
+MVG    plan-1          N2   0.020
+MVG    plan-1          N3   0.020
+MVG    plan-2         C11   0.020
+MVG    plan-2         C12   0.020
+MVG    plan-2         C13   0.020
+MVG    plan-2         C20   0.020
+MVG    plan-2         C21   0.020
+MVG    plan-2          H6   0.020
+MVG    plan-2          H7   0.020
+MVG    plan-2          N3   0.020
+MVG    plan-2          N4   0.020
+MVG    plan-2          N5   0.020
+MVG    plan-3         C12   0.020
+MVG    plan-3         C13   0.020
+MVG    plan-3         C14   0.020
+MVG    plan-3         C15   0.020
+MVG    plan-3         C16   0.020
+MVG    plan-3         C17   0.020
+MVG    plan-3         C18   0.020
+MVG    plan-3         C19   0.020
+MVG    plan-3          H2   0.020
+MVG    plan-3          H3   0.020
+MVG    plan-3          H4   0.020
+MVG    plan-3          H5   0.020
+MVG    plan-4         C16   0.020
+MVG    plan-4         C17   0.020
+MVG    plan-4          O1   0.020
+MVG    plan-4          O2   0.020
+MVG    plan-5          C2   0.020
+MVG    plan-5          C4   0.020
+MVG    plan-5         H12   0.020
+MVG    plan-5          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MVG           SMILES              ACDLabs 12.01                                                                                       O=C(O)c1ccc(cc1)c2nc(cnc2)n4ncc3ccc(cc34)NC(C)C
+MVG            InChI                InChI  1.03 InChI=1S/C21H19N5O2/c1-13(2)24-17-8-7-16-10-23-26(19(16)9-17)20-12-22-11-18(25-20)14-3-5-15(6-4-14)21(27)28/h3-13,24H,1-2H3,(H,27,28)
+MVG         InChIKey                InChI  1.03                                                                                                           RJXWGPDMMDILGJ-UHFFFAOYSA-N
+MVG SMILES_CANONICAL               CACTVS 3.385                                                                                       CC(C)Nc1ccc2cnn(c3cncc(n3)c4ccc(cc4)C(O)=O)c2c1
+MVG           SMILES               CACTVS 3.385                                                                                       CC(C)Nc1ccc2cnn(c3cncc(n3)c4ccc(cc4)C(O)=O)c2c1
+MVG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                       CC(C)Nc1ccc2cnn(c2c1)c3cncc(n3)c4ccc(cc4)C(=O)O
+MVG           SMILES "OpenEye OEToolkits" 1.7.6                                                                                       CC(C)Nc1ccc2cnn(c2c1)c3cncc(n3)c4ccc(cc4)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MVG acedrg               243         "dictionary generator"                  
+MVG acedrg_database      11          "data source"                           
+MVG rdkit                2017.03.2   "Chemoinformatics tool"
+MVG refmac5              5.8.0238    "optimization tool"                     

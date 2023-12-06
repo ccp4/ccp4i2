@@ -1,0 +1,328 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SBS     SBS      (S)-N-(3-INDOL-1-YL-2-METHYL-PROPYL)-4-SULFAMOYL-BENZAMIDE     NON-POLYMER     47     26     .     
+#
+data_comp_SBS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SBS     C01     C       CH2     0       -2.069      8.562       13.044      
+SBS     C02     C       CH1     0       -2.259      7.190       13.692      
+SBS     C03     C       CH2     0       -3.748      6.934       13.978      
+SBS     N04     N       NH1     0       -3.981      5.609       14.542      
+SBS     C05     C       C       0       -4.319      5.388       15.822      
+SBS     O06     O       O       0       -4.587      6.301       16.604      
+SBS     C07     C       CR6     0       -4.297      3.966       16.314      
+SBS     C08     C       CR16    0       -3.306      3.071       15.916      
+SBS     C09     C       CR16    0       -3.292      1.768       16.387      
+SBS     C10     C       CR6     0       -4.267      1.350       17.282      
+SBS     C11     C       CR16    0       -5.256      2.231       17.698      
+SBS     C12     C       CR16    0       -5.264      3.530       17.217      
+SBS     S13     S       S3      0       -4.248      -0.311      17.888      
+SBS     O14     O       O       0       -2.892      -0.774      17.848      
+SBS     O15     O       O       0       -4.940      -0.327      19.143      
+SBS     NP6     N       NT2     0       -5.088      -1.229      16.877      
+SBS     NP7     N       NR5     0       -0.733      8.765       12.483      
+SBS     C18     C       CR15    0       -0.226      8.140       11.370      
+SBS     C19     C       CR15    0       1.043       8.564       11.137      
+SBS     C20     C       CR56    0       0.248       9.623       12.988      
+SBS     C21     C       CR16    0       0.232       10.478      14.101      
+SBS     C22     C       CR16    0       1.372       11.214      14.350      
+SBS     C23     C       CR16    0       2.501       11.115      13.530      
+SBS     C24     C       CR16    0       2.517       10.276      12.439      
+SBS     C25     C       CR56    0       1.382       9.512       12.151      
+SBS     C26     C       CH3     0       -1.398      7.056       14.949      
+SBS     HC11    H       H       0       -2.247      9.251       13.713      
+SBS     HC12    H       H       0       -2.727      8.663       12.328      
+SBS     HC2     H       H       0       -1.954      6.507       13.045      
+SBS     HC31    H       H       0       -4.245      7.012       13.136      
+SBS     HC32    H       H       0       -4.073      7.626       14.593      
+SBS     HN4     H       H       0       -3.913      4.930       13.997      
+SBS     HC8     H       H       0       -2.643      3.348       15.309      
+SBS     HC9     H       H       0       -2.624      1.175       16.105      
+SBS     H11     H       H       0       -5.917      1.950       18.300      
+SBS     H12     H       H       0       -5.936      4.123       17.504      
+SBS     HN61    H       H       0       -5.561      -1.835      17.282      
+SBS     HN62    H       H       0       -4.619      -1.503      16.198      
+SBS     H18     H       H       0       -0.689      7.520       10.855      
+SBS     H19     H       H       0       1.599       8.283       10.434      
+SBS     H21     H       H       0       -0.525      10.547      14.655      
+SBS     H22     H       H       0       1.390       11.796      15.089      
+SBS     H23     H       H       0       3.264       11.633      13.729      
+SBS     H24     H       H       0       3.282       10.216      11.892      
+SBS     H261    H       H       0       -1.967      7.015       15.736      
+SBS     H262    H       H       0       -0.801      7.820       15.028      
+SBS     H263    H       H       0       -0.869      6.241       14.891      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SBS         C01         C02      SINGLE       n     1.526  0.0110     1.526  0.0110
+SBS         C01         NP7      SINGLE       n     1.461  0.0100     1.461  0.0100
+SBS         C02         C03      SINGLE       n     1.536  0.0100     1.536  0.0100
+SBS         C02         C26      SINGLE       n     1.521  0.0151     1.521  0.0151
+SBS         C03         N04      SINGLE       n     1.454  0.0100     1.454  0.0100
+SBS         N04         C05      SINGLE       n     1.333  0.0111     1.333  0.0111
+SBS         C05         O06      DOUBLE       n     1.230  0.0114     1.230  0.0114
+SBS         C05         C07      SINGLE       n     1.502  0.0100     1.502  0.0100
+SBS         C07         C08      DOUBLE       y     1.389  0.0100     1.389  0.0100
+SBS         C07         C12      SINGLE       y     1.389  0.0100     1.389  0.0100
+SBS         C08         C09      SINGLE       y     1.382  0.0100     1.382  0.0100
+SBS         C09         C10      DOUBLE       y     1.384  0.0100     1.384  0.0100
+SBS         C10         C11      SINGLE       y     1.384  0.0100     1.384  0.0100
+SBS         C10         S13      SINGLE       n     1.766  0.0100     1.766  0.0100
+SBS         C11         C12      DOUBLE       y     1.382  0.0100     1.382  0.0100
+SBS         S13         O14      DOUBLE       n     1.433  0.0100     1.433  0.0100
+SBS         S13         O15      DOUBLE       n     1.433  0.0100     1.433  0.0100
+SBS         S13         NP6      SINGLE       n     1.603  0.0110     1.603  0.0110
+SBS         NP7         C18      SINGLE       y     1.372  0.0110     1.372  0.0110
+SBS         NP7         C20      SINGLE       y     1.395  0.0127     1.395  0.0127
+SBS         C18         C19      DOUBLE       y     1.356  0.0149     1.356  0.0149
+SBS         C19         C25      SINGLE       y     1.431  0.0170     1.431  0.0170
+SBS         C20         C21      DOUBLE       y     1.394  0.0158     1.394  0.0158
+SBS         C20         C25      SINGLE       y     1.412  0.0100     1.412  0.0100
+SBS         C21         C22      SINGLE       y     1.376  0.0100     1.376  0.0100
+SBS         C22         C23      DOUBLE       y     1.395  0.0112     1.395  0.0112
+SBS         C23         C24      SINGLE       y     1.373  0.0100     1.373  0.0100
+SBS         C24         C25      DOUBLE       y     1.394  0.0100     1.394  0.0100
+SBS         C01        HC11      SINGLE       n     1.089  0.0100     0.978  0.0180
+SBS         C01        HC12      SINGLE       n     1.089  0.0100     0.978  0.0180
+SBS         C02         HC2      SINGLE       n     1.089  0.0100     0.989  0.0162
+SBS         C03        HC31      SINGLE       n     1.089  0.0100     0.981  0.0152
+SBS         C03        HC32      SINGLE       n     1.089  0.0100     0.981  0.0152
+SBS         N04         HN4      SINGLE       n     1.016  0.0100     0.873  0.0200
+SBS         C08         HC8      SINGLE       n     1.082  0.0130     0.941  0.0168
+SBS         C09         HC9      SINGLE       n     1.082  0.0130     0.937  0.0111
+SBS         C11         H11      SINGLE       n     1.082  0.0130     0.937  0.0111
+SBS         C12         H12      SINGLE       n     1.082  0.0130     0.941  0.0168
+SBS         NP6        HN61      SINGLE       n     1.036  0.0160     0.869  0.0200
+SBS         NP6        HN62      SINGLE       n     1.036  0.0160     0.869  0.0200
+SBS         C18         H18      SINGLE       n     1.082  0.0130     0.930  0.0100
+SBS         C19         H19      SINGLE       n     1.082  0.0130     0.939  0.0147
+SBS         C21         H21      SINGLE       n     1.082  0.0130     0.941  0.0184
+SBS         C22         H22      SINGLE       n     1.082  0.0130     0.941  0.0181
+SBS         C23         H23      SINGLE       n     1.082  0.0130     0.944  0.0181
+SBS         C24         H24      SINGLE       n     1.082  0.0130     0.942  0.0151
+SBS         C26        H261      SINGLE       n     1.089  0.0100     0.973  0.0146
+SBS         C26        H262      SINGLE       n     1.089  0.0100     0.973  0.0146
+SBS         C26        H263      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SBS         C02         C01         NP7     113.448    1.50
+SBS         C02         C01        HC11     108.770    1.50
+SBS         C02         C01        HC12     108.770    1.50
+SBS         NP7         C01        HC11     108.820    1.50
+SBS         NP7         C01        HC12     108.820    1.50
+SBS        HC11         C01        HC12     107.954    1.50
+SBS         C01         C02         C03     110.756    1.83
+SBS         C01         C02         C26     110.191    1.69
+SBS         C01         C02         HC2     107.954    1.50
+SBS         C03         C02         C26     110.627    2.32
+SBS         C03         C02         HC2     107.960    1.50
+SBS         C26         C02         HC2     107.863    1.50
+SBS         C02         C03         N04     111.308    2.28
+SBS         C02         C03        HC31     108.663    1.50
+SBS         C02         C03        HC32     108.663    1.50
+SBS         N04         C03        HC31     109.052    1.50
+SBS         N04         C03        HC32     109.052    1.50
+SBS        HC31         C03        HC32     108.781    2.12
+SBS         C03         N04         C05     122.257    1.53
+SBS         C03         N04         HN4     118.387    1.89
+SBS         C05         N04         HN4     119.356    1.77
+SBS         N04         C05         O06     122.164    1.50
+SBS         N04         C05         C07     116.868    1.50
+SBS         O06         C05         C07     120.968    1.50
+SBS         C05         C07         C08     120.493    2.80
+SBS         C05         C07         C12     120.493    2.80
+SBS         C08         C07         C12     119.014    1.50
+SBS         C07         C08         C09     120.778    1.50
+SBS         C07         C08         HC8     119.849    1.50
+SBS         C09         C08         HC8     119.373    1.50
+SBS         C08         C09         C10     119.499    1.50
+SBS         C08         C09         HC9     120.298    1.50
+SBS         C10         C09         HC9     120.203    1.50
+SBS         C09         C10         C11     120.433    1.50
+SBS         C09         C10         S13     119.784    1.50
+SBS         C11         C10         S13     119.784    1.50
+SBS         C10         C11         C12     119.499    1.50
+SBS         C10         C11         H11     120.203    1.50
+SBS         C12         C11         H11     120.298    1.50
+SBS         C07         C12         C11     120.778    1.50
+SBS         C07         C12         H12     119.849    1.50
+SBS         C11         C12         H12     119.373    1.50
+SBS         C10         S13         O14     107.472    1.50
+SBS         C10         S13         O15     107.472    1.50
+SBS         C10         S13         NP6     108.480    1.50
+SBS         O14         S13         O15     118.954    1.50
+SBS         O14         S13         NP6     107.154    1.50
+SBS         O15         S13         NP6     107.154    1.50
+SBS         S13         NP6        HN61     113.070    3.00
+SBS         S13         NP6        HN62     113.070    3.00
+SBS        HN61         NP6        HN62     115.993    3.00
+SBS         C01         NP7         C18     126.369    1.50
+SBS         C01         NP7         C20     125.290    1.70
+SBS         C18         NP7         C20     108.340    1.50
+SBS         NP7         C18         C19     109.459    1.50
+SBS         NP7         C18         H18     124.932    1.50
+SBS         C19         C18         H18     125.609    1.50
+SBS         C18         C19         C25     107.653    1.50
+SBS         C18         C19         H19     126.126    1.50
+SBS         C25         C19         H19     126.220    1.50
+SBS         NP7         C20         C21     130.002    1.50
+SBS         NP7         C20         C25     107.957    1.50
+SBS         C21         C20         C25     122.041    1.50
+SBS         C20         C21         C22     117.258    1.50
+SBS         C20         C21         H21     121.290    1.50
+SBS         C22         C21         H21     121.457    1.50
+SBS         C21         C22         C23     121.607    1.50
+SBS         C21         C22         H22     119.142    1.50
+SBS         C23         C22         H22     119.251    1.50
+SBS         C22         C23         C24     121.191    1.50
+SBS         C22         C23         H23     119.327    1.50
+SBS         C24         C23         H23     119.482    1.50
+SBS         C23         C24         C25     118.907    1.50
+SBS         C23         C24         H24     120.673    1.50
+SBS         C25         C24         H24     120.420    1.50
+SBS         C19         C25         C20     106.590    1.50
+SBS         C19         C25         C24     134.420    1.50
+SBS         C20         C25         C24     118.990    1.50
+SBS         C02         C26        H261     109.513    1.50
+SBS         C02         C26        H262     109.513    1.50
+SBS         C02         C26        H263     109.513    1.50
+SBS        H261         C26        H262     109.411    1.50
+SBS        H261         C26        H263     109.411    1.50
+SBS        H262         C26        H263     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SBS             sp3_sp3_1         NP7         C01         C02         C03     180.000    10.0     3
+SBS             sp2_sp3_2         C18         NP7         C01         C02     -90.000    10.0     6
+SBS              const_17         C10         C11         C12         C07       0.000    10.0     2
+SBS            sp3_sp3_29        HN61         NP6         S13         O14     -60.000    10.0     3
+SBS              const_22         C19         C18         NP7         C01     180.000    10.0     2
+SBS              const_64         C21         C20         NP7         C01       0.000    10.0     2
+SBS              const_25         NP7         C18         C19         C25       0.000    10.0     2
+SBS              const_29         C18         C19         C25         C20       0.000    10.0     2
+SBS              const_39         NP7         C20         C21         C22     180.000    10.0     2
+SBS              const_33         NP7         C20         C25         C19       0.000    10.0     2
+SBS            sp3_sp3_10         C01         C02         C03         N04     180.000    10.0     3
+SBS            sp3_sp3_19         C01         C02         C26        H261     180.000    10.0     3
+SBS              const_41         C20         C21         C22         C23       0.000    10.0     2
+SBS              const_45         C21         C22         C23         C24       0.000    10.0     2
+SBS              const_49         C22         C23         C24         C25       0.000    10.0     2
+SBS              const_54         C23         C24         C25         C19     180.000    10.0     2
+SBS             sp2_sp3_8         C05         N04         C03         C02     120.000    10.0     6
+SBS             sp2_sp2_3         O06         C05         N04         C03       0.000     5.0     2
+SBS             sp2_sp2_5         N04         C05         C07         C08     180.000     5.0     2
+SBS              const_59         C05         C07         C12         C11     180.000    10.0     2
+SBS       const_sp2_sp2_3         C05         C07         C08         C09     180.000     5.0     2
+SBS       const_sp2_sp2_5         C07         C08         C09         C10       0.000     5.0     2
+SBS              const_10         C08         C09         C10         S13     180.000    10.0     2
+SBS              const_15         S13         C10         C11         C12     180.000    10.0     2
+SBS            sp2_sp3_13         C09         C10         S13         O14     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SBS    chir_1    C02    C01    C03    C26    positive
+SBS    chir_2    S13    O14    O15    NP6    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SBS    plan-1         C01   0.020
+SBS    plan-1         C18   0.020
+SBS    plan-1         C19   0.020
+SBS    plan-1         C20   0.020
+SBS    plan-1         C21   0.020
+SBS    plan-1         C22   0.020
+SBS    plan-1         C23   0.020
+SBS    plan-1         C24   0.020
+SBS    plan-1         C25   0.020
+SBS    plan-1         H18   0.020
+SBS    plan-1         H19   0.020
+SBS    plan-1         H21   0.020
+SBS    plan-1         H22   0.020
+SBS    plan-1         H23   0.020
+SBS    plan-1         H24   0.020
+SBS    plan-1         NP7   0.020
+SBS    plan-2         C05   0.020
+SBS    plan-2         C07   0.020
+SBS    plan-2         C08   0.020
+SBS    plan-2         C09   0.020
+SBS    plan-2         C10   0.020
+SBS    plan-2         C11   0.020
+SBS    plan-2         C12   0.020
+SBS    plan-2         H11   0.020
+SBS    plan-2         H12   0.020
+SBS    plan-2         HC8   0.020
+SBS    plan-2         HC9   0.020
+SBS    plan-2         S13   0.020
+SBS    plan-3         C03   0.020
+SBS    plan-3         C05   0.020
+SBS    plan-3         HN4   0.020
+SBS    plan-3         N04   0.020
+SBS    plan-4         C05   0.020
+SBS    plan-4         C07   0.020
+SBS    plan-4         N04   0.020
+SBS    plan-4         O06   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SBS           SMILES              ACDLabs 10.04                                                                                                               O=S(=O)(N)c1ccc(cc1)C(=O)NCC(C)Cn3c2ccccc2cc3
+SBS SMILES_CANONICAL               CACTVS 3.341                                                                                                        C[C@@H](CNC(=O)c1ccc(cc1)[S](N)(=O)=O)Cn2ccc3ccccc23
+SBS           SMILES               CACTVS 3.341                                                                                                          C[CH](CNC(=O)c1ccc(cc1)[S](N)(=O)=O)Cn2ccc3ccccc23
+SBS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                          C[C@@H](CNC(=O)c1ccc(cc1)S(=O)(=O)N)Cn2ccc3c2cccc3
+SBS           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                               CC(CNC(=O)c1ccc(cc1)S(=O)(=O)N)Cn2ccc3c2cccc3
+SBS            InChI                InChI  1.03 InChI=1S/C19H21N3O3S/c1-14(13-22-11-10-15-4-2-3-5-18(15)22)12-21-19(23)16-6-8-17(9-7-16)26(20,24)25/h2-11,14H,12-13H2,1H3,(H,21,23)(H2,20,24,25)/t14-/m0/s1
+SBS         InChIKey                InChI  1.03                                                                                                                                 ZFWHOUCRVSOZJE-AWEZNQCLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SBS acedrg               243         "dictionary generator"                  
+SBS acedrg_database      11          "data source"                           
+SBS rdkit                2017.03.2   "Chemoinformatics tool"
+SBS refmac5              5.8.0238    "optimization tool"                     

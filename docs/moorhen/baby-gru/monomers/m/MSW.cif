@@ -1,0 +1,269 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MSW     MSW      "[(1S)-2-(methoxycarbonylamino)-1-phenyl-ethoxy]-propyl-phosphinic acid"     NON-POLYMER     39     20     .     
+#
+data_comp_MSW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MSW     PAY     P       P       0       7.334       24.472      26.770      
+MSW     CAN     C       CH2     0       8.365       25.966      26.598      
+MSW     CAM     C       CH2     0       7.586       27.233      26.280      
+MSW     CAA     C       CH3     0       8.493       28.446      26.231      
+MSW     OAF     O       O       0       6.435       24.626      27.965      
+MSW     OAT     O       O2      0       6.451       24.417      25.447      
+MSW     CAX     C       CH1     0       5.168       25.040      25.312      
+MSW     CAO     C       CH2     0       4.098       24.013      25.669      
+MSW     NAQ     N       NH1     0       4.268       22.719      25.007      
+MSW     CAU     C       C       0       3.250       21.849      24.832      
+MSW     OAE     O       O       0       2.103       22.040      25.169      
+MSW     OAR     O       O2      0       3.690       20.726      24.236      
+MSW     CAB     C       CH3     0       3.915       20.793      22.810      
+MSW     CAV     C       CR6     0       4.926       25.605      23.929      
+MSW     CAK     C       CR16    0       3.910       26.537      23.733      
+MSW     CAI     C       CR16    0       3.673       27.069      22.472      
+MSW     CAH     C       CR16    0       4.447       26.683      21.399      
+MSW     CAJ     C       CR16    0       5.459       25.764      21.578      
+MSW     CAL     C       CR16    0       5.703       25.224      22.834      
+MSW     O3P     O       OP      -1      8.228       23.262      26.780      
+MSW     H1      H       H       0       9.023       25.815      25.888      
+MSW     H2      H       H       0       8.861       26.103      27.432      
+MSW     H3      H       H       0       6.897       27.370      26.963      
+MSW     H4      H       H       0       7.138       27.129      25.415      
+MSW     H5      H       H       0       7.968       29.236      26.011      
+MSW     H6      H       H       0       9.177       28.314      25.551      
+MSW     H7      H       H       0       8.917       28.570      27.097      
+MSW     H9      H       H       0       5.111       25.783      25.953      
+MSW     H10     H       H       0       3.220       24.376      25.436      
+MSW     H11     H       H       0       4.113       23.869      26.636      
+MSW     H12     H       H       0       5.068       22.513      24.725      
+MSW     H13     H       H       0       4.866       20.884      22.640      
+MSW     H14     H       H       0       3.445       21.555      22.433      
+MSW     H15     H       H       0       3.590       19.978      22.396      
+MSW     H16     H       H       0       3.375       26.806      24.463      
+MSW     H17     H       H       0       2.981       27.699      22.351      
+MSW     H18     H       H       0       4.284       27.047      20.543      
+MSW     H19     H       H       0       5.988       25.499      20.842      
+MSW     H20     H       H       0       6.397       24.596      22.942      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MSW         CAI         CAH      DOUBLE       y     1.374  0.0127     1.374  0.0127
+MSW         CAH         CAJ      SINGLE       y     1.374  0.0127     1.374  0.0127
+MSW         CAK         CAI      SINGLE       y     1.386  0.0100     1.386  0.0100
+MSW         OAR         CAB      SINGLE       n     1.443  0.0101     1.443  0.0101
+MSW         CAJ         CAL      DOUBLE       y     1.386  0.0100     1.386  0.0100
+MSW         CAU         OAR      SINGLE       n     1.342  0.0100     1.342  0.0100
+MSW         CAV         CAK      DOUBLE       y     1.387  0.0111     1.387  0.0111
+MSW         CAV         CAL      SINGLE       y     1.387  0.0111     1.387  0.0111
+MSW         CAX         CAV      SINGLE       n     1.509  0.0100     1.509  0.0100
+MSW         NAQ         CAU      SINGLE       n     1.340  0.0141     1.340  0.0141
+MSW         CAU         OAE      DOUBLE       n     1.210  0.0102     1.210  0.0102
+MSW         CAO         NAQ      SINGLE       n     1.455  0.0199     1.455  0.0199
+MSW         CAM         CAA      SINGLE       n     1.515  0.0200     1.515  0.0200
+MSW         CAX         CAO      SINGLE       n     1.523  0.0108     1.523  0.0108
+MSW         OAT         CAX      SINGLE       n     1.429  0.0113     1.429  0.0113
+MSW         CAN         CAM      SINGLE       n     1.521  0.0100     1.521  0.0100
+MSW         PAY         OAT      SINGLE       n     1.590  0.0138     1.590  0.0138
+MSW         PAY         CAN      SINGLE       n     1.822  0.0169     1.822  0.0169
+MSW         PAY         OAF      DOUBLE       n     1.504  0.0133     1.504  0.0133
+MSW         PAY         O3P      SINGLE       n     1.504  0.0133     1.504  0.0133
+MSW         CAN          H1      SINGLE       n     1.089  0.0100     0.980  0.0122
+MSW         CAN          H2      SINGLE       n     1.089  0.0100     0.980  0.0122
+MSW         CAM          H3      SINGLE       n     1.089  0.0100     0.980  0.0160
+MSW         CAM          H4      SINGLE       n     1.089  0.0100     0.980  0.0160
+MSW         CAA          H5      SINGLE       n     1.089  0.0100     0.973  0.0157
+MSW         CAA          H6      SINGLE       n     1.089  0.0100     0.973  0.0157
+MSW         CAA          H7      SINGLE       n     1.089  0.0100     0.973  0.0157
+MSW         CAX          H9      SINGLE       n     1.089  0.0100     0.983  0.0157
+MSW         CAO         H10      SINGLE       n     1.089  0.0100     0.978  0.0112
+MSW         CAO         H11      SINGLE       n     1.089  0.0100     0.978  0.0112
+MSW         NAQ         H12      SINGLE       n     1.016  0.0100     0.872  0.0200
+MSW         CAB         H13      SINGLE       n     1.089  0.0100     0.970  0.0175
+MSW         CAB         H14      SINGLE       n     1.089  0.0100     0.970  0.0175
+MSW         CAB         H15      SINGLE       n     1.089  0.0100     0.970  0.0175
+MSW         CAK         H16      SINGLE       n     1.082  0.0130     0.944  0.0174
+MSW         CAI         H17      SINGLE       n     1.082  0.0130     0.944  0.0175
+MSW         CAH         H18      SINGLE       n     1.082  0.0130     0.944  0.0161
+MSW         CAJ         H19      SINGLE       n     1.082  0.0130     0.944  0.0175
+MSW         CAL         H20      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MSW         OAT         PAY         CAN     105.177    2.72
+MSW         OAT         PAY         OAF     108.773    3.00
+MSW         OAT         PAY         O3P     108.773    3.00
+MSW         CAN         PAY         OAF     109.196    1.50
+MSW         CAN         PAY         O3P     109.196    1.50
+MSW         OAF         PAY         O3P     115.915    1.71
+MSW         CAM         CAN         PAY     114.025    1.50
+MSW         CAM         CAN          H1     108.554    1.50
+MSW         CAM         CAN          H2     108.554    1.50
+MSW         PAY         CAN          H1     108.603    1.50
+MSW         PAY         CAN          H2     108.603    1.50
+MSW          H1         CAN          H2     107.240    1.91
+MSW         CAA         CAM         CAN     111.503    1.50
+MSW         CAA         CAM          H3     109.256    1.50
+MSW         CAA         CAM          H4     109.256    1.50
+MSW         CAN         CAM          H3     109.217    1.50
+MSW         CAN         CAM          H4     109.217    1.50
+MSW          H3         CAM          H4     107.931    1.50
+MSW         CAM         CAA          H5     109.472    1.50
+MSW         CAM         CAA          H6     109.472    1.50
+MSW         CAM         CAA          H7     109.472    1.50
+MSW          H5         CAA          H6     109.380    1.50
+MSW          H5         CAA          H7     109.380    1.50
+MSW          H6         CAA          H7     109.380    1.50
+MSW         CAX         OAT         PAY     121.496    2.55
+MSW         CAV         CAX         CAO     110.619    1.69
+MSW         CAV         CAX         OAT     110.865    2.39
+MSW         CAV         CAX          H9     108.608    1.50
+MSW         CAO         CAX         OAT     108.359    3.00
+MSW         CAO         CAX          H9     109.057    1.50
+MSW         OAT         CAX          H9     108.976    1.50
+MSW         NAQ         CAO         CAX     114.244    1.50
+MSW         NAQ         CAO         H10     109.102    1.50
+MSW         NAQ         CAO         H11     109.102    1.50
+MSW         CAX         CAO         H10     109.677    1.73
+MSW         CAX         CAO         H11     109.677    1.73
+MSW         H10         CAO         H11     108.426    1.50
+MSW         CAU         NAQ         CAO     121.935    1.50
+MSW         CAU         NAQ         H12     119.647    1.50
+MSW         CAO         NAQ         H12     118.418    1.83
+MSW         OAR         CAU         NAQ     110.066    1.50
+MSW         OAR         CAU         OAE     125.066    1.50
+MSW         NAQ         CAU         OAE     124.867    1.50
+MSW         CAB         OAR         CAU     115.328    1.50
+MSW         OAR         CAB         H13     109.384    1.50
+MSW         OAR         CAB         H14     109.384    1.50
+MSW         OAR         CAB         H15     109.384    1.50
+MSW         H13         CAB         H14     109.532    1.53
+MSW         H13         CAB         H15     109.532    1.53
+MSW         H14         CAB         H15     109.532    1.53
+MSW         CAK         CAV         CAL     118.858    1.50
+MSW         CAK         CAV         CAX     120.567    1.50
+MSW         CAL         CAV         CAX     120.567    1.50
+MSW         CAI         CAK         CAV     120.256    1.50
+MSW         CAI         CAK         H16     119.878    1.50
+MSW         CAV         CAK         H16     119.866    1.50
+MSW         CAH         CAI         CAK     120.307    1.50
+MSW         CAH         CAI         H17     119.892    1.50
+MSW         CAK         CAI         H17     119.801    1.50
+MSW         CAI         CAH         CAJ     120.025    1.50
+MSW         CAI         CAH         H18     119.988    1.50
+MSW         CAJ         CAH         H18     119.988    1.50
+MSW         CAH         CAJ         CAL     120.307    1.50
+MSW         CAH         CAJ         H19     119.892    1.50
+MSW         CAL         CAJ         H19     119.801    1.50
+MSW         CAJ         CAL         CAV     120.256    1.50
+MSW         CAJ         CAL         H20     119.878    1.50
+MSW         CAV         CAL         H20     119.866    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MSW            sp3_sp3_38         CAM         CAN         PAY         OAT     180.000    10.0     3
+MSW            sp3_sp3_37         CAX         OAT         PAY         CAN      60.000    10.0     3
+MSW             sp3_sp3_2         H13         CAB         OAR         CAU     -60.000    10.0     3
+MSW       const_sp2_sp2_2         CAI         CAK         CAV         CAX     180.000     5.0     2
+MSW              const_22         CAJ         CAL         CAV         CAX     180.000    10.0     2
+MSW       const_sp2_sp2_5         CAH         CAI         CAK         CAV       0.000     5.0     2
+MSW       const_sp2_sp2_9         CAJ         CAH         CAI         CAK       0.000     5.0     2
+MSW              const_13         CAI         CAH         CAJ         CAL       0.000    10.0     2
+MSW              const_17         CAH         CAJ         CAL         CAV       0.000    10.0     2
+MSW            sp3_sp3_26         CAA         CAM         CAN         PAY     180.000    10.0     3
+MSW             sp3_sp3_5          H5         CAA         CAM         CAN     180.000    10.0     3
+MSW            sp3_sp3_24         CAO         CAX         OAT         PAY      60.000    10.0     3
+MSW             sp2_sp3_1         CAK         CAV         CAX         CAO     150.000    10.0     6
+MSW            sp3_sp3_15         NAQ         CAO         CAX         OAT     -60.000    10.0     3
+MSW             sp2_sp3_8         CAU         NAQ         CAO         CAX     120.000    10.0     6
+MSW             sp2_sp2_3         OAR         CAU         NAQ         CAO     180.000     5.0     2
+MSW             sp2_sp2_1         NAQ         CAU         OAR         CAB     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MSW    chir_1    PAY    OAT    O3P    OAF    both
+MSW    chir_2    CAX    OAT    CAO    CAV    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MSW    plan-1         CAH   0.020
+MSW    plan-1         CAI   0.020
+MSW    plan-1         CAJ   0.020
+MSW    plan-1         CAK   0.020
+MSW    plan-1         CAL   0.020
+MSW    plan-1         CAV   0.020
+MSW    plan-1         CAX   0.020
+MSW    plan-1         H16   0.020
+MSW    plan-1         H17   0.020
+MSW    plan-1         H18   0.020
+MSW    plan-1         H19   0.020
+MSW    plan-1         H20   0.020
+MSW    plan-2         CAO   0.020
+MSW    plan-2         CAU   0.020
+MSW    plan-2         H12   0.020
+MSW    plan-2         NAQ   0.020
+MSW    plan-3         CAU   0.020
+MSW    plan-3         NAQ   0.020
+MSW    plan-3         OAE   0.020
+MSW    plan-3         OAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MSW            InChI                InChI  1.03 InChI=1S/C13H20NO5P/c1-3-9-20(16,17)19-12(10-14-13(15)18-2)11-7-5-4-6-8-11/h4-8,12H,3,9-10H2,1-2H3,(H,14,15)(H,16,17)/t12-/m1/s1
+MSW         InChIKey                InChI  1.03                                                                                                      LJRNVQUHAPUUFK-GFCCVEGCSA-N
+MSW SMILES_CANONICAL               CACTVS 3.385                                                                                           CCC[P](O)(=O)O[C@H](CNC(=O)OC)c1ccccc1
+MSW           SMILES               CACTVS 3.385                                                                                            CCC[P](O)(=O)O[CH](CNC(=O)OC)c1ccccc1
+MSW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                                                          CCC[P@](=O)(O)O[C@H](CNC(=O)OC)c1ccccc1
+MSW           SMILES "OpenEye OEToolkits" 2.0.5                                                                                                 CCCP(=O)(O)OC(CNC(=O)OC)c1ccccc1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MSW acedrg               243         "dictionary generator"                  
+MSW acedrg_database      11          "data source"                           
+MSW rdkit                2017.03.2   "Chemoinformatics tool"
+MSW refmac5              5.8.0238    "optimization tool"                     

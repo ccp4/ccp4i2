@@ -1,0 +1,487 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FUE     FUE      2-[[(2~{R},5~{R})-1-[2-[6-[(4-fluorophenyl)methyl]-3,3-dimethyl-2~{H}-pyrrolo[3,2-b]pyridin-1-yl]-2-oxidanylidene-ethyl]-5-methyl-piperazin-2-yl]methyl]-3~{H}-isoindol-1-one     NON-POLYMER     76     40     .     
+#
+data_comp_FUE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FUE     C1      C       CH3     0       -16.202     -21.693     0.059       
+FUE     C2      C       CH1     0       -16.221     -20.284     -0.522      
+FUE     C3      C       CH2     0       -16.290     -20.269     -2.046      
+FUE     N4      N       NT      0       -16.307     -18.899     -2.579      
+FUE     C5      C       CH2     0       -16.579     -18.869     -4.021      
+FUE     C6      C       C       0       -15.450     -19.284     -4.965      
+FUE     C10     C       CT      0       -16.396     -18.437     -8.446      
+FUE     C11     C       CH3     0       -16.967     -19.634     -9.209      
+FUE     C12     C       CH3     0       -16.893     -17.152     -9.113      
+FUE     C13     C       CR56    0       -14.887     -18.486     -8.430      
+FUE     C15     C       CR16    0       -12.740     -18.398     -9.309      
+FUE     C16     C       CR6     0       -12.157     -18.645     -8.016      
+FUE     C19     C       CR16    0       -9.364      -20.268     -9.374      
+FUE     C21     C       CR6     0       -9.075      -22.562     -8.878      
+FUE     C23     C       CR16    0       -9.788      -22.433     -7.720      
+FUE     C24     C       CR16    0       -10.294     -21.180     -7.398      
+FUE     C25     C       CR16    0       -13.026     -18.811     -6.937      
+FUE     C26     C       CR56    0       -14.401     -18.726     -7.159      
+FUE     C27     C       CH1     0       -15.163     -18.076     -2.100      
+FUE     C28     C       CH2     0       -15.265     -16.600     -2.533      
+FUE     C31     C       CR56    0       -12.854     -15.862     -5.268      
+FUE     C35     C       CR16    0       -14.100     -14.937     -7.125      
+FUE     C36     C       CR56    0       -14.045     -15.479     -5.847      
+FUE     C37     C       CR5     0       -15.138     -15.737     -4.889      
+FUE     C39     C       CH2     0       -15.035     -18.145     -0.568      
+FUE     O7      O       O       0       -14.553     -20.023     -4.578      
+FUE     N8      N       NR5     0       -15.504     -18.854     -6.271      
+FUE     C9      C       CH2     0       -16.765     -18.484     -6.950      
+FUE     N14     N       NRD6    0       -14.076     -18.323     -9.490      
+FUE     C17     C       CH2     0       -10.652     -18.726     -7.846      
+FUE     C18     C       CR6     0       -10.090     -20.085     -8.214      
+FUE     C20     C       CR16    0       -8.846      -21.511     -9.721      
+FUE     F22     F       F       0       -8.574      -23.784     -9.205      
+FUE     N29     N       NR5     0       -14.566     -16.264     -3.774      
+FUE     C30     C       CH2     0       -13.117     -16.405     -3.897      
+FUE     C32     C       CR16    0       -11.658     -15.726     -5.962      
+FUE     C33     C       CR16    0       -11.699     -15.189     -7.241      
+FUE     C34     C       CR16    0       -12.907     -14.799     -7.814      
+FUE     O38     O       O       0       -16.338     -15.498     -5.024      
+FUE     N40     N       NT1     0       -15.030     -19.539     -0.088      
+FUE     H41     H       H       0       -15.285     -21.964     0.227       
+FUE     H42     H       H       0       -16.611     -22.311     -0.569      
+FUE     H43     H       H       0       -16.700     -21.706     0.893       
+FUE     H44     H       H       0       -17.019     -19.812     -0.181      
+FUE     H46     H       H       0       -15.513     -20.753     -2.404      
+FUE     H45     H       H       0       -17.102     -20.744     -2.335      
+FUE     H48     H       H       0       -16.861     -17.966     -4.257      
+FUE     H47     H       H       0       -17.346     -19.453     -4.199      
+FUE     H53     H       H       0       -16.737     -20.452     -8.741      
+FUE     H51     H       H       0       -16.592     -19.653     -10.103     
+FUE     H52     H       H       0       -17.932     -19.550     -9.262      
+FUE     H55     H       H       0       -17.856     -17.090     -9.009      
+FUE     H56     H       H       0       -16.667     -17.172     -10.056     
+FUE     H54     H       H       0       -16.470     -16.388     -8.692      
+FUE     H57     H       H       0       -12.171     -18.283     -10.053     
+FUE     H60     H       H       0       -9.215      -19.532     -9.944      
+FUE     H62     H       H       0       -9.932      -23.173     -7.157      
+FUE     H63     H       H       0       -10.789     -21.072     -6.602      
+FUE     H64     H       H       0       -12.680     -18.974     -6.077      
+FUE     H65     H       H       0       -14.337     -18.451     -2.483      
+FUE     H67     H       H       0       -14.901     -16.036     -1.817      
+FUE     H66     H       H       0       -16.214     -16.369     -2.626      
+FUE     H73     H       H       0       -14.916     -14.675     -7.511      
+FUE     H74     H       H       0       -15.784     -17.666     -0.156      
+FUE     H75     H       H       0       -14.204     -17.707     -0.289      
+FUE     H50     H       H       0       -17.458     -19.156     -6.778      
+FUE     H49     H       H       0       -17.079     -17.610     -6.636      
+FUE     H59     H       H       0       -10.425     -18.531     -6.910      
+FUE     H58     H       H       0       -10.228     -18.040     -8.408      
+FUE     H61     H       H       0       -8.352      -21.626     -10.512     
+FUE     H69     H       H       0       -12.648     -15.884     -3.210      
+FUE     H68     H       H       0       -12.838     -17.343     -3.828      
+FUE     H70     H       H       0       -10.844     -15.988     -5.576      
+FUE     H71     H       H       0       -10.897     -15.086     -7.729      
+FUE     H72     H       H       0       -12.912     -14.436     -8.685      
+FUE     H77     H       H       0       -14.994     -19.542     0.793       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FUE         C19         C20      DOUBLE       y     1.386  0.0100     1.386  0.0100
+FUE         C21         C20      SINGLE       y     1.363  0.0118     1.363  0.0118
+FUE         C19         C18      SINGLE       y     1.376  0.0100     1.376  0.0100
+FUE         C15         N14      SINGLE       y     1.344  0.0160     1.344  0.0160
+FUE         C13         N14      DOUBLE       y     1.340  0.0100     1.340  0.0100
+FUE         C15         C16      DOUBLE       y     1.435  0.0196     1.435  0.0196
+FUE         C10         C12      SINGLE       n     1.530  0.0100     1.530  0.0100
+FUE         C21         F22      SINGLE       n     1.361  0.0100     1.361  0.0100
+FUE         C10         C11      SINGLE       n     1.530  0.0100     1.530  0.0100
+FUE         C21         C23      DOUBLE       y     1.363  0.0118     1.363  0.0118
+FUE         C10         C13      SINGLE       n     1.512  0.0100     1.512  0.0100
+FUE         C13         C26      SINGLE       y     1.364  0.0200     1.364  0.0200
+FUE         C17         C18      SINGLE       n     1.515  0.0100     1.515  0.0100
+FUE         C24         C18      DOUBLE       y     1.376  0.0100     1.376  0.0100
+FUE         C10          C9      SINGLE       n     1.539  0.0136     1.539  0.0136
+FUE         C16         C17      SINGLE       n     1.517  0.0100     1.517  0.0100
+FUE         C16         C25      SINGLE       y     1.393  0.0100     1.393  0.0100
+FUE         C33         C34      SINGLE       y     1.388  0.0124     1.388  0.0124
+FUE         C35         C34      DOUBLE       y     1.381  0.0100     1.381  0.0100
+FUE         C23         C24      SINGLE       y     1.386  0.0100     1.386  0.0100
+FUE         C25         C26      DOUBLE       y     1.389  0.0100     1.389  0.0100
+FUE         C26          N8      SINGLE       n     1.417  0.0100     1.417  0.0100
+FUE         C32         C33      DOUBLE       y     1.384  0.0100     1.384  0.0100
+FUE         C35         C36      SINGLE       y     1.385  0.0100     1.385  0.0100
+FUE          N8          C9      SINGLE       n     1.476  0.0100     1.476  0.0100
+FUE          C6          N8      SINGLE       n     1.368  0.0120     1.368  0.0120
+FUE         C31         C32      SINGLE       y     1.386  0.0100     1.386  0.0100
+FUE         C31         C36      DOUBLE       y     1.376  0.0100     1.376  0.0100
+FUE         C36         C37      SINGLE       n     1.476  0.0146     1.476  0.0146
+FUE         C31         C30      SINGLE       n     1.499  0.0100     1.499  0.0100
+FUE         C37         O38      DOUBLE       n     1.230  0.0110     1.230  0.0110
+FUE          C6          O7      DOUBLE       n     1.224  0.0119     1.224  0.0119
+FUE          C5          C6      SINGLE       n     1.522  0.0100     1.522  0.0100
+FUE         C37         N29      SINGLE       n     1.355  0.0100     1.355  0.0100
+FUE          N4          C5      SINGLE       n     1.459  0.0100     1.459  0.0100
+FUE         N29         C30      SINGLE       n     1.459  0.0100     1.459  0.0100
+FUE         C28         N29      SINGLE       n     1.452  0.0155     1.452  0.0155
+FUE          C3          N4      SINGLE       n     1.463  0.0100     1.463  0.0100
+FUE          N4         C27      SINGLE       n     1.477  0.0100     1.477  0.0100
+FUE         C27         C28      SINGLE       n     1.536  0.0100     1.536  0.0100
+FUE          C2          C3      SINGLE       n     1.528  0.0156     1.528  0.0156
+FUE         C27         C39      SINGLE       n     1.528  0.0156     1.528  0.0156
+FUE          C1          C2      SINGLE       n     1.523  0.0100     1.523  0.0100
+FUE          C2         N40      SINGLE       n     1.472  0.0100     1.472  0.0100
+FUE         C39         N40      SINGLE       n     1.474  0.0155     1.474  0.0155
+FUE          C1         H41      SINGLE       n     1.089  0.0100     0.971  0.0171
+FUE          C1         H42      SINGLE       n     1.089  0.0100     0.971  0.0171
+FUE          C1         H43      SINGLE       n     1.089  0.0100     0.971  0.0171
+FUE          C2         H44      SINGLE       n     1.089  0.0100     0.987  0.0115
+FUE          C3         H46      SINGLE       n     1.089  0.0100     0.984  0.0107
+FUE          C3         H45      SINGLE       n     1.089  0.0100     0.984  0.0107
+FUE          C5         H48      SINGLE       n     1.089  0.0100     0.980  0.0178
+FUE          C5         H47      SINGLE       n     1.089  0.0100     0.980  0.0178
+FUE         C11         H53      SINGLE       n     1.089  0.0100     0.970  0.0163
+FUE         C11         H51      SINGLE       n     1.089  0.0100     0.970  0.0163
+FUE         C11         H52      SINGLE       n     1.089  0.0100     0.970  0.0163
+FUE         C12         H55      SINGLE       n     1.089  0.0100     0.970  0.0163
+FUE         C12         H56      SINGLE       n     1.089  0.0100     0.970  0.0163
+FUE         C12         H54      SINGLE       n     1.089  0.0100     0.970  0.0163
+FUE         C15         H57      SINGLE       n     1.082  0.0130     0.944  0.0200
+FUE         C19         H60      SINGLE       n     1.082  0.0130     0.943  0.0173
+FUE         C23         H62      SINGLE       n     1.082  0.0130     0.940  0.0141
+FUE         C24         H63      SINGLE       n     1.082  0.0130     0.943  0.0173
+FUE         C25         H64      SINGLE       n     1.082  0.0130     0.942  0.0175
+FUE         C27         H65      SINGLE       n     1.089  0.0100     0.987  0.0115
+FUE         C28         H67      SINGLE       n     1.089  0.0100     0.981  0.0150
+FUE         C28         H66      SINGLE       n     1.089  0.0100     0.981  0.0150
+FUE         C35         H73      SINGLE       n     1.082  0.0130     0.940  0.0200
+FUE         C39         H74      SINGLE       n     1.089  0.0100     0.980  0.0117
+FUE         C39         H75      SINGLE       n     1.089  0.0100     0.980  0.0117
+FUE          C9         H50      SINGLE       n     1.089  0.0100     0.980  0.0143
+FUE          C9         H49      SINGLE       n     1.089  0.0100     0.980  0.0143
+FUE         C17         H59      SINGLE       n     1.089  0.0100     0.983  0.0146
+FUE         C17         H58      SINGLE       n     1.089  0.0100     0.983  0.0146
+FUE         C20         H61      SINGLE       n     1.082  0.0130     0.940  0.0141
+FUE         C30         H69      SINGLE       n     1.089  0.0100     0.982  0.0106
+FUE         C30         H68      SINGLE       n     1.089  0.0100     0.982  0.0106
+FUE         C32         H70      SINGLE       n     1.082  0.0130     0.938  0.0146
+FUE         C33         H71      SINGLE       n     1.082  0.0130     0.944  0.0193
+FUE         C34         H72      SINGLE       n     1.082  0.0130     0.944  0.0187
+FUE         N40         H77      SINGLE       n     1.036  0.0160     0.881  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FUE          C2          C1         H41     109.468    1.50
+FUE          C2          C1         H42     109.468    1.50
+FUE          C2          C1         H43     109.468    1.50
+FUE         H41          C1         H42     109.356    1.50
+FUE         H41          C1         H43     109.356    1.50
+FUE         H42          C1         H43     109.356    1.50
+FUE          C3          C2          C1     112.918    1.50
+FUE          C3          C2         N40     110.258    1.51
+FUE          C3          C2         H44     107.914    1.50
+FUE          C1          C2         N40     110.146    1.50
+FUE          C1          C2         H44     108.931    1.50
+FUE         N40          C2         H44     108.362    1.55
+FUE          N4          C3          C2     111.380    1.89
+FUE          N4          C3         H46     109.490    1.50
+FUE          N4          C3         H45     109.490    1.50
+FUE          C2          C3         H46     109.574    1.50
+FUE          C2          C3         H45     109.574    1.50
+FUE         H46          C3         H45     108.248    1.50
+FUE          C5          N4          C3     110.934    1.50
+FUE          C5          N4         C27     113.491    1.50
+FUE          C3          N4         C27     110.581    1.50
+FUE          C6          C5          N4     112.485    2.09
+FUE          C6          C5         H48     109.078    1.50
+FUE          C6          C5         H47     109.078    1.50
+FUE          N4          C5         H48     108.985    1.50
+FUE          N4          C5         H47     108.985    1.50
+FUE         H48          C5         H47     107.885    1.50
+FUE          N8          C6          O7     121.673    1.93
+FUE          N8          C6          C5     117.954    1.83
+FUE          O7          C6          C5     120.373    1.50
+FUE         C12         C10         C11     109.219    1.50
+FUE         C12         C10         C13     112.145    2.32
+FUE         C12         C10          C9     111.938    1.56
+FUE         C11         C10         C13     112.145    2.32
+FUE         C11         C10          C9     111.938    1.56
+FUE         C13         C10          C9     103.611    1.51
+FUE         C10         C11         H53     109.180    2.96
+FUE         C10         C11         H51     109.180    2.96
+FUE         C10         C11         H52     109.180    2.96
+FUE         H53         C11         H51     109.527    3.00
+FUE         H53         C11         H52     109.527    3.00
+FUE         H51         C11         H52     109.527    3.00
+FUE         C10         C12         H55     109.180    2.96
+FUE         C10         C12         H56     109.180    2.96
+FUE         C10         C12         H54     109.180    2.96
+FUE         H55         C12         H56     109.527    3.00
+FUE         H55         C12         H54     109.527    3.00
+FUE         H56         C12         H54     109.527    3.00
+FUE         N14         C13         C10     126.632    1.73
+FUE         N14         C13         C26     121.186    1.92
+FUE         C10         C13         C26     112.182    1.65
+FUE         N14         C15         C16     122.757    1.62
+FUE         N14         C15         H57     118.583    1.50
+FUE         C16         C15         H57     118.660    1.50
+FUE         C15         C16         C17     119.856    3.00
+FUE         C15         C16         C25     118.779    2.01
+FUE         C17         C16         C25     121.365    1.50
+FUE         C20         C19         C18     121.362    1.50
+FUE         C20         C19         H60     119.418    1.50
+FUE         C18         C19         H60     119.220    1.50
+FUE         C20         C21         F22     118.502    1.50
+FUE         C20         C21         C23     122.996    1.50
+FUE         F22         C21         C23     118.502    1.50
+FUE         C21         C23         C24     118.258    1.50
+FUE         C21         C23         H62     120.801    1.50
+FUE         C24         C23         H62     120.941    1.50
+FUE         C18         C24         C23     121.362    1.50
+FUE         C18         C24         H63     119.220    1.50
+FUE         C23         C24         H63     119.418    1.50
+FUE         C16         C25         C26     118.675    1.50
+FUE         C16         C25         H64     120.128    1.50
+FUE         C26         C25         H64     121.197    1.50
+FUE         C13         C26         C25     120.163    1.50
+FUE         C13         C26          N8     109.189    2.06
+FUE         C25         C26          N8     130.648    1.50
+FUE          N4         C27         C28     111.611    1.50
+FUE          N4         C27         C39     110.258    1.51
+FUE          N4         C27         H65     107.651    1.50
+FUE         C28         C27         C39     111.864    1.89
+FUE         C28         C27         H65     107.347    1.50
+FUE         C39         C27         H65     107.914    1.50
+FUE         N29         C28         C27     113.275    1.50
+FUE         N29         C28         H67     109.082    1.50
+FUE         N29         C28         H66     109.082    1.50
+FUE         C27         C28         H67     109.024    1.50
+FUE         C27         C28         H66     109.024    1.50
+FUE         H67         C28         H66     107.848    1.50
+FUE         C32         C31         C36     120.426    1.50
+FUE         C32         C31         C30     130.018    1.50
+FUE         C36         C31         C30     109.556    1.50
+FUE         C34         C35         C36     117.349    1.50
+FUE         C34         C35         H73     121.163    1.50
+FUE         C36         C35         H73     121.488    1.50
+FUE         C35         C36         C31     121.918    1.50
+FUE         C35         C36         C37     129.744    1.50
+FUE         C31         C36         C37     108.339    1.50
+FUE         C36         C37         O38     128.938    1.50
+FUE         C36         C37         N29     106.215    1.50
+FUE         O38         C37         N29     124.847    1.50
+FUE         C27         C39         N40     110.258    1.51
+FUE         C27         C39         H74     109.574    1.50
+FUE         C27         C39         H75     109.574    1.50
+FUE         N40         C39         H74     109.326    1.50
+FUE         N40         C39         H75     109.326    1.50
+FUE         H74         C39         H75     108.200    1.50
+FUE         C26          N8          C9     110.794    1.98
+FUE         C26          N8          C6     125.267    1.50
+FUE          C9          N8          C6     123.939    3.00
+FUE         C10          C9          N8     102.354    1.84
+FUE         C10          C9         H50     110.766    1.50
+FUE         C10          C9         H49     110.766    1.50
+FUE          N8          C9         H50     110.344    1.50
+FUE          N8          C9         H49     110.344    1.50
+FUE         H50          C9         H49     109.055    1.50
+FUE         C15         N14         C13     118.440    1.67
+FUE         C18         C17         C16     113.189    2.84
+FUE         C18         C17         H59     108.797    1.50
+FUE         C18         C17         H58     108.797    1.50
+FUE         C16         C17         H59     108.909    1.50
+FUE         C16         C17         H58     108.909    1.50
+FUE         H59         C17         H58     107.770    1.50
+FUE         C19         C18         C17     121.118    1.50
+FUE         C19         C18         C24     117.763    1.50
+FUE         C17         C18         C24     121.118    1.50
+FUE         C19         C20         C21     118.258    1.50
+FUE         C19         C20         H61     120.941    1.50
+FUE         C21         C20         H61     120.801    1.50
+FUE         C37         N29         C30     112.890    1.50
+FUE         C37         N29         C28     125.156    2.04
+FUE         C30         N29         C28     121.954    1.87
+FUE         C31         C30         N29     102.275    1.50
+FUE         C31         C30         H69     111.477    1.50
+FUE         C31         C30         H68     111.477    1.50
+FUE         N29         C30         H69     111.411    1.50
+FUE         N29         C30         H68     111.411    1.50
+FUE         H69         C30         H68     108.797    1.63
+FUE         C33         C32         C31     118.160    1.50
+FUE         C33         C32         H70     120.907    1.50
+FUE         C31         C32         H70     120.933    1.50
+FUE         C34         C33         C32     121.073    1.50
+FUE         C34         C33         H71     119.423    1.50
+FUE         C32         C33         H71     119.504    1.50
+FUE         C33         C34         C35     121.073    1.50
+FUE         C33         C34         H72     119.423    1.50
+FUE         C35         C34         H72     119.504    1.50
+FUE          C2         N40         C39     112.650    1.50
+FUE          C2         N40         H77     108.853    2.50
+FUE         C39         N40         H77     109.383    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FUE            sp3_sp3_79         H41          C1          C2          C3     180.000    10.0     3
+FUE              const_10         N14         C15         C16         C17     180.000    10.0     2
+FUE       const_sp2_sp2_7         C16         C15         N14         C13       0.000     5.0     2
+FUE              const_15         C17         C16         C25         C26     180.000    10.0     2
+FUE            sp2_sp3_26         C15         C16         C17         C18     -90.000    10.0     6
+FUE              const_67         C17         C18         C19         C20     180.000    10.0     2
+FUE              const_21         C18         C19         C20         C21       0.000    10.0     2
+FUE              const_31         F22         C21         C23         C24     180.000    10.0     2
+FUE              const_26         C19         C20         C21         F22     180.000    10.0     2
+FUE              const_33         C21         C23         C24         C18       0.000    10.0     2
+FUE              const_39         C17         C18         C24         C23     180.000    10.0     2
+FUE              const_17         C16         C25         C26         C13       0.000    10.0     2
+FUE             sp2_sp2_2         C13         C26          N8          C6     180.000     5.0     2
+FUE            sp3_sp3_70          N4         C27         C28         N29     180.000    10.0     3
+FUE            sp3_sp3_25         C28         C27         C39         N40     180.000    10.0     3
+FUE            sp2_sp3_44         C37         N29         C28         C27     -90.000    10.0     6
+FUE             sp3_sp3_4          C1          C2          C3          N4     -60.000    10.0     3
+FUE            sp3_sp3_90          C1          C2         N40         C39      60.000    10.0     3
+FUE              const_41         C32         C31         C36         C35       0.000    10.0     2
+FUE            sp2_sp3_34         C32         C31         C30         N29     180.000    10.0     6
+FUE              const_45         C36         C31         C32         C33       0.000    10.0     2
+FUE              const_61         C34         C35         C36         C31       0.000    10.0     2
+FUE              const_57         C33         C34         C35         C36       0.000    10.0     2
+FUE             sp2_sp2_8         C35         C36         C37         O38       0.000     5.0     2
+FUE            sp2_sp2_12         O38         C37         N29         C28       0.000     5.0     2
+FUE            sp3_sp3_31         C27         C39         N40          C2      60.000    10.0     3
+FUE            sp2_sp3_10          C6          N8          C9         C10     180.000    10.0     6
+FUE            sp2_sp3_20         C19         C18         C17         C16     -90.000    10.0     6
+FUE            sp3_sp3_11          C2          C3          N4          C5      60.000    10.0     3
+FUE            sp2_sp3_16         C28         N29         C30         C31     180.000    10.0     6
+FUE              const_49         C31         C32         C33         C34       0.000    10.0     2
+FUE              const_53         C32         C33         C34         C35       0.000    10.0     2
+FUE            sp3_sp3_19         C28         C27          N4          C5      60.000    10.0     3
+FUE            sp3_sp3_64          C6          C5          N4          C3     180.000    10.0     3
+FUE            sp2_sp3_41          O7          C6          C5          N4     -60.000    10.0     6
+FUE            sp2_sp2_16          O7          C6          N8         C26     180.000     5.0     2
+FUE            sp3_sp3_58         C12         C10          C9          N8      60.000    10.0     3
+FUE            sp3_sp3_52         C12         C10         C11         H53     -60.000    10.0     3
+FUE            sp3_sp3_43         C11         C10         C12         H55     -60.000    10.0     3
+FUE             sp2_sp3_6         N14         C13         C10         C12      60.000    10.0     6
+FUE       const_sp2_sp2_1         N14         C13         C26         C25       0.000     5.0     2
+FUE       const_sp2_sp2_6         C10         C13         N14         C15     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FUE    chir_1    C2    N40    C3    C1    negative
+FUE    chir_2    N4    C27    C5    C3    negative
+FUE    chir_3    C10    C13    C9    C12    both
+FUE    chir_4    C27    N4    C28    C39    negative
+FUE    chir_5    N40    C2    C39    H77    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FUE    plan-1         C10   0.020
+FUE    plan-1         C13   0.020
+FUE    plan-1         C15   0.020
+FUE    plan-1         C16   0.020
+FUE    plan-1         C17   0.020
+FUE    plan-1         C25   0.020
+FUE    plan-1         C26   0.020
+FUE    plan-1         H57   0.020
+FUE    plan-1         H64   0.020
+FUE    plan-1         N14   0.020
+FUE    plan-1          N8   0.020
+FUE    plan-2         C17   0.020
+FUE    plan-2         C18   0.020
+FUE    plan-2         C19   0.020
+FUE    plan-2         C20   0.020
+FUE    plan-2         C21   0.020
+FUE    plan-2         C23   0.020
+FUE    plan-2         C24   0.020
+FUE    plan-2         F22   0.020
+FUE    plan-2         H60   0.020
+FUE    plan-2         H61   0.020
+FUE    plan-2         H62   0.020
+FUE    plan-2         H63   0.020
+FUE    plan-3         C30   0.020
+FUE    plan-3         C31   0.020
+FUE    plan-3         C32   0.020
+FUE    plan-3         C33   0.020
+FUE    plan-3         C34   0.020
+FUE    plan-3         C35   0.020
+FUE    plan-3         C36   0.020
+FUE    plan-3         C37   0.020
+FUE    plan-3         H70   0.020
+FUE    plan-3         H71   0.020
+FUE    plan-3         H72   0.020
+FUE    plan-3         H73   0.020
+FUE    plan-4          C5   0.020
+FUE    plan-4          C6   0.020
+FUE    plan-4          N8   0.020
+FUE    plan-4          O7   0.020
+FUE    plan-5         C36   0.020
+FUE    plan-5         C37   0.020
+FUE    plan-5         N29   0.020
+FUE    plan-5         O38   0.020
+FUE    plan-6         C26   0.020
+FUE    plan-6          C6   0.020
+FUE    plan-6          C9   0.020
+FUE    plan-6          N8   0.020
+FUE    plan-7         C28   0.020
+FUE    plan-7         C30   0.020
+FUE    plan-7         C37   0.020
+FUE    plan-7         N29   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FUE            InChI                InChI  1.03 InChI=1S/C32H36FN5O2/c1-21-16-36(26(15-34-21)18-37-17-24-6-4-5-7-27(24)31(37)40)19-29(39)38-20-32(2,3)30-28(38)13-23(14-35-30)12-22-8-10-25(33)11-9-22/h4-11,13-14,21,26,34H,12,15-20H2,1-3H3/t21-,26-/m1/s1
+FUE         InChIKey                InChI  1.03                                                                                                                                                                                  XYDGOXJJDFKAAT-QFQXNSOFSA-N
+FUE SMILES_CANONICAL               CACTVS 3.385                                                                                                                                C[C@@H]1CN(CC(=O)N2CC(C)(C)c3ncc(Cc4ccc(F)cc4)cc23)[C@H](CN1)CN5Cc6ccccc6C5=O
+FUE           SMILES               CACTVS 3.385                                                                                                                                   C[CH]1CN(CC(=O)N2CC(C)(C)c3ncc(Cc4ccc(F)cc4)cc23)[CH](CN1)CN5Cc6ccccc6C5=O
+FUE SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                C[C@@H]1CN([C@H](CN1)CN2Cc3ccccc3C2=O)CC(=O)N4CC(c5c4cc(cn5)Cc6ccc(cc6)F)(C)C
+FUE           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                         CC1CN(C(CN1)CN2Cc3ccccc3C2=O)CC(=O)N4CC(c5c4cc(cn5)Cc6ccc(cc6)F)(C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FUE acedrg               243         "dictionary generator"                  
+FUE acedrg_database      11          "data source"                           
+FUE rdkit                2017.03.2   "Chemoinformatics tool"
+FUE refmac5              5.8.0238    "optimization tool"                     

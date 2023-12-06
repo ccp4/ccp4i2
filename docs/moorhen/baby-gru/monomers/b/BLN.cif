@@ -1,0 +1,373 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BLN     BLN      "MORPHOLINE-4-CARBOXYLIC ACID [1S-(2-BENZYLOXY-1R-CYANO-ETHYLCARBAMOYL)-3-METHYL-BUTYL]AMIDE"     NON-POLYMER     59     29     .     
+#
+data_comp_BLN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BLN     C1      C       C       0       51.012      29.101      61.544      
+BLN     C2      C       CH2     0       52.585      29.805      63.354      
+BLN     C3      C       CH2     0       52.389      29.360      64.785      
+BLN     C5      C       CH2     0       52.408      27.106      64.142      
+BLN     C6      C       CH2     0       52.587      27.482      62.687      
+BLN     O1      O       O       0       50.260      30.063      61.739      
+BLN     O2      O       O2      0       52.969      28.079      65.019      
+BLN     N1      N       NR6     0       52.025      28.810      62.441      
+BLN     N       N       NH1     0       50.902      28.362      60.432      
+BLN     CA      C       CH1     0       49.787      28.476      59.501      
+BLN     CB      C       CH2     0       50.113      27.836      58.151      
+BLN     CG      C       CH1     0       51.254      28.481      57.362      
+BLN     CD1     C       CH3     0       51.730      27.560      56.248      
+BLN     CD2     C       CH3     0       50.836      29.828      56.791      
+BLN     C       C       C       0       48.545      27.821      60.114      
+BLN     O       O       O       0       48.590      26.638      60.447      
+BLN     "CB'"   C       CH2     0       45.311      29.237      61.295      
+BLN     "N'"    N       NH1     0       47.447      28.582      60.256      
+BLN     OG      O       O2      0       44.951      30.047      60.182      
+BLN     CD      C       CH2     0       44.009      31.065      60.491      
+BLN     "C1'"   C       CR6     0       43.687      31.884      59.262      
+BLN     "C2'"   C       CR16    0       42.381      31.995      58.803      
+BLN     "C3'"   C       CR16    0       42.091      32.749      57.673      
+BLN     "C4'"   C       CR16    0       43.103      33.398      56.994      
+BLN     "C5'"   C       CR16    0       44.403      33.294      57.441      
+BLN     "C6'"   C       CR16    0       44.695      32.540      58.571      
+BLN     "C'"    C       CSP     0       45.487      27.216      59.955      
+BLN     N40     N       NSP     0       44.918      26.526      59.234      
+BLN     "CA'"   C       CH1     0       46.214      28.090      60.866      
+BLN     HC21    H       H       0       52.158      30.674      63.221      
+BLN     HC22    H       H       0       53.541      29.907      63.175      
+BLN     HC31    H       H       0       52.801      30.014      65.387      
+BLN     HC32    H       H       0       51.430      29.323      64.985      
+BLN     HC51    H       H       0       52.838      26.241      64.306      
+BLN     HC52    H       H       0       51.451      27.011      64.335      
+BLN     HC61    H       H       0       52.144      26.815      62.128      
+BLN     HC62    H       H       0       53.539      27.483      62.464      
+BLN     HN      H       H       0       51.544      27.816      60.222      
+BLN     HCA     H       H       0       49.597      29.436      59.350      
+BLN     HCB1    H       H       0       49.306      27.857      57.597      
+BLN     HCB2    H       H       0       50.337      26.896      58.304      
+BLN     HCG     H       H       0       52.011      28.631      57.980      
+BLN     HD11    H       H       0       52.455      27.988      55.761      
+BLN     HD12    H       H       0       50.993      27.379      55.639      
+BLN     HD13    H       H       0       52.047      26.724      56.631      
+BLN     HD21    H       H       0       50.702      30.462      57.517      
+BLN     HD22    H       H       0       50.007      29.728      56.291      
+BLN     HD23    H       H       0       51.533      30.159      56.198      
+BLN     "HB'1"  H       H       0       44.499      28.878      61.712      
+BLN     "HB'2"  H       H       0       45.774      29.791      61.960      
+BLN     "HN'"   H       H       0       47.458      29.406      59.969      
+BLN     HCD1    H       H       0       44.378      31.649      61.186      
+BLN     HCD2    H       H       0       43.190      30.656      60.841      
+BLN     "H2'C"  H       H       0       41.684      31.555      59.263      
+BLN     "H3'C"  H       H       0       41.200      32.818      57.370      
+BLN     "H4'C"  H       H       0       42.905      33.910      56.226      
+BLN     "H5'C"  H       H       0       45.097      33.736      56.978      
+BLN     "H6'C"  H       H       0       45.587      32.474      58.871      
+BLN     "HA'C"  H       H       0       46.446      27.577      61.681      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BLN          C1          O1      DOUBLE       n     1.231  0.0162     1.231  0.0162
+BLN          C1          N1      SINGLE       n     1.374  0.0100     1.374  0.0100
+BLN          C1           N      SINGLE       n     1.308  0.0200     1.308  0.0200
+BLN          C2          C3      SINGLE       n     1.510  0.0111     1.510  0.0111
+BLN          C2          N1      SINGLE       n     1.456  0.0100     1.456  0.0100
+BLN          C3          O2      SINGLE       n     1.423  0.0105     1.423  0.0105
+BLN          C5          C6      SINGLE       n     1.510  0.0111     1.510  0.0111
+BLN          C5          O2      SINGLE       n     1.423  0.0105     1.423  0.0105
+BLN          C6          N1      SINGLE       n     1.456  0.0100     1.456  0.0100
+BLN           N          CA      SINGLE       n     1.453  0.0100     1.453  0.0100
+BLN          CA          CB      SINGLE       n     1.528  0.0100     1.528  0.0100
+BLN          CA           C      SINGLE       n     1.530  0.0100     1.530  0.0100
+BLN          CB          CG      SINGLE       n     1.528  0.0105     1.528  0.0105
+BLN          CG         CD1      SINGLE       n     1.521  0.0151     1.521  0.0151
+BLN          CG         CD2      SINGLE       n     1.521  0.0151     1.521  0.0151
+BLN           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+BLN           C        "N'"      SINGLE       n     1.336  0.0126     1.336  0.0126
+BLN       "CB'"          OG      SINGLE       n     1.418  0.0200     1.418  0.0200
+BLN       "CB'"       "CA'"      SINGLE       n     1.520  0.0100     1.520  0.0100
+BLN        "N'"       "CA'"      SINGLE       n     1.457  0.0126     1.457  0.0126
+BLN          OG          CD      SINGLE       n     1.420  0.0118     1.420  0.0118
+BLN          CD       "C1'"      SINGLE       n     1.511  0.0100     1.511  0.0100
+BLN       "C1'"       "C2'"      DOUBLE       y     1.383  0.0108     1.383  0.0108
+BLN       "C1'"       "C6'"      SINGLE       y     1.383  0.0108     1.383  0.0108
+BLN       "C2'"       "C3'"      SINGLE       y     1.386  0.0100     1.386  0.0100
+BLN       "C3'"       "C4'"      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BLN       "C4'"       "C5'"      SINGLE       y     1.374  0.0127     1.374  0.0127
+BLN       "C5'"       "C6'"      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BLN        "C'"         N40      TRIPLE       n     1.149  0.0200     1.149  0.0200
+BLN        "C'"       "CA'"      SINGLE       n     1.454  0.0200     1.454  0.0200
+BLN          C2        HC21      SINGLE       n     1.089  0.0100     0.978  0.0137
+BLN          C2        HC22      SINGLE       n     1.089  0.0100     0.978  0.0137
+BLN          C3        HC31      SINGLE       n     1.089  0.0100     0.980  0.0155
+BLN          C3        HC32      SINGLE       n     1.089  0.0100     0.980  0.0155
+BLN          C5        HC51      SINGLE       n     1.089  0.0100     0.980  0.0155
+BLN          C5        HC52      SINGLE       n     1.089  0.0100     0.980  0.0155
+BLN          C6        HC61      SINGLE       n     1.089  0.0100     0.978  0.0137
+BLN          C6        HC62      SINGLE       n     1.089  0.0100     0.978  0.0137
+BLN           N          HN      SINGLE       n     1.016  0.0100     0.869  0.0200
+BLN          CA         HCA      SINGLE       n     1.089  0.0100     0.991  0.0200
+BLN          CB        HCB1      SINGLE       n     1.089  0.0100     0.978  0.0119
+BLN          CB        HCB2      SINGLE       n     1.089  0.0100     0.978  0.0119
+BLN          CG         HCG      SINGLE       n     1.089  0.0100     0.989  0.0162
+BLN         CD1        HD11      SINGLE       n     1.089  0.0100     0.973  0.0146
+BLN         CD1        HD12      SINGLE       n     1.089  0.0100     0.973  0.0146
+BLN         CD1        HD13      SINGLE       n     1.089  0.0100     0.973  0.0146
+BLN         CD2        HD21      SINGLE       n     1.089  0.0100     0.973  0.0146
+BLN         CD2        HD22      SINGLE       n     1.089  0.0100     0.973  0.0146
+BLN         CD2        HD23      SINGLE       n     1.089  0.0100     0.973  0.0146
+BLN       "CB'"      "HB'1"      SINGLE       n     1.089  0.0100     0.981  0.0167
+BLN       "CB'"      "HB'2"      SINGLE       n     1.089  0.0100     0.981  0.0167
+BLN        "N'"       "HN'"      SINGLE       n     1.016  0.0100     0.872  0.0200
+BLN          CD        HCD1      SINGLE       n     1.089  0.0100     0.980  0.0180
+BLN          CD        HCD2      SINGLE       n     1.089  0.0100     0.980  0.0180
+BLN       "C2'"      "H2'C"      SINGLE       n     1.082  0.0130     0.944  0.0174
+BLN       "C3'"      "H3'C"      SINGLE       n     1.082  0.0130     0.944  0.0175
+BLN       "C4'"      "H4'C"      SINGLE       n     1.082  0.0130     0.944  0.0161
+BLN       "C5'"      "H5'C"      SINGLE       n     1.082  0.0130     0.944  0.0175
+BLN       "C6'"      "H6'C"      SINGLE       n     1.082  0.0130     0.944  0.0174
+BLN       "CA'"      "HA'C"      SINGLE       n     1.089  0.0100     0.991  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BLN          O1          C1          N1     120.838    1.50
+BLN          O1          C1           N     121.908    2.56
+BLN          N1          C1           N     117.254    1.50
+BLN          C3          C2          N1     109.656    1.50
+BLN          C3          C2        HC21     109.668    1.50
+BLN          C3          C2        HC22     109.668    1.50
+BLN          N1          C2        HC21     109.688    1.50
+BLN          N1          C2        HC22     109.688    1.50
+BLN        HC21          C2        HC22     108.316    1.50
+BLN          C2          C3          O2     111.652    1.50
+BLN          C2          C3        HC31     109.301    1.50
+BLN          C2          C3        HC32     109.301    1.50
+BLN          O2          C3        HC31     109.195    1.50
+BLN          O2          C3        HC32     109.195    1.50
+BLN        HC31          C3        HC32     108.175    1.50
+BLN          C6          C5          O2     111.652    1.50
+BLN          C6          C5        HC51     109.301    1.50
+BLN          C6          C5        HC52     109.301    1.50
+BLN          O2          C5        HC51     109.195    1.50
+BLN          O2          C5        HC52     109.195    1.50
+BLN        HC51          C5        HC52     108.175    1.50
+BLN          C5          C6          N1     109.656    1.50
+BLN          C5          C6        HC61     109.668    1.50
+BLN          C5          C6        HC62     109.668    1.50
+BLN          N1          C6        HC61     109.688    1.50
+BLN          N1          C6        HC62     109.688    1.50
+BLN        HC61          C6        HC62     108.316    1.50
+BLN          C3          O2          C5     109.829    1.50
+BLN          C1          N1          C2     123.453    3.00
+BLN          C1          N1          C6     123.453    3.00
+BLN          C2          N1          C6     113.094    1.50
+BLN          C1           N          CA     122.098    1.69
+BLN          C1           N          HN     118.955    2.02
+BLN          CA           N          HN     118.947    1.91
+BLN           N          CA          CB     110.984    1.61
+BLN           N          CA           C     110.342    2.62
+BLN           N          CA         HCA     108.209    1.50
+BLN          CB          CA           C     110.666    1.50
+BLN          CB          CA         HCA     108.275    1.50
+BLN           C          CA         HCA     107.852    1.50
+BLN          CA          CB          CG     115.210    1.50
+BLN          CA          CB        HCB1     108.470    1.50
+BLN          CA          CB        HCB2     108.470    1.50
+BLN          CG          CB        HCB1     108.478    1.50
+BLN          CG          CB        HCB2     108.478    1.50
+BLN        HCB1          CB        HCB2     107.542    1.50
+BLN          CB          CG         CD1     110.880    1.50
+BLN          CB          CG         CD2     110.880    1.50
+BLN          CB          CG         HCG     108.053    1.50
+BLN         CD1          CG         CD2     110.507    1.50
+BLN         CD1          CG         HCG     108.052    1.50
+BLN         CD2          CG         HCG     108.052    1.50
+BLN          CG         CD1        HD11     109.488    1.50
+BLN          CG         CD1        HD12     109.488    1.50
+BLN          CG         CD1        HD13     109.488    1.50
+BLN        HD11         CD1        HD12     109.411    1.50
+BLN        HD11         CD1        HD13     109.411    1.50
+BLN        HD12         CD1        HD13     109.411    1.50
+BLN          CG         CD2        HD21     109.488    1.50
+BLN          CG         CD2        HD22     109.488    1.50
+BLN          CG         CD2        HD23     109.488    1.50
+BLN        HD21         CD2        HD22     109.411    1.50
+BLN        HD21         CD2        HD23     109.411    1.50
+BLN        HD22         CD2        HD23     109.411    1.50
+BLN          CA           C           O     120.345    1.50
+BLN          CA           C        "N'"     116.639    1.50
+BLN           O           C        "N'"     123.016    1.50
+BLN          OG       "CB'"       "CA'"     109.482    3.00
+BLN          OG       "CB'"      "HB'1"     109.290    1.50
+BLN          OG       "CB'"      "HB'2"     109.290    1.50
+BLN       "CA'"       "CB'"      "HB'1"     109.798    1.50
+BLN       "CA'"       "CB'"      "HB'2"     109.798    1.50
+BLN      "HB'1"       "CB'"      "HB'2"     108.098    1.50
+BLN           C        "N'"       "CA'"     122.104    2.35
+BLN           C        "N'"       "HN'"     119.203    1.83
+BLN       "CA'"        "N'"       "HN'"     118.692    2.23
+BLN       "CB'"          OG          CD     113.742    1.50
+BLN          OG          CD       "C1'"     110.921    2.08
+BLN          OG          CD        HCD1     109.541    1.50
+BLN          OG          CD        HCD2     109.541    1.50
+BLN       "C1'"          CD        HCD1     109.785    1.50
+BLN       "C1'"          CD        HCD2     109.785    1.50
+BLN        HCD1          CD        HCD2     108.275    1.50
+BLN          CD       "C1'"       "C2'"     120.651    1.50
+BLN          CD       "C1'"       "C6'"     120.651    1.50
+BLN       "C2'"       "C1'"       "C6'"     118.697    1.50
+BLN       "C1'"       "C2'"       "C3'"     120.514    1.50
+BLN       "C1'"       "C2'"      "H2'C"     119.732    1.50
+BLN       "C3'"       "C2'"      "H2'C"     119.754    1.50
+BLN       "C2'"       "C3'"       "C4'"     120.186    1.50
+BLN       "C2'"       "C3'"      "H3'C"     119.862    1.50
+BLN       "C4'"       "C3'"      "H3'C"     119.952    1.50
+BLN       "C3'"       "C4'"       "C5'"     119.903    1.50
+BLN       "C3'"       "C4'"      "H4'C"     120.048    1.50
+BLN       "C5'"       "C4'"      "H4'C"     120.048    1.50
+BLN       "C4'"       "C5'"       "C6'"     120.186    1.50
+BLN       "C4'"       "C5'"      "H5'C"     119.952    1.50
+BLN       "C6'"       "C5'"      "H5'C"     119.862    1.50
+BLN       "C1'"       "C6'"       "C5'"     120.514    1.50
+BLN       "C1'"       "C6'"      "H6'C"     119.732    1.50
+BLN       "C5'"       "C6'"      "H6'C"     119.754    1.50
+BLN         N40        "C'"       "CA'"     180.000    3.00
+BLN       "CB'"       "CA'"        "N'"     111.308    2.28
+BLN       "CB'"       "CA'"        "C'"     110.326    2.62
+BLN       "CB'"       "CA'"      "HA'C"     108.282    1.50
+BLN        "N'"       "CA'"        "C'"     111.532    1.60
+BLN        "N'"       "CA'"      "HA'C"     109.172    1.50
+BLN        "C'"       "CA'"      "HA'C"     109.370    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BLN             sp2_sp2_3          O1          C1          N1          C2       0.000     5.0     2
+BLN             sp2_sp2_7          O1          C1           N          CA       0.000     5.0     2
+BLN            sp3_sp3_35          CA          CB          CG         CD1     -60.000    10.0     3
+BLN            sp3_sp3_43        HD11         CD1          CG          CB     180.000    10.0     3
+BLN            sp3_sp3_53        HD21         CD2          CG          CB     -60.000    10.0     3
+BLN             sp2_sp2_9          CA           C        "N'"       "CA'"     180.000     5.0     2
+BLN            sp3_sp3_61       "CA'"       "CB'"          OG          CD     180.000    10.0     3
+BLN            sp3_sp3_64        "N'"       "CA'"       "CB'"          OG     180.000    10.0     3
+BLN            sp2_sp3_25           C        "N'"       "CA'"       "CB'"       0.000    10.0     6
+BLN            sp3_sp3_73       "C1'"          CD          OG       "CB'"     180.000    10.0     3
+BLN            sp2_sp3_32       "C2'"       "C1'"          CD          OG     -90.000    10.0     6
+BLN             sp3_sp3_1          N1          C2          C3          O2      60.000    10.0     3
+BLN            sp2_sp3_10          C1          N1          C2          C3     180.000    10.0     6
+BLN       const_sp2_sp2_3          CD       "C1'"       "C2'"       "C3'"     180.000     5.0     2
+BLN              const_23          CD       "C1'"       "C6'"       "C5'"     180.000    10.0     2
+BLN       const_sp2_sp2_5       "C1'"       "C2'"       "C3'"       "C4'"       0.000     5.0     2
+BLN       const_sp2_sp2_9       "C2'"       "C3'"       "C4'"       "C5'"       0.000     5.0     2
+BLN              const_13       "C3'"       "C4'"       "C5'"       "C6'"       0.000    10.0     2
+BLN              const_17       "C4'"       "C5'"       "C6'"       "C1'"       0.000    10.0     2
+BLN            sp3_sp3_10          C2          C3          O2          C5     -60.000    10.0     3
+BLN            sp3_sp3_16          O2          C5          C6          N1     -60.000    10.0     3
+BLN            sp3_sp3_13          C6          C5          O2          C3      60.000    10.0     3
+BLN             sp2_sp3_4          C1          N1          C6          C5     180.000    10.0     6
+BLN            sp2_sp3_13          C1           N          CA          CB       0.000    10.0     6
+BLN            sp3_sp3_25           N          CA          CB          CG     180.000    10.0     3
+BLN            sp2_sp3_19           O           C          CA           N       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BLN    chir_1    CA    N    C    CB    positive
+BLN    chir_2    CG    CB    CD1    CD2    both
+BLN    chir_3    "CA'"    "N'"    "CB'"    "C'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BLN    plan-1       "C1'"   0.020
+BLN    plan-1       "C2'"   0.020
+BLN    plan-1       "C3'"   0.020
+BLN    plan-1       "C4'"   0.020
+BLN    plan-1       "C5'"   0.020
+BLN    plan-1       "C6'"   0.020
+BLN    plan-1          CD   0.020
+BLN    plan-1      "H2'C"   0.020
+BLN    plan-1      "H3'C"   0.020
+BLN    plan-1      "H4'C"   0.020
+BLN    plan-1      "H5'C"   0.020
+BLN    plan-1      "H6'C"   0.020
+BLN    plan-2          C1   0.020
+BLN    plan-2           N   0.020
+BLN    plan-2          N1   0.020
+BLN    plan-2          O1   0.020
+BLN    plan-3          C1   0.020
+BLN    plan-3          C2   0.020
+BLN    plan-3          C6   0.020
+BLN    plan-3          N1   0.020
+BLN    plan-4          C1   0.020
+BLN    plan-4          CA   0.020
+BLN    plan-4          HN   0.020
+BLN    plan-4           N   0.020
+BLN    plan-5           C   0.020
+BLN    plan-5          CA   0.020
+BLN    plan-5        "N'"   0.020
+BLN    plan-5           O   0.020
+BLN    plan-6           C   0.020
+BLN    plan-6       "CA'"   0.020
+BLN    plan-6       "HN'"   0.020
+BLN    plan-6        "N'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BLN           SMILES              ACDLabs 10.04                                                                                                                               O=C(NC(C(=O)NC(C#N)COCc1ccccc1)CC(C)C)N2CCOCC2
+BLN SMILES_CANONICAL               CACTVS 3.341                                                                                                                      CC(C)C[C@H](NC(=O)N1CCOCC1)C(=O)N[C@@H](COCc2ccccc2)C#N
+BLN           SMILES               CACTVS 3.341                                                                                                                         CC(C)C[CH](NC(=O)N1CCOCC1)C(=O)N[CH](COCc2ccccc2)C#N
+BLN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                     CC(C)C[C@@H](C(=O)N[C@@H](COCc1ccccc1)C#N)NC(=O)N2CCOCC2
+BLN           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                               CC(C)CC(C(=O)NC(COCc1ccccc1)C#N)NC(=O)N2CCOCC2
+BLN            InChI                InChI  1.03 InChI=1S/C21H30N4O4/c1-16(2)12-19(24-21(27)25-8-10-28-11-9-25)20(26)23-18(13-22)15-29-14-17-6-4-3-5-7-17/h3-7,16,18-19H,8-12,14-15H2,1-2H3,(H,23,26)(H,24,27)/t18-,19+/m1/s1
+BLN         InChIKey                InChI  1.03                                                                                                                                                  LXEDKIMJQBOMSU-MOPGFXCFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BLN acedrg               243         "dictionary generator"                  
+BLN acedrg_database      11          "data source"                           
+BLN rdkit                2017.03.2   "Chemoinformatics tool"
+BLN refmac5              5.8.0238    "optimization tool"                     

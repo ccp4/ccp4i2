@@ -1,0 +1,231 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BSU     BSU      1,3-DIPHENYLUREA     NON-POLYMER     28     16     .     
+#
+data_comp_BSU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BSU     N7      N       NH1     0       54.795      61.751      23.930      
+BSU     C8      C       C       0       55.151      63.047      24.230      
+BSU     N9      N       NH1     0       54.345      63.986      23.627      
+BSU     O11     O       O       0       56.095      63.336      24.958      
+BSU     C5      C       CR6     0       55.157      60.587      24.636      
+BSU     C4      C       CR16    0       54.942      60.486      26.005      
+BSU     C3      C       CR16    0       55.305      59.328      26.679      
+BSU     C2      C       CR16    0       55.877      58.272      25.999      
+BSU     C1      C       CR16    0       56.089      58.371      24.638      
+BSU     C6      C       CR16    0       55.731      59.523      23.952      
+BSU     C10     C       CR6     0       54.139      65.317      24.040      
+BSU     C16     C       CR16    0       54.269      66.341      23.110      
+BSU     C15     C       CR16    0       54.067      67.659      23.498      
+BSU     C14     C       CR16    0       53.737      67.961      24.803      
+BSU     C13     C       CR16    0       53.607      66.945      25.728      
+BSU     C12     C       CR16    0       53.805      65.623      25.353      
+BSU     H22     H       H       0       54.300      61.622      23.214      
+BSU     H23     H       H       0       53.923      63.746      22.894      
+BSU     H41     H       H       0       54.552      61.204      26.475      
+BSU     H31     H       H       0       55.159      59.264      27.609      
+BSU     H21     H       H       0       56.122      57.487      26.461      
+BSU     H11     H       H       0       56.480      57.651      24.170      
+BSU     H61     H       H       0       55.879      59.586      23.023      
+BSU     H161    H       H       0       54.494      66.140      22.217      
+BSU     H151    H       H       0       54.158      68.351      22.863      
+BSU     H141    H       H       0       53.602      68.859      25.062      
+BSU     H131    H       H       0       53.382      67.148      26.621      
+BSU     H121    H       H       0       53.715      64.932      25.989      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BSU          N7          C8      SINGLE       n     1.371  0.0114     1.371  0.0114
+BSU          N7          C5      SINGLE       n     1.407  0.0126     1.407  0.0126
+BSU          C8          N9      SINGLE       n     1.371  0.0114     1.371  0.0114
+BSU          C8         O11      DOUBLE       n     1.225  0.0102     1.225  0.0102
+BSU          N9         C10      SINGLE       n     1.407  0.0126     1.407  0.0126
+BSU          C5          C4      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BSU          C5          C6      SINGLE       y     1.385  0.0100     1.385  0.0100
+BSU          C4          C3      SINGLE       y     1.385  0.0100     1.385  0.0100
+BSU          C3          C2      DOUBLE       y     1.376  0.0112     1.376  0.0112
+BSU          C2          C1      SINGLE       y     1.376  0.0124     1.376  0.0124
+BSU          C1          C6      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BSU         C10         C16      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BSU         C10         C12      SINGLE       y     1.385  0.0100     1.385  0.0100
+BSU         C16         C15      SINGLE       y     1.385  0.0100     1.385  0.0100
+BSU         C15         C14      DOUBLE       y     1.376  0.0112     1.376  0.0112
+BSU         C14         C13      SINGLE       y     1.376  0.0124     1.376  0.0124
+BSU         C13         C12      DOUBLE       y     1.385  0.0100     1.385  0.0100
+BSU          N7         H22      SINGLE       n     1.016  0.0100     0.879  0.0200
+BSU          N9         H23      SINGLE       n     1.016  0.0100     0.879  0.0200
+BSU          C4         H41      SINGLE       n     1.082  0.0130     0.943  0.0178
+BSU          C3         H31      SINGLE       n     1.082  0.0130     0.943  0.0172
+BSU          C2         H21      SINGLE       n     1.082  0.0130     0.944  0.0161
+BSU          C1         H11      SINGLE       n     1.082  0.0130     0.943  0.0172
+BSU          C6         H61      SINGLE       n     1.082  0.0130     0.943  0.0178
+BSU         C16        H161      SINGLE       n     1.082  0.0130     0.943  0.0178
+BSU         C15        H151      SINGLE       n     1.082  0.0130     0.943  0.0172
+BSU         C14        H141      SINGLE       n     1.082  0.0130     0.944  0.0161
+BSU         C13        H131      SINGLE       n     1.082  0.0130     0.943  0.0172
+BSU         C12        H121      SINGLE       n     1.082  0.0130     0.943  0.0178
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BSU          C8          N7          C5     126.621    1.86
+BSU          C8          N7         H22     116.797    1.80
+BSU          C5          N7         H22     116.583    1.97
+BSU          N7          C8          N9     112.213    1.51
+BSU          N7          C8         O11     123.894    1.50
+BSU          N9          C8         O11     123.894    1.50
+BSU          C8          N9         C10     126.621    1.86
+BSU          C8          N9         H23     116.797    1.80
+BSU         C10          N9         H23     116.583    1.97
+BSU          N7          C5          C4     120.302    3.00
+BSU          N7          C5          C6     120.302    3.00
+BSU          C4          C5          C6     119.396    1.50
+BSU          C5          C4          C3     119.830    1.50
+BSU          C5          C4         H41     120.019    1.50
+BSU          C3          C4         H41     120.151    1.50
+BSU          C4          C3          C2     120.518    1.50
+BSU          C4          C3         H31     119.600    1.50
+BSU          C2          C3         H31     119.882    1.50
+BSU          C3          C2          C1     119.909    1.50
+BSU          C3          C2         H21     120.046    1.50
+BSU          C1          C2         H21     120.046    1.50
+BSU          C2          C1          C6     120.518    1.50
+BSU          C2          C1         H11     119.882    1.50
+BSU          C6          C1         H11     119.600    1.50
+BSU          C5          C6          C1     119.830    1.50
+BSU          C5          C6         H61     120.019    1.50
+BSU          C1          C6         H61     120.151    1.50
+BSU          N9         C10         C16     120.302    3.00
+BSU          N9         C10         C12     120.302    3.00
+BSU         C16         C10         C12     119.396    1.50
+BSU         C10         C16         C15     119.830    1.50
+BSU         C10         C16        H161     120.019    1.50
+BSU         C15         C16        H161     120.151    1.50
+BSU         C16         C15         C14     120.518    1.50
+BSU         C16         C15        H151     119.600    1.50
+BSU         C14         C15        H151     119.882    1.50
+BSU         C15         C14         C13     119.909    1.50
+BSU         C15         C14        H141     120.046    1.50
+BSU         C13         C14        H141     120.046    1.50
+BSU         C14         C13         C12     120.518    1.50
+BSU         C14         C13        H131     119.882    1.50
+BSU         C12         C13        H131     119.600    1.50
+BSU         C10         C12         C13     119.830    1.50
+BSU         C10         C12        H121     120.019    1.50
+BSU         C13         C12        H121     120.151    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BSU             sp2_sp2_1          N9          C8          N7          C5     180.000     5.0     2
+BSU             sp2_sp2_5          C4          C5          N7          C8     180.000     5.0     2
+BSU       const_sp2_sp2_3          N9         C10         C16         C15     180.000     5.0     2
+BSU              const_47          N9         C10         C12         C13     180.000    10.0     2
+BSU       const_sp2_sp2_5         C14         C15         C16         C10       0.000     5.0     2
+BSU       const_sp2_sp2_9         C13         C14         C15         C16       0.000     5.0     2
+BSU              const_13         C12         C13         C14         C15       0.000    10.0     2
+BSU              const_17         C10         C12         C13         C14       0.000    10.0     2
+BSU             sp2_sp2_9          N7          C8          N9         C10     180.000     5.0     2
+BSU            sp2_sp2_13         C16         C10          N9          C8     180.000     5.0     2
+BSU              const_22          C3          C4          C5          N7     180.000    10.0     2
+BSU              const_43          N7          C5          C6          C1     180.000    10.0     2
+BSU              const_25          C2          C3          C4          C5       0.000    10.0     2
+BSU              const_29          C1          C2          C3          C4       0.000    10.0     2
+BSU              const_33          C6          C1          C2          C3       0.000    10.0     2
+BSU              const_37          C2          C1          C6          C5       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BSU    plan-1         C10   0.020
+BSU    plan-1         C12   0.020
+BSU    plan-1         C13   0.020
+BSU    plan-1         C14   0.020
+BSU    plan-1         C15   0.020
+BSU    plan-1         C16   0.020
+BSU    plan-1        H121   0.020
+BSU    plan-1        H131   0.020
+BSU    plan-1        H141   0.020
+BSU    plan-1        H151   0.020
+BSU    plan-1        H161   0.020
+BSU    plan-1          N9   0.020
+BSU    plan-2          C1   0.020
+BSU    plan-2          C2   0.020
+BSU    plan-2          C3   0.020
+BSU    plan-2          C4   0.020
+BSU    plan-2          C5   0.020
+BSU    plan-2          C6   0.020
+BSU    plan-2         H11   0.020
+BSU    plan-2         H21   0.020
+BSU    plan-2         H31   0.020
+BSU    plan-2         H41   0.020
+BSU    plan-2         H61   0.020
+BSU    plan-2          N7   0.020
+BSU    plan-3          C5   0.020
+BSU    plan-3          C8   0.020
+BSU    plan-3         H22   0.020
+BSU    plan-3          N7   0.020
+BSU    plan-4          C8   0.020
+BSU    plan-4          N7   0.020
+BSU    plan-4          N9   0.020
+BSU    plan-4         O11   0.020
+BSU    plan-5         C10   0.020
+BSU    plan-5          C8   0.020
+BSU    plan-5         H23   0.020
+BSU    plan-5          N9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BSU           SMILES              ACDLabs 10.04                                                               O=C(Nc1ccccc1)Nc2ccccc2
+BSU SMILES_CANONICAL               CACTVS 3.341                                                               O=C(Nc1ccccc1)Nc2ccccc2
+BSU           SMILES               CACTVS 3.341                                                               O=C(Nc1ccccc1)Nc2ccccc2
+BSU SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                             c1ccc(cc1)NC(=O)Nc2ccccc2
+BSU           SMILES "OpenEye OEToolkits" 1.5.0                                                             c1ccc(cc1)NC(=O)Nc2ccccc2
+BSU            InChI                InChI  1.03 InChI=1S/C13H12N2O/c16-13(14-11-7-3-1-4-8-11)15-12-9-5-2-6-10-12/h1-10H,(H2,14,15,16)
+BSU         InChIKey                InChI  1.03                                                           GWEHVDNNLFDJLR-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BSU acedrg               243         "dictionary generator"                  
+BSU acedrg_database      11          "data source"                           
+BSU rdkit                2017.03.2   "Chemoinformatics tool"
+BSU refmac5              5.8.0238    "optimization tool"                     

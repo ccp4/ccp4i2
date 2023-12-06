@@ -1,0 +1,208 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+APE     APE      "(1-AMINO-2-PHENYL-ETHYL)-CARBAMIC ACID"     NON-POLYMER     25     13     .     
+#
+data_comp_APE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+APE     N       N       NT2     0       77.296      65.691      55.420      
+APE     CA      C       CH1     0       78.511      66.304      54.885      
+APE     CB      C       CH2     0       78.397      66.410      53.358      
+APE     CG      C       CR6     0       79.645      66.934      52.681      
+APE     CD1     C       CR16    0       80.797      66.159      52.617      
+APE     CD2     C       CR16    0       79.669      68.201      52.109      
+APE     CE1     C       CR16    0       81.944      66.639      51.997      
+APE     CE2     C       CR16    0       80.816      68.680      51.488      
+APE     CZ      C       CR16    0       81.952      67.899      51.433      
+APE     NHO     N       NH1     0       78.782      67.609      55.474      
+APE     C       C       C       0       79.995      67.960      55.957      
+APE     O       O       O       0       80.988      67.268      55.955      
+APE     OXT     O       OH1     0       79.960      69.205      56.452      
+APE     H       H       H       0       76.589      66.176      55.189      
+APE     H2      H       H       0       77.188      64.883      55.068      
+APE     HA      H       H       0       79.261      65.702      55.089      
+APE     HB2     H       H       0       77.643      66.999      53.139      
+APE     HB3     H       H       0       78.192      65.521      52.996      
+APE     HD1     H       H       0       80.799      65.297      53.001      
+APE     HD2     H       H       0       78.896      68.742      52.142      
+APE     HE1     H       H       0       82.719      66.102      51.961      
+APE     HE2     H       H       0       80.818      69.542      51.104      
+APE     HZ      H       H       0       82.731      68.224      51.012      
+APE     HN      H       H       0       78.131      68.190      55.514      
+APE     HXT     H       H       0       80.694      69.616      56.639      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+APE           N          CA      SINGLE       n     1.463  0.0141     1.463  0.0141
+APE          CA          CB      SINGLE       n     1.535  0.0102     1.535  0.0102
+APE          CA         NHO      SINGLE       n     1.454  0.0100     1.454  0.0100
+APE          CB          CG      SINGLE       n     1.512  0.0101     1.512  0.0101
+APE          CG         CD1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+APE          CG         CD2      SINGLE       y     1.385  0.0111     1.385  0.0111
+APE         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+APE         CD2         CE2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+APE         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+APE         CE2          CZ      SINGLE       y     1.376  0.0124     1.376  0.0124
+APE         NHO           C      SINGLE       n     1.340  0.0141     1.340  0.0141
+APE           C           O      DOUBLE       n     1.210  0.0102     1.210  0.0102
+APE           C         OXT      SINGLE       n     1.338  0.0153     1.338  0.0153
+APE           N           H      SINGLE       n     1.036  0.0160     0.888  0.0200
+APE           N          H2      SINGLE       n     1.036  0.0160     0.888  0.0200
+APE          CA          HA      SINGLE       n     1.089  0.0100     0.983  0.0100
+APE          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0150
+APE          CB         HB3      SINGLE       n     1.089  0.0100     0.981  0.0150
+APE         CD1         HD1      SINGLE       n     1.082  0.0130     0.944  0.0174
+APE         CD2         HD2      SINGLE       n     1.082  0.0130     0.944  0.0174
+APE         CE1         HE1      SINGLE       n     1.082  0.0130     0.944  0.0175
+APE         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+APE          CZ          HZ      SINGLE       n     1.082  0.0130     0.944  0.0161
+APE         NHO          HN      SINGLE       n     1.016  0.0100     0.872  0.0200
+APE         OXT         HXT      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+APE          CA           N           H     109.453    3.00
+APE          CA           N          H2     109.453    3.00
+APE           H           N          H2     107.163    3.00
+APE           N          CA          CB     110.386    2.27
+APE           N          CA         NHO     114.552    2.67
+APE           N          CA          HA     108.372    1.54
+APE          CB          CA         NHO     110.751    1.50
+APE          CB          CA          HA     108.316    1.50
+APE         NHO          CA          HA     108.169    1.50
+APE          CA          CB          CG     113.541    1.87
+APE          CA          CB         HB2     108.791    1.50
+APE          CA          CB         HB3     108.791    1.50
+APE          CG          CB         HB2     108.906    1.50
+APE          CG          CB         HB3     108.906    1.50
+APE         HB2          CB         HB3     107.735    1.50
+APE          CB          CG         CD1     120.970    1.50
+APE          CB          CG         CD2     120.970    1.50
+APE         CD1          CG         CD2     118.060    1.50
+APE          CG         CD1         CE1     120.624    1.50
+APE          CG         CD1         HD1     119.591    1.50
+APE         CE1         CD1         HD1     119.786    1.50
+APE          CG         CD2         CE2     120.624    1.50
+APE          CG         CD2         HD2     119.591    1.50
+APE         CE2         CD2         HD2     119.786    1.50
+APE         CD1         CE1          CZ     120.325    1.50
+APE         CD1         CE1         HE1     119.792    1.50
+APE          CZ         CE1         HE1     119.883    1.50
+APE         CD2         CE2          CZ     120.325    1.50
+APE         CD2         CE2         HE2     119.792    1.50
+APE          CZ         CE2         HE2     119.883    1.50
+APE         CE1          CZ         CE2     120.043    1.50
+APE         CE1          CZ          HZ     119.979    1.50
+APE         CE2          CZ          HZ     119.979    1.50
+APE          CA         NHO           C     121.037    1.67
+APE          CA         NHO          HN     119.446    1.50
+APE           C         NHO          HN     119.517    1.99
+APE         NHO           C           O     125.209    1.50
+APE         NHO           C         OXT     110.402    1.61
+APE           O           C         OXT     124.389    1.64
+APE           C         OXT         HXT     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+APE             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+APE             sp2_sp2_5         NHO           C         OXT         HXT     180.000     5.0     2
+APE             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+APE             sp2_sp3_1           C         NHO          CA           N       0.000    10.0     6
+APE             sp2_sp3_8         CD1          CG          CB          CA     -90.000    10.0     6
+APE       const_sp2_sp2_2         CE1         CD1          CG          CB     180.000     5.0     2
+APE              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+APE       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+APE              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+APE       const_sp2_sp2_9         CD1         CE1          CZ         CE2       0.000     5.0     2
+APE              const_13         CD2         CE2          CZ         CE1       0.000    10.0     2
+APE             sp2_sp2_3           O           C         NHO          CA       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+APE    chir_1    CA    NHO    N    CB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+APE    plan-1          CB   0.020
+APE    plan-1         CD1   0.020
+APE    plan-1         CD2   0.020
+APE    plan-1         CE1   0.020
+APE    plan-1         CE2   0.020
+APE    plan-1          CG   0.020
+APE    plan-1          CZ   0.020
+APE    plan-1         HD1   0.020
+APE    plan-1         HD2   0.020
+APE    plan-1         HE1   0.020
+APE    plan-1         HE2   0.020
+APE    plan-1          HZ   0.020
+APE    plan-2           C   0.020
+APE    plan-2          CA   0.020
+APE    plan-2          HN   0.020
+APE    plan-2         NHO   0.020
+APE    plan-3           C   0.020
+APE    plan-3         NHO   0.020
+APE    plan-3           O   0.020
+APE    plan-3         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+APE           SMILES              ACDLabs 12.01                                                                      O=C(O)NC(N)Cc1ccccc1
+APE SMILES_CANONICAL               CACTVS 3.370                                                                 N[C@@H](Cc1ccccc1)NC(O)=O
+APE           SMILES               CACTVS 3.370                                                                   N[CH](Cc1ccccc1)NC(O)=O
+APE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                c1ccc(cc1)C[C@H](N)NC(=O)O
+APE           SMILES "OpenEye OEToolkits" 1.7.0                                                                    c1ccc(cc1)CC(N)NC(=O)O
+APE            InChI                InChI  1.03 InChI=1S/C9H12N2O2/c10-8(11-9(12)13)6-7-4-2-1-3-5-7/h1-5,8,11H,6,10H2,(H,12,13)/t8-/m1/s1
+APE         InChIKey                InChI  1.03                                                               FLUFSDHXTIFIQO-MRVPVSSYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+APE acedrg               243         "dictionary generator"                  
+APE acedrg_database      11          "data source"                           
+APE rdkit                2017.03.2   "Chemoinformatics tool"
+APE refmac5              5.8.0238    "optimization tool"                     

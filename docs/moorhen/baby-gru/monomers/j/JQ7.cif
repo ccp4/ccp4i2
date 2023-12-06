@@ -1,0 +1,234 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JQ7     JQ7      2-[(4R)-4-hydroxy-1,1-dioxo-3,4-dihydro-1lambda~6~,2-benzothiazin-2(1H)-yl]acetamide     NON-POLYMER     29     17     .     
+#
+data_comp_JQ7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JQ7     C10     C       CR16    0       -26.477     20.606      10.871      
+JQ7     C13     C       CR16    0       -25.944     18.514      12.615      
+JQ7     N01     N       NH2     0       -19.736     19.296      11.958      
+JQ7     C02     C       C       0       -20.207     18.148      11.477      
+JQ7     O03     O       O       0       -19.902     17.040      11.906      
+JQ7     C04     C       CH2     0       -21.184     18.312      10.319      
+JQ7     N05     N       NT      0       -22.461     18.943      10.679      
+JQ7     C06     C       CH2     0       -23.198     19.402      9.492       
+JQ7     C07     C       CH1     0       -24.166     20.511      9.867       
+JQ7     O08     O       OH1     0       -23.468     21.626      10.425      
+JQ7     C09     C       CR66    0       -25.214     20.008      10.840      
+JQ7     C11     C       CR16    0       -27.456     20.175      11.747      
+JQ7     C12     C       CR16    0       -27.189     19.127      12.621      
+JQ7     C14     C       CR66    0       -24.959     18.950      11.732      
+JQ7     S15     S       S3      0       -23.399     18.144      11.759      
+JQ7     O16     O       O       0       -22.838     18.328      13.064      
+JQ7     O17     O       O       0       -23.579     16.806      11.282      
+JQ7     H101    H       H       0       -26.662     21.318      10.280      
+JQ7     H131    H       H       0       -25.764     17.793      13.218      
+JQ7     H012    H       H       0       -19.163     19.289      12.631      
+JQ7     H011    H       H       0       -19.993     20.067      11.606      
+JQ7     H042    H       H       0       -21.367     17.430      9.935       
+JQ7     H041    H       H       0       -20.745     18.848      9.626       
+JQ7     H061    H       H       0       -22.573     19.739      8.817       
+JQ7     H062    H       H       0       -23.694     18.650      9.104       
+JQ7     H071    H       H       0       -24.623     20.815      9.046       
+JQ7     H081    H       H       0       -23.979     22.303      10.420      
+JQ7     H111    H       H       0       -28.303     20.591      11.752      
+JQ7     H121    H       H       0       -27.859     18.831      13.222      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JQ7         C06         C07      SINGLE       n     1.520  0.0115     1.520  0.0115
+JQ7         N05         C06      SINGLE       n     1.466  0.0113     1.466  0.0113
+JQ7         C07         O08      SINGLE       n     1.429  0.0121     1.429  0.0121
+JQ7         C07         C09      SINGLE       n     1.515  0.0100     1.515  0.0100
+JQ7         C04         N05      SINGLE       n     1.460  0.0123     1.460  0.0123
+JQ7         C02         C04      SINGLE       n     1.521  0.0119     1.521  0.0119
+JQ7         N05         S15      SINGLE       n     1.632  0.0100     1.632  0.0100
+JQ7         C10         C09      DOUBLE       y     1.394  0.0100     1.394  0.0100
+JQ7         C09         C14      SINGLE       y     1.395  0.0121     1.395  0.0121
+JQ7         C10         C11      SINGLE       y     1.381  0.0100     1.381  0.0100
+JQ7         S15         O17      DOUBLE       n     1.432  0.0100     1.432  0.0100
+JQ7         N01         C02      SINGLE       n     1.329  0.0100     1.329  0.0100
+JQ7         C02         O03      DOUBLE       n     1.227  0.0100     1.227  0.0100
+JQ7         C14         S15      SINGLE       n     1.751  0.0100     1.751  0.0100
+JQ7         S15         O16      DOUBLE       n     1.432  0.0100     1.432  0.0100
+JQ7         C13         C14      DOUBLE       y     1.388  0.0100     1.388  0.0100
+JQ7         C11         C12      DOUBLE       y     1.387  0.0140     1.387  0.0140
+JQ7         C13         C12      SINGLE       y     1.384  0.0100     1.384  0.0100
+JQ7         C10        H101      SINGLE       n     1.082  0.0130     0.944  0.0167
+JQ7         C13        H131      SINGLE       n     1.082  0.0130     0.957  0.0200
+JQ7         N01        H012      SINGLE       n     1.016  0.0100     0.884  0.0200
+JQ7         N01        H011      SINGLE       n     1.016  0.0100     0.884  0.0200
+JQ7         C04        H042      SINGLE       n     1.089  0.0100     0.980  0.0178
+JQ7         C04        H041      SINGLE       n     1.089  0.0100     0.980  0.0178
+JQ7         C06        H061      SINGLE       n     1.089  0.0100     0.980  0.0143
+JQ7         C06        H062      SINGLE       n     1.089  0.0100     0.980  0.0143
+JQ7         C07        H071      SINGLE       n     1.089  0.0100     0.988  0.0175
+JQ7         O08        H081      SINGLE       n     0.970  0.0120     0.848  0.0200
+JQ7         C11        H111      SINGLE       n     1.082  0.0130     0.944  0.0178
+JQ7         C12        H121      SINGLE       n     1.082  0.0130     0.947  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JQ7         C09         C10         C11     121.365    1.50
+JQ7         C09         C10        H101     119.087    1.50
+JQ7         C11         C10        H101     119.547    1.50
+JQ7         C14         C13         C12     119.060    1.50
+JQ7         C14         C13        H131     120.582    1.50
+JQ7         C12         C13        H131     120.358    1.50
+JQ7         C02         N01        H012     119.991    1.50
+JQ7         C02         N01        H011     120.001    1.50
+JQ7        H012         N01        H011     120.027    2.38
+JQ7         C04         C02         N01     113.745    1.50
+JQ7         C04         C02         O03     121.638    1.50
+JQ7         N01         C02         O03     124.624    1.50
+JQ7         N05         C04         C02     113.728    1.62
+JQ7         N05         C04        H042     108.975    1.50
+JQ7         N05         C04        H041     108.975    1.50
+JQ7         C02         C04        H042     109.182    1.50
+JQ7         C02         C04        H041     109.182    1.50
+JQ7        H042         C04        H041     107.885    1.50
+JQ7         C06         N05         C04     111.353    1.71
+JQ7         C06         N05         S15     112.843    2.21
+JQ7         C04         N05         S15     115.851    2.72
+JQ7         C07         C06         N05     110.258    1.51
+JQ7         C07         C06        H061     109.312    1.50
+JQ7         C07         C06        H062     109.312    1.50
+JQ7         N05         C06        H061     109.016    1.50
+JQ7         N05         C06        H062     109.016    1.50
+JQ7        H061         C06        H062     108.200    1.50
+JQ7         C06         C07         O08     110.698    3.00
+JQ7         C06         C07         C09     110.262    1.77
+JQ7         C06         C07        H071     108.511    1.50
+JQ7         O08         C07         C09     110.370    1.69
+JQ7         O08         C07        H071     108.332    1.88
+JQ7         C09         C07        H071     108.618    1.50
+JQ7         C07         O08        H081     109.049    2.00
+JQ7         C07         C09         C10     121.083    1.57
+JQ7         C07         C09         C14     120.723    1.50
+JQ7         C10         C09         C14     118.194    1.50
+JQ7         C10         C11         C12     120.232    1.50
+JQ7         C10         C11        H111     119.847    1.50
+JQ7         C12         C11        H111     119.921    1.50
+JQ7         C11         C12         C13     120.070    1.50
+JQ7         C11         C12        H121     119.939    1.50
+JQ7         C13         C12        H121     119.991    1.50
+JQ7         C09         C14         S15     118.298    2.00
+JQ7         C09         C14         C13     121.079    1.50
+JQ7         S15         C14         C13     120.623    1.50
+JQ7         N05         S15         O17     108.396    1.50
+JQ7         N05         S15         C14     102.838    1.50
+JQ7         N05         S15         O16     108.396    1.50
+JQ7         O17         S15         C14     109.102    1.50
+JQ7         O17         S15         O16     118.943    1.50
+JQ7         C14         S15         O16     109.102    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JQ7       const_sp2_sp2_7         C07         C09         C10         C11     180.000     5.0     2
+JQ7              const_21         C09         C10         C11         C12       0.000    10.0     2
+JQ7       const_sp2_sp2_1         C07         C09         C14         S15       0.000     5.0     2
+JQ7              const_17         C10         C11         C12         C13       0.000    10.0     2
+JQ7             sp2_sp3_8         C09         C14         S15         O17     120.000    10.0     6
+JQ7              const_13         C11         C12         C13         C14       0.000    10.0     2
+JQ7       const_sp2_sp2_9         C12         C13         C14         C09       0.000     5.0     2
+JQ7             sp2_sp2_1         C04         C02         N01        H012     180.000     5.0     2
+JQ7            sp2_sp3_14         N01         C02         C04         N05     120.000    10.0     6
+JQ7            sp3_sp3_19         C02         C04         N05         C06     180.000    10.0     3
+JQ7            sp3_sp3_30         C04         N05         S15         O17     -60.000    10.0     3
+JQ7             sp3_sp3_2         C07         C06         N05         C04     180.000    10.0     3
+JQ7             sp3_sp3_8         N05         C06         C07         O08      60.000    10.0     3
+JQ7             sp2_sp3_5         C10         C09         C07         O08     -60.000    10.0     6
+JQ7            sp3_sp3_16         C06         C07         O08        H081     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JQ7    chir_1    N05    S15    C04    C06    negative
+JQ7    chir_2    C07    O08    C06    C09    negative
+JQ7    chir_3    S15    O17    O16    N05    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JQ7    plan-1         C07   0.020
+JQ7    plan-1         C09   0.020
+JQ7    plan-1         C10   0.020
+JQ7    plan-1         C11   0.020
+JQ7    plan-1         C12   0.020
+JQ7    plan-1         C13   0.020
+JQ7    plan-1         C14   0.020
+JQ7    plan-1        H101   0.020
+JQ7    plan-1        H111   0.020
+JQ7    plan-1        H121   0.020
+JQ7    plan-1        H131   0.020
+JQ7    plan-1         S15   0.020
+JQ7    plan-2         C02   0.020
+JQ7    plan-2        H011   0.020
+JQ7    plan-2        H012   0.020
+JQ7    plan-2         N01   0.020
+JQ7    plan-3         C02   0.020
+JQ7    plan-3         C04   0.020
+JQ7    plan-3         N01   0.020
+JQ7    plan-3         O03   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JQ7           SMILES              ACDLabs 12.01                                                                           c1cccc2c1C(CN(CC(N)=O)S2(=O)=O)O
+JQ7            InChI                InChI  1.03 InChI=1S/C10H12N2O4S/c11-10(14)6-12-5-8(13)7-3-1-2-4-9(7)17(12,15)16/h1-4,8,13H,5-6H2,(H2,11,14)/t8-/m0/s1
+JQ7         InChIKey                InChI  1.03                                                                                BCYNBASAOBNZAN-QMMMGPOBSA-N
+JQ7 SMILES_CANONICAL               CACTVS 3.385                                                                       NC(=O)CN1C[C@H](O)c2ccccc2[S]1(=O)=O
+JQ7           SMILES               CACTVS 3.385                                                                        NC(=O)CN1C[CH](O)c2ccccc2[S]1(=O)=O
+JQ7 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                     c1ccc2c(c1)[C@H](CN(S2(=O)=O)CC(=O)N)O
+JQ7           SMILES "OpenEye OEToolkits" 2.0.6                                                                         c1ccc2c(c1)C(CN(S2(=O)=O)CC(=O)N)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JQ7 acedrg               243         "dictionary generator"                  
+JQ7 acedrg_database      11          "data source"                           
+JQ7 rdkit                2017.03.2   "Chemoinformatics tool"
+JQ7 refmac5              5.8.0238    "optimization tool"                     

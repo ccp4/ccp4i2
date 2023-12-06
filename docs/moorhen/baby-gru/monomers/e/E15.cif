@@ -1,0 +1,574 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+E15     E15      "(4R)-3-[(2S,3S)-3-[[(2S)-2-[[(2S)-2-azanyl-2-phenyl-ethanoyl]amino]-3,3-dimethyl-butanoyl]amino]-2-hydroxy-4-phenyl-butanoyl]-5,5-dimethyl-N-[(2R)-3-methylbutan-2-yl]-1,3-thiazolidine-4-carboxamide"     NON-POLYMER     98     46     .     
+#
+data_comp_E15
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+E15     CBF     C       C       0       23.861      30.038      26.376      
+E15     NAJ     N       NT3     1       25.620      28.728      27.484      
+E15     OAK     O       O       0       24.306      29.844      25.249      
+E15     CBM     C       CH1     0       24.797      29.966      27.582      
+E15     CBK     C       CR6     0       25.661      31.209      27.700      
+E15     CAQ     C       CR16    0       27.263      33.487      27.920      
+E15     CAT     C       CR16    0       26.350      33.185      28.908      
+E15     CAU     C       CR16    0       27.383      32.660      26.823      
+E15     CAX     C       CR16    0       25.554      32.051      28.801      
+E15     CAY     C       CR16    0       26.589      31.525      26.714      
+E15     N       N       NH1     0       22.561      30.275      26.626      
+E15     CA      C       CH1     0       21.508      30.245      25.616      
+E15     CB      C       CT      0       20.664      28.929      25.694      
+E15     CAG     C       CH3     0       21.586      27.713      25.548      
+E15     CG1     C       CH3     0       19.924      28.808      27.032      
+E15     CG2     C       CH3     0       19.633      28.888      24.559      
+E15     C       C       C       0       20.671      31.524      25.732      
+E15     O       O       O       0       20.390      31.970      26.844      
+E15     CBI     C       C       0       17.508      34.522      23.569      
+E15     NBC     N       NH1     0       20.275      32.099      24.585      
+E15     OAN     O       O       0       17.644      35.501      22.834      
+E15     CBN     C       CH1     0       18.470      33.346      23.413      
+E15     CBJ     C       CR6     0       21.601      34.687      25.365      
+E15     CBA     C       CH2     0       20.614      34.510      24.233      
+E15     CAP     C       CR16    0       23.422      34.999      27.461      
+E15     CBO     C       CH1     0       19.587      33.387      24.483      
+E15     OAO     O       OH1     0       19.060      33.323      22.116      
+E15     CAV     C       CR16    0       21.230      35.326      26.543      
+E15     CAW     C       CR16    0       22.900      34.202      25.260      
+E15     CAR     C       CR16    0       22.137      35.482      27.584      
+E15     CAS     C       CR16    0       23.805      34.359      26.302      
+E15     CBH     C       C       0       16.628      36.581      25.770      
+E15     NBR     N       NR5     0       16.533      34.485      24.507      
+E15     OAM     O       O       0       17.435      36.073      26.551      
+E15     CBQ     C       CH1     0       15.779      35.705      24.843      
+E15     CBU     C       CT      0       14.450      35.194      25.472      
+E15     CAZ     C       CH2     0       16.136      33.269      25.258      
+E15     CAH     C       CH3     0       13.739      36.227      26.333      
+E15     CAI     C       CH3     0       13.483      34.648      24.434      
+E15     SBE     S       S2      0       14.991      33.809      26.566      
+E15     NBB     N       NH1     0       16.450      37.906      25.651      
+E15     CBL     C       CH1     0       17.229      38.917      26.381      
+E15     CBS     C       CH1     0       18.313      39.541      25.487      
+E15     CAB     C       CH3     0       19.355      38.514      25.066      
+E15     CAC     C       CH3     0       17.736      40.242      24.262      
+E15     CAA     C       CH3     0       16.299      39.950      26.982      
+E15     HNAJ    H       H       0       26.217      28.697      28.182      
+E15     HNAA    H       H       0       26.082      28.717      26.691      
+E15     H1      H       H       0       25.074      27.991      27.524      
+E15     HBM     H       H       0       24.251      29.892      28.386      
+E15     HAQ     H       H       0       27.803      34.257      27.994      
+E15     HAT     H       H       0       26.265      33.749      29.660      
+E15     HAU     H       H       0       28.007      32.864      26.145      
+E15     HAX     H       H       0       24.932      31.853      29.483      
+E15     HAY     H       H       0       26.677      30.964      25.960      
+E15     HN      H       H       0       22.327      30.472      27.444      
+E15     HA      H       H       0       21.931      30.247      24.722      
+E15     HAG     H       H       0       21.052      26.904      25.458      
+E15     HAGA    H       H       0       22.152      27.636      26.335      
+E15     HAGB    H       H       0       22.144      27.820      24.758      
+E15     HG1     H       H       0       19.223      29.480      27.084      
+E15     HG1A    H       H       0       20.548      28.935      27.766      
+E15     HG1B    H       H       0       19.525      27.923      27.101      
+E15     HG2     H       H       0       19.262      27.992      24.482      
+E15     HG2A    H       H       0       20.063      29.131      23.720      
+E15     HG2B    H       H       0       18.913      29.516      24.744      
+E15     HNBC    H       H       0       20.420      31.686      23.831      
+E15     HBN     H       H       0       17.967      32.502      23.516      
+E15     HBA     H       H       0       21.111      34.311      23.411      
+E15     HBAA    H       H       0       20.139      35.357      24.097      
+E15     HAP     H       H       0       24.038      35.105      28.169      
+E15     HBO     H       H       0       19.146      33.572      25.350      
+E15     HOAO    H       H       0       19.271      32.527      21.913      
+E15     HAV     H       H       0       20.351      35.660      26.634      
+E15     HAW     H       H       0       23.170      33.763      24.469      
+E15     HAR     H       H       0       21.872      35.921      28.376      
+E15     HAS     H       H       0       24.684      34.027      26.215      
+E15     HBQ     H       H       0       15.573      36.208      24.018      
+E15     HAZ     H       H       0       16.918      32.836      25.655      
+E15     HAZA    H       H       0       15.696      32.639      24.651      
+E15     HAH     H       H       0       13.752      37.087      25.883      
+E15     HAHA    H       H       0       14.187      36.305      27.192      
+E15     HAHB    H       H       0       12.818      35.953      26.477      
+E15     HAI     H       H       0       13.975      34.228      23.711      
+E15     HAIA    H       H       0       12.948      35.376      24.076      
+E15     HAIB    H       H       0       12.897      33.993      24.848      
+E15     HNBB    H       H       0       15.808      38.200      25.100      
+E15     HBL     H       H       0       17.692      38.480      27.138      
+E15     HBS     H       H       0       18.778      40.226      26.025      
+E15     HAB     H       H       0       20.079      38.960      24.594      
+E15     HABA    H       H       0       18.944      37.855      24.479      
+E15     HABB    H       H       0       19.709      38.068      25.855      
+E15     HAC     H       H       0       17.198      41.002      24.542      
+E15     HACA    H       H       0       17.183      39.622      23.757      
+E15     HACB    H       H       0       18.465      40.555      23.698      
+E15     HAA     H       H       0       16.820      40.695      27.327      
+E15     HAAA    H       H       0       15.791      39.547      27.707      
+E15     HAAB    H       H       0       15.686      40.273      26.298      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+E15         CBF         OAK      DOUBLE       n     1.226  0.0100     1.226  0.0100
+E15         CBF         CBM      SINGLE       n     1.525  0.0100     1.525  0.0100
+E15         NAJ         CBM      SINGLE       n     1.487  0.0147     1.487  0.0147
+E15         CBM         CBK      SINGLE       n     1.516  0.0100     1.516  0.0100
+E15         CBK         CAX      DOUBLE       y     1.386  0.0100     1.386  0.0100
+E15         CAQ         CAT      DOUBLE       y     1.374  0.0127     1.374  0.0127
+E15         CAQ         CAU      SINGLE       y     1.374  0.0127     1.374  0.0127
+E15         CAT         CAX      SINGLE       y     1.386  0.0100     1.386  0.0100
+E15         CBK         CAY      SINGLE       y     1.386  0.0100     1.386  0.0100
+E15         CAU         CAY      DOUBLE       y     1.386  0.0100     1.386  0.0100
+E15           N          CA      SINGLE       n     1.453  0.0100     1.453  0.0100
+E15          CA          CB      SINGLE       n     1.559  0.0100     1.559  0.0100
+E15          CA           C      SINGLE       n     1.529  0.0100     1.529  0.0100
+E15          CB         CAG      SINGLE       n     1.531  0.0109     1.531  0.0109
+E15          CB         CG1      SINGLE       n     1.531  0.0109     1.531  0.0109
+E15          CB         CG2      SINGLE       n     1.531  0.0109     1.531  0.0109
+E15           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+E15         CBI         CBN      SINGLE       n     1.523  0.0100     1.523  0.0100
+E15         CBI         OAN      DOUBLE       n     1.227  0.0149     1.227  0.0149
+E15         NBC         CBO      SINGLE       n     1.459  0.0104     1.459  0.0104
+E15         CBN         OAO      SINGLE       n     1.423  0.0113     1.423  0.0113
+E15         CBJ         CBA      SINGLE       n     1.512  0.0103     1.512  0.0103
+E15         CAP         CAR      DOUBLE       y     1.374  0.0127     1.374  0.0127
+E15         CAP         CAS      SINGLE       y     1.374  0.0127     1.374  0.0127
+E15         CBN         CBO      SINGLE       n     1.542  0.0115     1.542  0.0115
+E15         CBA         CBO      SINGLE       n     1.538  0.0100     1.538  0.0100
+E15         CBJ         CAV      DOUBLE       y     1.385  0.0111     1.385  0.0111
+E15         CBJ         CAW      SINGLE       y     1.385  0.0111     1.385  0.0111
+E15         CAV         CAR      SINGLE       y     1.386  0.0100     1.386  0.0100
+E15         CAW         CAS      DOUBLE       y     1.386  0.0100     1.386  0.0100
+E15         CBH         CBQ      SINGLE       n     1.526  0.0105     1.526  0.0105
+E15         CBH         OAM      DOUBLE       n     1.231  0.0100     1.231  0.0100
+E15         NBR         CBQ      SINGLE       n     1.463  0.0100     1.463  0.0100
+E15         CBQ         CBU      SINGLE       n     1.549  0.0160     1.549  0.0160
+E15         CBU         CAI      SINGLE       n     1.518  0.0100     1.518  0.0100
+E15         NBR         CAZ      SINGLE       n     1.470  0.0138     1.470  0.0138
+E15         CBU         CAH      SINGLE       n     1.518  0.0100     1.518  0.0100
+E15         CBU         SBE      SINGLE       n     1.851  0.0113     1.851  0.0113
+E15         CAZ         SBE      SINGLE       n     1.823  0.0161     1.823  0.0161
+E15         NBB         CBL      SINGLE       n     1.467  0.0100     1.467  0.0100
+E15         CBL         CBS      SINGLE       n     1.533  0.0118     1.533  0.0118
+E15         CBL         CAA      SINGLE       n     1.514  0.0111     1.514  0.0111
+E15         CBS         CAB      SINGLE       n     1.522  0.0128     1.522  0.0128
+E15         CBS         CAC      SINGLE       n     1.522  0.0128     1.522  0.0128
+E15         CBF           N      SINGLE       n     1.336  0.0112     1.336  0.0112
+E15           C         NBC      SINGLE       n     1.337  0.0102     1.337  0.0102
+E15         CBI         NBR      SINGLE       n     1.343  0.0100     1.343  0.0100
+E15         CBH         NBB      SINGLE       n     1.337  0.0100     1.337  0.0100
+E15         NAJ        HNAJ      SINGLE       n     1.036  0.0160     0.918  0.0200
+E15         NAJ        HNAA      SINGLE       n     1.036  0.0160     0.918  0.0200
+E15         NAJ          H1      SINGLE       n     1.036  0.0160     0.918  0.0200
+E15         CBM         HBM      SINGLE       n     1.089  0.0100     0.975  0.0186
+E15         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.944  0.0161
+E15         CAT         HAT      SINGLE       n     1.082  0.0130     0.944  0.0175
+E15         CAU         HAU      SINGLE       n     1.082  0.0130     0.944  0.0175
+E15         CAX         HAX      SINGLE       n     1.082  0.0130     0.944  0.0174
+E15         CAY         HAY      SINGLE       n     1.082  0.0130     0.944  0.0174
+E15           N          HN      SINGLE       n     1.016  0.0100     0.873  0.0200
+E15          CA          HA      SINGLE       n     1.089  0.0100     0.991  0.0200
+E15         CAG         HAG      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CAG        HAGA      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CAG        HAGB      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CG1         HG1      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CG1        HG1A      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CG1        HG1B      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CG2         HG2      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CG2        HG2A      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CG2        HG2B      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         NBC        HNBC      SINGLE       n     1.016  0.0100     0.872  0.0200
+E15         CBN         HBN      SINGLE       n     1.089  0.0100     0.989  0.0200
+E15         CBA         HBA      SINGLE       n     1.089  0.0100     0.981  0.0150
+E15         CBA        HBAA      SINGLE       n     1.089  0.0100     0.981  0.0150
+E15         CAP         HAP      SINGLE       n     1.082  0.0130     0.944  0.0161
+E15         CBO         HBO      SINGLE       n     1.089  0.0100     0.990  0.0141
+E15         OAO        HOAO      SINGLE       n     0.970  0.0120     0.848  0.0200
+E15         CAV         HAV      SINGLE       n     1.082  0.0130     0.944  0.0174
+E15         CAW         HAW      SINGLE       n     1.082  0.0130     0.944  0.0174
+E15         CAR         HAR      SINGLE       n     1.082  0.0130     0.944  0.0175
+E15         CAS         HAS      SINGLE       n     1.082  0.0130     0.944  0.0175
+E15         CBQ         HBQ      SINGLE       n     1.089  0.0100     0.988  0.0200
+E15         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.979  0.0200
+E15         CAZ        HAZA      SINGLE       n     1.089  0.0100     0.979  0.0200
+E15         CAH         HAH      SINGLE       n     1.089  0.0100     0.971  0.0169
+E15         CAH        HAHA      SINGLE       n     1.089  0.0100     0.971  0.0169
+E15         CAH        HAHB      SINGLE       n     1.089  0.0100     0.971  0.0169
+E15         CAI         HAI      SINGLE       n     1.089  0.0100     0.971  0.0169
+E15         CAI        HAIA      SINGLE       n     1.089  0.0100     0.971  0.0169
+E15         CAI        HAIB      SINGLE       n     1.089  0.0100     0.971  0.0169
+E15         NBB        HNBB      SINGLE       n     1.016  0.0100     0.895  0.0200
+E15         CBL         HBL      SINGLE       n     1.089  0.0100     0.989  0.0122
+E15         CBS         HBS      SINGLE       n     1.089  0.0100     0.988  0.0171
+E15         CAB         HAB      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CAB        HABA      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CAB        HABB      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CAC         HAC      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CAC        HACA      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CAC        HACB      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CAA         HAA      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CAA        HAAA      SINGLE       n     1.089  0.0100     0.973  0.0146
+E15         CAA        HAAB      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+E15         OAK         CBF         CBM     120.880    1.50
+E15         OAK         CBF           N     122.879    1.50
+E15         CBM         CBF           N     116.241    2.19
+E15         CBM         NAJ        HNAJ     109.561    2.23
+E15         CBM         NAJ        HNAA     109.561    2.23
+E15         CBM         NAJ          H1     109.561    2.23
+E15        HNAJ         NAJ        HNAA     109.073    2.83
+E15        HNAJ         NAJ          H1     109.073    2.83
+E15        HNAA         NAJ          H1     109.073    2.83
+E15         CBF         CBM         NAJ     109.935    2.65
+E15         CBF         CBM         CBK     110.090    3.00
+E15         CBF         CBM         HBM     107.903    1.50
+E15         NAJ         CBM         CBK     111.986    1.50
+E15         NAJ         CBM         HBM     108.128    1.50
+E15         CBK         CBM         HBM     108.553    1.50
+E15         CBM         CBK         CAX     120.770    1.82
+E15         CBM         CBK         CAY     120.770    1.82
+E15         CAX         CBK         CAY     118.460    1.50
+E15         CAT         CAQ         CAU     119.933    1.50
+E15         CAT         CAQ         HAQ     120.033    1.50
+E15         CAU         CAQ         HAQ     120.033    1.50
+E15         CAQ         CAT         CAX     120.216    1.50
+E15         CAQ         CAT         HAT     119.938    1.50
+E15         CAX         CAT         HAT     119.847    1.50
+E15         CAQ         CAU         CAY     120.216    1.50
+E15         CAQ         CAU         HAU     119.938    1.50
+E15         CAY         CAU         HAU     119.847    1.50
+E15         CBK         CAX         CAT     120.588    1.50
+E15         CBK         CAX         HAX     119.682    1.50
+E15         CAT         CAX         HAX     119.730    1.50
+E15         CBK         CAY         CAU     120.588    1.50
+E15         CBK         CAY         HAY     119.682    1.50
+E15         CAU         CAY         HAY     119.730    1.50
+E15          CA           N         CBF     122.014    1.76
+E15          CA           N          HN     119.082    1.92
+E15         CBF           N          HN     118.904    1.94
+E15           N          CA          CB     111.308    2.28
+E15           N          CA           C     111.106    2.53
+E15           N          CA          HA     108.161    1.50
+E15          CB          CA           C     111.511    2.91
+E15          CB          CA          HA     106.840    1.50
+E15           C          CA          HA     108.061    1.50
+E15          CA          CB         CAG     109.638    1.92
+E15          CA          CB         CG1     109.638    1.92
+E15          CA          CB         CG2     109.638    1.92
+E15         CAG          CB         CG1     108.477    1.50
+E15         CAG          CB         CG2     108.477    1.50
+E15         CG1          CB         CG2     108.477    1.50
+E15          CB         CAG         HAG     109.547    1.50
+E15          CB         CAG        HAGA     109.547    1.50
+E15          CB         CAG        HAGB     109.547    1.50
+E15         HAG         CAG        HAGA     109.377    1.50
+E15         HAG         CAG        HAGB     109.377    1.50
+E15        HAGA         CAG        HAGB     109.377    1.50
+E15          CB         CG1         HG1     109.547    1.50
+E15          CB         CG1        HG1A     109.547    1.50
+E15          CB         CG1        HG1B     109.547    1.50
+E15         HG1         CG1        HG1A     109.377    1.50
+E15         HG1         CG1        HG1B     109.377    1.50
+E15        HG1A         CG1        HG1B     109.377    1.50
+E15          CB         CG2         HG2     109.547    1.50
+E15          CB         CG2        HG2A     109.547    1.50
+E15          CB         CG2        HG2B     109.547    1.50
+E15         HG2         CG2        HG2A     109.377    1.50
+E15         HG2         CG2        HG2B     109.377    1.50
+E15        HG2A         CG2        HG2B     109.377    1.50
+E15          CA           C           O     120.430    1.50
+E15          CA           C         NBC     116.417    1.50
+E15           O           C         NBC     123.154    1.50
+E15         CBN         CBI         OAN     120.464    1.58
+E15         CBN         CBI         NBR     118.444    1.83
+E15         OAN         CBI         NBR     121.092    1.54
+E15         CBO         NBC           C     123.632    1.63
+E15         CBO         NBC        HNBC     117.489    3.00
+E15           C         NBC        HNBC     118.879    1.83
+E15         CBI         CBN         OAO     110.427    2.31
+E15         CBI         CBN         CBO     111.511    2.91
+E15         CBI         CBN         HBN     108.451    1.50
+E15         OAO         CBN         CBO     107.818    2.27
+E15         OAO         CBN         HBN     107.439    1.50
+E15         CBO         CBN         HBN     108.474    1.50
+E15         CBA         CBJ         CAV     120.970    1.50
+E15         CBA         CBJ         CAW     120.970    1.50
+E15         CAV         CBJ         CAW     118.060    1.50
+E15         CBJ         CBA         CBO     113.215    1.50
+E15         CBJ         CBA         HBA     108.862    1.50
+E15         CBJ         CBA        HBAA     108.862    1.50
+E15         CBO         CBA         HBA     108.892    1.50
+E15         CBO         CBA        HBAA     108.892    1.50
+E15         HBA         CBA        HBAA     107.782    1.50
+E15         CAR         CAP         CAS     120.043    1.50
+E15         CAR         CAP         HAP     119.979    1.50
+E15         CAS         CAP         HAP     119.979    1.50
+E15         NBC         CBO         CBN     111.504    1.50
+E15         NBC         CBO         CBA     110.274    1.50
+E15         NBC         CBO         HBO     108.194    1.50
+E15         CBN         CBO         CBA     111.094    2.85
+E15         CBN         CBO         HBO     107.601    1.50
+E15         CBA         CBO         HBO     108.431    1.50
+E15         CBN         OAO        HOAO     109.453    1.50
+E15         CBJ         CAV         CAR     120.624    1.50
+E15         CBJ         CAV         HAV     119.591    1.50
+E15         CAR         CAV         HAV     119.786    1.50
+E15         CBJ         CAW         CAS     120.624    1.50
+E15         CBJ         CAW         HAW     119.591    1.50
+E15         CAS         CAW         HAW     119.786    1.50
+E15         CAP         CAR         CAV     120.325    1.50
+E15         CAP         CAR         HAR     119.883    1.50
+E15         CAV         CAR         HAR     119.792    1.50
+E15         CAP         CAS         CAW     120.325    1.50
+E15         CAP         CAS         HAS     119.883    1.50
+E15         CAW         CAS         HAS     119.792    1.50
+E15         CBQ         CBH         OAM     121.192    1.50
+E15         CBQ         CBH         NBB     115.558    1.64
+E15         OAM         CBH         NBB     123.269    1.50
+E15         CBQ         NBR         CAZ     113.572    1.77
+E15         CBQ         NBR         CBI     121.931    3.00
+E15         CAZ         NBR         CBI     124.497    3.00
+E15         CBH         CBQ         NBR     111.278    1.96
+E15         CBH         CBQ         CBU     112.424    2.46
+E15         CBH         CBQ         HBQ     109.935    1.50
+E15         NBR         CBQ         CBU     102.354    1.84
+E15         NBR         CBQ         HBQ     110.172    1.50
+E15         CBU         CBQ         HBQ     110.594    1.50
+E15         CBQ         CBU         CAI     113.745    2.48
+E15         CBQ         CBU         CAH     113.745    2.48
+E15         CBQ         CBU         SBE     107.036    2.68
+E15         CAI         CBU         CAH     110.924    1.50
+E15         CAI         CBU         SBE     108.982    1.53
+E15         CAH         CBU         SBE     108.982    1.53
+E15         NBR         CAZ         SBE     104.373    1.50
+E15         NBR         CAZ         HAZ     109.837    2.86
+E15         NBR         CAZ        HAZA     109.837    2.86
+E15         SBE         CAZ         HAZ     110.877    2.21
+E15         SBE         CAZ        HAZA     110.877    2.21
+E15         HAZ         CAZ        HAZA     109.116    1.50
+E15         CBU         CAH         HAH     109.457    1.50
+E15         CBU         CAH        HAHA     109.457    1.50
+E15         CBU         CAH        HAHB     109.457    1.50
+E15         HAH         CAH        HAHA     109.486    1.50
+E15         HAH         CAH        HAHB     109.486    1.50
+E15        HAHA         CAH        HAHB     109.486    1.50
+E15         CBU         CAI         HAI     109.457    1.50
+E15         CBU         CAI        HAIA     109.457    1.50
+E15         CBU         CAI        HAIB     109.457    1.50
+E15         HAI         CAI        HAIA     109.486    1.50
+E15         HAI         CAI        HAIB     109.486    1.50
+E15        HAIA         CAI        HAIB     109.486    1.50
+E15         CBU         SBE         CAZ      92.264    3.00
+E15         CBL         NBB         CBH     123.065    1.50
+E15         CBL         NBB        HNBB     118.558    1.99
+E15         CBH         NBB        HNBB     118.377    2.92
+E15         NBB         CBL         CBS     110.665    1.50
+E15         NBB         CBL         CAA     109.955    1.50
+E15         NBB         CBL         HBL     108.116    1.50
+E15         CBS         CBL         CAA     112.449    1.50
+E15         CBS         CBL         HBL     107.397    1.50
+E15         CAA         CBL         HBL     107.146    1.50
+E15         CBL         CBS         CAB     111.807    1.56
+E15         CBL         CBS         CAC     111.807    1.56
+E15         CBL         CBS         HBS     107.906    2.03
+E15         CAB         CBS         CAC     110.676    1.50
+E15         CAB         CBS         HBS     107.603    1.50
+E15         CAC         CBS         HBS     107.603    1.50
+E15         CBS         CAB         HAB     109.507    1.50
+E15         CBS         CAB        HABA     109.507    1.50
+E15         CBS         CAB        HABB     109.507    1.50
+E15         HAB         CAB        HABA     109.411    1.50
+E15         HAB         CAB        HABB     109.411    1.50
+E15        HABA         CAB        HABB     109.411    1.50
+E15         CBS         CAC         HAC     109.507    1.50
+E15         CBS         CAC        HACA     109.507    1.50
+E15         CBS         CAC        HACB     109.507    1.50
+E15         HAC         CAC        HACA     109.411    1.50
+E15         HAC         CAC        HACB     109.411    1.50
+E15        HACA         CAC        HACB     109.411    1.50
+E15         CBL         CAA         HAA     109.483    1.50
+E15         CBL         CAA        HAAA     109.483    1.50
+E15         CBL         CAA        HAAB     109.483    1.50
+E15         HAA         CAA        HAAA     109.386    1.50
+E15         HAA         CAA        HAAB     109.386    1.50
+E15        HAAA         CAA        HAAB     109.386    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+E15             sp2_sp2_3         OAK         CBF           N          CA       0.000     5.0     2
+E15             sp2_sp3_7         OAK         CBF         CBM         NAJ       0.000    10.0     6
+E15            sp2_sp3_19         CBF           N          CA          CB       0.000    10.0     6
+E15            sp3_sp3_26           N          CA          CB         CAG     -60.000    10.0     3
+E15            sp2_sp3_25           O           C          CA           N       0.000    10.0     6
+E15            sp3_sp3_34         HAG         CAG          CB          CA     180.000    10.0     3
+E15            sp3_sp3_46          CA          CB         CG1         HG1      60.000    10.0     3
+E15            sp3_sp3_52          CA          CB         CG2         HG2     180.000    10.0     3
+E15             sp2_sp2_5          CA           C         NBC         CBO     180.000     5.0     2
+E15            sp2_sp3_31         OAN         CBI         CBN         OAO       0.000    10.0     6
+E15             sp2_sp2_9         CBN         CBI         NBR         CBQ     180.000     5.0     2
+E15            sp2_sp3_37           C         NBC         CBO         CBN       0.000    10.0     6
+E15            sp3_sp3_16         CBF         CBM         NAJ        HNAJ     180.000    10.0     3
+E15            sp3_sp3_64         CBI         CBN         CBO         NBC     180.000    10.0     3
+E15            sp3_sp3_61         CBI         CBN         OAO        HOAO     180.000    10.0     3
+E15            sp2_sp3_44         CAV         CBJ         CBA         CBO     -90.000    10.0     6
+E15       const_sp2_sp2_2         CAR         CAV         CBJ         CBA     180.000     5.0     2
+E15              const_46         CAS         CAW         CBJ         CBA     180.000    10.0     2
+E15            sp3_sp3_73         CBJ         CBA         CBO         NBC     180.000    10.0     3
+E15       const_sp2_sp2_9         CAS         CAP         CAR         CAV       0.000     5.0     2
+E15              const_13         CAR         CAP         CAS         CAW       0.000    10.0     2
+E15       const_sp2_sp2_5         CAP         CAR         CAV         CBJ       0.000     5.0     2
+E15              const_17         CAP         CAS         CAW         CBJ       0.000    10.0     2
+E15            sp2_sp3_49         OAM         CBH         CBQ         NBR       0.000    10.0     6
+E15            sp2_sp2_15         OAM         CBH         NBB         CBL       0.000     5.0     2
+E15             sp2_sp3_5         CBI         NBR         CBQ         CBH     -60.000    10.0     6
+E15            sp2_sp3_58         CBI         NBR         CAZ         SBE     180.000    10.0     6
+E15             sp3_sp3_5         CBH         CBQ         CBU         CAI     -60.000    10.0     3
+E15            sp3_sp3_93         HAH         CAH         CBU         CAI      60.000    10.0     3
+E15            sp3_sp3_84         HAI         CAI         CBU         CAH      60.000    10.0     3
+E15            sp3_sp3_12         CAI         CBU         SBE         CAZ     180.000    10.0     3
+E15            sp3_sp3_13         NBR         CAZ         SBE         CBU     -60.000    10.0     3
+E15            sp2_sp3_13         CAX         CBK         CBM         CBF     150.000    10.0     6
+E15            sp2_sp3_61         CBH         NBB         CBL         CBS       0.000    10.0     6
+E15           sp3_sp3_101         NBB         CBL         CBS         CAB     -60.000    10.0     3
+E15           sp3_sp3_109         HAA         CAA         CBL         NBB     180.000    10.0     3
+E15           sp3_sp3_118         HAB         CAB         CBS         CBL     180.000    10.0     3
+E15           sp3_sp3_128         HAC         CAC         CBS         CBL     -60.000    10.0     3
+E15              const_22         CAT         CAX         CBK         CBM     180.000    10.0     2
+E15              const_42         CAU         CAY         CBK         CBM     180.000    10.0     2
+E15              const_29         CAU         CAQ         CAT         CAX       0.000    10.0     2
+E15              const_33         CAT         CAQ         CAU         CAY       0.000    10.0     2
+E15              const_25         CAQ         CAT         CAX         CBK       0.000    10.0     2
+E15              const_37         CAQ         CAU         CAY         CBK       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+E15    chir_1    CBM    NAJ    CBF    CBK    positive
+E15    chir_2    CA    N    C    CB    positive
+E15    chir_3    CB    CA    CAG    CG1    both
+E15    chir_4    CBN    OAO    CBI    CBO    positive
+E15    chir_5    CBO    NBC    CBN    CBA    positive
+E15    chir_6    CBQ    NBR    CBU    CBH    negative
+E15    chir_7    CBU    SBE    CBQ    CAI    both
+E15    chir_8    CBL    NBB    CBS    CAA    negative
+E15    chir_9    CBS    CBL    CAB    CAC    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+E15    plan-1         CAP   0.020
+E15    plan-1         CAR   0.020
+E15    plan-1         CAS   0.020
+E15    plan-1         CAV   0.020
+E15    plan-1         CAW   0.020
+E15    plan-1         CBA   0.020
+E15    plan-1         CBJ   0.020
+E15    plan-1         HAP   0.020
+E15    plan-1         HAR   0.020
+E15    plan-1         HAS   0.020
+E15    plan-1         HAV   0.020
+E15    plan-1         HAW   0.020
+E15    plan-2         CAQ   0.020
+E15    plan-2         CAT   0.020
+E15    plan-2         CAU   0.020
+E15    plan-2         CAX   0.020
+E15    plan-2         CAY   0.020
+E15    plan-2         CBK   0.020
+E15    plan-2         CBM   0.020
+E15    plan-2         HAQ   0.020
+E15    plan-2         HAT   0.020
+E15    plan-2         HAU   0.020
+E15    plan-2         HAX   0.020
+E15    plan-2         HAY   0.020
+E15    plan-3         CBF   0.020
+E15    plan-3         CBM   0.020
+E15    plan-3           N   0.020
+E15    plan-3         OAK   0.020
+E15    plan-4          CA   0.020
+E15    plan-4         CBF   0.020
+E15    plan-4          HN   0.020
+E15    plan-4           N   0.020
+E15    plan-5           C   0.020
+E15    plan-5          CA   0.020
+E15    plan-5         NBC   0.020
+E15    plan-5           O   0.020
+E15    plan-6         CBI   0.020
+E15    plan-6         CBN   0.020
+E15    plan-6         NBR   0.020
+E15    plan-6         OAN   0.020
+E15    plan-7           C   0.020
+E15    plan-7         CBO   0.020
+E15    plan-7        HNBC   0.020
+E15    plan-7         NBC   0.020
+E15    plan-8         CBH   0.020
+E15    plan-8         CBQ   0.020
+E15    plan-8         NBB   0.020
+E15    plan-8         OAM   0.020
+E15    plan-9         CAZ   0.020
+E15    plan-9         CBI   0.020
+E15    plan-9         CBQ   0.020
+E15    plan-9         NBR   0.020
+E15   plan-10         CBH   0.020
+E15   plan-10         CBL   0.020
+E15   plan-10        HNBB   0.020
+E15   plan-10         NBB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+E15           SMILES              ACDLabs 12.01                                                                                                                                                                              O=C(NC(C)C(C)C)C3N(C(=O)C(O)C(NC(=O)C(NC(=O)C(c1ccccc1)N)C(C)(C)C)Cc2ccccc2)CSC3(C)C
+E15 SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                  CC(C)[C@@H](C)NC(=O)[C@H]1N(CSC1(C)C)C(=O)[C@@H](O)[C@H](Cc2ccccc2)NC(=O)[C@@H](NC(=O)[C@@H](N)c3ccccc3)C(C)(C)C
+E15           SMILES               CACTVS 3.370                                                                                                                                                            CC(C)[CH](C)NC(=O)[CH]1N(CSC1(C)C)C(=O)[CH](O)[CH](Cc2ccccc2)NC(=O)[CH](NC(=O)[CH](N)c3ccccc3)C(C)(C)C
+E15 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                     C[C@H](C(C)C)NC(=O)[C@@H]1C(SCN1C(=O)[C@H]([C@H](Cc2ccccc2)NC(=O)[C@H](C(C)(C)C)NC(=O)[C@H](c3ccccc3)N)O)(C)C
+E15           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                              CC(C)C(C)NC(=O)C1C(SCN1C(=O)C(C(Cc2ccccc2)NC(=O)C(C(C)(C)C)NC(=O)C(c3ccccc3)N)O)(C)C
+E15            InChI                InChI  1.03 InChI=1S/C35H51N5O5S/c1-21(2)22(3)37-32(44)29-35(7,8)46-20-40(29)33(45)27(41)25(19-23-15-11-9-12-16-23)38-31(43)28(34(4,5)6)39-30(42)26(36)24-17-13-10-14-18-24/h9-18,21-22,25-29,41H,19-20,36H2,1-8H3,(H,37,44)(H,38,43)(H,39,42)/t22-,25+,26+,27+,28-,29-/m1/s1
+E15         InChIKey                InChI  1.03                                                                                                                                                                                                                                       XTWLQNQBRIPIED-OBXVIOLMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+E15 acedrg               243         "dictionary generator"                  
+E15 acedrg_database      11          "data source"                           
+E15 rdkit                2017.03.2   "Chemoinformatics tool"
+E15 refmac5              5.8.0238    "optimization tool"                     

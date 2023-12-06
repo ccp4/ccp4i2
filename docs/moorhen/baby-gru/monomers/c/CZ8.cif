@@ -1,0 +1,368 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CZ8     CZ8      "({[(2R)-2-{[(4-ethyl-2,3-dioxopiperazin-1-yl)carbonyl]amino}-4-(4-hydroxyphenyl)butanoyl]amino}methyl)boronic acid"     NON-POLYMER     55     30     .     
+#
+data_comp_CZ8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CZ8     C       C       C       0       31.398      64.923      4.320       
+CZ8     N       N       NH1     0       30.715      67.199      4.932       
+CZ8     O       O       O       0       30.448      64.721      3.566       
+CZ8     CA      C       CH1     0       31.859      66.359      4.600       
+CZ8     CB      C       CH2     0       32.614      66.920      3.397       
+CZ8     CAA     C       CH3     0       26.135      72.747      6.080       
+CZ8     OAC     O       O       0       31.864      68.652      6.162       
+CZ8     OAD     O       O       0       26.579      70.078      4.198       
+CZ8     OAE     O       O       0       28.658      68.542      3.792       
+CZ8     OAF     O       OH1     0       36.883      68.689      -1.096      
+CZ8     OAG     O       OH1     0       33.969      61.681      5.564       
+CZ8     OAH     O       OH1     0       32.037      60.766      6.547       
+CZ8     CAI     C       CR16    0       35.026      67.401      -0.315      
+CZ8     CAJ     C       CR16    0       36.642      68.232      1.246       
+CZ8     CAK     C       CR16    0       34.327      66.818      0.732       
+CZ8     CAL     C       CR16    0       35.930      67.643      2.283       
+CZ8     CAM     C       CH2     0       26.049      71.345      6.628       
+CZ8     CAN     C       CH2     0       33.990      66.288      3.176       
+CZ8     CAP     C       CH2     0       31.719      62.535      4.752       
+CZ8     CAQ     C       CH2     0       28.221      70.364      7.408       
+CZ8     CAR     C       CH2     0       29.630      70.159      6.894       
+CZ8     NAS     N       NH1     0       32.070      63.935      4.926       
+CZ8     CAV     C       C       0       30.795      68.299      5.656       
+CZ8     CAW     C       CR6     0       27.404      69.975      5.102       
+CZ8     CAX     C       CR6     0       28.605      69.179      4.859       
+CZ8     BAY     B       B       0       32.616      61.619      5.663       
+CZ8     CAY     C       CR6     0       36.189      68.111      -0.059      
+CZ8     CAZ     C       CR6     0       34.764      66.926      2.047       
+CZ8     NBC     N       NR6     0       27.245      70.535      6.322       
+CZ8     NBD     N       NR6     0       29.657      69.146      5.786       
+CZ8     HN      H       H       0       29.935      66.942      4.648       
+CZ8     HA      H       H       0       32.477      66.339      5.374       
+CZ8     HB      H       H       0       32.726      67.886      3.520       
+CZ8     HBA     H       H       0       32.069      66.784      2.593       
+CZ8     HAA     H       H       0       25.340      73.239      6.326       
+CZ8     HAAA    H       H       0       26.208      72.714      5.117       
+CZ8     HAAB    H       H       0       26.913      73.190      6.447       
+CZ8     HOAF    H       H       0       37.526      69.241      -0.937      
+CZ8     HOAG    H       H       0       34.223      61.782      4.763       
+CZ8     HOAH    H       H       0       31.316      60.440      6.246       
+CZ8     HAI     H       H       0       34.713      67.315      -1.201      
+CZ8     HAJ     H       H       0       37.432      68.714      1.428       
+CZ8     HAK     H       H       0       33.537      66.337      0.547       
+CZ8     HAL     H       H       0       36.248      67.732      3.167       
+CZ8     HAM     H       H       0       25.255      70.901      6.254       
+CZ8     HAMA    H       H       0       25.931      71.389      7.604       
+CZ8     HAN     H       H       0       33.880      65.334      2.977       
+CZ8     HANA    H       H       0       34.514      66.361      4.002       
+CZ8     HAP     H       H       0       31.840      62.287      3.811       
+CZ8     HAPA    H       H       0       30.775      62.407      4.981       
+CZ8     HAQ     H       H       0       27.960      69.592      7.949       
+CZ8     HAQA    H       H       0       28.204      71.155      7.984       
+CZ8     HAR     H       H       0       29.986      71.013      6.557       
+CZ8     HARA    H       H       0       30.203      69.856      7.634       
+CZ8     HNAS    H       H       0       32.745      64.128      5.442       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CZ8           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+CZ8           C          CA      SINGLE       n     1.530  0.0100     1.530  0.0100
+CZ8           C         NAS      SINGLE       n     1.335  0.0109     1.335  0.0109
+CZ8           N          CA      SINGLE       n     1.453  0.0100     1.453  0.0100
+CZ8           N         CAV      SINGLE       n     1.298  0.0168     1.298  0.0168
+CZ8          CA          CB      SINGLE       n     1.526  0.0101     1.526  0.0101
+CZ8          CB         CAN      SINGLE       n     1.528  0.0200     1.528  0.0200
+CZ8         CAA         CAM      SINGLE       n     1.508  0.0200     1.508  0.0200
+CZ8         OAC         CAV      DOUBLE       n     1.230  0.0134     1.230  0.0134
+CZ8         OAD         CAW      DOUBLE       n     1.226  0.0100     1.226  0.0100
+CZ8         OAE         CAX      DOUBLE       n     1.238  0.0180     1.238  0.0180
+CZ8         OAF         CAY      SINGLE       n     1.374  0.0155     1.374  0.0155
+CZ8         OAG         BAY      SINGLE       n     1.358  0.0116     1.358  0.0116
+CZ8         OAH         BAY      SINGLE       n     1.358  0.0116     1.358  0.0116
+CZ8         CAI         CAY      DOUBLE       y     1.383  0.0100     1.383  0.0100
+CZ8         CAI         CAK      SINGLE       y     1.385  0.0100     1.385  0.0100
+CZ8         CAJ         CAY      SINGLE       y     1.383  0.0100     1.383  0.0100
+CZ8         CAJ         CAL      DOUBLE       y     1.385  0.0100     1.385  0.0100
+CZ8         CAK         CAZ      DOUBLE       y     1.385  0.0110     1.385  0.0110
+CZ8         CAL         CAZ      SINGLE       y     1.385  0.0110     1.385  0.0110
+CZ8         CAM         NBC      SINGLE       n     1.472  0.0100     1.472  0.0100
+CZ8         CAN         CAZ      SINGLE       n     1.510  0.0100     1.510  0.0100
+CZ8         CAP         NAS      SINGLE       n     1.453  0.0115     1.453  0.0115
+CZ8         CAP         BAY      SINGLE       n     1.573  0.0200     1.573  0.0200
+CZ8         CAQ         NBC      SINGLE       n     1.467  0.0100     1.467  0.0100
+CZ8         CAQ         CAR      SINGLE       n     1.510  0.0157     1.510  0.0157
+CZ8         CAR         NBD      SINGLE       n     1.489  0.0150     1.489  0.0150
+CZ8         CAV         NBD      SINGLE       n     1.384  0.0200     1.384  0.0200
+CZ8         CAW         CAX      SINGLE       n     1.441  0.0200     1.441  0.0200
+CZ8         CAW         NBC      SINGLE       n     1.341  0.0133     1.341  0.0133
+CZ8         CAX         NBD      SINGLE       n     1.382  0.0169     1.382  0.0169
+CZ8           N          HN      SINGLE       n     1.016  0.0100     0.869  0.0200
+CZ8          CA          HA      SINGLE       n     1.089  0.0100     0.991  0.0200
+CZ8          CB          HB      SINGLE       n     1.089  0.0100     0.980  0.0178
+CZ8          CB         HBA      SINGLE       n     1.089  0.0100     0.980  0.0178
+CZ8         CAA         HAA      SINGLE       n     1.089  0.0100     0.967  0.0131
+CZ8         CAA        HAAA      SINGLE       n     1.089  0.0100     0.967  0.0131
+CZ8         CAA        HAAB      SINGLE       n     1.089  0.0100     0.967  0.0131
+CZ8         OAF        HOAF      SINGLE       n     0.966  0.0059     0.861  0.0200
+CZ8         OAG        HOAG      SINGLE       n     0.970  0.0120     0.847  0.0200
+CZ8         OAH        HOAH      SINGLE       n     0.970  0.0120     0.847  0.0200
+CZ8         CAI         HAI      SINGLE       n     1.082  0.0130     0.943  0.0169
+CZ8         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0169
+CZ8         CAK         HAK      SINGLE       n     1.082  0.0130     0.943  0.0173
+CZ8         CAL         HAL      SINGLE       n     1.082  0.0130     0.943  0.0173
+CZ8         CAM         HAM      SINGLE       n     1.089  0.0100     0.984  0.0191
+CZ8         CAM        HAMA      SINGLE       n     1.089  0.0100     0.984  0.0191
+CZ8         CAN         HAN      SINGLE       n     1.089  0.0100     0.981  0.0150
+CZ8         CAN        HANA      SINGLE       n     1.089  0.0100     0.981  0.0150
+CZ8         CAP         HAP      SINGLE       n     1.089  0.0100     0.980  0.0132
+CZ8         CAP        HAPA      SINGLE       n     1.089  0.0100     0.980  0.0132
+CZ8         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.978  0.0161
+CZ8         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.978  0.0161
+CZ8         CAR         HAR      SINGLE       n     1.089  0.0100     0.984  0.0105
+CZ8         CAR        HARA      SINGLE       n     1.089  0.0100     0.984  0.0105
+CZ8         NAS        HNAS      SINGLE       n     1.016  0.0100     0.872  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CZ8           O           C          CA     120.540    1.50
+CZ8           O           C         NAS     122.977    1.50
+CZ8          CA           C         NAS     116.463    1.50
+CZ8          CA           N         CAV     122.098    1.69
+CZ8          CA           N          HN     118.947    1.91
+CZ8         CAV           N          HN     118.955    2.02
+CZ8           C          CA           N     110.342    2.62
+CZ8           C          CA          CB     110.281    1.60
+CZ8           C          CA          HA     107.852    1.50
+CZ8           N          CA          CB     110.984    1.61
+CZ8           N          CA          HA     108.209    1.50
+CZ8          CB          CA          HA     108.223    1.50
+CZ8          CA          CB         CAN     111.094    2.85
+CZ8          CA          CB          HB     108.562    1.50
+CZ8          CA          CB         HBA     108.562    1.50
+CZ8         CAN          CB          HB     108.891    1.50
+CZ8         CAN          CB         HBA     108.891    1.50
+CZ8          HB          CB         HBA     107.721    1.50
+CZ8         CAM         CAA         HAA     109.493    1.50
+CZ8         CAM         CAA        HAAA     109.493    1.50
+CZ8         CAM         CAA        HAAB     109.493    1.50
+CZ8         HAA         CAA        HAAA     109.417    1.50
+CZ8         HAA         CAA        HAAB     109.417    1.50
+CZ8        HAAA         CAA        HAAB     109.417    1.50
+CZ8         CAY         OAF        HOAF     120.000    3.00
+CZ8         BAY         OAG        HOAG     111.858    3.00
+CZ8         BAY         OAH        HOAH     111.858    3.00
+CZ8         CAY         CAI         CAK     119.825    1.50
+CZ8         CAY         CAI         HAI     120.006    1.50
+CZ8         CAK         CAI         HAI     120.168    1.50
+CZ8         CAY         CAJ         CAL     119.825    1.50
+CZ8         CAY         CAJ         HAJ     120.006    1.50
+CZ8         CAL         CAJ         HAJ     120.168    1.50
+CZ8         CAI         CAK         CAZ     121.472    1.50
+CZ8         CAI         CAK         HAK     119.210    1.50
+CZ8         CAZ         CAK         HAK     119.317    1.50
+CZ8         CAJ         CAL         CAZ     121.472    1.50
+CZ8         CAJ         CAL         HAL     119.210    1.50
+CZ8         CAZ         CAL         HAL     119.317    1.50
+CZ8         CAA         CAM         NBC     113.158    1.50
+CZ8         CAA         CAM         HAM     109.296    1.50
+CZ8         CAA         CAM        HAMA     109.296    1.50
+CZ8         NBC         CAM         HAM     108.907    1.50
+CZ8         NBC         CAM        HAMA     108.907    1.50
+CZ8         HAM         CAM        HAMA     107.955    1.50
+CZ8          CB         CAN         CAZ     114.108    2.12
+CZ8          CB         CAN         HAN     109.192    1.50
+CZ8          CB         CAN        HANA     109.192    1.50
+CZ8         CAZ         CAN         HAN     108.803    1.50
+CZ8         CAZ         CAN        HANA     108.803    1.50
+CZ8         HAN         CAN        HANA     107.745    1.50
+CZ8         NAS         CAP         BAY     109.471    3.00
+CZ8         NAS         CAP         HAP     108.953    1.50
+CZ8         NAS         CAP        HAPA     108.953    1.50
+CZ8         BAY         CAP         HAP     109.347    1.86
+CZ8         BAY         CAP        HAPA     109.347    1.86
+CZ8         HAP         CAP        HAPA     107.863    1.50
+CZ8         NBC         CAQ         CAR     110.821    2.82
+CZ8         NBC         CAQ         HAQ     109.155    1.50
+CZ8         NBC         CAQ        HAQA     109.155    1.50
+CZ8         CAR         CAQ         HAQ     109.532    1.50
+CZ8         CAR         CAQ        HAQA     109.532    1.50
+CZ8         HAQ         CAQ        HAQA     108.187    1.50
+CZ8         CAQ         CAR         NBD     110.160    1.50
+CZ8         CAQ         CAR         HAR     109.532    1.50
+CZ8         CAQ         CAR        HARA     109.532    1.50
+CZ8         NBD         CAR         HAR     108.940    1.50
+CZ8         NBD         CAR        HARA     108.940    1.50
+CZ8         HAR         CAR        HARA     108.187    1.50
+CZ8           C         NAS         CAP     122.080    1.50
+CZ8           C         NAS        HNAS     119.012    1.94
+CZ8         CAP         NAS        HNAS     118.909    1.94
+CZ8           N         CAV         OAC     122.775    2.56
+CZ8           N         CAV         NBD     117.448    3.00
+CZ8         OAC         CAV         NBD     119.776    1.50
+CZ8         OAD         CAW         CAX     118.681    1.50
+CZ8         OAD         CAW         NBC     123.241    1.56
+CZ8         CAX         CAW         NBC     118.078    1.50
+CZ8         OAE         CAX         CAW     117.443    1.50
+CZ8         OAE         CAX         NBD     121.671    1.50
+CZ8         CAW         CAX         NBD     120.885    1.50
+CZ8         OAG         BAY         OAH     119.999    3.00
+CZ8         OAG         BAY         CAP     120.000    3.00
+CZ8         OAH         BAY         CAP     120.000    3.00
+CZ8         OAF         CAY         CAI     120.215    3.00
+CZ8         OAF         CAY         CAJ     120.215    3.00
+CZ8         CAI         CAY         CAJ     119.571    1.50
+CZ8         CAK         CAZ         CAL     117.834    1.50
+CZ8         CAK         CAZ         CAN     121.083    1.50
+CZ8         CAL         CAZ         CAN     121.083    1.50
+CZ8         CAM         NBC         CAQ     117.139    1.83
+CZ8         CAM         NBC         CAW     120.078    1.62
+CZ8         CAQ         NBC         CAW     122.782    1.61
+CZ8         CAR         NBD         CAV     119.211    3.00
+CZ8         CAR         NBD         CAX     120.257    2.69
+CZ8         CAV         NBD         CAX     120.532    2.86
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CZ8            sp2_sp2_15           O           C         NAS         CAP       0.000     5.0     2
+CZ8            sp2_sp3_13           O           C          CA           N       0.000    10.0     6
+CZ8            sp3_sp3_28         OAH         BAY         OAG        HOAG     180.000    10.0     3
+CZ8            sp3_sp3_30         OAG         BAY         OAH        HOAH     180.000    10.0     3
+CZ8              const_21         CAY         CAI         CAK         CAZ       0.000    10.0     2
+CZ8       const_sp2_sp2_2         CAK         CAI         CAY         OAF     180.000     5.0     2
+CZ8       const_sp2_sp2_9         CAY         CAJ         CAL         CAZ       0.000     5.0     2
+CZ8       const_sp2_sp2_6         CAL         CAJ         CAY         OAF     180.000     5.0     2
+CZ8              const_18         CAI         CAK         CAZ         CAN     180.000    10.0     2
+CZ8              const_14         CAJ         CAL         CAZ         CAN     180.000    10.0     2
+CZ8            sp2_sp3_26         CAQ         NBC         CAM         CAA     -90.000    10.0     6
+CZ8            sp2_sp3_32         CAK         CAZ         CAN          CB     -90.000    10.0     6
+CZ8            sp2_sp3_38           C         NAS         CAP         BAY     120.000    10.0     6
+CZ8            sp3_sp3_32         OAG         BAY         CAP         NAS     180.000    10.0     3
+CZ8            sp3_sp3_38         NBC         CAQ         CAR         NBD     180.000    10.0     3
+CZ8             sp2_sp3_4         CAM         NBC         CAQ         CAR     180.000    10.0     6
+CZ8            sp2_sp2_19         OAC         CAV           N          CA       0.000     5.0     2
+CZ8            sp2_sp3_19         CAV           N          CA           C       0.000    10.0     6
+CZ8            sp2_sp3_10         CAV         NBD         CAR         CAQ     180.000    10.0     6
+CZ8            sp2_sp2_23           N         CAV         NBD         CAR     180.000     5.0     2
+CZ8             sp2_sp2_8         OAD         CAW         CAX         OAE       0.000     5.0     2
+CZ8             sp2_sp2_4         OAD         CAW         NBC         CAM       0.000     5.0     2
+CZ8            sp2_sp2_12         OAE         CAX         NBD         CAV       0.000     5.0     2
+CZ8             sp3_sp3_1           C          CA          CB         CAN     180.000    10.0     3
+CZ8            sp3_sp3_10         CAZ         CAN          CB          CA     180.000    10.0     3
+CZ8            sp3_sp3_19         HAA         CAA         CAM         NBC     180.000    10.0     3
+CZ8            sp2_sp2_21         CAI         CAY         OAF        HOAF     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CZ8    chir_1    CA    N    C    CB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CZ8    plan-1         CAI   0.020
+CZ8    plan-1         CAJ   0.020
+CZ8    plan-1         CAK   0.020
+CZ8    plan-1         CAL   0.020
+CZ8    plan-1         CAN   0.020
+CZ8    plan-1         CAY   0.020
+CZ8    plan-1         CAZ   0.020
+CZ8    plan-1         HAI   0.020
+CZ8    plan-1         HAJ   0.020
+CZ8    plan-1         HAK   0.020
+CZ8    plan-1         HAL   0.020
+CZ8    plan-1         OAF   0.020
+CZ8    plan-2           C   0.020
+CZ8    plan-2          CA   0.020
+CZ8    plan-2         NAS   0.020
+CZ8    plan-2           O   0.020
+CZ8    plan-3          CA   0.020
+CZ8    plan-3         CAV   0.020
+CZ8    plan-3          HN   0.020
+CZ8    plan-3           N   0.020
+CZ8    plan-4           C   0.020
+CZ8    plan-4         CAP   0.020
+CZ8    plan-4        HNAS   0.020
+CZ8    plan-4         NAS   0.020
+CZ8    plan-5         CAV   0.020
+CZ8    plan-5           N   0.020
+CZ8    plan-5         NBD   0.020
+CZ8    plan-5         OAC   0.020
+CZ8    plan-6         CAW   0.020
+CZ8    plan-6         CAX   0.020
+CZ8    plan-6         NBC   0.020
+CZ8    plan-6         OAD   0.020
+CZ8    plan-7         CAW   0.020
+CZ8    plan-7         CAX   0.020
+CZ8    plan-7         NBD   0.020
+CZ8    plan-7         OAE   0.020
+CZ8    plan-8         BAY   0.020
+CZ8    plan-8         CAP   0.020
+CZ8    plan-8         OAG   0.020
+CZ8    plan-8         OAH   0.020
+CZ8    plan-9         CAM   0.020
+CZ8    plan-9         CAQ   0.020
+CZ8    plan-9         CAW   0.020
+CZ8    plan-9         NBC   0.020
+CZ8   plan-10         CAR   0.020
+CZ8   plan-10         CAV   0.020
+CZ8   plan-10         CAX   0.020
+CZ8   plan-10         NBD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CZ8           SMILES              ACDLabs 12.01                                                                                                                          O=C(NCB(O)O)C(NC(=O)N1C(=O)C(=O)N(CC)CC1)CCc2ccc(O)cc2
+CZ8 SMILES_CANONICAL               CACTVS 3.370                                                                                                                        CCN1CCN(C(=O)N[C@H](CCc2ccc(O)cc2)C(=O)NCB(O)O)C(=O)C1=O
+CZ8           SMILES               CACTVS 3.370                                                                                                                         CCN1CCN(C(=O)N[CH](CCc2ccc(O)cc2)C(=O)NCB(O)O)C(=O)C1=O
+CZ8 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                     B(CNC(=O)[C@@H](CCc1ccc(cc1)O)NC(=O)N2CCN(C(=O)C2=O)CC)(O)O
+CZ8           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                          B(CNC(=O)C(CCc1ccc(cc1)O)NC(=O)N2CCN(C(=O)C2=O)CC)(O)O
+CZ8            InChI                InChI  1.03 InChI=1S/C18H25BN4O7/c1-2-22-9-10-23(17(27)16(22)26)18(28)21-14(15(25)20-11-19(29)30)8-5-12-3-6-13(24)7-4-12/h3-4,6-7,14,24,29-30H,2,5,8-11H2,1H3,(H,20,25)(H,21,28)/t14-/m1/s1
+CZ8         InChIKey                InChI  1.03                                                                                                                                                     RSVZQUMTCHOFDU-CQSZACIVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CZ8 acedrg               243         "dictionary generator"                  
+CZ8 acedrg_database      11          "data source"                           
+CZ8 rdkit                2017.03.2   "Chemoinformatics tool"
+CZ8 refmac5              5.8.0238    "optimization tool"                     

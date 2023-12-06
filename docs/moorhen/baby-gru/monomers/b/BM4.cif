@@ -1,0 +1,552 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BM4     BM4      3-[(3R)-3-ethyl-1-{9-[(3S)-3-ethyl-3-(3-hydroxyphenyl)azepan-1-yl]nonyl}azepan-3-yl]phenol     NON-POLYMER     99     41     .     
+#
+data_comp_BM4
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BM4     OAU     O       OH1     0       3.750       64.074      62.218      
+BM4     CAS     C       CR6     0       3.163       65.085      62.942      
+BM4     CAQ     C       CR16    0       3.815       66.310      63.068      
+BM4     CAT     C       CR16    0       1.928       64.888      63.540      
+BM4     CAR     C       CR16    0       1.352       65.917      64.266      
+BM4     CAP     C       CR16    0       2.001       67.135      64.394      
+BM4     CAO     C       CR6     0       3.254       67.363      63.813      
+BM4     CAC     C       CT      0       3.939       68.741      63.973      
+BM4     CAM     C       CH2     0       3.121       69.834      63.240      
+BM4     CAN     C       CH3     0       2.937       69.678      61.736      
+BM4     CAB     C       CH2     0       3.973       69.136      65.470      
+BM4     CAD     C       CH2     0       5.413       68.819      63.471      
+BM4     CAE     C       CH2     0       6.464       68.001      64.221      
+BM4     CAF     C       CH2     0       6.923       68.592      65.546      
+BM4     CAG     C       CH2     0       5.982       68.357      66.722      
+BM4     NAA     N       NT      0       4.566       68.098      66.349      
+BM4     CAH     C       CH2     0       3.756       67.645      67.513      
+BM4     CAI     C       CH2     0       3.866       66.152      67.786      
+BM4     CAJ     C       CH2     0       2.842       65.643      68.773      
+BM4     CAK     C       CH2     0       2.917       64.158      69.019      
+BM4     CAL     C       CH2     0       1.860       63.634      69.957      
+BM4     CAV     C       CH2     0       2.084       63.995      71.406      
+BM4     CAW     C       CH2     0       1.048       63.441      72.350      
+BM4     CAX     C       CH2     0       1.212       61.963      72.632      
+BM4     CAY     C       CH2     0       0.228       61.406      73.653      
+BM4     NAZ     N       NT      0       -0.858      60.567      73.078      
+BM4     C24     C       CH2     0       -1.762      61.340      72.178      
+BM4     C25     C       CH2     0       -3.254      59.266      71.841      
+BM4     C26     C       CH2     0       -0.404      59.272      72.516      
+BM4     C27     C       CT      0       -1.214      58.038      72.995      
+BM4     C28     C       CH2     0       -2.723      58.440      73.012      
+BM4     C29     C       CR16    0       -1.418      57.499      75.530      
+BM4     C30     C       CR6     0       -0.648      57.579      74.361      
+BM4     C31     C       CR16    0       0.696       57.175      74.456      
+BM4     C32     C       CR6     0       1.245       56.748      75.663      
+BM4     C33     C       CR16    0       0.460       56.694      76.803      
+BM4     C34     C       CR16    0       -0.870      57.072      76.730      
+BM4     C35     C       CH2     0       -1.021      56.912      71.943      
+BM4     O2      O       OH1     0       2.567       56.376      75.720      
+BM4     C36     C       CH3     0       -1.491      55.511      72.319      
+BM4     C37     C       CH2     0       -3.170      60.770      72.052      
+BM4     HOAU    H       H       0       3.296       63.378      61.990      
+BM4     HAQ     H       H       0       4.654       66.419      62.655      
+BM4     HAT     H       H       0       1.485       64.062      63.452      
+BM4     HAR     H       H       0       0.514       65.787      64.673      
+BM4     HAP     H       H       0       1.588       67.822      64.891      
+BM4     HAM     H       H       0       3.553       70.697      63.413      
+BM4     HAMA    H       H       0       2.235       69.873      63.656      
+BM4     HAN     H       H       0       2.398       70.414      61.398      
+BM4     HANA    H       H       0       2.486       68.840      61.538      
+BM4     HANB    H       H       0       3.801       69.689      61.290      
+BM4     HAB     H       H       0       4.490       69.967      65.557      
+BM4     HABA    H       H       0       3.059       69.335      65.765      
+BM4     HAD     H       H       0       5.682       69.761      63.503      
+BM4     HADA    H       H       0       5.426       68.553      62.529      
+BM4     HAE     H       H       0       7.249       67.902      63.640      
+BM4     HAEA    H       H       0       6.113       67.102      64.387      
+BM4     HAF     H       H       0       7.043       69.559      65.432      
+BM4     HAFA    H       H       0       7.799       68.212      65.770      
+BM4     HAG     H       H       0       6.011       69.142      67.307      
+BM4     HAGA    H       H       0       6.314       67.593      67.238      
+BM4     HAH     H       H       0       2.814       67.862      67.358      
+BM4     HAHA    H       H       0       4.044       68.134      68.312      
+BM4     HAI     H       H       0       4.764       65.958      68.130      
+BM4     HAIA    H       H       0       3.759       65.667      66.939      
+BM4     HAJ     H       H       0       1.946       65.863      68.442      
+BM4     HAJA    H       H       0       2.968       66.111      69.626      
+BM4     HAK     H       H       0       3.800       63.943      69.388      
+BM4     HAKA    H       H       0       2.833       63.692      68.159      
+BM4     HAL     H       H       0       1.827       62.657      69.877      
+BM4     HALA    H       H       0       0.988       63.985      69.676      
+BM4     HAV     H       H       0       2.092       64.972      71.490      
+BM4     HAVA    H       H       0       2.966       63.666      71.679      
+BM4     HAW     H       H       0       0.158       63.594      71.967      
+BM4     HAWA    H       H       0       1.097       63.934      73.197      
+BM4     HAX     H       H       0       2.124       61.805      72.959      
+BM4     HAXA    H       H       0       1.112       61.471      71.790      
+BM4     HAY     H       H       0       -0.177      62.152      74.142      
+BM4     HAYA    H       H       0       0.726       60.869      74.304      
+BM4     H39     H       H       0       -1.831      62.259      72.511      
+BM4     H40     H       H       0       -1.359      61.384      71.285      
+BM4     H41     H       H       0       -4.194      59.026      71.693      
+BM4     H42     H       H       0       -2.763      59.034      71.025      
+BM4     H43     H       H       0       0.541       59.142      72.739      
+BM4     H44     H       H       0       -0.461      59.312      71.536      
+BM4     H45     H       H       0       -3.251      57.619      73.079      
+BM4     H46     H       H       0       -2.887      58.953      73.828      
+BM4     H47     H       H       0       -2.323      57.748      75.512      
+BM4     H48     H       H       0       1.247       57.207      73.689      
+BM4     H49     H       H       0       0.828       56.403      77.619      
+BM4     H50     H       H       0       -1.406      57.036      77.503      
+BM4     H51     H       H       0       -0.065      56.867      71.728      
+BM4     H52     H       H       0       -1.480      57.180      71.123      
+BM4     H53     H       H       0       3.150       56.782      75.233      
+BM4     H54     H       H       0       -1.533      54.958      71.520      
+BM4     H55     H       H       0       -2.373      55.550      72.725      
+BM4     H56     H       H       0       -0.868      55.109      72.949      
+BM4     H57     H       H       0       -3.617      61.215      71.300      
+BM4     H58     H       H       0       -3.670      60.999      72.865      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BM4         OAU         CAS      SINGLE       n     1.374  0.0155     1.374  0.0155
+BM4         CAS         CAQ      DOUBLE       y     1.389  0.0102     1.389  0.0102
+BM4         CAS         CAT      SINGLE       y     1.384  0.0104     1.384  0.0104
+BM4         CAQ         CAO      SINGLE       y     1.392  0.0130     1.392  0.0130
+BM4         CAT         CAR      DOUBLE       y     1.382  0.0111     1.382  0.0111
+BM4         CAR         CAP      SINGLE       y     1.382  0.0119     1.382  0.0119
+BM4         CAP         CAO      DOUBLE       y     1.392  0.0100     1.392  0.0100
+BM4         CAO         CAC      SINGLE       n     1.534  0.0100     1.534  0.0100
+BM4         CAC         CAM      SINGLE       n     1.543  0.0125     1.543  0.0125
+BM4         CAC         CAB      SINGLE       n     1.544  0.0100     1.544  0.0100
+BM4         CAC         CAD      SINGLE       n     1.548  0.0114     1.548  0.0114
+BM4         CAM         CAN      SINGLE       n     1.515  0.0200     1.515  0.0200
+BM4         CAB         NAA      SINGLE       n     1.478  0.0100     1.478  0.0100
+BM4         CAD         CAE      SINGLE       n     1.523  0.0117     1.523  0.0117
+BM4         CAE         CAF      SINGLE       n     1.514  0.0200     1.514  0.0200
+BM4         CAF         CAG      SINGLE       n     1.522  0.0100     1.522  0.0100
+BM4         CAG         NAA      SINGLE       n     1.475  0.0184     1.475  0.0184
+BM4         NAA         CAH      SINGLE       n     1.475  0.0184     1.475  0.0184
+BM4         CAH         CAI      SINGLE       n     1.522  0.0100     1.522  0.0100
+BM4         CAI         CAJ      SINGLE       n     1.514  0.0200     1.514  0.0200
+BM4         CAJ         CAK      SINGLE       n     1.509  0.0200     1.509  0.0200
+BM4         CAK         CAL      SINGLE       n     1.509  0.0200     1.509  0.0200
+BM4         CAL         CAV      SINGLE       n     1.509  0.0200     1.509  0.0200
+BM4         CAV         CAW      SINGLE       n     1.509  0.0200     1.509  0.0200
+BM4         CAW         CAX      SINGLE       n     1.514  0.0200     1.514  0.0200
+BM4         CAX         CAY      SINGLE       n     1.522  0.0100     1.522  0.0100
+BM4         CAY         NAZ      SINGLE       n     1.475  0.0184     1.475  0.0184
+BM4         NAZ         C24      SINGLE       n     1.475  0.0184     1.475  0.0184
+BM4         NAZ         C26      SINGLE       n     1.478  0.0100     1.478  0.0100
+BM4         C26         C27      SINGLE       n     1.544  0.0100     1.544  0.0100
+BM4         C25         C28      SINGLE       n     1.523  0.0117     1.523  0.0117
+BM4         C27         C28      SINGLE       n     1.548  0.0114     1.548  0.0114
+BM4         C29         C30      DOUBLE       y     1.392  0.0100     1.392  0.0100
+BM4         C30         C31      SINGLE       y     1.392  0.0130     1.392  0.0130
+BM4         C31         C32      DOUBLE       y     1.389  0.0102     1.389  0.0102
+BM4         C32         C33      SINGLE       y     1.384  0.0104     1.384  0.0104
+BM4         C33         C34      DOUBLE       y     1.382  0.0111     1.382  0.0111
+BM4         C29         C34      SINGLE       y     1.382  0.0119     1.382  0.0119
+BM4         C27         C30      SINGLE       n     1.534  0.0100     1.534  0.0100
+BM4         C27         C35      SINGLE       n     1.543  0.0125     1.543  0.0125
+BM4         C32          O2      SINGLE       n     1.374  0.0155     1.374  0.0155
+BM4         C35         C36      SINGLE       n     1.515  0.0200     1.515  0.0200
+BM4         C24         C37      SINGLE       n     1.522  0.0100     1.522  0.0100
+BM4         C25         C37      SINGLE       n     1.514  0.0200     1.514  0.0200
+BM4         OAU        HOAU      SINGLE       n     0.966  0.0059     0.861  0.0200
+BM4         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.945  0.0164
+BM4         CAT         HAT      SINGLE       n     1.082  0.0130     0.942  0.0163
+BM4         CAR         HAR      SINGLE       n     1.082  0.0130     0.941  0.0152
+BM4         CAP         HAP      SINGLE       n     1.082  0.0130     0.944  0.0174
+BM4         CAM         HAM      SINGLE       n     1.089  0.0100     0.980  0.0160
+BM4         CAM        HAMA      SINGLE       n     1.089  0.0100     0.980  0.0160
+BM4         CAN         HAN      SINGLE       n     1.089  0.0100     0.973  0.0157
+BM4         CAN        HANA      SINGLE       n     1.089  0.0100     0.973  0.0157
+BM4         CAN        HANB      SINGLE       n     1.089  0.0100     0.973  0.0157
+BM4         CAB         HAB      SINGLE       n     1.089  0.0100     0.982  0.0143
+BM4         CAB        HABA      SINGLE       n     1.089  0.0100     0.982  0.0143
+BM4         CAD         HAD      SINGLE       n     1.089  0.0100     0.980  0.0160
+BM4         CAD        HADA      SINGLE       n     1.089  0.0100     0.980  0.0160
+BM4         CAE         HAE      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         CAE        HAEA      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         CAF         HAF      SINGLE       n     1.089  0.0100     0.981  0.0160
+BM4         CAF        HAFA      SINGLE       n     1.089  0.0100     0.981  0.0160
+BM4         CAG         HAG      SINGLE       n     1.089  0.0100     0.980  0.0143
+BM4         CAG        HAGA      SINGLE       n     1.089  0.0100     0.980  0.0143
+BM4         CAH         HAH      SINGLE       n     1.089  0.0100     0.980  0.0143
+BM4         CAH        HAHA      SINGLE       n     1.089  0.0100     0.980  0.0143
+BM4         CAI         HAI      SINGLE       n     1.089  0.0100     0.981  0.0160
+BM4         CAI        HAIA      SINGLE       n     1.089  0.0100     0.981  0.0160
+BM4         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         CAK         HAK      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         CAK        HAKA      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         CAL         HAL      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         CAL        HALA      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         CAV         HAV      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         CAV        HAVA      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         CAW         HAW      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         CAW        HAWA      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         CAX         HAX      SINGLE       n     1.089  0.0100     0.981  0.0160
+BM4         CAX        HAXA      SINGLE       n     1.089  0.0100     0.981  0.0160
+BM4         CAY         HAY      SINGLE       n     1.089  0.0100     0.980  0.0143
+BM4         CAY        HAYA      SINGLE       n     1.089  0.0100     0.980  0.0143
+BM4         C24         H39      SINGLE       n     1.089  0.0100     0.980  0.0143
+BM4         C24         H40      SINGLE       n     1.089  0.0100     0.980  0.0143
+BM4         C25         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         C25         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+BM4         C26         H43      SINGLE       n     1.089  0.0100     0.982  0.0143
+BM4         C26         H44      SINGLE       n     1.089  0.0100     0.982  0.0143
+BM4         C28         H45      SINGLE       n     1.089  0.0100     0.980  0.0160
+BM4         C28         H46      SINGLE       n     1.089  0.0100     0.980  0.0160
+BM4         C29         H47      SINGLE       n     1.082  0.0130     0.944  0.0174
+BM4         C31         H48      SINGLE       n     1.082  0.0130     0.945  0.0164
+BM4         C33         H49      SINGLE       n     1.082  0.0130     0.942  0.0163
+BM4         C34         H50      SINGLE       n     1.082  0.0130     0.941  0.0152
+BM4         C35         H51      SINGLE       n     1.089  0.0100     0.980  0.0160
+BM4         C35         H52      SINGLE       n     1.089  0.0100     0.980  0.0160
+BM4          O2         H53      SINGLE       n     0.966  0.0059     0.861  0.0200
+BM4         C36         H54      SINGLE       n     1.089  0.0100     0.973  0.0157
+BM4         C36         H55      SINGLE       n     1.089  0.0100     0.973  0.0157
+BM4         C36         H56      SINGLE       n     1.089  0.0100     0.973  0.0157
+BM4         C37         H57      SINGLE       n     1.089  0.0100     0.981  0.0160
+BM4         C37         H58      SINGLE       n     1.089  0.0100     0.981  0.0160
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BM4         CAS         OAU        HOAU     120.000    3.00
+BM4         OAU         CAS         CAQ     120.120    3.00
+BM4         OAU         CAS         CAT     120.120    3.00
+BM4         CAQ         CAS         CAT     119.760    1.50
+BM4         CAS         CAQ         CAO     120.753    1.50
+BM4         CAS         CAQ         HAQ     119.684    1.50
+BM4         CAO         CAQ         HAQ     119.564    1.50
+BM4         CAS         CAT         CAR     119.415    1.50
+BM4         CAS         CAT         HAT     120.195    1.50
+BM4         CAR         CAT         HAT     120.389    1.50
+BM4         CAT         CAR         CAP     120.324    1.50
+BM4         CAT         CAR         HAR     119.699    1.50
+BM4         CAP         CAR         HAR     119.977    1.50
+BM4         CAR         CAP         CAO     121.185    1.50
+BM4         CAR         CAP         HAP     119.608    1.50
+BM4         CAO         CAP         HAP     119.208    1.50
+BM4         CAQ         CAO         CAP     118.564    1.50
+BM4         CAQ         CAO         CAC     120.718    1.79
+BM4         CAP         CAO         CAC     120.718    1.79
+BM4         CAO         CAC         CAM     111.348    1.78
+BM4         CAO         CAC         CAB     107.608    2.78
+BM4         CAO         CAC         CAD     111.348    1.78
+BM4         CAM         CAC         CAB     111.094    2.85
+BM4         CAM         CAC         CAD     108.558    1.50
+BM4         CAB         CAC         CAD     111.094    2.85
+BM4         CAC         CAM         CAN     115.795    1.50
+BM4         CAC         CAM         HAM     107.609    1.50
+BM4         CAC         CAM        HAMA     107.609    1.50
+BM4         CAN         CAM         HAM     108.580    1.50
+BM4         CAN         CAM        HAMA     108.580    1.50
+BM4         HAM         CAM        HAMA     107.057    1.50
+BM4         CAM         CAN         HAN     110.150    1.88
+BM4         CAM         CAN        HANA     110.150    1.88
+BM4         CAM         CAN        HANB     110.150    1.88
+BM4         HAN         CAN        HANA     109.380    1.50
+BM4         HAN         CAN        HANB     109.380    1.50
+BM4        HANA         CAN        HANB     109.380    1.50
+BM4         CAC         CAB         NAA     114.350    1.64
+BM4         CAC         CAB         HAB     108.397    1.50
+BM4         CAC         CAB        HABA     108.397    1.50
+BM4         NAA         CAB         HAB     109.010    1.50
+BM4         NAA         CAB        HABA     109.010    1.50
+BM4         HAB         CAB        HABA     107.873    1.50
+BM4         CAC         CAD         CAE     115.754    1.50
+BM4         CAC         CAD         HAD     107.609    1.50
+BM4         CAC         CAD        HADA     107.609    1.50
+BM4         CAE         CAD         HAD     108.801    1.50
+BM4         CAE         CAD        HADA     108.801    1.50
+BM4         HAD         CAD        HADA     107.445    1.50
+BM4         CAD         CAE         CAF     114.183    2.57
+BM4         CAD         CAE         HAE     108.801    1.50
+BM4         CAD         CAE        HAEA     108.801    1.50
+BM4         CAF         CAE         HAE     108.806    1.50
+BM4         CAF         CAE        HAEA     108.806    1.50
+BM4         HAE         CAE        HAEA     107.646    1.50
+BM4         CAE         CAF         CAG     114.202    2.06
+BM4         CAE         CAF         HAF     109.041    1.50
+BM4         CAE         CAF        HAFA     109.041    1.50
+BM4         CAG         CAF         HAF     108.945    1.50
+BM4         CAG         CAF        HAFA     108.945    1.50
+BM4         HAF         CAF        HAFA     107.927    1.57
+BM4         CAF         CAG         NAA     114.151    1.56
+BM4         CAF         CAG         HAG     108.873    1.50
+BM4         CAF         CAG        HAGA     108.873    1.50
+BM4         NAA         CAG         HAG     108.838    1.50
+BM4         NAA         CAG        HAGA     108.838    1.50
+BM4         HAG         CAG        HAGA     107.673    1.50
+BM4         CAB         NAA         CAG     112.216    2.51
+BM4         CAB         NAA         CAH     112.216    2.51
+BM4         CAG         NAA         CAH     111.410    1.50
+BM4         NAA         CAH         CAI     114.151    1.56
+BM4         NAA         CAH         HAH     108.838    1.50
+BM4         NAA         CAH        HAHA     108.838    1.50
+BM4         CAI         CAH         HAH     108.873    1.50
+BM4         CAI         CAH        HAHA     108.873    1.50
+BM4         HAH         CAH        HAHA     107.673    1.50
+BM4         CAH         CAI         CAJ     114.202    2.06
+BM4         CAH         CAI         HAI     108.945    1.50
+BM4         CAH         CAI        HAIA     108.945    1.50
+BM4         CAJ         CAI         HAI     109.041    1.50
+BM4         CAJ         CAI        HAIA     109.041    1.50
+BM4         HAI         CAI        HAIA     107.927    1.57
+BM4         CAI         CAJ         CAK     113.853    2.32
+BM4         CAI         CAJ         HAJ     108.806    1.50
+BM4         CAI         CAJ        HAJA     108.806    1.50
+BM4         CAK         CAJ         HAJ     108.698    1.50
+BM4         CAK         CAJ        HAJA     108.698    1.50
+BM4         HAJ         CAJ        HAJA     107.646    1.50
+BM4         CAJ         CAK         CAL     114.243    1.69
+BM4         CAJ         CAK         HAK     108.698    1.50
+BM4         CAJ         CAK        HAKA     108.698    1.50
+BM4         CAL         CAK         HAK     108.698    1.50
+BM4         CAL         CAK        HAKA     108.698    1.50
+BM4         HAK         CAK        HAKA     107.646    1.50
+BM4         CAK         CAL         CAV     114.243    1.69
+BM4         CAK         CAL         HAL     108.698    1.50
+BM4         CAK         CAL        HALA     108.698    1.50
+BM4         CAV         CAL         HAL     108.698    1.50
+BM4         CAV         CAL        HALA     108.698    1.50
+BM4         HAL         CAL        HALA     107.646    1.50
+BM4         CAL         CAV         CAW     114.243    1.69
+BM4         CAL         CAV         HAV     108.698    1.50
+BM4         CAL         CAV        HAVA     108.698    1.50
+BM4         CAW         CAV         HAV     108.698    1.50
+BM4         CAW         CAV        HAVA     108.698    1.50
+BM4         HAV         CAV        HAVA     107.646    1.50
+BM4         CAV         CAW         CAX     113.853    2.32
+BM4         CAV         CAW         HAW     108.698    1.50
+BM4         CAV         CAW        HAWA     108.698    1.50
+BM4         CAX         CAW         HAW     108.806    1.50
+BM4         CAX         CAW        HAWA     108.806    1.50
+BM4         HAW         CAW        HAWA     107.646    1.50
+BM4         CAW         CAX         CAY     114.202    2.06
+BM4         CAW         CAX         HAX     109.041    1.50
+BM4         CAW         CAX        HAXA     109.041    1.50
+BM4         CAY         CAX         HAX     108.945    1.50
+BM4         CAY         CAX        HAXA     108.945    1.50
+BM4         HAX         CAX        HAXA     107.927    1.57
+BM4         CAX         CAY         NAZ     114.151    1.56
+BM4         CAX         CAY         HAY     108.873    1.50
+BM4         CAX         CAY        HAYA     108.873    1.50
+BM4         NAZ         CAY         HAY     108.838    1.50
+BM4         NAZ         CAY        HAYA     108.838    1.50
+BM4         HAY         CAY        HAYA     107.673    1.50
+BM4         CAY         NAZ         C24     111.410    1.50
+BM4         CAY         NAZ         C26     112.216    2.51
+BM4         C24         NAZ         C26     112.216    2.51
+BM4         NAZ         C24         C37     114.151    1.56
+BM4         NAZ         C24         H39     108.838    1.50
+BM4         NAZ         C24         H40     108.838    1.50
+BM4         C37         C24         H39     108.873    1.50
+BM4         C37         C24         H40     108.873    1.50
+BM4         H39         C24         H40     107.673    1.50
+BM4         C28         C25         C37     114.183    2.57
+BM4         C28         C25         H41     108.801    1.50
+BM4         C28         C25         H42     108.801    1.50
+BM4         C37         C25         H41     108.806    1.50
+BM4         C37         C25         H42     108.806    1.50
+BM4         H41         C25         H42     107.646    1.50
+BM4         NAZ         C26         C27     114.350    1.64
+BM4         NAZ         C26         H43     109.010    1.50
+BM4         NAZ         C26         H44     109.010    1.50
+BM4         C27         C26         H43     108.397    1.50
+BM4         C27         C26         H44     108.397    1.50
+BM4         H43         C26         H44     107.873    1.50
+BM4         C26         C27         C28     111.094    2.85
+BM4         C26         C27         C30     107.608    2.78
+BM4         C26         C27         C35     111.094    2.85
+BM4         C28         C27         C30     111.348    1.78
+BM4         C28         C27         C35     108.558    1.50
+BM4         C30         C27         C35     111.348    1.78
+BM4         C25         C28         C27     115.754    1.50
+BM4         C25         C28         H45     108.801    1.50
+BM4         C25         C28         H46     108.801    1.50
+BM4         C27         C28         H45     107.609    1.50
+BM4         C27         C28         H46     107.609    1.50
+BM4         H45         C28         H46     107.445    1.50
+BM4         C30         C29         C34     121.185    1.50
+BM4         C30         C29         H47     119.208    1.50
+BM4         C34         C29         H47     119.608    1.50
+BM4         C29         C30         C31     118.564    1.50
+BM4         C29         C30         C27     120.718    1.79
+BM4         C31         C30         C27     120.718    1.79
+BM4         C30         C31         C32     120.753    1.50
+BM4         C30         C31         H48     119.564    1.50
+BM4         C32         C31         H48     119.684    1.50
+BM4         C31         C32         C33     119.760    1.50
+BM4         C31         C32          O2     120.120    3.00
+BM4         C33         C32          O2     120.120    3.00
+BM4         C32         C33         C34     119.415    1.50
+BM4         C32         C33         H49     120.195    1.50
+BM4         C34         C33         H49     120.389    1.50
+BM4         C33         C34         C29     120.324    1.50
+BM4         C33         C34         H50     119.699    1.50
+BM4         C29         C34         H50     119.977    1.50
+BM4         C27         C35         C36     115.795    1.50
+BM4         C27         C35         H51     107.609    1.50
+BM4         C27         C35         H52     107.609    1.50
+BM4         C36         C35         H51     108.580    1.50
+BM4         C36         C35         H52     108.580    1.50
+BM4         H51         C35         H52     107.057    1.50
+BM4         C32          O2         H53     120.000    3.00
+BM4         C35         C36         H54     110.150    1.88
+BM4         C35         C36         H55     110.150    1.88
+BM4         C35         C36         H56     110.150    1.88
+BM4         H54         C36         H55     109.380    1.50
+BM4         H54         C36         H56     109.380    1.50
+BM4         H55         C36         H56     109.380    1.50
+BM4         C24         C37         C25     114.202    2.06
+BM4         C24         C37         H57     108.945    1.50
+BM4         C24         C37         H58     108.945    1.50
+BM4         C25         C37         H57     109.041    1.50
+BM4         C25         C37         H58     109.041    1.50
+BM4         H57         C37         H58     107.927    1.57
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BM4             sp2_sp2_1         CAQ         CAS         OAU        HOAU     180.000     5.0     2
+BM4            sp3_sp3_37         CAC         CAB         NAA         CAG     180.000    10.0     3
+BM4            sp3_sp3_43         CAC         CAD         CAE         CAF     180.000    10.0     3
+BM4            sp3_sp3_52         CAD         CAE         CAF         CAG     180.000    10.0     3
+BM4            sp3_sp3_61         CAE         CAF         CAG         NAA     180.000    10.0     3
+BM4            sp3_sp3_70         CAF         CAG         NAA         CAB     180.000    10.0     3
+BM4            sp3_sp3_76         CAI         CAH         NAA         CAB     180.000    10.0     3
+BM4            sp3_sp3_82         NAA         CAH         CAI         CAJ     180.000    10.0     3
+BM4            sp3_sp3_91         CAH         CAI         CAJ         CAK     180.000    10.0     3
+BM4           sp3_sp3_100         CAI         CAJ         CAK         CAL     180.000    10.0     3
+BM4           sp3_sp3_109         CAJ         CAK         CAL         CAV     180.000    10.0     3
+BM4              const_22         CAO         CAQ         CAS         OAU     180.000    10.0     2
+BM4              const_43         OAU         CAS         CAT         CAR     180.000    10.0     2
+BM4           sp3_sp3_118         CAK         CAL         CAV         CAW     180.000    10.0     3
+BM4           sp3_sp3_127         CAL         CAV         CAW         CAX     180.000    10.0     3
+BM4           sp3_sp3_136         CAV         CAW         CAX         CAY     180.000    10.0     3
+BM4           sp3_sp3_145         CAW         CAX         CAY         NAZ     180.000    10.0     3
+BM4           sp3_sp3_154         CAX         CAY         NAZ         C24     180.000    10.0     3
+BM4           sp3_sp3_160         C37         C24         NAZ         CAY     180.000    10.0     3
+BM4           sp3_sp3_166         C27         C26         NAZ         CAY     180.000    10.0     3
+BM4           sp3_sp3_217         NAZ         C24         C37         C25     180.000    10.0     3
+BM4           sp3_sp3_181         C37         C25         C28         C27     180.000    10.0     3
+BM4           sp3_sp3_226         C28         C25         C37         C24     180.000    10.0     3
+BM4           sp3_sp3_172         NAZ         C26         C27         C28     180.000    10.0     3
+BM4           sp3_sp3_190         C26         C27         C28         C25     180.000    10.0     3
+BM4             sp2_sp3_7         C29         C30         C27         C26     150.000    10.0     6
+BM4           sp3_sp3_199         C26         C27         C35         C36     180.000    10.0     3
+BM4              const_27         CAC         CAO         CAQ         CAS     180.000    10.0     2
+BM4       const_sp2_sp2_2         C34         C29         C30         C27     180.000     5.0     2
+BM4              const_45         C30         C29         C34         C33       0.000    10.0     2
+BM4       const_sp2_sp2_7         C27         C30         C31         C32     180.000     5.0     2
+BM4              const_10         C30         C31         C32          O2     180.000    10.0     2
+BM4              const_15          O2         C32         C33         C34     180.000    10.0     2
+BM4             sp2_sp2_3         C31         C32          O2         H53     180.000     5.0     2
+BM4              const_17         C32         C33         C34         C29       0.000    10.0     2
+BM4           sp3_sp3_208         C27         C35         C36         H54     180.000    10.0     3
+BM4              const_37         CAP         CAR         CAT         CAS       0.000    10.0     2
+BM4              const_33         CAO         CAP         CAR         CAT       0.000    10.0     2
+BM4              const_31         CAC         CAO         CAP         CAR     180.000    10.0     2
+BM4             sp2_sp3_1         CAQ         CAO         CAC         CAM     150.000    10.0     6
+BM4            sp3_sp3_11         NAA         CAB         CAC         CAM     -60.000    10.0     3
+BM4            sp3_sp3_22         CAM         CAC         CAD         CAE      60.000    10.0     3
+BM4             sp3_sp3_4         CAB         CAC         CAM         CAN      60.000    10.0     3
+BM4            sp3_sp3_28         CAC         CAM         CAN         HAN     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BM4    chir_1    CAC    CAB    CAO    CAD    positive
+BM4    chir_2    NAA    CAB    CAG    CAH    negative
+BM4    chir_3    NAZ    C26    C24    CAY    positive
+BM4    chir_4    C27    C26    C30    C28    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BM4    plan-1         CAC   0.020
+BM4    plan-1         CAO   0.020
+BM4    plan-1         CAP   0.020
+BM4    plan-1         CAQ   0.020
+BM4    plan-1         CAR   0.020
+BM4    plan-1         CAS   0.020
+BM4    plan-1         CAT   0.020
+BM4    plan-1         HAP   0.020
+BM4    plan-1         HAQ   0.020
+BM4    plan-1         HAR   0.020
+BM4    plan-1         HAT   0.020
+BM4    plan-1         OAU   0.020
+BM4    plan-2         C27   0.020
+BM4    plan-2         C29   0.020
+BM4    plan-2         C30   0.020
+BM4    plan-2         C31   0.020
+BM4    plan-2         C32   0.020
+BM4    plan-2         C33   0.020
+BM4    plan-2         C34   0.020
+BM4    plan-2         H47   0.020
+BM4    plan-2         H48   0.020
+BM4    plan-2         H49   0.020
+BM4    plan-2         H50   0.020
+BM4    plan-2          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BM4           SMILES              ACDLabs 10.04                                                                                                                                            Oc1cccc(c1)C2(CC)CCCCN(C2)CCCCCCCCCN4CCCCC(c3cccc(O)c3)(CC)C4
+BM4 SMILES_CANONICAL               CACTVS 3.352                                                                                                                                     CC[C@]1(CCCCN(CCCCCCCCCN2CCCC[C@@](CC)(C2)c3cccc(O)c3)C1)c4cccc(O)c4
+BM4           SMILES               CACTVS 3.352                                                                                                                                        CC[C]1(CCCCN(CCCCCCCCCN2CCCC[C](CC)(C2)c3cccc(O)c3)C1)c4cccc(O)c4
+BM4 SMILES_CANONICAL "OpenEye OEToolkits" 1.6.1                                                                                                                                CC[C@]1(CCCC[N@](C1)CCCCCCCCC[N@]2CCCC[C@](C2)(CC)c3cccc(c3)O)c4cccc(c4)O
+BM4           SMILES "OpenEye OEToolkits" 1.6.1                                                                                                                                            CCC1(CCCCN(C1)CCCCCCCCCN2CCCCC(C2)(CC)c3cccc(c3)O)c4cccc(c4)O
+BM4            InChI                InChI  1.03 InChI=1S/C37H58N2O2/c1-3-36(32-18-16-20-34(40)28-32)22-10-14-26-38(30-36)24-12-8-6-5-7-9-13-25-39-27-15-11-23-37(4-2,31-39)33-19-17-21-35(41)29-33/h16-21,28-29,40-41H,3-15,22-27,30-31H2,1-2H3/t36-,37+
+BM4         InChIKey                InChI  1.03                                                                                                                                                                              ZZKZUUMHRSWLQQ-JXLNJXQWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BM4 acedrg               243         "dictionary generator"                  
+BM4 acedrg_database      11          "data source"                           
+BM4 rdkit                2017.03.2   "Chemoinformatics tool"
+BM4 refmac5              5.8.0238    "optimization tool"                     

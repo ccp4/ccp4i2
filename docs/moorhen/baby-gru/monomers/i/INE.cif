@@ -1,0 +1,170 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+INE     INE      3-BROMO-7-NITROINDAZOLE     NON-POLYMER     17     13     .     
+#
+data_comp_INE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+INE     N1      N       NR5     0       5.616       11.764      30.543      
+INE     N2      N       NRD5    0       6.324       11.316      29.466      
+INE     C3      C       CR5     0       7.602       11.265      29.825      
+INE     C4      C       CR16    0       8.815       11.839      32.058      
+INE     C5      C       CR16    0       8.568       12.292      33.338      
+INE     C6      C       CR16    0       7.284       12.603      33.765      
+INE     C7      C       CR6     0       6.191       12.463      32.901      
+INE     C8      C       CR56    0       6.433       12.002      31.594      
+INE     C9      C       CR56    0       7.740       11.688      31.168      
+INE     N10     N       N       1       4.848       12.793      33.360      
+INE     O11     O       OC      -1      4.638       13.924      33.769      
+INE     O12     O       O       0       3.990       11.924      33.318      
+INE     BR      BR      BR      0       8.959       10.705      28.668      
+INE     H11     H       H       0       4.747       11.868      30.508      
+INE     H41     H       H       0       9.693       11.633      31.786      
+INE     H51     H       H       0       9.288       12.395      33.941      
+INE     H61     H       H       0       7.144       12.911      34.644      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+INE          N1          N2      SINGLE       y     1.362  0.0100     1.362  0.0100
+INE          N1          C8      SINGLE       y     1.353  0.0100     1.353  0.0100
+INE          N2          C3      DOUBLE       y     1.326  0.0123     1.326  0.0123
+INE          C3          C9      SINGLE       y     1.416  0.0100     1.416  0.0100
+INE          C3          BR      SINGLE       n     1.869  0.0100     1.869  0.0100
+INE          C4          C5      SINGLE       y     1.376  0.0100     1.376  0.0100
+INE          C4          C9      DOUBLE       y     1.401  0.0100     1.401  0.0100
+INE          C5          C6      DOUBLE       y     1.384  0.0100     1.384  0.0100
+INE          C6          C7      SINGLE       y     1.394  0.0127     1.394  0.0127
+INE          C7          C8      DOUBLE       y     1.403  0.0100     1.403  0.0100
+INE          C7         N10      SINGLE       n     1.457  0.0200     1.457  0.0200
+INE          C8          C9      SINGLE       y     1.410  0.0105     1.410  0.0105
+INE         N10         O11      SINGLE       n     1.221  0.0162     1.221  0.0162
+INE         N10         O12      DOUBLE       n     1.221  0.0162     1.221  0.0162
+INE          N1         H11      SINGLE       n     1.016  0.0100     0.876  0.0200
+INE          C4         H41      SINGLE       n     1.082  0.0130     0.942  0.0182
+INE          C5         H51      SINGLE       n     1.082  0.0130     0.945  0.0137
+INE          C6         H61      SINGLE       n     1.082  0.0130     0.942  0.0177
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+INE          N2          N1          C8     110.668    1.50
+INE          N2          N1         H11     121.655    3.00
+INE          C8          N1         H11     127.677    3.00
+INE          N1          N2          C3     106.390    1.50
+INE          N2          C3          C9     109.695    1.50
+INE          N2          C3          BR     122.905    2.14
+INE          C9          C3          BR     127.400    1.69
+INE          C5          C4          C9     119.079    1.50
+INE          C5          C4         H41     120.439    1.50
+INE          C9          C4         H41     120.482    1.50
+INE          C4          C5          C6     121.514    1.50
+INE          C4          C5         H51     119.451    1.50
+INE          C6          C5         H51     119.035    1.50
+INE          C5          C6          C7     120.545    1.50
+INE          C5          C6         H61     119.887    1.50
+INE          C7          C6         H61     119.567    1.92
+INE          C6          C7          C8     118.381    1.50
+INE          C6          C7         N10     120.131    1.50
+INE          C8          C7         N10     121.488    2.12
+INE          N1          C8          C7     131.968    1.67
+INE          N1          C8          C9     106.942    1.50
+INE          C7          C8          C9     121.089    1.50
+INE          C3          C9          C4     134.304    1.50
+INE          C3          C9          C8     106.305    3.00
+INE          C4          C9          C8     119.391    1.50
+INE          C7         N10         O11     118.306    1.50
+INE          C7         N10         O12     118.310    1.50
+INE         O11         N10         O12     123.391    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+INE       const_sp2_sp2_1          C8          N1          N2          C3       0.000     5.0     2
+INE              const_31          C7          C8          N1          N2     180.000    10.0     2
+INE       const_sp2_sp2_4          BR          C3          N2          N1     180.000     5.0     2
+INE       const_sp2_sp2_8          BR          C3          C9          C4       0.000     5.0     2
+INE              const_13          C9          C4          C5          C6       0.000    10.0     2
+INE              const_34          C5          C4          C9          C3     180.000    10.0     2
+INE              const_17          C4          C5          C6          C7       0.000    10.0     2
+INE              const_22          C5          C6          C7         N10     180.000    10.0     2
+INE              const_28         N10          C7          C8          N1       0.000    10.0     2
+INE             sp2_sp2_1          C6          C7         N10         O11     180.000     5.0     2
+INE       const_sp2_sp2_9          N1          C8          C9          C3       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+INE    plan-1          BR   0.020
+INE    plan-1          C3   0.020
+INE    plan-1          C4   0.020
+INE    plan-1          C5   0.020
+INE    plan-1          C6   0.020
+INE    plan-1          C7   0.020
+INE    plan-1          C8   0.020
+INE    plan-1          C9   0.020
+INE    plan-1         H11   0.020
+INE    plan-1         H41   0.020
+INE    plan-1         H51   0.020
+INE    plan-1         H61   0.020
+INE    plan-1          N1   0.020
+INE    plan-1         N10   0.020
+INE    plan-1          N2   0.020
+INE    plan-2          C7   0.020
+INE    plan-2         N10   0.020
+INE    plan-2         O11   0.020
+INE    plan-2         O12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+INE           SMILES              ACDLabs 10.04                                         "[O-][N+](=O)c1cccc2c1nnc2Br"
+INE SMILES_CANONICAL               CACTVS 3.341                                    "[O-][N+](=O)c1cccc2c(Br)n[nH]c12"
+INE           SMILES               CACTVS 3.341                                    "[O-][N+](=O)c1cccc2c(Br)n[nH]c12"
+INE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                    c1cc2c(c(c1)[N+](=O)[O-])[nH]nc2Br
+INE           SMILES "OpenEye OEToolkits" 1.5.0                                    c1cc2c(c(c1)[N+](=O)[O-])[nH]nc2Br
+INE            InChI                InChI  1.03 InChI=1S/C7H4BrN3O2/c8-7-4-2-1-3-5(11(12)13)6(4)9-10-7/h1-3H,(H,9,10)
+INE         InChIKey                InChI  1.03                                           NFSTZPMYAZRZPC-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+INE acedrg               243         "dictionary generator"                  
+INE acedrg_database      11          "data source"                           
+INE rdkit                2017.03.2   "Chemoinformatics tool"
+INE refmac5              5.8.0238    "optimization tool"                     

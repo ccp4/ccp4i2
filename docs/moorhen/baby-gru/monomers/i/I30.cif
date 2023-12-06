@@ -1,0 +1,273 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+I30     I30      "N'-[(1E)-1-(1H-benzimidazol-2-yl)ethylidene]-5-bromo-2-hydroxybenzohydrazide"     NON-POLYMER     36     23     .     
+#
+data_comp_I30
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+I30     CAA     C       CH3     0       24.438      2.327       10.527      
+I30     OAB     O       O       0       27.481      1.774       14.527      
+I30     OAC     O       OH1     0       28.780      0.337       11.176      
+I30     BRAD    BR      BR      0       28.581      -3.582      15.780      
+I30     CAE     C       CR16    0       22.454      8.193       13.488      
+I30     CAF     C       CR16    0       21.778      8.058       12.270      
+I30     CAG     C       CR16    0       29.353      -2.653      13.196      
+I30     CAH     C       CR16    0       29.393      -1.755      12.152      
+I30     CAI     C       CR16    0       23.354      7.241       13.924      
+I30     CAJ     C       CR16    0       21.979      6.968       11.451      
+I30     CAK     C       CR16    0       27.960      -1.147      14.453      
+I30     NAL     N       N       0       25.671      2.570       12.711      
+I30     NAM     N       NR5     0       24.356      5.031       13.206      
+I30     NAN     N       NH1     0       26.344      1.362       12.613      
+I30     NAO     N       NRD5    0       23.283      4.813       11.272      
+I30     CAP     C       C       0       24.828      2.986       11.820      
+I30     CAQ     C       C       0       27.254      1.044       13.564      
+I30     CAR     C       CR6     0       28.633      -2.340      14.344      
+I30     CAS     C       CR6     0       28.721      -0.537      12.236      
+I30     CAT     C       CR6     0       27.990      -0.226      13.398      
+I30     CAU     C       CR5     0       24.160      4.264       12.093      
+I30     CAV     C       CR56    0       23.557      6.139       13.094      
+I30     CAW     C       CR56    0       22.886      5.993       11.875      
+I30     HAA     H       H       0       24.932      1.509       10.401      
+I30     HAAA    H       H       0       24.627      2.927       9.790       
+I30     HAAB    H       H       0       23.490      2.128       10.541      
+I30     HOAC    H       H       0       29.121      1.120       11.283      
+I30     HAE     H       H       0       22.293      8.950       14.023      
+I30     HAF     H       H       0       21.172      8.725       12.005      
+I30     HAG     H       H       0       29.809      -3.469      13.131      
+I30     HAH     H       H       0       29.878      -1.965      11.380      
+I30     HAI     H       H       0       23.806      7.332       14.738      
+I30     HAJ     H       H       0       21.523      6.880       10.634      
+I30     HAK     H       H       0       27.479      -0.952      15.234      
+I30     HNAM    H       H       0       24.895      4.851       13.875      
+I30     HNAN    H       H       0       26.175      0.800       11.962      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+I30         CAA         CAP      SINGLE       n     1.498  0.0100     1.498  0.0100
+I30         OAB         CAQ      DOUBLE       n     1.228  0.0106     1.228  0.0106
+I30         OAC         CAS      SINGLE       n     1.374  0.0155     1.374  0.0155
+I30        BRAD         CAR      SINGLE       n     1.900  0.0100     1.900  0.0100
+I30         CAE         CAF      DOUBLE       y     1.396  0.0106     1.396  0.0106
+I30         CAE         CAI      SINGLE       y     1.377  0.0100     1.377  0.0100
+I30         CAF         CAJ      SINGLE       y     1.375  0.0100     1.375  0.0100
+I30         CAG         CAH      DOUBLE       y     1.373  0.0112     1.373  0.0112
+I30         CAG         CAR      SINGLE       y     1.385  0.0127     1.385  0.0127
+I30         CAH         CAS      SINGLE       y     1.390  0.0100     1.390  0.0100
+I30         CAI         CAV      DOUBLE       y     1.390  0.0100     1.390  0.0100
+I30         CAJ         CAW      DOUBLE       y     1.394  0.0100     1.394  0.0100
+I30         CAK         CAR      DOUBLE       y     1.369  0.0112     1.369  0.0112
+I30         CAK         CAT      SINGLE       y     1.397  0.0100     1.397  0.0100
+I30         NAL         NAN      SINGLE       n     1.381  0.0100     1.381  0.0100
+I30         NAL         CAP      DOUBLE       n     1.288  0.0100     1.288  0.0100
+I30         NAM         CAU      SINGLE       y     1.361  0.0114     1.361  0.0114
+I30         NAM         CAV      SINGLE       y     1.371  0.0100     1.371  0.0100
+I30         NAN         CAQ      SINGLE       n     1.350  0.0100     1.350  0.0100
+I30         NAO         CAU      DOUBLE       y     1.319  0.0100     1.319  0.0100
+I30         NAO         CAW      SINGLE       y     1.384  0.0100     1.384  0.0100
+I30         CAP         CAU      SINGLE       n     1.460  0.0122     1.460  0.0122
+I30         CAQ         CAT      SINGLE       n     1.475  0.0100     1.475  0.0100
+I30         CAS         CAT      DOUBLE       y     1.403  0.0100     1.403  0.0100
+I30         CAV         CAW      SINGLE       y     1.398  0.0100     1.398  0.0100
+I30         CAA         HAA      SINGLE       n     1.089  0.0100     0.969  0.0177
+I30         CAA        HAAA      SINGLE       n     1.089  0.0100     0.969  0.0177
+I30         CAA        HAAB      SINGLE       n     1.089  0.0100     0.969  0.0177
+I30         OAC        HOAC      SINGLE       n     0.966  0.0059     0.861  0.0200
+I30         CAE         HAE      SINGLE       n     1.082  0.0130     0.941  0.0181
+I30         CAF         HAF      SINGLE       n     1.082  0.0130     0.939  0.0159
+I30         CAG         HAG      SINGLE       n     1.082  0.0130     0.937  0.0101
+I30         CAH         HAH      SINGLE       n     1.082  0.0130     0.936  0.0100
+I30         CAI         HAI      SINGLE       n     1.082  0.0130     0.936  0.0156
+I30         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.940  0.0194
+I30         CAK         HAK      SINGLE       n     1.082  0.0130     0.938  0.0122
+I30         NAM        HNAM      SINGLE       n     1.016  0.0100     0.878  0.0200
+I30         NAN        HNAN      SINGLE       n     1.016  0.0100     0.880  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+I30         CAP         CAA         HAA     109.471    1.50
+I30         CAP         CAA        HAAA     109.471    1.50
+I30         CAP         CAA        HAAB     109.471    1.50
+I30         HAA         CAA        HAAA     109.371    1.50
+I30         HAA         CAA        HAAB     109.371    1.50
+I30        HAAA         CAA        HAAB     109.371    1.50
+I30         CAS         OAC        HOAC     120.000    3.00
+I30         CAF         CAE         CAI     121.628    1.50
+I30         CAF         CAE         HAE     119.240    1.50
+I30         CAI         CAE         HAE     119.132    1.50
+I30         CAE         CAF         CAJ     121.628    1.50
+I30         CAE         CAF         HAF     119.240    1.50
+I30         CAJ         CAF         HAF     119.132    1.50
+I30         CAH         CAG         CAR     119.550    1.50
+I30         CAH         CAG         HAG     120.090    1.50
+I30         CAR         CAG         HAG     120.360    1.50
+I30         CAG         CAH         CAS     120.649    1.50
+I30         CAG         CAH         HAH     119.614    1.50
+I30         CAS         CAH         HAH     119.738    1.50
+I30         CAE         CAI         CAV     116.713    1.50
+I30         CAE         CAI         HAI     121.573    1.50
+I30         CAV         CAI         HAI     121.713    1.50
+I30         CAF         CAJ         CAW     117.727    1.50
+I30         CAF         CAJ         HAJ     121.359    1.50
+I30         CAW         CAJ         HAJ     120.915    1.50
+I30         CAR         CAK         CAT     119.832    1.50
+I30         CAR         CAK         HAK     120.034    1.50
+I30         CAT         CAK         HAK     120.134    1.50
+I30         NAN         NAL         CAP     118.235    1.58
+I30         CAU         NAM         CAV     107.298    1.50
+I30         CAU         NAM        HNAM     126.395    1.50
+I30         CAV         NAM        HNAM     126.307    1.62
+I30         NAL         NAN         CAQ     118.840    1.50
+I30         NAL         NAN        HNAN     119.955    2.03
+I30         CAQ         NAN        HNAN     121.205    2.26
+I30         CAU         NAO         CAW     105.759    1.50
+I30         CAA         CAP         NAL     123.290    2.40
+I30         CAA         CAP         CAU     115.776    1.50
+I30         NAL         CAP         CAU     120.934    3.00
+I30         OAB         CAQ         NAN     121.982    1.50
+I30         OAB         CAQ         CAT     121.046    1.50
+I30         NAN         CAQ         CAT     116.972    1.50
+I30        BRAD         CAR         CAG     119.433    1.50
+I30        BRAD         CAR         CAK     119.658    1.50
+I30         CAG         CAR         CAK     120.909    1.50
+I30         OAC         CAS         CAH     120.103    3.00
+I30         OAC         CAS         CAT     120.103    3.00
+I30         CAH         CAS         CAT     119.795    1.50
+I30         CAK         CAT         CAQ     118.752    2.89
+I30         CAK         CAT         CAS     119.265    1.50
+I30         CAQ         CAT         CAS     121.983    3.00
+I30         NAM         CAU         NAO     111.932    1.50
+I30         NAM         CAU         CAP     124.871    3.00
+I30         NAO         CAU         CAP     123.197    1.50
+I30         CAI         CAV         NAM     132.390    1.50
+I30         CAI         CAV         CAW     122.244    1.50
+I30         NAM         CAV         CAW     105.366    1.50
+I30         CAJ         CAW         NAO     130.295    1.50
+I30         CAJ         CAW         CAV     120.060    1.50
+I30         NAO         CAW         CAV     109.645    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+I30             sp2_sp3_1         NAL         CAP         CAA         HAA       0.000    10.0     6
+I30              const_38         CAT         CAK         CAR        BRAD     180.000    10.0     2
+I30              const_34         CAR         CAK         CAT         CAQ     180.000    10.0     2
+I30             sp2_sp2_3         CAP         NAL         NAN         CAQ     180.000     5.0     2
+I30             sp2_sp2_5         CAA         CAP         NAL         NAN     180.000     5.0     2
+I30              const_43         CAP         CAU         NAM         CAV     180.000    10.0     2
+I30              const_59         CAI         CAV         NAM         CAU     180.000    10.0     2
+I30             sp2_sp2_9         OAB         CAQ         NAN         NAL       0.000     5.0     2
+I30              const_46         CAP         CAU         NAO         CAW     180.000    10.0     2
+I30              const_48         CAJ         CAW         NAO         CAU     180.000    10.0     2
+I30            sp2_sp2_13         CAA         CAP         CAU         NAM       0.000     5.0     2
+I30            sp2_sp2_17         OAB         CAQ         CAT         CAK       0.000     5.0     2
+I30              const_32         OAC         CAS         CAT         CAQ       0.000    10.0     2
+I30              const_13         CAI         CAV         CAW         CAJ       0.000    10.0     2
+I30             sp2_sp2_1         CAH         CAS         OAC        HOAC     180.000     5.0     2
+I30       const_sp2_sp2_1         CAI         CAE         CAF         CAJ       0.000     5.0     2
+I30              const_49         CAF         CAE         CAI         CAV       0.000    10.0     2
+I30       const_sp2_sp2_5         CAE         CAF         CAJ         CAW       0.000     5.0     2
+I30              const_54         CAH         CAG         CAR        BRAD     180.000    10.0     2
+I30              const_21         CAR         CAG         CAH         CAS       0.000    10.0     2
+I30              const_26         CAG         CAH         CAS         OAC     180.000    10.0     2
+I30              const_18         CAE         CAI         CAV         NAM     180.000    10.0     2
+I30              const_10         CAF         CAJ         CAW         NAO     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+I30    plan-1         CAE   0.020
+I30    plan-1         CAF   0.020
+I30    plan-1         CAI   0.020
+I30    plan-1         CAJ   0.020
+I30    plan-1         CAP   0.020
+I30    plan-1         CAU   0.020
+I30    plan-1         CAV   0.020
+I30    plan-1         CAW   0.020
+I30    plan-1         HAE   0.020
+I30    plan-1         HAF   0.020
+I30    plan-1         HAI   0.020
+I30    plan-1         HAJ   0.020
+I30    plan-1        HNAM   0.020
+I30    plan-1         NAM   0.020
+I30    plan-1         NAO   0.020
+I30    plan-2        BRAD   0.020
+I30    plan-2         CAG   0.020
+I30    plan-2         CAH   0.020
+I30    plan-2         CAK   0.020
+I30    plan-2         CAQ   0.020
+I30    plan-2         CAR   0.020
+I30    plan-2         CAS   0.020
+I30    plan-2         CAT   0.020
+I30    plan-2         HAG   0.020
+I30    plan-2         HAH   0.020
+I30    plan-2         HAK   0.020
+I30    plan-2         OAC   0.020
+I30    plan-3         CAQ   0.020
+I30    plan-3        HNAN   0.020
+I30    plan-3         NAL   0.020
+I30    plan-3         NAN   0.020
+I30    plan-4         CAA   0.020
+I30    plan-4         CAP   0.020
+I30    plan-4         CAU   0.020
+I30    plan-4         NAL   0.020
+I30    plan-5         CAQ   0.020
+I30    plan-5         CAT   0.020
+I30    plan-5         NAN   0.020
+I30    plan-5         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+I30           SMILES              ACDLabs 12.01                                                                                         Brc1cc(c(O)cc1)C(=O)N\N=C(\c3nc2ccccc2n3)C
+I30            InChI                InChI  1.03 InChI=1S/C16H13BrN4O2/c1-9(15-18-12-4-2-3-5-13(12)19-15)20-21-16(23)11-8-10(17)6-7-14(11)22/h2-8,22H,1H3,(H,18,19)(H,21,23)/b20-9+
+I30         InChIKey                InChI  1.03                                                                                                        QYPYMNJXDLGLRD-AWQFTUOYSA-N
+I30 SMILES_CANONICAL               CACTVS 3.370                                                                                        C\C(=N/NC(=O)c1cc(Br)ccc1O)c2[nH]c3ccccc3n2
+I30           SMILES               CACTVS 3.370                                                                                          CC(=NNC(=O)c1cc(Br)ccc1O)c2[nH]c3ccccc3n2
+I30 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                       C/C(=N\NC(=O)c1cc(ccc1O)Br)/c2[nH]c3ccccc3n2
+I30           SMILES "OpenEye OEToolkits" 1.7.2                                                                                          CC(=NNC(=O)c1cc(ccc1O)Br)c2[nH]c3ccccc3n2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+I30 acedrg               243         "dictionary generator"                  
+I30 acedrg_database      11          "data source"                           
+I30 rdkit                2017.03.2   "Chemoinformatics tool"
+I30 refmac5              5.8.0238    "optimization tool"                     

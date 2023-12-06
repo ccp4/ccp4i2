@@ -1,0 +1,316 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MII     MII      methicillin     NON-POLYMER     45     26     .     
+#
+data_comp_MII
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MII     C       C       C       0       -27.384     -30.793     6.076       
+MII     N       N       NH1     0       -26.345     -32.139     4.197       
+MII     O       O       O       0       -28.330     -30.125     5.768       
+MII     CA      C       CH1     0       -26.724     -32.092     5.583       
+MII     CB      C       CH1     0       -25.641     -31.795     6.680       
+MII     CAA     C       CH3     0       -24.922     -29.162     1.695       
+MII     CAB     C       CH3     0       -28.361     -35.461     0.881       
+MII     CAC     C       CH3     0       -24.721     -28.618     5.314       
+MII     CAD     C       CH3     0       -23.219     -28.817     7.287       
+MII     OAE     O       O       0       -25.909     -28.499     9.669       
+MII     OAF     O       O       0       -28.467     -32.303     3.404       
+MII     OAH     O       OC      -1      -24.927     -30.386     9.512       
+MII     CAI     C       CR16    0       -25.737     -32.531     -0.812      
+MII     CAJ     C       CR16    0       -25.555     -31.362     -0.099      
+MII     CAK     C       CR16    0       -26.396     -33.615     -0.267      
+MII     OAM     O       O2      0       -25.913     -30.147     1.989       
+MII     OAN     O       O2      0       -27.554     -34.568     1.649       
+MII     SAO     S       S2      0       -24.047     -31.145     6.123       
+MII     CAP     C       C       0       -25.510     -29.442     9.009       
+MII     CAQ     C       C       0       -27.254     -32.261     3.199       
+MII     CAS     C       CR6     0       -26.037     -31.266     1.206       
+MII     CAT     C       CR6     0       -26.898     -33.536     1.031       
+MII     CAU     C       CR6     0       -26.723     -32.356     1.799       
+MII     CAW     C       CH1     0       -25.747     -29.443     7.500       
+MII     NAX     N       NT      0       -26.461     -30.656     7.118       
+MII     CAY     C       CT      0       -24.453     -29.402     6.597       
+MII     HN      H       H       0       -25.501     -32.087     3.979       
+MII     HA      H       H       0       -27.283     -32.872     5.798       
+MII     HB      H       H       0       -25.548     -32.507     7.359       
+MII     HAA     H       H       0       -25.166     -28.690     0.882       
+MII     HAAA    H       H       0       -24.059     -29.592     1.574       
+MII     HAAB    H       H       0       -24.867     -28.531     2.430       
+MII     HAB     H       H       0       -27.788     -36.071     0.388       
+MII     HABA    H       H       0       -28.907     -34.954     0.257       
+MII     HABB    H       H       0       -28.937     -35.968     1.476       
+MII     HAC     H       H       0       -25.583     -28.873     4.949       
+MII     HACA    H       H       0       -24.025     -28.811     4.665       
+MII     HACB    H       H       0       -24.723     -27.667     5.511       
+MII     HAD     H       H       0       -23.448     -27.970     7.705       
+MII     HADA    H       H       0       -22.521     -28.669     6.627       
+MII     HADB    H       H       0       -22.894     -29.436     7.961       
+MII     HAI     H       H       0       -25.404     -32.590     -1.694      
+MII     HAJ     H       H       0       -25.103     -30.640     -0.497      
+MII     HAK     H       H       0       -26.506     -34.400     -0.774      
+MII     HAW     H       H       0       -26.322     -28.663     7.275       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MII           C           O      DOUBLE       n     1.199  0.0100     1.199  0.0100
+MII           C          CA      SINGLE       n     1.538  0.0100     1.538  0.0100
+MII           C         NAX      SINGLE       n     1.397  0.0132     1.397  0.0132
+MII           N          CA      SINGLE       n     1.436  0.0100     1.436  0.0100
+MII           N         CAQ      SINGLE       n     1.343  0.0185     1.343  0.0185
+MII          CA          CB      SINGLE       n     1.569  0.0197     1.569  0.0197
+MII          CB         SAO      SINGLE       n     1.810  0.0119     1.810  0.0119
+MII          CB         NAX      SINGLE       n     1.471  0.0139     1.471  0.0139
+MII         CAA         OAM      SINGLE       n     1.424  0.0117     1.424  0.0117
+MII         CAB         OAN      SINGLE       n     1.424  0.0117     1.424  0.0117
+MII         CAC         CAY      SINGLE       n     1.527  0.0100     1.527  0.0100
+MII         CAD         CAY      SINGLE       n     1.527  0.0100     1.527  0.0100
+MII         OAE         CAP      DOUBLE       n     1.218  0.0200     1.218  0.0200
+MII         OAF         CAQ      DOUBLE       n     1.230  0.0114     1.230  0.0114
+MII         OAH         CAP      SINGLE       n     1.218  0.0200     1.218  0.0200
+MII         CAI         CAJ      DOUBLE       y     1.379  0.0100     1.379  0.0100
+MII         CAI         CAK      SINGLE       y     1.379  0.0100     1.379  0.0100
+MII         CAJ         CAS      SINGLE       y     1.388  0.0100     1.388  0.0100
+MII         CAK         CAT      DOUBLE       y     1.388  0.0100     1.388  0.0100
+MII         OAM         CAS      SINGLE       n     1.365  0.0100     1.365  0.0100
+MII         OAN         CAT      SINGLE       n     1.365  0.0100     1.365  0.0100
+MII         SAO         CAY      SINGLE       n     1.851  0.0113     1.851  0.0113
+MII         CAP         CAW      SINGLE       n     1.520  0.0177     1.520  0.0177
+MII         CAQ         CAU      SINGLE       n     1.495  0.0107     1.495  0.0107
+MII         CAS         CAU      DOUBLE       y     1.409  0.0111     1.409  0.0111
+MII         CAT         CAU      SINGLE       y     1.409  0.0111     1.409  0.0111
+MII         CAW         NAX      SINGLE       n     1.458  0.0100     1.458  0.0100
+MII         CAW         CAY      SINGLE       n     1.561  0.0167     1.561  0.0167
+MII           N          HN      SINGLE       n     1.016  0.0100     0.872  0.0200
+MII          CA          HA      SINGLE       n     1.089  0.0100     0.984  0.0200
+MII          CB          HB      SINGLE       n     1.089  0.0100     0.988  0.0132
+MII         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+MII         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+MII         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0157
+MII         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0157
+MII         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0157
+MII         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0157
+MII         CAC         HAC      SINGLE       n     1.089  0.0100     0.971  0.0169
+MII         CAC        HACA      SINGLE       n     1.089  0.0100     0.971  0.0169
+MII         CAC        HACB      SINGLE       n     1.089  0.0100     0.971  0.0169
+MII         CAD         HAD      SINGLE       n     1.089  0.0100     0.971  0.0169
+MII         CAD        HADA      SINGLE       n     1.089  0.0100     0.971  0.0169
+MII         CAD        HADB      SINGLE       n     1.089  0.0100     0.971  0.0169
+MII         CAI         HAI      SINGLE       n     1.082  0.0130     0.945  0.0125
+MII         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.941  0.0179
+MII         CAK         HAK      SINGLE       n     1.082  0.0130     0.941  0.0179
+MII         CAW         HAW      SINGLE       n     1.089  0.0100     0.995  0.0104
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MII           O           C          CA     136.472    1.50
+MII           O           C         NAX     131.043    1.50
+MII          CA           C         NAX      92.485    1.50
+MII          CA           N         CAQ     121.408    2.50
+MII          CA           N          HN     120.811    3.00
+MII         CAQ           N          HN     117.781    2.02
+MII           C          CA           N     116.563    3.00
+MII           C          CA          CB      85.978    1.75
+MII           C          CA          HA     111.185    1.68
+MII           N          CA          CB     118.905    3.00
+MII           N          CA          HA     109.992    1.69
+MII          CB          CA          HA     113.345    1.95
+MII          CA          CB         SAO     116.971    3.00
+MII          CA          CB         NAX      88.590    1.50
+MII          CA          CB          HB     114.585    1.80
+MII         SAO          CB         NAX     109.471    3.00
+MII         SAO          CB          HB     113.121    1.50
+MII         NAX          CB          HB     114.251    1.50
+MII         OAM         CAA         HAA     109.428    1.50
+MII         OAM         CAA        HAAA     109.428    1.50
+MII         OAM         CAA        HAAB     109.428    1.50
+MII         HAA         CAA        HAAA     109.509    1.50
+MII         HAA         CAA        HAAB     109.509    1.50
+MII        HAAA         CAA        HAAB     109.509    1.50
+MII         OAN         CAB         HAB     109.428    1.50
+MII         OAN         CAB        HABA     109.428    1.50
+MII         OAN         CAB        HABB     109.428    1.50
+MII         HAB         CAB        HABA     109.509    1.50
+MII         HAB         CAB        HABB     109.509    1.50
+MII        HABA         CAB        HABB     109.509    1.50
+MII         CAY         CAC         HAC     109.494    1.50
+MII         CAY         CAC        HACA     109.494    1.50
+MII         CAY         CAC        HACB     109.494    1.50
+MII         HAC         CAC        HACA     109.486    1.50
+MII         HAC         CAC        HACB     109.486    1.50
+MII        HACA         CAC        HACB     109.486    1.50
+MII         CAY         CAD         HAD     109.494    1.50
+MII         CAY         CAD        HADA     109.494    1.50
+MII         CAY         CAD        HADB     109.494    1.50
+MII         HAD         CAD        HADA     109.486    1.50
+MII         HAD         CAD        HADB     109.486    1.50
+MII        HADA         CAD        HADB     109.486    1.50
+MII         CAJ         CAI         CAK     121.409    1.50
+MII         CAJ         CAI         HAI     119.295    1.50
+MII         CAK         CAI         HAI     119.295    1.50
+MII         CAI         CAJ         CAS     119.510    1.50
+MII         CAI         CAJ         HAJ     120.280    1.50
+MII         CAS         CAJ         HAJ     120.209    1.50
+MII         CAI         CAK         CAT     119.510    1.50
+MII         CAI         CAK         HAK     120.280    1.50
+MII         CAT         CAK         HAK     120.209    1.50
+MII         CAA         OAM         CAS     118.009    1.50
+MII         CAB         OAN         CAT     118.009    1.50
+MII          CB         SAO         CAY      92.966    1.65
+MII         OAE         CAP         OAH     122.267    1.50
+MII         OAE         CAP         CAW     118.867    2.73
+MII         OAH         CAP         CAW     118.867    2.73
+MII           N         CAQ         OAF     122.577    1.58
+MII           N         CAQ         CAU     116.695    1.95
+MII         OAF         CAQ         CAU     120.728    1.50
+MII         CAJ         CAS         OAM     123.059    1.50
+MII         CAJ         CAS         CAU     120.758    1.50
+MII         OAM         CAS         CAU     116.183    2.15
+MII         CAK         CAT         OAN     123.059    1.50
+MII         CAK         CAT         CAU     120.758    1.50
+MII         OAN         CAT         CAU     116.183    2.15
+MII         CAQ         CAU         CAS     120.973    3.00
+MII         CAQ         CAU         CAT     120.973    3.00
+MII         CAS         CAU         CAT     118.053    1.50
+MII         CAP         CAW         NAX     111.071    1.62
+MII         CAP         CAW         CAY     112.424    2.46
+MII         CAP         CAW         HAW     108.963    1.74
+MII         NAX         CAW         CAY     105.237    2.32
+MII         NAX         CAW         HAW     108.587    1.50
+MII         CAY         CAW         HAW     109.303    1.50
+MII           C         NAX          CB      93.371    1.96
+MII           C         NAX         CAW     125.105    2.14
+MII          CB         NAX         CAW     115.054    3.00
+MII         CAC         CAY         CAD     110.924    1.50
+MII         CAC         CAY         SAO     108.686    1.50
+MII         CAC         CAY         CAW     112.667    2.44
+MII         CAD         CAY         SAO     108.686    1.50
+MII         CAD         CAY         CAW     112.667    2.44
+MII         SAO         CAY         CAW     107.036    2.68
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MII             sp2_sp2_3           O           C         NAX          CB     180.000     5.0     2
+MII             sp2_sp3_5           O           C          CA           N     -60.000    10.0     6
+MII       const_sp2_sp2_1         CAK         CAI         CAJ         CAS       0.000     5.0     2
+MII              const_21         CAJ         CAI         CAK         CAT       0.000    10.0     2
+MII       const_sp2_sp2_6         CAI         CAJ         CAS         OAM     180.000     5.0     2
+MII              const_18         CAI         CAK         CAT         OAN     180.000    10.0     2
+MII             sp2_sp2_9         CAJ         CAS         OAM         CAA     180.000     5.0     2
+MII            sp2_sp2_11         CAK         CAT         OAN         CAB     180.000     5.0     2
+MII            sp3_sp3_15         CAC         CAY         SAO          CB      60.000    10.0     3
+MII            sp2_sp3_25         OAE         CAP         CAW         NAX       0.000    10.0     6
+MII            sp2_sp2_13           N         CAQ         CAU         CAS     180.000     5.0     2
+MII             sp2_sp2_7         OAF         CAQ           N          CA       0.000     5.0     2
+MII            sp2_sp3_19         CAQ           N          CA           C       0.000    10.0     6
+MII              const_12         OAM         CAS         CAU         CAQ       0.000    10.0     2
+MII              const_16         OAN         CAT         CAU         CAQ       0.000    10.0     2
+MII            sp2_sp3_17           C         NAX         CAW         CAP     -60.000    10.0     6
+MII            sp3_sp3_20         CAP         CAW         CAY         CAC      60.000    10.0     3
+MII             sp3_sp3_5           N          CA          CB         SAO     -60.000    10.0     3
+MII            sp3_sp3_11          CA          CB         SAO         CAY     -60.000    10.0     3
+MII             sp2_sp3_7           C         NAX          CB          CA       0.000    10.0     6
+MII            sp3_sp3_26         HAA         CAA         OAM         CAS     -60.000    10.0     3
+MII            sp3_sp3_30         HAB         CAB         OAN         CAT     -60.000    10.0     3
+MII            sp3_sp3_35         HAC         CAC         CAY         CAD      60.000    10.0     3
+MII            sp3_sp3_44         HAD         CAD         CAY         CAC      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MII    chir_1    CA    N    CB    C    negative
+MII    chir_2    CB    SAO    NAX    CA    negative
+MII    chir_3    CAW    NAX    CAY    CAP    positive
+MII    chir_4    CAY    SAO    CAW    CAC    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MII    plan-1         CAI   0.020
+MII    plan-1         CAJ   0.020
+MII    plan-1         CAK   0.020
+MII    plan-1         CAQ   0.020
+MII    plan-1         CAS   0.020
+MII    plan-1         CAT   0.020
+MII    plan-1         CAU   0.020
+MII    plan-1         HAI   0.020
+MII    plan-1         HAJ   0.020
+MII    plan-1         HAK   0.020
+MII    plan-1         OAM   0.020
+MII    plan-1         OAN   0.020
+MII    plan-2           C   0.020
+MII    plan-2          CA   0.020
+MII    plan-2         NAX   0.020
+MII    plan-2           O   0.020
+MII    plan-3          CA   0.020
+MII    plan-3         CAQ   0.020
+MII    plan-3          HN   0.020
+MII    plan-3           N   0.020
+MII    plan-4         CAP   0.020
+MII    plan-4         CAW   0.020
+MII    plan-4         OAE   0.020
+MII    plan-4         OAH   0.020
+MII    plan-5         CAQ   0.020
+MII    plan-5         CAU   0.020
+MII    plan-5           N   0.020
+MII    plan-5         OAF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MII SMILES_CANONICAL               CACTVS 3.352                                                                                                   COc1cccc(OC)c1C(=O)N[C@H]2[C@H]3SC(C)(C)[C@@H](N3C2=O)C(O)=O
+MII           SMILES               CACTVS 3.352                                                                                                       COc1cccc(OC)c1C(=O)N[CH]2[CH]3SC(C)(C)[CH](N3C2=O)C(O)=O
+MII SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                CC1([C@@H](N2[C@H](S1)[C@@H](C2=O)NC(=O)c3c(cccc3OC)OC)C(=O)O)C
+MII           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                              CC1(C(N2C(S1)C(C2=O)NC(=O)c3c(cccc3OC)OC)C(=O)O)C
+MII            InChI                InChI  1.03 InChI=1S/C17H20N2O6S/c1-17(2)12(16(22)23)19-14(21)11(15(19)26-17)18-13(20)10-8(24-3)6-5-7-9(10)25-4/h5-7,11-12,15H,1-4H3,(H,18,20)(H,22,23)/t11-,12+,15-/m1/s1
+MII         InChIKey                InChI  1.03                                                                                                                                    RJQXTJLFIWVMTO-TYNCELHUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MII acedrg               243         "dictionary generator"                  
+MII acedrg_database      11          "data source"                           
+MII rdkit                2017.03.2   "Chemoinformatics tool"
+MII refmac5              5.8.0238    "optimization tool"                     

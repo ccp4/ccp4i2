@@ -1,0 +1,208 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HND     HND      (4S)-nonane-1,4-diol     NON-POLYMER     31     11     .     
+#
+data_comp_HND
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HND     C1      C       CH2     0       2.961       -3.841      15.669      
+HND     C2      C       CH2     0       4.141       -4.743      15.400      
+HND     C3      C       CH2     0       4.993       -5.019      16.625      
+HND     C4      C       CH1     0       6.296       -5.745      16.349      
+HND     C5      C       CH2     0       6.101       -7.205      15.984      
+HND     C6      C       CH2     0       7.362       -7.987      15.679      
+HND     C7      C       CH2     0       8.114       -7.546      14.440      
+HND     C8      C       CH2     0       9.340       -6.708      14.702      
+HND     C9      C       CH3     0       10.099      -6.336      13.451      
+HND     O10     O       OH1     0       7.140       -5.632      17.492      
+HND     O11     O       OH1     0       2.098       -4.388      16.652      
+HND     H1      H       H       0       2.460       -3.708      14.837      
+HND     H1A     H       H       0       3.285       -2.967      15.974      
+HND     H2      H       H       0       4.701       -4.329      14.711      
+HND     H2A     H       H       0       3.809       -5.594      15.046      
+HND     H3      H       H       0       4.469       -5.553      17.259      
+HND     H3A     H       H       0       5.201       -4.165      17.062      
+HND     H4      H       H       0       6.743       -5.293      15.586      
+HND     H5A     H       H       0       5.514       -7.252      15.200      
+HND     H5      H       H       0       5.634       -7.647      16.724      
+HND     H6      H       H       0       7.119       -8.931      15.573      
+HND     H6A     H       H       0       7.963       -7.924      16.452      
+HND     H7      H       H       0       7.503       -7.035      13.867      
+HND     H7A     H       H       0       8.385       -8.346      13.941      
+HND     H8      H       H       0       9.939       -7.204      15.302      
+HND     H8A     H       H       0       9.068       -5.886      15.163      
+HND     H9      H       H       0       10.884      -5.812      13.689      
+HND     H9A     H       H       0       9.526       -5.811      12.866      
+HND     H9B     H       H       0       10.380      -7.144      12.987      
+HND     HO10    H       H       0       7.949       -5.622      17.242      
+HND     HO11    H       H       0       1.744       -5.090      16.339      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HND          C1          C2      SINGLE       n     1.508  0.0200     1.508  0.0200
+HND          C1         O11      SINGLE       n     1.417  0.0200     1.417  0.0200
+HND          C2          C3      SINGLE       n     1.517  0.0100     1.517  0.0100
+HND          C3          C4      SINGLE       n     1.516  0.0100     1.516  0.0100
+HND          C4          C5      SINGLE       n     1.516  0.0100     1.516  0.0100
+HND          C4         O10      SINGLE       n     1.424  0.0199     1.424  0.0199
+HND          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+HND          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+HND          C7          C8      SINGLE       n     1.507  0.0200     1.507  0.0200
+HND          C8          C9      SINGLE       n     1.510  0.0200     1.510  0.0200
+HND          C1          H1      SINGLE       n     1.089  0.0100     0.981  0.0174
+HND          C1         H1A      SINGLE       n     1.089  0.0100     0.981  0.0174
+HND          C2          H2      SINGLE       n     1.089  0.0100     0.980  0.0166
+HND          C2         H2A      SINGLE       n     1.089  0.0100     0.980  0.0166
+HND          C3          H3      SINGLE       n     1.089  0.0100     0.981  0.0160
+HND          C3         H3A      SINGLE       n     1.089  0.0100     0.981  0.0160
+HND          C4          H4      SINGLE       n     1.089  0.0100     0.992  0.0184
+HND          C5         H5A      SINGLE       n     1.089  0.0100     0.981  0.0160
+HND          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0160
+HND          C6          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+HND          C6         H6A      SINGLE       n     1.089  0.0100     0.981  0.0163
+HND          C7          H7      SINGLE       n     1.089  0.0100     0.981  0.0163
+HND          C7         H7A      SINGLE       n     1.089  0.0100     0.981  0.0163
+HND          C8          H8      SINGLE       n     1.089  0.0100     0.982  0.0155
+HND          C8         H8A      SINGLE       n     1.089  0.0100     0.982  0.0155
+HND          C9          H9      SINGLE       n     1.089  0.0100     0.973  0.0157
+HND          C9         H9A      SINGLE       n     1.089  0.0100     0.973  0.0157
+HND          C9         H9B      SINGLE       n     1.089  0.0100     0.973  0.0157
+HND         O10        HO10      SINGLE       n     0.970  0.0120     0.848  0.0200
+HND         O11        HO11      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HND          C2          C1         O11     111.456    3.00
+HND          C2          C1          H1     109.269    1.50
+HND          C2          C1         H1A     109.269    1.50
+HND         O11          C1          H1     109.258    1.50
+HND         O11          C1         H1A     109.258    1.50
+HND          H1          C1         H1A     108.120    1.50
+HND          C1          C2          C3     113.896    1.50
+HND          C1          C2          H2     108.717    1.50
+HND          C1          C2         H2A     108.717    1.50
+HND          C3          C2          H2     108.929    1.50
+HND          C3          C2         H2A     108.929    1.50
+HND          H2          C2         H2A     107.788    1.50
+HND          C2          C3          C4     114.715    1.50
+HND          C2          C3          H3     108.713    1.50
+HND          C2          C3         H3A     108.713    1.50
+HND          C4          C3          H3     108.478    1.50
+HND          C4          C3         H3A     108.478    1.50
+HND          H3          C3         H3A     107.428    1.50
+HND          C3          C4          C5     113.270    1.72
+HND          C3          C4         O10     109.904    2.15
+HND          C3          C4          H4     108.124    1.50
+HND          C5          C4         O10     109.904    2.15
+HND          C5          C4          H4     108.124    1.50
+HND         O10          C4          H4     108.270    1.50
+HND          C4          C5          C6     115.351    1.65
+HND          C4          C5         H5A     108.478    1.50
+HND          C4          C5          H5     108.478    1.50
+HND          C6          C5         H5A     108.572    1.50
+HND          C6          C5          H5     108.572    1.50
+HND         H5A          C5          H5     107.428    1.50
+HND          C5          C6          C7     114.776    2.10
+HND          C5          C6          H6     108.597    1.50
+HND          C5          C6         H6A     108.597    1.50
+HND          C7          C6          H6     108.698    1.50
+HND          C7          C6         H6A     108.698    1.50
+HND          H6          C6         H6A     107.646    1.50
+HND          C6          C7          C8     114.362    3.00
+HND          C6          C7          H7     108.698    1.50
+HND          C6          C7         H7A     108.698    1.50
+HND          C8          C7          H7     108.653    1.50
+HND          C8          C7         H7A     108.653    1.50
+HND          H7          C7         H7A     107.646    1.50
+HND          C7          C8          C9     113.719    3.00
+HND          C7          C8          H8     108.758    1.50
+HND          C7          C8         H8A     108.758    1.50
+HND          C9          C8          H8     108.918    1.50
+HND          C9          C8         H8A     108.918    1.50
+HND          H8          C8         H8A     107.763    1.50
+HND          C8          C9          H9     109.554    1.50
+HND          C8          C9         H9A     109.554    1.50
+HND          C8          C9         H9B     109.554    1.50
+HND          H9          C9         H9A     109.380    1.50
+HND          H9          C9         H9B     109.380    1.50
+HND         H9A          C9         H9B     109.380    1.50
+HND          C4         O10        HO10     108.921    2.24
+HND          C1         O11        HO11     108.576    2.78
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HND             sp3_sp3_1         O11          C1          C2          C3     180.000    10.0     3
+HND            sp3_sp3_10          C2          C1         O11        HO11     180.000    10.0     3
+HND            sp3_sp3_13          C1          C2          C3          C4     180.000    10.0     3
+HND            sp3_sp3_22          C2          C3          C4          C5     180.000    10.0     3
+HND            sp3_sp3_31          C3          C4          C5          C6     180.000    10.0     3
+HND            sp3_sp3_40          C3          C4         O10        HO10     180.000    10.0     3
+HND            sp3_sp3_43          C4          C5          C6          C7     180.000    10.0     3
+HND            sp3_sp3_52          C5          C6          C7          C8     180.000    10.0     3
+HND            sp3_sp3_61          C6          C7          C8          C9     180.000    10.0     3
+HND            sp3_sp3_70          C7          C8          C9          H9     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HND    chir_1    C4    O10    C3    C5    positive
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HND           SMILES              ACDLabs 10.04                                                        OCCCC(O)CCCCC
+HND SMILES_CANONICAL               CACTVS 3.341                                                    CCCCC[C@H](O)CCCO
+HND           SMILES               CACTVS 3.341                                                     CCCCC[CH](O)CCCO
+HND SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                   CCCCC[C@@H](CCCO)O
+HND           SMILES "OpenEye OEToolkits" 1.5.0                                                        CCCCCC(CCCO)O
+HND            InChI                InChI  1.03 InChI=1S/C9H20O2/c1-2-3-4-6-9(11)7-5-8-10/h9-11H,2-8H2,1H3/t9-/m0/s1
+HND         InChIKey                InChI  1.03                                          BBKPDHOKNRMWQN-VIFPVBQESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HND acedrg               243         "dictionary generator"                  
+HND acedrg_database      11          "data source"                           
+HND rdkit                2017.03.2   "Chemoinformatics tool"
+HND refmac5              5.8.0238    "optimization tool"                     

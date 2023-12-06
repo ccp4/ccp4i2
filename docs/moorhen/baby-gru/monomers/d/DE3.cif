@@ -1,0 +1,226 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DE3     DE3      N,N-diethyl-3-methylbenzamide     NON-POLYMER     31     14     .     
+#
+data_comp_DE3
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DE3     CAA     C       CR6     0       11.212      14.948      13.340      
+DE3     CAB     C       CR16    0       11.941      15.883      12.602      
+DE3     CAC     C       CR16    0       10.421      15.386      14.400      
+DE3     CAD     C       CR6     0       11.869      17.244      12.884      
+DE3     CAE     C       CR16    0       11.065      17.653      13.939      
+DE3     CAF     C       CR16    0       10.346      16.738      14.693      
+DE3     CAG     C       CH3     0       12.649      18.241      12.064      
+DE3     CAH     C       C       0       11.319      13.484      13.014      
+DE3     CAI     C       CH3     0       8.623       13.375      11.281      
+DE3     CAJ     C       CH2     0       11.676      11.851      11.210      
+DE3     CAK     C       CH2     0       10.040      13.696      10.879      
+DE3     CAL     C       CH3     0       12.883      12.175      10.366      
+DE3     NAM     N       N       0       11.039      13.061      11.758      
+DE3     OAN     O       O       0       11.787      12.737      13.874      
+DE3     HAB     H       H       0       12.480      15.593      11.883      
+DE3     HAC     H       H       0       9.933       14.766      14.912      
+DE3     HAE     H       H       0       11.007      18.573      14.145      
+DE3     HAF     H       H       0       9.804       17.037      15.407      
+DE3     HAG     H       H       0       12.669      19.097      12.521      
+DE3     HAGA    H       H       0       12.227      18.350      11.196      
+DE3     HAGB    H       H       0       13.557      17.921      11.941      
+DE3     HAI     H       H       0       8.013       13.680      10.590      
+DE3     HAIA    H       H       0       8.413       13.823      12.117      
+DE3     H16     H       H       0       8.527       12.416      11.396      
+DE3     HAJ     H       H       0       11.947      11.254      11.939      
+DE3     HAJA    H       H       0       11.024      11.364      10.661      
+DE3     HAK     H       H       0       10.162      14.667      10.884      
+DE3     H17     H       H       0       10.183      13.391      9.957       
+DE3     HAL     H       H       0       13.388      11.364      10.195      
+DE3     HALA    H       H       0       13.446      12.813      10.836      
+DE3     HALB    H       H       0       12.596      12.560      9.522       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DE3         CAA         CAB      DOUBLE       y     1.393  0.0100     1.393  0.0100
+DE3         CAA         CAC      SINGLE       y     1.390  0.0100     1.390  0.0100
+DE3         CAA         CAH      SINGLE       n     1.502  0.0100     1.502  0.0100
+DE3         CAB         CAD      SINGLE       y     1.389  0.0100     1.389  0.0100
+DE3         CAC         CAF      DOUBLE       y     1.382  0.0100     1.382  0.0100
+DE3         CAD         CAE      DOUBLE       y     1.384  0.0100     1.384  0.0100
+DE3         CAD         CAG      SINGLE       n     1.508  0.0107     1.508  0.0107
+DE3         CAE         CAF      SINGLE       y     1.383  0.0105     1.383  0.0105
+DE3         CAH         NAM      SINGLE       n     1.344  0.0100     1.344  0.0100
+DE3         CAH         OAN      DOUBLE       n     1.230  0.0114     1.230  0.0114
+DE3         CAI         CAK      SINGLE       n     1.508  0.0173     1.508  0.0173
+DE3         CAJ         CAL      SINGLE       n     1.508  0.0173     1.508  0.0173
+DE3         CAJ         NAM      SINGLE       n     1.468  0.0100     1.468  0.0100
+DE3         CAK         NAM      SINGLE       n     1.468  0.0100     1.468  0.0100
+DE3         CAB         HAB      SINGLE       n     1.082  0.0130     0.944  0.0147
+DE3         CAC         HAC      SINGLE       n     1.082  0.0130     0.941  0.0168
+DE3         CAE         HAE      SINGLE       n     1.082  0.0130     0.944  0.0174
+DE3         CAF         HAF      SINGLE       n     1.082  0.0130     0.945  0.0184
+DE3         CAG         HAG      SINGLE       n     1.089  0.0100     0.971  0.0135
+DE3         CAG        HAGA      SINGLE       n     1.089  0.0100     0.971  0.0135
+DE3         CAG        HAGB      SINGLE       n     1.089  0.0100     0.971  0.0135
+DE3         CAI         HAI      SINGLE       n     1.089  0.0100     0.971  0.0145
+DE3         CAI        HAIA      SINGLE       n     1.089  0.0100     0.971  0.0145
+DE3         CAI         H16      SINGLE       n     1.089  0.0100     0.971  0.0145
+DE3         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.981  0.0152
+DE3         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.981  0.0152
+DE3         CAK         HAK      SINGLE       n     1.089  0.0100     0.981  0.0152
+DE3         CAK         H17      SINGLE       n     1.089  0.0100     0.981  0.0152
+DE3         CAL         HAL      SINGLE       n     1.089  0.0100     0.971  0.0145
+DE3         CAL        HALA      SINGLE       n     1.089  0.0100     0.971  0.0145
+DE3         CAL        HALB      SINGLE       n     1.089  0.0100     0.971  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DE3         CAB         CAA         CAC     119.465    1.50
+DE3         CAB         CAA         CAH     120.306    1.50
+DE3         CAC         CAA         CAH     120.229    1.94
+DE3         CAA         CAB         CAD     121.056    1.50
+DE3         CAA         CAB         HAB     119.842    1.50
+DE3         CAD         CAB         HAB     119.102    1.50
+DE3         CAA         CAC         CAF     120.305    1.50
+DE3         CAA         CAC         HAC     119.922    1.50
+DE3         CAF         CAC         HAC     119.773    1.50
+DE3         CAB         CAD         CAE     117.864    1.50
+DE3         CAB         CAD         CAG     121.051    1.50
+DE3         CAE         CAD         CAG     121.085    1.50
+DE3         CAD         CAE         CAF     121.179    1.50
+DE3         CAD         CAE         HAE     119.257    1.50
+DE3         CAF         CAE         HAE     119.564    1.50
+DE3         CAC         CAF         CAE     120.131    1.50
+DE3         CAC         CAF         HAF     119.934    1.50
+DE3         CAE         CAF         HAF     119.934    1.50
+DE3         CAD         CAG         HAG     109.567    1.50
+DE3         CAD         CAG        HAGA     109.567    1.50
+DE3         CAD         CAG        HAGB     109.567    1.50
+DE3         HAG         CAG        HAGA     109.348    1.50
+DE3         HAG         CAG        HAGB     109.348    1.50
+DE3        HAGA         CAG        HAGB     109.348    1.50
+DE3         CAA         CAH         NAM     117.975    1.50
+DE3         CAA         CAH         OAN     119.829    1.60
+DE3         NAM         CAH         OAN     122.196    1.50
+DE3         CAK         CAI         HAI     109.529    1.50
+DE3         CAK         CAI        HAIA     109.529    1.50
+DE3         CAK         CAI         H16     109.529    1.50
+DE3         HAI         CAI        HAIA     109.415    1.50
+DE3         HAI         CAI         H16     109.415    1.50
+DE3        HAIA         CAI         H16     109.415    1.50
+DE3         CAL         CAJ         NAM     112.728    1.50
+DE3         CAL         CAJ         HAJ     109.135    1.50
+DE3         CAL         CAJ        HAJA     109.135    1.50
+DE3         NAM         CAJ         HAJ     108.976    1.50
+DE3         NAM         CAJ        HAJA     108.976    1.50
+DE3         HAJ         CAJ        HAJA     107.838    1.50
+DE3         CAI         CAK         NAM     112.728    1.50
+DE3         CAI         CAK         HAK     109.135    1.50
+DE3         CAI         CAK         H17     109.135    1.50
+DE3         NAM         CAK         HAK     108.976    1.50
+DE3         NAM         CAK         H17     108.976    1.50
+DE3         HAK         CAK         H17     107.838    1.50
+DE3         CAJ         CAL         HAL     109.529    1.50
+DE3         CAJ         CAL        HALA     109.529    1.50
+DE3         CAJ         CAL        HALB     109.529    1.50
+DE3         HAL         CAL        HALA     109.415    1.50
+DE3         HAL         CAL        HALB     109.415    1.50
+DE3        HALA         CAL        HALB     109.415    1.50
+DE3         CAH         NAM         CAJ     121.542    3.00
+DE3         CAH         NAM         CAK     121.542    3.00
+DE3         CAJ         NAM         CAK     116.915    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DE3       const_sp2_sp2_3         CAH         CAA         CAB         CAD     180.000     5.0     2
+DE3              const_23         CAH         CAA         CAC         CAF     180.000    10.0     2
+DE3             sp2_sp2_1         CAB         CAA         CAH         NAM     180.000     5.0     2
+DE3            sp2_sp3_14         CAH         NAM         CAK         CAI     120.000    10.0     6
+DE3       const_sp2_sp2_6         CAA         CAB         CAD         CAG     180.000     5.0     2
+DE3              const_17         CAA         CAC         CAF         CAE       0.000    10.0     2
+DE3              const_11         CAG         CAD         CAE         CAF     180.000    10.0     2
+DE3             sp2_sp3_1         CAB         CAD         CAG         HAG     150.000    10.0     6
+DE3              const_13         CAD         CAE         CAF         CAC       0.000    10.0     2
+DE3             sp2_sp2_7         OAN         CAH         NAM         CAJ       0.000     5.0     2
+DE3             sp3_sp3_1         HAI         CAI         CAK         NAM     180.000    10.0     3
+DE3            sp3_sp3_10         NAM         CAJ         CAL         HAL     180.000    10.0     3
+DE3             sp2_sp3_8         CAH         NAM         CAJ         CAL     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DE3    plan-1         CAA   0.020
+DE3    plan-1         CAB   0.020
+DE3    plan-1         CAC   0.020
+DE3    plan-1         CAD   0.020
+DE3    plan-1         CAE   0.020
+DE3    plan-1         CAF   0.020
+DE3    plan-1         CAG   0.020
+DE3    plan-1         CAH   0.020
+DE3    plan-1         HAB   0.020
+DE3    plan-1         HAC   0.020
+DE3    plan-1         HAE   0.020
+DE3    plan-1         HAF   0.020
+DE3    plan-2         CAA   0.020
+DE3    plan-2         CAH   0.020
+DE3    plan-2         NAM   0.020
+DE3    plan-2         OAN   0.020
+DE3    plan-3         CAH   0.020
+DE3    plan-3         CAJ   0.020
+DE3    plan-3         CAK   0.020
+DE3    plan-3         NAM   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DE3           SMILES              ACDLabs 12.01                                                  O=C(N(CC)CC)c1cccc(c1)C
+DE3 SMILES_CANONICAL               CACTVS 3.370                                                  CCN(CC)C(=O)c1cccc(C)c1
+DE3           SMILES               CACTVS 3.370                                                  CCN(CC)C(=O)c1cccc(C)c1
+DE3 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                  CCN(CC)C(=O)c1cccc(c1)C
+DE3           SMILES "OpenEye OEToolkits" 1.7.0                                                  CCN(CC)C(=O)c1cccc(c1)C
+DE3            InChI                InChI  1.03 InChI=1S/C12H17NO/c1-4-13(5-2)12(14)11-8-6-7-10(3)9-11/h6-9H,4-5H2,1-3H3
+DE3         InChIKey                InChI  1.03                                              MMOXZBCLCQITDF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DE3 acedrg               243         "dictionary generator"                  
+DE3 acedrg_database      11          "data source"                           
+DE3 rdkit                2017.03.2   "Chemoinformatics tool"
+DE3 refmac5              5.8.0238    "optimization tool"                     

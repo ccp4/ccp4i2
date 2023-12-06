@@ -1,0 +1,152 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TRA     TRA      "ACONITATE ION"     NON-POLYMER     15     12     .     
+#
+data_comp_TRA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TRA     CA      C       C1      0       36.356      35.310      72.996      
+TRA     CB      C       C       0       35.656      34.324      72.377      
+TRA     CG      C       CH2     0       36.352      33.367      71.429      
+TRA     CAC     C       C       0       37.703      35.928      72.705      
+TRA     CBC     C       C       0       34.289      34.228      72.572      
+TRA     CGC     C       C       0       36.109      33.684      69.955      
+TRA     OA1     O       O       0       38.141      36.729      73.531      
+TRA     OA2     O       OC      -1      38.283      35.666      71.654      
+TRA     OB1     O       O       0       33.650      33.307      72.054      
+TRA     OB2     O       OC      -1      33.680      35.072      73.240      
+TRA     OG1     O       O       0       36.351      34.836      69.549      
+TRA     OG2     O       OC      -1      35.679      32.773      69.226      
+TRA     HA      H       H       0       35.949      35.654      73.774      
+TRA     HG1     H       H       0       36.032      32.457      71.598      
+TRA     HG2     H       H       0       37.315      33.371      71.594      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TRA          CA          CB      DOUBLE       n     1.346  0.0107     1.346  0.0107
+TRA          CA         CAC      SINGLE       n     1.492  0.0200     1.492  0.0200
+TRA          CB          CG      SINGLE       n     1.508  0.0124     1.508  0.0124
+TRA          CB         CBC      SINGLE       n     1.346  0.0200     1.346  0.0200
+TRA          CG         CGC      SINGLE       n     1.525  0.0126     1.525  0.0126
+TRA         CAC         OA1      DOUBLE       n     1.230  0.0200     1.230  0.0200
+TRA         CAC         OA2      SINGLE       n     1.230  0.0200     1.230  0.0200
+TRA         CBC         OB1      DOUBLE       n     1.230  0.0200     1.230  0.0200
+TRA         CBC         OB2      SINGLE       n     1.230  0.0200     1.230  0.0200
+TRA         CGC         OG1      DOUBLE       n     1.244  0.0200     1.244  0.0200
+TRA         CGC         OG2      SINGLE       n     1.244  0.0200     1.244  0.0200
+TRA          CA          HA      SINGLE       n     1.082  0.0130     0.943  0.0196
+TRA          CG         HG1      SINGLE       n     1.089  0.0100     0.979  0.0100
+TRA          CG         HG2      SINGLE       n     1.089  0.0100     0.979  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TRA          CB          CA         CAC     125.527    3.00
+TRA          CB          CA          HA     116.544    1.81
+TRA         CAC          CA          HA     117.929    1.95
+TRA          CA          CB          CG     118.651    3.00
+TRA          CA          CB         CBC     119.748    2.64
+TRA          CG          CB         CBC     121.601    1.50
+TRA          CB          CG         CGC     111.575    3.00
+TRA          CB          CG         HG1     109.185    1.50
+TRA          CB          CG         HG2     109.185    1.50
+TRA         CGC          CG         HG1     108.236    1.50
+TRA         CGC          CG         HG2     108.236    1.50
+TRA         HG1          CG         HG2     107.899    1.50
+TRA          CA         CAC         OA1     118.064    1.74
+TRA          CA         CAC         OA2     118.060    1.74
+TRA         OA1         CAC         OA2     123.870    1.50
+TRA          CB         CBC         OB1     119.884    1.50
+TRA          CB         CBC         OB2     119.884    1.50
+TRA         OB1         CBC         OB2     120.233    1.63
+TRA          CG         CGC         OG1     118.071    1.50
+TRA          CG         CGC         OG2     118.071    1.50
+TRA         OG1         CGC         OG2     123.857    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TRA             sp2_sp2_1         CAC          CA          CB          CG     180.000     5.0     2
+TRA             sp2_sp2_5          CB          CA         CAC         OA1     180.000     5.0     2
+TRA             sp2_sp3_2          CA          CB          CG         CGC     120.000    10.0     6
+TRA            sp2_sp2_11          CA          CB         CBC         OB1       0.000     5.0     2
+TRA             sp2_sp3_8         OG1         CGC          CG          CB     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TRA    plan-1          CA   0.020
+TRA    plan-1         CAC   0.020
+TRA    plan-1          CB   0.020
+TRA    plan-1          HA   0.020
+TRA    plan-2          CA   0.020
+TRA    plan-2          CB   0.020
+TRA    plan-2         CBC   0.020
+TRA    plan-2          CG   0.020
+TRA    plan-3          CA   0.020
+TRA    plan-3         CAC   0.020
+TRA    plan-3         OA1   0.020
+TRA    plan-3         OA2   0.020
+TRA    plan-4          CB   0.020
+TRA    plan-4         CBC   0.020
+TRA    plan-4         OB1   0.020
+TRA    plan-4         OB2   0.020
+TRA    plan-5          CG   0.020
+TRA    plan-5         CGC   0.020
+TRA    plan-5         OG1   0.020
+TRA    plan-5         OG2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TRA           SMILES              ACDLabs 10.04                                                  "[O-]C(=O)CC(=C\C([O-])=O)/C(=O)[O-]"
+TRA SMILES_CANONICAL               CACTVS 3.341                                                  "[O-]C(=O)C\C(=C/C([O-])=O)C([O-])=O"
+TRA           SMILES               CACTVS 3.341                                                    "[O-]C(=O)CC(=CC([O-])=O)C([O-])=O"
+TRA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                 C(/C(=C\C(=O)[O-])/C(=O)[O-])C(=O)[O-]
+TRA           SMILES "OpenEye OEToolkits" 1.5.0                                                    C(C(=CC(=O)[O-])C(=O)[O-])C(=O)[O-]
+TRA            InChI                InChI  1.03 InChI=1S/C6H6O6/c7-4(8)1-3(6(11)12)2-5(9)10/h1H,2H2,(H,7,8)(H,9,10)(H,11,12)/p-3/b3-1+
+TRA         InChIKey                InChI  1.03                                                            GTZCVFVGUGFEME-HNQUOIGGSA-K
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TRA acedrg               243         "dictionary generator"                  
+TRA acedrg_database      11          "data source"                           
+TRA rdkit                2017.03.2   "Chemoinformatics tool"
+TRA refmac5              5.8.0238    "optimization tool"                     

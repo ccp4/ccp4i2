@@ -1,0 +1,210 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZRL     ZRL      7-BROMO-2-PYRIDIN-4-YL-5H-THIENO[3,2-C]PYRIDIN-4-ONE     NON-POLYMER     24     17     .     
+#
+data_comp_ZRL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZRL     C3      C       CR16    0       108.690     64.843      44.129      
+ZRL     C2      C       CR6     0       108.882     63.863      45.037      
+ZRL     C11     C       CR56    0       107.900     62.887      45.209      
+ZRL     C7      C       CR56    0       106.718     62.904      44.458      
+ZRL     C5      C       CR6     0       106.518     63.945      43.497      
+ZRL     O6      O       O       0       105.516     64.067      42.772      
+ZRL     C9      C       CR5     0       106.384     61.016      45.763      
+ZRL     C12     C       CR6     0       105.786     59.813      46.361      
+ZRL     C13     C       CR16    0       104.406     59.680      46.438      
+ZRL     C14     C       CR16    0       103.873     58.536      47.001      
+ZRL     C8      C       CR15    0       105.857     61.808      44.800      
+ZRL     N15     N       NRD6    0       104.611     57.532      47.483      
+ZRL     C16     C       CR16    0       105.938     57.670      47.402      
+ZRL     N4      N       NR6     0       107.545     64.873      43.391      
+ZRL     C17     C       CR16    0       106.565     58.774      46.855      
+ZRL     S10     S       S2      0       107.882     61.591      46.246      
+ZRL     BR1     BR      BR      0       110.477     63.825      46.064      
+ZRL     H3      H       H       0       109.342     65.514      43.998      
+ZRL     H13     H       H       0       103.847     60.359      46.114      
+ZRL     H14     H       H       0       102.932     58.458      47.050      
+ZRL     H8      H       H       0       105.019     61.661      44.397      
+ZRL     H16     H       H       0       106.477     56.970      47.736      
+ZRL     H4      H       H       0       107.438     65.525      42.800      
+ZRL     H17     H       H       0       107.499     58.822      46.820      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZRL         C13         C14      DOUBLE       y     1.379  0.0100     1.379  0.0100
+ZRL         C12         C13      SINGLE       y     1.384  0.0100     1.384  0.0100
+ZRL         C16         C17      SINGLE       y     1.379  0.0100     1.379  0.0100
+ZRL         C12         C17      DOUBLE       y     1.384  0.0100     1.384  0.0100
+ZRL          C7          C8      SINGLE       y     1.425  0.0100     1.425  0.0100
+ZRL          C9          C8      DOUBLE       y     1.348  0.0100     1.348  0.0100
+ZRL         C14         N15      SINGLE       y     1.332  0.0107     1.332  0.0107
+ZRL         N15         C16      DOUBLE       y     1.332  0.0107     1.332  0.0107
+ZRL          C9         C12      SINGLE       n     1.466  0.0100     1.466  0.0100
+ZRL         C11          C7      DOUBLE       y     1.393  0.0118     1.393  0.0118
+ZRL          C7          C5      SINGLE       y     1.427  0.0100     1.427  0.0100
+ZRL          C9         S10      SINGLE       y     1.695  0.0200     1.695  0.0200
+ZRL          C2         C11      SINGLE       y     1.386  0.0172     1.386  0.0172
+ZRL         C11         S10      SINGLE       y     1.695  0.0200     1.695  0.0200
+ZRL          C3          C2      DOUBLE       y     1.342  0.0158     1.342  0.0158
+ZRL          C3          N4      SINGLE       y     1.358  0.0100     1.358  0.0100
+ZRL          C5          N4      SINGLE       y     1.384  0.0100     1.384  0.0100
+ZRL          C5          O6      DOUBLE       n     1.242  0.0112     1.242  0.0112
+ZRL          C2         BR1      SINGLE       n     1.897  0.0110     1.897  0.0110
+ZRL          C3          H3      SINGLE       n     1.082  0.0130     0.945  0.0200
+ZRL         C13         H13      SINGLE       n     1.082  0.0130     0.937  0.0140
+ZRL         C14         H14      SINGLE       n     1.082  0.0130     0.945  0.0200
+ZRL          C8          H8      SINGLE       n     1.082  0.0130     0.941  0.0170
+ZRL         C16         H16      SINGLE       n     1.082  0.0130     0.945  0.0200
+ZRL          N4          H4      SINGLE       n     1.016  0.0100     0.886  0.0200
+ZRL         C17         H17      SINGLE       n     1.082  0.0130     0.937  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZRL          C2          C3          N4     119.179    2.98
+ZRL          C2          C3          H3     120.994    1.50
+ZRL          N4          C3          H3     119.827    1.97
+ZRL         C11          C2          C3     119.266    1.50
+ZRL         C11          C2         BR1     120.766    1.50
+ZRL          C3          C2         BR1     119.968    1.50
+ZRL          C7         C11          C2     121.523    1.99
+ZRL          C7         C11         S10     108.352    3.00
+ZRL          C2         C11         S10     130.125    3.00
+ZRL          C8          C7         C11     107.217    1.50
+ZRL          C8          C7          C5     131.473    1.67
+ZRL         C11          C7          C5     121.310    1.84
+ZRL          C7          C5          N4     115.217    1.50
+ZRL          C7          C5          O6     125.535    1.50
+ZRL          N4          C5          O6     119.248    1.50
+ZRL          C8          C9         C12     130.671    2.77
+ZRL          C8          C9         S10     108.352    3.00
+ZRL         C12          C9         S10     120.977    3.00
+ZRL         C13         C12         C17     118.517    1.50
+ZRL         C13         C12          C9     120.742    1.80
+ZRL         C17         C12          C9     120.742    1.80
+ZRL         C14         C13         C12     118.942    1.50
+ZRL         C14         C13         H13     120.926    1.50
+ZRL         C12         C13         H13     120.131    1.50
+ZRL         C13         C14         N15     123.686    1.50
+ZRL         C13         C14         H14     118.273    1.50
+ZRL         N15         C14         H14     118.041    1.50
+ZRL          C7          C8          C9     107.727    1.50
+ZRL          C7          C8          H8     125.757    1.50
+ZRL          C9          C8          H8     126.516    1.56
+ZRL         C14         N15         C16     116.226    1.50
+ZRL         C17         C16         N15     123.686    1.50
+ZRL         C17         C16         H16     118.273    1.50
+ZRL         N15         C16         H16     118.041    1.50
+ZRL          C3          N4          C5     123.497    2.07
+ZRL          C3          N4          H4     119.405    2.19
+ZRL          C5          N4          H4     117.107    1.86
+ZRL         C16         C17         C12     118.942    1.50
+ZRL         C16         C17         H17     120.926    1.50
+ZRL         C12         C17         H17     120.131    1.50
+ZRL          C9         S10         C11     108.352    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZRL       const_sp2_sp2_3         BR1          C2          C3          N4     180.000     5.0     2
+ZRL              const_53          C2          C3          N4          C5       0.000    10.0     2
+ZRL              const_41         C17         C16         N15         C14       0.000    10.0     2
+ZRL              const_43         N15         C16         C17         C12       0.000    10.0     2
+ZRL       const_sp2_sp2_6          C7         C11          C2         BR1     180.000     5.0     2
+ZRL              const_51          C7         C11         S10          C9       0.000    10.0     2
+ZRL              const_10          C2         C11          C7          C8     180.000    10.0     2
+ZRL              const_21         C11          C7          C8          C9       0.000    10.0     2
+ZRL              const_16          O6          C5          C7          C8       0.000    10.0     2
+ZRL              const_19          O6          C5          N4          C3     180.000    10.0     2
+ZRL              const_26          C7          C8          C9         C12     180.000    10.0     2
+ZRL              const_29          C8          C9         S10         C11       0.000    10.0     2
+ZRL             sp2_sp2_1         C13         C12          C9          C8     180.000     5.0     2
+ZRL              const_47         C13         C12         C17         C16       0.000    10.0     2
+ZRL              const_31         C17         C12         C13         C14       0.000    10.0     2
+ZRL              const_35         C12         C13         C14         N15       0.000    10.0     2
+ZRL              const_39         C13         C14         N15         C16       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZRL    plan-1         BR1   0.020
+ZRL    plan-1         C11   0.020
+ZRL    plan-1         C12   0.020
+ZRL    plan-1          C2   0.020
+ZRL    plan-1          C3   0.020
+ZRL    plan-1          C5   0.020
+ZRL    plan-1          C7   0.020
+ZRL    plan-1          C8   0.020
+ZRL    plan-1          C9   0.020
+ZRL    plan-1          H3   0.020
+ZRL    plan-1          H4   0.020
+ZRL    plan-1          H8   0.020
+ZRL    plan-1          N4   0.020
+ZRL    plan-1          O6   0.020
+ZRL    plan-1         S10   0.020
+ZRL    plan-2         C12   0.020
+ZRL    plan-2         C13   0.020
+ZRL    plan-2         C14   0.020
+ZRL    plan-2         C16   0.020
+ZRL    plan-2         C17   0.020
+ZRL    plan-2          C9   0.020
+ZRL    plan-2         H13   0.020
+ZRL    plan-2         H14   0.020
+ZRL    plan-2         H16   0.020
+ZRL    plan-2         H17   0.020
+ZRL    plan-2         N15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZRL            InChI                InChI 1.02b InChI=1/C12H7BrN2OS/c13-9-6-15-12(16)8-5-10(17-11(8)9)7-1-3-14-4-2-7/h1-6H,(H,15,16)/f/h15H
+ZRL         InChIKey                InChI 1.02b                                                                   YFBJHINTWOTPAK-YAQRNVERCD
+ZRL SMILES_CANONICAL               CACTVS 3.352                                                              BrC1=CNC(=O)c2cc(sc12)c3ccncc3
+ZRL           SMILES               CACTVS 3.352                                                              BrC1=CNC(=O)c2cc(sc12)c3ccncc3
+ZRL SMILES_CANONICAL "OpenEye OEToolkits" 1.6.1                                                              c1cnccc1c2cc3c(s2)C(=CNC3=O)Br
+ZRL           SMILES "OpenEye OEToolkits" 1.6.1                                                              c1cnccc1c2cc3c(s2)C(=CNC3=O)Br
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZRL acedrg               243         "dictionary generator"                  
+ZRL acedrg_database      11          "data source"                           
+ZRL rdkit                2017.03.2   "Chemoinformatics tool"
+ZRL refmac5              5.8.0238    "optimization tool"                     

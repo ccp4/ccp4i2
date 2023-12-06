@@ -1,0 +1,364 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3LP     3LP      1-(CYCLOHEXYLAMINO)-3-(6-METHYL-3,4-DIHYDRO-1H-CARBAZOL-9(2H)-YL)PROPAN-2-OL     NON-POLYMER     57     25     .     
+#
+data_comp_3LP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3LP     OAB     O       OH1     0       9.396       -19.049     -27.661     
+3LP     CAW     C       CH1     0       9.480       -18.603     -29.016     
+3LP     CAO     C       CH2     0       9.748       -19.787     -29.939     
+3LP     NAQ     N       NT1     0       8.822       -20.915     -29.758     
+3LP     CAX     C       CH1     0       8.670       -21.827     -30.905     
+3LP     CAN     C       CH2     0       9.797       -22.853     -30.930     
+3LP     CAJ     C       CH2     0       9.657       -23.796     -32.124     
+3LP     CAF     C       CH2     0       8.301       -24.478     -32.139     
+3LP     CAI     C       CH2     0       7.175       -23.462     -32.101     
+3LP     CAM     C       CH2     0       7.312       -22.523     -30.903     
+3LP     CAP     C       CH2     0       8.230       -17.831     -29.401     
+3LP     NAY     N       NR5     0       8.096       -16.576     -28.660     
+3LP     CAV     C       CR56    0       7.423       -16.437     -27.462     
+3LP     CAD     C       CR16    0       6.746       -17.380     -26.686     
+3LP     CAC     C       CR16    0       6.157       -16.950     -25.513     
+3LP     CAR     C       CR6     0       6.219       -15.615     -25.081     
+3LP     CAA     C       CH3     0       5.552       -15.220     -23.786     
+3LP     CAE     C       CR16    0       6.893       -14.683     -25.854     
+3LP     CAU     C       CR56    0       7.508       -15.084     -27.063     
+3LP     CAS     C       CR56    0       8.259       -14.408     -28.076     
+3LP     CAT     C       CR56    0       8.600       -15.338     -29.017     
+3LP     CAK     C       CH2     0       8.661       -12.967     -28.174     
+3LP     CAG     C       CH2     0       9.181       -12.638     -29.566     
+3LP     CAH     C       CH2     0       10.064      -13.700     -30.151     
+3LP     CAL     C       CH2     0       9.384       -15.067     -30.254     
+3LP     HAB     H       H       0       8.672       -19.467     -27.519     
+3LP     HAW     H       H       0       10.257      -17.989     -29.075     
+3LP     HAO1    H       H       0       10.666      -20.111     -29.770     
+3LP     HAO2    H       H       0       9.713       -19.464     -30.872     
+3LP     HAQ     H       H       0       8.023       -20.634     -29.504     
+3LP     HAX     H       H       0       8.729       -21.293     -31.733     
+3LP     HAN1    H       H       0       10.659      -22.387     -30.980     
+3LP     HAN2    H       H       0       9.781       -23.373     -30.098     
+3LP     HAJ1    H       H       0       10.363      -24.478     -32.084     
+3LP     HAJ2    H       H       0       9.774       -23.287     -32.955     
+3LP     HAF1    H       H       0       8.228       -25.075     -31.364     
+3LP     HAF2    H       H       0       8.220       -25.023     -32.951     
+3LP     HAI1    H       H       0       6.315       -23.932     -32.048     
+3LP     HAI2    H       H       0       7.183       -22.936     -32.929     
+3LP     HAM1    H       H       0       6.600       -21.848     -30.936     
+3LP     HAM2    H       H       0       7.209       -23.034     -30.072     
+3LP     HAP1    H       H       0       7.442       -18.384     -29.233     
+3LP     HAP2    H       H       0       8.256       -17.634     -30.358     
+3LP     HAD     H       H       0       6.690       -18.277     -26.954     
+3LP     HAC     H       H       0       5.700       -17.571     -24.984     
+3LP     HAA1    H       H       0       5.600       -14.257     -23.674     
+3LP     HAA2    H       H       0       6.003       -15.653     -23.044     
+3LP     HAA3    H       H       0       4.622       -15.497     -23.804     
+3LP     HAE     H       H       0       6.942       -13.785     -25.575     
+3LP     HAK1    H       H       0       9.357       -12.775     -27.512     
+3LP     HAK2    H       H       0       7.890       -12.397     -27.971     
+3LP     HAG1    H       H       0       9.688       -11.788     -29.522     
+3LP     HAG2    H       H       0       8.407       -12.497     -30.168     
+3LP     HAH1    H       H       0       10.873      -13.792     -29.591     
+3LP     HAH2    H       H       0       10.349      -13.421     -31.055     
+3LP     HAL1    H       H       0       8.795       -15.091     -31.041     
+3LP     HAL2    H       H       0       10.059      -15.769     -30.387     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3LP         OAB         CAW      SINGLE       n     1.424  0.0199     1.424  0.0199
+3LP         CAW         CAP      SINGLE       n     1.512  0.0200     1.512  0.0200
+3LP         CAW         CAO      SINGLE       n     1.521  0.0130     1.521  0.0130
+3LP         CAO         NAQ      SINGLE       n     1.463  0.0143     1.463  0.0143
+3LP         NAQ         CAX      SINGLE       n     1.468  0.0132     1.468  0.0132
+3LP         CAX         CAM      SINGLE       n     1.521  0.0138     1.521  0.0138
+3LP         CAX         CAN      SINGLE       n     1.521  0.0138     1.521  0.0138
+3LP         CAN         CAJ      SINGLE       n     1.527  0.0100     1.527  0.0100
+3LP         CAJ         CAF      SINGLE       n     1.515  0.0126     1.515  0.0126
+3LP         CAF         CAI      SINGLE       n     1.515  0.0126     1.515  0.0126
+3LP         CAI         CAM      SINGLE       n     1.527  0.0100     1.527  0.0100
+3LP         CAP         NAY      SINGLE       n     1.462  0.0100     1.462  0.0100
+3LP         NAY         CAT      SINGLE       y     1.381  0.0100     1.381  0.0100
+3LP         NAY         CAV      SINGLE       y     1.380  0.0100     1.380  0.0100
+3LP         CAV         CAD      DOUBLE       y     1.393  0.0100     1.393  0.0100
+3LP         CAV         CAU      SINGLE       y     1.413  0.0100     1.413  0.0100
+3LP         CAD         CAC      SINGLE       y     1.378  0.0100     1.378  0.0100
+3LP         CAC         CAR      DOUBLE       y     1.388  0.0200     1.388  0.0200
+3LP         CAR         CAA      SINGLE       n     1.508  0.0100     1.508  0.0100
+3LP         CAR         CAE      SINGLE       y     1.381  0.0100     1.381  0.0100
+3LP         CAE         CAU      DOUBLE       y     1.404  0.0179     1.404  0.0179
+3LP         CAU         CAS      SINGLE       y     1.432  0.0100     1.432  0.0100
+3LP         CAS         CAK      SINGLE       n     1.495  0.0134     1.495  0.0134
+3LP         CAS         CAT      DOUBLE       y     1.363  0.0100     1.363  0.0100
+3LP         CAT         CAL      SINGLE       n     1.487  0.0100     1.487  0.0100
+3LP         CAK         CAG      SINGLE       n     1.518  0.0126     1.518  0.0126
+3LP         CAG         CAH      SINGLE       n     1.494  0.0200     1.494  0.0200
+3LP         CAH         CAL      SINGLE       n     1.521  0.0188     1.521  0.0188
+3LP         OAB         HAB      SINGLE       n     0.970  0.0120     0.848  0.0200
+3LP         CAW         HAW      SINGLE       n     1.089  0.0100     0.992  0.0184
+3LP         CAO        HAO1      SINGLE       n     1.089  0.0100     0.988  0.0200
+3LP         CAO        HAO2      SINGLE       n     1.089  0.0100     0.988  0.0200
+3LP         NAQ         HAQ      SINGLE       n     1.036  0.0160     0.885  0.0200
+3LP         CAX         HAX      SINGLE       n     1.089  0.0100     0.988  0.0199
+3LP         CAN        HAN1      SINGLE       n     1.089  0.0100     0.981  0.0121
+3LP         CAN        HAN2      SINGLE       n     1.089  0.0100     0.981  0.0121
+3LP         CAJ        HAJ1      SINGLE       n     1.089  0.0100     0.982  0.0131
+3LP         CAJ        HAJ2      SINGLE       n     1.089  0.0100     0.982  0.0131
+3LP         CAF        HAF1      SINGLE       n     1.089  0.0100     0.981  0.0138
+3LP         CAF        HAF2      SINGLE       n     1.089  0.0100     0.981  0.0138
+3LP         CAI        HAI1      SINGLE       n     1.089  0.0100     0.982  0.0131
+3LP         CAI        HAI2      SINGLE       n     1.089  0.0100     0.982  0.0131
+3LP         CAM        HAM1      SINGLE       n     1.089  0.0100     0.981  0.0121
+3LP         CAM        HAM2      SINGLE       n     1.089  0.0100     0.981  0.0121
+3LP         CAP        HAP1      SINGLE       n     1.089  0.0100     0.978  0.0180
+3LP         CAP        HAP2      SINGLE       n     1.089  0.0100     0.978  0.0180
+3LP         CAD         HAD      SINGLE       n     1.082  0.0130     0.938  0.0185
+3LP         CAC         HAC      SINGLE       n     1.082  0.0130     0.935  0.0103
+3LP         CAA        HAA1      SINGLE       n     1.089  0.0100     0.971  0.0135
+3LP         CAA        HAA2      SINGLE       n     1.089  0.0100     0.971  0.0135
+3LP         CAA        HAA3      SINGLE       n     1.089  0.0100     0.971  0.0135
+3LP         CAE         HAE      SINGLE       n     1.082  0.0130     0.942  0.0173
+3LP         CAK        HAK1      SINGLE       n     1.089  0.0100     0.980  0.0106
+3LP         CAK        HAK2      SINGLE       n     1.089  0.0100     0.980  0.0106
+3LP         CAG        HAG1      SINGLE       n     1.089  0.0100     0.991  0.0137
+3LP         CAG        HAG2      SINGLE       n     1.089  0.0100     0.991  0.0137
+3LP         CAH        HAH1      SINGLE       n     1.089  0.0100     0.988  0.0146
+3LP         CAH        HAH2      SINGLE       n     1.089  0.0100     0.988  0.0146
+3LP         CAL        HAL1      SINGLE       n     1.089  0.0100     0.983  0.0104
+3LP         CAL        HAL2      SINGLE       n     1.089  0.0100     0.983  0.0104
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3LP         CAW         OAB         HAB     109.265    3.00
+3LP         OAB         CAW         CAP     109.670    2.62
+3LP         OAB         CAW         CAO     109.698    2.33
+3LP         OAB         CAW         HAW     108.183    1.96
+3LP         CAP         CAW         CAO     113.113    2.58
+3LP         CAP         CAW         HAW     108.989    1.50
+3LP         CAO         CAW         HAW     108.757    1.75
+3LP         CAW         CAO         NAQ     111.883    2.59
+3LP         CAW         CAO        HAO1     108.598    1.50
+3LP         CAW         CAO        HAO2     108.598    1.50
+3LP         NAQ         CAO        HAO1     109.170    3.00
+3LP         NAQ         CAO        HAO2     109.170    3.00
+3LP        HAO1         CAO        HAO2     107.790    1.50
+3LP         CAO         NAQ         CAX     115.236    1.50
+3LP         CAO         NAQ         HAQ     109.903    3.00
+3LP         CAX         NAQ         HAQ     107.785    2.86
+3LP         NAQ         CAX         CAM     111.820    2.36
+3LP         NAQ         CAX         CAN     111.820    2.36
+3LP         NAQ         CAX         HAX     108.110    1.50
+3LP         CAM         CAX         CAN     110.870    1.50
+3LP         CAM         CAX         HAX     108.306    1.50
+3LP         CAN         CAX         HAX     108.306    1.50
+3LP         CAX         CAN         CAJ     110.796    1.50
+3LP         CAX         CAN        HAN1     109.338    1.50
+3LP         CAX         CAN        HAN2     109.338    1.50
+3LP         CAJ         CAN        HAN1     109.472    1.50
+3LP         CAJ         CAN        HAN2     109.472    1.50
+3LP        HAN1         CAN        HAN2     108.076    1.50
+3LP         CAN         CAJ         CAF     111.328    1.50
+3LP         CAN         CAJ        HAJ1     109.340    1.50
+3LP         CAN         CAJ        HAJ2     109.340    1.50
+3LP         CAF         CAJ        HAJ1     109.386    1.50
+3LP         CAF         CAJ        HAJ2     109.386    1.50
+3LP        HAJ1         CAJ        HAJ2     108.036    1.50
+3LP         CAJ         CAF         CAI     111.038    1.50
+3LP         CAJ         CAF        HAF1     109.386    1.50
+3LP         CAJ         CAF        HAF2     109.386    1.50
+3LP         CAI         CAF        HAF1     109.386    1.50
+3LP         CAI         CAF        HAF2     109.386    1.50
+3LP        HAF1         CAF        HAF2     108.036    1.50
+3LP         CAF         CAI         CAM     111.328    1.50
+3LP         CAF         CAI        HAI1     109.386    1.50
+3LP         CAF         CAI        HAI2     109.386    1.50
+3LP         CAM         CAI        HAI1     109.340    1.50
+3LP         CAM         CAI        HAI2     109.340    1.50
+3LP        HAI1         CAI        HAI2     108.036    1.50
+3LP         CAX         CAM         CAI     110.796    1.50
+3LP         CAX         CAM        HAM1     109.338    1.50
+3LP         CAX         CAM        HAM2     109.338    1.50
+3LP         CAI         CAM        HAM1     109.472    1.50
+3LP         CAI         CAM        HAM2     109.472    1.50
+3LP        HAM1         CAM        HAM2     108.076    1.50
+3LP         CAW         CAP         NAY     112.232    1.50
+3LP         CAW         CAP        HAP1     109.255    1.50
+3LP         CAW         CAP        HAP2     109.255    1.50
+3LP         NAY         CAP        HAP1     108.913    1.50
+3LP         NAY         CAP        HAP2     108.913    1.50
+3LP        HAP1         CAP        HAP2     107.991    1.50
+3LP         CAP         NAY         CAT     127.150    1.82
+3LP         CAP         NAY         CAV     124.911    2.02
+3LP         CAT         NAY         CAV     107.939    1.50
+3LP         NAY         CAV         CAD     129.967    1.50
+3LP         NAY         CAV         CAU     108.236    1.50
+3LP         CAD         CAV         CAU     121.797    1.50
+3LP         CAV         CAD         CAC     117.943    1.50
+3LP         CAV         CAD         HAD     121.040    1.50
+3LP         CAC         CAD         HAD     121.017    1.50
+3LP         CAD         CAC         CAR     122.425    1.50
+3LP         CAD         CAC         HAC     118.905    1.50
+3LP         CAR         CAC         HAC     118.671    1.50
+3LP         CAC         CAR         CAA     119.807    1.50
+3LP         CAC         CAR         CAE     119.059    1.50
+3LP         CAA         CAR         CAE     121.134    1.50
+3LP         CAR         CAA        HAA1     109.472    1.50
+3LP         CAR         CAA        HAA2     109.472    1.50
+3LP         CAR         CAA        HAA3     109.472    1.50
+3LP        HAA1         CAA        HAA2     109.348    1.50
+3LP        HAA1         CAA        HAA3     109.348    1.50
+3LP        HAA2         CAA        HAA3     109.348    1.50
+3LP         CAR         CAE         CAU     119.698    1.50
+3LP         CAR         CAE         HAE     120.125    1.50
+3LP         CAU         CAE         HAE     120.177    1.50
+3LP         CAV         CAU         CAE     119.076    1.50
+3LP         CAV         CAU         CAS     106.943    1.50
+3LP         CAE         CAU         CAS     133.981    1.50
+3LP         CAU         CAS         CAK     130.013    1.50
+3LP         CAU         CAS         CAT     107.297    1.50
+3LP         CAK         CAS         CAT     122.696    1.50
+3LP         NAY         CAT         CAS     109.586    1.50
+3LP         NAY         CAT         CAL     124.756    1.50
+3LP         CAS         CAT         CAL     125.658    1.50
+3LP         CAS         CAK         CAG     110.383    1.50
+3LP         CAS         CAK        HAK1     109.672    1.50
+3LP         CAS         CAK        HAK2     109.672    1.50
+3LP         CAG         CAK        HAK1     109.580    1.50
+3LP         CAG         CAK        HAK2     109.580    1.50
+3LP        HAK1         CAK        HAK2     107.814    1.50
+3LP         CAK         CAG         CAH     114.055    2.13
+3LP         CAK         CAG        HAG1     108.902    1.50
+3LP         CAK         CAG        HAG2     108.902    1.50
+3LP         CAH         CAG        HAG1     109.066    1.50
+3LP         CAH         CAG        HAG2     109.066    1.50
+3LP        HAG1         CAG        HAG2     107.960    1.50
+3LP         CAG         CAH         CAL     112.309    2.44
+3LP         CAG         CAH        HAH1     109.066    1.50
+3LP         CAG         CAH        HAH2     109.066    1.50
+3LP         CAL         CAH        HAH1     108.610    2.54
+3LP         CAL         CAH        HAH2     108.610    2.54
+3LP        HAH1         CAH        HAH2     107.960    1.50
+3LP         CAT         CAL         CAH     108.833    1.50
+3LP         CAT         CAL        HAL1     110.412    1.67
+3LP         CAT         CAL        HAL2     110.412    1.67
+3LP         CAH         CAL        HAL1     110.244    1.50
+3LP         CAH         CAL        HAL2     110.244    1.50
+3LP        HAL1         CAL        HAL2     107.380    2.72
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3LP            sp3_sp3_73         CAP         CAW         OAB         HAB     180.000    10.0     3
+3LP            sp2_sp3_14         CAT         NAY         CAP         CAW     -90.000    10.0     6
+3LP              const_40         CAD         CAV         NAY         CAP       0.000    10.0     2
+3LP              const_22         CAS         CAT         NAY         CAP     180.000    10.0     2
+3LP       const_sp2_sp2_2         CAC         CAD         CAV         NAY     180.000     5.0     2
+3LP              const_34         CAE         CAU         CAV         NAY     180.000    10.0     2
+3LP       const_sp2_sp2_5         CAR         CAC         CAD         CAV       0.000     5.0     2
+3LP              const_10         CAD         CAC         CAR         CAA     180.000    10.0     2
+3LP            sp2_sp3_19         CAC         CAR         CAA        HAA1     150.000    10.0     6
+3LP              const_14         CAU         CAE         CAR         CAA     180.000    10.0     2
+3LP              const_17         CAR         CAE         CAU         CAV       0.000    10.0     2
+3LP              const_31         CAK         CAS         CAU         CAV     180.000    10.0     2
+3LP              const_25         CAU         CAS         CAT         NAY       0.000    10.0     2
+3LP             sp2_sp3_4         CAU         CAS         CAK         CAG     180.000    10.0     6
+3LP            sp3_sp3_76         NAY         CAP         CAW         OAB     180.000    10.0     3
+3LP            sp3_sp3_85         NAQ         CAO         CAW         OAB     180.000    10.0     3
+3LP            sp2_sp3_10         NAY         CAT         CAL         CAH     180.000    10.0     6
+3LP            sp3_sp3_46         CAH         CAG         CAK         CAS     -60.000    10.0     3
+3LP            sp3_sp3_55         CAK         CAG         CAH         CAL      60.000    10.0     3
+3LP            sp3_sp3_64         CAG         CAH         CAL         CAT     -60.000    10.0     3
+3LP            sp3_sp3_94         CAW         CAO         NAQ         CAX     180.000    10.0     3
+3LP           sp3_sp3_103         CAM         CAX         NAQ         CAO     180.000    10.0     3
+3LP           sp3_sp3_107         CAJ         CAN         CAX         NAQ     -60.000    10.0     3
+3LP             sp3_sp3_3         CAI         CAM         CAX         NAQ     -60.000    10.0     3
+3LP            sp3_sp3_37         CAF         CAJ         CAN         CAX      60.000    10.0     3
+3LP            sp3_sp3_28         CAI         CAF         CAJ         CAN     -60.000    10.0     3
+3LP            sp3_sp3_19         CAJ         CAF         CAI         CAM      60.000    10.0     3
+3LP            sp3_sp3_10         CAF         CAI         CAM         CAX     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+3LP    chir_1    CAW    OAB    CAP    CAO    positive
+3LP    chir_2    CAX    NAQ    CAM    CAN    both
+3LP    chir_3    NAQ    CAX    CAO    HAQ    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3LP    plan-1         CAA   0.020
+3LP    plan-1         CAC   0.020
+3LP    plan-1         CAD   0.020
+3LP    plan-1         CAE   0.020
+3LP    plan-1         CAK   0.020
+3LP    plan-1         CAL   0.020
+3LP    plan-1         CAP   0.020
+3LP    plan-1         CAR   0.020
+3LP    plan-1         CAS   0.020
+3LP    plan-1         CAT   0.020
+3LP    plan-1         CAU   0.020
+3LP    plan-1         CAV   0.020
+3LP    plan-1         HAC   0.020
+3LP    plan-1         HAD   0.020
+3LP    plan-1         HAE   0.020
+3LP    plan-1         NAY   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3LP           SMILES              ACDLabs 10.04                                                                                                           OC(CNC1CCCCC1)Cn2c4c(c3c2CCCC3)cc(cc4)C
+3LP SMILES_CANONICAL               CACTVS 3.341                                                                                                        Cc1ccc2n(C[C@@H](O)CNC3CCCCC3)c4CCCCc4c2c1
+3LP           SMILES               CACTVS 3.341                                                                                                          Cc1ccc2n(C[CH](O)CNC3CCCCC3)c4CCCCc4c2c1
+3LP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                       Cc1ccc2c(c1)c3c(n2C[C@H](CNC4CCCCC4)O)CCCC3
+3LP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                           Cc1ccc2c(c1)c3c(n2CC(CNC4CCCCC4)O)CCCC3
+3LP            InChI                InChI  1.03 InChI=1S/C22H32N2O/c1-16-11-12-22-20(13-16)19-9-5-6-10-21(19)24(22)15-18(25)14-23-17-7-3-2-4-8-17/h11-13,17-18,23,25H,2-10,14-15H2,1H3/t18-/m0/s1
+3LP         InChIKey                InChI  1.03                                                                                                                       AXYFCRIRLKSCRR-SFHVURJKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3LP acedrg               243         "dictionary generator"                  
+3LP acedrg_database      11          "data source"                           
+3LP rdkit                2017.03.2   "Chemoinformatics tool"
+3LP refmac5              5.8.0238    "optimization tool"                     

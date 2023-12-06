@@ -1,0 +1,306 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VIS     VIS      2-chloranyl-~{N}-(4-chloranyl-3-pyridin-2-yl-phenyl)-4-methylsulfonyl-benzamide     NON-POLYMER     41     27     .     
+#
+data_comp_VIS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VIS     CL1     CL      CL      0       0.505       55.117      -42.541     
+VIS     C11     C       CR6     0       1.708       55.346      -41.300     
+VIS     C10     C       CR16    0       1.289       55.294      -39.969     
+VIS     C9      C       CR16    0       2.217       55.470      -38.956     
+VIS     C12     C       CR6     0       3.045       55.574      -41.634     
+VIS     C14     C       CR6     0       3.513       55.632      -43.047     
+VIS     N1      N       NRD6    0       4.367       54.655      -43.426     
+VIS     C18     C       CR16    0       4.824       54.670      -44.690     
+VIS     C17     C       CR16    0       4.474       55.632      -45.617     
+VIS     C16     C       CR16    0       3.608       56.631      -45.224     
+VIS     C15     C       CR16    0       3.126       56.640      -43.928     
+VIS     C13     C       CR16    0       3.965       55.746      -40.599     
+VIS     C8      C       CR6     0       3.553       55.699      -39.264     
+VIS     N       N       NH1     0       4.493       55.874      -38.224     
+VIS     C7      C       C       0       5.355       56.910      -38.066     
+VIS     O2      O       O       0       5.326       57.928      -38.751     
+VIS     C4      C       CR6     0       6.373       56.750      -36.971     
+VIS     C3      C       CR16    0       5.946       56.729      -35.638     
+VIS     C2      C       CR16    0       6.848       56.586      -34.595     
+VIS     C5      C       CR6     0       7.737       56.627      -37.224     
+VIS     CL      CL      CL      0       8.339       56.647      -38.853     
+VIS     C6      C       CR16    0       8.646       56.484      -36.188     
+VIS     C1      C       CR6     0       8.203       56.462      -34.872     
+VIS     S       S       S3      0       9.352       56.283      -33.540     
+VIS     O       O       O       0       8.736       55.477      -32.526     
+VIS     O1      O       O       0       10.614      55.850      -34.071     
+VIS     C       C       CH3     0       9.544       57.907      -32.910     
+VIS     H1      H       H       0       0.385       55.141      -39.761     
+VIS     H2      H       H       0       1.942       55.436      -38.061     
+VIS     H3      H       H       0       5.417       53.983      -44.954     
+VIS     H4      H       H       0       4.819       55.605      -46.495     
+VIS     H5      H       H       0       3.348       57.305      -45.832     
+VIS     H6      H       H       0       2.528       57.318      -43.642     
+VIS     H7      H       H       0       4.870       55.901      -40.806     
+VIS     H8      H       H       0       4.513       55.237      -37.621     
+VIS     H9      H       H       0       5.029       56.811      -35.444     
+VIS     H10     H       H       0       6.545       56.573      -33.709     
+VIS     H11     H       H       0       9.559       56.403      -36.378     
+VIS     H12     H       H       0       8.683       58.251      -32.642     
+VIS     H13     H       H       0       9.918       58.475      -33.596     
+VIS     H14     H       H       0       10.136      57.888      -32.148     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VIS         C17         C16      DOUBLE       y     1.374  0.0129     1.374  0.0129
+VIS         C18         C17      SINGLE       y     1.376  0.0130     1.376  0.0130
+VIS         C16         C15      SINGLE       y     1.379  0.0100     1.379  0.0100
+VIS          N1         C18      DOUBLE       y     1.341  0.0100     1.341  0.0100
+VIS         C14         C15      DOUBLE       y     1.389  0.0113     1.389  0.0113
+VIS         C14          N1      SINGLE       y     1.347  0.0108     1.347  0.0108
+VIS         C12         C14      SINGLE       n     1.488  0.0100     1.488  0.0100
+VIS         CL1         C11      SINGLE       n     1.742  0.0100     1.742  0.0100
+VIS         C11         C12      DOUBLE       y     1.391  0.0100     1.391  0.0100
+VIS         C12         C13      SINGLE       y     1.391  0.0100     1.391  0.0100
+VIS         C11         C10      SINGLE       y     1.389  0.0153     1.389  0.0153
+VIS         C13          C8      DOUBLE       y     1.394  0.0100     1.394  0.0100
+VIS         C10          C9      DOUBLE       y     1.382  0.0100     1.382  0.0100
+VIS          C9          C8      SINGLE       y     1.388  0.0100     1.388  0.0100
+VIS          C8           N      SINGLE       n     1.411  0.0105     1.411  0.0105
+VIS          C7          O2      DOUBLE       n     1.226  0.0100     1.226  0.0100
+VIS          C5          CL      SINGLE       n     1.737  0.0100     1.737  0.0100
+VIS           N          C7      SINGLE       n     1.351  0.0126     1.351  0.0126
+VIS          C7          C4      SINGLE       n     1.502  0.0100     1.502  0.0100
+VIS          C4          C5      SINGLE       y     1.387  0.0100     1.387  0.0100
+VIS          C5          C6      DOUBLE       y     1.383  0.0100     1.383  0.0100
+VIS          C4          C3      DOUBLE       y     1.396  0.0100     1.396  0.0100
+VIS          C6          C1      SINGLE       y     1.385  0.0100     1.385  0.0100
+VIS          C3          C2      SINGLE       y     1.382  0.0100     1.382  0.0100
+VIS          C2          C1      DOUBLE       y     1.385  0.0100     1.385  0.0100
+VIS          C1           S      SINGLE       n     1.767  0.0100     1.767  0.0100
+VIS           S          O1      DOUBLE       n     1.435  0.0100     1.435  0.0100
+VIS           S           O      DOUBLE       n     1.435  0.0100     1.435  0.0100
+VIS           S           C      SINGLE       n     1.753  0.0100     1.753  0.0100
+VIS         C10          H1      SINGLE       n     1.082  0.0130     0.940  0.0158
+VIS          C9          H2      SINGLE       n     1.082  0.0130     0.937  0.0124
+VIS         C18          H3      SINGLE       n     1.082  0.0130     0.945  0.0200
+VIS         C17          H4      SINGLE       n     1.082  0.0130     0.944  0.0200
+VIS         C16          H5      SINGLE       n     1.082  0.0130     0.944  0.0200
+VIS         C15          H6      SINGLE       n     1.082  0.0130     0.948  0.0199
+VIS         C13          H7      SINGLE       n     1.082  0.0130     0.941  0.0147
+VIS           N          H8      SINGLE       n     1.016  0.0100     0.876  0.0200
+VIS          C3          H9      SINGLE       n     1.082  0.0130     0.941  0.0168
+VIS          C2         H10      SINGLE       n     1.082  0.0130     0.937  0.0111
+VIS          C6         H11      SINGLE       n     1.082  0.0130     0.937  0.0156
+VIS           C         H12      SINGLE       n     1.089  0.0100     0.965  0.0106
+VIS           C         H13      SINGLE       n     1.089  0.0100     0.965  0.0106
+VIS           C         H14      SINGLE       n     1.089  0.0100     0.965  0.0106
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VIS         CL1         C11         C12     119.999    1.50
+VIS         CL1         C11         C10     118.336    1.50
+VIS         C12         C11         C10     121.666    1.50
+VIS         C11         C10          C9     119.530    1.50
+VIS         C11         C10          H1     120.317    1.50
+VIS          C9         C10          H1     120.153    1.50
+VIS         C10          C9          C8     120.390    1.50
+VIS         C10          C9          H2     119.752    1.50
+VIS          C8          C9          H2     119.858    1.50
+VIS         C14         C12         C11     121.438    1.50
+VIS         C14         C12         C13     120.463    1.50
+VIS         C11         C12         C13     118.099    1.50
+VIS         C15         C14          N1     121.410    1.50
+VIS         C15         C14         C12     122.411    1.50
+VIS          N1         C14         C12     116.179    1.50
+VIS         C18          N1         C14     117.856    1.50
+VIS         C17         C18          N1     123.734    1.50
+VIS         C17         C18          H3     118.457    1.50
+VIS          N1         C18          H3     117.809    1.50
+VIS         C16         C17         C18     118.387    1.50
+VIS         C16         C17          H4     120.877    1.50
+VIS         C18         C17          H4     120.736    1.50
+VIS         C17         C16         C15     119.260    1.50
+VIS         C17         C16          H5     120.469    1.50
+VIS         C15         C16          H5     120.271    1.50
+VIS         C16         C15         C14     119.353    1.50
+VIS         C16         C15          H6     120.534    1.50
+VIS         C14         C15          H6     120.113    1.50
+VIS         C12         C13          C8     120.059    1.50
+VIS         C12         C13          H7     119.707    1.50
+VIS          C8         C13          H7     120.233    1.50
+VIS         C13          C8          C9     120.255    2.01
+VIS         C13          C8           N     120.025    3.00
+VIS          C9          C8           N     119.719    2.93
+VIS          C8           N          C7     126.750    1.50
+VIS          C8           N          H8     116.164    1.66
+VIS          C7           N          H8     117.086    2.38
+VIS          O2          C7           N     123.471    1.50
+VIS          O2          C7          C4     121.235    1.50
+VIS           N          C7          C4     115.294    1.50
+VIS          C7          C4          C5     122.496    1.50
+VIS          C7          C4          C3     119.684    1.50
+VIS          C5          C4          C3     117.821    1.50
+VIS          C4          C3          C2     120.594    1.50
+VIS          C4          C3          H9     119.814    1.50
+VIS          C2          C3          H9     119.592    1.50
+VIS          C3          C2          C1     119.312    1.50
+VIS          C3          C2         H10     120.312    1.50
+VIS          C1          C2         H10     120.376    1.50
+VIS          CL          C5          C4     120.149    1.50
+VIS          CL          C5          C6     118.496    1.50
+VIS          C4          C5          C6     121.355    1.50
+VIS          C5          C6          C1     120.489    1.50
+VIS          C5          C6         H11     119.814    1.50
+VIS          C1          C6         H11     119.697    1.50
+VIS          C6          C1          C2     120.429    1.50
+VIS          C6          C1           S     119.691    1.50
+VIS          C2          C1           S     119.879    1.50
+VIS          C1           S          O1     108.209    1.50
+VIS          C1           S           O     108.209    1.50
+VIS          C1           S           C     104.460    1.50
+VIS          O1           S           O     118.198    1.50
+VIS          O1           S           C     108.393    1.50
+VIS           O           S           C     108.393    1.50
+VIS           S           C         H12     109.379    1.50
+VIS           S           C         H13     109.379    1.50
+VIS           S           C         H14     109.379    1.50
+VIS         H12           C         H13     109.535    1.86
+VIS         H12           C         H14     109.535    1.86
+VIS         H13           C         H14     109.535    1.86
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VIS              const_10         C12         C13          C8           N     180.000    10.0     2
+VIS             sp2_sp2_5         C13          C8           N          C7     180.000     5.0     2
+VIS            sp2_sp2_11          O2          C7           N          C8       0.000     5.0     2
+VIS            sp2_sp2_14          C5          C4          C7          O2       0.000     5.0     2
+VIS              const_66          C2          C3          C4          C7     180.000    10.0     2
+VIS              const_42          C7          C4          C5          CL       0.000    10.0     2
+VIS              const_55          C1          C2          C3          C4       0.000    10.0     2
+VIS              const_53           S          C1          C2          C3     180.000    10.0     2
+VIS              const_45          CL          C5          C6          C1     180.000    10.0     2
+VIS              const_62          C9         C10         C11         CL1     180.000    10.0     2
+VIS       const_sp2_sp2_4         CL1         C11         C12         C14       0.000     5.0     2
+VIS              const_49           S          C1          C6          C5     180.000    10.0     2
+VIS             sp2_sp3_2          C6          C1           S          O1     -90.000    10.0     6
+VIS             sp3_sp3_1         H12           C           S          O1     180.000    10.0     3
+VIS              const_17         C11         C10          C9          C8       0.000    10.0     2
+VIS              const_15           N          C8          C9         C10     180.000    10.0     2
+VIS       const_sp2_sp2_7         C14         C12         C13          C8     180.000     5.0     2
+VIS             sp2_sp2_1         C11         C12         C14         C15     180.000     5.0     2
+VIS              const_21          N1         C14         C15         C16       0.000    10.0     2
+VIS              const_59         C15         C14          N1         C18       0.000    10.0     2
+VIS              const_37         C17         C18          N1         C14       0.000    10.0     2
+VIS              const_33         C16         C17         C18          N1       0.000    10.0     2
+VIS              const_29         C15         C16         C17         C18       0.000    10.0     2
+VIS              const_25         C14         C15         C16         C17       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VIS    chir_1    S    O1    O    C1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VIS    plan-1         C12   0.020
+VIS    plan-1         C14   0.020
+VIS    plan-1         C15   0.020
+VIS    plan-1         C16   0.020
+VIS    plan-1         C17   0.020
+VIS    plan-1         C18   0.020
+VIS    plan-1          H3   0.020
+VIS    plan-1          H4   0.020
+VIS    plan-1          H5   0.020
+VIS    plan-1          H6   0.020
+VIS    plan-1          N1   0.020
+VIS    plan-2         C10   0.020
+VIS    plan-2         C11   0.020
+VIS    plan-2         C12   0.020
+VIS    plan-2         C13   0.020
+VIS    plan-2         C14   0.020
+VIS    plan-2          C8   0.020
+VIS    plan-2          C9   0.020
+VIS    plan-2         CL1   0.020
+VIS    plan-2          H1   0.020
+VIS    plan-2          H2   0.020
+VIS    plan-2          H7   0.020
+VIS    plan-2           N   0.020
+VIS    plan-3          C1   0.020
+VIS    plan-3          C2   0.020
+VIS    plan-3          C3   0.020
+VIS    plan-3          C4   0.020
+VIS    plan-3          C5   0.020
+VIS    plan-3          C6   0.020
+VIS    plan-3          C7   0.020
+VIS    plan-3          CL   0.020
+VIS    plan-3         H10   0.020
+VIS    plan-3         H11   0.020
+VIS    plan-3          H9   0.020
+VIS    plan-3           S   0.020
+VIS    plan-4          C7   0.020
+VIS    plan-4          C8   0.020
+VIS    plan-4          H8   0.020
+VIS    plan-4           N   0.020
+VIS    plan-5          C4   0.020
+VIS    plan-5          C7   0.020
+VIS    plan-5           N   0.020
+VIS    plan-5          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VIS            InChI                InChI  1.03 InChI=1S/C19H14Cl2N2O3S/c1-27(25,26)13-6-7-14(17(21)11-13)19(24)23-12-5-8-16(20)15(10-12)18-4-2-3-9-22-18/h2-11H,1H3,(H,23,24)
+VIS         InChIKey                InChI  1.03                                                                                                    BPQMGSKTAYIVFO-UHFFFAOYSA-N
+VIS SMILES_CANONICAL               CACTVS 3.385                                                                         C[S](=O)(=O)c1ccc(c(Cl)c1)C(=O)Nc2ccc(Cl)c(c2)c3ccccn3
+VIS           SMILES               CACTVS 3.385                                                                         C[S](=O)(=O)c1ccc(c(Cl)c1)C(=O)Nc2ccc(Cl)c(c2)c3ccccn3
+VIS SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                                           CS(=O)(=O)c1ccc(c(c1)Cl)C(=O)Nc2ccc(c(c2)c3ccccn3)Cl
+VIS           SMILES "OpenEye OEToolkits" 2.0.5                                                                           CS(=O)(=O)c1ccc(c(c1)Cl)C(=O)Nc2ccc(c(c2)c3ccccn3)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VIS acedrg               243         "dictionary generator"                  
+VIS acedrg_database      11          "data source"                           
+VIS rdkit                2017.03.2   "Chemoinformatics tool"
+VIS refmac5              5.8.0238    "optimization tool"                     

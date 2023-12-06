@@ -1,0 +1,295 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FHP     FHP      "1-HYDROXY-3,7,11-TRIMETHYLDODECA-2,6,10-TRIENE PHOSPHONIC ACID"     NON-POLYMER     45     20     .     
+#
+data_comp_FHP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FHP     C1      C       CH1     0       108.514     39.465      50.879      
+FHP     C2      C       C1      0       108.777     38.342      49.905      
+FHP     C3      C       C       0       108.917     38.374      48.579      
+FHP     C4      C       CH2     0       109.221     37.111      47.816      
+FHP     C5      C       CH2     0       110.529     36.442      48.210      
+FHP     C6      C       C1      0       111.721     37.346      48.081      
+FHP     C7      C       C       0       112.315     37.795      46.976      
+FHP     C8      C       CH2     0       113.502     38.717      47.051      
+FHP     C9      C       CH2     0       113.140     40.189      46.961      
+FHP     C10     C       C1      0       112.557     40.736      48.231      
+FHP     C11     C       C       0       112.083     41.952      48.474      
+FHP     C12     C       CH3     0       111.538     42.358      49.814      
+FHP     C13     C       CH3     0       112.039     43.048      47.446      
+FHP     C14     C       CH3     0       111.877     37.452      45.578      
+FHP     C15     C       CH3     0       108.799     39.617      47.734      
+FHP     O1      O       OH1     0       109.408     39.358      51.973      
+FHP     O1A     O       O       0       106.642     38.130      52.246      
+FHP     O2A     O       OP      -1      106.711     40.608      52.497      
+FHP     O3A     O       OP      -1      105.885     39.593      50.378      
+FHP     PA      P       P       0       106.822     39.449      51.545      
+FHP     H1      H       H       0       108.669     40.333      50.435      
+FHP     H2      H       H       0       108.850     37.484      50.302      
+FHP     H41     H       H       0       109.249     37.311      46.858      
+FHP     H42     H       H       0       108.490     36.476      47.960      
+FHP     H51     H       H       0       110.664     35.655      47.644      
+FHP     H52     H       H       0       110.461     36.135      49.137      
+FHP     H6      H       H       0       112.093     37.635      48.900      
+FHP     H81     H       H       0       114.118     38.499      46.322      
+FHP     H82     H       H       0       113.977     38.558      47.892      
+FHP     H91     H       H       0       112.495     40.313      46.235      
+FHP     H92     H       H       0       113.945     40.698      46.735      
+FHP     H10     H       H       0       112.524     40.128      48.954      
+FHP     H121    H       H       0       111.587     41.613      50.434      
+FHP     H122    H       H       0       110.611     42.633      49.717      
+FHP     H123    H       H       0       112.056     43.101      50.164      
+FHP     H131    H       H       0       112.309     42.708      46.579      
+FHP     H132    H       H       0       112.640     43.764      47.709      
+FHP     H133    H       H       0       111.135     43.397      47.384      
+FHP     H141    H       H       0       111.205     36.753      45.600      
+FHP     H142    H       H       0       112.642     37.143      45.066      
+FHP     H143    H       H       0       111.505     38.241      45.153      
+FHP     H151    H       H       0       108.322     40.307      48.219      
+FHP     H152    H       H       0       108.314     39.412      46.918      
+FHP     H153    H       H       0       109.687     39.939      47.507      
+FHP     HO1     H       H       0       109.461     40.112      52.361      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FHP          C1          C2      SINGLE       n     1.505  0.0162     1.505  0.0162
+FHP          C1          O1      SINGLE       n     1.417  0.0135     1.417  0.0135
+FHP          C1          PA      SINGLE       n     1.818  0.0200     1.818  0.0200
+FHP          C2          C3      DOUBLE       n     1.330  0.0100     1.330  0.0100
+FHP          C3          C4      SINGLE       n     1.503  0.0104     1.503  0.0104
+FHP          C3         C15      SINGLE       n     1.499  0.0156     1.499  0.0156
+FHP          C4          C5      SINGLE       n     1.516  0.0200     1.516  0.0200
+FHP          C5          C6      SINGLE       n     1.498  0.0141     1.498  0.0141
+FHP          C6          C7      DOUBLE       n     1.330  0.0100     1.330  0.0100
+FHP          C7          C8      SINGLE       n     1.503  0.0104     1.503  0.0104
+FHP          C7         C14      SINGLE       n     1.499  0.0156     1.499  0.0156
+FHP          C8          C9      SINGLE       n     1.516  0.0200     1.516  0.0200
+FHP          C9         C10      SINGLE       n     1.498  0.0141     1.498  0.0141
+FHP         C10         C11      DOUBLE       n     1.324  0.0100     1.324  0.0100
+FHP         C11         C12      SINGLE       n     1.499  0.0156     1.499  0.0156
+FHP         C11         C13      SINGLE       n     1.499  0.0156     1.499  0.0156
+FHP         O1A          PA      DOUBLE       n     1.505  0.0200     1.505  0.0200
+FHP         O2A          PA      SINGLE       n     1.505  0.0200     1.505  0.0200
+FHP         O3A          PA      SINGLE       n     1.505  0.0200     1.505  0.0200
+FHP          C1          H1      SINGLE       n     1.089  0.0100     0.990  0.0177
+FHP          C2          H2      SINGLE       n     1.082  0.0130     0.947  0.0200
+FHP          C4         H41      SINGLE       n     1.089  0.0100     0.979  0.0159
+FHP          C4         H42      SINGLE       n     1.089  0.0100     0.979  0.0159
+FHP          C5         H51      SINGLE       n     1.089  0.0100     0.979  0.0159
+FHP          C5         H52      SINGLE       n     1.089  0.0100     0.979  0.0159
+FHP          C6          H6      SINGLE       n     1.082  0.0130     0.945  0.0200
+FHP          C8         H81      SINGLE       n     1.089  0.0100     0.979  0.0159
+FHP          C8         H82      SINGLE       n     1.089  0.0100     0.979  0.0159
+FHP          C9         H91      SINGLE       n     1.089  0.0100     0.979  0.0159
+FHP          C9         H92      SINGLE       n     1.089  0.0100     0.979  0.0159
+FHP         C10         H10      SINGLE       n     1.082  0.0130     0.945  0.0200
+FHP         C12        H121      SINGLE       n     1.089  0.0100     0.971  0.0140
+FHP         C12        H122      SINGLE       n     1.089  0.0100     0.971  0.0140
+FHP         C12        H123      SINGLE       n     1.089  0.0100     0.971  0.0140
+FHP         C13        H131      SINGLE       n     1.089  0.0100     0.971  0.0140
+FHP         C13        H132      SINGLE       n     1.089  0.0100     0.971  0.0140
+FHP         C13        H133      SINGLE       n     1.089  0.0100     0.971  0.0140
+FHP         C14        H141      SINGLE       n     1.089  0.0100     0.971  0.0140
+FHP         C14        H142      SINGLE       n     1.089  0.0100     0.971  0.0140
+FHP         C14        H143      SINGLE       n     1.089  0.0100     0.971  0.0140
+FHP         C15        H151      SINGLE       n     1.089  0.0100     0.971  0.0140
+FHP         C15        H152      SINGLE       n     1.089  0.0100     0.971  0.0140
+FHP         C15        H153      SINGLE       n     1.089  0.0100     0.971  0.0140
+FHP          O1         HO1      SINGLE       n     0.970  0.0120     0.850  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FHP          C2          C1          O1     109.726    2.42
+FHP          C2          C1          PA     113.247    3.00
+FHP          C2          C1          H1     108.874    1.53
+FHP          O1          C1          PA     108.256    2.94
+FHP          O1          C1          H1     108.654    1.50
+FHP          PA          C1          H1     108.528    1.50
+FHP          C1          C2          C3     126.810    2.22
+FHP          C1          C2          H2     116.812    2.00
+FHP          C3          C2          H2     116.383    1.50
+FHP          C2          C3          C4     121.607    1.82
+FHP          C2          C3         C15     123.007    1.73
+FHP          C4          C3         C15     115.386    1.50
+FHP          C3          C4          C5     113.520    2.62
+FHP          C3          C4         H41     108.816    1.50
+FHP          C3          C4         H42     108.816    1.50
+FHP          C5          C4         H41     108.867    1.50
+FHP          C5          C4         H42     108.867    1.50
+FHP         H41          C4         H42     107.710    1.94
+FHP          C4          C5          C6     112.751    2.50
+FHP          C4          C5         H51     109.013    1.50
+FHP          C4          C5         H52     109.013    1.50
+FHP          C6          C5         H51     109.181    1.50
+FHP          C6          C5         H52     109.181    1.50
+FHP         H51          C5         H52     107.922    1.50
+FHP          C5          C6          C7     128.114    1.50
+FHP          C5          C6          H6     115.635    1.60
+FHP          C7          C6          H6     116.261    1.50
+FHP          C6          C7          C8     121.188    1.50
+FHP          C6          C7         C14     123.681    1.50
+FHP          C8          C7         C14     115.131    1.50
+FHP          C7          C8          C9     113.520    2.62
+FHP          C7          C8         H81     108.816    1.50
+FHP          C7          C8         H82     108.816    1.50
+FHP          C9          C8         H81     108.867    1.50
+FHP          C9          C8         H82     108.867    1.50
+FHP         H81          C8         H82     107.710    1.94
+FHP          C8          C9         C10     112.751    2.50
+FHP          C8          C9         H91     109.013    1.50
+FHP          C8          C9         H92     109.013    1.50
+FHP         C10          C9         H91     109.181    1.50
+FHP         C10          C9         H92     109.181    1.50
+FHP         H91          C9         H92     107.922    1.50
+FHP          C9         C10         C11     128.282    1.50
+FHP          C9         C10         H10     115.635    1.60
+FHP         C11         C10         H10     116.082    1.50
+FHP         C10         C11         C12     122.691    1.63
+FHP         C10         C11         C13     122.691    1.63
+FHP         C12         C11         C13     114.618    1.50
+FHP         C11         C12        H121     109.600    1.50
+FHP         C11         C12        H122     109.600    1.50
+FHP         C11         C12        H123     109.600    1.50
+FHP        H121         C12        H122     109.342    1.50
+FHP        H121         C12        H123     109.342    1.50
+FHP        H122         C12        H123     109.342    1.50
+FHP         C11         C13        H131     109.600    1.50
+FHP         C11         C13        H132     109.600    1.50
+FHP         C11         C13        H133     109.600    1.50
+FHP        H131         C13        H132     109.342    1.50
+FHP        H131         C13        H133     109.342    1.50
+FHP        H132         C13        H133     109.342    1.50
+FHP          C7         C14        H141     109.541    1.50
+FHP          C7         C14        H142     109.541    1.50
+FHP          C7         C14        H143     109.541    1.50
+FHP        H141         C14        H142     109.342    1.50
+FHP        H141         C14        H143     109.342    1.50
+FHP        H142         C14        H143     109.342    1.50
+FHP          C3         C15        H151     109.541    1.50
+FHP          C3         C15        H152     109.541    1.50
+FHP          C3         C15        H153     109.541    1.50
+FHP        H151         C15        H152     109.342    1.50
+FHP        H151         C15        H153     109.342    1.50
+FHP        H152         C15        H153     109.342    1.50
+FHP          C1          O1         HO1     108.906    3.00
+FHP          C1          PA         O1A     110.326    3.00
+FHP          C1          PA         O2A     110.326    3.00
+FHP          C1          PA         O3A     110.326    3.00
+FHP         O1A          PA         O2A     112.502    1.50
+FHP         O1A          PA         O3A     112.502    1.50
+FHP         O2A          PA         O3A     112.502    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FHP             sp2_sp3_1          C3          C2          C1          O1       0.000    10.0     6
+FHP             sp3_sp3_1          C2          C1          O1         HO1     180.000    10.0     3
+FHP             sp3_sp3_6          C2          C1          PA         O1A      60.000    10.0     3
+FHP            sp2_sp3_43         C10         C11         C12        H121       0.000    10.0     6
+FHP            sp2_sp3_49         C10         C11         C13        H131       0.000    10.0     6
+FHP             sp2_sp2_1          C1          C2          C3          C4     180.000     5.0     2
+FHP            sp2_sp3_13          C2          C3         C15        H151       0.000    10.0     6
+FHP             sp2_sp3_8          C2          C3          C4          C5     120.000    10.0     6
+FHP            sp3_sp3_13          C3          C4          C5          C6     180.000    10.0     3
+FHP            sp2_sp3_20          C7          C6          C5          C4     120.000    10.0     6
+FHP             sp2_sp2_5          C5          C6          C7          C8     180.000     5.0     2
+FHP            sp2_sp3_31          C6          C7         C14        H141       0.000    10.0     6
+FHP            sp2_sp3_26          C6          C7          C8          C9     120.000    10.0     6
+FHP            sp3_sp3_22          C7          C8          C9         C10     180.000    10.0     3
+FHP            sp2_sp3_38         C11         C10          C9          C8     120.000    10.0     6
+FHP             sp2_sp2_9          C9         C10         C11         C12     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FHP    chir_1    C1    PA    O1    C2    negative
+FHP    chir_2    PA    O2A    O3A    O1A    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FHP    plan-1          C1   0.020
+FHP    plan-1          C2   0.020
+FHP    plan-1          C3   0.020
+FHP    plan-1          H2   0.020
+FHP    plan-2         C15   0.020
+FHP    plan-2          C2   0.020
+FHP    plan-2          C3   0.020
+FHP    plan-2          C4   0.020
+FHP    plan-3          C5   0.020
+FHP    plan-3          C6   0.020
+FHP    plan-3          C7   0.020
+FHP    plan-3          H6   0.020
+FHP    plan-4         C14   0.020
+FHP    plan-4          C6   0.020
+FHP    plan-4          C7   0.020
+FHP    plan-4          C8   0.020
+FHP    plan-5         C10   0.020
+FHP    plan-5         C11   0.020
+FHP    plan-5          C9   0.020
+FHP    plan-5         H10   0.020
+FHP    plan-6         C10   0.020
+FHP    plan-6         C11   0.020
+FHP    plan-6         C12   0.020
+FHP    plan-6         C13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FHP           SMILES              ACDLabs 10.04                                                                                                    O=P(O)(O)C(O)/C=C(/CC\C=C(/C)CC\C=C(/C)C)C
+FHP SMILES_CANONICAL               CACTVS 3.341                                                                                                CC(C)=CCC/C(C)=C/CC/C(C)=C/[C@H](O)[P](O)(O)=O
+FHP           SMILES               CACTVS 3.341                                                                                                     CC(C)=CCCC(C)=CCCC(C)=C[CH](O)[P](O)(O)=O
+FHP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                CC(=CCC/C(=C/CC/C(=C/[C@H](O)P(=O)(O)O)/C)/C)C
+FHP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                          CC(=CCCC(=CCCC(=CC(O)P(=O)(O)O)C)C)C
+FHP            InChI                InChI  1.03 InChI=1S/C15H27O4P/c1-12(2)7-5-8-13(3)9-6-10-14(4)11-15(16)20(17,18)19/h7,9,11,15-16H,5-6,8,10H2,1-4H3,(H2,17,18,19)/b13-9+,14-11+/t15-/m1/s1
+FHP         InChIKey                InChI  1.03                                                                                                                   MONZTFSZTWQCKH-UBHHKXJDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FHP acedrg               243         "dictionary generator"                  
+FHP acedrg_database      11          "data source"                           
+FHP rdkit                2017.03.2   "Chemoinformatics tool"
+FHP refmac5              5.8.0238    "optimization tool"                     

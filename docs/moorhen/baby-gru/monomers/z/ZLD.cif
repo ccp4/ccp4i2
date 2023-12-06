@@ -1,0 +1,310 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZLD     ZLD      N-{[(5S)-3-(3-fluoro-4-morpholin-4-ylphenyl)-2-oxo-1,3-oxazolidin-5-yl]methyl}acetamide     NON-POLYMER     44     24     .     
+#
+data_comp_ZLD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZLD     C2      C       CR6     0       65.878      119.453     100.460     
+ZLD     C5      C       CR16    0       66.635      120.483     101.012     
+ZLD     C9      C       CH2     0       62.751      120.885     97.266      
+ZLD     C1      C       CR16    0       66.409      118.168     100.379     
+ZLD     C3      C       CR16    0       67.692      117.913     100.849     
+ZLD     N4      N       NR5     0       64.568      119.701     99.974      
+ZLD     C6      C       CH2     0       64.092      119.207     98.679      
+ZLD     C7      C       CR5     0       63.596      120.417     100.607     
+ZLD     C8      C       CH1     0       62.789      119.999     98.496      
+ZLD     O10     O       O2      0       62.683      120.829     99.690      
+ZLD     N11     N       NH1     0       63.797      121.890     97.257      
+ZLD     C12     C       C       0       64.896      121.855     96.484      
+ZLD     C13     C       CH3     0       65.861      122.989     96.644      
+ZLD     O14     O       O       0       65.122      120.952     95.680      
+ZLD     O15     O       O       0       63.494      120.682     101.776     
+ZLD     C16     C       CR6     0       67.905      120.219     101.476     
+ZLD     C17     C       CR6     0       68.456      118.943     101.405     
+ZLD     F18     F       F       0       68.635      121.234     102.014     
+ZLD     N19     N       NT      0       69.770      118.743     101.899     
+ZLD     C20     C       CH2     0       69.957      118.486     103.331     
+ZLD     C21     C       CH2     0       71.387      118.790     103.720     
+ZLD     O22     O       O2      0       72.318      118.043     102.940     
+ZLD     C23     C       CH2     0       72.141      118.305     101.549     
+ZLD     C24     C       CH2     0       70.734      117.989     101.091     
+ZLD     H5      H       H       0       66.279      121.358     101.069     
+ZLD     H9      H       H       0       61.884      121.346     97.233      
+ZLD     H9A     H       H       0       62.831      120.325     96.463      
+ZLD     H1      H       H       0       65.902      117.470     100.007     
+ZLD     H3      H       H       0       68.050      117.045     100.795     
+ZLD     H6      H       H       0       64.707      119.396     97.964      
+ZLD     H6A     H       H       0       63.908      118.263     98.691      
+ZLD     H8      H       H       0       62.009      119.396     98.473      
+ZLD     HN11    H       H       0       63.681      122.585     97.813      
+ZLD     H13     H       H       0       65.719      123.433     97.495      
+ZLD     H13A    H       H       0       65.735      123.627     95.923      
+ZLD     H13B    H       H       0       66.770      122.647     96.612      
+ZLD     H20     H       H       0       69.346      119.048     103.852     
+ZLD     H20A    H       H       0       69.753      117.547     103.527     
+ZLD     H21     H       H       0       71.516      118.575     104.667     
+ZLD     H21A    H       H       0       71.558      119.747     103.599     
+ZLD     H23     H       H       0       72.777      117.762     101.037     
+ZLD     H23A    H       H       0       72.335      119.249     101.371     
+ZLD     H24     H       H       0       70.633      118.227     100.146     
+ZLD     H24A    H       H       0       70.565      117.028     101.185     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZLD          C2          C5      DOUBLE       y     1.387  0.0108     1.387  0.0108
+ZLD          C2          C1      SINGLE       y     1.387  0.0100     1.387  0.0100
+ZLD          C2          N4      SINGLE       n     1.417  0.0100     1.417  0.0100
+ZLD          C5         C16      SINGLE       y     1.376  0.0100     1.376  0.0100
+ZLD          C9          C8      SINGLE       n     1.514  0.0159     1.514  0.0159
+ZLD          C9         N11      SINGLE       n     1.447  0.0100     1.447  0.0100
+ZLD          C1          C3      DOUBLE       y     1.385  0.0100     1.385  0.0100
+ZLD          C3         C17      SINGLE       y     1.393  0.0100     1.393  0.0100
+ZLD          N4          C6      SINGLE       n     1.465  0.0141     1.465  0.0141
+ZLD          N4          C7      SINGLE       n     1.363  0.0100     1.363  0.0100
+ZLD          C6          C8      SINGLE       n     1.532  0.0144     1.532  0.0144
+ZLD          C7         O10      SINGLE       n     1.358  0.0151     1.358  0.0151
+ZLD          C7         O15      DOUBLE       n     1.203  0.0100     1.203  0.0100
+ZLD          C8         O10      SINGLE       n     1.457  0.0100     1.457  0.0100
+ZLD         N11         C12      SINGLE       n     1.337  0.0106     1.337  0.0106
+ZLD         C12         C13      SINGLE       n     1.495  0.0100     1.495  0.0100
+ZLD         C12         O14      DOUBLE       n     1.229  0.0102     1.229  0.0102
+ZLD         C16         C17      DOUBLE       y     1.388  0.0100     1.388  0.0100
+ZLD         C16         F18      SINGLE       n     1.361  0.0100     1.361  0.0100
+ZLD         C17         N19      SINGLE       n     1.416  0.0100     1.416  0.0100
+ZLD         N19         C20      SINGLE       n     1.464  0.0109     1.464  0.0109
+ZLD         N19         C24      SINGLE       n     1.464  0.0109     1.464  0.0109
+ZLD         C20         C21      SINGLE       n     1.511  0.0100     1.511  0.0100
+ZLD         C21         O22      SINGLE       n     1.423  0.0105     1.423  0.0105
+ZLD         O22         C23      SINGLE       n     1.423  0.0105     1.423  0.0105
+ZLD         C23         C24      SINGLE       n     1.511  0.0100     1.511  0.0100
+ZLD          C5          H5      SINGLE       n     1.082  0.0130     0.947  0.0161
+ZLD          C9          H9      SINGLE       n     1.089  0.0100     0.982  0.0110
+ZLD          C9         H9A      SINGLE       n     1.089  0.0100     0.982  0.0110
+ZLD          C1          H1      SINGLE       n     1.082  0.0130     0.939  0.0114
+ZLD          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0150
+ZLD          C6          H6      SINGLE       n     1.089  0.0100     0.962  0.0100
+ZLD          C6         H6A      SINGLE       n     1.089  0.0100     0.962  0.0100
+ZLD          C8          H8      SINGLE       n     1.089  0.0100     0.986  0.0157
+ZLD         N11        HN11      SINGLE       n     1.016  0.0100     0.897  0.0200
+ZLD         C13         H13      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZLD         C13        H13A      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZLD         C13        H13B      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZLD         C20         H20      SINGLE       n     1.089  0.0100     0.980  0.0155
+ZLD         C20        H20A      SINGLE       n     1.089  0.0100     0.980  0.0155
+ZLD         C21         H21      SINGLE       n     1.089  0.0100     0.980  0.0155
+ZLD         C21        H21A      SINGLE       n     1.089  0.0100     0.980  0.0155
+ZLD         C23         H23      SINGLE       n     1.089  0.0100     0.980  0.0155
+ZLD         C23        H23A      SINGLE       n     1.089  0.0100     0.980  0.0155
+ZLD         C24         H24      SINGLE       n     1.089  0.0100     0.980  0.0155
+ZLD         C24        H24A      SINGLE       n     1.089  0.0100     0.980  0.0155
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZLD          C5          C2          C1     120.033    1.50
+ZLD          C5          C2          N4     120.558    1.78
+ZLD          C1          C2          N4     119.409    1.67
+ZLD          C2          C5         C16     119.816    1.50
+ZLD          C2          C5          H5     120.024    1.50
+ZLD         C16          C5          H5     120.160    1.50
+ZLD          C8          C9         N11     112.618    1.57
+ZLD          C8          C9          H9     109.129    1.50
+ZLD          C8          C9         H9A     109.129    1.50
+ZLD         N11          C9          H9     108.315    1.50
+ZLD         N11          C9         H9A     108.315    1.50
+ZLD          H9          C9         H9A     108.479    1.50
+ZLD          C2          C1          C3     119.348    1.50
+ZLD          C2          C1          H1     120.482    1.50
+ZLD          C3          C1          H1     120.170    1.50
+ZLD          C1          C3         C17     119.631    1.50
+ZLD          C1          C3          H3     120.429    1.50
+ZLD         C17          C3          H3     119.940    1.50
+ZLD          C2          N4          C6     122.438    1.90
+ZLD          C2          N4          C7     125.703    1.58
+ZLD          C6          N4          C7     111.859    1.50
+ZLD          N4          C6          C8     102.354    1.84
+ZLD          N4          C6          H6     112.558    1.50
+ZLD          N4          C6         H6A     112.558    1.50
+ZLD          C8          C6          H6     110.320    1.50
+ZLD          C8          C6         H6A     110.320    1.50
+ZLD          H6          C6         H6A     109.078    1.50
+ZLD          N4          C7         O10     109.556    1.50
+ZLD          N4          C7         O15     128.547    1.50
+ZLD         O10          C7         O15     121.897    1.50
+ZLD          C9          C8          C6     113.745    2.48
+ZLD          C9          C8         O10     109.305    1.50
+ZLD          C9          C8          H8     108.793    1.50
+ZLD          C6          C8         O10     104.870    1.50
+ZLD          C6          C8          H8     111.319    1.50
+ZLD         O10          C8          H8     108.424    1.85
+ZLD          C7         O10          C8     109.465    1.50
+ZLD          C9         N11         C12     122.965    1.78
+ZLD          C9         N11        HN11     118.335    2.47
+ZLD         C12         N11        HN11     118.700    1.94
+ZLD         N11         C12         C13     115.848    1.50
+ZLD         N11         C12         O14     122.594    1.50
+ZLD         C13         C12         O14     121.558    1.50
+ZLD         C12         C13         H13     109.678    1.50
+ZLD         C12         C13        H13A     109.678    1.50
+ZLD         C12         C13        H13B     109.678    1.50
+ZLD         H13         C13        H13A     109.365    1.50
+ZLD         H13         C13        H13B     109.365    1.50
+ZLD        H13A         C13        H13B     109.365    1.50
+ZLD          C5         C16         C17     122.154    1.50
+ZLD          C5         C16         F18     118.895    1.50
+ZLD         C17         C16         F18     118.951    1.50
+ZLD          C3         C17         C16     119.018    1.64
+ZLD          C3         C17         N19     122.373    1.50
+ZLD         C16         C17         N19     118.609    1.50
+ZLD         C17         N19         C20     116.897    2.51
+ZLD         C17         N19         C24     116.897    2.51
+ZLD         C20         N19         C24     110.498    1.50
+ZLD         N19         C20         C21     109.802    1.50
+ZLD         N19         C20         H20     109.697    1.50
+ZLD         N19         C20        H20A     109.697    1.50
+ZLD         C21         C20         H20     109.720    1.50
+ZLD         C21         C20        H20A     109.720    1.50
+ZLD         H20         C20        H20A     108.247    1.50
+ZLD         C20         C21         O22     111.654    1.50
+ZLD         C20         C21         H21     109.316    1.50
+ZLD         C20         C21        H21A     109.316    1.50
+ZLD         O22         C21         H21     109.195    1.50
+ZLD         O22         C21        H21A     109.195    1.50
+ZLD         H21         C21        H21A     108.175    1.50
+ZLD         C21         O22         C23     109.829    1.50
+ZLD         O22         C23         C24     111.654    1.50
+ZLD         O22         C23         H23     109.195    1.50
+ZLD         O22         C23        H23A     109.195    1.50
+ZLD         C24         C23         H23     109.316    1.50
+ZLD         C24         C23        H23A     109.316    1.50
+ZLD         H23         C23        H23A     108.175    1.50
+ZLD         N19         C24         C23     109.802    1.50
+ZLD         N19         C24         H24     109.697    1.50
+ZLD         N19         C24        H24A     109.697    1.50
+ZLD         C23         C24         H24     109.720    1.50
+ZLD         C23         C24        H24A     109.720    1.50
+ZLD         H24         C24        H24A     108.247    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZLD       const_sp2_sp2_1          C1          C2          C5         C16       0.000     5.0     2
+ZLD              const_21          C3          C1          C2          C5       0.000    10.0     2
+ZLD             sp2_sp2_3          C5          C2          N4          C6     180.000     5.0     2
+ZLD            sp2_sp2_11         C13         C12         N11          C9     180.000     5.0     2
+ZLD            sp2_sp3_19         N11         C12         C13         H13       0.000    10.0     6
+ZLD              const_11         F18         C16         C17          C3     180.000    10.0     2
+ZLD            sp2_sp2_15          C3         C17         N19         C20     180.000     5.0     2
+ZLD             sp2_sp3_4         C17         N19         C20         C21     180.000    10.0     6
+ZLD            sp2_sp3_28         C17         N19         C24         C23     180.000    10.0     6
+ZLD             sp3_sp3_1         N19         C20         C21         O22     -60.000    10.0     3
+ZLD       const_sp2_sp2_7         F18         C16          C5          C2     180.000     5.0     2
+ZLD            sp3_sp3_10         C20         C21         O22         C23      60.000    10.0     3
+ZLD            sp3_sp3_13         C24         C23         O22         C21     -60.000    10.0     3
+ZLD            sp3_sp3_16         O22         C23         C24         N19      60.000    10.0     3
+ZLD            sp2_sp3_14         C12         N11          C9          C8     120.000    10.0     6
+ZLD            sp3_sp3_37          C6          C8          C9         N11     180.000    10.0     3
+ZLD              const_17          C2          C1          C3         C17       0.000    10.0     2
+ZLD              const_13         C16         C17          C3          C1       0.000    10.0     2
+ZLD            sp2_sp3_10          C2          N4          C6          C8     180.000    10.0     6
+ZLD            sp2_sp2_10         O15          C7          N4          C2       0.000     5.0     2
+ZLD            sp3_sp3_26          N4          C6          C8          C9      60.000    10.0     3
+ZLD             sp2_sp2_2         O15          C7         O10          C8     180.000     5.0     2
+ZLD            sp3_sp3_35          C9          C8         O10          C7     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZLD    chir_1    C8    O10    C6    C9    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZLD    plan-1          C1   0.020
+ZLD    plan-1         C16   0.020
+ZLD    plan-1         C17   0.020
+ZLD    plan-1          C2   0.020
+ZLD    plan-1          C3   0.020
+ZLD    plan-1          C5   0.020
+ZLD    plan-1         F18   0.020
+ZLD    plan-1          H1   0.020
+ZLD    plan-1          H3   0.020
+ZLD    plan-1          H5   0.020
+ZLD    plan-1         N19   0.020
+ZLD    plan-1          N4   0.020
+ZLD    plan-2          C2   0.020
+ZLD    plan-2          C6   0.020
+ZLD    plan-2          C7   0.020
+ZLD    plan-2          N4   0.020
+ZLD    plan-3          C7   0.020
+ZLD    plan-3          N4   0.020
+ZLD    plan-3         O10   0.020
+ZLD    plan-3         O15   0.020
+ZLD    plan-4         C12   0.020
+ZLD    plan-4          C9   0.020
+ZLD    plan-4        HN11   0.020
+ZLD    plan-4         N11   0.020
+ZLD    plan-5         C12   0.020
+ZLD    plan-5         C13   0.020
+ZLD    plan-5         N11   0.020
+ZLD    plan-5         O14   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZLD           SMILES              ACDLabs 10.04                                                                                                     O=C1OC(CNC(=O)C)CN1c3cc(F)c(N2CCOCC2)cc3
+ZLD SMILES_CANONICAL               CACTVS 3.341                                                                                               CC(=O)NC[C@H]1CN(C(=O)O1)c2ccc(N3CCOCC3)c(F)c2
+ZLD           SMILES               CACTVS 3.341                                                                                                CC(=O)NC[CH]1CN(C(=O)O1)c2ccc(N3CCOCC3)c(F)c2
+ZLD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                               CC(=O)NC[C@H]1CN(C(=O)O1)c2ccc(c(c2)F)N3CCOCC3
+ZLD           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                   CC(=O)NCC1CN(C(=O)O1)c2ccc(c(c2)F)N3CCOCC3
+ZLD            InChI                InChI  1.03 InChI=1S/C16H20FN3O4/c1-11(21)18-9-13-10-20(16(22)24-13)12-2-3-15(14(17)8-12)19-4-6-23-7-5-19/h2-3,8,13H,4-7,9-10H2,1H3,(H,18,21)/t13-/m0/s1
+ZLD         InChIKey                InChI  1.03                                                                                                                  TYZROVQLWOKYKF-ZDUSSCGKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZLD acedrg               243         "dictionary generator"                  
+ZLD acedrg_database      11          "data source"                           
+ZLD rdkit                2017.03.2   "Chemoinformatics tool"
+ZLD refmac5              5.8.0238    "optimization tool"                     

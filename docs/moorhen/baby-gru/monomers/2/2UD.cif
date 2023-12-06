@@ -1,0 +1,200 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+2UD     2UD      "3-(5-bromo-1H-indol-3-yl)-2-thioxopropanoic acid"     NON-POLYMER     23     16     .     
+#
+data_comp_2UD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+2UD     OAN     O       O       0       12.325      -14.931     23.096      
+2UD     CAM     C       C       0       11.334      -15.281     23.743      
+2UD     OAO     O       OC      -1      11.387      -16.222     24.540      
+2UD     CAK     C       C       0       10.195      -14.631     23.573      
+2UD     SAL     S       S1      0       8.850       -15.079     24.460      
+2UD     CAJ     C       CH2     0       10.003      -13.469     22.614      
+2UD     CAI     C       CR5     0       10.601      -12.197     23.133      
+2UD     CAE     C       CR56    0       11.795      -11.547     22.671      
+2UD     CAF     C       CR16    0       12.737      -11.837     21.670      
+2UD     CAA     C       CR6     0       13.788      -10.960     21.504      
+2UD     BR      BR      BR      0       15.083      -11.323     20.156      
+2UD     CAB     C       CR16    0       13.946      -9.811      22.285      
+2UD     CAC     C       CR16    0       13.031      -9.512      23.272      
+2UD     CAD     C       CR56    0       11.962      -10.383     23.457      
+2UD     NAG     N       NR5     0       10.922      -10.335     24.346      
+2UD     CAH     C       CR15    0       10.114      -11.422     24.146      
+2UD     H2      H       H       0       9.050       -13.335     22.458      
+2UD     H3      H       H       0       10.413      -13.691     21.758      
+2UD     H4      H       H       0       12.652      -12.601     21.134      
+2UD     H5      H       H       0       14.675      -9.245      22.137      
+2UD     H6      H       H       0       13.128      -8.740      23.805      
+2UD     H7      H       H       0       10.792      -9.710      24.948      
+2UD     H8      H       H       0       9.331       -11.605     24.643      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+2UD         CAA          BR      SINGLE       n     1.904  0.0100     1.904  0.0100
+2UD         CAF         CAA      SINGLE       y     1.375  0.0117     1.375  0.0117
+2UD         CAA         CAB      DOUBLE       y     1.394  0.0109     1.394  0.0109
+2UD         CAE         CAF      DOUBLE       y     1.401  0.0104     1.401  0.0104
+2UD         CAB         CAC      SINGLE       y     1.373  0.0119     1.373  0.0119
+2UD         CAE         CAD      SINGLE       y     1.411  0.0100     1.411  0.0100
+2UD         CAI         CAE      SINGLE       y     1.436  0.0100     1.436  0.0100
+2UD         CAC         CAD      DOUBLE       y     1.388  0.0100     1.388  0.0100
+2UD         CAJ         CAI      SINGLE       n     1.498  0.0100     1.498  0.0100
+2UD         CAK         CAJ      SINGLE       n     1.506  0.0200     1.506  0.0200
+2UD         CAD         NAG      SINGLE       y     1.370  0.0100     1.370  0.0100
+2UD         CAI         CAH      DOUBLE       y     1.365  0.0100     1.365  0.0100
+2UD         CAK         SAL      DOUBLE       n     1.661  0.0200     1.661  0.0200
+2UD         CAM         CAK      SINGLE       n     1.299  0.0200     1.299  0.0200
+2UD         NAG         CAH      SINGLE       y     1.369  0.0100     1.369  0.0100
+2UD         OAN         CAM      DOUBLE       n     1.230  0.0200     1.230  0.0200
+2UD         CAM         OAO      SINGLE       n     1.230  0.0200     1.230  0.0200
+2UD         CAJ          H2      SINGLE       n     1.089  0.0100     0.975  0.0100
+2UD         CAJ          H3      SINGLE       n     1.089  0.0100     0.975  0.0100
+2UD         CAF          H4      SINGLE       n     1.082  0.0130     0.936  0.0100
+2UD         CAB          H5      SINGLE       n     1.082  0.0130     0.935  0.0106
+2UD         CAC          H6      SINGLE       n     1.082  0.0130     0.943  0.0132
+2UD         NAG          H7      SINGLE       n     1.016  0.0100     0.877  0.0200
+2UD         CAH          H8      SINGLE       n     1.082  0.0130     0.945  0.0191
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+2UD         CAK         CAM         OAN     118.654    3.00
+2UD         CAK         CAM         OAO     118.654    3.00
+2UD         OAN         CAM         OAO     122.692    1.63
+2UD         CAJ         CAK         SAL     118.147    2.68
+2UD         CAJ         CAK         CAM     123.561    3.00
+2UD         SAL         CAK         CAM     118.292    2.73
+2UD         CAI         CAJ         CAK     112.401    1.50
+2UD         CAI         CAJ          H2     109.346    1.50
+2UD         CAI         CAJ          H3     109.346    1.50
+2UD         CAK         CAJ          H2     109.038    1.50
+2UD         CAK         CAJ          H3     109.038    1.50
+2UD          H2         CAJ          H3     107.730    1.50
+2UD         CAE         CAI         CAJ     127.244    2.63
+2UD         CAE         CAI         CAH     106.112    1.50
+2UD         CAJ         CAI         CAH     126.644    1.50
+2UD         CAF         CAE         CAD     119.152    1.50
+2UD         CAF         CAE         CAI     133.861    1.50
+2UD         CAD         CAE         CAI     106.987    1.50
+2UD         CAA         CAF         CAE     117.578    1.50
+2UD         CAA         CAF          H4     121.341    1.50
+2UD         CAE         CAF          H4     121.081    1.50
+2UD          BR         CAA         CAF     118.710    1.50
+2UD          BR         CAA         CAB     118.263    1.50
+2UD         CAF         CAA         CAB     123.027    1.50
+2UD         CAA         CAB         CAC     120.216    1.50
+2UD         CAA         CAB          H5     119.840    1.50
+2UD         CAC         CAB          H5     119.951    1.50
+2UD         CAB         CAC         CAD     117.770    1.50
+2UD         CAB         CAC          H6     121.057    1.50
+2UD         CAD         CAC          H6     121.173    1.50
+2UD         CAE         CAD         CAC     122.250    1.50
+2UD         CAE         CAD         NAG     107.455    1.50
+2UD         CAC         CAD         NAG     130.295    1.50
+2UD         CAD         NAG         CAH     109.042    1.50
+2UD         CAD         NAG          H7     125.630    1.60
+2UD         CAH         NAG          H7     125.328    1.77
+2UD         CAI         CAH         NAG     110.404    1.50
+2UD         CAI         CAH          H8     125.159    1.59
+2UD         NAG         CAH          H8     124.437    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+2UD              const_13         CAA         CAB         CAC         CAD       0.000    10.0     2
+2UD              const_17         CAB         CAC         CAD         CAE       0.000    10.0     2
+2UD              const_29         CAE         CAD         NAG         CAH       0.000    10.0     2
+2UD              const_33         CAI         CAH         NAG         CAD       0.000    10.0     2
+2UD             sp2_sp2_1         CAJ         CAK         CAM         OAN     180.000     5.0     2
+2UD             sp2_sp3_8         SAL         CAK         CAJ         CAI     120.000    10.0     6
+2UD             sp2_sp3_2         CAE         CAI         CAJ         CAK     -90.000    10.0     6
+2UD              const_38         NAG         CAH         CAI         CAJ     180.000    10.0     2
+2UD              const_24         CAF         CAE         CAI         CAJ       0.000    10.0     2
+2UD              const_25         CAC         CAD         CAE         CAF       0.000    10.0     2
+2UD       const_sp2_sp2_1         CAD         CAE         CAF         CAA       0.000     5.0     2
+2UD       const_sp2_sp2_7          BR         CAA         CAF         CAE     180.000     5.0     2
+2UD              const_11          BR         CAA         CAB         CAC     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+2UD    plan-1          BR   0.020
+2UD    plan-1         CAA   0.020
+2UD    plan-1         CAB   0.020
+2UD    plan-1         CAC   0.020
+2UD    plan-1         CAD   0.020
+2UD    plan-1         CAE   0.020
+2UD    plan-1         CAF   0.020
+2UD    plan-1         CAH   0.020
+2UD    plan-1         CAI   0.020
+2UD    plan-1         CAJ   0.020
+2UD    plan-1          H4   0.020
+2UD    plan-1          H5   0.020
+2UD    plan-1          H6   0.020
+2UD    plan-1          H7   0.020
+2UD    plan-1          H8   0.020
+2UD    plan-1         NAG   0.020
+2UD    plan-2         CAK   0.020
+2UD    plan-2         CAM   0.020
+2UD    plan-2         OAN   0.020
+2UD    plan-2         OAO   0.020
+2UD    plan-3         CAJ   0.020
+2UD    plan-3         CAK   0.020
+2UD    plan-3         CAM   0.020
+2UD    plan-3         SAL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+2UD           SMILES              ACDLabs 12.01                                                               O=C(O)C(=S)Cc2c1cc(Br)ccc1nc2
+2UD            InChI                InChI  1.03 InChI=1S/C11H8BrNO2S/c12-7-1-2-9-8(4-7)6(5-13-9)3-10(16)11(14)15/h1-2,4-5,13H,3H2,(H,14,15)
+2UD         InChIKey                InChI  1.03                                                                 XFDKQHURWNNDLG-UHFFFAOYSA-N
+2UD SMILES_CANONICAL               CACTVS 3.385                                                            OC(=O)C(=S)Cc1c[nH]c2ccc(Br)cc12
+2UD           SMILES               CACTVS 3.385                                                            OC(=O)C(=S)Cc1c[nH]c2ccc(Br)cc12
+2UD SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                          c1cc2c(cc1Br)c(c[nH]2)CC(=S)C(=O)O
+2UD           SMILES "OpenEye OEToolkits" 1.9.2                                                          c1cc2c(cc1Br)c(c[nH]2)CC(=S)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+2UD acedrg               243         "dictionary generator"                  
+2UD acedrg_database      11          "data source"                           
+2UD rdkit                2017.03.2   "Chemoinformatics tool"
+2UD refmac5              5.8.0238    "optimization tool"                     

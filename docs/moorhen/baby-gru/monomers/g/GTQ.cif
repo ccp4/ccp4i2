@@ -1,0 +1,157 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GTQ     GTQ      "2,5-dihydroxybenzoic acid"     NON-POLYMER     16     11     .     
+#
+data_comp_GTQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GTQ     OAA     O       OC      -1      54.984      -32.001     9.428       
+GTQ     OAB     O       O       0       56.548      -30.679     8.633       
+GTQ     OAC     O       OH1     0       54.614      -26.034     9.469       
+GTQ     OAD     O       OH1     0       53.695      -31.080     11.565      
+GTQ     CAE     C       CR16    0       53.552      -27.469     11.063      
+GTQ     CAF     C       CR16    0       53.328      -28.736     11.581      
+GTQ     CAG     C       CR16    0       55.020      -28.393     9.406       
+GTQ     CAH     C       C       0       55.498      -30.875     9.277       
+GTQ     CAI     C       CR6     0       54.400      -27.296     9.973       
+GTQ     CAJ     C       CR6     0       53.950      -29.845     11.015      
+GTQ     CAK     C       CR6     0       54.809      -29.683     9.913       
+GTQ     HOAC    H       H       0       55.112      -25.918     8.776       
+GTQ     HOAD    H       H       0       54.338      -31.541     11.905      
+GTQ     HAE     H       H       0       53.129      -26.723     11.452      
+GTQ     HAF     H       H       0       52.755      -28.847     12.318      
+GTQ     HAG     H       H       0       55.592      -28.273     8.669       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GTQ         OAA         CAH      SINGLE       n     1.244  0.0200     1.244  0.0200
+GTQ         OAB         CAH      DOUBLE       n     1.244  0.0200     1.244  0.0200
+GTQ         OAC         CAI      SINGLE       n     1.374  0.0155     1.374  0.0155
+GTQ         OAD         CAJ      SINGLE       n     1.374  0.0155     1.374  0.0155
+GTQ         CAE         CAI      DOUBLE       y     1.389  0.0100     1.389  0.0100
+GTQ         CAE         CAF      SINGLE       y     1.383  0.0100     1.383  0.0100
+GTQ         CAF         CAJ      DOUBLE       y     1.388  0.0100     1.388  0.0100
+GTQ         CAG         CAK      DOUBLE       y     1.396  0.0100     1.396  0.0100
+GTQ         CAG         CAI      SINGLE       y     1.379  0.0100     1.379  0.0100
+GTQ         CAH         CAK      SINGLE       n     1.498  0.0200     1.498  0.0200
+GTQ         CAJ         CAK      SINGLE       y     1.401  0.0100     1.401  0.0100
+GTQ         OAC        HOAC      SINGLE       n     0.966  0.0059     0.861  0.0200
+GTQ         OAD        HOAD      SINGLE       n     0.966  0.0059     0.861  0.0200
+GTQ         CAE         HAE      SINGLE       n     1.082  0.0130     0.942  0.0174
+GTQ         CAF         HAF      SINGLE       n     1.082  0.0130     0.940  0.0196
+GTQ         CAG         HAG      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GTQ         CAI         OAC        HOAC     120.000    3.00
+GTQ         CAJ         OAD        HOAD     120.000    3.00
+GTQ         CAI         CAE         CAF     120.360    1.50
+GTQ         CAI         CAE         HAE     119.851    1.50
+GTQ         CAF         CAE         HAE     119.789    1.50
+GTQ         CAE         CAF         CAJ     120.006    1.50
+GTQ         CAE         CAF         HAF     120.108    1.50
+GTQ         CAJ         CAF         HAF     119.886    1.50
+GTQ         CAK         CAG         CAI     120.832    1.50
+GTQ         CAK         CAG         HAG     119.326    1.50
+GTQ         CAI         CAG         HAG     119.842    1.50
+GTQ         OAA         CAH         OAB     124.103    1.50
+GTQ         OAA         CAH         CAK     117.949    1.50
+GTQ         OAB         CAH         CAK     117.949    1.50
+GTQ         OAC         CAI         CAE     120.088    3.00
+GTQ         OAC         CAI         CAG     120.088    3.00
+GTQ         CAE         CAI         CAG     119.823    1.50
+GTQ         OAD         CAJ         CAF     120.097    3.00
+GTQ         OAD         CAJ         CAK     120.097    3.00
+GTQ         CAF         CAJ         CAK     119.806    1.50
+GTQ         CAG         CAK         CAH     120.100    1.50
+GTQ         CAG         CAK         CAJ     119.173    1.50
+GTQ         CAH         CAK         CAJ     120.727    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GTQ             sp2_sp2_1         CAE         CAI         OAC        HOAC     180.000     5.0     2
+GTQ             sp2_sp2_3         CAF         CAJ         OAD        HOAD     180.000     5.0     2
+GTQ              const_21         CAI         CAE         CAF         CAJ       0.000    10.0     2
+GTQ       const_sp2_sp2_2         CAF         CAE         CAI         OAC     180.000     5.0     2
+GTQ              const_18         CAE         CAF         CAJ         OAD     180.000    10.0     2
+GTQ              const_10         CAI         CAG         CAK         CAH     180.000    10.0     2
+GTQ       const_sp2_sp2_6         CAK         CAG         CAI         OAC     180.000     5.0     2
+GTQ             sp2_sp2_5         OAA         CAH         CAK         CAG     180.000     5.0     2
+GTQ              const_16         OAD         CAJ         CAK         CAH       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GTQ    plan-1         CAE   0.020
+GTQ    plan-1         CAF   0.020
+GTQ    plan-1         CAG   0.020
+GTQ    plan-1         CAH   0.020
+GTQ    plan-1         CAI   0.020
+GTQ    plan-1         CAJ   0.020
+GTQ    plan-1         CAK   0.020
+GTQ    plan-1         HAE   0.020
+GTQ    plan-1         HAF   0.020
+GTQ    plan-1         HAG   0.020
+GTQ    plan-1         OAC   0.020
+GTQ    plan-1         OAD   0.020
+GTQ    plan-2         CAH   0.020
+GTQ    plan-2         CAK   0.020
+GTQ    plan-2         OAA   0.020
+GTQ    plan-2         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GTQ           SMILES              ACDLabs 11.02                                             O=C(O)c1cc(O)ccc1O
+GTQ SMILES_CANONICAL               CACTVS 3.352                                             OC(=O)c1cc(O)ccc1O
+GTQ           SMILES               CACTVS 3.352                                             OC(=O)c1cc(O)ccc1O
+GTQ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                           c1cc(c(cc1O)C(=O)O)O
+GTQ           SMILES "OpenEye OEToolkits" 1.7.0                                           c1cc(c(cc1O)C(=O)O)O
+GTQ            InChI                InChI  1.03 InChI=1S/C7H6O4/c8-4-1-2-6(9)5(3-4)7(10)11/h1-3,8-9H,(H,10,11)
+GTQ         InChIKey                InChI  1.03                                    WXTMDXOMEHJXQO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GTQ acedrg               243         "dictionary generator"                  
+GTQ acedrg_database      11          "data source"                           
+GTQ rdkit                2017.03.2   "Chemoinformatics tool"
+GTQ refmac5              5.8.0238    "optimization tool"                     

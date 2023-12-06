@@ -1,0 +1,262 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JPD     JPD      "methyl (1S,3S,4R)-4-hydroxy-3-[(1S)-1-hydroxypropyl]-2-azabicyclo[2.2.2]octane-2-carboxylate"     NON-POLYMER     38     17     .     
+#
+data_comp_JPD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JPD     C10     C       CT      0       -36.440     31.052      -9.182      
+JPD     C13     C       CH2     0       -34.122     31.084      -8.190      
+JPD     C17     C       CH3     0       -37.067     33.125      -3.960      
+JPD     C01     C       CH3     0       -39.446     34.692      -8.719      
+JPD     C02     C       CH2     0       -38.176     34.041      -8.224      
+JPD     C03     C       CH1     0       -38.282     32.520      -8.066      
+JPD     O04     O       OH1     0       -39.118     32.281      -6.932      
+JPD     C05     C       CH1     0       -36.952     31.730      -7.882      
+JPD     N06     N       NT      0       -35.872     32.582      -7.302      
+JPD     C07     C       CH1     0       -34.628     32.534      -8.131      
+JPD     C08     C       CH2     0       -34.923     33.029      -9.556      
+JPD     C09     C       CH2     0       -36.008     32.125      -10.188     
+JPD     O11     O       OH1     0       -37.437     30.207      -9.778      
+JPD     C12     C       CH2     0       -35.216     30.197      -8.831      
+JPD     C14     C       C       0       -35.822     33.007      -5.997      
+JPD     O15     O       O       0       -34.967     33.755      -5.574      
+JPD     O16     O       O2      0       -36.834     32.518      -5.258      
+JPD     H132    H       H       0       -33.294     31.036      -8.728      
+JPD     H131    H       H       0       -33.918     30.759      -7.279      
+JPD     H171    H       H       0       -37.192     34.082      -4.067      
+JPD     H172    H       H       0       -36.304     32.959      -3.384      
+JPD     H173    H       H       0       -37.863     32.737      -3.563      
+JPD     H013    H       H       0       -39.292     35.643      -8.857      
+JPD     H011    H       H       0       -40.152     34.572      -8.060      
+JPD     H012    H       H       0       -39.716     34.284      -9.559      
+JPD     H021    H       H       0       -37.938     34.431      -7.357      
+JPD     H022    H       H       0       -37.452     34.243      -8.851      
+JPD     H031    H       H       0       -38.758     32.177      -8.863      
+JPD     H041    H       H       0       -38.726     32.507      -6.216      
+JPD     H051    H       H       0       -37.148     31.013      -7.232      
+JPD     H071    H       H       0       -33.926     33.115      -7.719      
+JPD     H081    H       H       0       -34.099     32.993      -10.103     
+JPD     H082    H       H       0       -35.236     33.966      -9.533      
+JPD     H092    H       H       0       -36.784     32.666      -10.453     
+JPD     H091    H       H       0       -35.649     31.692      -10.994     
+JPD     H111    H       H       0       -37.712     29.654      -9.216      
+JPD     H121    H       H       0       -34.866     29.774      -9.646      
+JPD     H122    H       H       0       -35.479     29.487      -8.204      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JPD         C10         O11      SINGLE       n     1.435  0.0100     1.435  0.0100
+JPD         C10         C09      SINGLE       n     1.531  0.0112     1.531  0.0112
+JPD         C08         C09      SINGLE       n     1.544  0.0101     1.544  0.0101
+JPD         C10         C12      SINGLE       n     1.531  0.0112     1.531  0.0112
+JPD         C13         C12      SINGLE       n     1.544  0.0101     1.544  0.0101
+JPD         C10         C05      SINGLE       n     1.536  0.0157     1.536  0.0157
+JPD         C07         C08      SINGLE       n     1.534  0.0100     1.534  0.0100
+JPD         C01         C02      SINGLE       n     1.511  0.0200     1.511  0.0200
+JPD         C02         C03      SINGLE       n     1.522  0.0200     1.522  0.0200
+JPD         C13         C07      SINGLE       n     1.534  0.0100     1.534  0.0100
+JPD         C03         C05      SINGLE       n     1.540  0.0141     1.540  0.0141
+JPD         C05         N06      SINGLE       n     1.482  0.0100     1.482  0.0100
+JPD         C03         O04      SINGLE       n     1.426  0.0165     1.426  0.0165
+JPD         N06         C07      SINGLE       n     1.481  0.0123     1.481  0.0123
+JPD         N06         C14      SINGLE       n     1.356  0.0135     1.356  0.0135
+JPD         C14         O16      SINGLE       n     1.341  0.0105     1.341  0.0105
+JPD         C14         O15      DOUBLE       n     1.209  0.0100     1.209  0.0100
+JPD         C17         O16      SINGLE       n     1.448  0.0108     1.448  0.0108
+JPD         C13        H132      SINGLE       n     1.089  0.0100     0.989  0.0100
+JPD         C13        H131      SINGLE       n     1.089  0.0100     0.989  0.0100
+JPD         C17        H171      SINGLE       n     1.089  0.0100     0.970  0.0175
+JPD         C17        H172      SINGLE       n     1.089  0.0100     0.970  0.0175
+JPD         C17        H173      SINGLE       n     1.089  0.0100     0.970  0.0175
+JPD         C01        H013      SINGLE       n     1.089  0.0100     0.973  0.0157
+JPD         C01        H011      SINGLE       n     1.089  0.0100     0.973  0.0157
+JPD         C01        H012      SINGLE       n     1.089  0.0100     0.973  0.0157
+JPD         C02        H021      SINGLE       n     1.089  0.0100     0.981  0.0160
+JPD         C02        H022      SINGLE       n     1.089  0.0100     0.981  0.0160
+JPD         C03        H031      SINGLE       n     1.089  0.0100     0.991  0.0193
+JPD         O04        H041      SINGLE       n     0.970  0.0120     0.848  0.0200
+JPD         C05        H051      SINGLE       n     1.089  0.0100     0.987  0.0200
+JPD         C07        H071      SINGLE       n     1.089  0.0100     1.000  0.0100
+JPD         C08        H081      SINGLE       n     1.089  0.0100     0.989  0.0100
+JPD         C08        H082      SINGLE       n     1.089  0.0100     0.989  0.0100
+JPD         C09        H092      SINGLE       n     1.089  0.0100     0.983  0.0200
+JPD         C09        H091      SINGLE       n     1.089  0.0100     0.983  0.0200
+JPD         O11        H111      SINGLE       n     0.970  0.0120     0.835  0.0200
+JPD         C12        H121      SINGLE       n     1.089  0.0100     0.983  0.0200
+JPD         C12        H122      SINGLE       n     1.089  0.0100     0.983  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JPD         O11         C10         C09     109.364    1.91
+JPD         O11         C10         C12     109.364    1.91
+JPD         O11         C10         C05     109.970    2.65
+JPD         C09         C10         C12     109.243    1.50
+JPD         C09         C10         C05     109.308    1.50
+JPD         C12         C10         C05     109.308    1.50
+JPD         C12         C13         C07     108.350    1.50
+JPD         C12         C13        H132     109.832    1.50
+JPD         C12         C13        H131     109.832    1.50
+JPD         C07         C13        H132     110.035    1.50
+JPD         C07         C13        H131     110.035    1.50
+JPD        H132         C13        H131     108.283    1.50
+JPD         O16         C17        H171     109.390    1.50
+JPD         O16         C17        H172     109.390    1.50
+JPD         O16         C17        H173     109.390    1.50
+JPD        H171         C17        H172     109.532    1.53
+JPD        H171         C17        H173     109.532    1.53
+JPD        H172         C17        H173     109.532    1.53
+JPD         C02         C01        H013     109.557    1.50
+JPD         C02         C01        H011     109.557    1.50
+JPD         C02         C01        H012     109.557    1.50
+JPD        H013         C01        H011     109.380    1.50
+JPD        H013         C01        H012     109.380    1.50
+JPD        H011         C01        H012     109.380    1.50
+JPD         C01         C02         C03     114.088    2.07
+JPD         C01         C02        H021     108.957    1.50
+JPD         C01         C02        H022     108.957    1.50
+JPD         C03         C02        H021     108.492    1.50
+JPD         C03         C02        H022     108.492    1.50
+JPD        H021         C02        H022     107.715    1.50
+JPD         C02         C03         C05     114.527    2.12
+JPD         C02         C03         O04     109.182    2.31
+JPD         C02         C03        H031     108.563    1.50
+JPD         C05         C03         O04     109.736    2.24
+JPD         C05         C03        H031     109.490    1.50
+JPD         O04         C03        H031     108.777    1.50
+JPD         C03         O04        H041     109.859    3.00
+JPD         C10         C05         C03     112.178    2.43
+JPD         C10         C05         N06     109.950    1.81
+JPD         C10         C05        H051     109.610    1.50
+JPD         C03         C05         N06     109.183    3.00
+JPD         C03         C05        H051     107.236    1.50
+JPD         N06         C05        H051     108.644    1.50
+JPD         C05         N06         C07     110.678    3.00
+JPD         C05         N06         C14     121.495    3.00
+JPD         C07         N06         C14     120.086    3.00
+JPD         C08         C07         C13     109.386    1.50
+JPD         C08         C07         N06     109.001    2.48
+JPD         C08         C07        H071     110.018    1.50
+JPD         C13         C07         N06     109.001    2.48
+JPD         C13         C07        H071     110.018    1.50
+JPD         N06         C07        H071     109.119    1.50
+JPD         C09         C08         C07     108.350    1.50
+JPD         C09         C08        H081     109.832    1.50
+JPD         C09         C08        H082     109.832    1.50
+JPD         C07         C08        H081     110.035    1.50
+JPD         C07         C08        H082     110.035    1.50
+JPD        H081         C08        H082     108.283    1.50
+JPD         C10         C09         C08     109.862    1.50
+JPD         C10         C09        H092     109.555    1.50
+JPD         C10         C09        H091     109.555    1.50
+JPD         C08         C09        H092     109.832    1.50
+JPD         C08         C09        H091     109.832    1.50
+JPD        H092         C09        H091     108.246    1.50
+JPD         C10         O11        H111     109.614    2.08
+JPD         C10         C12         C13     109.862    1.50
+JPD         C10         C12        H121     109.555    1.50
+JPD         C10         C12        H122     109.555    1.50
+JPD         C13         C12        H121     109.832    1.50
+JPD         C13         C12        H122     109.832    1.50
+JPD        H121         C12        H122     108.246    1.50
+JPD         N06         C14         O16     111.448    1.50
+JPD         N06         C14         O15     123.544    2.42
+JPD         O16         C14         O15     125.008    1.79
+JPD         C14         O16         C17     115.850    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JPD             sp3_sp3_3         C08         C09         C10         O11     -60.000    10.0     3
+JPD            sp3_sp3_55         C09         C10         O11        H111     180.000    10.0     3
+JPD            sp3_sp3_31         O11         C10         C12         C13     -60.000    10.0     3
+JPD            sp3_sp3_63         C03         C05         C10         O11     -60.000    10.0     3
+JPD            sp3_sp3_10         C07         C08         C09         C10     -60.000    10.0     3
+JPD             sp2_sp2_6         O15         C14         O16         C17       0.000     5.0     2
+JPD            sp3_sp3_37         C10         C12         C13         C07     -60.000    10.0     3
+JPD            sp3_sp3_46         C08         C07         C13         C12      60.000    10.0     3
+JPD            sp3_sp3_98        H171         C17         O16         C14     -60.000    10.0     3
+JPD            sp3_sp3_67        H013         C01         C02         C03     180.000    10.0     3
+JPD            sp3_sp3_77         C01         C02         C03         O04     -60.000    10.0     3
+JPD            sp3_sp3_94         C02         C03         O04        H041     180.000    10.0     3
+JPD            sp3_sp3_85         C02         C03         C05         C10     180.000    10.0     3
+JPD            sp2_sp3_11         C14         N06         C05         C03     -60.000    10.0     6
+JPD             sp2_sp2_1         O16         C14         N06         C05     180.000     5.0     2
+JPD             sp2_sp3_4         C14         N06         C07         C08     180.000    10.0     6
+JPD            sp3_sp3_19         C13         C07         C08         C09      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JPD    chir_1    C10    O11    C05    C09    both
+JPD    chir_2    C03    O04    C05    C02    positive
+JPD    chir_3    C05    N06    C10    C03    positive
+JPD    chir_4    C07    N06    C08    C13    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JPD    plan-1         C14   0.020
+JPD    plan-1         N06   0.020
+JPD    plan-1         O15   0.020
+JPD    plan-1         O16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JPD           SMILES              ACDLabs 12.01                                                                                C21(C(C(CC)O)N(C(OC)=O)C(CC1)CC2)O
+JPD            InChI                InChI  1.03 InChI=1S/C12H21NO4/c1-3-9(14)10-12(16)6-4-8(5-7-12)13(10)11(15)17-2/h8-10,14,16H,3-7H2,1-2H3/t8-,9-,10-,12-/m0/s1
+JPD         InChIKey                InChI  1.03                                                                                       VZRPKINLZWKPDQ-GMOBBJLQSA-N
+JPD SMILES_CANONICAL               CACTVS 3.385                                                                           CC[C@H](O)[C@@H]1N(C2CCC1(O)CC2)C(=O)OC
+JPD           SMILES               CACTVS 3.385                                                                              CC[CH](O)[CH]1N(C2CCC1(O)CC2)C(=O)OC
+JPD SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                           CC[C@@H]([C@H]1C2(CCC(N1C(=O)OC)CC2)O)O
+JPD           SMILES "OpenEye OEToolkits" 2.0.6                                                                                    CCC(C1C2(CCC(N1C(=O)OC)CC2)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JPD acedrg               243         "dictionary generator"                  
+JPD acedrg_database      11          "data source"                           
+JPD rdkit                2017.03.2   "Chemoinformatics tool"
+JPD refmac5              5.8.0238    "optimization tool"                     

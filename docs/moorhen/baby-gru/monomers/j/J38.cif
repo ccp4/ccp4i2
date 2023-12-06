@@ -1,0 +1,225 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+J38     J38      "(2R)-2-methyl-3-oxo-4H-1,4-benzothiazine-6-carbohydroxamic acid"     NON-POLYMER     26     16     .     
+#
+data_comp_J38
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+J38     C01     C       CH3     0       53.039      48.009      26.420      
+J38     C02     C       CH1     0       54.091      49.044      26.113      
+J38     S03     S       S2      0       55.402      48.875      27.346      
+J38     C04     C       CR66    0       56.288      47.482      26.770      
+J38     C05     C       CR16    0       56.890      46.599      27.665      
+J38     C06     C       CR16    0       57.567      45.491      27.194      
+J38     C07     C       CR6     0       57.659      45.234      25.818      
+J38     C08     C       C       0       58.378      44.031      25.283      
+J38     O09     O       O       0       57.927      43.397      24.319      
+J38     N10     N       NH1     0       59.488      43.675      25.918      
+J38     O11     O       OH1     0       60.153      42.504      25.571      
+J38     C12     C       CR16    0       57.032      46.114      24.927      
+J38     C13     C       CR66    0       56.336      47.231      25.393      
+J38     N14     N       NR6     0       55.725      48.118      24.482      
+J38     C15     C       CR6     0       54.595      48.856      24.697      
+J38     O16     O       O       0       53.994      49.365      23.758      
+J38     H01     H       H       0       52.755      48.097      27.344      
+J38     H01A    H       H       0       53.406      47.121      26.279      
+J38     H01B    H       H       0       52.275      48.138      25.835      
+J38     H02     H       H       0       53.678      49.944      26.198      
+J38     H05     H       H       0       56.840      46.765      28.591      
+J38     H06     H       H       0       57.983      44.903      27.806      
+J38     H10     H       H       0       59.881      44.129      26.562      
+J38     H11     H       H       0       60.614      42.676      24.857      
+J38     H12     H       H       0       57.085      45.942      23.994      
+J38     HN14    H       H       0       56.111      48.207      23.695      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+J38         C01         C02      SINGLE       n     1.505  0.0167     1.505  0.0167
+J38         C02         C15      SINGLE       n     1.506  0.0140     1.506  0.0140
+J38         C02         S03      SINGLE       n     1.812  0.0175     1.812  0.0175
+J38         S03         C04      SINGLE       n     1.757  0.0131     1.757  0.0131
+J38         C04         C13      DOUBLE       y     1.398  0.0100     1.398  0.0100
+J38         C04         C05      SINGLE       y     1.392  0.0100     1.392  0.0100
+J38         C05         C06      DOUBLE       y     1.378  0.0100     1.378  0.0100
+J38         C06         C07      SINGLE       y     1.397  0.0100     1.397  0.0100
+J38         C07         C12      DOUBLE       y     1.395  0.0100     1.395  0.0100
+J38         C07         C08      SINGLE       n     1.497  0.0100     1.497  0.0100
+J38         C08         O09      DOUBLE       n     1.238  0.0100     1.238  0.0100
+J38         C08         N10      SINGLE       n     1.325  0.0100     1.325  0.0100
+J38         N10         O11      SINGLE       n     1.390  0.0100     1.390  0.0100
+J38         C12         C13      SINGLE       y     1.392  0.0106     1.392  0.0106
+J38         C13         N14      SINGLE       n     1.400  0.0139     1.400  0.0139
+J38         N14         C15      SINGLE       n     1.347  0.0154     1.347  0.0154
+J38         C15         O16      DOUBLE       n     1.225  0.0100     1.225  0.0100
+J38         C01         H01      SINGLE       n     1.089  0.0100     0.971  0.0163
+J38         C01        H01A      SINGLE       n     1.089  0.0100     0.971  0.0163
+J38         C01        H01B      SINGLE       n     1.089  0.0100     0.971  0.0163
+J38         C02         H02      SINGLE       n     1.089  0.0100     0.994  0.0139
+J38         C05         H05      SINGLE       n     1.082  0.0130     0.942  0.0167
+J38         C06         H06      SINGLE       n     1.082  0.0130     0.945  0.0200
+J38         N10         H10      SINGLE       n     1.016  0.0100     0.880  0.0200
+J38         O11         H11      SINGLE       n     0.970  0.0120     0.867  0.0200
+J38         C12         H12      SINGLE       n     1.082  0.0130     0.950  0.0100
+J38         N14        HN14      SINGLE       n     1.016  0.0100     0.880  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+J38         C02         C01         H01     109.643    1.50
+J38         C02         C01        H01A     109.643    1.50
+J38         C02         C01        H01B     109.643    1.50
+J38         H01         C01        H01A     109.418    1.50
+J38         H01         C01        H01B     109.418    1.50
+J38        H01A         C01        H01B     109.418    1.50
+J38         C01         C02         C15     110.115    2.66
+J38         C01         C02         S03     107.685    3.00
+J38         C01         C02         H02     107.642    1.65
+J38         C15         C02         S03     111.432    2.83
+J38         C15         C02         H02     108.678    1.50
+J38         S03         C02         H02     108.338    1.74
+J38         C02         S03         C04     120.000    3.00
+J38         S03         C04         C13     122.127    2.21
+J38         S03         C04         C05     118.371    2.20
+J38         C13         C04         C05     119.502    1.50
+J38         C04         C05         C06     120.284    1.50
+J38         C04         C05         H05     119.653    1.50
+J38         C06         C05         H05     120.063    1.50
+J38         C05         C06         C07     120.855    1.50
+J38         C05         C06         H06     119.679    1.50
+J38         C07         C06         H06     119.466    1.50
+J38         C06         C07         C12     119.045    1.50
+J38         C06         C07         C08     120.512    2.89
+J38         C12         C07         C08     120.443    2.75
+J38         C07         C08         O09     121.566    1.50
+J38         C07         C08         N10     115.502    1.50
+J38         O09         C08         N10     122.932    1.50
+J38         C08         N10         O11     120.186    1.50
+J38         C08         N10         H10     124.661    3.00
+J38         O11         N10         H10     115.154    3.00
+J38         N10         O11         H11     106.924    3.00
+J38         C07         C12         C13     120.742    1.50
+J38         C07         C12         H12     119.143    1.50
+J38         C13         C12         H12     120.115    1.50
+J38         C04         C13         C12     119.573    1.50
+J38         C04         C13         N14     120.183    1.50
+J38         C12         C13         N14     120.245    1.50
+J38         C13         N14         C15     124.368    1.50
+J38         C13         N14        HN14     118.365    2.27
+J38         C15         N14        HN14     117.268    1.63
+J38         C02         C15         N14     117.099    1.63
+J38         C02         C15         O16     121.499    1.74
+J38         N14         C15         O16     121.402    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+J38             sp3_sp3_1         H01         C01         C02         C15     180.000    10.0     3
+J38       const_sp2_sp2_5         C07         C12         C13         C04       0.000     5.0     2
+J38             sp2_sp2_5         C04         C13         N14         C15       0.000     5.0     2
+J38             sp2_sp2_3         O16         C15         N14         C13     180.000     5.0     2
+J38             sp2_sp3_5         O16         C15         C02         C01     -60.000    10.0     6
+J38            sp3_sp3_11         C01         C02         S03         C04     180.000    10.0     3
+J38             sp2_sp2_9         C13         C04         S03         C02       0.000     5.0     2
+J38       const_sp2_sp2_2         S03         C04         C13         C12     180.000     5.0     2
+J38              const_23         S03         C04         C05         C06     180.000    10.0     2
+J38              const_17         C04         C05         C06         C07       0.000    10.0     2
+J38              const_14         C05         C06         C07         C08     180.000    10.0     2
+J38              const_11         C08         C07         C12         C13     180.000    10.0     2
+J38            sp2_sp2_12         C06         C07         C08         O09       0.000     5.0     2
+J38            sp2_sp2_17         O09         C08         N10         O11       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+J38    chir_1    C02    S03    C15    C01    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+J38    plan-1         C04   0.020
+J38    plan-1         C05   0.020
+J38    plan-1         C06   0.020
+J38    plan-1         C07   0.020
+J38    plan-1         C08   0.020
+J38    plan-1         C12   0.020
+J38    plan-1         C13   0.020
+J38    plan-1         H05   0.020
+J38    plan-1         H06   0.020
+J38    plan-1         H12   0.020
+J38    plan-1         N14   0.020
+J38    plan-1         S03   0.020
+J38    plan-2         C07   0.020
+J38    plan-2         C08   0.020
+J38    plan-2         N10   0.020
+J38    plan-2         O09   0.020
+J38    plan-3         C08   0.020
+J38    plan-3         H10   0.020
+J38    plan-3         N10   0.020
+J38    plan-3         O11   0.020
+J38    plan-4         C13   0.020
+J38    plan-4         C15   0.020
+J38    plan-4        HN14   0.020
+J38    plan-4         N14   0.020
+J38    plan-5         C02   0.020
+J38    plan-5         C15   0.020
+J38    plan-5         N14   0.020
+J38    plan-5         O16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+J38           SMILES              ACDLabs 12.01                                                                 O=NC(=O)c2ccc1SC(C(=O)Nc1c2)C
+J38            InChI                InChI  1.03 InChI=1S/C10H8N2O3S/c1-5-9(13)11-7-4-6(10(14)12-15)2-3-8(7)16-5/h2-5H,1H3,(H,11,13)/t5-/m1/s1
+J38         InChIKey                InChI  1.03                                                                   YALBEYHVOFQECJ-RXMQYKEDSA-N
+J38 SMILES_CANONICAL               CACTVS 3.385                                                                C[C@H]1Sc2ccc(cc2NC1=O)C(=O)NO
+J38           SMILES               CACTVS 3.385                                                                 C[CH]1Sc2ccc(cc2NC1=O)C(=O)NO
+J38 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                             C[C@@H]1C(=O)Nc2cc(ccc2S1)C(=O)NO
+J38           SMILES "OpenEye OEToolkits" 1.7.6                                                                  CC1C(=O)Nc2cc(ccc2S1)C(=O)NO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+J38 acedrg               243         "dictionary generator"                  
+J38 acedrg_database      11          "data source"                           
+J38 rdkit                2017.03.2   "Chemoinformatics tool"
+J38 refmac5              5.8.0238    "optimization tool"                     

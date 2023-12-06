@@ -1,0 +1,298 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TNT     TNT      1,3-BIS(AMIDINOPHENOXY)PROPANE     NON-POLYMER     43     23     .     
+#
+data_comp_TNT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TNT     C1      C       CR6     0       10.337      24.835      5.585       
+TNT     C2      C       CR16    0       11.590      24.356      5.202       
+TNT     C3      C       CR16    0       12.121      24.716      3.974       
+TNT     C4      C       CR6     0       11.426      25.557      3.110       
+TNT     C5      C       CR16    0       10.178      26.032      3.505       
+TNT     C6      C       CR16    0       9.636       25.679      4.729       
+TNT     C7      C       C       0       12.002      25.940      1.795       
+TNT     N1      N       NH1     0       12.318      25.069      0.894       
+TNT     N2      N       NH2     0       12.195      27.256      1.557       
+TNT     "C1'"   C       CR6     0       8.796       21.440      11.897      
+TNT     "C2'"   C       CR16    0       9.822       20.513      12.083      
+TNT     "C3'"   C       CR16    0       9.891       19.788      13.261      
+TNT     "C4'"   C       CR6     0       8.946       19.962      14.269      
+TNT     "C5'"   C       CR16    0       7.925       20.887      14.070      
+TNT     "C6'"   C       CR16    0       7.845       21.619      12.898      
+TNT     "C7'"   C       C       0       9.028       19.179      15.529      
+TNT     "N1'"   N       NH1     0       10.070      19.199      16.293      
+TNT     "N2'"   N       NH2     0       7.960       18.423      15.866      
+TNT     CA      C       CH2     0       10.158      23.480      7.605       
+TNT     O1      O       O2      0       9.708       24.559      6.775       
+TNT     CB      C       CH2     0       9.210       23.358      8.773       
+TNT     "CA'"   C       CH2     0       9.668       22.371      9.819       
+TNT     "O1'"   O       O2      0       8.612       22.212      10.775      
+TNT     H2      H       H       0       12.078      23.788      5.770       
+TNT     H3      H       H       0       12.966      24.386      3.725       
+TNT     H5      H       H       0       9.693       26.601      2.934       
+TNT     H6      H       H       0       8.791       26.009      4.982       
+TNT     HN1     H       H       0       12.183      24.279      1.086       
+TNT     HN2     H       H       0       11.980      27.857      2.174       
+TNT     HN3     H       H       0       12.537      27.520      0.782       
+TNT     "H2'"   H       H       0       10.469      20.378      11.415      
+TNT     "H3'"   H       H       0       10.588      19.167      13.377      
+TNT     "H5'"   H       H       0       7.278       21.019      14.740      
+TNT     "H6'"   H       H       0       7.148       22.240      12.778      
+TNT     "HN'1"  H       H       0       10.697      19.673      16.045      
+TNT     "HN'2"  H       H       0       7.974       17.945      16.614      
+TNT     "HN'3"  H       H       0       7.244       18.401      15.340      
+TNT     HA1     H       H       0       11.065      23.661      7.927       
+TNT     HA2     H       H       0       10.172      22.646      7.091       
+TNT     HB1     H       H       0       8.330       23.077      8.438       
+TNT     HB2     H       H       0       9.111       24.241      9.193       
+TNT     "HA'1"  H       H       0       10.476      22.699      10.264      
+TNT     "HA'2"  H       H       0       9.873       21.509      9.400       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TNT          C1          C2      DOUBLE       y     1.386  0.0109     1.386  0.0109
+TNT          C1          C6      SINGLE       y     1.386  0.0109     1.386  0.0109
+TNT          C1          O1      SINGLE       n     1.369  0.0106     1.369  0.0106
+TNT          C2          C3      SINGLE       y     1.381  0.0100     1.381  0.0100
+TNT          C3          C4      DOUBLE       y     1.390  0.0100     1.390  0.0100
+TNT          C4          C5      SINGLE       y     1.390  0.0100     1.390  0.0100
+TNT          C4          C7      SINGLE       n     1.484  0.0100     1.484  0.0100
+TNT          C5          C6      DOUBLE       y     1.381  0.0100     1.381  0.0100
+TNT          C7          N1      DOUBLE       n     1.287  0.0200     1.287  0.0200
+TNT          C7          N2      SINGLE       n     1.347  0.0152     1.347  0.0152
+TNT       "C1'"       "C2'"      DOUBLE       y     1.386  0.0109     1.386  0.0109
+TNT       "C1'"       "C6'"      SINGLE       y     1.386  0.0109     1.386  0.0109
+TNT       "C1'"       "O1'"      SINGLE       n     1.369  0.0106     1.369  0.0106
+TNT       "C2'"       "C3'"      SINGLE       y     1.381  0.0100     1.381  0.0100
+TNT       "C3'"       "C4'"      DOUBLE       y     1.390  0.0100     1.390  0.0100
+TNT       "C4'"       "C5'"      SINGLE       y     1.390  0.0100     1.390  0.0100
+TNT       "C4'"       "C7'"      SINGLE       n     1.484  0.0100     1.484  0.0100
+TNT       "C5'"       "C6'"      DOUBLE       y     1.381  0.0100     1.381  0.0100
+TNT       "C7'"       "N1'"      DOUBLE       n     1.287  0.0200     1.287  0.0200
+TNT       "C7'"       "N2'"      SINGLE       n     1.347  0.0152     1.347  0.0152
+TNT          CA          O1      SINGLE       n     1.432  0.0101     1.432  0.0101
+TNT          CA          CB      SINGLE       n     1.509  0.0115     1.509  0.0115
+TNT          CB       "CA'"      SINGLE       n     1.509  0.0115     1.509  0.0115
+TNT       "CA'"       "O1'"      SINGLE       n     1.432  0.0101     1.432  0.0101
+TNT          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0179
+TNT          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+TNT          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0168
+TNT          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0179
+TNT          N1         HN1      SINGLE       n     1.016  0.0100     0.823  0.0200
+TNT          N2         HN2      SINGLE       n     1.016  0.0100     0.887  0.0200
+TNT          N2         HN3      SINGLE       n     1.016  0.0100     0.887  0.0200
+TNT       "C2'"       "H2'"      SINGLE       n     1.082  0.0130     0.941  0.0179
+TNT       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.941  0.0168
+TNT       "C5'"       "H5'"      SINGLE       n     1.082  0.0130     0.941  0.0168
+TNT       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.941  0.0179
+TNT       "N1'"      "HN'1"      SINGLE       n     1.016  0.0100     0.823  0.0200
+TNT       "N2'"      "HN'2"      SINGLE       n     1.016  0.0100     0.887  0.0200
+TNT       "N2'"      "HN'3"      SINGLE       n     1.016  0.0100     0.887  0.0200
+TNT          CA         HA1      SINGLE       n     1.089  0.0100     0.979  0.0131
+TNT          CA         HA2      SINGLE       n     1.089  0.0100     0.979  0.0131
+TNT          CB         HB1      SINGLE       n     1.089  0.0100     0.983  0.0175
+TNT          CB         HB2      SINGLE       n     1.089  0.0100     0.983  0.0175
+TNT       "CA'"      "HA'1"      SINGLE       n     1.089  0.0100     0.979  0.0131
+TNT       "CA'"      "HA'2"      SINGLE       n     1.089  0.0100     0.979  0.0131
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TNT          C2          C1          C6     119.719    1.50
+TNT          C2          C1          O1     120.140    3.00
+TNT          C6          C1          O1     120.140    3.00
+TNT          C1          C2          C3     119.586    1.50
+TNT          C1          C2          H2     120.188    1.50
+TNT          C3          C2          H2     120.226    1.50
+TNT          C2          C3          C4     121.093    1.50
+TNT          C2          C3          H3     119.199    1.50
+TNT          C4          C3          H3     119.708    1.50
+TNT          C3          C4          C5     118.923    1.50
+TNT          C3          C4          C7     120.538    1.50
+TNT          C5          C4          C7     120.538    1.50
+TNT          C4          C5          C6     121.093    1.50
+TNT          C4          C5          H5     119.708    1.50
+TNT          C6          C5          H5     119.199    1.50
+TNT          C1          C6          C5     119.586    1.50
+TNT          C1          C6          H6     120.188    1.50
+TNT          C5          C6          H6     120.226    1.50
+TNT          C4          C7          N1     121.847    3.00
+TNT          C4          C7          N2     117.501    1.50
+TNT          N1          C7          N2     120.652    2.66
+TNT          C7          N1         HN1     114.748    3.00
+TNT          C7          N2         HN2     119.893    1.50
+TNT          C7          N2         HN3     119.893    1.50
+TNT         HN2          N2         HN3     120.214    2.70
+TNT       "C2'"       "C1'"       "C6'"     119.719    1.50
+TNT       "C2'"       "C1'"       "O1'"     120.140    3.00
+TNT       "C6'"       "C1'"       "O1'"     120.140    3.00
+TNT       "C1'"       "C2'"       "C3'"     119.586    1.50
+TNT       "C1'"       "C2'"       "H2'"     120.188    1.50
+TNT       "C3'"       "C2'"       "H2'"     120.226    1.50
+TNT       "C2'"       "C3'"       "C4'"     121.093    1.50
+TNT       "C2'"       "C3'"       "H3'"     119.199    1.50
+TNT       "C4'"       "C3'"       "H3'"     119.708    1.50
+TNT       "C3'"       "C4'"       "C5'"     118.923    1.50
+TNT       "C3'"       "C4'"       "C7'"     120.538    1.50
+TNT       "C5'"       "C4'"       "C7'"     120.538    1.50
+TNT       "C4'"       "C5'"       "C6'"     121.093    1.50
+TNT       "C4'"       "C5'"       "H5'"     119.708    1.50
+TNT       "C6'"       "C5'"       "H5'"     119.199    1.50
+TNT       "C1'"       "C6'"       "C5'"     119.586    1.50
+TNT       "C1'"       "C6'"       "H6'"     120.188    1.50
+TNT       "C5'"       "C6'"       "H6'"     120.226    1.50
+TNT       "C4'"       "C7'"       "N1'"     121.847    3.00
+TNT       "C4'"       "C7'"       "N2'"     117.501    1.50
+TNT       "N1'"       "C7'"       "N2'"     120.652    2.66
+TNT       "C7'"       "N1'"      "HN'1"     114.748    3.00
+TNT       "C7'"       "N2'"      "HN'2"     119.893    1.50
+TNT       "C7'"       "N2'"      "HN'3"     119.893    1.50
+TNT      "HN'2"       "N2'"      "HN'3"     120.214    2.70
+TNT          O1          CA          CB     108.249    2.48
+TNT          O1          CA         HA1     109.943    1.50
+TNT          O1          CA         HA2     109.943    1.50
+TNT          CB          CA         HA1     110.171    1.50
+TNT          CB          CA         HA2     110.171    1.50
+TNT         HA1          CA         HA2     108.474    1.50
+TNT          C1          O1          CA     118.103    1.50
+TNT          CA          CB       "CA'"     113.502    2.05
+TNT          CA          CB         HB1     108.820    1.50
+TNT          CA          CB         HB2     108.820    1.50
+TNT       "CA'"          CB         HB1     108.820    1.50
+TNT       "CA'"          CB         HB2     108.820    1.50
+TNT         HB1          CB         HB2     108.411    3.00
+TNT          CB       "CA'"       "O1'"     108.249    2.48
+TNT          CB       "CA'"      "HA'1"     110.171    1.50
+TNT          CB       "CA'"      "HA'2"     110.171    1.50
+TNT       "O1'"       "CA'"      "HA'1"     109.943    1.50
+TNT       "O1'"       "CA'"      "HA'2"     109.943    1.50
+TNT      "HA'1"       "CA'"      "HA'2"     108.474    1.50
+TNT       "C1'"       "O1'"       "CA'"     118.103    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TNT              const_23          O1          C1          C2          C3     180.000    10.0     2
+TNT             sp2_sp2_1          C2          C1          O1          CA     180.000     5.0     2
+TNT              const_43          O1          C1          C6          C5     180.000    10.0     2
+TNT       const_sp2_sp2_5       "C1'"       "C2'"       "C3'"       "C4'"       0.000     5.0     2
+TNT              const_10       "C2'"       "C3'"       "C4'"       "C7'"     180.000    10.0     2
+TNT              const_15       "C7'"       "C4'"       "C5'"       "C6'"     180.000    10.0     2
+TNT            sp2_sp2_16       "C3'"       "C4'"       "C7'"       "N1'"       0.000     5.0     2
+TNT              const_17       "C4'"       "C5'"       "C6'"       "C1'"       0.000    10.0     2
+TNT            sp2_sp2_20       "N2'"       "C7'"       "N1'"      "HN'1"       0.000     5.0     2
+TNT            sp2_sp2_23       "N1'"       "C7'"       "N2'"      "HN'2"       0.000     5.0     2
+TNT             sp3_sp3_1          CB          CA          O1          C1     180.000    10.0     3
+TNT             sp3_sp3_4          O1          CA          CB       "CA'"     180.000    10.0     3
+TNT              const_25          C1          C2          C3          C4       0.000    10.0     2
+TNT            sp3_sp3_13       "O1'"       "CA'"          CB          CA     180.000    10.0     3
+TNT            sp3_sp3_22          CB       "CA'"       "O1'"       "C1'"     180.000    10.0     3
+TNT              const_30          C2          C3          C4          C7     180.000    10.0     2
+TNT              const_35          C7          C4          C5          C6     180.000    10.0     2
+TNT             sp2_sp2_4          C3          C4          C7          N1       0.000     5.0     2
+TNT              const_37          C4          C5          C6          C1       0.000    10.0     2
+TNT             sp2_sp2_8          N2          C7          N1         HN1       0.000     5.0     2
+TNT            sp2_sp2_11          N1          C7          N2         HN2       0.000     5.0     2
+TNT       const_sp2_sp2_3       "O1'"       "C1'"       "C2'"       "C3'"     180.000     5.0     2
+TNT              const_47       "O1'"       "C1'"       "C6'"       "C5'"     180.000    10.0     2
+TNT            sp2_sp2_13       "C2'"       "C1'"       "O1'"       "CA'"     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TNT    plan-1          C1   0.020
+TNT    plan-1          C2   0.020
+TNT    plan-1          C3   0.020
+TNT    plan-1          C4   0.020
+TNT    plan-1          C5   0.020
+TNT    plan-1          C6   0.020
+TNT    plan-1          C7   0.020
+TNT    plan-1          H2   0.020
+TNT    plan-1          H3   0.020
+TNT    plan-1          H5   0.020
+TNT    plan-1          H6   0.020
+TNT    plan-1          O1   0.020
+TNT    plan-2       "C1'"   0.020
+TNT    plan-2       "C2'"   0.020
+TNT    plan-2       "C3'"   0.020
+TNT    plan-2       "C4'"   0.020
+TNT    plan-2       "C5'"   0.020
+TNT    plan-2       "C6'"   0.020
+TNT    plan-2       "C7'"   0.020
+TNT    plan-2       "H2'"   0.020
+TNT    plan-2       "H3'"   0.020
+TNT    plan-2       "H5'"   0.020
+TNT    plan-2       "H6'"   0.020
+TNT    plan-2       "O1'"   0.020
+TNT    plan-3          C4   0.020
+TNT    plan-3          C7   0.020
+TNT    plan-3          N1   0.020
+TNT    plan-3          N2   0.020
+TNT    plan-4          C7   0.020
+TNT    plan-4         HN2   0.020
+TNT    plan-4         HN3   0.020
+TNT    plan-4          N2   0.020
+TNT    plan-5       "C4'"   0.020
+TNT    plan-5       "C7'"   0.020
+TNT    plan-5       "N1'"   0.020
+TNT    plan-5       "N2'"   0.020
+TNT    plan-6       "C7'"   0.020
+TNT    plan-6      "HN'2"   0.020
+TNT    plan-6      "HN'3"   0.020
+TNT    plan-6       "N2'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TNT           SMILES              ACDLabs 10.04                                                                             O(c1ccc(cc1)C(=[N@H])N)CCCOc2ccc(C(=[N@H])N)cc2
+TNT SMILES_CANONICAL               CACTVS 3.341                                                                                       NC(=N)c1ccc(OCCCOc2ccc(cc2)C(N)=N)cc1
+TNT           SMILES               CACTVS 3.341                                                                                       NC(=N)c1ccc(OCCCOc2ccc(cc2)C(N)=N)cc1
+TNT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                       c1cc(ccc1C(=N)N)OCCCOc2ccc(cc2)C(=N)N
+TNT           SMILES "OpenEye OEToolkits" 1.5.0                                                                                       c1cc(ccc1C(=N)N)OCCCOc2ccc(cc2)C(=N)N
+TNT            InChI                InChI  1.03 InChI=1S/C17H20N4O2/c18-16(19)12-2-6-14(7-3-12)22-10-1-11-23-15-8-4-13(5-9-15)17(20)21/h2-9H,1,10-11H2,(H3,18,19)(H3,20,21)
+TNT         InChIKey                InChI  1.03                                                                                                 WTFXJFJYEJZMFO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TNT acedrg               243         "dictionary generator"                  
+TNT acedrg_database      11          "data source"                           
+TNT rdkit                2017.03.2   "Chemoinformatics tool"
+TNT refmac5              5.8.0238    "optimization tool"                     

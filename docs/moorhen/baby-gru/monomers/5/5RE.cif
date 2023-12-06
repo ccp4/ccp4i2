@@ -1,0 +1,379 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+5RE     5RE      (2~{S})-3-(4-fluorophenyl)-2-[2-(3-hydroxyphenyl)ethanoylamino]-~{N}-[(1~{S})-1-phenylethyl]propanamide     NON-POLYMER     56     31     .     
+#
+data_comp_5RE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+5RE     C14     C       CH1     0       582.926     -26.829     279.610     
+5RE     C10     C       C       0       582.064     -26.275     281.907     
+5RE     C01     C       CR16    0       580.655     -23.541     281.709     
+5RE     C02     C       CR6     0       579.796     -22.531     282.136     
+5RE     O03     O       OH1     0       578.640     -22.277     281.436     
+5RE     C05     C       CR16    0       580.115     -21.786     283.261     
+5RE     C06     C       CR16    0       581.287     -22.058     283.951     
+5RE     C07     C       CR16    0       582.140     -23.065     283.524     
+5RE     C08     C       CR6     0       581.836     -23.819     282.398     
+5RE     C09     C       CH2     0       582.757     -24.922     281.927     
+5RE     O11     O       O       0       581.476     -26.664     282.919     
+5RE     N12     N       NH1     0       582.109     -27.045     280.804     
+5RE     C15     C       CH2     0       583.116     -28.139     278.837     
+5RE     C16     C       CR6     0       583.781     -29.234     279.635     
+5RE     C17     C       CR16    0       583.069     -30.353     280.054     
+5RE     C18     C       CR16    0       583.676     -31.364     280.789     
+5RE     C19     C       CR6     0       585.002     -31.236     281.095     
+5RE     F20     F       F       0       585.604     -32.222     281.814     
+5RE     C21     C       CR16    0       585.749     -30.157     280.708     
+5RE     C22     C       CR16    0       585.126     -29.155     279.974     
+5RE     C23     C       C       0       582.325     -25.770     278.680     
+5RE     O24     O       O       0       581.111     -25.572     278.673     
+5RE     N25     N       NH1     0       583.201     -25.069     277.943     
+5RE     C27     C       CH1     0       582.873     -23.878     277.144     
+5RE     C28     C       CH3     0       582.045     -24.287     275.927     
+5RE     C29     C       CR6     0       582.266     -22.772     277.998     
+5RE     C30     C       CR16    0       580.945     -22.351     277.860     
+5RE     C31     C       CR16    0       580.434     -21.339     278.664     
+5RE     C32     C       CR16    0       581.232     -20.737     279.615     
+5RE     C33     C       CR16    0       582.539     -21.145     279.767     
+5RE     C34     C       CR16    0       583.052     -22.156     278.965     
+5RE     H141    H       H       0       583.818     -26.520     279.900     
+5RE     H011    H       H       0       580.436     -24.047     280.941     
+5RE     H04     H       H       0       578.062     -21.712     281.736     
+5RE     H051    H       H       0       579.539     -21.101     283.554     
+5RE     H061    H       H       0       581.504     -21.553     284.715     
+5RE     H071    H       H       0       582.934     -23.240     284.004     
+5RE     H092    H       H       0       583.085     -24.694     281.042     
+5RE     H091    H       H       0       583.527     -24.976     282.525     
+5RE     H13     H       H       0       581.582     -27.743     280.803     
+5RE     H151    H       H       0       583.658     -27.958     278.041     
+5RE     H152    H       H       0       582.239     -28.454     278.533     
+5RE     H171    H       H       0       582.155     -30.427     279.835     
+5RE     H181    H       H       0       583.188     -32.118     281.069     
+5RE     H211    H       H       0       586.660     -30.097     280.933     
+5RE     H221    H       H       0       585.627     -28.405     279.699     
+5RE     H26     H       H       0       584.034     -25.332     277.915     
+5RE     H271    H       H       0       583.732     -23.527     276.798     
+5RE     H281    H       H       0       581.211     -24.695     276.214     
+5RE     H282    H       H       0       582.548     -24.926     275.394     
+5RE     H283    H       H       0       581.850     -23.501     275.388     
+5RE     H301    H       H       0       580.385     -22.749     277.216     
+5RE     H311    H       H       0       579.538     -21.062     278.558     
+5RE     H321    H       H       0       580.883     -20.051     280.162     
+5RE     H331    H       H       0       583.087     -20.736     280.417     
+5RE     H341    H       H       0       583.950     -22.427     279.076     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+5RE         C27         C28      SINGLE       n     1.524  0.0100     1.524  0.0100
+5RE         C33         C34      DOUBLE       y     1.386  0.0100     1.386  0.0100
+5RE         C29         C34      SINGLE       y     1.386  0.0100     1.386  0.0100
+5RE         C27         C29      SINGLE       n     1.516  0.0100     1.516  0.0100
+5RE         N25         C27      SINGLE       n     1.467  0.0100     1.467  0.0100
+5RE         C32         C33      SINGLE       y     1.374  0.0127     1.374  0.0127
+5RE         C29         C30      DOUBLE       y     1.386  0.0100     1.386  0.0100
+5RE         C31         C32      DOUBLE       y     1.376  0.0124     1.376  0.0124
+5RE         C23         N25      SINGLE       n     1.337  0.0100     1.337  0.0100
+5RE         C30         C31      SINGLE       y     1.386  0.0100     1.386  0.0100
+5RE         C23         O24      DOUBLE       n     1.229  0.0102     1.229  0.0102
+5RE         C14         C23      SINGLE       n     1.527  0.0118     1.527  0.0118
+5RE         C14         C15      SINGLE       n     1.532  0.0110     1.532  0.0110
+5RE         C15         C16      SINGLE       n     1.508  0.0100     1.508  0.0100
+5RE         C16         C17      DOUBLE       y     1.385  0.0110     1.385  0.0110
+5RE         C17         C18      SINGLE       y     1.386  0.0100     1.386  0.0100
+5RE         C14         N12      SINGLE       n     1.456  0.0100     1.456  0.0100
+5RE         C16         C22      SINGLE       y     1.385  0.0110     1.385  0.0110
+5RE         C18         C19      DOUBLE       y     1.363  0.0118     1.363  0.0118
+5RE         C10         N12      SINGLE       n     1.334  0.0110     1.334  0.0110
+5RE         C10         C09      SINGLE       n     1.513  0.0100     1.513  0.0100
+5RE         C08         C09      SINGLE       n     1.510  0.0100     1.510  0.0100
+5RE         C21         C22      DOUBLE       y     1.386  0.0100     1.386  0.0100
+5RE         C10         O11      DOUBLE       n     1.232  0.0104     1.232  0.0104
+5RE         C19         C21      SINGLE       y     1.363  0.0118     1.363  0.0118
+5RE         C19         F20      SINGLE       n     1.361  0.0100     1.361  0.0100
+5RE         C01         C08      DOUBLE       y     1.391  0.0100     1.391  0.0100
+5RE         C01         C02      SINGLE       y     1.389  0.0102     1.389  0.0102
+5RE         C07         C08      SINGLE       y     1.385  0.0100     1.385  0.0100
+5RE         C02         O03      SINGLE       n     1.374  0.0155     1.374  0.0155
+5RE         C02         C05      DOUBLE       y     1.384  0.0104     1.384  0.0104
+5RE         C06         C07      DOUBLE       y     1.382  0.0119     1.382  0.0119
+5RE         C05         C06      SINGLE       y     1.382  0.0111     1.382  0.0111
+5RE         C14        H141      SINGLE       n     1.089  0.0100     0.988  0.0200
+5RE         C01        H011      SINGLE       n     1.082  0.0130     0.945  0.0164
+5RE         O03         H04      SINGLE       n     0.966  0.0059     0.861  0.0200
+5RE         C05        H051      SINGLE       n     1.082  0.0130     0.942  0.0163
+5RE         C06        H061      SINGLE       n     1.082  0.0130     0.941  0.0152
+5RE         C07        H071      SINGLE       n     1.082  0.0130     0.944  0.0174
+5RE         C09        H092      SINGLE       n     1.089  0.0100     0.977  0.0143
+5RE         C09        H091      SINGLE       n     1.089  0.0100     0.977  0.0143
+5RE         N12         H13      SINGLE       n     1.016  0.0100     0.873  0.0200
+5RE         C15        H151      SINGLE       n     1.089  0.0100     0.980  0.0164
+5RE         C15        H152      SINGLE       n     1.089  0.0100     0.980  0.0164
+5RE         C17        H171      SINGLE       n     1.082  0.0130     0.943  0.0173
+5RE         C18        H181      SINGLE       n     1.082  0.0130     0.940  0.0141
+5RE         C21        H211      SINGLE       n     1.082  0.0130     0.940  0.0141
+5RE         C22        H221      SINGLE       n     1.082  0.0130     0.943  0.0173
+5RE         N25         H26      SINGLE       n     1.016  0.0100     0.873  0.0200
+5RE         C27        H271      SINGLE       n     1.089  0.0100     0.990  0.0152
+5RE         C28        H281      SINGLE       n     1.089  0.0100     0.973  0.0168
+5RE         C28        H282      SINGLE       n     1.089  0.0100     0.973  0.0168
+5RE         C28        H283      SINGLE       n     1.089  0.0100     0.973  0.0168
+5RE         C30        H301      SINGLE       n     1.082  0.0130     0.944  0.0174
+5RE         C31        H311      SINGLE       n     1.082  0.0130     0.944  0.0175
+5RE         C32        H321      SINGLE       n     1.082  0.0130     0.944  0.0161
+5RE         C33        H331      SINGLE       n     1.082  0.0130     0.944  0.0175
+5RE         C34        H341      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+5RE         C23         C14         C15     110.507    1.62
+5RE         C23         C14         N12     110.600    2.58
+5RE         C23         C14        H141     108.179    1.50
+5RE         C15         C14         N12     111.012    1.50
+5RE         C15         C14        H141     108.341    1.50
+5RE         N12         C14        H141     108.047    1.50
+5RE         N12         C10         C09     116.182    1.50
+5RE         N12         C10         O11     122.582    1.50
+5RE         C09         C10         O11     121.236    1.50
+5RE         C08         C01         C02     120.912    1.50
+5RE         C08         C01        H011     119.365    1.50
+5RE         C02         C01        H011     119.723    1.50
+5RE         C01         C02         O03     120.041    3.00
+5RE         C01         C02         C05     119.919    1.50
+5RE         O03         C02         C05     120.041    3.00
+5RE         C02         O03         H04     120.000    3.00
+5RE         C02         C05         C06     119.574    1.50
+5RE         C02         C05        H051     120.116    1.50
+5RE         C06         C05        H051     120.310    1.50
+5RE         C07         C06         C05     120.474    1.50
+5RE         C07         C06        H061     119.907    1.50
+5RE         C05         C06        H061     119.629    1.50
+5RE         C08         C07         C06     120.544    1.50
+5RE         C08         C07        H071     119.630    1.50
+5RE         C06         C07        H071     119.825    1.50
+5RE         C09         C08         C01     120.617    1.50
+5RE         C09         C08         C07     120.814    1.50
+5RE         C01         C08         C07     118.568    1.50
+5RE         C10         C09         C08     112.734    2.05
+5RE         C10         C09        H092     108.905    1.50
+5RE         C10         C09        H091     108.905    1.50
+5RE         C08         C09        H092     109.288    1.50
+5RE         C08         C09        H091     109.288    1.50
+5RE        H092         C09        H091     108.049    1.50
+5RE         C14         N12         C10     122.158    1.76
+5RE         C14         N12         H13     118.794    1.50
+5RE         C10         N12         H13     119.048    1.94
+5RE         C14         C15         C16     113.550    1.83
+5RE         C14         C15        H151     108.810    1.50
+5RE         C14         C15        H152     108.810    1.50
+5RE         C16         C15        H151     108.862    1.50
+5RE         C16         C15        H152     108.862    1.50
+5RE        H151         C15        H152     107.782    1.50
+5RE         C15         C16         C17     121.048    1.50
+5RE         C15         C16         C22     121.048    1.50
+5RE         C17         C16         C22     117.904    1.50
+5RE         C16         C17         C18     121.324    1.50
+5RE         C16         C17        H171     119.298    1.50
+5RE         C18         C17        H171     119.377    1.50
+5RE         C17         C18         C19     118.232    1.50
+5RE         C17         C18        H181     120.956    1.50
+5RE         C19         C18        H181     120.816    1.50
+5RE         C18         C19         C21     122.975    1.50
+5RE         C18         C19         F20     118.513    1.50
+5RE         C21         C19         F20     118.513    1.50
+5RE         C22         C21         C19     118.232    1.50
+5RE         C22         C21        H211     120.956    1.50
+5RE         C19         C21        H211     120.816    1.50
+5RE         C16         C22         C21     121.324    1.50
+5RE         C16         C22        H221     119.298    1.50
+5RE         C21         C22        H221     119.377    1.50
+5RE         N25         C23         O24     123.048    1.50
+5RE         N25         C23         C14     116.335    1.50
+5RE         O24         C23         C14     120.616    1.50
+5RE         C27         N25         C23     122.258    1.64
+5RE         C27         N25         H26     118.722    3.00
+5RE         C23         N25         H26     119.020    1.50
+5RE         C28         C27         C29     112.423    1.50
+5RE         C28         C27         N25     109.101    1.50
+5RE         C28         C27        H271     108.141    1.50
+5RE         C29         C27         N25     111.602    1.50
+5RE         C29         C27        H271     107.970    1.50
+5RE         N25         C27        H271     107.887    1.50
+5RE         C27         C28        H281     109.526    1.50
+5RE         C27         C28        H282     109.526    1.50
+5RE         C27         C28        H283     109.526    1.50
+5RE        H281         C28        H282     109.407    1.50
+5RE        H281         C28        H283     109.407    1.50
+5RE        H282         C28        H283     109.407    1.50
+5RE         C34         C29         C27     120.770    1.50
+5RE         C34         C29         C30     118.460    1.50
+5RE         C27         C29         C30     120.770    1.50
+5RE         C29         C30         C31     120.588    1.50
+5RE         C29         C30        H301     119.682    1.50
+5RE         C31         C30        H301     119.730    1.50
+5RE         C32         C31         C30     120.216    1.50
+5RE         C32         C31        H311     119.938    1.50
+5RE         C30         C31        H311     119.847    1.50
+5RE         C33         C32         C31     119.933    1.50
+5RE         C33         C32        H321     120.033    1.50
+5RE         C31         C32        H321     120.033    1.50
+5RE         C34         C33         C32     120.216    1.50
+5RE         C34         C33        H331     119.847    1.50
+5RE         C32         C33        H331     119.938    1.50
+5RE         C33         C34         C29     120.588    1.50
+5RE         C33         C34        H341     119.730    1.50
+5RE         C29         C34        H341     119.682    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+5RE            sp2_sp3_25         C10         N12         C14         C23       0.000    10.0     6
+5RE            sp3_sp3_10         C23         C14         C15         C16     180.000    10.0     3
+5RE            sp2_sp3_13         N25         C23         C14         C15       0.000    10.0     6
+5RE            sp2_sp3_20         C17         C16         C15         C14     -90.000    10.0     6
+5RE              const_23         C15         C16         C17         C18     180.000    10.0     2
+5RE              const_67         C15         C16         C22         C21     180.000    10.0     2
+5RE              const_25         C16         C17         C18         C19       0.000    10.0     2
+5RE              const_30         C17         C18         C19         F20     180.000    10.0     2
+5RE              const_35         F20         C19         C21         C22     180.000    10.0     2
+5RE              const_37         C19         C21         C22         C16       0.000    10.0     2
+5RE             sp2_sp2_5         C09         C10         N12         C14     180.000     5.0     2
+5RE            sp2_sp3_32         N12         C10         C09         C08     120.000    10.0     6
+5RE             sp2_sp2_3         O24         C23         N25         C27       0.000     5.0     2
+5RE             sp2_sp3_7         C23         N25         C27         C28       0.000    10.0     6
+5RE             sp3_sp3_4         N25         C27         C28        H281      60.000    10.0     3
+5RE             sp2_sp3_1         C34         C29         C27         C28     150.000    10.0     6
+5RE              const_63         C27         C29         C30         C31     180.000    10.0     2
+5RE              const_43         C27         C29         C34         C33     180.000    10.0     2
+5RE              const_57         C29         C30         C31         C32       0.000    10.0     2
+5RE              const_53         C30         C31         C32         C33       0.000    10.0     2
+5RE              const_49         C31         C32         C33         C34       0.000    10.0     2
+5RE              const_45         C32         C33         C34         C29       0.000    10.0     2
+5RE              const_70         C08         C01         C02         O03     180.000    10.0     2
+5RE       const_sp2_sp2_2         C02         C01         C08         C09     180.000     5.0     2
+5RE             sp2_sp2_9         C01         C02         O03         H04     180.000     5.0     2
+5RE              const_19         O03         C02         C05         C06     180.000    10.0     2
+5RE              const_13         C02         C05         C06         C07       0.000    10.0     2
+5RE       const_sp2_sp2_9         C05         C06         C07         C08       0.000     5.0     2
+5RE       const_sp2_sp2_6         C06         C07         C08         C09     180.000     5.0     2
+5RE            sp2_sp3_38         C01         C08         C09         C10     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+5RE    chir_1    C14    N12    C23    C15    positive
+5RE    chir_2    C27    N25    C29    C28    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+5RE    plan-1         C15   0.020
+5RE    plan-1         C16   0.020
+5RE    plan-1         C17   0.020
+5RE    plan-1         C18   0.020
+5RE    plan-1         C19   0.020
+5RE    plan-1         C21   0.020
+5RE    plan-1         C22   0.020
+5RE    plan-1         F20   0.020
+5RE    plan-1        H171   0.020
+5RE    plan-1        H181   0.020
+5RE    plan-1        H211   0.020
+5RE    plan-1        H221   0.020
+5RE    plan-2         C27   0.020
+5RE    plan-2         C29   0.020
+5RE    plan-2         C30   0.020
+5RE    plan-2         C31   0.020
+5RE    plan-2         C32   0.020
+5RE    plan-2         C33   0.020
+5RE    plan-2         C34   0.020
+5RE    plan-2        H301   0.020
+5RE    plan-2        H311   0.020
+5RE    plan-2        H321   0.020
+5RE    plan-2        H331   0.020
+5RE    plan-2        H341   0.020
+5RE    plan-3         C01   0.020
+5RE    plan-3         C02   0.020
+5RE    plan-3         C05   0.020
+5RE    plan-3         C06   0.020
+5RE    plan-3         C07   0.020
+5RE    plan-3         C08   0.020
+5RE    plan-3         C09   0.020
+5RE    plan-3        H011   0.020
+5RE    plan-3        H051   0.020
+5RE    plan-3        H061   0.020
+5RE    plan-3        H071   0.020
+5RE    plan-3         O03   0.020
+5RE    plan-4         C09   0.020
+5RE    plan-4         C10   0.020
+5RE    plan-4         N12   0.020
+5RE    plan-4         O11   0.020
+5RE    plan-5         C10   0.020
+5RE    plan-5         C14   0.020
+5RE    plan-5         H13   0.020
+5RE    plan-5         N12   0.020
+5RE    plan-6         C14   0.020
+5RE    plan-6         C23   0.020
+5RE    plan-6         N25   0.020
+5RE    plan-6         O24   0.020
+5RE    plan-7         C23   0.020
+5RE    plan-7         C27   0.020
+5RE    plan-7         H26   0.020
+5RE    plan-7         N25   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+5RE            InChI                InChI  1.03 InChI=1S/C25H25FN2O3/c1-17(20-7-3-2-4-8-20)27-25(31)23(15-18-10-12-21(26)13-11-18)28-24(30)16-19-6-5-9-22(29)14-19/h2-14,17,23,29H,15-16H2,1H3,(H,27,31)(H,28,30)/t17-,23-/m0/s1
+5RE         InChIKey                InChI  1.03                                                                                                                                                      FYIWCUFRBHMEBW-SBUREZEXSA-N
+5RE SMILES_CANONICAL               CACTVS 3.385                                                                                                                      C[C@H](NC(=O)[C@H](Cc1ccc(F)cc1)NC(=O)Cc2cccc(O)c2)c3ccccc3
+5RE           SMILES               CACTVS 3.385                                                                                                                        C[CH](NC(=O)[CH](Cc1ccc(F)cc1)NC(=O)Cc2cccc(O)c2)c3ccccc3
+5RE SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                                                     C[C@@H](c1ccccc1)NC(=O)[C@H](Cc2ccc(cc2)F)NC(=O)Cc3cccc(c3)O
+5RE           SMILES "OpenEye OEToolkits" 2.0.4                                                                                                                              CC(c1ccccc1)NC(=O)C(Cc2ccc(cc2)F)NC(=O)Cc3cccc(c3)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+5RE acedrg               243         "dictionary generator"                  
+5RE acedrg_database      11          "data source"                           
+5RE rdkit                2017.03.2   "Chemoinformatics tool"
+5RE refmac5              5.8.0238    "optimization tool"                     

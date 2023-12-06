@@ -1,0 +1,261 @@
+# /home/mihaela/Downloads/acedrg243/NAA_unimodal.cif
+# modified by Privateer
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NAA      NAA 'N-ACETYL-D-ALLOSAMINE               ' pyranose           30  15 .
+
+data_comp_NAA
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NAA C1 C CH1 0 12.252 47.263 19.635
+NAA C2 C CH1 0 10.993 47.699 20.389
+NAA C3 C CH1 0 9.756 47.458 19.524
+NAA C4 C CH1 0 9.921 48.097 18.148
+NAA C5 C CH1 0 11.215 47.605 17.499
+NAA C6 C CH2 0 11.511 48.265 16.169
+NAA C7 C C 0 10.593 47.508 22.870
+NAA C8 C CH3 0 10.339 48.983 22.976
+NAA N2 N NH1 0 10.885 47.004 21.660
+NAA O1 O OH1 0 13.377 47.592 20.390
+NAA O3 O OH1 0 9.519 46.060 19.414
+NAA O4 O OH1 0 8.809 47.755 17.322
+NAA O5 O O2 0 12.332 47.895 18.365
+NAA O6 O OH1 0 11.667 49.678 16.300
+NAA O7 O O 0 10.537 46.786 23.862
+NAA H1 H H 0 12.226 46.287 19.510
+NAA H2 H H 0 11.065 48.670 20.534
+NAA H3 H H 0 8.981 47.881 19.977
+NAA H4 H H 0 9.959 49.082 18.247
+NAA H5 H H 0 11.155 46.628 17.367
+NAA H61 H H 0 10.781 48.078 15.543
+NAA H62 H H 0 12.334 47.884 15.797
+NAA H81 H H 0 9.627 49.236 22.366
+NAA H82 H H 0 11.147 49.470 22.749
+NAA H83 H H 0 10.076 49.202 23.885
+NAA HN2 H H 0 11.027 46.138 21.648
+NAA HO1 H H 0 14.062 47.257 20.025
+NAA HO3 H H 0 8.688 45.932 19.386
+NAA HO4 H H 0 8.771 46.921 17.211
+NAA HO6 H H 0 12.334 49.843 16.797
+
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NAA C1 C2 SINGLE n 1.530 0.0100 1.530 0.0100
+NAA C1 O1 SINGLE n 1.394 0.0100 1.394 0.0100
+NAA C1 O5 SINGLE n 1.419 0.0100 1.419 0.0100
+NAA C2 C3 SINGLE n 1.526 0.0102 1.526 0.0102
+NAA C2 N2 SINGLE n 1.448 0.0100 1.448 0.0100
+NAA C3 C4 SINGLE n 1.523 0.0100 1.523 0.0100
+NAA C3 O3 SINGLE n 1.421 0.0106 1.421 0.0106
+NAA C4 C5 SINGLE n 1.525 0.0100 1.525 0.0100
+NAA C4 O4 SINGLE n 1.425 0.0100 1.425 0.0100
+NAA C5 C6 SINGLE n 1.511 0.0142 1.511 0.0142
+NAA C5 O5 SINGLE n 1.441 0.0100 1.441 0.0100
+NAA C6 O6 SINGLE n 1.426 0.0200 1.426 0.0200
+NAA C7 C8 SINGLE n 1.498 0.0100 1.498 0.0100
+NAA C7 N2 SINGLE n 1.334 0.0119 1.334 0.0119
+NAA C7 O7 DOUBLE n 1.227 0.0100 1.227 0.0100
+NAA C1 H1 SINGLE n 1.089 0.0100 0.985 0.0100
+NAA C2 H2 SINGLE n 1.089 0.0100 0.987 0.0166
+NAA C3 H3 SINGLE n 1.089 0.0100 0.992 0.0104
+NAA C4 H4 SINGLE n 1.089 0.0100 0.991 0.0105
+NAA C5 H5 SINGLE n 1.089 0.0100 0.988 0.0182
+NAA C6 H61 SINGLE n 1.089 0.0100 0.980 0.0184
+NAA C6 H62 SINGLE n 1.089 0.0100 0.980 0.0184
+NAA C8 H81 SINGLE n 1.089 0.0100 0.971 0.0140
+NAA C8 H82 SINGLE n 1.089 0.0100 0.971 0.0140
+NAA C8 H83 SINGLE n 1.089 0.0100 0.971 0.0140
+NAA N2 HN2 SINGLE n 1.016 0.0100 0.876 0.0200
+NAA O1 HO1 SINGLE n 0.970 0.0120 0.846 0.0200
+NAA O3 HO3 SINGLE n 0.970 0.0120 0.841 0.0200
+NAA O4 HO4 SINGLE n 0.970 0.0120 0.841 0.0200
+NAA O6 HO6 SINGLE n 0.970 0.0120 0.848 0.0200
+
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NAA C2 C1 O1 109.247 2.43
+NAA C2 C1 O5 111.350 3.00
+NAA C2 C1 H1 108.848 1.50
+NAA O1 C1 O5 109.600 2.81
+NAA O1 C1 H1 108.913 1.50
+NAA O5 C1 H1 109.272 1.61
+NAA C1 C2 C3 110.235 1.50
+NAA C1 C2 N2 111.780 3.00
+NAA C1 C2 H2 107.511 1.55
+NAA C3 C2 N2 110.454 2.38
+NAA C3 C2 H2 107.579 2.24
+NAA N2 C2 H2 107.121 2.62
+NAA C2 C3 C4 110.882 1.54
+NAA C2 C3 O3 109.400 2.63
+NAA C2 C3 H3 108.177 2.01
+NAA C4 C3 O3 110.984 1.55
+NAA C4 C3 H3 108.714 1.50
+NAA O3 C3 H3 108.954 1.50
+NAA C3 C4 C5 109.454 1.50
+NAA C3 C4 O4 109.301 2.14
+NAA C3 C4 H4 109.514 1.50
+NAA C5 C4 O4 109.072 2.07
+NAA C5 C4 H4 109.223 1.50
+NAA O4 C4 H4 109.194 1.50
+NAA C4 C5 C6 112.996 1.59
+NAA C4 C5 O5 109.140 1.86
+NAA C4 C5 H5 108.960 1.50
+NAA C6 C5 O5 106.879 1.50
+NAA C6 C5 H5 109.269 1.50
+NAA O5 C5 H5 109.134 1.50
+NAA C5 C6 O6 111.299 2.09
+NAA C5 C6 H61 109.363 1.50
+NAA C5 C6 H62 109.363 1.50
+NAA O6 C6 H61 109.265 1.50
+NAA O6 C6 H62 109.265 1.50
+NAA H61 C6 H62 108.155 1.50
+NAA C8 C7 N2 115.988 1.50
+NAA C8 C7 O7 122.067 1.50
+NAA N2 C7 O7 121.945 1.50
+NAA C7 C8 H81 109.527 1.50
+NAA C7 C8 H82 109.527 1.50
+NAA C7 C8 H83 109.527 1.50
+NAA H81 C8 H82 109.365 1.50
+NAA H81 C8 H83 109.365 1.50
+NAA H82 C8 H83 109.365 1.50
+NAA C2 N2 C7 123.083 2.48
+NAA C2 N2 HN2 118.300 1.53
+NAA C7 N2 HN2 118.617 2.66
+NAA C1 O1 HO1 109.112 2.54
+NAA C3 O3 HO3 108.064 2.53
+NAA C4 O4 HO4 109.564 3.00
+NAA C1 O5 C5 113.152 1.70
+NAA C6 O6 HO6 109.472 2.41
+
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NAA tors_37 C2 C1 O1 HO1 172.261688 10.0 3
+NAA tors_36 O5 C1 O1 HO1 -65.873276 10.0 3
+NAA tors_35 H1 C1 O1 HO1 53.478630 10.0 3
+NAA tors_34 C7 N2 C2 C1 134.034073 10.0 6
+NAA tors_33 C7 N2 C2 C3 -103.366089 10.0 6
+NAA tors_32 C7 N2 C2 H2 15.583400 10.0 6
+NAA tors_31 HN2 N2 C2 C1 -46.011101 10.0 6
+NAA tors_30 HN2 N2 C2 C3 76.588737 10.0 6
+NAA tors_29 HN2 N2 C2 H2 -164.461777 10.0 6
+NAA tors_28 C2 C3 O3 HO3 145.458221 10.0 3
+NAA tors_27 C4 C3 O3 HO3 -91.716774 10.0 3
+NAA tors_26 H3 C3 O3 HO3 27.752625 10.0 3
+NAA tors_25 C3 C4 O4 HO4 -61.693218 10.0 3
+NAA tors_24 C5 C4 O4 HO4 59.047798 10.0 3
+NAA tors_23 H4 C4 O4 HO4 178.648727 10.0 3
+NAA tors_22 C4 C5 C6 O6 60.972218 10.0 3
+NAA tors_21 C4 C5 C6 H61 -60.172798 10.0 3
+NAA tors_20 C4 C5 C6 H62 -178.154205 10.0 3
+NAA tors_19 O5 C5 C6 O6 -59.884045 10.0 3
+NAA tors_18 O5 C5 C6 H61 178.970947 10.0 3
+NAA tors_17 O5 C5 C6 H62 60.989540 10.0 3
+NAA tors_16 H5 C5 C6 O6 -177.520996 10.0 3
+NAA tors_15 H5 C5 C6 H61 61.333977 10.0 3
+NAA tors_14 H5 C5 C6 H62 -56.647415 10.0 3
+NAA tors_13 C5 C6 O6 HO6 62.813622 10.0 3
+NAA tors_12 H61 C6 O6 HO6 -175.919891 10.0 3
+NAA tors_11 H62 C6 O6 HO6 -58.070911 10.0 3
+NAA tors_10 N2 C7 C8 H81 55.887840 10.0 6
+NAA tors_9 N2 C7 C8 H82 -64.263191 10.0 6
+NAA tors_8 N2 C7 C8 H83 175.787445 10.0 6
+NAA tors_7 O7 C7 C8 H81 -124.226822 10.0 6
+NAA tors_6 O7 C7 C8 H82 115.622139 10.0 6
+NAA tors_5 O7 C7 C8 H83 -4.327229 10.0 6
+NAA tors_4 C8 C7 N2 C2 -0.160116 5.0 2
+NAA tors_3 C8 C7 N2 HN2 179.884338 5.0 2
+NAA tors_2 O7 C7 N2 C2 179.954865 5.0 2
+NAA tors_1 O7 C7 N2 HN2 -0.000676 5.0 2
+NAA ring_1 C5 O5 C1 C2 -59.831078 3.0 1
+NAA ring_2 O5 C1 C2 C3 54.176678 3.0 1
+NAA ring_3 C1 C2 C3 C4 -52.394707 3.0 1
+NAA ring_4 C2 C3 C4 C5 54.115459 3.0 1
+NAA ring_5 C3 C4 C5 O5 -56.632648 3.0 1
+NAA ring_6 C4 C5 O5 C1 60.880413 3.0 1
+
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NAA chir_1 C1 O5 O1 C2 negative
+NAA chir_2 C2 N2 C1 C3 negative
+NAA chir_3 C3 O3 C4 C2 positive
+NAA chir_4 C4 O4 C5 C3 positive
+NAA chir_5 C5 O5 C4 C6 negative
+
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NAA plan-1 C7 0.020
+NAA plan-1 C8 0.020
+NAA plan-1 N2 0.020
+NAA plan-1 O7 0.020
+NAA plan-2 C2 0.020
+NAA plan-2 C7 0.020
+NAA plan-2 HN2 0.020
+NAA plan-2 N2 0.020
+
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NAA SMILES ACDLabs 10.04 O=C(NC1C(O)C(O)C(OC1O)CO)C
+NAA SMILES_CANONICAL CACTVS 3.341 CC(=O)N[C@H]1[C@H](O)O[C@H](CO)[C@@H](O)[C@H]1O
+NAA SMILES CACTVS 3.341 CC(=O)N[CH]1[CH](O)O[CH](CO)[CH](O)[CH]1O
+NAA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0 CC(=O)N[C@@H]1[C@@H]([C@@H]([C@H](O[C@H]1O)CO)O)O
+NAA SMILES "OpenEye OEToolkits" 1.5.0 CC(=O)NC1C(C(C(OC1O)CO)O)O
+NAA InChI InChI 1.03 InChI=1S/C8H15NO6/c1-3(11)9-5-7(13)6(12)4(2-10)15-8(5)14/h4-8,10,12-14H,2H2,1H3,(H,9,11)/t4-,5-,6-,7+,8-/m1/s1
+NAA InChIKey InChI 1.03 OVRNDRQMDRJTHS-UIAUGNHASA-N
+
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NAA acedrg 243 "dictionary generator"
+NAA acedrg_database 11 "data source"
+NAA rdkit 2017.03.2 "Chemoinformatics tool"
+NAA refmac5 5.8.0238 "optimization tool"

@@ -1,0 +1,223 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DZ2     DZ2      2,5-dichloro-N-(3,5-dibromo-4-hydroxyphenyl)benzamide     NON-POLYMER     27     20     .     
+#
+data_comp_DZ2
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DZ2     CAJ     C       CR16    0       1.297       -0.333      -4.038      
+DZ2     CAQ     C       CR6     0       1.135       -0.145      -2.675      
+DZ2     BRAE    BR      BR      0       2.566       -0.561      -1.518      
+DZ2     CAP     C       CR6     0       -0.061      0.345       -2.128      
+DZ2     OAB     O       OH1     0       -0.211      0.528       -0.773      
+DZ2     CAR     C       CR6     0       -1.098      0.640       -3.028      
+DZ2     BRAF    BR      BR      0       -2.731      1.303       -2.355      
+DZ2     CAK     C       CR16    0       -0.957      0.462       -4.394      
+DZ2     CAS     C       CR6     0       0.246       -0.032      -4.907      
+DZ2     NAL     N       NH1     0       0.445       -0.233      -6.293      
+DZ2     CAM     C       C       0       -0.441      -0.742      -7.187      
+DZ2     OAA     O       O       0       -1.402      -1.434      -6.867      
+DZ2     CAT     C       CR6     0       -0.172      -0.426      -8.632      
+DZ2     CAI     C       CR16    0       -0.233      -1.461      -9.578      
+DZ2     CAN     C       CR6     0       0.005       -1.203      -10.908     
+DZ2     CLAC    CL      CL      0       -0.073      -2.505      -12.063     
+DZ2     CAG     C       CR16    0       0.306       0.074       -11.345     
+DZ2     CAH     C       CR16    0       0.368       1.106       -10.429     
+DZ2     CAO     C       CR6     0       0.127       0.856       -9.086      
+DZ2     CLAD    CL      CL      0       0.222       2.197       -7.985      
+DZ2     HAJ     H       H       0       2.112       -0.664      -4.381      
+DZ2     HOAB    H       H       0       -0.735      0.013       -0.325      
+DZ2     HAK     H       H       0       -1.671      0.667       -4.978      
+DZ2     HNAL    H       H       0       1.239       -0.016      -6.595      
+DZ2     HAI     H       H       0       -0.437      -2.336      -9.298      
+DZ2     HAG     H       H       0       0.467       0.239       -12.258     
+DZ2     HAH     H       H       0       0.571       1.979       -10.715     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DZ2         CAJ         CAQ      DOUBLE       y     1.379  0.0130     1.379  0.0130
+DZ2         CAJ         CAS      SINGLE       y     1.393  0.0104     1.393  0.0104
+DZ2         CAQ        BRAE      SINGLE       n     1.886  0.0100     1.886  0.0100
+DZ2         CAQ         CAP      SINGLE       y     1.396  0.0134     1.396  0.0134
+DZ2         CAP         OAB      SINGLE       n     1.374  0.0155     1.374  0.0155
+DZ2         CAP         CAR      DOUBLE       y     1.396  0.0134     1.396  0.0134
+DZ2         CAR        BRAF      SINGLE       n     1.886  0.0100     1.886  0.0100
+DZ2         CAR         CAK      SINGLE       y     1.379  0.0130     1.379  0.0130
+DZ2         CAK         CAS      DOUBLE       y     1.393  0.0104     1.393  0.0104
+DZ2         CAS         NAL      SINGLE       n     1.411  0.0105     1.411  0.0105
+DZ2         NAL         CAM      SINGLE       n     1.351  0.0126     1.351  0.0126
+DZ2         CAM         OAA      DOUBLE       n     1.226  0.0100     1.226  0.0100
+DZ2         CAM         CAT      SINGLE       n     1.501  0.0100     1.501  0.0100
+DZ2         CAT         CAI      DOUBLE       y     1.399  0.0100     1.399  0.0100
+DZ2         CAT         CAO      SINGLE       y     1.387  0.0100     1.387  0.0100
+DZ2         CAI         CAN      SINGLE       y     1.373  0.0100     1.373  0.0100
+DZ2         CAN        CLAC      SINGLE       n     1.742  0.0100     1.742  0.0100
+DZ2         CAN         CAG      DOUBLE       y     1.380  0.0100     1.380  0.0100
+DZ2         CAG         CAH      SINGLE       y     1.377  0.0100     1.377  0.0100
+DZ2         CAH         CAO      DOUBLE       y     1.383  0.0100     1.383  0.0100
+DZ2         CAO        CLAD      SINGLE       n     1.737  0.0100     1.737  0.0100
+DZ2         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.944  0.0100
+DZ2         OAB        HOAB      SINGLE       n     0.966  0.0059     0.861  0.0200
+DZ2         CAK         HAK      SINGLE       n     1.082  0.0130     0.944  0.0100
+DZ2         NAL        HNAL      SINGLE       n     1.016  0.0100     0.876  0.0200
+DZ2         CAI         HAI      SINGLE       n     1.082  0.0130     0.941  0.0132
+DZ2         CAG         HAG      SINGLE       n     1.082  0.0130     0.942  0.0162
+DZ2         CAH         HAH      SINGLE       n     1.082  0.0130     0.941  0.0134
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DZ2         CAQ         CAJ         CAS     119.632    1.50
+DZ2         CAQ         CAJ         HAJ     120.422    1.50
+DZ2         CAS         CAJ         HAJ     119.946    1.50
+DZ2         CAJ         CAQ        BRAE     119.246    1.50
+DZ2         CAJ         CAQ         CAP     121.846    1.50
+DZ2        BRAE         CAQ         CAP     118.908    1.50
+DZ2         CAQ         CAP         OAB     121.734    3.00
+DZ2         CAQ         CAP         CAR     116.532    1.50
+DZ2         OAB         CAP         CAR     121.734    3.00
+DZ2         CAP         OAB        HOAB     120.000    3.00
+DZ2         CAP         CAR        BRAF     118.908    1.50
+DZ2         CAP         CAR         CAK     121.846    1.50
+DZ2        BRAF         CAR         CAK     119.246    1.50
+DZ2         CAR         CAK         CAS     119.632    1.50
+DZ2         CAR         CAK         HAK     120.422    1.50
+DZ2         CAS         CAK         HAK     119.946    1.50
+DZ2         CAJ         CAS         CAK     120.511    2.01
+DZ2         CAJ         CAS         NAL     119.744    3.00
+DZ2         CAK         CAS         NAL     119.744    3.00
+DZ2         CAS         NAL         CAM     126.750    1.50
+DZ2         CAS         NAL        HNAL     116.164    1.66
+DZ2         CAM         NAL        HNAL     117.086    2.38
+DZ2         NAL         CAM         OAA     123.471    1.50
+DZ2         NAL         CAM         CAT     115.294    1.50
+DZ2         OAA         CAM         CAT     121.235    1.50
+DZ2         CAM         CAT         CAI     119.868    2.89
+DZ2         CAM         CAT         CAO     122.054    1.50
+DZ2         CAI         CAT         CAO     118.078    1.50
+DZ2         CAT         CAI         CAN     120.438    1.50
+DZ2         CAT         CAI         HAI     119.646    1.50
+DZ2         CAN         CAI         HAI     119.917    1.50
+DZ2         CAI         CAN        CLAC     119.436    1.50
+DZ2         CAI         CAN         CAG     121.315    1.50
+DZ2        CLAC         CAN         CAG     119.249    1.50
+DZ2         CAN         CAG         CAH     119.211    1.50
+DZ2         CAN         CAG         HAG     120.448    1.50
+DZ2         CAH         CAG         HAG     120.341    1.50
+DZ2         CAG         CAH         CAO     119.642    1.50
+DZ2         CAG         CAH         HAH     120.229    1.50
+DZ2         CAO         CAH         HAH     120.129    1.50
+DZ2         CAT         CAO         CAH     121.317    1.50
+DZ2         CAT         CAO        CLAD     120.708    1.50
+DZ2         CAH         CAO        CLAD     117.976    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DZ2              const_22         CAS         CAJ         CAQ        BRAE     180.000    10.0     2
+DZ2              const_42         CAQ         CAJ         CAS         NAL     180.000    10.0     2
+DZ2            sp2_sp2_11         NAL         CAM         CAT         CAI     180.000     5.0     2
+DZ2       const_sp2_sp2_2         CAN         CAI         CAT         CAM     180.000     5.0     2
+DZ2              const_48        CLAD         CAO         CAT         CAM       0.000    10.0     2
+DZ2       const_sp2_sp2_6         CAT         CAI         CAN        CLAC     180.000     5.0     2
+DZ2              const_10         CAH         CAG         CAN        CLAC     180.000    10.0     2
+DZ2              const_13         CAN         CAG         CAH         CAO       0.000    10.0     2
+DZ2              const_18         CAG         CAH         CAO        CLAD     180.000    10.0     2
+DZ2              const_28         OAB         CAP         CAQ        BRAE       0.000    10.0     2
+DZ2             sp2_sp2_1         CAQ         CAP         OAB        HOAB     180.000     5.0     2
+DZ2              const_32         OAB         CAP         CAR        BRAF       0.000    10.0     2
+DZ2              const_34         CAS         CAK         CAR        BRAF     180.000    10.0     2
+DZ2              const_38         CAR         CAK         CAS         NAL     180.000    10.0     2
+DZ2             sp2_sp2_3         CAJ         CAS         NAL         CAM     180.000     5.0     2
+DZ2             sp2_sp2_9         OAA         CAM         NAL         CAS       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DZ2    plan-1        BRAE   0.020
+DZ2    plan-1        BRAF   0.020
+DZ2    plan-1         CAJ   0.020
+DZ2    plan-1         CAK   0.020
+DZ2    plan-1         CAP   0.020
+DZ2    plan-1         CAQ   0.020
+DZ2    plan-1         CAR   0.020
+DZ2    plan-1         CAS   0.020
+DZ2    plan-1         HAJ   0.020
+DZ2    plan-1         HAK   0.020
+DZ2    plan-1         NAL   0.020
+DZ2    plan-1         OAB   0.020
+DZ2    plan-2         CAG   0.020
+DZ2    plan-2         CAH   0.020
+DZ2    plan-2         CAI   0.020
+DZ2    plan-2         CAM   0.020
+DZ2    plan-2         CAN   0.020
+DZ2    plan-2         CAO   0.020
+DZ2    plan-2         CAT   0.020
+DZ2    plan-2        CLAC   0.020
+DZ2    plan-2        CLAD   0.020
+DZ2    plan-2         HAG   0.020
+DZ2    plan-2         HAH   0.020
+DZ2    plan-2         HAI   0.020
+DZ2    plan-3         CAM   0.020
+DZ2    plan-3         CAS   0.020
+DZ2    plan-3        HNAL   0.020
+DZ2    plan-3         NAL   0.020
+DZ2    plan-4         CAM   0.020
+DZ2    plan-4         CAT   0.020
+DZ2    plan-4         NAL   0.020
+DZ2    plan-4         OAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DZ2           SMILES              ACDLabs 10.04                                                              Brc1cc(cc(Br)c1O)NC(=O)c2cc(Cl)ccc2Cl
+DZ2 SMILES_CANONICAL               CACTVS 3.341                                                              Oc1c(Br)cc(NC(=O)c2cc(Cl)ccc2Cl)cc1Br
+DZ2           SMILES               CACTVS 3.341                                                              Oc1c(Br)cc(NC(=O)c2cc(Cl)ccc2Cl)cc1Br
+DZ2 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                          c1cc(c(cc1Cl)C(=O)Nc2cc(c(c(c2)Br)O)Br)Cl
+DZ2           SMILES "OpenEye OEToolkits" 1.5.0                                                          c1cc(c(cc1Cl)C(=O)Nc2cc(c(c(c2)Br)O)Br)Cl
+DZ2            InChI                InChI  1.03 InChI=1S/C13H7Br2Cl2NO2/c14-9-4-7(5-10(15)12(9)19)18-13(20)8-3-6(16)1-2-11(8)17/h1-5,19H,(H,18,20)
+DZ2         InChIKey                InChI  1.03                                                                        IFLWCZRMFPKYBN-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DZ2 acedrg               243         "dictionary generator"                  
+DZ2 acedrg_database      11          "data source"                           
+DZ2 rdkit                2017.03.2   "Chemoinformatics tool"
+DZ2 refmac5              5.8.0238    "optimization tool"                     

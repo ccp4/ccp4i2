@@ -1,0 +1,161 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MPH     MPH      "(1-AMINO-3-METHYLSULFANYL-PROPYL)-PHOSPHONIC ACID"     NON-POLYMER     20     10     .     
+#
+data_comp_MPH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MPH     N       N       NT2     0       20.198      -15.009     9.407       
+MPH     CA      C       CH1     0       20.801      -13.827     8.765       
+MPH     CB      C       CH2     0       22.204      -14.145     8.238       
+MPH     CG      C       CH2     0       23.247      -14.336     9.327       
+MPH     SD      S       S2      0       24.939      -14.413     8.686       
+MPH     CE      C       CH3     0       25.844      -14.773     10.190      
+MPH     O1      O       O       0       18.357      -13.095     7.984       
+MPH     O2      O       OP      -1      19.819      -14.165     6.307       
+MPH     O3      O       OP      -1      20.274      -11.853     7.045       
+MPH     P       P       P       0       19.739      -13.190     7.432       
+MPH     H       H       H       0       20.239      -15.723     8.853       
+MPH     HN2     H       H       0       20.652      -15.222     10.160      
+MPH     HA      H       H       0       20.886      -13.126     9.453       
+MPH     HB1     H       H       0       22.489      -13.413     7.652       
+MPH     HB2     H       H       0       22.158      -14.960     7.696       
+MPH     HG1     H       H       0       23.054      -15.166     9.812       
+MPH     HG2     H       H       0       23.183      -13.593     9.964       
+MPH     HE1     H       H       0       26.779      -14.893     9.982       
+MPH     HE2     H       H       0       25.497      -15.581     10.588      
+MPH     HE3     H       H       0       25.744      -14.040     10.809      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MPH           N          CA      SINGLE       n     1.473  0.0130     1.473  0.0130
+MPH          CA          CB      SINGLE       n     1.532  0.0129     1.532  0.0129
+MPH          CA           P      SINGLE       n     1.820  0.0200     1.820  0.0200
+MPH          CB          CG      SINGLE       n     1.519  0.0200     1.519  0.0200
+MPH          CG          SD      SINGLE       n     1.811  0.0200     1.811  0.0200
+MPH          SD          CE      SINGLE       n     1.792  0.0100     1.792  0.0100
+MPH          O1           P      DOUBLE       n     1.492  0.0200     1.492  0.0200
+MPH          O2           P      SINGLE       n     1.492  0.0200     1.492  0.0200
+MPH          O3           P      SINGLE       n     1.492  0.0200     1.492  0.0200
+MPH           N           H      SINGLE       n     1.036  0.0160     0.905  0.0200
+MPH           N         HN2      SINGLE       n     1.036  0.0160     0.905  0.0200
+MPH          CA          HA      SINGLE       n     1.089  0.0100     0.986  0.0200
+MPH          CB         HB1      SINGLE       n     1.089  0.0100     0.980  0.0160
+MPH          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0160
+MPH          CG         HG1      SINGLE       n     1.089  0.0100     0.981  0.0122
+MPH          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0122
+MPH          CE         HE1      SINGLE       n     1.089  0.0100     0.965  0.0170
+MPH          CE         HE2      SINGLE       n     1.089  0.0100     0.965  0.0170
+MPH          CE         HE3      SINGLE       n     1.089  0.0100     0.965  0.0170
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MPH          CA           N           H     109.715    3.00
+MPH          CA           N         HN2     109.715    3.00
+MPH           H           N         HN2     107.163    3.00
+MPH           N          CA          CB     110.463    2.65
+MPH           N          CA           P     112.238    3.00
+MPH           N          CA          HA     107.944    1.55
+MPH          CB          CA           P     111.410    2.87
+MPH          CB          CA          HA     108.236    1.50
+MPH           P          CA          HA     108.528    1.50
+MPH          CA          CB          CG     113.897    1.50
+MPH          CA          CB         HB1     108.507    1.50
+MPH          CA          CB         HB2     108.507    1.50
+MPH          CG          CB         HB1     108.867    1.50
+MPH          CG          CB         HB2     108.867    1.50
+MPH         HB1          CB         HB2     107.715    1.50
+MPH          CB          CG          SD     113.263    2.33
+MPH          CB          CG         HG1     109.079    1.50
+MPH          CB          CG         HG2     109.079    1.50
+MPH          SD          CG         HG1     108.861    1.50
+MPH          SD          CG         HG2     108.861    1.50
+MPH         HG1          CG         HG2     107.939    1.50
+MPH          CG          SD          CE     100.595    1.50
+MPH          SD          CE         HE1     109.425    1.50
+MPH          SD          CE         HE2     109.425    1.50
+MPH          SD          CE         HE3     109.425    1.50
+MPH         HE1          CE         HE2     109.509    1.50
+MPH         HE1          CE         HE3     109.509    1.50
+MPH         HE2          CE         HE3     109.509    1.50
+MPH          CA           P          O1     110.326    3.00
+MPH          CA           P          O2     110.326    3.00
+MPH          CA           P          O3     110.326    3.00
+MPH          O1           P          O2     112.502    1.50
+MPH          O1           P          O3     112.502    1.50
+MPH          O2           P          O3     112.502    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MPH             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+MPH             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+MPH            sp3_sp3_18           N          CA           P          O1      60.000    10.0     3
+MPH            sp3_sp3_25          CA          CB          CG          SD     180.000    10.0     3
+MPH            sp3_sp3_34          CB          CG          SD          CE     180.000    10.0     3
+MPH            sp3_sp3_37         HE1          CE          SD          CG     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MPH    chir_1    CA    P    N    CB    negative
+MPH    chir_2    P    O2    O3    O1    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MPH           SMILES              ACDLabs 10.04                                                              O=P(O)(O)C(N)CCSC
+MPH SMILES_CANONICAL               CACTVS 3.341                                                        CSCC[C@H](N)[P](O)(O)=O
+MPH           SMILES               CACTVS 3.341                                                         CSCC[CH](N)[P](O)(O)=O
+MPH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                          CSCC[C@H](N)P(=O)(O)O
+MPH           SMILES "OpenEye OEToolkits" 1.5.0                                                              CSCCC(N)P(=O)(O)O
+MPH            InChI                InChI  1.03 InChI=1S/C4H12NO3PS/c1-10-3-2-4(5)9(6,7)8/h4H,2-3,5H2,1H3,(H2,6,7,8)/t4-/m1/s1
+MPH         InChIKey                InChI  1.03                                                    XKCSXHUCPYVQIW-SCSAIBSYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MPH acedrg               243         "dictionary generator"                  
+MPH acedrg_database      11          "data source"                           
+MPH rdkit                2017.03.2   "Chemoinformatics tool"
+MPH refmac5              5.8.0238    "optimization tool"                     

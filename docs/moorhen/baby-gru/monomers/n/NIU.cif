@@ -1,0 +1,305 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NIU     NIU      6,7,8,9-TETRAHYDRO-4-HYDROXY-3-(1-PHENYLPROPYL)CYCLOHEPTA[B]PYRAN-2-ONE     NON-POLYMER     44     22     .     
+#
+data_comp_NIU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NIU     CA      C       CR6     0       -0.441      18.188      20.477      
+NIU     CA2     C       CR6     0       -1.708      17.684      20.816      
+NIU     OA2     O       O       0       -2.135      16.582      20.573      
+NIU     OA3     O       O2      0       -2.625      18.478      21.502      
+NIU     CA4     C       CR6     0       -2.326      19.757      21.870      
+NIU     CA5     C       CR6     0       -1.067      20.306      21.563      
+NIU     CA6     C       CR6     0       -0.141      19.509      20.867      
+NIU     OA6     O       OH1     0       1.093       20.041      20.560      
+NIU     CB1     C       CR6     0       -0.013      16.473      18.619      
+NIU     CB2     C       CR16    0       -0.752      17.094      17.610      
+NIU     CB3     C       CR16    0       -1.331      16.359      16.583      
+NIU     CB4     C       CR16    0       -1.180      14.989      16.541      
+NIU     CB5     C       CR16    0       -0.453      14.352      17.522      
+NIU     CB6     C       CR16    0       0.127       15.082      18.552      
+NIU     CG1     C       CH1     0       0.601       17.346      19.724      
+NIU     CG2     C       CH2     0       1.570       16.627      20.683      
+NIU     CG3     C       CH3     0       0.892       15.783      21.756      
+NIU     CD1     C       CH2     0       -3.438      20.446      22.595      
+NIU     CD2     C       CH2     0       -3.828      21.844      22.133      
+NIU     CD3     C       CH2     0       -3.045      22.449      20.967      
+NIU     CD4     C       CH2     0       -1.583      22.792      21.248      
+NIU     CD5     C       CH2     0       -0.768      21.731      21.982      
+NIU     HO6     H       H       0       1.152       20.705      20.015      
+NIU     HB2     H       H       0       -0.864      18.031      17.627      
+NIU     HB3     H       H       0       -1.829      16.800      15.913      
+NIU     HB4     H       H       0       -1.573      14.490      15.842      
+NIU     HB5     H       H       0       -0.348      13.414      17.495      
+NIU     HB6     H       H       0       0.619       14.625      19.209      
+NIU     HG1     H       H       0       1.164       17.993      19.235      
+NIU     HG21    H       H       0       2.125       17.309      21.131      
+NIU     HG22    H       H       0       2.179       16.054      20.160      
+NIU     HG31    H       H       0       1.506       15.093      22.061      
+NIU     HG32    H       H       0       0.094       15.367      21.390      
+NIU     HG33    H       H       0       0.645       16.351      22.506      
+NIU     HD11    H       H       0       -3.187      20.503      23.553      
+NIU     HD12    H       H       0       -4.246      19.873      22.540      
+NIU     HD21    H       H       0       -3.746      22.449      22.900      
+NIU     HD22    H       H       0       -4.775      21.825      21.883      
+NIU     HD31    H       H       0       -3.501      23.273      20.694      
+NIU     HD32    H       H       0       -3.084      21.833      20.204      
+NIU     HD41    H       H       0       -1.558      23.617      21.776      
+NIU     HD42    H       H       0       -1.143      22.981      20.393      
+NIU     HD51    H       H       0       0.183       21.921      21.842      
+NIU     HD52    H       H       0       -0.945      21.818      22.943      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NIU          CA         CA2      SINGLE       y     1.389  0.0131     1.389  0.0131
+NIU          CA         CA6      DOUBLE       y     1.399  0.0100     1.399  0.0100
+NIU          CA         CG1      SINGLE       n     1.526  0.0100     1.526  0.0100
+NIU         CA2         OA2      DOUBLE       n     1.206  0.0100     1.206  0.0100
+NIU         CA2         OA3      SINGLE       y     1.388  0.0177     1.388  0.0177
+NIU         OA3         CA4      SINGLE       y     1.363  0.0100     1.363  0.0100
+NIU         CA4         CA5      DOUBLE       y     1.404  0.0200     1.404  0.0200
+NIU         CA4         CD1      SINGLE       n     1.493  0.0100     1.493  0.0100
+NIU         CA5         CA6      SINGLE       y     1.398  0.0100     1.398  0.0100
+NIU         CA5         CD5      SINGLE       n     1.512  0.0100     1.512  0.0100
+NIU         CA6         OA6      SINGLE       n     1.374  0.0155     1.374  0.0155
+NIU         CB1         CB2      DOUBLE       y     1.391  0.0100     1.391  0.0100
+NIU         CB1         CB6      SINGLE       y     1.391  0.0100     1.391  0.0100
+NIU         CB1         CG1      SINGLE       n     1.526  0.0100     1.526  0.0100
+NIU         CB2         CB3      SINGLE       y     1.386  0.0100     1.386  0.0100
+NIU         CB3         CB4      DOUBLE       y     1.376  0.0124     1.376  0.0124
+NIU         CB4         CB5      SINGLE       y     1.374  0.0127     1.374  0.0127
+NIU         CB5         CB6      DOUBLE       y     1.386  0.0100     1.386  0.0100
+NIU         CG1         CG2      SINGLE       n     1.535  0.0100     1.535  0.0100
+NIU         CG2         CG3      SINGLE       n     1.522  0.0100     1.522  0.0100
+NIU         CD1         CD2      SINGLE       n     1.517  0.0109     1.517  0.0109
+NIU         CD2         CD3      SINGLE       n     1.522  0.0142     1.522  0.0142
+NIU         CD3         CD4      SINGLE       n     1.522  0.0142     1.522  0.0142
+NIU         CD4         CD5      SINGLE       n     1.519  0.0200     1.519  0.0200
+NIU         OA6         HO6      SINGLE       n     0.966  0.0059     0.861  0.0200
+NIU         CB2         HB2      SINGLE       n     1.082  0.0130     0.944  0.0174
+NIU         CB3         HB3      SINGLE       n     1.082  0.0130     0.944  0.0175
+NIU         CB4         HB4      SINGLE       n     1.082  0.0130     0.944  0.0161
+NIU         CB5         HB5      SINGLE       n     1.082  0.0130     0.944  0.0175
+NIU         CB6         HB6      SINGLE       n     1.082  0.0130     0.944  0.0174
+NIU         CG1         HG1      SINGLE       n     1.089  0.0100     0.990  0.0187
+NIU         CG2        HG21      SINGLE       n     1.089  0.0100     0.986  0.0100
+NIU         CG2        HG22      SINGLE       n     1.089  0.0100     0.986  0.0100
+NIU         CG3        HG31      SINGLE       n     1.089  0.0100     0.973  0.0157
+NIU         CG3        HG32      SINGLE       n     1.089  0.0100     0.973  0.0157
+NIU         CG3        HG33      SINGLE       n     1.089  0.0100     0.973  0.0157
+NIU         CD1        HD11      SINGLE       n     1.089  0.0100     0.992  0.0100
+NIU         CD1        HD12      SINGLE       n     1.089  0.0100     0.992  0.0100
+NIU         CD2        HD21      SINGLE       n     1.089  0.0100     0.980  0.0160
+NIU         CD2        HD22      SINGLE       n     1.089  0.0100     0.980  0.0160
+NIU         CD3        HD31      SINGLE       n     1.089  0.0100     0.981  0.0163
+NIU         CD3        HD32      SINGLE       n     1.089  0.0100     0.981  0.0163
+NIU         CD4        HD41      SINGLE       n     1.089  0.0100     0.980  0.0160
+NIU         CD4        HD42      SINGLE       n     1.089  0.0100     0.980  0.0160
+NIU         CD5        HD51      SINGLE       n     1.089  0.0100     0.981  0.0150
+NIU         CD5        HD52      SINGLE       n     1.089  0.0100     0.981  0.0150
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NIU         CA2          CA         CA6     117.996    1.50
+NIU         CA2          CA         CG1     121.178    1.56
+NIU         CA6          CA         CG1     120.826    1.50
+NIU          CA         CA2         OA2     125.204    2.39
+NIU          CA         CA2         OA3     120.812    3.00
+NIU         OA2         CA2         OA3     113.983    1.50
+NIU         CA2         OA3         CA4     121.529    1.50
+NIU         OA3         CA4         CA5     120.498    1.50
+NIU         OA3         CA4         CD1     113.163    1.50
+NIU         CA5         CA4         CD1     126.339    1.62
+NIU         CA4         CA5         CA6     118.052    1.50
+NIU         CA4         CA5         CD5     121.628    2.39
+NIU         CA6         CA5         CD5     120.321    1.68
+NIU          CA         CA6         CA5     121.113    1.50
+NIU          CA         CA6         OA6     119.443    3.00
+NIU         CA5         CA6         OA6     119.443    3.00
+NIU         CA6         OA6         HO6     120.000    3.00
+NIU         CB2         CB1         CB6     118.258    1.50
+NIU         CB2         CB1         CG1     120.871    1.77
+NIU         CB6         CB1         CG1     120.871    1.77
+NIU         CB1         CB2         CB3     120.763    1.50
+NIU         CB1         CB2         HB2     119.589    1.50
+NIU         CB3         CB2         HB2     119.648    1.50
+NIU         CB2         CB3         CB4     120.166    1.50
+NIU         CB2         CB3         HB3     119.872    1.50
+NIU         CB4         CB3         HB3     119.962    1.50
+NIU         CB3         CB4         CB5     119.884    1.50
+NIU         CB3         CB4         HB4     120.058    1.50
+NIU         CB5         CB4         HB4     120.058    1.50
+NIU         CB4         CB5         CB6     120.166    1.50
+NIU         CB4         CB5         HB5     119.962    1.50
+NIU         CB6         CB5         HB5     119.872    1.50
+NIU         CB1         CB6         CB5     120.763    1.50
+NIU         CB1         CB6         HB6     119.589    1.50
+NIU         CB5         CB6         HB6     119.648    1.50
+NIU          CA         CG1         CB1     111.144    1.76
+NIU          CA         CG1         CG2     112.726    1.52
+NIU          CA         CG1         HG1     106.727    1.50
+NIU         CB1         CG1         CG2     112.726    1.52
+NIU         CB1         CG1         HG1     106.754    1.50
+NIU         CG2         CG1         HG1     106.781    1.50
+NIU         CG1         CG2         CG3     113.040    1.50
+NIU         CG1         CG2        HG21     108.976    1.50
+NIU         CG1         CG2        HG22     108.976    1.50
+NIU         CG3         CG2        HG21     108.964    1.50
+NIU         CG3         CG2        HG22     108.964    1.50
+NIU        HG21         CG2        HG22     107.766    1.50
+NIU         CG2         CG3        HG31     109.448    1.50
+NIU         CG2         CG3        HG32     109.448    1.50
+NIU         CG2         CG3        HG33     109.448    1.50
+NIU        HG31         CG3        HG32     109.380    1.50
+NIU        HG31         CG3        HG33     109.380    1.50
+NIU        HG32         CG3        HG33     109.380    1.50
+NIU         CA4         CD1         CD2     113.824    2.48
+NIU         CA4         CD1        HD11     108.742    1.50
+NIU         CA4         CD1        HD12     108.742    1.50
+NIU         CD2         CD1        HD11     108.612    1.50
+NIU         CD2         CD1        HD12     108.612    1.50
+NIU        HD11         CD1        HD12     107.735    1.50
+NIU         CD1         CD2         CD3     113.764    1.91
+NIU         CD1         CD2        HD21     108.750    1.50
+NIU         CD1         CD2        HD22     108.750    1.50
+NIU         CD3         CD2        HD21     108.775    1.50
+NIU         CD3         CD2        HD22     108.775    1.50
+NIU        HD21         CD2        HD22     107.749    1.50
+NIU         CD2         CD3         CD4     115.305    1.50
+NIU         CD2         CD3        HD31     108.625    1.50
+NIU         CD2         CD3        HD32     108.625    1.50
+NIU         CD4         CD3        HD31     108.625    1.50
+NIU         CD4         CD3        HD32     108.625    1.50
+NIU        HD31         CD3        HD32     107.646    1.50
+NIU         CD3         CD4         CD5     113.851    2.19
+NIU         CD3         CD4        HD41     108.775    1.50
+NIU         CD3         CD4        HD42     108.775    1.50
+NIU         CD5         CD4        HD41     108.763    1.50
+NIU         CD5         CD4        HD42     108.763    1.50
+NIU        HD41         CD4        HD42     107.749    1.50
+NIU         CA5         CD5         CD4     114.108    2.12
+NIU         CA5         CD5        HD51     108.906    1.50
+NIU         CA5         CD5        HD52     108.906    1.50
+NIU         CD4         CD5        HD51     108.665    1.50
+NIU         CD4         CD5        HD52     108.665    1.50
+NIU        HD51         CD5        HD52     107.745    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NIU       const_sp2_sp2_4         CG1          CA         CA2         OA2       0.000     5.0     2
+NIU             sp2_sp3_2         CA2          CA         CG1         CG2     -90.000    10.0     6
+NIU              const_40         CG1          CA         CA6         OA6       0.000    10.0     2
+NIU              const_25         CB2         CB3         CB4         CB5       0.000    10.0     2
+NIU              const_29         CB3         CB4         CB5         CB6       0.000    10.0     2
+NIU              const_33         CB4         CB5         CB6         CB1       0.000    10.0     2
+NIU             sp3_sp3_1          CA         CG1         CG2         CG3     180.000    10.0     3
+NIU            sp3_sp3_10         CG1         CG2         CG3        HG31     180.000    10.0     3
+NIU            sp3_sp3_19         CA4         CD1         CD2         CD3     180.000    10.0     3
+NIU            sp3_sp3_28         CD1         CD2         CD3         CD4     180.000    10.0     3
+NIU            sp3_sp3_37         CD2         CD3         CD4         CD5     180.000    10.0     3
+NIU       const_sp2_sp2_6         OA2         CA2         OA3         CA4     180.000     5.0     2
+NIU            sp3_sp3_46         CD3         CD4         CD5         CA5     180.000    10.0     3
+NIU       const_sp2_sp2_8         CD1         CA4         OA3         CA2     180.000     5.0     2
+NIU             sp2_sp3_8         OA3         CA4         CD1         CD2     -90.000    10.0     6
+NIU              const_12         CD1         CA4         CA5         CD5       0.000    10.0     2
+NIU            sp2_sp3_14         CA4         CA5         CD5         CD4     -90.000    10.0     6
+NIU              const_16         CD5         CA5         CA6         OA6       0.000    10.0     2
+NIU             sp2_sp2_1          CA         CA6         OA6         HO6     180.000     5.0     2
+NIU              const_43         CG1         CB1         CB6         CB5     180.000    10.0     2
+NIU            sp2_sp3_20         CB2         CB1         CG1         CG2     -90.000    10.0     6
+NIU              const_19         CG1         CB1         CB2         CB3     180.000    10.0     2
+NIU              const_21         CB1         CB2         CB3         CB4       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NIU    chir_1    CG1    CA    CB1    CG2    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NIU    plan-1          CA   0.020
+NIU    plan-1         CA2   0.020
+NIU    plan-1         CA4   0.020
+NIU    plan-1         CA5   0.020
+NIU    plan-1         CA6   0.020
+NIU    plan-1         CD1   0.020
+NIU    plan-1         CD5   0.020
+NIU    plan-1         CG1   0.020
+NIU    plan-1         OA2   0.020
+NIU    plan-1         OA3   0.020
+NIU    plan-1         OA6   0.020
+NIU    plan-2         CB1   0.020
+NIU    plan-2         CB2   0.020
+NIU    plan-2         CB3   0.020
+NIU    plan-2         CB4   0.020
+NIU    plan-2         CB5   0.020
+NIU    plan-2         CB6   0.020
+NIU    plan-2         CG1   0.020
+NIU    plan-2         HB2   0.020
+NIU    plan-2         HB3   0.020
+NIU    plan-2         HB4   0.020
+NIU    plan-2         HB5   0.020
+NIU    plan-2         HB6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NIU           SMILES              ACDLabs 10.04                                                                                                  O=C1OC3=C(C(O)=C1C(c2ccccc2)CC)CCCCC3
+NIU SMILES_CANONICAL               CACTVS 3.341                                                                                             CC[C@@H](c1ccccc1)C2=C(O)C3=C(CCCCC3)OC2=O
+NIU           SMILES               CACTVS 3.341                                                                                               CC[CH](c1ccccc1)C2=C(O)C3=C(CCCCC3)OC2=O
+NIU SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                             CC[C@@H](c1ccccc1)C2=C(C3=C(CCCCC3)OC2=O)O
+NIU           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                  CCC(c1ccccc1)C2=C(C3=C(CCCCC3)OC2=O)O
+NIU            InChI                InChI  1.03 InChI=1S/C19H22O3/c1-2-14(13-9-5-3-6-10-13)17-18(20)15-11-7-4-8-12-16(15)22-19(17)21/h3,5-6,9-10,14,20H,2,4,7-8,11-12H2,1H3/t14-/m0/s1
+NIU         InChIKey                InChI  1.03                                                                                                            YKJXQZGJGDTEOC-AWEZNQCLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NIU acedrg               243         "dictionary generator"                  
+NIU acedrg_database      11          "data source"                           
+NIU rdkit                2017.03.2   "Chemoinformatics tool"
+NIU refmac5              5.8.0238    "optimization tool"                     

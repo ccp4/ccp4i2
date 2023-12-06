@@ -1,0 +1,378 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+9HZ     9HZ      "methyl (2~{R})-2-[(4~{S})-6-(4-chlorophenyl)-8-methoxy-1-methyl-4~{H}-[1,2,4]triazolo[4,3-a][1,4]benzodiazepin-4-yl]pent-4-enoate"     NON-POLYMER     55     32     .     
+#
+data_comp_9HZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+9HZ     CBE     C       CH3     0       -31.229     -29.409     10.211      
+9HZ     OBC     O       O2      0       -30.466     -29.257     8.987       
+9HZ     CAZ     C       C       0       -31.127     -28.877     7.890       
+9HZ     OBD     O       O       0       -32.323     -28.947     7.756       
+9HZ     CAY     C       CH1     0       -30.215     -28.351     6.798       
+9HZ     CBA     C       CH2     0       -29.568     -29.522     6.041       
+9HZ     CBB     C       C1      0       -28.568     -30.318     6.821       
+9HZ     CBF     C       C2      0       -27.278     -30.294     6.698       
+9HZ     CAJ     C       CH1     0       -29.198     -27.313     7.327       
+9HZ     NAI     N       N       0       -29.845     -26.374     8.261       
+9HZ     CAK     C       CR5     0       -28.533     -26.526     6.241       
+9HZ     NAU     N       NRD5    0       -28.821     -26.512     4.961       
+9HZ     NAV     N       NRD5    0       -27.965     -25.598     4.339       
+9HZ     CAW     C       CR5     0       -27.200     -25.069     5.257       
+9HZ     CAX     C       CH3     0       -26.151     -24.043     5.025       
+9HZ     NAL     N       NR5     0       -27.527     -25.617     6.483       
+9HZ     CAM     C       CR6     0       -26.959     -25.347     7.768       
+9HZ     CAO     C       CR16    0       -25.574     -25.250     7.904       
+9HZ     CAP     C       CR16    0       -25.004     -25.013     9.146       
+9HZ     CAQ     C       CR6     0       -25.802     -24.896     10.282      
+9HZ     OAS     O       O2      0       -25.344     -24.674     11.561      
+9HZ     CAT     C       CH3     0       -23.996     -24.257     11.777      
+9HZ     CAR     C       CR16    0       -27.183     -25.022     10.170      
+9HZ     CAN     C       CR6     0       -27.789     -25.252     8.922       
+9HZ     CAH     C       C       0       -29.271     -25.389     8.860       
+9HZ     CAE     C       CR6     0       -30.141     -24.389     9.546       
+9HZ     CAD     C       CR16    0       -31.277     -24.799     10.250      
+9HZ     CAC     C       CR16    0       -32.091     -23.878     10.892      
+9HZ     CAB     C       CR6     0       -31.767     -22.539     10.836      
+9HZ     CLA     CL      CL      0       -32.785     -21.380     11.642      
+9HZ     CAG     C       CR16    0       -30.651     -22.100     10.152      
+9HZ     CAF     C       CR16    0       -29.841     -23.025     9.509       
+9HZ     HBF     H       H       0       -31.844     -30.155     10.117      
+9HZ     HBE     H       H       0       -31.730     -28.596     10.387      
+9HZ     HBG     H       H       0       -30.623     -29.581     10.949      
+9HZ     HA0     H       H       0       -30.813     -27.871     6.156       
+9HZ     HBB     H       H       0       -29.129     -29.176     5.239       
+9HZ     HBA     H       H       0       -30.278     -30.127     5.744       
+9HZ     HBC     H       H       0       -28.921     -30.901     7.476       
+9HZ     HBH     H       H       0       -26.738     -30.844     7.251       
+9HZ     H2      H       H       0       -26.872     -29.727     6.055       
+9HZ     HAJ     H       H       0       -28.494     -27.798     7.821       
+9HZ     HAZ     H       H       0       -26.147     -23.408     5.759       
+9HZ     HAX     H       H       0       -26.337     -23.572     4.196       
+9HZ     HAY     H       H       0       -25.284     -24.473     4.961       
+9HZ     HAO     H       H       0       -25.022     -25.323     7.150       
+9HZ     HAP     H       H       0       -24.069     -24.932     9.214       
+9HZ     HAT     H       H       0       -23.810     -23.468     11.242      
+9HZ     HAU     H       H       0       -23.392     -24.973     11.522      
+9HZ     HAV     H       H       0       -23.871     -24.048     12.717      
+9HZ     HAR     H       H       0       -27.722     -24.946     10.944      
+9HZ     HAD     H       H       0       -31.498     -25.713     10.289      
+9HZ     HAC     H       H       0       -32.852     -24.162     11.361      
+9HZ     HAG     H       H       0       -30.444     -21.186     10.122      
+9HZ     HAF     H       H       0       -29.081     -22.725     9.043       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+9HZ         NAU         NAV      SINGLE       y     1.399  0.0100     1.399  0.0100
+9HZ         NAV         CAW      DOUBLE       y     1.306  0.0141     1.306  0.0141
+9HZ         CAK         NAU      DOUBLE       y     1.311  0.0100     1.311  0.0100
+9HZ         CAW         CAX      SINGLE       n     1.484  0.0100     1.484  0.0100
+9HZ         CAW         NAL      SINGLE       y     1.377  0.0100     1.377  0.0100
+9HZ         CBA         CBB      SINGLE       n     1.492  0.0199     1.492  0.0199
+9HZ         CAY         CBA      SINGLE       n     1.531  0.0110     1.531  0.0110
+9HZ         CAK         NAL      SINGLE       y     1.378  0.0100     1.378  0.0100
+9HZ         CAJ         CAK      SINGLE       n     1.495  0.0100     1.495  0.0100
+9HZ         CBB         CBF      DOUBLE       n     1.296  0.0200     1.296  0.0200
+9HZ         NAL         CAM      SINGLE       n     1.424  0.0100     1.424  0.0100
+9HZ         CAY         CAJ      SINGLE       n     1.538  0.0100     1.538  0.0100
+9HZ         CAZ         CAY      SINGLE       n     1.512  0.0100     1.512  0.0100
+9HZ         CAJ         NAI      SINGLE       n     1.468  0.0115     1.468  0.0115
+9HZ         CAM         CAO      DOUBLE       y     1.389  0.0100     1.389  0.0100
+9HZ         CAM         CAN      SINGLE       y     1.403  0.0154     1.403  0.0154
+9HZ         CAO         CAP      SINGLE       y     1.383  0.0100     1.383  0.0100
+9HZ         CAZ         OBD      DOUBLE       n     1.203  0.0150     1.203  0.0150
+9HZ         OBC         CAZ      SINGLE       n     1.328  0.0136     1.328  0.0136
+9HZ         NAI         CAH      DOUBLE       n     1.281  0.0100     1.281  0.0100
+9HZ         CAN         CAH      SINGLE       n     1.483  0.0100     1.483  0.0100
+9HZ         CAH         CAE      SINGLE       n     1.488  0.0100     1.488  0.0100
+9HZ         CAR         CAN      DOUBLE       y     1.402  0.0100     1.402  0.0100
+9HZ         CAP         CAQ      DOUBLE       y     1.386  0.0109     1.386  0.0109
+9HZ         CBE         OBC      SINGLE       n     1.447  0.0130     1.447  0.0130
+9HZ         CAE         CAF      SINGLE       y     1.392  0.0100     1.392  0.0100
+9HZ         CAE         CAD      DOUBLE       y     1.392  0.0100     1.392  0.0100
+9HZ         CAG         CAF      DOUBLE       y     1.384  0.0100     1.384  0.0100
+9HZ         CAD         CAC      SINGLE       y     1.384  0.0100     1.384  0.0100
+9HZ         CAQ         CAR      SINGLE       y     1.388  0.0110     1.388  0.0110
+9HZ         CAB         CAG      SINGLE       y     1.376  0.0100     1.376  0.0100
+9HZ         CAQ         OAS      SINGLE       n     1.372  0.0100     1.372  0.0100
+9HZ         CAC         CAB      DOUBLE       y     1.376  0.0100     1.376  0.0100
+9HZ         CAB         CLA      SINGLE       n     1.741  0.0100     1.741  0.0100
+9HZ         OAS         CAT      SINGLE       n     1.424  0.0117     1.424  0.0117
+9HZ         CBE         HBF      SINGLE       n     1.089  0.0100     0.970  0.0175
+9HZ         CBE         HBE      SINGLE       n     1.089  0.0100     0.970  0.0175
+9HZ         CBE         HBG      SINGLE       n     1.089  0.0100     0.970  0.0175
+9HZ         CAY         HA0      SINGLE       n     1.089  0.0100     1.000  0.0200
+9HZ         CBA         HBB      SINGLE       n     1.089  0.0100     0.979  0.0159
+9HZ         CBA         HBA      SINGLE       n     1.089  0.0100     0.979  0.0159
+9HZ         CBB         HBC      SINGLE       n     1.082  0.0130     0.945  0.0200
+9HZ         CBF         HBH      SINGLE       n     1.082  0.0130     0.949  0.0200
+9HZ         CBF          H2      SINGLE       n     1.082  0.0130     0.949  0.0200
+9HZ         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.988  0.0170
+9HZ         CAX         HAZ      SINGLE       n     1.089  0.0100     0.971  0.0200
+9HZ         CAX         HAX      SINGLE       n     1.089  0.0100     0.971  0.0200
+9HZ         CAX         HAY      SINGLE       n     1.089  0.0100     0.971  0.0200
+9HZ         CAO         HAO      SINGLE       n     1.082  0.0130     0.940  0.0155
+9HZ         CAP         HAP      SINGLE       n     1.082  0.0130     0.942  0.0151
+9HZ         CAT         HAT      SINGLE       n     1.089  0.0100     0.971  0.0157
+9HZ         CAT         HAU      SINGLE       n     1.089  0.0100     0.971  0.0157
+9HZ         CAT         HAV      SINGLE       n     1.089  0.0100     0.971  0.0157
+9HZ         CAR         HAR      SINGLE       n     1.082  0.0130     0.946  0.0132
+9HZ         CAD         HAD      SINGLE       n     1.082  0.0130     0.941  0.0168
+9HZ         CAC         HAC      SINGLE       n     1.082  0.0130     0.938  0.0140
+9HZ         CAG         HAG      SINGLE       n     1.082  0.0130     0.938  0.0140
+9HZ         CAF         HAF      SINGLE       n     1.082  0.0130     0.941  0.0168
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+9HZ         OBC         CBE         HBF     109.367    1.50
+9HZ         OBC         CBE         HBE     109.367    1.50
+9HZ         OBC         CBE         HBG     109.367    1.50
+9HZ         HBF         CBE         HBE     109.532    1.53
+9HZ         HBF         CBE         HBG     109.532    1.53
+9HZ         HBE         CBE         HBG     109.532    1.53
+9HZ         CAZ         OBC         CBE     116.104    1.50
+9HZ         CAY         CAZ         OBD     123.900    2.15
+9HZ         CAY         CAZ         OBC     111.929    1.81
+9HZ         OBD         CAZ         OBC     124.171    1.50
+9HZ         CBA         CAY         CAJ     111.094    2.85
+9HZ         CBA         CAY         CAZ     110.756    1.56
+9HZ         CBA         CAY         HA0     108.361    1.50
+9HZ         CAJ         CAY         CAZ     109.670    2.15
+9HZ         CAJ         CAY         HA0     107.601    1.50
+9HZ         CAZ         CAY         HA0     107.456    2.04
+9HZ         CBB         CBA         CAY     114.092    1.68
+9HZ         CBB         CBA         HBB     108.937    1.50
+9HZ         CBB         CBA         HBA     108.937    1.50
+9HZ         CAY         CBA         HBB     108.942    1.50
+9HZ         CAY         CBA         HBA     108.942    1.50
+9HZ         HBB         CBA         HBA     107.820    1.50
+9HZ         CBA         CBB         CBF     127.156    2.36
+9HZ         CBA         CBB         HBC     116.177    1.95
+9HZ         CBF         CBB         HBC     116.667    2.13
+9HZ         CBB         CBF         HBH     120.077    2.71
+9HZ         CBB         CBF          H2     120.077    2.71
+9HZ         HBH         CBF          H2     119.846    2.15
+9HZ         CAK         CAJ         CAY     110.747    2.16
+9HZ         CAK         CAJ         NAI     111.244    1.50
+9HZ         CAK         CAJ         HAJ     108.146    1.50
+9HZ         CAY         CAJ         NAI     109.508    2.50
+9HZ         CAY         CAJ         HAJ     108.474    1.50
+9HZ         NAI         CAJ         HAJ     108.741    1.50
+9HZ         CAJ         NAI         CAH     119.132    2.76
+9HZ         NAU         CAK         NAL     109.238    1.50
+9HZ         NAU         CAK         CAJ     125.142    3.00
+9HZ         NAL         CAK         CAJ     125.620    1.69
+9HZ         NAV         NAU         CAK     107.297    1.50
+9HZ         NAU         NAV         CAW     107.297    1.50
+9HZ         NAV         CAW         CAX     126.856    1.50
+9HZ         NAV         CAW         NAL     109.238    1.50
+9HZ         CAX         CAW         NAL     123.906    1.50
+9HZ         CAW         CAX         HAZ     109.478    1.50
+9HZ         CAW         CAX         HAX     109.478    1.50
+9HZ         CAW         CAX         HAY     109.478    1.50
+9HZ         HAZ         CAX         HAX     109.308    2.38
+9HZ         HAZ         CAX         HAY     109.308    2.38
+9HZ         HAX         CAX         HAY     109.308    2.38
+9HZ         CAW         NAL         CAK     106.930    1.50
+9HZ         CAW         NAL         CAM     126.535    1.50
+9HZ         CAK         NAL         CAM     126.535    1.50
+9HZ         NAL         CAM         CAO     119.177    1.50
+9HZ         NAL         CAM         CAN     120.476    1.50
+9HZ         CAO         CAM         CAN     120.347    1.50
+9HZ         CAM         CAO         CAP     119.731    1.50
+9HZ         CAM         CAO         HAO     120.090    1.50
+9HZ         CAP         CAO         HAO     120.180    1.50
+9HZ         CAO         CAP         CAQ     120.215    1.50
+9HZ         CAO         CAP         HAP     119.866    1.50
+9HZ         CAQ         CAP         HAP     119.919    1.50
+9HZ         CAP         CAQ         CAR     120.288    1.50
+9HZ         CAP         CAQ         OAS     119.795    3.00
+9HZ         CAR         CAQ         OAS     119.917    3.00
+9HZ         CAQ         OAS         CAT     117.529    1.50
+9HZ         OAS         CAT         HAT     109.428    1.50
+9HZ         OAS         CAT         HAU     109.428    1.50
+9HZ         OAS         CAT         HAV     109.428    1.50
+9HZ         HAT         CAT         HAU     109.509    1.50
+9HZ         HAT         CAT         HAV     109.509    1.50
+9HZ         HAU         CAT         HAV     109.509    1.50
+9HZ         CAN         CAR         CAQ     120.345    1.50
+9HZ         CAN         CAR         HAR     119.700    1.50
+9HZ         CAQ         CAR         HAR     119.955    1.50
+9HZ         CAM         CAN         CAH     121.578    2.06
+9HZ         CAM         CAN         CAR     119.073    1.50
+9HZ         CAH         CAN         CAR     119.349    1.50
+9HZ         NAI         CAH         CAN     120.626    3.00
+9HZ         NAI         CAH         CAE     120.626    3.00
+9HZ         CAN         CAH         CAE     118.748    2.15
+9HZ         CAH         CAE         CAF     120.561    1.50
+9HZ         CAH         CAE         CAD     120.561    1.50
+9HZ         CAF         CAE         CAD     118.878    1.50
+9HZ         CAE         CAD         CAC     120.786    1.50
+9HZ         CAE         CAD         HAD     119.770    1.50
+9HZ         CAC         CAD         HAD     119.450    1.50
+9HZ         CAD         CAC         CAB     119.110    1.50
+9HZ         CAD         CAC         HAC     120.471    1.50
+9HZ         CAB         CAC         HAC     120.415    1.50
+9HZ         CAG         CAB         CAC     121.327    1.50
+9HZ         CAG         CAB         CLA     119.337    1.50
+9HZ         CAC         CAB         CLA     119.337    1.50
+9HZ         CAF         CAG         CAB     119.110    1.50
+9HZ         CAF         CAG         HAG     120.471    1.50
+9HZ         CAB         CAG         HAG     120.415    1.50
+9HZ         CAE         CAF         CAG     120.786    1.50
+9HZ         CAE         CAF         HAF     119.770    1.50
+9HZ         CAG         CAF         HAF     119.450    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+9HZ            sp3_sp3_20         HBF         CBE         OBC         CAZ     -60.000    10.0     3
+9HZ              const_22         CAJ         CAK         NAU         NAV     180.000    10.0     2
+9HZ              const_52         CAJ         CAK         NAL         CAW     180.000    10.0     2
+9HZ              const_23         CAK         NAU         NAV         CAW       0.000    10.0     2
+9HZ              const_25         CAX         CAW         NAV         NAU     180.000    10.0     2
+9HZ             sp2_sp3_1         NAV         CAW         CAX         HAZ     150.000    10.0     6
+9HZ              const_28         CAX         CAW         NAL         CAK     180.000    10.0     2
+9HZ             sp2_sp2_5         CAO         CAM         NAL         CAW     180.000     5.0     2
+9HZ              const_32         NAL         CAM         CAO         CAP     180.000    10.0     2
+9HZ              const_57         NAL         CAM         CAN         CAH       0.000    10.0     2
+9HZ              const_34         CAM         CAO         CAP         CAQ       0.000    10.0     2
+9HZ              const_39         CAO         CAP         CAQ         OAS     180.000    10.0     2
+9HZ            sp2_sp2_21         CAP         CAQ         OAS         CAT     180.000     5.0     2
+9HZ              const_44         OAS         CAQ         CAR         CAN     180.000    10.0     2
+9HZ             sp2_sp2_9         CAY         CAZ         OBC         CBE     180.000     5.0     2
+9HZ            sp3_sp3_24         HAT         CAT         OAS         CAQ     -60.000    10.0     3
+9HZ              const_48         CAH         CAN         CAR         CAQ     180.000    10.0     2
+9HZ            sp2_sp2_15         NAI         CAH         CAN         CAM       0.000     5.0     2
+9HZ            sp2_sp2_18         CAF         CAE         CAH         NAI       0.000     5.0     2
+9HZ              const_59         CAC         CAD         CAE         CAH     180.000    10.0     2
+9HZ       const_sp2_sp2_3         CAH         CAE         CAF         CAG     180.000     5.0     2
+9HZ              const_17         CAB         CAC         CAD         CAE       0.000    10.0     2
+9HZ              const_15         CLA         CAB         CAC         CAD     180.000    10.0     2
+9HZ              const_11         CLA         CAB         CAG         CAF     180.000    10.0     2
+9HZ            sp2_sp3_19         OBD         CAZ         CAY         CBA       0.000    10.0     6
+9HZ       const_sp2_sp2_5         CAE         CAF         CAG         CAB       0.000     5.0     2
+9HZ             sp3_sp3_1         CAJ         CAY         CBA         CBB     180.000    10.0     3
+9HZ            sp3_sp3_13         NAI         CAJ         CAY         CBA      60.000    10.0     3
+9HZ             sp2_sp3_8         CBF         CBB         CBA         CAY     120.000    10.0     6
+9HZ             sp2_sp2_1         CBA         CBB         CBF         HBH     180.000     5.0     2
+9HZ            sp2_sp3_13         NAU         CAK         CAJ         CAY     150.000    10.0     6
+9HZ            sp2_sp3_26         CAH         NAI         CAJ         CAY     120.000    10.0     6
+9HZ            sp2_sp2_11         CAN         CAH         NAI         CAJ     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+9HZ    chir_1    CAY    CAZ    CAJ    CBA    negative
+9HZ    chir_2    CAJ    NAI    CAK    CAY    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+9HZ    plan-1         CAJ   0.020
+9HZ    plan-1         CAK   0.020
+9HZ    plan-1         CAM   0.020
+9HZ    plan-1         CAW   0.020
+9HZ    plan-1         CAX   0.020
+9HZ    plan-1         NAL   0.020
+9HZ    plan-1         NAU   0.020
+9HZ    plan-1         NAV   0.020
+9HZ    plan-2         CAH   0.020
+9HZ    plan-2         CAM   0.020
+9HZ    plan-2         CAN   0.020
+9HZ    plan-2         CAO   0.020
+9HZ    plan-2         CAP   0.020
+9HZ    plan-2         CAQ   0.020
+9HZ    plan-2         CAR   0.020
+9HZ    plan-2         HAO   0.020
+9HZ    plan-2         HAP   0.020
+9HZ    plan-2         HAR   0.020
+9HZ    plan-2         NAL   0.020
+9HZ    plan-2         OAS   0.020
+9HZ    plan-3         CAB   0.020
+9HZ    plan-3         CAC   0.020
+9HZ    plan-3         CAD   0.020
+9HZ    plan-3         CAE   0.020
+9HZ    plan-3         CAF   0.020
+9HZ    plan-3         CAG   0.020
+9HZ    plan-3         CAH   0.020
+9HZ    plan-3         CLA   0.020
+9HZ    plan-3         HAC   0.020
+9HZ    plan-3         HAD   0.020
+9HZ    plan-3         HAF   0.020
+9HZ    plan-3         HAG   0.020
+9HZ    plan-4         CAY   0.020
+9HZ    plan-4         CAZ   0.020
+9HZ    plan-4         OBC   0.020
+9HZ    plan-4         OBD   0.020
+9HZ    plan-5         CBA   0.020
+9HZ    plan-5         CBB   0.020
+9HZ    plan-5         CBF   0.020
+9HZ    plan-5         HBC   0.020
+9HZ    plan-6         CBB   0.020
+9HZ    plan-6         CBF   0.020
+9HZ    plan-6          H2   0.020
+9HZ    plan-6         HBH   0.020
+9HZ    plan-7         CAE   0.020
+9HZ    plan-7         CAH   0.020
+9HZ    plan-7         CAN   0.020
+9HZ    plan-7         NAI   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+9HZ            InChI                InChI  1.03 InChI=1S/C24H23ClN4O3/c1-5-6-18(24(30)32-4)22-23-28-27-14(2)29(23)20-12-11-17(31-3)13-19(20)21(26-22)15-7-9-16(25)10-8-15/h5,7-13,18,22H,1,6H2,2-4H3/t18-,22+/m1/s1
+9HZ         InChIKey                InChI  1.03                                                                                                                                         LNODZYMQLCXVKL-GCJKJVERSA-N
+9HZ SMILES_CANONICAL               CACTVS 3.385                                                                                                   COC(=O)[C@H](CC=C)[C@@H]1N=C(c2ccc(Cl)cc2)c3cc(OC)ccc3n4c(C)nnc14
+9HZ           SMILES               CACTVS 3.385                                                                                                      COC(=O)[CH](CC=C)[CH]1N=C(c2ccc(Cl)cc2)c3cc(OC)ccc3n4c(C)nnc14
+9HZ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                    Cc1nnc2n1-c3ccc(cc3C(=N[C@H]2[C@@H](CC=C)C(=O)OC)c4ccc(cc4)Cl)OC
+9HZ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                             Cc1nnc2n1-c3ccc(cc3C(=NC2C(CC=C)C(=O)OC)c4ccc(cc4)Cl)OC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+9HZ acedrg               243         "dictionary generator"                  
+9HZ acedrg_database      11          "data source"                           
+9HZ rdkit                2017.03.2   "Chemoinformatics tool"
+9HZ refmac5              5.8.0238    "optimization tool"                     

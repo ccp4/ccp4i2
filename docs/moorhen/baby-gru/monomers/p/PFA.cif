@@ -1,0 +1,330 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PFA     PFA      "[4-(4-HYDROXY-3-ISOPROPYL-PHENOXY)-3,5-DIMETHYL-PHENYL]-6-AZAURACIL"     NON-POLYMER     48     27     .     
+#
+data_comp_PFA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PFA     O9      O       O       0       8.142       -18.371     -23.764     
+PFA     C14     C       CR6     0       7.394       -17.416     -23.896     
+PFA     N6      N       NR6     0       7.510       -16.299     -23.102     
+PFA     C10     C       CR6     0       6.675       -15.205     -23.227     
+PFA     O8      O       O       0       6.844       -14.232     -22.472     
+PFA     N5      N       NR6     0       6.379       -17.388     -24.847     
+PFA     N3      N       NRD6    0       5.542       -16.286     -24.973     
+PFA     C17     C       CR16    0       5.688       -15.253     -24.198     
+PFA     C4      C       CR6     0       6.092       -18.458     -25.775     
+PFA     C5      C       CR16    0       4.810       -18.985     -25.841     
+PFA     C6      C       CR6     0       4.510       -20.007     -26.729     
+PFA     C7      C       CH3     0       3.112       -20.562     -26.780     
+PFA     C3      C       CR16    0       7.091       -18.942     -26.606     
+PFA     C2      C       CR6     0       6.827       -19.968     -27.504     
+PFA     C19     C       CH3     0       7.917       -20.494     -28.398     
+PFA     C1      C       CR6     0       5.532       -20.484     -27.550     
+PFA     O20     O       O2      0       5.256       -21.509     -28.457     
+PFA     C21     C       CR6     0       4.628       -21.316     -29.689     
+PFA     C31     C       CR16    0       4.351       -20.072     -30.229     
+PFA     C22     C       CR16    0       4.281       -22.467     -30.373     
+PFA     C24     C       CR6     0       3.651       -22.409     -31.624     
+PFA     C25     C       CH1     0       3.270       -23.683     -32.364     
+PFA     C8      C       CH3     0       4.395       -24.721     -32.364     
+PFA     C9      C       CH3     0       1.966       -24.290     -31.838     
+PFA     C26     C       CR6     0       3.372       -21.139     -32.154     
+PFA     C29     C       CR16    0       3.723       -19.986     -31.461     
+PFA     O27     O       OH1     0       2.752       -20.971     -33.370     
+PFA     HN6     H       H       0       8.150       -16.288     -22.483     
+PFA     H17C    H       H       0       5.113       -14.530     -24.304     
+PFA     HC5     H       H       0       4.139       -18.653     -25.284     
+PFA     HC71    H       H       0       3.136       -21.502     -27.020     
+PFA     HC72    H       H       0       2.593       -20.075     -27.440     
+PFA     HC73    H       H       0       2.693       -20.466     -25.909     
+PFA     HC3     H       H       0       7.952       -18.585     -26.557     
+PFA     H191    H       H       0       7.923       -21.465     -28.368     
+PFA     H192    H       H       0       8.779       -20.161     -28.097     
+PFA     H193    H       H       0       7.760       -20.201     -29.310     
+PFA     H31C    H       H       0       4.583       -19.284     -29.770     
+PFA     H22C    H       H       0       4.474       -23.311     -29.994     
+PFA     H25C    H       H       0       3.111       -23.440     -33.313     
+PFA     HC81    H       H       0       5.242       -24.282     -32.556     
+PFA     HC82    H       H       0       4.218       -25.392     -33.047     
+PFA     HC83    H       H       0       4.446       -25.152     -31.494     
+PFA     HC91    H       H       0       1.571       -23.700     -31.172     
+PFA     HC92    H       H       0       2.140       -25.158     -31.433     
+PFA     HC93    H       H       0       1.342       -24.402     -32.576     
+PFA     H29C    H       H       0       3.532       -19.140     -31.834     
+PFA     H27O    H       H       0       2.084       -20.433     -33.441     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PFA          O9         C14      DOUBLE       n     1.219  0.0100     1.219  0.0100
+PFA         C14          N6      SINGLE       y     1.376  0.0152     1.376  0.0152
+PFA         C14          N5      SINGLE       y     1.378  0.0174     1.378  0.0174
+PFA          N6         C10      SINGLE       y     1.381  0.0100     1.381  0.0100
+PFA         C10          O8      DOUBLE       n     1.242  0.0172     1.242  0.0172
+PFA         C10         C17      SINGLE       y     1.379  0.0122     1.379  0.0122
+PFA          N5          N3      SINGLE       y     1.379  0.0122     1.379  0.0122
+PFA          N5          C4      SINGLE       n     1.441  0.0100     1.441  0.0100
+PFA          N3         C17      DOUBLE       y     1.293  0.0100     1.293  0.0100
+PFA          C4          C5      DOUBLE       y     1.382  0.0100     1.382  0.0100
+PFA          C4          C3      SINGLE       y     1.382  0.0100     1.382  0.0100
+PFA          C5          C6      SINGLE       y     1.383  0.0106     1.383  0.0106
+PFA          C6          C7      SINGLE       n     1.503  0.0112     1.503  0.0112
+PFA          C6          C1      DOUBLE       y     1.389  0.0100     1.389  0.0100
+PFA          C3          C2      DOUBLE       y     1.383  0.0106     1.383  0.0106
+PFA          C2         C19      SINGLE       n     1.503  0.0112     1.503  0.0112
+PFA          C2          C1      SINGLE       y     1.389  0.0100     1.389  0.0100
+PFA          C1         O20      SINGLE       n     1.389  0.0129     1.389  0.0129
+PFA         O20         C21      SINGLE       n     1.391  0.0100     1.391  0.0100
+PFA         C21         C31      DOUBLE       y     1.377  0.0108     1.377  0.0108
+PFA         C21         C22      SINGLE       y     1.379  0.0100     1.379  0.0100
+PFA         C31         C29      SINGLE       y     1.383  0.0100     1.383  0.0100
+PFA         C22         C24      DOUBLE       y     1.395  0.0100     1.395  0.0100
+PFA         C24         C25      SINGLE       n     1.516  0.0100     1.516  0.0100
+PFA         C24         C26      SINGLE       y     1.397  0.0100     1.397  0.0100
+PFA         C25          C8      SINGLE       n     1.527  0.0115     1.527  0.0115
+PFA         C25          C9      SINGLE       n     1.527  0.0115     1.527  0.0115
+PFA         C26         C29      DOUBLE       y     1.387  0.0100     1.387  0.0100
+PFA         C26         O27      SINGLE       n     1.374  0.0155     1.374  0.0155
+PFA          N6         HN6      SINGLE       n     1.016  0.0100     0.889  0.0200
+PFA         C17        H17C      SINGLE       n     1.082  0.0130     0.930  0.0100
+PFA          C5         HC5      SINGLE       n     1.082  0.0130     0.933  0.0100
+PFA          C7        HC71      SINGLE       n     1.089  0.0100     0.971  0.0135
+PFA          C7        HC72      SINGLE       n     1.089  0.0100     0.971  0.0135
+PFA          C7        HC73      SINGLE       n     1.089  0.0100     0.971  0.0135
+PFA          C3         HC3      SINGLE       n     1.082  0.0130     0.933  0.0100
+PFA         C19        H191      SINGLE       n     1.089  0.0100     0.971  0.0135
+PFA         C19        H192      SINGLE       n     1.089  0.0100     0.971  0.0135
+PFA         C19        H193      SINGLE       n     1.089  0.0100     0.971  0.0135
+PFA         C31        H31C      SINGLE       n     1.082  0.0130     0.942  0.0174
+PFA         C22        H22C      SINGLE       n     1.082  0.0130     0.945  0.0164
+PFA         C25        H25C      SINGLE       n     1.089  0.0100     0.994  0.0142
+PFA          C8        HC81      SINGLE       n     1.089  0.0100     0.973  0.0141
+PFA          C8        HC82      SINGLE       n     1.089  0.0100     0.973  0.0141
+PFA          C8        HC83      SINGLE       n     1.089  0.0100     0.973  0.0141
+PFA          C9        HC91      SINGLE       n     1.089  0.0100     0.973  0.0141
+PFA          C9        HC92      SINGLE       n     1.089  0.0100     0.973  0.0141
+PFA          C9        HC93      SINGLE       n     1.089  0.0100     0.973  0.0141
+PFA         C29        H29C      SINGLE       n     1.082  0.0130     0.944  0.0200
+PFA         O27        H27O      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PFA          O9         C14          N6     121.397    1.50
+PFA          O9         C14          N5     120.919    1.67
+PFA          N6         C14          N5     117.684    1.50
+PFA         C14          N6         C10     123.973    1.50
+PFA         C14          N6         HN6     117.476    1.94
+PFA         C10          N6         HN6     118.551    1.78
+PFA          N6         C10          O8     118.562    1.50
+PFA          N6         C10         C17     118.289    3.00
+PFA          O8         C10         C17     123.149    1.75
+PFA         C14          N5          N3     121.539    1.50
+PFA         C14          N5          C4     123.836    1.50
+PFA          N3          N5          C4     114.624    1.50
+PFA          N5          N3         C17     117.974    1.54
+PFA         C10         C17          N3     120.541    1.50
+PFA         C10         C17        H17C     120.156    1.50
+PFA          N3         C17        H17C     119.304    1.50
+PFA          N5          C4          C5     119.876    1.50
+PFA          N5          C4          C3     119.876    1.50
+PFA          C5          C4          C3     120.249    1.50
+PFA          C4          C5          C6     120.062    1.50
+PFA          C4          C5         HC5     120.328    1.50
+PFA          C6          C5         HC5     119.610    1.50
+PFA          C5          C6          C7     120.528    1.50
+PFA          C5          C6          C1     118.267    1.50
+PFA          C7          C6          C1     121.205    1.50
+PFA          C6          C7        HC71     109.597    1.50
+PFA          C6          C7        HC72     109.597    1.50
+PFA          C6          C7        HC73     109.597    1.50
+PFA        HC71          C7        HC72     109.348    1.50
+PFA        HC71          C7        HC73     109.348    1.50
+PFA        HC72          C7        HC73     109.348    1.50
+PFA          C4          C3          C2     120.062    1.50
+PFA          C4          C3         HC3     120.328    1.50
+PFA          C2          C3         HC3     119.610    1.50
+PFA          C3          C2         C19     120.528    1.50
+PFA          C3          C2          C1     118.267    1.50
+PFA         C19          C2          C1     121.205    1.50
+PFA          C2         C19        H191     109.597    1.50
+PFA          C2         C19        H192     109.597    1.50
+PFA          C2         C19        H193     109.597    1.50
+PFA        H191         C19        H192     109.348    1.50
+PFA        H191         C19        H193     109.348    1.50
+PFA        H192         C19        H193     109.348    1.50
+PFA          C6          C1          C2     123.093    1.50
+PFA          C6          C1         O20     118.454    1.60
+PFA          C2          C1         O20     118.454    1.60
+PFA          C1         O20         C21     118.469    2.57
+PFA         O20         C21         C31     120.027    3.00
+PFA         O20         C21         C22     119.041    3.00
+PFA         C31         C21         C22     120.931    1.50
+PFA         C21         C31         C29     119.497    1.50
+PFA         C21         C31        H31C     120.451    1.50
+PFA         C29         C31        H31C     120.052    1.50
+PFA         C21         C22         C24     120.819    1.50
+PFA         C21         C22        H22C     120.093    1.50
+PFA         C24         C22        H22C     119.088    1.50
+PFA         C22         C24         C25     120.503    1.50
+PFA         C22         C24         C26     118.027    1.50
+PFA         C25         C24         C26     121.470    1.50
+PFA         C24         C25          C8     111.836    1.68
+PFA         C24         C25          C9     111.836    1.68
+PFA         C24         C25        H25C     107.451    1.50
+PFA          C8         C25          C9     110.194    1.50
+PFA          C8         C25        H25C     107.649    1.50
+PFA          C9         C25        H25C     107.649    1.50
+PFA         C25          C8        HC81     109.530    1.50
+PFA         C25          C8        HC82     109.530    1.50
+PFA         C25          C8        HC83     109.530    1.50
+PFA        HC81          C8        HC82     109.411    1.50
+PFA        HC81          C8        HC83     109.411    1.50
+PFA        HC82          C8        HC83     109.411    1.50
+PFA         C25          C9        HC91     109.530    1.50
+PFA         C25          C9        HC92     109.530    1.50
+PFA         C25          C9        HC93     109.530    1.50
+PFA        HC91          C9        HC92     109.411    1.50
+PFA        HC91          C9        HC93     109.411    1.50
+PFA        HC92          C9        HC93     109.411    1.50
+PFA         C24         C26         C29     120.719    1.50
+PFA         C24         C26         O27     119.641    3.00
+PFA         C29         C26         O27     119.641    3.00
+PFA         C31         C29         C26     120.008    1.50
+PFA         C31         C29        H29C     120.107    1.50
+PFA         C26         C29        H29C     119.885    1.50
+PFA         C26         O27        H27O     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PFA             sp2_sp3_1          C5          C6          C7        HC71     150.000    10.0     6
+PFA              const_28         O20          C1          C6          C7       0.000    10.0     2
+PFA              const_35         C19          C2          C3          C4     180.000    10.0     2
+PFA             sp2_sp3_7          C3          C2         C19        H191     150.000    10.0     6
+PFA              const_32         O20          C1          C2         C19       0.000    10.0     2
+PFA             sp2_sp2_5          C6          C1         O20         C21     180.000     5.0     2
+PFA             sp2_sp2_7         C31         C21         O20          C1     180.000     5.0     2
+PFA              const_39         O20         C21         C31         C29     180.000    10.0     2
+PFA              const_67         O20         C21         C22         C24     180.000    10.0     2
+PFA              const_41         C26         C29         C31         C21       0.000    10.0     2
+PFA              const_54         C21         C22         C24         C25     180.000    10.0     2
+PFA       const_sp2_sp2_3          O9         C14          N6         C10     180.000     5.0     2
+PFA              const_59          O9         C14          N5          N3     180.000    10.0     2
+PFA            sp2_sp3_14         C22         C24         C25          C8     -90.000    10.0     6
+PFA              const_52         C25         C24         C26         O27       0.000    10.0     2
+PFA             sp3_sp3_4          C9         C25          C8        HC81      60.000    10.0     3
+PFA            sp3_sp3_10          C8         C25          C9        HC91     180.000    10.0     3
+PFA              const_47         O27         C26         C29         C31     180.000    10.0     2
+PFA             sp2_sp2_9         C24         C26         O27        H27O     180.000     5.0     2
+PFA       const_sp2_sp2_7          O8         C10          N6         C14     180.000     5.0     2
+PFA              const_11          O8         C10         C17          N3     180.000    10.0     2
+PFA              const_15         C17          N3          N5         C14       0.000    10.0     2
+PFA             sp2_sp2_1          C5          C4          N5         C14     180.000     5.0     2
+PFA              const_13         C10         C17          N3          N5       0.000    10.0     2
+PFA              const_62          C2          C3          C4          N5     180.000    10.0     2
+PFA              const_19          N5          C4          C5          C6     180.000    10.0     2
+PFA              const_22          C4          C5          C6          C7     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PFA    chir_1    C25    C24    C8    C9    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PFA    plan-1          C1   0.020
+PFA    plan-1         C19   0.020
+PFA    plan-1          C2   0.020
+PFA    plan-1          C3   0.020
+PFA    plan-1          C4   0.020
+PFA    plan-1          C5   0.020
+PFA    plan-1          C6   0.020
+PFA    plan-1          C7   0.020
+PFA    plan-1         HC3   0.020
+PFA    plan-1         HC5   0.020
+PFA    plan-1          N5   0.020
+PFA    plan-1         O20   0.020
+PFA    plan-2         C21   0.020
+PFA    plan-2         C22   0.020
+PFA    plan-2         C24   0.020
+PFA    plan-2         C25   0.020
+PFA    plan-2         C26   0.020
+PFA    plan-2         C29   0.020
+PFA    plan-2         C31   0.020
+PFA    plan-2        H22C   0.020
+PFA    plan-2        H29C   0.020
+PFA    plan-2        H31C   0.020
+PFA    plan-2         O20   0.020
+PFA    plan-2         O27   0.020
+PFA    plan-3         C10   0.020
+PFA    plan-3         C14   0.020
+PFA    plan-3         C17   0.020
+PFA    plan-3          C4   0.020
+PFA    plan-3        H17C   0.020
+PFA    plan-3         HN6   0.020
+PFA    plan-3          N3   0.020
+PFA    plan-3          N5   0.020
+PFA    plan-3          N6   0.020
+PFA    plan-3          O8   0.020
+PFA    plan-3          O9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PFA           SMILES              ACDLabs 10.04                                                                               O=C3C=NN(c2cc(c(Oc1cc(c(O)cc1)C(C)C)c(c2)C)C)C(=O)N3
+PFA SMILES_CANONICAL               CACTVS 3.341                                                                                     CC(C)c1cc(Oc2c(C)cc(cc2C)N3N=CC(=O)NC3=O)ccc1O
+PFA           SMILES               CACTVS 3.341                                                                                     CC(C)c1cc(Oc2c(C)cc(cc2C)N3N=CC(=O)NC3=O)ccc1O
+PFA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                 Cc1cc(cc(c1Oc2ccc(c(c2)C(C)C)O)C)N3C(=O)NC(=O)C=N3
+PFA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                 Cc1cc(cc(c1Oc2ccc(c(c2)C(C)C)O)C)N3C(=O)NC(=O)C=N3
+PFA            InChI                InChI  1.03 InChI=1S/C20H21N3O4/c1-11(2)16-9-15(5-6-17(16)24)27-19-12(3)7-14(8-13(19)4)23-20(26)22-18(25)10-21-23/h5-11,24H,1-4H3,(H,22,25,26)
+PFA         InChIKey                InChI  1.03                                                                                                        RXQAVKWRCZYGMV-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PFA acedrg               243         "dictionary generator"                  
+PFA acedrg_database      11          "data source"                           
+PFA rdkit                2017.03.2   "Chemoinformatics tool"
+PFA refmac5              5.8.0238    "optimization tool"                     

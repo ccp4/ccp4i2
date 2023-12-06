@@ -1,0 +1,125 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PXO     PXO      "(1Z)-propanal oxime"     NON-POLYMER     12     5     .     
+#
+data_comp_PXO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PXO     C3      C       CH3     0       14.649      26.775      45.185      
+PXO     C2      C       CH2     0       16.137      26.604      45.160      
+PXO     C1      C       C1      0       16.643      25.515      46.068      
+PXO     N1      N       N       0       17.854      25.185      46.242      
+PXO     O1      O       OH1     0       18.750      25.968      45.467      
+PXO     H3      H       H       0       14.395      27.477      44.560      
+PXO     H3A     H       H       0       14.367      27.021      46.083      
+PXO     H3B     H       H       0       14.224      25.939      44.927      
+PXO     H2      H       H       0       16.539      27.461      45.418      
+PXO     H2A     H       H       0       16.403      26.412      44.236      
+PXO     H1      H       H       0       16.000      25.032      46.552      
+PXO     HO1     H       H       0       18.892      25.769      44.641      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PXO          C3          C2      SINGLE       n     1.498  0.0200     1.498  0.0200
+PXO          C2          C1      SINGLE       n     1.501  0.0148     1.501  0.0148
+PXO          C1          N1      DOUBLE       n     1.264  0.0100     1.264  0.0100
+PXO          N1          O1      SINGLE       n     1.415  0.0195     1.415  0.0195
+PXO          C3          H3      SINGLE       n     1.089  0.0100     0.973  0.0141
+PXO          C3         H3A      SINGLE       n     1.089  0.0100     0.973  0.0141
+PXO          C3         H3B      SINGLE       n     1.089  0.0100     0.973  0.0141
+PXO          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0185
+PXO          C2         H2A      SINGLE       n     1.089  0.0100     0.981  0.0185
+PXO          C1          H1      SINGLE       n     1.082  0.0130     0.938  0.0120
+PXO          O1         HO1      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PXO          C2          C3          H3     109.160    1.50
+PXO          C2          C3         H3A     109.160    1.50
+PXO          C2          C3         H3B     109.160    1.50
+PXO          H3          C3         H3A     109.380    1.50
+PXO          H3          C3         H3B     109.380    1.50
+PXO         H3A          C3         H3B     109.380    1.50
+PXO          C3          C2          C1     113.614    3.00
+PXO          C3          C2          H2     107.471    3.00
+PXO          C3          C2         H2A     107.471    3.00
+PXO          C1          C2          H2     109.374    1.50
+PXO          C1          C2         H2A     109.374    1.50
+PXO          H2          C2         H2A     107.705    1.50
+PXO          C2          C1          N1     122.296    3.00
+PXO          C2          C1          H1     120.009    3.00
+PXO          N1          C1          H1     117.695    1.58
+PXO          C1          N1          O1     110.625    1.59
+PXO          N1          O1         HO1     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PXO             sp3_sp3_1          C1          C2          C3          H3     180.000    10.0     3
+PXO             sp2_sp3_2          N1          C1          C2          C3     120.000    10.0     6
+PXO             sp2_sp2_1          C2          C1          N1          O1     180.000     5.0     2
+PXO             sp2_sp2_3          C1          N1          O1         HO1     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PXO    plan-1          C1   0.020
+PXO    plan-1          C2   0.020
+PXO    plan-1          H1   0.020
+PXO    plan-1          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PXO           SMILES              ACDLabs 10.04                                     N(/O)=C/CC
+PXO SMILES_CANONICAL               CACTVS 3.341                                       CC\C=N/O
+PXO           SMILES               CACTVS 3.341                                         CCC=NO
+PXO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                       CC\C=N/O
+PXO           SMILES "OpenEye OEToolkits" 1.5.0                                         CCC=NO
+PXO            InChI                InChI  1.03 InChI=1S/C3H7NO/c1-2-3-4-5/h3,5H,2H2,1H3/b4-3-
+PXO         InChIKey                InChI  1.03                    IFDZZSXEPSSHNC-ARJAWSKDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PXO acedrg               243         "dictionary generator"                  
+PXO acedrg_database      11          "data source"                           
+PXO rdkit                2017.03.2   "Chemoinformatics tool"
+PXO refmac5              5.8.0238    "optimization tool"                     

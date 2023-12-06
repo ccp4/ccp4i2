@@ -1,0 +1,372 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AQY     AQY      N-{4-[2-(4-fluoro-3-methylphenyl)imidazo[1,2-b]pyridazin-3-yl]pyridin-2-yl}-2-methyl-1-oxo-1lambda~5~-pyridine-4-carboxamide     NON-POLYMER     53     34     .     
+#
+data_comp_AQY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AQY     C4      C       CR6     0       18.674      -6.301      2.219       
+AQY     C5      C       CR16    0       18.511      -7.032      3.395       
+AQY     C6      C       CR16    0       19.575      -7.719      3.957       
+AQY     C7      C       CR6     0       20.798      -7.667      3.331       
+AQY     C13     C       CR16    0       14.464      -3.773      -1.184      
+AQY     C17     C       CR5     0       16.572      -4.748      2.180       
+AQY     C20     C       CR16    0       17.242      -3.564      5.680       
+AQY     C22     C       CR6     0       14.977      -3.996      5.516       
+AQY     C24     C       C       0       12.513      -3.720      5.662       
+AQY     C26     C       CR6     0       11.316      -4.284      6.378       
+AQY     C28     C       CR16    0       8.918       -4.236      6.700       
+AQY     C1      C       CH3     0       22.360      -6.919      1.501       
+AQY     C2      C       CR6     0       21.014      -6.959      2.166       
+AQY     C3      C       CR16    0       19.933      -6.275      1.617       
+AQY     F8      F       F       0       21.829      -8.344      3.891       
+AQY     C9      C       CR5     0       17.540      -5.568      1.619       
+AQY     N10     N       NRD5    0       17.340      -5.664      0.252       
+AQY     C11     C       CR56    0       16.240      -4.891      -0.021      
+AQY     C12     C       CR16    0       15.569      -4.609      -1.244      
+AQY     C14     C       CR16    0       14.038      -3.228      0.082       
+AQY     N15     N       NRD6    0       14.643      -3.471      1.224       
+AQY     N16     N       NT      0       15.745      -4.315      1.122       
+AQY     C18     C       CR6     0       16.385      -4.351      3.587       
+AQY     C19     C       CR16    0       17.464      -3.932      4.365       
+AQY     N21     N       NRD6    0       16.030      -3.586      6.258       
+AQY     N23     N       NH1     0       13.749      -3.974      6.195       
+AQY     O25     O       O       0       12.367      -3.052      4.643       
+AQY     C27     C       CR16    0       10.059      -3.755      6.077       
+AQY     N29     N       NR6     1       9.026       -5.237      7.613       
+AQY     O30     O       OC      -1      7.844       -5.636      8.171       
+AQY     C31     C       CR6     0       10.239      -5.793      7.939       
+AQY     C32     C       CH3     0       10.251      -6.899      8.969       
+AQY     C33     C       CR16    0       11.390      -5.315      7.315       
+AQY     C34     C       CR16    0       15.123      -4.384      4.182       
+AQY     H1      H       H       0       17.670      -7.059      3.812       
+AQY     H2      H       H       0       19.465      -8.208      4.745       
+AQY     H3      H       H       0       13.996      -3.566      -1.975      
+AQY     H4      H       H       0       17.979      -3.281      6.201       
+AQY     H5      H       H       0       8.069       -3.876      6.500       
+AQY     H6      H       H       0       23.052      -6.760      2.164       
+AQY     H7      H       H       0       22.385      -6.206      0.842       
+AQY     H8      H       H       0       22.534      -7.765      1.058       
+AQY     H9      H       H       0       20.057      -5.783      0.819       
+AQY     H10     H       H       0       15.864      -4.975      -2.056      
+AQY     H11     H       H       0       13.287      -2.665      0.094       
+AQY     H12     H       H       0       18.328      -3.904      3.996       
+AQY     H13     H       H       0       13.798      -4.093      7.067       
+AQY     H14     H       H       0       9.977       -3.059      5.445       
+AQY     H16     H       H       0       9.361       -7.268      9.080       
+AQY     H17     H       H       0       10.561      -6.546      9.819       
+AQY     H18     H       H       0       10.851      -7.604      8.677       
+AQY     H19     H       H       0       12.225      -5.690      7.533       
+AQY     H20     H       H       0       14.379      -4.659      3.675       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AQY         C13         C12      DOUBLE       y     1.369  0.0200     1.369  0.0200
+AQY         C11         C12      SINGLE       y     1.416  0.0189     1.416  0.0189
+AQY         C13         C14      SINGLE       y     1.422  0.0200     1.422  0.0200
+AQY         N10         C11      DOUBLE       y     1.367  0.0200     1.367  0.0200
+AQY         C11         N16      SINGLE       y     1.380  0.0200     1.380  0.0200
+AQY         C14         N15      DOUBLE       y     1.307  0.0137     1.307  0.0137
+AQY          C9         N10      SINGLE       y     1.371  0.0200     1.371  0.0200
+AQY         N15         N16      SINGLE       y     1.389  0.0100     1.389  0.0100
+AQY         C17         N16      SINGLE       y     1.413  0.0200     1.413  0.0200
+AQY          C4          C9      SINGLE       n     1.476  0.0100     1.476  0.0100
+AQY         C17          C9      DOUBLE       y     1.385  0.0123     1.385  0.0123
+AQY          C4          C3      SINGLE       y     1.391  0.0100     1.391  0.0100
+AQY          C2          C3      DOUBLE       y     1.387  0.0100     1.387  0.0100
+AQY          C1          C2      SINGLE       n     1.501  0.0100     1.501  0.0100
+AQY          C4          C5      DOUBLE       y     1.391  0.0100     1.391  0.0100
+AQY         C17         C18      SINGLE       n     1.471  0.0100     1.471  0.0100
+AQY          C7          C2      SINGLE       y     1.376  0.0100     1.376  0.0100
+AQY          C5          C6      SINGLE       y     1.383  0.0100     1.383  0.0100
+AQY          C6          C7      DOUBLE       y     1.371  0.0108     1.371  0.0108
+AQY          C7          F8      SINGLE       n     1.354  0.0100     1.354  0.0100
+AQY         C18         C34      DOUBLE       y     1.393  0.0100     1.393  0.0100
+AQY         C18         C19      SINGLE       y     1.393  0.0100     1.393  0.0100
+AQY         C22         C34      SINGLE       y     1.391  0.0118     1.391  0.0118
+AQY         C24         O25      DOUBLE       n     1.226  0.0100     1.226  0.0100
+AQY         C20         C19      DOUBLE       y     1.379  0.0100     1.379  0.0100
+AQY         C24         N23      SINGLE       n     1.363  0.0100     1.363  0.0100
+AQY         C24         C26      SINGLE       n     1.496  0.0100     1.496  0.0100
+AQY         C22         N23      SINGLE       n     1.399  0.0100     1.399  0.0100
+AQY         C22         N21      DOUBLE       y     1.346  0.0100     1.346  0.0100
+AQY         C26         C27      SINGLE       y     1.389  0.0100     1.389  0.0100
+AQY         C28         C27      DOUBLE       y     1.384  0.0100     1.384  0.0100
+AQY         C20         N21      SINGLE       y     1.337  0.0100     1.337  0.0100
+AQY         C26         C33      DOUBLE       y     1.389  0.0100     1.389  0.0100
+AQY         C28         N29      SINGLE       y     1.356  0.0119     1.356  0.0119
+AQY         C31         C33      SINGLE       y     1.388  0.0124     1.388  0.0124
+AQY         N29         C31      DOUBLE       y     1.366  0.0111     1.366  0.0111
+AQY         N29         O30      SINGLE       n     1.366  0.0100     1.366  0.0100
+AQY         C31         C32      SINGLE       n     1.507  0.0123     1.507  0.0123
+AQY          C5          H1      SINGLE       n     1.082  0.0130     0.939  0.0102
+AQY          C6          H2      SINGLE       n     1.082  0.0130     0.934  0.0100
+AQY         C13          H3      SINGLE       n     1.082  0.0130     0.942  0.0156
+AQY         C20          H4      SINGLE       n     1.082  0.0130     0.946  0.0126
+AQY         C28          H5      SINGLE       n     1.082  0.0130     0.943  0.0169
+AQY          C1          H6      SINGLE       n     1.089  0.0100     0.971  0.0135
+AQY          C1          H7      SINGLE       n     1.089  0.0100     0.971  0.0135
+AQY          C1          H8      SINGLE       n     1.089  0.0100     0.971  0.0135
+AQY          C3          H9      SINGLE       n     1.082  0.0130     0.946  0.0200
+AQY         C12         H10      SINGLE       n     1.082  0.0130     0.939  0.0160
+AQY         C14         H11      SINGLE       n     1.082  0.0130     0.939  0.0134
+AQY         C19         H12      SINGLE       n     1.082  0.0130     0.940  0.0118
+AQY         N23         H13      SINGLE       n     1.016  0.0100     0.881  0.0200
+AQY         C27         H14      SINGLE       n     1.082  0.0130     0.944  0.0103
+AQY         C32         H16      SINGLE       n     1.089  0.0100     0.971  0.0138
+AQY         C32         H17      SINGLE       n     1.089  0.0100     0.971  0.0138
+AQY         C32         H18      SINGLE       n     1.089  0.0100     0.971  0.0138
+AQY         C33         H19      SINGLE       n     1.082  0.0130     0.942  0.0177
+AQY         C34         H20      SINGLE       n     1.082  0.0130     0.942  0.0177
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AQY          C9          C4          C3     120.664    1.50
+AQY          C9          C4          C5     120.657    1.50
+AQY          C3          C4          C5     118.680    1.50
+AQY          C4          C5          C6     121.073    1.50
+AQY          C4          C5          H1     119.491    1.50
+AQY          C6          C5          H1     119.436    1.50
+AQY          C5          C6          C7     118.772    1.50
+AQY          C5          C6          H2     120.659    1.50
+AQY          C7          C6          H2     120.569    1.50
+AQY          C2          C7          C6     123.039    1.50
+AQY          C2          C7          F8     118.904    1.50
+AQY          C6          C7          F8     118.057    1.50
+AQY         C12         C13         C14     120.244    2.29
+AQY         C12         C13          H3     119.363    1.50
+AQY         C14         C13          H3     120.394    1.50
+AQY         N16         C17          C9     107.712    1.70
+AQY         N16         C17         C18     123.708    1.50
+AQY          C9         C17         C18     128.580    2.89
+AQY         C19         C20         N21     122.880    1.50
+AQY         C19         C20          H4     118.784    1.50
+AQY         N21         C20          H4     118.337    1.50
+AQY         C34         C22         N23     123.786    2.62
+AQY         C34         C22         N21     122.090    1.50
+AQY         N23         C22         N21     114.124    1.50
+AQY         O25         C24         N23     123.578    1.50
+AQY         O25         C24         C26     120.938    1.50
+AQY         N23         C24         C26     115.485    1.50
+AQY         C24         C26         C27     120.875    3.00
+AQY         C24         C26         C33     120.106    2.89
+AQY         C27         C26         C33     119.019    1.50
+AQY         C27         C28         N29     118.421    2.98
+AQY         C27         C28          H5     121.300    1.54
+AQY         N29         C28          H5     120.279    1.90
+AQY          C2          C1          H6     110.153    1.50
+AQY          C2          C1          H7     110.153    1.50
+AQY          C2          C1          H8     110.153    1.50
+AQY          H6          C1          H7     109.348    1.50
+AQY          H6          C1          H8     109.348    1.50
+AQY          H7          C1          H8     109.348    1.50
+AQY          C3          C2          C1     120.739    1.50
+AQY          C3          C2          C7     117.445    1.50
+AQY          C1          C2          C7     121.816    1.50
+AQY          C4          C3          C2     120.991    1.50
+AQY          C4          C3          H9     119.714    1.50
+AQY          C2          C3          H9     119.295    1.50
+AQY         N10          C9          C4     119.887    2.12
+AQY         N10          C9         C17     108.865    1.50
+AQY          C4          C9         C17     131.248    2.49
+AQY         C11         N10          C9     103.834    1.50
+AQY         C12         C11         N10     130.121    3.00
+AQY         C12         C11         N16     119.714    1.50
+AQY         N10         C11         N16     110.165    1.50
+AQY         C13         C12         C11     117.894    1.55
+AQY         C13         C12         H10     121.235    1.50
+AQY         C11         C12         H10     120.872    1.50
+AQY         C13         C14         N15     124.038    1.50
+AQY         C13         C14         H11     118.158    1.50
+AQY         N15         C14         H11     117.803    1.50
+AQY         C14         N15         N16     115.193    1.50
+AQY         C11         N16         N15     128.423    1.50
+AQY         C11         N16         C17     106.056    1.50
+AQY         N15         N16         C17     124.514    1.50
+AQY         C17         C18         C34     120.522    2.56
+AQY         C17         C18         C19     120.522    2.56
+AQY         C34         C18         C19     118.956    1.50
+AQY         C18         C19         C20     119.382    1.50
+AQY         C18         C19         H12     119.912    1.50
+AQY         C20         C19         H12     120.707    1.50
+AQY         C22         N21         C20     116.935    1.50
+AQY         C24         N23         C22     127.374    1.50
+AQY         C24         N23         H13     117.012    1.64
+AQY         C22         N23         H13     115.614    1.56
+AQY         C26         C27         C28     120.228    1.50
+AQY         C26         C27         H14     120.097    1.50
+AQY         C28         C27         H14     119.675    1.50
+AQY         C28         N29         C31     122.422    1.50
+AQY         C28         N29         O30     118.789    3.00
+AQY         C31         N29         O30     118.789    3.00
+AQY         C33         C31         N29     119.555    1.50
+AQY         C33         C31         C32     124.242    1.50
+AQY         N29         C31         C32     116.203    1.50
+AQY         C31         C32         H16     109.504    1.50
+AQY         C31         C32         H17     109.504    1.50
+AQY         C31         C32         H18     109.504    1.50
+AQY         H16         C32         H17     109.339    1.66
+AQY         H16         C32         H18     109.339    1.66
+AQY         H17         C32         H18     109.339    1.66
+AQY         C26         C33         C31     120.364    1.50
+AQY         C26         C33         H19     119.621    1.50
+AQY         C31         C33         H19     120.005    1.50
+AQY         C18         C34         C22     119.757    1.50
+AQY         C18         C34         H20     119.499    1.50
+AQY         C22         C34         H20     120.743    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AQY              const_77          C9          C4          C5          C6     180.000    10.0     2
+AQY              const_52          C2          C3          C4          C9     180.000    10.0     2
+AQY            sp2_sp2_18          C3          C4          C9         N10       0.000     5.0     2
+AQY              const_35         C26         C27         C28         N29       0.000    10.0     2
+AQY              const_40         C27         C28         N29         O30     180.000    10.0     2
+AQY             sp2_sp3_1          C3          C2          C1          H6     150.000    10.0     6
+AQY              const_57          C1          C2          C3          C4     180.000    10.0     2
+AQY              const_12          C4          C9         N10         C11     180.000    10.0     2
+AQY              const_10         C12         C11         N10          C9     180.000    10.0     2
+AQY             sp2_sp2_7         N10         C11         C12         C13     180.000     5.0     2
+AQY       const_sp2_sp2_1         C12         C11         N16         N15       0.000     5.0     2
+AQY            sp2_sp2_11         C13         C14         N15         N16       0.000     5.0     2
+AQY              const_67          C4          C5          C6          C7       0.000    10.0     2
+AQY             sp2_sp2_9         C14         N15         N16         C11       0.000     5.0     2
+AQY              const_19         C17         C18         C19         C20     180.000    10.0     2
+AQY              const_23         C17         C18         C34         C22     180.000    10.0     2
+AQY              const_46         C32         C31         N29         O30       0.000    10.0     2
+AQY              const_64          C5          C6          C7          F8     180.000    10.0     2
+AQY             sp2_sp3_7         C33         C31         C32         H16     150.000    10.0     6
+AQY              const_49         C32         C31         C33         C26     180.000    10.0     2
+AQY              const_62          C1          C2          C7          F8       0.000    10.0     2
+AQY             sp2_sp2_1         C11         C12         C13         C14       0.000     5.0     2
+AQY            sp2_sp2_13         C12         C13         C14         N15       0.000     5.0     2
+AQY              const_71         N16         C17          C9         N10       0.000    10.0     2
+AQY       const_sp2_sp2_5          C9         C17         N16         C11       0.000     5.0     2
+AQY            sp2_sp2_21         N16         C17         C18         C34     180.000     5.0     2
+AQY              const_13         C18         C19         C20         N21       0.000    10.0     2
+AQY              const_79         C19         C20         N21         C22       0.000    10.0     2
+AQY              const_30         N23         C22         N21         C20     180.000    10.0     2
+AQY            sp2_sp2_33         C34         C22         N23         C24     180.000     5.0     2
+AQY              const_27         N23         C22         C34         C18     180.000    10.0     2
+AQY            sp2_sp2_27         O25         C24         N23         C22       0.000     5.0     2
+AQY            sp2_sp2_31         O25         C24         C26         C27       0.000     5.0     2
+AQY              const_33         C24         C26         C27         C28     180.000    10.0     2
+AQY              const_83         C24         C26         C33         C31     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AQY    plan-1         C11   0.020
+AQY    plan-1         C12   0.020
+AQY    plan-1         C13   0.020
+AQY    plan-1         C14   0.020
+AQY    plan-1         C17   0.020
+AQY    plan-1         C18   0.020
+AQY    plan-1          C4   0.020
+AQY    plan-1          C9   0.020
+AQY    plan-1         H10   0.020
+AQY    plan-1         H11   0.020
+AQY    plan-1          H3   0.020
+AQY    plan-1         N10   0.020
+AQY    plan-1         N15   0.020
+AQY    plan-1         N16   0.020
+AQY    plan-2          C1   0.020
+AQY    plan-2          C2   0.020
+AQY    plan-2          C3   0.020
+AQY    plan-2          C4   0.020
+AQY    plan-2          C5   0.020
+AQY    plan-2          C6   0.020
+AQY    plan-2          C7   0.020
+AQY    plan-2          C9   0.020
+AQY    plan-2          F8   0.020
+AQY    plan-2          H1   0.020
+AQY    plan-2          H2   0.020
+AQY    plan-2          H9   0.020
+AQY    plan-3         C24   0.020
+AQY    plan-3         C26   0.020
+AQY    plan-3         C27   0.020
+AQY    plan-3         C28   0.020
+AQY    plan-3         C31   0.020
+AQY    plan-3         C32   0.020
+AQY    plan-3         C33   0.020
+AQY    plan-3         H14   0.020
+AQY    plan-3         H19   0.020
+AQY    plan-3          H5   0.020
+AQY    plan-3         N29   0.020
+AQY    plan-3         O30   0.020
+AQY    plan-4         C17   0.020
+AQY    plan-4         C18   0.020
+AQY    plan-4         C19   0.020
+AQY    plan-4         C20   0.020
+AQY    plan-4         C22   0.020
+AQY    plan-4         C34   0.020
+AQY    plan-4         H12   0.020
+AQY    plan-4         H20   0.020
+AQY    plan-4          H4   0.020
+AQY    plan-4         N21   0.020
+AQY    plan-4         N23   0.020
+AQY    plan-5         C24   0.020
+AQY    plan-5         C26   0.020
+AQY    plan-5         N23   0.020
+AQY    plan-5         O25   0.020
+AQY    plan-6         C22   0.020
+AQY    plan-6         C24   0.020
+AQY    plan-6         H13   0.020
+AQY    plan-6         N23   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AQY           SMILES              ACDLabs 12.01                                                                                       c1(ccc(F)c(C)c1)c4c(c3cc(NC(c2cc([n+](cc2)[O-])C)=O)ncc3)n5c(n4)cccn5
+AQY            InChI                InChI  1.03 InChI=1S/C25H19FN6O2/c1-15-12-17(5-6-20(15)26)23-24(32-22(30-23)4-3-9-28-32)18-7-10-27-21(14-18)29-25(33)19-8-11-31(34)16(2)13-19/h3-14H,1-2H3,(H,27,29,33)
+AQY         InChIKey                InChI  1.03                                                                                                                                 RNPHICWBCUQEML-UHFFFAOYSA-N
+AQY SMILES_CANONICAL               CACTVS 3.385                                                                                               Cc1cc(ccc1F)c2nc3cccnn3c2c4ccnc(NC(=O)c5cc[n+]([O-])c(C)c5)c4
+AQY           SMILES               CACTVS 3.385                                                                                               Cc1cc(ccc1F)c2nc3cccnn3c2c4ccnc(NC(=O)c5cc[n+]([O-])c(C)c5)c4
+AQY SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                           Cc1cc(ccc1F)c2c(n3c(n2)cccn3)c4ccnc(c4)NC(=O)c5cc[n+](c(c5)C)[O-]
+AQY           SMILES "OpenEye OEToolkits" 2.0.6                                                                                           Cc1cc(ccc1F)c2c(n3c(n2)cccn3)c4ccnc(c4)NC(=O)c5cc[n+](c(c5)C)[O-]
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AQY acedrg               243         "dictionary generator"                  
+AQY acedrg_database      11          "data source"                           
+AQY rdkit                2017.03.2   "Chemoinformatics tool"
+AQY refmac5              5.8.0238    "optimization tool"                     

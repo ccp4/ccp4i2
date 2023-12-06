@@ -1,0 +1,146 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MEC     MEC      "ETHYL-CARBAMIC ACID METHYL ESTER"     NON-POLYMER     16     7     .     
+#
+data_comp_MEC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MEC     C2      C       CH3     0       -19.281     -5.398      -6.815      
+MEC     O1      O       O2      0       -19.042     -3.993      -6.576      
+MEC     C3      C       C       0       -17.772     -3.560      -6.682      
+MEC     O2      O       O       0       -16.815     -4.251      -6.958      
+MEC     N1      N       NH1     0       -17.714     -2.238      -6.436      
+MEC     C4      C       CH2     0       -16.461     -1.495      -6.480      
+MEC     C5      C       CH3     0       -16.657     -0.042      -6.160      
+MEC     H23     H       H       0       -18.774     -5.926      -6.177      
+MEC     H22     H       H       0       -19.004     -5.625      -7.717      
+MEC     H21     H       H       0       -20.227     -5.585      -6.710      
+MEC     H1      H       H       0       -18.447     -1.800      -6.243      
+MEC     H42     H       H       0       -16.069     -1.580      -7.375      
+MEC     H41     H       H       0       -15.833     -1.887      -5.836      
+MEC     H53     H       H       0       -15.801     0.416       -6.188      
+MEC     H52     H       H       0       -17.041     0.046       -5.272      
+MEC     H51     H       H       0       -17.257     0.356       -6.812      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MEC          C2          O1      SINGLE       n     1.443  0.0101     1.443  0.0101
+MEC          O1          C3      SINGLE       n     1.342  0.0100     1.342  0.0100
+MEC          C3          O2      DOUBLE       n     1.210  0.0102     1.210  0.0102
+MEC          C3          N1      SINGLE       n     1.340  0.0141     1.340  0.0141
+MEC          N1          C4      SINGLE       n     1.456  0.0102     1.456  0.0102
+MEC          C4          C5      SINGLE       n     1.499  0.0200     1.499  0.0200
+MEC          C2         H23      SINGLE       n     1.089  0.0100     0.970  0.0175
+MEC          C2         H22      SINGLE       n     1.089  0.0100     0.970  0.0175
+MEC          C2         H21      SINGLE       n     1.089  0.0100     0.970  0.0175
+MEC          N1          H1      SINGLE       n     1.016  0.0100     0.872  0.0200
+MEC          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0142
+MEC          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0142
+MEC          C5         H53      SINGLE       n     1.089  0.0100     0.971  0.0145
+MEC          C5         H52      SINGLE       n     1.089  0.0100     0.971  0.0145
+MEC          C5         H51      SINGLE       n     1.089  0.0100     0.971  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MEC          O1          C2         H23     109.384    1.50
+MEC          O1          C2         H22     109.384    1.50
+MEC          O1          C2         H21     109.384    1.50
+MEC         H23          C2         H22     109.532    1.53
+MEC         H23          C2         H21     109.532    1.53
+MEC         H22          C2         H21     109.532    1.53
+MEC          C2          O1          C3     115.328    1.50
+MEC          O1          C3          O2     125.066    1.50
+MEC          O1          C3          N1     110.066    1.50
+MEC          O2          C3          N1     124.867    1.50
+MEC          C3          N1          C4     121.935    1.50
+MEC          C3          N1          H1     119.647    1.50
+MEC          C4          N1          H1     118.418    1.83
+MEC          N1          C4          C5     111.585    1.53
+MEC          N1          C4         H42     109.102    1.50
+MEC          N1          C4         H41     109.102    1.50
+MEC          C5          C4         H42     109.375    1.50
+MEC          C5          C4         H41     109.375    1.50
+MEC         H42          C4         H41     108.054    1.50
+MEC          C4          C5         H53     109.548    1.50
+MEC          C4          C5         H52     109.548    1.50
+MEC          C4          C5         H51     109.548    1.50
+MEC         H53          C5         H52     109.415    1.50
+MEC         H53          C5         H51     109.415    1.50
+MEC         H52          C5         H51     109.415    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MEC             sp3_sp3_2         H23          C2          O1          C3     -60.000    10.0     3
+MEC             sp2_sp2_1          O2          C3          O1          C2     180.000     5.0     2
+MEC             sp2_sp2_3          O1          C3          N1          C4     180.000     5.0     2
+MEC             sp2_sp3_2          C3          N1          C4          C5     120.000    10.0     6
+MEC             sp3_sp3_5          N1          C4          C5         H53     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MEC    plan-1          C3   0.020
+MEC    plan-1          N1   0.020
+MEC    plan-1          O1   0.020
+MEC    plan-1          O2   0.020
+MEC    plan-2          C3   0.020
+MEC    plan-2          C4   0.020
+MEC    plan-2          H1   0.020
+MEC    plan-2          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MEC           SMILES              ACDLabs 10.04                                         O=C(OC)NCC
+MEC SMILES_CANONICAL               CACTVS 3.341                                         CCNC(=O)OC
+MEC           SMILES               CACTVS 3.341                                         CCNC(=O)OC
+MEC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                         CCNC(=O)OC
+MEC           SMILES "OpenEye OEToolkits" 1.5.0                                         CCNC(=O)OC
+MEC            InChI                InChI  1.03 InChI=1S/C4H9NO2/c1-3-5-4(6)7-2/h3H2,1-2H3,(H,5,6)
+MEC         InChIKey                InChI  1.03                        AEARPZNULDFPNQ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MEC acedrg               243         "dictionary generator"                  
+MEC acedrg_database      11          "data source"                           
+MEC rdkit                2017.03.2   "Chemoinformatics tool"
+MEC refmac5              5.8.0238    "optimization tool"                     

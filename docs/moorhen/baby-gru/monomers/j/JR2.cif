@@ -1,0 +1,227 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JR2     JR2      4-(pyrrolidin-1-yl)-7H-pyrrolo[2,3-d]pyrimidin-2-amine     NON-POLYMER     28     15     .     
+#
+data_comp_JR2
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JR2     N1      N       NRD6    0       19.932      -12.128     3.023       
+JR2     C2      C       CR6     0       20.038      -10.875     3.557       
+JR2     N3      N       NRD6    0       19.441      -10.451     4.690       
+JR2     C4      C       CR56    0       18.691      -11.380     5.307       
+JR2     C5      C       CR56    0       18.504      -12.711     4.855       
+JR2     C6      C       CR6     0       19.176      -13.063     3.646       
+JR2     NAA     N       NH2     0       20.807      -9.986      2.890       
+JR2     CAB     C       CR15    0       17.355      -12.396     6.756       
+JR2     CAC     C       CR15    0       17.640      -13.334     5.812       
+JR2     CAD     C       CH2     0       19.705      -16.172     1.825       
+JR2     CAE     C       CH2     0       18.282      -16.305     2.267       
+JR2     CAF     C       CH2     0       20.029      -14.707     2.003       
+JR2     CAG     C       CH2     0       18.144      -15.314     3.397       
+JR2     NAJ     N       NR5     0       17.986      -11.209     6.462       
+JR2     NAO     N       NR5     0       19.119      -14.274     3.066       
+JR2     HNAA    H       H       0       21.146      -10.197     2.108       
+JR2     HNAB    H       H       0       20.970      -9.197      3.239       
+JR2     HAB     H       H       0       16.799      -12.527     7.522       
+JR2     HAC     H       H       0       17.325      -14.219     5.798       
+JR2     HAD     H       H       0       20.294      -16.727     2.375       
+JR2     HADA    H       H       0       19.804      -16.438     0.888       
+JR2     HAE     H       H       0       17.668      -16.088     1.536       
+JR2     HAEA    H       H       0       18.098      -17.215     2.578       
+JR2     HAF     H       H       0       19.865      -14.211     1.179       
+JR2     HAFA    H       H       0       20.959      -14.585     2.267       
+JR2     HAG     H       H       0       18.353      -15.729     4.254       
+JR2     HAGA    H       H       0       17.241      -14.948     3.433       
+JR2     HNAJ    H       H       0       17.947      -10.426     6.953       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JR2          N1          C2      DOUBLE       y     1.362  0.0100     1.362  0.0100
+JR2          N1          C6      SINGLE       y     1.348  0.0100     1.348  0.0100
+JR2          C2          N3      SINGLE       y     1.346  0.0100     1.346  0.0100
+JR2          C2         NAA      SINGLE       n     1.349  0.0100     1.349  0.0100
+JR2          N3          C4      DOUBLE       y     1.341  0.0100     1.341  0.0100
+JR2          C4          C5      SINGLE       y     1.412  0.0120     1.412  0.0120
+JR2          C4         NAJ      SINGLE       y     1.363  0.0100     1.363  0.0100
+JR2          C5          C6      DOUBLE       y     1.418  0.0100     1.418  0.0100
+JR2          C5         CAC      SINGLE       y     1.430  0.0100     1.430  0.0100
+JR2          C6         NAO      SINGLE       n     1.336  0.0100     1.336  0.0100
+JR2         CAB         CAC      DOUBLE       y     1.362  0.0100     1.362  0.0100
+JR2         CAB         NAJ      SINGLE       y     1.377  0.0100     1.377  0.0100
+JR2         CAD         CAE      SINGLE       n     1.500  0.0200     1.500  0.0200
+JR2         CAD         CAF      SINGLE       n     1.511  0.0157     1.511  0.0157
+JR2         CAE         CAG      SINGLE       n     1.511  0.0157     1.511  0.0157
+JR2         CAF         NAO      SINGLE       n     1.462  0.0100     1.462  0.0100
+JR2         CAG         NAO      SINGLE       n     1.462  0.0100     1.462  0.0100
+JR2         NAA        HNAA      SINGLE       n     1.016  0.0100     0.877  0.0200
+JR2         NAA        HNAB      SINGLE       n     1.016  0.0100     0.877  0.0200
+JR2         CAB         HAB      SINGLE       n     1.082  0.0130     0.955  0.0105
+JR2         CAC         HAC      SINGLE       n     1.082  0.0130     0.941  0.0140
+JR2         CAD         HAD      SINGLE       n     1.089  0.0100     0.979  0.0132
+JR2         CAD        HADA      SINGLE       n     1.089  0.0100     0.979  0.0132
+JR2         CAE         HAE      SINGLE       n     1.089  0.0100     0.979  0.0132
+JR2         CAE        HAEA      SINGLE       n     1.089  0.0100     0.979  0.0132
+JR2         CAF         HAF      SINGLE       n     1.089  0.0100     0.975  0.0100
+JR2         CAF        HAFA      SINGLE       n     1.089  0.0100     0.975  0.0100
+JR2         CAG         HAG      SINGLE       n     1.089  0.0100     0.975  0.0100
+JR2         CAG        HAGA      SINGLE       n     1.089  0.0100     0.975  0.0100
+JR2         NAJ        HNAJ      SINGLE       n     1.016  0.0100     0.925  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JR2          C2          N1          C6     118.763    1.50
+JR2          N1          C2          N3     125.662    1.50
+JR2          N1          C2         NAA     117.038    1.50
+JR2          N3          C2         NAA     117.300    1.50
+JR2          C2          N3          C4     114.102    1.50
+JR2          N3          C4          C5     125.146    1.50
+JR2          N3          C4         NAJ     126.721    1.65
+JR2          C5          C4         NAJ     108.133    1.50
+JR2          C4          C5          C6     116.829    1.50
+JR2          C4          C5         CAC     106.846    1.50
+JR2          C6          C5         CAC     136.325    2.40
+JR2          N1          C6          C5     119.505    1.50
+JR2          N1          C6         NAO     117.431    1.50
+JR2          C5          C6         NAO     123.063    1.50
+JR2          C2         NAA        HNAA     119.901    1.50
+JR2          C2         NAA        HNAB     119.901    1.50
+JR2        HNAA         NAA        HNAB     120.198    1.96
+JR2         CAC         CAB         NAJ     110.407    1.50
+JR2         CAC         CAB         HAB     125.728    1.67
+JR2         NAJ         CAB         HAB     123.864    1.77
+JR2          C5         CAC         CAB     106.836    1.50
+JR2          C5         CAC         HAC     126.771    1.50
+JR2         CAB         CAC         HAC     126.393    1.50
+JR2         CAE         CAD         CAF     104.689    2.29
+JR2         CAE         CAD         HAD     110.800    1.50
+JR2         CAE         CAD        HADA     110.800    1.50
+JR2         CAF         CAD         HAD     110.806    1.50
+JR2         CAF         CAD        HADA     110.806    1.50
+JR2         HAD         CAD        HADA     108.899    1.50
+JR2         CAD         CAE         CAG     104.689    2.29
+JR2         CAD         CAE         HAE     110.800    1.50
+JR2         CAD         CAE        HAEA     110.800    1.50
+JR2         CAG         CAE         HAE     110.806    1.50
+JR2         CAG         CAE        HAEA     110.806    1.50
+JR2         HAE         CAE        HAEA     108.899    1.50
+JR2         CAD         CAF         NAO     103.324    1.50
+JR2         CAD         CAF         HAF     111.096    1.50
+JR2         CAD         CAF        HAFA     111.096    1.50
+JR2         NAO         CAF         HAF     111.096    1.50
+JR2         NAO         CAF        HAFA     111.096    1.50
+JR2         HAF         CAF        HAFA     109.052    1.50
+JR2         CAE         CAG         NAO     103.324    1.50
+JR2         CAE         CAG         HAG     111.096    1.50
+JR2         CAE         CAG        HAGA     111.096    1.50
+JR2         NAO         CAG         HAG     111.096    1.50
+JR2         NAO         CAG        HAGA     111.096    1.50
+JR2         HAG         CAG        HAGA     109.052    1.50
+JR2          C4         NAJ         CAB     107.777    1.50
+JR2          C4         NAJ        HNAJ     125.433    1.50
+JR2         CAB         NAJ        HNAJ     126.790    1.53
+JR2          C6         NAO         CAF     123.769    1.50
+JR2          C6         NAO         CAG     123.769    1.50
+JR2         CAF         NAO         CAG     112.463    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JR2       const_sp2_sp2_2         NAA          C2          N1          C6     180.000     5.0     2
+JR2              const_27          C5          C6          N1          C2       0.000    10.0     2
+JR2            sp3_sp3_10         CAD         CAE         CAG         NAO     -60.000    10.0     3
+JR2            sp2_sp3_10          C6         NAO         CAF         CAD     180.000    10.0     6
+JR2             sp2_sp3_4          C6         NAO         CAG         CAE     180.000    10.0     6
+JR2       const_sp2_sp2_4         NAA          C2          N3          C4     180.000     5.0     2
+JR2             sp2_sp2_1          N1          C2         NAA        HNAA     180.000     5.0     2
+JR2       const_sp2_sp2_5          C5          C4          N3          C2       0.000     5.0     2
+JR2              const_31          N3          C4         NAJ         CAB     180.000    10.0     2
+JR2       const_sp2_sp2_7          N3          C4          C5          C6       0.000     5.0     2
+JR2              const_11          C4          C5          C6          N1       0.000    10.0     2
+JR2              const_15          C4          C5         CAC         CAB       0.000    10.0     2
+JR2             sp2_sp2_7          N1          C6         NAO         CAF       0.000     5.0     2
+JR2              const_23         CAC         CAB         NAJ          C4       0.000    10.0     2
+JR2              const_19         NAJ         CAB         CAC          C5       0.000    10.0     2
+JR2             sp3_sp3_1         CAF         CAD         CAE         CAG      60.000    10.0     3
+JR2            sp3_sp3_19         CAE         CAD         CAF         NAO     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JR2    plan-1          C2   0.020
+JR2    plan-1          C4   0.020
+JR2    plan-1          C5   0.020
+JR2    plan-1          C6   0.020
+JR2    plan-1         CAB   0.020
+JR2    plan-1         CAC   0.020
+JR2    plan-1         HAB   0.020
+JR2    plan-1         HAC   0.020
+JR2    plan-1        HNAJ   0.020
+JR2    plan-1          N1   0.020
+JR2    plan-1          N3   0.020
+JR2    plan-1         NAA   0.020
+JR2    plan-1         NAJ   0.020
+JR2    plan-1         NAO   0.020
+JR2    plan-2          C2   0.020
+JR2    plan-2        HNAA   0.020
+JR2    plan-2        HNAB   0.020
+JR2    plan-2         NAA   0.020
+JR2    plan-3          C6   0.020
+JR2    plan-3         CAF   0.020
+JR2    plan-3         CAG   0.020
+JR2    plan-3         NAO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JR2           SMILES              ACDLabs 12.01                                                                       n1c(nc(c2ccnc12)N3CCCC3)N
+JR2            InChI                InChI  1.03 InChI=1S/C10H13N5/c11-10-13-8-7(3-4-12-8)9(14-10)15-5-1-2-6-15/h3-4H,1-2,5-6H2,(H3,11,12,13,14)
+JR2         InChIKey                InChI  1.03                                                                     AZLCKCSXUACTMA-UHFFFAOYSA-N
+JR2 SMILES_CANONICAL               CACTVS 3.385                                                                      Nc1nc2[nH]ccc2c(n1)N3CCCC3
+JR2           SMILES               CACTVS 3.385                                                                      Nc1nc2[nH]ccc2c(n1)N3CCCC3
+JR2 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                    c1c[nH]c2c1c(nc(n2)N)N3CCCC3
+JR2           SMILES "OpenEye OEToolkits" 1.7.6                                                                    c1c[nH]c2c1c(nc(n2)N)N3CCCC3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JR2 acedrg               243         "dictionary generator"                  
+JR2 acedrg_database      11          "data source"                           
+JR2 rdkit                2017.03.2   "Chemoinformatics tool"
+JR2 refmac5              5.8.0238    "optimization tool"                     

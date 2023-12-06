@@ -1,0 +1,264 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BCE     BCE      (2Z)-N-biphenyl-4-yl-2-cyano-3-hydroxybut-2-enamide     NON-POLYMER     35     21     .     
+#
+data_comp_BCE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BCE     CAI     C       CR16    0       7.842       -31.334     -2.098      
+BCE     CAG     C       CR16    0       8.584       -30.174     -1.909      
+BCE     CAF     C       CR16    0       9.420       -30.056     -0.817      
+BCE     CAH     C       CR16    0       9.517       -31.093     0.088       
+BCE     CAJ     C       CR16    0       8.776       -32.254     -0.097      
+BCE     CAT     C       CR6     0       7.924       -32.394     -1.194      
+BCE     CAU     C       CR6     0       7.133       -33.635     -1.397      
+BCE     CAN     C       CR16    0       6.213       -34.075     -0.443      
+BCE     CAL     C       CR16    0       5.473       -35.232     -0.630      
+BCE     CAM     C       CR16    0       7.284       -34.403     -2.554      
+BCE     CAK     C       CR16    0       6.552       -35.561     -2.755      
+BCE     CAS     C       CR6     0       5.637       -35.988     -1.792      
+BCE     NAO     N       NH1     0       4.899       -37.172     -2.016      
+BCE     CAQ     C       C       0       3.769       -37.314     -2.755      
+BCE     OAC     O       O       0       3.623       -36.657     -3.792      
+BCE     CAR     C       C       0       2.729       -38.260     -2.312      
+BCE     CAE     C       CSP     0       1.566       -38.371     -3.122      
+BCE     NAB     N       NSP     0       0.595       -38.482     -3.878      
+BCE     CAP     C       C       0       2.777       -39.089     -1.124      
+BCE     CAA     C       CH3     0       1.748       -40.071     -0.690      
+BCE     OAD     O       OH1     0       3.866       -38.979     -0.299      
+BCE     HAI     H       H       0       7.272       -31.407     -2.848      
+BCE     HAG     H       H       0       8.516       -29.467     -2.529      
+BCE     HAF     H       H       0       9.924       -29.267     -0.690      
+BCE     HAH     H       H       0       10.087      -31.015     0.835       
+BCE     HAJ     H       H       0       8.849       -32.960     0.527       
+BCE     HAN     H       H       0       6.091       -33.575     0.347       
+BCE     HAL     H       H       0       4.858       -35.510     0.028       
+BCE     HAM     H       H       0       7.899       -34.128     -3.214      
+BCE     HAK     H       H       0       6.671       -36.063     -3.543      
+BCE     HNAO    H       H       0       5.232       -37.897     -1.656      
+BCE     HAA     H       H       0       1.674       -40.777     -1.353      
+BCE     HAAA    H       H       0       0.892       -39.623     -0.597      
+BCE     HAAB    H       H       0       2.005       -40.456     0.164       
+BCE     HOAD    H       H       0       3.761       -38.753     0.525       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BCE         CAI         CAG      DOUBLE       y     1.386  0.0100     1.386  0.0100
+BCE         CAI         CAT      SINGLE       y     1.392  0.0100     1.392  0.0100
+BCE         CAG         CAF      SINGLE       y     1.376  0.0124     1.376  0.0124
+BCE         CAF         CAH      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BCE         CAH         CAJ      SINGLE       y     1.386  0.0100     1.386  0.0100
+BCE         CAJ         CAT      DOUBLE       y     1.392  0.0100     1.392  0.0100
+BCE         CAT         CAU      SINGLE       n     1.486  0.0100     1.486  0.0100
+BCE         CAU         CAN      DOUBLE       y     1.392  0.0110     1.392  0.0110
+BCE         CAU         CAM      SINGLE       y     1.392  0.0110     1.392  0.0110
+BCE         CAN         CAL      SINGLE       y     1.382  0.0100     1.382  0.0100
+BCE         CAL         CAS      DOUBLE       y     1.392  0.0100     1.392  0.0100
+BCE         CAM         CAK      DOUBLE       y     1.382  0.0100     1.382  0.0100
+BCE         CAK         CAS      SINGLE       y     1.392  0.0100     1.392  0.0100
+BCE         CAS         NAO      SINGLE       n     1.413  0.0100     1.413  0.0100
+BCE         NAO         CAQ      SINGLE       n     1.354  0.0105     1.354  0.0105
+BCE         CAQ         OAC      DOUBLE       n     1.235  0.0100     1.235  0.0100
+BCE         CAQ         CAR      SINGLE       n     1.468  0.0100     1.468  0.0100
+BCE         CAR         CAE      SINGLE       n     1.419  0.0117     1.419  0.0117
+BCE         CAR         CAP      DOUBLE       n     1.436  0.0200     1.436  0.0200
+BCE         CAE         NAB      TRIPLE       n     1.149  0.0200     1.149  0.0200
+BCE         CAP         CAA      SINGLE       n     1.486  0.0100     1.486  0.0100
+BCE         CAP         OAD      SINGLE       n     1.369  0.0200     1.369  0.0200
+BCE         CAI         HAI      SINGLE       n     1.082  0.0130     0.945  0.0170
+BCE         CAG         HAG      SINGLE       n     1.082  0.0130     0.943  0.0180
+BCE         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0161
+BCE         CAH         HAH      SINGLE       n     1.082  0.0130     0.943  0.0180
+BCE         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.945  0.0170
+BCE         CAN         HAN      SINGLE       n     1.082  0.0130     0.943  0.0154
+BCE         CAL         HAL      SINGLE       n     1.082  0.0130     0.942  0.0198
+BCE         CAM         HAM      SINGLE       n     1.082  0.0130     0.943  0.0154
+BCE         CAK         HAK      SINGLE       n     1.082  0.0130     0.942  0.0198
+BCE         NAO        HNAO      SINGLE       n     1.016  0.0100     0.876  0.0200
+BCE         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0145
+BCE         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0145
+BCE         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0145
+BCE         OAD        HOAD      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BCE         CAG         CAI         CAT     120.887    1.50
+BCE         CAG         CAI         HAI     119.636    1.50
+BCE         CAT         CAI         HAI     119.477    1.50
+BCE         CAI         CAG         CAF     120.251    1.50
+BCE         CAI         CAG         HAG     119.823    1.50
+BCE         CAF         CAG         HAG     119.926    1.50
+BCE         CAG         CAF         CAH     119.915    1.50
+BCE         CAG         CAF         HAF     120.043    1.50
+BCE         CAH         CAF         HAF     120.043    1.50
+BCE         CAF         CAH         CAJ     120.251    1.50
+BCE         CAF         CAH         HAH     119.926    1.50
+BCE         CAJ         CAH         HAH     119.823    1.50
+BCE         CAH         CAJ         CAT     120.887    1.50
+BCE         CAH         CAJ         HAJ     119.636    1.50
+BCE         CAT         CAJ         HAJ     119.477    1.50
+BCE         CAI         CAT         CAJ     117.808    1.50
+BCE         CAI         CAT         CAU     121.096    1.50
+BCE         CAJ         CAT         CAU     121.096    1.50
+BCE         CAT         CAU         CAN     121.185    1.50
+BCE         CAT         CAU         CAM     121.185    1.50
+BCE         CAN         CAU         CAM     117.629    1.50
+BCE         CAU         CAN         CAL     121.464    1.50
+BCE         CAU         CAN         HAN     119.399    1.50
+BCE         CAL         CAN         HAN     119.137    1.50
+BCE         CAN         CAL         CAS     120.110    1.50
+BCE         CAN         CAL         HAL     120.007    1.50
+BCE         CAS         CAL         HAL     119.884    1.50
+BCE         CAU         CAM         CAK     121.464    1.50
+BCE         CAU         CAM         HAM     119.399    1.50
+BCE         CAK         CAM         HAM     119.137    1.50
+BCE         CAM         CAK         CAS     120.110    1.50
+BCE         CAM         CAK         HAK     120.007    1.50
+BCE         CAS         CAK         HAK     119.884    1.50
+BCE         CAL         CAS         CAK     119.224    1.50
+BCE         CAL         CAS         NAO     120.388    3.00
+BCE         CAK         CAS         NAO     120.388    3.00
+BCE         CAS         NAO         CAQ     127.679    1.81
+BCE         CAS         NAO        HNAO     115.915    1.69
+BCE         CAQ         NAO        HNAO     116.406    2.52
+BCE         NAO         CAQ         OAC     121.269    1.88
+BCE         NAO         CAQ         CAR     117.843    1.83
+BCE         OAC         CAQ         CAR     120.888    1.50
+BCE         CAQ         CAR         CAE     118.099    1.72
+BCE         CAQ         CAR         CAP     124.216    3.00
+BCE         CAE         CAR         CAP     117.686    1.50
+BCE         CAR         CAE         NAB     180.000    3.00
+BCE         CAR         CAP         CAA     126.450    3.00
+BCE         CAR         CAP         OAD     117.918    3.00
+BCE         CAA         CAP         OAD     115.632    1.62
+BCE         CAP         CAA         HAA     109.454    1.50
+BCE         CAP         CAA        HAAA     109.454    1.50
+BCE         CAP         CAA        HAAB     109.454    1.50
+BCE         HAA         CAA        HAAA     109.400    1.50
+BCE         HAA         CAA        HAAB     109.400    1.50
+BCE        HAAA         CAA        HAAB     109.400    1.50
+BCE         CAP         OAD        HOAD     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BCE       const_sp2_sp2_1         CAF         CAG         CAI         CAT       0.000     5.0     2
+BCE              const_41         CAG         CAI         CAT         CAJ       0.000    10.0     2
+BCE              const_34         CAM         CAK         CAS         NAO     180.000    10.0     2
+BCE             sp2_sp2_5         CAL         CAS         NAO         CAQ     180.000     5.0     2
+BCE            sp2_sp2_11         OAC         CAQ         NAO         CAS       0.000     5.0     2
+BCE            sp2_sp2_14         NAO         CAQ         CAR         CAE       0.000     5.0     2
+BCE           other_tor_1         NAB         CAE         CAR         CAQ      90.000    10.0     1
+BCE            sp2_sp2_17         CAA         CAP         CAR         CAQ     180.000     5.0     2
+BCE             sp2_sp3_1         CAR         CAP         CAA         HAA       0.000    10.0     6
+BCE            sp2_sp2_21         CAR         CAP         OAD        HOAD     180.000     5.0     2
+BCE       const_sp2_sp2_5         CAH         CAF         CAG         CAI       0.000     5.0     2
+BCE       const_sp2_sp2_9         CAG         CAF         CAH         CAJ       0.000     5.0     2
+BCE              const_13         CAF         CAH         CAJ         CAT       0.000    10.0     2
+BCE              const_17         CAH         CAJ         CAT         CAI       0.000    10.0     2
+BCE             sp2_sp2_1         CAI         CAT         CAU         CAN     180.000     5.0     2
+BCE              const_22         CAL         CAN         CAU         CAT     180.000    10.0     2
+BCE              const_46         CAK         CAM         CAU         CAT     180.000    10.0     2
+BCE              const_25         CAS         CAL         CAN         CAU       0.000    10.0     2
+BCE              const_30         CAN         CAL         CAS         NAO     180.000    10.0     2
+BCE              const_37         CAS         CAK         CAM         CAU       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BCE    plan-1         CAF   0.020
+BCE    plan-1         CAG   0.020
+BCE    plan-1         CAH   0.020
+BCE    plan-1         CAI   0.020
+BCE    plan-1         CAJ   0.020
+BCE    plan-1         CAT   0.020
+BCE    plan-1         CAU   0.020
+BCE    plan-1         HAF   0.020
+BCE    plan-1         HAG   0.020
+BCE    plan-1         HAH   0.020
+BCE    plan-1         HAI   0.020
+BCE    plan-1         HAJ   0.020
+BCE    plan-2         CAK   0.020
+BCE    plan-2         CAL   0.020
+BCE    plan-2         CAM   0.020
+BCE    plan-2         CAN   0.020
+BCE    plan-2         CAS   0.020
+BCE    plan-2         CAT   0.020
+BCE    plan-2         CAU   0.020
+BCE    plan-2         HAK   0.020
+BCE    plan-2         HAL   0.020
+BCE    plan-2         HAM   0.020
+BCE    plan-2         HAN   0.020
+BCE    plan-2         NAO   0.020
+BCE    plan-3         CAQ   0.020
+BCE    plan-3         CAS   0.020
+BCE    plan-3        HNAO   0.020
+BCE    plan-3         NAO   0.020
+BCE    plan-4         CAQ   0.020
+BCE    plan-4         CAR   0.020
+BCE    plan-4         NAO   0.020
+BCE    plan-4         OAC   0.020
+BCE    plan-5         CAE   0.020
+BCE    plan-5         CAP   0.020
+BCE    plan-5         CAQ   0.020
+BCE    plan-5         CAR   0.020
+BCE    plan-6         CAA   0.020
+BCE    plan-6         CAP   0.020
+BCE    plan-6         CAR   0.020
+BCE    plan-6         OAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BCE           SMILES              ACDLabs 10.04                                                                           N#C\C(=C(\O)C)C(=O)Nc2ccc(c1ccccc1)cc2
+BCE SMILES_CANONICAL               CACTVS 3.341                                                                           C/C(O)=C(C#N)/C(=O)Nc1ccc(cc1)c2ccccc2
+BCE           SMILES               CACTVS 3.341                                                                             CC(O)=C(C#N)C(=O)Nc1ccc(cc1)c2ccccc2
+BCE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                         C/C(=C(\C#N)/C(=O)Nc1ccc(cc1)c2ccccc2)/O
+BCE           SMILES "OpenEye OEToolkits" 1.5.0                                                                             CC(=C(C#N)C(=O)Nc1ccc(cc1)c2ccccc2)O
+BCE            InChI                InChI  1.03 InChI=1S/C17H14N2O2/c1-12(20)16(11-18)17(21)19-15-9-7-14(8-10-15)13-5-3-2-4-6-13/h2-10,20H,1H3,(H,19,21)/b16-12-
+BCE         InChIKey                InChI  1.03                                                                                      MUVPBAIVOHJDOC-VBKFSLOCSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BCE acedrg               243         "dictionary generator"                  
+BCE acedrg_database      11          "data source"                           
+BCE rdkit                2017.03.2   "Chemoinformatics tool"
+BCE refmac5              5.8.0238    "optimization tool"                     

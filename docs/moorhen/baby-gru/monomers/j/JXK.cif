@@ -1,0 +1,206 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JXK     JXK      9-(3-azanylpropyl)-8-bromanyl-purin-6-amine     NON-POLYMER     26     15     .     
+#
+data_comp_JXK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JXK     C7      C       CR6     0       20.512      13.384      11.541      
+JXK     C6      C       CR16    0       21.508      11.326      11.958      
+JXK     C5      C       CR56    0       19.510      11.646      12.826      
+JXK     C1      C       CH2     0       17.307      9.175       13.357      
+JXK     N3      N       NRD6    0       20.534      10.786      12.693      
+JXK     N       N       NT2     0       15.909      7.836       14.929      
+JXK     C       C       CH2     0       17.088      7.844       14.059      
+JXK     C2      C       CH2     0       17.984      10.207      14.241      
+JXK     C3      C       CR5     0       17.606      12.578      13.372      
+JXK     C4      C       CR56    0       19.414      12.925      12.302      
+JXK     N1      N       NT      0       18.338      11.431      13.517      
+JXK     N2      N       NRD5    0       18.199      13.506      12.657      
+JXK     N4      N       NRD6    0       21.566      12.540      11.386      
+JXK     N5      N       NH2     0       20.566      14.587      10.975      
+JXK     BR      BR      BR      0       15.925      12.829      14.109      
+JXK     H8      H       H       0       22.265      10.777      11.821      
+JXK     H4      H       H       0       16.446      9.523       13.064      
+JXK     H5      H       H       0       17.854      9.027       12.565      
+JXK     H11     H       H       0       15.902      7.114       15.446      
+JXK     H1      H       H       0       15.907      8.543       15.466      
+JXK     H2      H       H       0       17.878      7.630       14.597      
+JXK     H3      H       H       0       16.987      7.140       13.386      
+JXK     H6      H       H       0       18.799      9.822       14.620      
+JXK     H7      H       H       0       17.390      10.437      14.982      
+JXK     H9      H       H       0       21.071      14.715      10.268      
+JXK     H10     H       H       0       20.096      15.247      11.311      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JXK          C7          N5      SINGLE       n     1.330  0.0100     1.330  0.0100
+JXK          C7          N4      DOUBLE       y     1.354  0.0100     1.354  0.0100
+JXK          C7          C4      SINGLE       y     1.409  0.0100     1.409  0.0100
+JXK          C6          N4      SINGLE       y     1.339  0.0100     1.339  0.0100
+JXK          C4          N2      SINGLE       y     1.391  0.0100     1.391  0.0100
+JXK          C3          N2      DOUBLE       y     1.311  0.0100     1.311  0.0100
+JXK          C5          C4      DOUBLE       y     1.383  0.0100     1.383  0.0100
+JXK          C6          N3      DOUBLE       y     1.330  0.0100     1.330  0.0100
+JXK          C3          BR      SINGLE       n     1.852  0.0100     1.852  0.0100
+JXK          C3          N1      SINGLE       y     1.368  0.0147     1.368  0.0147
+JXK          C5          N3      SINGLE       y     1.341  0.0100     1.341  0.0100
+JXK          C5          N1      SINGLE       y     1.384  0.0181     1.384  0.0181
+JXK          C2          N1      SINGLE       n     1.464  0.0101     1.464  0.0101
+JXK          C1           C      SINGLE       n     1.521  0.0115     1.521  0.0115
+JXK          C1          C2      SINGLE       n     1.518  0.0100     1.518  0.0100
+JXK           N           C      SINGLE       n     1.466  0.0117     1.466  0.0117
+JXK          C6          H8      SINGLE       n     1.082  0.0130     0.945  0.0200
+JXK          C1          H4      SINGLE       n     1.089  0.0100     0.974  0.0100
+JXK          C1          H5      SINGLE       n     1.089  0.0100     0.974  0.0100
+JXK           N         H11      SINGLE       n     1.036  0.0160     0.888  0.0200
+JXK           N          H1      SINGLE       n     1.036  0.0160     0.888  0.0200
+JXK           C          H2      SINGLE       n     1.089  0.0100     0.979  0.0106
+JXK           C          H3      SINGLE       n     1.089  0.0100     0.979  0.0106
+JXK          C2          H6      SINGLE       n     1.089  0.0100     0.978  0.0180
+JXK          C2          H7      SINGLE       n     1.089  0.0100     0.978  0.0180
+JXK          N5          H9      SINGLE       n     1.016  0.0100     0.877  0.0200
+JXK          N5         H10      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JXK          N5          C7          N4     118.773    1.50
+JXK          N5          C7          C4     123.765    1.50
+JXK          N4          C7          C4     117.462    1.50
+JXK          N4          C6          N3     129.385    1.50
+JXK          N4          C6          H8     115.286    1.50
+JXK          N3          C6          H8     115.329    1.50
+JXK          C4          C5          N3     127.116    1.50
+JXK          C4          C5          N1     107.346    1.69
+JXK          N3          C5          N1     125.538    1.56
+JXK           C          C1          C2     112.752    1.56
+JXK           C          C1          H4     108.805    1.50
+JXK           C          C1          H5     108.805    1.50
+JXK          C2          C1          H4     108.995    1.50
+JXK          C2          C1          H5     108.995    1.50
+JXK          H4          C1          H5     107.783    1.50
+JXK          C6          N3          C5     110.494    1.50
+JXK           C           N         H11     110.839    3.00
+JXK           C           N          H1     110.839    3.00
+JXK         H11           N          H1     107.243    3.00
+JXK          C1           C           N     113.282    2.68
+JXK          C1           C          H2     109.099    1.50
+JXK          C1           C          H3     109.099    1.50
+JXK           N           C          H2     108.763    1.50
+JXK           N           C          H3     108.763    1.50
+JXK          H2           C          H3     107.806    1.50
+JXK          N1          C2          C1     112.729    1.50
+JXK          N1          C2          H6     108.458    1.53
+JXK          N1          C2          H7     108.458    1.53
+JXK          C1          C2          H6     109.073    1.50
+JXK          C1          C2          H7     109.073    1.50
+JXK          H6          C2          H7     107.797    1.50
+JXK          N2          C3          BR     122.049    2.14
+JXK          N2          C3          N1     114.857    1.50
+JXK          BR          C3          N1     123.093    1.50
+JXK          C7          C4          N2     132.357    1.50
+JXK          C7          C4          C5     116.969    1.50
+JXK          N2          C4          C5     110.675    1.50
+JXK          C3          N1          C5     107.594    1.50
+JXK          C3          N1          C2     124.795    3.00
+JXK          C5          N1          C2     124.908    2.72
+JXK          C4          N2          C3     103.769    1.50
+JXK          C7          N4          C6     118.575    1.50
+JXK          C7          N5          H9     119.723    1.50
+JXK          C7          N5         H10     119.723    1.50
+JXK          H9          N5         H10     120.554    1.88
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JXK              const_14          N5          C7          N4          C6     180.000    10.0     2
+JXK             sp2_sp2_3          N4          C7          N5          H9       0.000     5.0     2
+JXK              const_24          N2          C4          C7          N5       0.000    10.0     2
+JXK              const_15          N3          C6          N4          C7       0.000    10.0     2
+JXK              const_17          N4          C6          N3          C5       0.000    10.0     2
+JXK              const_26          C4          C5          N1          C2     180.000    10.0     2
+JXK              const_19          C4          C5          N3          C6       0.000    10.0     2
+JXK       const_sp2_sp2_1          C7          C4          C5          N3       0.000     5.0     2
+JXK             sp3_sp3_1           N           C          C1          C2     180.000    10.0     3
+JXK            sp3_sp3_10           C          C1          C2          N1     180.000    10.0     3
+JXK            sp3_sp3_19          C1           C           N         H11     180.000    10.0     3
+JXK             sp2_sp3_2          C3          N1          C2          C1     -90.000    10.0     6
+JXK              const_12          BR          C3          N1          C2       0.000    10.0     2
+JXK       const_sp2_sp2_8          BR          C3          N2          C4     180.000     5.0     2
+JXK       const_sp2_sp2_6          C7          C4          N2          C3     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JXK    plan-1          BR   0.020
+JXK    plan-1          C2   0.020
+JXK    plan-1          C3   0.020
+JXK    plan-1          C4   0.020
+JXK    plan-1          C5   0.020
+JXK    plan-1          C6   0.020
+JXK    plan-1          C7   0.020
+JXK    plan-1          H8   0.020
+JXK    plan-1          N1   0.020
+JXK    plan-1          N2   0.020
+JXK    plan-1          N3   0.020
+JXK    plan-1          N4   0.020
+JXK    plan-1          N5   0.020
+JXK    plan-2          C7   0.020
+JXK    plan-2         H10   0.020
+JXK    plan-2          H9   0.020
+JXK    plan-2          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JXK            InChI                InChI  1.03 InChI=1S/C8H11BrN6/c9-8-14-5-6(11)12-4-13-7(5)15(8)3-1-2-10/h4H,1-3,10H2,(H2,11,12,13)
+JXK         InChIKey                InChI  1.03                                                            PUSZSAUISWVTAT-UHFFFAOYSA-N
+JXK SMILES_CANONICAL               CACTVS 3.385                                                               NCCCn1c(Br)nc2c(N)ncnc12
+JXK           SMILES               CACTVS 3.385                                                               NCCCn1c(Br)nc2c(N)ncnc12
+JXK SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                           c1nc(c2c(n1)n(c(n2)Br)CCCN)N
+JXK           SMILES "OpenEye OEToolkits" 2.0.7                                                           c1nc(c2c(n1)n(c(n2)Br)CCCN)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JXK acedrg               243         "dictionary generator"                  
+JXK acedrg_database      11          "data source"                           
+JXK rdkit                2017.03.2   "Chemoinformatics tool"
+JXK refmac5              5.8.0238    "optimization tool"                     

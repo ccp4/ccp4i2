@@ -1,0 +1,256 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GMP     GMP      GUANOSINE     NON-POLYMER     33     20     .     
+#
+data_comp_GMP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GMP     "O5'"   O       OH1     0       31.023      62.348      13.095      
+GMP     "C5'"   C       CH2     0       30.880      60.990      13.491      
+GMP     "C4'"   C       CH1     0       32.039      60.141      13.016      
+GMP     "O4'"   O       O2      0       32.223      60.322      11.591      
+GMP     "C3'"   C       CH1     0       33.402      60.499      13.617      
+GMP     "O3'"   O       OH1     0       33.583      59.871      14.880      
+GMP     "C2'"   C       CH1     0       34.373      59.978      12.551      
+GMP     "O2'"   O       OH1     0       34.741      58.628      12.744      
+GMP     "C1'"   C       CH1     0       33.583      60.160      11.252      
+GMP     N9      N       NR5     0       33.999      61.321      10.471      
+GMP     C8      C       CR15    0       33.932      62.634      10.866      
+GMP     N7      N       NRD5    0       34.376      63.473      9.962       
+GMP     C5      C       CR56    0       34.763      62.661      8.903       
+GMP     C6      C       CR6     0       35.321      63.006      7.643       
+GMP     O6      O       O       0       35.589      64.136      7.210       
+GMP     N1      N       NR6     0       35.569      61.874      6.857       
+GMP     C2      C       CR6     0       35.310      60.575      7.237       
+GMP     N2      N       NH2     0       35.612      59.614      6.354       
+GMP     N3      N       NRD6    0       34.785      60.248      8.422       
+GMP     C4      C       CR56    0       34.537      61.332      9.203       
+GMP     "HO5'"  H       H       0       30.412      62.808      13.461      
+GMP     "H5'1"  H       H       0       30.045      60.632      13.121      
+GMP     "H5'2"  H       H       0       30.824      60.943      14.469      
+GMP     "H4'"   H       H       0       31.840      59.197      13.196      
+GMP     "H3'"   H       H       0       33.489      61.482      13.709      
+GMP     "HO3'"  H       H       0       34.374      60.022      15.150      
+GMP     "H2'"   H       H       0       35.192      60.542      12.533      
+GMP     "HO2'"  H       H       0       34.046      58.141      12.763      
+GMP     "H1'"   H       H       0       33.686      59.348      10.707      
+GMP     H8      H       H       0       33.598      62.904      11.704      
+GMP     HN1     H       H       0       35.923      62.012      6.043       
+GMP     HN21    H       H       0       35.993      58.873      6.627       
+GMP     HN22    H       H       0       35.427      59.728      5.504       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GMP       "O5'"       "C5'"      SINGLE       n     1.421  0.0131     1.421  0.0131
+GMP       "C5'"       "C4'"      SINGLE       n     1.511  0.0177     1.511  0.0177
+GMP       "C4'"       "O4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+GMP       "C4'"       "C3'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+GMP       "O4'"       "C1'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+GMP       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+GMP       "C3'"       "C2'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+GMP       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+GMP       "C2'"       "C1'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+GMP       "C1'"          N9      SINGLE       n     1.458  0.0100     1.458  0.0100
+GMP          N9          C8      SINGLE       y     1.372  0.0100     1.372  0.0100
+GMP          N9          C4      SINGLE       y     1.375  0.0100     1.375  0.0100
+GMP          C8          N7      DOUBLE       y     1.312  0.0100     1.312  0.0100
+GMP          N7          C5      SINGLE       y     1.390  0.0100     1.390  0.0100
+GMP          C5          C6      SINGLE       y     1.417  0.0103     1.417  0.0103
+GMP          C5          C4      DOUBLE       y     1.377  0.0100     1.377  0.0100
+GMP          C6          O6      DOUBLE       n     1.239  0.0100     1.239  0.0100
+GMP          C6          N1      SINGLE       y     1.396  0.0107     1.396  0.0107
+GMP          N1          C2      SINGLE       y     1.374  0.0100     1.374  0.0100
+GMP          C2          N2      SINGLE       n     1.340  0.0101     1.340  0.0101
+GMP          C2          N3      DOUBLE       y     1.333  0.0104     1.333  0.0104
+GMP          N3          C4      SINGLE       y     1.355  0.0100     1.355  0.0100
+GMP       "O5'"      "HO5'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+GMP       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.981  0.0200
+GMP       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.981  0.0200
+GMP       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+GMP       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+GMP       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+GMP       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+GMP       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+GMP       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+GMP          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+GMP          N1         HN1      SINGLE       n     1.016  0.0100     0.897  0.0200
+GMP          N2        HN21      SINGLE       n     1.016  0.0100     0.877  0.0200
+GMP          N2        HN22      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GMP       "C5'"       "O5'"      "HO5'"     109.007    3.00
+GMP       "O5'"       "C5'"       "C4'"     111.279    1.98
+GMP       "O5'"       "C5'"      "H5'1"     109.280    1.50
+GMP       "O5'"       "C5'"      "H5'2"     109.280    1.50
+GMP       "C4'"       "C5'"      "H5'1"     109.326    2.00
+GMP       "C4'"       "C5'"      "H5'2"     109.326    2.00
+GMP      "H5'1"       "C5'"      "H5'2"     108.248    2.26
+GMP       "C5'"       "C4'"       "O4'"     109.170    1.50
+GMP       "C5'"       "C4'"       "C3'"     114.598    1.97
+GMP       "C5'"       "C4'"       "H4'"     109.037    1.87
+GMP       "O4'"       "C4'"       "C3'"     105.388    1.50
+GMP       "O4'"       "C4'"       "H4'"     108.947    1.50
+GMP       "C3'"       "C4'"       "H4'"     109.363    1.86
+GMP       "C4'"       "O4'"       "C1'"     109.903    1.50
+GMP       "C4'"       "C3'"       "O3'"     111.281    2.46
+GMP       "C4'"       "C3'"       "C2'"     102.602    1.50
+GMP       "C4'"       "C3'"       "H3'"     110.452    2.54
+GMP       "O3'"       "C3'"       "C2'"     111.581    2.83
+GMP       "O3'"       "C3'"       "H3'"     110.380    1.67
+GMP       "C2'"       "C3'"       "H3'"     110.504    1.75
+GMP       "C3'"       "O3'"      "HO3'"     108.744    3.00
+GMP       "C3'"       "C2'"       "O2'"     112.782    2.45
+GMP       "C3'"       "C2'"       "C1'"     101.239    1.50
+GMP       "C3'"       "C2'"       "H2'"     110.596    1.51
+GMP       "O2'"       "C2'"       "C1'"     111.715    2.69
+GMP       "O2'"       "C2'"       "H2'"     110.448    1.97
+GMP       "C1'"       "C2'"       "H2'"     110.636    1.70
+GMP       "C2'"       "O2'"      "HO2'"     109.103    2.13
+GMP       "O4'"       "C1'"       "C2'"     106.047    1.50
+GMP       "O4'"       "C1'"          N9     108.477    1.50
+GMP       "O4'"       "C1'"       "H1'"     109.807    1.50
+GMP       "C2'"       "C1'"          N9     113.824    1.50
+GMP       "C2'"       "C1'"       "H1'"     109.015    1.50
+GMP          N9       "C1'"       "H1'"     109.561    1.50
+GMP       "C1'"          N9          C8     126.829    1.91
+GMP       "C1'"          N9          C4     127.440    1.80
+GMP          C8          N9          C4     105.731    1.50
+GMP          N9          C8          N7     113.507    1.50
+GMP          N9          C8          H8     123.187    1.50
+GMP          N7          C8          H8     123.307    1.50
+GMP          C8          N7          C5     104.778    1.50
+GMP          N7          C5          C6     130.030    1.50
+GMP          N7          C5          C4     110.574    1.50
+GMP          C6          C5          C4     119.397    1.50
+GMP          C5          C6          O6     128.244    1.50
+GMP          C5          C6          N1     111.367    1.50
+GMP          O6          C6          N1     120.389    1.50
+GMP          C6          N1          C2     125.351    1.50
+GMP          C6          N1         HN1     116.978    2.44
+GMP          C2          N1         HN1     117.677    2.71
+GMP          N1          C2          N2     116.576    1.50
+GMP          N1          C2          N3     123.602    1.50
+GMP          N2          C2          N3     119.821    1.50
+GMP          C2          N2        HN21     119.868    1.50
+GMP          C2          N2        HN22     119.868    1.50
+GMP        HN21          N2        HN22     120.263    1.96
+GMP          C2          N3          C4     112.066    1.50
+GMP          N9          C4          C5     105.411    1.50
+GMP          N9          C4          N3     126.378    1.50
+GMP          C5          C4          N3     128.211    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GMP            sp3_sp3_25       "C4'"       "C5'"       "O5'"      "HO5'"     180.000    10.0     3
+GMP              const_21          N9          C8          N7          C5       0.000    10.0     2
+GMP              const_24          C6          C5          N7          C8     180.000    10.0     2
+GMP       const_sp2_sp2_4          N7          C5          C6          O6       0.000     5.0     2
+GMP              const_25          N9          C4          C5          N7       0.000    10.0     2
+GMP       const_sp2_sp2_7          O6          C6          N1          C2     180.000     5.0     2
+GMP              const_11          N2          C2          N1          C6     180.000    10.0     2
+GMP             sp2_sp2_1          N1          C2          N2        HN21     180.000     5.0     2
+GMP              const_14          N2          C2          N3          C4     180.000    10.0     2
+GMP              const_16          N9          C4          N3          C2     180.000    10.0     2
+GMP            sp3_sp3_28       "O4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+GMP             sp3_sp3_2       "C5'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+GMP            sp3_sp3_41       "O3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+GMP             sp3_sp3_4       "C2'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+GMP            sp3_sp3_46       "C4'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+GMP            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+GMP            sp3_sp3_49       "C3'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+GMP             sp3_sp3_8       "O4'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+GMP             sp2_sp3_1          C8          N9       "C1'"       "O4'"     150.000    10.0     6
+GMP              const_18          N7          C8          N9       "C1'"     180.000    10.0     2
+GMP              const_30          C5          C4          N9       "C1'"     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GMP    chir_1    "C4'"    "O4'"    "C3'"    "C5'"    negative
+GMP    chir_2    "C3'"    "O3'"    "C4'"    "C2'"    positive
+GMP    chir_3    "C2'"    "O2'"    "C1'"    "C3'"    negative
+GMP    chir_4    "C1'"    "O4'"    N9    "C2'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GMP    plan-1       "C1'"   0.020
+GMP    plan-1          C2   0.020
+GMP    plan-1          C4   0.020
+GMP    plan-1          C5   0.020
+GMP    plan-1          C6   0.020
+GMP    plan-1          C8   0.020
+GMP    plan-1          H8   0.020
+GMP    plan-1         HN1   0.020
+GMP    plan-1          N1   0.020
+GMP    plan-1          N2   0.020
+GMP    plan-1          N3   0.020
+GMP    plan-1          N7   0.020
+GMP    plan-1          N9   0.020
+GMP    plan-1          O6   0.020
+GMP    plan-2          C2   0.020
+GMP    plan-2        HN21   0.020
+GMP    plan-2        HN22   0.020
+GMP    plan-2          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GMP           SMILES              ACDLabs 10.04                                                                                                     O=C1c2ncn(c2N=C(N)N1)C3OC(C(O)C3O)CO
+GMP            InChI                InChI  1.03 InChI=1S/C10H13N5O5/c11-10-13-7-4(8(19)14-10)12-2-15(7)9-6(18)5(17)3(1-16)20-9/h2-3,5-6,9,16-18H,1H2,(H3,11,13,14,19)/t3-,5-,6-,9-/m1/s1
+GMP         InChIKey                InChI  1.03                                                                                                              NYHBQMYGNKIUIF-UUOKFMHZSA-N
+GMP SMILES_CANONICAL               CACTVS 3.385                                                                                   NC1=Nc2n(cnc2C(=O)N1)[C@@H]3O[C@H](CO)[C@@H](O)[C@H]3O
+GMP           SMILES               CACTVS 3.385                                                                                         NC1=Nc2n(cnc2C(=O)N1)[CH]3O[CH](CO)[CH](O)[CH]3O
+GMP SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                                 c1nc2c(n1[C@H]3[C@@H]([C@@H]([C@H](O3)CO)O)O)N=C(NC2=O)N
+GMP           SMILES "OpenEye OEToolkits" 1.7.5                                                                                                   c1nc2c(n1C3C(C(C(O3)CO)O)O)N=C(NC2=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GMP acedrg               243         "dictionary generator"                  
+GMP acedrg_database      11          "data source"                           
+GMP rdkit                2017.03.2   "Chemoinformatics tool"
+GMP refmac5              5.8.0238    "optimization tool"                     

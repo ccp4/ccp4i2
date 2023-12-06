@@ -1848,7 +1848,7 @@ class CPluginScript(CObject):
         return
 
     def watchFile(self, fileName, handler, minDeltaSize=0, unwatchWhileHandling=False):
-        #print 'CpluginScript.watchFile',fileName,handler
+        print ('CpluginScript.watchFile',fileName,handler)
         parentDirectoryPath, fileRoot = os.path.split(fileName)
         self.watchedFiles()[fileName] = {"parentDirectoryPath" : parentDirectoryPath, "handler" : handler, "maxSizeYet" : 0, "minDeltaSize" : minDeltaSize, "unwatchWhileHandling" : unwatchWhileHandling}
         if os.path.isfile(fileName):

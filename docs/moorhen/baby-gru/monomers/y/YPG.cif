@@ -1,0 +1,337 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YPG     YPG      "[3-[(3~{R},4~{R})-3-(2-azanyl-6-oxidanylidene-1~{H}-purin-9-yl)-4-[(2~{S})-2-oxidanyl-2-phosphono-ethoxy]pyrrolidin-1-yl]-3-oxidanylidene-propyl]phosphonic acid"     NON-POLYMER     50     32     .     
+#
+data_comp_YPG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YPG     C4      C       CR56    0       32.720      8.228       23.253      
+YPG     C5      C       CR56    0       33.692      7.445       22.662      
+YPG     C6      C       CR6     0       34.968      7.338       23.277      
+YPG     C8      C       CR15    0       31.974      7.301       21.398      
+YPG     N1      N       NR6     0       35.041      8.090       24.457      
+YPG     N2      N       NH2     0       34.265      9.503       26.121      
+YPG     N3      N       NRD6    0       32.814      8.954       24.401      
+YPG     OAI     O       OP      -1      27.649      8.103       15.658      
+YPG     PBF     P       P       0       27.385      7.530       17.009      
+YPG     OAJ     O       O       0       27.729      6.079       17.071      
+YPG     OAE     O       OP      -1      25.985      7.786       17.454      
+YPG     CAZ     C       CH1     0       28.483      8.396       18.180      
+YPG     OAF     O       OH1     0       29.811      8.327       17.701      
+YPG     CAN     C       CH2     0       28.415      7.801       19.566      
+YPG     OAT     O       O2      0       29.190      8.603       20.471      
+YPG     CBA     C       CH1     0       29.137      8.204       21.837      
+YPG     CAO     C       CH2     0       27.900      8.801       22.495      
+YPG     NBC     N       NR5     0       28.303      9.004       23.898      
+YPG     CAU     C       C       0       27.520      9.402       24.918      
+YPG     OAB     O       O       0       27.963      9.425       26.065      
+YPG     CAL     C       CH2     0       26.080      9.813       24.680      
+YPG     CAM     C       CH2     0       25.834      11.302      24.879      
+YPG     PBE     P       P       0       26.438      12.318      23.513      
+YPG     OAG     O       OP      -1      25.914      13.695      23.743      
+YPG     OAH     O       O       0       25.912      11.742      22.241      
+YPG     OAD     O       OP      -1      27.929      12.291      23.548      
+YPG     CAP     C       CH2     0       29.742      8.728       24.064      
+YPG     CBB     C       CH1     0       30.297      8.796       22.636      
+YPG     N9      N       NT      0       31.607      8.125       22.431      
+YPG     C2      C       CR6     0       34.015      8.848       24.978      
+YPG     O6      O       O       0       35.949      6.687       22.891      
+YPG     N7      N       NRD5    0       33.209      6.866       21.493      
+YPG     H1      H       H       0       31.404      7.067       20.698      
+YPG     H2      H       H       0       35.820      8.071       24.903      
+YPG     H3      H       H       0       35.041      9.893       26.240      
+YPG     H4      H       H       0       33.651      9.539       26.746      
+YPG     H7      H       H       0       28.212      9.349       18.228      
+YPG     H8      H       H       0       30.282      8.904       18.105      
+YPG     H9      H       H       0       28.767      6.887       19.556      
+YPG     H10     H       H       0       27.484      7.769       19.870      
+YPG     H11     H       H       0       29.137      7.218       21.915      
+YPG     H12     H       H       0       27.650      9.660       22.070      
+YPG     H13     H       H       0       27.133      8.176       22.433      
+YPG     H14     H       H       0       25.514      9.318       25.299      
+YPG     H15     H       H       0       25.811      9.565       23.780      
+YPG     H16     H       H       0       26.267      11.585      25.711      
+YPG     H17     H       H       0       24.873      11.449      24.993      
+YPG     H20     H       H       0       29.887      7.842       24.457      
+YPG     H21     H       H       0       30.163      9.404       24.634      
+YPG     H22     H       H       0       30.386      9.746       22.379      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YPG         PBF         OAJ      DOUBLE       n     1.492  0.0200     1.492  0.0200
+YPG         OAI         PBF      SINGLE       n     1.492  0.0200     1.492  0.0200
+YPG         CAZ         OAF      SINGLE       n     1.413  0.0104     1.413  0.0104
+YPG         PBF         CAZ      SINGLE       n     1.823  0.0200     1.823  0.0200
+YPG         PBF         OAE      SINGLE       n     1.492  0.0200     1.492  0.0200
+YPG         CAZ         CAN      SINGLE       n     1.510  0.0121     1.510  0.0121
+YPG         CAN         OAT      SINGLE       n     1.432  0.0200     1.432  0.0200
+YPG         OAT         CBA      SINGLE       n     1.423  0.0100     1.423  0.0100
+YPG         CBA         CAO      SINGLE       n     1.523  0.0100     1.523  0.0100
+YPG         CBA         CBB      SINGLE       n     1.528  0.0100     1.528  0.0100
+YPG         CAO         NBC      SINGLE       n     1.470  0.0105     1.470  0.0105
+YPG         PBE         OAH      DOUBLE       n     1.492  0.0200     1.492  0.0200
+YPG          C8          N7      DOUBLE       y     1.311  0.0100     1.311  0.0100
+YPG          C8          N9      SINGLE       y     1.368  0.0147     1.368  0.0147
+YPG          C5          N7      SINGLE       y     1.390  0.0100     1.390  0.0100
+YPG         CBB          N9      SINGLE       n     1.478  0.0121     1.478  0.0121
+YPG         CAP         CBB      SINGLE       n     1.533  0.0142     1.533  0.0142
+YPG          C4          N9      SINGLE       y     1.384  0.0181     1.384  0.0181
+YPG         CAL         CAM      SINGLE       n     1.519  0.0186     1.519  0.0186
+YPG         CAU         CAL      SINGLE       n     1.511  0.0121     1.511  0.0121
+YPG         NBC         CAU      SINGLE       n     1.339  0.0100     1.339  0.0100
+YPG         NBC         CAP      SINGLE       n     1.470  0.0105     1.470  0.0105
+YPG          C4          C5      DOUBLE       y     1.378  0.0100     1.378  0.0100
+YPG          C5          C6      SINGLE       y     1.417  0.0103     1.417  0.0103
+YPG          C4          N3      SINGLE       y     1.358  0.0100     1.358  0.0100
+YPG         CAM         PBE      SINGLE       n     1.803  0.0200     1.803  0.0200
+YPG         PBE         OAG      SINGLE       n     1.492  0.0200     1.492  0.0200
+YPG         PBE         OAD      SINGLE       n     1.492  0.0200     1.492  0.0200
+YPG         CAU         OAB      DOUBLE       n     1.227  0.0149     1.227  0.0149
+YPG          C6          O6      DOUBLE       n     1.239  0.0100     1.239  0.0100
+YPG          C6          N1      SINGLE       y     1.396  0.0107     1.396  0.0107
+YPG          N3          C2      DOUBLE       y     1.333  0.0104     1.333  0.0104
+YPG          N1          C2      SINGLE       y     1.374  0.0100     1.374  0.0100
+YPG          N2          C2      SINGLE       n     1.340  0.0101     1.340  0.0101
+YPG          C8          H1      SINGLE       n     1.082  0.0130     0.933  0.0103
+YPG          N1          H2      SINGLE       n     1.016  0.0100     0.897  0.0200
+YPG          N2          H3      SINGLE       n     1.016  0.0100     0.877  0.0200
+YPG          N2          H4      SINGLE       n     1.016  0.0100     0.877  0.0200
+YPG         CAZ          H7      SINGLE       n     1.089  0.0100     0.992  0.0156
+YPG         OAF          H8      SINGLE       n     0.970  0.0120     0.848  0.0200
+YPG         CAN          H9      SINGLE       n     1.089  0.0100     0.980  0.0146
+YPG         CAN         H10      SINGLE       n     1.089  0.0100     0.980  0.0146
+YPG         CBA         H11      SINGLE       n     1.089  0.0100     0.988  0.0200
+YPG         CAO         H12      SINGLE       n     1.089  0.0100     0.991  0.0200
+YPG         CAO         H13      SINGLE       n     1.089  0.0100     0.991  0.0200
+YPG         CAL         H14      SINGLE       n     1.089  0.0100     0.974  0.0141
+YPG         CAL         H15      SINGLE       n     1.089  0.0100     0.974  0.0141
+YPG         CAM         H16      SINGLE       n     1.089  0.0100     0.979  0.0200
+YPG         CAM         H17      SINGLE       n     1.089  0.0100     0.979  0.0200
+YPG         CAP         H20      SINGLE       n     1.089  0.0100     0.980  0.0177
+YPG         CAP         H21      SINGLE       n     1.089  0.0100     0.980  0.0177
+YPG         CBB         H22      SINGLE       n     1.089  0.0100     0.988  0.0121
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YPG          N9          C4          C5     106.799    1.69
+YPG          N9          C4          N3     124.990    1.56
+YPG          C5          C4          N3     128.211    1.50
+YPG          N7          C5          C4     110.629    1.50
+YPG          N7          C5          C6     129.975    1.50
+YPG          C4          C5          C6     119.397    1.50
+YPG          C5          C6          O6     128.244    1.50
+YPG          C5          C6          N1     111.367    1.50
+YPG          O6          C6          N1     120.389    1.50
+YPG          N7          C8          N9     113.450    1.50
+YPG          N7          C8          H1     123.311    1.50
+YPG          N9          C8          H1     123.238    1.68
+YPG          C6          N1          C2     125.351    1.50
+YPG          C6          N1          H2     116.978    2.44
+YPG          C2          N1          H2     117.677    2.71
+YPG          C2          N2          H3     119.868    1.50
+YPG          C2          N2          H4     119.868    1.50
+YPG          H3          N2          H4     120.263    1.96
+YPG          C4          N3          C2     112.066    1.50
+YPG         OAJ         PBF         OAI     112.502    1.50
+YPG         OAJ         PBF         CAZ     110.326    3.00
+YPG         OAJ         PBF         OAE     112.502    1.50
+YPG         OAI         PBF         CAZ     110.326    3.00
+YPG         OAI         PBF         OAE     112.502    1.50
+YPG         CAZ         PBF         OAE     110.326    3.00
+YPG         OAF         CAZ         PBF     108.256    2.94
+YPG         OAF         CAZ         CAN     109.048    2.44
+YPG         OAF         CAZ          H7     108.198    1.81
+YPG         PBF         CAZ         CAN     111.410    2.87
+YPG         PBF         CAZ          H7     108.528    1.50
+YPG         CAN         CAZ          H7     108.441    1.50
+YPG         CAZ         OAF          H8     109.133    3.00
+YPG         CAZ         CAN         OAT     109.482    3.00
+YPG         CAZ         CAN          H9     110.103    1.50
+YPG         CAZ         CAN         H10     110.103    1.50
+YPG         OAT         CAN          H9     109.660    1.50
+YPG         OAT         CAN         H10     109.660    1.50
+YPG          H9         CAN         H10     108.500    1.50
+YPG         CAN         OAT         CBA     114.719    2.29
+YPG         OAT         CBA         CAO     109.088    3.00
+YPG         OAT         CBA         CBB     110.334    2.29
+YPG         OAT         CBA         H11     110.257    1.68
+YPG         CAO         CBA         CBB     104.443    2.26
+YPG         CAO         CBA         H11     110.749    1.50
+YPG         CBB         CBA         H11     110.108    1.94
+YPG         CBA         CAO         NBC     102.939    1.50
+YPG         CBA         CAO         H12     111.050    1.50
+YPG         CBA         CAO         H13     111.050    1.50
+YPG         NBC         CAO         H12     111.006    1.50
+YPG         NBC         CAO         H13     111.006    1.50
+YPG         H12         CAO         H13     108.952    1.50
+YPG         CAO         NBC         CAU     124.814    3.00
+YPG         CAO         NBC         CAP     110.373    1.50
+YPG         CAU         NBC         CAP     124.814    3.00
+YPG         CAL         CAU         NBC     118.302    1.96
+YPG         CAL         CAU         OAB     121.054    1.66
+YPG         NBC         CAU         OAB     120.645    1.54
+YPG         CAM         CAL         CAU     113.384    1.85
+YPG         CAM         CAL         H14     108.974    1.50
+YPG         CAM         CAL         H15     108.974    1.50
+YPG         CAU         CAL         H14     108.699    1.50
+YPG         CAU         CAL         H15     108.699    1.50
+YPG         H14         CAL         H15     107.739    1.50
+YPG         CAL         CAM         PBE     111.410    2.87
+YPG         CAL         CAM         H16     108.941    1.50
+YPG         CAL         CAM         H17     108.941    1.50
+YPG         PBE         CAM         H16     109.545    1.50
+YPG         PBE         CAM         H17     109.545    1.50
+YPG         H16         CAM         H17     107.240    1.91
+YPG         OAH         PBE         CAM     108.625    3.00
+YPG         OAH         PBE         OAG     111.786    1.50
+YPG         OAH         PBE         OAD     111.786    1.50
+YPG         CAM         PBE         OAG     108.625    3.00
+YPG         CAM         PBE         OAD     108.625    3.00
+YPG         OAG         PBE         OAD     111.786    1.50
+YPG         CBB         CAP         NBC     102.354    1.84
+YPG         CBB         CAP         H20     111.094    1.50
+YPG         CBB         CAP         H21     111.094    1.50
+YPG         NBC         CAP         H20     111.006    1.50
+YPG         NBC         CAP         H21     111.006    1.50
+YPG         H20         CAP         H21     109.055    1.50
+YPG         CBA         CBB          N9     113.752    2.20
+YPG         CBA         CBB         CAP     104.443    2.26
+YPG         CBA         CBB         H22     107.878    1.50
+YPG          N9         CBB         CAP     113.752    2.20
+YPG          N9         CBB         H22     108.756    1.83
+YPG         CAP         CBB         H22     108.548    1.50
+YPG          C8          N9         CBB     126.078    2.46
+YPG          C8          N9          C4     107.594    1.50
+YPG         CBB          N9          C4     125.158    1.54
+YPG          N3          C2          N1     123.603    1.50
+YPG          N3          C2          N2     119.821    1.50
+YPG          N1          C2          N2     116.575    1.50
+YPG          C8          N7          C5     103.927    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YPG       const_sp2_sp2_1          N9          C4          C5          N7       0.000     5.0     2
+YPG              const_19          C5          C4          N9          C8       0.000    10.0     2
+YPG              const_32          N9          C4          N3          C2     180.000    10.0     2
+YPG            sp3_sp3_19         PBF         CAZ         OAF          H8     180.000    10.0     3
+YPG            sp3_sp3_31         OAT         CAN         CAZ         OAF     180.000    10.0     3
+YPG            sp3_sp3_40         CAZ         CAN         OAT         CBA     180.000    10.0     3
+YPG            sp3_sp3_43         CAO         CBA         OAT         CAN     180.000    10.0     3
+YPG             sp3_sp3_2         NBC         CAO         CBA         OAT     180.000    10.0     3
+YPG            sp3_sp3_50         OAT         CBA         CBB          N9     180.000    10.0     3
+YPG             sp2_sp3_4         CAU         NBC         CAO         CBA     180.000    10.0     6
+YPG             sp2_sp2_1         CAL         CAU         NBC         CAO     180.000     5.0     2
+YPG            sp2_sp3_10         CAU         NBC         CAP         CBB     180.000    10.0     6
+YPG            sp2_sp3_23         OAB         CAU         CAL         CAM     -60.000    10.0     6
+YPG       const_sp2_sp2_8          N7          C5          C6          O6       0.000     5.0     2
+YPG              const_29          C4          C5          N7          C8       0.000    10.0     2
+YPG            sp3_sp3_55         CAU         CAL         CAM         PBE     180.000    10.0     3
+YPG            sp3_sp3_66         CAL         CAM         PBE         OAH      60.000    10.0     3
+YPG            sp3_sp3_10         NBC         CAP         CBB         CBA     -60.000    10.0     3
+YPG            sp2_sp3_13          C8          N9         CBB         CBA     150.000    10.0     6
+YPG              const_11          O6          C6          N1          C2     180.000    10.0     2
+YPG              const_24          N7          C8          N9         CBB     180.000    10.0     2
+YPG              const_27          N9          C8          N7          C5       0.000    10.0     2
+YPG              const_15          N2          C2          N1          C6     180.000    10.0     2
+YPG             sp2_sp2_7          N3          C2          N2          H3       0.000     5.0     2
+YPG              const_18          N2          C2          N3          C4     180.000    10.0     2
+YPG            sp3_sp3_24         OAF         CAZ         PBF         OAJ      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+YPG    chir_1    PBF    OAI    OAE    OAJ    both
+YPG    chir_2    CAZ    PBF    OAF    CAN    positive
+YPG    chir_3    CBA    OAT    CBB    CAO    negative
+YPG    chir_4    PBE    OAG    OAD    OAH    both
+YPG    chir_5    CBB    N9    CBA    CAP    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YPG    plan-1          C2   0.020
+YPG    plan-1          C4   0.020
+YPG    plan-1          C5   0.020
+YPG    plan-1          C6   0.020
+YPG    plan-1          C8   0.020
+YPG    plan-1         CBB   0.020
+YPG    plan-1          H1   0.020
+YPG    plan-1          H2   0.020
+YPG    plan-1          N1   0.020
+YPG    plan-1          N2   0.020
+YPG    plan-1          N3   0.020
+YPG    plan-1          N7   0.020
+YPG    plan-1          N9   0.020
+YPG    plan-1          O6   0.020
+YPG    plan-2          C2   0.020
+YPG    plan-2          H3   0.020
+YPG    plan-2          H4   0.020
+YPG    plan-2          N2   0.020
+YPG    plan-3         CAO   0.020
+YPG    plan-3         CAP   0.020
+YPG    plan-3         CAU   0.020
+YPG    plan-3         NBC   0.020
+YPG    plan-4         CAL   0.020
+YPG    plan-4         CAU   0.020
+YPG    plan-4         NBC   0.020
+YPG    plan-4         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YPG            InChI                InChI  1.03 InChI=1S/C14H22N6O10P2/c15-14-17-12-11(13(23)18-14)16-6-20(12)7-3-19(9(21)1-2-31(24,25)26)4-8(7)30-5-10(22)32(27,28)29/h6-8,10,22H,1-5H2,(H2,24,25,26)(H2,27,28,29)(H3,15,17,18,23)/t7-,8-,10+/m1/s1
+YPG         InChIKey                InChI  1.03                                                                                                                                                                          RBYFDIJTTUISNF-MRTMQBJTSA-N
+YPG SMILES_CANONICAL               CACTVS 3.385                                                                                                                      NC1=Nc2n(cnc2C(=O)N1)[C@@H]3CN(C[C@H]3OC[C@@H](O)[P](O)(O)=O)C(=O)CC[P](O)(O)=O
+YPG           SMILES               CACTVS 3.385                                                                                                                           NC1=Nc2n(cnc2C(=O)N1)[CH]3CN(C[CH]3OC[CH](O)[P](O)(O)=O)C(=O)CC[P](O)(O)=O
+YPG SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                                                          c1nc2c(n1[C@@H]3CN(C[C@H]3OC[C@@H](O)P(=O)(O)O)C(=O)CCP(=O)(O)O)N=C(NC2=O)N
+YPG           SMILES "OpenEye OEToolkits" 2.0.4                                                                                                                                        c1nc2c(n1C3CN(CC3OCC(O)P(=O)(O)O)C(=O)CCP(=O)(O)O)N=C(NC2=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YPG acedrg               243         "dictionary generator"                  
+YPG acedrg_database      11          "data source"                           
+YPG rdkit                2017.03.2   "Chemoinformatics tool"
+YPG refmac5              5.8.0238    "optimization tool"                     

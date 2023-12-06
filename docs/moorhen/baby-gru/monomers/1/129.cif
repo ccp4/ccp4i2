@@ -1,0 +1,154 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+129     129      "[2(FORMYL-HYDROXY-AMINO)-ETHYL]-PHOSPHONIC ACID"     NON-POLYMER     16     10     .     
+#
+data_comp_129
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+129     P       P       P       0       8.248       -1.625      18.657      
+129     O1P     O       O       0       7.031       -1.015      19.267      
+129     O2P     O       OP      -1      8.505       -2.990      19.198      
+129     O3P     O       OP      -1      9.439       -0.741      18.813      
+129     C4      C       CH2     0       7.934       -1.797      16.890      
+129     C3      C       CH2     0       9.132       -2.378      16.157      
+129     N2      N       N       0       8.883       -2.500      14.718      
+129     C1      C       C1      0       8.868       -1.469      13.881      
+129     O1      O       O       0       8.660       -1.561      12.669      
+129     O2      O       OH1     0       8.661       -3.779      14.282      
+129     H41     H       H       0       7.720       -0.921      16.506      
+129     H42     H       H       0       7.160       -2.380      16.748      
+129     H31     H       H       0       9.339       -3.261      16.529      
+129     H32     H       H       0       9.909       -1.798      16.302      
+129     H1      H       H       0       9.030       -0.594      14.251      
+129     HO2     H       H       0       9.369       -4.020      13.836      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+129           P         O1P      DOUBLE       n     1.492  0.0200     1.492  0.0200
+129           P         O2P      SINGLE       n     1.492  0.0200     1.492  0.0200
+129           P         O3P      SINGLE       n     1.492  0.0200     1.492  0.0200
+129           P          C4      SINGLE       n     1.803  0.0200     1.803  0.0200
+129          C4          C3      SINGLE       n     1.520  0.0182     1.520  0.0182
+129          C3          N2      SINGLE       n     1.464  0.0154     1.464  0.0154
+129          N2          C1      SINGLE       n     1.324  0.0200     1.324  0.0200
+129          N2          O2      SINGLE       n     1.366  0.0200     1.366  0.0200
+129          C1          O1      DOUBLE       n     1.232  0.0100     1.232  0.0100
+129          C4         H41      SINGLE       n     1.089  0.0100     0.980  0.0122
+129          C4         H42      SINGLE       n     1.089  0.0100     0.980  0.0122
+129          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0157
+129          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0157
+129          C1          H1      SINGLE       n     1.082  0.0130     0.964  0.0200
+129          O2         HO2      SINGLE       n     0.970  0.0120     0.871  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+129         O1P           P         O2P     111.786    1.50
+129         O1P           P         O3P     111.786    1.50
+129         O1P           P          C4     108.625    3.00
+129         O2P           P         O3P     111.786    1.50
+129         O2P           P          C4     108.625    3.00
+129         O3P           P          C4     108.625    3.00
+129           P          C4          C3     111.410    2.87
+129           P          C4         H41     109.545    1.50
+129           P          C4         H42     109.545    1.50
+129          C3          C4         H41     108.869    1.50
+129          C3          C4         H42     108.869    1.50
+129         H41          C4         H42     107.498    1.50
+129          C4          C3          N2     111.670    1.50
+129          C4          C3         H31     108.964    1.50
+129          C4          C3         H32     108.964    1.50
+129          N2          C3         H31     109.068    1.50
+129          N2          C3         H32     109.068    1.50
+129         H31          C3         H32     107.873    1.50
+129          C3          N2          C1     124.436    2.35
+129          C3          N2          O2     114.417    3.00
+129          C1          N2          O2     121.147    2.14
+129          N2          C1          O1     123.822    1.98
+129          N2          C1          H1     117.675    2.15
+129          O1          C1          H1     118.502    2.29
+129          N2          O2         HO2     106.835    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+129             sp3_sp3_3          C3          C4           P         O1P      60.000    10.0     3
+129            sp3_sp3_10          N2          C3          C4           P     180.000    10.0     3
+129             sp2_sp3_2          C1          N2          C3          C4     120.000    10.0     6
+129             sp2_sp2_1          O1          C1          N2          C3     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+129    chir_1    P    O2P    O3P    O1P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+129    plan-1          C1   0.020
+129    plan-1          C3   0.020
+129    plan-1          N2   0.020
+129    plan-1          O2   0.020
+129    plan-2          C1   0.020
+129    plan-2          H1   0.020
+129    plan-2          N2   0.020
+129    plan-2          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+129           SMILES              ACDLabs 10.04                                             O=P(O)(O)CCN(O)C=O
+129 SMILES_CANONICAL               CACTVS 3.341                                           ON(CC[P](O)(O)=O)C=O
+129           SMILES               CACTVS 3.341                                           ON(CC[P](O)(O)=O)C=O
+129 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                           C(CP(=O)(O)O)N(C=O)O
+129           SMILES "OpenEye OEToolkits" 1.5.0                                           C(CP(=O)(O)O)N(C=O)O
+129            InChI                InChI  1.03 InChI=1S/C3H8NO5P/c5-3-4(6)1-2-10(7,8)9/h3,6H,1-2H2,(H2,7,8,9)
+129         InChIKey                InChI  1.03                                    NBAIGNUEKZLOMI-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+129 acedrg               243         "dictionary generator"                  
+129 acedrg_database      11          "data source"                           
+129 rdkit                2017.03.2   "Chemoinformatics tool"
+129 refmac5              5.8.0238    "optimization tool"                     

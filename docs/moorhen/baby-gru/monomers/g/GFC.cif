@@ -1,0 +1,311 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GFC     GFC      "5'-O-[(S)-{[(S)-[(S)-chloro(fluoro)phosphonomethyl](hydroxy)phosphoryl]oxy}(hydroxy)phosphoryl]-2'-deoxyguanosine"     NON-POLYMER     45     33     .     
+#
+data_comp_GFC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GFC     N1      N       NR6     0       9.393       9.944       7.863       
+GFC     C2      C       CR6     0       8.036       10.006      7.629       
+GFC     N2      N       NH2     0       7.628       10.819      6.645       
+GFC     N3      N       NRD6    0       7.138       9.304       8.327       
+GFC     C4      C       CR56    0       7.715       8.532       9.285       
+GFC     C5      C       CR56    0       9.053       8.408       9.588       
+GFC     C6      C       CR6     0       10.006      9.154       8.844       
+GFC     O6      O       O       0       11.238      9.167       8.977       
+GFC     N7      N       NRD5    0       9.232       7.513       10.639      
+GFC     C8      C       CR15    0       8.017       7.117       10.947      
+GFC     N9      N       NT      0       7.054       7.709       10.158      
+GFC     PA      P       P       0       6.000       3.972       14.285      
+GFC     PB      P       P       0       3.571       2.374       14.782      
+GFC     PG      P       P       0       2.284       1.154       17.259      
+GFC     "C1'"   C       CH1     0       5.600       7.514       10.200      
+GFC     O1A     O       O       0       5.565       4.874       15.393      
+GFC     O1B     O       OP      -1      2.883       1.442       13.823      
+GFC     O1G     O       OP      -1      1.720       2.493       17.648      
+GFC     "C2'"   C       CH2     0       5.098       6.485       9.191       
+GFC     O2A     O       OP      -1      7.412       3.487       14.290      
+GFC     O2B     O       O       0       2.844       3.655       15.087      
+GFC     O2G     O       OP      -1      2.665       0.332       18.460      
+GFC     "C3'"   C       CH1     0       4.741       5.280       10.056      
+GFC     "O3'"   O       OH1     0       3.671       4.527       9.493       
+GFC     O3A     O       O2      0       5.030       2.694       14.232      
+GFC     C3B     C       CT      0       3.807       1.473       16.348      
+GFC     F3B     F       F       0       4.382       0.285       16.065      
+GFC     CL3B    CL      CL      0       4.938       2.401       17.401      
+GFC     O3G     O       O       0       1.372       0.404       16.327      
+GFC     "C4'"   C       CH1     0       4.306       5.957       11.348      
+GFC     "O4'"   O       O2      0       5.227       7.054       11.499      
+GFC     "C5'"   C       CH2     0       4.325       5.089       12.584      
+GFC     "O5'"   O       O2      0       5.685       4.671       12.874      
+GFC     HN1     H       H       0       9.933       10.446      7.351       
+GFC     HN2     H       H       0       6.903       11.302      6.750       
+GFC     HN2A    H       H       0       8.084       10.865      5.897       
+GFC     H8      H       H       0       7.839       6.500       11.636      
+GFC     "H1'"   H       H       0       5.152       8.382       10.027      
+GFC     "H2'"   H       H       0       4.313       6.817       8.713       
+GFC     "H2'A"  H       H       0       5.792       6.258       8.542       
+GFC     "H3'"   H       H       0       5.532       4.707       10.206      
+GFC     "HO3'"  H       H       0       3.502       3.866       9.998       
+GFC     "H4'"   H       H       0       3.393       6.316       11.235      
+GFC     "H5'"   H       H       0       3.756       4.295       12.436      
+GFC     "H5'A"  H       H       0       3.959       5.597       13.349      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GFC          N1          C2      SINGLE       y     1.374  0.0100     1.374  0.0100
+GFC          N1          C6      SINGLE       y     1.396  0.0107     1.396  0.0107
+GFC          C2          N2      SINGLE       n     1.340  0.0101     1.340  0.0101
+GFC          C2          N3      DOUBLE       y     1.333  0.0104     1.333  0.0104
+GFC          N3          C4      SINGLE       y     1.355  0.0100     1.355  0.0100
+GFC          C4          C5      DOUBLE       y     1.377  0.0100     1.377  0.0100
+GFC          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+GFC          C5          C6      SINGLE       y     1.417  0.0103     1.417  0.0103
+GFC          C5          N7      SINGLE       y     1.390  0.0100     1.390  0.0100
+GFC          C6          O6      DOUBLE       n     1.239  0.0100     1.239  0.0100
+GFC          N7          C8      DOUBLE       y     1.312  0.0100     1.312  0.0100
+GFC          C8          N9      SINGLE       y     1.372  0.0200     1.372  0.0200
+GFC          N9       "C1'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+GFC          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+GFC          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+GFC          PA         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+GFC          PA       "O5'"      SINGLE       n     1.604  0.0133     1.604  0.0133
+GFC          PB         O1B      SINGLE       n     1.504  0.0125     1.504  0.0125
+GFC          PB         O2B      DOUBLE       n     1.504  0.0125     1.504  0.0125
+GFC          PB         O3A      SINGLE       n     1.590  0.0138     1.590  0.0138
+GFC          PB         C3B      SINGLE       n     1.822  0.0194     1.822  0.0194
+GFC          PG         O1G      SINGLE       n     1.505  0.0200     1.505  0.0200
+GFC          PG         O2G      SINGLE       n     1.505  0.0200     1.505  0.0200
+GFC          PG         C3B      SINGLE       n     1.803  0.0200     1.803  0.0200
+GFC          PG         O3G      DOUBLE       n     1.505  0.0200     1.505  0.0200
+GFC       "C1'"       "C2'"      SINGLE       n     1.521  0.0118     1.521  0.0118
+GFC       "C1'"       "O4'"      SINGLE       n     1.425  0.0100     1.425  0.0100
+GFC       "C2'"       "C3'"      SINGLE       n     1.526  0.0101     1.526  0.0101
+GFC       "C3'"       "O3'"      SINGLE       n     1.424  0.0100     1.424  0.0100
+GFC       "C3'"       "C4'"      SINGLE       n     1.526  0.0115     1.526  0.0115
+GFC         C3B         F3B      SINGLE       n     1.349  0.0160     1.349  0.0160
+GFC         C3B        CL3B      SINGLE       n     1.803  0.0128     1.803  0.0128
+GFC       "C4'"       "O4'"      SINGLE       n     1.442  0.0100     1.442  0.0100
+GFC       "C4'"       "C5'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+GFC       "C5'"       "O5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+GFC          N1         HN1      SINGLE       n     1.016  0.0100     0.897  0.0200
+GFC          N2         HN2      SINGLE       n     1.016  0.0100     0.877  0.0200
+GFC          N2        HN2A      SINGLE       n     1.016  0.0100     0.877  0.0200
+GFC          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+GFC       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.993  0.0101
+GFC       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.977  0.0113
+GFC       "C2'"      "H2'A"      SINGLE       n     1.089  0.0100     0.977  0.0113
+GFC       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.988  0.0189
+GFC       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+GFC       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.987  0.0170
+GFC       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.989  0.0200
+GFC       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.989  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GFC          C2          N1          C6     125.351    1.50
+GFC          C2          N1         HN1     117.677    2.71
+GFC          C6          N1         HN1     116.978    2.44
+GFC          N1          C2          N2     116.576    1.50
+GFC          N1          C2          N3     123.602    1.50
+GFC          N2          C2          N3     119.821    1.50
+GFC          C2          N2         HN2     119.868    1.50
+GFC          C2          N2        HN2A     119.868    1.50
+GFC         HN2          N2        HN2A     120.263    1.96
+GFC          C2          N3          C4     112.066    1.50
+GFC          N3          C4          C5     128.211    1.50
+GFC          N3          C4          N9     124.984    1.50
+GFC          C5          C4          N9     106.805    1.69
+GFC          C4          C5          C6     119.397    1.50
+GFC          C4          C5          N7     110.629    1.50
+GFC          C6          C5          N7     129.975    1.50
+GFC          N1          C6          C5     111.367    1.50
+GFC          N1          C6          O6     120.389    1.50
+GFC          C5          C6          O6     128.244    1.50
+GFC          C5          N7          C8     103.927    1.50
+GFC          N7          C8          N9     112.130    1.94
+GFC          N7          C8          H8     123.170    1.50
+GFC          N9          C8          H8     124.701    2.19
+GFC          C4          N9          C8     107.594    1.50
+GFC          C4          N9       "C1'"     125.158    1.54
+GFC          C8          N9       "C1'"     126.078    2.46
+GFC         O1A          PA         O2A     118.411    2.35
+GFC         O1A          PA         O3A     108.570    2.41
+GFC         O1A          PA       "O5'"     109.410    1.50
+GFC         O2A          PA         O3A     108.570    2.41
+GFC         O2A          PA       "O5'"     109.410    1.50
+GFC         O3A          PA       "O5'"     101.065    1.97
+GFC         O1B          PB         O2B     115.915    1.71
+GFC         O1B          PB         O3A     109.115    3.00
+GFC         O1B          PB         C3B     107.585    2.44
+GFC         O2B          PB         O3A     109.115    3.00
+GFC         O2B          PB         C3B     107.585    2.44
+GFC         O3A          PB         C3B     105.177    2.72
+GFC         O1G          PG         O2G     112.502    1.50
+GFC         O1G          PG         C3B     108.625    3.00
+GFC         O1G          PG         O3G     112.502    1.50
+GFC         O2G          PG         C3B     108.625    3.00
+GFC         O2G          PG         O3G     112.502    1.50
+GFC         C3B          PG         O3G     108.625    3.00
+GFC          N9       "C1'"       "C2'"     113.752    2.20
+GFC          N9       "C1'"       "O4'"     108.167    1.51
+GFC          N9       "C1'"       "H1'"     109.246    1.50
+GFC       "C2'"       "C1'"       "O4'"     106.035    1.50
+GFC       "C2'"       "C1'"       "H1'"     109.272    1.50
+GFC       "O4'"       "C1'"       "H1'"     109.059    1.50
+GFC       "C1'"       "C2'"       "C3'"     102.663    1.50
+GFC       "C1'"       "C2'"       "H2'"     111.213    1.50
+GFC       "C1'"       "C2'"      "H2'A"     111.213    1.50
+GFC       "C3'"       "C2'"       "H2'"     111.194    1.50
+GFC       "C3'"       "C2'"      "H2'A"     111.194    1.50
+GFC       "H2'"       "C2'"      "H2'A"     109.148    1.50
+GFC       "C2'"       "C3'"       "O3'"     111.424    1.96
+GFC       "C2'"       "C3'"       "C4'"     102.433    1.50
+GFC       "C2'"       "C3'"       "H3'"     110.846    1.50
+GFC       "O3'"       "C3'"       "C4'"     110.527    2.37
+GFC       "O3'"       "C3'"       "H3'"     110.713    1.50
+GFC       "C4'"       "C3'"       "H3'"     110.775    1.50
+GFC       "C3'"       "O3'"      "HO3'"     109.026    2.38
+GFC          PA         O3A          PB     132.584    3.00
+GFC          PB         C3B          PG     114.813    3.00
+GFC          PB         C3B         F3B     108.594    1.85
+GFC          PB         C3B        CL3B     109.213    1.50
+GFC          PG         C3B         F3B     108.594    1.85
+GFC          PG         C3B        CL3B     109.213    1.50
+GFC         F3B         C3B        CL3B     108.302    1.50
+GFC       "C3'"       "C4'"       "O4'"     105.506    1.50
+GFC       "C3'"       "C4'"       "C5'"     114.866    1.63
+GFC       "C3'"       "C4'"       "H4'"     109.069    1.50
+GFC       "O4'"       "C4'"       "C5'"     109.123    1.50
+GFC       "O4'"       "C4'"       "H4'"     108.947    1.50
+GFC       "C5'"       "C4'"       "H4'"     108.268    1.50
+GFC       "C1'"       "O4'"       "C4'"     108.795    1.50
+GFC       "C4'"       "C5'"       "O5'"     109.342    1.50
+GFC       "C4'"       "C5'"       "H5'"     109.624    1.50
+GFC       "C4'"       "C5'"      "H5'A"     109.624    1.50
+GFC       "O5'"       "C5'"       "H5'"     109.845    1.50
+GFC       "O5'"       "C5'"      "H5'A"     109.845    1.50
+GFC       "H5'"       "C5'"      "H5'A"     108.472    1.50
+GFC          PA       "O5'"       "C5'"     118.553    2.41
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GFC       const_sp2_sp2_3          N2          C2          N1          C6     180.000     5.0     2
+GFC              const_27          O6          C6          N1          C2     180.000    10.0     2
+GFC             sp2_sp3_1          C4          N9       "C1'"       "C2'"     150.000    10.0     6
+GFC            sp3_sp3_33          PB         O3A          PA         O1A      60.000    10.0     3
+GFC            sp3_sp3_36       "C5'"       "O5'"          PA         O1A      60.000    10.0     3
+GFC            sp3_sp3_38          PA         O3A          PB         O1B     -60.000    10.0     3
+GFC            sp3_sp3_41          PG         C3B          PB         O1B     -60.000    10.0     3
+GFC            sp3_sp3_49          PB         C3B          PG         O1G     180.000    10.0     3
+GFC             sp3_sp3_4          N9       "C1'"       "C2'"       "C3'"     -60.000    10.0     3
+GFC            sp3_sp3_59          N9       "C1'"       "O4'"       "C4'"      60.000    10.0     3
+GFC            sp3_sp3_11       "C1'"       "C2'"       "C3'"       "O3'"      60.000    10.0     3
+GFC             sp2_sp2_1          N1          C2          N2         HN2     180.000     5.0     2
+GFC       const_sp2_sp2_6          N2          C2          N3          C4     180.000     5.0     2
+GFC            sp3_sp3_61       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+GFC            sp3_sp3_23       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+GFC            sp3_sp3_29       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+GFC            sp3_sp3_64       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+GFC            sp3_sp3_73       "C4'"       "C5'"       "O5'"          PA     180.000    10.0     3
+GFC       const_sp2_sp2_7          C5          C4          N3          C2       0.000     5.0     2
+GFC              const_31          N3          C4          N9          C8     180.000    10.0     2
+GFC       const_sp2_sp2_9          N3          C4          C5          C6       0.000     5.0     2
+GFC              const_14          C4          C5          C6          O6     180.000    10.0     2
+GFC              const_17          C4          C5          N7          C8       0.000    10.0     2
+GFC              const_19          N9          C8          N7          C5       0.000    10.0     2
+GFC              const_21          N7          C8          N9          C4       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GFC    chir_1    PA    O3A    "O5'"    O2A    both
+GFC    chir_2    PB    O3A    O1B    O2B    both
+GFC    chir_3    PG    O1G    O2G    O3G    both
+GFC    chir_4    "C1'"    "O4'"    N9    "C2'"    negative
+GFC    chir_5    "C3'"    "O3'"    "C4'"    "C2'"    positive
+GFC    chir_6    C3B    CL3B    PB    PG    positive
+GFC    chir_7    "C4'"    "O4'"    "C3'"    "C5'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GFC    plan-1       "C1'"   0.020
+GFC    plan-1          C2   0.020
+GFC    plan-1          C4   0.020
+GFC    plan-1          C5   0.020
+GFC    plan-1          C6   0.020
+GFC    plan-1          C8   0.020
+GFC    plan-1          H8   0.020
+GFC    plan-1         HN1   0.020
+GFC    plan-1          N1   0.020
+GFC    plan-1          N2   0.020
+GFC    plan-1          N3   0.020
+GFC    plan-1          N7   0.020
+GFC    plan-1          N9   0.020
+GFC    plan-1          O6   0.020
+GFC    plan-2          C2   0.020
+GFC    plan-2         HN2   0.020
+GFC    plan-2        HN2A   0.020
+GFC    plan-2          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GFC           SMILES              ACDLabs 11.02                                                                                                                                              O=P(O)(O)C(Cl)(F)P(=O)(O)OP(=O)(O)OCC3OC(n2cnc1c2N=C(N)NC1=O)CC3O
+GFC SMILES_CANONICAL               CACTVS 3.352                                                                                                                   NC1=Nc2n(cnc2C(=O)N1)[C@H]3C[C@H](O)[C@@H](CO[P](O)(=O)O[P](O)(=O)[C@@](F)(Cl)[P](O)(O)=O)O3
+GFC           SMILES               CACTVS 3.352                                                                                                                         NC1=Nc2n(cnc2C(=O)N1)[CH]3C[CH](O)[CH](CO[P](O)(=O)O[P](O)(=O)[C](F)(Cl)[P](O)(O)=O)O3
+GFC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                    c1nc2c(n1[C@H]3C[C@@H]([C@H](O3)CO[P@](=O)(O)O[P@](=O)([C@](F)(P(=O)(O)O)Cl)O)O)N=C(NC2=O)N
+GFC           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                          c1nc2c(n1C3CC(C(O3)COP(=O)(O)OP(=O)(C(F)(P(=O)(O)O)Cl)O)O)N=C(NC2=O)N
+GFC            InChI                InChI  1.03 InChI=1S/C11H16ClFN5O12P3/c12-11(13,31(21,22)23)32(24,25)30-33(26,27)28-2-5-4(19)1-6(29-5)18-3-15-7-8(18)16-10(14)17-9(7)20/h3-6,19H,1-2H2,(H,24,25)(H,26,27)(H2,21,22,23)(H3,14,16,17,20)/t4-,5+,6+,11+/m0/s1
+GFC         InChIKey                InChI  1.03                                                                                                                                                                                    YYWHXOYNXRQZKR-XUSYNCDOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GFC acedrg               243         "dictionary generator"                  
+GFC acedrg_database      11          "data source"                           
+GFC rdkit                2017.03.2   "Chemoinformatics tool"
+GFC refmac5              5.8.0238    "optimization tool"                     

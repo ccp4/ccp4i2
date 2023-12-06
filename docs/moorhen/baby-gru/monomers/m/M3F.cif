@@ -1,0 +1,239 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+M3F     M3F      1-methyl-3-(trifluoromethyl)benzo[c][1,8]naphthyridin-6(5H)-one     NON-POLYMER     29     20     .     
+#
+data_comp_M3F
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+M3F     CAA     C       CH3     0       -3.720      13.902      11.426      
+M3F     OAB     O       O       0       -8.578      11.174      15.139      
+M3F     FAC     F       F       0       -6.043      10.210      8.102       
+M3F     FAD     F       F       0       -8.029      10.949      8.338       
+M3F     FAE     F       F       0       -6.517      12.202      7.513       
+M3F     CAF     C       CR16    0       -5.476      13.590      16.651      
+M3F     CAG     C       CR16    0       -4.537      14.084      15.737      
+M3F     CAH     C       CR16    0       -6.502      12.801      16.208      
+M3F     CAI     C       CR16    0       -4.640      13.780      14.402      
+M3F     CAJ     C       CR16    0       -5.262      12.593      10.048      
+M3F     NAK     N       NRD6    0       -7.183      11.395      10.840      
+M3F     NAL     N       NR6     0       -7.822      11.337      13.053      
+M3F     CAM     C       CR6     0       -4.955      13.028      11.327      
+M3F     CAN     C       CR6     0       -6.386      11.777      9.834       
+M3F     CAO     C       CR6     0       -7.731      11.630      14.381      
+M3F     CAP     C       CR66    0       -6.628      12.474      14.828      
+M3F     CAQ     C       CR66    0       -6.930      11.791      12.105      
+M3F     CAR     C       CR66    0       -5.681      12.967      13.882      
+M3F     CAS     C       CR66    0       -5.835      12.612      12.452      
+M3F     CAT     C       CT      0       -6.745      11.285      8.450       
+M3F     HAA     H       H       0       -3.063      13.482      12.006      
+M3F     HAAA    H       H       0       -3.961      14.774      11.781      
+M3F     HAAB    H       H       0       -3.322      14.026      10.547      
+M3F     HAF     H       H       0       -5.401      13.801      17.568      
+M3F     HAG     H       H       0       -3.828      14.628      16.041      
+M3F     HAH     H       H       0       -7.132      12.471      16.826      
+M3F     HAI     H       H       0       -4.000      14.126      13.835      
+M3F     HAJ     H       H       0       -4.711      12.849      9.326       
+M3F     HNAL    H       H       0       -8.500      10.820      12.785      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+M3F         CAA         CAM      SINGLE       n     1.511  0.0100     1.511  0.0100
+M3F         OAB         CAO      DOUBLE       n     1.223  0.0119     1.223  0.0119
+M3F         FAC         CAT      SINGLE       n     1.330  0.0180     1.330  0.0180
+M3F         FAD         CAT      SINGLE       n     1.330  0.0180     1.330  0.0180
+M3F         FAE         CAT      SINGLE       n     1.330  0.0180     1.330  0.0180
+M3F         CAF         CAG      DOUBLE       y     1.402  0.0131     1.402  0.0131
+M3F         CAF         CAH      SINGLE       y     1.369  0.0100     1.369  0.0100
+M3F         CAG         CAI      SINGLE       y     1.371  0.0100     1.371  0.0100
+M3F         CAH         CAP      DOUBLE       y     1.418  0.0111     1.418  0.0111
+M3F         CAI         CAR      DOUBLE       y     1.409  0.0100     1.409  0.0100
+M3F         CAJ         CAM      SINGLE       y     1.375  0.0155     1.375  0.0155
+M3F         CAJ         CAN      DOUBLE       y     1.408  0.0100     1.408  0.0100
+M3F         NAK         CAN      SINGLE       y     1.339  0.0134     1.339  0.0134
+M3F         NAK         CAQ      DOUBLE       y     1.337  0.0145     1.337  0.0145
+M3F         NAL         CAO      SINGLE       y     1.365  0.0125     1.365  0.0125
+M3F         NAL         CAQ      SINGLE       y     1.375  0.0100     1.375  0.0100
+M3F         CAM         CAS      DOUBLE       y     1.431  0.0176     1.431  0.0176
+M3F         CAN         CAT      SINGLE       n     1.510  0.0100     1.510  0.0100
+M3F         CAO         CAP      SINGLE       y     1.458  0.0100     1.458  0.0100
+M3F         CAP         CAR      SINGLE       y     1.415  0.0100     1.415  0.0100
+M3F         CAQ         CAS      SINGLE       y     1.395  0.0100     1.395  0.0100
+M3F         CAR         CAS      SINGLE       y     1.458  0.0107     1.458  0.0107
+M3F         CAA         HAA      SINGLE       n     1.089  0.0100     0.973  0.0200
+M3F         CAA        HAAA      SINGLE       n     1.089  0.0100     0.973  0.0200
+M3F         CAA        HAAB      SINGLE       n     1.089  0.0100     0.973  0.0200
+M3F         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0184
+M3F         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0184
+M3F         CAH         HAH      SINGLE       n     1.082  0.0130     0.942  0.0200
+M3F         CAI         HAI      SINGLE       n     1.082  0.0130     0.949  0.0200
+M3F         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0168
+M3F         NAL        HNAL      SINGLE       n     1.016  0.0100     0.891  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+M3F         CAM         CAA         HAA     109.770    1.50
+M3F         CAM         CAA        HAAA     109.770    1.50
+M3F         CAM         CAA        HAAB     109.770    1.50
+M3F         HAA         CAA        HAAA     109.180    1.50
+M3F         HAA         CAA        HAAB     109.180    1.50
+M3F        HAAA         CAA        HAAB     109.180    1.50
+M3F         CAG         CAF         CAH     120.202    1.50
+M3F         CAG         CAF         HAF     119.871    1.50
+M3F         CAH         CAF         HAF     119.927    1.50
+M3F         CAF         CAG         CAI     120.144    1.50
+M3F         CAF         CAG         HAG     119.948    1.50
+M3F         CAI         CAG         HAG     119.908    1.50
+M3F         CAF         CAH         CAP     120.556    1.50
+M3F         CAF         CAH         HAH     119.821    1.50
+M3F         CAP         CAH         HAH     119.623    1.50
+M3F         CAG         CAI         CAR     121.330    1.50
+M3F         CAG         CAI         HAI     119.340    1.50
+M3F         CAR         CAI         HAI     119.330    1.50
+M3F         CAM         CAJ         CAN     120.146    1.72
+M3F         CAM         CAJ         HAJ     119.063    1.50
+M3F         CAN         CAJ         HAJ     120.790    1.50
+M3F         CAN         NAK         CAQ     118.153    1.50
+M3F         CAO         NAL         CAQ     122.416    1.50
+M3F         CAO         NAL        HNAL     118.850    2.15
+M3F         CAQ         NAL        HNAL     118.734    1.50
+M3F         CAA         CAM         CAJ     118.583    2.09
+M3F         CAA         CAM         CAS     122.570    1.50
+M3F         CAJ         CAM         CAS     118.847    1.50
+M3F         CAJ         CAN         NAK     122.330    1.50
+M3F         CAJ         CAN         CAT     121.061    1.50
+M3F         NAK         CAN         CAT     116.609    1.50
+M3F         OAB         CAO         NAL     119.026    1.67
+M3F         OAB         CAO         CAP     122.747    1.50
+M3F         NAL         CAO         CAP     118.227    2.19
+M3F         CAH         CAP         CAO     120.702    1.50
+M3F         CAH         CAP         CAR     119.519    1.50
+M3F         CAO         CAP         CAR     119.779    1.50
+M3F         NAK         CAQ         NAL     118.339    1.50
+M3F         NAK         CAQ         CAS     121.399    1.50
+M3F         NAL         CAQ         CAS     120.262    1.50
+M3F         CAI         CAR         CAP     118.249    1.50
+M3F         CAI         CAR         CAS     122.053    1.50
+M3F         CAP         CAR         CAS     119.698    1.50
+M3F         CAM         CAS         CAQ     119.125    1.50
+M3F         CAM         CAS         CAR     121.257    2.42
+M3F         CAQ         CAS         CAR     119.618    1.50
+M3F         FAC         CAT         FAD     106.502    1.50
+M3F         FAC         CAT         FAE     106.502    1.50
+M3F         FAC         CAT         CAN     112.269    1.50
+M3F         FAD         CAT         FAE     106.502    1.50
+M3F         FAD         CAT         CAN     112.269    1.50
+M3F         FAE         CAT         CAN     112.269    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+M3F             sp2_sp3_1         CAJ         CAM         CAA         HAA     150.000    10.0     6
+M3F              const_36         CAT         CAN         NAK         CAQ     180.000    10.0     2
+M3F              const_34         NAL         CAQ         NAK         CAN     180.000    10.0     2
+M3F              const_39         OAB         CAO         NAL         CAQ     180.000    10.0     2
+M3F              const_59         NAK         CAQ         NAL         CAO     180.000    10.0     2
+M3F              const_27         CAA         CAM         CAS         CAQ     180.000    10.0     2
+M3F             sp2_sp3_7         CAJ         CAN         CAT         FAC     150.000    10.0     6
+M3F              const_44         OAB         CAO         CAP         CAH       0.000    10.0     2
+M3F              const_13         CAH         CAP         CAR         CAI       0.000    10.0     2
+M3F              const_29         NAK         CAQ         CAS         CAM       0.000    10.0     2
+M3F              const_48         CAI         CAR         CAS         CAM       0.000    10.0     2
+M3F       const_sp2_sp2_1         CAH         CAF         CAG         CAI       0.000     5.0     2
+M3F              const_49         CAG         CAF         CAH         CAP       0.000    10.0     2
+M3F       const_sp2_sp2_5         CAF         CAG         CAI         CAR       0.000     5.0     2
+M3F              const_18         CAF         CAH         CAP         CAO     180.000    10.0     2
+M3F       const_sp2_sp2_9         CAG         CAI         CAR         CAP       0.000     5.0     2
+M3F              const_22         CAN         CAJ         CAM         CAA     180.000    10.0     2
+M3F              const_54         CAM         CAJ         CAN         CAT     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+M3F    chir_1    CAT    FAC    FAD    FAE    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+M3F    plan-1         CAA   0.020
+M3F    plan-1         CAF   0.020
+M3F    plan-1         CAG   0.020
+M3F    plan-1         CAH   0.020
+M3F    plan-1         CAI   0.020
+M3F    plan-1         CAJ   0.020
+M3F    plan-1         CAM   0.020
+M3F    plan-1         CAN   0.020
+M3F    plan-1         CAO   0.020
+M3F    plan-1         CAP   0.020
+M3F    plan-1         CAQ   0.020
+M3F    plan-1         CAR   0.020
+M3F    plan-1         CAS   0.020
+M3F    plan-1         CAT   0.020
+M3F    plan-1         HAF   0.020
+M3F    plan-1         HAG   0.020
+M3F    plan-1         HAH   0.020
+M3F    plan-1         HAI   0.020
+M3F    plan-1         HAJ   0.020
+M3F    plan-1        HNAL   0.020
+M3F    plan-1         NAK   0.020
+M3F    plan-1         NAL   0.020
+M3F    plan-1         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+M3F           SMILES              ACDLabs 12.01                                                               FC(F)(F)c3nc1c(c2c(C(=O)N1)cccc2)c(c3)C
+M3F SMILES_CANONICAL               CACTVS 3.370                                                                   Cc1cc(nc2NC(=O)c3ccccc3c12)C(F)(F)F
+M3F           SMILES               CACTVS 3.370                                                                   Cc1cc(nc2NC(=O)c3ccccc3c12)C(F)(F)F
+M3F SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                  Cc1cc(nc2c1-c3ccccc3C(=O)N2)C(F)(F)F
+M3F           SMILES "OpenEye OEToolkits" 1.7.0                                                                  Cc1cc(nc2c1-c3ccccc3C(=O)N2)C(F)(F)F
+M3F            InChI                InChI  1.03 InChI=1S/C14H9F3N2O/c1-7-6-10(14(15,16)17)18-12-11(7)8-4-2-3-5-9(8)13(20)19-12/h2-6H,1H3,(H,18,19,20)
+M3F         InChIKey                InChI  1.03                                                                           DRKNNRNHSWAINH-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+M3F acedrg               243         "dictionary generator"                  
+M3F acedrg_database      11          "data source"                           
+M3F rdkit                2017.03.2   "Chemoinformatics tool"
+M3F refmac5              5.8.0238    "optimization tool"                     

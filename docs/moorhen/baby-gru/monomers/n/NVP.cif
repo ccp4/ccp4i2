@@ -1,0 +1,273 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NVP     NVP      "11-CYCLOPROPYL-5,11-DIHYDRO-4-METHYL-6H-DIPYRIDO[3,2-B:2',3'-E][1,4]DIAZEPIN-6-ONE"     NON-POLYMER     34     20     .     
+#
+data_comp_NVP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NVP     N1      N       NT      0       -0.828      -35.354     24.301      
+NVP     CA      C       CH1     0       -0.312      -36.659     23.931      
+NVP     CB      C       CH2     0       -0.298      -37.685     25.011      
+NVP     CC      C       CH2     0       -1.302      -37.772     23.914      
+NVP     N3      N       NRD6    0       1.293       -34.477     24.891      
+NVP     C4      C       CR16    0       2.033       -33.665     25.670      
+NVP     C5      C       CR16    0       1.505       -32.868     26.667      
+NVP     C6      C       CR6     0       0.134       -32.884     26.907      
+NVP     CD      C       CH3     0       -0.468      -32.026     27.987      
+NVP     C2      C       CR6     0       -0.026      -34.510     25.120      
+NVP     C7      C       CR6     0       -0.646      -33.724     26.099      
+NVP     N8      N       NH1     0       -2.053      -33.795     26.297      
+NVP     C9      C       C       0       -3.050      -33.686     25.380      
+NVP     OE      O       O       0       -4.204      -33.448     25.726      
+NVP     C10     C       CR6     0       -2.767      -33.889     23.926      
+NVP     C15     C       CR6     0       -1.724      -34.691     23.422      
+NVP     C11     C       CR16    0       -3.603      -33.256     22.983      
+NVP     C12     C       CR16    0       -3.372      -33.428     21.628      
+NVP     C13     C       CR16    0       -2.315      -34.225     21.243      
+NVP     N14     N       NRD6    0       -1.495      -34.845     22.107      
+NVP     HCA     H       H       0       0.418       -36.689     23.266      
+NVP     HCB1    H       H       0       0.432       -38.334     25.012      
+NVP     HCB2    H       H       0       -0.614      -37.417     25.896      
+NVP     HCC1    H       H       0       -1.184      -38.474     23.245      
+NVP     HCC2    H       H       0       -2.230      -37.557     24.129      
+NVP     HC4     H       H       0       2.962       -33.641     25.522      
+NVP     HC5     H       H       0       2.071       -32.315     27.184      
+NVP     HCD1    H       H       0       -1.243      -31.558     27.638      
+NVP     HCD2    H       H       0       0.187       -31.377     28.294      
+NVP     HCD3    H       H       0       -0.739      -32.585     28.733      
+NVP     HN8     H       H       0       -2.308      -33.952     27.121      
+NVP     H11     H       H       0       -4.318      -32.716     23.270      
+NVP     H12     H       H       0       -3.921      -33.010     20.986      
+NVP     H13     H       H       0       -2.154      -34.344     20.322      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NVP          N1          CA      SINGLE       n     1.449  0.0100     1.449  0.0100
+NVP          N1          C2      SINGLE       n     1.422  0.0100     1.422  0.0100
+NVP          N1         C15      SINGLE       n     1.416  0.0100     1.416  0.0100
+NVP          CA          CB      SINGLE       n     1.490  0.0100     1.490  0.0100
+NVP          CA          CC      SINGLE       n     1.490  0.0100     1.490  0.0100
+NVP          CB          CC      SINGLE       n     1.486  0.0159     1.486  0.0159
+NVP          N3          C4      DOUBLE       y     1.344  0.0100     1.344  0.0100
+NVP          N3          C2      SINGLE       y     1.335  0.0100     1.335  0.0100
+NVP          C4          C5      SINGLE       y     1.378  0.0103     1.378  0.0103
+NVP          C5          C6      DOUBLE       y     1.388  0.0100     1.388  0.0100
+NVP          C6          CD      SINGLE       n     1.504  0.0100     1.504  0.0100
+NVP          C6          C7      SINGLE       y     1.395  0.0106     1.395  0.0106
+NVP          C2          C7      DOUBLE       y     1.397  0.0100     1.397  0.0100
+NVP          C7          N8      SINGLE       n     1.419  0.0100     1.419  0.0100
+NVP          N8          C9      SINGLE       n     1.351  0.0126     1.351  0.0126
+NVP          C9          OE      DOUBLE       n     1.226  0.0100     1.226  0.0100
+NVP          C9         C10      SINGLE       n     1.487  0.0100     1.487  0.0100
+NVP         C10         C15      DOUBLE       y     1.401  0.0100     1.401  0.0100
+NVP         C10         C11      SINGLE       y     1.400  0.0131     1.400  0.0131
+NVP         C15         N14      SINGLE       y     1.338  0.0100     1.338  0.0100
+NVP         C11         C12      DOUBLE       y     1.383  0.0100     1.383  0.0100
+NVP         C12         C13      SINGLE       y     1.374  0.0152     1.374  0.0152
+NVP         C13         N14      DOUBLE       y     1.340  0.0100     1.340  0.0100
+NVP          CA         HCA      SINGLE       n     1.089  0.0100     0.989  0.0107
+NVP          CB        HCB1      SINGLE       n     1.089  0.0100     0.977  0.0155
+NVP          CB        HCB2      SINGLE       n     1.089  0.0100     0.977  0.0155
+NVP          CC        HCC1      SINGLE       n     1.089  0.0100     0.977  0.0155
+NVP          CC        HCC2      SINGLE       n     1.089  0.0100     0.977  0.0155
+NVP          C4         HC4      SINGLE       n     1.082  0.0130     0.941  0.0100
+NVP          C5         HC5      SINGLE       n     1.082  0.0130     0.945  0.0100
+NVP          CD        HCD1      SINGLE       n     1.089  0.0100     0.971  0.0135
+NVP          CD        HCD2      SINGLE       n     1.089  0.0100     0.971  0.0135
+NVP          CD        HCD3      SINGLE       n     1.089  0.0100     0.971  0.0135
+NVP          N8         HN8      SINGLE       n     1.016  0.0100     0.876  0.0200
+NVP         C11         H11      SINGLE       n     1.082  0.0130     0.941  0.0168
+NVP         C12         H12      SINGLE       n     1.082  0.0130     0.942  0.0155
+NVP         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0178
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NVP          CA          N1          C2     116.428    1.50
+NVP          CA          N1         C15     116.717    1.50
+NVP          C2          N1         C15     115.282    1.50
+NVP          N1          CA          CB     116.032    1.50
+NVP          N1          CA          CC     116.032    1.50
+NVP          N1          CA         HCA     117.361    1.50
+NVP          CB          CA          CC      60.487    1.50
+NVP          CB          CA         HCA     117.331    1.50
+NVP          CC          CA         HCA     117.331    1.50
+NVP          CA          CB          CC      59.756    1.50
+NVP          CA          CB        HCB1     117.795    1.50
+NVP          CA          CB        HCB2     117.795    1.50
+NVP          CC          CB        HCB1     117.795    1.50
+NVP          CC          CB        HCB2     117.795    1.50
+NVP        HCB1          CB        HCB2     115.138    1.50
+NVP          CA          CC          CB      59.756    1.50
+NVP          CA          CC        HCC1     117.795    1.50
+NVP          CA          CC        HCC2     117.795    1.50
+NVP          CB          CC        HCC1     117.795    1.50
+NVP          CB          CC        HCC2     117.795    1.50
+NVP        HCC1          CC        HCC2     115.138    1.50
+NVP          C4          N3          C2     117.210    1.50
+NVP          N3          C4          C5     124.083    1.50
+NVP          N3          C4         HC4     117.667    1.50
+NVP          C5          C4         HC4     118.250    1.50
+NVP          C4          C5          C6     119.722    1.50
+NVP          C4          C5         HC5     120.273    1.50
+NVP          C6          C5         HC5     120.005    1.50
+NVP          C5          C6          CD     121.155    1.50
+NVP          C5          C6          C7     117.031    1.50
+NVP          CD          C6          C7     121.813    1.50
+NVP          C6          CD        HCD1     109.584    1.50
+NVP          C6          CD        HCD2     109.584    1.50
+NVP          C6          CD        HCD3     109.584    1.50
+NVP        HCD1          CD        HCD2     109.348    1.50
+NVP        HCD1          CD        HCD3     109.348    1.50
+NVP        HCD2          CD        HCD3     109.348    1.50
+NVP          N1          C2          N3     117.113    1.50
+NVP          N1          C2          C7     120.280    1.50
+NVP          N3          C2          C7     122.607    1.50
+NVP          C6          C7          C2     119.347    1.50
+NVP          C6          C7          N8     119.193    1.50
+NVP          C2          C7          N8     121.460    1.50
+NVP          C7          N8          C9     127.535    1.50
+NVP          C7          N8         HN8     115.650    1.50
+NVP          C9          N8         HN8     116.816    2.38
+NVP          N8          C9          OE     122.383    1.50
+NVP          N8          C9         C10     118.820    1.50
+NVP          OE          C9         C10     118.797    1.50
+NVP          C9         C10         C15     123.745    1.50
+NVP          C9         C10         C11     118.443    1.50
+NVP         C15         C10         C11     117.812    1.50
+NVP          N1         C15         C10     120.838    1.50
+NVP          N1         C15         N14     116.471    1.50
+NVP         C10         C15         N14     122.690    1.50
+NVP         C10         C11         C12     119.810    1.50
+NVP         C10         C11         H11     120.053    1.50
+NVP         C12         C11         H11     120.137    1.50
+NVP         C11         C12         C13     118.492    1.50
+NVP         C11         C12         H12     120.760    1.50
+NVP         C13         C12         H12     120.748    1.50
+NVP         C12         C13         N14     123.901    1.50
+NVP         C12         C13         H13     118.384    1.50
+NVP         N14         C13         H13     117.715    1.50
+NVP         C15         N14         C13     117.296    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NVP             sp2_sp3_2          C2          N1          CA          CB     120.000    10.0     6
+NVP             sp2_sp2_7         N14         C15          N1          CA       0.000     5.0     2
+NVP             sp2_sp2_5         C10         C15          N1          CA     180.000     5.0     2
+NVP            sp2_sp2_12          C2          C7          N8         HN8     180.000     5.0     2
+NVP            sp2_sp2_18         C15         C10          C9          OE       0.000     5.0     2
+NVP            sp2_sp2_20         C11         C10          C9          OE     180.000     5.0     2
+NVP       const_sp2_sp2_4          C9         C10         C15          N1       0.000     5.0     2
+NVP              const_39         C11         C10         C15          N1     180.000    10.0     2
+NVP       const_sp2_sp2_6          N1         C15         N14         C13     180.000     5.0     2
+NVP              const_13         C10         C11         C12         C13       0.000    10.0     2
+NVP       const_sp2_sp2_9         C11         C12         C13         N14       0.000     5.0     2
+NVP       const_sp2_sp2_7         C12         C13         N14         C15       0.000     5.0     2
+NVP             sp3_sp3_1          N1          CA          CB          CC      60.000    10.0     3
+NVP            sp3_sp3_25         HCA          CA          CC          CB     -60.000    10.0     3
+NVP              const_17          C5          C4          N3          C2       0.000    10.0     2
+NVP             sp2_sp3_9          C5          C6          CD        HCD3      30.000    10.0     6
+NVP              const_19          N3          C4          C5          C6       0.000    10.0     2
+NVP              const_24          C4          C5          C6          CD     180.000    10.0     2
+NVP              const_30          CD          C6          C7          N8       0.000    10.0     2
+NVP            sp2_sp3_10          C7          C6          CD        HCD1     -30.000    10.0     6
+NVP              const_34          N1          C2          C7          N8       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NVP    chir_1    CA    N1    CB    CC    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NVP    plan-1          C2   0.020
+NVP    plan-1          C4   0.020
+NVP    plan-1          C5   0.020
+NVP    plan-1          C6   0.020
+NVP    plan-1          C7   0.020
+NVP    plan-1          CD   0.020
+NVP    plan-1         HC4   0.020
+NVP    plan-1         HC5   0.020
+NVP    plan-1          N1   0.020
+NVP    plan-1          N3   0.020
+NVP    plan-1          N8   0.020
+NVP    plan-2         C10   0.020
+NVP    plan-2         C11   0.020
+NVP    plan-2         C12   0.020
+NVP    plan-2         C13   0.020
+NVP    plan-2         C15   0.020
+NVP    plan-2          C9   0.020
+NVP    plan-2         H11   0.020
+NVP    plan-2         H12   0.020
+NVP    plan-2         H13   0.020
+NVP    plan-2          N1   0.020
+NVP    plan-2         N14   0.020
+NVP    plan-3          C7   0.020
+NVP    plan-3          C9   0.020
+NVP    plan-3         HN8   0.020
+NVP    plan-3          N8   0.020
+NVP    plan-4         C10   0.020
+NVP    plan-4          C9   0.020
+NVP    plan-4          N8   0.020
+NVP    plan-4          OE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NVP           SMILES              ACDLabs 10.04                                                                                  O=C2Nc1c(ccnc1N(c3ncccc23)C4CC4)C
+NVP SMILES_CANONICAL               CACTVS 3.341                                                                                  Cc1ccnc2N(C3CC3)c4ncccc4C(=O)Nc12
+NVP           SMILES               CACTVS 3.341                                                                                  Cc1ccnc2N(C3CC3)c4ncccc4C(=O)Nc12
+NVP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                    Cc1ccnc2c1NC(=O)c3cccnc3N2C4CC4
+NVP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                    Cc1ccnc2c1NC(=O)c3cccnc3N2C4CC4
+NVP            InChI                InChI  1.03 InChI=1S/C15H14N4O/c1-9-6-8-17-14-12(9)18-15(20)11-3-2-7-16-13(11)19(14)10-4-5-10/h2-3,6-8,10H,4-5H2,1H3,(H,18,20)
+NVP         InChIKey                InChI  1.03                                                                                        NQDJXKOVJZTUJA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NVP acedrg               243         "dictionary generator"                  
+NVP acedrg_database      11          "data source"                           
+NVP rdkit                2017.03.2   "Chemoinformatics tool"
+NVP refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,516 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LIZ     LIZ      N-{(1S,2S)-2-[bis(carboxymethyl)amino]cyclohexyl}-N-{(2R)-2-[bis(carboxymethyl)amino]-3-[4-({[2-hydroxy-1,1-bis(hydroxymethyl)ethyl]carbamothioyl}amino)phenyl]propyl}glycine     NON-POLYMER     89     49     .     
+#
+data_comp_LIZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LIZ     N1      N       NT      0       30.271      77.070      44.305      
+LIZ     N3      N       NT      0       28.934      79.199      48.633      
+LIZ     C4      C       CH2     0       29.854      75.674      44.563      
+LIZ     C5      C       C       0       30.880      80.644      45.895      
+LIZ     C6      C       CH2     0       31.797      79.777      46.759      
+LIZ     C7      C       C       0       27.019      78.100      47.412      
+LIZ     C8      C       CH2     0       27.989      78.062      48.592      
+LIZ     C10     C       CH2     0       28.295      80.456      49.087      
+LIZ     C13     C       CH1     0       31.202      78.045      48.477      
+LIZ     C15     C       CH2     0       32.561      77.958      49.178      
+LIZ     C17     C       CH2     0       31.447      78.246      51.414      
+LIZ     C20     C       CR16    0       34.262      78.408      42.914      
+LIZ     C21     C       CR16    0       35.501      79.023      42.810      
+LIZ     C22     C       CR6     0       36.572      78.570      43.572      
+LIZ     C24     C       CR16    0       35.134      76.890      44.523      
+LIZ     C26     C       C       0       39.065      78.658      43.518      
+LIZ     C28     C       CT      0       41.290      78.995      44.788      
+LIZ     O7      O       O       0       27.461      78.494      46.314      
+LIZ     O8      O       OC      -1      25.847      77.734      47.632      
+LIZ     C9      C       C       0       28.758      81.683      48.306      
+LIZ     O10     O       OC      -1      29.680      82.360      48.802      
+LIZ     O9      O       O       0       28.181      81.921      47.226      
+LIZ     C14     C       CH1     0       30.223      78.909      49.314      
+LIZ     C18     C       CH2     0       30.091      78.323      50.722      
+LIZ     C16     C       CH2     0       32.426      77.421      50.601      
+LIZ     N2      N       NT      0       31.273      78.417      47.032      
+LIZ     O6      O       OC      -1      31.198      81.844      45.777      
+LIZ     O5      O       O       0       29.885      80.104      45.366      
+LIZ     C12     C       CH2     0       31.902      77.366      46.199      
+LIZ     C11     C       CH1     0       31.658      77.457      44.681      
+LIZ     C3      C       C       0       28.791      75.542      45.652      
+LIZ     O4      O       OC      -1      29.191      75.317      46.811      
+LIZ     O3      O       O       0       27.599      75.651      45.304      
+LIZ     C2      C       CH2     0       29.771      77.617      43.028      
+LIZ     C1      C       C       0       28.253      77.776      42.959      
+LIZ     O2      O       O       0       27.599      76.810      42.519      
+LIZ     O1      O       OC      -1      27.778      78.864      43.340      
+LIZ     C25     C       CH2     0       32.701      76.663      43.876      
+LIZ     C19     C       CR6     0       34.053      77.335      43.772      
+LIZ     C23     C       CR16    0       36.378      77.495      44.434      
+LIZ     N4      N       NH1     0       37.840      79.210      43.445      
+LIZ     S1      S       S1      0       39.414      77.212      42.720      
+LIZ     N5      N       NH1     0       39.960      79.373      44.229      
+LIZ     C29     C       CH2     0       42.278      78.471      43.734      
+LIZ     O11     O       OH1     0       42.108      79.118      42.483      
+LIZ     C30     C       CH2     0       41.026      77.921      45.852      
+LIZ     O12     O       OH1     0       40.120      78.371      46.847      
+LIZ     C27     C       CH2     0       41.880      80.253      45.445      
+LIZ     O13     O       OH1     0       43.060      79.985      46.189      
+LIZ     H4      H       H       0       30.625      75.151      44.829      
+LIZ     H4A     H       H       0       29.508      75.282      43.744      
+LIZ     H6      H       H       0       31.953      80.242      47.593      
+LIZ     H6A     H       H       0       32.654      79.703      46.308      
+LIZ     H8      H       H       0       27.475      78.051      49.416      
+LIZ     H8A     H       H       0       28.488      77.233      48.551      
+LIZ     H10     H       H       0       28.494      80.595      50.026      
+LIZ     H10A    H       H       0       27.331      80.384      49.001      
+LIZ     H13     H       H       0       30.828      77.132      48.504      
+LIZ     H15     H       H       0       33.156      77.370      48.671      
+LIZ     H15A    H       H       0       32.969      78.847      49.207      
+LIZ     H17     H       H       0       31.337      77.842      52.302      
+LIZ     H17A    H       H       0       31.804      79.153      51.533      
+LIZ     H20     H       H       0       33.545      78.727      42.391      
+LIZ     H21     H       H       0       35.619      79.749      42.222      
+LIZ     H24     H       H       0       35.018      76.163      45.112      
+LIZ     H14     H       H       0       30.671      79.781      49.430      
+LIZ     H18     H       H       0       29.486      78.880      51.252      
+LIZ     H18A    H       H       0       29.707      77.425      50.668      
+LIZ     H16     H       H       0       33.305      77.435      51.038      
+LIZ     H16A    H       H       0       32.118      76.489      50.568      
+LIZ     H12     H       H       0       31.591      76.486      46.510      
+LIZ     H12A    H       H       0       32.876      77.395      46.354      
+LIZ     H11     H       H       0       31.763      78.398      44.418      
+LIZ     H2      H       H       0       30.054      77.033      42.305      
+LIZ     H2A     H       H       0       30.174      78.486      42.873      
+LIZ     H25     H       H       0       32.356      76.513      42.970      
+LIZ     H25A    H       H       0       32.819      75.784      44.296      
+LIZ     H23     H       H       0       37.094      77.174      44.955      
+LIZ     HN4     H       H       0       37.809      80.063      43.272      
+LIZ     HN5     H       H       0       39.739      80.208      44.381      
+LIZ     H29     H       H       0       42.153      77.507      43.620      
+LIZ     H29A    H       H       0       43.195      78.615      44.046      
+LIZ     HO11    H       H       0       42.823      79.040      42.037      
+LIZ     H30     H       H       0       41.872      77.670      46.275      
+LIZ     H30A    H       H       0       40.659      77.123      45.422      
+LIZ     HO12    H       H       0       39.983      77.741      47.395      
+LIZ     H27     H       H       0       41.213      80.651      46.041      
+LIZ     H27A    H       H       0       42.085      80.908      44.746      
+LIZ     HO13    H       H       0       43.422      80.721      46.396      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LIZ          N1          C4      SINGLE       n     1.467  0.0129     1.467  0.0129
+LIZ          N1         C11      SINGLE       n     1.478  0.0116     1.478  0.0116
+LIZ          N1          C2      SINGLE       n     1.467  0.0129     1.467  0.0129
+LIZ          N3          C8      SINGLE       n     1.467  0.0145     1.467  0.0145
+LIZ          N3         C10      SINGLE       n     1.467  0.0145     1.467  0.0145
+LIZ          N3         C14      SINGLE       n     1.477  0.0117     1.477  0.0117
+LIZ          C4          C3      SINGLE       n     1.527  0.0103     1.527  0.0103
+LIZ          C5          C6      SINGLE       n     1.527  0.0103     1.527  0.0103
+LIZ          C5          O6      SINGLE       n     1.247  0.0187     1.247  0.0187
+LIZ          C5          O5      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LIZ          C6          N2      SINGLE       n     1.465  0.0152     1.465  0.0152
+LIZ          C7          C8      SINGLE       n     1.527  0.0103     1.527  0.0103
+LIZ          C7          O7      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LIZ          C7          O8      SINGLE       n     1.247  0.0187     1.247  0.0187
+LIZ         C10          C9      SINGLE       n     1.527  0.0103     1.527  0.0103
+LIZ         C13         C15      SINGLE       n     1.527  0.0100     1.527  0.0100
+LIZ         C13         C14      SINGLE       n     1.529  0.0179     1.529  0.0179
+LIZ         C13          N2      SINGLE       n     1.484  0.0100     1.484  0.0100
+LIZ         C15         C16      SINGLE       n     1.524  0.0131     1.524  0.0131
+LIZ         C17         C18      SINGLE       n     1.524  0.0131     1.524  0.0131
+LIZ         C17         C16      SINGLE       n     1.514  0.0200     1.514  0.0200
+LIZ         C20         C21      DOUBLE       y     1.383  0.0100     1.383  0.0100
+LIZ         C20         C19      SINGLE       y     1.385  0.0110     1.385  0.0110
+LIZ         C21         C22      SINGLE       y     1.386  0.0100     1.386  0.0100
+LIZ         C22         C23      DOUBLE       y     1.386  0.0100     1.386  0.0100
+LIZ         C22          N4      SINGLE       n     1.421  0.0113     1.421  0.0113
+LIZ         C24         C19      DOUBLE       y     1.385  0.0110     1.385  0.0110
+LIZ         C24         C23      SINGLE       y     1.383  0.0100     1.383  0.0100
+LIZ         C26          N4      SINGLE       n     1.341  0.0100     1.341  0.0100
+LIZ         C26          S1      DOUBLE       n     1.682  0.0143     1.682  0.0143
+LIZ         C26          N5      SINGLE       n     1.338  0.0100     1.338  0.0100
+LIZ         C28          N5      SINGLE       n     1.480  0.0102     1.480  0.0102
+LIZ         C28         C29      SINGLE       n     1.531  0.0100     1.531  0.0100
+LIZ         C28         C30      SINGLE       n     1.531  0.0100     1.531  0.0100
+LIZ         C28         C27      SINGLE       n     1.531  0.0100     1.531  0.0100
+LIZ          C9         O10      SINGLE       n     1.247  0.0187     1.247  0.0187
+LIZ          C9          O9      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LIZ         C14         C18      SINGLE       n     1.527  0.0100     1.527  0.0100
+LIZ          N2         C12      SINGLE       n     1.473  0.0100     1.473  0.0100
+LIZ         C12         C11      SINGLE       n     1.535  0.0100     1.535  0.0100
+LIZ         C11         C25      SINGLE       n     1.535  0.0100     1.535  0.0100
+LIZ          C3          O4      SINGLE       n     1.247  0.0187     1.247  0.0187
+LIZ          C3          O3      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LIZ          C2          C1      SINGLE       n     1.527  0.0103     1.527  0.0103
+LIZ          C1          O2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LIZ          C1          O1      SINGLE       n     1.247  0.0187     1.247  0.0187
+LIZ         C25         C19      SINGLE       n     1.512  0.0103     1.512  0.0103
+LIZ         C29         O11      SINGLE       n     1.419  0.0107     1.419  0.0107
+LIZ         C30         O12      SINGLE       n     1.419  0.0107     1.419  0.0107
+LIZ         C27         O13      SINGLE       n     1.419  0.0107     1.419  0.0107
+LIZ          C4          H4      SINGLE       n     1.089  0.0100     0.971  0.0200
+LIZ          C4         H4A      SINGLE       n     1.089  0.0100     0.971  0.0200
+LIZ          C6          H6      SINGLE       n     1.089  0.0100     0.971  0.0200
+LIZ          C6         H6A      SINGLE       n     1.089  0.0100     0.971  0.0200
+LIZ          C8          H8      SINGLE       n     1.089  0.0100     0.971  0.0200
+LIZ          C8         H8A      SINGLE       n     1.089  0.0100     0.971  0.0200
+LIZ         C10         H10      SINGLE       n     1.089  0.0100     0.971  0.0200
+LIZ         C10        H10A      SINGLE       n     1.089  0.0100     0.971  0.0200
+LIZ         C13         H13      SINGLE       n     1.089  0.0100     0.988  0.0199
+LIZ         C15         H15      SINGLE       n     1.089  0.0100     0.979  0.0145
+LIZ         C15        H15A      SINGLE       n     1.089  0.0100     0.979  0.0145
+LIZ         C17         H17      SINGLE       n     1.089  0.0100     0.982  0.0131
+LIZ         C17        H17A      SINGLE       n     1.089  0.0100     0.982  0.0131
+LIZ         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0173
+LIZ         C21         H21      SINGLE       n     1.082  0.0130     0.942  0.0183
+LIZ         C24         H24      SINGLE       n     1.082  0.0130     0.943  0.0173
+LIZ         C14         H14      SINGLE       n     1.089  0.0100     0.988  0.0199
+LIZ         C18         H18      SINGLE       n     1.089  0.0100     0.979  0.0145
+LIZ         C18        H18A      SINGLE       n     1.089  0.0100     0.979  0.0145
+LIZ         C16         H16      SINGLE       n     1.089  0.0100     0.982  0.0131
+LIZ         C16        H16A      SINGLE       n     1.089  0.0100     0.982  0.0131
+LIZ         C12         H12      SINGLE       n     1.089  0.0100     0.988  0.0200
+LIZ         C12        H12A      SINGLE       n     1.089  0.0100     0.988  0.0200
+LIZ         C11         H11      SINGLE       n     1.089  0.0100     0.985  0.0149
+LIZ          C2          H2      SINGLE       n     1.089  0.0100     0.971  0.0200
+LIZ          C2         H2A      SINGLE       n     1.089  0.0100     0.971  0.0200
+LIZ         C25         H25      SINGLE       n     1.089  0.0100     0.981  0.0150
+LIZ         C25        H25A      SINGLE       n     1.089  0.0100     0.981  0.0150
+LIZ         C23         H23      SINGLE       n     1.082  0.0130     0.942  0.0183
+LIZ          N4         HN4      SINGLE       n     1.016  0.0100     0.869  0.0200
+LIZ          N5         HN5      SINGLE       n     1.016  0.0100     0.876  0.0100
+LIZ         C29         H29      SINGLE       n     1.089  0.0100     0.979  0.0118
+LIZ         C29        H29A      SINGLE       n     1.089  0.0100     0.979  0.0118
+LIZ         O11        HO11      SINGLE       n     0.970  0.0120     0.846  0.0200
+LIZ         C30         H30      SINGLE       n     1.089  0.0100     0.979  0.0118
+LIZ         C30        H30A      SINGLE       n     1.089  0.0100     0.979  0.0118
+LIZ         O12        HO12      SINGLE       n     0.970  0.0120     0.846  0.0200
+LIZ         C27         H27      SINGLE       n     1.089  0.0100     0.979  0.0118
+LIZ         C27        H27A      SINGLE       n     1.089  0.0100     0.979  0.0118
+LIZ         O13        HO13      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LIZ          C4          N1         C11     115.509    2.20
+LIZ          C4          N1          C2     113.464    1.79
+LIZ         C11          N1          C2     115.509    2.20
+LIZ          C8          N3         C10     111.785    2.34
+LIZ          C8          N3         C14     113.267    1.87
+LIZ         C10          N3         C14     113.267    1.87
+LIZ          N1          C4          C3     112.134    2.59
+LIZ          N1          C4          H4     108.700    1.50
+LIZ          N1          C4         H4A     108.700    1.50
+LIZ          C3          C4          H4     108.544    1.50
+LIZ          C3          C4         H4A     108.544    1.50
+LIZ          H4          C4         H4A     107.487    1.50
+LIZ          C6          C5          O6     117.163    2.08
+LIZ          C6          C5          O5     117.163    2.08
+LIZ          O6          C5          O5     125.675    1.50
+LIZ          C5          C6          N2     112.134    2.59
+LIZ          C5          C6          H6     108.990    1.88
+LIZ          C5          C6         H6A     108.990    1.88
+LIZ          N2          C6          H6     108.976    1.50
+LIZ          N2          C6         H6A     108.976    1.50
+LIZ          H6          C6         H6A     107.779    1.50
+LIZ          C8          C7          O7     117.163    2.08
+LIZ          C8          C7          O8     117.163    2.08
+LIZ          O7          C7          O8     125.675    1.50
+LIZ          N3          C8          C7     112.134    2.59
+LIZ          N3          C8          H8     108.976    1.50
+LIZ          N3          C8         H8A     108.976    1.50
+LIZ          C7          C8          H8     108.990    1.88
+LIZ          C7          C8         H8A     108.990    1.88
+LIZ          H8          C8         H8A     107.779    1.50
+LIZ          N3         C10          C9     112.134    2.59
+LIZ          N3         C10         H10     108.976    1.50
+LIZ          N3         C10        H10A     108.976    1.50
+LIZ          C9         C10         H10     108.990    1.88
+LIZ          C9         C10        H10A     108.990    1.88
+LIZ         H10         C10        H10A     107.779    1.50
+LIZ         C15         C13         C14     111.314    2.26
+LIZ         C15         C13          N2     114.485    2.28
+LIZ         C15         C13         H13     106.587    1.50
+LIZ         C14         C13          N2     112.263    1.50
+LIZ         C14         C13         H13     106.355    1.64
+LIZ          N2         C13         H13     106.228    1.50
+LIZ         C13         C15         C16     111.228    1.50
+LIZ         C13         C15         H15     109.332    1.50
+LIZ         C13         C15        H15A     109.332    1.50
+LIZ         C16         C15         H15     109.472    1.50
+LIZ         C16         C15        H15A     109.472    1.50
+LIZ         H15         C15        H15A     108.076    1.50
+LIZ         C18         C17         C16     111.328    1.50
+LIZ         C18         C17         H17     109.340    1.50
+LIZ         C18         C17        H17A     109.340    1.50
+LIZ         C16         C17         H17     109.386    1.50
+LIZ         C16         C17        H17A     109.386    1.50
+LIZ         H17         C17        H17A     108.036    1.50
+LIZ         C21         C20         C19     121.431    1.50
+LIZ         C21         C20         H20     119.241    1.50
+LIZ         C19         C20         H20     119.328    1.50
+LIZ         C20         C21         C22     119.999    1.50
+LIZ         C20         C21         H21     120.101    1.50
+LIZ         C22         C21         H21     119.900    1.50
+LIZ         C21         C22         C23     119.305    1.50
+LIZ         C21         C22          N4     120.347    3.00
+LIZ         C23         C22          N4     120.347    3.00
+LIZ         C19         C24         C23     121.431    1.50
+LIZ         C19         C24         H24     119.328    1.50
+LIZ         C23         C24         H24     119.241    1.50
+LIZ          N4         C26          S1     124.177    2.24
+LIZ          N4         C26          N5     113.353    2.36
+LIZ          S1         C26          N5     122.470    1.52
+LIZ          N5         C28         C29     108.744    2.92
+LIZ          N5         C28         C30     108.744    2.92
+LIZ          N5         C28         C27     108.744    2.92
+LIZ         C29         C28         C30     110.440    1.76
+LIZ         C29         C28         C27     110.440    1.76
+LIZ         C30         C28         C27     110.440    1.76
+LIZ         C10          C9         O10     117.163    2.08
+LIZ         C10          C9          O9     117.163    2.08
+LIZ         O10          C9          O9     125.675    1.50
+LIZ          N3         C14         C13     112.263    1.50
+LIZ          N3         C14         C18     114.485    2.28
+LIZ          N3         C14         H14     106.228    1.50
+LIZ         C13         C14         C18     111.314    2.26
+LIZ         C13         C14         H14     106.355    1.64
+LIZ         C18         C14         H14     106.587    1.50
+LIZ         C17         C18         C14     111.228    1.50
+LIZ         C17         C18         H18     109.472    1.50
+LIZ         C17         C18        H18A     109.472    1.50
+LIZ         C14         C18         H18     109.332    1.50
+LIZ         C14         C18        H18A     109.332    1.50
+LIZ         H18         C18        H18A     108.076    1.50
+LIZ         C15         C16         C17     111.328    1.50
+LIZ         C15         C16         H16     109.340    1.50
+LIZ         C15         C16        H16A     109.340    1.50
+LIZ         C17         C16         H16     109.386    1.50
+LIZ         C17         C16        H16A     109.386    1.50
+LIZ         H16         C16        H16A     108.036    1.50
+LIZ          C6          N2         C13     113.267    1.87
+LIZ          C6          N2         C12     112.615    2.70
+LIZ         C13          N2         C12     112.905    1.50
+LIZ          N2         C12         C11     111.883    2.59
+LIZ          N2         C12         H12     108.820    1.50
+LIZ          N2         C12        H12A     108.820    1.50
+LIZ         C11         C12         H12     108.744    1.50
+LIZ         C11         C12        H12A     108.744    1.50
+LIZ         H12         C12        H12A     107.790    1.50
+LIZ          N1         C11         C12     111.170    2.35
+LIZ          N1         C11         C25     111.110    2.44
+LIZ          N1         C11         H11     106.595    1.50
+LIZ         C12         C11         C25     112.703    1.50
+LIZ         C12         C11         H11     108.202    1.50
+LIZ         C25         C11         H11     107.624    1.50
+LIZ          C4          C3          O4     117.146    1.78
+LIZ          C4          C3          O3     117.146    1.78
+LIZ          O4          C3          O3     125.708    1.50
+LIZ          N1          C2          C1     112.134    2.59
+LIZ          N1          C2          H2     108.700    1.50
+LIZ          N1          C2         H2A     108.700    1.50
+LIZ          C1          C2          H2     108.544    1.50
+LIZ          C1          C2         H2A     108.544    1.50
+LIZ          H2          C2         H2A     107.487    1.50
+LIZ          C2          C1          O2     117.146    1.78
+LIZ          C2          C1          O1     117.146    1.78
+LIZ          O2          C1          O1     125.708    1.50
+LIZ         C11         C25         C19     113.565    1.50
+LIZ         C11         C25         H25     108.839    1.50
+LIZ         C11         C25        H25A     108.839    1.50
+LIZ         C19         C25         H25     108.862    1.50
+LIZ         C19         C25        H25A     108.862    1.50
+LIZ         H25         C25        H25A     107.782    1.50
+LIZ         C20         C19         C24     117.835    1.50
+LIZ         C20         C19         C25     121.083    1.50
+LIZ         C24         C19         C25     121.083    1.50
+LIZ         C22         C23         C24     119.999    1.50
+LIZ         C22         C23         H23     119.900    1.50
+LIZ         C24         C23         H23     120.101    1.50
+LIZ         C22          N4         C26     128.150    2.98
+LIZ         C22          N4         HN4     115.796    1.83
+LIZ         C26          N4         HN4     116.053    2.14
+LIZ         C26          N5         C28     126.282    2.19
+LIZ         C26          N5         HN5     117.345    1.76
+LIZ         C28          N5         HN5     116.373    2.13
+LIZ         C28         C29         O11     111.085    1.98
+LIZ         C28         C29         H29     109.125    1.50
+LIZ         C28         C29        H29A     109.125    1.50
+LIZ         O11         C29         H29     109.336    1.50
+LIZ         O11         C29        H29A     109.336    1.50
+LIZ         H29         C29        H29A     108.117    1.50
+LIZ         C29         O11        HO11     108.659    2.30
+LIZ         C28         C30         O12     111.085    1.98
+LIZ         C28         C30         H30     109.125    1.50
+LIZ         C28         C30        H30A     109.125    1.50
+LIZ         O12         C30         H30     109.336    1.50
+LIZ         O12         C30        H30A     109.336    1.50
+LIZ         H30         C30        H30A     108.117    1.50
+LIZ         C30         O12        HO12     108.659    2.30
+LIZ         C28         C27         O13     111.085    1.98
+LIZ         C28         C27         H27     109.125    1.50
+LIZ         C28         C27        H27A     109.125    1.50
+LIZ         O13         C27         H27     109.336    1.50
+LIZ         O13         C27        H27A     109.336    1.50
+LIZ         H27         C27        H27A     108.117    1.50
+LIZ         C27         O13        HO13     108.659    2.30
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LIZ            sp3_sp3_46          C3          C4          N1         C11     180.000    10.0     3
+LIZ            sp3_sp3_53         C12         C11          N1          C4     -60.000    10.0     3
+LIZ            sp3_sp3_58          C1          C2          N1          C4     180.000    10.0     3
+LIZ            sp3_sp3_28         C16         C17         C18         C14     -60.000    10.0     3
+LIZ            sp3_sp3_19         C15         C16         C17         C18      60.000    10.0     3
+LIZ       const_sp2_sp2_1         C19         C20         C21         C22       0.000     5.0     2
+LIZ              const_23         C25         C19         C20         C21     180.000    10.0     2
+LIZ       const_sp2_sp2_6         C20         C21         C22          N4     180.000     5.0     2
+LIZ              const_11          N4         C22         C23         C24     180.000    10.0     2
+LIZ             sp2_sp2_1         C21         C22          N4         C26     180.000     5.0     2
+LIZ              const_19         C25         C19         C24         C23     180.000    10.0     2
+LIZ              const_13         C22         C23         C24         C19       0.000    10.0     2
+LIZ             sp2_sp2_7          S1         C26          N4         C22       0.000     5.0     2
+LIZ             sp2_sp2_9          N4         C26          N5         C28     180.000     5.0     2
+LIZ            sp2_sp3_26         C26          N5         C28         C29     120.000    10.0     6
+LIZ           sp3_sp3_103          N5         C28         C29         O11     180.000    10.0     3
+LIZ           sp3_sp3_115          N5         C28         C30         O12      60.000    10.0     3
+LIZ           sp3_sp3_121         O13         C27         C28          N5     180.000    10.0     3
+LIZ            sp3_sp3_77         C13         C14          N3          C8     -60.000    10.0     3
+LIZ            sp3_sp3_65          C7          C8          N3         C10     -60.000    10.0     3
+LIZ            sp3_sp3_70          C9         C10          N3          C8     180.000    10.0     3
+LIZ            sp3_sp3_40          N3         C14         C18         C17     -60.000    10.0     3
+LIZ           sp3_sp3_130         C11         C12          N2          C6     180.000    10.0     3
+LIZ           sp3_sp3_136          N1         C11         C12          N2     180.000    10.0     3
+LIZ           sp3_sp3_145          N1         C11         C25         C19     180.000    10.0     3
+LIZ             sp2_sp3_2          O4          C3          C4          N1     120.000    10.0     6
+LIZ            sp2_sp3_32          O2          C1          C2          N1     120.000    10.0     6
+LIZ            sp2_sp3_38         C20         C19         C25         C11     -90.000    10.0     6
+LIZ             sp2_sp3_8          O6          C5          C6          N2     120.000    10.0     6
+LIZ           sp3_sp3_154         C28         C29         O11        HO11     180.000    10.0     3
+LIZ           sp3_sp3_157         C28         C30         O12        HO12     180.000    10.0     3
+LIZ           sp3_sp3_160         C28         C27         O13        HO13     180.000    10.0     3
+LIZ            sp3_sp3_83          C5          C6          N2         C12     -60.000    10.0     3
+LIZ            sp2_sp3_14          O7          C7          C8          N3     120.000    10.0     6
+LIZ            sp2_sp3_20         O10          C9         C10          N3     120.000    10.0     6
+LIZ            sp3_sp3_92          N2         C13         C14          N3     180.000    10.0     3
+LIZ            sp3_sp3_97         C15         C13          N2          C6     180.000    10.0     3
+LIZ             sp3_sp3_4          N2         C13         C15         C16     -60.000    10.0     3
+LIZ            sp3_sp3_10         C13         C15         C16         C17     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LIZ    chir_1    N1    C11    C4    C2    both
+LIZ    chir_2    N3    C14    C8    C10    both
+LIZ    chir_3    C13    N2    C14    C15    positive
+LIZ    chir_4    C28    N5    C29    C30    both
+LIZ    chir_5    C14    N3    C13    C18    positive
+LIZ    chir_6    N2    C13    C6    C12    negative
+LIZ    chir_7    C11    N1    C12    C25    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LIZ    plan-1         C19   0.020
+LIZ    plan-1         C20   0.020
+LIZ    plan-1         C21   0.020
+LIZ    plan-1         C22   0.020
+LIZ    plan-1         C23   0.020
+LIZ    plan-1         C24   0.020
+LIZ    plan-1         C25   0.020
+LIZ    plan-1         H20   0.020
+LIZ    plan-1         H21   0.020
+LIZ    plan-1         H23   0.020
+LIZ    plan-1         H24   0.020
+LIZ    plan-1          N4   0.020
+LIZ    plan-2          C5   0.020
+LIZ    plan-2          C6   0.020
+LIZ    plan-2          O5   0.020
+LIZ    plan-2          O6   0.020
+LIZ    plan-3          C7   0.020
+LIZ    plan-3          C8   0.020
+LIZ    plan-3          O7   0.020
+LIZ    plan-3          O8   0.020
+LIZ    plan-4         C26   0.020
+LIZ    plan-4          N4   0.020
+LIZ    plan-4          N5   0.020
+LIZ    plan-4          S1   0.020
+LIZ    plan-5         C10   0.020
+LIZ    plan-5          C9   0.020
+LIZ    plan-5         O10   0.020
+LIZ    plan-5          O9   0.020
+LIZ    plan-6          C3   0.020
+LIZ    plan-6          C4   0.020
+LIZ    plan-6          O3   0.020
+LIZ    plan-6          O4   0.020
+LIZ    plan-7          C1   0.020
+LIZ    plan-7          C2   0.020
+LIZ    plan-7          O1   0.020
+LIZ    plan-7          O2   0.020
+LIZ    plan-8         C22   0.020
+LIZ    plan-8         C26   0.020
+LIZ    plan-8         HN4   0.020
+LIZ    plan-8          N4   0.020
+LIZ    plan-9         C26   0.020
+LIZ    plan-9         C28   0.020
+LIZ    plan-9         HN5   0.020
+LIZ    plan-9          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LIZ           SMILES              ACDLabs 10.04                                                                                                                                                                                             S=C(NC(CO)(CO)CO)Nc1ccc(cc1)CC(N(CC(=O)O)CC(=O)O)CN(CC(=O)O)C2CCCCC2N(CC(=O)O)CC(=O)O
+LIZ SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                OCC(CO)(CO)NC(=S)Nc1ccc(C[C@H](CN(CC(O)=O)[C@H]2CCCC[C@@H]2N(CC(O)=O)CC(O)=O)N(CC(O)=O)CC(O)=O)cc1
+LIZ           SMILES               CACTVS 3.341                                                                                                                                                                                    OCC(CO)(CO)NC(=S)Nc1ccc(C[CH](CN(CC(O)=O)[CH]2CCCC[CH]2N(CC(O)=O)CC(O)=O)N(CC(O)=O)CC(O)=O)cc1
+LIZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                             c1cc(ccc1C[C@H](C[N@](CC(=O)O)[C@H]2CCCC[C@@H]2N(CC(=O)O)CC(=O)O)N(CC(=O)O)CC(=O)O)NC(=S)NC(CO)(CO)CO
+LIZ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                             c1cc(ccc1CC(CN(CC(=O)O)C2CCCCC2N(CC(=O)O)CC(=O)O)N(CC(=O)O)CC(=O)O)NC(=S)NC(CO)(CO)CO
+LIZ            InChI                InChI  1.03 InChI=1S/C30H45N5O13S/c36-16-30(17-37,18-38)32-29(49)31-20-7-5-19(6-8-20)9-21(33(11-24(39)40)12-25(41)42)10-34(13-26(43)44)22-3-1-2-4-23(22)35(14-27(45)46)15-28(47)48/h5-8,21-23,36-38H,1-4,9-18H2,(H,39,40)(H,41,42)(H,43,44)(H,45,46)(H,47,48)(H2,31,32,49)/t21-,22+,23+/m1/s1
+LIZ         InChIKey                InChI  1.03                                                                                                                                                                                                                                                       ZDJITWBUQUCYMP-VJBWXMMDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LIZ acedrg               243         "dictionary generator"                  
+LIZ acedrg_database      11          "data source"                           
+LIZ rdkit                2017.03.2   "Chemoinformatics tool"
+LIZ refmac5              5.8.0238    "optimization tool"                     

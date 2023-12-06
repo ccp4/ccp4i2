@@ -1,0 +1,387 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ITD     ITD      "(6,6-dimethyl-5,6-dihydroimidazo[2,1-b][1,3]thiazol-3-yl)methyl N,N'-dicyclohexylimidothiocarbamate"     NON-POLYMER     61     27     .     
+#
+data_comp_ITD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ITD     C1      C       CH3     0       16.222      -4.695      68.342      
+ITD     N1      N       NRD5    0       17.006      -6.979      68.640      
+ITD     S1      S       S2      0       16.861      -8.651      70.806      
+ITD     C2      C       CT      0       17.458      -5.562      68.502      
+ITD     N2      N       NT      0       17.694      -6.320      70.704      
+ITD     S2      S       S2      0       20.986      -6.546      71.763      
+ITD     C3      C       CH3     0       18.352      -5.447      67.277      
+ITD     N3      N       NH1     0       21.747      -8.385      73.451      
+ITD     C4      C       CR55    0       17.156      -7.256      69.870      
+ITD     N4      N       N       0       22.517      -8.802      71.266      
+ITD     C5      C       CR15    0       17.875      -8.120      72.086      
+ITD     C6      C       CH2     0       18.212      -5.276      69.805      
+ITD     C7      C       CR5     0       18.336      -6.880      71.811      
+ITD     C8      C       CH2     0       19.420      -6.185      72.582      
+ITD     C9      C       C       0       21.816      -8.063      72.137      
+ITD     C10     C       CH1     0       22.257      -9.625      74.050      
+ITD     C11     C       CH2     0       21.671      -9.824      75.439      
+ITD     C12     C       CH2     0       22.176      -11.122     76.069      
+ITD     C13     C       CH2     0       23.695      -11.185     76.092      
+ITD     C14     C       CH2     0       24.283      -10.940     74.714      
+ITD     C15     C       CH2     0       23.776      -9.627      74.117      
+ITD     C16     C       CH1     0       22.639      -8.725      69.805      
+ITD     C17     C       CH2     0       21.271      -8.719      69.133      
+ITD     C18     C       CH2     0       21.393      -8.614      67.616      
+ITD     C19     C       CH2     0       22.218      -7.406      67.206      
+ITD     C20     C       CH2     0       23.579      -7.412      67.880      
+ITD     C21     C       CH2     0       23.447      -7.502      69.398      
+ITD     H1      H       H       0       16.489      -3.772      68.205      
+ITD     H1A     H       H       0       15.677      -4.758      69.141      
+ITD     H1B     H       H       0       15.710      -5.000      67.577      
+ITD     H3      H       H       0       18.864      -6.264      67.169      
+ITD     H3A     H       H       0       18.960      -4.699      67.391      
+ITD     H3B     H       H       0       17.808      -5.301      66.486      
+ITD     HN3     H       H       0       21.383      -7.816      73.992      
+ITD     H5      H       H       0       18.081      -8.619      72.862      
+ITD     H6      H       H       0       18.003      -4.383      70.155      
+ITD     H6A     H       H       0       19.181      -5.361      69.686      
+ITD     H8      H       H       0       19.265      -5.220      72.594      
+ITD     H8A     H       H       0       19.444      -6.509      73.504      
+ITD     H10     H       H       0       21.971      -10.384     73.483      
+ITD     H11     H       H       0       21.921      -9.066      76.008      
+ITD     H11A    H       H       0       20.692      -9.849      75.378      
+ITD     H12     H       H       0       21.828      -11.886     75.560      
+ITD     H12A    H       H       0       21.836      -11.190     76.987      
+ITD     H13     H       H       0       23.978      -12.068     76.413      
+ITD     H13A    H       H       0       24.039      -10.511     76.716      
+ITD     H14     H       H       0       24.038      -11.682     74.119      
+ITD     H14A    H       H       0       25.262      -10.912     74.778      
+ITD     H15     H       H       0       24.079      -8.877      74.672      
+ITD     H15A    H       H       0       24.149      -9.513      73.219      
+ITD     H16     H       H       0       23.124      -9.525      69.497      
+ITD     H17     H       H       0       20.793      -9.544      69.366      
+ITD     H17A    H       H       0       20.743      -7.963      69.458      
+ITD     H18     H       H       0       20.495      -8.543      67.223      
+ITD     H18A    H       H       0       21.813      -9.430      67.266      
+ITD     H19     H       H       0       21.738      -6.586      67.450      
+ITD     H19A    H       H       0       22.338      -7.409      66.232      
+ITD     H20     H       H       0       24.064      -6.591      67.644      
+ITD     H20A    H       H       0       24.100      -8.177      67.553      
+ITD     H21     H       H       0       24.341      -7.556      69.801      
+ITD     H21A    H       H       0       23.012      -6.691      69.733      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ITD          C1          C2      SINGLE       n     1.518  0.0116     1.518  0.0116
+ITD          N1          C2      SINGLE       n     1.492  0.0100     1.492  0.0100
+ITD          N1          C4      DOUBLE       n     1.268  0.0102     1.268  0.0102
+ITD          S1          C5      SINGLE       n     1.734  0.0200     1.734  0.0200
+ITD          C2          C6      SINGLE       n     1.532  0.0200     1.532  0.0200
+ITD          N2          C7      SINGLE       n     1.363  0.0200     1.363  0.0200
+ITD          S2          C9      SINGLE       n     1.762  0.0200     1.762  0.0200
+ITD          C2          C3      SINGLE       n     1.518  0.0116     1.518  0.0116
+ITD          N3         C10      SINGLE       n     1.465  0.0100     1.465  0.0100
+ITD          S1          C4      SINGLE       n     1.734  0.0200     1.734  0.0200
+ITD          N2          C4      SINGLE       n     1.358  0.0200     1.358  0.0200
+ITD          N4          C9      DOUBLE       n     1.317  0.0200     1.317  0.0200
+ITD          N2          C6      SINGLE       n     1.473  0.0114     1.473  0.0114
+ITD          C5          C7      DOUBLE       n     1.339  0.0157     1.339  0.0157
+ITD          C7          C8      SINGLE       n     1.498  0.0174     1.498  0.0174
+ITD          S2          C8      SINGLE       n     1.809  0.0191     1.809  0.0191
+ITD          N3          C9      SINGLE       n     1.338  0.0178     1.338  0.0178
+ITD         C10         C11      SINGLE       n     1.518  0.0108     1.518  0.0108
+ITD         C11         C12      SINGLE       n     1.527  0.0100     1.527  0.0100
+ITD         C12         C13      SINGLE       n     1.516  0.0136     1.516  0.0136
+ITD         C13         C14      SINGLE       n     1.515  0.0126     1.515  0.0126
+ITD         C10         C15      SINGLE       n     1.518  0.0108     1.518  0.0108
+ITD         C14         C15      SINGLE       n     1.527  0.0100     1.527  0.0100
+ITD          N4         C16      SINGLE       n     1.462  0.0100     1.462  0.0100
+ITD         C16         C17      SINGLE       n     1.519  0.0100     1.519  0.0100
+ITD         C17         C18      SINGLE       n     1.525  0.0100     1.525  0.0100
+ITD         C18         C19      SINGLE       n     1.516  0.0136     1.516  0.0136
+ITD         C19         C20      SINGLE       n     1.517  0.0100     1.517  0.0100
+ITD         C20         C21      SINGLE       n     1.525  0.0100     1.525  0.0100
+ITD         C16         C21      SINGLE       n     1.519  0.0100     1.519  0.0100
+ITD          C1          H1      SINGLE       n     1.089  0.0100     0.970  0.0163
+ITD          C1         H1A      SINGLE       n     1.089  0.0100     0.970  0.0163
+ITD          C1         H1B      SINGLE       n     1.089  0.0100     0.970  0.0163
+ITD          C3          H3      SINGLE       n     1.089  0.0100     0.970  0.0163
+ITD          C3         H3A      SINGLE       n     1.089  0.0100     0.970  0.0163
+ITD          C3         H3B      SINGLE       n     1.089  0.0100     0.970  0.0163
+ITD          N3         HN3      SINGLE       n     1.016  0.0100     0.864  0.0163
+ITD          C5          H5      SINGLE       n     1.082  0.0130     0.946  0.0200
+ITD          C6          H6      SINGLE       n     1.089  0.0100     0.981  0.0150
+ITD          C6         H6A      SINGLE       n     1.089  0.0100     0.981  0.0150
+ITD          C8          H8      SINGLE       n     1.089  0.0100     0.978  0.0100
+ITD          C8         H8A      SINGLE       n     1.089  0.0100     0.978  0.0100
+ITD         C10         H10      SINGLE       n     1.089  0.0100     0.989  0.0155
+ITD         C11         H11      SINGLE       n     1.089  0.0100     0.981  0.0121
+ITD         C11        H11A      SINGLE       n     1.089  0.0100     0.981  0.0121
+ITD         C12         H12      SINGLE       n     1.089  0.0100     0.982  0.0131
+ITD         C12        H12A      SINGLE       n     1.089  0.0100     0.982  0.0131
+ITD         C13         H13      SINGLE       n     1.089  0.0100     0.981  0.0138
+ITD         C13        H13A      SINGLE       n     1.089  0.0100     0.981  0.0138
+ITD         C14         H14      SINGLE       n     1.089  0.0100     0.982  0.0131
+ITD         C14        H14A      SINGLE       n     1.089  0.0100     0.982  0.0131
+ITD         C15         H15      SINGLE       n     1.089  0.0100     0.981  0.0121
+ITD         C15        H15A      SINGLE       n     1.089  0.0100     0.981  0.0121
+ITD         C16         H16      SINGLE       n     1.089  0.0100     0.985  0.0200
+ITD         C17         H17      SINGLE       n     1.089  0.0100     0.982  0.0142
+ITD         C17        H17A      SINGLE       n     1.089  0.0100     0.982  0.0142
+ITD         C18         H18      SINGLE       n     1.089  0.0100     0.982  0.0136
+ITD         C18        H18A      SINGLE       n     1.089  0.0100     0.982  0.0136
+ITD         C19         H19      SINGLE       n     1.089  0.0100     0.981  0.0138
+ITD         C19        H19A      SINGLE       n     1.089  0.0100     0.981  0.0138
+ITD         C20         H20      SINGLE       n     1.089  0.0100     0.982  0.0136
+ITD         C20        H20A      SINGLE       n     1.089  0.0100     0.982  0.0136
+ITD         C21         H21      SINGLE       n     1.089  0.0100     0.982  0.0142
+ITD         C21        H21A      SINGLE       n     1.089  0.0100     0.982  0.0142
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ITD          C2          C1          H1     109.453    1.50
+ITD          C2          C1         H1A     109.453    1.50
+ITD          C2          C1         H1B     109.453    1.50
+ITD          H1          C1         H1A     109.453    1.50
+ITD          H1          C1         H1B     109.453    1.50
+ITD         H1A          C1         H1B     109.453    1.50
+ITD          C2          N1          C4     104.632    1.50
+ITD          C5          S1          C4     120.000    3.00
+ITD          C1          C2          N1     108.491    1.73
+ITD          C1          C2          C6     112.762    1.50
+ITD          C1          C2          C3     110.493    1.50
+ITD          N1          C2          C6     105.224    2.48
+ITD          N1          C2          C3     108.491    1.73
+ITD          C6          C2          C3     112.762    1.50
+ITD          C7          N2          C4     110.017    2.77
+ITD          C7          N2          C6     124.400    3.00
+ITD          C4          N2          C6     106.029    2.78
+ITD          C9          S2          C8     120.000    3.00
+ITD          C2          C3          H3     109.453    1.50
+ITD          C2          C3         H3A     109.453    1.50
+ITD          C2          C3         H3B     109.453    1.50
+ITD          H3          C3         H3A     109.453    1.50
+ITD          H3          C3         H3B     109.453    1.50
+ITD         H3A          C3         H3B     109.453    1.50
+ITD         C10          N3          C9     123.959    1.50
+ITD         C10          N3         HN3     117.633    2.52
+ITD          C9          N3         HN3     118.409    2.47
+ITD          N1          C4          S1     130.256    1.70
+ITD          N1          C4          N2     116.743    1.50
+ITD          S1          C4          N2     113.001    3.00
+ITD          C9          N4         C16     119.238    2.60
+ITD          S1          C5          C7     113.294    3.00
+ITD          S1          C5          H5     122.750    2.18
+ITD          C7          C5          H5     123.956    1.50
+ITD          C2          C6          N2     103.353    2.08
+ITD          C2          C6          H6     111.129    1.50
+ITD          C2          C6         H6A     111.129    1.50
+ITD          N2          C6          H6     109.272    3.00
+ITD          N2          C6         H6A     109.272    3.00
+ITD          H6          C6         H6A     109.098    1.50
+ITD          N2          C7          C5     109.977    2.81
+ITD          N2          C7          C8     124.639    1.82
+ITD          C5          C7          C8     125.384    1.50
+ITD          C7          C8          S2     112.260    2.46
+ITD          C7          C8          H8     109.646    1.50
+ITD          C7          C8         H8A     109.646    1.50
+ITD          S2          C8          H8     109.066    1.50
+ITD          S2          C8         H8A     109.066    1.50
+ITD          H8          C8         H8A     107.824    1.50
+ITD          S2          C9          N4     122.410    3.00
+ITD          S2          C9          N3     115.606    3.00
+ITD          N4          C9          N3     121.984    3.00
+ITD          N3         C10         C11     110.381    1.50
+ITD          N3         C10         C15     110.381    1.50
+ITD          N3         C10         H10     108.286    1.50
+ITD         C11         C10         C15     110.870    1.50
+ITD         C11         C10         H10     108.306    1.50
+ITD         C15         C10         H10     108.306    1.50
+ITD         C10         C11         C12     110.796    1.50
+ITD         C10         C11         H11     109.338    1.50
+ITD         C10         C11        H11A     109.338    1.50
+ITD         C12         C11         H11     109.472    1.50
+ITD         C12         C11        H11A     109.472    1.50
+ITD         H11         C11        H11A     108.076    1.50
+ITD         C11         C12         C13     111.328    1.50
+ITD         C11         C12         H12     109.340    1.50
+ITD         C11         C12        H12A     109.340    1.50
+ITD         C13         C12         H12     109.386    1.50
+ITD         C13         C12        H12A     109.386    1.50
+ITD         H12         C12        H12A     108.036    1.50
+ITD         C12         C13         C14     111.038    1.50
+ITD         C12         C13         H13     109.386    1.50
+ITD         C12         C13        H13A     109.386    1.50
+ITD         C14         C13         H13     109.386    1.50
+ITD         C14         C13        H13A     109.386    1.50
+ITD         H13         C13        H13A     108.036    1.50
+ITD         C13         C14         C15     111.328    1.50
+ITD         C13         C14         H14     109.386    1.50
+ITD         C13         C14        H14A     109.386    1.50
+ITD         C15         C14         H14     109.340    1.50
+ITD         C15         C14        H14A     109.340    1.50
+ITD         H14         C14        H14A     108.036    1.50
+ITD         C10         C15         C14     110.796    1.50
+ITD         C10         C15         H15     109.338    1.50
+ITD         C10         C15        H15A     109.338    1.50
+ITD         C14         C15         H15     109.472    1.50
+ITD         C14         C15        H15A     109.472    1.50
+ITD         H15         C15        H15A     108.076    1.50
+ITD          N4         C16         C17     109.257    1.50
+ITD          N4         C16         C21     109.257    1.50
+ITD          N4         C16         H16     109.296    1.50
+ITD         C17         C16         C21     110.317    1.50
+ITD         C17         C16         H16     109.174    1.50
+ITD         C21         C16         H16     109.174    1.50
+ITD         C16         C17         C18     111.546    1.50
+ITD         C16         C17         H17     109.275    1.50
+ITD         C16         C17        H17A     109.275    1.50
+ITD         C18         C17         H17     109.472    1.50
+ITD         C18         C17        H17A     109.472    1.50
+ITD         H17         C17        H17A     108.076    1.50
+ITD         C17         C18         C19     111.328    1.50
+ITD         C17         C18         H18     109.340    1.50
+ITD         C17         C18        H18A     109.340    1.50
+ITD         C19         C18         H18     109.386    1.50
+ITD         C19         C18        H18A     109.386    1.50
+ITD         H18         C18        H18A     108.036    1.50
+ITD         C18         C19         C20     111.038    1.50
+ITD         C18         C19         H19     109.386    1.50
+ITD         C18         C19        H19A     109.386    1.50
+ITD         C20         C19         H19     109.386    1.50
+ITD         C20         C19        H19A     109.386    1.50
+ITD         H19         C19        H19A     108.036    1.50
+ITD         C19         C20         C21     111.328    1.50
+ITD         C19         C20         H20     109.386    1.50
+ITD         C19         C20        H20A     109.386    1.50
+ITD         C21         C20         H20     109.340    1.50
+ITD         C21         C20        H20A     109.340    1.50
+ITD         H20         C20        H20A     108.036    1.50
+ITD         C20         C21         C16     111.546    1.50
+ITD         C20         C21         H21     109.472    1.50
+ITD         C20         C21        H21A     109.472    1.50
+ITD         C16         C21         H21     109.275    1.50
+ITD         C16         C21        H21A     109.275    1.50
+ITD         H21         C21        H21A     108.076    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ITD           sp3_sp3_102          H1          C1          C2          C3      60.000    10.0     3
+ITD             sp2_sp2_8          S1          C5          C7          C8     180.000     5.0     2
+ITD            sp2_sp3_17          N2          C7          C8          S2     -90.000    10.0     6
+ITD             sp3_sp3_7          N3         C10         C11         C12     180.000    10.0     3
+ITD           sp3_sp3_124          N3         C10         C15         C14      60.000    10.0     3
+ITD            sp3_sp3_10         C10         C11         C12         C13     -60.000    10.0     3
+ITD            sp3_sp3_19         C11         C12         C13         C14      60.000    10.0     3
+ITD            sp3_sp3_28         C12         C13         C14         C15     -60.000    10.0     3
+ITD            sp3_sp3_37         C13         C14         C15         C10      60.000    10.0     3
+ITD             sp2_sp3_3          C4          N1          C2          C1    -120.000    10.0     6
+ITD            sp2_sp2_16          S1          C4          N1          C2     180.000     5.0     2
+ITD            sp3_sp3_52          N4         C16         C17         C18     180.000    10.0     3
+ITD           sp3_sp3_133          N4         C16         C21         C20      60.000    10.0     3
+ITD            sp3_sp3_55         C16         C17         C18         C19     -60.000    10.0     3
+ITD            sp3_sp3_64         C17         C18         C19         C20      60.000    10.0     3
+ITD            sp3_sp3_73         C18         C19         C20         C21     -60.000    10.0     3
+ITD            sp3_sp3_82         C19         C20         C21         C16      60.000    10.0     3
+ITD             sp2_sp2_5          C7          C5          S1          C4       0.000     5.0     2
+ITD            sp2_sp2_20          N1          C4          S1          C5     180.000     5.0     2
+ITD            sp3_sp3_94          C1          C2          C6          N2     180.000    10.0     3
+ITD           sp3_sp3_115          C1          C2          C3          H3     -60.000    10.0     3
+ITD             sp2_sp3_7          C7          N2          C6          C2     180.000    10.0     6
+ITD            sp2_sp2_13          C8          C7          N2          C4     180.000     5.0     2
+ITD             sp2_sp2_2          N1          C4          N2          C7     180.000     5.0     2
+ITD           sp3_sp3_118          C7          C8          S2          C9     180.000    10.0     3
+ITD            sp2_sp2_17          N4          C9          S2          C8     180.000     5.0     2
+ITD            sp2_sp2_23          S2          C9          N3         C10     180.000     5.0     2
+ITD            sp2_sp3_11          C9          N3         C10         C11     120.000    10.0     6
+ITD            sp2_sp2_21          S2          C9          N4         C16     180.000     5.0     2
+ITD            sp2_sp3_23          C9          N4         C16         C17     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ITD    chir_1    C2    N1    C6    C1    both
+ITD    chir_2    C10    N3    C11    C15    both
+ITD    chir_3    C16    N4    C17    C21    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ITD    plan-1         C10   0.020
+ITD    plan-1          C9   0.020
+ITD    plan-1         HN3   0.020
+ITD    plan-1          N3   0.020
+ITD    plan-2          C4   0.020
+ITD    plan-2          N1   0.020
+ITD    plan-2          N2   0.020
+ITD    plan-2          S1   0.020
+ITD    plan-3          C5   0.020
+ITD    plan-3          C7   0.020
+ITD    plan-3          H5   0.020
+ITD    plan-3          S1   0.020
+ITD    plan-4          C5   0.020
+ITD    plan-4          C7   0.020
+ITD    plan-4          C8   0.020
+ITD    plan-4          N2   0.020
+ITD    plan-5          C9   0.020
+ITD    plan-5          N3   0.020
+ITD    plan-5          N4   0.020
+ITD    plan-5          S2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ITD           SMILES              ACDLabs 12.01                                                                                                N2=C1SC=C(N1CC2(C)C)CS\C(=N/C3CCCCC3)NC4CCCCC4
+ITD SMILES_CANONICAL               CACTVS 3.370                                                                                                  CC1(C)CN2C(=CSC2=N1)CSC(NC3CCCCC3)=NC4CCCCC4
+ITD           SMILES               CACTVS 3.370                                                                                                  CC1(C)CN2C(=CSC2=N1)CSC(NC3CCCCC3)=NC4CCCCC4
+ITD SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                               CC1(CN2C(=CSC2=N1)CS/C(=N\C3CCCCC3)/NC4CCCCC4)C
+ITD           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                  CC1(CN2C(=CSC2=N1)CSC(=NC3CCCCC3)NC4CCCCC4)C
+ITD            InChI                InChI  1.03 InChI=1S/C21H34N4S2/c1-21(2)15-25-18(14-27-20(25)24-21)13-26-19(22-16-9-5-3-6-10-16)23-17-11-7-4-8-12-17/h14,16-17H,3-13,15H2,1-2H3,(H,22,23)
+ITD         InChIKey                InChI  1.03                                                                                                                   OOSUDWRRWZVFEB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ITD acedrg               243         "dictionary generator"                  
+ITD acedrg_database      11          "data source"                           
+ITD rdkit                2017.03.2   "Chemoinformatics tool"
+ITD refmac5              5.8.0238    "optimization tool"                     

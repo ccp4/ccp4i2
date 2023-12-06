@@ -1,0 +1,308 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PQY     PQY      "(2E,2'E)-N,N'-[1,4-diazepane-1,4-diyldi(ethane-2,1-diyl)]bis[2-(hydroxyimino)acetamide]"     NON-POLYMER     47     23     .     
+#
+data_comp_PQY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PQY     N1      N       NT      0       33.010      -12.337     9.593       
+PQY     N3      N       NH1     0       34.700      -13.006     12.910      
+PQY     C4      C       CH2     0       32.716      -14.041     7.763       
+PQY     C5      C       CH2     0       33.671      -13.166     8.553       
+PQY     C6      C       CH2     0       32.007      -12.473     5.912       
+PQY     C7      C       CH2     0       32.325      -13.286     4.671       
+PQY     C8      C       CH2     0       33.864      -12.096     10.787      
+PQY     C10     C       C       0       36.040      -13.069     12.868      
+PQY     C13     C       C1      0       29.011      -14.813     3.592       
+PQY     C1      C       CH2     0       32.388      -11.100     9.026       
+PQY     C11     C       C1      0       36.753      -12.791     14.111      
+PQY     C12     C       C       0       30.064      -13.832     3.856       
+PQY     C2      C       CH2     0       30.985      -11.284     8.483       
+PQY     C3      C       CH2     0       30.639      -12.680     7.990       
+PQY     C9      C       CH2     0       33.848      -13.262     11.758      
+PQY     N2      N       NT      0       31.620      -13.323     7.067       
+PQY     N4      N       NH1     0       31.252      -14.216     4.353       
+PQY     N5      N       N       0       29.167      -16.050     3.820       
+PQY     N6      N       N       0       38.020      -12.830     14.143      
+PQY     O1      O       O       0       36.674      -13.344     11.848      
+PQY     O2      O       O       0       29.793      -12.661     3.594       
+PQY     O3      O       OH1     0       28.004      -16.789     3.483       
+PQY     O4      O       OH1     0       38.514      -12.530     15.438      
+PQY     H2      H       H       0       34.309      -12.802     13.662      
+PQY     H3      H       H       0       32.323      -14.699     8.374       
+PQY     H4      H       H       0       33.235      -14.538     7.097       
+PQY     H5      H       H       0       34.155      -12.584     7.931       
+PQY     H6      H       H       0       34.334      -13.746     8.980       
+PQY     H7      H       H       0       31.275      -11.856     5.705       
+PQY     H8      H       H       0       32.790      -11.936     6.151       
+PQY     H9      H       H       0       33.154      -13.787     4.815       
+PQY     H10     H       H       0       32.466      -12.682     3.914       
+PQY     H11     H       H       0       33.557      -11.294     11.260      
+PQY     H12     H       H       0       34.785      -11.935     10.495      
+PQY     H13     H       H       0       28.195      -14.489     3.239       
+PQY     H15     H       H       0       32.956      -10.753     8.308       
+PQY     H16     H       H       0       32.351      -10.410     9.721       
+PQY     H17     H       H       0       36.254      -12.582     14.887      
+PQY     H19     H       H       0       30.851      -10.652     7.747       
+PQY     H20     H       H       0       30.349      -11.041     9.186       
+PQY     H21     H       H       0       29.775      -12.635     7.530       
+PQY     H22     H       H       0       30.518      -13.260     8.770       
+PQY     H23     H       H       0       32.931      -13.417     12.063      
+PQY     H24     H       H       0       34.154      -14.072     11.302      
+PQY     H26     H       H       0       31.402      -15.060     4.494       
+PQY     H29     H       H       0       27.983      -17.640     3.610       
+PQY     H30     H       H       0       39.354      -12.380     15.554      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PQY          N5          O3      SINGLE       n     1.415  0.0195     1.415  0.0195
+PQY         C13          N5      DOUBLE       n     1.265  0.0100     1.265  0.0100
+PQY         C13         C12      SINGLE       n     1.446  0.0200     1.446  0.0200
+PQY         C12          N4      SINGLE       n     1.336  0.0127     1.336  0.0127
+PQY         C12          O2      DOUBLE       n     1.229  0.0129     1.229  0.0129
+PQY          C7          N4      SINGLE       n     1.454  0.0100     1.454  0.0100
+PQY          C6          C7      SINGLE       n     1.515  0.0157     1.515  0.0157
+PQY          C6          N2      SINGLE       n     1.471  0.0177     1.471  0.0177
+PQY          C3          N2      SINGLE       n     1.475  0.0184     1.475  0.0184
+PQY          C4          N2      SINGLE       n     1.471  0.0177     1.471  0.0177
+PQY          C2          C3      SINGLE       n     1.512  0.0200     1.512  0.0200
+PQY          C1          C2      SINGLE       n     1.512  0.0200     1.512  0.0200
+PQY          C4          C5      SINGLE       n     1.512  0.0200     1.512  0.0200
+PQY          N1          C5      SINGLE       n     1.471  0.0177     1.471  0.0177
+PQY          N1          C1      SINGLE       n     1.475  0.0184     1.475  0.0184
+PQY          N1          C8      SINGLE       n     1.471  0.0177     1.471  0.0177
+PQY          C8          C9      SINGLE       n     1.515  0.0157     1.515  0.0157
+PQY          N3          C9      SINGLE       n     1.454  0.0100     1.454  0.0100
+PQY         C10          O1      DOUBLE       n     1.229  0.0129     1.229  0.0129
+PQY          N3         C10      SINGLE       n     1.336  0.0127     1.336  0.0127
+PQY         C10         C11      SINGLE       n     1.446  0.0200     1.446  0.0200
+PQY         C11          N6      DOUBLE       n     1.265  0.0100     1.265  0.0100
+PQY          N6          O4      SINGLE       n     1.415  0.0195     1.415  0.0195
+PQY          N3          H2      SINGLE       n     1.016  0.0100     0.870  0.0200
+PQY          C4          H3      SINGLE       n     1.089  0.0100     0.980  0.0143
+PQY          C4          H4      SINGLE       n     1.089  0.0100     0.980  0.0143
+PQY          C5          H5      SINGLE       n     1.089  0.0100     0.980  0.0143
+PQY          C5          H6      SINGLE       n     1.089  0.0100     0.980  0.0143
+PQY          C6          H7      SINGLE       n     1.089  0.0100     0.980  0.0143
+PQY          C6          H8      SINGLE       n     1.089  0.0100     0.980  0.0143
+PQY          C7          H9      SINGLE       n     1.089  0.0100     0.979  0.0148
+PQY          C7         H10      SINGLE       n     1.089  0.0100     0.979  0.0148
+PQY          C8         H11      SINGLE       n     1.089  0.0100     0.980  0.0143
+PQY          C8         H12      SINGLE       n     1.089  0.0100     0.980  0.0143
+PQY         C13         H13      SINGLE       n     1.082  0.0130     0.945  0.0154
+PQY          C1         H15      SINGLE       n     1.089  0.0100     0.980  0.0143
+PQY          C1         H16      SINGLE       n     1.089  0.0100     0.980  0.0143
+PQY         C11         H17      SINGLE       n     1.082  0.0130     0.945  0.0154
+PQY          C2         H19      SINGLE       n     1.089  0.0100     0.979  0.0161
+PQY          C2         H20      SINGLE       n     1.089  0.0100     0.979  0.0161
+PQY          C3         H21      SINGLE       n     1.089  0.0100     0.980  0.0143
+PQY          C3         H22      SINGLE       n     1.089  0.0100     0.980  0.0143
+PQY          C9         H23      SINGLE       n     1.089  0.0100     0.979  0.0148
+PQY          C9         H24      SINGLE       n     1.089  0.0100     0.979  0.0148
+PQY          N4         H26      SINGLE       n     1.016  0.0100     0.870  0.0200
+PQY          O3         H29      SINGLE       n     0.966  0.0059     0.861  0.0200
+PQY          O4         H30      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PQY          C5          N1          C1     111.238    1.96
+PQY          C5          N1          C8     112.482    2.92
+PQY          C1          N1          C8     111.238    1.96
+PQY          C9          N3         C10     122.934    1.50
+PQY          C9          N3          H2     118.425    2.02
+PQY         C10          N3          H2     118.641    2.08
+PQY          N2          C4          C5     113.220    1.92
+PQY          N2          C4          H3     109.110    1.50
+PQY          N2          C4          H4     109.110    1.50
+PQY          C5          C4          H3     108.926    1.50
+PQY          C5          C4          H4     108.926    1.50
+PQY          H3          C4          H4     107.844    1.50
+PQY          C4          C5          N1     113.220    1.92
+PQY          C4          C5          H5     108.926    1.50
+PQY          C4          C5          H6     108.926    1.50
+PQY          N1          C5          H5     109.110    1.50
+PQY          N1          C5          H6     109.110    1.50
+PQY          H5          C5          H6     107.844    1.50
+PQY          C7          C6          N2     112.541    1.50
+PQY          C7          C6          H7     109.068    1.50
+PQY          C7          C6          H8     109.068    1.50
+PQY          N2          C6          H7     109.110    1.50
+PQY          N2          C6          H8     109.110    1.50
+PQY          H7          C6          H8     107.844    1.50
+PQY          N4          C7          C6     111.274    1.56
+PQY          N4          C7          H9     109.265    1.50
+PQY          N4          C7         H10     109.265    1.50
+PQY          C6          C7          H9     109.409    1.50
+PQY          C6          C7         H10     109.409    1.50
+PQY          H9          C7         H10     107.909    1.50
+PQY          N1          C8          C9     112.541    1.50
+PQY          N1          C8         H11     109.110    1.50
+PQY          N1          C8         H12     109.110    1.50
+PQY          C9          C8         H11     109.068    1.50
+PQY          C9          C8         H12     109.068    1.50
+PQY         H11          C8         H12     107.844    1.50
+PQY          O1         C10          N3     123.750    1.83
+PQY          O1         C10         C11     119.979    2.56
+PQY          N3         C10         C11     116.272    3.00
+PQY          N5         C13         C12     119.419    2.78
+PQY          N5         C13         H13     121.063    1.65
+PQY         C12         C13         H13     119.519    2.33
+PQY          C2          C1          N1     113.979    2.15
+PQY          C2          C1         H15     108.842    1.50
+PQY          C2          C1         H16     108.842    1.50
+PQY          N1          C1         H15     108.838    1.50
+PQY          N1          C1         H16     108.838    1.50
+PQY         H15          C1         H16     107.673    1.50
+PQY         C10         C11          N6     119.419    2.78
+PQY         C10         C11         H17     119.519    2.33
+PQY          N6         C11         H17     121.063    1.65
+PQY         C13         C12          N4     116.272    3.00
+PQY         C13         C12          O2     119.979    2.56
+PQY          N4         C12          O2     123.750    1.83
+PQY          C3          C2          C1     113.114    2.45
+PQY          C3          C2         H19     108.861    1.50
+PQY          C3          C2         H20     108.861    1.50
+PQY          C1          C2         H19     108.861    1.50
+PQY          C1          C2         H20     108.861    1.50
+PQY         H19          C2         H20     107.594    1.73
+PQY          N2          C3          C2     113.979    2.15
+PQY          N2          C3         H21     108.838    1.50
+PQY          N2          C3         H22     108.838    1.50
+PQY          C2          C3         H21     108.842    1.50
+PQY          C2          C3         H22     108.842    1.50
+PQY         H21          C3         H22     107.673    1.50
+PQY          C8          C9          N3     111.274    1.56
+PQY          C8          C9         H23     109.409    1.50
+PQY          C8          C9         H24     109.409    1.50
+PQY          N3          C9         H23     109.265    1.50
+PQY          N3          C9         H24     109.265    1.50
+PQY         H23          C9         H24     107.909    1.50
+PQY          C6          N2          C3     111.238    1.96
+PQY          C6          N2          C4     112.482    2.92
+PQY          C3          N2          C4     111.238    1.96
+PQY         C12          N4          C7     122.934    1.50
+PQY         C12          N4         H26     118.640    2.08
+PQY          C7          N4         H26     118.425    2.02
+PQY          O3          N5         C13     110.625    1.59
+PQY         C11          N6          O4     110.625    1.59
+PQY          N5          O3         H29     120.000    3.00
+PQY          N6          O4         H30     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PQY            sp3_sp3_55          C4          C5          N1          C1     180.000    10.0     3
+PQY            sp3_sp3_67          C9          C8          N1          C5     180.000    10.0     3
+PQY            sp3_sp3_61          C2          C1          N1          C5     180.000    10.0     3
+PQY            sp2_sp2_20         C10         C11          N6          O4     180.000     5.0     2
+PQY             sp2_sp2_8         C13         C12          N4          C7     180.000     5.0     2
+PQY            sp3_sp3_28          C1          C2          C3          N2     180.000    10.0     3
+PQY            sp3_sp3_16          C2          C3          N2          C6     180.000    10.0     3
+PQY             sp2_sp2_1         C13          N5          O3         H29     180.000     5.0     2
+PQY            sp2_sp2_22         C11          N6          O4         H30     180.000     5.0     2
+PQY             sp2_sp3_8         C10          N3          C9          C8     120.000    10.0     6
+PQY            sp2_sp2_14          O1         C10          N3          C9       0.000     5.0     2
+PQY            sp3_sp3_22          C5          C4          N2          C6     180.000    10.0     3
+PQY            sp3_sp3_46          N2          C4          C5          N1     180.000    10.0     3
+PQY            sp3_sp3_10          C7          C6          N2          C3     180.000    10.0     3
+PQY             sp3_sp3_1          N2          C6          C7          N4     180.000    10.0     3
+PQY             sp2_sp3_2         C12          N4          C7          C6     120.000    10.0     6
+PQY            sp3_sp3_73          N1          C8          C9          N3     180.000    10.0     3
+PQY            sp2_sp2_18          O1         C10         C11          N6       0.000     5.0     2
+PQY             sp2_sp2_4          N4         C12         C13          N5     180.000     5.0     2
+PQY             sp2_sp2_2         C12         C13          N5          O3     180.000     5.0     2
+PQY            sp3_sp3_37          N1          C1          C2          C3     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PQY    chir_1    N1    C5    C8    C1    negative
+PQY    chir_2    N2    C4    C6    C3    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PQY    plan-1         C10   0.020
+PQY    plan-1          C9   0.020
+PQY    plan-1          H2   0.020
+PQY    plan-1          N3   0.020
+PQY    plan-2         C10   0.020
+PQY    plan-2         C11   0.020
+PQY    plan-2          N3   0.020
+PQY    plan-2          O1   0.020
+PQY    plan-3         C12   0.020
+PQY    plan-3         C13   0.020
+PQY    plan-3         H13   0.020
+PQY    plan-3          N5   0.020
+PQY    plan-4         C10   0.020
+PQY    plan-4         C11   0.020
+PQY    plan-4         H17   0.020
+PQY    plan-4          N6   0.020
+PQY    plan-5         C12   0.020
+PQY    plan-5         C13   0.020
+PQY    plan-5          N4   0.020
+PQY    plan-5          O2   0.020
+PQY    plan-6         C12   0.020
+PQY    plan-6          C7   0.020
+PQY    plan-6         H26   0.020
+PQY    plan-6          N4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PQY           SMILES              ACDLabs 12.01                                                                                               N1(CCNC(\C=N\O)=O)CCN(CCNC([C@H]=NO)=O)CCC1
+PQY            InChI                InChI  1.03 InChI=1S/C13H24N6O4/c20-12(10-16-22)14-2-6-18-4-1-5-19(9-8-18)7-3-15-13(21)11-17-23/h10-11,22-23H,1-9H2,(H,14,20)(H,15,21)/b16-10+,17-11+
+PQY         InChIKey                InChI  1.03                                                                                                               DFNMYOZHKNITMF-OTYYAQKOSA-N
+PQY SMILES_CANONICAL               CACTVS 3.385                                                                                                   O\N=C\C(=O)NCCN1CCCN(CCNC(=O)\C=N\O)CC1
+PQY           SMILES               CACTVS 3.385                                                                                                       ON=CC(=O)NCCN1CCCN(CCNC(=O)C=NO)CC1
+PQY SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                 C1CN(CCN(C1)CCNC(=O)/C=N/O)CCNC(=O)/C=N/O
+PQY           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                     C1CN(CCN(C1)CCNC(=O)C=NO)CCNC(=O)C=NO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PQY acedrg               243         "dictionary generator"                  
+PQY acedrg_database      11          "data source"                           
+PQY rdkit                2017.03.2   "Chemoinformatics tool"
+PQY refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,196 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HIT     HIT      "2-(ALPHA-HYDROXYISOVALERYL) PROPIONIC ACID"     NON-POLYMER     25     12     .     
+#
+data_comp_HIT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HIT     CA1     C       CH1     0       3.095       1.075       -3.297      
+HIT     C3      C       CH1     0       3.081       -0.317      -3.953      
+HIT     C5      C       CH3     0       4.091       -1.270      -3.321      
+HIT     C9      C       CH3     0       3.313       -0.218      -5.456      
+HIT     C13     C       C       0       2.703       1.026       -1.825      
+HIT     O14     O       O       0       3.524       1.222       -0.950      
+HIT     CA2     C       CH1     0       1.246       0.715       -1.493      
+HIT     C17     C       CH3     0       0.562       1.827       -0.680      
+HIT     C21     C       C       0       1.139       -0.630      -0.749      
+HIT     O22     O       OC      -1      0.528       -1.555      -1.315      
+HIT     O1      O       O       0       1.667       -0.723      0.375       
+HIT     O25     O       OH1     0       4.361       1.697       -3.476      
+HIT     HA1     H       H       0       2.418       1.618       -3.770      
+HIT     H3      H       H       0       2.176       -0.701      -3.813      
+HIT     H51     H       H       0       4.203       -2.050      -3.893      
+HIT     H52     H       H       0       3.770       -1.557      -2.449      
+HIT     H53     H       H       0       4.949       -0.823      -3.218      
+HIT     H91     H       H       0       4.234       0.046       -5.627      
+HIT     H92     H       H       0       2.711       0.446       -5.835      
+HIT     H93     H       H       0       3.143       -1.082      -5.869      
+HIT     HA2     H       H       0       0.762       0.625       -2.339      
+HIT     H171    H       H       0       0.126       1.449       0.103       
+HIT     H172    H       H       0       -0.104      2.266       -1.235      
+HIT     H173    H       H       0       1.221       2.482       -0.394      
+HIT     HO2     H       H       0       4.281       2.529       -3.331      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HIT         CA1          C3      SINGLE       n     1.534  0.0118     1.534  0.0118
+HIT         CA1         C13      SINGLE       n     1.522  0.0100     1.522  0.0100
+HIT         CA1         O25      SINGLE       n     1.419  0.0162     1.419  0.0162
+HIT          C3          C5      SINGLE       n     1.523  0.0105     1.523  0.0105
+HIT          C3          C9      SINGLE       n     1.523  0.0105     1.523  0.0105
+HIT         C13         O14      DOUBLE       n     1.212  0.0200     1.212  0.0200
+HIT         C13         CA2      SINGLE       n     1.524  0.0100     1.524  0.0100
+HIT         CA2         C17      SINGLE       n     1.523  0.0200     1.523  0.0200
+HIT         CA2         C21      SINGLE       n     1.539  0.0100     1.539  0.0100
+HIT         C21         O22      SINGLE       n     1.244  0.0200     1.244  0.0200
+HIT         C21          O1      DOUBLE       n     1.244  0.0200     1.244  0.0200
+HIT         CA1         HA1      SINGLE       n     1.089  0.0100     0.988  0.0129
+HIT          C3          H3      SINGLE       n     1.089  0.0100     0.993  0.0135
+HIT          C5         H51      SINGLE       n     1.089  0.0100     0.973  0.0146
+HIT          C5         H52      SINGLE       n     1.089  0.0100     0.973  0.0146
+HIT          C5         H53      SINGLE       n     1.089  0.0100     0.973  0.0146
+HIT          C9         H91      SINGLE       n     1.089  0.0100     0.973  0.0146
+HIT          C9         H92      SINGLE       n     1.089  0.0100     0.973  0.0146
+HIT          C9         H93      SINGLE       n     1.089  0.0100     0.973  0.0146
+HIT         CA2         HA2      SINGLE       n     1.089  0.0100     0.979  0.0200
+HIT         C17        H171      SINGLE       n     1.089  0.0100     0.972  0.0161
+HIT         C17        H172      SINGLE       n     1.089  0.0100     0.972  0.0161
+HIT         C17        H173      SINGLE       n     1.089  0.0100     0.972  0.0161
+HIT         O25         HO2      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HIT          C3         CA1         C13     111.511    2.91
+HIT          C3         CA1         O25     110.114    2.85
+HIT          C3         CA1         HA1     108.757    2.66
+HIT         C13         CA1         O25     111.032    1.80
+HIT         C13         CA1         HA1     108.449    1.57
+HIT         O25         CA1         HA1     108.675    1.50
+HIT         CA1          C3          C5     111.041    1.50
+HIT         CA1          C3          C9     111.041    1.50
+HIT         CA1          C3          H3     107.221    1.50
+HIT          C5          C3          C9     110.347    1.50
+HIT          C5          C3          H3     107.659    1.50
+HIT          C9          C3          H3     107.659    1.50
+HIT          C3          C5         H51     109.576    1.50
+HIT          C3          C5         H52     109.576    1.50
+HIT          C3          C5         H53     109.576    1.50
+HIT         H51          C5         H52     109.411    1.50
+HIT         H51          C5         H53     109.411    1.50
+HIT         H52          C5         H53     109.411    1.50
+HIT          C3          C9         H91     109.576    1.50
+HIT          C3          C9         H92     109.576    1.50
+HIT          C3          C9         H93     109.576    1.50
+HIT         H91          C9         H92     109.411    1.50
+HIT         H91          C9         H93     109.411    1.50
+HIT         H92          C9         H93     109.411    1.50
+HIT         CA1         C13         O14     120.771    1.88
+HIT         CA1         C13         CA2     117.711    2.45
+HIT         O14         C13         CA2     121.518    1.50
+HIT         C13         CA2         C17     111.511    2.91
+HIT         C13         CA2         C21     111.575    3.00
+HIT         C13         CA2         HA2     108.124    1.50
+HIT         C17         CA2         C21     109.294    1.70
+HIT         C17         CA2         HA2     108.406    1.60
+HIT         C21         CA2         HA2     108.186    1.50
+HIT         CA2         C17        H171     109.480    1.50
+HIT         CA2         C17        H172     109.480    1.50
+HIT         CA2         C17        H173     109.480    1.50
+HIT        H171         C17        H172     109.411    1.50
+HIT        H171         C17        H173     109.411    1.50
+HIT        H172         C17        H173     109.411    1.50
+HIT         CA2         C21         O22     117.800    1.60
+HIT         CA2         C21          O1     117.800    1.60
+HIT         O22         C21          O1     124.400    1.50
+HIT         CA1         O25         HO2     108.894    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HIT             sp3_sp3_4          C5          C3         CA1         C13      60.000    10.0     3
+HIT            sp3_sp3_10          C3         CA1         O25         HO2     180.000    10.0     3
+HIT             sp2_sp3_1         O14         C13         CA1          C3       0.000    10.0     6
+HIT            sp3_sp3_13         CA1          C3          C5         H51     180.000    10.0     3
+HIT            sp3_sp3_25         CA1          C3          C9         H91      60.000    10.0     3
+HIT             sp2_sp3_7         CA1         C13         CA2         C17       0.000    10.0     6
+HIT            sp3_sp3_31        H171         C17         CA2         C13     180.000    10.0     3
+HIT            sp2_sp3_13         O22         C21         CA2         C13       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HIT    chir_1    CA1    O25    C13    C3    positive
+HIT    chir_2    C3    CA1    C5    C9    both
+HIT    chir_3    CA2    C21    C13    C17    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HIT    plan-1         C13   0.020
+HIT    plan-1         CA1   0.020
+HIT    plan-1         CA2   0.020
+HIT    plan-1         O14   0.020
+HIT    plan-2         C21   0.020
+HIT    plan-2         CA2   0.020
+HIT    plan-2          O1   0.020
+HIT    plan-2         O22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HIT           SMILES              ACDLabs 10.04                                                          O=C(C(C(=O)O)C)C(O)C(C)C
+HIT SMILES_CANONICAL               CACTVS 3.341                                                  CC(C)[C@H](O)C(=O)[C@H](C)C(O)=O
+HIT           SMILES               CACTVS 3.341                                                    CC(C)[CH](O)C(=O)[CH](C)C(O)=O
+HIT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                      CC(C)C(C(=O)[C@H](C)C(=O)O)O
+HIT           SMILES "OpenEye OEToolkits" 1.5.0                                                          CC(C)C(C(=O)C(C)C(=O)O)O
+HIT            InChI                InChI  1.03 InChI=1S/C8H14O4/c1-4(2)6(9)7(10)5(3)8(11)12/h4-6,9H,1-3H3,(H,11,12)/t5-,6?/m0/s1
+HIT         InChIKey                InChI  1.03                                                       KNLSYHPQBMSLLE-ZBHICJROSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HIT acedrg               243         "dictionary generator"                  
+HIT acedrg_database      11          "data source"                           
+HIT rdkit                2017.03.2   "Chemoinformatics tool"
+HIT refmac5              5.8.0238    "optimization tool"                     

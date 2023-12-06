@@ -1,0 +1,337 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PGJ     PGJ      2-(ETHOXYMETHYL)-4-(4-FLUOROPHENYL)-3-[2-(2-HYDROXYPHENOXY)PYRIMIDIN-4-YL]ISOXAZOL-5(2H)-ONE     NON-POLYMER     49     31     .     
+#
+data_comp_PGJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PGJ     C1      C       CR5     0       18.904      39.472      18.107      
+PGJ     N2      N       NR5     0       18.224      40.232      19.015      
+PGJ     O3      O       O2      0       18.383      39.676      20.315      
+PGJ     C4      C       CR5     0       19.186      38.542      20.151      
+PGJ     C5      C       CR5     0       19.504      38.416      18.811      
+PGJ     C6      C       CH2     0       17.439      41.433      18.798      
+PGJ     O7      O       O2      0       16.812      41.887      19.968      
+PGJ     C10     C       CH2     0       16.186      43.170      19.850      
+PGJ     C11     C       CH3     0       17.135      44.227      20.230      
+PGJ     C17     C       CR6     0       18.961      39.740      16.667      
+PGJ     C18     C       CR16    0       18.699      38.762      15.711      
+PGJ     C19     C       CR16    0       18.776      39.138      14.382      
+PGJ     N20     N       NRD6    0       19.079      40.386      13.999      
+PGJ     C21     C       CR6     0       19.308      41.258      14.979      
+PGJ     N22     N       NRD6    0       19.271      40.992      16.287      
+PGJ     O23     O       O2      0       19.605      42.500      14.528      
+PGJ     C24     C       CR6     0       19.282      43.642      15.296      
+PGJ     C25     C       CR16    0       20.295      44.534      15.565      
+PGJ     C26     C       CR16    0       20.037      45.685      16.307      
+PGJ     C27     C       CR16    0       18.767      45.944      16.766      
+PGJ     C28     C       CR16    0       17.730      45.056      16.492      
+PGJ     C29     C       CR6     0       17.976      43.911      15.752      
+PGJ     O34     O       OH1     0       16.922      43.063      15.506      
+PGJ     C35     C       CR6     0       20.337      37.331      18.253      
+PGJ     C36     C       CR16    0       20.063      35.996      18.562      
+PGJ     C37     C       CR16    0       20.843      34.967      18.050      
+PGJ     C38     C       CR6     0       21.896      35.291      17.233      
+PGJ     C39     C       CR16    0       22.209      36.584      16.904      
+PGJ     C40     C       CR16    0       21.425      37.608      17.422      
+PGJ     F45     F       F       0       22.663      34.286      16.729      
+PGJ     O47     O       O       0       19.469      37.886      21.125      
+PGJ     H61     H       H       0       16.757      41.249      18.121      
+PGJ     H62     H       H       0       18.028      42.137      18.456      
+PGJ     H101    H       H       0       15.402      43.204      20.438      
+PGJ     H102    H       H       0       15.882      43.312      18.927      
+PGJ     H111    H       H       0       16.728      45.096      20.085      
+PGJ     H112    H       H       0       17.939      44.153      19.691      
+PGJ     H113    H       H       0       17.367      44.133      21.169      
+PGJ     H18     H       H       0       18.485      37.873      15.962      
+PGJ     H19     H       H       0       18.606      38.488      13.718      
+PGJ     H25     H       H       0       21.167      44.360      15.254      
+PGJ     H26     H       H       0       20.739      46.286      16.494      
+PGJ     H27     H       H       0       18.596      46.724      17.268      
+PGJ     H28     H       H       0       16.860      45.234      16.806      
+PGJ     H34     H       H       0       16.151      43.383      15.293      
+PGJ     H36     H       H       0       19.337      35.790      19.124      
+PGJ     H37     H       H       0       20.653      34.069      18.257      
+PGJ     H39     H       H       0       22.938      36.774      16.341      
+PGJ     H40     H       H       0       21.625      38.500      17.204      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PGJ          C1          N2      SINGLE       y     1.360  0.0100     1.360  0.0100
+PGJ          C1          C5      DOUBLE       y     1.393  0.0142     1.393  0.0142
+PGJ          C1         C17      SINGLE       n     1.463  0.0102     1.463  0.0102
+PGJ          N2          O3      SINGLE       y     1.423  0.0109     1.423  0.0109
+PGJ          N2          C6      SINGLE       n     1.448  0.0130     1.448  0.0130
+PGJ          O3          C4      SINGLE       y     1.403  0.0100     1.403  0.0100
+PGJ          C4          C5      SINGLE       y     1.389  0.0200     1.389  0.0200
+PGJ          C4         O47      DOUBLE       n     1.208  0.0100     1.208  0.0100
+PGJ          C5         C35      SINGLE       n     1.476  0.0100     1.476  0.0100
+PGJ          C6          O7      SINGLE       n     1.400  0.0125     1.400  0.0125
+PGJ          O7         C10      SINGLE       n     1.422  0.0200     1.422  0.0200
+PGJ         C10         C11      SINGLE       n     1.469  0.0200     1.469  0.0200
+PGJ         C17         C18      DOUBLE       y     1.392  0.0100     1.392  0.0100
+PGJ         C17         N22      SINGLE       y     1.342  0.0100     1.342  0.0100
+PGJ         C18         C19      SINGLE       y     1.381  0.0100     1.381  0.0100
+PGJ         C19         N20      DOUBLE       y     1.335  0.0100     1.335  0.0100
+PGJ         N20         C21      SINGLE       y     1.324  0.0100     1.324  0.0100
+PGJ         C21         N22      DOUBLE       y     1.328  0.0103     1.328  0.0103
+PGJ         C21         O23      SINGLE       n     1.349  0.0102     1.349  0.0102
+PGJ         O23         C24      SINGLE       n     1.407  0.0100     1.407  0.0100
+PGJ         C24         C25      DOUBLE       y     1.372  0.0100     1.372  0.0100
+PGJ         C24         C29      SINGLE       y     1.401  0.0100     1.401  0.0100
+PGJ         C25         C26      SINGLE       y     1.390  0.0100     1.390  0.0100
+PGJ         C26         C27      DOUBLE       y     1.373  0.0107     1.373  0.0107
+PGJ         C27         C28      SINGLE       y     1.390  0.0100     1.390  0.0100
+PGJ         C28         C29      DOUBLE       y     1.381  0.0100     1.381  0.0100
+PGJ         C29         O34      SINGLE       n     1.374  0.0155     1.374  0.0155
+PGJ         C35         C36      DOUBLE       y     1.393  0.0100     1.393  0.0100
+PGJ         C35         C40      SINGLE       y     1.393  0.0100     1.393  0.0100
+PGJ         C36         C37      SINGLE       y     1.386  0.0100     1.386  0.0100
+PGJ         C37         C38      DOUBLE       y     1.368  0.0100     1.368  0.0100
+PGJ         C38         C39      SINGLE       y     1.368  0.0100     1.368  0.0100
+PGJ         C38         F45      SINGLE       n     1.361  0.0100     1.361  0.0100
+PGJ         C39         C40      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PGJ          C6         H61      SINGLE       n     1.089  0.0100     0.979  0.0134
+PGJ          C6         H62      SINGLE       n     1.089  0.0100     0.979  0.0134
+PGJ         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0174
+PGJ         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0174
+PGJ         C11        H111      SINGLE       n     1.089  0.0100     0.971  0.0156
+PGJ         C11        H112      SINGLE       n     1.089  0.0100     0.971  0.0156
+PGJ         C11        H113      SINGLE       n     1.089  0.0100     0.971  0.0156
+PGJ         C18         H18      SINGLE       n     1.082  0.0130     0.948  0.0100
+PGJ         C19         H19      SINGLE       n     1.082  0.0130     0.944  0.0200
+PGJ         C25         H25      SINGLE       n     1.082  0.0130     0.942  0.0174
+PGJ         C26         H26      SINGLE       n     1.082  0.0130     0.943  0.0183
+PGJ         C27         H27      SINGLE       n     1.082  0.0130     0.943  0.0183
+PGJ         C28         H28      SINGLE       n     1.082  0.0130     0.942  0.0174
+PGJ         O34         H34      SINGLE       n     0.966  0.0059     0.861  0.0200
+PGJ         C36         H36      SINGLE       n     1.082  0.0130     0.940  0.0102
+PGJ         C37         H37      SINGLE       n     1.082  0.0130     0.941  0.0154
+PGJ         C39         H39      SINGLE       n     1.082  0.0130     0.941  0.0154
+PGJ         C40         H40      SINGLE       n     1.082  0.0130     0.940  0.0102
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PGJ          N2          C1          C5     106.686    1.50
+PGJ          N2          C1         C17     125.894    1.74
+PGJ          C5          C1         C17     127.420    1.70
+PGJ          C1          N2          O3     107.744    3.00
+PGJ          C1          N2          C6     129.687    2.34
+PGJ          O3          N2          C6     122.570    3.00
+PGJ          N2          O3          C4     107.744    2.32
+PGJ          O3          C4          C5     109.332    1.50
+PGJ          O3          C4         O47     118.321    1.57
+PGJ          C5          C4         O47     132.347    1.50
+PGJ          C1          C5          C4     108.495    3.00
+PGJ          C1          C5         C35     125.236    2.00
+PGJ          C4          C5         C35     126.269    2.56
+PGJ          N2          C6          O7     111.950    1.70
+PGJ          N2          C6         H61     109.154    1.63
+PGJ          N2          C6         H62     109.154    1.63
+PGJ          O7          C6         H61     109.168    1.50
+PGJ          O7          C6         H62     109.168    1.50
+PGJ         H61          C6         H62     108.353    1.50
+PGJ          C6          O7         C10     113.572    1.50
+PGJ          O7         C10         C11     110.295    3.00
+PGJ          O7         C10        H101     109.668    1.50
+PGJ          O7         C10        H102     109.668    1.50
+PGJ         C11         C10        H101     110.009    1.50
+PGJ         C11         C10        H102     110.009    1.50
+PGJ        H101         C10        H102     108.453    1.50
+PGJ         C10         C11        H111     109.517    1.50
+PGJ         C10         C11        H112     109.517    1.50
+PGJ         C10         C11        H113     109.517    1.50
+PGJ        H111         C11        H112     109.410    1.50
+PGJ        H111         C11        H113     109.410    1.50
+PGJ        H112         C11        H113     109.410    1.50
+PGJ          C1         C17         C18     121.843    1.64
+PGJ          C1         C17         N22     116.607    1.55
+PGJ         C18         C17         N22     121.550    1.50
+PGJ         C17         C18         C19     118.394    1.50
+PGJ         C17         C18         H18     120.691    1.50
+PGJ         C19         C18         H18     120.915    1.50
+PGJ         C18         C19         N20     122.435    1.50
+PGJ         C18         C19         H19     118.714    1.50
+PGJ         N20         C19         H19     118.851    1.50
+PGJ         C19         N20         C21     114.123    1.50
+PGJ         N20         C21         N22     125.677    1.50
+PGJ         N20         C21         O23     117.077    3.00
+PGJ         N22         C21         O23     117.246    3.00
+PGJ         C17         N22         C21     117.821    1.50
+PGJ         C21         O23         C24     117.468    1.50
+PGJ         O23         C24         C25     120.703    3.00
+PGJ         O23         C24         C29     119.722    2.23
+PGJ         C25         C24         C29     119.576    1.50
+PGJ         C24         C25         C26     119.851    1.50
+PGJ         C24         C25         H25     120.005    1.50
+PGJ         C26         C25         H25     120.144    1.50
+PGJ         C25         C26         C27     120.544    1.50
+PGJ         C25         C26         H26     119.544    1.50
+PGJ         C27         C26         H26     119.913    1.50
+PGJ         C26         C27         C28     120.544    1.50
+PGJ         C26         C27         H27     119.913    1.50
+PGJ         C28         C27         H27     119.544    1.50
+PGJ         C27         C28         C29     119.910    1.50
+PGJ         C27         C28         H28     120.239    1.50
+PGJ         C29         C28         H28     119.851    1.50
+PGJ         C24         C29         C28     119.576    1.50
+PGJ         C24         C29         O34     120.212    3.00
+PGJ         C28         C29         O34     120.212    3.00
+PGJ         C29         O34         H34     120.000    3.00
+PGJ          C5         C35         C36     120.836    1.50
+PGJ          C5         C35         C40     120.836    1.50
+PGJ         C36         C35         C40     118.328    1.50
+PGJ         C35         C36         C37     120.836    1.50
+PGJ         C35         C36         H36     119.586    1.50
+PGJ         C37         C36         H36     119.578    1.50
+PGJ         C36         C37         C38     118.471    1.50
+PGJ         C36         C37         H37     120.772    1.50
+PGJ         C38         C37         H37     120.757    1.50
+PGJ         C37         C38         C39     123.059    1.50
+PGJ         C37         C38         F45     118.471    1.50
+PGJ         C39         C38         F45     118.471    1.50
+PGJ         C38         C39         C40     118.471    1.50
+PGJ         C38         C39         H39     120.757    1.50
+PGJ         C40         C39         H39     120.772    1.50
+PGJ         C35         C40         C39     120.836    1.50
+PGJ         C35         C40         H40     119.586    1.50
+PGJ         C39         C40         H40     119.578    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PGJ              const_16          C5          C1          N2          C6     180.000    10.0     2
+PGJ              const_67          N2          C1          C5          C4       0.000    10.0     2
+PGJ             sp2_sp2_1          N2          C1         C17         C18     180.000     5.0     2
+PGJ       const_sp2_sp2_5         C17         C18         C19         N20       0.000     5.0     2
+PGJ       const_sp2_sp2_9         C18         C19         N20         C21       0.000     5.0     2
+PGJ              const_12         O23         C21         N20         C19     180.000    10.0     2
+PGJ              const_14         O23         C21         N22         C17     180.000    10.0     2
+PGJ             sp2_sp2_9         N20         C21         O23         C24     180.000     5.0     2
+PGJ            sp2_sp2_11         C25         C24         O23         C21     180.000     5.0     2
+PGJ              const_29         O23         C24         C25         C26     180.000    10.0     2
+PGJ              const_76         O23         C24         C29         O34       0.000    10.0     2
+PGJ              const_31         C24         C25         C26         C27       0.000    10.0     2
+PGJ              const_35         C25         C26         C27         C28       0.000    10.0     2
+PGJ              const_39         C26         C27         C28         C29       0.000    10.0     2
+PGJ              const_20          C6          N2          O3          C4     180.000    10.0     2
+PGJ             sp2_sp3_2          C1          N2          C6          O7     -90.000    10.0     6
+PGJ              const_44         C27         C28         C29         O34     180.000    10.0     2
+PGJ            sp2_sp2_13         C24         C29         O34         H34     180.000     5.0     2
+PGJ              const_49          C5         C35         C36         C37     180.000    10.0     2
+PGJ              const_79          C5         C35         C40         C39     180.000    10.0     2
+PGJ              const_51         C35         C36         C37         C38       0.000    10.0     2
+PGJ              const_56         C36         C37         C38         F45     180.000    10.0     2
+PGJ              const_61         F45         C38         C39         C40     180.000    10.0     2
+PGJ              const_63         C38         C39         C40         C35       0.000    10.0     2
+PGJ              const_22         O47          C4          O3          N2     180.000    10.0     2
+PGJ              const_25         O47          C4          C5          C1     180.000    10.0     2
+PGJ             sp2_sp2_5         C36         C35          C5          C1     180.000     5.0     2
+PGJ             sp3_sp3_1          N2          C6          O7         C10     180.000    10.0     3
+PGJ             sp3_sp3_4         C11         C10          O7          C6     180.000    10.0     3
+PGJ             sp3_sp3_7          O7         C10         C11        H111     180.000    10.0     3
+PGJ       const_sp2_sp2_3          C1         C17         C18         C19     180.000     5.0     2
+PGJ              const_72          C1         C17         N22         C21     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PGJ    plan-1          C1   0.020
+PGJ    plan-1         C17   0.020
+PGJ    plan-1         C35   0.020
+PGJ    plan-1          C4   0.020
+PGJ    plan-1          C5   0.020
+PGJ    plan-1          C6   0.020
+PGJ    plan-1          N2   0.020
+PGJ    plan-1          O3   0.020
+PGJ    plan-1         O47   0.020
+PGJ    plan-2          C1   0.020
+PGJ    plan-2         C17   0.020
+PGJ    plan-2         C18   0.020
+PGJ    plan-2         C19   0.020
+PGJ    plan-2         C21   0.020
+PGJ    plan-2         H18   0.020
+PGJ    plan-2         H19   0.020
+PGJ    plan-2         N20   0.020
+PGJ    plan-2         N22   0.020
+PGJ    plan-2         O23   0.020
+PGJ    plan-3         C24   0.020
+PGJ    plan-3         C25   0.020
+PGJ    plan-3         C26   0.020
+PGJ    plan-3         C27   0.020
+PGJ    plan-3         C28   0.020
+PGJ    plan-3         C29   0.020
+PGJ    plan-3         H25   0.020
+PGJ    plan-3         H26   0.020
+PGJ    plan-3         H27   0.020
+PGJ    plan-3         H28   0.020
+PGJ    plan-3         O23   0.020
+PGJ    plan-3         O34   0.020
+PGJ    plan-4         C35   0.020
+PGJ    plan-4         C36   0.020
+PGJ    plan-4         C37   0.020
+PGJ    plan-4         C38   0.020
+PGJ    plan-4         C39   0.020
+PGJ    plan-4         C40   0.020
+PGJ    plan-4          C5   0.020
+PGJ    plan-4         F45   0.020
+PGJ    plan-4         H36   0.020
+PGJ    plan-4         H37   0.020
+PGJ    plan-4         H39   0.020
+PGJ    plan-4         H40   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PGJ           SMILES              ACDLabs 10.04                                                                                         Fc4ccc(C=1C(=O)ON(C=1c3nc(Oc2ccccc2O)ncc3)COCC)cc4
+PGJ SMILES_CANONICAL               CACTVS 3.341                                                                                          CCOCN1OC(=O)C(=C1c2ccnc(Oc3ccccc3O)n2)c4ccc(F)cc4
+PGJ           SMILES               CACTVS 3.341                                                                                          CCOCN1OC(=O)C(=C1c2ccnc(Oc3ccccc3O)n2)c4ccc(F)cc4
+PGJ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                     CCOC[N@]1C(=C(C(=O)O1)c2ccc(cc2)F)c3ccnc(n3)Oc4ccccc4O
+PGJ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                        CCOCN1C(=C(C(=O)O1)c2ccc(cc2)F)c3ccnc(n3)Oc4ccccc4O
+PGJ            InChI                InChI  1.03 InChI=1S/C22H18FN3O5/c1-2-29-13-26-20(19(21(28)31-26)14-7-9-15(23)10-8-14)16-11-12-24-22(25-16)30-18-6-4-3-5-17(18)27/h3-12,27H,2,13H2,1H3
+PGJ         InChIKey                InChI  1.03                                                                                                                ZSOXFJURLPCSOO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PGJ acedrg               243         "dictionary generator"                  
+PGJ acedrg_database      11          "data source"                           
+PGJ rdkit                2017.03.2   "Chemoinformatics tool"
+PGJ refmac5              5.8.0238    "optimization tool"                     

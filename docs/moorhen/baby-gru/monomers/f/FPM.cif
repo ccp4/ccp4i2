@@ -1,0 +1,257 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FPM     FPM      "(5R,6S)-6-(1-hydroxyethyl)-7-oxo-3-[(2R)-oxolan-2-yl]-4-thia-1-azabicyclo[3.2.0]hept-2-ene-2-carboxylic acid"     NON-POLYMER     33     19     .     
+#
+data_comp_FPM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FPM     C2      C       CR5     0       27.496      20.699      19.471      
+FPM     C6      C       CH1     0       28.283      18.917      22.657      
+FPM     C5      C       CH1     0       28.009      20.372      22.141      
+FPM     C7      C       C       0       26.837      18.649      22.224      
+FPM     N4      N       NT      0       26.773      19.837      21.535      
+FPM     C3      C       CR5     0       26.719      19.788      20.111      
+FPM     S1      S       S2      0       28.696      21.097      20.641      
+FPM     C31     C       C       0       25.926      18.734      19.402      
+FPM     O7      O       O       0       26.027      17.773      22.405      
+FPM     C61     C       CH1     0       28.622      18.764      24.132      
+FPM     O62     O       OH1     0       28.989      17.402      24.358      
+FPM     C62     C       CH3     0       27.509      19.151      25.080      
+FPM     C14     C       CH1     0       27.433      21.141      18.040      
+FPM     C15     C       CH2     0       26.651      22.447      17.872      
+FPM     C16     C       CH2     0       27.439      23.175      16.798      
+FPM     C17     C       CH2     0       28.835      22.763      17.100      
+FPM     O18     O       O2      0       28.759      21.404      17.553      
+FPM     O32     O       OC      -1      24.725      18.719      19.600      
+FPM     O31     O       O       0       26.538      17.970      18.678      
+FPM     H6      H       H       0       28.914      18.413      22.096      
+FPM     H5      H       H       0       27.855      21.039      22.853      
+FPM     H61     H       H       0       29.418      19.320      24.329      
+FPM     HO62    H       H       0       28.346      16.878      24.178      
+FPM     H162    H       H       0       27.110      19.989      24.792      
+FPM     H262    H       H       0       27.876      19.258      25.974      
+FPM     H362    H       H       0       26.833      18.451      25.089      
+FPM     H14     H       H       0       27.022      20.439      17.477      
+FPM     H115    H       H       0       25.731      22.271      17.581      
+FPM     H215    H       H       0       26.632      22.962      18.708      
+FPM     H116    H       H       0       27.334      24.144      16.871      
+FPM     H216    H       H       0       27.172      22.890      15.902      
+FPM     H117    H       H       0       29.218      23.335      17.793      
+FPM     H217    H       H       0       29.391      22.827      16.299      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FPM         C16         C17      SINGLE       n     1.489  0.0200     1.489  0.0200
+FPM         C15         C16      SINGLE       n     1.523  0.0200     1.523  0.0200
+FPM         C17         O18      SINGLE       n     1.432  0.0190     1.432  0.0190
+FPM         C31         O31      DOUBLE       n     1.217  0.0200     1.217  0.0200
+FPM         C14         C15      SINGLE       n     1.530  0.0143     1.530  0.0143
+FPM         C14         O18      SINGLE       n     1.436  0.0103     1.436  0.0103
+FPM          C2         C14      SINGLE       n     1.496  0.0127     1.496  0.0127
+FPM         C31         O32      SINGLE       n     1.217  0.0200     1.217  0.0200
+FPM          C3         C31      SINGLE       n     1.494  0.0120     1.494  0.0120
+FPM          C2          C3      DOUBLE       n     1.347  0.0180     1.347  0.0180
+FPM          C2          S1      SINGLE       n     1.734  0.0200     1.734  0.0200
+FPM          N4          C3      SINGLE       n     1.411  0.0130     1.411  0.0130
+FPM          C5          S1      SINGLE       n     1.808  0.0126     1.808  0.0126
+FPM          C7          N4      SINGLE       n     1.370  0.0146     1.370  0.0146
+FPM          C5          N4      SINGLE       n     1.476  0.0122     1.476  0.0122
+FPM          C7          O7      DOUBLE       n     1.206  0.0100     1.206  0.0100
+FPM          C6          C7      SINGLE       n     1.527  0.0133     1.527  0.0133
+FPM          C6          C5      SINGLE       n     1.566  0.0166     1.566  0.0166
+FPM          C6         C61      SINGLE       n     1.512  0.0136     1.512  0.0136
+FPM         C61         O62      SINGLE       n     1.426  0.0165     1.426  0.0165
+FPM         C61         C62      SINGLE       n     1.503  0.0163     1.503  0.0163
+FPM          C6          H6      SINGLE       n     1.089  0.0100     0.984  0.0200
+FPM          C5          H5      SINGLE       n     1.089  0.0100     0.988  0.0132
+FPM         C61         H61      SINGLE       n     1.089  0.0100     0.991  0.0193
+FPM         O62        HO62      SINGLE       n     0.970  0.0120     0.848  0.0200
+FPM         C62        H162      SINGLE       n     1.089  0.0100     0.973  0.0146
+FPM         C62        H262      SINGLE       n     1.089  0.0100     0.973  0.0146
+FPM         C62        H362      SINGLE       n     1.089  0.0100     0.973  0.0146
+FPM         C14         H14      SINGLE       n     1.089  0.0100     0.990  0.0163
+FPM         C15        H115      SINGLE       n     1.089  0.0100     0.981  0.0186
+FPM         C15        H215      SINGLE       n     1.089  0.0100     0.981  0.0186
+FPM         C16        H116      SINGLE       n     1.089  0.0100     0.977  0.0101
+FPM         C16        H216      SINGLE       n     1.089  0.0100     0.977  0.0101
+FPM         C17        H117      SINGLE       n     1.089  0.0100     0.977  0.0104
+FPM         C17        H217      SINGLE       n     1.089  0.0100     0.977  0.0104
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FPM         C14          C2          C3     122.679    3.00
+FPM         C14          C2          S1     125.316    3.00
+FPM          C3          C2          S1     112.005    3.00
+FPM          C7          C6          C5      85.978    1.75
+FPM          C7          C6         C61     114.367    3.00
+FPM          C7          C6          H6     110.584    1.50
+FPM          C5          C6         C61     115.858    2.92
+FPM          C5          C6          H6     113.345    1.95
+FPM         C61          C6          H6     110.864    1.50
+FPM          S1          C5          N4     109.471    3.00
+FPM          S1          C5          C6     117.262    3.00
+FPM          S1          C5          H5     113.121    1.50
+FPM          N4          C5          C6      88.590    1.50
+FPM          N4          C5          H5     114.251    1.50
+FPM          C6          C5          H5     114.585    1.80
+FPM          N4          C7          O7     131.481    1.50
+FPM          N4          C7          C6      92.839    1.50
+FPM          O7          C7          C6     135.680    1.50
+FPM          C3          N4          C7     109.471    3.00
+FPM          C3          N4          C5     109.471    3.00
+FPM          C7          N4          C5      92.946    1.50
+FPM         C31          C3          C2     124.137    3.00
+FPM         C31          C3          N4     117.931    3.00
+FPM          C2          C3          N4     117.931    3.00
+FPM          C2          S1          C5     120.000    3.00
+FPM         O31         C31         O32     125.849    2.58
+FPM         O31         C31          C3     117.075    3.00
+FPM         O32         C31          C3     117.075    3.00
+FPM          C6         C61         O62     107.856    2.47
+FPM          C6         C61         C62     112.852    1.50
+FPM          C6         C61         H61     108.682    1.50
+FPM         O62         C61         C62     109.542    2.20
+FPM         O62         C61         H61     107.571    1.67
+FPM         C62         C61         H61     109.162    1.50
+FPM         C61         O62        HO62     110.053    3.00
+FPM         C61         C62        H162     109.155    1.50
+FPM         C61         C62        H262     109.155    1.50
+FPM         C61         C62        H362     109.155    1.50
+FPM        H162         C62        H262     109.669    2.02
+FPM        H162         C62        H362     109.669    2.02
+FPM        H262         C62        H362     109.669    2.02
+FPM         C15         C14         O18     105.924    1.50
+FPM         C15         C14          C2     113.001    2.66
+FPM         C15         C14         H14     109.581    1.50
+FPM         O18         C14          C2     109.772    1.82
+FPM         O18         C14         H14     109.180    1.50
+FPM          C2         C14         H14     110.367    1.60
+FPM         C16         C15         C14     102.621    1.50
+FPM         C16         C15        H115     111.076    1.50
+FPM         C16         C15        H215     111.076    1.50
+FPM         C14         C15        H115     110.849    1.50
+FPM         C14         C15        H215     110.849    1.50
+FPM        H115         C15        H215     108.984    1.50
+FPM         C17         C16         C15     102.177    1.50
+FPM         C17         C16        H116     111.002    1.50
+FPM         C17         C16        H216     111.002    1.50
+FPM         C15         C16        H116     111.337    1.50
+FPM         C15         C16        H216     111.337    1.50
+FPM        H116         C16        H216     109.004    1.50
+FPM         C16         C17         O18     105.763    1.50
+FPM         C16         C17        H117     110.412    1.50
+FPM         C16         C17        H217     110.412    1.50
+FPM         O18         C17        H117     110.576    1.50
+FPM         O18         C17        H217     110.576    1.50
+FPM        H117         C17        H217     108.637    1.50
+FPM         C17         O18         C14     107.998    2.01
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FPM            sp2_sp3_13          C3          C2         C14         C15     150.000    10.0     6
+FPM             sp2_sp2_4         C14          C2          C3         C31       0.000     5.0     2
+FPM            sp2_sp2_18         C14          C2          S1          C5     180.000     5.0     2
+FPM             sp3_sp3_1         O18         C14         C15         C16      60.000    10.0     3
+FPM            sp3_sp3_34         C15         C14         O18         C17     180.000    10.0     3
+FPM            sp3_sp3_10         C14         C15         C16         C17     -60.000    10.0     3
+FPM            sp3_sp3_19         C15         C16         C17         O18      60.000    10.0     3
+FPM            sp3_sp3_28         C16         C17         O18         C14     -60.000    10.0     3
+FPM            sp3_sp3_41          S1          C5          C6         C61     180.000    10.0     3
+FPM            sp2_sp3_11          O7          C7          C6         C61     -60.000    10.0     6
+FPM            sp3_sp3_46          C7          C6         C61         O62     180.000    10.0     3
+FPM             sp2_sp3_1          C3          N4          C5          S1       0.000    10.0     6
+FPM            sp3_sp3_31          N4          C5          S1          C2     -60.000    10.0     3
+FPM            sp2_sp2_12          O7          C7          N4          C3       0.000     5.0     2
+FPM             sp2_sp2_8         C31          C3          N4          C7       0.000     5.0     2
+FPM            sp2_sp2_13          C2          C3         C31         O31     180.000     5.0     2
+FPM            sp3_sp3_56         C62         C61         O62        HO62      60.000    10.0     3
+FPM            sp3_sp3_61         O62         C61         C62        H162      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FPM    chir_1    C6    C5    C7    C61    positive
+FPM    chir_2    C5    S1    N4    C6    negative
+FPM    chir_3    C61    O62    C6    C62    negative
+FPM    chir_4    C14    O18    C2    C15    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FPM    plan-1         C14   0.020
+FPM    plan-1          C2   0.020
+FPM    plan-1          C3   0.020
+FPM    plan-1          S1   0.020
+FPM    plan-2          C6   0.020
+FPM    plan-2          C7   0.020
+FPM    plan-2          N4   0.020
+FPM    plan-2          O7   0.020
+FPM    plan-3          C2   0.020
+FPM    plan-3          C3   0.020
+FPM    plan-3         C31   0.020
+FPM    plan-3          N4   0.020
+FPM    plan-4          C3   0.020
+FPM    plan-4         C31   0.020
+FPM    plan-4         O31   0.020
+FPM    plan-4         O32   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FPM           SMILES              ACDLabs 10.04                                                                                            O=C2N1C(=C(SC1C2C(O)C)C3OCCC3)C(=O)O
+FPM SMILES_CANONICAL               CACTVS 3.341                                                                          C[C@@H](O)[C@@H]1[C@H]2SC(=C(N2C1=O)C(O)=O)[C@H]3CCCO3
+FPM           SMILES               CACTVS 3.341                                                                                C[CH](O)[CH]1[CH]2SC(=C(N2C1=O)C(O)=O)[CH]3CCCO3
+FPM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                        C[C@H]([C@@H]1[C@@H]2N(C1=O)C(=C(S2)[C@H]3CCCO3)C(=O)O)O
+FPM           SMILES "OpenEye OEToolkits" 1.5.0                                                                                          CC(C1C2N(C1=O)C(=C(S2)C3CCCO3)C(=O)O)O
+FPM            InChI                InChI  1.03 InChI=1S/C12H15NO5S/c1-5(14)7-10(15)13-8(12(16)17)9(19-11(7)13)6-3-2-4-18-6/h5-7,11,14H,2-4H2,1H3,(H,16,17)/t5-,6-,7+,11-/m1/s1
+FPM         InChIKey                InChI  1.03                                                                                                     HGGAKXAHAYOLDJ-FHZUQPTBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FPM acedrg               243         "dictionary generator"                  
+FPM acedrg_database      11          "data source"                           
+FPM rdkit                2017.03.2   "Chemoinformatics tool"
+FPM refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,381 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IP7     IP7      N~3~-[5-(1H-INDOL-6-YL)-2-(PYRIDIN-2-YLMETHOXY)BENZYL]PYRIDINE-2,3-DIAMINE     NON-POLYMER     55     32     .     
+#
+data_comp_IP7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IP7     N1      N       NH2     0       66.869      46.261      7.027       
+IP7     C2      C       CR6     0       66.604      46.333      8.336       
+IP7     N3      N       NRD6    0       66.840      45.205      9.055       
+IP7     C4      C       CR16    0       66.592      45.220      10.376      
+IP7     C5      C       CR16    0       66.107      46.319      11.059      
+IP7     C6      C       CR16    0       65.858      47.476      10.354      
+IP7     C7      C       CR6     0       66.102      47.508      8.975       
+IP7     N8      N       NH1     0       65.866      48.647      8.236       
+IP7     C9      C       CH2     0       66.330      49.967      8.618       
+IP7     C10     C       CR6     0       67.804      50.046      8.949       
+IP7     C11     C       CR16    0       68.735      49.754      7.957       
+IP7     C12     C       CR6     0       70.114      49.796      8.184       
+IP7     C13     C       CR16    0       70.542      50.150      9.469       
+IP7     C14     C       CR16    0       69.636      50.447      10.482      
+IP7     C15     C       CR6     0       68.267      50.396      10.230      
+IP7     O16     O       O2      0       67.290      50.677      11.174      
+IP7     C17     C       CH2     0       67.596      51.067      12.517      
+IP7     C18     C       CR6     0       68.054      52.505      12.548      
+IP7     C19     C       CR16    0       67.298      53.526      12.007      
+IP7     C20     C       CR16    0       67.779      54.827      12.069      
+IP7     C21     C       CR16    0       68.996      55.069      12.669      
+IP7     C22     C       CR16    0       69.692      53.995      13.186      
+IP7     N23     N       NRD6    0       69.240      52.729      13.134      
+IP7     C24     C       CR6     0       71.082      49.479      7.098       
+IP7     C25     C       CR16    0       72.246      50.267      6.914       
+IP7     C26     C       CR16    0       73.162      50.003      5.920       
+IP7     C27     C       CR56    0       72.948      48.921      5.051       
+IP7     C28     C       CR15    0       73.658      48.365      3.940       
+IP7     C29     C       CR15    0       72.934      47.301      3.500       
+IP7     N30     N       NR5     0       71.808      47.148      4.264       
+IP7     C31     C       CR56    0       71.786      48.131      5.229       
+IP7     C32     C       CR16    0       70.869      48.402      6.235       
+IP7     HN11    H       H       0       66.559      45.590      6.555       
+IP7     HN12    H       H       0       67.351      46.885      6.644       
+IP7     H4      H       H       0       66.761      44.429      10.862      
+IP7     H5      H       H       0       65.948      46.280      11.985      
+IP7     H6      H       H       0       65.524      48.248      10.796      
+IP7     HN8     H       H       0       65.412      48.563      7.497       
+IP7     H91     H       H       0       65.801      50.270      9.384       
+IP7     H92     H       H       0       66.146      50.582      7.878       
+IP7     H11     H       H       0       68.422      49.517      7.099       
+IP7     H13     H       H       0       71.468      50.191      9.656       
+IP7     H14     H       H       0       69.958      50.683      11.333      
+IP7     H171    H       H       0       68.288      50.480      12.893      
+IP7     H172    H       H       0       66.791      50.973      13.072      
+IP7     H19     H       H       0       66.467      53.341      11.600      
+IP7     H20     H       H       0       67.277      55.538      11.705      
+IP7     H21     H       H       0       69.346      55.944      12.724      
+IP7     H22     H       H       0       70.525      54.153      13.598      
+IP7     H25     H       H       0       72.396      50.995      7.493       
+IP7     H26     H       H       0       73.927      50.541      5.819       
+IP7     H28     H       H       0       74.475      48.679      3.581       
+IP7     H29     H       H       0       73.167      46.745      2.777       
+IP7     HN30    H       H       0       71.192      46.515      4.154       
+IP7     H32     H       H       0       70.105      47.869      6.338       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IP7          N1          C2      SINGLE       n     1.337  0.0100     1.337  0.0100
+IP7          C2          N3      DOUBLE       y     1.350  0.0127     1.350  0.0127
+IP7          C2          C7      SINGLE       y     1.423  0.0124     1.423  0.0124
+IP7          N3          C4      SINGLE       y     1.337  0.0121     1.337  0.0121
+IP7          C4          C5      DOUBLE       y     1.374  0.0152     1.374  0.0152
+IP7          C5          C6      SINGLE       y     1.375  0.0117     1.375  0.0117
+IP7          C6          C7      DOUBLE       y     1.396  0.0146     1.396  0.0146
+IP7          C7          N8      SINGLE       n     1.374  0.0161     1.374  0.0161
+IP7          N8          C9      SINGLE       n     1.448  0.0127     1.448  0.0127
+IP7          C9         C10      SINGLE       n     1.508  0.0100     1.508  0.0100
+IP7         C10         C11      DOUBLE       y     1.384  0.0109     1.384  0.0109
+IP7         C10         C15      SINGLE       y     1.396  0.0100     1.396  0.0100
+IP7         C11         C12      SINGLE       y     1.395  0.0100     1.395  0.0100
+IP7         C12         C24      SINGLE       n     1.486  0.0100     1.486  0.0100
+IP7         C12         C13      DOUBLE       y     1.398  0.0100     1.398  0.0100
+IP7         C13         C14      SINGLE       y     1.390  0.0100     1.390  0.0100
+IP7         C14         C15      DOUBLE       y     1.385  0.0100     1.385  0.0100
+IP7         C15         O16      SINGLE       n     1.378  0.0100     1.378  0.0100
+IP7         O16         C17      SINGLE       n     1.427  0.0100     1.427  0.0100
+IP7         C17         C18      SINGLE       n     1.507  0.0100     1.507  0.0100
+IP7         C18         N23      SINGLE       y     1.338  0.0100     1.338  0.0100
+IP7         C18         C19      DOUBLE       y     1.373  0.0132     1.373  0.0132
+IP7         C19         C20      SINGLE       y     1.381  0.0129     1.381  0.0129
+IP7         C20         C21      DOUBLE       y     1.372  0.0130     1.372  0.0130
+IP7         C21         C22      SINGLE       y     1.374  0.0152     1.374  0.0152
+IP7         C22         N23      DOUBLE       y     1.342  0.0113     1.342  0.0113
+IP7         C24         C32      SINGLE       y     1.392  0.0100     1.392  0.0100
+IP7         C24         C25      DOUBLE       y     1.412  0.0100     1.412  0.0100
+IP7         C25         C26      SINGLE       y     1.373  0.0102     1.373  0.0102
+IP7         C26         C27      DOUBLE       y     1.401  0.0100     1.401  0.0100
+IP7         C27         C28      SINGLE       y     1.431  0.0100     1.431  0.0100
+IP7         C27         C31      SINGLE       y     1.414  0.0100     1.414  0.0100
+IP7         C28         C29      DOUBLE       y     1.360  0.0100     1.360  0.0100
+IP7         C29         N30      SINGLE       y     1.369  0.0100     1.369  0.0100
+IP7         N30         C31      SINGLE       y     1.377  0.0100     1.377  0.0100
+IP7         C31         C32      DOUBLE       y     1.386  0.0100     1.386  0.0100
+IP7          N1        HN11      SINGLE       n     1.016  0.0100     0.877  0.0200
+IP7          N1        HN12      SINGLE       n     1.016  0.0100     0.877  0.0200
+IP7          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0178
+IP7          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0154
+IP7          C6          H6      SINGLE       n     1.082  0.0130     0.950  0.0200
+IP7          N8         HN8      SINGLE       n     1.016  0.0100     0.871  0.0200
+IP7          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0114
+IP7          C9         H92      SINGLE       n     1.089  0.0100     0.980  0.0114
+IP7         C11         H11      SINGLE       n     1.082  0.0130     0.944  0.0200
+IP7         C13         H13      SINGLE       n     1.082  0.0130     0.945  0.0186
+IP7         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0200
+IP7         C17        H171      SINGLE       n     1.089  0.0100     0.982  0.0100
+IP7         C17        H172      SINGLE       n     1.089  0.0100     0.982  0.0100
+IP7         C19         H19      SINGLE       n     1.082  0.0130     0.944  0.0193
+IP7         C20         H20      SINGLE       n     1.082  0.0130     0.944  0.0191
+IP7         C21         H21      SINGLE       n     1.082  0.0130     0.944  0.0200
+IP7         C22         H22      SINGLE       n     1.082  0.0130     0.943  0.0162
+IP7         C25         H25      SINGLE       n     1.082  0.0130     0.943  0.0145
+IP7         C26         H26      SINGLE       n     1.082  0.0130     0.940  0.0143
+IP7         C28         H28      SINGLE       n     1.082  0.0130     0.946  0.0173
+IP7         C29         H29      SINGLE       n     1.082  0.0130     0.941  0.0154
+IP7         N30        HN30      SINGLE       n     1.016  0.0100     0.890  0.0200
+IP7         C32         H32      SINGLE       n     1.082  0.0130     0.937  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IP7          C2          N1        HN11     119.872    1.50
+IP7          C2          N1        HN12     119.872    1.50
+IP7        HN11          N1        HN12     120.257    1.85
+IP7          N1          C2          N3     116.261    1.50
+IP7          N1          C2          C7     123.499    2.55
+IP7          N3          C2          C7     120.240    1.50
+IP7          C2          N3          C4     117.443    1.50
+IP7          N3          C4          C5     123.838    1.50
+IP7          N3          C4          H4     117.746    1.50
+IP7          C5          C4          H4     118.415    1.50
+IP7          C4          C5          C6     119.006    1.50
+IP7          C4          C5          H5     120.658    1.50
+IP7          C6          C5          H5     120.337    1.50
+IP7          C5          C6          C7     119.925    1.50
+IP7          C5          C6          H6     120.272    1.50
+IP7          C7          C6          H6     119.803    1.50
+IP7          C2          C7          C6     119.550    1.50
+IP7          C2          C7          N8     119.585    2.27
+IP7          C6          C7          N8     120.865    1.76
+IP7          C7          N8          C9     123.176    1.76
+IP7          C7          N8         HN8     118.085    2.04
+IP7          C9          N8         HN8     118.739    1.50
+IP7          N8          C9         C10     114.820    1.50
+IP7          N8          C9         H91     108.755    1.50
+IP7          N8          C9         H92     108.755    1.50
+IP7         C10          C9         H91     108.990    1.50
+IP7         C10          C9         H92     108.990    1.50
+IP7         H91          C9         H92     107.706    1.50
+IP7          C9         C10         C11     121.157    1.50
+IP7          C9         C10         C15     120.742    1.50
+IP7         C11         C10         C15     118.102    1.50
+IP7         C10         C11         C12     121.448    1.50
+IP7         C10         C11         H11     119.319    1.50
+IP7         C12         C11         H11     119.233    1.50
+IP7         C11         C12         C24     120.876    1.52
+IP7         C11         C12         C13     117.682    1.50
+IP7         C24         C12         C13     121.442    1.50
+IP7         C12         C13         C14     121.893    1.50
+IP7         C12         C13         H13     119.197    1.50
+IP7         C14         C13         H13     118.910    1.50
+IP7         C13         C14         C15     120.083    1.50
+IP7         C13         C14         H14     119.942    1.50
+IP7         C15         C14         H14     119.975    1.50
+IP7         C10         C15         C14     120.793    1.50
+IP7         C10         C15         O16     116.784    2.07
+IP7         C14         C15         O16     122.423    1.58
+IP7         C15         O16         C17     118.274    1.50
+IP7         O16         C17         C18     108.885    2.42
+IP7         O16         C17        H171     109.906    1.50
+IP7         O16         C17        H172     109.906    1.50
+IP7         C18         C17        H171     109.842    1.50
+IP7         C18         C17        H172     109.842    1.50
+IP7        H171         C17        H172     108.353    1.50
+IP7         C17         C18         N23     115.682    1.50
+IP7         C17         C18         C19     122.140    1.50
+IP7         N23         C18         C19     122.177    1.50
+IP7         C18         C19         C20     118.744    1.50
+IP7         C18         C19         H19     120.545    1.50
+IP7         C20         C19         H19     120.711    1.50
+IP7         C19         C20         C21     119.010    1.50
+IP7         C19         C20         H20     120.484    1.50
+IP7         C21         C20         H20     120.505    1.50
+IP7         C20         C21         C22     118.330    1.50
+IP7         C20         C21         H21     120.906    1.50
+IP7         C22         C21         H21     120.765    1.50
+IP7         C21         C22         N23     123.657    1.50
+IP7         C21         C22         H22     118.415    1.50
+IP7         N23         C22         H22     117.920    1.50
+IP7         C18         N23         C22     118.089    1.50
+IP7         C12         C24         C32     120.913    1.77
+IP7         C12         C24         C25     120.647    1.50
+IP7         C32         C24         C25     118.440    1.50
+IP7         C24         C25         C26     122.010    1.50
+IP7         C24         C25         H25     118.701    1.50
+IP7         C26         C25         H25     119.289    1.50
+IP7         C25         C26         C27     119.205    1.50
+IP7         C25         C26         H26     120.759    1.50
+IP7         C27         C26         H26     120.035    1.50
+IP7         C26         C27         C28     134.541    1.50
+IP7         C26         C27         C31     118.667    1.50
+IP7         C28         C27         C31     106.791    1.50
+IP7         C27         C28         C29     106.920    1.50
+IP7         C27         C28         H28     126.486    1.50
+IP7         C29         C28         H28     126.594    1.50
+IP7         C28         C29         N30     110.083    1.50
+IP7         C28         C29         H29     125.387    1.67
+IP7         N30         C29         H29     124.530    1.59
+IP7         C29         N30         C31     108.923    1.50
+IP7         C29         N30        HN30     125.381    2.15
+IP7         C31         N30        HN30     125.696    1.60
+IP7         C27         C31         N30     107.283    1.50
+IP7         C27         C31         C32     121.862    1.50
+IP7         N30         C31         C32     130.855    1.50
+IP7         C24         C32         C31     119.815    1.50
+IP7         C24         C32         H32     119.585    1.50
+IP7         C31         C32         H32     120.600    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IP7             sp2_sp2_3          N3          C2          N1        HN11       0.000     5.0     2
+IP7       const_sp2_sp2_6         C10         C11         C12         C24     180.000     5.0     2
+IP7       const_sp2_sp2_9         C11         C12         C13         C14       0.000     5.0     2
+IP7             sp2_sp2_9         C11         C12         C24         C32     180.000     5.0     2
+IP7              const_13         C12         C13         C14         C15       0.000    10.0     2
+IP7              const_18         C13         C14         C15         O16     180.000    10.0     2
+IP7            sp2_sp2_13         C10         C15         O16         C17     180.000     5.0     2
+IP7             sp3_sp3_1         C18         C17         O16         C15     180.000    10.0     3
+IP7            sp2_sp3_14         N23         C18         C17         O16     -90.000    10.0     6
+IP7              const_99         C17         C18         C19         C20     180.000    10.0     2
+IP7              const_22         C17         C18         N23         C22     180.000    10.0     2
+IP7              const_33         C18         C19         C20         C21       0.000    10.0     2
+IP7              const_29         C19         C20         C21         C22       0.000    10.0     2
+IP7              const_74          N1          C2          N3          C4     180.000    10.0     2
+IP7              const_92          N1          C2          C7          N8       0.000    10.0     2
+IP7              const_25         C20         C21         C22         N23       0.000    10.0     2
+IP7              const_23         C21         C22         N23         C18       0.000    10.0     2
+IP7             const_103         C12         C24         C25         C26     180.000    10.0     2
+IP7              const_39         C12         C24         C32         C31     180.000    10.0     2
+IP7              const_53         C24         C25         C26         C27       0.000    10.0     2
+IP7              const_50         C25         C26         C27         C28     180.000    10.0     2
+IP7              const_59         C26         C27         C28         C29     180.000    10.0     2
+IP7              const_46         C26         C27         C31         N30     180.000    10.0     2
+IP7              const_61         C27         C28         C29         N30       0.000    10.0     2
+IP7              const_65         C28         C29         N30         C31       0.000    10.0     2
+IP7              const_69         C27         C31         N30         C29       0.000    10.0     2
+IP7              const_75          C5          C4          N3          C2       0.000    10.0     2
+IP7              const_41         C27         C31         C32         C24       0.000    10.0     2
+IP7              const_77          N3          C4          C5          C6       0.000    10.0     2
+IP7              const_81          C4          C5          C6          C7       0.000    10.0     2
+IP7              const_86          C5          C6          C7          N8     180.000    10.0     2
+IP7             sp2_sp2_5          C2          C7          N8          C9     180.000     5.0     2
+IP7             sp2_sp3_2          C7          N8          C9         C10     120.000    10.0     6
+IP7             sp2_sp3_8         C11         C10          C9          N8     -90.000    10.0     6
+IP7       const_sp2_sp2_3          C9         C10         C11         C12     180.000     5.0     2
+IP7              const_96          C9         C10         C15         O16       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IP7    plan-1         C12   0.020
+IP7    plan-1         C24   0.020
+IP7    plan-1         C25   0.020
+IP7    plan-1         C26   0.020
+IP7    plan-1         C27   0.020
+IP7    plan-1         C28   0.020
+IP7    plan-1         C29   0.020
+IP7    plan-1         C31   0.020
+IP7    plan-1         C32   0.020
+IP7    plan-1         H25   0.020
+IP7    plan-1         H26   0.020
+IP7    plan-1         H28   0.020
+IP7    plan-1         H29   0.020
+IP7    plan-1         H32   0.020
+IP7    plan-1        HN30   0.020
+IP7    plan-1         N30   0.020
+IP7    plan-2         C10   0.020
+IP7    plan-2         C11   0.020
+IP7    plan-2         C12   0.020
+IP7    plan-2         C13   0.020
+IP7    plan-2         C14   0.020
+IP7    plan-2         C15   0.020
+IP7    plan-2         C24   0.020
+IP7    plan-2          C9   0.020
+IP7    plan-2         H11   0.020
+IP7    plan-2         H13   0.020
+IP7    plan-2         H14   0.020
+IP7    plan-2         O16   0.020
+IP7    plan-3         C17   0.020
+IP7    plan-3         C18   0.020
+IP7    plan-3         C19   0.020
+IP7    plan-3         C20   0.020
+IP7    plan-3         C21   0.020
+IP7    plan-3         C22   0.020
+IP7    plan-3         H19   0.020
+IP7    plan-3         H20   0.020
+IP7    plan-3         H21   0.020
+IP7    plan-3         H22   0.020
+IP7    plan-3         N23   0.020
+IP7    plan-4          C2   0.020
+IP7    plan-4          C4   0.020
+IP7    plan-4          C5   0.020
+IP7    plan-4          C6   0.020
+IP7    plan-4          C7   0.020
+IP7    plan-4          H4   0.020
+IP7    plan-4          H5   0.020
+IP7    plan-4          H6   0.020
+IP7    plan-4          N1   0.020
+IP7    plan-4          N3   0.020
+IP7    plan-4          N8   0.020
+IP7    plan-5          C2   0.020
+IP7    plan-5        HN11   0.020
+IP7    plan-5        HN12   0.020
+IP7    plan-5          N1   0.020
+IP7    plan-6          C7   0.020
+IP7    plan-6          C9   0.020
+IP7    plan-6         HN8   0.020
+IP7    plan-6          N8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IP7           SMILES              ACDLabs 10.04                                                                                                            n1ccccc1COc4ccc(c2ccc3c(c2)ncc3)cc4CNc5cccnc5N
+IP7 SMILES_CANONICAL               CACTVS 3.341                                                                                                           Nc1ncccc1NCc2cc(ccc2OCc3ccccn3)c4ccc5cc[nH]c5c4
+IP7           SMILES               CACTVS 3.341                                                                                                           Nc1ncccc1NCc2cc(ccc2OCc3ccccn3)c4ccc5cc[nH]c5c4
+IP7 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                         c1ccnc(c1)COc2ccc(cc2CNc3cccnc3N)c4ccc5cc[nH]c5c4
+IP7           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                         c1ccnc(c1)COc2ccc(cc2CNc3cccnc3N)c4ccc5cc[nH]c5c4
+IP7            InChI                InChI  1.03 InChI=1S/C26H23N5O/c27-26-23(5-3-12-30-26)31-16-21-14-19(20-7-6-18-10-13-29-24(18)15-20)8-9-25(21)32-17-22-4-1-2-11-28-22/h1-15,29,31H,16-17H2,(H2,27,30)
+IP7         InChIKey                InChI  1.03                                                                                                                               KMBPJSHPAXOXBT-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IP7 acedrg               243         "dictionary generator"                  
+IP7 acedrg_database      11          "data source"                           
+IP7 rdkit                2017.03.2   "Chemoinformatics tool"
+IP7 refmac5              5.8.0238    "optimization tool"                     

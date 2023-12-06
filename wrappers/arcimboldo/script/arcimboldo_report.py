@@ -64,7 +64,7 @@ class arcimboldo_report ( Report ) :
 			projectid = self.jobInfo.get("projectid", None)
 			jobNumber = self.jobInfo.get("jobnumber", None)
 
-			arcimboldourl = "/database/?getProjectJobFile?projectId=" + projectid + "?fileName="+os.path.basename(resultsHtml)+"?jobNumber=" + jobNumber
+			arcimboldourl = "/database/getProjectJobFile?projectId=" + projectid + "&fileName="+os.path.basename(resultsHtml)+"&jobNumber=" + jobNumber
 			htmlText += '<p><b>Click on the following link to display the arcimboldo report in a browser: '
 			if status == 'running':
 				htmlText += '<a href="{0}">ARCIMBOLDO results</a> (Last modified: {1}) </b></p>'.format(resultsHtml, time.ctime(os.path.getmtime(resultsHtml)))

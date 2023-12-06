@@ -1,0 +1,259 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NAV     NAV      "6,7,8,9-TETRAHYDROXY-5-METHYLCARBOXAMIDO-4-OXONONANOIC ACID"     NON-POLYMER     38     20     .     
+#
+data_comp_NAV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NAV     C1      C       C       0       7.953       12.609      43.018      
+NAV     O1A     O       OC      -1      7.284       11.663      43.481      
+NAV     O1B     O       O       0       8.693       13.334      43.712      
+NAV     C2      C       CH2     0       7.861       12.892      41.529      
+NAV     C3      C       CH2     0       8.861       12.127      40.676      
+NAV     C4      C       C       0       8.766       12.421      39.201      
+NAV     C5      C       CH1     0       9.761       11.733      38.265      
+NAV     N2      N       NH1     0       9.041       10.918      37.293      
+NAV     C10     C       C       0       9.078       9.577       37.254      
+NAV     C11     C       CH3     0       8.274       8.907       36.184      
+NAV     O10     O       O       0       9.738       8.913       38.052      
+NAV     O6      O       OH1     0       11.370      13.500      38.541      
+NAV     C6      C       CH1     0       10.664      12.744      37.558      
+NAV     C7      C       CH1     0       11.672      12.111      36.597      
+NAV     O7      O       OH1     0       12.505      11.212      37.331      
+NAV     C8      C       CH1     0       12.556      13.118      35.852      
+NAV     O8      O       OH1     0       11.737      14.046      35.136      
+NAV     C9      C       CH2     0       13.518      12.460      34.883      
+NAV     O9      O       OH1     0       12.829      11.727      33.874      
+NAV     O4      O       O       0       7.931       13.177      38.752      
+NAV     HC21    H       H       0       7.992       13.852      41.390      
+NAV     HC22    H       H       0       6.955       12.673      41.230      
+NAV     HC31    H       H       0       8.723       11.168      40.812      
+NAV     HC32    H       H       0       9.766       12.346      40.979      
+NAV     HC5     H       H       0       10.334      11.148      38.819      
+NAV     HN2     H       H       0       8.559       11.343      36.702      
+NAV     H111    H       H       0       7.707       9.553       35.733      
+NAV     H112    H       H       0       7.717       8.218       36.581      
+NAV     H113    H       H       0       8.871       8.499       35.536      
+NAV     HO6     H       H       0       11.465      14.294      38.260      
+NAV     HC6     H       H       0       10.064      13.382      37.032      
+NAV     HC7     H       H       0       11.170      11.586      35.923      
+NAV     HO7     H       H       0       12.665      10.528      36.855      
+NAV     HC8     H       H       0       13.100      13.628      36.523      
+NAV     HO8     H       H       0       12.195      14.697      34.844      
+NAV     HC91    H       H       0       14.118      11.851      35.377      
+NAV     HC92    H       H       0       14.071      13.157      34.455      
+NAV     HO9     H       H       0       13.403      11.378      33.360      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NAV          C1         O1A      SINGLE       n     1.247  0.0187     1.247  0.0187
+NAV          C1         O1B      DOUBLE       n     1.247  0.0187     1.247  0.0187
+NAV          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+NAV          C2          C3      SINGLE       n     1.516  0.0200     1.516  0.0200
+NAV          C3          C4      SINGLE       n     1.505  0.0107     1.505  0.0107
+NAV          C4          C5      SINGLE       n     1.529  0.0100     1.529  0.0100
+NAV          C4          O4      DOUBLE       n     1.209  0.0200     1.209  0.0200
+NAV          C5          N2      SINGLE       n     1.453  0.0100     1.453  0.0100
+NAV          C5          C6      SINGLE       n     1.516  0.0200     1.516  0.0200
+NAV          N2         C10      SINGLE       n     1.335  0.0100     1.335  0.0100
+NAV         C10         C11      SINGLE       n     1.495  0.0100     1.495  0.0100
+NAV         C10         O10      DOUBLE       n     1.229  0.0102     1.229  0.0102
+NAV          O6          C6      SINGLE       n     1.425  0.0100     1.425  0.0100
+NAV          C6          C7      SINGLE       n     1.526  0.0100     1.526  0.0100
+NAV          C7          O7      SINGLE       n     1.424  0.0199     1.424  0.0199
+NAV          C7          C8      SINGLE       n     1.530  0.0100     1.530  0.0100
+NAV          C8          O8      SINGLE       n     1.429  0.0100     1.429  0.0100
+NAV          C8          C9      SINGLE       n     1.514  0.0100     1.514  0.0100
+NAV          C9          O9      SINGLE       n     1.425  0.0100     1.425  0.0100
+NAV          C2        HC21      SINGLE       n     1.089  0.0100     0.979  0.0159
+NAV          C2        HC22      SINGLE       n     1.089  0.0100     0.979  0.0159
+NAV          C3        HC31      SINGLE       n     1.089  0.0100     0.979  0.0159
+NAV          C3        HC32      SINGLE       n     1.089  0.0100     0.979  0.0159
+NAV          C5         HC5      SINGLE       n     1.089  0.0100     0.991  0.0200
+NAV          N2         HN2      SINGLE       n     1.016  0.0100     0.873  0.0200
+NAV         C11        H111      SINGLE       n     1.089  0.0100     0.971  0.0140
+NAV         C11        H112      SINGLE       n     1.089  0.0100     0.971  0.0140
+NAV         C11        H113      SINGLE       n     1.089  0.0100     0.971  0.0140
+NAV          O6         HO6      SINGLE       n     0.970  0.0120     0.848  0.0200
+NAV          C6         HC6      SINGLE       n     1.089  0.0100     1.022  0.0200
+NAV          C7         HC7      SINGLE       n     1.089  0.0100     0.992  0.0184
+NAV          O7         HO7      SINGLE       n     0.970  0.0120     0.848  0.0200
+NAV          C8         HC8      SINGLE       n     1.089  0.0100     1.004  0.0200
+NAV          O8         HO8      SINGLE       n     0.970  0.0120     0.848  0.0200
+NAV          C9        HC91      SINGLE       n     1.089  0.0100     0.988  0.0200
+NAV          C9        HC92      SINGLE       n     1.089  0.0100     0.988  0.0200
+NAV          O9         HO9      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NAV         O1A          C1         O1B     123.571    1.50
+NAV         O1A          C1          C2     118.214    1.64
+NAV         O1B          C1          C2     118.214    1.64
+NAV          C1          C2          C3     114.808    1.90
+NAV          C1          C2        HC21     108.404    1.50
+NAV          C1          C2        HC22     108.404    1.50
+NAV          C3          C2        HC21     109.115    1.50
+NAV          C3          C2        HC22     109.115    1.50
+NAV        HC21          C2        HC22     107.521    1.50
+NAV          C2          C3          C4     113.123    1.50
+NAV          C2          C3        HC31     108.787    1.50
+NAV          C2          C3        HC32     108.787    1.50
+NAV          C4          C3        HC31     108.499    1.50
+NAV          C4          C3        HC32     108.499    1.50
+NAV        HC31          C3        HC32     107.764    1.50
+NAV          C3          C4          C5     118.241    1.50
+NAV          C3          C4          O4     121.318    1.50
+NAV          C5          C4          O4     120.441    1.50
+NAV          C4          C5          N2     111.249    2.34
+NAV          C4          C5          C6     111.511    2.91
+NAV          C4          C5         HC5     107.798    1.50
+NAV          N2          C5          C6     110.507    1.90
+NAV          N2          C5         HC5     108.161    1.50
+NAV          C6          C5         HC5     108.179    1.50
+NAV          C5          N2         C10     121.834    1.76
+NAV          C5          N2         HN2     118.902    1.92
+NAV         C10          N2         HN2     119.263    2.25
+NAV          N2         C10         C11     116.420    1.50
+NAV          N2         C10         O10     121.667    1.50
+NAV         C11         C10         O10     121.913    1.50
+NAV         C10         C11        H111     109.678    1.50
+NAV         C10         C11        H112     109.678    1.50
+NAV         C10         C11        H113     109.678    1.50
+NAV        H111         C11        H112     109.365    1.50
+NAV        H111         C11        H113     109.365    1.50
+NAV        H112         C11        H113     109.365    1.50
+NAV          C6          O6         HO6     108.522    3.00
+NAV          C5          C6          O6     108.919    1.50
+NAV          C5          C6          C7     111.094    2.85
+NAV          C5          C6         HC6     108.267    2.06
+NAV          O6          C6          C7     109.320    2.01
+NAV          O6          C6         HC6     108.081    2.87
+NAV          C7          C6         HC6     108.450    1.83
+NAV          C6          C7          O7     109.320    2.01
+NAV          C6          C7          C8     113.695    2.13
+NAV          C6          C7         HC7     108.450    1.83
+NAV          O7          C7          C8     109.164    1.97
+NAV          O7          C7         HC7     108.243    1.50
+NAV          C8          C7         HC7     108.336    1.50
+NAV          C7          O7         HO7     108.564    3.00
+NAV          C7          C8          O8     109.549    1.85
+NAV          C7          C8          C9     112.159    1.50
+NAV          C7          C8         HC8     108.777    1.50
+NAV          O8          C8          C9     109.623    1.60
+NAV          O8          C8         HC8     108.591    1.50
+NAV          C9          C8         HC8     107.986    1.50
+NAV          C8          O8         HO8     111.202    3.00
+NAV          C8          C9          O9     111.364    1.50
+NAV          C8          C9        HC91     109.234    1.50
+NAV          C8          C9        HC92     109.234    1.50
+NAV          O9          C9        HC91     109.268    1.50
+NAV          O9          C9        HC92     109.268    1.50
+NAV        HC91          C9        HC92     108.313    1.50
+NAV          C9          O9         HO9     108.280    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NAV             sp2_sp3_2         O1A          C1          C2          C3     120.000    10.0     6
+NAV            sp3_sp3_19          C5          C6          O6         HO6     180.000    10.0     3
+NAV            sp3_sp3_22          C5          C6          C7          O7     180.000    10.0     3
+NAV            sp3_sp3_31          C6          C7          O7         HO7     180.000    10.0     3
+NAV            sp3_sp3_34          C6          C7          C8          O8     180.000    10.0     3
+NAV            sp3_sp3_43          C7          C8          O8         HO8     180.000    10.0     3
+NAV            sp3_sp3_46          C7          C8          C9          O9     180.000    10.0     3
+NAV            sp3_sp3_55          C8          C9          O9         HO9     180.000    10.0     3
+NAV             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+NAV             sp2_sp3_8          C5          C4          C3          C2     120.000    10.0     6
+NAV            sp2_sp3_13          C3          C4          C5          N2       0.000    10.0     6
+NAV            sp3_sp3_10          C4          C5          C6          O6     180.000    10.0     3
+NAV            sp2_sp3_19         C10          N2          C5          C4       0.000    10.0     6
+NAV             sp2_sp2_1         C11         C10          N2          C5     180.000     5.0     2
+NAV            sp2_sp3_25          N2         C10         C11        H111       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NAV    chir_1    C5    N2    C4    C6    positive
+NAV    chir_2    C6    O6    C7    C5    negative
+NAV    chir_3    C7    O7    C8    C6    positive
+NAV    chir_4    C8    O8    C7    C9    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NAV    plan-1          C1   0.020
+NAV    plan-1          C2   0.020
+NAV    plan-1         O1A   0.020
+NAV    plan-1         O1B   0.020
+NAV    plan-2          C3   0.020
+NAV    plan-2          C4   0.020
+NAV    plan-2          C5   0.020
+NAV    plan-2          O4   0.020
+NAV    plan-3         C10   0.020
+NAV    plan-3          C5   0.020
+NAV    plan-3         HN2   0.020
+NAV    plan-3          N2   0.020
+NAV    plan-4         C10   0.020
+NAV    plan-4         C11   0.020
+NAV    plan-4          N2   0.020
+NAV    plan-4         O10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NAV           SMILES              ACDLabs 10.04                                                                                                         O=C(O)CCC(=O)C(NC(=O)C)C(O)C(O)C(O)CO
+NAV SMILES_CANONICAL               CACTVS 3.341                                                                                       CC(=O)N[C@@H]([C@@H](O)[C@H](O)[C@H](O)CO)C(=O)CCC(O)=O
+NAV           SMILES               CACTVS 3.341                                                                                             CC(=O)N[CH]([CH](O)[CH](O)[CH](O)CO)C(=O)CCC(O)=O
+NAV SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                      CC(=O)N[C@@H]([C@H]([C@@H]([C@@H](CO)O)O)O)C(=O)CCC(=O)O
+NAV           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                         CC(=O)NC(C(C(C(CO)O)O)O)C(=O)CCC(=O)O
+NAV            InChI                InChI  1.03 InChI=1S/C11H19NO8/c1-5(14)12-9(6(15)2-3-8(17)18)11(20)10(19)7(16)4-13/h7,9-11,13,16,19-20H,2-4H2,1H3,(H,12,14)(H,17,18)/t7-,9-,10-,11-/m1/s1
+NAV         InChIKey                InChI  1.03                                                                                                                   IZVFSUJQAOHESA-QCNRFFRDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NAV acedrg               243         "dictionary generator"                  
+NAV acedrg_database      11          "data source"                           
+NAV rdkit                2017.03.2   "Chemoinformatics tool"
+NAV refmac5              5.8.0238    "optimization tool"                     

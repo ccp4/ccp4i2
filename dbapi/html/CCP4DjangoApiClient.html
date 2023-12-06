@@ -1,0 +1,1191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>CCP4DjangoApiClient API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>CCP4DjangoApiClient</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import unittest
+import requests
+from pathlib import Path
+from urllib import parse
+import collections.abc
+
+CCP4i2UUID = str
+CCP4i2ParamsPath = str
+
+
+class CCP4DjangoApiClient:
+
+    &#34;&#34;&#34;A python class providing utility methods to access the CCP4i2 server API&#34;&#34;&#34;
+
+    def __init__(self, urlBase: str = &#34;http://127.0.0.1:43434/database&#34;):
+        &#34;&#34;&#34;
+        Args:
+            urlBase: the root url for the connection to the CCP4i2 server, typically `http://127.0.0.1:43434/database`
+        &#34;&#34;&#34;
+        #: urlBase stores the root url for the connection to the CCP4i2 server
+        self.urlBase = urlBase
+
+    def setJobParameterByXML(self, jobId: CCP4i2UUID, objectPath: CCP4i2ParamsPath, valueXmlText: str):
+        &#34;&#34;&#34;
+        Update the params.xml of the CCP4i2 task by specifying xml describing the new parameter
+        Args:
+
+            jobId: the primary key of the CCP4i2 job to be patched
+            objectPath: the XML path to the parameter (e.g. `controlParameters.NCYCLES`)
+            valueXmlText: a string representation of the XML for the updated element (e.g. `&lt;NCYCLES&gt;10&lt;/NCYCLES&gt;`)
+        &#34;&#34;&#34;
+        files = []
+        data = {&#34;jobId&#34;: jobId,
+                &#34;objectPath&#34;: objectPath,
+                &#34;valueXMLText&#34;: valueXmlText}
+        url = f&#34;{self.urlBase}/setJobParameterByXML&#34;
+        response = requests.post(url=url,
+                                 data=data,
+                                 files=files)
+        jsonData = response.json()
+        return jsonData
+
+    def setJobParameter(self, jobId: CCP4i2UUID, objectPath: CCP4i2ParamsPath, value):
+        &#34;&#34;&#34;
+        Update the params.xml of the CCP4i2 task by specifying the value of a &#34;simple&#34; control element
+        Args:
+
+            jobId: the primary key of the CCP4i2 job to be patched
+            objectPath: the XML path to the parameter (e.g. `controlParameters.NCYCLES`)
+            value: the new value to be applied (e.g. 10)
+        &#34;&#34;&#34;
+        tag = objectPath.split(&#34;.&#34;)[-1]
+        valueXmlText = f&#34;&lt;{tag}&gt;{value}&lt;/{tag}&gt;&#34;
+        return self.setJobParameterByXML(jobId, objectPath, valueXmlText)
+
+    def uploadFileForJobObject(self, filePath: str, objectPath: CCP4i2ParamsPath, jobId: CCP4i2UUID = None, projectId: CCP4i2UUID = None,
+                               projectName: str = None, jobNumber: str = None):
+        &#34;&#34;&#34;
+        Upload an input file to a specified CCP4i2 task
+        Args:
+            filePath: path the the file to be uploaded
+            objectPath: the XML path specifying which input the file corresponds to (e.g. `inputData.XYZIN`)
+
+            Job specifier:
+
+                Either:
+
+                    jobId: jobid of the job for which the file is input
+
+                Or:
+
+                    Either: 
+
+                        projectId: projectid of the project containg in the job for which the file is input
+                    Or:
+
+                        projectName: projectname of the project containg in the job for which the file is input (e.g. `MDM2`)
+
+                    And:
+                        jobNumber: number of the job for which the file is input (e.g. `10`)
+        &#34;&#34;&#34;
+        filePathAsPath = Path(filePath)
+        url = f&#34;{self.urlBase}/uploadFileForJobObject&#34;
+        files = [(&#34;file&#34;, open(filePathAsPath, &#34;rb&#34;))]
+        data = {&#34;objectPath&#34;: objectPath,
+                &#34;fileName&#34;: filePathAsPath.name,
+                }
+        if jobId is not None:
+            data[&#39;jobId&#39;] = jobId
+        if jobNumber is not None:
+            data[&#39;jobNumber&#39;] = jobNumber
+        if projectId is not None:
+            data[&#39;projectId&#39;] = projectId
+        if projectName is not None:
+            data[&#39;projectName&#39;] = projectName
+        response = requests.post(url=url, data=data, files=files)
+        uploadResult = response.json()
+        return uploadResult
+
+    def createJob(self, projectId: CCP4i2UUID = None, projectName: str = None, taskName: str = None):
+        &#34;&#34;&#34;
+        Create a new CCP4i2 job
+        Args:
+
+            taskName: name of the CCP4i2 plugin to be created (e.g. `prosmart_refmac`)
+
+            Project specifier:
+
+                Either: 
+
+                    projectId: projectid of the project in which to createjob
+
+                Or:
+
+                    projectName: projectname of the project in which to createjob (e.g. `MDM2`)
+
+        &#34;&#34;&#34;
+        url = f&#34;{self.urlBase}/createJob&#34;
+        files = []
+        data = {&#34;taskName&#34;: taskName}
+        if projectId is not None:
+            data[&#34;projectId&#34;] = projectId
+        if projectName is not None:
+            data[&#34;projectName&#34;] = projectName
+
+        response = requests.post(url=url, data=data, files=files)
+        jsonData = response.json()
+        return jsonData
+
+    def modelValues(self, type: str, values: list = None, order_by: list = None, **predicate) -&gt; dict:
+        &#34;&#34;&#34;
+        Method to flexibly interrogate the CCP4i2 database
+        Args:
+
+            type: Name of the CCP4i2 database object type about which this query applies (e.g. `Projects`, `Jobs`, or `Files`)
+            values: List of the fields to be fetched (e.g. `[&#34;projectname&#34;, &#34;projectdirectory&#34;, &#34;projectid&#34;]`).  
+
+                Note that fields are not limited to the table of the object itself. For example, each `Jobs` object has a 
+                ForeignKey (stored in the `projectid` field) to a corresponding `Projects` object. Using this, one can 
+                retrieve in one call properties of the Job itself, and of the Job&#39;s Project using a &#34;double underscore&#34; syntax 
+                (e.g. to retrieve a job&#39;s jobid, number, task name and the name of the job&#39;s project, specify
+                  `[&#34;jobid&#34;, &#34;jobnumber&#34;, &#34;taskname&#34;, &#34;projectid__projectname&#34;]`).
+
+                If no value is provided for `values`, then the default is to retrieve all of the fields in the object&#39;s table
+
+            **predicate: List of filters to be applied in selecting objects from the database. Examples of calls exploiting filters:
+
+                `modelValues(&#34;Jobs&#34;, taskname=&#34;prosmart_refmac&#34;)`: 
+                Returns the default fields of all prosmart_refmac jobs in the database. Note 
+                that all modelfields used in filters or values are in *lower case*
+
+                `modelValues(&#34;Jobs&#34;, taskname=&#34;prosmart_refmac&#34;, parentjobid__isnull=True)`: 
+                Returns the default fields of all &#34;top-level&#34; prosmart_refmac jobs in the database. Note 
+                use of the &#34;__isnull&#34; modifier to test whether the field value is null.
+
+                `modelValues(&#34;Jobs&#34;, taskname=&#34;prosmart_refmac&#34;, status__statusname=&#34;Finished&#34;)`: 
+                Returns the default fields of all successfully completed prosmart_refmac jobs in the database
+
+                `modelValues(&#34;Jobs&#34;, taskname=&#34;prosmart_refmac&#34;, status__statusname__in=[&#34;Finished&#34;, &#34;Failed&#34;, &#34;Unsatisfactory&#34;])`: 
+                Returns the default fields of all prosmart_refmac jobs that have stopped because completed, failed, or terminated with status 
+                &#34;unsatisfactory&#34;.  Note the use of the &#34;__in&#34; modifier for specifying multiple options
+
+                For a general introduction to django&#39;s filtering predicates, see https://docs.djangoproject.com/en/4.2/topics/db/queries/#retrieving-specific-objects-with-filters
+                
+        Returns:
+
+            A dict with entries:
+
+                status - should have value &#34;Success&#34;
+                results - A list of dictionaries containing entries for each of the requested values for each object matching the predicate
+                exception - A textual summary of an exception if one was raised in executing the call
+
+        &#34;&#34;&#34;
+        url = f&#34;{self.urlBase}/ModelValues&#34;
+        params = {&#34;__type__&#34;: type}
+        if values is not None:
+            params[&#34;__values__[]&#34;] = values
+        if order_by is not None:
+            params[&#34;__order_by__[]&#34;] = values
+        for key in predicate:
+            if isinstance(predicate[key], collections.abc.Sequence) and not isinstance(predicate[key], str):
+                params[f&#34;{key}[]&#34;] = predicate[key]
+            else:
+                params[key] = predicate[key]
+        url = f&#34;{url}?{parse.urlencode(params, doseq=True)}&#34;
+        response = requests.get(url=url)
+        jsonData = response.json()
+        return jsonData
+
+    def getProjectJobFile(self, projectId: CCP4i2UUID = None, projectName: str = None, fileName: str = None, jobNumber: str = &#34;1&#34;)  -&gt; requests.Response:
+        &#34;&#34;&#34;
+        fetch a unicode-encoded file with name fileName from the directory of the specified job
+        Args:
+
+            Either:
+
+                projectId: projectid of the project of the job in question
+
+            Or:
+
+                projectName: name of the project of the job in question
+
+            fileName: path of the file relative to the job&#39;s working directory
+            jobNumber: period delimited job &#34;path&#34; of the job in question (e.g. subjob 1 of subjob 1 of job 32 would have `jobNumber=&#34;32.1.1&#34;` )
+
+        Returns:
+            Requests.response (see https://requests.readthedocs.io/en/latest/user/quickstart/#response-status-codes )         
+        &#34;&#34;&#34;
+        url = f&#34;{self.urlBase}/getProjectJobFile&#34;
+        params = {&#34;fileName&#34;: fileName, &#34;jobNumber&#34;: jobNumber}
+        if projectId is not None: params[&#34;projectId&#34;] = projectId
+        if projectName is not None: params[&#34;projectName&#34;] = projectName
+        url = f&#34;{url}?{parse.urlencode(params, doseq=True)}&#34;
+        response = requests.get(url=url)
+        return response
+
+    def getFileWithPredicate(self, **predicate) -&gt; requests.Response:
+        &#34;&#34;&#34;
+        fetch a file known to the CCP4 database, specified uniquely by predicate
+        Args:
+
+            predicate: any set of filters that will identify a single file.
+
+                Examples: 
+                
+                    getFileWithPredicate(fileid=fileId): retrieve a file based on fileid 
+
+                    getFileWithPredicate(
+                        jobid__projectid__projectname=&#34;PhasingTest&#34;, 
+                        jobid__jobnumber=&#34;104&#34;,
+                        jobparamname=&#34;XYZOUT&#34;): retrieve the file generated as XYZOUT on job number 104 of project with name PhasingTest
+
+        Returns:
+            Requests.response (see https://requests.readthedocs.io/en/latest/user/quickstart/#response-status-codes )                 
+        &#34;&#34;&#34;
+        url = f&#34;{self.urlBase}/getFileWithPredicate&#34;
+        url = f&#34;{url}?{parse.urlencode(predicate, doseq=True)}&#34;
+        response = requests.get(url=url)
+        print (type(response))
+        return response
+    
+class MyTest(unittest.TestCase):
+
+    def test_method1(self):
+        client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)
+
+    def test_retrieve_status_name(self):
+        client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)
+        createJobResult = client.createJob(
+            projectName=&#34;CDK2CyclinACDC25&#34;, taskName=&#34;MakeLink&#34;)
+        self.assertEqual(createJobResult[&#34;status&#34;], &#34;Success&#34;)
+        fetchStatusResult = client.modelValues(
+            &#34;Jobs&#34;, values=[&#34;status__statustext&#34;], jobid=createJobResult[&#34;jobId&#34;])
+        self.assertEqual(
+            fetchStatusResult[&#34;results&#34;][0][&#34;status__statustext&#34;], &#34;Pending&#34;)
+
+    def test_retrieve_finished_jobs(self):
+        client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)
+        finishedJobs = client.modelValues(&#34;Jobs&#34;, values=[
+                                          &#34;projectid__projectname&#34;, &#34;jobnumber&#34;, &#34;taskname&#34;], status__statustext=&#34;Finished&#34;)
+        self.assertEqual(finishedJobs, &#34;banana&#34;)
+
+    def test_createMakeLink(self):
+        client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)
+        result = client.createJob(
+            projectName=&#34;CDK2CyclinACDC25&#34;, taskName=&#34;MakeLink&#34;)
+        jobId = result[&#34;jobId&#34;]
+        result = client.uploadFileForJobObject(
+            &#34;TestData/THR-PO4-prelink.pdb&#34;, &#34;inputData.XYZIN&#34;, jobId=jobId)
+        result = client.setJobParameter(
+            jobId, &#34;controlParameters.TOGGLE_LINK&#34;, &#34;True&#34;)
+
+
+if __name__ == &#34;__main__&#34;:
+
+    if False:
+        client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)
+        createJobResult = client.createJob(
+            projectName=&#34;CDK2CyclinACDC25&#34;, taskName=&#34;MakeLink&#34;)
+        uploadFileResult = client.uploadFileForJobObject(
+            &#34;TestData/THR-PO4-prelink.pdb&#34;, &#34;inputData.XYZIN&#34;, jobId=createJobResult[&#34;jobId&#34;])
+        setParameterResult = client.setJobParameter(
+            createJobResult[&#34;jobId&#34;], &#34;controlParameters.TOGGLE_LINK&#34;, &#34;True&#34;)
+
+    if True:
+        client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)
+        response = client.getFileWithPredicate(
+                        jobid__projectid__projectname=&#34;PhasingTest&#34;, 
+                        jobid__jobnumber=&#34;104&#34;,
+                        jobparamname=&#34;XYZOUT&#34;)
+        </code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="CCP4DjangoApiClient.CCP4DjangoApiClient"><code class="flex name class">
+<span>class <span class="ident">CCP4DjangoApiClient</span></span>
+<span>(</span><span>urlBase: str = 'http://127.0.0.1:43434/database')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A python class providing utility methods to access the CCP4i2 server API</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>urlBase</code></strong></dt>
+<dd>the root url for the connection to the CCP4i2 server, typically <code>http://127.0.0.1:43434/database</code></dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CCP4DjangoApiClient:
+
+    &#34;&#34;&#34;A python class providing utility methods to access the CCP4i2 server API&#34;&#34;&#34;
+
+    def __init__(self, urlBase: str = &#34;http://127.0.0.1:43434/database&#34;):
+        &#34;&#34;&#34;
+        Args:
+            urlBase: the root url for the connection to the CCP4i2 server, typically `http://127.0.0.1:43434/database`
+        &#34;&#34;&#34;
+        #: urlBase stores the root url for the connection to the CCP4i2 server
+        self.urlBase = urlBase
+
+    def setJobParameterByXML(self, jobId: CCP4i2UUID, objectPath: CCP4i2ParamsPath, valueXmlText: str):
+        &#34;&#34;&#34;
+        Update the params.xml of the CCP4i2 task by specifying xml describing the new parameter
+        Args:
+
+            jobId: the primary key of the CCP4i2 job to be patched
+            objectPath: the XML path to the parameter (e.g. `controlParameters.NCYCLES`)
+            valueXmlText: a string representation of the XML for the updated element (e.g. `&lt;NCYCLES&gt;10&lt;/NCYCLES&gt;`)
+        &#34;&#34;&#34;
+        files = []
+        data = {&#34;jobId&#34;: jobId,
+                &#34;objectPath&#34;: objectPath,
+                &#34;valueXMLText&#34;: valueXmlText}
+        url = f&#34;{self.urlBase}/setJobParameterByXML&#34;
+        response = requests.post(url=url,
+                                 data=data,
+                                 files=files)
+        jsonData = response.json()
+        return jsonData
+
+    def setJobParameter(self, jobId: CCP4i2UUID, objectPath: CCP4i2ParamsPath, value):
+        &#34;&#34;&#34;
+        Update the params.xml of the CCP4i2 task by specifying the value of a &#34;simple&#34; control element
+        Args:
+
+            jobId: the primary key of the CCP4i2 job to be patched
+            objectPath: the XML path to the parameter (e.g. `controlParameters.NCYCLES`)
+            value: the new value to be applied (e.g. 10)
+        &#34;&#34;&#34;
+        tag = objectPath.split(&#34;.&#34;)[-1]
+        valueXmlText = f&#34;&lt;{tag}&gt;{value}&lt;/{tag}&gt;&#34;
+        return self.setJobParameterByXML(jobId, objectPath, valueXmlText)
+
+    def uploadFileForJobObject(self, filePath: str, objectPath: CCP4i2ParamsPath, jobId: CCP4i2UUID = None, projectId: CCP4i2UUID = None,
+                               projectName: str = None, jobNumber: str = None):
+        &#34;&#34;&#34;
+        Upload an input file to a specified CCP4i2 task
+        Args:
+            filePath: path the the file to be uploaded
+            objectPath: the XML path specifying which input the file corresponds to (e.g. `inputData.XYZIN`)
+
+            Job specifier:
+
+                Either:
+
+                    jobId: jobid of the job for which the file is input
+
+                Or:
+
+                    Either: 
+
+                        projectId: projectid of the project containg in the job for which the file is input
+                    Or:
+
+                        projectName: projectname of the project containg in the job for which the file is input (e.g. `MDM2`)
+
+                    And:
+                        jobNumber: number of the job for which the file is input (e.g. `10`)
+        &#34;&#34;&#34;
+        filePathAsPath = Path(filePath)
+        url = f&#34;{self.urlBase}/uploadFileForJobObject&#34;
+        files = [(&#34;file&#34;, open(filePathAsPath, &#34;rb&#34;))]
+        data = {&#34;objectPath&#34;: objectPath,
+                &#34;fileName&#34;: filePathAsPath.name,
+                }
+        if jobId is not None:
+            data[&#39;jobId&#39;] = jobId
+        if jobNumber is not None:
+            data[&#39;jobNumber&#39;] = jobNumber
+        if projectId is not None:
+            data[&#39;projectId&#39;] = projectId
+        if projectName is not None:
+            data[&#39;projectName&#39;] = projectName
+        response = requests.post(url=url, data=data, files=files)
+        uploadResult = response.json()
+        return uploadResult
+
+    def createJob(self, projectId: CCP4i2UUID = None, projectName: str = None, taskName: str = None):
+        &#34;&#34;&#34;
+        Create a new CCP4i2 job
+        Args:
+
+            taskName: name of the CCP4i2 plugin to be created (e.g. `prosmart_refmac`)
+
+            Project specifier:
+
+                Either: 
+
+                    projectId: projectid of the project in which to createjob
+
+                Or:
+
+                    projectName: projectname of the project in which to createjob (e.g. `MDM2`)
+
+        &#34;&#34;&#34;
+        url = f&#34;{self.urlBase}/createJob&#34;
+        files = []
+        data = {&#34;taskName&#34;: taskName}
+        if projectId is not None:
+            data[&#34;projectId&#34;] = projectId
+        if projectName is not None:
+            data[&#34;projectName&#34;] = projectName
+
+        response = requests.post(url=url, data=data, files=files)
+        jsonData = response.json()
+        return jsonData
+
+    def modelValues(self, type: str, values: list = None, order_by: list = None, **predicate) -&gt; dict:
+        &#34;&#34;&#34;
+        Method to flexibly interrogate the CCP4i2 database
+        Args:
+
+            type: Name of the CCP4i2 database object type about which this query applies (e.g. `Projects`, `Jobs`, or `Files`)
+            values: List of the fields to be fetched (e.g. `[&#34;projectname&#34;, &#34;projectdirectory&#34;, &#34;projectid&#34;]`).  
+
+                Note that fields are not limited to the table of the object itself. For example, each `Jobs` object has a 
+                ForeignKey (stored in the `projectid` field) to a corresponding `Projects` object. Using this, one can 
+                retrieve in one call properties of the Job itself, and of the Job&#39;s Project using a &#34;double underscore&#34; syntax 
+                (e.g. to retrieve a job&#39;s jobid, number, task name and the name of the job&#39;s project, specify
+                  `[&#34;jobid&#34;, &#34;jobnumber&#34;, &#34;taskname&#34;, &#34;projectid__projectname&#34;]`).
+
+                If no value is provided for `values`, then the default is to retrieve all of the fields in the object&#39;s table
+
+            **predicate: List of filters to be applied in selecting objects from the database. Examples of calls exploiting filters:
+
+                `modelValues(&#34;Jobs&#34;, taskname=&#34;prosmart_refmac&#34;)`: 
+                Returns the default fields of all prosmart_refmac jobs in the database. Note 
+                that all modelfields used in filters or values are in *lower case*
+
+                `modelValues(&#34;Jobs&#34;, taskname=&#34;prosmart_refmac&#34;, parentjobid__isnull=True)`: 
+                Returns the default fields of all &#34;top-level&#34; prosmart_refmac jobs in the database. Note 
+                use of the &#34;__isnull&#34; modifier to test whether the field value is null.
+
+                `modelValues(&#34;Jobs&#34;, taskname=&#34;prosmart_refmac&#34;, status__statusname=&#34;Finished&#34;)`: 
+                Returns the default fields of all successfully completed prosmart_refmac jobs in the database
+
+                `modelValues(&#34;Jobs&#34;, taskname=&#34;prosmart_refmac&#34;, status__statusname__in=[&#34;Finished&#34;, &#34;Failed&#34;, &#34;Unsatisfactory&#34;])`: 
+                Returns the default fields of all prosmart_refmac jobs that have stopped because completed, failed, or terminated with status 
+                &#34;unsatisfactory&#34;.  Note the use of the &#34;__in&#34; modifier for specifying multiple options
+
+                For a general introduction to django&#39;s filtering predicates, see https://docs.djangoproject.com/en/4.2/topics/db/queries/#retrieving-specific-objects-with-filters
+                
+        Returns:
+
+            A dict with entries:
+
+                status - should have value &#34;Success&#34;
+                results - A list of dictionaries containing entries for each of the requested values for each object matching the predicate
+                exception - A textual summary of an exception if one was raised in executing the call
+
+        &#34;&#34;&#34;
+        url = f&#34;{self.urlBase}/ModelValues&#34;
+        params = {&#34;__type__&#34;: type}
+        if values is not None:
+            params[&#34;__values__[]&#34;] = values
+        if order_by is not None:
+            params[&#34;__order_by__[]&#34;] = values
+        for key in predicate:
+            if isinstance(predicate[key], collections.abc.Sequence) and not isinstance(predicate[key], str):
+                params[f&#34;{key}[]&#34;] = predicate[key]
+            else:
+                params[key] = predicate[key]
+        url = f&#34;{url}?{parse.urlencode(params, doseq=True)}&#34;
+        response = requests.get(url=url)
+        jsonData = response.json()
+        return jsonData
+
+    def getProjectJobFile(self, projectId: CCP4i2UUID = None, projectName: str = None, fileName: str = None, jobNumber: str = &#34;1&#34;)  -&gt; requests.Response:
+        &#34;&#34;&#34;
+        fetch a unicode-encoded file with name fileName from the directory of the specified job
+        Args:
+
+            Either:
+
+                projectId: projectid of the project of the job in question
+
+            Or:
+
+                projectName: name of the project of the job in question
+
+            fileName: path of the file relative to the job&#39;s working directory
+            jobNumber: period delimited job &#34;path&#34; of the job in question (e.g. subjob 1 of subjob 1 of job 32 would have `jobNumber=&#34;32.1.1&#34;` )
+
+        Returns:
+            Requests.response (see https://requests.readthedocs.io/en/latest/user/quickstart/#response-status-codes )         
+        &#34;&#34;&#34;
+        url = f&#34;{self.urlBase}/getProjectJobFile&#34;
+        params = {&#34;fileName&#34;: fileName, &#34;jobNumber&#34;: jobNumber}
+        if projectId is not None: params[&#34;projectId&#34;] = projectId
+        if projectName is not None: params[&#34;projectName&#34;] = projectName
+        url = f&#34;{url}?{parse.urlencode(params, doseq=True)}&#34;
+        response = requests.get(url=url)
+        return response
+
+    def getFileWithPredicate(self, **predicate) -&gt; requests.Response:
+        &#34;&#34;&#34;
+        fetch a file known to the CCP4 database, specified uniquely by predicate
+        Args:
+
+            predicate: any set of filters that will identify a single file.
+
+                Examples: 
+                
+                    getFileWithPredicate(fileid=fileId): retrieve a file based on fileid 
+
+                    getFileWithPredicate(
+                        jobid__projectid__projectname=&#34;PhasingTest&#34;, 
+                        jobid__jobnumber=&#34;104&#34;,
+                        jobparamname=&#34;XYZOUT&#34;): retrieve the file generated as XYZOUT on job number 104 of project with name PhasingTest
+
+        Returns:
+            Requests.response (see https://requests.readthedocs.io/en/latest/user/quickstart/#response-status-codes )                 
+        &#34;&#34;&#34;
+        url = f&#34;{self.urlBase}/getFileWithPredicate&#34;
+        url = f&#34;{url}?{parse.urlencode(predicate, doseq=True)}&#34;
+        response = requests.get(url=url)
+        print (type(response))
+        return response</code></pre>
+</details>
+<h3>Instance variables</h3>
+<dl>
+<dt id="CCP4DjangoApiClient.CCP4DjangoApiClient.urlBase"><code class="name">var <span class="ident">urlBase</span></code></dt>
+<dd>
+<div class="desc"><p>urlBase stores the root url for the connection to the CCP4i2 server</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="CCP4DjangoApiClient.CCP4DjangoApiClient.createJob"><code class="name flex">
+<span>def <span class="ident">createJob</span></span>(<span>self, projectId: str = None, projectName: str = None, taskName: str = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new CCP4i2 job</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>taskName</code></strong></dt>
+<dd>name of the CCP4i2 plugin to be created (e.g. <code>prosmart_refmac</code>)</dd>
+</dl>
+<p>Project specifier:</p>
+<pre><code>Either:
+
+    projectId: projectid of the project in which to createjob
+
+Or:
+
+    projectName: projectname of the project in which to createjob (e.g. &lt;code&gt;MDM2&lt;/code&gt;)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def createJob(self, projectId: CCP4i2UUID = None, projectName: str = None, taskName: str = None):
+    &#34;&#34;&#34;
+    Create a new CCP4i2 job
+    Args:
+
+        taskName: name of the CCP4i2 plugin to be created (e.g. `prosmart_refmac`)
+
+        Project specifier:
+
+            Either: 
+
+                projectId: projectid of the project in which to createjob
+
+            Or:
+
+                projectName: projectname of the project in which to createjob (e.g. `MDM2`)
+
+    &#34;&#34;&#34;
+    url = f&#34;{self.urlBase}/createJob&#34;
+    files = []
+    data = {&#34;taskName&#34;: taskName}
+    if projectId is not None:
+        data[&#34;projectId&#34;] = projectId
+    if projectName is not None:
+        data[&#34;projectName&#34;] = projectName
+
+    response = requests.post(url=url, data=data, files=files)
+    jsonData = response.json()
+    return jsonData</code></pre>
+</details>
+</dd>
+<dt id="CCP4DjangoApiClient.CCP4DjangoApiClient.getFileWithPredicate"><code class="name flex">
+<span>def <span class="ident">getFileWithPredicate</span></span>(<span>self, **predicate) ‑> requests.models.Response</span>
+</code></dt>
+<dd>
+<div class="desc"><p>fetch a file known to the CCP4 database, specified uniquely by predicate</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>predicate</code></strong></dt>
+<dd>
+<p>any set of filters that will identify a single file.</p>
+<p>Examples: </p>
+<pre><code>getFileWithPredicate(fileid=fileId): retrieve a file based on fileid
+
+getFileWithPredicate(
+    jobid__projectid__projectname="PhasingTest", 
+    jobid__jobnumber="104",
+    jobparamname="XYZOUT"): retrieve the file generated as XYZOUT on job number 104 of project with name PhasingTest
+</code></pre>
+</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Requests.response (see <a href="https://requests.readthedocs.io/en/latest/user/quickstart/#response-status-codes">https://requests.readthedocs.io/en/latest/user/quickstart/#response-status-codes</a> )</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def getFileWithPredicate(self, **predicate) -&gt; requests.Response:
+    &#34;&#34;&#34;
+    fetch a file known to the CCP4 database, specified uniquely by predicate
+    Args:
+
+        predicate: any set of filters that will identify a single file.
+
+            Examples: 
+            
+                getFileWithPredicate(fileid=fileId): retrieve a file based on fileid 
+
+                getFileWithPredicate(
+                    jobid__projectid__projectname=&#34;PhasingTest&#34;, 
+                    jobid__jobnumber=&#34;104&#34;,
+                    jobparamname=&#34;XYZOUT&#34;): retrieve the file generated as XYZOUT on job number 104 of project with name PhasingTest
+
+    Returns:
+        Requests.response (see https://requests.readthedocs.io/en/latest/user/quickstart/#response-status-codes )                 
+    &#34;&#34;&#34;
+    url = f&#34;{self.urlBase}/getFileWithPredicate&#34;
+    url = f&#34;{url}?{parse.urlencode(predicate, doseq=True)}&#34;
+    response = requests.get(url=url)
+    print (type(response))
+    return response</code></pre>
+</details>
+</dd>
+<dt id="CCP4DjangoApiClient.CCP4DjangoApiClient.getProjectJobFile"><code class="name flex">
+<span>def <span class="ident">getProjectJobFile</span></span>(<span>self, projectId: str = None, projectName: str = None, fileName: str = None, jobNumber: str = '1') ‑> requests.models.Response</span>
+</code></dt>
+<dd>
+<div class="desc"><p>fetch a unicode-encoded file with name fileName from the directory of the specified job</p>
+<h2 id="args">Args</h2>
+<p>Either:</p>
+<pre><code>projectId: projectid of the project of the job in question
+</code></pre>
+<p>Or:</p>
+<pre><code>projectName: name of the project of the job in question
+</code></pre>
+<dl>
+<dt><strong><code>fileName</code></strong></dt>
+<dd>path of the file relative to the job's working directory</dd>
+<dt><strong><code>jobNumber</code></strong></dt>
+<dd>period delimited job "path" of the job in question (e.g. subjob 1 of subjob 1 of job 32 would have <code>jobNumber="32.1.1"</code> )</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Requests.response (see <a href="https://requests.readthedocs.io/en/latest/user/quickstart/#response-status-codes">https://requests.readthedocs.io/en/latest/user/quickstart/#response-status-codes</a> )</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def getProjectJobFile(self, projectId: CCP4i2UUID = None, projectName: str = None, fileName: str = None, jobNumber: str = &#34;1&#34;)  -&gt; requests.Response:
+    &#34;&#34;&#34;
+    fetch a unicode-encoded file with name fileName from the directory of the specified job
+    Args:
+
+        Either:
+
+            projectId: projectid of the project of the job in question
+
+        Or:
+
+            projectName: name of the project of the job in question
+
+        fileName: path of the file relative to the job&#39;s working directory
+        jobNumber: period delimited job &#34;path&#34; of the job in question (e.g. subjob 1 of subjob 1 of job 32 would have `jobNumber=&#34;32.1.1&#34;` )
+
+    Returns:
+        Requests.response (see https://requests.readthedocs.io/en/latest/user/quickstart/#response-status-codes )         
+    &#34;&#34;&#34;
+    url = f&#34;{self.urlBase}/getProjectJobFile&#34;
+    params = {&#34;fileName&#34;: fileName, &#34;jobNumber&#34;: jobNumber}
+    if projectId is not None: params[&#34;projectId&#34;] = projectId
+    if projectName is not None: params[&#34;projectName&#34;] = projectName
+    url = f&#34;{url}?{parse.urlencode(params, doseq=True)}&#34;
+    response = requests.get(url=url)
+    return response</code></pre>
+</details>
+</dd>
+<dt id="CCP4DjangoApiClient.CCP4DjangoApiClient.modelValues"><code class="name flex">
+<span>def <span class="ident">modelValues</span></span>(<span>self, type: str, values: list = None, order_by: list = None, **predicate) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Method to flexibly interrogate the CCP4i2 database</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>type</code></strong></dt>
+<dd>Name of the CCP4i2 database object type about which this query applies (e.g. <code>Projects</code>, <code>Jobs</code>, or <code>Files</code>)</dd>
+<dt><strong><code>values</code></strong></dt>
+<dd>
+<p>List of the fields to be fetched (e.g. <code>["projectname", "projectdirectory", "projectid"]</code>).
+</p>
+<p>Note that fields are not limited to the table of the object itself. For example, each <code>Jobs</code> object has a
+ForeignKey (stored in the <code>projectid</code> field) to a corresponding <code>Projects</code> object. Using this, one can
+retrieve in one call properties of the Job itself, and of the Job's Project using a "double underscore" syntax
+(e.g. to retrieve a job's jobid, number, task name and the name of the job's project, specify
+<code>["jobid", "jobnumber", "taskname", "projectid__projectname"]</code>).</p>
+<p>If no value is provided for <code>values</code>, then the default is to retrieve all of the fields in the object's table</p>
+</dd>
+<dt><strong><code>**predicate</code></strong></dt>
+<dd>
+<p>List of filters to be applied in selecting objects from the database. Examples of calls exploiting filters:</p>
+<p><code>modelValues("Jobs", taskname="prosmart_refmac")</code>:
+Returns the default fields of all prosmart_refmac jobs in the database. Note
+that all modelfields used in filters or values are in <em>lower case</em></p>
+<p><code>modelValues("Jobs", taskname="prosmart_refmac", parentjobid__isnull=True)</code>:
+Returns the default fields of all "top-level" prosmart_refmac jobs in the database. Note
+use of the "__isnull" modifier to test whether the field value is null.</p>
+<p><code>modelValues("Jobs", taskname="prosmart_refmac", status__statusname="Finished")</code>:
+Returns the default fields of all successfully completed prosmart_refmac jobs in the database</p>
+<p><code>modelValues("Jobs", taskname="prosmart_refmac", status__statusname__in=["Finished", "Failed", "Unsatisfactory"])</code>:
+Returns the default fields of all prosmart_refmac jobs that have stopped because completed, failed, or terminated with status
+"unsatisfactory".
+Note the use of the "__in" modifier for specifying multiple options</p>
+<p>For a general introduction to django's filtering predicates, see <a href="https://docs.djangoproject.com/en/4.2/topics/db/queries/#retrieving-specific-objects-with-filters">https://docs.djangoproject.com/en/4.2/topics/db/queries/#retrieving-specific-objects-with-filters</a></p>
+</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A dict with entries:</p>
+<pre><code>status - should have value "Success"
+results - A list of dictionaries containing entries for each of the requested values for each object matching the predicate
+exception - A textual summary of an exception if one was raised in executing the call
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def modelValues(self, type: str, values: list = None, order_by: list = None, **predicate) -&gt; dict:
+    &#34;&#34;&#34;
+    Method to flexibly interrogate the CCP4i2 database
+    Args:
+
+        type: Name of the CCP4i2 database object type about which this query applies (e.g. `Projects`, `Jobs`, or `Files`)
+        values: List of the fields to be fetched (e.g. `[&#34;projectname&#34;, &#34;projectdirectory&#34;, &#34;projectid&#34;]`).  
+
+            Note that fields are not limited to the table of the object itself. For example, each `Jobs` object has a 
+            ForeignKey (stored in the `projectid` field) to a corresponding `Projects` object. Using this, one can 
+            retrieve in one call properties of the Job itself, and of the Job&#39;s Project using a &#34;double underscore&#34; syntax 
+            (e.g. to retrieve a job&#39;s jobid, number, task name and the name of the job&#39;s project, specify
+              `[&#34;jobid&#34;, &#34;jobnumber&#34;, &#34;taskname&#34;, &#34;projectid__projectname&#34;]`).
+
+            If no value is provided for `values`, then the default is to retrieve all of the fields in the object&#39;s table
+
+        **predicate: List of filters to be applied in selecting objects from the database. Examples of calls exploiting filters:
+
+            `modelValues(&#34;Jobs&#34;, taskname=&#34;prosmart_refmac&#34;)`: 
+            Returns the default fields of all prosmart_refmac jobs in the database. Note 
+            that all modelfields used in filters or values are in *lower case*
+
+            `modelValues(&#34;Jobs&#34;, taskname=&#34;prosmart_refmac&#34;, parentjobid__isnull=True)`: 
+            Returns the default fields of all &#34;top-level&#34; prosmart_refmac jobs in the database. Note 
+            use of the &#34;__isnull&#34; modifier to test whether the field value is null.
+
+            `modelValues(&#34;Jobs&#34;, taskname=&#34;prosmart_refmac&#34;, status__statusname=&#34;Finished&#34;)`: 
+            Returns the default fields of all successfully completed prosmart_refmac jobs in the database
+
+            `modelValues(&#34;Jobs&#34;, taskname=&#34;prosmart_refmac&#34;, status__statusname__in=[&#34;Finished&#34;, &#34;Failed&#34;, &#34;Unsatisfactory&#34;])`: 
+            Returns the default fields of all prosmart_refmac jobs that have stopped because completed, failed, or terminated with status 
+            &#34;unsatisfactory&#34;.  Note the use of the &#34;__in&#34; modifier for specifying multiple options
+
+            For a general introduction to django&#39;s filtering predicates, see https://docs.djangoproject.com/en/4.2/topics/db/queries/#retrieving-specific-objects-with-filters
+            
+    Returns:
+
+        A dict with entries:
+
+            status - should have value &#34;Success&#34;
+            results - A list of dictionaries containing entries for each of the requested values for each object matching the predicate
+            exception - A textual summary of an exception if one was raised in executing the call
+
+    &#34;&#34;&#34;
+    url = f&#34;{self.urlBase}/ModelValues&#34;
+    params = {&#34;__type__&#34;: type}
+    if values is not None:
+        params[&#34;__values__[]&#34;] = values
+    if order_by is not None:
+        params[&#34;__order_by__[]&#34;] = values
+    for key in predicate:
+        if isinstance(predicate[key], collections.abc.Sequence) and not isinstance(predicate[key], str):
+            params[f&#34;{key}[]&#34;] = predicate[key]
+        else:
+            params[key] = predicate[key]
+    url = f&#34;{url}?{parse.urlencode(params, doseq=True)}&#34;
+    response = requests.get(url=url)
+    jsonData = response.json()
+    return jsonData</code></pre>
+</details>
+</dd>
+<dt id="CCP4DjangoApiClient.CCP4DjangoApiClient.setJobParameter"><code class="name flex">
+<span>def <span class="ident">setJobParameter</span></span>(<span>self, jobId: str, objectPath: str, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update the params.xml of the CCP4i2 task by specifying the value of a "simple" control element</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>jobId</code></strong></dt>
+<dd>the primary key of the CCP4i2 job to be patched</dd>
+<dt><strong><code>objectPath</code></strong></dt>
+<dd>the XML path to the parameter (e.g. <code>controlParameters.NCYCLES</code>)</dd>
+<dt><strong><code>value</code></strong></dt>
+<dd>the new value to be applied (e.g. 10)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setJobParameter(self, jobId: CCP4i2UUID, objectPath: CCP4i2ParamsPath, value):
+    &#34;&#34;&#34;
+    Update the params.xml of the CCP4i2 task by specifying the value of a &#34;simple&#34; control element
+    Args:
+
+        jobId: the primary key of the CCP4i2 job to be patched
+        objectPath: the XML path to the parameter (e.g. `controlParameters.NCYCLES`)
+        value: the new value to be applied (e.g. 10)
+    &#34;&#34;&#34;
+    tag = objectPath.split(&#34;.&#34;)[-1]
+    valueXmlText = f&#34;&lt;{tag}&gt;{value}&lt;/{tag}&gt;&#34;
+    return self.setJobParameterByXML(jobId, objectPath, valueXmlText)</code></pre>
+</details>
+</dd>
+<dt id="CCP4DjangoApiClient.CCP4DjangoApiClient.setJobParameterByXML"><code class="name flex">
+<span>def <span class="ident">setJobParameterByXML</span></span>(<span>self, jobId: str, objectPath: str, valueXmlText: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update the params.xml of the CCP4i2 task by specifying xml describing the new parameter</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>jobId</code></strong></dt>
+<dd>the primary key of the CCP4i2 job to be patched</dd>
+<dt><strong><code>objectPath</code></strong></dt>
+<dd>the XML path to the parameter (e.g. <code>controlParameters.NCYCLES</code>)</dd>
+<dt><strong><code>valueXmlText</code></strong></dt>
+<dd>a string representation of the XML for the updated element (e.g. <code>&lt;NCYCLES&gt;10&lt;/NCYCLES&gt;</code>)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setJobParameterByXML(self, jobId: CCP4i2UUID, objectPath: CCP4i2ParamsPath, valueXmlText: str):
+    &#34;&#34;&#34;
+    Update the params.xml of the CCP4i2 task by specifying xml describing the new parameter
+    Args:
+
+        jobId: the primary key of the CCP4i2 job to be patched
+        objectPath: the XML path to the parameter (e.g. `controlParameters.NCYCLES`)
+        valueXmlText: a string representation of the XML for the updated element (e.g. `&lt;NCYCLES&gt;10&lt;/NCYCLES&gt;`)
+    &#34;&#34;&#34;
+    files = []
+    data = {&#34;jobId&#34;: jobId,
+            &#34;objectPath&#34;: objectPath,
+            &#34;valueXMLText&#34;: valueXmlText}
+    url = f&#34;{self.urlBase}/setJobParameterByXML&#34;
+    response = requests.post(url=url,
+                             data=data,
+                             files=files)
+    jsonData = response.json()
+    return jsonData</code></pre>
+</details>
+</dd>
+<dt id="CCP4DjangoApiClient.CCP4DjangoApiClient.uploadFileForJobObject"><code class="name flex">
+<span>def <span class="ident">uploadFileForJobObject</span></span>(<span>self, filePath: str, objectPath: str, jobId: str = None, projectId: str = None, projectName: str = None, jobNumber: str = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Upload an input file to a specified CCP4i2 task</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>filePath</code></strong></dt>
+<dd>path the the file to be uploaded</dd>
+<dt><strong><code>objectPath</code></strong></dt>
+<dd>the XML path specifying which input the file corresponds to (e.g. <code>inputData.XYZIN</code>)</dd>
+</dl>
+<p>Job specifier:</p>
+<pre><code>Either:
+
+    jobId: jobid of the job for which the file is input
+
+Or:
+
+    Either:
+
+        projectId: projectid of the project containg in the job for which the file is input
+    Or:
+
+        projectName: projectname of the project containg in the job for which the file is input (e.g. &lt;code&gt;MDM2&lt;/code&gt;)
+
+    And:
+        jobNumber: number of the job for which the file is input (e.g. &lt;code&gt;10&lt;/code&gt;)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def uploadFileForJobObject(self, filePath: str, objectPath: CCP4i2ParamsPath, jobId: CCP4i2UUID = None, projectId: CCP4i2UUID = None,
+                           projectName: str = None, jobNumber: str = None):
+    &#34;&#34;&#34;
+    Upload an input file to a specified CCP4i2 task
+    Args:
+        filePath: path the the file to be uploaded
+        objectPath: the XML path specifying which input the file corresponds to (e.g. `inputData.XYZIN`)
+
+        Job specifier:
+
+            Either:
+
+                jobId: jobid of the job for which the file is input
+
+            Or:
+
+                Either: 
+
+                    projectId: projectid of the project containg in the job for which the file is input
+                Or:
+
+                    projectName: projectname of the project containg in the job for which the file is input (e.g. `MDM2`)
+
+                And:
+                    jobNumber: number of the job for which the file is input (e.g. `10`)
+    &#34;&#34;&#34;
+    filePathAsPath = Path(filePath)
+    url = f&#34;{self.urlBase}/uploadFileForJobObject&#34;
+    files = [(&#34;file&#34;, open(filePathAsPath, &#34;rb&#34;))]
+    data = {&#34;objectPath&#34;: objectPath,
+            &#34;fileName&#34;: filePathAsPath.name,
+            }
+    if jobId is not None:
+        data[&#39;jobId&#39;] = jobId
+    if jobNumber is not None:
+        data[&#39;jobNumber&#39;] = jobNumber
+    if projectId is not None:
+        data[&#39;projectId&#39;] = projectId
+    if projectName is not None:
+        data[&#39;projectName&#39;] = projectName
+    response = requests.post(url=url, data=data, files=files)
+    uploadResult = response.json()
+    return uploadResult</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="CCP4DjangoApiClient.MyTest"><code class="flex name class">
+<span>class <span class="ident">MyTest</span></span>
+<span>(</span><span>methodName='runTest')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A class whose instances are single test cases.</p>
+<p>By default, the test code itself should be placed in a method named
+'runTest'.</p>
+<p>If the fixture may be used for many test cases, create as
+many test methods as are needed. When instantiating such a TestCase
+subclass, specify in the constructor arguments the name of the test method
+that the instance is to execute.</p>
+<p>Test authors should subclass TestCase for their own tests. Construction
+and deconstruction of the test's environment ('fixture') can be
+implemented by overriding the 'setUp' and 'tearDown' methods respectively.</p>
+<p>If it is necessary to override the <strong>init</strong> method, the base class
+<strong>init</strong> method must always be called. It is important that subclasses
+should not change the signature of their <strong>init</strong> method, since instances
+of the classes are instantiated automatically by parts of the framework
+in order to be run.</p>
+<p>When subclassing TestCase, you can set these attributes:
+* failureException: determines which exception will be raised when
+the instance's assertion methods fail; test methods raising this
+exception will be deemed to have 'failed' rather than 'errored'.
+* longMessage: determines whether long messages (including repr of
+objects used in assert methods) will be printed on failure in <em>addition</em>
+to any explicit message passed.
+* maxDiff: sets the maximum length of a diff in failure messages
+by assert methods using difflib. It is looked up as an instance
+attribute so can be configured by individual tests if required.</p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MyTest(unittest.TestCase):
+
+    def test_method1(self):
+        client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)
+
+    def test_retrieve_status_name(self):
+        client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)
+        createJobResult = client.createJob(
+            projectName=&#34;CDK2CyclinACDC25&#34;, taskName=&#34;MakeLink&#34;)
+        self.assertEqual(createJobResult[&#34;status&#34;], &#34;Success&#34;)
+        fetchStatusResult = client.modelValues(
+            &#34;Jobs&#34;, values=[&#34;status__statustext&#34;], jobid=createJobResult[&#34;jobId&#34;])
+        self.assertEqual(
+            fetchStatusResult[&#34;results&#34;][0][&#34;status__statustext&#34;], &#34;Pending&#34;)
+
+    def test_retrieve_finished_jobs(self):
+        client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)
+        finishedJobs = client.modelValues(&#34;Jobs&#34;, values=[
+                                          &#34;projectid__projectname&#34;, &#34;jobnumber&#34;, &#34;taskname&#34;], status__statustext=&#34;Finished&#34;)
+        self.assertEqual(finishedJobs, &#34;banana&#34;)
+
+    def test_createMakeLink(self):
+        client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)
+        result = client.createJob(
+            projectName=&#34;CDK2CyclinACDC25&#34;, taskName=&#34;MakeLink&#34;)
+        jobId = result[&#34;jobId&#34;]
+        result = client.uploadFileForJobObject(
+            &#34;TestData/THR-PO4-prelink.pdb&#34;, &#34;inputData.XYZIN&#34;, jobId=jobId)
+        result = client.setJobParameter(
+            jobId, &#34;controlParameters.TOGGLE_LINK&#34;, &#34;True&#34;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>unittest.case.TestCase</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="CCP4DjangoApiClient.MyTest.test_createMakeLink"><code class="name flex">
+<span>def <span class="ident">test_createMakeLink</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_createMakeLink(self):
+    client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)
+    result = client.createJob(
+        projectName=&#34;CDK2CyclinACDC25&#34;, taskName=&#34;MakeLink&#34;)
+    jobId = result[&#34;jobId&#34;]
+    result = client.uploadFileForJobObject(
+        &#34;TestData/THR-PO4-prelink.pdb&#34;, &#34;inputData.XYZIN&#34;, jobId=jobId)
+    result = client.setJobParameter(
+        jobId, &#34;controlParameters.TOGGLE_LINK&#34;, &#34;True&#34;)</code></pre>
+</details>
+</dd>
+<dt id="CCP4DjangoApiClient.MyTest.test_method1"><code class="name flex">
+<span>def <span class="ident">test_method1</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_method1(self):
+    client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)</code></pre>
+</details>
+</dd>
+<dt id="CCP4DjangoApiClient.MyTest.test_retrieve_finished_jobs"><code class="name flex">
+<span>def <span class="ident">test_retrieve_finished_jobs</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_retrieve_finished_jobs(self):
+    client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)
+    finishedJobs = client.modelValues(&#34;Jobs&#34;, values=[
+                                      &#34;projectid__projectname&#34;, &#34;jobnumber&#34;, &#34;taskname&#34;], status__statustext=&#34;Finished&#34;)
+    self.assertEqual(finishedJobs, &#34;banana&#34;)</code></pre>
+</details>
+</dd>
+<dt id="CCP4DjangoApiClient.MyTest.test_retrieve_status_name"><code class="name flex">
+<span>def <span class="ident">test_retrieve_status_name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_retrieve_status_name(self):
+    client = CCP4DjangoApiClient(&#34;http://127.0.0.1:43434/database&#34;)
+    createJobResult = client.createJob(
+        projectName=&#34;CDK2CyclinACDC25&#34;, taskName=&#34;MakeLink&#34;)
+    self.assertEqual(createJobResult[&#34;status&#34;], &#34;Success&#34;)
+    fetchStatusResult = client.modelValues(
+        &#34;Jobs&#34;, values=[&#34;status__statustext&#34;], jobid=createJobResult[&#34;jobId&#34;])
+    self.assertEqual(
+        fetchStatusResult[&#34;results&#34;][0][&#34;status__statustext&#34;], &#34;Pending&#34;)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="CCP4DjangoApiClient.CCP4DjangoApiClient" href="#CCP4DjangoApiClient.CCP4DjangoApiClient">CCP4DjangoApiClient</a></code></h4>
+<ul class="">
+<li><code><a title="CCP4DjangoApiClient.CCP4DjangoApiClient.createJob" href="#CCP4DjangoApiClient.CCP4DjangoApiClient.createJob">createJob</a></code></li>
+<li><code><a title="CCP4DjangoApiClient.CCP4DjangoApiClient.getFileWithPredicate" href="#CCP4DjangoApiClient.CCP4DjangoApiClient.getFileWithPredicate">getFileWithPredicate</a></code></li>
+<li><code><a title="CCP4DjangoApiClient.CCP4DjangoApiClient.getProjectJobFile" href="#CCP4DjangoApiClient.CCP4DjangoApiClient.getProjectJobFile">getProjectJobFile</a></code></li>
+<li><code><a title="CCP4DjangoApiClient.CCP4DjangoApiClient.modelValues" href="#CCP4DjangoApiClient.CCP4DjangoApiClient.modelValues">modelValues</a></code></li>
+<li><code><a title="CCP4DjangoApiClient.CCP4DjangoApiClient.setJobParameter" href="#CCP4DjangoApiClient.CCP4DjangoApiClient.setJobParameter">setJobParameter</a></code></li>
+<li><code><a title="CCP4DjangoApiClient.CCP4DjangoApiClient.setJobParameterByXML" href="#CCP4DjangoApiClient.CCP4DjangoApiClient.setJobParameterByXML">setJobParameterByXML</a></code></li>
+<li><code><a title="CCP4DjangoApiClient.CCP4DjangoApiClient.uploadFileForJobObject" href="#CCP4DjangoApiClient.CCP4DjangoApiClient.uploadFileForJobObject">uploadFileForJobObject</a></code></li>
+<li><code><a title="CCP4DjangoApiClient.CCP4DjangoApiClient.urlBase" href="#CCP4DjangoApiClient.CCP4DjangoApiClient.urlBase">urlBase</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="CCP4DjangoApiClient.MyTest" href="#CCP4DjangoApiClient.MyTest">MyTest</a></code></h4>
+<ul class="">
+<li><code><a title="CCP4DjangoApiClient.MyTest.test_createMakeLink" href="#CCP4DjangoApiClient.MyTest.test_createMakeLink">test_createMakeLink</a></code></li>
+<li><code><a title="CCP4DjangoApiClient.MyTest.test_method1" href="#CCP4DjangoApiClient.MyTest.test_method1">test_method1</a></code></li>
+<li><code><a title="CCP4DjangoApiClient.MyTest.test_retrieve_finished_jobs" href="#CCP4DjangoApiClient.MyTest.test_retrieve_finished_jobs">test_retrieve_finished_jobs</a></code></li>
+<li><code><a title="CCP4DjangoApiClient.MyTest.test_retrieve_status_name" href="#CCP4DjangoApiClient.MyTest.test_retrieve_status_name">test_retrieve_status_name</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

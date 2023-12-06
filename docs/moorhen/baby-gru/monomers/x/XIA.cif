@@ -1,0 +1,292 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XIA     XIA      "(2R,3S)-2-methyl-2-(4-methylpent-3-enyl)-3-oxidanyl-3,4-dihydrochromene-6-carboxylic acid"     NON-POLYMER     42     21     .     
+#
+data_comp_XIA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XIA     O39     O       O       0       31.749      38.486      64.905      
+XIA     C11     C       C       0       31.035      39.080      64.076      
+XIA     O13     O       OC      -1      31.155      40.284      63.788      
+XIA     C6      C       CR6     0       29.961      38.297      63.383      
+XIA     C5      C       CR16    0       30.236      37.043      62.844      
+XIA     C4      C       CR66    0       29.236      36.300      62.190      
+XIA     C7      C       CH2     0       29.514      34.940      61.603      
+XIA     C8      C       CH1     0       28.244      34.128      61.407      
+XIA     O16     O       OH1     0       28.537      32.966      60.623      
+XIA     C9      C       CT      0       27.131      34.957      60.748      
+XIA     C15     C       CH3     0       27.459      35.354      59.312      
+XIA     O10     O       O2      0       26.906      36.210      61.482      
+XIA     C3      C       CR66    0       27.957      36.853      62.091      
+XIA     C2      C       CR16    0       27.674      38.108      62.632      
+XIA     C1      C       CR16    0       28.667      38.819      63.267      
+XIA     C17     C       CH2     0       25.747      34.279      60.869      
+XIA     C18     C       CH2     0       25.172      33.992      62.264      
+XIA     C19     C       C1      0       23.752      33.508      62.281      
+XIA     C21     C       C       0       22.993      33.222      63.331      
+XIA     C23     C       CH3     0       23.452      33.370      64.755      
+XIA     C22     C       CH3     0       21.582      32.722      63.201      
+XIA     H2      H       H       0       31.111      36.678      62.916      
+XIA     H3      H       H       0       29.967      35.048      60.747      
+XIA     H4      H       H       0       30.117      34.455      62.196      
+XIA     H5      H       H       0       27.929      33.832      62.293      
+XIA     H6      H       H       0       28.978      32.423      61.090      
+XIA     H7      H       H       0       27.455      36.322      59.230      
+XIA     H8      H       H       0       26.793      34.981      58.711      
+XIA     H9      H       H       0       28.334      35.019      59.061      
+XIA     H10     H       H       0       26.807      38.466      62.559      
+XIA     H11     H       H       0       28.468      39.666      63.626      
+XIA     H12     H       H       0       25.800      33.429      60.381      
+XIA     H13     H       H       0       25.107      34.846      60.388      
+XIA     H14     H       H       0       25.234      34.817      62.809      
+XIA     H15     H       H       0       25.744      33.314      62.704      
+XIA     H16     H       H       0       23.351      33.394      61.433      
+XIA     H17     H       H       0       24.405      33.549      64.785      
+XIA     H18     H       H       0       23.266      32.551      65.242      
+XIA     H19     H       H       0       22.976      34.105      65.174      
+XIA     H20     H       H       0       21.350      32.622      62.263      
+XIA     H21     H       H       0       20.974      33.356      63.615      
+XIA     H22     H       H       0       21.500      31.862      63.645      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XIA          C9         C15      SINGLE       n     1.520  0.0100     1.520  0.0100
+XIA          C9         C17      SINGLE       n     1.536  0.0146     1.536  0.0146
+XIA          C9         O10      SINGLE       n     1.461  0.0118     1.461  0.0118
+XIA          C8          C9      SINGLE       n     1.528  0.0100     1.528  0.0100
+XIA         C17         C18      SINGLE       n     1.530  0.0144     1.530  0.0144
+XIA          C8         O16      SINGLE       n     1.431  0.0107     1.431  0.0107
+XIA         O10          C3      SINGLE       n     1.370  0.0100     1.370  0.0100
+XIA          C7          C8      SINGLE       n     1.517  0.0100     1.517  0.0100
+XIA          C4          C7      SINGLE       n     1.507  0.0100     1.507  0.0100
+XIA          C4          C3      DOUBLE       y     1.393  0.0100     1.393  0.0100
+XIA          C3          C2      SINGLE       y     1.390  0.0117     1.390  0.0117
+XIA          C5          C4      SINGLE       y     1.397  0.0200     1.397  0.0200
+XIA         C18         C19      SINGLE       n     1.500  0.0100     1.500  0.0100
+XIA         C19         C21      DOUBLE       n     1.324  0.0100     1.324  0.0100
+XIA          C2          C1      DOUBLE       y     1.372  0.0100     1.372  0.0100
+XIA          C6          C5      DOUBLE       y     1.389  0.0100     1.389  0.0100
+XIA         C21         C22      SINGLE       n     1.499  0.0156     1.499  0.0156
+XIA          C6          C1      SINGLE       y     1.397  0.0100     1.397  0.0100
+XIA         C21         C23      SINGLE       n     1.499  0.0156     1.499  0.0156
+XIA         C11          C6      SINGLE       n     1.498  0.0200     1.498  0.0200
+XIA         O39         C11      DOUBLE       n     1.244  0.0200     1.244  0.0200
+XIA         C11         O13      SINGLE       n     1.244  0.0200     1.244  0.0200
+XIA          C5          H2      SINGLE       n     1.082  0.0130     0.950  0.0191
+XIA          C7          H3      SINGLE       n     1.089  0.0100     0.975  0.0100
+XIA          C7          H4      SINGLE       n     1.089  0.0100     0.975  0.0100
+XIA          C8          H5      SINGLE       n     1.089  0.0100     0.988  0.0151
+XIA         O16          H6      SINGLE       n     0.970  0.0120     0.841  0.0200
+XIA         C15          H7      SINGLE       n     1.089  0.0100     0.971  0.0171
+XIA         C15          H8      SINGLE       n     1.089  0.0100     0.971  0.0171
+XIA         C15          H9      SINGLE       n     1.089  0.0100     0.971  0.0171
+XIA          C2         H10      SINGLE       n     1.082  0.0130     0.940  0.0155
+XIA          C1         H11      SINGLE       n     1.082  0.0130     0.941  0.0147
+XIA         C17         H12      SINGLE       n     1.089  0.0100     0.981  0.0200
+XIA         C17         H13      SINGLE       n     1.089  0.0100     0.981  0.0200
+XIA         C18         H14      SINGLE       n     1.089  0.0100     0.992  0.0200
+XIA         C18         H15      SINGLE       n     1.089  0.0100     0.992  0.0200
+XIA         C19         H16      SINGLE       n     1.082  0.0130     0.945  0.0200
+XIA         C23         H17      SINGLE       n     1.089  0.0100     0.971  0.0140
+XIA         C23         H18      SINGLE       n     1.089  0.0100     0.971  0.0140
+XIA         C23         H19      SINGLE       n     1.089  0.0100     0.971  0.0140
+XIA         C22         H20      SINGLE       n     1.089  0.0100     0.971  0.0140
+XIA         C22         H21      SINGLE       n     1.089  0.0100     0.971  0.0140
+XIA         C22         H22      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XIA          C6         C11         O39     117.911    1.50
+XIA          C6         C11         O13     117.911    1.50
+XIA         O39         C11         O13     124.177    1.50
+XIA          C5          C6          C1     119.353    1.50
+XIA          C5          C6         C11     120.323    1.55
+XIA          C1          C6         C11     120.323    1.50
+XIA          C4          C5          C6     121.322    1.50
+XIA          C4          C5          H2     118.992    1.50
+XIA          C6          C5          H2     119.686    1.67
+XIA          C7          C4          C3     120.765    1.50
+XIA          C7          C4          C5     121.040    1.75
+XIA          C3          C4          C5     118.195    1.50
+XIA          C8          C7          C4     112.933    1.50
+XIA          C8          C7          H3     109.505    1.50
+XIA          C8          C7          H4     109.505    1.50
+XIA          C4          C7          H3     109.223    1.50
+XIA          C4          C7          H4     109.223    1.50
+XIA          H3          C7          H4     107.747    1.50
+XIA          C9          C8         O16     110.056    1.50
+XIA          C9          C8          C7     111.124    1.57
+XIA          C9          C8          H5     108.352    1.50
+XIA         O16          C8          C7     109.239    1.98
+XIA         O16          C8          H5     108.790    1.50
+XIA          C7          C8          H5     109.080    1.50
+XIA          C8         O16          H6     109.099    3.00
+XIA         C15          C9         C17     112.864    1.77
+XIA         C15          C9         O10     106.265    2.07
+XIA         C15          C9          C8     111.557    1.50
+XIA         C17          C9         O10     100.898    3.00
+XIA         C17          C9          C8     111.163    2.25
+XIA         O10          C9          C8     109.656    1.50
+XIA          C9         C15          H7     109.469    1.50
+XIA          C9         C15          H8     109.469    1.50
+XIA          C9         C15          H9     109.469    1.50
+XIA          H7         C15          H8     109.372    1.50
+XIA          H7         C15          H9     109.372    1.50
+XIA          H8         C15          H9     109.372    1.50
+XIA          C9         O10          C3     118.005    1.50
+XIA         O10          C3          C4     122.920    1.50
+XIA         O10          C3          C2     116.055    1.50
+XIA          C4          C3          C2     121.025    1.50
+XIA          C3          C2          C1     119.449    1.50
+XIA          C3          C2         H10     120.108    1.50
+XIA          C1          C2         H10     120.443    1.50
+XIA          C2          C1          C6     120.655    1.50
+XIA          C2          C1         H11     119.336    1.50
+XIA          C6          C1         H11     120.008    1.50
+XIA          C9         C17         C18     113.198    2.74
+XIA          C9         C17         H12     107.140    1.50
+XIA          C9         C17         H13     107.140    1.50
+XIA         C18         C17         H12     108.208    1.50
+XIA         C18         C17         H13     108.208    1.50
+XIA         H12         C17         H13     107.248    2.10
+XIA         C17         C18         C19     115.169    1.55
+XIA         C17         C18         H14     108.472    1.50
+XIA         C17         C18         H15     108.472    1.50
+XIA         C19         C18         H14     109.181    1.50
+XIA         C19         C18         H15     109.181    1.50
+XIA         H14         C18         H15     106.997    1.50
+XIA         C18         C19         C21     127.786    1.50
+XIA         C18         C19         H16     115.986    1.50
+XIA         C21         C19         H16     116.227    1.50
+XIA         C19         C21         C22     122.691    1.63
+XIA         C19         C21         C23     122.691    1.63
+XIA         C22         C21         C23     114.618    1.50
+XIA         C21         C23         H17     109.600    1.50
+XIA         C21         C23         H18     109.600    1.50
+XIA         C21         C23         H19     109.600    1.50
+XIA         H17         C23         H18     109.342    1.50
+XIA         H17         C23         H19     109.342    1.50
+XIA         H18         C23         H19     109.342    1.50
+XIA         C21         C22         H20     109.600    1.50
+XIA         C21         C22         H21     109.600    1.50
+XIA         C21         C22         H22     109.600    1.50
+XIA         H20         C22         H21     109.342    1.50
+XIA         H20         C22         H22     109.342    1.50
+XIA         H21         C22         H22     109.342    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XIA             sp2_sp2_1          C4          C3         O10          C9       0.000     5.0     2
+XIA              const_14          C1          C2          C3         O10     180.000    10.0     2
+XIA              const_17          C6          C1          C2          C3       0.000    10.0     2
+XIA            sp3_sp3_40          C9         C17         C18         C19     180.000    10.0     3
+XIA             sp2_sp3_8         C21         C19         C18         C17     120.000    10.0     6
+XIA             sp2_sp2_3         C18         C19         C21         C22     180.000     5.0     2
+XIA            sp2_sp3_19         C19         C21         C23         H17       0.000    10.0     6
+XIA            sp2_sp3_13         C19         C21         C22         H20       0.000    10.0     6
+XIA             sp2_sp2_7         O39         C11          C6          C5     180.000     5.0     2
+XIA              const_22          C2          C1          C6         C11     180.000    10.0     2
+XIA       const_sp2_sp2_2          C4          C5          C6         C11     180.000     5.0     2
+XIA       const_sp2_sp2_7          C7          C4          C5          C6     180.000     5.0     2
+XIA       const_sp2_sp2_9         O10          C3          C4          C7       0.000     5.0     2
+XIA             sp2_sp3_1          C3          C4          C7          C8       0.000    10.0     6
+XIA             sp3_sp3_2          C4          C7          C8         O16      60.000    10.0     3
+XIA            sp3_sp3_49          C9          C8         O16          H6     180.000    10.0     3
+XIA            sp3_sp3_14         O16          C8          C9         C15      60.000    10.0     3
+XIA            sp3_sp3_22          H7         C15          C9         C17     180.000    10.0     3
+XIA            sp3_sp3_20         C15          C9         O10          C3      60.000    10.0     3
+XIA            sp3_sp3_31         C18         C17          C9         C15     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+XIA    chir_1    C8    O16    C9    C7    positive
+XIA    chir_2    C9    O10    C8    C17    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XIA    plan-1          C1   0.020
+XIA    plan-1         C11   0.020
+XIA    plan-1          C2   0.020
+XIA    plan-1          C3   0.020
+XIA    plan-1          C4   0.020
+XIA    plan-1          C5   0.020
+XIA    plan-1          C6   0.020
+XIA    plan-1          C7   0.020
+XIA    plan-1         H10   0.020
+XIA    plan-1         H11   0.020
+XIA    plan-1          H2   0.020
+XIA    plan-1         O10   0.020
+XIA    plan-2         C11   0.020
+XIA    plan-2          C6   0.020
+XIA    plan-2         O13   0.020
+XIA    plan-2         O39   0.020
+XIA    plan-3         C18   0.020
+XIA    plan-3         C19   0.020
+XIA    plan-3         C21   0.020
+XIA    plan-3         H16   0.020
+XIA    plan-4         C19   0.020
+XIA    plan-4         C21   0.020
+XIA    plan-4         C22   0.020
+XIA    plan-4         C23   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XIA            InChI                InChI  1.03 InChI=1S/C17H22O4/c1-11(2)5-4-8-17(3)15(18)10-13-9-12(16(19)20)6-7-14(13)21-17/h5-7,9,15,18H,4,8,10H2,1-3H3,(H,19,20)/t15-,17+/m0/s1
+XIA         InChIKey                InChI  1.03                                                                                                          ZBMFQFAGMKFJIS-DOTOQJQBSA-N
+XIA SMILES_CANONICAL               CACTVS 3.385                                                                                         CC(C)=CCC[C@@]1(C)Oc2ccc(cc2C[C@@H]1O)C(O)=O
+XIA           SMILES               CACTVS 3.385                                                                                             CC(C)=CCC[C]1(C)Oc2ccc(cc2C[CH]1O)C(O)=O
+XIA SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                        CC(=CCC[C@@]1([C@H](Cc2cc(ccc2O1)C(=O)O)O)C)C
+XIA           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                CC(=CCCC1(C(Cc2cc(ccc2O1)C(=O)O)O)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XIA acedrg               243         "dictionary generator"                  
+XIA acedrg_database      11          "data source"                           
+XIA rdkit                2017.03.2   "Chemoinformatics tool"
+XIA refmac5              5.8.0238    "optimization tool"                     

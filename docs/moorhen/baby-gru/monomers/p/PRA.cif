@@ -1,0 +1,184 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PRA     PRA      3-PHENYLPROPYLAMINE     NON-POLYMER     23     10     .     
+#
+data_comp_PRA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PRA     C1      C       CH2     0       29.543      16.168      14.262      
+PRA     C2      C       CH2     0       29.642      15.710      15.705      
+PRA     C3      C       CH2     0       28.784      14.481      15.996      
+PRA     "C1'"   C       CR6     0       28.736      14.107      17.459      
+PRA     "C2'"   C       CR16    0       29.396      12.978      17.931      
+PRA     "C3'"   C       CR16    0       29.350      12.639      19.278      
+PRA     "C4'"   C       CR16    0       28.644      13.424      20.167      
+PRA     "C5'"   C       CR16    0       27.985      14.547      19.714      
+PRA     "C6'"   C       CR16    0       28.031      14.887      18.367      
+PRA     N       N       NT2     0       30.185      15.249      13.317      
+PRA     H11     H       H       0       29.961      17.049      14.177      
+PRA     H12     H       H       0       28.599      16.259      14.020      
+PRA     H21     H       H       0       29.356      16.450      16.291      
+PRA     H22     H       H       0       30.585      15.501      15.906      
+PRA     H31     H       H       0       29.135      13.722      15.483      
+PRA     H32     H       H       0       27.870      14.654      15.684      
+PRA     "H2'"   H       H       0       29.881      12.436      17.330      
+PRA     "H3'"   H       H       0       29.802      11.869      19.585      
+PRA     "H4'"   H       H       0       28.613      13.193      21.082      
+PRA     "H5'"   H       H       0       27.502      15.086      20.319      
+PRA     "H6'"   H       H       0       27.577      15.657      18.064      
+PRA     HN1     H       H       0       29.717      14.498      13.239      
+PRA     HN2     H       H       0       30.998      15.025      13.595      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PRA          C1          C2      SINGLE       n     1.517  0.0197     1.517  0.0197
+PRA          C1           N      SINGLE       n     1.466  0.0117     1.466  0.0117
+PRA          C2          C3      SINGLE       n     1.527  0.0100     1.527  0.0100
+PRA          C3       "C1'"      SINGLE       n     1.510  0.0100     1.510  0.0100
+PRA       "C1'"       "C2'"      DOUBLE       y     1.385  0.0111     1.385  0.0111
+PRA       "C1'"       "C6'"      SINGLE       y     1.385  0.0111     1.385  0.0111
+PRA       "C2'"       "C3'"      SINGLE       y     1.386  0.0100     1.386  0.0100
+PRA       "C3'"       "C4'"      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PRA       "C4'"       "C5'"      SINGLE       y     1.374  0.0127     1.374  0.0127
+PRA       "C5'"       "C6'"      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PRA          C1         H11      SINGLE       n     1.089  0.0100     0.979  0.0106
+PRA          C1         H12      SINGLE       n     1.089  0.0100     0.979  0.0106
+PRA          C2         H21      SINGLE       n     1.089  0.0100     0.987  0.0200
+PRA          C2         H22      SINGLE       n     1.089  0.0100     0.987  0.0200
+PRA          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0150
+PRA          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0150
+PRA       "C2'"       "H2'"      SINGLE       n     1.082  0.0130     0.944  0.0174
+PRA       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.944  0.0175
+PRA       "C4'"       "H4'"      SINGLE       n     1.082  0.0130     0.944  0.0161
+PRA       "C5'"       "H5'"      SINGLE       n     1.082  0.0130     0.944  0.0175
+PRA       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.944  0.0174
+PRA           N         HN1      SINGLE       n     1.036  0.0160     0.888  0.0200
+PRA           N         HN2      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PRA          C2          C1           N     113.282    2.68
+PRA          C2          C1         H11     109.099    1.50
+PRA          C2          C1         H12     109.099    1.50
+PRA           N          C1         H11     108.763    1.50
+PRA           N          C1         H12     108.763    1.50
+PRA         H11          C1         H12     107.806    1.50
+PRA          C1          C2          C3     112.944    1.60
+PRA          C1          C2         H21     108.805    1.50
+PRA          C1          C2         H22     108.805    1.50
+PRA          C3          C2         H21     109.311    1.50
+PRA          C3          C2         H22     109.311    1.50
+PRA         H21          C2         H22     108.509    1.50
+PRA          C2          C3       "C1'"     113.678    2.12
+PRA          C2          C3         H31     108.731    1.50
+PRA          C2          C3         H32     108.731    1.50
+PRA       "C1'"          C3         H31     108.803    1.50
+PRA       "C1'"          C3         H32     108.803    1.50
+PRA         H31          C3         H32     107.745    1.50
+PRA          C3       "C1'"       "C2'"     120.970    1.50
+PRA          C3       "C1'"       "C6'"     120.970    1.50
+PRA       "C2'"       "C1'"       "C6'"     118.060    1.50
+PRA       "C1'"       "C2'"       "C3'"     120.624    1.50
+PRA       "C1'"       "C2'"       "H2'"     119.591    1.50
+PRA       "C3'"       "C2'"       "H2'"     119.786    1.50
+PRA       "C2'"       "C3'"       "C4'"     120.325    1.50
+PRA       "C2'"       "C3'"       "H3'"     119.792    1.50
+PRA       "C4'"       "C3'"       "H3'"     119.883    1.50
+PRA       "C3'"       "C4'"       "C5'"     120.043    1.50
+PRA       "C3'"       "C4'"       "H4'"     119.979    1.50
+PRA       "C5'"       "C4'"       "H4'"     119.979    1.50
+PRA       "C4'"       "C5'"       "C6'"     120.325    1.50
+PRA       "C4'"       "C5'"       "H5'"     119.883    1.50
+PRA       "C6'"       "C5'"       "H5'"     119.792    1.50
+PRA       "C1'"       "C6'"       "C5'"     120.624    1.50
+PRA       "C1'"       "C6'"       "H6'"     119.591    1.50
+PRA       "C5'"       "C6'"       "H6'"     119.786    1.50
+PRA          C1           N         HN1     110.839    3.00
+PRA          C1           N         HN2     110.839    3.00
+PRA         HN1           N         HN2     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PRA             sp3_sp3_1           N          C1          C2          C3     180.000    10.0     3
+PRA            sp3_sp3_10          C2          C1           N         HN1     180.000    10.0     3
+PRA            sp3_sp3_16          C1          C2          C3       "C1'"     180.000    10.0     3
+PRA             sp2_sp3_2       "C2'"       "C1'"          C3          C2     -90.000    10.0     6
+PRA       const_sp2_sp2_3          C3       "C1'"       "C2'"       "C3'"     180.000     5.0     2
+PRA              const_23          C3       "C1'"       "C6'"       "C5'"     180.000    10.0     2
+PRA       const_sp2_sp2_5       "C1'"       "C2'"       "C3'"       "C4'"       0.000     5.0     2
+PRA       const_sp2_sp2_9       "C2'"       "C3'"       "C4'"       "C5'"       0.000     5.0     2
+PRA              const_13       "C3'"       "C4'"       "C5'"       "C6'"       0.000    10.0     2
+PRA              const_17       "C4'"       "C5'"       "C6'"       "C1'"       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PRA    plan-1       "C1'"   0.020
+PRA    plan-1       "C2'"   0.020
+PRA    plan-1          C3   0.020
+PRA    plan-1       "C3'"   0.020
+PRA    plan-1       "C4'"   0.020
+PRA    plan-1       "C5'"   0.020
+PRA    plan-1       "C6'"   0.020
+PRA    plan-1       "H2'"   0.020
+PRA    plan-1       "H3'"   0.020
+PRA    plan-1       "H4'"   0.020
+PRA    plan-1       "H5'"   0.020
+PRA    plan-1       "H6'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PRA           SMILES              ACDLabs 12.01                                               C(CCc1ccccc1)N
+PRA            InChI                InChI  1.03 InChI=1S/C9H13N/c10-8-4-7-9-5-2-1-3-6-9/h1-3,5-6H,4,7-8,10H2
+PRA         InChIKey                InChI  1.03                                  LYUQWQRTDLVQGA-UHFFFAOYSA-N
+PRA SMILES_CANONICAL               CACTVS 3.385                                                 NCCCc1ccccc1
+PRA           SMILES               CACTVS 3.385                                                 NCCCc1ccccc1
+PRA SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                               c1ccc(cc1)CCCN
+PRA           SMILES "OpenEye OEToolkits" 2.0.7                                               c1ccc(cc1)CCCN
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PRA acedrg               243         "dictionary generator"                  
+PRA acedrg_database      11          "data source"                           
+PRA rdkit                2017.03.2   "Chemoinformatics tool"
+PRA refmac5              5.8.0238    "optimization tool"                     

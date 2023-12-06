@@ -1,0 +1,923 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CDN     CDN      CARDIOLIPIN     NON-POLYMER     195     77     .     
+#
+data_comp_CDN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CDN     PB2     P       P       0       76.950      86.266      72.551      
+CDN     O1      O       OH1     0       80.441      88.443      70.892      
+CDN     OB5     O       O2      0       76.158      86.980      73.752      
+CDN     OB2     O       O2      0       78.416      86.918      72.649      
+CDN     OB3     O       OP      -1      76.324      86.701      71.254      
+CDN     OB4     O       O       0       77.067      84.801      72.873      
+CDN     CB2     C       CH2     0       78.590      88.346      72.419      
+CDN     C1      C       CH1     0       79.023      88.589      70.989      
+CDN     CB3     C       CH2     0       74.718      87.171      73.647      
+CDN     CB4     C       CH1     0       74.112      87.425      75.010      
+CDN     CB6     C       CH2     0       74.254      86.258      75.964      
+CDN     OB8     O       O2      0       73.895      86.671      77.290      
+CDN     OB9     O       OH1     0       72.177      85.319      78.134      
+CDN     CB7     C       CH1     0       72.522      86.597      77.617      
+CDN     C71     C       CH2     0       72.192      87.671      78.648      
+CDN     C72     C       CH2     0       72.956      87.539      79.949      
+CDN     C73     C       CH2     0       72.639      88.619      80.954      
+CDN     C74     C       CH2     0       73.551      88.638      82.153      
+CDN     C75     C       CH3     0       73.289      89.789      83.096      
+CDN     OB6     O       O2      0       74.758      88.574      75.594      
+CDN     OB7     O       OH1     0       72.847      89.917      75.956      
+CDN     CB5     C       CH1     0       74.171      89.852      75.439      
+CDN     C51     C       CH2     0       75.015      90.886      76.176      
+CDN     C52     C       CH2     0       75.293      90.522      77.621      
+CDN     C53     C       CH2     0       75.717      91.682      78.488      
+CDN     C54     C       CH2     0       76.049      91.297      79.910      
+CDN     C55     C       CH2     0       76.396      92.460      80.807      
+CDN     C56     C       CH2     0       76.921      92.057      82.163      
+CDN     C57     C       CH2     0       77.106      93.206      83.125      
+CDN     C58     C       CH2     0       75.844      93.629      83.838      
+CDN     C59     C       CH2     0       75.451      92.738      84.992      
+CDN     C60     C       CH2     0       74.301      93.263      85.817      
+CDN     C61     C       CH2     0       72.973      93.264      85.100      
+CDN     C62     C       CH2     0       71.793      93.590      85.983      
+CDN     C63     C       CH2     0       71.277      92.423      86.784      
+CDN     C64     C       CH3     0       70.054      92.749      87.609      
+CDN     PA1     P       P       0       79.224      92.505      70.772      
+CDN     OA5     O       O2      0       79.182      93.410      72.099      
+CDN     OA2     O       O2      0       79.139      91.000      71.329      
+CDN     OA4     O       O       0       80.569      92.688      70.125      
+CDN     OA3     O       OP      -1      77.971      92.779      69.987      
+CDN     CA2     C       CH2     0       78.623      89.950      70.462      
+CDN     CA3     C       CH2     0       78.884      94.827      71.967      
+CDN     CA4     C       CH1     0       79.020      95.546      73.291      
+CDN     CA6     C       CH2     0       78.835      97.043      73.174      
+CDN     OA8     O       O2      0       77.502      97.320      72.723      
+CDN     OA9     O       OH1     0       76.837      98.960      71.187      
+CDN     CA7     C       CH1     0       77.188      98.684      72.536      
+CDN     C31     C       CH2     0       76.014      99.034      73.432      
+CDN     C32     C       CH2     0       76.426      99.169      74.877      
+CDN     C33     C       CH2     0       75.279      99.416      75.826      
+CDN     C34     C       CH2     0       75.703      99.689      77.248      
+CDN     C35     C       CH2     0       74.558      99.885      78.209      
+CDN     C36     C       CH2     0       74.978      100.323     79.590      
+CDN     C37     C       CH2     0       73.832      100.518     80.552      
+CDN     C38     C       CH2     0       74.244      101.025     81.912      
+CDN     C39     C       CH2     0       73.098      101.213     82.875      
+CDN     C40     C       CH2     0       73.506      101.735     84.230      
+CDN     C41     C       CH2     0       72.356      101.974     85.174      
+CDN     C42     C       CH3     0       72.779      102.513     86.520      
+CDN     OA6     O       O2      0       78.029      95.025      74.197      
+CDN     OA7     O       OH1     0       79.067      93.936      75.996      
+CDN     CA5     C       CH1     0       78.318      95.069      75.580      
+CDN     C11     C       CH2     0       77.010      95.104      76.355      
+CDN     C12     C       CH2     0       77.180      95.620      77.765      
+CDN     C13     C       CH2     0       75.884      95.787      78.523      
+CDN     C14     C       CH2     0       76.050      96.294      79.936      
+CDN     C15     C       CH2     0       74.754      96.448      80.696      
+CDN     C16     C       CH2     0       74.920      96.947      82.111      
+CDN     C17     C       CH2     0       73.632      97.023      82.897      
+CDN     C18     C       CH2     0       73.818      97.321      84.366      
+CDN     C19     C       CH2     0       72.533      97.348      85.159      
+CDN     C20     C       CH2     0       72.723      97.332      86.658      
+CDN     C21     C       CH2     0       73.210      98.638      87.236      
+CDN     C22     C       CH2     0       73.441      98.607      88.728      
+CDN     C23     C       CH2     0       73.860      99.928      89.320      
+CDN     C24     C       CH3     0       74.142      99.864      90.803      
+CDN     HO11    H       H       0       80.820      89.075      71.314      
+CDN     HB21    H       H       0       79.269      88.693      73.034      
+CDN     HB22    H       H       0       77.749      88.819      72.593      
+CDN     HC11    H       H       0       78.603      87.903      70.418      
+CDN     HB32    H       H       0       74.310      86.372      73.252      
+CDN     HB33    H       H       0       74.534      87.933      73.059      
+CDN     HB41    H       H       0       73.146      87.614      74.890      
+CDN     HB61    H       H       0       75.180      85.936      75.968      
+CDN     HB62    H       H       0       73.675      85.518      75.680      
+CDN     HB91    H       H       0       71.335      85.223      78.103      
+CDN     HB71    H       H       0       71.978      86.762      76.801      
+CDN     H711    H       H       0       71.231      87.635      78.843      
+CDN     H712    H       H       0       72.383      88.551      78.259      
+CDN     H721    H       H       0       73.918      87.563      79.758      
+CDN     H722    H       H       0       72.754      86.668      80.351      
+CDN     H731    H       H       0       71.716      88.499      81.263      
+CDN     H732    H       H       0       72.691      89.491      80.506      
+CDN     H741    H       H       0       74.481      88.688      81.842      
+CDN     H742    H       H       0       73.444      87.795      82.644      
+CDN     H751    H       H       0       73.879      89.719      83.866      
+CDN     H752    H       H       0       72.363      89.761      83.394      
+CDN     H753    H       H       0       73.455      90.630      82.637      
+CDN     HB7O    H       H       0       72.445      90.579      75.610      
+CDN     HB51    H       H       0       74.144      90.080      74.473      
+CDN     H511    H       H       0       74.552      91.750      76.151      
+CDN     H512    H       H       0       75.870      90.991      75.707      
+CDN     H521    H       H       0       75.999      89.842      77.643      
+CDN     H522    H       H       0       74.486      90.123      78.009      
+CDN     H531    H       H       0       74.995      92.346      78.502      
+CDN     H532    H       H       0       76.504      92.106      78.085      
+CDN     H541    H       H       0       76.806      90.673      79.897      
+CDN     H542    H       H       0       75.280      90.823      80.294      
+CDN     H551    H       H       0       75.595      93.012      80.930      
+CDN     H552    H       H       0       77.072      93.012      80.359      
+CDN     H561    H       H       0       77.784      91.605      82.044      
+CDN     H562    H       H       0       76.300      91.411      82.561      
+CDN     H571    H       H       0       77.460      93.976      82.630      
+CDN     H572    H       H       0       77.776      92.950      83.795      
+CDN     H581    H       H       0       75.109      93.647      83.190      
+CDN     H582    H       H       0       75.966      94.543      84.175      
+CDN     H591    H       H       0       76.229      92.619      85.578      
+CDN     H592    H       H       0       75.207      91.856      84.639      
+CDN     H601    H       H       0       74.509      94.180      86.097      
+CDN     H602    H       H       0       74.221      92.717      86.628      
+CDN     H611    H       H       0       72.831      92.380      84.700      
+CDN     H612    H       H       0       73.010      93.919      84.371      
+CDN     H621    H       H       0       71.065      93.932      85.421      
+CDN     H622    H       H       0       72.052      94.306      86.602      
+CDN     H631    H       H       0       71.990      92.111      87.382      
+CDN     H632    H       H       0       71.059      91.689      86.169      
+CDN     H641    H       H       0       69.777      91.959      88.106      
+CDN     H642    H       H       0       69.331      93.031      87.022      
+CDN     H643    H       H       0       70.263      93.466      88.232      
+CDN     HA21    H       H       0       77.646      90.012      70.421      
+CDN     HA22    H       H       0       78.979      90.068      69.556      
+CDN     HA31    H       H       0       77.970      94.932      71.629      
+CDN     HA32    H       H       0       79.498      95.225      71.315      
+CDN     HA41    H       H       0       79.925      95.365      73.658      
+CDN     HA61    H       H       0       79.479      97.414      72.534      
+CDN     HA62    H       H       0       78.982      97.473      74.043      
+CDN     HA91    H       H       0       76.941      99.788      71.035      
+CDN     HA71    H       H       0       77.970      99.248      72.782      
+CDN     H311    H       H       0       75.331      98.334      73.356      
+CDN     H312    H       H       0       75.618      99.879      73.130      
+CDN     H321    H       H       0       77.064      99.910      74.956      
+CDN     H322    H       H       0       76.888      98.349      75.152      
+CDN     H331    H       H       0       74.689      98.633      75.818      
+CDN     H332    H       H       0       74.761      100.183     75.500      
+CDN     H341    H       H       0       76.265      100.493     77.259      
+CDN     H342    H       H       0       76.252      98.939      77.561      
+CDN     H351    H       H       0       74.062      99.042      78.283      
+CDN     H352    H       H       0       73.947      100.558     77.838      
+CDN     H361    H       H       0       75.473      101.167     79.516      
+CDN     H362    H       H       0       75.589      99.651      79.961      
+CDN     H371    H       H       0       73.366      99.662      80.663      
+CDN     H372    H       H       0       73.196      101.154     80.159      
+CDN     H381    H       H       0       74.706      101.883     81.801      
+CDN     H382    H       H       0       74.883      100.391     82.303      
+CDN     H391    H       H       0       72.642      100.352     82.993      
+CDN     H392    H       H       0       72.454      101.838     82.478      
+CDN     H401    H       H       0       73.993      102.578     84.109      
+CDN     H402    H       H       0       74.122      101.092     84.642      
+CDN     H411    H       H       0       71.876      101.127     85.307      
+CDN     H412    H       H       0       71.733      102.609     84.758      
+CDN     H421    H       H       0       71.993      102.646     87.078      
+CDN     H422    H       H       0       73.238      103.362     86.400      
+CDN     H423    H       H       0       73.378      101.879     86.951      
+CDN     HA7O    H       H       0       79.444      94.107      76.736      
+CDN     HA51    H       H       0       78.843      95.887      75.784      
+CDN     H111    H       H       0       76.633      94.199      76.389      
+CDN     H112    H       H       0       76.371      95.678      75.881      
+CDN     H121    H       H       0       77.637      96.488      77.732      
+CDN     H122    H       H       0       77.756      95.000      78.261      
+CDN     H131    H       H       0       75.423      94.921      78.552      
+CDN     H132    H       H       0       75.310      96.412      78.030      
+CDN     H141    H       H       0       76.502      97.164      79.906      
+CDN     H142    H       H       0       76.630      95.673      80.426      
+CDN     H151    H       H       0       74.299      95.579      80.720      
+CDN     H152    H       H       0       74.176      97.073      80.208      
+CDN     H161    H       H       0       75.324      97.840      82.084      
+CDN     H162    H       H       0       75.541      96.353      82.583      
+CDN     H171    H       H       0       73.159      96.169      82.807      
+CDN     H172    H       H       0       73.065      97.720      82.504      
+CDN     H181    H       H       0       74.261      98.191      84.456      
+CDN     H182    H       H       0       74.412      96.643      84.751      
+CDN     H191    H       H       0       71.990      96.571      84.904      
+CDN     H192    H       H       0       72.030      98.154      84.916      
+CDN     H201    H       H       0       73.367      96.628      86.886      
+CDN     H202    H       H       0       71.869      97.100      87.080      
+CDN     H211    H       H       0       72.550      99.336      87.035      
+CDN     H212    H       H       0       74.049      98.886      86.793      
+CDN     H221    H       H       0       74.134      97.941      88.924      
+CDN     H222    H       H       0       72.614      98.314      89.168      
+CDN     H231    H       H       0       73.149      100.585     89.160      
+CDN     H232    H       H       0       74.667      100.240     88.856      
+CDN     H241    H       H       0       74.410      100.744     91.121      
+CDN     H242    H       H       0       74.859      99.228      90.971      
+CDN     H243    H       H       0       73.341      99.580      91.275      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CDN         PB2         OB5      SINGLE       n     1.606  0.0100     1.606  0.0100
+CDN         PB2         OB2      SINGLE       n     1.606  0.0100     1.606  0.0100
+CDN         PB2         OB3      SINGLE       n     1.504  0.0115     1.504  0.0115
+CDN         PB2         OB4      DOUBLE       n     1.504  0.0115     1.504  0.0115
+CDN          O1          C1      SINGLE       n     1.427  0.0100     1.427  0.0100
+CDN         OB5         CB3      SINGLE       n     1.454  0.0165     1.454  0.0165
+CDN         OB2         CB2      SINGLE       n     1.454  0.0165     1.454  0.0165
+CDN         CB2          C1      SINGLE       n     1.512  0.0104     1.512  0.0104
+CDN          C1         CA2      SINGLE       n     1.512  0.0104     1.512  0.0104
+CDN         CB3         CB4      SINGLE       n     1.512  0.0104     1.512  0.0104
+CDN         CB4         CB6      SINGLE       n     1.512  0.0104     1.512  0.0104
+CDN         CB4         OB6      SINGLE       n     1.436  0.0134     1.436  0.0134
+CDN         CB6         OB8      SINGLE       n     1.432  0.0100     1.432  0.0100
+CDN         OB8         CB7      SINGLE       n     1.409  0.0146     1.409  0.0146
+CDN         OB9         CB7      SINGLE       n     1.421  0.0162     1.421  0.0162
+CDN         CB7         C71      SINGLE       n     1.519  0.0200     1.519  0.0200
+CDN         C71         C72      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C72         C73      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C73         C74      SINGLE       n     1.507  0.0200     1.507  0.0200
+CDN         C74         C75      SINGLE       n     1.510  0.0200     1.510  0.0200
+CDN         OB6         CB5      SINGLE       n     1.409  0.0146     1.409  0.0146
+CDN         OB7         CB5      SINGLE       n     1.421  0.0162     1.421  0.0162
+CDN         CB5         C51      SINGLE       n     1.519  0.0200     1.519  0.0200
+CDN         C51         C52      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C52         C53      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C53         C54      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C54         C55      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C55         C56      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C56         C57      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C57         C58      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C58         C59      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C59         C60      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C60         C61      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C61         C62      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C62         C63      SINGLE       n     1.507  0.0200     1.507  0.0200
+CDN         C63         C64      SINGLE       n     1.510  0.0200     1.510  0.0200
+CDN         PA1         OA5      SINGLE       n     1.606  0.0100     1.606  0.0100
+CDN         PA1         OA2      SINGLE       n     1.606  0.0100     1.606  0.0100
+CDN         PA1         OA4      DOUBLE       n     1.504  0.0115     1.504  0.0115
+CDN         PA1         OA3      SINGLE       n     1.504  0.0115     1.504  0.0115
+CDN         OA5         CA3      SINGLE       n     1.454  0.0165     1.454  0.0165
+CDN         OA2         CA2      SINGLE       n     1.454  0.0165     1.454  0.0165
+CDN         CA3         CA4      SINGLE       n     1.512  0.0104     1.512  0.0104
+CDN         CA4         CA6      SINGLE       n     1.512  0.0104     1.512  0.0104
+CDN         CA4         OA6      SINGLE       n     1.436  0.0134     1.436  0.0134
+CDN         CA6         OA8      SINGLE       n     1.432  0.0100     1.432  0.0100
+CDN         OA8         CA7      SINGLE       n     1.409  0.0146     1.409  0.0146
+CDN         OA9         CA7      SINGLE       n     1.421  0.0162     1.421  0.0162
+CDN         CA7         C31      SINGLE       n     1.519  0.0200     1.519  0.0200
+CDN         C31         C32      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C32         C33      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C33         C34      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C34         C35      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C35         C36      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C36         C37      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C37         C38      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C38         C39      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C39         C40      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C40         C41      SINGLE       n     1.507  0.0200     1.507  0.0200
+CDN         C41         C42      SINGLE       n     1.510  0.0200     1.510  0.0200
+CDN         OA6         CA5      SINGLE       n     1.409  0.0146     1.409  0.0146
+CDN         OA7         CA5      SINGLE       n     1.421  0.0162     1.421  0.0162
+CDN         CA5         C11      SINGLE       n     1.519  0.0200     1.519  0.0200
+CDN         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C12         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C16         C17      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C17         C18      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C18         C19      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C19         C20      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C20         C21      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C21         C22      SINGLE       n     1.509  0.0200     1.509  0.0200
+CDN         C22         C23      SINGLE       n     1.507  0.0200     1.507  0.0200
+CDN         C23         C24      SINGLE       n     1.510  0.0200     1.510  0.0200
+CDN          O1        HO11      SINGLE       n     0.970  0.0120     0.848  0.0200
+CDN         CB2        HB21      SINGLE       n     1.089  0.0100     0.980  0.0146
+CDN         CB2        HB22      SINGLE       n     1.089  0.0100     0.980  0.0146
+CDN          C1        HC11      SINGLE       n     1.089  0.0100     0.987  0.0186
+CDN         CB3        HB32      SINGLE       n     1.089  0.0100     0.980  0.0146
+CDN         CB3        HB33      SINGLE       n     1.089  0.0100     0.980  0.0146
+CDN         CB4        HB41      SINGLE       n     1.089  0.0100     0.992  0.0184
+CDN         CB6        HB61      SINGLE       n     1.089  0.0100     0.981  0.0174
+CDN         CB6        HB62      SINGLE       n     1.089  0.0100     0.981  0.0174
+CDN         OB9        HB91      SINGLE       n     0.970  0.0120     0.848  0.0200
+CDN         CB7        HB71      SINGLE       n     1.089  0.0100     0.993  0.0200
+CDN         C71        H711      SINGLE       n     1.089  0.0100     0.981  0.0160
+CDN         C71        H712      SINGLE       n     1.089  0.0100     0.981  0.0160
+CDN         C72        H721      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C72        H722      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C73        H731      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C73        H732      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C74        H741      SINGLE       n     1.089  0.0100     0.982  0.0155
+CDN         C74        H742      SINGLE       n     1.089  0.0100     0.982  0.0155
+CDN         C75        H751      SINGLE       n     1.089  0.0100     0.973  0.0157
+CDN         C75        H752      SINGLE       n     1.089  0.0100     0.973  0.0157
+CDN         C75        H753      SINGLE       n     1.089  0.0100     0.973  0.0157
+CDN         OB7        HB7O      SINGLE       n     0.970  0.0120     0.848  0.0200
+CDN         CB5        HB51      SINGLE       n     1.089  0.0100     0.993  0.0200
+CDN         C51        H511      SINGLE       n     1.089  0.0100     0.981  0.0160
+CDN         C51        H512      SINGLE       n     1.089  0.0100     0.981  0.0160
+CDN         C52        H521      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C52        H522      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C53        H531      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C53        H532      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C54        H541      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C54        H542      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C55        H551      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C55        H552      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C56        H561      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C56        H562      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C57        H571      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C57        H572      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C58        H581      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C58        H582      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C59        H591      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C59        H592      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C60        H601      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C60        H602      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C61        H611      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C61        H612      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C62        H621      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C62        H622      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C63        H631      SINGLE       n     1.089  0.0100     0.982  0.0155
+CDN         C63        H632      SINGLE       n     1.089  0.0100     0.982  0.0155
+CDN         C64        H641      SINGLE       n     1.089  0.0100     0.973  0.0157
+CDN         C64        H642      SINGLE       n     1.089  0.0100     0.973  0.0157
+CDN         C64        H643      SINGLE       n     1.089  0.0100     0.973  0.0157
+CDN         CA2        HA21      SINGLE       n     1.089  0.0100     0.980  0.0146
+CDN         CA2        HA22      SINGLE       n     1.089  0.0100     0.980  0.0146
+CDN         CA3        HA31      SINGLE       n     1.089  0.0100     0.980  0.0146
+CDN         CA3        HA32      SINGLE       n     1.089  0.0100     0.980  0.0146
+CDN         CA4        HA41      SINGLE       n     1.089  0.0100     0.992  0.0184
+CDN         CA6        HA61      SINGLE       n     1.089  0.0100     0.981  0.0174
+CDN         CA6        HA62      SINGLE       n     1.089  0.0100     0.981  0.0174
+CDN         OA9        HA91      SINGLE       n     0.970  0.0120     0.848  0.0200
+CDN         CA7        HA71      SINGLE       n     1.089  0.0100     0.993  0.0200
+CDN         C31        H311      SINGLE       n     1.089  0.0100     0.981  0.0160
+CDN         C31        H312      SINGLE       n     1.089  0.0100     0.981  0.0160
+CDN         C32        H321      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C32        H322      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C33        H331      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C33        H332      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C34        H341      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C34        H342      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C35        H351      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C35        H352      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C36        H361      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C36        H362      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C37        H371      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C37        H372      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C38        H381      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C38        H382      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C39        H391      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C39        H392      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C40        H401      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C40        H402      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C41        H411      SINGLE       n     1.089  0.0100     0.982  0.0155
+CDN         C41        H412      SINGLE       n     1.089  0.0100     0.982  0.0155
+CDN         C42        H421      SINGLE       n     1.089  0.0100     0.973  0.0157
+CDN         C42        H422      SINGLE       n     1.089  0.0100     0.973  0.0157
+CDN         C42        H423      SINGLE       n     1.089  0.0100     0.973  0.0157
+CDN         OA7        HA7O      SINGLE       n     0.970  0.0120     0.848  0.0200
+CDN         CA5        HA51      SINGLE       n     1.089  0.0100     0.993  0.0200
+CDN         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0160
+CDN         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0160
+CDN         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C18        H181      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C18        H182      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C19        H191      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C19        H192      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C20        H201      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C20        H202      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0163
+CDN         C23        H231      SINGLE       n     1.089  0.0100     0.982  0.0155
+CDN         C23        H232      SINGLE       n     1.089  0.0100     0.982  0.0155
+CDN         C24        H241      SINGLE       n     1.089  0.0100     0.973  0.0157
+CDN         C24        H242      SINGLE       n     1.089  0.0100     0.973  0.0157
+CDN         C24        H243      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CDN         OB5         PB2         OB2     102.789    2.10
+CDN         OB5         PB2         OB3     107.777    3.00
+CDN         OB5         PB2         OB4     107.777    3.00
+CDN         OB2         PB2         OB3     107.777    3.00
+CDN         OB2         PB2         OB4     107.777    3.00
+CDN         OB3         PB2         OB4     119.782    1.83
+CDN          C1          O1        HO11     107.936    3.00
+CDN         PB2         OB5         CB3     119.251    1.51
+CDN         PB2         OB2         CB2     119.251    1.51
+CDN         OB2         CB2          C1     109.438    2.56
+CDN         OB2         CB2        HB21     109.393    1.91
+CDN         OB2         CB2        HB22     109.393    1.91
+CDN          C1         CB2        HB21     109.582    1.50
+CDN          C1         CB2        HB22     109.582    1.50
+CDN        HB21         CB2        HB22     108.319    1.50
+CDN          O1          C1         CB2     109.314    1.96
+CDN          O1          C1         CA2     109.314    1.96
+CDN          O1          C1        HC11     108.721    1.50
+CDN         CB2          C1         CA2     113.504    1.50
+CDN         CB2          C1        HC11     108.656    1.50
+CDN         CA2          C1        HC11     108.656    1.50
+CDN         OB5         CB3         CB4     109.438    2.56
+CDN         OB5         CB3        HB32     109.393    1.91
+CDN         OB5         CB3        HB33     109.393    1.91
+CDN         CB4         CB3        HB32     109.582    1.50
+CDN         CB4         CB3        HB33     109.582    1.50
+CDN        HB32         CB3        HB33     108.319    1.50
+CDN         CB3         CB4         CB6     113.504    1.50
+CDN         CB3         CB4         OB6     108.081    2.47
+CDN         CB3         CB4        HB41     108.656    1.50
+CDN         CB6         CB4         OB6     108.081    2.47
+CDN         CB6         CB4        HB41     108.656    1.50
+CDN         OB6         CB4        HB41     108.915    1.50
+CDN         CB4         CB6         OB8     109.289    2.60
+CDN         CB4         CB6        HB61     110.376    1.50
+CDN         CB4         CB6        HB62     110.376    1.50
+CDN         OB8         CB6        HB61     109.668    1.50
+CDN         OB8         CB6        HB62     109.668    1.50
+CDN        HB61         CB6        HB62     108.601    1.50
+CDN         CB6         OB8         CB7     114.440    1.60
+CDN         CB7         OB9        HB91     109.233    2.58
+CDN         OB8         CB7         OB9     111.904    1.92
+CDN         OB8         CB7         C71     109.324    2.90
+CDN         OB8         CB7        HB71     109.306    1.50
+CDN         OB9         CB7         C71     109.482    3.00
+CDN         OB9         CB7        HB71     108.816    1.50
+CDN         C71         CB7        HB71     109.778    2.07
+CDN         CB7         C71         C72     111.094    2.85
+CDN         CB7         C71        H711     108.875    1.50
+CDN         CB7         C71        H712     108.875    1.50
+CDN         C72         C71        H711     108.801    1.50
+CDN         C72         C71        H712     108.801    1.50
+CDN        H711         C71        H712     107.715    1.50
+CDN         C71         C72         C73     114.183    2.57
+CDN         C71         C72        H721     108.801    1.50
+CDN         C71         C72        H722     108.801    1.50
+CDN         C73         C72        H721     108.698    1.50
+CDN         C73         C72        H722     108.698    1.50
+CDN        H721         C72        H722     107.646    1.50
+CDN         C72         C73         C74     114.362    3.00
+CDN         C72         C73        H731     108.698    1.50
+CDN         C72         C73        H732     108.698    1.50
+CDN         C74         C73        H731     108.653    1.50
+CDN         C74         C73        H732     108.653    1.50
+CDN        H731         C73        H732     107.646    1.50
+CDN         C73         C74         C75     113.719    3.00
+CDN         C73         C74        H741     108.758    1.50
+CDN         C73         C74        H742     108.758    1.50
+CDN         C75         C74        H741     108.918    1.50
+CDN         C75         C74        H742     108.918    1.50
+CDN        H741         C74        H742     107.763    1.50
+CDN         C74         C75        H751     109.554    1.50
+CDN         C74         C75        H752     109.554    1.50
+CDN         C74         C75        H753     109.554    1.50
+CDN        H751         C75        H752     109.380    1.50
+CDN        H751         C75        H753     109.380    1.50
+CDN        H752         C75        H753     109.380    1.50
+CDN         CB4         OB6         CB5     113.350    3.00
+CDN         CB5         OB7        HB7O     109.233    2.58
+CDN         OB6         CB5         OB7     111.904    1.92
+CDN         OB6         CB5         C51     109.324    2.90
+CDN         OB6         CB5        HB51     109.306    1.50
+CDN         OB7         CB5         C51     109.482    3.00
+CDN         OB7         CB5        HB51     108.816    1.50
+CDN         C51         CB5        HB51     109.778    2.07
+CDN         CB5         C51         C52     111.094    2.85
+CDN         CB5         C51        H511     108.875    1.50
+CDN         CB5         C51        H512     108.875    1.50
+CDN         C52         C51        H511     108.801    1.50
+CDN         C52         C51        H512     108.801    1.50
+CDN        H511         C51        H512     107.715    1.50
+CDN         C51         C52         C53     114.183    2.57
+CDN         C51         C52        H521     108.801    1.50
+CDN         C51         C52        H522     108.801    1.50
+CDN         C53         C52        H521     108.698    1.50
+CDN         C53         C52        H522     108.698    1.50
+CDN        H521         C52        H522     107.646    1.50
+CDN         C52         C53         C54     114.243    1.69
+CDN         C52         C53        H531     108.698    1.50
+CDN         C52         C53        H532     108.698    1.50
+CDN         C54         C53        H531     108.698    1.50
+CDN         C54         C53        H532     108.698    1.50
+CDN        H531         C53        H532     107.646    1.50
+CDN         C53         C54         C55     114.243    1.69
+CDN         C53         C54        H541     108.698    1.50
+CDN         C53         C54        H542     108.698    1.50
+CDN         C55         C54        H541     108.698    1.50
+CDN         C55         C54        H542     108.698    1.50
+CDN        H541         C54        H542     107.646    1.50
+CDN         C54         C55         C56     114.243    1.69
+CDN         C54         C55        H551     108.698    1.50
+CDN         C54         C55        H552     108.698    1.50
+CDN         C56         C55        H551     108.698    1.50
+CDN         C56         C55        H552     108.698    1.50
+CDN        H551         C55        H552     107.646    1.50
+CDN         C55         C56         C57     114.243    1.69
+CDN         C55         C56        H561     108.698    1.50
+CDN         C55         C56        H562     108.698    1.50
+CDN         C57         C56        H561     108.698    1.50
+CDN         C57         C56        H562     108.698    1.50
+CDN        H561         C56        H562     107.646    1.50
+CDN         C56         C57         C58     114.243    1.69
+CDN         C56         C57        H571     108.698    1.50
+CDN         C56         C57        H572     108.698    1.50
+CDN         C58         C57        H571     108.698    1.50
+CDN         C58         C57        H572     108.698    1.50
+CDN        H571         C57        H572     107.646    1.50
+CDN         C57         C58         C59     114.243    1.69
+CDN         C57         C58        H581     108.698    1.50
+CDN         C57         C58        H582     108.698    1.50
+CDN         C59         C58        H581     108.698    1.50
+CDN         C59         C58        H582     108.698    1.50
+CDN        H581         C58        H582     107.646    1.50
+CDN         C58         C59         C60     114.243    1.69
+CDN         C58         C59        H591     108.698    1.50
+CDN         C58         C59        H592     108.698    1.50
+CDN         C60         C59        H591     108.698    1.50
+CDN         C60         C59        H592     108.698    1.50
+CDN        H591         C59        H592     107.646    1.50
+CDN         C59         C60         C61     114.243    1.69
+CDN         C59         C60        H601     108.698    1.50
+CDN         C59         C60        H602     108.698    1.50
+CDN         C61         C60        H601     108.698    1.50
+CDN         C61         C60        H602     108.698    1.50
+CDN        H601         C60        H602     107.646    1.50
+CDN         C60         C61         C62     114.243    1.69
+CDN         C60         C61        H611     108.698    1.50
+CDN         C60         C61        H612     108.698    1.50
+CDN         C62         C61        H611     108.698    1.50
+CDN         C62         C61        H612     108.698    1.50
+CDN        H611         C61        H612     107.646    1.50
+CDN         C61         C62         C63     114.362    3.00
+CDN         C61         C62        H621     108.698    1.50
+CDN         C61         C62        H622     108.698    1.50
+CDN         C63         C62        H621     108.653    1.50
+CDN         C63         C62        H622     108.653    1.50
+CDN        H621         C62        H622     107.646    1.50
+CDN         C62         C63         C64     113.719    3.00
+CDN         C62         C63        H631     108.758    1.50
+CDN         C62         C63        H632     108.758    1.50
+CDN         C64         C63        H631     108.918    1.50
+CDN         C64         C63        H632     108.918    1.50
+CDN        H631         C63        H632     107.763    1.50
+CDN         C63         C64        H641     109.554    1.50
+CDN         C63         C64        H642     109.554    1.50
+CDN         C63         C64        H643     109.554    1.50
+CDN        H641         C64        H642     109.380    1.50
+CDN        H641         C64        H643     109.380    1.50
+CDN        H642         C64        H643     109.380    1.50
+CDN         OA5         PA1         OA2     102.789    2.10
+CDN         OA5         PA1         OA4     107.777    3.00
+CDN         OA5         PA1         OA3     107.777    3.00
+CDN         OA2         PA1         OA4     107.777    3.00
+CDN         OA2         PA1         OA3     107.777    3.00
+CDN         OA4         PA1         OA3     119.782    1.83
+CDN         PA1         OA5         CA3     119.251    1.51
+CDN         PA1         OA2         CA2     119.251    1.51
+CDN          C1         CA2         OA2     109.438    2.56
+CDN          C1         CA2        HA21     109.582    1.50
+CDN          C1         CA2        HA22     109.582    1.50
+CDN         OA2         CA2        HA21     109.393    1.91
+CDN         OA2         CA2        HA22     109.393    1.91
+CDN        HA21         CA2        HA22     108.319    1.50
+CDN         OA5         CA3         CA4     109.438    2.56
+CDN         OA5         CA3        HA31     109.393    1.91
+CDN         OA5         CA3        HA32     109.393    1.91
+CDN         CA4         CA3        HA31     109.582    1.50
+CDN         CA4         CA3        HA32     109.582    1.50
+CDN        HA31         CA3        HA32     108.319    1.50
+CDN         CA3         CA4         CA6     113.504    1.50
+CDN         CA3         CA4         OA6     108.081    2.47
+CDN         CA3         CA4        HA41     108.656    1.50
+CDN         CA6         CA4         OA6     108.081    2.47
+CDN         CA6         CA4        HA41     108.656    1.50
+CDN         OA6         CA4        HA41     108.915    1.50
+CDN         CA4         CA6         OA8     109.289    2.60
+CDN         CA4         CA6        HA61     110.376    1.50
+CDN         CA4         CA6        HA62     110.376    1.50
+CDN         OA8         CA6        HA61     109.668    1.50
+CDN         OA8         CA6        HA62     109.668    1.50
+CDN        HA61         CA6        HA62     108.601    1.50
+CDN         CA6         OA8         CA7     114.440    1.60
+CDN         CA7         OA9        HA91     109.233    2.58
+CDN         OA8         CA7         OA9     111.904    1.92
+CDN         OA8         CA7         C31     109.324    2.90
+CDN         OA8         CA7        HA71     109.306    1.50
+CDN         OA9         CA7         C31     109.482    3.00
+CDN         OA9         CA7        HA71     108.816    1.50
+CDN         C31         CA7        HA71     109.778    2.07
+CDN         CA7         C31         C32     111.094    2.85
+CDN         CA7         C31        H311     108.875    1.50
+CDN         CA7         C31        H312     108.875    1.50
+CDN         C32         C31        H311     108.801    1.50
+CDN         C32         C31        H312     108.801    1.50
+CDN        H311         C31        H312     107.715    1.50
+CDN         C31         C32         C33     114.183    2.57
+CDN         C31         C32        H321     108.801    1.50
+CDN         C31         C32        H322     108.801    1.50
+CDN         C33         C32        H321     108.698    1.50
+CDN         C33         C32        H322     108.698    1.50
+CDN        H321         C32        H322     107.646    1.50
+CDN         C32         C33         C34     114.243    1.69
+CDN         C32         C33        H331     108.698    1.50
+CDN         C32         C33        H332     108.698    1.50
+CDN         C34         C33        H331     108.698    1.50
+CDN         C34         C33        H332     108.698    1.50
+CDN        H331         C33        H332     107.646    1.50
+CDN         C33         C34         C35     114.243    1.69
+CDN         C33         C34        H341     108.698    1.50
+CDN         C33         C34        H342     108.698    1.50
+CDN         C35         C34        H341     108.698    1.50
+CDN         C35         C34        H342     108.698    1.50
+CDN        H341         C34        H342     107.646    1.50
+CDN         C34         C35         C36     114.243    1.69
+CDN         C34         C35        H351     108.698    1.50
+CDN         C34         C35        H352     108.698    1.50
+CDN         C36         C35        H351     108.698    1.50
+CDN         C36         C35        H352     108.698    1.50
+CDN        H351         C35        H352     107.646    1.50
+CDN         C35         C36         C37     114.243    1.69
+CDN         C35         C36        H361     108.698    1.50
+CDN         C35         C36        H362     108.698    1.50
+CDN         C37         C36        H361     108.698    1.50
+CDN         C37         C36        H362     108.698    1.50
+CDN        H361         C36        H362     107.646    1.50
+CDN         C36         C37         C38     114.243    1.69
+CDN         C36         C37        H371     108.698    1.50
+CDN         C36         C37        H372     108.698    1.50
+CDN         C38         C37        H371     108.698    1.50
+CDN         C38         C37        H372     108.698    1.50
+CDN        H371         C37        H372     107.646    1.50
+CDN         C37         C38         C39     114.243    1.69
+CDN         C37         C38        H381     108.698    1.50
+CDN         C37         C38        H382     108.698    1.50
+CDN         C39         C38        H381     108.698    1.50
+CDN         C39         C38        H382     108.698    1.50
+CDN        H381         C38        H382     107.646    1.50
+CDN         C38         C39         C40     114.243    1.69
+CDN         C38         C39        H391     108.698    1.50
+CDN         C38         C39        H392     108.698    1.50
+CDN         C40         C39        H391     108.698    1.50
+CDN         C40         C39        H392     108.698    1.50
+CDN        H391         C39        H392     107.646    1.50
+CDN         C39         C40         C41     114.362    3.00
+CDN         C39         C40        H401     108.698    1.50
+CDN         C39         C40        H402     108.698    1.50
+CDN         C41         C40        H401     108.653    1.50
+CDN         C41         C40        H402     108.653    1.50
+CDN        H401         C40        H402     107.646    1.50
+CDN         C40         C41         C42     113.719    3.00
+CDN         C40         C41        H411     108.758    1.50
+CDN         C40         C41        H412     108.758    1.50
+CDN         C42         C41        H411     108.918    1.50
+CDN         C42         C41        H412     108.918    1.50
+CDN        H411         C41        H412     107.763    1.50
+CDN         C41         C42        H421     109.554    1.50
+CDN         C41         C42        H422     109.554    1.50
+CDN         C41         C42        H423     109.554    1.50
+CDN        H421         C42        H422     109.380    1.50
+CDN        H421         C42        H423     109.380    1.50
+CDN        H422         C42        H423     109.380    1.50
+CDN         CA4         OA6         CA5     113.350    3.00
+CDN         CA5         OA7        HA7O     109.233    2.58
+CDN         OA6         CA5         OA7     111.904    1.92
+CDN         OA6         CA5         C11     109.324    2.90
+CDN         OA6         CA5        HA51     109.306    1.50
+CDN         OA7         CA5         C11     109.482    3.00
+CDN         OA7         CA5        HA51     108.816    1.50
+CDN         C11         CA5        HA51     109.778    2.07
+CDN         CA5         C11         C12     111.094    2.85
+CDN         CA5         C11        H111     108.875    1.50
+CDN         CA5         C11        H112     108.875    1.50
+CDN         C12         C11        H111     108.801    1.50
+CDN         C12         C11        H112     108.801    1.50
+CDN        H111         C11        H112     107.715    1.50
+CDN         C11         C12         C13     114.183    2.57
+CDN         C11         C12        H121     108.801    1.50
+CDN         C11         C12        H122     108.801    1.50
+CDN         C13         C12        H121     108.698    1.50
+CDN         C13         C12        H122     108.698    1.50
+CDN        H121         C12        H122     107.646    1.50
+CDN         C12         C13         C14     114.243    1.69
+CDN         C12         C13        H131     108.698    1.50
+CDN         C12         C13        H132     108.698    1.50
+CDN         C14         C13        H131     108.698    1.50
+CDN         C14         C13        H132     108.698    1.50
+CDN        H131         C13        H132     107.646    1.50
+CDN         C13         C14         C15     114.243    1.69
+CDN         C13         C14        H141     108.698    1.50
+CDN         C13         C14        H142     108.698    1.50
+CDN         C15         C14        H141     108.698    1.50
+CDN         C15         C14        H142     108.698    1.50
+CDN        H141         C14        H142     107.646    1.50
+CDN         C14         C15         C16     114.243    1.69
+CDN         C14         C15        H151     108.698    1.50
+CDN         C14         C15        H152     108.698    1.50
+CDN         C16         C15        H151     108.698    1.50
+CDN         C16         C15        H152     108.698    1.50
+CDN        H151         C15        H152     107.646    1.50
+CDN         C15         C16         C17     114.243    1.69
+CDN         C15         C16        H161     108.698    1.50
+CDN         C15         C16        H162     108.698    1.50
+CDN         C17         C16        H161     108.698    1.50
+CDN         C17         C16        H162     108.698    1.50
+CDN        H161         C16        H162     107.646    1.50
+CDN         C16         C17         C18     114.243    1.69
+CDN         C16         C17        H171     108.698    1.50
+CDN         C16         C17        H172     108.698    1.50
+CDN         C18         C17        H171     108.698    1.50
+CDN         C18         C17        H172     108.698    1.50
+CDN        H171         C17        H172     107.646    1.50
+CDN         C17         C18         C19     114.243    1.69
+CDN         C17         C18        H181     108.698    1.50
+CDN         C17         C18        H182     108.698    1.50
+CDN         C19         C18        H181     108.698    1.50
+CDN         C19         C18        H182     108.698    1.50
+CDN        H181         C18        H182     107.646    1.50
+CDN         C18         C19         C20     114.243    1.69
+CDN         C18         C19        H191     108.698    1.50
+CDN         C18         C19        H192     108.698    1.50
+CDN         C20         C19        H191     108.698    1.50
+CDN         C20         C19        H192     108.698    1.50
+CDN        H191         C19        H192     107.646    1.50
+CDN         C19         C20         C21     114.243    1.69
+CDN         C19         C20        H201     108.698    1.50
+CDN         C19         C20        H202     108.698    1.50
+CDN         C21         C20        H201     108.698    1.50
+CDN         C21         C20        H202     108.698    1.50
+CDN        H201         C20        H202     107.646    1.50
+CDN         C20         C21         C22     114.243    1.69
+CDN         C20         C21        H211     108.698    1.50
+CDN         C20         C21        H212     108.698    1.50
+CDN         C22         C21        H211     108.698    1.50
+CDN         C22         C21        H212     108.698    1.50
+CDN        H211         C21        H212     107.646    1.50
+CDN         C21         C22         C23     114.362    3.00
+CDN         C21         C22        H221     108.698    1.50
+CDN         C21         C22        H222     108.698    1.50
+CDN         C23         C22        H221     108.653    1.50
+CDN         C23         C22        H222     108.653    1.50
+CDN        H221         C22        H222     107.646    1.50
+CDN         C22         C23         C24     113.719    3.00
+CDN         C22         C23        H231     108.758    1.50
+CDN         C22         C23        H232     108.758    1.50
+CDN         C24         C23        H231     108.918    1.50
+CDN         C24         C23        H232     108.918    1.50
+CDN        H231         C23        H232     107.763    1.50
+CDN         C23         C24        H241     109.554    1.50
+CDN         C23         C24        H242     109.554    1.50
+CDN         C23         C24        H243     109.554    1.50
+CDN        H241         C24        H242     109.380    1.50
+CDN        H241         C24        H243     109.380    1.50
+CDN        H242         C24        H243     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CDN             sp3_sp3_2         CB3         OB5         PB2         OB2     -60.000    10.0     3
+CDN             sp3_sp3_4         CB2         OB2         PB2         OB5     180.000    10.0     3
+CDN            sp3_sp3_55         CB4         CB6         OB8         CB7     180.000    10.0     3
+CDN            sp3_sp3_58         OB9         CB7         OB8         CB6     180.000    10.0     3
+CDN            sp3_sp3_61         OB8         CB7         OB9        HB91     180.000    10.0     3
+CDN            sp3_sp3_64         C72         C71         CB7         OB8     180.000    10.0     3
+CDN            sp3_sp3_73         CB7         C71         C72         C73     180.000    10.0     3
+CDN            sp3_sp3_82         C71         C72         C73         C74     180.000    10.0     3
+CDN            sp3_sp3_91         C72         C73         C74         C75     180.000    10.0     3
+CDN           sp3_sp3_100         C73         C74         C75        H751     180.000    10.0     3
+CDN           sp3_sp3_109         OB7         CB5         OB6         CB4     180.000    10.0     3
+CDN             sp3_sp3_7         CB2          C1          O1        HO11     180.000    10.0     3
+CDN           sp3_sp3_112         OB6         CB5         OB7        HB7O     180.000    10.0     3
+CDN           sp3_sp3_115         C52         C51         CB5         OB6     180.000    10.0     3
+CDN           sp3_sp3_124         CB5         C51         C52         C53     180.000    10.0     3
+CDN           sp3_sp3_133         C51         C52         C53         C54     180.000    10.0     3
+CDN           sp3_sp3_142         C52         C53         C54         C55     180.000    10.0     3
+CDN           sp3_sp3_151         C53         C54         C55         C56     180.000    10.0     3
+CDN           sp3_sp3_160         C54         C55         C56         C57     180.000    10.0     3
+CDN           sp3_sp3_169         C55         C56         C57         C58     180.000    10.0     3
+CDN           sp3_sp3_178         C56         C57         C58         C59     180.000    10.0     3
+CDN           sp3_sp3_187         C57         C58         C59         C60     180.000    10.0     3
+CDN            sp3_sp3_10         CB4         CB3         OB5         PB2     180.000    10.0     3
+CDN           sp3_sp3_196         C58         C59         C60         C61     180.000    10.0     3
+CDN           sp3_sp3_205         C59         C60         C61         C62     180.000    10.0     3
+CDN           sp3_sp3_214         C60         C61         C62         C63     180.000    10.0     3
+CDN           sp3_sp3_223         C61         C62         C63         C64     180.000    10.0     3
+CDN           sp3_sp3_232         C62         C63         C64        H641     180.000    10.0     3
+CDN           sp3_sp3_242         CA3         OA5         PA1         OA2     -60.000    10.0     3
+CDN           sp3_sp3_244         CA2         OA2         PA1         OA5     180.000    10.0     3
+CDN           sp3_sp3_247         CA4         CA3         OA5         PA1     180.000    10.0     3
+CDN           sp3_sp3_250          C1         CA2         OA2         PA1     180.000    10.0     3
+CDN            sp3_sp3_13          C1         CB2         OB2         PB2     180.000    10.0     3
+CDN           sp3_sp3_253         OA5         CA3         CA4         CA6     180.000    10.0     3
+CDN           sp3_sp3_262         CA3         CA4         CA6         OA8     180.000    10.0     3
+CDN           sp3_sp3_271         CA3         CA4         OA6         CA5     180.000    10.0     3
+CDN           sp3_sp3_274         CA4         CA6         OA8         CA7     180.000    10.0     3
+CDN           sp3_sp3_277         OA9         CA7         OA8         CA6     180.000    10.0     3
+CDN           sp3_sp3_280         OA8         CA7         OA9        HA91     180.000    10.0     3
+CDN           sp3_sp3_283         C32         C31         CA7         OA8     180.000    10.0     3
+CDN           sp3_sp3_292         CA7         C31         C32         C33     180.000    10.0     3
+CDN           sp3_sp3_301         C31         C32         C33         C34     180.000    10.0     3
+CDN           sp3_sp3_310         C32         C33         C34         C35     180.000    10.0     3
+CDN           sp3_sp3_319         C33         C34         C35         C36     180.000    10.0     3
+CDN           sp3_sp3_328         C34         C35         C36         C37     180.000    10.0     3
+CDN           sp3_sp3_337         C35         C36         C37         C38     180.000    10.0     3
+CDN           sp3_sp3_346         C36         C37         C38         C39     180.000    10.0     3
+CDN           sp3_sp3_355         C37         C38         C39         C40     180.000    10.0     3
+CDN           sp3_sp3_364         C38         C39         C40         C41     180.000    10.0     3
+CDN           sp3_sp3_373         C39         C40         C41         C42     180.000    10.0     3
+CDN           sp3_sp3_382         C40         C41         C42        H421     180.000    10.0     3
+CDN           sp3_sp3_391         OA7         CA5         OA6         CA4     180.000    10.0     3
+CDN           sp3_sp3_394         OA6         CA5         OA7        HA7O     180.000    10.0     3
+CDN           sp3_sp3_397         C12         C11         CA5         OA6     180.000    10.0     3
+CDN           sp3_sp3_406         CA5         C11         C12         C13     180.000    10.0     3
+CDN           sp3_sp3_415         C11         C12         C13         C14     180.000    10.0     3
+CDN           sp3_sp3_424         C12         C13         C14         C15     180.000    10.0     3
+CDN           sp3_sp3_433         C13         C14         C15         C16     180.000    10.0     3
+CDN           sp3_sp3_442         C14         C15         C16         C17     180.000    10.0     3
+CDN           sp3_sp3_451         C15         C16         C17         C18     180.000    10.0     3
+CDN           sp3_sp3_460         C16         C17         C18         C19     180.000    10.0     3
+CDN            sp3_sp3_16          O1          C1         CB2         OB2     180.000    10.0     3
+CDN           sp3_sp3_469         C17         C18         C19         C20     180.000    10.0     3
+CDN           sp3_sp3_478         C18         C19         C20         C21     180.000    10.0     3
+CDN           sp3_sp3_487         C19         C20         C21         C22     180.000    10.0     3
+CDN           sp3_sp3_496         C20         C21         C22         C23     180.000    10.0     3
+CDN           sp3_sp3_505         C21         C22         C23         C24     180.000    10.0     3
+CDN           sp3_sp3_514         C22         C23         C24        H241     180.000    10.0     3
+CDN            sp3_sp3_25          O1          C1         CA2         OA2     180.000    10.0     3
+CDN            sp3_sp3_34         OB5         CB3         CB4         CB6     180.000    10.0     3
+CDN            sp3_sp3_43         CB3         CB4         CB6         OB8     180.000    10.0     3
+CDN            sp3_sp3_52         CB3         CB4         OB6         CB5     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CDN    chir_1    PB2    OB5    OB2    OB3    both
+CDN    chir_2    C1    O1    CA2    CB2    positive
+CDN    chir_3    CB4    OB6    CB3    CB6    negative
+CDN    chir_4    CB7    OB8    OB9    C71    negative
+CDN    chir_5    CB5    OB6    OB7    C51    negative
+CDN    chir_6    PA1    OA5    OA2    OA3    both
+CDN    chir_7    CA4    OA6    CA3    CA6    negative
+CDN    chir_8    CA7    OA8    OA9    C31    negative
+CDN    chir_9    CA5    OA6    OA7    C11    positive
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CDN           SMILES              ACDLabs 10.04                                                                                                                                                                                                                           O=P(O)(OCC(OC(O)CCCCCCCCCCCCCC)COC(O)CCCCC)OCC(O)COP(=O)(OCC(OC(O)CCCCCCCCCCCCCC)COC(O)CCCCCCCCCCCC)O
+CDN SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                        CCCCCCCCCCCCCC[C@H](O)O[C@H](CO[C@H](O)CCCCC)CO[P@](O)(=O)OC[C@H](O)CO[P@](O)(=O)OC[C@@H](CO[C@H](O)CCCCCCCCCCCC)O[C@H](O)CCCCCCCCCCCCCC
+CDN           SMILES               CACTVS 3.341                                                                                                                                                                                                  CCCCCCCCCCCCCC[CH](O)O[CH](CO[CH](O)CCCCC)CO[P](O)(=O)OC[CH](O)CO[P](O)(=O)OC[CH](CO[CH](O)CCCCCCCCCCCC)O[CH](O)CCCCCCCCCCCCCC
+CDN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                CCCCCCCCCCCCCCC(O)O[C@H](COC(CCCCC)O)CO[P@@](=O)(O)OC[C@@H](CO[P@@](=O)(O)OC[C@@H](COC(CCCCCCCCCCCC)O)O[C@@H](CCCCCCCCCCCCCC)O)O
+CDN           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                           CCCCCCCCCCCCCCC(O)OC(COC(CCCCC)O)COP(=O)(O)OCC(COP(=O)(O)OCC(COC(CCCCCCCCCCCC)O)OC(CCCCCCCCCCCCCC)O)O
+CDN            InChI                InChI  1.03 InChI=1S/C58H120O17P2/c1-5-9-13-16-19-22-25-27-30-33-36-40-44-57(62)74-53(48-68-55(60)42-38-12-8-4)50-72-76(64,65)70-46-52(59)47-71-77(66,67)73-51-54(49-69-56(61)43-39-35-32-29-24-21-18-15-11-7-3)75-58(63)45-41-37-34-31-28-26-23-20-17-14-10-6-2/h52-63H,5-51H2,1-4H3,(H,64,65)(H,66,67)/t52-,53+,54+,55?,56?,57?,58-/m0/s1
+CDN         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                     GKRASOJOCMJQMF-DUXRJKJQSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CDN acedrg               243         "dictionary generator"                  
+CDN acedrg_database      11          "data source"                           
+CDN rdkit                2017.03.2   "Chemoinformatics tool"
+CDN refmac5              5.8.0238    "optimization tool"                     

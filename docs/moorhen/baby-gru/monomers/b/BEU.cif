@@ -1,0 +1,240 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BEU     BEU      N-[(1S,2R,5R,6R)-2-AMINO-5,6-DIHYDROXY-4-(HYDROXYMETHYL)CYCLOHEX-3-EN-1-YL]ACETAMIDE     NON-POLYMER     32     15     .     
+#
+data_comp_BEU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BEU     "C'"    C       CH2     0       4.131       -11.915     0.806       
+BEU     "O1'"   O       OH1     0       4.760       -11.982     -0.463      
+BEU     C1      C       CR6     0       5.128       -11.826     1.935       
+BEU     C2      C       CR16    0       5.017       -12.590     3.021       
+BEU     C3      C       CH1     0       5.963       -12.569     4.194       
+BEU     N3      N       NT3     1       6.268       -13.981     4.579       
+BEU     C4      C       CH1     0       7.265       -11.795     3.883       
+BEU     N4      N       NH1     0       8.067       -11.548     5.071       
+BEU     "C4'"   C       C       0       7.728       -10.774     6.113       
+BEU     "O4'"   O       O       0       6.660       -10.172     6.181       
+BEU     CM4     C       CH3     0       8.740       -10.686     7.215       
+BEU     C5      C       CH1     0       6.962       -10.516     3.089       
+BEU     O5      O       OH1     0       8.177       -9.807      2.825       
+BEU     C6      C       CH1     0       6.267       -10.840     1.768       
+BEU     O4      O       OH1     0       5.794       -9.635      1.162       
+BEU     "H'C1"  H       H       0       3.559       -12.706     0.916       
+BEU     "H'C2"  H       H       0       3.549       -11.124     0.829       
+BEU     "H1'"   H       H       0       4.185       -12.218     -1.029      
+BEU     H2      H       H       0       4.290       -13.193     3.067       
+BEU     H3      H       H       0       5.502       -12.130     4.946       
+BEU     H3N1    H       H       0       6.833       -13.981     5.289       
+BEU     H3N2    H       H       0       6.658       -14.403     3.878       
+BEU     H1      H       H       0       5.497       -14.403     4.802       
+BEU     H4      H       H       0       7.810       -12.373     3.276       
+BEU     HA      H       H       0       8.847       -11.948     5.099       
+BEU     HM41    H       H       0       8.396       -10.125     7.929       
+BEU     HM42    H       H       0       9.562       -10.300     6.871       
+BEU     HM43    H       H       0       8.921       -11.575     7.561       
+BEU     H5      H       H       0       6.370       -9.938      3.628       
+BEU     HB      H       H       0       7.977       -9.022      2.600       
+BEU     H6      H       H       0       6.933       -11.238     1.154       
+BEU     HC      H       H       0       5.224       -9.269      1.665       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BEU        "C'"       "O1'"      SINGLE       n     1.417  0.0163     1.417  0.0163
+BEU        "C'"          C1      SINGLE       n     1.507  0.0100     1.507  0.0100
+BEU          C1          C2      DOUBLE       n     1.329  0.0123     1.329  0.0123
+BEU          C1          C6      SINGLE       n     1.510  0.0100     1.510  0.0100
+BEU          C2          C3      SINGLE       n     1.506  0.0100     1.506  0.0100
+BEU          C3          N3      SINGLE       n     1.494  0.0104     1.494  0.0104
+BEU          C3          C4      SINGLE       n     1.543  0.0100     1.543  0.0100
+BEU          C4          N4      SINGLE       n     1.449  0.0100     1.449  0.0100
+BEU          C4          C5      SINGLE       n     1.532  0.0100     1.532  0.0100
+BEU          N4       "C4'"      SINGLE       n     1.334  0.0119     1.334  0.0119
+BEU       "C4'"       "O4'"      DOUBLE       n     1.227  0.0100     1.227  0.0100
+BEU       "C4'"         CM4      SINGLE       n     1.498  0.0100     1.498  0.0100
+BEU          C5          O5      SINGLE       n     1.431  0.0107     1.431  0.0107
+BEU          C5          C6      SINGLE       n     1.523  0.0120     1.523  0.0120
+BEU          C6          O4      SINGLE       n     1.427  0.0125     1.427  0.0125
+BEU        "C'"      "H'C1"      SINGLE       n     1.089  0.0100     0.982  0.0119
+BEU        "C'"      "H'C2"      SINGLE       n     1.089  0.0100     0.982  0.0119
+BEU       "O1'"       "H1'"      SINGLE       n     0.970  0.0120     0.841  0.0200
+BEU          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0102
+BEU          C3          H3      SINGLE       n     1.089  0.0100     0.988  0.0200
+BEU          N3        H3N1      SINGLE       n     1.036  0.0160     0.907  0.0200
+BEU          N3        H3N2      SINGLE       n     1.036  0.0160     0.907  0.0200
+BEU          N3          H1      SINGLE       n     1.036  0.0160     0.907  0.0200
+BEU          C4          H4      SINGLE       n     1.089  0.0100     1.000  0.0100
+BEU          N4          HA      SINGLE       n     1.016  0.0100     0.876  0.0200
+BEU         CM4        HM41      SINGLE       n     1.089  0.0100     0.971  0.0140
+BEU         CM4        HM42      SINGLE       n     1.089  0.0100     0.971  0.0140
+BEU         CM4        HM43      SINGLE       n     1.089  0.0100     0.971  0.0140
+BEU          C5          H5      SINGLE       n     1.089  0.0100     0.988  0.0151
+BEU          O5          HB      SINGLE       n     0.970  0.0120     0.841  0.0200
+BEU          C6          H6      SINGLE       n     1.089  0.0100     0.989  0.0200
+BEU          O4          HC      SINGLE       n     0.970  0.0120     0.843  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BEU       "O1'"        "C'"          C1     112.455    1.50
+BEU       "O1'"        "C'"      "H'C1"     109.147    1.50
+BEU       "O1'"        "C'"      "H'C2"     109.147    1.50
+BEU          C1        "C'"      "H'C1"     110.379    3.00
+BEU          C1        "C'"      "H'C2"     110.379    3.00
+BEU      "H'C1"        "C'"      "H'C2"     107.920    1.50
+BEU        "C'"       "O1'"       "H1'"     108.166    2.70
+BEU        "C'"          C1          C2     121.553    2.28
+BEU        "C'"          C1          C6     116.516    2.44
+BEU          C2          C1          C6     121.931    1.50
+BEU          C1          C2          C3     125.225    1.50
+BEU          C1          C2          H2     117.731    1.92
+BEU          C3          C2          H2     117.045    1.50
+BEU          C2          C3          N3     107.591    1.82
+BEU          C2          C3          C4     111.539    2.18
+BEU          C2          C3          H3     107.020    1.98
+BEU          N3          C3          C4     110.019    1.64
+BEU          N3          C3          H3     108.032    1.50
+BEU          C4          C3          H3     107.334    1.66
+BEU          C3          N3        H3N1     108.740    2.04
+BEU          C3          N3        H3N2     108.740    2.04
+BEU          C3          N3          H1     108.740    2.04
+BEU        H3N1          N3        H3N2     109.122    2.58
+BEU        H3N1          N3          H1     109.122    2.58
+BEU        H3N2          N3          H1     109.122    2.58
+BEU          C3          C4          N4     110.829    2.03
+BEU          C3          C4          C5     111.124    1.57
+BEU          C3          C4          H4     107.965    1.50
+BEU          N4          C4          C5     110.454    2.38
+BEU          N4          C4          H4     108.091    1.50
+BEU          C5          C4          H4     107.258    1.68
+BEU          C4          N4       "C4'"     123.927    1.50
+BEU          C4          N4          HA     117.209    1.75
+BEU       "C4'"          N4          HA     118.864    2.66
+BEU          N4       "C4'"       "O4'"     121.945    1.50
+BEU          N4       "C4'"         CM4     115.988    1.50
+BEU       "O4'"       "C4'"         CM4     122.067    1.50
+BEU       "C4'"         CM4        HM41     109.527    1.50
+BEU       "C4'"         CM4        HM42     109.527    1.50
+BEU       "C4'"         CM4        HM43     109.527    1.50
+BEU        HM41         CM4        HM42     109.365    1.50
+BEU        HM41         CM4        HM43     109.365    1.50
+BEU        HM42         CM4        HM43     109.365    1.50
+BEU          C4          C5          O5     110.124    1.87
+BEU          C4          C5          C6     111.124    1.57
+BEU          C4          C5          H5     108.987    1.50
+BEU          O5          C5          C6     109.779    1.72
+BEU          O5          C5          H5     108.954    1.50
+BEU          C6          C5          H5     109.434    1.50
+BEU          C5          O5          HB     108.064    2.53
+BEU          C1          C6          C5     111.944    1.50
+BEU          C1          C6          O4     109.627    1.79
+BEU          C1          C6          H6     108.621    1.50
+BEU          C5          C6          O4     110.170    1.75
+BEU          C5          C6          H6     108.836    1.50
+BEU          O4          C6          H6     107.721    1.50
+BEU          C6          O4          HC     109.283    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BEU            sp3_sp3_28          C1        "C'"       "O1'"       "H1'"     180.000    10.0     3
+BEU             sp2_sp3_8          C2          C1        "C'"       "O1'"     -90.000    10.0     6
+BEU            sp3_sp3_40          C4          C5          O5          HB     180.000    10.0     3
+BEU            sp3_sp3_23          O5          C5          C6          O4      60.000    10.0     3
+BEU            sp3_sp3_43          C1          C6          O4          HC     180.000    10.0     3
+BEU            sp2_sp3_17        "C'"          C1          C6          O4     -60.000    10.0     6
+BEU             sp2_sp2_3        "C'"          C1          C2          C3     180.000     5.0     2
+BEU             sp2_sp3_2          C1          C2          C3          N3     120.000    10.0     6
+BEU            sp3_sp3_31          C2          C3          N3        H3N1     180.000    10.0     3
+BEU             sp3_sp3_5          N3          C3          C4          N4      60.000    10.0     3
+BEU            sp3_sp3_14          N4          C4          C5          O5     -60.000    10.0     3
+BEU            sp2_sp3_19       "C4'"          N4          C4          C3       0.000    10.0     6
+BEU             sp2_sp2_7       "O4'"       "C4'"          N4          C4       0.000     5.0     2
+BEU            sp2_sp3_25          N4       "C4'"         CM4        HM41       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BEU    chir_1    C3    N3    C4    C2    negative
+BEU    chir_2    C4    N4    C5    C3    positive
+BEU    chir_3    C5    O5    C6    C4    negative
+BEU    chir_4    C6    O4    C5    C1    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BEU    plan-1        "C'"   0.020
+BEU    plan-1          C1   0.020
+BEU    plan-1          C2   0.020
+BEU    plan-1          C6   0.020
+BEU    plan-2          C1   0.020
+BEU    plan-2          C2   0.020
+BEU    plan-2          C3   0.020
+BEU    plan-2          H2   0.020
+BEU    plan-3          C4   0.020
+BEU    plan-3       "C4'"   0.020
+BEU    plan-3          HA   0.020
+BEU    plan-3          N4   0.020
+BEU    plan-4       "C4'"   0.020
+BEU    plan-4         CM4   0.020
+BEU    plan-4          N4   0.020
+BEU    plan-4       "O4'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BEU           SMILES              ACDLabs 10.04                                                                                        O=C(NC1C(C=C(C(O)C1O)CO)N)C
+BEU SMILES_CANONICAL               CACTVS 3.341                                                                      CC(=O)N[C@H]1[C@H](N)C=C(CO)[C@@H](O)[C@@H]1O
+BEU           SMILES               CACTVS 3.341                                                                            CC(=O)N[CH]1[CH](N)C=C(CO)[CH](O)[CH]1O
+BEU SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                      CC(=O)N[C@H]1[C@@H](C=C([C@H]([C@@H]1O)O)CO)N
+BEU           SMILES "OpenEye OEToolkits" 1.5.0                                                                                        CC(=O)NC1C(C=C(C(C1O)O)CO)N
+BEU            InChI                InChI  1.03 InChI=1S/C9H16N2O4/c1-4(13)11-7-6(10)2-5(3-12)8(14)9(7)15/h2,6-9,12,14-15H,3,10H2,1H3,(H,11,13)/t6-,7+,8-,9-/m1/s1
+BEU         InChIKey                InChI  1.03                                                                                        WWUMIYBLWZAJTD-BZNPZCIMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BEU acedrg               243         "dictionary generator"                  
+BEU acedrg_database      11          "data source"                           
+BEU rdkit                2017.03.2   "Chemoinformatics tool"
+BEU refmac5              5.8.0238    "optimization tool"                     

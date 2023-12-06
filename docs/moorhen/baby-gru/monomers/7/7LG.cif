@@ -1,0 +1,674 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+7LG     7LG      "(2~{S},4~{R})-4-[[2-[(1~{R},3~{R})-1-acetyloxy-3-[hexyl-[(2~{S},3~{S})-3-methyl-2-[[(2~{R})-1-methylpiperidin-2-yl]carbonylamino]pentanoyl]amino]-4-methyl-pentyl]-1,3-thiazol-4-yl]carbonylamino]-5-(4-fluorophenyl)-2-methyl-pentanoic acid"     NON-POLYMER     122     57     .     
+#
+data_comp_7LG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+7LG     CBI     C       CH3     0       109.375     42.395      204.027     
+7LG     NBE     N       NT      0       109.575     41.462      202.916     
+7LG     CBD     C       CH2     0       110.135     40.195      203.404     
+7LG     CBC     C       CH2     0       110.585     39.292      202.262     
+7LG     CBH     C       CH2     0       109.807     39.542      200.979     
+7LG     CBG     C       CH2     0       108.392     40.024      201.282     
+7LG     CBF     C       CH1     0       108.384     41.350      202.061     
+7LG     CBJ     C       C       0       108.252     42.555      201.112     
+7LG     OBK     O       O       0       109.188     42.866      200.367     
+7LG     N       N       NH1     0       107.084     43.232      201.137     
+7LG     CA      C       CH1     0       106.784     44.395      200.309     
+7LG     CB      C       CH1     0       105.671     44.111      199.275     
+7LG     CG2     C       CH3     0       105.299     45.372      198.499     
+7LG     CG1     C       CH2     0       106.061     42.966      198.330     
+7LG     CD1     C       CH3     0       104.893     42.335      197.600     
+7LG     C       C       C       0       106.409     45.554      201.252     
+7LG     O       O       O       0       105.262     45.569      201.706     
+7LG     NAA     N       N       0       107.308     46.508      201.634     
+7LG     CAL     C       CH2     0       108.750     46.426      201.320     
+7LG     CAM     C       CH2     0       109.115     46.928      199.928     
+7LG     CAN     C       CH2     0       110.317     46.240      199.317     
+7LG     CAO     C       CH2     0       110.664     46.738      197.935     
+7LG     CAP     C       CH2     0       112.042     46.354      197.462     
+7LG     CAQ     C       CH3     0       112.200     44.876      197.198     
+7LG     CAB     C       CH1     0       106.856     47.697      202.425     
+7LG     CAJ     C       CH1     0       107.341     47.630      203.888     
+7LG     CAS     C       CH3     0       107.289     46.215      204.459     
+7LG     CAR     C       CH3     0       106.571     48.591      204.791     
+7LG     CAC     C       CH2     0       107.192     49.021      201.715     
+7LG     CAD     C       CH1     0       106.517     49.196      200.352     
+7LG     OAK     O       O2      0       105.097     49.442      200.579     
+7LG     CCC     C       C       0       104.188     48.702      199.928     
+7LG     OCE     O       O       0       103.529     47.852      200.458     
+7LG     CCD     C       CH3     0       104.102     49.076      198.489     
+7LG     CAE     C       CR5     0       107.079     50.353      199.597     
+7LG     NAI     N       NRD5    0       107.404     51.497      200.100     
+7LG     SAF     S       S2      0       107.357     50.320      197.948     
+7LG     CAG     C       CR15    0       107.935     51.879      197.878     
+7LG     CAH     C       CR5     0       107.897     52.412      199.162     
+7LG     CAT     C       C       0       108.322     53.753      199.601     
+7LG     OBL     O       O       0       107.796     54.291      200.584     
+7LG     NBM     N       NH1     0       109.389     54.281      198.990     
+7LG     CBN     C       CH1     0       110.324     55.226      199.594     
+7LG     CBP     C       CH2     0       110.348     56.546      198.811     
+7LG     CBR     C       CH1     0       109.057     57.376      198.863     
+7LG     CBS     C       CH3     0       109.128     58.550      197.898     
+7LG     CBT     C       C       0       108.752     57.872      200.282     
+7LG     OCB     O       O       0       109.592     58.605      200.841     
+7LG     OCA     O       OC      -1      107.677     57.520      200.807     
+7LG     CBO     C       CH2     0       111.715     54.583      199.668     
+7LG     CBQ     C       CR6     0       111.707     53.173      200.218     
+7LG     CBU     C       CR16    0       111.902     52.075      199.388     
+7LG     CBV     C       CR16    0       111.888     50.778      199.886     
+7LG     CBW     C       CR6     0       111.671     50.601      201.224     
+7LG     FBZ     F       F       0       111.656     49.334      201.721     
+7LG     CBX     C       CR16    0       111.468     51.645      202.085     
+7LG     CBY     C       CR16    0       111.485     52.935      201.569     
+7LG     H1      H       H       0       110.223     42.547      204.483     
+7LG     H2      H       H       0       108.734     42.017      204.657     
+7LG     H3      H       H       0       109.036     43.245      203.692     
+7LG     H5      H       H       0       110.897     40.378      203.981     
+7LG     H6      H       H       0       109.464     39.731      203.935     
+7LG     H7      H       H       0       110.471     38.357      202.530     
+7LG     H8      H       H       0       111.539     39.441      202.094     
+7LG     H9      H       H       0       109.764     38.712      200.455     
+7LG     H10     H       H       0       110.274     40.216      200.439     
+7LG     H11     H       H       0       107.922     39.341      201.812     
+7LG     H12     H       H       0       107.901     40.142      200.438     
+7LG     H13     H       H       0       107.594     41.342      202.664     
+7LG     H14     H       H       0       106.466     42.954      201.680     
+7LG     H15     H       H       0       107.593     44.644      199.800     
+7LG     H16     H       H       0       104.868     43.820      199.773     
+7LG     H17     H       H       0       106.088     45.929      198.380     
+7LG     H18     H       H       0       104.624     45.871      198.991     
+7LG     H19     H       H       0       104.943     45.133      197.625     
+7LG     H20     H       H       0       106.516     42.267      198.842     
+7LG     H21     H       H       0       106.695     43.311      197.666     
+7LG     H22     H       H       0       105.158     41.466      197.252     
+7LG     H23     H       H       0       104.621     42.907      196.862     
+7LG     H24     H       H       0       104.145     42.221      198.213     
+7LG     H25     H       H       0       109.049     45.496      201.413     
+7LG     H26     H       H       0       109.250     46.955      201.976     
+7LG     H27     H       H       0       109.298     47.890      199.978     
+7LG     H28     H       H       0       108.345     46.804      199.334     
+7LG     H29     H       H       0       110.141     45.276      199.270     
+7LG     H30     H       H       0       111.091     46.374      199.904     
+7LG     H31     H       H       0       110.591     47.716      197.926     
+7LG     H32     H       H       0       110.005     46.385      197.300     
+7LG     H33     H       H       0       112.696     46.628      198.141     
+7LG     H34     H       H       0       112.241     46.847      196.637     
+7LG     H35     H       H       0       113.067     44.709      196.789     
+7LG     H36     H       H       0       111.497     44.575      196.597     
+7LG     H37     H       H       0       112.139     44.386      198.037     
+7LG     H38     H       H       0       105.870     47.656      202.466     
+7LG     H39     H       H       0       108.286     47.916      203.898     
+7LG     H40     H       H       0       107.337     46.246      205.430     
+7LG     H41     H       H       0       108.041     45.699      204.119     
+7LG     H42     H       H       0       106.457     45.787      204.191     
+7LG     H43     H       H       0       105.615     48.449      204.678     
+7LG     H44     H       H       0       106.791     49.508      204.555     
+7LG     H45     H       H       0       106.813     48.434      205.720     
+7LG     H46     H       H       0       108.162     49.086      201.606     
+7LG     H47     H       H       0       106.913     49.762      202.289     
+7LG     H48     H       H       0       106.633     48.370      199.823     
+7LG     H49     H       H       0       104.804     48.623      197.994     
+7LG     H50     H       H       0       104.209     50.037      198.395     
+7LG     H51     H       H       0       103.237     48.812      198.136     
+7LG     H52     H       H       0       108.227     52.288      197.082     
+7LG     H53     H       H       0       109.543     54.070      198.157     
+7LG     H54     H       H       0       110.039     55.418      200.519     
+7LG     H55     H       H       0       110.547     56.346      197.875     
+7LG     H56     H       H       0       111.081     57.095      199.155     
+7LG     H57     H       H       0       108.311     56.789      198.584     
+7LG     H58     H       H       0       108.304     59.065      197.950     
+7LG     H59     H       H       0       109.247     58.220      196.991     
+7LG     H60     H       H       0       109.880     59.121      198.135     
+7LG     H62     H       H       0       112.289     55.140      200.236     
+7LG     H63     H       H       0       112.106     54.572      198.768     
+7LG     H64     H       H       0       112.050     52.214      198.467     
+7LG     H65     H       H       0       112.024     50.041      199.319     
+7LG     H66     H       H       0       111.321     51.492      203.001     
+7LG     H67     H       H       0       111.347     53.666      202.149     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+7LG         CAP         CAQ      SINGLE       n     1.510  0.0200     1.510  0.0200
+7LG         CG1         CD1      SINGLE       n     1.511  0.0200     1.511  0.0200
+7LG         CAO         CAP      SINGLE       n     1.507  0.0200     1.507  0.0200
+7LG         CBR         CBS      SINGLE       n     1.521  0.0173     1.521  0.0173
+7LG         CBU         CBV      DOUBLE       y     1.386  0.0100     1.386  0.0100
+7LG         CBQ         CBU      SINGLE       y     1.385  0.0110     1.385  0.0110
+7LG         CBP         CBR      SINGLE       n     1.530  0.0184     1.530  0.0184
+7LG         CBN         CBP      SINGLE       n     1.532  0.0128     1.532  0.0128
+7LG         SAF         CAG      SINGLE       y     1.695  0.0200     1.695  0.0200
+7LG         CAG         CAH      DOUBLE       y     1.379  0.0196     1.379  0.0196
+7LG         CCC         CCD      SINGLE       n     1.487  0.0164     1.487  0.0164
+7LG          CB         CG2      SINGLE       n     1.521  0.0135     1.521  0.0135
+7LG         CAE         SAF      SINGLE       y     1.695  0.0200     1.695  0.0200
+7LG          CB         CG1      SINGLE       n     1.531  0.0100     1.531  0.0100
+7LG         CBN         CBO      SINGLE       n     1.533  0.0100     1.533  0.0100
+7LG         CBO         CBQ      SINGLE       n     1.512  0.0103     1.512  0.0103
+7LG         CAN         CAO      SINGLE       n     1.509  0.0200     1.509  0.0200
+7LG         NBM         CBN      SINGLE       n     1.455  0.0112     1.455  0.0112
+7LG         CAT         NBM      SINGLE       n     1.332  0.0105     1.332  0.0105
+7LG         CBV         CBW      SINGLE       y     1.363  0.0118     1.363  0.0118
+7LG         CBR         CBT      SINGLE       n     1.533  0.0100     1.533  0.0100
+7LG         CBQ         CBY      DOUBLE       y     1.385  0.0110     1.385  0.0110
+7LG          CA          CB      SINGLE       n     1.540  0.0100     1.540  0.0100
+7LG         CAH         CAT      SINGLE       n     1.471  0.0100     1.471  0.0100
+7LG         NAI         CAH      SINGLE       y     1.390  0.0100     1.390  0.0100
+7LG         CAT         OBL      DOUBLE       n     1.235  0.0149     1.235  0.0149
+7LG         CAE         NAI      DOUBLE       y     1.286  0.0100     1.286  0.0100
+7LG         CAD         CAE      SINGLE       n     1.489  0.0111     1.489  0.0111
+7LG         CCC         OCE      DOUBLE       n     1.199  0.0170     1.199  0.0170
+7LG         OAK         CCC      SINGLE       n     1.334  0.0200     1.334  0.0200
+7LG         CAM         CAN      SINGLE       n     1.514  0.0200     1.514  0.0200
+7LG         CBW         FBZ      SINGLE       n     1.361  0.0100     1.361  0.0100
+7LG         CBW         CBX      DOUBLE       y     1.363  0.0118     1.363  0.0118
+7LG         CAL         CAM      SINGLE       n     1.522  0.0104     1.522  0.0104
+7LG         CBX         CBY      SINGLE       y     1.386  0.0100     1.386  0.0100
+7LG         CBT         OCB      DOUBLE       n     1.247  0.0187     1.247  0.0187
+7LG         CBT         OCA      SINGLE       n     1.247  0.0187     1.247  0.0187
+7LG           N          CA      SINGLE       n     1.453  0.0100     1.453  0.0100
+7LG          CA           C      SINGLE       n     1.532  0.0100     1.532  0.0100
+7LG         CAD         OAK      SINGLE       n     1.456  0.0103     1.456  0.0103
+7LG         CAC         CAD      SINGLE       n     1.527  0.0112     1.527  0.0112
+7LG         CBJ           N      SINGLE       n     1.343  0.0100     1.343  0.0100
+7LG           C           O      DOUBLE       n     1.232  0.0100     1.232  0.0100
+7LG           C         NAA      SINGLE       n     1.350  0.0100     1.350  0.0100
+7LG         CBJ         OBK      DOUBLE       n     1.235  0.0100     1.235  0.0100
+7LG         NAA         CAL      SINGLE       n     1.471  0.0100     1.471  0.0100
+7LG         CBF         CBJ      SINGLE       n     1.527  0.0179     1.527  0.0179
+7LG         CBH         CBG      SINGLE       n     1.523  0.0135     1.523  0.0135
+7LG         CBG         CBF      SINGLE       n     1.534  0.0100     1.534  0.0100
+7LG         NAA         CAB      SINGLE       n     1.485  0.0100     1.485  0.0100
+7LG         CAB         CAC      SINGLE       n     1.531  0.0131     1.531  0.0131
+7LG         CBC         CBH      SINGLE       n     1.518  0.0116     1.518  0.0116
+7LG         CAB         CAJ      SINGLE       n     1.533  0.0118     1.533  0.0118
+7LG         NBE         CBF      SINGLE       n     1.462  0.0113     1.462  0.0113
+7LG         CBI         NBE      SINGLE       n     1.460  0.0100     1.460  0.0100
+7LG         NBE         CBD      SINGLE       n     1.464  0.0104     1.464  0.0104
+7LG         CBD         CBC      SINGLE       n     1.514  0.0162     1.514  0.0162
+7LG         CAJ         CAS      SINGLE       n     1.522  0.0128     1.522  0.0128
+7LG         CAJ         CAR      SINGLE       n     1.522  0.0128     1.522  0.0128
+7LG         CBI          H1      SINGLE       n     1.089  0.0100     0.975  0.0100
+7LG         CBI          H2      SINGLE       n     1.089  0.0100     0.975  0.0100
+7LG         CBI          H3      SINGLE       n     1.089  0.0100     0.975  0.0100
+7LG         CBD          H5      SINGLE       n     1.089  0.0100     0.973  0.0129
+7LG         CBD          H6      SINGLE       n     1.089  0.0100     0.973  0.0129
+7LG         CBC          H7      SINGLE       n     1.089  0.0100     0.980  0.0120
+7LG         CBC          H8      SINGLE       n     1.089  0.0100     0.980  0.0120
+7LG         CBH          H9      SINGLE       n     1.089  0.0100     0.982  0.0103
+7LG         CBH         H10      SINGLE       n     1.089  0.0100     0.982  0.0103
+7LG         CBG         H11      SINGLE       n     1.089  0.0100     0.984  0.0117
+7LG         CBG         H12      SINGLE       n     1.089  0.0100     0.984  0.0117
+7LG         CBF         H13      SINGLE       n     1.089  0.0100     0.994  0.0120
+7LG           N         H14      SINGLE       n     1.016  0.0100     0.869  0.0200
+7LG          CA         H15      SINGLE       n     1.089  0.0100     0.998  0.0200
+7LG          CB         H16      SINGLE       n     1.089  0.0100     0.989  0.0175
+7LG         CG2         H17      SINGLE       n     1.089  0.0100     0.973  0.0146
+7LG         CG2         H18      SINGLE       n     1.089  0.0100     0.973  0.0146
+7LG         CG2         H19      SINGLE       n     1.089  0.0100     0.973  0.0146
+7LG         CG1         H20      SINGLE       n     1.089  0.0100     0.981  0.0160
+7LG         CG1         H21      SINGLE       n     1.089  0.0100     0.981  0.0160
+7LG         CD1         H22      SINGLE       n     1.089  0.0100     0.973  0.0157
+7LG         CD1         H23      SINGLE       n     1.089  0.0100     0.973  0.0157
+7LG         CD1         H24      SINGLE       n     1.089  0.0100     0.973  0.0157
+7LG         CAL         H25      SINGLE       n     1.089  0.0100     0.981  0.0152
+7LG         CAL         H26      SINGLE       n     1.089  0.0100     0.981  0.0152
+7LG         CAM         H27      SINGLE       n     1.089  0.0100     0.981  0.0160
+7LG         CAM         H28      SINGLE       n     1.089  0.0100     0.981  0.0160
+7LG         CAN         H29      SINGLE       n     1.089  0.0100     0.981  0.0163
+7LG         CAN         H30      SINGLE       n     1.089  0.0100     0.981  0.0163
+7LG         CAO         H31      SINGLE       n     1.089  0.0100     0.981  0.0163
+7LG         CAO         H32      SINGLE       n     1.089  0.0100     0.981  0.0163
+7LG         CAP         H33      SINGLE       n     1.089  0.0100     0.982  0.0155
+7LG         CAP         H34      SINGLE       n     1.089  0.0100     0.982  0.0155
+7LG         CAQ         H35      SINGLE       n     1.089  0.0100     0.973  0.0157
+7LG         CAQ         H36      SINGLE       n     1.089  0.0100     0.973  0.0157
+7LG         CAQ         H37      SINGLE       n     1.089  0.0100     0.973  0.0157
+7LG         CAB         H38      SINGLE       n     1.089  0.0100     0.989  0.0122
+7LG         CAJ         H39      SINGLE       n     1.089  0.0100     0.988  0.0171
+7LG         CAS         H40      SINGLE       n     1.089  0.0100     0.973  0.0146
+7LG         CAS         H41      SINGLE       n     1.089  0.0100     0.973  0.0146
+7LG         CAS         H42      SINGLE       n     1.089  0.0100     0.973  0.0146
+7LG         CAR         H43      SINGLE       n     1.089  0.0100     0.973  0.0146
+7LG         CAR         H44      SINGLE       n     1.089  0.0100     0.973  0.0146
+7LG         CAR         H45      SINGLE       n     1.089  0.0100     0.973  0.0146
+7LG         CAC         H46      SINGLE       n     1.089  0.0100     0.980  0.0160
+7LG         CAC         H47      SINGLE       n     1.089  0.0100     0.980  0.0160
+7LG         CAD         H48      SINGLE       n     1.089  0.0100     0.989  0.0200
+7LG         CCD         H49      SINGLE       n     1.089  0.0100     0.971  0.0140
+7LG         CCD         H50      SINGLE       n     1.089  0.0100     0.971  0.0140
+7LG         CCD         H51      SINGLE       n     1.089  0.0100     0.971  0.0140
+7LG         CAG         H52      SINGLE       n     1.082  0.0130     0.942  0.0200
+7LG         NBM         H53      SINGLE       n     1.016  0.0100     0.873  0.0200
+7LG         CBN         H54      SINGLE       n     1.089  0.0100     0.988  0.0127
+7LG         CBP         H55      SINGLE       n     1.089  0.0100     0.978  0.0119
+7LG         CBP         H56      SINGLE       n     1.089  0.0100     0.978  0.0119
+7LG         CBR         H57      SINGLE       n     1.089  0.0100     0.990  0.0142
+7LG         CBS         H58      SINGLE       n     1.089  0.0100     0.973  0.0141
+7LG         CBS         H59      SINGLE       n     1.089  0.0100     0.973  0.0141
+7LG         CBS         H60      SINGLE       n     1.089  0.0100     0.973  0.0141
+7LG         CBO         H62      SINGLE       n     1.089  0.0100     0.981  0.0150
+7LG         CBO         H63      SINGLE       n     1.089  0.0100     0.981  0.0150
+7LG         CBU         H64      SINGLE       n     1.082  0.0130     0.943  0.0173
+7LG         CBV         H65      SINGLE       n     1.082  0.0130     0.940  0.0141
+7LG         CBX         H66      SINGLE       n     1.082  0.0130     0.940  0.0141
+7LG         CBY         H67      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+7LG         NBE         CBI          H1     109.590    1.50
+7LG         NBE         CBI          H2     109.590    1.50
+7LG         NBE         CBI          H3     109.590    1.50
+7LG          H1         CBI          H2     109.428    1.50
+7LG          H1         CBI          H3     109.428    1.50
+7LG          H2         CBI          H3     109.428    1.50
+7LG         CBF         NBE         CBI     110.207    3.00
+7LG         CBF         NBE         CBD     113.643    3.00
+7LG         CBI         NBE         CBD     110.690    1.50
+7LG         NBE         CBD         CBC     111.082    1.50
+7LG         NBE         CBD          H5     109.490    1.50
+7LG         NBE         CBD          H6     109.490    1.50
+7LG         CBC         CBD          H5     109.566    1.50
+7LG         CBC         CBD          H6     109.566    1.50
+7LG          H5         CBD          H6     108.159    1.50
+7LG         CBH         CBC         CBD     111.021    1.50
+7LG         CBH         CBC          H7     109.453    1.50
+7LG         CBH         CBC          H8     109.453    1.50
+7LG         CBD         CBC          H7     109.380    1.50
+7LG         CBD         CBC          H8     109.380    1.50
+7LG          H7         CBC          H8     108.022    1.50
+7LG         CBG         CBH         CBC     110.320    1.50
+7LG         CBG         CBH          H9     109.611    1.50
+7LG         CBG         CBH         H10     109.611    1.50
+7LG         CBC         CBH          H9     109.613    1.50
+7LG         CBC         CBH         H10     109.613    1.50
+7LG          H9         CBH         H10     108.036    1.50
+7LG         CBH         CBG         CBF     111.820    1.56
+7LG         CBH         CBG         H11     109.282    1.50
+7LG         CBH         CBG         H12     109.282    1.50
+7LG         CBF         CBG         H11     108.835    1.50
+7LG         CBF         CBG         H12     108.835    1.50
+7LG         H11         CBG         H12     107.988    1.50
+7LG         CBJ         CBF         CBG     111.788    1.54
+7LG         CBJ         CBF         NBE     111.994    1.73
+7LG         CBJ         CBF         H13     107.955    1.50
+7LG         CBG         CBF         NBE     110.168    1.57
+7LG         CBG         CBF         H13     108.538    1.50
+7LG         NBE         CBF         H13     107.282    1.53
+7LG           N         CBJ         OBK     121.711    2.40
+7LG           N         CBJ         CBF     116.683    1.50
+7LG         OBK         CBJ         CBF     121.607    1.50
+7LG          CA           N         CBJ     122.635    1.50
+7LG          CA           N         H14     119.294    1.91
+7LG         CBJ           N         H14     118.070    2.35
+7LG          CB          CA           N     112.135    1.61
+7LG          CB          CA           C     111.330    1.50
+7LG          CB          CA         H15     108.069    1.50
+7LG           N          CA           C     110.342    2.62
+7LG           N          CA         H15     108.209    1.50
+7LG           C          CA         H15     108.061    1.50
+7LG         CG2          CB         CG1     111.775    1.50
+7LG         CG2          CB          CA     111.023    1.92
+7LG         CG2          CB         H16     107.601    1.50
+7LG         CG1          CB          CA     110.508    1.50
+7LG         CG1          CB         H16     107.402    1.50
+7LG          CA          CB         H16     107.540    1.50
+7LG          CB         CG2         H17     109.662    1.50
+7LG          CB         CG2         H18     109.662    1.50
+7LG          CB         CG2         H19     109.662    1.50
+7LG         H17         CG2         H18     109.411    1.50
+7LG         H17         CG2         H19     109.411    1.50
+7LG         H18         CG2         H19     109.411    1.50
+7LG         CD1         CG1          CB     113.965    1.50
+7LG         CD1         CG1         H20     108.717    1.50
+7LG         CD1         CG1         H21     108.717    1.50
+7LG          CB         CG1         H20     108.703    1.50
+7LG          CB         CG1         H21     108.703    1.50
+7LG         H20         CG1         H21     107.862    1.50
+7LG         CG1         CD1         H22     109.566    1.50
+7LG         CG1         CD1         H23     109.566    1.50
+7LG         CG1         CD1         H24     109.566    1.50
+7LG         H22         CD1         H23     109.380    1.50
+7LG         H22         CD1         H24     109.380    1.50
+7LG         H23         CD1         H24     109.380    1.50
+7LG          CA           C           O     120.170    1.50
+7LG          CA           C         NAA     118.416    1.96
+7LG           O           C         NAA     121.414    2.26
+7LG           C         NAA         CAL     121.264    3.00
+7LG           C         NAA         CAB     120.176    2.93
+7LG         CAL         NAA         CAB     118.560    1.50
+7LG         CAM         CAL         NAA     113.303    1.62
+7LG         CAM         CAL         H25     108.873    1.50
+7LG         CAM         CAL         H26     108.873    1.50
+7LG         NAA         CAL         H25     108.976    1.50
+7LG         NAA         CAL         H26     108.976    1.50
+7LG         H25         CAL         H26     107.673    1.50
+7LG         CAN         CAM         CAL     114.202    2.06
+7LG         CAN         CAM         H27     109.041    1.50
+7LG         CAN         CAM         H28     109.041    1.50
+7LG         CAL         CAM         H27     108.945    1.50
+7LG         CAL         CAM         H28     108.945    1.50
+7LG         H27         CAM         H28     107.927    1.57
+7LG         CAO         CAN         CAM     113.853    2.32
+7LG         CAO         CAN         H29     108.698    1.50
+7LG         CAO         CAN         H30     108.698    1.50
+7LG         CAM         CAN         H29     108.806    1.50
+7LG         CAM         CAN         H30     108.806    1.50
+7LG         H29         CAN         H30     107.646    1.50
+7LG         CAP         CAO         CAN     114.362    3.00
+7LG         CAP         CAO         H31     108.653    1.50
+7LG         CAP         CAO         H32     108.653    1.50
+7LG         CAN         CAO         H31     108.698    1.50
+7LG         CAN         CAO         H32     108.698    1.50
+7LG         H31         CAO         H32     107.646    1.50
+7LG         CAQ         CAP         CAO     113.719    3.00
+7LG         CAQ         CAP         H33     108.918    1.50
+7LG         CAQ         CAP         H34     108.918    1.50
+7LG         CAO         CAP         H33     108.758    1.50
+7LG         CAO         CAP         H34     108.758    1.50
+7LG         H33         CAP         H34     107.763    1.50
+7LG         CAP         CAQ         H35     109.554    1.50
+7LG         CAP         CAQ         H36     109.554    1.50
+7LG         CAP         CAQ         H37     109.554    1.50
+7LG         H35         CAQ         H36     109.380    1.50
+7LG         H35         CAQ         H37     109.380    1.50
+7LG         H36         CAQ         H37     109.380    1.50
+7LG         NAA         CAB         CAC     111.308    2.28
+7LG         NAA         CAB         CAJ     111.308    2.28
+7LG         NAA         CAB         H38     106.556    1.50
+7LG         CAC         CAB         CAJ     114.450    1.50
+7LG         CAC         CAB         H38     107.815    1.50
+7LG         CAJ         CAB         H38     107.397    1.50
+7LG         CAB         CAJ         CAS     111.807    1.56
+7LG         CAB         CAJ         CAR     111.807    1.56
+7LG         CAB         CAJ         H39     107.906    2.03
+7LG         CAS         CAJ         CAR     110.676    1.50
+7LG         CAS         CAJ         H39     107.603    1.50
+7LG         CAR         CAJ         H39     107.603    1.50
+7LG         CAJ         CAS         H40     109.507    1.50
+7LG         CAJ         CAS         H41     109.507    1.50
+7LG         CAJ         CAS         H42     109.507    1.50
+7LG         H40         CAS         H41     109.411    1.50
+7LG         H40         CAS         H42     109.411    1.50
+7LG         H41         CAS         H42     109.411    1.50
+7LG         CAJ         CAR         H43     109.507    1.50
+7LG         CAJ         CAR         H44     109.507    1.50
+7LG         CAJ         CAR         H45     109.507    1.50
+7LG         H43         CAR         H44     109.411    1.50
+7LG         H43         CAR         H45     109.411    1.50
+7LG         H44         CAR         H45     109.411    1.50
+7LG         CAD         CAC         CAB     111.094    2.85
+7LG         CAD         CAC         H46     108.945    1.50
+7LG         CAD         CAC         H47     108.945    1.50
+7LG         CAB         CAC         H46     108.489    1.50
+7LG         CAB         CAC         H47     108.489    1.50
+7LG         H46         CAC         H47     107.715    1.50
+7LG         CAE         CAD         OAK     108.981    2.44
+7LG         CAE         CAD         CAC     110.747    2.16
+7LG         CAE         CAD         H48     109.366    1.50
+7LG         OAK         CAD         CAC     107.754    2.90
+7LG         OAK         CAD         H48     109.047    1.50
+7LG         CAC         CAD         H48     108.564    1.57
+7LG         CCC         OAK         CAD     117.340    2.01
+7LG         CCD         CCC         OCE     125.327    2.23
+7LG         CCD         CCC         OAK     111.163    1.77
+7LG         OCE         CCC         OAK     123.510    1.73
+7LG         CCC         CCD         H49     109.509    1.50
+7LG         CCC         CCD         H50     109.509    1.50
+7LG         CCC         CCD         H51     109.509    1.50
+7LG         H49         CCD         H50     109.424    1.50
+7LG         H49         CCD         H51     109.424    1.50
+7LG         H50         CCD         H51     109.424    1.50
+7LG         SAF         CAE         NAI     108.144    3.00
+7LG         SAF         CAE         CAD     124.862    3.00
+7LG         NAI         CAE         CAD     126.994    3.00
+7LG         CAH         NAI         CAE     107.252    1.65
+7LG         CAG         SAF         CAE     108.144    3.00
+7LG         SAF         CAG         CAH     108.144    3.00
+7LG         SAF         CAG         H52     123.362    3.00
+7LG         CAH         CAG         H52     128.494    1.50
+7LG         CAG         CAH         CAT     128.767    3.00
+7LG         CAG         CAH         NAI     108.316    1.50
+7LG         CAT         CAH         NAI     122.916    2.60
+7LG         NBM         CAT         CAH     116.822    1.69
+7LG         NBM         CAT         OBL     121.663    1.50
+7LG         CAH         CAT         OBL     121.515    1.50
+7LG         CBN         NBM         CAT     123.110    2.23
+7LG         CBN         NBM         H53     117.900    1.99
+7LG         CAT         NBM         H53     118.991    1.50
+7LG         CBP         CBN         CBO     111.939    1.50
+7LG         CBP         CBN         NBM     109.834    1.50
+7LG         CBP         CBN         H54     107.815    1.50
+7LG         CBO         CBN         NBM     109.721    1.50
+7LG         CBO         CBN         H54     107.624    1.50
+7LG         NBM         CBN         H54     108.116    1.50
+7LG         CBR         CBP         CBN     111.094    2.85
+7LG         CBR         CBP         H55     108.447    1.50
+7LG         CBR         CBP         H56     108.447    1.50
+7LG         CBN         CBP         H55     108.489    1.50
+7LG         CBN         CBP         H56     108.489    1.50
+7LG         H55         CBP         H56     107.542    1.50
+7LG         CBS         CBR         CBP     111.474    1.79
+7LG         CBS         CBR         CBT     110.920    1.69
+7LG         CBS         CBR         H57     108.386    1.50
+7LG         CBP         CBR         CBT     110.778    2.06
+7LG         CBP         CBR         H57     107.780    1.50
+7LG         CBT         CBR         H57     107.706    1.93
+7LG         CBR         CBS         H58     109.605    1.50
+7LG         CBR         CBS         H59     109.605    1.50
+7LG         CBR         CBS         H60     109.605    1.50
+7LG         H58         CBS         H59     109.411    1.50
+7LG         H58         CBS         H60     109.411    1.50
+7LG         H59         CBS         H60     109.411    1.50
+7LG         CBR         CBT         OCB     118.051    1.50
+7LG         CBR         CBT         OCA     118.051    1.50
+7LG         OCB         CBT         OCA     123.899    1.50
+7LG         CBN         CBO         CBQ     113.636    1.50
+7LG         CBN         CBO         H62     108.825    1.50
+7LG         CBN         CBO         H63     108.825    1.50
+7LG         CBQ         CBO         H62     108.862    1.50
+7LG         CBQ         CBO         H63     108.862    1.50
+7LG         H62         CBO         H63     107.782    1.50
+7LG         CBU         CBQ         CBO     121.048    1.50
+7LG         CBU         CBQ         CBY     117.904    1.50
+7LG         CBO         CBQ         CBY     121.048    1.50
+7LG         CBV         CBU         CBQ     121.324    1.50
+7LG         CBV         CBU         H64     119.377    1.50
+7LG         CBQ         CBU         H64     119.298    1.50
+7LG         CBU         CBV         CBW     118.232    1.50
+7LG         CBU         CBV         H65     120.956    1.50
+7LG         CBW         CBV         H65     120.816    1.50
+7LG         CBV         CBW         FBZ     118.513    1.50
+7LG         CBV         CBW         CBX     122.975    1.50
+7LG         FBZ         CBW         CBX     118.513    1.50
+7LG         CBW         CBX         CBY     118.232    1.50
+7LG         CBW         CBX         H66     120.816    1.50
+7LG         CBY         CBX         H66     120.956    1.50
+7LG         CBQ         CBY         CBX     121.324    1.50
+7LG         CBQ         CBY         H67     119.298    1.50
+7LG         CBX         CBY         H67     119.377    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+7LG           sp3_sp3_190          H1         CBI         NBE         CBF     180.000    10.0     3
+7LG           sp3_sp3_133           N          CA          CB         CG2     180.000    10.0     3
+7LG            sp2_sp3_37           O           C          CA          CB       0.000    10.0     6
+7LG            sp3_sp3_97         CG1          CB         CG2         H17     180.000    10.0     3
+7LG           sp3_sp3_106         CG2          CB         CG1         CD1     180.000    10.0     3
+7LG            sp3_sp3_52         H22         CD1         CG1          CB     180.000    10.0     3
+7LG            sp2_sp2_15          CA           C         NAA         CAL     180.000     5.0     2
+7LG            sp2_sp3_44           C         NAA         CAL         CAM     120.000    10.0     6
+7LG            sp2_sp3_55           C         NAA         CAB         CAC       0.000    10.0     6
+7LG           sp3_sp3_151         NAA         CAL         CAM         CAN     180.000    10.0     3
+7LG           sp3_sp3_142         CAL         CAM         CAN         CAO     180.000    10.0     3
+7LG           sp3_sp3_197         CBC         CBD         NBE         CBI     -60.000    10.0     3
+7LG             sp3_sp3_4         CBJ         CBF         NBE         CBI      60.000    10.0     3
+7LG           sp3_sp3_124         CAM         CAN         CAO         CAP     180.000    10.0     3
+7LG            sp3_sp3_61         CAN         CAO         CAP         CAQ     180.000    10.0     3
+7LG            sp3_sp3_43         CAO         CAP         CAQ         H35     180.000    10.0     3
+7LG           sp3_sp3_182         NAA         CAB         CAJ         CAS     -60.000    10.0     3
+7LG           sp3_sp3_172         NAA         CAB         CAC         CAD     180.000    10.0     3
+7LG           sp3_sp3_202         CAB         CAJ         CAS         H40     180.000    10.0     3
+7LG           sp3_sp3_214         CAB         CAJ         CAR         H43      60.000    10.0     3
+7LG           sp3_sp3_164         CAB         CAC         CAD         OAK     -60.000    10.0     3
+7LG           sp3_sp3_161         CAC         CAD         OAK         CCC     -60.000    10.0     3
+7LG            sp2_sp3_25         SAF         CAE         CAD         OAK     150.000    10.0     6
+7LG            sp3_sp3_34         CBH         CBC         CBD         NBE      60.000    10.0     3
+7LG             sp2_sp2_9         CCD         CCC         OAK         CAD     180.000     5.0     2
+7LG             sp2_sp3_1         OCE         CCC         CCD         H49       0.000    10.0     6
+7LG              const_36         CAD         CAE         NAI         CAH     180.000    10.0     2
+7LG       const_sp2_sp2_2         CAD         CAE         SAF         CAG     180.000     5.0     2
+7LG              const_10         CAT         CAH         NAI         CAE     180.000    10.0     2
+7LG       const_sp2_sp2_3         CAH         CAG         SAF         CAE       0.000     5.0     2
+7LG       const_sp2_sp2_6         SAF         CAG         CAH         CAT     180.000     5.0     2
+7LG             sp2_sp2_5         CAG         CAH         CAT         NBM     180.000     5.0     2
+7LG             sp2_sp2_3         OBL         CAT         NBM         CBN       0.000     5.0     2
+7LG            sp3_sp3_25         CBD         CBC         CBH         CBG     -60.000    10.0     3
+7LG            sp2_sp3_13         CAT         NBM         CBN         CBP       0.000    10.0     6
+7LG            sp3_sp3_88         CBO         CBN         CBP         CBR     180.000    10.0     3
+7LG           sp3_sp3_115         CBP         CBN         CBO         CBQ     180.000    10.0     3
+7LG            sp3_sp3_79         CBN         CBP         CBR         CBS     180.000    10.0     3
+7LG            sp3_sp3_70         CBP         CBR         CBS         H58     180.000    10.0     3
+7LG            sp2_sp3_19         OCB         CBT         CBR         CBS       0.000    10.0     6
+7LG             sp2_sp3_8         CBU         CBQ         CBO         CBN     -90.000    10.0     6
+7LG            sp3_sp3_16         CBF         CBG         CBH         CBC      60.000    10.0     3
+7LG              const_13         CBO         CBQ         CBU         CBV     180.000    10.0     2
+7LG              const_33         CBO         CBQ         CBY         CBX     180.000    10.0     2
+7LG              const_15         CBQ         CBU         CBV         CBW       0.000    10.0     2
+7LG              const_20         CBU         CBV         CBW         FBZ     180.000    10.0     2
+7LG              const_25         FBZ         CBW         CBX         CBY     180.000    10.0     2
+7LG              const_27         CBW         CBX         CBY         CBQ       0.000    10.0     2
+7LG            sp3_sp3_10         CBJ         CBF         CBG         CBH     180.000    10.0     3
+7LG            sp2_sp3_49           N         CBJ         CBF         CBG       0.000    10.0     6
+7LG            sp2_sp2_13         OBK         CBJ           N          CA       0.000     5.0     2
+7LG            sp2_sp3_31         CBJ           N          CA          CB       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+7LG    chir_1    NBE    CBF    CBD    CBI    positive
+7LG    chir_2    CBF    NBE    CBJ    CBG    negative
+7LG    chir_3    CA    N    C    CB    positive
+7LG    chir_4    CB    CA    CG1    CG2    positive
+7LG    chir_5    CAB    NAA    CAJ    CAC    negative
+7LG    chir_6    CAJ    CAB    CAS    CAR    both
+7LG    chir_7    CAD    OAK    CAE    CAC    negative
+7LG    chir_8    CBN    NBM    CBO    CBP    negative
+7LG    chir_9    CBR    CBT    CBP    CBS    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+7LG    plan-1         CAD   0.020
+7LG    plan-1         CAE   0.020
+7LG    plan-1         CAG   0.020
+7LG    plan-1         CAH   0.020
+7LG    plan-1         CAT   0.020
+7LG    plan-1         H52   0.020
+7LG    plan-1         NAI   0.020
+7LG    plan-1         SAF   0.020
+7LG    plan-2         CBO   0.020
+7LG    plan-2         CBQ   0.020
+7LG    plan-2         CBU   0.020
+7LG    plan-2         CBV   0.020
+7LG    plan-2         CBW   0.020
+7LG    plan-2         CBX   0.020
+7LG    plan-2         CBY   0.020
+7LG    plan-2         FBZ   0.020
+7LG    plan-2         H64   0.020
+7LG    plan-2         H65   0.020
+7LG    plan-2         H66   0.020
+7LG    plan-2         H67   0.020
+7LG    plan-3         CBF   0.020
+7LG    plan-3         CBJ   0.020
+7LG    plan-3           N   0.020
+7LG    plan-3         OBK   0.020
+7LG    plan-4          CA   0.020
+7LG    plan-4         CBJ   0.020
+7LG    plan-4         H14   0.020
+7LG    plan-4           N   0.020
+7LG    plan-5           C   0.020
+7LG    plan-5          CA   0.020
+7LG    plan-5         NAA   0.020
+7LG    plan-5           O   0.020
+7LG    plan-6           C   0.020
+7LG    plan-6         CAB   0.020
+7LG    plan-6         CAL   0.020
+7LG    plan-6         NAA   0.020
+7LG    plan-7         CCC   0.020
+7LG    plan-7         CCD   0.020
+7LG    plan-7         OAK   0.020
+7LG    plan-7         OCE   0.020
+7LG    plan-8         CAH   0.020
+7LG    plan-8         CAT   0.020
+7LG    plan-8         NBM   0.020
+7LG    plan-8         OBL   0.020
+7LG    plan-9         CAT   0.020
+7LG    plan-9         CBN   0.020
+7LG    plan-9         H53   0.020
+7LG    plan-9         NBM   0.020
+7LG   plan-10         CBR   0.020
+7LG   plan-10         CBT   0.020
+7LG   plan-10         OCA   0.020
+7LG   plan-10         OCB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+7LG            InChI                InChI  1.03 InChI=1S/C43H66FN5O7S/c1-9-11-12-14-22-49(42(53)38(28(5)10-2)47-40(52)35-16-13-15-21-48(35)8)36(27(3)4)25-37(56-30(7)50)41-46-34(26-57-41)39(51)45-33(23-29(6)43(54)55)24-31-17-19-32(44)20-18-31/h17-20,26-29,33,35-38H,9-16,21-25H2,1-8H3,(H,45,51)(H,47,52)(H,54,55)/t28-,29-,33+,35+,36+,37+,38-/m0/s1
+7LG         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                SCNOGNXGQISYOG-CKAAVYJWSA-N
+7LG SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                          CCCCCCN([C@H](C[C@@H](OC(C)=O)c1scc(n1)C(=O)N[C@H](C[C@H](C)C(O)=O)Cc2ccc(F)cc2)C(C)C)C(=O)[C@@H](NC(=O)[C@H]3CCCCN3C)[C@@H](C)CC
+7LG           SMILES               CACTVS 3.385                                                                                                                                                                                    CCCCCCN([CH](C[CH](OC(C)=O)c1scc(n1)C(=O)N[CH](C[CH](C)C(O)=O)Cc2ccc(F)cc2)C(C)C)C(=O)[CH](NC(=O)[CH]3CCCCN3C)[CH](C)CC
+7LG SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                                           CCCCCCN([C@H](C[C@H](c1nc(cs1)C(=O)N[C@@H](Cc2ccc(cc2)F)C[C@H](C)C(=O)O)OC(=O)C)C(C)C)C(=O)[C@H]([C@@H](C)CC)NC(=O)[C@H]3CCCCN3C
+7LG           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                                         CCCCCCN(C(CC(c1nc(cs1)C(=O)NC(Cc2ccc(cc2)F)CC(C)C(=O)O)OC(=O)C)C(C)C)C(=O)C(C(C)CC)NC(=O)C3CCCCN3C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+7LG acedrg               243         "dictionary generator"                  
+7LG acedrg_database      11          "data source"                           
+7LG rdkit                2017.03.2   "Chemoinformatics tool"
+7LG refmac5              5.8.0238    "optimization tool"                     

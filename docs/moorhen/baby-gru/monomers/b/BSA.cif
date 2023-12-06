@@ -1,0 +1,213 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BSA     BSA      "2-(BENZOYLAMINO)ETHANESULFONIC ACID"     NON-POLYMER     26     15     .     
+#
+data_comp_BSA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BSA     C1      C       CR6     0       21.094      -16.759     40.051      
+BSA     C2      C       CR16    0       21.844      -17.805     39.517      
+BSA     C3      C       CR16    0       21.797      -19.068     40.090      
+BSA     C4      C       CR16    0       21.014      -19.297     41.204      
+BSA     C5      C       CR16    0       20.274      -18.266     41.748      
+BSA     C6      C       CR16    0       20.313      -17.002     41.178      
+BSA     C7      C       CH2     0       22.625      -13.338     37.581      
+BSA     S8      S       S3      0       23.957      -14.319     36.948      
+BSA     N9      N       NH1     0       21.163      -15.270     38.123      
+BSA     C10     C       CH2     0       21.266      -13.995     37.428      
+BSA     O11     O       OH1     0       23.881      -15.623     37.779      
+BSA     O12     O       O       0       25.169      -13.616     37.259      
+BSA     C13     C       C       0       21.126      -15.375     39.458      
+BSA     O14     O       O       0       21.130      -14.388     40.195      
+BSA     O15     O       O       0       23.649      -14.596     35.574      
+BSA     H2      H       H       0       22.379      -17.659     38.757      
+BSA     H3      H       H       0       22.303      -19.771     39.719      
+BSA     H4      H       H       0       20.985      -20.157     41.593      
+BSA     H5      H       H       0       19.738      -18.422     42.508      
+BSA     H6      H       H       0       19.804      -16.306     41.556      
+BSA     H71     H       H       0       22.610      -12.485     37.109      
+BSA     H72     H       H       0       22.783      -13.159     38.525      
+BSA     HN9     H       H       0       21.104      -15.989     37.631      
+BSA     H101    H       H       0       21.090      -14.138     36.474      
+BSA     H102    H       H       0       20.578      -13.386     37.773      
+BSA     H11     H       H       0       24.170      -16.248     37.350      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BSA          C1          C2      DOUBLE       y     1.389  0.0100     1.389  0.0100
+BSA          C1          C6      SINGLE       y     1.389  0.0100     1.389  0.0100
+BSA          C1         C13      SINGLE       n     1.502  0.0100     1.502  0.0100
+BSA          C2          C3      SINGLE       y     1.384  0.0100     1.384  0.0100
+BSA          C3          C4      DOUBLE       y     1.376  0.0114     1.376  0.0114
+BSA          C4          C5      SINGLE       y     1.376  0.0124     1.376  0.0124
+BSA          C5          C6      DOUBLE       y     1.384  0.0100     1.384  0.0100
+BSA          C7          S8      SINGLE       n     1.771  0.0119     1.771  0.0119
+BSA          C7         C10      SINGLE       n     1.513  0.0171     1.513  0.0171
+BSA          S8         O11      SINGLE       n     1.549  0.0200     1.549  0.0200
+BSA          S8         O12      DOUBLE       n     1.435  0.0100     1.435  0.0100
+BSA          S8         O15      DOUBLE       n     1.435  0.0100     1.435  0.0100
+BSA          N9         C10      SINGLE       n     1.454  0.0100     1.454  0.0100
+BSA          N9         C13      SINGLE       n     1.333  0.0111     1.333  0.0111
+BSA         C13         O14      DOUBLE       n     1.230  0.0114     1.230  0.0114
+BSA          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+BSA          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0180
+BSA          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0161
+BSA          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0180
+BSA          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+BSA          C7         H71      SINGLE       n     1.089  0.0100     0.975  0.0200
+BSA          C7         H72      SINGLE       n     1.089  0.0100     0.975  0.0200
+BSA          N9         HN9      SINGLE       n     1.016  0.0100     0.873  0.0200
+BSA         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0127
+BSA         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0127
+BSA         O11         H11      SINGLE       n     0.970  0.0120     0.811  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BSA          C2          C1          C6     119.007    1.50
+BSA          C2          C1         C13     120.497    2.80
+BSA          C6          C1         C13     120.497    2.80
+BSA          C1          C2          C3     120.300    1.50
+BSA          C1          C2          H2     119.925    1.50
+BSA          C3          C2          H2     119.776    1.50
+BSA          C2          C3          C4     120.226    1.50
+BSA          C2          C3          H3     119.842    1.50
+BSA          C4          C3          H3     119.933    1.50
+BSA          C3          C4          C5     119.943    1.50
+BSA          C3          C4          H4     120.028    1.50
+BSA          C5          C4          H4     120.028    1.50
+BSA          C4          C5          C6     120.226    1.50
+BSA          C4          C5          H5     119.933    1.50
+BSA          C6          C5          H5     119.842    1.50
+BSA          C1          C6          C5     120.300    1.50
+BSA          C1          C6          H6     119.925    1.50
+BSA          C5          C6          H6     119.776    1.50
+BSA          S8          C7         C10     112.963    1.50
+BSA          S8          C7         H71     108.904    1.50
+BSA          S8          C7         H72     108.904    1.50
+BSA         C10          C7         H71     108.480    1.53
+BSA         C10          C7         H72     108.480    1.53
+BSA         H71          C7         H72     108.151    1.50
+BSA          C7          S8         O11     103.568    2.80
+BSA          C7          S8         O12     106.916    1.50
+BSA          C7          S8         O15     106.916    1.50
+BSA         O11          S8         O12     110.306    2.80
+BSA         O11          S8         O15     110.306    2.80
+BSA         O12          S8         O15     119.289    2.60
+BSA         C10          N9         C13     122.257    1.53
+BSA         C10          N9         HN9     118.387    1.89
+BSA         C13          N9         HN9     119.356    1.77
+BSA          C7         C10          N9     112.377    1.75
+BSA          C7         C10        H101     108.964    1.50
+BSA          C7         C10        H102     108.964    1.50
+BSA          N9         C10        H101     109.052    1.50
+BSA          N9         C10        H102     109.052    1.50
+BSA        H101         C10        H102     107.995    1.50
+BSA          S8         O11         H11     110.371    3.00
+BSA          C1         C13          N9     116.868    1.50
+BSA          C1         C13         O14     120.968    1.50
+BSA          N9         C13         O14     122.164    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BSA       const_sp2_sp2_3         C13          C1          C2          C3     180.000     5.0     2
+BSA             sp2_sp2_1          C2          C1         C13          N9     180.000     5.0     2
+BSA              const_23         C13          C1          C6          C5     180.000    10.0     2
+BSA       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+BSA       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+BSA              const_13          C3          C4          C5          C6       0.000    10.0     2
+BSA              const_17          C4          C5          C6          C1       0.000    10.0     2
+BSA             sp3_sp3_3         C10          C7          S8         O11      60.000    10.0     3
+BSA            sp3_sp3_10          N9         C10          C7          S8     180.000    10.0     3
+BSA            sp3_sp3_21         H11         O11          S8          C7      60.000    10.0     3
+BSA             sp2_sp2_7         O14         C13          N9         C10       0.000     5.0     2
+BSA             sp2_sp3_2         C13          N9         C10          C7     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BSA    chir_1    S8    O12    O15    O11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BSA    plan-1          C1   0.020
+BSA    plan-1         C13   0.020
+BSA    plan-1          C2   0.020
+BSA    plan-1          C3   0.020
+BSA    plan-1          C4   0.020
+BSA    plan-1          C5   0.020
+BSA    plan-1          C6   0.020
+BSA    plan-1          H2   0.020
+BSA    plan-1          H3   0.020
+BSA    plan-1          H4   0.020
+BSA    plan-1          H5   0.020
+BSA    plan-1          H6   0.020
+BSA    plan-2         C10   0.020
+BSA    plan-2         C13   0.020
+BSA    plan-2         HN9   0.020
+BSA    plan-2          N9   0.020
+BSA    plan-3          C1   0.020
+BSA    plan-3         C13   0.020
+BSA    plan-3          N9   0.020
+BSA    plan-3         O14   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BSA           SMILES              ACDLabs 10.04                                                                  O=C(NCCS(=O)(=O)O)c1ccccc1
+BSA SMILES_CANONICAL               CACTVS 3.341                                                                O[S](=O)(=O)CCNC(=O)c1ccccc1
+BSA           SMILES               CACTVS 3.341                                                                O[S](=O)(=O)CCNC(=O)c1ccccc1
+BSA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                c1ccc(cc1)C(=O)NCCS(=O)(=O)O
+BSA           SMILES "OpenEye OEToolkits" 1.5.0                                                                c1ccc(cc1)C(=O)NCCS(=O)(=O)O
+BSA            InChI                InChI  1.03 InChI=1S/C9H11NO4S/c11-9(8-4-2-1-3-5-8)10-6-7-15(12,13)14/h1-5H,6-7H2,(H,10,11)(H,12,13,14)
+BSA         InChIKey                InChI  1.03                                                                 ABUKAMCDAHVPSR-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BSA acedrg               243         "dictionary generator"                  
+BSA acedrg_database      11          "data source"                           
+BSA rdkit                2017.03.2   "Chemoinformatics tool"
+BSA refmac5              5.8.0238    "optimization tool"                     

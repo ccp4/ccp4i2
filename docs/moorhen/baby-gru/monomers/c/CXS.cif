@@ -1,0 +1,225 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CXS     CXS      "3-CYCLOHEXYL-1-PROPYLSULFONIC ACID"     NON-POLYMER     33     14     .     
+#
+data_comp_CXS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CXS     S       S       S3      0       21.670      23.386      29.764      
+CXS     O1      O       O       0       21.172      22.361      30.635      
+CXS     O2      O       O       0       22.309      24.539      30.333      
+CXS     O3      O       OH1     0       20.552      23.832      28.791      
+CXS     C1      C       CH2     0       22.852      22.627      28.683      
+CXS     C2      C       CH2     0       23.877      21.764      29.403      
+CXS     C3      C       CH2     0       24.869      22.569      30.221      
+CXS     N       N       NT1     0       25.970      21.737      30.710      
+CXS     C4      C       CH1     0       27.081      22.454      31.353      
+CXS     C5      C       CH2     0       28.313      21.559      31.424      
+CXS     C6      C       CH2     0       29.486      22.284      32.084      
+CXS     C7      C       CH2     0       29.113      22.807      33.459      
+CXS     C8      C       CH2     0       27.882      23.692      33.394      
+CXS     C9      C       CH2     0       26.706      22.968      32.739      
+CXS     HO3     H       H       0       20.185      24.500      29.070      
+CXS     H11     H       H       0       23.320      23.325      28.189      
+CXS     H12     H       H       0       22.376      22.074      28.036      
+CXS     H21     H       H       0       24.376      21.236      28.745      
+CXS     H22     H       H       0       23.419      21.136      29.999      
+CXS     H31     H       H       0       24.402      22.970      30.992      
+CXS     H32     H       H       0       25.225      23.304      29.665      
+CXS     HN      H       H       0       25.663      21.134      31.281      
+CXS     H4      H       H       0       27.305      23.234      30.790      
+CXS     H51     H       H       0       28.098      20.751      31.937      
+CXS     H52     H       H       0       28.567      21.284      30.517      
+CXS     H61     H       H       0       29.765      23.034      31.515      
+CXS     H62     H       H       0       30.245      21.666      32.165      
+CXS     H71     H       H       0       29.864      23.321      33.827      
+CXS     H72     H       H       0       28.939      22.051      34.059      
+CXS     H81     H       H       0       28.091      24.502      32.880      
+CXS     H82     H       H       0       27.630      23.966      34.303      
+CXS     H91     H       H       0       26.432      22.213      33.303      
+CXS     H92     H       H       0       25.947      23.584      32.666      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CXS           S          O1      DOUBLE       n     1.435  0.0100     1.435  0.0100
+CXS           S          O2      DOUBLE       n     1.435  0.0100     1.435  0.0100
+CXS           S          O3      SINGLE       n     1.549  0.0200     1.549  0.0200
+CXS           S          C1      SINGLE       n     1.771  0.0119     1.771  0.0119
+CXS          C1          C2      SINGLE       n     1.516  0.0200     1.516  0.0200
+CXS          C2          C3      SINGLE       n     1.516  0.0131     1.516  0.0131
+CXS          C3           N      SINGLE       n     1.463  0.0143     1.463  0.0143
+CXS           N          C4      SINGLE       n     1.468  0.0132     1.468  0.0132
+CXS          C4          C5      SINGLE       n     1.521  0.0138     1.521  0.0138
+CXS          C4          C9      SINGLE       n     1.521  0.0138     1.521  0.0138
+CXS          C5          C6      SINGLE       n     1.527  0.0100     1.527  0.0100
+CXS          C6          C7      SINGLE       n     1.516  0.0136     1.516  0.0136
+CXS          C7          C8      SINGLE       n     1.515  0.0126     1.515  0.0126
+CXS          C8          C9      SINGLE       n     1.527  0.0100     1.527  0.0100
+CXS          O3         HO3      SINGLE       n     0.970  0.0120     0.811  0.0200
+CXS          C1         H11      SINGLE       n     1.089  0.0100     0.975  0.0200
+CXS          C1         H12      SINGLE       n     1.089  0.0100     0.975  0.0200
+CXS          C2         H21      SINGLE       n     1.089  0.0100     0.980  0.0123
+CXS          C2         H22      SINGLE       n     1.089  0.0100     0.980  0.0123
+CXS          C3         H31      SINGLE       n     1.089  0.0100     0.988  0.0200
+CXS          C3         H32      SINGLE       n     1.089  0.0100     0.988  0.0200
+CXS           N          HN      SINGLE       n     1.036  0.0160     0.885  0.0200
+CXS          C4          H4      SINGLE       n     1.089  0.0100     0.988  0.0199
+CXS          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0121
+CXS          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0121
+CXS          C6         H61      SINGLE       n     1.089  0.0100     0.982  0.0131
+CXS          C6         H62      SINGLE       n     1.089  0.0100     0.982  0.0131
+CXS          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0138
+CXS          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0138
+CXS          C8         H81      SINGLE       n     1.089  0.0100     0.982  0.0131
+CXS          C8         H82      SINGLE       n     1.089  0.0100     0.982  0.0131
+CXS          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0121
+CXS          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0121
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CXS          O1           S          O2     119.289    2.60
+CXS          O1           S          O3     110.306    2.80
+CXS          O1           S          C1     106.916    1.50
+CXS          O2           S          O3     110.306    2.80
+CXS          O2           S          C1     106.916    1.50
+CXS          O3           S          C1     103.568    2.80
+CXS           S          O3         HO3     110.371    3.00
+CXS           S          C1          C2     113.010    1.50
+CXS           S          C1         H11     108.904    1.50
+CXS           S          C1         H12     108.904    1.50
+CXS          C2          C1         H11     108.920    1.50
+CXS          C2          C1         H12     108.920    1.50
+CXS         H11          C1         H12     107.844    1.50
+CXS          C1          C2          C3     113.102    2.19
+CXS          C1          C2         H21     109.743    1.50
+CXS          C1          C2         H22     109.743    1.50
+CXS          C3          C2         H21     108.829    1.50
+CXS          C3          C2         H22     108.829    1.50
+CXS         H21          C2         H22     107.937    1.50
+CXS          C2          C3           N     111.829    1.50
+CXS          C2          C3         H31     109.077    1.50
+CXS          C2          C3         H32     109.077    1.50
+CXS           N          C3         H31     109.170    3.00
+CXS           N          C3         H32     109.170    3.00
+CXS         H31          C3         H32     107.881    1.50
+CXS          C3           N          C4     115.236    1.50
+CXS          C3           N          HN     109.903    3.00
+CXS          C4           N          HN     107.785    2.86
+CXS           N          C4          C5     111.820    2.36
+CXS           N          C4          C9     111.820    2.36
+CXS           N          C4          H4     108.110    1.50
+CXS          C5          C4          C9     110.870    1.50
+CXS          C5          C4          H4     108.306    1.50
+CXS          C9          C4          H4     108.306    1.50
+CXS          C4          C5          C6     110.796    1.50
+CXS          C4          C5         H51     109.338    1.50
+CXS          C4          C5         H52     109.338    1.50
+CXS          C6          C5         H51     109.472    1.50
+CXS          C6          C5         H52     109.472    1.50
+CXS         H51          C5         H52     108.076    1.50
+CXS          C5          C6          C7     111.328    1.50
+CXS          C5          C6         H61     109.340    1.50
+CXS          C5          C6         H62     109.340    1.50
+CXS          C7          C6         H61     109.386    1.50
+CXS          C7          C6         H62     109.386    1.50
+CXS         H61          C6         H62     108.036    1.50
+CXS          C6          C7          C8     111.038    1.50
+CXS          C6          C7         H71     109.386    1.50
+CXS          C6          C7         H72     109.386    1.50
+CXS          C8          C7         H71     109.386    1.50
+CXS          C8          C7         H72     109.386    1.50
+CXS         H71          C7         H72     108.036    1.50
+CXS          C7          C8          C9     111.328    1.50
+CXS          C7          C8         H81     109.386    1.50
+CXS          C7          C8         H82     109.386    1.50
+CXS          C9          C8         H81     109.340    1.50
+CXS          C9          C8         H82     109.340    1.50
+CXS         H81          C8         H82     108.036    1.50
+CXS          C4          C9          C8     110.796    1.50
+CXS          C4          C9         H91     109.338    1.50
+CXS          C4          C9         H92     109.338    1.50
+CXS          C8          C9         H91     109.472    1.50
+CXS          C8          C9         H92     109.472    1.50
+CXS         H91          C9         H92     108.076    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CXS            sp3_sp3_47         HO3          O3           S          O1     -60.000    10.0     3
+CXS            sp3_sp3_49          C2          C1           S          O1     180.000    10.0     3
+CXS            sp3_sp3_19          C5          C6          C7          C8      60.000    10.0     3
+CXS            sp3_sp3_28          C6          C7          C8          C9     -60.000    10.0     3
+CXS            sp3_sp3_37          C7          C8          C9          C4      60.000    10.0     3
+CXS            sp3_sp3_58           S          C1          C2          C3     180.000    10.0     3
+CXS            sp3_sp3_67          C1          C2          C3           N     180.000    10.0     3
+CXS            sp3_sp3_76          C2          C3           N          C4     180.000    10.0     3
+CXS            sp3_sp3_85          C5          C4           N          C3     180.000    10.0     3
+CXS            sp3_sp3_91           N          C4          C9          C8      60.000    10.0     3
+CXS             sp3_sp3_7           N          C4          C5          C6     180.000    10.0     3
+CXS            sp3_sp3_10          C4          C5          C6          C7     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CXS    chir_1    S    O1    O2    O3    both
+CXS    chir_2    C4    N    C5    C9    both
+CXS    chir_3    N    C4    C3    HN    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CXS           SMILES              ACDLabs 10.04                                                           O=S(=O)(O)CCCNC1CCCCC1
+CXS SMILES_CANONICAL               CACTVS 3.341                                                         O[S](=O)(=O)CCCNC1CCCCC1
+CXS           SMILES               CACTVS 3.341                                                         O[S](=O)(=O)CCCNC1CCCCC1
+CXS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                         C1CCC(CC1)NCCCS(=O)(=O)O
+CXS           SMILES "OpenEye OEToolkits" 1.5.0                                                         C1CCC(CC1)NCCCS(=O)(=O)O
+CXS            InChI                InChI  1.03 InChI=1S/C9H19NO3S/c11-14(12,13)8-4-7-10-9-5-2-1-3-6-9/h9-10H,1-8H2,(H,11,12,13)
+CXS         InChIKey                InChI  1.03                                                      PJWWRFATQTVXHA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CXS acedrg               243         "dictionary generator"                  
+CXS acedrg_database      11          "data source"                           
+CXS rdkit                2017.03.2   "Chemoinformatics tool"
+CXS refmac5              5.8.0238    "optimization tool"                     

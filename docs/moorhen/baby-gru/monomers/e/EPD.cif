@@ -1,0 +1,447 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EPD     EPD      "EPOTHILONE D"     NON-POLYMER     75     34     .     
+#
+data_comp_EPD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EPD     C51     C       CH3     0       8.581       37.851      16.076      
+EPD     C5      C       C       0       7.351       38.470      16.696      
+EPD     C4      C       C1      0       6.246       37.756      16.928      
+EPD     C3      C       CH2     0       4.912       38.210      17.452      
+EPD     C2      C       CH1     0       3.755       37.805      16.530      
+EPD     C20     C       C       0       2.418       38.115      17.194      
+EPD     C21     C       CH3     0       1.572       36.941      17.604      
+EPD     C22     C       C1      0       2.042       39.382      17.406      
+EPD     C23     C       CR5     0       0.818       39.971      17.922      
+EPD     C24     C       CR15    0       0.611       41.337      18.068      
+EPD     S1      S       S2      0       -0.915      41.573      18.690      
+EPD     C25     C       CR5     0       -1.274      39.942      18.759      
+EPD     C27     C       CH3     0       -2.574      39.448      19.258      
+EPD     N26     N       NRD5    0       -0.291      39.223      18.332      
+EPD     C6      C       CH2     0       7.398       39.949      17.030      
+EPD     C7      C       CH2     0       8.752       40.637      17.048      
+EPD     C8      C       CH2     0       9.328       41.139      15.716      
+EPD     C9      C       CH1     0       8.497       42.135      14.871      
+EPD     C91     C       CH3     0       7.716       43.114      15.749      
+EPD     C10     C       CH1     0       7.621       41.451      13.790      
+EPD     O10     O       OH1     0       8.458       40.696      12.900      
+EPD     C11     C       CH1     0       6.701       42.378      12.972      
+EPD     C28     C       CH3     0       7.460       43.517      12.285      
+EPD     C12     C       C       0       5.960       41.567      11.896      
+EPD     O12     O       O       0       6.616       41.121      10.974      
+EPD     C13     C       CT      0       4.434       41.314      11.986      
+EPD     C30     C       CH3     0       3.726       42.666      12.200      
+EPD     C29     C       CH3     0       3.934       40.747      10.641      
+EPD     C14     C       CH1     0       4.098       40.354      13.176      
+EPD     O14     O       OH1     0       2.671       40.236      13.326      
+EPD     C15     C       CH2     0       4.726       38.959      13.098      
+EPD     C16     C       C       0       4.263       37.961      14.132      
+EPD     O16     O       O       0       4.217       36.772      13.939      
+EPD     O1      O       O2      0       3.884       38.561      15.287      
+EPD     H511    H       H       0       9.338       37.938      16.677      
+EPD     H512    H       H       0       8.780       38.291      15.236      
+EPD     H513    H       H       0       8.424       36.908      15.907      
+EPD     H4      H       H       0       6.308       36.833      16.740      
+EPD     H31     H       H       0       4.909       39.187      17.555      
+EPD     H32     H       H       0       4.768       37.814      18.344      
+EPD     H2      H       H       0       3.821       36.845      16.353      
+EPD     H211    H       H       0       2.048       36.111      17.445      
+EPD     H212    H       H       0       0.748       36.939      17.091      
+EPD     H213    H       H       0       1.359       37.009      18.549      
+EPD     H22     H       H       0       2.695       40.016      17.181      
+EPD     H24     H       H       0       1.199       42.044      17.865      
+EPD     H271    H       H       0       -2.603      38.482      19.189      
+EPD     H272    H       H       0       -3.291      39.829      18.730      
+EPD     H273    H       H       0       -2.686      39.707      20.185      
+EPD     H61     H       H       0       6.999       40.067      17.918      
+EPD     H62     H       H       0       6.813       40.418      16.409      
+EPD     H71     H       H       0       9.403       40.028      17.452      
+EPD     H72     H       H       0       8.684       41.402      17.656      
+EPD     H81     H       H       0       9.532       40.362      15.163      
+EPD     H82     H       H       0       10.185      41.572      15.916      
+EPD     H9      H       H       0       9.152       42.682      14.373      
+EPD     H911    H       H       0       6.907       42.687      16.080      
+EPD     H912    H       H       0       7.473       43.898      15.228      
+EPD     H913    H       H       0       8.267       43.390      16.501      
+EPD     H10     H       H       0       7.030       40.806      14.252      
+EPD     H3      H       H       0       9.140       41.129      12.644      
+EPD     H11     H       H       0       6.045       42.785      13.589      
+EPD     H281    H       H       0       6.955       43.833      11.514      
+EPD     H282    H       H       0       8.331       43.203      11.991      
+EPD     H283    H       H       0       7.578       44.252      12.911      
+EPD     H301    H       H       0       3.786       42.920      13.137      
+EPD     H302    H       H       0       2.789       42.586      11.950      
+EPD     H303    H       H       0       4.150       43.348      11.651      
+EPD     H291    H       H       0       2.979       40.573      10.695      
+EPD     H292    H       H       0       4.401       39.922      10.431      
+EPD     H293    H       H       0       4.101       41.399      9.938       
+EPD     H14     H       H       0       4.441       40.783      13.985      
+EPD     H1      H       H       0       2.361       39.678      12.767      
+EPD     H151    H       H       0       5.699       39.046      13.181      
+EPD     H152    H       H       0       4.545       38.572      12.219      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EPD         C51          C5      SINGLE       n     1.499  0.0156     1.499  0.0156
+EPD          C5          C4      DOUBLE       n     1.330  0.0100     1.330  0.0100
+EPD          C5          C6      SINGLE       n     1.502  0.0126     1.502  0.0126
+EPD          C4          C3      SINGLE       n     1.498  0.0141     1.498  0.0141
+EPD          C3          C2      SINGLE       n     1.534  0.0115     1.534  0.0115
+EPD          C2         C20      SINGLE       n     1.515  0.0183     1.515  0.0183
+EPD          C2          O1      SINGLE       n     1.454  0.0116     1.454  0.0116
+EPD         C20         C21      SINGLE       n     1.502  0.0100     1.502  0.0100
+EPD         C20         C22      DOUBLE       n     1.334  0.0100     1.334  0.0100
+EPD         C22         C23      SINGLE       n     1.445  0.0186     1.445  0.0186
+EPD         C23         C24      DOUBLE       y     1.379  0.0196     1.379  0.0196
+EPD         C23         N26      SINGLE       y     1.390  0.0100     1.390  0.0100
+EPD         C24          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+EPD          S1         C25      SINGLE       y     1.695  0.0200     1.695  0.0200
+EPD         C25         C27      SINGLE       n     1.478  0.0100     1.478  0.0100
+EPD         C25         N26      DOUBLE       y     1.286  0.0100     1.286  0.0100
+EPD          C6          C7      SINGLE       n     1.497  0.0200     1.497  0.0200
+EPD          C7          C8      SINGLE       n     1.519  0.0164     1.519  0.0164
+EPD          C8          C9      SINGLE       n     1.541  0.0100     1.541  0.0100
+EPD          C9         C91      SINGLE       n     1.521  0.0151     1.521  0.0151
+EPD          C9         C10      SINGLE       n     1.539  0.0120     1.539  0.0120
+EPD         C10         O10      SINGLE       n     1.426  0.0179     1.426  0.0179
+EPD         C10         C11      SINGLE       n     1.535  0.0100     1.535  0.0100
+EPD         C11         C28      SINGLE       n     1.521  0.0173     1.521  0.0173
+EPD         C11         C12      SINGLE       n     1.532  0.0100     1.532  0.0100
+EPD         C12         O12      DOUBLE       n     1.209  0.0200     1.209  0.0200
+EPD         C12         C13      SINGLE       n     1.542  0.0100     1.542  0.0100
+EPD         C13         C30      SINGLE       n     1.538  0.0100     1.538  0.0100
+EPD         C13         C29      SINGLE       n     1.538  0.0100     1.538  0.0100
+EPD         C13         C14      SINGLE       n     1.550  0.0149     1.550  0.0149
+EPD         C14         O14      SINGLE       n     1.437  0.0100     1.437  0.0100
+EPD         C14         C15      SINGLE       n     1.522  0.0110     1.522  0.0110
+EPD         C15         C16      SINGLE       n     1.502  0.0135     1.502  0.0135
+EPD         C16         O16      DOUBLE       n     1.203  0.0150     1.203  0.0150
+EPD         C16          O1      SINGLE       n     1.334  0.0200     1.334  0.0200
+EPD         C51        H511      SINGLE       n     1.089  0.0100     0.971  0.0140
+EPD         C51        H512      SINGLE       n     1.089  0.0100     0.971  0.0140
+EPD         C51        H513      SINGLE       n     1.089  0.0100     0.971  0.0140
+EPD          C4          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+EPD          C3         H31      SINGLE       n     1.089  0.0100     0.987  0.0200
+EPD          C3         H32      SINGLE       n     1.089  0.0100     0.987  0.0200
+EPD          C2          H2      SINGLE       n     1.089  0.0100     0.980  0.0157
+EPD         C21        H211      SINGLE       n     1.089  0.0100     0.971  0.0140
+EPD         C21        H212      SINGLE       n     1.089  0.0100     0.971  0.0140
+EPD         C21        H213      SINGLE       n     1.089  0.0100     0.971  0.0140
+EPD         C22         H22      SINGLE       n     1.082  0.0130     0.938  0.0170
+EPD         C24         H24      SINGLE       n     1.082  0.0130     0.942  0.0200
+EPD         C27        H271      SINGLE       n     1.089  0.0100     0.969  0.0144
+EPD         C27        H272      SINGLE       n     1.089  0.0100     0.969  0.0144
+EPD         C27        H273      SINGLE       n     1.089  0.0100     0.969  0.0144
+EPD          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0185
+EPD          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0185
+EPD          C7         H71      SINGLE       n     1.089  0.0100     0.980  0.0160
+EPD          C7         H72      SINGLE       n     1.089  0.0100     0.980  0.0160
+EPD          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0160
+EPD          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0160
+EPD          C9          H9      SINGLE       n     1.089  0.0100     0.989  0.0162
+EPD         C91        H911      SINGLE       n     1.089  0.0100     0.973  0.0146
+EPD         C91        H912      SINGLE       n     1.089  0.0100     0.973  0.0146
+EPD         C91        H913      SINGLE       n     1.089  0.0100     0.973  0.0146
+EPD         C10         H10      SINGLE       n     1.089  0.0100     0.995  0.0200
+EPD         O10          H3      SINGLE       n     0.970  0.0120     0.848  0.0200
+EPD         C11         H11      SINGLE       n     1.089  0.0100     0.990  0.0142
+EPD         C28        H281      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPD         C28        H282      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPD         C28        H283      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPD         C30        H301      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPD         C30        H302      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPD         C30        H303      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPD         C29        H291      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPD         C29        H292      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPD         C29        H293      SINGLE       n     1.089  0.0100     0.973  0.0141
+EPD         C14         H14      SINGLE       n     1.089  0.0100     0.978  0.0200
+EPD         O14          H1      SINGLE       n     0.970  0.0120     0.848  0.0200
+EPD         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0185
+EPD         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EPD          C5         C51        H511     109.541    1.50
+EPD          C5         C51        H512     109.541    1.50
+EPD          C5         C51        H513     109.541    1.50
+EPD        H511         C51        H512     109.342    1.50
+EPD        H511         C51        H513     109.342    1.50
+EPD        H512         C51        H513     109.342    1.50
+EPD         C51          C5          C4     123.681    1.50
+EPD         C51          C5          C6     115.131    1.50
+EPD          C4          C5          C6     121.188    1.50
+EPD          C5          C4          C3     127.670    1.50
+EPD          C5          C4          H4     115.988    1.50
+EPD          C3          C4          H4     116.342    1.85
+EPD          C4          C3          C2     111.511    2.91
+EPD          C4          C3         H31     108.705    1.50
+EPD          C4          C3         H32     108.705    1.50
+EPD          C2          C3         H31     108.888    1.50
+EPD          C2          C3         H32     108.888    1.50
+EPD         H31          C3         H32     107.440    1.74
+EPD          C3          C2         C20     111.511    2.91
+EPD          C3          C2          O1     107.754    2.90
+EPD          C3          C2          H2     108.647    1.58
+EPD         C20          C2          O1     110.354    2.51
+EPD         C20          C2          H2     109.227    1.50
+EPD          O1          C2          H2     109.237    1.50
+EPD          C2         C20         C21     116.319    2.45
+EPD          C2         C20         C22     122.862    3.00
+EPD         C21         C20         C22     120.819    2.85
+EPD         C20         C21        H211     109.689    1.50
+EPD         C20         C21        H212     109.689    1.50
+EPD         C20         C21        H213     109.689    1.50
+EPD        H211         C21        H212     109.342    1.50
+EPD        H211         C21        H213     109.342    1.50
+EPD        H212         C21        H213     109.342    1.50
+EPD         C20         C22         C23     129.690    2.42
+EPD         C20         C22         H22     114.755    1.50
+EPD         C23         C22         H22     115.554    1.96
+EPD         C22         C23         C24     129.117    3.00
+EPD         C22         C23         N26     122.566    3.00
+EPD         C24         C23         N26     108.316    1.50
+EPD         C23         C24          S1     108.144    3.00
+EPD         C23         C24         H24     128.494    1.50
+EPD          S1         C24         H24     123.362    3.00
+EPD         C24          S1         C25     108.144    3.00
+EPD          S1         C25         C27     123.466    3.00
+EPD          S1         C25         N26     108.144    3.00
+EPD         C27         C25         N26     128.390    3.00
+EPD         C25         C27        H271     109.610    1.50
+EPD         C25         C27        H272     109.610    1.50
+EPD         C25         C27        H273     109.610    1.50
+EPD        H271         C27        H272     109.334    1.50
+EPD        H271         C27        H273     109.334    1.50
+EPD        H272         C27        H273     109.334    1.50
+EPD         C23         N26         C25     107.252    1.65
+EPD          C5          C6          C7     113.243    1.53
+EPD          C5          C6         H61     108.816    1.50
+EPD          C5          C6         H62     108.816    1.50
+EPD          C7          C6         H61     109.153    1.50
+EPD          C7          C6         H62     109.153    1.50
+EPD         H61          C6         H62     107.710    1.94
+EPD          C6          C7          C8     113.314    2.25
+EPD          C6          C7         H71     108.548    1.50
+EPD          C6          C7         H72     108.548    1.50
+EPD          C8          C7         H71     108.762    1.50
+EPD          C8          C7         H72     108.762    1.50
+EPD         H71          C7         H72     107.646    1.50
+EPD          C7          C8          C9     115.586    1.50
+EPD          C7          C8         H81     108.469    1.50
+EPD          C7          C8         H82     108.469    1.50
+EPD          C9          C8         H81     108.647    1.58
+EPD          C9          C8         H82     108.647    1.58
+EPD         H81          C8         H82     107.657    1.50
+EPD          C8          C9         C91     111.118    1.50
+EPD          C8          C9         C10     113.128    1.50
+EPD          C8          C9          H9     107.675    1.50
+EPD         C91          C9         C10     112.188    1.82
+EPD         C91          C9          H9     107.528    1.50
+EPD         C10          C9          H9     106.729    1.51
+EPD          C9         C91        H911     109.636    1.50
+EPD          C9         C91        H912     109.636    1.50
+EPD          C9         C91        H913     109.636    1.50
+EPD        H911         C91        H912     109.411    1.50
+EPD        H911         C91        H913     109.411    1.50
+EPD        H912         C91        H913     109.411    1.50
+EPD          C9         C10         O10     108.702    3.00
+EPD          C9         C10         C11     115.473    1.51
+EPD          C9         C10         H10     107.756    1.50
+EPD         O10         C10         C11     109.333    2.45
+EPD         O10         C10         H10     108.007    1.50
+EPD         C11         C10         H10     107.758    1.74
+EPD         C10         O10          H3     110.295    3.00
+EPD         C10         C11         C28     112.203    1.50
+EPD         C10         C11         C12     109.354    1.50
+EPD         C10         C11         H11     108.824    1.50
+EPD         C28         C11         C12     107.821    1.77
+EPD         C28         C11         H11     108.296    1.70
+EPD         C12         C11         H11     109.514    1.50
+EPD         C11         C28        H281     109.528    1.50
+EPD         C11         C28        H282     109.528    1.50
+EPD         C11         C28        H283     109.528    1.50
+EPD        H281         C28        H282     109.411    1.50
+EPD        H281         C28        H283     109.411    1.50
+EPD        H282         C28        H283     109.411    1.50
+EPD         C11         C12         O12     118.576    1.50
+EPD         C11         C12         C13     120.579    1.50
+EPD         O12         C12         C13     120.845    1.50
+EPD         C12         C13         C30     108.450    1.62
+EPD         C12         C13         C29     108.450    1.62
+EPD         C12         C13         C14     111.224    2.89
+EPD         C30         C13         C29     109.133    1.50
+EPD         C30         C13         C14     110.411    1.50
+EPD         C29         C13         C14     110.411    1.50
+EPD         C13         C30        H301     109.286    1.50
+EPD         C13         C30        H302     109.286    1.50
+EPD         C13         C30        H303     109.286    1.50
+EPD        H301         C30        H302     109.377    1.50
+EPD        H301         C30        H303     109.377    1.50
+EPD        H302         C30        H303     109.377    1.50
+EPD         C13         C29        H291     109.286    1.50
+EPD         C13         C29        H292     109.286    1.50
+EPD         C13         C29        H293     109.286    1.50
+EPD        H291         C29        H292     109.377    1.50
+EPD        H291         C29        H293     109.377    1.50
+EPD        H292         C29        H293     109.377    1.50
+EPD         C13         C14         O14     109.802    2.24
+EPD         C13         C14         C15     113.666    1.50
+EPD         C13         C14         H14     107.664    1.50
+EPD         O14         C14         C15     108.191    2.93
+EPD         O14         C14         H14     108.091    1.55
+EPD         C15         C14         H14     108.181    1.50
+EPD         C14         O14          H1     107.856    2.97
+EPD         C14         C15         C16     112.540    3.00
+EPD         C14         C15        H151     109.554    1.98
+EPD         C14         C15        H152     109.554    1.98
+EPD         C16         C15        H151     108.625    1.50
+EPD         C16         C15        H152     108.625    1.50
+EPD        H151         C15        H152     107.737    1.50
+EPD         C15         C16         O16     124.982    1.50
+EPD         C15         C16          O1     112.165    3.00
+EPD         O16         C16          O1     122.853    2.43
+EPD          C2          O1         C16     116.394    1.84
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EPD             sp2_sp3_1          C4          C5         C51        H511       0.000    10.0     6
+EPD       const_sp2_sp2_8         C27         C25          S1         C24     180.000     5.0     2
+EPD            sp2_sp3_31          S1         C25         C27        H271     150.000    10.0     6
+EPD              const_10         C27         C25         N26         C23     180.000    10.0     2
+EPD            sp3_sp3_13          C5          C6          C7          C8     180.000    10.0     3
+EPD            sp3_sp3_22          C6          C7          C8          C9     180.000    10.0     3
+EPD            sp3_sp3_31          C7          C8          C9         C91     180.000    10.0     3
+EPD            sp3_sp3_40          C8          C9         C91        H911     180.000    10.0     3
+EPD            sp3_sp3_49         O10         C10          C9          C8     180.000    10.0     3
+EPD            sp3_sp3_58          C9         C10         O10          H3     180.000    10.0     3
+EPD            sp3_sp3_61          C9         C10         C11         C28     180.000    10.0     3
+EPD             sp2_sp3_8         C51          C5          C6          C7     120.000    10.0     6
+EPD             sp2_sp2_2          C3          C4          C5         C51       0.000     5.0     2
+EPD            sp3_sp3_70         C10         C11         C28        H281     180.000    10.0     3
+EPD            sp2_sp3_37         O12         C12         C11         C10       0.000    10.0     6
+EPD            sp2_sp3_43         C11         C12         C13         C30       0.000    10.0     6
+EPD            sp3_sp3_82         C12         C13         C30        H301      60.000    10.0     3
+EPD            sp3_sp3_88         C12         C13         C29        H291     180.000    10.0     3
+EPD            sp3_sp3_97         C12         C13         C14         O14     180.000    10.0     3
+EPD           sp3_sp3_106         C13         C14         O14          H1     180.000    10.0     3
+EPD           sp3_sp3_109         C13         C14         C15         C16     180.000    10.0     3
+EPD            sp2_sp3_14          C5          C4          C3          C2     120.000    10.0     6
+EPD            sp2_sp3_50         O16         C16         C15         C14     120.000    10.0     6
+EPD            sp2_sp2_13         C15         C16          O1          C2     180.000     5.0     2
+EPD             sp3_sp3_1         C20          C2          C3          C4     180.000    10.0     3
+EPD            sp3_sp3_10          C3          C2          O1         C16     180.000    10.0     3
+EPD            sp2_sp3_19         C21         C20          C2          C3       0.000    10.0     6
+EPD            sp2_sp3_25          C2         C20         C21        H211       0.000    10.0     6
+EPD             sp2_sp2_5          C2         C20         C22         C23     180.000     5.0     2
+EPD             sp2_sp2_9         C20         C22         C23         C24     180.000     5.0     2
+EPD              const_12         C22         C23         N26         C25     180.000    10.0     2
+EPD       const_sp2_sp2_3         C22         C23         C24          S1     180.000     5.0     2
+EPD       const_sp2_sp2_5         C23         C24          S1         C25       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EPD    chir_1    C2    O1    C20    C3    positive
+EPD    chir_2    C9    C10    C8    C91    positive
+EPD    chir_3    C10    O10    C11    C9    positive
+EPD    chir_4    C11    C12    C10    C28    negative
+EPD    chir_5    C13    C12    C14    C30    both
+EPD    chir_6    C14    O14    C13    C15    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EPD    plan-1         C22   0.020
+EPD    plan-1         C23   0.020
+EPD    plan-1         C24   0.020
+EPD    plan-1         C25   0.020
+EPD    plan-1         C27   0.020
+EPD    plan-1         H24   0.020
+EPD    plan-1         N26   0.020
+EPD    plan-1          S1   0.020
+EPD    plan-2          C4   0.020
+EPD    plan-2          C5   0.020
+EPD    plan-2         C51   0.020
+EPD    plan-2          C6   0.020
+EPD    plan-3          C3   0.020
+EPD    plan-3          C4   0.020
+EPD    plan-3          C5   0.020
+EPD    plan-3          H4   0.020
+EPD    plan-4          C2   0.020
+EPD    plan-4         C20   0.020
+EPD    plan-4         C21   0.020
+EPD    plan-4         C22   0.020
+EPD    plan-5         C20   0.020
+EPD    plan-5         C22   0.020
+EPD    plan-5         C23   0.020
+EPD    plan-5         H22   0.020
+EPD    plan-6         C11   0.020
+EPD    plan-6         C12   0.020
+EPD    plan-6         C13   0.020
+EPD    plan-6         O12   0.020
+EPD    plan-7         C15   0.020
+EPD    plan-7         C16   0.020
+EPD    plan-7          O1   0.020
+EPD    plan-7         O16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EPD           SMILES              ACDLabs 10.04                                                                                                                                                     O=C1C(C)C(O)C(C)CCCC(=CCC(OC(=O)CC(O)C1(C)C)/C(=C/c2nc(sc2)C)C)C
+EPD            InChI                InChI  1.03 InChI=1S/C27H41NO5S/c1-16-9-8-10-17(2)25(31)19(4)26(32)27(6,7)23(29)14-24(30)33-22(12-11-16)18(3)13-21-15-34-20(5)28-21/h11,13,15,17,19,22-23,25,29,31H,8-10,12,14H2,1-7H3/b16-11-,18-13+/t17-,19+,22-,23-,25-/m0/s1
+EPD         InChIKey                InChI  1.03                                                                                                                                                                                          XOZIUKBZLSUILX-GIQCAXHBSA-N
+EPD SMILES_CANONICAL               CACTVS 3.385                                                                                                                               C[C@H]1CCCC(=C\C[C@H](OC(=O)C[C@H](O)C(C)(C)C(=O)[C@H](C)[C@H]1O)\C(C)=C\c2csc(C)n2)/C
+EPD           SMILES               CACTVS 3.385                                                                                                                                        C[CH]1CCCC(=CC[CH](OC(=O)C[CH](O)C(C)(C)C(=O)[CH](C)[CH]1O)C(C)=Cc2csc(C)n2)C
+EPD SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                                                                        Cc1nc(cs1)/C=C(\C)/[C@@H]2C/C=C(\CCC[C@@H]([C@@H]([C@H](C(=O)C([C@H](CC(=O)O2)O)(C)C)C)O)C)/C
+EPD           SMILES "OpenEye OEToolkits" 1.7.5                                                                                                                                                     Cc1nc(cs1)C=C(C)C2CC=C(CCCC(C(C(C(=O)C(C(CC(=O)O2)O)(C)C)C)O)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EPD acedrg               243         "dictionary generator"                  
+EPD acedrg_database      11          "data source"                           
+EPD rdkit                2017.03.2   "Chemoinformatics tool"
+EPD refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,170 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MRD     MRD      (4R)-2-METHYLPENTANE-2,4-DIOL     NON-POLYMER     22     8     .     
+#
+data_comp_MRD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MRD     C1      C       CH3     0       70.097      52.926      5.036       
+MRD     C2      C       CT      0       70.776      51.593      4.746       
+MRD     O2      O       OH1     0       72.178      51.851      4.540       
+MRD     CM      C       CH3     0       70.696      50.657      5.942       
+MRD     C3      C       CH2     0       70.243      50.932      3.467       
+MRD     C4      C       CH1     0       68.791      50.474      3.474       
+MRD     O4      O       OH1     0       68.683      49.201      4.115       
+MRD     C5      C       CH3     0       68.175      50.398      2.101       
+MRD     H1C1    H       H       0       69.767      53.310      4.206       
+MRD     H1C2    H       H       0       70.739      53.534      5.441       
+MRD     H1C3    H       H       0       69.353      52.786      5.646       
+MRD     H2      H       H       0       72.285      52.386      3.888       
+MRD     HMC1    H       H       0       71.078      49.796      5.702       
+MRD     HMC2    H       H       0       69.767      50.540      6.200       
+MRD     HMC3    H       H       0       71.195      51.040      6.683       
+MRD     H3C1    H       H       0       70.809      50.153      3.275       
+MRD     H3C2    H       H       0       70.362      51.567      2.729       
+MRD     H4      H       H       0       68.253      51.113      4.009       
+MRD     HA      H       H       0       69.078      48.605      3.657       
+MRD     H5C1    H       H       0       67.535      49.664      2.066       
+MRD     H5C2    H       H       0       68.869      50.248      1.434       
+MRD     H5C3    H       H       0       67.714      51.233      1.902       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MRD          C1          C2      SINGLE       n     1.520  0.0101     1.520  0.0101
+MRD          C2          O2      SINGLE       n     1.437  0.0141     1.437  0.0141
+MRD          C2          CM      SINGLE       n     1.520  0.0101     1.520  0.0101
+MRD          C2          C3      SINGLE       n     1.531  0.0100     1.531  0.0100
+MRD          C3          C4      SINGLE       n     1.506  0.0200     1.506  0.0200
+MRD          C4          O4      SINGLE       n     1.424  0.0199     1.424  0.0199
+MRD          C4          C5      SINGLE       n     1.501  0.0160     1.501  0.0160
+MRD          C1        H1C1      SINGLE       n     1.089  0.0100     0.972  0.0148
+MRD          C1        H1C2      SINGLE       n     1.089  0.0100     0.972  0.0148
+MRD          C1        H1C3      SINGLE       n     1.089  0.0100     0.972  0.0148
+MRD          O2          H2      SINGLE       n     0.970  0.0120     0.848  0.0200
+MRD          CM        HMC1      SINGLE       n     1.089  0.0100     0.972  0.0148
+MRD          CM        HMC2      SINGLE       n     1.089  0.0100     0.972  0.0148
+MRD          CM        HMC3      SINGLE       n     1.089  0.0100     0.972  0.0148
+MRD          C3        H3C1      SINGLE       n     1.089  0.0100     0.981  0.0160
+MRD          C3        H3C2      SINGLE       n     1.089  0.0100     0.981  0.0160
+MRD          C4          H4      SINGLE       n     1.089  0.0100     0.992  0.0184
+MRD          O4          HA      SINGLE       n     0.970  0.0120     0.848  0.0200
+MRD          C5        H5C1      SINGLE       n     1.089  0.0100     0.974  0.0145
+MRD          C5        H5C2      SINGLE       n     1.089  0.0100     0.974  0.0145
+MRD          C5        H5C3      SINGLE       n     1.089  0.0100     0.974  0.0145
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MRD          C2          C1        H1C1     109.123    1.50
+MRD          C2          C1        H1C2     109.123    1.50
+MRD          C2          C1        H1C3     109.123    1.50
+MRD        H1C1          C1        H1C2     109.441    1.50
+MRD        H1C1          C1        H1C3     109.441    1.50
+MRD        H1C2          C1        H1C3     109.441    1.50
+MRD          C1          C2          O2     107.291    2.44
+MRD          C1          C2          CM     110.915    1.50
+MRD          C1          C2          C3     111.119    1.58
+MRD          O2          C2          CM     107.291    2.44
+MRD          O2          C2          C3     107.760    2.12
+MRD          CM          C2          C3     111.119    1.58
+MRD          C2          O2          H2     109.561    1.92
+MRD          C2          CM        HMC1     109.123    1.50
+MRD          C2          CM        HMC2     109.123    1.50
+MRD          C2          CM        HMC3     109.123    1.50
+MRD        HMC1          CM        HMC2     109.441    1.50
+MRD        HMC1          CM        HMC3     109.441    1.50
+MRD        HMC2          CM        HMC3     109.441    1.50
+MRD          C2          C3          C4     111.094    2.85
+MRD          C2          C3        H3C1     108.201    1.50
+MRD          C2          C3        H3C2     108.201    1.50
+MRD          C4          C3        H3C1     108.468    1.50
+MRD          C4          C3        H3C2     108.468    1.50
+MRD        H3C1          C3        H3C2     107.715    1.50
+MRD          C3          C4          O4     109.024    2.32
+MRD          C3          C4          C5     113.468    3.00
+MRD          C3          C4          H4     108.603    1.50
+MRD          O4          C4          C5     109.534    2.02
+MRD          O4          C4          H4     107.545    2.92
+MRD          C5          C4          H4     108.620    2.54
+MRD          C4          O4          HA     109.880    2.07
+MRD          C4          C5        H5C1     109.852    1.50
+MRD          C4          C5        H5C2     109.852    1.50
+MRD          C4          C5        H5C3     109.852    1.50
+MRD        H5C1          C5        H5C2     109.425    1.50
+MRD        H5C1          C5        H5C3     109.425    1.50
+MRD        H5C2          C5        H5C3     109.425    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MRD             sp3_sp3_2        H1C1          C1          C2          O2     -60.000    10.0     3
+MRD            sp3_sp3_10          C1          C2          O2          H2     180.000    10.0     3
+MRD            sp3_sp3_19          C1          C2          CM        HMC1     -60.000    10.0     3
+MRD            sp3_sp3_25          C1          C2          C3          C4      60.000    10.0     3
+MRD            sp3_sp3_31          C2          C3          C4          O4     180.000    10.0     3
+MRD            sp3_sp3_40          C3          C4          O4          HA     180.000    10.0     3
+MRD            sp3_sp3_43          C3          C4          C5        H5C1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MRD    chir_1    C2    O2    C3    C1    both
+MRD    chir_2    C4    O4    C3    C5    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MRD           SMILES              ACDLabs 10.04                                                OC(C)CC(O)(C)C
+MRD SMILES_CANONICAL               CACTVS 3.341                                           C[C@@H](O)CC(C)(C)O
+MRD           SMILES               CACTVS 3.341                                             C[CH](O)CC(C)(C)O
+MRD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                            C[C@H](CC(C)(C)O)O
+MRD           SMILES "OpenEye OEToolkits" 1.5.0                                                CC(CC(C)(C)O)O
+MRD            InChI                InChI  1.03 InChI=1S/C6H14O2/c1-5(7)4-6(2,3)8/h5,7-8H,4H2,1-3H3/t5-/m1/s1
+MRD         InChIKey                InChI  1.03                                   SVTBMSDMJJWYQN-RXMQYKEDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MRD acedrg               243         "dictionary generator"                  
+MRD acedrg_database      11          "data source"                           
+MRD rdkit                2017.03.2   "Chemoinformatics tool"
+MRD refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,243 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KRG     KRG      "3-(3,5-dimethyl-1,2-oxazol-4-yl)-5-ethoxybenzoic acid"     NON-POLYMER     33     19     .     
+#
+data_comp_KRG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KRG     CAA     C       CH3     0       -14.910     13.377      -11.953     
+KRG     CAB     C       CH2     0       -13.824     13.928      -12.824     
+KRG     OAC     O       O2      0       -12.568     13.556      -12.239     
+KRG     CAD     C       CR6     0       -11.386     14.027      -12.760     
+KRG     CAE     C       CR16    0       -11.260     14.678      -13.988     
+KRG     CAF     C       CR6     0       -10.011     15.109      -14.428     
+KRG     CAG     C       CR16    0       -8.890      14.884      -13.637     
+KRG     CAH     C       CR6     0       -9.004      14.230      -12.412     
+KRG     CAI     C       CR16    0       -10.260     13.803      -11.982     
+KRG     CAJ     C       CR5     0       -7.811      13.992      -11.581     
+KRG     CAK     C       CR5     0       -7.646      14.340      -10.229     
+KRG     CAL     C       CH3     0       -8.575      15.019      -9.274      
+KRG     NAM     N       NRD5    0       -6.462      13.974      -9.822      
+KRG     OAN     O       O2      0       -5.819      13.367      -10.925     
+KRG     CAO     C       CR5     0       -6.657      13.393      -11.969     
+KRG     CAP     C       CH3     0       -6.188      12.805      -13.245     
+KRG     CAQ     C       C       0       -9.882      15.812      -15.746     
+KRG     OAR     O       OC      -1      -10.664     16.751      -15.981     
+KRG     OAS     O       O       0       -9.001      15.418      -16.531     
+KRG     HAA     H       H       0       -15.767     13.476      -12.399     
+KRG     HAAA    H       H       0       -14.928     13.860      -11.111     
+KRG     HAAB    H       H       0       -14.743     12.436      -11.781     
+KRG     HAB     H       H       0       -13.895     14.903      -12.879     
+KRG     HABA    H       H       0       -13.895     13.558      -13.728     
+KRG     HAE     H       H       0       -12.019     14.830      -14.523     
+KRG     HAG     H       H       0       -8.050      15.172      -13.931     
+KRG     HAI     H       H       0       -10.342     13.365      -11.163     
+KRG     HAL     H       H       0       -8.151      15.100      -8.405      
+KRG     HALA    H       H       0       -9.388      14.498      -9.187      
+KRG     HALB    H       H       0       -8.794      15.902      -9.608      
+KRG     HAP     H       H       0       -5.218      12.756      -13.243     
+KRG     HAPA    H       H       0       -6.480      13.359      -13.987     
+KRG     HAPB    H       H       0       -6.555      11.912      -13.345     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KRG         CAA         CAB      SINGLE       n     1.498  0.0164     1.498  0.0164
+KRG         CAB         OAC      SINGLE       n     1.432  0.0104     1.432  0.0104
+KRG         OAC         CAD      SINGLE       n     1.369  0.0106     1.369  0.0106
+KRG         CAD         CAE      DOUBLE       y     1.388  0.0100     1.388  0.0100
+KRG         CAD         CAI      SINGLE       y     1.382  0.0112     1.382  0.0112
+KRG         CAE         CAF      SINGLE       y     1.389  0.0100     1.389  0.0100
+KRG         CAF         CAQ      SINGLE       n     1.498  0.0200     1.498  0.0200
+KRG         CAF         CAG      DOUBLE       y     1.387  0.0100     1.387  0.0100
+KRG         CAG         CAH      SINGLE       y     1.390  0.0112     1.390  0.0112
+KRG         CAH         CAI      DOUBLE       y     1.391  0.0100     1.391  0.0100
+KRG         CAH         CAJ      SINGLE       n     1.473  0.0100     1.473  0.0100
+KRG         CAJ         CAO      DOUBLE       y     1.357  0.0100     1.357  0.0100
+KRG         CAJ         CAK      SINGLE       y     1.404  0.0158     1.404  0.0158
+KRG         CAK         NAM      DOUBLE       y     1.304  0.0100     1.304  0.0100
+KRG         CAK         CAL      SINGLE       n     1.494  0.0100     1.494  0.0100
+KRG         NAM         OAN      SINGLE       y     1.414  0.0109     1.414  0.0109
+KRG         OAN         CAO      SINGLE       y     1.340  0.0113     1.340  0.0113
+KRG         CAO         CAP      SINGLE       n     1.481  0.0100     1.481  0.0100
+KRG         CAQ         OAS      DOUBLE       n     1.244  0.0200     1.244  0.0200
+KRG         CAQ         OAR      SINGLE       n     1.244  0.0200     1.244  0.0200
+KRG         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0156
+KRG         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0156
+KRG         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0156
+KRG         CAB         HAB      SINGLE       n     1.089  0.0100     0.979  0.0127
+KRG         CAB        HABA      SINGLE       n     1.089  0.0100     0.979  0.0127
+KRG         CAE         HAE      SINGLE       n     1.082  0.0130     0.942  0.0200
+KRG         CAG         HAG      SINGLE       n     1.082  0.0130     0.935  0.0100
+KRG         CAI         HAI      SINGLE       n     1.082  0.0130     0.932  0.0100
+KRG         CAL         HAL      SINGLE       n     1.089  0.0100     0.970  0.0153
+KRG         CAL        HALA      SINGLE       n     1.089  0.0100     0.970  0.0153
+KRG         CAL        HALB      SINGLE       n     1.089  0.0100     0.970  0.0153
+KRG         CAP         HAP      SINGLE       n     1.089  0.0100     0.971  0.0130
+KRG         CAP        HAPA      SINGLE       n     1.089  0.0100     0.971  0.0130
+KRG         CAP        HAPB      SINGLE       n     1.089  0.0100     0.971  0.0130
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KRG         CAB         CAA         HAA     109.553    1.50
+KRG         CAB         CAA        HAAA     109.553    1.50
+KRG         CAB         CAA        HAAB     109.553    1.50
+KRG         HAA         CAA        HAAA     109.410    1.50
+KRG         HAA         CAA        HAAB     109.410    1.50
+KRG        HAAA         CAA        HAAB     109.410    1.50
+KRG         CAA         CAB         OAC     107.613    1.50
+KRG         CAA         CAB         HAB     110.271    1.50
+KRG         CAA         CAB        HABA     110.271    1.50
+KRG         OAC         CAB         HAB     110.040    1.50
+KRG         OAC         CAB        HABA     110.040    1.50
+KRG         HAB         CAB        HABA     108.599    1.50
+KRG         CAB         OAC         CAD     118.081    1.50
+KRG         OAC         CAD         CAE     118.933    3.00
+KRG         OAC         CAD         CAI     120.607    3.00
+KRG         CAE         CAD         CAI     120.460    1.50
+KRG         CAD         CAE         CAF     120.085    1.50
+KRG         CAD         CAE         HAE     119.780    1.50
+KRG         CAF         CAE         HAE     120.135    1.50
+KRG         CAE         CAF         CAQ     120.171    1.50
+KRG         CAE         CAF         CAG     119.363    1.50
+KRG         CAQ         CAF         CAG     120.465    1.50
+KRG         CAF         CAG         CAH     120.625    1.50
+KRG         CAF         CAG         HAG     119.748    1.50
+KRG         CAH         CAG         HAG     119.627    1.50
+KRG         CAG         CAH         CAI     119.160    1.50
+KRG         CAG         CAH         CAJ     120.420    1.50
+KRG         CAI         CAH         CAJ     120.420    1.50
+KRG         CAD         CAI         CAH     120.306    1.50
+KRG         CAD         CAI         HAI     119.965    1.50
+KRG         CAH         CAI         HAI     119.729    1.50
+KRG         CAH         CAJ         CAO     126.692    1.78
+KRG         CAH         CAJ         CAK     126.692    1.78
+KRG         CAO         CAJ         CAK     106.616    1.50
+KRG         CAJ         CAK         NAM     109.405    1.50
+KRG         CAJ         CAK         CAL     131.262    2.46
+KRG         NAM         CAK         CAL     119.333    1.54
+KRG         CAK         CAL         HAL     109.591    1.50
+KRG         CAK         CAL        HALA     109.591    1.50
+KRG         CAK         CAL        HALB     109.591    1.50
+KRG         HAL         CAL        HALA     109.354    1.50
+KRG         HAL         CAL        HALB     109.354    1.50
+KRG        HALA         CAL        HALB     109.354    1.50
+KRG         CAK         NAM         OAN     106.490    1.50
+KRG         NAM         OAN         CAO     108.602    1.50
+KRG         CAJ         CAO         OAN     108.887    1.50
+KRG         CAJ         CAO         CAP     133.296    2.46
+KRG         OAN         CAO         CAP     117.817    1.50
+KRG         CAO         CAP         HAP     109.556    1.50
+KRG         CAO         CAP        HAPA     109.556    1.50
+KRG         CAO         CAP        HAPB     109.556    1.50
+KRG         HAP         CAP        HAPA     109.377    1.50
+KRG         HAP         CAP        HAPB     109.377    1.50
+KRG        HAPA         CAP        HAPB     109.377    1.50
+KRG         CAF         CAQ         OAS     117.791    1.50
+KRG         CAF         CAQ         OAR     117.791    1.50
+KRG         OAS         CAQ         OAR     124.418    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KRG             sp3_sp3_1         HAA         CAA         CAB         OAC     180.000    10.0     3
+KRG             sp2_sp3_1         CAJ         CAK         CAL         HAL     150.000    10.0     6
+KRG              const_29         CAL         CAK         NAM         OAN     180.000    10.0     2
+KRG              const_27         CAK         NAM         OAN         CAO       0.000    10.0     2
+KRG              const_26         CAP         CAO         OAN         NAM     180.000    10.0     2
+KRG             sp2_sp3_7         CAJ         CAO         CAP         HAP     150.000    10.0     6
+KRG            sp3_sp3_10         CAA         CAB         OAC         CAD     180.000    10.0     3
+KRG             sp2_sp2_1         CAE         CAD         OAC         CAB     180.000     5.0     2
+KRG       const_sp2_sp2_3         OAC         CAD         CAE         CAF     180.000     5.0     2
+KRG              const_32         OAC         CAD         CAI         CAH     180.000    10.0     2
+KRG       const_sp2_sp2_6         CAD         CAE         CAF         CAQ     180.000     5.0     2
+KRG             sp2_sp2_3         CAE         CAF         CAQ         OAS     180.000     5.0     2
+KRG              const_11         CAQ         CAF         CAG         CAH     180.000    10.0     2
+KRG              const_13         CAF         CAG         CAH         CAI       0.000    10.0     2
+KRG              const_17         CAG         CAH         CAI         CAD       0.000    10.0     2
+KRG             sp2_sp2_7         CAG         CAH         CAJ         CAO     180.000     5.0     2
+KRG              const_37         CAH         CAJ         CAK         CAL       0.000    10.0     2
+KRG              const_24         CAH         CAJ         CAO         CAP       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KRG    plan-1         CAH   0.020
+KRG    plan-1         CAJ   0.020
+KRG    plan-1         CAK   0.020
+KRG    plan-1         CAL   0.020
+KRG    plan-1         CAO   0.020
+KRG    plan-1         CAP   0.020
+KRG    plan-1         NAM   0.020
+KRG    plan-1         OAN   0.020
+KRG    plan-2         CAD   0.020
+KRG    plan-2         CAE   0.020
+KRG    plan-2         CAF   0.020
+KRG    plan-2         CAG   0.020
+KRG    plan-2         CAH   0.020
+KRG    plan-2         CAI   0.020
+KRG    plan-2         CAJ   0.020
+KRG    plan-2         CAQ   0.020
+KRG    plan-2         HAE   0.020
+KRG    plan-2         HAG   0.020
+KRG    plan-2         HAI   0.020
+KRG    plan-2         OAC   0.020
+KRG    plan-3         CAF   0.020
+KRG    plan-3         CAQ   0.020
+KRG    plan-3         OAR   0.020
+KRG    plan-3         OAS   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KRG           SMILES              ACDLabs 12.01                                                                    O=C(O)c1cc(cc(OCC)c1)c2c(onc2C)C
+KRG            InChI                InChI  1.03 InChI=1S/C14H15NO4/c1-4-18-12-6-10(5-11(7-12)14(16)17)13-8(2)15-19-9(13)3/h5-7H,4H2,1-3H3,(H,16,17)
+KRG         InChIKey                InChI  1.03                                                                         GAMMHRRBGXCHRX-UHFFFAOYSA-N
+KRG SMILES_CANONICAL               CACTVS 3.370                                                                    CCOc1cc(cc(c1)c2c(C)onc2C)C(O)=O
+KRG           SMILES               CACTVS 3.370                                                                    CCOc1cc(cc(c1)c2c(C)onc2C)C(O)=O
+KRG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                    CCOc1cc(cc(c1)C(=O)O)c2c(noc2C)C
+KRG           SMILES "OpenEye OEToolkits" 1.7.2                                                                    CCOc1cc(cc(c1)C(=O)O)c2c(noc2C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KRG acedrg               243         "dictionary generator"                  
+KRG acedrg_database      11          "data source"                           
+KRG rdkit                2017.03.2   "Chemoinformatics tool"
+KRG refmac5              5.8.0238    "optimization tool"                     

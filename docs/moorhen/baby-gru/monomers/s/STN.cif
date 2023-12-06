@@ -1,0 +1,206 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+STN     STN      "2-{[FORMYL(HYDROXY)AMINO]METHYL}-4-METHYLPENTANOIC ACID"     NON-POLYMER     27     13     .     
+#
+data_comp_STN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+STN     CD1     C       CH3     0       62.527      30.974      117.559     
+STN     CG      C       CH1     0       63.115      29.619      117.939     
+STN     CN      C       CH2     0       66.026      29.262      115.278     
+STN     CA      C       CH1     0       65.258      29.887      116.447     
+STN     CB      C       CH2     0       64.011      29.060      116.821     
+STN     CD2     C       CH3     0       62.006      28.630      118.302     
+STN     C       C       C       0       66.200      30.061      117.644     
+STN     CM      C       C1      0       64.818      28.165      113.409     
+STN     ON      O       OH1     0       65.019      30.508      113.519     
+STN     N       N       N       0       65.257      29.260      114.028     
+STN     OM      O       O       0       64.176      28.174      112.357     
+STN     O       O       O       0       66.679      29.035      118.167     
+STN     OXT     O       OC      -1      66.443      31.219      118.037     
+STN     HD11    H       H       0       61.875      31.246      118.228     
+STN     HD12    H       H       0       62.092      30.908      116.691     
+STN     HD13    H       H       0       63.237      31.637      117.515     
+STN     HG      H       H       0       63.672      29.747      118.745     
+STN     HCN1    H       H       0       66.269      28.341      115.508     
+STN     HCN2    H       H       0       66.858      29.761      115.134     
+STN     HA      H       H       0       64.958      30.788      116.170     
+STN     HCB1    H       H       0       63.458      28.954      116.019     
+STN     HCB2    H       H       0       64.310      28.166      117.091     
+STN     HD21    H       H       0       62.084      27.829      117.755     
+STN     HD22    H       H       0       61.134      29.036      118.150     
+STN     HD23    H       H       0       62.087      28.387      119.241     
+STN     HM      H       H       0       65.016      27.313      113.812     
+STN     HN      H       H       0       65.765      30.783      113.164     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+STN         CD1          CG      SINGLE       n     1.521  0.0151     1.521  0.0151
+STN          CG          CB      SINGLE       n     1.534  0.0100     1.534  0.0100
+STN          CG         CD2      SINGLE       n     1.521  0.0151     1.521  0.0151
+STN          CN          CA      SINGLE       n     1.530  0.0119     1.530  0.0119
+STN          CN           N      SINGLE       n     1.464  0.0154     1.464  0.0154
+STN          CA          CB      SINGLE       n     1.530  0.0184     1.530  0.0184
+STN          CA           C      SINGLE       n     1.533  0.0100     1.533  0.0100
+STN           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+STN           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+STN          CM           N      SINGLE       n     1.324  0.0200     1.324  0.0200
+STN          CM          OM      DOUBLE       n     1.232  0.0100     1.232  0.0100
+STN          ON           N      SINGLE       n     1.366  0.0200     1.366  0.0200
+STN         CD1        HD11      SINGLE       n     1.089  0.0100     0.973  0.0146
+STN         CD1        HD12      SINGLE       n     1.089  0.0100     0.973  0.0146
+STN         CD1        HD13      SINGLE       n     1.089  0.0100     0.973  0.0146
+STN          CG          HG      SINGLE       n     1.089  0.0100     0.989  0.0162
+STN          CN        HCN1      SINGLE       n     1.089  0.0100     0.980  0.0157
+STN          CN        HCN2      SINGLE       n     1.089  0.0100     0.980  0.0157
+STN          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0142
+STN          CB        HCB1      SINGLE       n     1.089  0.0100     0.980  0.0160
+STN          CB        HCB2      SINGLE       n     1.089  0.0100     0.980  0.0160
+STN         CD2        HD21      SINGLE       n     1.089  0.0100     0.973  0.0146
+STN         CD2        HD22      SINGLE       n     1.089  0.0100     0.973  0.0146
+STN         CD2        HD23      SINGLE       n     1.089  0.0100     0.973  0.0146
+STN          CM          HM      SINGLE       n     1.082  0.0130     0.964  0.0200
+STN          ON          HN      SINGLE       n     0.970  0.0120     0.871  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+STN          CG         CD1        HD11     109.488    1.50
+STN          CG         CD1        HD12     109.488    1.50
+STN          CG         CD1        HD13     109.488    1.50
+STN        HD11         CD1        HD12     109.411    1.50
+STN        HD11         CD1        HD13     109.411    1.50
+STN        HD12         CD1        HD13     109.411    1.50
+STN         CD1          CG          CB     111.049    1.51
+STN         CD1          CG         CD2     110.507    1.50
+STN         CD1          CG          HG     108.052    1.50
+STN          CB          CG         CD2     111.049    1.51
+STN          CB          CG          HG     108.023    1.50
+STN         CD2          CG          HG     108.052    1.50
+STN          CA          CN           N     111.308    2.28
+STN          CA          CN        HCN1     109.373    1.50
+STN          CA          CN        HCN2     109.373    1.50
+STN           N          CN        HCN1     109.068    1.50
+STN           N          CN        HCN2     109.068    1.50
+STN        HCN1          CN        HCN2     107.873    1.50
+STN          CN          CA          CB     111.094    2.85
+STN          CN          CA           C     111.066    2.42
+STN          CN          CA          HA     108.213    1.50
+STN          CB          CA           C     110.778    2.06
+STN          CB          CA          HA     107.780    1.50
+STN           C          CA          HA     107.706    1.93
+STN          CG          CB          CA     115.330    1.50
+STN          CG          CB        HCB1     108.194    1.50
+STN          CG          CB        HCB2     108.194    1.50
+STN          CA          CB        HCB1     108.447    1.50
+STN          CA          CB        HCB2     108.447    1.50
+STN        HCB1          CB        HCB2     107.599    1.50
+STN          CG         CD2        HD21     109.488    1.50
+STN          CG         CD2        HD22     109.488    1.50
+STN          CG         CD2        HD23     109.488    1.50
+STN        HD21         CD2        HD22     109.411    1.50
+STN        HD21         CD2        HD23     109.411    1.50
+STN        HD22         CD2        HD23     109.411    1.50
+STN          CA           C           O     118.051    1.50
+STN          CA           C         OXT     118.051    1.50
+STN           O           C         OXT     123.899    1.50
+STN           N          CM          OM     123.822    1.98
+STN           N          CM          HM     117.675    2.15
+STN          OM          CM          HM     118.502    2.29
+STN           N          ON          HN     106.835    3.00
+STN          CN           N          CM     124.436    2.35
+STN          CN           N          ON     114.417    3.00
+STN          CM           N          ON     121.147    2.14
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+STN             sp3_sp3_1        HD11         CD1          CG          CB     180.000    10.0     3
+STN            sp3_sp3_11          CA          CB          CG         CD1     -60.000    10.0     3
+STN            sp3_sp3_19        HD21         CD2          CG         CD1     180.000    10.0     3
+STN            sp3_sp3_28          CB          CA          CN           N     180.000    10.0     3
+STN             sp2_sp3_2          CM           N          CN          CA     120.000    10.0     6
+STN            sp3_sp3_37          CN          CA          CB          CG     180.000    10.0     3
+STN             sp2_sp3_7           O           C          CA          CN       0.000    10.0     6
+STN             sp2_sp2_1          OM          CM           N          CN     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+STN    chir_1    CG    CB    CD1    CD2    both
+STN    chir_2    CA    C    CN    CB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+STN    plan-1           C   0.020
+STN    plan-1          CA   0.020
+STN    plan-1           O   0.020
+STN    plan-1         OXT   0.020
+STN    plan-2          CM   0.020
+STN    plan-2          HM   0.020
+STN    plan-2           N   0.020
+STN    plan-2          OM   0.020
+STN    plan-3          CM   0.020
+STN    plan-3          CN   0.020
+STN    plan-3           N   0.020
+STN    plan-3          ON   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+STN           SMILES              ACDLabs 10.04                                                                   O=C(O)C(CC(C)C)CN(O)C=O
+STN SMILES_CANONICAL               CACTVS 3.341                                                               CC(C)C[C@H](CN(O)C=O)C(O)=O
+STN           SMILES               CACTVS 3.341                                                                CC(C)C[CH](CN(O)C=O)C(O)=O
+STN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                               CC(C)C[C@H](CN(C=O)O)C(=O)O
+STN           SMILES "OpenEye OEToolkits" 1.5.0                                                                   CC(C)CC(CN(C=O)O)C(=O)O
+STN            InChI                InChI  1.03 InChI=1S/C8H15NO4/c1-6(2)3-7(8(11)12)4-9(13)5-10/h5-7,13H,3-4H2,1-2H3,(H,11,12)/t7-/m1/s1
+STN         InChIKey                InChI  1.03                                                               LFMOJNDZFCHHPV-SSDOTTSWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+STN acedrg               243         "dictionary generator"                  
+STN acedrg_database      11          "data source"                           
+STN rdkit                2017.03.2   "Chemoinformatics tool"
+STN refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,165 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4MI     4MI      "4-methylsulfanylbenzoic acid"     NON-POLYMER     18     11     .     
+#
+data_comp_4MI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4MI     C01     C       CH3     0       2.888       -1.371      19.483      
+4MI     S02     S       S2      0       4.235       -0.840      18.398      
+4MI     C03     C       CR6     0       4.463       0.887       18.075      
+4MI     C04     C       CR16    0       3.817       1.496       16.998      
+4MI     C05     C       CR16    0       3.996       2.846       16.750      
+4MI     C06     C       CR6     0       4.821       3.614       17.567      
+4MI     C07     C       CR16    0       5.464       3.006       18.642      
+4MI     C08     C       CR16    0       5.288       1.656       18.896      
+4MI     C09     C       C       0       5.013       5.076       17.296      
+4MI     O10     O       OC      -1      4.858       5.866       18.244      
+4MI     O11     O       O       0       5.317       5.417       16.139      
+4MI     H1      H       H       0       2.040       -1.114      19.089      
+4MI     H2      H       H       0       2.988       -0.945      20.349      
+4MI     H3      H       H       0       2.922       -2.335      19.587      
+4MI     H4      H       H       0       3.261       0.986       16.443      
+4MI     H5      H       H       0       3.556       3.245       16.020      
+4MI     H6      H       H       0       6.023       3.514       19.202      
+4MI     H7      H       H       0       5.725       1.254       19.621      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4MI         C09         O11      DOUBLE       n     1.244  0.0200     1.244  0.0200
+4MI         C09         O10      SINGLE       n     1.244  0.0200     1.244  0.0200
+4MI         C06         C09      SINGLE       n     1.498  0.0200     1.498  0.0200
+4MI         C04         C05      SINGLE       y     1.381  0.0100     1.381  0.0100
+4MI         C05         C06      DOUBLE       y     1.387  0.0123     1.387  0.0123
+4MI         C03         C04      DOUBLE       y     1.391  0.0116     1.391  0.0116
+4MI         C06         C07      SINGLE       y     1.387  0.0123     1.387  0.0123
+4MI         C03         C08      SINGLE       y     1.391  0.0116     1.391  0.0116
+4MI         S02         C03      SINGLE       n     1.772  0.0127     1.772  0.0127
+4MI         C07         C08      DOUBLE       y     1.381  0.0100     1.381  0.0100
+4MI         C01         S02      SINGLE       n     1.809  0.0191     1.809  0.0191
+4MI         C01          H1      SINGLE       n     1.089  0.0100     0.970  0.0166
+4MI         C01          H2      SINGLE       n     1.089  0.0100     0.970  0.0166
+4MI         C01          H3      SINGLE       n     1.089  0.0100     0.970  0.0166
+4MI         C04          H4      SINGLE       n     1.082  0.0130     0.937  0.0111
+4MI         C05          H5      SINGLE       n     1.082  0.0130     0.941  0.0168
+4MI         C07          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+4MI         C08          H7      SINGLE       n     1.082  0.0130     0.937  0.0111
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4MI         S02         C01          H1     109.066    1.50
+4MI         S02         C01          H2     109.066    1.50
+4MI         S02         C01          H3     109.066    1.50
+4MI          H1         C01          H2     109.472    1.50
+4MI          H1         C01          H3     109.472    1.50
+4MI          H2         C01          H3     109.472    1.50
+4MI         C03         S02         C01     120.000    3.00
+4MI         C04         C03         C08     119.196    1.50
+4MI         C04         C03         S02     120.402    2.83
+4MI         C08         C03         S02     120.402    2.83
+4MI         C05         C04         C03     120.249    1.50
+4MI         C05         C04          H4     120.097    1.50
+4MI         C03         C04          H4     119.653    1.50
+4MI         C04         C05         C06     120.610    1.50
+4MI         C04         C05          H5     119.481    1.50
+4MI         C06         C05          H5     119.909    1.50
+4MI         C09         C06         C05     120.457    1.50
+4MI         C09         C06         C07     120.457    1.50
+4MI         C05         C06         C07     119.086    1.50
+4MI         C06         C07         C08     120.610    1.50
+4MI         C06         C07          H6     119.909    1.50
+4MI         C08         C07          H6     119.481    1.50
+4MI         C03         C08         C07     120.249    1.50
+4MI         C03         C08          H7     119.653    1.50
+4MI         C07         C08          H7     120.097    1.50
+4MI         O11         C09         O10     124.418    1.50
+4MI         O11         C09         C06     117.791    1.50
+4MI         O10         C09         C06     117.791    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4MI             sp3_sp3_2          H1         C01         S02         C03     -60.000    10.0     3
+4MI             sp2_sp2_5         C04         C03         S02         C01     180.000     5.0     2
+4MI       const_sp2_sp2_3         S02         C03         C04         C05     180.000     5.0     2
+4MI              const_23         S02         C03         C08         C07     180.000    10.0     2
+4MI       const_sp2_sp2_5         C03         C04         C05         C06       0.000     5.0     2
+4MI              const_10         C04         C05         C06         C09     180.000    10.0     2
+4MI              const_15         C09         C06         C07         C08     180.000    10.0     2
+4MI             sp2_sp2_1         C05         C06         C09         O11     180.000     5.0     2
+4MI              const_17         C06         C07         C08         C03       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4MI    plan-1         C03   0.020
+4MI    plan-1         C04   0.020
+4MI    plan-1         C05   0.020
+4MI    plan-1         C06   0.020
+4MI    plan-1         C07   0.020
+4MI    plan-1         C08   0.020
+4MI    plan-1         C09   0.020
+4MI    plan-1          H4   0.020
+4MI    plan-1          H5   0.020
+4MI    plan-1          H6   0.020
+4MI    plan-1          H7   0.020
+4MI    plan-1         S02   0.020
+4MI    plan-2         C06   0.020
+4MI    plan-2         C09   0.020
+4MI    plan-2         O10   0.020
+4MI    plan-2         O11   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4MI            InChI                InChI  1.03 InChI=1S/C8H8O2S/c1-11-7-4-2-6(3-5-7)8(9)10/h2-5H,1H3,(H,9,10)
+4MI         InChIKey                InChI  1.03                                    KWHCPERWLHBLOT-UHFFFAOYSA-N
+4MI SMILES_CANONICAL               CACTVS 3.385                                             CSc1ccc(cc1)C(O)=O
+4MI           SMILES               CACTVS 3.385                                             CSc1ccc(cc1)C(O)=O
+4MI SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                             CSc1ccc(cc1)C(=O)O
+4MI           SMILES "OpenEye OEToolkits" 2.0.5                                             CSc1ccc(cc1)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4MI acedrg               243         "dictionary generator"                  
+4MI acedrg_database      11          "data source"                           
+4MI rdkit                2017.03.2   "Chemoinformatics tool"
+4MI refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,241 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DY8     DY8      Morpholinohistidine     NON-POLYMER     32     16     .     
+#
+data_comp_DY8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DY8     N       N       NT1     1       9.606       16.285      15.640      
+DY8     C       C       C       0       8.241       14.931      13.998      
+DY8     O       O       O       0       8.562       14.641      12.827      
+DY8     CAG     C       CH2     0       10.008      17.267      14.574      
+DY8     CAE     C       CH2     0       10.333      18.614      15.172      
+DY8     OAL     O       O2      0       11.351      18.512      16.157      
+DY8     CAF     C       CH2     0       10.936      17.670      17.222      
+DY8     CAH     C       CH2     0       10.630      16.271      16.743      
+DY8     CA      C       CH1     0       9.357       14.914      15.054      
+DY8     OXT     O       OC      -1      7.098       15.234      14.392      
+DY8     CB      C       CH2     0       9.010       13.817      16.081      
+DY8     CG      C       CR5     0       8.695       12.480      15.497      
+DY8     CD2     C       CR15    0       9.505       11.615      14.816      
+DY8     NE2     N       NR5     1       8.772       10.518      14.480      
+DY8     CE1     C       CR15    0       7.532       10.678      14.933      
+DY8     ND1     N       NR5     0       7.460       11.885      15.566      
+DY8     H       H       H       0       8.815       16.572      15.999      
+DY8     HAG     H       H       0       10.785      16.922      14.100      
+DY8     HE4     H       H       0       9.281       17.371      13.935      
+DY8     HAE     H       H       0       9.529       18.994      15.572      
+DY8     HE2     H       H       0       10.632      19.215      14.465      
+DY8     HE3     H       H       0       10.142      18.048      17.645      
+DY8     HAF     H       H       0       11.644      17.631      17.891      
+DY8     HE5     H       H       0       11.445      15.850      16.416      
+DY8     HAH     H       H       0       10.293      15.750      17.492      
+DY8     HA      H       H       0       10.187      14.630      14.603      
+DY8     HB2     H       H       0       8.244       14.116      16.610      
+DY8     HB1     H       H       0       9.765       13.704      16.692      
+DY8     HD2     H       H       0       10.415      11.753      14.613      
+DY8     H2      H       H       0       9.068       9.818       14.036      
+DY8     HE1     H       H       0       6.823       10.063      14.834      
+DY8     HD1     H       H       0       6.742       12.229      15.956      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DY8           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+DY8           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+DY8           C          CA      SINGLE       n     1.533  0.0100     1.533  0.0100
+DY8         CD2         NE2      SINGLE       y     1.361  0.0149     1.361  0.0149
+DY8         NE2         CE1      DOUBLE       y     1.329  0.0106     1.329  0.0106
+DY8          CG         CD2      DOUBLE       y     1.369  0.0132     1.369  0.0132
+DY8         CAG         CAE      SINGLE       n     1.508  0.0105     1.508  0.0105
+DY8           N         CAG      SINGLE       n     1.495  0.0119     1.495  0.0119
+DY8         CE1         ND1      SINGLE       y     1.363  0.0181     1.363  0.0181
+DY8         CAE         OAL      SINGLE       n     1.419  0.0100     1.419  0.0100
+DY8           N          CA      SINGLE       n     1.500  0.0117     1.500  0.0117
+DY8          CA          CB      SINGLE       n     1.535  0.0118     1.535  0.0118
+DY8          CG         ND1      SINGLE       y     1.373  0.0100     1.373  0.0100
+DY8          CB          CG      SINGLE       n     1.491  0.0100     1.491  0.0100
+DY8           N         CAH      SINGLE       n     1.495  0.0119     1.495  0.0119
+DY8         OAL         CAF      SINGLE       n     1.419  0.0100     1.419  0.0100
+DY8         CAF         CAH      SINGLE       n     1.508  0.0105     1.508  0.0105
+DY8           N           H      SINGLE       n     1.036  0.0160     0.915  0.0200
+DY8         CAG         HAG      SINGLE       n     1.089  0.0100     0.974  0.0137
+DY8         CAG         HE4      SINGLE       n     1.089  0.0100     0.974  0.0137
+DY8         CAE         HAE      SINGLE       n     1.089  0.0100     0.975  0.0141
+DY8         CAE         HE2      SINGLE       n     1.089  0.0100     0.975  0.0141
+DY8         CAF         HE3      SINGLE       n     1.089  0.0100     0.975  0.0141
+DY8         CAF         HAF      SINGLE       n     1.089  0.0100     0.975  0.0141
+DY8         CAH         HE5      SINGLE       n     1.089  0.0100     0.974  0.0137
+DY8         CAH         HAH      SINGLE       n     1.089  0.0100     0.974  0.0137
+DY8          CA          HA      SINGLE       n     1.089  0.0100     0.986  0.0200
+DY8          CB         HB2      SINGLE       n     1.089  0.0100     0.978  0.0121
+DY8          CB         HB1      SINGLE       n     1.089  0.0100     0.978  0.0121
+DY8         CD2         HD2      SINGLE       n     1.082  0.0130     0.943  0.0152
+DY8         NE2          H2      SINGLE       n     1.016  0.0100     0.880  0.0200
+DY8         CE1         HE1      SINGLE       n     1.082  0.0130     0.943  0.0184
+DY8         ND1         HD1      SINGLE       n     1.016  0.0100     0.887  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DY8         CAG           N          CA     111.142    1.81
+DY8         CAG           N         CAH     110.034    1.50
+DY8         CAG           N           H     107.912    2.29
+DY8          CA           N         CAH     111.142    1.81
+DY8          CA           N           H     107.302    2.39
+DY8         CAH           N           H     107.912    2.29
+DY8           O           C         OXT     126.151    1.50
+DY8           O           C          CA     116.925    1.50
+DY8         OXT           C          CA     116.925    1.50
+DY8         CAE         CAG           N     110.168    1.50
+DY8         CAE         CAG         HAG     109.880    1.50
+DY8         CAE         CAG         HE4     109.880    1.50
+DY8           N         CAG         HAG     109.262    1.50
+DY8           N         CAG         HE4     109.262    1.50
+DY8         HAG         CAG         HE4     108.544    1.50
+DY8         CAG         CAE         OAL     111.270    1.50
+DY8         CAG         CAE         HAE     109.332    1.50
+DY8         CAG         CAE         HE2     109.332    1.50
+DY8         OAL         CAE         HAE     109.195    1.50
+DY8         OAL         CAE         HE2     109.195    1.50
+DY8         HAE         CAE         HE2     108.175    1.50
+DY8         CAE         OAL         CAF     109.829    1.50
+DY8         OAL         CAF         CAH     111.270    1.50
+DY8         OAL         CAF         HE3     109.195    1.50
+DY8         OAL         CAF         HAF     109.195    1.50
+DY8         CAH         CAF         HE3     109.332    1.50
+DY8         CAH         CAF         HAF     109.332    1.50
+DY8         HE3         CAF         HAF     108.175    1.50
+DY8           N         CAH         CAF     110.168    1.50
+DY8           N         CAH         HE5     109.262    1.50
+DY8           N         CAH         HAH     109.262    1.50
+DY8         CAF         CAH         HE5     109.880    1.50
+DY8         CAF         CAH         HAH     109.880    1.50
+DY8         HE5         CAH         HAH     108.544    1.50
+DY8           C          CA           N     113.160    2.09
+DY8           C          CA          CB     111.500    2.27
+DY8           C          CA          HA     108.585    1.50
+DY8           N          CA          CB     113.268    1.81
+DY8           N          CA          HA     108.833    1.50
+DY8          CB          CA          HA     108.202    1.50
+DY8          CA          CB          CG     114.435    1.50
+DY8          CA          CB         HB2     108.744    1.50
+DY8          CA          CB         HB1     108.744    1.50
+DY8          CG          CB         HB2     108.808    1.50
+DY8          CG          CB         HB1     108.808    1.50
+DY8         HB2          CB         HB1     107.724    1.50
+DY8         CD2          CG         ND1     106.881    1.50
+DY8         CD2          CG          CB     129.340    2.31
+DY8         ND1          CG          CB     123.779    1.50
+DY8         NE2         CD2          CG     108.521    1.50
+DY8         NE2         CD2         HD2     125.643    2.21
+DY8          CG         CD2         HD2     125.836    1.50
+DY8         CD2         NE2         CE1     108.453    1.50
+DY8         CD2         NE2          H2     125.901    1.75
+DY8         CE1         NE2          H2     125.646    1.84
+DY8         NE2         CE1         ND1     107.846    1.50
+DY8         NE2         CE1         HE1     126.077    1.61
+DY8         ND1         CE1         HE1     126.077    1.61
+DY8         CE1         ND1          CG     108.299    1.50
+DY8         CE1         ND1         HD1     126.042    1.84
+DY8          CG         ND1         HD1     125.659    1.79
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DY8             sp3_sp3_3         CAE         CAG           N          CA     -60.000    10.0     3
+DY8            sp3_sp3_53         CAF         CAH           N          CA     -60.000    10.0     3
+DY8            sp3_sp3_35           C          CA           N         CAG     -60.000    10.0     3
+DY8             sp2_sp3_8         CD2          CG          CB          CA     -90.000    10.0     6
+DY8       const_sp2_sp2_2         NE2         CD2          CG          CB     180.000     5.0     2
+DY8              const_19          CB          CG         ND1         CE1     180.000    10.0     2
+DY8       const_sp2_sp2_5          CG         CD2         NE2         CE1       0.000     5.0     2
+DY8       const_sp2_sp2_9         ND1         CE1         NE2         CD2       0.000     5.0     2
+DY8              const_13         NE2         CE1         ND1          CG       0.000    10.0     2
+DY8             sp2_sp3_2           O           C          CA          CB     120.000    10.0     6
+DY8            sp3_sp3_10         OAL         CAE         CAG           N     -60.000    10.0     3
+DY8            sp3_sp3_19         CAG         CAE         OAL         CAF      60.000    10.0     3
+DY8            sp3_sp3_22         CAH         CAF         OAL         CAE     -60.000    10.0     3
+DY8            sp3_sp3_25         OAL         CAF         CAH           N      60.000    10.0     3
+DY8            sp3_sp3_43           C          CA          CB          CG     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DY8    chir_1    N    CA    CAG    CAH    both
+DY8    chir_2    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DY8    plan-1          CB   0.020
+DY8    plan-1         CD2   0.020
+DY8    plan-1         CE1   0.020
+DY8    plan-1          CG   0.020
+DY8    plan-1          H2   0.020
+DY8    plan-1         HD1   0.020
+DY8    plan-1         HD2   0.020
+DY8    plan-1         HE1   0.020
+DY8    plan-1         ND1   0.020
+DY8    plan-1         NE2   0.020
+DY8    plan-2           C   0.020
+DY8    plan-2          CA   0.020
+DY8    plan-2           O   0.020
+DY8    plan-2         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DY8            InChI                InChI  1.03 InChI=1S/C10H15N3O3/c14-10(15)9(5-8-6-11-7-12-8)13-1-3-16-4-2-13/h6-7,9H,1-5H2,(H,11,12)(H,14,15)/p+2/t9-/m0/s1
+DY8         InChIKey                InChI  1.03                                                                                     JPWIPIHZQZQXRJ-VIFPVBQESA-P
+DY8 SMILES_CANONICAL               CACTVS 3.385                                                                        OC(=O)[C@H](Cc1[nH]c[nH+]c1)[NH+]2CCOCC2
+DY8           SMILES               CACTVS 3.385                                                                         OC(=O)[CH](Cc1[nH]c[nH+]c1)[NH+]2CCOCC2
+DY8 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                     c1c([nH]c[nH+]1)C[C@@H](C(=O)O)[NH+]2CCOCC2
+DY8           SMILES "OpenEye OEToolkits" 2.0.6                                                                          c1c([nH]c[nH+]1)CC(C(=O)O)[NH+]2CCOCC2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DY8 acedrg               243         "dictionary generator"                  
+DY8 acedrg_database      11          "data source"                           
+DY8 rdkit                2017.03.2   "Chemoinformatics tool"
+DY8 refmac5              5.8.0238    "optimization tool"                     

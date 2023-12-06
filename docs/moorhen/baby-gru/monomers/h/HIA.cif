@@ -1,0 +1,189 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HIA     HIA      "L-HISTIDINE AMIDE"     NON-POLYMER     21     11     .     
+#
+data_comp_HIA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HIA     N       N       NT2     0       24.117      20.045      8.618       
+HIA     CA      C       CH1     0       23.974      18.585      8.546       
+HIA     CB      C       CH2     0       23.349      18.043      9.837       
+HIA     CG      C       CR5     0       24.260      18.091      11.017      
+HIA     ND1     N       NR5     0       24.549      19.255      11.684      
+HIA     CD2     C       CR15    0       24.956      17.118      11.665      
+HIA     CE1     C       CR15    0       25.387      18.957      12.683      
+HIA     NE2     N       NRD5    0       25.661      17.673      12.710      
+HIA     C       C       C       0       23.140      18.169      7.329       
+HIA     O       O       O       0       23.607      17.399      6.491       
+HIA     NXT     N       NH2     0       21.921      18.685      7.252       
+HIA     H       H       H       0       24.310      20.383      7.803       
+HIA     H2      H       H       0       24.807      20.256      9.159       
+HIA     HA      H       H       0       24.871      18.193      8.448       
+HIA     HB2     H       H       0       23.075      17.110      9.695       
+HIA     HB3     H       H       0       22.542      18.562      10.045      
+HIA     HD1     H       H       0       24.235      20.060      11.484      
+HIA     HD2     H       H       0       24.961      16.204      11.440      
+HIA     HE1     H       H       0       25.731      19.588      13.285      
+HIA     HXT1    H       H       0       21.401      18.475      6.568       
+HIA     HXT2    H       H       0       21.622      19.238      7.874       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HIA           N          CA      SINGLE       n     1.466  0.0118     1.466  0.0118
+HIA          CA          CB      SINGLE       n     1.532  0.0100     1.532  0.0100
+HIA          CA           C      SINGLE       n     1.530  0.0124     1.530  0.0124
+HIA          CB          CG      SINGLE       n     1.491  0.0100     1.491  0.0100
+HIA          CG         ND1      SINGLE       y     1.373  0.0100     1.373  0.0100
+HIA          CG         CD2      DOUBLE       y     1.361  0.0117     1.361  0.0117
+HIA         ND1         CE1      SINGLE       y     1.337  0.0144     1.337  0.0144
+HIA         CD2         NE2      SINGLE       y     1.377  0.0100     1.377  0.0100
+HIA         CE1         NE2      DOUBLE       y     1.313  0.0100     1.313  0.0100
+HIA           C           O      DOUBLE       n     1.230  0.0100     1.230  0.0100
+HIA           C         NXT      SINGLE       n     1.325  0.0100     1.325  0.0100
+HIA           N           H      SINGLE       n     1.036  0.0160     0.902  0.0200
+HIA           N          H2      SINGLE       n     1.036  0.0160     0.902  0.0200
+HIA          CA          HA      SINGLE       n     1.089  0.0100     0.984  0.0149
+HIA          CB         HB2      SINGLE       n     1.089  0.0100     0.982  0.0109
+HIA          CB         HB3      SINGLE       n     1.089  0.0100     0.982  0.0109
+HIA         ND1         HD1      SINGLE       n     1.016  0.0100     0.887  0.0200
+HIA         CD2         HD2      SINGLE       n     1.082  0.0130     0.942  0.0176
+HIA         CE1         HE1      SINGLE       n     1.082  0.0130     0.937  0.0200
+HIA         NXT        HXT1      SINGLE       n     1.016  0.0100     0.884  0.0200
+HIA         NXT        HXT2      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HIA          CA           N           H     109.453    3.00
+HIA          CA           N          H2     109.453    3.00
+HIA           H           N          H2     107.559    3.00
+HIA           N          CA          CB     110.386    2.27
+HIA           N          CA           C     110.875    2.17
+HIA           N          CA          HA     108.372    1.54
+HIA          CB          CA           C     110.540    1.53
+HIA          CB          CA          HA     108.480    1.50
+HIA           C          CA          HA     108.061    1.50
+HIA          CA          CB          CG     113.227    1.82
+HIA          CA          CB         HB2     108.816    1.50
+HIA          CA          CB         HB3     108.816    1.50
+HIA          CG          CB         HB2     108.305    1.50
+HIA          CG          CB         HB3     108.305    1.50
+HIA         HB2          CB         HB3     107.541    1.50
+HIA          CB          CG         ND1     122.612    1.50
+HIA          CB          CG         CD2     131.674    1.50
+HIA         ND1          CG         CD2     105.714    1.50
+HIA          CG         ND1         CE1     107.986    2.04
+HIA          CG         ND1         HD1     125.794    1.79
+HIA         CE1         ND1         HD1     126.220    2.69
+HIA          CG         CD2         NE2     109.672    1.50
+HIA          CG         CD2         HD2     125.673    1.50
+HIA         NE2         CD2         HD2     124.655    2.11
+HIA         ND1         CE1         NE2     111.173    1.50
+HIA         ND1         CE1         HE1     124.161    1.50
+HIA         NE2         CE1         HE1     124.666    1.50
+HIA         CD2         NE2         CE1     105.455    1.50
+HIA          CA           C           O     120.522    1.50
+HIA          CA           C         NXT     115.746    1.60
+HIA           O           C         NXT     123.732    1.50
+HIA           C         NXT        HXT1     120.017    3.00
+HIA           C         NXT        HXT2     120.017    3.00
+HIA        HXT1         NXT        HXT2     119.966    2.38
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HIA             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+HIA             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+HIA             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+HIA             sp2_sp3_8         ND1          CG          CB          CA     -90.000    10.0     6
+HIA       const_sp2_sp2_3          CB          CG         ND1         CE1     180.000     5.0     2
+HIA              const_14         NE2         CD2          CG          CB     180.000    10.0     2
+HIA       const_sp2_sp2_5         NE2         CE1         ND1          CG       0.000     5.0     2
+HIA              const_11          CG         CD2         NE2         CE1       0.000    10.0     2
+HIA       const_sp2_sp2_9         ND1         CE1         NE2         CD2       0.000     5.0     2
+HIA             sp2_sp2_1          CA           C         NXT        HXT1     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HIA    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HIA    plan-1          CB   0.020
+HIA    plan-1         CD2   0.020
+HIA    plan-1         CE1   0.020
+HIA    plan-1          CG   0.020
+HIA    plan-1         HD1   0.020
+HIA    plan-1         HD2   0.020
+HIA    plan-1         HE1   0.020
+HIA    plan-1         ND1   0.020
+HIA    plan-1         NE2   0.020
+HIA    plan-2           C   0.020
+HIA    plan-2          CA   0.020
+HIA    plan-2         NXT   0.020
+HIA    plan-2           O   0.020
+HIA    plan-3           C   0.020
+HIA    plan-3        HXT1   0.020
+HIA    plan-3        HXT2   0.020
+HIA    plan-3         NXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HIA           SMILES              ACDLabs 10.04                                                                     O=C(N)C(N)Cc1cncn1
+HIA SMILES_CANONICAL               CACTVS 3.341                                                             N[C@@H](Cc1[nH]cnc1)C(N)=O
+HIA           SMILES               CACTVS 3.341                                                               N[CH](Cc1[nH]cnc1)C(N)=O
+HIA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                           c1c([nH]cn1)C[C@@H](C(=O)N)N
+HIA           SMILES "OpenEye OEToolkits" 1.5.0                                                                c1c([nH]cn1)CC(C(=O)N)N
+HIA            InChI                InChI  1.03 InChI=1S/C6H10N4O/c7-5(6(8)11)1-4-2-9-3-10-4/h2-3,5H,1,7H2,(H2,8,11)(H,9,10)/t5-/m0/s1
+HIA         InChIKey                InChI  1.03                                                            UMMQVDUMUMBTAV-YFKPBYRVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HIA acedrg               243         "dictionary generator"                  
+HIA acedrg_database      11          "data source"                           
+HIA rdkit                2017.03.2   "Chemoinformatics tool"
+HIA refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,143 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PTL     PTL      PENTANAL     NON-POLYMER     16     6     .     
+#
+data_comp_PTL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PTL     C1      C       C1      0       15.334      18.001      13.065      
+PTL     O1      O       O       0       15.049      16.868      12.827      
+PTL     C2      C       CH2     0       16.597      18.466      13.705      
+PTL     C3      C       CH2     0       16.751      18.047      15.134      
+PTL     C4      C       CH2     0       15.852      18.812      16.091      
+PTL     C5      C       CH3     0       16.064      18.450      17.542      
+PTL     H1      H       H       0       14.705      18.662      12.827      
+PTL     H21     H       H       0       16.633      19.445      13.659      
+PTL     H22     H       H       0       17.358      18.117      13.192      
+PTL     H31     H       H       0       17.683      18.178      15.407      
+PTL     H32     H       H       0       16.550      17.091      15.210      
+PTL     H41     H       H       0       14.915      18.635      15.853      
+PTL     H42     H       H       0       16.014      19.773      15.976      
+PTL     H51     H       H       0       15.442      18.952      18.097      
+PTL     H52     H       H       0       16.976      18.667      17.801      
+PTL     H53     H       H       0       15.911      17.497      17.665      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PTL          C1          O1      DOUBLE       n     1.192  0.0200     1.192  0.0200
+PTL          C1          C2      SINGLE       n     1.490  0.0115     1.490  0.0115
+PTL          C2          C3      SINGLE       n     1.497  0.0200     1.497  0.0200
+PTL          C3          C4      SINGLE       n     1.519  0.0164     1.519  0.0164
+PTL          C4          C5      SINGLE       n     1.510  0.0200     1.510  0.0200
+PTL          C1          H1      SINGLE       n     1.082  0.0130     0.943  0.0105
+PTL          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+PTL          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+PTL          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0160
+PTL          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0160
+PTL          C4         H41      SINGLE       n     1.089  0.0100     0.982  0.0155
+PTL          C4         H42      SINGLE       n     1.089  0.0100     0.982  0.0155
+PTL          C5         H51      SINGLE       n     1.089  0.0100     0.973  0.0157
+PTL          C5         H52      SINGLE       n     1.089  0.0100     0.973  0.0157
+PTL          C5         H53      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PTL          O1          C1          C2     125.770    1.96
+PTL          O1          C1          H1     117.130    1.50
+PTL          C2          C1          H1     117.100    1.50
+PTL          C1          C2          C3     114.504    2.22
+PTL          C1          C2         H21     108.942    1.50
+PTL          C1          C2         H22     108.942    1.50
+PTL          C3          C2         H21     108.844    1.50
+PTL          C3          C2         H22     108.844    1.50
+PTL         H21          C2         H22     107.705    1.50
+PTL          C2          C3          C4     113.314    2.25
+PTL          C2          C3         H31     108.915    1.50
+PTL          C2          C3         H32     108.915    1.50
+PTL          C4          C3         H31     108.653    1.50
+PTL          C4          C3         H32     108.653    1.50
+PTL         H31          C3         H32     107.646    1.50
+PTL          C3          C4          C5     113.719    3.00
+PTL          C3          C4         H41     108.758    1.50
+PTL          C3          C4         H42     108.758    1.50
+PTL          C5          C4         H41     108.918    1.50
+PTL          C5          C4         H42     108.918    1.50
+PTL         H41          C4         H42     107.763    1.50
+PTL          C4          C5         H51     109.554    1.50
+PTL          C4          C5         H52     109.554    1.50
+PTL          C4          C5         H53     109.554    1.50
+PTL         H51          C5         H52     109.380    1.50
+PTL         H51          C5         H53     109.380    1.50
+PTL         H52          C5         H53     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PTL             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+PTL             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+PTL            sp3_sp3_10          C2          C3          C4          C5     180.000    10.0     3
+PTL            sp3_sp3_19          C3          C4          C5         H51     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PTL    plan-1          C1   0.020
+PTL    plan-1          C2   0.020
+PTL    plan-1          H1   0.020
+PTL    plan-1          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PTL           SMILES              ACDLabs 10.04                                    O=CCCCC
+PTL SMILES_CANONICAL               CACTVS 3.341                                    CCCCC=O
+PTL           SMILES               CACTVS 3.341                                    CCCCC=O
+PTL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                    CCCCC=O
+PTL           SMILES "OpenEye OEToolkits" 1.5.0                                    CCCCC=O
+PTL            InChI                InChI  1.03 InChI=1S/C5H10O/c1-2-3-4-5-6/h5H,2-4H2,1H3
+PTL         InChIKey                InChI  1.03                HGBOYTHUEUWSSQ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PTL acedrg               243         "dictionary generator"                  
+PTL acedrg_database      11          "data source"                           
+PTL rdkit                2017.03.2   "Chemoinformatics tool"
+PTL refmac5              5.8.0238    "optimization tool"                     

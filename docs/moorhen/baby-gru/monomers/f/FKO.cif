@@ -1,0 +1,278 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FKO     FKO      3-(2-chlorophenyl)-6-(2-fluorophenoxy)-2H-indazole     NON-POLYMER     36     24     .     
+#
+data_comp_FKO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FKO     FAA     F       F       0       40.756      54.382      94.571      
+FKO     CAQ     C       CR6     0       39.916      54.857      93.630      
+FKO     CAG     C       CR16    0       38.565      54.581      93.732      
+FKO     CAC     C       CR16    0       37.702      55.074      92.763      
+FKO     CAE     C       CR16    0       38.195      55.828      91.718      
+FKO     CAI     C       CR16    0       39.558      56.098      91.627      
+FKO     CAT     C       CR6     0       40.429      55.604      92.585      
+FKO     OAP     O       O2      0       41.775      55.904      92.463      
+FKO     CAS     C       CR6     0       42.826      54.990      92.516      
+FKO     CAM     C       CR16    0       42.716      53.717      91.981      
+FKO     CAK     C       CR16    0       44.002      55.422      93.134      
+FKO     CAL     C       CR16    0       45.100      54.600      93.240      
+FKO     CAX     C       CR56    0       45.029      53.301      92.715      
+FKO     CAW     C       CR56    0       43.841      52.856      92.083      
+FKO     NAO     N       NRD5    0       44.009      51.583      91.658      
+FKO     NAN     N       NR5     0       45.268      51.219      92.003      
+FKO     CAV     C       CR5     0       45.918      52.226      92.638      
+FKO     CAU     C       CR6     0       47.300      52.135      93.138      
+FKO     CAR     C       CR6     0       48.333      52.863      92.542      
+FKO     CLB     CL      CL      0       48.031      53.899      91.189      
+FKO     CAJ     C       CR16    0       47.600      51.314      94.225      
+FKO     CAF     C       CR16    0       48.901      51.227      94.698      
+FKO     CAD     C       CR16    0       49.911      51.954      94.096      
+FKO     CAH     C       CR16    0       49.637      52.772      93.020      
+FKO     HAG     H       H       0       38.241      54.066      94.451      
+FKO     HAC     H       H       0       36.780      54.893      92.822      
+FKO     HAE     H       H       0       37.608      56.162      91.059      
+FKO     HAI     H       H       0       39.890      56.612      90.911      
+FKO     HAM     H       H       0       41.915      53.426      91.560      
+FKO     HAK     H       H       0       44.047      56.295      93.488      
+FKO     HAL     H       H       0       45.885      54.906      93.661      
+FKO     HNAN    H       H       0       45.593      50.409      91.815      
+FKO     HAJ     H       H       0       46.921      50.820      94.637      
+FKO     HAF     H       H       0       49.095      50.670      95.433      
+FKO     HAD     H       H       0       50.790      51.892      94.421      
+FKO     HAH     H       H       0       50.323      53.266      92.612      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FKO         FAA         CAQ      SINGLE       n     1.347  0.0163     1.347  0.0163
+FKO         CAQ         CAG      DOUBLE       y     1.377  0.0118     1.377  0.0118
+FKO         CAQ         CAT      SINGLE       y     1.377  0.0100     1.377  0.0100
+FKO         CAG         CAC      SINGLE       y     1.384  0.0100     1.384  0.0100
+FKO         CAC         CAE      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FKO         CAE         CAI      SINGLE       y     1.389  0.0100     1.389  0.0100
+FKO         CAI         CAT      DOUBLE       y     1.382  0.0100     1.382  0.0100
+FKO         CAT         OAP      SINGLE       n     1.381  0.0100     1.381  0.0100
+FKO         OAP         CAS      SINGLE       n     1.388  0.0129     1.388  0.0129
+FKO         CAS         CAM      DOUBLE       y     1.379  0.0100     1.379  0.0100
+FKO         CAS         CAK      SINGLE       y     1.387  0.0131     1.387  0.0131
+FKO         CAM         CAW      SINGLE       y     1.417  0.0100     1.417  0.0100
+FKO         CAK         CAL      DOUBLE       y     1.372  0.0100     1.372  0.0100
+FKO         CAL         CAX      SINGLE       y     1.398  0.0167     1.398  0.0167
+FKO         CAX         CAW      SINGLE       y     1.421  0.0100     1.421  0.0100
+FKO         CAX         CAV      DOUBLE       y     1.404  0.0200     1.404  0.0200
+FKO         CAW         NAO      DOUBLE       y     1.353  0.0100     1.353  0.0100
+FKO         NAO         NAN      SINGLE       y     1.349  0.0121     1.349  0.0121
+FKO         NAN         CAV      SINGLE       y     1.352  0.0100     1.352  0.0100
+FKO         CAV         CAU      SINGLE       n     1.471  0.0100     1.471  0.0100
+FKO         CAU         CAR      DOUBLE       y     1.391  0.0118     1.391  0.0118
+FKO         CAU         CAJ      SINGLE       y     1.392  0.0100     1.392  0.0100
+FKO         CAR         CLB      SINGLE       n     1.727  0.0200     1.727  0.0200
+FKO         CAR         CAH      SINGLE       y     1.387  0.0114     1.387  0.0114
+FKO         CAJ         CAF      DOUBLE       y     1.383  0.0100     1.383  0.0100
+FKO         CAF         CAD      SINGLE       y     1.376  0.0124     1.376  0.0124
+FKO         CAD         CAH      DOUBLE       y     1.372  0.0132     1.372  0.0132
+FKO         CAG         HAG      SINGLE       n     1.082  0.0130     0.942  0.0131
+FKO         CAC         HAC      SINGLE       n     1.082  0.0130     0.941  0.0200
+FKO         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0183
+FKO         CAI         HAI      SINGLE       n     1.082  0.0130     0.942  0.0110
+FKO         CAM         HAM      SINGLE       n     1.082  0.0130     0.951  0.0170
+FKO         CAK         HAK      SINGLE       n     1.082  0.0130     0.943  0.0103
+FKO         CAL         HAL      SINGLE       n     1.082  0.0130     0.942  0.0182
+FKO         NAN        HNAN      SINGLE       n     1.016  0.0100     0.893  0.0200
+FKO         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.936  0.0103
+FKO         CAF         HAF      SINGLE       n     1.082  0.0130     0.943  0.0180
+FKO         CAD         HAD      SINGLE       n     1.082  0.0130     0.939  0.0165
+FKO         CAH         HAH      SINGLE       n     1.082  0.0130     0.938  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FKO         FAA         CAQ         CAG     119.770    1.50
+FKO         FAA         CAQ         CAT     118.514    1.50
+FKO         CAG         CAQ         CAT     121.722    1.50
+FKO         CAQ         CAG         CAC     118.801    1.50
+FKO         CAQ         CAG         HAG     120.146    1.50
+FKO         CAC         CAG         HAG     121.053    1.50
+FKO         CAG         CAC         CAE     120.116    1.50
+FKO         CAG         CAC         HAC     119.785    1.50
+FKO         CAE         CAC         HAC     120.099    1.50
+FKO         CAC         CAE         CAI     120.562    1.50
+FKO         CAC         CAE         HAE     119.904    1.50
+FKO         CAI         CAE         HAE     119.535    1.50
+FKO         CAE         CAI         CAT     119.907    1.50
+FKO         CAE         CAI         HAI     120.168    1.50
+FKO         CAT         CAI         HAI     119.935    1.50
+FKO         CAQ         CAT         CAI     118.884    1.50
+FKO         CAQ         CAT         OAP     120.478    2.10
+FKO         CAI         CAT         OAP     120.638    3.00
+FKO         CAT         OAP         CAS     118.469    2.57
+FKO         OAP         CAS         CAM     120.021    1.68
+FKO         OAP         CAS         CAK     118.862    3.00
+FKO         CAM         CAS         CAK     121.117    1.50
+FKO         CAS         CAM         CAW     117.995    1.50
+FKO         CAS         CAM         HAM     120.985    1.50
+FKO         CAW         CAM         HAM     121.020    1.50
+FKO         CAS         CAK         CAL     120.950    1.50
+FKO         CAS         CAK         HAK     119.777    1.50
+FKO         CAL         CAK         HAK     119.272    1.50
+FKO         CAK         CAL         CAX     119.061    1.50
+FKO         CAK         CAL         HAL     120.319    1.50
+FKO         CAX         CAL         HAL     120.619    1.50
+FKO         CAL         CAX         CAW     120.242    1.50
+FKO         CAL         CAX         CAV     133.182    1.59
+FKO         CAW         CAX         CAV     106.575    1.50
+FKO         CAM         CAW         CAX     120.635    1.50
+FKO         CAM         CAW         NAO     129.008    1.50
+FKO         CAX         CAW         NAO     110.357    1.50
+FKO         CAW         NAO         NAN     106.211    1.50
+FKO         NAO         NAN         CAV     109.842    1.50
+FKO         NAO         NAN        HNAN     122.599    3.00
+FKO         CAV         NAN        HNAN     127.559    3.00
+FKO         CAX         CAV         NAN     107.014    1.50
+FKO         CAX         CAV         CAU     128.838    2.50
+FKO         NAN         CAV         CAU     124.148    1.50
+FKO         CAV         CAU         CAR     120.370    1.50
+FKO         CAV         CAU         CAJ     120.370    1.50
+FKO         CAR         CAU         CAJ     119.261    1.64
+FKO         CAU         CAR         CLB     120.289    1.50
+FKO         CAU         CAR         CAH     121.191    1.50
+FKO         CLB         CAR         CAH     118.519    1.50
+FKO         CAU         CAJ         CAF     120.301    1.50
+FKO         CAU         CAJ         HAJ     119.804    1.50
+FKO         CAF         CAJ         HAJ     119.895    1.50
+FKO         CAJ         CAF         CAD     120.083    1.50
+FKO         CAJ         CAF         HAF     119.858    1.50
+FKO         CAD         CAF         HAF     120.059    1.50
+FKO         CAF         CAD         CAH     120.020    1.50
+FKO         CAF         CAD         HAD     120.111    1.50
+FKO         CAH         CAD         HAD     119.869    1.50
+FKO         CAR         CAH         CAD     119.145    1.50
+FKO         CAR         CAH         HAH     120.236    1.50
+FKO         CAD         CAH         HAH     120.619    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FKO              const_57         CAS         CAK         CAL         CAX       0.000    10.0     2
+FKO              const_53         CAK         CAL         CAX         CAW       0.000    10.0     2
+FKO              const_49         CAM         CAW         CAX         CAL       0.000    10.0     2
+FKO              const_78         NAN         CAV         CAX         CAL     180.000    10.0     2
+FKO              const_62         CAM         CAW         NAO         NAN     180.000    10.0     2
+FKO              const_63         CAV         NAN         NAO         CAW       0.000    10.0     2
+FKO              const_65         CAX         CAV         NAN         NAO       0.000    10.0     2
+FKO             sp2_sp2_5         CAR         CAU         CAV         CAX     180.000     5.0     2
+FKO              const_24         CLB         CAR         CAU         CAV       0.000    10.0     2
+FKO              const_82         CAF         CAJ         CAU         CAV     180.000    10.0     2
+FKO              const_26         CAD         CAH         CAR         CLB     180.000    10.0     2
+FKO       const_sp2_sp2_2         CAC         CAG         CAQ         FAA     180.000     5.0     2
+FKO              const_72         FAA         CAQ         CAT         OAP       0.000    10.0     2
+FKO              const_37         CAD         CAF         CAJ         CAU       0.000    10.0     2
+FKO              const_33         CAH         CAD         CAF         CAJ       0.000    10.0     2
+FKO              const_29         CAF         CAD         CAH         CAR       0.000    10.0     2
+FKO       const_sp2_sp2_5         CAE         CAC         CAG         CAQ       0.000     5.0     2
+FKO       const_sp2_sp2_9         CAG         CAC         CAE         CAI       0.000     5.0     2
+FKO              const_13         CAC         CAE         CAI         CAT       0.000    10.0     2
+FKO              const_18         CAE         CAI         CAT         OAP     180.000    10.0     2
+FKO             sp2_sp2_1         CAQ         CAT         OAP         CAS     180.000     5.0     2
+FKO             sp2_sp2_3         CAM         CAS         OAP         CAT     180.000     5.0     2
+FKO              const_74         CAL         CAK         CAS         OAP     180.000    10.0     2
+FKO              const_42         CAW         CAM         CAS         OAP     180.000    10.0     2
+FKO              const_45         CAS         CAM         CAW         CAX       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FKO    plan-1         CAK   0.020
+FKO    plan-1         CAL   0.020
+FKO    plan-1         CAM   0.020
+FKO    plan-1         CAS   0.020
+FKO    plan-1         CAU   0.020
+FKO    plan-1         CAV   0.020
+FKO    plan-1         CAW   0.020
+FKO    plan-1         CAX   0.020
+FKO    plan-1         HAK   0.020
+FKO    plan-1         HAL   0.020
+FKO    plan-1         HAM   0.020
+FKO    plan-1        HNAN   0.020
+FKO    plan-1         NAN   0.020
+FKO    plan-1         NAO   0.020
+FKO    plan-1         OAP   0.020
+FKO    plan-2         CAD   0.020
+FKO    plan-2         CAF   0.020
+FKO    plan-2         CAH   0.020
+FKO    plan-2         CAJ   0.020
+FKO    plan-2         CAR   0.020
+FKO    plan-2         CAU   0.020
+FKO    plan-2         CAV   0.020
+FKO    plan-2         CLB   0.020
+FKO    plan-2         HAD   0.020
+FKO    plan-2         HAF   0.020
+FKO    plan-2         HAH   0.020
+FKO    plan-2         HAJ   0.020
+FKO    plan-3         CAC   0.020
+FKO    plan-3         CAE   0.020
+FKO    plan-3         CAG   0.020
+FKO    plan-3         CAI   0.020
+FKO    plan-3         CAQ   0.020
+FKO    plan-3         CAT   0.020
+FKO    plan-3         FAA   0.020
+FKO    plan-3         HAC   0.020
+FKO    plan-3         HAE   0.020
+FKO    plan-3         HAG   0.020
+FKO    plan-3         HAI   0.020
+FKO    plan-3         OAP   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FKO           SMILES              ACDLabs 10.04                                                                                Fc4ccccc4Oc3ccc1c(nnc1c2ccccc2Cl)c3
+FKO SMILES_CANONICAL               CACTVS 3.341                                                                             Fc1ccccc1Oc2ccc3c([nH]nc3c2)c4ccccc4Cl
+FKO           SMILES               CACTVS 3.341                                                                             Fc1ccccc1Oc2ccc3c([nH]nc3c2)c4ccccc4Cl
+FKO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                         c1ccc(c(c1)c2c3ccc(cc3n[nH]2)Oc4ccccc4F)Cl
+FKO           SMILES "OpenEye OEToolkits" 1.5.0                                                                         c1ccc(c(c1)c2c3ccc(cc3n[nH]2)Oc4ccccc4F)Cl
+FKO            InChI                InChI  1.03 InChI=1S/C19H12ClFN2O/c20-15-6-2-1-5-13(15)19-14-10-9-12(11-17(14)22-23-19)24-18-8-4-3-7-16(18)21/h1-11H,(H,22,23)
+FKO         InChIKey                InChI  1.03                                                                                        QDPZIIDGFJHLRY-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FKO acedrg               243         "dictionary generator"                  
+FKO acedrg_database      11          "data source"                           
+FKO rdkit                2017.03.2   "Chemoinformatics tool"
+FKO refmac5              5.8.0238    "optimization tool"                     

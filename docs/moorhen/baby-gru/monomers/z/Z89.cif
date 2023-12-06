@@ -1,0 +1,272 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+Z89     Z89      "(2R)-2-[(5Z)-5-(5-bromo-2-oxo-1,2-dihydro-3H-indol-3-ylidene)-4-oxo-2-thioxo-1,3-thiazolidin-3-yl]butanedioic acid"     NON-POLYMER     33     26     .     
+#
+data_comp_Z89
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+Z89     C       C       C       0       -6.010      6.580       21.261      
+Z89     N       N       NR5     0       -5.896      5.197       19.165      
+Z89     O       O       OC      -1      -7.202      6.776       21.569      
+Z89     CA      C       CH1     0       -5.685      6.529       19.745      
+Z89     CB      C       CH2     0       -4.277      7.068       19.443      
+Z89     CG      C       C       0       -4.135      8.559       19.703      
+Z89     CAA     C       CR56    0       -3.613      -0.268      19.147      
+Z89     CAB     C       CR56    0       -3.644      1.136       19.036      
+Z89     CAC     C       CR16    0       -2.469      1.870       19.002      
+Z89     CAD     C       CR6     0       -1.269      1.181       19.079      
+Z89     BRAE    BR      BR      0       0.358       2.161       19.035      
+Z89     CAF     C       CR16    0       -1.224      -0.200      19.188      
+Z89     CAG     C       CR16    0       -2.409      -0.944      19.223      
+Z89     CAH     C       CR5     0       -5.037      1.543       18.978      
+Z89     CAI     C       CR5     0       -5.824      0.283       19.069      
+Z89     NAJ     N       NR5     0       -4.934      -0.736      19.157      
+Z89     OAK     O       O       0       -7.042      0.167       19.068      
+Z89     CAL     C       CR5     0       -5.544      2.900       18.862      
+Z89     CAM     C       CR5     0       -5.170      4.044       19.557      
+Z89     CAW     C       CR5     0       -6.797      4.894       18.176      
+Z89     SAX     S       S1      0       -7.876      5.879       17.379      
+Z89     SAY     S       S2      0       -6.741      3.276       17.772      
+Z89     OAZ     O       O       0       -4.302      4.091       20.437      
+Z89     OD1     O       OC      -1      -4.384      9.346       18.768      
+Z89     OD2     O       O       0       -3.776      8.928       20.839      
+Z89     OXT     O       O       0       -5.079      6.423       22.080      
+Z89     HA      H       H       0       -6.325      7.163       19.331      
+Z89     HB      H       H       0       -4.066      6.898       18.503      
+Z89     HBA     H       H       0       -3.616      6.593       19.986      
+Z89     HAC     H       H       0       -2.488      2.807       18.928      
+Z89     HAF     H       H       0       -0.397      -0.638      19.238      
+Z89     HAG     H       H       0       -2.385      -1.879      19.296      
+Z89     HNAJ    H       H       0       -5.159      -1.578      19.212      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+Z89           C          CA      SINGLE       n     1.546  0.0100     1.546  0.0100
+Z89           C         OXT      DOUBLE       n     1.247  0.0187     1.247  0.0187
+Z89           C           O      SINGLE       n     1.247  0.0187     1.247  0.0187
+Z89           N         CAW      SINGLE       y     1.356  0.0144     1.356  0.0144
+Z89           N         CAM      SINGLE       y     1.372  0.0181     1.372  0.0181
+Z89           N          CA      SINGLE       n     1.460  0.0112     1.460  0.0112
+Z89          CA          CB      SINGLE       n     1.532  0.0125     1.532  0.0125
+Z89          CB          CG      SINGLE       n     1.519  0.0109     1.519  0.0109
+Z89          CG         OD2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+Z89          CG         OD1      SINGLE       n     1.247  0.0187     1.247  0.0187
+Z89         CAA         NAJ      SINGLE       n     1.398  0.0100     1.398  0.0100
+Z89         CAA         CAB      SINGLE       y     1.403  0.0100     1.403  0.0100
+Z89         CAA         CAG      DOUBLE       y     1.378  0.0100     1.378  0.0100
+Z89         CAB         CAH      SINGLE       n     1.462  0.0190     1.462  0.0190
+Z89         CAB         CAC      DOUBLE       y     1.382  0.0100     1.382  0.0100
+Z89         CAC         CAD      SINGLE       y     1.383  0.0114     1.383  0.0114
+Z89         CAD         CAF      DOUBLE       y     1.384  0.0100     1.384  0.0100
+Z89         CAD        BRAE      SINGLE       n     1.900  0.0100     1.900  0.0100
+Z89         CAF         CAG      SINGLE       y     1.393  0.0138     1.393  0.0138
+Z89         CAH         CAI      SINGLE       n     1.499  0.0195     1.499  0.0195
+Z89         CAH         CAL      DOUBLE       n     1.453  0.0100     1.453  0.0100
+Z89         CAI         OAK      DOUBLE       n     1.223  0.0129     1.223  0.0129
+Z89         CAI         NAJ      SINGLE       n     1.355  0.0100     1.355  0.0100
+Z89         CAL         SAY      SINGLE       y     1.695  0.0200     1.695  0.0200
+Z89         CAL         CAM      SINGLE       y     1.379  0.0200     1.379  0.0200
+Z89         CAM         OAZ      DOUBLE       n     1.237  0.0126     1.237  0.0126
+Z89         CAW         SAY      SINGLE       y     1.695  0.0200     1.695  0.0200
+Z89         CAW         SAX      DOUBLE       n     1.660  0.0200     1.660  0.0200
+Z89          CA          HA      SINGLE       n     1.089  0.0100     0.992  0.0107
+Z89          CB          HB      SINGLE       n     1.089  0.0100     0.979  0.0159
+Z89          CB         HBA      SINGLE       n     1.089  0.0100     0.979  0.0159
+Z89         CAC         HAC      SINGLE       n     1.082  0.0130     0.940  0.0122
+Z89         CAF         HAF      SINGLE       n     1.082  0.0130     0.937  0.0102
+Z89         CAG         HAG      SINGLE       n     1.082  0.0130     0.938  0.0108
+Z89         NAJ        HNAJ      SINGLE       n     1.016  0.0100     0.873  0.0106
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+Z89          CA           C         OXT     117.260    1.75
+Z89          CA           C           O     117.260    1.75
+Z89         OXT           C           O     125.480    1.75
+Z89         CAW           N         CAM     107.341    1.50
+Z89         CAW           N          CA     127.815    2.34
+Z89         CAM           N          CA     124.844    3.00
+Z89           C          CA           N     112.037    1.67
+Z89           C          CA          CB     110.123    1.50
+Z89           C          CA          HA     106.938    1.92
+Z89           N          CA          CB     111.867    1.85
+Z89           N          CA          HA     109.046    1.50
+Z89          CB          CA          HA     107.943    1.57
+Z89          CA          CB          CG     111.511    2.91
+Z89          CA          CB          HB     108.998    1.50
+Z89          CA          CB         HBA     108.998    1.50
+Z89          CG          CB          HB     108.416    1.50
+Z89          CG          CB         HBA     108.416    1.50
+Z89          HB          CB         HBA     107.705    1.50
+Z89          CB          CG         OD2     118.187    1.67
+Z89          CB          CG         OD1     118.187    1.67
+Z89         OD2          CG         OD1     123.625    1.50
+Z89         NAJ         CAA         CAB     107.279    1.50
+Z89         NAJ         CAA         CAG     131.765    1.50
+Z89         CAB         CAA         CAG     120.956    1.62
+Z89         CAA         CAB         CAH     107.939    1.50
+Z89         CAA         CAB         CAC     120.234    1.83
+Z89         CAH         CAB         CAC     131.826    2.30
+Z89         CAB         CAC         CAD     118.016    1.50
+Z89         CAB         CAC         HAC     120.811    1.50
+Z89         CAD         CAC         HAC     121.173    1.50
+Z89         CAC         CAD         CAF     122.363    1.50
+Z89         CAC         CAD        BRAE     118.714    1.50
+Z89         CAF         CAD        BRAE     118.923    1.50
+Z89         CAD         CAF         CAG     120.441    1.50
+Z89         CAD         CAF         HAF     119.855    1.50
+Z89         CAG         CAF         HAF     119.703    1.50
+Z89         CAA         CAG         CAF     117.989    1.50
+Z89         CAA         CAG         HAG     121.161    1.50
+Z89         CAF         CAG         HAG     120.850    1.50
+Z89         CAB         CAH         CAI     106.956    1.50
+Z89         CAB         CAH         CAL     126.803    3.00
+Z89         CAI         CAH         CAL     126.241    3.00
+Z89         CAH         CAI         OAK     127.173    1.62
+Z89         CAH         CAI         NAJ     107.292    1.50
+Z89         OAK         CAI         NAJ     125.535    1.50
+Z89         CAA         NAJ         CAI     110.533    1.50
+Z89         CAA         NAJ        HNAJ     124.925    1.50
+Z89         CAI         NAJ        HNAJ     124.542    1.50
+Z89         CAH         CAL         SAY     121.309    3.00
+Z89         CAH         CAL         CAM     130.639    3.00
+Z89         SAY         CAL         CAM     108.052    3.00
+Z89           N         CAM         CAL     108.504    1.99
+Z89           N         CAM         OAZ     123.064    1.50
+Z89         CAL         CAM         OAZ     128.431    1.50
+Z89           N         CAW         SAY     108.052    3.00
+Z89           N         CAW         SAX     129.212    1.50
+Z89         SAY         CAW         SAX     122.736    3.00
+Z89         CAL         SAY         CAW     108.052    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+Z89             sp2_sp3_2         OXT           C          CA          CB     120.000    10.0     6
+Z89              const_17         CAD         CAF         CAG         CAA       0.000    10.0     2
+Z89            sp2_sp2_10         CAB         CAH         CAI         OAK     180.000     5.0     2
+Z89            sp2_sp2_18         CAB         CAH         CAL         SAY       0.000     5.0     2
+Z89             sp2_sp2_7         OAK         CAI         NAJ         CAA     180.000     5.0     2
+Z89              const_32         CAH         CAL         CAM         OAZ       0.000    10.0     2
+Z89              const_28         CAH         CAL         SAY         CAW     180.000    10.0     2
+Z89              const_26         SAX         CAW         SAY         CAL     180.000    10.0     2
+Z89              const_36         OAZ         CAM           N          CA       0.000    10.0     2
+Z89              const_24         SAX         CAW           N          CA       0.000    10.0     2
+Z89             sp2_sp3_7         CAW           N          CA           C     150.000    10.0     6
+Z89             sp3_sp3_1           C          CA          CB          CG     180.000    10.0     3
+Z89            sp2_sp3_14         OD2          CG          CB          CA     120.000    10.0     6
+Z89              const_39         NAJ         CAA         CAG         CAF     180.000    10.0     2
+Z89             sp2_sp2_1         CAB         CAA         NAJ         CAI       0.000     5.0     2
+Z89       const_sp2_sp2_1         NAJ         CAA         CAB         CAH       0.000     5.0     2
+Z89            sp2_sp2_13         CAA         CAB         CAH         CAI       0.000     5.0     2
+Z89       const_sp2_sp2_5         CAA         CAB         CAC         CAD       0.000     5.0     2
+Z89              const_10         CAB         CAC         CAD        BRAE     180.000    10.0     2
+Z89              const_15        BRAE         CAD         CAF         CAG     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+Z89    chir_1    CA    N    C    CB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+Z89    plan-1        BRAE   0.020
+Z89    plan-1         CAA   0.020
+Z89    plan-1         CAB   0.020
+Z89    plan-1         CAC   0.020
+Z89    plan-1         CAD   0.020
+Z89    plan-1         CAF   0.020
+Z89    plan-1         CAG   0.020
+Z89    plan-1         CAH   0.020
+Z89    plan-1         HAC   0.020
+Z89    plan-1         HAF   0.020
+Z89    plan-1         HAG   0.020
+Z89    plan-1         NAJ   0.020
+Z89    plan-2          CA   0.020
+Z89    plan-2         CAH   0.020
+Z89    plan-2         CAL   0.020
+Z89    plan-2         CAM   0.020
+Z89    plan-2         CAW   0.020
+Z89    plan-2           N   0.020
+Z89    plan-2         OAZ   0.020
+Z89    plan-2         SAX   0.020
+Z89    plan-2         SAY   0.020
+Z89    plan-3           C   0.020
+Z89    plan-3          CA   0.020
+Z89    plan-3           O   0.020
+Z89    plan-3         OXT   0.020
+Z89    plan-4          CB   0.020
+Z89    plan-4          CG   0.020
+Z89    plan-4         OD1   0.020
+Z89    plan-4         OD2   0.020
+Z89    plan-5         CAB   0.020
+Z89    plan-5         CAH   0.020
+Z89    plan-5         CAI   0.020
+Z89    plan-5         CAL   0.020
+Z89    plan-6         CAH   0.020
+Z89    plan-6         CAI   0.020
+Z89    plan-6         NAJ   0.020
+Z89    plan-6         OAK   0.020
+Z89    plan-7         CAA   0.020
+Z89    plan-7         CAI   0.020
+Z89    plan-7        HNAJ   0.020
+Z89    plan-7         NAJ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+Z89 SMILES_CANONICAL               CACTVS 3.352                                                                                                 OC(=O)C[C@@H](N1C(=S)SC(/C1=O)=C/2C(=O)Nc3ccc(Br)cc/23)C(O)=O
+Z89           SMILES               CACTVS 3.352                                                                                                      OC(=O)C[CH](N1C(=S)SC(C1=O)=C2C(=O)Nc3ccc(Br)cc23)C(O)=O
+Z89 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                             c1cc2c(cc1Br)/C(=C/3\C(=O)N(C(=S)S3)[C@H](CC(=O)O)C(=O)O)/C(=O)N2
+Z89           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                     c1cc2c(cc1Br)C(=C3C(=O)N(C(=S)S3)C(CC(=O)O)C(=O)O)C(=O)N2
+Z89            InChI                InChI  1.03 InChI=1S/C15H9BrN2O6S2/c16-5-1-2-7-6(3-5)10(12(21)17-7)11-13(22)18(15(25)26-11)8(14(23)24)4-9(19)20/h1-3,8H,4H2,(H,17,21)(H,19,20)(H,23,24)/b11-10-/t8-/m1/s1
+Z89         InChIKey                InChI  1.03                                                                                                                                   QGNRETMYLHRUBB-OZEWEUHLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+Z89 acedrg               243         "dictionary generator"                  
+Z89 acedrg_database      11          "data source"                           
+Z89 rdkit                2017.03.2   "Chemoinformatics tool"
+Z89 refmac5              5.8.0238    "optimization tool"                     

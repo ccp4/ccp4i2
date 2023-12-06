@@ -1,0 +1,134 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+9DC     9DC      (2S)-2,3-disulfanylpropan-1-ol     NON-POLYMER     14     6     .     
+#
+data_comp_9DC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+9DC     OAE     O       OH1     0       -1.908      0.278       -17.156     
+9DC     CAD     C       CH2     0       -2.499      0.204       -15.870     
+9DC     CAC     C       CH1     0       -3.793      -0.587      -15.902     
+9DC     SAF     S       SH1     0       -4.708      -0.340      -14.352     
+9DC     CAB     C       CH2     0       -3.588      -2.066      -16.154     
+9DC     SAA     S       SH1     0       -5.141      -2.953      -16.443     
+9DC     H1      H       H       0       -1.088      0.467       -17.072     
+9DC     H2      H       H       0       -2.680      1.112       -15.545     
+9DC     H3      H       H       0       -1.870      -0.224      -15.250     
+9DC     H4      H       H       0       -4.342      -0.232      -16.641     
+9DC     H5      H       HSH1    0       -4.765      0.867       -14.384     
+9DC     H6      H       H       0       -3.141      -2.474      -15.382     
+9DC     H7      H       H       0       -3.014      -2.191      -16.940     
+9DC     H8      H       HSH1    0       -5.894      -2.027      -16.292     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+9DC         OAE         CAD      SINGLE       n     1.417  0.0200     1.417  0.0200
+9DC         CAB         SAA      SINGLE       n     1.811  0.0100     1.811  0.0100
+9DC         CAC         CAB      SINGLE       n     1.515  0.0100     1.515  0.0100
+9DC         CAD         CAC      SINGLE       n     1.517  0.0100     1.517  0.0100
+9DC         CAC         SAF      SINGLE       n     1.818  0.0138     1.818  0.0138
+9DC         OAE          H1      SINGLE       n     0.970  0.0120     0.846  0.0200
+9DC         CAD          H2      SINGLE       n     1.089  0.0100     0.981  0.0174
+9DC         CAD          H3      SINGLE       n     1.089  0.0100     0.981  0.0174
+9DC         CAC          H4      SINGLE       n     1.089  0.0100     0.987  0.0101
+9DC         SAF          H5      SINGLE       n     1.338  0.0100     1.209  0.0200
+9DC         CAB          H6      SINGLE       n     1.089  0.0100     0.981  0.0122
+9DC         CAB          H7      SINGLE       n     1.089  0.0100     0.981  0.0122
+9DC         SAA          H8      SINGLE       n     1.338  0.0100     1.203  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+9DC         CAD         OAE          H1     108.972    3.00
+9DC         OAE         CAD         CAC     111.348    1.53
+9DC         OAE         CAD          H2     109.256    1.50
+9DC         OAE         CAD          H3     109.256    1.50
+9DC         CAC         CAD          H2     109.492    1.50
+9DC         CAC         CAD          H3     109.492    1.50
+9DC          H2         CAD          H3     108.319    1.50
+9DC         CAB         CAC         CAD     113.504    1.50
+9DC         CAB         CAC         SAF     112.239    3.00
+9DC         CAB         CAC          H4     108.682    1.50
+9DC         CAD         CAC         SAF     112.239    3.00
+9DC         CAD         CAC          H4     108.682    1.50
+9DC         SAF         CAC          H4     109.066    1.50
+9DC         CAC         SAF          H5      97.885    3.00
+9DC         SAA         CAB         CAC     112.239    3.00
+9DC         SAA         CAB          H6     107.876    2.03
+9DC         SAA         CAB          H7     107.876    2.03
+9DC         CAC         CAB          H6     109.492    1.50
+9DC         CAC         CAB          H7     109.492    1.50
+9DC          H6         CAB          H7     107.922    1.50
+9DC         CAB         SAA          H8      97.649    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+9DC             sp3_sp3_1         CAC         CAD         OAE          H1     180.000    10.0     3
+9DC            sp3_sp3_16         CAB         CAC         CAD         OAE     180.000    10.0     3
+9DC            sp3_sp3_25         CAB         CAC         SAF          H5     180.000    10.0     3
+9DC             sp3_sp3_7         SAA         CAB         CAC         CAD     180.000    10.0     3
+9DC             sp3_sp3_4         CAC         CAB         SAA          H8     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+9DC    chir_1    CAC    SAF    CAB    CAD    positive
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+9DC           SMILES              ACDLabs 12.01                                            OCC(S)CS
+9DC            InChI                InChI  1.03 InChI=1S/C3H8OS2/c4-1-3(6)2-5/h3-6H,1-2H2/t3-/m0/s1
+9DC         InChIKey                InChI  1.03                         WQABCVAJNWAXTE-VKHMYHEASA-N
+9DC SMILES_CANONICAL               CACTVS 3.385                                        OC[C@H](S)CS
+9DC           SMILES               CACTVS 3.385                                         OC[CH](S)CS
+9DC SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                     C([C@@H](CS)S)O
+9DC           SMILES "OpenEye OEToolkits" 2.0.6                                          C(C(CS)S)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+9DC acedrg               243         "dictionary generator"                  
+9DC acedrg_database      11          "data source"                           
+9DC rdkit                2017.03.2   "Chemoinformatics tool"
+9DC refmac5              5.8.0238    "optimization tool"                     

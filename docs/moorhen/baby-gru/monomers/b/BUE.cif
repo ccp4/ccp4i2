@@ -1,0 +1,373 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BUE     BUE      "NerylNeryl pyrophosphate"     NON-POLYMER     62     29     .     
+#
+data_comp_BUE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BUE     O34     O       O       0       -3.227      -3.029      -2.079      
+BUE     P35     P       P       0       -1.956      -3.193      -1.282      
+BUE     O36     O       OP      -1      -2.182      -3.081      0.205       
+BUE     O37     O       OP      -1      -1.186      -4.434      -1.663      
+BUE     O38     O       O2      0       -1.016      -1.944      -1.685      
+BUE     P39     P       P       0       -1.294      -0.366      -1.742      
+BUE     O40     O       OP      -1      -2.216      -0.074      -2.880      
+BUE     O41     O       O       0       -1.662      0.115       -0.377      
+BUE     O42     O       O2      0       0.158       0.208       -2.112      
+BUE     C43     C       CH2     0       0.400       1.607       -1.996      
+BUE     C44     C       C1      0       1.801       1.938       -2.440      
+BUE     C1      C       C       0       2.647       2.812       -1.895      
+BUE     C2      C       CH3     0       3.994       3.113       -2.492      
+BUE     C15     C       CH2     0       2.344       3.556       -0.622      
+BUE     C19     C       CH2     0       2.497       2.705       0.625       
+BUE     C20     C       C1      0       1.987       3.399       1.856       
+BUE     C21     C       C       0       1.263       2.912       2.864       
+BUE     C22     C       CH3     0       0.870       3.724       4.065       
+BUE     C3      C       CH2     0       0.764       1.492       2.877       
+BUE     C4      C       CH2     0       1.838       0.466       3.182       
+BUE     C5      C       C1      0       1.285       -0.923      3.317       
+BUE     C6      C       C       0       1.094       -1.847      2.375       
+BUE     C7      C       CH3     0       0.513       -3.204      2.651       
+BUE     C8      C       CH2     0       1.457       -1.602      0.935       
+BUE     C9      C       CH2     0       2.924       -1.841      0.629       
+BUE     C10     C       C1      0       3.277       -1.505      -0.789      
+BUE     C11     C       C       0       3.135       -2.245      -1.882      
+BUE     C12     C       CH3     0       2.572       -3.639      -1.866      
+BUE     C13     C       CH3     0       3.533       -1.761      -3.248      
+BUE     H4      H       H       0       0.264       1.883       -1.063      
+BUE     H5      H       H       0       -0.244      2.100       -2.551      
+BUE     H6      H       H       0       2.110       1.461       -3.195      
+BUE     H7      H       H       0       4.093       2.646       -3.338      
+BUE     H8      H       H       0       4.691       2.823       -1.882      
+BUE     H9      H       H       0       4.075       4.069       -2.643      
+BUE     H25     H       H       0       1.429       3.899       -0.663      
+BUE     H26     H       H       0       2.944       4.327       -0.553      
+BUE     H10     H       H       0       3.445       2.493       0.749       
+BUE     H11     H       H       0       2.018       1.865       0.495       
+BUE     H12     H       H       0       2.215       4.314       1.918       
+BUE     H13     H       H       0       1.326       4.581       4.048       
+BUE     H14     H       H       0       1.116       3.247       4.874       
+BUE     H15     H       H       0       -0.090      3.870       4.058       
+BUE     H16     H       H       0       0.368       1.287       2.006       
+BUE     H17     H       H       0       0.053       1.411       3.546       
+BUE     H18     H       H       0       2.284       0.714       4.018       
+BUE     H19     H       H       0       2.509       0.484       2.471       
+BUE     H20     H       H       0       1.039       -1.171      4.195       
+BUE     H21     H       H       0       0.365       -3.312      3.605       
+BUE     H22     H       H       0       1.128       -3.889      2.343       
+BUE     H23     H       H       0       -0.332      -3.297      2.183       
+BUE     H24     H       H       0       1.230       -0.680      0.700       
+BUE     H27     H       H       0       0.918       -2.190      0.367       
+BUE     H28     H       H       0       3.137       -2.780      0.801       
+BUE     H29     H       H       0       3.469       -1.295      1.232       
+BUE     H30     H       H       0       3.652       -0.647      -0.916      
+BUE     H31     H       H       0       1.989       -3.753      -1.099      
+BUE     H32     H       H       0       3.297       -4.282      -1.817      
+BUE     H33     H       H       0       2.062       -3.793      -2.679      
+BUE     H34     H       H       0       3.795       -0.827      -3.206      
+BUE     H35     H       H       0       2.783       -1.856      -3.857      
+BUE     H36     H       H       0       4.280       -2.288      -3.574      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BUE         O34         P35      DOUBLE       n     1.509  0.0200     1.509  0.0200
+BUE         P35         O36      SINGLE       n     1.509  0.0200     1.509  0.0200
+BUE         P35         O38      SINGLE       n     1.614  0.0178     1.614  0.0178
+BUE         P35         O37      SINGLE       n     1.509  0.0200     1.509  0.0200
+BUE         O38         P39      SINGLE       n     1.604  0.0133     1.604  0.0133
+BUE         P39         O42      SINGLE       n     1.604  0.0133     1.604  0.0133
+BUE         O42         C43      SINGLE       n     1.425  0.0152     1.425  0.0152
+BUE         P39         O41      DOUBLE       n     1.493  0.0122     1.493  0.0122
+BUE         P39         O40      SINGLE       n     1.493  0.0122     1.493  0.0122
+BUE         C43         C44      SINGLE       n     1.496  0.0200     1.496  0.0200
+BUE         C44          C1      DOUBLE       n     1.329  0.0100     1.329  0.0100
+BUE          C1          C2      SINGLE       n     1.499  0.0156     1.499  0.0156
+BUE          C1         C15      SINGLE       n     1.503  0.0104     1.503  0.0104
+BUE         C15         C19      SINGLE       n     1.516  0.0200     1.516  0.0200
+BUE         C19         C20      SINGLE       n     1.498  0.0141     1.498  0.0141
+BUE         C20         C21      DOUBLE       n     1.330  0.0100     1.330  0.0100
+BUE         C21         C22      SINGLE       n     1.499  0.0156     1.499  0.0156
+BUE         C21          C3      SINGLE       n     1.503  0.0104     1.503  0.0104
+BUE          C3          C4      SINGLE       n     1.516  0.0200     1.516  0.0200
+BUE          C4          C5      SINGLE       n     1.498  0.0141     1.498  0.0141
+BUE          C5          C6      DOUBLE       n     1.330  0.0100     1.330  0.0100
+BUE          C6          C7      SINGLE       n     1.499  0.0156     1.499  0.0156
+BUE          C6          C8      SINGLE       n     1.503  0.0104     1.503  0.0104
+BUE          C8          C9      SINGLE       n     1.516  0.0200     1.516  0.0200
+BUE          C9         C10      SINGLE       n     1.498  0.0141     1.498  0.0141
+BUE         C10         C11      DOUBLE       n     1.324  0.0100     1.324  0.0100
+BUE         C11         C12      SINGLE       n     1.499  0.0156     1.499  0.0156
+BUE         C11         C13      SINGLE       n     1.499  0.0156     1.499  0.0156
+BUE         C43          H4      SINGLE       n     1.089  0.0100     0.983  0.0100
+BUE         C43          H5      SINGLE       n     1.089  0.0100     0.983  0.0100
+BUE         C44          H6      SINGLE       n     1.082  0.0130     0.945  0.0200
+BUE          C2          H7      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE          C2          H8      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE          C2          H9      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE         C15         H25      SINGLE       n     1.089  0.0100     0.979  0.0159
+BUE         C15         H26      SINGLE       n     1.089  0.0100     0.979  0.0159
+BUE         C19         H10      SINGLE       n     1.089  0.0100     0.979  0.0159
+BUE         C19         H11      SINGLE       n     1.089  0.0100     0.979  0.0159
+BUE         C20         H12      SINGLE       n     1.082  0.0130     0.945  0.0200
+BUE         C22         H13      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE         C22         H14      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE         C22         H15      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE          C3         H16      SINGLE       n     1.089  0.0100     0.979  0.0159
+BUE          C3         H17      SINGLE       n     1.089  0.0100     0.979  0.0159
+BUE          C4         H18      SINGLE       n     1.089  0.0100     0.979  0.0159
+BUE          C4         H19      SINGLE       n     1.089  0.0100     0.979  0.0159
+BUE          C5         H20      SINGLE       n     1.082  0.0130     0.945  0.0200
+BUE          C7         H21      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE          C7         H22      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE          C7         H23      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE          C8         H24      SINGLE       n     1.089  0.0100     0.979  0.0159
+BUE          C8         H27      SINGLE       n     1.089  0.0100     0.979  0.0159
+BUE          C9         H28      SINGLE       n     1.089  0.0100     0.979  0.0159
+BUE          C9         H29      SINGLE       n     1.089  0.0100     0.979  0.0159
+BUE         C10         H30      SINGLE       n     1.082  0.0130     0.945  0.0200
+BUE         C12         H31      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE         C12         H32      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE         C12         H33      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE         C13         H34      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE         C13         H35      SINGLE       n     1.089  0.0100     0.971  0.0140
+BUE         C13         H36      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BUE         O34         P35         O36     112.716    1.50
+BUE         O34         P35         O38     105.965    2.38
+BUE         O34         P35         O37     112.716    1.50
+BUE         O36         P35         O38     105.965    2.38
+BUE         O36         P35         O37     112.716    1.50
+BUE         O38         P35         O37     105.965    2.38
+BUE         P35         O38         P39     132.584    3.00
+BUE         O38         P39         O42     101.065    1.97
+BUE         O38         P39         O41     108.816    2.14
+BUE         O38         P39         O40     108.816    2.14
+BUE         O42         P39         O41     107.912    2.57
+BUE         O42         P39         O40     107.912    2.57
+BUE         O41         P39         O40     118.411    2.35
+BUE         P39         O42         C43     119.313    1.50
+BUE         O42         C43         C44     110.575    2.78
+BUE         O42         C43          H4     110.196    2.06
+BUE         O42         C43          H5     110.196    2.06
+BUE         C44         C43          H4     109.840    1.50
+BUE         C44         C43          H5     109.840    1.50
+BUE          H4         C43          H5     108.062    1.50
+BUE         C43         C44          C1     124.396    3.00
+BUE         C43         C44          H6     118.040    2.26
+BUE          C1         C44          H6     117.563    1.50
+BUE         C44          C1          C2     123.007    1.73
+BUE         C44          C1         C15     121.607    1.82
+BUE          C2          C1         C15     115.386    1.50
+BUE          C1          C2          H7     109.541    1.50
+BUE          C1          C2          H8     109.541    1.50
+BUE          C1          C2          H9     109.541    1.50
+BUE          H7          C2          H8     109.342    1.50
+BUE          H7          C2          H9     109.342    1.50
+BUE          H8          C2          H9     109.342    1.50
+BUE          C1         C15         C19     113.520    2.62
+BUE          C1         C15         H25     108.816    1.50
+BUE          C1         C15         H26     108.816    1.50
+BUE         C19         C15         H25     108.867    1.50
+BUE         C19         C15         H26     108.867    1.50
+BUE         H25         C15         H26     107.710    1.94
+BUE         C15         C19         C20     112.751    2.50
+BUE         C15         C19         H10     109.013    1.50
+BUE         C15         C19         H11     109.013    1.50
+BUE         C20         C19         H10     109.181    1.50
+BUE         C20         C19         H11     109.181    1.50
+BUE         H10         C19         H11     107.922    1.50
+BUE         C19         C20         C21     128.114    1.50
+BUE         C19         C20         H12     115.635    1.60
+BUE         C21         C20         H12     116.261    1.50
+BUE         C20         C21         C22     123.681    1.50
+BUE         C20         C21          C3     121.188    1.50
+BUE         C22         C21          C3     115.131    1.50
+BUE         C21         C22         H13     109.541    1.50
+BUE         C21         C22         H14     109.541    1.50
+BUE         C21         C22         H15     109.541    1.50
+BUE         H13         C22         H14     109.342    1.50
+BUE         H13         C22         H15     109.342    1.50
+BUE         H14         C22         H15     109.342    1.50
+BUE         C21          C3          C4     113.520    2.62
+BUE         C21          C3         H16     108.816    1.50
+BUE         C21          C3         H17     108.816    1.50
+BUE          C4          C3         H16     108.867    1.50
+BUE          C4          C3         H17     108.867    1.50
+BUE         H16          C3         H17     107.710    1.94
+BUE          C3          C4          C5     112.751    2.50
+BUE          C3          C4         H18     109.013    1.50
+BUE          C3          C4         H19     109.013    1.50
+BUE          C5          C4         H18     109.181    1.50
+BUE          C5          C4         H19     109.181    1.50
+BUE         H18          C4         H19     107.922    1.50
+BUE          C4          C5          C6     128.114    1.50
+BUE          C4          C5         H20     115.635    1.60
+BUE          C6          C5         H20     116.261    1.50
+BUE          C5          C6          C7     123.681    1.50
+BUE          C5          C6          C8     121.188    1.50
+BUE          C7          C6          C8     115.131    1.50
+BUE          C6          C7         H21     109.541    1.50
+BUE          C6          C7         H22     109.541    1.50
+BUE          C6          C7         H23     109.541    1.50
+BUE         H21          C7         H22     109.342    1.50
+BUE         H21          C7         H23     109.342    1.50
+BUE         H22          C7         H23     109.342    1.50
+BUE          C6          C8          C9     113.520    2.62
+BUE          C6          C8         H24     108.816    1.50
+BUE          C6          C8         H27     108.816    1.50
+BUE          C9          C8         H24     108.867    1.50
+BUE          C9          C8         H27     108.867    1.50
+BUE         H24          C8         H27     107.710    1.94
+BUE          C8          C9         C10     112.751    2.50
+BUE          C8          C9         H28     109.013    1.50
+BUE          C8          C9         H29     109.013    1.50
+BUE         C10          C9         H28     109.181    1.50
+BUE         C10          C9         H29     109.181    1.50
+BUE         H28          C9         H29     107.922    1.50
+BUE          C9         C10         C11     128.282    1.50
+BUE          C9         C10         H30     115.635    1.60
+BUE         C11         C10         H30     116.082    1.50
+BUE         C10         C11         C12     122.691    1.63
+BUE         C10         C11         C13     122.691    1.63
+BUE         C12         C11         C13     114.618    1.50
+BUE         C11         C12         H31     109.600    1.50
+BUE         C11         C12         H32     109.600    1.50
+BUE         C11         C12         H33     109.600    1.50
+BUE         H31         C12         H32     109.342    1.50
+BUE         H31         C12         H33     109.342    1.50
+BUE         H32         C12         H33     109.342    1.50
+BUE         C11         C13         H34     109.600    1.50
+BUE         C11         C13         H35     109.600    1.50
+BUE         C11         C13         H36     109.600    1.50
+BUE         H34         C13         H35     109.342    1.50
+BUE         H34         C13         H36     109.342    1.50
+BUE         H35         C13         H36     109.342    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BUE             sp2_sp2_3          C2          C1         C44         C43       0.000     5.0     2
+BUE             sp2_sp3_7         C44          C1          C2          H7       0.000    10.0     6
+BUE            sp2_sp3_14         C44          C1         C15         C19     120.000    10.0     6
+BUE            sp3_sp3_13          C1         C15         C19         C20     180.000    10.0     3
+BUE            sp2_sp3_20         C21         C20         C19         C15     120.000    10.0     6
+BUE             sp2_sp2_6         C19         C20         C21         C22       0.000     5.0     2
+BUE            sp2_sp3_25         C20         C21         C22         H13       0.000    10.0     6
+BUE            sp2_sp3_32         C20         C21          C3          C4     120.000    10.0     6
+BUE            sp3_sp3_22         C21          C3          C4          C5     180.000    10.0     3
+BUE            sp2_sp3_38          C6          C5          C4          C3     120.000    10.0     6
+BUE             sp3_sp3_1         P39         O38         P35         O34     180.000    10.0     3
+BUE            sp2_sp2_10          C4          C5          C6          C7       0.000     5.0     2
+BUE            sp2_sp3_43          C5          C6          C7         H21       0.000    10.0     6
+BUE            sp2_sp3_50          C5          C6          C8          C9     120.000    10.0     6
+BUE            sp3_sp3_31          C6          C8          C9         C10     180.000    10.0     3
+BUE            sp2_sp3_56         C11         C10          C9          C8     120.000    10.0     6
+BUE            sp2_sp2_13          C9         C10         C11         C12     180.000     5.0     2
+BUE            sp2_sp3_61         C10         C11         C12         H31       0.000    10.0     6
+BUE            sp2_sp3_67         C10         C11         C13         H34       0.000    10.0     6
+BUE             sp3_sp3_5         P35         O38         P39         O42     -60.000    10.0     3
+BUE             sp3_sp3_7         C43         O42         P39         O38     180.000    10.0     3
+BUE            sp3_sp3_10         C44         C43         O42         P39     180.000    10.0     3
+BUE             sp2_sp3_2          C1         C44         C43         O42     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BUE    chir_1    P39    O38    O42    O40    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BUE    plan-1          C1   0.020
+BUE    plan-1         C43   0.020
+BUE    plan-1         C44   0.020
+BUE    plan-1          H6   0.020
+BUE    plan-2          C1   0.020
+BUE    plan-2         C15   0.020
+BUE    plan-2          C2   0.020
+BUE    plan-2         C44   0.020
+BUE    plan-3         C19   0.020
+BUE    plan-3         C20   0.020
+BUE    plan-3         C21   0.020
+BUE    plan-3         H12   0.020
+BUE    plan-4         C20   0.020
+BUE    plan-4         C21   0.020
+BUE    plan-4         C22   0.020
+BUE    plan-4          C3   0.020
+BUE    plan-5          C4   0.020
+BUE    plan-5          C5   0.020
+BUE    plan-5          C6   0.020
+BUE    plan-5         H20   0.020
+BUE    plan-6          C5   0.020
+BUE    plan-6          C6   0.020
+BUE    plan-6          C7   0.020
+BUE    plan-6          C8   0.020
+BUE    plan-7         C10   0.020
+BUE    plan-7         C11   0.020
+BUE    plan-7          C9   0.020
+BUE    plan-7         H30   0.020
+BUE    plan-8         C10   0.020
+BUE    plan-8         C11   0.020
+BUE    plan-8         C12   0.020
+BUE    plan-8         C13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BUE            InChI                InChI  1.03 InChI=1S/C20H36O7P2/c1-17(2)9-6-10-18(3)11-7-12-19(4)13-8-14-20(5)15-16-26-29(24,25)27-28(21,22)23/h9,11,13,15H,6-8,10,12,14,16H2,1-5H3,(H,24,25)(H2,21,22,23)
+BUE         InChIKey                InChI  1.03                                                                                                                                    OINNEUNVOZHBOX-UHFFFAOYSA-N
+BUE SMILES_CANONICAL               CACTVS 3.385                                                                                                        CC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCO[P](O)(=O)O[P](O)(O)=O
+BUE           SMILES               CACTVS 3.385                                                                                                        CC(C)=CCCC(C)=CCCC(C)=CCCC(C)=CCO[P](O)(=O)O[P](O)(O)=O
+BUE SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                            CC(=CCCC(=CCCC(=CCCC(=CCOP(=O)(O)OP(=O)(O)O)C)C)C)C
+BUE           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                            CC(=CCCC(=CCCC(=CCCC(=CCOP(=O)(O)OP(=O)(O)O)C)C)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BUE acedrg               243         "dictionary generator"                  
+BUE acedrg_database      11          "data source"                           
+BUE rdkit                2017.03.2   "Chemoinformatics tool"
+BUE refmac5              5.8.0238    "optimization tool"                     

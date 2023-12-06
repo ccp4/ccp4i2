@@ -1,0 +1,1464 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EVN     EVN      "(2R,3R,4R,6S)-6-{[(2R,3aR,4R,4'R,5'S,6S,6'R,7S,7aR)-6-{[(2S,3R,4R,5S,6R)-2-{[(2R,3S,4S,5S,6S)-6-({(2R,3aS,3a'R,6S,7R,7'R,7aS,7a'S)-7'-[(2,4-dihydroxy-6-methylbenzoyl)oxy]-7-hydroxyoctahydro-4H-2,4'-spirobi[[1,3]dioxolo[4,5-c]pyran]-6-yl}oxy)-4-hydroxy-5-methoxy-2-(methoxymethyl)tetrahydro-2H-pyran-3-yl]oxy}-3-hydroxy-5-methoxy-6-methyltetrahydro-2H-pyran-4-yl]oxy}-4',7-dihydroxy-4,6',7a-trimethyloctahydro-4H-spiro[1,3-dioxolo[4,5-c]pyran-2,2'-pyran]-5'-yl]oxy}-4-{[(2R,4S,5R,6S)-5-methoxy-4,6-dimethyl-4-nitrotetrahydro-2H-pyran-2-yl]oxy}-2-methyltetrahydro-2H-pyran-3-yl 3,5-dichloro-4-hydroxy-2-methoxy-6-methylbenzoate (non-preferred name)"     NON-POLYMER     208     111     .     
+#
+data_comp_EVN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EVN     CEG     C       CH3     0       212.602     177.234     238.776     
+EVN     CDI     C       CR6     0       212.596     176.753     240.212     
+EVN     CDH     C       CR16    0       213.636     175.931     240.632     
+EVN     CDG     C       CR6     0       213.700     175.448     241.940     
+EVN     ODK     O       OH1     0       214.743     174.637     242.319     
+EVN     CDF     C       CR16    0       212.720     175.782     242.857     
+EVN     CDE     C       CR6     0       211.671     176.603     242.469     
+EVN     ODJ     O       OH1     0       210.716     176.911     243.410     
+EVN     CDD     C       CR6     0       211.578     177.104     241.154     
+EVN     CDB     C       C       0       210.434     177.982     240.781     
+EVN     ODC     O       O       0       210.575     179.062     240.262     
+EVN     ODA     O       O2      0       209.250     177.435     241.118     
+EVN     CCU     C       CH1     0       208.008     178.035     240.669     
+EVN     CCV     C       CH2     0       206.895     177.669     241.641     
+EVN     OCW     O       O2      0       205.590     178.041     241.153     
+EVN     CCT     C       CH1     0       207.658     177.500     239.289     
+EVN     OCZ     O       O2      0       208.478     177.901     238.192     
+EVN     CCY     C       CH2     0       207.647     177.736     237.050     
+EVN     OCX     O       O2      0       206.305     177.601     237.497     
+EVN     CCS     C       CH1     0       206.334     178.074     238.839     
+EVN     CCQ     C       CT      0       205.256     177.607     239.824     
+EVN     OCR     O       O2      0       204.020     178.187     239.456     
+EVN     OCP     O       O2      0       205.069     176.204     239.833     
+EVN     CCK     C       CH1     0       203.825     175.957     239.171     
+EVN     CCJ     C       CH1     0       203.037     174.685     239.455     
+EVN     OCO     O       OH1     0       203.335     174.194     240.758     
+EVN     CCL     C       CH1     0       203.048     177.156     239.637     
+EVN     CCM     C       CH2     0       201.782     177.318     238.843     
+EVN     OCN     O       O2      0       201.309     176.051     238.369     
+EVN     CCI     C       CH1     0       201.539     174.972     239.308     
+EVN     O1      O       O2      0       200.897     173.783     238.866     
+EVN     C1      C       CH1     0       199.482     173.674     239.000     
+EVN     C2      C       CH1     0       199.157     172.880     240.261     
+EVN     C3      C       CH1     0       197.644     172.693     240.351     
+EVN     O3      O       OH1     0       197.306     172.004     241.555     
+EVN     O2      O       O2      0       199.616     173.529     241.440     
+EVN     CEF     C       CH3     0       200.331     172.700     242.357     
+EVN     O5      O       O2      0       198.828     174.945     239.083     
+EVN     C5      C       CH1     0       197.388     174.866     239.083     
+EVN     C6      C       CH2     0       196.878     176.285     239.085     
+EVN     O6      O       O2      0       197.008     176.842     237.793     
+EVN     CED     C       CH3     0       196.831     178.244     237.728     
+EVN     C4      C       CH1     0       196.922     174.041     240.288     
+EVN     O4      O       O2      0       195.500     173.816     240.256     
+EVN     CBV     C       CH1     0       194.848     173.314     239.107     
+EVN     CBW     C       CH1     0       193.720     172.387     239.536     
+EVN     OBX     O       OH1     0       194.230     171.315     240.325     
+EVN     OBU     O       O2      0       194.324     174.384     238.319     
+EVN     CBT     C       CH1     0       193.704     173.935     237.090     
+EVN     CDZ     C       CH3     0       193.288     175.172     236.329     
+EVN     CBS     C       CH1     0       192.541     172.985     237.400     
+EVN     OEA     O       O2      0       191.523     173.721     238.068     
+EVN     CEB     C       CH3     0       190.200     173.523     237.574     
+EVN     CBR     C       CH1     0       193.025     171.846     238.294     
+EVN     OBQ     O       O2      0       191.907     171.039     238.704     
+EVN     CBM     C       CH1     0       191.829     169.744     238.154     
+EVN     CBL     C       CH1     0       190.677     169.004     238.846     
+EVN     OBP     O       OH1     0       189.485     169.806     238.878     
+EVN     OBN     O       O2      0       191.658     169.838     236.718     
+EVN     CBO     C       CH1     0       191.456     168.580     236.043     
+EVN     CDX     C       CH3     0       191.356     168.850     234.554     
+EVN     CBJ     C       CH1     0       190.198     168.024     236.678     
+EVN     OBK     O       O2      0       189.713     166.780     236.170     
+EVN     CBI     C       CT      0       190.406     167.670     238.149     
+EVN     CDY     C       CH3     0       191.503     166.650     238.448     
+EVN     OBH     O       O2      0       189.120     167.035     238.369     
+EVN     CBD     C       CT      0       188.812     166.335     237.171     
+EVN     CBC     C       CH2     0       187.376     166.634     236.746     
+EVN     CBB     C       CH1     0       186.361     165.998     237.685     
+EVN     OBG     O       OH1     0       185.036     166.200     237.178     
+EVN     OBE     O       O2      0       189.008     164.930     237.378     
+EVN     CBF     C       CH1     0       188.088     164.288     238.294     
+EVN     CDW     C       CH3     0       188.480     162.830     238.341     
+EVN     CBA     C       CH1     0       186.637     164.506     237.852     
+EVN     OAS     O       O2      0       185.750     163.988     238.856     
+EVN     CAP     C       CH1     0       184.617     163.253     238.448     
+EVN     CAO     C       CH2     0       185.052     161.842     238.124     
+EVN     CAN     C       CH1     0       184.000     160.809     238.486     
+EVN     OAT     O       O2      0       184.145     160.404     239.860     
+EVN     CAU     C       CH1     0       184.732     159.150     240.148     
+EVN     CAZ     C       CH2     0       183.670     158.065     240.034     
+EVN     CAY     C       CT      0       183.044     157.662     241.388     
+EVN     CDV     C       CH3     0       183.843     156.477     241.978     
+EVN     NDQ     N       N       1       181.575     157.216     241.216     
+EVN     ODS     O       O       0       180.839     157.892     240.523     
+EVN     ODR     O       OC      -1      181.183     156.234     241.818     
+EVN     OAV     O       O2      0       185.378     159.176     241.432     
+EVN     CAW     C       CH1     0       184.540     159.350     242.608     
+EVN     CDP     C       CH3     0       184.634     160.807     243.000     
+EVN     CAX     C       CH1     0       183.083     158.878     242.365     
+EVN     ODT     O       O2      0       182.305     158.494     243.507     
+EVN     CDU     C       CH3     0       182.903     158.469     244.808     
+EVN     OAQ     O       O2      0       183.634     163.256     239.482     
+EVN     CAR     C       CH1     0       182.376     162.641     239.109     
+EVN     CDO     C       CH3     0       181.610     162.434     240.394     
+EVN     CAM     C       CH1     0       182.580     161.345     238.315     
+EVN     OAL     O       O2      0       182.270     161.673     236.914     
+EVN     CAJ     C       C       0       182.451     160.812     235.887     
+EVN     OAK     O       O       0       182.930     161.147     234.834     
+EVN     CAD     C       CR6     0       181.970     159.417     236.129     
+EVN     CAC     C       CR6     0       182.856     158.295     235.949     
+EVN     CDN     C       CH3     0       184.295     158.493     235.512     
+EVN     CAB     C       CR6     0       182.357     157.006     236.170     
+EVN     CLAI    CL      CL      0       183.375     155.615     235.973     
+EVN     CAA     C       CR6     0       181.019     156.781     236.563     
+EVN     OAH     O       OH1     0       180.558     155.503     236.779     
+EVN     CAF     C       CR6     0       180.173     157.874     236.728     
+EVN     CLAG    CL      CL      0       178.536     157.590     237.207     
+EVN     CAE     C       CR6     0       180.625     159.189     236.522     
+EVN     ODL     O       O2      0       179.754     160.240     236.678     
+EVN     CDM     C       CH3     0       179.318     160.606     237.988     
+EVN     H1      H       H       0       211.734     177.067     238.373     
+EVN     H2      H       H       0       213.284     176.763     238.270     
+EVN     H3      H       H       0       212.787     178.187     238.755     
+EVN     H4      H       H       0       214.312     175.695     240.016     
+EVN     H5      H       H       0       215.065     174.694     243.115     
+EVN     H6      H       H       0       212.763     175.458     243.738     
+EVN     H7      H       H       0       209.926     176.575     243.348     
+EVN     H8      H       H       0       208.093     179.012     240.630     
+EVN     H9      H       H       0       206.908     176.702     241.801     
+EVN     H10     H       H       0       207.051     178.120     242.497     
+EVN     H11     H       H       0       207.611     176.517     239.319     
+EVN     H12     H       H       0       207.922     176.929     236.540     
+EVN     H13     H       H       0       207.731     178.524     236.450     
+EVN     H14     H       H       0       206.378     179.060     238.847     
+EVN     H15     H       H       0       203.967     176.020     238.196     
+EVN     H16     H       H       0       203.298     174.000     238.794     
+EVN     H17     H       H       0       203.186     174.792     241.331     
+EVN     H18     H       H       0       202.830     177.070     240.597     
+EVN     H19     H       H       0       201.948     177.897     238.082     
+EVN     H20     H       H       0       201.099     177.721     239.401     
+EVN     H21     H       H       0       201.170     175.227     240.190     
+EVN     H22     H       H       0       199.126     173.185     238.213     
+EVN     H23     H       H       0       199.582     171.989     240.191     
+EVN     H24     H       H       0       197.356     172.136     239.586     
+EVN     H25     H       H       0       196.491     171.800     241.531     
+EVN     H26     H       H       0       201.073     172.270     241.900     
+EVN     H27     H       H       0       199.735     172.024     242.716     
+EVN     H28     H       H       0       200.675     173.246     243.083     
+EVN     H29     H       H       0       197.101     174.426     238.248     
+EVN     H30     H       H       0       197.390     176.820     239.728     
+EVN     H31     H       H       0       195.936     176.301     239.353     
+EVN     H32     H       H       0       196.147     178.521     238.361     
+EVN     H33     H       H       0       196.557     178.494     236.831     
+EVN     H34     H       H       0       197.668     178.686     237.944     
+EVN     H35     H       H       0       197.139     174.550     241.118     
+EVN     H36     H       H       0       195.488     172.799     238.555     
+EVN     H37     H       H       0       193.074     172.899     240.079     
+EVN     H38     H       H       0       193.589     170.917     240.696     
+EVN     H39     H       H       0       194.376     173.445     236.555     
+EVN     H40     H       H       0       192.949     175.839     236.949     
+EVN     H41     H       H       0       192.593     174.942     235.691     
+EVN     H42     H       H       0       194.054     175.533     235.854     
+EVN     H43     H       H       0       192.184     172.608     236.559     
+EVN     H44     H       H       0       190.007     172.572     237.530     
+EVN     H45     H       H       0       190.125     173.910     236.687     
+EVN     H46     H       H       0       189.565     173.954     238.169     
+EVN     H47     H       H       0       193.671     171.295     237.784     
+EVN     H48     H       H       0       192.676     169.270     238.340     
+EVN     H49     H       H       0       190.939     168.819     239.773     
+EVN     H50     H       H       0       189.011     169.584     239.536     
+EVN     H51     H       H       0       192.229     167.978     236.216     
+EVN     H52     H       H       0       191.190     169.795     234.401     
+EVN     H53     H       H       0       190.626     168.333     234.177     
+EVN     H54     H       H       0       192.187     168.595     234.122     
+EVN     H55     H       H       0       189.484     168.702     236.596     
+EVN     H56     H       H       0       191.788     166.216     237.626     
+EVN     H57     H       H       0       191.158     165.976     239.061     
+EVN     H58     H       H       0       192.267     167.087     238.859     
+EVN     H59     H       H       0       187.240     167.604     236.734     
+EVN     H60     H       H       0       187.232     166.296     235.838     
+EVN     H61     H       H       0       186.433     166.438     238.569     
+EVN     H62     H       H       0       184.957     165.825     236.429     
+EVN     H63     H       H       0       188.209     164.678     239.195     
+EVN     H64     H       H       0       189.448     162.752     238.339     
+EVN     H65     H       H       0       188.117     162.372     237.565     
+EVN     H66     H       H       0       188.125     162.425     239.149     
+EVN     H67     H       H       0       186.481     164.045     236.983     
+EVN     H68     H       H       0       184.231     163.669     237.638     
+EVN     H69     H       H       0       185.250     161.780     237.147     
+EVN     H70     H       H       0       185.893     161.635     238.621     
+EVN     H71     H       H       0       184.118     160.025     237.912     
+EVN     H72     H       H       0       185.429     158.966     239.469     
+EVN     H73     H       H       0       182.961     158.375     239.434     
+EVN     H74     H       H       0       184.074     157.269     239.627     
+EVN     H75     H       H       0       183.608     156.350     242.911     
+EVN     H76     H       H       0       184.794     156.657     241.909     
+EVN     H77     H       H       0       183.640     155.668     241.481     
+EVN     H78     H       H       0       184.935     158.809     243.329     
+EVN     H79     H       H       0       184.882     161.343     242.229     
+EVN     H80     H       H       0       185.307     160.912     243.692     
+EVN     H81     H       H       0       183.776     161.111     243.339     
+EVN     H82     H       H       0       182.596     159.610     241.914     
+EVN     H83     H       H       0       183.605     157.799     244.833     
+EVN     H84     H       H       0       182.224     158.243     245.465     
+EVN     H85     H       H       0       183.272     159.341     245.020     
+EVN     H86     H       H       0       181.872     163.280     238.546     
+EVN     H87     H       H       0       181.704     163.219     240.959     
+EVN     H88     H       H       0       181.959     161.658     240.859     
+EVN     H89     H       H       0       180.671     162.294     240.192     
+EVN     H90     H       H       0       181.958     160.666     238.640     
+EVN     H91     H       H       0       184.832     157.729     235.767     
+EVN     H92     H       H       0       184.665     159.286     235.927     
+EVN     H93     H       H       0       184.324     158.596     234.546     
+EVN     H94     H       H       0       180.325     155.258     237.571     
+EVN     H95     H       H       0       179.680     159.989     238.646     
+EVN     H96     H       H       0       178.348     160.580     238.022     
+EVN     H97     H       H       0       179.623     161.506     238.188     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EVN         CBO         CDX      SINGLE       n     1.515  0.0100     1.515  0.0100
+EVN         CBT         CDZ      SINGLE       n     1.510  0.0100     1.510  0.0100
+EVN         CAC         CDN      SINGLE       n     1.509  0.0100     1.509  0.0100
+EVN         OEA         CEB      SINGLE       n     1.422  0.0156     1.422  0.0156
+EVN         CBO         CBJ      SINGLE       n     1.516  0.0100     1.516  0.0100
+EVN         OBN         CBO      SINGLE       n     1.436  0.0100     1.436  0.0100
+EVN         CBJ         OBK      SINGLE       n     1.431  0.0103     1.431  0.0103
+EVN         OBK         CBD      SINGLE       n     1.407  0.0111     1.407  0.0111
+EVN         CAB        CLAI      SINGLE       n     1.733  0.0100     1.733  0.0100
+EVN         CBD         CBC      SINGLE       n     1.526  0.0134     1.526  0.0134
+EVN         CBC         CBB      SINGLE       n     1.521  0.0100     1.521  0.0100
+EVN         CBJ         CBI      SINGLE       n     1.533  0.0100     1.533  0.0100
+EVN         CBT         CBS      SINGLE       n     1.525  0.0174     1.525  0.0174
+EVN         OBU         CBT      SINGLE       n     1.445  0.0100     1.445  0.0100
+EVN         CBM         OBN      SINGLE       n     1.422  0.0169     1.422  0.0169
+EVN         CBB         OBG      SINGLE       n     1.433  0.0100     1.433  0.0100
+EVN         CBS         OEA      SINGLE       n     1.420  0.0100     1.420  0.0100
+EVN         CBS         CBR      SINGLE       n     1.524  0.0100     1.524  0.0100
+EVN         CBD         OBE      SINGLE       n     1.423  0.0172     1.423  0.0172
+EVN         OBH         CBD      SINGLE       n     1.407  0.0111     1.407  0.0111
+EVN         CAC         CAB      DOUBLE       y     1.392  0.0100     1.392  0.0100
+EVN         CAD         CAC      SINGLE       y     1.417  0.0139     1.417  0.0139
+EVN         OBE         CBF      SINGLE       n     1.444  0.0100     1.444  0.0100
+EVN         CBB         CBA      SINGLE       n     1.522  0.0154     1.522  0.0154
+EVN         CAJ         OAK      DOUBLE       n     1.204  0.0100     1.204  0.0100
+EVN         CBV         OBU      SINGLE       n     1.422  0.0169     1.422  0.0169
+EVN         CAB         CAA      SINGLE       y     1.406  0.0186     1.406  0.0186
+EVN         OAL         CAJ      SINGLE       n     1.344  0.0100     1.344  0.0100
+EVN         CAM         OAL      SINGLE       n     1.454  0.0138     1.454  0.0138
+EVN          C6          O6      SINGLE       n     1.406  0.0200     1.406  0.0200
+EVN          O6         CED      SINGLE       n     1.407  0.0200     1.407  0.0200
+EVN         CAJ         CAD      SINGLE       n     1.485  0.0113     1.485  0.0113
+EVN         CBF         CBA      SINGLE       n     1.525  0.0174     1.525  0.0174
+EVN         CBA         OAS      SINGLE       n     1.434  0.0106     1.434  0.0106
+EVN         CBI         CDY      SINGLE       n     1.518  0.0100     1.518  0.0100
+EVN         CBI         OBH      SINGLE       n     1.451  0.0100     1.451  0.0100
+EVN         CBL         CBI      SINGLE       n     1.525  0.0128     1.525  0.0128
+EVN         CAP         CAO      SINGLE       n     1.507  0.0154     1.507  0.0154
+EVN         CAO         CAN      SINGLE       n     1.516  0.0124     1.516  0.0124
+EVN         CAD         CAE      DOUBLE       y     1.405  0.0115     1.405  0.0115
+EVN         CBM         CBL      SINGLE       n     1.524  0.0100     1.524  0.0100
+EVN         OBQ         CBM      SINGLE       n     1.406  0.0151     1.406  0.0151
+EVN         CBF         CDW      SINGLE       n     1.510  0.0100     1.510  0.0100
+EVN         CBR         OBQ      SINGLE       n     1.436  0.0100     1.436  0.0100
+EVN         CBW         CBR      SINGLE       n     1.520  0.0200     1.520  0.0200
+EVN         CBL         OBP      SINGLE       n     1.434  0.0141     1.434  0.0141
+EVN          C5          C6      SINGLE       n     1.508  0.0100     1.508  0.0100
+EVN         OAS         CAP      SINGLE       n     1.406  0.0151     1.406  0.0151
+EVN         CAP         OAQ      SINGLE       n     1.422  0.0172     1.422  0.0172
+EVN          O5          C5      SINGLE       n     1.440  0.0195     1.440  0.0195
+EVN          C5          C4      SINGLE       n     1.526  0.0115     1.526  0.0115
+EVN         CAA         OAH      SINGLE       n     1.374  0.0155     1.374  0.0155
+EVN         CAA         CAF      DOUBLE       y     1.389  0.0100     1.389  0.0100
+EVN         CBV         CBW      SINGLE       n     1.522  0.0111     1.522  0.0111
+EVN          O4         CBV      SINGLE       n     1.406  0.0135     1.406  0.0135
+EVN         CAN         CAM      SINGLE       n     1.522  0.0100     1.522  0.0100
+EVN         CAR         CAM      SINGLE       n     1.525  0.0100     1.525  0.0100
+EVN         CAN         OAT      SINGLE       n     1.436  0.0105     1.436  0.0105
+EVN         OAQ         CAR      SINGLE       n     1.444  0.0117     1.444  0.0117
+EVN         CAR         CDO      SINGLE       n     1.510  0.0100     1.510  0.0100
+EVN         OCZ         CCY      SINGLE       n     1.415  0.0100     1.415  0.0100
+EVN         CCY         OCX      SINGLE       n     1.415  0.0100     1.415  0.0100
+EVN          C1          O5      SINGLE       n     1.422  0.0169     1.422  0.0169
+EVN         CEG         CDI      SINGLE       n     1.511  0.0100     1.511  0.0100
+EVN         CBW         OBX      SINGLE       n     1.425  0.0112     1.425  0.0112
+EVN         CAF         CAE      SINGLE       y     1.392  0.0137     1.392  0.0137
+EVN         CAE         ODL      SINGLE       n     1.368  0.0104     1.368  0.0104
+EVN          O1          C1      SINGLE       n     1.421  0.0100     1.421  0.0100
+EVN          C1          C2      SINGLE       n     1.522  0.0129     1.522  0.0129
+EVN          C4          O4      SINGLE       n     1.434  0.0104     1.434  0.0104
+EVN         CAF        CLAG      SINGLE       n     1.728  0.0100     1.728  0.0100
+EVN         CCI          O1      SINGLE       n     1.419  0.0100     1.419  0.0100
+EVN          C3          C4      SINGLE       n     1.522  0.0126     1.522  0.0126
+EVN         CCT         OCZ      SINGLE       n     1.429  0.0100     1.429  0.0100
+EVN         OCX         CCS      SINGLE       n     1.425  0.0100     1.425  0.0100
+EVN          C2          C3      SINGLE       n     1.521  0.0165     1.521  0.0165
+EVN          C3          O3      SINGLE       n     1.427  0.0138     1.427  0.0138
+EVN         ODL         CDM      SINGLE       n     1.424  0.0117     1.424  0.0117
+EVN         OAT         CAU      SINGLE       n     1.406  0.0151     1.406  0.0151
+EVN         NDQ         ODS      DOUBLE       n     1.215  0.0117     1.215  0.0117
+EVN         CDI         CDH      DOUBLE       y     1.385  0.0100     1.385  0.0100
+EVN         CDI         CDD      SINGLE       y     1.414  0.0147     1.414  0.0147
+EVN          C2          O2      SINGLE       n     1.419  0.0100     1.419  0.0100
+EVN         CAU         CAZ      SINGLE       n     1.506  0.0149     1.506  0.0149
+EVN         CAZ         CAY      SINGLE       n     1.539  0.0106     1.539  0.0106
+EVN         CAU         OAV      SINGLE       n     1.422  0.0172     1.422  0.0172
+EVN         CDH         CDG      SINGLE       y     1.393  0.0100     1.393  0.0100
+EVN         CCJ         CCI      SINGLE       n     1.524  0.0100     1.524  0.0100
+EVN         CCK         CCJ      SINGLE       n     1.520  0.0140     1.520  0.0140
+EVN         CCJ         OCO      SINGLE       n     1.423  0.0100     1.423  0.0100
+EVN         OCN         CCI      SINGLE       n     1.422  0.0169     1.422  0.0169
+EVN         CCT         CCS      SINGLE       n     1.532  0.0199     1.532  0.0199
+EVN         CCU         CCT      SINGLE       n     1.522  0.0116     1.522  0.0116
+EVN         CCM         OCN      SINGLE       n     1.427  0.0100     1.427  0.0100
+EVN         CDB         ODC      DOUBLE       n     1.204  0.0100     1.204  0.0100
+EVN         OCP         CCK      SINGLE       n     1.431  0.0103     1.431  0.0103
+EVN         CCK         CCL      SINGLE       n     1.526  0.0185     1.526  0.0185
+EVN         CCS         CCQ      SINGLE       n     1.529  0.0157     1.529  0.0157
+EVN         CDD         CDB      SINGLE       n     1.485  0.0113     1.485  0.0113
+EVN         CDB         ODA      SINGLE       n     1.343  0.0100     1.343  0.0100
+EVN         CDE         CDD      DOUBLE       y     1.404  0.0100     1.404  0.0100
+EVN         CCQ         OCP      SINGLE       n     1.407  0.0111     1.407  0.0111
+EVN          O2         CEF      SINGLE       n     1.422  0.0156     1.422  0.0156
+EVN         CAY         NDQ      SINGLE       n     1.537  0.0100     1.537  0.0100
+EVN         NDQ         ODR      SINGLE       n     1.215  0.0117     1.215  0.0117
+EVN         ODA         CCU      SINGLE       n     1.447  0.0100     1.447  0.0100
+EVN         CAY         CDV      SINGLE       n     1.540  0.0102     1.540  0.0102
+EVN         CAY         CAX      SINGLE       n     1.549  0.0181     1.549  0.0181
+EVN         CDG         ODK      SINGLE       n     1.374  0.0155     1.374  0.0155
+EVN         CDG         CDF      DOUBLE       y     1.381  0.0104     1.381  0.0104
+EVN         OAV         CAW      SINGLE       n     1.444  0.0117     1.444  0.0117
+EVN         CCU         CCV      SINGLE       n     1.515  0.0134     1.515  0.0134
+EVN         CCL         CCM      SINGLE       n     1.504  0.0100     1.504  0.0100
+EVN         CCQ         OCR      SINGLE       n     1.407  0.0111     1.407  0.0111
+EVN         OCW         CCQ      SINGLE       n     1.423  0.0172     1.423  0.0172
+EVN         OCR         CCL      SINGLE       n     1.431  0.0103     1.431  0.0103
+EVN         CDF         CDE      SINGLE       y     1.385  0.0100     1.385  0.0100
+EVN         CDE         ODJ      SINGLE       n     1.374  0.0155     1.374  0.0155
+EVN         CAW         CAX      SINGLE       n     1.525  0.0153     1.525  0.0153
+EVN         CAX         ODT      SINGLE       n     1.423  0.0100     1.423  0.0100
+EVN         CAW         CDP      SINGLE       n     1.510  0.0100     1.510  0.0100
+EVN         CCV         OCW      SINGLE       n     1.436  0.0100     1.436  0.0100
+EVN         ODT         CDU      SINGLE       n     1.422  0.0156     1.422  0.0156
+EVN         CEG          H1      SINGLE       n     1.089  0.0100     0.971  0.0135
+EVN         CEG          H2      SINGLE       n     1.089  0.0100     0.971  0.0135
+EVN         CEG          H3      SINGLE       n     1.089  0.0100     0.971  0.0135
+EVN         CDH          H4      SINGLE       n     1.082  0.0130     0.945  0.0164
+EVN         ODK          H5      SINGLE       n     0.966  0.0059     0.861  0.0200
+EVN         CDF          H6      SINGLE       n     1.082  0.0130     0.939  0.0167
+EVN         ODJ          H7      SINGLE       n     0.966  0.0059     0.861  0.0200
+EVN         CCU          H8      SINGLE       n     1.089  0.0100     0.981  0.0198
+EVN         CCV          H9      SINGLE       n     1.089  0.0100     0.980  0.0165
+EVN         CCV         H10      SINGLE       n     1.089  0.0100     0.980  0.0165
+EVN         CCT         H11      SINGLE       n     1.089  0.0100     0.984  0.0125
+EVN         CCY         H12      SINGLE       n     1.089  0.0100     0.994  0.0115
+EVN         CCY         H13      SINGLE       n     1.089  0.0100     0.994  0.0115
+EVN         CCS         H14      SINGLE       n     1.089  0.0100     0.987  0.0156
+EVN         CCK         H15      SINGLE       n     1.089  0.0100     0.986  0.0150
+EVN         CCJ         H16      SINGLE       n     1.089  0.0100     0.987  0.0101
+EVN         OCO         H17      SINGLE       n     0.970  0.0120     0.841  0.0200
+EVN         CCL         H18      SINGLE       n     1.089  0.0100     0.986  0.0150
+EVN         CCM         H19      SINGLE       n     1.089  0.0100     0.970  0.0100
+EVN         CCM         H20      SINGLE       n     1.089  0.0100     0.970  0.0100
+EVN         CCI         H21      SINGLE       n     1.089  0.0100     0.989  0.0183
+EVN          C1         H22      SINGLE       n     1.089  0.0100     0.992  0.0127
+EVN          C2         H23      SINGLE       n     1.089  0.0100     0.989  0.0181
+EVN          C3         H24      SINGLE       n     1.089  0.0100     0.991  0.0121
+EVN          O3         H25      SINGLE       n     0.970  0.0120     0.841  0.0200
+EVN         CEF         H26      SINGLE       n     1.089  0.0100     0.971  0.0146
+EVN         CEF         H27      SINGLE       n     1.089  0.0100     0.971  0.0146
+EVN         CEF         H28      SINGLE       n     1.089  0.0100     0.971  0.0146
+EVN          C5         H29      SINGLE       n     1.089  0.0100     0.988  0.0182
+EVN          C6         H30      SINGLE       n     1.089  0.0100     0.980  0.0170
+EVN          C6         H31      SINGLE       n     1.089  0.0100     0.980  0.0170
+EVN         CED         H32      SINGLE       n     1.089  0.0100     0.971  0.0146
+EVN         CED         H33      SINGLE       n     1.089  0.0100     0.971  0.0146
+EVN         CED         H34      SINGLE       n     1.089  0.0100     0.971  0.0146
+EVN          C4         H35      SINGLE       n     1.089  0.0100     0.997  0.0100
+EVN         CBV         H36      SINGLE       n     1.089  0.0100     0.992  0.0127
+EVN         CBW         H37      SINGLE       n     1.089  0.0100     0.987  0.0140
+EVN         OBX         H38      SINGLE       n     0.970  0.0120     0.841  0.0200
+EVN         CBT         H39      SINGLE       n     1.089  0.0100     0.989  0.0117
+EVN         CDZ         H40      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CDZ         H41      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CDZ         H42      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CBS         H43      SINGLE       n     1.089  0.0100     0.987  0.0102
+EVN         CEB         H44      SINGLE       n     1.089  0.0100     0.971  0.0146
+EVN         CEB         H45      SINGLE       n     1.089  0.0100     0.971  0.0146
+EVN         CEB         H46      SINGLE       n     1.089  0.0100     0.971  0.0146
+EVN         CBR         H47      SINGLE       n     1.089  0.0100     0.990  0.0112
+EVN         CBM         H48      SINGLE       n     1.089  0.0100     0.989  0.0183
+EVN         CBL         H49      SINGLE       n     1.089  0.0100     0.981  0.0200
+EVN         OBP         H50      SINGLE       n     0.970  0.0120     0.841  0.0200
+EVN         CBO         H51      SINGLE       n     1.089  0.0100     0.995  0.0100
+EVN         CDX         H52      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CDX         H53      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CDX         H54      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CBJ         H55      SINGLE       n     1.089  0.0100     0.986  0.0150
+EVN         CDY         H56      SINGLE       n     1.089  0.0100     0.974  0.0200
+EVN         CDY         H57      SINGLE       n     1.089  0.0100     0.974  0.0200
+EVN         CDY         H58      SINGLE       n     1.089  0.0100     0.974  0.0200
+EVN         CBC         H59      SINGLE       n     1.089  0.0100     0.979  0.0169
+EVN         CBC         H60      SINGLE       n     1.089  0.0100     0.979  0.0169
+EVN         CBB         H61      SINGLE       n     1.089  0.0100     0.990  0.0119
+EVN         OBG         H62      SINGLE       n     0.970  0.0120     0.841  0.0200
+EVN         CBF         H63      SINGLE       n     1.089  0.0100     0.989  0.0172
+EVN         CDW         H64      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CDW         H65      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CDW         H66      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CBA         H67      SINGLE       n     1.089  0.0100     0.996  0.0100
+EVN         CAP         H68      SINGLE       n     1.089  0.0100     0.989  0.0183
+EVN         CAO         H69      SINGLE       n     1.089  0.0100     0.999  0.0200
+EVN         CAO         H70      SINGLE       n     1.089  0.0100     0.999  0.0200
+EVN         CAN         H71      SINGLE       n     1.089  0.0100     0.989  0.0181
+EVN         CAU         H72      SINGLE       n     1.089  0.0100     0.989  0.0183
+EVN         CAZ         H73      SINGLE       n     1.089  0.0100     0.981  0.0170
+EVN         CAZ         H74      SINGLE       n     1.089  0.0100     0.981  0.0170
+EVN         CDV         H75      SINGLE       n     1.089  0.0100     0.971  0.0163
+EVN         CDV         H76      SINGLE       n     1.089  0.0100     0.971  0.0163
+EVN         CDV         H77      SINGLE       n     1.089  0.0100     0.971  0.0163
+EVN         CAW         H78      SINGLE       n     1.089  0.0100     0.987  0.0140
+EVN         CDP         H79      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CDP         H80      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CDP         H81      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CAX         H82      SINGLE       n     1.089  0.0100     0.988  0.0151
+EVN         CDU         H83      SINGLE       n     1.089  0.0100     0.971  0.0146
+EVN         CDU         H84      SINGLE       n     1.089  0.0100     0.971  0.0146
+EVN         CDU         H85      SINGLE       n     1.089  0.0100     0.971  0.0146
+EVN         CAR         H86      SINGLE       n     1.089  0.0100     0.989  0.0117
+EVN         CDO         H87      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CDO         H88      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CDO         H89      SINGLE       n     1.089  0.0100     0.971  0.0171
+EVN         CAM         H90      SINGLE       n     1.089  0.0100     0.982  0.0200
+EVN         CDN         H91      SINGLE       n     1.089  0.0100     0.971  0.0135
+EVN         CDN         H92      SINGLE       n     1.089  0.0100     0.971  0.0135
+EVN         CDN         H93      SINGLE       n     1.089  0.0100     0.971  0.0135
+EVN         OAH         H94      SINGLE       n     0.966  0.0059     0.861  0.0200
+EVN         CDM         H95      SINGLE       n     1.089  0.0100     0.971  0.0157
+EVN         CDM         H96      SINGLE       n     1.089  0.0100     0.971  0.0157
+EVN         CDM         H97      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EVN         CDI         CEG          H1     109.545    1.50
+EVN         CDI         CEG          H2     109.545    1.50
+EVN         CDI         CEG          H3     109.545    1.50
+EVN          H1         CEG          H2     109.348    1.50
+EVN          H1         CEG          H3     109.348    1.50
+EVN          H2         CEG          H3     109.348    1.50
+EVN         CEG         CDI         CDH     118.404    1.50
+EVN         CEG         CDI         CDD     123.006    1.50
+EVN         CDH         CDI         CDD     118.590    1.50
+EVN         CDI         CDH         CDG     121.233    1.50
+EVN         CDI         CDH          H4     118.987    1.50
+EVN         CDG         CDH          H4     119.780    1.50
+EVN         CDH         CDG         ODK     119.782    3.00
+EVN         CDH         CDG         CDF     120.436    1.50
+EVN         ODK         CDG         CDF     119.782    3.00
+EVN         CDG         ODK          H5     120.000    3.00
+EVN         CDG         CDF         CDE     119.543    1.50
+EVN         CDG         CDF          H6     120.365    1.50
+EVN         CDE         CDF          H6     120.091    1.50
+EVN         CDD         CDE         CDF     121.301    1.50
+EVN         CDD         CDE         ODJ     119.350    3.00
+EVN         CDF         CDE         ODJ     119.350    3.00
+EVN         CDE         ODJ          H7     120.000    3.00
+EVN         CDI         CDD         CDB     120.894    2.16
+EVN         CDI         CDD         CDE     118.897    1.50
+EVN         CDB         CDD         CDE     120.210    2.17
+EVN         ODC         CDB         CDD     123.649    1.94
+EVN         ODC         CDB         ODA     124.050    1.50
+EVN         CDD         CDB         ODA     112.301    1.50
+EVN         CDB         ODA         CCU     117.659    1.50
+EVN         CCT         CCU         ODA     108.420    2.09
+EVN         CCT         CCU         CCV     111.476    2.14
+EVN         CCT         CCU          H8     109.051    1.50
+EVN         ODA         CCU         CCV     109.366    2.20
+EVN         ODA         CCU          H8     109.276    1.50
+EVN         CCV         CCU          H8     109.213    1.50
+EVN         CCU         CCV         OCW     111.078    1.50
+EVN         CCU         CCV          H9     109.523    1.50
+EVN         CCU         CCV         H10     109.523    1.50
+EVN         OCW         CCV          H9     108.889    1.50
+EVN         OCW         CCV         H10     108.889    1.50
+EVN          H9         CCV         H10     108.242    1.50
+EVN         CCQ         OCW         CCV     113.610    1.88
+EVN         OCZ         CCT         CCS     102.976    1.50
+EVN         OCZ         CCT         CCU     111.271    2.19
+EVN         OCZ         CCT         H11     109.776    1.50
+EVN         CCS         CCT         CCU     113.556    3.00
+EVN         CCS         CCT         H11     109.760    1.50
+EVN         CCU         CCT         H11     109.653    1.50
+EVN         CCY         OCZ         CCT     105.502    1.50
+EVN         OCZ         CCY         OCX     106.974    1.64
+EVN         OCZ         CCY         H12     110.522    1.50
+EVN         OCZ         CCY         H13     110.522    1.50
+EVN         OCX         CCY         H12     110.567    1.50
+EVN         OCX         CCY         H13     110.567    1.50
+EVN         H12         CCY         H13     108.632    1.80
+EVN         CCY         OCX         CCS     105.502    1.50
+EVN         OCX         CCS         CCT     103.136    1.50
+EVN         OCX         CCS         CCQ     110.020    2.79
+EVN         OCX         CCS         H14     110.081    1.50
+EVN         CCT         CCS         CCQ     108.312    3.00
+EVN         CCT         CCS         H14     109.923    1.50
+EVN         CCQ         CCS         H14     109.946    2.14
+EVN         CCS         CCQ         OCP     110.020    2.79
+EVN         CCS         CCQ         OCR     110.020    2.79
+EVN         CCS         CCQ         OCW     111.677    2.10
+EVN         OCP         CCQ         OCR     106.309    1.50
+EVN         OCP         CCQ         OCW     108.627    2.15
+EVN         OCR         CCQ         OCW     108.627    2.15
+EVN         CCQ         OCR         CCL     107.786    1.86
+EVN         CCK         OCP         CCQ     107.786    1.86
+EVN         CCJ         CCK         OCP     111.395    3.00
+EVN         CCJ         CCK         CCL     113.290    1.58
+EVN         CCJ         CCK         H15     109.653    1.50
+EVN         OCP         CCK         CCL     102.960    1.50
+EVN         OCP         CCK         H15     109.721    1.50
+EVN         CCL         CCK         H15     109.969    1.50
+EVN         CCI         CCJ         CCK     110.360    1.68
+EVN         CCI         CCJ         OCO     110.970    1.63
+EVN         CCI         CCJ         H16     109.274    1.50
+EVN         CCK         CCJ         OCO     110.151    2.59
+EVN         CCK         CCJ         H16     109.051    1.50
+EVN         OCO         CCJ         H16     109.011    1.50
+EVN         CCJ         OCO         H17     109.634    1.50
+EVN         CCK         CCL         CCM     113.981    1.60
+EVN         CCK         CCL         OCR     102.960    1.50
+EVN         CCK         CCL         H18     109.969    1.50
+EVN         CCM         CCL         OCR     110.528    1.77
+EVN         CCM         CCL         H18     109.803    1.50
+EVN         OCR         CCL         H18     109.721    1.50
+EVN         OCN         CCM         CCL     111.950    1.81
+EVN         OCN         CCM         H19     108.704    1.50
+EVN         OCN         CCM         H20     108.704    1.50
+EVN         CCL         CCM         H19     109.309    1.50
+EVN         CCL         CCM         H20     109.309    1.50
+EVN         H19         CCM         H20     108.680    1.50
+EVN         CCI         OCN         CCM     110.954    1.50
+EVN          O1         CCI         CCJ     108.240    1.70
+EVN          O1         CCI         OCN     110.325    1.95
+EVN          O1         CCI         H21     109.322    1.50
+EVN         CCJ         CCI         OCN     109.827    1.50
+EVN         CCJ         CCI         H21     109.520    1.50
+EVN         OCN         CCI         H21     109.272    1.61
+EVN          C1          O1         CCI     114.497    2.15
+EVN          O5          C1          O1     111.536    1.50
+EVN          O5          C1          C2     109.080    1.50
+EVN          O5          C1         H22     109.132    1.50
+EVN          O1          C1          C2     108.473    2.03
+EVN          O1          C1         H22     109.293    1.50
+EVN          C2          C1         H22     109.431    1.50
+EVN          C1          C2          C3     110.229    1.69
+EVN          C1          C2          O2     112.600    1.50
+EVN          C1          C2         H23     109.198    1.50
+EVN          C3          C2          O2     109.116    2.14
+EVN          C3          C2         H23     109.166    1.50
+EVN          O2          C2         H23     108.710    1.50
+EVN          C4          C3          C2     110.796    1.54
+EVN          C4          C3          O3     110.741    1.50
+EVN          C4          C3         H24     109.015    1.50
+EVN          C2          C3          O3     110.081    2.02
+EVN          C2          C3         H24     109.166    1.50
+EVN          O3          C3         H24     108.767    1.50
+EVN          C3          O3         H25     108.895    2.41
+EVN          C2          O2         CEF     113.659    1.50
+EVN          O2         CEF         H26     109.431    1.50
+EVN          O2         CEF         H27     109.431    1.50
+EVN          O2         CEF         H28     109.431    1.50
+EVN         H26         CEF         H27     109.450    1.50
+EVN         H26         CEF         H28     109.450    1.50
+EVN         H27         CEF         H28     109.450    1.50
+EVN          C5          O5          C1     113.300    1.50
+EVN          C6          C5          O5     107.192    1.50
+EVN          C6          C5          C4     113.904    1.64
+EVN          C6          C5         H29     108.952    1.50
+EVN          O5          C5          C4     109.386    1.50
+EVN          O5          C5         H29     109.134    1.50
+EVN          C4          C5         H29     109.100    1.50
+EVN          O6          C6          C5     110.062    2.79
+EVN          O6          C6         H30     109.573    1.50
+EVN          O6          C6         H31     109.573    1.50
+EVN          C5          C6         H30     109.921    1.50
+EVN          C5          C6         H31     109.921    1.50
+EVN         H30          C6         H31     108.378    1.50
+EVN          C6          O6         CED     112.724    2.34
+EVN          O6         CED         H32     109.600    1.50
+EVN          O6         CED         H33     109.600    1.50
+EVN          O6         CED         H34     109.600    1.50
+EVN         H32         CED         H33     109.532    1.53
+EVN         H32         CED         H34     109.532    1.53
+EVN         H33         CED         H34     109.532    1.53
+EVN          C5          C4          O4     109.005    2.24
+EVN          C5          C4          C3     110.928    1.50
+EVN          C5          C4         H35     109.688    1.50
+EVN          O4          C4          C3     108.105    2.53
+EVN          O4          C4         H35     109.684    1.50
+EVN          C3          C4         H35     109.617    1.50
+EVN         CBV          O4          C4     117.488    1.88
+EVN         OBU         CBV         CBW     110.316    1.50
+EVN         OBU         CBV          O4     110.157    1.98
+EVN         OBU         CBV         H36     109.132    1.50
+EVN         CBW         CBV          O4     108.782    1.93
+EVN         CBW         CBV         H36     109.438    1.50
+EVN          O4         CBV         H36     109.369    1.50
+EVN         CBR         CBW         CBV     110.229    1.69
+EVN         CBR         CBW         OBX     110.081    2.02
+EVN         CBR         CBW         H37     109.166    1.50
+EVN         CBV         CBW         OBX     109.907    1.90
+EVN         CBV         CBW         H37     108.647    1.50
+EVN         OBX         CBW         H37     108.551    1.50
+EVN         CBW         OBX         H38     109.126    2.06
+EVN         CBT         OBU         CBV     113.009    1.50
+EVN         CDZ         CBT         CBS     113.362    1.50
+EVN         CDZ         CBT         OBU     106.787    1.50
+EVN         CDZ         CBT         H39     109.193    1.50
+EVN         CBS         CBT         OBU     110.326    1.50
+EVN         CBS         CBT         H39     108.991    1.50
+EVN         OBU         CBT         H39     109.141    1.50
+EVN         CBT         CDZ         H40     109.468    1.50
+EVN         CBT         CDZ         H41     109.468    1.50
+EVN         CBT         CDZ         H42     109.468    1.50
+EVN         H40         CDZ         H41     109.383    1.59
+EVN         H40         CDZ         H42     109.383    1.59
+EVN         H41         CDZ         H42     109.383    1.59
+EVN         CBT         CBS         OEA     107.676    2.35
+EVN         CBT         CBS         CBR     110.316    1.64
+EVN         CBT         CBS         H43     109.942    1.50
+EVN         OEA         CBS         CBR     109.116    2.14
+EVN         OEA         CBS         H43     109.096    1.50
+EVN         CBR         CBS         H43     109.166    1.50
+EVN         CEB         OEA         CBS     114.344    1.50
+EVN         OEA         CEB         H44     109.431    1.50
+EVN         OEA         CEB         H45     109.431    1.50
+EVN         OEA         CEB         H46     109.431    1.50
+EVN         H44         CEB         H45     109.450    1.50
+EVN         H44         CEB         H46     109.450    1.50
+EVN         H45         CEB         H46     109.450    1.50
+EVN         CBS         CBR         OBQ     108.580    2.45
+EVN         CBS         CBR         CBW     110.796    1.54
+EVN         CBS         CBR         H47     109.166    1.50
+EVN         OBQ         CBR         CBW     108.580    2.45
+EVN         OBQ         CBR         H47     109.522    1.50
+EVN         CBW         CBR         H47     109.166    1.50
+EVN         CBM         OBQ         CBR     114.885    2.31
+EVN         OBN         CBM         CBL     109.827    1.50
+EVN         OBN         CBM         OBQ     110.325    1.95
+EVN         OBN         CBM         H48     109.272    1.61
+EVN         CBL         CBM         OBQ     108.240    1.70
+EVN         CBL         CBM         H48     109.520    1.50
+EVN         OBQ         CBM         H48     109.322    1.50
+EVN         CBI         CBL         CBM     111.476    2.14
+EVN         CBI         CBL         OBP     109.614    2.70
+EVN         CBI         CBL         H49     109.008    1.50
+EVN         CBM         CBL         OBP     110.970    1.63
+EVN         CBM         CBL         H49     109.274    1.50
+EVN         OBP         CBL         H49     108.720    1.50
+EVN         CBL         OBP         H50     109.523    3.00
+EVN         CBO         OBN         CBM     112.280    1.50
+EVN         CDX         CBO         CBJ     113.954    1.50
+EVN         CDX         CBO         OBN     107.477    1.50
+EVN         CDX         CBO         H51     108.825    1.50
+EVN         CBJ         CBO         OBN     109.402    2.64
+EVN         CBJ         CBO         H51     108.518    1.50
+EVN         OBN         CBO         H51     108.850    1.50
+EVN         CBO         CDX         H52     109.455    1.50
+EVN         CBO         CDX         H53     109.455    1.50
+EVN         CBO         CDX         H54     109.455    1.50
+EVN         H52         CDX         H53     109.387    2.54
+EVN         H52         CDX         H54     109.387    2.54
+EVN         H53         CDX         H54     109.387    2.54
+EVN         CBO         CBJ         OBK     110.240    1.61
+EVN         CBO         CBJ         CBI     111.036    2.95
+EVN         CBO         CBJ         H55     109.719    1.50
+EVN         OBK         CBJ         CBI     104.414    1.50
+EVN         OBK         CBJ         H55     109.721    1.50
+EVN         CBI         CBJ         H55     109.763    1.50
+EVN         CBJ         OBK         CBD     107.786    1.86
+EVN         CBJ         CBI         CDY     112.965    1.50
+EVN         CBJ         CBI         OBH     102.702    1.50
+EVN         CBJ         CBI         CBL     111.036    2.95
+EVN         CDY         CBI         OBH     109.125    1.78
+EVN         CDY         CBI         CBL     110.622    1.51
+EVN         OBH         CBI         CBL     109.996    2.10
+EVN         CBI         CDY         H56     109.484    1.50
+EVN         CBI         CDY         H57     109.484    1.50
+EVN         CBI         CDY         H58     109.484    1.50
+EVN         H56         CDY         H57     109.412    1.50
+EVN         H56         CDY         H58     109.412    1.50
+EVN         H57         CDY         H58     109.412    1.50
+EVN         CBD         OBH         CBI     107.786    1.86
+EVN         OBK         CBD         CBC     109.996    2.10
+EVN         OBK         CBD         OBE     108.627    2.15
+EVN         OBK         CBD         OBH     106.309    1.50
+EVN         CBC         CBD         OBE     110.863    1.50
+EVN         CBC         CBD         OBH     109.996    2.10
+EVN         OBE         CBD         OBH     108.627    2.15
+EVN         CBD         CBC         CBB     111.476    2.14
+EVN         CBD         CBC         H59     109.008    1.50
+EVN         CBD         CBC         H60     109.008    1.50
+EVN         CBB         CBC         H59     109.028    1.50
+EVN         CBB         CBC         H60     109.028    1.50
+EVN         H59         CBC         H60     107.954    1.50
+EVN         CBC         CBB         OBG     110.046    1.94
+EVN         CBC         CBB         CBA     110.793    1.50
+EVN         CBC         CBB         H61     108.720    1.50
+EVN         OBG         CBB         CBA     110.081    2.02
+EVN         OBG         CBB         H61     108.961    1.50
+EVN         CBA         CBB         H61     109.166    1.50
+EVN         CBB         OBG         H62     109.588    1.50
+EVN         CBD         OBE         CBF     113.610    1.88
+EVN         OBE         CBF         CBA     110.267    1.62
+EVN         OBE         CBF         CDW     106.788    2.12
+EVN         OBE         CBF         H63     108.635    1.50
+EVN         CBA         CBF         CDW     113.192    1.50
+EVN         CBA         CBF         H63     108.898    1.50
+EVN         CDW         CBF         H63     109.046    1.50
+EVN         CBF         CDW         H64     109.462    1.50
+EVN         CBF         CDW         H65     109.462    1.50
+EVN         CBF         CDW         H66     109.462    1.50
+EVN         H64         CDW         H65     109.383    1.59
+EVN         H64         CDW         H66     109.383    1.59
+EVN         H65         CDW         H66     109.383    1.59
+EVN         CBB         CBA         CBF     110.072    1.92
+EVN         CBB         CBA         OAS     108.580    2.45
+EVN         CBB         CBA         H67     109.166    1.50
+EVN         CBF         CBA         OAS     109.033    2.25
+EVN         CBF         CBA         H67     109.550    1.50
+EVN         OAS         CBA         H67     109.684    1.50
+EVN         CBA         OAS         CAP     117.169    1.96
+EVN         CAO         CAP         OAS     108.296    1.50
+EVN         CAO         CAP         OAQ     111.005    1.50
+EVN         CAO         CAP         H68     109.482    1.68
+EVN         OAS         CAP         OAQ     110.325    1.95
+EVN         OAS         CAP         H68     109.322    1.50
+EVN         OAQ         CAP         H68     109.272    1.61
+EVN         CAP         CAO         CAN     111.702    1.88
+EVN         CAP         CAO         H69     109.160    1.50
+EVN         CAP         CAO         H70     109.160    1.50
+EVN         CAN         CAO         H69     109.270    1.50
+EVN         CAN         CAO         H70     109.270    1.50
+EVN         H69         CAO         H70     108.019    1.50
+EVN         CAO         CAN         CAM     111.121    1.50
+EVN         CAO         CAN         OAT     109.852    2.33
+EVN         CAO         CAN         H71     109.129    1.50
+EVN         CAM         CAN         OAT     108.580    2.45
+EVN         CAM         CAN         H71     109.166    1.50
+EVN         OAT         CAN         H71     109.522    1.50
+EVN         CAN         OAT         CAU     117.169    1.96
+EVN         OAT         CAU         CAZ     108.296    1.50
+EVN         OAT         CAU         OAV     110.325    1.95
+EVN         OAT         CAU         H72     109.322    1.50
+EVN         CAZ         CAU         OAV     111.005    1.50
+EVN         CAZ         CAU         H72     109.482    1.68
+EVN         OAV         CAU         H72     109.272    1.61
+EVN         CAU         CAZ         CAY     111.124    1.57
+EVN         CAU         CAZ         H73     109.160    1.50
+EVN         CAU         CAZ         H74     109.160    1.50
+EVN         CAY         CAZ         H73     108.666    1.54
+EVN         CAY         CAZ         H74     108.666    1.54
+EVN         H73         CAZ         H74     108.019    1.50
+EVN         CAZ         CAY         NDQ     110.829    2.03
+EVN         CAZ         CAY         CDV     110.751    1.50
+EVN         CAZ         CAY         CAX     111.124    1.57
+EVN         NDQ         CAY         CDV     108.206    1.93
+EVN         NDQ         CAY         CAX     110.829    2.03
+EVN         CDV         CAY         CAX     109.965    1.54
+EVN         CAY         CDV         H75     109.440    1.50
+EVN         CAY         CDV         H76     109.440    1.50
+EVN         CAY         CDV         H77     109.440    1.50
+EVN         H75         CDV         H76     109.408    1.50
+EVN         H75         CDV         H77     109.408    1.50
+EVN         H76         CDV         H77     109.408    1.50
+EVN         ODS         NDQ         CAY     118.185    1.50
+EVN         ODS         NDQ         ODR     123.630    1.50
+EVN         CAY         NDQ         ODR     118.185    1.50
+EVN         CAU         OAV         CAW     113.097    1.50
+EVN         OAV         CAW         CAX     109.378    1.54
+EVN         OAV         CAW         CDP     106.787    1.50
+EVN         OAV         CAW         H78     109.141    1.50
+EVN         CAX         CAW         CDP     113.192    1.50
+EVN         CAX         CAW         H78     108.898    1.50
+EVN         CDP         CAW         H78     109.193    1.50
+EVN         CAW         CDP         H79     109.468    1.50
+EVN         CAW         CDP         H80     109.468    1.50
+EVN         CAW         CDP         H81     109.468    1.50
+EVN         H79         CDP         H80     109.383    1.59
+EVN         H79         CDP         H81     109.383    1.59
+EVN         H80         CDP         H81     109.383    1.59
+EVN         CAY         CAX         CAW     111.124    1.57
+EVN         CAY         CAX         ODT     106.656    2.18
+EVN         CAY         CAX         H82     107.569    1.50
+EVN         CAW         CAX         ODT     107.676    2.35
+EVN         CAW         CAX         H82     109.550    1.50
+EVN         ODT         CAX         H82     109.096    1.50
+EVN         CAX         ODT         CDU     114.344    1.50
+EVN         ODT         CDU         H83     109.431    1.50
+EVN         ODT         CDU         H84     109.431    1.50
+EVN         ODT         CDU         H85     109.431    1.50
+EVN         H83         CDU         H84     109.450    1.50
+EVN         H83         CDU         H85     109.450    1.50
+EVN         H84         CDU         H85     109.450    1.50
+EVN         CAP         OAQ         CAR     113.097    1.50
+EVN         CAM         CAR         OAQ     110.326    1.50
+EVN         CAM         CAR         CDO     113.362    1.50
+EVN         CAM         CAR         H86     108.991    1.50
+EVN         OAQ         CAR         CDO     106.787    1.50
+EVN         OAQ         CAR         H86     109.141    1.50
+EVN         CDO         CAR         H86     109.193    1.50
+EVN         CAR         CDO         H87     109.468    1.50
+EVN         CAR         CDO         H88     109.468    1.50
+EVN         CAR         CDO         H89     109.468    1.50
+EVN         H87         CDO         H88     109.383    1.59
+EVN         H87         CDO         H89     109.383    1.59
+EVN         H88         CDO         H89     109.383    1.59
+EVN         OAL         CAM         CAN     108.122    1.78
+EVN         OAL         CAM         CAR     107.804    1.80
+EVN         OAL         CAM         H90     109.681    1.50
+EVN         CAN         CAM         CAR     110.072    1.92
+EVN         CAN         CAM         H90     109.166    1.50
+EVN         CAR         CAM         H90     109.942    1.50
+EVN         CAJ         OAL         CAM     117.396    1.50
+EVN         OAK         CAJ         OAL     124.196    1.50
+EVN         OAK         CAJ         CAD     123.576    1.94
+EVN         OAL         CAJ         CAD     112.228    1.50
+EVN         CAC         CAD         CAJ     120.563    2.16
+EVN         CAC         CAD         CAE     119.558    1.50
+EVN         CAJ         CAD         CAE     119.879    2.17
+EVN         CDN         CAC         CAB     120.352    1.70
+EVN         CDN         CAC         CAD     120.295    1.50
+EVN         CAB         CAC         CAD     119.353    1.50
+EVN         CAC         CDN         H91     109.366    1.50
+EVN         CAC         CDN         H92     109.366    1.50
+EVN         CAC         CDN         H93     109.366    1.50
+EVN         H91         CDN         H92     109.348    1.50
+EVN         H91         CDN         H93     109.348    1.50
+EVN         H92         CDN         H93     109.348    1.50
+EVN        CLAI         CAB         CAC     119.366    1.50
+EVN        CLAI         CAB         CAA     118.332    1.50
+EVN         CAC         CAB         CAA     122.302    1.50
+EVN         CAB         CAA         OAH     120.793    3.00
+EVN         CAB         CAA         CAF     118.414    1.79
+EVN         OAH         CAA         CAF     120.793    3.00
+EVN         CAA         OAH         H94     120.000    3.00
+EVN         CAA         CAF         CAE     121.009    1.50
+EVN         CAA         CAF        CLAG     119.496    1.50
+EVN         CAE         CAF        CLAG     119.496    1.50
+EVN         CAD         CAE         CAF     119.364    1.50
+EVN         CAD         CAE         ODL     120.166    2.15
+EVN         CAF         CAE         ODL     120.469    1.87
+EVN         CAE         ODL         CDM     117.273    1.50
+EVN         ODL         CDM         H95     109.428    1.50
+EVN         ODL         CDM         H96     109.428    1.50
+EVN         ODL         CDM         H97     109.428    1.50
+EVN         H95         CDM         H96     109.509    1.50
+EVN         H95         CDM         H97     109.509    1.50
+EVN         H96         CDM         H97     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EVN                  nu0N         CCM         OCN         CCI         CCJ     -67.033    10.0     3
+EVN                  nu1N         OCN         CCI         CCJ         CCK      28.324    10.0     3
+EVN                  nu2N         CCI         CCJ         CCK         CCL      35.857    10.0     3
+EVN                  nu3N         CCJ         CCK         CCL         CCM     -67.021    10.0     3
+EVN                  nu4N         CCK         CCL         CCM         OCN      31.088    10.0     3
+EVN                  nu5N         CCL         CCM         OCN         CCI      35.105    10.0     3
+EVN                  nu05          C5          O5          C1          C2     -67.053    10.0     3
+EVN                  nu15          O5          C1          C2          C3      60.370    10.0     3
+EVN                  nu25          C1          C2          C3          C4     -50.844    10.0     3
+EVN                  nu35          C2          C3          C4          C5      47.733    10.0     3
+EVN                  nu45          C3          C4          C5          O5     -51.893    10.0     3
+EVN                  nu55          C4          C5          O5          C1      61.485    10.0     3
+EVN                  nu0U         CBT         OBU         CBV         CBW     -65.322    10.0     3
+EVN                  nu1U         OBU         CBV         CBW         CBR      57.437    10.0     3
+EVN                  nu2U         CBV         CBW         CBR         CBS     -51.341    10.0     3
+EVN                  nu3U         CBW         CBR         CBS         CBT      51.263    10.0     3
+EVN                  nu4U         CBR         CBS         CBT         OBU     -58.330    10.0     3
+EVN                  nu5U         CBS         CBT         OBU         CBV      66.361    10.0     3
+EVN                  nu0Q         CAR         OAQ         CAP         CAO     -71.922    10.0     3
+EVN                  nu1Q         OAQ         CAP         CAO         CAN      26.405    10.0     3
+EVN                  nu2Q         CAP         CAO         CAN         CAM      33.558    10.0     3
+EVN                  nu3Q         CAO         CAN         CAM         CAR     -53.721    10.0     3
+EVN                  nu4Q         CAN         CAM         CAR         OAQ      13.297    10.0     3
+EVN                  nu5Q         CAM         CAR         OAQ         CAP      49.882    10.0     3
+EVN       const_sp2_sp2_1         CAB         CAC         CAD         CAE       0.000     5.0     2
+EVN       const_sp2_sp2_2         CAB         CAC         CAD         CAJ     180.000     5.0     2
+EVN       const_sp2_sp2_3         CDN         CAC         CAD         CAE     180.000     5.0     2
+EVN       const_sp2_sp2_4         CDN         CAC         CAD         CAJ       0.000     5.0     2
+EVN       const_sp2_sp2_5         CAA         CAB         CAC         CAD       0.000     5.0     2
+EVN       const_sp2_sp2_6         CAA         CAB         CAC         CDN     180.000     5.0     2
+EVN       const_sp2_sp2_7        CLAI         CAB         CAC         CAD     180.000     5.0     2
+EVN       const_sp2_sp2_8        CLAI         CAB         CAC         CDN       0.000     5.0     2
+EVN       const_sp2_sp2_9         CAF         CAA         CAB         CAC       0.000     5.0     2
+EVN              const_10         CAF         CAA         CAB        CLAI     180.000    10.0     2
+EVN              const_11         OAH         CAA         CAB         CAC     180.000    10.0     2
+EVN              const_12         OAH         CAA         CAB        CLAI       0.000    10.0     2
+EVN              const_13         CAB         CAA         CAF         CAE       0.000    10.0     2
+EVN              const_14         CAB         CAA         CAF        CLAG     180.000    10.0     2
+EVN              const_15         OAH         CAA         CAF         CAE     180.000    10.0     2
+EVN              const_16         OAH         CAA         CAF        CLAG       0.000    10.0     2
+EVN              const_17         CAD         CAE         CAF         CAA       0.000    10.0     2
+EVN              const_18         CAD         CAE         CAF        CLAG     180.000    10.0     2
+EVN              const_19         ODL         CAE         CAF         CAA     180.000    10.0     2
+EVN              const_20         ODL         CAE         CAF        CLAG       0.000    10.0     2
+EVN            sp3_sp3_73         OAV         CAU         CAZ         CAY     -60.000    10.0     3
+EVN            sp3_sp3_74         OAV         CAU         CAZ         H73      60.000    10.0     3
+EVN            sp3_sp3_75         OAV         CAU         CAZ         H74     180.000    10.0     3
+EVN            sp3_sp3_76         OAT         CAU         CAZ         CAY      60.000    10.0     3
+EVN            sp3_sp3_77         OAT         CAU         CAZ         H73     180.000    10.0     3
+EVN            sp3_sp3_78         OAT         CAU         CAZ         H74     -60.000    10.0     3
+EVN            sp3_sp3_79         H72         CAU         CAZ         CAY     180.000    10.0     3
+EVN            sp3_sp3_80         H72         CAU         CAZ         H73     -60.000    10.0     3
+EVN            sp3_sp3_81         H72         CAU         CAZ         H74      60.000    10.0     3
+EVN            sp3_sp3_82         CAX         CAY         CAZ         CAU      60.000    10.0     3
+EVN            sp3_sp3_83         CAX         CAY         CAZ         H73     180.000    10.0     3
+EVN            sp3_sp3_84         CAX         CAY         CAZ         H74     -60.000    10.0     3
+EVN            sp3_sp3_85         NDQ         CAY         CAZ         CAU     180.000    10.0     3
+EVN            sp3_sp3_86         NDQ         CAY         CAZ         H73     -60.000    10.0     3
+EVN            sp3_sp3_87         NDQ         CAY         CAZ         H74      60.000    10.0     3
+EVN            sp3_sp3_88         CDV         CAY         CAZ         CAU     -60.000    10.0     3
+EVN            sp3_sp3_89         CDV         CAY         CAZ         H73      60.000    10.0     3
+EVN            sp3_sp3_90         CDV         CAY         CAZ         H74     180.000    10.0     3
+EVN            sp3_sp3_91         CAW         CAX         CAY         CAZ     -60.000    10.0     3
+EVN            sp3_sp3_92         CAW         CAX         CAY         NDQ      60.000    10.0     3
+EVN            sp3_sp3_93         CAW         CAX         CAY         CDV     180.000    10.0     3
+EVN            sp3_sp3_94         ODT         CAX         CAY         CAZ      60.000    10.0     3
+EVN            sp3_sp3_95         ODT         CAX         CAY         NDQ     180.000    10.0     3
+EVN            sp3_sp3_96         ODT         CAX         CAY         CDV     -60.000    10.0     3
+EVN            sp3_sp3_97         H82         CAX         CAY         CAZ     180.000    10.0     3
+EVN            sp3_sp3_98         H82         CAX         CAY         NDQ     -60.000    10.0     3
+EVN            sp3_sp3_99         H82         CAX         CAY         CDV      60.000    10.0     3
+EVN           sp3_sp3_100         OAV         CAW         CAX         CAY      60.000    10.0     3
+EVN           sp3_sp3_101         OAV         CAW         CAX         ODT     180.000    10.0     3
+EVN           sp3_sp3_102         OAV         CAW         CAX         H82     -60.000    10.0     3
+EVN           sp3_sp3_103         CDP         CAW         CAX         CAY     180.000    10.0     3
+EVN           sp3_sp3_104         CDP         CAW         CAX         ODT     -60.000    10.0     3
+EVN           sp3_sp3_105         CDP         CAW         CAX         H82      60.000    10.0     3
+EVN           sp3_sp3_106         H78         CAW         CAX         CAY     -60.000    10.0     3
+EVN           sp3_sp3_107         H78         CAW         CAX         ODT      60.000    10.0     3
+EVN           sp3_sp3_108         H78         CAW         CAX         H82     180.000    10.0     3
+EVN           sp3_sp3_109         CAX         CAW         OAV         CAU     -60.000    10.0     3
+EVN           sp3_sp3_110         CDP         CAW         OAV         CAU      60.000    10.0     3
+EVN           sp3_sp3_111         H78         CAW         OAV         CAU     180.000    10.0     3
+EVN           sp3_sp3_112         CBB         CBC         CBD         OBE      60.000    10.0     3
+EVN           sp3_sp3_113         CBB         CBC         CBD         OBK     180.000    10.0     3
+EVN           sp3_sp3_114         CBB         CBC         CBD         OBH     -60.000    10.0     3
+EVN           sp3_sp3_115         H59         CBC         CBD         OBE     -60.000    10.0     3
+EVN           sp3_sp3_116         H59         CBC         CBD         OBK      60.000    10.0     3
+EVN           sp3_sp3_117         H59         CBC         CBD         OBH     180.000    10.0     3
+EVN           sp3_sp3_118         H60         CBC         CBD         OBE     180.000    10.0     3
+EVN           sp3_sp3_119         H60         CBC         CBD         OBK     -60.000    10.0     3
+EVN           sp3_sp3_120         H60         CBC         CBD         OBH      60.000    10.0     3
+EVN           sp3_sp3_121         CBA         CBB         CBC         CBD     -60.000    10.0     3
+EVN           sp3_sp3_122         CBA         CBB         CBC         H59      60.000    10.0     3
+EVN           sp3_sp3_123         CBA         CBB         CBC         H60     180.000    10.0     3
+EVN           sp3_sp3_124         OBG         CBB         CBC         CBD     180.000    10.0     3
+EVN           sp3_sp3_125         OBG         CBB         CBC         H59     -60.000    10.0     3
+EVN           sp3_sp3_126         OBG         CBB         CBC         H60      60.000    10.0     3
+EVN           sp3_sp3_127         H61         CBB         CBC         CBD      60.000    10.0     3
+EVN           sp3_sp3_128         H61         CBB         CBC         H59     180.000    10.0     3
+EVN           sp3_sp3_129         H61         CBB         CBC         H60     -60.000    10.0     3
+EVN           sp3_sp3_130         CBF         CBA         CBB         CBC      60.000    10.0     3
+EVN           sp3_sp3_131         CBF         CBA         CBB         OBG     180.000    10.0     3
+EVN           sp3_sp3_132         CBF         CBA         CBB         H61     -60.000    10.0     3
+EVN           sp3_sp3_133         OAS         CBA         CBB         CBC     -60.000    10.0     3
+EVN           sp3_sp3_134         OAS         CBA         CBB         OBG      60.000    10.0     3
+EVN           sp3_sp3_135         OAS         CBA         CBB         H61     180.000    10.0     3
+EVN           sp3_sp3_136         H67         CBA         CBB         CBC     180.000    10.0     3
+EVN           sp3_sp3_137         H67         CBA         CBB         OBG     -60.000    10.0     3
+EVN           sp3_sp3_138         H67         CBA         CBB         H61      60.000    10.0     3
+EVN           sp3_sp3_139         CBB         CBA         CBF         OBE     -60.000    10.0     3
+EVN           sp3_sp3_140         CBB         CBA         CBF         CDW      60.000    10.0     3
+EVN           sp3_sp3_141         CBB         CBA         CBF         H63     180.000    10.0     3
+EVN           sp3_sp3_142         OAS         CBA         CBF         OBE     180.000    10.0     3
+EVN           sp3_sp3_143         OAS         CBA         CBF         CDW     -60.000    10.0     3
+EVN           sp3_sp3_144         OAS         CBA         CBF         H63      60.000    10.0     3
+EVN           sp3_sp3_145         H67         CBA         CBF         OBE      60.000    10.0     3
+EVN           sp3_sp3_146         H67         CBA         CBF         CDW     180.000    10.0     3
+EVN           sp3_sp3_147         H67         CBA         CBF         H63     -60.000    10.0     3
+EVN           sp3_sp3_148         CBA         CBF         OBE         CBD      60.000    10.0     3
+EVN           sp3_sp3_149         CDW         CBF         OBE         CBD     -60.000    10.0     3
+EVN           sp3_sp3_150         H63         CBF         OBE         CBD     180.000    10.0     3
+EVN           sp3_sp3_151         CBI         CBJ         OBK         CBD      60.000    10.0     3
+EVN           sp3_sp3_152         CBO         CBJ         OBK         CBD     -60.000    10.0     3
+EVN           sp3_sp3_153         H55         CBJ         OBK         CBD     180.000    10.0     3
+EVN           sp3_sp3_154         OBH         CBD         OBK         CBJ     -60.000    10.0     3
+EVN           sp3_sp3_155         CBC         CBD         OBK         CBJ     180.000    10.0     3
+EVN           sp3_sp3_156         OBE         CBD         OBK         CBJ      60.000    10.0     3
+EVN           sp3_sp3_157         OBK         CBD         OBH         CBI      60.000    10.0     3
+EVN           sp3_sp3_158         CBC         CBD         OBH         CBI     -60.000    10.0     3
+EVN           sp3_sp3_159         OBE         CBD         OBH         CBI     180.000    10.0     3
+EVN           sp3_sp3_160         CBJ         CBI         OBH         CBD     -60.000    10.0     3
+EVN           sp3_sp3_161         CDY         CBI         OBH         CBD     180.000    10.0     3
+EVN           sp3_sp3_162         CBL         CBI         OBH         CBD      60.000    10.0     3
+EVN           sp3_sp3_163         CBL         CBM         OBN         CBO     -60.000    10.0     3
+EVN           sp3_sp3_164         OBQ         CBM         OBN         CBO      60.000    10.0     3
+EVN           sp3_sp3_165         H48         CBM         OBN         CBO     180.000    10.0     3
+EVN           sp3_sp3_166         CBJ         CBO         OBN         CBM      60.000    10.0     3
+EVN           sp3_sp3_167         CDX         CBO         OBN         CBM     180.000    10.0     3
+EVN           sp3_sp3_168         H51         CBO         OBN         CBM      60.000    10.0     3
+EVN           sp3_sp3_169         CBI         CBJ         CBO         OBN     -60.000    10.0     3
+EVN           sp3_sp3_170         CBI         CBJ         CBO         CDX      60.000    10.0     3
+EVN           sp3_sp3_171         CBI         CBJ         CBO         H51     180.000    10.0     3
+EVN           sp3_sp3_172         OBK         CBJ         CBO         OBN      60.000    10.0     3
+EVN           sp3_sp3_173         OBK         CBJ         CBO         CDX     180.000    10.0     3
+EVN           sp3_sp3_174         OBK         CBJ         CBO         H51     -60.000    10.0     3
+EVN           sp3_sp3_175         H55         CBJ         CBO         OBN     180.000    10.0     3
+EVN           sp3_sp3_176         H55         CBJ         CBO         CDX     -60.000    10.0     3
+EVN           sp3_sp3_177         H55         CBJ         CBO         H51      60.000    10.0     3
+EVN           sp3_sp3_178         OBH         CBI         CBJ         OBK      60.000    10.0     3
+EVN           sp3_sp3_179         OBH         CBI         CBJ         CBO     -60.000    10.0     3
+EVN           sp3_sp3_180         OBH         CBI         CBJ         H55     180.000    10.0     3
+EVN           sp3_sp3_181         CDY         CBI         CBJ         OBK     -60.000    10.0     3
+EVN           sp3_sp3_182         CDY         CBI         CBJ         CBO     180.000    10.0     3
+EVN           sp3_sp3_183         CDY         CBI         CBJ         H55      60.000    10.0     3
+EVN           sp3_sp3_184         CBL         CBI         CBJ         OBK     180.000    10.0     3
+EVN           sp3_sp3_185         CBL         CBI         CBJ         CBO      60.000    10.0     3
+EVN           sp3_sp3_186         CBL         CBI         CBJ         H55     -60.000    10.0     3
+EVN           sp3_sp3_187         CBJ         CBI         CBL         CBM     -60.000    10.0     3
+EVN           sp3_sp3_188         CBJ         CBI         CBL         OBP      60.000    10.0     3
+EVN           sp3_sp3_189         CBJ         CBI         CBL         H49     180.000    10.0     3
+EVN           sp3_sp3_190         CDY         CBI         CBL         CBM      60.000    10.0     3
+EVN           sp3_sp3_191         CDY         CBI         CBL         OBP     180.000    10.0     3
+EVN           sp3_sp3_192         CDY         CBI         CBL         H49     -60.000    10.0     3
+EVN           sp3_sp3_193         OBH         CBI         CBL         CBM     180.000    10.0     3
+EVN           sp3_sp3_194         OBH         CBI         CBL         OBP     -60.000    10.0     3
+EVN           sp3_sp3_195         OBH         CBI         CBL         H49      60.000    10.0     3
+EVN           sp3_sp3_262         OCR         CCQ         OCP         CCK      60.000    10.0     3
+EVN           sp3_sp3_263         CCS         CCQ         OCP         CCK     -60.000    10.0     3
+EVN           sp3_sp3_264         OCW         CCQ         OCP         CCK     180.000    10.0     3
+EVN           sp3_sp3_265         CCL         CCK         OCP         CCQ     -60.000    10.0     3
+EVN           sp3_sp3_266         CCJ         CCK         OCP         CCQ     180.000    10.0     3
+EVN           sp3_sp3_267         H15         CCK         OCP         CCQ      60.000    10.0     3
+EVN           sp3_sp3_277         CCK         CCL         OCR         CCQ     -60.000    10.0     3
+EVN           sp3_sp3_278         CCM         CCL         OCR         CCQ     180.000    10.0     3
+EVN           sp3_sp3_279         H18         CCL         OCR         CCQ      60.000    10.0     3
+EVN           sp3_sp3_280         CCS         CCT         CCU         CCV      60.000    10.0     3
+EVN           sp3_sp3_281         CCS         CCT         CCU         ODA     180.000    10.0     3
+EVN           sp3_sp3_282         CCS         CCT         CCU          H8     -60.000    10.0     3
+EVN           sp3_sp3_283         OCZ         CCT         CCU         CCV     -60.000    10.0     3
+EVN           sp3_sp3_284         OCZ         CCT         CCU         ODA      60.000    10.0     3
+EVN           sp3_sp3_285         OCZ         CCT         CCU          H8     180.000    10.0     3
+EVN           sp3_sp3_286         H11         CCT         CCU         CCV     180.000    10.0     3
+EVN           sp3_sp3_287         H11         CCT         CCU         ODA     -60.000    10.0     3
+EVN           sp3_sp3_288         H11         CCT         CCU          H8      60.000    10.0     3
+EVN           sp3_sp3_289         OCX         CCS         CCT         OCZ     -60.000    10.0     3
+EVN           sp3_sp3_290         OCX         CCS         CCT         CCU      60.000    10.0     3
+EVN           sp3_sp3_291         OCX         CCS         CCT         H11     180.000    10.0     3
+EVN           sp3_sp3_292         CCQ         CCS         CCT         OCZ     180.000    10.0     3
+EVN           sp3_sp3_293         CCQ         CCS         CCT         CCU     -60.000    10.0     3
+EVN           sp3_sp3_294         CCQ         CCS         CCT         H11      60.000    10.0     3
+EVN           sp3_sp3_295         H14         CCS         CCT         OCZ      60.000    10.0     3
+EVN           sp3_sp3_296         H14         CCS         CCT         CCU     180.000    10.0     3
+EVN           sp3_sp3_297         H14         CCS         CCT         H11     -60.000    10.0     3
+EVN           sp3_sp3_298         OCW         CCQ         CCS         CCT      60.000    10.0     3
+EVN           sp3_sp3_299         OCW         CCQ         CCS         OCX     180.000    10.0     3
+EVN           sp3_sp3_300         OCW         CCQ         CCS         H14     -60.000    10.0     3
+EVN           sp3_sp3_301         OCP         CCQ         CCS         CCT     -60.000    10.0     3
+EVN           sp3_sp3_302         OCP         CCQ         CCS         OCX      60.000    10.0     3
+EVN           sp3_sp3_303         OCP         CCQ         CCS         H14     180.000    10.0     3
+EVN           sp3_sp3_304         OCR         CCQ         CCS         CCT     180.000    10.0     3
+EVN           sp3_sp3_305         OCR         CCQ         CCS         OCX     -60.000    10.0     3
+EVN           sp3_sp3_306         OCR         CCQ         CCS         H14      60.000    10.0     3
+EVN           sp3_sp3_307         CCS         CCQ         OCW         CCV     -60.000    10.0     3
+EVN           sp3_sp3_308         OCP         CCQ         OCW         CCV     180.000    10.0     3
+EVN           sp3_sp3_309         OCR         CCQ         OCW         CCV      60.000    10.0     3
+EVN           sp3_sp3_310         CCU         CCV         OCW         CCQ      60.000    10.0     3
+EVN           sp3_sp3_311          H9         CCV         OCW         CCQ     -60.000    10.0     3
+EVN           sp3_sp3_312         H10         CCV         OCW         CCQ     180.000    10.0     3
+EVN           sp3_sp3_313         CCS         CCT         OCZ         CCY      60.000    10.0     3
+EVN           sp3_sp3_314         CCU         CCT         OCZ         CCY     -60.000    10.0     3
+EVN           sp3_sp3_315         H11         CCT         OCZ         CCY     180.000    10.0     3
+EVN           sp3_sp3_316         OCX         CCY         OCZ         CCT     -60.000    10.0     3
+EVN           sp3_sp3_317         H12         CCY         OCZ         CCT     180.000    10.0     3
+EVN           sp3_sp3_318         H13         CCY         OCZ         CCT      60.000    10.0     3
+EVN           sp3_sp3_319         OCZ         CCY         OCX         CCS      60.000    10.0     3
+EVN           sp3_sp3_320         H12         CCY         OCX         CCS     -60.000    10.0     3
+EVN           sp3_sp3_321         H13         CCY         OCX         CCS     180.000    10.0     3
+EVN           sp3_sp3_322         CCT         CCS         OCX         CCY     -60.000    10.0     3
+EVN           sp3_sp3_323         CCQ         CCS         OCX         CCY     180.000    10.0     3
+EVN           sp3_sp3_324         H14         CCS         OCX         CCY      60.000    10.0     3
+EVN              const_21         CDG         CDH         CDI         CDD       0.000    10.0     2
+EVN              const_22         CDG         CDH         CDI         CEG     180.000    10.0     2
+EVN              const_23          H4         CDH         CDI         CDD     180.000    10.0     2
+EVN              const_24          H4         CDH         CDI         CEG       0.000    10.0     2
+EVN              const_25         CDF         CDG         CDH         CDI       0.000    10.0     2
+EVN              const_26         CDF         CDG         CDH          H4     180.000    10.0     2
+EVN              const_27         ODK         CDG         CDH         CDI     180.000    10.0     2
+EVN              const_28         ODK         CDG         CDH          H4       0.000    10.0     2
+EVN              const_29         CDE         CDF         CDG         CDH       0.000    10.0     2
+EVN              const_30         CDE         CDF         CDG         ODK     180.000    10.0     2
+EVN              const_31          H6         CDF         CDG         CDH     180.000    10.0     2
+EVN              const_32          H6         CDF         CDG         ODK       0.000    10.0     2
+EVN              const_33         CDD         CDE         CDF         CDG       0.000    10.0     2
+EVN              const_34         CDD         CDE         CDF          H6     180.000    10.0     2
+EVN              const_35         ODJ         CDE         CDF         CDG     180.000    10.0     2
+EVN              const_36         ODJ         CDE         CDF          H6       0.000    10.0     2
+EVN              const_37         CDI         CDD         CDE         CDF       0.000    10.0     2
+EVN              const_38         CDI         CDD         CDE         ODJ     180.000    10.0     2
+EVN              const_39         CDB         CDD         CDE         CDF     180.000    10.0     2
+EVN              const_40         CDB         CDD         CDE         ODJ       0.000    10.0     2
+EVN           sp3_sp3_325         CBJ         CBO         CDX         H52     180.000    10.0     3
+EVN           sp3_sp3_326         CBJ         CBO         CDX         H53     -60.000    10.0     3
+EVN           sp3_sp3_327         CBJ         CBO         CDX         H54      60.000    10.0     3
+EVN           sp3_sp3_328         OBN         CBO         CDX         H52      60.000    10.0     3
+EVN           sp3_sp3_329         OBN         CBO         CDX         H53     180.000    10.0     3
+EVN           sp3_sp3_330         OBN         CBO         CDX         H54     -60.000    10.0     3
+EVN           sp3_sp3_331         H51         CBO         CDX         H52     -60.000    10.0     3
+EVN           sp3_sp3_332         H51         CBO         CDX         H53      60.000    10.0     3
+EVN           sp3_sp3_333         H51         CBO         CDX         H54     180.000    10.0     3
+EVN           sp3_sp3_334         CBS         CBT         CDZ         H40     180.000    10.0     3
+EVN           sp3_sp3_335         CBS         CBT         CDZ         H41     -60.000    10.0     3
+EVN           sp3_sp3_336         CBS         CBT         CDZ         H42      60.000    10.0     3
+EVN           sp3_sp3_337         OBU         CBT         CDZ         H40      60.000    10.0     3
+EVN           sp3_sp3_338         OBU         CBT         CDZ         H41     180.000    10.0     3
+EVN           sp3_sp3_339         OBU         CBT         CDZ         H42     -60.000    10.0     3
+EVN           sp3_sp3_340         H39         CBT         CDZ         H40     -60.000    10.0     3
+EVN           sp3_sp3_341         H39         CBT         CDZ         H41      60.000    10.0     3
+EVN           sp3_sp3_342         H39         CBT         CDZ         H42     180.000    10.0     3
+EVN             sp2_sp3_1         CAB         CAC         CDN         H91     150.000    10.0     6
+EVN             sp2_sp3_2         CAB         CAC         CDN         H92     -90.000    10.0     6
+EVN             sp2_sp3_3         CAB         CAC         CDN         H93      30.000    10.0     6
+EVN             sp2_sp3_4         CAD         CAC         CDN         H91     -30.000    10.0     6
+EVN             sp2_sp3_5         CAD         CAC         CDN         H92      90.000    10.0     6
+EVN             sp2_sp3_6         CAD         CAC         CDN         H93    -150.000    10.0     6
+EVN           sp3_sp3_343         H44         CEB         OEA         CBS     180.000    10.0     3
+EVN           sp3_sp3_344         H45         CEB         OEA         CBS      60.000    10.0     3
+EVN           sp3_sp3_345         H46         CEB         OEA         CBS     -60.000    10.0     3
+EVN           sp3_sp3_346         CBC         CBB         OBG         H62     180.000    10.0     3
+EVN           sp3_sp3_347         CBA         CBB         OBG         H62      60.000    10.0     3
+EVN           sp3_sp3_348         H61         CBB         OBG         H62     -60.000    10.0     3
+EVN           sp3_sp3_349         CBT         CBS         OEA         CEB     180.000    10.0     3
+EVN           sp3_sp3_350         CBR         CBS         OEA         CEB      60.000    10.0     3
+EVN           sp3_sp3_351         H43         CBS         OEA         CEB     -60.000    10.0     3
+EVN           sp3_sp3_352         CBC         CBD         OBE         CBF     180.000    10.0     3
+EVN           sp3_sp3_353         OBK         CBD         OBE         CBF      60.000    10.0     3
+EVN           sp3_sp3_354         OBH         CBD         OBE         CBF     -60.000    10.0     3
+EVN             sp2_sp2_1         OAK         CAJ         OAL         CAM     180.000     5.0     2
+EVN             sp2_sp2_2         CAD         CAJ         OAL         CAM       0.000     5.0     2
+EVN           sp3_sp3_355         CAN         CAM         OAL         CAJ     180.000    10.0     3
+EVN           sp3_sp3_356         CAR         CAM         OAL         CAJ     -60.000    10.0     3
+EVN           sp3_sp3_357         H90         CAM         OAL         CAJ      60.000    10.0     3
+EVN           sp3_sp3_358          C5          C6          O6         CED     180.000    10.0     3
+EVN           sp3_sp3_359         H30          C6          O6         CED      60.000    10.0     3
+EVN           sp3_sp3_360         H31          C6          O6         CED     -60.000    10.0     3
+EVN           sp3_sp3_361         H32         CED          O6          C6     180.000    10.0     3
+EVN           sp3_sp3_362         H33         CED          O6          C6      60.000    10.0     3
+EVN           sp3_sp3_363         H34         CED          O6          C6     -60.000    10.0     3
+EVN             sp2_sp2_3         CAC         CAD         CAJ         OAL     180.000     5.0     2
+EVN             sp2_sp2_4         CAC         CAD         CAJ         OAK       0.000     5.0     2
+EVN             sp2_sp2_5         CAE         CAD         CAJ         OAL       0.000     5.0     2
+EVN             sp2_sp2_6         CAE         CAD         CAJ         OAK     180.000     5.0     2
+EVN           sp3_sp3_364         CBB         CBA         OAS         CAP     180.000    10.0     3
+EVN           sp3_sp3_365         CBF         CBA         OAS         CAP      60.000    10.0     3
+EVN           sp3_sp3_366         H67         CBA         OAS         CAP     -60.000    10.0     3
+EVN           sp3_sp3_367         CBJ         CBI         CDY         H56     180.000    10.0     3
+EVN           sp3_sp3_368         CBJ         CBI         CDY         H57     -60.000    10.0     3
+EVN           sp3_sp3_369         CBJ         CBI         CDY         H58      60.000    10.0     3
+EVN           sp3_sp3_370         OBH         CBI         CDY         H56      60.000    10.0     3
+EVN           sp3_sp3_371         OBH         CBI         CDY         H57     180.000    10.0     3
+EVN           sp3_sp3_372         OBH         CBI         CDY         H58     -60.000    10.0     3
+EVN           sp3_sp3_373         CBL         CBI         CDY         H56     -60.000    10.0     3
+EVN           sp3_sp3_374         CBL         CBI         CDY         H57      60.000    10.0     3
+EVN           sp3_sp3_375         CBL         CBI         CDY         H58     180.000    10.0     3
+EVN              const_41         CAC         CAD         CAE         CAF       0.000    10.0     2
+EVN              const_42         CAC         CAD         CAE         ODL     180.000    10.0     2
+EVN              const_43         CAJ         CAD         CAE         CAF     180.000    10.0     2
+EVN              const_44         CAJ         CAD         CAE         ODL       0.000    10.0     2
+EVN           sp3_sp3_376         CBI         CBL         CBM         OBN      60.000    10.0     3
+EVN           sp3_sp3_377         CBI         CBL         CBM         OBQ     180.000    10.0     3
+EVN           sp3_sp3_378         CBI         CBL         CBM         H48     -60.000    10.0     3
+EVN           sp3_sp3_379         OBP         CBL         CBM         OBN     180.000    10.0     3
+EVN           sp3_sp3_380         OBP         CBL         CBM         OBQ     -60.000    10.0     3
+EVN           sp3_sp3_381         OBP         CBL         CBM         H48      60.000    10.0     3
+EVN           sp3_sp3_382         H49         CBL         CBM         OBN     -60.000    10.0     3
+EVN           sp3_sp3_383         H49         CBL         CBM         OBQ      60.000    10.0     3
+EVN           sp3_sp3_384         H49         CBL         CBM         H48     180.000    10.0     3
+EVN           sp3_sp3_385         OBN         CBM         OBQ         CBR     180.000    10.0     3
+EVN           sp3_sp3_386         CBL         CBM         OBQ         CBR      60.000    10.0     3
+EVN           sp3_sp3_387         H48         CBM         OBQ         CBR     -60.000    10.0     3
+EVN           sp3_sp3_388         OBE         CBF         CDW         H64     180.000    10.0     3
+EVN           sp3_sp3_389         OBE         CBF         CDW         H65     -60.000    10.0     3
+EVN           sp3_sp3_390         OBE         CBF         CDW         H66      60.000    10.0     3
+EVN           sp3_sp3_391         CBA         CBF         CDW         H64      60.000    10.0     3
+EVN           sp3_sp3_392         CBA         CBF         CDW         H65     180.000    10.0     3
+EVN           sp3_sp3_393         CBA         CBF         CDW         H66     -60.000    10.0     3
+EVN           sp3_sp3_394         H63         CBF         CDW         H64     -60.000    10.0     3
+EVN           sp3_sp3_395         H63         CBF         CDW         H65      60.000    10.0     3
+EVN           sp3_sp3_396         H63         CBF         CDW         H66     180.000    10.0     3
+EVN           sp3_sp3_397         CBS         CBR         OBQ         CBM     180.000    10.0     3
+EVN           sp3_sp3_398         CBW         CBR         OBQ         CBM      60.000    10.0     3
+EVN           sp3_sp3_399         H47         CBR         OBQ         CBM     -60.000    10.0     3
+EVN           sp3_sp3_400         CBI         CBL         OBP         H50     180.000    10.0     3
+EVN           sp3_sp3_401         CBM         CBL         OBP         H50      60.000    10.0     3
+EVN           sp3_sp3_402         H49         CBL         OBP         H50     -60.000    10.0     3
+EVN           sp3_sp3_403          O5          C5          C6          O6     180.000    10.0     3
+EVN           sp3_sp3_404          O5          C5          C6         H30     -60.000    10.0     3
+EVN           sp3_sp3_405          O5          C5          C6         H31      60.000    10.0     3
+EVN           sp3_sp3_406          C4          C5          C6          O6      60.000    10.0     3
+EVN           sp3_sp3_407          C4          C5          C6         H30     180.000    10.0     3
+EVN           sp3_sp3_408          C4          C5          C6         H31     -60.000    10.0     3
+EVN           sp3_sp3_409         H29          C5          C6          O6     -60.000    10.0     3
+EVN           sp3_sp3_410         H29          C5          C6         H30      60.000    10.0     3
+EVN           sp3_sp3_411         H29          C5          C6         H31     180.000    10.0     3
+EVN           sp3_sp3_412         CAO         CAP         OAS         CBA     180.000    10.0     3
+EVN           sp3_sp3_413         OAQ         CAP         OAS         CBA      60.000    10.0     3
+EVN           sp3_sp3_414         H68         CAP         OAS         CBA     -60.000    10.0     3
+EVN             sp2_sp2_7         CAB         CAA         OAH         H94     180.000     5.0     2
+EVN             sp2_sp2_8         CAF         CAA         OAH         H94       0.000     5.0     2
+EVN           sp3_sp3_427         OBU         CBV          O4          C4     180.000    10.0     3
+EVN           sp3_sp3_428         CBW         CBV          O4          C4      60.000    10.0     3
+EVN           sp3_sp3_429         H36         CBV          O4          C4     -60.000    10.0     3
+EVN           sp3_sp3_430         CAO         CAN         OAT         CAU     180.000    10.0     3
+EVN           sp3_sp3_431         CAM         CAN         OAT         CAU      60.000    10.0     3
+EVN           sp3_sp3_432         H71         CAN         OAT         CAU     -60.000    10.0     3
+EVN           sp3_sp3_433         CAM         CAR         CDO         H87     180.000    10.0     3
+EVN           sp3_sp3_434         CAM         CAR         CDO         H88     -60.000    10.0     3
+EVN           sp3_sp3_435         CAM         CAR         CDO         H89      60.000    10.0     3
+EVN           sp3_sp3_436         OAQ         CAR         CDO         H87      60.000    10.0     3
+EVN           sp3_sp3_437         OAQ         CAR         CDO         H88     180.000    10.0     3
+EVN           sp3_sp3_438         OAQ         CAR         CDO         H89     -60.000    10.0     3
+EVN           sp3_sp3_439         H86         CAR         CDO         H87     -60.000    10.0     3
+EVN           sp3_sp3_440         H86         CAR         CDO         H88      60.000    10.0     3
+EVN           sp3_sp3_441         H86         CAR         CDO         H89     180.000    10.0     3
+EVN             sp2_sp3_7         CDH         CDI         CEG          H1     150.000    10.0     6
+EVN             sp2_sp3_8         CDH         CDI         CEG          H2     -90.000    10.0     6
+EVN             sp2_sp3_9         CDH         CDI         CEG          H3      30.000    10.0     6
+EVN            sp2_sp3_10         CDD         CDI         CEG          H1     -30.000    10.0     6
+EVN            sp2_sp3_11         CDD         CDI         CEG          H2      90.000    10.0     6
+EVN            sp2_sp3_12         CDD         CDI         CEG          H3    -150.000    10.0     6
+EVN           sp3_sp3_442         CBR         CBW         OBX         H38     180.000    10.0     3
+EVN           sp3_sp3_443         CBV         CBW         OBX         H38      60.000    10.0     3
+EVN           sp3_sp3_444         H37         CBW         OBX         H38     -60.000    10.0     3
+EVN             sp2_sp2_9         CAD         CAE         ODL         CDM     180.000     5.0     2
+EVN            sp2_sp2_10         CAF         CAE         ODL         CDM       0.000     5.0     2
+EVN           sp3_sp3_445          O5          C1          O1         CCI     180.000    10.0     3
+EVN           sp3_sp3_446          C2          C1          O1         CCI      60.000    10.0     3
+EVN           sp3_sp3_447         H22          C1          O1         CCI     -60.000    10.0     3
+EVN           sp3_sp3_457          C5          C4          O4         CBV     180.000    10.0     3
+EVN           sp3_sp3_458          C3          C4          O4         CBV      60.000    10.0     3
+EVN           sp3_sp3_459         H35          C4          O4         CBV     -60.000    10.0     3
+EVN           sp3_sp3_460         CCJ         CCI          O1          C1     180.000    10.0     3
+EVN           sp3_sp3_461         OCN         CCI          O1          C1      60.000    10.0     3
+EVN           sp3_sp3_462         H21         CCI          O1          C1     -60.000    10.0     3
+EVN           sp3_sp3_463          C4          C3          O3         H25     180.000    10.0     3
+EVN           sp3_sp3_464          C2          C3          O3         H25      60.000    10.0     3
+EVN           sp3_sp3_465         H24          C3          O3         H25     -60.000    10.0     3
+EVN           sp3_sp3_466         ODL         CDM         ODL         CAE     180.000    10.0     3
+EVN           sp3_sp3_467         H95         CDM         ODL         CAE     -60.000    10.0     3
+EVN           sp3_sp3_468         H96         CDM         ODL         CAE      60.000    10.0     3
+EVN           sp3_sp3_469         H97         CDM         ODL         CAE     180.000    10.0     3
+EVN           sp3_sp3_470         CAZ         CAU         OAT         CAN     180.000    10.0     3
+EVN           sp3_sp3_471         OAV         CAU         OAT         CAN      60.000    10.0     3
+EVN           sp3_sp3_472         H72         CAU         OAT         CAN     -60.000    10.0     3
+EVN              const_45         CDE         CDD         CDI         CDH       0.000    10.0     2
+EVN              const_46         CDE         CDD         CDI         CEG     180.000    10.0     2
+EVN              const_47         CDB         CDD         CDI         CDH     180.000    10.0     2
+EVN              const_48         CDB         CDD         CDI         CEG       0.000    10.0     2
+EVN           sp3_sp3_473          C1          C2          O2         CEF     180.000    10.0     3
+EVN           sp3_sp3_474          C3          C2          O2         CEF      60.000    10.0     3
+EVN           sp3_sp3_475         H23          C2          O2         CEF     -60.000    10.0     3
+EVN           sp3_sp3_476         CAZ         CAU         OAV         CAW      60.000    10.0     3
+EVN           sp3_sp3_477         OAT         CAU         OAV         CAW      60.000    10.0     3
+EVN           sp3_sp3_478         H72         CAU         OAV         CAW     -60.000    10.0     3
+EVN           sp3_sp3_479         CCI         CCJ         OCO         H17     180.000    10.0     3
+EVN           sp3_sp3_480         CCK         CCJ         OCO         H17      60.000    10.0     3
+EVN           sp3_sp3_481         H16         CCJ         OCO         H17     -60.000    10.0     3
+EVN            sp2_sp2_11         ODA         CDB         CDD         CDI     180.000     5.0     2
+EVN            sp2_sp2_12         ODA         CDB         CDD         CDE       0.000     5.0     2
+EVN            sp2_sp2_13         ODC         CDB         CDD         CDI       0.000     5.0     2
+EVN            sp2_sp2_14         ODC         CDB         CDD         CDE     180.000     5.0     2
+EVN            sp2_sp2_15         ODC         CDB         ODA         CCU     180.000     5.0     2
+EVN            sp2_sp2_16         CDD         CDB         ODA         CCU       0.000     5.0     2
+EVN           sp3_sp3_482         H26         CEF          O2          C2     180.000    10.0     3
+EVN           sp3_sp3_483         H27         CEF          O2          C2      60.000    10.0     3
+EVN           sp3_sp3_484         H28         CEF          O2          C2     -60.000    10.0     3
+EVN            sp2_sp3_13         ODS         NDQ         CAY         CAZ       0.000    10.0     6
+EVN            sp2_sp3_14         ODS         NDQ         CAY         CDV     120.000    10.0     6
+EVN            sp2_sp3_15         ODS         NDQ         CAY         CAX    -120.000    10.0     6
+EVN            sp2_sp3_16         ODR         NDQ         CAY         CAZ     180.000    10.0     6
+EVN            sp2_sp3_17         ODR         NDQ         CAY         CDV     -60.000    10.0     6
+EVN            sp2_sp3_18         ODR         NDQ         CAY         CAX      60.000    10.0     6
+EVN           sp3_sp3_485         CCT         CCU         ODA         CDB     180.000    10.0     3
+EVN           sp3_sp3_486         CCV         CCU         ODA         CDB     -60.000    10.0     3
+EVN           sp3_sp3_487          H8         CCU         ODA         CDB      60.000    10.0     3
+EVN           sp3_sp3_488         CAZ         CAY         CDV         H75     180.000    10.0     3
+EVN           sp3_sp3_489         CAZ         CAY         CDV         H76     -60.000    10.0     3
+EVN           sp3_sp3_490         CAZ         CAY         CDV         H77      60.000    10.0     3
+EVN           sp3_sp3_491         NDQ         CAY         CDV         H75      60.000    10.0     3
+EVN           sp3_sp3_492         NDQ         CAY         CDV         H76     180.000    10.0     3
+EVN           sp3_sp3_493         NDQ         CAY         CDV         H77     -60.000    10.0     3
+EVN           sp3_sp3_494         CAX         CAY         CDV         H75     -60.000    10.0     3
+EVN           sp3_sp3_495         CAX         CAY         CDV         H76      60.000    10.0     3
+EVN           sp3_sp3_496         CAX         CAY         CDV         H77     180.000    10.0     3
+EVN            sp2_sp2_17         CDH         CDG         ODK          H5     180.000     5.0     2
+EVN            sp2_sp2_18         CDF         CDG         ODK          H5       0.000     5.0     2
+EVN           sp3_sp3_497         CCT         CCU         CCV         OCW     180.000    10.0     3
+EVN           sp3_sp3_498         CCT         CCU         CCV          H9     -60.000    10.0     3
+EVN           sp3_sp3_499         CCT         CCU         CCV         H10      60.000    10.0     3
+EVN           sp3_sp3_500         ODA         CCU         CCV         OCW      60.000    10.0     3
+EVN           sp3_sp3_501         ODA         CCU         CCV          H9     180.000    10.0     3
+EVN           sp3_sp3_502         ODA         CCU         CCV         H10     -60.000    10.0     3
+EVN           sp3_sp3_503          H8         CCU         CCV         OCW     -60.000    10.0     3
+EVN           sp3_sp3_504          H8         CCU         CCV          H9      60.000    10.0     3
+EVN           sp3_sp3_505          H8         CCU         CCV         H10     180.000    10.0     3
+EVN           sp3_sp3_506         OCP         CCQ         OCR         CCL     180.000    10.0     3
+EVN           sp3_sp3_507         CCS         CCQ         OCR         CCL      60.000    10.0     3
+EVN           sp3_sp3_508         OCW         CCQ         OCR         CCL     -60.000    10.0     3
+EVN            sp2_sp2_19         CDD         CDE         ODJ          H7     180.000     5.0     2
+EVN            sp2_sp2_20         CDF         CDE         ODJ          H7       0.000     5.0     2
+EVN           sp3_sp3_509         CAY         CAX         ODT         CDU     180.000    10.0     3
+EVN           sp3_sp3_510         CAW         CAX         ODT         CDU      60.000    10.0     3
+EVN           sp3_sp3_511         H82         CAX         ODT         CDU     -60.000    10.0     3
+EVN           sp3_sp3_512         OAV         CAW         CDP         H79     180.000    10.0     3
+EVN           sp3_sp3_513         OAV         CAW         CDP         H80     -60.000    10.0     3
+EVN           sp3_sp3_514         OAV         CAW         CDP         H81      60.000    10.0     3
+EVN           sp3_sp3_515         CAX         CAW         CDP         H79      60.000    10.0     3
+EVN           sp3_sp3_516         CAX         CAW         CDP         H80     180.000    10.0     3
+EVN           sp3_sp3_517         CAX         CAW         CDP         H81     -60.000    10.0     3
+EVN           sp3_sp3_518         H78         CAW         CDP         H79     -60.000    10.0     3
+EVN           sp3_sp3_519         H78         CAW         CDP         H80      60.000    10.0     3
+EVN           sp3_sp3_520         H78         CAW         CDP         H81     180.000    10.0     3
+EVN           sp3_sp3_521         H83         CDU         ODT         CAX     180.000    10.0     3
+EVN           sp3_sp3_522         H84         CDU         ODT         CAX      60.000    10.0     3
+EVN           sp3_sp3_523         H85         CDU         ODT         CAX     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EVN    chir_1    CCU    ODA    CCT    CCV    negative
+EVN    chir_2    CCT    OCZ    CCS    CCU    positive
+EVN    chir_3    CCS    OCX    CCQ    CCT    negative
+EVN    chir_4    CCQ    OCP    OCR    OCW    negative
+EVN    chir_5    CCK    OCP    CCL    CCJ    positive
+EVN    chir_6    CCJ    OCO    CCI    CCK    negative
+EVN    chir_7    CCL    OCR    CCK    CCM    positive
+EVN    chir_8    CCI    O1    OCN    CCJ    positive
+EVN    chir_9    C1    O1    O5    C2    positive
+EVN    chir_10    C2    O2    C1    C3    positive
+EVN    chir_11    C3    O3    C2    C4    positive
+EVN    chir_12    C5    O5    C4    C6    negative
+EVN    chir_13    C4    O4    C5    C3    positive
+EVN    chir_14    CBV    O4    OBU    CBW    positive
+EVN    chir_15    CBW    OBX    CBV    CBR    negative
+EVN    chir_16    CBT    OBU    CBS    CDZ    negative
+EVN    chir_17    CBS    OEA    CBR    CBT    positive
+EVN    chir_18    CBR    OBQ    CBS    CBW    negative
+EVN    chir_19    CBM    OBQ    OBN    CBL    positive
+EVN    chir_20    CBL    OBP    CBM    CBI    positive
+EVN    chir_21    CBO    OBN    CBJ    CDX    negative
+EVN    chir_22    CBJ    OBK    CBI    CBO    negative
+EVN    chir_23    CBI    OBH    CBJ    CBL    negative
+EVN    chir_24    CBD    OBH    OBK    OBE    negative
+EVN    chir_25    CBB    OBG    CBA    CBC    negative
+EVN    chir_26    CBF    OBE    CBA    CDW    negative
+EVN    chir_27    CBA    OAS    CBF    CBB    positive
+EVN    chir_28    CAP    OAS    OAQ    CAO    positive
+EVN    chir_29    CAN    OAT    CAM    CAO    negative
+EVN    chir_30    CAU    OAT    OAV    CAZ    negative
+EVN    chir_31    CAY    NDQ    CAX    CAZ    positive
+EVN    chir_32    CAW    OAV    CAX    CDP    positive
+EVN    chir_33    CAX    ODT    CAW    CAY    negative
+EVN    chir_34    CAR    OAQ    CAM    CDO    negative
+EVN    chir_35    CAM    OAL    CAN    CAR    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EVN    plan-1         CAA   0.020
+EVN    plan-1         CAB   0.020
+EVN    plan-1         CAC   0.020
+EVN    plan-1         CAD   0.020
+EVN    plan-1         CAE   0.020
+EVN    plan-1         CAF   0.020
+EVN    plan-1         CAJ   0.020
+EVN    plan-1         CDN   0.020
+EVN    plan-1        CLAG   0.020
+EVN    plan-1        CLAI   0.020
+EVN    plan-1         OAH   0.020
+EVN    plan-1         ODL   0.020
+EVN    plan-2         CDB   0.020
+EVN    plan-2         CDD   0.020
+EVN    plan-2         CDE   0.020
+EVN    plan-2         CDF   0.020
+EVN    plan-2         CDG   0.020
+EVN    plan-2         CDH   0.020
+EVN    plan-2         CDI   0.020
+EVN    plan-2         CEG   0.020
+EVN    plan-2          H4   0.020
+EVN    plan-2          H6   0.020
+EVN    plan-2         ODJ   0.020
+EVN    plan-2         ODK   0.020
+EVN    plan-3         CDB   0.020
+EVN    plan-3         CDD   0.020
+EVN    plan-3         ODA   0.020
+EVN    plan-3         ODC   0.020
+EVN    plan-4         CAY   0.020
+EVN    plan-4         NDQ   0.020
+EVN    plan-4         ODR   0.020
+EVN    plan-4         ODS   0.020
+EVN    plan-5         CAD   0.020
+EVN    plan-5         CAJ   0.020
+EVN    plan-5         OAK   0.020
+EVN    plan-5         OAL   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EVN           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                                                                                                                                                                 Cc1cc(O)cc(O)c1C(OC2COC4(C3C2OCO3)OC5C(O4)C(C(OC5)OC6C(OC)C(O)C(C(O6)COC)OC7C(O)C(C(C(O7)C)OC)OC8C(O)C9(C(C(O8)C)OC%10(O9)OC(C)C(C(C%10)O)OC%11OC(C)C(C(C%11)OC%12OC(C)C(C(C%12)(C)[N+]([O-])=O)OC)OC(c%13c(c(c(c(c%13C)Cl)O)Cl)OC)=O)C)O)=O
+EVN            InChI                InChI  1.03 InChI=1S/C70H97Cl2NO38/c1-24-15-31(74)16-32(75)40(24)61(82)100-36-22-94-70(60-53(36)92-23-93-60)108-37-21-91-63(46(79)52(37)109-70)106-65-56(89-13)45(78)51(35(101-65)20-86-10)104-64-47(80)55(50(87-11)27(4)97-64)105-66-57(81)68(9)59(30(7)98-66)110-69(111-68)18-33(76)48(28(5)107-69)102-38-17-34(99-39-19-67(8,73(84)85)58(90-14)29(6)96-39)49(26(3)95-38)103-62(83)41-25(2)42(71)44(77)43(72)54(41)88-12/h15-16,26-30,33-39,45-53,55-60,63-66,74-81H,17-23H2,1-14H3/t26-,27-,28-,29+,30-,33-,34-,35-,36-,37+,38+,39-,45+,46-,47-,48-,49-,50+,51-,52-,53+,55-,56+,57-,58+,59-,60-,63+,64+,65+,66+,67+,68-,69-,70-/m1/s1
+EVN         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  UPADRKHAIMTUCC-LRNXXXSBSA-N
+EVN SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                                                                 COC[C@H]1O[C@@H](O[C@@H]2OC[C@@H]3O[C@@]4(OC[C@@H](OC(=O)c5c(C)cc(O)cc5O)[C@@H]6OCO[C@@H]46)O[C@H]3[C@H]2O)[C@@H](OC)[C@@H](O)[C@@H]1O[C@@H]7O[C@H](C)[C@H](OC)[C@H](O[C@@H]8O[C@H](C)[C@H]9O[C@]%10(C[C@@H](O)[C@H](O[C@H]%11C[C@@H](O[C@@H]%12C[C@@](C)([C@@H](OC)[C@H](C)O%12)[N+]([O-])=O)[C@H](OC(=O)c%13c(C)c(Cl)c(O)c(Cl)c%13OC)[C@@H](C)O%11)[C@@H](C)O%10)O[C@]9(C)[C@@H]8O)[C@H]7O
+EVN           SMILES               CACTVS 3.385                                                                                                                                                                                                                                                                                        COC[CH]1O[CH](O[CH]2OC[CH]3O[C]4(OC[CH](OC(=O)c5c(C)cc(O)cc5O)[CH]6OCO[CH]46)O[CH]3[CH]2O)[CH](OC)[CH](O)[CH]1O[CH]7O[CH](C)[CH](OC)[CH](O[CH]8O[CH](C)[CH]9O[C]%10(C[CH](O)[CH](O[CH]%11C[CH](O[CH]%12C[C](C)([CH](OC)[CH](C)O%12)[N+]([O-])=O)[CH](OC(=O)c%13c(C)c(Cl)c(O)c(Cl)c%13OC)[CH](C)O%11)[CH](C)O%10)O[C]9(C)[CH]8O)[CH]7O
+EVN SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                                                                                                                                                                                                               Cc1cc(cc(c1C(=O)O[C@@H]2CO[C@]3([C@H]4[C@H]2OCO4)O[C@H]5CO[C@H]([C@@H]([C@@H]5O3)O)O[C@H]6[C@H]([C@H]([C@@H]([C@H](O6)COC)O[C@H]7[C@@H]([C@H]([C@H]([C@H](O7)C)OC)O[C@H]8[C@H]([C@@]9([C@@H]([C@H](O8)C)O[C@@]1(O9)C[C@H]([C@@H]([C@H](O1)C)O[C@H]1C[C@H]([C@@H]([C@H](O1)C)OC(=O)c1c(c(c(c(c1OC)Cl)O)Cl)C)O[C@@H]1C[C@]([C@H]([C@@H](O1)C)OC)(C)[N+](=O)[O-])O)C)O)O)O)OC)O)O
+EVN           SMILES "OpenEye OEToolkits" 2.0.5                                                                                                                                                                                                                                                                                                                                                                                                   Cc1cc(cc(c1C(=O)OC2COC3(C4C2OCO4)OC5COC(C(C5O3)O)OC6C(C(C(C(O6)COC)OC7C(C(C(C(O7)C)OC)OC8C(C9(C(C(O8)C)OC1(O9)CC(C(C(O1)C)OC1CC(C(C(O1)C)OC(=O)c1c(c(c(c(c1OC)Cl)O)Cl)C)OC1CC(C(C(O1)C)OC)(C)[N+](=O)[O-])O)C)O)O)O)OC)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EVN acedrg               243         "dictionary generator"                  
+EVN acedrg_database      11          "data source"                           
+EVN rdkit                2017.03.2   "Chemoinformatics tool"
+EVN refmac5              5.8.0238    "optimization tool"                     

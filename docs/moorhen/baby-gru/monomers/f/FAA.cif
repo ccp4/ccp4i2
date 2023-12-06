@@ -1,0 +1,592 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FAA     FAA      "N5-(4-HYDROXYBENZYL)FLAVIN-ADENINE DINUCLEOTIDE"     NON-POLYMER     99     61     .     
+#
+data_comp_FAA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FAA     PA      P       P       0       96.030      44.208      74.692      
+FAA     O1A     O       O       0       95.583      44.213      76.117      
+FAA     O2A     O       OP      -1      95.258      43.374      73.723      
+FAA     O5B     O       O2      0       96.109      45.720      74.158      
+FAA     C5B     C       CH2     0       96.517      45.996      72.792      
+FAA     C4B     C       CH1     0       96.126      47.406      72.417      
+FAA     O4B     O       O2      0       94.696      47.575      72.574      
+FAA     C3B     C       CH1     0       96.719      48.535      73.265      
+FAA     O3B     O       OH1     0       98.045      48.845      72.854      
+FAA     C2B     C       CH1     0       95.730      49.673      72.993      
+FAA     O2B     O       OH1     0       96.041      50.401      71.823      
+FAA     C1B     C       CH1     0       94.401      48.930      72.839      
+FAA     N9A     N       NR5     0       93.553      48.993      74.025      
+FAA     C8A     C       CR15    0       93.824      48.442      75.253      
+FAA     N7A     N       NRD5    0       92.885      48.656      76.140      
+FAA     C5A     C       CR56    0       91.931      49.397      75.459      
+FAA     C6A     C       CR6     0       90.687      49.938      75.854      
+FAA     N6A     N       NH2     0       90.181      49.806      77.079      
+FAA     N1A     N       NRD6    0       89.977      50.629      74.924      
+FAA     C2A     C       CR16    0       90.493      50.758      73.692      
+FAA     N3A     N       NRD6    0       91.647      50.294      73.211      
+FAA     C4A     C       CR56    0       92.331      49.613      74.151      
+FAA     N1      N       NRD6    0       105.389     44.568      71.584      
+FAA     C2      C       CR6     0       106.227     43.634      71.075      
+FAA     O2      O       O       0       105.783     42.640      70.493      
+FAA     N3      N       NR6     0       107.566     43.744      71.181      
+FAA     C4      C       CR6     0       108.152     44.812      71.809      
+FAA     O4      O       O       0       109.373     44.846      71.870      
+FAA     C4X     C       CR66    0       107.221     45.869      72.385      
+FAA     N5      N       NR6     1       107.642     47.032      73.073      
+FAA     C5X     C       CR66    0       106.693     47.961      73.565      
+FAA     C6      C       CR16    0       107.083     49.160      74.260      
+FAA     C7      C       CR6     0       106.155     50.057      74.745      
+FAA     C7M     C       CH3     0       106.614     51.299      75.470      
+FAA     C8      C       CR6     0       104.775     49.802      74.554      
+FAA     C8M     C       CH3     0       103.735     50.765      75.073      
+FAA     C9      C       CR16    0       104.381     48.657      73.886      
+FAA     C9A     C       CR66    0       105.312     47.719      73.378      
+FAA     N10     N       NR6     0       104.896     46.553      72.711      
+FAA     C10     C       CR66    0       105.837     45.645      72.214      
+FAA     "C1'"   C       CH2     0       103.452     46.274      72.483      
+FAA     "C2'"   C       CH1     0       102.754     45.528      73.637      
+FAA     "O2'"   O       OH1     0       103.149     46.044      74.915      
+FAA     "C3'"   C       CH1     0       102.962     44.005      73.620      
+FAA     "O3'"   O       OH1     0       102.707     43.472      72.318      
+FAA     "C4'"   C       CH1     0       102.093     43.246      74.630      
+FAA     "O4'"   O       OH1     0       102.659     41.953      74.852      
+FAA     "C5'"   C       CH2     0       100.658     43.080      74.179      
+FAA     "O5'"   O       O2      0       99.800      42.864      75.336      
+FAA     P       P       P       0       98.276      42.399      75.131      
+FAA     O1P     O       O       0       98.199      41.390      74.032      
+FAA     O2P     O       OP      -1      97.730      42.028      76.470      
+FAA     O3P     O       O2      0       97.570      43.757      74.646      
+FAA     C7P     C       CH2     0       109.095     47.292      73.252      
+FAA     C1P     C       CR6     0       109.775     47.847      72.013      
+FAA     C2P     C       CR16    0       111.101     47.530      71.740      
+FAA     C3P     C       CR16    0       111.741     48.020      70.610      
+FAA     C4P     C       CR6     0       111.055     48.841      69.728      
+FAA     O4P     O       OH1     0       111.683     49.330      68.608      
+FAA     C5P     C       CR16    0       109.732     49.166      69.982      
+FAA     C6P     C       CR16    0       109.101     48.670      71.115      
+FAA     H51A    H       H       0       96.082      45.359      72.174      
+FAA     H52A    H       H       0       97.497      45.891      72.708      
+FAA     H4B     H       H       0       96.362      47.549      71.475      
+FAA     H3B     H       H       0       96.707      48.294      74.227      
+FAA     HO3A    H       H       0       98.331      49.493      73.321      
+FAA     H2B     H       H       0       95.692      50.290      73.772      
+FAA     HO2A    H       H       0       95.675      51.166      71.866      
+FAA     H1B     H       H       0       93.914      49.311      72.073      
+FAA     H8A     H       H       0       94.610      47.956      75.439      
+FAA     H61A    H       H       0       89.444      50.232      77.296      
+FAA     H62A    H       H       0       90.586      49.295      77.665      
+FAA     H2A     H       H       0       89.964      51.247      73.080      
+FAA     HN3     H       H       0       108.071     43.109      70.834      
+FAA     H6      H       H       0       107.990     49.352      74.397      
+FAA     HM71    H       H       0       106.294     52.086      75.001      
+FAA     HM72    H       H       0       107.584     51.322      75.509      
+FAA     HM73    H       H       0       106.258     51.297      76.374      
+FAA     HM81    H       H       0       102.845     50.441      74.858      
+FAA     HM82    H       H       0       103.866     51.635      74.663      
+FAA     HM83    H       H       0       103.822     50.848      76.036      
+FAA     H9      H       H       0       103.454     48.507      73.776      
+FAA     "H1'1"  H       H       0       103.351     45.758      71.665      
+FAA     "H1'2"  H       H       0       102.984     47.111      72.325      
+FAA     "H2'"   H       H       0       101.781     45.696      73.552      
+FAA     "HO2'"  H       H       0       103.925     45.777      75.133      
+FAA     "H3'"   H       H       0       103.912     43.824      73.839      
+FAA     "HO3'"  H       H       0       103.092     42.719      72.254      
+FAA     "H4'"   H       H       0       102.096     43.744      75.500      
+FAA     "HO4'"  H       H       0       102.296     41.569      75.516      
+FAA     "H5'1"  H       H       0       100.594     42.315      73.570      
+FAA     "H5'2"  H       H       0       100.364     43.881      73.700      
+FAA     H7P1    H       H       0       109.538     46.463      73.512      
+FAA     H7P2    H       H       0       109.240     47.910      73.986      
+FAA     H2P     H       H       0       111.577     46.971      72.333      
+FAA     H3P     H       H       0       112.642     47.796      70.441      
+FAA     HOP4    H       H       0       111.272     49.335      67.851      
+FAA     H5P     H       H       0       109.262     49.725      69.385      
+FAA     H6P     H       H       0       108.202     48.902      71.274      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FAA          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+FAA          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+FAA          PA         O5B      SINGLE       n     1.604  0.0133     1.604  0.0133
+FAA          PA         O3P      SINGLE       n     1.604  0.0133     1.604  0.0133
+FAA         O5B         C5B      SINGLE       n     1.450  0.0166     1.450  0.0166
+FAA         C5B         C4B      SINGLE       n     1.509  0.0100     1.509  0.0100
+FAA         C4B         O4B      SINGLE       n     1.451  0.0100     1.451  0.0100
+FAA         C4B         C3B      SINGLE       n     1.535  0.0100     1.535  0.0100
+FAA         O4B         C1B      SINGLE       n     1.409  0.0100     1.409  0.0100
+FAA         C3B         O3B      SINGLE       n     1.422  0.0100     1.422  0.0100
+FAA         C3B         C2B      SINGLE       n     1.531  0.0100     1.531  0.0100
+FAA         C2B         O2B      SINGLE       n     1.411  0.0100     1.411  0.0100
+FAA         C2B         C1B      SINGLE       n     1.525  0.0100     1.525  0.0100
+FAA         C1B         N9A      SINGLE       n     1.458  0.0100     1.458  0.0100
+FAA         N9A         C8A      SINGLE       y     1.372  0.0100     1.372  0.0100
+FAA         N9A         C4A      SINGLE       y     1.374  0.0101     1.374  0.0101
+FAA         C8A         N7A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+FAA         N7A         C5A      SINGLE       y     1.388  0.0100     1.388  0.0100
+FAA         C5A         C6A      SINGLE       y     1.408  0.0100     1.408  0.0100
+FAA         C5A         C4A      DOUBLE       y     1.381  0.0100     1.381  0.0100
+FAA         C6A         N6A      SINGLE       n     1.330  0.0100     1.330  0.0100
+FAA         C6A         N1A      DOUBLE       y     1.354  0.0100     1.354  0.0100
+FAA         N1A         C2A      SINGLE       y     1.339  0.0100     1.339  0.0100
+FAA         C2A         N3A      DOUBLE       y     1.330  0.0100     1.330  0.0100
+FAA         N3A         C4A      SINGLE       y     1.343  0.0100     1.343  0.0100
+FAA          N1          C2      SINGLE       y     1.349  0.0188     1.349  0.0188
+FAA          N1         C10      DOUBLE       y     1.316  0.0100     1.316  0.0100
+FAA          C2          O2      DOUBLE       n     1.233  0.0164     1.233  0.0164
+FAA          C2          N3      SINGLE       y     1.354  0.0200     1.354  0.0200
+FAA          N3          C4      SINGLE       y     1.372  0.0117     1.372  0.0117
+FAA          C4          O4      DOUBLE       n     1.223  0.0119     1.223  0.0119
+FAA          C4         C4X      SINGLE       y     1.465  0.0200     1.465  0.0200
+FAA         C4X          N5      DOUBLE       y     1.398  0.0100     1.398  0.0100
+FAA         C4X         C10      SINGLE       y     1.400  0.0100     1.400  0.0100
+FAA          N5         C5X      SINGLE       y     1.398  0.0100     1.398  0.0100
+FAA          N5         C7P      SINGLE       n     1.475  0.0100     1.475  0.0100
+FAA         C5X          C6      SINGLE       y     1.416  0.0140     1.416  0.0140
+FAA         C5X         C9A      DOUBLE       y     1.404  0.0100     1.404  0.0100
+FAA          C6          C7      DOUBLE       y     1.376  0.0100     1.376  0.0100
+FAA          C7         C7M      SINGLE       n     1.507  0.0100     1.507  0.0100
+FAA          C7          C8      SINGLE       y     1.415  0.0183     1.415  0.0183
+FAA          C8         C8M      SINGLE       n     1.507  0.0100     1.507  0.0100
+FAA          C8          C9      DOUBLE       y     1.378  0.0152     1.378  0.0152
+FAA          C9         C9A      SINGLE       y     1.404  0.0100     1.404  0.0100
+FAA         C9A         N10      SINGLE       y     1.393  0.0100     1.393  0.0100
+FAA         N10         C10      SINGLE       y     1.383  0.0127     1.383  0.0127
+FAA         N10       "C1'"      SINGLE       n     1.474  0.0100     1.474  0.0100
+FAA       "C1'"       "C2'"      SINGLE       n     1.517  0.0189     1.517  0.0189
+FAA       "C2'"       "O2'"      SINGLE       n     1.424  0.0199     1.424  0.0199
+FAA       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+FAA       "C3'"       "O3'"      SINGLE       n     1.424  0.0199     1.424  0.0199
+FAA       "C3'"       "C4'"      SINGLE       n     1.530  0.0100     1.530  0.0100
+FAA       "C4'"       "O4'"      SINGLE       n     1.429  0.0100     1.429  0.0100
+FAA       "C4'"       "C5'"      SINGLE       n     1.511  0.0100     1.511  0.0100
+FAA       "C5'"       "O5'"      SINGLE       n     1.454  0.0165     1.454  0.0165
+FAA       "O5'"           P      SINGLE       n     1.604  0.0133     1.604  0.0133
+FAA           P         O1P      DOUBLE       n     1.493  0.0122     1.493  0.0122
+FAA           P         O2P      SINGLE       n     1.493  0.0122     1.493  0.0122
+FAA           P         O3P      SINGLE       n     1.604  0.0133     1.604  0.0133
+FAA         C7P         C1P      SINGLE       n     1.515  0.0100     1.515  0.0100
+FAA         C1P         C2P      DOUBLE       y     1.387  0.0100     1.387  0.0100
+FAA         C1P         C6P      SINGLE       y     1.387  0.0100     1.387  0.0100
+FAA         C2P         C3P      SINGLE       y     1.385  0.0100     1.385  0.0100
+FAA         C3P         C4P      DOUBLE       y     1.383  0.0100     1.383  0.0100
+FAA         C4P         O4P      SINGLE       n     1.374  0.0155     1.374  0.0155
+FAA         C4P         C5P      SINGLE       y     1.383  0.0100     1.383  0.0100
+FAA         C5P         C6P      DOUBLE       y     1.385  0.0100     1.385  0.0100
+FAA         C5B        H51A      SINGLE       n     1.089  0.0100     0.989  0.0200
+FAA         C5B        H52A      SINGLE       n     1.089  0.0100     0.989  0.0200
+FAA         C4B         H4B      SINGLE       n     1.089  0.0100     0.981  0.0200
+FAA         C3B         H3B      SINGLE       n     1.089  0.0100     0.992  0.0200
+FAA         O3B        HO3A      SINGLE       n     0.970  0.0120     0.849  0.0200
+FAA         C2B         H2B      SINGLE       n     1.089  0.0100     0.994  0.0200
+FAA         O2B        HO2A      SINGLE       n     0.970  0.0120     0.849  0.0200
+FAA         C1B         H1B      SINGLE       n     1.089  0.0100     0.984  0.0200
+FAA         C8A         H8A      SINGLE       n     1.082  0.0130     0.942  0.0170
+FAA         N6A        H61A      SINGLE       n     1.016  0.0100     0.877  0.0200
+FAA         N6A        H62A      SINGLE       n     1.016  0.0100     0.877  0.0200
+FAA         C2A         H2A      SINGLE       n     1.082  0.0130     0.945  0.0200
+FAA          N3         HN3      SINGLE       n     1.016  0.0100     0.880  0.0200
+FAA          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0128
+FAA         C7M        HM71      SINGLE       n     1.089  0.0100     0.971  0.0135
+FAA         C7M        HM72      SINGLE       n     1.089  0.0100     0.971  0.0135
+FAA         C7M        HM73      SINGLE       n     1.089  0.0100     0.971  0.0135
+FAA         C8M        HM81      SINGLE       n     1.089  0.0100     0.971  0.0135
+FAA         C8M        HM82      SINGLE       n     1.089  0.0100     0.971  0.0135
+FAA         C8M        HM83      SINGLE       n     1.089  0.0100     0.971  0.0135
+FAA          C9          H9      SINGLE       n     1.082  0.0130     0.951  0.0154
+FAA       "C1'"      "H1'1"      SINGLE       n     1.089  0.0100     0.978  0.0200
+FAA       "C1'"      "H1'2"      SINGLE       n     1.089  0.0100     0.978  0.0200
+FAA       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.992  0.0184
+FAA       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+FAA       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0184
+FAA       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+FAA       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     1.004  0.0200
+FAA       "O4'"      "HO4'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+FAA       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.980  0.0146
+FAA       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.980  0.0146
+FAA         C7P        H7P1      SINGLE       n     1.089  0.0100     0.979  0.0161
+FAA         C7P        H7P2      SINGLE       n     1.089  0.0100     0.979  0.0161
+FAA         C2P         H2P      SINGLE       n     1.082  0.0130     0.943  0.0173
+FAA         C3P         H3P      SINGLE       n     1.082  0.0130     0.943  0.0169
+FAA         O4P        HOP4      SINGLE       n     0.966  0.0059     0.861  0.0200
+FAA         C5P         H5P      SINGLE       n     1.082  0.0130     0.943  0.0169
+FAA         C6P         H6P      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FAA         O1A          PA         O2A     118.411    2.35
+FAA         O1A          PA         O5B     109.410    1.50
+FAA         O1A          PA         O3P     108.816    2.14
+FAA         O2A          PA         O5B     109.410    1.50
+FAA         O2A          PA         O3P     108.816    2.14
+FAA         O5B          PA         O3P     101.065    1.97
+FAA          PA         O5B         C5B     118.553    2.41
+FAA         O5B         C5B         C4B     109.342    1.50
+FAA         O5B         C5B        H51A     109.845    1.50
+FAA         O5B         C5B        H52A     109.845    1.50
+FAA         C4B         C5B        H51A     109.624    1.50
+FAA         C4B         C5B        H52A     109.624    1.50
+FAA        H51A         C5B        H52A     108.472    1.50
+FAA         C5B         C4B         O4B     109.123    1.50
+FAA         C5B         C4B         C3B     116.008    1.52
+FAA         C5B         C4B         H4B     108.268    1.50
+FAA         O4B         C4B         C3B     105.388    1.50
+FAA         O4B         C4B         H4B     108.947    1.50
+FAA         C3B         C4B         H4B     109.363    1.86
+FAA         C4B         O4B         C1B     109.903    1.50
+FAA         C4B         C3B         O3B     111.281    2.46
+FAA         C4B         C3B         C2B     102.602    1.50
+FAA         C4B         C3B         H3B     110.452    2.54
+FAA         O3B         C3B         C2B     111.581    2.83
+FAA         O3B         C3B         H3B     110.380    1.67
+FAA         C2B         C3B         H3B     110.504    1.75
+FAA         C3B         O3B        HO3A     108.744    3.00
+FAA         C3B         C2B         O2B     112.782    2.45
+FAA         C3B         C2B         C1B     101.239    1.50
+FAA         C3B         C2B         H2B     110.596    1.51
+FAA         O2B         C2B         C1B     111.715    2.69
+FAA         O2B         C2B         H2B     110.448    1.97
+FAA         C1B         C2B         H2B     110.636    1.70
+FAA         C2B         O2B        HO2A     109.103    2.13
+FAA         O4B         C1B         C2B     106.047    1.50
+FAA         O4B         C1B         N9A     108.477    1.50
+FAA         O4B         C1B         H1B     109.807    1.50
+FAA         C2B         C1B         N9A     113.824    1.50
+FAA         C2B         C1B         H1B     109.015    1.50
+FAA         N9A         C1B         H1B     109.561    1.50
+FAA         C1B         N9A         C8A     126.848    1.91
+FAA         C1B         N9A         C4A     127.459    1.80
+FAA         C8A         N9A         C4A     105.693    1.50
+FAA         N9A         C8A         N7A     113.469    1.50
+FAA         N9A         C8A         H8A     123.206    1.50
+FAA         N7A         C8A         H8A     123.326    1.50
+FAA         C8A         N7A         C5A     104.739    1.50
+FAA         N7A         C5A         C6A     132.250    1.50
+FAA         N7A         C5A         C4A     110.483    1.50
+FAA         C6A         C5A         C4A     117.267    1.50
+FAA         C5A         C6A         N6A     123.792    1.50
+FAA         C5A         C6A         N1A     117.409    1.50
+FAA         N6A         C6A         N1A     118.799    1.50
+FAA         C6A         N6A        H61A     119.723    1.50
+FAA         C6A         N6A        H62A     119.723    1.50
+FAA        H61A         N6A        H62A     120.554    1.88
+FAA         C6A         N1A         C2A     118.521    1.50
+FAA         N1A         C2A         N3A     129.332    1.50
+FAA         N1A         C2A         H2A     115.313    1.50
+FAA         N3A         C2A         H2A     115.355    1.50
+FAA         C2A         N3A         C4A     110.982    1.50
+FAA         N9A         C4A         C5A     105.616    1.50
+FAA         N9A         C4A         N3A     127.895    1.50
+FAA         C5A         C4A         N3A     126.489    1.50
+FAA          C2          N1         C10     118.658    1.50
+FAA          N1          C2          O2     120.914    1.50
+FAA          N1          C2          N3     122.010    2.18
+FAA          O2          C2          N3     117.076    1.50
+FAA          C2          N3          C4     122.087    1.50
+FAA          C2          N3         HN3     118.237    2.31
+FAA          C4          N3         HN3     119.676    1.50
+FAA          N3          C4          O4     120.181    1.50
+FAA          N3          C4         C4X     117.494    2.19
+FAA          O4          C4         C4X     122.325    1.54
+FAA          C4         C4X          N5     122.299    1.50
+FAA          C4         C4X         C10     118.863    1.50
+FAA          N5         C4X         C10     118.838    1.50
+FAA         C4X          N5         C5X     121.084    1.50
+FAA         C4X          N5         C7P     119.458    1.50
+FAA         C5X          N5         C7P     119.458    1.50
+FAA          N5         C5X          C6     120.560    1.50
+FAA          N5         C5X         C9A     119.821    1.50
+FAA          C6         C5X         C9A     119.619    1.50
+FAA         C5X          C6          C7     120.900    1.51
+FAA         C5X          C6          H6     119.634    1.64
+FAA          C7          C6          H6     119.466    1.50
+FAA          C6          C7         C7M     120.004    1.50
+FAA          C6          C7          C8     119.481    1.50
+FAA         C7M          C7          C8     120.515    1.50
+FAA          C7         C7M        HM71     109.535    1.50
+FAA          C7         C7M        HM72     109.535    1.50
+FAA          C7         C7M        HM73     109.535    1.50
+FAA        HM71         C7M        HM72     109.348    1.50
+FAA        HM71         C7M        HM73     109.348    1.50
+FAA        HM72         C7M        HM73     109.348    1.50
+FAA          C7          C8         C8M     120.515    1.50
+FAA          C7          C8          C9     119.481    1.50
+FAA         C8M          C8          C9     120.004    1.50
+FAA          C8         C8M        HM81     109.535    1.50
+FAA          C8         C8M        HM82     109.535    1.50
+FAA          C8         C8M        HM83     109.535    1.50
+FAA        HM81         C8M        HM82     109.348    1.50
+FAA        HM81         C8M        HM83     109.348    1.50
+FAA        HM82         C8M        HM83     109.348    1.50
+FAA          C8          C9         C9A     120.900    1.51
+FAA          C8          C9          H9     119.466    1.50
+FAA         C9A          C9          H9     119.634    1.64
+FAA         C5X         C9A          C9     119.619    1.50
+FAA         C5X         C9A         N10     119.821    1.50
+FAA          C9         C9A         N10     120.560    1.50
+FAA         C9A         N10         C10     120.660    1.50
+FAA         C9A         N10       "C1'"     119.732    1.50
+FAA         C10         N10       "C1'"     119.608    1.50
+FAA          N1         C10         C4X     120.888    1.50
+FAA          N1         C10         N10     119.337    1.50
+FAA         C4X         C10         N10     119.775    1.50
+FAA         N10       "C1'"       "C2'"     112.079    1.50
+FAA         N10       "C1'"      "H1'1"     108.897    1.50
+FAA         N10       "C1'"      "H1'2"     108.897    1.50
+FAA       "C2'"       "C1'"      "H1'1"     109.291    1.50
+FAA       "C2'"       "C1'"      "H1'2"     109.291    1.50
+FAA      "H1'1"       "C1'"      "H1'2"     107.893    1.50
+FAA       "C1'"       "C2'"       "O2'"     109.698    2.33
+FAA       "C1'"       "C2'"       "C3'"     110.999    2.33
+FAA       "C1'"       "C2'"       "H2'"     108.757    1.75
+FAA       "O2'"       "C2'"       "C3'"     109.320    2.01
+FAA       "O2'"       "C2'"       "H2'"     108.183    1.96
+FAA       "C3'"       "C2'"       "H2'"     108.450    1.83
+FAA       "C2'"       "O2'"      "HO2'"     109.265    3.00
+FAA       "C2'"       "C3'"       "O3'"     109.320    2.01
+FAA       "C2'"       "C3'"       "C4'"     113.695    2.13
+FAA       "C2'"       "C3'"       "H3'"     108.450    1.83
+FAA       "O3'"       "C3'"       "C4'"     109.164    1.97
+FAA       "O3'"       "C3'"       "H3'"     108.243    1.50
+FAA       "C4'"       "C3'"       "H3'"     108.336    1.50
+FAA       "C3'"       "O3'"      "HO3'"     108.564    3.00
+FAA       "C3'"       "C4'"       "O4'"     109.549    1.85
+FAA       "C3'"       "C4'"       "C5'"     112.503    1.50
+FAA       "C3'"       "C4'"       "H4'"     108.777    1.50
+FAA       "O4'"       "C4'"       "C5'"     109.314    1.96
+FAA       "O4'"       "C4'"       "H4'"     108.591    1.50
+FAA       "C5'"       "C4'"       "H4'"     108.656    1.50
+FAA       "C4'"       "O4'"      "HO4'"     111.202    3.00
+FAA       "C4'"       "C5'"       "O5'"     109.438    2.56
+FAA       "C4'"       "C5'"      "H5'1"     109.582    1.50
+FAA       "C4'"       "C5'"      "H5'2"     109.582    1.50
+FAA       "O5'"       "C5'"      "H5'1"     109.393    1.91
+FAA       "O5'"       "C5'"      "H5'2"     109.393    1.91
+FAA      "H5'1"       "C5'"      "H5'2"     108.319    1.50
+FAA       "C5'"       "O5'"           P     119.251    1.51
+FAA       "O5'"           P         O1P     107.912    2.57
+FAA       "O5'"           P         O2P     107.912    2.57
+FAA       "O5'"           P         O3P     101.065    1.97
+FAA         O1P           P         O2P     118.411    2.35
+FAA         O1P           P         O3P     108.816    2.14
+FAA         O2P           P         O3P     108.816    2.14
+FAA          PA         O3P           P     132.542    3.00
+FAA          N5         C7P         C1P     113.341    1.56
+FAA          N5         C7P        H7P1     108.910    1.50
+FAA          N5         C7P        H7P2     108.910    1.50
+FAA         C1P         C7P        H7P1     108.980    1.50
+FAA         C1P         C7P        H7P2     108.980    1.50
+FAA        H7P1         C7P        H7P2     107.817    1.50
+FAA         C7P         C1P         C2P     120.730    1.64
+FAA         C7P         C1P         C6P     120.730    1.64
+FAA         C2P         C1P         C6P     118.540    1.50
+FAA         C1P         C2P         C3P     121.156    1.50
+FAA         C1P         C2P         H2P     119.605    1.50
+FAA         C3P         C2P         H2P     119.239    1.50
+FAA         C2P         C3P         C4P     119.801    1.50
+FAA         C2P         C3P         H3P     120.181    1.50
+FAA         C4P         C3P         H3P     120.018    1.50
+FAA         C3P         C4P         O4P     120.227    3.00
+FAA         C3P         C4P         C5P     119.546    1.50
+FAA         O4P         C4P         C5P     120.227    3.00
+FAA         C4P         O4P        HOP4     120.000    3.00
+FAA         C4P         C5P         C6P     119.801    1.50
+FAA         C4P         C5P         H5P     120.018    1.50
+FAA         C6P         C5P         H5P     120.181    1.50
+FAA         C1P         C6P         C5P     121.156    1.50
+FAA         C1P         C6P         H6P     119.605    1.50
+FAA         C5P         C6P         H6P     119.239    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FAA            sp3_sp3_27         C5B         O5B          PA         O1A      60.000    10.0     3
+FAA            sp3_sp3_30           P         O3P          PA         O1A      60.000    10.0     3
+FAA             sp2_sp3_1         C8A         N9A         C1B         O4B     150.000    10.0     6
+FAA              const_72         N7A         C8A         N9A         C1B     180.000    10.0     2
+FAA             const_104         C5A         C4A         N9A         C1B     180.000    10.0     2
+FAA              const_75         N9A         C8A         N7A         C5A       0.000    10.0     2
+FAA              const_78         C6A         C5A         N7A         C8A     180.000    10.0     2
+FAA              const_62         N7A         C5A         C6A         N6A       0.000    10.0     2
+FAA              const_79         N9A         C4A         C5A         N7A       0.000    10.0     2
+FAA             sp2_sp2_1         C5A         C6A         N6A        H61A     180.000     5.0     2
+FAA              const_64         N6A         C6A         N1A         C2A     180.000    10.0     2
+FAA              const_65         N3A         C2A         N1A         C6A       0.000    10.0     2
+FAA              const_67         N1A         C2A         N3A         C4A       0.000    10.0     2
+FAA              const_70         N9A         C4A         N3A         C2A     180.000    10.0     2
+FAA       const_sp2_sp2_2          O2          C2          N1         C10     180.000     5.0     2
+FAA             const_107         C4X         C10          N1          C2       0.000    10.0     2
+FAA       const_sp2_sp2_5          O2          C2          N3          C4     180.000     5.0     2
+FAA       const_sp2_sp2_9          O4          C4          N3          C2     180.000     5.0     2
+FAA              const_14          O4          C4         C4X          N5       0.000    10.0     2
+FAA              const_22          C4         C4X          N5         C7P       0.000    10.0     2
+FAA              const_15          N1         C10         C4X          C4       0.000    10.0     2
+FAA              const_26          C6         C5X          N5         C7P       0.000    10.0     2
+FAA             sp2_sp3_8         C4X          N5         C7P         C1P     -90.000    10.0     6
+FAA              const_85          N5         C5X          C6          C7     180.000    10.0     2
+FAA              const_28          N5         C5X         C9A          C9     180.000    10.0     2
+FAA              const_88         C5X          C6          C7         C7M     180.000    10.0     2
+FAA            sp2_sp3_13          C6          C7         C7M        HM71     150.000    10.0     6
+FAA              const_94         C7M          C7          C8         C8M       0.000    10.0     2
+FAA            sp2_sp3_19          C7          C8         C8M        HM81     150.000    10.0     6
+FAA              const_97         C8M          C8          C9         C9A     180.000    10.0     2
+FAA              const_99          C8          C9         C9A         C5X       0.000    10.0     2
+FAA              const_32         C5X         C9A         N10       "C1'"     180.000    10.0     2
+FAA              const_38          N1         C10         N10       "C1'"       0.000    10.0     2
+FAA            sp2_sp3_26         C9A         N10       "C1'"       "C2'"     -90.000    10.0     6
+FAA            sp3_sp3_31         C4B         C5B         O5B          PA     180.000    10.0     3
+FAA            sp3_sp3_58         N10       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+FAA            sp3_sp3_67       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+FAA            sp3_sp3_70       "C1'"       "C2'"       "C3'"       "O3'"     180.000    10.0     3
+FAA            sp3_sp3_79       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+FAA            sp3_sp3_82       "C2'"       "C3'"       "C4'"       "O4'"     180.000    10.0     3
+FAA            sp3_sp3_91       "C3'"       "C4'"       "O4'"      "HO4'"     180.000    10.0     3
+FAA            sp3_sp3_94       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+FAA           sp3_sp3_103       "C4'"       "C5'"       "O5'"           P     180.000    10.0     3
+FAA           sp3_sp3_108       "C5'"       "O5'"           P         O1P      60.000    10.0     3
+FAA           sp3_sp3_110          PA         O3P           P       "O5'"     -60.000    10.0     3
+FAA            sp3_sp3_34         O4B         C4B         C5B         O5B     180.000    10.0     3
+FAA            sp2_sp3_32         C2P         C1P         C7P          N5     -90.000    10.0     6
+FAA              const_41         C7P         C1P         C2P         C3P     180.000    10.0     2
+FAA             const_111         C7P         C1P         C6P         C5P     180.000    10.0     2
+FAA              const_43         C1P         C2P         C3P         C4P       0.000    10.0     2
+FAA              const_48         C2P         C3P         C4P         O4P     180.000    10.0     2
+FAA             sp2_sp2_5         C3P         C4P         O4P        HOP4     180.000     5.0     2
+FAA              const_53         O4P         C4P         C5P         C6P     180.000    10.0     2
+FAA              const_55         C4P         C5P         C6P         C1P       0.000    10.0     2
+FAA             sp3_sp3_2         C5B         C4B         O4B         C1B     -60.000    10.0     3
+FAA            sp3_sp3_47         O3B         C3B         C4B         C5B     180.000    10.0     3
+FAA             sp3_sp3_4         C2B         C1B         O4B         C4B     -60.000    10.0     3
+FAA            sp3_sp3_52         C4B         C3B         O3B        HO3A     180.000    10.0     3
+FAA            sp3_sp3_20         O2B         C2B         C3B         O3B     -60.000    10.0     3
+FAA            sp3_sp3_55         C3B         C2B         O2B        HO2A     180.000    10.0     3
+FAA             sp3_sp3_8         O4B         C1B         C2B         O2B     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FAA    chir_1    PA    O3P    O5B    O2A    both
+FAA    chir_2    C4B    O4B    C3B    C5B    negative
+FAA    chir_3    C3B    O3B    C4B    C2B    positive
+FAA    chir_4    C2B    O2B    C1B    C3B    negative
+FAA    chir_5    C1B    O4B    N9A    C2B    negative
+FAA    chir_6    "C2'"    "O2'"    "C3'"    "C1'"    positive
+FAA    chir_7    "C3'"    "O3'"    "C4'"    "C2'"    positive
+FAA    chir_8    "C4'"    "O4'"    "C3'"    "C5'"    negative
+FAA    chir_9    P    O3P    "O5'"    O2P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FAA    plan-1         C1B   0.020
+FAA    plan-1         C2A   0.020
+FAA    plan-1         C4A   0.020
+FAA    plan-1         C5A   0.020
+FAA    plan-1         C6A   0.020
+FAA    plan-1         C8A   0.020
+FAA    plan-1         H2A   0.020
+FAA    plan-1         H8A   0.020
+FAA    plan-1         N1A   0.020
+FAA    plan-1         N3A   0.020
+FAA    plan-1         N6A   0.020
+FAA    plan-1         N7A   0.020
+FAA    plan-1         N9A   0.020
+FAA    plan-2       "C1'"   0.020
+FAA    plan-2         C10   0.020
+FAA    plan-2          C2   0.020
+FAA    plan-2          C4   0.020
+FAA    plan-2         C4X   0.020
+FAA    plan-2         C5X   0.020
+FAA    plan-2          C6   0.020
+FAA    plan-2          C7   0.020
+FAA    plan-2         C7M   0.020
+FAA    plan-2         C7P   0.020
+FAA    plan-2          C8   0.020
+FAA    plan-2         C8M   0.020
+FAA    plan-2          C9   0.020
+FAA    plan-2         C9A   0.020
+FAA    plan-2          H6   0.020
+FAA    plan-2          H9   0.020
+FAA    plan-2         HN3   0.020
+FAA    plan-2          N1   0.020
+FAA    plan-2         N10   0.020
+FAA    plan-2          N3   0.020
+FAA    plan-2          N5   0.020
+FAA    plan-2          O2   0.020
+FAA    plan-2          O4   0.020
+FAA    plan-3         C1P   0.020
+FAA    plan-3         C2P   0.020
+FAA    plan-3         C3P   0.020
+FAA    plan-3         C4P   0.020
+FAA    plan-3         C5P   0.020
+FAA    plan-3         C6P   0.020
+FAA    plan-3         C7P   0.020
+FAA    plan-3         H2P   0.020
+FAA    plan-3         H3P   0.020
+FAA    plan-3         H5P   0.020
+FAA    plan-3         H6P   0.020
+FAA    plan-3         O4P   0.020
+FAA    plan-4         C6A   0.020
+FAA    plan-4        H61A   0.020
+FAA    plan-4        H62A   0.020
+FAA    plan-4         N6A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FAA            InChI                InChI  1.03 InChI=1S/C34H39N9O16P2/c1-15-7-19-20(8-16(15)2)42(31-25(32(50)40-34(51)39-31)41(19)9-17-3-5-18(44)6-4-17)10-21(45)26(47)22(46)11-56-60(52,53)59-61(54,55)57-12-23-27(48)28(49)33(58-23)43-14-38-24-29(35)36-13-37-30(24)43/h3-8,13-14,21-23,26-28,33,45-49H,9-12H2,1-2H3,(H5-,35,36,37,40,44,50,51,52,53,54,55)/t21-,22+,23+,26-,27+,28+,33+/m0/s1
+FAA         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                        MEBQXAOFZPAVFQ-RAWNUJITSA-N
+FAA SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                                             Cc1cc2N(C[C@H](O)[C@H](O)[C@H](O)CO[P]([O-])(=O)O[P](O)(=O)OC[C@H]3O[C@H]([C@H](O)[C@@H]3O)n4cnc5c(N)ncnc45)C6=NC(=O)NC(=O)C6=[N+](Cc7ccc(O)cc7)c2cc1C
+FAA           SMILES               CACTVS 3.385                                                                                                                                                                                                     Cc1cc2N(C[CH](O)[CH](O)[CH](O)CO[P]([O-])(=O)O[P](O)(=O)OC[CH]3O[CH]([CH](O)[CH]3O)n4cnc5c(N)ncnc45)C6=NC(=O)NC(=O)C6=[N+](Cc7ccc(O)cc7)c2cc1C
+FAA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                                                                                                                                          Cc1cc2c(cc1C)[N+](=C3C(=O)NC(=O)N=C3N2C[C@@H]([C@@H]([C@@H](COP(=O)([O-])O[P@](=O)(O)OC[C@@H]4[C@H]([C@H]([C@@H](O4)n5cnc6c5ncnc6N)O)O)O)O)O)Cc7ccc(cc7)O
+FAA           SMILES "OpenEye OEToolkits" 1.7.5                                                                                                                                                                                                                              Cc1cc2c(cc1C)[N+](=C3C(=O)NC(=O)N=C3N2CC(C(C(COP(=O)([O-])OP(=O)(O)OCC4C(C(C(O4)n5cnc6c5ncnc6N)O)O)O)O)O)Cc7ccc(cc7)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FAA acedrg               243         "dictionary generator"                  
+FAA acedrg_database      11          "data source"                           
+FAA rdkit                2017.03.2   "Chemoinformatics tool"
+FAA refmac5              5.8.0238    "optimization tool"                     

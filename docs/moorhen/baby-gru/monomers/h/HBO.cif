@@ -1,0 +1,209 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HBO     HBO      2,4-DIHYDROXY-7-(METHYLOXY)-2H-1,4-BENZOXAZIN-3(4H)-ONE     NON-POLYMER     24     15     .     
+#
+data_comp_HBO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HBO     O1A     O       OH1     0       28.855      4.720       29.393      
+HBO     C3B     C       CR6     0       31.043      5.692       29.665      
+HBO     N3B     N       NR6     0       32.385      5.381       29.572      
+HBO     C4B     C       CR66    0       32.890      4.466       28.631      
+HBO     C1B     C       CR66    0       31.970      3.646       27.976      
+HBO     O1B     O       O2      0       30.619      3.712       28.233      
+HBO     C2B     C       CH1     0       30.091      4.979       28.726      
+HBO     C5B     C       CR16    0       34.245      4.337       28.310      
+HBO     C6B     C       CR16    0       34.660      3.415       27.368      
+HBO     C8B     C       CR16    0       32.383      2.715       27.028      
+HBO     O3B     O       O       0       30.636      6.516       30.477      
+HBO     OHB     O       OH1     0       33.248      6.008       30.445      
+HBO     C7B     C       CR6     0       33.731      2.593       26.725      
+HBO     O7B     O       O2      0       34.043      1.661       25.774      
+HBO     C9B     C       CH3     0       35.385      1.199       25.621      
+HBO     H1A     H       H       0       28.315      4.357       28.849      
+HBO     H2B     H       H       0       29.912      5.575       27.943      
+HBO     H5B     H       H       0       34.885      4.881       28.737      
+HBO     H6B     H       H       0       35.587      3.342       27.164      
+HBO     H8B     H       H       0       31.744      2.170       26.598      
+HBO     HHB     H       H       0       33.475      5.425       31.020      
+HBO     H9B3    H       H       0       35.730      0.909       26.482      
+HBO     H9B2    H       H       0       35.938      1.919       25.276      
+HBO     H9B1    H       H       0       35.400      0.454       24.999      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HBO         O1A         C2B      SINGLE       n     1.427  0.0153     1.427  0.0153
+HBO         C3B         N3B      SINGLE       n     1.358  0.0200     1.358  0.0200
+HBO         C3B         C2B      SINGLE       n     1.505  0.0160     1.505  0.0160
+HBO         C3B         O3B      DOUBLE       n     1.225  0.0100     1.225  0.0100
+HBO         N3B         C4B      SINGLE       n     1.388  0.0200     1.388  0.0200
+HBO         N3B         OHB      SINGLE       n     1.377  0.0113     1.377  0.0113
+HBO         C4B         C1B      DOUBLE       y     1.391  0.0100     1.391  0.0100
+HBO         C4B         C5B      SINGLE       y     1.394  0.0100     1.394  0.0100
+HBO         C1B         O1B      SINGLE       n     1.374  0.0130     1.374  0.0130
+HBO         C1B         C8B      SINGLE       y     1.388  0.0100     1.388  0.0100
+HBO         O1B         C2B      SINGLE       n     1.447  0.0200     1.447  0.0200
+HBO         C5B         C6B      DOUBLE       y     1.375  0.0134     1.375  0.0134
+HBO         C6B         C7B      SINGLE       y     1.389  0.0100     1.389  0.0100
+HBO         C8B         C7B      DOUBLE       y     1.383  0.0100     1.383  0.0100
+HBO         C7B         O7B      SINGLE       n     1.363  0.0100     1.363  0.0100
+HBO         O7B         C9B      SINGLE       n     1.424  0.0117     1.424  0.0117
+HBO         O1A         H1A      SINGLE       n     0.970  0.0120     0.848  0.0200
+HBO         C2B         H2B      SINGLE       n     1.089  0.0100     1.000  0.0100
+HBO         C5B         H5B      SINGLE       n     1.082  0.0130     0.942  0.0164
+HBO         C6B         H6B      SINGLE       n     1.082  0.0130     0.953  0.0200
+HBO         C8B         H8B      SINGLE       n     1.082  0.0130     0.944  0.0200
+HBO         OHB         HHB      SINGLE       n     0.970  0.0120     0.849  0.0200
+HBO         C9B        H9B3      SINGLE       n     1.089  0.0100     0.971  0.0157
+HBO         C9B        H9B2      SINGLE       n     1.089  0.0100     0.971  0.0157
+HBO         C9B        H9B1      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HBO         C2B         O1A         H1A     109.130    3.00
+HBO         N3B         C3B         C2B     117.222    1.63
+HBO         N3B         C3B         O3B     121.155    1.61
+HBO         C2B         C3B         O3B     121.623    1.74
+HBO         C3B         N3B         C4B     122.371    1.91
+HBO         C3B         N3B         OHB     117.769    1.53
+HBO         C4B         N3B         OHB     119.860    3.00
+HBO         N3B         C4B         C1B     117.603    1.50
+HBO         N3B         C4B         C5B     123.596    1.50
+HBO         C1B         C4B         C5B     118.802    1.50
+HBO         C4B         C1B         O1B     122.433    1.74
+HBO         C4B         C1B         C8B     120.922    1.50
+HBO         O1B         C1B         C8B     116.645    1.50
+HBO         C1B         O1B         C2B     116.058    2.40
+HBO         O1A         C2B         C3B     109.527    2.40
+HBO         O1A         C2B         O1B     108.935    2.07
+HBO         O1A         C2B         H2B     108.801    1.50
+HBO         C3B         C2B         O1B     111.459    2.43
+HBO         C3B         C2B         H2B     108.678    1.50
+HBO         O1B         C2B         H2B     108.665    1.50
+HBO         C4B         C5B         C6B     120.161    1.50
+HBO         C4B         C5B         H5B     120.081    1.50
+HBO         C6B         C5B         H5B     119.757    1.50
+HBO         C5B         C6B         C7B     120.209    1.50
+HBO         C5B         C6B         H6B     119.822    1.50
+HBO         C7B         C6B         H6B     119.970    1.50
+HBO         C1B         C8B         C7B     119.508    1.50
+HBO         C1B         C8B         H8B     119.876    1.50
+HBO         C7B         C8B         H8B     120.616    1.50
+HBO         N3B         OHB         HHB     106.410    3.00
+HBO         C6B         C7B         C8B     120.399    1.50
+HBO         C6B         C7B         O7B     118.505    3.00
+HBO         C8B         C7B         O7B     121.096    3.00
+HBO         C7B         O7B         C9B     117.352    1.64
+HBO         O7B         C9B        H9B3     109.428    1.50
+HBO         O7B         C9B        H9B2     109.428    1.50
+HBO         O7B         C9B        H9B1     109.428    1.50
+HBO        H9B3         C9B        H9B2     109.509    1.50
+HBO        H9B3         C9B        H9B1     109.509    1.50
+HBO        H9B2         C9B        H9B1     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HBO             sp3_sp3_4         C3B         C2B         O1A         H1A     180.000    10.0     3
+HBO            sp2_sp2_11         C6B         C7B         O7B         C9B     180.000     5.0     2
+HBO             sp3_sp3_8        H9B3         C9B         O7B         C7B     -60.000    10.0     3
+HBO             sp2_sp2_4         O3B         C3B         N3B         OHB       0.000     5.0     2
+HBO             sp2_sp3_5         O3B         C3B         C2B         O1A     -60.000    10.0     6
+HBO             sp2_sp2_6         C1B         C4B         N3B         OHB     180.000     5.0     2
+HBO       const_sp2_sp2_1         O1B         C1B         C4B         N3B       0.000     5.0     2
+HBO              const_23         N3B         C4B         C5B         C6B     180.000    10.0     2
+HBO             sp2_sp2_9         C4B         C1B         O1B         C2B       0.000     5.0     2
+HBO       const_sp2_sp2_5         C4B         C1B         C8B         C7B       0.000     5.0     2
+HBO             sp3_sp3_2         O1A         C2B         O1B         C1B     180.000    10.0     3
+HBO              const_17         C4B         C5B         C6B         C7B       0.000    10.0     2
+HBO              const_14         C5B         C6B         C7B         O7B     180.000    10.0     2
+HBO              const_11         O7B         C7B         C8B         C1B     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HBO    chir_1    C2B    O1B    O1A    C3B    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HBO    plan-1         C1B   0.020
+HBO    plan-1         C4B   0.020
+HBO    plan-1         C5B   0.020
+HBO    plan-1         C6B   0.020
+HBO    plan-1         C7B   0.020
+HBO    plan-1         C8B   0.020
+HBO    plan-1         H5B   0.020
+HBO    plan-1         H6B   0.020
+HBO    plan-1         H8B   0.020
+HBO    plan-1         N3B   0.020
+HBO    plan-1         O1B   0.020
+HBO    plan-1         O7B   0.020
+HBO    plan-2         C2B   0.020
+HBO    plan-2         C3B   0.020
+HBO    plan-2         N3B   0.020
+HBO    plan-2         O3B   0.020
+HBO    plan-3         C3B   0.020
+HBO    plan-3         C4B   0.020
+HBO    plan-3         N3B   0.020
+HBO    plan-3         OHB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HBO           SMILES              ACDLabs 10.04                                                            O=C1N(O)c2c(OC1O)cc(OC)cc2
+HBO SMILES_CANONICAL               CACTVS 3.341                                                        COc1ccc2N(O)C(=O)[C@H](O)Oc2c1
+HBO           SMILES               CACTVS 3.341                                                         COc1ccc2N(O)C(=O)[CH](O)Oc2c1
+HBO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                        COc1ccc2c(c1)O[C@H](C(=O)N2O)O
+HBO           SMILES "OpenEye OEToolkits" 1.5.0                                                            COc1ccc2c(c1)OC(C(=O)N2O)O
+HBO            InChI                InChI  1.03 InChI=1S/C9H9NO5/c1-14-5-2-3-6-7(4-5)15-9(12)8(11)10(6)13/h2-4,9,12-13H,1H3/t9-/m1/s1
+HBO         InChIKey                InChI  1.03                                                           GDNZNIJPBQATCZ-SECBINFHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HBO acedrg               243         "dictionary generator"                  
+HBO acedrg_database      11          "data source"                           
+HBO rdkit                2017.03.2   "Chemoinformatics tool"
+HBO refmac5              5.8.0238    "optimization tool"                     

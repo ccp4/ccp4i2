@@ -1,0 +1,241 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MR4     MR4      4-(1,3-BENZOXAZOL-2-YL)-2,6-DIMETHYLPHENOL     NON-POLYMER     31     18     .     
+#
+data_comp_MR4
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MR4     CAA     C       CH3     0       -0.997      -2.469      -21.522     
+MR4     CAL     C       CR6     0       -0.717      -1.207      -22.298     
+MR4     CAH     C       CR16    0       -0.593      -1.263      -23.683     
+MR4     CAO     C       CR6     0       -0.577      0.035       -21.664     
+MR4     OAC     O       OH1     0       -0.691      0.148       -20.295     
+MR4     CAM     C       CR6     0       -0.317      1.198       -22.398     
+MR4     CAB     C       CH3     0       -0.168      2.529       -21.709     
+MR4     CAI     C       CR16    0       -0.200      1.101       -23.782     
+MR4     CAN     C       CR6     0       -0.334      -0.120      -24.442     
+MR4     CAP     C       CR5     0       -0.206      -0.192      -25.891     
+MR4     OAK     O       O2      0       -0.364      -1.409      -26.505     
+MR4     CAR     C       CR56    0       -0.187      -1.143      -27.849     
+MR4     CAG     C       CR16    0       -0.242      -2.023      -28.911     
+MR4     CAE     C       CR16    0       -0.023      -1.472      -30.161     
+MR4     CAD     C       CR16    0       0.236       -0.107      -30.326     
+MR4     CAF     C       CR16    0       0.286       0.760       -29.240     
+MR4     CAQ     C       CR56    0       0.067       0.210       -27.980     
+MR4     NAJ     N       NRD5    0       0.047       0.787       -26.708     
+MR4     HAA1    H       H       0       -1.016      -2.284      -20.570     
+MR4     HAA2    H       H       0       -0.302      -3.121      -21.706     
+MR4     HAA3    H       H       0       -1.856      -2.831      -21.794     
+MR4     HAH     H       H       0       -0.685      -2.086      -24.114     
+MR4     HOAC    H       H       0       -1.366      0.558       -19.952     
+MR4     HAB1    H       H       0       0.116       3.202       -22.349     
+MR4     HAB2    H       H       0       0.495       2.458       -21.003     
+MR4     HAB3    H       H       0       -1.019      2.792       -21.323     
+MR4     HAI     H       H       0       -0.026      1.871       -24.281     
+MR4     HAG     H       H       0       -0.416      -2.941      -28.793     
+MR4     HAE     H       H       0       -0.049      -2.031      -30.920     
+MR4     HAD     H       H       0       0.380       0.233       -31.189     
+MR4     HAF     H       H       0       0.461       1.680       -29.352     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MR4         CAA         CAL      SINGLE       n     1.505  0.0100     1.505  0.0100
+MR4         CAL         CAH      DOUBLE       y     1.388  0.0100     1.388  0.0100
+MR4         CAL         CAO      SINGLE       y     1.395  0.0100     1.395  0.0100
+MR4         CAH         CAN      SINGLE       y     1.389  0.0100     1.389  0.0100
+MR4         CAO         CAM      DOUBLE       y     1.395  0.0100     1.395  0.0100
+MR4         CAO         OAC      SINGLE       n     1.374  0.0155     1.374  0.0155
+MR4         CAM         CAI      SINGLE       y     1.388  0.0100     1.388  0.0100
+MR4         CAM         CAB      SINGLE       n     1.505  0.0100     1.505  0.0100
+MR4         CAI         CAN      DOUBLE       y     1.389  0.0100     1.389  0.0100
+MR4         CAN         CAP      SINGLE       n     1.450  0.0109     1.450  0.0109
+MR4         CAP         NAJ      DOUBLE       y     1.296  0.0135     1.296  0.0135
+MR4         CAP         OAK      SINGLE       y     1.365  0.0200     1.365  0.0200
+MR4         OAK         CAR      SINGLE       y     1.383  0.0152     1.383  0.0152
+MR4         CAR         CAG      DOUBLE       y     1.376  0.0100     1.376  0.0100
+MR4         CAR         CAQ      SINGLE       y     1.380  0.0102     1.380  0.0102
+MR4         CAG         CAE      SINGLE       y     1.380  0.0103     1.380  0.0103
+MR4         CAE         CAD      DOUBLE       y     1.395  0.0112     1.395  0.0112
+MR4         CAD         CAF      SINGLE       y     1.379  0.0184     1.379  0.0184
+MR4         CAF         CAQ      DOUBLE       y     1.388  0.0100     1.388  0.0100
+MR4         CAQ         NAJ      SINGLE       y     1.397  0.0109     1.397  0.0109
+MR4         CAA        HAA1      SINGLE       n     1.089  0.0100     0.971  0.0135
+MR4         CAA        HAA2      SINGLE       n     1.089  0.0100     0.971  0.0135
+MR4         CAA        HAA3      SINGLE       n     1.089  0.0100     0.971  0.0135
+MR4         CAH         HAH      SINGLE       n     1.082  0.0130     0.934  0.0100
+MR4         OAC        HOAC      SINGLE       n     0.966  0.0059     0.861  0.0200
+MR4         CAB        HAB1      SINGLE       n     1.089  0.0100     0.971  0.0135
+MR4         CAB        HAB2      SINGLE       n     1.089  0.0100     0.971  0.0135
+MR4         CAB        HAB3      SINGLE       n     1.089  0.0100     0.971  0.0135
+MR4         CAI         HAI      SINGLE       n     1.082  0.0130     0.934  0.0100
+MR4         CAG         HAG      SINGLE       n     1.082  0.0130     0.942  0.0200
+MR4         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0163
+MR4         CAD         HAD      SINGLE       n     1.082  0.0130     0.939  0.0159
+MR4         CAF         HAF      SINGLE       n     1.082  0.0130     0.943  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MR4         CAL         CAA        HAA1     109.597    1.50
+MR4         CAL         CAA        HAA2     109.597    1.50
+MR4         CAL         CAA        HAA3     109.597    1.50
+MR4        HAA1         CAA        HAA2     109.348    1.50
+MR4        HAA1         CAA        HAA3     109.348    1.50
+MR4        HAA2         CAA        HAA3     109.348    1.50
+MR4         CAA         CAL         CAH     120.762    1.50
+MR4         CAA         CAL         CAO     120.584    1.50
+MR4         CAH         CAL         CAO     118.653    1.50
+MR4         CAL         CAH         CAN     121.028    1.50
+MR4         CAL         CAH         HAH     119.766    1.50
+MR4         CAN         CAH         HAH     119.205    1.50
+MR4         CAL         CAO         CAM     121.728    1.50
+MR4         CAL         CAO         OAC     119.136    3.00
+MR4         CAM         CAO         OAC     119.136    3.00
+MR4         CAO         OAC        HOAC     120.000    3.00
+MR4         CAO         CAM         CAI     118.653    1.50
+MR4         CAO         CAM         CAB     120.584    1.50
+MR4         CAI         CAM         CAB     120.762    1.50
+MR4         CAM         CAB        HAB1     109.597    1.50
+MR4         CAM         CAB        HAB2     109.597    1.50
+MR4         CAM         CAB        HAB3     109.597    1.50
+MR4        HAB1         CAB        HAB2     109.348    1.50
+MR4        HAB1         CAB        HAB3     109.348    1.50
+MR4        HAB2         CAB        HAB3     109.348    1.50
+MR4         CAM         CAI         CAN     121.028    1.50
+MR4         CAM         CAI         HAI     119.766    1.50
+MR4         CAN         CAI         HAI     119.205    1.50
+MR4         CAH         CAN         CAI     118.909    1.50
+MR4         CAH         CAN         CAP     120.546    1.50
+MR4         CAI         CAN         CAP     120.546    1.50
+MR4         CAN         CAP         NAJ     127.605    1.73
+MR4         CAN         CAP         OAK     117.664    1.94
+MR4         NAJ         CAP         OAK     114.731    1.50
+MR4         CAP         OAK         CAR     104.183    1.50
+MR4         OAK         CAR         CAG     128.194    1.50
+MR4         OAK         CAR         CAQ     107.816    1.50
+MR4         CAG         CAR         CAQ     123.991    1.50
+MR4         CAR         CAG         CAE     115.487    1.50
+MR4         CAR         CAG         HAG     122.328    1.50
+MR4         CAE         CAG         HAG     122.185    1.50
+MR4         CAG         CAE         CAD     121.677    1.50
+MR4         CAG         CAE         HAE     119.102    1.50
+MR4         CAD         CAE         HAE     119.221    1.50
+MR4         CAE         CAD         CAF     121.722    1.50
+MR4         CAE         CAD         HAD     119.193    1.50
+MR4         CAF         CAD         HAD     119.085    1.50
+MR4         CAD         CAF         CAQ     116.995    1.50
+MR4         CAD         CAF         HAF     121.478    1.50
+MR4         CAQ         CAF         HAF     121.527    1.50
+MR4         CAR         CAQ         CAF     120.129    1.50
+MR4         CAR         CAQ         NAJ     108.401    1.50
+MR4         CAF         CAQ         NAJ     131.470    1.50
+MR4         CAP         NAJ         CAQ     104.869    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MR4             sp2_sp3_1         CAH         CAL         CAA        HAA1     150.000    10.0     6
+MR4              const_50         CAG         CAR         OAK         CAP     180.000    10.0     2
+MR4       const_sp2_sp2_2         CAE         CAG         CAR         OAK     180.000     5.0     2
+MR4              const_46         CAF         CAQ         CAR         OAK     180.000    10.0     2
+MR4       const_sp2_sp2_5         CAD         CAE         CAG         CAR       0.000     5.0     2
+MR4       const_sp2_sp2_9         CAF         CAD         CAE         CAG       0.000     5.0     2
+MR4              const_13         CAE         CAD         CAF         CAQ       0.000    10.0     2
+MR4              const_17         CAD         CAF         CAQ         CAR       0.000    10.0     2
+MR4              const_43         CAR         CAQ         NAJ         CAP       0.000    10.0     2
+MR4              const_22         CAN         CAH         CAL         CAA     180.000    10.0     2
+MR4              const_54         CAA         CAL         CAO         OAC       0.000    10.0     2
+MR4              const_25         CAL         CAH         CAN         CAI       0.000    10.0     2
+MR4             sp2_sp2_1         CAL         CAO         OAC        HOAC     180.000     5.0     2
+MR4              const_40         CAB         CAM         CAO         OAC       0.000    10.0     2
+MR4             sp2_sp3_7         CAO         CAM         CAB        HAB1     150.000    10.0     6
+MR4              const_34         CAN         CAI         CAM         CAB     180.000    10.0     2
+MR4              const_29         CAM         CAI         CAN         CAH       0.000    10.0     2
+MR4             sp2_sp2_3         CAH         CAN         CAP         NAJ     180.000     5.0     2
+MR4              const_56         CAN         CAP         OAK         CAR     180.000    10.0     2
+MR4              const_42         CAN         CAP         NAJ         CAQ     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MR4    plan-1         CAD   0.020
+MR4    plan-1         CAE   0.020
+MR4    plan-1         CAF   0.020
+MR4    plan-1         CAG   0.020
+MR4    plan-1         CAN   0.020
+MR4    plan-1         CAP   0.020
+MR4    plan-1         CAQ   0.020
+MR4    plan-1         CAR   0.020
+MR4    plan-1         HAD   0.020
+MR4    plan-1         HAE   0.020
+MR4    plan-1         HAF   0.020
+MR4    plan-1         HAG   0.020
+MR4    plan-1         NAJ   0.020
+MR4    plan-1         OAK   0.020
+MR4    plan-2         CAA   0.020
+MR4    plan-2         CAB   0.020
+MR4    plan-2         CAH   0.020
+MR4    plan-2         CAI   0.020
+MR4    plan-2         CAL   0.020
+MR4    plan-2         CAM   0.020
+MR4    plan-2         CAN   0.020
+MR4    plan-2         CAO   0.020
+MR4    plan-2         CAP   0.020
+MR4    plan-2         HAH   0.020
+MR4    plan-2         HAI   0.020
+MR4    plan-2         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MR4           SMILES              ACDLabs 10.04                                                          n1c3ccccc3oc1c2cc(c(O)c(c2)C)C
+MR4 SMILES_CANONICAL               CACTVS 3.341                                                            Cc1cc(cc(C)c1O)c2oc3ccccc3n2
+MR4           SMILES               CACTVS 3.341                                                            Cc1cc(cc(C)c1O)c2oc3ccccc3n2
+MR4 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                            Cc1cc(cc(c1O)C)c2nc3ccccc3o2
+MR4           SMILES "OpenEye OEToolkits" 1.5.0                                                            Cc1cc(cc(c1O)C)c2nc3ccccc3o2
+MR4            InChI                InChI  1.03 InChI=1S/C15H13NO2/c1-9-7-11(8-10(2)14(9)17)15-16-12-5-3-4-6-13(12)18-15/h3-8,17H,1-2H3
+MR4         InChIKey                InChI  1.03                                                             NORYHCMDDBZXDX-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MR4 acedrg               243         "dictionary generator"                  
+MR4 acedrg_database      11          "data source"                           
+MR4 rdkit                2017.03.2   "Chemoinformatics tool"
+MR4 refmac5              5.8.0238    "optimization tool"                     

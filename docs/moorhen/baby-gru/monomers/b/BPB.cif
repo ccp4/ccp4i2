@@ -1,0 +1,793 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BPB     BPB      "BACTERIOPHEOPHYTIN B"     NON-POLYMER     139     65     .     
+#
+data_comp_BPB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BPB     C1      C       CH2     0       134.315     51.039      -0.305      
+BPB     C2      C       C1      0       133.985     49.909      -1.232      
+BPB     C3      C       C       0       133.100     48.935      -1.017      
+BPB     C4      C       CH3     0       132.298     48.787      0.247       
+BPB     C5      C       CH2     0       132.810     47.894      -2.065      
+BPB     C6      C       CH2     0       131.474     48.066      -2.740      
+BPB     C7      C       CH2     0       131.221     49.405      -3.434      
+BPB     C8      C       CH1     0       132.199     49.809      -4.556      
+BPB     C9      C       CH3     0       132.078     51.290      -4.889      
+BPB     NA      N       NRD5    0       130.351     57.104      3.439       
+BPB     NB      N       NT1     0       128.137     58.313      5.446       
+BPB     NC      N       NRD5    0       129.064     61.277      5.335       
+BPB     ND      N       NR5     0       130.993     60.151      3.366       
+BPB     C10     C       CH2     0       132.023     48.939      -5.808      
+BPB     C11     C       CH2     0       133.056     49.131      -6.893      
+BPB     C12     C       CH2     0       133.059     48.034      -7.932      
+BPB     C13     C       CH1     0       133.875     48.316      -9.201      
+BPB     C14     C       CH3     0       133.404     47.466      -10.375     
+BPB     C15     C       CH2     0       135.378     48.144      -8.950      
+BPB     C16     C       CH2     0       136.291     48.681      -10.027     
+BPB     C17     C       CH2     0       137.756     48.657      -9.662      
+BPB     C18     C       CH1     0       138.707     49.251      -10.704     
+BPB     C19     C       CH3     0       138.815     48.357      -11.930     
+BPB     C1A     C       CR5     0       130.852     57.109      2.173       
+BPB     O1A     O       O       0       134.249     53.247      1.276       
+BPB     C1B     C       CR5     0       128.077     56.933      5.450       
+BPB     C1C     C       CR5     0       128.427     61.331      6.470       
+BPB     C1D     C       CR5     0       131.356     61.477      3.349       
+BPB     O1D     O       O       0       131.124     57.496      -1.812      
+BPB     C20     C       CH3     0       140.085     49.505      -10.112     
+BPB     C2A     C       CH1     0       130.703     55.769      1.498       
+BPB     O2A     O       O2      0       133.145     51.857      -0.105      
+BPB     C2B     C       CR5     0       127.675     56.539      6.757       
+BPB     C2C     C       CH1     0       128.488     62.721      7.045       
+BPB     C2D     C       CR5     0       132.055     61.719      2.158       
+BPB     O2D     O       O2      0       129.950     59.090      -0.745      
+BPB     C3A     C       CH1     0       129.523     55.172      2.281       
+BPB     C3B     C       CR5     0       127.514     57.707      7.527       
+BPB     C3C     C       CR5     0       129.642     63.285      6.245       
+BPB     C3D     C       CR55    0       132.098     60.500      1.445       
+BPB     C4A     C       CR5     0       129.363     56.148      3.433       
+BPB     C4B     C       CR5     0       127.813     58.819      6.690       
+BPB     C4C     C       CR5     0       129.984     62.339      5.294       
+BPB     C4D     C       CR55    0       131.431     59.552      2.228       
+BPB     CAA     C       CH2     0       132.002     54.968      1.542       
+BPB     CAB     C       C       0       127.113     57.750      8.937       
+BPB     CAC     C       C1      0       130.219     64.470      6.461       
+BPB     CAD     C       CR5     0       132.572     59.840      0.220       
+BPB     CBA     C       CH2     0       131.979     53.751      0.625       
+BPB     CBB     C       CH3     0       125.818     58.392      9.321       
+BPB     OBB     O       O       0       127.832     57.261      9.804       
+BPB     CBC     C       CH3     0       129.824     65.435      7.534       
+BPB     CBD     C       CH1     0       131.990     58.408      0.222       
+BPB     OBD     O       O       0       133.283     60.286      -0.657      
+BPB     CED     C       CH3     0       128.797     58.893      -1.603      
+BPB     CGA     C       C       0       133.256     52.953      0.655       
+BPB     CGD     C       C       0       130.989     58.261      -0.896      
+BPB     CHA     C       CR5     0       131.384     58.246      1.616       
+BPB     CHB     C       C1      0       128.324     56.093      4.383       
+BPB     CHC     C       C1      0       127.763     60.217      7.066       
+BPB     CHD     C       C1      0       131.057     62.366      4.381       
+BPB     CMA     C       CH3     0       128.225     54.995      1.496       
+BPB     CMB     C       CH3     0       127.479     55.115      7.197       
+BPB     CMC     C       CH3     0       127.168     63.484      6.877       
+BPB     CMD     C       CH3     0       132.641     63.028      1.723       
+BPB     H1      H       H       0       135.038     51.583      -0.689      
+BPB     H1A     H       H       0       134.621     50.683      0.559       
+BPB     H2      H       H       0       134.454     49.891      -2.051      
+BPB     H4      H       H       0       132.675     49.339      0.950       
+BPB     H4A     H       H       0       132.310     47.859      0.530       
+BPB     H4B     H       H       0       131.381     49.060      0.082       
+BPB     H5      H       H       0       132.838     47.010      -1.641      
+BPB     H5A     H       H       0       133.518     47.911      -2.743      
+BPB     H6      H       H       0       130.775     47.936      -2.065      
+BPB     H6A     H       H       0       131.372     47.350      -3.401      
+BPB     H7      H       H       0       131.223     50.111      -2.754      
+BPB     H7A     H       H       0       130.319     49.378      -3.819      
+BPB     H8      H       H       0       133.114     49.650      -4.222      
+BPB     H9      H       H       0       132.819     51.560      -5.459      
+BPB     H9A     H       H       0       132.099     51.814      -4.070      
+BPB     H9B     H       H       0       131.238     51.452      -5.354      
+BPB     H171    H       H       0       128.366     58.815      4.732       
+BPB     H181    H       H       0       130.551     59.760      4.005       
+BPB     H10     H       H       0       131.138     49.122      -6.188      
+BPB     H10A    H       H       0       132.038     47.997      -5.537      
+BPB     H11     H       H       0       133.944     49.178      -6.480      
+BPB     H11A    H       H       0       132.889     49.989      -7.339      
+BPB     H12     H       H       0       132.130     47.857      -8.191      
+BPB     H12A    H       H       0       133.410     47.218      -7.516      
+BPB     H13     H       H       0       133.730     49.266      -9.435      
+BPB     H14     H       H       0       133.843     47.761      -11.191     
+BPB     H14A    H       H       0       132.441     47.557      -10.480     
+BPB     H14B    H       H       0       133.623     46.533      -10.210     
+BPB     H15     H       H       0       135.564     47.188      -8.837      
+BPB     H15A    H       H       0       135.603     48.590      -8.106      
+BPB     H16     H       H       0       136.032     49.606      -10.229     
+BPB     H16A    H       H       0       136.162     48.152      -10.842     
+BPB     H17     H       H       0       138.019     47.726      -9.500      
+BPB     H17A    H       H       0       137.873     49.149      -8.822      
+BPB     H18     H       H       0       138.335     50.120      -10.993     
+BPB     H19     H       H       0       139.512     48.694      -12.519     
+BPB     H19A    H       H       0       137.965     48.352      -12.405     
+BPB     H19B    H       H       0       139.036     47.450      -11.653     
+BPB     H20     H       H       0       140.466     48.665      -9.802      
+BPB     H20A    H       H       0       140.009     50.122      -9.364      
+BPB     H20B    H       H       0       140.665     49.891      -10.792     
+BPB     H42     H       H       0       130.431     55.884      0.547       
+BPB     H43     H       H       0       128.730     62.689      8.001       
+BPB     H44     H       H       0       129.793     54.288      2.638       
+BPB     HAA     H       H       0       132.161     54.674      2.463       
+BPB     HAAA    H       H       0       132.745     55.552      1.281       
+BPB     HAC     H       H       0       130.939     64.727      5.884       
+BPB     HBA     H       H       0       131.813     54.049      -0.294      
+BPB     HBAA    H       H       0       131.235     53.169      0.889       
+BPB     HBB     H       H       0       125.424     58.822      8.547       
+BPB     HBBA    H       H       0       125.978     59.054      10.011      
+BPB     HBBB    H       H       0       125.210     57.717      9.659       
+BPB     HBC     H       H       0       129.537     64.952      8.324       
+BPB     HBCA    H       H       0       129.102     65.998      7.215       
+BPB     H55     H       H       0       130.584     65.991      7.765       
+BPB     HBD     H       H       0       132.718     57.757      0.088       
+BPB     HED     H       H       0       128.476     57.981      -1.511      
+BPB     HEDA    H       H       0       129.049     59.058      -2.525      
+BPB     HEDB    H       H       0       128.095     59.510      -1.344      
+BPB     HHB     H       H       0       127.702     55.372      4.285       
+BPB     HHC     H       H       0       127.204     60.417      7.815       
+BPB     HHD     H       H       0       131.668     63.078      4.476       
+BPB     HMA     H       H       0       127.773     55.850      1.415       
+BPB     HMAA    H       H       0       127.649     54.369      1.961       
+BPB     HMAB    H       H       0       128.424     54.652      0.611       
+BPB     HMB     H       H       0       126.892     55.084      7.969       
+BPB     HMBA    H       H       0       128.336     54.724      7.432       
+BPB     HMBB    H       H       0       127.081     54.601      6.476       
+BPB     HMC     H       H       0       127.172     63.967      6.027       
+BPB     HMCA    H       H       0       127.064     64.120      7.611       
+BPB     HMCB    H       H       0       126.419     62.854      6.887       
+BPB     HMD     H       H       0       133.024     62.933      0.829       
+BPB     HMDA    H       H       0       133.340     63.297      2.350       
+BPB     HMDB    H       H       0       131.940     63.709      1.705       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BPB          C1          C2      SINGLE       n     1.496  0.0200     1.496  0.0200
+BPB          C2          C3      DOUBLE       n     1.329  0.0100     1.329  0.0100
+BPB          C3          C4      SINGLE       n     1.499  0.0156     1.499  0.0156
+BPB          C3          C5      SINGLE       n     1.502  0.0126     1.502  0.0126
+BPB          C5          C6      SINGLE       n     1.497  0.0200     1.497  0.0200
+BPB          C6          C7      SINGLE       n     1.519  0.0164     1.519  0.0164
+BPB          C7          C8      SINGLE       n     1.530  0.0200     1.530  0.0200
+BPB          C8          C9      SINGLE       n     1.521  0.0151     1.521  0.0151
+BPB          NB         C4B      SINGLE       y     1.379  0.0124     1.379  0.0124
+BPB          NC         C1C      SINGLE       n     1.314  0.0200     1.314  0.0200
+BPB          NC         C4C      DOUBLE       n     1.394  0.0153     1.394  0.0153
+BPB          ND         C1D      SINGLE       y     1.374  0.0100     1.374  0.0100
+BPB          C8         C10      SINGLE       n     1.530  0.0200     1.530  0.0200
+BPB         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+BPB         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+BPB         C12         C13      SINGLE       n     1.530  0.0200     1.530  0.0200
+BPB         C13         C14      SINGLE       n     1.521  0.0151     1.521  0.0151
+BPB         C13         C15      SINGLE       n     1.530  0.0200     1.530  0.0200
+BPB         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+BPB         C16         C17      SINGLE       n     1.509  0.0200     1.509  0.0200
+BPB         C17         C18      SINGLE       n     1.529  0.0177     1.529  0.0177
+BPB         C18         C19      SINGLE       n     1.521  0.0151     1.521  0.0151
+BPB          NA         C1A      DOUBLE       n     1.360  0.0100     1.360  0.0100
+BPB         C1A         CHA      SINGLE       n     1.364  0.0200     1.364  0.0200
+BPB          NB         C1B      SINGLE       y     1.379  0.0100     1.379  0.0100
+BPB         C1B         C2B      DOUBLE       y     1.419  0.0200     1.419  0.0200
+BPB         C1C         C2C      SINGLE       n     1.514  0.0153     1.514  0.0153
+BPB         C1D         CHD      DOUBLE       n     1.391  0.0139     1.391  0.0139
+BPB         O1D         CGD      DOUBLE       n     1.200  0.0100     1.200  0.0100
+BPB         C18         C20      SINGLE       n     1.521  0.0151     1.521  0.0151
+BPB         C1A         C2A      SINGLE       n     1.509  0.0100     1.509  0.0100
+BPB         C2A         CAA      SINGLE       n     1.527  0.0107     1.527  0.0107
+BPB          C1         O2A      SINGLE       n     1.439  0.0116     1.439  0.0116
+BPB         O2A         CGA      SINGLE       n     1.328  0.0200     1.328  0.0200
+BPB         C2B         C3B      SINGLE       y     1.404  0.0200     1.404  0.0200
+BPB         C2C         CMC      SINGLE       n     1.528  0.0200     1.528  0.0200
+BPB         C1D         C2D      SINGLE       y     1.395  0.0200     1.395  0.0200
+BPB         C2D         CMD      SINGLE       n     1.499  0.0100     1.499  0.0100
+BPB         O2D         CGD      SINGLE       n     1.332  0.0119     1.332  0.0119
+BPB         C2A         C3A      SINGLE       n     1.535  0.0200     1.535  0.0200
+BPB         C3A         C4A      SINGLE       n     1.516  0.0118     1.516  0.0118
+BPB         C3B         C4B      DOUBLE       y     1.421  0.0200     1.421  0.0200
+BPB         C3B         CAB      SINGLE       n     1.463  0.0183     1.463  0.0183
+BPB         C2C         C3C      SINGLE       n     1.512  0.0132     1.512  0.0132
+BPB         C3C         CAC      DOUBLE       n     1.325  0.0163     1.325  0.0163
+BPB         C2D         C3D      DOUBLE       y     1.414  0.0200     1.414  0.0200
+BPB          NA         C4A      SINGLE       n     1.371  0.0200     1.371  0.0200
+BPB         C4A         CHB      DOUBLE       n     1.401  0.0200     1.401  0.0200
+BPB         C4B         CHC      SINGLE       n     1.436  0.0200     1.436  0.0200
+BPB         C3C         C4C      SINGLE       n     1.359  0.0200     1.359  0.0200
+BPB          ND         C4D      SINGLE       y     1.370  0.0200     1.370  0.0200
+BPB         C3D         C4D      SINGLE       y     1.419  0.0200     1.419  0.0200
+BPB         CAB         CBB      SINGLE       n     1.495  0.0100     1.495  0.0100
+BPB         CAB         OBB      DOUBLE       n     1.227  0.0163     1.227  0.0163
+BPB         CAC         CBC      SINGLE       n     1.495  0.0100     1.495  0.0100
+BPB         C3D         CAD      SINGLE       n     1.469  0.0146     1.469  0.0146
+BPB         CAA         CBA      SINGLE       n     1.524  0.0101     1.524  0.0101
+BPB         CBA         CGA      SINGLE       n     1.503  0.0175     1.503  0.0175
+BPB         CAD         CBD      SINGLE       n     1.530  0.0200     1.530  0.0200
+BPB         CBD         CHA      SINGLE       n     1.515  0.0200     1.515  0.0200
+BPB         CAD         OBD      DOUBLE       n     1.214  0.0128     1.214  0.0128
+BPB         O2D         CED      SINGLE       n     1.448  0.0108     1.448  0.0108
+BPB         O1A         CGA      DOUBLE       n     1.203  0.0150     1.203  0.0150
+BPB         CBD         CGD      SINGLE       n     1.498  0.0200     1.498  0.0200
+BPB         C4D         CHA      DOUBLE       n     1.457  0.0200     1.457  0.0200
+BPB         C1B         CHB      SINGLE       n     1.375  0.0146     1.375  0.0146
+BPB         C1C         CHC      DOUBLE       n     1.420  0.0200     1.420  0.0200
+BPB         C4C         CHD      SINGLE       n     1.388  0.0200     1.388  0.0200
+BPB         C3A         CMA      SINGLE       n     1.526  0.0100     1.526  0.0100
+BPB         C2B         CMB      SINGLE       n     1.501  0.0100     1.501  0.0100
+BPB          C1          H1      SINGLE       n     1.089  0.0100     0.983  0.0145
+BPB          C1         H1A      SINGLE       n     1.089  0.0100     0.983  0.0145
+BPB          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+BPB          C4          H4      SINGLE       n     1.089  0.0100     0.971  0.0140
+BPB          C4         H4A      SINGLE       n     1.089  0.0100     0.971  0.0140
+BPB          C4         H4B      SINGLE       n     1.089  0.0100     0.971  0.0140
+BPB          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0185
+BPB          C5         H5A      SINGLE       n     1.089  0.0100     0.981  0.0185
+BPB          C6          H6      SINGLE       n     1.089  0.0100     0.980  0.0160
+BPB          C6         H6A      SINGLE       n     1.089  0.0100     0.980  0.0160
+BPB          C7          H7      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPB          C7         H7A      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPB          C8          H8      SINGLE       n     1.089  0.0100     0.989  0.0162
+BPB          C9          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPB          C9         H9A      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPB          C9         H9B      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPB          NB        H171      SINGLE       n     1.016  0.0100     0.902  0.0200
+BPB          ND        H181      SINGLE       n     1.016  0.0100     0.874  0.0161
+BPB         C10         H10      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPB         C10        H10A      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPB         C11         H11      SINGLE       n     1.089  0.0100     0.981  0.0163
+BPB         C11        H11A      SINGLE       n     1.089  0.0100     0.981  0.0163
+BPB         C12         H12      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPB         C12        H12A      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPB         C13         H13      SINGLE       n     1.089  0.0100     0.989  0.0162
+BPB         C14         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPB         C14        H14A      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPB         C14        H14B      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPB         C15         H15      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPB         C15        H15A      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPB         C16         H16      SINGLE       n     1.089  0.0100     0.981  0.0163
+BPB         C16        H16A      SINGLE       n     1.089  0.0100     0.981  0.0163
+BPB         C17         H17      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPB         C17        H17A      SINGLE       n     1.089  0.0100     0.981  0.0160
+BPB         C18         H18      SINGLE       n     1.089  0.0100     0.989  0.0162
+BPB         C19         H19      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPB         C19        H19A      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPB         C19        H19B      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPB         C20         H20      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPB         C20        H20A      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPB         C20        H20B      SINGLE       n     1.089  0.0100     0.973  0.0146
+BPB         C2A         H42      SINGLE       n     1.089  0.0100     0.996  0.0120
+BPB         C2C         H43      SINGLE       n     1.089  0.0100     0.986  0.0162
+BPB         C3A         H44      SINGLE       n     1.089  0.0100     0.991  0.0103
+BPB         CAA         HAA      SINGLE       n     1.089  0.0100     0.980  0.0152
+BPB         CAA        HAAA      SINGLE       n     1.089  0.0100     0.980  0.0152
+BPB         CAC         HAC      SINGLE       n     1.082  0.0130     0.960  0.0200
+BPB         CBA         HBA      SINGLE       n     1.089  0.0100     0.981  0.0185
+BPB         CBA        HBAA      SINGLE       n     1.089  0.0100     0.981  0.0185
+BPB         CBB         HBB      SINGLE       n     1.089  0.0100     0.969  0.0198
+BPB         CBB        HBBA      SINGLE       n     1.089  0.0100     0.969  0.0198
+BPB         CBB        HBBB      SINGLE       n     1.089  0.0100     0.969  0.0198
+BPB         CBC         HBC      SINGLE       n     1.089  0.0100     0.970  0.0135
+BPB         CBC        HBCA      SINGLE       n     1.089  0.0100     0.970  0.0135
+BPB         CBC         H55      SINGLE       n     1.089  0.0100     0.970  0.0135
+BPB         CBD         HBD      SINGLE       n     1.089  0.0100     0.986  0.0200
+BPB         CED         HED      SINGLE       n     1.089  0.0100     0.970  0.0175
+BPB         CED        HEDA      SINGLE       n     1.089  0.0100     0.970  0.0175
+BPB         CED        HEDB      SINGLE       n     1.089  0.0100     0.970  0.0175
+BPB         CHB         HHB      SINGLE       n     1.082  0.0130     0.957  0.0200
+BPB         CHC         HHC      SINGLE       n     1.082  0.0130     0.957  0.0200
+BPB         CHD         HHD      SINGLE       n     1.082  0.0130     0.944  0.0100
+BPB         CMA         HMA      SINGLE       n     1.089  0.0100     0.970  0.0163
+BPB         CMA        HMAA      SINGLE       n     1.089  0.0100     0.970  0.0163
+BPB         CMA        HMAB      SINGLE       n     1.089  0.0100     0.970  0.0163
+BPB         CMB         HMB      SINGLE       n     1.089  0.0100     0.971  0.0172
+BPB         CMB        HMBA      SINGLE       n     1.089  0.0100     0.971  0.0172
+BPB         CMB        HMBB      SINGLE       n     1.089  0.0100     0.971  0.0172
+BPB         CMC         HMC      SINGLE       n     1.089  0.0100     0.977  0.0200
+BPB         CMC        HMCA      SINGLE       n     1.089  0.0100     0.977  0.0200
+BPB         CMC        HMCB      SINGLE       n     1.089  0.0100     0.977  0.0200
+BPB         CMD         HMD      SINGLE       n     1.089  0.0100     0.977  0.0100
+BPB         CMD        HMDA      SINGLE       n     1.089  0.0100     0.977  0.0100
+BPB         CMD        HMDB      SINGLE       n     1.089  0.0100     0.977  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BPB          C2          C1         O2A     110.121    2.20
+BPB          C2          C1          H1     109.840    1.50
+BPB          C2          C1         H1A     109.840    1.50
+BPB         O2A          C1          H1     109.547    1.50
+BPB         O2A          C1         H1A     109.547    1.50
+BPB          H1          C1         H1A     108.221    1.50
+BPB          C1          C2          C3     124.396    3.00
+BPB          C1          C2          H2     118.040    2.26
+BPB          C3          C2          H2     117.563    1.50
+BPB          C2          C3          C4     123.007    1.73
+BPB          C2          C3          C5     121.607    1.82
+BPB          C4          C3          C5     115.386    1.50
+BPB          C3          C4          H4     109.541    1.50
+BPB          C3          C4         H4A     109.541    1.50
+BPB          C3          C4         H4B     109.541    1.50
+BPB          H4          C4         H4A     109.342    1.50
+BPB          H4          C4         H4B     109.342    1.50
+BPB         H4A          C4         H4B     109.342    1.50
+BPB          C3          C5          C6     113.243    1.53
+BPB          C3          C5          H5     108.816    1.50
+BPB          C3          C5         H5A     108.816    1.50
+BPB          C6          C5          H5     109.153    1.50
+BPB          C6          C5         H5A     109.153    1.50
+BPB          H5          C5         H5A     107.710    1.94
+BPB          C5          C6          C7     113.314    2.25
+BPB          C5          C6          H6     108.548    1.50
+BPB          C5          C6         H6A     108.548    1.50
+BPB          C7          C6          H6     108.762    1.50
+BPB          C7          C6         H6A     108.762    1.50
+BPB          H6          C6         H6A     107.646    1.50
+BPB          C6          C7          C8     115.586    1.50
+BPB          C6          C7          H7     108.469    1.50
+BPB          C6          C7         H7A     108.469    1.50
+BPB          C8          C7          H7     108.410    1.50
+BPB          C8          C7         H7A     108.410    1.50
+BPB          H7          C7         H7A     107.657    1.50
+BPB          C7          C8          C9     111.605    1.50
+BPB          C7          C8         C10     111.631    1.85
+BPB          C7          C8          H8     107.002    1.69
+BPB          C9          C8         C10     111.605    1.50
+BPB          C9          C8          H8     108.064    1.50
+BPB         C10          C8          H8     107.002    1.69
+BPB          C8          C9          H9     109.656    1.50
+BPB          C8          C9         H9A     109.656    1.50
+BPB          C8          C9         H9B     109.656    1.50
+BPB          H9          C9         H9A     109.411    1.50
+BPB          H9          C9         H9B     109.411    1.50
+BPB         H9A          C9         H9B     109.411    1.50
+BPB         C1A          NA         C4A     107.157    3.00
+BPB         C4B          NB         C1B     110.017    1.50
+BPB         C4B          NB        H171     123.041    2.38
+BPB         C1B          NB        H171     123.041    2.38
+BPB         C1C          NC         C4C     107.157    3.00
+BPB         C1D          ND         C4D     108.338    1.50
+BPB         C1D          ND        H181     124.553    3.00
+BPB         C4D          ND        H181     127.109    3.00
+BPB          C8         C10         C11     115.586    1.50
+BPB          C8         C10         H10     108.410    1.50
+BPB          C8         C10        H10A     108.410    1.50
+BPB         C11         C10         H10     108.469    1.50
+BPB         C11         C10        H10A     108.469    1.50
+BPB         H10         C10        H10A     107.657    1.50
+BPB         C10         C11         C12     114.183    2.57
+BPB         C10         C11         H11     108.762    1.50
+BPB         C10         C11        H11A     108.762    1.50
+BPB         C12         C11         H11     108.762    1.50
+BPB         C12         C11        H11A     108.762    1.50
+BPB         H11         C11        H11A     107.646    1.50
+BPB         C11         C12         C13     115.586    1.50
+BPB         C11         C12         H12     108.469    1.50
+BPB         C11         C12        H12A     108.469    1.50
+BPB         C13         C12         H12     108.410    1.50
+BPB         C13         C12        H12A     108.410    1.50
+BPB         H12         C12        H12A     107.657    1.50
+BPB         C12         C13         C14     111.605    1.50
+BPB         C12         C13         C15     111.631    1.85
+BPB         C12         C13         H13     107.002    1.69
+BPB         C14         C13         C15     111.605    1.50
+BPB         C14         C13         H13     108.064    1.50
+BPB         C15         C13         H13     107.002    1.69
+BPB         C13         C14         H14     109.656    1.50
+BPB         C13         C14        H14A     109.656    1.50
+BPB         C13         C14        H14B     109.656    1.50
+BPB         H14         C14        H14A     109.411    1.50
+BPB         H14         C14        H14B     109.411    1.50
+BPB        H14A         C14        H14B     109.411    1.50
+BPB         C13         C15         C16     115.586    1.50
+BPB         C13         C15         H15     108.410    1.50
+BPB         C13         C15        H15A     108.410    1.50
+BPB         C16         C15         H15     108.469    1.50
+BPB         C16         C15        H15A     108.469    1.50
+BPB         H15         C15        H15A     107.657    1.50
+BPB         C15         C16         C17     114.183    2.57
+BPB         C15         C16         H16     108.762    1.50
+BPB         C15         C16        H16A     108.762    1.50
+BPB         C17         C16         H16     108.762    1.50
+BPB         C17         C16        H16A     108.762    1.50
+BPB         H16         C16        H16A     107.646    1.50
+BPB         C16         C17         C18     115.585    1.50
+BPB         C16         C17         H17     108.469    1.50
+BPB         C16         C17        H17A     108.469    1.50
+BPB         C18         C17         H17     108.407    1.50
+BPB         C18         C17        H17A     108.407    1.50
+BPB         H17         C17        H17A     107.657    1.50
+BPB         C17         C18         C19     111.368    1.50
+BPB         C17         C18         C20     111.368    1.50
+BPB         C17         C18         H18     107.933    1.50
+BPB         C19         C18         C20     110.507    1.50
+BPB         C19         C18         H18     108.052    1.50
+BPB         C20         C18         H18     108.052    1.50
+BPB         C18         C19         H19     109.488    1.50
+BPB         C18         C19        H19A     109.488    1.50
+BPB         C18         C19        H19B     109.488    1.50
+BPB         H19         C19        H19A     109.411    1.50
+BPB         H19         C19        H19B     109.411    1.50
+BPB        H19A         C19        H19B     109.411    1.50
+BPB          NA         C1A         CHA     121.640    2.67
+BPB          NA         C1A         C2A     114.070    1.55
+BPB         CHA         C1A         C2A     124.291    3.00
+BPB          NB         C1B         C2B     106.758    1.50
+BPB          NB         C1B         CHB     124.905    2.47
+BPB         C2B         C1B         CHB     128.337    2.44
+BPB          NC         C1C         C2C     112.517    1.55
+BPB          NC         C1C         CHC     122.917    1.50
+BPB         C2C         C1C         CHC     124.565    3.00
+BPB          ND         C1D         CHD     124.092    3.00
+BPB          ND         C1D         C2D     107.800    1.50
+BPB         CHD         C1D         C2D     128.108    3.00
+BPB         C18         C20         H20     109.488    1.50
+BPB         C18         C20        H20A     109.488    1.50
+BPB         C18         C20        H20B     109.488    1.50
+BPB         H20         C20        H20A     109.411    1.50
+BPB         H20         C20        H20B     109.411    1.50
+BPB        H20A         C20        H20B     109.411    1.50
+BPB         C1A         C2A         CAA     111.539    2.78
+BPB         C1A         C2A         C3A     104.009    1.83
+BPB         C1A         C2A         H42     110.367    1.60
+BPB         CAA         C2A         C3A     114.843    3.00
+BPB         CAA         C2A         H42     108.695    1.50
+BPB         C3A         C2A         H42     108.690    1.50
+BPB          C1         O2A         CGA     116.057    1.73
+BPB         C1B         C2B         C3B     107.316    1.50
+BPB         C1B         C2B         CMB     125.023    1.50
+BPB         C3B         C2B         CMB     127.661    1.50
+BPB         C1C         C2C         CMC     111.539    2.78
+BPB         C1C         C2C         C3C     102.792    1.88
+BPB         C1C         C2C         H43     110.367    1.60
+BPB         CMC         C2C         C3C     113.850    1.50
+BPB         CMC         C2C         H43     109.362    1.50
+BPB         C3C         C2C         H43     109.520    1.50
+BPB         C1D         C2D         CMD     125.951    2.21
+BPB         C1D         C2D         C3D     107.464    1.50
+BPB         CMD         C2D         C3D     126.585    1.99
+BPB         CGD         O2D         CED     116.214    1.50
+BPB         C2A         C3A         C4A     104.009    1.83
+BPB         C2A         C3A         CMA     115.051    3.00
+BPB         C2A         C3A         H44     108.733    1.50
+BPB         C4A         C3A         CMA     111.539    2.78
+BPB         C4A         C3A         H44     109.292    1.96
+BPB         CMA         C3A         H44     108.374    1.50
+BPB         C2B         C3B         C4B     106.858    3.00
+BPB         C2B         C3B         CAB     125.912    3.00
+BPB         C4B         C3B         CAB     127.230    1.50
+BPB         C2C         C3C         CAC     125.034    3.00
+BPB         C2C         C3C         C4C     109.646    2.72
+BPB         CAC         C3C         C4C     125.320    3.00
+BPB         C2D         C3D         C4D     108.034    3.00
+BPB         C2D         C3D         CAD     142.200    2.48
+BPB         C4D         C3D         CAD     109.766    3.00
+BPB         C3A         C4A          NA     112.517    1.55
+BPB         C3A         C4A         CHB     124.565    3.00
+BPB          NA         C4A         CHB     122.917    1.50
+BPB          NB         C4B         C3B     107.246    1.50
+BPB          NB         C4B         CHC     124.086    2.47
+BPB         C3B         C4B         CHC     128.668    3.00
+BPB          NC         C4C         C3C     110.021    3.00
+BPB          NC         C4C         CHD     122.522    1.50
+BPB         C3C         C4C         CHD     127.456    3.00
+BPB          ND         C4D         C3D     108.364    1.50
+BPB          ND         C4D         CHA     138.266    1.79
+BPB         C3D         C4D         CHA     113.369    3.00
+BPB         C2A         CAA         CBA     112.518    2.73
+BPB         C2A         CAA         HAA     108.649    1.50
+BPB         C2A         CAA        HAAA     108.649    1.50
+BPB         CBA         CAA         HAA     108.954    1.50
+BPB         CBA         CAA        HAAA     108.954    1.50
+BPB         HAA         CAA        HAAA     107.607    1.50
+BPB         C3B         CAB         CBB     119.486    1.98
+BPB         C3B         CAB         OBB     120.615    1.50
+BPB         CBB         CAB         OBB     119.899    1.50
+BPB         C3C         CAC         CBC     123.635    3.00
+BPB         C3C         CAC         HAC     118.110    1.54
+BPB         CBC         CAC         HAC     118.255    1.50
+BPB         C3D         CAD         CBD     106.653    1.50
+BPB         C3D         CAD         OBD     128.959    1.50
+BPB         CBD         CAD         OBD     124.388    1.50
+BPB         CAA         CBA         CGA     112.403    2.11
+BPB         CAA         CBA         HBA     108.941    1.50
+BPB         CAA         CBA        HBAA     108.941    1.50
+BPB         CGA         CBA         HBA     108.955    1.50
+BPB         CGA         CBA        HBAA     108.955    1.50
+BPB         HBA         CBA        HBAA     107.765    1.50
+BPB         CAB         CBB         HBB     109.525    1.50
+BPB         CAB         CBB        HBBA     109.525    1.50
+BPB         CAB         CBB        HBBB     109.525    1.50
+BPB         HBB         CBB        HBBA     109.390    1.59
+BPB         HBB         CBB        HBBB     109.390    1.59
+BPB        HBBA         CBB        HBBB     109.390    1.59
+BPB         CAC         CBC         HBC     109.554    1.50
+BPB         CAC         CBC        HBCA     109.554    1.50
+BPB         CAC         CBC         H55     109.554    1.50
+BPB         HBC         CBC        HBCA     109.194    3.00
+BPB         HBC         CBC         H55     109.194    3.00
+BPB        HBCA         CBC         H55     109.194    3.00
+BPB         CAD         CBD         CHA     102.792    1.88
+BPB         CAD         CBD         CGD     110.962    3.00
+BPB         CAD         CBD         HBD     109.707    2.75
+BPB         CHA         CBD         CGD     110.962    3.00
+BPB         CHA         CBD         HBD     110.367    1.60
+BPB         CGD         CBD         HBD     109.314    3.00
+BPB         O2D         CED         HED     109.361    1.50
+BPB         O2D         CED        HEDA     109.361    1.50
+BPB         O2D         CED        HEDB     109.361    1.50
+BPB         HED         CED        HEDA     109.532    1.53
+BPB         HED         CED        HEDB     109.532    1.53
+BPB        HEDA         CED        HEDB     109.532    1.53
+BPB         O2A         CGA         CBA     111.605    1.92
+BPB         O2A         CGA         O1A     123.129    1.50
+BPB         CBA         CGA         O1A     125.266    1.50
+BPB         O1D         CGD         O2D     124.098    1.50
+BPB         O1D         CGD         CBD     124.260    1.50
+BPB         O2D         CGD         CBD     111.642    1.50
+BPB         C1A         CHA         CBD     123.954    3.00
+BPB         C1A         CHA         C4D     129.241    3.00
+BPB         CBD         CHA         C4D     106.805    1.50
+BPB         C4A         CHB         C1B     127.285    1.86
+BPB         C4A         CHB         HHB     116.827    1.50
+BPB         C1B         CHB         HHB     115.888    1.52
+BPB         C4B         CHC         C1C     127.285    1.86
+BPB         C4B         CHC         HHC     115.888    1.52
+BPB         C1C         CHC         HHC     116.827    1.50
+BPB         C1D         CHD         C4C     128.241    1.96
+BPB         C1D         CHD         HHD     115.520    1.77
+BPB         C4C         CHD         HHD     116.239    1.50
+BPB         C3A         CMA         HMA     109.458    1.50
+BPB         C3A         CMA        HMAA     109.458    1.50
+BPB         C3A         CMA        HMAB     109.458    1.50
+BPB         HMA         CMA        HMAA     109.347    1.50
+BPB         HMA         CMA        HMAB     109.347    1.50
+BPB        HMAA         CMA        HMAB     109.347    1.50
+BPB         C2B         CMB         HMB     109.746    1.50
+BPB         C2B         CMB        HMBA     109.746    1.50
+BPB         C2B         CMB        HMBB     109.746    1.50
+BPB         HMB         CMB        HMBA     109.190    1.68
+BPB         HMB         CMB        HMBB     109.190    1.68
+BPB        HMBA         CMB        HMBB     109.190    1.68
+BPB         C2C         CMC         HMC     109.472    1.50
+BPB         C2C         CMC        HMCA     109.472    1.50
+BPB         C2C         CMC        HMCB     109.472    1.50
+BPB         HMC         CMC        HMCA     109.347    1.50
+BPB         HMC         CMC        HMCB     109.347    1.50
+BPB        HMCA         CMC        HMCB     109.347    1.50
+BPB         C2D         CMD         HMD     109.471    1.50
+BPB         C2D         CMD        HMDA     109.471    1.50
+BPB         C2D         CMD        HMDB     109.471    1.50
+BPB         HMD         CMD        HMDA     109.472    1.50
+BPB         HMD         CMD        HMDB     109.472    1.50
+BPB        HMDA         CMD        HMDB     109.472    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BPB            sp2_sp3_38          C3          C2          C1         O2A     120.000    10.0     6
+BPB           sp3_sp3_154          C2          C1         O2A         CGA     180.000    10.0     3
+BPB              const_35         CHB         C1B          NB         C4B     180.000    10.0     2
+BPB       const_sp2_sp2_3         CHC         C4B          NB         C1B     180.000     5.0     2
+BPB             sp2_sp2_4         CHC         C1C          NC         C4C     180.000     5.0     2
+BPB            sp2_sp2_18         CHD         C4C          NC         C1C     180.000     5.0     2
+BPB              const_19         CHD         C1D          ND         C4D     180.000    10.0     2
+BPB              const_37         C3D         C4D          ND         C1D       0.000    10.0     2
+BPB            sp3_sp3_55          C8         C10         C11         C12     180.000    10.0     3
+BPB            sp3_sp3_64         C10         C11         C12         C13     180.000    10.0     3
+BPB            sp3_sp3_73         C11         C12         C13         C14     180.000    10.0     3
+BPB            sp3_sp3_82         C12         C13         C14         H14     180.000    10.0     3
+BPB            sp3_sp3_91         C12         C13         C15         C16     180.000    10.0     3
+BPB           sp3_sp3_100         C13         C15         C16         C17     180.000    10.0     3
+BPB           sp3_sp3_109         C15         C16         C17         C18     180.000    10.0     3
+BPB            sp2_sp2_14          C1          C2          C3          C4       0.000     5.0     2
+BPB           sp3_sp3_119         C16         C17         C18         C19     -60.000    10.0     3
+BPB           sp3_sp3_127         C17         C18         C19         H19     180.000    10.0     3
+BPB           sp3_sp3_139         C17         C18         C20         H20      60.000    10.0     3
+BPB             sp2_sp3_2          NA         C1A         C2A         CAA     120.000    10.0     6
+BPB            sp2_sp2_21          NA         C1A         CHA         CBD       0.000     5.0     2
+BPB              const_16         CHB         C1B         C2B         CMB       0.000    10.0     2
+BPB            sp2_sp2_53          NB         C1B         CHB         C4A     180.000     5.0     2
+BPB            sp2_sp3_17         CHC         C1C         C2C         CMC     -60.000    10.0     6
+BPB            sp2_sp2_59          NC         C1C         CHC         C4B       0.000     5.0     2
+BPB              const_24         CHD         C1D         C2D         CMD       0.000    10.0     2
+BPB            sp2_sp2_23          ND         C1D         CHD         C4C     180.000     5.0     2
+BPB            sp2_sp3_43          C2          C3          C4          H4       0.000    10.0     6
+BPB            sp2_sp3_50          C2          C3          C5          C6     120.000    10.0     6
+BPB             sp3_sp3_5         CAA         C2A         C3A         CMA      60.000    10.0     3
+BPB           sp3_sp3_145         C1A         C2A         CAA         CBA     180.000    10.0     3
+BPB            sp2_sp2_27         CBA         CGA         O2A          C1     180.000     5.0     2
+BPB              const_12         CMB         C2B         C3B         CAB       0.000    10.0     2
+BPB            sp2_sp3_85         C1B         C2B         CMB         HMB     150.000    10.0     6
+BPB            sp2_sp3_23         CAC         C3C         C2C         CMC     -60.000    10.0     6
+BPB           sp3_sp3_157         C1C         C2C         CMC         HMC     180.000    10.0     3
+BPB              const_27         CMD         C2D         C3D         C4D     180.000    10.0     2
+BPB            sp2_sp3_55         C1D         C2D         CMD         HMD     150.000    10.0     6
+BPB           sp3_sp3_176         HED         CED         O2D         CGD     -60.000    10.0     3
+BPB            sp2_sp2_29         O1D         CGD         O2D         CED     180.000     5.0     2
+BPB            sp2_sp3_11         CHB         C4A         C3A         CMA     -60.000    10.0     6
+BPB           sp3_sp3_179         C2A         C3A         CMA         HMA     180.000    10.0     3
+BPB       const_sp2_sp2_8         CAB         C3B         C4B         CHC       0.000     5.0     2
+BPB            sp2_sp2_31         C2B         C3B         CAB         CBB     180.000     5.0     2
+BPB             sp2_sp2_8         CAC         C3C         C4C         CHD       0.000     5.0     2
+BPB            sp2_sp2_35         C2C         C3C         CAC         CBC     180.000     5.0     2
+BPB              const_29         C2D         C3D         C4D          ND       0.000    10.0     2
+BPB            sp2_sp2_52         C2D         C3D         CAD         OBD       0.000     5.0     2
+BPB            sp2_sp2_41         C3A         C4A         CHB         C1B     180.000     5.0     2
+BPB            sp2_sp2_45          NB         C4B         CHC         C1C     180.000     5.0     2
+BPB            sp2_sp2_63          NC         C4C         CHD         C1D       0.000     5.0     2
+BPB            sp2_sp2_12          ND         C4D         CHA         C1A       0.000     5.0     2
+BPB           sp3_sp3_166         C2A         CAA         CBA         CGA     180.000    10.0     3
+BPB            sp2_sp3_64         OBB         CAB         CBB         HBB     180.000    10.0     6
+BPB            sp2_sp3_67         C3C         CAC         CBC         HBC       0.000    10.0     6
+BPB            sp2_sp3_35         OBD         CAD         CBD         CGD     -60.000    10.0     6
+BPB            sp2_sp3_74         O2A         CGA         CBA         CAA     120.000    10.0     6
+BPB            sp3_sp3_10          C3          C5          C6          C7     180.000    10.0     3
+BPB            sp2_sp3_79         O1D         CGD         CBD         CAD       0.000    10.0     6
+BPB            sp2_sp3_29         C1A         CHA         CBD         CGD     -60.000    10.0     6
+BPB            sp3_sp3_19          C5          C6          C7          C8     180.000    10.0     3
+BPB            sp3_sp3_28          C6          C7          C8          C9     180.000    10.0     3
+BPB            sp3_sp3_46         C11         C10          C8          C7     180.000    10.0     3
+BPB            sp3_sp3_37          C7          C8          C9          H9     180.000    10.0     3
+BPB             sp2_sp2_2         CHA         C1A          NA         C4A     180.000     5.0     2
+BPB            sp2_sp2_40         CHB         C4A          NA         C1A     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BPB    chir_1    C8    C7    C10    C9    negative
+BPB    chir_2    C13    C12    C15    C14    negative
+BPB    chir_3    C18    C17    C19    C20    both
+BPB    chir_4    C2A    C1A    C3A    CAA    positive
+BPB    chir_5    C2C    C1C    C3C    CMC    negative
+BPB    chir_6    C3A    C4A    C2A    CMA    positive
+BPB    chir_7    CBD    CGD    CAD    CHA    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BPB    plan-1         C1B   0.020
+BPB    plan-1         C2B   0.020
+BPB    plan-1         C3B   0.020
+BPB    plan-1         C4B   0.020
+BPB    plan-1         CAB   0.020
+BPB    plan-1         CHB   0.020
+BPB    plan-1         CHC   0.020
+BPB    plan-1         CMB   0.020
+BPB    plan-1        H171   0.020
+BPB    plan-1          NB   0.020
+BPB    plan-2         C1D   0.020
+BPB    plan-2         C2D   0.020
+BPB    plan-2         C3D   0.020
+BPB    plan-2         C4D   0.020
+BPB    plan-2         CAD   0.020
+BPB    plan-2         CHA   0.020
+BPB    plan-2         CHD   0.020
+BPB    plan-2         CMD   0.020
+BPB    plan-2        H181   0.020
+BPB    plan-2          ND   0.020
+BPB    plan-3          C1   0.020
+BPB    plan-3          C2   0.020
+BPB    plan-3          C3   0.020
+BPB    plan-3          H2   0.020
+BPB    plan-4          C2   0.020
+BPB    plan-4          C3   0.020
+BPB    plan-4          C4   0.020
+BPB    plan-4          C5   0.020
+BPB    plan-5         C1A   0.020
+BPB    plan-5         C2A   0.020
+BPB    plan-5         CHA   0.020
+BPB    plan-5          NA   0.020
+BPB    plan-6         C1C   0.020
+BPB    plan-6         C2C   0.020
+BPB    plan-6         CHC   0.020
+BPB    plan-6          NC   0.020
+BPB    plan-7         C2C   0.020
+BPB    plan-7         C3C   0.020
+BPB    plan-7         C4C   0.020
+BPB    plan-7         CAC   0.020
+BPB    plan-8         C3A   0.020
+BPB    plan-8         C4A   0.020
+BPB    plan-8         CHB   0.020
+BPB    plan-8          NA   0.020
+BPB    plan-9         C3C   0.020
+BPB    plan-9         C4C   0.020
+BPB    plan-9         CHD   0.020
+BPB    plan-9          NC   0.020
+BPB   plan-10         C3B   0.020
+BPB   plan-10         CAB   0.020
+BPB   plan-10         CBB   0.020
+BPB   plan-10         OBB   0.020
+BPB   plan-11         C3C   0.020
+BPB   plan-11         CAC   0.020
+BPB   plan-11         CBC   0.020
+BPB   plan-11         HAC   0.020
+BPB   plan-12         C3D   0.020
+BPB   plan-12         CAD   0.020
+BPB   plan-12         CBD   0.020
+BPB   plan-12         OBD   0.020
+BPB   plan-13         CBA   0.020
+BPB   plan-13         CGA   0.020
+BPB   plan-13         O1A   0.020
+BPB   plan-13         O2A   0.020
+BPB   plan-14         CBD   0.020
+BPB   plan-14         CGD   0.020
+BPB   plan-14         O1D   0.020
+BPB   plan-14         O2D   0.020
+BPB   plan-15         C1A   0.020
+BPB   plan-15         C4D   0.020
+BPB   plan-15         CBD   0.020
+BPB   plan-15         CHA   0.020
+BPB   plan-16         C1B   0.020
+BPB   plan-16         C4A   0.020
+BPB   plan-16         CHB   0.020
+BPB   plan-16         HHB   0.020
+BPB   plan-17         C1C   0.020
+BPB   plan-17         C4B   0.020
+BPB   plan-17         CHC   0.020
+BPB   plan-17         HHC   0.020
+BPB   plan-18         C1D   0.020
+BPB   plan-18         C4C   0.020
+BPB   plan-18         CHD   0.020
+BPB   plan-18         HHD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BPB           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                                           O=C(OC\C=C(/C)CCCC(C)CCCC(C)CCCC(C)C)CCC6c4nc(cc1c(c(C(=O)C)c(n1)cc5nc(cc3c(c2C(=O)C(c4c2n3)C(=O)OC)C)/C(=C/C)C5C)C)C6C
+BPB            InChI                InChI  1.03 InChI=1S/C55H74N4O6/c1-13-39-34(7)41-29-46-48(38(11)60)36(9)43(57-46)27-42-35(8)40(52(58-42)50-51(55(63)64-12)54(62)49-37(10)44(59-53(49)50)28-45(39)56-41)23-24-47(61)65-26-25-33(6)22-16-21-32(5)20-15-19-31(4)18-14-17-30(2)3/h13,25,27-32,34-35,40,51,57,59H,14-24,26H2,1-12H3/b33-25+,39-13+,41-29-,42-27-,43-27-,44-28-,45-28-,46-29-,52-50-/t31-,32-,34-,35+,40+,51-/m1/s1
+BPB         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                       SFKCKJXMIAKQMY-GTTFDWDMSA-N
+BPB SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                                                                             COC(=O)[C@H]1C(=O)c2c(C)c3[nH]c2c1c4nc(cc5[nH]c(cc6nc(c3)C(=C/C)/[C@H]6C)c(C(C)=O)c5C)[C@@H](C)[C@@H]4CCC(=O)OC\C=C(/C)CCC[C@H](C)CCC[C@H](C)CCCC(C)C
+BPB           SMILES               CACTVS 3.370                                                                                                                                                                                                                                         COC(=O)[CH]1C(=O)c2c(C)c3[nH]c2c1c4nc(cc5[nH]c(cc6nc(c3)C(=CC)[CH]6C)c(C(C)=O)c5C)[CH](C)[CH]4CCC(=O)OCC=C(C)CCC[CH](C)CCC[CH](C)CCCC(C)C
+BPB SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                                                        C/C=C\1/c2/cc\3/c(c4c([nH]3)c(c5n/c(c\c6c(c(c([nH]6)/cc(\n2)/C1C)C(=O)C)C)/C(C5CCC(=O)OC/C=C(\C)/CCCC(C)CCCC(C)CCCC(C)C)C)C(C4=O)C(=O)OC)C
+BPB           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                                                                                       CC=C1c2cc3c(c4c([nH]3)c(c5nc(cc6c(c(c([nH]6)cc(n2)C1C)C(=O)C)C)C(C5CCC(=O)OCC=C(C)CCCC(C)CCCC(C)CCCC(C)C)C)C(C4=O)C(=O)OC)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BPB acedrg               243         "dictionary generator"                  
+BPB acedrg_database      11          "data source"                           
+BPB rdkit                2017.03.2   "Chemoinformatics tool"
+BPB refmac5              5.8.0238    "optimization tool"                     

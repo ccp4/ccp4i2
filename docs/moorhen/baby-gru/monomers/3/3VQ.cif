@@ -1,0 +1,199 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3VQ     3VQ      5-(pyridin-2-yl)thiophene-2-carboxamide     NON-POLYMER     22     14     .     
+#
+data_comp_3VQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3VQ     CAF     C       CR16    0       13.972      -5.142      83.482      
+3VQ     CAD     C       CR16    0       14.369      -5.972      84.515      
+3VQ     CAC     C       CR16    0       15.679      -5.941      84.946      
+3VQ     CAE     C       CR16    0       16.549      -5.072      84.321      
+3VQ     NAI     N       NRD6    0       16.188      -4.252      83.311      
+3VQ     CAL     C       CR6     0       14.907      -4.286      82.894      
+3VQ     CAN     C       CR5     0       14.524      -3.387      81.792      
+3VQ     SAJ     S       S2      0       15.634      -2.340      81.118      
+3VQ     CAH     C       CR15    0       13.304      -3.238      81.156      
+3VQ     CAG     C       CR15    0       13.341      -2.255      80.129      
+3VQ     CAM     C       CR5     0       14.572      -1.689      80.012      
+3VQ     CAK     C       C       0       15.012      -0.642      79.074      
+3VQ     OAB     O       O       0       14.203      -0.145      78.290      
+3VQ     NAA     N       NH2     0       16.286      -0.271      79.115      
+3VQ     H1      H       H       0       13.077      -5.152      83.177      
+3VQ     H2      H       H       0       13.747      -6.555      84.921      
+3VQ     H3      H       H       0       15.973      -6.499      85.649      
+3VQ     H4      H       H       0       17.448      -5.046      84.611      
+3VQ     H5      H       H       0       12.531      -3.730      81.374      
+3VQ     H6      H       H       0       12.598      -2.027      79.596      
+3VQ     H7      H       H       0       16.571      0.356       78.560      
+3VQ     H8      H       H       0       16.840      -0.650      79.693      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3VQ         CAK         OAB      DOUBLE       n     1.231  0.0100     1.231  0.0100
+3VQ         CAK         NAA      SINGLE       n     1.325  0.0100     1.325  0.0100
+3VQ         CAM         CAK      SINGLE       n     1.467  0.0127     1.467  0.0127
+3VQ         CAG         CAM      DOUBLE       y     1.352  0.0140     1.352  0.0140
+3VQ         SAJ         CAM      SINGLE       y     1.695  0.0200     1.695  0.0200
+3VQ         CAH         CAG      SINGLE       y     1.377  0.0200     1.377  0.0200
+3VQ         CAN         SAJ      SINGLE       y     1.695  0.0200     1.695  0.0200
+3VQ         CAN         CAH      DOUBLE       y     1.363  0.0200     1.363  0.0200
+3VQ         CAL         CAN      SINGLE       n     1.467  0.0107     1.467  0.0107
+3VQ         NAI         CAL      SINGLE       y     1.342  0.0100     1.342  0.0100
+3VQ         CAF         CAL      DOUBLE       y     1.392  0.0100     1.392  0.0100
+3VQ         CAE         NAI      DOUBLE       y     1.341  0.0175     1.341  0.0175
+3VQ         CAF         CAD      SINGLE       y     1.377  0.0127     1.377  0.0127
+3VQ         CAC         CAE      SINGLE       y     1.376  0.0130     1.376  0.0130
+3VQ         CAD         CAC      DOUBLE       y     1.374  0.0129     1.374  0.0129
+3VQ         CAF          H1      SINGLE       n     1.082  0.0130     0.947  0.0200
+3VQ         CAD          H2      SINGLE       n     1.082  0.0130     0.944  0.0200
+3VQ         CAC          H3      SINGLE       n     1.082  0.0130     0.944  0.0200
+3VQ         CAE          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+3VQ         CAH          H5      SINGLE       n     1.082  0.0130     0.942  0.0154
+3VQ         CAG          H6      SINGLE       n     1.082  0.0130     0.942  0.0154
+3VQ         NAA          H7      SINGLE       n     1.016  0.0100     0.884  0.0200
+3VQ         NAA          H8      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3VQ         CAL         CAF         CAD     119.087    1.50
+3VQ         CAL         CAF          H1     120.142    1.50
+3VQ         CAD         CAF          H1     120.770    1.50
+3VQ         CAF         CAD         CAC     119.224    1.50
+3VQ         CAF         CAD          H2     120.282    1.50
+3VQ         CAC         CAD          H2     120.493    1.50
+3VQ         CAE         CAC         CAD     118.346    1.50
+3VQ         CAE         CAC          H3     120.756    1.50
+3VQ         CAD         CAC          H3     120.897    1.50
+3VQ         NAI         CAE         CAC     123.797    1.50
+3VQ         NAI         CAE          H4     117.732    1.50
+3VQ         CAC         CAE          H4     118.471    1.50
+3VQ         CAL         NAI         CAE     117.685    1.50
+3VQ         CAN         CAL         NAI     117.265    1.60
+3VQ         CAN         CAL         CAF     120.875    1.50
+3VQ         NAI         CAL         CAF     121.860    1.50
+3VQ         SAJ         CAN         CAH     108.465    3.00
+3VQ         SAJ         CAN         CAL     121.002    3.00
+3VQ         CAH         CAN         CAL     130.533    1.75
+3VQ         CAM         SAJ         CAN     108.465    3.00
+3VQ         CAG         CAH         CAN     107.639    1.50
+3VQ         CAG         CAH          H5     125.796    1.50
+3VQ         CAN         CAH          H5     126.565    1.50
+3VQ         CAM         CAG         CAH     106.966    1.50
+3VQ         CAM         CAG          H6     126.870    1.56
+3VQ         CAH         CAG          H6     126.164    1.50
+3VQ         CAK         CAM         CAG     131.799    3.00
+3VQ         CAK         CAM         SAJ     119.736    3.00
+3VQ         CAG         CAM         SAJ     108.465    3.00
+3VQ         OAB         CAK         NAA     123.018    1.50
+3VQ         OAB         CAK         CAM     120.399    1.72
+3VQ         NAA         CAK         CAM     116.584    1.62
+3VQ         CAK         NAA          H7     119.305    2.54
+3VQ         CAK         NAA          H8     119.305    2.54
+3VQ          H7         NAA          H8     121.391    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3VQ              const_33         CAC         CAD         CAF         CAL       0.000    10.0     2
+3VQ       const_sp2_sp2_2         CAD         CAF         CAL         CAN     180.000     5.0     2
+3VQ             sp2_sp2_7         OAB         CAK         CAM         CAG       0.000     5.0     2
+3VQ             sp2_sp2_3         OAB         CAK         NAA          H7       0.000     5.0     2
+3VQ              const_13         CAE         CAC         CAD         CAF       0.000    10.0     2
+3VQ       const_sp2_sp2_9         CAD         CAC         CAE         NAI       0.000     5.0     2
+3VQ       const_sp2_sp2_7         CAC         CAE         NAI         CAL       0.000     5.0     2
+3VQ       const_sp2_sp2_6         CAN         CAL         NAI         CAE     180.000     5.0     2
+3VQ            sp2_sp2_12         NAI         CAL         CAN         SAJ     180.000     5.0     2
+3VQ              const_17         CAH         CAN         SAJ         CAM       0.000    10.0     2
+3VQ              const_29         CAG         CAH         CAN         SAJ       0.000    10.0     2
+3VQ              const_20         CAK         CAM         SAJ         CAN     180.000    10.0     2
+3VQ              const_25         CAM         CAG         CAH         CAN       0.000    10.0     2
+3VQ              const_22         CAH         CAG         CAM         CAK     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3VQ    plan-1         CAC   0.020
+3VQ    plan-1         CAD   0.020
+3VQ    plan-1         CAE   0.020
+3VQ    plan-1         CAF   0.020
+3VQ    plan-1         CAL   0.020
+3VQ    plan-1         CAN   0.020
+3VQ    plan-1          H1   0.020
+3VQ    plan-1          H2   0.020
+3VQ    plan-1          H3   0.020
+3VQ    plan-1          H4   0.020
+3VQ    plan-1         NAI   0.020
+3VQ    plan-2         CAG   0.020
+3VQ    plan-2         CAH   0.020
+3VQ    plan-2         CAK   0.020
+3VQ    plan-2         CAL   0.020
+3VQ    plan-2         CAM   0.020
+3VQ    plan-2         CAN   0.020
+3VQ    plan-2          H5   0.020
+3VQ    plan-2          H6   0.020
+3VQ    plan-2         SAJ   0.020
+3VQ    plan-3         CAK   0.020
+3VQ    plan-3         CAM   0.020
+3VQ    plan-3         NAA   0.020
+3VQ    plan-3         OAB   0.020
+3VQ    plan-4         CAK   0.020
+3VQ    plan-4          H7   0.020
+3VQ    plan-4          H8   0.020
+3VQ    plan-4         NAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3VQ           SMILES              ACDLabs 12.01                                                   O=C(c2sc(c1ncccc1)cc2)N
+3VQ            InChI                InChI  1.03 InChI=1S/C10H8N2OS/c11-10(13)9-5-4-8(14-9)7-3-1-2-6-12-7/h1-6H,(H2,11,13)
+3VQ         InChIKey                InChI  1.03                                               BPSZHKPVINNIBN-UHFFFAOYSA-N
+3VQ SMILES_CANONICAL               CACTVS 3.385                                                   NC(=O)c1sc(cc1)c2ccccn2
+3VQ           SMILES               CACTVS 3.385                                                   NC(=O)c1sc(cc1)c2ccccn2
+3VQ SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                 c1ccnc(c1)c2ccc(s2)C(=O)N
+3VQ           SMILES "OpenEye OEToolkits" 1.9.2                                                 c1ccnc(c1)c2ccc(s2)C(=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3VQ acedrg               243         "dictionary generator"                  
+3VQ acedrg_database      11          "data source"                           
+3VQ rdkit                2017.03.2   "Chemoinformatics tool"
+3VQ refmac5              5.8.0238    "optimization tool"                     

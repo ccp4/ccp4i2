@@ -1,0 +1,449 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MYL     MYL      "Mycalamide A"     NON-POLYMER     76     35     .     
+#
+data_comp_MYL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MYL     CAA     C       C2      0       84.695      79.415      66.914      
+MYL     CAB     C       CH3     0       80.706      81.614      65.011      
+MYL     CAC     C       CH3     0       84.726      83.787      67.012      
+MYL     CAD     C       CH3     0       84.168      81.571      68.944      
+MYL     CAE     C       CH3     0       88.741      84.159      58.460      
+MYL     CAF     C       CH3     0       86.897      82.802      57.446      
+MYL     CAG     C       CH3     0       90.282      80.893      59.108      
+MYL     OAG     O       O       0       84.130      84.689      63.436      
+MYL     OAH     O       OH1     0       85.875      88.005      60.587      
+MYL     OAI     O       OH1     0       83.719      85.099      60.168      
+MYL     OAJ     O       OH1     0       83.251      81.442      62.381      
+MYL     OAK     O       O2      0       88.997      81.225      58.589      
+MYL     CAL     C       CH2     0       84.778      87.252      60.075      
+MYL     CAM     C       CH2     0       88.071      80.563      62.196      
+MYL     CAN     C       CH2     0       84.343      81.112      65.165      
+MYL     CAO     C       CH2     0       85.970      85.177      59.317      
+MYL     NAP     N       NH1     0       85.608      83.170      62.712      
+MYL     OAQ     O       O2      0       82.010      81.064      64.791      
+MYL     OAR     O       O2      0       87.504      81.828      62.521      
+MYL     OAS     O       O2      0       87.665      80.076      60.918      
+MYL     OAT     O       O2      0       82.930      83.061      65.620      
+MYL     OAU     O       O2      0       85.525      82.948      60.030      
+MYL     CAV     C       CR6     0       84.236      80.611      66.582      
+MYL     CAW     C       C       0       84.372      83.520      63.137      
+MYL     CAX     C       CH1     0       84.971      85.768      60.307      
+MYL     CAY     C       CH1     0       83.425      83.019      66.978      
+MYL     CAZ     C       CH1     0       83.552      81.582      67.544      
+MYL     CBA     C       CH1     0       86.597      83.861      59.762      
+MYL     CBB     C       CH1     0       83.233      82.508      63.318      
+MYL     CBC     C       CH1     0       86.105      81.919      62.210      
+MYL     CBD     C       CH1     0       88.150      81.954      59.475      
+MYL     CBE     C       CT      0       87.579      83.205      58.767      
+MYL     CBF     C       CH1     0       87.074      81.025      60.013      
+MYL     CBG     C       CH1     0       85.895      81.731      60.697      
+MYL     CBH     C       CT      0       83.122      81.940      64.750      
+MYL     HAA     H       H       0       84.605      79.097      67.789      
+MYL     HAAA    H       H       0       85.115      78.878      66.275      
+MYL     HAB     H       H       0       80.037      80.949      64.783      
+MYL     HABA    H       H       0       80.577      82.401      64.457      
+MYL     HABB    H       H       0       80.610      81.856      65.947      
+MYL     HAC     H       H       0       84.841      84.194      67.886      
+MYL     HACA    H       H       0       84.715      84.485      66.336      
+MYL     HACB    H       H       0       85.469      83.188      66.841      
+MYL     HAD     H       H       0       83.893      82.368      69.427      
+MYL     HADA    H       H       0       85.136      81.555      68.873      
+MYL     HADB    H       H       0       83.867      80.783      69.425      
+MYL     HAE     H       H       0       89.432      83.689      57.966      
+MYL     HAEA    H       H       0       89.114      84.494      59.291      
+MYL     HAEB    H       H       0       88.423      84.905      57.928      
+MYL     HAF     H       H       0       86.940      81.842      57.320      
+MYL     HAFA    H       H       0       87.341      83.235      56.699      
+MYL     HAFB    H       H       0       85.966      83.070      57.454      
+MYL     HAG     H       H       0       90.750      80.324      58.475      
+MYL     HAGA    H       H       0       90.182      80.423      59.951      
+MYL     HAGB    H       H       0       90.795      81.705      59.250      
+MYL     HOAH    H       H       0       85.828      88.789      60.273      
+MYL     HOAI    H       H       0       83.806      84.281      60.371      
+MYL     HOAJ    H       H       0       82.454      81.191      62.228      
+MYL     HAL     H       H       0       84.689      87.426      59.107      
+MYL     HALA    H       H       0       83.947      87.549      60.519      
+MYL     HAM     H       H       0       89.049      80.634      62.198      
+MYL     HAMA    H       H       0       87.803      79.903      62.871      
+MYL     HAN     H       H       0       85.151      81.656      65.077      
+MYL     HANA    H       H       0       84.430      80.349      64.556      
+MYL     HAO     H       H       0       86.682      85.835      59.173      
+MYL     HAOA    H       H       0       85.512      85.044      58.462      
+MYL     HNAP    H       H       0       86.204      83.813      62.757      
+MYL     HAX     H       H       0       85.308      85.628      61.228      
+MYL     HAY     H       H       0       82.766      83.479      67.571      
+MYL     HAZ     H       H       0       82.628      81.245      67.650      
+MYL     HBA     H       H       0       87.091      84.030      60.600      
+MYL     HBB     H       H       0       82.399      83.002      63.138      
+MYL     HBC     H       H       0       85.660      81.182      62.684      
+MYL     HBD     H       H       0       88.690      82.282      60.223      
+MYL     HBF     H       H       0       86.709      80.516      59.244      
+MYL     HBG     H       H       0       85.121      81.117      60.628      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MYL         CAA         CAV      DOUBLE       n     1.321  0.0103     1.321  0.0103
+MYL         CAB         OAQ      SINGLE       n     1.422  0.0156     1.422  0.0156
+MYL         CAC         CAY      SINGLE       n     1.509  0.0100     1.509  0.0100
+MYL         CAD         CAZ      SINGLE       n     1.528  0.0100     1.528  0.0100
+MYL         CAE         CBE      SINGLE       n     1.531  0.0100     1.531  0.0100
+MYL         CAF         CBE      SINGLE       n     1.531  0.0100     1.531  0.0100
+MYL         CAG         OAK      SINGLE       n     1.422  0.0156     1.422  0.0156
+MYL         OAG         CAW      DOUBLE       n     1.229  0.0102     1.229  0.0102
+MYL         OAH         CAL      SINGLE       n     1.425  0.0100     1.425  0.0100
+MYL         OAI         CAX      SINGLE       n     1.424  0.0199     1.424  0.0199
+MYL         OAJ         CBB      SINGLE       n     1.417  0.0135     1.417  0.0135
+MYL         OAK         CBD      SINGLE       n     1.422  0.0100     1.422  0.0100
+MYL         CAL         CAX      SINGLE       n     1.514  0.0100     1.514  0.0100
+MYL         CAM         OAS      SINGLE       n     1.414  0.0136     1.414  0.0136
+MYL         CAM         OAR      SINGLE       n     1.416  0.0155     1.416  0.0155
+MYL         CAN         CBH      SINGLE       n     1.523  0.0172     1.523  0.0172
+MYL         CAN         CAV      SINGLE       n     1.504  0.0103     1.504  0.0103
+MYL         CAO         CBA      SINGLE       n     1.519  0.0100     1.519  0.0100
+MYL         CAO         CAX      SINGLE       n     1.524  0.0100     1.524  0.0100
+MYL         NAP         CBC      SINGLE       n     1.431  0.0107     1.431  0.0107
+MYL         NAP         CAW      SINGLE       n     1.336  0.0126     1.336  0.0126
+MYL         OAQ         CBH      SINGLE       n     1.411  0.0100     1.411  0.0100
+MYL         OAR         CBC      SINGLE       n     1.434  0.0155     1.434  0.0155
+MYL         OAS         CBF      SINGLE       n     1.432  0.0100     1.432  0.0100
+MYL         OAT         CBH      SINGLE       n     1.425  0.0100     1.425  0.0100
+MYL         OAT         CAY      SINGLE       n     1.437  0.0119     1.437  0.0119
+MYL         OAU         CBA      SINGLE       n     1.429  0.0100     1.429  0.0100
+MYL         OAU         CBG      SINGLE       n     1.426  0.0100     1.426  0.0100
+MYL         CAV         CAZ      SINGLE       n     1.516  0.0155     1.516  0.0155
+MYL         CAW         CBB      SINGLE       n     1.523  0.0114     1.523  0.0114
+MYL         CAY         CAZ      SINGLE       n     1.531  0.0184     1.531  0.0184
+MYL         CBA         CBE      SINGLE       n     1.541  0.0109     1.541  0.0109
+MYL         CBB         CBH      SINGLE       n     1.528  0.0165     1.528  0.0165
+MYL         CBC         CBG      SINGLE       n     1.525  0.0136     1.525  0.0136
+MYL         CBD         CBE      SINGLE       n     1.544  0.0101     1.544  0.0101
+MYL         CBD         CBF      SINGLE       n     1.512  0.0100     1.512  0.0100
+MYL         CBF         CBG      SINGLE       n     1.519  0.0111     1.519  0.0111
+MYL         CAA         HAA      SINGLE       n     1.082  0.0130     0.935  0.0139
+MYL         CAA        HAAA      SINGLE       n     1.082  0.0130     0.935  0.0139
+MYL         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0146
+MYL         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0146
+MYL         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0146
+MYL         CAC         HAC      SINGLE       n     1.089  0.0100     0.971  0.0171
+MYL         CAC        HACA      SINGLE       n     1.089  0.0100     0.971  0.0171
+MYL         CAC        HACB      SINGLE       n     1.089  0.0100     0.971  0.0171
+MYL         CAD         HAD      SINGLE       n     1.089  0.0100     0.971  0.0163
+MYL         CAD        HADA      SINGLE       n     1.089  0.0100     0.971  0.0163
+MYL         CAD        HADB      SINGLE       n     1.089  0.0100     0.971  0.0163
+MYL         CAE         HAE      SINGLE       n     1.089  0.0100     0.971  0.0171
+MYL         CAE        HAEA      SINGLE       n     1.089  0.0100     0.971  0.0171
+MYL         CAE        HAEB      SINGLE       n     1.089  0.0100     0.971  0.0171
+MYL         CAF         HAF      SINGLE       n     1.089  0.0100     0.971  0.0171
+MYL         CAF        HAFA      SINGLE       n     1.089  0.0100     0.971  0.0171
+MYL         CAF        HAFB      SINGLE       n     1.089  0.0100     0.971  0.0171
+MYL         CAG         HAG      SINGLE       n     1.089  0.0100     0.971  0.0146
+MYL         CAG        HAGA      SINGLE       n     1.089  0.0100     0.971  0.0146
+MYL         CAG        HAGB      SINGLE       n     1.089  0.0100     0.971  0.0146
+MYL         OAH        HOAH      SINGLE       n     0.970  0.0120     0.846  0.0200
+MYL         OAI        HOAI      SINGLE       n     0.970  0.0120     0.848  0.0200
+MYL         OAJ        HOAJ      SINGLE       n     0.970  0.0120     0.848  0.0200
+MYL         CAL         HAL      SINGLE       n     1.089  0.0100     0.988  0.0200
+MYL         CAL        HALA      SINGLE       n     1.089  0.0100     0.988  0.0200
+MYL         CAM         HAM      SINGLE       n     1.089  0.0100     0.981  0.0184
+MYL         CAM        HAMA      SINGLE       n     1.089  0.0100     0.981  0.0184
+MYL         CAN         HAN      SINGLE       n     1.089  0.0100     0.980  0.0168
+MYL         CAN        HANA      SINGLE       n     1.089  0.0100     0.980  0.0168
+MYL         CAO         HAO      SINGLE       n     1.089  0.0100     0.981  0.0140
+MYL         CAO        HAOA      SINGLE       n     1.089  0.0100     0.981  0.0140
+MYL         NAP        HNAP      SINGLE       n     1.016  0.0100     0.876  0.0200
+MYL         CAX         HAX      SINGLE       n     1.089  0.0100     0.992  0.0184
+MYL         CAY         HAY      SINGLE       n     1.089  0.0100     0.998  0.0200
+MYL         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.989  0.0200
+MYL         CBA         HBA      SINGLE       n     1.089  0.0100     0.989  0.0172
+MYL         CBB         HBB      SINGLE       n     1.089  0.0100     0.986  0.0200
+MYL         CBC         HBC      SINGLE       n     1.089  0.0100     0.986  0.0151
+MYL         CBD         HBD      SINGLE       n     1.089  0.0100     0.981  0.0197
+MYL         CBF         HBF      SINGLE       n     1.089  0.0100     0.992  0.0131
+MYL         CBG         HBG      SINGLE       n     1.089  0.0100     0.992  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MYL         CAV         CAA         HAA     120.214    1.50
+MYL         CAV         CAA        HAAA     120.214    1.50
+MYL         HAA         CAA        HAAA     119.572    2.66
+MYL         OAQ         CAB         HAB     109.437    1.50
+MYL         OAQ         CAB        HABA     109.437    1.50
+MYL         OAQ         CAB        HABB     109.437    1.50
+MYL         HAB         CAB        HABA     109.450    1.50
+MYL         HAB         CAB        HABB     109.450    1.50
+MYL        HABA         CAB        HABB     109.450    1.50
+MYL         CAY         CAC         HAC     109.831    1.50
+MYL         CAY         CAC        HACA     109.831    1.50
+MYL         CAY         CAC        HACB     109.831    1.50
+MYL         HAC         CAC        HACA     109.383    1.59
+MYL         HAC         CAC        HACB     109.383    1.59
+MYL        HACA         CAC        HACB     109.383    1.59
+MYL         CAZ         CAD         HAD     109.541    1.50
+MYL         CAZ         CAD        HADA     109.541    1.50
+MYL         CAZ         CAD        HADB     109.541    1.50
+MYL         HAD         CAD        HADA     109.342    1.50
+MYL         HAD         CAD        HADB     109.342    1.50
+MYL        HADA         CAD        HADB     109.342    1.50
+MYL         CBE         CAE         HAE     109.591    1.50
+MYL         CBE         CAE        HAEA     109.591    1.50
+MYL         CBE         CAE        HAEB     109.591    1.50
+MYL         HAE         CAE        HAEA     109.363    1.50
+MYL         HAE         CAE        HAEB     109.363    1.50
+MYL        HAEA         CAE        HAEB     109.363    1.50
+MYL         CBE         CAF         HAF     109.591    1.50
+MYL         CBE         CAF        HAFA     109.591    1.50
+MYL         CBE         CAF        HAFB     109.591    1.50
+MYL         HAF         CAF        HAFA     109.363    1.50
+MYL         HAF         CAF        HAFB     109.363    1.50
+MYL        HAFA         CAF        HAFB     109.363    1.50
+MYL         OAK         CAG         HAG     109.562    1.50
+MYL         OAK         CAG        HAGA     109.562    1.50
+MYL         OAK         CAG        HAGB     109.562    1.50
+MYL         HAG         CAG        HAGA     109.450    1.50
+MYL         HAG         CAG        HAGB     109.450    1.50
+MYL        HAGA         CAG        HAGB     109.450    1.50
+MYL         CAL         OAH        HOAH     108.280    3.00
+MYL         CAX         OAI        HOAI     109.265    3.00
+MYL         CBB         OAJ        HOAJ     108.022    3.00
+MYL         CAG         OAK         CBD     114.185    1.50
+MYL         OAH         CAL         CAX     111.469    1.50
+MYL         OAH         CAL         HAL     109.268    1.50
+MYL         OAH         CAL        HALA     109.268    1.50
+MYL         CAX         CAL         HAL     109.582    1.50
+MYL         CAX         CAL        HALA     109.582    1.50
+MYL         HAL         CAL        HALA     108.313    1.50
+MYL         OAS         CAM         OAR     110.829    1.50
+MYL         OAS         CAM         HAM     108.358    1.90
+MYL         OAS         CAM        HAMA     108.358    1.90
+MYL         OAR         CAM         HAM     109.606    1.50
+MYL         OAR         CAM        HAMA     109.606    1.50
+MYL         HAM         CAM        HAMA     108.833    1.50
+MYL         CBH         CAN         CAV     112.021    2.38
+MYL         CBH         CAN         HAN     109.200    1.50
+MYL         CBH         CAN        HANA     109.200    1.50
+MYL         CAV         CAN         HAN     109.465    1.50
+MYL         CAV         CAN        HANA     109.465    1.50
+MYL         HAN         CAN        HANA     107.877    1.50
+MYL         CBA         CAO         CAX     113.198    2.74
+MYL         CBA         CAO         HAO     108.510    1.50
+MYL         CBA         CAO        HAOA     108.510    1.50
+MYL         CAX         CAO         HAO     108.397    1.50
+MYL         CAX         CAO        HAOA     108.397    1.50
+MYL         HAO         CAO        HAOA     107.474    1.50
+MYL         CBC         NAP         CAW     122.929    2.85
+MYL         CBC         NAP        HNAP     118.688    1.50
+MYL         CAW         NAP        HNAP     118.383    1.50
+MYL         CAB         OAQ         CBH     115.995    1.50
+MYL         CAM         OAR         CBC     111.559    2.21
+MYL         CAM         OAS         CBF     113.311    1.50
+MYL         CBH         OAT         CAY     111.559    2.21
+MYL         CBA         OAU         CBG     111.356    1.56
+MYL         CAA         CAV         CAN     121.486    1.50
+MYL         CAA         CAV         CAZ     124.777    2.67
+MYL         CAN         CAV         CAZ     113.737    2.09
+MYL         OAG         CAW         NAP     122.083    1.50
+MYL         OAG         CAW         CBB     120.265    1.84
+MYL         NAP         CAW         CBB     117.651    1.50
+MYL         OAI         CAX         CAL     109.314    1.96
+MYL         OAI         CAX         CAO     108.808    1.82
+MYL         OAI         CAX         HAX     108.183    1.96
+MYL         CAL         CAX         CAO     110.883    1.50
+MYL         CAL         CAX         HAX     108.656    1.50
+MYL         CAO         CAX         HAX     108.770    1.50
+MYL         CAC         CAY         OAT     106.806    1.50
+MYL         CAC         CAY         CAZ     111.163    2.25
+MYL         CAC         CAY         HAY     109.046    1.50
+MYL         OAT         CAY         CAZ     110.767    1.50
+MYL         OAT         CAY         HAY     108.995    1.50
+MYL         CAZ         CAY         HAY     106.298    2.32
+MYL         CAD         CAZ         CAV     113.328    2.17
+MYL         CAD         CAZ         CAY     113.334    1.59
+MYL         CAD         CAZ         HAZ     107.263    1.50
+MYL         CAV         CAZ         CAY     112.021    2.38
+MYL         CAV         CAZ         HAZ     106.846    1.50
+MYL         CAY         CAZ         HAZ     107.343    1.50
+MYL         CAO         CBA         OAU     106.832    1.50
+MYL         CAO         CBA         CBE     111.163    2.25
+MYL         CAO         CBA         HBA     108.902    2.40
+MYL         OAU         CBA         CBE     109.713    1.91
+MYL         OAU         CBA         HBA     108.827    1.50
+MYL         CBE         CBA         HBA     108.006    1.50
+MYL         OAJ         CBB         CAW     109.726    2.42
+MYL         OAJ         CBB         CBH     110.483    2.43
+MYL         OAJ         CBB         HBB     107.824    1.50
+MYL         CAW         CBB         CBH     113.355    2.65
+MYL         CAW         CBB         HBB     108.874    1.53
+MYL         CBH         CBB         HBB     109.342    1.50
+MYL         NAP         CBC         OAR     108.959    2.13
+MYL         NAP         CBC         CBG     110.984    2.10
+MYL         NAP         CBC         HBC     108.820    1.50
+MYL         OAR         CBC         CBG     110.326    1.76
+MYL         OAR         CBC         HBC     108.739    2.11
+MYL         CBG         CBC         HBC     108.918    1.50
+MYL         OAK         CBD         CBE     109.827    1.50
+MYL         OAK         CBD         CBF     110.682    1.94
+MYL         OAK         CBD         HBD     109.073    1.50
+MYL         CBE         CBD         CBF     112.392    2.23
+MYL         CBE         CBD         HBD     108.056    1.50
+MYL         CBF         CBD         HBD     109.354    1.50
+MYL         CAE         CBE         CAF     109.315    1.50
+MYL         CAE         CBE         CBA     111.088    2.05
+MYL         CAE         CBE         CBD     109.218    1.50
+MYL         CAF         CBE         CBA     111.088    2.05
+MYL         CAF         CBE         CBD     109.218    1.50
+MYL         CBA         CBE         CBD     111.124    1.57
+MYL         OAS         CBF         CBD     109.753    1.66
+MYL         OAS         CBF         CBG     109.603    1.50
+MYL         OAS         CBF         HBF     109.178    1.50
+MYL         CBD         CBF         CBG     110.669    1.50
+MYL         CBD         CBF         HBF     109.049    1.50
+MYL         CBG         CBF         HBF     109.055    1.50
+MYL         OAU         CBG         CBC     108.633    2.64
+MYL         OAU         CBG         CBF     109.603    1.50
+MYL         OAU         CBG         HBG     109.178    1.50
+MYL         CBC         CBG         CBF     110.815    2.54
+MYL         CBC         CBG         HBG     107.046    1.70
+MYL         CBF         CBG         HBG     109.055    1.50
+MYL         CAN         CBH         OAQ     109.247    2.43
+MYL         CAN         CBH         OAT     110.767    1.50
+MYL         CAN         CBH         CBB     111.163    2.25
+MYL         OAQ         CBH         OAT     110.446    1.50
+MYL         OAQ         CBH         CBB     109.592    2.80
+MYL         OAT         CBH         CBB     107.499    2.66
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MYL             sp2_sp2_1         HAA         CAA         CAV         CAN     180.000     5.0     2
+MYL           sp3_sp3_130         CAW         CBB         OAJ        HOAJ     180.000    10.0     3
+MYL           sp3_sp3_133         CBE         CBD         OAK         CAG     180.000    10.0     3
+MYL           sp3_sp3_136         OAH         CAL         CAX         OAI     180.000    10.0     3
+MYL           sp3_sp3_145         OAS         CAM         OAR         CBC     180.000    10.0     3
+MYL             sp3_sp3_1         OAR         CAM         OAS         CBF      60.000    10.0     3
+MYL            sp2_sp3_10         CAA         CAV         CAN         CBH     180.000    10.0     6
+MYL            sp3_sp3_29         CAV         CAN         CBH         OAQ     180.000    10.0     3
+MYL           sp3_sp3_157         CBA         CAO         CAX         OAI     180.000    10.0     3
+MYL           sp3_sp3_148         CAX         CAO         CBA         OAU     180.000    10.0     3
+MYL             sp2_sp2_7         OAG         CAW         NAP         CBC       0.000     5.0     2
+MYL            sp2_sp3_13         CAW         NAP         CBC         OAR       0.000    10.0     6
+MYL           sp3_sp3_168         CBB         CBH         OAQ         CAB     -60.000    10.0     3
+MYL            sp3_sp3_26         NAP         CBC         OAR         CAM     -60.000    10.0     3
+MYL             sp3_sp3_5         CBD         CBF         OAS         CAM     180.000    10.0     3
+MYL            sp3_sp3_82         HAB         CAB         OAQ         CBH     180.000    10.0     3
+MYL            sp3_sp3_41         CAC         CAY         OAT         CBH     -60.000    10.0     3
+MYL            sp3_sp3_38         OAQ         CBH         OAT         CAY     180.000    10.0     3
+MYL            sp3_sp3_53         CAO         CBA         OAU         CBG     -60.000    10.0     3
+MYL           sp3_sp3_170         CBC         CBG         OAU         CBA      60.000    10.0     3
+MYL             sp2_sp3_5         CAA         CAV         CAZ         CAD     -60.000    10.0     6
+MYL            sp2_sp3_19         OAG         CAW         CBB         OAJ       0.000    10.0     6
+MYL            sp3_sp3_47         CAC         CAY         CAZ         CAD     -60.000    10.0     3
+MYL            sp3_sp3_59         CAO         CBA         CBE         CAE     180.000    10.0     3
+MYL           sp3_sp3_173         OAJ         CBB         CBH         OAQ     -60.000    10.0     3
+MYL            sp3_sp3_20         NAP         CBC         CBG         OAU     -60.000    10.0     3
+MYL            sp3_sp3_85         HAC         CAC         CAY         OAT     180.000    10.0     3
+MYL            sp3_sp3_69         OAK         CBD         CBE         CAE     -60.000    10.0     3
+MYL            sp3_sp3_77         OAK         CBD         CBF         OAS     180.000    10.0     3
+MYL             sp3_sp3_8         OAS         CBF         CBG         OAU     180.000    10.0     3
+MYL            sp3_sp3_94         HAD         CAD         CAZ         CAV     180.000    10.0     3
+MYL           sp3_sp3_105         HAE         CAE         CBE         CAF      60.000    10.0     3
+MYL           sp3_sp3_114         HAF         CAF         CBE         CAE      60.000    10.0     3
+MYL           sp3_sp3_121         HAG         CAG         OAK         CBD     180.000    10.0     3
+MYL           sp3_sp3_124         CAX         CAL         OAH        HOAH     180.000    10.0     3
+MYL           sp3_sp3_127         CAL         CAX         OAI        HOAI     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MYL    chir_1    CAX    OAI    CAL    CAO    positive
+MYL    chir_2    CAY    OAT    CAZ    CAC    negative
+MYL    chir_3    CAZ    CAY    CAV    CAD    negative
+MYL    chir_4    CBA    OAU    CBE    CAO    negative
+MYL    chir_5    CBB    OAJ    CAW    CBH    positive
+MYL    chir_6    CBC    OAR    NAP    CBG    negative
+MYL    chir_7    CBD    OAK    CBF    CBE    positive
+MYL    chir_8    CBE    CBD    CBA    CAE    both
+MYL    chir_9    CBF    OAS    CBG    CBD    negative
+MYL    chir_10    CBG    OAU    CBC    CBF    positive
+MYL    chir_11    CBH    OAT    OAQ    CBB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MYL    plan-1         CAA   0.020
+MYL    plan-1         CAV   0.020
+MYL    plan-1         HAA   0.020
+MYL    plan-1        HAAA   0.020
+MYL    plan-2         CAW   0.020
+MYL    plan-2         CBC   0.020
+MYL    plan-2        HNAP   0.020
+MYL    plan-2         NAP   0.020
+MYL    plan-3         CAA   0.020
+MYL    plan-3         CAN   0.020
+MYL    plan-3         CAV   0.020
+MYL    plan-3         CAZ   0.020
+MYL    plan-4         CAW   0.020
+MYL    plan-4         CBB   0.020
+MYL    plan-4         NAP   0.020
+MYL    plan-4         OAG   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MYL           SMILES              ACDLabs 11.02                                                                                                                                                     O=C(NC2OCOC1C(OC)C(C(OC12)CC(O)CO)(C)C)C(O)C3(OC)OC(C)C(C(=C)/C3)C
+MYL SMILES_CANONICAL               CACTVS 3.352                                                                                                            CO[C@@H]1[C@H]2OCO[C@@H](NC(=O)[C@@H](O)[C@]3(CC(=C)[C@@H](C)[C@@H](C)O3)OC)[C@H]2O[C@H](C[C@H](O)CO)C1(C)C
+MYL           SMILES               CACTVS 3.352                                                                                                                           CO[CH]1[CH]2OCO[CH](NC(=O)[CH](O)[C]3(CC(=C)[CH](C)[CH](C)O3)OC)[CH]2O[CH](C[CH](O)CO)C1(C)C
+MYL SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                           C[C@H]1[C@H](O[C@](CC1=C)([C@@H](C(=O)N[C@H]2[C@@H]3[C@@H]([C@H](C([C@H](O3)C[C@@H](CO)O)(C)C)OC)OCO2)O)OC)C
+MYL           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                      CC1C(OC(CC1=C)(C(C(=O)NC2C3C(C(C(C(O3)CC(CO)O)(C)C)OC)OCO2)O)OC)C
+MYL            InChI                InChI  1.03 InChI=1S/C24H41NO10/c1-12-9-24(31-7,35-14(3)13(12)2)19(28)21(29)25-22-18-17(32-11-33-22)20(30-6)23(4,5)16(34-18)8-15(27)10-26/h13-20,22,26-28H,1,8-11H2,2-7H3,(H,25,29)/t13-,14-,15+,16-,17+,18+,19-,20-,22-,24-/m1/s1
+MYL         InChIKey                InChI  1.03                                                                                                                                                                                            IJASURGZDJYQGF-RXLGVIKCSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MYL acedrg               243         "dictionary generator"                  
+MYL acedrg_database      11          "data source"                           
+MYL rdkit                2017.03.2   "Chemoinformatics tool"
+MYL refmac5              5.8.0238    "optimization tool"                     

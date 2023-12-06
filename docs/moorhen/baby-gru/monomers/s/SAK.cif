@@ -1,0 +1,269 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SAK     SAK      (2S)-5-hydroxy-2-(4-hydroxyphenyl)-7-methoxy-2,3-dihydro-4H-chromen-4-one     NON-POLYMER     35     21     .     
+#
+data_comp_SAK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SAK     CAG     C       CR16    0       19.188      15.792      -10.642     
+SAK     CAE     C       CR16    0       20.441      15.478      -11.152     
+SAK     CAO     C       CR6     0       20.550      14.724      -12.310     
+SAK     OAC     O       OH1     0       21.791      14.414      -12.814     
+SAK     CAF     C       CR16    0       19.401      14.287      -12.952     
+SAK     CAH     C       CR16    0       18.154      14.604      -12.434     
+SAK     CAR     C       CR6     0       18.027      15.365      -11.277     
+SAK     CAU     C       CH1     0       16.675      15.703      -10.716     
+SAK     OAM     O       O2      0       15.822      16.126      -11.820     
+SAK     CAK     C       CH2     0       16.037      14.558      -9.955      
+SAK     CAN     C       CR6     0       14.644      14.913      -9.501      
+SAK     OAB     O       O       0       14.217      14.552      -8.392      
+SAK     CAT     C       CR66    0       13.865      15.703      -10.441     
+SAK     CAS     C       CR66    0       14.483      16.288      -11.555     
+SAK     CAJ     C       CR16    0       13.777      17.040      -12.476     
+SAK     CAP     C       CR6     0       12.416      17.237      -12.288     
+SAK     OAL     O       O2      0       11.807      18.006      -13.249     
+SAK     CAA     C       CH3     0       10.393      18.198      -13.248     
+SAK     CAI     C       CR16    0       11.759      16.684      -11.188     
+SAK     CAQ     C       CR6     0       12.469      15.930      -10.281     
+SAK     OAD     O       OH1     0       11.814      15.386      -9.201      
+SAK     HAG     H       H       0       19.128      16.303      -9.858      
+SAK     HAE     H       H       0       21.219      15.779      -10.711     
+SAK     HOAC    H       H       0       21.872      13.843      -13.455     
+SAK     HAF     H       H       0       19.468      13.773      -13.740     
+SAK     HAH     H       H       0       17.385      14.302      -12.878     
+SAK     HAU     H       H       0       16.773      16.479      -10.103     
+SAK     HAK     H       H       0       16.586      14.341      -9.180      
+SAK     HAKA    H       H       0       16.001      13.772      -10.529     
+SAK     HAJ     H       H       0       14.216      17.417      -13.220     
+SAK     HAA     H       H       0       10.129      18.662      -12.436     
+SAK     HAAA    H       H       0       9.947       17.336      -13.290     
+SAK     HAAB    H       H       0       10.140      18.730      -14.020     
+SAK     HAI     H       H       0       10.838      16.820      -11.061     
+SAK     HOAD    H       H       0       11.051      15.002      -9.308      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SAK         CAG         CAE      DOUBLE       y     1.384  0.0104     1.384  0.0104
+SAK         CAG         CAR      SINGLE       y     1.385  0.0113     1.385  0.0113
+SAK         CAE         CAO      SINGLE       y     1.383  0.0100     1.383  0.0100
+SAK         CAO         OAC      SINGLE       n     1.374  0.0155     1.374  0.0155
+SAK         CAO         CAF      DOUBLE       y     1.383  0.0100     1.383  0.0100
+SAK         CAF         CAH      SINGLE       y     1.384  0.0104     1.384  0.0104
+SAK         CAH         CAR      DOUBLE       y     1.385  0.0113     1.385  0.0113
+SAK         CAR         CAU      SINGLE       n     1.500  0.0100     1.500  0.0100
+SAK         CAU         OAM      SINGLE       n     1.452  0.0100     1.452  0.0100
+SAK         CAU         CAK      SINGLE       n     1.512  0.0142     1.512  0.0142
+SAK         OAM         CAS      SINGLE       n     1.369  0.0100     1.369  0.0100
+SAK         CAK         CAN      SINGLE       n     1.508  0.0113     1.508  0.0113
+SAK         CAN         OAB      DOUBLE       n     1.241  0.0116     1.241  0.0116
+SAK         CAN         CAT      SINGLE       n     1.450  0.0125     1.450  0.0125
+SAK         CAT         CAS      DOUBLE       y     1.396  0.0100     1.396  0.0100
+SAK         CAT         CAQ      SINGLE       y     1.419  0.0100     1.419  0.0100
+SAK         CAS         CAJ      SINGLE       y     1.379  0.0100     1.379  0.0100
+SAK         CAJ         CAP      DOUBLE       y     1.383  0.0100     1.383  0.0100
+SAK         CAP         OAL      SINGLE       n     1.367  0.0100     1.367  0.0100
+SAK         CAP         CAI      SINGLE       y     1.386  0.0114     1.386  0.0114
+SAK         OAL         CAA      SINGLE       n     1.424  0.0117     1.424  0.0117
+SAK         CAI         CAQ      DOUBLE       y     1.373  0.0100     1.373  0.0100
+SAK         CAQ         OAD      SINGLE       n     1.374  0.0155     1.374  0.0155
+SAK         CAG         HAG      SINGLE       n     1.082  0.0130     0.938  0.0100
+SAK         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0169
+SAK         OAC        HOAC      SINGLE       n     0.966  0.0059     0.861  0.0200
+SAK         CAF         HAF      SINGLE       n     1.082  0.0130     0.943  0.0169
+SAK         CAH         HAH      SINGLE       n     1.082  0.0130     0.938  0.0100
+SAK         CAU         HAU      SINGLE       n     1.089  0.0100     0.994  0.0200
+SAK         CAK         HAK      SINGLE       n     1.089  0.0100     0.974  0.0126
+SAK         CAK        HAKA      SINGLE       n     1.089  0.0100     0.974  0.0126
+SAK         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.942  0.0200
+SAK         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+SAK         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0157
+SAK         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0157
+SAK         CAI         HAI      SINGLE       n     1.082  0.0130     0.941  0.0161
+SAK         OAD        HOAD      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SAK         CAE         CAG         CAR     121.133    1.50
+SAK         CAE         CAG         HAG     119.275    1.50
+SAK         CAR         CAG         HAG     119.592    1.50
+SAK         CAG         CAE         CAO     119.835    1.50
+SAK         CAG         CAE         HAE     120.143    1.50
+SAK         CAO         CAE         HAE     120.021    1.50
+SAK         CAE         CAO         OAC     120.258    3.00
+SAK         CAE         CAO         CAF     119.485    1.50
+SAK         OAC         CAO         CAF     120.258    3.00
+SAK         CAO         OAC        HOAC     120.000    3.00
+SAK         CAO         CAF         CAH     119.835    1.50
+SAK         CAO         CAF         HAF     120.021    1.50
+SAK         CAH         CAF         HAF     120.143    1.50
+SAK         CAF         CAH         CAR     121.133    1.50
+SAK         CAF         CAH         HAH     119.275    1.50
+SAK         CAR         CAH         HAH     119.592    1.50
+SAK         CAG         CAR         CAH     118.578    1.50
+SAK         CAG         CAR         CAU     120.711    1.50
+SAK         CAH         CAR         CAU     120.711    1.50
+SAK         CAR         CAU         OAM     107.980    1.50
+SAK         CAR         CAU         CAK     114.163    1.60
+SAK         CAR         CAU         HAU     108.507    1.50
+SAK         OAM         CAU         CAK     109.460    1.50
+SAK         OAM         CAU         HAU     107.570    1.59
+SAK         CAK         CAU         HAU     108.938    1.55
+SAK         CAU         OAM         CAS     114.163    1.50
+SAK         CAU         CAK         CAN     111.338    1.51
+SAK         CAU         CAK         HAK     109.236    1.50
+SAK         CAU         CAK        HAKA     109.236    1.50
+SAK         CAN         CAK         HAK     109.466    1.50
+SAK         CAN         CAK        HAKA     109.466    1.50
+SAK         HAK         CAK        HAKA     107.989    1.50
+SAK         CAK         CAN         OAB     121.353    1.50
+SAK         CAK         CAN         CAT     115.771    1.50
+SAK         OAB         CAN         CAT     122.876    1.50
+SAK         CAN         CAT         CAS     120.745    1.50
+SAK         CAN         CAT         CAQ     121.718    1.50
+SAK         CAS         CAT         CAQ     117.537    1.50
+SAK         OAM         CAS         CAT     121.203    1.50
+SAK         OAM         CAS         CAJ     116.542    1.50
+SAK         CAT         CAS         CAJ     122.255    1.50
+SAK         CAS         CAJ         CAP     118.282    1.50
+SAK         CAS         CAJ         HAJ     120.751    1.50
+SAK         CAP         CAJ         HAJ     120.966    1.50
+SAK         CAJ         CAP         OAL     121.220    3.00
+SAK         CAJ         CAP         CAI     121.149    1.50
+SAK         OAL         CAP         CAI     117.632    3.00
+SAK         CAP         OAL         CAA     117.352    1.64
+SAK         OAL         CAA         HAA     109.428    1.50
+SAK         OAL         CAA        HAAA     109.428    1.50
+SAK         OAL         CAA        HAAB     109.428    1.50
+SAK         HAA         CAA        HAAA     109.509    1.50
+SAK         HAA         CAA        HAAB     109.509    1.50
+SAK        HAAA         CAA        HAAB     109.509    1.50
+SAK         CAP         CAI         CAQ     119.396    1.50
+SAK         CAP         CAI         HAI     120.282    1.50
+SAK         CAQ         CAI         HAI     120.321    1.50
+SAK         CAT         CAQ         CAI     121.381    1.50
+SAK         CAT         CAQ         OAD     117.869    2.42
+SAK         CAI         CAQ         OAD     120.749    3.00
+SAK         CAQ         OAD        HOAD     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SAK       const_sp2_sp2_1         CAO         CAE         CAG         CAR       0.000     5.0     2
+SAK              const_41         CAE         CAG         CAR         CAH       0.000    10.0     2
+SAK             sp2_sp2_5         OAB         CAN         CAT         CAS     180.000     5.0     2
+SAK              const_21         OAM         CAS         CAT         CAN       0.000    10.0     2
+SAK              const_48         OAD         CAQ         CAT         CAN       0.000    10.0     2
+SAK              const_26         CAP         CAJ         CAS         OAM     180.000    10.0     2
+SAK              const_30         CAS         CAJ         CAP         OAL     180.000    10.0     2
+SAK             sp2_sp2_9         CAJ         CAP         OAL         CAA     180.000     5.0     2
+SAK              const_34         CAQ         CAI         CAP         OAL     180.000    10.0     2
+SAK            sp3_sp3_14         HAA         CAA         OAL         CAP     -60.000    10.0     3
+SAK              const_38         CAP         CAI         CAQ         OAD     180.000    10.0     2
+SAK            sp2_sp2_11         CAT         CAQ         OAD        HOAD     180.000     5.0     2
+SAK       const_sp2_sp2_6         CAG         CAE         CAO         OAC     180.000     5.0     2
+SAK             sp2_sp2_7         CAE         CAO         OAC        HOAC     180.000     5.0     2
+SAK              const_10         CAH         CAF         CAO         OAC     180.000    10.0     2
+SAK              const_13         CAO         CAF         CAH         CAR       0.000    10.0     2
+SAK              const_17         CAF         CAH         CAR         CAG       0.000    10.0     2
+SAK             sp2_sp3_7         CAG         CAR         CAU         OAM     150.000    10.0     6
+SAK             sp3_sp3_2         CAR         CAU         OAM         CAS     180.000    10.0     3
+SAK             sp3_sp3_5         CAN         CAK         CAU         CAR     -60.000    10.0     3
+SAK             sp2_sp2_1         CAT         CAS         OAM         CAU       0.000     5.0     2
+SAK             sp2_sp3_4         OAB         CAN         CAK         CAU     180.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SAK    chir_1    CAU    OAM    CAR    CAK    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SAK    plan-1         CAE   0.020
+SAK    plan-1         CAF   0.020
+SAK    plan-1         CAG   0.020
+SAK    plan-1         CAH   0.020
+SAK    plan-1         CAO   0.020
+SAK    plan-1         CAR   0.020
+SAK    plan-1         CAU   0.020
+SAK    plan-1         HAE   0.020
+SAK    plan-1         HAF   0.020
+SAK    plan-1         HAG   0.020
+SAK    plan-1         HAH   0.020
+SAK    plan-1         OAC   0.020
+SAK    plan-2         CAI   0.020
+SAK    plan-2         CAJ   0.020
+SAK    plan-2         CAN   0.020
+SAK    plan-2         CAP   0.020
+SAK    plan-2         CAQ   0.020
+SAK    plan-2         CAS   0.020
+SAK    plan-2         CAT   0.020
+SAK    plan-2         HAI   0.020
+SAK    plan-2         HAJ   0.020
+SAK    plan-2         OAD   0.020
+SAK    plan-2         OAL   0.020
+SAK    plan-2         OAM   0.020
+SAK    plan-3         CAK   0.020
+SAK    plan-3         CAN   0.020
+SAK    plan-3         CAT   0.020
+SAK    plan-3         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SAK           SMILES              ACDLabs 10.04                                                                               O=C2c3c(OC(c1ccc(O)cc1)C2)cc(OC)cc3O
+SAK SMILES_CANONICAL               CACTVS 3.341                                                                           COc1cc(O)c2C(=O)C[C@H](Oc2c1)c3ccc(O)cc3
+SAK           SMILES               CACTVS 3.341                                                                            COc1cc(O)c2C(=O)C[CH](Oc2c1)c3ccc(O)cc3
+SAK SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                          COc1cc(c2c(c1)O[C@@H](CC2=O)c3ccc(cc3)O)O
+SAK           SMILES "OpenEye OEToolkits" 1.5.0                                                                               COc1cc(c2c(c1)OC(CC2=O)c3ccc(cc3)O)O
+SAK            InChI                InChI  1.03 InChI=1S/C16H14O5/c1-20-11-6-12(18)16-13(19)8-14(21-15(16)7-11)9-2-4-10(17)5-3-9/h2-7,14,17-18H,8H2,1H3/t14-/m0/s1
+SAK         InChIKey                InChI  1.03                                                                                        DJOJDHGQRNZXQQ-AWEZNQCLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SAK acedrg               243         "dictionary generator"                  
+SAK acedrg_database      11          "data source"                           
+SAK rdkit                2017.03.2   "Chemoinformatics tool"
+SAK refmac5              5.8.0238    "optimization tool"                     

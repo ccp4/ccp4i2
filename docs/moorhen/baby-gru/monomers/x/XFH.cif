@@ -1,0 +1,345 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XFH     XFH      6-(2-{3-[2-(2-amino-6-methylpyridin-4-yl)ethyl]phenyl}ethyl)-4-methylpyridin-2-amine     NON-POLYMER     52     26     .     
+#
+data_comp_XFH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XFH     N01     N       NRD6    0       7.508       12.116      32.496      
+XFH     C02     C       CR6     0       6.721       11.143      31.986      
+XFH     N02     N       NH2     0       5.497       11.002      32.510      
+XFH     C03     C       CR16    0       7.165       10.304      30.945      
+XFH     C04     C       CR6     0       8.439       10.481      30.429      
+XFH     C05     C       CR16    0       9.235       11.489      30.965      
+XFH     C06     C       CR6     0       8.749       12.290      31.992      
+XFH     C07     C       CH3     0       8.943       9.598       29.313      
+XFH     C08     C       CH2     0       9.573       13.393      32.606      
+XFH     C09     C       CH2     0       10.444      12.899      33.774      
+XFH     C11     C       CR16    0       11.441      16.017      35.712      
+XFH     C12     C       CR16    0       10.675      15.017      35.134      
+XFH     C13     C       CR6     0       11.274      13.995      34.408      
+XFH     C14     C       CR16    0       12.666      14.005      34.279      
+XFH     C15     C       CR6     0       13.454      15.005      34.855      
+XFH     C16     C       CR16    0       12.820      16.010      35.573      
+XFH     C17     C       CH2     0       14.959      14.985      34.696      
+XFH     C18     C       CH2     0       15.672      14.117      35.759      
+XFH     C21     C       CR16    0       18.018      14.715      36.474      
+XFH     C22     C       CR6     0       19.409      14.646      36.271      
+XFH     N22     N       NH2     0       20.259      15.253      37.109      
+XFH     N23     N       NRD6    0       19.941      13.969      35.229      
+XFH     C24     C       CR6     0       19.114      13.342      34.362      
+XFH     C25     C       CR16    0       17.736      13.379      34.517      
+XFH     C26     C       CR6     0       17.171      14.070      35.581      
+XFH     C27     C       CH3     0       19.767      12.608      33.228      
+XFH     HN02    H       H       0       5.011       10.301      32.302      
+XFH     HN0A    H       H       0       5.182       11.610      33.060      
+XFH     H03     H       H       0       6.605       9.628       30.600      
+XFH     H05     H       H       0       10.105      11.624      30.627      
+XFH     H07     H       H       0       9.855       9.844       29.086      
+XFH     H07A    H       H       0       8.377       9.706       28.532      
+XFH     H07B    H       H       0       8.923       8.670       29.598      
+XFH     H08     H       H       0       8.973       14.098      32.927      
+XFH     H08A    H       H       0       10.151      13.776      31.913      
+XFH     H09     H       H       0       11.040      12.189      33.446      
+XFH     H09A    H       H       0       9.860       12.503      34.458      
+XFH     H11     H       H       0       11.021      16.707      36.203      
+XFH     H12     H       H       0       9.737       15.030      35.233      
+XFH     H14     H       H       0       13.085      13.319      33.790      
+XFH     H16     H       H       0       13.334      16.695      35.970      
+XFH     H17     H       H       0       15.301      15.905      34.757      
+XFH     H17A    H       H       0       15.184      14.640      33.803      
+XFH     H18     H       H       0       15.314      13.203      35.711      
+XFH     H18A    H       H       0       15.461      14.474      36.650      
+XFH     H21     H       H       0       17.653      15.190      37.202      
+XFH     HN22    H       H       0       19.951      15.793      37.729      
+XFH     HN2A    H       H       0       21.123      15.111      37.038      
+XFH     H25     H       H       0       17.177      12.936      33.901      
+XFH     H27     H       H       0       19.178      11.903      32.915      
+XFH     H27A    H       H       0       20.603      12.218      33.530      
+XFH     H27B    H       H       0       19.944      13.225      32.500      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XFH         N01         C02      DOUBLE       y     1.343  0.0133     1.343  0.0133
+XFH         N01         C06      SINGLE       y     1.347  0.0100     1.347  0.0100
+XFH         C02         C03      SINGLE       y     1.398  0.0169     1.398  0.0169
+XFH         C02         N02      SINGLE       n     1.335  0.0166     1.335  0.0166
+XFH         C03         C04      DOUBLE       y     1.383  0.0100     1.383  0.0100
+XFH         C04         C07      SINGLE       n     1.509  0.0144     1.509  0.0144
+XFH         C04         C05      SINGLE       y     1.388  0.0100     1.388  0.0100
+XFH         C05         C06      DOUBLE       y     1.378  0.0181     1.378  0.0181
+XFH         C06         C08      SINGLE       n     1.507  0.0100     1.507  0.0100
+XFH         C08         C09      SINGLE       n     1.538  0.0110     1.538  0.0110
+XFH         C09         C13      SINGLE       n     1.513  0.0100     1.513  0.0100
+XFH         C11         C12      DOUBLE       y     1.382  0.0100     1.382  0.0100
+XFH         C11         C16      SINGLE       y     1.382  0.0100     1.382  0.0100
+XFH         C12         C13      SINGLE       y     1.385  0.0110     1.385  0.0110
+XFH         C13         C14      DOUBLE       y     1.394  0.0100     1.394  0.0100
+XFH         C14         C15      SINGLE       y     1.394  0.0100     1.394  0.0100
+XFH         C15         C17      SINGLE       n     1.513  0.0100     1.513  0.0100
+XFH         C15         C16      DOUBLE       y     1.385  0.0110     1.385  0.0110
+XFH         C17         C18      SINGLE       n     1.546  0.0200     1.546  0.0200
+XFH         C18         C26      SINGLE       n     1.510  0.0100     1.510  0.0100
+XFH         C21         C26      DOUBLE       y     1.385  0.0106     1.385  0.0106
+XFH         C21         C22      SINGLE       y     1.398  0.0169     1.398  0.0169
+XFH         C22         N23      DOUBLE       y     1.343  0.0133     1.343  0.0133
+XFH         C22         N22      SINGLE       n     1.335  0.0166     1.335  0.0166
+XFH         N23         C24      SINGLE       y     1.347  0.0100     1.347  0.0100
+XFH         C24         C27      SINGLE       n     1.500  0.0105     1.500  0.0105
+XFH         C24         C25      DOUBLE       y     1.383  0.0103     1.383  0.0103
+XFH         C25         C26      SINGLE       y     1.385  0.0109     1.385  0.0109
+XFH         N02        HN02      SINGLE       n     1.016  0.0100     0.877  0.0200
+XFH         N02        HN0A      SINGLE       n     1.016  0.0100     0.877  0.0200
+XFH         C03         H03      SINGLE       n     1.082  0.0130     0.943  0.0168
+XFH         C05         H05      SINGLE       n     1.082  0.0130     0.943  0.0168
+XFH         C07         H07      SINGLE       n     1.089  0.0100     0.971  0.0135
+XFH         C07        H07A      SINGLE       n     1.089  0.0100     0.971  0.0135
+XFH         C07        H07B      SINGLE       n     1.089  0.0100     0.971  0.0135
+XFH         C08         H08      SINGLE       n     1.089  0.0100     0.980  0.0175
+XFH         C08        H08A      SINGLE       n     1.089  0.0100     0.980  0.0175
+XFH         C09         H09      SINGLE       n     1.089  0.0100     0.983  0.0181
+XFH         C09        H09A      SINGLE       n     1.089  0.0100     0.983  0.0181
+XFH         C11         H11      SINGLE       n     1.082  0.0130     0.945  0.0132
+XFH         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0174
+XFH         C14         H14      SINGLE       n     1.082  0.0130     0.941  0.0156
+XFH         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0174
+XFH         C17         H17      SINGLE       n     1.089  0.0100     0.983  0.0181
+XFH         C17        H17A      SINGLE       n     1.089  0.0100     0.983  0.0181
+XFH         C18         H18      SINGLE       n     1.089  0.0100     0.983  0.0181
+XFH         C18        H18A      SINGLE       n     1.089  0.0100     0.983  0.0181
+XFH         C21         H21      SINGLE       n     1.082  0.0130     0.943  0.0168
+XFH         N22        HN22      SINGLE       n     1.016  0.0100     0.877  0.0200
+XFH         N22        HN2A      SINGLE       n     1.016  0.0100     0.877  0.0200
+XFH         C25         H25      SINGLE       n     1.082  0.0130     0.943  0.0168
+XFH         C27         H27      SINGLE       n     1.089  0.0100     0.971  0.0138
+XFH         C27        H27A      SINGLE       n     1.089  0.0100     0.971  0.0138
+XFH         C27        H27B      SINGLE       n     1.089  0.0100     0.971  0.0138
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XFH         C02         N01         C06     118.635    1.50
+XFH         N01         C02         C03     121.879    1.50
+XFH         N01         C02         N02     117.161    1.55
+XFH         C03         C02         N02     120.961    1.50
+XFH         C02         N02        HN02     119.818    1.59
+XFH         C02         N02        HN0A     119.818    1.59
+XFH        HN02         N02        HN0A     120.363    1.85
+XFH         C02         C03         C04     119.340    1.50
+XFH         C02         C03         H03     120.642    1.50
+XFH         C04         C03         H03     120.018    1.50
+XFH         C03         C04         C07     120.586    1.50
+XFH         C03         C04         C05     118.497    1.50
+XFH         C07         C04         C05     120.917    1.50
+XFH         C04         C05         C06     120.185    1.50
+XFH         C04         C05         H05     119.490    1.50
+XFH         C06         C05         H05     120.325    1.50
+XFH         N01         C06         C05     121.464    1.50
+XFH         N01         C06         C08     116.278    1.50
+XFH         C05         C06         C08     122.258    1.50
+XFH         C04         C07         H07     109.567    1.50
+XFH         C04         C07        H07A     109.567    1.50
+XFH         C04         C07        H07B     109.567    1.50
+XFH         H07         C07        H07A     109.348    1.50
+XFH         H07         C07        H07B     109.348    1.50
+XFH        H07A         C07        H07B     109.348    1.50
+XFH         C06         C08         C09     112.491    1.83
+XFH         C06         C08         H08     108.537    1.89
+XFH         C06         C08        H08A     108.537    1.89
+XFH         C09         C08         H08     109.093    1.50
+XFH         C09         C08        H08A     109.093    1.50
+XFH         H08         C08        H08A     108.000    1.50
+XFH         C08         C09         C13     113.312    1.99
+XFH         C08         C09         H09     108.812    1.50
+XFH         C08         C09        H09A     108.812    1.50
+XFH         C13         C09         H09     109.088    1.58
+XFH         C13         C09        H09A     109.088    1.58
+XFH         H09         C09        H09A     107.732    2.63
+XFH         C12         C11         C16     120.261    1.50
+XFH         C12         C11         H11     119.869    1.50
+XFH         C16         C11         H11     119.869    1.50
+XFH         C11         C12         C13     120.659    1.50
+XFH         C11         C12         H12     119.768    1.50
+XFH         C13         C12         H12     119.573    1.50
+XFH         C09         C13         C12     121.212    1.50
+XFH         C09         C13         C14     120.578    1.50
+XFH         C12         C13         C14     118.210    1.50
+XFH         C13         C14         C15     122.000    1.50
+XFH         C13         C14         H14     119.000    1.50
+XFH         C15         C14         H14     119.000    1.50
+XFH         C14         C15         C17     120.578    1.50
+XFH         C14         C15         C16     118.210    1.50
+XFH         C17         C15         C16     121.212    1.50
+XFH         C11         C16         C15     120.659    1.50
+XFH         C11         C16         H16     119.768    1.50
+XFH         C15         C16         H16     119.573    1.50
+XFH         C15         C17         C18     113.191    1.54
+XFH         C15         C17         H17     109.088    1.58
+XFH         C15         C17        H17A     109.088    1.58
+XFH         C18         C17         H17     108.746    1.50
+XFH         C18         C17        H17A     108.746    1.50
+XFH         H17         C17        H17A     107.732    2.63
+XFH         C17         C18         C26     113.191    1.54
+XFH         C17         C18         H18     108.746    1.50
+XFH         C17         C18        H18A     108.746    1.50
+XFH         C26         C18         H18     109.088    1.58
+XFH         C26         C18        H18A     109.088    1.58
+XFH         H18         C18        H18A     107.732    2.63
+XFH         C26         C21         C22     119.340    1.50
+XFH         C26         C21         H21     119.505    1.50
+XFH         C22         C21         H21     121.154    1.50
+XFH         C21         C22         N23     121.879    1.50
+XFH         C21         C22         N22     120.961    1.50
+XFH         N23         C22         N22     117.161    1.55
+XFH         C22         N22        HN22     119.818    1.59
+XFH         C22         N22        HN2A     119.818    1.59
+XFH        HN22         N22        HN2A     120.363    1.85
+XFH         C22         N23         C24     118.635    1.50
+XFH         N23         C24         C27     116.475    1.50
+XFH         N23         C24         C25     121.464    1.50
+XFH         C27         C24         C25     122.060    1.50
+XFH         C24         C25         C26     120.185    1.50
+XFH         C24         C25         H25     120.292    1.50
+XFH         C26         C25         H25     119.523    1.50
+XFH         C18         C26         C21     120.752    1.50
+XFH         C18         C26         C25     120.752    1.50
+XFH         C21         C26         C25     118.497    1.50
+XFH         C24         C27         H27     109.592    1.50
+XFH         C24         C27        H27A     109.592    1.50
+XFH         C24         C27        H27B     109.592    1.50
+XFH         H27         C27        H27A     109.339    1.66
+XFH         H27         C27        H27B     109.339    1.66
+XFH        H27A         C27        H27B     109.339    1.66
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XFH       const_sp2_sp2_2         N02         C02         N01         C06     180.000     5.0     2
+XFH              const_56         C08         C06         N01         C02     180.000    10.0     2
+XFH              const_19         C16         C11         C12         C13       0.000    10.0     2
+XFH              const_57         C12         C11         C16         C15       0.000    10.0     2
+XFH              const_24         C11         C12         C13         C09     180.000    10.0     2
+XFH              const_29         C09         C13         C14         C15     180.000    10.0     2
+XFH              const_32         C13         C14         C15         C17     180.000    10.0     2
+XFH              const_37         C17         C15         C16         C11     180.000    10.0     2
+XFH            sp2_sp3_20         C14         C15         C17         C18     -90.000    10.0     6
+XFH            sp3_sp3_10         C15         C17         C18         C26     180.000    10.0     3
+XFH            sp2_sp3_26         C21         C26         C18         C17     -90.000    10.0     6
+XFH              const_62         C26         C21         C22         N22     180.000    10.0     2
+XFH              const_40         C22         C21         C26         C18     180.000    10.0     2
+XFH             sp2_sp2_5         C21         C22         N22        HN22     180.000     5.0     2
+XFH              const_54         N22         C22         N23         C24     180.000    10.0     2
+XFH             sp2_sp2_3         N01         C02         N02        HN02       0.000     5.0     2
+XFH       const_sp2_sp2_5         N02         C02         C03         C04     180.000     5.0     2
+XFH              const_52         C27         C24         N23         C22     180.000    10.0     2
+XFH              const_49         C27         C24         C25         C26     180.000    10.0     2
+XFH            sp2_sp3_31         N23         C24         C27         H27     150.000    10.0     6
+XFH              const_44         C24         C25         C26         C18     180.000    10.0     2
+XFH       const_sp2_sp2_8         C02         C03         C04         C07     180.000     5.0     2
+XFH              const_13         C07         C04         C05         C06     180.000    10.0     2
+XFH             sp2_sp3_1         C03         C04         C07         H07     150.000    10.0     6
+XFH              const_16         C04         C05         C06         C08     180.000    10.0     2
+XFH             sp2_sp3_8         N01         C06         C08         C09     -90.000    10.0     6
+XFH             sp3_sp3_1         C06         C08         C09         C13     180.000    10.0     3
+XFH            sp2_sp3_14         C12         C13         C09         C08     -90.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XFH    plan-1         C02   0.020
+XFH    plan-1         C03   0.020
+XFH    plan-1         C04   0.020
+XFH    plan-1         C05   0.020
+XFH    plan-1         C06   0.020
+XFH    plan-1         C07   0.020
+XFH    plan-1         C08   0.020
+XFH    plan-1         H03   0.020
+XFH    plan-1         H05   0.020
+XFH    plan-1         N01   0.020
+XFH    plan-1         N02   0.020
+XFH    plan-2         C09   0.020
+XFH    plan-2         C11   0.020
+XFH    plan-2         C12   0.020
+XFH    plan-2         C13   0.020
+XFH    plan-2         C14   0.020
+XFH    plan-2         C15   0.020
+XFH    plan-2         C16   0.020
+XFH    plan-2         C17   0.020
+XFH    plan-2         H11   0.020
+XFH    plan-2         H12   0.020
+XFH    plan-2         H14   0.020
+XFH    plan-2         H16   0.020
+XFH    plan-3         C18   0.020
+XFH    plan-3         C21   0.020
+XFH    plan-3         C22   0.020
+XFH    plan-3         C24   0.020
+XFH    plan-3         C25   0.020
+XFH    plan-3         C26   0.020
+XFH    plan-3         C27   0.020
+XFH    plan-3         H21   0.020
+XFH    plan-3         H25   0.020
+XFH    plan-3         N22   0.020
+XFH    plan-3         N23   0.020
+XFH    plan-4         C02   0.020
+XFH    plan-4        HN02   0.020
+XFH    plan-4        HN0A   0.020
+XFH    plan-4         N02   0.020
+XFH    plan-5         C22   0.020
+XFH    plan-5        HN22   0.020
+XFH    plan-5        HN2A   0.020
+XFH    plan-5         N22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XFH           SMILES              ACDLabs 12.01                                                                                                    n1c(cc(cc1N)CCc2cccc(c2)CCc3nc(N)cc(c3)C)C
+XFH SMILES_CANONICAL               CACTVS 3.370                                                                                                    Cc1cc(N)nc(CCc2cccc(CCc3cc(C)nc(N)c3)c2)c1
+XFH           SMILES               CACTVS 3.370                                                                                                    Cc1cc(N)nc(CCc2cccc(CCc3cc(C)nc(N)c3)c2)c1
+XFH SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                    Cc1cc(nc(c1)N)CCc2cccc(c2)CCc3cc(nc(c3)N)C
+XFH           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                    Cc1cc(nc(c1)N)CCc2cccc(c2)CCc3cc(nc(c3)N)C
+XFH            InChI                InChI  1.03 InChI=1S/C22H26N4/c1-15-10-20(26-21(23)11-15)9-8-18-5-3-4-17(13-18)6-7-19-12-16(2)25-22(24)14-19/h3-5,10-14H,6-9H2,1-2H3,(H2,23,26)(H2,24,25)
+XFH         InChIKey                InChI  1.03                                                                                                                   JVYPSLPLMFVFFX-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XFH acedrg               243         "dictionary generator"                  
+XFH acedrg_database      11          "data source"                           
+XFH rdkit                2017.03.2   "Chemoinformatics tool"
+XFH refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,327 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DPM     DPM      "3-[5-{[3-(2-carboxyethyl)-4-(carboxymethyl)-5-methyl-1H-pyrrol-2-yl]methyl}-4-(carboxymethyl)-1H-pyrrol-3-yl]propanoic acid"     NON-POLYMER     50     30     .     
+#
+data_comp_DPM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DPM     C1A     C       CR5     0       15.160      0.673       28.024      
+DPM     C2A     C       CR5     0       16.343      0.547       28.718      
+DPM     C3A     C       CR5     0       16.732      1.833       29.138      
+DPM     C4A     C       CR5     0       15.765      2.723       28.695      
+DPM     C5A     C       CH2     0       17.081      -0.736      28.970      
+DPM     C6A     C       C       0       18.123      -1.098      27.912      
+DPM     C7A     C       CH2     0       17.959      2.183       29.927      
+DPM     C8A     C       CH2     0       19.188      2.391       29.050      
+DPM     C9A     C       C       0       20.416      2.857       29.815      
+DPM     CHA     C       CH3     0       14.305      -0.353      27.360      
+DPM     NA      N       NR5     0       14.815      2.001       28.012      
+DPM     O1A     O       O       0       18.081      -0.504      26.815      
+DPM     O2A     O       OC      -1      18.951      -1.976      28.214      
+DPM     O3A     O       O       0       21.379      2.071       29.924      
+DPM     O4A     O       OC      -1      20.405      4.005       30.300      
+DPM     C1B     C       CR5     0       16.675      4.971       28.034      
+DPM     C2B     C       CR5     0       17.659      5.873       28.425      
+DPM     C3B     C       CR5     0       18.333      6.283       27.265      
+DPM     C4B     C       CR15    0       17.755      5.620       26.199      
+DPM     C5B     C       CH2     0       17.938      6.328       29.827      
+DPM     C6B     C       C       0       17.043      7.488       30.255      
+DPM     C7B     C       CH2     0       19.474      7.254       27.192      
+DPM     C8B     C       CH2     0       20.829      6.585       27.394      
+DPM     C9B     C       C       0       22.007      7.538       27.289      
+DPM     CHB     C       CH2     0       15.670      4.211       28.843      
+DPM     NB      N       NR5     0       16.754      4.826       26.674      
+DPM     O1B     O       O       0       16.257      7.289       31.200      
+DPM     O2B     O       OC      -1      17.159      8.557       29.629      
+DPM     O3B     O       O       0       22.259      8.042       26.176      
+DPM     O4B     O       OC      -1      22.669      7.772       28.319      
+DPM     H5A1    H       H       0       16.427      -1.468      29.025      
+DPM     H5A2    H       H       0       17.530      -0.677      29.842      
+DPM     H7A1    H       H       0       18.142      1.470       30.573      
+DPM     H7A2    H       H       0       17.789      3.003       30.436      
+DPM     H8A1    H       H       0       18.986      3.057       28.356      
+DPM     H8A2    H       H       0       19.409      1.550       28.591      
+DPM     HCA1    H       H       0       13.536      0.076       26.960      
+DPM     HCA2    H       H       0       14.008      -1.000      28.016      
+DPM     HCA3    H       H       0       14.816      -0.804      26.673      
+DPM     H10     H       H       0       14.091      2.339       27.626      
+DPM     H4B1    H       H       0       18.007      5.700       25.293      
+DPM     H5B1    H       H       0       18.877      6.608       29.897      
+DPM     H5B2    H       H       0       17.801      5.574       30.443      
+DPM     H7B1    H       H       0       19.350      7.945       27.876      
+DPM     H7B2    H       H       0       19.460      7.697       26.318      
+DPM     H8B1    H       H       0       20.945      5.874       26.726      
+DPM     H8B2    H       H       0       20.854      6.159       28.280      
+DPM     HCB1    H       H       0       15.791      4.439       29.791      
+DPM     HCB2    H       H       0       14.769      4.495       28.569      
+DPM     H22     H       H       0       16.232      4.301       26.185      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DPM         C1A         C2A      DOUBLE       y     1.374  0.0200     1.374  0.0200
+DPM         C1A         CHA      SINGLE       n     1.491  0.0100     1.491  0.0100
+DPM         C1A          NA      SINGLE       y     1.373  0.0100     1.373  0.0100
+DPM         C2A         C3A      SINGLE       y     1.400  0.0200     1.400  0.0200
+DPM         C2A         C5A      SINGLE       n     1.500  0.0100     1.500  0.0100
+DPM         C3A         C4A      DOUBLE       y     1.387  0.0100     1.387  0.0100
+DPM         C3A         C7A      SINGLE       n     1.500  0.0100     1.500  0.0100
+DPM         C4A          NA      SINGLE       y     1.377  0.0100     1.377  0.0100
+DPM         C4A         CHB      SINGLE       n     1.499  0.0100     1.499  0.0100
+DPM         C5A         C6A      SINGLE       n     1.525  0.0126     1.525  0.0126
+DPM         C6A         O1A      DOUBLE       n     1.244  0.0200     1.244  0.0200
+DPM         C6A         O2A      SINGLE       n     1.244  0.0200     1.244  0.0200
+DPM         C7A         C8A      SINGLE       n     1.524  0.0100     1.524  0.0100
+DPM         C8A         C9A      SINGLE       n     1.519  0.0109     1.519  0.0109
+DPM         C9A         O3A      DOUBLE       n     1.247  0.0187     1.247  0.0187
+DPM         C9A         O4A      SINGLE       n     1.247  0.0187     1.247  0.0187
+DPM         C1B         C2B      DOUBLE       y     1.388  0.0182     1.388  0.0182
+DPM         C1B         CHB      SINGLE       n     1.498  0.0100     1.498  0.0100
+DPM         C1B          NB      SINGLE       y     1.371  0.0100     1.371  0.0100
+DPM         C2B         C3B      SINGLE       y     1.398  0.0200     1.398  0.0200
+DPM         C2B         C5B      SINGLE       n     1.500  0.0100     1.500  0.0100
+DPM         C3B         C4B      DOUBLE       y     1.383  0.0100     1.383  0.0100
+DPM         C3B         C7B      SINGLE       n     1.500  0.0100     1.500  0.0100
+DPM         C4B          NB      SINGLE       y     1.366  0.0167     1.366  0.0167
+DPM         C5B         C6B      SINGLE       n     1.525  0.0126     1.525  0.0126
+DPM         C6B         O1B      DOUBLE       n     1.244  0.0200     1.244  0.0200
+DPM         C6B         O2B      SINGLE       n     1.244  0.0200     1.244  0.0200
+DPM         C7B         C8B      SINGLE       n     1.524  0.0100     1.524  0.0100
+DPM         C8B         C9B      SINGLE       n     1.519  0.0109     1.519  0.0109
+DPM         C9B         O3B      DOUBLE       n     1.247  0.0187     1.247  0.0187
+DPM         C9B         O4B      SINGLE       n     1.247  0.0187     1.247  0.0187
+DPM         C5A        H5A1      SINGLE       n     1.089  0.0100     0.983  0.0200
+DPM         C5A        H5A2      SINGLE       n     1.089  0.0100     0.983  0.0200
+DPM         C7A        H7A1      SINGLE       n     1.089  0.0100     0.980  0.0120
+DPM         C7A        H7A2      SINGLE       n     1.089  0.0100     0.980  0.0120
+DPM         C8A        H8A1      SINGLE       n     1.089  0.0100     0.983  0.0139
+DPM         C8A        H8A2      SINGLE       n     1.089  0.0100     0.983  0.0139
+DPM         CHA        HCA1      SINGLE       n     1.089  0.0100     0.968  0.0138
+DPM         CHA        HCA2      SINGLE       n     1.089  0.0100     0.968  0.0138
+DPM         CHA        HCA3      SINGLE       n     1.089  0.0100     0.968  0.0138
+DPM          NA         H10      SINGLE       n     1.016  0.0100     0.887  0.0200
+DPM         C4B        H4B1      SINGLE       n     1.082  0.0130     0.944  0.0100
+DPM         C5B        H5B1      SINGLE       n     1.089  0.0100     0.983  0.0200
+DPM         C5B        H5B2      SINGLE       n     1.089  0.0100     0.983  0.0200
+DPM         C7B        H7B1      SINGLE       n     1.089  0.0100     0.980  0.0120
+DPM         C7B        H7B2      SINGLE       n     1.089  0.0100     0.980  0.0120
+DPM         C8B        H8B1      SINGLE       n     1.089  0.0100     0.983  0.0139
+DPM         C8B        H8B2      SINGLE       n     1.089  0.0100     0.983  0.0139
+DPM         CHB        HCB1      SINGLE       n     1.089  0.0100     0.983  0.0200
+DPM         CHB        HCB2      SINGLE       n     1.089  0.0100     0.983  0.0200
+DPM          NB         H22      SINGLE       n     1.016  0.0100     0.887  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DPM         C2A         C1A         CHA     130.833    1.50
+DPM         C2A         C1A          NA     107.954    1.50
+DPM         CHA         C1A          NA     121.213    1.50
+DPM         C1A         C2A         C3A     107.327    1.50
+DPM         C1A         C2A         C5A     126.336    1.59
+DPM         C3A         C2A         C5A     126.336    1.59
+DPM         C2A         C3A         C4A     107.189    1.50
+DPM         C2A         C3A         C7A     126.364    1.51
+DPM         C4A         C3A         C7A     126.447    1.50
+DPM         C3A         C4A          NA     107.837    1.50
+DPM         C3A         C4A         CHB     130.575    1.50
+DPM          NA         C4A         CHB     121.588    1.50
+DPM         C2A         C5A         C6A     112.079    2.81
+DPM         C2A         C5A        H5A1     108.919    1.50
+DPM         C2A         C5A        H5A2     108.919    1.50
+DPM         C6A         C5A        H5A1     108.731    1.50
+DPM         C6A         C5A        H5A2     108.731    1.50
+DPM        H5A1         C5A        H5A2     107.730    1.50
+DPM         C5A         C6A         O1A     117.315    1.72
+DPM         C5A         C6A         O2A     117.315    1.72
+DPM         O1A         C6A         O2A     125.371    1.75
+DPM         C3A         C7A         C8A     113.075    2.06
+DPM         C3A         C7A        H7A1     109.262    1.50
+DPM         C3A         C7A        H7A2     109.262    1.50
+DPM         C8A         C7A        H7A1     109.247    1.50
+DPM         C8A         C7A        H7A2     109.247    1.50
+DPM        H7A1         C7A        H7A2     107.581    1.50
+DPM         C7A         C8A         C9A     113.936    1.58
+DPM         C7A         C8A        H8A1     109.544    1.50
+DPM         C7A         C8A        H8A2     109.544    1.50
+DPM         C9A         C8A        H8A1     108.416    1.50
+DPM         C9A         C8A        H8A2     108.416    1.50
+DPM        H8A1         C8A        H8A2     107.356    1.50
+DPM         C8A         C9A         O3A     118.187    1.67
+DPM         C8A         C9A         O4A     118.187    1.67
+DPM         O3A         C9A         O4A     123.625    1.50
+DPM         C1A         CHA        HCA1     109.497    1.50
+DPM         C1A         CHA        HCA2     109.497    1.50
+DPM         C1A         CHA        HCA3     109.497    1.50
+DPM        HCA1         CHA        HCA2     109.354    1.50
+DPM        HCA1         CHA        HCA3     109.354    1.50
+DPM        HCA2         CHA        HCA3     109.354    1.50
+DPM         C1A          NA         C4A     109.693    1.50
+DPM         C1A          NA         H10     125.093    1.50
+DPM         C4A          NA         H10     125.215    1.50
+DPM         C2B         C1B         CHB     130.451    1.50
+DPM         C2B         C1B          NB     107.828    1.50
+DPM         CHB         C1B          NB     121.722    1.50
+DPM         C1B         C2B         C3B     107.275    1.50
+DPM         C1B         C2B         C5B     126.363    1.59
+DPM         C3B         C2B         C5B     126.363    1.59
+DPM         C2B         C3B         C4B     107.104    1.50
+DPM         C2B         C3B         C7B     126.393    1.51
+DPM         C4B         C3B         C7B     126.503    1.50
+DPM         C3B         C4B          NB     108.636    1.50
+DPM         C3B         C4B        H4B1     125.980    1.50
+DPM          NB         C4B        H4B1     125.383    1.50
+DPM         C2B         C5B         C6B     112.079    2.81
+DPM         C2B         C5B        H5B1     108.919    1.50
+DPM         C2B         C5B        H5B2     108.919    1.50
+DPM         C6B         C5B        H5B1     108.731    1.50
+DPM         C6B         C5B        H5B2     108.731    1.50
+DPM        H5B1         C5B        H5B2     107.730    1.50
+DPM         C5B         C6B         O1B     117.315    1.72
+DPM         C5B         C6B         O2B     117.315    1.72
+DPM         O1B         C6B         O2B     125.371    1.75
+DPM         C3B         C7B         C8B     113.075    2.06
+DPM         C3B         C7B        H7B1     108.985    1.50
+DPM         C3B         C7B        H7B2     108.985    1.50
+DPM         C8B         C7B        H7B1     109.247    1.50
+DPM         C8B         C7B        H7B2     109.247    1.50
+DPM        H7B1         C7B        H7B2     107.581    1.50
+DPM         C7B         C8B         C9B     113.936    1.58
+DPM         C7B         C8B        H8B1     109.544    1.50
+DPM         C7B         C8B        H8B2     109.544    1.50
+DPM         C9B         C8B        H8B1     108.416    1.50
+DPM         C9B         C8B        H8B2     108.416    1.50
+DPM        H8B1         C8B        H8B2     107.356    1.50
+DPM         C8B         C9B         O3B     118.187    1.67
+DPM         C8B         C9B         O4B     118.187    1.67
+DPM         O3B         C9B         O4B     123.625    1.50
+DPM         C4A         CHB         C1B     114.942    1.50
+DPM         C4A         CHB        HCB1     108.482    1.50
+DPM         C4A         CHB        HCB2     108.482    1.50
+DPM         C1B         CHB        HCB1     108.482    1.50
+DPM         C1B         CHB        HCB2     108.482    1.50
+DPM        HCB1         CHB        HCB2     108.204    2.25
+DPM         C1B          NB         C4B     109.158    1.50
+DPM         C1B          NB         H22     125.090    1.79
+DPM         C4B          NB         H22     125.752    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DPM       const_sp2_sp2_4         CHA         C1A         C2A         C5A       0.000     5.0     2
+DPM              const_35         CHA         C1A          NA         C4A     180.000    10.0     2
+DPM             sp2_sp3_1         C2A         C1A         CHA        HCA1     150.000    10.0     6
+DPM              const_20         CHB         C1B         C2B         C5B       0.000    10.0     2
+DPM            sp2_sp3_38         C2B         C1B         CHB         C4A     -90.000    10.0     6
+DPM              const_39         CHB         C1B          NB         C4B     180.000    10.0     2
+DPM              const_24         C5B         C2B         C3B         C7B       0.000    10.0     2
+DPM            sp2_sp3_44         C1B         C2B         C5B         C6B     -90.000    10.0     6
+DPM              const_27         C7B         C3B         C4B          NB     180.000    10.0     2
+DPM            sp2_sp3_50         C2B         C3B         C7B         C8B     -90.000    10.0     6
+DPM              const_29         C3B         C4B          NB         C1B       0.000    10.0     2
+DPM            sp2_sp3_56         O1B         C6B         C5B         C2B     120.000    10.0     6
+DPM       const_sp2_sp2_8         C5A         C2A         C3A         C7A       0.000     5.0     2
+DPM             sp2_sp3_8         C1A         C2A         C5A         C6A     -90.000    10.0     6
+DPM            sp3_sp3_10         C3B         C7B         C8B         C9B     180.000    10.0     3
+DPM            sp2_sp3_62         O3B         C9B         C8B         C7B     120.000    10.0     6
+DPM              const_12         C7A         C3A         C4A         CHB       0.000    10.0     2
+DPM            sp2_sp3_14         C2A         C3A         C7A         C8A     -90.000    10.0     6
+DPM              const_15         CHB         C4A          NA         C1A     180.000    10.0     2
+DPM            sp2_sp3_20         C3A         C4A         CHB         C1B     -90.000    10.0     6
+DPM            sp2_sp3_26         O1A         C6A         C5A         C2A     120.000    10.0     6
+DPM             sp3_sp3_1         C3A         C7A         C8A         C9A     180.000    10.0     3
+DPM            sp2_sp3_32         O3A         C9A         C8A         C7A     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DPM    plan-1         C1A   0.020
+DPM    plan-1         C2A   0.020
+DPM    plan-1         C3A   0.020
+DPM    plan-1         C4A   0.020
+DPM    plan-1         C5A   0.020
+DPM    plan-1         C7A   0.020
+DPM    plan-1         CHA   0.020
+DPM    plan-1         CHB   0.020
+DPM    plan-1         H10   0.020
+DPM    plan-1          NA   0.020
+DPM    plan-2         C1B   0.020
+DPM    plan-2         C2B   0.020
+DPM    plan-2         C3B   0.020
+DPM    plan-2         C4B   0.020
+DPM    plan-2         C5B   0.020
+DPM    plan-2         C7B   0.020
+DPM    plan-2         CHB   0.020
+DPM    plan-2         H22   0.020
+DPM    plan-2        H4B1   0.020
+DPM    plan-2          NB   0.020
+DPM    plan-3         C5A   0.020
+DPM    plan-3         C6A   0.020
+DPM    plan-3         O1A   0.020
+DPM    plan-3         O2A   0.020
+DPM    plan-4         C8A   0.020
+DPM    plan-4         C9A   0.020
+DPM    plan-4         O3A   0.020
+DPM    plan-4         O4A   0.020
+DPM    plan-5         C5B   0.020
+DPM    plan-5         C6B   0.020
+DPM    plan-5         O1B   0.020
+DPM    plan-5         O2B   0.020
+DPM    plan-6         C8B   0.020
+DPM    plan-6         C9B   0.020
+DPM    plan-6         O3B   0.020
+DPM    plan-6         O4B   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DPM           SMILES              ACDLabs 12.01                                                                                                               O=C(O)Cc1c(ncc1CCC(=O)O)Cc2c(c(c(n2)C)CC(=O)O)CCC(=O)O
+DPM            InChI                InChI  1.03 InChI=1S/C20H24N2O8/c1-10-13(6-19(27)28)12(3-5-18(25)26)16(22-10)8-15-14(7-20(29)30)11(9-21-15)2-4-17(23)24/h9,21-22H,2-8H2,1H3,(H,23,24)(H,25,26)(H,27,28)(H,29,30)
+DPM         InChIKey                InChI  1.03                                                                                                                                          LCAXMKQKEYTFDM-UHFFFAOYSA-N
+DPM SMILES_CANONICAL               CACTVS 3.385                                                                                                           Cc1[nH]c(Cc2[nH]cc(CCC(O)=O)c2CC(O)=O)c(CCC(O)=O)c1CC(O)=O
+DPM           SMILES               CACTVS 3.385                                                                                                           Cc1[nH]c(Cc2[nH]cc(CCC(O)=O)c2CC(O)=O)c(CCC(O)=O)c1CC(O)=O
+DPM SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                       Cc1c(c(c([nH]1)Cc2c(c(c[nH]2)CCC(=O)O)CC(=O)O)CCC(=O)O)CC(=O)O
+DPM           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                       Cc1c(c(c([nH]1)Cc2c(c(c[nH]2)CCC(=O)O)CC(=O)O)CCC(=O)O)CC(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DPM acedrg               243         "dictionary generator"                  
+DPM acedrg_database      11          "data source"                           
+DPM rdkit                2017.03.2   "Chemoinformatics tool"
+DPM refmac5              5.8.0238    "optimization tool"                     

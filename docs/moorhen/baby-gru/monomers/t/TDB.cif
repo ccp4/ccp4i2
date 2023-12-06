@@ -1,0 +1,230 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TDB     TDB      6-METHYL-2(PROPANE-1-SULFONYL)-2H-THIENO[3,2-D][1,2,3]DIAZABORININ-1-OL     NON-POLYMER     30     17     .     
+#
+data_comp_TDB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TDB     S1      S       S2      0       -7.989      46.504      155.825     
+TDB     C7      C       CR5     0       -6.493      46.512      155.083     
+TDB     C8      C       CH3     0       -5.740      47.783      154.981     
+TDB     C12     C       CR15    0       -6.147      45.240      154.639     
+TDB     C13     C       CR56    0       -7.183      44.286      154.949     
+TDB     C14     C       CR56    0       -8.277      44.875      155.619     
+TDB     C2      C       CR16    0       -9.388      44.108      156.007     
+TDB     N2      N       NRD6    0       -9.483      42.788      155.771     
+TDB     N1      N       NR6     0       -8.482      42.108      155.132     
+TDB     B1      B       B       0       -7.308      42.793      154.691     
+TDB     O1      O       OH1     0       -6.323      42.084      154.049     
+TDB     S15     S       S3      0       -8.702      40.413      154.873     
+TDB     O15     O       O       0       -9.462      40.307      153.669     
+TDB     O16     O       O       0       -7.396      39.837      154.910     
+TDB     C15     C       CH2     0       -9.664      39.683      156.192     
+TDB     C16     C       CH2     0       -8.902      39.424      157.483     
+TDB     C17     C       CH3     0       -8.493      40.686      158.208     
+TDB     H81     H       H       0       -4.868      47.614      154.593     
+TDB     H82     H       H       0       -5.630      48.167      155.864     
+TDB     H83     H       H       0       -6.226      48.404      154.419     
+TDB     H12     H       H       0       -5.344      45.028      154.194     
+TDB     H2      H       H       0       -10.105     44.529      156.454     
+TDB     HO1     H       H       0       -6.631      41.468      153.552     
+TDB     H151    H       H       0       -10.020     38.838      155.861     
+TDB     H152    H       H       0       -10.413     40.278      156.380     
+TDB     H161    H       H       0       -8.093      38.894      157.278     
+TDB     H162    H       H       0       -9.471      38.882      158.082     
+TDB     H171    H       H       0       -8.133      40.457      159.082     
+TDB     H172    H       H       0       -9.269      41.263      158.320     
+TDB     H173    H       H       0       -7.814      41.155      157.692     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TDB          S1          C7      SINGLE       y     1.695  0.0200     1.695  0.0200
+TDB          S1         C14      SINGLE       y     1.695  0.0200     1.695  0.0200
+TDB          C7          C8      SINGLE       n     1.481  0.0100     1.481  0.0100
+TDB          C7         C12      DOUBLE       y     1.376  0.0200     1.376  0.0200
+TDB         C12         C13      SINGLE       y     1.407  0.0200     1.407  0.0200
+TDB         C13         C14      DOUBLE       y     1.403  0.0200     1.403  0.0200
+TDB         C13          B1      SINGLE       y     1.524  0.0158     1.524  0.0158
+TDB         C14          C2      SINGLE       y     1.391  0.0200     1.391  0.0200
+TDB          C2          N2      DOUBLE       y     1.334  0.0134     1.334  0.0134
+TDB          N2          N1      SINGLE       y     1.362  0.0129     1.362  0.0129
+TDB          N1          B1      SINGLE       y     1.426  0.0108     1.426  0.0108
+TDB          N1         S15      SINGLE       n     1.726  0.0100     1.726  0.0100
+TDB          B1          O1      SINGLE       n     1.370  0.0200     1.370  0.0200
+TDB         S15         O15      DOUBLE       n     1.428  0.0100     1.428  0.0100
+TDB         S15         O16      DOUBLE       n     1.428  0.0100     1.428  0.0100
+TDB         S15         C15      SINGLE       n     1.783  0.0200     1.783  0.0200
+TDB         C15         C16      SINGLE       n     1.517  0.0200     1.517  0.0200
+TDB         C16         C17      SINGLE       n     1.511  0.0200     1.511  0.0200
+TDB          C8         H81      SINGLE       n     1.089  0.0100     0.969  0.0144
+TDB          C8         H82      SINGLE       n     1.089  0.0100     0.969  0.0144
+TDB          C8         H83      SINGLE       n     1.089  0.0100     0.969  0.0144
+TDB         C12         H12      SINGLE       n     1.082  0.0130     0.942  0.0152
+TDB          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0200
+TDB          O1         HO1      SINGLE       n     0.970  0.0120     0.849  0.0200
+TDB         C15        H151      SINGLE       n     1.089  0.0100     0.975  0.0200
+TDB         C15        H152      SINGLE       n     1.089  0.0100     0.975  0.0200
+TDB         C16        H161      SINGLE       n     1.089  0.0100     0.989  0.0171
+TDB         C16        H162      SINGLE       n     1.089  0.0100     0.989  0.0171
+TDB         C17        H171      SINGLE       n     1.089  0.0100     0.973  0.0157
+TDB         C17        H172      SINGLE       n     1.089  0.0100     0.973  0.0157
+TDB         C17        H173      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TDB          C7          S1         C14     108.474    3.00
+TDB          S1          C7          C8     120.881    3.00
+TDB          S1          C7         C12     108.474    3.00
+TDB          C8          C7         C12     130.644    2.48
+TDB          C7          C8         H81     109.576    1.50
+TDB          C7          C8         H82     109.576    1.50
+TDB          C7          C8         H83     109.576    1.50
+TDB         H81          C8         H82     109.334    1.50
+TDB         H81          C8         H83     109.334    1.50
+TDB         H82          C8         H83     109.334    1.50
+TDB          C7         C12         C13     107.237    1.50
+TDB          C7         C12         H12     126.545    1.50
+TDB         C13         C12         H12     126.218    1.50
+TDB         C12         C13         C14     107.340    1.50
+TDB         C12         C13          B1     132.725    3.00
+TDB         C14         C13          B1     119.935    3.00
+TDB          S1         C14         C13     108.474    3.00
+TDB          S1         C14          C2     130.579    3.00
+TDB         C13         C14          C2     120.946    1.50
+TDB         C14          C2          N2     120.690    1.68
+TDB         C14          C2          H2     120.286    1.50
+TDB          N2          C2          H2     119.025    1.50
+TDB          C2          N2          N1     118.560    1.50
+TDB          N2          N1          B1     119.935    3.00
+TDB          N2          N1         S15     120.033    3.00
+TDB          B1          N1         S15     120.033    3.00
+TDB         C13          B1          N1     119.935    3.00
+TDB         C13          B1          O1     122.183    3.00
+TDB          N1          B1          O1     117.883    1.50
+TDB          B1          O1         HO1     112.405    3.00
+TDB          N1         S15         O15     105.694    1.62
+TDB          N1         S15         O16     105.694    1.62
+TDB          N1         S15         C15     109.471    3.00
+TDB         O15         S15         O16     118.786    1.50
+TDB         O15         S15         C15     108.047    1.61
+TDB         O16         S15         C15     108.047    1.61
+TDB         S15         C15         C16     113.768    2.41
+TDB         S15         C15        H151     107.782    1.90
+TDB         S15         C15        H152     107.782    1.90
+TDB         C16         C15        H151     109.091    1.50
+TDB         C16         C15        H152     109.091    1.50
+TDB        H151         C15        H152     108.426    1.50
+TDB         C15         C16         C17     113.191    3.00
+TDB         C15         C16        H161     108.906    1.50
+TDB         C15         C16        H162     108.906    1.50
+TDB         C17         C16        H161     109.107    1.50
+TDB         C17         C16        H162     109.107    1.50
+TDB        H161         C16        H162     107.897    1.50
+TDB         C16         C17        H171     109.543    1.50
+TDB         C16         C17        H172     109.543    1.50
+TDB         C16         C17        H173     109.543    1.50
+TDB        H171         C17        H172     109.380    1.50
+TDB        H171         C17        H173     109.380    1.50
+TDB        H172         C17        H173     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TDB              const_18          C8          C7          S1         C14     180.000    10.0     2
+TDB              const_27         C13         C14          S1          C7       0.000    10.0     2
+TDB             sp3_sp3_1         C16         C15         S15         O15     180.000    10.0     3
+TDB            sp3_sp3_10         S15         C15         C16         C17     180.000    10.0     3
+TDB            sp3_sp3_19         C15         C16         C17        H171     180.000    10.0     3
+TDB             sp2_sp3_1          S1          C7          C8         H81     150.000    10.0     6
+TDB              const_20         C13         C12          C7          C8     180.000    10.0     2
+TDB              const_23          C7         C12         C13         C14       0.000    10.0     2
+TDB       const_sp2_sp2_1         C12         C13         C14          S1       0.000     5.0     2
+TDB              const_32          O1          B1         C13         C12       0.000    10.0     2
+TDB       const_sp2_sp2_7          S1         C14          C2          N2     180.000     5.0     2
+TDB       const_sp2_sp2_9         C14          C2          N2          N1       0.000     5.0     2
+TDB              const_12         S15          N1          N2          C2     180.000    10.0     2
+TDB             sp2_sp3_8          N2          N1         S15         O15     -90.000    10.0     6
+TDB              const_16          O1          B1          N1         S15       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TDB    chir_1    S15    O15    O16    N1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TDB    plan-1          B1   0.020
+TDB    plan-1         C12   0.020
+TDB    plan-1         C13   0.020
+TDB    plan-1         C14   0.020
+TDB    plan-1          C2   0.020
+TDB    plan-1          C7   0.020
+TDB    plan-1          C8   0.020
+TDB    plan-1         H12   0.020
+TDB    plan-1          H2   0.020
+TDB    plan-1          N1   0.020
+TDB    plan-1          N2   0.020
+TDB    plan-1          O1   0.020
+TDB    plan-1          S1   0.020
+TDB    plan-1         S15   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TDB           SMILES              ACDLabs 10.04                                                             O=S(=O)(N1N=Cc2sc(cc2B1O)C)CCC
+TDB SMILES_CANONICAL               CACTVS 3.341                                                           CCC[S](=O)(=O)N1N=Cc2sc(C)cc2B1O
+TDB           SMILES               CACTVS 3.341                                                           CCC[S](=O)(=O)N1N=Cc2sc(C)cc2B1O
+TDB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                           B1(c2cc(sc2C=NN1S(=O)(=O)CCC)C)O
+TDB           SMILES "OpenEye OEToolkits" 1.5.0                                                           B1(c2cc(sc2C=NN1S(=O)(=O)CCC)C)O
+TDB            InChI                InChI  1.03 InChI=1S/C9H13BN2O3S2/c1-3-4-17(14,15)12-10(13)8-5-7(2)16-9(8)6-11-12/h5-6,13H,3-4H2,1-2H3
+TDB         InChIKey                InChI  1.03                                                                TVXLILKNSPCVRB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TDB acedrg               243         "dictionary generator"                  
+TDB acedrg_database      11          "data source"                           
+TDB rdkit                2017.03.2   "Chemoinformatics tool"
+TDB refmac5              5.8.0238    "optimization tool"                     

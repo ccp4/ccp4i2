@@ -1,0 +1,277 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MLO     MLO      "5,5'-di(prop-2-en-1-yl)biphenyl-2,2'-diol"     NON-POLYMER     38     20     .     
+#
+data_comp_MLO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MLO     CAA     C       C2      0       57.848      23.846      6.447       
+MLO     CAB     C       C2      0       60.719      21.375      -1.740      
+MLO     OAC     O       OH1     0       53.818      21.524      1.738       
+MLO     OAD     O       OH1     0       53.705      24.160      0.010       
+MLO     CAE     C       C1      0       56.709      24.420      6.714       
+MLO     CAF     C       C1      0       59.544      21.796      -1.367      
+MLO     CAG     C       CR16    0       53.845      22.302      3.988       
+MLO     CAH     C       CR16    0       55.625      24.023      -1.391      
+MLO     CAI     C       CR16    0       54.333      23.168      4.955       
+MLO     CAJ     C       CR16    0       56.978      23.762      -1.556      
+MLO     CAK     C       CR16    0       55.744      24.210      3.341       
+MLO     CAL     C       CR16    0       57.184      23.251      0.763       
+MLO     CAM     C       CH2     0       55.814      25.079      5.723       
+MLO     CAN     C       CH2     0       59.262      23.089      -0.682      
+MLO     CAO     C       CR6     0       54.312      22.391      2.683       
+MLO     CAP     C       CR6     0       55.047      23.897      -0.135      
+MLO     CAQ     C       CR6     0       55.286      24.135      4.656       
+MLO     CAR     C       CR6     0       57.781      23.373      -0.490      
+MLO     CAS     C       CR6     0       55.273      23.350      2.339       
+MLO     CAT     C       CR6     0       55.820      23.507      0.966       
+MLO     HAA     H       H       0       58.356      23.449      7.143       
+MLO     HAAA    H       H       0       58.172      23.824      5.555       
+MLO     HAB     H       H       0       60.809      20.535      -2.173      
+MLO     HABA    H       H       0       61.488      21.907      -1.581      
+MLO     HOAC    H       H       0       54.350      20.987      1.326       
+MLO     HOAD    H       H       0       53.444      24.786      0.540       
+MLO     HAE     H       H       0       56.423      24.418      7.620       
+MLO     HAF     H       H       0       58.802      21.229      -1.546      
+MLO     HAG     H       H       0       53.198      21.653      4.211       
+MLO     HAH     H       H       0       55.097      24.286      -2.126      
+MLO     HAI     H       H       0       54.009      23.100      5.838       
+MLO     HAJ     H       H       0       57.361      23.851      -2.413      
+MLO     HAK     H       H       0       56.392      24.860      3.119       
+MLO     HAL     H       H       0       57.714      22.987      1.499       
+MLO     HAM     H       H       0       56.303      25.805      5.292       
+MLO     HAMA    H       H       0       55.056      25.472      6.197       
+MLO     HAN     H       H       0       59.656      23.813      -1.204      
+MLO     HANA    H       H       0       59.698      23.083      0.191       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MLO         CAA         CAE      DOUBLE       n     1.303  0.0200     1.303  0.0200
+MLO         CAB         CAF      DOUBLE       n     1.303  0.0200     1.303  0.0200
+MLO         OAC         CAO      SINGLE       n     1.374  0.0155     1.374  0.0155
+MLO         OAD         CAP      SINGLE       n     1.374  0.0155     1.374  0.0155
+MLO         CAE         CAM      SINGLE       n     1.489  0.0186     1.489  0.0186
+MLO         CAF         CAN      SINGLE       n     1.489  0.0186     1.489  0.0186
+MLO         CAG         CAO      DOUBLE       y     1.383  0.0158     1.383  0.0158
+MLO         CAG         CAI      SINGLE       y     1.385  0.0100     1.385  0.0100
+MLO         CAH         CAJ      DOUBLE       y     1.385  0.0100     1.385  0.0100
+MLO         CAH         CAP      SINGLE       y     1.383  0.0158     1.383  0.0158
+MLO         CAI         CAQ      DOUBLE       y     1.386  0.0100     1.386  0.0100
+MLO         CAJ         CAR      SINGLE       y     1.386  0.0100     1.386  0.0100
+MLO         CAK         CAS      DOUBLE       y     1.397  0.0100     1.397  0.0100
+MLO         CAK         CAQ      SINGLE       y     1.389  0.0100     1.389  0.0100
+MLO         CAL         CAR      DOUBLE       y     1.389  0.0100     1.389  0.0100
+MLO         CAL         CAT      SINGLE       y     1.397  0.0100     1.397  0.0100
+MLO         CAM         CAQ      SINGLE       n     1.519  0.0100     1.519  0.0100
+MLO         CAN         CAR      SINGLE       n     1.519  0.0100     1.519  0.0100
+MLO         CAO         CAS      SINGLE       y     1.397  0.0100     1.397  0.0100
+MLO         CAP         CAT      DOUBLE       y     1.397  0.0100     1.397  0.0100
+MLO         CAS         CAT      SINGLE       n     1.484  0.0123     1.484  0.0123
+MLO         CAA         HAA      SINGLE       n     1.082  0.0130     0.949  0.0200
+MLO         CAA        HAAA      SINGLE       n     1.082  0.0130     0.949  0.0200
+MLO         CAB         HAB      SINGLE       n     1.082  0.0130     0.949  0.0200
+MLO         CAB        HABA      SINGLE       n     1.082  0.0130     0.949  0.0200
+MLO         OAC        HOAC      SINGLE       n     0.966  0.0059     0.861  0.0200
+MLO         OAD        HOAD      SINGLE       n     0.966  0.0059     0.861  0.0200
+MLO         CAE         HAE      SINGLE       n     1.082  0.0130     0.950  0.0200
+MLO         CAF         HAF      SINGLE       n     1.082  0.0130     0.950  0.0200
+MLO         CAG         HAG      SINGLE       n     1.082  0.0130     0.943  0.0200
+MLO         CAH         HAH      SINGLE       n     1.082  0.0130     0.943  0.0200
+MLO         CAI         HAI      SINGLE       n     1.082  0.0130     0.943  0.0173
+MLO         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0173
+MLO         CAK         HAK      SINGLE       n     1.082  0.0130     0.944  0.0200
+MLO         CAL         HAL      SINGLE       n     1.082  0.0130     0.944  0.0200
+MLO         CAM         HAM      SINGLE       n     1.089  0.0100     0.976  0.0140
+MLO         CAM        HAMA      SINGLE       n     1.089  0.0100     0.976  0.0140
+MLO         CAN         HAN      SINGLE       n     1.089  0.0100     0.976  0.0140
+MLO         CAN        HANA      SINGLE       n     1.089  0.0100     0.976  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MLO         CAE         CAA         HAA     120.117    1.50
+MLO         CAE         CAA        HAAA     120.117    1.50
+MLO         HAA         CAA        HAAA     119.767    2.15
+MLO         CAF         CAB         HAB     120.117    1.50
+MLO         CAF         CAB        HABA     120.117    1.50
+MLO         HAB         CAB        HABA     119.767    2.15
+MLO         CAO         OAC        HOAC     120.000    3.00
+MLO         CAP         OAD        HOAD     120.000    3.00
+MLO         CAA         CAE         CAM     125.697    1.79
+MLO         CAA         CAE         HAE     117.248    1.50
+MLO         CAM         CAE         HAE     117.049    1.50
+MLO         CAB         CAF         CAN     125.697    1.79
+MLO         CAB         CAF         HAF     117.248    1.50
+MLO         CAN         CAF         HAF     117.049    1.50
+MLO         CAO         CAG         CAI     120.082    1.50
+MLO         CAO         CAG         HAG     119.693    1.50
+MLO         CAI         CAG         HAG     120.224    1.50
+MLO         CAJ         CAH         CAP     120.082    1.50
+MLO         CAJ         CAH         HAH     120.224    1.50
+MLO         CAP         CAH         HAH     119.693    1.50
+MLO         CAG         CAI         CAQ     121.599    1.50
+MLO         CAG         CAI         HAI     119.147    1.50
+MLO         CAQ         CAI         HAI     119.254    1.50
+MLO         CAH         CAJ         CAR     121.599    1.50
+MLO         CAH         CAJ         HAJ     119.147    1.50
+MLO         CAR         CAJ         HAJ     119.254    1.50
+MLO         CAS         CAK         CAQ     121.577    1.50
+MLO         CAS         CAK         HAK     119.246    1.50
+MLO         CAQ         CAK         HAK     119.177    1.50
+MLO         CAR         CAL         CAT     121.577    1.50
+MLO         CAR         CAL         HAL     119.177    1.50
+MLO         CAT         CAL         HAL     119.246    1.50
+MLO         CAE         CAM         CAQ     113.634    1.67
+MLO         CAE         CAM         HAM     108.764    1.50
+MLO         CAE         CAM        HAMA     108.764    1.50
+MLO         CAQ         CAM         HAM     108.809    1.50
+MLO         CAQ         CAM        HAMA     108.809    1.50
+MLO         HAM         CAM        HAMA     107.704    1.50
+MLO         CAF         CAN         CAR     113.634    1.67
+MLO         CAF         CAN         HAN     108.764    1.50
+MLO         CAF         CAN        HANA     108.764    1.50
+MLO         CAR         CAN         HAN     108.809    1.50
+MLO         CAR         CAN        HANA     108.809    1.50
+MLO         HAN         CAN        HANA     107.704    1.50
+MLO         OAC         CAO         CAG     119.478    3.00
+MLO         OAC         CAO         CAS     119.478    3.00
+MLO         CAG         CAO         CAS     121.045    1.50
+MLO         OAD         CAP         CAH     119.478    3.00
+MLO         OAD         CAP         CAT     119.478    3.00
+MLO         CAH         CAP         CAT     121.045    1.50
+MLO         CAI         CAQ         CAK     117.329    1.50
+MLO         CAI         CAQ         CAM     121.610    1.50
+MLO         CAK         CAQ         CAM     121.061    1.50
+MLO         CAJ         CAR         CAL     117.329    1.50
+MLO         CAJ         CAR         CAN     121.610    1.50
+MLO         CAL         CAR         CAN     121.061    1.50
+MLO         CAK         CAS         CAO     118.367    1.50
+MLO         CAK         CAS         CAT     118.283    1.73
+MLO         CAO         CAS         CAT     123.350    1.64
+MLO         CAL         CAT         CAP     118.367    1.50
+MLO         CAL         CAT         CAS     118.283    1.73
+MLO         CAP         CAT         CAS     123.350    1.64
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MLO             sp2_sp2_1         HAA         CAA         CAE         CAM     180.000     5.0     2
+MLO              const_14         CAS         CAK         CAQ         CAM     180.000    10.0     2
+MLO       const_sp2_sp2_9         CAQ         CAK         CAS         CAO       0.000     5.0     2
+MLO              const_30         CAT         CAL         CAR         CAN     180.000    10.0     2
+MLO              const_33         CAR         CAL         CAT         CAP       0.000    10.0     2
+MLO            sp2_sp3_14         CAI         CAQ         CAM         CAE     -90.000    10.0     6
+MLO            sp2_sp3_20         CAJ         CAR         CAN         CAF     -90.000    10.0     6
+MLO       const_sp2_sp2_7         OAC         CAO         CAS         CAK     180.000     5.0     2
+MLO              const_39         OAD         CAP         CAT         CAL     180.000    10.0     2
+MLO            sp2_sp2_13         CAK         CAS         CAT         CAL     180.000     5.0     2
+MLO             sp2_sp2_5         HAB         CAB         CAF         CAN     180.000     5.0     2
+MLO             sp2_sp2_9         CAG         CAO         OAC        HOAC     180.000     5.0     2
+MLO            sp2_sp2_11         CAH         CAP         OAD        HOAD     180.000     5.0     2
+MLO             sp2_sp3_2         CAA         CAE         CAM         CAQ     120.000    10.0     6
+MLO             sp2_sp3_8         CAB         CAF         CAN         CAR     120.000    10.0     6
+MLO       const_sp2_sp2_2         CAI         CAG         CAO         OAC     180.000     5.0     2
+MLO              const_41         CAO         CAG         CAI         CAQ       0.000    10.0     2
+MLO              const_46         CAJ         CAH         CAP         OAD     180.000    10.0     2
+MLO              const_21         CAP         CAH         CAJ         CAR       0.000    10.0     2
+MLO              const_18         CAG         CAI         CAQ         CAM     180.000    10.0     2
+MLO              const_26         CAH         CAJ         CAR         CAN     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MLO    plan-1         CAG   0.020
+MLO    plan-1         CAI   0.020
+MLO    plan-1         CAK   0.020
+MLO    plan-1         CAM   0.020
+MLO    plan-1         CAO   0.020
+MLO    plan-1         CAQ   0.020
+MLO    plan-1         CAS   0.020
+MLO    plan-1         CAT   0.020
+MLO    plan-1         HAG   0.020
+MLO    plan-1         HAI   0.020
+MLO    plan-1         HAK   0.020
+MLO    plan-1         OAC   0.020
+MLO    plan-2         CAH   0.020
+MLO    plan-2         CAJ   0.020
+MLO    plan-2         CAL   0.020
+MLO    plan-2         CAN   0.020
+MLO    plan-2         CAP   0.020
+MLO    plan-2         CAR   0.020
+MLO    plan-2         CAS   0.020
+MLO    plan-2         CAT   0.020
+MLO    plan-2         HAH   0.020
+MLO    plan-2         HAJ   0.020
+MLO    plan-2         HAL   0.020
+MLO    plan-2         OAD   0.020
+MLO    plan-3         CAA   0.020
+MLO    plan-3         CAE   0.020
+MLO    plan-3         HAA   0.020
+MLO    plan-3        HAAA   0.020
+MLO    plan-4         CAB   0.020
+MLO    plan-4         CAF   0.020
+MLO    plan-4         HAB   0.020
+MLO    plan-4        HABA   0.020
+MLO    plan-5         CAA   0.020
+MLO    plan-5         CAE   0.020
+MLO    plan-5         CAM   0.020
+MLO    plan-5         HAE   0.020
+MLO    plan-6         CAB   0.020
+MLO    plan-6         CAF   0.020
+MLO    plan-6         CAN   0.020
+MLO    plan-6         HAF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MLO           SMILES              ACDLabs 12.01                                                                     Oc2ccc(cc2c1c(O)ccc(c1)C/C=C)C/C=C
+MLO SMILES_CANONICAL               CACTVS 3.370                                                                         Oc1ccc(CC=C)cc1c2cc(CC=C)ccc2O
+MLO           SMILES               CACTVS 3.370                                                                         Oc1ccc(CC=C)cc1c2cc(CC=C)ccc2O
+MLO SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                       C=CCc1ccc(c(c1)c2cc(ccc2O)CC=C)O
+MLO           SMILES "OpenEye OEToolkits" 1.7.0                                                                       C=CCc1ccc(c(c1)c2cc(ccc2O)CC=C)O
+MLO            InChI                InChI  1.03 InChI=1S/C18H18O2/c1-3-5-13-7-9-17(19)15(11-13)16-12-14(6-4-2)8-10-18(16)20/h3-4,7-12,19-20H,1-2,5-6H2
+MLO         InChIKey                InChI  1.03                                                                            VVOAZFWZEDHOOU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MLO acedrg               243         "dictionary generator"                  
+MLO acedrg_database      11          "data source"                           
+MLO rdkit                2017.03.2   "Chemoinformatics tool"
+MLO refmac5              5.8.0238    "optimization tool"                     

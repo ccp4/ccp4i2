@@ -1,0 +1,372 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+B87     B87      4-(1-benzothiophen-2-yl)-6-[4-(2-oxo-2-pyrrolidin-1-ylethyl)piperazin-1-yl]pyrimidine     NON-POLYMER     54     29     .     
+#
+data_comp_B87
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+B87     C1      C       CH2     0       33.357      9.261       44.503      
+B87     C2      C       CH2     0       32.229      8.862       43.574      
+B87     N3      N       NR5     0       31.036      9.473       44.188      
+B87     C4      C       CH2     0       31.428      10.414      45.254      
+B87     C5      C       CH2     0       32.921      10.573      45.062      
+B87     C6      C       C       0       29.750      9.238       43.858      
+B87     O7      O       O       0       28.836      9.817       44.443      
+B87     C8      C       CH2     0       29.423      8.243       42.757      
+B87     N9      N       NT      0       29.674      6.853       43.140      
+B87     C10     C       CH2     0       28.625      6.326       44.021      
+B87     C11     C       CH2     0       28.961      4.921       44.477      
+B87     N12     N       NR6     0       29.157      4.041       43.327      
+B87     C13     C       CH2     0       30.130      4.564       42.371      
+B87     C14     C       CH2     0       29.786      5.982       41.965      
+B87     C15     C       CR6     0       28.518      2.841       43.161      
+B87     C16     C       CR16    0       29.191      1.684       42.774      
+B87     C17     C       CR6     0       28.466      0.503       42.621      
+B87     N18     N       NRD6    0       27.137      0.487       42.835      
+B87     C19     C       CR16    0       26.552      1.629       43.205      
+B87     N20     N       NRD6    0       27.187      2.802       43.370      
+B87     C21     C       CR5     0       29.125      -0.743      42.202      
+B87     S22     S       S2      0       28.346      -2.218      42.342      
+B87     C23     C       CR56    0       29.579      -3.142      41.713      
+B87     C24     C       CR56    0       30.685      -2.293      41.356      
+B87     C25     C       CR15    0       30.396      -0.918      41.645      
+B87     C26     C       CR16    0       29.640      -4.514      41.519      
+B87     C27     C       CR16    0       30.787      -5.057      40.973      
+B87     C28     C       CR16    0       31.872      -4.248      40.620      
+B87     C29     C       CR16    0       31.834      -2.882      40.804      
+B87     H1      H       H       0       33.474      8.599       45.215      
+B87     H1A     H       H       0       34.199      9.353       44.011      
+B87     H2      H       H       0       32.378      9.210       42.670      
+B87     H2A     H       H       0       32.146      7.887       43.528      
+B87     H4      H       H       0       31.223      10.047      46.139      
+B87     H4A     H       H       0       30.967      11.273      45.152      
+B87     H5      H       H       0       33.118      11.302      44.439      
+B87     H5A     H       H       0       33.365      10.754      45.916      
+B87     H8      H       H       0       29.956      8.464       41.965      
+B87     H8A     H       H       0       28.478      8.340       42.512      
+B87     H10     H       H       0       28.529      6.904       44.804      
+B87     H10A    H       H       0       27.771      6.317       43.543      
+B87     H11     H       H       0       28.233      4.576       45.047      
+B87     H11A    H       H       0       29.788      4.941       45.016      
+B87     H13     H       H       0       30.149      3.992       41.566      
+B87     H13A    H       H       0       31.028      4.548       42.780      
+B87     H14     H       H       0       30.482      6.322       41.369      
+B87     H14A    H       H       0       28.939      5.983       41.476      
+B87     H16     H       H       0       30.119      1.696       42.617      
+B87     H19     H       H       0       25.618      1.613       43.359      
+B87     H25     H       H       0       31.001      -0.217      41.479      
+B87     H26     H       H       0       28.915      -5.066      41.753      
+B87     H27     H       H       0       30.840      -5.988      40.837      
+B87     H28     H       H       0       32.644      -4.646      40.249      
+B87     H29     H       H       0       32.572      -2.349      40.561      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+B87          C1          C2      SINGLE       n     1.516  0.0140     1.516  0.0140
+B87          C1          C5      SINGLE       n     1.500  0.0200     1.500  0.0200
+B87          C2          N3      SINGLE       n     1.471  0.0104     1.471  0.0104
+B87          N3          C4      SINGLE       n     1.471  0.0104     1.471  0.0104
+B87          N3          C6      SINGLE       n     1.342  0.0108     1.342  0.0108
+B87          C4          C5      SINGLE       n     1.516  0.0140     1.516  0.0140
+B87          C6          O7      DOUBLE       n     1.227  0.0149     1.227  0.0149
+B87          C6          C8      SINGLE       n     1.515  0.0145     1.515  0.0145
+B87          C8          N9      SINGLE       n     1.459  0.0100     1.459  0.0100
+B87          N9         C10      SINGLE       n     1.463  0.0100     1.463  0.0100
+B87          N9         C14      SINGLE       n     1.463  0.0100     1.463  0.0100
+B87         C10         C11      SINGLE       n     1.513  0.0100     1.513  0.0100
+B87         C11         N12      SINGLE       n     1.454  0.0128     1.454  0.0128
+B87         N12         C13      SINGLE       n     1.454  0.0128     1.454  0.0128
+B87         N12         C15      SINGLE       n     1.366  0.0103     1.366  0.0103
+B87         C13         C14      SINGLE       n     1.513  0.0100     1.513  0.0100
+B87         C15         C16      DOUBLE       y     1.389  0.0110     1.389  0.0110
+B87         C15         N20      SINGLE       y     1.343  0.0100     1.343  0.0100
+B87         C16         C17      SINGLE       y     1.392  0.0100     1.392  0.0100
+B87         C17         N18      DOUBLE       y     1.342  0.0100     1.342  0.0100
+B87         C17         C21      SINGLE       n     1.467  0.0107     1.467  0.0107
+B87         N18         C19      SINGLE       y     1.331  0.0102     1.331  0.0102
+B87         C19         N20      DOUBLE       y     1.336  0.0127     1.336  0.0127
+B87         C21         S22      SINGLE       y     1.695  0.0200     1.695  0.0200
+B87         C21         C25      DOUBLE       y     1.379  0.0200     1.379  0.0200
+B87         S22         C23      SINGLE       y     1.695  0.0200     1.695  0.0200
+B87         C23         C24      DOUBLE       y     1.414  0.0200     1.414  0.0200
+B87         C23         C26      SINGLE       y     1.382  0.0123     1.382  0.0123
+B87         C24         C25      SINGLE       y     1.425  0.0100     1.425  0.0100
+B87         C24         C29      SINGLE       y     1.401  0.0100     1.401  0.0100
+B87         C26         C27      DOUBLE       y     1.378  0.0108     1.378  0.0108
+B87         C27         C28      SINGLE       y     1.395  0.0112     1.395  0.0112
+B87         C28         C29      DOUBLE       y     1.376  0.0100     1.376  0.0100
+B87          C1          H1      SINGLE       n     1.089  0.0100     0.979  0.0132
+B87          C1         H1A      SINGLE       n     1.089  0.0100     0.979  0.0132
+B87          C2          H2      SINGLE       n     1.089  0.0100     0.980  0.0138
+B87          C2         H2A      SINGLE       n     1.089  0.0100     0.980  0.0138
+B87          C4          H4      SINGLE       n     1.089  0.0100     0.980  0.0138
+B87          C4         H4A      SINGLE       n     1.089  0.0100     0.980  0.0138
+B87          C5          H5      SINGLE       n     1.089  0.0100     0.979  0.0132
+B87          C5         H5A      SINGLE       n     1.089  0.0100     0.979  0.0132
+B87          C8          H8      SINGLE       n     1.089  0.0100     0.980  0.0178
+B87          C8         H8A      SINGLE       n     1.089  0.0100     0.980  0.0178
+B87         C10         H10      SINGLE       n     1.089  0.0100     0.978  0.0109
+B87         C10        H10A      SINGLE       n     1.089  0.0100     0.978  0.0109
+B87         C11         H11      SINGLE       n     1.089  0.0100     0.987  0.0100
+B87         C11        H11A      SINGLE       n     1.089  0.0100     0.987  0.0100
+B87         C13         H13      SINGLE       n     1.089  0.0100     0.987  0.0100
+B87         C13        H13A      SINGLE       n     1.089  0.0100     0.987  0.0100
+B87         C14         H14      SINGLE       n     1.089  0.0100     0.978  0.0109
+B87         C14        H14A      SINGLE       n     1.089  0.0100     0.978  0.0109
+B87         C16         H16      SINGLE       n     1.082  0.0130     0.942  0.0177
+B87         C19         H19      SINGLE       n     1.082  0.0130     0.946  0.0165
+B87         C25         H25      SINGLE       n     1.082  0.0130     0.941  0.0170
+B87         C26         H26      SINGLE       n     1.082  0.0130     0.941  0.0170
+B87         C27         H27      SINGLE       n     1.082  0.0130     0.942  0.0176
+B87         C28         H28      SINGLE       n     1.082  0.0130     0.944  0.0181
+B87         C29         H29      SINGLE       n     1.082  0.0130     0.942  0.0182
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+B87          C2          C1          C5     104.440    1.79
+B87          C2          C1          H1     110.793    1.50
+B87          C2          C1         H1A     110.793    1.50
+B87          C5          C1          H1     110.800    1.50
+B87          C5          C1         H1A     110.800    1.50
+B87          H1          C1         H1A     108.899    1.50
+B87          C1          C2          N3     103.135    1.50
+B87          C1          C2          H2     111.171    1.50
+B87          C1          C2         H2A     111.171    1.50
+B87          N3          C2          H2     111.133    1.50
+B87          N3          C2         H2A     111.133    1.50
+B87          H2          C2         H2A     108.998    1.50
+B87          C2          N3          C4     110.635    1.50
+B87          C2          N3          C6     124.683    3.00
+B87          C4          N3          C6     124.683    3.00
+B87          N3          C4          C5     103.135    1.50
+B87          N3          C4          H4     111.133    1.50
+B87          N3          C4         H4A     111.133    1.50
+B87          C5          C4          H4     111.171    1.50
+B87          C5          C4         H4A     111.171    1.50
+B87          H4          C4         H4A     108.998    1.50
+B87          C1          C5          C4     104.440    1.79
+B87          C1          C5          H5     110.800    1.50
+B87          C1          C5         H5A     110.800    1.50
+B87          C4          C5          H5     110.793    1.50
+B87          C4          C5         H5A     110.793    1.50
+B87          H5          C5         H5A     108.899    1.50
+B87          N3          C6          O7     120.959    1.54
+B87          N3          C6          C8     118.311    1.83
+B87          O7          C6          C8     120.730    1.50
+B87          C6          C8          N9     112.485    2.09
+B87          C6          C8          H8     109.078    1.50
+B87          C6          C8         H8A     109.078    1.50
+B87          N9          C8          H8     108.985    1.50
+B87          N9          C8         H8A     108.985    1.50
+B87          H8          C8         H8A     107.885    1.50
+B87          C8          N9         C10     110.934    1.50
+B87          C8          N9         C14     110.934    1.50
+B87         C10          N9         C14     108.582    1.50
+B87          N9         C10         C11     110.815    1.50
+B87          N9         C10         H10     109.491    1.50
+B87          N9         C10        H10A     109.491    1.50
+B87         C11         C10         H10     109.482    1.50
+B87         C11         C10        H10A     109.482    1.50
+B87         H10         C10        H10A     108.187    1.50
+B87         C10         C11         N12     110.457    1.50
+B87         C10         C11         H11     109.514    1.50
+B87         C10         C11        H11A     109.514    1.50
+B87         N12         C11         H11     109.309    1.50
+B87         N12         C11        H11A     109.309    1.50
+B87         H11         C11        H11A     108.196    1.50
+B87         C11         N12         C13     113.410    1.54
+B87         C11         N12         C15     123.295    1.63
+B87         C13         N12         C15     123.295    1.63
+B87         N12         C13         C14     110.457    1.50
+B87         N12         C13         H13     109.309    1.50
+B87         N12         C13        H13A     109.309    1.50
+B87         C14         C13         H13     109.514    1.50
+B87         C14         C13        H13A     109.514    1.50
+B87         H13         C13        H13A     108.196    1.50
+B87          N9         C14         C13     110.815    1.50
+B87          N9         C14         H14     109.491    1.50
+B87          N9         C14        H14A     109.491    1.50
+B87         C13         C14         H14     109.482    1.50
+B87         C13         C14        H14A     109.482    1.50
+B87         H14         C14        H14A     108.187    1.50
+B87         N12         C15         C16     122.614    1.50
+B87         N12         C15         N20     117.149    1.50
+B87         C16         C15         N20     120.237    1.50
+B87         C15         C16         C17     119.070    1.50
+B87         C15         C16         H16     120.866    1.50
+B87         C17         C16         H16     120.065    1.50
+B87         C16         C17         N18     120.944    1.50
+B87         C16         C17         C21     121.333    1.50
+B87         N18         C17         C21     117.723    1.60
+B87         C17         N18         C19     117.374    1.51
+B87         N18         C19         N20     124.652    1.50
+B87         N18         C19         H19     117.674    1.50
+B87         N20         C19         H19     117.674    1.50
+B87         C15         N20         C19     117.723    1.50
+B87         C17         C21         S22     121.093    3.00
+B87         C17         C21         C25     130.623    1.75
+B87         S22         C21         C25     108.284    3.00
+B87         C21         S22         C23     108.284    3.00
+B87         S22         C23         C24     108.284    3.00
+B87         S22         C23         C26     131.119    3.00
+B87         C24         C23         C26     120.597    1.99
+B87         C23         C24         C25     107.149    1.50
+B87         C23         C24         C29     120.384    1.84
+B87         C25         C24         C29     132.467    1.50
+B87         C21         C25         C24     107.998    1.50
+B87         C21         C25         H25     126.412    1.50
+B87         C24         C25         H25     125.589    1.50
+B87         C23         C26         C27     118.340    1.50
+B87         C23         C26         H26     120.964    1.50
+B87         C27         C26         H26     120.697    1.50
+B87         C26         C27         C28     120.867    1.50
+B87         C26         C27         H27     119.583    1.50
+B87         C28         C27         H27     119.550    1.50
+B87         C27         C28         C29     121.019    1.50
+B87         C27         C28         H28     119.413    1.50
+B87         C29         C28         H28     119.568    1.50
+B87         C24         C29         C28     118.793    1.50
+B87         C24         C29         H29     120.625    1.50
+B87         C28         C29         H29     120.582    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+B87            sp3_sp3_25          C5          C1          C2          N3      60.000    10.0     3
+B87            sp3_sp3_43          C2          C1          C5          C4     180.000    10.0     3
+B87             sp2_sp3_1         C13         N12         C11         C10       0.000    10.0     6
+B87             sp2_sp3_7         C11         N12         C13         C14       0.000    10.0     6
+B87             sp2_sp2_5         C16         C15         N12         C11     180.000     5.0     2
+B87            sp3_sp3_16         N12         C13         C14          N9      60.000    10.0     3
+B87       const_sp2_sp2_3         N12         C15         C16         C17     180.000     5.0     2
+B87              const_44         N12         C15         N20         C19     180.000    10.0     2
+B87       const_sp2_sp2_5         C15         C16         C17         N18       0.000     5.0     2
+B87       const_sp2_sp2_9         C16         C17         N18         C19       0.000     5.0     2
+B87            sp2_sp2_10         C16         C17         C21         S22       0.000     5.0     2
+B87              const_11         N20         C19         N18         C17       0.000    10.0     2
+B87              const_13         N18         C19         N20         C15       0.000    10.0     2
+B87            sp2_sp3_16          C6          N3          C2          C1     180.000    10.0     6
+B87              const_16         C17         C21         S22         C23     180.000    10.0     2
+B87              const_47         C17         C21         C25         C24     180.000    10.0     2
+B87              const_17         C24         C23         S22         C21       0.000    10.0     2
+B87              const_19         S22         C23         C24         C25       0.000    10.0     2
+B87              const_51         S22         C23         C26         C27     180.000    10.0     2
+B87              const_23         C23         C24         C25         C21       0.000    10.0     2
+B87              const_27         C23         C24         C29         C28       0.000    10.0     2
+B87              const_39         C23         C26         C27         C28       0.000    10.0     2
+B87              const_35         C26         C27         C28         C29       0.000    10.0     2
+B87              const_31         C27         C28         C29         C24       0.000    10.0     2
+B87            sp2_sp3_22          C6          N3          C4          C5     180.000    10.0     6
+B87             sp2_sp2_3          O7          C6          N3          C2       0.000     5.0     2
+B87            sp3_sp3_34          N3          C4          C5          C1     -60.000    10.0     3
+B87            sp2_sp3_29          O7          C6          C8          N9     -60.000    10.0     6
+B87            sp3_sp3_53          C6          C8          N9         C10     -60.000    10.0     3
+B87            sp3_sp3_59         C13         C14          N9          C8     -60.000    10.0     3
+B87             sp3_sp3_2         C11         C10          N9          C8     180.000    10.0     3
+B87             sp3_sp3_7          N9         C10         C11         N12     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+B87    chir_1    N9    C8    C10    C14    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+B87    plan-1         C17   0.020
+B87    plan-1         C21   0.020
+B87    plan-1         C23   0.020
+B87    plan-1         C24   0.020
+B87    plan-1         C25   0.020
+B87    plan-1         C26   0.020
+B87    plan-1         C27   0.020
+B87    plan-1         C28   0.020
+B87    plan-1         C29   0.020
+B87    plan-1         H25   0.020
+B87    plan-1         H26   0.020
+B87    plan-1         H27   0.020
+B87    plan-1         H28   0.020
+B87    plan-1         H29   0.020
+B87    plan-1         S22   0.020
+B87    plan-2         C15   0.020
+B87    plan-2         C16   0.020
+B87    plan-2         C17   0.020
+B87    plan-2         C19   0.020
+B87    plan-2         C21   0.020
+B87    plan-2         H16   0.020
+B87    plan-2         H19   0.020
+B87    plan-2         N12   0.020
+B87    plan-2         N18   0.020
+B87    plan-2         N20   0.020
+B87    plan-3          C2   0.020
+B87    plan-3          C4   0.020
+B87    plan-3          C6   0.020
+B87    plan-3          N3   0.020
+B87    plan-4          C6   0.020
+B87    plan-4          C8   0.020
+B87    plan-4          N3   0.020
+B87    plan-4          O7   0.020
+B87    plan-5         C11   0.020
+B87    plan-5         C13   0.020
+B87    plan-5         C15   0.020
+B87    plan-5         N12   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+B87           SMILES              ACDLabs 11.02                                                                                                     O=C(N1CCCC1)CN5CCN(c4ncnc(c3sc2ccccc2c3)c4)CC5
+B87 SMILES_CANONICAL               CACTVS 3.352                                                                                                     O=C(CN1CCN(CC1)c2cc(ncn2)c3sc4ccccc4c3)N5CCCC5
+B87           SMILES               CACTVS 3.352                                                                                                     O=C(CN1CCN(CC1)c2cc(ncn2)c3sc4ccccc4c3)N5CCCC5
+B87 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                 c1ccc2c(c1)cc(s2)c3cc(ncn3)N4CCN(CC4)CC(=O)N5CCCC5
+B87           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                 c1ccc2c(c1)cc(s2)c3cc(ncn3)N4CCN(CC4)CC(=O)N5CCCC5
+B87            InChI                InChI  1.03 InChI=1S/C22H25N5OS/c28-22(27-7-3-4-8-27)15-25-9-11-26(12-10-25)21-14-18(23-16-24-21)20-13-17-5-1-2-6-19(17)29-20/h1-2,5-6,13-14,16H,3-4,7-12,15H2
+B87         InChIKey                InChI  1.03                                                                                                                        NDLZMZLRTHDNSQ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+B87 acedrg               243         "dictionary generator"                  
+B87 acedrg_database      11          "data source"                           
+B87 rdkit                2017.03.2   "Chemoinformatics tool"
+B87 refmac5              5.8.0238    "optimization tool"                     

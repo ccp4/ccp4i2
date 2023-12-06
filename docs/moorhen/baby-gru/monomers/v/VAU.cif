@@ -1,0 +1,207 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VAU     VAU      "(1~{R},3~{R},4~{S},5~{R})-3-methyl-1,3,4,5-tetrakis(oxidanyl)cyclohexane-1-carboxylic acid"     NON-POLYMER     27     14     .     
+#
+data_comp_VAU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VAU     CAJ     C       CH3     0       7.373       -19.651     -18.160     
+VAU     CAR     C       CT      0       8.603       -20.290     -17.513     
+VAU     OAG     O       OH1     0       9.686       -19.343     -17.578     
+VAU     CAL     C       CH2     0       8.337       -20.591     -16.031     
+VAU     CAQ     C       CT      0       9.502       -21.316     -15.332     
+VAU     CAN     C       C       0       9.108       -21.695     -13.901     
+VAU     OAC     O       OC      -1      9.730       -21.262     -12.959     
+VAU     OAB     O       O       0       8.169       -22.433     -13.716     
+VAU     OAF     O       OH1     0       10.644      -20.448     -15.291     
+VAU     CAK     C       CH2     0       9.894       -22.576     -16.113     
+VAU     CAO     C       CH1     0       10.208      -22.267     -17.575     
+VAU     OAD     O       OH1     0       10.489      -23.503     -18.239     
+VAU     CAP     C       CH1     0       9.044       -21.563     -18.262     
+VAU     OAE     O       OH1     0       9.404       -21.245     -19.606     
+VAU     H1      H       H       0       7.001       -20.254     -18.825     
+VAU     H2      H       H       0       7.622       -18.817     -18.590     
+VAU     H14     H       H       0       6.701       -19.472     -17.482     
+VAU     H3      H       H       0       9.913       -19.243     -18.384     
+VAU     H4      H       H       0       8.161       -19.747     -15.564     
+VAU     H5      H       H       0       7.531       -21.146     -15.964     
+VAU     H7      H       H       0       10.441      -19.727     -14.889     
+VAU     H8      H       H       0       9.156       -23.224     -16.069     
+VAU     H9      H       H       0       10.681      -22.984     -15.689     
+VAU     H10     H       H       0       11.012      -21.690     -17.620     
+VAU     H11     H       H       0       11.232      -23.798     -17.976     
+VAU     H12     H       H       0       8.268       -22.183     -18.288     
+VAU     H13     H       H       0       9.411       -21.956     -20.054     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VAU         CAP         OAE      SINGLE       n     1.427  0.0100     1.427  0.0100
+VAU         CAO         OAD      SINGLE       n     1.431  0.0100     1.431  0.0100
+VAU         CAR         CAP      SINGLE       n     1.537  0.0100     1.537  0.0100
+VAU         CAO         CAP      SINGLE       n     1.522  0.0100     1.522  0.0100
+VAU         CAJ         CAR      SINGLE       n     1.525  0.0100     1.525  0.0100
+VAU         CAR         OAG      SINGLE       n     1.436  0.0120     1.436  0.0120
+VAU         CAR         CAL      SINGLE       n     1.529  0.0113     1.529  0.0113
+VAU         CAK         CAO      SINGLE       n     1.525  0.0100     1.525  0.0100
+VAU         CAL         CAQ      SINGLE       n     1.534  0.0100     1.534  0.0100
+VAU         CAQ         CAK      SINGLE       n     1.530  0.0100     1.530  0.0100
+VAU         CAQ         OAF      SINGLE       n     1.431  0.0117     1.431  0.0117
+VAU         CAQ         CAN      SINGLE       n     1.526  0.0149     1.526  0.0149
+VAU         CAN         OAB      DOUBLE       n     1.207  0.0200     1.207  0.0200
+VAU         CAN         OAC      SINGLE       n     1.207  0.0200     1.207  0.0200
+VAU         CAJ          H1      SINGLE       n     1.089  0.0100     0.971  0.0171
+VAU         CAJ          H2      SINGLE       n     1.089  0.0100     0.971  0.0171
+VAU         CAJ         H14      SINGLE       n     1.089  0.0100     0.971  0.0171
+VAU         OAG          H3      SINGLE       n     0.970  0.0120     0.841  0.0200
+VAU         CAL          H4      SINGLE       n     1.089  0.0100     0.981  0.0170
+VAU         CAL          H5      SINGLE       n     1.089  0.0100     0.981  0.0170
+VAU         OAF          H7      SINGLE       n     0.970  0.0120     0.848  0.0200
+VAU         CAK          H8      SINGLE       n     1.089  0.0100     0.983  0.0100
+VAU         CAK          H9      SINGLE       n     1.089  0.0100     0.983  0.0100
+VAU         CAO         H10      SINGLE       n     1.089  0.0100     0.990  0.0143
+VAU         OAD         H11      SINGLE       n     0.970  0.0120     0.841  0.0200
+VAU         CAP         H12      SINGLE       n     1.089  0.0100     0.994  0.0152
+VAU         OAE         H13      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VAU         CAR         CAJ          H1     109.471    1.50
+VAU         CAR         CAJ          H2     109.471    1.50
+VAU         CAR         CAJ         H14     109.471    1.50
+VAU          H1         CAJ          H2     109.376    1.50
+VAU          H1         CAJ         H14     109.376    1.50
+VAU          H2         CAJ         H14     109.376    1.50
+VAU         CAP         CAR         CAJ     111.933    1.75
+VAU         CAP         CAR         OAG     107.196    2.30
+VAU         CAP         CAR         CAL     111.124    1.57
+VAU         CAJ         CAR         OAG     108.333    2.44
+VAU         CAJ         CAR         CAL     110.964    1.50
+VAU         OAG         CAR         CAL     108.137    2.20
+VAU         CAR         OAG          H3     107.832    2.15
+VAU         CAR         CAL         CAQ     111.124    1.57
+VAU         CAR         CAL          H4     108.878    1.50
+VAU         CAR         CAL          H5     108.878    1.50
+VAU         CAQ         CAL          H4     108.992    1.50
+VAU         CAQ         CAL          H5     108.992    1.50
+VAU          H4         CAL          H5     108.019    1.50
+VAU         CAL         CAQ         CAK     110.088    1.50
+VAU         CAL         CAQ         OAF     108.626    2.18
+VAU         CAL         CAQ         CAN     111.056    2.52
+VAU         CAK         CAQ         OAF     108.626    2.18
+VAU         CAK         CAQ         CAN     111.056    2.52
+VAU         OAF         CAQ         CAN     108.672    2.53
+VAU         CAQ         CAN         OAB     119.768    3.00
+VAU         CAQ         CAN         OAC     119.768    3.00
+VAU         OAB         CAN         OAC     120.465    1.50
+VAU         CAQ         OAF          H7     108.581    2.44
+VAU         CAO         CAK         CAQ     111.124    1.57
+VAU         CAO         CAK          H8     109.399    1.50
+VAU         CAO         CAK          H9     109.399    1.50
+VAU         CAQ         CAK          H8     108.992    1.50
+VAU         CAQ         CAK          H9     108.992    1.50
+VAU          H8         CAK          H9     107.908    1.50
+VAU         OAD         CAO         CAP     110.081    2.02
+VAU         OAD         CAO         CAK     108.177    1.76
+VAU         OAD         CAO         H10     108.933    1.50
+VAU         CAP         CAO         CAK     111.121    1.50
+VAU         CAP         CAO         H10     109.166    1.50
+VAU         CAK         CAO         H10     108.952    1.50
+VAU         CAO         OAD         H11     109.387    3.00
+VAU         OAE         CAP         CAR     110.379    2.29
+VAU         OAE         CAP         CAO     110.081    2.02
+VAU         OAE         CAP         H12     108.531    1.50
+VAU         CAR         CAP         CAO     112.286    1.88
+VAU         CAR         CAP         H12     108.118    1.50
+VAU         CAO         CAP         H12     109.166    1.50
+VAU         CAP         OAE         H13     108.445    2.48
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VAU            sp3_sp3_53          H1         CAJ         CAR         OAG     -60.000    10.0     3
+VAU            sp3_sp3_49         CAP         CAO         OAD         H11     180.000    10.0     3
+VAU            sp3_sp3_14         OAD         CAO         CAP         OAE     -60.000    10.0     3
+VAU            sp3_sp3_46         CAR         CAP         OAE         H13     180.000    10.0     3
+VAU             sp3_sp3_5         OAE         CAP         CAR         CAJ      60.000    10.0     3
+VAU            sp3_sp3_62         CAJ         CAR         OAG          H3      60.000    10.0     3
+VAU            sp3_sp3_65         CAQ         CAL         CAR         CAJ     -60.000    10.0     3
+VAU            sp3_sp3_38         CAR         CAL         CAQ         OAF     180.000    10.0     3
+VAU             sp2_sp3_3         OAB         CAN         CAQ         OAF    -120.000    10.0     6
+VAU            sp3_sp3_75         CAN         CAQ         OAF          H7     -60.000    10.0     3
+VAU            sp3_sp3_29         CAO         CAK         CAQ         OAF      60.000    10.0     3
+VAU            sp3_sp3_20         CAQ         CAK         CAO         OAD     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VAU    chir_1    CAR    OAG    CAP    CAL    negative
+VAU    chir_2    CAQ    OAF    CAN    CAL    negative
+VAU    chir_3    CAO    OAD    CAP    CAK    negative
+VAU    chir_4    CAP    OAE    CAR    CAO    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VAU    plan-1         CAN   0.020
+VAU    plan-1         CAQ   0.020
+VAU    plan-1         OAB   0.020
+VAU    plan-1         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VAU            InChI                InChI  1.03 InChI=1S/C8H14O6/c1-7(13)3-8(14,6(11)12)2-4(9)5(7)10/h4-5,9-10,13-14H,2-3H2,1H3,(H,11,12)/t4-,5+,7-,8-/m1/s1
+VAU         InChIKey                InChI  1.03                                                                                  AQOKFKYCBLFIKH-IXROVEORSA-N
+VAU SMILES_CANONICAL               CACTVS 3.385                                                                 C[C@@]1(O)C[C@](O)(C[C@@H](O)[C@@H]1O)C(O)=O
+VAU           SMILES               CACTVS 3.385                                                                        C[C]1(O)C[C](O)(C[CH](O)[CH]1O)C(O)=O
+VAU SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                   C[C@]1(C[C@](C[C@H]([C@@H]1O)O)(C(=O)O)O)O
+VAU           SMILES "OpenEye OEToolkits" 2.0.6                                                                                  CC1(CC(CC(C1O)O)(C(=O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VAU acedrg               243         "dictionary generator"                  
+VAU acedrg_database      11          "data source"                           
+VAU rdkit                2017.03.2   "Chemoinformatics tool"
+VAU refmac5              5.8.0238    "optimization tool"                     

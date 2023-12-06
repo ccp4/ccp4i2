@@ -1,0 +1,358 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BEQ     BEQ      "N-(CARBOXYMETHYL)-N,N-DIMETHYL-3-[(1-OXODODECYL)AMINO]-1-PROPANAMINIUM INNER SALT"     NON-POLYMER     62     24     .     
+#
+data_comp_BEQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BEQ     N1      N       NT      1       12.046      -5.539      7.185       
+BEQ     CB      C       CH3     0       13.031      -5.269      8.281       
+BEQ     CG      C       CH3     0       11.081      -6.574      7.679       
+BEQ     CD      C       CH2     0       12.798      -6.083      5.991       
+BEQ     CE      C       C       0       12.030      -6.413      4.721       
+BEQ     OE1     O       OC      -1      11.961      -5.518      3.856       
+BEQ     OE2     O       O       0       11.529      -7.553      4.645       
+BEQ     C1      C       CH2     0       11.275      -4.261      6.831       
+BEQ     C2      C       CH2     0       12.075      -3.057      6.343       
+BEQ     C3      C       CH2     0       11.186      -1.903      5.915       
+BEQ     N2      N       NH1     0       10.407      -2.216      4.723       
+BEQ     C4      C       C       0       10.901      -2.314      3.480       
+BEQ     O       O       O       0       12.086      -2.095      3.234       
+BEQ     C5      C       CH2     0       9.936       -2.732      2.390       
+BEQ     C6      C       CH2     0       9.129       -1.590      1.855       
+BEQ     C7      C       CH2     0       8.217       -1.980      0.705       
+BEQ     C8      C       CH2     0       7.437       -0.831      0.117       
+BEQ     C9      C       CH2     0       6.509       -1.222      -1.006      
+BEQ     C10     C       CH2     0       5.720       -0.074      -1.585      
+BEQ     C11     C       CH2     0       4.789       -0.464      -2.706      
+BEQ     C12     C       CH2     0       4.002       0.687       -3.283      
+BEQ     C13     C       CH2     0       3.070       0.300       -4.405      
+BEQ     C14     C       CH2     0       2.284       1.449       -4.981      
+BEQ     C15     C       CH3     0       1.356       1.046       -6.102      
+BEQ     HB1     H       H       0       12.573      -4.847      9.023       
+BEQ     HB2     H       H       0       13.730      -4.682      7.954       
+BEQ     HB3     H       H       0       13.422      -6.106      8.573       
+BEQ     HG1     H       H       0       10.373      -6.691      7.028       
+BEQ     HG2     H       H       0       10.700      -6.278      8.520       
+BEQ     HG3     H       H       0       11.547      -7.413      7.811       
+BEQ     HD1     H       H       0       13.248      -6.907      6.288       
+BEQ     HD2     H       H       0       13.495      -5.430      5.757       
+BEQ     H11     H       H       0       10.781      -3.986      7.626       
+BEQ     H12     H       H       0       10.613      -4.483      6.151       
+BEQ     H21     H       H       0       12.637      -3.313      5.586       
+BEQ     H22     H       H       0       12.668      -2.745      7.055       
+BEQ     H31     H       H       0       11.741      -1.115      5.736       
+BEQ     H32     H       H       0       10.572      -1.678      6.646       
+BEQ     HN2     H       H       0       9.550       -2.344      4.825       
+BEQ     H51     H       H       0       9.326       -3.414      2.744       
+BEQ     H52     H       H       0       10.443      -3.135      1.653       
+BEQ     H61     H       H       0       9.739       -0.887      1.550       
+BEQ     H62     H       H       0       8.584       -1.220      2.580       
+BEQ     H71     H       H       0       7.585       -2.660      1.022       
+BEQ     H72     H       H       0       8.761       -2.386      -0.004      
+BEQ     H81     H       H       0       8.070       -0.160      -0.217      
+BEQ     H82     H       H       0       6.909       -0.412      0.830       
+BEQ     H91     H       H       0       5.882       -1.899      -0.674      
+BEQ     H92     H       H       0       7.038       -1.633      -1.723      
+BEQ     H101    H       H       0       6.348       0.602       -1.918      
+BEQ     H102    H       H       0       5.193       0.338       -0.868      
+BEQ     H111    H       H       0       4.161       -1.140      -2.373      
+BEQ     H112    H       H       0       5.317       -0.875      -3.424      
+BEQ     H121    H       H       0       4.630       1.363       -3.615      
+BEQ     H122    H       H       0       3.474       1.098       -2.565      
+BEQ     H131    H       H       0       2.442       -0.376      -4.074      
+BEQ     H132    H       H       0       3.597       -0.111      -5.124      
+BEQ     H141    H       H       0       2.912       2.125       -5.315      
+BEQ     H142    H       H       0       1.755       1.860       -4.263      
+BEQ     H151    H       H       0       0.880       1.830       -6.428      
+BEQ     H152    H       H       0       0.715       0.392       -5.776      
+BEQ     H153    H       H       0       1.873       0.657       -6.829      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BEQ          N1          CB      SINGLE       n     1.496  0.0100     1.496  0.0100
+BEQ          N1          CG      SINGLE       n     1.496  0.0100     1.496  0.0100
+BEQ          N1          CD      SINGLE       n     1.504  0.0114     1.504  0.0114
+BEQ          N1          C1      SINGLE       n     1.526  0.0116     1.526  0.0116
+BEQ          CD          CE      SINGLE       n     1.519  0.0106     1.519  0.0106
+BEQ          CE         OE1      SINGLE       n     1.247  0.0187     1.247  0.0187
+BEQ          CE         OE2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BEQ          C1          C2      SINGLE       n     1.522  0.0100     1.522  0.0100
+BEQ          C2          C3      SINGLE       n     1.517  0.0117     1.517  0.0117
+BEQ          C3          N2      SINGLE       n     1.456  0.0109     1.456  0.0109
+BEQ          N2          C4      SINGLE       n     1.337  0.0118     1.337  0.0118
+BEQ          C4           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+BEQ          C4          C5      SINGLE       n     1.514  0.0100     1.514  0.0100
+BEQ          C5          C6      SINGLE       n     1.497  0.0200     1.497  0.0200
+BEQ          C6          C7      SINGLE       n     1.519  0.0164     1.519  0.0164
+BEQ          C7          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+BEQ          C8          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+BEQ          C9         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+BEQ         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+BEQ         C11         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+BEQ         C12         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+BEQ         C13         C14      SINGLE       n     1.507  0.0200     1.507  0.0200
+BEQ         C14         C15      SINGLE       n     1.510  0.0200     1.510  0.0200
+BEQ          CB         HB1      SINGLE       n     1.089  0.0100     0.969  0.0145
+BEQ          CB         HB2      SINGLE       n     1.089  0.0100     0.969  0.0145
+BEQ          CB         HB3      SINGLE       n     1.089  0.0100     0.969  0.0145
+BEQ          CG         HG1      SINGLE       n     1.089  0.0100     0.969  0.0145
+BEQ          CG         HG2      SINGLE       n     1.089  0.0100     0.969  0.0145
+BEQ          CG         HG3      SINGLE       n     1.089  0.0100     0.969  0.0145
+BEQ          CD         HD1      SINGLE       n     1.089  0.0100     0.985  0.0200
+BEQ          CD         HD2      SINGLE       n     1.089  0.0100     0.985  0.0200
+BEQ          C1         H11      SINGLE       n     1.089  0.0100     0.976  0.0165
+BEQ          C1         H12      SINGLE       n     1.089  0.0100     0.976  0.0165
+BEQ          C2         H21      SINGLE       n     1.089  0.0100     0.979  0.0161
+BEQ          C2         H22      SINGLE       n     1.089  0.0100     0.979  0.0161
+BEQ          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0152
+BEQ          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0152
+BEQ          N2         HN2      SINGLE       n     1.016  0.0100     0.872  0.0200
+BEQ          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0185
+BEQ          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0185
+BEQ          C6         H61      SINGLE       n     1.089  0.0100     0.980  0.0160
+BEQ          C6         H62      SINGLE       n     1.089  0.0100     0.980  0.0160
+BEQ          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0163
+BEQ         C14        H141      SINGLE       n     1.089  0.0100     0.982  0.0155
+BEQ         C14        H142      SINGLE       n     1.089  0.0100     0.982  0.0155
+BEQ         C15        H151      SINGLE       n     1.089  0.0100     0.973  0.0157
+BEQ         C15        H152      SINGLE       n     1.089  0.0100     0.973  0.0157
+BEQ         C15        H153      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BEQ          CB          N1          CG     108.611    1.50
+BEQ          CB          N1          CD     108.525    2.94
+BEQ          CB          N1          C1     110.076    1.50
+BEQ          CG          N1          CD     108.525    2.94
+BEQ          CG          N1          C1     110.076    1.50
+BEQ          CD          N1          C1     109.287    1.50
+BEQ          N1          CB         HB1     109.197    1.65
+BEQ          N1          CB         HB2     109.197    1.65
+BEQ          N1          CB         HB3     109.197    1.65
+BEQ         HB1          CB         HB2     109.693    1.55
+BEQ         HB1          CB         HB3     109.693    1.55
+BEQ         HB2          CB         HB3     109.693    1.55
+BEQ          N1          CG         HG1     109.197    1.65
+BEQ          N1          CG         HG2     109.197    1.65
+BEQ          N1          CG         HG3     109.197    1.65
+BEQ         HG1          CG         HG2     109.693    1.55
+BEQ         HG1          CG         HG3     109.693    1.55
+BEQ         HG2          CG         HG3     109.693    1.55
+BEQ          N1          CD          CE     117.716    1.50
+BEQ          N1          CD         HD1     107.071    1.50
+BEQ          N1          CD         HD2     107.071    1.50
+BEQ          CE          CD         HD1     107.795    1.50
+BEQ          CE          CD         HD2     107.795    1.50
+BEQ         HD1          CD         HD2     108.926    2.58
+BEQ          CD          CE         OE1     116.827    3.00
+BEQ          CD          CE         OE2     116.827    3.00
+BEQ         OE1          CE         OE2     126.346    1.50
+BEQ          N1          C1          C2     115.972    1.50
+BEQ          N1          C1         H11     108.323    1.50
+BEQ          N1          C1         H12     108.323    1.50
+BEQ          C2          C1         H11     108.532    1.50
+BEQ          C2          C1         H12     108.532    1.50
+BEQ         H11          C1         H12     107.519    1.50
+BEQ          C1          C2          C3     113.032    2.13
+BEQ          C1          C2         H21     109.764    1.50
+BEQ          C1          C2         H22     109.764    1.50
+BEQ          C3          C2         H21     108.958    1.50
+BEQ          C3          C2         H22     108.958    1.50
+BEQ         H21          C2         H22     107.594    1.73
+BEQ          C2          C3          N2     112.174    1.52
+BEQ          C2          C3         H31     109.350    1.50
+BEQ          C2          C3         H32     109.350    1.50
+BEQ          N2          C3         H31     108.979    1.50
+BEQ          N2          C3         H32     108.979    1.50
+BEQ         H31          C3         H32     107.877    1.50
+BEQ          C3          N2          C4     124.480    2.27
+BEQ          C3          N2         HN2     118.241    1.90
+BEQ          C4          N2         HN2     117.279    2.10
+BEQ          N2          C4           O     121.647    1.50
+BEQ          N2          C4          C5     116.579    1.50
+BEQ           O          C4          C5     121.774    1.50
+BEQ          C4          C5          C6     112.836    1.50
+BEQ          C4          C5         H51     108.930    1.50
+BEQ          C4          C5         H52     108.930    1.50
+BEQ          C6          C5         H51     108.897    1.50
+BEQ          C6          C5         H52     108.897    1.50
+BEQ         H51          C5         H52     107.846    1.50
+BEQ          C5          C6          C7     113.472    1.51
+BEQ          C5          C6         H61     108.795    1.50
+BEQ          C5          C6         H62     108.795    1.50
+BEQ          C7          C6         H61     108.698    1.50
+BEQ          C7          C6         H62     108.698    1.50
+BEQ         H61          C6         H62     107.646    1.50
+BEQ          C6          C7          C8     114.243    1.69
+BEQ          C6          C7         H71     108.698    1.50
+BEQ          C6          C7         H72     108.698    1.50
+BEQ          C8          C7         H71     108.698    1.50
+BEQ          C8          C7         H72     108.698    1.50
+BEQ         H71          C7         H72     107.646    1.50
+BEQ          C7          C8          C9     114.243    1.69
+BEQ          C7          C8         H81     108.698    1.50
+BEQ          C7          C8         H82     108.698    1.50
+BEQ          C9          C8         H81     108.698    1.50
+BEQ          C9          C8         H82     108.698    1.50
+BEQ         H81          C8         H82     107.646    1.50
+BEQ          C8          C9         C10     114.243    1.69
+BEQ          C8          C9         H91     108.698    1.50
+BEQ          C8          C9         H92     108.698    1.50
+BEQ         C10          C9         H91     108.698    1.50
+BEQ         C10          C9         H92     108.698    1.50
+BEQ         H91          C9         H92     107.646    1.50
+BEQ          C9         C10         C11     114.243    1.69
+BEQ          C9         C10        H101     108.698    1.50
+BEQ          C9         C10        H102     108.698    1.50
+BEQ         C11         C10        H101     108.698    1.50
+BEQ         C11         C10        H102     108.698    1.50
+BEQ        H101         C10        H102     107.646    1.50
+BEQ         C10         C11         C12     114.243    1.69
+BEQ         C10         C11        H111     108.698    1.50
+BEQ         C10         C11        H112     108.698    1.50
+BEQ         C12         C11        H111     108.698    1.50
+BEQ         C12         C11        H112     108.698    1.50
+BEQ        H111         C11        H112     107.646    1.50
+BEQ         C11         C12         C13     114.243    1.69
+BEQ         C11         C12        H121     108.698    1.50
+BEQ         C11         C12        H122     108.698    1.50
+BEQ         C13         C12        H121     108.698    1.50
+BEQ         C13         C12        H122     108.698    1.50
+BEQ        H121         C12        H122     107.646    1.50
+BEQ         C12         C13         C14     114.362    3.00
+BEQ         C12         C13        H131     108.698    1.50
+BEQ         C12         C13        H132     108.698    1.50
+BEQ         C14         C13        H131     108.653    1.50
+BEQ         C14         C13        H132     108.653    1.50
+BEQ        H131         C13        H132     107.646    1.50
+BEQ         C13         C14         C15     113.719    3.00
+BEQ         C13         C14        H141     108.758    1.50
+BEQ         C13         C14        H142     108.758    1.50
+BEQ         C15         C14        H141     108.918    1.50
+BEQ         C15         C14        H142     108.918    1.50
+BEQ        H141         C14        H142     107.763    1.50
+BEQ         C14         C15        H151     109.554    1.50
+BEQ         C14         C15        H152     109.554    1.50
+BEQ         C14         C15        H153     109.554    1.50
+BEQ        H151         C15        H152     109.380    1.50
+BEQ        H151         C15        H153     109.380    1.50
+BEQ        H152         C15        H153     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BEQ             sp3_sp3_3         HB1          CB          N1          CG      60.000    10.0     3
+BEQ            sp3_sp3_12         HG1          CG          N1          CB      60.000    10.0     3
+BEQ            sp3_sp3_19          CE          CD          N1          CB     180.000    10.0     3
+BEQ            sp3_sp3_29          C2          C1          N1          CB     -60.000    10.0     3
+BEQ             sp2_sp2_3           O          C4          N2          C3       0.000     5.0     2
+BEQ            sp2_sp3_14          N2          C4          C5          C6     120.000    10.0     6
+BEQ            sp3_sp3_55          C4          C5          C6          C7     180.000    10.0     3
+BEQ            sp3_sp3_64          C5          C6          C7          C8     180.000    10.0     3
+BEQ            sp3_sp3_73          C6          C7          C8          C9     180.000    10.0     3
+BEQ            sp3_sp3_82          C7          C8          C9         C10     180.000    10.0     3
+BEQ            sp3_sp3_91         C11         C10          C9          C8     180.000    10.0     3
+BEQ           sp3_sp3_100          C9         C10         C11         C12     180.000    10.0     3
+BEQ           sp3_sp3_109         C10         C11         C12         C13     180.000    10.0     3
+BEQ           sp3_sp3_118         C11         C12         C13         C14     180.000    10.0     3
+BEQ           sp3_sp3_127         C12         C13         C14         C15     180.000    10.0     3
+BEQ           sp3_sp3_136         C13         C14         C15        H151     180.000    10.0     3
+BEQ             sp2_sp3_2         OE1          CE          CD          N1     120.000    10.0     6
+BEQ            sp3_sp3_37          N1          C1          C2          C3     180.000    10.0     3
+BEQ            sp3_sp3_46          C1          C2          C3          N2     180.000    10.0     3
+BEQ             sp2_sp3_8          C4          N2          C3          C2     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BEQ    chir_1    N1    CD    C1    CB    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BEQ    plan-1          CD   0.020
+BEQ    plan-1          CE   0.020
+BEQ    plan-1         OE1   0.020
+BEQ    plan-1         OE2   0.020
+BEQ    plan-2          C3   0.020
+BEQ    plan-2          C4   0.020
+BEQ    plan-2         HN2   0.020
+BEQ    plan-2          N2   0.020
+BEQ    plan-3          C4   0.020
+BEQ    plan-3          C5   0.020
+BEQ    plan-3          N2   0.020
+BEQ    plan-3           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BEQ           SMILES              ACDLabs 10.04                                                                         "[O-]C(=O)C[N+](CCCNC(=O)CCCCCCCCCCC)(C)C"
+BEQ SMILES_CANONICAL               CACTVS 3.341                                                                           CCCCCCCCCCCC(=O)NCCC[N+](C)(C)CC([O-])=O
+BEQ           SMILES               CACTVS 3.341                                                                           CCCCCCCCCCCC(=O)NCCC[N+](C)(C)CC([O-])=O
+BEQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                           CCCCCCCCCCCC(=O)NCCC[N+](C)(C)CC(=O)[O-]
+BEQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                           CCCCCCCCCCCC(=O)NCCC[N+](C)(C)CC(=O)[O-]
+BEQ            InChI                InChI  1.03 InChI=1S/C19H38N2O3/c1-4-5-6-7-8-9-10-11-12-14-18(22)20-15-13-16-21(2,3)17-19(23)24/h4-17H2,1-3H3,(H-,20,22,23,24)
+BEQ         InChIKey                InChI  1.03                                                                                        MRUAUOIMASANKQ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BEQ acedrg               243         "dictionary generator"                  
+BEQ acedrg_database      11          "data source"                           
+BEQ rdkit                2017.03.2   "Chemoinformatics tool"
+BEQ refmac5              5.8.0238    "optimization tool"                     

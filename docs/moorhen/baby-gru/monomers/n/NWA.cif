@@ -1,0 +1,209 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NWA     NWA      4,4-DIHYDROXY-N,N,N-TRIMETHYLPENTAN-1-AMINIUM     NON-POLYMER     31     11     .     
+#
+data_comp_NWA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NWA     N1      N       NT      1       4.311       68.661      62.268      
+NWA     C2      C       CH2     0       4.864       67.289      62.621      
+NWA     C3      C       CH2     0       4.779       66.203      61.562      
+NWA     C5      C       CT      0       5.387       63.753      61.079      
+NWA     O7      O       OH1     0       4.079       63.429      60.739      
+NWA     O8      O       OH1     0       6.152       64.072      59.962      
+NWA     C6      C       CH3     0       5.998       62.503      61.705      
+NWA     C8      C       CH3     0       2.854       68.588      61.946      
+NWA     C9      C       CH3     0       4.493       69.555      63.450      
+NWA     C10     C       CH3     0       5.046       69.252      61.108      
+NWA     C4      C       CH2     0       5.389       64.910      62.080      
+NWA     H2C1    H       H       0       4.395       66.971      63.416      
+NWA     H2C2    H       H       0       5.803       67.398      62.865      
+NWA     H3C1    H       H       0       5.260       66.480      60.755      
+NWA     H3C2    H       H       0       3.843       66.039      61.322      
+NWA     H7      H       H       0       4.070       62.881      60.090      
+NWA     H8      H       H       0       6.942       64.287      60.190      
+NWA     H6C1    H       H       0       6.428       61.973      61.022      
+NWA     H6C2    H       H       0       5.306       61.977      62.128      
+NWA     H6C3    H       H       0       6.653       62.756      62.368      
+NWA     H8C1    H       H       0       2.500       69.486      61.857      
+NWA     H8C2    H       H       0       2.394       68.125      62.662      
+NWA     H8C3    H       H       0       2.731       68.108      61.114      
+NWA     H9C1    H       H       0       5.437       69.615      63.659      
+NWA     H9C2    H       H       0       4.013       69.184      64.205      
+NWA     H9C3    H       H       0       4.147       70.436      63.243      
+NWA     H101    H       H       0       4.771       70.174      60.992      
+NWA     H102    H       H       0       4.842       68.749      60.306      
+NWA     H103    H       H       0       5.998       69.214      61.285      
+NWA     H4C1    H       H       0       4.897       64.629      62.884      
+NWA     H4C2    H       H       0       6.318       65.089      62.351      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NWA          N1          C2      SINGLE       n     1.517  0.0100     1.517  0.0100
+NWA          N1          C8      SINGLE       n     1.488  0.0165     1.488  0.0165
+NWA          N1          C9      SINGLE       n     1.488  0.0165     1.488  0.0165
+NWA          N1         C10      SINGLE       n     1.488  0.0165     1.488  0.0165
+NWA          C2          C3      SINGLE       n     1.516  0.0105     1.516  0.0105
+NWA          C3          C4      SINGLE       n     1.520  0.0141     1.520  0.0141
+NWA          C5          O7      SINGLE       n     1.385  0.0185     1.385  0.0185
+NWA          C5          O8      SINGLE       n     1.385  0.0185     1.385  0.0185
+NWA          C5          C6      SINGLE       n     1.517  0.0141     1.517  0.0141
+NWA          C5          C4      SINGLE       n     1.528  0.0100     1.528  0.0100
+NWA          C2        H2C1      SINGLE       n     1.089  0.0100     0.976  0.0165
+NWA          C2        H2C2      SINGLE       n     1.089  0.0100     0.976  0.0165
+NWA          C3        H3C1      SINGLE       n     1.089  0.0100     0.981  0.0160
+NWA          C3        H3C2      SINGLE       n     1.089  0.0100     0.981  0.0160
+NWA          O7          H7      SINGLE       n     0.970  0.0120     0.848  0.0200
+NWA          O8          H8      SINGLE       n     0.970  0.0120     0.848  0.0200
+NWA          C6        H6C1      SINGLE       n     1.089  0.0100     0.965  0.0200
+NWA          C6        H6C2      SINGLE       n     1.089  0.0100     0.965  0.0200
+NWA          C6        H6C3      SINGLE       n     1.089  0.0100     0.965  0.0200
+NWA          C8        H8C1      SINGLE       n     1.089  0.0100     0.969  0.0145
+NWA          C8        H8C2      SINGLE       n     1.089  0.0100     0.969  0.0145
+NWA          C8        H8C3      SINGLE       n     1.089  0.0100     0.969  0.0145
+NWA          C9        H9C1      SINGLE       n     1.089  0.0100     0.969  0.0145
+NWA          C9        H9C2      SINGLE       n     1.089  0.0100     0.969  0.0145
+NWA          C9        H9C3      SINGLE       n     1.089  0.0100     0.969  0.0145
+NWA         C10        H101      SINGLE       n     1.089  0.0100     0.969  0.0145
+NWA         C10        H102      SINGLE       n     1.089  0.0100     0.969  0.0145
+NWA         C10        H103      SINGLE       n     1.089  0.0100     0.969  0.0145
+NWA          C4        H4C1      SINGLE       n     1.089  0.0100     0.984  0.0100
+NWA          C4        H4C2      SINGLE       n     1.089  0.0100     0.984  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NWA          C2          N1          C8     109.793    1.98
+NWA          C2          N1          C9     109.793    1.98
+NWA          C2          N1         C10     109.793    1.98
+NWA          C8          N1          C9     109.041    1.50
+NWA          C8          N1         C10     109.041    1.50
+NWA          C9          N1         C10     109.041    1.50
+NWA          N1          C2          C3     115.564    1.50
+NWA          N1          C2        H2C1     108.216    1.50
+NWA          N1          C2        H2C2     108.216    1.50
+NWA          C3          C2        H2C1     108.393    1.50
+NWA          C3          C2        H2C2     108.393    1.50
+NWA        H2C1          C2        H2C2     107.519    1.50
+NWA          C2          C3          C4     110.438    1.51
+NWA          C2          C3        H3C1     109.624    1.50
+NWA          C2          C3        H3C2     109.624    1.50
+NWA          C4          C3        H3C1     108.801    1.50
+NWA          C4          C3        H3C2     108.801    1.50
+NWA        H3C1          C3        H3C2     107.927    1.57
+NWA          O7          C5          O8     113.458    2.75
+NWA          O7          C5          C6     107.375    2.58
+NWA          O7          C5          C4     111.123    2.23
+NWA          O8          C5          C6     107.375    2.58
+NWA          O8          C5          C4     111.123    2.23
+NWA          C6          C5          C4     111.094    2.85
+NWA          C5          O7          H7     108.906    3.00
+NWA          C5          O8          H8     108.906    3.00
+NWA          C5          C6        H6C1     109.486    1.50
+NWA          C5          C6        H6C2     109.486    1.50
+NWA          C5          C6        H6C3     109.486    1.50
+NWA        H6C1          C6        H6C2     109.390    2.19
+NWA        H6C1          C6        H6C3     109.390    2.19
+NWA        H6C2          C6        H6C3     109.390    2.19
+NWA          N1          C8        H8C1     108.994    1.50
+NWA          N1          C8        H8C2     108.994    1.50
+NWA          N1          C8        H8C3     108.994    1.50
+NWA        H8C1          C8        H8C2     109.693    1.55
+NWA        H8C1          C8        H8C3     109.693    1.55
+NWA        H8C2          C8        H8C3     109.693    1.55
+NWA          N1          C9        H9C1     108.994    1.50
+NWA          N1          C9        H9C2     108.994    1.50
+NWA          N1          C9        H9C3     108.994    1.50
+NWA        H9C1          C9        H9C2     109.693    1.55
+NWA        H9C1          C9        H9C3     109.693    1.55
+NWA        H9C2          C9        H9C3     109.693    1.55
+NWA          N1         C10        H101     108.994    1.50
+NWA          N1         C10        H102     108.994    1.50
+NWA          N1         C10        H103     108.994    1.50
+NWA        H101         C10        H102     109.693    1.55
+NWA        H101         C10        H103     109.693    1.55
+NWA        H102         C10        H103     109.693    1.55
+NWA          C3          C4          C5     114.689    1.50
+NWA          C3          C4        H4C1     108.801    1.50
+NWA          C3          C4        H4C2     108.801    1.50
+NWA          C5          C4        H4C1     108.725    1.50
+NWA          C5          C4        H4C2     108.725    1.50
+NWA        H4C1          C4        H4C2     107.556    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NWA             sp3_sp3_2          C3          C2          N1          C8     -60.000    10.0     3
+NWA            sp3_sp3_10        H8C1          C8          N1          C2     180.000    10.0     3
+NWA            sp3_sp3_20        H9C1          C9          N1          C2     -60.000    10.0     3
+NWA            sp3_sp3_28        H101         C10          N1          C2     180.000    10.0     3
+NWA            sp3_sp3_37          N1          C2          C3          C4     180.000    10.0     3
+NWA            sp3_sp3_46          C2          C3          C4          C5     180.000    10.0     3
+NWA            sp3_sp3_71          C3          C4          C5          O7     -60.000    10.0     3
+NWA            sp3_sp3_56          O8          C5          O7          H7      60.000    10.0     3
+NWA            sp3_sp3_58          O7          C5          O8          H8     180.000    10.0     3
+NWA            sp3_sp3_61          O7          C5          C6        H6C1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NWA    chir_1    N1    C2    C8    C9    both
+NWA    chir_2    C5    O7    O8    C4    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NWA           SMILES              ACDLabs 10.04                                             OC(O)(C)CCC[N+](C)(C)C
+NWA SMILES_CANONICAL               CACTVS 3.341                                             CC(O)(O)CCC[N+](C)(C)C
+NWA           SMILES               CACTVS 3.341                                             CC(O)(O)CCC[N+](C)(C)C
+NWA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                             CC(CCC[N+](C)(C)C)(O)O
+NWA           SMILES "OpenEye OEToolkits" 1.5.0                                             CC(CCC[N+](C)(C)C)(O)O
+NWA            InChI                InChI  1.03 InChI=1S/C8H20NO2/c1-8(10,11)6-5-7-9(2,3)4/h10-11H,5-7H2,1-4H3/q+1
+NWA         InChIKey                InChI  1.03                                        WEYSSHXEYINXQE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NWA acedrg               243         "dictionary generator"                  
+NWA acedrg_database      11          "data source"                           
+NWA rdkit                2017.03.2   "Chemoinformatics tool"
+NWA refmac5              5.8.0238    "optimization tool"                     

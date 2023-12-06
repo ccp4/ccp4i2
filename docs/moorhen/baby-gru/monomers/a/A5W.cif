@@ -1,0 +1,300 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+A5W     A5W      cyclobutyl-[4-(2-methoxyphenyl)piperidin-1-yl]methanone     NON-POLYMER     43     20     .     
+#
+data_comp_A5W
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+A5W     C16     C       CH2     0       -11.589     11.157      -13.611     
+A5W     C15     C       CH2     0       -10.872     10.202      -12.654     
+A5W     C12     C       C       0       -10.488     10.623      -15.894     
+A5W     C13     C       CH1     0       -11.372     10.154      -14.764     
+A5W     C14     C       CH2     0       -10.791     9.138       -13.752     
+A5W     C11     C       CH2     0       -12.498     12.653      -18.040     
+A5W     C10     C       CH2     0       -12.053     12.460      -16.598     
+A5W     C9      C       CH2     0       -9.715      12.578      -17.236     
+A5W     C8      C       CH2     0       -10.053     12.659      -18.708     
+A5W     C7      C       CH1     0       -11.438     13.250      -18.971     
+A5W     C4      C       CR16    0       -11.345     16.931      -17.900     
+A5W     C5      C       CR16    0       -11.346     15.543      -17.869     
+A5W     C6      C       CR6     0       -11.443     14.774      -19.027     
+A5W     C3      C       CR16    0       -11.443     17.587      -19.105     
+A5W     C2      C       CR16    0       -11.538     16.870      -20.285     
+A5W     C1      C       CR6     0       -11.546     15.472      -20.254     
+A5W     O1      O       O       0       -9.493      9.965       -16.198     
+A5W     N       N       NR6     0       -10.737     11.808      -16.511     
+A5W     O       O       O2      0       -11.628     14.700      -21.389     
+A5W     C       C       CH3     0       -12.294     15.197      -22.551     
+A5W     H1      H       H       0       -12.537     11.306      -13.390     
+A5W     H2      H       H       0       -11.124     12.016      -13.740     
+A5W     H3      H       H       0       -9.997      10.528      -12.356     
+A5W     H4      H       H       0       -11.419     9.933       -11.886     
+A5W     H5      H       H       0       -12.240     9.834       -15.113     
+A5W     H6      H       H       0       -11.375     8.360       -13.595     
+A5W     H7      H       H       0       -9.873      8.846       -13.953     
+A5W     H8      H       H       0       -12.770     11.791      -18.396     
+A5W     H9      H       H       0       -13.280     13.230      -18.048     
+A5W     H10     H       H       0       -12.017     13.322      -16.147     
+A5W     H11     H       H       0       -12.722     11.919      -16.140     
+A5W     H12     H       H       0       -9.662      13.477      -16.863     
+A5W     H13     H       H       0       -8.838      12.162      -17.129     
+A5W     H14     H       H       0       -10.013     11.766      -19.091     
+A5W     H15     H       H       0       -9.384      13.204      -19.157     
+A5W     H16     H       H       0       -11.689     12.937      -19.878     
+A5W     H17     H       H       0       -11.279     17.421      -17.096     
+A5W     H18     H       H       0       -11.275     15.110      -17.042     
+A5W     H19     H       H       0       -11.443     18.530      -19.130     
+A5W     H20     H       H       0       -11.604     17.330      -21.104     
+A5W     H21     H       H       0       -11.733     15.861      -22.984     
+A5W     H22     H       H       0       -13.140     15.602      -22.297     
+A5W     H23     H       H       0       -12.459     14.464      -23.166     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+A5W           O           C      SINGLE       n     1.424  0.0117     1.424  0.0117
+A5W          C1           O      SINGLE       n     1.370  0.0100     1.370  0.0100
+A5W          C2          C1      DOUBLE       y     1.390  0.0100     1.390  0.0100
+A5W          C3          C2      SINGLE       y     1.382  0.0106     1.382  0.0106
+A5W          C6          C1      SINGLE       y     1.403  0.0100     1.403  0.0100
+A5W          C7          C6      SINGLE       n     1.515  0.0100     1.515  0.0100
+A5W          C8          C7      SINGLE       n     1.524  0.0100     1.524  0.0100
+A5W         C11          C7      SINGLE       n     1.524  0.0100     1.524  0.0100
+A5W          C4          C3      DOUBLE       y     1.375  0.0108     1.375  0.0108
+A5W          C5          C6      DOUBLE       y     1.387  0.0100     1.387  0.0100
+A5W          C9          C8      SINGLE       n     1.513  0.0128     1.513  0.0128
+A5W         C11         C10      SINGLE       n     1.513  0.0128     1.513  0.0128
+A5W          C4          C5      SINGLE       y     1.387  0.0102     1.387  0.0102
+A5W          C9           N      SINGLE       n     1.467  0.0100     1.467  0.0100
+A5W         C10           N      SINGLE       n     1.467  0.0100     1.467  0.0100
+A5W         C12           N      SINGLE       n     1.345  0.0124     1.345  0.0124
+A5W         C12          O1      DOUBLE       n     1.229  0.0108     1.229  0.0108
+A5W         C12         C13      SINGLE       n     1.501  0.0130     1.501  0.0130
+A5W         C13         C14      SINGLE       n     1.541  0.0144     1.541  0.0144
+A5W         C16         C13      SINGLE       n     1.541  0.0144     1.541  0.0144
+A5W         C15         C14      SINGLE       n     1.532  0.0141     1.532  0.0141
+A5W         C16         C15      SINGLE       n     1.532  0.0141     1.532  0.0141
+A5W         C16          H1      SINGLE       n     1.089  0.0100     0.985  0.0184
+A5W         C16          H2      SINGLE       n     1.089  0.0100     0.985  0.0184
+A5W         C15          H3      SINGLE       n     1.089  0.0100     0.980  0.0119
+A5W         C15          H4      SINGLE       n     1.089  0.0100     0.980  0.0119
+A5W         C13          H5      SINGLE       n     1.089  0.0100     0.989  0.0200
+A5W         C14          H6      SINGLE       n     1.089  0.0100     0.985  0.0184
+A5W         C14          H7      SINGLE       n     1.089  0.0100     0.985  0.0184
+A5W         C11          H8      SINGLE       n     1.089  0.0100     0.972  0.0100
+A5W         C11          H9      SINGLE       n     1.089  0.0100     0.972  0.0100
+A5W         C10         H10      SINGLE       n     1.089  0.0100     0.976  0.0118
+A5W         C10         H11      SINGLE       n     1.089  0.0100     0.976  0.0118
+A5W          C9         H12      SINGLE       n     1.089  0.0100     0.976  0.0118
+A5W          C9         H13      SINGLE       n     1.089  0.0100     0.976  0.0118
+A5W          C8         H14      SINGLE       n     1.089  0.0100     0.972  0.0100
+A5W          C8         H15      SINGLE       n     1.089  0.0100     0.972  0.0100
+A5W          C7         H16      SINGLE       n     1.089  0.0100     0.993  0.0119
+A5W          C4         H17      SINGLE       n     1.082  0.0130     0.944  0.0175
+A5W          C5         H18      SINGLE       n     1.082  0.0130     0.945  0.0176
+A5W          C3         H19      SINGLE       n     1.082  0.0130     0.943  0.0183
+A5W          C2         H20      SINGLE       n     1.082  0.0130     0.943  0.0169
+A5W           C         H21      SINGLE       n     1.089  0.0100     0.971  0.0157
+A5W           C         H22      SINGLE       n     1.089  0.0100     0.971  0.0157
+A5W           C         H23      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+A5W         C13         C16         C15      88.138    1.50
+A5W         C13         C16          H1     113.700    1.50
+A5W         C13         C16          H2     113.700    1.50
+A5W         C15         C16          H1     113.877    1.50
+A5W         C15         C16          H2     113.877    1.50
+A5W          H1         C16          H2     110.670    1.50
+A5W         C14         C15         C16      89.467    1.50
+A5W         C14         C15          H3     113.763    1.50
+A5W         C14         C15          H4     113.763    1.50
+A5W         C16         C15          H3     113.763    1.50
+A5W         C16         C15          H4     113.763    1.50
+A5W          H3         C15          H4     110.794    1.50
+A5W           N         C12          O1     120.538    1.50
+A5W           N         C12         C13     118.916    3.00
+A5W          O1         C12         C13     120.546    1.50
+A5W         C12         C13         C14     115.888    2.04
+A5W         C12         C13         C16     115.888    2.04
+A5W         C12         C13          H5     110.576    2.11
+A5W         C14         C13         C16      88.246    1.50
+A5W         C14         C13          H5     110.492    1.66
+A5W         C16         C13          H5     110.492    1.66
+A5W         C13         C14         C15      88.138    1.50
+A5W         C13         C14          H6     113.700    1.50
+A5W         C13         C14          H7     113.700    1.50
+A5W         C15         C14          H6     113.877    1.50
+A5W         C15         C14          H7     113.877    1.50
+A5W          H6         C14          H7     110.670    1.50
+A5W          C7         C11         C10     111.074    1.50
+A5W          C7         C11          H8     109.294    1.50
+A5W          C7         C11          H9     109.294    1.50
+A5W         C10         C11          H8     109.334    1.50
+A5W         C10         C11          H9     109.334    1.50
+A5W          H8         C11          H9     108.150    1.50
+A5W         C11         C10           N     110.373    1.50
+A5W         C11         C10         H10     109.525    1.50
+A5W         C11         C10         H11     109.525    1.50
+A5W           N         C10         H10     109.531    1.50
+A5W           N         C10         H11     109.531    1.50
+A5W         H10         C10         H11     108.159    1.50
+A5W          C8          C9           N     110.373    1.50
+A5W          C8          C9         H12     109.525    1.50
+A5W          C8          C9         H13     109.525    1.50
+A5W           N          C9         H12     109.531    1.50
+A5W           N          C9         H13     109.531    1.50
+A5W         H12          C9         H13     108.159    1.50
+A5W          C7          C8          C9     111.074    1.50
+A5W          C7          C8         H14     109.294    1.50
+A5W          C7          C8         H15     109.294    1.50
+A5W          C9          C8         H14     109.334    1.50
+A5W          C9          C8         H15     109.334    1.50
+A5W         H14          C8         H15     108.150    1.50
+A5W          C6          C7          C8     112.720    1.58
+A5W          C6          C7         C11     112.720    1.58
+A5W          C6          C7         H16     107.017    1.50
+A5W          C8          C7         C11     109.609    1.50
+A5W          C8          C7         H16     107.433    1.50
+A5W         C11          C7         H16     107.433    1.50
+A5W          C3          C4          C5     119.898    1.50
+A5W          C3          C4         H17     120.138    1.50
+A5W          C5          C4         H17     119.965    1.50
+A5W          C6          C5          C4     121.690    1.50
+A5W          C6          C5         H18     118.744    1.50
+A5W          C4          C5         H18     119.566    1.50
+A5W          C1          C6          C7     120.471    1.50
+A5W          C1          C6          C5     117.760    1.50
+A5W          C7          C6          C5     121.769    1.53
+A5W          C2          C3          C4     120.301    1.50
+A5W          C2          C3         H19     119.665    1.50
+A5W          C4          C3         H19     120.034    1.50
+A5W          C1          C2          C3     119.318    1.50
+A5W          C1          C2         H20     120.344    1.50
+A5W          C3          C2         H20     120.339    1.50
+A5W           O          C1          C2     123.235    1.50
+A5W           O          C1          C6     115.731    1.50
+A5W          C2          C1          C6     121.033    1.50
+A5W          C9           N         C10     113.085    1.50
+A5W          C9           N         C12     123.457    3.00
+A5W         C10           N         C12     123.457    3.00
+A5W           C           O          C1     117.897    1.50
+A5W           O           C         H21     109.428    1.50
+A5W           O           C         H22     109.428    1.50
+A5W           O           C         H23     109.428    1.50
+A5W         H21           C         H22     109.509    1.50
+A5W         H21           C         H23     109.509    1.50
+A5W         H22           C         H23     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+A5W            sp3_sp3_68         C14         C15         C16         C13     180.000    10.0     3
+A5W            sp3_sp3_31         C12         C13         C16         C15     -60.000    10.0     3
+A5W              const_21          C3          C4          C5          C6       0.000    10.0     2
+A5W       const_sp2_sp2_1          C2          C3          C4          C5       0.000     5.0     2
+A5W              const_17          C4          C5          C6          C1       0.000    10.0     2
+A5W              const_16           O          C1          C6          C7       0.000    10.0     2
+A5W       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+A5W              const_11           O          C1          C2          C3     180.000    10.0     2
+A5W             sp2_sp2_1          C2          C1           O           C     180.000     5.0     2
+A5W            sp3_sp3_56         H21           C           O          C1     -60.000    10.0     3
+A5W            sp3_sp3_46         C13         C14         C15         C16      60.000    10.0     3
+A5W             sp2_sp2_5          O1         C12           N          C9       0.000     5.0     2
+A5W            sp2_sp3_23          O1         C12         C13         C14     -60.000    10.0     6
+A5W            sp3_sp3_43         C12         C13         C14         C15      60.000    10.0     3
+A5W            sp3_sp3_59           N         C10         C11          C7     180.000    10.0     3
+A5W             sp3_sp3_2         C10         C11          C7          C6     180.000    10.0     3
+A5W            sp2_sp3_10         C12           N         C10         C11     180.000    10.0     6
+A5W             sp2_sp3_4         C12           N          C9          C8     180.000    10.0     6
+A5W            sp3_sp3_19          C7          C8          C9           N      60.000    10.0     3
+A5W            sp3_sp3_16          C6          C7          C8          C9      60.000    10.0     3
+A5W            sp2_sp3_14          C1          C6          C7          C8     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+A5W    chir_1    C13    C12    C14    C16    both
+A5W    chir_2    C7    C6    C8    C11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+A5W    plan-1          C1   0.020
+A5W    plan-1          C2   0.020
+A5W    plan-1          C3   0.020
+A5W    plan-1          C4   0.020
+A5W    plan-1          C5   0.020
+A5W    plan-1          C6   0.020
+A5W    plan-1          C7   0.020
+A5W    plan-1         H17   0.020
+A5W    plan-1         H18   0.020
+A5W    plan-1         H19   0.020
+A5W    plan-1         H20   0.020
+A5W    plan-1           O   0.020
+A5W    plan-2         C12   0.020
+A5W    plan-2         C13   0.020
+A5W    plan-2           N   0.020
+A5W    plan-2          O1   0.020
+A5W    plan-3         C10   0.020
+A5W    plan-3         C12   0.020
+A5W    plan-3          C9   0.020
+A5W    plan-3           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+A5W            InChI                InChI  1.03 InChI=1S/C17H23NO2/c1-20-16-8-3-2-7-15(16)13-9-11-18(12-10-13)17(19)14-5-4-6-14/h2-3,7-8,13-14H,4-6,9-12H2,1H3
+A5W         InChIKey                InChI  1.03                                                                                    QTCJMGOUQOSHRR-UHFFFAOYSA-N
+A5W SMILES_CANONICAL               CACTVS 3.385                                                                                COc1ccccc1C2CCN(CC2)C(=O)C3CCC3
+A5W           SMILES               CACTVS 3.385                                                                                COc1ccccc1C2CCN(CC2)C(=O)C3CCC3
+A5W SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                COc1ccccc1C2CCN(CC2)C(=O)C3CCC3
+A5W           SMILES "OpenEye OEToolkits" 2.0.6                                                                                COc1ccccc1C2CCN(CC2)C(=O)C3CCC3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+A5W acedrg               243         "dictionary generator"                  
+A5W acedrg_database      11          "data source"                           
+A5W rdkit                2017.03.2   "Chemoinformatics tool"
+A5W refmac5              5.8.0238    "optimization tool"                     

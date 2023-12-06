@@ -1,0 +1,190 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8TJ     8TJ      N-methylthieno[2,3-b]pyridine-2-carboxamide     NON-POLYMER     21     13     .     
+#
+data_comp_8TJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8TJ     N1      N       NH1     0       -7.090      10.061      0.462       
+8TJ     C4      C       CR15    0       -7.582      12.898      -0.414      
+8TJ     C5      C       CR56    0       -8.189      14.156      -0.747      
+8TJ     C6      C       CR16    0       -7.669      15.332      -1.314      
+8TJ     C7      C       CR16    0       -8.508      16.410      -1.524      
+8TJ     C8      C       CR16    0       -9.857      16.318      -1.172      
+8TJ     C1      C       CH3     0       -6.807      8.711       0.910       
+8TJ     C2      C       C       0       -8.295      10.628      0.611       
+8TJ     C3      C       CR5     0       -8.470      12.013      0.129       
+8TJ     N2      N       NRD6    0       -10.393     15.218      -0.631      
+8TJ     C9      C       CR56    0       -9.580      14.161      -0.422      
+8TJ     S1      S       S2      0       -9.997      12.692      0.231       
+8TJ     O1      O       O       0       -9.238      10.027      1.131       
+8TJ     H1      H       H       0       -6.456      10.501      0.084       
+8TJ     H2      H       H       0       -6.671      12.711      -0.557      
+8TJ     H3      H       H       0       -6.758      15.382      -1.547      
+8TJ     H4      H       H       0       -8.174      17.205      -1.903      
+8TJ     H5      H       H       0       -10.416     17.062      -1.322      
+8TJ     H6      H       H       0       -7.160      8.579       1.806       
+8TJ     H7      H       H       0       -5.847      8.569       0.922       
+8TJ     H8      H       H       0       -7.219      8.074       0.303       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8TJ          C6          C7      SINGLE       y     1.379  0.0100     1.379  0.0100
+8TJ          C7          C8      DOUBLE       y     1.393  0.0144     1.393  0.0144
+8TJ          C5          C6      DOUBLE       y     1.401  0.0100     1.401  0.0100
+8TJ          C8          N2      SINGLE       y     1.334  0.0122     1.334  0.0122
+8TJ          C4          C5      SINGLE       y     1.425  0.0100     1.425  0.0100
+8TJ          C5          C9      SINGLE       y     1.401  0.0200     1.401  0.0200
+8TJ          N2          C9      DOUBLE       y     1.338  0.0176     1.338  0.0176
+8TJ          C4          C3      DOUBLE       y     1.353  0.0144     1.353  0.0144
+8TJ          C9          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+8TJ          C3          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+8TJ          C2          C3      SINGLE       n     1.467  0.0127     1.467  0.0127
+8TJ          N1          C2      SINGLE       n     1.333  0.0106     1.333  0.0106
+8TJ          N1          C1      SINGLE       n     1.448  0.0100     1.448  0.0100
+8TJ          C2          O1      DOUBLE       n     1.231  0.0100     1.231  0.0100
+8TJ          N1          H1      SINGLE       n     1.016  0.0100     0.860  0.0100
+8TJ          C4          H2      SINGLE       n     1.082  0.0130     0.941  0.0170
+8TJ          C6          H3      SINGLE       n     1.082  0.0130     0.942  0.0182
+8TJ          C7          H4      SINGLE       n     1.082  0.0130     0.942  0.0191
+8TJ          C8          H5      SINGLE       n     1.082  0.0130     0.942  0.0183
+8TJ          C1          H6      SINGLE       n     1.089  0.0100     0.971  0.0198
+8TJ          C1          H7      SINGLE       n     1.089  0.0100     0.971  0.0198
+8TJ          C1          H8      SINGLE       n     1.089  0.0100     0.971  0.0198
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8TJ          C2          N1          C1     121.467    1.80
+8TJ          C2          N1          H1     119.515    1.50
+8TJ          C1          N1          H1     119.018    1.50
+8TJ          C5          C4          C3     107.811    1.50
+8TJ          C5          C4          H2     125.715    1.50
+8TJ          C3          C4          H2     126.474    1.56
+8TJ          C6          C5          C4     134.257    1.50
+8TJ          C6          C5          C9     118.862    2.44
+8TJ          C4          C5          C9     106.881    1.50
+8TJ          C7          C6          C5     118.605    1.50
+8TJ          C7          C6          H3     120.909    1.50
+8TJ          C5          C6          H3     120.486    1.50
+8TJ          C6          C7          C8     119.792    1.50
+8TJ          C6          C7          H4     120.289    1.50
+8TJ          C8          C7          H4     119.920    1.50
+8TJ          C7          C8          N2     123.031    1.50
+8TJ          C7          C8          H5     118.636    1.50
+8TJ          N2          C8          H5     118.334    1.50
+8TJ          N1          C1          H6     109.483    1.50
+8TJ          N1          C1          H7     109.483    1.50
+8TJ          N1          C1          H8     109.483    1.50
+8TJ          H6          C1          H7     109.279    1.79
+8TJ          H6          C1          H8     109.279    1.79
+8TJ          H7          C1          H8     109.279    1.79
+8TJ          C3          C2          N1     116.796    1.69
+8TJ          C3          C2          O1     121.045    1.72
+8TJ          N1          C2          O1     122.159    1.50
+8TJ          C4          C3          S1     108.436    3.00
+8TJ          C4          C3          C2     131.814    3.00
+8TJ          S1          C3          C2     119.751    3.00
+8TJ          C8          N2          C9     117.171    1.50
+8TJ          C5          C9          N2     122.539    2.68
+8TJ          C5          C9          S1     108.436    3.00
+8TJ          N2          C9          S1     129.025    3.00
+8TJ          C9          S1          C3     108.436    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8TJ             sp2_sp3_1          C2          N1          C1          H6       0.000    10.0     6
+8TJ             sp2_sp2_7          O1          C2          N1          C1       0.000     5.0     2
+8TJ       const_sp2_sp2_9          C5          C9          S1          C3       0.000     5.0     2
+8TJ       const_sp2_sp2_2          C3          C4          C5          C6     180.000     5.0     2
+8TJ              const_31          C2          C3          C4          C5     180.000    10.0     2
+8TJ       const_sp2_sp2_5          C6          C5          C9          N2       0.000     5.0     2
+8TJ              const_15          C4          C5          C6          C7     180.000    10.0     2
+8TJ              const_17          C5          C6          C7          C8       0.000    10.0     2
+8TJ              const_21          C6          C7          C8          N2       0.000    10.0     2
+8TJ              const_25          C7          C8          N2          C9       0.000    10.0     2
+8TJ             sp2_sp2_1          N1          C2          C3          C4     180.000     5.0     2
+8TJ              const_12          C2          C3          S1          C9     180.000    10.0     2
+8TJ              const_27          C5          C9          N2          C8       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8TJ    plan-1          C2   0.020
+8TJ    plan-1          C3   0.020
+8TJ    plan-1          C4   0.020
+8TJ    plan-1          C5   0.020
+8TJ    plan-1          C6   0.020
+8TJ    plan-1          C7   0.020
+8TJ    plan-1          C8   0.020
+8TJ    plan-1          C9   0.020
+8TJ    plan-1          H2   0.020
+8TJ    plan-1          H3   0.020
+8TJ    plan-1          H4   0.020
+8TJ    plan-1          H5   0.020
+8TJ    plan-1          N2   0.020
+8TJ    plan-1          S1   0.020
+8TJ    plan-2          C1   0.020
+8TJ    plan-2          C2   0.020
+8TJ    plan-2          H1   0.020
+8TJ    plan-2          N1   0.020
+8TJ    plan-3          C2   0.020
+8TJ    plan-3          C3   0.020
+8TJ    plan-3          N1   0.020
+8TJ    plan-3          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8TJ           SMILES              ACDLabs 12.01                                                 N(C(=O)c2cc1c(nccc1)s2)C
+8TJ            InChI                InChI  1.03 InChI=1S/C9H8N2OS/c1-10-8(12)7-5-6-3-2-4-11-9(6)13-7/h2-5H,1H3,(H,10,12)
+8TJ         InChIKey                InChI  1.03                                              UKSXMWMDJAZHOM-UHFFFAOYSA-N
+8TJ SMILES_CANONICAL               CACTVS 3.385                                                     CNC(=O)c1sc2ncccc2c1
+8TJ           SMILES               CACTVS 3.385                                                     CNC(=O)c1sc2ncccc2c1
+8TJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                     CNC(=O)c1cc2cccnc2s1
+8TJ           SMILES "OpenEye OEToolkits" 2.0.6                                                     CNC(=O)c1cc2cccnc2s1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8TJ acedrg               243         "dictionary generator"                  
+8TJ acedrg_database      11          "data source"                           
+8TJ rdkit                2017.03.2   "Chemoinformatics tool"
+8TJ refmac5              5.8.0238    "optimization tool"                     

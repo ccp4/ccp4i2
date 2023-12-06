@@ -1,0 +1,395 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RMY     RMY      "ethyl 3-O-[5-(acetylamino)-3,5-dideoxy-D-glycero-alpha-D-galacto-non-2-ulopyranonosyl]-1-thio-beta-D-galactopyranoside"     NON-POLYMER     66     34     .     
+#
+data_comp_RMY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RMY     C1      C       CH1     0       -21.694     -6.262      91.582      
+RMY     C2      C       CH1     0       -20.728     -6.833      92.625      
+RMY     O1      O       OH1     0       -20.059     -5.773      93.299      
+RMY     C3      C       CH1     0       -19.713     -7.734      91.929      
+RMY     O2      O       O2      0       -18.868     -8.346      92.937      
+RMY     C4      C       CH1     0       -20.418     -8.813      91.124      
+RMY     O3      O       OH1     0       -21.078     -9.739      91.995      
+RMY     C5      C       CH1     0       -21.436     -8.169      90.166      
+RMY     O4      O       O2      0       -22.344     -7.334      90.908      
+RMY     C6      C       CH2     0       -22.280     -9.186      89.418      
+RMY     O5      O       OH1     0       -22.946     -8.589      88.308      
+RMY     C7      C       CH3     0       -24.434     -7.269      93.151      
+RMY     C8      C       CH2     0       -23.692     -6.055      93.616      
+RMY     S1      S       S2      0       -22.943     -5.122      92.251      
+RMY     C9      C       C       0       -17.009     -9.124      91.647      
+RMY     C10     C       CH1     0       -15.069     -7.137      94.143      
+RMY     C11     C       CH1     0       -15.602     -6.633      92.794      
+RMY     C12     C       CH1     0       -15.407     -8.613      94.341      
+RMY     C13     C       CT      0       -17.433     -8.286      92.863      
+RMY     C14     C       CH2     0       -16.051     -2.748      93.260      
+RMY     C15     C       CH1     0       -15.426     -5.133      92.587      
+RMY     C16     C       CH1     0       -16.030     -4.209      93.661      
+RMY     C17     C       CH2     0       -16.903     -8.841      94.190      
+RMY     C18     C       C       0       -12.951     -6.429      95.295      
+RMY     C19     C       CH3     0       -13.720     -6.034      96.522      
+RMY     N1      N       NH1     0       -13.628     -6.913      94.239      
+RMY     O6      O       OC      -1      -16.851     -10.318     91.749      
+RMY     O7      O       O       0       -16.848     -8.581      90.578      
+RMY     O8      O       OH1     0       -14.988     -9.047      95.634      
+RMY     O9      O       OH1     0       -16.949     -2.512      92.179      
+RMY     O10     O       OH1     0       -14.031     -4.840      92.477      
+RMY     O11     O       OH1     0       -17.361     -4.619      93.963      
+RMY     O12     O       O2      0       -17.019     -6.912      92.700      
+RMY     O13     O       O       0       -11.731     -6.305      95.256      
+RMY     H1      H       H       0       -21.157     -5.750      90.913      
+RMY     H2      H       H       0       -21.225     -7.372      93.291      
+RMY     HOAU    H       H       0       -19.566     -6.061      93.917      
+RMY     H3      H       H       0       -19.169     -7.183      91.312      
+RMY     H4      H       H       0       -19.747     -9.302      90.592      
+RMY     HO4     H       H       0       -21.817     -9.439      92.264      
+RMY     H5      H       H       0       -20.946     -7.615      89.509      
+RMY     H6      H       H       0       -22.946     -9.567      90.028      
+RMY     H6A     H       H       0       -21.706     -9.913      89.098      
+RMY     HO6     H       H       0       -23.433     -9.168      87.925      
+RMY     HAA     H       H       0       -25.124     -7.492      93.794      
+RMY     HAAA    H       H       0       -23.818     -8.013      93.068      
+RMY     HAAB    H       H       0       -24.842     -7.091      92.290      
+RMY     HAB     H       H       0       -22.996     -6.320      94.248      
+RMY     HABA    H       H       0       -24.313     -5.467      94.091      
+RMY     HAE     H       H       0       -15.537     -6.631      94.848      
+RMY     HAF     H       H       0       -15.124     -7.105      92.069      
+RMY     HAG     H       H       0       -14.923     -9.149      93.657      
+RMY     HAI     H       H       0       -15.143     -2.466      92.993      
+RMY     HAIA    H       H       0       -16.327     -2.201      94.034      
+RMY     HAJ     H       H       0       -15.847     -4.897      91.717      
+RMY     HAK     H       H       0       -15.497     -4.293      94.493      
+RMY     HAL     H       H       0       -17.370     -8.399      94.930      
+RMY     HALA    H       H       0       -17.093     -9.801      94.246      
+RMY     HAN     H       H       0       -14.240     -6.789      96.842      
+RMY     HANA    H       H       0       -14.315     -5.296      96.312      
+RMY     HANB    H       H       0       -13.100     -5.757      97.216      
+RMY     HNAO    H       H       0       -13.156     -7.117      93.528      
+RMY     HOAQ    H       H       0       -15.044     -9.885      95.678      
+RMY     HOAR    H       H       0       -16.937     -1.685      92.000      
+RMY     HOAS    H       H       0       -13.757     -5.082      91.712      
+RMY     HOAT    H       H       0       -17.598     -4.278      94.702      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RMY          C1          S1      SINGLE       n     1.806  0.0173     1.806  0.0173
+RMY          C1          O4      SINGLE       n     1.419  0.0100     1.419  0.0100
+RMY          C1          C2      SINGLE       n     1.523  0.0178     1.523  0.0178
+RMY          C2          O1      SINGLE       n     1.423  0.0100     1.423  0.0100
+RMY          C2          C3      SINGLE       n     1.525  0.0100     1.525  0.0100
+RMY          C3          C4      SINGLE       n     1.517  0.0100     1.517  0.0100
+RMY          C3          O2      SINGLE       n     1.436  0.0184     1.436  0.0184
+RMY          O2         C13      SINGLE       n     1.424  0.0200     1.424  0.0200
+RMY          C4          O3      SINGLE       n     1.425  0.0176     1.425  0.0176
+RMY          C4          C5      SINGLE       n     1.524  0.0200     1.524  0.0200
+RMY          C5          C6      SINGLE       n     1.518  0.0122     1.518  0.0122
+RMY          C5          O4      SINGLE       n     1.436  0.0100     1.436  0.0100
+RMY          C6          O5      SINGLE       n     1.426  0.0200     1.426  0.0200
+RMY          C7          C8      SINGLE       n     1.495  0.0200     1.495  0.0200
+RMY          C8          S1      SINGLE       n     1.812  0.0100     1.812  0.0100
+RMY          C9          O6      SINGLE       n     1.207  0.0200     1.207  0.0200
+RMY          C9         C13      SINGLE       n     1.525  0.0151     1.525  0.0151
+RMY         C10         C11      SINGLE       n     1.532  0.0100     1.532  0.0100
+RMY         C11         C15      SINGLE       n     1.521  0.0100     1.521  0.0100
+RMY         C10         C12      SINGLE       n     1.525  0.0100     1.525  0.0100
+RMY         C12          O8      SINGLE       n     1.427  0.0100     1.427  0.0100
+RMY         C13         C17      SINGLE       n     1.524  0.0150     1.524  0.0150
+RMY         C13         O12      SINGLE       n     1.429  0.0161     1.429  0.0161
+RMY         C15         C16      SINGLE       n     1.531  0.0169     1.531  0.0169
+RMY         C14         C16      SINGLE       n     1.514  0.0100     1.514  0.0100
+RMY         C16         O11      SINGLE       n     1.424  0.0199     1.424  0.0199
+RMY         C12         C17      SINGLE       n     1.519  0.0100     1.519  0.0100
+RMY         C18         O13      DOUBLE       n     1.227  0.0100     1.227  0.0100
+RMY         C18         C19      SINGLE       n     1.498  0.0100     1.498  0.0100
+RMY         C10          N1      SINGLE       n     1.456  0.0100     1.456  0.0100
+RMY         C18          N1      SINGLE       n     1.334  0.0119     1.334  0.0119
+RMY          C9          O7      DOUBLE       n     1.207  0.0200     1.207  0.0200
+RMY         C14          O9      SINGLE       n     1.425  0.0100     1.425  0.0100
+RMY         C15         O10      SINGLE       n     1.430  0.0100     1.430  0.0100
+RMY         C11         O12      SINGLE       n     1.440  0.0109     1.440  0.0109
+RMY          C1          H1      SINGLE       n     1.089  0.0100     0.998  0.0100
+RMY          C2          H2      SINGLE       n     1.089  0.0100     0.991  0.0104
+RMY          O1        HOAU      SINGLE       n     0.970  0.0120     0.841  0.0200
+RMY          C3          H3      SINGLE       n     1.089  0.0100     0.990  0.0112
+RMY          C4          H4      SINGLE       n     1.089  0.0100     0.986  0.0131
+RMY          O3         HO4      SINGLE       n     0.970  0.0120     0.841  0.0200
+RMY          C5          H5      SINGLE       n     1.089  0.0100     0.989  0.0131
+RMY          C6          H6      SINGLE       n     1.089  0.0100     0.980  0.0184
+RMY          C6         H6A      SINGLE       n     1.089  0.0100     0.980  0.0184
+RMY          O5         HO6      SINGLE       n     0.970  0.0120     0.848  0.0200
+RMY          C7         HAA      SINGLE       n     1.089  0.0100     0.969  0.0134
+RMY          C7        HAAA      SINGLE       n     1.089  0.0100     0.969  0.0134
+RMY          C7        HAAB      SINGLE       n     1.089  0.0100     0.969  0.0134
+RMY          C8         HAB      SINGLE       n     1.089  0.0100     0.978  0.0124
+RMY          C8        HABA      SINGLE       n     1.089  0.0100     0.978  0.0124
+RMY         C10         HAE      SINGLE       n     1.089  0.0100     0.990  0.0147
+RMY         C11         HAF      SINGLE       n     1.089  0.0100     0.989  0.0172
+RMY         C12         HAG      SINGLE       n     1.089  0.0100     0.995  0.0100
+RMY         C14         HAI      SINGLE       n     1.089  0.0100     0.988  0.0200
+RMY         C14        HAIA      SINGLE       n     1.089  0.0100     0.988  0.0200
+RMY         C15         HAJ      SINGLE       n     1.089  0.0100     0.995  0.0157
+RMY         C16         HAK      SINGLE       n     1.089  0.0100     0.992  0.0184
+RMY         C17         HAL      SINGLE       n     1.089  0.0100     0.981  0.0170
+RMY         C17        HALA      SINGLE       n     1.089  0.0100     0.981  0.0170
+RMY         C19         HAN      SINGLE       n     1.089  0.0100     0.971  0.0140
+RMY         C19        HANA      SINGLE       n     1.089  0.0100     0.971  0.0140
+RMY         C19        HANB      SINGLE       n     1.089  0.0100     0.971  0.0140
+RMY          N1        HNAO      SINGLE       n     1.016  0.0100     0.876  0.0200
+RMY          O8        HOAQ      SINGLE       n     0.970  0.0120     0.841  0.0200
+RMY          O9        HOAR      SINGLE       n     0.970  0.0120     0.846  0.0200
+RMY         O10        HOAS      SINGLE       n     0.970  0.0120     0.848  0.0200
+RMY         O11        HOAT      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RMY          S1          C1          O4     109.121    2.37
+RMY          S1          C1          C2     110.776    3.00
+RMY          S1          C1          H1     108.567    1.50
+RMY          O4          C1          C2     109.854    1.61
+RMY          O4          C1          H1     109.203    1.50
+RMY          C2          C1          H1     109.241    1.50
+RMY          C1          C2          O1     109.843    2.19
+RMY          C1          C2          C3     110.028    1.50
+RMY          C1          C2          H2     109.889    1.50
+RMY          O1          C2          C3     110.081    2.02
+RMY          O1          C2          H2     108.944    1.50
+RMY          C3          C2          H2     109.166    1.50
+RMY          C2          O1        HOAU     111.696    3.00
+RMY          C2          C3          C4     110.796    1.54
+RMY          C2          C3          O2     108.580    2.45
+RMY          C2          C3          H3     109.166    1.50
+RMY          C4          C3          O2     108.580    2.45
+RMY          C4          C3          H3     109.166    1.50
+RMY          O2          C3          H3     109.522    1.50
+RMY          C3          O2         C13     116.577    2.53
+RMY          C3          C4          O3     110.081    2.02
+RMY          C3          C4          C5     110.316    1.64
+RMY          C3          C4          H4     109.166    1.50
+RMY          O3          C4          C5     109.072    2.07
+RMY          O3          C4          H4     109.194    1.50
+RMY          C5          C4          H4     109.223    1.50
+RMY          C4          O3         HO4     109.564    3.00
+RMY          C4          C5          C6     112.996    1.59
+RMY          C4          C5          O4     109.433    1.50
+RMY          C4          C5          H5     108.960    1.50
+RMY          C6          C5          O4     107.025    1.50
+RMY          C6          C5          H5     109.269    1.50
+RMY          O4          C5          H5     109.319    1.60
+RMY          C1          O4          C5     111.739    1.77
+RMY          C5          C6          O5     111.299    2.09
+RMY          C5          C6          H6     109.363    1.50
+RMY          C5          C6         H6A     109.363    1.50
+RMY          O5          C6          H6     109.265    1.50
+RMY          O5          C6         H6A     109.265    1.50
+RMY          H6          C6         H6A     108.155    1.50
+RMY          C6          O5         HO6     109.472    2.41
+RMY          C8          C7         HAA     109.489    1.50
+RMY          C8          C7        HAAA     109.489    1.50
+RMY          C8          C7        HAAB     109.489    1.50
+RMY         HAA          C7        HAAA     109.451    1.50
+RMY         HAA          C7        HAAB     109.451    1.50
+RMY        HAAA          C7        HAAB     109.451    1.50
+RMY          C7          C8          S1     111.142    2.97
+RMY          C7          C8         HAB     109.838    1.50
+RMY          C7          C8        HABA     109.838    1.50
+RMY          S1          C8         HAB     109.485    1.50
+RMY          S1          C8        HABA     109.485    1.50
+RMY         HAB          C8        HABA     108.451    1.50
+RMY          C1          S1          C8     100.387    1.50
+RMY          O6          C9         C13     119.643    2.54
+RMY          O6          C9          O7     120.713    1.50
+RMY         C13          C9          O7     119.643    2.54
+RMY         C11         C10         C12     111.124    1.57
+RMY         C11         C10          N1     110.829    2.03
+RMY         C11         C10         HAE     106.721    1.50
+RMY         C12         C10          N1     110.454    2.38
+RMY         C12         C10         HAE     107.258    1.68
+RMY          N1         C10         HAE     108.143    1.50
+RMY         C10         C11         C15     111.163    2.25
+RMY         C10         C11         O12     107.969    1.58
+RMY         C10         C11         HAF     108.738    2.27
+RMY         C15         C11         O12     106.618    1.87
+RMY         C15         C11         HAF     108.632    1.50
+RMY         O12         C11         HAF     108.995    1.50
+RMY         C10         C12          O8     110.124    1.87
+RMY         C10         C12         C17     110.472    1.50
+RMY         C10         C12         HAG     108.987    1.50
+RMY          O8         C12         C17     109.687    1.93
+RMY          O8         C12         HAG     108.626    1.50
+RMY         C17         C12         HAG     109.129    1.50
+RMY          O2         C13          C9     108.672    2.53
+RMY          O2         C13         C17     109.247    2.43
+RMY          O2         C13         O12     110.254    2.24
+RMY          C9         C13         C17     111.056    2.52
+RMY          C9         C13         O12     107.807    2.54
+RMY         C17         C13         O12     110.767    1.50
+RMY         C16         C14          O9     111.469    1.50
+RMY         C16         C14         HAI     109.582    1.50
+RMY         C16         C14        HAIA     109.582    1.50
+RMY          O9         C14         HAI     109.268    1.50
+RMY          O9         C14        HAIA     109.268    1.50
+RMY         HAI         C14        HAIA     108.313    1.50
+RMY         C11         C15         C16     113.198    2.74
+RMY         C11         C15         O10     109.970    1.76
+RMY         C11         C15         HAJ     108.382    1.50
+RMY         C16         C15         O10     109.285    2.10
+RMY         C16         C15         HAJ     108.089    1.50
+RMY         O10         C15         HAJ     107.882    1.57
+RMY         C15         C16         C14     113.484    1.50
+RMY         C15         C16         O11     109.285    2.10
+RMY         C15         C16         HAK     109.350    1.50
+RMY         C14         C16         O11     109.314    1.96
+RMY         C14         C16         HAK     108.656    1.50
+RMY         O11         C16         HAK     108.183    1.96
+RMY         C13         C17         C12     111.124    1.57
+RMY         C13         C17         HAL     109.200    1.50
+RMY         C13         C17        HALA     109.200    1.50
+RMY         C12         C17         HAL     109.270    1.50
+RMY         C12         C17        HALA     109.270    1.50
+RMY         HAL         C17        HALA     108.019    1.50
+RMY         O13         C18         C19     122.067    1.50
+RMY         O13         C18          N1     121.945    1.50
+RMY         C19         C18          N1     115.988    1.50
+RMY         C18         C19         HAN     109.527    1.50
+RMY         C18         C19        HANA     109.527    1.50
+RMY         C18         C19        HANB     109.527    1.50
+RMY         HAN         C19        HANA     109.365    1.50
+RMY         HAN         C19        HANB     109.365    1.50
+RMY        HANA         C19        HANB     109.365    1.50
+RMY         C10          N1         C18     123.128    1.53
+RMY         C10          N1        HNAO     118.071    2.07
+RMY         C18          N1        HNAO     118.802    2.66
+RMY         C12          O8        HOAQ     109.344    1.84
+RMY         C14          O9        HOAR     108.280    3.00
+RMY         C15         O10        HOAS     109.010    3.00
+RMY         C16         O11        HOAT     109.265    3.00
+RMY         C13         O12         C11     111.559    2.21
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RMY            sp3_sp3_74          S1          C1          C2          O1     -60.000    10.0     3
+RMY            sp3_sp3_67          O4          C1          S1          C8     180.000    10.0     3
+RMY            sp3_sp3_35          S1          C1          O4          C5      60.000    10.0     3
+RMY           sp3_sp3_103         HAA          C7          C8          S1     180.000    10.0     3
+RMY           sp3_sp3_112          C7          C8          S1          C1     180.000    10.0     3
+RMY             sp2_sp3_1          O6          C9         C13          O2       0.000    10.0     6
+RMY             sp3_sp3_5          N1         C10         C11         C15     180.000    10.0     3
+RMY           sp3_sp3_128          N1         C10         C12          O8     -60.000    10.0     3
+RMY            sp2_sp3_13         C18          N1         C10         C11       0.000    10.0     6
+RMY           sp3_sp3_115         C10         C11         C15         C16     180.000    10.0     3
+RMY            sp3_sp3_11         C15         C11         O12         C13     180.000    10.0     3
+RMY            sp3_sp3_28          O8         C12         C17         C13      60.000    10.0     3
+RMY           sp3_sp3_133         C10         C12          O8        HOAQ     180.000    10.0     3
+RMY            sp3_sp3_19          O2         C13         C17         C12     180.000    10.0     3
+RMY            sp3_sp3_14          O2         C13         O12         C11      60.000    10.0     3
+RMY           sp3_sp3_145          O9         C14         C16         C15     180.000    10.0     3
+RMY           sp3_sp3_157         C16         C14          O9        HOAR     180.000    10.0     3
+RMY            sp3_sp3_79          C1          C2          O1        HOAU     180.000    10.0     3
+RMY            sp3_sp3_62          O1          C2          C3          O2     180.000    10.0     3
+RMY           sp3_sp3_139         O10         C15         C16         C14      60.000    10.0     3
+RMY           sp3_sp3_161         C16         C15         O10        HOAS      60.000    10.0     3
+RMY           sp3_sp3_154         C15         C16         O11        HOAT     180.000    10.0     3
+RMY             sp2_sp3_7         O13         C18         C19         HAN       0.000    10.0     6
+RMY             sp2_sp2_3         O13         C18          N1         C10       0.000     5.0     2
+RMY            sp3_sp3_82          C2          C3          O2         C13     180.000    10.0     3
+RMY            sp3_sp3_53          O2          C3          C4          O3     -60.000    10.0     3
+RMY            sp3_sp3_85          C9         C13          O2          C3     180.000    10.0     3
+RMY            sp3_sp3_88          C3          C4          O3         HO4     180.000    10.0     3
+RMY            sp3_sp3_44          O3          C4          C5          C6     180.000    10.0     3
+RMY            sp3_sp3_38          C6          C5          O4          C1     180.000    10.0     3
+RMY            sp3_sp3_91          C4          C5          C6          O5     180.000    10.0     3
+RMY           sp3_sp3_100          C5          C6          O5         HO6     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RMY    chir_1    C1    S1    O4    C2    positive
+RMY    chir_2    C2    O1    C1    C3    negative
+RMY    chir_3    C3    O2    C2    C4    positive
+RMY    chir_4    C4    O3    C3    C5    positive
+RMY    chir_5    C5    O4    C4    C6    negative
+RMY    chir_6    C10    N1    C11    C12    negative
+RMY    chir_7    C11    O12    C15    C10    negative
+RMY    chir_8    C12    O8    C10    C17    positive
+RMY    chir_9    C13    O2    O12    C9    positive
+RMY    chir_10    C15    O10    C11    C16    negative
+RMY    chir_11    C16    O11    C15    C14    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RMY    plan-1         C13   0.020
+RMY    plan-1          C9   0.020
+RMY    plan-1          O6   0.020
+RMY    plan-1          O7   0.020
+RMY    plan-2         C18   0.020
+RMY    plan-2         C19   0.020
+RMY    plan-2          N1   0.020
+RMY    plan-2         O13   0.020
+RMY    plan-3         C10   0.020
+RMY    plan-3         C18   0.020
+RMY    plan-3        HNAO   0.020
+RMY    plan-3          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RMY           SMILES              ACDLabs 12.01                                                                                                                                                              O=C(O)C2(OC1C(O)C(SCC)OC(CO)C1O)OC(C(NC(=O)C)C(O)C2)C(O)C(O)CO
+RMY SMILES_CANONICAL               CACTVS 3.370                                                                                                               CCS[C@@H]1O[C@H](CO)[C@H](O)[C@H](O[C@@]2(C[C@H](O)[C@@H](NC(C)=O)[C@@H](O2)[C@H](O)[C@H](O)CO)C(O)=O)[C@H]1O
+RMY           SMILES               CACTVS 3.370                                                                                                                              CCS[CH]1O[CH](CO)[CH](O)[CH](O[C]2(C[CH](O)[CH](NC(C)=O)[CH](O2)[CH](O)[CH](O)CO)C(O)=O)[CH]1O
+RMY SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                           CCS[C@H]1[C@@H]([C@H]([C@H]([C@H](O1)CO)O)O[C@@]2(C[C@@H]([C@H]([C@@H](O2)[C@@H]([C@@H](CO)O)O)NC(=O)C)O)C(=O)O)O
+RMY           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                            CCSC1C(C(C(C(O1)CO)O)OC2(CC(C(C(O2)C(C(CO)O)O)NC(=O)C)O)C(=O)O)O
+RMY            InChI                InChI  1.03 InChI=1S/C19H33NO13S/c1-3-34-17-14(28)16(13(27)10(6-22)31-17)33-19(18(29)30)4-8(24)11(20-7(2)23)15(32-19)12(26)9(25)5-21/h8-17,21-22,24-28H,3-6H2,1-2H3,(H,20,23)(H,29,30)/t8-,9+,10+,11+,12+,13-,14+,15+,16-,17-,19-/m0/s1
+RMY         InChIKey                InChI  1.03                                                                                                                                                                                                 XJSZEPMRURTGAF-DGRRIGLBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RMY acedrg               243         "dictionary generator"                  
+RMY acedrg_database      11          "data source"                           
+RMY rdkit                2017.03.2   "Chemoinformatics tool"
+RMY refmac5              5.8.0238    "optimization tool"                     

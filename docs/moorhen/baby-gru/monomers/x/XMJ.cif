@@ -1,0 +1,395 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XMJ     XMJ      4-[[(1E)-2-(4-CHLOROPHENYL)ETHENYL]SULFONYL]-1-[[1-(4-PYRIDINYL)-4-PIPERIDINYL]METHYL]PIPERAZINONE     NON-POLYMER     59     32     .     
+#
+data_comp_XMJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XMJ     C1      C       C1      0       7.847       24.855      7.964       
+XMJ     C2      C       C1      0       8.830       23.961      7.502       
+XMJ     C3      C       CR16    0       7.681       24.264      10.392      
+XMJ     S4      S       S3      0       9.027       23.551      5.819       
+XMJ     C5      C       CR6     0       7.550       25.204      9.365       
+XMJ     CL6     CL      CL      0       6.631       26.286      13.666      
+XMJ     O7      O       O       0       8.879       24.752      5.059       
+XMJ     C8      C       CR6     0       5.452       22.177      4.624       
+XMJ     O9      O       O       0       4.447       22.634      4.063       
+XMJ     C10     C       CH2     0       6.474       23.153      5.135       
+XMJ     N11     N       NT      0       7.798       22.545      5.401       
+XMJ     C12     C       CR16    0       7.124       26.489      9.713       
+XMJ     C13     C       CH2     0       6.890       20.277      5.340       
+XMJ     C14     C       CH2     0       7.697       21.264      6.143       
+XMJ     C15     C       CR16    0       7.401       24.590      11.711      
+XMJ     N16     N       NR6     0       5.642       20.858      4.833       
+XMJ     C17     C       CR16    0       6.841       26.826      11.029      
+XMJ     C18     C       CR6     0       6.984       25.870      12.013      
+XMJ     O19     O       O       0       10.237      22.800      5.693       
+XMJ     C20     C       CH2     0       4.561       19.897      4.514       
+XMJ     C21     C       CR16    0       -0.125      15.856      8.705       
+XMJ     N22     N       NR6     0       1.502       18.889      7.449       
+XMJ     C23     C       CR6     0       0.812       18.005      8.260       
+XMJ     C24     C       CR16    0       0.573       16.687      7.848       
+XMJ     C25     C       CH2     0       1.076       19.228      6.059       
+XMJ     C26     C       CR16    0       0.340       18.421      9.512       
+XMJ     C27     C       CH2     0       2.711       19.633      7.910       
+XMJ     C28     C       CH1     0       3.417       19.957      5.522       
+XMJ     C29     C       CH2     0       2.230       19.111      5.082       
+XMJ     N30     N       NRD6    0       -0.583      16.238      9.907       
+XMJ     C31     C       CR16    0       -0.344      17.502      10.286      
+XMJ     C32     C       CH2     0       3.849       19.517      6.915       
+XMJ     H1      H       H       0       7.317       25.280      7.319       
+XMJ     H2      H       H       0       9.409       23.566      8.137       
+XMJ     H3      H       H       0       7.965       23.391      10.185      
+XMJ     H101    H       H       0       6.565       23.863      4.465       
+XMJ     H102    H       H       0       6.131       23.558      5.962       
+XMJ     H12     H       H       0       7.027       27.140      9.040       
+XMJ     H131    H       H       0       6.681       19.504      5.902       
+XMJ     H132    H       H       0       7.424       19.963      4.583       
+XMJ     H141    H       H       0       7.266       21.413      7.008       
+XMJ     H142    H       H       0       8.588       20.896      6.309       
+XMJ     H15     H       H       0       7.494       23.949      12.390      
+XMJ     H17     H       H       0       6.557       27.693      11.247      
+XMJ     H201    H       H       0       4.922       18.985      4.500       
+XMJ     H202    H       H       0       4.207       20.089      3.619       
+XMJ     H21     H       H       0       -0.289      14.968      8.432       
+XMJ     H24     H       H       0       0.872       16.380      7.019       
+XMJ     H251    H       H       0       0.353       18.626      5.782       
+XMJ     H252    H       H       0       0.730       20.146      6.044       
+XMJ     H26     H       H       0       0.485       19.291      9.815       
+XMJ     H271    H       H       0       3.001       19.276      8.777       
+XMJ     H272    H       H       0       2.479       20.578      8.031       
+XMJ     H28     H       H       0       3.113       20.894      5.581       
+XMJ     H291    H       H       0       1.939       19.402      4.196       
+XMJ     H292    H       H       0       2.508       18.177      5.015       
+XMJ     H31     H       H       0       -0.662      17.779      11.130      
+XMJ     H321    H       H       0       4.158       18.591      6.878       
+XMJ     H322    H       H       0       4.597       20.071      7.212       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XMJ          C1          C2      DOUBLE       n     1.405  0.0200     1.405  0.0200
+XMJ          C1          C5      SINGLE       n     1.472  0.0182     1.472  0.0182
+XMJ          C2          S4      SINGLE       n     1.742  0.0182     1.742  0.0182
+XMJ          C3          C5      DOUBLE       y     1.395  0.0100     1.395  0.0100
+XMJ          C3         C15      SINGLE       y     1.384  0.0100     1.384  0.0100
+XMJ          S4          O7      DOUBLE       n     1.429  0.0100     1.429  0.0100
+XMJ          S4         N11      SINGLE       n     1.636  0.0126     1.636  0.0126
+XMJ          S4         O19      DOUBLE       n     1.429  0.0100     1.429  0.0100
+XMJ          C5         C12      SINGLE       y     1.395  0.0100     1.395  0.0100
+XMJ         CL6         C18      SINGLE       n     1.741  0.0100     1.741  0.0100
+XMJ          C8          O9      DOUBLE       n     1.237  0.0100     1.237  0.0100
+XMJ          C8         C10      SINGLE       n     1.499  0.0103     1.499  0.0103
+XMJ          C8         N16      SINGLE       n     1.343  0.0100     1.343  0.0100
+XMJ         C10         N11      SINGLE       n     1.477  0.0100     1.477  0.0100
+XMJ         N11         C14      SINGLE       n     1.481  0.0102     1.481  0.0102
+XMJ         C12         C17      DOUBLE       y     1.384  0.0100     1.384  0.0100
+XMJ         C13         C14      SINGLE       n     1.506  0.0100     1.506  0.0100
+XMJ         C13         N16      SINGLE       n     1.463  0.0100     1.463  0.0100
+XMJ         C15         C18      DOUBLE       y     1.376  0.0100     1.376  0.0100
+XMJ         N16         C20      SINGLE       n     1.469  0.0144     1.469  0.0144
+XMJ         C17         C18      SINGLE       y     1.376  0.0100     1.376  0.0100
+XMJ         C20         C28      SINGLE       n     1.523  0.0100     1.523  0.0100
+XMJ         C21         C24      DOUBLE       y     1.375  0.0149     1.375  0.0149
+XMJ         C21         N30      SINGLE       y     1.337  0.0100     1.337  0.0100
+XMJ         N22         C23      SINGLE       n     1.379  0.0200     1.379  0.0200
+XMJ         N22         C25      SINGLE       n     1.475  0.0200     1.475  0.0200
+XMJ         N22         C27      SINGLE       n     1.475  0.0200     1.475  0.0200
+XMJ         C23         C24      SINGLE       y     1.398  0.0122     1.398  0.0122
+XMJ         C23         C26      DOUBLE       y     1.398  0.0122     1.398  0.0122
+XMJ         C25         C29      SINGLE       n     1.512  0.0167     1.512  0.0167
+XMJ         C26         C31      SINGLE       y     1.375  0.0149     1.375  0.0149
+XMJ         C27         C32      SINGLE       n     1.512  0.0167     1.512  0.0167
+XMJ         C28         C29      SINGLE       n     1.523  0.0100     1.523  0.0100
+XMJ         C28         C32      SINGLE       n     1.523  0.0100     1.523  0.0100
+XMJ         N30         C31      DOUBLE       y     1.337  0.0100     1.337  0.0100
+XMJ          C1          H1      SINGLE       n     1.082  0.0130     0.937  0.0178
+XMJ          C2          H2      SINGLE       n     1.082  0.0130     0.946  0.0200
+XMJ          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+XMJ         C10        H101      SINGLE       n     1.089  0.0100     0.982  0.0184
+XMJ         C10        H102      SINGLE       n     1.089  0.0100     0.982  0.0184
+XMJ         C12         H12      SINGLE       n     1.082  0.0130     0.941  0.0168
+XMJ         C13        H131      SINGLE       n     1.089  0.0100     0.978  0.0161
+XMJ         C13        H132      SINGLE       n     1.089  0.0100     0.978  0.0161
+XMJ         C14        H141      SINGLE       n     1.089  0.0100     0.978  0.0101
+XMJ         C14        H142      SINGLE       n     1.089  0.0100     0.978  0.0101
+XMJ         C15         H15      SINGLE       n     1.082  0.0130     0.938  0.0140
+XMJ         C17         H17      SINGLE       n     1.082  0.0130     0.938  0.0140
+XMJ         C20        H201      SINGLE       n     1.089  0.0100     0.981  0.0150
+XMJ         C20        H202      SINGLE       n     1.089  0.0100     0.981  0.0150
+XMJ         C21         H21      SINGLE       n     1.082  0.0130     0.943  0.0178
+XMJ         C24         H24      SINGLE       n     1.082  0.0130     0.933  0.0100
+XMJ         C25        H251      SINGLE       n     1.089  0.0100     0.981  0.0110
+XMJ         C25        H252      SINGLE       n     1.089  0.0100     0.981  0.0110
+XMJ         C26         H26      SINGLE       n     1.082  0.0130     0.933  0.0100
+XMJ         C27        H271      SINGLE       n     1.089  0.0100     0.981  0.0110
+XMJ         C27        H272      SINGLE       n     1.089  0.0100     0.981  0.0110
+XMJ         C28         H28      SINGLE       n     1.089  0.0100     0.988  0.0159
+XMJ         C29        H291      SINGLE       n     1.089  0.0100     0.977  0.0102
+XMJ         C29        H292      SINGLE       n     1.089  0.0100     0.977  0.0102
+XMJ         C31         H31      SINGLE       n     1.082  0.0130     0.943  0.0178
+XMJ         C32        H321      SINGLE       n     1.089  0.0100     0.977  0.0102
+XMJ         C32        H322      SINGLE       n     1.089  0.0100     0.977  0.0102
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XMJ          C2          C1          C5     126.846    2.40
+XMJ          C2          C1          H1     117.414    2.03
+XMJ          C5          C1          H1     115.727    1.50
+XMJ          C1          C2          S4     123.029    2.85
+XMJ          C1          C2          H2     118.241    1.97
+XMJ          S4          C2          H2     118.729    2.06
+XMJ          C5          C3         C15     121.358    1.50
+XMJ          C5          C3          H3     119.290    1.50
+XMJ         C15          C3          H3     119.352    1.50
+XMJ          C2          S4          O7     108.419    1.76
+XMJ          C2          S4         N11     109.471    3.00
+XMJ          C2          S4         O19     108.419    1.76
+XMJ          O7          S4         N11     106.879    1.50
+XMJ          O7          S4         O19     119.673    1.50
+XMJ         N11          S4         O19     106.879    1.50
+XMJ          C1          C5          C3     121.150    1.92
+XMJ          C1          C5         C12     121.150    1.92
+XMJ          C3          C5         C12     117.699    1.50
+XMJ          O9          C8         C10     119.044    1.50
+XMJ          O9          C8         N16     122.640    1.50
+XMJ         C10          C8         N16     118.316    2.11
+XMJ          C8         C10         N11     111.438    1.59
+XMJ          C8         C10        H101     108.061    2.24
+XMJ          C8         C10        H102     108.061    2.24
+XMJ         N11         C10        H101     109.006    1.70
+XMJ         N11         C10        H102     109.006    1.70
+XMJ        H101         C10        H102     107.855    1.50
+XMJ          S4         N11         C10     117.488    1.64
+XMJ          S4         N11         C14     117.505    2.10
+XMJ         C10         N11         C14     112.503    1.50
+XMJ          C5         C12         C17     121.358    1.50
+XMJ          C5         C12         H12     119.290    1.50
+XMJ         C17         C12         H12     119.352    1.50
+XMJ         C14         C13         N16     110.821    2.82
+XMJ         C14         C13        H131     109.523    1.50
+XMJ         C14         C13        H132     109.523    1.50
+XMJ         N16         C13        H131     109.255    1.50
+XMJ         N16         C13        H132     109.255    1.50
+XMJ        H131         C13        H132     108.187    1.50
+XMJ         N11         C14         C13     109.110    1.50
+XMJ         N11         C14        H141     110.096    1.50
+XMJ         N11         C14        H142     110.096    1.50
+XMJ         C13         C14        H141     109.820    1.50
+XMJ         C13         C14        H142     109.820    1.50
+XMJ        H141         C14        H142     108.243    1.50
+XMJ          C3         C15         C18     119.118    1.50
+XMJ          C3         C15         H15     120.471    1.50
+XMJ         C18         C15         H15     120.415    1.50
+XMJ          C8         N16         C13     124.550    1.54
+XMJ          C8         N16         C20     118.951    1.66
+XMJ         C13         N16         C20     116.499    1.78
+XMJ         C12         C17         C18     119.118    1.50
+XMJ         C12         C17         H17     120.471    1.50
+XMJ         C18         C17         H17     120.415    1.50
+XMJ         CL6         C18         C15     119.329    1.50
+XMJ         CL6         C18         C17     119.329    1.50
+XMJ         C15         C18         C17     121.342    1.50
+XMJ         N16         C20         C28     109.471    3.00
+XMJ         N16         C20        H201     109.204    1.50
+XMJ         N16         C20        H202     109.204    1.50
+XMJ         C28         C20        H201     108.865    1.50
+XMJ         C28         C20        H202     108.865    1.50
+XMJ        H201         C20        H202     107.808    1.50
+XMJ         C24         C21         N30     123.624    1.50
+XMJ         C24         C21         H21     118.312    1.50
+XMJ         N30         C21         H21     118.064    1.50
+XMJ         C23         N22         C25     123.474    1.63
+XMJ         C23         N22         C27     123.474    1.63
+XMJ         C25         N22         C27     113.053    1.54
+XMJ         N22         C23         C24     120.176    1.79
+XMJ         N22         C23         C26     120.176    1.79
+XMJ         C24         C23         C26     119.648    1.80
+XMJ         C21         C24         C23     118.248    1.50
+XMJ         C21         C24         H24     120.892    1.50
+XMJ         C23         C24         H24     120.860    1.50
+XMJ         N22         C25         C29     110.478    1.50
+XMJ         N22         C25        H251     109.189    1.50
+XMJ         N22         C25        H252     109.189    1.50
+XMJ         C29         C25        H251     109.381    1.50
+XMJ         C29         C25        H252     109.381    1.50
+XMJ        H251         C25        H252     108.202    1.50
+XMJ         C23         C26         C31     118.248    1.50
+XMJ         C23         C26         H26     120.860    1.50
+XMJ         C31         C26         H26     120.892    1.50
+XMJ         N22         C27         C32     110.478    1.50
+XMJ         N22         C27        H271     109.189    1.50
+XMJ         N22         C27        H272     109.189    1.50
+XMJ         C32         C27        H271     109.381    1.50
+XMJ         C32         C27        H272     109.381    1.50
+XMJ        H271         C27        H272     108.202    1.50
+XMJ         C20         C28         C29     111.016    1.59
+XMJ         C20         C28         C32     111.016    1.59
+XMJ         C20         C28         H28     107.178    1.50
+XMJ         C29         C28         C32     109.460    1.50
+XMJ         C29         C28         H28     107.583    1.50
+XMJ         C32         C28         H28     107.583    1.50
+XMJ         C25         C29         C28     111.945    1.50
+XMJ         C25         C29        H291     109.561    1.50
+XMJ         C25         C29        H292     109.561    1.50
+XMJ         C28         C29        H291     109.162    1.50
+XMJ         C28         C29        H292     109.162    1.50
+XMJ        H291         C29        H292     107.890    1.50
+XMJ         C21         N30         C31     116.608    1.50
+XMJ         C26         C31         N30     123.624    1.50
+XMJ         C26         C31         H31     118.312    1.50
+XMJ         N30         C31         H31     118.064    1.50
+XMJ         C27         C32         C28     111.945    1.50
+XMJ         C27         C32        H321     109.561    1.50
+XMJ         C27         C32        H322     109.561    1.50
+XMJ         C28         C32        H321     109.162    1.50
+XMJ         C28         C32        H322     109.162    1.50
+XMJ        H321         C32        H322     107.890    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XMJ             sp2_sp2_1          C5          C1          C2          S4     180.000     5.0     2
+XMJ             sp2_sp2_5          C2          C1          C5          C3     180.000     5.0     2
+XMJ             sp3_sp3_8         C13         C14         N11          S4     180.000    10.0     3
+XMJ       const_sp2_sp2_9          C5         C12         C17         C18       0.000     5.0     2
+XMJ            sp3_sp3_13         N16         C13         C14         N11     -60.000    10.0     3
+XMJ            sp2_sp3_10         C20         N16         C13         C14     180.000    10.0     6
+XMJ              const_18          C3         C15         C18         CL6     180.000    10.0     2
+XMJ            sp2_sp3_26          C8         N16         C20         C28     -90.000    10.0     6
+XMJ              const_14         C12         C17         C18         CL6     180.000    10.0     2
+XMJ            sp3_sp3_65         N16         C20         C28         C29     -60.000    10.0     3
+XMJ            sp2_sp3_19          C1          C2          S4          O7       0.000    10.0     6
+XMJ              const_21         N30         C21         C24         C23       0.000    10.0     2
+XMJ              const_43         C24         C21         N30         C31       0.000    10.0     2
+XMJ            sp2_sp2_13         C24         C23         N22         C25     180.000     5.0     2
+XMJ            sp2_sp3_16         C23         N22         C25         C29     180.000    10.0     6
+XMJ            sp2_sp3_34         C23         N22         C27         C32     180.000    10.0     6
+XMJ              const_27         N22         C23         C24         C21     180.000    10.0     2
+XMJ              const_31         N22         C23         C26         C31     180.000    10.0     2
+XMJ            sp3_sp3_22         N22         C25         C29         C28     -60.000    10.0     3
+XMJ              const_33         C23         C26         C31         N30       0.000    10.0     2
+XMJ            sp3_sp3_49         N22         C27         C32         C28      60.000    10.0     3
+XMJ            sp3_sp3_37         C20         C28         C29         C25     180.000    10.0     3
+XMJ            sp3_sp3_43         C20         C28         C32         C27     180.000    10.0     3
+XMJ              const_37         C26         C31         N30         C21       0.000    10.0     2
+XMJ              const_39         C18         C15          C3          C5       0.000    10.0     2
+XMJ       const_sp2_sp2_2         C15          C3          C5          C1     180.000     5.0     2
+XMJ            sp3_sp3_60         C10         N11          S4          C2      60.000    10.0     3
+XMJ       const_sp2_sp2_6         C17         C12          C5          C1     180.000     5.0     2
+XMJ            sp2_sp2_12          O9          C8         N16         C20       0.000     5.0     2
+XMJ             sp2_sp3_4          O9          C8         C10         N11     180.000    10.0     6
+XMJ             sp3_sp3_2          C8         C10         N11          S4      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+XMJ    chir_1    S4    O7    O19    N11    both
+XMJ    chir_2    N11    S4    C10    C14    positive
+XMJ    chir_3    C28    C20    C29    C32    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XMJ    plan-1          C1   0.020
+XMJ    plan-1         C12   0.020
+XMJ    plan-1         C15   0.020
+XMJ    plan-1         C17   0.020
+XMJ    plan-1         C18   0.020
+XMJ    plan-1          C3   0.020
+XMJ    plan-1          C5   0.020
+XMJ    plan-1         CL6   0.020
+XMJ    plan-1         H12   0.020
+XMJ    plan-1         H15   0.020
+XMJ    plan-1         H17   0.020
+XMJ    plan-1          H3   0.020
+XMJ    plan-2         C21   0.020
+XMJ    plan-2         C23   0.020
+XMJ    plan-2         C24   0.020
+XMJ    plan-2         C26   0.020
+XMJ    plan-2         C31   0.020
+XMJ    plan-2         H21   0.020
+XMJ    plan-2         H24   0.020
+XMJ    plan-2         H26   0.020
+XMJ    plan-2         H31   0.020
+XMJ    plan-2         N22   0.020
+XMJ    plan-2         N30   0.020
+XMJ    plan-3          C1   0.020
+XMJ    plan-3          C2   0.020
+XMJ    plan-3          C5   0.020
+XMJ    plan-3          H1   0.020
+XMJ    plan-4          C1   0.020
+XMJ    plan-4          C2   0.020
+XMJ    plan-4          H2   0.020
+XMJ    plan-4          S4   0.020
+XMJ    plan-5         C10   0.020
+XMJ    plan-5          C8   0.020
+XMJ    plan-5         N16   0.020
+XMJ    plan-5          O9   0.020
+XMJ    plan-6         C13   0.020
+XMJ    plan-6         C20   0.020
+XMJ    plan-6          C8   0.020
+XMJ    plan-6         N16   0.020
+XMJ    plan-7         C23   0.020
+XMJ    plan-7         C25   0.020
+XMJ    plan-7         C27   0.020
+XMJ    plan-7         N22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XMJ           SMILES              ACDLabs 10.04                                                                                                          Clc1ccc(cc1)\C=C\S(=O)(=O)N2CC(=O)N(CC2)CC4CCN(c3ccncc3)CC4
+XMJ SMILES_CANONICAL               CACTVS 3.341                                                                                                        Clc1ccc(cc1)\C=C\[S](=O)(=O)N2CCN(CC3CCN(CC3)c4ccncc4)C(=O)C2
+XMJ           SMILES               CACTVS 3.341                                                                                                          Clc1ccc(cc1)C=C[S](=O)(=O)N2CCN(CC3CCN(CC3)c4ccncc4)C(=O)C2
+XMJ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                       c1cc(ccc1\C=C\S(=O)(=O)[N@]2CCN(C(=O)C2)CC3CCN(CC3)c4ccncc4)Cl
+XMJ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                            c1cc(ccc1C=CS(=O)(=O)N2CCN(C(=O)C2)CC3CCN(CC3)c4ccncc4)Cl
+XMJ            InChI                InChI  1.03 InChI=1S/C23H27ClN4O3S/c24-21-3-1-19(2-4-21)9-16-32(30,31)28-15-14-27(23(29)18-28)17-20-7-12-26(13-8-20)22-5-10-25-11-6-22/h1-6,9-11,16,20H,7-8,12-15,17-18H2/b16-9+
+XMJ         InChIKey                InChI  1.03                                                                                                                                          QLHUDNKWOSQSMK-CXUHLZMHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XMJ acedrg               243         "dictionary generator"                  
+XMJ acedrg_database      11          "data source"                           
+XMJ rdkit                2017.03.2   "Chemoinformatics tool"
+XMJ refmac5              5.8.0238    "optimization tool"                     

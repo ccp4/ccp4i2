@@ -1,0 +1,275 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BNK     BNK      2-chloro-N-cyclopentyl-5-(2-oxo-2,3-dihydro-1,3-thiazol-4-yl)benzenesulfonamide     NON-POLYMER     37     22     .     
+#
+data_comp_BNK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BNK     CAK     C       CH2     0       9.402       -11.609     -4.271      
+BNK     CAI     C       CH2     0       9.375       -12.770     -3.293      
+BNK     CAJ     C       CH2     0       9.593       -12.148     -1.935      
+BNK     CAL     C       CH2     0       9.145       -10.693     -2.049      
+BNK     CAU     C       CH1     0       8.750       -10.465     -3.510      
+BNK     NAM     N       NT1     0       9.132       -9.143      -4.012      
+BNK     SAV     S       S3      0       8.206       -7.825      -3.844      
+BNK     OAB     O       O       0       6.975       -8.097      -4.520      
+BNK     OAC     O       O       0       8.998       -6.720      -4.290      
+BNK     CAS     C       CR6     0       7.891       -7.599      -2.108      
+BNK     CAH     C       CR16    0       8.874       -6.951      -1.362      
+BNK     CAP     C       CR6     0       6.735       -8.052      -1.456      
+BNK     CL      CL      CL      0       5.451       -8.880      -2.273      
+BNK     CAE     C       CR16    0       6.569       -7.843      -0.096      
+BNK     CAF     C       CR16    0       7.553       -7.191      0.627       
+BNK     CAQ     C       CR6     0       8.715       -6.736      0.007       
+BNK     CAR     C       CR5     0       9.758       -6.045      0.781       
+BNK     CAG     C       CR15    0       9.542       -5.101      1.796       
+BNK     SAO     S       S2      0       11.000      -4.577      2.401       
+BNK     CAT     C       CR5     0       11.908      -5.539      1.386       
+BNK     OAA     O       O       0       13.109      -5.494      1.466       
+BNK     NAN     N       NR5     0       11.108      -6.274      0.569       
+BNK     H1      H       H       0       10.320      -11.384     -4.519      
+BNK     H2      H       H       0       8.897       -11.821     -5.080      
+BNK     H3      H       H       0       8.514       -13.232     -3.329      
+BNK     H4      H       H       0       10.084      -13.411     -3.498      
+BNK     H5      H       H       0       10.537      -12.197     -1.684      
+BNK     H6      H       H       0       9.068       -12.616     -1.256      
+BNK     H7      H       H       0       9.871       -10.091     -1.795      
+BNK     H8      H       H       0       8.383       -10.523     -1.461      
+BNK     H9      H       H       0       7.768       -10.552     -3.589      
+BNK     H10     H       H       0       9.628       -9.115      -4.741      
+BNK     H11     H       H       0       9.658       -6.647      -1.784      
+BNK     H12     H       H       0       5.794       -8.144      0.330       
+BNK     H13     H       H       0       7.434       -7.053      1.545       
+BNK     H14     H       H       0       8.721       -4.777      2.125       
+BNK     H15     H       H       0       11.428      -6.835      -0.029      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BNK         SAV         OAB      DOUBLE       n     1.431  0.0100     1.431  0.0100
+BNK         CAK         CAU      SINGLE       n     1.522  0.0200     1.522  0.0200
+BNK         CAK         CAI      SINGLE       n     1.523  0.0152     1.523  0.0152
+BNK         SAV         OAC      DOUBLE       n     1.431  0.0100     1.431  0.0100
+BNK         NAM         SAV      SINGLE       n     1.618  0.0151     1.618  0.0151
+BNK         CAU         NAM      SINGLE       n     1.463  0.0100     1.463  0.0100
+BNK         SAV         CAS      SINGLE       n     1.774  0.0100     1.774  0.0100
+BNK         CAL         CAU      SINGLE       n     1.522  0.0200     1.522  0.0200
+BNK         CAI         CAJ      SINGLE       n     1.512  0.0200     1.512  0.0200
+BNK         CAJ         CAL      SINGLE       n     1.523  0.0152     1.523  0.0152
+BNK         CAP          CL      SINGLE       n     1.731  0.0100     1.731  0.0100
+BNK         CAS         CAP      SINGLE       y     1.393  0.0100     1.393  0.0100
+BNK         CAS         CAH      DOUBLE       y     1.387  0.0100     1.387  0.0100
+BNK         CAP         CAE      DOUBLE       y     1.382  0.0100     1.382  0.0100
+BNK         CAH         CAQ      SINGLE       y     1.392  0.0100     1.392  0.0100
+BNK         CAE         CAF      SINGLE       y     1.382  0.0100     1.382  0.0100
+BNK         CAF         CAQ      DOUBLE       y     1.392  0.0100     1.392  0.0100
+BNK         CAQ         CAR      SINGLE       n     1.471  0.0100     1.471  0.0100
+BNK         CAR         NAN      SINGLE       y     1.376  0.0101     1.376  0.0101
+BNK         CAT         NAN      SINGLE       y     1.342  0.0200     1.342  0.0200
+BNK         CAR         CAG      DOUBLE       y     1.389  0.0200     1.389  0.0200
+BNK         CAT         OAA      DOUBLE       n     1.204  0.0100     1.204  0.0100
+BNK         SAO         CAT      SINGLE       y     1.695  0.0200     1.695  0.0200
+BNK         CAG         SAO      SINGLE       y     1.695  0.0200     1.695  0.0200
+BNK         CAK          H1      SINGLE       n     1.089  0.0100     0.977  0.0101
+BNK         CAK          H2      SINGLE       n     1.089  0.0100     0.977  0.0101
+BNK         CAI          H3      SINGLE       n     1.089  0.0100     0.978  0.0100
+BNK         CAI          H4      SINGLE       n     1.089  0.0100     0.978  0.0100
+BNK         CAJ          H5      SINGLE       n     1.089  0.0100     0.978  0.0100
+BNK         CAJ          H6      SINGLE       n     1.089  0.0100     0.978  0.0100
+BNK         CAL          H7      SINGLE       n     1.089  0.0100     0.977  0.0101
+BNK         CAL          H8      SINGLE       n     1.089  0.0100     0.977  0.0101
+BNK         CAU          H9      SINGLE       n     1.089  0.0100     0.989  0.0131
+BNK         NAM         H10      SINGLE       n     1.036  0.0160     0.882  0.0200
+BNK         CAH         H11      SINGLE       n     1.082  0.0130     0.942  0.0177
+BNK         CAE         H12      SINGLE       n     1.082  0.0130     0.934  0.0200
+BNK         CAF         H13      SINGLE       n     1.082  0.0130     0.936  0.0103
+BNK         CAG         H14      SINGLE       n     1.082  0.0130     0.942  0.0200
+BNK         NAN         H15      SINGLE       n     1.016  0.0100     0.880  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BNK         CAU         CAK         CAI     104.866    1.82
+BNK         CAU         CAK          H1     110.783    1.50
+BNK         CAU         CAK          H2     110.783    1.50
+BNK         CAI         CAK          H1     110.871    1.50
+BNK         CAI         CAK          H2     110.871    1.50
+BNK          H1         CAK          H2     108.887    1.50
+BNK         CAK         CAI         CAJ     105.632    1.63
+BNK         CAK         CAI          H3     110.660    1.50
+BNK         CAK         CAI          H4     110.660    1.50
+BNK         CAJ         CAI          H3     110.679    1.50
+BNK         CAJ         CAI          H4     110.679    1.50
+BNK          H3         CAI          H4     108.634    1.62
+BNK         CAI         CAJ         CAL     105.632    1.63
+BNK         CAI         CAJ          H5     110.679    1.50
+BNK         CAI         CAJ          H6     110.679    1.50
+BNK         CAL         CAJ          H5     110.660    1.50
+BNK         CAL         CAJ          H6     110.660    1.50
+BNK          H5         CAJ          H6     108.634    1.62
+BNK         CAU         CAL         CAJ     104.866    1.82
+BNK         CAU         CAL          H7     110.783    1.50
+BNK         CAU         CAL          H8     110.783    1.50
+BNK         CAJ         CAL          H7     110.871    1.50
+BNK         CAJ         CAL          H8     110.871    1.50
+BNK          H7         CAL          H8     108.887    1.50
+BNK         CAK         CAU         NAM     113.390    3.00
+BNK         CAK         CAU         CAL     104.374    1.55
+BNK         CAK         CAU          H9     108.708    1.50
+BNK         NAM         CAU         CAL     113.390    3.00
+BNK         NAM         CAU          H9     108.188    1.50
+BNK         CAL         CAU          H9     108.708    1.50
+BNK         SAV         NAM         CAU     122.414    2.14
+BNK         SAV         NAM         H10     113.046    3.00
+BNK         CAU         NAM         H10     117.028    2.63
+BNK         OAB         SAV         OAC     119.556    1.50
+BNK         OAB         SAV         NAM     106.957    1.50
+BNK         OAB         SAV         CAS     108.022    1.50
+BNK         OAC         SAV         NAM     106.957    1.50
+BNK         OAC         SAV         CAS     108.022    1.50
+BNK         NAM         SAV         CAS     108.116    1.50
+BNK         SAV         CAS         CAP     122.213    1.50
+BNK         SAV         CAS         CAH     118.471    1.50
+BNK         CAP         CAS         CAH     119.316    1.50
+BNK         CAS         CAH         CAQ     120.527    1.50
+BNK         CAS         CAH         H11     120.014    1.50
+BNK         CAQ         CAH         H11     119.460    1.50
+BNK          CL         CAP         CAS     121.635    1.50
+BNK          CL         CAP         CAE     117.940    1.50
+BNK         CAS         CAP         CAE     120.425    1.50
+BNK         CAP         CAE         CAF     119.551    1.50
+BNK         CAP         CAE         H12     120.063    1.50
+BNK         CAF         CAE         H12     120.386    1.50
+BNK         CAE         CAF         CAQ     121.194    1.50
+BNK         CAE         CAF         H13     119.325    1.50
+BNK         CAQ         CAF         H13     119.481    1.50
+BNK         CAH         CAQ         CAF     118.987    1.50
+BNK         CAH         CAQ         CAR     120.506    1.50
+BNK         CAF         CAQ         CAR     120.506    1.50
+BNK         CAQ         CAR         NAN     123.543    1.50
+BNK         CAQ         CAR         CAG     129.650    2.56
+BNK         NAN         CAR         CAG     106.807    1.61
+BNK         CAR         CAG         SAO     108.374    3.00
+BNK         CAR         CAG         H14     129.008    3.00
+BNK         SAO         CAG         H14     122.618    3.00
+BNK         CAT         SAO         CAG     108.374    3.00
+BNK         NAN         CAT         OAA     130.819    1.50
+BNK         NAN         CAT         SAO     108.374    3.00
+BNK         OAA         CAT         SAO     120.807    3.00
+BNK         CAR         NAN         CAT     108.071    1.50
+BNK         CAR         NAN         H15     125.377    1.67
+BNK         CAT         NAN         H15     126.551    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BNK            sp3_sp3_37         CAJ         CAI         CAK         CAU     180.000    10.0     3
+BNK             sp3_sp3_3         CAI         CAK         CAU         NAM     -60.000    10.0     3
+BNK              const_17         CAS         CAH         CAQ         CAF       0.000    10.0     2
+BNK       const_sp2_sp2_6         CAF         CAE         CAP          CL     180.000     5.0     2
+BNK       const_sp2_sp2_9         CAP         CAE         CAF         CAQ       0.000     5.0     2
+BNK              const_13         CAE         CAF         CAQ         CAH       0.000    10.0     2
+BNK             sp2_sp2_1         CAH         CAQ         CAR         NAN     180.000     5.0     2
+BNK              const_38         SAO         CAG         CAR         CAQ     180.000    10.0     2
+BNK              const_23         CAQ         CAR         NAN         CAT     180.000    10.0     2
+BNK              const_31         CAR         CAG         SAO         CAT       0.000    10.0     2
+BNK              const_30         OAA         CAT         SAO         CAG     180.000    10.0     2
+BNK              const_27         OAA         CAT         NAN         CAR     180.000    10.0     2
+BNK            sp3_sp3_28         CAK         CAI         CAJ         CAL     -60.000    10.0     3
+BNK            sp3_sp3_19         CAI         CAJ         CAL         CAU      60.000    10.0     3
+BNK            sp3_sp3_11         CAJ         CAL         CAU         NAM      60.000    10.0     3
+BNK            sp3_sp3_54         CAK         CAU         NAM         SAV      60.000    10.0     3
+BNK            sp3_sp3_50         CAU         NAM         SAV         OAB     180.000    10.0     3
+BNK             sp2_sp3_1         CAP         CAS         SAV         OAB     150.000    10.0     6
+BNK              const_34         CAQ         CAH         CAS         SAV     180.000    10.0     2
+BNK       const_sp2_sp2_4          CL         CAP         CAS         SAV       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BNK    chir_1    CAU    NAM    CAK    CAL    both
+BNK    chir_2    SAV    OAB    OAC    NAM    both
+BNK    chir_3    NAM    SAV    CAU    H10    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BNK    plan-1         CAE   0.020
+BNK    plan-1         CAF   0.020
+BNK    plan-1         CAH   0.020
+BNK    plan-1         CAP   0.020
+BNK    plan-1         CAQ   0.020
+BNK    plan-1         CAR   0.020
+BNK    plan-1         CAS   0.020
+BNK    plan-1          CL   0.020
+BNK    plan-1         H11   0.020
+BNK    plan-1         H12   0.020
+BNK    plan-1         H13   0.020
+BNK    plan-1         SAV   0.020
+BNK    plan-2         CAG   0.020
+BNK    plan-2         CAQ   0.020
+BNK    plan-2         CAR   0.020
+BNK    plan-2         CAT   0.020
+BNK    plan-2         H14   0.020
+BNK    plan-2         H15   0.020
+BNK    plan-2         NAN   0.020
+BNK    plan-2         OAA   0.020
+BNK    plan-2         SAO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BNK           SMILES              ACDLabs 12.01                                                                            O=C3SC=C(c1cc(c(Cl)cc1)S(=O)(=O)NC2CCCC2)N3
+BNK            InChI                InChI  1.03 InChI=1S/C14H15ClN2O3S2/c15-11-6-5-9(12-8-21-14(18)16-12)7-13(11)22(19,20)17-10-3-1-2-4-10/h5-8,10,17H,1-4H2,(H,16,18)
+BNK         InChIKey                InChI  1.03                                                                                            PBWTZCXFWIEPCV-UHFFFAOYSA-N
+BNK SMILES_CANONICAL               CACTVS 3.385                                                                            Clc1ccc(cc1[S](=O)(=O)NC2CCCC2)C3=CSC(=O)N3
+BNK           SMILES               CACTVS 3.385                                                                            Clc1ccc(cc1[S](=O)(=O)NC2CCCC2)C3=CSC(=O)N3
+BNK SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                            c1cc(c(cc1C2=CSC(=O)N2)S(=O)(=O)NC3CCCC3)Cl
+BNK           SMILES "OpenEye OEToolkits" 1.7.6                                                                            c1cc(c(cc1C2=CSC(=O)N2)S(=O)(=O)NC3CCCC3)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BNK acedrg               243         "dictionary generator"                  
+BNK acedrg_database      11          "data source"                           
+BNK rdkit                2017.03.2   "Chemoinformatics tool"
+BNK refmac5              5.8.0238    "optimization tool"                     

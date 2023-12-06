@@ -1,0 +1,387 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+UW3     UW3      5-amino-3-[7-(cyclobutyloxy)quinolin-3-yl]-1-cyclohexyl-1H-pyrazole-4-carboxamide     NON-POLYMER     57     30     .     
+#
+data_comp_UW3
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+UW3     CAM     C       CH2     0       25.925      -21.158     1.324       
+UW3     CAN     C       CH2     0       27.372      -21.407     0.868       
+UW3     CAO     C       CH2     0       27.019      -20.777     -0.490      
+UW3     CAL     C       CH1     0       25.577      -20.566     -0.038      
+UW3     OAK     O       O2      0       24.619      -21.282     -0.813      
+UW3     CAC     C       CR6     0       23.292      -21.295     -0.449      
+UW3     CAD     C       CR16    0       22.723      -20.611     0.604       
+UW3     CAB     C       CR16    0       22.495      -22.108     -1.283      
+UW3     CAA     C       CR16    0       21.158      -22.228     -1.055      
+UW3     CAF     C       CR66    0       20.541      -21.540     0.020       
+UW3     CAJ     C       CR16    0       19.166      -21.625     0.300       
+UW3     CAE     C       CR66    0       21.335      -20.723     0.858       
+UW3     NAG     N       NRD6    0       20.787      -20.035     1.914       
+UW3     CAH     C       CR16    0       19.495      -20.138     2.152       
+UW3     CAI     C       CR6     0       18.630      -20.915     1.380       
+UW3     CAP     C       CR5     0       17.187      -20.997     1.701       
+UW3     NAT     N       NRD5    0       16.563      -19.913     2.187       
+UW3     CAQ     C       CR5     0       16.281      -22.103     1.599       
+UW3     CAW     C       C       0       16.540      -23.474     1.125       
+UW3     OAY     O       O       0       15.837      -23.985     0.248       
+UW3     NAX     N       NH2     0       17.560      -24.117     1.688       
+UW3     CAR     C       CR5     0       15.049      -21.610     2.052       
+UW3     NAV     N       NH2     0       13.845      -22.224     2.164       
+UW3     NAS     N       NT      0       15.261      -20.286     2.386       
+UW3     CAU     C       CH1     0       14.273      -19.325     2.939       
+UW3     CAZ     C       CH2     0       14.542      -17.882     2.526       
+UW3     CBA     C       CH2     0       13.461      -16.961     3.084       
+UW3     CBB     C       CH2     0       13.354      -17.078     4.595       
+UW3     CBC     C       CH2     0       13.127      -18.518     5.019       
+UW3     CBD     C       CH2     0       14.199      -19.445     4.456       
+UW3     H1      H       H       0       25.426      -21.976     1.540       
+UW3     H2      H       H       0       25.842      -20.520     2.066       
+UW3     H3      H       H       0       28.043      -20.903     1.378       
+UW3     H4      H       H       0       27.615      -22.357     0.815       
+UW3     H5      H       H       0       27.109      -21.390     -1.252      
+UW3     H6      H       H       0       27.502      -19.944     -0.683      
+UW3     H7      H       H       0       25.361      -19.598     0.031       
+UW3     H8      H       H       0       23.248      -20.072     1.159       
+UW3     H9      H       H       0       22.890      -22.571     -2.001      
+UW3     H10     H       H       0       20.638      -22.776     -1.622      
+UW3     H11     H       H       0       18.612      -22.157     -0.238      
+UW3     H12     H       H       0       19.147      -19.657     2.882       
+UW3     H13     H       H       0       17.756      -24.941     1.434       
+UW3     H14     H       H       0       18.044      -23.725     2.318       
+UW3     H15     H       H       0       13.128      -21.840     1.844       
+UW3     H16     H       H       0       13.787      -23.002     2.557       
+UW3     H17     H       H       0       13.391      -19.566     2.587       
+UW3     H18     H       H       0       15.421      -17.606     2.867       
+UW3     H19     H       H       0       14.558      -17.828     1.544       
+UW3     H20     H       H       0       12.597      -17.191     2.678       
+UW3     H21     H       H       0       13.671      -16.032     2.845       
+UW3     H22     H       H       0       12.610      -16.524     4.913       
+UW3     H23     H       H       0       14.179      -16.744     5.007       
+UW3     H24     H       H       0       12.245      -18.814     4.704       
+UW3     H25     H       H       0       13.133      -18.573     5.999       
+UW3     H26     H       H       0       15.076      -19.215     4.836       
+UW3     H27     H       H       0       13.995      -20.377     4.691       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+UW3         CAB         CAA      DOUBLE       y     1.358  0.0102     1.358  0.0102
+UW3         CAC         CAB      SINGLE       y     1.405  0.0114     1.405  0.0114
+UW3         CAA         CAF      SINGLE       y     1.416  0.0100     1.416  0.0100
+UW3         OAK         CAC      SINGLE       n     1.370  0.0110     1.370  0.0110
+UW3         CAL         OAK      SINGLE       n     1.417  0.0195     1.417  0.0195
+UW3         CAO         CAL      SINGLE       n     1.525  0.0100     1.525  0.0100
+UW3         CAN         CAO      SINGLE       n     1.538  0.0149     1.538  0.0149
+UW3         CAC         CAD      DOUBLE       y     1.368  0.0109     1.368  0.0109
+UW3         CAF         CAJ      SINGLE       y     1.407  0.0100     1.407  0.0100
+UW3         CAF         CAE      DOUBLE       y     1.414  0.0100     1.414  0.0100
+UW3         CAM         CAL      SINGLE       n     1.525  0.0100     1.525  0.0100
+UW3         CAJ         CAI      DOUBLE       y     1.392  0.0142     1.392  0.0142
+UW3         CAD         CAE      SINGLE       y     1.411  0.0100     1.411  0.0100
+UW3         CAE         NAG      SINGLE       y     1.370  0.0100     1.370  0.0100
+UW3         CAM         CAN      SINGLE       n     1.538  0.0149     1.538  0.0149
+UW3         CAI         CAP      SINGLE       n     1.476  0.0100     1.476  0.0100
+UW3         CAH         CAI      SINGLE       y     1.386  0.0100     1.386  0.0100
+UW3         CAW         NAX      SINGLE       n     1.329  0.0100     1.329  0.0100
+UW3         CAQ         CAW      SINGLE       n     1.468  0.0196     1.468  0.0196
+UW3         CAW         OAY      DOUBLE       n     1.235  0.0149     1.235  0.0149
+UW3         CAP         CAQ      SINGLE       y     1.428  0.0100     1.428  0.0100
+UW3         CAP         NAT      DOUBLE       y     1.336  0.0117     1.336  0.0117
+UW3         CAQ         CAR      DOUBLE       y     1.411  0.0200     1.411  0.0200
+UW3         NAG         CAH      DOUBLE       y     1.309  0.0100     1.309  0.0100
+UW3         CAZ         CBA      SINGLE       n     1.524  0.0100     1.524  0.0100
+UW3         CAU         CAZ      SINGLE       n     1.522  0.0100     1.522  0.0100
+UW3         NAT         NAS      SINGLE       y     1.365  0.0181     1.365  0.0181
+UW3         CAR         NAS      SINGLE       y     1.396  0.0200     1.396  0.0200
+UW3         CAR         NAV      SINGLE       n     1.356  0.0100     1.356  0.0100
+UW3         NAS         CAU      SINGLE       n     1.481  0.0118     1.481  0.0118
+UW3         CBA         CBB      SINGLE       n     1.516  0.0136     1.516  0.0136
+UW3         CAU         CBD      SINGLE       n     1.522  0.0100     1.522  0.0100
+UW3         CBB         CBC      SINGLE       n     1.515  0.0126     1.515  0.0126
+UW3         CBC         CBD      SINGLE       n     1.524  0.0100     1.524  0.0100
+UW3         CAM          H1      SINGLE       n     1.089  0.0100     0.982  0.0100
+UW3         CAM          H2      SINGLE       n     1.089  0.0100     0.982  0.0100
+UW3         CAN          H3      SINGLE       n     1.089  0.0100     0.982  0.0100
+UW3         CAN          H4      SINGLE       n     1.089  0.0100     0.982  0.0100
+UW3         CAO          H5      SINGLE       n     1.089  0.0100     0.982  0.0100
+UW3         CAO          H6      SINGLE       n     1.089  0.0100     0.982  0.0100
+UW3         CAL          H7      SINGLE       n     1.089  0.0100     0.994  0.0200
+UW3         CAD          H8      SINGLE       n     1.082  0.0130     0.936  0.0100
+UW3         CAB          H9      SINGLE       n     1.082  0.0130     0.941  0.0131
+UW3         CAA         H10      SINGLE       n     1.082  0.0130     0.944  0.0200
+UW3         CAJ         H11      SINGLE       n     1.082  0.0130     0.939  0.0152
+UW3         CAH         H12      SINGLE       n     1.082  0.0130     0.942  0.0181
+UW3         NAX         H13      SINGLE       n     1.016  0.0100     0.884  0.0200
+UW3         NAX         H14      SINGLE       n     1.016  0.0100     0.884  0.0200
+UW3         NAV         H15      SINGLE       n     1.016  0.0100     0.874  0.0200
+UW3         NAV         H16      SINGLE       n     1.016  0.0100     0.874  0.0200
+UW3         CAU         H17      SINGLE       n     1.089  0.0100     0.980  0.0153
+UW3         CAZ         H18      SINGLE       n     1.089  0.0100     0.983  0.0182
+UW3         CAZ         H19      SINGLE       n     1.089  0.0100     0.983  0.0182
+UW3         CBA         H20      SINGLE       n     1.089  0.0100     0.982  0.0131
+UW3         CBA         H21      SINGLE       n     1.089  0.0100     0.982  0.0131
+UW3         CBB         H22      SINGLE       n     1.089  0.0100     0.981  0.0138
+UW3         CBB         H23      SINGLE       n     1.089  0.0100     0.981  0.0138
+UW3         CBC         H24      SINGLE       n     1.089  0.0100     0.982  0.0131
+UW3         CBC         H25      SINGLE       n     1.089  0.0100     0.982  0.0131
+UW3         CBD         H26      SINGLE       n     1.089  0.0100     0.983  0.0182
+UW3         CBD         H27      SINGLE       n     1.089  0.0100     0.983  0.0182
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+UW3         CAL         CAM         CAN      89.015    2.00
+UW3         CAL         CAM          H1     113.549    3.00
+UW3         CAL         CAM          H2     113.549    3.00
+UW3         CAN         CAM          H1     114.031    1.50
+UW3         CAN         CAM          H2     114.031    1.50
+UW3          H1         CAM          H2     109.031    3.00
+UW3         CAO         CAN         CAM      88.155    1.50
+UW3         CAO         CAN          H3     113.965    1.50
+UW3         CAO         CAN          H4     113.965    1.50
+UW3         CAM         CAN          H3     113.965    1.50
+UW3         CAM         CAN          H4     113.965    1.50
+UW3          H3         CAN          H4     110.794    1.50
+UW3         CAL         CAO         CAN      89.015    2.00
+UW3         CAL         CAO          H5     113.549    3.00
+UW3         CAL         CAO          H6     113.549    3.00
+UW3         CAN         CAO          H5     114.031    1.50
+UW3         CAN         CAO          H6     114.031    1.50
+UW3          H5         CAO          H6     109.031    3.00
+UW3         OAK         CAL         CAO     114.749    3.00
+UW3         OAK         CAL         CAM     114.749    3.00
+UW3         OAK         CAL          H7     112.253    1.62
+UW3         CAO         CAL         CAM      88.927    1.50
+UW3         CAO         CAL          H7     111.204    3.00
+UW3         CAM         CAL          H7     111.204    3.00
+UW3         CAC         OAK         CAL     117.716    1.50
+UW3         CAB         CAC         OAK     119.043    3.00
+UW3         CAB         CAC         CAD     120.550    1.50
+UW3         OAK         CAC         CAD     120.408    3.00
+UW3         CAC         CAD         CAE     120.019    1.50
+UW3         CAC         CAD          H8     120.128    1.50
+UW3         CAE         CAD          H8     119.853    1.50
+UW3         CAA         CAB         CAC     120.022    1.50
+UW3         CAA         CAB          H9     120.005    1.50
+UW3         CAC         CAB          H9     119.973    1.50
+UW3         CAB         CAA         CAF     121.111    1.50
+UW3         CAB         CAA         H10     119.221    1.50
+UW3         CAF         CAA         H10     119.668    1.50
+UW3         CAA         CAF         CAJ     121.807    1.50
+UW3         CAA         CAF         CAE     118.957    1.50
+UW3         CAJ         CAF         CAE     119.236    1.50
+UW3         CAF         CAJ         CAI     121.072    1.50
+UW3         CAF         CAJ         H11     119.450    1.50
+UW3         CAI         CAJ         H11     119.478    1.50
+UW3         CAF         CAE         CAD     119.340    1.50
+UW3         CAF         CAE         NAG     121.886    1.50
+UW3         CAD         CAE         NAG     118.774    1.50
+UW3         CAE         NAG         CAH     117.284    1.50
+UW3         CAI         CAH         NAG     121.848    1.50
+UW3         CAI         CAH         H12     119.546    1.50
+UW3         NAG         CAH         H12     118.606    1.67
+UW3         CAJ         CAI         CAP     120.352    1.61
+UW3         CAJ         CAI         CAH     118.674    1.50
+UW3         CAP         CAI         CAH     120.974    1.50
+UW3         CAI         CAP         CAQ     129.962    1.50
+UW3         CAI         CAP         NAT     119.535    1.50
+UW3         CAQ         CAP         NAT     110.503    1.50
+UW3         CAP         NAT         NAS     104.747    1.50
+UW3         CAW         CAQ         CAP     125.995    3.00
+UW3         CAW         CAQ         CAR     128.740    3.00
+UW3         CAP         CAQ         CAR     105.266    1.50
+UW3         NAX         CAW         CAQ     116.210    1.50
+UW3         NAX         CAW         OAY     122.666    1.50
+UW3         CAQ         CAW         OAY     121.124    1.50
+UW3         CAW         NAX         H13     119.922    1.50
+UW3         CAW         NAX         H14     119.922    1.50
+UW3         H13         NAX         H14     120.157    3.00
+UW3         CAQ         CAR         NAS     107.671    2.05
+UW3         CAQ         CAR         NAV     129.629    2.20
+UW3         NAS         CAR         NAV     122.700    1.75
+UW3         CAR         NAV         H15     119.955    1.50
+UW3         CAR         NAV         H16     119.955    1.50
+UW3         H15         NAV         H16     120.090    1.50
+UW3         NAT         NAS         CAR     111.346    1.50
+UW3         NAT         NAS         CAU     109.471    3.00
+UW3         CAR         NAS         CAU     123.286    3.00
+UW3         CAZ         CAU         NAS     112.176    1.57
+UW3         CAZ         CAU         CBD     111.496    1.50
+UW3         CAZ         CAU         H17     108.409    1.50
+UW3         NAS         CAU         CBD     112.176    1.57
+UW3         NAS         CAU         H17     109.030    1.50
+UW3         CBD         CAU         H17     108.409    1.50
+UW3         CBA         CAZ         CAU     110.324    1.50
+UW3         CBA         CAZ         H18     109.954    1.50
+UW3         CBA         CAZ         H19     109.954    1.50
+UW3         CAU         CAZ         H18     108.826    1.50
+UW3         CAU         CAZ         H19     108.826    1.50
+UW3         H18         CAZ         H19     108.307    1.50
+UW3         CAZ         CBA         CBB     111.520    1.50
+UW3         CAZ         CBA         H20     109.303    1.50
+UW3         CAZ         CBA         H21     109.303    1.50
+UW3         CBB         CBA         H20     109.386    1.50
+UW3         CBB         CBA         H21     109.386    1.50
+UW3         H20         CBA         H21     108.036    1.50
+UW3         CBA         CBB         CBC     111.038    1.50
+UW3         CBA         CBB         H22     109.386    1.50
+UW3         CBA         CBB         H23     109.386    1.50
+UW3         CBC         CBB         H22     109.386    1.50
+UW3         CBC         CBB         H23     109.386    1.50
+UW3         H22         CBB         H23     108.036    1.50
+UW3         CBB         CBC         CBD     111.520    1.50
+UW3         CBB         CBC         H24     109.386    1.50
+UW3         CBB         CBC         H25     109.386    1.50
+UW3         CBD         CBC         H24     109.303    1.50
+UW3         CBD         CBC         H25     109.303    1.50
+UW3         H24         CBC         H25     108.036    1.50
+UW3         CAU         CBD         CBC     110.324    1.50
+UW3         CAU         CBD         H26     108.826    1.50
+UW3         CAU         CBD         H27     108.826    1.50
+UW3         CBC         CBD         H26     109.954    1.50
+UW3         CBC         CBD         H27     109.954    1.50
+UW3         H26         CBD         H27     108.307    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+UW3            sp3_sp3_76         CAL         CAM         CAN         CAO     180.000    10.0     3
+UW3             sp3_sp3_4         OAK         CAL         CAM         CAN     -60.000    10.0     3
+UW3              const_27         CAP         CAI         CAJ         CAF     180.000    10.0     2
+UW3              const_35         CAF         CAE         NAG         CAH       0.000    10.0     2
+UW3              const_33         CAI         CAH         NAG         CAE       0.000    10.0     2
+UW3              const_29         NAG         CAH         CAI         CAJ       0.000    10.0     2
+UW3             sp2_sp2_3         CAJ         CAI         CAP         CAQ     180.000     5.0     2
+UW3              const_56         CAI         CAP         NAT         NAS     180.000    10.0     2
+UW3              const_40         CAI         CAP         CAQ         CAW       0.000    10.0     2
+UW3              const_49         CAR         NAS         NAT         CAP       0.000    10.0     2
+UW3            sp2_sp2_11         CAP         CAQ         CAW         NAX     180.000     5.0     2
+UW3              const_44         CAW         CAQ         CAR         NAV       0.000    10.0     2
+UW3             sp2_sp2_9         OAY         CAW         NAX         H13       0.000     5.0     2
+UW3            sp3_sp3_19         CAM         CAN         CAO         CAL      60.000    10.0     3
+UW3            sp2_sp2_15         CAQ         CAR         NAV         H15     180.000     5.0     2
+UW3              const_47         NAV         CAR         NAS         NAT     180.000    10.0     2
+UW3             sp2_sp3_2         NAT         NAS         CAU         CAZ     -90.000    10.0     6
+UW3            sp3_sp3_34         NAS         CAU         CAZ         CBA     180.000    10.0     3
+UW3            sp3_sp3_85         CAZ         CAU         CBD         CBC     180.000    10.0     3
+UW3            sp3_sp3_37         CAU         CAZ         CBA         CBB     -60.000    10.0     3
+UW3            sp3_sp3_46         CAZ         CBA         CBB         CBC      60.000    10.0     3
+UW3            sp3_sp3_55         CBA         CBB         CBC         CBD     -60.000    10.0     3
+UW3            sp3_sp3_64         CBB         CBC         CBD         CAU      60.000    10.0     3
+UW3            sp3_sp3_16         OAK         CAL         CAO         CAN      60.000    10.0     3
+UW3            sp3_sp3_73         CAO         CAL         OAK         CAC     180.000    10.0     3
+UW3             sp2_sp2_1         CAB         CAC         OAK         CAL     180.000     5.0     2
+UW3              const_53         OAK         CAC         CAD         CAE     180.000    10.0     2
+UW3       const_sp2_sp2_2         CAA         CAB         CAC         OAK     180.000     5.0     2
+UW3              const_17         CAC         CAD         CAE         CAF       0.000    10.0     2
+UW3       const_sp2_sp2_5         CAF         CAA         CAB         CAC       0.000     5.0     2
+UW3              const_10         CAB         CAA         CAF         CAJ     180.000    10.0     2
+UW3              const_23         CAA         CAF         CAJ         CAI     180.000    10.0     2
+UW3              const_13         CAD         CAE         CAF         CAA       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+UW3    chir_1    CAL    OAK    CAO    CAM    both
+UW3    chir_2    CAU    NAS    CAZ    CBD    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+UW3    plan-1         CAA   0.020
+UW3    plan-1         CAB   0.020
+UW3    plan-1         CAC   0.020
+UW3    plan-1         CAD   0.020
+UW3    plan-1         CAE   0.020
+UW3    plan-1         CAF   0.020
+UW3    plan-1         CAH   0.020
+UW3    plan-1         CAI   0.020
+UW3    plan-1         CAJ   0.020
+UW3    plan-1         CAP   0.020
+UW3    plan-1         H10   0.020
+UW3    plan-1         H11   0.020
+UW3    plan-1         H12   0.020
+UW3    plan-1          H8   0.020
+UW3    plan-1          H9   0.020
+UW3    plan-1         NAG   0.020
+UW3    plan-1         OAK   0.020
+UW3    plan-2         CAI   0.020
+UW3    plan-2         CAP   0.020
+UW3    plan-2         CAQ   0.020
+UW3    plan-2         CAR   0.020
+UW3    plan-2         CAU   0.020
+UW3    plan-2         CAW   0.020
+UW3    plan-2         NAS   0.020
+UW3    plan-2         NAT   0.020
+UW3    plan-2         NAV   0.020
+UW3    plan-3         CAQ   0.020
+UW3    plan-3         CAW   0.020
+UW3    plan-3         NAX   0.020
+UW3    plan-3         OAY   0.020
+UW3    plan-4         CAW   0.020
+UW3    plan-4         H13   0.020
+UW3    plan-4         H14   0.020
+UW3    plan-4         NAX   0.020
+UW3    plan-5         CAR   0.020
+UW3    plan-5         H15   0.020
+UW3    plan-5         H16   0.020
+UW3    plan-5         NAV   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+UW3           SMILES              ACDLabs 12.01                                                                                                     O=C(c1c(N)n(nc1c3cc4ccc(OC2CCC2)cc4nc3)C5CCCCC5)N
+UW3            InChI                InChI  1.03 InChI=1S/C23H27N5O2/c24-22-20(23(25)29)21(27-28(22)16-5-2-1-3-6-16)15-11-14-9-10-18(12-19(14)26-13-15)30-17-7-4-8-17/h9-13,16-17H,1-8,24H2,(H2,25,29)
+UW3         InChIKey                InChI  1.03                                                                                                                           AJQKERUGIYLYDN-UHFFFAOYSA-N
+UW3 SMILES_CANONICAL               CACTVS 3.385                                                                                                     NC(=O)c1c(N)n(nc1c2cnc3cc(OC4CCC4)ccc3c2)C5CCCCC5
+UW3           SMILES               CACTVS 3.385                                                                                                     NC(=O)c1c(N)n(nc1c2cnc3cc(OC4CCC4)ccc3c2)C5CCCCC5
+UW3 SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                 c1cc(cc2c1cc(cn2)c3c(c(n(n3)C4CCCCC4)N)C(=O)N)OC5CCC5
+UW3           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                 c1cc(cc2c1cc(cn2)c3c(c(n(n3)C4CCCCC4)N)C(=O)N)OC5CCC5
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+UW3 acedrg               243         "dictionary generator"                  
+UW3 acedrg_database      11          "data source"                           
+UW3 rdkit                2017.03.2   "Chemoinformatics tool"
+UW3 refmac5              5.8.0238    "optimization tool"                     

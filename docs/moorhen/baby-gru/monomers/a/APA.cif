@@ -1,0 +1,216 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+APA     APA      "(2S)-3-(4-carbamimidoylphenyl)-2-hydroxypropanoic acid"     NON-POLYMER     26     15     .     
+#
+data_comp_APA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+APA     C1      C       C       0       -0.928      16.491      23.242      
+APA     O1      O       O       0       0.143       16.166      23.793      
+APA     OXT     O       OC      -1      -1.712      17.374      23.642      
+APA     C2      C       CH1     0       -1.313      15.743      21.960      
+APA     O2      O       OH1     0       -2.675      15.377      21.973      
+APA     C3      C       CH2     0       -1.016      16.593      20.722      
+APA     "C1'"   C       CR6     0       -1.224      15.860      19.418      
+APA     "C2'"   C       CR16    0       -2.244      16.221      18.545      
+APA     "C3'"   C       CR16    0       -2.434      15.550      17.347      
+APA     "C4'"   C       CR6     0       -1.604      14.491      16.989      
+APA     "C5'"   C       CR16    0       -0.580      14.126      17.858      
+APA     "C6'"   C       CR16    0       -0.396      14.804      19.055      
+APA     C       C       C       0       -1.803      13.769      15.705      
+APA     N1      N       NH2     0       -3.009      13.202      15.485      
+APA     N2      N       NH1     0       -0.872      13.672      14.813      
+APA     H11     H       H       0       -0.771      14.924      21.908      
+APA     H12     H       H       0       -2.788      14.637      21.574      
+APA     H31     H       H       0       -0.086      16.901      20.766      
+APA     H32     H       H       0       -1.593      17.386      20.738      
+APA     "H2'"   H       H       0       -2.817      16.935      18.772      
+APA     "H3'"   H       H       0       -3.132      15.812      16.773      
+APA     "H5'"   H       H       0       -0.006      13.414      17.635      
+APA     "H6'"   H       H       0       0.302       14.544      19.633      
+APA     HN11    H       H       0       -3.649      13.263      16.097      
+APA     HN12    H       H       0       -3.161      12.768      14.726      
+APA     HN2     H       H       0       -0.153      14.033      14.992      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+APA          C1          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+APA          C1         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+APA          C1          C2      SINGLE       n     1.533  0.0100     1.533  0.0100
+APA          C2          O2      SINGLE       n     1.409  0.0144     1.409  0.0144
+APA          C2          C3      SINGLE       n     1.530  0.0115     1.530  0.0115
+APA          C3       "C1'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+APA       "C1'"       "C2'"      DOUBLE       y     1.385  0.0110     1.385  0.0110
+APA       "C1'"       "C6'"      SINGLE       y     1.385  0.0110     1.385  0.0110
+APA       "C2'"       "C3'"      SINGLE       y     1.383  0.0100     1.383  0.0100
+APA       "C3'"       "C4'"      DOUBLE       y     1.390  0.0100     1.390  0.0100
+APA       "C4'"       "C5'"      SINGLE       y     1.390  0.0100     1.390  0.0100
+APA       "C4'"           C      SINGLE       n     1.484  0.0100     1.484  0.0100
+APA       "C5'"       "C6'"      DOUBLE       y     1.384  0.0100     1.384  0.0100
+APA           C          N1      SINGLE       n     1.347  0.0152     1.347  0.0152
+APA           C          N2      DOUBLE       n     1.287  0.0200     1.287  0.0200
+APA          C2         H11      SINGLE       n     1.089  0.0100     0.983  0.0100
+APA          O2         H12      SINGLE       n     0.970  0.0120     0.848  0.0200
+APA          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0169
+APA          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0169
+APA       "C2'"       "H2'"      SINGLE       n     1.082  0.0130     0.943  0.0173
+APA       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.941  0.0168
+APA       "C5'"       "H5'"      SINGLE       n     1.082  0.0130     0.941  0.0168
+APA       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.943  0.0173
+APA          N1        HN11      SINGLE       n     1.016  0.0100     0.887  0.0200
+APA          N1        HN12      SINGLE       n     1.016  0.0100     0.887  0.0200
+APA          N2         HN2      SINGLE       n     1.016  0.0100     0.823  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+APA          O1          C1         OXT     125.666    1.50
+APA          O1          C1          C2     117.167    1.52
+APA         OXT          C1          C2     117.167    1.52
+APA          C1          C2          O2     111.343    1.72
+APA          C1          C2          C3     111.511    2.91
+APA          C1          C2         H11     108.330    1.50
+APA          O2          C2          C3     109.707    1.85
+APA          O2          C2         H11     108.492    1.50
+APA          C3          C2         H11     108.341    1.50
+APA          C2          O2         H12     110.443    1.50
+APA          C2          C3       "C1'"     113.450    1.50
+APA          C2          C3         H31     108.871    1.50
+APA          C2          C3         H32     108.871    1.50
+APA       "C1'"          C3         H31     108.813    1.50
+APA       "C1'"          C3         H32     108.813    1.50
+APA         H31          C3         H32     107.755    1.50
+APA          C3       "C1'"       "C2'"     121.126    1.50
+APA          C3       "C1'"       "C6'"     121.126    1.50
+APA       "C2'"       "C1'"       "C6'"     117.748    1.50
+APA       "C1'"       "C2'"       "C3'"     120.933    1.50
+APA       "C1'"       "C2'"       "H2'"     119.459    1.50
+APA       "C3'"       "C2'"       "H2'"     119.609    1.50
+APA       "C2'"       "C3'"       "C4'"     120.726    1.50
+APA       "C2'"       "C3'"       "H3'"     119.511    1.50
+APA       "C4'"       "C3'"       "H3'"     119.763    1.50
+APA       "C3'"       "C4'"       "C5'"     118.934    1.50
+APA       "C3'"       "C4'"           C     120.533    1.50
+APA       "C5'"       "C4'"           C     120.533    1.50
+APA       "C4'"       "C5'"       "C6'"     120.726    1.50
+APA       "C4'"       "C5'"       "H5'"     119.763    1.50
+APA       "C6'"       "C5'"       "H5'"     119.511    1.50
+APA       "C1'"       "C6'"       "C5'"     120.933    1.50
+APA       "C1'"       "C6'"       "H6'"     119.459    1.50
+APA       "C5'"       "C6'"       "H6'"     119.609    1.50
+APA       "C4'"           C          N1     117.501    1.50
+APA       "C4'"           C          N2     121.847    3.00
+APA          N1           C          N2     120.652    2.66
+APA           C          N1        HN11     119.893    1.50
+APA           C          N1        HN12     119.893    1.50
+APA        HN11          N1        HN12     120.214    2.70
+APA           C          N2         HN2     114.748    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+APA             sp2_sp3_1          O1          C1          C2          O2       0.000    10.0     6
+APA              const_17       "C4'"       "C5'"       "C6'"       "C1'"       0.000    10.0     2
+APA             sp2_sp2_7          N2           C          N1        HN11       0.000     5.0     2
+APA            sp2_sp2_10          N1           C          N2         HN2       0.000     5.0     2
+APA             sp3_sp3_1          C1          C2          O2         H12     180.000    10.0     3
+APA             sp3_sp3_4          C1          C2          C3       "C1'"     180.000    10.0     3
+APA             sp2_sp3_8       "C2'"       "C1'"          C3          C2     -90.000    10.0     6
+APA              const_23          C3       "C1'"       "C6'"       "C5'"     180.000    10.0     2
+APA       const_sp2_sp2_3          C3       "C1'"       "C2'"       "C3'"     180.000     5.0     2
+APA       const_sp2_sp2_5       "C1'"       "C2'"       "C3'"       "C4'"       0.000     5.0     2
+APA              const_10       "C2'"       "C3'"       "C4'"           C     180.000    10.0     2
+APA              const_15           C       "C4'"       "C5'"       "C6'"     180.000    10.0     2
+APA             sp2_sp2_1          N1           C       "C4'"       "C3'"     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+APA    chir_1    C2    O2    C1    C3    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+APA    plan-1           C   0.020
+APA    plan-1       "C1'"   0.020
+APA    plan-1       "C2'"   0.020
+APA    plan-1          C3   0.020
+APA    plan-1       "C3'"   0.020
+APA    plan-1       "C4'"   0.020
+APA    plan-1       "C5'"   0.020
+APA    plan-1       "C6'"   0.020
+APA    plan-1       "H2'"   0.020
+APA    plan-1       "H3'"   0.020
+APA    plan-1       "H5'"   0.020
+APA    plan-1       "H6'"   0.020
+APA    plan-2          C1   0.020
+APA    plan-2          C2   0.020
+APA    plan-2          O1   0.020
+APA    plan-2         OXT   0.020
+APA    plan-3           C   0.020
+APA    plan-3       "C4'"   0.020
+APA    plan-3          N1   0.020
+APA    plan-3          N2   0.020
+APA    plan-4           C   0.020
+APA    plan-4        HN11   0.020
+APA    plan-4        HN12   0.020
+APA    plan-4          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+APA           SMILES              ACDLabs 12.01                                                                         O=C(O)C(O)Cc1ccc(cc1)C(=[N@H])N
+APA SMILES_CANONICAL               CACTVS 3.370                                                                         NC(=N)c1ccc(C[C@H](O)C(O)=O)cc1
+APA           SMILES               CACTVS 3.370                                                                          NC(=N)c1ccc(C[CH](O)C(O)=O)cc1
+APA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                "[H]/N=C(/c1ccc(cc1)C[C@@H](C(=O)O)O)\N"
+APA           SMILES "OpenEye OEToolkits" 1.7.0                                                                             c1cc(ccc1CC(C(=O)O)O)C(=N)N
+APA            InChI                InChI  1.03 InChI=1S/C10H12N2O3/c11-9(12)7-3-1-6(2-4-7)5-8(13)10(14)15/h1-4,8,13H,5H2,(H3,11,12)(H,14,15)/t8-/m0/s1
+APA         InChIKey                InChI  1.03                                                                             FAFAPKBWTCDDJC-QMMMGPOBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+APA acedrg               243         "dictionary generator"                  
+APA acedrg_database      11          "data source"                           
+APA rdkit                2017.03.2   "Chemoinformatics tool"
+APA refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,169 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ET2     ET2      6-fluoro-1H-benzimidazol-2-amine     NON-POLYMER     17     11     .     
+#
+data_comp_ET2
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ET2     NAA     N       NH2     0       27.873      57.864      -27.808     
+ET2     FAB     F       F       0       23.662      61.998      -23.848     
+ET2     CAC     C       CR16    0       24.855      60.026      -23.315     
+ET2     CAD     C       CR16    0       25.696      58.997      -23.688     
+ET2     CAE     C       CR16    0       24.945      60.977      -25.547     
+ET2     NAF     N       NR5     0       26.426      59.601      -27.101     
+ET2     NAG     N       NRD5    0       27.016      58.039      -25.625     
+ET2     CAH     C       CR6     0       24.495      60.994      -24.247     
+ET2     CAI     C       CR5     0       27.137      58.465      -26.867     
+ET2     CAJ     C       CR56    0       25.792      59.940      -25.921     
+ET2     CAK     C       CR56    0       26.170      58.954      -25.004     
+ET2     HNAA    H       H       0       28.322      57.140      -27.610     
+ET2     HNAB    H       H       0       27.900      58.199      -28.615     
+ET2     HAC     H       H       0       24.527      60.072      -22.439     
+ET2     HAD     H       H       0       25.947      58.337      -23.069     
+ET2     HAE     H       H       0       24.691      61.640      -26.164     
+ET2     HNAF    H       H       0       26.397      60.017      -27.873     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ET2         NAA         CAI      SINGLE       n     1.338  0.0108     1.338  0.0108
+ET2         FAB         CAH      SINGLE       n     1.364  0.0100     1.364  0.0100
+ET2         CAC         CAD      DOUBLE       y     1.371  0.0115     1.371  0.0115
+ET2         CAC         CAH      SINGLE       y     1.388  0.0100     1.388  0.0100
+ET2         CAD         CAK      SINGLE       y     1.393  0.0100     1.393  0.0100
+ET2         CAE         CAH      DOUBLE       y     1.374  0.0107     1.374  0.0107
+ET2         CAE         CAJ      SINGLE       y     1.389  0.0100     1.389  0.0100
+ET2         NAF         CAI      SINGLE       y     1.359  0.0116     1.359  0.0116
+ET2         NAF         CAJ      SINGLE       y     1.382  0.0100     1.382  0.0100
+ET2         NAG         CAI      DOUBLE       y     1.318  0.0100     1.318  0.0100
+ET2         NAG         CAK      SINGLE       y     1.393  0.0100     1.393  0.0100
+ET2         CAJ         CAK      DOUBLE       y     1.397  0.0100     1.397  0.0100
+ET2         NAA        HNAA      SINGLE       n     1.016  0.0100     0.874  0.0194
+ET2         NAA        HNAB      SINGLE       n     1.016  0.0100     0.874  0.0194
+ET2         CAC         HAC      SINGLE       n     1.082  0.0130     0.937  0.0102
+ET2         CAD         HAD      SINGLE       n     1.082  0.0130     0.940  0.0191
+ET2         CAE         HAE      SINGLE       n     1.082  0.0130     0.941  0.0170
+ET2         NAF        HNAF      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ET2         CAI         NAA        HNAA     119.586    1.87
+ET2         CAI         NAA        HNAB     119.586    1.87
+ET2        HNAA         NAA        HNAB     120.828    2.45
+ET2         CAD         CAC         CAH     119.118    1.50
+ET2         CAD         CAC         HAC     120.497    1.50
+ET2         CAH         CAC         HAC     120.385    1.50
+ET2         CAC         CAD         CAK     117.762    1.50
+ET2         CAC         CAD         HAD     121.181    1.50
+ET2         CAK         CAD         HAD     121.058    1.50
+ET2         CAH         CAE         CAJ     118.628    1.50
+ET2         CAH         CAE         HAE     120.968    1.50
+ET2         CAJ         CAE         HAE     120.404    1.50
+ET2         CAI         NAF         CAJ     107.120    1.50
+ET2         CAI         NAF        HNAF     124.515    2.34
+ET2         CAJ         NAF        HNAF     128.365    2.11
+ET2         CAI         NAG         CAK     105.356    1.50
+ET2         FAB         CAH         CAC     118.027    1.50
+ET2         FAB         CAH         CAE     118.756    1.50
+ET2         CAC         CAH         CAE     123.217    1.50
+ET2         NAA         CAI         NAF     122.918    1.50
+ET2         NAA         CAI         NAG     124.702    1.50
+ET2         NAF         CAI         NAG     112.380    1.50
+ET2         CAE         CAJ         NAF     133.374    1.50
+ET2         CAE         CAJ         CAK     121.521    1.50
+ET2         NAF         CAJ         CAK     105.106    1.50
+ET2         CAD         CAK         NAG     130.205    1.50
+ET2         CAD         CAK         CAJ     119.756    1.50
+ET2         NAG         CAK         CAJ     110.039    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ET2             sp2_sp2_1         NAF         CAI         NAA        HNAA     180.000     5.0     2
+ET2       const_sp2_sp2_1         CAH         CAC         CAD         CAK       0.000     5.0     2
+ET2              const_30         CAD         CAC         CAH         FAB     180.000    10.0     2
+ET2       const_sp2_sp2_6         CAC         CAD         CAK         NAG     180.000     5.0     2
+ET2              const_18         CAJ         CAE         CAH         FAB     180.000    10.0     2
+ET2              const_14         CAH         CAE         CAJ         NAF     180.000    10.0     2
+ET2              const_23         NAA         CAI         NAF         CAJ     180.000    10.0     2
+ET2              const_35         CAE         CAJ         NAF         CAI     180.000    10.0     2
+ET2              const_28         CAD         CAK         NAG         CAI     180.000    10.0     2
+ET2              const_26         NAA         CAI         NAG         CAK     180.000    10.0     2
+ET2       const_sp2_sp2_9         CAE         CAJ         CAK         CAD       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ET2    plan-1         CAC   0.020
+ET2    plan-1         CAD   0.020
+ET2    plan-1         CAE   0.020
+ET2    plan-1         CAH   0.020
+ET2    plan-1         CAI   0.020
+ET2    plan-1         CAJ   0.020
+ET2    plan-1         CAK   0.020
+ET2    plan-1         FAB   0.020
+ET2    plan-1         HAC   0.020
+ET2    plan-1         HAD   0.020
+ET2    plan-1         HAE   0.020
+ET2    plan-1        HNAF   0.020
+ET2    plan-1         NAA   0.020
+ET2    plan-1         NAF   0.020
+ET2    plan-1         NAG   0.020
+ET2    plan-2         CAI   0.020
+ET2    plan-2        HNAA   0.020
+ET2    plan-2        HNAB   0.020
+ET2    plan-2         NAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ET2 SMILES_CANONICAL               CACTVS 3.352                                             Nc1[nH]c2cc(F)ccc2n1
+ET2           SMILES               CACTVS 3.352                                             Nc1[nH]c2cc(F)ccc2n1
+ET2 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                           c1cc2c(cc1F)[nH]c(n2)N
+ET2           SMILES "OpenEye OEToolkits" 1.7.0                                           c1cc2c(cc1F)[nH]c(n2)N
+ET2            InChI                InChI  1.03 InChI=1S/C7H6FN3/c8-4-1-2-5-6(3-4)11-7(9)10-5/h1-3H,(H3,9,10,11)
+ET2         InChIKey                InChI  1.03                                      MKYGXXIXMHTQFA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ET2 acedrg               243         "dictionary generator"                  
+ET2 acedrg_database      11          "data source"                           
+ET2 rdkit                2017.03.2   "Chemoinformatics tool"
+ET2 refmac5              5.8.0238    "optimization tool"                     

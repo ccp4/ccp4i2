@@ -1,0 +1,392 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+6JE     6JE      2-[(6S)-4-(4-chlorophenyl)-2,3,9-trimethyl-6H-thieno[3,2-f][1,2,4]triazolo[4,3-a][1,4]diazepin-6-yl]-N-(4-hydroxyphenyl)acetamide     NON-POLYMER     56     34     .     
+#
+data_comp_6JE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+6JE     C1      C       CH3     0       11.445      -3.538      1.668       
+6JE     N5      N       NRD5    0       13.621      -5.349      -0.617      
+6JE     N6      N       NRD5    0       13.392      -4.359      0.348       
+6JE     C7      C       CR5     0       12.127      -4.409      0.679       
+6JE     C8      C       CH3     0       7.071       -7.270      -1.843      
+6JE     C12     C       CH3     0       6.611       -6.939      1.296       
+6JE     S16     S       S2      0       9.166       -6.025      1.291       
+6JE     C17     C       CR5     0       7.821       -6.630      0.497       
+6JE     C18     C       CR5     0       8.066       -6.753      -0.850      
+6JE     CL      CL      CL      0       6.785       -4.377      -7.211      
+6JE     C20     C       CR16    0       9.201       -6.539      -4.888      
+6JE     C22     C       CR16    0       8.458       -6.096      -5.973      
+6JE     C24     C       CR6     0       7.721       -4.937      -5.854      
+6JE     C25     C       CR16    0       7.710       -4.213      -4.680      
+6JE     C27     C       CR16    0       8.458       -4.662      -3.599      
+6JE     C29     C       CR6     0       9.212       -5.829      -3.690      
+6JE     O30     O       O       0       13.157      -9.836      -3.008      
+6JE     O31     O       OH1     0       12.162      -11.754     -9.091      
+6JE     C33     C       CR16    0       12.025      -8.887      -6.814      
+6JE     C35     C       CR16    0       11.758      -9.716      -7.893      
+6JE     C37     C       CR6     0       12.424      -10.931     -8.023      
+6JE     C38     C       CR16    0       13.358      -11.305     -7.062      
+6JE     C40     C       CR16    0       13.624      -10.472     -5.986      
+6JE     C42     C       CR6     0       12.954      -9.259      -5.847      
+6JE     N43     N       NH1     0       13.212      -8.390      -4.759      
+6JE     C45     C       C       0       13.281      -8.696      -3.438      
+6JE     C46     C       CH2     0       13.508      -7.526      -2.504      
+6JE     C49     C       CH1     0       12.232      -7.089      -1.782      
+6JE     N51     N       N       0       11.219      -6.705      -2.779      
+6JE     C52     C       C       0       10.017      -6.316      -2.531      
+6JE     C53     C       CR5     0       9.425       -6.312      -1.174      
+6JE     C54     C       CR5     0       10.159      -5.857      -0.041      
+6JE     N55     N       NT      0       11.471      -5.413      -0.040      
+6JE     C56     C       CR5     0       12.480      -5.963      -0.825      
+6JE     H13     H       H       0       11.357      -4.009      2.512       
+6JE     H11     H       H       0       10.564      -3.298      1.339       
+6JE     H12     H       H       0       11.967      -2.730      1.804       
+6JE     H82     H       H       0       6.379       -7.775      -1.388      
+6JE     H83     H       H       0       7.516       -7.849      -2.483      
+6JE     H81     H       H       0       6.664       -6.526      -2.316      
+6JE     H122    H       H       0       6.850       -7.033      2.231       
+6JE     H123    H       H       0       6.217       -7.766      0.982       
+6JE     H121    H       H       0       5.968       -6.220      1.201       
+6JE     H20     H       H       0       9.704       -7.330      -4.968      
+6JE     H22     H       H       0       8.456       -6.580      -6.777      
+6JE     H25     H       H       0       7.205       -3.426      -4.613      
+6JE     H27     H       H       0       8.452       -4.167      -2.799      
+6JE     H31     H       H       0       12.216      -12.608     -9.000      
+6JE     H33     H       H       0       11.570      -8.066      -6.732      
+6JE     H35     H       H       0       11.124      -9.456      -8.539      
+6JE     H38     H       H       0       13.813      -12.126     -7.143      
+6JE     H40     H       H       0       14.256      -10.733     -5.338      
+6JE     H43     H       H       0       13.337      -7.553      -4.979      
+6JE     H461    H       H       0       13.871      -6.766      -3.008      
+6JE     H462    H       H       0       14.180      -7.784      -1.836      
+6JE     H49     H       H       0       11.893      -7.857      -1.261      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+6JE         O31         C37      SINGLE       n     1.374  0.0155     1.374  0.0155
+6JE         C35         C37      SINGLE       y     1.388  0.0102     1.388  0.0102
+6JE         C33         C35      DOUBLE       y     1.383  0.0100     1.383  0.0100
+6JE         C37         C38      DOUBLE       y     1.388  0.0102     1.388  0.0102
+6JE         C33         C42      SINGLE       y     1.388  0.0100     1.388  0.0100
+6JE         C38         C40      SINGLE       y     1.383  0.0100     1.383  0.0100
+6JE          CL         C24      SINGLE       n     1.741  0.0100     1.741  0.0100
+6JE         C22         C24      SINGLE       y     1.376  0.0100     1.376  0.0100
+6JE         C20         C22      DOUBLE       y     1.384  0.0100     1.384  0.0100
+6JE         C40         C42      DOUBLE       y     1.388  0.0100     1.388  0.0100
+6JE         C42         N43      SINGLE       n     1.414  0.0100     1.414  0.0100
+6JE         C24         C25      DOUBLE       y     1.376  0.0100     1.376  0.0100
+6JE         C20         C29      SINGLE       y     1.388  0.0100     1.388  0.0100
+6JE         N43         C45      SINGLE       n     1.350  0.0120     1.350  0.0120
+6JE         C25         C27      SINGLE       y     1.384  0.0100     1.384  0.0100
+6JE         O30         C45      DOUBLE       n     1.223  0.0143     1.223  0.0143
+6JE         C45         C46      SINGLE       n     1.510  0.0103     1.510  0.0103
+6JE         C27         C29      DOUBLE       y     1.388  0.0100     1.388  0.0100
+6JE         C29         C52      SINGLE       n     1.488  0.0108     1.488  0.0108
+6JE         N51         C52      DOUBLE       n     1.282  0.0114     1.282  0.0114
+6JE         C49         N51      SINGLE       n     1.465  0.0153     1.465  0.0153
+6JE         C46         C49      SINGLE       n     1.528  0.0112     1.528  0.0112
+6JE         C52         C53      SINGLE       n     1.471  0.0114     1.471  0.0114
+6JE         C49         C56      SINGLE       n     1.495  0.0100     1.495  0.0100
+6JE          C8         C18      SINGLE       n     1.496  0.0109     1.496  0.0109
+6JE         C18         C53      SINGLE       y     1.420  0.0200     1.420  0.0200
+6JE         C53         C54      DOUBLE       y     1.403  0.0200     1.403  0.0200
+6JE          N5         C56      DOUBLE       y     1.311  0.0100     1.311  0.0100
+6JE         N55         C56      SINGLE       y     1.396  0.0161     1.396  0.0161
+6JE         C17         C18      DOUBLE       y     1.362  0.0156     1.362  0.0156
+6JE          N5          N6      SINGLE       y     1.399  0.0100     1.399  0.0100
+6JE         C54         N55      SINGLE       n     1.370  0.0200     1.370  0.0200
+6JE          C7         N55      SINGLE       y     1.396  0.0161     1.396  0.0161
+6JE         S16         C54      SINGLE       y     1.695  0.0200     1.695  0.0200
+6JE          N6          C7      DOUBLE       y     1.307  0.0100     1.307  0.0100
+6JE         C12         C17      SINGLE       n     1.481  0.0100     1.481  0.0100
+6JE         S16         C17      SINGLE       y     1.695  0.0200     1.695  0.0200
+6JE          C1          C7      SINGLE       n     1.483  0.0100     1.483  0.0100
+6JE          C1         H13      SINGLE       n     1.089  0.0100     0.971  0.0200
+6JE          C1         H11      SINGLE       n     1.089  0.0100     0.971  0.0200
+6JE          C1         H12      SINGLE       n     1.089  0.0100     0.971  0.0200
+6JE          C8         H82      SINGLE       n     1.089  0.0100     0.971  0.0172
+6JE          C8         H83      SINGLE       n     1.089  0.0100     0.971  0.0172
+6JE          C8         H81      SINGLE       n     1.089  0.0100     0.971  0.0172
+6JE         C12        H122      SINGLE       n     1.089  0.0100     0.969  0.0144
+6JE         C12        H123      SINGLE       n     1.089  0.0100     0.969  0.0144
+6JE         C12        H121      SINGLE       n     1.089  0.0100     0.969  0.0144
+6JE         C20         H20      SINGLE       n     1.082  0.0130     0.941  0.0168
+6JE         C22         H22      SINGLE       n     1.082  0.0130     0.938  0.0140
+6JE         C25         H25      SINGLE       n     1.082  0.0130     0.938  0.0140
+6JE         C27         H27      SINGLE       n     1.082  0.0130     0.941  0.0168
+6JE         O31         H31      SINGLE       n     0.966  0.0059     0.861  0.0200
+6JE         C33         H33      SINGLE       n     1.082  0.0130     0.942  0.0170
+6JE         C35         H35      SINGLE       n     1.082  0.0130     0.942  0.0151
+6JE         C38         H38      SINGLE       n     1.082  0.0130     0.942  0.0151
+6JE         C40         H40      SINGLE       n     1.082  0.0130     0.942  0.0170
+6JE         N43         H43      SINGLE       n     1.016  0.0100     0.874  0.0200
+6JE         C46        H461      SINGLE       n     1.089  0.0100     0.982  0.0140
+6JE         C46        H462      SINGLE       n     1.089  0.0100     0.982  0.0140
+6JE         C49         H49      SINGLE       n     1.089  0.0100     0.988  0.0170
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+6JE          C7          C1         H13     109.621    1.50
+6JE          C7          C1         H11     109.621    1.50
+6JE          C7          C1         H12     109.621    1.50
+6JE         H13          C1         H11     109.308    2.38
+6JE         H13          C1         H12     109.308    2.38
+6JE         H11          C1         H12     109.308    2.38
+6JE         C56          N5          N6     107.540    1.50
+6JE          N5          N6          C7     107.540    1.50
+6JE         N55          C7          N6     111.839    1.94
+6JE         N55          C7          C1     121.862    1.62
+6JE          N6          C7          C1     126.298    1.50
+6JE         C18          C8         H82     109.729    1.50
+6JE         C18          C8         H83     109.729    1.50
+6JE         C18          C8         H81     109.729    1.50
+6JE         H82          C8         H83     109.190    1.68
+6JE         H82          C8         H81     109.190    1.68
+6JE         H83          C8         H81     109.190    1.68
+6JE         C17         C12        H122     109.576    1.50
+6JE         C17         C12        H123     109.576    1.50
+6JE         C17         C12        H121     109.576    1.50
+6JE        H122         C12        H123     109.334    1.50
+6JE        H122         C12        H121     109.334    1.50
+6JE        H123         C12        H121     109.334    1.50
+6JE         C54         S16         C17     108.208    3.00
+6JE         C18         C17         C12     131.880    3.00
+6JE         C18         C17         S16     108.208    3.00
+6JE         C12         C17         S16     119.912    3.00
+6JE          C8         C18         C53     125.027    1.50
+6JE          C8         C18         C17     127.594    2.46
+6JE         C53         C18         C17     107.379    1.50
+6JE         C22         C20         C29     120.725    1.50
+6JE         C22         C20         H20     119.450    1.50
+6JE         C29         C20         H20     119.823    1.50
+6JE         C24         C22         C20     119.107    1.50
+6JE         C24         C22         H22     120.415    1.50
+6JE         C20         C22         H22     120.471    1.50
+6JE          CL         C24         C22     119.340    1.50
+6JE          CL         C24         C25     119.340    1.50
+6JE         C22         C24         C25     121.321    1.50
+6JE         C24         C25         C27     119.107    1.50
+6JE         C24         C25         H25     120.415    1.50
+6JE         C27         C25         H25     120.471    1.50
+6JE         C25         C27         C29     120.725    1.50
+6JE         C25         C27         H27     119.450    1.50
+6JE         C29         C27         H27     119.823    1.50
+6JE         C20         C29         C27     119.037    1.50
+6JE         C20         C29         C52     120.482    1.50
+6JE         C27         C29         C52     120.482    1.50
+6JE         C37         O31         H31     120.000    3.00
+6JE         C35         C33         C42     120.458    1.50
+6JE         C35         C33         H33     119.780    1.50
+6JE         C42         C33         H33     119.762    1.50
+6JE         C37         C35         C33     120.145    1.50
+6JE         C37         C35         H35     119.934    1.50
+6JE         C33         C35         H35     119.921    1.50
+6JE         O31         C37         C35     120.235    3.00
+6JE         O31         C37         C38     120.235    3.00
+6JE         C35         C37         C38     119.530    1.50
+6JE         C37         C38         C40     120.145    1.50
+6JE         C37         C38         H38     119.934    1.50
+6JE         C40         C38         H38     119.921    1.50
+6JE         C38         C40         C42     120.458    1.50
+6JE         C38         C40         H40     119.780    1.50
+6JE         C42         C40         H40     119.762    1.50
+6JE         C33         C42         C40     119.264    1.50
+6JE         C33         C42         N43     120.368    3.00
+6JE         C40         C42         N43     120.368    3.00
+6JE         C42         N43         C45     127.481    1.50
+6JE         C42         N43         H43     115.919    1.69
+6JE         C45         N43         H43     116.600    1.57
+6JE         N43         C45         O30     123.018    1.50
+6JE         N43         C45         C46     114.736    1.50
+6JE         O30         C45         C46     122.246    1.50
+6JE         C45         C46         C49     112.416    1.61
+6JE         C45         C46        H461     108.894    1.50
+6JE         C45         C46        H462     108.894    1.50
+6JE         C49         C46        H461     109.171    1.50
+6JE         C49         C46        H462     109.171    1.50
+6JE        H461         C46        H462     107.705    1.50
+6JE         N51         C49         C46     109.508    2.50
+6JE         N51         C49         C56     111.244    1.50
+6JE         N51         C49         H49     109.364    1.50
+6JE         C46         C49         C56     110.747    2.16
+6JE         C46         C49         H49     108.806    1.50
+6JE         C56         C49         H49     108.146    1.50
+6JE         C52         N51         C49     119.132    2.76
+6JE         C29         C52         N51     120.369    3.00
+6JE         C29         C52         C53     118.478    1.50
+6JE         N51         C52         C53     121.153    3.00
+6JE         C52         C53         C18     124.832    1.59
+6JE         C52         C53         C54     127.171    3.00
+6JE         C18         C53         C54     107.997    2.27
+6JE         C53         C54         N55     126.677    3.00
+6JE         C53         C54         S16     108.208    3.00
+6JE         N55         C54         S16     125.115    3.00
+6JE         C56         N55         C54     129.963    3.00
+6JE         C56         N55          C7     108.641    1.96
+6JE         C54         N55          C7     129.963    3.00
+6JE         C49         C56          N5     123.341    3.00
+6JE         C49         C56         N55     123.341    1.62
+6JE          N5         C56         N55     113.318    1.94
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+6JE            sp2_sp3_28         N55          C7          C1         H13     150.000    10.0     6
+6JE              const_15         C29         C20         C22         C24       0.000    10.0     2
+6JE              const_72         C22         C20         C29         C52     180.000    10.0     2
+6JE              const_20         C20         C22         C24          CL     180.000    10.0     2
+6JE              const_25          CL         C24         C25         C27     180.000    10.0     2
+6JE              const_27         C24         C25         C27         C29       0.000    10.0     2
+6JE              const_32         C25         C27         C29         C52     180.000    10.0     2
+6JE            sp2_sp2_12         C20         C29         C52         N51       0.000     5.0     2
+6JE             sp2_sp2_1         C35         C37         O31         H31     180.000     5.0     2
+6JE              const_35         C42         C33         C35         C37       0.000    10.0     2
+6JE              const_68         C35         C33         C42         N43     180.000    10.0     2
+6JE              const_40         C33         C35         C37         O31     180.000    10.0     2
+6JE              const_75         C56          N5          N6          C7       0.000    10.0     2
+6JE              const_56         C49         C56          N5          N6     180.000    10.0     2
+6JE              const_45         O31         C37         C38         C40     180.000    10.0     2
+6JE              const_47         C37         C38         C40         C42       0.000    10.0     2
+6JE              const_52         C38         C40         C42         N43     180.000    10.0     2
+6JE             sp2_sp2_3         C33         C42         N43         C45     180.000     5.0     2
+6JE             sp2_sp2_9         O30         C45         N43         C42       0.000     5.0     2
+6JE             sp2_sp3_2         N43         C45         C46         C49     120.000    10.0     6
+6JE             sp3_sp3_1         C45         C46         C49         N51     180.000    10.0     3
+6JE             sp2_sp3_7         C52         N51         C49         C46       0.000    10.0     6
+6JE            sp2_sp3_10          N5         C56         C49         N51     150.000    10.0     6
+6JE            sp2_sp2_15         C29         C52         N51         C49     180.000     5.0     2
+6JE            sp2_sp2_19         N51         C52         C53         C18       0.000     5.0     2
+6JE              const_66          C1          C7          N6          N5     180.000    10.0     2
+6JE       const_sp2_sp2_6         C52         C53         C54         N55       0.000     5.0     2
+6JE            sp2_sp2_21         C53         C54         N55         C56     180.000     5.0     2
+6JE              const_60         C49         C56         N55         C54       0.000    10.0     2
+6JE              const_63          C1          C7         N55         C56     180.000    10.0     2
+6JE            sp2_sp3_16         C53         C18          C8         H82     150.000    10.0     6
+6JE            sp2_sp3_22         C18         C17         C12        H122     150.000    10.0     6
+6JE       const_sp2_sp2_1         C53         C54         S16         C17       0.000     5.0     2
+6JE              const_77         C12         C17         S16         C54     180.000    10.0     2
+6JE              const_14         C12         C17         C18          C8       0.000    10.0     2
+6JE              const_10          C8         C18         C53         C52       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+6JE    chir_1    C49    N51    C56    C46    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+6JE    plan-1         C20   0.020
+6JE    plan-1         C22   0.020
+6JE    plan-1         C24   0.020
+6JE    plan-1         C25   0.020
+6JE    plan-1         C27   0.020
+6JE    plan-1         C29   0.020
+6JE    plan-1         C52   0.020
+6JE    plan-1          CL   0.020
+6JE    plan-1         H20   0.020
+6JE    plan-1         H22   0.020
+6JE    plan-1         H25   0.020
+6JE    plan-1         H27   0.020
+6JE    plan-2         C33   0.020
+6JE    plan-2         C35   0.020
+6JE    plan-2         C37   0.020
+6JE    plan-2         C38   0.020
+6JE    plan-2         C40   0.020
+6JE    plan-2         C42   0.020
+6JE    plan-2         H33   0.020
+6JE    plan-2         H35   0.020
+6JE    plan-2         H38   0.020
+6JE    plan-2         H40   0.020
+6JE    plan-2         N43   0.020
+6JE    plan-2         O31   0.020
+6JE    plan-3          C1   0.020
+6JE    plan-3         C49   0.020
+6JE    plan-3         C54   0.020
+6JE    plan-3         C56   0.020
+6JE    plan-3          C7   0.020
+6JE    plan-3          N5   0.020
+6JE    plan-3         N55   0.020
+6JE    plan-3          N6   0.020
+6JE    plan-4         C12   0.020
+6JE    plan-4         C17   0.020
+6JE    plan-4         C18   0.020
+6JE    plan-4         C52   0.020
+6JE    plan-4         C53   0.020
+6JE    plan-4         C54   0.020
+6JE    plan-4          C8   0.020
+6JE    plan-4         N55   0.020
+6JE    plan-4         S16   0.020
+6JE    plan-5         C42   0.020
+6JE    plan-5         C45   0.020
+6JE    plan-5         H43   0.020
+6JE    plan-5         N43   0.020
+6JE    plan-6         C45   0.020
+6JE    plan-6         C46   0.020
+6JE    plan-6         N43   0.020
+6JE    plan-6         O30   0.020
+6JE    plan-7         C29   0.020
+6JE    plan-7         C52   0.020
+6JE    plan-7         C53   0.020
+6JE    plan-7         N51   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+6JE           SMILES              ACDLabs 12.01                                                                                                                    Cc4nnc5C(CC(=O)Nc1ccc(O)cc1)N=C(c2ccc(Cl)cc2)c3c(C)c(C)sc3n45
+6JE            InChI                InChI  1.03 InChI=1S/C25H22ClN5O2S/c1-13-14(2)34-25-22(13)23(16-4-6-17(26)7-5-16)28-20(24-30-29-15(3)31(24)25)12-21(33)27-18-8-10-19(32)11-9-18/h4-11,20,32H,12H2,1-3H3,(H,27,33)/t20-/m0/s1
+6JE         InChIKey                InChI  1.03                                                                                                                                                      GNMUEVRJHCWKTO-FQEVSTJZSA-N
+6JE SMILES_CANONICAL               CACTVS 3.385                                                                                                                  Cc1sc2n3c(C)nnc3[C@H](CC(=O)Nc4ccc(O)cc4)N=C(c5ccc(Cl)cc5)c2c1C
+6JE           SMILES               CACTVS 3.385                                                                                                                   Cc1sc2n3c(C)nnc3[CH](CC(=O)Nc4ccc(O)cc4)N=C(c5ccc(Cl)cc5)c2c1C
+6JE SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                                               Cc1c(sc-2c1C(=N[C@H](c3n2c(nn3)C)CC(=O)Nc4ccc(cc4)O)c5ccc(cc5)Cl)C
+6JE           SMILES "OpenEye OEToolkits" 2.0.4                                                                                                                   Cc1c(sc-2c1C(=NC(c3n2c(nn3)C)CC(=O)Nc4ccc(cc4)O)c5ccc(cc5)Cl)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+6JE acedrg               243         "dictionary generator"                  
+6JE acedrg_database      11          "data source"                           
+6JE rdkit                2017.03.2   "Chemoinformatics tool"
+6JE refmac5              5.8.0238    "optimization tool"                     

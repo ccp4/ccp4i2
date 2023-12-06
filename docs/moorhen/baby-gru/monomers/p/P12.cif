@@ -1,0 +1,343 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+P12     P12      4-[AMINO(IMINO)METHYL]-1-[2-(3-AMMONIOPROPOXY)-5-METHOXYBENZYL]PIPERAZIN-1-IUM     NON-POLYMER     53     23     .     
+#
+data_comp_P12
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+P12     C5      C       CR16    0       -9.369      2.196       -1.409      
+P12     C4      C       CR6     0       -10.700     2.588       -1.450      
+P12     C3      C       CR16    0       -11.491     2.426       -0.316      
+P12     C2      C       CR6     0       -10.978     1.880       0.862       
+P12     C1      C       CR6     0       -9.626      1.486       0.884       
+P12     C6      C       CR16    0       -8.834      1.651       -0.249      
+P12     OA      O       O2      0       -9.158      0.959       2.066       
+P12     CB      C       CH2     0       -7.856      0.364       2.157       
+P12     CG      C       CH2     0       -7.693      -0.191      3.546       
+P12     CD      C       CH2     0       -6.263      -0.567      3.874       
+P12     NE      N       NT3     1       -5.849      -1.816      3.191       
+P12     CG1     C       CH2     0       -13.994     0.729       2.975       
+P12     CD1     C       CH2     0       -13.413     0.389       4.324       
+P12     NE1     N       NR6     0       -12.351     -0.636      4.365       
+P12     CD2     C       CH2     0       -11.821     -1.180      3.097       
+P12     CG2     C       CH2     0       -12.473     -0.724      1.816       
+P12     NB      N       NT1     1       -12.961     0.684       1.900       
+P12     CA      C       CH2     0       -11.875     1.727       2.064       
+P12     CZ      C       C       0       -11.835     -1.059      5.578       
+P12     NH1     N       NH2     1       -12.287     -0.524      6.740       
+P12     NH2     N       NH2     0       -10.906     -1.990      5.633       
+P12     OA1     O       O2      0       -11.108     3.109       -2.658      
+P12     CB1     C       CH3     0       -12.409     3.678       -2.789      
+P12     H5      H       H       0       -8.825      2.300       -2.171      
+P12     H3      H       H       0       -12.398     2.687       -0.333      
+P12     H6      H       H       0       -7.929      1.392       -0.240      
+P12     HB1     H       H       0       -7.167      1.038       1.983       
+P12     HB2     H       H       0       -7.766      -0.352      1.496       
+P12     HG1     H       H       0       -8.263      -0.983      3.641       
+P12     HG2     H       H       0       -8.004      0.477       4.194       
+P12     HD1     H       H       0       -6.173      -0.688      4.838       
+P12     HD2     H       H       0       -5.666      0.156       3.603       
+P12     HE1     H       H       0       -5.019      -2.056      3.466       
+P12     HE2     H       H       0       -5.837      -1.688      2.293       
+P12     HE3     H       H       0       -6.431      -2.483      3.388       
+P12     HG11    H       H       0       -14.710     0.100       2.760       
+P12     HG12    H       H       0       -14.379     1.625       3.005       
+P12     HD11    H       H       0       -13.060     1.215       4.717       
+P12     HD12    H       H       0       -14.151     0.091       4.896       
+P12     HD21    H       H       0       -11.891     -2.157      3.129       
+P12     HD22    H       H       0       -10.866     -0.962      3.045       
+P12     HG21    H       H       0       -13.226     -1.310      1.611       
+P12     HG22    H       H       0       -11.832     -0.797      1.084       
+P12     HB      H       H       0       -13.397     0.877       1.091       
+P12     HA1     H       H       0       -12.308     2.595       2.236       
+P12     HA2     H       H       0       -11.333     1.510       2.856       
+P12     HH11    H       H       0       -11.970     -0.834      7.499       
+P12     HH12    H       H       0       -12.864     0.130       6.771       
+P12     HH21    H       H       0       -10.623     -2.256      6.424       
+P12     HH22    H       H       0       -10.541     -2.347      4.922       
+P12     HB11    H       H       0       -12.521     4.388       -2.135      
+P12     HB12    H       H       0       -13.079     2.991       -2.640      
+P12     HB3     H       H       0       -12.513     4.042       -3.683      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+P12          C5          C4      DOUBLE       y     1.386  0.0109     1.386  0.0109
+P12          C5          C6      SINGLE       y     1.387  0.0100     1.387  0.0100
+P12          C4          C3      SINGLE       y     1.386  0.0100     1.386  0.0100
+P12          C4         OA1      SINGLE       n     1.372  0.0100     1.372  0.0100
+P12          C3          C2      DOUBLE       y     1.391  0.0100     1.391  0.0100
+P12          C2          C1      SINGLE       y     1.398  0.0100     1.398  0.0100
+P12          C2          CA      SINGLE       n     1.503  0.0100     1.503  0.0100
+P12          C1          C6      DOUBLE       y     1.385  0.0100     1.385  0.0100
+P12          C1          OA      SINGLE       n     1.368  0.0107     1.368  0.0107
+P12          OA          CB      SINGLE       n     1.432  0.0101     1.432  0.0101
+P12          CB          CG      SINGLE       n     1.504  0.0100     1.504  0.0100
+P12          CG          CD      SINGLE       n     1.514  0.0100     1.514  0.0100
+P12          CD          NE      SINGLE       n     1.482  0.0123     1.482  0.0123
+P12         CG1         CD1      SINGLE       n     1.507  0.0100     1.507  0.0100
+P12         CG1          NB      SINGLE       n     1.498  0.0100     1.498  0.0100
+P12         CD1         NE1      SINGLE       n     1.461  0.0100     1.461  0.0100
+P12         NE1         CD2      SINGLE       n     1.461  0.0100     1.461  0.0100
+P12         NE1          CZ      SINGLE       n     1.333  0.0184     1.333  0.0184
+P12         CD2         CG2      SINGLE       n     1.507  0.0100     1.507  0.0100
+P12         CG2          NB      SINGLE       n     1.498  0.0100     1.498  0.0100
+P12          NB          CA      SINGLE       n     1.510  0.0100     1.510  0.0100
+P12          CZ         NH1      DOUBLE       n     1.329  0.0200     1.329  0.0200
+P12          CZ         NH2      SINGLE       n     1.310  0.0100     1.310  0.0100
+P12         OA1         CB1      SINGLE       n     1.424  0.0117     1.424  0.0117
+P12          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0174
+P12          C3          H3      SINGLE       n     1.082  0.0130     0.945  0.0164
+P12          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0200
+P12          CB         HB1      SINGLE       n     1.089  0.0100     0.979  0.0131
+P12          CB         HB2      SINGLE       n     1.089  0.0100     0.979  0.0131
+P12          CG         HG1      SINGLE       n     1.089  0.0100     0.981  0.0122
+P12          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0122
+P12          CD         HD1      SINGLE       n     1.089  0.0100     0.976  0.0165
+P12          CD         HD2      SINGLE       n     1.089  0.0100     0.976  0.0165
+P12          NE         HE1      SINGLE       n     1.036  0.0160     0.907  0.0200
+P12          NE         HE2      SINGLE       n     1.036  0.0160     0.907  0.0200
+P12          NE         HE3      SINGLE       n     1.036  0.0160     0.907  0.0200
+P12         CG1        HG11      SINGLE       n     1.089  0.0100     0.976  0.0100
+P12         CG1        HG12      SINGLE       n     1.089  0.0100     0.976  0.0100
+P12         CD1        HD11      SINGLE       n     1.089  0.0100     0.980  0.0181
+P12         CD1        HD12      SINGLE       n     1.089  0.0100     0.980  0.0181
+P12         CD2        HD21      SINGLE       n     1.089  0.0100     0.980  0.0181
+P12         CD2        HD22      SINGLE       n     1.089  0.0100     0.980  0.0181
+P12         CG2        HG21      SINGLE       n     1.089  0.0100     0.976  0.0100
+P12         CG2        HG22      SINGLE       n     1.089  0.0100     0.976  0.0100
+P12          NB          HB      SINGLE       n     1.036  0.0160     0.940  0.0200
+P12          CA         HA1      SINGLE       n     1.089  0.0100     0.985  0.0100
+P12          CA         HA2      SINGLE       n     1.089  0.0100     0.985  0.0100
+P12         NH1        HH11      SINGLE       n     1.016  0.0100     0.879  0.0200
+P12         NH1        HH12      SINGLE       n     1.016  0.0100     0.879  0.0200
+P12         NH2        HH21      SINGLE       n     1.016  0.0100     0.881  0.0200
+P12         NH2        HH22      SINGLE       n     1.016  0.0100     0.881  0.0200
+P12         CB1        HB11      SINGLE       n     1.089  0.0100     0.971  0.0157
+P12         CB1        HB12      SINGLE       n     1.089  0.0100     0.971  0.0157
+P12         CB1         HB3      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+P12          C4          C5          C6     120.161    1.50
+P12          C4          C5          H5     120.012    1.50
+P12          C6          C5          H5     119.826    1.50
+P12          C5          C4          C3     120.055    1.50
+P12          C5          C4         OA1     119.912    3.00
+P12          C3          C4         OA1     120.033    3.00
+P12          C4          C3          C2     120.829    1.50
+P12          C4          C3          H3     119.890    1.50
+P12          C2          C3          H3     119.281    1.50
+P12          C3          C2          C1     118.037    1.50
+P12          C3          C2          CA     121.315    1.50
+P12          C1          C2          CA     120.647    1.50
+P12          C2          C1          C6     120.729    1.50
+P12          C2          C1          OA     116.723    2.07
+P12          C6          C1          OA     122.548    1.50
+P12          C5          C6          C1     120.188    1.50
+P12          C5          C6          H6     119.814    1.50
+P12          C1          C6          H6     119.998    1.50
+P12          C1          OA          CB     118.290    1.50
+P12          OA          CB          CG     108.230    2.17
+P12          OA          CB         HB1     109.943    1.50
+P12          OA          CB         HB2     109.943    1.50
+P12          CG          CB         HB1     110.092    1.50
+P12          CG          CB         HB2     110.092    1.50
+P12         HB1          CB         HB2     108.474    1.50
+P12          CB          CG          CD     113.266    2.15
+P12          CB          CG         HG1     109.121    1.50
+P12          CB          CG         HG2     109.121    1.50
+P12          CD          CG         HG1     109.279    1.50
+P12          CD          CG         HG2     109.279    1.50
+P12         HG1          CG         HG2     107.717    1.50
+P12          CG          CD          NE     111.563    1.75
+P12          CG          CD         HD1     109.315    1.50
+P12          CG          CD         HD2     109.315    1.50
+P12          NE          CD         HD1     108.989    1.50
+P12          NE          CD         HD2     108.989    1.50
+P12         HD1          CD         HD2     108.067    1.50
+P12          CD          NE         HE1     109.775    1.81
+P12          CD          NE         HE2     109.775    1.81
+P12          CD          NE         HE3     109.775    1.81
+P12         HE1          NE         HE2     109.021    2.83
+P12         HE1          NE         HE3     109.021    2.83
+P12         HE2          NE         HE3     109.021    2.83
+P12         CD1         CG1          NB     110.441    1.50
+P12         CD1         CG1        HG11     109.649    1.50
+P12         CD1         CG1        HG12     109.649    1.50
+P12          NB         CG1        HG11     109.191    1.50
+P12          NB         CG1        HG12     109.191    1.50
+P12        HG11         CG1        HG12     108.272    1.50
+P12         CG1         CD1         NE1     109.996    1.50
+P12         CG1         CD1        HD11     109.426    1.50
+P12         CG1         CD1        HD12     109.426    1.50
+P12         NE1         CD1        HD11     109.590    1.50
+P12         NE1         CD1        HD12     109.590    1.50
+P12        HD11         CD1        HD12     108.187    1.50
+P12         CD1         NE1         CD2     113.277    1.50
+P12         CD1         NE1          CZ     123.361    1.50
+P12         CD2         NE1          CZ     123.361    1.50
+P12         NE1         CD2         CG2     109.996    1.50
+P12         NE1         CD2        HD21     109.590    1.50
+P12         NE1         CD2        HD22     109.590    1.50
+P12         CG2         CD2        HD21     109.426    1.50
+P12         CG2         CD2        HD22     109.426    1.50
+P12        HD21         CD2        HD22     108.187    1.50
+P12         CD2         CG2          NB     110.441    1.50
+P12         CD2         CG2        HG21     109.649    1.50
+P12         CD2         CG2        HG22     109.649    1.50
+P12          NB         CG2        HG21     109.191    1.50
+P12          NB         CG2        HG22     109.191    1.50
+P12        HG21         CG2        HG22     108.272    1.50
+P12         CG1          NB         CG2     109.903    1.50
+P12         CG1          NB          CA     111.669    1.84
+P12         CG1          NB          HB     107.701    2.35
+P12         CG2          NB          CA     111.669    1.84
+P12         CG2          NB          HB     107.701    2.35
+P12          CA          NB          HB     106.403    3.00
+P12          C2          CA          NB     113.810    1.50
+P12          C2          CA         HA1     108.796    1.50
+P12          C2          CA         HA2     108.796    1.50
+P12          NB          CA         HA1     108.774    1.50
+P12          NB          CA         HA2     108.774    1.50
+P12         HA1          CA         HA2     107.840    1.50
+P12         NE1          CZ         NH1     119.114    3.00
+P12         NE1          CZ         NH2     119.114    3.00
+P12         NH1          CZ         NH2     121.772    1.50
+P12          CZ         NH1        HH11     119.717    3.00
+P12          CZ         NH1        HH12     119.717    3.00
+P12        HH11         NH1        HH12     120.566    2.35
+P12          CZ         NH2        HH21     119.717    3.00
+P12          CZ         NH2        HH22     119.717    3.00
+P12        HH21         NH2        HH22     120.566    2.35
+P12          C4         OA1         CB1     117.529    1.50
+P12         OA1         CB1        HB11     109.428    1.50
+P12         OA1         CB1        HB12     109.428    1.50
+P12         OA1         CB1         HB3     109.428    1.50
+P12        HB11         CB1        HB12     109.509    1.50
+P12        HB11         CB1         HB3     109.509    1.50
+P12        HB12         CB1         HB3     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+P12       const_sp2_sp2_3         OA1          C4          C5          C6     180.000     5.0     2
+P12              const_21          C4          C5          C6          C1       0.000    10.0     2
+P12             sp3_sp3_1         NE1         CD1         CG1          NB      60.000    10.0     3
+P12            sp3_sp3_60         CD1         CG1          NB          CA      60.000    10.0     3
+P12             sp2_sp3_4          CZ         NE1         CD1         CG1     180.000    10.0     6
+P12            sp2_sp3_10          CZ         NE1         CD2         CG2     180.000    10.0     6
+P12             sp2_sp2_5         NH1          CZ         NE1         CD1     180.000     5.0     2
+P12            sp3_sp3_10         NE1         CD2         CG2          NB     -60.000    10.0     3
+P12            sp3_sp3_20         CD2         CG2          NB          CA     180.000    10.0     3
+P12            sp3_sp3_68          C2          CA          NB         CG1     -60.000    10.0     3
+P12            sp2_sp2_11         NH2          CZ         NH1        HH11       0.000     5.0     2
+P12            sp2_sp2_15         NH1          CZ         NH2        HH21       0.000     5.0     2
+P12       const_sp2_sp2_6          C2          C3          C4         OA1     180.000     5.0     2
+P12             sp2_sp2_1          C5          C4         OA1         CB1     180.000     5.0     2
+P12            sp3_sp3_77        HB11         CB1         OA1          C4     -60.000    10.0     3
+P12              const_11          CA          C2          C3          C4     180.000    10.0     2
+P12            sp2_sp3_14          C3          C2          CA          NB     -90.000    10.0     6
+P12              const_16          OA          C1          C2          CA       0.000    10.0     2
+P12              const_19          OA          C1          C6          C5     180.000    10.0     2
+P12             sp2_sp2_3          C2          C1          OA          CB     180.000     5.0     2
+P12            sp3_sp3_28          CG          CB          OA          C1     180.000    10.0     3
+P12            sp3_sp3_31          OA          CB          CG          CD     180.000    10.0     3
+P12            sp3_sp3_40          NE          CD          CG          CB     180.000    10.0     3
+P12            sp3_sp3_49          CG          CD          NE         HE1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+P12    chir_1    NB    CG1    CG2    CA    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+P12    plan-1          C1   0.020
+P12    plan-1          C2   0.020
+P12    plan-1          C3   0.020
+P12    plan-1          C4   0.020
+P12    plan-1          C5   0.020
+P12    plan-1          C6   0.020
+P12    plan-1          CA   0.020
+P12    plan-1          H3   0.020
+P12    plan-1          H5   0.020
+P12    plan-1          H6   0.020
+P12    plan-1          OA   0.020
+P12    plan-1         OA1   0.020
+P12    plan-2         CD1   0.020
+P12    plan-2         CD2   0.020
+P12    plan-2          CZ   0.020
+P12    plan-2         NE1   0.020
+P12    plan-3          CZ   0.020
+P12    plan-3         NE1   0.020
+P12    plan-3         NH1   0.020
+P12    plan-3         NH2   0.020
+P12    plan-4          CZ   0.020
+P12    plan-4        HH11   0.020
+P12    plan-4        HH12   0.020
+P12    plan-4         NH1   0.020
+P12    plan-5          CZ   0.020
+P12    plan-5        HH21   0.020
+P12    plan-5        HH22   0.020
+P12    plan-5         NH2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+P12           SMILES              ACDLabs 10.04                                                                                 "[N@H]=C(N)N2CC[NH+](Cc1cc(OC)ccc1OCCC[NH3+])CC2"
+P12 SMILES_CANONICAL               CACTVS 3.341                                                                                     COc1ccc(OCCC[NH3+])c(C[NH+]2CCN(CC2)C(N)=N)c1
+P12           SMILES               CACTVS 3.341                                                                                     COc1ccc(OCCC[NH3+])c(C[NH+]2CCN(CC2)C(N)=N)c1
+P12 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                               "[H]/N=C(\N)/N1CC[NH+](CC1)Cc2cc(ccc2OCCC[NH3+])OC"
+P12           SMILES "OpenEye OEToolkits" 1.5.0                                                                                  "[H]N=C(N)N1CC[NH+](CC1)Cc2cc(ccc2OCCC[NH3+])OC"
+P12            InChI                InChI  1.03 InChI=1S/C16H27N5O2/c1-22-14-3-4-15(23-10-2-5-17)13(11-14)12-20-6-8-21(9-7-20)16(18)19/h3-4,11H,2,5-10,12,17H2,1H3,(H3,18,19)/p+2
+P12         InChIKey                InChI  1.03                                                                                                       XWWAFELYNPUCDX-UHFFFAOYSA-P
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+P12 acedrg               243         "dictionary generator"                  
+P12 acedrg_database      11          "data source"                           
+P12 rdkit                2017.03.2   "Chemoinformatics tool"
+P12 refmac5              5.8.0238    "optimization tool"                     

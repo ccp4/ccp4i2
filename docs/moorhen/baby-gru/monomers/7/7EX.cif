@@ -1,0 +1,161 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+7EX     7EX      (1R,6S)-7-oxabicyclo[4.1.0]heptane     NON-POLYMER     17     7     .     
+#
+data_comp_7EX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+7EX     C1      C       CH1     0       -13.584     14.133      -18.521     
+7EX     C2      C       CH2     0       -14.309     13.621      -17.322     
+7EX     C3      C       CH2     0       -15.590     12.854      -17.659     
+7EX     C4      C       CH2     0       -15.620     12.090      -18.947     
+7EX     C5      C       CH2     0       -14.361     12.088      -19.820     
+7EX     C6      C       CH1     0       -13.600     13.367      -19.765     
+7EX     O       O       O2      0       -12.421     13.380      -18.932     
+7EX     H1      H       H       0       -13.501     15.107      -18.592     
+7EX     H2      H       H       0       -13.705     13.028      -16.819     
+7EX     H3      H       H       0       -14.535     14.382      -16.741     
+7EX     H4      H       H       0       -16.331     13.491      -17.671     
+7EX     H5      H       H       0       -15.768     12.225      -16.933     
+7EX     H6      H       H       0       -16.357     12.441      -19.484     
+7EX     H7      H       H       0       -15.842     11.162      -18.737     
+7EX     H8      H       H       0       -14.619     11.913      -20.753     
+7EX     H9      H       H       0       -13.771     11.356      -19.529     
+7EX     H10     H       H       0       -13.530     13.867      -20.605     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+7EX          C5          C6      SINGLE       n     1.490  0.0137     1.490  0.0137
+7EX          C6           O      SINGLE       n     1.445  0.0137     1.445  0.0137
+7EX          C1          C6      SINGLE       n     1.465  0.0132     1.465  0.0132
+7EX          C4          C5      SINGLE       n     1.518  0.0173     1.518  0.0173
+7EX          C1           O      SINGLE       n     1.445  0.0137     1.445  0.0137
+7EX          C3          C4      SINGLE       n     1.472  0.0200     1.472  0.0200
+7EX          C1          C2      SINGLE       n     1.490  0.0137     1.490  0.0137
+7EX          C2          C3      SINGLE       n     1.518  0.0173     1.518  0.0173
+7EX          C1          H1      SINGLE       n     1.089  0.0100     0.980  0.0180
+7EX          C2          H2      SINGLE       n     1.089  0.0100     0.984  0.0101
+7EX          C2          H3      SINGLE       n     1.089  0.0100     0.984  0.0101
+7EX          C3          H4      SINGLE       n     1.089  0.0100     0.977  0.0100
+7EX          C3          H5      SINGLE       n     1.089  0.0100     0.977  0.0100
+7EX          C4          H6      SINGLE       n     1.089  0.0100     0.977  0.0100
+7EX          C4          H7      SINGLE       n     1.089  0.0100     0.977  0.0100
+7EX          C5          H8      SINGLE       n     1.089  0.0100     0.984  0.0101
+7EX          C5          H9      SINGLE       n     1.089  0.0100     0.984  0.0101
+7EX          C6         H10      SINGLE       n     1.089  0.0100     0.980  0.0180
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+7EX          C6          C1           O      59.608    1.50
+7EX          C6          C1          C2     121.226    1.60
+7EX          C6          C1          H1     117.112    1.72
+7EX           O          C1          C2     116.074    1.50
+7EX           O          C1          H1     115.237    1.74
+7EX          C2          C1          H1     115.822    1.50
+7EX          C1          C2          C3     113.004    1.50
+7EX          C1          C2          H2     108.869    1.50
+7EX          C1          C2          H3     108.869    1.50
+7EX          C3          C2          H2     109.140    1.50
+7EX          C3          C2          H3     109.140    1.50
+7EX          H2          C2          H3     107.919    1.50
+7EX          C4          C3          C2     112.644    3.00
+7EX          C4          C3          H4     108.920    1.50
+7EX          C4          C3          H5     108.920    1.50
+7EX          C2          C3          H4     109.162    1.50
+7EX          C2          C3          H5     109.162    1.50
+7EX          H4          C3          H5     107.892    1.50
+7EX          C5          C4          C3     112.644    3.00
+7EX          C5          C4          H6     109.162    1.50
+7EX          C5          C4          H7     109.162    1.50
+7EX          C3          C4          H6     108.920    1.50
+7EX          C3          C4          H7     108.920    1.50
+7EX          H6          C4          H7     107.892    1.50
+7EX          C6          C5          C4     113.004    1.50
+7EX          C6          C5          H8     108.869    1.50
+7EX          C6          C5          H9     108.869    1.50
+7EX          C4          C5          H8     109.140    1.50
+7EX          C4          C5          H9     109.140    1.50
+7EX          H8          C5          H9     107.919    1.50
+7EX          C5          C6           O     116.074    1.50
+7EX          C5          C6          C1     121.226    1.60
+7EX          C5          C6         H10     115.822    1.50
+7EX           O          C6          C1      59.608    1.50
+7EX           O          C6         H10     115.237    1.74
+7EX          C1          C6         H10     117.112    1.72
+7EX          C6           O          C1      60.785    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+7EX            sp3_sp3_52          C6          C1          C2          C3     180.000    10.0     3
+7EX             sp3_sp3_4           O          C1          C6          C5     -60.000    10.0     3
+7EX            sp3_sp3_38          C1          C2          C3          H4     180.000    10.0     3
+7EX            sp3_sp3_29          C2          C3          C4          H6      60.000    10.0     3
+7EX            sp3_sp3_20          C3          C4          C5          H8     180.000    10.0     3
+7EX            sp3_sp3_12          C4          C5          C6         H10     180.000    10.0     3
+7EX            sp3_sp3_48         H10          C6           O          C1      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+7EX    chir_1    C1    O    C6    C2    negative
+7EX    chir_2    C6    O    C1    C5    positive
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+7EX           SMILES              ACDLabs 12.01                                           C12CCCCC1O2
+7EX            InChI                InChI  1.03 InChI=1S/C6H10O/c1-2-4-6-5(3-1)7-6/h5-6H,1-4H2/t5-,6+
+7EX         InChIKey                InChI  1.03                           ZWAJLVLEBYIOTI-OLQVQODUSA-N
+7EX SMILES_CANONICAL               CACTVS 3.385                                 C1CC[C@@H]2O[C@@H]2C1
+7EX           SMILES               CACTVS 3.385                                     C1CC[CH]2O[CH]2C1
+7EX SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                C1CC[C@H]2[C@@H](C1)O2
+7EX           SMILES "OpenEye OEToolkits" 2.0.6                                         C1CCC2C(C1)O2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+7EX acedrg               243         "dictionary generator"                  
+7EX acedrg_database      11          "data source"                           
+7EX rdkit                2017.03.2   "Chemoinformatics tool"
+7EX refmac5              5.8.0238    "optimization tool"                     

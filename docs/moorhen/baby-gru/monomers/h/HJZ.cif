@@ -1,0 +1,349 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HJZ     HJZ      "3-[2-(trans-4-methylcyclohexyl)phenyl]-5-phenylthiophene-2-carboxylic acid"     NON-POLYMER     50     27     .     
+#
+data_comp_HJZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HJZ     S1      S       S2      0       120.553     73.737      31.402      
+HJZ     C2      C       CR5     0       119.011     73.565      32.043      
+HJZ     C3      C       CR15    0       119.117     72.974      33.315      
+HJZ     C4      C       CR5     0       120.487     72.723      33.657      
+HJZ     C5      C       CR5     0       121.426     73.096      32.680      
+HJZ     C6      C       CR6     0       117.799     73.969      31.319      
+HJZ     C7      C       C       0       122.900     73.027      32.603      
+HJZ     C8      C       CR6     0       120.813     72.097      34.955      
+HJZ     O9      O       O       0       123.463     73.441      31.603      
+HJZ     O10     O       OC      -1      123.513     72.558      33.545      
+HJZ     C11     C       CR6     0       120.669     70.707      35.156      
+HJZ     C12     C       CR16    0       121.443     70.993      37.438      
+HJZ     C13     C       CR16    0       121.585     72.349      37.234      
+HJZ     C14     C       CR16    0       120.986     70.179      36.411      
+HJZ     C15     C       CR16    0       121.272     72.898      36.001      
+HJZ     C16     C       CR16    0       116.593     73.307      31.557      
+HJZ     C17     C       CR16    0       115.468     74.708      29.967      
+HJZ     C18     C       CR16    0       116.652     75.374      29.721      
+HJZ     C19     C       CR16    0       115.439     73.677      30.884      
+HJZ     C20     C       CR16    0       117.812     75.013      30.389      
+HJZ     C21     C       CH1     0       120.170     69.757      34.077      
+HJZ     C22     C       CH2     0       121.143     68.618      33.772      
+HJZ     C23     C       CH2     0       120.633     67.737      32.630      
+HJZ     C24     C       CH1     0       119.245     67.164      32.918      
+HJZ     C25     C       CH2     0       118.277     68.300      33.252      
+HJZ     C26     C       CH2     0       118.790     69.183      34.392      
+HJZ     C27     C       CH3     0       118.734     66.288      31.779      
+HJZ     H3      H       H       0       118.393     72.766      33.879      
+HJZ     H12     H       H       0       121.656     70.616      38.277      
+HJZ     H13     H       H       0       121.894     72.903      37.931      
+HJZ     H14     H       H       0       120.892     69.251      36.561      
+HJZ     H15     H       H       0       121.369     73.826      35.864      
+HJZ     H16     H       H       0       116.562     72.602      32.179      
+HJZ     H17     H       H       0       114.680     74.958      29.510      
+HJZ     H18     H       H       0       116.673     76.079      29.096      
+HJZ     H19     H       H       0       114.632     73.220      31.054      
+HJZ     H20     H       H       0       118.610     75.477      30.213      
+HJZ     H21     H       H       0       120.076     70.274      33.237      
+HJZ     H22     H       H       0       122.021     68.991      33.535      
+HJZ     H22A    H       H       0       121.257     68.056      34.570      
+HJZ     H23     H       H       0       121.265     67.004      32.490      
+HJZ     H23A    H       H       0       120.601     68.270      31.810      
+HJZ     H24     H       H       0       119.321     66.591      33.724      
+HJZ     H25     H       H       0       117.412     67.924      33.510      
+HJZ     H25A    H       H       0       118.142     68.856      32.459      
+HJZ     H26     H       H       0       118.157     69.919      34.543      
+HJZ     H26A    H       H       0       118.839     68.651      35.217      
+HJZ     H27     H       H       0       117.874     66.616      31.470      
+HJZ     H27A    H       H       0       118.634     65.375      32.093      
+HJZ     H27B    H       H       0       119.366     66.304      31.041      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HJZ          S1          C2      SINGLE       y     1.695  0.0200     1.695  0.0200
+HJZ          S1          C5      SINGLE       y     1.695  0.0200     1.695  0.0200
+HJZ          C2          C6      SINGLE       n     1.464  0.0100     1.464  0.0100
+HJZ          C2          C3      DOUBLE       y     1.392  0.0200     1.392  0.0200
+HJZ          C3          C4      SINGLE       y     1.404  0.0198     1.404  0.0198
+HJZ          C4          C5      DOUBLE       y     1.389  0.0200     1.389  0.0200
+HJZ          C4          C8      SINGLE       n     1.475  0.0100     1.475  0.0100
+HJZ          C5          C7      SINGLE       n     1.463  0.0200     1.463  0.0200
+HJZ          C6         C20      SINGLE       y     1.392  0.0100     1.392  0.0100
+HJZ          C6         C16      DOUBLE       y     1.392  0.0100     1.392  0.0100
+HJZ          C7          O9      DOUBLE       n     1.217  0.0200     1.217  0.0200
+HJZ          C7         O10      SINGLE       n     1.217  0.0200     1.217  0.0200
+HJZ          C8         C11      DOUBLE       y     1.402  0.0100     1.402  0.0100
+HJZ          C8         C15      SINGLE       y     1.391  0.0100     1.391  0.0100
+HJZ         C11         C21      SINGLE       n     1.515  0.0100     1.515  0.0100
+HJZ         C11         C14      SINGLE       y     1.392  0.0100     1.392  0.0100
+HJZ         C12         C14      DOUBLE       y     1.385  0.0100     1.385  0.0100
+HJZ         C12         C13      SINGLE       y     1.376  0.0124     1.376  0.0124
+HJZ         C13         C15      DOUBLE       y     1.383  0.0100     1.383  0.0100
+HJZ         C16         C19      SINGLE       y     1.383  0.0100     1.383  0.0100
+HJZ         C17         C18      SINGLE       y     1.376  0.0124     1.376  0.0124
+HJZ         C17         C19      DOUBLE       y     1.376  0.0124     1.376  0.0124
+HJZ         C18         C20      DOUBLE       y     1.383  0.0100     1.383  0.0100
+HJZ         C21         C22      SINGLE       n     1.527  0.0100     1.527  0.0100
+HJZ         C21         C26      SINGLE       n     1.527  0.0100     1.527  0.0100
+HJZ         C22         C23      SINGLE       n     1.528  0.0115     1.528  0.0115
+HJZ         C23         C24      SINGLE       n     1.527  0.0100     1.527  0.0100
+HJZ         C24         C27      SINGLE       n     1.523  0.0100     1.523  0.0100
+HJZ         C24         C25      SINGLE       n     1.527  0.0100     1.527  0.0100
+HJZ         C25         C26      SINGLE       n     1.528  0.0115     1.528  0.0115
+HJZ          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0169
+HJZ         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0175
+HJZ         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0180
+HJZ         C14         H14      SINGLE       n     1.082  0.0130     0.945  0.0200
+HJZ         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0139
+HJZ         C16         H16      SINGLE       n     1.082  0.0130     0.941  0.0147
+HJZ         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0161
+HJZ         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0180
+HJZ         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0180
+HJZ         C20         H20      SINGLE       n     1.082  0.0130     0.941  0.0147
+HJZ         C21         H21      SINGLE       n     1.089  0.0100     0.993  0.0119
+HJZ         C22         H22      SINGLE       n     1.089  0.0100     0.983  0.0134
+HJZ         C22        H22A      SINGLE       n     1.089  0.0100     0.983  0.0134
+HJZ         C23         H23      SINGLE       n     1.089  0.0100     0.978  0.0143
+HJZ         C23        H23A      SINGLE       n     1.089  0.0100     0.978  0.0143
+HJZ         C24         H24      SINGLE       n     1.089  0.0100     0.992  0.0200
+HJZ         C25         H25      SINGLE       n     1.089  0.0100     0.978  0.0143
+HJZ         C25        H25A      SINGLE       n     1.089  0.0100     0.978  0.0143
+HJZ         C26         H26      SINGLE       n     1.089  0.0100     0.983  0.0134
+HJZ         C26        H26A      SINGLE       n     1.089  0.0100     0.983  0.0134
+HJZ         C27         H27      SINGLE       n     1.089  0.0100     0.971  0.0171
+HJZ         C27        H27A      SINGLE       n     1.089  0.0100     0.971  0.0171
+HJZ         C27        H27B      SINGLE       n     1.089  0.0100     0.971  0.0171
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HJZ          C2          S1          C5     108.149    3.00
+HJZ          S1          C2          C6     120.668    3.00
+HJZ          S1          C2          C3     108.149    3.00
+HJZ          C6          C2          C3     131.183    2.36
+HJZ          C2          C3          C4     107.617    1.50
+HJZ          C2          C3          H3     126.993    1.50
+HJZ          C4          C3          H3     125.390    1.50
+HJZ          C3          C4          C5     107.937    2.27
+HJZ          C3          C4          C8     125.098    2.59
+HJZ          C5          C4          C8     126.964    2.89
+HJZ          S1          C5          C4     108.149    3.00
+HJZ          S1          C5          C7     119.135    3.00
+HJZ          C4          C5          C7     132.716    2.44
+HJZ          C2          C6         C20     120.598    1.61
+HJZ          C2          C6         C16     120.598    1.61
+HJZ         C20          C6         C16     118.804    1.50
+HJZ          C5          C7          O9     118.485    3.00
+HJZ          C5          C7         O10     118.485    3.00
+HJZ          O9          C7         O10     123.030    1.50
+HJZ          C4          C8         C11     120.141    1.50
+HJZ          C4          C8         C15     120.295    1.50
+HJZ         C11          C8         C15     119.564    1.61
+HJZ          C8         C11         C21     121.666    1.50
+HJZ          C8         C11         C14     118.835    1.50
+HJZ         C21         C11         C14     119.498    1.53
+HJZ         C14         C12         C13     120.063    1.50
+HJZ         C14         C12         H12     119.882    1.50
+HJZ         C13         C12         H12     120.055    1.50
+HJZ         C12         C13         C15     120.128    1.50
+HJZ         C12         C13         H13     120.037    1.50
+HJZ         C15         C13         H13     119.835    1.50
+HJZ         C11         C14         C12     120.529    1.50
+HJZ         C11         C14         H14     119.605    1.50
+HJZ         C12         C14         H14     119.865    1.50
+HJZ          C8         C15         C13     120.881    1.50
+HJZ          C8         C15         H15     119.296    1.50
+HJZ         C13         C15         H15     119.824    1.50
+HJZ          C6         C16         C19     120.458    1.50
+HJZ          C6         C16         H16     119.725    1.50
+HJZ         C19         C16         H16     119.816    1.50
+HJZ         C18         C17         C19     119.797    1.50
+HJZ         C18         C17         H17     120.102    1.50
+HJZ         C19         C17         H17     120.102    1.50
+HJZ         C17         C18         C20     120.241    1.50
+HJZ         C17         C18         H18     119.980    1.50
+HJZ         C20         C18         H18     119.779    1.50
+HJZ         C16         C19         C17     120.241    1.50
+HJZ         C16         C19         H19     119.779    1.50
+HJZ         C17         C19         H19     119.980    1.50
+HJZ          C6         C20         C18     120.458    1.50
+HJZ          C6         C20         H20     119.725    1.50
+HJZ         C18         C20         H20     119.816    1.50
+HJZ         C11         C21         C22     112.720    1.58
+HJZ         C11         C21         C26     112.720    1.58
+HJZ         C11         C21         H21     107.017    1.50
+HJZ         C22         C21         C26     109.778    1.50
+HJZ         C22         C21         H21     107.231    1.50
+HJZ         C26         C21         H21     107.231    1.50
+HJZ         C21         C22         C23     111.594    1.50
+HJZ         C21         C22         H22     109.319    1.50
+HJZ         C21         C22        H22A     109.319    1.50
+HJZ         C23         C22         H22     109.069    3.00
+HJZ         C23         C22        H22A     109.069    3.00
+HJZ         H22         C22        H22A     107.916    1.50
+HJZ         C22         C23         C24     111.949    1.50
+HJZ         C22         C23         H23     108.675    1.50
+HJZ         C22         C23        H23A     108.675    1.50
+HJZ         C24         C23         H23     109.212    1.50
+HJZ         C24         C23        H23A     109.212    1.50
+HJZ         H23         C23        H23A     107.919    1.50
+HJZ         C23         C24         C27     112.134    1.50
+HJZ         C23         C24         C25     109.736    1.50
+HJZ         C23         C24         H24     107.936    1.50
+HJZ         C27         C24         C25     112.134    1.50
+HJZ         C27         C24         H24     108.049    1.50
+HJZ         C25         C24         H24     107.936    1.50
+HJZ         C24         C25         C26     111.949    1.50
+HJZ         C24         C25         H25     109.212    1.50
+HJZ         C24         C25        H25A     109.212    1.50
+HJZ         C26         C25         H25     108.675    1.50
+HJZ         C26         C25        H25A     108.675    1.50
+HJZ         H25         C25        H25A     107.919    1.50
+HJZ         C21         C26         C25     111.594    1.50
+HJZ         C21         C26         H26     109.319    1.50
+HJZ         C21         C26        H26A     109.319    1.50
+HJZ         C25         C26         H26     109.069    3.00
+HJZ         C25         C26        H26A     109.069    3.00
+HJZ         H26         C26        H26A     107.916    1.50
+HJZ         C24         C27         H27     109.597    1.50
+HJZ         C24         C27        H27A     109.597    1.50
+HJZ         C24         C27        H27B     109.597    1.50
+HJZ         H27         C27        H27A     109.342    1.50
+HJZ         H27         C27        H27B     109.342    1.50
+HJZ        H27A         C27        H27B     109.342    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HJZ              const_42          C6          C2          S1          C5     180.000    10.0     2
+HJZ              const_56          C7          C5          S1          C2     180.000    10.0     2
+HJZ       const_sp2_sp2_5          C8         C11         C14         C12       0.000     5.0     2
+HJZ             sp2_sp3_2          C8         C11         C21         C22     -90.000    10.0     6
+HJZ              const_13         C14         C12         C13         C15       0.000    10.0     2
+HJZ       const_sp2_sp2_9         C13         C12         C14         C11       0.000     5.0     2
+HJZ              const_17         C12         C13         C15          C8       0.000    10.0     2
+HJZ              const_37          C6         C16         C19         C17       0.000    10.0     2
+HJZ              const_29         C19         C17         C18         C20       0.000    10.0     2
+HJZ              const_33         C18         C17         C19         C16       0.000    10.0     2
+HJZ              const_25         C17         C18         C20          C6       0.000    10.0     2
+HJZ              const_43          S1          C2          C3          C4       0.000    10.0     2
+HJZ             sp2_sp2_3          S1          C2          C6         C20       0.000     5.0     2
+HJZ             sp3_sp3_7         C11         C21         C22         C23     180.000    10.0     3
+HJZ            sp3_sp3_49         C11         C21         C26         C25      60.000    10.0     3
+HJZ            sp3_sp3_10         C21         C22         C23         C24     -60.000    10.0     3
+HJZ            sp3_sp3_21         C22         C23         C24         C27     -60.000    10.0     3
+HJZ            sp3_sp3_31         C27         C24         C25         C26     180.000    10.0     3
+HJZ            sp3_sp3_58         C23         C24         C27         H27      60.000    10.0     3
+HJZ            sp3_sp3_37         C24         C25         C26         C21      60.000    10.0     3
+HJZ              const_47          C2          C3          C4          C5       0.000    10.0     2
+HJZ              const_52          C3          C4          C5          C7     180.000    10.0     2
+HJZ             sp2_sp2_5          C3          C4          C8         C11     180.000     5.0     2
+HJZ            sp2_sp2_11          S1          C5          C7          O9       0.000     5.0     2
+HJZ              const_58         C19         C16          C6          C2     180.000    10.0     2
+HJZ              const_22         C18         C20          C6          C2     180.000    10.0     2
+HJZ       const_sp2_sp2_4         C21         C11          C8          C4       0.000     5.0     2
+HJZ              const_62         C13         C15          C8          C4     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HJZ    chir_1    C21    C11    C22    C26    both
+HJZ    chir_2    C24    C23    C25    C27    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HJZ    plan-1          C2   0.020
+HJZ    plan-1          C3   0.020
+HJZ    plan-1          C4   0.020
+HJZ    plan-1          C5   0.020
+HJZ    plan-1          C6   0.020
+HJZ    plan-1          C7   0.020
+HJZ    plan-1          C8   0.020
+HJZ    plan-1          H3   0.020
+HJZ    plan-1          S1   0.020
+HJZ    plan-2         C11   0.020
+HJZ    plan-2         C12   0.020
+HJZ    plan-2         C13   0.020
+HJZ    plan-2         C14   0.020
+HJZ    plan-2         C15   0.020
+HJZ    plan-2         C21   0.020
+HJZ    plan-2          C4   0.020
+HJZ    plan-2          C8   0.020
+HJZ    plan-2         H12   0.020
+HJZ    plan-2         H13   0.020
+HJZ    plan-2         H14   0.020
+HJZ    plan-2         H15   0.020
+HJZ    plan-3         C16   0.020
+HJZ    plan-3         C17   0.020
+HJZ    plan-3         C18   0.020
+HJZ    plan-3         C19   0.020
+HJZ    plan-3          C2   0.020
+HJZ    plan-3         C20   0.020
+HJZ    plan-3          C6   0.020
+HJZ    plan-3         H16   0.020
+HJZ    plan-3         H17   0.020
+HJZ    plan-3         H18   0.020
+HJZ    plan-3         H19   0.020
+HJZ    plan-3         H20   0.020
+HJZ    plan-4          C5   0.020
+HJZ    plan-4          C7   0.020
+HJZ    plan-4         O10   0.020
+HJZ    plan-4          O9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HJZ           SMILES              ACDLabs 12.01                                                                                                        O=C(O)c3sc(cc3c1c(cccc1)C2CCC(C)CC2)c4ccccc4
+HJZ SMILES_CANONICAL               CACTVS 3.370                                                                                                 C[C@H]1CC[C@@H](CC1)c2ccccc2c3cc(sc3C(O)=O)c4ccccc4
+HJZ           SMILES               CACTVS 3.370                                                                                                    C[CH]1CC[CH](CC1)c2ccccc2c3cc(sc3C(O)=O)c4ccccc4
+HJZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                          CC1CCC(CC1)c2ccccc2c3cc(sc3C(=O)O)c4ccccc4
+HJZ           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                          CC1CCC(CC1)c2ccccc2c3cc(sc3C(=O)O)c4ccccc4
+HJZ            InChI                InChI  1.03 InChI=1S/C24H24O2S/c1-16-11-13-17(14-12-16)19-9-5-6-10-20(19)21-15-22(27-23(21)24(25)26)18-7-3-2-4-8-18/h2-10,15-17H,11-14H2,1H3,(H,25,26)/t16-,17-
+HJZ         InChIKey                InChI  1.03                                                                                                                         XAWPFEPCAOCGHU-QAQDUYKDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HJZ acedrg               243         "dictionary generator"                  
+HJZ acedrg_database      11          "data source"                           
+HJZ rdkit                2017.03.2   "Chemoinformatics tool"
+HJZ refmac5              5.8.0238    "optimization tool"                     

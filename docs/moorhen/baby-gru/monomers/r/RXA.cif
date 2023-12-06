@@ -1,0 +1,183 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RXA     RXA      isoquinoline-1,3,4(2H)-trione     NON-POLYMER     18     13     .     
+#
+data_comp_RXA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RXA     OAA     O       O       0       -51.055     13.741      -21.397     
+RXA     CAI     C       CR6     0       -49.847     13.979      -21.315     
+RXA     NAH     N       NR6     0       -49.161     13.538      -20.197     
+RXA     CAK     C       CR6     0       -49.132     14.714      -22.371     
+RXA     OAC     O       O       0       -49.733     15.114      -23.373     
+RXA     CAM     C       CR66    0       -47.676     14.958      -22.201     
+RXA     CAL     C       CR66    0       -47.025     14.472      -21.038     
+RXA     CAF     C       CR16    0       -45.649     14.702      -20.876     
+RXA     CAJ     C       CR6     0       -47.806     13.736      -20.024     
+RXA     OAB     O       O       0       -47.265     13.295      -19.024     
+RXA     CAG     C       CR16    0       -46.942     15.654      -23.163     
+RXA     CAE     C       CR16    0       -45.587     15.870      -22.985     
+RXA     CAD     C       CR16    0       -44.941     15.395      -21.843     
+RXA     HNAH    H       H       0       -49.618     13.112      -19.573     
+RXA     HAF     H       H       0       -45.205     14.388      -20.114     
+RXA     HAG     H       H       0       -47.367     15.979      -23.936     
+RXA     HAE     H       H       0       -45.098     16.341      -23.639     
+RXA     HAD     H       H       0       -44.018     15.547      -21.729     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RXA         OAA         CAI      DOUBLE       n     1.232  0.0139     1.232  0.0139
+RXA         CAI         NAH      SINGLE       n     1.379  0.0112     1.379  0.0112
+RXA         CAI         CAK      SINGLE       n     1.465  0.0200     1.465  0.0200
+RXA         NAH         CAJ      SINGLE       n     1.372  0.0119     1.372  0.0119
+RXA         CAK         OAC      DOUBLE       n     1.230  0.0196     1.230  0.0196
+RXA         CAK         CAM      SINGLE       n     1.482  0.0140     1.482  0.0140
+RXA         CAM         CAL      DOUBLE       y     1.413  0.0100     1.413  0.0100
+RXA         CAM         CAG      SINGLE       y     1.391  0.0100     1.391  0.0100
+RXA         CAL         CAF      SINGLE       y     1.399  0.0100     1.399  0.0100
+RXA         CAL         CAJ      SINGLE       n     1.448  0.0200     1.448  0.0200
+RXA         CAF         CAD      DOUBLE       y     1.379  0.0129     1.379  0.0129
+RXA         CAJ         OAB      DOUBLE       n     1.219  0.0100     1.219  0.0100
+RXA         CAG         CAE      DOUBLE       y     1.380  0.0100     1.380  0.0100
+RXA         CAE         CAD      SINGLE       y     1.389  0.0136     1.389  0.0136
+RXA         NAH        HNAH      SINGLE       n     1.016  0.0100     0.881  0.0200
+RXA         CAF         HAF      SINGLE       n     1.082  0.0130     0.937  0.0100
+RXA         CAG         HAG      SINGLE       n     1.082  0.0130     0.941  0.0157
+RXA         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0198
+RXA         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0198
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RXA         OAA         CAI         NAH     118.521    1.50
+RXA         OAA         CAI         CAK     121.312    2.72
+RXA         NAH         CAI         CAK     120.167    1.50
+RXA         CAI         NAH         CAJ     121.127    1.81
+RXA         CAI         NAH        HNAH     118.599    1.97
+RXA         CAJ         NAH        HNAH     120.274    2.27
+RXA         CAI         CAK         OAC     120.113    2.72
+RXA         CAI         CAK         CAM     120.008    1.50
+RXA         OAC         CAK         CAM     119.879    1.73
+RXA         CAK         CAM         CAL     120.241    1.50
+RXA         CAK         CAM         CAG     120.112    1.50
+RXA         CAL         CAM         CAG     119.647    1.50
+RXA         CAM         CAL         CAF     119.647    1.50
+RXA         CAM         CAL         CAJ     119.758    1.50
+RXA         CAF         CAL         CAJ     120.595    1.50
+RXA         CAL         CAF         CAD     120.057    1.50
+RXA         CAL         CAF         HAF     120.019    1.50
+RXA         CAD         CAF         HAF     119.924    1.50
+RXA         NAH         CAJ         CAL     118.699    3.00
+RXA         NAH         CAJ         OAB     120.682    1.83
+RXA         CAL         CAJ         OAB     120.620    1.50
+RXA         CAM         CAG         CAE     120.201    1.50
+RXA         CAM         CAG         HAG     119.872    1.50
+RXA         CAE         CAG         HAG     119.927    1.50
+RXA         CAG         CAE         CAD     120.228    1.50
+RXA         CAG         CAE         HAE     119.847    1.50
+RXA         CAD         CAE         HAE     119.921    1.50
+RXA         CAF         CAD         CAE     120.228    1.50
+RXA         CAF         CAD         HAD     119.847    1.50
+RXA         CAE         CAD         HAD     119.921    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RXA              const_17         CAD         CAE         CAG         CAM       0.000    10.0     2
+RXA              const_13         CAF         CAD         CAE         CAG       0.000    10.0     2
+RXA             sp2_sp2_3         OAA         CAI         NAH         CAJ     180.000     5.0     2
+RXA            sp2_sp2_20         OAA         CAI         CAK         OAC       0.000     5.0     2
+RXA             sp2_sp2_7         OAB         CAJ         NAH         CAI     180.000     5.0     2
+RXA            sp2_sp2_15         OAC         CAK         CAM         CAL     180.000     5.0     2
+RXA              const_22         CAE         CAG         CAM         CAK     180.000    10.0     2
+RXA       const_sp2_sp2_2         CAF         CAL         CAM         CAK     180.000     5.0     2
+RXA       const_sp2_sp2_5         CAD         CAF         CAL         CAM       0.000     5.0     2
+RXA            sp2_sp2_11         OAB         CAJ         CAL         CAM     180.000     5.0     2
+RXA       const_sp2_sp2_9         CAE         CAD         CAF         CAL       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RXA    plan-1         CAD   0.020
+RXA    plan-1         CAE   0.020
+RXA    plan-1         CAF   0.020
+RXA    plan-1         CAG   0.020
+RXA    plan-1         CAJ   0.020
+RXA    plan-1         CAK   0.020
+RXA    plan-1         CAL   0.020
+RXA    plan-1         CAM   0.020
+RXA    plan-1         HAD   0.020
+RXA    plan-1         HAE   0.020
+RXA    plan-1         HAF   0.020
+RXA    plan-1         HAG   0.020
+RXA    plan-2         CAI   0.020
+RXA    plan-2         CAK   0.020
+RXA    plan-2         NAH   0.020
+RXA    plan-2         OAA   0.020
+RXA    plan-3         CAI   0.020
+RXA    plan-3         CAJ   0.020
+RXA    plan-3        HNAH   0.020
+RXA    plan-3         NAH   0.020
+RXA    plan-4         CAI   0.020
+RXA    plan-4         CAK   0.020
+RXA    plan-4         CAM   0.020
+RXA    plan-4         OAC   0.020
+RXA    plan-5         CAJ   0.020
+RXA    plan-5         CAL   0.020
+RXA    plan-5         NAH   0.020
+RXA    plan-5         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RXA           SMILES              ACDLabs 10.04                                             O=C2c1c(cccc1)C(=O)C(=O)N2
+RXA SMILES_CANONICAL               CACTVS 3.341                                                 O=C1NC(=O)c2ccccc2C1=O
+RXA           SMILES               CACTVS 3.341                                                 O=C1NC(=O)c2ccccc2C1=O
+RXA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                             c1ccc2c(c1)C(=O)C(=O)NC2=O
+RXA           SMILES "OpenEye OEToolkits" 1.5.0                                             c1ccc2c(c1)C(=O)C(=O)NC2=O
+RXA            InChI                InChI  1.03 InChI=1S/C9H5NO3/c11-7-5-3-1-2-4-6(5)8(12)10-9(7)13/h1-4H,(H,10,12,13)
+RXA         InChIKey                InChI  1.03                                            YIOFGHHAURBGSJ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RXA acedrg               243         "dictionary generator"                  
+RXA acedrg_database      11          "data source"                           
+RXA rdkit                2017.03.2   "Chemoinformatics tool"
+RXA refmac5              5.8.0238    "optimization tool"                     

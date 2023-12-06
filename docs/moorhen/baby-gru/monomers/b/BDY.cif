@@ -1,0 +1,430 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BDY     BDY      N~3~-(2,6-dichlorobenzyl)-5-(4-{[(2R)-2-(pyrrolidin-1-ylmethyl)pyrrolidin-1-yl]carbonyl}phenyl)pyrazine-2,3-diamine     NON-POLYMER     66     36     .     
+#
+data_comp_BDY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BDY     N1      N       NH2     0       -20.769     4.878       -19.910     
+BDY     N3      N       NRD6    0       -20.628     2.576       -19.926     
+BDY     C4      C       CR16    0       -21.193     1.390       -19.673     
+BDY     C5      C       CR6     0       -22.492     1.274       -19.155     
+BDY     C7      C       CR6     0       -22.665     3.596       -19.120     
+BDY     C10     C       CR6     0       -25.722     4.123       -18.206     
+BDY     C13     C       CR16    0       -27.397     2.403       -17.771     
+BDY     C15     C       CR16    0       -26.565     3.721       -15.951     
+BDY     C20     C       CR16    0       -24.616     -1.398      -17.509     
+BDY     C21     C       CR6     0       -24.318     -2.528      -18.267     
+BDY     C22     C       CR16    0       -23.389     -2.409      -19.299     
+BDY     C24     C       C       0       -24.928     -3.859      -17.904     
+BDY     C28     C       CH2     0       -25.022     -7.026      -19.686     
+BDY     C2      C       CR6     0       -21.334     3.698       -19.659     
+BDY     N6      N       NRD6    0       -23.198     2.389       -18.878     
+BDY     N8      N       NH1     0       -23.397     4.709       -18.830     
+BDY     C9      C       CH2     0       -24.803     4.882       -19.141     
+BDY     C11     C       CR6     0       -26.568     3.096       -18.646     
+BDY     CL12    CL      CL      0       -26.633     2.638       -20.332     
+BDY     C14     C       CR16    0       -27.389     2.722       -16.427     
+BDY     C16     C       CR6     0       -25.742     4.406       -16.837     
+BDY     CL17    CL      CL      0       -24.717     5.663       -16.187     
+BDY     C18     C       CR6     0       -23.123     -0.036      -18.854     
+BDY     C19     C       CR16    0       -24.037     -0.174      -17.798     
+BDY     C23     C       CR16    0       -22.813     -1.186      -19.597     
+BDY     O25     O       O       0       -25.173     -4.103      -16.722     
+BDY     N26     N       NT      0       -24.974     -4.858      -18.839     
+BDY     C27     C       CH2     0       -24.630     -6.240      -18.461     
+BDY     C29     C       CH2     0       -26.333     -6.363      -20.068     
+BDY     C30     C       CH1     0       -26.104     -4.872      -19.806     
+BDY     C31     C       CH2     0       -25.820     -4.079      -21.085     
+BDY     N32     N       NT      0       -26.115     -2.646      -21.008     
+BDY     C33     C       CH2     0       -25.683     -1.912      -22.206     
+BDY     C34     C       CH2     0       -26.380     -0.573      -22.091     
+BDY     C35     C       CH2     0       -27.603     -0.840      -21.226     
+BDY     C36     C       CH2     0       -27.547     -2.321      -20.918     
+BDY     HN1     H       H       0       -21.224     5.498       -20.332     
+BDY     HN1A    H       H       0       -19.945     5.030       -19.652     
+BDY     H4      H       H       0       -20.696     0.611       -19.861     
+BDY     H13     H       H       0       -27.959     1.723       -18.093     
+BDY     H15     H       H       0       -26.560     3.938       -15.038     
+BDY     H20     H       H       0       -25.228     -1.461      -16.796     
+BDY     H22     H       H       0       -23.165     -3.162      -19.816     
+BDY     H28     H       H       0       -24.349     -6.933      -20.403     
+BDY     H28A    H       H       0       -25.149     -7.982      -19.475     
+BDY     HN8     H       H       0       -22.987     5.368       -18.420     
+BDY     H9      H       H       0       -25.020     5.837       -19.089     
+BDY     H9A     H       H       0       -24.956     4.599       -20.064     
+BDY     H14     H       H       0       -27.949     2.254       -15.833     
+BDY     H19     H       H       0       -24.268     0.578       -17.275     
+BDY     H23     H       H       0       -22.199     -1.131      -20.313     
+BDY     H27     H       H       0       -25.140     -6.535      -17.675     
+BDY     H27A    H       H       0       -23.670     -6.329      -18.273     
+BDY     H29     H       H       0       -27.068     -6.703      -19.512     
+BDY     H29A    H       H       0       -26.546     -6.532      -21.012     
+BDY     H30     H       H       0       -26.910     -4.503      -19.370     
+BDY     H31     H       H       0       -26.351     -4.454      -21.820     
+BDY     H31A    H       H       0       -24.872     -4.183      -21.315     
+BDY     H33     H       H       0       -24.706     -1.804      -22.214     
+BDY     H33A    H       H       0       -25.958     -2.386      -23.022     
+BDY     H34     H       H       0       -26.645     -0.243      -22.973     
+BDY     H34A    H       H       0       -25.795     0.087       -21.670     
+BDY     H35     H       H       0       -28.424     -0.617      -21.708     
+BDY     H35A    H       H       0       -27.567     -0.313      -20.403     
+BDY     H36     H       H       0       -27.891     -2.506      -20.016     
+BDY     H36A    H       H       0       -28.065     -2.840      -21.572     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BDY          N1          C2      SINGLE       n     1.331  0.0151     1.331  0.0151
+BDY          N3          C4      DOUBLE       y     1.335  0.0100     1.335  0.0100
+BDY          N3          C2      SINGLE       y     1.343  0.0178     1.343  0.0178
+BDY          C4          C5      SINGLE       y     1.393  0.0125     1.393  0.0125
+BDY          C5          N6      DOUBLE       y     1.341  0.0124     1.341  0.0124
+BDY          C5         C18      SINGLE       n     1.478  0.0100     1.478  0.0100
+BDY          C7          C2      DOUBLE       y     1.428  0.0186     1.428  0.0186
+BDY          C7          N6      SINGLE       y     1.336  0.0100     1.336  0.0100
+BDY          C7          N8      SINGLE       n     1.360  0.0121     1.360  0.0121
+BDY         C10          C9      SINGLE       n     1.511  0.0100     1.511  0.0100
+BDY         C10         C11      SINGLE       y     1.392  0.0100     1.392  0.0100
+BDY         C10         C16      DOUBLE       y     1.392  0.0100     1.392  0.0100
+BDY         C13         C11      DOUBLE       y     1.387  0.0100     1.387  0.0100
+BDY         C13         C14      SINGLE       y     1.376  0.0140     1.376  0.0140
+BDY         C15         C14      DOUBLE       y     1.376  0.0140     1.376  0.0140
+BDY         C15         C16      SINGLE       y     1.387  0.0100     1.387  0.0100
+BDY         C20         C21      DOUBLE       y     1.388  0.0100     1.388  0.0100
+BDY         C20         C19      SINGLE       y     1.381  0.0100     1.381  0.0100
+BDY         C21         C22      SINGLE       y     1.388  0.0100     1.388  0.0100
+BDY         C21         C24      SINGLE       n     1.504  0.0100     1.504  0.0100
+BDY         C22         C23      DOUBLE       y     1.381  0.0100     1.381  0.0100
+BDY         C24         O25      DOUBLE       n     1.230  0.0100     1.230  0.0100
+BDY         C24         N26      SINGLE       n     1.351  0.0177     1.351  0.0177
+BDY         C28         C27      SINGLE       n     1.516  0.0137     1.516  0.0137
+BDY         C28         C29      SINGLE       n     1.523  0.0139     1.523  0.0139
+BDY          N8          C9      SINGLE       n     1.450  0.0100     1.450  0.0100
+BDY         C11        CL12      SINGLE       n     1.746  0.0134     1.746  0.0134
+BDY         C16        CL17      SINGLE       n     1.746  0.0134     1.746  0.0134
+BDY         C18         C19      DOUBLE       y     1.398  0.0100     1.398  0.0100
+BDY         C18         C23      SINGLE       y     1.398  0.0100     1.398  0.0100
+BDY         N26         C27      SINGLE       n     1.472  0.0100     1.472  0.0100
+BDY         N26         C30      SINGLE       n     1.480  0.0100     1.480  0.0100
+BDY         C29         C30      SINGLE       n     1.526  0.0100     1.526  0.0100
+BDY         C30         C31      SINGLE       n     1.528  0.0102     1.528  0.0102
+BDY         C31         N32      SINGLE       n     1.462  0.0121     1.462  0.0121
+BDY         N32         C33      SINGLE       n     1.471  0.0100     1.471  0.0100
+BDY         N32         C36      SINGLE       n     1.471  0.0100     1.471  0.0100
+BDY         C33         C34      SINGLE       n     1.514  0.0158     1.514  0.0158
+BDY         C34         C35      SINGLE       n     1.518  0.0200     1.518  0.0200
+BDY         C35         C36      SINGLE       n     1.514  0.0158     1.514  0.0158
+BDY          N1         HN1      SINGLE       n     1.016  0.0100     0.877  0.0200
+BDY          N1        HN1A      SINGLE       n     1.016  0.0100     0.877  0.0200
+BDY          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0200
+BDY         C13         H13      SINGLE       n     1.082  0.0130     0.939  0.0176
+BDY         C15         H15      SINGLE       n     1.082  0.0130     0.939  0.0176
+BDY         C20         H20      SINGLE       n     1.082  0.0130     0.941  0.0168
+BDY         C22         H22      SINGLE       n     1.082  0.0130     0.941  0.0168
+BDY         C28         H28      SINGLE       n     1.089  0.0100     0.987  0.0200
+BDY         C28        H28A      SINGLE       n     1.089  0.0100     0.987  0.0200
+BDY          N8         HN8      SINGLE       n     1.016  0.0100     0.877  0.0200
+BDY          C9          H9      SINGLE       n     1.089  0.0100     0.980  0.0114
+BDY          C9         H9A      SINGLE       n     1.089  0.0100     0.980  0.0114
+BDY         C14         H14      SINGLE       n     1.082  0.0130     0.941  0.0131
+BDY         C19         H19      SINGLE       n     1.082  0.0130     0.945  0.0105
+BDY         C23         H23      SINGLE       n     1.082  0.0130     0.945  0.0105
+BDY         C27         H27      SINGLE       n     1.089  0.0100     0.982  0.0130
+BDY         C27        H27A      SINGLE       n     1.089  0.0100     0.982  0.0130
+BDY         C29         H29      SINGLE       n     1.089  0.0100     0.983  0.0200
+BDY         C29        H29A      SINGLE       n     1.089  0.0100     0.983  0.0200
+BDY         C30         H30      SINGLE       n     1.089  0.0100     0.989  0.0157
+BDY         C31         H31      SINGLE       n     1.089  0.0100     0.981  0.0150
+BDY         C31        H31A      SINGLE       n     1.089  0.0100     0.981  0.0150
+BDY         C33         H33      SINGLE       n     1.089  0.0100     0.983  0.0122
+BDY         C33        H33A      SINGLE       n     1.089  0.0100     0.983  0.0122
+BDY         C34         H34      SINGLE       n     1.089  0.0100     0.978  0.0105
+BDY         C34        H34A      SINGLE       n     1.089  0.0100     0.978  0.0105
+BDY         C35         H35      SINGLE       n     1.089  0.0100     0.978  0.0105
+BDY         C35        H35A      SINGLE       n     1.089  0.0100     0.978  0.0105
+BDY         C36         H36      SINGLE       n     1.089  0.0100     0.983  0.0122
+BDY         C36        H36A      SINGLE       n     1.089  0.0100     0.983  0.0122
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BDY          C2          N1         HN1     119.797    1.61
+BDY          C2          N1        HN1A     119.797    1.61
+BDY         HN1          N1        HN1A     120.406    1.85
+BDY          C4          N3          C2     118.164    1.50
+BDY          N3          C4          C5     122.141    1.50
+BDY          N3          C4          H4     118.500    1.50
+BDY          C5          C4          H4     119.359    1.50
+BDY          C4          C5          N6     120.217    1.50
+BDY          C4          C5         C18     122.317    1.79
+BDY          N6          C5         C18     117.466    1.50
+BDY          C2          C7          N6     120.407    1.50
+BDY          C2          C7          N8     121.127    2.27
+BDY          N6          C7          N8     118.466    1.87
+BDY          C9         C10         C11     121.649    1.50
+BDY          C9         C10         C16     121.649    1.50
+BDY         C11         C10         C16     116.702    1.50
+BDY         C11         C13         C14     119.429    1.50
+BDY         C11         C13         H13     120.172    1.50
+BDY         C14         C13         H13     120.398    1.50
+BDY         C14         C15         C16     119.429    1.50
+BDY         C14         C15         H15     120.398    1.50
+BDY         C16         C15         H15     120.172    1.50
+BDY         C21         C20         C19     120.513    1.50
+BDY         C21         C20         H20     119.856    1.50
+BDY         C19         C20         H20     119.631    1.50
+BDY         C20         C21         C22     119.244    1.50
+BDY         C20         C21         C24     120.378    2.05
+BDY         C22         C21         C24     120.378    2.05
+BDY         C21         C22         C23     120.513    1.50
+BDY         C21         C22         H22     119.856    1.50
+BDY         C23         C22         H22     119.631    1.50
+BDY         C21         C24         O25     120.711    1.50
+BDY         C21         C24         N26     118.083    1.50
+BDY         O25         C24         N26     121.206    1.50
+BDY         C27         C28         C29     104.327    2.00
+BDY         C27         C28         H28     110.793    1.50
+BDY         C27         C28        H28A     110.793    1.50
+BDY         C29         C28         H28     110.864    1.50
+BDY         C29         C28        H28A     110.864    1.50
+BDY         H28         C28        H28A     108.899    1.50
+BDY          N1          C2          N3     118.644    1.55
+BDY          N1          C2          C7     120.949    2.27
+BDY          N3          C2          C7     120.407    1.50
+BDY          C5          N6          C7     118.664    1.50
+BDY          C7          N8          C9     124.200    1.50
+BDY          C7          N8         HN8     117.791    1.50
+BDY          C9          N8         HN8     118.010    1.50
+BDY         C10          C9          N8     113.671    1.99
+BDY         C10          C9          H9     109.005    1.50
+BDY         C10          C9         H9A     109.005    1.50
+BDY          N8          C9          H9     108.865    1.50
+BDY          N8          C9         H9A     108.865    1.50
+BDY          H9          C9         H9A     107.706    1.50
+BDY         C10         C11         C13     121.918    1.50
+BDY         C10         C11        CL12     119.905    1.50
+BDY         C13         C11        CL12     118.177    1.50
+BDY         C13         C14         C15     120.604    1.50
+BDY         C13         C14         H14     119.698    1.50
+BDY         C15         C14         H14     119.698    1.50
+BDY         C10         C16         C15     121.918    1.50
+BDY         C10         C16        CL17     119.905    1.50
+BDY         C15         C16        CL17     118.177    1.50
+BDY          C5         C18         C19     120.913    1.50
+BDY          C5         C18         C23     120.913    1.50
+BDY         C19         C18         C23     118.174    1.50
+BDY         C20         C19         C18     120.778    1.50
+BDY         C20         C19         H19     119.535    1.50
+BDY         C18         C19         H19     119.687    1.50
+BDY         C22         C23         C18     120.778    1.50
+BDY         C22         C23         H23     119.535    1.50
+BDY         C18         C23         H23     119.687    1.50
+BDY         C24         N26         C27     127.446    2.56
+BDY         C24         N26         C30     119.311    1.53
+BDY         C27         N26         C30     111.921    1.50
+BDY         C28         C27         N26     103.398    1.50
+BDY         C28         C27         H27     111.171    1.50
+BDY         C28         C27        H27A     111.171    1.50
+BDY         N26         C27         H27     111.106    1.50
+BDY         N26         C27        H27A     111.106    1.50
+BDY         H27         C27        H27A     108.998    1.50
+BDY         C28         C29         C30     104.634    1.50
+BDY         C28         C29         H29     110.886    1.50
+BDY         C28         C29        H29A     110.886    1.50
+BDY         C30         C29         H29     110.817    1.50
+BDY         C30         C29        H29A     110.817    1.50
+BDY         H29         C29        H29A     108.922    1.50
+BDY         N26         C30         C29     102.816    1.50
+BDY         N26         C30         C31     111.633    2.37
+BDY         N26         C30         H30     109.883    1.86
+BDY         C29         C30         C31     113.583    1.63
+BDY         C29         C30         H30     109.529    1.50
+BDY         C31         C30         H30     109.171    1.55
+BDY         C30         C31         N32     113.759    1.50
+BDY         C30         C31         H31     108.875    1.50
+BDY         C30         C31        H31A     108.875    1.50
+BDY         N32         C31         H31     108.098    1.50
+BDY         N32         C31        H31A     108.098    1.50
+BDY         H31         C31        H31A     108.030    1.50
+BDY         C31         N32         C33     113.098    1.64
+BDY         C31         N32         C36     113.098    1.64
+BDY         C33         N32         C36     103.876    1.50
+BDY         N32         C33         C34     104.242    1.50
+BDY         N32         C33         H33     110.662    1.50
+BDY         N32         C33        H33A     110.662    1.50
+BDY         C34         C33         H33     111.171    1.50
+BDY         C34         C33        H33A     111.171    1.50
+BDY         H33         C33        H33A     108.998    1.50
+BDY         C33         C34         C35     104.440    1.79
+BDY         C33         C34         H34     110.793    1.50
+BDY         C33         C34        H34A     110.793    1.50
+BDY         C35         C34         H34     110.800    1.50
+BDY         C35         C34        H34A     110.800    1.50
+BDY         H34         C34        H34A     108.899    1.50
+BDY         C34         C35         C36     104.440    1.79
+BDY         C34         C35         H35     110.800    1.50
+BDY         C34         C35        H35A     110.800    1.50
+BDY         C36         C35         H35     110.793    1.50
+BDY         C36         C35        H35A     110.793    1.50
+BDY         H35         C35        H35A     108.899    1.50
+BDY         N32         C36         C35     104.242    1.50
+BDY         N32         C36         H36     110.662    1.50
+BDY         N32         C36        H36A     110.662    1.50
+BDY         C35         C36         H36     111.171    1.50
+BDY         C35         C36        H36A     111.171    1.50
+BDY         H36         C36        H36A     108.998    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BDY             sp2_sp2_3          N3          C2          N1         HN1       0.000     5.0     2
+BDY              const_29         C21         C22         C23         C18       0.000    10.0     2
+BDY            sp2_sp2_19         O25         C24         N26         C27       0.000     5.0     2
+BDY             sp3_sp3_1         N26         C27         C28         C29      60.000    10.0     3
+BDY            sp3_sp3_52         C27         C28         C29         C30     180.000    10.0     3
+BDY            sp2_sp3_20          C7          N8          C9         C10     120.000    10.0     6
+BDY              const_56          N1          C2          N3          C4     180.000    10.0     2
+BDY              const_41          C5          C4          N3          C2       0.000    10.0     2
+BDY              const_39          C5         C18         C19         C20     180.000    10.0     2
+BDY              const_35          C5         C18         C23         C22     180.000    10.0     2
+BDY             sp2_sp3_4         C24         N26         C27         C28     180.000    10.0     6
+BDY            sp2_sp3_11         C24         N26         C30         C31     -60.000    10.0     6
+BDY            sp3_sp3_11         C28         C29         C30         C31      60.000    10.0     3
+BDY            sp3_sp3_61         N26         C30         C31         N32     180.000    10.0     3
+BDY              const_43          N3          C4          C5          N6       0.000    10.0     2
+BDY            sp3_sp3_71         C30         C31         N32         C33     -60.000    10.0     3
+BDY            sp3_sp3_20         C34         C33         N32         C31     180.000    10.0     3
+BDY            sp3_sp3_77         C35         C36         N32         C31     -60.000    10.0     3
+BDY            sp3_sp3_25         N32         C33         C34         C35     -60.000    10.0     3
+BDY            sp3_sp3_34         C33         C34         C35         C36      60.000    10.0     3
+BDY            sp3_sp3_43         C34         C35         C36         N32     -60.000    10.0     3
+BDY              const_47          C4          C5          N6          C7       0.000    10.0     2
+BDY             sp2_sp2_5         C19         C18          C5          C4     180.000     5.0     2
+BDY              const_54          N1          C2          C7          N8       0.000    10.0     2
+BDY              const_50          N8          C7          N6          C5     180.000    10.0     2
+BDY             sp2_sp2_9          C2          C7          N8          C9     180.000     5.0     2
+BDY            sp2_sp3_14         C11         C10          C9          N8     -90.000    10.0     6
+BDY       const_sp2_sp2_4          C9         C10         C11        CL12       0.000     5.0     2
+BDY              const_60          C9         C10         C16        CL17       0.000    10.0     2
+BDY       const_sp2_sp2_7        CL12         C11         C13         C14     180.000     5.0     2
+BDY       const_sp2_sp2_9         C11         C13         C14         C15       0.000     5.0     2
+BDY              const_13         C13         C14         C15         C16       0.000    10.0     2
+BDY              const_18         C14         C15         C16        CL17     180.000    10.0     2
+BDY              const_61         C18         C19         C20         C21       0.000    10.0     2
+BDY              const_22         C19         C20         C21         C24     180.000    10.0     2
+BDY              const_27         C24         C21         C22         C23     180.000    10.0     2
+BDY            sp2_sp2_14         C20         C21         C24         O25       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BDY    chir_1    C30    N26    C31    C29    negative
+BDY    chir_2    N32    C31    C33    C36    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BDY    plan-1         C18   0.020
+BDY    plan-1         C19   0.020
+BDY    plan-1         C20   0.020
+BDY    plan-1         C21   0.020
+BDY    plan-1         C22   0.020
+BDY    plan-1         C23   0.020
+BDY    plan-1         C24   0.020
+BDY    plan-1          C5   0.020
+BDY    plan-1         H19   0.020
+BDY    plan-1         H20   0.020
+BDY    plan-1         H22   0.020
+BDY    plan-1         H23   0.020
+BDY    plan-2         C18   0.020
+BDY    plan-2          C2   0.020
+BDY    plan-2          C4   0.020
+BDY    plan-2          C5   0.020
+BDY    plan-2          C7   0.020
+BDY    plan-2          H4   0.020
+BDY    plan-2          N1   0.020
+BDY    plan-2          N3   0.020
+BDY    plan-2          N6   0.020
+BDY    plan-2          N8   0.020
+BDY    plan-3         C10   0.020
+BDY    plan-3         C11   0.020
+BDY    plan-3         C13   0.020
+BDY    plan-3         C14   0.020
+BDY    plan-3         C15   0.020
+BDY    plan-3         C16   0.020
+BDY    plan-3          C9   0.020
+BDY    plan-3        CL12   0.020
+BDY    plan-3        CL17   0.020
+BDY    plan-3         H13   0.020
+BDY    plan-3         H14   0.020
+BDY    plan-3         H15   0.020
+BDY    plan-4          C2   0.020
+BDY    plan-4         HN1   0.020
+BDY    plan-4        HN1A   0.020
+BDY    plan-4          N1   0.020
+BDY    plan-5         C21   0.020
+BDY    plan-5         C24   0.020
+BDY    plan-5         N26   0.020
+BDY    plan-5         O25   0.020
+BDY    plan-6          C7   0.020
+BDY    plan-6          C9   0.020
+BDY    plan-6         HN8   0.020
+BDY    plan-6          N8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BDY SMILES_CANONICAL               CACTVS 3.352                                                                                                                                            Nc1ncc(nc1NCc2c(Cl)cccc2Cl)c3ccc(cc3)C(=O)N4CCC[C@@H]4CN5CCCC5
+BDY           SMILES               CACTVS 3.352                                                                                                                                              Nc1ncc(nc1NCc2c(Cl)cccc2Cl)c3ccc(cc3)C(=O)N4CCC[CH]4CN5CCCC5
+BDY SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                      c1cc(c(c(c1)Cl)CNc2c(ncc(n2)c3ccc(cc3)C(=O)N4CCC[C@@H]4CN5CCCC5)N)Cl
+BDY           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                           c1cc(c(c(c1)Cl)CNc2c(ncc(n2)c3ccc(cc3)C(=O)N4CCCC4CN5CCCC5)N)Cl
+BDY            InChI                InChI  1.03 InChI=1S/C27H30Cl2N6O/c28-22-6-3-7-23(29)21(22)15-32-26-25(30)31-16-24(33-26)18-8-10-19(11-9-18)27(36)35-14-4-5-20(35)17-34-12-1-2-13-34/h3,6-11,16,20H,1-2,4-5,12-15,17H2,(H2,30,31)(H,32,33)/t20-/m1/s1
+BDY         InChIKey                InChI  1.03                                                                                                                                                                               PVBCEWZVPUKFNT-HXUWFJFHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BDY acedrg               243         "dictionary generator"                  
+BDY acedrg_database      11          "data source"                           
+BDY rdkit                2017.03.2   "Chemoinformatics tool"
+BDY refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,204 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PZP     PZP      "[5-hydroxy-4-(iminomethyl)-6-methyl-pyridin-3-yl]methyl dihydrogen phosphate"     NON-POLYMER     25     16     .     
+#
+data_comp_PZP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PZP     P       P       P       0       5.258       17.930      9.383       
+PZP     N1      N       NRD6    0       4.699       21.520      14.299      
+PZP     C2      C       CR6     0       5.551       21.041      15.207      
+PZP     C3      C       CR6     0       6.575       20.150      14.822      
+PZP     O3      O       OH1     0       7.467       19.640      15.739      
+PZP     C4      C       CR6     0       6.690       19.772      13.466      
+PZP     C5      C       CR6     0       5.774       20.299      12.534      
+PZP     C6      C       CR16    0       4.810       21.157      13.001      
+PZP     O1P     O       OP      -1      4.609       16.573      9.579       
+PZP     C2A     C       CH3     0       5.382       21.474      16.630      
+PZP     O2P     O       OP      -1      6.668       17.834      8.831       
+PZP     O3P     O       O       0       4.384       18.893      8.602       
+PZP     C4A     C       C1      0       7.745       18.852      13.047      
+PZP     N4A     N       NH1     0       7.462       17.630      12.647      
+PZP     O4P     O       O2      0       5.407       18.562      10.861      
+PZP     C5A     C       CH2     0       5.822       19.949      11.070      
+PZP     HO3     H       H       0       7.444       18.804      15.943      
+PZP     H6      H       H       0       4.195       21.513      12.394      
+PZP     H2A     H       H       0       6.207       21.338      17.121      
+PZP     H2AA    H       H       0       4.671       20.957      17.043      
+PZP     H2AB    H       H       0       5.148       22.416      16.654      
+PZP     H4A     H       H       0       8.639       19.139      13.064      
+PZP     HN4A    H       H       0       8.105       17.284      12.153      
+PZP     H5A     H       H       0       6.734       20.067      10.726      
+PZP     H5AA    H       H       0       5.226       20.540      10.562      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PZP           P         O1P      SINGLE       n     1.517  0.0192     1.517  0.0192
+PZP           P         O2P      SINGLE       n     1.517  0.0192     1.517  0.0192
+PZP           P         O3P      DOUBLE       n     1.517  0.0192     1.517  0.0192
+PZP           P         O4P      SINGLE       n     1.614  0.0178     1.614  0.0178
+PZP          N1          C2      DOUBLE       y     1.330  0.0101     1.330  0.0101
+PZP          N1          C6      SINGLE       y     1.349  0.0100     1.349  0.0100
+PZP          C2          C3      SINGLE       y     1.400  0.0136     1.400  0.0136
+PZP          C2         C2A      SINGLE       n     1.494  0.0100     1.494  0.0100
+PZP          C3          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+PZP          C3          C4      DOUBLE       y     1.405  0.0115     1.405  0.0115
+PZP          C4          C5      SINGLE       y     1.403  0.0100     1.403  0.0100
+PZP          C4         C4A      SINGLE       n     1.459  0.0109     1.459  0.0109
+PZP          C5          C6      DOUBLE       y     1.368  0.0100     1.368  0.0100
+PZP          C5         C5A      SINGLE       n     1.503  0.0100     1.503  0.0100
+PZP         C4A         N4A      DOUBLE       n     1.316  0.0100     1.316  0.0100
+PZP         O4P         C5A      SINGLE       n     1.462  0.0104     1.462  0.0104
+PZP          O3         HO3      SINGLE       n     0.966  0.0059     0.861  0.0200
+PZP          C6          H6      SINGLE       n     1.082  0.0130     0.935  0.0200
+PZP         C2A         H2A      SINGLE       n     1.089  0.0100     0.971  0.0138
+PZP         C2A        H2AA      SINGLE       n     1.089  0.0100     0.971  0.0138
+PZP         C2A        H2AB      SINGLE       n     1.089  0.0100     0.971  0.0138
+PZP         C4A         H4A      SINGLE       n     1.082  0.0130     0.939  0.0187
+PZP         N4A        HN4A      SINGLE       n     1.016  0.0100     0.882  0.0200
+PZP         C5A         H5A      SINGLE       n     1.089  0.0100     0.982  0.0107
+PZP         C5A        H5AA      SINGLE       n     1.089  0.0100     0.982  0.0107
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PZP         O1P           P         O2P     112.864    1.69
+PZP         O1P           P         O3P     112.864    1.69
+PZP         O1P           P         O4P     105.808    2.07
+PZP         O2P           P         O3P     112.864    1.69
+PZP         O2P           P         O4P     105.808    2.07
+PZP         O3P           P         O4P     105.808    2.07
+PZP          C2          N1          C6     119.480    1.60
+PZP          N1          C2          C3     120.420    1.50
+PZP          N1          C2         C2A     118.991    1.50
+PZP          C3          C2         C2A     120.589    1.50
+PZP          C2          C3          O3     120.157    3.00
+PZP          C2          C3          C4     119.687    1.50
+PZP          O3          C3          C4     120.157    3.00
+PZP          C3          O3         HO3     120.000    3.00
+PZP          C3          C4          C5     118.980    1.50
+PZP          C3          C4         C4A     120.419    1.50
+PZP          C5          C4         C4A     120.602    2.10
+PZP          C4          C5          C6     118.109    1.50
+PZP          C4          C5         C5A     121.832    1.50
+PZP          C6          C5         C5A     120.059    1.59
+PZP          N1          C6          C5     123.324    1.50
+PZP          N1          C6          H6     118.073    1.50
+PZP          C5          C6          H6     118.603    1.50
+PZP          C2         C2A         H2A     109.484    1.50
+PZP          C2         C2A        H2AA     109.484    1.50
+PZP          C2         C2A        H2AB     109.484    1.50
+PZP         H2A         C2A        H2AA     109.339    1.66
+PZP         H2A         C2A        H2AB     109.339    1.66
+PZP        H2AA         C2A        H2AB     109.339    1.66
+PZP          C4         C4A         N4A     121.037    2.97
+PZP          C4         C4A         H4A     119.277    1.50
+PZP         N4A         C4A         H4A     119.686    1.50
+PZP         C4A         N4A        HN4A     112.238    3.00
+PZP           P         O4P         C5A     121.496    2.55
+PZP          C5         C5A         O4P     110.538    2.24
+PZP          C5         C5A         H5A     109.800    1.50
+PZP          C5         C5A        H5AA     109.800    1.50
+PZP         O4P         C5A         H5A     108.933    1.90
+PZP         O4P         C5A        H5AA     108.933    1.90
+PZP         H5A         C5A        H5AA     108.248    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PZP             sp3_sp3_2         C5A         O4P           P         O1P     -60.000    10.0     3
+PZP             sp2_sp2_7          C4         C4A         N4A        HN4A     180.000     5.0     2
+PZP             sp3_sp3_4          C5         C5A         O4P           P     180.000    10.0     3
+PZP       const_sp2_sp2_2         C2A          C2          N1          C6     180.000     5.0     2
+PZP              const_19          C5          C6          N1          C2       0.000    10.0     2
+PZP       const_sp2_sp2_6         C2A          C2          C3          O3       0.000     5.0     2
+PZP             sp2_sp3_1          N1          C2         C2A         H2A     150.000    10.0     6
+PZP             sp2_sp2_1          C2          C3          O3         HO3     180.000     5.0     2
+PZP              const_10          O3          C3          C4         C4A       0.000    10.0     2
+PZP             sp2_sp2_3          C3          C4         C4A         N4A     180.000     5.0     2
+PZP              const_14         C4A          C4          C5         C5A       0.000    10.0     2
+PZP             sp2_sp3_8          C4          C5         C5A         O4P     -90.000    10.0     6
+PZP              const_17         C5A          C5          C6          N1     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PZP    chir_1    P    O4P    O1P    O2P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PZP    plan-1          C2   0.020
+PZP    plan-1         C2A   0.020
+PZP    plan-1          C3   0.020
+PZP    plan-1          C4   0.020
+PZP    plan-1         C4A   0.020
+PZP    plan-1          C5   0.020
+PZP    plan-1         C5A   0.020
+PZP    plan-1          C6   0.020
+PZP    plan-1          H6   0.020
+PZP    plan-1          N1   0.020
+PZP    plan-1          O3   0.020
+PZP    plan-2          C4   0.020
+PZP    plan-2         C4A   0.020
+PZP    plan-2         H4A   0.020
+PZP    plan-2         N4A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PZP           SMILES              ACDLabs 12.01                                                                     O=P(O)(O)OCc1cnc(c(O)c1C=[N@H])C
+PZP SMILES_CANONICAL               CACTVS 3.370                                                                       Cc1ncc(CO[P](O)(O)=O)c(C=N)c1O
+PZP           SMILES               CACTVS 3.370                                                                       Cc1ncc(CO[P](O)(O)=O)c(C=N)c1O
+PZP SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                  "[H]/N=C/c1c(cnc(c1O)C)COP(=O)(O)O"
+PZP           SMILES "OpenEye OEToolkits" 1.7.0                                                                       Cc1c(c(c(cn1)COP(=O)(O)O)C=N)O
+PZP            InChI                InChI  1.03 InChI=1S/C8H11N2O5P/c1-5-8(11)7(2-9)6(3-10-5)4-15-16(12,13)14/h2-3,9,11H,4H2,1H3,(H2,12,13,14)/b9-2+
+PZP         InChIKey                InChI  1.03                                                                          CLOXDHRIVOURLQ-XNWCZRBMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PZP acedrg               243         "dictionary generator"                  
+PZP acedrg_database      11          "data source"                           
+PZP rdkit                2017.03.2   "Chemoinformatics tool"
+PZP refmac5              5.8.0238    "optimization tool"                     

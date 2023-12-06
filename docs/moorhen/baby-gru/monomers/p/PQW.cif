@@ -1,0 +1,427 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PQW     PQW      "N'-[4-[[(2S,4R)-4-[3-[(C-thiophen-2-ylcarbonimidoyl)amino]phenoxy]pyrrolidin-2-yl]methoxy]phenyl]thiophene-2-carboximidamide"     NON-POLYMER     63     36     .     
+#
+data_comp_PQW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PQW     S01     S       S2      0       8.991       0.182       60.833      
+PQW     C02     C       CR15    0       8.610       1.428       61.863      
+PQW     C03     C       CR15    0       9.713       2.147       62.183      
+PQW     C04     C       CR15    0       10.891      1.627       61.542      
+PQW     C05     C       CR5     0       10.621      0.541       60.761      
+PQW     C06     C       C       0       11.544      -0.281      59.940      
+PQW     N07     N       N       0       12.795      0.041       59.797      
+PQW     N08     N       NH2     0       11.012      -1.377      59.378      
+PQW     "N1'"   N       NT1     0       16.716      5.287       56.101      
+PQW     C11     C       CR6     0       13.326      1.298       59.395      
+PQW     C12     C       CR16    0       14.617      1.625       59.798      
+PQW     C13     C       CR16    0       15.191      2.837       59.453      
+PQW     C14     C       CR6     0       14.473      3.760       58.694      
+PQW     C15     C       CR16    0       13.180      3.444       58.292      
+PQW     C16     C       CR16    0       12.617      2.230       58.640      
+PQW     O17     O       O2      0       14.889      5.001       58.273      
+PQW     C18     C       CH2     0       16.221      5.485       58.513      
+PQW     "C2'"   C       CH1     0       17.134      4.891       57.459      
+PQW     S21     S       S2      0       25.208      6.920       51.393      
+PQW     C22     C       CR15    0       26.583      6.031       51.106      
+PQW     C23     C       CR15    0       27.314      5.883       52.239      
+PQW     C24     C       CR15    0       26.693      6.537       53.360      
+PQW     C25     C       CR5     0       25.525      7.145       53.017      
+PQW     C26     C       C       0       24.607      7.910       53.873      
+PQW     N27     N       NH1     0       23.467      8.401       53.312      
+PQW     N28     N       NH1     0       24.923      8.109       55.115      
+PQW     "C3'"   C       CH2     0       18.583      5.386       57.560      
+PQW     C31     C       CR6     0       22.174      8.532       53.879      
+PQW     C32     C       CR16    0       21.412      9.647       53.549      
+PQW     C33     C       CR16    0       20.146      9.794       54.096      
+PQW     C34     C       CR16    0       19.633      8.849       54.966      
+PQW     C35     C       CR6     0       20.395      7.725       55.296      
+PQW     C36     C       CR16    0       21.666      7.575       54.753      
+PQW     O37     O       O2      0       20.013      6.717       56.150      
+PQW     "C4'"   C       CH1     0       18.635      6.561       56.589      
+PQW     "C5'"   C       CH2     0       17.734      6.118       55.448      
+PQW     H02     H       H       0       7.727       1.572       62.159      
+PQW     H03     H       H       0       9.716       2.894       62.756      
+PQW     H04     H       H       0       11.748      2.002       61.649      
+PQW     HN08    H       H       0       11.515      -1.901      58.899      
+PQW     HN0A    H       H       0       10.170      -1.569      59.489      
+PQW     "HN1'"  H       H       0       16.595      4.576       55.605      
+PQW     H12     H       H       0       15.109      1.009       60.311      
+PQW     H13     H       H       0       16.067      3.030       59.736      
+PQW     H15     H       H       0       12.684      4.059       57.778      
+PQW     H16     H       H       0       11.741      2.031       58.361      
+PQW     H18     H       H       0       16.538      5.234       59.413      
+PQW     H18A    H       H       0       16.243      6.469       58.446      
+PQW     "H2'"   H       H       0       17.117      3.903       57.526      
+PQW     H22     H       H       0       26.782      5.694       50.249      
+PQW     H23     H       H       0       28.128      5.412       52.293      
+PQW     H24     H       H       0       27.057      6.542       54.229      
+PQW     HN27    H       H       0       23.543      8.680       52.483      
+PQW     HN28    H       H       0       24.360      8.604       55.579      
+PQW     "H3'"   H       H       0       19.217      4.677       57.293      
+PQW     "H3'A"  H       H       0       18.793      5.678       58.481      
+PQW     H32     H       H       0       21.753      10.296      52.957      
+PQW     H33     H       H       0       19.628      10.548      53.872      
+PQW     H34     H       H       0       18.772      8.965       55.327      
+PQW     H36     H       H       0       22.182      6.820       54.979      
+PQW     "H4'"   H       H       0       18.299      7.386       57.009      
+PQW     "H5'"   H       H       0       17.317      6.888       55.005      
+PQW     "H5'A"  H       H       0       18.232      5.595       54.784      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PQW         S01         C02      SINGLE       y     1.695  0.0200     1.695  0.0200
+PQW         S01         C05      SINGLE       y     1.695  0.0200     1.695  0.0200
+PQW         C02         C03      DOUBLE       y     1.343  0.0200     1.343  0.0200
+PQW         C03         C04      SINGLE       y     1.413  0.0154     1.413  0.0154
+PQW         C04         C05      DOUBLE       y     1.352  0.0140     1.352  0.0140
+PQW         C05         C06      SINGLE       n     1.457  0.0200     1.457  0.0200
+PQW         C06         N07      DOUBLE       n     1.293  0.0124     1.293  0.0124
+PQW         C06         N08      SINGLE       n     1.330  0.0200     1.330  0.0200
+PQW         N07         C11      SINGLE       n     1.419  0.0100     1.419  0.0100
+PQW       "N1'"       "C2'"      SINGLE       n     1.475  0.0100     1.475  0.0100
+PQW       "N1'"       "C5'"      SINGLE       n     1.466  0.0121     1.466  0.0121
+PQW         C11         C12      DOUBLE       y     1.388  0.0102     1.388  0.0102
+PQW         C11         C16      SINGLE       y     1.388  0.0102     1.388  0.0102
+PQW         C12         C13      SINGLE       y     1.380  0.0100     1.380  0.0100
+PQW         C13         C14      DOUBLE       y     1.386  0.0109     1.386  0.0109
+PQW         C14         C15      SINGLE       y     1.386  0.0109     1.386  0.0109
+PQW         C14         O17      SINGLE       n     1.369  0.0100     1.369  0.0100
+PQW         C15         C16      DOUBLE       y     1.380  0.0100     1.380  0.0100
+PQW         O17         C18      SINGLE       n     1.433  0.0125     1.433  0.0125
+PQW         C18       "C2'"      SINGLE       n     1.515  0.0106     1.515  0.0106
+PQW       "C2'"       "C3'"      SINGLE       n     1.535  0.0123     1.535  0.0123
+PQW         S21         C22      SINGLE       y     1.695  0.0200     1.695  0.0200
+PQW         S21         C25      SINGLE       y     1.695  0.0200     1.695  0.0200
+PQW         C22         C23      DOUBLE       y     1.343  0.0200     1.343  0.0200
+PQW         C23         C24      SINGLE       y     1.413  0.0154     1.413  0.0154
+PQW         C24         C25      DOUBLE       y     1.352  0.0140     1.352  0.0140
+PQW         C25         C26      SINGLE       n     1.467  0.0100     1.467  0.0100
+PQW         C26         N27      SINGLE       n     1.357  0.0118     1.357  0.0118
+PQW         C26         N28      DOUBLE       n     1.288  0.0200     1.288  0.0200
+PQW         N27         C31      SINGLE       n     1.415  0.0105     1.415  0.0105
+PQW       "C3'"       "C4'"      SINGLE       n     1.527  0.0200     1.527  0.0200
+PQW         C31         C32      DOUBLE       y     1.387  0.0100     1.387  0.0100
+PQW         C31         C36      SINGLE       y     1.387  0.0100     1.387  0.0100
+PQW         C32         C33      SINGLE       y     1.384  0.0100     1.384  0.0100
+PQW         C33         C34      DOUBLE       y     1.380  0.0102     1.380  0.0102
+PQW         C34         C35      SINGLE       y     1.382  0.0153     1.382  0.0153
+PQW         C35         C36      DOUBLE       y     1.385  0.0101     1.385  0.0101
+PQW         C35         O37      SINGLE       n     1.370  0.0110     1.370  0.0110
+PQW         O37       "C4'"      SINGLE       n     1.446  0.0176     1.446  0.0176
+PQW       "C4'"       "C5'"      SINGLE       n     1.519  0.0166     1.519  0.0166
+PQW         C02         H02      SINGLE       n     1.082  0.0130     0.942  0.0200
+PQW         C03         H03      SINGLE       n     1.082  0.0130     0.942  0.0153
+PQW         C04         H04      SINGLE       n     1.082  0.0130     0.942  0.0154
+PQW         N08        HN08      SINGLE       n     1.016  0.0100     0.869  0.0200
+PQW         N08        HN0A      SINGLE       n     1.016  0.0100     0.869  0.0200
+PQW       "N1'"      "HN1'"      SINGLE       n     1.036  0.0160     0.874  0.0200
+PQW         C12         H12      SINGLE       n     1.082  0.0130     0.941  0.0200
+PQW         C13         H13      SINGLE       n     1.082  0.0130     0.942  0.0157
+PQW         C15         H15      SINGLE       n     1.082  0.0130     0.942  0.0157
+PQW         C16         H16      SINGLE       n     1.082  0.0130     0.941  0.0200
+PQW         C18         H18      SINGLE       n     1.089  0.0100     0.987  0.0100
+PQW         C18        H18A      SINGLE       n     1.089  0.0100     0.987  0.0100
+PQW       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.990  0.0135
+PQW         C22         H22      SINGLE       n     1.082  0.0130     0.942  0.0200
+PQW         C23         H23      SINGLE       n     1.082  0.0130     0.942  0.0153
+PQW         C24         H24      SINGLE       n     1.082  0.0130     0.942  0.0154
+PQW         N27        HN27      SINGLE       n     1.016  0.0100     0.876  0.0200
+PQW         N28        HN28      SINGLE       n     1.016  0.0100     0.882  0.0200
+PQW       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.988  0.0100
+PQW       "C3'"      "H3'A"      SINGLE       n     1.089  0.0100     0.988  0.0100
+PQW         C32         H32      SINGLE       n     1.082  0.0130     0.943  0.0178
+PQW         C33         H33      SINGLE       n     1.082  0.0130     0.942  0.0141
+PQW         C34         H34      SINGLE       n     1.082  0.0130     0.942  0.0163
+PQW         C36         H36      SINGLE       n     1.082  0.0130     0.942  0.0154
+PQW       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.985  0.0119
+PQW       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.981  0.0178
+PQW       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.981  0.0178
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PQW         C02         S01         C05     108.336    3.00
+PQW         S01         C02         C03     108.336    3.00
+PQW         S01         C02         H02     123.204    3.00
+PQW         C03         C02         H02     128.460    2.40
+PQW         C02         C03         C04     107.373    1.50
+PQW         C02         C03         H03     126.679    1.50
+PQW         C04         C03         H03     125.949    1.50
+PQW         C03         C04         C05     107.620    1.50
+PQW         C03         C04         H04     125.837    1.50
+PQW         C05         C04         H04     126.542    1.56
+PQW         S01         C05         C04     108.336    3.00
+PQW         S01         C05         C06     121.397    3.00
+PQW         C04         C05         C06     130.267    3.00
+PQW         C05         C06         N07     120.815    3.00
+PQW         C05         C06         N08     115.292    2.93
+PQW         N07         C06         N08     123.893    1.50
+PQW         C06         N07         C11     121.371    2.81
+PQW         C06         N08        HN08     119.854    3.00
+PQW         C06         N08        HN0A     119.854    3.00
+PQW        HN08         N08        HN0A     120.293    2.31
+PQW       "C2'"       "N1'"       "C5'"     109.056    3.00
+PQW       "C2'"       "N1'"      "HN1'"     110.078    2.70
+PQW       "C5'"       "N1'"      "HN1'"     107.738    2.27
+PQW         N07         C11         C12     120.703    3.00
+PQW         N07         C11         C16     120.703    3.00
+PQW         C12         C11         C16     118.595    1.50
+PQW         C11         C12         C13     120.898    1.50
+PQW         C11         C12         H12     119.415    1.50
+PQW         C13         C12         H12     119.688    1.50
+PQW         C12         C13         C14     119.909    1.50
+PQW         C12         C13         H13     119.976    1.50
+PQW         C14         C13         H13     120.115    1.50
+PQW         C13         C14         C15     119.792    1.50
+PQW         C13         C14         O17     120.104    3.00
+PQW         C15         C14         O17     120.104    3.00
+PQW         C14         C15         C16     119.909    1.50
+PQW         C14         C15         H15     120.115    1.50
+PQW         C16         C15         H15     119.976    1.50
+PQW         C11         C16         C15     120.898    1.50
+PQW         C11         C16         H16     119.415    1.50
+PQW         C15         C16         H16     119.688    1.50
+PQW         C14         O17         C18     116.702    1.86
+PQW         O17         C18       "C2'"     107.840    2.29
+PQW         O17         C18         H18     110.526    1.50
+PQW         O17         C18        H18A     110.526    1.50
+PQW       "C2'"         C18         H18     109.608    1.50
+PQW       "C2'"         C18        H18A     109.608    1.50
+PQW         H18         C18        H18A     108.335    1.56
+PQW       "N1'"       "C2'"         C18     111.633    2.37
+PQW       "N1'"       "C2'"       "C3'"     103.453    1.87
+PQW       "N1'"       "C2'"       "H2'"     108.836    1.79
+PQW         C18       "C2'"       "C3'"     113.168    1.59
+PQW         C18       "C2'"       "H2'"     109.324    1.50
+PQW       "C3'"       "C2'"       "H2'"     109.529    1.50
+PQW         C22         S21         C25     108.336    3.00
+PQW         S21         C22         C23     108.336    3.00
+PQW         S21         C22         H22     123.204    3.00
+PQW         C23         C22         H22     128.460    2.40
+PQW         C22         C23         C24     107.373    1.50
+PQW         C22         C23         H23     126.679    1.50
+PQW         C24         C23         H23     125.949    1.50
+PQW         C23         C24         C25     107.620    1.50
+PQW         C23         C24         H24     125.837    1.50
+PQW         C25         C24         H24     126.542    1.56
+PQW         S21         C25         C24     108.336    3.00
+PQW         S21         C25         C26     121.070    3.00
+PQW         C24         C25         C26     130.594    2.46
+PQW         C25         C26         N27     116.432    2.93
+PQW         C25         C26         N28     121.954    3.00
+PQW         N27         C26         N28     121.614    3.00
+PQW         C26         N27         C31     127.188    2.78
+PQW         C26         N27        HN27     116.406    2.17
+PQW         C31         N27        HN27     116.407    2.05
+PQW         C26         N28        HN28     112.803    3.00
+PQW       "C2'"       "C3'"       "C4'"     103.659    1.76
+PQW       "C2'"       "C3'"       "H3'"     110.817    1.50
+PQW       "C2'"       "C3'"      "H3'A"     110.817    1.50
+PQW       "C4'"       "C3'"       "H3'"     110.947    1.50
+PQW       "C4'"       "C3'"      "H3'A"     110.947    1.50
+PQW       "H3'"       "C3'"      "H3'A"     109.113    1.50
+PQW         N27         C31         C32     119.969    3.00
+PQW         N27         C31         C36     119.969    3.00
+PQW         C32         C31         C36     120.063    1.50
+PQW         C31         C32         C33     119.537    1.50
+PQW         C31         C32         H32     120.165    1.50
+PQW         C33         C32         H32     120.298    1.50
+PQW         C32         C33         C34     120.972    1.50
+PQW         C32         C33         H33     119.557    1.50
+PQW         C34         C33         H33     119.470    1.50
+PQW         C33         C34         C35     119.754    1.50
+PQW         C33         C34         H34     120.185    1.50
+PQW         C35         C34         H34     120.061    1.50
+PQW         C34         C35         C36     119.922    1.50
+PQW         C34         C35         O37     120.039    3.00
+PQW         C36         C35         O37     120.039    3.00
+PQW         C31         C36         C35     119.752    1.50
+PQW         C31         C36         H36     120.277    1.50
+PQW         C35         C36         H36     119.971    1.50
+PQW         C35         O37       "C4'"     118.287    1.70
+PQW       "C3'"       "C4'"         O37     108.459    2.51
+PQW       "C3'"       "C4'"       "C5'"     103.389    1.50
+PQW       "C3'"       "C4'"       "H4'"     111.076    1.50
+PQW         O37       "C4'"       "C5'"     109.403    2.79
+PQW         O37       "C4'"       "H4'"     110.694    1.50
+PQW       "C5'"       "C4'"       "H4'"     110.749    1.50
+PQW       "N1'"       "C5'"       "C4'"     103.104    2.01
+PQW       "N1'"       "C5'"       "H5'"     110.393    1.50
+PQW       "N1'"       "C5'"      "H5'A"     110.393    1.50
+PQW       "C4'"       "C5'"       "H5'"     111.050    1.50
+PQW       "C4'"       "C5'"      "H5'A"     111.050    1.50
+PQW       "H5'"       "C5'"      "H5'A"     109.055    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PQW       const_sp2_sp2_1         C03         C02         S01         C05       0.000     5.0     2
+PQW              const_70         C06         C05         S01         C02     180.000    10.0     2
+PQW              const_19         C11         C12         C13         C14       0.000    10.0     2
+PQW              const_24         C12         C13         C14         O17     180.000    10.0     2
+PQW              const_29         O17         C14         C15         C16     180.000    10.0     2
+PQW            sp2_sp2_13         C13         C14         O17         C18     180.000     5.0     2
+PQW              const_31         C14         C15         C16         C11       0.000    10.0     2
+PQW            sp3_sp3_40       "C2'"         C18         O17         C14     180.000    10.0     3
+PQW            sp3_sp3_43         O17         C18       "C2'"       "N1'"     180.000    10.0     3
+PQW            sp3_sp3_10         C18       "C2'"       "C3'"       "C4'"     180.000    10.0     3
+PQW              const_35         C23         C22         S21         C25       0.000    10.0     2
+PQW              const_76         C26         C25         S21         C22     180.000    10.0     2
+PQW              const_37         S21         C22         C23         C24       0.000    10.0     2
+PQW       const_sp2_sp2_3         S01         C02         C03         C04       0.000     5.0     2
+PQW              const_41         C22         C23         C24         C25       0.000    10.0     2
+PQW              const_46         C23         C24         C25         C26     180.000    10.0     2
+PQW            sp2_sp2_17         S21         C25         C26         N27       0.000     5.0     2
+PQW            sp2_sp2_21         N28         C26         N27         C31       0.000     5.0     2
+PQW            sp2_sp2_24         N27         C26         N28        HN28       0.000     5.0     2
+PQW            sp2_sp2_25         C32         C31         N27         C26     180.000     5.0     2
+PQW            sp3_sp3_17       "C2'"       "C3'"       "C4'"         O37     180.000    10.0     3
+PQW              const_51         N27         C31         C32         C33     180.000    10.0     2
+PQW              const_79         N27         C31         C36         C35     180.000    10.0     2
+PQW              const_53         C31         C32         C33         C34       0.000    10.0     2
+PQW              const_57         C32         C33         C34         C35       0.000    10.0     2
+PQW       const_sp2_sp2_7         C02         C03         C04         C05       0.000     5.0     2
+PQW              const_62         C33         C34         C35         O37     180.000    10.0     2
+PQW              const_67         O37         C35         C36         C31     180.000    10.0     2
+PQW            sp2_sp2_29         C34         C35         O37       "C4'"     180.000     5.0     2
+PQW            sp3_sp3_52       "C3'"       "C4'"         O37         C35     180.000    10.0     3
+PQW            sp3_sp3_28         O37       "C4'"       "C5'"       "N1'"     180.000    10.0     3
+PQW              const_12         C03         C04         C05         C06     180.000    10.0     2
+PQW             sp2_sp2_3         S01         C05         C06         N07       0.000     5.0     2
+PQW             sp2_sp2_6         N08         C06         N07         C11       0.000     5.0     2
+PQW             sp2_sp2_9         N07         C06         N08        HN08       0.000     5.0     2
+PQW            sp2_sp2_11         C12         C11         N07         C06     180.000     5.0     2
+PQW             sp3_sp3_3         C18       "C2'"       "N1'"       "C5'"     -60.000    10.0     3
+PQW            sp3_sp3_34       "C4'"       "C5'"       "N1'"       "C2'"     180.000    10.0     3
+PQW              const_17         N07         C11         C12         C13     180.000    10.0     2
+PQW              const_73         N07         C11         C16         C15     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PQW    chir_1    "C2'"    "N1'"    C18    "C3'"    positive
+PQW    chir_2    "C4'"    O37    "C5'"    "C3'"    negative
+PQW    chir_3    "N1'"    "C2'"    "C5'"    "HN1'"    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PQW    plan-1         C02   0.020
+PQW    plan-1         C03   0.020
+PQW    plan-1         C04   0.020
+PQW    plan-1         C05   0.020
+PQW    plan-1         C06   0.020
+PQW    plan-1         H02   0.020
+PQW    plan-1         H03   0.020
+PQW    plan-1         H04   0.020
+PQW    plan-1         S01   0.020
+PQW    plan-2         C11   0.020
+PQW    plan-2         C12   0.020
+PQW    plan-2         C13   0.020
+PQW    plan-2         C14   0.020
+PQW    plan-2         C15   0.020
+PQW    plan-2         C16   0.020
+PQW    plan-2         H12   0.020
+PQW    plan-2         H13   0.020
+PQW    plan-2         H15   0.020
+PQW    plan-2         H16   0.020
+PQW    plan-2         N07   0.020
+PQW    plan-2         O17   0.020
+PQW    plan-3         C22   0.020
+PQW    plan-3         C23   0.020
+PQW    plan-3         C24   0.020
+PQW    plan-3         C25   0.020
+PQW    plan-3         C26   0.020
+PQW    plan-3         H22   0.020
+PQW    plan-3         H23   0.020
+PQW    plan-3         H24   0.020
+PQW    plan-3         S21   0.020
+PQW    plan-4         C31   0.020
+PQW    plan-4         C32   0.020
+PQW    plan-4         C33   0.020
+PQW    plan-4         C34   0.020
+PQW    plan-4         C35   0.020
+PQW    plan-4         C36   0.020
+PQW    plan-4         H32   0.020
+PQW    plan-4         H33   0.020
+PQW    plan-4         H34   0.020
+PQW    plan-4         H36   0.020
+PQW    plan-4         N27   0.020
+PQW    plan-4         O37   0.020
+PQW    plan-5         C05   0.020
+PQW    plan-5         C06   0.020
+PQW    plan-5         N07   0.020
+PQW    plan-5         N08   0.020
+PQW    plan-6         C06   0.020
+PQW    plan-6        HN08   0.020
+PQW    plan-6        HN0A   0.020
+PQW    plan-6         N08   0.020
+PQW    plan-7         C25   0.020
+PQW    plan-7         C26   0.020
+PQW    plan-7         N27   0.020
+PQW    plan-7         N28   0.020
+PQW    plan-8         C26   0.020
+PQW    plan-8         C31   0.020
+PQW    plan-8        HN27   0.020
+PQW    plan-8         N27   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PQW           SMILES              ACDLabs 12.01                                                                                                                                   N(/c4ccc(OCC3NCC(Oc2cccc(NC(=[N@H])c1sccc1)c2)C3)cc4)=C(\N)c5sccc5
+PQW            InChI                InChI  1.03 InChI=1S/C27H27N5O2S2/c28-26(24-6-2-12-35-24)31-18-8-10-21(11-9-18)33-17-20-15-23(16-30-20)34-22-5-1-4-19(14-22)32-27(29)25-7-3-13-36-25/h1-14,20,23,30H,15-17H2,(H2,28,31)(H2,29,32)/t20-,23+/m0/s1
+PQW         InChIKey                InChI  1.03                                                                                                                                                                          MVLJJSCAHWVTFO-NZQKXSOJSA-N
+PQW SMILES_CANONICAL               CACTVS 3.385                                                                                                                                  NC(=Nc1ccc(OC[C@@H]2C[C@H](CN2)Oc3cccc(NC(=N)c4sccc4)c3)cc1)c5sccc5
+PQW           SMILES               CACTVS 3.385                                                                                                                                     NC(=Nc1ccc(OC[CH]2C[CH](CN2)Oc3cccc(NC(=N)c4sccc4)c3)cc1)c5sccc5
+PQW SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                          "[H]/N=C(/c1cccs1)\Nc2cccc(c2)O[C@@H]3C[C@H](NC3)COc4ccc(cc4)N=C(c5cccs5)N"
+PQW           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                         c1cc(cc(c1)OC2CC(NC2)COc3ccc(cc3)N=C(c4cccs4)N)NC(=N)c5cccs5
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PQW acedrg               243         "dictionary generator"                  
+PQW acedrg_database      11          "data source"                           
+PQW rdkit                2017.03.2   "Chemoinformatics tool"
+PQW refmac5              5.8.0238    "optimization tool"                     

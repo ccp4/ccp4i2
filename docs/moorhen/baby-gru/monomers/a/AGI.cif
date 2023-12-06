@@ -1,0 +1,238 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AGI     AGI      5,7-dihydroxy-2-(4-hydroxyphenyl)-4H-chromen-4-one     NON-POLYMER     30     20     .     
+#
+data_comp_AGI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AGI     CAG     C       CR16    0       19.019      16.345      -11.692     
+AGI     CAE     C       CR16    0       20.370      16.075      -11.812     
+AGI     CAM     C       CR6     0       20.805      14.769      -12.014     
+AGI     OAB     O       OH1     0       22.148      14.500      -12.132     
+AGI     CAF     C       CR16    0       19.872      13.740      -12.095     
+AGI     CAH     C       CR16    0       18.522      14.017      -11.977     
+AGI     CAP     C       CR6     0       18.067      15.323      -11.772     
+AGI     CAQ     C       CR6     0       16.629      15.615      -11.644     
+AGI     OAL     O       O2      0       16.226      16.741      -12.303     
+AGI     CAJ     C       CR16    0       15.756      14.861      -10.945     
+AGI     CAR     C       CR6     0       14.358      15.187      -10.849     
+AGI     OAA     O       O       0       13.561      14.477      -10.198     
+AGI     CAT     C       CR66    0       13.944      16.400      -11.561     
+AGI     CAS     C       CR66    0       14.904      17.138      -12.267     
+AGI     CAK     C       CR16    0       14.612      18.296      -12.970     
+AGI     CAN     C       CR6     0       13.293      18.737      -12.967     
+AGI     OAC     O       OH1     0       12.967      19.882      -13.653     
+AGI     CAI     C       CR16    0       12.287      18.038      -12.276     
+AGI     CAO     C       CR6     0       12.607      16.888      -11.585     
+AGI     OAD     O       OH1     0       11.629      16.199      -10.907     
+AGI     HAG     H       H       0       18.741      17.233      -11.555     
+AGI     HAE     H       H       0       20.996      16.775      -11.756     
+AGI     HOAB    H       H       0       22.413      13.796      -12.552     
+AGI     HAF     H       H       0       20.160      12.855      -12.232     
+AGI     HAH     H       H       0       17.903      13.311      -12.033     
+AGI     HAJ     H       H       0       16.073      14.094      -10.508     
+AGI     HAK     H       H       0       15.283      18.767      -13.434     
+AGI     HOAC    H       H       0       12.180      19.975      -13.989     
+AGI     HAI     H       H       0       11.391      18.354      -12.285     
+AGI     HOAD    H       H       0       10.966      16.622      -10.557     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AGI         CAG         CAE      DOUBLE       y     1.379  0.0100     1.379  0.0100
+AGI         CAG         CAP      SINGLE       y     1.394  0.0100     1.394  0.0100
+AGI         CAE         CAM      SINGLE       y     1.388  0.0100     1.388  0.0100
+AGI         CAM         OAB      SINGLE       n     1.374  0.0155     1.374  0.0155
+AGI         CAM         CAF      DOUBLE       y     1.388  0.0100     1.388  0.0100
+AGI         CAF         CAH      SINGLE       y     1.379  0.0100     1.379  0.0100
+AGI         CAH         CAP      DOUBLE       y     1.394  0.0100     1.394  0.0100
+AGI         CAP         CAQ      SINGLE       n     1.471  0.0100     1.471  0.0100
+AGI         CAQ         OAL      SINGLE       y     1.361  0.0100     1.361  0.0100
+AGI         CAQ         CAJ      DOUBLE       y     1.345  0.0100     1.345  0.0100
+AGI         OAL         CAS      SINGLE       y     1.377  0.0100     1.377  0.0100
+AGI         CAJ         CAR      SINGLE       y     1.436  0.0100     1.436  0.0100
+AGI         CAR         OAA      DOUBLE       n     1.249  0.0142     1.249  0.0142
+AGI         CAR         CAT      SINGLE       y     1.456  0.0152     1.456  0.0152
+AGI         CAT         CAS      DOUBLE       y     1.396  0.0104     1.396  0.0104
+AGI         CAT         CAO      SINGLE       y     1.417  0.0100     1.417  0.0100
+AGI         CAS         CAK      SINGLE       y     1.383  0.0100     1.383  0.0100
+AGI         CAK         CAN      DOUBLE       y     1.388  0.0100     1.388  0.0100
+AGI         CAN         OAC      SINGLE       n     1.374  0.0155     1.374  0.0155
+AGI         CAN         CAI      SINGLE       y     1.402  0.0106     1.402  0.0106
+AGI         CAI         CAO      DOUBLE       y     1.374  0.0100     1.374  0.0100
+AGI         CAO         OAD      SINGLE       n     1.374  0.0155     1.374  0.0155
+AGI         CAG         HAG      SINGLE       n     1.082  0.0130     0.941  0.0200
+AGI         CAE         HAE      SINGLE       n     1.082  0.0130     0.941  0.0179
+AGI         OAB        HOAB      SINGLE       n     0.966  0.0059     0.861  0.0200
+AGI         CAF         HAF      SINGLE       n     1.082  0.0130     0.941  0.0179
+AGI         CAH         HAH      SINGLE       n     1.082  0.0130     0.941  0.0200
+AGI         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.938  0.0200
+AGI         CAK         HAK      SINGLE       n     1.082  0.0130     0.942  0.0200
+AGI         OAC        HOAC      SINGLE       n     0.966  0.0059     0.861  0.0200
+AGI         CAI         HAI      SINGLE       n     1.082  0.0130     0.951  0.0200
+AGI         OAD        HOAD      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AGI         CAE         CAG         CAP     121.076    1.50
+AGI         CAE         CAG         HAG     119.224    1.50
+AGI         CAP         CAG         HAG     119.700    1.50
+AGI         CAG         CAE         CAM     120.004    1.50
+AGI         CAG         CAE         HAE     120.043    1.50
+AGI         CAM         CAE         HAE     119.953    1.50
+AGI         CAE         CAM         OAB     120.228    3.00
+AGI         CAE         CAM         CAF     119.544    1.50
+AGI         OAB         CAM         CAF     120.228    3.00
+AGI         CAM         OAB        HOAB     120.000    3.00
+AGI         CAM         CAF         CAH     120.004    1.50
+AGI         CAM         CAF         HAF     119.953    1.50
+AGI         CAH         CAF         HAF     120.043    1.50
+AGI         CAF         CAH         CAP     121.076    1.50
+AGI         CAF         CAH         HAH     119.224    1.50
+AGI         CAP         CAH         HAH     119.700    1.50
+AGI         CAG         CAP         CAH     118.295    1.50
+AGI         CAG         CAP         CAQ     120.852    1.50
+AGI         CAH         CAP         CAQ     120.852    1.50
+AGI         CAP         CAQ         OAL     114.062    1.50
+AGI         CAP         CAQ         CAJ     124.258    1.68
+AGI         OAL         CAQ         CAJ     121.679    1.50
+AGI         CAQ         OAL         CAS     119.845    1.50
+AGI         CAQ         CAJ         CAR     122.473    1.50
+AGI         CAQ         CAJ         HAJ     118.634    1.50
+AGI         CAR         CAJ         HAJ     118.894    1.50
+AGI         CAJ         CAR         OAA     122.061    1.50
+AGI         CAJ         CAR         CAT     115.305    1.50
+AGI         OAA         CAR         CAT     122.634    1.50
+AGI         CAR         CAT         CAS     119.657    1.50
+AGI         CAR         CAT         CAO     122.998    1.50
+AGI         CAS         CAT         CAO     117.346    1.50
+AGI         OAL         CAS         CAT     121.043    1.50
+AGI         OAL         CAS         CAK     115.269    1.51
+AGI         CAT         CAS         CAK     123.689    1.50
+AGI         CAS         CAK         CAN     117.805    1.50
+AGI         CAS         CAK         HAK     121.079    1.50
+AGI         CAN         CAK         HAK     121.115    1.50
+AGI         CAK         CAN         OAC     119.313    3.00
+AGI         CAK         CAN         CAI     121.375    1.50
+AGI         OAC         CAN         CAI     119.313    3.00
+AGI         CAN         OAC        HOAC     120.000    3.00
+AGI         CAN         CAI         CAO     119.275    1.50
+AGI         CAN         CAI         HAI     120.434    1.50
+AGI         CAO         CAI         HAI     120.291    1.50
+AGI         CAT         CAO         CAI     120.510    1.50
+AGI         CAT         CAO         OAD     118.127    2.50
+AGI         CAI         CAO         OAD     121.363    3.00
+AGI         CAO         OAD        HOAD     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AGI       const_sp2_sp2_1         CAM         CAE         CAG         CAP       0.000     5.0     2
+AGI              const_53         CAE         CAG         CAP         CAH       0.000    10.0     2
+AGI              const_47         OAA         CAR         CAT         CAS     180.000    10.0     2
+AGI              const_21         OAL         CAS         CAT         CAR       0.000    10.0     2
+AGI              const_64         OAD         CAO         CAT         CAR       0.000    10.0     2
+AGI              const_26         CAN         CAK         CAS         OAL     180.000    10.0     2
+AGI              const_30         CAS         CAK         CAN         OAC     180.000    10.0     2
+AGI             sp2_sp2_7         CAK         CAN         OAC        HOAC     180.000     5.0     2
+AGI              const_34         CAO         CAI         CAN         OAC     180.000    10.0     2
+AGI              const_38         CAN         CAI         CAO         OAD     180.000    10.0     2
+AGI             sp2_sp2_9         CAT         CAO         OAD        HOAD     180.000     5.0     2
+AGI       const_sp2_sp2_6         CAG         CAE         CAM         OAB     180.000     5.0     2
+AGI             sp2_sp2_1         CAE         CAM         OAB        HOAB     180.000     5.0     2
+AGI              const_10         CAH         CAF         CAM         OAB     180.000    10.0     2
+AGI              const_13         CAM         CAF         CAH         CAP       0.000    10.0     2
+AGI              const_17         CAF         CAH         CAP         CAG       0.000    10.0     2
+AGI             sp2_sp2_4         CAG         CAP         CAQ         OAL       0.000     5.0     2
+AGI              const_42         CAP         CAQ         OAL         CAS     180.000    10.0     2
+AGI              const_58         CAR         CAJ         CAQ         CAP     180.000    10.0     2
+AGI              const_43         CAT         CAS         OAL         CAQ       0.000    10.0     2
+AGI              const_50         CAQ         CAJ         CAR         OAA     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AGI    plan-1         CAI   0.020
+AGI    plan-1         CAJ   0.020
+AGI    plan-1         CAK   0.020
+AGI    plan-1         CAN   0.020
+AGI    plan-1         CAO   0.020
+AGI    plan-1         CAP   0.020
+AGI    plan-1         CAQ   0.020
+AGI    plan-1         CAR   0.020
+AGI    plan-1         CAS   0.020
+AGI    plan-1         CAT   0.020
+AGI    plan-1         HAI   0.020
+AGI    plan-1         HAJ   0.020
+AGI    plan-1         HAK   0.020
+AGI    plan-1         OAA   0.020
+AGI    plan-1         OAC   0.020
+AGI    plan-1         OAD   0.020
+AGI    plan-1         OAL   0.020
+AGI    plan-2         CAE   0.020
+AGI    plan-2         CAF   0.020
+AGI    plan-2         CAG   0.020
+AGI    plan-2         CAH   0.020
+AGI    plan-2         CAM   0.020
+AGI    plan-2         CAP   0.020
+AGI    plan-2         CAQ   0.020
+AGI    plan-2         HAE   0.020
+AGI    plan-2         HAF   0.020
+AGI    plan-2         HAG   0.020
+AGI    plan-2         HAH   0.020
+AGI    plan-2         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AGI           SMILES              ACDLabs 10.04                                                      O=C1c3c(OC(=C1)c2ccc(O)cc2)cc(O)cc3O
+AGI SMILES_CANONICAL               CACTVS 3.341                                                      Oc1ccc(cc1)C2=CC(=O)c3c(O)cc(O)cc3O2
+AGI           SMILES               CACTVS 3.341                                                      Oc1ccc(cc1)C2=CC(=O)c3c(O)cc(O)cc3O2
+AGI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                      c1cc(ccc1C2=CC(=O)c3c(cc(cc3O2)O)O)O
+AGI           SMILES "OpenEye OEToolkits" 1.5.0                                                      c1cc(ccc1C2=CC(=O)c3c(cc(cc3O2)O)O)O
+AGI            InChI                InChI  1.03 InChI=1S/C15H10O5/c16-9-3-1-8(2-4-9)13-7-12(19)15-11(18)5-10(17)6-14(15)20-13/h1-7,16-18H
+AGI         InChIKey                InChI  1.03                                                               KZNIFHPLKGYRTM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AGI acedrg               243         "dictionary generator"                  
+AGI acedrg_database      11          "data source"                           
+AGI rdkit                2017.03.2   "Chemoinformatics tool"
+AGI refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,275 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CRE     CRE      "GERMACRENE A"     NON-POLYMER     39     15     .     
+#
+data_comp_CRE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CRE     C1      C       CH2     0       38.652      39.093      25.777      
+CRE     C2      C       CH2     0       39.148      39.065      27.235      
+CRE     C3      C       C       0       38.430      38.066      28.104      
+CRE     C4      C       CH3     0       36.992      38.384      28.397      
+CRE     C5      C       C1      0       39.067      37.000      28.587      
+CRE     C6      C       CH2     0       38.502      35.648      28.907      
+CRE     C7      C       CH2     0       38.622      34.673      27.727      
+CRE     C8      C       C       0       38.299      35.257      26.372      
+CRE     C9      C       CH3     0       36.932      34.918      25.837      
+CRE     C10     C       C1      0       39.197      36.011      25.732      
+CRE     C11     C       CH2     0       39.015      36.894      24.528      
+CRE     C12     C       CH1     0       39.490      38.365      24.688      
+CRE     C13     C       C       0       40.995      38.613      24.806      
+CRE     C14     C       CH3     0       41.395      40.052      24.929      
+CRE     C15     C       C2      0       41.922      37.661      24.758      
+CRE     H11     H       H       0       37.745      38.724      25.750      
+CRE     H12A    H       H       0       38.578      40.033      25.508      
+CRE     H21     H       H       0       40.106      38.870      27.253      
+CRE     H22     H       H       0       39.028      39.958      27.623      
+CRE     H41     H       H       0       36.733      37.974      29.237      
+CRE     H42     H       H       0       36.432      38.039      27.683      
+CRE     H43     H       H       0       36.878      39.346      28.460      
+CRE     H51     H       H       0       39.990      37.106      28.760      
+CRE     H61     H       H       0       37.560      35.737      29.153      
+CRE     H62     H       H       0       38.980      35.275      29.676      
+CRE     H71     H       H       0       38.033      33.910      27.895      
+CRE     H72     H       H       0       39.537      34.327      27.704      
+CRE     H91     H       H       0       36.929      34.996      24.870      
+CRE     H92     H       H       0       36.277      35.529      26.211      
+CRE     H93     H       H       0       36.699      34.008      26.082      
+CRE     H10     H       H       0       40.071      35.983      26.085      
+CRE     H111    H       H       0       38.068      36.908      24.286      
+CRE     H112    H       H       0       39.495      36.494      23.774      
+CRE     H12     H       H       0       39.244      38.811      23.841      
+CRE     H141    H       H       0       42.297      40.174      24.590      
+CRE     H142    H       H       0       41.364      40.322      25.861      
+CRE     H143    H       H       0       40.783      40.604      24.415      
+CRE     H151    H       H       0       42.836      37.885      24.884      
+CRE     H152    H       H       0       41.688      36.765      24.572      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CRE          C1          C2      SINGLE       n     1.523  0.0145     1.523  0.0145
+CRE          C1         C12      SINGLE       n     1.533  0.0147     1.533  0.0147
+CRE          C2          C3      SINGLE       n     1.502  0.0126     1.502  0.0126
+CRE          C3          C4      SINGLE       n     1.499  0.0156     1.499  0.0156
+CRE          C3          C5      DOUBLE       n     1.330  0.0100     1.330  0.0100
+CRE          C5          C6      SINGLE       n     1.498  0.0141     1.498  0.0141
+CRE          C6          C7      SINGLE       n     1.516  0.0200     1.516  0.0200
+CRE          C7          C8      SINGLE       n     1.503  0.0104     1.503  0.0104
+CRE          C8          C9      SINGLE       n     1.499  0.0156     1.499  0.0156
+CRE          C8         C10      DOUBLE       n     1.330  0.0100     1.330  0.0100
+CRE         C10         C11      SINGLE       n     1.498  0.0141     1.498  0.0141
+CRE         C11         C12      SINGLE       n     1.539  0.0136     1.539  0.0136
+CRE         C12         C13      SINGLE       n     1.494  0.0200     1.494  0.0200
+CRE         C13         C14      SINGLE       n     1.496  0.0132     1.496  0.0132
+CRE         C13         C15      DOUBLE       n     1.326  0.0100     1.326  0.0100
+CRE          C1         H11      SINGLE       n     1.089  0.0100     0.980  0.0178
+CRE          C1        H12A      SINGLE       n     1.089  0.0100     0.980  0.0178
+CRE          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0185
+CRE          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0185
+CRE          C4         H41      SINGLE       n     1.089  0.0100     0.971  0.0140
+CRE          C4         H42      SINGLE       n     1.089  0.0100     0.971  0.0140
+CRE          C4         H43      SINGLE       n     1.089  0.0100     0.971  0.0140
+CRE          C5         H51      SINGLE       n     1.082  0.0130     0.945  0.0200
+CRE          C6         H61      SINGLE       n     1.089  0.0100     0.979  0.0159
+CRE          C6         H62      SINGLE       n     1.089  0.0100     0.979  0.0159
+CRE          C7         H71      SINGLE       n     1.089  0.0100     0.979  0.0159
+CRE          C7         H72      SINGLE       n     1.089  0.0100     0.979  0.0159
+CRE          C9         H91      SINGLE       n     1.089  0.0100     0.971  0.0140
+CRE          C9         H92      SINGLE       n     1.089  0.0100     0.971  0.0140
+CRE          C9         H93      SINGLE       n     1.089  0.0100     0.971  0.0140
+CRE         C10         H10      SINGLE       n     1.082  0.0130     0.945  0.0200
+CRE         C11        H111      SINGLE       n     1.089  0.0100     0.979  0.0159
+CRE         C11        H112      SINGLE       n     1.089  0.0100     0.979  0.0159
+CRE         C12         H12      SINGLE       n     1.089  0.0100     0.988  0.0106
+CRE         C14        H141      SINGLE       n     1.089  0.0100     0.971  0.0140
+CRE         C14        H142      SINGLE       n     1.089  0.0100     0.971  0.0140
+CRE         C14        H143      SINGLE       n     1.089  0.0100     0.971  0.0140
+CRE         C15        H151      SINGLE       n     1.082  0.0130     0.949  0.0200
+CRE         C15        H152      SINGLE       n     1.082  0.0130     0.949  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CRE          C2          C1         C12     115.067    1.50
+CRE          C2          C1         H11     108.915    1.50
+CRE          C2          C1        H12A     108.915    1.50
+CRE         C12          C1         H11     108.536    1.50
+CRE         C12          C1        H12A     108.536    1.50
+CRE         H11          C1        H12A     107.657    1.50
+CRE          C1          C2          C3     113.243    1.53
+CRE          C1          C2         H21     108.844    1.50
+CRE          C1          C2         H22     108.844    1.50
+CRE          C3          C2         H21     108.816    1.50
+CRE          C3          C2         H22     108.816    1.50
+CRE         H21          C2         H22     107.710    1.94
+CRE          C2          C3          C4     115.131    1.50
+CRE          C2          C3          C5     121.188    1.50
+CRE          C4          C3          C5     123.681    1.50
+CRE          C3          C4         H41     109.541    1.50
+CRE          C3          C4         H42     109.541    1.50
+CRE          C3          C4         H43     109.541    1.50
+CRE         H41          C4         H42     109.342    1.50
+CRE         H41          C4         H43     109.342    1.50
+CRE         H42          C4         H43     109.342    1.50
+CRE          C3          C5          C6     128.114    1.50
+CRE          C3          C5         H51     116.261    1.50
+CRE          C6          C5         H51     115.635    1.60
+CRE          C5          C6          C7     112.751    2.50
+CRE          C5          C6         H61     109.181    1.50
+CRE          C5          C6         H62     109.181    1.50
+CRE          C7          C6         H61     109.013    1.50
+CRE          C7          C6         H62     109.013    1.50
+CRE         H61          C6         H62     107.922    1.50
+CRE          C6          C7          C8     113.520    2.62
+CRE          C6          C7         H71     108.867    1.50
+CRE          C6          C7         H72     108.867    1.50
+CRE          C8          C7         H71     108.816    1.50
+CRE          C8          C7         H72     108.816    1.50
+CRE         H71          C7         H72     107.710    1.94
+CRE          C7          C8          C9     115.131    1.50
+CRE          C7          C8         C10     121.188    1.50
+CRE          C9          C8         C10     123.681    1.50
+CRE          C8          C9         H91     109.541    1.50
+CRE          C8          C9         H92     109.541    1.50
+CRE          C8          C9         H93     109.541    1.50
+CRE         H91          C9         H92     109.342    1.50
+CRE         H91          C9         H93     109.342    1.50
+CRE         H92          C9         H93     109.342    1.50
+CRE          C8         C10         C11     127.670    1.50
+CRE          C8         C10         H10     115.988    1.50
+CRE         C11         C10         H10     116.342    1.85
+CRE         C10         C11         C12     114.092    1.68
+CRE         C10         C11        H111     109.118    1.50
+CRE         C10         C11        H112     109.118    1.50
+CRE         C12         C11        H111     108.942    1.50
+CRE         C12         C11        H112     108.942    1.50
+CRE        H111         C11        H112     107.820    1.50
+CRE          C1         C12         C11     110.760    1.86
+CRE          C1         C12         C13     112.449    2.27
+CRE          C1         C12         H12     107.780    1.50
+CRE         C11         C12         C13     111.511    2.91
+CRE         C11         C12         H12     108.361    1.50
+CRE         C13         C12         H12     106.962    1.50
+CRE         C12         C13         C14     116.774    1.79
+CRE         C12         C13         C15     121.402    1.92
+CRE         C14         C13         C15     121.824    1.50
+CRE         C13         C14        H141     109.569    1.50
+CRE         C13         C14        H142     109.569    1.50
+CRE         C13         C14        H143     109.569    1.50
+CRE        H141         C14        H142     109.342    1.50
+CRE        H141         C14        H143     109.342    1.50
+CRE        H142         C14        H143     109.342    1.50
+CRE         C13         C15        H151     120.127    1.50
+CRE         C13         C15        H152     120.127    1.50
+CRE        H151         C15        H152     119.746    1.57
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CRE             sp3_sp3_1         C12          C1          C2          C3     180.000    10.0     3
+CRE            sp3_sp3_10          C2          C1         C12         C11     180.000    10.0     3
+CRE            sp3_sp3_28         C10         C11         C12          C1     180.000    10.0     3
+CRE            sp2_sp3_37         C14         C13         C12          C1       0.000    10.0     6
+CRE            sp2_sp3_43         C12         C13         C14        H141       0.000    10.0     6
+CRE             sp2_sp2_9         C12         C13         C15        H151     180.000     5.0     2
+CRE             sp2_sp3_2          C4          C3          C2          C1     120.000    10.0     6
+CRE             sp2_sp3_7          C2          C3          C4         H41       0.000    10.0     6
+CRE             sp2_sp2_1          C2          C3          C5          C6     180.000     5.0     2
+CRE            sp2_sp3_14          C3          C5          C6          C7     120.000    10.0     6
+CRE            sp3_sp3_19          C5          C6          C7          C8     180.000    10.0     3
+CRE            sp2_sp3_20          C9          C8          C7          C6     120.000    10.0     6
+CRE            sp2_sp3_25          C7          C8          C9         H91       0.000    10.0     6
+CRE             sp2_sp2_5         C11         C10          C8          C7     180.000     5.0     2
+CRE            sp2_sp3_32          C8         C10         C11         C12     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CRE    chir_1    C12    C13    C11    C1    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CRE    plan-1          C2   0.020
+CRE    plan-1          C3   0.020
+CRE    plan-1          C4   0.020
+CRE    plan-1          C5   0.020
+CRE    plan-2          C3   0.020
+CRE    plan-2          C5   0.020
+CRE    plan-2          C6   0.020
+CRE    plan-2         H51   0.020
+CRE    plan-3         C10   0.020
+CRE    plan-3          C7   0.020
+CRE    plan-3          C8   0.020
+CRE    plan-3          C9   0.020
+CRE    plan-4         C10   0.020
+CRE    plan-4         C11   0.020
+CRE    plan-4          C8   0.020
+CRE    plan-4         H10   0.020
+CRE    plan-5         C12   0.020
+CRE    plan-5         C13   0.020
+CRE    plan-5         C14   0.020
+CRE    plan-5         C15   0.020
+CRE    plan-6         C13   0.020
+CRE    plan-6         C15   0.020
+CRE    plan-6        H151   0.020
+CRE    plan-6        H152   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CRE           SMILES              ACDLabs 10.04                                                                     C1(=CCCC(=CCC(\C(=C)C)CC1)C)C
+CRE SMILES_CANONICAL               CACTVS 3.341                                                               CC(=C)[C@@H]1CC\C(=C/CC\C(=C\C1)C)C
+CRE           SMILES               CACTVS 3.341                                                                     CC(=C)[CH]1CCC(=CCCC(=CC1)C)C
+CRE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                   CC1=CCCC(=CC[C@@H](CC1)C(=C)C)C
+CRE           SMILES "OpenEye OEToolkits" 1.5.0                                                                        CC1=CCCC(=CCC(CC1)C(=C)C)C
+CRE            InChI                InChI  1.03 InChI=1S/C15H24/c1-12(2)15-10-8-13(3)6-5-7-14(4)9-11-15/h6,9,15H,1,5,7-8,10-11H2,2-4H3/t15-/m1/s1
+CRE         InChIKey                InChI  1.03                                                                       XMRKUJJDDKYUHV-OAHLLOKOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CRE acedrg               243         "dictionary generator"                  
+CRE acedrg_database      11          "data source"                           
+CRE rdkit                2017.03.2   "Chemoinformatics tool"
+CRE refmac5              5.8.0238    "optimization tool"                     

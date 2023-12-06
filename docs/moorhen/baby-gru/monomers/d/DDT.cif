@@ -1,0 +1,489 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DDT     DDT      N,O-DIDANSYL-L-TYROSINE     NON-POLYMER     77     45     .     
+#
+data_comp_DDT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DDT     C1      C       CR6     0       15.354      40.856      29.638      
+DDT     C2      C       CR16    0       16.017      39.657      29.543      
+DDT     C3      C       CR16    0       16.080      38.769      30.628      
+DDT     C4      C       CR16    0       15.475      39.070      31.812      
+DDT     C4A     C       CR66    0       14.768      40.297      31.990      
+DDT     C5      C       CR6     0       14.108      40.691      33.211      
+DDT     C6      C       CR16    0       13.445      41.892      33.299      
+DDT     C7      C       CR16    0       13.398      42.765      32.199      
+DDT     C8      C       CR16    0       14.008      42.436      31.027      
+DDT     C8A     C       CR66    0       14.707      41.206      30.879      
+DDT     C9      C       CH3     0       14.094      41.852      27.688      
+DDT     C10     C       CH3     0       16.429      42.614      28.176      
+DDT     N1      N       N       0       15.293      41.761      28.524      
+DDT     C11     C       CH1     0       11.850      38.340      34.030      
+DDT     C12     C       C       0       11.013      38.255      35.320      
+DDT     C13     C       CH2     0       11.447      37.168      33.136      
+DDT     C14     C       CR6     0       11.931      37.291      31.713      
+DDT     C15     C       CR16    0       11.239      38.054      30.781      
+DDT     C16     C       CR16    0       11.673      38.166      29.466      
+DDT     C17     C       CR6     0       12.805      37.489      29.083      
+DDT     C18     C       CR16    0       13.528      36.730      29.976      
+DDT     C19     C       CR16    0       13.074      36.628      31.285      
+DDT     S       S       S3      0       14.097      39.668      34.667      
+DDT     O1      O       O       0       13.344      40.312      35.700      
+DDT     O2      O       O       0       15.446      39.288      34.958      
+DDT     N       N       NT1     0       13.297      38.318      34.270      
+DDT     OC1     O       O       0       11.249      37.304      36.091      
+DDT     OC2     O       OC      -1      10.157      39.142      35.503      
+DDT     O       O       O2      0       13.244      37.627      27.735      
+DDT     "S'"    S       S3      0       13.710      36.367      26.842      
+DDT     "O1'"   O       O       0       13.382      36.689      25.495      
+DDT     "O2'"   O       O       0       13.164      35.178      27.404      
+DDT     "C1'"   C       CR6     0       18.525      38.572      26.468      
+DDT     "C2'"   C       CR16    0       17.948      39.676      25.889      
+DDT     "C3'"   C       CR16    0       16.562      39.745      25.672      
+DDT     "C4'"   C       CR16    0       15.746      38.715      26.034      
+DDT     C4X     C       CR66    0       16.270      37.534      26.639      
+DDT     "C5'"   C       CR6     0       15.467      36.409      27.044      
+DDT     "C6'"   C       CR16    0       16.047      35.311      27.629      
+DDT     "C7'"   C       CR16    0       17.436      35.260      27.839      
+DDT     "C8'"   C       CR16    0       18.233      36.300      27.470      
+DDT     C8X     C       CR66    0       17.687      37.465      26.864      
+DDT     "C9'"   C       CH3     0       20.818      37.725      25.818      
+DDT     "CA'"   C       CH3     0       20.565      39.237      27.799      
+DDT     "N1'"   N       N       0       19.943      38.509      26.692      
+DDT     HC2     H       H       0       16.442      39.431      28.733      
+DDT     HC3     H       H       0       16.542      37.948      30.533      
+DDT     HC4     H       H       0       15.532      38.459      32.515      
+DDT     HC6     H       H       0       13.020      42.136      34.094      
+DDT     HC7     H       H       0       12.944      43.579      32.273      
+DDT     HC8     H       H       0       13.963      43.039      30.304      
+DDT     HC91    H       H       0       13.404      41.264      28.038      
+DDT     HC92    H       H       0       14.312      41.587      26.780      
+DDT     HC93    H       H       0       13.768      42.767      27.688      
+DDT     H101    H       H       0       17.168      42.440      28.782      
+DDT     H102    H       H       0       16.167      43.546      28.247      
+DDT     H103    H       H       0       16.709      42.426      27.265      
+DDT     HC11    H       H       0       11.620      39.173      33.572      
+DDT     H131    H       H       0       10.469      37.096      33.127      
+DDT     H132    H       H       0       11.803      36.341      33.521      
+DDT     HC15    H       H       0       10.457      38.509      31.047      
+DDT     HC16    H       H       0       11.191      38.691      28.848      
+DDT     HC18    H       H       0       14.307      36.274      29.710      
+DDT     HC19    H       H       0       13.559      36.102      31.899      
+DDT     H       H       H       0       13.577      37.640      34.713      
+DDT     "H2'1"  H       H       0       18.497      40.402      25.630      
+DDT     "H3'1"  H       H       0       16.192      40.519      25.270      
+DDT     "H4'1"  H       H       0       14.829      38.793      25.879      
+DDT     "H6'1"  H       H       0       15.519      34.585      27.891      
+DDT     "H7'1"  H       H       0       17.817      34.503      28.235      
+DDT     "H8'1"  H       H       0       19.161      36.241      27.620      
+DDT     "H9'1"  H       H       0       20.285      37.254      25.156      
+DDT     "H9'2"  H       H       0       21.314      37.082      26.350      
+DDT     "H9'3"  H       H       0       21.441      38.319      25.368      
+DDT     HB1     H       H       0       19.889      39.745      28.279      
+DDT     HB2     H       H       0       21.236      39.846      27.449      
+DDT     HB3     H       H       0       20.986      38.607      28.405      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DDT          C1          C2      DOUBLE       y     1.371  0.0100     1.371  0.0100
+DDT          C1         C8A      SINGLE       y     1.435  0.0100     1.435  0.0100
+DDT          C1          N1      SINGLE       n     1.427  0.0200     1.427  0.0200
+DDT          C2          C3      SINGLE       y     1.403  0.0100     1.403  0.0100
+DDT          C3          C4      DOUBLE       y     1.361  0.0100     1.361  0.0100
+DDT          C4         C4A      SINGLE       y     1.420  0.0100     1.420  0.0100
+DDT         C4A          C5      SINGLE       y     1.434  0.0100     1.434  0.0100
+DDT         C4A         C8A      DOUBLE       y     1.426  0.0100     1.426  0.0100
+DDT          C5          C6      DOUBLE       y     1.369  0.0100     1.369  0.0100
+DDT          C5           S      SINGLE       n     1.774  0.0100     1.774  0.0100
+DDT          C6          C7      SINGLE       y     1.405  0.0100     1.405  0.0100
+DDT          C7          C8      DOUBLE       y     1.360  0.0100     1.360  0.0100
+DDT          C8         C8A      SINGLE       y     1.416  0.0100     1.416  0.0100
+DDT          C9          N1      SINGLE       n     1.462  0.0141     1.462  0.0141
+DDT         C10          N1      SINGLE       n     1.462  0.0141     1.462  0.0141
+DDT         C11         C12      SINGLE       n     1.539  0.0100     1.539  0.0100
+DDT         C11         C13      SINGLE       n     1.527  0.0100     1.527  0.0100
+DDT         C11           N      SINGLE       n     1.464  0.0125     1.464  0.0125
+DDT         C12         OC1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+DDT         C12         OC2      SINGLE       n     1.247  0.0187     1.247  0.0187
+DDT         C13         C14      SINGLE       n     1.508  0.0100     1.508  0.0100
+DDT         C14         C15      DOUBLE       y     1.385  0.0110     1.385  0.0110
+DDT         C14         C19      SINGLE       y     1.385  0.0110     1.385  0.0110
+DDT         C15         C16      SINGLE       y     1.385  0.0100     1.385  0.0100
+DDT         C16         C17      DOUBLE       y     1.367  0.0127     1.367  0.0127
+DDT         C17         C18      SINGLE       y     1.367  0.0127     1.367  0.0127
+DDT         C17           O      SINGLE       n     1.419  0.0100     1.419  0.0100
+DDT         C18         C19      DOUBLE       y     1.385  0.0100     1.385  0.0100
+DDT           S          O1      DOUBLE       n     1.431  0.0100     1.431  0.0100
+DDT           S          O2      DOUBLE       n     1.431  0.0100     1.431  0.0100
+DDT           S           N      SINGLE       n     1.616  0.0107     1.616  0.0107
+DDT           O        "S'"      SINGLE       n     1.605  0.0127     1.605  0.0127
+DDT        "S'"       "O1'"      DOUBLE       n     1.423  0.0100     1.423  0.0100
+DDT        "S'"       "O2'"      DOUBLE       n     1.423  0.0100     1.423  0.0100
+DDT        "S'"       "C5'"      SINGLE       n     1.761  0.0111     1.761  0.0111
+DDT       "C1'"       "C2'"      DOUBLE       y     1.371  0.0100     1.371  0.0100
+DDT       "C1'"         C8X      SINGLE       y     1.435  0.0100     1.435  0.0100
+DDT       "C1'"       "N1'"      SINGLE       n     1.427  0.0200     1.427  0.0200
+DDT       "C2'"       "C3'"      SINGLE       y     1.403  0.0100     1.403  0.0100
+DDT       "C3'"       "C4'"      DOUBLE       y     1.361  0.0100     1.361  0.0100
+DDT       "C4'"         C4X      SINGLE       y     1.420  0.0100     1.420  0.0100
+DDT         C4X       "C5'"      SINGLE       y     1.430  0.0100     1.430  0.0100
+DDT         C4X         C8X      DOUBLE       y     1.426  0.0100     1.426  0.0100
+DDT       "C5'"       "C6'"      DOUBLE       y     1.367  0.0100     1.367  0.0100
+DDT       "C6'"       "C7'"      SINGLE       y     1.405  0.0100     1.405  0.0100
+DDT       "C7'"       "C8'"      DOUBLE       y     1.360  0.0100     1.360  0.0100
+DDT       "C8'"         C8X      SINGLE       y     1.416  0.0100     1.416  0.0100
+DDT       "C9'"       "N1'"      SINGLE       n     1.462  0.0141     1.462  0.0141
+DDT       "CA'"       "N1'"      SINGLE       n     1.462  0.0141     1.462  0.0141
+DDT          C2         HC2      SINGLE       n     1.082  0.0130     0.946  0.0200
+DDT          C3         HC3      SINGLE       n     1.082  0.0130     0.947  0.0200
+DDT          C4         HC4      SINGLE       n     1.082  0.0130     0.935  0.0116
+DDT          C6         HC6      SINGLE       n     1.082  0.0130     0.935  0.0100
+DDT          C7         HC7      SINGLE       n     1.082  0.0130     0.935  0.0125
+DDT          C8         HC8      SINGLE       n     1.082  0.0130     0.943  0.0128
+DDT          C9        HC91      SINGLE       n     1.089  0.0100     0.971  0.0181
+DDT          C9        HC92      SINGLE       n     1.089  0.0100     0.971  0.0181
+DDT          C9        HC93      SINGLE       n     1.089  0.0100     0.971  0.0181
+DDT         C10        H101      SINGLE       n     1.089  0.0100     0.971  0.0181
+DDT         C10        H102      SINGLE       n     1.089  0.0100     0.971  0.0181
+DDT         C10        H103      SINGLE       n     1.089  0.0100     0.971  0.0181
+DDT         C11        HC11      SINGLE       n     1.089  0.0100     0.978  0.0178
+DDT         C13        H131      SINGLE       n     1.089  0.0100     0.980  0.0164
+DDT         C13        H132      SINGLE       n     1.089  0.0100     0.980  0.0164
+DDT         C15        HC15      SINGLE       n     1.082  0.0130     0.943  0.0173
+DDT         C16        HC16      SINGLE       n     1.082  0.0130     0.943  0.0169
+DDT         C18        HC18      SINGLE       n     1.082  0.0130     0.943  0.0169
+DDT         C19        HC19      SINGLE       n     1.082  0.0130     0.943  0.0173
+DDT           N           H      SINGLE       n     1.036  0.0160     0.857  0.0200
+DDT       "C2'"      "H2'1"      SINGLE       n     1.082  0.0130     0.946  0.0200
+DDT       "C3'"      "H3'1"      SINGLE       n     1.082  0.0130     0.947  0.0200
+DDT       "C4'"      "H4'1"      SINGLE       n     1.082  0.0130     0.935  0.0116
+DDT       "C6'"      "H6'1"      SINGLE       n     1.082  0.0130     0.935  0.0100
+DDT       "C7'"      "H7'1"      SINGLE       n     1.082  0.0130     0.935  0.0125
+DDT       "C8'"      "H8'1"      SINGLE       n     1.082  0.0130     0.943  0.0128
+DDT       "C9'"      "H9'1"      SINGLE       n     1.089  0.0100     0.971  0.0181
+DDT       "C9'"      "H9'2"      SINGLE       n     1.089  0.0100     0.971  0.0181
+DDT       "C9'"      "H9'3"      SINGLE       n     1.089  0.0100     0.971  0.0181
+DDT       "CA'"         HB1      SINGLE       n     1.089  0.0100     0.971  0.0181
+DDT       "CA'"         HB2      SINGLE       n     1.089  0.0100     0.971  0.0181
+DDT       "CA'"         HB3      SINGLE       n     1.089  0.0100     0.971  0.0181
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DDT          C2          C1         C8A     119.100    1.50
+DDT          C2          C1          N1     122.346    1.50
+DDT         C8A          C1          N1     118.554    1.50
+DDT          C1          C2          C3     120.944    1.50
+DDT          C1          C2         HC2     119.406    1.50
+DDT          C3          C2         HC2     119.650    1.50
+DDT          C2          C3          C4     120.621    1.50
+DDT          C2          C3         HC3     119.555    1.50
+DDT          C4          C3         HC3     119.824    1.50
+DDT          C3          C4         C4A     120.916    1.50
+DDT          C3          C4         HC4     119.576    1.50
+DDT         C4A          C4         HC4     119.508    1.50
+DDT          C4         C4A          C5     124.012    1.50
+DDT          C4         C4A         C8A     118.718    1.50
+DDT          C5         C4A         C8A     117.270    1.50
+DDT         C4A          C5          C6     121.593    1.50
+DDT         C4A          C5           S     121.777    1.50
+DDT          C6          C5           S     116.629    1.50
+DDT          C5          C6          C7     120.493    1.50
+DDT          C5          C6         HC6     119.746    1.50
+DDT          C7          C6         HC6     119.762    1.50
+DDT          C6          C7          C8     120.466    1.50
+DDT          C6          C7         HC7     119.722    1.50
+DDT          C8          C7         HC7     119.812    1.50
+DDT          C7          C8         C8A     120.931    1.50
+DDT          C7          C8         HC8     119.562    1.50
+DDT         C8A          C8         HC8     119.508    1.50
+DDT          C1         C8A         C4A     119.701    1.50
+DDT          C1         C8A          C8     121.052    1.55
+DDT         C4A         C8A          C8     119.247    1.50
+DDT          N1          C9        HC91     109.435    1.50
+DDT          N1          C9        HC92     109.435    1.50
+DDT          N1          C9        HC93     109.435    1.50
+DDT        HC91          C9        HC92     109.352    1.56
+DDT        HC91          C9        HC93     109.352    1.56
+DDT        HC92          C9        HC93     109.352    1.56
+DDT          N1         C10        H101     109.435    1.50
+DDT          N1         C10        H102     109.435    1.50
+DDT          N1         C10        H103     109.435    1.50
+DDT        H101         C10        H102     109.352    1.56
+DDT        H101         C10        H103     109.352    1.56
+DDT        H102         C10        H103     109.352    1.56
+DDT          C1          N1          C9     121.038    1.50
+DDT          C1          N1         C10     121.038    1.50
+DDT          C9          N1         C10     117.924    1.50
+DDT         C12         C11         C13     108.347    3.00
+DDT         C12         C11           N     113.481    2.07
+DDT         C12         C11        HC11     108.169    1.50
+DDT         C13         C11           N     109.925    1.50
+DDT         C13         C11        HC11     108.529    1.50
+DDT           N         C11        HC11     108.676    1.50
+DDT         C11         C12         OC1     117.226    1.56
+DDT         C11         C12         OC2     117.226    1.56
+DDT         OC1         C12         OC2     125.548    1.50
+DDT         C11         C13         C14     113.205    1.50
+DDT         C11         C13        H131     108.819    1.50
+DDT         C11         C13        H132     108.819    1.50
+DDT         C14         C13        H131     108.862    1.50
+DDT         C14         C13        H132     108.862    1.50
+DDT        H131         C13        H132     107.782    1.50
+DDT         C13         C14         C15     121.090    1.50
+DDT         C13         C14         C19     121.090    1.50
+DDT         C15         C14         C19     117.820    1.50
+DDT         C14         C15         C16     121.458    1.50
+DDT         C14         C15        HC15     119.325    1.50
+DDT         C16         C15        HC15     119.218    1.50
+DDT         C15         C16         C17     118.502    1.50
+DDT         C15         C16        HC16     120.504    1.50
+DDT         C17         C16        HC16     120.994    1.50
+DDT         C16         C17         C18     122.261    1.50
+DDT         C16         C17           O     118.869    1.57
+DDT         C18         C17           O     118.869    1.57
+DDT         C17         C18         C19     118.502    1.50
+DDT         C17         C18        HC18     120.994    1.50
+DDT         C19         C18        HC18     120.504    1.50
+DDT         C14         C19         C18     121.458    1.50
+DDT         C14         C19        HC19     119.325    1.50
+DDT         C18         C19        HC19     119.218    1.50
+DDT          C5           S          O1     107.957    1.74
+DDT          C5           S          O2     107.957    1.74
+DDT          C5           S           N     106.584    1.50
+DDT          O1           S          O2     118.871    1.50
+DDT          O1           S           N     106.989    1.50
+DDT          O2           S           N     106.989    1.50
+DDT         C11           N           S     120.490    1.71
+DDT         C11           N           H     114.792    3.00
+DDT           S           N           H     111.936    3.00
+DDT         C17           O        "S'"     119.192    1.53
+DDT           O        "S'"       "O1'"     106.634    2.54
+DDT           O        "S'"       "O2'"     106.634    2.54
+DDT           O        "S'"       "C5'"     104.150    2.13
+DDT       "O1'"        "S'"       "O2'"     119.456    1.50
+DDT       "O1'"        "S'"       "C5'"     109.458    1.50
+DDT       "O2'"        "S'"       "C5'"     109.458    1.50
+DDT       "C2'"       "C1'"         C8X     119.100    1.50
+DDT       "C2'"       "C1'"       "N1'"     122.346    1.50
+DDT         C8X       "C1'"       "N1'"     118.554    1.50
+DDT       "C1'"       "C2'"       "C3'"     120.944    1.50
+DDT       "C1'"       "C2'"      "H2'1"     119.406    1.50
+DDT       "C3'"       "C2'"      "H2'1"     119.650    1.50
+DDT       "C2'"       "C3'"       "C4'"     120.621    1.50
+DDT       "C2'"       "C3'"      "H3'1"     119.555    1.50
+DDT       "C4'"       "C3'"      "H3'1"     119.824    1.50
+DDT       "C3'"       "C4'"         C4X     120.916    1.50
+DDT       "C3'"       "C4'"      "H4'1"     119.576    1.50
+DDT         C4X       "C4'"      "H4'1"     119.508    1.50
+DDT       "C4'"         C4X       "C5'"     123.559    1.50
+DDT       "C4'"         C4X         C8X     118.718    1.50
+DDT       "C5'"         C4X         C8X     117.723    1.50
+DDT        "S'"       "C5'"         C4X     122.128    1.50
+DDT        "S'"       "C5'"       "C6'"     116.758    1.50
+DDT         C4X       "C5'"       "C6'"     121.114    1.50
+DDT       "C5'"       "C6'"       "C7'"     120.423    1.50
+DDT       "C5'"       "C6'"      "H6'1"     119.792    1.50
+DDT       "C7'"       "C6'"      "H6'1"     119.787    1.50
+DDT       "C6'"       "C7'"       "C8'"     120.497    1.50
+DDT       "C6'"       "C7'"      "H7'1"     119.706    1.50
+DDT       "C8'"       "C7'"      "H7'1"     119.797    1.50
+DDT       "C7'"       "C8'"         C8X     120.962    1.50
+DDT       "C7'"       "C8'"      "H8'1"     119.546    1.50
+DDT         C8X       "C8'"      "H8'1"     119.492    1.50
+DDT       "C1'"         C8X         C4X     119.701    1.50
+DDT       "C1'"         C8X       "C8'"     121.021    1.55
+DDT         C4X         C8X       "C8'"     119.278    1.50
+DDT       "N1'"       "C9'"      "H9'1"     109.435    1.50
+DDT       "N1'"       "C9'"      "H9'2"     109.435    1.50
+DDT       "N1'"       "C9'"      "H9'3"     109.435    1.50
+DDT      "H9'1"       "C9'"      "H9'2"     109.352    1.56
+DDT      "H9'1"       "C9'"      "H9'3"     109.352    1.56
+DDT      "H9'2"       "C9'"      "H9'3"     109.352    1.56
+DDT       "N1'"       "CA'"         HB1     109.435    1.50
+DDT       "N1'"       "CA'"         HB2     109.435    1.50
+DDT       "N1'"       "CA'"         HB3     109.435    1.50
+DDT         HB1       "CA'"         HB2     109.352    1.56
+DDT         HB1       "CA'"         HB3     109.352    1.56
+DDT         HB2       "CA'"         HB3     109.352    1.56
+DDT       "C1'"       "N1'"       "C9'"     121.038    1.50
+DDT       "C1'"       "N1'"       "CA'"     121.038    1.50
+DDT       "C9'"       "N1'"       "CA'"     117.924    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DDT              const_43          N1          C1          C2          C3     180.000    10.0     2
+DDT             sp2_sp2_1          C2          C1          N1          C9     180.000     5.0     2
+DDT             const_103          N1          C1         C8A         C4A     180.000    10.0     2
+DDT            sp2_sp3_10         C10          N1          C9        HC91     180.000    10.0     6
+DDT            sp2_sp3_16          C9          N1         C10        H101     180.000    10.0     6
+DDT            sp2_sp3_19         OC1         C12         C11         C13       0.000    10.0     6
+DDT             sp3_sp3_1         C12         C11         C13         C14     180.000    10.0     3
+DDT            sp3_sp3_10         C12         C11           N           S     180.000    10.0     3
+DDT            sp2_sp3_26         C15         C14         C13         C11     -90.000    10.0     6
+DDT              const_23         C13         C14         C15         C16     180.000    10.0     2
+DDT             const_107         C13         C14         C19         C18     180.000    10.0     2
+DDT              const_25         C14         C15         C16         C17       0.000    10.0     2
+DDT              const_30         C15         C16         C17           O     180.000    10.0     2
+DDT              const_35           O         C17         C18         C19     180.000    10.0     2
+DDT             sp2_sp2_5         C16         C17           O        "S'"     180.000     5.0     2
+DDT              const_45          C1          C2          C3          C4       0.000    10.0     2
+DDT              const_37         C17         C18         C19         C14       0.000    10.0     2
+DDT            sp3_sp3_20         C11           N           S          O1     180.000    10.0     3
+DDT            sp3_sp3_22       "O1'"        "S'"           O         C17      90.000    10.0     3
+DDT            sp2_sp3_33         C4X       "C5'"        "S'"           O      30.000    10.0     6
+DDT              const_49          C2          C3          C4         C4A       0.000    10.0     2
+DDT       const_sp2_sp2_3       "N1'"       "C1'"       "C2'"       "C3'"     180.000     5.0     2
+DDT             const_111       "N1'"       "C1'"         C8X         C4X     180.000    10.0     2
+DDT             sp2_sp2_7       "C2'"       "C1'"       "N1'"       "C9'"     180.000     5.0     2
+DDT       const_sp2_sp2_5       "C1'"       "C2'"       "C3'"       "C4'"       0.000     5.0     2
+DDT       const_sp2_sp2_9       "C2'"       "C3'"       "C4'"         C4X       0.000     5.0     2
+DDT              const_14       "C3'"       "C4'"         C4X       "C5'"     180.000    10.0     2
+DDT              const_84       "C4'"         C4X       "C5'"        "S'"       0.000    10.0     2
+DDT              const_17       "C4'"         C4X         C8X       "C1'"       0.000    10.0     2
+DDT              const_87        "S'"       "C5'"       "C6'"       "C7'"     180.000    10.0     2
+DDT              const_89       "C5'"       "C6'"       "C7'"       "C8'"       0.000    10.0     2
+DDT              const_93       "C6'"       "C7'"       "C8'"         C8X       0.000    10.0     2
+DDT              const_54          C3          C4         C4A          C5     180.000    10.0     2
+DDT              const_98       "C7'"       "C8'"         C8X       "C1'"     180.000    10.0     2
+DDT            sp2_sp3_40       "CA'"       "N1'"       "C9'"      "H9'1"     180.000    10.0     6
+DDT            sp2_sp3_46       "C9'"       "N1'"       "CA'"         HB1     180.000    10.0     6
+DDT              const_64          C4         C4A          C5           S       0.000    10.0     2
+DDT              const_57          C4         C4A         C8A          C1       0.000    10.0     2
+DDT             sp2_sp3_1         C4A          C5           S          O1     150.000    10.0     6
+DDT              const_67           S          C5          C6          C7     180.000    10.0     2
+DDT              const_69          C5          C6          C7          C8       0.000    10.0     2
+DDT              const_73          C6          C7          C8         C8A       0.000    10.0     2
+DDT              const_78          C7          C8         C8A          C1     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DDT    chir_1    C11    N    C12    C13    positive
+DDT    chir_2    S    O1    O2    N    both
+DDT    chir_3    "S'"    "O1'"    "O2'"    O    both
+DDT    chir_4    N    S    C11    H    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DDT    plan-1          C1   0.020
+DDT    plan-1          C2   0.020
+DDT    plan-1          C3   0.020
+DDT    plan-1          C4   0.020
+DDT    plan-1         C4A   0.020
+DDT    plan-1          C5   0.020
+DDT    plan-1          C6   0.020
+DDT    plan-1          C7   0.020
+DDT    plan-1          C8   0.020
+DDT    plan-1         C8A   0.020
+DDT    plan-1         HC2   0.020
+DDT    plan-1         HC3   0.020
+DDT    plan-1         HC4   0.020
+DDT    plan-1         HC6   0.020
+DDT    plan-1         HC7   0.020
+DDT    plan-1         HC8   0.020
+DDT    plan-1          N1   0.020
+DDT    plan-1           S   0.020
+DDT    plan-2       "C1'"   0.020
+DDT    plan-2       "C2'"   0.020
+DDT    plan-2       "C3'"   0.020
+DDT    plan-2       "C4'"   0.020
+DDT    plan-2         C4X   0.020
+DDT    plan-2       "C5'"   0.020
+DDT    plan-2       "C6'"   0.020
+DDT    plan-2       "C7'"   0.020
+DDT    plan-2       "C8'"   0.020
+DDT    plan-2         C8X   0.020
+DDT    plan-2      "H2'1"   0.020
+DDT    plan-2      "H3'1"   0.020
+DDT    plan-2      "H4'1"   0.020
+DDT    plan-2      "H6'1"   0.020
+DDT    plan-2      "H7'1"   0.020
+DDT    plan-2      "H8'1"   0.020
+DDT    plan-2       "N1'"   0.020
+DDT    plan-2        "S'"   0.020
+DDT    plan-3         C13   0.020
+DDT    plan-3         C14   0.020
+DDT    plan-3         C15   0.020
+DDT    plan-3         C16   0.020
+DDT    plan-3         C17   0.020
+DDT    plan-3         C18   0.020
+DDT    plan-3         C19   0.020
+DDT    plan-3        HC15   0.020
+DDT    plan-3        HC16   0.020
+DDT    plan-3        HC18   0.020
+DDT    plan-3        HC19   0.020
+DDT    plan-3           O   0.020
+DDT    plan-4          C1   0.020
+DDT    plan-4         C10   0.020
+DDT    plan-4          C9   0.020
+DDT    plan-4          N1   0.020
+DDT    plan-5         C11   0.020
+DDT    plan-5         C12   0.020
+DDT    plan-5         OC1   0.020
+DDT    plan-5         OC2   0.020
+DDT    plan-6       "C1'"   0.020
+DDT    plan-6       "C9'"   0.020
+DDT    plan-6       "CA'"   0.020
+DDT    plan-6       "N1'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DDT           SMILES              ACDLabs 10.04                                                                                                                               O=S(=O)(Oc1ccc(cc1)CC(C(=O)O)NS(=O)(=O)c3c2cccc(N(C)C)c2ccc3)c5c4cccc(N(C)C)c4ccc5
+DDT SMILES_CANONICAL               CACTVS 3.341                                                                                                                        CN(C)c1cccc2c1cccc2[S](=O)(=O)N[C@@H](Cc3ccc(O[S](=O)(=O)c4cccc5c(cccc45)N(C)C)cc3)C(O)=O
+DDT           SMILES               CACTVS 3.341                                                                                                                          CN(C)c1cccc2c1cccc2[S](=O)(=O)N[CH](Cc3ccc(O[S](=O)(=O)c4cccc5c(cccc45)N(C)C)cc3)C(O)=O
+DDT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                              CN(C)c1cccc2c1cccc2S(=O)(=O)N[C@@H](Cc3ccc(cc3)OS(=O)(=O)c4cccc5c4cccc5N(C)C)C(=O)O
+DDT           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                   CN(C)c1cccc2c1cccc2S(=O)(=O)NC(Cc3ccc(cc3)OS(=O)(=O)c4cccc5c4cccc5N(C)C)C(=O)O
+DDT            InChI                InChI  1.03 InChI=1S/C33H33N3O7S2/c1-35(2)29-13-5-11-26-24(29)9-7-15-31(26)44(39,40)34-28(33(37)38)21-22-17-19-23(20-18-22)43-45(41,42)32-16-8-10-25-27(32)12-6-14-30(25)36(3)4/h5-20,28,34H,21H2,1-4H3,(H,37,38)/t28-/m0/s1
+DDT         InChIKey                InChI  1.03                                                                                                                                                                                      LUBOPDUYHWABFG-NDEPHWFRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DDT acedrg               243         "dictionary generator"                  
+DDT acedrg_database      11          "data source"                           
+DDT rdkit                2017.03.2   "Chemoinformatics tool"
+DDT refmac5              5.8.0238    "optimization tool"                     

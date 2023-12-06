@@ -1,0 +1,257 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DNB     DNB      (2S,3S,4R,5R)-2-(3,4-diaminophenyl)-5-(hydroxymethyl)pyrrolidine-3,4-diol     NON-POLYMER     34     17     .     
+#
+data_comp_DNB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DNB     "O2'"   O       OH1     0       45.130      -15.637     67.381      
+DNB     "C2'"   C       CH1     0       46.287      -15.603     68.206      
+DNB     "C3'"   C       CH1     0       46.402      -14.296     69.003      
+DNB     "O3'"   O       OH1     0       45.146      -13.705     69.309      
+DNB     "C1'"   C       CH1     0       47.564      -15.664     67.327      
+DNB     "N4'"   N       NT1     0       48.212      -14.358     67.530      
+DNB     "C4'"   C       CH1     0       47.221      -13.406     68.061      
+DNB     "C5'"   C       CH2     0       47.874      -12.220     68.745      
+DNB     "O5'"   O       OH1     0       48.754      -11.537     67.867      
+DNB     C1      C       CR6     0       48.495      -16.816     67.659      
+DNB     C6      C       CR16    0       49.065      -16.919     68.924      
+DNB     C5      C       CR16    0       49.919      -17.962     69.251      
+DNB     C4      C       CR6     0       50.234      -18.948     68.293      
+DNB     C3      C       CR6     0       49.655      -18.847     66.993      
+DNB     N3      N       NH2     0       49.938      -19.784     66.041      
+DNB     C2      C       CR16    0       48.796      -17.780     66.701      
+DNB     N4      N       NH2     0       51.074      -19.978     68.603      
+DNB     "HO2'"  H       H       0       45.108      -14.950     66.882      
+DNB     "H2'"   H       H       0       46.261      -16.363     68.837      
+DNB     "H3'"   H       H       0       46.912      -14.455     69.837      
+DNB     "HO3'"  H       H       0       45.282      -13.007     69.774      
+DNB     "H1'"   H       H       0       47.298      -15.729     66.378      
+DNB     "HN4'"  H       H       0       48.556      -14.049     66.770      
+DNB     "H4'"   H       H       0       46.648      -13.087     67.320      
+DNB     "H5'"   H       H       0       48.378      -12.531     69.529      
+DNB     "H5'A"  H       H       0       47.180      -11.598     69.054      
+DNB     "HO5'"  H       H       0       48.308      -11.195     67.232      
+DNB     H6      H       H       0       48.864      -16.268     69.576      
+DNB     H5      H       H       0       50.296      -18.019     70.113      
+DNB     HN3     H       H       0       49.283      -20.173     65.607      
+DNB     HN3A    H       H       0       50.772      -19.992     65.870      
+DNB     H2      H       H       0       48.415      -17.713     65.847      
+DNB     HN4     H       H       0       50.831      -20.803     68.434      
+DNB     HN4A    H       H       0       51.853      -19.809     68.969      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DNB       "O2'"       "C2'"      SINGLE       n     1.419  0.0101     1.419  0.0101
+DNB       "C2'"       "C3'"      SINGLE       n     1.533  0.0100     1.533  0.0100
+DNB       "C2'"       "C1'"      SINGLE       n     1.547  0.0100     1.547  0.0100
+DNB       "C3'"       "O3'"      SINGLE       n     1.421  0.0100     1.421  0.0100
+DNB       "C3'"       "C4'"      SINGLE       n     1.536  0.0148     1.536  0.0148
+DNB       "C1'"       "N4'"      SINGLE       n     1.471  0.0128     1.471  0.0128
+DNB       "C1'"          C1      SINGLE       n     1.514  0.0146     1.514  0.0146
+DNB       "N4'"       "C4'"      SINGLE       n     1.475  0.0100     1.475  0.0100
+DNB       "C4'"       "C5'"      SINGLE       n     1.516  0.0119     1.516  0.0119
+DNB       "C5'"       "O5'"      SINGLE       n     1.419  0.0100     1.419  0.0100
+DNB          C1          C6      DOUBLE       y     1.387  0.0100     1.387  0.0100
+DNB          C1          C2      SINGLE       y     1.387  0.0100     1.387  0.0100
+DNB          C6          C5      SINGLE       y     1.383  0.0100     1.383  0.0100
+DNB          C5          C4      DOUBLE       y     1.401  0.0172     1.401  0.0172
+DNB          C4          C3      SINGLE       y     1.415  0.0193     1.415  0.0193
+DNB          C3          N3      SINGLE       n     1.363  0.0200     1.363  0.0200
+DNB          C3          C2      DOUBLE       y     1.396  0.0125     1.396  0.0125
+DNB          C4          N4      SINGLE       n     1.363  0.0200     1.363  0.0200
+DNB       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+DNB       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.989  0.0200
+DNB       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.990  0.0168
+DNB       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+DNB       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.988  0.0131
+DNB       "N4'"      "HN4'"      SINGLE       n     1.036  0.0160     0.890  0.0200
+DNB       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.990  0.0135
+DNB       "C5'"       "H5'"      SINGLE       n     1.089  0.0100     0.982  0.0184
+DNB       "C5'"      "H5'A"      SINGLE       n     1.089  0.0100     0.982  0.0184
+DNB       "O5'"      "HO5'"      SINGLE       n     0.970  0.0120     0.848  0.0200
+DNB          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0103
+DNB          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0113
+DNB          N3         HN3      SINGLE       n     1.016  0.0100     0.877  0.0200
+DNB          N3        HN3A      SINGLE       n     1.016  0.0100     0.877  0.0200
+DNB          C2          H2      SINGLE       n     1.082  0.0130     0.937  0.0169
+DNB          N4         HN4      SINGLE       n     1.016  0.0100     0.877  0.0200
+DNB          N4        HN4A      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DNB       "C2'"       "O2'"      "HO2'"     109.104    3.00
+DNB       "O2'"       "C2'"       "C3'"     112.463    2.73
+DNB       "O2'"       "C2'"       "C1'"     110.392    2.12
+DNB       "O2'"       "C2'"       "H2'"     110.259    1.63
+DNB       "C3'"       "C2'"       "C1'"     104.443    2.26
+DNB       "C3'"       "C2'"       "H2'"     110.255    2.04
+DNB       "C1'"       "C2'"       "H2'"     111.254    2.22
+DNB       "C2'"       "C3'"       "O3'"     112.463    2.73
+DNB       "C2'"       "C3'"       "C4'"     103.086    2.24
+DNB       "C2'"       "C3'"       "H3'"     110.255    2.04
+DNB       "O3'"       "C3'"       "C4'"     111.549    2.36
+DNB       "O3'"       "C3'"       "H3'"     110.147    1.64
+DNB       "C4'"       "C3'"       "H3'"     109.851    1.50
+DNB       "C3'"       "O3'"      "HO3'"     108.584    1.68
+DNB       "C2'"       "C1'"       "N4'"     103.104    2.01
+DNB       "C2'"       "C1'"          C1     114.118    1.57
+DNB       "C2'"       "C1'"       "H1'"     109.153    1.50
+DNB       "N4'"       "C1'"          C1     112.593    1.88
+DNB       "N4'"       "C1'"       "H1'"     108.545    1.50
+DNB          C1       "C1'"       "H1'"     109.229    1.50
+DNB       "C1'"       "N4'"       "C4'"     109.056    3.00
+DNB       "C1'"       "N4'"      "HN4'"     111.130    2.99
+DNB       "C4'"       "N4'"      "HN4'"     110.078    2.70
+DNB       "C3'"       "C4'"       "N4'"     103.104    2.01
+DNB       "C3'"       "C4'"       "C5'"     113.697    1.51
+DNB       "C3'"       "C4'"       "H4'"     109.485    1.57
+DNB       "N4'"       "C4'"       "C5'"     111.633    2.37
+DNB       "N4'"       "C4'"       "H4'"     108.836    1.79
+DNB       "C5'"       "C4'"       "H4'"     109.324    1.50
+DNB       "C4'"       "C5'"       "O5'"     111.564    1.72
+DNB       "C4'"       "C5'"       "H5'"     109.608    1.50
+DNB       "C4'"       "C5'"      "H5'A"     109.608    1.50
+DNB       "O5'"       "C5'"       "H5'"     109.270    1.50
+DNB       "O5'"       "C5'"      "H5'A"     109.270    1.50
+DNB       "H5'"       "C5'"      "H5'A"     108.330    1.50
+DNB       "C5'"       "O5'"      "HO5'"     109.332    2.33
+DNB       "C1'"          C1          C6     120.628    1.50
+DNB       "C1'"          C1          C2     120.447    1.59
+DNB          C6          C1          C2     118.924    1.50
+DNB          C1          C6          C5     121.104    1.50
+DNB          C1          C6          H6     119.545    1.50
+DNB          C5          C6          H6     119.351    1.50
+DNB          C6          C5          C4     120.060    1.50
+DNB          C6          C5          H5     120.581    1.50
+DNB          C4          C5          H5     119.359    1.50
+DNB          C5          C4          C3     119.151    2.53
+DNB          C5          C4          N4     120.683    1.50
+DNB          C3          C4          N4     120.166    1.50
+DNB          C4          C3          N3     119.796    1.50
+DNB          C4          C3          C2     119.827    1.87
+DNB          N3          C3          C2     120.377    1.50
+DNB          C3          N3         HN3     119.716    2.26
+DNB          C3          N3        HN3A     119.716    2.26
+DNB         HN3          N3        HN3A     120.568    3.00
+DNB          C1          C2          C3     120.933    1.50
+DNB          C1          C2          H2     119.293    1.50
+DNB          C3          C2          H2     119.774    1.50
+DNB          C4          N4         HN4     119.716    2.26
+DNB          C4          N4        HN4A     119.716    2.26
+DNB         HN4          N4        HN4A     120.568    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DNB            sp3_sp3_31       "C3'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+DNB       const_sp2_sp2_5          C4          C5          C6          C1       0.000     5.0     2
+DNB              const_11          N4          C4          C5          C6     180.000    10.0     2
+DNB              const_16          N3          C3          C4          N4       0.000    10.0     2
+DNB             sp2_sp2_5          C5          C4          N4         HN4     180.000     5.0     2
+DNB             sp2_sp2_1          C4          C3          N3         HN3     180.000     5.0     2
+DNB              const_18          C1          C2          C3          N3     180.000    10.0     2
+DNB             sp3_sp3_5       "O2'"       "C2'"       "C3'"       "O3'"      60.000    10.0     3
+DNB            sp3_sp3_35       "N4'"       "C1'"       "C2'"       "O2'"     -60.000    10.0     3
+DNB            sp3_sp3_43       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+DNB            sp3_sp3_14       "O3'"       "C3'"       "C4'"       "C5'"     -60.000    10.0     3
+DNB            sp3_sp3_25       "C2'"       "C1'"       "N4'"       "C4'"     -60.000    10.0     3
+DNB             sp2_sp3_1          C6          C1       "C1'"       "C2'"     150.000    10.0     6
+DNB            sp3_sp3_21       "C5'"       "C4'"       "N4'"       "C1'"     -60.000    10.0     3
+DNB            sp3_sp3_46       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+DNB            sp3_sp3_55       "C4'"       "C5'"       "O5'"      "HO5'"     180.000    10.0     3
+DNB       const_sp2_sp2_3       "C1'"          C1          C6          C5     180.000     5.0     2
+DNB              const_23       "C1'"          C1          C2          C3     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DNB    chir_1    "C2'"    "O2'"    "C3'"    "C1'"    positive
+DNB    chir_2    "C3'"    "O3'"    "C2'"    "C4'"    negative
+DNB    chir_3    "C1'"    "N4'"    "C2'"    C1    positive
+DNB    chir_4    "C4'"    "N4'"    "C3'"    "C5'"    negative
+DNB    chir_5    "N4'"    "C4'"    "C1'"    "HN4'"    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DNB    plan-1          C1   0.020
+DNB    plan-1       "C1'"   0.020
+DNB    plan-1          C2   0.020
+DNB    plan-1          C3   0.020
+DNB    plan-1          C4   0.020
+DNB    plan-1          C5   0.020
+DNB    plan-1          C6   0.020
+DNB    plan-1          H2   0.020
+DNB    plan-1          H5   0.020
+DNB    plan-1          H6   0.020
+DNB    plan-1          N3   0.020
+DNB    plan-1          N4   0.020
+DNB    plan-2          C3   0.020
+DNB    plan-2         HN3   0.020
+DNB    plan-2        HN3A   0.020
+DNB    plan-2          N3   0.020
+DNB    plan-3          C4   0.020
+DNB    plan-3         HN4   0.020
+DNB    plan-3        HN4A   0.020
+DNB    plan-3          N4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DNB           SMILES              ACDLabs 10.04                                                                                      OC2C(c1ccc(N)c(N)c1)NC(CO)C2O
+DNB SMILES_CANONICAL               CACTVS 3.341                                                                      Nc1ccc(cc1N)[C@@H]2N[C@H](CO)[C@@H](O)[C@H]2O
+DNB           SMILES               CACTVS 3.341                                                                            Nc1ccc(cc1N)[CH]2N[CH](CO)[CH](O)[CH]2O
+DNB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                  c1cc(c(cc1[C@H]2[C@@H]([C@@H]([C@H](N2)CO)O)O)N)N
+DNB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                    c1cc(c(cc1C2C(C(C(N2)CO)O)O)N)N
+DNB            InChI                InChI  1.03 InChI=1S/C11H17N3O3/c12-6-2-1-5(3-7(6)13)9-11(17)10(16)8(4-15)14-9/h1-3,8-11,14-17H,4,12-13H2/t8-,9+,10-,11+/m1/s1
+DNB         InChIKey                InChI  1.03                                                                                        YAYMFJWCRXEXGZ-YTWAJWBKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DNB acedrg               243         "dictionary generator"                  
+DNB acedrg_database      11          "data source"                           
+DNB rdkit                2017.03.2   "Chemoinformatics tool"
+DNB refmac5              5.8.0238    "optimization tool"                     

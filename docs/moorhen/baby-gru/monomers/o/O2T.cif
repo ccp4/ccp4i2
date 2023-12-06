@@ -1,0 +1,324 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+O2T     O2T      "[2-[3-[(4-azanyl-2-methyl-pyrimidin-5-yl)methyl]-4-methyl-2-[1,1,2-tris(oxidanyl)-2-oxidanylidene-ethyl]-1,3-thiazol-3-ium-5-yl]ethoxy-oxidanyl-phosphoryl] hydrogen phosphate"     NON-POLYMER     49     32     .     
+#
+data_comp_O2T
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+O2T     C1      C       CH2     0       25.439      97.792      23.646      
+O2T     C3      C       CR6     0       24.049      97.907      24.245      
+O2T     C4      C       CR16    0       23.854      97.903      25.616      
+O2T     N5      N       NRD6    0       22.640      97.986      26.185      
+O2T     C6      C       CR6     0       21.579      98.066      25.372      
+O2T     N7      N       NRD6    0       21.646      98.069      24.035      
+O2T     C8      C       CR6     0       22.868      97.986      23.464      
+O2T     N9      N       NH2     0       22.905      97.991      22.121      
+O2T     C10     C       CH3     0       20.225      98.157      25.999      
+O2T     N11     N       NR5     1       25.587      96.709      22.664      
+O2T     C12     C       CR5     0       26.099      96.847      21.381      
+O2T     S13     S       S2      0       26.092      95.355      20.609      
+O2T     C14     C       CR5     0       25.453      94.473      21.862      
+O2T     C15     C       CR5     0       25.227      95.341      22.929      
+O2T     C19     C       CH2     0       25.217      93.013      21.709      
+O2T     C20     C       CH2     0       26.399      92.206      22.174      
+O2T     O21     O       O2      0       26.055      90.798      22.131      
+O2T     P22     P       P       0       26.467      89.911      20.857      
+O2T     O23     O       O2      0       28.065      89.891      20.994      
+O2T     P24     P       P       0       29.060      89.249      22.091      
+O2T     O25     O       OP      -1      25.943      88.528      21.062      
+O2T     O27     O       O       0       26.093      90.645      19.612      
+O2T     O28     O       OP      -1      28.898      87.754      21.974      
+O2T     O29     O       O       0       30.445      89.716      21.719      
+O2T     O30     O       OP      -1      28.604      89.782      23.428      
+O2T     C2      C       CH3     0       24.654      94.888      24.242      
+O2T     C16     C       CT      0       26.603      98.075      20.684      
+O2T     O17     O       OH1     0       26.991      97.789      19.370      
+O2T     O18     O       OH1     0       25.601      99.047      20.702      
+O2T     C5      C       C       0       27.853      98.603      21.419      
+O2T     O6      O       OC      -1      27.817      99.717      21.977      
+O2T     O7      O       O       0       28.875      97.890      21.433      
+O2T     H1      H       H       0       26.082      97.638      24.368      
+O2T     H2      H       H       0       25.665      98.645      23.233      
+O2T     H3      H       H       0       24.606      97.846      26.176      
+O2T     H4      H       H       0       23.420      98.563      21.700      
+O2T     H5      H       H       0       22.414      97.422      21.668      
+O2T     H6      H       H       0       20.242      97.735      26.874      
+O2T     H7      H       H       0       19.575      97.704      25.437      
+O2T     H8      H       H       0       19.974      99.089      26.096      
+O2T     H9      H       H       0       25.036      92.815      20.773      
+O2T     H10     H       H       0       24.432      92.762      22.227      
+O2T     H11     H       H       0       26.635      92.462      23.090      
+O2T     H12     H       H       0       27.171      92.384      21.596      
+O2T     H16     H       H       0       25.102      95.343      24.972      
+O2T     H17     H       H       0       24.780      93.932      24.339      
+O2T     H18     H       H       0       23.705      95.088      24.270      
+O2T     H19     H       H       0       27.560      97.156      19.351      
+O2T     H20     H       H       0       25.832      99.710      20.222      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+O2T         P24         O29      DOUBLE       n     1.509  0.0200     1.509  0.0200
+O2T         O23         P24      SINGLE       n     1.614  0.0178     1.614  0.0178
+O2T         P24         O28      SINGLE       n     1.509  0.0200     1.509  0.0200
+O2T         P24         O30      SINGLE       n     1.509  0.0200     1.509  0.0200
+O2T         P22         O23      SINGLE       n     1.604  0.0133     1.604  0.0133
+O2T         C16         O17      SINGLE       n     1.394  0.0140     1.394  0.0140
+O2T         C12         S13      SINGLE       y     1.695  0.0200     1.695  0.0200
+O2T         S13         C14      SINGLE       y     1.695  0.0200     1.695  0.0200
+O2T          C8          N9      SINGLE       n     1.343  0.0151     1.343  0.0151
+O2T         P22         O27      DOUBLE       n     1.493  0.0122     1.493  0.0122
+O2T         C16         O18      SINGLE       n     1.394  0.0140     1.394  0.0140
+O2T         P22         O25      SINGLE       n     1.493  0.0122     1.493  0.0122
+O2T         O21         P22      SINGLE       n     1.604  0.0133     1.604  0.0133
+O2T         C12         C16      SINGLE       n     1.490  0.0111     1.490  0.0111
+O2T         C16          C5      SINGLE       n     1.526  0.0200     1.526  0.0200
+O2T         C14         C19      SINGLE       n     1.486  0.0100     1.486  0.0100
+O2T         C19         C20      SINGLE       n     1.505  0.0199     1.505  0.0199
+O2T         N11         C12      DOUBLE       y     1.367  0.0129     1.367  0.0129
+O2T         C14         C15      DOUBLE       y     1.389  0.0200     1.389  0.0200
+O2T          N7          C8      DOUBLE       y     1.343  0.0133     1.343  0.0133
+O2T          C6          N7      SINGLE       y     1.333  0.0107     1.333  0.0107
+O2T         C20         O21      SINGLE       n     1.447  0.0162     1.447  0.0162
+O2T          C3          C8      SINGLE       y     1.410  0.0130     1.410  0.0130
+O2T          C5          O7      DOUBLE       n     1.244  0.0200     1.244  0.0200
+O2T          C5          O6      SINGLE       n     1.244  0.0200     1.244  0.0200
+O2T         N11         C15      SINGLE       y     1.378  0.0200     1.378  0.0200
+O2T          C1         N11      SINGLE       n     1.461  0.0100     1.461  0.0100
+O2T         C15          C2      SINGLE       n     1.499  0.0100     1.499  0.0100
+O2T          C6         C10      SINGLE       n     1.494  0.0103     1.494  0.0103
+O2T          N5          C6      DOUBLE       y     1.335  0.0101     1.335  0.0101
+O2T          C1          C3      SINGLE       n     1.515  0.0100     1.515  0.0100
+O2T          C3          C4      DOUBLE       y     1.382  0.0100     1.382  0.0100
+O2T          C4          N5      SINGLE       y     1.340  0.0100     1.340  0.0100
+O2T          C1          H1      SINGLE       n     1.089  0.0100     0.979  0.0157
+O2T          C1          H2      SINGLE       n     1.089  0.0100     0.979  0.0157
+O2T          C4          H3      SINGLE       n     1.082  0.0130     0.940  0.0200
+O2T          N9          H4      SINGLE       n     1.016  0.0100     0.877  0.0200
+O2T          N9          H5      SINGLE       n     1.016  0.0100     0.877  0.0200
+O2T         C10          H6      SINGLE       n     1.089  0.0100     0.971  0.0138
+O2T         C10          H7      SINGLE       n     1.089  0.0100     0.971  0.0138
+O2T         C10          H8      SINGLE       n     1.089  0.0100     0.971  0.0138
+O2T         C19          H9      SINGLE       n     1.089  0.0100     0.974  0.0100
+O2T         C19         H10      SINGLE       n     1.089  0.0100     0.974  0.0100
+O2T         C20         H11      SINGLE       n     1.089  0.0100     0.980  0.0143
+O2T         C20         H12      SINGLE       n     1.089  0.0100     0.980  0.0143
+O2T          C2         H16      SINGLE       n     1.089  0.0100     0.970  0.0153
+O2T          C2         H17      SINGLE       n     1.089  0.0100     0.970  0.0153
+O2T          C2         H18      SINGLE       n     1.089  0.0100     0.970  0.0153
+O2T         O17         H19      SINGLE       n     0.970  0.0120     0.849  0.0200
+O2T         O18         H20      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+O2T         N11          C1          C3     112.991    1.50
+O2T         N11          C1          H1     108.720    1.50
+O2T         N11          C1          H2     108.720    1.50
+O2T          C3          C1          H1     109.154    1.50
+O2T          C3          C1          H2     109.154    1.50
+O2T          H1          C1          H2     107.959    1.50
+O2T          C8          C3          C1     122.046    1.77
+O2T          C8          C3          C4     116.265    1.50
+O2T          C1          C3          C4     121.689    1.50
+O2T          C3          C4          N5     123.147    1.50
+O2T          C3          C4          H3     118.404    1.50
+O2T          N5          C4          H3     118.449    1.50
+O2T          C6          N5          C4     117.093    1.65
+O2T          N7          C6         C10     117.695    1.52
+O2T          N7          C6          N5     124.399    1.50
+O2T         C10          C6          N5     117.906    1.50
+O2T          C8          N7          C6     117.145    1.69
+O2T          N9          C8          N7     116.812    1.55
+O2T          N9          C8          C3     121.236    1.50
+O2T          N7          C8          C3     121.951    1.50
+O2T          C8          N9          H4     119.860    1.50
+O2T          C8          N9          H5     119.860    1.50
+O2T          H4          N9          H5     120.280    1.85
+O2T          C6         C10          H6     109.546    1.50
+O2T          C6         C10          H7     109.546    1.50
+O2T          C6         C10          H8     109.546    1.50
+O2T          H6         C10          H7     109.397    1.50
+O2T          H6         C10          H8     109.397    1.50
+O2T          H7         C10          H8     109.397    1.50
+O2T         C12         N11         C15     108.133    2.04
+O2T         C12         N11          C1     126.595    1.50
+O2T         C15         N11          C1     125.272    1.50
+O2T         S13         C12         C16     124.694    3.00
+O2T         S13         C12         N11     108.002    3.00
+O2T         C16         C12         N11     127.304    1.69
+O2T         C12         S13         C14     108.002    3.00
+O2T         S13         C14         C19     120.286    3.00
+O2T         S13         C14         C15     108.002    3.00
+O2T         C19         C14         C15     131.713    3.00
+O2T         C14         C15         N11     107.872    2.30
+O2T         C14         C15          C2     129.754    2.46
+O2T         N11         C15          C2     122.365    1.50
+O2T         C14         C19         C20     110.747    2.16
+O2T         C14         C19          H9     108.883    1.50
+O2T         C14         C19         H10     108.883    1.50
+O2T         C20         C19          H9     109.160    1.50
+O2T         C20         C19         H10     109.160    1.50
+O2T          H9         C19         H10     107.724    1.50
+O2T         C19         C20         O21     108.926    2.01
+O2T         C19         C20         H11     109.702    1.50
+O2T         C19         C20         H12     109.702    1.50
+O2T         O21         C20         H11     109.739    1.50
+O2T         O21         C20         H12     109.739    1.50
+O2T         H11         C20         H12     108.319    1.50
+O2T         P22         O21         C20     119.251    1.51
+O2T         O23         P22         O27     108.816    2.14
+O2T         O23         P22         O25     108.816    2.14
+O2T         O23         P22         O21     101.065    1.97
+O2T         O27         P22         O25     118.411    2.35
+O2T         O27         P22         O21     107.912    2.57
+O2T         O25         P22         O21     107.912    2.57
+O2T         P24         O23         P22     132.584    3.00
+O2T         O29         P24         O23     105.965    2.38
+O2T         O29         P24         O28     112.716    1.50
+O2T         O29         P24         O30     112.716    1.50
+O2T         O23         P24         O28     105.965    2.38
+O2T         O23         P24         O30     105.965    2.38
+O2T         O28         P24         O30     112.716    1.50
+O2T         C15          C2         H16     109.558    1.50
+O2T         C15          C2         H17     109.558    1.50
+O2T         C15          C2         H18     109.558    1.50
+O2T         H16          C2         H17     109.354    1.50
+O2T         H16          C2         H18     109.354    1.50
+O2T         H17          C2         H18     109.354    1.50
+O2T         O17         C16         O18     112.375    1.50
+O2T         O17         C16         C12     111.149    2.31
+O2T         O17         C16          C5     110.427    2.31
+O2T         O18         C16         C12     111.149    2.31
+O2T         O18         C16          C5     110.427    2.31
+O2T         C12         C16          C5     112.079    2.81
+O2T         C16         O17         H19     108.663    2.92
+O2T         C16         O18         H20     108.663    2.92
+O2T         C16          C5          O7     118.693    3.00
+O2T         C16          C5          O6     118.693    3.00
+O2T          O7          C5          O6     122.613    1.75
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+O2T            sp2_sp3_38          C8          C3          C1         N11     -90.000    10.0     6
+O2T            sp2_sp3_20         C12         N11          C1          C3     -90.000    10.0     6
+O2T       const_sp2_sp2_6         C16         C12         S13         C14     180.000     5.0     2
+O2T             sp2_sp3_2         S13         C12         C16         O17     -90.000    10.0     6
+O2T       const_sp2_sp2_8         C19         C14         S13         C12     180.000     5.0     2
+O2T              const_12         C19         C14         C15          C2       0.000    10.0     2
+O2T            sp2_sp3_14         S13         C14         C19         C20     -90.000    10.0     6
+O2T            sp2_sp3_25         C14         C15          C2         H16     150.000    10.0     6
+O2T            sp3_sp3_16         C14         C19         C20         O21     180.000    10.0     3
+O2T            sp3_sp3_25         C19         C20         O21         P22     180.000    10.0     3
+O2T            sp3_sp3_13         C20         O21         P22         O23     180.000    10.0     3
+O2T             sp3_sp3_6         P24         O23         P22         O27      60.000    10.0     3
+O2T             sp3_sp3_3         P22         O23         P24         O29      60.000    10.0     3
+O2T              const_31          C1          C3          C4          N5     180.000    10.0     2
+O2T              const_16          C1          C3          C8          N9       0.000    10.0     2
+O2T             sp3_sp3_8         O18         C16         O17         H19      60.000    10.0     3
+O2T            sp3_sp3_10         O17         C16         O18         H20     180.000    10.0     3
+O2T             sp2_sp3_7          O7          C5         C16         O17       0.000    10.0     6
+O2T              const_23          C3          C4          N5          C6       0.000    10.0     2
+O2T              const_22         C10          C6          N5          C4     180.000    10.0     2
+O2T              const_20         C10          C6          N7          C8     180.000    10.0     2
+O2T            sp2_sp3_31          N7          C6         C10          H6     150.000    10.0     6
+O2T              const_18          N9          C8          N7          C6     180.000    10.0     2
+O2T             sp2_sp2_3          N7          C8          N9          H4       0.000     5.0     2
+O2T       const_sp2_sp2_4         C16         C12         N11          C1       0.000     5.0     2
+O2T              const_28          C2         C15         N11          C1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+O2T    chir_1    P22    O23    O21    O25    both
+O2T    chir_2    P24    O23    O28    O30    both
+O2T    chir_3    C16    O17    O18    C12    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+O2T    plan-1          C1   0.020
+O2T    plan-1         C12   0.020
+O2T    plan-1         C14   0.020
+O2T    plan-1         C15   0.020
+O2T    plan-1         C16   0.020
+O2T    plan-1         C19   0.020
+O2T    plan-1          C2   0.020
+O2T    plan-1         N11   0.020
+O2T    plan-1         S13   0.020
+O2T    plan-2          C1   0.020
+O2T    plan-2         C10   0.020
+O2T    plan-2          C3   0.020
+O2T    plan-2          C4   0.020
+O2T    plan-2          C6   0.020
+O2T    plan-2          C8   0.020
+O2T    plan-2          H3   0.020
+O2T    plan-2          N5   0.020
+O2T    plan-2          N7   0.020
+O2T    plan-2          N9   0.020
+O2T    plan-3          C8   0.020
+O2T    plan-3          H4   0.020
+O2T    plan-3          H5   0.020
+O2T    plan-3          N9   0.020
+O2T    plan-4         C16   0.020
+O2T    plan-4          C5   0.020
+O2T    plan-4          O6   0.020
+O2T    plan-4          O7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+O2T            InChI                InChI  1.03 InChI=1S/C14H20N4O11P2S/c1-7-10(3-4-28-31(26,27)29-30(23,24)25)32-12(14(21,22)13(19)20)18(7)6-9-5-16-8(2)17-11(9)15/h5,21-22H,3-4,6H2,1-2H3,(H5-,15,16,17,19,20,23,24,25,26,27)
+O2T         InChIKey                InChI  1.03                                                                                                                                                     DVVUFOVKVOOQQB-UHFFFAOYSA-N
+O2T SMILES_CANONICAL               CACTVS 3.385                                                                                                         Cc1ncc(C[n+]2c(C)c(CCO[P](O)(=O)O[P](O)([O-])=O)sc2C(O)(O)C(O)=O)c(N)n1
+O2T           SMILES               CACTVS 3.385                                                                                                         Cc1ncc(C[n+]2c(C)c(CCO[P](O)(=O)O[P](O)([O-])=O)sc2C(O)(O)C(O)=O)c(N)n1
+O2T SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                                               Cc1c(sc([n+]1Cc2cnc(nc2N)C)C(C(=O)O)(O)O)CCOP(=O)(O)OP(=O)(O)[O-]
+O2T           SMILES "OpenEye OEToolkits" 2.0.4                                                                                                               Cc1c(sc([n+]1Cc2cnc(nc2N)C)C(C(=O)O)(O)O)CCOP(=O)(O)OP(=O)(O)[O-]
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+O2T acedrg               243         "dictionary generator"                  
+O2T acedrg_database      11          "data source"                           
+O2T rdkit                2017.03.2   "Chemoinformatics tool"
+O2T refmac5              5.8.0238    "optimization tool"                     

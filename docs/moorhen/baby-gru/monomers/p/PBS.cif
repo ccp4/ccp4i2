@@ -1,0 +1,773 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PBS     PBS      (2S,3S,4R)-N-OCTANOYL-1-[(ALPHA-D-GALACTOPYRANOSYL)OXY]-2-AMINO-OCTADECANE-3,4-DIOL     NON-POLYMER     105     42     .     
+#
+data_comp_PBS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PBS     C17     C       CH3     0       33.930      29.894      7.149       
+PBS     C16     C       CH2     0       35.105      30.814      6.898       
+PBS     C15     C       CH2     0       35.427      31.745      8.041       
+PBS     C14     C       CH2     0       36.601      32.658      7.787       
+PBS     C13     C       CH2     0       36.920      33.586      8.933       
+PBS     C12     C       CH2     0       38.093      34.501      8.680       
+PBS     C11     C       CH2     0       38.412      35.427      9.827       
+PBS     C10     C       CH2     0       39.588      36.338      9.578       
+PBS     C9      C       CH2     0       39.911      37.257      10.730      
+PBS     C8      C       CH2     0       41.016      38.242      10.445      
+PBS     C7      C       CH2     0       41.376      39.120      11.617      
+PBS     C6      C       CH2     0       42.649      39.908      11.433      
+PBS     C5      C       CH2     0       42.590      40.936      10.329      
+PBS     C4      C       CH2     0       43.683      41.980      10.374      
+PBS     C3      C       CH1     0       45.120      41.472      10.259      
+PBS     O32     O       OH1     0       45.247      40.762      9.026       
+PBS     C2      C       CH1     0       46.231      42.548      10.340      
+PBS     O1      O       OH1     0       46.192      43.355      9.160       
+PBS     C1      C       CH1     0       46.196      43.458      11.584      
+PBS     N       N       NH1     0       46.108      42.648      12.805      
+PBS     C18     C       C       0       45.573      43.069      13.965      
+PBS     O2      O       O       0       45.099      44.196      14.102      
+PBS     C19     C       CH2     0       45.587      42.081      15.115      
+PBS     C20     C       CH2     0       44.365      41.211      15.158      
+PBS     C21     C       CH2     0       43.086      41.958      15.514      
+PBS     C22     C       CH2     0       42.039      41.115      16.205      
+PBS     C23     C       CH2     0       41.404      40.065      15.326      
+PBS     C24     C       CH2     0       40.245      39.342      15.967      
+PBS     C25     C       CH3     0       39.590      38.300      15.088      
+PBS     C       C       CH2     0       47.394      44.386      11.664      
+PBS     OC1     O       O2      0       48.595      43.619      11.879      
+PBS     CG1     C       CH1     0       49.704      44.368      12.301      
+PBS     OG      O       O2      0       49.561      44.687      13.681      
+PBS     CG      C       CH1     0       49.549      43.547      14.584      
+PBS     CG5     C       CH2     0       49.347      44.097      15.978      
+PBS     OG6     O       OH1     0       47.993      44.492      16.188      
+PBS     CG4     C       CH1     0       50.848      42.753      14.430      
+PBS     OG5     O       OH1     0       51.949      43.550      14.863      
+PBS     CG3     C       CH1     0       51.035      42.346      12.975      
+PBS     OG4     O       OH1     0       52.283      41.676      12.803      
+PBS     CG2     C       CH1     0       50.977      43.562      12.055      
+PBS     OG3     O       OH1     0       51.053      43.165      10.688      
+PBS     H171    H       H       0       33.571      30.053      8.040       
+PBS     H172    H       H       0       34.222      28.968      7.080       
+PBS     H173    H       H       0       33.238      30.063      6.487       
+PBS     H161    H       H       0       34.918      31.354      6.099       
+PBS     H162    H       H       0       35.898      30.268      6.707       
+PBS     H151    H       H       0       35.614      31.207      8.840       
+PBS     H152    H       H       0       34.637      32.294      8.231       
+PBS     H141    H       H       0       36.413      33.197      6.989       
+PBS     H142    H       H       0       37.391      32.109      7.597       
+PBS     H131    H       H       0       37.108      33.048      9.731       
+PBS     H132    H       H       0       36.129      34.134      9.123       
+PBS     H121    H       H       0       37.904      35.041      7.882       
+PBS     H122    H       H       0       38.884      33.954      8.488       
+PBS     H111    H       H       0       38.595      34.887      10.625      
+PBS     H112    H       H       0       37.623      35.978      10.015      
+PBS     H101    H       H       0       39.403      36.882      8.784       
+PBS     H102    H       H       0       40.377      35.787      9.385       
+PBS     H91     H       H       0       40.167      36.712      11.505      
+PBS     H92     H       H       0       39.101      37.755      10.971      
+PBS     H81     H       H       0       40.743      38.812      9.695       
+PBS     H82     H       H       0       41.816      37.746      10.166      
+PBS     H71     H       H       0       41.469      38.557      12.415      
+PBS     H72     H       H       0       40.639      39.747      11.779      
+PBS     H61     H       H       0       43.380      39.284      11.242      
+PBS     H62     H       H       0       42.860      40.365      12.276      
+PBS     H51     H       H       0       41.723      41.393      10.374      
+PBS     H52     H       H       0       42.634      40.472      9.466       
+PBS     H41     H       H       0       43.596      42.473      11.217      
+PBS     H42     H       H       0       43.526      42.620      9.647       
+PBS     H3      H       H       0       45.274      40.821      10.990      
+PBS     H32     H       H       0       45.145      41.306      8.382       
+PBS     H2      H       H       0       47.103      42.076      10.327      
+PBS     HO1     H       H       0       45.497      43.841      9.162       
+PBS     H1      H       H       0       45.378      44.010      11.519      
+PBS     HN      H       H       0       46.438      41.841      12.764      
+PBS     H191    H       H       0       45.656      42.576      15.958      
+PBS     H192    H       H       0       46.382      41.510      15.039      
+PBS     H201    H       H       0       44.509      40.498      15.815      
+PBS     H202    H       H       0       44.248      40.788      14.282      
+PBS     H211    H       H       0       42.699      42.325      14.691      
+PBS     H212    H       H       0       43.312      42.713      16.098      
+PBS     H221    H       H       0       41.334      41.707      16.543      
+PBS     H222    H       H       0       42.450      40.672      16.978      
+PBS     H231    H       H       0       42.088      39.406      15.079      
+PBS     H232    H       H       0       41.091      40.492      14.501      
+PBS     H241    H       H       0       39.569      40.005      16.227      
+PBS     H242    H       H       0       40.563      38.906      16.788      
+PBS     H251    H       H       0       39.844      38.446      14.160      
+PBS     H252    H       H       0       38.623      38.366      15.171      
+PBS     H253    H       H       0       39.877      37.413      15.365      
+PBS     H1A     H       H       0       47.268      45.017      12.402      
+PBS     H2A     H       H       0       47.477      44.897      10.835      
+PBS     HG1     H       H       0       49.752      45.195      11.792      
+PBS     HG      H       H       0       48.788      42.959      14.360      
+PBS     HG51    H       H       0       49.934      44.871      16.111      
+PBS     HG52    H       H       0       49.591      43.413      16.636      
+PBS     HG6     H       H       0       47.803      45.136      15.670      
+PBS     HG4     H       H       0       50.798      41.941      14.986      
+PBS     HG5     H       H       0       52.647      43.080      14.883      
+PBS     HG3     H       H       0       50.305      41.724      12.725      
+PBS     H4      H       H       0       52.299      41.321      12.041      
+PBS     HG2     H       H       0       51.753      44.139      12.253      
+PBS     H5      H       H       0       51.190      43.844      10.211      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PBS         C17         C16      SINGLE       n     1.510  0.0200     1.510  0.0200
+PBS         C16         C15      SINGLE       n     1.507  0.0200     1.507  0.0200
+PBS         C15         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+PBS         C14         C13      SINGLE       n     1.509  0.0200     1.509  0.0200
+PBS         C13         C12      SINGLE       n     1.509  0.0200     1.509  0.0200
+PBS         C12         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+PBS         C11         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+PBS         C10          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+PBS          C9          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+PBS          C8          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+PBS          C7          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+PBS          C6          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+PBS          C5          C4      SINGLE       n     1.509  0.0200     1.509  0.0200
+PBS          C4          C3      SINGLE       n     1.526  0.0100     1.526  0.0100
+PBS          C3         O32      SINGLE       n     1.424  0.0199     1.424  0.0199
+PBS          C3          C2      SINGLE       n     1.535  0.0200     1.535  0.0200
+PBS          C2          O1      SINGLE       n     1.424  0.0199     1.424  0.0199
+PBS          C2          C1      SINGLE       n     1.537  0.0100     1.537  0.0100
+PBS          C1           N      SINGLE       n     1.464  0.0100     1.464  0.0100
+PBS          C1           C      SINGLE       n     1.515  0.0117     1.515  0.0117
+PBS           N         C18      SINGLE       n     1.339  0.0121     1.339  0.0121
+PBS         C18          O2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PBS         C18         C19      SINGLE       n     1.514  0.0100     1.514  0.0100
+PBS         C19         C20      SINGLE       n     1.497  0.0200     1.497  0.0200
+PBS         C20         C21      SINGLE       n     1.519  0.0164     1.519  0.0164
+PBS         C21         C22      SINGLE       n     1.509  0.0200     1.509  0.0200
+PBS         C22         C23      SINGLE       n     1.509  0.0200     1.509  0.0200
+PBS         C23         C24      SINGLE       n     1.507  0.0200     1.507  0.0200
+PBS         C24         C25      SINGLE       n     1.510  0.0200     1.510  0.0200
+PBS           C         OC1      SINGLE       n     1.439  0.0100     1.439  0.0100
+PBS         OC1         CG1      SINGLE       n     1.399  0.0118     1.399  0.0118
+PBS         CG1          OG      SINGLE       n     1.415  0.0124     1.415  0.0124
+PBS         CG1         CG2      SINGLE       n     1.523  0.0106     1.523  0.0106
+PBS          OG          CG      SINGLE       n     1.440  0.0195     1.440  0.0195
+PBS          CG         CG5      SINGLE       n     1.511  0.0142     1.511  0.0142
+PBS          CG         CG4      SINGLE       n     1.524  0.0200     1.524  0.0200
+PBS         CG5         OG6      SINGLE       n     1.426  0.0200     1.426  0.0200
+PBS         CG4         OG5      SINGLE       n     1.425  0.0176     1.425  0.0176
+PBS         CG4         CG3      SINGLE       n     1.520  0.0158     1.520  0.0158
+PBS         CG3         OG4      SINGLE       n     1.427  0.0138     1.427  0.0138
+PBS         CG3         CG2      SINGLE       n     1.519  0.0200     1.519  0.0200
+PBS         CG2         OG3      SINGLE       n     1.425  0.0112     1.425  0.0112
+PBS         C17        H171      SINGLE       n     1.089  0.0100     0.973  0.0157
+PBS         C17        H172      SINGLE       n     1.089  0.0100     0.973  0.0157
+PBS         C17        H173      SINGLE       n     1.089  0.0100     0.973  0.0157
+PBS         C16        H161      SINGLE       n     1.089  0.0100     0.982  0.0155
+PBS         C16        H162      SINGLE       n     1.089  0.0100     0.982  0.0155
+PBS         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0160
+PBS          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0160
+PBS          C3          H3      SINGLE       n     1.089  0.0100     0.992  0.0184
+PBS         O32         H32      SINGLE       n     0.970  0.0120     0.848  0.0200
+PBS          C2          H2      SINGLE       n     1.089  0.0100     0.992  0.0184
+PBS          O1         HO1      SINGLE       n     0.970  0.0120     0.848  0.0200
+PBS          C1          H1      SINGLE       n     1.089  0.0100     0.989  0.0122
+PBS           N          HN      SINGLE       n     1.016  0.0100     0.872  0.0200
+PBS         C19        H191      SINGLE       n     1.089  0.0100     0.981  0.0185
+PBS         C19        H192      SINGLE       n     1.089  0.0100     0.981  0.0185
+PBS         C20        H201      SINGLE       n     1.089  0.0100     0.980  0.0160
+PBS         C20        H202      SINGLE       n     1.089  0.0100     0.980  0.0160
+PBS         C21        H211      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C21        H212      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C23        H231      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C23        H232      SINGLE       n     1.089  0.0100     0.981  0.0163
+PBS         C24        H241      SINGLE       n     1.089  0.0100     0.982  0.0155
+PBS         C24        H242      SINGLE       n     1.089  0.0100     0.982  0.0155
+PBS         C25        H251      SINGLE       n     1.089  0.0100     0.973  0.0157
+PBS         C25        H252      SINGLE       n     1.089  0.0100     0.973  0.0157
+PBS         C25        H253      SINGLE       n     1.089  0.0100     0.973  0.0157
+PBS           C         H1A      SINGLE       n     1.089  0.0100     0.979  0.0200
+PBS           C         H2A      SINGLE       n     1.089  0.0100     0.979  0.0200
+PBS         CG1         HG1      SINGLE       n     1.089  0.0100     0.971  0.0193
+PBS          CG          HG      SINGLE       n     1.089  0.0100     0.988  0.0182
+PBS         CG5        HG51      SINGLE       n     1.089  0.0100     0.980  0.0184
+PBS         CG5        HG52      SINGLE       n     1.089  0.0100     0.980  0.0184
+PBS         OG6         HG6      SINGLE       n     0.970  0.0120     0.848  0.0200
+PBS         CG4         HG4      SINGLE       n     1.089  0.0100     0.986  0.0131
+PBS         OG5         HG5      SINGLE       n     0.970  0.0120     0.841  0.0200
+PBS         CG3         HG3      SINGLE       n     1.089  0.0100     0.991  0.0121
+PBS         OG4          H4      SINGLE       n     0.970  0.0120     0.841  0.0200
+PBS         CG2         HG2      SINGLE       n     1.089  0.0100     0.987  0.0140
+PBS         OG3          H5      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PBS         C16         C17        H171     109.554    1.50
+PBS         C16         C17        H172     109.554    1.50
+PBS         C16         C17        H173     109.554    1.50
+PBS        H171         C17        H172     109.380    1.50
+PBS        H171         C17        H173     109.380    1.50
+PBS        H172         C17        H173     109.380    1.50
+PBS         C17         C16         C15     113.719    3.00
+PBS         C17         C16        H161     108.918    1.50
+PBS         C17         C16        H162     108.918    1.50
+PBS         C15         C16        H161     108.758    1.50
+PBS         C15         C16        H162     108.758    1.50
+PBS        H161         C16        H162     107.763    1.50
+PBS         C16         C15         C14     114.362    3.00
+PBS         C16         C15        H151     108.653    1.50
+PBS         C16         C15        H152     108.653    1.50
+PBS         C14         C15        H151     108.698    1.50
+PBS         C14         C15        H152     108.698    1.50
+PBS        H151         C15        H152     107.646    1.50
+PBS         C15         C14         C13     114.243    1.69
+PBS         C15         C14        H141     108.698    1.50
+PBS         C15         C14        H142     108.698    1.50
+PBS         C13         C14        H141     108.698    1.50
+PBS         C13         C14        H142     108.698    1.50
+PBS        H141         C14        H142     107.646    1.50
+PBS         C14         C13         C12     114.243    1.69
+PBS         C14         C13        H131     108.698    1.50
+PBS         C14         C13        H132     108.698    1.50
+PBS         C12         C13        H131     108.698    1.50
+PBS         C12         C13        H132     108.698    1.50
+PBS        H131         C13        H132     107.646    1.50
+PBS         C13         C12         C11     114.243    1.69
+PBS         C13         C12        H121     108.698    1.50
+PBS         C13         C12        H122     108.698    1.50
+PBS         C11         C12        H121     108.698    1.50
+PBS         C11         C12        H122     108.698    1.50
+PBS        H121         C12        H122     107.646    1.50
+PBS         C12         C11         C10     114.243    1.69
+PBS         C12         C11        H111     108.698    1.50
+PBS         C12         C11        H112     108.698    1.50
+PBS         C10         C11        H111     108.698    1.50
+PBS         C10         C11        H112     108.698    1.50
+PBS        H111         C11        H112     107.646    1.50
+PBS         C11         C10          C9     114.243    1.69
+PBS         C11         C10        H101     108.698    1.50
+PBS         C11         C10        H102     108.698    1.50
+PBS          C9         C10        H101     108.698    1.50
+PBS          C9         C10        H102     108.698    1.50
+PBS        H101         C10        H102     107.646    1.50
+PBS         C10          C9          C8     114.243    1.69
+PBS         C10          C9         H91     108.698    1.50
+PBS         C10          C9         H92     108.698    1.50
+PBS          C8          C9         H91     108.698    1.50
+PBS          C8          C9         H92     108.698    1.50
+PBS         H91          C9         H92     107.646    1.50
+PBS          C9          C8          C7     114.243    1.69
+PBS          C9          C8         H81     108.698    1.50
+PBS          C9          C8         H82     108.698    1.50
+PBS          C7          C8         H81     108.698    1.50
+PBS          C7          C8         H82     108.698    1.50
+PBS         H81          C8         H82     107.646    1.50
+PBS          C8          C7          C6     114.243    1.69
+PBS          C8          C7         H71     108.698    1.50
+PBS          C8          C7         H72     108.698    1.50
+PBS          C6          C7         H71     108.698    1.50
+PBS          C6          C7         H72     108.698    1.50
+PBS         H71          C7         H72     107.646    1.50
+PBS          C7          C6          C5     114.243    1.69
+PBS          C7          C6         H61     108.698    1.50
+PBS          C7          C6         H62     108.698    1.50
+PBS          C5          C6         H61     108.698    1.50
+PBS          C5          C6         H62     108.698    1.50
+PBS         H61          C6         H62     107.646    1.50
+PBS          C6          C5          C4     114.776    2.10
+PBS          C6          C5         H51     108.698    1.50
+PBS          C6          C5         H52     108.698    1.50
+PBS          C4          C5         H51     108.597    1.50
+PBS          C4          C5         H52     108.597    1.50
+PBS         H51          C5         H52     107.646    1.50
+PBS          C5          C4          C3     116.150    2.74
+PBS          C5          C4         H41     108.572    1.50
+PBS          C5          C4         H42     108.572    1.50
+PBS          C3          C4         H41     108.389    1.50
+PBS          C3          C4         H42     108.389    1.50
+PBS         H41          C4         H42     107.428    1.50
+PBS          C4          C3         O32     108.325    1.59
+PBS          C4          C3          C2     115.002    1.95
+PBS          C4          C3          H3     108.287    1.50
+PBS         O32          C3          C2     109.320    2.01
+PBS         O32          C3          H3     107.870    1.50
+PBS          C2          C3          H3     108.450    1.83
+PBS          C3         O32         H32     108.815    1.50
+PBS          C3          C2          O1     109.320    2.01
+PBS          C3          C2          C1     115.018    1.61
+PBS          C3          C2          H2     108.450    1.83
+PBS          O1          C2          C1     109.040    1.72
+PBS          O1          C2          H2     108.081    2.87
+PBS          C1          C2          H2     108.500    1.50
+PBS          C2          O1         HO1     108.522    3.00
+PBS          C2          C1           N     109.748    1.50
+PBS          C2          C1           C     111.094    2.85
+PBS          C2          C1          H1     107.639    1.50
+PBS           N          C1           C     111.308    2.28
+PBS           N          C1          H1     108.194    1.50
+PBS           C          C1          H1     108.763    1.50
+PBS          C1           N         C18     123.741    1.63
+PBS          C1           N          HN     117.592    3.00
+PBS         C18           N          HN     118.656    1.50
+PBS           N         C18          O2     122.033    1.50
+PBS           N         C18         C19     116.136    1.50
+PBS          O2         C18         C19     121.831    1.50
+PBS         C18         C19         C20     112.836    1.50
+PBS         C18         C19        H191     108.930    1.50
+PBS         C18         C19        H192     108.930    1.50
+PBS         C20         C19        H191     108.897    1.50
+PBS         C20         C19        H192     108.897    1.50
+PBS        H191         C19        H192     107.846    1.50
+PBS         C19         C20         C21     113.472    1.51
+PBS         C19         C20        H201     108.795    1.50
+PBS         C19         C20        H202     108.795    1.50
+PBS         C21         C20        H201     108.698    1.50
+PBS         C21         C20        H202     108.698    1.50
+PBS        H201         C20        H202     107.646    1.50
+PBS         C20         C21         C22     114.243    1.69
+PBS         C20         C21        H211     108.698    1.50
+PBS         C20         C21        H212     108.698    1.50
+PBS         C22         C21        H211     108.698    1.50
+PBS         C22         C21        H212     108.698    1.50
+PBS        H211         C21        H212     107.646    1.50
+PBS         C21         C22         C23     114.243    1.69
+PBS         C21         C22        H221     108.698    1.50
+PBS         C21         C22        H222     108.698    1.50
+PBS         C23         C22        H221     108.698    1.50
+PBS         C23         C22        H222     108.698    1.50
+PBS        H221         C22        H222     107.646    1.50
+PBS         C22         C23         C24     114.362    3.00
+PBS         C22         C23        H231     108.698    1.50
+PBS         C22         C23        H232     108.698    1.50
+PBS         C24         C23        H231     108.653    1.50
+PBS         C24         C23        H232     108.653    1.50
+PBS        H231         C23        H232     107.646    1.50
+PBS         C23         C24         C25     113.719    3.00
+PBS         C23         C24        H241     108.758    1.50
+PBS         C23         C24        H242     108.758    1.50
+PBS         C25         C24        H241     108.918    1.50
+PBS         C25         C24        H242     108.918    1.50
+PBS        H241         C24        H242     107.763    1.50
+PBS         C24         C25        H251     109.554    1.50
+PBS         C24         C25        H252     109.554    1.50
+PBS         C24         C25        H253     109.554    1.50
+PBS        H251         C25        H252     109.380    1.50
+PBS        H251         C25        H253     109.380    1.50
+PBS        H252         C25        H253     109.380    1.50
+PBS          C1           C         OC1     109.482    3.00
+PBS          C1           C         H1A     109.865    1.50
+PBS          C1           C         H2A     109.865    1.50
+PBS         OC1           C         H1A     109.586    1.50
+PBS         OC1           C         H2A     109.586    1.50
+PBS         H1A           C         H2A     108.500    1.50
+PBS           C         OC1         CG1     113.687    1.50
+PBS         OC1         CG1          OG     108.518    1.66
+PBS         OC1         CG1         CG2     108.855    1.50
+PBS         OC1         CG1         HG1     109.834    1.50
+PBS          OG         CG1         CG2     110.404    1.50
+PBS          OG         CG1         HG1     109.385    1.50
+PBS         CG2         CG1         HG1     109.511    1.50
+PBS         CG1          OG          CG     112.999    1.58
+PBS          OG          CG         CG5     106.879    1.50
+PBS          OG          CG         CG4     109.140    1.86
+PBS          OG          CG          HG     109.134    1.50
+PBS         CG5          CG         CG4     112.996    1.59
+PBS         CG5          CG          HG     109.269    1.50
+PBS         CG4          CG          HG     108.960    1.50
+PBS          CG         CG5         OG6     111.299    2.09
+PBS          CG         CG5        HG51     109.363    1.50
+PBS          CG         CG5        HG52     109.363    1.50
+PBS         OG6         CG5        HG51     109.265    1.50
+PBS         OG6         CG5        HG52     109.265    1.50
+PBS        HG51         CG5        HG52     108.155    1.50
+PBS         CG5         OG6         HG6     109.472    2.41
+PBS          CG         CG4         OG5     109.072    2.07
+PBS          CG         CG4         CG3     110.272    1.76
+PBS          CG         CG4         HG4     109.223    1.50
+PBS         OG5         CG4         CG3     110.101    1.97
+PBS         OG5         CG4         HG4     109.194    1.50
+PBS         CG3         CG4         HG4     109.032    1.50
+PBS         CG4         OG5         HG5     109.564    3.00
+PBS         CG4         CG3         OG4     110.243    1.88
+PBS         CG4         CG3         CG2     110.687    1.67
+PBS         CG4         CG3         HG3     108.653    1.50
+PBS         OG4         CG3         CG2     109.587    2.09
+PBS         OG4         CG3         HG3     108.767    1.50
+PBS         CG2         CG3         HG3     108.712    1.50
+PBS         CG3         OG4          H4     108.895    2.41
+PBS         CG1         CG2         CG3     110.084    1.50
+PBS         CG1         CG2         OG3     110.083    1.70
+PBS         CG1         CG2         HG2     108.545    1.50
+PBS         CG3         CG2         OG3     111.053    2.62
+PBS         CG3         CG2         HG2     108.505    1.50
+PBS         OG3         CG2         HG2     108.551    1.50
+PBS         CG2         OG3          H5     109.126    2.06
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PBS                   nu0          CG          OG         CG1         CG2     -62.286    10.0     3
+PBS                   nu1          OG         CG1         CG2         CG3      55.404    10.0     3
+PBS                   nu2         CG1         CG2         CG3         CG4     -51.127    10.0     3
+PBS                   nu3         CG2         CG3         CG4          CG      52.095    10.0     3
+PBS                   nu4         CG3         CG4          CG          OG     -58.763    10.0     3
+PBS                   nu5         CG4          CG          OG         CG1      64.578    10.0     3
+PBS            sp3_sp3_34         C15         C16         C17        H171     180.000    10.0     3
+PBS            sp3_sp3_35         C15         C16         C17        H172     -60.000    10.0     3
+PBS            sp3_sp3_36         C15         C16         C17        H173      60.000    10.0     3
+PBS            sp3_sp3_37        H161         C16         C17        H171      60.000    10.0     3
+PBS            sp3_sp3_38        H161         C16         C17        H172     180.000    10.0     3
+PBS            sp3_sp3_39        H161         C16         C17        H173     -60.000    10.0     3
+PBS            sp3_sp3_40        H162         C16         C17        H171     -60.000    10.0     3
+PBS            sp3_sp3_41        H162         C16         C17        H172      60.000    10.0     3
+PBS            sp3_sp3_42        H162         C16         C17        H173     180.000    10.0     3
+PBS            sp3_sp3_43         C14         C15         C16         C17     180.000    10.0     3
+PBS            sp3_sp3_44         C14         C15         C16        H161     -60.000    10.0     3
+PBS            sp3_sp3_45         C14         C15         C16        H162      60.000    10.0     3
+PBS            sp3_sp3_46        H151         C15         C16         C17      60.000    10.0     3
+PBS            sp3_sp3_47        H151         C15         C16        H161     180.000    10.0     3
+PBS            sp3_sp3_48        H151         C15         C16        H162     -60.000    10.0     3
+PBS            sp3_sp3_49        H152         C15         C16         C17     -60.000    10.0     3
+PBS            sp3_sp3_50        H152         C15         C16        H161      60.000    10.0     3
+PBS            sp3_sp3_51        H152         C15         C16        H162     180.000    10.0     3
+PBS            sp3_sp3_52         C13         C14         C15         C16     180.000    10.0     3
+PBS            sp3_sp3_53         C13         C14         C15        H151     -60.000    10.0     3
+PBS            sp3_sp3_54         C13         C14         C15        H152      60.000    10.0     3
+PBS            sp3_sp3_55        H141         C14         C15         C16      60.000    10.0     3
+PBS            sp3_sp3_56        H141         C14         C15        H151     180.000    10.0     3
+PBS            sp3_sp3_57        H141         C14         C15        H152     -60.000    10.0     3
+PBS            sp3_sp3_58        H142         C14         C15         C16     -60.000    10.0     3
+PBS            sp3_sp3_59        H142         C14         C15        H151      60.000    10.0     3
+PBS            sp3_sp3_60        H142         C14         C15        H152     180.000    10.0     3
+PBS            sp3_sp3_61         C12         C13         C14         C15     180.000    10.0     3
+PBS            sp3_sp3_62         C12         C13         C14        H141     -60.000    10.0     3
+PBS            sp3_sp3_63         C12         C13         C14        H142      60.000    10.0     3
+PBS            sp3_sp3_64        H131         C13         C14         C15      60.000    10.0     3
+PBS            sp3_sp3_65        H131         C13         C14        H141     180.000    10.0     3
+PBS            sp3_sp3_66        H131         C13         C14        H142     -60.000    10.0     3
+PBS            sp3_sp3_67        H132         C13         C14         C15     -60.000    10.0     3
+PBS            sp3_sp3_68        H132         C13         C14        H141      60.000    10.0     3
+PBS            sp3_sp3_69        H132         C13         C14        H142     180.000    10.0     3
+PBS            sp3_sp3_70         C11         C12         C13         C14     180.000    10.0     3
+PBS            sp3_sp3_71         C11         C12         C13        H131     -60.000    10.0     3
+PBS            sp3_sp3_72         C11         C12         C13        H132      60.000    10.0     3
+PBS            sp3_sp3_73        H121         C12         C13         C14      60.000    10.0     3
+PBS            sp3_sp3_74        H121         C12         C13        H131     180.000    10.0     3
+PBS            sp3_sp3_75        H121         C12         C13        H132     -60.000    10.0     3
+PBS            sp3_sp3_76        H122         C12         C13         C14     -60.000    10.0     3
+PBS            sp3_sp3_77        H122         C12         C13        H131      60.000    10.0     3
+PBS            sp3_sp3_78        H122         C12         C13        H132     180.000    10.0     3
+PBS            sp3_sp3_79         C10         C11         C12         C13     180.000    10.0     3
+PBS            sp3_sp3_80         C10         C11         C12        H121     -60.000    10.0     3
+PBS            sp3_sp3_81         C10         C11         C12        H122      60.000    10.0     3
+PBS            sp3_sp3_82        H111         C11         C12         C13      60.000    10.0     3
+PBS            sp3_sp3_83        H111         C11         C12        H121     180.000    10.0     3
+PBS            sp3_sp3_84        H111         C11         C12        H122     -60.000    10.0     3
+PBS            sp3_sp3_85        H112         C11         C12         C13     -60.000    10.0     3
+PBS            sp3_sp3_86        H112         C11         C12        H121      60.000    10.0     3
+PBS            sp3_sp3_87        H112         C11         C12        H122     180.000    10.0     3
+PBS            sp3_sp3_88          C9         C10         C11         C12     180.000    10.0     3
+PBS            sp3_sp3_89          C9         C10         C11        H111     -60.000    10.0     3
+PBS            sp3_sp3_90          C9         C10         C11        H112      60.000    10.0     3
+PBS            sp3_sp3_91        H101         C10         C11         C12      60.000    10.0     3
+PBS            sp3_sp3_92        H101         C10         C11        H111     180.000    10.0     3
+PBS            sp3_sp3_93        H101         C10         C11        H112     -60.000    10.0     3
+PBS            sp3_sp3_94        H102         C10         C11         C12     -60.000    10.0     3
+PBS            sp3_sp3_95        H102         C10         C11        H111      60.000    10.0     3
+PBS            sp3_sp3_96        H102         C10         C11        H112     180.000    10.0     3
+PBS            sp3_sp3_97         C11         C10          C9          C8     180.000    10.0     3
+PBS            sp3_sp3_98         C11         C10          C9         H91     -60.000    10.0     3
+PBS            sp3_sp3_99         C11         C10          C9         H92      60.000    10.0     3
+PBS           sp3_sp3_100        H101         C10          C9          C8      60.000    10.0     3
+PBS           sp3_sp3_101        H101         C10          C9         H91     180.000    10.0     3
+PBS           sp3_sp3_102        H101         C10          C9         H92     -60.000    10.0     3
+PBS           sp3_sp3_103        H102         C10          C9          C8     -60.000    10.0     3
+PBS           sp3_sp3_104        H102         C10          C9         H91      60.000    10.0     3
+PBS           sp3_sp3_105        H102         C10          C9         H92     180.000    10.0     3
+PBS           sp3_sp3_106          C7          C8          C9         C10     180.000    10.0     3
+PBS           sp3_sp3_107          C7          C8          C9         H91     -60.000    10.0     3
+PBS           sp3_sp3_108          C7          C8          C9         H92      60.000    10.0     3
+PBS           sp3_sp3_109         H81          C8          C9         C10      60.000    10.0     3
+PBS           sp3_sp3_110         H81          C8          C9         H91     180.000    10.0     3
+PBS           sp3_sp3_111         H81          C8          C9         H92     -60.000    10.0     3
+PBS           sp3_sp3_112         H82          C8          C9         C10     -60.000    10.0     3
+PBS           sp3_sp3_113         H82          C8          C9         H91      60.000    10.0     3
+PBS           sp3_sp3_114         H82          C8          C9         H92     180.000    10.0     3
+PBS           sp3_sp3_115          C6          C7          C8          C9     180.000    10.0     3
+PBS           sp3_sp3_116          C6          C7          C8         H81     -60.000    10.0     3
+PBS           sp3_sp3_117          C6          C7          C8         H82      60.000    10.0     3
+PBS           sp3_sp3_118         H71          C7          C8          C9      60.000    10.0     3
+PBS           sp3_sp3_119         H71          C7          C8         H81     180.000    10.0     3
+PBS           sp3_sp3_120         H71          C7          C8         H82     -60.000    10.0     3
+PBS           sp3_sp3_121         H72          C7          C8          C9     -60.000    10.0     3
+PBS           sp3_sp3_122         H72          C7          C8         H81      60.000    10.0     3
+PBS           sp3_sp3_123         H72          C7          C8         H82     180.000    10.0     3
+PBS           sp3_sp3_124          C5          C6          C7          C8     180.000    10.0     3
+PBS           sp3_sp3_125          C5          C6          C7         H71     -60.000    10.0     3
+PBS           sp3_sp3_126          C5          C6          C7         H72      60.000    10.0     3
+PBS           sp3_sp3_127         H61          C6          C7          C8      60.000    10.0     3
+PBS           sp3_sp3_128         H61          C6          C7         H71     180.000    10.0     3
+PBS           sp3_sp3_129         H61          C6          C7         H72     -60.000    10.0     3
+PBS           sp3_sp3_130         H62          C6          C7          C8     -60.000    10.0     3
+PBS           sp3_sp3_131         H62          C6          C7         H71      60.000    10.0     3
+PBS           sp3_sp3_132         H62          C6          C7         H72     180.000    10.0     3
+PBS           sp3_sp3_133          C4          C5          C6          C7     180.000    10.0     3
+PBS           sp3_sp3_134          C4          C5          C6         H61     -60.000    10.0     3
+PBS           sp3_sp3_135          C4          C5          C6         H62      60.000    10.0     3
+PBS           sp3_sp3_136         H51          C5          C6          C7      60.000    10.0     3
+PBS           sp3_sp3_137         H51          C5          C6         H61     180.000    10.0     3
+PBS           sp3_sp3_138         H51          C5          C6         H62     -60.000    10.0     3
+PBS           sp3_sp3_139         H52          C5          C6          C7     -60.000    10.0     3
+PBS           sp3_sp3_140         H52          C5          C6         H61      60.000    10.0     3
+PBS           sp3_sp3_141         H52          C5          C6         H62     180.000    10.0     3
+PBS           sp3_sp3_142          C3          C4          C5          C6     180.000    10.0     3
+PBS           sp3_sp3_143          C3          C4          C5         H51     -60.000    10.0     3
+PBS           sp3_sp3_144          C3          C4          C5         H52      60.000    10.0     3
+PBS           sp3_sp3_145         H41          C4          C5          C6      60.000    10.0     3
+PBS           sp3_sp3_146         H41          C4          C5         H51     180.000    10.0     3
+PBS           sp3_sp3_147         H41          C4          C5         H52     -60.000    10.0     3
+PBS           sp3_sp3_148         H42          C4          C5          C6     -60.000    10.0     3
+PBS           sp3_sp3_149         H42          C4          C5         H51      60.000    10.0     3
+PBS           sp3_sp3_150         H42          C4          C5         H52     180.000    10.0     3
+PBS           sp3_sp3_151         O32          C3          C4          C5     180.000    10.0     3
+PBS           sp3_sp3_152         O32          C3          C4         H41     -60.000    10.0     3
+PBS           sp3_sp3_153         O32          C3          C4         H42      60.000    10.0     3
+PBS           sp3_sp3_154          C2          C3          C4          C5      60.000    10.0     3
+PBS           sp3_sp3_155          C2          C3          C4         H41     180.000    10.0     3
+PBS           sp3_sp3_156          C2          C3          C4         H42     -60.000    10.0     3
+PBS           sp3_sp3_157          H3          C3          C4          C5     -60.000    10.0     3
+PBS           sp3_sp3_158          H3          C3          C4         H41      60.000    10.0     3
+PBS           sp3_sp3_159          H3          C3          C4         H42     180.000    10.0     3
+PBS           sp3_sp3_160          C4          C3         O32         H32     180.000    10.0     3
+PBS           sp3_sp3_161          C2          C3         O32         H32      60.000    10.0     3
+PBS           sp3_sp3_162          H3          C3         O32         H32     -60.000    10.0     3
+PBS           sp3_sp3_163          O1          C2          C3          C4     180.000    10.0     3
+PBS           sp3_sp3_164          O1          C2          C3         O32     -60.000    10.0     3
+PBS           sp3_sp3_165          O1          C2          C3          H3      60.000    10.0     3
+PBS           sp3_sp3_166          C1          C2          C3          C4      60.000    10.0     3
+PBS           sp3_sp3_167          C1          C2          C3         O32     180.000    10.0     3
+PBS           sp3_sp3_168          C1          C2          C3          H3     -60.000    10.0     3
+PBS           sp3_sp3_169          H2          C2          C3          C4     -60.000    10.0     3
+PBS           sp3_sp3_170          H2          C2          C3         O32      60.000    10.0     3
+PBS           sp3_sp3_171          H2          C2          C3          H3     180.000    10.0     3
+PBS           sp3_sp3_172          C3          C2          O1         HO1     180.000    10.0     3
+PBS           sp3_sp3_173          C1          C2          O1         HO1      60.000    10.0     3
+PBS           sp3_sp3_174          H2          C2          O1         HO1     -60.000    10.0     3
+PBS           sp3_sp3_175           N          C1          C2          C3     180.000    10.0     3
+PBS           sp3_sp3_176           N          C1          C2          O1     -60.000    10.0     3
+PBS           sp3_sp3_177           N          C1          C2          H2      60.000    10.0     3
+PBS           sp3_sp3_178           C          C1          C2          C3      60.000    10.0     3
+PBS           sp3_sp3_179           C          C1          C2          O1     180.000    10.0     3
+PBS           sp3_sp3_180           C          C1          C2          H2     -60.000    10.0     3
+PBS           sp3_sp3_181          H1          C1          C2          C3     -60.000    10.0     3
+PBS           sp3_sp3_182          H1          C1          C2          O1      60.000    10.0     3
+PBS           sp3_sp3_183          H1          C1          C2          H2     180.000    10.0     3
+PBS             sp2_sp3_1         C18           N          C1          C2       0.000    10.0     6
+PBS             sp2_sp3_2         C18           N          C1           C     120.000    10.0     6
+PBS             sp2_sp3_3         C18           N          C1          H1    -120.000    10.0     6
+PBS             sp2_sp3_4          HN           N          C1          C2     180.000    10.0     6
+PBS             sp2_sp3_5          HN           N          C1           C     -60.000    10.0     6
+PBS             sp2_sp3_6          HN           N          C1          H1      60.000    10.0     6
+PBS           sp3_sp3_184         OC1           C          C1          C2     180.000    10.0     3
+PBS           sp3_sp3_185         OC1           C          C1           N     -60.000    10.0     3
+PBS           sp3_sp3_186         OC1           C          C1          H1      60.000    10.0     3
+PBS           sp3_sp3_187         H1A           C          C1          C2      60.000    10.0     3
+PBS           sp3_sp3_188         H1A           C          C1           N     180.000    10.0     3
+PBS           sp3_sp3_189         H1A           C          C1          H1     -60.000    10.0     3
+PBS           sp3_sp3_190         H2A           C          C1          C2     -60.000    10.0     3
+PBS           sp3_sp3_191         H2A           C          C1           N      60.000    10.0     3
+PBS           sp3_sp3_192         H2A           C          C1          H1     180.000    10.0     3
+PBS             sp2_sp2_1         C19         C18           N          C1     180.000     5.0     2
+PBS             sp2_sp2_2         C19         C18           N          HN       0.000     5.0     2
+PBS             sp2_sp2_3          O2         C18           N          C1       0.000     5.0     2
+PBS             sp2_sp2_4          O2         C18           N          HN     180.000     5.0     2
+PBS             sp2_sp3_7           N         C18         C19        H191       0.000    10.0     6
+PBS             sp2_sp3_8           N         C18         C19         C20     120.000    10.0     6
+PBS             sp2_sp3_9           N         C18         C19        H192    -120.000    10.0     6
+PBS            sp2_sp3_10          O2         C18         C19        H191     180.000    10.0     6
+PBS            sp2_sp3_11          O2         C18         C19         C20     -60.000    10.0     6
+PBS            sp2_sp3_12          O2         C18         C19        H192      60.000    10.0     6
+PBS           sp3_sp3_193         C18         C19         C20         C21     180.000    10.0     3
+PBS           sp3_sp3_194         C18         C19         C20        H201     -60.000    10.0     3
+PBS           sp3_sp3_195         C18         C19         C20        H202      60.000    10.0     3
+PBS           sp3_sp3_196        H191         C19         C20         C21      60.000    10.0     3
+PBS           sp3_sp3_197        H191         C19         C20        H201     180.000    10.0     3
+PBS           sp3_sp3_198        H191         C19         C20        H202     -60.000    10.0     3
+PBS           sp3_sp3_199        H192         C19         C20         C21     -60.000    10.0     3
+PBS           sp3_sp3_200        H192         C19         C20        H201      60.000    10.0     3
+PBS           sp3_sp3_201        H192         C19         C20        H202     180.000    10.0     3
+PBS           sp3_sp3_202         C19         C20         C21         C22     180.000    10.0     3
+PBS           sp3_sp3_203         C19         C20         C21        H211     -60.000    10.0     3
+PBS           sp3_sp3_204         C19         C20         C21        H212      60.000    10.0     3
+PBS           sp3_sp3_205        H201         C20         C21         C22      60.000    10.0     3
+PBS           sp3_sp3_206        H201         C20         C21        H211     180.000    10.0     3
+PBS           sp3_sp3_207        H201         C20         C21        H212     -60.000    10.0     3
+PBS           sp3_sp3_208        H202         C20         C21         C22     -60.000    10.0     3
+PBS           sp3_sp3_209        H202         C20         C21        H211      60.000    10.0     3
+PBS           sp3_sp3_210        H202         C20         C21        H212     180.000    10.0     3
+PBS           sp3_sp3_211         C20         C21         C22         C23     180.000    10.0     3
+PBS           sp3_sp3_212         C20         C21         C22        H221     -60.000    10.0     3
+PBS           sp3_sp3_213         C20         C21         C22        H222      60.000    10.0     3
+PBS           sp3_sp3_214        H211         C21         C22         C23      60.000    10.0     3
+PBS           sp3_sp3_215        H211         C21         C22        H221     180.000    10.0     3
+PBS           sp3_sp3_216        H211         C21         C22        H222     -60.000    10.0     3
+PBS           sp3_sp3_217        H212         C21         C22         C23     -60.000    10.0     3
+PBS           sp3_sp3_218        H212         C21         C22        H221      60.000    10.0     3
+PBS           sp3_sp3_219        H212         C21         C22        H222     180.000    10.0     3
+PBS           sp3_sp3_220         C21         C22         C23         C24     180.000    10.0     3
+PBS           sp3_sp3_221         C21         C22         C23        H231     -60.000    10.0     3
+PBS           sp3_sp3_222         C21         C22         C23        H232      60.000    10.0     3
+PBS           sp3_sp3_223        H221         C22         C23         C24      60.000    10.0     3
+PBS           sp3_sp3_224        H221         C22         C23        H231     180.000    10.0     3
+PBS           sp3_sp3_225        H221         C22         C23        H232     -60.000    10.0     3
+PBS           sp3_sp3_226        H222         C22         C23         C24     -60.000    10.0     3
+PBS           sp3_sp3_227        H222         C22         C23        H231      60.000    10.0     3
+PBS           sp3_sp3_228        H222         C22         C23        H232     180.000    10.0     3
+PBS           sp3_sp3_229         C22         C23         C24         C25     180.000    10.0     3
+PBS           sp3_sp3_230         C22         C23         C24        H241     -60.000    10.0     3
+PBS           sp3_sp3_231         C22         C23         C24        H242      60.000    10.0     3
+PBS           sp3_sp3_232        H231         C23         C24         C25      60.000    10.0     3
+PBS           sp3_sp3_233        H231         C23         C24        H241     180.000    10.0     3
+PBS           sp3_sp3_234        H231         C23         C24        H242     -60.000    10.0     3
+PBS           sp3_sp3_235        H232         C23         C24         C25     -60.000    10.0     3
+PBS           sp3_sp3_236        H232         C23         C24        H241      60.000    10.0     3
+PBS           sp3_sp3_237        H232         C23         C24        H242     180.000    10.0     3
+PBS           sp3_sp3_238         C23         C24         C25        H251     180.000    10.0     3
+PBS           sp3_sp3_239         C23         C24         C25        H252     -60.000    10.0     3
+PBS           sp3_sp3_240         C23         C24         C25        H253      60.000    10.0     3
+PBS           sp3_sp3_241        H241         C24         C25        H251      60.000    10.0     3
+PBS           sp3_sp3_242        H241         C24         C25        H252     180.000    10.0     3
+PBS           sp3_sp3_243        H241         C24         C25        H253     -60.000    10.0     3
+PBS           sp3_sp3_244        H242         C24         C25        H251     -60.000    10.0     3
+PBS           sp3_sp3_245        H242         C24         C25        H252      60.000    10.0     3
+PBS           sp3_sp3_246        H242         C24         C25        H253     180.000    10.0     3
+PBS           sp3_sp3_247          C1           C         OC1         CG1     180.000    10.0     3
+PBS           sp3_sp3_248         H1A           C         OC1         CG1      60.000    10.0     3
+PBS           sp3_sp3_249         H2A           C         OC1         CG1     -60.000    10.0     3
+PBS           sp3_sp3_250          OG         CG1         OC1           C     180.000    10.0     3
+PBS           sp3_sp3_251         CG2         CG1         OC1           C      60.000    10.0     3
+PBS           sp3_sp3_252         HG1         CG1         OC1           C     -60.000    10.0     3
+PBS           sp3_sp3_262          OG          CG         CG5         OG6     180.000    10.0     3
+PBS           sp3_sp3_263          OG          CG         CG5        HG51     -60.000    10.0     3
+PBS           sp3_sp3_264          OG          CG         CG5        HG52      60.000    10.0     3
+PBS           sp3_sp3_265         CG4          CG         CG5         OG6      60.000    10.0     3
+PBS           sp3_sp3_266         CG4          CG         CG5        HG51     180.000    10.0     3
+PBS           sp3_sp3_267         CG4          CG         CG5        HG52     -60.000    10.0     3
+PBS           sp3_sp3_268          HG          CG         CG5         OG6     -60.000    10.0     3
+PBS           sp3_sp3_269          HG          CG         CG5        HG51      60.000    10.0     3
+PBS           sp3_sp3_270          HG          CG         CG5        HG52     180.000    10.0     3
+PBS           sp3_sp3_271          CG         CG5         OG6         HG6     180.000    10.0     3
+PBS           sp3_sp3_272        HG51         CG5         OG6         HG6      60.000    10.0     3
+PBS           sp3_sp3_273        HG52         CG5         OG6         HG6     -60.000    10.0     3
+PBS           sp3_sp3_274          CG         CG4         OG5         HG5     180.000    10.0     3
+PBS           sp3_sp3_275         CG3         CG4         OG5         HG5      60.000    10.0     3
+PBS           sp3_sp3_276         HG4         CG4         OG5         HG5     -60.000    10.0     3
+PBS           sp3_sp3_277         CG4         CG3         OG4          H4     180.000    10.0     3
+PBS           sp3_sp3_278         CG2         CG3         OG4          H4      60.000    10.0     3
+PBS           sp3_sp3_279         HG3         CG3         OG4          H4     -60.000    10.0     3
+PBS           sp3_sp3_280         CG1         CG2         OG3          H5     180.000    10.0     3
+PBS           sp3_sp3_281         CG3         CG2         OG3          H5      60.000    10.0     3
+PBS           sp3_sp3_282         HG2         CG2         OG3          H5     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PBS    chir_1    C3    O32    C2    C4    negative
+PBS    chir_2    C2    O1    C3    C1    positive
+PBS    chir_3    C1    N    C2    C    positive
+PBS    chir_4    CG1    OG    OC1    CG2    positive
+PBS    chir_5    CG    OG    CG4    CG5    negative
+PBS    chir_6    CG4    OG5    CG    CG3    negative
+PBS    chir_7    CG3    OG4    CG2    CG4    positive
+PBS    chir_8    CG2    OG3    CG1    CG3    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PBS    plan-1          C1   0.020
+PBS    plan-1         C18   0.020
+PBS    plan-1          HN   0.020
+PBS    plan-1           N   0.020
+PBS    plan-2         C18   0.020
+PBS    plan-2         C19   0.020
+PBS    plan-2           N   0.020
+PBS    plan-2          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PBS           SMILES              ACDLabs 10.04                                                                                                                                                                         O=C(NC(COC1OC(C(O)C(O)C1O)CO)C(O)C(O)CCCCCCCCCCCCCC)CCCCCCC
+PBS SMILES_CANONICAL               CACTVS 3.341                                                                                                                                       CCCCCCCCCCCCCC[C@@H](O)[C@@H](O)[C@H](CO[C@H]1O[C@H](CO)[C@H](O)[C@H](O)[C@H]1O)NC(=O)CCCCCCC
+PBS           SMILES               CACTVS 3.341                                                                                                                                                 CCCCCCCCCCCCCC[CH](O)[CH](O)[CH](CO[CH]1O[CH](CO)[CH](O)[CH](O)[CH]1O)NC(=O)CCCCCCC
+PBS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                     CCCCCCCCCCCCCC[C@H]([C@H]([C@H](CO[C@@H]1[C@@H]([C@H]([C@H]([C@H](O1)CO)O)O)O)NC(=O)CCCCCCC)O)O
+PBS           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                       CCCCCCCCCCCCCCC(C(C(COC1C(C(C(C(O1)CO)O)O)O)NC(=O)CCCCCCC)O)O
+PBS            InChI                InChI  1.03 InChI=1S/C32H63NO9/c1-3-5-7-9-10-11-12-13-14-15-17-18-20-25(35)28(37)24(33-27(36)21-19-16-8-6-4-2)23-41-32-31(40)30(39)29(38)26(22-34)42-32/h24-26,28-32,34-35,37-40H,3-23H2,1-2H3,(H,33,36)/t24-,25+,26+,28-,29-,30-,31+,32-/m0/s1
+PBS         InChIKey                InChI  1.03                                                                                                                                                                                                         PFXOKSFCNLTBGK-YFWOXBOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PBS acedrg               243         "dictionary generator"                  
+PBS acedrg_database      11          "data source"                           
+PBS rdkit                2017.03.2   "Chemoinformatics tool"
+PBS refmac5              5.8.0238    "optimization tool"                     

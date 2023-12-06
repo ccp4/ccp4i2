@@ -1,0 +1,172 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HQY     HQY      quinolin-8-ol     NON-POLYMER     18     11     .     
+#
+data_comp_HQY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HQY     OAA     O       OH1     0       -24.345     25.366      6.140       
+HQY     CAD     C       CR16    0       -19.671     25.311      7.951       
+HQY     CAE     C       CR16    0       -20.938     25.759      8.382       
+HQY     CAF     C       CR16    0       -19.568     24.717      6.729       
+HQY     CAG     C       CR16    0       -21.836     23.843      3.932       
+HQY     NAH     N       NRD6    0       -22.050     25.642      7.674       
+HQY     CAI     C       CR16    0       -20.693     23.962      4.659       
+HQY     CAJ     C       CR6     0       -23.140     24.907      5.658       
+HQY     CAK     C       CR16    0       -23.069     24.314      4.426       
+HQY     CAL     C       CR66    0       -20.726     24.568      5.935       
+HQY     CAM     C       CR66    0       -21.963     25.048      6.445       
+HQY     HOAA    H       H       0       -24.370     25.976      6.748       
+HQY     HAD     H       H       0       -18.914     25.421      8.500       
+HQY     HAE     H       H       0       -21.000     26.169      9.229       
+HQY     HAF     H       H       0       -18.735     24.407      6.415       
+HQY     HAG     H       H       0       -21.807     23.439      3.084       
+HQY     HAI     H       H       0       -19.879     23.641      4.310       
+HQY     HAK     H       H       0       -23.845     24.223      3.911       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HQY         OAA         CAJ      SINGLE       n     1.374  0.0155     1.374  0.0155
+HQY         CAD         CAE      DOUBLE       y     1.406  0.0100     1.406  0.0100
+HQY         CAD         CAF      SINGLE       y     1.358  0.0112     1.358  0.0112
+HQY         CAE         NAH      SINGLE       y     1.317  0.0100     1.317  0.0100
+HQY         CAF         CAL      DOUBLE       y     1.411  0.0100     1.411  0.0100
+HQY         CAG         CAI      DOUBLE       y     1.356  0.0100     1.356  0.0100
+HQY         CAG         CAK      SINGLE       y     1.403  0.0119     1.403  0.0119
+HQY         NAH         CAM      DOUBLE       y     1.364  0.0100     1.364  0.0100
+HQY         CAI         CAL      SINGLE       y     1.411  0.0100     1.411  0.0100
+HQY         CAJ         CAK      DOUBLE       y     1.364  0.0100     1.364  0.0100
+HQY         CAJ         CAM      SINGLE       y     1.419  0.0100     1.419  0.0100
+HQY         CAL         CAM      SINGLE       y     1.417  0.0100     1.417  0.0100
+HQY         OAA        HOAA      SINGLE       n     0.966  0.0059     0.861  0.0200
+HQY         CAD         HAD      SINGLE       n     1.082  0.0130     0.942  0.0187
+HQY         CAE         HAE      SINGLE       n     1.082  0.0130     0.943  0.0200
+HQY         CAF         HAF      SINGLE       n     1.082  0.0130     0.942  0.0169
+HQY         CAG         HAG      SINGLE       n     1.082  0.0130     0.940  0.0144
+HQY         CAI         HAI      SINGLE       n     1.082  0.0130     0.942  0.0169
+HQY         CAK         HAK      SINGLE       n     1.082  0.0130     0.936  0.0117
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HQY         CAJ         OAA        HOAA     120.000    3.00
+HQY         CAE         CAD         CAF     118.477    1.50
+HQY         CAE         CAD         HAD     120.622    1.50
+HQY         CAF         CAD         HAD     120.902    1.50
+HQY         CAD         CAE         NAH     123.797    1.50
+HQY         CAD         CAE         HAE     118.324    1.50
+HQY         NAH         CAE         HAE     117.879    1.50
+HQY         CAD         CAF         CAL     119.424    1.50
+HQY         CAD         CAF         HAF     120.539    1.50
+HQY         CAL         CAF         HAF     120.038    1.50
+HQY         CAI         CAG         CAK     120.994    1.50
+HQY         CAI         CAG         HAG     119.724    1.50
+HQY         CAK         CAG         HAG     119.282    1.50
+HQY         CAE         NAH         CAM     117.014    1.50
+HQY         CAG         CAI         CAL     120.164    1.50
+HQY         CAG         CAI         HAI     119.839    1.50
+HQY         CAL         CAI         HAI     119.998    1.50
+HQY         OAA         CAJ         CAK     121.633    3.00
+HQY         OAA         CAJ         CAM     118.397    2.50
+HQY         CAK         CAJ         CAM     119.969    1.50
+HQY         CAG         CAK         CAJ     120.026    1.50
+HQY         CAG         CAK         HAK     120.130    1.50
+HQY         CAJ         CAK         HAK     119.844    1.50
+HQY         CAF         CAL         CAI     121.559    1.50
+HQY         CAF         CAL         CAM     119.110    1.50
+HQY         CAI         CAL         CAM     119.330    1.50
+HQY         NAH         CAM         CAJ     118.305    1.50
+HQY         NAH         CAM         CAL     122.178    1.50
+HQY         CAJ         CAM         CAL     119.517    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HQY             sp2_sp2_1         CAK         CAJ         OAA        HOAA     180.000     5.0     2
+HQY       const_sp2_sp2_1         CAF         CAD         CAE         NAH       0.000     5.0     2
+HQY              const_33         CAE         CAD         CAF         CAL       0.000    10.0     2
+HQY       const_sp2_sp2_5         CAD         CAE         NAH         CAM       0.000     5.0     2
+HQY              const_14         CAD         CAF         CAL         CAI     180.000    10.0     2
+HQY              const_17         CAK         CAG         CAI         CAL       0.000    10.0     2
+HQY              const_37         CAI         CAG         CAK         CAJ       0.000    10.0     2
+HQY       const_sp2_sp2_8         CAJ         CAM         NAH         CAE     180.000     5.0     2
+HQY              const_22         CAG         CAI         CAL         CAF     180.000    10.0     2
+HQY              const_28         OAA         CAJ         CAM         NAH       0.000    10.0     2
+HQY              const_31         OAA         CAJ         CAK         CAG     180.000    10.0     2
+HQY       const_sp2_sp2_9         CAF         CAL         CAM         NAH       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HQY    plan-1         CAD   0.020
+HQY    plan-1         CAE   0.020
+HQY    plan-1         CAF   0.020
+HQY    plan-1         CAG   0.020
+HQY    plan-1         CAI   0.020
+HQY    plan-1         CAJ   0.020
+HQY    plan-1         CAK   0.020
+HQY    plan-1         CAL   0.020
+HQY    plan-1         CAM   0.020
+HQY    plan-1         HAD   0.020
+HQY    plan-1         HAE   0.020
+HQY    plan-1         HAF   0.020
+HQY    plan-1         HAG   0.020
+HQY    plan-1         HAI   0.020
+HQY    plan-1         HAK   0.020
+HQY    plan-1         NAH   0.020
+HQY    plan-1         OAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HQY           SMILES              ACDLabs 11.02                                       Oc1cccc2cccnc12
+HQY SMILES_CANONICAL               CACTVS 3.352                                       Oc1cccc2cccnc12
+HQY           SMILES               CACTVS 3.352                                       Oc1cccc2cccnc12
+HQY SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                     c1cc2cccnc2c(c1)O
+HQY           SMILES "OpenEye OEToolkits" 1.7.0                                     c1cc2cccnc2c(c1)O
+HQY            InChI                InChI  1.03 InChI=1S/C9H7NO/c11-8-5-1-3-7-4-2-6-10-9(7)8/h1-6,11H
+HQY         InChIKey                InChI  1.03                           MCJGNVYPOGVAJF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HQY acedrg               243         "dictionary generator"                  
+HQY acedrg_database      11          "data source"                           
+HQY rdkit                2017.03.2   "Chemoinformatics tool"
+HQY refmac5              5.8.0238    "optimization tool"                     

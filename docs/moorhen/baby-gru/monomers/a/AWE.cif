@@ -1,0 +1,215 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AWE     AWE      "[3-chloranyl-4-(3-fluorophenyl)phenyl]methanamine"     NON-POLYMER     27     16     .     
+#
+data_comp_AWE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AWE     C1      C       CR6     0       -115.302    -175.103    309.220     
+AWE     C2      C       CR16    0       -115.133    -176.150    310.116     
+AWE     C3      C       CR16    0       -113.867    -176.532    310.535     
+AWE     C4      C       CR6     0       -112.725    -175.876    310.070     
+AWE     C5      C       CR6     0       -112.909    -174.826    309.167     
+AWE     C6      C       CR16    0       -114.179    -174.439    308.744     
+AWE     F       F       F       0       -108.584    -175.053    312.485     
+AWE     C11     C       CR6     0       -109.340    -175.889    311.726     
+AWE     C10     C       CR16    0       -108.830    -177.132    311.400     
+AWE     C9      C       CR16    0       -109.619    -177.974    310.622     
+AWE     C8      C       CR16    0       -110.874    -177.563    310.195     
+AWE     C12     C       CR16    0       -110.584    -175.464    311.316     
+AWE     C7      C       CR6     0       -111.371    -176.302    310.528     
+AWE     CL      CL      CL      0       -111.545    -173.954    308.530     
+AWE     C       C       CH2     0       -116.682    -174.692    308.768     
+AWE     N       N       NT2     0       -117.052    -175.295    307.483     
+AWE     H1      H       H       0       -115.889    -176.607    310.446     
+AWE     H2      H       H       0       -113.776    -177.236    311.136     
+AWE     H3      H       H       0       -114.278    -173.728    308.136     
+AWE     H4      H       H       0       -107.974    -177.400    311.696     
+AWE     H5      H       H       0       -109.295    -178.832    310.382     
+AWE     H6      H       H       0       -111.400    -178.144    309.667     
+AWE     H7      H       H       0       -110.894    -174.607    311.556     
+AWE     H8      H       H       0       -116.738    -173.714    308.663     
+AWE     H9      H       H       0       -117.361    -174.963    309.428     
+AWE     H10     H       H       0       -117.926    -174.937    307.285     
+AWE     H11     H       H       0       -116.437    -174.912    306.845     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AWE           C           N      SINGLE       n     1.467  0.0144     1.467  0.0144
+AWE          C1           C      SINGLE       n     1.509  0.0100     1.509  0.0100
+AWE          C1          C6      DOUBLE       y     1.386  0.0100     1.386  0.0100
+AWE          C5          C6      SINGLE       y     1.387  0.0117     1.387  0.0117
+AWE          C1          C2      SINGLE       y     1.386  0.0100     1.386  0.0100
+AWE          C5          CL      SINGLE       n     1.738  0.0114     1.738  0.0114
+AWE          C4          C5      DOUBLE       y     1.391  0.0100     1.391  0.0100
+AWE          C2          C3      DOUBLE       y     1.384  0.0100     1.384  0.0100
+AWE          C9          C8      DOUBLE       y     1.384  0.0100     1.384  0.0100
+AWE          C8          C7      SINGLE       y     1.392  0.0100     1.392  0.0100
+AWE          C3          C4      SINGLE       y     1.392  0.0100     1.392  0.0100
+AWE          C4          C7      SINGLE       n     1.490  0.0100     1.490  0.0100
+AWE         C10          C9      SINGLE       y     1.380  0.0172     1.380  0.0172
+AWE         C12          C7      DOUBLE       y     1.390  0.0100     1.390  0.0100
+AWE         C11         C10      DOUBLE       y     1.372  0.0188     1.372  0.0188
+AWE         C11         C12      SINGLE       y     1.374  0.0106     1.374  0.0106
+AWE           F         C11      SINGLE       n     1.359  0.0100     1.359  0.0100
+AWE          C2          H1      SINGLE       n     1.082  0.0130     0.943  0.0173
+AWE          C3          H2      SINGLE       n     1.082  0.0130     0.930  0.0100
+AWE          C6          H3      SINGLE       n     1.082  0.0130     0.941  0.0158
+AWE         C10          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+AWE          C9          H5      SINGLE       n     1.082  0.0130     0.948  0.0200
+AWE          C8          H6      SINGLE       n     1.082  0.0130     0.945  0.0170
+AWE         C12          H7      SINGLE       n     1.082  0.0130     0.942  0.0153
+AWE           C          H8      SINGLE       n     1.089  0.0100     0.985  0.0198
+AWE           C          H9      SINGLE       n     1.089  0.0100     0.985  0.0198
+AWE           N         H10      SINGLE       n     1.036  0.0160     0.965  0.0200
+AWE           N         H11      SINGLE       n     1.036  0.0160     0.965  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AWE           C          C1          C6     120.391    1.50
+AWE           C          C1          C2     120.531    2.59
+AWE          C6          C1          C2     119.079    1.50
+AWE          C1          C2          C3     121.097    1.50
+AWE          C1          C2          H1     119.480    1.50
+AWE          C3          C2          H1     119.423    1.50
+AWE          C2          C3          C4     120.798    1.50
+AWE          C2          C3          H2     119.688    1.50
+AWE          C4          C3          H2     119.514    1.50
+AWE          C5          C4          C3     117.402    1.50
+AWE          C5          C4          C7     121.280    1.63
+AWE          C3          C4          C7     121.318    1.53
+AWE          C6          C5          CL     118.395    1.50
+AWE          C6          C5          C4     121.711    1.50
+AWE          CL          C5          C4     119.894    1.50
+AWE          C1          C6          C5     119.914    1.50
+AWE          C1          C6          H3     119.914    1.50
+AWE          C5          C6          H3     120.172    1.50
+AWE         C10         C11         C12     123.082    1.50
+AWE         C10         C11           F     118.514    1.50
+AWE         C12         C11           F     118.404    1.50
+AWE          C9         C10         C11     117.855    1.50
+AWE          C9         C10          H4     121.157    1.50
+AWE         C11         C10          H4     120.988    1.50
+AWE          C8          C9         C10     120.129    1.50
+AWE          C8          C9          H5     120.041    1.50
+AWE         C10          C9          H5     119.831    1.50
+AWE          C9          C8          C7     120.870    1.50
+AWE          C9          C8          H6     119.644    1.50
+AWE          C7          C8          H6     119.486    1.50
+AWE          C7         C12         C11     119.629    1.50
+AWE          C7         C12          H7     120.226    1.50
+AWE         C11         C12          H7     120.145    1.50
+AWE          C8          C7          C4     120.836    1.50
+AWE          C8          C7         C12     118.435    1.50
+AWE          C4          C7         C12     120.729    1.52
+AWE           N           C          C1     112.424    2.20
+AWE           N           C          H8     107.542    2.93
+AWE           N           C          H9     107.542    2.93
+AWE          C1           C          H8     110.855    3.00
+AWE          C1           C          H9     110.855    3.00
+AWE          H8           C          H9     107.838    1.50
+AWE           C           N         H10     104.789    3.00
+AWE           C           N         H11     104.789    3.00
+AWE         H10           N         H11     107.163    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AWE              const_43           C          C1          C2          C3     180.000    10.0     2
+AWE             sp2_sp3_2          C6          C1           C           N     -90.000    10.0     6
+AWE              const_23           C          C1          C6          C5     180.000    10.0     2
+AWE              const_15          C4          C7          C8          C9     180.000    10.0     2
+AWE              const_17         C11         C12          C7          C8       0.000    10.0     2
+AWE             sp3_sp3_1          C1           C           N         H10     180.000    10.0     3
+AWE              const_37          C1          C2          C3          C4       0.000    10.0     2
+AWE              const_33          C2          C3          C4          C5       0.000    10.0     2
+AWE             sp2_sp2_1          C5          C4          C7          C8     180.000     5.0     2
+AWE              const_30          C3          C4          C5          CL     180.000    10.0     2
+AWE              const_27          CL          C5          C6          C1     180.000    10.0     2
+AWE              const_47           F         C11         C12          C7     180.000    10.0     2
+AWE       const_sp2_sp2_2          C9         C10         C11           F     180.000     5.0     2
+AWE       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+AWE       const_sp2_sp2_9          C7          C8          C9         C10       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AWE    plan-1           C   0.020
+AWE    plan-1          C1   0.020
+AWE    plan-1          C2   0.020
+AWE    plan-1          C3   0.020
+AWE    plan-1          C4   0.020
+AWE    plan-1          C5   0.020
+AWE    plan-1          C6   0.020
+AWE    plan-1          C7   0.020
+AWE    plan-1          CL   0.020
+AWE    plan-1          H1   0.020
+AWE    plan-1          H2   0.020
+AWE    plan-1          H3   0.020
+AWE    plan-2         C10   0.020
+AWE    plan-2         C11   0.020
+AWE    plan-2         C12   0.020
+AWE    plan-2          C4   0.020
+AWE    plan-2          C7   0.020
+AWE    plan-2          C8   0.020
+AWE    plan-2          C9   0.020
+AWE    plan-2           F   0.020
+AWE    plan-2          H4   0.020
+AWE    plan-2          H5   0.020
+AWE    plan-2          H6   0.020
+AWE    plan-2          H7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AWE            InChI                InChI  1.03 InChI=1S/C13H11ClFN/c14-13-6-9(8-16)4-5-12(13)10-2-1-3-11(15)7-10/h1-7H,8,16H2
+AWE         InChIKey                InChI  1.03                                                    DORNYDQOJKCYQY-UHFFFAOYSA-N
+AWE SMILES_CANONICAL               CACTVS 3.385                                                    NCc1ccc(c(Cl)c1)c2cccc(F)c2
+AWE           SMILES               CACTVS 3.385                                                    NCc1ccc(c(Cl)c1)c2cccc(F)c2
+AWE SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                    c1cc(cc(c1)F)c2ccc(cc2Cl)CN
+AWE           SMILES "OpenEye OEToolkits" 2.0.6                                                    c1cc(cc(c1)F)c2ccc(cc2Cl)CN
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AWE acedrg               243         "dictionary generator"                  
+AWE acedrg_database      11          "data source"                           
+AWE rdkit                2017.03.2   "Chemoinformatics tool"
+AWE refmac5              5.8.0238    "optimization tool"                     

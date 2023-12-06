@@ -1,0 +1,376 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AHZ     AHZ      "ADENOSINE DIPHOSPHATE 5-(BETA-ETHYL)-4-METHYL-THIAZOLE-2-CARBOXYLIC ACID"     NON-POLYMER     57     38     .     
+#
+data_comp_AHZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AHZ     "O2'"   O       OH1     0       54.669      25.336      39.312      
+AHZ     "C2'"   C       CH1     0       54.759      24.169      38.524      
+AHZ     "C3'"   C       CH1     0       53.659      24.077      37.461      
+AHZ     "O3'"   O       OH1     0       52.415      24.622      37.892      
+AHZ     "C1'"   C       CH1     0       54.493      22.918      39.358      
+AHZ     N9      N       NR5     0       55.691      22.345      39.963      
+AHZ     C8      C       CR15    0       56.778      21.833      39.298      
+AHZ     N7      N       NRD5    0       57.713      21.380      40.094      
+AHZ     C5      C       CR56    0       57.214      21.600      41.369      
+AHZ     C6      C       CR6     0       57.739      21.334      42.653      
+AHZ     N1      N       NRD6    0       56.981      21.680      43.727      
+AHZ     C2      C       CR16    0       55.785      22.250      43.509      
+AHZ     N6      N       NH2     0       58.926      20.768      42.862      
+AHZ     C4      C       CR56    0       55.965      22.194      41.303      
+AHZ     N3      N       NRD6    0       55.194      22.546      42.351      
+AHZ     "O4'"   O       O2      0       53.937      21.956      38.489      
+AHZ     "C4'"   C       CH1     0       53.561      22.564      37.226      
+AHZ     "C5'"   C       CH2     0       54.441      22.006      36.135      
+AHZ     "O5'"   O       O2      0       53.979      22.489      34.848      
+AHZ     PA      P       P       0       54.654      21.887      33.523      
+AHZ     O2A     O       O       0       54.126      22.609      32.327      
+AHZ     O1A     O       OP      -1      56.133      21.813      33.710      
+AHZ     O3A     O       O2      0       54.059      20.397      33.529      
+AHZ     PB      P       P       0       52.568      19.828      33.366      
+AHZ     O1B     O       O       0       51.659      20.553      34.302      
+AHZ     O2B     O       OP      -1      52.606      18.336      33.406      
+AHZ     O3B     O       O2      0       52.222      20.284      31.867      
+AHZ     C7T     C       CH2     0       52.920      19.663      30.762      
+AHZ     C6T     C       CH2     0       52.562      20.373      29.485      
+AHZ     C5T     C       CR5     0       53.327      19.826      28.335      
+AHZ     S1T     S       S2      0       52.643      18.789      27.221      
+AHZ     C2T     C       CR5     0       54.025      18.609      26.285      
+AHZ     C1R     C       C       0       54.115      17.787      25.088      
+AHZ     O1R     O       OC      -1      55.176      17.735      24.491      
+AHZ     O2R     O       O       0       53.138      17.168      24.704      
+AHZ     N3T     N       NRD5    0       55.022      19.335      26.811      
+AHZ     C4T     C       CR5     0       54.634      20.014      27.954      
+AHZ     C1M     C       CH3     0       55.607      20.879      28.686      
+AHZ     H1      H       H       0       55.296      25.334      39.885      
+AHZ     "H2'"   H       H       0       55.654      24.120      38.096      
+AHZ     "H3'"   H       H       0       53.953      24.526      36.627      
+AHZ     H3      H       H       0       52.106      24.175      38.544      
+AHZ     "H1'"   H       H       0       53.843      23.139      40.061      
+AHZ     H8      H       H       0       56.845      21.815      38.358      
+AHZ     H2      H       H       0       55.294      22.473      44.285      
+AHZ     HN61    H       H       0       59.207      20.631      43.683      
+AHZ     HN62    H       H       0       59.423      20.533      42.178      
+AHZ     "H4'"   H       H       0       52.632      22.326      37.023      
+AHZ     "H5'1"  H       H       0       54.406      21.017      36.154      
+AHZ     "H5'2"  H       H       0       55.376      22.290      36.284      
+AHZ     H7T1    H       H       0       52.667      18.718      30.699      
+AHZ     H7T2    H       H       0       53.888      19.714      30.910      
+AHZ     H6T1    H       H       0       52.755      21.324      29.576      
+AHZ     H6T2    H       H       0       51.608      20.274      29.314      
+AHZ     H1M1    H       H       0       56.450      20.899      28.206      
+AHZ     H1M2    H       H       0       55.752      20.523      29.576      
+AHZ     H1M3    H       H       0       55.254      21.780      28.753      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AHZ       "O2'"       "C2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+AHZ       "C2'"       "C3'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+AHZ       "C2'"       "C1'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+AHZ       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+AHZ       "C3'"       "C4'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+AHZ       "C1'"          N9      SINGLE       n     1.458  0.0100     1.458  0.0100
+AHZ       "C1'"       "O4'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+AHZ          N9          C8      SINGLE       y     1.372  0.0100     1.372  0.0100
+AHZ          N9          C4      SINGLE       y     1.374  0.0101     1.374  0.0101
+AHZ          C8          N7      DOUBLE       y     1.310  0.0100     1.310  0.0100
+AHZ          N7          C5      SINGLE       y     1.388  0.0100     1.388  0.0100
+AHZ          C5          C6      SINGLE       y     1.408  0.0100     1.408  0.0100
+AHZ          C5          C4      DOUBLE       y     1.381  0.0100     1.381  0.0100
+AHZ          C6          N1      DOUBLE       y     1.354  0.0100     1.354  0.0100
+AHZ          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+AHZ          N1          C2      SINGLE       y     1.339  0.0100     1.339  0.0100
+AHZ          C2          N3      DOUBLE       y     1.330  0.0100     1.330  0.0100
+AHZ          C4          N3      SINGLE       y     1.343  0.0100     1.343  0.0100
+AHZ       "O4'"       "C4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+AHZ       "C4'"       "C5'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+AHZ       "C5'"       "O5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+AHZ       "O5'"          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+AHZ          PA         O2A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+AHZ          PA         O1A      SINGLE       n     1.493  0.0122     1.493  0.0122
+AHZ          PA         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+AHZ         O3A          PB      SINGLE       n     1.604  0.0133     1.604  0.0133
+AHZ          PB         O1B      DOUBLE       n     1.493  0.0122     1.493  0.0122
+AHZ          PB         O2B      SINGLE       n     1.493  0.0122     1.493  0.0122
+AHZ          PB         O3B      SINGLE       n     1.604  0.0133     1.604  0.0133
+AHZ         O3B         C7T      SINGLE       n     1.447  0.0162     1.447  0.0162
+AHZ         C7T         C6T      SINGLE       n     1.505  0.0199     1.505  0.0199
+AHZ         C6T         C5T      SINGLE       n     1.486  0.0100     1.486  0.0100
+AHZ         C5T         S1T      SINGLE       y     1.695  0.0200     1.695  0.0200
+AHZ         C5T         C4T      DOUBLE       y     1.367  0.0200     1.367  0.0200
+AHZ         S1T         C2T      SINGLE       y     1.695  0.0200     1.695  0.0200
+AHZ         C2T         C1R      SINGLE       n     1.449  0.0200     1.449  0.0200
+AHZ         C2T         N3T      DOUBLE       y     1.334  0.0121     1.334  0.0121
+AHZ         C1R         O1R      SINGLE       n     1.217  0.0200     1.217  0.0200
+AHZ         C1R         O2R      DOUBLE       n     1.217  0.0200     1.217  0.0200
+AHZ         N3T         C4T      SINGLE       y     1.377  0.0100     1.377  0.0100
+AHZ         C4T         C1M      SINGLE       n     1.493  0.0100     1.493  0.0100
+AHZ       "O2'"          H1      SINGLE       n     0.970  0.0120     0.849  0.0200
+AHZ       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+AHZ       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+AHZ       "O3'"          H3      SINGLE       n     0.970  0.0120     0.849  0.0200
+AHZ       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+AHZ          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+AHZ          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+AHZ          N6        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+AHZ          N6        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+AHZ       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+AHZ       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+AHZ       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+AHZ         C7T        H7T1      SINGLE       n     1.089  0.0100     0.980  0.0143
+AHZ         C7T        H7T2      SINGLE       n     1.089  0.0100     0.980  0.0143
+AHZ         C6T        H6T1      SINGLE       n     1.089  0.0100     0.974  0.0100
+AHZ         C6T        H6T2      SINGLE       n     1.089  0.0100     0.974  0.0100
+AHZ         C1M        H1M1      SINGLE       n     1.089  0.0100     0.970  0.0153
+AHZ         C1M        H1M2      SINGLE       n     1.089  0.0100     0.970  0.0153
+AHZ         C1M        H1M3      SINGLE       n     1.089  0.0100     0.970  0.0153
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AHZ       "C2'"       "O2'"          H1     109.103    2.13
+AHZ       "O2'"       "C2'"       "C3'"     112.782    2.45
+AHZ       "O2'"       "C2'"       "C1'"     111.715    2.69
+AHZ       "O2'"       "C2'"       "H2'"     110.448    1.97
+AHZ       "C3'"       "C2'"       "C1'"     101.239    1.50
+AHZ       "C3'"       "C2'"       "H2'"     110.596    1.51
+AHZ       "C1'"       "C2'"       "H2'"     110.636    1.70
+AHZ       "C2'"       "C3'"       "O3'"     111.581    2.83
+AHZ       "C2'"       "C3'"       "C4'"     102.602    1.50
+AHZ       "C2'"       "C3'"       "H3'"     110.504    1.75
+AHZ       "O3'"       "C3'"       "C4'"     111.281    2.46
+AHZ       "O3'"       "C3'"       "H3'"     110.380    1.67
+AHZ       "C4'"       "C3'"       "H3'"     110.452    2.54
+AHZ       "C3'"       "O3'"          H3     108.744    3.00
+AHZ       "C2'"       "C1'"          N9     113.824    1.50
+AHZ       "C2'"       "C1'"       "O4'"     106.047    1.50
+AHZ       "C2'"       "C1'"       "H1'"     109.015    1.50
+AHZ          N9       "C1'"       "O4'"     108.477    1.50
+AHZ          N9       "C1'"       "H1'"     109.561    1.50
+AHZ       "O4'"       "C1'"       "H1'"     109.807    1.50
+AHZ       "C1'"          N9          C8     126.848    1.91
+AHZ       "C1'"          N9          C4     127.459    1.80
+AHZ          C8          N9          C4     105.693    1.50
+AHZ          N9          C8          N7     113.469    1.50
+AHZ          N9          C8          H8     123.206    1.50
+AHZ          N7          C8          H8     123.326    1.50
+AHZ          C8          N7          C5     104.739    1.50
+AHZ          N7          C5          C6     132.250    1.50
+AHZ          N7          C5          C4     110.483    1.50
+AHZ          C6          C5          C4     117.267    1.50
+AHZ          C5          C6          N1     117.409    1.50
+AHZ          C5          C6          N6     123.792    1.50
+AHZ          N1          C6          N6     118.799    1.50
+AHZ          C6          N1          C2     118.521    1.50
+AHZ          N1          C2          N3     129.332    1.50
+AHZ          N1          C2          H2     115.313    1.50
+AHZ          N3          C2          H2     115.355    1.50
+AHZ          C6          N6        HN61     119.723    1.50
+AHZ          C6          N6        HN62     119.723    1.50
+AHZ        HN61          N6        HN62     120.554    1.88
+AHZ          N9          C4          C5     105.616    1.50
+AHZ          N9          C4          N3     127.895    1.50
+AHZ          C5          C4          N3     126.489    1.50
+AHZ          C2          N3          C4     110.982    1.50
+AHZ       "C1'"       "O4'"       "C4'"     109.903    1.50
+AHZ       "C3'"       "C4'"       "O4'"     105.388    1.50
+AHZ       "C3'"       "C4'"       "C5'"     116.008    1.52
+AHZ       "C3'"       "C4'"       "H4'"     109.363    1.86
+AHZ       "O4'"       "C4'"       "C5'"     109.123    1.50
+AHZ       "O4'"       "C4'"       "H4'"     108.947    1.50
+AHZ       "C5'"       "C4'"       "H4'"     108.268    1.50
+AHZ       "C4'"       "C5'"       "O5'"     109.342    1.50
+AHZ       "C4'"       "C5'"      "H5'1"     109.624    1.50
+AHZ       "C4'"       "C5'"      "H5'2"     109.624    1.50
+AHZ       "O5'"       "C5'"      "H5'1"     109.845    1.50
+AHZ       "O5'"       "C5'"      "H5'2"     109.845    1.50
+AHZ      "H5'1"       "C5'"      "H5'2"     108.472    1.50
+AHZ       "C5'"       "O5'"          PA     118.553    2.41
+AHZ       "O5'"          PA         O2A     109.410    1.50
+AHZ       "O5'"          PA         O1A     109.410    1.50
+AHZ       "O5'"          PA         O3A     101.065    1.97
+AHZ         O2A          PA         O1A     118.411    2.35
+AHZ         O2A          PA         O3A     108.816    2.14
+AHZ         O1A          PA         O3A     108.816    2.14
+AHZ          PA         O3A          PB     132.542    3.00
+AHZ         O3A          PB         O1B     108.816    2.14
+AHZ         O3A          PB         O2B     108.816    2.14
+AHZ         O3A          PB         O3B     101.065    1.97
+AHZ         O1B          PB         O2B     118.411    2.35
+AHZ         O1B          PB         O3B     107.912    2.57
+AHZ         O2B          PB         O3B     107.912    2.57
+AHZ          PB         O3B         C7T     119.251    1.51
+AHZ         O3B         C7T         C6T     108.926    2.01
+AHZ         O3B         C7T        H7T1     109.739    1.50
+AHZ         O3B         C7T        H7T2     109.739    1.50
+AHZ         C6T         C7T        H7T1     109.702    1.50
+AHZ         C6T         C7T        H7T2     109.702    1.50
+AHZ        H7T1         C7T        H7T2     108.319    1.50
+AHZ         C7T         C6T         C5T     110.747    2.16
+AHZ         C7T         C6T        H6T1     109.160    1.50
+AHZ         C7T         C6T        H6T2     109.160    1.50
+AHZ         C5T         C6T        H6T1     108.883    1.50
+AHZ         C5T         C6T        H6T2     108.883    1.50
+AHZ        H6T1         C6T        H6T2     107.724    1.50
+AHZ         C6T         C5T         S1T     121.433    3.00
+AHZ         C6T         C5T         C4T     130.536    3.00
+AHZ         S1T         C5T         C4T     108.031    3.00
+AHZ         C5T         S1T         C2T     108.031    3.00
+AHZ         S1T         C2T         C1R     124.884    3.00
+AHZ         S1T         C2T         N3T     108.031    3.00
+AHZ         C1R         C2T         N3T     127.085    2.83
+AHZ         C2T         C1R         O1R     119.115    2.69
+AHZ         C2T         C1R         O2R     119.115    2.69
+AHZ         O1R         C1R         O2R     121.769    1.50
+AHZ         C2T         N3T         C4T     107.139    1.65
+AHZ         C5T         C4T         N3T     108.767    2.56
+AHZ         C5T         C4T         C1M     129.584    3.00
+AHZ         N3T         C4T         C1M     121.649    1.50
+AHZ         C4T         C1M        H1M1     109.591    1.50
+AHZ         C4T         C1M        H1M2     109.591    1.50
+AHZ         C4T         C1M        H1M3     109.591    1.50
+AHZ        H1M1         C1M        H1M2     109.354    1.50
+AHZ        H1M1         C1M        H1M3     109.354    1.50
+AHZ        H1M2         C1M        H1M3     109.354    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AHZ            sp3_sp3_25       "C3'"       "C2'"       "O2'"          H1     180.000    10.0     3
+AHZ       const_sp2_sp2_7          N3          C2          N1          C6       0.000     5.0     2
+AHZ       const_sp2_sp2_9          N1          C2          N3          C4       0.000     5.0     2
+AHZ              const_12          N9          C4          N3          C2     180.000    10.0     2
+AHZ            sp3_sp3_20       "C5'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+AHZ            sp3_sp3_40       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+AHZ            sp3_sp3_49       "C4'"       "C5'"       "O5'"          PA     180.000    10.0     3
+AHZ            sp3_sp3_54       "C5'"       "O5'"          PA         O2A      60.000    10.0     3
+AHZ            sp3_sp3_56          PB         O3A          PA       "O5'"     -60.000    10.0     3
+AHZ             sp3_sp3_5       "O2'"       "C2'"       "C3'"       "O3'"      60.000    10.0     3
+AHZ            sp3_sp3_32          N9       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+AHZ            sp3_sp3_60          PA         O3A          PB         O1B      60.000    10.0     3
+AHZ            sp3_sp3_61         C7T         O3B          PB         O3A     180.000    10.0     3
+AHZ            sp3_sp3_64         C6T         C7T         O3B          PB     180.000    10.0     3
+AHZ            sp3_sp3_67         C5T         C6T         C7T         O3B     180.000    10.0     3
+AHZ             sp2_sp3_8         S1T         C5T         C6T         C7T     -90.000    10.0     6
+AHZ              const_14         C6T         C5T         S1T         C2T     180.000    10.0     2
+AHZ              const_40         C1M         C4T         C5T         C6T       0.000    10.0     2
+AHZ            sp3_sp3_14       "O3'"       "C3'"       "C4'"       "C5'"     -60.000    10.0     3
+AHZ            sp3_sp3_37       "C2'"       "C3'"       "O3'"          H3     180.000    10.0     3
+AHZ              const_16         C1R         C2T         S1T         C5T     180.000    10.0     2
+AHZ             sp2_sp2_5         O1R         C1R         C2T         S1T     180.000     5.0     2
+AHZ              const_18         C1R         C2T         N3T         C4T     180.000    10.0     2
+AHZ              const_20         C1M         C4T         N3T         C2T     180.000    10.0     2
+AHZ            sp2_sp3_13         C5T         C4T         C1M        H1M1     150.000    10.0     6
+AHZ            sp3_sp3_22       "C2'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+AHZ             sp2_sp3_1          C8          N9       "C1'"       "C2'"     150.000    10.0     6
+AHZ              const_34          C5          C4          N9       "C1'"     180.000    10.0     2
+AHZ              const_22          N7          C8          N9       "C1'"     180.000    10.0     2
+AHZ              const_25          N9          C8          N7          C5       0.000    10.0     2
+AHZ              const_28          C6          C5          N7          C8     180.000    10.0     2
+AHZ              const_29          N9          C4          C5          N7       0.000    10.0     2
+AHZ       const_sp2_sp2_4          N7          C5          C6          N6       0.000     5.0     2
+AHZ       const_sp2_sp2_6          N6          C6          N1          C2     180.000     5.0     2
+AHZ             sp2_sp2_1          C5          C6          N6        HN61     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AHZ    chir_1    "C2'"    "O2'"    "C1'"    "C3'"    negative
+AHZ    chir_2    "C3'"    "O3'"    "C4'"    "C2'"    positive
+AHZ    chir_3    "C1'"    "O4'"    N9    "C2'"    negative
+AHZ    chir_4    "C4'"    "O4'"    "C3'"    "C5'"    negative
+AHZ    chir_5    PA    O3A    "O5'"    O1A    both
+AHZ    chir_6    PB    O3A    O3B    O2B    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AHZ    plan-1       "C1'"   0.020
+AHZ    plan-1          C2   0.020
+AHZ    plan-1          C4   0.020
+AHZ    plan-1          C5   0.020
+AHZ    plan-1          C6   0.020
+AHZ    plan-1          C8   0.020
+AHZ    plan-1          H2   0.020
+AHZ    plan-1          H8   0.020
+AHZ    plan-1          N1   0.020
+AHZ    plan-1          N3   0.020
+AHZ    plan-1          N6   0.020
+AHZ    plan-1          N7   0.020
+AHZ    plan-1          N9   0.020
+AHZ    plan-2         C1M   0.020
+AHZ    plan-2         C1R   0.020
+AHZ    plan-2         C2T   0.020
+AHZ    plan-2         C4T   0.020
+AHZ    plan-2         C5T   0.020
+AHZ    plan-2         C6T   0.020
+AHZ    plan-2         N3T   0.020
+AHZ    plan-2         S1T   0.020
+AHZ    plan-3          C6   0.020
+AHZ    plan-3        HN61   0.020
+AHZ    plan-3        HN62   0.020
+AHZ    plan-3          N6   0.020
+AHZ    plan-4         C1R   0.020
+AHZ    plan-4         C2T   0.020
+AHZ    plan-4         O1R   0.020
+AHZ    plan-4         O2R   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AHZ           SMILES              ACDLabs 10.04                                                                                                                                                                  O=C([O-])c1nc(c(s1)CCOP([O-])(=O)OP([O-])(=O)OCC4OC(n2c3ncnc(N)c3nc2)C(O)C4O)C
+AHZ            InChI                InChI  1.03 InChI=1S/C17H22N6O12P2S/c1-7-9(38-15(22-7)17(26)27)2-3-32-36(28,29)35-37(30,31)33-4-8-11(24)12(25)16(34-8)23-6-21-10-13(18)19-5-20-14(10)23/h5-6,8,11-12,16,24-25H,2-4H2,1H3,(H,26,27)(H,28,29)(H,30,31)(H2,18,19,20)/p-3/t8-,11-,12-,16-/m1/s1
+AHZ         InChIKey                InChI  1.03                                                                                                                                                                                                                     VGXBGQACJQRWLV-LKGUXBDMSA-K
+AHZ SMILES_CANONICAL               CACTVS 3.385                                                                                                                                               Cc1nc(sc1CCO[P]([O-])(=O)O[P]([O-])(=O)OC[C@H]2O[C@H]([C@H](O)[C@@H]2O)n3cnc4c(N)ncnc34)C([O-])=O
+AHZ           SMILES               CACTVS 3.385                                                                                                                                                    Cc1nc(sc1CCO[P]([O-])(=O)O[P]([O-])(=O)OC[CH]2O[CH]([CH](O)[CH]2O)n3cnc4c(N)ncnc34)C([O-])=O
+AHZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.5                                                                                                                                                Cc1c(sc(n1)C(=O)[O-])CCOP(=O)([O-])OP(=O)([O-])OC[C@@H]2[C@H]([C@H]([C@@H](O2)n3cnc4c3ncnc4N)O)O
+AHZ           SMILES "OpenEye OEToolkits" 1.7.5                                                                                                                                                                  Cc1c(sc(n1)C(=O)[O-])CCOP(=O)([O-])OP(=O)([O-])OCC2C(C(C(O2)n3cnc4c3ncnc4N)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AHZ acedrg               243         "dictionary generator"                  
+AHZ acedrg_database      11          "data source"                           
+AHZ rdkit                2017.03.2   "Chemoinformatics tool"
+AHZ refmac5              5.8.0238    "optimization tool"                     

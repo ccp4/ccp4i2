@@ -1,0 +1,749 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FC7     FC7      "Fusicoccin A-THF"     NON-POLYMER     91     41     .     
+#
+data_comp_FC7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FC7     C1      C       CH1     0       17.008      -21.169     3.371       
+FC7     O1      O       O2      0       16.441      -20.497     2.275       
+FC7     C2      C       CH1     0       15.877      -21.592     4.339       
+FC7     O2      O       OH1     0       14.801      -22.183     3.609       
+FC7     C3      C       CH1     0       15.345      -20.431     5.176       
+FC7     O3      O       OH1     0       14.496      -20.915     6.214       
+FC7     C4      C       CH1     0       16.513      -19.704     5.801       
+FC7     O4      O       O2      0       16.063      -18.577     6.565       
+FC7     C5      C       CH1     0       17.466      -19.237     4.714       
+FC7     O5      O       O2      0       18.005      -20.373     4.025       
+FC7     C6      C       CH2     0       18.584      -18.461     5.378       
+FC7     O6      O       O2      0       18.016      -17.339     6.076       
+FC7     OAA     O       OH1     0       16.200      -22.674     0.757       
+FC7     CAB     C       CH1     0       16.778      -21.567     0.056       
+FC7     CAC     C       CH1     0       17.857      -22.115     -0.910      
+FC7     CAD     C       CH3     0       18.966      -22.878     -0.183      
+FC7     CAE     C       CH1     0       18.370      -21.024     -1.891      
+FC7     CAF     C       CH2     0       18.811      -21.536     -3.257      
+FC7     CAG     C       CH2     0       20.327      -21.741     -3.149      
+FC7     CAH     C       CH1     0       20.825      -20.699     -2.149      
+FC7     CAI     C       CH2     0       21.920      -21.226     -1.218      
+FC7     OAJ     O       O2      0       23.131      -21.298     -1.966      
+FC7     CAK     C       CH3     0       24.170      -21.992     -1.286      
+FC7     CAL     C       CR5     0       19.570      -20.196     -1.435      
+FC7     CAM     C       C1      0       19.609      -19.140     -0.609      
+FC7     CAN     C       CT      0       18.460      -18.378     0.074       
+FC7     CAO     C       CH3     0       19.023      -17.835     1.397       
+FC7     CAP     C       CH1     0       18.012      -17.218     -0.835      
+FC7     OAQ     O       O2      0       18.109      -17.535     -2.221      
+FC7     CAR     C       CH2     0       17.029      -16.889     -2.905      
+FC7     CAS     C       CH2     0       15.874      -16.978     -1.968      
+FC7     CAT     C       CH1     0       16.512      -17.056     -0.572      
+FC7     CAU     C       CR5     0       16.107      -18.295     0.217       
+FC7     CAV     C       CH1     0       14.645      -18.382     0.611       
+FC7     CAW     C       CH3     0       13.962      -19.678     0.189       
+FC7     CAX     C       CH3     0       14.436      -18.119     2.101       
+FC7     CAY     C       CR5     0       17.159      -19.093     0.439       
+FC7     CAZ     C       CH1     0       17.235      -20.475     1.052       
+FC7     CBG     C       CT      0       17.019      -17.631     7.058       
+FC7     CBH     C       CH3     0       16.270      -16.334     7.316       
+FC7     CBI     C       CH3     0       17.688      -18.178     8.308       
+FC7     H1      H       H       0       17.457      -21.993     3.042       
+FC7     H2      H       H       0       16.239      -22.273     4.957       
+FC7     HO2     H       H       0       14.292      -22.584     4.145       
+FC7     H3      H       H       0       14.837      -19.815     4.594       
+FC7     HO3     H       H       0       14.090      -20.265     6.560       
+FC7     H4      H       H       0       16.996      -20.331     6.399       
+FC7     H5      H       H       0       16.979      -18.649     4.078       
+FC7     H6      H       H       0       19.205      -18.144     4.710       
+FC7     H6A     H       H       0       19.062      -19.029     5.996       
+FC7     HOAA    H       H       0       15.509      -22.412     1.173       
+FC7     HAB     H       H       0       16.061      -21.196     -0.511      
+FC7     HAC     H       H       0       17.387      -22.780     -1.471      
+FC7     HAD     H       H       0       19.598      -23.229     -0.830      
+FC7     HADA    H       H       0       18.581      -23.619     0.315       
+FC7     HADB    H       H       0       19.432      -22.289     0.433       
+FC7     HAE     H       H       0       17.620      -20.403     -2.065      
+FC7     HAF     H       H       0       18.363      -22.390     -3.482      
+FC7     HAFA    H       H       0       18.602      -20.876     -3.964      
+FC7     HAG     H       H       0       20.753      -21.606     -4.033      
+FC7     HAGA    H       H       0       20.532      -22.659     -2.843      
+FC7     HAH     H       H       0       21.196      -19.948     -2.677      
+FC7     HAI     H       H       0       21.676      -22.114     -0.880      
+FC7     HAIA    H       H       0       22.033      -20.619     -0.457      
+FC7     HAK     H       H       0       24.170      -21.745     -0.346      
+FC7     HAKA    H       H       0       25.025      -21.756     -1.682      
+FC7     HAKB    H       H       0       24.028      -22.949     -1.371      
+FC7     HAM     H       H       0       20.477      -18.792     -0.461      
+FC7     HAO     H       H       0       18.339      -17.327     1.859       
+FC7     HAOA    H       H       0       19.781      -17.260     1.214       
+FC7     HAOB    H       H       0       19.306      -18.575     1.955       
+FC7     HAP     H       H       0       18.500      -16.389     -0.611      
+FC7     HAR     H       H       0       16.834      -17.344     -3.740      
+FC7     HARA    H       H       0       17.251      -15.963     -3.096      
+FC7     HAS     H       H       0       15.336      -17.773     -2.153      
+FC7     HASA    H       H       0       15.302      -16.189     -2.043      
+FC7     HAT     H       H       0       16.340      -16.238     -0.058      
+FC7     HAV     H       H       0       14.177      -17.656     0.135       
+FC7     HAW     H       H       0       14.173      -19.871     -0.740      
+FC7     HAWA    H       H       0       12.998      -19.581     0.285       
+FC7     HAWB    H       H       0       14.266      -20.411     0.751       
+FC7     HAX     H       H       0       15.263      -17.795     2.500       
+FC7     HAXA    H       H       0       14.163      -18.938     2.548       
+FC7     HAXB    H       H       0       13.742      -17.447     2.215       
+FC7     HAZ     H       H       0       18.171      -20.651     1.305       
+FC7     HBH     H       H       0       16.547      -15.662     6.670       
+FC7     HBHA    H       H       0       16.461      -16.011     8.212       
+FC7     HBHB    H       H       0       15.313      -16.486     7.227       
+FC7     HBI     H       H       0       18.582      -17.803     8.388       
+FC7     HBIA    H       H       0       17.751      -19.145     8.251       
+FC7     HBIB    H       H       0       17.167      -17.939     9.093       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FC7          C1          O5      SINGLE       n     1.428  0.0100     1.428  0.0100
+FC7          C1          C2      SINGLE       n     1.523  0.0200     1.523  0.0200
+FC7          C1          O1      SINGLE       n     1.397  0.0126     1.397  0.0126
+FC7          C2          C3      SINGLE       n     1.525  0.0100     1.525  0.0100
+FC7          C2          O2      SINGLE       n     1.428  0.0123     1.428  0.0123
+FC7          C3          C4      SINGLE       n     1.512  0.0111     1.512  0.0111
+FC7          C3          O3      SINGLE       n     1.425  0.0102     1.425  0.0102
+FC7          C4          O4      SINGLE       n     1.432  0.0100     1.432  0.0100
+FC7          C4          C5      SINGLE       n     1.522  0.0108     1.522  0.0108
+FC7          C5          C6      SINGLE       n     1.514  0.0100     1.514  0.0100
+FC7          C5          O5      SINGLE       n     1.431  0.0100     1.431  0.0100
+FC7          C6          O6      SINGLE       n     1.433  0.0100     1.433  0.0100
+FC7          O6         CBG      SINGLE       n     1.422  0.0100     1.422  0.0100
+FC7         OAA         CAB      SINGLE       n     1.426  0.0179     1.426  0.0179
+FC7         CAB         CAZ      SINGLE       n     1.529  0.0150     1.529  0.0150
+FC7         CAB         CAC      SINGLE       n     1.540  0.0122     1.540  0.0122
+FC7         CAC         CAD      SINGLE       n     1.525  0.0104     1.525  0.0104
+FC7         CAC         CAE      SINGLE       n     1.547  0.0100     1.547  0.0100
+FC7         CAE         CAL      SINGLE       n     1.526  0.0100     1.526  0.0100
+FC7         CAE         CAF      SINGLE       n     1.522  0.0147     1.522  0.0147
+FC7         CAF         CAG      SINGLE       n     1.532  0.0170     1.532  0.0170
+FC7         CAG         CAH      SINGLE       n     1.522  0.0147     1.522  0.0147
+FC7         CAH         CAI      SINGLE       n     1.529  0.0100     1.529  0.0100
+FC7         CAH         CAL      SINGLE       n     1.526  0.0100     1.526  0.0100
+FC7         CAI         OAJ      SINGLE       n     1.422  0.0123     1.422  0.0123
+FC7         OAJ         CAK      SINGLE       n     1.417  0.0200     1.417  0.0200
+FC7         CAL         CAM      DOUBLE       n     1.331  0.0200     1.331  0.0200
+FC7         CAM         CAN      SINGLE       n     1.517  0.0183     1.517  0.0183
+FC7         CAN         CAY      SINGLE       n     1.522  0.0100     1.522  0.0100
+FC7         CAN         CAO      SINGLE       n     1.535  0.0100     1.535  0.0100
+FC7         CAN         CAP      SINGLE       n     1.534  0.0174     1.534  0.0174
+FC7         CAP         OAQ      SINGLE       n     1.425  0.0105     1.425  0.0105
+FC7         OAQ         CAR      SINGLE       n     1.434  0.0107     1.434  0.0107
+FC7         CAR         CAS      SINGLE       n     1.490  0.0200     1.490  0.0200
+FC7         CAS         CAT      SINGLE       n     1.534  0.0100     1.534  0.0100
+FC7         CAP         CAT      SINGLE       n     1.538  0.0153     1.538  0.0153
+FC7         CAT         CAU      SINGLE       n     1.515  0.0167     1.515  0.0167
+FC7         CAU         CAV      SINGLE       n     1.509  0.0100     1.509  0.0100
+FC7         CAU         CAY      DOUBLE       n     1.329  0.0100     1.329  0.0100
+FC7         CAV         CAX      SINGLE       n     1.523  0.0124     1.523  0.0124
+FC7         CAV         CAW      SINGLE       n     1.523  0.0124     1.523  0.0124
+FC7         CAY         CAZ      SINGLE       n     1.499  0.0162     1.499  0.0162
+FC7          O1         CAZ      SINGLE       n     1.448  0.0142     1.448  0.0142
+FC7          O4         CBG      SINGLE       n     1.426  0.0100     1.426  0.0100
+FC7         CBG         CBI      SINGLE       n     1.514  0.0100     1.514  0.0100
+FC7         CBG         CBH      SINGLE       n     1.514  0.0100     1.514  0.0100
+FC7          C1          H1      SINGLE       n     1.089  0.0100     0.994  0.0100
+FC7          C2          H2      SINGLE       n     1.089  0.0100     0.989  0.0181
+FC7          O2         HO2      SINGLE       n     0.970  0.0120     0.841  0.0200
+FC7          C3          H3      SINGLE       n     1.089  0.0100     0.991  0.0200
+FC7          O3         HO3      SINGLE       n     0.970  0.0120     0.841  0.0200
+FC7          C4          H4      SINGLE       n     1.089  0.0100     0.992  0.0131
+FC7          C5          H5      SINGLE       n     1.089  0.0100     0.994  0.0160
+FC7          C6          H6      SINGLE       n     1.089  0.0100     0.966  0.0161
+FC7          C6         H6A      SINGLE       n     1.089  0.0100     0.966  0.0161
+FC7         OAA        HOAA      SINGLE       n     0.970  0.0120     0.848  0.0200
+FC7         CAB         HAB      SINGLE       n     1.089  0.0100     0.995  0.0200
+FC7         CAC         HAC      SINGLE       n     1.089  0.0100     0.990  0.0191
+FC7         CAD         HAD      SINGLE       n     1.089  0.0100     0.973  0.0146
+FC7         CAD        HADA      SINGLE       n     1.089  0.0100     0.973  0.0146
+FC7         CAD        HADB      SINGLE       n     1.089  0.0100     0.973  0.0146
+FC7         CAE         HAE      SINGLE       n     1.089  0.0100     0.990  0.0175
+FC7         CAF         HAF      SINGLE       n     1.089  0.0100     0.990  0.0100
+FC7         CAF        HAFA      SINGLE       n     1.089  0.0100     0.990  0.0100
+FC7         CAG         HAG      SINGLE       n     1.089  0.0100     0.990  0.0100
+FC7         CAG        HAGA      SINGLE       n     1.089  0.0100     0.990  0.0100
+FC7         CAH         HAH      SINGLE       n     1.089  0.0100     0.990  0.0175
+FC7         CAI         HAI      SINGLE       n     1.089  0.0100     0.981  0.0160
+FC7         CAI        HAIA      SINGLE       n     1.089  0.0100     0.981  0.0160
+FC7         CAK         HAK      SINGLE       n     1.089  0.0100     0.971  0.0146
+FC7         CAK        HAKA      SINGLE       n     1.089  0.0100     0.971  0.0146
+FC7         CAK        HAKB      SINGLE       n     1.089  0.0100     0.971  0.0146
+FC7         CAM         HAM      SINGLE       n     1.082  0.0130     0.946  0.0200
+FC7         CAO         HAO      SINGLE       n     1.089  0.0100     0.969  0.0117
+FC7         CAO        HAOA      SINGLE       n     1.089  0.0100     0.969  0.0117
+FC7         CAO        HAOB      SINGLE       n     1.089  0.0100     0.969  0.0117
+FC7         CAP         HAP      SINGLE       n     1.089  0.0100     0.988  0.0170
+FC7         CAR         HAR      SINGLE       n     1.089  0.0100     0.971  0.0125
+FC7         CAR        HARA      SINGLE       n     1.089  0.0100     0.971  0.0125
+FC7         CAS         HAS      SINGLE       n     1.089  0.0100     0.977  0.0166
+FC7         CAS        HASA      SINGLE       n     1.089  0.0100     0.977  0.0166
+FC7         CAT         HAT      SINGLE       n     1.089  0.0100     0.981  0.0100
+FC7         CAV         HAV      SINGLE       n     1.089  0.0100     0.986  0.0200
+FC7         CAW         HAW      SINGLE       n     1.089  0.0100     0.973  0.0141
+FC7         CAW        HAWA      SINGLE       n     1.089  0.0100     0.973  0.0141
+FC7         CAW        HAWB      SINGLE       n     1.089  0.0100     0.973  0.0141
+FC7         CAX         HAX      SINGLE       n     1.089  0.0100     0.973  0.0141
+FC7         CAX        HAXA      SINGLE       n     1.089  0.0100     0.973  0.0141
+FC7         CAX        HAXB      SINGLE       n     1.089  0.0100     0.973  0.0141
+FC7         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.988  0.0168
+FC7         CBH         HBH      SINGLE       n     1.089  0.0100     0.972  0.0169
+FC7         CBH        HBHA      SINGLE       n     1.089  0.0100     0.972  0.0169
+FC7         CBH        HBHB      SINGLE       n     1.089  0.0100     0.972  0.0169
+FC7         CBI         HBI      SINGLE       n     1.089  0.0100     0.972  0.0169
+FC7         CBI        HBIA      SINGLE       n     1.089  0.0100     0.972  0.0169
+FC7         CBI        HBIB      SINGLE       n     1.089  0.0100     0.972  0.0169
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FC7          O5          C1          C2     110.944    1.50
+FC7          O5          C1          O1     111.712    1.51
+FC7          O5          C1          H1     108.457    1.50
+FC7          C2          C1          O1     108.249    1.50
+FC7          C2          C1          H1     109.599    1.50
+FC7          O1          C1          H1     109.349    1.50
+FC7          C1          O1         CAZ     114.605    1.66
+FC7          C1          C2          C3     111.980    1.50
+FC7          C1          C2          O2     109.976    1.78
+FC7          C1          C2          H2     108.925    1.50
+FC7          C3          C2          O2     109.799    1.50
+FC7          C3          C2          H2     108.754    1.50
+FC7          O2          C2          H2     108.790    1.50
+FC7          C2          O2         HO2     109.099    3.00
+FC7          C2          C3          C4     109.024    1.50
+FC7          C2          C3          O3     110.004    2.18
+FC7          C2          C3          H3     108.864    1.50
+FC7          C4          C3          O3     108.653    1.50
+FC7          C4          C3          H3     109.707    1.50
+FC7          O3          C3          H3     109.323    1.50
+FC7          C3          O3         HO3     108.924    2.58
+FC7          C3          C4          O4     109.753    1.66
+FC7          C3          C4          C5     110.880    1.50
+FC7          C3          C4          H4     109.181    1.50
+FC7          O4          C4          C5     109.603    1.50
+FC7          O4          C4          H4     109.178    1.50
+FC7          C5          C4          H4     108.927    1.50
+FC7          C4          O4         CBG     115.380    2.74
+FC7          C4          C5          C6     108.900    1.50
+FC7          C4          C5          O5     109.766    1.50
+FC7          C4          C5          H5     109.218    1.50
+FC7          C6          C5          O5     108.957    1.50
+FC7          C6          C5          H5     109.820    1.50
+FC7          O5          C5          H5     109.765    1.50
+FC7          C1          O5          C5     111.641    1.50
+FC7          C5          C6          O6     108.290    1.50
+FC7          C5          C6          H6     109.983    1.50
+FC7          C5          C6         H6A     109.983    1.50
+FC7          O6          C6          H6     109.618    1.50
+FC7          O6          C6         H6A     109.618    1.50
+FC7          H6          C6         H6A     108.643    1.50
+FC7          C6          O6         CBG     113.746    1.50
+FC7         CAB         OAA        HOAA     109.265    3.00
+FC7         OAA         CAB         CAZ     109.482    3.00
+FC7         OAA         CAB         CAC     109.124    1.54
+FC7         OAA         CAB         HAB     108.183    1.96
+FC7         CAZ         CAB         CAC     111.094    2.85
+FC7         CAZ         CAB         HAB     109.155    1.50
+FC7         CAC         CAB         HAB     108.183    1.50
+FC7         CAB         CAC         CAD     111.555    1.50
+FC7         CAB         CAC         CAE     112.518    2.73
+FC7         CAB         CAC         HAC     106.780    1.50
+FC7         CAD         CAC         CAE     112.393    1.50
+FC7         CAD         CAC         HAC     107.632    1.50
+FC7         CAE         CAC         HAC     106.839    1.50
+FC7         CAC         CAD         HAD     109.618    1.50
+FC7         CAC         CAD        HADA     109.618    1.50
+FC7         CAC         CAD        HADB     109.618    1.50
+FC7         HAD         CAD        HADA     109.345    1.50
+FC7         HAD         CAD        HADB     109.345    1.50
+FC7        HADA         CAD        HADB     109.345    1.50
+FC7         CAC         CAE         CAL     111.539    2.78
+FC7         CAC         CAE         CAF     114.496    1.50
+FC7         CAC         CAE         HAE     107.890    1.50
+FC7         CAL         CAE         CAF     103.239    1.50
+FC7         CAL         CAE         HAE     108.780    1.81
+FC7         CAF         CAE         HAE     108.512    2.53
+FC7         CAE         CAF         CAG     104.493    1.50
+FC7         CAE         CAF         HAF     111.069    1.50
+FC7         CAE         CAF        HAFA     111.069    1.50
+FC7         CAG         CAF         HAF     110.658    1.50
+FC7         CAG         CAF        HAFA     110.658    1.50
+FC7         HAF         CAF        HAFA     108.821    1.50
+FC7         CAF         CAG         CAH     104.493    1.50
+FC7         CAF         CAG         HAG     110.658    1.50
+FC7         CAF         CAG        HAGA     110.658    1.50
+FC7         CAH         CAG         HAG     111.069    1.50
+FC7         CAH         CAG        HAGA     111.069    1.50
+FC7         HAG         CAG        HAGA     108.821    1.50
+FC7         CAG         CAH         CAI     113.143    1.62
+FC7         CAG         CAH         CAL     103.239    1.50
+FC7         CAG         CAH         HAH     108.512    2.53
+FC7         CAI         CAH         CAL     111.539    2.78
+FC7         CAI         CAH         HAH     109.165    1.50
+FC7         CAL         CAH         HAH     108.780    1.81
+FC7         CAH         CAI         OAJ     108.378    1.55
+FC7         CAH         CAI         HAI     109.744    1.50
+FC7         CAH         CAI        HAIA     109.744    1.50
+FC7         OAJ         CAI         HAI     109.925    1.50
+FC7         OAJ         CAI        HAIA     109.925    1.50
+FC7         HAI         CAI        HAIA     108.659    1.50
+FC7         CAI         OAJ         CAK     112.034    1.50
+FC7         OAJ         CAK         HAK     109.428    1.50
+FC7         OAJ         CAK        HAKA     109.428    1.50
+FC7         OAJ         CAK        HAKB     109.428    1.50
+FC7         HAK         CAK        HAKA     109.532    1.53
+FC7         HAK         CAK        HAKB     109.532    1.53
+FC7        HAKA         CAK        HAKB     109.532    1.53
+FC7         CAE         CAL         CAH     108.556    1.62
+FC7         CAE         CAL         CAM     125.722    3.00
+FC7         CAH         CAL         CAM     125.722    3.00
+FC7         CAL         CAM         CAN     123.474    3.00
+FC7         CAL         CAM         HAM     118.324    2.17
+FC7         CAN         CAM         HAM     118.203    1.78
+FC7         CAM         CAN         CAY     110.962    3.00
+FC7         CAM         CAN         CAO     109.981    2.26
+FC7         CAM         CAN         CAP     112.773    2.71
+FC7         CAY         CAN         CAO     111.539    2.78
+FC7         CAY         CAN         CAP     103.520    1.91
+FC7         CAO         CAN         CAP     113.984    2.76
+FC7         CAN         CAO         HAO     109.462    1.50
+FC7         CAN         CAO        HAOA     109.462    1.50
+FC7         CAN         CAO        HAOB     109.462    1.50
+FC7         HAO         CAO        HAOA     109.399    1.50
+FC7         HAO         CAO        HAOB     109.399    1.50
+FC7        HAOA         CAO        HAOB     109.399    1.50
+FC7         CAN         CAP         OAQ     110.652    2.06
+FC7         CAN         CAP         CAT     104.802    1.87
+FC7         CAN         CAP         HAP     110.691    1.64
+FC7         OAQ         CAP         CAT     105.292    1.61
+FC7         OAQ         CAP         HAP     112.135    1.50
+FC7         CAT         CAP         HAP     111.269    2.57
+FC7         CAP         OAQ         CAR     108.692    2.03
+FC7         OAQ         CAR         CAS     105.099    1.50
+FC7         OAQ         CAR         HAR     110.615    1.50
+FC7         OAQ         CAR        HARA     110.615    1.50
+FC7         CAS         CAR         HAR     110.956    1.50
+FC7         CAS         CAR        HARA     110.956    1.50
+FC7         HAR         CAR        HARA     108.953    1.50
+FC7         CAR         CAS         CAT     103.933    1.82
+FC7         CAR         CAS         HAS     111.126    1.50
+FC7         CAR         CAS        HASA     111.126    1.50
+FC7         CAT         CAS         HAS     110.898    1.50
+FC7         CAT         CAS        HASA     110.898    1.50
+FC7         HAS         CAS        HASA     108.883    1.55
+FC7         CAS         CAT         CAP     104.802    1.87
+FC7         CAS         CAT         CAU     112.776    3.00
+FC7         CAS         CAT         HAT     110.915    1.50
+FC7         CAP         CAT         CAU     103.977    1.50
+FC7         CAP         CAT         HAT     110.099    2.21
+FC7         CAU         CAT         HAT     110.895    1.56
+FC7         CAT         CAU         CAV     122.208    2.38
+FC7         CAT         CAU         CAY     110.329    2.44
+FC7         CAV         CAU         CAY     127.463    2.76
+FC7         CAU         CAV         CAX     111.982    1.72
+FC7         CAU         CAV         CAW     111.982    1.72
+FC7         CAU         CAV         HAV     107.951    1.50
+FC7         CAX         CAV         CAW     110.624    1.50
+FC7         CAX         CAV         HAV     107.988    1.50
+FC7         CAW         CAV         HAV     107.988    1.50
+FC7         CAV         CAW         HAW     109.504    1.50
+FC7         CAV         CAW        HAWA     109.504    1.50
+FC7         CAV         CAW        HAWB     109.504    1.50
+FC7         HAW         CAW        HAWA     109.345    1.50
+FC7         HAW         CAW        HAWB     109.345    1.50
+FC7        HAWA         CAW        HAWB     109.345    1.50
+FC7         CAV         CAX         HAX     109.504    1.50
+FC7         CAV         CAX        HAXA     109.504    1.50
+FC7         CAV         CAX        HAXB     109.504    1.50
+FC7         HAX         CAX        HAXA     109.345    1.50
+FC7         HAX         CAX        HAXB     109.345    1.50
+FC7        HAXA         CAX        HAXB     109.345    1.50
+FC7         CAN         CAY         CAU     110.497    2.72
+FC7         CAN         CAY         CAZ     121.830    2.33
+FC7         CAU         CAY         CAZ     127.673    2.76
+FC7         CAB         CAZ         CAY     111.339    2.21
+FC7         CAB         CAZ          O1     109.482    3.00
+FC7         CAB         CAZ         HAZ     109.155    1.50
+FC7         CAY         CAZ          O1     109.540    2.17
+FC7         CAY         CAZ         HAZ     109.382    1.50
+FC7          O1         CAZ         HAZ     109.444    2.28
+FC7          O6         CBG          O4     110.288    1.50
+FC7          O6         CBG         CBI     108.861    3.00
+FC7          O6         CBG         CBH     108.861    3.00
+FC7          O4         CBG         CBI     108.404    3.00
+FC7          O4         CBG         CBH     108.404    3.00
+FC7         CBI         CBG         CBH     112.117    1.50
+FC7         CBG         CBH         HBH     109.478    1.50
+FC7         CBG         CBH        HBHA     109.478    1.50
+FC7         CBG         CBH        HBHB     109.478    1.50
+FC7         HBH         CBH        HBHA     109.505    1.50
+FC7         HBH         CBH        HBHB     109.505    1.50
+FC7        HBHA         CBH        HBHB     109.505    1.50
+FC7         CBG         CBI         HBI     109.478    1.50
+FC7         CBG         CBI        HBIA     109.478    1.50
+FC7         CBG         CBI        HBIB     109.478    1.50
+FC7         HBI         CBI        HBIA     109.505    1.50
+FC7         HBI         CBI        HBIB     109.505    1.50
+FC7        HBIA         CBI        HBIB     109.505    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FC7                   nu0          C5          O5          C1          C2     -59.558    10.0     3
+FC7                   nu1          O5          C1          C2          C3      51.996    10.0     3
+FC7                   nu2          C1          C2          C3          C4     -49.173    10.0     3
+FC7                   nu3          C2          C3          C4          C5      53.122    10.0     3
+FC7                   nu4          C3          C4          C5          O5     -61.363    10.0     3
+FC7                   nu5          C4          C5          O5          C1      64.889    10.0     3
+FC7            sp3_sp3_34          C5          C4          O4         CBG      60.000    10.0     3
+FC7            sp3_sp3_35          C3          C4          O4         CBG     -60.000    10.0     3
+FC7            sp3_sp3_36          H4          C4          O4         CBG     180.000    10.0     3
+FC7            sp3_sp3_37          O6         CBG          O4          C4     -60.000    10.0     3
+FC7            sp3_sp3_38         CBH         CBG          O4          C4     180.000    10.0     3
+FC7            sp3_sp3_39         CBI         CBG          O4          C4      60.000    10.0     3
+FC7            sp3_sp3_40          O4         CBG          O6          C6      60.000    10.0     3
+FC7            sp3_sp3_41         CBI         CBG          O6          C6     -60.000    10.0     3
+FC7            sp3_sp3_42         CBH         CBG          O6          C6     180.000    10.0     3
+FC7            sp3_sp3_43          C5          C6          O6         CBG     -60.000    10.0     3
+FC7            sp3_sp3_44          H6          C6          O6         CBG     180.000    10.0     3
+FC7            sp3_sp3_45         H6A          C6          O6         CBG      60.000    10.0     3
+FC7            sp3_sp3_46          C4          C5          C6          O6      60.000    10.0     3
+FC7            sp3_sp3_47          C4          C5          C6          H6     180.000    10.0     3
+FC7            sp3_sp3_48          C4          C5          C6         H6A     -60.000    10.0     3
+FC7            sp3_sp3_49          O5          C5          C6          O6     -60.000    10.0     3
+FC7            sp3_sp3_50          O5          C5          C6          H6      60.000    10.0     3
+FC7            sp3_sp3_51          O5          C5          C6         H6A     180.000    10.0     3
+FC7            sp3_sp3_52          H5          C5          C6          O6     180.000    10.0     3
+FC7            sp3_sp3_53          H5          C5          C6          H6     -60.000    10.0     3
+FC7            sp3_sp3_54          H5          C5          C6         H6A      60.000    10.0     3
+FC7             sp2_sp3_1         CAH         CAL         CAE         CAF       0.000    10.0     6
+FC7             sp2_sp3_2         CAH         CAL         CAE         CAC     120.000    10.0     6
+FC7             sp2_sp3_3         CAH         CAL         CAE         HAE    -120.000    10.0     6
+FC7             sp2_sp3_4         CAM         CAL         CAE         CAF     180.000    10.0     6
+FC7             sp2_sp3_5         CAM         CAL         CAE         CAC     -60.000    10.0     6
+FC7             sp2_sp3_6         CAM         CAL         CAE         HAE      60.000    10.0     6
+FC7             sp2_sp3_7         CAE         CAL         CAH         CAG       0.000    10.0     6
+FC7             sp2_sp3_8         CAE         CAL         CAH         CAI     120.000    10.0     6
+FC7             sp2_sp3_9         CAE         CAL         CAH         HAH    -120.000    10.0     6
+FC7            sp2_sp3_10         CAM         CAL         CAH         CAG     180.000    10.0     6
+FC7            sp2_sp3_11         CAM         CAL         CAH         CAI     -60.000    10.0     6
+FC7            sp2_sp3_12         CAM         CAL         CAH         HAH      60.000    10.0     6
+FC7            sp3_sp3_55         CAF         CAG         CAH         CAL      60.000    10.0     3
+FC7            sp3_sp3_56         CAF         CAG         CAH         CAI     180.000    10.0     3
+FC7            sp3_sp3_57         CAF         CAG         CAH         HAH     -60.000    10.0     3
+FC7            sp3_sp3_58         HAG         CAG         CAH         CAL     -60.000    10.0     3
+FC7            sp3_sp3_59         HAG         CAG         CAH         CAI      60.000    10.0     3
+FC7            sp3_sp3_60         HAG         CAG         CAH         HAH     180.000    10.0     3
+FC7            sp3_sp3_61        HAGA         CAG         CAH         CAL     180.000    10.0     3
+FC7            sp3_sp3_62        HAGA         CAG         CAH         CAI     -60.000    10.0     3
+FC7            sp3_sp3_63        HAGA         CAG         CAH         HAH      60.000    10.0     3
+FC7            sp3_sp3_64         CAE         CAF         CAG         CAH     -60.000    10.0     3
+FC7            sp3_sp3_65         CAE         CAF         CAG         HAG      60.000    10.0     3
+FC7            sp3_sp3_66         CAE         CAF         CAG        HAGA     180.000    10.0     3
+FC7            sp3_sp3_67         HAF         CAF         CAG         CAH     180.000    10.0     3
+FC7            sp3_sp3_68         HAF         CAF         CAG         HAG     -60.000    10.0     3
+FC7            sp3_sp3_69         HAF         CAF         CAG        HAGA      60.000    10.0     3
+FC7            sp3_sp3_70        HAFA         CAF         CAG         CAH      60.000    10.0     3
+FC7            sp3_sp3_71        HAFA         CAF         CAG         HAG     180.000    10.0     3
+FC7            sp3_sp3_72        HAFA         CAF         CAG        HAGA     -60.000    10.0     3
+FC7            sp2_sp3_13         CAU         CAY         CAN         CAP       0.000    10.0     6
+FC7            sp2_sp3_14         CAU         CAY         CAN         CAM     120.000    10.0     6
+FC7            sp2_sp3_15         CAU         CAY         CAN         CAO    -120.000    10.0     6
+FC7            sp2_sp3_16         CAZ         CAY         CAN         CAP     180.000    10.0     6
+FC7            sp2_sp3_17         CAZ         CAY         CAN         CAM     -60.000    10.0     6
+FC7            sp2_sp3_18         CAZ         CAY         CAN         CAO      60.000    10.0     6
+FC7             sp2_sp2_1         CAT         CAU         CAY         CAN       0.000     5.0     2
+FC7             sp2_sp2_2         CAT         CAU         CAY         CAZ     180.000     5.0     2
+FC7             sp2_sp2_3         CAV         CAU         CAY         CAN     180.000     5.0     2
+FC7             sp2_sp2_4         CAV         CAU         CAY         CAZ       0.000     5.0     2
+FC7            sp2_sp3_19         CAY         CAU         CAT         CAP       0.000    10.0     6
+FC7            sp2_sp3_20         CAY         CAU         CAT         CAS     120.000    10.0     6
+FC7            sp2_sp3_21         CAY         CAU         CAT         HAT    -120.000    10.0     6
+FC7            sp2_sp3_22         CAV         CAU         CAT         CAP     180.000    10.0     6
+FC7            sp2_sp3_23         CAV         CAU         CAT         CAS     -60.000    10.0     6
+FC7            sp2_sp3_24         CAV         CAU         CAT         HAT      60.000    10.0     6
+FC7            sp3_sp3_73         CAN         CAP         CAT         CAU     -60.000    10.0     3
+FC7            sp3_sp3_74         CAN         CAP         CAT         CAS      60.000    10.0     3
+FC7            sp3_sp3_75         CAN         CAP         CAT         HAT     180.000    10.0     3
+FC7            sp3_sp3_76         OAQ         CAP         CAT         CAU     180.000    10.0     3
+FC7            sp3_sp3_77         OAQ         CAP         CAT         CAS     -60.000    10.0     3
+FC7            sp3_sp3_78         OAQ         CAP         CAT         HAT      60.000    10.0     3
+FC7            sp3_sp3_79         HAP         CAP         CAT         CAU      60.000    10.0     3
+FC7            sp3_sp3_80         HAP         CAP         CAT         CAS     180.000    10.0     3
+FC7            sp3_sp3_81         HAP         CAP         CAT         HAT     -60.000    10.0     3
+FC7            sp3_sp3_82         CAT         CAP         OAQ         CAR      60.000    10.0     3
+FC7            sp3_sp3_83         CAN         CAP         OAQ         CAR     -60.000    10.0     3
+FC7            sp3_sp3_84         HAP         CAP         OAQ         CAR     180.000    10.0     3
+FC7            sp3_sp3_85         CAS         CAR         OAQ         CAP     -60.000    10.0     3
+FC7            sp3_sp3_86         HAR         CAR         OAQ         CAP     180.000    10.0     3
+FC7            sp3_sp3_87        HARA         CAR         OAQ         CAP      60.000    10.0     3
+FC7            sp3_sp3_88         OAQ         CAR         CAS         CAT      60.000    10.0     3
+FC7            sp3_sp3_89         OAQ         CAR         CAS         HAS     180.000    10.0     3
+FC7            sp3_sp3_90         OAQ         CAR         CAS        HASA     -60.000    10.0     3
+FC7            sp3_sp3_91         HAR         CAR         CAS         CAT     -60.000    10.0     3
+FC7            sp3_sp3_92         HAR         CAR         CAS         HAS      60.000    10.0     3
+FC7            sp3_sp3_93         HAR         CAR         CAS        HASA     180.000    10.0     3
+FC7            sp3_sp3_94        HARA         CAR         CAS         CAT     180.000    10.0     3
+FC7            sp3_sp3_95        HARA         CAR         CAS         HAS     -60.000    10.0     3
+FC7            sp3_sp3_96        HARA         CAR         CAS        HASA      60.000    10.0     3
+FC7            sp3_sp3_97         CAR         CAS         CAT         CAP     -60.000    10.0     3
+FC7            sp3_sp3_98         CAR         CAS         CAT         CAU      60.000    10.0     3
+FC7            sp3_sp3_99         CAR         CAS         CAT         HAT     180.000    10.0     3
+FC7           sp3_sp3_100         HAS         CAS         CAT         CAP     180.000    10.0     3
+FC7           sp3_sp3_101         HAS         CAS         CAT         CAU     -60.000    10.0     3
+FC7           sp3_sp3_102         HAS         CAS         CAT         HAT      60.000    10.0     3
+FC7           sp3_sp3_103        HASA         CAS         CAT         CAP      60.000    10.0     3
+FC7           sp3_sp3_104        HASA         CAS         CAT         CAU     180.000    10.0     3
+FC7           sp3_sp3_105        HASA         CAS         CAT         HAT     -60.000    10.0     3
+FC7           sp3_sp3_115          O5          C1          O1         CAZ     180.000    10.0     3
+FC7           sp3_sp3_116          C2          C1          O1         CAZ      60.000    10.0     3
+FC7           sp3_sp3_117          H1          C1          O1         CAZ     -60.000    10.0     3
+FC7           sp3_sp3_118          C1          C2          O2         HO2     180.000    10.0     3
+FC7           sp3_sp3_119          C3          C2          O2         HO2      60.000    10.0     3
+FC7           sp3_sp3_120          H2          C2          O2         HO2     -60.000    10.0     3
+FC7           sp3_sp3_121          C2          C3          O3         HO3     180.000    10.0     3
+FC7           sp3_sp3_122          C4          C3          O3         HO3      60.000    10.0     3
+FC7           sp3_sp3_123          H3          C3          O3         HO3     -60.000    10.0     3
+FC7           sp3_sp3_124         CAZ         CAB         OAA        HOAA     180.000    10.0     3
+FC7           sp3_sp3_125         CAC         CAB         OAA        HOAA      60.000    10.0     3
+FC7           sp3_sp3_126         HAB         CAB         OAA        HOAA     -60.000    10.0     3
+FC7           sp3_sp3_127         OAA         CAB         CAZ         CAY     180.000    10.0     3
+FC7           sp3_sp3_128         OAA         CAB         CAZ          O1     -60.000    10.0     3
+FC7           sp3_sp3_129         OAA         CAB         CAZ         HAZ      60.000    10.0     3
+FC7           sp3_sp3_130         CAC         CAB         CAZ         CAY      60.000    10.0     3
+FC7           sp3_sp3_131         CAC         CAB         CAZ          O1     180.000    10.0     3
+FC7           sp3_sp3_132         CAC         CAB         CAZ         HAZ     -60.000    10.0     3
+FC7           sp3_sp3_133         HAB         CAB         CAZ         CAY     -60.000    10.0     3
+FC7           sp3_sp3_134         HAB         CAB         CAZ          O1      60.000    10.0     3
+FC7           sp3_sp3_135         HAB         CAB         CAZ         HAZ     180.000    10.0     3
+FC7           sp3_sp3_136         OAA         CAB         CAC         CAD     180.000    10.0     3
+FC7           sp3_sp3_137         OAA         CAB         CAC         CAE     -60.000    10.0     3
+FC7           sp3_sp3_138         OAA         CAB         CAC         HAC      60.000    10.0     3
+FC7           sp3_sp3_139         CAZ         CAB         CAC         CAD      60.000    10.0     3
+FC7           sp3_sp3_140         CAZ         CAB         CAC         CAE     180.000    10.0     3
+FC7           sp3_sp3_141         CAZ         CAB         CAC         HAC     -60.000    10.0     3
+FC7           sp3_sp3_142         HAB         CAB         CAC         CAD     -60.000    10.0     3
+FC7           sp3_sp3_143         HAB         CAB         CAC         CAE      60.000    10.0     3
+FC7           sp3_sp3_144         HAB         CAB         CAC         HAC     180.000    10.0     3
+FC7           sp3_sp3_145         CAB         CAC         CAD         HAD     180.000    10.0     3
+FC7           sp3_sp3_146         CAB         CAC         CAD        HADA     -60.000    10.0     3
+FC7           sp3_sp3_147         CAB         CAC         CAD        HADB      60.000    10.0     3
+FC7           sp3_sp3_148         CAE         CAC         CAD         HAD      60.000    10.0     3
+FC7           sp3_sp3_149         CAE         CAC         CAD        HADA     180.000    10.0     3
+FC7           sp3_sp3_150         CAE         CAC         CAD        HADB     -60.000    10.0     3
+FC7           sp3_sp3_151         HAC         CAC         CAD         HAD     -60.000    10.0     3
+FC7           sp3_sp3_152         HAC         CAC         CAD        HADA      60.000    10.0     3
+FC7           sp3_sp3_153         HAC         CAC         CAD        HADB     180.000    10.0     3
+FC7           sp3_sp3_154         CAB         CAC         CAE         CAL     180.000    10.0     3
+FC7           sp3_sp3_155         CAB         CAC         CAE         CAF     -60.000    10.0     3
+FC7           sp3_sp3_156         CAB         CAC         CAE         HAE      60.000    10.0     3
+FC7           sp3_sp3_157         CAD         CAC         CAE         CAL      60.000    10.0     3
+FC7           sp3_sp3_158         CAD         CAC         CAE         CAF     180.000    10.0     3
+FC7           sp3_sp3_159         CAD         CAC         CAE         HAE     -60.000    10.0     3
+FC7           sp3_sp3_160         HAC         CAC         CAE         CAL     -60.000    10.0     3
+FC7           sp3_sp3_161         HAC         CAC         CAE         CAF      60.000    10.0     3
+FC7           sp3_sp3_162         HAC         CAC         CAE         HAE     180.000    10.0     3
+FC7           sp3_sp3_163         CAL         CAE         CAF         CAG     180.000    10.0     3
+FC7           sp3_sp3_164         CAL         CAE         CAF         HAF     -60.000    10.0     3
+FC7           sp3_sp3_165         CAL         CAE         CAF        HAFA      60.000    10.0     3
+FC7           sp3_sp3_166         CAC         CAE         CAF         CAG      60.000    10.0     3
+FC7           sp3_sp3_167         CAC         CAE         CAF         HAF     180.000    10.0     3
+FC7           sp3_sp3_168         CAC         CAE         CAF        HAFA     -60.000    10.0     3
+FC7           sp3_sp3_169         HAE         CAE         CAF         CAG     -60.000    10.0     3
+FC7           sp3_sp3_170         HAE         CAE         CAF         HAF      60.000    10.0     3
+FC7           sp3_sp3_171         HAE         CAE         CAF        HAFA     180.000    10.0     3
+FC7           sp3_sp3_172         CAG         CAH         CAI         OAJ     180.000    10.0     3
+FC7           sp3_sp3_173         CAG         CAH         CAI         HAI     -60.000    10.0     3
+FC7           sp3_sp3_174         CAG         CAH         CAI        HAIA      60.000    10.0     3
+FC7           sp3_sp3_175         CAL         CAH         CAI         OAJ      60.000    10.0     3
+FC7           sp3_sp3_176         CAL         CAH         CAI         HAI     180.000    10.0     3
+FC7           sp3_sp3_177         CAL         CAH         CAI        HAIA     -60.000    10.0     3
+FC7           sp3_sp3_178         HAH         CAH         CAI         OAJ     -60.000    10.0     3
+FC7           sp3_sp3_179         HAH         CAH         CAI         HAI      60.000    10.0     3
+FC7           sp3_sp3_180         HAH         CAH         CAI        HAIA     180.000    10.0     3
+FC7           sp3_sp3_181         CAH         CAI         OAJ         CAK     180.000    10.0     3
+FC7           sp3_sp3_182         HAI         CAI         OAJ         CAK      60.000    10.0     3
+FC7           sp3_sp3_183        HAIA         CAI         OAJ         CAK     -60.000    10.0     3
+FC7           sp3_sp3_184         HAK         CAK         OAJ         CAI     180.000    10.0     3
+FC7           sp3_sp3_185        HAKA         CAK         OAJ         CAI      60.000    10.0     3
+FC7           sp3_sp3_186        HAKB         CAK         OAJ         CAI     -60.000    10.0     3
+FC7             sp2_sp2_5         CAE         CAL         CAM         CAN     180.000     5.0     2
+FC7             sp2_sp2_6         CAE         CAL         CAM         HAM       0.000     5.0     2
+FC7             sp2_sp2_7         CAH         CAL         CAM         CAN       0.000     5.0     2
+FC7             sp2_sp2_8         CAH         CAL         CAM         HAM     180.000     5.0     2
+FC7            sp2_sp3_25         CAL         CAM         CAN         CAY       0.000    10.0     6
+FC7            sp2_sp3_26         CAL         CAM         CAN         CAO     120.000    10.0     6
+FC7            sp2_sp3_27         CAL         CAM         CAN         CAP    -120.000    10.0     6
+FC7            sp2_sp3_28         HAM         CAM         CAN         CAY     180.000    10.0     6
+FC7            sp2_sp3_29         HAM         CAM         CAN         CAO     -60.000    10.0     6
+FC7            sp2_sp3_30         HAM         CAM         CAN         CAP      60.000    10.0     6
+FC7           sp3_sp3_187         CAM         CAN         CAO         HAO     180.000    10.0     3
+FC7           sp3_sp3_188         CAM         CAN         CAO        HAOA     -60.000    10.0     3
+FC7           sp3_sp3_189         CAM         CAN         CAO        HAOB      60.000    10.0     3
+FC7           sp3_sp3_190         CAY         CAN         CAO         HAO      60.000    10.0     3
+FC7           sp3_sp3_191         CAY         CAN         CAO        HAOA     180.000    10.0     3
+FC7           sp3_sp3_192         CAY         CAN         CAO        HAOB     -60.000    10.0     3
+FC7           sp3_sp3_193         CAP         CAN         CAO         HAO     -60.000    10.0     3
+FC7           sp3_sp3_194         CAP         CAN         CAO        HAOA      60.000    10.0     3
+FC7           sp3_sp3_195         CAP         CAN         CAO        HAOB     180.000    10.0     3
+FC7           sp3_sp3_196         CAY         CAN         CAP         CAT     180.000    10.0     3
+FC7           sp3_sp3_197         CAY         CAN         CAP         OAQ     -60.000    10.0     3
+FC7           sp3_sp3_198         CAY         CAN         CAP         HAP      60.000    10.0     3
+FC7           sp3_sp3_199         CAM         CAN         CAP         CAT      60.000    10.0     3
+FC7           sp3_sp3_200         CAM         CAN         CAP         OAQ     180.000    10.0     3
+FC7           sp3_sp3_201         CAM         CAN         CAP         HAP     -60.000    10.0     3
+FC7           sp3_sp3_202         CAO         CAN         CAP         CAT     -60.000    10.0     3
+FC7           sp3_sp3_203         CAO         CAN         CAP         OAQ      60.000    10.0     3
+FC7           sp3_sp3_204         CAO         CAN         CAP         HAP     180.000    10.0     3
+FC7            sp2_sp3_31         CAT         CAU         CAV         CAW     150.000    10.0     6
+FC7            sp2_sp3_32         CAT         CAU         CAV         CAX     -90.000    10.0     6
+FC7            sp2_sp3_33         CAT         CAU         CAV         HAV      30.000    10.0     6
+FC7            sp2_sp3_34         CAY         CAU         CAV         CAW     -30.000    10.0     6
+FC7            sp2_sp3_35         CAY         CAU         CAV         CAX      90.000    10.0     6
+FC7            sp2_sp3_36         CAY         CAU         CAV         HAV    -150.000    10.0     6
+FC7           sp3_sp3_205         CAU         CAV         CAX         HAX     180.000    10.0     3
+FC7           sp3_sp3_206         CAU         CAV         CAX        HAXA     -60.000    10.0     3
+FC7           sp3_sp3_207         CAU         CAV         CAX        HAXB      60.000    10.0     3
+FC7           sp3_sp3_208         CAW         CAV         CAX         HAX      60.000    10.0     3
+FC7           sp3_sp3_209         CAW         CAV         CAX        HAXA     180.000    10.0     3
+FC7           sp3_sp3_210         CAW         CAV         CAX        HAXB     -60.000    10.0     3
+FC7           sp3_sp3_211         HAV         CAV         CAX         HAX     -60.000    10.0     3
+FC7           sp3_sp3_212         HAV         CAV         CAX        HAXA      60.000    10.0     3
+FC7           sp3_sp3_213         HAV         CAV         CAX        HAXB     180.000    10.0     3
+FC7           sp3_sp3_214         CAX         CAV         CAW         HAW     180.000    10.0     3
+FC7           sp3_sp3_215         CAX         CAV         CAW        HAWA     -60.000    10.0     3
+FC7           sp3_sp3_216         CAX         CAV         CAW        HAWB      60.000    10.0     3
+FC7           sp3_sp3_217         CAU         CAV         CAW         HAW      60.000    10.0     3
+FC7           sp3_sp3_218         CAU         CAV         CAW        HAWA     180.000    10.0     3
+FC7           sp3_sp3_219         CAU         CAV         CAW        HAWB     -60.000    10.0     3
+FC7           sp3_sp3_220         HAV         CAV         CAW         HAW     -60.000    10.0     3
+FC7           sp3_sp3_221         HAV         CAV         CAW        HAWA      60.000    10.0     3
+FC7           sp3_sp3_222         HAV         CAV         CAW        HAWB     180.000    10.0     3
+FC7            sp2_sp3_37         CAN         CAY         CAZ         CAB     150.000    10.0     6
+FC7            sp2_sp3_38         CAN         CAY         CAZ          O1     -90.000    10.0     6
+FC7            sp2_sp3_39         CAN         CAY         CAZ         HAZ      30.000    10.0     6
+FC7            sp2_sp3_40         CAU         CAY         CAZ         CAB     -30.000    10.0     6
+FC7            sp2_sp3_41         CAU         CAY         CAZ          O1      90.000    10.0     6
+FC7            sp2_sp3_42         CAU         CAY         CAZ         HAZ    -150.000    10.0     6
+FC7           sp3_sp3_223         CAB         CAZ          O1          C1     180.000    10.0     3
+FC7           sp3_sp3_224         CAY         CAZ          O1          C1      60.000    10.0     3
+FC7           sp3_sp3_225         HAZ         CAZ          O1          C1     -60.000    10.0     3
+FC7           sp3_sp3_226          O6         CBG         CBI         HBI     180.000    10.0     3
+FC7           sp3_sp3_227          O6         CBG         CBI        HBIA     -60.000    10.0     3
+FC7           sp3_sp3_228          O6         CBG         CBI        HBIB      60.000    10.0     3
+FC7           sp3_sp3_229          O4         CBG         CBI         HBI      60.000    10.0     3
+FC7           sp3_sp3_230          O4         CBG         CBI        HBIA     180.000    10.0     3
+FC7           sp3_sp3_231          O4         CBG         CBI        HBIB     -60.000    10.0     3
+FC7           sp3_sp3_232         CBH         CBG         CBI         HBI     -60.000    10.0     3
+FC7           sp3_sp3_233         CBH         CBG         CBI        HBIA      60.000    10.0     3
+FC7           sp3_sp3_234         CBH         CBG         CBI        HBIB     180.000    10.0     3
+FC7           sp3_sp3_235          O4         CBG         CBH         HBH     180.000    10.0     3
+FC7           sp3_sp3_236          O4         CBG         CBH        HBHA     -60.000    10.0     3
+FC7           sp3_sp3_237          O4         CBG         CBH        HBHB      60.000    10.0     3
+FC7           sp3_sp3_238          O6         CBG         CBH         HBH      60.000    10.0     3
+FC7           sp3_sp3_239          O6         CBG         CBH        HBHA     180.000    10.0     3
+FC7           sp3_sp3_240          O6         CBG         CBH        HBHB     -60.000    10.0     3
+FC7           sp3_sp3_241         CBI         CBG         CBH         HBH     -60.000    10.0     3
+FC7           sp3_sp3_242         CBI         CBG         CBH        HBHA      60.000    10.0     3
+FC7           sp3_sp3_243         CBI         CBG         CBH        HBHB     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FC7    chir_1    C1    O5    O1    C2    positive
+FC7    chir_2    C2    O2    C1    C3    negative
+FC7    chir_3    C3    O3    C4    C2    negative
+FC7    chir_4    C4    O4    C5    C3    positive
+FC7    chir_5    C5    O5    C4    C6    negative
+FC7    chir_6    CAB    OAA    CAZ    CAC    negative
+FC7    chir_7    CAC    CAB    CAE    CAD    negative
+FC7    chir_8    CAE    CAL    CAC    CAF    positive
+FC7    chir_9    CAH    CAI    CAL    CAG    positive
+FC7    chir_10    CAN    CAP    CAY    CAM    negative
+FC7    chir_11    CAP    OAQ    CAN    CAT    positive
+FC7    chir_12    CAT    CAP    CAU    CAS    positive
+FC7    chir_13    CAV    CAU    CAX    CAW    both
+FC7    chir_14    CAZ    O1    CAB    CAY    negative
+FC7    chir_15    CBG    O4    O6    CBI    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FC7    plan-1         CAE   0.020
+FC7    plan-1         CAH   0.020
+FC7    plan-1         CAL   0.020
+FC7    plan-1         CAM   0.020
+FC7    plan-2         CAL   0.020
+FC7    plan-2         CAM   0.020
+FC7    plan-2         CAN   0.020
+FC7    plan-2         HAM   0.020
+FC7    plan-3         CAT   0.020
+FC7    plan-3         CAU   0.020
+FC7    plan-3         CAV   0.020
+FC7    plan-3         CAY   0.020
+FC7    plan-4         CAN   0.020
+FC7    plan-4         CAU   0.020
+FC7    plan-4         CAY   0.020
+FC7    plan-4         CAZ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FC7           SMILES              ACDLabs 12.01                                                                                                                                                                                            O5C(OC4C2=C(C(C)C)C1CCOC1C2(C=C3C(COC)CCC3C(C)C4O)C)C(O)C(O)C6OC(OCC56)(C)C
+FC7            InChI                InChI  1.03 InChI=1S/C32H50O9/c1-15(2)22-19-10-11-37-29(19)32(6)12-20-17(13-36-7)8-9-18(20)16(3)24(33)28(23(22)32)40-30-26(35)25(34)27-21(39-30)14-38-31(4,5)41-27/h12,15-19,21,24-30,33-35H,8-11,13-14H2,1-7H3/b20-12-/t16-,17-,18+,19+,21-,24-,25-,26-,27-,28-,29+,30-,32-/m1/s1
+FC7         InChIKey                InChI  1.03                                                                                                                                                                                                                                            VVWLHUXTBJWIOB-YGTMNZBKSA-N
+FC7 SMILES_CANONICAL               CACTVS 3.370                                                                                                                                   COC[C@H]1CC[C@H]\2[C@@H](C)[C@@H](O)[C@H](O[C@H]3O[C@@H]4COC(C)(C)O[C@H]4[C@H](O)[C@H]3O)C5=C(C(C)C)[C@@H]6CCO[C@@H]6[C@]5(C)\C=C1\2
+FC7           SMILES               CACTVS 3.370                                                                                                                                                        COC[CH]1CC[CH]2[CH](C)[CH](O)[CH](O[CH]3O[CH]4COC(C)(C)O[CH]4[CH](O)[CH]3O)C5=C(C(C)C)[CH]6CCO[CH]6[C]5(C)C=C12
+FC7 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                               C[C@@H]1[C@@H]2CC[C@@H](C2=C[C@]3([C@@H]4[C@@H](CCO4)C(=C3[C@H]([C@@H]1O)O[C@@H]5[C@@H]([C@H]([C@H]6[C@H](O5)COC(O6)(C)C)O)O)C(C)C)C)COC
+FC7           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                                                                                          CC1C2CCC(C2=CC3(C4C(CCO4)C(=C3C(C1O)OC5C(C(C6C(O5)COC(O6)(C)C)O)O)C(C)C)C)COC
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FC7 acedrg               243         "dictionary generator"                  
+FC7 acedrg_database      11          "data source"                           
+FC7 rdkit                2017.03.2   "Chemoinformatics tool"
+FC7 refmac5              5.8.0238    "optimization tool"                     

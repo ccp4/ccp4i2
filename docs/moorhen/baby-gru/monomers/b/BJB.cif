@@ -1,0 +1,309 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BJB     BJB      "4-[1-(1,3-benzothiazol-6-ylsulfonyl)-5-chloro-indol-2-yl]butanoic acid"     NON-POLYMER     42     28     .     
+#
+data_comp_BJB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BJB     C2      C       CR5     0       -13.789     19.461      -11.156     
+BJB     C7      C       CR6     0       -16.778     22.791      -10.103     
+BJB     C8      C       CR16    0       -17.696     21.737      -10.179     
+BJB     C9      C       CR16    0       -17.265     20.460      -10.486     
+BJB     C4      C       CR56    0       -14.980     21.323      -10.632     
+BJB     C31     C       CH2     0       -12.669     18.530      -11.489     
+BJB     C32     C       CH2     0       -12.165     17.719      -10.298     
+BJB     C25     C       CR15    0       -20.492     18.189      -15.710     
+BJB     C17     C       CR56    0       -18.961     17.948      -13.818     
+BJB     C19     C       CR16    0       -16.920     18.001      -15.101     
+BJB     C18     C       CR56    0       -18.318     18.046      -15.051     
+BJB     C5      C       CR56    0       -15.903     20.258      -10.710     
+BJB     C6      C       CR16    0       -15.438     22.618      -10.320     
+BJB     N1      N       NT      0       -15.167     19.084      -11.032     
+BJB     C3      C       CR15    0       -13.687     20.789      -10.913     
+BJB     CL1     CL      CL      0       -17.372     24.387      -9.714      
+BJB     S14     S       S3      0       -15.904     17.583      -11.225     
+BJB     C15     C       CR6     0       -16.858     17.761      -12.687     
+BJB     C16     C       CR16    0       -18.245     17.805      -12.639     
+BJB     C20     C       CR16    0       -16.209     17.861      -13.931     
+BJB     S24     S       S2      0       -20.605     18.029      -14.053     
+BJB     N26     N       NRD5    0       -19.208     18.184      -16.124     
+BJB     O29     O       O       0       -16.768     17.413      -10.107     
+BJB     O30     O       O       0       -14.897     16.609      -11.466     
+BJB     C35     C       CH2     0       -11.310     18.534      -9.343      
+BJB     C38     C       C       0       -10.689     17.735      -8.210      
+BJB     O41     O       OC      -1      -11.453     17.184      -7.392      
+BJB     O42     O       O       0       -9.445      17.664      -8.147      
+BJB     H1      H       H       0       -18.604     21.898      -10.023     
+BJB     H2      H       H       0       -17.879     19.752      -10.537     
+BJB     H3      H       H       0       -11.927     19.055      -11.838     
+BJB     H4      H       H       0       -12.953     17.923      -12.194     
+BJB     H5      H       H       0       -11.638     16.958      -10.631     
+BJB     H6      H       H       0       -12.937     17.359      -9.807      
+BJB     H7      H       H       0       -21.249     18.269      -16.255     
+BJB     H8      H       H       0       -16.471     18.067      -15.924     
+BJB     H9      H       H       0       -14.841     23.335      -10.264     
+BJB     H10     H       H       0       -12.883     21.280      -10.929     
+BJB     H11     H       H       0       -18.683     17.740      -11.810     
+BJB     H12     H       H       0       -15.267     17.831      -13.971     
+BJB     H13     H       H       0       -11.861     19.246      -8.954      
+BJB     H14     H       H       0       -10.589     18.964      -9.852      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BJB         C25         N26      DOUBLE       y     1.331  0.0200     1.331  0.0200
+BJB         C25         S24      SINGLE       y     1.695  0.0200     1.695  0.0200
+BJB         C18         N26      SINGLE       y     1.391  0.0100     1.391  0.0100
+BJB         C17         S24      SINGLE       y     1.695  0.0200     1.695  0.0200
+BJB         C19         C18      DOUBLE       y     1.396  0.0100     1.396  0.0100
+BJB         C17         C18      SINGLE       y     1.385  0.0119     1.385  0.0119
+BJB         C19         C20      SINGLE       y     1.371  0.0115     1.371  0.0115
+BJB         C17         C16      DOUBLE       y     1.382  0.0123     1.382  0.0123
+BJB         C15         C20      DOUBLE       y     1.398  0.0166     1.398  0.0166
+BJB         C15         C16      SINGLE       y     1.384  0.0100     1.384  0.0100
+BJB         S14         C15      SINGLE       n     1.753  0.0100     1.753  0.0100
+BJB          C2         C31      SINGLE       n     1.492  0.0100     1.492  0.0100
+BJB         C31         C32      SINGLE       n     1.525  0.0196     1.525  0.0196
+BJB         S14         O29      DOUBLE       n     1.423  0.0100     1.423  0.0100
+BJB          N1         S14      SINGLE       n     1.676  0.0100     1.676  0.0100
+BJB         S14         O30      DOUBLE       n     1.423  0.0100     1.423  0.0100
+BJB          C2          N1      SINGLE       y     1.428  0.0100     1.428  0.0100
+BJB          C2          C3      DOUBLE       y     1.354  0.0148     1.354  0.0148
+BJB          C5          N1      SINGLE       y     1.420  0.0100     1.420  0.0100
+BJB         C38         O42      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BJB         C32         C35      SINGLE       n     1.519  0.0142     1.519  0.0142
+BJB         C35         C38      SINGLE       n     1.519  0.0109     1.519  0.0109
+BJB          C4          C3      SINGLE       y     1.428  0.0100     1.428  0.0100
+BJB          C4          C5      DOUBLE       y     1.407  0.0102     1.407  0.0102
+BJB          C9          C5      SINGLE       y     1.389  0.0100     1.389  0.0100
+BJB          C4          C6      SINGLE       y     1.404  0.0100     1.404  0.0100
+BJB          C8          C9      DOUBLE       y     1.378  0.0100     1.378  0.0100
+BJB         C38         O41      SINGLE       n     1.247  0.0187     1.247  0.0187
+BJB          C7          C6      DOUBLE       y     1.367  0.0100     1.367  0.0100
+BJB          C7          C8      SINGLE       y     1.398  0.0100     1.398  0.0100
+BJB          C7         CL1      SINGLE       n     1.747  0.0100     1.747  0.0100
+BJB          C8          H1      SINGLE       n     1.082  0.0130     0.935  0.0100
+BJB          C9          H2      SINGLE       n     1.082  0.0130     0.940  0.0168
+BJB         C31          H3      SINGLE       n     1.089  0.0100     0.974  0.0100
+BJB         C31          H4      SINGLE       n     1.089  0.0100     0.974  0.0100
+BJB         C32          H5      SINGLE       n     1.089  0.0100     0.984  0.0200
+BJB         C32          H6      SINGLE       n     1.089  0.0100     0.984  0.0200
+BJB         C25          H7      SINGLE       n     1.082  0.0130     0.937  0.0100
+BJB         C19          H8      SINGLE       n     1.082  0.0130     0.940  0.0191
+BJB          C6          H9      SINGLE       n     1.082  0.0130     0.935  0.0100
+BJB          C3         H10      SINGLE       n     1.082  0.0130     0.942  0.0149
+BJB         C16         H11      SINGLE       n     1.082  0.0130     0.941  0.0170
+BJB         C20         H12      SINGLE       n     1.082  0.0130     0.943  0.0168
+BJB         C35         H13      SINGLE       n     1.089  0.0100     0.981  0.0185
+BJB         C35         H14      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BJB         C31          C2          N1     122.621    1.62
+BJB         C31          C2          C3     128.652    1.50
+BJB          N1          C2          C3     108.727    1.50
+BJB          C6          C7          C8     123.033    1.50
+BJB          C6          C7         CL1     118.704    1.50
+BJB          C8          C7         CL1     118.263    1.50
+BJB          C9          C8          C7     120.298    1.50
+BJB          C9          C8          H1     119.888    1.50
+BJB          C7          C8          H1     119.823    1.50
+BJB          C5          C9          C8     117.756    1.50
+BJB          C5          C9          H2     121.326    1.50
+BJB          C8          C9          H2     120.919    1.50
+BJB          C3          C4          C5     106.952    1.50
+BJB          C3          C4          C6     133.753    1.50
+BJB          C5          C4          C6     119.295    1.50
+BJB          C2         C31         C32     113.782    1.52
+BJB          C2         C31          H3     108.808    1.50
+BJB          C2         C31          H4     108.808    1.50
+BJB         C32         C31          H3     108.768    1.50
+BJB         C32         C31          H4     108.768    1.50
+BJB          H3         C31          H4     107.832    1.50
+BJB         C31         C32         C35     113.144    1.72
+BJB         C31         C32          H5     108.828    1.50
+BJB         C31         C32          H6     108.828    1.50
+BJB         C35         C32          H5     108.915    1.50
+BJB         C35         C32          H6     108.915    1.50
+BJB          H5         C32          H6     107.698    1.77
+BJB         N26         C25         S24     108.418    3.00
+BJB         N26         C25          H7     126.851    1.50
+BJB         S24         C25          H7     124.731    3.00
+BJB         S24         C17         C18     108.418    3.00
+BJB         S24         C17         C16     130.552    3.00
+BJB         C18         C17         C16     121.030    1.92
+BJB         C18         C19         C20     118.426    1.50
+BJB         C18         C19          H8     120.792    1.50
+BJB         C20         C19          H8     120.782    1.50
+BJB         N26         C18         C19     129.678    1.50
+BJB         N26         C18         C17     109.292    1.50
+BJB         C19         C18         C17     121.030    1.92
+BJB          N1          C5          C4     107.323    1.50
+BJB          N1          C5          C9     130.960    1.50
+BJB          C4          C5          C9     121.717    1.50
+BJB          C4          C6          C7     117.892    1.50
+BJB          C4          C6          H9     120.831    1.50
+BJB          C7          C6          H9     121.277    1.50
+BJB         S14          N1          C2     125.153    1.88
+BJB         S14          N1          C5     122.262    1.95
+BJB          C2          N1          C5     107.812    1.50
+BJB          C2          C3          C4     108.708    1.50
+BJB          C2          C3         H10     125.310    1.50
+BJB          C4          C3         H10     125.982    1.50
+BJB         C15         S14         O29     109.162    1.50
+BJB         C15         S14          N1     104.778    1.50
+BJB         C15         S14         O30     109.162    1.50
+BJB         O29         S14          N1     106.410    1.50
+BJB         O29         S14         O30     120.112    1.50
+BJB          N1         S14         O30     106.410    1.50
+BJB         C20         C15         C16     119.446    1.74
+BJB         C20         C15         S14     120.175    1.50
+BJB         C16         C15         S14     120.379    1.50
+BJB         C17         C16         C15     119.289    1.50
+BJB         C17         C16         H11     121.347    1.50
+BJB         C15         C16         H11     119.364    1.50
+BJB         C19         C20         C15     120.777    1.50
+BJB         C19         C20         H12     119.151    1.50
+BJB         C15         C20         H12     120.071    1.50
+BJB         C25         S24         C17     108.418    3.00
+BJB         C25         N26         C18     105.456    1.50
+BJB         C32         C35         C38     114.629    2.24
+BJB         C32         C35         H13     108.844    1.50
+BJB         C32         C35         H14     108.844    1.50
+BJB         C38         C35         H13     108.404    1.50
+BJB         C38         C35         H14     108.404    1.50
+BJB         H13         C35         H14     107.521    1.50
+BJB         O42         C38         C35     118.214    1.64
+BJB         O42         C38         O41     123.571    1.50
+BJB         C35         C38         O41     118.214    1.64
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BJB              const_30         C31          C2          N1         S14       0.000    10.0     2
+BJB              const_67         C31          C2          C3          C4     180.000    10.0     2
+BJB             sp2_sp3_8          N1          C2         C31         C32     -90.000    10.0     6
+BJB              const_24         C19         C18         N26         C25     180.000    10.0     2
+BJB              const_32          C4          C5          N1         S14     180.000    10.0     2
+BJB            sp2_sp3_14          C2          N1         S14         O29     -90.000    10.0     6
+BJB             sp2_sp3_1         C20         C15         S14         O29     150.000    10.0     6
+BJB              const_19         S14         C15         C16         C17     180.000    10.0     2
+BJB              const_15         S14         C15         C20         C19     180.000    10.0     2
+BJB              const_44          C4          C6          C7         CL1     180.000    10.0     2
+BJB              const_71         CL1          C7          C8          C9     180.000    10.0     2
+BJB            sp2_sp3_20         O42         C38         C35         C32     120.000    10.0     6
+BJB              const_55          C7          C8          C9          C5       0.000    10.0     2
+BJB              const_53          N1          C5          C9          C8     180.000    10.0     2
+BJB              const_35          C3          C4          C5          N1       0.000    10.0     2
+BJB              const_49          C3          C4          C6          C7     180.000    10.0     2
+BJB              const_39          C2          C3          C4          C5       0.000    10.0     2
+BJB             sp3_sp3_1          C2         C31         C32         C35     180.000    10.0     3
+BJB            sp3_sp3_10         C31         C32         C35         C38     180.000    10.0     3
+BJB              const_59         N26         C25         S24         C17       0.000    10.0     2
+BJB              const_21         S24         C25         N26         C18       0.000    10.0     2
+BJB       const_sp2_sp2_1         S24         C17         C18         N26       0.000     5.0     2
+BJB              const_62         C15         C16         C17         S24     180.000    10.0     2
+BJB              const_25         C18         C17         S24         C25       0.000    10.0     2
+BJB       const_sp2_sp2_7         N26         C18         C19         C20     180.000     5.0     2
+BJB       const_sp2_sp2_9         C18         C19         C20         C15       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BJB    chir_1    S14    O29    O30    N1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BJB    plan-1          C2   0.020
+BJB    plan-1          C3   0.020
+BJB    plan-1         C31   0.020
+BJB    plan-1          C4   0.020
+BJB    plan-1          C5   0.020
+BJB    plan-1          C6   0.020
+BJB    plan-1          C7   0.020
+BJB    plan-1          C8   0.020
+BJB    plan-1          C9   0.020
+BJB    plan-1         CL1   0.020
+BJB    plan-1          H1   0.020
+BJB    plan-1         H10   0.020
+BJB    plan-1          H2   0.020
+BJB    plan-1          H9   0.020
+BJB    plan-1          N1   0.020
+BJB    plan-1         S14   0.020
+BJB    plan-2         C15   0.020
+BJB    plan-2         C16   0.020
+BJB    plan-2         C17   0.020
+BJB    plan-2         C18   0.020
+BJB    plan-2         C19   0.020
+BJB    plan-2         C20   0.020
+BJB    plan-2         C25   0.020
+BJB    plan-2         H11   0.020
+BJB    plan-2         H12   0.020
+BJB    plan-2          H7   0.020
+BJB    plan-2          H8   0.020
+BJB    plan-2         N26   0.020
+BJB    plan-2         S14   0.020
+BJB    plan-2         S24   0.020
+BJB    plan-3         C35   0.020
+BJB    plan-3         C38   0.020
+BJB    plan-3         O41   0.020
+BJB    plan-3         O42   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BJB            InChI                InChI  1.03 InChI=1S/C19H15ClN2O4S2/c20-13-4-7-17-12(8-13)9-14(2-1-3-19(23)24)22(17)28(25,26)15-5-6-16-18(10-15)27-11-21-16/h4-11H,1-3H2,(H,23,24)
+BJB         InChIKey                InChI  1.03                                                                                                            OQDQIFQRNZIEEJ-UHFFFAOYSA-N
+BJB SMILES_CANONICAL               CACTVS 3.385                                                                                     OC(=O)CCCc1cc2cc(Cl)ccc2n1[S](=O)(=O)c3ccc4ncsc4c3
+BJB           SMILES               CACTVS 3.385                                                                                     OC(=O)CCCc1cc2cc(Cl)ccc2n1[S](=O)(=O)c3ccc4ncsc4c3
+BJB SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                     c1cc2c(cc1S(=O)(=O)n3c4ccc(cc4cc3CCCC(=O)O)Cl)scn2
+BJB           SMILES "OpenEye OEToolkits" 2.0.6                                                                                     c1cc2c(cc1S(=O)(=O)n3c4ccc(cc4cc3CCCC(=O)O)Cl)scn2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BJB acedrg               243         "dictionary generator"                  
+BJB acedrg_database      11          "data source"                           
+BJB rdkit                2017.03.2   "Chemoinformatics tool"
+BJB refmac5              5.8.0238    "optimization tool"                     

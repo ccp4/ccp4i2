@@ -1,0 +1,285 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MXM     MXM      "4-hydroxy-2-methyl-N-(5-methyl-1,3-thiazol-2-yl)-2H-1,2-benzothiazine-3-carboxamide 1,1-dioxide"     NON-POLYMER     36     23     .     
+#
+data_comp_MXM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MXM     CAW     C       CH3     0       73.835      23.952      66.921      
+MXM     CAV     C       CR5     0       74.208      23.370      65.612      
+MXM     SAT     S       S2      0       75.552      23.908      64.796      
+MXM     CAU     C       CR15    0       73.605      22.402      64.905      
+MXM     NAS     N       NRD5    0       74.240      22.106      63.704      
+MXM     CAR     C       CR5     0       75.335      22.865      63.507      
+MXM     NAP     N       NH1     0       76.145      22.769      62.393      
+MXM     CAN     C       C       0       77.304      23.444      62.047      
+MXM     OAQ     O       O       0       77.718      24.451      62.642      
+MXM     CAG     C       CR6     0       78.061      22.936      60.895      
+MXM     CAC     C       CR6     0       78.235      23.709      59.783      
+MXM     OAH     O       OH1     0       77.546      24.875      59.639      
+MXM     CAA     C       CR66    0       79.194      23.379      58.713      
+MXM     CAD     C       CR16    0       79.729      24.372      57.882      
+MXM     CAI     C       CR16    0       80.635      24.048      56.880      
+MXM     CAM     C       CR16    0       81.032      22.734      56.691      
+MXM     CAF     C       CR16    0       80.525      21.729      57.503      
+MXM     CAB     C       CR66    0       79.620      22.055      58.505      
+MXM     SAE     S       S3      0       78.964      20.793      59.543      
+MXM     OAK     O       O       0       80.000      19.836      59.790      
+MXM     OAL     O       O       0       77.729      20.335      58.984      
+MXM     NAJ     N       NR6     0       78.616      21.599      60.957      
+MXM     CAO     C       CH3     0       78.760      20.878      62.246      
+MXM     H1      H       H       0       73.033      23.520      67.252      
+MXM     H2      H       H       0       73.669      24.902      66.819      
+MXM     H3      H       H       0       74.556      23.819      67.554      
+MXM     H4      H       H       0       72.824      21.960      65.191      
+MXM     H5      H       H       0       75.869      22.181      61.808      
+MXM     H7      H       H       0       77.101      25.026      58.918      
+MXM     H8      H       H       0       79.467      25.273      57.998      
+MXM     H9      H       H       0       80.983      24.727      56.326      
+MXM     H10     H       H       0       81.651      22.522      56.007      
+MXM     H11     H       H       0       80.796      20.833      57.375      
+MXM     H14     H       H       0       79.272      20.064      62.124      
+MXM     H15     H       H       0       77.880      20.651      62.590      
+MXM     H16     H       H       0       79.218      21.448      62.887      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MXM         CAW         CAV      SINGLE       n     1.481  0.0100     1.481  0.0100
+MXM         CAV         SAT      SINGLE       y     1.695  0.0200     1.695  0.0200
+MXM         CAV         CAU      DOUBLE       y     1.339  0.0100     1.339  0.0100
+MXM         SAT         CAR      SINGLE       y     1.695  0.0200     1.695  0.0200
+MXM         CAU         NAS      SINGLE       y     1.371  0.0139     1.371  0.0139
+MXM         NAS         CAR      DOUBLE       y     1.335  0.0145     1.335  0.0145
+MXM         CAR         NAP      SINGLE       n     1.367  0.0190     1.367  0.0190
+MXM         NAP         CAN      SINGLE       n     1.371  0.0173     1.371  0.0173
+MXM         CAN         OAQ      DOUBLE       n     1.241  0.0100     1.241  0.0100
+MXM         CAN         CAG      SINGLE       n     1.465  0.0100     1.465  0.0100
+MXM         CAG         CAC      DOUBLE       n     1.362  0.0100     1.362  0.0100
+MXM         CAG         NAJ      SINGLE       n     1.443  0.0100     1.443  0.0100
+MXM         CAC         OAH      SINGLE       n     1.355  0.0200     1.355  0.0200
+MXM         CAC         CAA      SINGLE       n     1.470  0.0100     1.470  0.0100
+MXM         CAA         CAD      DOUBLE       y     1.395  0.0100     1.395  0.0100
+MXM         CAA         CAB      SINGLE       y     1.401  0.0100     1.401  0.0100
+MXM         CAD         CAI      SINGLE       y     1.386  0.0100     1.386  0.0100
+MXM         CAI         CAM      DOUBLE       y     1.382  0.0100     1.382  0.0100
+MXM         CAM         CAF      SINGLE       y     1.385  0.0100     1.385  0.0100
+MXM         CAF         CAB      DOUBLE       y     1.386  0.0100     1.386  0.0100
+MXM         CAB         SAE      SINGLE       n     1.759  0.0100     1.759  0.0100
+MXM         SAE         OAK      DOUBLE       n     1.431  0.0100     1.431  0.0100
+MXM         SAE         OAL      DOUBLE       n     1.431  0.0100     1.431  0.0100
+MXM         SAE         NAJ      SINGLE       n     1.640  0.0200     1.640  0.0200
+MXM         NAJ         CAO      SINGLE       n     1.479  0.0100     1.479  0.0100
+MXM         CAW          H1      SINGLE       n     1.089  0.0100     0.969  0.0144
+MXM         CAW          H2      SINGLE       n     1.089  0.0100     0.969  0.0144
+MXM         CAW          H3      SINGLE       n     1.089  0.0100     0.969  0.0144
+MXM         CAU          H4      SINGLE       n     1.082  0.0130     0.942  0.0176
+MXM         NAP          H5      SINGLE       n     1.016  0.0100     0.873  0.0200
+MXM         OAH          H7      SINGLE       n     0.966  0.0059     0.861  0.0200
+MXM         CAD          H8      SINGLE       n     1.082  0.0130     0.946  0.0152
+MXM         CAI          H9      SINGLE       n     1.082  0.0130     0.943  0.0198
+MXM         CAM         H10      SINGLE       n     1.082  0.0130     0.947  0.0200
+MXM         CAF         H11      SINGLE       n     1.082  0.0130     0.944  0.0184
+MXM         CAO         H14      SINGLE       n     1.089  0.0100     0.972  0.0184
+MXM         CAO         H15      SINGLE       n     1.089  0.0100     0.972  0.0184
+MXM         CAO         H16      SINGLE       n     1.089  0.0100     0.972  0.0184
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MXM         CAV         CAW          H1     109.576    1.50
+MXM         CAV         CAW          H2     109.576    1.50
+MXM         CAV         CAW          H3     109.576    1.50
+MXM          H1         CAW          H2     109.334    1.50
+MXM          H1         CAW          H3     109.334    1.50
+MXM          H2         CAW          H3     109.334    1.50
+MXM         CAW         CAV         SAT     121.263    3.00
+MXM         CAW         CAV         CAU     130.366    3.00
+MXM         SAT         CAV         CAU     108.372    3.00
+MXM         CAV         SAT         CAR     108.372    3.00
+MXM         CAV         CAU         NAS     109.442    1.50
+MXM         CAV         CAU          H4     126.268    2.00
+MXM         NAS         CAU          H4     124.289    1.50
+MXM         CAU         NAS         CAR     105.443    1.50
+MXM         SAT         CAR         NAS     108.372    3.00
+MXM         SAT         CAR         NAP     122.814    3.00
+MXM         NAS         CAR         NAP     128.814    3.00
+MXM         CAR         NAP         CAN     125.170    2.96
+MXM         CAR         NAP          H5     117.373    2.70
+MXM         CAN         NAP          H5     117.458    2.52
+MXM         NAP         CAN         OAQ     122.187    1.77
+MXM         NAP         CAN         CAG     117.831    3.00
+MXM         OAQ         CAN         CAG     119.981    2.38
+MXM         CAN         CAG         CAC     121.130    1.50
+MXM         CAN         CAG         NAJ     118.861    3.00
+MXM         CAC         CAG         NAJ     120.009    1.66
+MXM         CAG         CAC         OAH     121.131    3.00
+MXM         CAG         CAC         CAA     122.980    1.50
+MXM         OAH         CAC         CAA     115.890    2.30
+MXM         CAC         OAH          H7     120.000    3.00
+MXM         CAC         CAA         CAD     121.145    1.50
+MXM         CAC         CAA         CAB     120.646    1.50
+MXM         CAD         CAA         CAB     118.211    1.50
+MXM         CAA         CAD         CAI     120.412    1.50
+MXM         CAA         CAD          H8     119.671    1.50
+MXM         CAI         CAD          H8     119.916    1.50
+MXM         CAD         CAI         CAM     120.234    1.50
+MXM         CAD         CAI          H9     119.847    1.50
+MXM         CAM         CAI          H9     119.921    1.50
+MXM         CAI         CAM         CAF     120.075    1.50
+MXM         CAI         CAM         H10     119.937    1.50
+MXM         CAF         CAM         H10     119.988    1.50
+MXM         CAM         CAF         CAB     119.065    1.50
+MXM         CAM         CAF         H11     120.356    1.50
+MXM         CAB         CAF         H11     120.580    1.50
+MXM         CAA         CAB         CAF     122.000    1.50
+MXM         CAA         CAB         SAE     117.044    1.50
+MXM         CAF         CAB         SAE     120.956    1.50
+MXM         CAB         SAE         OAK     109.102    1.50
+MXM         CAB         SAE         OAL     109.102    1.50
+MXM         CAB         SAE         NAJ     101.458    1.50
+MXM         OAK         SAE         OAL     118.943    1.50
+MXM         OAK         SAE         NAJ     108.249    1.50
+MXM         OAL         SAE         NAJ     108.249    1.50
+MXM         CAG         NAJ         SAE     119.235    2.11
+MXM         CAG         NAJ         CAO     122.205    1.74
+MXM         SAE         NAJ         CAO     118.560    2.04
+MXM         NAJ         CAO         H14     109.686    1.57
+MXM         NAJ         CAO         H15     109.686    1.57
+MXM         NAJ         CAO         H16     109.686    1.57
+MXM         H14         CAO         H15     109.471    1.50
+MXM         H14         CAO         H16     109.471    1.50
+MXM         H15         CAO         H16     109.471    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MXM            sp2_sp3_13         SAT         CAV         CAW          H1     150.000    10.0     6
+MXM            sp2_sp2_25         CAG         CAC         OAH          H7     180.000     5.0     2
+MXM             sp2_sp2_8         CAD         CAA         CAC         OAH       0.000     5.0     2
+MXM       const_sp2_sp2_7         CAC         CAA         CAD         CAI     180.000     5.0     2
+MXM       const_sp2_sp2_2         CAC         CAA         CAB         CAF     180.000     5.0     2
+MXM       const_sp2_sp2_9         CAA         CAD         CAI         CAM       0.000     5.0     2
+MXM              const_13         CAD         CAI         CAM         CAF       0.000    10.0     2
+MXM              const_17         CAB         CAF         CAM         CAI       0.000    10.0     2
+MXM              const_21         CAA         CAB         CAF         CAM       0.000    10.0     2
+MXM             sp2_sp3_2         CAA         CAB         SAE         OAK     120.000    10.0     6
+MXM            sp2_sp3_12         CAO         NAJ         SAE         OAK      60.000    10.0     6
+MXM              const_26         CAW         CAV         SAT         CAR     180.000    10.0     2
+MXM              const_34         NAS         CAU         CAV         CAW     180.000    10.0     2
+MXM            sp2_sp3_19         CAG         NAJ         CAO         H14     150.000    10.0     6
+MXM              const_28         NAP         CAR         SAT         CAV     180.000    10.0     2
+MXM              const_31         CAV         CAU         NAS         CAR       0.000    10.0     2
+MXM              const_30         NAP         CAR         NAS         CAU     180.000    10.0     2
+MXM             sp2_sp2_9         SAT         CAR         NAP         CAN     180.000     5.0     2
+MXM            sp2_sp2_15         OAQ         CAN         NAP         CAR       0.000     5.0     2
+MXM            sp2_sp2_17         CAC         CAG         CAN         NAP     180.000     5.0     2
+MXM             sp2_sp2_4         OAH         CAC         CAG         CAN       0.000     5.0     2
+MXM            sp2_sp2_24         CAN         CAG         NAJ         CAO       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MXM    chir_1    SAE    OAK    OAL    NAJ    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MXM    plan-1         CAA   0.020
+MXM    plan-1         CAB   0.020
+MXM    plan-1         CAC   0.020
+MXM    plan-1         CAD   0.020
+MXM    plan-1         CAF   0.020
+MXM    plan-1         CAI   0.020
+MXM    plan-1         CAM   0.020
+MXM    plan-1         H10   0.020
+MXM    plan-1         H11   0.020
+MXM    plan-1          H8   0.020
+MXM    plan-1          H9   0.020
+MXM    plan-1         SAE   0.020
+MXM    plan-2         CAR   0.020
+MXM    plan-2         CAU   0.020
+MXM    plan-2         CAV   0.020
+MXM    plan-2         CAW   0.020
+MXM    plan-2          H4   0.020
+MXM    plan-2         NAP   0.020
+MXM    plan-2         NAS   0.020
+MXM    plan-2         SAT   0.020
+MXM    plan-3         CAN   0.020
+MXM    plan-3         CAR   0.020
+MXM    plan-3          H5   0.020
+MXM    plan-3         NAP   0.020
+MXM    plan-4         CAG   0.020
+MXM    plan-4         CAN   0.020
+MXM    plan-4         NAP   0.020
+MXM    plan-4         OAQ   0.020
+MXM    plan-5         CAC   0.020
+MXM    plan-5         CAG   0.020
+MXM    plan-5         CAN   0.020
+MXM    plan-5         NAJ   0.020
+MXM    plan-6         CAA   0.020
+MXM    plan-6         CAC   0.020
+MXM    plan-6         CAG   0.020
+MXM    plan-6         OAH   0.020
+MXM    plan-7         CAG   0.020
+MXM    plan-7         CAO   0.020
+MXM    plan-7         NAJ   0.020
+MXM    plan-7         SAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MXM           SMILES              ACDLabs 12.01                                                                           O=C(Nc1ncc(s1)C)C3=C(O)c2ccccc2S(=O)(=O)N3C
+MXM            InChI                InChI  1.03 InChI=1S/C14H13N3O4S2/c1-8-7-15-14(22-8)16-13(19)11-12(18)9-5-3-4-6-10(9)23(20,21)17(11)2/h3-7,18H,1-2H3,(H,15,16,19)
+MXM         InChIKey                InChI  1.03                                                                                           ZRVUJXDFFKFLMG-UHFFFAOYSA-N
+MXM SMILES_CANONICAL               CACTVS 3.385                                                                         CN1C(=C(O)c2ccccc2[S]1(=O)=O)C(=O)Nc3sc(C)cn3
+MXM           SMILES               CACTVS 3.385                                                                         CN1C(=C(O)c2ccccc2[S]1(=O)=O)C(=O)Nc3sc(C)cn3
+MXM SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                           Cc1cnc(s1)NC(=O)C2=C(c3ccccc3S(=O)(=O)N2C)O
+MXM           SMILES "OpenEye OEToolkits" 1.7.6                                                                           Cc1cnc(s1)NC(=O)C2=C(c3ccccc3S(=O)(=O)N2C)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MXM acedrg               243         "dictionary generator"                  
+MXM acedrg_database      11          "data source"                           
+MXM rdkit                2017.03.2   "Chemoinformatics tool"
+MXM refmac5              5.8.0238    "optimization tool"                     

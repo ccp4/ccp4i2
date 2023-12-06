@@ -1,0 +1,243 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OSP     OSP      SULTHIAME     NON-POLYMER     32     18     .     
+#
+data_comp_OSP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OSP     O3      O       O       0       -4.633      4.077       11.105      
+OSP     S2      S       S3      0       -3.509      4.810       11.584      
+OSP     O4      O       O       0       -2.210      4.256       11.396      
+OSP     C7      C       CH2     0       -3.544      6.436       10.870      
+OSP     C8      C       CH2     0       -2.532      7.404       11.467      
+OSP     C9      C       CH2     0       -2.223      7.110       12.927      
+OSP     C10     C       CH2     0       -3.412      6.508       13.651      
+OSP     N2      N       NR6     0       -3.717      5.154       13.168      
+OSP     C4      C       CR6     0       -4.202      4.153       14.019      
+OSP     C3      C       CR16    0       -3.573      2.903       14.098      
+OSP     C2      C       CR16    0       -4.067      1.929       14.950      
+OSP     C5      C       CR16    0       -5.323      4.411       14.815      
+OSP     C6      C       CR16    0       -5.814      3.436       15.667      
+OSP     C1      C       CR6     0       -5.186      2.195       15.733      
+OSP     S1      S       S3      0       -5.804      0.945       16.818      
+OSP     O1      O       O       0       -7.194      1.209       17.046      
+OSP     O2      O       O       0       -4.918      0.879       17.943      
+OSP     N1      N       NT2     0       -5.714      -0.467      16.064      
+OSP     H71     H       H       0       -3.374      6.336       9.927       
+OSP     H72     H       H       0       -4.434      6.787       10.987      
+OSP     H81     H       H       0       -2.882      8.313       11.389      
+OSP     H82     H       H       0       -1.706      7.356       10.947      
+OSP     H91     H       H       0       -1.964      7.945       13.374      
+OSP     H92     H       H       0       -1.461      6.495       12.981      
+OSP     H101    H       H       0       -4.197      7.084       13.525      
+OSP     H102    H       H       0       -3.217      6.472       14.612      
+OSP     H3      H       H       0       -2.816      2.718       13.570      
+OSP     H2      H       H       0       -3.645      1.089       14.998      
+OSP     H5      H       H       0       -5.749      5.249       14.771      
+OSP     H6      H       H       0       -6.569      3.616       16.198      
+OSP     HN11    H       H       0       -5.474      -1.118      16.588      
+OSP     HN12    H       H       0       -6.398      -0.622      15.552      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OSP          O3          S2      DOUBLE       n     1.425  0.0100     1.425  0.0100
+OSP          S2          C7      SINGLE       n     1.772  0.0200     1.772  0.0200
+OSP          S2          O4      DOUBLE       n     1.425  0.0100     1.425  0.0100
+OSP          S2          N2      SINGLE       n     1.628  0.0100     1.628  0.0100
+OSP          C7          C8      SINGLE       n     1.519  0.0133     1.519  0.0133
+OSP          C8          C9      SINGLE       n     1.518  0.0116     1.518  0.0116
+OSP          C9         C10      SINGLE       n     1.513  0.0132     1.513  0.0132
+OSP         C10          N2      SINGLE       n     1.464  0.0109     1.464  0.0109
+OSP          N2          C4      SINGLE       n     1.388  0.0200     1.388  0.0200
+OSP          C4          C3      DOUBLE       y     1.395  0.0115     1.395  0.0115
+OSP          C4          C5      SINGLE       y     1.395  0.0115     1.395  0.0115
+OSP          C3          C2      SINGLE       y     1.381  0.0100     1.381  0.0100
+OSP          C2          C1      DOUBLE       y     1.388  0.0100     1.388  0.0100
+OSP          C5          C6      DOUBLE       y     1.381  0.0100     1.381  0.0100
+OSP          C6          C1      SINGLE       y     1.388  0.0100     1.388  0.0100
+OSP          C1          S1      SINGLE       n     1.766  0.0100     1.766  0.0100
+OSP          S1          N1      SINGLE       n     1.603  0.0110     1.603  0.0110
+OSP          S1          O1      DOUBLE       n     1.433  0.0100     1.433  0.0100
+OSP          S1          O2      DOUBLE       n     1.433  0.0100     1.433  0.0100
+OSP          C7         H71      SINGLE       n     1.089  0.0100     0.963  0.0173
+OSP          C7         H72      SINGLE       n     1.089  0.0100     0.963  0.0173
+OSP          C8         H81      SINGLE       n     1.089  0.0100     0.977  0.0102
+OSP          C8         H82      SINGLE       n     1.089  0.0100     0.977  0.0102
+OSP          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0134
+OSP          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0134
+OSP         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0161
+OSP         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0161
+OSP          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0150
+OSP          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0197
+OSP          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0150
+OSP          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0197
+OSP          N1        HN11      SINGLE       n     1.036  0.0160     0.869  0.0200
+OSP          N1        HN12      SINGLE       n     1.036  0.0160     0.869  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OSP          O3          S2          C7     109.360    1.50
+OSP          O3          S2          O4     118.916    1.50
+OSP          O3          S2          N2     109.749    1.77
+OSP          C7          S2          O4     109.360    1.50
+OSP          C7          S2          N2     100.093    1.50
+OSP          O4          S2          N2     109.749    1.77
+OSP          S2          C7          C8     110.645    3.00
+OSP          S2          C7         H71     107.095    2.56
+OSP          S2          C7         H72     107.095    2.56
+OSP          C8          C7         H71     109.367    1.50
+OSP          C8          C7         H72     109.367    1.50
+OSP         H71          C7         H72     108.651    1.76
+OSP          C7          C8          C9     111.223    1.50
+OSP          C7          C8         H81     108.909    1.50
+OSP          C7          C8         H82     108.909    1.50
+OSP          C9          C8         H81     109.388    1.50
+OSP          C9          C8         H82     109.388    1.50
+OSP         H81          C8         H82     108.019    1.50
+OSP          C8          C9         C10     111.236    1.50
+OSP          C8          C9         H91     109.388    1.50
+OSP          C8          C9         H92     109.388    1.50
+OSP         C10          C9         H91     109.491    1.50
+OSP         C10          C9         H92     109.491    1.50
+OSP         H91          C9         H92     108.022    1.50
+OSP          C9         C10          N2     110.569    1.50
+OSP          C9         C10        H101     109.565    1.50
+OSP          C9         C10        H102     109.565    1.50
+OSP          N2         C10        H101     109.526    1.50
+OSP          N2         C10        H102     109.526    1.50
+OSP        H101         C10        H102     108.194    1.50
+OSP          S2          N2         C10     116.404    2.33
+OSP          S2          N2          C4     120.014    3.00
+OSP         C10          N2          C4     123.582    1.59
+OSP          N2          C4          C3     119.930    1.87
+OSP          N2          C4          C5     119.930    1.87
+OSP          C3          C4          C5     120.140    1.50
+OSP          C4          C3          C2     120.109    1.50
+OSP          C4          C3          H3     120.087    1.50
+OSP          C2          C3          H3     119.804    1.50
+OSP          C3          C2          C1     119.619    1.50
+OSP          C3          C2          H2     120.094    1.50
+OSP          C1          C2          H2     120.288    1.50
+OSP          C4          C5          C6     120.109    1.50
+OSP          C4          C5          H5     120.087    1.50
+OSP          C6          C5          H5     119.804    1.50
+OSP          C5          C6          C1     119.619    1.50
+OSP          C5          C6          H6     120.094    1.50
+OSP          C1          C6          H6     120.288    1.50
+OSP          C2          C1          C6     120.404    1.50
+OSP          C2          C1          S1     119.798    1.50
+OSP          C6          C1          S1     119.798    1.50
+OSP          C1          S1          N1     108.480    1.50
+OSP          C1          S1          O1     107.472    1.50
+OSP          C1          S1          O2     107.472    1.50
+OSP          N1          S1          O1     107.154    1.50
+OSP          N1          S1          O2     107.154    1.50
+OSP          O1          S1          O2     118.954    1.50
+OSP          S1          N1        HN11     113.070    3.00
+OSP          S1          N1        HN12     113.070    3.00
+OSP        HN11          N1        HN12     115.993    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OSP              const_11          S1          C1          C2          C3     180.000    10.0     2
+OSP              const_17          C4          C5          C6          C1       0.000    10.0     2
+OSP              const_15          S1          C1          C6          C5     180.000    10.0     2
+OSP            sp2_sp3_15          C2          C1          S1          N1      30.000    10.0     6
+OSP            sp3_sp3_38        HN11          N1          S1          O1     -60.000    10.0     3
+OSP             sp3_sp3_2          C8          C7          S2          O3     180.000    10.0     3
+OSP             sp2_sp3_9         C10          N2          S2          O3    -120.000    10.0     6
+OSP            sp3_sp3_10          S2          C7          C8          C9     -60.000    10.0     3
+OSP            sp3_sp3_19          C7          C8          C9         C10      60.000    10.0     3
+OSP            sp3_sp3_28          N2         C10          C9          C8     -60.000    10.0     3
+OSP             sp2_sp3_1          S2          N2         C10          C9       0.000    10.0     6
+OSP             sp2_sp2_1          C3          C4          N2          S2     180.000     5.0     2
+OSP              const_23          N2          C4          C5          C6     180.000    10.0     2
+OSP       const_sp2_sp2_2          C2          C3          C4          N2     180.000     5.0     2
+OSP       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OSP    chir_1    S2    O3    O4    N2    both
+OSP    chir_2    S1    O1    O2    N1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OSP    plan-1          C1   0.020
+OSP    plan-1          C2   0.020
+OSP    plan-1          C3   0.020
+OSP    plan-1          C4   0.020
+OSP    plan-1          C5   0.020
+OSP    plan-1          C6   0.020
+OSP    plan-1          H2   0.020
+OSP    plan-1          H3   0.020
+OSP    plan-1          H5   0.020
+OSP    plan-1          H6   0.020
+OSP    plan-1          N2   0.020
+OSP    plan-1          S1   0.020
+OSP    plan-2         C10   0.020
+OSP    plan-2          C4   0.020
+OSP    plan-2          N2   0.020
+OSP    plan-2          S2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OSP           SMILES              ACDLabs 10.04                                                                    O=S2(=O)N(c1ccc(cc1)S(=O)(=O)N)CCCC2
+OSP SMILES_CANONICAL               CACTVS 3.341                                                                  N[S](=O)(=O)c1ccc(cc1)N2CCCC[S]2(=O)=O
+OSP           SMILES               CACTVS 3.341                                                                  N[S](=O)(=O)c1ccc(cc1)N2CCCC[S]2(=O)=O
+OSP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                      c1cc(ccc1N2CCCCS2(=O)=O)S(=O)(=O)N
+OSP           SMILES "OpenEye OEToolkits" 1.5.0                                                                      c1cc(ccc1N2CCCCS2(=O)=O)S(=O)(=O)N
+OSP            InChI                InChI  1.03 InChI=1S/C10H14N2O4S2/c11-18(15,16)10-5-3-9(4-6-10)12-7-1-2-8-17(12,13)14/h3-6H,1-2,7-8H2,(H2,11,15,16)
+OSP         InChIKey                InChI  1.03                                                                             HMHVCUVYZFYAJI-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OSP acedrg               243         "dictionary generator"                  
+OSP acedrg_database      11          "data source"                           
+OSP rdkit                2017.03.2   "Chemoinformatics tool"
+OSP refmac5              5.8.0238    "optimization tool"                     

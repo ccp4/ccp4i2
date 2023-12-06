@@ -1,0 +1,170 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BSX     BSX      2-(2-fluorophenyl)ethanamine     NON-POLYMER     20     10     .     
+#
+data_comp_BSX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BSX     C7      C       CR16    0       0.188       -55.912     -19.555     
+BSX     C9      C       CR16    0       0.430       -57.236     -19.245     
+BSX     C4      C       CR16    0       0.919       -54.906     -18.933     
+BSX     C6      C       CR16    0       1.402       -57.571     -18.314     
+BSX     C1      C       CR6     0       1.903       -55.214     -17.994     
+BSX     C3      C       CR6     0       2.111       -56.557     -17.714     
+BSX     C2      C       CH2     0       2.692       -54.113     -17.323     
+BSX     C5      C       CH2     0       2.142       -53.745     -15.949     
+BSX     N8      N       NT2     0       2.979       -52.752     -15.271     
+BSX     F10     F       F       0       3.059       -56.886     -16.805     
+BSX     H1      H       H       0       -0.475      -55.689     -20.189     
+BSX     H2      H       H       0       -0.065      -57.916     -19.666     
+BSX     H3      H       H       0       0.750       -54.003     -19.148     
+BSX     H4      H       H       0       1.574       -58.469     -18.097     
+BSX     H5      H       H       0       2.677       -53.316     -17.896     
+BSX     H6      H       H       0       3.627       -54.396     -17.230     
+BSX     H7      H       H       0       2.090       -54.553     -15.393     
+BSX     H8      H       H       0       1.234       -53.385     -16.048     
+BSX     H9      H       H       0       2.567       -52.456     -14.542     
+BSX     H10     H       H       0       3.109       -52.052     -15.802     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BSX          C7          C9      DOUBLE       y     1.376  0.0124     1.376  0.0124
+BSX          C7          C4      SINGLE       y     1.387  0.0101     1.387  0.0101
+BSX          C9          C6      SINGLE       y     1.373  0.0180     1.373  0.0180
+BSX          C4          C1      DOUBLE       y     1.392  0.0100     1.392  0.0100
+BSX          C6          C3      DOUBLE       y     1.371  0.0108     1.371  0.0108
+BSX          C1          C3      SINGLE       y     1.383  0.0100     1.383  0.0100
+BSX          C1          C2      SINGLE       n     1.511  0.0100     1.511  0.0100
+BSX          C3         F10      SINGLE       n     1.354  0.0100     1.354  0.0100
+BSX          C2          C5      SINGLE       n     1.525  0.0180     1.525  0.0180
+BSX          C5          N8      SINGLE       n     1.464  0.0200     1.464  0.0200
+BSX          C7          H1      SINGLE       n     1.082  0.0130     0.944  0.0175
+BSX          C9          H2      SINGLE       n     1.082  0.0130     0.941  0.0200
+BSX          C4          H3      SINGLE       n     1.082  0.0130     0.943  0.0173
+BSX          C6          H4      SINGLE       n     1.082  0.0130     0.940  0.0141
+BSX          C2          H5      SINGLE       n     1.089  0.0100     0.981  0.0158
+BSX          C2          H6      SINGLE       n     1.089  0.0100     0.981  0.0158
+BSX          C5          H7      SINGLE       n     1.089  0.0100     0.982  0.0143
+BSX          C5          H8      SINGLE       n     1.089  0.0100     0.982  0.0143
+BSX          N8          H9      SINGLE       n     1.036  0.0160     0.888  0.0200
+BSX          N8         H10      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BSX          C9          C7          C4     120.036    1.50
+BSX          C9          C7          H1     120.028    1.50
+BSX          C4          C7          H1     119.937    1.50
+BSX          C7          C9          C6     120.090    1.50
+BSX          C7          C9          H2     120.112    1.50
+BSX          C6          C9          H2     119.798    1.50
+BSX          C7          C4          C1     120.793    1.50
+BSX          C7          C4          H3     119.780    1.50
+BSX          C1          C4          H3     119.427    1.50
+BSX          C9          C6          C3     118.208    1.50
+BSX          C9          C6          H4     121.018    1.50
+BSX          C3          C6          H4     120.774    1.50
+BSX          C4          C1          C3     117.383    1.50
+BSX          C4          C1          C2     120.606    1.50
+BSX          C3          C1          C2     122.011    1.50
+BSX          C6          C3          C1     123.491    1.50
+BSX          C6          C3         F10     118.487    1.50
+BSX          C1          C3         F10     118.022    1.50
+BSX          C1          C2          C5     112.597    2.54
+BSX          C1          C2          H5     108.906    1.50
+BSX          C1          C2          H6     108.906    1.50
+BSX          C5          C2          H5     108.999    1.50
+BSX          C5          C2          H6     108.999    1.50
+BSX          H5          C2          H6     107.823    1.50
+BSX          C2          C5          N8     111.320    2.66
+BSX          C2          C5          H7     109.149    1.50
+BSX          C2          C5          H8     109.149    1.50
+BSX          N8          C5          H7     108.870    1.50
+BSX          N8          C5          H8     108.870    1.50
+BSX          H7          C5          H8     107.873    1.50
+BSX          C5          N8          H9     109.962    3.00
+BSX          C5          N8         H10     109.962    3.00
+BSX          H9          N8         H10     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BSX       const_sp2_sp2_1          C4          C7          C9          C6       0.000     5.0     2
+BSX              const_21          C1          C4          C7          C9       0.000    10.0     2
+BSX       const_sp2_sp2_5          C3          C6          C9          C7       0.000     5.0     2
+BSX              const_19          C2          C1          C4          C7     180.000    10.0     2
+BSX              const_11         F10          C3          C6          C9     180.000    10.0     2
+BSX              const_16          C2          C1          C3         F10       0.000    10.0     2
+BSX             sp2_sp3_2          C4          C1          C2          C5     -90.000    10.0     6
+BSX             sp3_sp3_1          C1          C2          C5          N8     180.000    10.0     3
+BSX            sp3_sp3_10          C2          C5          N8          H9     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BSX    plan-1          C1   0.020
+BSX    plan-1          C2   0.020
+BSX    plan-1          C3   0.020
+BSX    plan-1          C4   0.020
+BSX    plan-1          C6   0.020
+BSX    plan-1          C7   0.020
+BSX    plan-1          C9   0.020
+BSX    plan-1         F10   0.020
+BSX    plan-1          H1   0.020
+BSX    plan-1          H2   0.020
+BSX    plan-1          H3   0.020
+BSX    plan-1          H4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BSX            InChI                InChI  1.03 InChI=1S/C8H10FN/c9-8-4-2-1-3-7(8)5-6-10/h1-4H,5-6,10H2
+BSX         InChIKey                InChI  1.03                             RIKUOLJPJNVTEP-UHFFFAOYSA-N
+BSX SMILES_CANONICAL               CACTVS 3.385                                            NCCc1ccccc1F
+BSX           SMILES               CACTVS 3.385                                            NCCc1ccccc1F
+BSX SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                        c1ccc(c(c1)CCN)F
+BSX           SMILES "OpenEye OEToolkits" 2.0.4                                        c1ccc(c(c1)CCN)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BSX acedrg               243         "dictionary generator"                  
+BSX acedrg_database      11          "data source"                           
+BSX rdkit                2017.03.2   "Chemoinformatics tool"
+BSX refmac5              5.8.0238    "optimization tool"                     

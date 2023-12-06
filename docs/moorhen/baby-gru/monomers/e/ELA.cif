@@ -1,0 +1,310 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ELA     ELA      "9-OCTADECENOIC ACID"     NON-POLYMER     53     20     .     
+#
+data_comp_ELA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ELA     CA      C       CH2     0       19.661      34.522      54.205      
+ELA     C       C       C       0       18.968      34.636      52.856      
+ELA     O       O       O       0       19.540      35.258      51.935      
+ELA     C3      C       CH2     0       20.803      35.468      54.437      
+ELA     C4      C       CH2     0       21.389      35.353      55.834      
+ELA     C5      C       CH2     0       22.643      36.167      56.049      
+ELA     C6      C       CH2     0       23.222      36.068      57.441      
+ELA     C7      C       CH2     0       23.982      34.774      57.720      
+ELA     C8      C       CH2     0       23.761      34.193      59.086      
+ELA     C9      C       C1      0       22.393      33.610      59.258      
+ELA     C10     C       C1      0       21.472      34.046      60.077      
+ELA     C11     C       CH2     0       20.065      33.541      60.139      
+ELA     C12     C       CH2     0       19.270      33.922      58.930      
+ELA     C13     C       CH2     0       17.790      33.593      59.015      
+ELA     C14     C       CH2     0       17.033      33.821      57.728      
+ELA     C15     C       CH2     0       16.902      35.273      57.332      
+ELA     C16     C       CH2     0       16.030      35.511      56.124      
+ELA     C17     C       CH2     0       15.933      36.956      55.705      
+ELA     C18     C       CH3     0       17.148      37.455      54.960      
+ELA     OXT     O       OC      -1      17.852      34.096      52.726      
+ELA     HA1     H       H       0       19.992      33.603      54.302      
+ELA     HA2     H       H       0       18.990      34.665      54.906      
+ELA     H31     H       H       0       20.495      36.388      54.298      
+ELA     H32     H       H       0       21.511      35.288      53.783      
+ELA     H41     H       H       0       21.591      34.410      56.013      
+ELA     H42     H       H       0       20.712      35.640      56.484      
+ELA     H51     H       H       0       22.441      37.108      55.859      
+ELA     H52     H       H       0       23.321      35.873      55.404      
+ELA     H61     H       H       0       22.492      36.157      58.090      
+ELA     H62     H       H       0       23.832      36.823      57.579      
+ELA     H71     H       H       0       24.940      34.946      57.606      
+ELA     H72     H       H       0       23.722      34.106      57.051      
+ELA     H81     H       H       0       23.896      34.898      59.757      
+ELA     H82     H       H       0       24.430      33.491      59.245      
+ELA     H9      H       H       0       22.178      32.858      58.727      
+ELA     H10     H       H       0       21.709      34.735      60.679      
+ELA     H111    H       H       0       19.627      33.907      60.940      
+ELA     H112    H       H       0       20.078      32.562      60.219      
+ELA     H121    H       H       0       19.647      33.465      58.150      
+ELA     H122    H       H       0       19.367      34.886      58.783      
+ELA     H131    H       H       0       17.385      34.142      59.720      
+ELA     H132    H       H       0       17.691      32.653      59.276      
+ELA     H141    H       H       0       16.134      33.438      57.820      
+ELA     H142    H       H       0       17.489      33.339      57.006      
+ELA     H151    H       H       0       17.796      35.631      57.148      
+ELA     H152    H       H       0       16.532      35.773      58.090      
+ELA     H161    H       H       0       15.127      35.179      56.317      
+ELA     H162    H       H       0       16.385      34.990      55.372      
+ELA     H171    H       H       0       15.803      37.508      56.507      
+ELA     H172    H       H       0       15.142      37.066      55.134      
+ELA     H181    H       H       0       17.007      38.380      54.691      
+ELA     H182    H       H       0       17.293      36.907      54.169      
+ELA     H183    H       H       0       17.929      37.402      55.537      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ELA          CA           C      SINGLE       n     1.519  0.0109     1.519  0.0109
+ELA          CA          C3      SINGLE       n     1.497  0.0200     1.497  0.0200
+ELA           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+ELA           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+ELA          C3          C4      SINGLE       n     1.519  0.0164     1.519  0.0164
+ELA          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+ELA          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+ELA          C6          C7      SINGLE       n     1.523  0.0117     1.523  0.0117
+ELA          C7          C8      SINGLE       n     1.497  0.0200     1.497  0.0200
+ELA          C8          C9      SINGLE       n     1.497  0.0127     1.497  0.0127
+ELA          C9         C10      DOUBLE       n     1.308  0.0200     1.308  0.0200
+ELA         C10         C11      SINGLE       n     1.497  0.0127     1.497  0.0127
+ELA         C11         C12      SINGLE       n     1.497  0.0200     1.497  0.0200
+ELA         C12         C13      SINGLE       n     1.519  0.0164     1.519  0.0164
+ELA         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+ELA         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+ELA         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+ELA         C16         C17      SINGLE       n     1.507  0.0200     1.507  0.0200
+ELA         C17         C18      SINGLE       n     1.510  0.0200     1.510  0.0200
+ELA          CA         HA1      SINGLE       n     1.089  0.0100     0.981  0.0185
+ELA          CA         HA2      SINGLE       n     1.089  0.0100     0.981  0.0185
+ELA          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0160
+ELA          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0160
+ELA          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA          C7         H71      SINGLE       n     1.089  0.0100     0.980  0.0160
+ELA          C7         H72      SINGLE       n     1.089  0.0100     0.980  0.0160
+ELA          C8         H81      SINGLE       n     1.089  0.0100     0.983  0.0180
+ELA          C8         H82      SINGLE       n     1.089  0.0100     0.983  0.0180
+ELA          C9          H9      SINGLE       n     1.082  0.0130     0.945  0.0200
+ELA         C10         H10      SINGLE       n     1.082  0.0130     0.945  0.0200
+ELA         C11        H111      SINGLE       n     1.089  0.0100     0.983  0.0180
+ELA         C11        H112      SINGLE       n     1.089  0.0100     0.983  0.0180
+ELA         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0160
+ELA         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0160
+ELA         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA         C14        H141      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA         C14        H142      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA         C15        H151      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA         C15        H152      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0163
+ELA         C17        H171      SINGLE       n     1.089  0.0100     0.982  0.0155
+ELA         C17        H172      SINGLE       n     1.089  0.0100     0.982  0.0155
+ELA         C18        H181      SINGLE       n     1.089  0.0100     0.973  0.0157
+ELA         C18        H182      SINGLE       n     1.089  0.0100     0.973  0.0157
+ELA         C18        H183      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ELA           C          CA          C3     114.612    2.19
+ELA           C          CA         HA1     108.404    1.50
+ELA           C          CA         HA2     108.404    1.50
+ELA          C3          CA         HA1     108.815    1.50
+ELA          C3          CA         HA2     108.815    1.50
+ELA         HA1          CA         HA2     107.521    1.50
+ELA          CA           C           O     118.214    1.64
+ELA          CA           C         OXT     118.214    1.64
+ELA           O           C         OXT     123.571    1.50
+ELA          CA          C3          C4     112.553    1.50
+ELA          CA          C3         H31     109.164    1.50
+ELA          CA          C3         H32     109.164    1.50
+ELA          C4          C3         H31     108.698    1.50
+ELA          C4          C3         H32     108.698    1.50
+ELA         H31          C3         H32     107.646    1.50
+ELA          C3          C4          C5     114.243    1.69
+ELA          C3          C4         H41     108.698    1.50
+ELA          C3          C4         H42     108.698    1.50
+ELA          C5          C4         H41     108.698    1.50
+ELA          C5          C4         H42     108.698    1.50
+ELA         H41          C4         H42     107.646    1.50
+ELA          C4          C5          C6     114.243    1.69
+ELA          C4          C5         H51     108.698    1.50
+ELA          C4          C5         H52     108.698    1.50
+ELA          C6          C5         H51     108.698    1.50
+ELA          C6          C5         H52     108.698    1.50
+ELA         H51          C5         H52     107.646    1.50
+ELA          C5          C6          C7     114.243    1.69
+ELA          C5          C6         H61     108.698    1.50
+ELA          C5          C6         H62     108.698    1.50
+ELA          C7          C6         H61     108.698    1.50
+ELA          C7          C6         H62     108.698    1.50
+ELA         H61          C6         H62     107.646    1.50
+ELA          C6          C7          C8     114.266    1.80
+ELA          C6          C7         H71     108.698    1.50
+ELA          C6          C7         H72     108.698    1.50
+ELA          C8          C7         H71     108.805    1.50
+ELA          C8          C7         H72     108.805    1.50
+ELA         H71          C7         H72     107.646    1.50
+ELA          C7          C8          C9     113.226    1.94
+ELA          C7          C8         H81     108.819    1.50
+ELA          C7          C8         H82     108.819    1.50
+ELA          C9          C8         H81     108.886    1.50
+ELA          C9          C8         H82     108.886    1.50
+ELA         H81          C8         H82     107.922    1.50
+ELA          C8          C9         C10     125.684    3.00
+ELA          C8          C9          H9     117.007    1.61
+ELA         C10          C9          H9     117.310    2.16
+ELA          C9         C10         C11     125.684    3.00
+ELA          C9         C10         H10     117.310    2.16
+ELA         C11         C10         H10     117.007    1.61
+ELA         C10         C11         C12     113.226    1.94
+ELA         C10         C11        H111     108.886    1.50
+ELA         C10         C11        H112     108.886    1.50
+ELA         C12         C11        H111     108.819    1.50
+ELA         C12         C11        H112     108.819    1.50
+ELA        H111         C11        H112     107.922    1.50
+ELA         C11         C12         C13     114.266    1.80
+ELA         C11         C12        H121     108.805    1.50
+ELA         C11         C12        H122     108.805    1.50
+ELA         C13         C12        H121     108.698    1.50
+ELA         C13         C12        H122     108.698    1.50
+ELA        H121         C12        H122     107.646    1.50
+ELA         C12         C13         C14     114.243    1.69
+ELA         C12         C13        H131     108.698    1.50
+ELA         C12         C13        H132     108.698    1.50
+ELA         C14         C13        H131     108.698    1.50
+ELA         C14         C13        H132     108.698    1.50
+ELA        H131         C13        H132     107.646    1.50
+ELA         C13         C14         C15     114.243    1.69
+ELA         C13         C14        H141     108.698    1.50
+ELA         C13         C14        H142     108.698    1.50
+ELA         C15         C14        H141     108.698    1.50
+ELA         C15         C14        H142     108.698    1.50
+ELA        H141         C14        H142     107.646    1.50
+ELA         C14         C15         C16     114.243    1.69
+ELA         C14         C15        H151     108.698    1.50
+ELA         C14         C15        H152     108.698    1.50
+ELA         C16         C15        H151     108.698    1.50
+ELA         C16         C15        H152     108.698    1.50
+ELA        H151         C15        H152     107.646    1.50
+ELA         C15         C16         C17     114.362    3.00
+ELA         C15         C16        H161     108.698    1.50
+ELA         C15         C16        H162     108.698    1.50
+ELA         C17         C16        H161     108.653    1.50
+ELA         C17         C16        H162     108.653    1.50
+ELA        H161         C16        H162     107.646    1.50
+ELA         C16         C17         C18     113.719    3.00
+ELA         C16         C17        H171     108.758    1.50
+ELA         C16         C17        H172     108.758    1.50
+ELA         C18         C17        H171     108.918    1.50
+ELA         C18         C17        H172     108.918    1.50
+ELA        H171         C17        H172     107.763    1.50
+ELA         C17         C18        H181     109.554    1.50
+ELA         C17         C18        H182     109.554    1.50
+ELA         C17         C18        H183     109.554    1.50
+ELA        H181         C18        H182     109.380    1.50
+ELA        H181         C18        H183     109.380    1.50
+ELA        H182         C18        H183     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ELA             sp2_sp3_2           O           C          CA          C3     120.000    10.0     6
+ELA             sp3_sp3_1          C4          C3          CA           C     180.000    10.0     3
+ELA            sp2_sp3_14          C9         C10         C11         C12     120.000    10.0     6
+ELA            sp3_sp3_55         C10         C11         C12         C13     180.000    10.0     3
+ELA            sp3_sp3_64         C11         C12         C13         C14     180.000    10.0     3
+ELA            sp3_sp3_73         C12         C13         C14         C15     180.000    10.0     3
+ELA            sp3_sp3_82         C13         C14         C15         C16     180.000    10.0     3
+ELA            sp3_sp3_91         C14         C15         C16         C17     180.000    10.0     3
+ELA           sp3_sp3_100         C15         C16         C17         C18     180.000    10.0     3
+ELA           sp3_sp3_109         C16         C17         C18        H181     180.000    10.0     3
+ELA            sp3_sp3_10          CA          C3          C4          C5     180.000    10.0     3
+ELA            sp3_sp3_19          C3          C4          C5          C6     180.000    10.0     3
+ELA            sp3_sp3_28          C4          C5          C6          C7     180.000    10.0     3
+ELA            sp3_sp3_37          C5          C6          C7          C8     180.000    10.0     3
+ELA            sp3_sp3_46          C6          C7          C8          C9     180.000    10.0     3
+ELA             sp2_sp3_8         C10          C9          C8          C7     120.000    10.0     6
+ELA             sp2_sp2_1         C11         C10          C9          C8     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ELA    plan-1           C   0.020
+ELA    plan-1          CA   0.020
+ELA    plan-1           O   0.020
+ELA    plan-1         OXT   0.020
+ELA    plan-2         C10   0.020
+ELA    plan-2          C8   0.020
+ELA    plan-2          C9   0.020
+ELA    plan-2          H9   0.020
+ELA    plan-3         C10   0.020
+ELA    plan-3         C11   0.020
+ELA    plan-3          C9   0.020
+ELA    plan-3         H10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ELA           SMILES              ACDLabs 10.04                                                                                    O=C(O)CCCCCCC/C=C/CCCCCCCC
+ELA SMILES_CANONICAL               CACTVS 3.341                                                                                    CCCCCCCC/C=C/CCCCCCCC(O)=O
+ELA           SMILES               CACTVS 3.341                                                                                      CCCCCCCCC=CCCCCCCCC(O)=O
+ELA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                    CCCCCCCC\C=C\CCCCCCCC(=O)O
+ELA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                      CCCCCCCCC=CCCCCCCCC(=O)O
+ELA            InChI                InChI  1.03 InChI=1S/C18H34O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18(19)20/h9-10H,2-8,11-17H2,1H3,(H,19,20)/b10-9+
+ELA         InChIKey                InChI  1.03                                                                                   ZQPPMHVWECSIRJ-MDZDMXLPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ELA acedrg               243         "dictionary generator"                  
+ELA acedrg_database      11          "data source"                           
+ELA rdkit                2017.03.2   "Chemoinformatics tool"
+ELA refmac5              5.8.0238    "optimization tool"                     

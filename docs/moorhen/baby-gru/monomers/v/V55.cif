@@ -1,0 +1,174 @@
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+V55 V55 4-hydroxy-3-methoxybenzaldehyde NON-POLYMER 19 11 .
+
+data_comp_V55
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+V55 CAI C CR6 0 15.597 -36.063 -15.863
+V55 CAG C CR16 0 14.313 -35.506 -15.781
+V55 CAK C CR6 0 13.247 -36.093 -16.436
+V55 CAJ C CR6 0 13.462 -37.260 -17.188
+V55 CAF C CR16 0 14.728 -37.811 -17.271
+V55 OAB O O 0 17.810 -35.912 -14.991
+V55 CAE C CR16 0 15.791 -37.210 -16.609
+V55 CAD C C1 0 16.714 -35.424 -15.162
+V55 CAA C CH3 0 11.591 -34.469 -15.731
+V55 OAH O O2 0 11.945 -35.656 -16.438
+V55 OAC O OH1 0 12.423 -37.872 -17.854
+V55 HAG H H 0 14.183 -34.725 -15.273
+V55 HAF H H 0 14.867 -38.591 -17.776
+V55 HAE H H 0 16.649 -37.592 -16.671
+V55 HAD H H 0 16.560 -34.556 -14.813
+V55 HAA1 H H 0 12.096 -33.718 -16.083
+V55 HAA2 H H 0 11.790 -34.582 -14.787
+V55 HAA3 H H 0 10.641 -34.299 -15.842
+V55 HAC H H 0 12.513 -38.665 -18.179
+
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+V55 CAG CAK SINGLE y 1.374 0.0100 1.374 0.0100
+V55 CAK CAJ DOUBLE y 1.397 0.0105 1.397 0.0105
+V55 CAK OAH SINGLE n 1.367 0.0100 1.367 0.0100
+V55 CAI CAG DOUBLE y 1.399 0.0100 1.399 0.0100
+V55 CAI CAD SINGLE n 1.464 0.0105 1.464 0.0105
+V55 CAI CAE SINGLE y 1.379 0.0100 1.379 0.0100
+V55 OAB CAD DOUBLE n 1.210 0.0148 1.210 0.0148
+V55 CAJ CAF SINGLE y 1.379 0.0100 1.379 0.0100
+V55 CAF CAE DOUBLE y 1.386 0.0100 1.386 0.0100
+V55 CAJ OAC SINGLE n 1.374 0.0155 1.374 0.0155
+V55 CAA OAH SINGLE n 1.424 0.0117 1.424 0.0117
+V55 CAG HAG SINGLE n 1.082 0.0130 0.941 0.0168
+V55 CAF HAF SINGLE n 1.082 0.0130 0.940 0.0196
+V55 CAE HAE SINGLE n 1.082 0.0130 0.941 0.0168
+V55 CAD HAD SINGLE n 1.082 0.0130 0.949 0.0200
+V55 CAA HAA1 SINGLE n 1.089 0.0100 0.971 0.0157
+V55 CAA HAA2 SINGLE n 1.089 0.0100 0.971 0.0157
+V55 CAA HAA3 SINGLE n 1.089 0.0100 0.971 0.0157
+V55 OAC HAC SINGLE n 0.966 0.0059 0.861 0.0200
+
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+V55 CAG CAI CAD 120.028 1.50
+V55 CAG CAI CAE 119.818 1.50
+V55 CAD CAI CAE 120.154 1.50
+V55 CAK CAG CAI 120.406 1.50
+V55 CAK CAG HAG 119.785 1.50
+V55 CAI CAG HAG 119.809 1.50
+V55 CAG CAK CAJ 119.508 1.50
+V55 CAG CAK OAH 125.419 1.50
+V55 CAJ CAK OAH 115.073 1.50
+V55 CAK CAJ CAF 119.642 1.50
+V55 CAK CAJ OAC 120.179 3.00
+V55 CAF CAJ OAC 120.179 3.00
+V55 CAJ CAF CAE 119.711 1.50
+V55 CAJ CAF HAF 119.967 1.50
+V55 CAE CAF HAF 120.322 1.50
+V55 CAI CAE CAF 120.916 1.50
+V55 CAI CAE HAE 119.712 1.50
+V55 CAF CAE HAE 119.372 1.50
+V55 CAI CAD OAB 125.057 1.50
+V55 CAI CAD HAD 117.090 1.93
+V55 OAB CAD HAD 117.869 1.69
+V55 OAH CAA HAA1 109.428 1.50
+V55 OAH CAA HAA2 109.428 1.50
+V55 OAH CAA HAA3 109.428 1.50
+V55 HAA1 CAA HAA2 109.509 1.50
+V55 HAA1 CAA HAA3 109.509 1.50
+V55 HAA2 CAA HAA3 109.509 1.50
+V55 CAK OAH CAA 117.276 1.50
+V55 CAJ OAC HAC 120.000 3.00
+
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+V55 const_sp2_sp2_2 CAK CAG CAI CAD 180.000 5.0 2
+V55 const_22 CAF CAE CAI CAD 180.000 10.0 2
+V55 sp2_sp2_3 OAB CAD CAI CAG 180.000 5.0 2
+V55 const_sp2_sp2_6 CAI CAG CAK OAH 180.000 5.0 2
+V55 const_12 OAC CAJ CAK OAH 0.000 10.0 2
+V55 sp2_sp2_1 CAG CAK OAH CAA 180.000 5.0 2
+V55 sp2_sp2_7 CAK CAJ OAC HAC 180.000 5.0 2
+V55 const_14 CAE CAF CAJ OAC 180.000 10.0 2
+V55 const_17 CAI CAE CAF CAJ 0.000 10.0 2
+V55 sp3_sp3_2 HAA1 CAA OAH CAK -60.000 10.0 3
+
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+V55 plan-1 CAD 0.020
+V55 plan-1 CAE 0.020
+V55 plan-1 CAF 0.020
+V55 plan-1 CAG 0.020
+V55 plan-1 CAI 0.020
+V55 plan-1 CAJ 0.020
+V55 plan-1 CAK 0.020
+V55 plan-1 HAE 0.020
+V55 plan-1 HAF 0.020
+V55 plan-1 HAG 0.020
+V55 plan-1 OAC 0.020
+V55 plan-1 OAH 0.020
+V55 plan-2 CAD 0.020
+V55 plan-2 CAI 0.020
+V55 plan-2 HAD 0.020
+V55 plan-2 OAB 0.020
+
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+V55 SMILES ACDLabs 10.04 O=Cc1cc(OC)c(O)cc1
+V55 SMILES_CANONICAL CACTVS 3.341 COc1cc(C=O)ccc1O
+V55 SMILES CACTVS 3.341 COc1cc(C=O)ccc1O
+V55 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0 COc1cc(ccc1O)C=O
+V55 SMILES "OpenEye OEToolkits" 1.5.0 COc1cc(ccc1O)C=O
+V55 InChI InChI 1.03 InChI=1S/C8H8O3/c1-11-8-4-6(5-9)2-3-7(8)10/h2-5,10H,1H3
+V55 InChIKey InChI 1.03 MWOOGOJBHIARFG-UHFFFAOYSA-N
+
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+V55 acedrg 243 "dictionary generator"
+V55 acedrg_database 11 "data source"
+V55 rdkit 2017.03.2 "Chemoinformatics tool"
+V55 refmac5 5.8.0238 "optimization tool"

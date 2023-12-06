@@ -1,0 +1,380 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XDA     XDA      "4-{[2-(phosphonooxy)ethyl]carbamoyl}benzyl [(1R,6S)-6-(dimethylcarbamoyl)cyclohex-2-en-1-yl]carbamate"     NON-POLYMER     58     32     .     
+#
+data_comp_XDA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XDA     O8      O       O       0       -13.790     0.304       -23.462     
+XDA     C7      C       C       0       -13.712     1.002       -22.445     
+XDA     N9      N       N       0       -13.647     2.355       -22.531     
+XDA     C11     C       CH3     0       -13.471     3.042       -23.820     
+XDA     C10     C       CH3     0       -13.804     3.274       -21.394     
+XDA     C4      C       CH1     0       -13.656     0.317       -21.083     
+XDA     C5      C       CH2     0       -15.031     -0.276      -20.721     
+XDA     C6      C       CH2     0       -15.160     -1.800      -20.658     
+XDA     C1      C       CR16    0       -14.123     -2.501      -21.462     
+XDA     C2      C       CR16    0       -12.909     -2.035      -21.621     
+XDA     C3      C       CH1     0       -12.479     -0.731      -21.008     
+XDA     N12     N       NH1     0       -11.241     -0.242      -21.605     
+XDA     C13     C       C       0       -10.515     0.743       -21.054     
+XDA     O14     O       O       0       -10.812     1.354       -20.050     
+XDA     O15     O       O2      0       -9.402      0.964       -21.782     
+XDA     C16     C       CH2     0       -8.472      1.996       -21.339     
+XDA     C17     C       CR6     0       -7.664      1.507       -20.170     
+XDA     C22     C       CR16    0       -6.657      0.574       -20.348     
+XDA     C21     C       CR16    0       -5.911      0.117       -19.270     
+XDA     C18     C       CR16    0       -7.916      1.975       -18.891     
+XDA     C19     C       CR16    0       -7.181      1.518       -17.808     
+XDA     C20     C       CR6     0       -6.152      0.600       -17.989     
+XDA     C23     C       C       0       -5.362      0.082       -16.817     
+XDA     O24     O       O       0       -5.521      -1.084      -16.457     
+XDA     N25     N       NH1     0       -4.547      0.903       -16.135     
+XDA     C26     C       CH2     0       -4.136      2.238       -16.558     
+XDA     C27     C       CH2     0       -2.885      2.189       -17.402     
+XDA     O28     O       O2      0       -3.215      1.846       -18.775     
+XDA     P29     P       P       0       -2.009      1.625       -19.825     
+XDA     O31     O       OP      -1      -1.199      2.908       -19.799     
+XDA     O30     O       OP      -1      -1.232      0.427       -19.314     
+XDA     O32     O       O       0       -2.670      1.372       -21.166     
+XDA     H11B    H       H       0       -13.086     2.441       -24.477     
+XDA     H11A    H       H       0       -12.878     3.803       -23.710     
+XDA     H11C    H       H       0       -14.332     3.355       -24.142     
+XDA     H10C    H       H       0       -14.563     3.001       -20.853     
+XDA     H10B    H       H       0       -13.955     4.180       -21.710     
+XDA     H10A    H       H       0       -13.001     3.260       -20.848     
+XDA     H4      H       H       0       -13.461     0.996       -20.396     
+XDA     H5A     H       H       0       -15.293     0.076       -19.846     
+XDA     H5B     H       H       0       -15.694     0.048       -21.365     
+XDA     H6B     H       H       0       -16.049     -2.064      -20.985     
+XDA     H6A     H       H       0       -15.087     -2.092      -19.722     
+XDA     H1      H       H       0       -14.353     -3.332      -21.883     
+XDA     H2      H       H       0       -12.285     -2.530      -22.129     
+XDA     H3      H       H       0       -12.294     -0.906      -20.041     
+XDA     H12     H       H       0       -10.976     -0.599      -22.348     
+XDA     H16A    H       H       0       -8.964      2.808       -21.092     
+XDA     H16B    H       H       0       -7.870      2.223       -22.078     
+XDA     H22     H       H       0       -6.473      0.247       -21.213     
+XDA     H21     H       H       0       -5.229      -0.516      -19.411     
+XDA     H18     H       H       0       -8.601      2.609       -18.753     
+XDA     H19     H       H       0       -7.363      1.852       -16.948     
+XDA     H25     H       H       0       -4.235      0.617       -15.370     
+XDA     H26A    H       H       0       -3.958      2.780       -15.759     
+XDA     H26B    H       H       0       -4.851      2.676       -17.060     
+XDA     H27A    H       H       0       -2.263      1.518       -17.036     
+XDA     H27B    H       H       0       -2.434      3.066       -17.380     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XDA          N9         C11      SINGLE       n     1.465  0.0100     1.465  0.0100
+XDA          O8          C7      DOUBLE       n     1.234  0.0100     1.234  0.0100
+XDA          C7          N9      SINGLE       n     1.346  0.0100     1.346  0.0100
+XDA          N9         C10      SINGLE       n     1.465  0.0100     1.465  0.0100
+XDA          C7          C4      SINGLE       n     1.513  0.0129     1.513  0.0129
+XDA         O15         C16      SINGLE       n     1.450  0.0125     1.450  0.0125
+XDA         C13         O15      SINGLE       n     1.341  0.0100     1.341  0.0100
+XDA         C16         C17      SINGLE       n     1.501  0.0101     1.501  0.0101
+XDA         N12         C13      SINGLE       n     1.338  0.0100     1.338  0.0100
+XDA          C3         N12      SINGLE       n     1.455  0.0100     1.455  0.0100
+XDA          C1          C2      DOUBLE       n     1.314  0.0100     1.314  0.0100
+XDA          C2          C3      SINGLE       n     1.504  0.0105     1.504  0.0105
+XDA         C17         C22      DOUBLE       y     1.381  0.0100     1.381  0.0100
+XDA         C22         C21      SINGLE       y     1.384  0.0100     1.384  0.0100
+XDA          C6          C1      SINGLE       n     1.488  0.0150     1.488  0.0150
+XDA          C4          C3      SINGLE       n     1.558  0.0171     1.558  0.0171
+XDA          C4          C5      SINGLE       n     1.532  0.0100     1.532  0.0100
+XDA         C13         O14      DOUBLE       n     1.210  0.0102     1.210  0.0102
+XDA         C17         C18      SINGLE       y     1.381  0.0100     1.381  0.0100
+XDA          C5          C6      SINGLE       n     1.525  0.0100     1.525  0.0100
+XDA         C21         C20      DOUBLE       y     1.386  0.0100     1.386  0.0100
+XDA         P29         O32      DOUBLE       n     1.517  0.0192     1.517  0.0192
+XDA         C18         C19      DOUBLE       y     1.383  0.0100     1.383  0.0100
+XDA         C19         C20      SINGLE       y     1.386  0.0100     1.386  0.0100
+XDA         C20         C23      SINGLE       n     1.502  0.0100     1.502  0.0100
+XDA         P29         O31      SINGLE       n     1.517  0.0192     1.517  0.0192
+XDA         O28         P29      SINGLE       n     1.614  0.0178     1.614  0.0178
+XDA         P29         O30      SINGLE       n     1.517  0.0192     1.517  0.0192
+XDA         C23         O24      DOUBLE       n     1.230  0.0114     1.230  0.0114
+XDA         C23         N25      SINGLE       n     1.333  0.0111     1.333  0.0111
+XDA         C27         O28      SINGLE       n     1.454  0.0165     1.454  0.0165
+XDA         N25         C26      SINGLE       n     1.455  0.0100     1.455  0.0100
+XDA         C26         C27      SINGLE       n     1.510  0.0134     1.510  0.0134
+XDA         C11        H11B      SINGLE       n     1.089  0.0100     0.971  0.0181
+XDA         C11        H11A      SINGLE       n     1.089  0.0100     0.971  0.0181
+XDA         C11        H11C      SINGLE       n     1.089  0.0100     0.971  0.0181
+XDA         C10        H10C      SINGLE       n     1.089  0.0100     0.971  0.0181
+XDA         C10        H10B      SINGLE       n     1.089  0.0100     0.971  0.0181
+XDA         C10        H10A      SINGLE       n     1.089  0.0100     0.971  0.0181
+XDA          C4          H4      SINGLE       n     1.089  0.0100     0.990  0.0161
+XDA          C5         H5A      SINGLE       n     1.089  0.0100     0.979  0.0123
+XDA          C5         H5B      SINGLE       n     1.089  0.0100     0.979  0.0123
+XDA          C6         H6B      SINGLE       n     1.089  0.0100     0.983  0.0174
+XDA          C6         H6A      SINGLE       n     1.089  0.0100     0.983  0.0174
+XDA          C1          H1      SINGLE       n     1.082  0.0130     0.959  0.0200
+XDA          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0160
+XDA          C3          H3      SINGLE       n     1.089  0.0100     1.000  0.0100
+XDA         N12         H12      SINGLE       n     1.016  0.0100     0.864  0.0170
+XDA         C16        H16A      SINGLE       n     1.089  0.0100     0.980  0.0157
+XDA         C16        H16B      SINGLE       n     1.089  0.0100     0.980  0.0157
+XDA         C22         H22      SINGLE       n     1.082  0.0130     0.943  0.0173
+XDA         C21         H21      SINGLE       n     1.082  0.0130     0.941  0.0168
+XDA         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0173
+XDA         C19         H19      SINGLE       n     1.082  0.0130     0.941  0.0168
+XDA         N25         H25      SINGLE       n     1.016  0.0100     0.873  0.0200
+XDA         C26        H26A      SINGLE       n     1.089  0.0100     0.982  0.0177
+XDA         C26        H26B      SINGLE       n     1.089  0.0100     0.982  0.0177
+XDA         C27        H27A      SINGLE       n     1.089  0.0100     0.986  0.0100
+XDA         C27        H27B      SINGLE       n     1.089  0.0100     0.986  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XDA          O8          C7          N9     122.030    1.50
+XDA          O8          C7          C4     121.431    1.50
+XDA          N9          C7          C4     116.539    2.43
+XDA         C11          N9          C7     122.417    3.00
+XDA         C11          N9         C10     115.167    1.50
+XDA          C7          N9         C10     122.417    3.00
+XDA          N9         C11        H11B     109.972    1.50
+XDA          N9         C11        H11A     109.972    1.50
+XDA          N9         C11        H11C     109.972    1.50
+XDA        H11B         C11        H11A     109.408    1.50
+XDA        H11B         C11        H11C     109.408    1.50
+XDA        H11A         C11        H11C     109.408    1.50
+XDA          N9         C10        H10C     109.972    1.50
+XDA          N9         C10        H10B     109.972    1.50
+XDA          N9         C10        H10A     109.972    1.50
+XDA        H10C         C10        H10B     109.408    1.50
+XDA        H10C         C10        H10A     109.408    1.50
+XDA        H10B         C10        H10A     109.408    1.50
+XDA          C7          C4          C3     111.056    2.52
+XDA          C7          C4          C5     110.678    1.86
+XDA          C7          C4          H4     108.301    1.50
+XDA          C3          C4          C5     111.124    1.57
+XDA          C3          C4          H4     107.738    1.50
+XDA          C5          C4          H4     107.687    1.74
+XDA          C4          C5          C6     111.677    2.42
+XDA          C4          C5         H5A     109.320    1.50
+XDA          C4          C5         H5B     109.320    1.50
+XDA          C6          C5         H5A     108.890    1.62
+XDA          C6          C5         H5B     108.890    1.62
+XDA         H5A          C5         H5B     107.919    1.50
+XDA          C1          C6          C5     111.961    1.50
+XDA          C1          C6         H6B     109.096    1.50
+XDA          C1          C6         H6A     109.096    1.50
+XDA          C5          C6         H6B     109.432    1.50
+XDA          C5          C6         H6A     109.432    1.50
+XDA         H6B          C6         H6A     107.871    1.50
+XDA          C2          C1          C6     124.391    1.50
+XDA          C2          C1          H1     117.735    1.50
+XDA          C6          C1          H1     117.875    1.50
+XDA          C1          C2          C3     123.375    1.50
+XDA          C1          C2          H2     118.593    1.50
+XDA          C3          C2          H2     118.032    1.50
+XDA         N12          C3          C2     110.249    1.74
+XDA         N12          C3          C4     112.352    1.50
+XDA         N12          C3          H3     107.589    1.50
+XDA          C2          C3          C4     109.772    1.50
+XDA          C2          C3          H3     107.701    1.50
+XDA          C4          C3          H3     107.946    1.53
+XDA         C13         N12          C3     122.397    1.50
+XDA         C13         N12         H12     119.253    1.50
+XDA          C3         N12         H12     118.350    1.60
+XDA         O15         C13         N12     110.385    1.58
+XDA         O15         C13         O14     123.821    1.50
+XDA         N12         C13         O14     125.794    1.50
+XDA         C16         O15         C13     115.383    1.50
+XDA         O15         C16         C17     109.508    2.22
+XDA         O15         C16        H16A     109.538    1.50
+XDA         O15         C16        H16B     109.538    1.50
+XDA         C17         C16        H16A     109.785    1.50
+XDA         C17         C16        H16B     109.785    1.50
+XDA        H16A         C16        H16B     108.275    1.50
+XDA         C16         C17         C22     120.680    1.50
+XDA         C16         C17         C18     120.680    1.50
+XDA         C22         C17         C18     118.640    1.50
+XDA         C17         C22         C21     120.744    1.50
+XDA         C17         C22         H22     119.639    1.50
+XDA         C21         C22         H22     119.616    1.50
+XDA         C22         C21         C20     120.480    1.50
+XDA         C22         C21         H21     119.663    1.50
+XDA         C20         C21         H21     119.857    1.50
+XDA         C17         C18         C19     120.744    1.50
+XDA         C17         C18         H18     119.639    1.50
+XDA         C19         C18         H18     119.616    1.50
+XDA         C18         C19         C20     120.480    1.50
+XDA         C18         C19         H19     119.663    1.50
+XDA         C20         C19         H19     119.857    1.50
+XDA         C21         C20         C19     118.910    1.50
+XDA         C21         C20         C23     120.545    2.80
+XDA         C19         C20         C23     120.545    2.80
+XDA         C20         C23         O24     120.968    1.50
+XDA         C20         C23         N25     116.868    1.50
+XDA         O24         C23         N25     122.164    1.50
+XDA         C23         N25         C26     121.992    1.50
+XDA         C23         N25         H25     119.428    1.77
+XDA         C26         N25         H25     118.580    1.50
+XDA         N25         C26         C27     111.334    1.52
+XDA         N25         C26        H26A     108.950    1.50
+XDA         N25         C26        H26B     108.950    1.50
+XDA         C27         C26        H26A     109.091    1.50
+XDA         C27         C26        H26B     109.091    1.50
+XDA        H26A         C26        H26B     108.238    1.99
+XDA         O28         C27         C26     109.643    2.62
+XDA         O28         C27        H27A     109.451    1.50
+XDA         O28         C27        H27B     109.451    1.50
+XDA         C26         C27        H27A     109.705    1.50
+XDA         C26         C27        H27B     109.705    1.50
+XDA        H27A         C27        H27B     107.889    1.50
+XDA         P29         O28         C27     118.671    1.50
+XDA         O32         P29         O31     112.864    1.69
+XDA         O32         P29         O28     105.795    2.09
+XDA         O32         P29         O30     112.864    1.69
+XDA         O31         P29         O28     105.795    2.09
+XDA         O31         P29         O30     112.864    1.69
+XDA         O28         P29         O30     105.795    2.09
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XDA            sp2_sp3_37         C13         N12          C3          C2       0.000    10.0     6
+XDA            sp2_sp2_11         O15         C13         N12          C3     180.000     5.0     2
+XDA             sp2_sp2_9         N12         C13         O15         C16     180.000     5.0     2
+XDA            sp3_sp3_19         C17         C16         O15         C13     180.000    10.0     3
+XDA            sp2_sp3_32         C22         C17         C16         O15     -90.000    10.0     6
+XDA       const_sp2_sp2_3         C16         C17         C22         C21     180.000     5.0     2
+XDA              const_23         C16         C17         C18         C19     180.000    10.0     2
+XDA       const_sp2_sp2_5         C20         C21         C22         C17       0.000     5.0     2
+XDA              const_11         C23         C20         C21         C22     180.000    10.0     2
+XDA              const_17         C17         C18         C19         C20       0.000    10.0     2
+XDA             sp2_sp2_7          O8          C7          N9         C11       0.000     5.0     2
+XDA            sp2_sp3_25          O8          C7          C4          C3       0.000    10.0     6
+XDA              const_14         C18         C19         C20         C23     180.000    10.0     2
+XDA            sp2_sp2_16         C21         C20         C23         O24       0.000     5.0     2
+XDA            sp2_sp2_21         O24         C23         N25         C26       0.000     5.0     2
+XDA            sp2_sp3_44         C23         N25         C26         C27     120.000    10.0     6
+XDA            sp3_sp3_37         N25         C26         C27         O28     180.000    10.0     3
+XDA            sp3_sp3_34         C26         C27         O28         P29     180.000    10.0     3
+XDA            sp3_sp3_33         C27         O28         P29         O32      60.000    10.0     3
+XDA            sp2_sp3_13          C7          N9         C11        H11B       0.000    10.0     6
+XDA            sp2_sp3_19         C11          N9         C10        H10C       0.000    10.0     6
+XDA             sp3_sp3_5         N12          C3          C4          C7      60.000    10.0     3
+XDA            sp3_sp3_25          C7          C4          C5          C6      60.000    10.0     3
+XDA            sp3_sp3_10          C4          C5          C6          C1      60.000    10.0     3
+XDA             sp2_sp3_7          C2          C1          C6          C5       0.000    10.0     6
+XDA             sp2_sp2_1          C6          C1          C2          C3       0.000     5.0     2
+XDA             sp2_sp3_2          C1          C2          C3         N12     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+XDA    chir_1    C4    C7    C3    C5    positive
+XDA    chir_2    C3    N12    C4    C2    negative
+XDA    chir_3    P29    O28    O31    O30    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XDA    plan-1         C16   0.020
+XDA    plan-1         C17   0.020
+XDA    plan-1         C18   0.020
+XDA    plan-1         C19   0.020
+XDA    plan-1         C20   0.020
+XDA    plan-1         C21   0.020
+XDA    plan-1         C22   0.020
+XDA    plan-1         C23   0.020
+XDA    plan-1         H18   0.020
+XDA    plan-1         H19   0.020
+XDA    plan-1         H21   0.020
+XDA    plan-1         H22   0.020
+XDA    plan-2          C4   0.020
+XDA    plan-2          C7   0.020
+XDA    plan-2          N9   0.020
+XDA    plan-2          O8   0.020
+XDA    plan-3         C10   0.020
+XDA    plan-3         C11   0.020
+XDA    plan-3          C7   0.020
+XDA    plan-3          N9   0.020
+XDA    plan-4          C1   0.020
+XDA    plan-4          C2   0.020
+XDA    plan-4          C6   0.020
+XDA    plan-4          H1   0.020
+XDA    plan-5          C1   0.020
+XDA    plan-5          C2   0.020
+XDA    plan-5          C3   0.020
+XDA    plan-5          H2   0.020
+XDA    plan-6         C13   0.020
+XDA    plan-6          C3   0.020
+XDA    plan-6         H12   0.020
+XDA    plan-6         N12   0.020
+XDA    plan-7         C13   0.020
+XDA    plan-7         N12   0.020
+XDA    plan-7         O14   0.020
+XDA    plan-7         O15   0.020
+XDA    plan-8         C20   0.020
+XDA    plan-8         C23   0.020
+XDA    plan-8         N25   0.020
+XDA    plan-8         O24   0.020
+XDA    plan-9         C23   0.020
+XDA    plan-9         C26   0.020
+XDA    plan-9         H25   0.020
+XDA    plan-9         N25   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XDA           SMILES              ACDLabs 12.01                                                                                                                                            O=P(O)(O)OCCNC(=O)c1ccc(cc1)COC(=O)NC2C=CCCC2C(=O)N(C)C
+XDA            InChI                InChI  1.03 InChI=1S/C20H28N3O8P/c1-23(2)19(25)16-5-3-4-6-17(16)22-20(26)30-13-14-7-9-15(10-8-14)18(24)21-11-12-31-32(27,28)29/h4,6-10,16-17H,3,5,11-13H2,1-2H3,(H,21,24)(H,22,26)(H2,27,28,29)/t16-,17+/m0/s1
+XDA         InChIKey                InChI  1.03                                                                                                                                                                        MBWSSOJOAZHENI-DLBZAZTESA-N
+XDA SMILES_CANONICAL               CACTVS 3.385                                                                                                                                  CN(C)C(=O)[C@H]1CCC=C[C@H]1NC(=O)OCc2ccc(cc2)C(=O)NCCO[P](O)(O)=O
+XDA           SMILES               CACTVS 3.385                                                                                                                                    CN(C)C(=O)[CH]1CCC=C[CH]1NC(=O)OCc2ccc(cc2)C(=O)NCCO[P](O)(O)=O
+XDA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                    CN(C)C(=O)[C@H]1CCC=C[C@H]1NC(=O)OCc2ccc(cc2)C(=O)NCCOP(=O)(O)O
+XDA           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                            CN(C)C(=O)C1CCC=CC1NC(=O)OCc2ccc(cc2)C(=O)NCCOP(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XDA acedrg               243         "dictionary generator"                  
+XDA acedrg_database      11          "data source"                           
+XDA rdkit                2017.03.2   "Chemoinformatics tool"
+XDA refmac5              5.8.0238    "optimization tool"                     

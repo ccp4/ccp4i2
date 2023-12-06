@@ -48,9 +48,9 @@ class mrparse_report(Report):
             jobNumber = self.jobInfo.get("jobnumber", None)
 
             mrparseurl = (
-                "/database/?getProjectJobFile?projectId="
+                "/database/getProjectJobFile?projectId="
                 + projectid
-                + "?fileName=mrparse_0/mrparse_i2.html?jobNumber="
+                + "&fileName=mrparse_0/mrparse_i2.html&jobNumber="
                 + jobNumber
             )
             iframe_style = "display: block;background: #000; margin: 10px; border: none;height: 100vh; width: 95vw;"

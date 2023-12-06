@@ -1,0 +1,242 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FSE     FSE      "3,7,3',4'-TETRAHYDROXYFLAVONE"     NON-POLYMER     31     21     .     
+#
+data_comp_FSE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FSE     C6      C       CR16    0       -3.145      37.586      140.571     
+FSE     C5      C       CR16    0       -2.124      36.886      141.157     
+FSE     C10     C       CR66    0       -0.829      36.900      140.611     
+FSE     C9      C       CR66    0       -0.630      37.652      139.458     
+FSE     C8      C       CR16    0       -1.641      38.372      138.840     
+FSE     C7      C       CR6     0       -2.911      38.334      139.409     
+FSE     C4      C       CR6     0       0.296       36.175      141.189     
+FSE     C3      C       CR6     0       1.563       36.304      140.492     
+FSE     C2      C       CR6     0       1.690       37.064      139.359     
+FSE     "C1'"   C       CR6     0       2.925       37.251      138.587     
+FSE     "C6'"   C       CR16    0       4.107       37.678      139.200     
+FSE     "C5'"   C       CR16    0       5.274       37.855      138.463     
+FSE     "C4'"   C       CR6     0       5.277       37.618      137.101     
+FSE     "C3'"   C       CR6     0       4.103       37.196      136.465     
+FSE     "C2'"   C       CR16    0       2.943       37.017      137.200     
+FSE     O1      O       O2      0       0.599       37.728      138.851     
+FSE     O4      O       O       0       0.206       35.483      142.214     
+FSE     "O3'"   O       OH1     0       4.092       36.956      135.111     
+FSE     "O4'"   O       OH1     0       6.435       37.799      136.382     
+FSE     O3      O       OH1     0       2.652       35.634      141.004     
+FSE     O7      O       OH1     0       -3.945      39.033      138.833     
+FSE     H6      H       H       0       -4.007      37.567      140.949     
+FSE     H5      H       H       0       -2.294      36.390      141.934     
+FSE     H8      H       H       0       -1.473      38.872      138.059     
+FSE     "H6'"   H       H       0       4.120       37.841      140.127     
+FSE     "H5'"   H       H       0       6.062       38.139      138.890     
+FSE     "H2'"   H       H       0       2.148       36.729      136.756     
+FSE     "H3'"   H       H       0       3.432       37.230      134.631     
+FSE     "H4'"   H       H       0       6.405       38.168      135.604     
+FSE     HO3     H       H       0       3.059       35.045      140.525     
+FSE     HO7     H       H       0       -3.903      39.268      138.005     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FSE          C6          C5      DOUBLE       y     1.366  0.0100     1.366  0.0100
+FSE          C6          C7      SINGLE       y     1.397  0.0100     1.397  0.0100
+FSE          C5         C10      SINGLE       y     1.402  0.0100     1.402  0.0100
+FSE         C10          C9      DOUBLE       y     1.387  0.0100     1.387  0.0100
+FSE         C10          C4      SINGLE       y     1.454  0.0100     1.454  0.0100
+FSE          C9          C8      SINGLE       y     1.383  0.0100     1.383  0.0100
+FSE          C9          O1      SINGLE       y     1.371  0.0100     1.371  0.0100
+FSE          C8          C7      DOUBLE       y     1.388  0.0100     1.388  0.0100
+FSE          C7          O7      SINGLE       n     1.374  0.0155     1.374  0.0155
+FSE          C4          C3      SINGLE       y     1.446  0.0100     1.446  0.0100
+FSE          C4          O4      DOUBLE       n     1.239  0.0100     1.239  0.0100
+FSE          C3          C2      DOUBLE       y     1.364  0.0100     1.364  0.0100
+FSE          C3          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+FSE          C2       "C1'"      SINGLE       n     1.467  0.0100     1.467  0.0100
+FSE          C2          O1      SINGLE       y     1.370  0.0100     1.370  0.0100
+FSE       "C1'"       "C6'"      DOUBLE       y     1.395  0.0100     1.395  0.0100
+FSE       "C1'"       "C2'"      SINGLE       y     1.403  0.0100     1.403  0.0100
+FSE       "C6'"       "C5'"      SINGLE       y     1.388  0.0100     1.388  0.0100
+FSE       "C5'"       "C4'"      DOUBLE       y     1.379  0.0100     1.379  0.0100
+FSE       "C4'"       "C3'"      SINGLE       y     1.396  0.0100     1.396  0.0100
+FSE       "C4'"       "O4'"      SINGLE       n     1.374  0.0155     1.374  0.0155
+FSE       "C3'"       "C2'"      DOUBLE       y     1.381  0.0100     1.381  0.0100
+FSE       "C3'"       "O3'"      SINGLE       n     1.374  0.0155     1.374  0.0155
+FSE          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0131
+FSE          C5          H5      SINGLE       n     1.082  0.0130     0.937  0.0110
+FSE          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0200
+FSE       "C6'"       "H6'"      SINGLE       n     1.082  0.0130     0.941  0.0200
+FSE       "C5'"       "H5'"      SINGLE       n     1.082  0.0130     0.940  0.0196
+FSE       "C2'"       "H2'"      SINGLE       n     1.082  0.0130     0.955  0.0200
+FSE       "O3'"       "H3'"      SINGLE       n     0.966  0.0059     0.861  0.0200
+FSE       "O4'"       "H4'"      SINGLE       n     0.966  0.0059     0.861  0.0200
+FSE          O3         HO3      SINGLE       n     0.966  0.0059     0.861  0.0200
+FSE          O7         HO7      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FSE          C5          C6          C7     120.055    1.50
+FSE          C5          C6          H6     120.090    1.50
+FSE          C7          C6          H6     119.855    1.50
+FSE          C6          C5         C10     121.029    1.50
+FSE          C6          C5          H5     119.404    1.50
+FSE         C10          C5          H5     119.567    1.50
+FSE          C5         C10          C9     117.711    1.50
+FSE          C5         C10          C4     122.808    1.50
+FSE          C9         C10          C4     119.481    1.50
+FSE         C10          C9          C8     123.116    1.50
+FSE         C10          C9          O1     122.069    1.50
+FSE          C8          C9          O1     114.816    1.51
+FSE          C9          C8          C7     117.891    1.50
+FSE          C9          C8          H8     121.036    1.50
+FSE          C7          C8          H8     121.072    1.50
+FSE          C6          C7          C8     120.198    1.50
+FSE          C6          C7          O7     119.901    3.00
+FSE          C8          C7          O7     119.901    3.00
+FSE         C10          C4          C3     115.594    1.50
+FSE         C10          C4          O4     123.567    1.50
+FSE          C3          C4          O4     120.838    1.50
+FSE          C4          C3          C2     121.538    1.50
+FSE          C4          C3          O3     119.231    3.00
+FSE          C2          C3          O3     119.231    3.00
+FSE          C3          C2       "C1'"     124.836    1.79
+FSE          C3          C2          O1     120.070    1.50
+FSE       "C1'"          C2          O1     115.094    1.50
+FSE          C2       "C1'"       "C6'"     120.841    1.50
+FSE          C2       "C1'"       "C2'"     120.638    1.50
+FSE       "C6'"       "C1'"       "C2'"     118.520    1.50
+FSE       "C1'"       "C6'"       "C5'"     121.244    1.50
+FSE       "C1'"       "C6'"       "H6'"     119.616    1.50
+FSE       "C5'"       "C6'"       "H6'"     119.140    1.50
+FSE       "C6'"       "C5'"       "C4'"     120.097    1.50
+FSE       "C6'"       "C5'"       "H5'"     120.093    1.50
+FSE       "C4'"       "C5'"       "H5'"     119.810    1.50
+FSE       "C5'"       "C4'"       "C3'"     119.669    1.50
+FSE       "C5'"       "C4'"       "O4'"     120.166    3.00
+FSE       "C3'"       "C4'"       "O4'"     120.166    3.00
+FSE       "C4'"       "C3'"       "C2'"     119.774    1.50
+FSE       "C4'"       "C3'"       "O3'"     120.113    3.00
+FSE       "C2'"       "C3'"       "O3'"     120.113    3.00
+FSE       "C1'"       "C2'"       "C3'"     120.696    1.50
+FSE       "C1'"       "C2'"       "H2'"     119.933    1.50
+FSE       "C3'"       "C2'"       "H2'"     119.371    1.50
+FSE          C9          O1          C2     121.248    1.50
+FSE       "C3'"       "O3'"       "H3'"     120.000    3.00
+FSE       "C4'"       "O4'"       "H4'"     120.000    3.00
+FSE          C3          O3         HO3     120.000    3.00
+FSE          C7          O7         HO7     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FSE              const_37         C10          C5          C6          C7       0.000    10.0     2
+FSE              const_54          C5          C6          C7          O7     180.000    10.0     2
+FSE       const_sp2_sp2_5       "C4'"       "C5'"       "C6'"       "C1'"       0.000     5.0     2
+FSE              const_11       "O4'"       "C4'"       "C5'"       "C6'"     180.000    10.0     2
+FSE              const_16       "O3'"       "C3'"       "C4'"       "O4'"       0.000    10.0     2
+FSE             sp2_sp2_9       "C5'"       "C4'"       "O4'"       "H4'"     180.000     5.0     2
+FSE              const_18       "C1'"       "C2'"       "C3'"       "O3'"     180.000    10.0     2
+FSE            sp2_sp2_11       "C4'"       "C3'"       "O3'"       "H3'"     180.000     5.0     2
+FSE              const_41          C9         C10          C5          C6       0.000    10.0     2
+FSE              const_21          C5         C10          C9          C8       0.000    10.0     2
+FSE              const_60          C5         C10          C4          O4       0.000    10.0     2
+FSE              const_25         C10          C9          O1          C2       0.000    10.0     2
+FSE              const_45          C7          C8          C9         C10       0.000    10.0     2
+FSE              const_51          O7          C7          C8          C9     180.000    10.0     2
+FSE             sp2_sp2_1          C6          C7          O7         HO7     180.000     5.0     2
+FSE              const_36          O3          C3          C4          O4       0.000    10.0     2
+FSE             sp2_sp2_3          C4          C3          O3         HO3     180.000     5.0     2
+FSE              const_32       "C1'"          C2          C3          O3       0.000    10.0     2
+FSE              const_27          C3          C2          O1          C9       0.000    10.0     2
+FSE             sp2_sp2_5       "C6'"       "C1'"          C2          C3     180.000     5.0     2
+FSE       const_sp2_sp2_3          C2       "C1'"       "C6'"       "C5'"     180.000     5.0     2
+FSE              const_63          C2       "C1'"       "C2'"       "C3'"     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FSE    plan-1       "C1'"   0.020
+FSE    plan-1         C10   0.020
+FSE    plan-1          C2   0.020
+FSE    plan-1          C3   0.020
+FSE    plan-1          C4   0.020
+FSE    plan-1          C5   0.020
+FSE    plan-1          C6   0.020
+FSE    plan-1          C7   0.020
+FSE    plan-1          C8   0.020
+FSE    plan-1          C9   0.020
+FSE    plan-1          H5   0.020
+FSE    plan-1          H6   0.020
+FSE    plan-1          H8   0.020
+FSE    plan-1          O1   0.020
+FSE    plan-1          O3   0.020
+FSE    plan-1          O4   0.020
+FSE    plan-1          O7   0.020
+FSE    plan-2       "C1'"   0.020
+FSE    plan-2          C2   0.020
+FSE    plan-2       "C2'"   0.020
+FSE    plan-2       "C3'"   0.020
+FSE    plan-2       "C4'"   0.020
+FSE    plan-2       "C5'"   0.020
+FSE    plan-2       "C6'"   0.020
+FSE    plan-2       "H2'"   0.020
+FSE    plan-2       "H5'"   0.020
+FSE    plan-2       "H6'"   0.020
+FSE    plan-2       "O3'"   0.020
+FSE    plan-2       "O4'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FSE           SMILES              ACDLabs 12.01                                                       O=C1c3c(OC(=C1O)c2ccc(O)c(O)c2)cc(O)cc3
+FSE SMILES_CANONICAL               CACTVS 3.370                                                       Oc1ccc2C(=O)C(=C(Oc2c1)c3ccc(O)c(O)c3)O
+FSE           SMILES               CACTVS 3.370                                                       Oc1ccc2C(=O)C(=C(Oc2c1)c3ccc(O)c(O)c3)O
+FSE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                       c1cc(c(cc1C2=C(C(=O)c3ccc(cc3O2)O)O)O)O
+FSE           SMILES "OpenEye OEToolkits" 1.7.0                                                       c1cc(c(cc1C2=C(C(=O)c3ccc(cc3O2)O)O)O)O
+FSE            InChI                InChI  1.03 InChI=1S/C15H10O6/c16-8-2-3-9-12(6-8)21-15(14(20)13(9)19)7-1-4-10(17)11(18)5-7/h1-6,16-18,20H
+FSE         InChIKey                InChI  1.03                                                                   XHEFDIBZLJXQHF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FSE acedrg               243         "dictionary generator"                  
+FSE acedrg_database      11          "data source"                           
+FSE rdkit                2017.03.2   "Chemoinformatics tool"
+FSE refmac5              5.8.0238    "optimization tool"                     

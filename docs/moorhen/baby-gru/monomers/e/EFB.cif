@@ -1,0 +1,706 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EFB     EFB      "oligomycin B"     NON-POLYMER     129     57     .     
+#
+data_comp_EFB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EFB     C1A     C       CH3     0       25.548      42.347      32.561      
+EFB     C10     C       CH1     0       25.036      43.254      31.437      
+EFB     C11     C       CH1     0       23.889      42.585      30.677      
+EFB     C12     C       CH1     0       23.345      43.476      29.555      
+EFB     C1B     C       CH3     0       24.317      43.610      28.377      
+EFB     O37     O       O2      0       24.392      41.322      30.112      
+EFB     C36     C       C       0       23.533      40.386      29.708      
+EFB     O36     O       O       0       22.340      40.441      29.901      
+EFB     C35     C       C1      0       24.209      39.272      29.024      
+EFB     C34     C       C1      0       25.495      39.146      28.729      
+EFB     C33     C       CH1     0       26.148      37.949      28.086      
+EFB     C3B     C       CH3     0       26.875      37.163      29.174      
+EFB     C32     C       CH1     0       27.098      38.317      26.933      
+EFB     O32     O       OH1     0       27.735      37.120      26.454      
+EFB     C31     C       CH1     0       26.442      39.061      25.750      
+EFB     C3A     C       CH3     0       25.466      38.193      24.960      
+EFB     C30     C       C       0       27.501      39.573      24.794      
+EFB     O30     O       O       0       28.333      38.809      24.347      
+EFB     C29     C       CH1     0       27.507      41.046      24.425      
+EFB     C2D     C       CH3     0       28.255      41.259      23.107      
+EFB     C28     C       CH1     0       28.090      41.879      25.587      
+EFB     O28     O       OH1     0       29.401      41.392      25.924      
+EFB     C27     C       CH1     0       28.155      43.403      25.347      
+EFB     C2C     C       CH3     0       28.638      44.147      26.585      
+EFB     C26     C       C       0       26.799      43.979      24.939      
+EFB     O26     O       O       0       25.810      43.675      25.571      
+EFB     C25     C       CT      0       26.664      44.930      23.736      
+EFB     C2B     C       CH3     0       25.734      44.250      22.733      
+EFB     O25     O       OH1     0       27.917      45.110      23.062      
+EFB     C24     C       CH1     0       26.101      46.294      24.208      
+EFB     O24     O       OH1     0       27.127      46.941      24.961      
+EFB     C23     C       CH1     0       25.571      47.274      23.133      
+EFB     C2A     C       CH3     0       26.635      47.669      22.111      
+EFB     C22     C       CH2     0       24.926      48.532      23.748      
+EFB     C21     C       C1      0       23.711      48.248      24.578      
+EFB     C20     C       C1      0       23.525      48.619      25.845      
+EFB     C19     C       C1      0       22.507      48.280      26.631      
+EFB     C18     C       C1      0       22.320      48.649      27.891      
+EFB     C17     C       CH1     0       21.243      48.150      28.813      
+EFB     C1C     C       CH2     0       20.604      49.323      29.557      
+EFB     C1D     C       CH3     0       19.782      50.232      28.664      
+EFB     C16     C       CH2     0       21.814      47.107      29.784      
+EFB     C15     C       CH2     0       22.449      45.872      29.145      
+EFB     C13     C       CH1     0       22.946      44.835      30.144      
+EFB     O14     O       O2      0       24.073      45.424      30.829      
+EFB     C8      C       CT      0       24.646      44.680      31.907      
+EFB     O9      O       O2      0       23.684      44.546      32.956      
+EFB     C7      C       CR6     0       25.861      45.517      32.384      
+EFB     O7      O       O       0       27.002      45.240      32.078      
+EFB     C6      C       CH2     0       25.550      46.709      33.251      
+EFB     C5      C       CH1     0       24.478      46.417      34.304      
+EFB     C51     C       CH3     0       25.053      45.589      35.454      
+EFB     C4      C       CH1     0       23.270      45.749      33.640      
+EFB     C3      C       CH2     0       22.145      45.360      34.586      
+EFB     C2      C       CH1     0       20.788      45.188      33.914      
+EFB     C1      C       CH3     0       19.785      44.484      34.786      
+EFB     O2      O       OH1     0       20.288      46.477      33.559      
+EFB     H1      H       H       0       25.790      42.876      33.339      
+EFB     H2      H       H       0       26.331      41.863      32.251      
+EFB     H3      H       H       0       24.859      41.711      32.811      
+EFB     H4      H       H       0       25.775      43.335      30.795      
+EFB     H5      H       H       0       23.163      42.402      31.321      
+EFB     H6      H       H       0       22.523      43.047      29.217      
+EFB     H7      H       H       0       24.605      42.733      28.081      
+EFB     H8      H       H       0       25.092      44.126      28.652      
+EFB     H9      H       H       0       23.878      44.061      27.639      
+EFB     H10     H       H       0       23.670      38.546      28.756      
+EFB     H11     H       H       0       26.064      39.869      28.931      
+EFB     H12     H       H       0       25.434      37.369      27.721      
+EFB     H13     H       H       0       26.334      37.141      29.984      
+EFB     H14     H       H       0       27.728      37.588      29.370      
+EFB     H15     H       H       0       27.032      36.252      28.872      
+EFB     H16     H       H       0       27.803      38.910      27.304      
+EFB     H17     H       H       0       28.510      37.037      26.789      
+EFB     H18     H       H       0       25.938      39.836      26.102      
+EFB     H19     H       H       0       24.777      37.849      25.553      
+EFB     H20     H       H       0       25.943      37.450      24.552      
+EFB     H21     H       H       0       25.051      38.729      24.262      
+EFB     H22     H       H       0       26.568      41.322      24.280      
+EFB     H23     H       H       0       29.205      41.097      23.239      
+EFB     H24     H       H       0       28.122      42.173      22.801      
+EFB     H25     H       H       0       27.912      40.644      22.435      
+EFB     H26     H       H       0       27.504      41.731      26.375      
+EFB     H27     H       H       0       29.991      41.666      25.381      
+EFB     H28     H       H       0       28.807      43.572      24.625      
+EFB     H29     H       H       0       29.562      43.907      26.772      
+EFB     H30     H       H       0       28.082      43.907      27.347      
+EFB     H31     H       H       0       28.581      45.107      26.434      
+EFB     H32     H       H       0       24.822      44.271      23.070      
+EFB     H33     H       H       0       26.010      43.325      22.603      
+EFB     H34     H       H       0       25.775      44.719      21.882      
+EFB     H35     H       H       0       28.420      45.625      23.512      
+EFB     H36     H       H       0       25.353      46.119      24.835      
+EFB     H37     H       H       0       27.017      46.795      25.789      
+EFB     H38     H       H       0       24.856      46.803      22.640      
+EFB     H39     H       H       0       26.774      46.936      21.487      
+EFB     H40     H       H       0       27.471      47.869      22.564      
+EFB     H41     H       H       0       26.343      48.454      21.617      
+EFB     H42     H       H       0       24.671      49.144      23.026      
+EFB     H43     H       H       0       25.589      48.991      24.307      
+EFB     H44     H       H       0       23.019      47.764      24.157      
+EFB     H45     H       H       0       24.179      49.180      26.230      
+EFB     H46     H       H       0       21.857      47.719      26.241      
+EFB     H47     H       H       0       22.916      49.286      28.251      
+EFB     H48     H       H       0       20.544      47.713      28.264      
+EFB     H49     H       H       0       21.314      49.851      29.979      
+EFB     H50     H       H       0       20.027      48.968      30.265      
+EFB     H51     H       H       0       19.233      50.818      29.212      
+EFB     H52     H       H       0       19.208      49.694      28.091      
+EFB     H53     H       H       0       20.376      50.770      28.111      
+EFB     H54     H       H       0       21.089      46.811      30.374      
+EFB     H55     H       H       0       22.488      47.549      30.342      
+EFB     H56     H       H       0       23.205      46.155      28.589      
+EFB     H57     H       H       0       21.794      45.447      28.551      
+EFB     H58     H       H       0       22.217      44.682      30.795      
+EFB     H59     H       H       0       25.242      47.445      32.683      
+EFB     H60     H       H       0       26.369      47.002      33.700      
+EFB     H61     H       H       0       24.174      47.282      34.676      
+EFB     H62     H       H       0       25.909      45.957      35.725      
+EFB     H63     H       H       0       25.175      44.670      35.165      
+EFB     H64     H       H       0       24.443      45.611      36.209      
+EFB     H65     H       H       0       22.898      46.383      32.978      
+EFB     H66     H       H       0       22.065      46.049      35.279      
+EFB     H67     H       H       0       22.383      44.518      35.030      
+EFB     H68     H       H       0       20.913      44.667      33.078      
+EFB     H69     H       H       0       18.888      44.800      34.575      
+EFB     H70     H       H       0       19.980      44.667      35.723      
+EFB     H71     H       H       0       19.835      43.525      34.627      
+EFB     H72     H       H       0       20.531      46.671      32.770      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EFB         C23         C2A      SINGLE       n     1.521  0.0135     1.521  0.0135
+EFB         C25         C2B      SINGLE       n     1.524  0.0114     1.524  0.0114
+EFB         C25         O25      SINGLE       n     1.428  0.0167     1.428  0.0167
+EFB         C23         C22      SINGLE       n     1.535  0.0143     1.535  0.0143
+EFB         C24         C23      SINGLE       n     1.535  0.0125     1.535  0.0125
+EFB         C29         C2D      SINGLE       n     1.521  0.0173     1.521  0.0173
+EFB         C25         C24      SINGLE       n     1.530  0.0148     1.530  0.0148
+EFB         C26         C25      SINGLE       n     1.532  0.0100     1.532  0.0100
+EFB         C22         C21      SINGLE       n     1.498  0.0152     1.498  0.0152
+EFB         C24         O24      SINGLE       n     1.425  0.0100     1.425  0.0100
+EFB         C30         C29      SINGLE       n     1.515  0.0105     1.515  0.0105
+EFB         C29         C28      SINGLE       n     1.538  0.0102     1.538  0.0102
+EFB         C21         C20      DOUBLE       n     1.332  0.0144     1.332  0.0144
+EFB         C27         C26      SINGLE       n     1.521  0.0110     1.521  0.0110
+EFB         C26         O26      DOUBLE       n     1.209  0.0200     1.209  0.0200
+EFB         C30         O30      DOUBLE       n     1.209  0.0200     1.209  0.0200
+EFB         C28         C27      SINGLE       n     1.538  0.0102     1.538  0.0102
+EFB         C27         C2C      SINGLE       n     1.521  0.0173     1.521  0.0173
+EFB         C31         C30      SINGLE       n     1.515  0.0105     1.515  0.0105
+EFB         C31         C3A      SINGLE       n     1.521  0.0173     1.521  0.0173
+EFB         C28         O28      SINGLE       n     1.436  0.0104     1.436  0.0104
+EFB         C20         C19      SINGLE       n     1.325  0.0200     1.325  0.0200
+EFB         C32         C31      SINGLE       n     1.538  0.0102     1.538  0.0102
+EFB         C32         O32      SINGLE       n     1.436  0.0104     1.436  0.0104
+EFB         C19         C18      DOUBLE       n     1.325  0.0126     1.325  0.0126
+EFB         C33         C32      SINGLE       n     1.535  0.0105     1.535  0.0105
+EFB         C18         C17      SINGLE       n     1.503  0.0106     1.503  0.0106
+EFB         C12         C1B      SINGLE       n     1.529  0.0100     1.529  0.0100
+EFB         C34         C33      SINGLE       n     1.505  0.0125     1.505  0.0125
+EFB         C33         C3B      SINGLE       n     1.521  0.0173     1.521  0.0173
+EFB         C17         C1C      SINGLE       n     1.528  0.0200     1.528  0.0200
+EFB         C17         C16      SINGLE       n     1.528  0.0200     1.528  0.0200
+EFB         C35         C34      DOUBLE       n     1.321  0.0124     1.321  0.0124
+EFB         C1C         C1D      SINGLE       n     1.515  0.0200     1.515  0.0200
+EFB         C36         C35      SINGLE       n     1.466  0.0113     1.466  0.0113
+EFB         C16         C15      SINGLE       n     1.527  0.0100     1.527  0.0100
+EFB         C15         C13      SINGLE       n     1.521  0.0100     1.521  0.0100
+EFB         C12         C13      SINGLE       n     1.530  0.0100     1.530  0.0100
+EFB         C11         C12      SINGLE       n     1.527  0.0110     1.527  0.0110
+EFB         C36         O36      DOUBLE       n     1.207  0.0162     1.207  0.0162
+EFB         O37         C36      SINGLE       n     1.327  0.0100     1.327  0.0100
+EFB         C11         O37      SINGLE       n     1.465  0.0113     1.465  0.0113
+EFB         C13         O14      SINGLE       n     1.440  0.0100     1.440  0.0100
+EFB         C10         C11      SINGLE       n     1.525  0.0100     1.525  0.0100
+EFB         O14          C8      SINGLE       n     1.424  0.0104     1.424  0.0104
+EFB         C10          C8      SINGLE       n     1.535  0.0151     1.535  0.0151
+EFB         C1A         C10      SINGLE       n     1.527  0.0100     1.527  0.0100
+EFB          C8          C7      SINGLE       n     1.545  0.0100     1.545  0.0100
+EFB          C8          O9      SINGLE       n     1.424  0.0104     1.424  0.0104
+EFB          C7          O7      DOUBLE       n     1.213  0.0100     1.213  0.0100
+EFB          C2          O2      SINGLE       n     1.424  0.0199     1.424  0.0199
+EFB          C7          C6      SINGLE       n     1.504  0.0100     1.504  0.0100
+EFB          O9          C4      SINGLE       n     1.440  0.0100     1.440  0.0100
+EFB          C2          C1      SINGLE       n     1.501  0.0160     1.501  0.0160
+EFB          C3          C2      SINGLE       n     1.524  0.0100     1.524  0.0100
+EFB          C4          C3      SINGLE       n     1.519  0.0100     1.519  0.0100
+EFB          C5          C4      SINGLE       n     1.530  0.0100     1.530  0.0100
+EFB          C6          C5      SINGLE       n     1.530  0.0100     1.530  0.0100
+EFB          C5         C51      SINGLE       n     1.527  0.0110     1.527  0.0110
+EFB         C1A          H1      SINGLE       n     1.089  0.0100     0.971  0.0171
+EFB         C1A          H2      SINGLE       n     1.089  0.0100     0.971  0.0171
+EFB         C1A          H3      SINGLE       n     1.089  0.0100     0.971  0.0171
+EFB         C10          H4      SINGLE       n     1.089  0.0100     0.983  0.0170
+EFB         C11          H5      SINGLE       n     1.089  0.0100     0.987  0.0166
+EFB         C12          H6      SINGLE       n     1.089  0.0100     0.987  0.0185
+EFB         C1B          H7      SINGLE       n     1.089  0.0100     0.971  0.0171
+EFB         C1B          H8      SINGLE       n     1.089  0.0100     0.971  0.0171
+EFB         C1B          H9      SINGLE       n     1.089  0.0100     0.971  0.0171
+EFB         C35         H10      SINGLE       n     1.082  0.0130     0.943  0.0200
+EFB         C34         H11      SINGLE       n     1.082  0.0130     0.943  0.0181
+EFB         C33         H12      SINGLE       n     1.089  0.0100     0.990  0.0142
+EFB         C3B         H13      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C3B         H14      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C3B         H15      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C32         H16      SINGLE       n     1.089  0.0100     0.993  0.0133
+EFB         O32         H17      SINGLE       n     0.970  0.0120     0.848  0.0200
+EFB         C31         H18      SINGLE       n     1.089  0.0100     0.990  0.0142
+EFB         C3A         H19      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C3A         H20      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C3A         H21      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C29         H22      SINGLE       n     1.089  0.0100     0.990  0.0142
+EFB         C2D         H23      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C2D         H24      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C2D         H25      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C28         H26      SINGLE       n     1.089  0.0100     0.993  0.0133
+EFB         O28         H27      SINGLE       n     0.970  0.0120     0.848  0.0200
+EFB         C27         H28      SINGLE       n     1.089  0.0100     0.990  0.0142
+EFB         C2C         H29      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C2C         H30      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C2C         H31      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C2B         H32      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C2B         H33      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         C2B         H34      SINGLE       n     1.089  0.0100     0.973  0.0141
+EFB         O25         H35      SINGLE       n     0.970  0.0120     0.848  0.0200
+EFB         C24         H36      SINGLE       n     1.089  0.0100     0.993  0.0200
+EFB         O24         H37      SINGLE       n     0.970  0.0120     0.848  0.0200
+EFB         C23         H38      SINGLE       n     1.089  0.0100     0.989  0.0175
+EFB         C2A         H39      SINGLE       n     1.089  0.0100     0.973  0.0146
+EFB         C2A         H40      SINGLE       n     1.089  0.0100     0.973  0.0146
+EFB         C2A         H41      SINGLE       n     1.089  0.0100     0.973  0.0146
+EFB         C22         H42      SINGLE       n     1.089  0.0100     0.981  0.0185
+EFB         C22         H43      SINGLE       n     1.089  0.0100     0.981  0.0185
+EFB         C21         H44      SINGLE       n     1.082  0.0130     0.943  0.0181
+EFB         C20         H45      SINGLE       n     1.082  0.0130     0.943  0.0200
+EFB         C19         H46      SINGLE       n     1.082  0.0130     0.943  0.0200
+EFB         C18         H47      SINGLE       n     1.082  0.0130     0.943  0.0181
+EFB         C17         H48      SINGLE       n     1.089  0.0100     0.990  0.0142
+EFB         C1C         H49      SINGLE       n     1.089  0.0100     0.980  0.0160
+EFB         C1C         H50      SINGLE       n     1.089  0.0100     0.980  0.0160
+EFB         C1D         H51      SINGLE       n     1.089  0.0100     0.973  0.0157
+EFB         C1D         H52      SINGLE       n     1.089  0.0100     0.973  0.0157
+EFB         C1D         H53      SINGLE       n     1.089  0.0100     0.973  0.0157
+EFB         C16         H54      SINGLE       n     1.089  0.0100     0.980  0.0160
+EFB         C16         H55      SINGLE       n     1.089  0.0100     0.980  0.0160
+EFB         C15         H56      SINGLE       n     1.089  0.0100     0.981  0.0140
+EFB         C15         H57      SINGLE       n     1.089  0.0100     0.981  0.0140
+EFB         C13         H58      SINGLE       n     1.089  0.0100     0.989  0.0172
+EFB          C6         H59      SINGLE       n     1.089  0.0100     0.979  0.0145
+EFB          C6         H60      SINGLE       n     1.089  0.0100     0.979  0.0145
+EFB          C5         H61      SINGLE       n     1.089  0.0100     0.989  0.0172
+EFB         C51         H62      SINGLE       n     1.089  0.0100     0.971  0.0171
+EFB         C51         H63      SINGLE       n     1.089  0.0100     0.971  0.0171
+EFB         C51         H64      SINGLE       n     1.089  0.0100     0.971  0.0171
+EFB          C4         H65      SINGLE       n     1.089  0.0100     0.989  0.0172
+EFB          C3         H66      SINGLE       n     1.089  0.0100     0.981  0.0140
+EFB          C3         H67      SINGLE       n     1.089  0.0100     0.981  0.0140
+EFB          C2         H68      SINGLE       n     1.089  0.0100     0.992  0.0184
+EFB          C1         H69      SINGLE       n     1.089  0.0100     0.974  0.0145
+EFB          C1         H70      SINGLE       n     1.089  0.0100     0.974  0.0145
+EFB          C1         H71      SINGLE       n     1.089  0.0100     0.974  0.0145
+EFB          O2         H72      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EFB         C10         C1A          H1     109.609    1.50
+EFB         C10         C1A          H2     109.609    1.50
+EFB         C10         C1A          H3     109.609    1.50
+EFB          H1         C1A          H2     109.350    1.50
+EFB          H1         C1A          H3     109.350    1.50
+EFB          H2         C1A          H3     109.350    1.50
+EFB         C11         C10          C8     112.392    2.23
+EFB         C11         C10         C1A     111.352    1.50
+EFB         C11         C10          H4     107.107    1.50
+EFB          C8         C10         C1A     112.168    2.77
+EFB          C8         C10          H4     108.918    1.50
+EFB         C1A         C10          H4     107.155    1.50
+EFB         C12         C11         O37     107.936    1.50
+EFB         C12         C11         C10     112.086    1.64
+EFB         C12         C11          H5     109.119    1.50
+EFB         O37         C11         C10     107.825    2.45
+EFB         O37         C11          H5     109.681    1.50
+EFB         C10         C11          H5     108.503    1.50
+EFB         C1B         C12         C13     112.224    1.57
+EFB         C1B         C12         C11     111.897    1.50
+EFB         C1B         C12          H6     107.873    1.57
+EFB         C13         C12         C11     111.124    1.57
+EFB         C13         C12          H6     107.888    1.50
+EFB         C11         C12          H6     107.028    1.50
+EFB         C12         C1B          H7     109.707    1.50
+EFB         C12         C1B          H8     109.707    1.50
+EFB         C12         C1B          H9     109.707    1.50
+EFB          H7         C1B          H8     109.342    1.50
+EFB          H7         C1B          H9     109.342    1.50
+EFB          H8         C1B          H9     109.342    1.50
+EFB         C36         O37         C11     117.190    1.50
+EFB         C35         C36         O36     125.528    1.50
+EFB         C35         C36         O37     111.239    1.70
+EFB         O36         C36         O37     123.234    1.73
+EFB         C34         C35         C36     124.223    3.00
+EFB         C34         C35         H10     117.482    2.29
+EFB         C36         C35         H10     118.295    1.50
+EFB         C33         C34         C35     126.663    2.55
+EFB         C33         C34         H11     116.438    1.50
+EFB         C35         C34         H11     116.899    2.02
+EFB         C32         C33         C34     112.063    3.00
+EFB         C32         C33         C3B     111.290    1.50
+EFB         C32         C33         H12     107.966    1.50
+EFB         C34         C33         C3B     109.455    2.23
+EFB         C34         C33         H12     108.126    1.50
+EFB         C3B         C33         H12     108.191    1.50
+EFB         C33         C3B         H13     109.820    1.50
+EFB         C33         C3B         H14     109.820    1.50
+EFB         C33         C3B         H15     109.820    1.50
+EFB         H13         C3B         H14     109.411    1.50
+EFB         H13         C3B         H15     109.411    1.50
+EFB         H14         C3B         H15     109.411    1.50
+EFB         C31         C32         O32     109.333    2.45
+EFB         C31         C32         C33     113.964    1.50
+EFB         C31         C32         H16     107.758    1.74
+EFB         O32         C32         C33     108.225    1.99
+EFB         O32         C32         H16     108.007    1.50
+EFB         C33         C32         H16     107.784    1.50
+EFB         C32         O32         H17     110.295    3.00
+EFB         C30         C31         C3A     108.824    1.85
+EFB         C30         C31         C32     110.746    2.23
+EFB         C30         C31         H18     109.337    1.83
+EFB         C3A         C31         C32     112.203    1.50
+EFB         C3A         C31         H18     108.296    1.70
+EFB         C32         C31         H18     108.824    1.50
+EFB         C31         C3A         H19     109.528    1.50
+EFB         C31         C3A         H20     109.528    1.50
+EFB         C31         C3A         H21     109.528    1.50
+EFB         H19         C3A         H20     109.411    1.50
+EFB         H19         C3A         H21     109.411    1.50
+EFB         H20         C3A         H21     109.411    1.50
+EFB         C29         C30         O30     120.271    1.66
+EFB         C29         C30         C31     119.458    1.50
+EFB         O30         C30         C31     120.271    1.66
+EFB         C2D         C29         C30     108.824    1.85
+EFB         C2D         C29         C28     112.203    1.50
+EFB         C2D         C29         H22     108.296    1.70
+EFB         C30         C29         C28     110.746    2.23
+EFB         C30         C29         H22     109.337    1.83
+EFB         C28         C29         H22     108.824    1.50
+EFB         C29         C2D         H23     109.528    1.50
+EFB         C29         C2D         H24     109.528    1.50
+EFB         C29         C2D         H25     109.528    1.50
+EFB         H23         C2D         H24     109.411    1.50
+EFB         H23         C2D         H25     109.411    1.50
+EFB         H24         C2D         H25     109.411    1.50
+EFB         C29         C28         C27     113.964    1.50
+EFB         C29         C28         O28     109.333    2.45
+EFB         C29         C28         H26     107.758    1.74
+EFB         C27         C28         O28     109.333    2.45
+EFB         C27         C28         H26     107.758    1.74
+EFB         O28         C28         H26     108.007    1.50
+EFB         C28         O28         H27     110.295    3.00
+EFB         C26         C27         C28     110.746    2.23
+EFB         C26         C27         C2C     109.526    1.94
+EFB         C26         C27         H28     108.203    1.50
+EFB         C28         C27         C2C     112.203    1.50
+EFB         C28         C27         H28     108.824    1.50
+EFB         C2C         C27         H28     108.296    1.70
+EFB         C27         C2C         H29     109.528    1.50
+EFB         C27         C2C         H30     109.528    1.50
+EFB         C27         C2C         H31     109.528    1.50
+EFB         H29         C2C         H30     109.411    1.50
+EFB         H29         C2C         H31     109.411    1.50
+EFB         H30         C2C         H31     109.411    1.50
+EFB         C25         C26         C27     117.579    2.45
+EFB         C25         C26         O26     121.030    1.50
+EFB         C27         C26         O26     121.390    1.50
+EFB         C2B         C25         O25     108.031    2.01
+EFB         C2B         C25         C24     111.094    2.85
+EFB         C2B         C25         C26     109.069    2.14
+EFB         O25         C25         C24     109.482    3.00
+EFB         O25         C25         C26     108.787    2.59
+EFB         C24         C25         C26     111.511    2.91
+EFB         C25         C2B         H32     109.538    1.50
+EFB         C25         C2B         H33     109.538    1.50
+EFB         C25         C2B         H34     109.538    1.50
+EFB         H32         C2B         H33     109.441    1.50
+EFB         H32         C2B         H34     109.441    1.50
+EFB         H33         C2B         H34     109.441    1.50
+EFB         C25         O25         H35     109.172    2.84
+EFB         C23         C24         C25     111.094    2.85
+EFB         C23         C24         O24     109.580    2.17
+EFB         C23         C24         H36     108.131    1.50
+EFB         C25         C24         O24     109.482    3.00
+EFB         C25         C24         H36     109.155    1.50
+EFB         O24         C24         H36     108.183    1.96
+EFB         C24         O24         H37     109.265    3.00
+EFB         C2A         C23         C22     110.659    1.50
+EFB         C2A         C23         C24     111.475    1.50
+EFB         C2A         C23         H38     107.528    1.50
+EFB         C22         C23         C24     112.320    1.95
+EFB         C22         C23         H38     107.526    1.50
+EFB         C24         C23         H38     107.173    1.50
+EFB         C23         C2A         H39     109.636    1.50
+EFB         C23         C2A         H40     109.636    1.50
+EFB         C23         C2A         H41     109.636    1.50
+EFB         H39         C2A         H40     109.411    1.50
+EFB         H39         C2A         H41     109.411    1.50
+EFB         H40         C2A         H41     109.411    1.50
+EFB         C23         C22         C21     113.813    2.40
+EFB         C23         C22         H42     108.947    1.50
+EFB         C23         C22         H43     108.947    1.50
+EFB         C21         C22         H42     108.801    1.50
+EFB         C21         C22         H43     108.801    1.50
+EFB         H42         C22         H43     107.820    1.50
+EFB         C22         C21         C20     125.817    2.56
+EFB         C22         C21         H44     116.549    1.70
+EFB         C20         C21         H44     117.634    1.50
+EFB         C21         C20         C19     126.726    2.74
+EFB         C21         C20         H45     117.302    1.50
+EFB         C19         C20         H45     115.972    1.85
+EFB         C20         C19         C18     126.097    2.95
+EFB         C20         C19         H46     116.032    1.85
+EFB         C18         C19         H46     117.870    1.50
+EFB         C19         C18         C17     126.807    2.55
+EFB         C19         C18         H47     117.024    1.85
+EFB         C17         C18         H47     116.169    1.50
+EFB         C18         C17         C1C     109.635    1.50
+EFB         C18         C17         C16     109.635    1.50
+EFB         C18         C17         H48     107.709    1.50
+EFB         C1C         C17         C16     111.110    1.87
+EFB         C1C         C17         H48     107.780    1.50
+EFB         C16         C17         H48     107.780    1.50
+EFB         C17         C1C         C1D     112.999    1.85
+EFB         C17         C1C         H49     108.447    1.50
+EFB         C17         C1C         H50     108.447    1.50
+EFB         C1D         C1C         H49     108.717    1.50
+EFB         C1D         C1C         H50     108.717    1.50
+EFB         H49         C1C         H50     107.862    1.50
+EFB         C1C         C1D         H51     109.566    1.50
+EFB         C1C         C1D         H52     109.566    1.50
+EFB         C1C         C1D         H53     109.566    1.50
+EFB         H51         C1D         H52     109.380    1.50
+EFB         H51         C1D         H53     109.380    1.50
+EFB         H52         C1D         H53     109.380    1.50
+EFB         C17         C16         C15     115.594    1.53
+EFB         C17         C16         H54     108.447    1.50
+EFB         C17         C16         H55     108.447    1.50
+EFB         C15         C16         H54     108.734    1.50
+EFB         C15         C16         H55     108.734    1.50
+EFB         H54         C16         H55     107.901    1.50
+EFB         C16         C15         C13     114.098    1.61
+EFB         C16         C15         H56     108.814    1.50
+EFB         C16         C15         H57     108.814    1.50
+EFB         C13         C15         H56     108.510    1.50
+EFB         C13         C15         H57     108.510    1.50
+EFB         H56         C15         H57     106.573    3.00
+EFB         C15         C13         C12     114.629    1.50
+EFB         C15         C13         O14     106.832    1.50
+EFB         C15         C13         H58     108.902    2.40
+EFB         C12         C13         O14     110.180    1.50
+EFB         C12         C13         H58     108.255    1.50
+EFB         O14         C13         H58     108.827    1.50
+EFB         C13         O14          C8     112.803    2.55
+EFB         O14          C8         C10     110.507    1.73
+EFB         O14          C8          C7     107.592    3.00
+EFB         O14          C8          O9     108.856    2.80
+EFB         C10          C8          C7     110.883    2.77
+EFB         C10          C8          O9     108.633    2.64
+EFB          C7          C8          O9     109.279    2.64
+EFB          C8          O9          C4     112.803    2.55
+EFB          C8          C7          O7     121.920    1.93
+EFB          C8          C7          C6     116.032    1.88
+EFB          O7          C7          C6     122.048    1.50
+EFB          C7          C6          C5     112.707    1.54
+EFB          C7          C6         H59     109.100    1.50
+EFB          C7          C6         H60     109.100    1.50
+EFB          C5          C6         H59     108.884    1.50
+EFB          C5          C6         H60     108.884    1.50
+EFB         H59          C6         H60     107.804    1.50
+EFB          C4          C5          C6     111.124    1.57
+EFB          C4          C5         C51     112.224    1.57
+EFB          C4          C5         H61     107.888    1.50
+EFB          C6          C5         C51     111.010    1.50
+EFB          C6          C5         H61     108.145    1.50
+EFB         C51          C5         H61     108.139    1.50
+EFB          C5         C51         H62     109.469    1.50
+EFB          C5         C51         H63     109.469    1.50
+EFB          C5         C51         H64     109.469    1.50
+EFB         H62         C51         H63     109.342    1.50
+EFB         H62         C51         H64     109.342    1.50
+EFB         H63         C51         H64     109.342    1.50
+EFB          O9          C4          C3     106.832    1.50
+EFB          O9          C4          C5     110.180    1.50
+EFB          O9          C4         H65     108.827    1.50
+EFB          C3          C4          C5     114.629    1.50
+EFB          C3          C4         H65     108.902    2.40
+EFB          C5          C4         H65     108.255    1.50
+EFB          C2          C3          C4     113.198    2.74
+EFB          C2          C3         H66     108.397    1.50
+EFB          C2          C3         H67     108.397    1.50
+EFB          C4          C3         H66     108.510    1.50
+EFB          C4          C3         H67     108.510    1.50
+EFB         H66          C3         H67     107.474    1.50
+EFB          O2          C2          C1     109.686    2.24
+EFB          O2          C2          C3     108.808    1.82
+EFB          O2          C2         H68     108.183    1.96
+EFB          C1          C2          C3     112.976    2.96
+EFB          C1          C2         H68     109.344    1.50
+EFB          C3          C2         H68     108.770    1.50
+EFB          C2          C1         H69     109.508    1.50
+EFB          C2          C1         H70     109.508    1.50
+EFB          C2          C1         H71     109.508    1.50
+EFB         H69          C1         H70     109.425    1.50
+EFB         H69          C1         H71     109.425    1.50
+EFB         H70          C1         H71     109.425    1.50
+EFB          C2          O2         H72     109.265    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EFB           sp3_sp3_250         C11         C10         C1A          H1     180.000    10.0     3
+EFB           sp3_sp3_184         C32         C33         C3B         H13     180.000    10.0     3
+EFB           sp3_sp3_166         C31         C32         C33         C34     180.000    10.0     3
+EFB           sp3_sp3_163         C31         C32         O32         H17     180.000    10.0     3
+EFB           sp3_sp3_154         C30         C31         C32         O32     180.000    10.0     3
+EFB           sp3_sp3_142         C30         C31         C3A         H19     180.000    10.0     3
+EFB            sp2_sp3_37         C29         C30         C31         C3A       0.000    10.0     6
+EFB            sp2_sp3_25         O30         C30         C29         C2D       0.000    10.0     6
+EFB            sp3_sp3_94         C30         C29         C2D         H23     180.000    10.0     3
+EFB           sp3_sp3_115         C27         C28         C29         C2D     180.000    10.0     3
+EFB             sp3_sp3_5         C1A         C10         C11         O37     180.000    10.0     3
+EFB           sp3_sp3_244         C1A         C10          C8         O14     180.000    10.0     3
+EFB           sp3_sp3_151         C29         C28         O28         H27     180.000    10.0     3
+EFB           sp3_sp3_124         C26         C27         C28         C29     180.000    10.0     3
+EFB           sp3_sp3_133         C26         C27         C2C         H29     180.000    10.0     3
+EFB            sp2_sp3_31         C25         C26         C27         C28       0.000    10.0     6
+EFB            sp2_sp3_13         C27         C26         C25         C2B       0.000    10.0     6
+EFB            sp3_sp3_64         O25         C25         C2B         H32     180.000    10.0     3
+EFB            sp3_sp3_73         C2B         C25         O25         H35     180.000    10.0     3
+EFB           sp3_sp3_103         C23         C24         C25         C2B     180.000    10.0     3
+EFB           sp3_sp3_112         C23         C24         O24         H37     180.000    10.0     3
+EFB            sp3_sp3_85         C2A         C23         C24         C25     180.000    10.0     3
+EFB            sp3_sp3_14         O37         C11         C12         C1B     -60.000    10.0     3
+EFB           sp3_sp3_238         C12         C11         O37         C36     180.000    10.0     3
+EFB            sp3_sp3_55         C22         C23         C2A         H39     180.000    10.0     3
+EFB            sp3_sp3_76         C21         C22         C23         C2A     180.000    10.0     3
+EFB            sp2_sp3_20         C20         C21         C22         C23     120.000    10.0     6
+EFB             sp2_sp2_1         C19         C20         C21         C22     180.000     5.0     2
+EFB             sp2_sp2_5         C18         C19         C20         C21     180.000     5.0     2
+EFB             sp2_sp2_9         C17         C18         C19         C20     180.000     5.0     2
+EFB            sp2_sp3_43         C19         C18         C17         C1C       0.000    10.0     6
+EFB           sp3_sp3_193         C18         C17         C1C         C1D     180.000    10.0     3
+EFB           sp3_sp3_202         C15         C16         C17         C18     180.000    10.0     3
+EFB           sp3_sp3_211         C17         C1C         C1D         H51     180.000    10.0     3
+EFB           sp3_sp3_175         C13         C12         C1B          H7     180.000    10.0     3
+EFB            sp3_sp3_23         C1B         C12         C13         C15     180.000    10.0     3
+EFB           sp3_sp3_220         C13         C15         C16         C17     180.000    10.0     3
+EFB           sp3_sp3_229         C12         C13         C15         C16     180.000    10.0     3
+EFB            sp3_sp3_29         C15         C13         O14          C8     180.000    10.0     3
+EFB            sp3_sp3_31         C10          C8         O14         C13     -60.000    10.0     3
+EFB           sp3_sp3_260         O14          C8          O9          C4      60.000    10.0     3
+EFB             sp2_sp3_5          O7          C7          C8         O14     -60.000    10.0     6
+EFB            sp3_sp3_53          C3          C4          O9          C8     -60.000    10.0     3
+EFB            sp2_sp3_10          O7          C7          C6          C5     180.000    10.0     6
+EFB            sp3_sp3_37         C51          C5          C6          C7     -60.000    10.0     3
+EFB           sp3_sp3_292          C4          C5         C51         H62     180.000    10.0     3
+EFB            sp3_sp3_47          C3          C4          C5         C51     -60.000    10.0     3
+EFB           sp3_sp3_283          C2          C3          C4          O9     180.000    10.0     3
+EFB           sp3_sp3_274          O2          C2          C3          C4     180.000    10.0     3
+EFB           sp3_sp3_265         H69          C1          C2          O2     180.000    10.0     3
+EFB           sp3_sp3_262          C1          C2          O2         H72     180.000    10.0     3
+EFB            sp2_sp2_21         C35         C36         O37         C11     180.000     5.0     2
+EFB            sp2_sp2_18         C34         C35         C36         O36       0.000     5.0     2
+EFB            sp2_sp2_13         C33         C34         C35         C36     180.000     5.0     2
+EFB            sp2_sp3_49         C35         C34         C33         C32       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EFB    chir_1    C10    C8    C11    C1A    positive
+EFB    chir_2    C11    O37    C10    C12    negative
+EFB    chir_3    C12    C11    C13    C1B    negative
+EFB    chir_4    C33    C32    C34    C3B    positive
+EFB    chir_5    C32    O32    C31    C33    negative
+EFB    chir_6    C31    C30    C32    C3A    positive
+EFB    chir_7    C29    C30    C28    C2D    negative
+EFB    chir_8    C28    O28    C27    C29    negative
+EFB    chir_9    C27    C26    C28    C2C    positive
+EFB    chir_10    C25    O25    C26    C24    negative
+EFB    chir_11    C24    O24    C25    C23    positive
+EFB    chir_12    C23    C24    C22    C2A    negative
+EFB    chir_13    C17    C18    C16    C1C    negative
+EFB    chir_14    C13    O14    C12    C15    positive
+EFB    chir_15    C8    O14    O9    C7    positive
+EFB    chir_16    C5    C4    C6    C51    positive
+EFB    chir_17    C4    O9    C5    C3    positive
+EFB    chir_18    C2    O2    C3    C1    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EFB    plan-1         C35   0.020
+EFB    plan-1         C36   0.020
+EFB    plan-1         O36   0.020
+EFB    plan-1         O37   0.020
+EFB    plan-2         C34   0.020
+EFB    plan-2         C35   0.020
+EFB    plan-2         C36   0.020
+EFB    plan-2         H10   0.020
+EFB    plan-3         C33   0.020
+EFB    plan-3         C34   0.020
+EFB    plan-3         C35   0.020
+EFB    plan-3         H11   0.020
+EFB    plan-4         C29   0.020
+EFB    plan-4         C30   0.020
+EFB    plan-4         C31   0.020
+EFB    plan-4         O30   0.020
+EFB    plan-5         C25   0.020
+EFB    plan-5         C26   0.020
+EFB    plan-5         C27   0.020
+EFB    plan-5         O26   0.020
+EFB    plan-6         C20   0.020
+EFB    plan-6         C21   0.020
+EFB    plan-6         C22   0.020
+EFB    plan-6         H44   0.020
+EFB    plan-7         C19   0.020
+EFB    plan-7         C20   0.020
+EFB    plan-7         C21   0.020
+EFB    plan-7         H45   0.020
+EFB    plan-8         C18   0.020
+EFB    plan-8         C19   0.020
+EFB    plan-8         C20   0.020
+EFB    plan-8         H46   0.020
+EFB    plan-9         C17   0.020
+EFB    plan-9         C18   0.020
+EFB    plan-9         C19   0.020
+EFB    plan-9         H47   0.020
+EFB   plan-10          C6   0.020
+EFB   plan-10          C7   0.020
+EFB   plan-10          C8   0.020
+EFB   plan-10          O7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EFB           SMILES              ACDLabs 12.01                                                                                                                                                                                                                                                                CC1C3(OC2C(C1OC(=O)C=CC(C)C(O)C(C)C(=O)C(C(O)C(C)C(=O)C(C(O)C(CC=CC=CC(CC)CC2)C)(C)O)C)C)C(CC(C)C(O3)CC(C)O)=O
+EFB            InChI                InChI  1.03 InChI=1S/C45H72O12/c1-12-33-17-15-13-14-16-25(3)42(52)44(11,54)43(53)31(9)40(51)30(8)39(50)29(7)38(49)24(2)18-21-37(48)55-41-28(6)34(20-19-33)56-45(32(41)10)36(47)22-26(4)35(57-45)23-27(5)46/h13-15,17-18,21,24-35,38,40-42,46,49,51-52,54H,12,16,19-20,22-23H2,1-11H3/b14-13+,17-15+,21-18+/t24-,25+,26-,27+,28+,29-,30-,31-,32-,33-,34-,35-,38+,40+,41+,42-,44+,45+/m0/s1
+EFB         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                                                   QPRQJOHKNJIMGN-WVUAJZTGSA-N
+EFB SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                           CC[C@@H]/1CC[C@@H]2O[C@@]3(O[C@@H](C[C@@H](C)O)[C@@H](C)CC3=O)[C@@H](C)[C@H](OC(=O)/C=C/[C@H](C)[C@@H](O)[C@H](C)C(=O)[C@H](C)[C@@H](O)[C@H](C)C(=O)[C@](C)(O)[C@@H](O)[C@H](C)C\C=C\C=C/1)[C@@H]2C
+EFB           SMILES               CACTVS 3.385                                                                                                                                                                                                              CC[CH]1CC[CH]2O[C]3(O[CH](C[CH](C)O)[CH](C)CC3=O)[CH](C)[CH](OC(=O)C=C[CH](C)[CH](O)[CH](C)C(=O)[CH](C)[CH](O)[CH](C)C(=O)[C](C)(O)[CH](O)[CH](C)CC=CC=C1)[CH]2C
+EFB SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                                                                                         CC[C@@H]\1CC[C@H]2[C@H]([C@H]([C@@H]([C@]3(O2)C(=O)C[C@@H]([C@@H](O3)C[C@@H](C)O)C)C)OC(=O)/C=C/[C@@H]([C@H]([C@@H](C(=O)[C@@H]([C@H]([C@@H](C(=O)[C@]([C@H]([C@@H](C/C=C/C=C1)C)O)(C)O)C)O)C)C)O)C)C
+EFB           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                                                                                                                                                              CCC1CCC2C(C(C(C3(O2)C(=O)CC(C(O3)CC(C)O)C)C)OC(=O)C=CC(C(C(C(=O)C(C(C(C(=O)C(C(C(CC=CC=C1)C)O)(C)O)C)O)C)C)O)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EFB acedrg               243         "dictionary generator"                  
+EFB acedrg_database      11          "data source"                           
+EFB rdkit                2017.03.2   "Chemoinformatics tool"
+EFB refmac5              5.8.0238    "optimization tool"                     

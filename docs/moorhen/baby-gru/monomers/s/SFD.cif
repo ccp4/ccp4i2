@@ -1,0 +1,555 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SFD     SFD      "(S)-10-((2S,3S,4R)-5-((S)-((S)-(((2R,3S,4R,5R)-5-(6-AMINO-9H-PURIN-9-YL)-3,4-DIHYDROXY-TETRAHYDROFURAN-2-YL)METHOXY)(HYDROXY)PHOSPHORYLOXY)(HYDROXY)PHOSPHORYLOXY)-2,3,4-TRIHYDROXYPENTYL)-7,8-DIMETHYL-2,4-DIOXO-2,3,4,4A-TETRAHYDROBENZO[G]PTERIDINE-5(10H)-SULFONIC ACID"     NON-POLYMER     90     57     .     
+#
+data_comp_SFD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SFD     O2      O       OH1     0       22.035      -2.957      123.822     
+SFD     C4A     C       CR56    0       38.851      3.527       135.648     
+SFD     N10     N       NR6     0       24.565      -2.548      128.104     
+SFD     C0F     C       CR66    0       23.544      -3.371      128.536     
+SFD     N1F     N       NRD6    0       23.593      -3.854      129.734     
+SFD     C2F     C       CR6     0       22.490      -4.288      130.304     
+SFD     O2F     O       O       0       22.575      -4.807      131.391     
+SFD     N3F     N       NR6     0       21.266      -4.188      129.716     
+SFD     C4F     C       CR6     0       21.116      -3.742      128.430     
+SFD     O4F     O       O       0       20.014      -3.424      128.029     
+SFD     C5F     C       CH1     0       22.384      -3.666      127.591     
+SFD     N5F     N       NR6     0       22.289      -2.736      126.423     
+SFD     C6F     C       CR66    0       23.113      -1.546      126.378     
+SFD     C9F     C       CR66    0       24.274      -1.462      127.220     
+SFD     C1F     C       CR16    0       25.067      -0.308      127.171     
+SFD     C8F     C       CR6     0       24.771      0.733       126.327     
+SFD     C3F     C       CH3     0       25.679      1.936       126.321     
+SFD     C7F     C       CR6     0       23.611      0.649       125.473     
+SFD     CBF     C       CR16    0       22.817      -0.471      125.519     
+SFD     CAF     C       CH3     0       23.249      1.770       124.532     
+SFD     C1R     C       CH2     0       25.968      -2.812      128.566     
+SFD     C2R     C       CH1     0       26.255      -2.272      129.977     
+SFD     O2R     O       OH1     0       25.623      -1.008      130.188     
+SFD     C3R     C       CH1     0       27.754      -2.146      130.268     
+SFD     O3R     O       OH1     0       28.379      -3.406      130.011     
+SFD     C4R     C       CH1     0       28.044      -1.697      131.705     
+SFD     O4R     O       OH1     0       27.577      -0.357      131.881     
+SFD     C5R     C       CH2     0       29.510      -1.749      132.070     
+SFD     O5R     O       O2      0       29.697      -1.270      133.432     
+SFD     PF      P       P       0       31.175      -1.226      134.053     
+SFD     OP1     O       OP      -1      31.087      -0.679      135.440     
+SFD     OP2     O       O       0       31.822      -2.555      133.841     
+SFD     OP      O       O2      0       31.874      -0.140      133.102     
+SFD     PA      P       P       0       31.718      1.451       132.986     
+SFD     OP3     O       OP      -1      30.269      1.799       133.085     
+SFD     OP4     O       O       0       32.477      1.923       131.791     
+SFD     O0R     O       O2      0       32.471      1.928       134.319     
+SFD     C0R     C       CH2     0       33.885      1.637       134.463     
+SFD     C9R     C       CH1     0       34.385      2.217       135.763     
+SFD     O9R     O       O2      0       35.788      1.886       135.916     
+SFD     C6R     C       CH1     0       36.504      2.975       136.454     
+SFD     N9A     N       NR5     0       37.491      3.407       135.469     
+SFD     N3A     N       NRD6    0       39.564      3.282       136.764     
+SFD     C2A     C       CR16    0       40.864      3.511       136.569     
+SFD     N1A     N       NRD6    0       41.492      3.930       135.459     
+SFD     C6A     C       CR6     0       40.750      4.169       134.347     
+SFD     N9      N       NH2     0       41.367      4.585       133.243     
+SFD     C5M     C       CR56    0       39.355      3.961       134.433     
+SFD     N7A     N       NRD5    0       38.331      4.107       133.510     
+SFD     C8A     C       CR15    0       37.251      3.768       134.166     
+SFD     C7R     C       CH1     0       35.486      4.052       136.828     
+SFD     O7R     O       OH1     0       35.134      3.959       138.192     
+SFD     C8R     C       CH1     0       34.317      3.743       135.887     
+SFD     O8R     O       OH1     0       33.063      4.151       136.422     
+SFD     S       S       S3      0       21.270      -3.156      125.173     
+SFD     O1      O       O       0       20.991      -4.544      125.281     
+SFD     O3      O       O       0       20.164      -2.267      125.242     
+SFD     HO2     H       H       0       21.707      -2.298      123.400     
+SFD     H3F     H       H       0       20.544      -4.418      130.171     
+SFD     H5F     H       H       0       22.540      -4.572      127.238     
+SFD     H1F     H       H       0       25.828      -0.236      127.718     
+SFD     H3F1    H       H       0       25.275      2.669       125.834     
+SFD     H3F2    H       H       0       26.523      1.702       125.902     
+SFD     H3F3    H       H       0       25.846      2.219       127.235     
+SFD     HBF     H       H       0       22.067      -0.510      124.956     
+SFD     HAF1    H       H       0       22.473      1.526       124.002     
+SFD     HAF2    H       H       0       23.996      1.951       123.938     
+SFD     HAF3    H       H       0       23.046      2.571       125.042     
+SFD     H1R1    H       H       0       26.601      -2.418      127.936     
+SFD     H1R2    H       H       0       26.120      -3.776      128.564     
+SFD     H2R     H       H       0       25.881      -2.909      130.638     
+SFD     H1      H       H       0       25.345      -0.953      130.987     
+SFD     H3R     H       H       0       28.138      -1.474      129.647     
+SFD     H2      H       H       0       29.133      -3.274      129.645     
+SFD     H4R     H       H       0       27.538      -2.293      132.334     
+SFD     H3      H       H       0       27.570      -0.139      132.700     
+SFD     H5R1    H       H       0       30.025      -1.192      131.450     
+SFD     H5R2    H       H       0       29.838      -2.670      132.007     
+SFD     H0R1    H       H       0       34.388      2.031       133.709     
+SFD     H0R2    H       H       0       34.030      0.659       134.460     
+SFD     H9R     H       H       0       33.879      1.808       136.497     
+SFD     H6R     H       H       0       36.967      2.685       137.272     
+SFD     H2A     H       H       0       41.420      3.357       137.317     
+SFD     HN91    H       H       0       40.909      4.993       132.616     
+SFD     HN92    H       H       0       42.229      4.448       133.147     
+SFD     H8A     H       H       0       36.392      3.770       133.781     
+SFD     H7R     H       H       0       35.853      4.956       136.636     
+SFD     H4      H       H       0       34.530      4.531       138.363     
+SFD     H8R     H       H       0       34.462      4.167       135.004     
+SFD     H5      H       H       0       32.986      4.991       136.327     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SFD          O2           S      SINGLE       n     1.565  0.0200     1.565  0.0200
+SFD         C4A         N9A      SINGLE       y     1.374  0.0101     1.374  0.0101
+SFD         C4A         N3A      DOUBLE       y     1.343  0.0100     1.343  0.0100
+SFD         C4A         C5M      SINGLE       y     1.381  0.0100     1.381  0.0100
+SFD         N10         C0F      SINGLE       n     1.359  0.0200     1.359  0.0200
+SFD         N10         C9F      SINGLE       n     1.414  0.0133     1.414  0.0133
+SFD         N10         C1R      SINGLE       n     1.483  0.0144     1.483  0.0144
+SFD         C0F         N1F      DOUBLE       n     1.287  0.0100     1.287  0.0100
+SFD         C0F         C5F      SINGLE       n     1.521  0.0100     1.521  0.0100
+SFD         N1F         C2F      SINGLE       n     1.307  0.0137     1.307  0.0137
+SFD         C2F         O2F      DOUBLE       n     1.207  0.0100     1.207  0.0100
+SFD         C2F         N3F      SINGLE       n     1.358  0.0100     1.358  0.0100
+SFD         N3F         C4F      SINGLE       n     1.363  0.0166     1.363  0.0166
+SFD         C4F         O4F      DOUBLE       n     1.214  0.0100     1.214  0.0100
+SFD         C4F         C5F      SINGLE       n     1.512  0.0152     1.512  0.0152
+SFD         C5F         N5F      SINGLE       n     1.466  0.0200     1.466  0.0200
+SFD         N5F         C6F      SINGLE       n     1.406  0.0200     1.406  0.0200
+SFD         N5F           S      SINGLE       n     1.654  0.0123     1.654  0.0123
+SFD         C6F         C9F      DOUBLE       y     1.408  0.0180     1.408  0.0180
+SFD         C6F         CBF      SINGLE       y     1.399  0.0100     1.399  0.0100
+SFD         C9F         C1F      SINGLE       y     1.393  0.0100     1.393  0.0100
+SFD         C1F         C8F      DOUBLE       y     1.370  0.0100     1.370  0.0100
+SFD         C8F         C3F      SINGLE       n     1.504  0.0100     1.504  0.0100
+SFD         C8F         C7F      SINGLE       y     1.437  0.0100     1.437  0.0100
+SFD         C7F         CBF      DOUBLE       y     1.370  0.0100     1.370  0.0100
+SFD         C7F         CAF      SINGLE       n     1.504  0.0100     1.504  0.0100
+SFD         C1R         C2R      SINGLE       n     1.517  0.0189     1.517  0.0189
+SFD         C2R         O2R      SINGLE       n     1.424  0.0199     1.424  0.0199
+SFD         C2R         C3R      SINGLE       n     1.531  0.0100     1.531  0.0100
+SFD         C3R         O3R      SINGLE       n     1.424  0.0199     1.424  0.0199
+SFD         C3R         C4R      SINGLE       n     1.530  0.0100     1.530  0.0100
+SFD         C4R         O4R      SINGLE       n     1.429  0.0100     1.429  0.0100
+SFD         C4R         C5R      SINGLE       n     1.511  0.0100     1.511  0.0100
+SFD         C5R         O5R      SINGLE       n     1.454  0.0165     1.454  0.0165
+SFD         O5R          PF      SINGLE       n     1.604  0.0133     1.604  0.0133
+SFD          PF         OP1      SINGLE       n     1.493  0.0122     1.493  0.0122
+SFD          PF         OP2      DOUBLE       n     1.493  0.0122     1.493  0.0122
+SFD          PF          OP      SINGLE       n     1.604  0.0133     1.604  0.0133
+SFD          OP          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+SFD          PA         OP3      SINGLE       n     1.493  0.0122     1.493  0.0122
+SFD          PA         OP4      DOUBLE       n     1.493  0.0122     1.493  0.0122
+SFD          PA         O0R      SINGLE       n     1.604  0.0133     1.604  0.0133
+SFD         O0R         C0R      SINGLE       n     1.450  0.0166     1.450  0.0166
+SFD         C0R         C9R      SINGLE       n     1.509  0.0100     1.509  0.0100
+SFD         C9R         O9R      SINGLE       n     1.451  0.0100     1.451  0.0100
+SFD         C9R         C8R      SINGLE       n     1.535  0.0100     1.535  0.0100
+SFD         O9R         C6R      SINGLE       n     1.409  0.0100     1.409  0.0100
+SFD         C6R         N9A      SINGLE       n     1.458  0.0100     1.458  0.0100
+SFD         C6R         C7R      SINGLE       n     1.525  0.0100     1.525  0.0100
+SFD         N9A         C8A      SINGLE       y     1.372  0.0100     1.372  0.0100
+SFD         N3A         C2A      SINGLE       y     1.330  0.0100     1.330  0.0100
+SFD         C2A         N1A      DOUBLE       y     1.339  0.0100     1.339  0.0100
+SFD         N1A         C6A      SINGLE       y     1.354  0.0100     1.354  0.0100
+SFD         C6A          N9      SINGLE       n     1.330  0.0100     1.330  0.0100
+SFD         C6A         C5M      DOUBLE       y     1.408  0.0100     1.408  0.0100
+SFD         C5M         N7A      SINGLE       y     1.388  0.0100     1.388  0.0100
+SFD         N7A         C8A      DOUBLE       y     1.310  0.0100     1.310  0.0100
+SFD         C7R         O7R      SINGLE       n     1.411  0.0100     1.411  0.0100
+SFD         C7R         C8R      SINGLE       n     1.531  0.0100     1.531  0.0100
+SFD         C8R         O8R      SINGLE       n     1.422  0.0100     1.422  0.0100
+SFD           S          O1      DOUBLE       n     1.420  0.0100     1.420  0.0100
+SFD           S          O3      DOUBLE       n     1.420  0.0100     1.420  0.0100
+SFD          O2         HO2      SINGLE       n     0.970  0.0120     0.848  0.0200
+SFD         N3F         H3F      SINGLE       n     1.016  0.0100     0.882  0.0200
+SFD         C5F         H5F      SINGLE       n     1.089  0.0100     0.986  0.0195
+SFD         C1F         H1F      SINGLE       n     1.082  0.0130     0.941  0.0127
+SFD         C3F        H3F1      SINGLE       n     1.089  0.0100     0.971  0.0135
+SFD         C3F        H3F2      SINGLE       n     1.089  0.0100     0.971  0.0135
+SFD         C3F        H3F3      SINGLE       n     1.089  0.0100     0.971  0.0135
+SFD         CBF         HBF      SINGLE       n     1.082  0.0130     0.941  0.0127
+SFD         CAF        HAF1      SINGLE       n     1.089  0.0100     0.971  0.0135
+SFD         CAF        HAF2      SINGLE       n     1.089  0.0100     0.971  0.0135
+SFD         CAF        HAF3      SINGLE       n     1.089  0.0100     0.971  0.0135
+SFD         C1R        H1R1      SINGLE       n     1.089  0.0100     0.976  0.0163
+SFD         C1R        H1R2      SINGLE       n     1.089  0.0100     0.976  0.0163
+SFD         C2R         H2R      SINGLE       n     1.089  0.0100     0.992  0.0184
+SFD         O2R          H1      SINGLE       n     0.970  0.0120     0.848  0.0200
+SFD         C3R         H3R      SINGLE       n     1.089  0.0100     0.992  0.0184
+SFD         O3R          H2      SINGLE       n     0.970  0.0120     0.848  0.0200
+SFD         C4R         H4R      SINGLE       n     1.089  0.0100     1.004  0.0200
+SFD         O4R          H3      SINGLE       n     0.970  0.0120     0.848  0.0200
+SFD         C5R        H5R1      SINGLE       n     1.089  0.0100     0.980  0.0146
+SFD         C5R        H5R2      SINGLE       n     1.089  0.0100     0.980  0.0146
+SFD         C0R        H0R1      SINGLE       n     1.089  0.0100     0.989  0.0200
+SFD         C0R        H0R2      SINGLE       n     1.089  0.0100     0.989  0.0200
+SFD         C9R         H9R      SINGLE       n     1.089  0.0100     0.981  0.0200
+SFD         C6R         H6R      SINGLE       n     1.089  0.0100     0.984  0.0200
+SFD         C2A         H2A      SINGLE       n     1.082  0.0130     0.945  0.0200
+SFD          N9        HN91      SINGLE       n     1.016  0.0100     0.877  0.0200
+SFD          N9        HN92      SINGLE       n     1.016  0.0100     0.877  0.0200
+SFD         C8A         H8A      SINGLE       n     1.082  0.0130     0.942  0.0170
+SFD         C7R         H7R      SINGLE       n     1.089  0.0100     0.994  0.0200
+SFD         O7R          H4      SINGLE       n     0.970  0.0120     0.849  0.0200
+SFD         C8R         H8R      SINGLE       n     1.089  0.0100     0.992  0.0200
+SFD         O8R          H5      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SFD           S          O2         HO2     109.576    1.50
+SFD         N9A         C4A         N3A     127.895    1.50
+SFD         N9A         C4A         C5M     105.616    1.50
+SFD         N3A         C4A         C5M     126.489    1.50
+SFD         C0F         N10         C9F     120.861    1.97
+SFD         C0F         N10         C1R     119.757    1.68
+SFD         C9F         N10         C1R     119.382    1.50
+SFD         N10         C0F         N1F     118.044    1.50
+SFD         N10         C0F         C5F     117.429    1.99
+SFD         N1F         C0F         C5F     124.527    2.03
+SFD         C0F         N1F         C2F     118.603    1.95
+SFD         N1F         C2F         O2F     118.264    1.68
+SFD         N1F         C2F         N3F     123.105    1.50
+SFD         O2F         C2F         N3F     118.631    1.61
+SFD         C2F         N3F         C4F     123.340    2.15
+SFD         C2F         N3F         H3F     118.646    1.80
+SFD         C4F         N3F         H3F     118.015    1.50
+SFD         N3F         C4F         O4F     119.776    1.50
+SFD         N3F         C4F         C5F     118.106    1.50
+SFD         O4F         C4F         C5F     122.118    1.93
+SFD         C0F         C5F         C4F     111.227    1.79
+SFD         C0F         C5F         N5F     112.448    1.62
+SFD         C0F         C5F         H5F     108.076    1.68
+SFD         C4F         C5F         N5F     110.220    2.25
+SFD         C4F         C5F         H5F     107.441    1.66
+SFD         N5F         C5F         H5F     108.138    1.50
+SFD         C5F         N5F         C6F     119.191    3.00
+SFD         C5F         N5F           S     119.111    2.22
+SFD         C6F         N5F           S     121.698    1.50
+SFD         N5F         C6F         C9F     119.206    1.50
+SFD         N5F         C6F         CBF     121.094    1.61
+SFD         C9F         C6F         CBF     119.701    1.50
+SFD         N10         C9F         C6F     118.958    1.50
+SFD         N10         C9F         C1F     121.341    1.50
+SFD         C6F         C9F         C1F     119.701    1.50
+SFD         C9F         C1F         C8F     120.539    1.50
+SFD         C9F         C1F         H1F     120.082    1.50
+SFD         C8F         C1F         H1F     119.380    1.50
+SFD         C1F         C8F         C3F     119.918    1.50
+SFD         C1F         C8F         C7F     119.761    1.50
+SFD         C3F         C8F         C7F     120.321    1.50
+SFD         C8F         C3F        H3F1     109.765    1.50
+SFD         C8F         C3F        H3F2     109.765    1.50
+SFD         C8F         C3F        H3F3     109.765    1.50
+SFD        H3F1         C3F        H3F2     109.348    1.50
+SFD        H3F1         C3F        H3F3     109.348    1.50
+SFD        H3F2         C3F        H3F3     109.348    1.50
+SFD         C8F         C7F         CBF     119.761    1.50
+SFD         C8F         C7F         CAF     120.321    1.50
+SFD         CBF         C7F         CAF     119.918    1.50
+SFD         C6F         CBF         C7F     120.539    1.50
+SFD         C6F         CBF         HBF     120.082    1.50
+SFD         C7F         CBF         HBF     119.380    1.50
+SFD         C7F         CAF        HAF1     109.765    1.50
+SFD         C7F         CAF        HAF2     109.765    1.50
+SFD         C7F         CAF        HAF3     109.765    1.50
+SFD        HAF1         CAF        HAF2     109.348    1.50
+SFD        HAF1         CAF        HAF3     109.348    1.50
+SFD        HAF2         CAF        HAF3     109.348    1.50
+SFD         N10         C1R         C2R     111.875    1.74
+SFD         N10         C1R        H1R1     109.092    1.50
+SFD         N10         C1R        H1R2     109.092    1.50
+SFD         C2R         C1R        H1R1     109.194    1.50
+SFD         C2R         C1R        H1R2     109.194    1.50
+SFD        H1R1         C1R        H1R2     107.868    1.50
+SFD         C1R         C2R         O2R     109.698    2.33
+SFD         C1R         C2R         C3R     110.999    2.33
+SFD         C1R         C2R         H2R     108.757    1.75
+SFD         O2R         C2R         C3R     109.320    2.01
+SFD         O2R         C2R         H2R     108.183    1.96
+SFD         C3R         C2R         H2R     108.450    1.83
+SFD         C2R         O2R          H1     109.265    3.00
+SFD         C2R         C3R         O3R     109.320    2.01
+SFD         C2R         C3R         C4R     113.695    2.13
+SFD         C2R         C3R         H3R     108.450    1.83
+SFD         O3R         C3R         C4R     109.164    1.97
+SFD         O3R         C3R         H3R     108.243    1.50
+SFD         C4R         C3R         H3R     108.336    1.50
+SFD         C3R         O3R          H2     108.564    3.00
+SFD         C3R         C4R         O4R     109.549    1.85
+SFD         C3R         C4R         C5R     112.503    1.50
+SFD         C3R         C4R         H4R     108.777    1.50
+SFD         O4R         C4R         C5R     109.314    1.96
+SFD         O4R         C4R         H4R     108.591    1.50
+SFD         C5R         C4R         H4R     108.656    1.50
+SFD         C4R         O4R          H3     111.202    3.00
+SFD         C4R         C5R         O5R     109.438    2.56
+SFD         C4R         C5R        H5R1     109.582    1.50
+SFD         C4R         C5R        H5R2     109.582    1.50
+SFD         O5R         C5R        H5R1     109.393    1.91
+SFD         O5R         C5R        H5R2     109.393    1.91
+SFD        H5R1         C5R        H5R2     108.319    1.50
+SFD         C5R         O5R          PF     119.251    1.51
+SFD         O5R          PF         OP1     107.912    2.57
+SFD         O5R          PF         OP2     107.912    2.57
+SFD         O5R          PF          OP     101.065    1.97
+SFD         OP1          PF         OP2     118.411    2.35
+SFD         OP1          PF          OP     108.816    2.14
+SFD         OP2          PF          OP     108.816    2.14
+SFD          PF          OP          PA     132.542    3.00
+SFD          OP          PA         OP3     108.816    2.14
+SFD          OP          PA         OP4     108.816    2.14
+SFD          OP          PA         O0R     101.065    1.97
+SFD         OP3          PA         OP4     118.411    2.35
+SFD         OP3          PA         O0R     109.410    1.50
+SFD         OP4          PA         O0R     109.410    1.50
+SFD          PA         O0R         C0R     118.553    2.41
+SFD         O0R         C0R         C9R     109.342    1.50
+SFD         O0R         C0R        H0R1     109.845    1.50
+SFD         O0R         C0R        H0R2     109.845    1.50
+SFD         C9R         C0R        H0R1     109.624    1.50
+SFD         C9R         C0R        H0R2     109.624    1.50
+SFD        H0R1         C0R        H0R2     108.472    1.50
+SFD         C0R         C9R         O9R     109.123    1.50
+SFD         C0R         C9R         C8R     116.008    1.52
+SFD         C0R         C9R         H9R     108.268    1.50
+SFD         O9R         C9R         C8R     105.388    1.50
+SFD         O9R         C9R         H9R     108.947    1.50
+SFD         C8R         C9R         H9R     109.363    1.86
+SFD         C9R         O9R         C6R     109.903    1.50
+SFD         O9R         C6R         N9A     108.477    1.50
+SFD         O9R         C6R         C7R     106.047    1.50
+SFD         O9R         C6R         H6R     109.807    1.50
+SFD         N9A         C6R         C7R     113.824    1.50
+SFD         N9A         C6R         H6R     109.561    1.50
+SFD         C7R         C6R         H6R     109.015    1.50
+SFD         C4A         N9A         C6R     127.459    1.80
+SFD         C4A         N9A         C8A     105.693    1.50
+SFD         C6R         N9A         C8A     126.848    1.91
+SFD         C4A         N3A         C2A     110.982    1.50
+SFD         N3A         C2A         N1A     129.332    1.50
+SFD         N3A         C2A         H2A     115.355    1.50
+SFD         N1A         C2A         H2A     115.313    1.50
+SFD         C2A         N1A         C6A     118.521    1.50
+SFD         N1A         C6A          N9     118.799    1.50
+SFD         N1A         C6A         C5M     117.409    1.50
+SFD          N9         C6A         C5M     123.792    1.50
+SFD         C6A          N9        HN91     119.723    1.50
+SFD         C6A          N9        HN92     119.723    1.50
+SFD        HN91          N9        HN92     120.554    1.88
+SFD         C4A         C5M         C6A     117.270    1.50
+SFD         C4A         C5M         N7A     110.483    1.50
+SFD         C6A         C5M         N7A     132.247    1.50
+SFD         C5M         N7A         C8A     104.739    1.50
+SFD         N9A         C8A         N7A     113.469    1.50
+SFD         N9A         C8A         H8A     123.206    1.50
+SFD         N7A         C8A         H8A     123.326    1.50
+SFD         C6R         C7R         O7R     111.715    2.69
+SFD         C6R         C7R         C8R     101.239    1.50
+SFD         C6R         C7R         H7R     110.636    1.70
+SFD         O7R         C7R         C8R     112.782    2.45
+SFD         O7R         C7R         H7R     110.448    1.97
+SFD         C8R         C7R         H7R     110.596    1.51
+SFD         C7R         O7R          H4     109.103    2.13
+SFD         C9R         C8R         C7R     102.602    1.50
+SFD         C9R         C8R         O8R     111.281    2.46
+SFD         C9R         C8R         H8R     110.452    2.54
+SFD         C7R         C8R         O8R     111.581    2.83
+SFD         C7R         C8R         H8R     110.504    1.75
+SFD         O8R         C8R         H8R     110.380    1.67
+SFD         C8R         O8R          H5     108.744    3.00
+SFD          O2           S         N5F     109.471    3.00
+SFD          O2           S          O1     110.180    2.87
+SFD          O2           S          O3     110.180    2.87
+SFD         N5F           S          O1     107.148    1.65
+SFD         N5F           S          O3     107.148    1.65
+SFD          O1           S          O3     118.684    1.97
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SFD            sp3_sp3_26         HO2          O2           S          O1     -60.000    10.0     3
+SFD            sp2_sp3_16           S         N5F         C5F         C0F     180.000    10.0     6
+SFD            sp2_sp2_18         C9F         C6F         N5F           S     180.000     5.0     2
+SFD            sp2_sp3_27         C5F         N5F           S          O2      30.000    10.0     6
+SFD       const_sp2_sp2_1         N5F         C6F         C9F         N10       0.000     5.0     2
+SFD              const_51         N5F         C6F         CBF         C7F     180.000    10.0     2
+SFD       const_sp2_sp2_6         C8F         C1F         C9F         N10     180.000     5.0     2
+SFD              const_10         C9F         C1F         C8F         C3F     180.000    10.0     2
+SFD            sp2_sp3_31         C1F         C8F         C3F        H3F1     150.000    10.0     6
+SFD              const_16         CAF         C7F         C8F         C3F       0.000    10.0     2
+SFD              const_19         CAF         C7F         CBF         C6F     180.000    10.0     2
+SFD            sp2_sp3_37         C8F         C7F         CAF        HAF1     150.000    10.0     6
+SFD              const_36         N3A         C4A         N9A         C6R       0.000    10.0     2
+SFD              const_22         N9A         C4A         N3A         C2A     180.000    10.0     2
+SFD              const_46         N9A         C4A         C5M         C6A     180.000    10.0     2
+SFD            sp3_sp3_28         N10         C1R         C2R         O2R     180.000    10.0     3
+SFD            sp3_sp3_37         C1R         C2R         O2R          H1     180.000    10.0     3
+SFD            sp3_sp3_40         C1R         C2R         C3R         O3R     180.000    10.0     3
+SFD            sp3_sp3_49         C2R         C3R         O3R          H2     180.000    10.0     3
+SFD            sp3_sp3_52         C2R         C3R         C4R         O4R     180.000    10.0     3
+SFD            sp3_sp3_61         C3R         C4R         O4R          H3     180.000    10.0     3
+SFD            sp3_sp3_64         C3R         C4R         C5R         O5R     180.000    10.0     3
+SFD            sp3_sp3_73         C4R         C5R         O5R          PF     180.000    10.0     3
+SFD            sp3_sp3_77         C5R         O5R          PF         OP1     -60.000    10.0     3
+SFD            sp3_sp3_80          PA          OP          PF         O5R     -60.000    10.0     3
+SFD            sp2_sp2_22         C6F         C9F         N10         C1R     180.000     5.0     2
+SFD            sp2_sp3_20         C0F         N10         C1R         C2R     -90.000    10.0     6
+SFD            sp2_sp2_16         N1F         C0F         N10         C1R       0.000     5.0     2
+SFD            sp3_sp3_82          PF          OP          PA         OP3     180.000    10.0     3
+SFD            sp3_sp3_85         C0R         O0R          PA          OP     180.000    10.0     3
+SFD            sp3_sp3_88         C9R         C0R         O0R          PA     180.000    10.0     3
+SFD            sp3_sp3_91         O0R         C0R         C9R         O9R     180.000    10.0     3
+SFD             sp3_sp3_2         C0R         C9R         O9R         C6R     -60.000    10.0     3
+SFD           sp3_sp3_104         O8R         C8R         C9R         C0R     180.000    10.0     3
+SFD             sp3_sp3_5         N9A         C6R         O9R         C9R     180.000    10.0     3
+SFD             sp2_sp3_8         N10         C0F         C5F         C4F     120.000    10.0     6
+SFD             sp2_sp2_2         N10         C0F         N1F         C2F     180.000     5.0     2
+SFD            sp2_sp3_43         C4A         N9A         C6R         O9R     150.000    10.0     6
+SFD             sp3_sp3_8         O9R         C6R         C7R         O7R     180.000    10.0     3
+SFD              const_37         N7A         C8A         N9A         C4A       0.000    10.0     2
+SFD              const_23         N1A         C2A         N3A         C4A       0.000    10.0     2
+SFD              const_25         N3A         C2A         N1A         C6A       0.000    10.0     2
+SFD              const_28          N9         C6A         N1A         C2A     180.000    10.0     2
+SFD            sp2_sp2_27         N1A         C6A          N9        HN91       0.000     5.0     2
+SFD              const_30         C4A         C5M         C6A          N9     180.000    10.0     2
+SFD              const_43         C4A         C5M         N7A         C8A       0.000    10.0     2
+SFD              const_41         N9A         C8A         N7A         C5M       0.000    10.0     2
+SFD             sp2_sp2_4         O2F         C2F         N1F         C0F     180.000     5.0     2
+SFD           sp3_sp3_109         C6R         C7R         O7R          H4     180.000    10.0     3
+SFD            sp3_sp3_20         O7R         C7R         C8R         O8R     -60.000    10.0     3
+SFD           sp3_sp3_112         C9R         C8R         O8R          H5     180.000    10.0     3
+SFD             sp2_sp2_7         O2F         C2F         N3F         C4F     180.000     5.0     2
+SFD            sp2_sp2_11         O4F         C4F         N3F         C2F     180.000     5.0     2
+SFD             sp2_sp3_4         O4F         C4F         C5F         C0F     180.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SFD    chir_1    C5F    N5F    C4F    C0F    positive
+SFD    chir_2    C2R    O2R    C3R    C1R    positive
+SFD    chir_3    C3R    O3R    C4R    C2R    positive
+SFD    chir_4    C4R    O4R    C3R    C5R    negative
+SFD    chir_5    PF    OP    O5R    OP1    both
+SFD    chir_6    PA    OP    O0R    OP3    both
+SFD    chir_7    C9R    O9R    C8R    C0R    negative
+SFD    chir_8    C6R    O9R    N9A    C7R    negative
+SFD    chir_9    C7R    O7R    C6R    C8R    negative
+SFD    chir_10    C8R    O8R    C9R    C7R    positive
+SFD    chir_11    S    O1    O3    O2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SFD    plan-1         C2A   0.020
+SFD    plan-1         C4A   0.020
+SFD    plan-1         C5M   0.020
+SFD    plan-1         C6A   0.020
+SFD    plan-1         C6R   0.020
+SFD    plan-1         C8A   0.020
+SFD    plan-1         H2A   0.020
+SFD    plan-1         H8A   0.020
+SFD    plan-1         N1A   0.020
+SFD    plan-1         N3A   0.020
+SFD    plan-1         N7A   0.020
+SFD    plan-1          N9   0.020
+SFD    plan-1         N9A   0.020
+SFD    plan-2         C1F   0.020
+SFD    plan-2         C3F   0.020
+SFD    plan-2         C6F   0.020
+SFD    plan-2         C7F   0.020
+SFD    plan-2         C8F   0.020
+SFD    plan-2         C9F   0.020
+SFD    plan-2         CAF   0.020
+SFD    plan-2         CBF   0.020
+SFD    plan-2         H1F   0.020
+SFD    plan-2         HBF   0.020
+SFD    plan-2         N10   0.020
+SFD    plan-2         N5F   0.020
+SFD    plan-3         C0F   0.020
+SFD    plan-3         C1R   0.020
+SFD    plan-3         C9F   0.020
+SFD    plan-3         N10   0.020
+SFD    plan-4         C0F   0.020
+SFD    plan-4         C5F   0.020
+SFD    plan-4         N10   0.020
+SFD    plan-4         N1F   0.020
+SFD    plan-5         C2F   0.020
+SFD    plan-5         N1F   0.020
+SFD    plan-5         N3F   0.020
+SFD    plan-5         O2F   0.020
+SFD    plan-6         C2F   0.020
+SFD    plan-6         C4F   0.020
+SFD    plan-6         H3F   0.020
+SFD    plan-6         N3F   0.020
+SFD    plan-7         C4F   0.020
+SFD    plan-7         C5F   0.020
+SFD    plan-7         N3F   0.020
+SFD    plan-7         O4F   0.020
+SFD    plan-8         C5F   0.020
+SFD    plan-8         C6F   0.020
+SFD    plan-8         N5F   0.020
+SFD    plan-8           S   0.020
+SFD    plan-9         C6A   0.020
+SFD    plan-9        HN91   0.020
+SFD    plan-9        HN92   0.020
+SFD    plan-9          N9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SFD           SMILES              ACDLabs 10.04                                                                                                                                                                                                                                         O=S(=O)(O)N2c1cc(c(cc1N(C3=NC(=O)NC(=O)C23)CC(O)C(O)C(O)COP(=O)(O)OP(=O)(O)OCC6OC(n5cnc4c(ncnc45)N)C(O)C6O)C)C
+SFD SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                                 Cc1cc2N(C[C@H](O)[C@H](O)[C@H](O)CO[P@@](O)(=O)O[P@](O)(=O)OC[C@H]3O[C@H]([C@H](O)[C@@H]3O)n4cnc5c(N)ncnc45)C6=NC(=O)NC(=O)[C@H]6N(c2cc1C)[S](O)(=O)=O
+SFD           SMILES               CACTVS 3.341                                                                                                                                                                                                             Cc1cc2N(C[CH](O)[CH](O)[CH](O)CO[P](O)(=O)O[P](O)(=O)OC[CH]3O[CH]([CH](O)[CH]3O)n4cnc5c(N)ncnc45)C6=NC(=O)NC(=O)[CH]6N(c2cc1C)[S](O)(=O)=O
+SFD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                Cc1cc2c(cc1C)[N@](C3C(=O)NC(=O)N=C3N2C[C@@H]([C@@H]([C@@H](CO[P@](=O)(O)O[P@@](=O)(O)OC[C@@H]4[C@H]([C@H]([C@@H](O4)n5cnc6c5ncnc6N)O)O)O)O)O)S(=O)(=O)O
+SFD           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                                           Cc1cc2c(cc1C)N(C3C(=O)NC(=O)N=C3N2CC(C(C(COP(=O)(O)OP(=O)(O)OCC4C(C(C(O4)n5cnc6c5ncnc6N)O)O)O)O)O)S(=O)(=O)O
+SFD            InChI                InChI  1.03 InChI=1S/C27H35N9O18P2S/c1-10-3-12-13(4-11(10)2)36(57(48,49)50)18-24(32-27(43)33-25(18)42)34(12)5-14(37)19(39)15(38)6-51-55(44,45)54-56(46,47)52-7-16-20(40)21(41)26(53-16)35-9-31-17-22(28)29-8-30-23(17)35/h3-4,8-9,14-16,18-21,26,37-41H,5-7H2,1-2H3,(H,44,45)(H,46,47)(H2,28,29,30)(H,33,42,43)(H,48,49,50)/t14-,15+,16+,18-,19-,20+,21+,26+/m0/s1
+SFD         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                                            WCBOBURWKHIISA-LDVRFEIFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SFD acedrg               243         "dictionary generator"                  
+SFD acedrg_database      11          "data source"                           
+SFD rdkit                2017.03.2   "Chemoinformatics tool"
+SFD refmac5              5.8.0238    "optimization tool"                     

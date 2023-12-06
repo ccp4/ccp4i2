@@ -1,0 +1,395 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FSP     FSP      "[1-(4-FLUOROBENZYL)CYCLOBUTYL]METHYL (1S)-1-[OXO(1H-PYRAZOL-5-YLAMINO)ACETYL]PENTYLCARBAMATE"     NON-POLYMER     61     32     .     
+#
+data_comp_FSP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FSP     C1      C       CH3     0       62.384      -62.532     133.777     
+FSP     C2      C       CH2     0       61.256      -61.912     132.987     
+FSP     C3      C       CH2     0       59.961      -62.675     133.083     
+FSP     C4      C       CH2     0       59.227      -62.454     134.399     
+FSP     C5      C       CH1     0       57.881      -63.180     134.487     
+FSP     N6      N       NH1     0       56.933      -62.609     133.537     
+FSP     C7      C       C       0       56.393      -63.317     132.522     
+FSP     O8      O       O       0       56.557      -64.504     132.339     
+FSP     O9      O       O2      0       55.670      -62.509     131.724     
+FSP     C10     C       CH2     0       55.051      -63.042     130.526     
+FSP     C11     C       CT      0       54.455      -61.943     129.691     
+FSP     C12     C       CH2     0       55.436      -60.801     129.428     
+FSP     C13     C       CR6     0       56.790      -61.209     128.894     
+FSP     C14     C       CR16    0       57.911      -61.188     129.712     
+FSP     C15     C       CR16    0       59.160      -61.560     129.229     
+FSP     C16     C       CR6     0       59.259      -61.949     127.922     
+FSP     F17     F       F       0       60.479      -62.315     127.441     
+FSP     C18     C       CR16    0       58.185      -61.985     127.076     
+FSP     C19     C       CR16    0       56.942      -61.610     127.573     
+FSP     C20     C       CH2     0       53.711      -62.456     128.422     
+FSP     C21     C       CH2     0       52.371      -62.059     129.056     
+FSP     C22     C       CH2     0       53.094      -61.430     130.253     
+FSP     C25     C       C       0       56.887      -64.300     136.677     
+FSP     O26     O       O       0       56.857      -65.392     136.112     
+FSP     N27     N       NH1     0       56.516      -64.176     137.977     
+FSP     C28     C       CR5     0       56.563      -65.159     138.975     
+FSP     C29     C       CR15    0       57.373      -66.266     139.077     
+FSP     C30     C       CR15    0       57.029      -66.894     140.220     
+FSP     N31     N       NRD5    0       56.053      -66.241     140.840     
+FSP     N32     N       NR5     0       55.774      -65.169     140.061     
+FSP     C23     C       C       0       57.339      -63.133     135.919     
+FSP     O24     O       O       0       57.266      -62.025     136.458     
+FSP     H11     H       H       0       63.201      -62.023     133.632     
+FSP     H12     H       H       0       62.520      -63.450     133.485     
+FSP     H13     H       H       0       62.162      -62.524     134.724     
+FSP     H21     H       H       0       61.521      -61.857     132.043     
+FSP     H22     H       H       0       61.108      -60.996     133.310     
+FSP     H31     H       H       0       60.147      -63.633     132.981     
+FSP     H32A    H       H       0       59.376      -62.402     132.344     
+FSP     H41     H       H       0       59.074      -61.494     134.517     
+FSP     H42     H       H       0       59.800      -62.762     135.133     
+FSP     H5      H       H       0       58.040      -64.125     134.254     
+FSP     HN6     H       H       0       56.707      -61.767     133.636     
+FSP     H101    H       H       0       54.342      -63.672     130.775     
+FSP     H102    H       H       0       55.713      -63.533     129.993     
+FSP     H121    H       H       0       55.567      -60.300     130.260     
+FSP     H122    H       H       0       55.028      -60.185     128.784     
+FSP     H14     H       H       0       57.826      -60.918     130.612     
+FSP     H15     H       H       0       59.917      -61.546     129.785     
+FSP     H18     H       H       0       58.285      -62.257     126.182     
+FSP     H19     H       H       0       56.191      -61.629     127.003     
+FSP     H201    H       H       0       53.930      -61.955     127.607     
+FSP     H202    H       H       0       53.811      -63.421     128.271     
+FSP     H211    H       H       0       51.811      -62.825     129.296     
+FSP     H212    H       H       0       51.863      -61.414     128.523     
+FSP     H221    H       H       0       53.028      -60.450     130.290     
+FSP     H222    H       H       0       52.852      -61.824     131.119     
+FSP     H27     H       H       0       56.208      -63.395     138.222     
+FSP     H29     H       H       0       58.035      -66.533     138.463     
+FSP     H30     H       H       0       57.426      -67.688     140.540     
+FSP     H32     H       H       0       55.151      -64.584     140.272     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FSP          C1          C2      SINGLE       n     1.510  0.0200     1.510  0.0200
+FSP          C2          C3      SINGLE       n     1.507  0.0200     1.507  0.0200
+FSP          C3          C4      SINGLE       n     1.523  0.0114     1.523  0.0114
+FSP          C4          C5      SINGLE       n     1.530  0.0138     1.530  0.0138
+FSP          C5          N6      SINGLE       n     1.454  0.0100     1.454  0.0100
+FSP          C5         C23      SINGLE       n     1.524  0.0151     1.524  0.0151
+FSP          N6          C7      SINGLE       n     1.344  0.0100     1.344  0.0100
+FSP          C7          O8      DOUBLE       n     1.210  0.0102     1.210  0.0102
+FSP          C7          O9      SINGLE       n     1.341  0.0111     1.341  0.0111
+FSP          O9         C10      SINGLE       n     1.447  0.0100     1.447  0.0100
+FSP         C10         C11      SINGLE       n     1.498  0.0126     1.498  0.0126
+FSP         C11         C12      SINGLE       n     1.524  0.0119     1.524  0.0119
+FSP         C11         C20      SINGLE       n     1.558  0.0130     1.558  0.0130
+FSP         C11         C22      SINGLE       n     1.558  0.0130     1.558  0.0130
+FSP         C12         C13      SINGLE       n     1.509  0.0100     1.509  0.0100
+FSP         C13         C14      DOUBLE       y     1.384  0.0105     1.384  0.0105
+FSP         C13         C19      SINGLE       y     1.384  0.0105     1.384  0.0105
+FSP         C14         C15      SINGLE       y     1.386  0.0100     1.386  0.0100
+FSP         C15         C16      DOUBLE       y     1.363  0.0118     1.363  0.0118
+FSP         C16         F17      SINGLE       n     1.361  0.0100     1.361  0.0100
+FSP         C16         C18      SINGLE       y     1.363  0.0118     1.363  0.0118
+FSP         C18         C19      DOUBLE       y     1.386  0.0100     1.386  0.0100
+FSP         C20         C21      SINGLE       n     1.535  0.0159     1.535  0.0159
+FSP         C21         C22      SINGLE       n     1.535  0.0159     1.535  0.0159
+FSP         C25         O26      DOUBLE       n     1.228  0.0122     1.228  0.0122
+FSP         C25         N27      SINGLE       n     1.348  0.0157     1.348  0.0157
+FSP         C25         C23      SINGLE       n     1.445  0.0200     1.445  0.0200
+FSP         N27         C28      SINGLE       n     1.397  0.0143     1.397  0.0143
+FSP         C28         C29      DOUBLE       y     1.377  0.0200     1.377  0.0200
+FSP         C28         N32      SINGLE       y     1.342  0.0116     1.342  0.0116
+FSP         C29         C30      SINGLE       y     1.351  0.0200     1.351  0.0200
+FSP         C30         N31      DOUBLE       y     1.326  0.0168     1.326  0.0168
+FSP         N31         N32      SINGLE       y     1.352  0.0135     1.352  0.0135
+FSP         C23         O24      DOUBLE       n     1.230  0.0184     1.230  0.0184
+FSP          C1         H11      SINGLE       n     1.089  0.0100     0.973  0.0157
+FSP          C1         H12      SINGLE       n     1.089  0.0100     0.973  0.0157
+FSP          C1         H13      SINGLE       n     1.089  0.0100     0.973  0.0157
+FSP          C2         H21      SINGLE       n     1.089  0.0100     0.982  0.0155
+FSP          C2         H22      SINGLE       n     1.089  0.0100     0.982  0.0155
+FSP          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0163
+FSP          C3        H32A      SINGLE       n     1.089  0.0100     0.981  0.0163
+FSP          C4         H41      SINGLE       n     1.089  0.0100     0.980  0.0160
+FSP          C4         H42      SINGLE       n     1.089  0.0100     0.980  0.0160
+FSP          C5          H5      SINGLE       n     1.089  0.0100     0.989  0.0198
+FSP          N6         HN6      SINGLE       n     1.016  0.0100     0.875  0.0200
+FSP         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0167
+FSP         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0167
+FSP         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0157
+FSP         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0157
+FSP         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0173
+FSP         C15         H15      SINGLE       n     1.082  0.0130     0.940  0.0141
+FSP         C18         H18      SINGLE       n     1.082  0.0130     0.940  0.0141
+FSP         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0173
+FSP         C20        H201      SINGLE       n     1.089  0.0100     0.982  0.0177
+FSP         C20        H202      SINGLE       n     1.089  0.0100     0.982  0.0177
+FSP         C21        H211      SINGLE       n     1.089  0.0100     0.979  0.0141
+FSP         C21        H212      SINGLE       n     1.089  0.0100     0.979  0.0141
+FSP         C22        H221      SINGLE       n     1.089  0.0100     0.982  0.0177
+FSP         C22        H222      SINGLE       n     1.089  0.0100     0.982  0.0177
+FSP         N27         H27      SINGLE       n     1.016  0.0100     0.873  0.0200
+FSP         C29         H29      SINGLE       n     1.082  0.0130     0.941  0.0146
+FSP         C30         H30      SINGLE       n     1.082  0.0130     0.944  0.0172
+FSP         N32         H32      SINGLE       n     1.016  0.0100     0.881  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FSP          C2          C1         H11     109.554    1.50
+FSP          C2          C1         H12     109.554    1.50
+FSP          C2          C1         H13     109.554    1.50
+FSP         H11          C1         H12     109.380    1.50
+FSP         H11          C1         H13     109.380    1.50
+FSP         H12          C1         H13     109.380    1.50
+FSP          C1          C2          C3     113.719    3.00
+FSP          C1          C2         H21     108.918    1.50
+FSP          C1          C2         H22     108.918    1.50
+FSP          C3          C2         H21     108.758    1.50
+FSP          C3          C2         H22     108.758    1.50
+FSP         H21          C2         H22     107.763    1.50
+FSP          C2          C3          C4     112.280    2.92
+FSP          C2          C3         H31     108.653    1.50
+FSP          C2          C3        H32A     108.653    1.50
+FSP          C4          C3         H31     108.601    1.50
+FSP          C4          C3        H32A     108.601    1.50
+FSP         H31          C3        H32A     107.646    1.50
+FSP          C3          C4          C5     113.702    1.73
+FSP          C3          C4         H41     108.650    1.50
+FSP          C3          C4         H42     108.650    1.50
+FSP          C5          C4         H41     108.562    1.50
+FSP          C5          C4         H42     108.562    1.50
+FSP         H41          C4         H42     107.844    1.50
+FSP          C4          C5          N6     111.076    1.75
+FSP          C4          C5         C23     110.376    1.58
+FSP          C4          C5          H5     108.223    1.50
+FSP          N6          C5         C23     111.216    2.49
+FSP          N6          C5          H5     108.161    1.50
+FSP         C23          C5          H5     107.980    1.50
+FSP          C5          N6          C7     120.995    1.63
+FSP          C5          N6         HN6     119.380    1.92
+FSP          C7          N6         HN6     119.625    2.20
+FSP          N6          C7          O8     124.626    1.50
+FSP          N6          C7          O9     110.098    1.50
+FSP          O8          C7          O9     125.285    1.50
+FSP          C7          O9         C10     118.635    2.04
+FSP          O9         C10         C11     107.147    2.67
+FSP          O9         C10        H101     110.120    1.50
+FSP          O9         C10        H102     110.120    1.50
+FSP         C11         C10        H101     109.404    1.50
+FSP         C11         C10        H102     109.404    1.50
+FSP        H101         C10        H102     108.259    1.50
+FSP         C10         C11         C12     110.554    1.67
+FSP         C10         C11         C20     116.215    3.00
+FSP         C10         C11         C22     116.215    3.00
+FSP         C12         C11         C20     116.215    3.00
+FSP         C12         C11         C22     116.215    3.00
+FSP         C20         C11         C22      89.015    2.00
+FSP         C11         C12         C13     112.137    2.96
+FSP         C11         C12        H121     109.263    1.50
+FSP         C11         C12        H122     109.263    1.50
+FSP         C13         C12        H121     108.951    1.50
+FSP         C13         C12        H122     108.951    1.50
+FSP        H121         C12        H122     107.814    1.50
+FSP         C12         C13         C14     120.750    1.50
+FSP         C12         C13         C19     120.750    1.50
+FSP         C14         C13         C19     118.499    1.50
+FSP         C13         C14         C15     120.903    1.50
+FSP         C13         C14         H14     119.593    1.50
+FSP         C15         C14         H14     119.505    1.50
+FSP         C14         C15         C16     118.318    1.50
+FSP         C14         C15         H15     120.911    1.50
+FSP         C16         C15         H15     120.771    1.50
+FSP         C15         C16         F17     118.472    1.50
+FSP         C15         C16         C18     123.056    1.50
+FSP         F17         C16         C18     118.472    1.50
+FSP         C16         C18         C19     118.318    1.50
+FSP         C16         C18         H18     120.771    1.50
+FSP         C19         C18         H18     120.911    1.50
+FSP         C13         C19         C18     120.903    1.50
+FSP         C13         C19         H19     119.593    1.50
+FSP         C18         C19         H19     119.505    1.50
+FSP         C11         C20         C21      88.919    1.50
+FSP         C11         C20        H201     113.704    1.50
+FSP         C11         C20        H202     113.704    1.50
+FSP         C21         C20        H201     114.159    1.50
+FSP         C21         C20        H202     114.159    1.50
+FSP        H201         C20        H202     110.714    1.50
+FSP         C20         C21         C22      90.293    1.50
+FSP         C20         C21        H211     113.592    1.60
+FSP         C20         C21        H212     113.592    1.60
+FSP         C22         C21        H211     113.592    1.60
+FSP         C22         C21        H212     113.592    1.60
+FSP        H211         C21        H212     110.794    1.50
+FSP         C11         C22         C21      88.919    1.50
+FSP         C11         C22        H221     113.704    1.50
+FSP         C11         C22        H222     113.704    1.50
+FSP         C21         C22        H221     114.159    1.50
+FSP         C21         C22        H222     114.159    1.50
+FSP        H221         C22        H222     110.714    1.50
+FSP         O26         C25         N27     121.190    1.77
+FSP         O26         C25         C23     118.436    3.00
+FSP         N27         C25         C23     120.374    3.00
+FSP         C25         N27         C28     125.634    2.23
+FSP         C25         N27         H27     116.921    2.52
+FSP         C28         N27         H27     117.445    2.82
+FSP         N27         C28         C29     128.457    3.00
+FSP         N27         C28         N32     124.643    1.89
+FSP         C29         C28         N32     106.899    1.50
+FSP         C28         C29         C30     106.994    1.50
+FSP         C28         C29         H29     126.283    1.50
+FSP         C30         C29         H29     126.723    1.50
+FSP         C29         C30         N31     110.723    1.57
+FSP         C29         C30         H30     124.865    2.10
+FSP         N31         C30         H30     124.411    1.50
+FSP         C30         N31         N32     105.230    1.50
+FSP         C28         N32         N31     110.153    1.50
+FSP         C28         N32         H32     127.441    3.00
+FSP         N31         N32         H32     122.406    3.00
+FSP          C5         C23         C25     122.837    3.00
+FSP          C5         C23         O24     117.794    1.50
+FSP         C25         C23         O24     119.368    2.59
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FSP            sp3_sp3_28         H11          C1          C2          C3     180.000    10.0     3
+FSP            sp3_sp3_76         C10         C11         C12         C13     180.000    10.0     3
+FSP             sp3_sp3_7         C10         C11         C20         C21     180.000    10.0     3
+FSP            sp3_sp3_88         C10         C11         C22         C21      60.000    10.0     3
+FSP            sp2_sp3_14         C14         C13         C12         C11     -90.000    10.0     6
+FSP       const_sp2_sp2_3         C12         C13         C14         C15     180.000     5.0     2
+FSP              const_35         C12         C13         C19         C18     180.000    10.0     2
+FSP       const_sp2_sp2_5         C13         C14         C15         C16       0.000     5.0     2
+FSP              const_10         C14         C15         C16         F17     180.000    10.0     2
+FSP              const_15         F17         C16         C18         C19     180.000    10.0     2
+FSP              const_17         C16         C18         C19         C13       0.000    10.0     2
+FSP            sp3_sp3_10         C11         C20         C21         C22     -60.000    10.0     3
+FSP            sp3_sp3_37          C1          C2          C3          C4     180.000    10.0     3
+FSP            sp3_sp3_19         C20         C21         C22         C11      60.000    10.0     3
+FSP             sp2_sp2_9         O26         C25         N27         C28       0.000     5.0     2
+FSP            sp2_sp2_12          C5         C23         C25         O26       0.000     5.0     2
+FSP            sp2_sp2_15         C29         C28         N27         C25     180.000     5.0     2
+FSP              const_23         N27         C28         C29         C30     180.000    10.0     2
+FSP              const_39         N27         C28         N32         N31     180.000    10.0     2
+FSP              const_25         C28         C29         C30         N31       0.000    10.0     2
+FSP              const_29         C29         C30         N31         N32       0.000    10.0     2
+FSP              const_31         C30         N31         N32         C28       0.000    10.0     2
+FSP            sp3_sp3_46          C2          C3          C4          C5     180.000    10.0     3
+FSP            sp3_sp3_55          C3          C4          C5          N6     180.000    10.0     3
+FSP             sp2_sp3_7         C25         C23          C5          C4       0.000    10.0     6
+FSP             sp2_sp3_1          C7          N6          C5          C4       0.000    10.0     6
+FSP             sp2_sp2_3          O8          C7          N6          C5       0.000     5.0     2
+FSP             sp2_sp2_5          N6          C7          O9         C10     180.000     5.0     2
+FSP            sp3_sp3_64         C11         C10          O9          C7     180.000    10.0     3
+FSP            sp3_sp3_68          O9         C10         C11         C12     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FSP    chir_1    C5    N6    C23    C4    positive
+FSP    chir_2    C11    C10    C12    C20    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FSP    plan-1         C12   0.020
+FSP    plan-1         C13   0.020
+FSP    plan-1         C14   0.020
+FSP    plan-1         C15   0.020
+FSP    plan-1         C16   0.020
+FSP    plan-1         C18   0.020
+FSP    plan-1         C19   0.020
+FSP    plan-1         F17   0.020
+FSP    plan-1         H14   0.020
+FSP    plan-1         H15   0.020
+FSP    plan-1         H18   0.020
+FSP    plan-1         H19   0.020
+FSP    plan-2         C28   0.020
+FSP    plan-2         C29   0.020
+FSP    plan-2         C30   0.020
+FSP    plan-2         H29   0.020
+FSP    plan-2         H30   0.020
+FSP    plan-2         H32   0.020
+FSP    plan-2         N27   0.020
+FSP    plan-2         N31   0.020
+FSP    plan-2         N32   0.020
+FSP    plan-3          C5   0.020
+FSP    plan-3          C7   0.020
+FSP    plan-3         HN6   0.020
+FSP    plan-3          N6   0.020
+FSP    plan-4          C7   0.020
+FSP    plan-4          N6   0.020
+FSP    plan-4          O8   0.020
+FSP    plan-4          O9   0.020
+FSP    plan-5         C23   0.020
+FSP    plan-5         C25   0.020
+FSP    plan-5         N27   0.020
+FSP    plan-5         O26   0.020
+FSP    plan-6         C25   0.020
+FSP    plan-6         C28   0.020
+FSP    plan-6         H27   0.020
+FSP    plan-6         N27   0.020
+FSP    plan-7         C23   0.020
+FSP    plan-7         C25   0.020
+FSP    plan-7          C5   0.020
+FSP    plan-7         O24   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FSP           SMILES              ACDLabs 10.04                                                                                                                                         O=C(C(=O)C(NC(=O)OCC2(Cc1ccc(F)cc1)CCC2)CCCC)Nc3ccnn3
+FSP SMILES_CANONICAL               CACTVS 3.341                                                                                                                                  CCCC[C@H](NC(=O)OCC1(CCC1)Cc2ccc(F)cc2)C(=O)C(=O)Nc3[nH]ncc3
+FSP           SMILES               CACTVS 3.341                                                                                                                                   CCCC[CH](NC(=O)OCC1(CCC1)Cc2ccc(F)cc2)C(=O)C(=O)Nc3[nH]ncc3
+FSP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                 CCCC[C@@H](C(=O)C(=O)Nc1ccn[nH]1)NC(=O)OCC2(CCC2)Cc3ccc(cc3)F
+FSP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                      CCCCC(C(=O)C(=O)Nc1ccn[nH]1)NC(=O)OCC2(CCC2)Cc3ccc(cc3)F
+FSP            InChI                InChI  1.03 InChI=1S/C23H29FN4O4/c1-2-3-5-18(20(29)21(30)27-19-10-13-25-28-19)26-22(31)32-15-23(11-4-12-23)14-16-6-8-17(24)9-7-16/h6-10,13,18H,2-5,11-12,14-15H2,1H3,(H,26,31)(H2,25,27,28,30)/t18-/m0/s1
+FSP         InChIKey                InChI  1.03                                                                                                                                                                   QTPYRNAKLBXKNP-SFHVURJKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FSP acedrg               243         "dictionary generator"                  
+FSP acedrg_database      11          "data source"                           
+FSP rdkit                2017.03.2   "Chemoinformatics tool"
+FSP refmac5              5.8.0238    "optimization tool"                     

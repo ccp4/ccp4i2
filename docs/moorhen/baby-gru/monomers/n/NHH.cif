@@ -1,0 +1,241 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NHH     NHH      "N'-{4-[2-(DIAMINOMETHYLIDENE)HYDRAZONO]CYCLOHEXYLIDEN}AMINOMETHANEHYDRAZONAMIDE"     NON-POLYMER     32     16     .     
+#
+data_comp_NHH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NHH     N7      N       NH2     0       -2.452      15.870      24.432      
+NHH     C8      C       C       0       -2.113      16.621      23.377      
+NHH     N8      N       NH2     0       -2.106      17.954      23.536      
+NHH     N6      N       N       0       -1.796      15.985      22.200      
+NHH     N5      N       N       0       -1.423      16.702      21.043      
+NHH     C4      C       CR6     0       -1.100      16.002      20.021      
+NHH     C5      C       CH2     0       -0.698      16.690      18.751      
+NHH     C6      C       CH2     0       -1.365      16.090      17.509      
+NHH     C3      C       CH2     0       -1.078      14.501      19.950      
+NHH     C2      C       CH2     0       -0.607      13.944      18.602      
+NHH     C1      C       CR6     0       -1.287      14.591      17.432      
+NHH     N1      N       N       0       -1.740      13.862      16.482      
+NHH     N2      N       N       0       -2.375      14.540      15.420      
+NHH     C7      C       C       0       -2.953      13.867      14.371      
+NHH     N3      N       NH2     0       -2.974      12.529      14.257      
+NHH     N4      N       NH2     0       -3.532      14.583      13.400      
+NHH     HN71    H       H       0       -2.466      14.991      24.358      
+NHH     HN72    H       H       0       -2.661      16.248      25.200      
+NHH     HN81    H       H       0       -1.888      18.480      22.865      
+NHH     HN82    H       H       0       -2.319      18.309      24.315      
+NHH     H51     H       H       0       -0.935      17.638      18.810      
+NHH     H52     H       H       0       0.274       16.636      18.650      
+NHH     H61     H       H       0       -0.943      16.470      16.713      
+NHH     H62     H       H       0       -2.306      16.358      17.498      
+NHH     H31     H       H       0       -1.978      14.163      20.131      
+NHH     H32     H       H       0       -0.489      14.159      20.651      
+NHH     H21     H       H       0       -0.780      12.981      18.581      
+NHH     H22     H       H       0       0.359       14.071      18.522      
+NHH     HN31    H       H       0       -3.359      12.149      13.561      
+NHH     HN32    H       H       0       -2.603      12.025      14.876      
+NHH     HN41    H       H       0       -3.912      14.180      12.714      
+NHH     HN42    H       H       0       -3.534      15.464      13.446      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NHH          N7          C8      SINGLE       n     1.329  0.0188     1.329  0.0188
+NHH          C8          N8      SINGLE       n     1.329  0.0188     1.329  0.0188
+NHH          C8          N6      DOUBLE       n     1.361  0.0200     1.361  0.0200
+NHH          N6          N5      SINGLE       n     1.401  0.0200     1.401  0.0200
+NHH          N5          C4      DOUBLE       n     1.276  0.0100     1.276  0.0100
+NHH          C4          C5      SINGLE       n     1.497  0.0100     1.497  0.0100
+NHH          C4          C3      SINGLE       n     1.497  0.0100     1.497  0.0100
+NHH          C5          C6      SINGLE       n     1.529  0.0118     1.529  0.0118
+NHH          C6          C1      SINGLE       n     1.497  0.0100     1.497  0.0100
+NHH          C3          C2      SINGLE       n     1.529  0.0118     1.529  0.0118
+NHH          C2          C1      SINGLE       n     1.497  0.0100     1.497  0.0100
+NHH          C1          N1      DOUBLE       n     1.276  0.0100     1.276  0.0100
+NHH          N1          N2      SINGLE       n     1.401  0.0200     1.401  0.0200
+NHH          N2          C7      DOUBLE       n     1.361  0.0200     1.361  0.0200
+NHH          C7          N3      SINGLE       n     1.329  0.0188     1.329  0.0188
+NHH          C7          N4      SINGLE       n     1.329  0.0188     1.329  0.0188
+NHH          N7        HN71      SINGLE       n     1.016  0.0100     0.881  0.0200
+NHH          N7        HN72      SINGLE       n     1.016  0.0100     0.881  0.0200
+NHH          N8        HN81      SINGLE       n     1.016  0.0100     0.881  0.0200
+NHH          N8        HN82      SINGLE       n     1.016  0.0100     0.881  0.0200
+NHH          C5         H51      SINGLE       n     1.089  0.0100     0.978  0.0152
+NHH          C5         H52      SINGLE       n     1.089  0.0100     0.978  0.0152
+NHH          C6         H61      SINGLE       n     1.089  0.0100     0.978  0.0152
+NHH          C6         H62      SINGLE       n     1.089  0.0100     0.978  0.0152
+NHH          C3         H31      SINGLE       n     1.089  0.0100     0.978  0.0152
+NHH          C3         H32      SINGLE       n     1.089  0.0100     0.978  0.0152
+NHH          C2         H21      SINGLE       n     1.089  0.0100     0.978  0.0152
+NHH          C2         H22      SINGLE       n     1.089  0.0100     0.978  0.0152
+NHH          N3        HN31      SINGLE       n     1.016  0.0100     0.881  0.0200
+NHH          N3        HN32      SINGLE       n     1.016  0.0100     0.881  0.0200
+NHH          N4        HN41      SINGLE       n     1.016  0.0100     0.881  0.0200
+NHH          N4        HN42      SINGLE       n     1.016  0.0100     0.881  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NHH          C8          N7        HN71     119.815    2.00
+NHH          C8          N7        HN72     119.815    2.00
+NHH        HN71          N7        HN72     120.370    2.09
+NHH          N7          C8          N8     117.541    1.50
+NHH          N7          C8          N6     121.230    3.00
+NHH          N8          C8          N6     121.230    3.00
+NHH          C8          N8        HN81     119.815    2.00
+NHH          C8          N8        HN82     119.815    2.00
+NHH        HN81          N8        HN82     120.370    2.09
+NHH          C8          N6          N5     115.985    3.00
+NHH          N6          N5          C4     113.381    1.89
+NHH          N5          C4          C5     122.963    3.00
+NHH          N5          C4          C3     122.963    3.00
+NHH          C5          C4          C3     114.075    1.50
+NHH          C4          C5          C6     112.021    2.38
+NHH          C4          C5         H51     109.445    1.50
+NHH          C4          C5         H52     109.445    1.50
+NHH          C6          C5         H51     109.431    1.50
+NHH          C6          C5         H52     109.431    1.50
+NHH         H51          C5         H52     108.063    1.51
+NHH          C5          C6          C1     112.021    2.38
+NHH          C5          C6         H61     109.431    1.50
+NHH          C5          C6         H62     109.431    1.50
+NHH          C1          C6         H61     109.445    1.50
+NHH          C1          C6         H62     109.445    1.50
+NHH         H61          C6         H62     108.063    1.51
+NHH          C4          C3          C2     112.021    2.38
+NHH          C4          C3         H31     109.445    1.50
+NHH          C4          C3         H32     109.445    1.50
+NHH          C2          C3         H31     109.431    1.50
+NHH          C2          C3         H32     109.431    1.50
+NHH         H31          C3         H32     108.063    1.51
+NHH          C3          C2          C1     112.021    2.38
+NHH          C3          C2         H21     109.431    1.50
+NHH          C3          C2         H22     109.431    1.50
+NHH          C1          C2         H21     109.445    1.50
+NHH          C1          C2         H22     109.445    1.50
+NHH         H21          C2         H22     108.063    1.51
+NHH          C6          C1          C2     114.075    1.50
+NHH          C6          C1          N1     122.963    3.00
+NHH          C2          C1          N1     122.963    3.00
+NHH          C1          N1          N2     113.381    1.89
+NHH          N1          N2          C7     115.985    3.00
+NHH          N2          C7          N3     121.230    3.00
+NHH          N2          C7          N4     121.230    3.00
+NHH          N3          C7          N4     117.541    1.50
+NHH          C7          N3        HN31     119.815    2.00
+NHH          C7          N3        HN32     119.815    2.00
+NHH        HN31          N3        HN32     120.370    2.09
+NHH          C7          N4        HN41     119.815    2.00
+NHH          C7          N4        HN42     119.815    2.00
+NHH        HN41          N4        HN42     120.370    2.09
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NHH             sp2_sp2_3          N8          C8          N7        HN71       0.000     5.0     2
+NHH            sp2_sp2_14          C6          C1          N1          N2     180.000     5.0     2
+NHH            sp2_sp2_16          C1          N1          N2          C7     180.000     5.0     2
+NHH            sp2_sp2_17          N3          C7          N2          N1     180.000     5.0     2
+NHH            sp2_sp2_21          N2          C7          N3        HN31       0.000     5.0     2
+NHH            sp2_sp2_25          N2          C7          N4        HN41       0.000     5.0     2
+NHH             sp2_sp2_7          N7          C8          N8        HN81       0.000     5.0     2
+NHH             sp2_sp2_9          N7          C8          N6          N5     180.000     5.0     2
+NHH            sp2_sp2_11          C4          N5          N6          C8     180.000     5.0     2
+NHH            sp2_sp2_12          C5          C4          N5          N6     180.000     5.0     2
+NHH             sp2_sp3_4          N5          C4          C5          C6     180.000    10.0     6
+NHH            sp2_sp3_22          N5          C4          C3          C2     180.000    10.0     6
+NHH             sp3_sp3_1          C4          C5          C6          C1     -60.000    10.0     3
+NHH            sp2_sp3_10          N1          C1          C6          C5     180.000    10.0     6
+NHH            sp3_sp3_10          C1          C2          C3          C4      60.000    10.0     3
+NHH            sp2_sp3_16          N1          C1          C2          C3     180.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NHH    plan-1          C8   0.020
+NHH    plan-1        HN71   0.020
+NHH    plan-1        HN72   0.020
+NHH    plan-1          N7   0.020
+NHH    plan-2          C8   0.020
+NHH    plan-2          N6   0.020
+NHH    plan-2          N7   0.020
+NHH    plan-2          N8   0.020
+NHH    plan-3          C8   0.020
+NHH    plan-3        HN81   0.020
+NHH    plan-3        HN82   0.020
+NHH    plan-3          N8   0.020
+NHH    plan-4          C3   0.020
+NHH    plan-4          C4   0.020
+NHH    plan-4          C5   0.020
+NHH    plan-4          N5   0.020
+NHH    plan-5          C1   0.020
+NHH    plan-5          C2   0.020
+NHH    plan-5          C6   0.020
+NHH    plan-5          N1   0.020
+NHH    plan-6          C7   0.020
+NHH    plan-6          N2   0.020
+NHH    plan-6          N3   0.020
+NHH    plan-6          N4   0.020
+NHH    plan-7          C7   0.020
+NHH    plan-7        HN31   0.020
+NHH    plan-7        HN32   0.020
+NHH    plan-7          N3   0.020
+NHH    plan-8          C7   0.020
+NHH    plan-8        HN41   0.020
+NHH    plan-8        HN42   0.020
+NHH    plan-8          N4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NHH           SMILES              ACDLabs 10.04                                                                     N(\N=C1/CC\C(=N\N=C(/N)N)CC1)=C(\N)N
+NHH SMILES_CANONICAL               CACTVS 3.341                                                                         NC(N)=N\N=C1\CC\C(CC1)=N/N=C(N)N
+NHH           SMILES               CACTVS 3.341                                                                             NC(N)=NN=C1CCC(CC1)=NN=C(N)N
+NHH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                             C1CC(=NN=C(N)N)CCC1=NN=C(N)N
+NHH           SMILES "OpenEye OEToolkits" 1.5.0                                                                             C1CC(=NN=C(N)N)CCC1=NN=C(N)N
+NHH            InChI                InChI  1.03 InChI=1S/C8H16N8/c9-7(10)15-13-5-1-2-6(4-3-5)14-16-8(11)12/h1-4H2,(H4,9,10,15)(H4,11,12,16)/b13-5-,14-6+
+NHH         InChIKey                InChI  1.03                                                                              HEPQODZXYFHKOQ-FUJGBLOQSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NHH acedrg               243         "dictionary generator"                  
+NHH acedrg_database      11          "data source"                           
+NHH rdkit                2017.03.2   "Chemoinformatics tool"
+NHH refmac5              5.8.0238    "optimization tool"                     

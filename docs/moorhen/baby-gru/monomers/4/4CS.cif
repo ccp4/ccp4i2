@@ -1,0 +1,178 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+4CS     4CS      "(4S)-2-METHYL-1,4,5,6-TETRAHYDROPYRIMIDINE-4-CARBOXYLIC ACID"     NON-POLYMER     19     10     .     
+#
+data_comp_4CS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+4CS     O       O       O       0       23.742      41.925      72.700      
+4CS     C       C       C       0       23.600      40.722      72.782      
+4CS     OXT     O       OC      -1      24.505      39.950      72.539      
+4CS     CA      C       CH1     0       22.249      40.162      73.201      
+4CS     CB      C       CH2     0       22.328      39.522      74.585      
+4CS     CAD     C       CH2     0       21.084      38.707      74.886      
+4CS     NAG     N       NR6     0       20.671      37.918      73.727      
+4CS     CAI     C       CR6     0       21.019      38.221      72.462      
+4CS     CAA     C       CH3     0       20.537      37.340      71.360      
+4CS     N       N       NRD6    0       21.775      39.250      72.146      
+4CS     HA      H       H       0       21.616      40.919      73.249      
+4CS     HB1     H       H       0       23.116      38.939      74.631      
+4CS     HB2     H       H       0       22.430      40.224      75.262      
+4CS     HAD1    H       H       0       20.354      39.312      75.146      
+4CS     HAD2    H       H       0       21.264      38.107      75.643      
+4CS     HNAG    H       H       0       20.177      37.220      73.866      
+4CS     HAA1    H       H       0       20.910      37.635      70.516      
+4CS     HAA2    H       H       0       19.570      37.379      71.316      
+4CS     HAA3    H       H       0       20.814      36.427      71.533      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+4CS           O           C      DOUBLE       n     1.213  0.0200     1.213  0.0200
+4CS           C         OXT      SINGLE       n     1.213  0.0200     1.213  0.0200
+4CS           C          CA      SINGLE       n     1.518  0.0174     1.518  0.0174
+4CS          CA          CB      SINGLE       n     1.524  0.0108     1.524  0.0108
+4CS          CA           N      SINGLE       n     1.466  0.0157     1.466  0.0157
+4CS          CB         CAD      SINGLE       n     1.515  0.0107     1.515  0.0107
+4CS         CAD         NAG      SINGLE       n     1.459  0.0100     1.459  0.0100
+4CS         NAG         CAI      SINGLE       n     1.336  0.0197     1.336  0.0197
+4CS         CAI         CAA      SINGLE       n     1.489  0.0105     1.489  0.0105
+4CS         CAI           N      DOUBLE       n     1.306  0.0189     1.306  0.0189
+4CS          CA          HA      SINGLE       n     1.089  0.0100     0.988  0.0100
+4CS          CB         HB1      SINGLE       n     1.089  0.0100     0.981  0.0161
+4CS          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0161
+4CS         CAD        HAD1      SINGLE       n     1.089  0.0100     0.983  0.0100
+4CS         CAD        HAD2      SINGLE       n     1.089  0.0100     0.983  0.0100
+4CS         NAG        HNAG      SINGLE       n     1.016  0.0100     0.866  0.0200
+4CS         CAA        HAA1      SINGLE       n     1.089  0.0100     0.969  0.0158
+4CS         CAA        HAA2      SINGLE       n     1.089  0.0100     0.969  0.0158
+4CS         CAA        HAA3      SINGLE       n     1.089  0.0100     0.969  0.0158
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+4CS           O           C         OXT     122.100    1.50
+4CS           O           C          CA     118.950    2.54
+4CS         OXT           C          CA     118.950    2.54
+4CS           C          CA          CB     111.056    2.52
+4CS           C          CA           N     108.919    3.00
+4CS           C          CA          HA     107.668    1.59
+4CS          CB          CA           N     112.961    3.00
+4CS          CB          CA          HA     108.455    1.50
+4CS           N          CA          HA     108.158    1.74
+4CS          CA          CB         CAD     111.124    1.57
+4CS          CA          CB         HB1     109.342    1.50
+4CS          CA          CB         HB2     109.342    1.50
+4CS         CAD          CB         HB1     109.398    1.50
+4CS         CAD          CB         HB2     109.398    1.50
+4CS         HB1          CB         HB2     108.019    1.50
+4CS          CB         CAD         NAG     111.088    1.71
+4CS          CB         CAD        HAD1     109.572    1.50
+4CS          CB         CAD        HAD2     109.572    1.50
+4CS         NAG         CAD        HAD1     109.700    1.50
+4CS         NAG         CAD        HAD2     109.700    1.50
+4CS        HAD1         CAD        HAD2     108.210    1.50
+4CS         CAD         NAG         CAI     123.241    2.69
+4CS         CAD         NAG        HNAG     118.224    1.71
+4CS         CAI         NAG        HNAG     118.535    2.28
+4CS         NAG         CAI         CAA     118.417    2.52
+4CS         NAG         CAI           N     123.985    2.48
+4CS         CAA         CAI           N     117.598    2.48
+4CS         CAI         CAA        HAA1     109.472    1.50
+4CS         CAI         CAA        HAA2     109.472    1.50
+4CS         CAI         CAA        HAA3     109.472    1.50
+4CS        HAA1         CAA        HAA2     109.406    1.50
+4CS        HAA1         CAA        HAA3     109.406    1.50
+4CS        HAA2         CAA        HAA3     109.406    1.50
+4CS          CA           N         CAI     118.328    2.71
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+4CS             sp2_sp3_7           O           C          CA          CB       0.000    10.0     6
+4CS             sp3_sp3_4           C          CA          CB         CAD     -60.000    10.0     3
+4CS            sp2_sp3_14         CAI           N          CA           C     120.000    10.0     6
+4CS            sp3_sp3_10         NAG         CAD          CB          CA     -60.000    10.0     3
+4CS             sp2_sp3_1         CAI         NAG         CAD          CB       0.000    10.0     6
+4CS             sp2_sp2_3         CAA         CAI         NAG         CAD     180.000     5.0     2
+4CS            sp2_sp3_16         NAG         CAI         CAA        HAA1     150.000    10.0     6
+4CS             sp2_sp2_6         CAA         CAI           N          CA     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+4CS    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+4CS    plan-1           C   0.020
+4CS    plan-1          CA   0.020
+4CS    plan-1           O   0.020
+4CS    plan-1         OXT   0.020
+4CS    plan-2         CAD   0.020
+4CS    plan-2         CAI   0.020
+4CS    plan-2        HNAG   0.020
+4CS    plan-2         NAG   0.020
+4CS    plan-3         CAA   0.020
+4CS    plan-3         CAI   0.020
+4CS    plan-3           N   0.020
+4CS    plan-3         NAG   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+4CS           SMILES              ACDLabs 10.04                                                                 O=C(O)C1N=C(NCC1)C
+4CS SMILES_CANONICAL               CACTVS 3.341                                                            CC1=N[C@@H](CCN1)C(O)=O
+4CS           SMILES               CACTVS 3.341                                                              CC1=N[CH](CCN1)C(O)=O
+4CS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                            CC1=N[C@@H](CCN1)C(=O)O
+4CS           SMILES "OpenEye OEToolkits" 1.5.0                                                                 CC1=NC(CCN1)C(=O)O
+4CS            InChI                InChI  1.03 InChI=1S/C6H10N2O2/c1-4-7-3-2-5(8-4)6(9)10/h5H,2-3H2,1H3,(H,7,8)(H,9,10)/t5-/m0/s1
+4CS         InChIKey                InChI  1.03                                                        WQXNXVUDBPYKBA-YFKPBYRVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+4CS acedrg               243         "dictionary generator"                  
+4CS acedrg_database      11          "data source"                           
+4CS rdkit                2017.03.2   "Chemoinformatics tool"
+4CS refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,320 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+P61     P61      "(2E)-3-(3-fluoro-4-hydroxyphenyl)-2-{[(Z)-{3-hydroxy-2-methyl-5-[(phosphonooxy)methyl]pyridin-4(1H)-ylidene}methyl]imino}propanoic acid"     NON-POLYMER     44     29     .     
+#
+data_comp_P61
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+P61     C       C       C       0       19.958      53.133      7.082       
+P61     F       F       F       0       23.903      53.430      3.047       
+P61     N       N       N       0       21.474      54.238      8.348       
+P61     O       O       OC      -1      19.953      52.260      7.957       
+P61     P       P       P       0       23.700      59.481      9.013       
+P61     N1      N       NR6     0       24.514      54.590      12.435      
+P61     C2      C       CR6     0       23.743      53.568      12.059      
+P61     C3      C       CR6     0       22.982      53.705      10.890      
+P61     O3      O       OH1     0       22.111      52.719      10.549      
+P61     C4      C       CR6     0       23.146      54.882      10.072      
+P61     C5      C       CR6     0       24.152      55.849      10.470      
+P61     C6      C       CR16    0       24.779      55.677      11.678      
+P61     CA      C       C       0       20.745      54.229      7.255       
+P61     CB      C       CH2     0       20.799      55.381      6.261       
+P61     CG      C       CR6     0       22.073      55.440      5.450       
+P61     OH      O       OH1     0       25.597      55.579      3.206       
+P61     CZ      C       CR6     0       24.441      55.544      3.949       
+P61     O1P     O       OP      -1      24.857      60.121      9.756       
+P61     C2A     C       CH3     0       23.714      52.348      12.915      
+P61     O2P     O       O       0       24.008      59.223      7.550       
+P61     O3P     O       OP      -1      22.389      60.217      9.218       
+P61     C4A     C       C1      0       22.331      55.114      8.821       
+P61     O4P     O       O2      0       23.498      58.026      9.683       
+P61     C5A     C       CH2     0       24.522      57.038      9.625       
+P61     CD1     C       CR16    0       22.415      54.389      4.600       
+P61     CD2     C       CR16    0       22.929      56.533      5.537       
+P61     CE1     C       CR6     0       23.580      54.454      3.869       
+P61     CE2     C       CR16    0       24.102      56.593      4.798       
+P61     OXT     O       O       0       19.261      53.021      6.070       
+P61     HN      H       H       0       24.887      54.556      13.266      
+P61     HO3     H       H       0       22.339      52.126      9.967       
+P61     H6      H       H       0       25.393      56.313      11.992      
+P61     HB      H       H       0       20.703      56.218      6.749       
+P61     HBA     H       H       0       20.048      55.316      5.646       
+P61     HOH     H       H       0       26.190      56.186      3.353       
+P61     H2A     H       H       0       23.416      51.586      12.398      
+P61     H2AA    H       H       0       23.108      52.489      13.658      
+P61     H2AB    H       H       0       24.603      52.174      13.257      
+P61     H4A     H       H       0       22.435      55.921      8.367       
+P61     H5A     H       H       0       24.650      56.754      8.695       
+P61     H5AA    H       H       0       25.365      57.424      9.942       
+P61     HD1     H       H       0       21.838      53.623      4.526       
+P61     HD2     H       H       0       22.709      57.250      6.109       
+P61     HE2     H       H       0       24.675      57.353      4.870       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+P61           C         OXT      DOUBLE       n     1.230  0.0200     1.230  0.0200
+P61           C          CA      SINGLE       n     1.331  0.0200     1.331  0.0200
+P61           C           O      SINGLE       n     1.230  0.0200     1.230  0.0200
+P61           F         CE1      SINGLE       n     1.352  0.0137     1.352  0.0137
+P61           N          CA      DOUBLE       n     1.294  0.0197     1.294  0.0197
+P61           N         C4A      SINGLE       n     1.300  0.0200     1.300  0.0200
+P61           P         O2P      DOUBLE       n     1.517  0.0192     1.517  0.0192
+P61           P         O1P      SINGLE       n     1.517  0.0192     1.517  0.0192
+P61           P         O3P      SINGLE       n     1.517  0.0192     1.517  0.0192
+P61           P         O4P      SINGLE       n     1.614  0.0178     1.614  0.0178
+P61          N1          C6      SINGLE       n     1.347  0.0100     1.347  0.0100
+P61          N1          C2      SINGLE       n     1.330  0.0100     1.330  0.0100
+P61          C2          C3      DOUBLE       n     1.395  0.0100     1.395  0.0100
+P61          C2         C2A      SINGLE       n     1.488  0.0100     1.488  0.0100
+P61          C3          C4      SINGLE       n     1.413  0.0200     1.413  0.0200
+P61          C3          O3      SINGLE       n     1.355  0.0200     1.355  0.0200
+P61          C4         C4A      DOUBLE       n     1.485  0.0200     1.485  0.0200
+P61          C4          C5      SINGLE       n     1.425  0.0200     1.425  0.0200
+P61          C5         C5A      SINGLE       n     1.502  0.0100     1.502  0.0100
+P61          C5          C6      DOUBLE       n     1.368  0.0100     1.368  0.0100
+P61          CA          CB      SINGLE       n     1.502  0.0200     1.502  0.0200
+P61          CB          CG      SINGLE       n     1.510  0.0105     1.510  0.0105
+P61          CG         CD1      DOUBLE       y     1.390  0.0100     1.390  0.0100
+P61          CG         CD2      SINGLE       y     1.386  0.0100     1.386  0.0100
+P61          OH          CZ      SINGLE       n     1.374  0.0155     1.374  0.0155
+P61          CZ         CE1      DOUBLE       y     1.388  0.0100     1.388  0.0100
+P61          CZ         CE2      SINGLE       y     1.388  0.0104     1.388  0.0104
+P61         O4P         C5A      SINGLE       n     1.425  0.0152     1.425  0.0152
+P61         CD1         CE1      SINGLE       y     1.373  0.0100     1.373  0.0100
+P61         CD2         CE2      DOUBLE       y     1.385  0.0100     1.385  0.0100
+P61          N1          HN      SINGLE       n     1.016  0.0100     0.910  0.0200
+P61          O3         HO3      SINGLE       n     0.966  0.0059     0.861  0.0200
+P61          C6          H6      SINGLE       n     1.082  0.0130     0.938  0.0200
+P61          CB          HB      SINGLE       n     1.089  0.0100     0.974  0.0135
+P61          CB         HBA      SINGLE       n     1.089  0.0100     0.974  0.0135
+P61          OH         HOH      SINGLE       n     0.966  0.0059     0.861  0.0200
+P61         C2A         H2A      SINGLE       n     1.089  0.0100     0.969  0.0150
+P61         C2A        H2AA      SINGLE       n     1.089  0.0100     0.969  0.0150
+P61         C2A        H2AB      SINGLE       n     1.089  0.0100     0.969  0.0150
+P61         C4A         H4A      SINGLE       n     1.082  0.0130     0.933  0.0100
+P61         C5A         H5A      SINGLE       n     1.089  0.0100     0.980  0.0156
+P61         C5A        H5AA      SINGLE       n     1.089  0.0100     0.980  0.0156
+P61         CD1         HD1      SINGLE       n     1.082  0.0130     0.961  0.0200
+P61         CD2         HD2      SINGLE       n     1.082  0.0130     0.943  0.0173
+P61         CE2         HE2      SINGLE       n     1.082  0.0130     0.955  0.0123
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+P61         OXT           C          CA     118.654    3.00
+P61         OXT           C           O     122.692    1.63
+P61          CA           C           O     118.654    3.00
+P61          CA           N         C4A     123.564    3.00
+P61         O2P           P         O1P     112.864    1.69
+P61         O2P           P         O3P     112.864    1.69
+P61         O2P           P         O4P     105.808    2.07
+P61         O1P           P         O3P     112.864    1.69
+P61         O1P           P         O4P     105.808    2.07
+P61         O3P           P         O4P     105.808    2.07
+P61          C6          N1          C2     124.032    1.50
+P61          C6          N1          HN     117.980    1.50
+P61          C2          N1          HN     117.988    1.59
+P61          N1          C2          C3     118.044    1.50
+P61          N1          C2         C2A     119.305    1.50
+P61          C3          C2         C2A     122.651    1.50
+P61          C2          C3          C4     119.729    1.50
+P61          C2          C3          O3     120.136    3.00
+P61          C4          C3          O3     120.136    3.00
+P61          C3          O3         HO3     120.000    3.00
+P61          C3          C4         C4A     120.586    2.25
+P61          C3          C4          C5     119.389    1.50
+P61         C4A          C4          C5     120.025    1.71
+P61          C4          C5         C5A     121.796    1.50
+P61          C4          C5          C6     118.909    1.50
+P61         C5A          C5          C6     119.295    1.50
+P61          N1          C6          C5     119.897    1.50
+P61          N1          C6          H6     119.449    1.50
+P61          C5          C6          H6     120.654    1.52
+P61           C          CA           N     117.527    3.00
+P61           C          CA          CB     120.881    3.00
+P61           N          CA          CB     121.592    3.00
+P61          CA          CB          CG     114.984    3.00
+P61          CA          CB          HB     108.750    1.50
+P61          CA          CB         HBA     108.750    1.50
+P61          CG          CB          HB     108.439    1.50
+P61          CG          CB         HBA     108.439    1.50
+P61          HB          CB         HBA     107.729    1.50
+P61          CB          CG         CD1     120.484    1.50
+P61          CB          CG         CD2     120.842    1.50
+P61         CD1          CG         CD2     118.675    1.50
+P61          CZ          OH         HOH     120.000    3.00
+P61          OH          CZ         CE1     120.722    3.00
+P61          OH          CZ         CE2     120.722    3.00
+P61         CE1          CZ         CE2     118.557    1.50
+P61          C2         C2A         H2A     109.558    1.50
+P61          C2         C2A        H2AA     109.558    1.50
+P61          C2         C2A        H2AB     109.558    1.50
+P61         H2A         C2A        H2AA     109.380    1.50
+P61         H2A         C2A        H2AB     109.380    1.50
+P61        H2AA         C2A        H2AB     109.380    1.50
+P61           N         C4A          C4     121.166    3.00
+P61           N         C4A         H4A     119.427    1.50
+P61          C4         C4A         H4A     119.407    1.50
+P61           P         O4P         C5A     121.496    2.55
+P61          C5         C5A         O4P     110.068    2.87
+P61          C5         C5A         H5A     109.665    1.50
+P61          C5         C5A        H5AA     109.665    1.50
+P61         O4P         C5A         H5A     109.514    1.50
+P61         O4P         C5A        H5AA     109.514    1.50
+P61         H5A         C5A        H5AA     108.221    1.50
+P61          CG         CD1         CE1     119.251    1.50
+P61          CG         CD1         HD1     120.246    1.50
+P61         CE1         CD1         HD1     120.503    1.81
+P61          CG         CD2         CE2     121.570    1.50
+P61          CG         CD2         HD2     119.269    1.50
+P61         CE2         CD2         HD2     119.162    1.50
+P61           F         CE1          CZ     118.735    1.50
+P61           F         CE1         CD1     119.370    1.50
+P61          CZ         CE1         CD1     121.895    1.50
+P61          CZ         CE2         CD2     120.053    1.50
+P61          CZ         CE2         HE2     119.905    1.50
+P61         CD2         CE2         HE2     120.043    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+P61            sp2_sp2_22         OXT           C          CA           N       0.000     5.0     2
+P61             sp2_sp2_7         C5A          C5          C6          N1     180.000     5.0     2
+P61             sp2_sp3_8          C4          C5         C5A         O4P     -90.000    10.0     6
+P61            sp2_sp3_14           C          CA          CB          CG     120.000    10.0     6
+P61            sp2_sp3_20         CD1          CG          CB          CA     -90.000    10.0     6
+P61       const_sp2_sp2_2         CE1         CD1          CG          CB     180.000     5.0     2
+P61              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+P61            sp2_sp2_39         CE1          CZ          OH         HOH     180.000     5.0     2
+P61              const_12           F         CE1          CZ          OH       0.000    10.0     2
+P61              const_14         CD2         CE2          CZ          OH     180.000    10.0     2
+P61             sp3_sp3_4          C5         C5A         O4P           P     180.000    10.0     3
+P61       const_sp2_sp2_6          CG         CD1         CE1           F     180.000     5.0     2
+P61              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+P61            sp2_sp2_25           C          CA           N         C4A     180.000     5.0     2
+P61            sp2_sp2_27          C4         C4A           N          CA     180.000     5.0     2
+P61             sp3_sp3_3         C5A         O4P           P         O2P      60.000    10.0     3
+P61             sp2_sp2_1          C5          C6          N1          C2       0.000     5.0     2
+P61            sp2_sp2_31         C2A          C2          N1          C6     180.000     5.0     2
+P61             sp2_sp3_1          N1          C2         C2A         H2A     150.000    10.0     6
+P61            sp2_sp2_20         C2A          C2          C3          O3       0.000     5.0     2
+P61            sp2_sp2_33          C2          C3          O3         HO3     180.000     5.0     2
+P61            sp2_sp2_16          O3          C3          C4         C4A       0.000     5.0     2
+P61            sp2_sp2_12         C4A          C4          C5         C5A       0.000     5.0     2
+P61            sp2_sp2_35          C3          C4         C4A           N     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+P61    chir_1    P    O4P    O1P    O3P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+P61    plan-1          CB   0.020
+P61    plan-1         CD1   0.020
+P61    plan-1         CD2   0.020
+P61    plan-1         CE1   0.020
+P61    plan-1         CE2   0.020
+P61    plan-1          CG   0.020
+P61    plan-1          CZ   0.020
+P61    plan-1           F   0.020
+P61    plan-1         HD1   0.020
+P61    plan-1         HD2   0.020
+P61    plan-1         HE2   0.020
+P61    plan-1          OH   0.020
+P61    plan-2           C   0.020
+P61    plan-2          CA   0.020
+P61    plan-2           O   0.020
+P61    plan-2         OXT   0.020
+P61    plan-3          C2   0.020
+P61    plan-3          C6   0.020
+P61    plan-3          HN   0.020
+P61    plan-3          N1   0.020
+P61    plan-4          C2   0.020
+P61    plan-4         C2A   0.020
+P61    plan-4          C3   0.020
+P61    plan-4          N1   0.020
+P61    plan-5          C2   0.020
+P61    plan-5          C3   0.020
+P61    plan-5          C4   0.020
+P61    plan-5          O3   0.020
+P61    plan-6          C3   0.020
+P61    plan-6          C4   0.020
+P61    plan-6         C4A   0.020
+P61    plan-6          C5   0.020
+P61    plan-7          C4   0.020
+P61    plan-7          C5   0.020
+P61    plan-7         C5A   0.020
+P61    plan-7          C6   0.020
+P61    plan-8          C5   0.020
+P61    plan-8          C6   0.020
+P61    plan-8          H6   0.020
+P61    plan-8          N1   0.020
+P61    plan-9           C   0.020
+P61    plan-9          CA   0.020
+P61    plan-9          CB   0.020
+P61    plan-9           N   0.020
+P61   plan-10          C4   0.020
+P61   plan-10         C4A   0.020
+P61   plan-10         H4A   0.020
+P61   plan-10           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+P61           SMILES              ACDLabs 12.01                                                                                                                  Fc1c(O)ccc(c1)CC(=N/C=C2\C(O)=C(NC=C2COP(=O)(O)O)C)\C(=O)O
+P61 SMILES_CANONICAL               CACTVS 3.370                                                                                                               CC1=C(O)\C(=C/N=C(Cc2ccc(O)c(F)c2)C(O)=O)C(=CN1)CO[P](O)(O)=O
+P61           SMILES               CACTVS 3.370                                                                                                                 CC1=C(O)C(=CN=C(Cc2ccc(O)c(F)c2)C(O)=O)C(=CN1)CO[P](O)(O)=O
+P61 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                              CC1=C(/C(=C\N=C(/Cc2ccc(c(c2)F)O)\C(=O)O)/C(=CN1)COP(=O)(O)O)O
+P61           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                   CC1=C(C(=CN=C(Cc2ccc(c(c2)F)O)C(=O)O)C(=CN1)COP(=O)(O)O)O
+P61            InChI                InChI  1.03 InChI=1S/C17H18FN2O8P/c1-9-16(22)12(11(6-19-9)8-28-29(25,26)27)7-20-14(17(23)24)5-10-2-3-15(21)13(18)4-10/h2-4,6-7,19,21-22H,5,8H2,1H3,(H,23,24)(H2,25,26,27)/b12-7-,20-14+
+P61         InChIKey                InChI  1.03                                                                                                                                                 AWZHPOMIAYWMIB-ALAGMBGBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+P61 acedrg               243         "dictionary generator"                  
+P61 acedrg_database      11          "data source"                           
+P61 rdkit                2017.03.2   "Chemoinformatics tool"
+P61 refmac5              5.8.0238    "optimization tool"                     

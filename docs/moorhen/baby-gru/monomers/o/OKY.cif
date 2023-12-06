@@ -1,0 +1,363 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OKY     OKY      1-[5-({4-[3-chloro-5-(trifluoromethyl)phenyl]piperazin-1-yl}sulfonyl)-2,3-dihydro-1H-indol-1-yl]ethan-1-one     NON-POLYMER     53     32     .     
+#
+data_comp_OKY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OKY     C13     C       CR16    0       -8.158      -36.299     -6.068      
+OKY     C15     C       CR56    0       -8.587      -33.972     -6.419      
+OKY     C17     C       CR16    0       -9.944      -35.602     -7.557      
+OKY     C21     C       C       0       -7.662      -31.862     -5.432      
+OKY     C24     C       CR16    0       -13.634     -36.669     -3.106      
+OKY     C26     C       CR16    0       -14.563     -36.657     -0.900      
+OKY     C01     C       CR16    0       -13.546     -38.675     -1.767      
+OKY     C02     C       CR6     0       -13.259     -38.016     -2.968      
+OKY     C04     C       CH2     0       -11.333     -39.385     -3.847      
+OKY     C05     C       CH2     0       -10.288     -38.775     -4.755      
+OKY     C07     C       CH2     0       -12.061     -38.098     -6.308      
+OKY     C08     C       CH2     0       -13.088     -38.716     -5.386      
+OKY     C12     C       CR6     0       -9.202      -36.620     -6.949      
+OKY     C14     C       CR16    0       -7.842      -34.975     -5.806      
+OKY     C16     C       CR56    0       -9.627      -34.280     -7.292      
+OKY     C18     C       CH2     0       -10.261     -33.022     -7.822      
+OKY     C19     C       CH2     0       -9.318      -31.921     -7.343      
+OKY     C23     C       CH3     0       -7.493      -30.388     -5.657      
+OKY     C25     C       CR6     0       -14.291     -35.988     -2.082      
+OKY     C27     C       CR6     0       -14.200     -37.982     -0.739      
+OKY     C29     C       CT      0       -14.683     -34.550     -2.248      
+OKY     F30     F       F       0       -14.931     -34.214     -3.511      
+OKY     F31     F       F       0       -15.784     -34.226     -1.574      
+OKY     F32     F       F       0       -13.742     -33.712     -1.828      
+OKY     N03     N       NR6     0       -12.608     -38.675     -4.000      
+OKY     N06     N       NT      0       -10.739     -38.740     -6.161      
+OKY     N20     N       NR5     0       -8.463      -32.557     -6.317      
+OKY     O10     O       O       0       -10.217     -38.387     -8.557      
+OKY     O11     O       O       0       -8.440      -39.103     -7.008      
+OKY     O22     O       O       0       -7.140      -32.397     -4.462      
+OKY     S09     S       S3      0       -9.604      -38.313     -7.268      
+OKY     CL28    CL      CL      0       -14.552     -38.816     0.748       
+OKY     H1      H       H       0       -7.666      -36.977     -5.658      
+OKY     H2      H       H       0       -10.634     -35.803     -8.131      
+OKY     H3      H       H       0       -13.444     -36.222     -3.909      
+OKY     H4      H       H       0       -14.999     -36.218     -0.197      
+OKY     H5      H       H       0       -13.299     -39.573     -1.658      
+OKY     H6      H       H       0       -11.454     -40.330     -4.075      
+OKY     H7      H       H       0       -11.029     -39.330     -2.917      
+OKY     H8      H       H       0       -10.092     -37.867     -4.452      
+OKY     H9      H       H       0       -9.466      -39.300     -4.683      
+OKY     H10     H       H       0       -11.985     -37.143     -6.108      
+OKY     H11     H       H       0       -12.374     -38.187     -7.230      
+OKY     H12     H       H       0       -13.249     -39.646     -5.650      
+OKY     H13     H       H       0       -13.934     -38.226     -5.461      
+OKY     H14     H       H       0       -7.138      -34.768     -5.220      
+OKY     H15     H       H       0       -11.165     -32.899     -7.461      
+OKY     H20     H       H       0       -10.320     -33.038     -8.801      
+OKY     H16     H       H       0       -9.820      -31.176     -6.955      
+OKY     H21     H       H       0       -8.768      -31.579     -8.077      
+OKY     H17     H       H       0       -7.325      -30.216     -6.593      
+OKY     H18     H       H       0       -6.744      -30.068     -5.135      
+OKY     H19     H       H       0       -8.297      -29.925     -5.382      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OKY         O10         S09      DOUBLE       n     1.429  0.0100     1.429  0.0100
+OKY         C16         C18      SINGLE       n     1.506  0.0103     1.506  0.0103
+OKY         C18         C19      SINGLE       n     1.528  0.0112     1.528  0.0112
+OKY         C17         C16      DOUBLE       y     1.383  0.0102     1.383  0.0102
+OKY         C17         C12      SINGLE       y     1.397  0.0147     1.397  0.0147
+OKY         O11         S09      DOUBLE       n     1.429  0.0100     1.429  0.0100
+OKY         C12         S09      SINGLE       n     1.768  0.0100     1.768  0.0100
+OKY         N06         S09      SINGLE       n     1.638  0.0100     1.638  0.0100
+OKY         C15         C16      SINGLE       y     1.387  0.0100     1.387  0.0100
+OKY         C19         N20      SINGLE       n     1.476  0.0100     1.476  0.0100
+OKY         C13         C12      DOUBLE       y     1.398  0.0166     1.398  0.0166
+OKY         C15         N20      SINGLE       n     1.417  0.0100     1.417  0.0100
+OKY         C15         C14      DOUBLE       y     1.383  0.0100     1.383  0.0100
+OKY         C21         N20      SINGLE       n     1.368  0.0120     1.368  0.0120
+OKY         C07         N06      SINGLE       n     1.471  0.0100     1.471  0.0100
+OKY         C05         N06      SINGLE       n     1.471  0.0100     1.471  0.0100
+OKY         C07         C08      SINGLE       n     1.511  0.0100     1.511  0.0100
+OKY         C13         C14      SINGLE       y     1.380  0.0114     1.380  0.0114
+OKY         C21         C23      SINGLE       n     1.498  0.0100     1.498  0.0100
+OKY         C21         O22      DOUBLE       n     1.224  0.0119     1.224  0.0119
+OKY         C08         N03      SINGLE       n     1.467  0.0100     1.467  0.0100
+OKY         C04         C05      SINGLE       n     1.511  0.0100     1.511  0.0100
+OKY         C04         N03      SINGLE       n     1.467  0.0100     1.467  0.0100
+OKY         C02         N03      SINGLE       n     1.379  0.0200     1.379  0.0200
+OKY         C29         F30      SINGLE       n     1.329  0.0183     1.329  0.0183
+OKY         C24         C02      DOUBLE       y     1.402  0.0100     1.402  0.0100
+OKY         C24         C25      SINGLE       y     1.385  0.0100     1.385  0.0100
+OKY         C01         C02      SINGLE       y     1.398  0.0122     1.398  0.0122
+OKY         C29         F32      SINGLE       n     1.329  0.0183     1.329  0.0183
+OKY         C25         C29      SINGLE       n     1.495  0.0100     1.495  0.0100
+OKY         C29         F31      SINGLE       n     1.329  0.0183     1.329  0.0183
+OKY         C26         C25      DOUBLE       y     1.377  0.0100     1.377  0.0100
+OKY         C01         C27      DOUBLE       y     1.397  0.0200     1.397  0.0200
+OKY         C26         C27      SINGLE       y     1.379  0.0100     1.379  0.0100
+OKY         C27        CL28      SINGLE       n     1.741  0.0100     1.741  0.0100
+OKY         C13          H1      SINGLE       n     1.082  0.0130     0.933  0.0102
+OKY         C17          H2      SINGLE       n     1.082  0.0130     0.920  0.0200
+OKY         C24          H3      SINGLE       n     1.082  0.0130     0.938  0.0110
+OKY         C26          H4      SINGLE       n     1.082  0.0130     0.937  0.0118
+OKY         C01          H5      SINGLE       n     1.082  0.0130     0.938  0.0107
+OKY         C04          H6      SINGLE       n     1.089  0.0100     0.980  0.0193
+OKY         C04          H7      SINGLE       n     1.089  0.0100     0.980  0.0193
+OKY         C05          H8      SINGLE       n     1.089  0.0100     0.978  0.0101
+OKY         C05          H9      SINGLE       n     1.089  0.0100     0.978  0.0101
+OKY         C07         H10      SINGLE       n     1.089  0.0100     0.978  0.0101
+OKY         C07         H11      SINGLE       n     1.089  0.0100     0.978  0.0101
+OKY         C08         H12      SINGLE       n     1.089  0.0100     0.980  0.0193
+OKY         C08         H13      SINGLE       n     1.089  0.0100     0.980  0.0193
+OKY         C14         H14      SINGLE       n     1.082  0.0130     0.941  0.0171
+OKY         C18         H15      SINGLE       n     1.089  0.0100     0.981  0.0103
+OKY         C18         H20      SINGLE       n     1.089  0.0100     0.981  0.0103
+OKY         C19         H16      SINGLE       n     1.089  0.0100     0.979  0.0152
+OKY         C19         H21      SINGLE       n     1.089  0.0100     0.979  0.0152
+OKY         C23         H17      SINGLE       n     1.089  0.0100     0.967  0.0166
+OKY         C23         H18      SINGLE       n     1.089  0.0100     0.967  0.0166
+OKY         C23         H19      SINGLE       n     1.089  0.0100     0.967  0.0166
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OKY         C12         C13         C14     120.268    1.50
+OKY         C12         C13          H1     120.065    1.50
+OKY         C14         C13          H1     119.667    1.50
+OKY         C16         C15         N20     109.741    1.50
+OKY         C16         C15         C14     121.210    1.50
+OKY         N20         C15         C14     129.050    1.50
+OKY         C16         C17         C12     119.884    1.50
+OKY         C16         C17          H2     119.795    1.50
+OKY         C12         C17          H2     120.321    1.50
+OKY         N20         C21         C23     116.638    1.50
+OKY         N20         C21         O22     121.415    1.93
+OKY         C23         C21         O22     121.948    1.50
+OKY         C02         C24         C25     120.897    1.50
+OKY         C02         C24          H3     119.773    1.50
+OKY         C25         C24          H3     119.331    1.50
+OKY         C25         C26         C27     120.086    1.50
+OKY         C25         C26          H4     120.296    1.50
+OKY         C27         C26          H4     119.618    1.50
+OKY         C02         C01         C27     120.249    1.50
+OKY         C02         C01          H5     119.344    1.50
+OKY         C27         C01          H5     120.406    1.50
+OKY         N03         C02         C24     120.368    1.79
+OKY         N03         C02         C01     120.368    1.79
+OKY         C24         C02         C01     119.263    1.81
+OKY         C05         C04         N03     110.454    1.50
+OKY         C05         C04          H6     109.522    1.50
+OKY         C05         C04          H7     109.522    1.50
+OKY         N03         C04          H6     109.542    1.50
+OKY         N03         C04          H7     109.542    1.50
+OKY          H6         C04          H7     108.196    1.50
+OKY         N06         C05         C04     110.691    1.50
+OKY         N06         C05          H8     109.891    1.50
+OKY         N06         C05          H9     109.891    1.50
+OKY         C04         C05          H8     109.477    1.50
+OKY         C04         C05          H9     109.477    1.50
+OKY          H8         C05          H9     108.243    1.50
+OKY         N06         C07         C08     110.691    1.50
+OKY         N06         C07         H10     109.891    1.50
+OKY         N06         C07         H11     109.891    1.50
+OKY         C08         C07         H10     109.477    1.50
+OKY         C08         C07         H11     109.477    1.50
+OKY         H10         C07         H11     108.243    1.50
+OKY         C07         C08         N03     110.454    1.50
+OKY         C07         C08         H12     109.522    1.50
+OKY         C07         C08         H13     109.522    1.50
+OKY         N03         C08         H12     109.542    1.50
+OKY         N03         C08         H13     109.542    1.50
+OKY         H12         C08         H13     108.196    1.50
+OKY         C17         C12         S09     119.307    1.50
+OKY         C17         C12         C13     121.195    1.50
+OKY         S09         C12         C13     119.499    1.50
+OKY         C15         C14         C13     117.595    1.50
+OKY         C15         C14         H14     121.420    1.50
+OKY         C13         C14         H14     120.984    1.50
+OKY         C18         C16         C17     130.113    1.78
+OKY         C18         C16         C15     110.038    1.50
+OKY         C17         C16         C15     119.849    1.50
+OKY         C16         C18         C19     103.129    1.50
+OKY         C16         C18         H15     111.340    1.50
+OKY         C16         C18         H20     111.340    1.50
+OKY         C19         C18         H15     111.350    1.50
+OKY         C19         C18         H20     111.350    1.50
+OKY         H15         C18         H20     108.439    1.70
+OKY         C18         C19         N20     104.860    1.50
+OKY         C18         C19         H16     111.392    1.50
+OKY         C18         C19         H21     111.392    1.50
+OKY         N20         C19         H16     110.344    1.50
+OKY         N20         C19         H21     110.344    1.50
+OKY         H16         C19         H21     108.748    1.50
+OKY         C21         C23         H17     109.476    1.50
+OKY         C21         C23         H18     109.476    1.50
+OKY         C21         C23         H19     109.476    1.50
+OKY         H17         C23         H18     109.423    1.50
+OKY         H17         C23         H19     109.423    1.50
+OKY         H18         C23         H19     109.423    1.50
+OKY         C24         C25         C29     120.806    1.50
+OKY         C24         C25         C26     118.548    1.50
+OKY         C29         C25         C26     120.647    1.50
+OKY         C01         C27         C26     120.958    1.50
+OKY         C01         C27        CL28     118.816    1.50
+OKY         C26         C27        CL28     120.226    1.50
+OKY         F30         C29         F32     105.974    1.50
+OKY         F30         C29         C25     112.813    1.50
+OKY         F30         C29         F31     105.974    1.50
+OKY         F32         C29         C25     112.813    1.50
+OKY         F32         C29         F31     105.974    1.50
+OKY         C25         C29         F31     112.813    1.50
+OKY         C08         N03         C04     113.487    2.47
+OKY         C08         N03         C02     123.256    1.50
+OKY         C04         N03         C02     123.256    1.50
+OKY         S09         N06         C07     116.783    1.50
+OKY         S09         N06         C05     116.783    1.50
+OKY         C07         N06         C05     111.689    1.50
+OKY         C19         N20         C15     110.794    1.98
+OKY         C19         N20         C21     123.939    3.00
+OKY         C15         N20         C21     125.267    1.50
+OKY         O10         S09         O11     119.764    1.50
+OKY         O10         S09         C12     107.830    1.50
+OKY         O10         S09         N06     106.552    1.50
+OKY         O11         S09         C12     107.830    1.50
+OKY         O11         S09         N06     106.552    1.50
+OKY         C12         S09         N06     107.501    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OKY              const_23         S09         C12         C13         C14     180.000    10.0     2
+OKY              const_41         C12         C13         C14         C15       0.000    10.0     2
+OKY            sp3_sp3_22         N06         C07         C08         N03     -60.000    10.0     3
+OKY            sp3_sp3_17         C08         C07         N06         S09     180.000    10.0     3
+OKY             sp2_sp3_1         C04         N03         C08         C07       0.000    10.0     6
+OKY            sp2_sp3_19         C17         C12         S09         O10     150.000    10.0     6
+OKY            sp2_sp3_10         C17         C16         C18         C19     180.000    10.0     6
+OKY            sp3_sp3_31         C16         C18         C19         N20      60.000    10.0     3
+OKY            sp2_sp3_16         C21         N20         C19         C18     180.000    10.0     6
+OKY            sp2_sp3_37         C24         C25         C29         F30     150.000    10.0     6
+OKY              const_37         C13         C14         C15         C16       0.000    10.0     2
+OKY              const_33         N20         C15         C16         C18       0.000    10.0     2
+OKY             sp2_sp2_2         C16         C15         N20         C21     180.000     5.0     2
+OKY            sp3_sp3_44         C07         N06         S09         O10     180.000    10.0     3
+OKY              const_27         S09         C12         C17         C16     180.000    10.0     2
+OKY              const_31         C18         C16         C17         C12     180.000    10.0     2
+OKY            sp2_sp3_28         O22         C21         C23         H17     180.000    10.0     6
+OKY             sp2_sp2_5         C23         C21         N20         C19     180.000     5.0     2
+OKY              const_46         C02         C24         C25         C29     180.000    10.0     2
+OKY       const_sp2_sp2_3         N03         C02         C24         C25     180.000     5.0     2
+OKY              const_19         C29         C25         C26         C27     180.000    10.0     2
+OKY              const_14         C25         C26         C27        CL28     180.000    10.0     2
+OKY              const_10         C02         C01         C27        CL28     180.000    10.0     2
+OKY       const_sp2_sp2_6         C27         C01         C02         N03     180.000     5.0     2
+OKY             sp2_sp2_9         C24         C02         N03         C08     180.000     5.0     2
+OKY            sp2_sp3_31         C08         N03         C04         C05       0.000    10.0     6
+OKY             sp3_sp3_1         N03         C04         C05         N06      60.000    10.0     3
+OKY            sp3_sp3_11         C04         C05         N06         S09      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OKY    chir_1    C29    F30    F32    F31    both
+OKY    chir_2    N06    S09    C07    C05    both
+OKY    chir_3    S09    O10    O11    N06    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OKY    plan-1         C12   0.020
+OKY    plan-1         C13   0.020
+OKY    plan-1         C14   0.020
+OKY    plan-1         C15   0.020
+OKY    plan-1         C16   0.020
+OKY    plan-1         C17   0.020
+OKY    plan-1         C18   0.020
+OKY    plan-1          H1   0.020
+OKY    plan-1         H14   0.020
+OKY    plan-1          H2   0.020
+OKY    plan-1         N20   0.020
+OKY    plan-1         S09   0.020
+OKY    plan-2         C01   0.020
+OKY    plan-2         C02   0.020
+OKY    plan-2         C24   0.020
+OKY    plan-2         C25   0.020
+OKY    plan-2         C26   0.020
+OKY    plan-2         C27   0.020
+OKY    plan-2         C29   0.020
+OKY    plan-2        CL28   0.020
+OKY    plan-2          H3   0.020
+OKY    plan-2          H4   0.020
+OKY    plan-2          H5   0.020
+OKY    plan-2         N03   0.020
+OKY    plan-3         C21   0.020
+OKY    plan-3         C23   0.020
+OKY    plan-3         N20   0.020
+OKY    plan-3         O22   0.020
+OKY    plan-4         C02   0.020
+OKY    plan-4         C04   0.020
+OKY    plan-4         C08   0.020
+OKY    plan-4         N03   0.020
+OKY    plan-5         C15   0.020
+OKY    plan-5         C19   0.020
+OKY    plan-5         C21   0.020
+OKY    plan-5         N20   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OKY           SMILES              ACDLabs 12.01                                                                                     c2cc1N(C(C)=O)CCc1cc2S(N4CCN(c3cc(cc(c3)Cl)C(F)(F)F)CC4)(=O)=O
+OKY            InChI                InChI  1.03 InChI=1S/C21H21ClF3N3O3S/c1-14(29)28-5-4-15-10-19(2-3-20(15)28)32(30,31)27-8-6-26(7-9-27)18-12-16(21(23,24)25)11-17(22)13-18/h2-3,10-13H,4-9H2,1H3
+OKY         InChIKey                InChI  1.03                                                                                                                        PDEIRNVIXFZSSJ-UHFFFAOYSA-N
+OKY SMILES_CANONICAL               CACTVS 3.385                                                                                   CC(=O)N1CCc2cc(ccc12)[S](=O)(=O)N3CCN(CC3)c4cc(Cl)cc(c4)C(F)(F)F
+OKY           SMILES               CACTVS 3.385                                                                                   CC(=O)N1CCc2cc(ccc12)[S](=O)(=O)N3CCN(CC3)c4cc(Cl)cc(c4)C(F)(F)F
+OKY SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                     CC(=O)N1CCc2c1ccc(c2)S(=O)(=O)N3CCN(CC3)c4cc(cc(c4)Cl)C(F)(F)F
+OKY           SMILES "OpenEye OEToolkits" 2.0.7                                                                                     CC(=O)N1CCc2c1ccc(c2)S(=O)(=O)N3CCN(CC3)c4cc(cc(c4)Cl)C(F)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OKY acedrg               243         "dictionary generator"                  
+OKY acedrg_database      11          "data source"                           
+OKY rdkit                2017.03.2   "Chemoinformatics tool"
+OKY refmac5              5.8.0238    "optimization tool"                     

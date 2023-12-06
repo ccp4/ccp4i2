@@ -1,0 +1,198 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+3GY     3GY      (2R)-butan-2-ylbenzene     NON-POLYMER     24     10     .     
+#
+data_comp_3GY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+3GY     CAA     C       CH3     0       35.704      -24.760     -15.139     
+3GY     CAH     C       CH2     0       35.519      -24.328     -13.697     
+3GY     CAJ     C       CH1     0       36.835      -24.090     -12.951     
+3GY     CAB     C       CH3     0       36.562      -23.418     -11.604     
+3GY     CAI     C       CR6     0       37.644      -25.370     -12.798     
+3GY     CAF     C       CR16    0       37.152      -26.438     -12.049     
+3GY     CAD     C       CR16    0       37.891      -27.606     -11.909     
+3GY     CAC     C       CR16    0       39.128      -27.722     -12.507     
+3GY     CAE     C       CR16    0       39.631      -26.674     -13.248     
+3GY     CAG     C       CR16    0       38.898      -25.503     -13.394     
+3GY     H1      H       H       0       34.869      -24.642     -15.624     
+3GY     H2      H       H       0       35.964      -25.698     -15.168     
+3GY     H3      H       H       0       36.398      -24.220     -15.555     
+3GY     H4      H       H       0       35.006      -25.015     -13.222     
+3GY     H5      H       H       0       34.998      -23.498     -13.680     
+3GY     H6      H       H       0       37.369      -23.455     -13.496     
+3GY     H7      H       H       0       36.563      -22.452     -11.719     
+3GY     H8      H       H       0       37.254      -23.666     -10.966     
+3GY     H9      H       H       0       35.695      -23.702     -11.265     
+3GY     H10     H       H       0       36.305      -26.367     -11.638     
+3GY     H11     H       H       0       37.545      -28.323     -11.401     
+3GY     H12     H       H       0       39.628      -28.516     -12.409     
+3GY     H13     H       H       0       40.478      -26.752     -13.658     
+3GY     H14     H       H       0       39.251      -24.791     -13.904     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+3GY         CAA         CAH      SINGLE       n     1.515  0.0200     1.515  0.0200
+3GY         CAH         CAJ      SINGLE       n     1.527  0.0153     1.527  0.0153
+3GY         CAE         CAG      SINGLE       y     1.386  0.0100     1.386  0.0100
+3GY         CAI         CAG      DOUBLE       y     1.390  0.0100     1.390  0.0100
+3GY         CAC         CAE      DOUBLE       y     1.374  0.0127     1.374  0.0127
+3GY         CAJ         CAI      SINGLE       n     1.520  0.0100     1.520  0.0100
+3GY         CAJ         CAB      SINGLE       n     1.527  0.0115     1.527  0.0115
+3GY         CAI         CAF      SINGLE       y     1.390  0.0100     1.390  0.0100
+3GY         CAD         CAC      SINGLE       y     1.374  0.0127     1.374  0.0127
+3GY         CAF         CAD      DOUBLE       y     1.386  0.0100     1.386  0.0100
+3GY         CAA          H1      SINGLE       n     1.089  0.0100     0.973  0.0157
+3GY         CAA          H2      SINGLE       n     1.089  0.0100     0.973  0.0157
+3GY         CAA          H3      SINGLE       n     1.089  0.0100     0.973  0.0157
+3GY         CAH          H4      SINGLE       n     1.089  0.0100     0.980  0.0160
+3GY         CAH          H5      SINGLE       n     1.089  0.0100     0.980  0.0160
+3GY         CAJ          H6      SINGLE       n     1.089  0.0100     0.993  0.0142
+3GY         CAB          H7      SINGLE       n     1.089  0.0100     0.973  0.0141
+3GY         CAB          H8      SINGLE       n     1.089  0.0100     0.973  0.0141
+3GY         CAB          H9      SINGLE       n     1.089  0.0100     0.973  0.0141
+3GY         CAF         H10      SINGLE       n     1.082  0.0130     0.944  0.0174
+3GY         CAD         H11      SINGLE       n     1.082  0.0130     0.944  0.0175
+3GY         CAC         H12      SINGLE       n     1.082  0.0130     0.944  0.0161
+3GY         CAE         H13      SINGLE       n     1.082  0.0130     0.944  0.0175
+3GY         CAG         H14      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+3GY         CAH         CAA          H1     109.619    1.50
+3GY         CAH         CAA          H2     109.619    1.50
+3GY         CAH         CAA          H3     109.619    1.50
+3GY          H1         CAA          H2     109.380    1.50
+3GY          H1         CAA          H3     109.380    1.50
+3GY          H2         CAA          H3     109.380    1.50
+3GY         CAA         CAH         CAJ     112.740    3.00
+3GY         CAA         CAH          H4     108.958    1.50
+3GY         CAA         CAH          H5     108.958    1.50
+3GY         CAJ         CAH          H4     108.655    1.68
+3GY         CAJ         CAH          H5     108.655    1.68
+3GY          H4         CAH          H5     108.011    1.50
+3GY         CAH         CAJ         CAI     111.511    1.50
+3GY         CAH         CAJ         CAB     109.454    3.00
+3GY         CAH         CAJ          H6     107.249    1.50
+3GY         CAI         CAJ         CAB     111.728    1.50
+3GY         CAI         CAJ          H6     107.644    1.50
+3GY         CAB         CAJ          H6     107.554    1.50
+3GY         CAJ         CAB          H7     109.461    1.50
+3GY         CAJ         CAB          H8     109.461    1.50
+3GY         CAJ         CAB          H9     109.461    1.50
+3GY          H7         CAB          H8     109.411    1.50
+3GY          H7         CAB          H9     109.411    1.50
+3GY          H8         CAB          H9     109.411    1.50
+3GY         CAG         CAI         CAJ     120.902    2.12
+3GY         CAG         CAI         CAF     118.196    1.50
+3GY         CAJ         CAI         CAF     120.902    2.12
+3GY         CAI         CAF         CAD     120.460    1.50
+3GY         CAI         CAF         H10     119.666    1.50
+3GY         CAD         CAF         H10     119.874    1.50
+3GY         CAC         CAD         CAF     120.389    1.50
+3GY         CAC         CAD         H11     119.851    1.50
+3GY         CAF         CAD         H11     119.760    1.50
+3GY         CAE         CAC         CAD     120.107    1.50
+3GY         CAE         CAC         H12     119.947    1.50
+3GY         CAD         CAC         H12     119.947    1.50
+3GY         CAG         CAE         CAC     120.389    1.50
+3GY         CAG         CAE         H13     119.760    1.50
+3GY         CAC         CAE         H13     119.851    1.50
+3GY         CAE         CAG         CAI     120.460    1.50
+3GY         CAE         CAG         H14     119.874    1.50
+3GY         CAI         CAG         H14     119.666    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+3GY             sp3_sp3_1          H1         CAA         CAH         CAJ     180.000    10.0     3
+3GY            sp3_sp3_11         CAA         CAH         CAJ         CAB     -60.000    10.0     3
+3GY            sp3_sp3_19          H7         CAB         CAJ         CAH     180.000    10.0     3
+3GY             sp2_sp3_1         CAG         CAI         CAJ         CAH     150.000    10.0     6
+3GY              const_22         CAD         CAF         CAI         CAJ     180.000    10.0     2
+3GY       const_sp2_sp2_2         CAE         CAG         CAI         CAJ     180.000     5.0     2
+3GY              const_17         CAC         CAD         CAF         CAI       0.000    10.0     2
+3GY              const_13         CAE         CAC         CAD         CAF       0.000    10.0     2
+3GY       const_sp2_sp2_9         CAD         CAC         CAE         CAG       0.000     5.0     2
+3GY       const_sp2_sp2_5         CAC         CAE         CAG         CAI       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+3GY    chir_1    CAJ    CAI    CAH    CAB    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+3GY    plan-1         CAC   0.020
+3GY    plan-1         CAD   0.020
+3GY    plan-1         CAE   0.020
+3GY    plan-1         CAF   0.020
+3GY    plan-1         CAG   0.020
+3GY    plan-1         CAI   0.020
+3GY    plan-1         CAJ   0.020
+3GY    plan-1         H10   0.020
+3GY    plan-1         H11   0.020
+3GY    plan-1         H12   0.020
+3GY    plan-1         H13   0.020
+3GY    plan-1         H14   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+3GY           SMILES              ACDLabs 12.01                                                     c1ccccc1C(CC)C
+3GY            InChI                InChI  1.03 InChI=1S/C10H14/c1-3-9(2)10-7-5-4-6-8-10/h4-9H,3H2,1-2H3/t9-/m1/s1
+3GY         InChIKey                InChI  1.03                                        ZJMWRROPUADPEA-SECBINFHSA-N
+3GY SMILES_CANONICAL               CACTVS 3.385                                                CC[C@@H](C)c1ccccc1
+3GY           SMILES               CACTVS 3.385                                                  CC[CH](C)c1ccccc1
+3GY SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                CC[C@@H](C)c1ccccc1
+3GY           SMILES "OpenEye OEToolkits" 1.9.2                                                     CCC(C)c1ccccc1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+3GY acedrg               243         "dictionary generator"                  
+3GY acedrg_database      11          "data source"                           
+3GY rdkit                2017.03.2   "Chemoinformatics tool"
+3GY refmac5              5.8.0238    "optimization tool"                     

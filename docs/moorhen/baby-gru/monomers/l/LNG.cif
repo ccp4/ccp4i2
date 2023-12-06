@@ -1,0 +1,267 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LNG     LNG      "Delta-3isotetradecenoic acid"     NON-POLYMER     41     16     .     
+#
+data_comp_LNG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LNG     O11     O       OC      -1      25.482      18.569      36.708      
+LNG     O1      O       O       0       23.921      18.886      38.219      
+LNG     C1      C       C       0       24.683      19.296      37.325      
+LNG     C2      C       CH2     0       24.636      20.777      36.965      
+LNG     C3      C       C1      0       23.311      21.175      36.410      
+LNG     C4      C       C1      0       22.863      20.887      35.201      
+LNG     C5      C       CH2     0       23.597      20.105      34.156      
+LNG     C6      C       CH2     0       22.832      19.955      32.878      
+LNG     C7      C       CH2     0       23.609      19.277      31.762      
+LNG     C8      C       CH2     0       23.838      17.800      31.975      
+LNG     C9      C       CH2     0       24.504      17.103      30.814      
+LNG     C10     C       CH2     0       24.763      15.634      31.041      
+LNG     C11     C       CH2     0       25.492      14.932      29.922      
+LNG     C12     C       CH1     0       25.589      13.411      30.051      
+LNG     C13     C       CH3     0       26.534      13.012      31.175      
+LNG     C14     C       CH3     0       26.024      12.772      28.741      
+LNG     H2C1    H       H       0       25.343      20.958      36.315      
+LNG     H2C2    H       H       0       24.834      21.295      37.770      
+LNG     H3C1    H       H       0       22.744      21.679      36.977      
+LNG     H4C1    H       H       0       22.001      21.203      34.974      
+LNG     H5C1    H       H       0       23.798      19.211      34.512      
+LNG     H5C2    H       H       0       24.450      20.553      33.964      
+LNG     H6C1    H       H       0       22.553      20.843      32.571      
+LNG     H6C2    H       H       0       22.020      19.434      33.055      
+LNG     H7C1    H       H       0       24.480      19.720      31.672      
+LNG     H7C2    H       H       0       23.123      19.402      30.919      
+LNG     H8C1    H       H       0       22.973      17.370      32.145      
+LNG     H8C2    H       H       0       24.393      17.680      32.774      
+LNG     H9C1    H       H       0       25.358      17.548      30.628      
+LNG     H9C2    H       H       0       23.937      17.203      30.020      
+LNG     H101    H       H       0       23.903      15.185      31.184      
+LNG     H102    H       H       0       25.287      15.535      31.865      
+LNG     H111    H       H       0       26.401      15.296      29.868      
+LNG     H112    H       H       0       25.038      15.142      29.078      
+LNG     H12     H       H       0       24.689      13.068      30.274      
+LNG     H131    H       H       0       26.644      12.045      31.178      
+LNG     H132    H       H       0       26.164      13.298      32.028      
+LNG     H133    H       H       0       27.399      13.436      31.038      
+LNG     H141    H       H       0       26.897      13.117      28.485      
+LNG     H142    H       H       0       25.376      12.982      28.047      
+LNG     H143    H       H       0       26.077      11.807      28.853      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LNG         O11          C1      SINGLE       n     1.244  0.0200     1.244  0.0200
+LNG          O1          C1      DOUBLE       n     1.244  0.0200     1.244  0.0200
+LNG          C1          C2      SINGLE       n     1.525  0.0126     1.525  0.0126
+LNG          C2          C3      SINGLE       n     1.490  0.0200     1.490  0.0200
+LNG          C3          C4      DOUBLE       n     1.320  0.0157     1.320  0.0157
+LNG          C4          C5      SINGLE       n     1.497  0.0127     1.497  0.0127
+LNG          C5          C6      SINGLE       n     1.497  0.0200     1.497  0.0200
+LNG          C6          C7      SINGLE       n     1.519  0.0164     1.519  0.0164
+LNG          C7          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+LNG          C8          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+LNG          C9         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+LNG         C10         C11      SINGLE       n     1.509  0.0200     1.509  0.0200
+LNG         C11         C12      SINGLE       n     1.529  0.0177     1.529  0.0177
+LNG         C12         C13      SINGLE       n     1.521  0.0151     1.521  0.0151
+LNG         C12         C14      SINGLE       n     1.521  0.0151     1.521  0.0151
+LNG          C2        H2C1      SINGLE       n     1.089  0.0100     0.977  0.0200
+LNG          C2        H2C2      SINGLE       n     1.089  0.0100     0.977  0.0200
+LNG          C3        H3C1      SINGLE       n     1.082  0.0130     0.947  0.0200
+LNG          C4        H4C1      SINGLE       n     1.082  0.0130     0.945  0.0200
+LNG          C5        H5C1      SINGLE       n     1.089  0.0100     0.983  0.0180
+LNG          C5        H5C2      SINGLE       n     1.089  0.0100     0.983  0.0180
+LNG          C6        H6C1      SINGLE       n     1.089  0.0100     0.980  0.0160
+LNG          C6        H6C2      SINGLE       n     1.089  0.0100     0.980  0.0160
+LNG          C7        H7C1      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNG          C7        H7C2      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNG          C8        H8C1      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNG          C8        H8C2      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNG          C9        H9C1      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNG          C9        H9C2      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNG         C10        H101      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNG         C10        H102      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNG         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0160
+LNG         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0160
+LNG         C12         H12      SINGLE       n     1.089  0.0100     0.989  0.0162
+LNG         C13        H131      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNG         C13        H132      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNG         C13        H133      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNG         C14        H141      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNG         C14        H142      SINGLE       n     1.089  0.0100     0.973  0.0146
+LNG         C14        H143      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LNG         O11          C1          O1     123.857    1.50
+LNG         O11          C1          C2     118.071    1.50
+LNG          O1          C1          C2     118.071    1.50
+LNG          C1          C2          C3     111.575    3.00
+LNG          C1          C2        H2C1     108.236    1.50
+LNG          C1          C2        H2C2     108.236    1.50
+LNG          C3          C2        H2C1     110.029    1.93
+LNG          C3          C2        H2C2     110.029    1.93
+LNG        H2C1          C2        H2C2     107.320    3.00
+LNG          C2          C3          C4     125.661    1.66
+LNG          C2          C3        H3C1     116.850    1.89
+LNG          C4          C3        H3C1     117.489    2.16
+LNG          C3          C4          C5     125.684    3.00
+LNG          C3          C4        H4C1     117.310    2.16
+LNG          C5          C4        H4C1     117.007    1.61
+LNG          C4          C5          C6     113.226    1.94
+LNG          C4          C5        H5C1     108.886    1.50
+LNG          C4          C5        H5C2     108.886    1.50
+LNG          C6          C5        H5C1     108.819    1.50
+LNG          C6          C5        H5C2     108.819    1.50
+LNG        H5C1          C5        H5C2     107.922    1.50
+LNG          C5          C6          C7     114.266    1.80
+LNG          C5          C6        H6C1     108.805    1.50
+LNG          C5          C6        H6C2     108.805    1.50
+LNG          C7          C6        H6C1     108.698    1.50
+LNG          C7          C6        H6C2     108.698    1.50
+LNG        H6C1          C6        H6C2     107.646    1.50
+LNG          C6          C7          C8     114.243    1.69
+LNG          C6          C7        H7C1     108.698    1.50
+LNG          C6          C7        H7C2     108.698    1.50
+LNG          C8          C7        H7C1     108.698    1.50
+LNG          C8          C7        H7C2     108.698    1.50
+LNG        H7C1          C7        H7C2     107.646    1.50
+LNG          C7          C8          C9     114.243    1.69
+LNG          C7          C8        H8C1     108.698    1.50
+LNG          C7          C8        H8C2     108.698    1.50
+LNG          C9          C8        H8C1     108.698    1.50
+LNG          C9          C8        H8C2     108.698    1.50
+LNG        H8C1          C8        H8C2     107.646    1.50
+LNG          C8          C9         C10     114.243    1.69
+LNG          C8          C9        H9C1     108.698    1.50
+LNG          C8          C9        H9C2     108.698    1.50
+LNG         C10          C9        H9C1     108.698    1.50
+LNG         C10          C9        H9C2     108.698    1.50
+LNG        H9C1          C9        H9C2     107.646    1.50
+LNG          C9         C10         C11     115.535    2.06
+LNG          C9         C10        H101     108.698    1.50
+LNG          C9         C10        H102     108.698    1.50
+LNG         C11         C10        H101     108.762    1.50
+LNG         C11         C10        H102     108.762    1.50
+LNG        H101         C10        H102     107.646    1.50
+LNG         C10         C11         C12     115.585    1.50
+LNG         C10         C11        H111     108.469    1.50
+LNG         C10         C11        H112     108.469    1.50
+LNG         C12         C11        H111     108.407    1.50
+LNG         C12         C11        H112     108.407    1.50
+LNG        H111         C11        H112     107.657    1.50
+LNG         C11         C12         C13     111.368    1.50
+LNG         C11         C12         C14     111.368    1.50
+LNG         C11         C12         H12     107.933    1.50
+LNG         C13         C12         C14     110.507    1.50
+LNG         C13         C12         H12     108.052    1.50
+LNG         C14         C12         H12     108.052    1.50
+LNG         C12         C13        H131     109.488    1.50
+LNG         C12         C13        H132     109.488    1.50
+LNG         C12         C13        H133     109.488    1.50
+LNG        H131         C13        H132     109.411    1.50
+LNG        H131         C13        H133     109.411    1.50
+LNG        H132         C13        H133     109.411    1.50
+LNG         C12         C14        H141     109.488    1.50
+LNG         C12         C14        H142     109.488    1.50
+LNG         C12         C14        H143     109.488    1.50
+LNG        H141         C14        H142     109.411    1.50
+LNG        H141         C14        H143     109.411    1.50
+LNG        H142         C14        H143     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LNG            sp3_sp3_37         C11         C10          C9          C8     180.000    10.0     3
+LNG            sp3_sp3_46          C9         C10         C11         C12     180.000    10.0     3
+LNG            sp3_sp3_56         C10         C11         C12         C13     -60.000    10.0     3
+LNG            sp3_sp3_64         C11         C12         C13        H131     180.000    10.0     3
+LNG            sp3_sp3_76         C11         C12         C14        H141      60.000    10.0     3
+LNG             sp2_sp3_2         O11          C1          C2          C3     120.000    10.0     6
+LNG             sp2_sp3_8          C4          C3          C2          C1     120.000    10.0     6
+LNG             sp2_sp2_1          C2          C3          C4          C5     180.000     5.0     2
+LNG            sp2_sp3_14          C3          C4          C5          C6     120.000    10.0     6
+LNG             sp3_sp3_1          C4          C5          C6          C7     180.000    10.0     3
+LNG            sp3_sp3_10          C5          C6          C7          C8     180.000    10.0     3
+LNG            sp3_sp3_19          C6          C7          C8          C9     180.000    10.0     3
+LNG            sp3_sp3_28          C7          C8          C9         C10     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LNG    chir_1    C12    C11    C13    C14    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LNG    plan-1          C1   0.020
+LNG    plan-1          C2   0.020
+LNG    plan-1          O1   0.020
+LNG    plan-1         O11   0.020
+LNG    plan-2          C2   0.020
+LNG    plan-2          C3   0.020
+LNG    plan-2          C4   0.020
+LNG    plan-2        H3C1   0.020
+LNG    plan-3          C3   0.020
+LNG    plan-3          C4   0.020
+LNG    plan-3          C5   0.020
+LNG    plan-3        H4C1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LNG           SMILES              ACDLabs 11.02                                                                                 O=C(O)C\C=C/CCCCCCCC(C)C
+LNG SMILES_CANONICAL               CACTVS 3.352                                                                                 CC(C)CCCCCCC\C=C/CC(O)=O
+LNG           SMILES               CACTVS 3.352                                                                                   CC(C)CCCCCCCC=CCC(O)=O
+LNG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                 CC(C)CCCCCCC/C=C\CC(=O)O
+LNG           SMILES "OpenEye OEToolkits" 1.7.0                                                                                   CC(C)CCCCCCCC=CCC(=O)O
+LNG            InChI                InChI  1.03 InChI=1S/C14H26O2/c1-13(2)11-9-7-5-3-4-6-8-10-12-14(15)16/h8,10,13H,3-7,9,11-12H2,1-2H3,(H,15,16)/b10-8-
+LNG         InChIKey                InChI  1.03                                                                              CPJZLQGGCFWOAA-NTMALXAHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LNG acedrg               243         "dictionary generator"                  
+LNG acedrg_database      11          "data source"                           
+LNG rdkit                2017.03.2   "Chemoinformatics tool"
+LNG refmac5              5.8.0238    "optimization tool"                     

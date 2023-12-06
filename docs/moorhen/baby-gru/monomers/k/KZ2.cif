@@ -1,0 +1,169 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KZ2     KZ2      "1-benzothiophene-7-carboxylic acid"     NON-POLYMER     17     12     .     
+#
+data_comp_KZ2
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KZ2     C7      C       CR16    0       86.678      41.973      110.904     
+KZ2     C6      C       CR16    0       86.901      42.957      111.846     
+KZ2     C8      C       CR16    0       85.669      41.026      111.069     
+KZ2     C3      C       CR15    0       85.204      43.664      115.025     
+KZ2     C1      C       CR6     0       84.838      41.029      112.194     
+KZ2     C2      C       CR56    0       85.057      42.044      113.179     
+KZ2     C5      C       CR56    0       86.102      43.018      113.000     
+KZ2     O1      O       OC      -1      83.781      39.240      113.327     
+KZ2     C       C       C       0       83.758      39.983      112.329     
+KZ2     O       O       O       0       82.896      39.911      111.435     
+KZ2     C4      C       CR15    0       86.142      43.941      114.110     
+KZ2     S       S       S2      0       84.272      42.343      114.614     
+KZ2     H1      H       H       0       87.221      41.940      110.131     
+KZ2     H2      H       H       0       87.589      43.588      111.714     
+KZ2     H3      H       H       0       85.545      40.366      110.405     
+KZ2     H4      H       H       0       85.045      44.131      115.828     
+KZ2     H6      H       H       0       86.758      44.651      114.176     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KZ2          C7          C8      DOUBLE       y     1.391  0.0100     1.391  0.0100
+KZ2          C7          C6      SINGLE       y     1.376  0.0100     1.376  0.0100
+KZ2          C8          C1      SINGLE       y     1.396  0.0126     1.396  0.0126
+KZ2           C           O      DOUBLE       n     1.244  0.0200     1.244  0.0200
+KZ2          C6          C5      DOUBLE       y     1.401  0.0100     1.401  0.0100
+KZ2          C1           C      SINGLE       n     1.509  0.0113     1.509  0.0113
+KZ2          C1          C2      DOUBLE       y     1.423  0.0200     1.423  0.0200
+KZ2          O1           C      SINGLE       n     1.244  0.0200     1.244  0.0200
+KZ2          C2          C5      SINGLE       y     1.414  0.0200     1.414  0.0200
+KZ2          C5          C4      SINGLE       y     1.432  0.0110     1.432  0.0110
+KZ2          C2           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+KZ2          C3          C4      DOUBLE       y     1.334  0.0111     1.334  0.0111
+KZ2          C3           S      SINGLE       y     1.695  0.0200     1.695  0.0200
+KZ2          C7          H1      SINGLE       n     1.082  0.0130     0.945  0.0100
+KZ2          C6          H2      SINGLE       n     1.082  0.0130     0.942  0.0182
+KZ2          C8          H3      SINGLE       n     1.082  0.0130     0.945  0.0200
+KZ2          C3          H4      SINGLE       n     1.082  0.0130     0.942  0.0200
+KZ2          C4          H6      SINGLE       n     1.082  0.0130     0.942  0.0149
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KZ2          C8          C7          C6     120.854    1.50
+KZ2          C8          C7          H1     119.556    1.50
+KZ2          C6          C7          H1     119.590    1.50
+KZ2          C7          C6          C5     118.860    1.50
+KZ2          C7          C6          H2     120.548    1.50
+KZ2          C5          C6          H2     120.592    1.50
+KZ2          C7          C8          C1     121.714    1.50
+KZ2          C7          C8          H3     119.083    1.50
+KZ2          C1          C8          H3     119.203    1.50
+KZ2          C4          C3           S     108.385    3.00
+KZ2          C4          C3          H4     128.436    2.40
+KZ2           S          C3          H4     123.180    3.00
+KZ2          C8          C1           C     119.712    1.55
+KZ2          C8          C1          C2     117.954    2.04
+KZ2           C          C1          C2     122.334    2.66
+KZ2          C1          C2          C5     120.167    2.83
+KZ2          C1          C2           S     131.449    3.00
+KZ2          C5          C2           S     108.385    3.00
+KZ2          C6          C5          C2     120.451    1.84
+KZ2          C6          C5          C4     132.299    1.50
+KZ2          C2          C5          C4     107.250    1.50
+KZ2           O           C          C1     118.166    2.93
+KZ2           O           C          O1     123.668    1.50
+KZ2          C1           C          O1     118.166    2.93
+KZ2          C5          C4          C3     107.596    1.50
+KZ2          C5          C4          H6     125.810    1.50
+KZ2          C3          C4          H6     126.594    1.50
+KZ2          C2           S          C3     108.385    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KZ2              const_31          C5          C6          C7          C8       0.000    10.0     2
+KZ2       const_sp2_sp2_1          C6          C7          C8          C1       0.000     5.0     2
+KZ2              const_17          C2          C5          C6          C7       0.000    10.0     2
+KZ2       const_sp2_sp2_7           C          C1          C8          C7     180.000     5.0     2
+KZ2              const_21           S          C3          C4          C5       0.000    10.0     2
+KZ2              const_35          C4          C3           S          C2       0.000    10.0     2
+KZ2              const_11           C          C1          C2          C5     180.000    10.0     2
+KZ2             sp2_sp2_1           O           C          C1          C8     180.000     5.0     2
+KZ2              const_30          C1          C2           S          C3     180.000    10.0     2
+KZ2              const_13          C1          C2          C5          C6       0.000    10.0     2
+KZ2              const_26          C3          C4          C5          C6     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KZ2    plan-1           C   0.020
+KZ2    plan-1          C1   0.020
+KZ2    plan-1          C2   0.020
+KZ2    plan-1          C3   0.020
+KZ2    plan-1          C4   0.020
+KZ2    plan-1          C5   0.020
+KZ2    plan-1          C6   0.020
+KZ2    plan-1          C7   0.020
+KZ2    plan-1          C8   0.020
+KZ2    plan-1          H1   0.020
+KZ2    plan-1          H2   0.020
+KZ2    plan-1          H3   0.020
+KZ2    plan-1          H4   0.020
+KZ2    plan-1          H6   0.020
+KZ2    plan-1           S   0.020
+KZ2    plan-2           C   0.020
+KZ2    plan-2          C1   0.020
+KZ2    plan-2           O   0.020
+KZ2    plan-2          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KZ2            InChI                InChI  1.03 InChI=1S/C9H6O2S/c10-9(11)7-3-1-2-6-4-5-12-8(6)7/h1-5H,(H,10,11)
+KZ2         InChIKey                InChI  1.03                                      LJPSRTWIAXVPIS-UHFFFAOYSA-N
+KZ2 SMILES_CANONICAL               CACTVS 3.385                                              OC(=O)c1cccc2ccsc12
+KZ2           SMILES               CACTVS 3.385                                              OC(=O)c1cccc2ccsc12
+KZ2 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                            c1cc2ccsc2c(c1)C(=O)O
+KZ2           SMILES "OpenEye OEToolkits" 2.0.7                                            c1cc2ccsc2c(c1)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KZ2 acedrg               243         "dictionary generator"                  
+KZ2 acedrg_database      11          "data source"                           
+KZ2 rdkit                2017.03.2   "Chemoinformatics tool"
+KZ2 refmac5              5.8.0238    "optimization tool"                     

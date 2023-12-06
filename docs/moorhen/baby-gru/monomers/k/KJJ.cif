@@ -1,0 +1,503 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KJJ     KJJ      "(2~{S})-2-[4-(8-fluoranyl-5-methyl-3,4-dihydro-2~{H}-chromen-6-yl)-2-methyl-6-[[(1~{S},2~{R})-2-phenylcyclopropyl]methyl]-7,8-dihydro-5~{H}-1,6-naphthyridin-3-yl]-2-[(2-methylpropan-2-yl)oxy]ethanoic acid"     NON-POLYMER     82     42     .     
+#
+data_comp_KJJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KJJ     C13     C       CR6     0       -26.703     14.945      -17.139     
+KJJ     C18     C       CR6     0       -25.772     13.864      -17.129     
+KJJ     C17     C       CR6     0       -24.408     14.168      -16.884     
+KJJ     C15     C       CR66    0       -24.865     16.454      -16.666     
+KJJ     C19     C       CH1     0       -26.241     12.430      -17.382     
+KJJ     C20     C       C       0       -25.980     11.981      -18.835     
+KJJ     C24     C       CT      0       -26.299     10.879      -15.358     
+KJJ     C34     C       CH1     0       -26.970     21.138      -17.576     
+KJJ     C27     C       CH3     0       -26.872     11.961      -14.465     
+KJJ     C33     C       CH2     0       -27.388     19.910      -16.810     
+KJJ     C1      C       CH3     0       -27.782     15.136      -19.858     
+KJJ     C2      C       CR6     0       -28.701     14.822      -18.693     
+KJJ     C3      C       CR6     0       -28.161     14.725      -17.390     
+KJJ     C4      C       CR16    0       -28.998     14.450      -16.310     
+KJJ     C5      C       CR6     0       -30.353     14.253      -16.506     
+KJJ     C6      C       CR66    0       -30.891     14.338      -17.790     
+KJJ     C7      C       CR66    0       -30.088     14.629      -18.901     
+KJJ     C8      C       CH2     0       -30.727     14.710      -20.278     
+KJJ     C9      C       CH2     0       -32.241     14.582      -20.278     
+KJJ     C10     C       CH2     0       -32.728     13.672      -19.157     
+KJJ     O11     O       O2      0       -32.249     14.132      -17.886     
+KJJ     F12     F       F       0       -31.152     13.977      -15.449     
+KJJ     C14     C       CR66    0       -26.231     16.268      -16.906     
+KJJ     N16     N       NRD6    0       -23.992     15.422      -16.663     
+KJJ     O21     O       O       0       -25.175     12.637      -19.528     
+KJJ     O22     O       OC      -1      -26.601     10.976      -19.225     
+KJJ     O23     O       O2      0       -25.628     11.505      -16.493     
+KJJ     C25     C       CH3     0       -27.382     9.952       -15.872     
+KJJ     C26     C       CH3     0       -25.219     10.101      -14.635     
+KJJ     C28     C       CH3     0       -23.313     13.139      -16.848     
+KJJ     C29     C       CH2     0       -24.280     17.818      -16.406     
+KJJ     C30     C       CH2     0       -25.342     18.834      -16.045     
+KJJ     N31     N       NT      0       -26.467     18.777      -16.987     
+KJJ     C32     C       CH2     0       -27.163     17.466      -16.890     
+KJJ     C35     C       CH2     0       -27.258     21.215      -19.035     
+KJJ     C36     C       CH1     0       -27.964     22.146      -18.092     
+KJJ     C37     C       CR6     0       -29.428     22.042      -17.817     
+KJJ     C38     C       CR16    0       -30.334     21.803      -18.846     
+KJJ     C39     C       CR16    0       -31.696     21.704      -18.588     
+KJJ     C40     C       CR16    0       -32.170     21.841      -17.298     
+KJJ     C41     C       CR16    0       -31.285     22.076      -16.267     
+KJJ     C42     C       CR16    0       -29.923     22.175      -16.523     
+KJJ     H1      H       H       0       -27.228     12.390      -17.239     
+KJJ     H2      H       H       0       -26.100     21.515      -17.297     
+KJJ     H3      H       H       0       -26.220     12.675      -14.362     
+KJJ     H4      H       H       0       -27.080     11.585      -13.593     
+KJJ     H5      H       H       0       -27.682     12.318      -14.864     
+KJJ     H6      H       H       0       -28.282     19.636      -17.105     
+KJJ     H7      H       H       0       -27.444     20.129      -15.855     
+KJJ     H8      H       H       0       -28.257     15.086      -20.698     
+KJJ     H9      H       H       0       -27.052     14.499      -19.878     
+KJJ     H10     H       H       0       -27.420     16.030      -19.753     
+KJJ     H11     H       H       0       -28.628     14.393      -15.447     
+KJJ     H12     H       H       0       -30.347     13.991      -20.855     
+KJJ     H13     H       H       0       -30.488     15.583      -20.695     
+KJJ     H14     H       H       0       -32.537     14.221      -21.140     
+KJJ     H15     H       H       0       -32.642     15.471      -20.169     
+KJJ     H16     H       H       0       -32.401     12.765      -19.289     
+KJJ     H17     H       H       0       -33.700     13.662      -19.125     
+KJJ     H19     H       H       0       -27.008     9.361       -16.546     
+KJJ     H20     H       H       0       -28.102     10.473      -16.263     
+KJJ     H21     H       H       0       -27.731     9.423       -15.136     
+KJJ     H22     H       H       0       -24.645     9.660       -15.284     
+KJJ     H23     H       H       0       -25.628     9.432       -14.060     
+KJJ     H24     H       H       0       -24.686     10.709      -14.094     
+KJJ     H25     H       H       0       -23.424     12.508      -17.575     
+KJJ     H26     H       H       0       -23.340     12.666      -16.001     
+KJJ     H27     H       H       0       -22.451     13.577      -16.939     
+KJJ     H28     H       H       0       -23.801     18.115      -17.210     
+KJJ     H29     H       H       0       -23.630     17.749      -15.674     
+KJJ     H30     H       H       0       -24.951     19.733      -16.057     
+KJJ     H31     H       H       0       -25.668     18.659      -15.138     
+KJJ     H33     H       H       0       -27.685     17.447      -16.073     
+KJJ     H34     H       H       0       -27.782     17.395      -17.633     
+KJJ     H35     H       H       0       -26.573     21.596      -19.613     
+KJJ     H36     H       H       0       -27.781     20.497      -19.433     
+KJJ     H37     H       H       0       -27.630     23.064      -18.100     
+KJJ     H38     H       H       0       -30.018     21.708      -19.730     
+KJJ     H39     H       H       0       -32.298     21.542      -19.297     
+KJJ     H40     H       H       0       -33.095     21.773      -17.123     
+KJJ     H41     H       H       0       -31.605     22.170      -15.384     
+KJJ     H42     H       H       0       -29.323     22.337      -15.812     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KJJ          C8          C9      SINGLE       n     1.515  0.0138     1.515  0.0138
+KJJ          C7          C8      SINGLE       n     1.513  0.0100     1.513  0.0100
+KJJ          C9         C10      SINGLE       n     1.524  0.0144     1.524  0.0144
+KJJ          C1          C2      SINGLE       n     1.507  0.0123     1.507  0.0123
+KJJ         C20         O21      DOUBLE       n     1.244  0.0200     1.244  0.0200
+KJJ         C10         O11      SINGLE       n     1.434  0.0104     1.434  0.0104
+KJJ         C20         O22      SINGLE       n     1.244  0.0200     1.244  0.0200
+KJJ          C2          C7      DOUBLE       y     1.396  0.0121     1.396  0.0121
+KJJ          C6          C7      SINGLE       y     1.393  0.0100     1.393  0.0100
+KJJ         C19         C20      SINGLE       n     1.526  0.0200     1.526  0.0200
+KJJ          C2          C3      SINGLE       y     1.405  0.0100     1.405  0.0100
+KJJ         C35         C36      SINGLE       n     1.502  0.0110     1.502  0.0110
+KJJ         C34         C35      SINGLE       n     1.490  0.0136     1.490  0.0136
+KJJ         C38         C39      DOUBLE       y     1.386  0.0100     1.386  0.0100
+KJJ         C37         C38      SINGLE       y     1.388  0.0104     1.388  0.0104
+KJJ         C39         C40      SINGLE       y     1.376  0.0124     1.376  0.0124
+KJJ          C6         O11      SINGLE       n     1.374  0.0100     1.374  0.0100
+KJJ          C5          C6      DOUBLE       y     1.391  0.0120     1.391  0.0120
+KJJ         C36         C37      SINGLE       n     1.492  0.0100     1.492  0.0100
+KJJ         C34         C36      SINGLE       n     1.503  0.0113     1.503  0.0113
+KJJ         C18         C19      SINGLE       n     1.517  0.0100     1.517  0.0100
+KJJ         C19         O23      SINGLE       n     1.417  0.0100     1.417  0.0100
+KJJ         C13          C3      SINGLE       n     1.490  0.0100     1.490  0.0100
+KJJ          C3          C4      DOUBLE       y     1.391  0.0104     1.391  0.0104
+KJJ         C37         C42      DOUBLE       y     1.388  0.0104     1.388  0.0104
+KJJ         C34         C33      SINGLE       n     1.505  0.0100     1.505  0.0100
+KJJ         C13         C18      DOUBLE       y     1.404  0.0141     1.404  0.0141
+KJJ         C13         C14      SINGLE       y     1.413  0.0145     1.413  0.0145
+KJJ         C18         C17      SINGLE       y     1.395  0.0127     1.395  0.0127
+KJJ         C40         C41      DOUBLE       y     1.374  0.0127     1.374  0.0127
+KJJ         N31         C32      SINGLE       n     1.475  0.0170     1.475  0.0170
+KJJ         C33         N31      SINGLE       n     1.467  0.0100     1.467  0.0100
+KJJ         C30         N31      SINGLE       n     1.460  0.0164     1.460  0.0164
+KJJ         C14         C32      SINGLE       n     1.510  0.0120     1.510  0.0120
+KJJ         C15         C14      DOUBLE       y     1.397  0.0100     1.397  0.0100
+KJJ         C17         C28      SINGLE       n     1.499  0.0100     1.499  0.0100
+KJJ         C17         N16      DOUBLE       y     1.333  0.0100     1.333  0.0100
+KJJ         C15         N16      SINGLE       y     1.349  0.0100     1.349  0.0100
+KJJ         C15         C29      SINGLE       n     1.505  0.0100     1.505  0.0100
+KJJ         C24         O23      SINGLE       n     1.445  0.0191     1.445  0.0191
+KJJ          C4          C5      SINGLE       y     1.382  0.0131     1.382  0.0131
+KJJ          C5         F12      SINGLE       n     1.353  0.0100     1.353  0.0100
+KJJ         C29         C30      SINGLE       n     1.511  0.0118     1.511  0.0118
+KJJ         C41         C42      SINGLE       y     1.386  0.0100     1.386  0.0100
+KJJ         C24         C25      SINGLE       n     1.513  0.0120     1.513  0.0120
+KJJ         C24         C26      SINGLE       n     1.513  0.0120     1.513  0.0120
+KJJ         C24         C27      SINGLE       n     1.513  0.0120     1.513  0.0120
+KJJ         C19          H1      SINGLE       n     1.089  0.0100     1.005  0.0200
+KJJ         C34          H2      SINGLE       n     1.089  0.0100     0.989  0.0124
+KJJ         C27          H3      SINGLE       n     1.089  0.0100     0.972  0.0148
+KJJ         C27          H4      SINGLE       n     1.089  0.0100     0.972  0.0148
+KJJ         C27          H5      SINGLE       n     1.089  0.0100     0.972  0.0148
+KJJ         C33          H6      SINGLE       n     1.089  0.0100     0.981  0.0150
+KJJ         C33          H7      SINGLE       n     1.089  0.0100     0.981  0.0150
+KJJ          C1          H8      SINGLE       n     1.089  0.0100     0.970  0.0146
+KJJ          C1          H9      SINGLE       n     1.089  0.0100     0.970  0.0146
+KJJ          C1         H10      SINGLE       n     1.089  0.0100     0.970  0.0146
+KJJ          C4         H11      SINGLE       n     1.082  0.0130     0.942  0.0177
+KJJ          C8         H12      SINGLE       n     1.089  0.0100     0.997  0.0200
+KJJ          C8         H13      SINGLE       n     1.089  0.0100     0.997  0.0200
+KJJ          C9         H14      SINGLE       n     1.089  0.0100     0.981  0.0170
+KJJ          C9         H15      SINGLE       n     1.089  0.0100     0.981  0.0170
+KJJ         C10         H16      SINGLE       n     1.089  0.0100     0.973  0.0200
+KJJ         C10         H17      SINGLE       n     1.089  0.0100     0.973  0.0200
+KJJ         C25         H19      SINGLE       n     1.089  0.0100     0.972  0.0148
+KJJ         C25         H20      SINGLE       n     1.089  0.0100     0.972  0.0148
+KJJ         C25         H21      SINGLE       n     1.089  0.0100     0.972  0.0148
+KJJ         C26         H22      SINGLE       n     1.089  0.0100     0.972  0.0148
+KJJ         C26         H23      SINGLE       n     1.089  0.0100     0.972  0.0148
+KJJ         C26         H24      SINGLE       n     1.089  0.0100     0.972  0.0148
+KJJ         C28         H25      SINGLE       n     1.089  0.0100     0.971  0.0138
+KJJ         C28         H26      SINGLE       n     1.089  0.0100     0.971  0.0138
+KJJ         C28         H27      SINGLE       n     1.089  0.0100     0.971  0.0138
+KJJ         C29         H28      SINGLE       n     1.089  0.0100     0.982  0.0193
+KJJ         C29         H29      SINGLE       n     1.089  0.0100     0.982  0.0193
+KJJ         C30         H30      SINGLE       n     1.089  0.0100     0.980  0.0143
+KJJ         C30         H31      SINGLE       n     1.089  0.0100     0.980  0.0143
+KJJ         C32         H33      SINGLE       n     1.089  0.0100     0.970  0.0100
+KJJ         C32         H34      SINGLE       n     1.089  0.0100     0.970  0.0100
+KJJ         C35         H35      SINGLE       n     1.089  0.0100     0.973  0.0200
+KJJ         C35         H36      SINGLE       n     1.089  0.0100     0.973  0.0200
+KJJ         C36         H37      SINGLE       n     1.089  0.0100     0.977  0.0200
+KJJ         C38         H38      SINGLE       n     1.082  0.0130     0.944  0.0169
+KJJ         C39         H39      SINGLE       n     1.082  0.0130     0.944  0.0175
+KJJ         C40         H40      SINGLE       n     1.082  0.0130     0.944  0.0161
+KJJ         C41         H41      SINGLE       n     1.082  0.0130     0.944  0.0175
+KJJ         C42         H42      SINGLE       n     1.082  0.0130     0.944  0.0169
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KJJ          C3         C13         C18     119.486    1.77
+KJJ          C3         C13         C14     120.731    2.05
+KJJ         C18         C13         C14     119.783    1.50
+KJJ         C19         C18         C13     120.683    2.29
+KJJ         C19         C18         C17     120.123    1.56
+KJJ         C13         C18         C17     119.194    1.50
+KJJ         C18         C17         C28     122.058    1.50
+KJJ         C18         C17         N16     121.356    1.50
+KJJ         C28         C17         N16     116.586    1.50
+KJJ         C14         C15         N16     121.792    1.50
+KJJ         C14         C15         C29     121.833    1.50
+KJJ         N16         C15         C29     116.376    1.50
+KJJ         C20         C19         C18     109.875    1.76
+KJJ         C20         C19         O23     110.427    2.31
+KJJ         C20         C19          H1     108.445    1.50
+KJJ         C18         C19         O23     109.968    1.87
+KJJ         C18         C19          H1     108.658    1.50
+KJJ         O23         C19          H1     108.897    1.62
+KJJ         O21         C20         O22     125.643    1.50
+KJJ         O21         C20         C19     117.170    1.55
+KJJ         O22         C20         C19     117.170    1.55
+KJJ         O23         C24         C25     107.859    3.00
+KJJ         O23         C24         C26     107.859    3.00
+KJJ         O23         C24         C27     107.859    3.00
+KJJ         C25         C24         C26     111.547    1.50
+KJJ         C25         C24         C27     111.547    1.50
+KJJ         C26         C24         C27     111.547    1.50
+KJJ         C35         C34         C36      59.855    1.50
+KJJ         C35         C34         C33     119.500    1.50
+KJJ         C35         C34          H2     115.552    1.50
+KJJ         C36         C34         C33     120.272    3.00
+KJJ         C36         C34          H2     115.335    1.50
+KJJ         C33         C34          H2     114.911    1.50
+KJJ         C24         C27          H3     109.487    1.50
+KJJ         C24         C27          H4     109.487    1.50
+KJJ         C24         C27          H5     109.487    1.50
+KJJ          H3         C27          H4     109.441    1.50
+KJJ          H3         C27          H5     109.441    1.50
+KJJ          H4         C27          H5     109.441    1.50
+KJJ         C34         C33         N31     113.247    1.81
+KJJ         C34         C33          H6     109.223    1.50
+KJJ         C34         C33          H7     109.223    1.50
+KJJ         N31         C33          H6     108.707    1.50
+KJJ         N31         C33          H7     108.707    1.50
+KJJ          H6         C33          H7     107.808    1.50
+KJJ          C2          C1          H8     109.637    1.50
+KJJ          C2          C1          H9     109.637    1.50
+KJJ          C2          C1         H10     109.637    1.50
+KJJ          H8          C1          H9     109.290    1.50
+KJJ          H8          C1         H10     109.290    1.50
+KJJ          H9          C1         H10     109.290    1.50
+KJJ          C1          C2          C7     119.279    1.50
+KJJ          C1          C2          C3     120.366    1.50
+KJJ          C7          C2          C3     120.355    1.66
+KJJ          C2          C3         C13     119.963    1.77
+KJJ          C2          C3          C4     119.923    1.61
+KJJ         C13          C3          C4     120.114    1.50
+KJJ          C3          C4          C5     120.504    1.50
+KJJ          C3          C4         H11     119.060    1.50
+KJJ          C5          C4         H11     120.436    1.50
+KJJ          C6          C5          C4     120.074    1.50
+KJJ          C6          C5         F12     120.011    1.50
+KJJ          C4          C5         F12     119.915    1.50
+KJJ          C7          C6         O11     122.302    1.50
+KJJ          C7          C6          C5     120.920    1.58
+KJJ         O11          C6          C5     116.778    1.59
+KJJ          C8          C7          C2     121.712    1.83
+KJJ          C8          C7          C6     120.064    1.50
+KJJ          C2          C7          C6     118.225    1.50
+KJJ          C9          C8          C7     112.163    1.82
+KJJ          C9          C8         H12     109.341    1.50
+KJJ          C9          C8         H13     109.341    1.50
+KJJ          C7          C8         H12     109.590    1.50
+KJJ          C7          C8         H13     109.590    1.50
+KJJ         H12          C8         H13     107.825    1.50
+KJJ          C8          C9         C10     111.124    1.57
+KJJ          C8          C9         H14     109.451    1.50
+KJJ          C8          C9         H15     109.451    1.50
+KJJ         C10          C9         H14     109.327    1.50
+KJJ         C10          C9         H15     109.327    1.50
+KJJ         H14          C9         H15     108.019    1.50
+KJJ          C9         C10         O11     110.991    2.73
+KJJ          C9         C10         H16     110.132    1.50
+KJJ          C9         C10         H17     110.132    1.50
+KJJ         O11         C10         H16     107.369    1.80
+KJJ         O11         C10         H17     107.369    1.80
+KJJ         H16         C10         H17     108.489    2.29
+KJJ         C10         O11          C6     114.495    2.03
+KJJ         C13         C14         C32     121.291    1.50
+KJJ         C13         C14         C15     119.397    1.58
+KJJ         C32         C14         C15     119.311    1.98
+KJJ         C17         N16         C15     118.478    1.50
+KJJ         C19         O23         C24     113.350    3.00
+KJJ         C24         C25         H19     109.487    1.50
+KJJ         C24         C25         H20     109.487    1.50
+KJJ         C24         C25         H21     109.487    1.50
+KJJ         H19         C25         H20     109.441    1.50
+KJJ         H19         C25         H21     109.441    1.50
+KJJ         H20         C25         H21     109.441    1.50
+KJJ         C24         C26         H22     109.487    1.50
+KJJ         C24         C26         H23     109.487    1.50
+KJJ         C24         C26         H24     109.487    1.50
+KJJ         H22         C26         H23     109.441    1.50
+KJJ         H22         C26         H24     109.441    1.50
+KJJ         H23         C26         H24     109.441    1.50
+KJJ         C17         C28         H25     109.475    1.50
+KJJ         C17         C28         H26     109.475    1.50
+KJJ         C17         C28         H27     109.475    1.50
+KJJ         H25         C28         H26     109.339    1.66
+KJJ         H25         C28         H27     109.339    1.66
+KJJ         H26         C28         H27     109.339    1.66
+KJJ         C15         C29         C30     111.445    2.09
+KJJ         C15         C29         H28     108.638    1.50
+KJJ         C15         C29         H29     108.638    1.50
+KJJ         C30         C29         H28     109.445    1.50
+KJJ         C30         C29         H29     109.445    1.50
+KJJ         H28         C29         H29     107.873    1.50
+KJJ         N31         C30         C29     111.144    1.62
+KJJ         N31         C30         H30     109.490    1.50
+KJJ         N31         C30         H31     109.490    1.50
+KJJ         C29         C30         H30     109.708    1.50
+KJJ         C29         C30         H31     109.708    1.50
+KJJ         H30         C30         H31     108.037    1.50
+KJJ         C32         N31         C33     111.960    2.41
+KJJ         C32         N31         C30     109.469    1.50
+KJJ         C33         N31         C30     111.137    1.50
+KJJ         N31         C32         C14     112.474    1.50
+KJJ         N31         C32         H33     109.216    1.50
+KJJ         N31         C32         H34     109.216    1.50
+KJJ         C14         C32         H33     109.233    1.50
+KJJ         C14         C32         H34     109.233    1.50
+KJJ         H33         C32         H34     107.777    1.50
+KJJ         C36         C35         C34      60.077    2.22
+KJJ         C36         C35         H35     117.437    1.50
+KJJ         C36         C35         H36     117.437    1.50
+KJJ         C34         C35         H35     117.752    1.50
+KJJ         C34         C35         H36     117.752    1.50
+KJJ         H35         C35         H36     115.166    1.95
+KJJ         C35         C36         C37     122.551    1.50
+KJJ         C35         C36         C34      59.182    1.50
+KJJ         C35         C36         H37     114.959    1.50
+KJJ         C37         C36         C34     121.995    1.50
+KJJ         C37         C36         H37     114.290    1.50
+KJJ         C34         C36         H37     114.298    1.50
+KJJ         C38         C37         C36     120.986    1.95
+KJJ         C38         C37         C42     118.027    1.50
+KJJ         C36         C37         C42     120.986    1.95
+KJJ         C39         C38         C37     120.798    1.50
+KJJ         C39         C38         H38     119.781    1.50
+KJJ         C37         C38         H38     119.421    1.50
+KJJ         C38         C39         C40     120.264    1.50
+KJJ         C38         C39         H39     119.781    1.50
+KJJ         C40         C39         H39     119.955    1.50
+KJJ         C39         C40         C41     119.849    1.50
+KJJ         C39         C40         H40     120.075    1.50
+KJJ         C41         C40         H40     120.075    1.50
+KJJ         C40         C41         C42     120.264    1.50
+KJJ         C40         C41         H41     119.955    1.50
+KJJ         C42         C41         H41     119.781    1.50
+KJJ         C37         C42         C41     120.798    1.50
+KJJ         C37         C42         H42     119.421    1.50
+KJJ         C41         C42         H42     119.781    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KJJ       const_sp2_sp2_8          C3         C13         C18         C19       0.000     5.0     2
+KJJ             sp2_sp2_6         C14         C13          C3          C4     180.000     5.0     2
+KJJ            sp3_sp3_84          H6         C33         N31         C32      60.000    10.0     3
+KJJ            sp2_sp3_15          C7          C2          C1         H10      30.000    10.0     6
+KJJ             sp2_sp2_2          C5          C6         O11         C10     180.000     5.0     2
+KJJ              const_24          C1          C2          C7          C8       0.000    10.0     2
+KJJ              const_33          C2          C3          C4          C5       0.000    10.0     2
+KJJ              const_30          C3          C4          C5         F12     180.000    10.0     2
+KJJ              const_27         F12          C5          C6          C7     180.000    10.0     2
+KJJ       const_sp2_sp2_1         O11          C6          C7          C8       0.000     5.0     2
+KJJ            sp2_sp3_25         C38         C37         C36         C35     150.000    10.0     6
+KJJ             sp2_sp3_4          C2          C7          C8          C9     180.000    10.0     6
+KJJ             sp3_sp3_1          C7          C8          C9         C10      60.000    10.0     3
+KJJ            sp3_sp3_10         O11         C10          C9          C8     -60.000    10.0     3
+KJJ            sp3_sp3_19          C9         C10         O11          C6      60.000    10.0     3
+KJJ              const_12         C28         C17         C18         C19       0.000    10.0     2
+KJJ            sp2_sp3_34         C17         C18         C19         C20     -30.000    10.0     6
+KJJ            sp2_sp3_10         C13         C14         C32         N31     180.000    10.0     6
+KJJ              const_14         C28         C17         N16         C15     180.000    10.0     2
+KJJ            sp2_sp3_40         N16         C17         C28         H25     -30.000    10.0     6
+KJJ            sp3_sp3_34         C15         C29         C30         N31      60.000    10.0     3
+KJJ            sp3_sp3_29         C29         C30         N31         C33      60.000    10.0     3
+KJJ            sp3_sp3_23         C14         C32         N31         C33     180.000    10.0     3
+KJJ            sp3_sp3_54         C34         C35         C36         H37     180.000    10.0     3
+KJJ            sp2_sp3_27         C38         C37         C36         H37      30.000    10.0     6
+KJJ              const_41         C37         C38         C39         C40       0.000    10.0     2
+KJJ              const_64         C36         C37         C42         H42       0.000    10.0     2
+KJJ              const_43         H38         C38         C39         C40     180.000    10.0     2
+KJJ              const_47         H39         C39         C40         C41     180.000    10.0     2
+KJJ              const_51         H40         C40         C41         C42     180.000    10.0     2
+KJJ              const_17         C13         C14         C15         N16       0.000    10.0     2
+KJJ              const_15         C14         C15         N16         C17       0.000    10.0     2
+KJJ            sp2_sp3_46         N16         C15         C29         C30     180.000    10.0     6
+KJJ              const_55         H41         C41         C42         C37     180.000    10.0     2
+KJJ             sp2_sp2_3         C18         C13          C3          C2     180.000     5.0     2
+KJJ            sp2_sp3_22         O22         C20         C19         C18     180.000    10.0     6
+KJJ            sp3_sp3_92         O23         C24         C25         H20     -60.000    10.0     3
+KJJ            sp3_sp3_94         C26         C24         C25         H19      60.000    10.0     3
+KJJ           sp3_sp3_106         C27         C24         C26         H22     -60.000    10.0     3
+KJJ           sp3_sp3_112         C25         C24         C27          H3      60.000    10.0     3
+KJJ            sp3_sp3_47         C33         C34         C35         H35      60.000    10.0     3
+KJJ            sp3_sp3_67          H2         C34         C36         C35     -60.000    10.0     3
+KJJ            sp3_sp3_76          H6         C33         C34         C35      60.000    10.0     3
+KJJ            sp3_sp3_85          H6         C33         N31         C30     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KJJ    chir_1    C19    O23    C20    C18    positive
+KJJ    chir_2    C24    O23    C25    C26    both
+KJJ    chir_3    C34    C33    C36    C35    positive
+KJJ    chir_4    N31    C32    C33    C30    negative
+KJJ    chir_5    C36    C37    C34    C35    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KJJ    plan-1         C13   0.020
+KJJ    plan-1         C14   0.020
+KJJ    plan-1         C15   0.020
+KJJ    plan-1         C17   0.020
+KJJ    plan-1         C18   0.020
+KJJ    plan-1         C19   0.020
+KJJ    plan-1         C28   0.020
+KJJ    plan-1         C29   0.020
+KJJ    plan-1          C3   0.020
+KJJ    plan-1         C32   0.020
+KJJ    plan-1         N16   0.020
+KJJ    plan-2          C1   0.020
+KJJ    plan-2         C13   0.020
+KJJ    plan-2          C2   0.020
+KJJ    plan-2          C3   0.020
+KJJ    plan-2          C4   0.020
+KJJ    plan-2          C5   0.020
+KJJ    plan-2          C6   0.020
+KJJ    plan-2          C7   0.020
+KJJ    plan-2          C8   0.020
+KJJ    plan-2         F12   0.020
+KJJ    plan-2         H11   0.020
+KJJ    plan-2         O11   0.020
+KJJ    plan-3         C36   0.020
+KJJ    plan-3         C37   0.020
+KJJ    plan-3         C38   0.020
+KJJ    plan-3         C39   0.020
+KJJ    plan-3         C40   0.020
+KJJ    plan-3         C41   0.020
+KJJ    plan-3         C42   0.020
+KJJ    plan-3         H38   0.020
+KJJ    plan-3         H39   0.020
+KJJ    plan-3         H40   0.020
+KJJ    plan-3         H41   0.020
+KJJ    plan-3         H42   0.020
+KJJ    plan-4         C19   0.020
+KJJ    plan-4         C20   0.020
+KJJ    plan-4         O21   0.020
+KJJ    plan-4         O22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KJJ            InChI                InChI  1.03 InChI=1S/C35H41FN2O4/c1-20-24-12-9-15-41-32(24)28(36)17-25(20)31-27-19-38(18-23-16-26(23)22-10-7-6-8-11-22)14-13-29(27)37-21(2)30(31)33(34(39)40)42-35(3,4)5/h6-8,10-11,17,23,26,33H,9,12-16,18-19H2,1-5H3,(H,39,40)/t23-,26+,33+/m1/s1
+KJJ         InChIKey                InChI  1.03                                                                                                                                                                                                             BXDYSLFANINKPQ-VEWAMZQOSA-N
+KJJ SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                       Cc1nc2CCN(C[C@H]3C[C@H]3c4ccccc4)Cc2c(c5cc(F)c6OCCCc6c5C)c1[C@H](OC(C)(C)C)C(O)=O
+KJJ           SMILES               CACTVS 3.385                                                                                                                                                          Cc1nc2CCN(C[CH]3C[CH]3c4ccccc4)Cc2c(c5cc(F)c6OCCCc6c5C)c1[CH](OC(C)(C)C)C(O)=O
+KJJ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                                                                  Cc1c(cc(c2c1CCCO2)F)c3c4c(nc(c3[C@@H](C(=O)O)OC(C)(C)C)C)CCN(C4)C[C@H]5C[C@H]5c6ccccc6
+KJJ           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                                                               Cc1c(cc(c2c1CCCO2)F)c3c4c(nc(c3C(C(=O)O)OC(C)(C)C)C)CCN(C4)CC5CC5c6ccccc6
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KJJ acedrg               243         "dictionary generator"                  
+KJJ acedrg_database      11          "data source"                           
+KJJ rdkit                2017.03.2   "Chemoinformatics tool"
+KJJ refmac5              5.8.0238    "optimization tool"                     

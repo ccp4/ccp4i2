@@ -46,9 +46,9 @@ class xia2_dials_report(Report):
             jobNumber = self.jobInfo.get("jobnumber", None)
 
             xia2url = (
-                "/database/?getProjectJobFile?projectId="
+                "/database/getProjectJobFile?projectId="
                 + projectid
-                + "?fileName=xia2.html?jobNumber="
+                + "&fileName=xia2.html&jobNumber="
                 + jobNumber
             )
             xia2HtmlFold = parent.addFold(label="xia2 report", initiallyOpen=True)

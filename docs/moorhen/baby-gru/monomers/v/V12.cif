@@ -1,0 +1,347 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+V12     V12      "5'-[(1H-BENZIMIDAZOL-2-YLACETYL)AMINO]-5'-DEOXYCYTIDINE"     NON-POLYMER     49     29     .     
+#
+data_comp_V12
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+V12     OAC     O       O       0       13.311      -11.953     16.762      
+V12     CAV     C       CR6     0       13.251      -10.720     16.904      
+V12     NAO     N       NRD6    0       12.156      -10.020     16.503      
+V12     CAT     C       CR6     0       12.096      -8.687      16.657      
+V12     NAA     N       NH2     0       11.001      -8.059      16.246      
+V12     CAF     C       CR16    0       13.176      -7.969      17.247      
+V12     CAG     C       CR16    0       14.256      -8.668      17.641      
+V12     NBD     N       NR6     0       14.326      -10.030     17.495      
+V12     CBC     C       CH1     0       15.539      -10.785     17.936      
+V12     OAS     O       O2      0       16.009      -10.255     19.159      
+V12     CBA     C       CH1     0       16.687      -10.710     16.918      
+V12     OAE     O       OH1     0       17.279      -11.986     16.781      
+V12     CAZ     C       CH1     0       17.625      -9.678      17.557      
+V12     OAD     O       OH1     0       18.989      -9.868      17.198      
+V12     CB0     C       CH1     0       17.413      -9.939      19.045      
+V12     CAN     C       CH2     0       17.734      -8.774      19.958      
+V12     NAQ     N       NH1     0       17.575      -9.104      21.361      
+V12     CAU     C       C       0       18.576      -9.257      22.238      
+V12     OAB     O       O       0       19.765      -9.112      21.947      
+V12     CAL     C       CH2     0       18.160      -9.647      23.647      
+V12     CA0     C       CR5     0       17.717      -11.063     23.821      
+V12     NAR     N       NRD5    0       17.253      -11.542     24.954      
+V12     CAY     C       CR56    0       16.959      -12.880     24.701      
+V12     CAK     C       CR16    0       16.441      -13.870     25.538      
+V12     CAI     C       CR16    0       16.250      -15.127     25.007      
+V12     CAH     C       CR16    0       16.564      -15.411     23.673      
+V12     CAJ     C       CR16    0       17.078      -14.445     22.832      
+V12     CAX     C       CR56    0       17.268      -13.177     23.373      
+V12     NAP     N       NR5     0       17.748      -12.000     22.843      
+V12     HAA1    H       H       0       10.873      -7.218      16.462      
+V12     HAA2    H       H       0       10.407      -8.485      15.758      
+V12     HAF     H       H       0       13.139      -7.035      17.358      
+V12     HAG     H       H       0       14.979      -8.221      18.029      
+V12     HBC     H       H       0       15.301      -11.729     18.084      
+V12     HBA     H       H       0       16.361      -10.387     16.054      
+V12     HAE     H       H       0       17.930      -11.938     16.239      
+V12     HAZ     H       H       0       17.333      -8.761      17.320      
+V12     HAD     H       H       0       19.460      -9.282      17.592      
+V12     HB0     H       H       0       17.945      -10.726     19.315      
+V12     HAN1    H       H       0       17.130      -8.029      19.747      
+V12     HAN2    H       H       0       18.656      -8.481      19.794      
+V12     HAQ     H       H       0       16.733      -9.213      21.654      
+V12     HAL1    H       H       0       17.433      -9.056      23.929      
+V12     HAL2    H       H       0       18.915      -9.480      24.248      
+V12     HAK     H       H       0       16.229      -13.681     26.434      
+V12     HAI     H       H       0       15.903      -15.808     25.552      
+V12     HAH     H       H       0       16.423      -16.281     23.341      
+V12     HAJ     H       H       0       17.288      -14.634     21.939      
+V12     HAP     H       H       0       18.024      -11.883     22.015      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+V12         OAC         CAV      DOUBLE       n     1.241  0.0100     1.241  0.0100
+V12         CAV         NAO      SINGLE       y     1.355  0.0119     1.355  0.0119
+V12         CAV         NBD      SINGLE       y     1.397  0.0100     1.397  0.0100
+V12         NAO         CAT      DOUBLE       y     1.339  0.0110     1.339  0.0110
+V12         CAT         NAA      SINGLE       n     1.325  0.0109     1.325  0.0109
+V12         CAT         CAF      SINGLE       y     1.422  0.0123     1.422  0.0123
+V12         CAF         CAG      DOUBLE       y     1.342  0.0100     1.342  0.0100
+V12         CAG         NBD      SINGLE       y     1.364  0.0108     1.364  0.0108
+V12         NBD         CBC      SINGLE       n     1.487  0.0100     1.487  0.0100
+V12         CBC         OAS      SINGLE       n     1.411  0.0100     1.411  0.0100
+V12         CBC         CBA      SINGLE       n     1.532  0.0100     1.532  0.0100
+V12         OAS         CB0      SINGLE       n     1.446  0.0107     1.446  0.0107
+V12         CBA         OAE      SINGLE       n     1.412  0.0100     1.412  0.0100
+V12         CBA         CAZ      SINGLE       n     1.533  0.0109     1.533  0.0109
+V12         CAZ         OAD      SINGLE       n     1.422  0.0100     1.422  0.0100
+V12         CAZ         CB0      SINGLE       n     1.528  0.0117     1.528  0.0117
+V12         CB0         CAN      SINGLE       n     1.514  0.0100     1.514  0.0100
+V12         CAN         NAQ      SINGLE       n     1.447  0.0100     1.447  0.0100
+V12         NAQ         CAU      SINGLE       n     1.335  0.0100     1.335  0.0100
+V12         CAU         OAB      DOUBLE       n     1.232  0.0104     1.232  0.0104
+V12         CAU         CAL      SINGLE       n     1.517  0.0109     1.517  0.0109
+V12         CAL         CA0      SINGLE       n     1.490  0.0100     1.490  0.0100
+V12         CA0         NAR      DOUBLE       y     1.314  0.0100     1.314  0.0100
+V12         CA0         NAP      SINGLE       y     1.352  0.0101     1.352  0.0101
+V12         NAR         CAY      SINGLE       y     1.393  0.0100     1.393  0.0100
+V12         CAY         CAK      DOUBLE       y     1.393  0.0100     1.393  0.0100
+V12         CAY         CAX      SINGLE       y     1.393  0.0100     1.393  0.0100
+V12         CAK         CAI      SINGLE       y     1.375  0.0100     1.375  0.0100
+V12         CAI         CAH      DOUBLE       y     1.396  0.0106     1.396  0.0106
+V12         CAH         CAJ      SINGLE       y     1.377  0.0100     1.377  0.0100
+V12         CAJ         CAX      DOUBLE       y     1.388  0.0100     1.388  0.0100
+V12         CAX         NAP      SINGLE       y     1.378  0.0100     1.378  0.0100
+V12         NAA        HAA1      SINGLE       n     1.016  0.0100     0.877  0.0200
+V12         NAA        HAA2      SINGLE       n     1.016  0.0100     0.877  0.0200
+V12         CAF         HAF      SINGLE       n     1.082  0.0130     0.941  0.0174
+V12         CAG         HAG      SINGLE       n     1.082  0.0130     0.935  0.0143
+V12         CBC         HBC      SINGLE       n     1.089  0.0100     0.985  0.0100
+V12         CBA         HBA      SINGLE       n     1.089  0.0100     0.978  0.0200
+V12         OAE         HAE      SINGLE       n     0.970  0.0120     0.849  0.0200
+V12         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.992  0.0200
+V12         OAD         HAD      SINGLE       n     0.970  0.0120     0.849  0.0200
+V12         CB0         HB0      SINGLE       n     1.089  0.0100     0.988  0.0100
+V12         CAN        HAN1      SINGLE       n     1.089  0.0100     0.982  0.0110
+V12         CAN        HAN2      SINGLE       n     1.089  0.0100     0.982  0.0110
+V12         NAQ         HAQ      SINGLE       n     1.016  0.0100     0.897  0.0200
+V12         CAL        HAL1      SINGLE       n     1.089  0.0100     0.979  0.0162
+V12         CAL        HAL2      SINGLE       n     1.089  0.0100     0.979  0.0162
+V12         CAK         HAK      SINGLE       n     1.082  0.0130     0.940  0.0194
+V12         CAI         HAI      SINGLE       n     1.082  0.0130     0.939  0.0159
+V12         CAH         HAH      SINGLE       n     1.082  0.0130     0.941  0.0181
+V12         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.936  0.0156
+V12         NAP         HAP      SINGLE       n     1.016  0.0100     0.881  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+V12         OAC         CAV         NAO     122.363    1.50
+V12         OAC         CAV         NBD     118.716    1.50
+V12         NAO         CAV         NBD     118.927    1.50
+V12         CAV         NAO         CAT     120.266    1.50
+V12         NAO         CAT         NAA     117.855    1.50
+V12         NAO         CAT         CAF     121.269    1.50
+V12         NAA         CAT         CAF     120.876    1.50
+V12         CAT         NAA        HAA1     119.818    1.59
+V12         CAT         NAA        HAA2     119.818    1.59
+V12        HAA1         NAA        HAA2     120.363    1.85
+V12         CAT         CAF         CAG     117.808    1.50
+V12         CAT         CAF         HAF     121.350    1.50
+V12         CAG         CAF         HAF     120.848    1.50
+V12         CAF         CAG         NBD     121.215    1.50
+V12         CAF         CAG         HAG     120.275    1.75
+V12         NBD         CAG         HAG     118.510    1.50
+V12         CAV         NBD         CAG     120.510    1.50
+V12         CAV         NBD         CBC     118.189    2.26
+V12         CAG         NBD         CBC     121.301    1.52
+V12         NBD         CBC         OAS     108.667    1.50
+V12         NBD         CBC         CBA     112.859    1.50
+V12         NBD         CBC         HBC     109.166    1.50
+V12         OAS         CBC         CBA     106.825    1.50
+V12         OAS         CBC         HBC     109.327    1.50
+V12         CBA         CBC         HBC     109.776    1.83
+V12         CBC         OAS         CB0     109.375    1.70
+V12         CBC         CBA         OAE     109.476    3.00
+V12         CBC         CBA         CAZ     101.269    1.50
+V12         CBC         CBA         HBA     110.760    1.63
+V12         OAE         CBA         CAZ     112.861    2.52
+V12         OAE         CBA         HBA     111.022    1.77
+V12         CAZ         CBA         HBA     110.799    1.82
+V12         CBA         OAE         HAE     109.449    1.85
+V12         CBA         CAZ         OAD     111.993    3.00
+V12         CBA         CAZ         CB0     102.352    1.50
+V12         CBA         CAZ         HAZ     110.108    1.66
+V12         OAD         CAZ         CB0     110.985    2.41
+V12         OAD         CAZ         HAZ     110.380    1.67
+V12         CB0         CAZ         HAZ     110.624    1.81
+V12         CAZ         OAD         HAD     108.744    3.00
+V12         OAS         CB0         CAZ     105.508    1.50
+V12         OAS         CB0         CAN     108.989    1.51
+V12         OAS         CB0         HB0     109.115    1.50
+V12         CAZ         CB0         CAN     115.298    1.50
+V12         CAZ         CB0         HB0     109.143    1.50
+V12         CAN         CB0         HB0     109.467    1.50
+V12         CB0         CAN         NAQ     112.618    1.57
+V12         CB0         CAN        HAN1     109.022    1.50
+V12         CB0         CAN        HAN2     109.022    1.50
+V12         NAQ         CAN        HAN1     108.315    1.50
+V12         NAQ         CAN        HAN2     108.315    1.50
+V12        HAN1         CAN        HAN2     108.479    1.50
+V12         CAN         NAQ         CAU     122.965    1.78
+V12         CAN         NAQ         HAQ     118.335    2.47
+V12         CAU         NAQ         HAQ     118.700    1.94
+V12         NAQ         CAU         OAB     122.779    1.50
+V12         NAQ         CAU         CAL     115.668    1.65
+V12         OAB         CAU         CAL     121.553    1.50
+V12         CAU         CAL         CA0     112.079    2.81
+V12         CAU         CAL        HAL1     109.162    1.50
+V12         CAU         CAL        HAL2     109.162    1.50
+V12         CA0         CAL        HAL1     109.329    1.50
+V12         CA0         CAL        HAL2     109.329    1.50
+V12        HAL1         CAL        HAL2     107.730    1.50
+V12         CAL         CA0         NAR     124.810    1.99
+V12         CAL         CA0         NAP     122.908    1.56
+V12         NAR         CA0         NAP     112.282    1.50
+V12         CA0         NAR         CAY     105.184    1.50
+V12         NAR         CAY         CAK     130.388    1.50
+V12         NAR         CAY         CAX     109.552    1.50
+V12         CAK         CAY         CAX     120.060    1.50
+V12         CAY         CAK         CAI     117.727    1.50
+V12         CAY         CAK         HAK     120.915    1.50
+V12         CAI         CAK         HAK     121.359    1.50
+V12         CAK         CAI         CAH     121.628    1.50
+V12         CAK         CAI         HAI     119.132    1.50
+V12         CAH         CAI         HAI     119.240    1.50
+V12         CAI         CAH         CAJ     121.628    1.50
+V12         CAI         CAH         HAH     119.240    1.50
+V12         CAJ         CAH         HAH     119.132    1.50
+V12         CAH         CAJ         CAX     116.713    1.50
+V12         CAH         CAJ         HAJ     121.573    1.50
+V12         CAX         CAJ         HAJ     121.713    1.50
+V12         CAY         CAX         CAJ     122.244    1.50
+V12         CAY         CAX         NAP     105.272    1.50
+V12         CAJ         CAX         NAP     132.484    1.50
+V12         CA0         NAP         CAX     107.710    1.50
+V12         CA0         NAP         HAP     125.973    1.50
+V12         CAX         NAP         HAP     126.318    1.62
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+V12            sp3_sp3_34         CBC         CBA         OAE         HAE     180.000    10.0     3
+V12            sp3_sp3_20         OAD         CAZ         CBA         OAE     -60.000    10.0     3
+V12            sp3_sp3_37         CBA         CAZ         OAD         HAD     180.000    10.0     3
+V12            sp3_sp3_11         OAD         CAZ         CB0         CAN      60.000    10.0     3
+V12            sp3_sp3_40         NAQ         CAN         CB0         OAS     180.000    10.0     3
+V12             sp2_sp3_8         CAU         NAQ         CAN         CB0     120.000    10.0     6
+V12             sp2_sp2_7         OAB         CAU         NAQ         CAN       0.000     5.0     2
+V12            sp2_sp3_14         NAQ         CAU         CAL         CA0     120.000    10.0     6
+V12            sp2_sp3_20         NAR         CA0         CAL         CAU     -90.000    10.0     6
+V12              const_14         OAC         CAV         NAO         CAT     180.000    10.0     2
+V12              const_51         OAC         CAV         NBD         CAG     180.000    10.0     2
+V12       const_sp2_sp2_2         CAL         CA0         NAR         CAY     180.000     5.0     2
+V12              const_55         CAL         CA0         NAP         CAX     180.000    10.0     2
+V12       const_sp2_sp2_4         CAK         CAY         NAR         CA0     180.000     5.0     2
+V12              const_30         CAI         CAK         CAY         NAR     180.000    10.0     2
+V12       const_sp2_sp2_6         CAJ         CAX         CAY         NAR     180.000     5.0     2
+V12              const_33         CAH         CAI         CAK         CAY       0.000    10.0     2
+V12              const_37         CAJ         CAH         CAI         CAK       0.000    10.0     2
+V12              const_41         CAI         CAH         CAJ         CAX       0.000    10.0     2
+V12              const_45         CAH         CAJ         CAX         CAY       0.000    10.0     2
+V12       const_sp2_sp2_9         CAY         CAX         NAP         CA0       0.000     5.0     2
+V12              const_16         NAA         CAT         NAO         CAV     180.000    10.0     2
+V12             sp2_sp2_3         NAO         CAT         NAA        HAA1       0.000     5.0     2
+V12              const_18         CAG         CAF         CAT         NAA     180.000    10.0     2
+V12              const_21         CAT         CAF         CAG         NBD       0.000    10.0     2
+V12              const_25         CAF         CAG         NBD         CAV       0.000    10.0     2
+V12             sp2_sp3_1         CAV         NBD         CBC         OAS     150.000    10.0     6
+V12            sp3_sp3_29         OAE         CBA         CBC         NBD     180.000    10.0     3
+V12             sp3_sp3_2         NBD         CBC         OAS         CB0     -60.000    10.0     3
+V12             sp3_sp3_5         CAN         CB0         OAS         CBC     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+V12    chir_1    CBC    OAS    NBD    CBA    negative
+V12    chir_2    CBA    OAE    CBC    CAZ    negative
+V12    chir_3    CAZ    OAD    CB0    CBA    positive
+V12    chir_4    CB0    OAS    CAZ    CAN    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+V12    plan-1         CA0   0.020
+V12    plan-1         CAH   0.020
+V12    plan-1         CAI   0.020
+V12    plan-1         CAJ   0.020
+V12    plan-1         CAK   0.020
+V12    plan-1         CAL   0.020
+V12    plan-1         CAX   0.020
+V12    plan-1         CAY   0.020
+V12    plan-1         HAH   0.020
+V12    plan-1         HAI   0.020
+V12    plan-1         HAJ   0.020
+V12    plan-1         HAK   0.020
+V12    plan-1         HAP   0.020
+V12    plan-1         NAP   0.020
+V12    plan-1         NAR   0.020
+V12    plan-2         CAF   0.020
+V12    plan-2         CAG   0.020
+V12    plan-2         CAT   0.020
+V12    plan-2         CAV   0.020
+V12    plan-2         CBC   0.020
+V12    plan-2         HAF   0.020
+V12    plan-2         HAG   0.020
+V12    plan-2         NAA   0.020
+V12    plan-2         NAO   0.020
+V12    plan-2         NBD   0.020
+V12    plan-2         OAC   0.020
+V12    plan-3         CAT   0.020
+V12    plan-3        HAA1   0.020
+V12    plan-3        HAA2   0.020
+V12    plan-3         NAA   0.020
+V12    plan-4         CAN   0.020
+V12    plan-4         CAU   0.020
+V12    plan-4         HAQ   0.020
+V12    plan-4         NAQ   0.020
+V12    plan-5         CAL   0.020
+V12    plan-5         CAU   0.020
+V12    plan-5         NAQ   0.020
+V12    plan-5         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+V12           SMILES              ACDLabs 10.04                                                                                                                                               O=C1N=C(N)C=CN1C2OC(C(O)C2O)CNC(=O)Cc3nc4ccccc4n3
+V12 SMILES_CANONICAL               CACTVS 3.341                                                                                                                        NC1=NC(=O)N(C=C1)[C@@H]2O[C@H](CNC(=O)Cc3[nH]c4ccccc4n3)[C@@H](O)[C@H]2O
+V12           SMILES               CACTVS 3.341                                                                                                                              NC1=NC(=O)N(C=C1)[CH]2O[CH](CNC(=O)Cc3[nH]c4ccccc4n3)[CH](O)[CH]2O
+V12 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                    c1ccc2c(c1)[nH]c(n2)CC(=O)NC[C@@H]3[C@H]([C@H]([C@@H](O3)N4C=CC(=NC4=O)N)O)O
+V12           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                      c1ccc2c(c1)[nH]c(n2)CC(=O)NCC3C(C(C(O3)N4C=CC(=NC4=O)N)O)O
+V12            InChI                InChI  1.03 InChI=1S/C18H20N6O5/c19-12-5-6-24(18(28)23-12)17-16(27)15(26)11(29-17)8-20-14(25)7-13-21-9-3-1-2-4-10(9)22-13/h1-6,11,15-17,26-27H,7-8H2,(H,20,25)(H,21,22)(H2,19,23,28)/t11-,15-,16-,17-/m1/s1
+V12         InChIKey                InChI  1.03                                                                                                                                                                     MMCWRTZSCVUETH-GAEVZRCVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+V12 acedrg               243         "dictionary generator"                  
+V12 acedrg_database      11          "data source"                           
+V12 rdkit                2017.03.2   "Chemoinformatics tool"
+V12 refmac5              5.8.0238    "optimization tool"                     

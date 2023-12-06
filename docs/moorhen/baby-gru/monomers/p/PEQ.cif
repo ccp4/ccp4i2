@@ -1,0 +1,144 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PEQ     PEQ      L-PHOSPHOLACTATE     NON-POLYMER     14     10     .     
+#
+data_comp_PEQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PEQ     C1      C       C       0       -14.377     -19.146     66.917      
+PEQ     O1      O       O       0       -15.525     -19.595     67.118      
+PEQ     "O2'"   O       OC      -1      -13.701     -19.333     65.883      
+PEQ     C2      C       CH1     0       -13.751     -18.279     68.021      
+PEQ     C3      C       CH3     0       -12.249     -18.465     68.100      
+PEQ     O2      O       O2      0       -14.359     -18.547     69.296      
+PEQ     P       P       P       0       -14.064     -19.810     70.272      
+PEQ     O1P     O       O       0       -12.876     -19.402     71.121      
+PEQ     O2P     O       OP      -1      -15.329     -19.996     71.088      
+PEQ     O3P     O       OP      -1      -13.765     -21.001     69.380      
+PEQ     H21     H       H       0       -13.934     -17.335     67.791      
+PEQ     H31     H       H       0       -11.920     -18.102     68.940      
+PEQ     H32     H       H       0       -11.826     -17.997     67.359      
+PEQ     H33     H       H       0       -12.032     -19.412     68.048      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PEQ          C1          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+PEQ          C1       "O2'"      SINGLE       n     1.247  0.0187     1.247  0.0187
+PEQ          C1          C2      SINGLE       n     1.533  0.0100     1.533  0.0100
+PEQ          C2          C3      SINGLE       n     1.510  0.0153     1.510  0.0153
+PEQ          C2          O2      SINGLE       n     1.427  0.0167     1.427  0.0167
+PEQ          O2           P      SINGLE       n     1.614  0.0178     1.614  0.0178
+PEQ           P         O1P      DOUBLE       n     1.517  0.0192     1.517  0.0192
+PEQ           P         O2P      SINGLE       n     1.517  0.0192     1.517  0.0192
+PEQ           P         O3P      SINGLE       n     1.517  0.0192     1.517  0.0192
+PEQ          C2         H21      SINGLE       n     1.089  0.0100     0.989  0.0134
+PEQ          C3         H31      SINGLE       n     1.089  0.0100     0.973  0.0141
+PEQ          C3         H32      SINGLE       n     1.089  0.0100     0.973  0.0141
+PEQ          C3         H33      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PEQ          O1          C1       "O2'"     125.666    1.50
+PEQ          O1          C1          C2     117.167    1.52
+PEQ       "O2'"          C1          C2     117.167    1.52
+PEQ          C1          C2          C3     111.511    2.91
+PEQ          C1          C2          O2     110.427    2.31
+PEQ          C1          C2         H21     108.330    1.50
+PEQ          C3          C2          O2     109.482    3.00
+PEQ          C3          C2         H21     109.385    1.54
+PEQ          O2          C2         H21     108.941    1.50
+PEQ          C2          C3         H31     109.501    1.50
+PEQ          C2          C3         H32     109.501    1.50
+PEQ          C2          C3         H33     109.501    1.50
+PEQ         H31          C3         H32     109.425    1.50
+PEQ         H31          C3         H33     109.425    1.50
+PEQ         H32          C3         H33     109.425    1.50
+PEQ          C2          O2           P     121.496    2.55
+PEQ          O2           P         O1P     105.808    2.07
+PEQ          O2           P         O2P     105.808    2.07
+PEQ          O2           P         O3P     105.808    2.07
+PEQ         O1P           P         O2P     112.864    1.69
+PEQ         O1P           P         O3P     112.864    1.69
+PEQ         O2P           P         O3P     112.864    1.69
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PEQ             sp2_sp3_1          O1          C1          C2          C3       0.000    10.0     6
+PEQ             sp3_sp3_1          C1          C2          C3         H31     180.000    10.0     3
+PEQ            sp3_sp3_10          C1          C2          O2           P     180.000    10.0     3
+PEQ            sp3_sp3_15          C2          O2           P         O1P      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PEQ    chir_1    C2    O2    C1    C3    positive
+PEQ    chir_2    P    O2    O2P    O3P    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PEQ    plan-1          C1   0.020
+PEQ    plan-1          C2   0.020
+PEQ    plan-1          O1   0.020
+PEQ    plan-1       "O2'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PEQ           SMILES              ACDLabs 10.04                                                       O=C(O)C(OP(=O)(O)O)C
+PEQ SMILES_CANONICAL               CACTVS 3.341                                                 C[C@H](O[P](O)(O)=O)C(O)=O
+PEQ           SMILES               CACTVS 3.341                                                  C[CH](O[P](O)(O)=O)C(O)=O
+PEQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                  C[C@@H](C(=O)O)OP(=O)(O)O
+PEQ           SMILES "OpenEye OEToolkits" 1.5.0                                                       CC(C(=O)O)OP(=O)(O)O
+PEQ            InChI                InChI  1.03 InChI=1S/C3H7O6P/c1-2(3(4)5)9-10(6,7)8/h2H,1H3,(H,4,5)(H2,6,7,8)/t2-/m0/s1
+PEQ         InChIKey                InChI  1.03                                                CSZRNWHGZPKNKY-REOHCLBHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PEQ acedrg               243         "dictionary generator"                  
+PEQ acedrg_database      11          "data source"                           
+PEQ rdkit                2017.03.2   "Chemoinformatics tool"
+PEQ refmac5              5.8.0238    "optimization tool"                     

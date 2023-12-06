@@ -1,0 +1,169 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GLK     GLK      "(4S)-4-amino-5,5-dihydroxypentanoic acid"     NON-POLYMER     20     10     .     
+#
+data_comp_GLK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GLK     N       N       NT2     0       88.234      -7.892      -10.001     
+GLK     CA      C       CH1     0       87.747      -7.254      -11.241     
+GLK     C       C       CH1     0       88.502      -5.963      -11.550     
+GLK     CB      C       CH2     0       86.239      -7.003      -11.124     
+GLK     CG      C       CH2     0       85.435      -8.277      -10.936     
+GLK     CD      C       C       0       83.933      -8.102      -11.082     
+GLK     OE1     O       O       0       83.485      -7.750      -12.192     
+GLK     OE2     O       OC      -1      83.215      -8.318      -10.086     
+GLK     O       O       OH1     0       88.190      -5.535      -12.869     
+GLK     OXT     O       OH1     0       89.901      -6.168      -11.394     
+GLK     H       H       H       0       88.061      -7.367      -9.306      
+GLK     H2      H       H       0       89.115      -7.998      -10.045     
+GLK     HA      H       H       0       87.887      -7.895      -11.985     
+GLK     H10     H       H       0       88.213      -5.259      -10.912     
+GLK     HB2     H       H       0       85.930      -6.548      -11.934     
+GLK     HB3     H       H       0       86.079      -6.408      -10.362     
+GLK     HG2     H       H       0       85.617      -8.641      -10.043     
+GLK     HG3     H       H       0       85.734      -8.942      -11.592     
+GLK     H1      H       H       0       88.540      -4.774      -13.007     
+GLK     HXT     H       H       0       90.173      -6.707      -11.990     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GLK           N          CA      SINGLE       n     1.476  0.0134     1.476  0.0134
+GLK          CA           C      SINGLE       n     1.525  0.0149     1.525  0.0149
+GLK          CA          CB      SINGLE       n     1.531  0.0150     1.531  0.0150
+GLK           C           O      SINGLE       n     1.421  0.0162     1.421  0.0162
+GLK          CB          CG      SINGLE       n     1.517  0.0200     1.517  0.0200
+GLK          CG          CD      SINGLE       n     1.519  0.0109     1.519  0.0109
+GLK          CD         OE1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+GLK          CD         OE2      SINGLE       n     1.247  0.0187     1.247  0.0187
+GLK           C         OXT      SINGLE       n     1.421  0.0162     1.421  0.0162
+GLK           N           H      SINGLE       n     1.036  0.0160     0.888  0.0200
+GLK           N          H2      SINGLE       n     1.036  0.0160     0.888  0.0200
+GLK          CA          HA      SINGLE       n     1.089  0.0100     0.992  0.0135
+GLK           C         H10      SINGLE       n     1.089  0.0100     0.993  0.0200
+GLK          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0160
+GLK          CB         HB3      SINGLE       n     1.089  0.0100     0.980  0.0160
+GLK          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0185
+GLK          CG         HG3      SINGLE       n     1.089  0.0100     0.981  0.0185
+GLK           O          H1      SINGLE       n     0.970  0.0120     0.848  0.0200
+GLK         OXT         HXT      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GLK          CA           N           H     109.715    3.00
+GLK          CA           N          H2     109.715    3.00
+GLK           H           N          H2     107.559    3.00
+GLK           N          CA           C     111.883    2.59
+GLK           N          CA          CB     110.129    2.63
+GLK           N          CA          HA     107.944    1.55
+GLK           C          CA          CB     111.094    2.85
+GLK           C          CA          HA     109.155    1.50
+GLK          CB          CA          HA     107.815    1.50
+GLK          CA           C           O     109.482    3.00
+GLK          CA           C         OXT     109.482    3.00
+GLK          CA           C         H10     109.155    1.50
+GLK           O           C         OXT     111.904    1.92
+GLK           O           C         H10     108.816    1.50
+GLK         OXT           C         H10     108.816    1.50
+GLK          CA          CB          CG     112.740    1.50
+GLK          CA          CB         HB2     108.489    1.50
+GLK          CA          CB         HB3     108.489    1.50
+GLK          CG          CB         HB2     108.890    1.50
+GLK          CG          CB         HB3     108.890    1.50
+GLK         HB2          CB         HB3     107.844    1.50
+GLK          CB          CG          CD     114.629    2.24
+GLK          CB          CG         HG2     108.906    1.50
+GLK          CB          CG         HG3     108.906    1.50
+GLK          CD          CG         HG2     108.404    1.50
+GLK          CD          CG         HG3     108.404    1.50
+GLK         HG2          CG         HG3     107.521    1.50
+GLK          CG          CD         OE1     118.214    1.64
+GLK          CG          CD         OE2     118.214    1.64
+GLK         OE1          CD         OE2     123.571    1.50
+GLK           C           O          H1     109.233    2.58
+GLK           C         OXT         HXT     109.233    2.58
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GLK             sp3_sp3_1           C          CA           N           H     180.000    10.0     3
+GLK            sp3_sp3_10           O           C          CA           N      60.000    10.0     3
+GLK            sp3_sp3_16           N          CA          CB          CG     180.000    10.0     3
+GLK            sp3_sp3_25          CA           C           O          H1     180.000    10.0     3
+GLK            sp3_sp3_38          CA           C         OXT         HXT      60.000    10.0     3
+GLK            sp3_sp3_28          CA          CB          CG          CD     180.000    10.0     3
+GLK             sp2_sp3_2         OE1          CD          CG          CB     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GLK    chir_1    CA    N    C    CB    positive
+GLK    chir_2    C    O    OXT    CA    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GLK    plan-1          CD   0.020
+GLK    plan-1          CG   0.020
+GLK    plan-1         OE1   0.020
+GLK    plan-1         OE2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GLK           SMILES              ACDLabs 12.01                                                            O=C(O)CCC(N)C(O)O
+GLK SMILES_CANONICAL               CACTVS 3.370                                                       N[C@@H](CCC(O)=O)C(O)O
+GLK           SMILES               CACTVS 3.370                                                         N[CH](CCC(O)=O)C(O)O
+GLK SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                     C(CC(=O)O)[C@@H](C(O)O)N
+GLK           SMILES "OpenEye OEToolkits" 1.7.0                                                          C(CC(=O)O)C(C(O)O)N
+GLK            InChI                InChI  1.03 InChI=1S/C5H11NO4/c6-3(5(9)10)1-2-4(7)8/h3,5,9-10H,1-2,6H2,(H,7,8)/t3-/m0/s1
+GLK         InChIKey                InChI  1.03                                                  MKADZLMZCPSMML-VKHMYHEASA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GLK acedrg               243         "dictionary generator"                  
+GLK acedrg_database      11          "data source"                           
+GLK rdkit                2017.03.2   "Chemoinformatics tool"
+GLK refmac5              5.8.0238    "optimization tool"                     

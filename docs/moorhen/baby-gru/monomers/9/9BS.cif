@@ -1,0 +1,180 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+9BS     9BS      2-(pyridin-2-yl)pyrimidine     NON-POLYMER     19     12     .     
+#
+data_comp_9BS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+9BS     N3      N       NRD6    0       -27.917     -1.925      22.073      
+9BS     C4      C       CR6     0       -27.636     0.400       21.427      
+9BS     N2      N       NRD6    0       -27.172     -1.436      19.880      
+9BS     C7      C       CR16    0       -27.123     -2.757      19.621      
+9BS     C6      C       CR6     0       -27.570     -1.061      21.106      
+9BS     C9      C       CR16    0       -27.858     -3.239      21.782      
+9BS     C8      C       CR16    0       -27.461     -3.707      20.553      
+9BS     C1      C       CR16    0       -27.360     2.705       20.841      
+9BS     C2      C       CR16    0       -27.789     3.048       22.107      
+9BS     C3      C       CR16    0       -28.125     2.033       22.981      
+9BS     N1      N       NRD6    0       -28.057     0.728       22.668      
+9BS     C5      C       CR16    0       -27.278     1.369       20.485      
+9BS     H1      H       H       0       -26.845     -3.037      18.764      
+9BS     H2      H       H       0       -28.098     -3.858      22.451      
+9BS     H3      H       H       0       -27.423     -4.626      20.361      
+9BS     H4      H       H       0       -27.123     3.376       20.220      
+9BS     H5      H       H       0       -27.852     3.952       22.369      
+9BS     H6      H       H       0       -28.420     2.264       23.849      
+9BS     H7      H       H       0       -26.986     1.125       19.623      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+9BS          N2          C7      DOUBLE       y     1.343  0.0100     1.343  0.0100
+9BS          C7          C8      SINGLE       y     1.369  0.0133     1.369  0.0133
+9BS          N2          C6      SINGLE       y     1.336  0.0100     1.336  0.0100
+9BS          C1          C5      DOUBLE       y     1.381  0.0100     1.381  0.0100
+9BS          C4          C5      SINGLE       y     1.385  0.0129     1.385  0.0129
+9BS          C9          C8      DOUBLE       y     1.369  0.0133     1.369  0.0133
+9BS          C1          C2      SINGLE       y     1.374  0.0129     1.374  0.0129
+9BS          C4          C6      SINGLE       n     1.490  0.0100     1.490  0.0100
+9BS          N3          C6      DOUBLE       y     1.336  0.0100     1.336  0.0100
+9BS          C4          N1      DOUBLE       y     1.345  0.0100     1.345  0.0100
+9BS          N3          C9      SINGLE       y     1.343  0.0100     1.343  0.0100
+9BS          C2          C3      DOUBLE       y     1.376  0.0130     1.376  0.0130
+9BS          C3          N1      SINGLE       y     1.339  0.0110     1.339  0.0110
+9BS          C7          H1      SINGLE       n     1.082  0.0130     0.943  0.0147
+9BS          C9          H2      SINGLE       n     1.082  0.0130     0.943  0.0147
+9BS          C8          H3      SINGLE       n     1.082  0.0130     0.940  0.0131
+9BS          C1          H4      SINGLE       n     1.082  0.0130     0.944  0.0200
+9BS          C2          H5      SINGLE       n     1.082  0.0130     0.944  0.0200
+9BS          C3          H6      SINGLE       n     1.082  0.0130     0.945  0.0200
+9BS          C5          H7      SINGLE       n     1.082  0.0130     0.943  0.0192
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+9BS          C6          N3          C9     116.760    1.50
+9BS          C5          C4          C6     120.110    1.50
+9BS          C5          C4          N1     122.975    1.50
+9BS          C6          C4          N1     116.915    1.50
+9BS          C7          N2          C6     116.760    1.50
+9BS          N2          C7          C8     122.632    1.50
+9BS          N2          C7          H1     118.415    1.50
+9BS          C8          C7          H1     118.954    1.50
+9BS          N2          C6          C4     117.768    1.50
+9BS          N2          C6          N3     124.465    1.50
+9BS          C4          C6          N3     117.768    1.50
+9BS          C8          C9          N3     122.632    1.50
+9BS          C8          C9          H2     118.954    1.50
+9BS          N3          C9          H2     118.415    1.50
+9BS          C7          C8          C9     116.752    1.50
+9BS          C7          C8          H3     121.624    1.50
+9BS          C9          C8          H3     121.624    1.50
+9BS          C5          C1          C2     119.258    1.50
+9BS          C5          C1          H4     120.272    1.50
+9BS          C2          C1          H4     120.470    1.50
+9BS          C1          C2          C3     118.386    1.50
+9BS          C1          C2          H5     120.878    1.50
+9BS          C3          C2          H5     120.737    1.50
+9BS          C2          C3          N1     123.732    1.50
+9BS          C2          C3          H6     118.458    1.50
+9BS          N1          C3          H6     117.810    1.50
+9BS          C4          N1          C3     116.934    1.50
+9BS          C1          C5          C4     118.714    1.50
+9BS          C1          C5          H7     120.649    1.50
+9BS          C4          C5          H7     120.637    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+9BS              const_19          N2          C6          N3          C9       0.000    10.0     2
+9BS              const_35          C8          C9          N3          C6       0.000    10.0     2
+9BS              const_33          C5          C4          N1          C3       0.000    10.0     2
+9BS       const_sp2_sp2_3          C6          C4          C5          C1     180.000     5.0     2
+9BS             sp2_sp2_1          C5          C4          C6          N2     180.000     5.0     2
+9BS              const_23          C8          C7          N2          C6       0.000    10.0     2
+9BS              const_22          C4          C6          N2          C7     180.000    10.0     2
+9BS              const_25          N2          C7          C8          C9       0.000    10.0     2
+9BS              const_29          C7          C8          C9          N3       0.000    10.0     2
+9BS       const_sp2_sp2_5          C2          C1          C5          C4       0.000     5.0     2
+9BS       const_sp2_sp2_9          C5          C1          C2          C3       0.000     5.0     2
+9BS              const_13          C1          C2          C3          N1       0.000    10.0     2
+9BS              const_17          C2          C3          N1          C4       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+9BS    plan-1          C4   0.020
+9BS    plan-1          C6   0.020
+9BS    plan-1          C7   0.020
+9BS    plan-1          C8   0.020
+9BS    plan-1          C9   0.020
+9BS    plan-1          H1   0.020
+9BS    plan-1          H2   0.020
+9BS    plan-1          H3   0.020
+9BS    plan-1          N2   0.020
+9BS    plan-1          N3   0.020
+9BS    plan-2          C1   0.020
+9BS    plan-2          C2   0.020
+9BS    plan-2          C3   0.020
+9BS    plan-2          C4   0.020
+9BS    plan-2          C5   0.020
+9BS    plan-2          C6   0.020
+9BS    plan-2          H4   0.020
+9BS    plan-2          H5   0.020
+9BS    plan-2          H6   0.020
+9BS    plan-2          H7   0.020
+9BS    plan-2          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+9BS           SMILES              ACDLabs 12.01                                    n2c(c1ncccc1)nccc2
+9BS            InChI                InChI  1.03 InChI=1S/C9H7N3/c1-2-5-10-8(4-1)9-11-6-3-7-12-9/h1-7H
+9BS         InChIKey                InChI  1.03                           YJVKLLJCUMQBHN-UHFFFAOYSA-N
+9BS SMILES_CANONICAL               CACTVS 3.385                                    c1ccc(nc1)c2ncccn2
+9BS           SMILES               CACTVS 3.385                                    c1ccc(nc1)c2ncccn2
+9BS SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                    c1ccnc(c1)c2ncccn2
+9BS           SMILES "OpenEye OEToolkits" 2.0.6                                    c1ccnc(c1)c2ncccn2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+9BS acedrg               243         "dictionary generator"                  
+9BS acedrg_database      11          "data source"                           
+9BS rdkit                2017.03.2   "Chemoinformatics tool"
+9BS refmac5              5.8.0238    "optimization tool"                     

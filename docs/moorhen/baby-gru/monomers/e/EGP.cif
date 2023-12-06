@@ -1,0 +1,502 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EGP     EGP      "N-[2-(1H-indol-3-yl)ethyl]-N'-{3-[(4-methylpiperazin-1-yl)methyl]-1-[2-(morpholin-4-yl)-2-oxoethyl]-1H-indol-6-yl}thiourea"     NON-POLYMER     80     41     .     
+#
+data_comp_EGP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EGP     N       N       NT      0       -20.364     2.325       3.176       
+EGP     CA      C       CH2     0       -21.748     2.784       3.232       
+EGP     C       C       C       0       -21.750     4.311       3.299       
+EGP     O       O       O       0       -22.077     4.863       4.345       
+EGP     CAA     C       CH3     0       -15.006     7.246       5.890       
+EGP     CAD     C       CR16    0       -13.195     1.344       0.575       
+EGP     CAE     C       CR16    0       -13.383     0.823       -0.710      
+EGP     CAF     C       CR16    0       -17.834     0.519       0.464       
+EGP     CAG     C       CR16    0       -13.874     2.465       1.003       
+EGP     CAH     C       CR16    0       -14.258     1.414       -1.600      
+EGP     CAI     C       CR16    0       -17.425     0.915       1.709       
+EGP     CAJ     C       CR15    0       -16.254     4.370       -0.913      
+EGP     CAK     C       CR16    0       -20.104     1.319       0.874       
+EGP     CAL     C       CR15    0       -19.483     2.525       4.227       
+EGP     CAM     C       CH2     0       -17.173     1.952       -3.495      
+EGP     CAN     C       CH2     0       -19.332     5.995       1.407       
+EGP     CAO     C       CH2     0       -20.546     4.665       -0.085      
+EGP     CAP     C       CH2     0       -16.475     3.280       -3.228      
+EGP     CAQ     C       CH2     0       -20.534     6.189       2.302       
+EGP     CAR     C       CH2     0       -21.776     4.722       0.797       
+EGP     CAS     C       CH2     0       -15.616     5.043       6.643       
+EGP     CAT     C       CH2     0       -16.059     5.702       4.384       
+EGP     CAU     C       CH2     0       -15.809     3.594       6.257       
+EGP     CAV     C       CH2     0       -16.228     4.252       4.000       
+EGP     CAX     C       CH2     0       -17.027     2.087       4.782       
+EGP     CBC     C       C       0       -18.869     0.474       -2.413      
+EGP     CBE     C       CR6     0       -19.159     0.714       0.047       
+EGP     CBF     C       CR5     0       -15.936     3.414       -1.835      
+EGP     CBG     C       CR5     0       -18.250     2.029       3.921       
+EGP     CBH     C       CR56    0       -14.760     3.064       0.103       
+EGP     CBI     C       CR56    0       -14.968     2.557       -1.201      
+EGP     CBJ     C       CR56    0       -18.343     1.529       2.576       
+EGP     CBK     C       CR56    0       -19.674     1.726       2.138       
+EGP     NAY     N       NH1     0       -18.266     1.667       -2.558      
+EGP     NAZ     N       NH1     0       -19.551     0.316       -1.264      
+EGP     NBA     N       NR5     0       -15.558     4.168       0.248       
+EGP     NBL     N       NT      0       -15.144     5.840       5.513       
+EGP     NBM     N       NT      0       -16.751     3.485       5.139       
+EGP     NBN     N       NR6     0       -21.427     5.025       2.195       
+EGP     OBB     O       O2      0       -19.725     5.822       0.049       
+EGP     SAC     S       S1      0       -18.699     -0.765      -3.541      
+EGP     H1      H       H       0       -22.179     2.423       4.027       
+EGP     H2      H       H       0       -22.234     2.475       2.451       
+EGP     H3      H       H       0       -15.873     7.595       6.168       
+EGP     H4      H       H       0       -14.681     7.758       5.127       
+EGP     H5      H       H       0       -14.373     7.325       6.627       
+EGP     H6      H       H       0       -12.592     0.921       1.160       
+EGP     H7      H       H       0       -12.902     0.054       -0.972      
+EGP     H8      H       H       0       -17.216     0.108       -0.114      
+EGP     H9      H       H       0       -13.748     2.816       1.868       
+EGP     H10     H       H       0       -14.377     1.055       -2.464      
+EGP     H11     H       H       0       -16.535     0.775       1.984       
+EGP     H12     H       H       0       -16.870     5.074       -1.050      
+EGP     H13     H       H       0       -20.984     1.461       0.588       
+EGP     H14     H       H       0       -19.720     2.930       5.047       
+EGP     H15     H       H       0       -16.512     1.234       -3.439      
+EGP     H16     H       H       0       -17.533     1.961       -4.405      
+EGP     H17     H       H       0       -18.745     6.777       1.476       
+EGP     H18     H       H       0       -18.828     5.208       1.704       
+EGP     H19     H       H       0       -20.827     4.581       -1.020      
+EGP     H20     H       H       0       -20.019     3.875       0.142       
+EGP     H21     H       H       0       -17.106     4.003       -3.395      
+EGP     H22     H       H       0       -15.740     3.378       -3.862      
+EGP     H23     H       H       0       -20.234     6.305       3.226       
+EGP     H24     H       H       0       -21.016     6.997       2.033       
+EGP     H25     H       H       0       -22.250     3.871       0.745       
+EGP     H26     H       H       0       -22.376     5.417       0.462       
+EGP     H27     H       H       0       -16.465     5.408       6.965       
+EGP     H28     H       H       0       -14.967     5.101       7.372       
+EGP     H29     H       H       0       -16.930     6.079       4.622       
+EGP     H30     H       H       0       -15.711     6.203       3.619       
+EGP     H31     H       H       0       -14.949     3.206       6.000       
+EGP     H32     H       H       0       -16.152     3.096       7.026       
+EGP     H33     H       H       0       -15.364     3.883       3.726       
+EGP     H34     H       H       0       -16.840     4.190       3.241       
+EGP     H35     H       H       0       -16.263     1.712       4.296       
+EGP     H36     H       H       0       -17.173     1.558       5.593       
+EGP     H37     H       H       0       -18.576     2.331       -2.095      
+EGP     H38     H       H       0       -20.324     -0.075      -1.331      
+EGP     H39     H       H       0       -15.615     4.666       0.967       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EGP         CBC         SAC      DOUBLE       n     1.682  0.0143     1.682  0.0143
+EGP         CAO         OBB      SINGLE       n     1.423  0.0105     1.423  0.0105
+EGP         CAN         OBB      SINGLE       n     1.423  0.0105     1.423  0.0105
+EGP         CAM         NAY      SINGLE       n     1.462  0.0136     1.462  0.0136
+EGP         CAM         CAP      SINGLE       n     1.515  0.0200     1.515  0.0200
+EGP         CAO         CAR      SINGLE       n     1.510  0.0111     1.510  0.0111
+EGP         CBC         NAY      SINGLE       n     1.338  0.0100     1.338  0.0100
+EGP         CBC         NAZ      SINGLE       n     1.341  0.0100     1.341  0.0100
+EGP         CAN         CAQ      SINGLE       n     1.510  0.0111     1.510  0.0111
+EGP         CAP         CBF      SINGLE       n     1.498  0.0100     1.498  0.0100
+EGP         CBE         NAZ      SINGLE       n     1.422  0.0118     1.422  0.0118
+EGP         CAR         NBN      SINGLE       n     1.465  0.0100     1.465  0.0100
+EGP         CAQ         NBN      SINGLE       n     1.465  0.0100     1.465  0.0100
+EGP         CAE         CAH      SINGLE       y     1.377  0.0100     1.377  0.0100
+EGP         CAH         CBI      DOUBLE       y     1.399  0.0100     1.399  0.0100
+EGP           C         NBN      SINGLE       n     1.346  0.0100     1.346  0.0100
+EGP         CAK         CBE      SINGLE       y     1.390  0.0111     1.390  0.0111
+EGP         CAF         CBE      DOUBLE       y     1.395  0.0130     1.395  0.0130
+EGP         CBF         CBI      SINGLE       y     1.439  0.0100     1.439  0.0100
+EGP         CAJ         CBF      DOUBLE       y     1.365  0.0100     1.365  0.0100
+EGP         CAD         CAE      DOUBLE       y     1.395  0.0112     1.395  0.0112
+EGP         CAK         CBK      DOUBLE       y     1.392  0.0100     1.392  0.0100
+EGP         CBH         CBI      SINGLE       y     1.411  0.0100     1.411  0.0100
+EGP          CA           C      SINGLE       n     1.526  0.0100     1.526  0.0100
+EGP           C           O      DOUBLE       n     1.226  0.0100     1.226  0.0100
+EGP         CAF         CAI      SINGLE       y     1.366  0.0100     1.366  0.0100
+EGP         CAJ         NBA      SINGLE       y     1.369  0.0100     1.369  0.0100
+EGP           N          CA      SINGLE       n     1.461  0.0100     1.461  0.0100
+EGP           N         CBK      SINGLE       y     1.385  0.0100     1.385  0.0100
+EGP         CBJ         CBK      SINGLE       y     1.411  0.0100     1.411  0.0100
+EGP         CAD         CAG      SINGLE       y     1.376  0.0100     1.376  0.0100
+EGP         CBH         NBA      SINGLE       y     1.370  0.0100     1.370  0.0100
+EGP         CAG         CBH      DOUBLE       y     1.394  0.0100     1.394  0.0100
+EGP           N         CAL      SINGLE       y     1.390  0.0166     1.390  0.0166
+EGP         CAI         CBJ      DOUBLE       y     1.401  0.0100     1.401  0.0100
+EGP         CBG         CBJ      SINGLE       y     1.437  0.0100     1.437  0.0100
+EGP         CAL         CBG      DOUBLE       y     1.366  0.0116     1.366  0.0116
+EGP         CAX         CBG      SINGLE       n     1.497  0.0100     1.497  0.0100
+EGP         CAT         CAV      SINGLE       n     1.509  0.0100     1.509  0.0100
+EGP         CAV         NBM      SINGLE       n     1.464  0.0100     1.464  0.0100
+EGP         CAT         NBL      SINGLE       n     1.457  0.0100     1.457  0.0100
+EGP         CAX         NBM      SINGLE       n     1.464  0.0100     1.464  0.0100
+EGP         CAU         NBM      SINGLE       n     1.464  0.0100     1.464  0.0100
+EGP         CAA         NBL      SINGLE       n     1.462  0.0100     1.462  0.0100
+EGP         CAS         NBL      SINGLE       n     1.457  0.0100     1.457  0.0100
+EGP         CAS         CAU      SINGLE       n     1.509  0.0100     1.509  0.0100
+EGP          CA          H1      SINGLE       n     1.089  0.0100     0.973  0.0156
+EGP          CA          H2      SINGLE       n     1.089  0.0100     0.973  0.0156
+EGP         CAA          H3      SINGLE       n     1.089  0.0100     0.975  0.0100
+EGP         CAA          H4      SINGLE       n     1.089  0.0100     0.975  0.0100
+EGP         CAA          H5      SINGLE       n     1.089  0.0100     0.975  0.0100
+EGP         CAD          H6      SINGLE       n     1.082  0.0130     0.941  0.0181
+EGP         CAE          H7      SINGLE       n     1.082  0.0130     0.944  0.0181
+EGP         CAF          H8      SINGLE       n     1.082  0.0130     0.941  0.0184
+EGP         CAG          H9      SINGLE       n     1.082  0.0130     0.942  0.0188
+EGP         CAH         H10      SINGLE       n     1.082  0.0130     0.944  0.0200
+EGP         CAI         H11      SINGLE       n     1.082  0.0130     0.942  0.0182
+EGP         CAJ         H12      SINGLE       n     1.082  0.0130     0.945  0.0191
+EGP         CAK         H13      SINGLE       n     1.082  0.0130     0.936  0.0159
+EGP         CAL         H14      SINGLE       n     1.082  0.0130     0.945  0.0191
+EGP         CAM         H15      SINGLE       n     1.089  0.0100     0.979  0.0200
+EGP         CAM         H16      SINGLE       n     1.089  0.0100     0.979  0.0200
+EGP         CAN         H17      SINGLE       n     1.089  0.0100     0.980  0.0155
+EGP         CAN         H18      SINGLE       n     1.089  0.0100     0.980  0.0155
+EGP         CAO         H19      SINGLE       n     1.089  0.0100     0.980  0.0155
+EGP         CAO         H20      SINGLE       n     1.089  0.0100     0.980  0.0155
+EGP         CAP         H21      SINGLE       n     1.089  0.0100     0.975  0.0155
+EGP         CAP         H22      SINGLE       n     1.089  0.0100     0.975  0.0155
+EGP         CAQ         H23      SINGLE       n     1.089  0.0100     0.978  0.0137
+EGP         CAQ         H24      SINGLE       n     1.089  0.0100     0.978  0.0137
+EGP         CAR         H25      SINGLE       n     1.089  0.0100     0.978  0.0137
+EGP         CAR         H26      SINGLE       n     1.089  0.0100     0.978  0.0137
+EGP         CAS         H27      SINGLE       n     1.089  0.0100     0.978  0.0109
+EGP         CAS         H28      SINGLE       n     1.089  0.0100     0.978  0.0109
+EGP         CAT         H29      SINGLE       n     1.089  0.0100     0.978  0.0109
+EGP         CAT         H30      SINGLE       n     1.089  0.0100     0.978  0.0109
+EGP         CAU         H31      SINGLE       n     1.089  0.0100     0.978  0.0109
+EGP         CAU         H32      SINGLE       n     1.089  0.0100     0.978  0.0109
+EGP         CAV         H33      SINGLE       n     1.089  0.0100     0.978  0.0109
+EGP         CAV         H34      SINGLE       n     1.089  0.0100     0.978  0.0109
+EGP         CAX         H35      SINGLE       n     1.089  0.0100     0.979  0.0148
+EGP         CAX         H36      SINGLE       n     1.089  0.0100     0.979  0.0148
+EGP         NAY         H37      SINGLE       n     1.016  0.0100     0.866  0.0182
+EGP         NAZ         H38      SINGLE       n     1.016  0.0100     0.869  0.0200
+EGP         NBA         H39      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EGP          CA           N         CBK     125.430    2.73
+EGP          CA           N         CAL     121.985    2.29
+EGP         CBK           N         CAL     108.355    1.50
+EGP           C          CA           N     112.849    2.16
+EGP           C          CA          H1     109.078    1.50
+EGP           C          CA          H2     109.078    1.50
+EGP           N          CA          H1     109.048    1.50
+EGP           N          CA          H2     109.048    1.50
+EGP          H1          CA          H2     108.085    1.50
+EGP         NBN           C          CA     117.738    1.50
+EGP         NBN           C           O     121.931    1.50
+EGP          CA           C           O     120.331    1.50
+EGP         NBL         CAA          H3     109.526    1.50
+EGP         NBL         CAA          H4     109.526    1.50
+EGP         NBL         CAA          H5     109.526    1.50
+EGP          H3         CAA          H4     109.428    1.50
+EGP          H3         CAA          H5     109.428    1.50
+EGP          H4         CAA          H5     109.428    1.50
+EGP         CAE         CAD         CAG     121.628    1.50
+EGP         CAE         CAD          H6     119.240    1.50
+EGP         CAG         CAD          H6     119.132    1.50
+EGP         CAH         CAE         CAD     121.212    1.50
+EGP         CAH         CAE          H7     119.471    1.50
+EGP         CAD         CAE          H7     119.316    1.50
+EGP         CBE         CAF         CAI     120.715    1.50
+EGP         CBE         CAF          H8     119.801    1.50
+EGP         CAI         CAF          H8     119.484    1.50
+EGP         CAD         CAG         CBH     117.385    1.50
+EGP         CAD         CAG          H9     121.477    1.50
+EGP         CBH         CAG          H9     121.137    1.50
+EGP         CAE         CAH         CBI     118.817    1.50
+EGP         CAE         CAH         H10     120.678    1.50
+EGP         CBI         CAH         H10     120.505    1.50
+EGP         CAF         CAI         CBJ     119.265    1.50
+EGP         CAF         CAI         H11     120.445    1.50
+EGP         CBJ         CAI         H11     120.290    1.50
+EGP         CBF         CAJ         NBA     110.404    1.50
+EGP         CBF         CAJ         H12     125.159    1.59
+EGP         NBA         CAJ         H12     124.437    1.50
+EGP         CBE         CAK         CBK     116.938    1.50
+EGP         CBE         CAK         H13     121.534    1.50
+EGP         CBK         CAK         H13     121.528    1.50
+EGP           N         CAL         CBG     110.653    1.50
+EGP           N         CAL         H14     124.114    1.74
+EGP         CBG         CAL         H14     125.233    1.50
+EGP         NAY         CAM         CAP     112.353    2.15
+EGP         NAY         CAM         H15     109.102    1.50
+EGP         NAY         CAM         H16     109.102    1.50
+EGP         CAP         CAM         H15     109.274    1.50
+EGP         CAP         CAM         H16     109.274    1.50
+EGP         H15         CAM         H16     109.011    2.70
+EGP         OBB         CAN         CAQ     111.652    1.50
+EGP         OBB         CAN         H17     109.195    1.50
+EGP         OBB         CAN         H18     109.195    1.50
+EGP         CAQ         CAN         H17     109.301    1.50
+EGP         CAQ         CAN         H18     109.301    1.50
+EGP         H17         CAN         H18     108.175    1.50
+EGP         OBB         CAO         CAR     111.652    1.50
+EGP         OBB         CAO         H19     109.195    1.50
+EGP         OBB         CAO         H20     109.195    1.50
+EGP         CAR         CAO         H19     109.301    1.50
+EGP         CAR         CAO         H20     109.301    1.50
+EGP         H19         CAO         H20     108.175    1.50
+EGP         CAM         CAP         CBF     113.130    1.50
+EGP         CAM         CAP         H21     108.844    1.50
+EGP         CAM         CAP         H22     108.844    1.50
+EGP         CBF         CAP         H21     109.159    1.50
+EGP         CBF         CAP         H22     109.159    1.50
+EGP         H21         CAP         H22     107.768    1.50
+EGP         CAN         CAQ         NBN     109.646    1.50
+EGP         CAN         CAQ         H23     109.668    1.50
+EGP         CAN         CAQ         H24     109.668    1.50
+EGP         NBN         CAQ         H23     109.579    1.50
+EGP         NBN         CAQ         H24     109.579    1.50
+EGP         H23         CAQ         H24     108.316    1.50
+EGP         CAO         CAR         NBN     109.646    1.50
+EGP         CAO         CAR         H25     109.668    1.50
+EGP         CAO         CAR         H26     109.668    1.50
+EGP         NBN         CAR         H25     109.579    1.50
+EGP         NBN         CAR         H26     109.579    1.50
+EGP         H25         CAR         H26     108.316    1.50
+EGP         NBL         CAS         CAU     110.810    1.50
+EGP         NBL         CAS         H27     109.480    1.50
+EGP         NBL         CAS         H28     109.480    1.50
+EGP         CAU         CAS         H27     109.532    1.50
+EGP         CAU         CAS         H28     109.532    1.50
+EGP         H27         CAS         H28     108.187    1.50
+EGP         CAV         CAT         NBL     110.810    1.50
+EGP         CAV         CAT         H29     109.532    1.50
+EGP         CAV         CAT         H30     109.532    1.50
+EGP         NBL         CAT         H29     109.480    1.50
+EGP         NBL         CAT         H30     109.480    1.50
+EGP         H29         CAT         H30     108.187    1.50
+EGP         NBM         CAU         CAS     110.745    1.50
+EGP         NBM         CAU         H31     109.490    1.50
+EGP         NBM         CAU         H32     109.490    1.50
+EGP         CAS         CAU         H31     109.532    1.50
+EGP         CAS         CAU         H32     109.532    1.50
+EGP         H31         CAU         H32     108.187    1.50
+EGP         CAT         CAV         NBM     110.745    1.50
+EGP         CAT         CAV         H33     109.532    1.50
+EGP         CAT         CAV         H34     109.532    1.50
+EGP         NBM         CAV         H33     109.490    1.50
+EGP         NBM         CAV         H34     109.490    1.50
+EGP         H33         CAV         H34     108.187    1.50
+EGP         CBG         CAX         NBM     111.662    2.68
+EGP         CBG         CAX         H35     108.919    1.50
+EGP         CBG         CAX         H36     108.919    1.50
+EGP         NBM         CAX         H35     108.883    1.50
+EGP         NBM         CAX         H36     108.883    1.50
+EGP         H35         CAX         H36     107.917    1.50
+EGP         SAC         CBC         NAY     121.796    1.50
+EGP         SAC         CBC         NAZ     124.482    2.24
+EGP         NAY         CBC         NAZ     113.722    1.93
+EGP         NAZ         CBE         CAK     118.959    2.92
+EGP         NAZ         CBE         CAF     118.907    3.00
+EGP         CAK         CBE         CAF     122.135    2.27
+EGP         CAP         CBF         CBI     126.212    1.50
+EGP         CAP         CBF         CAJ     127.676    1.50
+EGP         CBI         CBF         CAJ     106.112    1.50
+EGP         CBJ         CBG         CAL     105.494    1.50
+EGP         CBJ         CBG         CAX     126.193    2.61
+EGP         CAL         CBG         CAX     128.313    2.55
+EGP         CBI         CBH         NBA     107.455    1.50
+EGP         CBI         CBH         CAG     122.250    1.50
+EGP         NBA         CBH         CAG     130.294    1.50
+EGP         CAH         CBI         CBF     134.307    1.50
+EGP         CAH         CBI         CBH     118.706    1.50
+EGP         CBF         CBI         CBH     106.987    1.50
+EGP         CBK         CBJ         CAI     119.026    1.50
+EGP         CBK         CBJ         CBG     107.260    1.50
+EGP         CAI         CBJ         CBG     133.714    1.50
+EGP         CAK         CBK           N     130.495    1.50
+EGP         CAK         CBK         CBJ     121.922    1.50
+EGP           N         CBK         CBJ     107.583    1.50
+EGP         CAM         NAY         CBC     124.465    1.50
+EGP         CAM         NAY         H37     118.128    1.83
+EGP         CBC         NAY         H37     117.407    1.50
+EGP         CBC         NAZ         CBE     127.295    3.00
+EGP         CBC         NAZ         H38     116.225    2.14
+EGP         CBE         NAZ         H38     116.480    2.05
+EGP         CAJ         NBA         CBH     109.042    1.50
+EGP         CAJ         NBA         H39     125.328    1.77
+EGP         CBH         NBA         H39     125.630    1.60
+EGP         CAT         NBL         CAA     110.746    1.50
+EGP         CAT         NBL         CAS     109.130    1.50
+EGP         CAA         NBL         CAS     110.746    1.50
+EGP         CAV         NBM         CAX     110.398    1.50
+EGP         CAV         NBM         CAU     109.128    1.50
+EGP         CAX         NBM         CAU     110.398    1.50
+EGP         CAR         NBN         CAQ     112.741    1.50
+EGP         CAR         NBN           C     123.629    3.00
+EGP         CAQ         NBN           C     123.629    3.00
+EGP         CAO         OBB         CAN     109.829    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EGP            sp2_sp3_32         CBK           N          CA           C     -90.000    10.0     6
+EGP              const_78         CBG         CAL           N          CA     180.000    10.0     2
+EGP              const_56         CAK         CBK           N          CA       0.000    10.0     2
+EGP              const_37         CAF         CAI         CBJ         CBK       0.000    10.0     2
+EGP              const_42         NBA         CAJ         CBF         CAP     180.000    10.0     2
+EGP              const_69         CBF         CAJ         NBA         CBH       0.000    10.0     2
+EGP              const_26         CBK         CAK         CBE         NAZ     180.000    10.0     2
+EGP              const_30         CBE         CAK         CBK           N     180.000    10.0     2
+EGP              const_62           N         CAL         CBG         CAX     180.000    10.0     2
+EGP            sp3_sp3_49         NAY         CAM         CAP         CBF     180.000    10.0     3
+EGP            sp2_sp3_14         CBC         NAY         CAM         CAP     120.000    10.0     6
+EGP            sp3_sp3_58         OBB         CAN         CAQ         NBN     180.000    10.0     3
+EGP             sp3_sp3_1         CAQ         CAN         OBB         CAO      60.000    10.0     3
+EGP             sp3_sp3_7         OBB         CAO         CAR         NBN      60.000    10.0     3
+EGP             sp3_sp3_4         CAR         CAO         OBB         CAN     -60.000    10.0     3
+EGP            sp2_sp3_20         CBI         CBF         CAP         CAM     -90.000    10.0     6
+EGP            sp2_sp3_10           C         NBN         CAQ         CAN     180.000    10.0     6
+EGP             sp2_sp3_4           C         NBN         CAR         CAO     180.000    10.0     6
+EGP            sp2_sp3_29           O           C          CA           N     -60.000    10.0     6
+EGP            sp3_sp3_79         NBL         CAS         CAU         NBM     180.000    10.0     3
+EGP            sp3_sp3_17         CAU         CAS         NBL         CAA     180.000    10.0     3
+EGP            sp3_sp3_28         NBL         CAT         CAV         NBM      60.000    10.0     3
+EGP            sp3_sp3_23         CAV         CAT         NBL         CAA      60.000    10.0     3
+EGP            sp3_sp3_44         CAS         CAU         NBM         CAX     180.000    10.0     3
+EGP            sp3_sp3_38         CAT         CAV         NBM         CAX      60.000    10.0     3
+EGP            sp2_sp3_38         CBJ         CBG         CAX         NBM     -90.000    10.0     6
+EGP            sp3_sp3_68         CBG         CAX         NBM         CAV     -60.000    10.0     3
+EGP             sp2_sp2_3         SAC         CBC         NAY         CAM       0.000     5.0     2
+EGP             sp2_sp2_7         SAC         CBC         NAZ         CBE       0.000     5.0     2
+EGP             sp2_sp2_9         CAK         CBE         NAZ         CBC     180.000     5.0     2
+EGP              const_48         CAP         CBF         CBI         CAH       0.000    10.0     2
+EGP              const_59         CAX         CBG         CBJ         CBK     180.000    10.0     2
+EGP              const_14         NBA         CBH         CBI         CAH     180.000    10.0     2
+EGP              const_49         CBI         CBH         NBA         CAJ       0.000    10.0     2
+EGP            sp2_sp2_13          CA           C         NBN         CAR     180.000     5.0     2
+EGP              const_33         CAI         CBJ         CBK         CAK       0.000    10.0     2
+EGP            sp3_sp3_74          H3         CAA         NBL         CAT     -60.000    10.0     3
+EGP       const_sp2_sp2_1         CAG         CAD         CAE         CAH       0.000     5.0     2
+EGP              const_73         CAE         CAD         CAG         CBH       0.000    10.0     2
+EGP       const_sp2_sp2_5         CAD         CAE         CAH         CBI       0.000     5.0     2
+EGP              const_65         CBE         CAF         CAI         CBJ       0.000    10.0     2
+EGP              const_22         CAI         CAF         CBE         NAZ     180.000    10.0     2
+EGP              const_17         CAD         CAG         CBH         CBI       0.000    10.0     2
+EGP              const_10         CAE         CAH         CBI         CBF     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EGP    chir_1    NBL    CAT    CAS    CAA    both
+EGP    chir_2    NBM    CAV    CAU    CAX    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EGP    plan-1          CA   0.020
+EGP    plan-1         CAF   0.020
+EGP    plan-1         CAI   0.020
+EGP    plan-1         CAK   0.020
+EGP    plan-1         CAL   0.020
+EGP    plan-1         CAX   0.020
+EGP    plan-1         CBE   0.020
+EGP    plan-1         CBG   0.020
+EGP    plan-1         CBJ   0.020
+EGP    plan-1         CBK   0.020
+EGP    plan-1         H11   0.020
+EGP    plan-1         H13   0.020
+EGP    plan-1         H14   0.020
+EGP    plan-1          H8   0.020
+EGP    plan-1           N   0.020
+EGP    plan-1         NAZ   0.020
+EGP    plan-2         CAD   0.020
+EGP    plan-2         CAE   0.020
+EGP    plan-2         CAG   0.020
+EGP    plan-2         CAH   0.020
+EGP    plan-2         CAJ   0.020
+EGP    plan-2         CAP   0.020
+EGP    plan-2         CBF   0.020
+EGP    plan-2         CBH   0.020
+EGP    plan-2         CBI   0.020
+EGP    plan-2         H10   0.020
+EGP    plan-2         H12   0.020
+EGP    plan-2         H39   0.020
+EGP    plan-2          H6   0.020
+EGP    plan-2          H7   0.020
+EGP    plan-2          H9   0.020
+EGP    plan-2         NBA   0.020
+EGP    plan-3           C   0.020
+EGP    plan-3          CA   0.020
+EGP    plan-3         NBN   0.020
+EGP    plan-3           O   0.020
+EGP    plan-4         CBC   0.020
+EGP    plan-4         NAY   0.020
+EGP    plan-4         NAZ   0.020
+EGP    plan-4         SAC   0.020
+EGP    plan-5         CAM   0.020
+EGP    plan-5         CBC   0.020
+EGP    plan-5         H37   0.020
+EGP    plan-5         NAY   0.020
+EGP    plan-6         CBC   0.020
+EGP    plan-6         CBE   0.020
+EGP    plan-6         H38   0.020
+EGP    plan-6         NAZ   0.020
+EGP    plan-7           C   0.020
+EGP    plan-7         CAQ   0.020
+EGP    plan-7         CAR   0.020
+EGP    plan-7         NBN   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EGP           SMILES              ACDLabs 12.01                                                                                                                                        n2(cc(CN1CCN(C)CC1)c3ccc(cc23)NC(NCCc4cnc5ccccc45)=S)CC(=O)N6CCOCC6
+EGP            InChI                InChI  1.03 InChI=1S/C31H39N7O2S/c1-35-10-12-36(13-11-35)20-24-21-38(22-30(39)37-14-16-40-17-15-37)29-18-25(6-7-27(24)29)34-31(41)32-9-8-23-19-33-28-5-3-2-4-26(23)28/h2-7,18-19,21,33H,8-17,20,22H2,1H3,(H2,32,34,41)
+EGP         InChIKey                InChI  1.03                                                                                                                                                                                KSDJEFBPBCSCLA-UHFFFAOYSA-N
+EGP SMILES_CANONICAL               CACTVS 3.385                                                                                                                                       CN1CCN(CC1)Cc2cn(CC(=O)N3CCOCC3)c4cc(NC(=S)NCCc5c[nH]c6ccccc56)ccc24
+EGP           SMILES               CACTVS 3.385                                                                                                                                       CN1CCN(CC1)Cc2cn(CC(=O)N3CCOCC3)c4cc(NC(=S)NCCc5c[nH]c6ccccc56)ccc24
+EGP SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                       CN1CCN(CC1)Cc2cn(c3c2ccc(c3)NC(=S)NCCc4c[nH]c5c4cccc5)CC(=O)N6CCOCC6
+EGP           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                       CN1CCN(CC1)Cc2cn(c3c2ccc(c3)NC(=S)NCCc4c[nH]c5c4cccc5)CC(=O)N6CCOCC6
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EGP acedrg               243         "dictionary generator"                  
+EGP acedrg_database      11          "data source"                           
+EGP rdkit                2017.03.2   "Chemoinformatics tool"
+EGP refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,342 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NKX     NKX      "(2S)-2,3-bis(nitrooxy)propyl ethyl[(4S,6S)-6-methyl-7,7-dioxido-2-sulfamoyl-5,6-dihydro-4H-thieno[2,3-b]thiopyran-4-yl]carbamate"     NON-POLYMER     53     33     .     
+#
+data_comp_NKX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NKX     CAA     C       CH3     0       -3.396      6.983       15.141      
+NKX     OAB     O       O       0       -7.096      5.813       14.914      
+NKX     OAC     O       O       0       -4.002      -0.517      16.211      
+NKX     CAD     C       CH1     0       -4.690      6.614       14.419      
+NKX     SAE     S       S3      0       -5.772      5.635       15.415      
+NKX     CAF     C       CR56    0       -5.293      3.988       15.103      
+NKX     SAG     S       S2      0       -5.917      2.682       15.929      
+NKX     CAH     C       CR5     0       -5.027      1.539       15.106      
+NKX     SAI     S       S3      0       -5.166      -0.160      15.463      
+NKX     NAJ     N       NT2     0       -5.121      -0.962      14.079      
+NKX     OAK     O       O       0       -5.521      5.934       16.787      
+NKX     OAL     O       O       0       -6.458      -0.361      16.040      
+NKX     CAM     C       CH2     0       -4.429      5.853       13.115      
+NKX     CAN     C       CH1     0       -3.643      4.542       13.258      
+NKX     CAO     C       CR56    0       -4.383      3.580       14.158      
+NKX     CAP     C       CR15    0       -4.217      2.155       14.161      
+NKX     NAQ     N       N       0       -3.355      3.925       11.920      
+NKX     CAR     C       CH2     0       -4.534      3.577       11.085      
+NKX     CAS     C       CH3     0       -4.744      4.559       9.958       
+NKX     OAT     O       O       0       -1.077      4.054       12.105      
+NKX     CAU     C       C       0       -2.063      3.688       11.501      
+NKX     OAV     O       O2      0       -2.035      2.990       10.353      
+NKX     CAW     C       CH2     0       -0.756      2.509       9.854       
+NKX     OAX     O       O       0       -0.981      2.725       6.319       
+NKX     CAY     C       CH1     0       -0.084      3.613       9.064       
+NKX     OAZ     O       O2      0       -0.958      4.176       8.046       
+NKX     NBA     N       N       1       -1.647      3.246       7.220       
+NKX     OBB     O       OC      -1      -2.842      3.103       7.501       
+NKX     CBC     C       CH2     0       1.205       3.163       8.409       
+NKX     OBD     O       O2      0       2.308       3.284       9.337       
+NKX     NBE     N       N       1       3.445       2.583       8.876       
+NKX     OBF     O       OC      -1      4.062       3.125       7.953       
+NKX     OBG     O       O       0       3.672       1.520       9.461       
+NKX     HAA     H       H       0       -2.724      7.244       14.491      
+NKX     HAAA    H       H       0       -3.076      6.217       15.646      
+NKX     HAAB    H       H       0       -3.564      7.723       15.748      
+NKX     HAD     H       H       0       -5.151      7.455       14.184      
+NKX     HNAJ    H       H       0       -5.376      -0.502      13.430      
+NKX     HNAA    H       H       0       -5.451      -1.728      14.138      
+NKX     HAM     H       H       0       -3.937      6.443       12.505      
+NKX     HAMA    H       H       0       -5.294      5.660       12.697      
+NKX     HAN     H       H       0       -2.783      4.760       13.685      
+NKX     HAP     H       H       0       -3.637      1.695       13.591      
+NKX     HAR     H       H       0       -5.337      3.563       11.641      
+NKX     HARA    H       H       0       -4.421      2.679       10.716      
+NKX     HAS     H       H       0       -5.416      4.213       9.348       
+NKX     HASA    H       H       0       -3.911      4.691       9.479       
+NKX     HASB    H       H       0       -5.046      5.408       10.321      
+NKX     HAW     H       H       0       -0.900      1.726       9.274       
+NKX     HAWA    H       H       0       -0.174      2.233       10.601      
+NKX     HAY     H       H       0       0.146       4.333       9.702       
+NKX     HBC     H       H       0       1.387       3.716       7.620       
+NKX     HBCA    H       H       0       1.124       2.230       8.121       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NKX         CAA         CAD      SINGLE       n     1.526  0.0107     1.526  0.0107
+NKX         OAB         SAE      DOUBLE       n     1.427  0.0100     1.427  0.0100
+NKX         OAC         SAI      DOUBLE       n     1.429  0.0100     1.429  0.0100
+NKX         CAD         SAE      SINGLE       n     1.769  0.0200     1.769  0.0200
+NKX         CAD         CAM      SINGLE       n     1.529  0.0113     1.529  0.0113
+NKX         SAE         CAF      SINGLE       n     1.747  0.0200     1.747  0.0200
+NKX         SAE         OAK      DOUBLE       n     1.427  0.0100     1.427  0.0100
+NKX         CAF         SAG      SINGLE       y     1.695  0.0200     1.695  0.0200
+NKX         CAF         CAO      DOUBLE       y     1.347  0.0200     1.347  0.0200
+NKX         SAG         CAH      SINGLE       y     1.695  0.0200     1.695  0.0200
+NKX         CAH         SAI      SINGLE       n     1.740  0.0137     1.740  0.0137
+NKX         CAH         CAP      DOUBLE       y     1.376  0.0200     1.376  0.0200
+NKX         SAI         NAJ      SINGLE       n     1.600  0.0128     1.600  0.0128
+NKX         SAI         OAL      DOUBLE       n     1.429  0.0100     1.429  0.0100
+NKX         CAM         CAN      SINGLE       n     1.528  0.0100     1.528  0.0100
+NKX         CAN         CAO      SINGLE       n     1.503  0.0100     1.503  0.0100
+NKX         CAN         NAQ      SINGLE       n     1.478  0.0152     1.478  0.0152
+NKX         CAO         CAP      SINGLE       y     1.422  0.0114     1.422  0.0114
+NKX         NAQ         CAR      SINGLE       n     1.477  0.0100     1.477  0.0100
+NKX         NAQ         CAU      SINGLE       n     1.349  0.0165     1.349  0.0165
+NKX         CAR         CAS      SINGLE       n     1.508  0.0153     1.508  0.0153
+NKX         OAT         CAU      DOUBLE       n     1.210  0.0102     1.210  0.0102
+NKX         CAU         OAV      SINGLE       n     1.338  0.0100     1.338  0.0100
+NKX         OAV         CAW      SINGLE       n     1.450  0.0101     1.450  0.0101
+NKX         CAW         CAY      SINGLE       n     1.512  0.0104     1.512  0.0104
+NKX         OAX         NBA      DOUBLE       n     1.235  0.0200     1.235  0.0200
+NKX         CAY         OAZ      SINGLE       n     1.434  0.0200     1.434  0.0200
+NKX         CAY         CBC      SINGLE       n     1.512  0.0104     1.512  0.0104
+NKX         OAZ         NBA      SINGLE       n     1.412  0.0182     1.412  0.0182
+NKX         NBA         OBB      SINGLE       n     1.235  0.0200     1.235  0.0200
+NKX         CBC         OBD      SINGLE       n     1.446  0.0100     1.446  0.0100
+NKX         OBD         NBE      SINGLE       n     1.412  0.0182     1.412  0.0182
+NKX         NBE         OBF      SINGLE       n     1.235  0.0200     1.235  0.0200
+NKX         NBE         OBG      DOUBLE       n     1.235  0.0200     1.235  0.0200
+NKX         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0171
+NKX         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0171
+NKX         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0171
+NKX         CAD         HAD      SINGLE       n     1.089  0.0100     0.988  0.0163
+NKX         NAJ        HNAJ      SINGLE       n     1.036  0.0160     0.836  0.0200
+NKX         NAJ        HNAA      SINGLE       n     1.036  0.0160     0.836  0.0200
+NKX         CAM         HAM      SINGLE       n     1.089  0.0100     0.981  0.0170
+NKX         CAM        HAMA      SINGLE       n     1.089  0.0100     0.981  0.0170
+NKX         CAN         HAN      SINGLE       n     1.089  0.0100     0.987  0.0137
+NKX         CAP         HAP      SINGLE       n     1.082  0.0130     0.934  0.0100
+NKX         CAR         HAR      SINGLE       n     1.089  0.0100     0.977  0.0105
+NKX         CAR        HARA      SINGLE       n     1.089  0.0100     0.977  0.0105
+NKX         CAS         HAS      SINGLE       n     1.089  0.0100     0.971  0.0145
+NKX         CAS        HASA      SINGLE       n     1.089  0.0100     0.971  0.0145
+NKX         CAS        HASB      SINGLE       n     1.089  0.0100     0.971  0.0145
+NKX         CAW         HAW      SINGLE       n     1.089  0.0100     0.985  0.0188
+NKX         CAW        HAWA      SINGLE       n     1.089  0.0100     0.985  0.0188
+NKX         CAY         HAY      SINGLE       n     1.089  0.0100     0.990  0.0148
+NKX         CBC         HBC      SINGLE       n     1.089  0.0100     0.980  0.0146
+NKX         CBC        HBCA      SINGLE       n     1.089  0.0100     0.980  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NKX         CAD         CAA         HAA     109.462    1.50
+NKX         CAD         CAA        HAAA     109.462    1.50
+NKX         CAD         CAA        HAAB     109.462    1.50
+NKX         HAA         CAA        HAAA     109.418    1.50
+NKX         HAA         CAA        HAAB     109.418    1.50
+NKX        HAAA         CAA        HAAB     109.418    1.50
+NKX         CAA         CAD         SAE     110.684    3.00
+NKX         CAA         CAD         CAM     111.427    1.50
+NKX         CAA         CAD         HAD     107.734    1.50
+NKX         SAE         CAD         CAM     110.645    3.00
+NKX         SAE         CAD         HAD     108.744    1.50
+NKX         CAM         CAD         HAD     107.645    1.50
+NKX         OAB         SAE         CAD     108.644    2.07
+NKX         OAB         SAE         CAF     109.471    3.00
+NKX         OAB         SAE         OAK     118.713    1.50
+NKX         CAD         SAE         CAF     109.471    3.00
+NKX         CAD         SAE         OAK     108.644    2.07
+NKX         CAF         SAE         OAK     109.471    3.00
+NKX         SAE         CAF         SAG     125.922    3.00
+NKX         SAE         CAF         CAO     125.922    3.00
+NKX         SAG         CAF         CAO     108.156    3.00
+NKX         CAF         SAG         CAH     108.156    3.00
+NKX         SAG         CAH         SAI     122.643    3.00
+NKX         SAG         CAH         CAP     108.156    3.00
+NKX         SAI         CAH         CAP     129.201    2.00
+NKX         OAC         SAI         CAH     107.103    1.50
+NKX         OAC         SAI         NAJ     108.091    1.50
+NKX         OAC         SAI         OAL     119.673    1.50
+NKX         CAH         SAI         NAJ     109.471    3.00
+NKX         CAH         SAI         OAL     107.103    1.50
+NKX         NAJ         SAI         OAL     108.091    1.50
+NKX         SAI         NAJ        HNAJ     112.822    3.00
+NKX         SAI         NAJ        HNAA     112.822    3.00
+NKX        HNAJ         NAJ        HNAA     115.991    3.00
+NKX         CAD         CAM         CAN     114.548    1.95
+NKX         CAD         CAM         HAM     109.313    1.50
+NKX         CAD         CAM        HAMA     109.313    1.50
+NKX         CAN         CAM         HAM     109.226    1.50
+NKX         CAN         CAM        HAMA     109.226    1.50
+NKX         HAM         CAM        HAMA     108.019    1.50
+NKX         CAM         CAN         CAO     107.317    1.50
+NKX         CAM         CAN         NAQ     110.829    2.03
+NKX         CAM         CAN         HAN     107.829    1.50
+NKX         CAO         CAN         NAQ     109.471    3.00
+NKX         CAO         CAN         HAN     108.874    1.50
+NKX         NAQ         CAN         HAN     107.692    1.50
+NKX         CAF         CAO         CAN     121.853    2.35
+NKX         CAF         CAO         CAP     107.627    1.55
+NKX         CAN         CAO         CAP     130.520    2.34
+NKX         CAH         CAP         CAO     107.906    1.50
+NKX         CAH         CAP         HAP     126.050    1.50
+NKX         CAO         CAP         HAP     126.045    1.50
+NKX         CAN         NAQ         CAR     116.663    1.77
+NKX         CAN         NAQ         CAU     122.043    2.85
+NKX         CAR         NAQ         CAU     121.294    2.35
+NKX         NAQ         CAR         CAS     111.308    2.28
+NKX         NAQ         CAR         HAR     108.899    1.50
+NKX         NAQ         CAR        HARA     108.899    1.50
+NKX         CAS         CAR         HAR     109.143    1.50
+NKX         CAS         CAR        HARA     109.143    1.50
+NKX         HAR         CAR        HARA     107.881    1.50
+NKX         CAR         CAS         HAS     109.510    1.50
+NKX         CAR         CAS        HASA     109.510    1.50
+NKX         CAR         CAS        HASB     109.510    1.50
+NKX         HAS         CAS        HASA     109.415    1.50
+NKX         HAS         CAS        HASB     109.415    1.50
+NKX        HASA         CAS        HASB     109.415    1.50
+NKX         NAQ         CAU         OAT     124.425    1.50
+NKX         NAQ         CAU         OAV     110.718    1.69
+NKX         OAT         CAU         OAV     124.857    1.50
+NKX         CAU         OAV         CAW     115.826    1.50
+NKX         OAV         CAW         CAY     108.641    1.70
+NKX         OAV         CAW         HAW     109.852    1.50
+NKX         OAV         CAW        HAWA     109.852    1.50
+NKX         CAY         CAW         HAW     109.582    1.50
+NKX         CAY         CAW        HAWA     109.582    1.50
+NKX         HAW         CAW        HAWA     108.601    1.50
+NKX         CAW         CAY         OAZ     109.482    3.00
+NKX         CAW         CAY         CBC     113.504    1.50
+NKX         CAW         CAY         HAY     108.656    1.50
+NKX         OAZ         CAY         CBC     109.482    3.00
+NKX         OAZ         CAY         HAY     109.466    1.50
+NKX         CBC         CAY         HAY     108.656    1.50
+NKX         CAY         OAZ         NBA     110.591    2.29
+NKX         OAX         NBA         OAZ     114.966    3.00
+NKX         OAX         NBA         OBB     130.066    1.50
+NKX         OAZ         NBA         OBB     114.965    3.00
+NKX         CAY         CBC         OBD     109.482    3.00
+NKX         CAY         CBC         HBC     109.582    1.50
+NKX         CAY         CBC        HBCA     109.582    1.50
+NKX         OBD         CBC         HBC     109.064    1.50
+NKX         OBD         CBC        HBCA     109.064    1.50
+NKX         HBC         CBC        HBCA     108.319    1.50
+NKX         CBC         OBD         NBE     110.591    2.29
+NKX         OBD         NBE         OBF     115.075    3.00
+NKX         OBD         NBE         OBG     115.075    3.00
+NKX         OBF         NBE         OBG     129.850    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NKX            sp3_sp3_19         HAA         CAA         CAD         SAE     180.000    10.0     3
+NKX            sp3_sp3_11         CAD         CAM         CAN         NAQ     180.000    10.0     3
+NKX             sp2_sp3_8         CAF         CAO         CAN         NAQ     120.000    10.0     6
+NKX            sp2_sp3_19         CAR         NAQ         CAN         CAM       0.000    10.0     6
+NKX              const_13         CAF         CAO         CAP         CAH       0.000    10.0     2
+NKX            sp2_sp3_29         CAU         NAQ         CAR         CAS     -60.000    10.0     6
+NKX             sp2_sp2_4         OAT         CAU         NAQ         CAR     180.000     5.0     2
+NKX            sp3_sp3_43         NAQ         CAR         CAS         HAS     180.000    10.0     3
+NKX             sp2_sp2_5         NAQ         CAU         OAV         CAW     180.000     5.0     2
+NKX            sp3_sp3_52         CAY         CAW         OAV         CAU     180.000    10.0     3
+NKX            sp3_sp3_55         OAV         CAW         CAY         OAZ     180.000    10.0     3
+NKX            sp3_sp3_64         CAW         CAY         OAZ         NBA     180.000    10.0     3
+NKX            sp3_sp3_67         CAW         CAY         CBC         OBD     180.000    10.0     3
+NKX            sp3_sp3_76         CAY         CBC         OBD         NBE     180.000    10.0     3
+NKX            sp3_sp3_31         CAA         CAD         CAM         CAN      60.000    10.0     3
+NKX             sp3_sp3_5         CAA         CAD         SAE         OAB      60.000    10.0     3
+NKX             sp2_sp3_6         SAG         CAF         SAE         OAB      60.000    10.0     6
+NKX       const_sp2_sp2_1         SAE         CAF         CAO         CAN       0.000     5.0     2
+NKX       const_sp2_sp2_6         SAE         CAF         SAG         CAH     180.000     5.0     2
+NKX       const_sp2_sp2_8         SAI         CAH         SAG         CAF     180.000     5.0     2
+NKX              const_11         SAI         CAH         CAP         CAO     180.000    10.0     2
+NKX            sp2_sp3_13         SAG         CAH         SAI         OAC     150.000    10.0     6
+NKX            sp3_sp3_38        HNAJ         NAJ         SAI         OAC     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NKX    chir_1    CAD    SAE    CAM    CAA    positive
+NKX    chir_2    SAE    OAB    OAK    CAF    both
+NKX    chir_3    SAI    OAC    OAL    NAJ    both
+NKX    chir_4    CAN    NAQ    CAO    CAM    positive
+NKX    chir_5    CAY    OAZ    CBC    CAW    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NKX    plan-1         CAF   0.020
+NKX    plan-1         CAH   0.020
+NKX    plan-1         CAN   0.020
+NKX    plan-1         CAO   0.020
+NKX    plan-1         CAP   0.020
+NKX    plan-1         HAP   0.020
+NKX    plan-1         SAE   0.020
+NKX    plan-1         SAG   0.020
+NKX    plan-1         SAI   0.020
+NKX    plan-2         CAN   0.020
+NKX    plan-2         CAR   0.020
+NKX    plan-2         CAU   0.020
+NKX    plan-2         NAQ   0.020
+NKX    plan-3         CAU   0.020
+NKX    plan-3         NAQ   0.020
+NKX    plan-3         OAT   0.020
+NKX    plan-3         OAV   0.020
+NKX    plan-4         NBA   0.020
+NKX    plan-4         OAX   0.020
+NKX    plan-4         OAZ   0.020
+NKX    plan-4         OBB   0.020
+NKX    plan-5         NBE   0.020
+NKX    plan-5         OBD   0.020
+NKX    plan-5         OBF   0.020
+NKX    plan-5         OBG   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NKX           SMILES              ACDLabs 11.02                                                                                                  "[O-][N+](=O)OCC(O[N+]([O-])=O)COC(=O)N(C2c1cc(sc1S(=O)(=O)C(C2)C)S(=O)(=O)N)CC"
+NKX SMILES_CANONICAL               CACTVS 3.352                                                                                   CCN([C@H]1C[C@H](C)[S](=O)(=O)c2sc(cc12)[S](N)(=O)=O)C(=O)OC[C@@H](CO[N+]([O-])=O)O[N+]([O-])=O
+NKX           SMILES               CACTVS 3.352                                                                                       CCN([CH]1C[CH](C)[S](=O)(=O)c2sc(cc12)[S](N)(=O)=O)C(=O)OC[CH](CO[N+]([O-])=O)O[N+]([O-])=O
+NKX SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                      CCN([C@H]1C[C@@H](S(=O)(=O)c2c1cc(s2)S(=O)(=O)N)C)C(=O)OC[C@@H](CO[N+](=O)[O-])O[N+](=O)[O-]
+NKX           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                    CCN(C1CC(S(=O)(=O)c2c1cc(s2)S(=O)(=O)N)C)C(=O)OCC(CO[N+](=O)[O-])O[N+](=O)[O-]
+NKX            InChI                InChI  1.03 InChI=1S/C14H20N4O12S3/c1-3-16(14(19)28-6-9(30-18(22)23)7-29-17(20)21)11-4-8(2)32(24,25)13-10(11)5-12(31-13)33(15,26)27/h5,8-9,11H,3-4,6-7H2,1-2H3,(H2,15,26,27)/t8-,9-,11-/m0/s1
+NKX         InChIKey                InChI  1.03                                                                                                                                                       RFISBOUXKIOATP-QXEWZRGKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NKX acedrg               243         "dictionary generator"                  
+NKX acedrg_database      11          "data source"                           
+NKX rdkit                2017.03.2   "Chemoinformatics tool"
+NKX refmac5              5.8.0238    "optimization tool"                     

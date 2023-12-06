@@ -1,0 +1,313 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8PR     8PR      Paroxetine     NON-POLYMER     44     24     .     
+#
+data_comp_8PR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8PR     FAA     F       F       0       -35.423     -1.883      14.928      
+8PR     CAB     C       CR16    0       -36.149     -3.368      16.593      
+8PR     CAC     C       CR16    0       -33.811     -3.093      16.129      
+8PR     CAD     C       CR16    0       -32.197     -1.621      21.358      
+8PR     CAE     C       CR16    0       -35.833     -4.295      17.580      
+8PR     CAF     C       CR16    0       -33.515     -4.023      17.120      
+8PR     CAG     C       CR16    0       -31.305     -0.588      21.644      
+8PR     CAH     C       CR16    0       -30.362     -3.119      20.806      
+8PR     CAI     C       CH2     0       -34.455     -8.031      19.733      
+8PR     CAJ     C       CH2     0       -34.805     -7.031      18.649      
+8PR     CAK     C       CH2     0       -34.233     -6.291      21.395      
+8PR     CAL     C       CH2     0       -27.740     -0.769      21.408      
+8PR     CAM     C       CH2     0       -33.944     -3.880      20.777      
+8PR     NAN     N       NT1     0       -34.896     -7.555      21.050      
+8PR     OAO     O       O2      0       -32.519     -3.962      20.635      
+8PR     OAP     O       O2      0       -28.905     -0.004      21.722      
+8PR     OAQ     O       O2      0       -28.147     -2.087      21.033      
+8PR     CAR     C       CR6     0       -35.124     -2.792      15.895      
+8PR     CAS     C       CR6     0       -31.729     -2.878      20.943      
+8PR     CAT     C       CR6     0       -34.517     -4.642      17.859      
+8PR     CAU     C       CR56    0       -29.970     -0.847      21.504      
+8PR     CAV     C       CR56    0       -29.515     -2.085      21.094      
+8PR     CAW     C       CH1     0       -34.571     -5.203      20.367      
+8PR     CAX     C       CH1     0       -34.190     -5.655      18.942      
+8PR     HAB     H       H       0       -37.043     -3.142      16.411      
+8PR     HAC     H       H       0       -33.126     -2.681      15.633      
+8PR     HAD     H       H       0       -33.117     -1.465      21.448      
+8PR     HAE     H       H       0       -36.525     -4.699      18.066      
+8PR     HAF     H       H       0       -32.619     -4.238      17.290      
+8PR     HAG     H       H       0       -31.614     0.258       21.924      
+8PR     HAH     H       H       0       -30.027     -3.965      20.525      
+8PR     HAI     H       H       0       -34.894     -8.905      19.537      
+8PR     HAIA    H       H       0       -33.468     -8.174      19.751      
+8PR     HAJ     H       H       0       -34.476     -7.352      17.794      
+8PR     HAJA    H       H       0       -35.769     -6.946      18.589      
+8PR     HAK     H       H       0       -33.263     -6.428      21.419      
+8PR     HAKA    H       H       0       -34.526     -6.001      22.285      
+8PR     HAL     H       H       0       -27.253     -0.348      20.671      
+8PR     HALA    H       H       0       -27.149     -0.812      22.187      
+8PR     HAM     H       H       0       -34.296     -3.158      20.221      
+8PR     HAMA    H       H       0       -34.172     -3.687      21.708      
+8PR     HNAN    H       H       0       -35.774     -7.430      21.024      
+8PR     HAW     H       H       0       -35.551     -5.071      20.388      
+8PR     HAX     H       H       0       -33.217     -5.777      18.933      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8PR         FAA         CAR      SINGLE       n     1.361  0.0100     1.361  0.0100
+8PR         CAB         CAR      DOUBLE       y     1.363  0.0118     1.363  0.0118
+8PR         CAB         CAE      SINGLE       y     1.387  0.0100     1.387  0.0100
+8PR         CAC         CAR      SINGLE       y     1.363  0.0118     1.363  0.0118
+8PR         CAC         CAF      DOUBLE       y     1.387  0.0100     1.387  0.0100
+8PR         CAD         CAS      DOUBLE       y     1.395  0.0107     1.395  0.0107
+8PR         CAD         CAG      SINGLE       y     1.391  0.0100     1.391  0.0100
+8PR         CAE         CAT      DOUBLE       y     1.385  0.0100     1.385  0.0100
+8PR         CAF         CAT      SINGLE       y     1.385  0.0100     1.385  0.0100
+8PR         CAG         CAU      DOUBLE       y     1.364  0.0100     1.364  0.0100
+8PR         CAH         CAS      SINGLE       y     1.391  0.0100     1.391  0.0100
+8PR         CAH         CAV      DOUBLE       y     1.364  0.0100     1.364  0.0100
+8PR         CAI         CAJ      SINGLE       n     1.515  0.0100     1.515  0.0100
+8PR         CAI         NAN      SINGLE       n     1.467  0.0100     1.467  0.0100
+8PR         CAJ         CAX      SINGLE       n     1.533  0.0100     1.533  0.0100
+8PR         CAK         CAW      SINGLE       n     1.526  0.0200     1.526  0.0200
+8PR         CAK         NAN      SINGLE       n     1.467  0.0111     1.467  0.0111
+8PR         CAL         OAQ      SINGLE       n     1.428  0.0104     1.428  0.0104
+8PR         CAL         OAP      SINGLE       n     1.428  0.0104     1.428  0.0104
+8PR         CAM         CAW      SINGLE       n     1.517  0.0105     1.517  0.0105
+8PR         CAM         OAO      SINGLE       n     1.431  0.0100     1.431  0.0100
+8PR         OAO         CAS      SINGLE       n     1.371  0.0105     1.371  0.0105
+8PR         OAP         CAU      SINGLE       n     1.376  0.0100     1.376  0.0100
+8PR         OAQ         CAV      SINGLE       n     1.370  0.0100     1.370  0.0100
+8PR         CAT         CAX      SINGLE       n     1.516  0.0100     1.516  0.0100
+8PR         CAU         CAV      SINGLE       y     1.379  0.0100     1.379  0.0100
+8PR         CAW         CAX      SINGLE       n     1.538  0.0100     1.538  0.0100
+8PR         CAB         HAB      SINGLE       n     1.082  0.0130     0.940  0.0141
+8PR         CAC         HAC      SINGLE       n     1.082  0.0130     0.940  0.0141
+8PR         CAD         HAD      SINGLE       n     1.082  0.0130     0.938  0.0101
+8PR         CAE         HAE      SINGLE       n     1.082  0.0130     0.937  0.0143
+8PR         CAF         HAF      SINGLE       n     1.082  0.0130     0.937  0.0143
+8PR         CAG         HAG      SINGLE       n     1.082  0.0130     0.943  0.0139
+8PR         CAH         HAH      SINGLE       n     1.082  0.0130     0.952  0.0177
+8PR         CAI         HAI      SINGLE       n     1.089  0.0100     0.998  0.0200
+8PR         CAI        HAIA      SINGLE       n     1.089  0.0100     0.998  0.0200
+8PR         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.970  0.0100
+8PR         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.970  0.0100
+8PR         CAK         HAK      SINGLE       n     1.089  0.0100     0.980  0.0172
+8PR         CAK        HAKA      SINGLE       n     1.089  0.0100     0.980  0.0172
+8PR         CAL         HAL      SINGLE       n     1.089  0.0100     0.979  0.0146
+8PR         CAL        HALA      SINGLE       n     1.089  0.0100     0.979  0.0146
+8PR         CAM         HAM      SINGLE       n     1.089  0.0100     0.977  0.0100
+8PR         CAM        HAMA      SINGLE       n     1.089  0.0100     0.977  0.0100
+8PR         NAN        HNAN      SINGLE       n     1.036  0.0160     0.887  0.0200
+8PR         CAW         HAW      SINGLE       n     1.089  0.0100     0.989  0.0172
+8PR         CAX         HAX      SINGLE       n     1.089  0.0100     0.982  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8PR         CAR         CAB         CAE     118.193    1.50
+8PR         CAR         CAB         HAB     120.878    1.50
+8PR         CAE         CAB         HAB     120.929    1.50
+8PR         CAR         CAC         CAF     118.193    1.50
+8PR         CAR         CAC         HAC     120.878    1.50
+8PR         CAF         CAC         HAC     120.929    1.50
+8PR         CAS         CAD         CAG     120.487    1.50
+8PR         CAS         CAD         HAD     119.970    1.50
+8PR         CAG         CAD         HAD     119.542    1.50
+8PR         CAB         CAE         CAT     121.435    1.50
+8PR         CAB         CAE         HAE     119.274    1.50
+8PR         CAT         CAE         HAE     119.291    1.50
+8PR         CAC         CAF         CAT     121.435    1.50
+8PR         CAC         CAF         HAF     119.274    1.50
+8PR         CAT         CAF         HAF     119.291    1.50
+8PR         CAD         CAG         CAU     117.146    1.50
+8PR         CAD         CAG         HAG     121.233    1.50
+8PR         CAU         CAG         HAG     121.621    1.50
+8PR         CAS         CAH         CAV     116.689    1.50
+8PR         CAS         CAH         HAH     121.960    1.50
+8PR         CAV         CAH         HAH     121.351    1.50
+8PR         CAJ         CAI         NAN     111.116    1.92
+8PR         CAJ         CAI         HAI     109.572    1.50
+8PR         CAJ         CAI        HAIA     109.572    1.50
+8PR         NAN         CAI         HAI     109.046    1.50
+8PR         NAN         CAI        HAIA     109.046    1.50
+8PR         HAI         CAI        HAIA     108.210    1.50
+8PR         CAI         CAJ         CAX     111.074    1.50
+8PR         CAI         CAJ         HAJ     109.398    1.50
+8PR         CAI         CAJ        HAJA     109.398    1.50
+8PR         CAX         CAJ         HAJ     109.198    1.50
+8PR         CAX         CAJ        HAJA     109.198    1.50
+8PR         HAJ         CAJ        HAJA     108.150    1.50
+8PR         CAW         CAK         NAN     110.258    1.51
+8PR         CAW         CAK         HAK     109.290    1.50
+8PR         CAW         CAK        HAKA     109.290    1.50
+8PR         NAN         CAK         HAK     109.326    1.50
+8PR         NAN         CAK        HAKA     109.326    1.50
+8PR         HAK         CAK        HAKA     108.200    1.50
+8PR         OAQ         CAL         OAP     108.187    1.50
+8PR         OAQ         CAL         HAL     109.983    1.50
+8PR         OAQ         CAL        HALA     109.983    1.50
+8PR         OAP         CAL         HAL     109.983    1.50
+8PR         OAP         CAL        HALA     109.983    1.50
+8PR         HAL         CAL        HALA     108.633    1.82
+8PR         CAW         CAM         OAO     108.764    1.50
+8PR         CAW         CAM         HAM     109.628    1.50
+8PR         CAW         CAM        HAMA     109.628    1.50
+8PR         OAO         CAM         HAM     109.881    1.50
+8PR         OAO         CAM        HAMA     109.881    1.50
+8PR         HAM         CAM        HAMA     108.321    1.50
+8PR         CAI         NAN         CAK     110.415    1.50
+8PR         CAI         NAN        HNAN     108.409    1.90
+8PR         CAK         NAN        HNAN     109.383    3.00
+8PR         CAM         OAO         CAS     117.195    1.50
+8PR         CAL         OAP         CAU     105.409    1.50
+8PR         CAL         OAQ         CAV     105.409    1.50
+8PR         FAA         CAR         CAB     118.563    1.50
+8PR         FAA         CAR         CAC     118.563    1.50
+8PR         CAB         CAR         CAC     122.874    1.50
+8PR         CAD         CAS         CAH     121.466    1.50
+8PR         CAD         CAS         OAO     118.596    3.00
+8PR         CAH         CAS         OAO     119.938    3.00
+8PR         CAE         CAT         CAF     117.871    1.50
+8PR         CAE         CAT         CAX     121.064    1.56
+8PR         CAF         CAT         CAX     121.064    1.56
+8PR         CAG         CAU         OAP     128.366    1.50
+8PR         CAG         CAU         CAV     121.573    1.50
+8PR         OAP         CAU         CAV     110.061    1.50
+8PR         CAH         CAV         OAQ     127.333    1.50
+8PR         CAH         CAV         CAU     122.639    1.50
+8PR         OAQ         CAV         CAU     110.028    1.50
+8PR         CAK         CAW         CAM     110.883    1.50
+8PR         CAK         CAW         CAX     111.124    1.57
+8PR         CAK         CAW         HAW     107.832    1.50
+8PR         CAM         CAW         CAX     111.561    1.92
+8PR         CAM         CAW         HAW     107.420    1.84
+8PR         CAX         CAW         HAW     108.099    1.54
+8PR         CAJ         CAX         CAT     112.720    1.58
+8PR         CAJ         CAX         CAW     109.854    1.50
+8PR         CAJ         CAX         HAX     107.269    1.50
+8PR         CAT         CAX         CAW     113.681    1.84
+8PR         CAT         CAX         HAX     106.852    1.50
+8PR         CAW         CAX         HAX     106.974    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8PR            sp3_sp3_37         CAW         CAK         NAN         CAI      60.000    10.0     3
+8PR            sp3_sp3_29         NAN         CAK         CAW         CAM      60.000    10.0     3
+8PR            sp3_sp3_52         OAQ         CAL         OAP         CAU      60.000    10.0     3
+8PR            sp3_sp3_43         OAP         CAL         OAQ         CAV      60.000    10.0     3
+8PR            sp3_sp3_64         CAW         CAM         OAO         CAS     180.000    10.0     3
+8PR            sp3_sp3_55         OAO         CAM         CAW         CAK     180.000    10.0     3
+8PR             sp2_sp2_5         CAD         CAS         OAO         CAM     180.000     5.0     2
+8PR             sp2_sp2_4         CAG         CAU         OAP         CAL     180.000     5.0     2
+8PR             sp2_sp2_2         CAH         CAV         OAQ         CAL     180.000     5.0     2
+8PR             sp2_sp3_1         CAE         CAT         CAX         CAJ     150.000    10.0     6
+8PR       const_sp2_sp2_2         CAE         CAB         CAR         FAA     180.000     5.0     2
+8PR              const_41         CAR         CAB         CAE         CAT       0.000    10.0     2
+8PR              const_33         CAG         CAU         CAV         CAH       0.000    10.0     2
+8PR            sp3_sp3_22         CAM         CAW         CAX         CAJ     -60.000    10.0     3
+8PR       const_sp2_sp2_6         CAF         CAC         CAR         FAA     180.000     5.0     2
+8PR       const_sp2_sp2_9         CAR         CAC         CAF         CAT       0.000     5.0     2
+8PR              const_22         CAG         CAD         CAS         OAO     180.000    10.0     2
+8PR              const_45         CAS         CAD         CAG         CAU       0.000    10.0     2
+8PR              const_17         CAB         CAE         CAT         CAF       0.000    10.0     2
+8PR              const_13         CAC         CAF         CAT         CAE       0.000    10.0     2
+8PR              const_38         CAD         CAG         CAU         OAP     180.000    10.0     2
+8PR              const_26         CAV         CAH         CAS         OAO     180.000    10.0     2
+8PR              const_30         CAS         CAH         CAV         OAQ     180.000    10.0     2
+8PR            sp3_sp3_46         CAJ         CAI         NAN         CAK     180.000    10.0     3
+8PR             sp3_sp3_1         NAN         CAI         CAJ         CAX      60.000    10.0     3
+8PR            sp3_sp3_11         CAI         CAJ         CAX         CAT      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+8PR    chir_1    CAW    CAM    CAK    CAX    positive
+8PR    chir_2    CAX    CAT    CAW    CAJ    negative
+8PR    chir_3    NAN    CAK    CAI    HNAN    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8PR    plan-1         CAB   0.020
+8PR    plan-1         CAC   0.020
+8PR    plan-1         CAE   0.020
+8PR    plan-1         CAF   0.020
+8PR    plan-1         CAR   0.020
+8PR    plan-1         CAT   0.020
+8PR    plan-1         CAX   0.020
+8PR    plan-1         FAA   0.020
+8PR    plan-1         HAB   0.020
+8PR    plan-1         HAC   0.020
+8PR    plan-1         HAE   0.020
+8PR    plan-1         HAF   0.020
+8PR    plan-2         CAD   0.020
+8PR    plan-2         CAG   0.020
+8PR    plan-2         CAH   0.020
+8PR    plan-2         CAS   0.020
+8PR    plan-2         CAU   0.020
+8PR    plan-2         CAV   0.020
+8PR    plan-2         HAD   0.020
+8PR    plan-2         HAG   0.020
+8PR    plan-2         HAH   0.020
+8PR    plan-2         OAO   0.020
+8PR    plan-2         OAP   0.020
+8PR    plan-2         OAQ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8PR           SMILES              ACDLabs 12.01                                                                                                          Fc1ccc(cc1)C2CCNCC2COc3ccc4OCOc4c3
+8PR            InChI                InChI  1.03 InChI=1S/C19H20FNO3/c20-15-3-1-13(2-4-15)17-7-8-21-10-14(17)11-22-16-5-6-18-19(9-16)24-12-23-18/h1-6,9,14,17,21H,7-8,10-12H2/t14-,17-/m0/s1
+8PR         InChIKey                InChI  1.03                                                                                                                 AHOUBRCZNHFOSL-YOEHRIQHSA-N
+8PR SMILES_CANONICAL               CACTVS 3.370                                                                                                 Fc1ccc(cc1)[C@@H]2CCNC[C@H]2COc3ccc4OCOc4c3
+8PR           SMILES               CACTVS 3.370                                                                                                    Fc1ccc(cc1)[CH]2CCNC[CH]2COc3ccc4OCOc4c3
+8PR SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                               c1cc(ccc1[C@@H]2CCNC[C@H]2COc3ccc4c(c3)OCO4)F
+8PR           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                        c1cc(ccc1C2CCNCC2COc3ccc4c(c3)OCO4)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8PR acedrg               243         "dictionary generator"                  
+8PR acedrg_database      11          "data source"                           
+8PR rdkit                2017.03.2   "Chemoinformatics tool"
+8PR refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,197 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+S62     S62      "1,3-benzothiazole-2,5-disulfonic acid"     NON-POLYMER     22     17     .     
+#
+data_comp_S62
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+S62     C1      C       CR16    0       -10.353     -22.893     14.907      
+S62     C2      C       CR56    0       -11.497     -23.234     14.175      
+S62     C3      C       CR56    0       -11.567     -22.897     12.824      
+S62     C4      C       CR16    0       -10.529     -22.230     12.192      
+S62     C5      C       CR16    0       -9.405      -21.896     12.921      
+S62     C6      C       CR6     0       -9.306      -22.224     14.286      
+S62     S13     S       S2      0       -13.025     -23.427     12.230      
+S62     C14     C       CR5     0       -13.522     -24.064     13.692      
+S62     N15     N       NRD5    0       -12.642     -23.903     14.627      
+S62     S20     S       S3      0       -15.066     -24.849     13.880      
+S62     O22     O       O       0       -15.127     -25.888     12.909      
+S62     O24     O       O       0       -16.060     -23.832     13.826      
+S62     O26     O       OH1     0       -15.113     -25.505     15.300      
+S62     S28     S       S3      0       -7.863      -21.787     15.189      
+S62     O30     O       O       0       -6.932      -22.883     15.140      
+S62     O32     O       OH1     0       -8.297      -21.557     16.586      
+S62     O34     O       O       0       -7.328      -20.565     14.649      
+S62     H1      H       H       0       -10.283     -23.111     15.821      
+S62     H4      H       H       0       -10.588     -22.008     11.279      
+S62     H5      H       H       0       -8.698      -21.443     12.492      
+S62     HO26    H       H       0       -14.412     -25.306     15.733      
+S62     HO32    H       H       0       -7.633      -21.115     17.047      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+S62          C1          C2      DOUBLE       y     1.396  0.0100     1.396  0.0100
+S62          C1          C6      SINGLE       y     1.384  0.0100     1.384  0.0100
+S62          C2          C3      SINGLE       y     1.385  0.0119     1.385  0.0119
+S62          C2         N15      SINGLE       y     1.391  0.0100     1.391  0.0100
+S62          C3         S13      SINGLE       y     1.695  0.0200     1.695  0.0200
+S62          C3          C4      DOUBLE       y     1.382  0.0123     1.382  0.0123
+S62          C4          C5      SINGLE       y     1.378  0.0110     1.378  0.0110
+S62          C5          C6      DOUBLE       y     1.398  0.0166     1.398  0.0166
+S62          C6         S28      SINGLE       n     1.756  0.0119     1.756  0.0119
+S62         S13         C14      SINGLE       y     1.695  0.0200     1.695  0.0200
+S62         C14         S20      SINGLE       n     1.741  0.0136     1.741  0.0136
+S62         C14         N15      DOUBLE       y     1.289  0.0100     1.289  0.0100
+S62         S20         O24      DOUBLE       n     1.424  0.0100     1.424  0.0100
+S62         S20         O22      DOUBLE       n     1.424  0.0100     1.424  0.0100
+S62         S20         O26      SINGLE       n     1.565  0.0200     1.565  0.0200
+S62         S28         O30      DOUBLE       n     1.440  0.0100     1.440  0.0100
+S62         S28         O34      DOUBLE       n     1.440  0.0100     1.440  0.0100
+S62         S28         O32      SINGLE       n     1.482  0.0200     1.482  0.0200
+S62          C1          H1      SINGLE       n     1.082  0.0130     0.942  0.0173
+S62          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0170
+S62          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0168
+S62         O26        HO26      SINGLE       n     0.970  0.0120     0.848  0.0200
+S62         O32        HO32      SINGLE       n     0.970  0.0120     0.921  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+S62          C2          C1          C6     119.211    1.50
+S62          C2          C1          H1     121.257    1.50
+S62          C6          C1          H1     119.531    1.50
+S62          C1          C2          C3     120.953    1.92
+S62          C1          C2         N15     129.912    1.50
+S62          C3          C2         N15     109.135    1.50
+S62          C2          C3         S13     108.261    3.00
+S62          C2          C3          C4     120.953    1.92
+S62         S13          C3          C4     130.786    3.00
+S62          C3          C4          C5     118.815    1.50
+S62          C3          C4          H4     120.726    1.50
+S62          C5          C4          H4     120.459    1.50
+S62          C4          C5          C6     120.700    1.50
+S62          C4          C5          H5     119.190    1.50
+S62          C6          C5          H5     120.110    1.50
+S62          C1          C6          C5     119.368    1.74
+S62          C1          C6         S28     120.423    1.50
+S62          C5          C6         S28     120.209    1.50
+S62          C3         S13         C14     108.261    3.00
+S62         S13         C14         S20     125.154    3.00
+S62         S13         C14         N15     108.261    3.00
+S62         S20         C14         N15     126.585    1.75
+S62          C2         N15         C14     106.081    1.50
+S62         C14         S20         O24     107.921    1.50
+S62         C14         S20         O22     107.921    1.50
+S62         C14         S20         O26     109.471    3.00
+S62         O24         S20         O22     118.684    1.97
+S62         O24         S20         O26     110.180    2.87
+S62         O22         S20         O26     110.180    2.87
+S62         S20         O26        HO26     109.576    1.50
+S62          C6         S28         O30     109.513    1.50
+S62          C6         S28         O34     109.513    1.50
+S62          C6         S28         O32     106.633    1.50
+S62         O30         S28         O34     114.848    3.00
+S62         O30         S28         O32     110.900    2.56
+S62         O34         S28         O32     110.900    2.56
+S62         S28         O32        HO32     109.599    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+S62              const_11          C6          C1          C2          C3       0.000    10.0     2
+S62              const_28          C2          C1          C6         S28     180.000    10.0     2
+S62             sp3_sp3_5        HO32         O32         S28         O30     -60.000    10.0     3
+S62       const_sp2_sp2_2          C1          C2          C3         S13     180.000     5.0     2
+S62              const_32          C1          C2         N15         C14     180.000    10.0     2
+S62              const_15          C2          C3          C4          C5       0.000    10.0     2
+S62       const_sp2_sp2_5          C2          C3         S13         C14       0.000     5.0     2
+S62              const_19          C3          C4          C5          C6       0.000    10.0     2
+S62              const_24          C4          C5          C6         S28     180.000    10.0     2
+S62             sp2_sp3_1          C1          C6         S28         O30     150.000    10.0     6
+S62       const_sp2_sp2_8         S20         C14         S13          C3     180.000     5.0     2
+S62              const_10         S20         C14         N15          C2     180.000    10.0     2
+S62             sp2_sp3_7         S13         C14         S20         O24     150.000    10.0     6
+S62             sp3_sp3_2        HO26         O26         S20         O24     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+S62    chir_1    S20    O24    O22    O26    both
+S62    chir_2    S28    O30    O34    O32    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+S62    plan-1          C1   0.020
+S62    plan-1         C14   0.020
+S62    plan-1          C2   0.020
+S62    plan-1          C3   0.020
+S62    plan-1          C4   0.020
+S62    plan-1          C5   0.020
+S62    plan-1          C6   0.020
+S62    plan-1          H1   0.020
+S62    plan-1          H4   0.020
+S62    plan-1          H5   0.020
+S62    plan-1         N15   0.020
+S62    plan-1         S13   0.020
+S62    plan-1         S20   0.020
+S62    plan-1         S28   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+S62           SMILES              ACDLabs 12.01                                                             O=S(=O)(O)c1cc2nc(sc2cc1)S(=O)(=O)O
+S62 SMILES_CANONICAL               CACTVS 3.370                                                         O[S](=O)(=O)c1ccc2sc(nc2c1)[S](O)(=O)=O
+S62           SMILES               CACTVS 3.370                                                         O[S](=O)(=O)c1ccc2sc(nc2c1)[S](O)(=O)=O
+S62 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                           c1cc2c(cc1S(=O)(=O)O)nc(s2)S(=O)(=O)O
+S62           SMILES "OpenEye OEToolkits" 1.7.0                                                           c1cc2c(cc1S(=O)(=O)O)nc(s2)S(=O)(=O)O
+S62            InChI                InChI  1.03 InChI=1S/C7H5NO6S3/c9-16(10,11)4-1-2-6-5(3-4)8-7(15-6)17(12,13)14/h1-3H,(H,9,10,11)(H,12,13,14)
+S62         InChIKey                InChI  1.03                                                                     LPQVEXUZOUXFTH-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+S62 acedrg               243         "dictionary generator"                  
+S62 acedrg_database      11          "data source"                           
+S62 rdkit                2017.03.2   "Chemoinformatics tool"
+S62 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,309 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PEM     PEM      "2-[P-[2-P-CHLOROBENZAMIDO)ETHYL]PHENOXY]-2-METHYLPROPIONIC ACID"     NON-POLYMER     44     25     .     
+#
+data_comp_PEM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PEM     C1      C       CR6     0       60.591      116.942     108.051     
+PEM     C2      C       CR16    0       60.004      117.434     106.890     
+PEM     C3      C       CR16    0       60.358      116.932     105.645     
+PEM     C4      C       CR6     0       61.297      115.924     105.569     
+PEM     C5      C       CR16    0       61.889      115.411     106.704     
+PEM     C6      C       CR16    0       61.530      115.922     107.944     
+PEM     CL      CL      CL      0       61.744      115.289     104.011     
+PEM     C7      C       C       0       60.215      117.466     109.410     
+PEM     O1      O       O       0       59.976      116.682     110.329     
+PEM     N1      N       NH1     0       60.147      118.794     109.568     
+PEM     C8      C       CH2     0       59.747      119.417     110.830     
+PEM     C9      C       CH2     0       59.432      120.888     110.678     
+PEM     C10     C       CR6     0       58.083      122.648     114.394     
+PEM     C11     C       CR16    0       57.186      122.431     113.348     
+PEM     C12     C       CR16    0       57.629      121.861     112.161     
+PEM     C13     C       CR6     0       58.959      121.505     111.974     
+PEM     C14     C       CR16    0       59.841      121.735     113.021     
+PEM     C15     C       CR16    0       59.419      122.301     114.216     
+PEM     O2      O       O2      0       57.840      123.209     115.633     
+PEM     C16     C       CT      0       56.543      123.426     116.251     
+PEM     C17     C       CH3     0       55.779      122.110     116.327     
+PEM     C18     C       CH3     0       56.894      123.927     117.649     
+PEM     C19     C       C       0       55.746      124.518     115.507     
+PEM     O3      O       OC      -1      56.371      125.351     114.818     
+PEM     O4      O       O       0       54.503      124.552     115.622     
+PEM     H21     H       H       0       59.365      118.122     106.945     
+PEM     H31     H       H       0       59.963      117.272     104.866     
+PEM     H51     H       H       0       62.527      114.726     106.639     
+PEM     HC6     H       H       0       61.932      115.574     108.720     
+PEM     HN1     H       H       0       60.361      119.318     108.902     
+PEM     HC81    H       H       0       60.468      119.311     111.480     
+PEM     HC82    H       H       0       58.956      118.960     111.177     
+PEM     HC91    H       H       0       58.740      120.998     109.992     
+PEM     HC92    H       H       0       60.237      121.357     110.370     
+PEM     H11     H       H       0       56.279      122.660     113.442     
+PEM     H12     H       H       0       57.011      121.714     111.465     
+PEM     H14     H       H       0       60.748      121.501     112.918     
+PEM     H15     H       H       0       60.040      122.448     114.911     
+PEM     H171    H       H       0       55.385      121.908     115.461     
+PEM     H172    H       H       0       55.069      122.179     116.989     
+PEM     H173    H       H       0       56.388      121.394     116.579     
+PEM     H181    H       H       0       56.886      124.900     117.662     
+PEM     H182    H       H       0       57.782      123.613     117.897     
+PEM     H183    H       H       0       56.247      123.594     118.294     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PEM          C1          C2      DOUBLE       y     1.387  0.0100     1.387  0.0100
+PEM          C1          C6      SINGLE       y     1.387  0.0100     1.387  0.0100
+PEM          C1          C7      SINGLE       n     1.502  0.0100     1.502  0.0100
+PEM          C2          C3      SINGLE       y     1.384  0.0100     1.384  0.0100
+PEM          C3          C4      DOUBLE       y     1.376  0.0100     1.376  0.0100
+PEM          C4          C5      SINGLE       y     1.376  0.0100     1.376  0.0100
+PEM          C4          CL      SINGLE       n     1.741  0.0100     1.741  0.0100
+PEM          C5          C6      DOUBLE       y     1.384  0.0100     1.384  0.0100
+PEM          C7          O1      DOUBLE       n     1.230  0.0114     1.230  0.0114
+PEM          C7          N1      SINGLE       n     1.333  0.0111     1.333  0.0111
+PEM          N1          C8      SINGLE       n     1.460  0.0104     1.460  0.0104
+PEM          C8          C9      SINGLE       n     1.510  0.0176     1.510  0.0176
+PEM          C9         C13      SINGLE       n     1.511  0.0100     1.511  0.0100
+PEM         C10         C11      DOUBLE       y     1.386  0.0109     1.386  0.0109
+PEM         C10         C15      SINGLE       y     1.386  0.0109     1.386  0.0109
+PEM         C10          O2      SINGLE       n     1.373  0.0103     1.373  0.0103
+PEM         C11         C12      SINGLE       y     1.385  0.0100     1.385  0.0100
+PEM         C12         C13      DOUBLE       y     1.385  0.0110     1.385  0.0110
+PEM         C13         C14      SINGLE       y     1.385  0.0110     1.385  0.0110
+PEM         C14         C15      DOUBLE       y     1.385  0.0100     1.385  0.0100
+PEM          O2         C16      SINGLE       n     1.446  0.0100     1.446  0.0100
+PEM         C16         C17      SINGLE       n     1.520  0.0100     1.520  0.0100
+PEM         C16         C18      SINGLE       n     1.520  0.0100     1.520  0.0100
+PEM         C16         C19      SINGLE       n     1.526  0.0200     1.526  0.0200
+PEM         C19          O3      SINGLE       n     1.247  0.0187     1.247  0.0187
+PEM         C19          O4      DOUBLE       n     1.247  0.0187     1.247  0.0187
+PEM          C2         H21      SINGLE       n     1.082  0.0130     0.941  0.0168
+PEM          C3         H31      SINGLE       n     1.082  0.0130     0.938  0.0140
+PEM          C5         H51      SINGLE       n     1.082  0.0130     0.938  0.0140
+PEM          C6         HC6      SINGLE       n     1.082  0.0130     0.941  0.0168
+PEM          N1         HN1      SINGLE       n     1.016  0.0100     0.873  0.0200
+PEM          C8        HC81      SINGLE       n     1.089  0.0100     0.977  0.0160
+PEM          C8        HC82      SINGLE       n     1.089  0.0100     0.977  0.0160
+PEM          C9        HC91      SINGLE       n     1.089  0.0100     0.981  0.0158
+PEM          C9        HC92      SINGLE       n     1.089  0.0100     0.981  0.0158
+PEM         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0169
+PEM         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0173
+PEM         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0173
+PEM         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0169
+PEM         C17        H171      SINGLE       n     1.089  0.0100     0.973  0.0141
+PEM         C17        H172      SINGLE       n     1.089  0.0100     0.973  0.0141
+PEM         C17        H173      SINGLE       n     1.089  0.0100     0.973  0.0141
+PEM         C18        H181      SINGLE       n     1.089  0.0100     0.973  0.0141
+PEM         C18        H182      SINGLE       n     1.089  0.0100     0.973  0.0141
+PEM         C18        H183      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PEM          C2          C1          C6     118.938    1.50
+PEM          C2          C1          C7     120.531    2.80
+PEM          C6          C1          C7     120.531    2.80
+PEM          C1          C2          C3     120.790    1.50
+PEM          C1          C2         H21     119.770    1.50
+PEM          C3          C2         H21     119.450    1.50
+PEM          C2          C3          C4     119.080    1.50
+PEM          C2          C3         H31     120.488    1.50
+PEM          C4          C3         H31     120.432    1.50
+PEM          C3          C4          C5     121.301    1.50
+PEM          C3          C4          CL     119.349    1.50
+PEM          C5          C4          CL     119.349    1.50
+PEM          C4          C5          C6     119.080    1.50
+PEM          C4          C5         H51     120.432    1.50
+PEM          C6          C5         H51     120.488    1.50
+PEM          C1          C6          C5     120.790    1.50
+PEM          C1          C6         HC6     119.770    1.50
+PEM          C5          C6         HC6     119.450    1.50
+PEM          C1          C7          O1     120.968    1.50
+PEM          C1          C7          N1     116.868    1.50
+PEM          O1          C7          N1     122.164    1.50
+PEM          C7          N1          C8     122.254    1.50
+PEM          C7          N1         HN1     119.284    1.77
+PEM          C8          N1         HN1     118.462    1.67
+PEM          N1          C8          C9     112.119    1.50
+PEM          N1          C8        HC81     109.131    1.50
+PEM          N1          C8        HC82     109.131    1.50
+PEM          C9          C8        HC81     109.189    1.50
+PEM          C9          C8        HC82     109.189    1.50
+PEM        HC81          C8        HC82     108.162    1.50
+PEM          C8          C9         C13     112.139    1.84
+PEM          C8          C9        HC91     109.025    1.50
+PEM          C8          C9        HC92     109.025    1.50
+PEM         C13          C9        HC91     109.239    1.50
+PEM         C13          C9        HC92     109.239    1.50
+PEM        HC91          C9        HC92     107.823    1.50
+PEM         C11         C10         C15     119.823    1.50
+PEM         C11         C10          O2     120.089    3.00
+PEM         C15         C10          O2     120.089    3.00
+PEM         C10         C11         C12     119.690    1.50
+PEM         C10         C11         H11     120.137    1.50
+PEM         C12         C11         H11     120.174    1.50
+PEM         C11         C12         C13     121.479    1.50
+PEM         C11         C12         H12     119.207    1.50
+PEM         C13         C12         H12     119.314    1.50
+PEM          C9         C13         C12     121.080    1.50
+PEM          C9         C13         C14     121.080    1.50
+PEM         C12         C13         C14     117.841    1.50
+PEM         C13         C14         C15     121.479    1.50
+PEM         C13         C14         H14     119.314    1.50
+PEM         C15         C14         H14     119.207    1.50
+PEM         C10         C15         C14     119.690    1.50
+PEM         C10         C15         H15     120.137    1.50
+PEM         C14         C15         H15     120.174    1.50
+PEM         C10          O2         C16     121.693    1.50
+PEM          O2         C16         C17     107.348    3.00
+PEM          O2         C16         C18     107.348    3.00
+PEM          O2         C16         C19     110.354    2.51
+PEM         C17         C16         C18     110.935    1.50
+PEM         C17         C16         C19     111.511    2.91
+PEM         C18         C16         C19     111.511    2.91
+PEM         C16         C17        H171     109.515    1.50
+PEM         C16         C17        H172     109.515    1.50
+PEM         C16         C17        H173     109.515    1.50
+PEM        H171         C17        H172     109.441    1.50
+PEM        H171         C17        H173     109.441    1.50
+PEM        H172         C17        H173     109.441    1.50
+PEM         C16         C18        H181     109.515    1.50
+PEM         C16         C18        H182     109.515    1.50
+PEM         C16         C18        H183     109.515    1.50
+PEM        H181         C18        H182     109.441    1.50
+PEM        H181         C18        H183     109.441    1.50
+PEM        H182         C18        H183     109.441    1.50
+PEM         C16         C19          O3     118.776    3.00
+PEM         C16         C19          O4     118.776    3.00
+PEM          O3         C19          O4     122.447    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PEM              const_23          C7          C1          C2          C3     180.000    10.0     2
+PEM              const_43          C7          C1          C6          C5     180.000    10.0     2
+PEM             sp2_sp2_2          C2          C1          C7          O1       0.000     5.0     2
+PEM             sp3_sp3_1          N1          C8          C9         C13     180.000    10.0     3
+PEM             sp2_sp3_8         C12         C13          C9          C8     -90.000    10.0     6
+PEM       const_sp2_sp2_3          O2         C10         C11         C12     180.000     5.0     2
+PEM              const_47          O2         C10         C15         C14     180.000    10.0     2
+PEM             sp2_sp2_9         C11         C10          O2         C16     180.000     5.0     2
+PEM       const_sp2_sp2_5         C10         C11         C12         C13       0.000     5.0     2
+PEM              const_10         C11         C12         C13          C9     180.000    10.0     2
+PEM              const_15          C9         C13         C14         C15     180.000    10.0     2
+PEM              const_17         C13         C14         C15         C10       0.000    10.0     2
+PEM            sp3_sp3_10         C17         C16          O2         C10     180.000    10.0     3
+PEM            sp3_sp3_16          O2         C16         C17        H171      60.000    10.0     3
+PEM            sp3_sp3_22          O2         C16         C18        H181     180.000    10.0     3
+PEM            sp2_sp3_13          O3         C19         C16          O2       0.000    10.0     6
+PEM              const_25          C1          C2          C3          C4       0.000    10.0     2
+PEM              const_30          C2          C3          C4          CL     180.000    10.0     2
+PEM              const_35          CL          C4          C5          C6     180.000    10.0     2
+PEM              const_37          C4          C5          C6          C1       0.000    10.0     2
+PEM             sp2_sp2_7          O1          C7          N1          C8       0.000     5.0     2
+PEM             sp2_sp3_2          C7          N1          C8          C9     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PEM    chir_1    C16    O2    C19    C17    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PEM    plan-1          C1   0.020
+PEM    plan-1          C2   0.020
+PEM    plan-1          C3   0.020
+PEM    plan-1          C4   0.020
+PEM    plan-1          C5   0.020
+PEM    plan-1          C6   0.020
+PEM    plan-1          C7   0.020
+PEM    plan-1          CL   0.020
+PEM    plan-1         H21   0.020
+PEM    plan-1         H31   0.020
+PEM    plan-1         H51   0.020
+PEM    plan-1         HC6   0.020
+PEM    plan-2         C10   0.020
+PEM    plan-2         C11   0.020
+PEM    plan-2         C12   0.020
+PEM    plan-2         C13   0.020
+PEM    plan-2         C14   0.020
+PEM    plan-2         C15   0.020
+PEM    plan-2          C9   0.020
+PEM    plan-2         H11   0.020
+PEM    plan-2         H12   0.020
+PEM    plan-2         H14   0.020
+PEM    plan-2         H15   0.020
+PEM    plan-2          O2   0.020
+PEM    plan-3          C1   0.020
+PEM    plan-3          C7   0.020
+PEM    plan-3          N1   0.020
+PEM    plan-3          O1   0.020
+PEM    plan-4          C7   0.020
+PEM    plan-4          C8   0.020
+PEM    plan-4         HN1   0.020
+PEM    plan-4          N1   0.020
+PEM    plan-5         C16   0.020
+PEM    plan-5         C19   0.020
+PEM    plan-5          O3   0.020
+PEM    plan-5          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PEM           SMILES              ACDLabs 10.04                                                                                          O=C(c1ccc(Cl)cc1)NCCc2ccc(OC(C(=O)O)(C)C)cc2
+PEM SMILES_CANONICAL               CACTVS 3.341                                                                                          CC(C)(Oc1ccc(CCNC(=O)c2ccc(Cl)cc2)cc1)C(O)=O
+PEM           SMILES               CACTVS 3.341                                                                                          CC(C)(Oc1ccc(CCNC(=O)c2ccc(Cl)cc2)cc1)C(O)=O
+PEM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                          CC(C)(C(=O)O)Oc1ccc(cc1)CCNC(=O)c2ccc(cc2)Cl
+PEM           SMILES "OpenEye OEToolkits" 1.5.0                                                                                          CC(C)(C(=O)O)Oc1ccc(cc1)CCNC(=O)c2ccc(cc2)Cl
+PEM            InChI                InChI  1.03 InChI=1S/C19H20ClNO4/c1-19(2,18(23)24)25-16-9-3-13(4-10-16)11-12-21-17(22)14-5-7-15(20)8-6-14/h3-10H,11-12H2,1-2H3,(H,21,22)(H,23,24)
+PEM         InChIKey                InChI  1.03                                                                                                           IIBYAHWJQTYFKB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PEM acedrg               243         "dictionary generator"                  
+PEM acedrg_database      11          "data source"                           
+PEM rdkit                2017.03.2   "Chemoinformatics tool"
+PEM refmac5              5.8.0238    "optimization tool"                     

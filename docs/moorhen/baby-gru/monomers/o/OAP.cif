@@ -1,0 +1,445 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OAP     OAP      "4-(S)-[(1-OXO-7-PHENYLHEPTYL)AMINO]-5-[4-(PHENYLMETHYL)PHENYLTHIO]PENTANOIC ACID"     NON-POLYMER     72     36     .     
+#
+data_comp_OAP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OAP     C1      C       CH2     0       -59.567     77.968      62.161      
+OAP     C2      C       CH1     0       -58.467     78.141      63.192      
+OAP     C3      C       CH2     0       -58.486     77.054      64.274      
+OAP     C31     C       CH2     0       -57.940     75.705      63.809      
+OAP     C32     C       C       0       -56.450     75.666      63.508      
+OAP     O31     O       O       0       -56.086     75.771      62.320      
+OAP     O32     O       OC      -1      -55.659     75.531      64.462      
+OAP     S11     S       S2      0       -59.189     78.901      60.660      
+OAP     C11     C       CR6     0       -57.657     78.523      59.857      
+OAP     C12     C       CR16    0       -56.465     79.118      60.265      
+OAP     C13     C       CR16    0       -55.272     78.803      59.629      
+OAP     C14     C       CR6     0       -55.236     77.888      58.584      
+OAP     C15     C       CR16    0       -56.429     77.296      58.184      
+OAP     C16     C       CR16    0       -57.627     77.602      58.812      
+OAP     C17     C       CH2     0       -53.933     77.549      57.891      
+OAP     C18     C       CR6     0       -53.710     78.349      56.624      
+OAP     C19     C       CR16    0       -53.203     79.641      56.675      
+OAP     C40     C       CR16    0       -53.001     80.378      55.515      
+OAP     C41     C       CR16    0       -53.306     79.829      54.285      
+OAP     C42     C       CR16    0       -53.812     78.548      54.216      
+OAP     C43     C       CR16    0       -54.013     77.815      55.378      
+OAP     N21     N       NH1     0       -58.577     79.471      63.802      
+OAP     C21     C       C       0       -57.544     80.281      64.090      
+OAP     O21     O       O       0       -56.372     79.913      64.026      
+OAP     C22     C       CH2     0       -57.901     81.715      64.427      
+OAP     C23     C       CH2     0       -58.376     82.499      63.236      
+OAP     C24     C       CH2     0       -57.252     82.985      62.330      
+OAP     C25     C       CH2     0       -57.662     83.241      60.898      
+OAP     C26     C       CH2     0       -56.498     83.468      59.943      
+OAP     C27     C       CH2     0       -56.913     83.736      58.505      
+OAP     C28     C       CR6     0       -57.438     82.525      57.770      
+OAP     C50     C       CR16    0       -56.569     81.548      57.298      
+OAP     C51     C       CR16    0       -57.051     80.434      56.622      
+OAP     C52     C       CR16    0       -58.407     80.284      56.411      
+OAP     C53     C       CR16    0       -59.281     81.244      56.874      
+OAP     C54     C       CR16    0       -58.800     82.358      57.550      
+OAP     H11     H       H       0       -60.418     78.278      62.528      
+OAP     H12A    H       H       0       -59.664     77.023      61.933      
+OAP     H2      H       H       0       -57.598     78.086      62.726      
+OAP     H31     H       H       0       -59.410     76.934      64.579      
+OAP     H32     H       H       0       -57.956     77.365      65.037      
+OAP     H311    H       H       0       -58.422     75.427      63.003      
+OAP     H312    H       H       0       -58.127     75.038      64.503      
+OAP     H12     H       H       0       -56.472     79.738      60.972      
+OAP     H13     H       H       0       -54.473     79.216      59.912      
+OAP     H15     H       H       0       -56.423     76.674      57.476      
+OAP     H16     H       H       0       -58.425     77.191      58.531      
+OAP     H171    H       H       0       -53.929     76.591      57.669      
+OAP     H172    H       H       0       -53.189     77.719      58.510      
+OAP     H19     H       H       0       -52.993     80.022      57.513      
+OAP     H40     H       H       0       -52.654     81.254      55.568      
+OAP     H41     H       H       0       -53.169     80.328      53.496      
+OAP     H42     H       H       0       -54.022     78.169      53.377      
+OAP     H43     H       H       0       -54.360     76.938      55.323      
+OAP     HN2     H       H       0       -59.383     79.740      64.004      
+OAP     H221    H       H       0       -57.113     82.159      64.807      
+OAP     H222    H       H       0       -58.606     81.716      65.110      
+OAP     H231    H       H       0       -58.882     83.276      63.552      
+OAP     H232    H       H       0       -58.988     81.941      62.711      
+OAP     H241    H       H       0       -56.532     82.319      62.333      
+OAP     H242    H       H       0       -56.888     83.815      62.704      
+OAP     H251    H       H       0       -58.246     84.029      60.874      
+OAP     H252    H       H       0       -58.184     82.475      60.577      
+OAP     H261    H       H       0       -55.918     82.678      59.961      
+OAP     H262    H       H       0       -55.972     84.230      60.265      
+OAP     H271    H       H       0       -56.138     84.088      58.018      
+OAP     H272    H       H       0       -57.605     84.431      58.505      
+OAP     H50     H       H       0       -55.640     81.645      57.438      
+OAP     H51     H       H       0       -56.449     79.779      56.306      
+OAP     H52     H       H       0       -58.734     79.527      55.952      
+OAP     H53     H       H       0       -60.209     81.144      56.731      
+OAP     H54     H       H       0       -59.406     83.011      57.864      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OAP          C1          C2      SINGLE       n     1.515  0.0117     1.515  0.0117
+OAP          C1         S11      SINGLE       n     1.809  0.0191     1.809  0.0191
+OAP          C2          C3      SINGLE       n     1.531  0.0131     1.531  0.0131
+OAP          C2         N21      SINGLE       n     1.464  0.0100     1.464  0.0100
+OAP          C3         C31      SINGLE       n     1.517  0.0200     1.517  0.0200
+OAP         C31         C32      SINGLE       n     1.519  0.0109     1.519  0.0109
+OAP         C32         O31      DOUBLE       n     1.247  0.0187     1.247  0.0187
+OAP         C32         O32      SINGLE       n     1.247  0.0187     1.247  0.0187
+OAP         S11         C11      SINGLE       n     1.772  0.0127     1.772  0.0127
+OAP         C11         C12      DOUBLE       y     1.391  0.0104     1.391  0.0104
+OAP         C11         C16      SINGLE       y     1.391  0.0104     1.391  0.0104
+OAP         C12         C13      SINGLE       y     1.384  0.0100     1.384  0.0100
+OAP         C13         C14      DOUBLE       y     1.386  0.0100     1.386  0.0100
+OAP         C14         C15      SINGLE       y     1.386  0.0100     1.386  0.0100
+OAP         C14         C17      SINGLE       n     1.515  0.0100     1.515  0.0100
+OAP         C15         C16      DOUBLE       y     1.384  0.0100     1.384  0.0100
+OAP         C17         C18      SINGLE       n     1.515  0.0100     1.515  0.0100
+OAP         C18         C19      DOUBLE       y     1.385  0.0100     1.385  0.0100
+OAP         C18         C43      SINGLE       y     1.385  0.0100     1.385  0.0100
+OAP         C19         C40      SINGLE       y     1.386  0.0100     1.386  0.0100
+OAP         C40         C41      DOUBLE       y     1.376  0.0124     1.376  0.0124
+OAP         C41         C42      SINGLE       y     1.374  0.0127     1.374  0.0127
+OAP         C42         C43      DOUBLE       y     1.386  0.0100     1.386  0.0100
+OAP         N21         C21      SINGLE       n     1.339  0.0121     1.339  0.0121
+OAP         C21         O21      DOUBLE       n     1.229  0.0102     1.229  0.0102
+OAP         C21         C22      SINGLE       n     1.514  0.0100     1.514  0.0100
+OAP         C22         C23      SINGLE       n     1.497  0.0200     1.497  0.0200
+OAP         C23         C24      SINGLE       n     1.519  0.0164     1.519  0.0164
+OAP         C24         C25      SINGLE       n     1.509  0.0200     1.509  0.0200
+OAP         C25         C26      SINGLE       n     1.522  0.0142     1.522  0.0142
+OAP         C26         C27      SINGLE       n     1.519  0.0200     1.519  0.0200
+OAP         C27         C28      SINGLE       n     1.510  0.0100     1.510  0.0100
+OAP         C28         C50      DOUBLE       y     1.385  0.0111     1.385  0.0111
+OAP         C28         C54      SINGLE       y     1.385  0.0111     1.385  0.0111
+OAP         C50         C51      SINGLE       y     1.386  0.0100     1.386  0.0100
+OAP         C51         C52      DOUBLE       y     1.376  0.0124     1.376  0.0124
+OAP         C52         C53      SINGLE       y     1.374  0.0127     1.374  0.0127
+OAP         C53         C54      DOUBLE       y     1.386  0.0100     1.386  0.0100
+OAP          C1         H11      SINGLE       n     1.089  0.0100     0.977  0.0102
+OAP          C1        H12A      SINGLE       n     1.089  0.0100     0.977  0.0102
+OAP          C2          H2      SINGLE       n     1.089  0.0100     0.989  0.0122
+OAP          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0160
+OAP          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0160
+OAP         C31        H311      SINGLE       n     1.089  0.0100     0.981  0.0185
+OAP         C31        H312      SINGLE       n     1.089  0.0100     0.981  0.0185
+OAP         C12         H12      SINGLE       n     1.082  0.0130     0.940  0.0163
+OAP         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0173
+OAP         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0173
+OAP         C16         H16      SINGLE       n     1.082  0.0130     0.940  0.0163
+OAP         C17        H171      SINGLE       n     1.089  0.0100     0.983  0.0146
+OAP         C17        H172      SINGLE       n     1.089  0.0100     0.983  0.0146
+OAP         C19         H19      SINGLE       n     1.082  0.0130     0.944  0.0174
+OAP         C40         H40      SINGLE       n     1.082  0.0130     0.944  0.0175
+OAP         C41         H41      SINGLE       n     1.082  0.0130     0.944  0.0161
+OAP         C42         H42      SINGLE       n     1.082  0.0130     0.944  0.0175
+OAP         C43         H43      SINGLE       n     1.082  0.0130     0.944  0.0174
+OAP         N21         HN2      SINGLE       n     1.016  0.0100     0.872  0.0200
+OAP         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0185
+OAP         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0185
+OAP         C23        H231      SINGLE       n     1.089  0.0100     0.980  0.0160
+OAP         C23        H232      SINGLE       n     1.089  0.0100     0.980  0.0160
+OAP         C24        H241      SINGLE       n     1.089  0.0100     0.981  0.0163
+OAP         C24        H242      SINGLE       n     1.089  0.0100     0.981  0.0163
+OAP         C25        H251      SINGLE       n     1.089  0.0100     0.981  0.0163
+OAP         C25        H252      SINGLE       n     1.089  0.0100     0.981  0.0163
+OAP         C26        H261      SINGLE       n     1.089  0.0100     0.980  0.0160
+OAP         C26        H262      SINGLE       n     1.089  0.0100     0.980  0.0160
+OAP         C27        H271      SINGLE       n     1.089  0.0100     0.981  0.0150
+OAP         C27        H272      SINGLE       n     1.089  0.0100     0.981  0.0150
+OAP         C50         H50      SINGLE       n     1.082  0.0130     0.944  0.0174
+OAP         C51         H51      SINGLE       n     1.082  0.0130     0.944  0.0175
+OAP         C52         H52      SINGLE       n     1.082  0.0130     0.944  0.0161
+OAP         C53         H53      SINGLE       n     1.082  0.0130     0.944  0.0175
+OAP         C54         H54      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OAP          C2          C1         S11     112.239    3.00
+OAP          C2          C1         H11     109.493    1.50
+OAP          C2          C1        H12A     109.493    1.50
+OAP         S11          C1         H11     109.066    1.50
+OAP         S11          C1        H12A     109.066    1.50
+OAP         H11          C1        H12A     107.984    1.50
+OAP          C1          C2          C3     111.094    2.85
+OAP          C1          C2         N21     111.308    2.28
+OAP          C1          C2          H2     108.763    1.50
+OAP          C3          C2         N21     110.353    1.50
+OAP          C3          C2          H2     107.815    1.50
+OAP         N21          C2          H2     108.194    1.50
+OAP          C2          C3         C31     112.740    1.50
+OAP          C2          C3         H31     108.489    1.50
+OAP          C2          C3         H32     108.489    1.50
+OAP         C31          C3         H31     108.890    1.50
+OAP         C31          C3         H32     108.890    1.50
+OAP         H31          C3         H32     107.844    1.50
+OAP          C3         C31         C32     114.629    2.24
+OAP          C3         C31        H311     108.906    1.50
+OAP          C3         C31        H312     108.906    1.50
+OAP         C32         C31        H311     108.404    1.50
+OAP         C32         C31        H312     108.404    1.50
+OAP        H311         C31        H312     107.521    1.50
+OAP         C31         C32         O31     118.214    1.64
+OAP         C31         C32         O32     118.214    1.64
+OAP         O31         C32         O32     123.571    1.50
+OAP          C1         S11         C11     120.000    3.00
+OAP         S11         C11         C12     120.319    2.83
+OAP         S11         C11         C16     120.319    2.83
+OAP         C12         C11         C16     119.362    1.50
+OAP         C11         C12         C13     120.416    1.50
+OAP         C11         C12         H12     119.570    1.50
+OAP         C13         C12         H12     120.014    1.50
+OAP         C12         C13         C14     120.963    1.50
+OAP         C12         C13         H13     119.512    1.50
+OAP         C14         C13         H13     119.525    1.50
+OAP         C13         C14         C15     117.881    1.50
+OAP         C13         C14         C17     121.060    1.50
+OAP         C15         C14         C17     121.060    1.50
+OAP         C14         C15         C16     120.963    1.50
+OAP         C14         C15         H15     119.525    1.50
+OAP         C16         C15         H15     119.512    1.50
+OAP         C11         C16         C15     120.416    1.50
+OAP         C11         C16         H16     119.570    1.50
+OAP         C15         C16         H16     120.014    1.50
+OAP         C14         C17         C18     113.580    2.36
+OAP         C14         C17        H171     108.797    1.50
+OAP         C14         C17        H172     108.797    1.50
+OAP         C18         C17        H171     108.797    1.50
+OAP         C18         C17        H172     108.797    1.50
+OAP        H171         C17        H172     107.770    1.50
+OAP         C17         C18         C19     121.122    1.50
+OAP         C17         C18         C43     121.122    1.50
+OAP         C19         C18         C43     117.755    1.50
+OAP         C18         C19         C40     120.989    1.50
+OAP         C18         C19         H19     119.349    1.50
+OAP         C40         C19         H19     119.662    1.50
+OAP         C19         C40         C41     120.183    1.50
+OAP         C19         C40         H40     119.863    1.50
+OAP         C41         C40         H40     119.954    1.50
+OAP         C40         C41         C42     119.900    1.50
+OAP         C40         C41         H41     120.050    1.50
+OAP         C42         C41         H41     120.050    1.50
+OAP         C41         C42         C43     120.183    1.50
+OAP         C41         C42         H42     119.954    1.50
+OAP         C43         C42         H42     119.863    1.50
+OAP         C18         C43         C42     120.989    1.50
+OAP         C18         C43         H43     119.349    1.50
+OAP         C42         C43         H43     119.662    1.50
+OAP          C2         N21         C21     123.741    1.63
+OAP          C2         N21         HN2     117.592    3.00
+OAP         C21         N21         HN2     118.656    1.50
+OAP         N21         C21         O21     122.033    1.50
+OAP         N21         C21         C22     116.136    1.50
+OAP         O21         C21         C22     121.831    1.50
+OAP         C21         C22         C23     112.836    1.50
+OAP         C21         C22        H221     108.930    1.50
+OAP         C21         C22        H222     108.930    1.50
+OAP         C23         C22        H221     108.897    1.50
+OAP         C23         C22        H222     108.897    1.50
+OAP        H221         C22        H222     107.846    1.50
+OAP         C22         C23         C24     113.472    1.51
+OAP         C22         C23        H231     108.795    1.50
+OAP         C22         C23        H232     108.795    1.50
+OAP         C24         C23        H231     108.698    1.50
+OAP         C24         C23        H232     108.698    1.50
+OAP        H231         C23        H232     107.646    1.50
+OAP         C23         C24         C25     114.243    1.69
+OAP         C23         C24        H241     108.698    1.50
+OAP         C23         C24        H242     108.698    1.50
+OAP         C25         C24        H241     108.698    1.50
+OAP         C25         C24        H242     108.698    1.50
+OAP        H241         C24        H242     107.646    1.50
+OAP         C24         C25         C26     114.491    1.55
+OAP         C24         C25        H251     108.698    1.50
+OAP         C24         C25        H252     108.698    1.50
+OAP         C26         C25        H251     108.625    1.50
+OAP         C26         C25        H252     108.625    1.50
+OAP        H251         C25        H252     107.646    1.50
+OAP         C25         C26         C27     113.851    2.19
+OAP         C25         C26        H261     108.775    1.50
+OAP         C25         C26        H262     108.775    1.50
+OAP         C27         C26        H261     108.763    1.50
+OAP         C27         C26        H262     108.763    1.50
+OAP        H261         C26        H262     107.749    1.50
+OAP         C26         C27         C28     114.548    2.35
+OAP         C26         C27        H271     108.665    1.50
+OAP         C26         C27        H272     108.665    1.50
+OAP         C28         C27        H271     108.803    1.50
+OAP         C28         C27        H272     108.803    1.50
+OAP        H271         C27        H272     107.745    1.50
+OAP         C27         C28         C50     120.970    1.50
+OAP         C27         C28         C54     120.970    1.50
+OAP         C50         C28         C54     118.060    1.50
+OAP         C28         C50         C51     120.624    1.50
+OAP         C28         C50         H50     119.591    1.50
+OAP         C51         C50         H50     119.786    1.50
+OAP         C50         C51         C52     120.325    1.50
+OAP         C50         C51         H51     119.792    1.50
+OAP         C52         C51         H51     119.883    1.50
+OAP         C51         C52         C53     120.043    1.50
+OAP         C51         C52         H52     119.979    1.50
+OAP         C53         C52         H52     119.979    1.50
+OAP         C52         C53         C54     120.325    1.50
+OAP         C52         C53         H53     119.883    1.50
+OAP         C54         C53         H53     119.792    1.50
+OAP         C28         C54         C53     120.624    1.50
+OAP         C28         C54         H54     119.591    1.50
+OAP         C53         C54         H54     119.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OAP             sp3_sp3_1         S11          C1          C2          C3     180.000    10.0     3
+OAP            sp3_sp3_10          C2          C1         S11         C11     180.000    10.0     3
+OAP              const_10         C12         C13         C14         C17     180.000    10.0     2
+OAP              const_15         C17         C14         C15         C16     180.000    10.0     2
+OAP            sp2_sp3_14         C13         C14         C17         C18     -90.000    10.0     6
+OAP              const_17         C14         C15         C16         C11       0.000    10.0     2
+OAP            sp2_sp3_20         C19         C18         C17         C14     -90.000    10.0     6
+OAP              const_23         C17         C18         C19         C40     180.000    10.0     2
+OAP              const_67         C17         C18         C43         C42     180.000    10.0     2
+OAP              const_25         C18         C19         C40         C41       0.000    10.0     2
+OAP              const_29         C19         C40         C41         C42       0.000    10.0     2
+OAP              const_33         C40         C41         C42         C43       0.000    10.0     2
+OAP              const_37         C41         C42         C43         C18       0.000    10.0     2
+OAP            sp3_sp3_13          C1          C2          C3         C31     180.000    10.0     3
+OAP             sp2_sp3_1         C21         N21          C2          C1       0.000    10.0     6
+OAP             sp2_sp2_5         O21         C21         N21          C2       0.000     5.0     2
+OAP            sp2_sp3_26         N21         C21         C22         C23     120.000    10.0     6
+OAP            sp3_sp3_31         C21         C22         C23         C24     180.000    10.0     3
+OAP            sp3_sp3_40         C22         C23         C24         C25     180.000    10.0     3
+OAP            sp3_sp3_49         C23         C24         C25         C26     180.000    10.0     3
+OAP            sp3_sp3_58         C24         C25         C26         C27     180.000    10.0     3
+OAP            sp3_sp3_67         C25         C26         C27         C28     180.000    10.0     3
+OAP            sp2_sp3_32         C50         C28         C27         C26     -90.000    10.0     6
+OAP            sp3_sp3_22          C2          C3         C31         C32     180.000    10.0     3
+OAP              const_43         C27         C28         C50         C51     180.000    10.0     2
+OAP              const_71         C27         C28         C54         C53     180.000    10.0     2
+OAP              const_45         C28         C50         C51         C52       0.000    10.0     2
+OAP              const_49         C50         C51         C52         C53       0.000    10.0     2
+OAP              const_53         C51         C52         C53         C54       0.000    10.0     2
+OAP              const_57         C52         C53         C54         C28       0.000    10.0     2
+OAP             sp2_sp3_8         O31         C32         C31          C3     120.000    10.0     6
+OAP             sp2_sp2_1         C12         C11         S11          C1     180.000     5.0     2
+OAP              const_63         S11         C11         C16         C15     180.000    10.0     2
+OAP       const_sp2_sp2_3         S11         C11         C12         C13     180.000     5.0     2
+OAP       const_sp2_sp2_5         C11         C12         C13         C14       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OAP    chir_1    C2    N21    C1    C3    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OAP    plan-1         C11   0.020
+OAP    plan-1         C12   0.020
+OAP    plan-1         C13   0.020
+OAP    plan-1         C14   0.020
+OAP    plan-1         C15   0.020
+OAP    plan-1         C16   0.020
+OAP    plan-1         C17   0.020
+OAP    plan-1         H12   0.020
+OAP    plan-1         H13   0.020
+OAP    plan-1         H15   0.020
+OAP    plan-1         H16   0.020
+OAP    plan-1         S11   0.020
+OAP    plan-2         C17   0.020
+OAP    plan-2         C18   0.020
+OAP    plan-2         C19   0.020
+OAP    plan-2         C40   0.020
+OAP    plan-2         C41   0.020
+OAP    plan-2         C42   0.020
+OAP    plan-2         C43   0.020
+OAP    plan-2         H19   0.020
+OAP    plan-2         H40   0.020
+OAP    plan-2         H41   0.020
+OAP    plan-2         H42   0.020
+OAP    plan-2         H43   0.020
+OAP    plan-3         C27   0.020
+OAP    plan-3         C28   0.020
+OAP    plan-3         C50   0.020
+OAP    plan-3         C51   0.020
+OAP    plan-3         C52   0.020
+OAP    plan-3         C53   0.020
+OAP    plan-3         C54   0.020
+OAP    plan-3         H50   0.020
+OAP    plan-3         H51   0.020
+OAP    plan-3         H52   0.020
+OAP    plan-3         H53   0.020
+OAP    plan-3         H54   0.020
+OAP    plan-4         C31   0.020
+OAP    plan-4         C32   0.020
+OAP    plan-4         O31   0.020
+OAP    plan-4         O32   0.020
+OAP    plan-5          C2   0.020
+OAP    plan-5         C21   0.020
+OAP    plan-5         HN2   0.020
+OAP    plan-5         N21   0.020
+OAP    plan-6         C21   0.020
+OAP    plan-6         C22   0.020
+OAP    plan-6         N21   0.020
+OAP    plan-6         O21   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OAP           SMILES              ACDLabs 10.04                                                                                                                                                                    O=C(O)CCC(NC(=O)CCCCCCc1ccccc1)CSc2ccc(cc2)Cc3ccccc3
+OAP SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                               OC(=O)CC[C@@H](CSc1ccc(Cc2ccccc2)cc1)NC(=O)CCCCCCc3ccccc3
+OAP           SMILES               CACTVS 3.341                                                                                                                                                                 OC(=O)CC[CH](CSc1ccc(Cc2ccccc2)cc1)NC(=O)CCCCCCc3ccccc3
+OAP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                             c1ccc(cc1)CCCCCCC(=O)N[C@@H](CCC(=O)O)CSc2ccc(cc2)Cc3ccccc3
+OAP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                  c1ccc(cc1)CCCCCCC(=O)NC(CCC(=O)O)CSc2ccc(cc2)Cc3ccccc3
+OAP            InChI                InChI  1.03 InChI=1S/C31H37NO3S/c33-30(16-10-2-1-5-11-25-12-6-3-7-13-25)32-28(19-22-31(34)35)24-36-29-20-17-27(18-21-29)23-26-14-8-4-9-15-26/h3-4,6-9,12-15,17-18,20-21,28H,1-2,5,10-11,16,19,22-24H2,(H,32,33)(H,34,35)/t28-/m0/s1
+OAP         InChIKey                InChI  1.03                                                                                                                                                                                             BLFSPSZATDQQMK-NDEPHWFRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OAP acedrg               243         "dictionary generator"                  
+OAP acedrg_database      11          "data source"                           
+OAP rdkit                2017.03.2   "Chemoinformatics tool"
+OAP refmac5              5.8.0238    "optimization tool"                     

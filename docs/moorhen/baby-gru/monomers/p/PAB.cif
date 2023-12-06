@@ -1,0 +1,161 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PAB     PAB      "4-AMINOBENZOIC ACID"     NON-POLYMER     16     10     .     
+#
+data_comp_PAB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PAB     "C1'"   C       C       0       17.534      97.034      45.413      
+PAB     "O1'"   O       O       0       17.569      97.611      46.516      
+PAB     "O2'"   O       OC      -1      17.505      97.620      44.315      
+PAB     C1      C       CR6     0       17.525      95.533      45.405      
+PAB     C2      C       CR16    0       18.359      94.815      46.255      
+PAB     C3      C       CR16    0       18.352      93.433      46.250      
+PAB     C4      C       CR6     0       17.506      92.727      45.387      
+PAB     C5      C       CR16    0       16.670      93.455      44.532      
+PAB     C6      C       CR16    0       16.682      94.838      44.545      
+PAB     N4      N       NH2     0       17.496      91.350      45.378      
+PAB     H2      H       H       0       18.934      95.273      46.843      
+PAB     H3      H       H       0       18.921      92.957      46.831      
+PAB     H5      H       H       0       16.094      92.995      43.945      
+PAB     H6      H       H       0       16.113      95.311      43.963      
+PAB     HN41    H       H       0       16.972      90.919      44.822      
+PAB     HN42    H       H       0       18.015      90.905      45.928      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PAB       "C1'"       "O1'"      DOUBLE       n     1.244  0.0200     1.244  0.0200
+PAB       "C1'"       "O2'"      SINGLE       n     1.244  0.0200     1.244  0.0200
+PAB       "C1'"          C1      SINGLE       n     1.498  0.0200     1.498  0.0200
+PAB          C1          C2      DOUBLE       y     1.387  0.0103     1.387  0.0103
+PAB          C1          C6      SINGLE       y     1.387  0.0103     1.387  0.0103
+PAB          C2          C3      SINGLE       y     1.379  0.0100     1.379  0.0100
+PAB          C3          C4      DOUBLE       y     1.396  0.0103     1.396  0.0103
+PAB          C4          C5      SINGLE       y     1.396  0.0103     1.396  0.0103
+PAB          C4          N4      SINGLE       n     1.375  0.0178     1.375  0.0178
+PAB          C5          C6      DOUBLE       y     1.379  0.0100     1.379  0.0100
+PAB          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+PAB          C3          H3      SINGLE       n     1.082  0.0130     0.942  0.0198
+PAB          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0198
+PAB          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+PAB          N4        HN41      SINGLE       n     1.016  0.0100     0.877  0.0200
+PAB          N4        HN42      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PAB       "O1'"       "C1'"       "O2'"     124.418    1.50
+PAB       "O1'"       "C1'"          C1     117.791    1.50
+PAB       "O2'"       "C1'"          C1     117.791    1.50
+PAB       "C1'"          C1          C2     120.457    1.50
+PAB       "C1'"          C1          C6     120.457    1.50
+PAB          C2          C1          C6     119.085    1.50
+PAB          C1          C2          C3     120.716    1.50
+PAB          C1          C2          H2     119.834    1.50
+PAB          C3          C2          H2     119.451    1.50
+PAB          C2          C3          C4     120.539    1.50
+PAB          C2          C3          H3     120.018    1.50
+PAB          C4          C3          H3     119.443    1.50
+PAB          C3          C4          C5     118.406    1.50
+PAB          C3          C4          N4     120.797    1.50
+PAB          C5          C4          N4     120.797    1.50
+PAB          C4          C5          C6     120.539    1.50
+PAB          C4          C5          H5     119.443    1.50
+PAB          C6          C5          H5     120.018    1.50
+PAB          C1          C6          C5     120.716    1.50
+PAB          C1          C6          H6     119.834    1.50
+PAB          C5          C6          H6     119.451    1.50
+PAB          C4          N4        HN41     119.811    2.73
+PAB          C4          N4        HN42     119.811    2.73
+PAB        HN41          N4        HN42     120.379    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PAB             sp2_sp2_1          C2          C1       "C1'"       "O1'"     180.000     5.0     2
+PAB       const_sp2_sp2_3       "C1'"          C1          C2          C3     180.000     5.0     2
+PAB              const_23       "C1'"          C1          C6          C5     180.000    10.0     2
+PAB       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+PAB              const_10          C2          C3          C4          N4     180.000    10.0     2
+PAB              const_15          N4          C4          C5          C6     180.000    10.0     2
+PAB             sp2_sp2_5          C3          C4          N4        HN41     180.000     5.0     2
+PAB              const_17          C4          C5          C6          C1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PAB    plan-1          C1   0.020
+PAB    plan-1       "C1'"   0.020
+PAB    plan-1          C2   0.020
+PAB    plan-1          C3   0.020
+PAB    plan-1          C4   0.020
+PAB    plan-1          C5   0.020
+PAB    plan-1          C6   0.020
+PAB    plan-1          H2   0.020
+PAB    plan-1          H3   0.020
+PAB    plan-1          H5   0.020
+PAB    plan-1          H6   0.020
+PAB    plan-1          N4   0.020
+PAB    plan-2          C1   0.020
+PAB    plan-2       "C1'"   0.020
+PAB    plan-2       "O1'"   0.020
+PAB    plan-2       "O2'"   0.020
+PAB    plan-3          C4   0.020
+PAB    plan-3        HN41   0.020
+PAB    plan-3        HN42   0.020
+PAB    plan-3          N4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PAB           SMILES              ACDLabs 10.04                                           O=C(O)c1ccc(N)cc1
+PAB SMILES_CANONICAL               CACTVS 3.341                                           Nc1ccc(cc1)C(O)=O
+PAB           SMILES               CACTVS 3.341                                           Nc1ccc(cc1)C(O)=O
+PAB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                           c1cc(ccc1C(=O)O)N
+PAB           SMILES "OpenEye OEToolkits" 1.5.0                                           c1cc(ccc1C(=O)O)N
+PAB            InChI                InChI  1.03 InChI=1S/C7H7NO2/c8-6-3-1-5(2-4-6)7(9)10/h1-4H,8H2,(H,9,10)
+PAB         InChIKey                InChI  1.03                                 ALYNCZNDIQEVRV-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PAB acedrg               243         "dictionary generator"                  
+PAB acedrg_database      11          "data source"                           
+PAB rdkit                2017.03.2   "Chemoinformatics tool"
+PAB refmac5              5.8.0238    "optimization tool"                     

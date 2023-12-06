@@ -1,0 +1,325 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PWK     PWK      "4,4'-[(2R,3R)-2,3-dimethylbutane-1,4-diyl]bis(2-methoxyphenol)"     NON-POLYMER     50     24     .     
+#
+data_comp_PWK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PWK     CAA     C       CH3     0       -19.247     -4.619      -1.988      
+PWK     OAO     O       O2      0       -19.941     -3.938      -0.943      
+PWK     CAU     C       CR6     0       -20.392     -2.655      -1.144      
+PWK     CAK     C       CR16    0       -20.235     -1.890      -2.298      
+PWK     CAS     C       CR6     0       -21.071     -2.107      -0.046      
+PWK     OAE     O       OH1     0       -21.249     -2.826      1.114       
+PWK     CAI     C       CR16    0       -21.576     -0.819      -0.118      
+PWK     CAG     C       CR16    0       -21.407     -0.074      -1.282      
+PWK     CAQ     C       CR6     0       -20.738     -0.595      -2.381      
+PWK     CAM     C       CH2     0       -20.554     0.215       -3.650      
+PWK     CAW     C       CH1     0       -21.516     -0.155      -4.792      
+PWK     CAC     C       CH3     0       -22.944     0.263       -4.457      
+PWK     CAX     C       CH1     0       -21.037     0.356       -6.178      
+PWK     CAD     C       CH3     0       -21.141     1.869       -6.328      
+PWK     CAN     C       CH2     0       -21.727     -0.365      -7.350      
+PWK     CAR     C       CR6     0       -21.069     -0.157      -8.702      
+PWK     CAL     C       CR16    0       -21.674     0.648       -9.663      
+PWK     CAH     C       CR16    0       -19.857     -0.759      -9.012      
+PWK     CAJ     C       CR16    0       -19.251     -0.570      -10.252     
+PWK     CAT     C       CR6     0       -19.862     0.233       -11.200     
+PWK     OAF     O       OH1     0       -19.241     0.402       -12.416     
+PWK     CAV     C       CR6     0       -21.086     0.853       -10.911     
+PWK     OAP     O       O2      0       -21.585     1.620       -11.936     
+PWK     CAB     C       CH3     0       -22.803     2.341       -11.757     
+PWK     H1      H       H       0       -18.442     -4.126      -2.217      
+PWK     H2      H       H       0       -19.820     -4.686      -2.768      
+PWK     H3      H       H       0       -19.006     -5.510      -1.686      
+PWK     H4      H       H       0       -19.779     -2.249      -3.043      
+PWK     H5      H       H       0       -21.921     -2.666      1.629       
+PWK     H6      H       H       0       -22.034     -0.451      0.622       
+PWK     H7      H       H       0       -21.754     0.802       -1.324      
+PWK     H8      H       H       0       -19.633     0.097       -3.965      
+PWK     H9      H       H       0       -20.676     1.165       -3.437      
+PWK     H10     H       H       0       -21.500     -1.158      -4.848      
+PWK     H11     H       H       0       -23.276     -0.260      -3.707      
+PWK     H12     H       H       0       -23.526     0.117       -5.222      
+PWK     H13     H       H       0       -22.967     1.206       -4.219      
+PWK     H14     H       H       0       -20.065     0.110       -6.242      
+PWK     H15     H       H       0       -20.839     2.309       -5.515      
+PWK     H16     H       H       0       -22.065     2.123       -6.499      
+PWK     H17     H       H       0       -20.589     2.169       -7.070      
+PWK     H18     H       H       0       -22.656     -0.055      -7.400      
+PWK     H19     H       H       0       -21.745     -1.326      -7.157      
+PWK     H20     H       H       0       -22.498     1.061       -9.460      
+PWK     H21     H       H       0       -19.436     -1.307      -8.371      
+PWK     H22     H       H       0       -18.427     -0.987      -10.447     
+PWK     H23     H       H       0       -18.389     0.517       -12.452     
+PWK     H24     H       H       0       -22.709     2.957       -11.012     
+PWK     H25     H       H       0       -23.525     1.718       -11.575     
+PWK     H26     H       H       0       -23.003     2.841       -12.565     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PWK         CAT         OAF      SINGLE       n     1.374  0.0155     1.374  0.0155
+PWK         CAJ         CAT      DOUBLE       y     1.381  0.0100     1.381  0.0100
+PWK         CAT         CAV      SINGLE       y     1.394  0.0115     1.394  0.0115
+PWK         CAV         OAP      SINGLE       n     1.369  0.0100     1.369  0.0100
+PWK         OAP         CAB      SINGLE       n     1.424  0.0117     1.424  0.0117
+PWK         CAH         CAJ      SINGLE       y     1.391  0.0100     1.391  0.0100
+PWK         CAL         CAV      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PWK         CAR         CAH      DOUBLE       y     1.385  0.0110     1.385  0.0110
+PWK         CAR         CAL      SINGLE       y     1.388  0.0100     1.388  0.0100
+PWK         CAN         CAR      SINGLE       n     1.517  0.0100     1.517  0.0100
+PWK         CAX         CAN      SINGLE       n     1.537  0.0100     1.537  0.0100
+PWK         CAX         CAD      SINGLE       n     1.523  0.0100     1.523  0.0100
+PWK         CAW         CAX      SINGLE       n     1.548  0.0103     1.548  0.0103
+PWK         CAW         CAC      SINGLE       n     1.523  0.0100     1.523  0.0100
+PWK         CAM         CAW      SINGLE       n     1.537  0.0100     1.537  0.0100
+PWK         CAQ         CAM      SINGLE       n     1.517  0.0100     1.517  0.0100
+PWK         CAK         CAQ      SINGLE       y     1.388  0.0100     1.388  0.0100
+PWK         CAG         CAQ      DOUBLE       y     1.385  0.0110     1.385  0.0110
+PWK         CAU         CAK      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PWK         CAI         CAG      SINGLE       y     1.391  0.0100     1.391  0.0100
+PWK         OAO         CAU      SINGLE       n     1.369  0.0100     1.369  0.0100
+PWK         CAU         CAS      SINGLE       y     1.394  0.0115     1.394  0.0115
+PWK         CAA         OAO      SINGLE       n     1.424  0.0117     1.424  0.0117
+PWK         CAS         CAI      DOUBLE       y     1.381  0.0100     1.381  0.0100
+PWK         CAS         OAE      SINGLE       n     1.374  0.0155     1.374  0.0155
+PWK         CAA          H1      SINGLE       n     1.089  0.0100     0.971  0.0157
+PWK         CAA          H2      SINGLE       n     1.089  0.0100     0.971  0.0157
+PWK         CAA          H3      SINGLE       n     1.089  0.0100     0.971  0.0157
+PWK         CAK          H4      SINGLE       n     1.082  0.0130     0.945  0.0164
+PWK         OAE          H5      SINGLE       n     0.966  0.0059     0.861  0.0200
+PWK         CAI          H6      SINGLE       n     1.082  0.0130     0.944  0.0200
+PWK         CAG          H7      SINGLE       n     1.082  0.0130     0.943  0.0173
+PWK         CAM          H8      SINGLE       n     1.089  0.0100     0.981  0.0150
+PWK         CAM          H9      SINGLE       n     1.089  0.0100     0.981  0.0150
+PWK         CAW         H10      SINGLE       n     1.089  0.0100     1.005  0.0200
+PWK         CAC         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+PWK         CAC         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+PWK         CAC         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+PWK         CAX         H14      SINGLE       n     1.089  0.0100     1.005  0.0200
+PWK         CAD         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+PWK         CAD         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+PWK         CAD         H17      SINGLE       n     1.089  0.0100     0.973  0.0146
+PWK         CAN         H18      SINGLE       n     1.089  0.0100     0.981  0.0150
+PWK         CAN         H19      SINGLE       n     1.089  0.0100     0.981  0.0150
+PWK         CAL         H20      SINGLE       n     1.082  0.0130     0.945  0.0164
+PWK         CAH         H21      SINGLE       n     1.082  0.0130     0.943  0.0173
+PWK         CAJ         H22      SINGLE       n     1.082  0.0130     0.944  0.0200
+PWK         OAF         H23      SINGLE       n     0.966  0.0059     0.861  0.0200
+PWK         CAB         H24      SINGLE       n     1.089  0.0100     0.971  0.0157
+PWK         CAB         H25      SINGLE       n     1.089  0.0100     0.971  0.0157
+PWK         CAB         H26      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PWK         OAO         CAA          H1     109.428    1.50
+PWK         OAO         CAA          H2     109.428    1.50
+PWK         OAO         CAA          H3     109.428    1.50
+PWK          H1         CAA          H2     109.509    1.50
+PWK          H1         CAA          H3     109.509    1.50
+PWK          H2         CAA          H3     109.509    1.50
+PWK         CAU         OAO         CAA     117.276    1.50
+PWK         CAK         CAU         OAO     125.422    1.50
+PWK         CAK         CAU         CAS     119.502    1.50
+PWK         OAO         CAU         CAS     115.076    1.50
+PWK         CAQ         CAK         CAU     120.981    1.50
+PWK         CAQ         CAK          H4     119.469    1.50
+PWK         CAU         CAK          H4     119.551    1.50
+PWK         CAU         CAS         CAI     119.636    1.50
+PWK         CAU         CAS         OAE     120.182    3.00
+PWK         CAI         CAS         OAE     120.182    3.00
+PWK         CAS         OAE          H5     120.000    3.00
+PWK         CAG         CAI         CAS     119.705    1.50
+PWK         CAG         CAI          H6     120.325    1.50
+PWK         CAS         CAI          H6     119.970    1.50
+PWK         CAQ         CAG         CAI     121.613    1.50
+PWK         CAQ         CAG          H7     119.247    1.50
+PWK         CAI         CAG          H7     119.140    1.50
+PWK         CAM         CAQ         CAK     120.121    1.50
+PWK         CAM         CAQ         CAG     121.316    1.50
+PWK         CAK         CAQ         CAG     118.563    1.50
+PWK         CAW         CAM         CAQ     114.598    1.54
+PWK         CAW         CAM          H8     108.471    1.50
+PWK         CAW         CAM          H9     108.471    1.50
+PWK         CAQ         CAM          H8     108.738    1.50
+PWK         CAQ         CAM          H9     108.738    1.50
+PWK          H8         CAM          H9     107.709    1.50
+PWK         CAX         CAW         CAC     112.677    1.50
+PWK         CAX         CAW         CAM     112.505    1.50
+PWK         CAX         CAW         H10     105.957    1.95
+PWK         CAC         CAW         CAM     111.133    1.50
+PWK         CAC         CAW         H10     107.749    1.50
+PWK         CAM         CAW         H10     106.044    1.50
+PWK         CAW         CAC         H11     110.468    1.66
+PWK         CAW         CAC         H12     110.468    1.66
+PWK         CAW         CAC         H13     110.468    1.66
+PWK         H11         CAC         H12     109.411    1.50
+PWK         H11         CAC         H13     109.411    1.50
+PWK         H12         CAC         H13     109.411    1.50
+PWK         CAN         CAX         CAD     111.133    1.50
+PWK         CAN         CAX         CAW     112.505    1.50
+PWK         CAN         CAX         H14     106.044    1.50
+PWK         CAD         CAX         CAW     112.677    1.50
+PWK         CAD         CAX         H14     107.749    1.50
+PWK         CAW         CAX         H14     105.957    1.95
+PWK         CAX         CAD         H15     110.468    1.66
+PWK         CAX         CAD         H16     110.468    1.66
+PWK         CAX         CAD         H17     110.468    1.66
+PWK         H15         CAD         H16     109.411    1.50
+PWK         H15         CAD         H17     109.411    1.50
+PWK         H16         CAD         H17     109.411    1.50
+PWK         CAR         CAN         CAX     114.598    1.54
+PWK         CAR         CAN         H18     108.738    1.50
+PWK         CAR         CAN         H19     108.738    1.50
+PWK         CAX         CAN         H18     108.471    1.50
+PWK         CAX         CAN         H19     108.471    1.50
+PWK         H18         CAN         H19     107.709    1.50
+PWK         CAH         CAR         CAL     118.563    1.50
+PWK         CAH         CAR         CAN     121.316    1.50
+PWK         CAL         CAR         CAN     120.121    1.50
+PWK         CAV         CAL         CAR     120.981    1.50
+PWK         CAV         CAL         H20     119.551    1.50
+PWK         CAR         CAL         H20     119.469    1.50
+PWK         CAJ         CAH         CAR     121.613    1.50
+PWK         CAJ         CAH         H21     119.140    1.50
+PWK         CAR         CAH         H21     119.247    1.50
+PWK         CAT         CAJ         CAH     119.705    1.50
+PWK         CAT         CAJ         H22     119.970    1.50
+PWK         CAH         CAJ         H22     120.325    1.50
+PWK         OAF         CAT         CAJ     120.182    3.00
+PWK         OAF         CAT         CAV     120.182    3.00
+PWK         CAJ         CAT         CAV     119.636    1.50
+PWK         CAT         OAF         H23     120.000    3.00
+PWK         CAT         CAV         OAP     115.076    1.50
+PWK         CAT         CAV         CAL     119.502    1.50
+PWK         OAP         CAV         CAL     125.422    1.50
+PWK         CAV         OAP         CAB     117.276    1.50
+PWK         OAP         CAB         H24     109.428    1.50
+PWK         OAP         CAB         H25     109.428    1.50
+PWK         OAP         CAB         H26     109.428    1.50
+PWK         H24         CAB         H25     109.509    1.50
+PWK         H24         CAB         H26     109.509    1.50
+PWK         H25         CAB         H26     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PWK            sp3_sp3_51          H1         CAA         OAO         CAU     -60.000    10.0     3
+PWK            sp3_sp3_32         H11         CAC         CAW         CAX     180.000    10.0     3
+PWK            sp3_sp3_23         CAC         CAW         CAX         CAN     180.000    10.0     3
+PWK            sp3_sp3_14         H15         CAD         CAX         CAN     180.000    10.0     3
+PWK             sp3_sp3_5         CAR         CAN         CAX         CAD     180.000    10.0     3
+PWK             sp2_sp3_2         CAH         CAR         CAN         CAX     -90.000    10.0     6
+PWK              const_42         CAV         CAL         CAR         CAN     180.000    10.0     2
+PWK              const_22         CAJ         CAH         CAR         CAN     180.000    10.0     2
+PWK              const_38         CAR         CAL         CAV         OAP     180.000    10.0     2
+PWK              const_25         CAR         CAH         CAJ         CAT       0.000    10.0     2
+PWK              const_30         CAH         CAJ         CAT         OAF     180.000    10.0     2
+PWK             sp2_sp2_1         CAJ         CAT         OAF         H23     180.000     5.0     2
+PWK              const_36         OAF         CAT         CAV         OAP       0.000    10.0     2
+PWK             sp2_sp2_5         CAK         CAU         OAO         CAA     180.000     5.0     2
+PWK             sp2_sp2_3         CAT         CAV         OAP         CAB     180.000     5.0     2
+PWK             sp3_sp3_2         H24         CAB         OAP         CAV     -60.000    10.0     3
+PWK       const_sp2_sp2_2         CAQ         CAK         CAU         OAO     180.000     5.0     2
+PWK              const_48         OAE         CAS         CAU         OAO       0.000    10.0     2
+PWK       const_sp2_sp2_6         CAU         CAK         CAQ         CAM     180.000     5.0     2
+PWK             sp2_sp2_7         CAU         CAS         OAE          H5     180.000     5.0     2
+PWK              const_18         CAG         CAI         CAS         OAE     180.000    10.0     2
+PWK              const_13         CAQ         CAG         CAI         CAS       0.000    10.0     2
+PWK              const_10         CAI         CAG         CAQ         CAM     180.000    10.0     2
+PWK             sp2_sp3_8         CAK         CAQ         CAM         CAW     -90.000    10.0     6
+PWK            sp3_sp3_41         CAQ         CAM         CAW         CAX     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PWK    chir_1    CAW    CAX    CAM    CAC    negative
+PWK    chir_2    CAX    CAW    CAN    CAD    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PWK    plan-1         CAH   0.020
+PWK    plan-1         CAJ   0.020
+PWK    plan-1         CAL   0.020
+PWK    plan-1         CAN   0.020
+PWK    plan-1         CAR   0.020
+PWK    plan-1         CAT   0.020
+PWK    plan-1         CAV   0.020
+PWK    plan-1         H20   0.020
+PWK    plan-1         H21   0.020
+PWK    plan-1         H22   0.020
+PWK    plan-1         OAF   0.020
+PWK    plan-1         OAP   0.020
+PWK    plan-2         CAG   0.020
+PWK    plan-2         CAI   0.020
+PWK    plan-2         CAK   0.020
+PWK    plan-2         CAM   0.020
+PWK    plan-2         CAQ   0.020
+PWK    plan-2         CAS   0.020
+PWK    plan-2         CAU   0.020
+PWK    plan-2          H4   0.020
+PWK    plan-2          H6   0.020
+PWK    plan-2          H7   0.020
+PWK    plan-2         OAE   0.020
+PWK    plan-2         OAO   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PWK           SMILES              ACDLabs 12.01                                                                                                Oc1ccc(cc1OC)CC(C)C(C)Cc2ccc(O)c(OC)c2
+PWK            InChI                InChI  1.03 InChI=1S/C20H26O4/c1-13(9-15-5-7-17(21)19(11-15)23-3)14(2)10-16-6-8-18(22)20(12-16)24-4/h5-8,11-14,21-22H,9-10H2,1-4H3/t13-,14-/m1/s1
+PWK         InChIKey                InChI  1.03                                                                                                           ADFOLUXMYYCTRR-ZIAGYGMSSA-N
+PWK SMILES_CANONICAL               CACTVS 3.385                                                                                       COc1cc(C[C@@H](C)[C@H](C)Cc2ccc(O)c(OC)c2)ccc1O
+PWK           SMILES               CACTVS 3.385                                                                                          COc1cc(C[CH](C)[CH](C)Cc2ccc(O)c(OC)c2)ccc1O
+PWK SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                      C[C@H](Cc1ccc(c(c1)OC)O)[C@H](C)Cc2ccc(c(c2)OC)O
+PWK           SMILES "OpenEye OEToolkits" 1.7.6                                                                                              CC(Cc1ccc(c(c1)OC)O)C(C)Cc2ccc(c(c2)OC)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PWK acedrg               243         "dictionary generator"                  
+PWK acedrg_database      11          "data source"                           
+PWK rdkit                2017.03.2   "Chemoinformatics tool"
+PWK refmac5              5.8.0238    "optimization tool"                     

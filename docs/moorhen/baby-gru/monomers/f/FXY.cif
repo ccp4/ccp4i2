@@ -1,0 +1,216 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FXY     FXY      1-METHYLHEPTYLFORMAMIDE     NON-POLYMER     30     11     .     
+#
+data_comp_FXY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FXY     O10     O       O       0       -51.399     -60.973     44.311      
+FXY     C9      C       C1      0       -51.047     -59.861     44.712      
+FXY     N8      N       NH1     0       -49.809     -59.510     45.049      
+FXY     C1      C       CH1     0       -48.660     -60.421     45.013      
+FXY     C25     C       CH3     0       -47.639     -60.034     46.068      
+FXY     C2      C       CH2     0       -48.062     -60.446     43.604      
+FXY     C3      C       CH2     0       -47.070     -61.561     43.376      
+FXY     C4      C       CH2     0       -46.616     -61.716     41.945      
+FXY     C5      C       CH2     0       -45.599     -62.810     41.731      
+FXY     C6      C       CH2     0       -45.121     -62.938     40.305      
+FXY     C7      C       CH3     0       -44.108     -64.039     40.077      
+FXY     H9      H       H       0       -51.712     -59.169     44.796      
+FXY     HN8     H       H       0       -49.666     -58.683     45.288      
+FXY     H1      H       H       0       -48.982     -61.332     45.224      
+FXY     H251    H       H       0       -46.887     -59.578     45.650      
+FXY     H252    H       H       0       -47.320     -60.836     46.516      
+FXY     H253    H       H       0       -48.048     -59.443     46.724      
+FXY     H21     H       H       0       -47.616     -59.589     43.431      
+FXY     H22     H       H       0       -48.790     -60.539     42.954      
+FXY     H31     H       H       0       -47.476     -62.404     43.669      
+FXY     H32     H       H       0       -46.283     -61.400     43.938      
+FXY     H41     H       H       0       -46.230     -60.866     41.644      
+FXY     H42     H       H       0       -47.399     -61.901     41.385      
+FXY     H51     H       H       0       -45.993     -63.665     42.008      
+FXY     H52     H       H       0       -44.825     -62.638     42.308      
+FXY     H61     H       H       0       -44.724     -62.083     40.031      
+FXY     H62     H       H       0       -45.899     -63.101     39.728      
+FXY     H71     H       H       0       -44.463     -64.679     39.435      
+FXY     H72     H       H       0       -43.922     -64.495     40.916      
+FXY     H73     H       H       0       -43.285     -63.656     39.728      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FXY         O10          C9      DOUBLE       n     1.232  0.0100     1.232  0.0100
+FXY          C9          N8      SINGLE       n     1.327  0.0137     1.327  0.0137
+FXY          N8          C1      SINGLE       n     1.463  0.0106     1.463  0.0106
+FXY          C1         C25      SINGLE       n     1.514  0.0111     1.514  0.0111
+FXY          C1          C2      SINGLE       n     1.528  0.0145     1.528  0.0145
+FXY          C2          C3      SINGLE       n     1.509  0.0200     1.509  0.0200
+FXY          C3          C4      SINGLE       n     1.509  0.0200     1.509  0.0200
+FXY          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+FXY          C5          C6      SINGLE       n     1.507  0.0200     1.507  0.0200
+FXY          C6          C7      SINGLE       n     1.510  0.0200     1.510  0.0200
+FXY          C9          H9      SINGLE       n     1.082  0.0130     0.964  0.0200
+FXY          N8         HN8      SINGLE       n     1.016  0.0100     0.872  0.0200
+FXY          C1          H1      SINGLE       n     1.089  0.0100     0.989  0.0122
+FXY         C25        H251      SINGLE       n     1.089  0.0100     0.973  0.0146
+FXY         C25        H252      SINGLE       n     1.089  0.0100     0.973  0.0146
+FXY         C25        H253      SINGLE       n     1.089  0.0100     0.973  0.0146
+FXY          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0160
+FXY          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0160
+FXY          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0163
+FXY          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0163
+FXY          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+FXY          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+FXY          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0163
+FXY          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0163
+FXY          C6         H61      SINGLE       n     1.089  0.0100     0.982  0.0155
+FXY          C6         H62      SINGLE       n     1.089  0.0100     0.982  0.0155
+FXY          C7         H71      SINGLE       n     1.089  0.0100     0.973  0.0157
+FXY          C7         H72      SINGLE       n     1.089  0.0100     0.973  0.0157
+FXY          C7         H73      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FXY         O10          C9          N8     125.163    1.50
+FXY         O10          C9          H9     119.017    2.52
+FXY          N8          C9          H9     115.820    2.36
+FXY          C9          N8          C1     122.588    2.35
+FXY          C9          N8         HN8     119.115    1.93
+FXY          C1          N8         HN8     118.297    3.00
+FXY          N8          C1         C25     109.783    1.50
+FXY          N8          C1          C2     110.353    1.50
+FXY          N8          C1          H1     108.194    1.50
+FXY         C25          C1          C2     111.070    2.27
+FXY         C25          C1          H1     108.356    1.50
+FXY          C2          C1          H1     108.260    1.50
+FXY          C1         C25        H251     109.466    1.50
+FXY          C1         C25        H252     109.466    1.50
+FXY          C1         C25        H253     109.466    1.50
+FXY        H251         C25        H252     109.386    1.50
+FXY        H251         C25        H253     109.386    1.50
+FXY        H252         C25        H253     109.386    1.50
+FXY          C1          C2          C3     113.103    3.00
+FXY          C1          C2         H21     108.930    1.50
+FXY          C1          C2         H22     108.930    1.50
+FXY          C3          C2         H21     108.650    1.50
+FXY          C3          C2         H22     108.650    1.50
+FXY         H21          C2         H22     107.844    1.50
+FXY          C2          C3          C4     115.138    2.03
+FXY          C2          C3         H31     108.601    1.50
+FXY          C2          C3         H32     108.601    1.50
+FXY          C4          C3         H31     108.698    1.50
+FXY          C4          C3         H32     108.698    1.50
+FXY         H31          C3         H32     107.646    1.50
+FXY          C3          C4          C5     114.243    1.69
+FXY          C3          C4         H41     108.698    1.50
+FXY          C3          C4         H42     108.698    1.50
+FXY          C5          C4         H41     108.698    1.50
+FXY          C5          C4         H42     108.698    1.50
+FXY         H41          C4         H42     107.646    1.50
+FXY          C4          C5          C6     114.362    3.00
+FXY          C4          C5         H51     108.698    1.50
+FXY          C4          C5         H52     108.698    1.50
+FXY          C6          C5         H51     108.653    1.50
+FXY          C6          C5         H52     108.653    1.50
+FXY         H51          C5         H52     107.646    1.50
+FXY          C5          C6          C7     113.719    3.00
+FXY          C5          C6         H61     108.758    1.50
+FXY          C5          C6         H62     108.758    1.50
+FXY          C7          C6         H61     108.918    1.50
+FXY          C7          C6         H62     108.918    1.50
+FXY         H61          C6         H62     107.763    1.50
+FXY          C6          C7         H71     109.554    1.50
+FXY          C6          C7         H72     109.554    1.50
+FXY          C6          C7         H73     109.554    1.50
+FXY         H71          C7         H72     109.380    1.50
+FXY         H71          C7         H73     109.380    1.50
+FXY         H72          C7         H73     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FXY             sp2_sp2_1         O10          C9          N8          C1     180.000     5.0     2
+FXY             sp2_sp3_1          C9          N8          C1         C25       0.000    10.0     6
+FXY             sp3_sp3_1          N8          C1         C25        H251     180.000    10.0     3
+FXY            sp3_sp3_10          N8          C1          C2          C3     180.000    10.0     3
+FXY            sp3_sp3_19          C1          C2          C3          C4     180.000    10.0     3
+FXY            sp3_sp3_28          C2          C3          C4          C5     180.000    10.0     3
+FXY            sp3_sp3_37          C3          C4          C5          C6     180.000    10.0     3
+FXY            sp3_sp3_46          C4          C5          C6          C7     180.000    10.0     3
+FXY            sp3_sp3_55          C5          C6          C7         H71     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FXY    chir_1    C1    N8    C2    C25    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FXY    plan-1          C9   0.020
+FXY    plan-1          H9   0.020
+FXY    plan-1          N8   0.020
+FXY    plan-1         O10   0.020
+FXY    plan-2          C1   0.020
+FXY    plan-2          C9   0.020
+FXY    plan-2         HN8   0.020
+FXY    plan-2          N8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FXY           SMILES              ACDLabs 10.04                                                                  O=CNC(CCCCCC)C
+FXY SMILES_CANONICAL               CACTVS 3.341                                                             CCCCCC[C@@H](C)NC=O
+FXY           SMILES               CACTVS 3.341                                                               CCCCCC[CH](C)NC=O
+FXY SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                             CCCCCC[C@@H](C)NC=O
+FXY           SMILES "OpenEye OEToolkits" 1.5.0                                                                  CCCCCCC(C)NC=O
+FXY            InChI                InChI  1.03 InChI=1S/C9H19NO/c1-3-4-5-6-7-9(2)10-8-11/h8-9H,3-7H2,1-2H3,(H,10,11)/t9-/m1/s1
+FXY         InChIKey                InChI  1.03                                                     YWFHDUFNGSJLTL-SECBINFHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FXY acedrg               243         "dictionary generator"                  
+FXY acedrg_database      11          "data source"                           
+FXY rdkit                2017.03.2   "Chemoinformatics tool"
+FXY refmac5              5.8.0238    "optimization tool"                     

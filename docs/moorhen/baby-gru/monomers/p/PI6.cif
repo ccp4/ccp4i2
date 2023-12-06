@@ -1,0 +1,534 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PI6     PI6      "[1-BENZYL-3-(8-SEC-BUTYL-7,10-DIOXO-2-OXA-6,9-DIAZA-BICYCLO[11.2.2] HEPTADECA-1(16),13(17),14-TRIEN-11-YLAMINO)-2-HYDROXY-PROPYL]-CARBAMIC ACID TERT-BUTYL ESTER"     NON-POLYMER     91     43     .     
+#
+data_comp_PI6
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PI6     O1      O       O       0       4.311       0.015       11.266      
+PI6     C       C       C       0       3.912       0.862       12.036      
+PI6     O2      O       O2      0       2.684       1.423       12.027      
+PI6     CT      C       CT      0       1.861       1.585       10.804      
+PI6     C1      C       CH3     0       1.287       0.232       10.449      
+PI6     C2      C       CH3     0       0.764       2.537       11.220      
+PI6     C3      C       CH3     0       2.662       2.170       9.659       
+PI6     N       N       NH1     0       4.645       1.391       13.041      
+PI6     CA      C       CH1     0       6.046       1.071       13.307      
+PI6     C4      C       CH1     0       6.212       0.655       14.782      
+PI6     OXT     O       OH1     0       7.594       0.422       15.065      
+PI6     CB      C       CH2     0       6.941       2.263       12.924      
+PI6     CG      C       CR6     0       6.727       2.750       11.507      
+PI6     CD1     C       CR16    0       7.156       1.992       10.424      
+PI6     CD2     C       CR16    0       6.090       3.961       11.255      
+PI6     CE1     C       CR16    0       6.958       2.435       9.122       
+PI6     CE2     C       CR16    0       5.893       4.403       9.953       
+PI6     CZ      C       CR16    0       6.327       3.640       8.888       
+PI6     CM      C       CH2     0       5.417       -0.590      15.142      
+PI6     N1      N       NT1     0       5.721       -1.037      16.513      
+PI6     CA1     C       CH1     0       5.391       -2.399      16.966      
+PI6     C5      C       C       0       6.373       -3.462      16.448      
+PI6     O       O       O       0       6.514       -3.646      15.240      
+PI6     CB1     C       CH2     0       3.949       -2.782      16.585      
+PI6     CG1     C       CR6     0       3.582       -4.200      16.958      
+PI6     CD11    C       CR16    0       3.347       -4.561      18.279      
+PI6     CD21    C       CR16    0       3.493       -5.194      15.991      
+PI6     CE11    C       CR16    0       3.019       -5.864      18.630      
+PI6     CE21    C       CR16    0       3.170       -6.504      16.321      
+PI6     CZ1     C       CR6     0       2.939       -6.848      17.648      
+PI6     N2      N       NH1     0       7.053       -4.139      17.386      
+PI6     CA2     C       CH1     0       7.580       -5.483      17.180      
+PI6     C6      C       C       0       7.148       -6.350      18.366      
+PI6     O3      O       O       0       7.687       -6.205      19.462      
+PI6     CB2     C       CH1     0       9.112       -5.508      16.986      
+PI6     CG11    C       CH2     0       9.560       -4.639      15.802      
+PI6     CG2     C       CH3     0       9.638       -6.936      16.862      
+PI6     CD12    C       CH3     0       9.216       -5.189      14.428      
+PI6     OH      O       O2      0       2.611       -8.157      17.905      
+PI6     N3      N       NH1     0       6.170       -7.241      18.152      
+PI6     CA3     C       CH2     0       5.668       -8.156      19.171      
+PI6     C7      C       CH2     0       4.678       -9.180      18.638      
+PI6     C8      C       CH2     0       3.240       -8.878      18.976      
+PI6     H11     H       H       0       0.534       0.348       9.844       
+PI6     H12     H       H       0       0.984       -0.214      11.258      
+PI6     H13     H       H       0       1.966       -0.312      10.017      
+PI6     H21     H       H       0       1.146       3.411       11.409      
+PI6     H22     H       H       0       0.324       2.197       12.018      
+PI6     H23     H       H       0       0.114       2.617       10.502      
+PI6     H31     H       H       0       2.055       2.500       8.975       
+PI6     H32     H       H       0       3.237       1.487       9.276       
+PI6     H33     H       H       0       3.208       2.904       9.987       
+PI6     H       H       H       0       4.277       1.968       13.585      
+PI6     HA      H       H       0       6.309       0.300       12.756      
+PI6     HC      H       H       0       5.902       1.403       15.355      
+PI6     HOR     H       H       0       7.891       -0.198      14.567      
+PI6     HB2     H       H       0       7.881       2.002       13.023      
+PI6     HB3     H       H       0       6.768       3.002       13.545      
+PI6     HD1     H       H       0       7.589       1.167       10.576      
+PI6     HD2     H       H       0       5.790       4.489       11.978      
+PI6     HE1     H       H       0       7.257       1.911       8.396       
+PI6     HE2     H       H       0       5.461       5.228       9.797       
+PI6     HZ      H       H       0       6.193       3.941       8.003       
+PI6     HM2     H       H       0       5.630       -1.302      14.506      
+PI6     HM3     H       H       0       4.460       -0.393      15.069      
+PI6     H1      H       H       0       5.309       -0.483      17.075      
+PI6     HA1     H       H       0       5.439       -2.402      17.949      
+PI6     HB21    H       H       0       3.830       -2.674      15.620      
+PI6     HB31    H       H       0       3.331       -2.167      17.033      
+PI6     HD11    H       H       0       3.405       -3.904      18.953      
+PI6     HD21    H       H       0       3.654       -4.976      15.088      
+PI6     HE11    H       H       0       2.860       -6.081      19.533      
+PI6     HE21    H       H       0       3.111       -7.160      15.646      
+PI6     H2      H       H       0       7.213       -3.749      18.152      
+PI6     HA2     H       H       0       7.161       -5.860      16.360      
+PI6     HB      H       H       0       9.516       -5.117      17.799      
+PI6     HG12    H       H       0       10.534      -4.533      15.853      
+PI6     HG13    H       H       0       9.165       -3.748      15.891      
+PI6     HG21    H       H       0       10.472      -6.937      16.361      
+PI6     HG22    H       H       0       8.984       -7.487      16.398      
+PI6     HG23    H       H       0       9.798       -7.304      17.749      
+PI6     HD12    H       H       0       9.317       -4.485      13.764      
+PI6     HD13    H       H       0       8.299       -5.508      14.418      
+PI6     HD14    H       H       0       9.815       -5.923      14.211      
+PI6     H3      H       H       0       5.804       -7.272      17.362      
+PI6     HA21    H       H       0       5.249       -7.631      19.885      
+PI6     HA3     H       H       0       6.430       -8.632      19.565      
+PI6     H89     H       H       0       4.909       -10.058     19.011      
+PI6     H99     H       H       0       4.772       -9.244      17.664      
+PI6     H14     H       H       0       2.760       -9.719      19.118      
+PI6     H24     H       H       0       3.184       -8.364      19.807      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PI6          O1           C      DOUBLE       n     1.210  0.0102     1.210  0.0102
+PI6           C          O2      SINGLE       n     1.341  0.0126     1.341  0.0126
+PI6          O2          CT      SINGLE       n     1.477  0.0101     1.477  0.0101
+PI6          CT          C1      SINGLE       n     1.512  0.0110     1.512  0.0110
+PI6          CT          C2      SINGLE       n     1.512  0.0110     1.512  0.0110
+PI6          CT          C3      SINGLE       n     1.512  0.0110     1.512  0.0110
+PI6           N          CA      SINGLE       n     1.457  0.0100     1.457  0.0100
+PI6          CA          C4      SINGLE       n     1.538  0.0100     1.538  0.0100
+PI6          CA          CB      SINGLE       n     1.536  0.0100     1.536  0.0100
+PI6          C4         OXT      SINGLE       n     1.424  0.0199     1.424  0.0199
+PI6          C4          CM      SINGLE       n     1.519  0.0100     1.519  0.0100
+PI6          CB          CG      SINGLE       n     1.512  0.0103     1.512  0.0103
+PI6          CG         CD1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+PI6          CG         CD2      SINGLE       y     1.385  0.0111     1.385  0.0111
+PI6         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+PI6         CD2         CE2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PI6         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PI6         CE2          CZ      SINGLE       y     1.376  0.0124     1.376  0.0124
+PI6          N1         CA1      SINGLE       n     1.463  0.0132     1.463  0.0132
+PI6         CA1          C5      SINGLE       n     1.530  0.0124     1.530  0.0124
+PI6         CA1         CB1      SINGLE       n     1.535  0.0103     1.535  0.0103
+PI6          C5           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PI6         CB1         CG1      SINGLE       n     1.508  0.0100     1.508  0.0100
+PI6         CG1        CD11      DOUBLE       y     1.385  0.0110     1.385  0.0110
+PI6         CG1        CD21      SINGLE       y     1.385  0.0110     1.385  0.0110
+PI6        CD11        CE11      SINGLE       y     1.385  0.0100     1.385  0.0100
+PI6        CD21        CE21      DOUBLE       y     1.385  0.0100     1.385  0.0100
+PI6        CE11         CZ1      DOUBLE       y     1.386  0.0109     1.386  0.0109
+PI6        CE21         CZ1      SINGLE       y     1.386  0.0109     1.386  0.0109
+PI6         CZ1          OH      SINGLE       n     1.369  0.0106     1.369  0.0106
+PI6          N2         CA2      SINGLE       n     1.453  0.0100     1.453  0.0100
+PI6         CA2          C6      SINGLE       n     1.527  0.0100     1.527  0.0100
+PI6         CA2         CB2      SINGLE       n     1.540  0.0100     1.540  0.0100
+PI6          C6          O3      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PI6         CB2        CG11      SINGLE       n     1.531  0.0100     1.531  0.0100
+PI6         CB2         CG2      SINGLE       n     1.521  0.0135     1.521  0.0135
+PI6        CG11        CD12      SINGLE       n     1.511  0.0200     1.511  0.0200
+PI6          N3         CA3      SINGLE       n     1.456  0.0109     1.456  0.0109
+PI6         CA3          C7      SINGLE       n     1.517  0.0100     1.517  0.0100
+PI6           C           N      SINGLE       n     1.340  0.0141     1.340  0.0141
+PI6          CM          N1      SINGLE       n     1.466  0.0145     1.466  0.0145
+PI6          C5          N2      SINGLE       n     1.337  0.0100     1.337  0.0100
+PI6          C6          N3      SINGLE       n     1.336  0.0104     1.336  0.0104
+PI6          C7          C8      SINGLE       n     1.504  0.0100     1.504  0.0100
+PI6          OH          C8      SINGLE       n     1.432  0.0101     1.432  0.0101
+PI6          C1         H11      SINGLE       n     1.089  0.0100     0.972  0.0148
+PI6          C1         H12      SINGLE       n     1.089  0.0100     0.972  0.0148
+PI6          C1         H13      SINGLE       n     1.089  0.0100     0.972  0.0148
+PI6          C2         H21      SINGLE       n     1.089  0.0100     0.972  0.0148
+PI6          C2         H22      SINGLE       n     1.089  0.0100     0.972  0.0148
+PI6          C2         H23      SINGLE       n     1.089  0.0100     0.972  0.0148
+PI6          C3         H31      SINGLE       n     1.089  0.0100     0.972  0.0148
+PI6          C3         H32      SINGLE       n     1.089  0.0100     0.972  0.0148
+PI6          C3         H33      SINGLE       n     1.089  0.0100     0.972  0.0148
+PI6           N           H      SINGLE       n     1.016  0.0100     0.872  0.0200
+PI6          CA          HA      SINGLE       n     1.089  0.0100     0.984  0.0181
+PI6          C4          HC      SINGLE       n     1.089  0.0100     0.992  0.0184
+PI6         OXT         HOR      SINGLE       n     0.970  0.0120     0.848  0.0200
+PI6          CB         HB2      SINGLE       n     1.089  0.0100     0.981  0.0150
+PI6          CB         HB3      SINGLE       n     1.089  0.0100     0.981  0.0150
+PI6         CD1         HD1      SINGLE       n     1.082  0.0130     0.944  0.0174
+PI6         CD2         HD2      SINGLE       n     1.082  0.0130     0.944  0.0174
+PI6         CE1         HE1      SINGLE       n     1.082  0.0130     0.944  0.0175
+PI6         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+PI6          CZ          HZ      SINGLE       n     1.082  0.0130     0.944  0.0161
+PI6          CM         HM2      SINGLE       n     1.089  0.0100     0.980  0.0143
+PI6          CM         HM3      SINGLE       n     1.089  0.0100     0.980  0.0143
+PI6          N1          H1      SINGLE       n     1.036  0.0160     0.888  0.0200
+PI6         CA1         HA1      SINGLE       n     1.089  0.0100     0.984  0.0149
+PI6         CB1        HB21      SINGLE       n     1.089  0.0100     0.980  0.0164
+PI6         CB1        HB31      SINGLE       n     1.089  0.0100     0.980  0.0164
+PI6        CD11        HD11      SINGLE       n     1.082  0.0130     0.943  0.0173
+PI6        CD21        HD21      SINGLE       n     1.082  0.0130     0.943  0.0173
+PI6        CE11        HE11      SINGLE       n     1.082  0.0130     0.943  0.0169
+PI6        CE21        HE21      SINGLE       n     1.082  0.0130     0.943  0.0169
+PI6          N2          H2      SINGLE       n     1.016  0.0100     0.873  0.0200
+PI6         CA2         HA2      SINGLE       n     1.089  0.0100     0.998  0.0200
+PI6         CB2          HB      SINGLE       n     1.089  0.0100     0.989  0.0175
+PI6        CG11        HG12      SINGLE       n     1.089  0.0100     0.981  0.0160
+PI6        CG11        HG13      SINGLE       n     1.089  0.0100     0.981  0.0160
+PI6         CG2        HG21      SINGLE       n     1.089  0.0100     0.973  0.0146
+PI6         CG2        HG22      SINGLE       n     1.089  0.0100     0.973  0.0146
+PI6         CG2        HG23      SINGLE       n     1.089  0.0100     0.973  0.0146
+PI6        CD12        HD12      SINGLE       n     1.089  0.0100     0.973  0.0157
+PI6        CD12        HD13      SINGLE       n     1.089  0.0100     0.973  0.0157
+PI6        CD12        HD14      SINGLE       n     1.089  0.0100     0.973  0.0157
+PI6          N3          H3      SINGLE       n     1.016  0.0100     0.872  0.0200
+PI6         CA3        HA21      SINGLE       n     1.089  0.0100     0.981  0.0152
+PI6         CA3         HA3      SINGLE       n     1.089  0.0100     0.981  0.0152
+PI6          C7         H89      SINGLE       n     1.089  0.0100     0.981  0.0122
+PI6          C7         H99      SINGLE       n     1.089  0.0100     0.981  0.0122
+PI6          C8         H14      SINGLE       n     1.089  0.0100     0.979  0.0131
+PI6          C8         H24      SINGLE       n     1.089  0.0100     0.979  0.0131
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PI6          O1           C          O2     125.552    1.50
+PI6          O1           C           N     124.504    1.50
+PI6          O2           C           N     109.944    1.50
+PI6           C          O2          CT     120.806    1.50
+PI6          O2          CT          C1     107.315    3.00
+PI6          O2          CT          C2     107.315    3.00
+PI6          O2          CT          C3     107.315    3.00
+PI6          C1          CT          C2     111.547    1.50
+PI6          C1          CT          C3     111.547    1.50
+PI6          C2          CT          C3     111.547    1.50
+PI6          CT          C1         H11     109.487    1.50
+PI6          CT          C1         H12     109.487    1.50
+PI6          CT          C1         H13     109.487    1.50
+PI6         H11          C1         H12     109.441    1.50
+PI6         H11          C1         H13     109.441    1.50
+PI6         H12          C1         H13     109.441    1.50
+PI6          CT          C2         H21     109.487    1.50
+PI6          CT          C2         H22     109.487    1.50
+PI6          CT          C2         H23     109.487    1.50
+PI6         H21          C2         H22     109.441    1.50
+PI6         H21          C2         H23     109.441    1.50
+PI6         H22          C2         H23     109.441    1.50
+PI6          CT          C3         H31     109.487    1.50
+PI6          CT          C3         H32     109.487    1.50
+PI6          CT          C3         H33     109.487    1.50
+PI6         H31          C3         H32     109.441    1.50
+PI6         H31          C3         H33     109.441    1.50
+PI6         H32          C3         H33     109.441    1.50
+PI6          CA           N           C     122.950    1.53
+PI6          CA           N           H     117.714    3.00
+PI6           C           N           H     119.336    2.20
+PI6           N          CA          C4     109.748    1.50
+PI6           N          CA          CB     110.274    1.50
+PI6           N          CA          HA     108.194    1.50
+PI6          C4          CA          CB     112.266    1.50
+PI6          C4          CA          HA     107.639    1.50
+PI6          CB          CA          HA     108.431    1.50
+PI6          CA          C4         OXT     109.040    1.72
+PI6          CA          C4          CM     112.581    1.77
+PI6          CA          C4          HC     108.500    1.50
+PI6         OXT          C4          CM     109.290    2.07
+PI6         OXT          C4          HC     108.183    1.96
+PI6          CM          C4          HC     108.552    1.50
+PI6          C4         OXT         HOR     109.265    3.00
+PI6          CA          CB          CG     113.215    1.50
+PI6          CA          CB         HB2     108.892    1.50
+PI6          CA          CB         HB3     108.892    1.50
+PI6          CG          CB         HB2     108.862    1.50
+PI6          CG          CB         HB3     108.862    1.50
+PI6         HB2          CB         HB3     107.782    1.50
+PI6          CB          CG         CD1     120.970    1.50
+PI6          CB          CG         CD2     120.970    1.50
+PI6         CD1          CG         CD2     118.060    1.50
+PI6          CG         CD1         CE1     120.624    1.50
+PI6          CG         CD1         HD1     119.591    1.50
+PI6         CE1         CD1         HD1     119.786    1.50
+PI6          CG         CD2         CE2     120.624    1.50
+PI6          CG         CD2         HD2     119.591    1.50
+PI6         CE2         CD2         HD2     119.786    1.50
+PI6         CD1         CE1          CZ     120.325    1.50
+PI6         CD1         CE1         HE1     119.792    1.50
+PI6          CZ         CE1         HE1     119.883    1.50
+PI6         CD2         CE2          CZ     120.325    1.50
+PI6         CD2         CE2         HE2     119.792    1.50
+PI6          CZ         CE2         HE2     119.883    1.50
+PI6         CE1          CZ         CE2     120.043    1.50
+PI6         CE1          CZ          HZ     119.979    1.50
+PI6         CE2          CZ          HZ     119.979    1.50
+PI6          C4          CM          N1     110.916    1.50
+PI6          C4          CM         HM2     109.093    1.50
+PI6          C4          CM         HM3     109.093    1.50
+PI6          N1          CM         HM2     109.402    1.50
+PI6          N1          CM         HM3     109.402    1.50
+PI6         HM2          CM         HM3     107.997    1.50
+PI6         CA1          N1          CM     112.615    2.70
+PI6         CA1          N1          H1     106.958    3.00
+PI6          CM          N1          H1     108.280    3.00
+PI6          N1         CA1          C5     112.148    1.50
+PI6          N1         CA1         CB1     109.450    1.50
+PI6          N1         CA1         HA1     108.712    1.50
+PI6          C5         CA1         CB1     110.507    1.62
+PI6          C5         CA1         HA1     108.179    1.50
+PI6         CB1         CA1         HA1     108.341    1.50
+PI6         CA1          C5           O     120.806    1.50
+PI6         CA1          C5          N2     115.931    1.80
+PI6           O          C5          N2     123.263    1.50
+PI6         CA1         CB1         CG1     113.550    1.83
+PI6         CA1         CB1        HB21     108.810    1.50
+PI6         CA1         CB1        HB31     108.810    1.50
+PI6         CG1         CB1        HB21     108.862    1.50
+PI6         CG1         CB1        HB31     108.862    1.50
+PI6        HB21         CB1        HB31     107.782    1.50
+PI6         CB1         CG1        CD11     121.080    1.50
+PI6         CB1         CG1        CD21     121.080    1.50
+PI6        CD11         CG1        CD21     117.841    1.50
+PI6         CG1        CD11        CE11     121.479    1.50
+PI6         CG1        CD11        HD11     119.314    1.50
+PI6        CE11        CD11        HD11     119.207    1.50
+PI6         CG1        CD21        CE21     121.479    1.50
+PI6         CG1        CD21        HD21     119.314    1.50
+PI6        CE21        CD21        HD21     119.207    1.50
+PI6        CD11        CE11         CZ1     119.690    1.50
+PI6        CD11        CE11        HE11     120.174    1.50
+PI6         CZ1        CE11        HE11     120.137    1.50
+PI6        CD21        CE21         CZ1     119.690    1.50
+PI6        CD21        CE21        HE21     120.174    1.50
+PI6         CZ1        CE21        HE21     120.137    1.50
+PI6        CE11         CZ1        CE21     119.823    1.50
+PI6        CE11         CZ1          OH     120.089    3.00
+PI6        CE21         CZ1          OH     120.089    3.00
+PI6         CA2          N2          C5     121.131    1.96
+PI6         CA2          N2          H2     119.586    1.91
+PI6          C5          N2          H2     119.283    1.83
+PI6          N2         CA2          C6     111.248    2.09
+PI6          N2         CA2         CB2     111.326    1.52
+PI6          N2         CA2         HA2     107.651    1.50
+PI6          C6         CA2         CB2     111.419    1.50
+PI6          C6         CA2         HA2     107.690    1.50
+PI6         CB2         CA2         HA2     108.069    1.50
+PI6         CA2          C6          O3     120.606    1.50
+PI6         CA2          C6          N3     116.428    1.50
+PI6          O3          C6          N3     122.966    1.50
+PI6         CA2         CB2        CG11     110.508    1.50
+PI6         CA2         CB2         CG2     111.023    1.92
+PI6         CA2         CB2          HB     107.540    1.50
+PI6        CG11         CB2         CG2     111.775    1.50
+PI6        CG11         CB2          HB     107.402    1.50
+PI6         CG2         CB2          HB     107.601    1.50
+PI6         CB2        CG11        CD12     113.965    1.50
+PI6         CB2        CG11        HG12     108.703    1.50
+PI6         CB2        CG11        HG13     108.703    1.50
+PI6        CD12        CG11        HG12     108.717    1.50
+PI6        CD12        CG11        HG13     108.717    1.50
+PI6        HG12        CG11        HG13     107.862    1.50
+PI6         CB2         CG2        HG21     109.662    1.50
+PI6         CB2         CG2        HG22     109.662    1.50
+PI6         CB2         CG2        HG23     109.662    1.50
+PI6        HG21         CG2        HG22     109.411    1.50
+PI6        HG21         CG2        HG23     109.411    1.50
+PI6        HG22         CG2        HG23     109.411    1.50
+PI6        CG11        CD12        HD12     109.566    1.50
+PI6        CG11        CD12        HD13     109.566    1.50
+PI6        CG11        CD12        HD14     109.566    1.50
+PI6        HD12        CD12        HD13     109.380    1.50
+PI6        HD12        CD12        HD14     109.380    1.50
+PI6        HD13        CD12        HD14     109.380    1.50
+PI6         CZ1          OH          C8     118.103    1.50
+PI6         CA3          N3          C6     124.137    2.65
+PI6         CA3          N3          H3     117.758    1.90
+PI6          C6          N3          H3     118.105    1.52
+PI6          N3         CA3          C7     112.309    1.89
+PI6          N3         CA3        HA21     108.979    1.50
+PI6          N3         CA3         HA3     108.979    1.50
+PI6          C7         CA3        HA21     109.069    1.50
+PI6          C7         CA3         HA3     109.069    1.50
+PI6        HA21         CA3         HA3     107.877    1.50
+PI6         CA3          C7          C8     112.303    1.50
+PI6         CA3          C7         H89     108.901    1.50
+PI6         CA3          C7         H99     108.901    1.50
+PI6          C8          C7         H89     109.121    1.50
+PI6          C8          C7         H99     109.121    1.50
+PI6         H89          C7         H99     107.717    1.50
+PI6          C7          C8          OH     108.230    2.17
+PI6          C7          C8         H14     110.092    1.50
+PI6          C7          C8         H24     110.092    1.50
+PI6          OH          C8         H14     109.943    1.50
+PI6          OH          C8         H24     109.943    1.50
+PI6         H14          C8         H24     108.474    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PI6             sp2_sp3_8         CD1          CG          CB          CA     -90.000    10.0     6
+PI6              const_22         CE1         CD1          CG          CB     180.000    10.0     2
+PI6              const_42         CE2         CD2          CG          CB     180.000    10.0     2
+PI6              const_25          CG         CD1         CE1          CZ       0.000    10.0     2
+PI6              const_37          CG         CD2         CE2          CZ       0.000    10.0     2
+PI6              const_29         CD1         CE1          CZ         CE2       0.000    10.0     2
+PI6              const_33         CD2         CE2          CZ         CE1       0.000    10.0     2
+PI6           sp3_sp3_121          C4          CM          N1         CA1     180.000    10.0     3
+PI6            sp3_sp3_62          C5         CA1          N1          CM     -60.000    10.0     3
+PI6             sp2_sp2_1          O1           C          O2          CT     180.000     5.0     2
+PI6             sp2_sp2_7          O1           C           N          CA       0.000     5.0     2
+PI6            sp2_sp3_13           O          C5         CA1          N1       0.000    10.0     6
+PI6            sp3_sp3_67          N1         CA1         CB1         CG1     180.000    10.0     3
+PI6             sp2_sp2_9         CA1          C5          N2         CA2     180.000     5.0     2
+PI6            sp2_sp3_20        CD11         CG1         CB1         CA1     -90.000    10.0     6
+PI6       const_sp2_sp2_2        CE11        CD11         CG1         CB1     180.000     5.0     2
+PI6              const_46        CE21        CD21         CG1         CB1     180.000    10.0     2
+PI6       const_sp2_sp2_5         CG1        CD11        CE11         CZ1       0.000     5.0     2
+PI6              const_17         CG1        CD21        CE21         CZ1       0.000    10.0     2
+PI6              const_10        CD11        CE11         CZ1          OH     180.000    10.0     2
+PI6              const_14        CD21        CE21         CZ1          OH     180.000    10.0     2
+PI6             sp2_sp2_3        CE11         CZ1          OH          C8     180.000     5.0     2
+PI6             sp3_sp3_1          C1          CT          O2           C     180.000    10.0     3
+PI6            sp2_sp3_25          C5          N2         CA2          C6       0.000    10.0     6
+PI6            sp2_sp3_31          O3          C6         CA2          N2       0.000    10.0     6
+PI6            sp3_sp3_76          N2         CA2         CB2        CG11     180.000    10.0     3
+PI6            sp2_sp2_13         CA2          C6          N3         CA3     180.000     5.0     2
+PI6            sp3_sp3_85         CA2         CB2        CG11        CD12     180.000    10.0     3
+PI6            sp3_sp3_94         CA2         CB2         CG2        HG21     180.000    10.0     3
+PI6           sp3_sp3_103        HD12        CD12        CG11         CB2     180.000    10.0     3
+PI6           sp3_sp3_136          C7          C8          OH         CZ1     180.000    10.0     3
+PI6            sp2_sp3_38          C6          N3         CA3          C7     120.000    10.0     6
+PI6             sp3_sp3_4         H11          C1          CT          O2     180.000    10.0     3
+PI6            sp3_sp3_14         H21          C2          CT          O2     -60.000    10.0     3
+PI6            sp3_sp3_22         H31          C3          CT          O2     180.000    10.0     3
+PI6           sp3_sp3_112          C8          C7         CA3          N3     180.000    10.0     3
+PI6           sp3_sp3_127         CA3          C7          C8          OH     180.000    10.0     3
+PI6             sp2_sp3_1           C           N          CA          C4       0.000    10.0     6
+PI6            sp3_sp3_40           N          CA          CB          CG     180.000    10.0     3
+PI6            sp3_sp3_31         OXT          C4          CA           N     180.000    10.0     3
+PI6            sp3_sp3_49          CA          C4         OXT         HOR     180.000    10.0     3
+PI6            sp3_sp3_52          CA          C4          CM          N1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PI6    chir_1    CT    O2    C1    C2    both
+PI6    chir_2    CA    N    C4    CB    positive
+PI6    chir_3    C4    OXT    CA    CM    negative
+PI6    chir_4    CA1    N1    C5    CB1    positive
+PI6    chir_5    CA2    N2    C6    CB2    positive
+PI6    chir_6    CB2    CA2    CG11    CG2    positive
+PI6    chir_7    N1    CA1    CM    H1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PI6    plan-1          CB   0.020
+PI6    plan-1         CD1   0.020
+PI6    plan-1         CD2   0.020
+PI6    plan-1         CE1   0.020
+PI6    plan-1         CE2   0.020
+PI6    plan-1          CG   0.020
+PI6    plan-1          CZ   0.020
+PI6    plan-1         HD1   0.020
+PI6    plan-1         HD2   0.020
+PI6    plan-1         HE1   0.020
+PI6    plan-1         HE2   0.020
+PI6    plan-1          HZ   0.020
+PI6    plan-2         CB1   0.020
+PI6    plan-2        CD11   0.020
+PI6    plan-2        CD21   0.020
+PI6    plan-2        CE11   0.020
+PI6    plan-2        CE21   0.020
+PI6    plan-2         CG1   0.020
+PI6    plan-2         CZ1   0.020
+PI6    plan-2        HD11   0.020
+PI6    plan-2        HD21   0.020
+PI6    plan-2        HE11   0.020
+PI6    plan-2        HE21   0.020
+PI6    plan-2          OH   0.020
+PI6    plan-3           C   0.020
+PI6    plan-3           N   0.020
+PI6    plan-3          O1   0.020
+PI6    plan-3          O2   0.020
+PI6    plan-4           C   0.020
+PI6    plan-4          CA   0.020
+PI6    plan-4           H   0.020
+PI6    plan-4           N   0.020
+PI6    plan-5          C5   0.020
+PI6    plan-5         CA1   0.020
+PI6    plan-5          N2   0.020
+PI6    plan-5           O   0.020
+PI6    plan-6          C5   0.020
+PI6    plan-6         CA2   0.020
+PI6    plan-6          H2   0.020
+PI6    plan-6          N2   0.020
+PI6    plan-7          C6   0.020
+PI6    plan-7         CA2   0.020
+PI6    plan-7          N3   0.020
+PI6    plan-7          O3   0.020
+PI6    plan-8          C6   0.020
+PI6    plan-8         CA3   0.020
+PI6    plan-8          H3   0.020
+PI6    plan-8          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PI6           SMILES              ACDLabs 12.01                                                                                                                                                                                   O=C(OC(C)(C)C)NC(Cc1ccccc1)C(O)CNC3C(=O)NC(C(=O)NCCCOc2ccc(cc2)C3)C(C)CC
+PI6            InChI                InChI  1.03 InChI=1S/C33H48N4O6/c1-6-22(2)29-31(40)34-17-10-18-42-25-15-13-24(14-16-25)20-27(30(39)37-29)35-21-28(38)26(19-23-11-8-7-9-12-23)36-32(41)43-33(3,4)5/h7-9,11-16,22,26-29,35,38H,6,10,17-21H2,1-5H3,(H,34,40)(H,36,41)(H,37,39)/t22-,26-,27-,28+,29-/m0/s1
+PI6         InChIKey                InChI  1.03                                                                                                                                                                                                                                RFUKEYSMPSCDLJ-CLFZCTPNSA-N
+PI6 SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                               CC[C@H](C)[C@@H]1NC(=O)[C@H](Cc2ccc(OCCCNC1=O)cc2)NC[C@@H](O)[C@H](Cc3ccccc3)NC(=O)OC(C)(C)C
+PI6           SMILES               CACTVS 3.370                                                                                                                                                                      CC[CH](C)[CH]1NC(=O)[CH](Cc2ccc(OCCCNC1=O)cc2)NC[CH](O)[CH](Cc3ccccc3)NC(=O)OC(C)(C)C
+PI6 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                                                              CC[C@H](C)[C@H]1C(=O)NCCCOc2ccc(cc2)C[C@@H](C(=O)N1)NC[C@H]([C@H](Cc3ccccc3)NC(=O)OC(C)(C)C)O
+PI6           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                                                                   CCC(C)C1C(=O)NCCCOc2ccc(cc2)CC(C(=O)N1)NCC(C(Cc3ccccc3)NC(=O)OC(C)(C)C)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PI6 acedrg               243         "dictionary generator"                  
+PI6 acedrg_database      11          "data source"                           
+PI6 rdkit                2017.03.2   "Chemoinformatics tool"
+PI6 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,379 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DQO     DQO      1-(2,6-DICHLOROPHENYL)-5-(2,4-DIFLUOROPHENYL)-7-PIPERAZIN-1-YL-3,4-DIHYDROQUINAZOLIN-2(1H)-ONE     NON-POLYMER     53     33     .     
+#
+data_comp_DQO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DQO     C1      C       CR66    0       43.936      33.139      31.480      
+DQO     C2      C       CR6     0       43.167      31.962      31.223      
+DQO     C3      C       CR16    0       43.821      30.753      30.982      
+DQO     C4      C       CR6     0       45.219      30.681      30.983      
+DQO     C5      C       CR16    0       45.970      31.834      31.231      
+DQO     C6      C       CR66    0       45.355      33.066      31.477      
+DQO     N9      N       NR6     0       45.875      29.475      30.737      
+DQO     C10     C       CR6     0       41.676      31.974      31.206      
+DQO     N11     N       NR6     0       46.105      34.266      31.738      
+DQO     C12     C       CR6     0       45.520      35.404      32.297      
+DQO     N13     N       NR6     0       44.184      35.474      32.275      
+DQO     C14     C       CH2     0       43.278      34.469      31.746      
+DQO     O18     O       O       0       46.210      36.292      32.782      
+DQO     C19     C       CR6     0       47.518      34.313      31.404      
+DQO     C20     C       CR16    0       40.933      31.418      32.249      
+DQO     C21     C       CR16    0       39.542      31.432      32.231      
+DQO     C22     C       CR6     0       38.909      32.009      31.162      
+DQO     C23     C       CR16    0       39.584      32.573      30.107      
+DQO     C24     C       CR6     0       40.964      32.542      30.154      
+DQO     C28     C       CR6     0       48.479      34.045      32.378      
+DQO     C29     C       CR16    0       49.841      34.086      32.056      
+DQO     C30     C       CR16    0       50.230      34.389      30.767      
+DQO     C31     C       CR16    0       49.291      34.653      29.789      
+DQO     C32     C       CR6     0       47.928      34.614      30.107      
+DQO     F36     F       F       0       41.629      33.099      29.113      
+DQO     F37     F       F       0       37.552      32.026      31.139      
+DQO     CL38    CL      CL      0       46.765      34.948      28.864      
+DQO     CL39    CL      CL      0       48.011      33.663      34.004      
+DQO     C40     C       CH2     0       45.642      28.658      29.536      
+DQO     C41     C       CH2     0       45.400      27.207      29.908      
+DQO     N42     N       NT1     0       46.506      26.688      30.711      
+DQO     C43     C       CH2     0       46.650      27.466      31.939      
+DQO     C44     C       CH2     0       46.910      28.929      31.628      
+DQO     HC3     H       H       0       43.312      29.978      30.812      
+DQO     HC5     H       H       0       46.899      31.769      31.230      
+DQO     H13     H       H       0       43.821      36.203      32.617      
+DQO     H141    H       H       0       42.554      34.343      32.378      
+DQO     H142    H       H       0       42.889      34.797      30.920      
+DQO     H20     H       H       0       41.380      31.025      32.977      
+DQO     H21     H       H       0       39.048      31.055      32.937      
+DQO     H23     H       H       0       39.127      32.964      29.382      
+DQO     H29     H       H       0       50.479      33.907      32.721      
+DQO     H30     H       H       0       51.146      34.416      30.552      
+DQO     H31     H       H       0       49.556      34.859      28.912      
+DQO     H401    H       H       0       44.860      29.005      29.042      
+DQO     H402    H       H       0       46.429      28.718      28.942      
+DQO     H411    H       H       0       45.308      26.667      29.088      
+DQO     H412    H       H       0       44.560      27.133      30.419      
+DQO     H421    H       H       0       46.354      25.831      30.913      
+DQO     H431    H       H       0       47.398      27.105      32.470      
+DQO     H432    H       H       0       45.828      27.386      32.477      
+DQO     H441    H       H       0       46.927      29.444      32.472      
+DQO     H442    H       H       0       47.794      29.021      31.197      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DQO          C1          C2      SINGLE       y     1.413  0.0145     1.413  0.0145
+DQO          C1          C6      DOUBLE       y     1.396  0.0195     1.396  0.0195
+DQO          C1         C14      SINGLE       n     1.502  0.0100     1.502  0.0100
+DQO          C2          C3      DOUBLE       y     1.390  0.0102     1.390  0.0102
+DQO          C2         C10      SINGLE       n     1.489  0.0100     1.489  0.0100
+DQO          C3          C4      SINGLE       y     1.394  0.0127     1.394  0.0127
+DQO          C4          C5      DOUBLE       y     1.395  0.0112     1.395  0.0112
+DQO          C4          N9      SINGLE       n     1.384  0.0200     1.384  0.0200
+DQO          C5          C6      SINGLE       y     1.393  0.0100     1.393  0.0100
+DQO          C6         N11      SINGLE       n     1.411  0.0200     1.411  0.0200
+DQO          N9         C40      SINGLE       n     1.467  0.0100     1.467  0.0100
+DQO          N9         C44      SINGLE       n     1.467  0.0100     1.467  0.0100
+DQO         C10         C20      DOUBLE       y     1.392  0.0100     1.392  0.0100
+DQO         C10         C24      SINGLE       y     1.387  0.0100     1.387  0.0100
+DQO         N11         C12      SINGLE       n     1.378  0.0200     1.378  0.0200
+DQO         N11         C19      SINGLE       n     1.448  0.0100     1.448  0.0100
+DQO         C12         N13      SINGLE       n     1.335  0.0100     1.335  0.0100
+DQO         C12         O18      DOUBLE       n     1.222  0.0118     1.222  0.0118
+DQO         N13         C14      SINGLE       n     1.450  0.0100     1.450  0.0100
+DQO         C19         C28      DOUBLE       y     1.388  0.0116     1.388  0.0116
+DQO         C19         C32      SINGLE       y     1.388  0.0116     1.388  0.0116
+DQO         C20         C21      SINGLE       y     1.386  0.0100     1.386  0.0100
+DQO         C21         C22      DOUBLE       y     1.367  0.0100     1.367  0.0100
+DQO         C22         C23      SINGLE       y     1.371  0.0101     1.371  0.0101
+DQO         C22         F37      SINGLE       n     1.357  0.0100     1.357  0.0100
+DQO         C23         C24      DOUBLE       y     1.377  0.0100     1.377  0.0100
+DQO         C24         F36      SINGLE       n     1.355  0.0100     1.355  0.0100
+DQO         C28         C29      SINGLE       y     1.392  0.0147     1.392  0.0147
+DQO         C28        CL39      SINGLE       n     1.734  0.0100     1.734  0.0100
+DQO         C29         C30      DOUBLE       y     1.377  0.0100     1.377  0.0100
+DQO         C30         C31      SINGLE       y     1.377  0.0100     1.377  0.0100
+DQO         C31         C32      DOUBLE       y     1.392  0.0147     1.392  0.0147
+DQO         C32        CL38      SINGLE       n     1.734  0.0100     1.734  0.0100
+DQO         C40         C41      SINGLE       n     1.516  0.0100     1.516  0.0100
+DQO         C41         N42      SINGLE       n     1.460  0.0112     1.460  0.0112
+DQO         N42         C43      SINGLE       n     1.460  0.0112     1.460  0.0112
+DQO         C43         C44      SINGLE       n     1.516  0.0100     1.516  0.0100
+DQO          C3         HC3      SINGLE       n     1.082  0.0130     0.942  0.0177
+DQO          C5         HC5      SINGLE       n     1.082  0.0130     0.932  0.0100
+DQO         N13         H13      SINGLE       n     1.016  0.0100     0.882  0.0200
+DQO         C14        H141      SINGLE       n     1.089  0.0100     0.970  0.0100
+DQO         C14        H142      SINGLE       n     1.089  0.0100     0.970  0.0100
+DQO         C20         H20      SINGLE       n     1.082  0.0130     0.940  0.0128
+DQO         C21         H21      SINGLE       n     1.082  0.0130     0.941  0.0154
+DQO         C23         H23      SINGLE       n     1.082  0.0130     0.942  0.0108
+DQO         C29         H29      SINGLE       n     1.082  0.0130     0.939  0.0138
+DQO         C30         H30      SINGLE       n     1.082  0.0130     0.941  0.0131
+DQO         C31         H31      SINGLE       n     1.082  0.0130     0.939  0.0138
+DQO         C40        H401      SINGLE       n     1.089  0.0100     0.988  0.0200
+DQO         C40        H402      SINGLE       n     1.089  0.0100     0.988  0.0200
+DQO         C41        H411      SINGLE       n     1.089  0.0100     0.986  0.0200
+DQO         C41        H412      SINGLE       n     1.089  0.0100     0.986  0.0200
+DQO         N42        H421      SINGLE       n     1.036  0.0160     0.893  0.0200
+DQO         C43        H431      SINGLE       n     1.089  0.0100     0.986  0.0200
+DQO         C43        H432      SINGLE       n     1.089  0.0100     0.986  0.0200
+DQO         C44        H441      SINGLE       n     1.089  0.0100     0.988  0.0200
+DQO         C44        H442      SINGLE       n     1.089  0.0100     0.988  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DQO          C2          C1          C6     119.861    1.61
+DQO          C2          C1         C14     121.410    1.50
+DQO          C6          C1         C14     118.729    1.50
+DQO          C1          C2          C3     119.130    1.50
+DQO          C1          C2         C10     121.823    1.50
+DQO          C3          C2         C10     119.047    1.50
+DQO          C2          C3          C4     120.128    1.81
+DQO          C2          C3         HC3     119.664    1.50
+DQO          C4          C3         HC3     120.208    1.50
+DQO          C3          C4          C5     119.643    1.64
+DQO          C3          C4          N9     120.273    1.79
+DQO          C5          C4          N9     120.084    1.87
+DQO          C4          C5          C6     121.345    1.50
+DQO          C4          C5         HC5     119.111    1.50
+DQO          C6          C5         HC5     119.543    1.50
+DQO          C1          C6          C5     119.893    1.56
+DQO          C1          C6         N11     118.756    1.50
+DQO          C5          C6         N11     121.351    1.50
+DQO          C4          N9         C40     123.506    1.63
+DQO          C4          N9         C44     123.506    1.63
+DQO         C40          N9         C44     112.989    2.47
+DQO          C2         C10         C20     121.551    1.50
+DQO          C2         C10         C24     121.384    1.56
+DQO         C20         C10         C24     117.065    1.50
+DQO          C6         N11         C12     122.780    1.50
+DQO          C6         N11         C19     118.742    1.50
+DQO         C12         N11         C19     118.479    1.65
+DQO         N11         C12         N13     116.824    1.50
+DQO         N11         C12         O18     120.426    1.50
+DQO         N13         C12         O18     122.749    1.50
+DQO         C12         N13         C14     124.777    1.83
+DQO         C12         N13         H13     117.193    2.07
+DQO         C14         N13         H13     118.031    1.83
+DQO          C1         C14         N13     110.656    2.18
+DQO          C1         C14        H141     109.233    1.50
+DQO          C1         C14        H142     109.233    1.50
+DQO         N13         C14        H141     109.409    1.51
+DQO         N13         C14        H142     109.409    1.51
+DQO        H141         C14        H142     107.753    1.50
+DQO         N11         C19         C28     120.236    1.50
+DQO         N11         C19         C32     120.236    1.50
+DQO         C28         C19         C32     119.527    1.64
+DQO         C10         C20         C21     120.903    1.50
+DQO         C10         C20         H20     119.590    1.50
+DQO         C21         C20         H20     119.507    1.50
+DQO         C20         C21         C22     118.450    1.50
+DQO         C20         C21         H21     120.800    1.50
+DQO         C22         C21         H21     120.750    1.50
+DQO         C21         C22         C23     123.265    1.50
+DQO         C21         C22         F37     118.633    1.50
+DQO         C23         C22         F37     118.102    1.50
+DQO         C22         C23         C24     117.094    1.50
+DQO         C22         C23         H23     121.537    1.50
+DQO         C24         C23         H23     121.369    1.50
+DQO         C10         C24         C23     123.223    1.50
+DQO         C10         C24         F36     119.625    1.50
+DQO         C23         C24         F36     117.152    1.50
+DQO         C19         C28         C29     120.367    1.50
+DQO         C19         C28        CL39     120.455    1.50
+DQO         C29         C28        CL39     119.178    1.50
+DQO         C28         C29         C30     119.561    1.50
+DQO         C28         C29         H29     119.619    2.36
+DQO         C30         C29         H29     120.819    1.50
+DQO         C29         C30         C31     120.617    1.50
+DQO         C29         C30         H30     119.692    1.50
+DQO         C31         C30         H30     119.692    1.50
+DQO         C30         C31         C32     119.561    1.50
+DQO         C30         C31         H31     120.819    1.50
+DQO         C32         C31         H31     119.619    2.36
+DQO         C19         C32         C31     120.367    1.50
+DQO         C19         C32        CL38     120.455    1.50
+DQO         C31         C32        CL38     119.178    1.50
+DQO          N9         C40         C41     110.454    1.50
+DQO          N9         C40        H401     109.542    1.50
+DQO          N9         C40        H402     109.542    1.50
+DQO         C41         C40        H401     109.625    1.50
+DQO         C41         C40        H402     109.625    1.50
+DQO        H401         C40        H402     108.196    1.50
+DQO         C40         C41         N42     110.811    1.78
+DQO         C40         C41        H411     109.527    1.50
+DQO         C40         C41        H412     109.527    1.50
+DQO         N42         C41        H411     109.479    1.50
+DQO         N42         C41        H412     109.479    1.50
+DQO        H411         C41        H412     108.060    1.50
+DQO         C41         N42         C43     110.165    1.50
+DQO         C41         N42        H421     109.673    3.00
+DQO         C43         N42        H421     109.673    3.00
+DQO         N42         C43         C44     110.811    1.78
+DQO         N42         C43        H431     109.479    1.50
+DQO         N42         C43        H432     109.479    1.50
+DQO         C44         C43        H431     109.527    1.50
+DQO         C44         C43        H432     109.527    1.50
+DQO        H431         C43        H432     108.060    1.50
+DQO          N9         C44         C43     110.454    1.50
+DQO          N9         C44        H441     109.542    1.50
+DQO          N9         C44        H442     109.542    1.50
+DQO         C43         C44        H441     109.625    1.50
+DQO         C43         C44        H442     109.625    1.50
+DQO        H441         C44        H442     108.196    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DQO              const_45          C6          C1          C2          C3       0.000    10.0     2
+DQO            sp2_sp3_16          C2          C1         C14         N13     180.000    10.0     6
+DQO              const_21          C2          C1          C6          C5       0.000    10.0     2
+DQO             sp2_sp3_1         C12         N13         C14          C1       0.000    10.0     6
+DQO              const_28         N11         C19         C28        CL39       0.000    10.0     2
+DQO              const_72         N11         C19         C32        CL38       0.000    10.0     2
+DQO       const_sp2_sp2_5         C10         C20         C21         C22       0.000     5.0     2
+DQO              const_10         C20         C21         C22         F37     180.000    10.0     2
+DQO              const_15         F37         C22         C23         C24     180.000    10.0     2
+DQO              const_18         C22         C23         C24         F36     180.000    10.0     2
+DQO              const_31        CL39         C28         C29         C30     180.000    10.0     2
+DQO              const_49          C1          C2          C3          C4       0.000    10.0     2
+DQO            sp2_sp2_13         C20         C10          C2          C1     180.000     5.0     2
+DQO              const_33         C28         C29         C30         C31       0.000    10.0     2
+DQO              const_37         C29         C30         C31         C32       0.000    10.0     2
+DQO              const_42         C30         C31         C32        CL38     180.000    10.0     2
+DQO             sp3_sp3_1          N9         C40         C41         N42     -60.000    10.0     3
+DQO            sp3_sp3_10         C40         C41         N42         C43      60.000    10.0     3
+DQO              const_53          C2          C3          C4          C5       0.000    10.0     2
+DQO            sp3_sp3_16         C44         C43         N42         C41     -60.000    10.0     3
+DQO            sp3_sp3_22         N42         C43         C44          N9      60.000    10.0     3
+DQO              const_57          C3          C4          C5          C6       0.000    10.0     2
+DQO            sp2_sp2_17          C3          C4          N9         C40     180.000     5.0     2
+DQO              const_61          C4          C5          C6          C1       0.000    10.0     2
+DQO             sp2_sp2_1          C1          C6         N11         C12       0.000     5.0     2
+DQO            sp2_sp3_10          C4          N9         C40         C41     180.000    10.0     6
+DQO            sp2_sp3_22          C4          N9         C44         C43     180.000    10.0     6
+DQO       const_sp2_sp2_3          C2         C10         C20         C21     180.000     5.0     2
+DQO              const_68          C2         C10         C24         F36       0.000    10.0     2
+DQO            sp2_sp2_21         C28         C19         N11          C6     180.000     5.0     2
+DQO             sp2_sp2_7         O18         C12         N11          C6     180.000     5.0     2
+DQO            sp2_sp2_11         O18         C12         N13         C14     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DQO    chir_1    N42    C41    C43    H421    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DQO    plan-1          C1   0.020
+DQO    plan-1         C10   0.020
+DQO    plan-1         C14   0.020
+DQO    plan-1          C2   0.020
+DQO    plan-1          C3   0.020
+DQO    plan-1          C4   0.020
+DQO    plan-1          C5   0.020
+DQO    plan-1          C6   0.020
+DQO    plan-1         HC3   0.020
+DQO    plan-1         HC5   0.020
+DQO    plan-1         N11   0.020
+DQO    plan-1          N9   0.020
+DQO    plan-2         C19   0.020
+DQO    plan-2         C28   0.020
+DQO    plan-2         C29   0.020
+DQO    plan-2         C30   0.020
+DQO    plan-2         C31   0.020
+DQO    plan-2         C32   0.020
+DQO    plan-2        CL38   0.020
+DQO    plan-2        CL39   0.020
+DQO    plan-2         H29   0.020
+DQO    plan-2         H30   0.020
+DQO    plan-2         H31   0.020
+DQO    plan-2         N11   0.020
+DQO    plan-3         C10   0.020
+DQO    plan-3          C2   0.020
+DQO    plan-3         C20   0.020
+DQO    plan-3         C21   0.020
+DQO    plan-3         C22   0.020
+DQO    plan-3         C23   0.020
+DQO    plan-3         C24   0.020
+DQO    plan-3         F36   0.020
+DQO    plan-3         F37   0.020
+DQO    plan-3         H20   0.020
+DQO    plan-3         H21   0.020
+DQO    plan-3         H23   0.020
+DQO    plan-4          C4   0.020
+DQO    plan-4         C40   0.020
+DQO    plan-4         C44   0.020
+DQO    plan-4          N9   0.020
+DQO    plan-5         C12   0.020
+DQO    plan-5         C19   0.020
+DQO    plan-5          C6   0.020
+DQO    plan-5         N11   0.020
+DQO    plan-6         C12   0.020
+DQO    plan-6         N11   0.020
+DQO    plan-6         N13   0.020
+DQO    plan-6         O18   0.020
+DQO    plan-7         C12   0.020
+DQO    plan-7         C14   0.020
+DQO    plan-7         H13   0.020
+DQO    plan-7         N13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DQO           SMILES              ACDLabs 10.04                                                                                                            Fc1ccc(c(F)c1)c2cc(cc3c2CNC(=O)N3c4c(Cl)cccc4Cl)N5CCNCC5
+DQO SMILES_CANONICAL               CACTVS 3.341                                                                                                          Fc1ccc(c(F)c1)c2cc(cc3N(C(=O)NCc23)c4c(Cl)cccc4Cl)N5CCNCC5
+DQO           SMILES               CACTVS 3.341                                                                                                          Fc1ccc(c(F)c1)c2cc(cc3N(C(=O)NCc23)c4c(Cl)cccc4Cl)N5CCNCC5
+DQO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                          c1cc(c(c(c1)Cl)N2c3cc(cc(c3CNC2=O)c4ccc(cc4F)F)N5CCNCC5)Cl
+DQO           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                          c1cc(c(c(c1)Cl)N2c3cc(cc(c3CNC2=O)c4ccc(cc4F)F)N5CCNCC5)Cl
+DQO            InChI                InChI  1.03 InChI=1S/C24H20Cl2F2N4O/c25-19-2-1-3-20(26)23(19)32-22-12-15(31-8-6-29-7-9-31)11-17(18(22)13-30-24(32)33)16-5-4-14(27)10-21(16)28/h1-5,10-12,29H,6-9,13H2,(H,30,33)
+DQO         InChIKey                InChI  1.03                                                                                                                                         YAWZIQKDHQIHOS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DQO acedrg               243         "dictionary generator"                  
+DQO acedrg_database      11          "data source"                           
+DQO rdkit                2017.03.2   "Chemoinformatics tool"
+DQO refmac5              5.8.0238    "optimization tool"                     

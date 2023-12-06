@@ -1,0 +1,154 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PIP     PIP      PIPERIDINE     NON-POLYMER     17     6     .     
+#
+data_comp_PIP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PIP     N1      N       NT1     0       0.127       2.718       23.353      
+PIP     C2      C       CH2     0       -0.001      3.691       24.444      
+PIP     C3      C       CH2     0       -0.624      3.073       25.680      
+PIP     C4      C       CH2     0       0.109       1.827       26.138      
+PIP     C5      C       CH2     0       0.305       0.868       24.980      
+PIP     C6      C       CH2     0       0.904       1.543       23.762      
+PIP     HN1     H       H       0       -0.689      2.449       23.120      
+PIP     H21     H       H       0       0.887       4.039       24.669      
+PIP     H22     H       H       0       -0.555      4.440       24.142      
+PIP     H31     H       H       0       -1.558      2.847       25.483      
+PIP     H32     H       H       0       -0.619      3.736       26.402      
+PIP     H41     H       H       0       -0.405      1.385       26.847      
+PIP     H42     H       H       0       0.982       2.077       26.508      
+PIP     H51     H       H       0       -0.560      0.478       24.731      
+PIP     H52     H       H       0       0.896       0.137       25.260      
+PIP     H61     H       H       0       1.821       1.820       23.965      
+PIP     H62     H       H       0       0.934       0.904       23.021      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PIP          N1          C2      SINGLE       n     1.466  0.0100     1.466  0.0100
+PIP          N1          C6      SINGLE       n     1.466  0.0100     1.466  0.0100
+PIP          C2          C3      SINGLE       n     1.514  0.0100     1.514  0.0100
+PIP          C3          C4      SINGLE       n     1.514  0.0117     1.514  0.0117
+PIP          C4          C5      SINGLE       n     1.514  0.0117     1.514  0.0117
+PIP          C5          C6      SINGLE       n     1.514  0.0100     1.514  0.0100
+PIP          N1         HN1      SINGLE       n     1.036  0.0160     0.890  0.0200
+PIP          C2         H21      SINGLE       n     1.089  0.0100     0.979  0.0126
+PIP          C2         H22      SINGLE       n     1.089  0.0100     0.979  0.0126
+PIP          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0108
+PIP          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0108
+PIP          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0121
+PIP          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0121
+PIP          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0108
+PIP          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0108
+PIP          C6         H61      SINGLE       n     1.089  0.0100     0.979  0.0126
+PIP          C6         H62      SINGLE       n     1.089  0.0100     0.979  0.0126
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PIP          C2          N1          C6     111.207    1.50
+PIP          C2          N1         HN1     108.409    1.90
+PIP          C6          N1         HN1     108.409    1.90
+PIP          N1          C2          C3     111.538    1.95
+PIP          N1          C2         H21     109.046    1.50
+PIP          N1          C2         H22     109.046    1.50
+PIP          C3          C2         H21     109.268    1.50
+PIP          C3          C2         H22     109.268    1.50
+PIP         H21          C2         H22     108.210    1.50
+PIP          C2          C3          C4     112.612    3.00
+PIP          C2          C3         H31     108.932    1.50
+PIP          C2          C3         H32     108.932    1.50
+PIP          C4          C3         H31     109.453    1.50
+PIP          C4          C3         H32     109.453    1.50
+PIP         H31          C3         H32     108.022    1.50
+PIP          C3          C4          C5     110.168    1.50
+PIP          C3          C4         H41     109.613    1.50
+PIP          C3          C4         H42     109.613    1.50
+PIP          C5          C4         H41     109.613    1.50
+PIP          C5          C4         H42     109.613    1.50
+PIP         H41          C4         H42     108.036    1.50
+PIP          C4          C5          C6     112.612    3.00
+PIP          C4          C5         H51     109.453    1.50
+PIP          C4          C5         H52     109.453    1.50
+PIP          C6          C5         H51     108.932    1.50
+PIP          C6          C5         H52     108.932    1.50
+PIP         H51          C5         H52     108.022    1.50
+PIP          N1          C6          C5     111.538    1.95
+PIP          N1          C6         H61     109.046    1.50
+PIP          N1          C6         H62     109.046    1.50
+PIP          C5          C6         H61     109.268    1.50
+PIP          C5          C6         H62     109.268    1.50
+PIP         H61          C6         H62     108.210    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PIP             sp3_sp3_1          C3          C2          N1          C6      60.000    10.0     3
+PIP            sp3_sp3_43          C5          C6          N1          C2     180.000    10.0     3
+PIP             sp3_sp3_7          N1          C2          C3          C4     -60.000    10.0     3
+PIP            sp3_sp3_16          C2          C3          C4          C5      60.000    10.0     3
+PIP            sp3_sp3_25          C3          C4          C5          C6     -60.000    10.0     3
+PIP            sp3_sp3_34          C4          C5          C6          N1      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PIP    chir_1    N1    C2    C6    HN1    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PIP           SMILES              ACDLabs 10.04                                 N1CCCCC1
+PIP SMILES_CANONICAL               CACTVS 3.341                                 C1CCNCC1
+PIP           SMILES               CACTVS 3.341                                 C1CCNCC1
+PIP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                 C1CCNCC1
+PIP           SMILES "OpenEye OEToolkits" 1.5.0                                 C1CCNCC1
+PIP            InChI                InChI  1.03 InChI=1S/C5H11N/c1-2-4-6-5-3-1/h6H,1-5H2
+PIP         InChIKey                InChI  1.03              NQRYJNQNLNOLGT-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PIP acedrg               243         "dictionary generator"                  
+PIP acedrg_database      11          "data source"                           
+PIP rdkit                2017.03.2   "Chemoinformatics tool"
+PIP refmac5              5.8.0238    "optimization tool"                     

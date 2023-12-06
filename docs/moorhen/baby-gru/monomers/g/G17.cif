@@ -1,0 +1,387 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+G17     G17      N-{3-[2-(cyclopropylamino)quinazolin-6-yl]-4-methylphenyl}-3-(trifluoromethyl)benzamide     NON-POLYMER     55     34     .     
+#
+data_comp_G17
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+G17     FBF     F       F       0       -12.648     76.332      133.584     
+G17     CBE     C       CT      0       -12.465     75.494      132.568     
+G17     FBG     F       F       0       -11.671     76.132      131.711     
+G17     FBH     F       F       0       -11.736     74.494      133.052     
+G17     CAW     C       CR6     0       -13.756     75.028      131.968     
+G17     CAV     C       CR16    0       -14.533     74.106      132.662     
+G17     CAX     C       CR16    0       -14.189     75.512      130.735     
+G17     CAY     C       CR16    0       -15.392     75.059      130.213     
+G17     CAZ     C       CR16    0       -16.166     74.141      130.906     
+G17     CAU     C       CR6     0       -15.746     73.644      132.141     
+G17     CAT     C       C       0       -16.540     72.646      132.943     
+G17     OBA     O       O       0       -16.305     72.482      134.137     
+G17     NAS     N       NH1     0       -17.508     71.943      132.298     
+G17     CAP     C       CR6     0       -18.692     71.405      132.859     
+G17     CAQ     C       CR16    0       -19.355     72.011      133.931     
+G17     CAO     C       CR16    0       -19.201     70.227      132.325     
+G17     CAN     C       CR16    0       -20.354     69.663      132.850     
+G17     CAM     C       CR6     0       -21.031     70.253      133.922     
+G17     CAR     C       CH3     0       -22.281     69.590      134.449     
+G17     CAL     C       CR6     0       -20.514     71.447      134.469     
+G17     CAI     C       CR6     0       -21.186     72.131      135.617     
+G17     CAH     C       CR16    0       -21.217     71.557      136.884     
+G17     CAJ     C       CR16    0       -21.783     73.419      135.454     
+G17     CAK     C       CR16    0       -22.391     74.076      136.484     
+G17     C4      C       CR66    0       -22.438     73.492      137.769     
+G17     N3      N       NRD6    0       -23.050     74.150      138.809     
+G17     C5      C       CR66    0       -21.844     72.214      137.970     
+G17     C6      C       CR16    0       -21.922     71.676      139.281     
+G17     N1      N       NRD6    0       -22.518     72.326      140.281     
+G17     C2      C       CR6     0       -23.065     73.542      140.023     
+G17     NAG     N       NH1     0       -23.671     74.192      141.055     
+G17     CBD     C       CH1     0       -24.132     75.569      141.009     
+G17     CBC     C       CH2     0       -23.124     76.660      141.050     
+G17     CBB     C       CH2     0       -23.998     76.408      142.228     
+G17     H1      H       H       0       -14.239     73.780      133.498     
+G17     H2      H       H       0       -13.676     76.140      130.252     
+G17     H3      H       H       0       -15.689     75.384      129.377     
+G17     H4      H       H       0       -16.977     73.849      130.532     
+G17     H5      H       H       0       -17.375     71.759      131.451     
+G17     H6      H       H       0       -19.018     72.806      134.304     
+G17     H7      H       H       0       -18.762     69.812      131.603     
+G17     H8      H       H       0       -20.686     68.865      132.474     
+G17     H9      H       H       0       -22.507     68.823      133.898     
+G17     H10     H       H       0       -23.017     70.224      134.432     
+G17     H11     H       H       0       -22.131     69.296      135.362     
+G17     H12     H       H       0       -20.826     70.707      137.017     
+G17     H13     H       H       0       -21.764     73.832      134.601     
+G17     H14     H       H       0       -22.778     74.914      136.342     
+G17     H15     H       H       0       -21.538     70.831      139.449     
+G17     H16     H       H       0       -23.792     73.745      141.797     
+G17     H17     H       H       0       -24.924     75.745      140.459     
+G17     H18     H       H       0       -22.183     76.409      141.121     
+G17     H19     H       H       0       -23.298     77.462      140.519     
+G17     H20     H       H       0       -23.589     76.003      143.017     
+G17     H21     H       H       0       -24.705     77.056      142.415     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+G17         CAX         CAY      SINGLE       y     1.383  0.0105     1.383  0.0105
+G17         CAY         CAZ      DOUBLE       y     1.382  0.0100     1.382  0.0100
+G17         CAW         CAX      DOUBLE       y     1.388  0.0100     1.388  0.0100
+G17         CAZ         CAU      SINGLE       y     1.390  0.0100     1.390  0.0100
+G17         CBE         FBG      SINGLE       n     1.329  0.0183     1.329  0.0183
+G17         CAW         CAV      SINGLE       y     1.387  0.0100     1.387  0.0100
+G17         CBE         CAW      SINGLE       n     1.494  0.0100     1.494  0.0100
+G17         CAV         CAU      DOUBLE       y     1.393  0.0100     1.393  0.0100
+G17         CAU         CAT      SINGLE       n     1.498  0.0100     1.498  0.0100
+G17         CAT         NAS      SINGLE       n     1.351  0.0126     1.351  0.0126
+G17         NAS         CAP      SINGLE       n     1.411  0.0105     1.411  0.0105
+G17         CAP         CAO      SINGLE       y     1.388  0.0100     1.388  0.0100
+G17         CAO         CAN      DOUBLE       y     1.383  0.0100     1.383  0.0100
+G17         CBE         FBH      SINGLE       n     1.329  0.0183     1.329  0.0183
+G17         FBF         CBE      SINGLE       n     1.329  0.0183     1.329  0.0183
+G17         CAT         OBA      DOUBLE       n     1.226  0.0100     1.226  0.0100
+G17         CAP         CAQ      DOUBLE       y     1.394  0.0100     1.394  0.0100
+G17         CAN         CAM      SINGLE       y     1.393  0.0100     1.393  0.0100
+G17         CAQ         CAL      SINGLE       y     1.391  0.0104     1.391  0.0104
+G17         CAM         CAL      DOUBLE       y     1.404  0.0100     1.404  0.0100
+G17         CAM         CAR      SINGLE       n     1.498  0.0200     1.498  0.0200
+G17         CAL         CAI      SINGLE       n     1.494  0.0105     1.494  0.0105
+G17         CAI         CAJ      SINGLE       y     1.422  0.0125     1.422  0.0125
+G17         CAJ         CAK      DOUBLE       y     1.361  0.0100     1.361  0.0100
+G17         CAI         CAH      DOUBLE       y     1.374  0.0188     1.374  0.0188
+G17         CAK          C4      SINGLE       y     1.410  0.0100     1.410  0.0100
+G17         CAH          C5      SINGLE       y     1.411  0.0126     1.411  0.0126
+G17          C4          C5      DOUBLE       y     1.421  0.0100     1.421  0.0100
+G17          C4          N3      SINGLE       y     1.372  0.0100     1.372  0.0100
+G17          C5          C6      SINGLE       y     1.414  0.0200     1.414  0.0200
+G17          N3          C2      DOUBLE       y     1.349  0.0118     1.349  0.0118
+G17          C6          N1      DOUBLE       y     1.322  0.0151     1.322  0.0151
+G17          N1          C2      SINGLE       y     1.348  0.0113     1.348  0.0113
+G17          C2         NAG      SINGLE       n     1.350  0.0189     1.350  0.0189
+G17         NAG         CBD      SINGLE       n     1.447  0.0200     1.447  0.0200
+G17         CBD         CBC      SINGLE       n     1.486  0.0127     1.486  0.0127
+G17         CBD         CBB      SINGLE       n     1.486  0.0127     1.486  0.0127
+G17         CBC         CBB      SINGLE       n     1.486  0.0159     1.486  0.0159
+G17         CAV          H1      SINGLE       n     1.082  0.0130     0.944  0.0147
+G17         CAX          H2      SINGLE       n     1.082  0.0130     0.944  0.0174
+G17         CAY          H3      SINGLE       n     1.082  0.0130     0.945  0.0184
+G17         CAZ          H4      SINGLE       n     1.082  0.0130     0.941  0.0168
+G17         NAS          H5      SINGLE       n     1.016  0.0100     0.876  0.0200
+G17         CAQ          H6      SINGLE       n     1.082  0.0130     0.941  0.0147
+G17         CAO          H7      SINGLE       n     1.082  0.0130     0.942  0.0183
+G17         CAN          H8      SINGLE       n     1.082  0.0130     0.943  0.0173
+G17         CAR          H9      SINGLE       n     1.089  0.0100     0.971  0.0135
+G17         CAR         H10      SINGLE       n     1.089  0.0100     0.971  0.0135
+G17         CAR         H11      SINGLE       n     1.089  0.0100     0.971  0.0135
+G17         CAH         H12      SINGLE       n     1.082  0.0130     0.945  0.0164
+G17         CAJ         H13      SINGLE       n     1.082  0.0130     0.947  0.0200
+G17         CAK         H14      SINGLE       n     1.082  0.0130     0.934  0.0200
+G17          C6         H15      SINGLE       n     1.082  0.0130     0.943  0.0200
+G17         NAG         H16      SINGLE       n     1.016  0.0100     0.873  0.0200
+G17         CBD         H17      SINGLE       n     1.089  0.0100     0.981  0.0136
+G17         CBC         H18      SINGLE       n     1.089  0.0100     0.977  0.0155
+G17         CBC         H19      SINGLE       n     1.089  0.0100     0.977  0.0155
+G17         CBB         H20      SINGLE       n     1.089  0.0100     0.977  0.0155
+G17         CBB         H21      SINGLE       n     1.089  0.0100     0.977  0.0155
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+G17         FBG         CBE         CAW     112.813    1.50
+G17         FBG         CBE         FBH     105.974    1.50
+G17         FBG         CBE         FBF     105.974    1.50
+G17         CAW         CBE         FBH     112.813    1.50
+G17         CAW         CBE         FBF     112.813    1.50
+G17         FBH         CBE         FBF     105.974    1.50
+G17         CAX         CAW         CAV     120.484    1.50
+G17         CAX         CAW         CBE     119.869    1.50
+G17         CAV         CAW         CBE     119.647    1.50
+G17         CAW         CAV         CAU     120.983    1.50
+G17         CAW         CAV          H1     120.057    1.50
+G17         CAU         CAV          H1     118.960    1.50
+G17         CAY         CAX         CAW     119.025    1.50
+G17         CAY         CAX          H2     120.268    1.50
+G17         CAW         CAX          H2     120.707    1.50
+G17         CAX         CAY         CAZ     120.000    1.50
+G17         CAX         CAY          H3     120.000    1.50
+G17         CAZ         CAY          H3     120.000    1.50
+G17         CAY         CAZ         CAU     120.174    1.50
+G17         CAY         CAZ          H4     119.839    1.50
+G17         CAU         CAZ          H4     119.988    1.50
+G17         CAZ         CAU         CAV     119.334    1.50
+G17         CAZ         CAU         CAT     120.239    2.90
+G17         CAV         CAU         CAT     120.427    2.69
+G17         CAU         CAT         NAS     115.948    1.50
+G17         CAU         CAT         OBA     120.916    1.50
+G17         NAS         CAT         OBA     123.137    1.50
+G17         CAT         NAS         CAP     126.750    1.50
+G17         CAT         NAS          H5     117.086    2.38
+G17         CAP         NAS          H5     116.164    1.66
+G17         NAS         CAP         CAO     119.613    2.93
+G17         NAS         CAP         CAQ     119.919    3.00
+G17         CAO         CAP         CAQ     120.468    2.01
+G17         CAP         CAQ         CAL     120.272    1.50
+G17         CAP         CAQ          H6     120.127    1.50
+G17         CAL         CAQ          H6     119.601    1.50
+G17         CAP         CAO         CAN     120.286    1.50
+G17         CAP         CAO          H7     119.757    1.50
+G17         CAN         CAO          H7     119.957    1.50
+G17         CAO         CAN         CAM     121.145    1.50
+G17         CAO         CAN          H8     119.386    1.50
+G17         CAM         CAN          H8     119.469    1.50
+G17         CAN         CAM         CAL     118.434    1.50
+G17         CAN         CAM         CAR     119.362    1.50
+G17         CAL         CAM         CAR     122.204    1.50
+G17         CAM         CAR          H9     109.524    1.50
+G17         CAM         CAR         H10     109.524    1.50
+G17         CAM         CAR         H11     109.524    1.50
+G17          H9         CAR         H10     109.348    1.50
+G17          H9         CAR         H11     109.348    1.50
+G17         H10         CAR         H11     109.348    1.50
+G17         CAQ         CAL         CAM     119.396    1.50
+G17         CAQ         CAL         CAI     120.387    1.52
+G17         CAM         CAL         CAI     120.217    1.56
+G17         CAL         CAI         CAJ     121.060    1.52
+G17         CAL         CAI         CAH     121.120    1.63
+G17         CAJ         CAI         CAH     117.819    1.50
+G17         CAI         CAH          C5     121.280    1.50
+G17         CAI         CAH         H12     119.313    1.50
+G17          C5         CAH         H12     119.407    1.50
+G17         CAI         CAJ         CAK     122.117    1.50
+G17         CAI         CAJ         H13     119.246    1.50
+G17         CAK         CAJ         H13     118.637    1.50
+G17         CAJ         CAK          C4     120.360    1.50
+G17         CAJ         CAK         H14     120.045    1.50
+G17          C4         CAK         H14     119.605    1.50
+G17         CAK          C4          C5     119.237    1.50
+G17         CAK          C4          N3     119.630    1.50
+G17          C5          C4          N3     121.133    1.50
+G17          C4          N3          C2     117.117    1.50
+G17         CAH          C5          C4     119.177    1.50
+G17         CAH          C5          C6     122.517    1.50
+G17          C4          C5          C6     118.307    2.01
+G17          C5          C6          N1     122.452    1.50
+G17          C5          C6         H15     118.719    1.50
+G17          N1          C6         H15     118.829    1.50
+G17          C6          N1          C2     116.990    1.50
+G17          N3          C2          N1     124.000    1.50
+G17          N3          C2         NAG     118.000    1.62
+G17          N1          C2         NAG     118.000    1.62
+G17          C2         NAG         CBD     124.256    1.50
+G17          C2         NAG         H16     117.429    2.15
+G17         CBD         NAG         H16     118.316    1.50
+G17         NAG         CBD         CBC     118.619    1.50
+G17         NAG         CBD         CBB     118.619    1.50
+G17         NAG         CBD         H17     116.356    1.50
+G17         CBC         CBD         CBB      60.277    1.50
+G17         CBC         CBD         H17     115.577    1.50
+G17         CBB         CBD         H17     115.577    1.50
+G17         CBD         CBC         CBB      59.862    1.50
+G17         CBD         CBC         H18     117.931    1.50
+G17         CBD         CBC         H19     117.931    1.50
+G17         CBB         CBC         H18     117.795    1.50
+G17         CBB         CBC         H19     117.795    1.50
+G17         H18         CBC         H19     115.138    1.50
+G17         CBD         CBB         CBC      59.862    1.50
+G17         CBD         CBB         H20     117.931    1.50
+G17         CBD         CBB         H21     117.931    1.50
+G17         CBC         CBB         H20     117.795    1.50
+G17         CBC         CBB         H21     117.795    1.50
+G17         H20         CBB         H21     115.138    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+G17             sp2_sp2_7         OBA         CAT         NAS         CAP       0.000     5.0     2
+G17            sp2_sp2_11         CAQ         CAP         NAS         CAT       0.000     5.0     2
+G17             sp2_sp3_7         CAN         CAM         CAR          H9     150.000    10.0     6
+G17              const_32         CAN         CAO         CAP         NAS     180.000    10.0     2
+G17              const_47         CAM         CAL         CAQ         CAP       0.000    10.0     2
+G17              const_35         CAM         CAN         CAO         CAP       0.000    10.0     2
+G17              const_41         CAR         CAM         CAN         CAO     180.000    10.0     2
+G17             sp2_sp3_9         CAN         CAM         CAR         H11      30.000    10.0     6
+G17              const_44         CAQ         CAL         CAM         CAR     180.000    10.0     2
+G17            sp2_sp2_15         CAH         CAI         CAL         CAQ       0.000     5.0     2
+G17             sp2_sp3_3         CAX         CAW         CBE         FBF      30.000    10.0     6
+G17              const_82         H12         CAH         CAI         CAL       0.000    10.0     2
+G17              const_17         CAL         CAI         CAJ         CAK     180.000    10.0     2
+G17              const_27          C4          C5         CAH         CAI       0.000    10.0     2
+G17              const_19         CAI         CAJ         CAK          C4       0.000    10.0     2
+G17              const_23          C5          C4         CAK         CAJ       0.000    10.0     2
+G17            sp2_sp2_18          N3          C2         NAG         H16       0.000     5.0     2
+G17       const_sp2_sp2_1         CAK          C4          C5         CAH       0.000     5.0     2
+G17              const_14         NAG          C2          N3          C4     180.000    10.0     2
+G17       const_sp2_sp2_7         CAH          C5          C6          N1     180.000     5.0     2
+G17       const_sp2_sp2_9          C5          C6          N1          C2       0.000     5.0     2
+G17              const_12         NAG          C2          N1          C6     180.000    10.0     2
+G17            sp2_sp2_19          N1          C2         NAG         CBD       0.000     5.0     2
+G17            sp2_sp3_16         H16         NAG         CBD         CBB     180.000    10.0     6
+G17             sp3_sp3_1         CBB         CBC         CBD         NAG      60.000    10.0     3
+G17            sp3_sp3_23         H20         CBB         CBD         NAG     180.000    10.0     3
+G17              const_74          H1         CAV         CAW         CBE       0.000    10.0     2
+G17              const_53         CBE         CAW         CAX         CAY     180.000    10.0     2
+G17              const_69         CAT         CAU         CAV         CAW     180.000    10.0     2
+G17              const_55         CAW         CAX         CAY         CAZ       0.000    10.0     2
+G17              const_59         CAX         CAY         CAZ         CAU       0.000    10.0     2
+G17              const_65         CAT         CAU         CAZ         CAY     180.000    10.0     2
+G17             sp2_sp2_3         OBA         CAT         CAU         CAZ       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+G17    chir_1    CBE    FBG    FBH    FBF    both
+G17    chir_2    CBD    NAG    CBC    CBB    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+G17    plan-1          C2   0.020
+G17    plan-1          C4   0.020
+G17    plan-1          C5   0.020
+G17    plan-1          C6   0.020
+G17    plan-1         CAH   0.020
+G17    plan-1         CAI   0.020
+G17    plan-1         CAJ   0.020
+G17    plan-1         CAK   0.020
+G17    plan-1         CAL   0.020
+G17    plan-1         H12   0.020
+G17    plan-1         H13   0.020
+G17    plan-1         H14   0.020
+G17    plan-1         H15   0.020
+G17    plan-1          N1   0.020
+G17    plan-1          N3   0.020
+G17    plan-1         NAG   0.020
+G17    plan-2         CAI   0.020
+G17    plan-2         CAL   0.020
+G17    plan-2         CAM   0.020
+G17    plan-2         CAN   0.020
+G17    plan-2         CAO   0.020
+G17    plan-2         CAP   0.020
+G17    plan-2         CAQ   0.020
+G17    plan-2         CAR   0.020
+G17    plan-2          H6   0.020
+G17    plan-2          H7   0.020
+G17    plan-2          H8   0.020
+G17    plan-2         NAS   0.020
+G17    plan-3         CAT   0.020
+G17    plan-3         CAU   0.020
+G17    plan-3         CAV   0.020
+G17    plan-3         CAW   0.020
+G17    plan-3         CAX   0.020
+G17    plan-3         CAY   0.020
+G17    plan-3         CAZ   0.020
+G17    plan-3         CBE   0.020
+G17    plan-3          H1   0.020
+G17    plan-3          H2   0.020
+G17    plan-3          H3   0.020
+G17    plan-3          H4   0.020
+G17    plan-4         CAT   0.020
+G17    plan-4         CAU   0.020
+G17    plan-4         NAS   0.020
+G17    plan-4         OBA   0.020
+G17    plan-5         CAP   0.020
+G17    plan-5         CAT   0.020
+G17    plan-5          H5   0.020
+G17    plan-5         NAS   0.020
+G17    plan-6          C2   0.020
+G17    plan-6         CBD   0.020
+G17    plan-6         H16   0.020
+G17    plan-6         NAG   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+G17           SMILES              ACDLabs 12.01                                                                                                                    FC(F)(F)c1cccc(c1)C(=O)Nc5cc(c4cc2c(nc(nc2)NC3CC3)cc4)c(cc5)C
+G17            InChI                InChI  1.03 InChI=1S/C26H21F3N4O/c1-15-5-7-21(31-24(34)17-3-2-4-19(12-17)26(27,28)29)13-22(15)16-6-10-23-18(11-16)14-30-25(33-23)32-20-8-9-20/h2-7,10-14,20H,8-9H2,1H3,(H,31,34)(H,30,32,33)
+G17         InChIKey                InChI  1.03                                                                                                                                                      BYBFDHQBBWQPTD-UHFFFAOYSA-N
+G17 SMILES_CANONICAL               CACTVS 3.370                                                                                                                        Cc1ccc(NC(=O)c2cccc(c2)C(F)(F)F)cc1c3ccc4nc(NC5CC5)ncc4c3
+G17           SMILES               CACTVS 3.370                                                                                                                        Cc1ccc(NC(=O)c2cccc(c2)C(F)(F)F)cc1c3ccc4nc(NC5CC5)ncc4c3
+G17 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                                      Cc1ccc(cc1c2ccc3c(c2)cnc(n3)NC4CC4)NC(=O)c5cccc(c5)C(F)(F)F
+G17           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                      Cc1ccc(cc1c2ccc3c(c2)cnc(n3)NC4CC4)NC(=O)c5cccc(c5)C(F)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+G17 acedrg               243         "dictionary generator"                  
+G17 acedrg_database      11          "data source"                           
+G17 rdkit                2017.03.2   "Chemoinformatics tool"
+G17 refmac5              5.8.0238    "optimization tool"                     

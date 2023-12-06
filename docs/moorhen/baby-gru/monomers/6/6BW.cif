@@ -1,0 +1,277 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+6BW     6BW      (2R,5S,10R)-6,10-dimethyl-2-(prop-1-en-2-yl)spiro[4.5]dec-6-ene     NON-POLYMER     39     15     .     
+#
+data_comp_6BW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+6BW     C01     C       CH2     0       -11.940     42.928      -9.572      
+6BW     C02     C       CR16    0       -11.437     41.598      -10.037     
+6BW     C03     C       CR6     0       -11.141     41.270      -11.292     
+6BW     C04     C       CT      0       -11.340     42.242      -12.473     
+6BW     C05     C       CH2     0       -11.944     41.567      -13.736     
+6BW     C06     C       CH1     0       -11.041     41.980      -14.912     
+6BW     C07     C       C       0       -11.105     41.041      -16.097     
+6BW     C08     C       C2      0       -10.728     39.762      -16.003     
+6BW     C09     C       CH3     0       -11.608     41.610      -17.388     
+6BW     C10     C       CH2     0       -9.932      42.743      -12.916     
+6BW     C11     C       CH2     0       -9.656      42.132      -14.276     
+6BW     C12     C       CH1     0       -12.279     43.431      -12.015     
+6BW     C13     C       CH3     0       -12.495     44.582      -13.004     
+6BW     C14     C       CH2     0       -11.837     43.984      -10.657     
+6BW     C15     C       CH3     0       -10.558     39.910      -11.601     
+6BW     H1      H       H       0       -12.877     42.839      -9.294      
+6BW     H2      H       H       0       -11.420     43.214      -8.791      
+6BW     H3      H       H       0       -11.321     40.926      -9.380      
+6BW     H4      H       H       0       -11.963     40.597      -13.636     
+6BW     H5      H       H       0       -12.862     41.878      -13.882     
+6BW     H6      H       H       0       -11.317     42.871      -15.240     
+6BW     H7      H       H       0       -10.773     39.192      -16.760     
+6BW     H8      H       H       0       -10.413     39.418      -15.176     
+6BW     H9      H       H       0       -11.679     40.908      -18.055     
+6BW     H10     H       H       0       -10.993     42.291      -17.704     
+6BW     H11     H       H       0       -12.483     42.008      -17.248     
+6BW     H12     H       H       0       -9.247      42.456      -12.265     
+6BW     H13     H       H       0       -9.912      43.727      -12.967     
+6BW     H14     H       H       0       -9.089      42.724      -14.813     
+6BW     H15     H       H       0       -9.212      41.263      -14.182     
+6BW     H16     H       H       0       -13.162     43.021      -11.863     
+6BW     H17     H       H       0       -13.264     45.106      -12.726     
+6BW     H18     H       H       0       -12.655     44.233      -13.893     
+6BW     H19     H       H       0       -11.711     45.153      -13.019     
+6BW     H20     H       H       0       -10.901     44.302      -10.721     
+6BW     H21     H       H       0       -12.407     44.757      -10.418     
+6BW     H22     H       H       0       -10.035     39.599      -10.847     
+6BW     H23     H       H       0       -9.986      39.960      -12.381     
+6BW     H24     H       H       0       -11.275     39.280      -11.771     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+6BW         C07         C09      SINGLE       n     1.491  0.0200     1.491  0.0200
+6BW         C07         C08      DOUBLE       n     1.330  0.0198     1.330  0.0198
+6BW         C06         C07      SINGLE       n     1.507  0.0155     1.507  0.0155
+6BW         C06         C11      SINGLE       n     1.536  0.0109     1.536  0.0109
+6BW         C10         C11      SINGLE       n     1.524  0.0195     1.524  0.0195
+6BW         C05         C06      SINGLE       n     1.538  0.0117     1.538  0.0117
+6BW         C04         C10      SINGLE       n     1.546  0.0132     1.546  0.0132
+6BW         C12         C13      SINGLE       n     1.529  0.0102     1.529  0.0102
+6BW         C04         C05      SINGLE       n     1.538  0.0125     1.538  0.0125
+6BW         C04         C12      SINGLE       n     1.563  0.0144     1.563  0.0144
+6BW         C03         C04      SINGLE       n     1.519  0.0142     1.519  0.0142
+6BW         C12         C14      SINGLE       n     1.530  0.0111     1.530  0.0111
+6BW         C03         C15      SINGLE       n     1.508  0.0100     1.508  0.0100
+6BW         C02         C03      DOUBLE       n     1.325  0.0100     1.325  0.0100
+6BW         C01         C14      SINGLE       n     1.518  0.0124     1.518  0.0124
+6BW         C01         C02      SINGLE       n     1.490  0.0200     1.490  0.0200
+6BW         C01          H1      SINGLE       n     1.089  0.0100     0.981  0.0187
+6BW         C01          H2      SINGLE       n     1.089  0.0100     0.981  0.0187
+6BW         C02          H3      SINGLE       n     1.082  0.0130     0.946  0.0200
+6BW         C05          H4      SINGLE       n     1.089  0.0100     0.981  0.0200
+6BW         C05          H5      SINGLE       n     1.089  0.0100     0.981  0.0200
+6BW         C06          H6      SINGLE       n     1.089  0.0100     0.989  0.0148
+6BW         C08          H7      SINGLE       n     1.082  0.0130     0.949  0.0200
+6BW         C08          H8      SINGLE       n     1.082  0.0130     0.949  0.0200
+6BW         C09          H9      SINGLE       n     1.089  0.0100     0.971  0.0140
+6BW         C09         H10      SINGLE       n     1.089  0.0100     0.971  0.0140
+6BW         C09         H11      SINGLE       n     1.089  0.0100     0.971  0.0140
+6BW         C10         H12      SINGLE       n     1.089  0.0100     0.987  0.0106
+6BW         C10         H13      SINGLE       n     1.089  0.0100     0.987  0.0106
+6BW         C11         H14      SINGLE       n     1.089  0.0100     0.981  0.0186
+6BW         C11         H15      SINGLE       n     1.089  0.0100     0.981  0.0186
+6BW         C12         H16      SINGLE       n     1.089  0.0100     0.985  0.0135
+6BW         C13         H17      SINGLE       n     1.089  0.0100     0.971  0.0171
+6BW         C13         H18      SINGLE       n     1.089  0.0100     0.971  0.0171
+6BW         C13         H19      SINGLE       n     1.089  0.0100     0.971  0.0171
+6BW         C14         H20      SINGLE       n     1.089  0.0100     0.990  0.0100
+6BW         C14         H21      SINGLE       n     1.089  0.0100     0.990  0.0100
+6BW         C15         H22      SINGLE       n     1.089  0.0100     0.969  0.0158
+6BW         C15         H23      SINGLE       n     1.089  0.0100     0.969  0.0158
+6BW         C15         H24      SINGLE       n     1.089  0.0100     0.969  0.0158
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+6BW         C14         C01         C02     111.912    1.50
+6BW         C14         C01          H1     109.292    1.50
+6BW         C14         C01          H2     109.292    1.50
+6BW         C02         C01          H1     109.159    1.50
+6BW         C02         C01          H2     109.159    1.50
+6BW          H1         C01          H2     107.871    1.50
+6BW         C03         C02         C01     124.952    1.50
+6BW         C03         C02          H3     117.236    1.50
+6BW         C01         C02          H3     117.812    1.50
+6BW         C04         C03         C15     116.640    1.97
+6BW         C04         C03         C02     121.100    3.00
+6BW         C15         C03         C02     122.260    1.50
+6BW         C10         C04         C05     103.275    1.50
+6BW         C10         C04         C12     111.425    2.99
+6BW         C10         C04         C03     112.868    3.00
+6BW         C05         C04         C12     111.425    2.99
+6BW         C05         C04         C03     112.868    3.00
+6BW         C12         C04         C03     109.207    2.42
+6BW         C06         C05         C04     104.052    1.50
+6BW         C06         C05          H4     110.988    1.50
+6BW         C06         C05          H5     110.988    1.50
+6BW         C04         C05          H4     110.164    1.50
+6BW         C04         C05          H5     110.164    1.50
+6BW          H4         C05          H5     108.967    1.50
+6BW         C07         C06         C11     115.287    2.42
+6BW         C07         C06         C05     113.809    3.00
+6BW         C07         C06          H6     107.207    1.50
+6BW         C11         C06         C05     104.385    1.50
+6BW         C11         C06          H6     108.610    1.91
+6BW         C05         C06          H6     110.136    1.84
+6BW         C09         C07         C08     121.213    1.50
+6BW         C09         C07         C06     117.135    1.91
+6BW         C08         C07         C06     121.652    1.73
+6BW         C07         C08          H7     120.165    1.50
+6BW         C07         C08          H8     120.165    1.50
+6BW          H7         C08          H8     119.669    1.50
+6BW         C07         C09          H9     109.473    1.50
+6BW         C07         C09         H10     109.473    1.50
+6BW         C07         C09         H11     109.473    1.50
+6BW          H9         C09         H10     109.201    2.10
+6BW          H9         C09         H11     109.201    2.10
+6BW         H10         C09         H11     109.201    2.10
+6BW         C11         C10         C04     105.864    1.50
+6BW         C11         C10         H12     110.980    1.50
+6BW         C11         C10         H13     110.980    1.50
+6BW         C04         C10         H12     110.164    1.50
+6BW         C04         C10         H13     110.164    1.50
+6BW         H12         C10         H13     108.802    1.50
+6BW         C06         C11         C10     105.144    1.53
+6BW         C06         C11         H14     110.667    1.50
+6BW         C06         C11         H15     110.667    1.50
+6BW         C10         C11         H14     110.546    1.50
+6BW         C10         C11         H15     110.546    1.50
+6BW         H14         C11         H15     108.877    1.50
+6BW         C13         C12         C04     112.339    2.63
+6BW         C13         C12         C14     111.256    1.50
+6BW         C13         C12         H16     107.501    1.50
+6BW         C04         C12         C14     110.969    3.00
+6BW         C04         C12         H16     106.017    1.50
+6BW         C14         C12         H16     106.770    1.50
+6BW         C12         C13         H17     109.628    1.50
+6BW         C12         C13         H18     109.628    1.50
+6BW         C12         C13         H19     109.628    1.50
+6BW         H17         C13         H18     109.341    1.50
+6BW         H17         C13         H19     109.341    1.50
+6BW         H18         C13         H19     109.341    1.50
+6BW         C12         C14         C01     111.855    1.50
+6BW         C12         C14         H20     109.082    1.50
+6BW         C12         C14         H21     109.082    1.50
+6BW         C01         C14         H20     109.315    1.50
+6BW         C01         C14         H21     109.315    1.50
+6BW         H20         C14         H21     107.875    1.50
+6BW         C03         C15         H22     109.641    1.50
+6BW         C03         C15         H23     109.641    1.50
+6BW         C03         C15         H24     109.641    1.50
+6BW         H22         C15         H23     109.261    1.93
+6BW         H22         C15         H24     109.261    1.93
+6BW         H23         C15         H24     109.261    1.93
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+6BW            sp2_sp3_25         C03         C02         C01         C14       0.000    10.0     6
+6BW             sp3_sp3_1         C02         C01         C14         C12      60.000    10.0     3
+6BW            sp3_sp3_64         C04         C12         C13         H17     180.000    10.0     3
+6BW            sp3_sp3_13         C13         C12         C14         C01     180.000    10.0     3
+6BW             sp2_sp2_2         C01         C02         C03         C15     180.000     5.0     2
+6BW            sp2_sp3_19         C04         C03         C15         H22     150.000    10.0     6
+6BW             sp2_sp3_5         C15         C03         C04         C10     -60.000    10.0     6
+6BW            sp3_sp3_23         C10         C04         C12         C13      60.000    10.0     3
+6BW            sp3_sp3_73         C10         C04         C05         C06     180.000    10.0     3
+6BW            sp3_sp3_28         C05         C04         C10         C11      60.000    10.0     3
+6BW            sp3_sp3_56         C04         C05         C06         C07      60.000    10.0     3
+6BW            sp3_sp3_49         C07         C06         C11         C10     -60.000    10.0     3
+6BW            sp2_sp3_13         C09         C07         C06         C11       0.000    10.0     6
+6BW             sp2_sp2_7         C09         C07         C08          H7       0.000     5.0     2
+6BW             sp2_sp3_7         C08         C07         C09          H9       0.000    10.0     6
+6BW            sp3_sp3_37         C04         C10         C11         C06     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+6BW    chir_1    C04    C03    C12    C05    positive
+6BW    chir_2    C06    C07    C05    C11    negative
+6BW    chir_3    C12    C04    C14    C13    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+6BW    plan-1         C01   0.020
+6BW    plan-1         C02   0.020
+6BW    plan-1         C03   0.020
+6BW    plan-1          H3   0.020
+6BW    plan-2         C02   0.020
+6BW    plan-2         C03   0.020
+6BW    plan-2         C04   0.020
+6BW    plan-2         C15   0.020
+6BW    plan-3         C06   0.020
+6BW    plan-3         C07   0.020
+6BW    plan-3         C08   0.020
+6BW    plan-3         C09   0.020
+6BW    plan-4         C07   0.020
+6BW    plan-4         C08   0.020
+6BW    plan-4          H7   0.020
+6BW    plan-4          H8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+6BW           SMILES              ACDLabs 12.01                                                                         C1C=C(C)C2(C(C1)C)CC(\C(=C)C)CC2
+6BW            InChI                InChI  1.03 InChI=1S/C15H24/c1-11(2)14-8-9-15(10-14)12(3)6-5-7-13(15)4/h6,13-14H,1,5,7-10H2,2-4H3/t13-,14-,15-/m1/s1
+6BW         InChIKey                InChI  1.03                                                                              WEZDOYDDKIHCLM-RBSFLKMASA-N
+6BW SMILES_CANONICAL               CACTVS 3.385                                                                  C[C@@H]1CCC=C(C)[C@]12CC[C@H](C2)C(C)=C
+6BW           SMILES               CACTVS 3.385                                                                      C[CH]1CCC=C(C)[C]12CC[CH](C2)C(C)=C
+6BW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                  C[C@@H]1CCC=C([C@]12CC[C@H](C2)C(=C)C)C
+6BW           SMILES "OpenEye OEToolkits" 2.0.4                                                                              CC1CCC=C(C12CCC(C2)C(=C)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+6BW acedrg               243         "dictionary generator"                  
+6BW acedrg_database      11          "data source"                           
+6BW rdkit                2017.03.2   "Chemoinformatics tool"
+6BW refmac5              5.8.0238    "optimization tool"                     

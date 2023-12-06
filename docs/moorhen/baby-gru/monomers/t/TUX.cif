@@ -1,0 +1,404 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TUX     TUX      1,5-ANHYDRO-2-C-(CARBOXYMETHYL-N-HYDROXYAMIDE)-2-DEOXY-3-O-MYRISTOYL-D-GLUCITOL     NON-POLYMER     71     30     .     
+#
+data_comp_TUX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TUX     C3G     C       CH1     0       6.155       -6.420      7.105       
+TUX     C4G     C       CH1     0       5.048       -7.463      7.004       
+TUX     C5G     C       CH1     0       4.186       -7.212      5.761       
+TUX     C2G     C       CH1     0       5.635       -4.993      6.941       
+TUX     C1G     C       CH2     0       4.692       -4.881      5.755       
+TUX     O5G     O       O2      0       3.667       -5.881      5.805       
+TUX     O3G     O       O2      0       6.749       -6.532      8.437       
+TUX     O1A     O       O       0       8.614       -7.588      7.741       
+TUX     C1A     C       C       0       7.969       -7.064      8.604       
+TUX     C2A     C       CH2     0       8.431       -6.942      10.031      
+TUX     C3A     C       CH2     0       8.867       -5.562      10.418      
+TUX     C4A     C       CH2     0       9.468       -5.511      11.813      
+TUX     C5A     C       CH2     0       9.803       -4.122      12.301      
+TUX     C6A     C       CH2     0       10.364      -4.078      13.702      
+TUX     C7A     C       CH2     0       10.696      -2.691      14.196      
+TUX     C8A     C       CH2     0       11.255      -2.650      15.598      
+TUX     C9A     C       CH2     0       11.587      -1.262      16.092      
+TUX     CAA     C       CH2     0       12.146      -1.219      17.494      
+TUX     CBA     C       CH2     0       12.477      0.170       17.985      
+TUX     CCA     C       CH2     0       13.036      0.216       19.386      
+TUX     CDA     C       CH2     0       13.366      1.603       19.876      
+TUX     CEA     C       CH3     0       13.924      1.635       21.278      
+TUX     CZH     C       CH2     0       6.783       -3.972      6.831       
+TUX     CYH     C       C       0       6.370       -2.537      7.079       
+TUX     OYH     O       O       0       6.159       -2.136      8.222       
+TUX     NXH     N       NH1     0       6.251       -1.762      6.011       
+TUX     OXH     O       OH1     0       5.906       -0.423      6.150       
+TUX     O4G     O       OH1     0       5.618       -8.769      6.933       
+TUX     C6G     C       CH2     0       3.000       -8.145      5.660       
+TUX     O6G     O       OH1     0       2.231       -7.887      4.486       
+TUX     H3G     H       H       0       6.830       -6.594      6.401       
+TUX     H4G     H       H       0       4.478       -7.405      7.807       
+TUX     H5G     H       H       0       4.752       -7.313      4.949       
+TUX     H2G     H       H       0       5.125       -4.773      7.763       
+TUX     H1G1    H       H       0       5.197       -4.979      4.932       
+TUX     H1G2    H       H       0       4.278       -4.004      5.754       
+TUX     H2A2    H       H       0       9.178       -7.563      10.171      
+TUX     H2A3    H       H       0       7.698       -7.222      10.621      
+TUX     H3A3    H       H       0       8.097       -4.957      10.383      
+TUX     H3A2    H       H       0       9.531       -5.239      9.774       
+TUX     H4A2    H       H       0       10.287      -6.052      11.821      
+TUX     H4A3    H       H       0       8.836       -5.920      12.442      
+TUX     H5A3    H       H       0       8.991       -3.573      12.269      
+TUX     H5A2    H       H       0       10.456      -3.723      11.688      
+TUX     H6A2    H       H       0       11.178      -4.626      13.732      
+TUX     H6A3    H       H       0       9.712       -4.482      14.314      
+TUX     H7A3    H       H       0       9.883       -2.144      14.166      
+TUX     H7A2    H       H       0       11.349      -2.288      13.586      
+TUX     H8A2    H       H       0       12.069      -3.197      15.629      
+TUX     H8A3    H       H       0       10.603      -3.053      16.209      
+TUX     H9A3    H       H       0       10.774      -0.715      16.062      
+TUX     H9A2    H       H       0       12.240      -0.859      15.481      
+TUX     HAA2    H       H       0       12.960      -1.766      17.525      
+TUX     HAA3    H       H       0       11.494      -1.621      18.106      
+TUX     HBA3    H       H       0       11.663      0.717       17.953      
+TUX     HBA2    H       H       0       13.130      0.572       17.373      
+TUX     HCA2    H       H       0       13.850      -0.330      19.419      
+TUX     HCA3    H       H       0       12.383      -0.185      19.999      
+TUX     HDA3    H       H       0       12.552      2.151       19.845      
+TUX     HDA2    H       H       0       14.020      2.006       19.264      
+TUX     HEA1    H       H       0       14.115      2.555       21.532      
+TUX     HEA2    H       H       0       14.745      1.114       21.314      
+TUX     HEA3    H       H       0       13.274      1.258       21.896      
+TUX     HZH2    H       H       0       7.181       -4.038      5.940       
+TUX     HZH3    H       H       0       7.477       -4.203      7.480       
+TUX     HNH1    H       H       0       6.375       -2.055      5.195       
+TUX     HOH1    H       H       0       5.052       -0.378      6.293       
+TUX     HOG4    H       H       0       6.087       -8.849      6.238       
+TUX     H6G2    H       H       0       2.430       -8.033      6.450       
+TUX     H6G3    H       H       0       3.314       -9.073      5.640       
+TUX     HOG6    H       H       0       1.573       -8.420      4.456       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TUX         C3G         C4G      SINGLE       n     1.522  0.0100     1.522  0.0100
+TUX         C3G         C2G      SINGLE       n     1.525  0.0100     1.525  0.0100
+TUX         C3G         O3G      SINGLE       n     1.450  0.0163     1.450  0.0163
+TUX         C4G         C5G      SINGLE       n     1.524  0.0200     1.524  0.0200
+TUX         C4G         O4G      SINGLE       n     1.425  0.0167     1.425  0.0167
+TUX         C5G         O5G      SINGLE       n     1.427  0.0100     1.427  0.0100
+TUX         C5G         C6G      SINGLE       n     1.511  0.0136     1.511  0.0136
+TUX         C2G         C1G      SINGLE       n     1.517  0.0109     1.517  0.0109
+TUX         C2G         CZH      SINGLE       n     1.538  0.0117     1.538  0.0117
+TUX         C1G         O5G      SINGLE       n     1.431  0.0100     1.431  0.0100
+TUX         O3G         C1A      SINGLE       n     1.329  0.0153     1.329  0.0153
+TUX         O1A         C1A      DOUBLE       n     1.197  0.0100     1.197  0.0100
+TUX         C1A         C2A      SINGLE       n     1.504  0.0200     1.504  0.0200
+TUX         C2A         C3A      SINGLE       n     1.497  0.0200     1.497  0.0200
+TUX         C3A         C4A      SINGLE       n     1.519  0.0164     1.519  0.0164
+TUX         C4A         C5A      SINGLE       n     1.509  0.0200     1.509  0.0200
+TUX         C5A         C6A      SINGLE       n     1.509  0.0200     1.509  0.0200
+TUX         C6A         C7A      SINGLE       n     1.509  0.0200     1.509  0.0200
+TUX         C7A         C8A      SINGLE       n     1.509  0.0200     1.509  0.0200
+TUX         C8A         C9A      SINGLE       n     1.509  0.0200     1.509  0.0200
+TUX         C9A         CAA      SINGLE       n     1.509  0.0200     1.509  0.0200
+TUX         CAA         CBA      SINGLE       n     1.509  0.0200     1.509  0.0200
+TUX         CBA         CCA      SINGLE       n     1.509  0.0200     1.509  0.0200
+TUX         CCA         CDA      SINGLE       n     1.507  0.0200     1.507  0.0200
+TUX         CDA         CEA      SINGLE       n     1.510  0.0200     1.510  0.0200
+TUX         CZH         CYH      SINGLE       n     1.510  0.0121     1.510  0.0121
+TUX         CYH         OYH      DOUBLE       n     1.229  0.0102     1.229  0.0102
+TUX         CYH         NXH      SINGLE       n     1.322  0.0100     1.322  0.0100
+TUX         NXH         OXH      SINGLE       n     1.389  0.0110     1.389  0.0110
+TUX         C6G         O6G      SINGLE       n     1.426  0.0200     1.426  0.0200
+TUX         C3G         H3G      SINGLE       n     1.089  0.0100     0.991  0.0120
+TUX         C4G         H4G      SINGLE       n     1.089  0.0100     0.986  0.0150
+TUX         C5G         H5G      SINGLE       n     1.089  0.0100     0.995  0.0100
+TUX         C2G         H2G      SINGLE       n     1.089  0.0100     0.992  0.0136
+TUX         C1G        H1G1      SINGLE       n     1.089  0.0100     0.970  0.0100
+TUX         C1G        H1G2      SINGLE       n     1.089  0.0100     0.970  0.0100
+TUX         C2A        H2A2      SINGLE       n     1.089  0.0100     0.981  0.0185
+TUX         C2A        H2A3      SINGLE       n     1.089  0.0100     0.981  0.0185
+TUX         C3A        H3A3      SINGLE       n     1.089  0.0100     0.980  0.0160
+TUX         C3A        H3A2      SINGLE       n     1.089  0.0100     0.980  0.0160
+TUX         C4A        H4A2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         C4A        H4A3      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         C5A        H5A3      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         C5A        H5A2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         C6A        H6A2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         C6A        H6A3      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         C7A        H7A3      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         C7A        H7A2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         C8A        H8A2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         C8A        H8A3      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         C9A        H9A3      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         C9A        H9A2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         CAA        HAA2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         CAA        HAA3      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         CBA        HBA3      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         CBA        HBA2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         CCA        HCA2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         CCA        HCA3      SINGLE       n     1.089  0.0100     0.981  0.0163
+TUX         CDA        HDA3      SINGLE       n     1.089  0.0100     0.982  0.0155
+TUX         CDA        HDA2      SINGLE       n     1.089  0.0100     0.982  0.0155
+TUX         CEA        HEA1      SINGLE       n     1.089  0.0100     0.973  0.0157
+TUX         CEA        HEA2      SINGLE       n     1.089  0.0100     0.973  0.0157
+TUX         CEA        HEA3      SINGLE       n     1.089  0.0100     0.973  0.0157
+TUX         CZH        HZH2      SINGLE       n     1.089  0.0100     0.979  0.0200
+TUX         CZH        HZH3      SINGLE       n     1.089  0.0100     0.979  0.0200
+TUX         NXH        HNH1      SINGLE       n     1.016  0.0100     0.875  0.0200
+TUX         OXH        HOH1      SINGLE       n     0.970  0.0120     0.867  0.0200
+TUX         O4G        HOG4      SINGLE       n     0.970  0.0120     0.841  0.0200
+TUX         C6G        H6G2      SINGLE       n     1.089  0.0100     0.980  0.0184
+TUX         C6G        H6G3      SINGLE       n     1.089  0.0100     0.980  0.0184
+TUX         O6G        HOG6      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TUX         C4G         C3G         C2G     111.938    1.50
+TUX         C4G         C3G         O3G     108.122    1.78
+TUX         C4G         C3G         H3G     109.166    1.50
+TUX         C2G         C3G         O3G     107.936    1.50
+TUX         C2G         C3G         H3G     109.119    1.50
+TUX         O3G         C3G         H3G     109.681    1.50
+TUX         C3G         C4G         C5G     110.072    1.92
+TUX         C3G         C4G         O4G     110.081    2.02
+TUX         C3G         C4G         H4G     109.166    1.50
+TUX         C5G         C4G         O4G     109.072    2.07
+TUX         C5G         C4G         H4G     109.223    1.50
+TUX         O4G         C4G         H4G     109.194    1.50
+TUX         C4G         C5G         O5G     109.378    1.54
+TUX         C4G         C5G         C6G     112.996    1.59
+TUX         C4G         C5G         H5G     108.960    1.50
+TUX         O5G         C5G         C6G     107.094    1.51
+TUX         O5G         C5G         H5G     108.826    1.50
+TUX         C6G         C5G         H5G     109.269    1.50
+TUX         C3G         C2G         C1G     111.124    1.57
+TUX         C3G         C2G         CZH     112.181    1.54
+TUX         C3G         C2G         H2G     107.028    1.50
+TUX         C1G         C2G         CZH     111.163    2.25
+TUX         C1G         C2G         H2G     108.064    1.50
+TUX         CZH         C2G         H2G     107.131    1.50
+TUX         C2G         C1G         O5G     110.899    1.50
+TUX         C2G         C1G        H1G1     109.286    1.50
+TUX         C2G         C1G        H1G2     109.286    1.50
+TUX         O5G         C1G        H1G1     109.216    1.50
+TUX         O5G         C1G        H1G2     109.216    1.50
+TUX        H1G1         C1G        H1G2     108.338    1.50
+TUX         C5G         O5G         C1G     111.992    1.50
+TUX         C3G         O3G         C1A     117.672    1.50
+TUX         O3G         C1A         O1A     123.733    1.50
+TUX         O3G         C1A         C2A     111.996    1.50
+TUX         O1A         C1A         C2A     124.271    1.50
+TUX         C1A         C2A         C3A     112.901    2.31
+TUX         C1A         C2A        H2A2     108.409    1.50
+TUX         C1A         C2A        H2A3     108.409    1.50
+TUX         C3A         C2A        H2A2     108.815    1.50
+TUX         C3A         C2A        H2A3     108.815    1.50
+TUX        H2A2         C2A        H2A3     107.521    1.50
+TUX         C2A         C3A         C4A     112.553    1.50
+TUX         C2A         C3A        H3A3     109.164    1.50
+TUX         C2A         C3A        H3A2     109.164    1.50
+TUX         C4A         C3A        H3A3     108.698    1.50
+TUX         C4A         C3A        H3A2     108.698    1.50
+TUX        H3A3         C3A        H3A2     107.646    1.50
+TUX         C3A         C4A         C5A     114.243    1.69
+TUX         C3A         C4A        H4A2     108.698    1.50
+TUX         C3A         C4A        H4A3     108.698    1.50
+TUX         C5A         C4A        H4A2     108.698    1.50
+TUX         C5A         C4A        H4A3     108.698    1.50
+TUX        H4A2         C4A        H4A3     107.646    1.50
+TUX         C4A         C5A         C6A     114.243    1.69
+TUX         C4A         C5A        H5A3     108.698    1.50
+TUX         C4A         C5A        H5A2     108.698    1.50
+TUX         C6A         C5A        H5A3     108.698    1.50
+TUX         C6A         C5A        H5A2     108.698    1.50
+TUX        H5A3         C5A        H5A2     107.646    1.50
+TUX         C5A         C6A         C7A     114.243    1.69
+TUX         C5A         C6A        H6A2     108.698    1.50
+TUX         C5A         C6A        H6A3     108.698    1.50
+TUX         C7A         C6A        H6A2     108.698    1.50
+TUX         C7A         C6A        H6A3     108.698    1.50
+TUX        H6A2         C6A        H6A3     107.646    1.50
+TUX         C6A         C7A         C8A     114.243    1.69
+TUX         C6A         C7A        H7A3     108.698    1.50
+TUX         C6A         C7A        H7A2     108.698    1.50
+TUX         C8A         C7A        H7A3     108.698    1.50
+TUX         C8A         C7A        H7A2     108.698    1.50
+TUX        H7A3         C7A        H7A2     107.646    1.50
+TUX         C7A         C8A         C9A     114.243    1.69
+TUX         C7A         C8A        H8A2     108.698    1.50
+TUX         C7A         C8A        H8A3     108.698    1.50
+TUX         C9A         C8A        H8A2     108.698    1.50
+TUX         C9A         C8A        H8A3     108.698    1.50
+TUX        H8A2         C8A        H8A3     107.646    1.50
+TUX         C8A         C9A         CAA     114.243    1.69
+TUX         C8A         C9A        H9A3     108.698    1.50
+TUX         C8A         C9A        H9A2     108.698    1.50
+TUX         CAA         C9A        H9A3     108.698    1.50
+TUX         CAA         C9A        H9A2     108.698    1.50
+TUX        H9A3         C9A        H9A2     107.646    1.50
+TUX         C9A         CAA         CBA     114.243    1.69
+TUX         C9A         CAA        HAA2     108.698    1.50
+TUX         C9A         CAA        HAA3     108.698    1.50
+TUX         CBA         CAA        HAA2     108.698    1.50
+TUX         CBA         CAA        HAA3     108.698    1.50
+TUX        HAA2         CAA        HAA3     107.646    1.50
+TUX         CAA         CBA         CCA     114.243    1.69
+TUX         CAA         CBA        HBA3     108.698    1.50
+TUX         CAA         CBA        HBA2     108.698    1.50
+TUX         CCA         CBA        HBA3     108.698    1.50
+TUX         CCA         CBA        HBA2     108.698    1.50
+TUX        HBA3         CBA        HBA2     107.646    1.50
+TUX         CBA         CCA         CDA     114.362    3.00
+TUX         CBA         CCA        HCA2     108.698    1.50
+TUX         CBA         CCA        HCA3     108.698    1.50
+TUX         CDA         CCA        HCA2     108.653    1.50
+TUX         CDA         CCA        HCA3     108.653    1.50
+TUX        HCA2         CCA        HCA3     107.646    1.50
+TUX         CCA         CDA         CEA     113.719    3.00
+TUX         CCA         CDA        HDA3     108.758    1.50
+TUX         CCA         CDA        HDA2     108.758    1.50
+TUX         CEA         CDA        HDA3     108.918    1.50
+TUX         CEA         CDA        HDA2     108.918    1.50
+TUX        HDA3         CDA        HDA2     107.763    1.50
+TUX         CDA         CEA        HEA1     109.554    1.50
+TUX         CDA         CEA        HEA2     109.554    1.50
+TUX         CDA         CEA        HEA3     109.554    1.50
+TUX        HEA1         CEA        HEA2     109.380    1.50
+TUX        HEA1         CEA        HEA3     109.380    1.50
+TUX        HEA2         CEA        HEA3     109.380    1.50
+TUX         C2G         CZH         CYH     113.591    2.14
+TUX         C2G         CZH        HZH2     108.906    1.50
+TUX         C2G         CZH        HZH3     108.906    1.50
+TUX         CYH         CZH        HZH2     108.385    1.50
+TUX         CYH         CZH        HZH3     108.385    1.50
+TUX        HZH2         CZH        HZH3     107.652    1.50
+TUX         CZH         CYH         OYH     121.279    1.50
+TUX         CZH         CYH         NXH     115.722    1.98
+TUX         OYH         CYH         NXH     122.999    1.50
+TUX         CYH         NXH         OXH     120.051    1.50
+TUX         CYH         NXH        HNH1     122.120    2.48
+TUX         OXH         NXH        HNH1     117.829    2.59
+TUX         NXH         OXH        HOH1     108.051    2.18
+TUX         C4G         O4G        HOG4     109.564    3.00
+TUX         C5G         C6G         O6G     111.299    2.09
+TUX         C5G         C6G        H6G2     109.363    1.50
+TUX         C5G         C6G        H6G3     109.363    1.50
+TUX         O6G         C6G        H6G2     109.265    1.50
+TUX         O6G         C6G        H6G3     109.265    1.50
+TUX        H6G2         C6G        H6G3     108.155    1.50
+TUX         C6G         O6G        HOG6     109.472    2.41
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TUX             sp3_sp3_5         O3G         C3G         C4G         O4G     -60.000    10.0     3
+TUX            sp3_sp3_38         CZH         C2G         C3G         O3G     180.000    10.0     3
+TUX            sp3_sp3_43         C4G         C3G         O3G         C1A     180.000    10.0     3
+TUX            sp3_sp3_76         C2A         C3A         C4A         C5A     180.000    10.0     3
+TUX            sp3_sp3_85         C3A         C4A         C5A         C6A     180.000    10.0     3
+TUX            sp3_sp3_94         C4A         C5A         C6A         C7A     180.000    10.0     3
+TUX           sp3_sp3_103         C5A         C6A         C7A         C8A     180.000    10.0     3
+TUX           sp3_sp3_112         C6A         C7A         C8A         C9A     180.000    10.0     3
+TUX           sp3_sp3_121         C7A         C8A         C9A         CAA     180.000    10.0     3
+TUX           sp3_sp3_130         C8A         C9A         CAA         CBA     180.000    10.0     3
+TUX           sp3_sp3_139         C9A         CAA         CBA         CCA     180.000    10.0     3
+TUX           sp3_sp3_148         CAA         CBA         CCA         CDA     180.000    10.0     3
+TUX           sp3_sp3_157         CBA         CCA         CDA         CEA     180.000    10.0     3
+TUX            sp3_sp3_14         O4G         C4G         C5G         C6G     180.000    10.0     3
+TUX            sp3_sp3_46         C3G         C4G         O4G        HOG4     180.000    10.0     3
+TUX           sp3_sp3_166         CCA         CDA         CEA        HEA1     180.000    10.0     3
+TUX             sp2_sp3_8         OYH         CYH         CZH         C2G     120.000    10.0     6
+TUX             sp2_sp2_3         CZH         CYH         NXH         OXH     180.000     5.0     2
+TUX           sp3_sp3_175         C5G         C6G         O6G        HOG6     180.000    10.0     3
+TUX            sp3_sp3_49         C4G         C5G         C6G         O6G     180.000    10.0     3
+TUX            sp3_sp3_20         C6G         C5G         O5G         C1G     -60.000    10.0     3
+TUX            sp3_sp3_58         C3G         C2G         CZH         CYH     180.000    10.0     3
+TUX            sp3_sp3_26         O5G         C1G         C2G         CZH     180.000    10.0     3
+TUX            sp3_sp3_22         C2G         C1G         O5G         C5G     -60.000    10.0     3
+TUX             sp2_sp2_1         O1A         C1A         O3G         C3G     180.000     5.0     2
+TUX             sp2_sp3_2         O3G         C1A         C2A         C3A     120.000    10.0     6
+TUX            sp3_sp3_67         C1A         C2A         C3A         C4A     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TUX    chir_1    C3G    O3G    C4G    C2G    negative
+TUX    chir_2    C4G    O4G    C5G    C3G    positive
+TUX    chir_3    C5G    O5G    C4G    C6G    negative
+TUX    chir_4    C2G    C3G    C1G    CZH    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TUX    plan-1         C1A   0.020
+TUX    plan-1         C2A   0.020
+TUX    plan-1         O1A   0.020
+TUX    plan-1         O3G   0.020
+TUX    plan-2         CYH   0.020
+TUX    plan-2         CZH   0.020
+TUX    plan-2         NXH   0.020
+TUX    plan-2         OYH   0.020
+TUX    plan-3         CYH   0.020
+TUX    plan-3        HNH1   0.020
+TUX    plan-3         NXH   0.020
+TUX    plan-3         OXH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TUX           SMILES              ACDLabs 10.04                                                                                                                               O=C(NO)CC1C(OC(=O)CCCCCCCCCCCCC)C(O)C(OC1)CO
+TUX SMILES_CANONICAL               CACTVS 3.341                                                                                                                CCCCCCCCCCCCCC(=O)O[C@@H]1[C@H](CO[C@H](CO)[C@H]1O)CC(=O)NO
+TUX           SMILES               CACTVS 3.341                                                                                                                     CCCCCCCCCCCCCC(=O)O[CH]1[CH](CO[CH](CO)[CH]1O)CC(=O)NO
+TUX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                               CCCCCCCCCCCCCC(=O)O[C@@H]1[C@H](CO[C@@H]([C@H]1O)CO)CC(=O)NO
+TUX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                 CCCCCCCCCCCCCC(=O)OC1C(COC(C1O)CO)CC(=O)NO
+TUX            InChI                InChI  1.03 InChI=1S/C22H41NO7/c1-2-3-4-5-6-7-8-9-10-11-12-13-20(26)30-22-17(14-19(25)23-28)16-29-18(15-24)21(22)27/h17-18,21-22,24,27-28H,2-16H2,1H3,(H,23,25)/t17-,18+,21+,22+/m0/s1
+TUX         InChIKey                InChI  1.03                                                                                                                                                INAPDIIIYSWKOC-XHIHJMKYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TUX acedrg               243         "dictionary generator"                  
+TUX acedrg_database      11          "data source"                           
+TUX rdkit                2017.03.2   "Chemoinformatics tool"
+TUX refmac5              5.8.0238    "optimization tool"                     

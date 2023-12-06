@@ -1,0 +1,318 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AQP     AQP      "ADENOSINE-5'-TETRAPHOSPHATE"     NON-POLYMER     47     35     .     
+#
+data_comp_AQP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AQP     N6      N       NH2     0       50.434      29.639      32.987      
+AQP     C6      C       CR6     0       51.644      29.116      33.164      
+AQP     N1      N       NRD6    0       52.594      29.328      32.216      
+AQP     C2      C       CR16    0       53.814      28.797      32.400      
+AQP     N3      N       NRD6    0       54.264      28.058      33.416      
+AQP     C4      C       CR56    0       53.301      27.867      34.338      
+AQP     N9      N       NT      0       53.406      27.165      35.510      
+AQP     C8      C       CR15    0       52.168      27.242      36.116      
+AQP     N7      N       NRD5    0       51.305      27.944      35.419      
+AQP     C5      C       CR56    0       52.006      28.345      34.290      
+AQP     "C1'"   C       CH1     0       54.611      26.466      35.981      
+AQP     "O4'"   O       O2      0       54.555      25.139      35.518      
+AQP     "C4'"   C       CH1     0       55.383      24.300      36.364      
+AQP     "C5'"   C       CH2     0       54.656      23.006      36.641      
+AQP     "O5'"   O       O2      0       53.358      23.284      37.227      
+AQP     PA      P       P       0       52.319      22.069      37.368      
+AQP     O1A     O       OP      -1      51.677      21.810      36.046      
+AQP     O2A     O       O       0       52.988      20.927      38.060      
+AQP     O3A     O       O2      0       51.226      22.698      38.360      
+AQP     PB      P       P       0       50.411      24.076      38.375      
+AQP     O2B     O       OP      -1      51.293      25.143      38.937      
+AQP     O1B     O       O       0       49.071      23.831      38.985      
+AQP     O3B     O       O2      0       50.219      24.340      36.808      
+AQP     PG      P       P       0       48.994      24.087      35.808      
+AQP     O2G     O       OP      -1      49.484      24.234      34.405      
+AQP     O1G     O       O       0       47.825      24.892      36.270      
+AQP     O3G     O       O2      0       48.691      22.539      36.084      
+AQP     PD      P       P       0       47.572      21.526      35.511      
+AQP     O2D     O       OP      -1      47.627      20.304      36.394      
+AQP     O1D     O       OP      -1      46.257      22.259      35.611      
+AQP     O3D     O       O       0       47.969      21.233      34.085      
+AQP     "C3'"   C       CH1     0       55.738      25.155      37.593      
+AQP     "O3'"   O       OH1     0       57.102      25.558      37.556      
+AQP     "C2'"   C       CH1     0       54.778      26.348      37.493      
+AQP     "O2'"   O       OH1     0       55.293      27.539      38.049      
+AQP     HN61    H       H       0       49.955      29.875      33.683      
+AQP     HN62    H       H       0       50.119      29.745      32.174      
+AQP     H2      H       H       0       54.440      28.971      31.715      
+AQP     H8      H       H       0       51.954      26.845      36.941      
+AQP     "H1'"   H       H       0       55.407      26.911      35.611      
+AQP     "H4'"   H       H       0       56.207      24.083      35.877      
+AQP     "H5'1"  H       H       0       55.191      22.452      37.262      
+AQP     "H5'2"  H       H       0       54.542      22.504      35.796      
+AQP     "H3'"   H       H       0       55.558      24.641      38.423      
+AQP     H1      H       H       0       57.365      25.702      38.350      
+AQP     "H2'"   H       H       0       53.916      26.122      37.928      
+AQP     H3      H       H       0       56.078      27.675      37.753      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AQP          N6          C6      SINGLE       n     1.330  0.0100     1.330  0.0100
+AQP          C6          N1      DOUBLE       y     1.354  0.0100     1.354  0.0100
+AQP          C6          C5      SINGLE       y     1.408  0.0100     1.408  0.0100
+AQP          N1          C2      SINGLE       y     1.339  0.0100     1.339  0.0100
+AQP          C2          N3      DOUBLE       y     1.330  0.0100     1.330  0.0100
+AQP          N3          C4      SINGLE       y     1.343  0.0100     1.343  0.0100
+AQP          C4          N9      SINGLE       y     1.372  0.0100     1.372  0.0100
+AQP          C4          C5      DOUBLE       y     1.381  0.0100     1.381  0.0100
+AQP          N9          C8      SINGLE       y     1.372  0.0200     1.372  0.0200
+AQP          N9       "C1'"      SINGLE       n     1.458  0.0200     1.458  0.0200
+AQP          C8          N7      DOUBLE       y     1.310  0.0100     1.310  0.0100
+AQP          N7          C5      SINGLE       y     1.388  0.0100     1.388  0.0100
+AQP       "C1'"       "O4'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+AQP       "C1'"       "C2'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+AQP       "O4'"       "C4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+AQP       "C4'"       "C5'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+AQP       "C4'"       "C3'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+AQP       "C5'"       "O5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+AQP       "O5'"          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+AQP          PA         O1A      SINGLE       n     1.493  0.0122     1.493  0.0122
+AQP          PA         O2A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+AQP          PA         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+AQP         O3A          PB      SINGLE       n     1.601  0.0114     1.601  0.0114
+AQP          PB         O2B      SINGLE       n     1.493  0.0157     1.493  0.0157
+AQP          PB         O1B      DOUBLE       n     1.493  0.0157     1.493  0.0157
+AQP          PB         O3B      SINGLE       n     1.601  0.0114     1.601  0.0114
+AQP         O3B          PG      SINGLE       n     1.601  0.0114     1.601  0.0114
+AQP          PG         O2G      SINGLE       n     1.493  0.0157     1.493  0.0157
+AQP          PG         O1G      DOUBLE       n     1.493  0.0157     1.493  0.0157
+AQP          PG         O3G      SINGLE       n     1.601  0.0114     1.601  0.0114
+AQP         O3G          PD      SINGLE       n     1.614  0.0178     1.614  0.0178
+AQP          PD         O2D      SINGLE       n     1.509  0.0200     1.509  0.0200
+AQP          PD         O1D      SINGLE       n     1.509  0.0200     1.509  0.0200
+AQP          PD         O3D      DOUBLE       n     1.509  0.0200     1.509  0.0200
+AQP       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+AQP       "C3'"       "C2'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+AQP       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+AQP          N6        HN61      SINGLE       n     1.016  0.0100     0.877  0.0200
+AQP          N6        HN62      SINGLE       n     1.016  0.0100     0.877  0.0200
+AQP          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0200
+AQP          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0170
+AQP       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.984  0.0200
+AQP       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+AQP       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+AQP       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+AQP       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+AQP       "O3'"          H1      SINGLE       n     0.970  0.0120     0.849  0.0200
+AQP       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.994  0.0200
+AQP       "O2'"          H3      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AQP          C6          N6        HN61     119.723    1.50
+AQP          C6          N6        HN62     119.723    1.50
+AQP        HN61          N6        HN62     120.554    1.88
+AQP          N6          C6          N1     118.799    1.50
+AQP          N6          C6          C5     123.792    1.50
+AQP          N1          C6          C5     117.409    1.50
+AQP          C6          N1          C2     118.521    1.50
+AQP          N1          C2          N3     129.332    1.50
+AQP          N1          C2          H2     115.313    1.50
+AQP          N3          C2          H2     115.355    1.50
+AQP          C2          N3          C4     110.982    1.50
+AQP          N3          C4          N9     125.845    1.50
+AQP          N3          C4          C5     126.489    1.50
+AQP          N9          C4          C5     107.666    1.69
+AQP          C4          N9          C8     107.594    1.50
+AQP          C4          N9       "C1'"     125.158    1.54
+AQP          C8          N9       "C1'"     126.078    2.46
+AQP          N9          C8          N7     112.130    1.94
+AQP          N9          C8          H8     124.701    2.19
+AQP          N7          C8          H8     123.170    1.50
+AQP          C8          N7          C5     103.927    1.50
+AQP          C6          C5          C4     117.267    1.50
+AQP          C6          C5          N7     132.145    1.50
+AQP          C4          C5          N7     110.588    1.50
+AQP          N9       "C1'"       "O4'"     108.167    1.51
+AQP          N9       "C1'"       "C2'"     113.752    2.20
+AQP          N9       "C1'"       "H1'"     109.246    1.50
+AQP       "O4'"       "C1'"       "C2'"     106.047    1.50
+AQP       "O4'"       "C1'"       "H1'"     109.807    1.50
+AQP       "C2'"       "C1'"       "H1'"     109.015    1.50
+AQP       "C1'"       "O4'"       "C4'"     109.903    1.50
+AQP       "O4'"       "C4'"       "C5'"     109.123    1.50
+AQP       "O4'"       "C4'"       "C3'"     105.388    1.50
+AQP       "O4'"       "C4'"       "H4'"     108.947    1.50
+AQP       "C5'"       "C4'"       "C3'"     116.008    1.52
+AQP       "C5'"       "C4'"       "H4'"     108.268    1.50
+AQP       "C3'"       "C4'"       "H4'"     109.363    1.86
+AQP       "C4'"       "C5'"       "O5'"     109.342    1.50
+AQP       "C4'"       "C5'"      "H5'1"     109.624    1.50
+AQP       "C4'"       "C5'"      "H5'2"     109.624    1.50
+AQP       "O5'"       "C5'"      "H5'1"     109.845    1.50
+AQP       "O5'"       "C5'"      "H5'2"     109.845    1.50
+AQP      "H5'1"       "C5'"      "H5'2"     108.472    1.50
+AQP       "C5'"       "O5'"          PA     118.553    2.41
+AQP       "O5'"          PA         O1A     109.410    1.50
+AQP       "O5'"          PA         O2A     109.410    1.50
+AQP       "O5'"          PA         O3A     101.065    1.97
+AQP         O1A          PA         O2A     118.411    2.35
+AQP         O1A          PA         O3A     108.816    2.14
+AQP         O2A          PA         O3A     108.816    2.14
+AQP          PA         O3A          PB     132.542    3.00
+AQP         O3A          PB         O2B     108.678    2.29
+AQP         O3A          PB         O1B     108.678    2.29
+AQP         O3A          PB         O3B     100.890    2.10
+AQP         O2B          PB         O1B     119.630    1.50
+AQP         O2B          PB         O3B     108.678    2.29
+AQP         O1B          PB         O3B     108.678    2.29
+AQP          PB         O3B          PG     132.647    2.94
+AQP         O3B          PG         O2G     108.678    2.29
+AQP         O3B          PG         O1G     108.678    2.29
+AQP         O3B          PG         O3G     100.890    2.10
+AQP         O2G          PG         O1G     119.630    1.50
+AQP         O2G          PG         O3G     108.678    2.29
+AQP         O1G          PG         O3G     108.678    2.29
+AQP          PG         O3G          PD     132.584    3.00
+AQP         O3G          PD         O2D     105.965    2.38
+AQP         O3G          PD         O1D     105.965    2.38
+AQP         O3G          PD         O3D     105.965    2.38
+AQP         O2D          PD         O1D     112.716    1.50
+AQP         O2D          PD         O3D     112.716    1.50
+AQP         O1D          PD         O3D     112.716    1.50
+AQP       "C4'"       "C3'"       "O3'"     111.281    2.46
+AQP       "C4'"       "C3'"       "C2'"     102.602    1.50
+AQP       "C4'"       "C3'"       "H3'"     110.452    2.54
+AQP       "O3'"       "C3'"       "C2'"     111.581    2.83
+AQP       "O3'"       "C3'"       "H3'"     110.380    1.67
+AQP       "C2'"       "C3'"       "H3'"     110.504    1.75
+AQP       "C3'"       "O3'"          H1     108.744    3.00
+AQP       "C1'"       "C2'"       "C3'"     101.239    1.50
+AQP       "C1'"       "C2'"       "O2'"     111.715    2.69
+AQP       "C1'"       "C2'"       "H2'"     110.636    1.70
+AQP       "C3'"       "C2'"       "O2'"     112.782    2.45
+AQP       "C3'"       "C2'"       "H2'"     110.596    1.51
+AQP       "O2'"       "C2'"       "H2'"     110.448    1.97
+AQP       "C2'"       "O2'"          H3     109.103    2.13
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AQP             sp2_sp2_3          N1          C6          N6        HN61       0.000     5.0     2
+AQP             sp3_sp3_2          N9       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+AQP            sp3_sp3_29          N9       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+AQP             sp3_sp3_5       "C5'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+AQP            sp3_sp3_34       "O4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+AQP            sp3_sp3_11       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+AQP            sp3_sp3_43       "C4'"       "C5'"       "O5'"          PA     180.000    10.0     3
+AQP            sp3_sp3_47       "C5'"       "O5'"          PA         O1A     -60.000    10.0     3
+AQP            sp3_sp3_50          PB         O3A          PA       "O5'"     -60.000    10.0     3
+AQP            sp3_sp3_53          PA         O3A          PB         O2B     -60.000    10.0     3
+AQP            sp3_sp3_56          PG         O3B          PB         O3A     -60.000    10.0     3
+AQP       const_sp2_sp2_2          N6          C6          N1          C2     180.000     5.0     2
+AQP              const_26          C4          C5          C6          N6     180.000    10.0     2
+AQP            sp3_sp3_58          PB         O3B          PG         O2G     180.000    10.0     3
+AQP            sp3_sp3_61          PD         O3G          PG         O3B     180.000    10.0     3
+AQP            sp3_sp3_64          PG         O3G          PD         O2D     180.000    10.0     3
+AQP       const_sp2_sp2_3          N3          C2          N1          C6       0.000     5.0     2
+AQP            sp3_sp3_67       "C4'"       "C3'"       "O3'"          H1     180.000    10.0     3
+AQP            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+AQP            sp3_sp3_70       "C1'"       "C2'"       "O2'"          H3     180.000    10.0     3
+AQP       const_sp2_sp2_5          N1          C2          N3          C4       0.000     5.0     2
+AQP       const_sp2_sp2_8          N9          C4          N3          C2     180.000     5.0     2
+AQP              const_15          N3          C4          N9          C8     180.000    10.0     2
+AQP       const_sp2_sp2_9          N3          C4          C5          C6       0.000     5.0     2
+AQP             sp2_sp3_1          C4          N9       "C1'"       "O4'"     150.000    10.0     6
+AQP              const_17          N7          C8          N9          C4       0.000    10.0     2
+AQP              const_21          N9          C8          N7          C5       0.000    10.0     2
+AQP              const_24          C6          C5          N7          C8     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AQP    chir_1    "C1'"    "O4'"    N9    "C2'"    negative
+AQP    chir_2    "C4'"    "O4'"    "C3'"    "C5'"    negative
+AQP    chir_3    PA    O3A    "O5'"    O1A    both
+AQP    chir_4    PB    O3B    O3A    O2B    both
+AQP    chir_5    PG    O3B    O3G    O2G    both
+AQP    chir_6    "C3'"    "O3'"    "C4'"    "C2'"    positive
+AQP    chir_7    "C2'"    "O2'"    "C1'"    "C3'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AQP    plan-1       "C1'"   0.020
+AQP    plan-1          C2   0.020
+AQP    plan-1          C4   0.020
+AQP    plan-1          C5   0.020
+AQP    plan-1          C6   0.020
+AQP    plan-1          C8   0.020
+AQP    plan-1          H2   0.020
+AQP    plan-1          H8   0.020
+AQP    plan-1          N1   0.020
+AQP    plan-1          N3   0.020
+AQP    plan-1          N6   0.020
+AQP    plan-1          N7   0.020
+AQP    plan-1          N9   0.020
+AQP    plan-2          C6   0.020
+AQP    plan-2        HN61   0.020
+AQP    plan-2        HN62   0.020
+AQP    plan-2          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AQP           SMILES              ACDLabs 10.04                                                                                                                                                             O=P(O)(O)OP(=O)(O)OP(=O)(O)OP(=O)(O)OCC3OC(n2cnc1c(ncnc12)N)C(O)C3O
+AQP SMILES_CANONICAL               CACTVS 3.341                                                                                                                               Nc1ncnc2n(cnc12)[C@@H]3O[C@H](CO[P@@](O)(=O)O[P@](O)(=O)O[P@](O)(=O)O[P](O)(O)=O)[C@@H](O)[C@H]3O
+AQP           SMILES               CACTVS 3.341                                                                                                                                         Nc1ncnc2n(cnc12)[CH]3O[CH](CO[P](O)(=O)O[P](O)(=O)O[P](O)(=O)O[P](O)(O)=O)[CH](O)[CH]3O
+AQP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                          c1nc(c2c(n1)n(cn2)[C@H]3[C@@H]([C@@H]([C@H](O3)CO[P@](=O)(O)O[P@@](=O)(O)O[P@@](=O)(O)OP(=O)(O)O)O)O)N
+AQP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                       c1nc(c2c(n1)n(cn2)C3C(C(C(O3)COP(=O)(O)OP(=O)(O)OP(=O)(O)OP(=O)(O)O)O)O)N
+AQP            InChI                InChI  1.03 InChI=1S/C10H17N5O16P4/c11-8-5-9(13-2-12-8)15(3-14-5)10-7(17)6(16)4(28-10)1-27-33(21,22)30-35(25,26)31-34(23,24)29-32(18,19)20/h2-4,6-7,10,16-17H,1H2,(H,21,22)(H,23,24)(H,25,26)(H2,11,12,13)(H2,18,19,20)/t4-,6-,7-,10-/m1/s1
+AQP         InChIKey                InChI  1.03                                                                                                                                                                                                     WWMWAMFHUSTZTA-KQYNXXCUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AQP acedrg               243         "dictionary generator"                  
+AQP acedrg_database      11          "data source"                           
+AQP rdkit                2017.03.2   "Chemoinformatics tool"
+AQP refmac5              5.8.0238    "optimization tool"                     

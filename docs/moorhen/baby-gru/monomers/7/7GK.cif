@@ -1,0 +1,299 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+7GK     7GK      2-[4-(piperazin-1-yl)phenyl]-1H-pyrrolo[2,3-b]pyridine-4-carbonitrile     NON-POLYMER     40     23     .     
+#
+data_comp_7GK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+7GK     CAR     C       CH2     0       21.551      35.322      -8.331      
+7GK     CAS     C       CH2     0       22.531      35.354      -9.489      
+7GK     NAT     N       NT1     0       22.706      34.019      -10.060     
+7GK     CAU     C       CH2     0       23.186      33.079      -9.047      
+7GK     CAV     C       CH2     0       22.224      33.005      -7.875      
+7GK     NAQ     N       NR6     0       21.983      34.345      -7.322      
+7GK     CAN     C       CR6     0       22.150      34.653      -5.993      
+7GK     CAO     C       CR16    0       23.046      35.663      -5.594      
+7GK     CAP     C       CR16    0       23.210      35.967      -4.252      
+7GK     CAM     C       CR16    0       21.434      33.962      -4.998      
+7GK     CAL     C       CR16    0       21.609      34.278      -3.659      
+7GK     CAJ     C       CR6     0       22.498      35.280      -3.266      
+7GK     CAH     C       CR5     0       22.679      35.613      -1.853      
+7GK     CAI     C       CR15    0       22.928      36.823      -1.269      
+7GK     CAE     C       CR56    0       23.022      36.627      0.119       
+7GK     CAD     C       CR6     0       23.255      37.441      1.237       
+7GK     CAK     C       CSP     0       23.473      38.858      1.124       
+7GK     NAW     N       NSP     0       23.688      39.983      1.030       
+7GK     CAA     C       CR16    0       23.273      36.842      2.496       
+7GK     CAB     C       CR16    0       23.059      35.457      2.600       
+7GK     NAC     N       NRD6    0       22.834      34.649      1.549       
+7GK     CAF     C       CR56    0       22.820      35.246      0.344       
+7GK     NAG     N       NR5     0       22.614      34.645      -0.862      
+7GK     H1      H       H       0       21.490      36.221      -7.924      
+7GK     H2      H       H       0       20.654      35.076      -8.664      
+7GK     H3      H       H       0       22.199      35.968      -10.185     
+7GK     H4      H       H       0       23.402      35.692      -9.173      
+7GK     H5      H       H       0       21.929      33.731      -10.393     
+7GK     H7      H       H       0       24.073      33.368      -8.727      
+7GK     H8      H       H       0       23.283      32.185      -9.449      
+7GK     H9      H       H       0       22.602      32.418      -7.174      
+7GK     H10     H       H       0       21.368      32.613      -8.174      
+7GK     H11     H       H       0       23.534      36.136      -6.244      
+7GK     H12     H       H       0       23.816      36.651      -3.998      
+7GK     H13     H       H       0       20.832      33.283      -5.243      
+7GK     H14     H       H       0       21.120      33.805      -2.998      
+7GK     H15     H       H       0       23.019      37.644      -1.721      
+7GK     H16     H       H       0       23.427      37.371      3.260       
+7GK     H17     H       H       0       23.074      35.067      3.457       
+7GK     H18     H       H       0       22.465      33.785      -0.987      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+7GK         CAS         NAT      SINGLE       n     1.460  0.0112     1.460  0.0112
+7GK         NAT         CAU      SINGLE       n     1.460  0.0112     1.460  0.0112
+7GK         CAR         CAS      SINGLE       n     1.516  0.0100     1.516  0.0100
+7GK         CAU         CAV      SINGLE       n     1.516  0.0100     1.516  0.0100
+7GK         CAR         NAQ      SINGLE       n     1.467  0.0100     1.467  0.0100
+7GK         CAV         NAQ      SINGLE       n     1.467  0.0100     1.467  0.0100
+7GK         NAQ         CAN      SINGLE       n     1.370  0.0200     1.370  0.0200
+7GK         CAN         CAO      DOUBLE       y     1.404  0.0121     1.404  0.0121
+7GK         CAN         CAM      SINGLE       y     1.404  0.0121     1.404  0.0121
+7GK         CAO         CAP      SINGLE       y     1.383  0.0100     1.383  0.0100
+7GK         CAM         CAL      DOUBLE       y     1.383  0.0100     1.383  0.0100
+7GK         CAP         CAJ      DOUBLE       y     1.392  0.0100     1.392  0.0100
+7GK         CAL         CAJ      SINGLE       y     1.392  0.0100     1.392  0.0100
+7GK         CAJ         CAH      SINGLE       n     1.462  0.0100     1.462  0.0100
+7GK         CAH         CAI      DOUBLE       y     1.366  0.0100     1.366  0.0100
+7GK         CAH         NAG      SINGLE       y     1.384  0.0100     1.384  0.0100
+7GK         CAI         CAE      SINGLE       y     1.414  0.0200     1.414  0.0200
+7GK         CAF         NAG      SINGLE       y     1.362  0.0100     1.362  0.0100
+7GK         CAE         CAF      DOUBLE       y     1.413  0.0132     1.413  0.0132
+7GK         CAE         CAD      SINGLE       y     1.400  0.0159     1.400  0.0159
+7GK         NAC         CAF      SINGLE       y     1.339  0.0100     1.339  0.0100
+7GK         CAK         NAW      TRIPLE       n     1.149  0.0200     1.149  0.0200
+7GK         CAD         CAK      SINGLE       n     1.439  0.0100     1.439  0.0100
+7GK         CAD         CAA      DOUBLE       y     1.391  0.0136     1.391  0.0136
+7GK         CAB         NAC      DOUBLE       y     1.339  0.0100     1.339  0.0100
+7GK         CAA         CAB      SINGLE       y     1.395  0.0149     1.395  0.0149
+7GK         CAR          H1      SINGLE       n     1.089  0.0100     0.988  0.0200
+7GK         CAR          H2      SINGLE       n     1.089  0.0100     0.988  0.0200
+7GK         CAS          H3      SINGLE       n     1.089  0.0100     0.986  0.0200
+7GK         CAS          H4      SINGLE       n     1.089  0.0100     0.986  0.0200
+7GK         NAT          H5      SINGLE       n     1.036  0.0160     0.893  0.0200
+7GK         CAU          H7      SINGLE       n     1.089  0.0100     0.986  0.0200
+7GK         CAU          H8      SINGLE       n     1.089  0.0100     0.986  0.0200
+7GK         CAV          H9      SINGLE       n     1.089  0.0100     0.988  0.0200
+7GK         CAV         H10      SINGLE       n     1.089  0.0100     0.988  0.0200
+7GK         CAO         H11      SINGLE       n     1.082  0.0130     0.940  0.0180
+7GK         CAP         H12      SINGLE       n     1.082  0.0130     0.948  0.0100
+7GK         CAM         H13      SINGLE       n     1.082  0.0130     0.940  0.0180
+7GK         CAL         H14      SINGLE       n     1.082  0.0130     0.948  0.0100
+7GK         CAI         H15      SINGLE       n     1.082  0.0130     0.941  0.0120
+7GK         CAA         H16      SINGLE       n     1.082  0.0130     0.942  0.0168
+7GK         CAB         H17      SINGLE       n     1.082  0.0130     0.942  0.0183
+7GK         NAG         H18      SINGLE       n     1.016  0.0100     0.882  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+7GK         CAS         CAR         NAQ     110.454    1.50
+7GK         CAS         CAR          H1     109.625    1.50
+7GK         CAS         CAR          H2     109.625    1.50
+7GK         NAQ         CAR          H1     109.542    1.50
+7GK         NAQ         CAR          H2     109.542    1.50
+7GK          H1         CAR          H2     108.196    1.50
+7GK         NAT         CAS         CAR     110.811    1.78
+7GK         NAT         CAS          H3     109.479    1.50
+7GK         NAT         CAS          H4     109.479    1.50
+7GK         CAR         CAS          H3     109.527    1.50
+7GK         CAR         CAS          H4     109.527    1.50
+7GK          H3         CAS          H4     108.060    1.50
+7GK         CAS         NAT         CAU     110.165    1.50
+7GK         CAS         NAT          H5     109.673    3.00
+7GK         CAU         NAT          H5     109.673    3.00
+7GK         NAT         CAU         CAV     110.811    1.78
+7GK         NAT         CAU          H7     109.479    1.50
+7GK         NAT         CAU          H8     109.479    1.50
+7GK         CAV         CAU          H7     109.527    1.50
+7GK         CAV         CAU          H8     109.527    1.50
+7GK          H7         CAU          H8     108.060    1.50
+7GK         CAU         CAV         NAQ     110.454    1.50
+7GK         CAU         CAV          H9     109.625    1.50
+7GK         CAU         CAV         H10     109.625    1.50
+7GK         NAQ         CAV          H9     109.542    1.50
+7GK         NAQ         CAV         H10     109.542    1.50
+7GK          H9         CAV         H10     108.196    1.50
+7GK         CAR         NAQ         CAV     113.487    2.47
+7GK         CAR         NAQ         CAN     123.256    1.50
+7GK         CAV         NAQ         CAN     123.256    1.50
+7GK         NAQ         CAN         CAO     120.507    1.52
+7GK         NAQ         CAN         CAM     120.507    1.52
+7GK         CAO         CAN         CAM     118.985    1.78
+7GK         CAN         CAO         CAP     120.586    1.50
+7GK         CAN         CAO         H11     119.681    1.50
+7GK         CAP         CAO         H11     119.733    1.50
+7GK         CAO         CAP         CAJ     120.742    1.50
+7GK         CAO         CAP         H12     119.765    1.50
+7GK         CAJ         CAP         H12     119.492    1.50
+7GK         CAN         CAM         CAL     120.586    1.50
+7GK         CAN         CAM         H13     119.681    1.50
+7GK         CAL         CAM         H13     119.733    1.50
+7GK         CAM         CAL         CAJ     120.742    1.50
+7GK         CAM         CAL         H14     119.765    1.50
+7GK         CAJ         CAL         H14     119.492    1.50
+7GK         CAP         CAJ         CAL     118.358    1.50
+7GK         CAP         CAJ         CAH     120.821    1.54
+7GK         CAL         CAJ         CAH     120.821    1.54
+7GK         CAJ         CAH         CAI     130.036    1.50
+7GK         CAJ         CAH         NAG     121.649    1.93
+7GK         CAI         CAH         NAG     108.315    1.50
+7GK         CAH         CAI         CAE     108.342    1.50
+7GK         CAH         CAI         H15     125.676    1.50
+7GK         CAE         CAI         H15     125.982    1.50
+7GK         CAI         CAE         CAF     107.183    1.50
+7GK         CAI         CAE         CAD     134.248    3.00
+7GK         CAF         CAE         CAD     118.569    1.59
+7GK         CAE         CAD         CAK     121.517    2.65
+7GK         CAE         CAD         CAA     119.276    1.50
+7GK         CAK         CAD         CAA     119.207    1.50
+7GK         NAW         CAK         CAD     177.968    1.50
+7GK         CAD         CAA         CAB     119.582    1.50
+7GK         CAD         CAA         H16     119.355    1.50
+7GK         CAB         CAA         H16     121.063    1.50
+7GK         NAC         CAB         CAA     123.431    1.50
+7GK         NAC         CAB         H17     117.963    1.50
+7GK         CAA         CAB         H17     118.605    1.50
+7GK         CAF         NAC         CAB     114.106    1.50
+7GK         NAG         CAF         CAE     108.300    1.50
+7GK         NAG         CAF         NAC     126.664    1.65
+7GK         CAE         CAF         NAC     125.036    1.50
+7GK         CAH         NAG         CAF     107.861    1.55
+7GK         CAH         NAG         H18     126.231    1.50
+7GK         CAF         NAG         H18     125.909    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+7GK             sp3_sp3_1         NAQ         CAR         CAS         NAT      60.000    10.0     3
+7GK             sp2_sp3_7         CAV         NAQ         CAR         CAS       0.000    10.0     6
+7GK              const_41         CAP         CAJ         CAL         CAM       0.000    10.0     2
+7GK             sp2_sp2_5         CAI         CAH         CAJ         CAP     180.000     5.0     2
+7GK              const_19         CAJ         CAH         CAI         CAE     180.000    10.0     2
+7GK              const_55         CAJ         CAH         NAG         CAF     180.000    10.0     2
+7GK              const_21         CAF         CAE         CAI         CAH       0.000    10.0     2
+7GK              const_60         CAK         CAD         CAE         CAI       0.000    10.0     2
+7GK       const_sp2_sp2_1         CAI         CAE         CAF         NAG       0.000     5.0     2
+7GK           other_tor_1         NAW         CAK         CAD         CAE      90.000    10.0     1
+7GK              const_14         CAB         CAA         CAD         CAK     180.000    10.0     2
+7GK       const_sp2_sp2_9         CAD         CAA         CAB         NAC       0.000     5.0     2
+7GK       const_sp2_sp2_7         CAA         CAB         NAC         CAF       0.000     5.0     2
+7GK            sp3_sp3_10         CAR         CAS         NAT         CAU     -60.000    10.0     3
+7GK       const_sp2_sp2_6         NAG         CAF         NAC         CAB     180.000     5.0     2
+7GK              const_25         CAE         CAF         NAG         CAH       0.000    10.0     2
+7GK            sp3_sp3_16         CAV         CAU         NAT         CAS      60.000    10.0     3
+7GK            sp3_sp3_22         NAT         CAU         CAV         NAQ     -60.000    10.0     3
+7GK             sp2_sp3_1         CAR         NAQ         CAV         CAU       0.000    10.0     6
+7GK             sp2_sp2_1         CAO         CAN         NAQ         CAR     180.000     5.0     2
+7GK              const_31         NAQ         CAN         CAO         CAP     180.000    10.0     2
+7GK              const_50         CAL         CAM         CAN         NAQ     180.000    10.0     2
+7GK              const_33         CAN         CAO         CAP         CAJ       0.000    10.0     2
+7GK              const_37         CAL         CAJ         CAP         CAO       0.000    10.0     2
+7GK              const_45         CAJ         CAL         CAM         CAN       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+7GK    chir_1    NAT    CAS    CAU    H5    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+7GK    plan-1         CAA   0.020
+7GK    plan-1         CAB   0.020
+7GK    plan-1         CAD   0.020
+7GK    plan-1         CAE   0.020
+7GK    plan-1         CAF   0.020
+7GK    plan-1         CAH   0.020
+7GK    plan-1         CAI   0.020
+7GK    plan-1         CAJ   0.020
+7GK    plan-1         CAK   0.020
+7GK    plan-1         H15   0.020
+7GK    plan-1         H16   0.020
+7GK    plan-1         H17   0.020
+7GK    plan-1         H18   0.020
+7GK    plan-1         NAC   0.020
+7GK    plan-1         NAG   0.020
+7GK    plan-2         CAH   0.020
+7GK    plan-2         CAJ   0.020
+7GK    plan-2         CAL   0.020
+7GK    plan-2         CAM   0.020
+7GK    plan-2         CAN   0.020
+7GK    plan-2         CAO   0.020
+7GK    plan-2         CAP   0.020
+7GK    plan-2         H11   0.020
+7GK    plan-2         H12   0.020
+7GK    plan-2         H13   0.020
+7GK    plan-2         H14   0.020
+7GK    plan-2         NAQ   0.020
+7GK    plan-3         CAN   0.020
+7GK    plan-3         CAR   0.020
+7GK    plan-3         CAV   0.020
+7GK    plan-3         NAQ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+7GK           SMILES              ACDLabs 12.01                                                                                  C1N(CCNC1)c2ccc(cc2)c4cc3c(nccc3C#N)n4
+7GK            InChI                InChI  1.03 InChI=1S/C18H17N5/c19-12-14-5-6-21-18-16(14)11-17(22-18)13-1-3-15(4-2-13)23-9-7-20-8-10-23/h1-6,11,20H,7-10H2,(H,21,22)
+7GK         InChIKey                InChI  1.03                                                                                             NVTWXXPKCOGVMK-UHFFFAOYSA-N
+7GK SMILES_CANONICAL               CACTVS 3.385                                                                                 N#Cc1ccnc2[nH]c(cc12)c3ccc(cc3)N4CCNCC4
+7GK           SMILES               CACTVS 3.385                                                                                 N#Cc1ccnc2[nH]c(cc12)c3ccc(cc3)N4CCNCC4
+7GK SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                 c1cc(ccc1c2cc3c(ccnc3[nH]2)C#N)N4CCNCC4
+7GK           SMILES "OpenEye OEToolkits" 2.0.6                                                                                 c1cc(ccc1c2cc3c(ccnc3[nH]2)C#N)N4CCNCC4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+7GK acedrg               243         "dictionary generator"                  
+7GK acedrg_database      11          "data source"                           
+7GK rdkit                2017.03.2   "Chemoinformatics tool"
+7GK refmac5              5.8.0238    "optimization tool"                     

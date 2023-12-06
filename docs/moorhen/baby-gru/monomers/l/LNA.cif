@@ -1,0 +1,320 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LNA     LNA      "(9E,12Z)-10-nitrooctadeca-9,12-dienoic acid"     NON-POLYMER     53     23     .     
+#
+data_comp_LNA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LNA     O20     O       OC      -1      -17.377     -15.606     6.760       
+LNA     C1      C       C       0       -18.032     -14.689     7.293       
+LNA     O19     O       O       0       -17.666     -14.089     8.323       
+LNA     C2      C       CH2     0       -19.347     -14.280     6.652       
+LNA     C3      C       CH2     0       -20.570     -14.801     7.344       
+LNA     C4      C       CH2     0       -20.791     -16.287     7.115       
+LNA     C5      C       CH2     0       -22.112     -16.803     7.632       
+LNA     C6      C       CH2     0       -22.219     -16.833     9.137       
+LNA     C7      C       CH2     0       -23.481     -17.508     9.660       
+LNA     C8      C       CH2     0       -23.623     -17.473     11.151      
+LNA     C9      C       C1      0       -22.691     -18.413     11.863      
+LNA     C10     C       C       0       -22.649     -18.711     13.171      
+LNA     N21     N       N       1       -21.787     -19.640     13.701      
+LNA     O22     O       O       0       -20.930     -20.155     12.992      
+LNA     O23     O       OC      -1      -21.907     -19.974     14.872      
+LNA     C11     C       CH2     0       -23.591     -17.963     14.103      
+LNA     C12     C       C1      0       -24.946     -18.597     14.181      
+LNA     C13     C       C1      0       -25.933     -18.245     14.991      
+LNA     C14     C       CH2     0       -25.933     -17.146     16.010      
+LNA     C15     C       CH2     0       -25.850     -17.645     17.419      
+LNA     C16     C       CH2     0       -24.500     -18.232     17.797      
+LNA     C17     C       CH2     0       -24.361     -18.570     19.259      
+LNA     C18     C       CH3     0       -25.182     -19.764     19.687      
+LNA     H2      H       H       0       -19.349     -14.594     5.723       
+LNA     H2A     H       H       0       -19.389     -13.300     6.632       
+LNA     H3      H       H       0       -21.356     -14.312     7.022       
+LNA     H3A     H       H       0       -20.491     -14.638     8.307       
+LNA     H4      H       H       0       -20.067     -16.784     7.553       
+LNA     H4A     H       H       0       -20.738     -16.470     6.153       
+LNA     H5      H       H       0       -22.251     -17.711     7.289       
+LNA     H5A     H       H       0       -22.831     -16.238     7.277       
+LNA     H6      H       H       0       -22.193     -15.912     9.473       
+LNA     H6A     H       H       0       -21.438     -17.304     9.498       
+LNA     H7      H       H       0       -23.482     -18.442     9.365       
+LNA     H7A     H       H       0       -24.260     -17.069     9.259       
+LNA     H8      H       H       0       -24.549     -17.703     11.386      
+LNA     H8A     H       H       0       -23.452     -16.557     11.464      
+LNA     H9      H       H       0       -22.059     -18.841     11.313      
+LNA     H11     H       H       0       -23.685     -17.042     13.798      
+LNA     H11A    H       H       0       -23.203     -17.924     14.997      
+LNA     H12     H       H       0       -25.113     -19.320     13.591      
+LNA     H13     H       H       0       -26.729     -18.748     14.916      
+LNA     H14     H       H       0       -26.760     -16.623     15.910      
+LNA     H14A    H       H       0       -25.176     -16.544     15.841      
+LNA     H15     H       H       0       -26.537     -18.330     17.552      
+LNA     H15A    H       H       0       -26.050     -16.904     18.028      
+LNA     H16     H       H       0       -23.799     -17.590     17.555      
+LNA     H16A    H       H       0       -24.353     -19.047     17.271      
+LNA     H17     H       H       0       -24.632     -17.791     19.791      
+LNA     H17A    H       H       0       -23.415     -18.750     19.453      
+LNA     H18     H       H       0       -25.007     -19.961     20.623      
+LNA     H18A    H       H       0       -24.943     -20.535     19.144      
+LNA     H18B    H       H       0       -26.128     -19.567     19.570      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LNA         O20          C1      SINGLE       n     1.247  0.0187     1.247  0.0187
+LNA          C1         O19      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LNA          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+LNA          C2          C3      SINGLE       n     1.497  0.0200     1.497  0.0200
+LNA          C3          C4      SINGLE       n     1.519  0.0164     1.519  0.0164
+LNA          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+LNA          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+LNA          C6          C7      SINGLE       n     1.523  0.0117     1.523  0.0117
+LNA          C7          C8      SINGLE       n     1.497  0.0200     1.497  0.0200
+LNA          C8          C9      SINGLE       n     1.498  0.0152     1.498  0.0152
+LNA          C9         C10      DOUBLE       n     1.331  0.0122     1.331  0.0122
+LNA         C10         N21      SINGLE       n     1.335  0.0200     1.335  0.0200
+LNA         C10         C11      SINGLE       n     1.512  0.0124     1.512  0.0124
+LNA         N21         O22      DOUBLE       n     1.221  0.0162     1.221  0.0162
+LNA         N21         O23      SINGLE       n     1.221  0.0162     1.221  0.0162
+LNA         C11         C12      SINGLE       n     1.493  0.0193     1.493  0.0193
+LNA         C12         C13      DOUBLE       n     1.320  0.0157     1.320  0.0157
+LNA         C13         C14      SINGLE       n     1.497  0.0127     1.497  0.0127
+LNA         C14         C15      SINGLE       n     1.497  0.0200     1.497  0.0200
+LNA         C15         C16      SINGLE       n     1.519  0.0164     1.519  0.0164
+LNA         C16         C17      SINGLE       n     1.507  0.0200     1.507  0.0200
+LNA         C17         C18      SINGLE       n     1.510  0.0200     1.510  0.0200
+LNA          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0185
+LNA          C2         H2A      SINGLE       n     1.089  0.0100     0.981  0.0185
+LNA          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0160
+LNA          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0160
+LNA          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNA          C4         H4A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNA          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNA          C5         H5A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNA          C6          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNA          C6         H6A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNA          C7          H7      SINGLE       n     1.089  0.0100     0.980  0.0160
+LNA          C7         H7A      SINGLE       n     1.089  0.0100     0.980  0.0160
+LNA          C8          H8      SINGLE       n     1.089  0.0100     0.983  0.0180
+LNA          C8         H8A      SINGLE       n     1.089  0.0100     0.983  0.0180
+LNA          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0181
+LNA         C11         H11      SINGLE       n     1.089  0.0100     0.976  0.0119
+LNA         C11        H11A      SINGLE       n     1.089  0.0100     0.976  0.0119
+LNA         C12         H12      SINGLE       n     1.082  0.0130     0.947  0.0200
+LNA         C13         H13      SINGLE       n     1.082  0.0130     0.945  0.0200
+LNA         C14         H14      SINGLE       n     1.089  0.0100     0.983  0.0180
+LNA         C14        H14A      SINGLE       n     1.089  0.0100     0.983  0.0180
+LNA         C15         H15      SINGLE       n     1.089  0.0100     0.980  0.0160
+LNA         C15        H15A      SINGLE       n     1.089  0.0100     0.980  0.0160
+LNA         C16         H16      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNA         C16        H16A      SINGLE       n     1.089  0.0100     0.981  0.0163
+LNA         C17         H17      SINGLE       n     1.089  0.0100     0.982  0.0155
+LNA         C17        H17A      SINGLE       n     1.089  0.0100     0.982  0.0155
+LNA         C18         H18      SINGLE       n     1.089  0.0100     0.973  0.0157
+LNA         C18        H18A      SINGLE       n     1.089  0.0100     0.973  0.0157
+LNA         C18        H18B      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LNA         O20          C1         O19     123.571    1.50
+LNA         O20          C1          C2     118.214    1.64
+LNA         O19          C1          C2     118.214    1.64
+LNA          C1          C2          C3     114.612    2.19
+LNA          C1          C2          H2     108.404    1.50
+LNA          C1          C2         H2A     108.404    1.50
+LNA          C3          C2          H2     108.815    1.50
+LNA          C3          C2         H2A     108.815    1.50
+LNA          H2          C2         H2A     107.521    1.50
+LNA          C2          C3          C4     112.553    1.50
+LNA          C2          C3          H3     109.164    1.50
+LNA          C2          C3         H3A     109.164    1.50
+LNA          C4          C3          H3     108.698    1.50
+LNA          C4          C3         H3A     108.698    1.50
+LNA          H3          C3         H3A     107.646    1.50
+LNA          C3          C4          C5     114.243    1.69
+LNA          C3          C4          H4     108.698    1.50
+LNA          C3          C4         H4A     108.698    1.50
+LNA          C5          C4          H4     108.698    1.50
+LNA          C5          C4         H4A     108.698    1.50
+LNA          H4          C4         H4A     107.646    1.50
+LNA          C4          C5          C6     114.243    1.69
+LNA          C4          C5          H5     108.698    1.50
+LNA          C4          C5         H5A     108.698    1.50
+LNA          C6          C5          H5     108.698    1.50
+LNA          C6          C5         H5A     108.698    1.50
+LNA          H5          C5         H5A     107.646    1.50
+LNA          C5          C6          C7     114.243    1.69
+LNA          C5          C6          H6     108.698    1.50
+LNA          C5          C6         H6A     108.698    1.50
+LNA          C7          C6          H6     108.698    1.50
+LNA          C7          C6         H6A     108.698    1.50
+LNA          H6          C6         H6A     107.646    1.50
+LNA          C6          C7          C8     114.266    1.80
+LNA          C6          C7          H7     108.698    1.50
+LNA          C6          C7         H7A     108.698    1.50
+LNA          C8          C7          H7     108.805    1.50
+LNA          C8          C7         H7A     108.805    1.50
+LNA          H7          C7         H7A     107.646    1.50
+LNA          C7          C8          C9     113.132    2.43
+LNA          C7          C8          H8     108.819    1.50
+LNA          C7          C8         H8A     108.819    1.50
+LNA          C9          C8          H8     109.013    1.50
+LNA          C9          C8         H8A     109.013    1.50
+LNA          H8          C8         H8A     107.922    1.50
+LNA          C8          C9         C10     126.332    3.00
+LNA          C8          C9          H9     116.832    1.85
+LNA         C10          C9          H9     116.836    1.82
+LNA          C9         C10         N21     121.532    3.00
+LNA          C9         C10         C11     119.712    3.00
+LNA         N21         C10         C11     118.756    1.98
+LNA         C10         N21         O22     118.878    1.80
+LNA         C10         N21         O23     118.877    1.80
+LNA         O22         N21         O23     122.244    1.50
+LNA         C10         C11         C12     111.575    3.00
+LNA         C10         C11         H11     109.029    1.50
+LNA         C10         C11        H11A     109.029    1.50
+LNA         C12         C11         H11     109.415    1.72
+LNA         C12         C11        H11A     109.415    1.72
+LNA         H11         C11        H11A     107.635    1.72
+LNA         C11         C12         C13     125.699    1.66
+LNA         C11         C12         H12     116.773    1.62
+LNA         C13         C12         H12     117.527    2.16
+LNA         C12         C13         C14     125.684    3.00
+LNA         C12         C13         H13     117.310    2.16
+LNA         C14         C13         H13     117.007    1.61
+LNA         C13         C14         C15     113.226    1.94
+LNA         C13         C14         H14     108.886    1.50
+LNA         C13         C14        H14A     108.886    1.50
+LNA         C15         C14         H14     108.819    1.50
+LNA         C15         C14        H14A     108.819    1.50
+LNA         H14         C14        H14A     107.922    1.50
+LNA         C14         C15         C16     114.266    1.80
+LNA         C14         C15         H15     108.805    1.50
+LNA         C14         C15        H15A     108.805    1.50
+LNA         C16         C15         H15     108.698    1.50
+LNA         C16         C15        H15A     108.698    1.50
+LNA         H15         C15        H15A     107.646    1.50
+LNA         C15         C16         C17     114.362    3.00
+LNA         C15         C16         H16     108.698    1.50
+LNA         C15         C16        H16A     108.698    1.50
+LNA         C17         C16         H16     108.653    1.50
+LNA         C17         C16        H16A     108.653    1.50
+LNA         H16         C16        H16A     107.646    1.50
+LNA         C16         C17         C18     113.719    3.00
+LNA         C16         C17         H17     108.758    1.50
+LNA         C16         C17        H17A     108.758    1.50
+LNA         C18         C17         H17     108.918    1.50
+LNA         C18         C17        H17A     108.918    1.50
+LNA         H17         C17        H17A     107.763    1.50
+LNA         C17         C18         H18     109.554    1.50
+LNA         C17         C18        H18A     109.554    1.50
+LNA         C17         C18        H18B     109.554    1.50
+LNA         H18         C18        H18A     109.380    1.50
+LNA         H18         C18        H18B     109.380    1.50
+LNA        H18A         C18        H18B     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LNA             sp2_sp2_3         N21         C10          C9          C8       0.000     5.0     2
+LNA             sp2_sp2_7          C9         C10         N21         O22       0.000     5.0     2
+LNA            sp2_sp3_14          C9         C10         C11         C12     120.000    10.0     6
+LNA            sp2_sp3_20         C13         C12         C11         C10     120.000    10.0     6
+LNA             sp2_sp2_9         C11         C12         C13         C14     180.000     5.0     2
+LNA            sp2_sp3_26         C12         C13         C14         C15     120.000    10.0     6
+LNA            sp3_sp3_55         C13         C14         C15         C16     180.000    10.0     3
+LNA            sp3_sp3_64         C14         C15         C16         C17     180.000    10.0     3
+LNA             sp2_sp3_2         O20          C1          C2          C3     120.000    10.0     6
+LNA            sp3_sp3_73         C15         C16         C17         C18     180.000    10.0     3
+LNA            sp3_sp3_82         C16         C17         C18         H18     180.000    10.0     3
+LNA             sp3_sp3_1          C1          C2          C3          C4     180.000    10.0     3
+LNA            sp3_sp3_10          C2          C3          C4          C5     180.000    10.0     3
+LNA            sp3_sp3_19          C3          C4          C5          C6     180.000    10.0     3
+LNA            sp3_sp3_28          C4          C5          C6          C7     180.000    10.0     3
+LNA            sp3_sp3_37          C5          C6          C7          C8     180.000    10.0     3
+LNA            sp3_sp3_46          C6          C7          C8          C9     180.000    10.0     3
+LNA             sp2_sp3_8         C10          C9          C8          C7     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LNA    plan-1          C1   0.020
+LNA    plan-1          C2   0.020
+LNA    plan-1         O19   0.020
+LNA    plan-1         O20   0.020
+LNA    plan-2         C10   0.020
+LNA    plan-2          C8   0.020
+LNA    plan-2          C9   0.020
+LNA    plan-2          H9   0.020
+LNA    plan-3         C10   0.020
+LNA    plan-3         C11   0.020
+LNA    plan-3          C9   0.020
+LNA    plan-3         N21   0.020
+LNA    plan-4         C10   0.020
+LNA    plan-4         N21   0.020
+LNA    plan-4         O22   0.020
+LNA    plan-4         O23   0.020
+LNA    plan-5         C11   0.020
+LNA    plan-5         C12   0.020
+LNA    plan-5         C13   0.020
+LNA    plan-5         H12   0.020
+LNA    plan-6         C12   0.020
+LNA    plan-6         C13   0.020
+LNA    plan-6         C14   0.020
+LNA    plan-6         H13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LNA           SMILES              ACDLabs 10.04                                                                                             "[O-][N+](=O)/C(=C/CCCCCCCC(=O)O)C\C=C/CCCCC"
+LNA SMILES_CANONICAL               CACTVS 3.341                                                                                               CCCCC\C=C/CC(=C/CCCCCCCC(O)=O)\[N+]([O-])=O
+LNA           SMILES               CACTVS 3.341                                                                                                   CCCCCC=CCC(=CCCCCCCCC(O)=O)[N+]([O-])=O
+LNA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                              CCCCC\C=C/C/C(=C\CCCCCCCC(=O)O)/[N+](=O)[O-]
+LNA           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                   CCCCCC=CCC(=CCCCCCCCC(=O)O)[N+](=O)[O-]
+LNA            InChI                InChI  1.03 InChI=1S/C18H31NO4/c1-2-3-4-5-8-11-14-17(19(22)23)15-12-9-6-7-10-13-16-18(20)21/h8,11,15H,2-7,9-10,12-14,16H2,1H3,(H,20,21)/b11-8-,17-15+
+LNA         InChIKey                InChI  1.03                                                                                                               LELVHAQTWXTCLY-XYWKCAQWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LNA acedrg               243         "dictionary generator"                  
+LNA acedrg_database      11          "data source"                           
+LNA rdkit                2017.03.2   "Chemoinformatics tool"
+LNA refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,145 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+2IT     2IT      "(2Z)-2-iminopentanedioic acid"     NON-POLYMER     15     10     .     
+#
+data_comp_2IT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+2IT     OAC     O       OC      -1      -24.757     -33.049     35.845      
+2IT     CAJ     C       C       0       -25.067     -33.827     34.939      
+2IT     OAE     O       O       0       -26.164     -33.760     34.378      
+2IT     CAI     C       C       0       -24.185     -34.778     34.543      
+2IT     NAA     N       NH1     0       -24.481     -35.617     33.576      
+2IT     CAG     C       CH2     0       -22.827     -34.930     35.179      
+2IT     CAF     C       CH2     0       -21.846     -33.862     34.758      
+2IT     CAH     C       C       0       -20.485     -33.970     35.425      
+2IT     OAB     O       OC      -1      -19.823     -35.011     35.245      
+2IT     OAD     O       O       0       -20.089     -33.014     36.123      
+2IT     H3      H       H       0       -25.282     -35.512     33.216      
+2IT     H6      H       H       0       -22.460     -35.809     34.942      
+2IT     H7      H       H       0       -22.925     -34.909     36.156      
+2IT     H8      H       H       0       -22.215     -32.978     34.959      
+2IT     H9      H       H       0       -21.712     -33.905     33.789      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+2IT         CAI         NAA      DOUBLE       n     1.299  0.0200     1.299  0.0200
+2IT         CAI         CAG      SINGLE       n     1.503  0.0125     1.503  0.0125
+2IT         CAJ         CAI      SINGLE       n     1.331  0.0200     1.331  0.0200
+2IT         CAG         CAF      SINGLE       n     1.510  0.0100     1.510  0.0100
+2IT         CAF         CAH      SINGLE       n     1.519  0.0109     1.519  0.0109
+2IT         CAJ         OAE      DOUBLE       n     1.230  0.0200     1.230  0.0200
+2IT         OAC         CAJ      SINGLE       n     1.230  0.0200     1.230  0.0200
+2IT         CAH         OAD      DOUBLE       n     1.247  0.0187     1.247  0.0187
+2IT         CAH         OAB      SINGLE       n     1.247  0.0187     1.247  0.0187
+2IT         NAA          H3      SINGLE       n     1.016  0.0100     0.882  0.0200
+2IT         CAG          H6      SINGLE       n     1.089  0.0100     0.982  0.0175
+2IT         CAG          H7      SINGLE       n     1.089  0.0100     0.982  0.0175
+2IT         CAF          H8      SINGLE       n     1.089  0.0100     0.979  0.0159
+2IT         CAF          H9      SINGLE       n     1.089  0.0100     0.979  0.0159
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+2IT         CAI         CAJ         OAE     118.654    3.00
+2IT         CAI         CAJ         OAC     118.654    3.00
+2IT         OAE         CAJ         OAC     122.692    1.63
+2IT         NAA         CAI         CAG     120.685    3.00
+2IT         NAA         CAI         CAJ     117.980    3.00
+2IT         CAG         CAI         CAJ     121.335    3.00
+2IT         CAI         NAA          H3     112.238    3.00
+2IT         CAI         CAG         CAF     113.270    1.50
+2IT         CAI         CAG          H6     108.936    1.50
+2IT         CAI         CAG          H7     108.936    1.50
+2IT         CAF         CAG          H6     109.041    1.50
+2IT         CAF         CAG          H7     109.041    1.50
+2IT          H6         CAG          H7     107.424    1.50
+2IT         CAG         CAF         CAH     114.808    1.90
+2IT         CAG         CAF          H8     110.067    1.85
+2IT         CAG         CAF          H9     110.067    1.85
+2IT         CAH         CAF          H8     108.404    1.50
+2IT         CAH         CAF          H9     108.404    1.50
+2IT          H8         CAF          H9     107.521    1.50
+2IT         CAF         CAH         OAD     118.214    1.64
+2IT         CAF         CAH         OAB     118.214    1.64
+2IT         OAD         CAH         OAB     123.571    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+2IT             sp2_sp2_5         NAA         CAI         CAJ         OAE       0.000     5.0     2
+2IT             sp2_sp2_1         CAG         CAI         NAA          H3     180.000     5.0     2
+2IT             sp2_sp3_2         NAA         CAI         CAG         CAF     120.000    10.0     6
+2IT             sp3_sp3_1         CAH         CAF         CAG         CAI     180.000    10.0     3
+2IT             sp2_sp3_8         OAD         CAH         CAF         CAG     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+2IT    plan-1         CAI   0.020
+2IT    plan-1         CAJ   0.020
+2IT    plan-1         OAC   0.020
+2IT    plan-1         OAE   0.020
+2IT    plan-2         CAG   0.020
+2IT    plan-2         CAI   0.020
+2IT    plan-2         CAJ   0.020
+2IT    plan-2         NAA   0.020
+2IT    plan-3         CAF   0.020
+2IT    plan-3         CAH   0.020
+2IT    plan-3         OAB   0.020
+2IT    plan-3         OAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+2IT           SMILES              ACDLabs 12.01                                                O=C(O)CCC(=[N@H])C(=O)O
+2IT            InChI                InChI  1.03 InChI=1S/C5H7NO4/c6-3(5(9)10)1-2-4(7)8/h6H,1-2H2,(H,7,8)(H,9,10)/b6-3-
+2IT         InChIKey                InChI  1.03                                            UZWLXPOZNAJCJV-UTCJRWHESA-N
+2IT SMILES_CANONICAL               CACTVS 3.385                                                    OC(=O)CCC(=N)C(O)=O
+2IT           SMILES               CACTVS 3.385                                                    OC(=O)CCC(=N)C(O)=O
+2IT SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                            "[H]/N=C(/CCC(=O)O)\C(=O)O"
+2IT           SMILES "OpenEye OEToolkits" 1.7.6                                                  C(CC(=O)O)C(=N)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+2IT acedrg               243         "dictionary generator"                  
+2IT acedrg_database      11          "data source"                           
+2IT rdkit                2017.03.2   "Chemoinformatics tool"
+2IT refmac5              5.8.0238    "optimization tool"                     

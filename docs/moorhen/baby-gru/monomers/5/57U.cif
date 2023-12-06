@@ -1,0 +1,244 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+57U     57U      1-ethyl-3-[4-(hydroxymethyl)-5-(1H-pyrrol-2-yl)-1,3-thiazol-2-yl]urea     NON-POLYMER     32     18     .     
+#
+data_comp_57U
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+57U     C8      C       CR5     0       -7.472      4.678       0.772       
+57U     C6      C       CR5     0       -5.340      3.528       1.236       
+57U     C5      C       CR5     0       -4.093      3.130       1.854       
+57U     C4      C       CR15    0       -3.139      3.919       2.483       
+57U     C3      C       CR15    0       -2.118      3.078       2.919       
+57U     C2      C       CR15    0       -2.451      1.800       2.559       
+57U     N1      N       NR5     0       -3.648      1.837       1.915       
+57U     C10     C       CR5     0       -5.968      3.096       0.098       
+57U     C14     C       C       0       -8.939      6.609       1.483       
+57U     C11     C       CH2     0       -5.454      2.029       -0.813      
+57U     O18     O       O       0       -8.207      7.066       2.370       
+57U     N15     N       NH1     0       -10.111     7.193       1.150       
+57U     C16     C       CH2     0       -10.616     8.360       1.851       
+57U     C17     C       CH3     0       -11.915     8.858       1.289       
+57U     N13     N       NH1     0       -8.614      5.454       0.750       
+57U     S7      S       S2      0       -6.268      4.719       1.935       
+57U     N9      N       NRD5    0       -7.159      3.745       -0.145      
+57U     O12     O       OH1     0       -4.142      2.317       -1.266      
+57U     H1      H       H       0       -3.177      4.860       2.595       
+57U     H2      H       H       0       -1.338      3.342       3.378       
+57U     H3      H       H       0       -1.941      1.024       2.726       
+57U     H4      H       H       0       -4.073      1.142       1.588       
+57U     H5      H       H       0       -6.049      1.947       -1.587      
+57U     H6      H       H       0       -5.450      1.170       -0.342      
+57U     H7      H       H       0       -10.576     6.862       0.489       
+57U     H8      H       H       0       -9.947      9.076       1.800       
+57U     H9      H       H       0       -10.741     8.132       2.797       
+57U     H10     H       H       0       -12.238     9.600       1.825       
+57U     H11     H       H       0       -12.570     8.141       1.302       
+57U     H12     H       H       0       -11.780     9.155       0.375       
+57U     H13     H       H       0       -9.218      5.156       0.186       
+57U     H14     H       H       0       -3.793      1.593       -1.588      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+57U         C11         O12      SINGLE       n     1.417  0.0163     1.417  0.0163
+57U         C10         C11      SINGLE       n     1.494  0.0100     1.494  0.0100
+57U         C10          N9      SINGLE       y     1.339  0.0200     1.339  0.0200
+57U          C8          N9      DOUBLE       y     1.335  0.0145     1.335  0.0145
+57U          C6         C10      DOUBLE       y     1.358  0.0182     1.358  0.0182
+57U          C8         N13      SINGLE       n     1.367  0.0190     1.367  0.0190
+57U         C14         N13      SINGLE       n     1.380  0.0200     1.380  0.0200
+57U          C8          S7      SINGLE       y     1.695  0.0200     1.695  0.0200
+57U         C14         N15      SINGLE       n     1.344  0.0130     1.344  0.0130
+57U         N15         C16      SINGLE       n     1.450  0.0113     1.450  0.0113
+57U         C14         O18      DOUBLE       n     1.235  0.0158     1.235  0.0158
+57U          C6          S7      SINGLE       y     1.695  0.0200     1.695  0.0200
+57U          C6          C5      SINGLE       n     1.446  0.0162     1.446  0.0162
+57U          C5          N1      SINGLE       y     1.369  0.0100     1.369  0.0100
+57U          C2          N1      SINGLE       y     1.359  0.0130     1.359  0.0130
+57U         C16         C17      SINGLE       n     1.499  0.0200     1.499  0.0200
+57U          C5          C4      DOUBLE       y     1.390  0.0165     1.390  0.0165
+57U          C3          C2      DOUBLE       y     1.368  0.0113     1.368  0.0113
+57U          C4          C3      SINGLE       y     1.395  0.0200     1.395  0.0200
+57U          C4          H1      SINGLE       n     1.082  0.0130     0.949  0.0200
+57U          C3          H2      SINGLE       n     1.082  0.0130     0.943  0.0153
+57U          C2          H3      SINGLE       n     1.082  0.0130     0.943  0.0174
+57U          N1          H4      SINGLE       n     1.016  0.0100     0.878  0.0200
+57U         C11          H5      SINGLE       n     1.089  0.0100     0.980  0.0156
+57U         C11          H6      SINGLE       n     1.089  0.0100     0.980  0.0156
+57U         N15          H7      SINGLE       n     1.016  0.0100     0.872  0.0200
+57U         C16          H8      SINGLE       n     1.089  0.0100     0.981  0.0142
+57U         C16          H9      SINGLE       n     1.089  0.0100     0.981  0.0142
+57U         C17         H10      SINGLE       n     1.089  0.0100     0.971  0.0145
+57U         C17         H11      SINGLE       n     1.089  0.0100     0.971  0.0145
+57U         C17         H12      SINGLE       n     1.089  0.0100     0.971  0.0145
+57U         N13         H13      SINGLE       n     1.016  0.0100     0.878  0.0200
+57U         O12         H14      SINGLE       n     0.970  0.0120     0.866  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+57U          N9          C8         N13     129.039    3.00
+57U          N9          C8          S7     107.922    3.00
+57U         N13          C8          S7     123.039    3.00
+57U         C10          C6          S7     107.922    3.00
+57U         C10          C6          C5     130.726    3.00
+57U          S7          C6          C5     121.352    3.00
+57U          C6          C5          N1     123.463    2.37
+57U          C6          C5          C4     129.238    2.48
+57U          N1          C5          C4     107.300    1.50
+57U          C5          C4          C3     107.803    1.50
+57U          C5          C4          H1     126.062    1.50
+57U          C3          C4          H1     126.135    1.50
+57U          C2          C3          C4     107.568    1.50
+57U          C2          C3          H2     126.224    1.50
+57U          C4          C3          H2     126.209    1.50
+57U          N1          C2          C3     108.024    1.50
+57U          N1          C2          H3     125.673    1.50
+57U          C3          C2          H3     126.302    1.50
+57U          C5          N1          C2     109.305    1.50
+57U          C5          N1          H4     125.057    1.50
+57U          C2          N1          H4     125.638    1.50
+57U         C11         C10          N9     122.946    1.50
+57U         C11         C10          C6     127.851    3.00
+57U          N9         C10          C6     109.203    1.50
+57U         N13         C14         N15     114.635    2.00
+57U         N13         C14         O18     122.567    1.50
+57U         N15         C14         O18     122.798    1.50
+57U         O12         C11         C10     111.519    1.50
+57U         O12         C11          H5     109.192    1.50
+57U         O12         C11          H6     109.192    1.50
+57U         C10         C11          H5     109.578    1.50
+57U         C10         C11          H6     109.578    1.50
+57U          H5         C11          H6     108.101    1.50
+57U         C14         N15         C16     121.811    1.50
+57U         C14         N15          H7     118.709    1.50
+57U         C16         N15          H7     119.480    1.50
+57U         N15         C16         C17     112.535    1.50
+57U         N15         C16          H8     109.030    1.50
+57U         N15         C16          H9     109.030    1.50
+57U         C17         C16          H8     109.375    1.50
+57U         C17         C16          H9     109.375    1.50
+57U          H8         C16          H9     108.054    1.50
+57U         C16         C17         H10     109.548    1.50
+57U         C16         C17         H11     109.548    1.50
+57U         C16         C17         H12     109.548    1.50
+57U         H10         C17         H11     109.415    1.50
+57U         H10         C17         H12     109.415    1.50
+57U         H11         C17         H12     109.415    1.50
+57U          C8         N13         C14     125.100    2.96
+57U          C8         N13         H13     117.304    2.70
+57U         C14         N13         H13     117.596    1.50
+57U          C8          S7          C6     107.922    3.00
+57U         C10          N9          C8     107.030    1.65
+57U         C11         O12         H14     108.825    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+57U             sp2_sp2_1          N9          C8         N13         C14     180.000     5.0     2
+57U              const_28         N13          C8          S7          C6     180.000    10.0     2
+57U       const_sp2_sp2_2         N13          C8          N9         C10     180.000     5.0     2
+57U             sp2_sp3_8         C14         N15         C16         C17     120.000    10.0     6
+57U             sp3_sp3_4         N15         C16         C17         H10     180.000    10.0     3
+57U       const_sp2_sp2_9         C10          C6          S7          C8       0.000     5.0     2
+57U            sp2_sp2_13          N1          C5          C6         C10     180.000     5.0     2
+57U       const_sp2_sp2_7         C11         C10          C6          S7     180.000     5.0     2
+57U              const_30          C3          C4          C5          C6     180.000    10.0     2
+57U              const_13          C6          C5          N1          C2     180.000    10.0     2
+57U              const_23          C2          C3          C4          C5       0.000    10.0     2
+57U              const_19          N1          C2          C3          C4       0.000    10.0     2
+57U              const_15          C3          C2          N1          C5       0.000    10.0     2
+57U       const_sp2_sp2_4         C11         C10          N9          C8     180.000     5.0     2
+57U             sp2_sp3_2          N9         C10         C11         O12     -90.000    10.0     6
+57U             sp2_sp2_9         N13         C14         N15         C16     180.000     5.0     2
+57U             sp2_sp2_5         N15         C14         N13          C8     180.000     5.0     2
+57U             sp3_sp3_1         C10         C11         O12         H14     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+57U    plan-1         C10   0.020
+57U    plan-1         C11   0.020
+57U    plan-1          C5   0.020
+57U    plan-1          C6   0.020
+57U    plan-1          C8   0.020
+57U    plan-1         N13   0.020
+57U    plan-1          N9   0.020
+57U    plan-1          S7   0.020
+57U    plan-2          C2   0.020
+57U    plan-2          C3   0.020
+57U    plan-2          C4   0.020
+57U    plan-2          C5   0.020
+57U    plan-2          C6   0.020
+57U    plan-2          H1   0.020
+57U    plan-2          H2   0.020
+57U    plan-2          H3   0.020
+57U    plan-2          H4   0.020
+57U    plan-2          N1   0.020
+57U    plan-3         C14   0.020
+57U    plan-3         N13   0.020
+57U    plan-3         N15   0.020
+57U    plan-3         O18   0.020
+57U    plan-4         C14   0.020
+57U    plan-4         C16   0.020
+57U    plan-4          H7   0.020
+57U    plan-4         N15   0.020
+57U    plan-5         C14   0.020
+57U    plan-5          C8   0.020
+57U    plan-5         H13   0.020
+57U    plan-5         N13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+57U           SMILES              ACDLabs 12.01                                                                                c2(sc(c1cccn1)c(CO)n2)NC(=O)NCC
+57U            InChI                InChI  1.03 InChI=1S/C11H14N4O2S/c1-2-12-10(17)15-11-14-8(6-16)9(18-11)7-4-3-5-13-7/h3-5,13,16H,2,6H2,1H3,(H2,12,14,15,17)
+57U         InChIKey                InChI  1.03                                                                                    YLSYQKDIZQYYGN-UHFFFAOYSA-N
+57U SMILES_CANONICAL               CACTVS 3.385                                                                               CCNC(=O)Nc1sc(c(CO)n1)c2[nH]ccc2
+57U           SMILES               CACTVS 3.385                                                                               CCNC(=O)Nc1sc(c(CO)n1)c2[nH]ccc2
+57U SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                               CCNC(=O)Nc1nc(c(s1)c2ccc[nH]2)CO
+57U           SMILES "OpenEye OEToolkits" 1.9.2                                                                               CCNC(=O)Nc1nc(c(s1)c2ccc[nH]2)CO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+57U acedrg               243         "dictionary generator"                  
+57U acedrg_database      11          "data source"                           
+57U rdkit                2017.03.2   "Chemoinformatics tool"
+57U refmac5              5.8.0238    "optimization tool"                     

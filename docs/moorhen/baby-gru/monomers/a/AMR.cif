@@ -1,0 +1,211 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AMR     AMR      3,5-DIAMINO-N-(AMINOIMINOMETHYL)-6-CHLOROPYRAZINECARBOXAMIDE     NON-POLYMER     24     15     .     
+#
+data_comp_AMR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AMR     N1      N       NRD6    0       31.084      7.674       27.598      
+AMR     C1      C       CR6     0       30.490      6.782       28.421      
+AMR     C3      C       C       0       30.953      5.349       28.328      
+AMR     N5      N       NH1     0       32.169      5.152       27.701      
+AMR     C6      C       C       0       32.922      3.980       27.588      
+AMR     N7      N       NH2     0       32.572      2.870       28.211      
+AMR     N6      N       NH2     1       33.999      3.992       26.822      
+AMR     O1      O       O       0       30.294      4.432       28.821      
+AMR     C2      C       CR6     0       29.463      7.218       29.340      
+AMR     N4      N       NH2     0       28.851      6.367       30.168      
+AMR     N3      N       NRD6    0       29.097      8.513       29.375      
+AMR     C4      C       CR6     0       29.704      9.385       28.544      
+AMR     N2      N       NH2     0       29.321      10.662      28.601      
+AMR     C5      C       CR6     0       30.715      8.942       27.644      
+AMR     CL1     CL      CL      0       31.510      10.049      26.566      
+AMR     HN5     H       H       0       32.517      5.853       27.323      
+AMR     HN71    H       H       0       33.060      2.142       28.117      
+AMR     HN72    H       H       0       31.861      2.850       28.728      
+AMR     HN6     H       H       0       34.493      3.269       26.742      
+AMR     H7      H       H       0       34.223      4.722       26.385      
+AMR     HN41    H       H       0       27.975      6.352       30.208      
+AMR     HN42    H       H       0       29.327      5.831       30.674      
+AMR     HN21    H       H       0       29.806      11.282      28.212      
+AMR     HN22    H       H       0       28.585      10.881      29.027      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AMR          N1          C1      DOUBLE       y     1.346  0.0100     1.346  0.0100
+AMR          N1          C5      SINGLE       y     1.315  0.0114     1.315  0.0114
+AMR          C1          C3      SINGLE       n     1.504  0.0100     1.504  0.0100
+AMR          C1          C2      SINGLE       y     1.428  0.0186     1.428  0.0186
+AMR          C3          N5      SINGLE       n     1.377  0.0108     1.377  0.0108
+AMR          C3          O1      DOUBLE       n     1.231  0.0107     1.231  0.0107
+AMR          N5          C6      SINGLE       n     1.376  0.0200     1.376  0.0200
+AMR          C6          N7      SINGLE       n     1.316  0.0104     1.316  0.0104
+AMR          C6          N6      DOUBLE       n     1.318  0.0103     1.318  0.0103
+AMR          C2          N4      SINGLE       n     1.334  0.0147     1.334  0.0147
+AMR          C2          N3      DOUBLE       y     1.342  0.0115     1.342  0.0115
+AMR          N3          C4      SINGLE       y     1.345  0.0100     1.345  0.0100
+AMR          C4          N2      SINGLE       n     1.331  0.0151     1.331  0.0151
+AMR          C4          C5      DOUBLE       y     1.415  0.0153     1.415  0.0153
+AMR          C5         CL1      SINGLE       n     1.737  0.0138     1.737  0.0138
+AMR          N5         HN5      SINGLE       n     1.016  0.0100     0.868  0.0200
+AMR          N7        HN71      SINGLE       n     1.016  0.0100     0.881  0.0200
+AMR          N7        HN72      SINGLE       n     1.016  0.0100     0.881  0.0200
+AMR          N6         HN6      SINGLE       n     1.016  0.0100     0.879  0.0200
+AMR          N6          H7      SINGLE       n     1.016  0.0100     0.879  0.0200
+AMR          N4        HN41      SINGLE       n     1.016  0.0100     0.877  0.0200
+AMR          N4        HN42      SINGLE       n     1.016  0.0100     0.877  0.0200
+AMR          N2        HN21      SINGLE       n     1.016  0.0100     0.877  0.0200
+AMR          N2        HN22      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AMR          C1          N1          C5     118.415    1.50
+AMR          N1          C1          C3     116.784    1.50
+AMR          N1          C1          C2     120.487    1.50
+AMR          C3          C1          C2     122.729    1.50
+AMR          C1          C3          N5     114.715    1.50
+AMR          C1          C3          O1     121.779    1.50
+AMR          N5          C3          O1     123.506    1.50
+AMR          C3          N5          C6     126.774    2.95
+AMR          C3          N5         HN5     116.867    1.74
+AMR          C6          N5         HN5     116.359    1.80
+AMR          N5          C6          N7     119.773    2.74
+AMR          N5          C6          N6     119.773    2.74
+AMR          N7          C6          N6     120.454    1.50
+AMR          C6          N7        HN71     119.855    2.01
+AMR          C6          N7        HN72     119.855    2.01
+AMR        HN71          N7        HN72     120.290    2.09
+AMR          C6          N6         HN6     119.855    2.01
+AMR          C6          N6          H7     119.855    2.01
+AMR         HN6          N6          H7     120.290    2.09
+AMR          C1          C2          N4     120.909    2.27
+AMR          C1          C2          N3     120.487    1.50
+AMR          N4          C2          N3     118.604    1.55
+AMR          C2          N4        HN41     119.797    1.61
+AMR          C2          N4        HN42     119.797    1.61
+AMR        HN41          N4        HN42     120.406    1.85
+AMR          C2          N3          C4     118.677    1.50
+AMR          N3          C4          N2     117.346    1.55
+AMR          N3          C4          C5     120.824    1.50
+AMR          N2          C4          C5     121.831    1.50
+AMR          C4          N2        HN21     119.797    1.61
+AMR          C4          N2        HN22     119.797    1.61
+AMR        HN21          N2        HN22     120.406    1.85
+AMR          N1          C5          C4     121.111    1.50
+AMR          N1          C5         CL1     117.585    1.50
+AMR          C4          C5         CL1     121.304    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AMR       const_sp2_sp2_2          C3          C1          N1          C5     180.000     5.0     2
+AMR              const_16         CL1          C5          N1          C1     180.000    10.0     2
+AMR              const_10          N2          C4          N3          C2     180.000    10.0     2
+AMR            sp2_sp2_27          N3          C4          N2        HN21       0.000     5.0     2
+AMR              const_14          N2          C4          C5         CL1       0.000    10.0     2
+AMR             sp2_sp2_3          N1          C1          C3          N5       0.000     5.0     2
+AMR       const_sp2_sp2_6          C3          C1          C2          N4       0.000     5.0     2
+AMR             sp2_sp2_7          O1          C3          N5          C6       0.000     5.0     2
+AMR             sp2_sp2_9          N7          C6          N5          C3     180.000     5.0     2
+AMR            sp2_sp2_13          N5          C6          N7        HN71     180.000     5.0     2
+AMR            sp2_sp2_17          N5          C6          N6         HN6     180.000     5.0     2
+AMR       const_sp2_sp2_8          N4          C2          N3          C4     180.000     5.0     2
+AMR            sp2_sp2_21          C1          C2          N4        HN41     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AMR    plan-1          C1   0.020
+AMR    plan-1          C2   0.020
+AMR    plan-1          C3   0.020
+AMR    plan-1          C4   0.020
+AMR    plan-1          C5   0.020
+AMR    plan-1         CL1   0.020
+AMR    plan-1          N1   0.020
+AMR    plan-1          N2   0.020
+AMR    plan-1          N3   0.020
+AMR    plan-1          N4   0.020
+AMR    plan-2          C1   0.020
+AMR    plan-2          C3   0.020
+AMR    plan-2          N5   0.020
+AMR    plan-2          O1   0.020
+AMR    plan-3          C3   0.020
+AMR    plan-3          C6   0.020
+AMR    plan-3         HN5   0.020
+AMR    plan-3          N5   0.020
+AMR    plan-4          C6   0.020
+AMR    plan-4          N5   0.020
+AMR    plan-4          N6   0.020
+AMR    plan-4          N7   0.020
+AMR    plan-5          C6   0.020
+AMR    plan-5        HN71   0.020
+AMR    plan-5        HN72   0.020
+AMR    plan-5          N7   0.020
+AMR    plan-6          C6   0.020
+AMR    plan-6          H7   0.020
+AMR    plan-6         HN6   0.020
+AMR    plan-6          N6   0.020
+AMR    plan-7          C2   0.020
+AMR    plan-7        HN41   0.020
+AMR    plan-7        HN42   0.020
+AMR    plan-7          N4   0.020
+AMR    plan-8          C4   0.020
+AMR    plan-8        HN21   0.020
+AMR    plan-8        HN22   0.020
+AMR    plan-8          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AMR           SMILES              ACDLabs 10.04                                                       Clc1nc(C(=O)NC(=[N@H])N)c(nc1N)N
+AMR SMILES_CANONICAL               CACTVS 3.341                                                           NC(=N)NC(=O)c1nc(Cl)c(N)nc1N
+AMR           SMILES               CACTVS 3.341                                                           NC(=N)NC(=O)c1nc(Cl)c(N)nc1N
+AMR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                       c1(c(nc(c(n1)Cl)N)N)C(=O)NC(=N)N
+AMR           SMILES "OpenEye OEToolkits" 1.5.0                                                       c1(c(nc(c(n1)Cl)N)N)C(=O)NC(=N)N
+AMR            InChI                InChI  1.03 InChI=1S/C6H8ClN7O/c7-2-4(9)13-3(8)1(12-2)5(15)14-6(10)11/h(H4,8,9,13)(H4,10,11,14,15)
+AMR         InChIKey                InChI  1.03                                                            XSDQTOBWRPYKKA-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AMR acedrg               243         "dictionary generator"                  
+AMR acedrg_database      11          "data source"                           
+AMR rdkit                2017.03.2   "Chemoinformatics tool"
+AMR refmac5              5.8.0238    "optimization tool"                     

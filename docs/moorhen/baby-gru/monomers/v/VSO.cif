@@ -1,0 +1,129 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VSO     VSO      "VINYLSULPHONIC ACID"     NON-POLYMER     10     6     .     
+#
+data_comp_VSO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VSO     O1      O       OH1     0       85.136      -7.795      8.070       
+VSO     S2      S       S3      0       85.840      -6.397      8.027       
+VSO     C3      C       C1      0       86.738      -6.332      6.531       
+VSO     C4      C       C2      0       87.493      -5.316      6.239       
+VSO     O8      O       O       0       86.788      -6.338      9.088       
+VSO     O9      O       O       0       84.846      -5.379      7.966       
+VSO     HO1     H       H       0       84.425      -7.770      7.608       
+VSO     H3      H       H       0       86.676      -7.050      5.919       
+VSO     H41     H       H       0       87.987      -5.300      5.397       
+VSO     H42     H       H       0       87.568      -4.567      6.860       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VSO          O1          S2      SINGLE       n     1.565  0.0200     1.565  0.0200
+VSO          S2          C3      SINGLE       n     1.746  0.0200     1.746  0.0200
+VSO          S2          O8      DOUBLE       n     1.424  0.0100     1.424  0.0100
+VSO          S2          O9      DOUBLE       n     1.424  0.0100     1.424  0.0100
+VSO          C3          C4      DOUBLE       n     1.299  0.0200     1.299  0.0200
+VSO          O1         HO1      SINGLE       n     0.970  0.0120     0.848  0.0200
+VSO          C3          H3      SINGLE       n     1.082  0.0130     0.946  0.0200
+VSO          C4         H41      SINGLE       n     1.082  0.0130     0.976  0.0200
+VSO          C4         H42      SINGLE       n     1.082  0.0130     0.976  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VSO          S2          O1         HO1     109.576    1.50
+VSO          O1          S2          C3     109.471    3.00
+VSO          O1          S2          O8     110.180    2.87
+VSO          O1          S2          O9     110.180    2.87
+VSO          C3          S2          O8     109.374    2.60
+VSO          C3          S2          O9     109.374    2.60
+VSO          O8          S2          O9     118.684    1.97
+VSO          S2          C3          C4     121.299    3.00
+VSO          S2          C3          H3     119.595    2.43
+VSO          C4          C3          H3     119.106    1.93
+VSO          C3          C4         H41     120.114    1.50
+VSO          C3          C4         H42     120.114    1.50
+VSO         H41          C4         H42     119.773    2.01
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VSO             sp3_sp3_3         HO1          O1          S2          C3      60.000    10.0     3
+VSO             sp2_sp3_3          C4          C3          S2          O1    -120.000    10.0     6
+VSO             sp2_sp2_1          S2          C3          C4         H41     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VSO    chir_1    S2    O8    O9    O1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VSO    plan-1          C3   0.020
+VSO    plan-1          C4   0.020
+VSO    plan-1          H3   0.020
+VSO    plan-1          S2   0.020
+VSO    plan-2          C3   0.020
+VSO    plan-2          C4   0.020
+VSO    plan-2         H41   0.020
+VSO    plan-2         H42   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VSO           SMILES              ACDLabs 10.04                                  O=S(=O)(O)\C=C
+VSO SMILES_CANONICAL               CACTVS 3.341                                 O[S](=O)(=O)C=C
+VSO           SMILES               CACTVS 3.341                                 O[S](=O)(=O)C=C
+VSO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                   C=CS(=O)(=O)O
+VSO           SMILES "OpenEye OEToolkits" 1.5.0                                   C=CS(=O)(=O)O
+VSO            InChI                InChI  1.03 InChI=1S/C2H4O3S/c1-2-6(3,4)5/h2H,1H2,(H,3,4,5)
+VSO         InChIKey                InChI  1.03                     NLVXSWCKKBEXTG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VSO acedrg               243         "dictionary generator"                  
+VSO acedrg_database      11          "data source"                           
+VSO rdkit                2017.03.2   "Chemoinformatics tool"
+VSO refmac5              5.8.0238    "optimization tool"                     

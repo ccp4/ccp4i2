@@ -1,0 +1,253 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8JT     8JT      1,3-benzodioxol-5-ylmethyl(cyclopentyl)azanium     NON-POLYMER     34     16     .     
+#
+data_comp_8JT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8JT     C4      C       CR16    0       -11.586     23.536      -30.658     
+8JT     C5      C       CR6     0       -10.457     23.225      -29.886     
+8JT     C6      C       CH2     0       -9.625      24.328      -29.290     
+8JT     C7      C       CH1     0       -11.249     25.091      -27.461     
+8JT     C8      C       CH2     0       -11.448     26.540      -27.905     
+8JT     C9      C       CH2     0       -12.535     27.086      -26.973     
+8JT     C10     C       CH2     0       -12.585     26.152      -25.764     
+8JT     C11     C       CH2     0       -11.442     25.154      -25.949     
+8JT     C12     C       CH2     0       -13.837     21.196      -32.166     
+8JT     O1      O       O2      0       -12.852     20.342      -31.583     
+8JT     C2      C       CR56    0       -11.960     21.179      -30.953     
+8JT     C1      C       CR16    0       -10.868     20.843      -30.205     
+8JT     O       O       O2      0       -13.441     22.552      -31.956     
+8JT     C3      C       CR56    0       -12.309     22.493      -31.175     
+8JT     C       C       CR16    0       -10.120     21.900      -29.671     
+8JT     N       N       NT2     1       -9.907      24.541      -27.833     
+8JT     H1      H       H       0       -11.836     24.429      -30.817     
+8JT     H3      H       H       0       -9.798      25.161      -29.770     
+8JT     H2      H       H       0       -8.679      24.110      -29.396     
+8JT     H4      H       H       0       -11.958     24.526      -27.856     
+8JT     H5      H       H       0       -10.620     27.049      -27.810     
+8JT     H6      H       H       0       -11.738     26.579      -28.838     
+8JT     H8      H       H       0       -13.400     27.102      -27.428     
+8JT     H7      H       H       0       -12.319     27.996      -26.693     
+8JT     H10     H       H       0       -13.444     25.687      -25.725     
+8JT     H9      H       H       0       -12.469     26.657      -24.935     
+8JT     H11     H       H       0       -10.629     25.467      -25.506     
+8JT     H12     H       H       0       -11.682     24.277      -25.591     
+8JT     H13     H       H       0       -13.911     21.014      -33.125     
+8JT     H14     H       H       0       -14.708     21.034      -31.750     
+8JT     H15     H       H       0       -10.632     19.945      -30.055     
+8JT     H16     H       H       0       -9.357      21.702      -29.147     
+8JT     H18     H       H       0       -9.263      25.067      -27.461     
+8JT     H17     H       H       0       -9.769      23.770      -27.369     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8JT         C12           O      SINGLE       n     1.428  0.0104     1.428  0.0104
+8JT         C12          O1      SINGLE       n     1.428  0.0104     1.428  0.0104
+8JT           O          C3      SINGLE       n     1.377  0.0100     1.377  0.0100
+8JT          O1          C2      SINGLE       n     1.376  0.0100     1.376  0.0100
+8JT          C2          C3      SINGLE       y     1.375  0.0100     1.375  0.0100
+8JT          C4          C3      DOUBLE       y     1.367  0.0100     1.367  0.0100
+8JT          C2          C1      DOUBLE       y     1.362  0.0100     1.362  0.0100
+8JT          C4          C5      SINGLE       y     1.398  0.0100     1.398  0.0100
+8JT          C1           C      SINGLE       y     1.397  0.0100     1.397  0.0100
+8JT          C5           C      DOUBLE       y     1.381  0.0100     1.381  0.0100
+8JT          C5          C6      SINGLE       n     1.504  0.0100     1.504  0.0100
+8JT          C6           N      SINGLE       n     1.498  0.0100     1.498  0.0100
+8JT          C7          C8      SINGLE       n     1.530  0.0165     1.530  0.0165
+8JT          C8          C9      SINGLE       n     1.530  0.0152     1.530  0.0152
+8JT          C7           N      SINGLE       n     1.496  0.0100     1.496  0.0100
+8JT          C7         C11      SINGLE       n     1.530  0.0165     1.530  0.0165
+8JT          C9         C10      SINGLE       n     1.524  0.0171     1.524  0.0171
+8JT         C10         C11      SINGLE       n     1.530  0.0152     1.530  0.0152
+8JT          C4          H1      SINGLE       n     1.082  0.0130     0.941  0.0105
+8JT          C6          H3      SINGLE       n     1.089  0.0100     0.977  0.0158
+8JT          C6          H2      SINGLE       n     1.089  0.0100     0.977  0.0158
+8JT          C7          H4      SINGLE       n     1.089  0.0100     0.989  0.0125
+8JT          C8          H5      SINGLE       n     1.089  0.0100     0.977  0.0101
+8JT          C8          H6      SINGLE       n     1.089  0.0100     0.977  0.0101
+8JT          C9          H8      SINGLE       n     1.089  0.0100     0.977  0.0108
+8JT          C9          H7      SINGLE       n     1.089  0.0100     0.977  0.0108
+8JT         C10         H10      SINGLE       n     1.089  0.0100     0.977  0.0108
+8JT         C10          H9      SINGLE       n     1.089  0.0100     0.977  0.0108
+8JT         C11         H11      SINGLE       n     1.089  0.0100     0.977  0.0101
+8JT         C11         H12      SINGLE       n     1.089  0.0100     0.977  0.0101
+8JT         C12         H13      SINGLE       n     1.089  0.0100     0.979  0.0146
+8JT         C12         H14      SINGLE       n     1.089  0.0100     0.979  0.0146
+8JT          C1         H15      SINGLE       n     1.082  0.0130     0.940  0.0128
+8JT           C         H16      SINGLE       n     1.082  0.0130     0.947  0.0107
+8JT           N         H18      SINGLE       n     1.036  0.0160     0.911  0.0200
+8JT           N         H17      SINGLE       n     1.036  0.0160     0.911  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8JT          C3          C4          C5     117.407    1.50
+8JT          C3          C4          H1     121.281    1.50
+8JT          C5          C4          H1     121.312    1.50
+8JT          C4          C5           C     119.626    1.50
+8JT          C4          C5          C6     120.040    1.50
+8JT           C          C5          C6     120.334    1.50
+8JT          C5          C6           N     112.316    1.63
+8JT          C5          C6          H3     109.262    1.50
+8JT          C5          C6          H2     109.262    1.50
+8JT           N          C6          H3     108.631    1.50
+8JT           N          C6          H2     108.631    1.50
+8JT          H3          C6          H2     108.019    1.50
+8JT          C8          C7           N     112.305    2.57
+8JT          C8          C7         C11     104.188    1.50
+8JT          C8          C7          H4     109.389    1.50
+8JT           N          C7         C11     112.305    2.57
+8JT           N          C7          H4     109.190    1.50
+8JT         C11          C7          H4     109.389    1.50
+8JT          C7          C8          C9     104.344    1.50
+8JT          C7          C8          H5     110.794    1.50
+8JT          C7          C8          H6     110.794    1.50
+8JT          C9          C8          H5     110.871    1.50
+8JT          C9          C8          H6     110.871    1.50
+8JT          H5          C8          H6     108.887    1.50
+8JT          C8          C9         C10     105.632    1.63
+8JT          C8          C9          H8     110.660    1.50
+8JT          C8          C9          H7     110.660    1.50
+8JT         C10          C9          H8     110.679    1.50
+8JT         C10          C9          H7     110.679    1.50
+8JT          H8          C9          H7     108.634    1.62
+8JT          C9         C10         C11     105.632    1.63
+8JT          C9         C10         H10     110.679    1.50
+8JT          C9         C10          H9     110.679    1.50
+8JT         C11         C10         H10     110.660    1.50
+8JT         C11         C10          H9     110.660    1.50
+8JT         H10         C10          H9     108.634    1.62
+8JT          C7         C11         C10     104.344    1.50
+8JT          C7         C11         H11     110.794    1.50
+8JT          C7         C11         H12     110.794    1.50
+8JT         C10         C11         H11     110.871    1.50
+8JT         C10         C11         H12     110.871    1.50
+8JT         H11         C11         H12     108.887    1.50
+8JT           O         C12          O1     108.187    1.50
+8JT           O         C12         H13     109.983    1.50
+8JT           O         C12         H14     109.983    1.50
+8JT          O1         C12         H13     109.983    1.50
+8JT          O1         C12         H14     109.983    1.50
+8JT         H13         C12         H14     108.633    1.82
+8JT         C12          O1          C2     105.409    1.50
+8JT          O1          C2          C3     109.913    1.50
+8JT          O1          C2          C1     128.217    1.50
+8JT          C3          C2          C1     121.870    1.50
+8JT          C2          C1           C     116.575    1.50
+8JT          C2          C1         H15     121.654    1.50
+8JT           C          C1         H15     121.774    1.50
+8JT         C12           O          C3     105.409    1.50
+8JT           O          C3          C2     109.761    1.50
+8JT           O          C3          C4     127.990    1.50
+8JT          C2          C3          C4     122.249    1.50
+8JT          C1           C          C5     122.270    1.50
+8JT          C1           C         H16     118.909    1.50
+8JT          C5           C         H16     118.822    1.50
+8JT          C6           N          C7     114.353    2.29
+8JT          C6           N         H18     108.941    2.32
+8JT          C6           N         H17     108.941    2.32
+8JT          C7           N         H18     108.119    1.50
+8JT          C7           N         H17     108.119    1.50
+8JT         H18           N         H17      98.095    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8JT              const_22          C3          C4          C5          C6     180.000    10.0     2
+8JT       const_sp2_sp2_7           O          C3          C4          C5     180.000     5.0     2
+8JT              const_10           C          C1          C2          O1     180.000    10.0     2
+8JT       const_sp2_sp2_1          O1          C2          C3           O       0.000     5.0     2
+8JT              const_13          C5           C          C1          C2       0.000    10.0     2
+8JT             sp2_sp2_1          C2          C3           O         C12       0.000     5.0     2
+8JT              const_18          C1           C          C5          C6     180.000    10.0     2
+8JT             sp2_sp3_2          C4          C5          C6           N     -90.000    10.0     6
+8JT            sp3_sp3_43          C5          C6           N          C7     180.000    10.0     3
+8JT            sp3_sp3_55          C8          C7           N          C6      60.000    10.0     3
+8JT             sp3_sp3_7           N          C7          C8          C9     180.000    10.0     3
+8JT            sp3_sp3_62         C10         C11          C7           N     -60.000    10.0     3
+8JT            sp3_sp3_10          C7          C8          C9         C10     -60.000    10.0     3
+8JT            sp3_sp3_19         C11         C10          C9          C8      60.000    10.0     3
+8JT            sp3_sp3_28          C9         C10         C11          C7     -60.000    10.0     3
+8JT            sp3_sp3_37          O1         C12           O          C3      60.000    10.0     3
+8JT            sp3_sp3_40           O         C12          O1          C2      60.000    10.0     3
+8JT             sp2_sp2_3          C3          C2          O1         C12       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+8JT    chir_1    C7    N    C8    C11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8JT    plan-1           C   0.020
+8JT    plan-1          C1   0.020
+8JT    plan-1          C2   0.020
+8JT    plan-1          C3   0.020
+8JT    plan-1          C4   0.020
+8JT    plan-1          C5   0.020
+8JT    plan-1          C6   0.020
+8JT    plan-1          H1   0.020
+8JT    plan-1         H15   0.020
+8JT    plan-1         H16   0.020
+8JT    plan-1           O   0.020
+8JT    plan-1          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8JT            InChI                InChI  1.03 InChI=1S/C13H17NO2/c1-2-4-11(3-1)14-8-10-5-6-12-13(7-10)16-9-15-12/h5-7,11,14H,1-4,8-9H2/p+1
+8JT         InChIKey                InChI  1.03                                                                  LOYZMUZNAPZSOX-UHFFFAOYSA-O
+8JT SMILES_CANONICAL               CACTVS 3.385                                                                C1CCC(C1)[NH2+]Cc2ccc3OCOc3c2
+8JT           SMILES               CACTVS 3.385                                                                C1CCC(C1)[NH2+]Cc2ccc3OCOc3c2
+8JT SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                c1cc2c(cc1C[NH2+]C3CCCC3)OCO2
+8JT           SMILES "OpenEye OEToolkits" 2.0.6                                                                c1cc2c(cc1C[NH2+]C3CCCC3)OCO2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8JT acedrg               243         "dictionary generator"                  
+8JT acedrg_database      11          "data source"                           
+8JT rdkit                2017.03.2   "Chemoinformatics tool"
+8JT refmac5              5.8.0238    "optimization tool"                     

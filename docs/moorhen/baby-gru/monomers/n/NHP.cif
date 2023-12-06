@@ -1,0 +1,227 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NHP     NHP      "4-(2-AMINOPHENYLTHIO)-BUTYLPHOSPHONIC ACID"     NON-POLYMER     30     16     .     
+#
+data_comp_NHP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NHP     C1      C       CR16    0       49.595      24.383      15.547      
+NHP     C2      C       CR6     0       50.053      25.706      15.502      
+NHP     C3      C       CR6     0       51.350      25.934      15.000      
+NHP     C4      C       CR16    0       52.140      24.861      14.570      
+NHP     C5      C       CR16    0       51.654      23.567      14.631      
+NHP     C6      C       CR16    0       50.385      23.331      15.119      
+NHP     N1      N       NH2     0       51.853      27.211      14.929      
+NHP     S1      S       S2      0       49.003      27.021      16.058      
+NHP     C7      C       CH2     0       47.889      27.798      14.864      
+NHP     C8      C       CH2     0       48.654      28.354      13.677      
+NHP     C9      C       CH2     0       47.766      28.601      12.468      
+NHP     C10     C       CH2     0       48.497      29.307      11.338      
+NHP     P1      P       P       0       47.406      29.672      9.950       
+NHP     O1      O       OP      -1      48.209      30.414      8.936       
+NHP     O2      O       OP      -1      46.283      30.503      10.473      
+NHP     O3      O       O       0       46.918      28.367      9.415       
+NHP     H1      H       H       0       48.731      24.213      15.879      
+NHP     H4      H       H       0       53.005      25.026      14.237      
+NHP     H5      H       H       0       52.192      22.849      14.340      
+NHP     H6      H       H       0       50.054      22.450      15.162      
+NHP     HN11    H       H       0       52.494      27.396      14.358      
+NHP     HN12    H       H       0       51.533      27.837      15.454      
+NHP     H71     H       H       0       47.403      28.518      15.306      
+NHP     H72     H       H       0       47.245      27.135      14.555      
+NHP     H81     H       H       0       49.363      27.725      13.424      
+NHP     H82     H       H       0       49.080      29.199      13.934      
+NHP     H91     H       H       0       46.998      29.143      12.746      
+NHP     H92     H       H       0       47.424      27.741      12.146      
+NHP     H101    H       H       0       49.237      28.741      11.036      
+NHP     H102    H       H       0       48.885      30.139      11.681      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NHP          C1          C2      DOUBLE       y     1.396  0.0100     1.396  0.0100
+NHP          C1          C6      SINGLE       y     1.379  0.0106     1.379  0.0106
+NHP          C2          C3      SINGLE       y     1.403  0.0100     1.403  0.0100
+NHP          C2          S1      SINGLE       n     1.772  0.0127     1.772  0.0127
+NHP          C3          C4      DOUBLE       y     1.396  0.0145     1.396  0.0145
+NHP          C3          N1      SINGLE       n     1.371  0.0155     1.371  0.0155
+NHP          C4          C5      SINGLE       y     1.381  0.0111     1.381  0.0111
+NHP          C5          C6      DOUBLE       y     1.376  0.0124     1.376  0.0124
+NHP          S1          C7      SINGLE       n     1.809  0.0191     1.809  0.0191
+NHP          C7          C8      SINGLE       n     1.518  0.0102     1.518  0.0102
+NHP          C8          C9      SINGLE       n     1.521  0.0145     1.521  0.0145
+NHP          C9         C10      SINGLE       n     1.520  0.0163     1.520  0.0163
+NHP         C10          P1      SINGLE       n     1.803  0.0200     1.803  0.0200
+NHP          P1          O1      SINGLE       n     1.492  0.0200     1.492  0.0200
+NHP          P1          O2      SINGLE       n     1.492  0.0200     1.492  0.0200
+NHP          P1          O3      DOUBLE       n     1.492  0.0200     1.492  0.0200
+NHP          C1          H1      SINGLE       n     1.082  0.0130     0.941  0.0197
+NHP          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0186
+NHP          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0172
+NHP          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0167
+NHP          N1        HN11      SINGLE       n     1.016  0.0100     0.877  0.0200
+NHP          N1        HN12      SINGLE       n     1.016  0.0100     0.877  0.0200
+NHP          C7         H71      SINGLE       n     1.089  0.0100     0.975  0.0143
+NHP          C7         H72      SINGLE       n     1.089  0.0100     0.975  0.0143
+NHP          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0160
+NHP          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0160
+NHP          C9         H91      SINGLE       n     1.089  0.0100     0.980  0.0160
+NHP          C9         H92      SINGLE       n     1.089  0.0100     0.980  0.0160
+NHP         C10        H101      SINGLE       n     1.089  0.0100     0.980  0.0122
+NHP         C10        H102      SINGLE       n     1.089  0.0100     0.980  0.0122
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NHP          C2          C1          C6     120.664    1.50
+NHP          C2          C1          H1     119.259    1.50
+NHP          C6          C1          H1     120.076    1.50
+NHP          C1          C2          C3     117.120    1.50
+NHP          C1          C2          S1     121.440    2.83
+NHP          C3          C2          S1     121.440    2.83
+NHP          C2          C3          C4     120.907    2.35
+NHP          C2          C3          N1     119.796    1.52
+NHP          C4          C3          N1     119.296    1.50
+NHP          C3          C4          C5     120.893    1.50
+NHP          C3          C4          H4     119.199    1.50
+NHP          C5          C4          H4     119.907    1.50
+NHP          C4          C5          C6     120.295    1.50
+NHP          C4          C5          H5     119.716    1.50
+NHP          C6          C5          H5     119.998    1.50
+NHP          C1          C6          C5     120.113    1.50
+NHP          C1          C6          H6     119.843    1.50
+NHP          C5          C6          H6     120.045    1.50
+NHP          C3          N1        HN11     119.764    1.50
+NHP          C3          N1        HN12     119.764    1.50
+NHP        HN11          N1        HN12     120.471    3.00
+NHP          C2          S1          C7     120.000    3.00
+NHP          S1          C7          C8     112.239    3.00
+NHP          S1          C7         H71     109.066    1.50
+NHP          S1          C7         H72     109.066    1.50
+NHP          C8          C7         H71     109.599    1.50
+NHP          C8          C7         H72     109.599    1.50
+NHP         H71          C7         H72     108.532    1.88
+NHP          C7          C8          C9     112.631    1.53
+NHP          C7          C8         H81     109.237    1.50
+NHP          C7          C8         H82     109.237    1.50
+NHP          C9          C8         H81     108.801    1.50
+NHP          C9          C8         H82     108.801    1.50
+NHP         H81          C8         H82     107.852    1.50
+NHP          C8          C9         C10     112.848    1.99
+NHP          C8          C9         H91     108.801    1.50
+NHP          C8          C9         H92     108.801    1.50
+NHP         C10          C9         H91     109.282    1.50
+NHP         C10          C9         H92     109.282    1.50
+NHP         H91          C9         H92     107.744    1.50
+NHP          C9         C10          P1     111.410    2.87
+NHP          C9         C10        H101     108.817    1.50
+NHP          C9         C10        H102     108.817    1.50
+NHP          P1         C10        H101     109.545    1.50
+NHP          P1         C10        H102     109.545    1.50
+NHP        H101         C10        H102     107.240    1.91
+NHP         C10          P1          O1     108.625    3.00
+NHP         C10          P1          O2     108.625    3.00
+NHP         C10          P1          O3     108.625    3.00
+NHP          O1          P1          O2     111.786    1.50
+NHP          O1          P1          O3     111.786    1.50
+NHP          O2          P1          O3     111.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NHP       const_sp2_sp2_2          C6          C1          C2          S1     180.000     5.0     2
+NHP              const_21          C2          C1          C6          C5       0.000    10.0     2
+NHP            sp3_sp3_22          P1         C10          C9          C8     180.000    10.0     3
+NHP            sp3_sp3_31          C9         C10          P1          O1     180.000    10.0     3
+NHP       const_sp2_sp2_8          S1          C2          C3          N1       0.000     5.0     2
+NHP             sp2_sp2_1          C1          C2          S1          C7     180.000     5.0     2
+NHP              const_11          N1          C3          C4          C5     180.000    10.0     2
+NHP             sp2_sp2_3          C2          C3          N1        HN11     180.000     5.0     2
+NHP              const_13          C3          C4          C5          C6       0.000    10.0     2
+NHP              const_17          C4          C5          C6          C1       0.000    10.0     2
+NHP             sp3_sp3_1          C8          C7          S1          C2     180.000    10.0     3
+NHP             sp3_sp3_4          S1          C7          C8          C9     180.000    10.0     3
+NHP            sp3_sp3_13          C7          C8          C9         C10     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NHP    chir_1    P1    O1    O2    O3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NHP    plan-1          C1   0.020
+NHP    plan-1          C2   0.020
+NHP    plan-1          C3   0.020
+NHP    plan-1          C4   0.020
+NHP    plan-1          C5   0.020
+NHP    plan-1          C6   0.020
+NHP    plan-1          H1   0.020
+NHP    plan-1          H4   0.020
+NHP    plan-1          H5   0.020
+NHP    plan-1          H6   0.020
+NHP    plan-1          N1   0.020
+NHP    plan-1          S1   0.020
+NHP    plan-2          C3   0.020
+NHP    plan-2        HN11   0.020
+NHP    plan-2        HN12   0.020
+NHP    plan-2          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NHP           SMILES              ACDLabs 10.04                                                                             O=P(O)(O)CCCCSc1ccccc1N
+NHP SMILES_CANONICAL               CACTVS 3.341                                                                           Nc1ccccc1SCCCC[P](O)(O)=O
+NHP           SMILES               CACTVS 3.341                                                                           Nc1ccccc1SCCCC[P](O)(O)=O
+NHP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                         c1ccc(c(c1)N)SCCCCP(=O)(O)O
+NHP           SMILES "OpenEye OEToolkits" 1.5.0                                                                         c1ccc(c(c1)N)SCCCCP(=O)(O)O
+NHP            InChI                InChI  1.03 InChI=1S/C10H16NO3PS/c11-9-5-1-2-6-10(9)16-8-4-3-7-15(12,13)14/h1-2,5-6H,3-4,7-8,11H2,(H2,12,13,14)
+NHP         InChIKey                InChI  1.03                                                                         POZPBCXLYRZUTO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NHP acedrg               243         "dictionary generator"                  
+NHP acedrg_database      11          "data source"                           
+NHP rdkit                2017.03.2   "Chemoinformatics tool"
+NHP refmac5              5.8.0238    "optimization tool"                     

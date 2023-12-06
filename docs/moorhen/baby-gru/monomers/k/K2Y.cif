@@ -1,0 +1,216 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+K2Y     K2Y      "(2,4,5-triphosphonooxyphenyl) dihydrogen phosphate"     NON-POLYMER     28     26     .     
+#
+data_comp_K2Y
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+K2Y     OAE     O       OP      -1      -18.075     25.965      53.983      
+K2Y     PAW     P       P       0       -17.483     26.187      52.621      
+K2Y     OAF     O       O       0       -16.749     24.947      52.173      
+K2Y     OAA     O       OP      -1      -16.545     27.358      52.636      
+K2Y     OAO     O       O2      0       -18.641     26.438      51.558      
+K2Y     CAS     C       CR6     0       -19.527     25.482      51.020      
+K2Y     CAM     C       CR16    0       -19.912     24.356      51.738      
+K2Y     CAT     C       CR6     0       -20.790     23.433      51.184      
+K2Y     OAP     O       O2      0       -21.203     22.288      51.894      
+K2Y     PAX     P       P       0       -20.347     21.428      52.925      
+K2Y     OAG     O       OP      -1      -20.841     20.012      52.897      
+K2Y     OAH     O       O       0       -18.908     21.473      52.472      
+K2Y     OAB     O       OP      -1      -20.464     21.994      54.308      
+K2Y     CAV     C       CR6     0       -21.315     23.654      49.899      
+K2Y     OAR     O       O2      0       -22.201     22.700      49.360      
+K2Y     PAZ     P       P       0       -23.372     22.961      48.314      
+K2Y     OAK     O       OP      -1      -24.082     24.242      48.637      
+K2Y     OAL     O       O       0       -22.711     23.067      46.961      
+K2Y     OAD     O       OP      -1      -24.330     21.806      48.323      
+K2Y     CAN     C       CR16    0       -20.930     24.780      49.181      
+K2Y     CAU     C       CR6     0       -20.051     25.704      49.735      
+K2Y     OAQ     O       O2      0       -19.640     26.853      49.028      
+K2Y     PAY     P       P       0       -20.468     27.661      47.930      
+K2Y     OAI     O       OP      -1      -21.944     27.542      48.184      
+K2Y     OAJ     O       OP      -1      -20.042     29.100      47.926      
+K2Y     OAC     O       O       0       -20.124     27.021      46.607      
+K2Y     H3      H       H       0       -19.571     24.212      52.605      
+K2Y     H8      H       H       0       -21.273     24.922      48.314      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+K2Y         PAY         OAC      DOUBLE       n     1.509  0.0200     1.509  0.0200
+K2Y         PAZ         OAL      DOUBLE       n     1.509  0.0200     1.509  0.0200
+K2Y         PAY         OAJ      SINGLE       n     1.509  0.0200     1.509  0.0200
+K2Y         PAY         OAI      SINGLE       n     1.509  0.0200     1.509  0.0200
+K2Y         OAQ         PAY      SINGLE       n     1.592  0.0187     1.592  0.0187
+K2Y         PAZ         OAD      SINGLE       n     1.509  0.0200     1.509  0.0200
+K2Y         OAR         PAZ      SINGLE       n     1.592  0.0187     1.592  0.0187
+K2Y         PAZ         OAK      SINGLE       n     1.509  0.0200     1.509  0.0200
+K2Y         CAU         OAQ      SINGLE       n     1.402  0.0141     1.402  0.0141
+K2Y         CAN         CAU      SINGLE       y     1.384  0.0100     1.384  0.0100
+K2Y         CAV         CAN      DOUBLE       y     1.384  0.0100     1.384  0.0100
+K2Y         CAV         OAR      SINGLE       n     1.402  0.0141     1.402  0.0141
+K2Y         CAS         CAU      DOUBLE       y     1.398  0.0127     1.398  0.0127
+K2Y         CAT         CAV      SINGLE       y     1.398  0.0127     1.398  0.0127
+K2Y         OAO         CAS      SINGLE       n     1.402  0.0141     1.402  0.0141
+K2Y         CAS         CAM      SINGLE       y     1.384  0.0100     1.384  0.0100
+K2Y         CAM         CAT      DOUBLE       y     1.384  0.0100     1.384  0.0100
+K2Y         CAT         OAP      SINGLE       n     1.402  0.0141     1.402  0.0141
+K2Y         PAW         OAO      SINGLE       n     1.592  0.0187     1.592  0.0187
+K2Y         OAP         PAX      SINGLE       n     1.592  0.0187     1.592  0.0187
+K2Y         PAX         OAH      DOUBLE       n     1.509  0.0200     1.509  0.0200
+K2Y         PAW         OAF      DOUBLE       n     1.509  0.0200     1.509  0.0200
+K2Y         PAW         OAA      SINGLE       n     1.509  0.0200     1.509  0.0200
+K2Y         OAE         PAW      SINGLE       n     1.509  0.0200     1.509  0.0200
+K2Y         PAX         OAG      SINGLE       n     1.509  0.0200     1.509  0.0200
+K2Y         PAX         OAB      SINGLE       n     1.509  0.0200     1.509  0.0200
+K2Y         CAM          H3      SINGLE       n     1.082  0.0130     0.944  0.0100
+K2Y         CAN          H8      SINGLE       n     1.082  0.0130     0.944  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+K2Y         OAO         PAW         OAF     114.838    3.00
+K2Y         OAO         PAW         OAA     114.838    3.00
+K2Y         OAO         PAW         OAE     114.838    3.00
+K2Y         OAF         PAW         OAA     112.139    1.52
+K2Y         OAF         PAW         OAE     112.139    1.52
+K2Y         OAA         PAW         OAE     112.139    1.52
+K2Y         CAS         OAO         PAW     124.779    1.73
+K2Y         CAU         CAS         OAO     119.532    1.75
+K2Y         CAU         CAS         CAM     120.034    1.50
+K2Y         OAO         CAS         CAM     120.434    2.43
+K2Y         CAS         CAM         CAT     119.932    1.50
+K2Y         CAS         CAM          H3     120.034    1.50
+K2Y         CAT         CAM          H3     120.034    1.50
+K2Y         CAV         CAT         CAM     120.034    1.50
+K2Y         CAV         CAT         OAP     119.532    1.75
+K2Y         CAM         CAT         OAP     120.434    2.43
+K2Y         CAT         OAP         PAX     124.779    1.73
+K2Y         OAP         PAX         OAH     114.838    3.00
+K2Y         OAP         PAX         OAG     114.838    3.00
+K2Y         OAP         PAX         OAB     114.838    3.00
+K2Y         OAH         PAX         OAG     112.139    1.52
+K2Y         OAH         PAX         OAB     112.139    1.52
+K2Y         OAG         PAX         OAB     112.139    1.52
+K2Y         CAN         CAV         OAR     120.434    2.43
+K2Y         CAN         CAV         CAT     120.034    1.50
+K2Y         OAR         CAV         CAT     119.532    1.75
+K2Y         PAZ         OAR         CAV     124.779    1.73
+K2Y         OAL         PAZ         OAD     112.139    1.52
+K2Y         OAL         PAZ         OAR     114.838    3.00
+K2Y         OAL         PAZ         OAK     112.139    1.52
+K2Y         OAD         PAZ         OAR     114.838    3.00
+K2Y         OAD         PAZ         OAK     112.139    1.52
+K2Y         OAR         PAZ         OAK     114.838    3.00
+K2Y         CAU         CAN         CAV     119.932    1.50
+K2Y         CAU         CAN          H8     120.034    1.50
+K2Y         CAV         CAN          H8     120.034    1.50
+K2Y         OAQ         CAU         CAN     120.434    2.43
+K2Y         OAQ         CAU         CAS     119.532    1.75
+K2Y         CAN         CAU         CAS     120.034    1.50
+K2Y         PAY         OAQ         CAU     124.779    1.73
+K2Y         OAC         PAY         OAJ     112.139    1.52
+K2Y         OAC         PAY         OAI     112.139    1.52
+K2Y         OAC         PAY         OAQ     114.838    3.00
+K2Y         OAJ         PAY         OAI     112.139    1.52
+K2Y         OAJ         PAY         OAQ     114.838    3.00
+K2Y         OAI         PAY         OAQ     114.838    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+K2Y             sp2_sp2_3         CAN         CAV         OAR         PAZ     180.000     5.0     2
+K2Y              const_10         CAU         CAN         CAV         OAR     180.000    10.0     2
+K2Y             sp3_sp3_4         OAL         PAZ         OAR         CAV     180.000    10.0     3
+K2Y       const_sp2_sp2_6         CAV         CAN         CAU         OAQ     180.000     5.0     2
+K2Y             sp3_sp3_7         OAF         PAW         OAO         CAS     180.000    10.0     3
+K2Y             sp2_sp2_1         CAN         CAU         OAQ         PAY     180.000     5.0     2
+K2Y             sp3_sp3_1         OAC         PAY         OAQ         CAU     180.000    10.0     3
+K2Y             sp2_sp2_5         CAU         CAS         OAO         PAW     180.000     5.0     2
+K2Y       const_sp2_sp2_4         OAO         CAS         CAU         OAQ       0.000     5.0     2
+K2Y              const_22         CAT         CAM         CAS         OAO     180.000    10.0     2
+K2Y              const_18         CAS         CAM         CAT         OAP     180.000    10.0     2
+K2Y              const_16         OAP         CAT         CAV         OAR       0.000    10.0     2
+K2Y             sp2_sp2_7         CAV         CAT         OAP         PAX     180.000     5.0     2
+K2Y            sp3_sp3_10         OAH         PAX         OAP         CAT     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+K2Y    chir_1    PAW    OAO    OAA    OAE    both
+K2Y    chir_2    PAX    OAP    OAG    OAB    both
+K2Y    chir_3    PAZ    OAR    OAD    OAK    both
+K2Y    chir_4    PAY    OAQ    OAJ    OAI    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+K2Y    plan-1         CAM   0.020
+K2Y    plan-1         CAN   0.020
+K2Y    plan-1         CAS   0.020
+K2Y    plan-1         CAT   0.020
+K2Y    plan-1         CAU   0.020
+K2Y    plan-1         CAV   0.020
+K2Y    plan-1          H3   0.020
+K2Y    plan-1          H8   0.020
+K2Y    plan-1         OAO   0.020
+K2Y    plan-1         OAP   0.020
+K2Y    plan-1         OAQ   0.020
+K2Y    plan-1         OAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+K2Y            InChI                InChI  1.03 InChI=1S/C6H10O16P4/c7-23(8,9)19-3-1-4(20-24(10,11)12)6(22-26(16,17)18)2-5(3)21-25(13,14)15/h1-2H,(H2,7,8,9)(H2,10,11,12)(H2,13,14,15)(H2,16,17,18)
+K2Y         InChIKey                InChI  1.03                                                                                                                         OFSQKFMVBPORNX-UHFFFAOYSA-N
+K2Y SMILES_CANONICAL               CACTVS 3.385                                                                                        O[P](O)(=O)Oc1cc(O[P](O)(O)=O)c(O[P](O)(O)=O)cc1O[P](O)(O)=O
+K2Y           SMILES               CACTVS 3.385                                                                                        O[P](O)(=O)Oc1cc(O[P](O)(O)=O)c(O[P](O)(O)=O)cc1O[P](O)(O)=O
+K2Y SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                              c1c(c(cc(c1OP(=O)(O)O)OP(=O)(O)O)OP(=O)(O)O)OP(=O)(O)O
+K2Y           SMILES "OpenEye OEToolkits" 2.0.6                                                                                              c1c(c(cc(c1OP(=O)(O)O)OP(=O)(O)O)OP(=O)(O)O)OP(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+K2Y acedrg               243         "dictionary generator"                  
+K2Y acedrg_database      11          "data source"                           
+K2Y rdkit                2017.03.2   "Chemoinformatics tool"
+K2Y refmac5              5.8.0238    "optimization tool"                     

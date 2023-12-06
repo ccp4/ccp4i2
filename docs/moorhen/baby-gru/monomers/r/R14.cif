@@ -1,0 +1,632 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+R14     R14      "N,N'-[acridine-3,6-diylbis(1H-1,2,3-triazole-1,4-diylbenzene-3,1-diyl)]bis[3-(diethylamino)propanamide]"     NON-POLYMER     103     56     .     
+#
+data_comp_R14
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+R14     CAA     C       CH3     0       23.974      -24.015     13.394      
+R14     CAB     C       CH3     0       27.279      -21.481     14.817      
+R14     CAC     C       CH3     0       28.659      -15.162     -18.297     
+R14     CAD     C       CH3     0       31.446      -12.543     -16.500     
+R14     OAE     O       O       0       24.980      -21.793     8.798       
+R14     OAF     O       O       0       30.300      -15.221     -11.977     
+R14     CAG     C       CR16    0       27.366      -20.734     5.238       
+R14     CAH     C       CR16    0       27.784      -16.424     -8.577      
+R14     CAI     C       CR16    0       27.199      -21.152     6.543       
+R14     CAJ     C       CR16    0       28.017      -16.021     -9.877      
+R14     CAK     C       CR16    0       27.334      -21.648     4.196       
+R14     CAL     C       CR16    0       27.796      -17.769     -8.243      
+R14     CAM     C       CR16    0       27.362      -26.664     -0.377      
+R14     CAN     C       CR16    0       27.972      -24.501     -7.316      
+R14     CAO     C       CR16    0       27.486      -27.013     -1.696      
+R14     CAP     C       CR16    0       27.901      -25.538     -6.425      
+R14     CAQ     C       CR16    0       26.961      -23.433     5.763       
+R14     CAR     C       CR16    0       28.282      -18.339     -10.527     
+R14     CAS     C       CR16    0       27.390      -24.309     -0.974      
+R14     CAT     C       CR16    0       27.790      -22.899     -5.498      
+R14     CAU     C       CR16    0       27.695      -26.327     -4.076      
+R14     CAV     C       CR15    0       27.373      -23.776     2.001       
+R14     CAW     C       CR15    0       27.913      -20.760     -7.621      
+R14     CAX     C       CH2     0       25.459      -23.744     13.406      
+R14     CAY     C       CH2     0       27.211      -22.020     13.409      
+R14     CAZ     C       CH2     0       29.551      -15.705     -17.206     
+R14     CBA     C       CH2     0       31.300      -13.990     -16.903     
+R14     CBB     C       CH2     0       26.373      -22.763     10.520      
+R14     CBC     C       CH2     0       29.091      -15.122     -14.056     
+R14     CBD     C       CH2     0       25.533      -22.035     11.561      
+R14     CBE     C       CH2     0       30.337      -15.131     -14.926     
+R14     NBF     N       NRD5    0       26.729      -25.273     3.480       
+R14     NBG     N       NRD5    0       28.223      -21.171     -9.760      
+R14     NBH     N       NRD5    0       26.774      -25.883     2.325       
+R14     NBI     N       NRD5    0       28.192      -22.330     -9.157      
+R14     NBJ     N       NRD6    0       27.591      -23.640     -3.248      
+R14     NBK     N       NH1     0       26.820      -22.946     8.148       
+R14     NBL     N       NH1     0       28.513      -16.596     -12.202     
+R14     CBM     C       C       0       25.978      -22.445     9.082       
+R14     CBN     C       C       0       29.367      -15.642     -12.648     
+R14     CBO     C       CR6     0       26.995      -22.507     6.811       
+R14     CBP     C       CR6     0       28.269      -16.981     -10.860     
+R14     CBQ     C       CR6     0       27.135      -23.008     4.442       
+R14     CBR     C       CR6     0       28.043      -18.745     -9.211      
+R14     CBS     C       CR6     0       27.314      -25.331     0.019       
+R14     CBT     C       CR6     0       27.920      -23.176     -6.893      
+R14     CBU     C       CR5     0       27.096      -23.964     3.323       
+R14     CBV     C       CR5     0       28.054      -20.171     -8.842      
+R14     CBW     C       CR66    0       27.569      -26.025     -2.723      
+R14     CBX     C       CR66    0       27.771      -25.308     -5.023      
+R14     CBY     C       CR66    0       27.520      -24.642     -2.348      
+R14     CBZ     C       CR66    0       27.714      -23.954     -4.553      
+R14     NCA     N       NT      0       25.831      -22.367     12.976      
+R14     NCB     N       NT      0       30.107      -14.654     -16.310     
+R14     NCC     N       NR5     0       27.177      -24.972     1.400       
+R14     NCD     N       NR5     0       27.998      -22.094     -7.833      
+R14     HAA     H       H       0       23.786      -24.817     13.908      
+R14     HAAA    H       H       0       23.674      -24.141     12.479      
+R14     HAAB    H       H       0       23.504      -23.262     13.787      
+R14     HAB     H       H       0       28.190      -21.212     15.018      
+R14     HABA    H       H       0       27.002      -22.170     15.443      
+R14     HABB    H       H       0       26.690      -20.714     14.900      
+R14     HAC     H       H       0       28.293      -15.898     -18.813     
+R14     HACA    H       H       0       29.174      -14.583     -18.882     
+R14     HACB    H       H       0       27.933      -14.655     -17.899     
+R14     HAD     H       H       0       32.264      -12.182     -16.879     
+R14     HADA    H       H       0       31.482      -12.477     -15.533     
+R14     HADB    H       H       0       30.686      -12.036     -16.830     
+R14     HAG     H       H       0       27.504      -19.822     5.055       
+R14     HAH     H       H       0       27.615      -15.780     -7.913      
+R14     HAI     H       H       0       27.222      -20.527     7.249       
+R14     HAJ     H       H       0       28.009      -15.105     -10.100     
+R14     HAK     H       H       0       27.449      -21.346     3.314       
+R14     HAL     H       H       0       27.634      -18.025     -7.353      
+R14     HAM     H       H       0       27.311      -27.348     0.268       
+R14     HAN     H       H       0       28.058      -24.699     -8.233      
+R14     HAO     H       H       0       27.517      -27.922     -1.930      
+R14     HAP     H       H       0       27.939      -26.422     -6.744      
+R14     HAQ     H       H       0       26.824      -24.341     5.949       
+R14     HAR     H       H       0       28.451      -18.978     -11.191     
+R14     HAS     H       H       0       27.357      -23.401     -0.722      
+R14     HAT     H       H       0       27.754      -22.008     -5.194      
+R14     HAU     H       H       0       27.731      -27.224     -4.353      
+R14     HAV     H       H       0       27.647      -22.985     1.582       
+R14     HAW     H       H       0       27.782      -20.336     -6.797      
+R14     HAX     H       H       0       25.904      -24.393     12.823      
+R14     HAXA    H       H       0       25.794      -23.893     14.315      
+R14     HAY     H       H       0       27.777      -22.818     13.346      
+R14     HAYA    H       H       0       27.580      -21.348     12.798      
+R14     HAZ     H       H       0       30.292      -16.197     -17.618     
+R14     HAZA    H       H       0       29.036      -16.343     -16.670     
+R14     HBA     H       H       0       32.105      -14.478     -16.629     
+R14     HBAA    H       H       0       31.246      -14.038     -17.881     
+R14     HBB     H       H       0       26.292      -23.722     10.659      
+R14     HBBA    H       H       0       27.309      -22.527     10.646      
+R14     HBC     H       H       0       28.405      -15.664     -14.480     
+R14     HBCA    H       H       0       28.754      -14.211     -13.996     
+R14     HBD     H       H       0       24.586      -22.226     11.387      
+R14     HBDA    H       H       0       25.658      -21.069     11.439      
+R14     HBE     H       H       0       30.692      -16.046     -14.960     
+R14     HBEA    H       H       0       31.019      -14.566     -14.501     
+R14     HNBK    H       H       0       27.314      -23.627     8.389       
+R14     HNBL    H       H       0       28.069      -17.046     -12.806     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+R14         CAA         CAX      SINGLE       n     1.508  0.0173     1.508  0.0173
+R14         CAB         CAY      SINGLE       n     1.508  0.0173     1.508  0.0173
+R14         CAC         CAZ      SINGLE       n     1.508  0.0173     1.508  0.0173
+R14         CAD         CBA      SINGLE       n     1.508  0.0173     1.508  0.0173
+R14         OAE         CBM      DOUBLE       n     1.223  0.0143     1.223  0.0143
+R14         OAF         CBN      DOUBLE       n     1.223  0.0143     1.223  0.0143
+R14         CAG         CAK      DOUBLE       y     1.383  0.0100     1.383  0.0100
+R14         CAG         CAI      SINGLE       y     1.379  0.0100     1.379  0.0100
+R14         CAH         CAJ      DOUBLE       y     1.379  0.0100     1.379  0.0100
+R14         CAH         CAL      SINGLE       y     1.383  0.0100     1.383  0.0100
+R14         CAI         CBO      DOUBLE       y     1.394  0.0100     1.394  0.0100
+R14         CAJ         CBP      SINGLE       y     1.394  0.0100     1.394  0.0100
+R14         CAK         CBQ      SINGLE       y     1.391  0.0100     1.391  0.0100
+R14         CAL         CBR      DOUBLE       y     1.391  0.0100     1.391  0.0100
+R14         CAM         CAO      DOUBLE       y     1.361  0.0114     1.361  0.0114
+R14         CAM         CBS      SINGLE       y     1.382  0.0100     1.382  0.0100
+R14         CAN         CBT      DOUBLE       y     1.382  0.0100     1.382  0.0100
+R14         CAN         CAP      SINGLE       y     1.361  0.0114     1.361  0.0114
+R14         CAO         CBW      SINGLE       y     1.424  0.0100     1.424  0.0100
+R14         CAP         CBX      DOUBLE       y     1.424  0.0100     1.424  0.0100
+R14         CAQ         CBQ      DOUBLE       y     1.391  0.0100     1.391  0.0100
+R14         CAQ         CBO      SINGLE       y     1.394  0.0100     1.394  0.0100
+R14         CAR         CBP      DOUBLE       y     1.394  0.0100     1.394  0.0100
+R14         CAR         CBR      SINGLE       y     1.391  0.0100     1.391  0.0100
+R14         CAS         CBY      SINGLE       y     1.418  0.0100     1.418  0.0100
+R14         CAS         CBS      DOUBLE       y     1.414  0.0158     1.414  0.0158
+R14         CAT         CBT      SINGLE       y     1.414  0.0158     1.414  0.0158
+R14         CAT         CBZ      DOUBLE       y     1.418  0.0100     1.418  0.0100
+R14         CAU         CBX      SINGLE       y     1.388  0.0100     1.388  0.0100
+R14         CAU         CBW      DOUBLE       y     1.388  0.0100     1.388  0.0100
+R14         CAV         NCC      SINGLE       y     1.351  0.0100     1.351  0.0100
+R14         CAV         CBU      DOUBLE       y     1.362  0.0100     1.362  0.0100
+R14         CAW         CBV      DOUBLE       y     1.362  0.0100     1.362  0.0100
+R14         CAW         NCD      SINGLE       y     1.351  0.0100     1.351  0.0100
+R14         CAX         NCA      SINGLE       n     1.479  0.0150     1.479  0.0150
+R14         CAY         NCA      SINGLE       n     1.479  0.0150     1.479  0.0150
+R14         CAZ         NCB      SINGLE       n     1.479  0.0150     1.479  0.0150
+R14         CBA         NCB      SINGLE       n     1.479  0.0150     1.479  0.0150
+R14         CBB         CBM      SINGLE       n     1.514  0.0193     1.514  0.0193
+R14         CBB         CBD      SINGLE       n     1.518  0.0129     1.518  0.0129
+R14         CBC         CBE      SINGLE       n     1.518  0.0129     1.518  0.0129
+R14         CBC         CBN      SINGLE       n     1.514  0.0193     1.514  0.0193
+R14         CBD         NCA      SINGLE       n     1.478  0.0100     1.478  0.0100
+R14         CBE         NCB      SINGLE       n     1.478  0.0100     1.478  0.0100
+R14         NBF         NBH      DOUBLE       y     1.307  0.0100     1.307  0.0100
+R14         NBF         CBU      SINGLE       y     1.367  0.0100     1.367  0.0100
+R14         NBG         NBI      DOUBLE       y     1.307  0.0100     1.307  0.0100
+R14         NBG         CBV      SINGLE       y     1.367  0.0100     1.367  0.0100
+R14         NBH         NCC      SINGLE       y     1.357  0.0100     1.357  0.0100
+R14         NBI         NCD      SINGLE       y     1.357  0.0100     1.357  0.0100
+R14         NBJ         CBZ      SINGLE       y     1.345  0.0100     1.345  0.0100
+R14         NBJ         CBY      DOUBLE       y     1.345  0.0100     1.345  0.0100
+R14         NBK         CBO      SINGLE       n     1.416  0.0100     1.416  0.0100
+R14         NBK         CBM      SINGLE       n     1.350  0.0120     1.350  0.0120
+R14         NBL         CBN      SINGLE       n     1.350  0.0120     1.350  0.0120
+R14         NBL         CBP      SINGLE       n     1.416  0.0100     1.416  0.0100
+R14         CBQ         CBU      SINGLE       n     1.468  0.0100     1.468  0.0100
+R14         CBR         CBV      SINGLE       n     1.468  0.0100     1.468  0.0100
+R14         CBS         NCC      SINGLE       n     1.427  0.0100     1.427  0.0100
+R14         CBT         NCD      SINGLE       n     1.427  0.0100     1.427  0.0100
+R14         CBW         CBY      SINGLE       y     1.431  0.0100     1.431  0.0100
+R14         CBX         CBZ      SINGLE       y     1.431  0.0100     1.431  0.0100
+R14         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0145
+R14         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0145
+R14         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0145
+R14         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0145
+R14         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0145
+R14         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0145
+R14         CAC         HAC      SINGLE       n     1.089  0.0100     0.971  0.0145
+R14         CAC        HACA      SINGLE       n     1.089  0.0100     0.971  0.0145
+R14         CAC        HACB      SINGLE       n     1.089  0.0100     0.971  0.0145
+R14         CAD         HAD      SINGLE       n     1.089  0.0100     0.971  0.0145
+R14         CAD        HADA      SINGLE       n     1.089  0.0100     0.971  0.0145
+R14         CAD        HADB      SINGLE       n     1.089  0.0100     0.971  0.0145
+R14         CAG         HAG      SINGLE       n     1.082  0.0130     0.940  0.0164
+R14         CAH         HAH      SINGLE       n     1.082  0.0130     0.940  0.0164
+R14         CAI         HAI      SINGLE       n     1.082  0.0130     0.943  0.0178
+R14         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0178
+R14         CAK         HAK      SINGLE       n     1.082  0.0130     0.940  0.0143
+R14         CAL         HAL      SINGLE       n     1.082  0.0130     0.940  0.0143
+R14         CAM         HAM      SINGLE       n     1.082  0.0130     0.943  0.0168
+R14         CAN         HAN      SINGLE       n     1.082  0.0130     0.943  0.0168
+R14         CAO         HAO      SINGLE       n     1.082  0.0130     0.940  0.0117
+R14         CAP         HAP      SINGLE       n     1.082  0.0130     0.940  0.0117
+R14         CAQ         HAQ      SINGLE       n     1.082  0.0130     0.937  0.0103
+R14         CAR         HAR      SINGLE       n     1.082  0.0130     0.937  0.0103
+R14         CAS         HAS      SINGLE       n     1.082  0.0130     0.944  0.0183
+R14         CAT         HAT      SINGLE       n     1.082  0.0130     0.944  0.0183
+R14         CAU         HAU      SINGLE       n     1.082  0.0130     0.940  0.0181
+R14         CAV         HAV      SINGLE       n     1.082  0.0130     0.937  0.0137
+R14         CAW         HAW      SINGLE       n     1.082  0.0130     0.937  0.0137
+R14         CAX         HAX      SINGLE       n     1.089  0.0100     0.980  0.0143
+R14         CAX        HAXA      SINGLE       n     1.089  0.0100     0.980  0.0143
+R14         CAY         HAY      SINGLE       n     1.089  0.0100     0.980  0.0143
+R14         CAY        HAYA      SINGLE       n     1.089  0.0100     0.980  0.0143
+R14         CAZ         HAZ      SINGLE       n     1.089  0.0100     0.980  0.0143
+R14         CAZ        HAZA      SINGLE       n     1.089  0.0100     0.980  0.0143
+R14         CBA         HBA      SINGLE       n     1.089  0.0100     0.980  0.0143
+R14         CBA        HBAA      SINGLE       n     1.089  0.0100     0.980  0.0143
+R14         CBB         HBB      SINGLE       n     1.089  0.0100     0.973  0.0156
+R14         CBB        HBBA      SINGLE       n     1.089  0.0100     0.973  0.0156
+R14         CBC         HBC      SINGLE       n     1.089  0.0100     0.973  0.0156
+R14         CBC        HBCA      SINGLE       n     1.089  0.0100     0.973  0.0156
+R14         CBD         HBD      SINGLE       n     1.089  0.0100     0.982  0.0143
+R14         CBD        HBDA      SINGLE       n     1.089  0.0100     0.982  0.0143
+R14         CBE         HBE      SINGLE       n     1.089  0.0100     0.982  0.0143
+R14         CBE        HBEA      SINGLE       n     1.089  0.0100     0.982  0.0143
+R14         NBK        HNBK      SINGLE       n     1.016  0.0100     0.874  0.0200
+R14         NBL        HNBL      SINGLE       n     1.016  0.0100     0.874  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+R14         CAX         CAA         HAA     109.529    1.50
+R14         CAX         CAA        HAAA     109.529    1.50
+R14         CAX         CAA        HAAB     109.529    1.50
+R14         HAA         CAA        HAAA     109.415    1.50
+R14         HAA         CAA        HAAB     109.415    1.50
+R14        HAAA         CAA        HAAB     109.415    1.50
+R14         CAY         CAB         HAB     109.529    1.50
+R14         CAY         CAB        HABA     109.529    1.50
+R14         CAY         CAB        HABB     109.529    1.50
+R14         HAB         CAB        HABA     109.415    1.50
+R14         HAB         CAB        HABB     109.415    1.50
+R14        HABA         CAB        HABB     109.415    1.50
+R14         CAZ         CAC         HAC     109.529    1.50
+R14         CAZ         CAC        HACA     109.529    1.50
+R14         CAZ         CAC        HACB     109.529    1.50
+R14         HAC         CAC        HACA     109.415    1.50
+R14         HAC         CAC        HACB     109.415    1.50
+R14        HACA         CAC        HACB     109.415    1.50
+R14         CBA         CAD         HAD     109.529    1.50
+R14         CBA         CAD        HADA     109.529    1.50
+R14         CBA         CAD        HADB     109.529    1.50
+R14         HAD         CAD        HADA     109.415    1.50
+R14         HAD         CAD        HADB     109.415    1.50
+R14        HADA         CAD        HADB     109.415    1.50
+R14         CAK         CAG         CAI     120.644    1.50
+R14         CAK         CAG         HAG     119.719    1.50
+R14         CAI         CAG         HAG     119.638    1.50
+R14         CAJ         CAH         CAL     120.644    1.50
+R14         CAJ         CAH         HAH     119.638    1.50
+R14         CAL         CAH         HAH     119.719    1.50
+R14         CAG         CAI         CBO     119.799    1.50
+R14         CAG         CAI         HAI     120.167    1.50
+R14         CBO         CAI         HAI     120.034    1.50
+R14         CAH         CAJ         CBP     119.799    1.50
+R14         CAH         CAJ         HAJ     120.167    1.50
+R14         CBP         CAJ         HAJ     120.034    1.50
+R14         CAG         CAK         CBQ     120.605    1.50
+R14         CAG         CAK         HAK     119.775    1.50
+R14         CBQ         CAK         HAK     119.621    1.50
+R14         CAH         CAL         CBR     120.605    1.50
+R14         CAH         CAL         HAL     119.775    1.50
+R14         CBR         CAL         HAL     119.621    1.50
+R14         CAO         CAM         CBS     120.462    1.50
+R14         CAO         CAM         HAM     119.546    1.50
+R14         CBS         CAM         HAM     119.991    1.50
+R14         CBT         CAN         CAP     120.462    1.50
+R14         CBT         CAN         HAN     119.991    1.50
+R14         CAP         CAN         HAN     119.546    1.50
+R14         CAM         CAO         CBW     120.850    1.50
+R14         CAM         CAO         HAO     119.613    1.50
+R14         CBW         CAO         HAO     119.537    1.50
+R14         CAN         CAP         CBX     120.850    1.50
+R14         CAN         CAP         HAP     119.613    1.50
+R14         CBX         CAP         HAP     119.537    1.50
+R14         CBQ         CAQ         CBO     119.827    1.50
+R14         CBQ         CAQ         HAQ     119.896    1.50
+R14         CBO         CAQ         HAQ     120.278    1.50
+R14         CBP         CAR         CBR     119.827    1.50
+R14         CBP         CAR         HAR     120.278    1.50
+R14         CBR         CAR         HAR     119.896    1.50
+R14         CBY         CAS         CBS     120.808    1.50
+R14         CBY         CAS         HAS     119.466    1.50
+R14         CBS         CAS         HAS     119.726    1.50
+R14         CBT         CAT         CBZ     120.808    1.50
+R14         CBT         CAT         HAT     119.726    1.50
+R14         CBZ         CAT         HAT     119.466    1.50
+R14         CBX         CAU         CBW     120.662    1.50
+R14         CBX         CAU         HAU     119.669    1.50
+R14         CBW         CAU         HAU     119.669    1.50
+R14         NCC         CAV         CBU     105.491    1.50
+R14         NCC         CAV         HAV     126.378    2.14
+R14         CBU         CAV         HAV     128.131    2.11
+R14         CBV         CAW         NCD     105.491    1.50
+R14         CBV         CAW         HAW     128.131    2.11
+R14         NCD         CAW         HAW     126.378    2.14
+R14         CAA         CAX         NCA     113.741    1.57
+R14         CAA         CAX         HAX     109.135    1.50
+R14         CAA         CAX        HAXA     109.135    1.50
+R14         NCA         CAX         HAX     109.022    1.50
+R14         NCA         CAX        HAXA     109.022    1.50
+R14         HAX         CAX        HAXA     107.838    1.50
+R14         CAB         CAY         NCA     113.741    1.57
+R14         CAB         CAY         HAY     109.135    1.50
+R14         CAB         CAY        HAYA     109.135    1.50
+R14         NCA         CAY         HAY     109.022    1.50
+R14         NCA         CAY        HAYA     109.022    1.50
+R14         HAY         CAY        HAYA     107.838    1.50
+R14         CAC         CAZ         NCB     113.741    1.57
+R14         CAC         CAZ         HAZ     109.135    1.50
+R14         CAC         CAZ        HAZA     109.135    1.50
+R14         NCB         CAZ         HAZ     109.022    1.50
+R14         NCB         CAZ        HAZA     109.022    1.50
+R14         HAZ         CAZ        HAZA     107.838    1.50
+R14         CAD         CBA         NCB     113.741    1.57
+R14         CAD         CBA         HBA     109.135    1.50
+R14         CAD         CBA        HBAA     109.135    1.50
+R14         NCB         CBA         HBA     109.022    1.50
+R14         NCB         CBA        HBAA     109.022    1.50
+R14         HBA         CBA        HBAA     107.838    1.50
+R14         CBM         CBB         CBD     112.554    1.83
+R14         CBM         CBB         HBB     108.961    1.50
+R14         CBM         CBB        HBBA     108.961    1.50
+R14         CBD         CBB         HBB     108.999    1.50
+R14         CBD         CBB        HBBA     108.999    1.50
+R14         HBB         CBB        HBBA     107.745    2.07
+R14         CBE         CBC         CBN     112.554    1.83
+R14         CBE         CBC         HBC     108.999    1.50
+R14         CBE         CBC        HBCA     108.999    1.50
+R14         CBN         CBC         HBC     108.961    1.50
+R14         CBN         CBC        HBCA     108.961    1.50
+R14         HBC         CBC        HBCA     107.745    2.07
+R14         CBB         CBD         NCA     113.284    2.24
+R14         CBB         CBD         HBD     108.929    1.50
+R14         CBB         CBD        HBDA     108.929    1.50
+R14         NCA         CBD         HBD     108.838    1.50
+R14         NCA         CBD        HBDA     108.838    1.50
+R14         HBD         CBD        HBDA     107.673    1.50
+R14         CBC         CBE         NCB     113.284    2.24
+R14         CBC         CBE         HBE     108.929    1.50
+R14         CBC         CBE        HBEA     108.929    1.50
+R14         NCB         CBE         HBE     108.838    1.50
+R14         NCB         CBE        HBEA     108.838    1.50
+R14         HBE         CBE        HBEA     107.673    1.50
+R14         NBH         NBF         CBU     109.441    1.50
+R14         NBI         NBG         CBV     109.441    1.50
+R14         NBF         NBH         NCC     107.069    1.50
+R14         NBG         NBI         NCD     107.069    1.50
+R14         CBZ         NBJ         CBY     118.398    1.50
+R14         CBO         NBK         CBM     127.481    1.50
+R14         CBO         NBK        HNBK     115.919    1.69
+R14         CBM         NBK        HNBK     116.600    1.57
+R14         CBN         NBL         CBP     127.481    1.50
+R14         CBN         NBL        HNBL     116.600    1.57
+R14         CBP         NBL        HNBL     115.919    1.69
+R14         OAE         CBM         CBB     122.509    1.50
+R14         OAE         CBM         NBK     123.264    1.50
+R14         CBB         CBM         NBK     114.228    1.50
+R14         OAF         CBN         CBC     122.509    1.50
+R14         OAF         CBN         NBL     123.264    1.50
+R14         CBC         CBN         NBL     114.228    1.50
+R14         CAI         CBO         CAQ     120.241    2.01
+R14         CAI         CBO         NBK     119.742    3.00
+R14         CAQ         CBO         NBK     120.017    3.00
+R14         CAJ         CBP         CAR     120.241    2.01
+R14         CAJ         CBP         NBL     119.742    3.00
+R14         CAR         CBP         NBL     120.017    3.00
+R14         CAK         CBQ         CAQ     118.885    1.50
+R14         CAK         CBQ         CBU     120.575    1.50
+R14         CAQ         CBQ         CBU     120.540    1.50
+R14         CAL         CBR         CAR     118.885    1.50
+R14         CAL         CBR         CBV     120.575    1.50
+R14         CAR         CBR         CBV     120.540    1.50
+R14         CAM         CBS         CAS     119.623    1.64
+R14         CAM         CBS         NCC     120.152    1.50
+R14         CAS         CBS         NCC     120.225    1.50
+R14         CAN         CBT         CAT     119.623    1.64
+R14         CAN         CBT         NCD     120.152    1.50
+R14         CAT         CBT         NCD     120.225    1.50
+R14         CAV         CBU         NBF     107.801    1.50
+R14         CAV         CBU         CBQ     130.234    1.50
+R14         NBF         CBU         CBQ     121.964    1.50
+R14         CAW         CBV         NBG     107.801    1.50
+R14         CAW         CBV         CBR     130.234    1.50
+R14         NBG         CBV         CBR     121.964    1.50
+R14         CAO         CBW         CAU     123.095    1.50
+R14         CAO         CBW         CBY     118.934    1.50
+R14         CAU         CBW         CBY     117.971    1.50
+R14         CAP         CBX         CAU     123.095    1.50
+R14         CAP         CBX         CBZ     118.934    1.50
+R14         CAU         CBX         CBZ     117.971    1.50
+R14         CAS         CBY         NBJ     118.179    1.50
+R14         CAS         CBY         CBW     119.323    1.50
+R14         NBJ         CBY         CBW     122.499    1.50
+R14         CAT         CBZ         NBJ     118.179    1.50
+R14         CAT         CBZ         CBX     119.323    1.50
+R14         NBJ         CBZ         CBX     122.499    1.50
+R14         CAX         NCA         CAY     110.773    1.86
+R14         CAX         NCA         CBD     112.216    2.51
+R14         CAY         NCA         CBD     112.216    2.51
+R14         CAZ         NCB         CBA     110.773    1.86
+R14         CAZ         NCB         CBE     112.216    2.51
+R14         CBA         NCB         CBE     112.216    2.51
+R14         CAV         NCC         NBH     110.197    1.50
+R14         CAV         NCC         CBS     129.732    1.50
+R14         NBH         NCC         CBS     120.071    1.50
+R14         CAW         NCD         NBI     110.197    1.50
+R14         CAW         NCD         CBT     129.732    1.50
+R14         NBI         NCD         CBT     120.071    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+R14             sp3_sp3_1         HAA         CAA         CAX         NCA     180.000    10.0     3
+R14       const_sp2_sp2_5         CAG         CAK         CBQ         CAQ       0.000     5.0     2
+R14              const_37         CAH         CAL         CBR         CAR       0.000    10.0     2
+R14              const_41         CBS         CAM         CAO         CBW       0.000    10.0     2
+R14             const_115         CAO         CAM         CBS         CAS       0.000    10.0     2
+R14             const_119         CBT         CAN         CAP         CBX       0.000    10.0     2
+R14              const_61         CAP         CAN         CBT         CAT       0.000    10.0     2
+R14              const_46         CAM         CAO         CBW         CAU     180.000    10.0     2
+R14              const_78         CAN         CAP         CBX         CAU     180.000    10.0     2
+R14              const_14         CBQ         CAQ         CBO         NBK     180.000    10.0     2
+R14       const_sp2_sp2_9         CBO         CAQ         CBQ         CAK       0.000     5.0     2
+R14              const_30         CBR         CAR         CBP         NBL     180.000    10.0     2
+R14              const_33         CBP         CAR         CBR         CAL       0.000    10.0     2
+R14              const_57         CBY         CAS         CBS         CAM       0.000    10.0     2
+R14              const_54         CBS         CAS         CBY         NBJ     180.000    10.0     2
+R14              const_65         CBZ         CAT         CBT         CAN       0.000    10.0     2
+R14              const_70         CBT         CAT         CBZ         NBJ     180.000    10.0     2
+R14            sp3_sp3_10         HAB         CAB         CAY         NCA     180.000    10.0     3
+R14             const_124         CBX         CAU         CBW         CAO     180.000    10.0     2
+R14              const_82         CBW         CAU         CBX         CAP     180.000    10.0     2
+R14             const_127         NCC         CAV         CBU         NBF       0.000    10.0     2
+R14              const_89         CBU         CAV         NCC         NBH       0.000    10.0     2
+R14              const_98         NCD         CAW         CBV         NBG       0.000    10.0     2
+R14             const_131         CBV         CAW         NCD         NBI       0.000    10.0     2
+R14            sp3_sp3_38         CAA         CAX         NCA         CAY     -60.000    10.0     3
+R14            sp3_sp3_43         CAB         CAY         NCA         CAX     180.000    10.0     3
+R14            sp3_sp3_50         CAC         CAZ         NCB         CBA     -60.000    10.0     3
+R14            sp3_sp3_55         CAD         CBA         NCB         CAZ     180.000    10.0     3
+R14            sp3_sp3_61         CBM         CBB         CBD         NCA     180.000    10.0     3
+R14             sp2_sp3_2         OAE         CBM         CBB         CBD     120.000    10.0     6
+R14            sp3_sp3_70         CBN         CBC         CBE         NCB     180.000    10.0     3
+R14             sp2_sp3_8         OAF         CBN         CBC         CBE     120.000    10.0     6
+R14            sp3_sp3_80         CBB         CBD         NCA         CAX     -60.000    10.0     3
+R14            sp3_sp3_19         HAC         CAC         CAZ         NCB     180.000    10.0     3
+R14            sp3_sp3_86         CBC         CBE         NCB         CAZ     -60.000    10.0     3
+R14              const_95         CBU         NBF         NBH         NCC       0.000    10.0     2
+R14              const_96         CAV         CBU         NBF         NBH       0.000    10.0     2
+R14             const_104         CBV         NBG         NBI         NCD       0.000    10.0     2
+R14             const_102         CAW         CBV         NBG         NBI       0.000    10.0     2
+R14              const_93         NBF         NBH         NCC         CAV       0.000    10.0     2
+R14             const_105         NBG         NBI         NCD         CAW       0.000    10.0     2
+R14              const_88         CAS         CBY         NBJ         CBZ     180.000    10.0     2
+R14              const_86         CAT         CBZ         NBJ         CBY     180.000    10.0     2
+R14             sp2_sp2_7         OAE         CBM         NBK         CBO       0.000     5.0     2
+R14             sp2_sp2_1         CAI         CBO         NBK         CBM     180.000     5.0     2
+R14            sp2_sp2_11         OAF         CBN         NBL         CBP       0.000     5.0     2
+R14            sp2_sp2_13         CAJ         CBP         NBL         CBN     180.000     5.0     2
+R14            sp3_sp3_28         HAD         CAD         CBA         NCB     180.000    10.0     3
+R14            sp2_sp2_17         CAK         CBQ         CBU         CAV     180.000     5.0     2
+R14            sp2_sp2_21         CAL         CBR         CBV         CAW     180.000     5.0     2
+R14            sp2_sp2_25         CAM         CBS         NCC         CAV     180.000     5.0     2
+R14            sp2_sp2_29         CAN         CBT         NCD         CAW     180.000     5.0     2
+R14              const_49         CAO         CBW         CBY         CAS       0.000    10.0     2
+R14              const_73         CAP         CBX         CBZ         CAT       0.000    10.0     2
+R14       const_sp2_sp2_1         CAI         CAG         CAK         CBQ       0.000     5.0     2
+R14             const_107         CAK         CAG         CAI         CBO       0.000    10.0     2
+R14             const_111         CAJ         CAH         CAL         CBR       0.000    10.0     2
+R14              const_21         CAL         CAH         CAJ         CBP       0.000    10.0     2
+R14              const_18         CAG         CAI         CBO         NBK     180.000    10.0     2
+R14              const_26         CAH         CAJ         CBP         NBL     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+R14    chir_1    NCA    CBD    CAX    CAY    both
+R14    chir_2    NCB    CBE    CAZ    CBA    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+R14    plan-1         CAM   0.020
+R14    plan-1         CAO   0.020
+R14    plan-1         CAP   0.020
+R14    plan-1         CAS   0.020
+R14    plan-1         CAT   0.020
+R14    plan-1         CAU   0.020
+R14    plan-1         CBS   0.020
+R14    plan-1         CBW   0.020
+R14    plan-1         CBX   0.020
+R14    plan-1         CBY   0.020
+R14    plan-1         CBZ   0.020
+R14    plan-1         HAM   0.020
+R14    plan-1         HAO   0.020
+R14    plan-1         HAS   0.020
+R14    plan-1         HAU   0.020
+R14    plan-1         NBJ   0.020
+R14    plan-1         NCC   0.020
+R14    plan-2         CAG   0.020
+R14    plan-2         CAI   0.020
+R14    plan-2         CAK   0.020
+R14    plan-2         CAQ   0.020
+R14    plan-2         CBO   0.020
+R14    plan-2         CBQ   0.020
+R14    plan-2         CBU   0.020
+R14    plan-2         HAG   0.020
+R14    plan-2         HAI   0.020
+R14    plan-2         HAK   0.020
+R14    plan-2         HAQ   0.020
+R14    plan-2         NBK   0.020
+R14    plan-3         CAH   0.020
+R14    plan-3         CAJ   0.020
+R14    plan-3         CAL   0.020
+R14    plan-3         CAR   0.020
+R14    plan-3         CBP   0.020
+R14    plan-3         CBR   0.020
+R14    plan-3         CBV   0.020
+R14    plan-3         HAH   0.020
+R14    plan-3         HAJ   0.020
+R14    plan-3         HAL   0.020
+R14    plan-3         HAR   0.020
+R14    plan-3         NBL   0.020
+R14    plan-4         CAN   0.020
+R14    plan-4         CAP   0.020
+R14    plan-4         CAT   0.020
+R14    plan-4         CAU   0.020
+R14    plan-4         CBT   0.020
+R14    plan-4         CBX   0.020
+R14    plan-4         CBZ   0.020
+R14    plan-4         HAN   0.020
+R14    plan-4         HAP   0.020
+R14    plan-4         HAT   0.020
+R14    plan-4         NBJ   0.020
+R14    plan-4         NCD   0.020
+R14    plan-5         CAV   0.020
+R14    plan-5         CBQ   0.020
+R14    plan-5         CBS   0.020
+R14    plan-5         CBU   0.020
+R14    plan-5         HAV   0.020
+R14    plan-5         NBF   0.020
+R14    plan-5         NBH   0.020
+R14    plan-5         NCC   0.020
+R14    plan-6         CAW   0.020
+R14    plan-6         CBR   0.020
+R14    plan-6         CBT   0.020
+R14    plan-6         CBV   0.020
+R14    plan-6         HAW   0.020
+R14    plan-6         NBG   0.020
+R14    plan-6         NBI   0.020
+R14    plan-6         NCD   0.020
+R14    plan-7         CBM   0.020
+R14    plan-7         CBO   0.020
+R14    plan-7        HNBK   0.020
+R14    plan-7         NBK   0.020
+R14    plan-8         CBN   0.020
+R14    plan-8         CBP   0.020
+R14    plan-8        HNBL   0.020
+R14    plan-8         NBL   0.020
+R14    plan-9         CBB   0.020
+R14    plan-9         CBM   0.020
+R14    plan-9         NBK   0.020
+R14    plan-9         OAE   0.020
+R14   plan-10         CBC   0.020
+R14   plan-10         CBN   0.020
+R14   plan-10         NBL   0.020
+R14   plan-10         OAF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+R14           SMILES              ACDLabs 12.01                                                                                                                                                                O=C(Nc1cccc(c1)c2nnn(c2)c7cc6nc3c(ccc(c3)n4nnc(c4)c5cccc(NC(=O)CCN(CC)CC)c5)cc6cc7)CCN(CC)CC
+R14 SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                  CCN(CC)CCC(=O)Nc1cccc(c1)c2cn(nn2)c3ccc4cc5ccc(cc5nc4c3)n6cc(nn6)c7cccc(NC(=O)CCN(CC)CC)c7
+R14           SMILES               CACTVS 3.370                                                                                                                                                                  CCN(CC)CCC(=O)Nc1cccc(c1)c2cn(nn2)c3ccc4cc5ccc(cc5nc4c3)n6cc(nn6)c7cccc(NC(=O)CCN(CC)CC)c7
+R14 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                                  CCN(CC)CCC(=O)Nc1cccc(c1)c2cn(nn2)c3ccc4cc5ccc(cc5nc4c3)n6cc(nn6)c7cccc(c7)NC(=O)CCN(CC)CC
+R14           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                  CCN(CC)CCC(=O)Nc1cccc(c1)c2cn(nn2)c3ccc4cc5ccc(cc5nc4c3)n6cc(nn6)c7cccc(c7)NC(=O)CCN(CC)CC
+R14            InChI                InChI  1.03 InChI=1S/C43H47N11O2/c1-5-51(6-2)21-19-42(55)44-34-13-9-11-30(24-34)40-28-53(49-47-40)36-17-15-32-23-33-16-18-37(27-39(33)46-38(32)26-36)54-29-41(48-50-54)31-12-10-14-35(25-31)45-43(56)20-22-52(7-3)8-4/h9-18,23-29H,5-8,19-22H2,1-4H3,(H,44,55)(H,45,56)
+R14         InChIKey                InChI  1.03                                                                                                                                                                                                                                 HZKPUBMHIBOFRM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+R14 acedrg               243         "dictionary generator"                  
+R14 acedrg_database      11          "data source"                           
+R14 rdkit                2017.03.2   "Chemoinformatics tool"
+R14 refmac5              5.8.0238    "optimization tool"                     

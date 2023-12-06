@@ -1,0 +1,217 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ISC     ISC      "(5S,6S)-5-[(1-carboxyethenyl)oxy]-6-hydroxycyclohexa-1,3-diene-1-carboxylic acid"     NON-POLYMER     24     16     .     
+#
+data_comp_ISC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ISC     C       C       C       0       6.127       21.429      76.485      
+ISC     C1      C       CR6     0       6.186       20.793      75.229      
+ISC     O1      O       O       0       6.360       20.803      77.508      
+ISC     C2      C       CH1     0       5.899       21.577      73.966      
+ISC     O2      O       OC      -1      5.833       22.612      76.545      
+ISC     C3      C       CH1     0       6.269       20.827      72.687      
+ISC     O3      O       OH1     0       4.539       22.003      73.935      
+ISC     C4      C       CR16    0       6.081       19.340      72.807      
+ISC     C5      C       CR16    0       6.158       18.730      73.978      
+ISC     C6      C       CR16    0       6.485       19.449      75.123      
+ISC     "C1'"   C       C       0       8.015       20.504      70.134      
+ISC     "O1'"   O       OC      -1      8.600       19.770      69.335      
+ISC     "C2'"   C       C       0       8.340       20.420      71.464      
+ISC     "O2'"   O       O       0       7.173       21.323      69.756      
+ISC     "C3'"   C       C2      0       9.309       19.659      72.041      
+ISC     "O3'"   O       O2      0       7.653       21.164      72.362      
+ISC     H2      H       H       0       6.458       22.394      73.981      
+ISC     H3      H       H       0       5.677       21.170      71.973      
+ISC     HO3     H       H       0       4.035       21.331      73.852      
+ISC     H4      H       H       0       5.910       18.857      72.043      
+ISC     H5      H       H       0       5.988       17.801      74.034      
+ISC     H6      H       H       0       6.930       19.014      75.826      
+ISC     "H3'"   H       H       0       9.427       19.697      72.991      
+ISC     "H3'A"  H       H       0       9.860       19.102      71.493      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ISC           C          C1      SINGLE       n     1.384  0.0200     1.384  0.0200
+ISC           C          O1      DOUBLE       n     1.217  0.0200     1.217  0.0200
+ISC           C          O2      SINGLE       n     1.217  0.0200     1.217  0.0200
+ISC          C1          C2      SINGLE       n     1.509  0.0101     1.509  0.0101
+ISC          C1          C6      DOUBLE       n     1.358  0.0200     1.358  0.0200
+ISC          C2          C3      SINGLE       n     1.522  0.0100     1.522  0.0100
+ISC          C2          O3      SINGLE       n     1.425  0.0116     1.425  0.0116
+ISC          C3          C4      SINGLE       n     1.499  0.0100     1.499  0.0100
+ISC          C3       "O3'"      SINGLE       n     1.456  0.0100     1.456  0.0100
+ISC          C4          C5      DOUBLE       n     1.319  0.0123     1.319  0.0123
+ISC          C5          C6      SINGLE       n     1.384  0.0197     1.384  0.0197
+ISC       "C1'"       "O1'"      SINGLE       n     1.230  0.0200     1.230  0.0200
+ISC       "C1'"       "C2'"      SINGLE       n     1.348  0.0200     1.348  0.0200
+ISC       "C1'"       "O2'"      DOUBLE       n     1.230  0.0200     1.230  0.0200
+ISC       "C2'"       "C3'"      DOUBLE       n     1.348  0.0200     1.348  0.0200
+ISC       "C2'"       "O3'"      SINGLE       n     1.339  0.0174     1.339  0.0174
+ISC          C2          H2      SINGLE       n     1.089  0.0100     0.989  0.0200
+ISC          C3          H3      SINGLE       n     1.089  0.0100     0.989  0.0200
+ISC          O3         HO3      SINGLE       n     0.970  0.0120     0.843  0.0200
+ISC          C4          H4      SINGLE       n     1.082  0.0130     0.920  0.0200
+ISC          C5          H5      SINGLE       n     1.082  0.0130     0.946  0.0140
+ISC          C6          H6      SINGLE       n     1.082  0.0130     0.939  0.0124
+ISC       "C3'"       "H3'"      SINGLE       n     1.082  0.0130     0.957  0.0200
+ISC       "C3'"      "H3'A"      SINGLE       n     1.082  0.0130     0.957  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ISC          C1           C          O1     119.490    1.50
+ISC          C1           C          O2     119.490    1.50
+ISC          O1           C          O2     121.020    1.50
+ISC           C          C1          C2     120.081    1.50
+ISC           C          C1          C6     119.280    1.79
+ISC          C2          C1          C6     120.639    3.00
+ISC          C1          C2          C3     112.021    2.38
+ISC          C1          C2          O3     111.629    1.74
+ISC          C1          C2          H2     108.629    1.67
+ISC          C3          C2          O3     111.663    1.92
+ISC          C3          C2          H2     107.149    1.94
+ISC          O3          C2          H2     107.721    1.50
+ISC          C2          C3          C4     112.021    2.38
+ISC          C2          C3       "O3'"     108.078    1.99
+ISC          C2          C3          H3     107.149    1.94
+ISC          C4          C3       "O3'"     108.590    2.07
+ISC          C4          C3          H3     109.309    1.50
+ISC       "O3'"          C3          H3     109.240    1.50
+ISC          C2          O3         HO3     109.283    1.50
+ISC          C3          C4          C5     121.060    1.50
+ISC          C3          C4          H4     118.484    1.50
+ISC          C5          C4          H4     120.455    1.68
+ISC          C4          C5          C6     120.226    1.50
+ISC          C4          C5          H5     119.692    1.50
+ISC          C6          C5          H5     120.082    1.50
+ISC          C1          C6          C5     121.203    1.50
+ISC          C1          C6          H6     119.237    1.50
+ISC          C5          C6          H6     119.560    1.50
+ISC       "O1'"       "C1'"       "C2'"     118.654    3.00
+ISC       "O1'"       "C1'"       "O2'"     122.692    1.63
+ISC       "C2'"       "C1'"       "O2'"     118.654    3.00
+ISC       "C1'"       "C2'"       "C3'"     127.477    3.00
+ISC       "C1'"       "C2'"       "O3'"     116.262    3.00
+ISC       "C3'"       "C2'"       "O3'"     116.262    3.00
+ISC       "C2'"       "C3'"       "H3'"     119.183    2.19
+ISC       "C2'"       "C3'"      "H3'A"     119.183    2.19
+ISC       "H3'"       "C3'"      "H3'A"     121.634    1.50
+ISC          C3       "O3'"       "C2'"     117.637    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ISC             sp2_sp2_9          O1           C          C1          C2     180.000     5.0     2
+ISC            sp2_sp2_18       "O1'"       "C1'"       "C2'"       "C3'"       0.000     5.0     2
+ISC            sp2_sp2_21       "C1'"       "C2'"       "C3'"       "H3'"     180.000     5.0     2
+ISC            sp2_sp2_25       "C1'"       "C2'"       "O3'"          C3     180.000     5.0     2
+ISC             sp2_sp3_5           C          C1          C2          O3     -60.000    10.0     6
+ISC            sp2_sp2_15           C          C1          C6          C5     180.000     5.0     2
+ISC             sp3_sp3_5          O3          C2          C3       "O3'"     -60.000    10.0     3
+ISC            sp3_sp3_10          C1          C2          O3         HO3     180.000    10.0     3
+ISC            sp3_sp3_13          C2          C3       "O3'"       "C2'"     180.000    10.0     3
+ISC             sp2_sp3_8          C5          C4          C3       "O3'"     120.000    10.0     6
+ISC             sp2_sp2_1          C3          C4          C5          C6       0.000     5.0     2
+ISC             sp2_sp2_5          C4          C5          C6          C1       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ISC    chir_1    C2    O3    C3    C1    positive
+ISC    chir_2    C3    "O3'"    C2    C4    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ISC    plan-1           C   0.020
+ISC    plan-1          C1   0.020
+ISC    plan-1          O1   0.020
+ISC    plan-1          O2   0.020
+ISC    plan-2           C   0.020
+ISC    plan-2          C1   0.020
+ISC    plan-2          C2   0.020
+ISC    plan-2          C6   0.020
+ISC    plan-3          C3   0.020
+ISC    plan-3          C4   0.020
+ISC    plan-3          C5   0.020
+ISC    plan-3          H4   0.020
+ISC    plan-4          C4   0.020
+ISC    plan-4          C5   0.020
+ISC    plan-4          C6   0.020
+ISC    plan-4          H5   0.020
+ISC    plan-5          C1   0.020
+ISC    plan-5          C5   0.020
+ISC    plan-5          C6   0.020
+ISC    plan-5          H6   0.020
+ISC    plan-6       "C1'"   0.020
+ISC    plan-6       "C2'"   0.020
+ISC    plan-6       "O1'"   0.020
+ISC    plan-6       "O2'"   0.020
+ISC    plan-7       "C1'"   0.020
+ISC    plan-7       "C2'"   0.020
+ISC    plan-7       "C3'"   0.020
+ISC    plan-7       "O3'"   0.020
+ISC    plan-8       "C2'"   0.020
+ISC    plan-8       "C3'"   0.020
+ISC    plan-8       "H3'"   0.020
+ISC    plan-8      "H3'A"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ISC           SMILES              ACDLabs 12.01                                                                             O=C(O)C1=CC=CC(O/C(C(=O)O)=C)C1O
+ISC            InChI                InChI  1.03 InChI=1S/C10H10O6/c1-5(9(12)13)16-7-4-2-3-6(8(7)11)10(14)15/h2-4,7-8,11H,1H2,(H,12,13)(H,14,15)/t7-,8-/m0/s1
+ISC         InChIKey                InChI  1.03                                                                                  NTGWPRCCOQCMGE-YUMQZZPRSA-N
+ISC SMILES_CANONICAL               CACTVS 3.370                                                                    O[C@@H]1[C@@H](OC(=C)C(O)=O)C=CC=C1C(O)=O
+ISC           SMILES               CACTVS 3.370                                                                        O[CH]1[CH](OC(=C)C(O)=O)C=CC=C1C(O)=O
+ISC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                     C=C(C(=O)O)O[C@H]1C=CC=C([C@@H]1O)C(=O)O
+ISC           SMILES "OpenEye OEToolkits" 1.7.2                                                                              C=C(C(=O)O)OC1C=CC=C(C1O)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ISC acedrg               243         "dictionary generator"                  
+ISC acedrg_database      11          "data source"                           
+ISC rdkit                2017.03.2   "Chemoinformatics tool"
+ISC refmac5              5.8.0238    "optimization tool"                     

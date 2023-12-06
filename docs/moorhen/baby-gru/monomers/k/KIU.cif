@@ -1,0 +1,248 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KIU     KIU      "5-[(3-nitrobenzyl)oxy]benzene-1,3-dicarboxylic acid"     NON-POLYMER     32     23     .     
+#
+data_comp_KIU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KIU     OAA     O       O       0       30.784      34.471      54.116      
+KIU     CAP     C       C       0       31.485      35.206      53.396      
+KIU     OAC     O       OC      -1      31.045      36.154      52.721      
+KIU     CAT     C       CR6     0       32.957      34.931      53.340      
+KIU     CAJ     C       CR16    0       33.860      35.963      53.588      
+KIU     CAM     C       CR16    0       33.423      33.655      53.043      
+KIU     CAU     C       CR6     0       34.790      33.405      52.992      
+KIU     CAQ     C       C       0       35.298      32.032      52.673      
+KIU     OAD     O       O       0       36.127      31.918      51.752      
+KIU     OAB     O       OC      -1      34.863      31.081      53.348      
+KIU     CAK     C       CR16    0       35.694      34.435      53.240      
+KIU     CAS     C       CR6     0       35.233      35.716      53.536      
+KIU     OAO     O       O2      0       36.229      36.638      53.763      
+KIU     CAN     C       CH2     0       35.905      38.030      53.933      
+KIU     CAR     C       CR6     0       37.130      38.889      54.102      
+KIU     CAL     C       CR16    0       36.983      40.248      54.357      
+KIU     CAH     C       CR16    0       38.419      38.370      54.011      
+KIU     CAG     C       CR16    0       39.533      39.185      54.171      
+KIU     CAI     C       CR16    0       39.398      40.540      54.426      
+KIU     CAV     C       CR6     0       38.106      41.057      54.517      
+KIU     NAW     N       N       1       37.925      42.479      54.784      
+KIU     OAF     O       OC      -1      38.405      43.280      53.997      
+KIU     OAE     O       O       0       37.302      42.807      55.782      
+KIU     H2      H       H       0       33.540      36.824      53.789      
+KIU     H3      H       H       0       32.808      32.955      52.875      
+KIU     H5      H       H       0       36.620      34.269      53.206      
+KIU     H6      H       H       0       35.333      38.131      54.720      
+KIU     H7      H       H       0       35.400      38.339      53.155      
+KIU     H8      H       H       0       36.123      40.619      54.423      
+KIU     H9      H       H       0       38.545      37.453      53.838      
+KIU     H10     H       H       0       40.396      38.811      54.105      
+KIU     H11     H       H       0       40.155      41.088      54.533      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KIU         OAA         CAP      DOUBLE       n     1.244  0.0200     1.244  0.0200
+KIU         CAP         OAC      SINGLE       n     1.244  0.0200     1.244  0.0200
+KIU         CAP         CAT      SINGLE       n     1.498  0.0200     1.498  0.0200
+KIU         CAT         CAJ      DOUBLE       y     1.389  0.0100     1.389  0.0100
+KIU         CAT         CAM      SINGLE       y     1.389  0.0100     1.389  0.0100
+KIU         CAJ         CAS      SINGLE       y     1.388  0.0100     1.388  0.0100
+KIU         CAM         CAU      DOUBLE       y     1.389  0.0100     1.389  0.0100
+KIU         CAU         CAQ      SINGLE       n     1.498  0.0200     1.498  0.0200
+KIU         CAU         CAK      SINGLE       y     1.389  0.0100     1.389  0.0100
+KIU         CAQ         OAD      DOUBLE       n     1.244  0.0200     1.244  0.0200
+KIU         CAQ         OAB      SINGLE       n     1.244  0.0200     1.244  0.0200
+KIU         CAK         CAS      DOUBLE       y     1.388  0.0100     1.388  0.0100
+KIU         CAS         OAO      SINGLE       n     1.372  0.0100     1.372  0.0100
+KIU         OAO         CAN      SINGLE       n     1.432  0.0146     1.432  0.0146
+KIU         CAN         CAR      SINGLE       n     1.502  0.0100     1.502  0.0100
+KIU         CAR         CAL      DOUBLE       y     1.387  0.0100     1.387  0.0100
+KIU         CAR         CAH      SINGLE       y     1.383  0.0105     1.383  0.0105
+KIU         CAL         CAV      SINGLE       y     1.392  0.0100     1.392  0.0100
+KIU         CAH         CAG      DOUBLE       y     1.380  0.0131     1.380  0.0131
+KIU         CAG         CAI      SINGLE       y     1.382  0.0100     1.382  0.0100
+KIU         CAI         CAV      DOUBLE       y     1.393  0.0100     1.393  0.0100
+KIU         CAV         NAW      SINGLE       n     1.457  0.0200     1.457  0.0200
+KIU         NAW         OAF      SINGLE       n     1.221  0.0162     1.221  0.0162
+KIU         NAW         OAE      DOUBLE       n     1.221  0.0162     1.221  0.0162
+KIU         CAJ          H2      SINGLE       n     1.082  0.0130     0.942  0.0200
+KIU         CAM          H3      SINGLE       n     1.082  0.0130     0.946  0.0200
+KIU         CAK          H5      SINGLE       n     1.082  0.0130     0.942  0.0200
+KIU         CAN          H6      SINGLE       n     1.089  0.0100     0.978  0.0133
+KIU         CAN          H7      SINGLE       n     1.089  0.0100     0.978  0.0133
+KIU         CAL          H8      SINGLE       n     1.082  0.0130     0.939  0.0130
+KIU         CAH          H9      SINGLE       n     1.082  0.0130     0.944  0.0174
+KIU         CAG         H10      SINGLE       n     1.082  0.0130     0.943  0.0185
+KIU         CAI         H11      SINGLE       n     1.082  0.0130     0.941  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KIU         OAA         CAP         OAC     124.418    1.50
+KIU         OAA         CAP         CAT     117.791    1.50
+KIU         OAC         CAP         CAT     117.791    1.50
+KIU         CAP         CAT         CAJ     119.644    1.50
+KIU         CAP         CAT         CAM     120.350    1.50
+KIU         CAJ         CAT         CAM     120.006    1.50
+KIU         CAT         CAJ         CAS     119.776    1.50
+KIU         CAT         CAJ          H2     120.290    1.50
+KIU         CAS         CAJ          H2     119.934    1.50
+KIU         CAT         CAM         CAU     120.411    1.50
+KIU         CAT         CAM          H3     119.794    1.50
+KIU         CAU         CAM          H3     119.794    1.50
+KIU         CAM         CAU         CAQ     120.350    1.50
+KIU         CAM         CAU         CAK     120.006    1.50
+KIU         CAQ         CAU         CAK     119.644    1.50
+KIU         CAU         CAQ         OAD     117.791    1.50
+KIU         CAU         CAQ         OAB     117.791    1.50
+KIU         OAD         CAQ         OAB     124.418    1.50
+KIU         CAU         CAK         CAS     119.776    1.50
+KIU         CAU         CAK          H5     120.290    1.50
+KIU         CAS         CAK          H5     119.934    1.50
+KIU         CAJ         CAS         CAK     120.025    1.50
+KIU         CAJ         CAS         OAO     119.988    3.00
+KIU         CAK         CAS         OAO     119.988    3.00
+KIU         CAS         OAO         CAN     117.611    1.50
+KIU         OAO         CAN         CAR     109.292    2.21
+KIU         OAO         CAN          H6     109.697    1.50
+KIU         OAO         CAN          H7     109.697    1.50
+KIU         CAR         CAN          H6     109.862    1.50
+KIU         CAR         CAN          H7     109.862    1.50
+KIU          H6         CAN          H7     108.398    1.50
+KIU         CAN         CAR         CAL     120.681    1.50
+KIU         CAN         CAR         CAH     120.753    1.50
+KIU         CAL         CAR         CAH     118.566    1.50
+KIU         CAR         CAL         CAV     120.468    1.50
+KIU         CAR         CAL          H8     119.640    1.50
+KIU         CAV         CAL          H8     119.892    1.50
+KIU         CAR         CAH         CAG     120.417    1.50
+KIU         CAR         CAH          H9     119.780    1.50
+KIU         CAG         CAH          H9     119.803    1.50
+KIU         CAH         CAG         CAI     120.379    1.50
+KIU         CAH         CAG         H10     119.907    1.50
+KIU         CAI         CAG         H10     119.716    1.50
+KIU         CAG         CAI         CAV     117.855    1.50
+KIU         CAG         CAI         H11     120.769    1.50
+KIU         CAV         CAI         H11     121.376    1.50
+KIU         CAL         CAV         CAI     122.312    1.50
+KIU         CAL         CAV         NAW     118.729    1.50
+KIU         CAI         CAV         NAW     118.959    1.50
+KIU         CAV         NAW         OAF     118.257    1.50
+KIU         CAV         NAW         OAE     118.257    1.50
+KIU         OAF         NAW         OAE     123.486    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KIU              const_30         CAU         CAK         CAS         OAO     180.000    10.0     2
+KIU             sp2_sp2_9         CAJ         CAS         OAO         CAN     180.000     5.0     2
+KIU             sp3_sp3_1         CAR         CAN         OAO         CAS     180.000    10.0     3
+KIU             sp2_sp3_2         CAL         CAR         CAN         OAO     -90.000    10.0     6
+KIU       const_sp2_sp2_2         CAV         CAL         CAR         CAN     180.000     5.0     2
+KIU              const_46         CAG         CAH         CAR         CAN     180.000    10.0     2
+KIU       const_sp2_sp2_6         CAR         CAL         CAV         NAW     180.000     5.0     2
+KIU              const_17         CAI         CAG         CAH         CAR       0.000    10.0     2
+KIU              const_13         CAH         CAG         CAI         CAV       0.000    10.0     2
+KIU              const_10         CAG         CAI         CAV         NAW     180.000    10.0     2
+KIU            sp2_sp2_11         CAL         CAV         NAW         OAF     180.000     5.0     2
+KIU             sp2_sp2_1         OAA         CAP         CAT         CAJ     180.000     5.0     2
+KIU              const_22         CAS         CAJ         CAT         CAP     180.000    10.0     2
+KIU              const_42         CAU         CAM         CAT         CAP     180.000    10.0     2
+KIU              const_26         CAT         CAJ         CAS         OAO     180.000    10.0     2
+KIU              const_38         CAT         CAM         CAU         CAQ     180.000    10.0     2
+KIU              const_34         CAS         CAK         CAU         CAQ     180.000    10.0     2
+KIU             sp2_sp2_5         OAD         CAQ         CAU         CAM     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KIU    plan-1         CAJ   0.020
+KIU    plan-1         CAK   0.020
+KIU    plan-1         CAM   0.020
+KIU    plan-1         CAP   0.020
+KIU    plan-1         CAQ   0.020
+KIU    plan-1         CAS   0.020
+KIU    plan-1         CAT   0.020
+KIU    plan-1         CAU   0.020
+KIU    plan-1          H2   0.020
+KIU    plan-1          H3   0.020
+KIU    plan-1          H5   0.020
+KIU    plan-1         OAO   0.020
+KIU    plan-2         CAG   0.020
+KIU    plan-2         CAH   0.020
+KIU    plan-2         CAI   0.020
+KIU    plan-2         CAL   0.020
+KIU    plan-2         CAN   0.020
+KIU    plan-2         CAR   0.020
+KIU    plan-2         CAV   0.020
+KIU    plan-2         H10   0.020
+KIU    plan-2         H11   0.020
+KIU    plan-2          H8   0.020
+KIU    plan-2          H9   0.020
+KIU    plan-2         NAW   0.020
+KIU    plan-3         CAP   0.020
+KIU    plan-3         CAT   0.020
+KIU    plan-3         OAA   0.020
+KIU    plan-3         OAC   0.020
+KIU    plan-4         CAQ   0.020
+KIU    plan-4         CAU   0.020
+KIU    plan-4         OAB   0.020
+KIU    plan-4         OAD   0.020
+KIU    plan-5         CAV   0.020
+KIU    plan-5         NAW   0.020
+KIU    plan-5         OAE   0.020
+KIU    plan-5         OAF   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KIU           SMILES              ACDLabs 12.01                                                                "[O-][N+](=O)c1cccc(c1)COc2cc(cc(c2)C(=O)O)C(=O)O"
+KIU            InChI                InChI  1.03 InChI=1S/C15H11NO7/c17-14(18)10-5-11(15(19)20)7-13(6-10)23-8-9-2-1-3-12(4-9)16(21)22/h1-7H,8H2,(H,17,18)(H,19,20)
+KIU         InChIKey                InChI  1.03                                                                                       YOVLZJGSLBCISL-UHFFFAOYSA-N
+KIU SMILES_CANONICAL               CACTVS 3.370                                                                  OC(=O)c1cc(OCc2cccc(c2)[N+]([O-])=O)cc(c1)C(O)=O
+KIU           SMILES               CACTVS 3.370                                                                  OC(=O)c1cc(OCc2cccc(c2)[N+]([O-])=O)cc(c1)C(O)=O
+KIU SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                c1cc(cc(c1)[N+](=O)[O-])COc2cc(cc(c2)C(=O)O)C(=O)O
+KIU           SMILES "OpenEye OEToolkits" 1.7.6                                                                c1cc(cc(c1)[N+](=O)[O-])COc2cc(cc(c2)C(=O)O)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KIU acedrg               243         "dictionary generator"                  
+KIU acedrg_database      11          "data source"                           
+KIU rdkit                2017.03.2   "Chemoinformatics tool"
+KIU refmac5              5.8.0238    "optimization tool"                     

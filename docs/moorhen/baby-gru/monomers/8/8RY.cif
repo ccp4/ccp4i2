@@ -1,0 +1,164 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8RY     8RY      N-methylpyrimidine-2-carboxamide     NON-POLYMER     17     10     .     
+#
+data_comp_8RY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8RY     N1      N       NH1     0       -29.745     3.110       7.426       
+8RY     N3      N       NRD6    0       -31.539     3.131       5.293       
+8RY     C4      C       CR16    0       -30.583     4.046       2.929       
+8RY     C5      C       CR16    0       -31.943     3.893       3.071       
+8RY     C6      C       CR16    0       -32.380     3.427       4.288       
+8RY     C1      C       CH3     0       -28.945     2.762       8.589       
+8RY     C2      C       C       0       -29.289     2.985       6.177       
+8RY     C3      C       CR6     0       -30.232     3.312       5.067       
+8RY     N2      N       NRD6    0       -29.716     3.760       3.915       
+8RY     O1      O       O       0       -28.147     2.598       5.923       
+8RY     H1      H       H       0       -30.557     3.413       7.553       
+8RY     H2      H       H       0       -30.245     4.364       2.108       
+8RY     H3      H       H       0       -32.540     4.096       2.374       
+8RY     H4      H       H       0       -33.306     3.309       4.425       
+8RY     H5      H       H       0       -28.095     3.230       8.552       
+8RY     H6      H       H       0       -28.785     1.804       8.598       
+8RY     H7      H       H       0       -29.418     3.017       9.397       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8RY          C4          C5      DOUBLE       y     1.369  0.0133     1.369  0.0133
+8RY          C4          N2      SINGLE       y     1.340  0.0100     1.340  0.0100
+8RY          C5          C6      SINGLE       y     1.369  0.0133     1.369  0.0133
+8RY          C3          N2      DOUBLE       y     1.334  0.0100     1.334  0.0100
+8RY          N3          C6      DOUBLE       y     1.340  0.0100     1.340  0.0100
+8RY          N3          C3      SINGLE       y     1.334  0.0100     1.334  0.0100
+8RY          C2          C3      SINGLE       n     1.478  0.0200     1.478  0.0200
+8RY          C2          O1      DOUBLE       n     1.230  0.0114     1.230  0.0114
+8RY          N1          C2      SINGLE       n     1.331  0.0107     1.331  0.0107
+8RY          N1          C1      SINGLE       n     1.452  0.0100     1.452  0.0100
+8RY          N1          H1      SINGLE       n     1.016  0.0100     0.875  0.0200
+8RY          C4          H2      SINGLE       n     1.082  0.0130     0.943  0.0147
+8RY          C5          H3      SINGLE       n     1.082  0.0130     0.940  0.0131
+8RY          C6          H4      SINGLE       n     1.082  0.0130     0.943  0.0147
+8RY          C1          H5      SINGLE       n     1.089  0.0100     0.971  0.0198
+8RY          C1          H6      SINGLE       n     1.089  0.0100     0.971  0.0198
+8RY          C1          H7      SINGLE       n     1.089  0.0100     0.971  0.0198
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8RY          C2          N1          C1     122.007    1.50
+8RY          C2          N1          H1     119.023    1.82
+8RY          C1          N1          H1     118.970    1.50
+8RY          C6          N3          C3     116.736    1.50
+8RY          C5          C4          N2     122.499    1.50
+8RY          C5          C4          H2     118.881    1.50
+8RY          N2          C4          H2     118.620    1.50
+8RY          C4          C5          C6     116.504    1.50
+8RY          C4          C5          H3     121.748    1.50
+8RY          C6          C5          H3     121.748    1.50
+8RY          C5          C6          N3     122.499    1.50
+8RY          C5          C6          H4     118.881    1.50
+8RY          N3          C6          H4     118.620    1.50
+8RY          N1          C1          H5     109.479    1.78
+8RY          N1          C1          H6     109.479    1.78
+8RY          N1          C1          H7     109.479    1.78
+8RY          H5          C1          H6     109.279    1.79
+8RY          H5          C1          H7     109.279    1.79
+8RY          H6          C1          H7     109.279    1.79
+8RY          C3          C2          O1     120.907    2.54
+8RY          C3          C2          N1     116.532    2.33
+8RY          O1          C2          N1     122.562    1.50
+8RY          N2          C3          N3     125.026    1.50
+8RY          N2          C3          C2     117.487    3.00
+8RY          N3          C3          C2     117.487    3.00
+8RY          C4          N2          C3     116.736    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8RY             sp2_sp3_1          C2          N1          C1          H5       0.000    10.0     6
+8RY             sp2_sp2_7          O1          C2          N1          C1       0.000     5.0     2
+8RY       const_sp2_sp2_1          C5          C6          N3          C3       0.000     5.0     2
+8RY              const_16          C2          C3          N3          C6     180.000    10.0     2
+8RY       const_sp2_sp2_7          N2          C4          C5          C6       0.000     5.0     2
+8RY              const_11          C5          C4          N2          C3       0.000    10.0     2
+8RY       const_sp2_sp2_3          C4          C5          C6          N3       0.000     5.0     2
+8RY             sp2_sp2_3          O1          C2          C3          N2       0.000     5.0     2
+8RY              const_14          C2          C3          N2          C4     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8RY    plan-1          C2   0.020
+8RY    plan-1          C3   0.020
+8RY    plan-1          C4   0.020
+8RY    plan-1          C5   0.020
+8RY    plan-1          C6   0.020
+8RY    plan-1          H2   0.020
+8RY    plan-1          H3   0.020
+8RY    plan-1          H4   0.020
+8RY    plan-1          N2   0.020
+8RY    plan-1          N3   0.020
+8RY    plan-2          C1   0.020
+8RY    plan-2          C2   0.020
+8RY    plan-2          H1   0.020
+8RY    plan-2          N1   0.020
+8RY    plan-3          C2   0.020
+8RY    plan-3          C3   0.020
+8RY    plan-3          N1   0.020
+8RY    plan-3          O1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8RY           SMILES              ACDLabs 12.01                                           N(C)C(c1ncccn1)=O
+8RY            InChI                InChI  1.03 InChI=1S/C6H7N3O/c1-7-6(10)5-8-3-2-4-9-5/h2-4H,1H3,(H,7,10)
+8RY         InChIKey                InChI  1.03                                 FJMKLLGSSGMGBM-UHFFFAOYSA-N
+8RY SMILES_CANONICAL               CACTVS 3.385                                             CNC(=O)c1ncccn1
+8RY           SMILES               CACTVS 3.385                                             CNC(=O)c1ncccn1
+8RY SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                             CNC(=O)c1ncccn1
+8RY           SMILES "OpenEye OEToolkits" 2.0.6                                             CNC(=O)c1ncccn1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8RY acedrg               243         "dictionary generator"                  
+8RY acedrg_database      11          "data source"                           
+8RY rdkit                2017.03.2   "Chemoinformatics tool"
+8RY refmac5              5.8.0238    "optimization tool"                     

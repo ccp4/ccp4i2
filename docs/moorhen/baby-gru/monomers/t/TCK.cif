@@ -1,0 +1,285 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TCK     TCK      N-[(1S)-5-amino-1-(chloroacetyl)pentyl]-4-methylbenzenesulfonamide     NON-POLYMER     43     21     .     
+#
+data_comp_TCK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TCK     S       S       S3      0       17.484      29.464      12.083      
+TCK     O1S     O       O       0       17.223      30.869      12.168      
+TCK     O2S     O       O       0       17.871      28.756      13.265      
+TCK     C1      C       CR6     0       18.756      29.209      10.887      
+TCK     C2      C       CR16    0       19.396      27.981      10.821      
+TCK     C3      C       CR16    0       20.402      27.784      9.888       
+TCK     C4      C       CR6     0       20.792      28.791      9.017       
+TCK     C5      C       CR16    0       20.141      30.014      9.106       
+TCK     C6      C       CR16    0       19.133      30.234      10.031      
+TCK     C7      C       CH3     0       21.889      28.560      8.007       
+TCK     N       N       NT1     0       16.124      28.770      11.540      
+TCK     CA      C       CH1     0       14.856      28.941      12.263      
+TCK     C       C       C       0       14.838      28.118      13.554      
+TCK     O       O       O       0       14.838      26.909      13.515      
+TCK     CB      C       CH2     0       13.665      28.590      11.364      
+TCK     CG      C       CH2     0       12.325      29.070      11.909      
+TCK     CD      C       CH2     0       11.146      28.794      10.999      
+TCK     CE      C       CH2     0       9.823       29.172      11.631      
+TCK     NZ      N       NT3     1       8.676       28.844      10.751      
+TCK     CM      C       CH2     0       14.831      28.845      14.854      
+TCK     CL1     CL      CL      0       13.215      28.966      15.557      
+TCK     H2      H       H       0       19.147      27.285      11.402      
+TCK     H3      H       H       0       20.831      26.945      9.845       
+TCK     H5      H       H       0       20.390      30.713      8.523       
+TCK     H6      H       H       0       18.706      31.070      10.072      
+TCK     H1      H       H       0       22.065      29.381      7.519       
+TCK     H2A     H       H       0       21.617      27.868      7.384       
+TCK     H3A     H       H       0       22.698      28.280      8.466       
+TCK     H       H       H       0       16.270      27.975      11.254      
+TCK     HA      H       H       0       14.768      29.894      12.512      
+TCK     HB2     H       H       0       13.630      27.618      11.249      
+TCK     HB3     H       H       0       13.809      28.993      10.482      
+TCK     HG2     H       H       0       12.381      30.037      12.069      
+TCK     HG3     H       H       0       12.160      28.636      12.773      
+TCK     HD2     H       H       0       11.131      27.840      10.775      
+TCK     HD3     H       H       0       11.258      29.300      10.166      
+TCK     HE2     H       H       0       9.813       30.130      11.820      
+TCK     HE3     H       H       0       9.718       28.697      12.478      
+TCK     HZ1     H       H       0       7.900       29.076      11.159      
+TCK     HZ2     H       H       0       8.667       27.954      10.577      
+TCK     HZ3     H       H       0       8.749       29.299      9.970       
+TCK     HM1     H       H       0       15.189      29.741      14.729      
+TCK     HM2     H       H       0       15.414      28.383      15.481      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TCK           S         O1S      DOUBLE       n     1.431  0.0100     1.431  0.0100
+TCK           S          C1      SINGLE       n     1.762  0.0100     1.762  0.0100
+TCK           S         O2S      DOUBLE       n     1.431  0.0100     1.431  0.0100
+TCK          C1          C2      DOUBLE       y     1.383  0.0100     1.383  0.0100
+TCK          C1          C6      SINGLE       y     1.383  0.0100     1.383  0.0100
+TCK          C2          C3      SINGLE       y     1.382  0.0100     1.382  0.0100
+TCK          C3          C4      DOUBLE       y     1.384  0.0110     1.384  0.0110
+TCK          C4          C5      SINGLE       y     1.384  0.0110     1.384  0.0110
+TCK          C4          C7      SINGLE       n     1.507  0.0176     1.507  0.0176
+TCK          C5          C6      DOUBLE       y     1.382  0.0100     1.382  0.0100
+TCK           N          CA      SINGLE       n     1.467  0.0100     1.467  0.0100
+TCK           S           N      SINGLE       n     1.617  0.0119     1.617  0.0119
+TCK          CA           C      SINGLE       n     1.529  0.0100     1.529  0.0100
+TCK          CA          CB      SINGLE       n     1.530  0.0137     1.530  0.0137
+TCK           C           O      DOUBLE       n     1.209  0.0200     1.209  0.0200
+TCK           C          CM      SINGLE       n     1.484  0.0200     1.484  0.0200
+TCK          CB          CG      SINGLE       n     1.523  0.0114     1.523  0.0114
+TCK          CG          CD      SINGLE       n     1.514  0.0200     1.514  0.0200
+TCK          CD          CE      SINGLE       n     1.514  0.0111     1.514  0.0111
+TCK          CE          NZ      SINGLE       n     1.482  0.0123     1.482  0.0123
+TCK          CM         CL1      SINGLE       n     1.767  0.0200     1.767  0.0200
+TCK          C2          H2      SINGLE       n     1.082  0.0130     0.940  0.0163
+TCK          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0173
+TCK          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0173
+TCK          C6          H6      SINGLE       n     1.082  0.0130     0.940  0.0163
+TCK          C7          H1      SINGLE       n     1.089  0.0100     0.971  0.0135
+TCK          C7         H2A      SINGLE       n     1.089  0.0100     0.971  0.0135
+TCK          C7         H3A      SINGLE       n     1.089  0.0100     0.971  0.0135
+TCK           N           H      SINGLE       n     1.036  0.0160     0.857  0.0200
+TCK          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0200
+TCK          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0160
+TCK          CB         HB3      SINGLE       n     1.089  0.0100     0.980  0.0160
+TCK          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0163
+TCK          CG         HG3      SINGLE       n     1.089  0.0100     0.981  0.0163
+TCK          CD         HD2      SINGLE       n     1.089  0.0100     0.981  0.0160
+TCK          CD         HD3      SINGLE       n     1.089  0.0100     0.981  0.0160
+TCK          CE         HE2      SINGLE       n     1.089  0.0100     0.976  0.0165
+TCK          CE         HE3      SINGLE       n     1.089  0.0100     0.976  0.0165
+TCK          NZ         HZ1      SINGLE       n     1.036  0.0160     0.907  0.0200
+TCK          NZ         HZ2      SINGLE       n     1.036  0.0160     0.907  0.0200
+TCK          NZ         HZ3      SINGLE       n     1.036  0.0160     0.907  0.0200
+TCK          CM         HM1      SINGLE       n     1.089  0.0100     0.973  0.0130
+TCK          CM         HM2      SINGLE       n     1.089  0.0100     0.973  0.0130
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TCK         O1S           S          C1     107.960    1.50
+TCK         O1S           S         O2S     119.599    1.50
+TCK         O1S           S           N     106.820    1.50
+TCK          C1           S         O2S     107.960    1.50
+TCK          C1           S           N     107.708    1.50
+TCK         O2S           S           N     106.820    1.50
+TCK           S          C1          C2     119.828    1.50
+TCK           S          C1          C6     119.821    1.50
+TCK          C2          C1          C6     120.345    1.50
+TCK          C1          C2          C3     119.411    1.50
+TCK          C1          C2          H2     120.247    1.50
+TCK          C3          C2          H2     120.342    1.50
+TCK          C2          C3          C4     121.451    1.50
+TCK          C2          C3          H3     119.265    1.50
+TCK          C4          C3          H3     119.285    1.50
+TCK          C3          C4          C5     117.932    1.50
+TCK          C3          C4          C7     121.034    1.50
+TCK          C5          C4          C7     121.034    1.50
+TCK          C4          C5          C6     121.451    1.50
+TCK          C4          C5          H5     119.285    1.50
+TCK          C6          C5          H5     119.265    1.50
+TCK          C1          C6          C5     119.411    1.50
+TCK          C1          C6          H6     120.247    1.50
+TCK          C5          C6          H6     120.342    1.50
+TCK          C4          C7          H1     109.567    1.50
+TCK          C4          C7         H2A     109.567    1.50
+TCK          C4          C7         H3A     109.567    1.50
+TCK          H1          C7         H2A     109.348    1.50
+TCK          H1          C7         H3A     109.348    1.50
+TCK         H2A          C7         H3A     109.348    1.50
+TCK          CA           N           S     120.490    1.71
+TCK          CA           N           H     114.792    3.00
+TCK           S           N           H     111.495    3.00
+TCK           N          CA           C     112.134    2.59
+TCK           N          CA          CB     109.731    2.61
+TCK           N          CA          HA     108.676    1.50
+TCK           C          CA          CB     111.407    1.50
+TCK           C          CA          HA     107.798    1.50
+TCK          CB          CA          HA     108.223    1.50
+TCK          CA           C           O     120.768    1.50
+TCK          CA           C          CM     117.694    1.50
+TCK           O           C          CM     121.539    1.76
+TCK          CA          CB          CG     113.702    1.73
+TCK          CA          CB         HB2     108.562    1.50
+TCK          CA          CB         HB3     108.562    1.50
+TCK          CG          CB         HB2     108.650    1.50
+TCK          CG          CB         HB3     108.650    1.50
+TCK         HB2          CB         HB3     107.844    1.50
+TCK          CB          CG          CD     113.328    2.00
+TCK          CB          CG         HG2     108.601    1.50
+TCK          CB          CG         HG3     108.601    1.50
+TCK          CD          CG         HG2     108.806    1.50
+TCK          CD          CG         HG3     108.806    1.50
+TCK         HG2          CG         HG3     107.646    1.50
+TCK          CG          CD          CE     113.073    1.98
+TCK          CG          CD         HD2     109.041    1.50
+TCK          CG          CD         HD3     109.041    1.50
+TCK          CE          CD         HD2     108.889    1.50
+TCK          CE          CD         HD3     108.889    1.50
+TCK         HD2          CD         HD3     107.927    1.57
+TCK          CD          CE          NZ     111.734    1.84
+TCK          CD          CE         HE2     109.576    1.50
+TCK          CD          CE         HE3     109.576    1.50
+TCK          NZ          CE         HE2     108.989    1.50
+TCK          NZ          CE         HE3     108.989    1.50
+TCK         HE2          CE         HE3     108.067    1.50
+TCK          CE          NZ         HZ1     109.775    1.81
+TCK          CE          NZ         HZ2     109.775    1.81
+TCK          CE          NZ         HZ3     109.775    1.81
+TCK         HZ1          NZ         HZ2     109.021    2.83
+TCK         HZ1          NZ         HZ3     109.021    2.83
+TCK         HZ2          NZ         HZ3     109.021    2.83
+TCK           C          CM         CL1     113.055    1.74
+TCK           C          CM         HM1     109.516    1.50
+TCK           C          CM         HM2     109.516    1.50
+TCK         CL1          CM         HM1     109.235    1.50
+TCK         CL1          CM         HM2     109.235    1.50
+TCK         HM1          CM         HM2     107.852    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TCK            sp3_sp3_11          CA           N           S         O1S     180.000    10.0     3
+TCK             sp2_sp3_1          C2          C1           S         O1S     150.000    10.0     6
+TCK             sp3_sp3_1           C          CA           N           S     180.000    10.0     3
+TCK            sp2_sp3_13           O           C          CA           N       0.000    10.0     6
+TCK            sp3_sp3_13           N          CA          CB          CG     180.000    10.0     3
+TCK            sp2_sp3_20          CA           C          CM         CL1     120.000    10.0     6
+TCK            sp3_sp3_22          CA          CB          CG          CD     180.000    10.0     3
+TCK            sp3_sp3_31          CE          CD          CG          CB     180.000    10.0     3
+TCK            sp3_sp3_40          CG          CD          CE          NZ     180.000    10.0     3
+TCK            sp3_sp3_49          CD          CE          NZ         HZ1     180.000    10.0     3
+TCK       const_sp2_sp2_3           S          C1          C2          C3     180.000     5.0     2
+TCK              const_23           S          C1          C6          C5     180.000    10.0     2
+TCK       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+TCK              const_10          C2          C3          C4          C7     180.000    10.0     2
+TCK              const_15          C7          C4          C5          C6     180.000    10.0     2
+TCK             sp2_sp3_7          C3          C4          C7          H1     150.000    10.0     6
+TCK              const_17          C4          C5          C6          C1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TCK    chir_1    S    O1S    O2S    N    both
+TCK    chir_2    CA    N    C    CB    positive
+TCK    chir_3    N    S    CA    H    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TCK    plan-1          C1   0.020
+TCK    plan-1          C2   0.020
+TCK    plan-1          C3   0.020
+TCK    plan-1          C4   0.020
+TCK    plan-1          C5   0.020
+TCK    plan-1          C6   0.020
+TCK    plan-1          C7   0.020
+TCK    plan-1          H2   0.020
+TCK    plan-1          H3   0.020
+TCK    plan-1          H5   0.020
+TCK    plan-1          H6   0.020
+TCK    plan-1           S   0.020
+TCK    plan-2           C   0.020
+TCK    plan-2          CA   0.020
+TCK    plan-2          CM   0.020
+TCK    plan-2           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TCK           SMILES              ACDLabs 12.01                                                                                     O=S(=O)(NC(C(=O)CCl)CCCCN)c1ccc(cc1)C
+TCK SMILES_CANONICAL               CACTVS 3.370                                                                              Cc1ccc(cc1)[S](=O)(=O)N[C@@H](CCCCN)C(=O)CCl
+TCK           SMILES               CACTVS 3.370                                                                                Cc1ccc(cc1)[S](=O)(=O)N[CH](CCCCN)C(=O)CCl
+TCK SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                Cc1ccc(cc1)S(=O)(=O)N[C@@H](CCCCN)C(=O)CCl
+TCK           SMILES "OpenEye OEToolkits" 1.7.0                                                                                     Cc1ccc(cc1)S(=O)(=O)NC(CCCCN)C(=O)CCl
+TCK            InChI                InChI  1.03 InChI=1S/C14H21ClN2O3S/c1-11-5-7-12(8-6-11)21(19,20)17-13(14(18)10-15)4-2-3-9-16/h5-8,13,17H,2-4,9-10,16H2,1H3/t13-/m0/s1
+TCK         InChIKey                InChI  1.03                                                                                               RDFCSSHDJSZMTQ-ZDUSSCGKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TCK acedrg               243         "dictionary generator"                  
+TCK acedrg_database      11          "data source"                           
+TCK rdkit                2017.03.2   "Chemoinformatics tool"
+TCK refmac5              5.8.0238    "optimization tool"                     

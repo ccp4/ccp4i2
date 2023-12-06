@@ -1,0 +1,154 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GXS     GXS      "(4R)-4-hydroxy-2,5-dioxopentanoic acid"     NON-POLYMER     15     10     .     
+#
+data_comp_GXS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GXS     O       O       O       0       -3.894      0.268       -0.102      
+GXS     C       C       C1      0       -2.790      0.709       -0.184      
+GXS     C1      C       CH1     0       -1.578      -0.221      -0.053      
+GXS     O1      O       OH1     0       -1.562      -0.854      1.213       
+GXS     C2      C       CH2     0       -0.269      0.541       -0.269      
+GXS     C3      C       C       0       0.982       -0.307      -0.238      
+GXS     C4      C       C       0       2.189       0.179       -0.459      
+GXS     O3      O       OC      -1      3.162       -0.580      -0.426      
+GXS     O4      O       O       0       2.317       1.384       -0.694      
+GXS     O2      O       O       0       0.859       -1.512      0.013       
+GXS     H1      H       H       0       -2.656      1.635       -0.331      
+GXS     H2      H       H       0       -1.652      -0.918      -0.750      
+GXS     H3      H       H       0       -2.231      -1.372      1.269       
+GXS     H4      H       H       0       -0.190      1.229       0.424       
+GXS     H8      H       H       0       -0.312      0.993       -1.136      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GXS          C1          O1      SINGLE       n     1.415  0.0100     1.415  0.0100
+GXS          C2          C3      SINGLE       n     1.507  0.0103     1.507  0.0103
+GXS          C3          C4      SINGLE       n     1.299  0.0200     1.299  0.0200
+GXS          C1          C2      SINGLE       n     1.528  0.0125     1.528  0.0125
+GXS          C4          O4      DOUBLE       n     1.230  0.0200     1.230  0.0200
+GXS           C          C1      SINGLE       n     1.533  0.0100     1.533  0.0100
+GXS          C4          O3      SINGLE       n     1.230  0.0200     1.230  0.0200
+GXS           O           C      DOUBLE       n     1.191  0.0200     1.191  0.0200
+GXS          C3          O2      DOUBLE       n     1.230  0.0184     1.230  0.0184
+GXS           C          H1      SINGLE       n     1.082  0.0130     0.947  0.0200
+GXS          C1          H2      SINGLE       n     1.089  0.0100     0.989  0.0183
+GXS          O1          H3      SINGLE       n     0.970  0.0120     0.848  0.0200
+GXS          C2          H4      SINGLE       n     1.089  0.0100     0.979  0.0158
+GXS          C2          H8      SINGLE       n     1.089  0.0100     0.979  0.0158
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GXS          C1           C           O     120.147    1.51
+GXS          C1           C          H1     119.619    2.53
+GXS           O           C          H1     120.235    1.50
+GXS          O1          C1          C2     110.000    2.12
+GXS          O1          C1           C     111.343    1.72
+GXS          O1          C1          H2     108.675    1.50
+GXS          C2          C1           C     111.824    1.92
+GXS          C2          C1          H2     108.647    1.58
+GXS           C          C1          H2     108.312    1.50
+GXS          C1          O1          H3     108.894    3.00
+GXS          C3          C2          C1     111.511    2.91
+GXS          C3          C2          H4     108.680    1.71
+GXS          C3          C2          H8     108.680    1.71
+GXS          C1          C2          H4     108.888    1.50
+GXS          C1          C2          H8     108.888    1.50
+GXS          H4          C2          H8     108.131    1.50
+GXS          C2          C3          C4     122.999    2.52
+GXS          C2          C3          O2     117.958    1.51
+GXS          C4          C3          O2     119.042    3.00
+GXS          C3          C4          O4     118.654    3.00
+GXS          C3          C4          O3     118.654    3.00
+GXS          O4          C4          O3     122.692    1.63
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GXS             sp2_sp3_7           O           C          C1          O1       0.000    10.0     6
+GXS             sp3_sp3_1          C2          C1          O1          H3     180.000    10.0     3
+GXS             sp3_sp3_4          O1          C1          C2          C3     180.000    10.0     3
+GXS             sp2_sp3_2          C4          C3          C2          C1     120.000    10.0     6
+GXS             sp2_sp2_1          C2          C3          C4          O4     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GXS    chir_1    C1    O1    C    C2    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GXS    plan-1           C   0.020
+GXS    plan-1          C1   0.020
+GXS    plan-1          H1   0.020
+GXS    plan-1           O   0.020
+GXS    plan-2          C2   0.020
+GXS    plan-2          C3   0.020
+GXS    plan-2          C4   0.020
+GXS    plan-2          O2   0.020
+GXS    plan-3          C3   0.020
+GXS    plan-3          C4   0.020
+GXS    plan-3          O3   0.020
+GXS    plan-3          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GXS           SMILES              ACDLabs 12.01                                                  O=CC(O)CC(=O)C(=O)O
+GXS            InChI                InChI  1.03 InChI=1S/C5H6O5/c6-2-3(7)1-4(8)5(9)10/h2-3,7H,1H2,(H,9,10)/t3-/m1/s1
+GXS         InChIKey                InChI  1.03                                          QZKCWTOLHHFWCD-GSVOUGTGSA-N
+GXS SMILES_CANONICAL               CACTVS 3.385                                              O[C@H](CC(=O)C(O)=O)C=O
+GXS           SMILES               CACTVS 3.385                                               O[CH](CC(=O)C(O)=O)C=O
+GXS SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                            C([C@H](C=O)O)C(=O)C(=O)O
+GXS           SMILES "OpenEye OEToolkits" 1.7.6                                                C(C(C=O)O)C(=O)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GXS acedrg               243         "dictionary generator"                  
+GXS acedrg_database      11          "data source"                           
+GXS rdkit                2017.03.2   "Chemoinformatics tool"
+GXS refmac5              5.8.0238    "optimization tool"                     

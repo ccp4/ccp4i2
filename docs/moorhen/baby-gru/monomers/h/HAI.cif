@@ -1,0 +1,172 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HAI     HAI      "CYCLOHEXYLAMMONIUM ION"     NON-POLYMER     21     7     .     
+#
+data_comp_HAI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HAI     C1      C       CH1     0       4.420       52.230      41.926      
+HAI     C2      C       CH2     0       5.679       51.380      41.907      
+HAI     C3      C       CH2     0       5.530       50.199      40.950      
+HAI     C4      C       CH2     0       5.151       50.659      39.552      
+HAI     C5      C       CH2     0       3.897       51.513      39.575      
+HAI     C6      C       CH2     0       4.041       52.696      40.531      
+HAI     N       N       NT3     1       4.587       53.402      42.846      
+HAI     H1      H       H       0       3.684       51.678      42.274      
+HAI     H21     H       H       0       6.441       51.931      41.627      
+HAI     H22     H       H       0       5.861       51.047      42.811      
+HAI     H31     H       H       0       4.841       49.593      41.289      
+HAI     H32     H       H       0       6.374       49.706      40.910      
+HAI     H41     H       H       0       5.001       49.876      38.981      
+HAI     H42     H       H       0       5.890       51.178      39.169      
+HAI     H51     H       H       0       3.135       50.964      39.854      
+HAI     H52     H       H       0       3.715       51.847      38.673      
+HAI     H61     H       H       0       4.731       53.306      40.192      
+HAI     H62     H       H       0       3.194       53.189      40.571      
+HAI     HN1     H       H       0       4.025       53.320      43.543      
+HAI     HN2     H       H       0       4.402       54.170      42.415      
+HAI     HN3     H       H       0       5.430       53.442      43.158      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HAI          C1          C2      SINGLE       n     1.516  0.0100     1.516  0.0100
+HAI          C1          C6      SINGLE       n     1.516  0.0100     1.516  0.0100
+HAI          C1           N      SINGLE       n     1.496  0.0100     1.496  0.0100
+HAI          C2          C3      SINGLE       n     1.526  0.0100     1.526  0.0100
+HAI          C3          C4      SINGLE       n     1.516  0.0136     1.516  0.0136
+HAI          C4          C5      SINGLE       n     1.515  0.0121     1.515  0.0121
+HAI          C5          C6      SINGLE       n     1.526  0.0100     1.526  0.0100
+HAI          C1          H1      SINGLE       n     1.089  0.0100     0.984  0.0155
+HAI          C2         H21      SINGLE       n     1.089  0.0100     0.981  0.0121
+HAI          C2         H22      SINGLE       n     1.089  0.0100     0.981  0.0121
+HAI          C3         H31      SINGLE       n     1.089  0.0100     0.979  0.0127
+HAI          C3         H32      SINGLE       n     1.089  0.0100     0.979  0.0127
+HAI          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0138
+HAI          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0138
+HAI          C5         H51      SINGLE       n     1.089  0.0100     0.979  0.0127
+HAI          C5         H52      SINGLE       n     1.089  0.0100     0.979  0.0127
+HAI          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0121
+HAI          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0121
+HAI           N         HN1      SINGLE       n     1.036  0.0160     0.899  0.0200
+HAI           N         HN2      SINGLE       n     1.036  0.0160     0.899  0.0200
+HAI           N         HN3      SINGLE       n     1.036  0.0160     0.899  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HAI          C2          C1          C6     111.727    1.50
+HAI          C2          C1           N     110.023    1.50
+HAI          C2          C1          H1     108.429    1.50
+HAI          C6          C1           N     110.023    1.50
+HAI          C6          C1          H1     108.429    1.50
+HAI           N          C1          H1     108.055    1.50
+HAI          C1          C2          C3     110.972    1.50
+HAI          C1          C2         H21     109.471    1.50
+HAI          C1          C2         H22     109.471    1.50
+HAI          C3          C2         H21     109.472    1.50
+HAI          C3          C2         H22     109.472    1.50
+HAI         H21          C2         H22     108.076    1.50
+HAI          C2          C3          C4     111.328    1.50
+HAI          C2          C3         H31     109.340    1.50
+HAI          C2          C3         H32     109.340    1.50
+HAI          C4          C3         H31     109.386    1.50
+HAI          C4          C3         H32     109.386    1.50
+HAI         H31          C3         H32     108.036    1.50
+HAI          C3          C4          C5     111.038    1.50
+HAI          C3          C4         H41     109.386    1.50
+HAI          C3          C4         H42     109.386    1.50
+HAI          C5          C4         H41     109.386    1.50
+HAI          C5          C4         H42     109.386    1.50
+HAI         H41          C4         H42     108.036    1.50
+HAI          C4          C5          C6     111.328    1.50
+HAI          C4          C5         H51     109.386    1.50
+HAI          C4          C5         H52     109.386    1.50
+HAI          C6          C5         H51     109.340    1.50
+HAI          C6          C5         H52     109.340    1.50
+HAI         H51          C5         H52     108.036    1.50
+HAI          C1          C6          C5     110.972    1.50
+HAI          C1          C6         H61     109.471    1.50
+HAI          C1          C6         H62     109.471    1.50
+HAI          C5          C6         H61     109.472    1.50
+HAI          C5          C6         H62     109.472    1.50
+HAI         H61          C6         H62     108.076    1.50
+HAI          C1           N         HN1     109.739    1.87
+HAI          C1           N         HN2     109.739    1.87
+HAI          C1           N         HN3     109.739    1.87
+HAI         HN1           N         HN2     109.122    2.58
+HAI         HN1           N         HN3     109.122    2.58
+HAI         HN2           N         HN3     109.122    2.58
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HAI             sp3_sp3_7           N          C1          C2          C3     180.000    10.0     3
+HAI            sp3_sp3_49           N          C1          C6          C5      60.000    10.0     3
+HAI            sp3_sp3_58          C2          C1           N         HN1      60.000    10.0     3
+HAI            sp3_sp3_10          C1          C2          C3          C4     -60.000    10.0     3
+HAI            sp3_sp3_19          C2          C3          C4          C5      60.000    10.0     3
+HAI            sp3_sp3_28          C3          C4          C5          C6     -60.000    10.0     3
+HAI            sp3_sp3_37          C4          C5          C6          C1      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HAI    chir_1    C1    N    C2    C6    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HAI           SMILES              ACDLabs 10.04                                 "[NH3+]C1CCCCC1"
+HAI SMILES_CANONICAL               CACTVS 3.341                                 "[NH3+]C1CCCCC1"
+HAI           SMILES               CACTVS 3.341                                 "[NH3+]C1CCCCC1"
+HAI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                 C1CCC(CC1)[NH3+]
+HAI           SMILES "OpenEye OEToolkits" 1.5.0                                 C1CCC(CC1)[NH3+]
+HAI            InChI                InChI  1.03 InChI=1S/C6H13N/c7-6-4-2-1-3-5-6/h6H,1-5,7H2/p+1
+HAI         InChIKey                InChI  1.03                      PAFZNILMFXTMIY-UHFFFAOYSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HAI acedrg               243         "dictionary generator"                  
+HAI acedrg_database      11          "data source"                           
+HAI rdkit                2017.03.2   "Chemoinformatics tool"
+HAI refmac5              5.8.0238    "optimization tool"                     

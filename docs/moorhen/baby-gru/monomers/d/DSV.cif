@@ -1,0 +1,297 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DSV     DSV      N-(dibenzo[b,d]thiophen-3-ylsulfonyl)-L-valine     NON-POLYMER     40     24     .     
+#
+data_comp_DSV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DSV     C1      C       CR6     0       69.369      23.329      16.316      
+DSV     C2      C       CR16    0       68.405      22.339      16.195      
+DSV     C3      C       CR56    0       67.107      22.677      15.854      
+DSV     C4      C       CR56    0       66.734      24.010      15.626      
+DSV     C5      C       CR16    0       67.710      25.006      15.752      
+DSV     C6      C       CR16    0       69.005      24.670      16.092      
+DSV     S10     S       S2      0       65.807      21.657      15.654      
+DSV     C11     C       CR56    0       64.711      22.850      15.271      
+DSV     C12     C       CR56    0       65.324      24.113      15.284      
+DSV     CY1     C       CR16    0       63.368      22.694      14.972      
+DSV     CZ1     C       CR16    0       62.620      23.816      14.678      
+DSV     CZ2     C       CR16    0       63.206      25.084      14.684      
+DSV     CY2     C       CR16    0       64.545      25.237      14.983      
+DSV     S21     S       S3      0       71.033      22.900      16.757      
+DSV     O22     O       O       0       71.388      21.723      16.024      
+DSV     O23     O       O       0       71.112      22.887      18.185      
+DSV     N24     N       NT1     0       72.010      24.082      16.234      
+DSV     C10     C       CH1     0       73.285      24.386      16.875      
+DSV     CBC     C       CH1     0       74.287      23.203      16.796      
+DSV     CC1     C       CH3     0       75.575      23.508      17.553      
+DSV     CC2     C       CH3     0       74.597      22.775      15.364      
+DSV     C37     C       C       0       73.894      25.690      16.322      
+DSV     O39     O       O       0       73.952      25.817      15.081      
+DSV     O40     O       OC      -1      74.278      26.537      17.155      
+DSV     H2      H       H       0       68.649      21.443      16.346      
+DSV     H5      H       H       0       67.476      25.908      15.603      
+DSV     H6      H       H       0       69.649      25.354      16.173      
+DSV     HY1     H       H       0       62.971      21.840      14.968      
+DSV     HZ1     H       H       0       61.705      23.727      14.472      
+DSV     HZ2     H       H       0       62.681      25.841      14.481      
+DSV     HY2     H       H       0       64.935      26.096      14.985      
+DSV     HN24    H       H       0       71.994      24.156      15.379      
+DSV     H10     H       H       0       73.106      24.543      17.836      
+DSV     HBC     H       H       0       73.868      22.430      17.246      
+DSV     HC1     H       H       0       75.363      23.973      18.381      
+DSV     HC1A    H       H       0       76.155      24.068      17.008      
+DSV     HC1B    H       H       0       76.034      22.676      17.760      
+DSV     HC2     H       H       0       74.947      21.867      15.368      
+DSV     HC2B    H       H       0       75.261      23.374      14.979      
+DSV     HC2A    H       H       0       73.789      22.803      14.825      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DSV          C1          C2      DOUBLE       y     1.384  0.0100     1.384  0.0100
+DSV          C1          C6      SINGLE       y     1.398  0.0166     1.398  0.0166
+DSV          C1         S21      SINGLE       n     1.773  0.0100     1.773  0.0100
+DSV          C2          C3      SINGLE       y     1.381  0.0100     1.381  0.0100
+DSV          C3         S10      SINGLE       y     1.695  0.0200     1.695  0.0200
+DSV          C3          C4      DOUBLE       y     1.395  0.0100     1.395  0.0100
+DSV          C4         C12      SINGLE       y     1.445  0.0100     1.445  0.0100
+DSV          C4          C5      SINGLE       y     1.395  0.0100     1.395  0.0100
+DSV          C5          C6      DOUBLE       y     1.377  0.0100     1.377  0.0100
+DSV         S10         C11      SINGLE       y     1.695  0.0200     1.695  0.0200
+DSV         C11         CY1      DOUBLE       y     1.381  0.0100     1.381  0.0100
+DSV         C11         C12      SINGLE       y     1.395  0.0100     1.395  0.0100
+DSV         C12         CY2      DOUBLE       y     1.395  0.0100     1.395  0.0100
+DSV         CY1         CZ1      SINGLE       y     1.378  0.0108     1.378  0.0108
+DSV         CZ1         CZ2      DOUBLE       y     1.395  0.0112     1.395  0.0112
+DSV         CZ2         CY2      SINGLE       y     1.377  0.0100     1.377  0.0100
+DSV         S21         N24      SINGLE       n     1.617  0.0119     1.617  0.0119
+DSV         S21         O22      DOUBLE       n     1.431  0.0100     1.431  0.0100
+DSV         S21         O23      DOUBLE       n     1.431  0.0100     1.431  0.0100
+DSV         N24         C10      SINGLE       n     1.456  0.0100     1.456  0.0100
+DSV         C10         C37      SINGLE       n     1.539  0.0100     1.539  0.0100
+DSV         C10         CBC      SINGLE       n     1.545  0.0100     1.545  0.0100
+DSV         CBC         CC2      SINGLE       n     1.521  0.0135     1.521  0.0135
+DSV         CBC         CC1      SINGLE       n     1.521  0.0135     1.521  0.0135
+DSV         C37         O39      DOUBLE       n     1.247  0.0187     1.247  0.0187
+DSV         C37         O40      SINGLE       n     1.247  0.0187     1.247  0.0187
+DSV          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0170
+DSV          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0166
+DSV          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0168
+DSV         CY1         HY1      SINGLE       n     1.082  0.0130     0.941  0.0170
+DSV         CZ1         HZ1      SINGLE       n     1.082  0.0130     0.942  0.0176
+DSV         CZ2         HZ2      SINGLE       n     1.082  0.0130     0.944  0.0181
+DSV         CY2         HY2      SINGLE       n     1.082  0.0130     0.943  0.0166
+DSV         N24        HN24      SINGLE       n     1.036  0.0160     0.857  0.0200
+DSV         C10         H10      SINGLE       n     1.089  0.0100     0.990  0.0200
+DSV         CBC         HBC      SINGLE       n     1.089  0.0100     0.989  0.0175
+DSV         CC1         HC1      SINGLE       n     1.089  0.0100     0.973  0.0146
+DSV         CC1        HC1A      SINGLE       n     1.089  0.0100     0.973  0.0146
+DSV         CC1        HC1B      SINGLE       n     1.089  0.0100     0.973  0.0146
+DSV         CC2         HC2      SINGLE       n     1.089  0.0100     0.973  0.0146
+DSV         CC2        HC2B      SINGLE       n     1.089  0.0100     0.973  0.0146
+DSV         CC2        HC2A      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DSV          C2          C1          C6     119.237    1.74
+DSV          C2          C1         S21     120.407    1.50
+DSV          C6          C1         S21     120.356    1.50
+DSV          C1          C2          C3     119.564    1.65
+DSV          C1          C2          H2     119.251    1.50
+DSV          C3          C2          H2     121.185    1.50
+DSV          C2          C3         S10     130.380    3.00
+DSV          C2          C3          C4     121.162    2.16
+DSV         S10          C3          C4     108.459    3.00
+DSV          C3          C4         C12     107.312    1.50
+DSV          C3          C4          C5     120.134    1.74
+DSV         C12          C4          C5     132.554    1.50
+DSV          C4          C5          C6     119.336    1.50
+DSV          C4          C5          H5     119.987    1.50
+DSV          C6          C5          H5     120.677    1.50
+DSV          C1          C6          C5     120.568    1.50
+DSV          C1          C6          H6     120.176    1.50
+DSV          C5          C6          H6     119.256    1.50
+DSV          C3         S10         C11     108.459    3.00
+DSV         S10         C11         CY1     130.638    3.00
+DSV         S10         C11         C12     108.459    3.00
+DSV         CY1         C11         C12     120.903    2.16
+DSV          C4         C12         C11     107.312    1.50
+DSV          C4         C12         CY2     132.812    1.50
+DSV         C11         C12         CY2     119.876    1.74
+DSV         C11         CY1         CZ1     118.427    1.50
+DSV         C11         CY1         HY1     120.896    1.50
+DSV         CZ1         CY1         HY1     120.677    1.50
+DSV         CY1         CZ1         CZ2     120.953    1.50
+DSV         CY1         CZ1         HZ1     119.540    1.50
+DSV         CZ2         CZ1         HZ1     119.507    1.50
+DSV         CZ1         CZ2         CY2     120.763    1.50
+DSV         CZ1         CZ2         HZ2     119.467    1.50
+DSV         CY2         CZ2         HZ2     119.770    1.50
+DSV         C12         CY2         CZ2     119.078    1.50
+DSV         C12         CY2         HY2     120.405    1.50
+DSV         CZ2         CY2         HY2     120.517    1.50
+DSV          C1         S21         N24     107.637    1.50
+DSV          C1         S21         O22     108.022    1.50
+DSV          C1         S21         O23     108.022    1.50
+DSV         N24         S21         O22     106.820    1.50
+DSV         N24         S21         O23     106.820    1.50
+DSV         O22         S21         O23     119.599    1.50
+DSV         S21         N24         C10     120.490    1.71
+DSV         S21         N24        HN24     111.495    3.00
+DSV         C10         N24        HN24     114.792    3.00
+DSV         N24         C10         C37     113.481    2.07
+DSV         N24         C10         CBC     111.208    1.61
+DSV         N24         C10         H10     108.676    1.50
+DSV         C37         C10         CBC     111.299    1.50
+DSV         C37         C10         H10     108.169    1.50
+DSV         CBC         C10         H10     108.036    1.50
+DSV         C10         CBC         CC2     111.205    1.50
+DSV         C10         CBC         CC1     111.205    1.50
+DSV         C10         CBC         HBC     107.644    1.50
+DSV         CC2         CBC         CC1     110.676    1.50
+DSV         CC2         CBC         HBC     107.603    1.50
+DSV         CC1         CBC         HBC     107.603    1.50
+DSV         CBC         CC1         HC1     109.507    1.50
+DSV         CBC         CC1        HC1A     109.507    1.50
+DSV         CBC         CC1        HC1B     109.507    1.50
+DSV         HC1         CC1        HC1A     109.411    1.50
+DSV         HC1         CC1        HC1B     109.411    1.50
+DSV        HC1A         CC1        HC1B     109.411    1.50
+DSV         CBC         CC2         HC2     109.507    1.50
+DSV         CBC         CC2        HC2B     109.507    1.50
+DSV         CBC         CC2        HC2A     109.507    1.50
+DSV         HC2         CC2        HC2B     109.411    1.50
+DSV         HC2         CC2        HC2A     109.411    1.50
+DSV        HC2B         CC2        HC2A     109.411    1.50
+DSV         C10         C37         O39     117.226    1.56
+DSV         C10         C37         O40     117.226    1.56
+DSV         O39         C37         O40     125.548    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DSV              const_35         S21          C1          C2          C3     180.000    10.0     2
+DSV             sp2_sp3_3          C2          C1         S21         N24      30.000    10.0     6
+DSV              const_55         S21          C1          C6          C5     180.000    10.0     2
+DSV              const_21         CY1         CZ1         CZ2         CY2       0.000    10.0     2
+DSV              const_25         C12         CY2         CZ2         CZ1       0.000    10.0     2
+DSV             sp3_sp3_5         C10         N24         S21         O22     180.000    10.0     3
+DSV             sp3_sp3_7         C37         C10         N24         S21     180.000    10.0     3
+DSV            sp3_sp3_14         N24         C10         CBC         CC2     -60.000    10.0     3
+DSV             sp2_sp3_7         O39         C37         C10         N24       0.000    10.0     6
+DSV            sp3_sp3_34         C10         CBC         CC1         HC1      60.000    10.0     3
+DSV            sp3_sp3_22         C10         CBC         CC2         HC2     180.000    10.0     3
+DSV              const_38          C1          C2          C3         S10     180.000    10.0     2
+DSV              const_42          C2          C3          C4         C12     180.000    10.0     2
+DSV       const_sp2_sp2_2          C2          C3         S10         C11     180.000     5.0     2
+DSV              const_45          C3          C4          C5          C6       0.000    10.0     2
+DSV       const_sp2_sp2_9         C11         C12          C4          C3       0.000     5.0     2
+DSV              const_49          C4          C5          C6          C1       0.000    10.0     2
+DSV       const_sp2_sp2_4         CY1         C11         S10          C3     180.000     5.0     2
+DSV       const_sp2_sp2_5         S10         C11         C12          C4       0.000     5.0     2
+DSV              const_15         S10         C11         CY1         CZ1     180.000    10.0     2
+DSV              const_31          C4         C12         CY2         CZ2     180.000    10.0     2
+DSV              const_17         C11         CY1         CZ1         CZ2       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DSV    chir_1    S21    O22    O23    N24    both
+DSV    chir_2    C10    N24    C37    CBC    positive
+DSV    chir_3    CBC    C10    CC2    CC1    both
+DSV    chir_4    N24    S21    C10    HN24    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DSV    plan-1          C1   0.020
+DSV    plan-1         C11   0.020
+DSV    plan-1         C12   0.020
+DSV    plan-1          C2   0.020
+DSV    plan-1          C3   0.020
+DSV    plan-1          C4   0.020
+DSV    plan-1          C5   0.020
+DSV    plan-1          C6   0.020
+DSV    plan-1         CY1   0.020
+DSV    plan-1         CY2   0.020
+DSV    plan-1          H2   0.020
+DSV    plan-1          H5   0.020
+DSV    plan-1          H6   0.020
+DSV    plan-1         S10   0.020
+DSV    plan-1         S21   0.020
+DSV    plan-2         C11   0.020
+DSV    plan-2         C12   0.020
+DSV    plan-2          C4   0.020
+DSV    plan-2         CY1   0.020
+DSV    plan-2         CY2   0.020
+DSV    plan-2         CZ1   0.020
+DSV    plan-2         CZ2   0.020
+DSV    plan-2         HY1   0.020
+DSV    plan-2         HY2   0.020
+DSV    plan-2         HZ1   0.020
+DSV    plan-2         HZ2   0.020
+DSV    plan-2         S10   0.020
+DSV    plan-3         C10   0.020
+DSV    plan-3         C37   0.020
+DSV    plan-3         O39   0.020
+DSV    plan-3         O40   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DSV           SMILES              ACDLabs 10.04                                                                                           O=C(O)C(NS(=O)(=O)c2ccc1c3ccccc3sc1c2)C(C)C
+DSV SMILES_CANONICAL               CACTVS 3.341                                                                                   CC(C)[C@H](N[S](=O)(=O)c1ccc2c(sc3ccccc23)c1)C(O)=O
+DSV           SMILES               CACTVS 3.341                                                                                    CC(C)[CH](N[S](=O)(=O)c1ccc2c(sc3ccccc23)c1)C(O)=O
+DSV SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                      CC(C)[C@@H](C(=O)O)NS(=O)(=O)c1ccc2c3ccccc3sc2c1
+DSV           SMILES "OpenEye OEToolkits" 1.5.0                                                                                           CC(C)C(C(=O)O)NS(=O)(=O)c1ccc2c3ccccc3sc2c1
+DSV            InChI                InChI  1.03 InChI=1S/C17H17NO4S2/c1-10(2)16(17(19)20)18-24(21,22)11-7-8-13-12-5-3-4-6-14(12)23-15(13)9-11/h3-10,16,18H,1-2H3,(H,19,20)/t16-/m0/s1
+DSV         InChIKey                InChI  1.03                                                                                                           RZWYSEXQXOXWKA-INIZCTEOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DSV acedrg               243         "dictionary generator"                  
+DSV acedrg_database      11          "data source"                           
+DSV rdkit                2017.03.2   "Chemoinformatics tool"
+DSV refmac5              5.8.0238    "optimization tool"                     

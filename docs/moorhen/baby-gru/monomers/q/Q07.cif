@@ -1,0 +1,184 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+Q07     Q07      "[(1R,2S)-1-amino-2-methylpentyl]phosphonic acid"     NON-POLYMER     25     11     .     
+#
+data_comp_Q07
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+Q07     O2      O       OP      -1      23.331      -2.288      12.566      
+Q07     P       P       P       0       22.543      -2.224      11.303      
+Q07     O       O       OP      -1      21.078      -2.167      11.571      
+Q07     O1      O       O       0       22.986      -1.094      10.437      
+Q07     C5      C       CH1     0       22.845      -3.765      10.361      
+Q07     N       N       NT2     0       23.925      -3.553      9.378       
+Q07     C3      C       CH1     0       23.115      -4.971      11.292      
+Q07     C4      C       CH3     0       21.974      -5.180      12.285      
+Q07     C2      C       CH2     0       23.412      -6.271      10.517      
+Q07     C1      C       CH2     0       24.090      -7.371      11.321      
+Q07     C       C       CH3     0       24.711      -8.430      10.441      
+Q07     H3      H       H       0       22.026      -3.972      9.853       
+Q07     H4      H       H       0       23.993      -2.680      9.148       
+Q07     H5      H       H       0       23.736      -4.005      8.617       
+Q07     H7      H       H       0       23.926      -4.755      11.815      
+Q07     H8      H       H       0       21.143      -4.846      11.904      
+Q07     H9      H       H       0       22.169      -4.698      13.107      
+Q07     H10     H       H       0       21.874      -6.127      12.485      
+Q07     H11     H       H       0       23.981      -6.055      9.750       
+Q07     H12     H       H       0       22.565      -6.616      10.163      
+Q07     H13     H       H       0       23.431      -7.797      11.911      
+Q07     H14     H       H       0       24.789      -6.977      11.887      
+Q07     H15     H       H       0       25.034      -9.164      10.992      
+Q07     H16     H       H       0       25.456      -8.046      9.946       
+Q07     H17     H       H       0       24.046      -8.765      9.815       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+Q07          C5           N      SINGLE       n     1.473  0.0130     1.473  0.0130
+Q07          C2          C1      SINGLE       n     1.518  0.0200     1.518  0.0200
+Q07          C3          C2      SINGLE       n     1.538  0.0107     1.538  0.0107
+Q07          C5          C3      SINGLE       n     1.542  0.0100     1.542  0.0100
+Q07           P          C5      SINGLE       n     1.820  0.0200     1.820  0.0200
+Q07           P          O1      DOUBLE       n     1.492  0.0200     1.492  0.0200
+Q07          C1           C      SINGLE       n     1.510  0.0200     1.510  0.0200
+Q07          C3          C4      SINGLE       n     1.521  0.0135     1.521  0.0135
+Q07           P           O      SINGLE       n     1.492  0.0200     1.492  0.0200
+Q07          O2           P      SINGLE       n     1.492  0.0200     1.492  0.0200
+Q07          C5          H3      SINGLE       n     1.089  0.0100     0.986  0.0200
+Q07           N          H4      SINGLE       n     1.036  0.0160     0.905  0.0200
+Q07           N          H5      SINGLE       n     1.036  0.0160     0.905  0.0200
+Q07          C3          H7      SINGLE       n     1.089  0.0100     0.989  0.0175
+Q07          C4          H8      SINGLE       n     1.089  0.0100     0.973  0.0146
+Q07          C4          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+Q07          C4         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+Q07          C2         H11      SINGLE       n     1.089  0.0100     0.981  0.0160
+Q07          C2         H12      SINGLE       n     1.089  0.0100     0.981  0.0160
+Q07          C1         H13      SINGLE       n     1.089  0.0100     0.982  0.0155
+Q07          C1         H14      SINGLE       n     1.089  0.0100     0.982  0.0155
+Q07           C         H15      SINGLE       n     1.089  0.0100     0.973  0.0157
+Q07           C         H16      SINGLE       n     1.089  0.0100     0.973  0.0157
+Q07           C         H17      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+Q07          C5           P          O1     110.326    3.00
+Q07          C5           P           O     110.326    3.00
+Q07          C5           P          O2     110.326    3.00
+Q07          O1           P           O     112.502    1.50
+Q07          O1           P          O2     112.502    1.50
+Q07           O           P          O2     112.502    1.50
+Q07           N          C5          C3     111.883    2.59
+Q07           N          C5           P     112.238    3.00
+Q07           N          C5          H3     107.944    1.55
+Q07          C3          C5           P     111.410    2.87
+Q07          C3          C5          H3     107.827    1.50
+Q07           P          C5          H3     108.528    1.50
+Q07          C5           N          H4     109.715    3.00
+Q07          C5           N          H5     109.715    3.00
+Q07          H4           N          H5     107.163    3.00
+Q07          C2          C3          C5     111.987    1.70
+Q07          C2          C3          C4     111.118    1.50
+Q07          C2          C3          H7     107.675    1.50
+Q07          C5          C3          C4     111.756    1.50
+Q07          C5          C3          H7     107.402    1.57
+Q07          C4          C3          H7     107.863    1.50
+Q07          C3          C4          H8     109.513    1.50
+Q07          C3          C4          H9     109.513    1.50
+Q07          C3          C4         H10     109.513    1.50
+Q07          H8          C4          H9     109.411    1.50
+Q07          H8          C4         H10     109.411    1.50
+Q07          H9          C4         H10     109.411    1.50
+Q07          C1          C2          C3     115.586    1.50
+Q07          C1          C2         H11     109.054    1.50
+Q07          C1          C2         H12     109.054    1.50
+Q07          C3          C2         H11     108.471    1.50
+Q07          C3          C2         H12     108.471    1.50
+Q07         H11          C2         H12     107.657    1.50
+Q07          C2          C1           C     111.589    3.00
+Q07          C2          C1         H13     109.240    1.50
+Q07          C2          C1         H14     109.240    1.50
+Q07           C          C1         H13     108.918    1.50
+Q07           C          C1         H14     108.918    1.50
+Q07         H13          C1         H14     107.763    1.50
+Q07          C1           C         H15     109.554    1.50
+Q07          C1           C         H16     109.554    1.50
+Q07          C1           C         H17     109.554    1.50
+Q07         H15           C         H16     109.380    1.50
+Q07         H15           C         H17     109.380    1.50
+Q07         H16           C         H17     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+Q07            sp3_sp3_36           N          C5           P          O1      60.000    10.0     3
+Q07             sp3_sp3_1          C3          C5           N          H4     180.000    10.0     3
+Q07            sp3_sp3_25          C2          C3          C5           N     180.000    10.0     3
+Q07            sp3_sp3_52          C2          C3          C4          H8     180.000    10.0     3
+Q07            sp3_sp3_16          C1          C2          C3          C5     180.000    10.0     3
+Q07             sp3_sp3_7           C          C1          C2          C3     180.000    10.0     3
+Q07            sp3_sp3_43         H15           C          C1          C2     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+Q07    chir_1    P    O    O2    O1    both
+Q07    chir_2    C5    P    N    C3    negative
+Q07    chir_3    C3    C5    C2    C4    positive
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+Q07           SMILES              ACDLabs 12.01                                                                     O=P(O)(O)C(N)C(CCC)C
+Q07            InChI                InChI  1.03 InChI=1S/C6H16NO3P/c1-3-4-5(2)6(7)11(8,9)10/h5-6H,3-4,7H2,1-2H3,(H2,8,9,10)/t5-,6+/m0/s1
+Q07         InChIKey                InChI  1.03                                                              AMCULSZUZIHVRH-NTSWFWBYSA-N
+Q07 SMILES_CANONICAL               CACTVS 3.385                                                           CCC[C@H](C)[C@H](N)[P](O)(O)=O
+Q07           SMILES               CACTVS 3.385                                                             CCC[CH](C)[CH](N)[P](O)(O)=O
+Q07 SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                             CCC[C@H](C)[C@H](N)P(=O)(O)O
+Q07           SMILES "OpenEye OEToolkits" 1.9.2                                                                     CCCC(C)C(N)P(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+Q07 acedrg               243         "dictionary generator"                  
+Q07 acedrg_database      11          "data source"                           
+Q07 rdkit                2017.03.2   "Chemoinformatics tool"
+Q07 refmac5              5.8.0238    "optimization tool"                     

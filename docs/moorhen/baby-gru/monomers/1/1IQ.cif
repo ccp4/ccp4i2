@@ -1,0 +1,293 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+1IQ     1IQ      "2-(4-ISOPROPYL-4-METHYL-5-OXO-4,5-DIHYDRO-1H-IMIDAZOL-2-YL)QUINOLINE-3-CARBOXYLIC ACID"     NON-POLYMER     39     23     .     
+#
+data_comp_1IQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+1IQ     "C5'"   C       CR66    0       50.120      84.012      44.965      
+1IQ     "C6'"   C       CR66    0       50.366      84.810      46.113      
+1IQ     "C7'"   C       CR16    0       49.673      86.033      46.262      
+1IQ     "C8'"   C       CR16    0       48.779      86.437      45.311      
+1IQ     "C9'"   C       CR16    0       48.533      85.646      44.172      
+1IQ     "CA'"   C       CR16    0       49.186      84.460      43.999      
+1IQ     "N1'"   N       NRD6    0       51.262      84.430      47.086      
+1IQ     "C4'"   C       CR16    0       50.831      82.797      44.852      
+1IQ     "C3'"   C       CR6     0       51.726      82.416      45.827      
+1IQ     "C2'"   C       CR6     0       51.919      83.283      46.963      
+1IQ     "CB'"   C       C       0       52.471      81.111      45.679      
+1IQ     "OC'"   O       OC      -1      52.195      80.193      46.472      
+1IQ     "OD'"   O       O       0       53.319      81.027      44.772      
+1IQ     N3      N       NRD5    0       52.516      83.053      49.294      
+1IQ     C2      C       CR5     0       52.855      82.969      48.057      
+1IQ     N1      N       NR5     0       54.174      82.603      47.874      
+1IQ     C5      C       CR5     0       54.727      82.300      49.096      
+1IQ     C4      C       CT      0       53.686      82.732      50.137      
+1IQ     O6      O       O       0       55.814      81.797      49.292      
+1IQ     C8      C       CH1     0       54.156      83.974      50.945      
+1IQ     C7      C       CH3     0       53.332      81.530      51.029      
+1IQ     C10     C       CH3     0       54.530      85.173      50.075      
+1IQ     C9      C       CH3     0       55.289      83.670      51.927      
+1IQ     "H7'"   H       H       0       49.832      86.569      47.022      
+1IQ     "H8'"   H       H       0       48.322      87.255      45.420      
+1IQ     "H9'"   H       H       0       47.912      85.939      43.524      
+1IQ     "H10'"  H       H       0       49.014      83.939      43.234      
+1IQ     "H4'"   H       H       0       50.693      82.242      44.105      
+1IQ     HN1     H       H       0       54.594      82.569      47.105      
+1IQ     H8      H       H       0       53.379      84.260      51.496      
+1IQ     H71     H       H       0       54.134      81.029      51.236      
+1IQ     H72     H       H       0       52.704      80.955      50.568      
+1IQ     H73     H       H       0       52.932      81.849      51.851      
+1IQ     H101    H       H       0       53.884      85.286      49.357      
+1IQ     H102    H       H       0       55.415      85.039      49.693      
+1IQ     H103    H       H       0       54.537      85.977      50.623      
+1IQ     H91     H       H       0       55.673      82.795      51.749      
+1IQ     H92     H       H       0       54.938      83.685      52.834      
+1IQ     H93     H       H       0       55.987      84.344      51.846      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+1IQ       "C5'"       "C6'"      SINGLE       y     1.416  0.0100     1.416  0.0100
+1IQ       "C5'"       "CA'"      DOUBLE       y     1.413  0.0100     1.413  0.0100
+1IQ       "C5'"       "C4'"      SINGLE       y     1.411  0.0100     1.411  0.0100
+1IQ       "C6'"       "C7'"      DOUBLE       y     1.411  0.0100     1.411  0.0100
+1IQ       "C6'"       "N1'"      SINGLE       y     1.373  0.0100     1.373  0.0100
+1IQ       "C7'"       "C8'"      SINGLE       y     1.363  0.0103     1.363  0.0103
+1IQ       "C8'"       "C9'"      DOUBLE       y     1.401  0.0132     1.401  0.0132
+1IQ       "C9'"       "CA'"      SINGLE       y     1.361  0.0102     1.361  0.0102
+1IQ       "N1'"       "C2'"      DOUBLE       y     1.321  0.0100     1.321  0.0100
+1IQ       "C4'"       "C3'"      DOUBLE       y     1.373  0.0100     1.373  0.0100
+1IQ       "C3'"       "C2'"      SINGLE       y     1.406  0.0200     1.406  0.0200
+1IQ       "C3'"       "CB'"      SINGLE       n     1.508  0.0126     1.508  0.0126
+1IQ       "C2'"          C2      SINGLE       n     1.470  0.0115     1.470  0.0115
+1IQ       "CB'"       "OC'"      SINGLE       n     1.244  0.0200     1.244  0.0200
+1IQ       "CB'"       "OD'"      DOUBLE       n     1.244  0.0200     1.244  0.0200
+1IQ          N3          C2      DOUBLE       n     1.284  0.0100     1.284  0.0100
+1IQ          N3          C4      SINGLE       n     1.475  0.0100     1.475  0.0100
+1IQ          C2          N1      SINGLE       n     1.380  0.0100     1.380  0.0100
+1IQ          N1          C5      SINGLE       n     1.376  0.0100     1.376  0.0100
+1IQ          C5          C4      SINGLE       n     1.532  0.0100     1.532  0.0100
+1IQ          C5          O6      DOUBLE       n     1.213  0.0100     1.213  0.0100
+1IQ          C4          C8      SINGLE       n     1.546  0.0100     1.546  0.0100
+1IQ          C4          C7      SINGLE       n     1.535  0.0100     1.535  0.0100
+1IQ          C8         C10      SINGLE       n     1.523  0.0100     1.523  0.0100
+1IQ          C8          C9      SINGLE       n     1.523  0.0100     1.523  0.0100
+1IQ       "C7'"       "H7'"      SINGLE       n     1.082  0.0130     0.943  0.0197
+1IQ       "C8'"       "H8'"      SINGLE       n     1.082  0.0130     0.944  0.0200
+1IQ       "C9'"       "H9'"      SINGLE       n     1.082  0.0130     0.944  0.0184
+1IQ       "CA'"      "H10'"      SINGLE       n     1.082  0.0130     0.942  0.0169
+1IQ       "C4'"       "H4'"      SINGLE       n     1.082  0.0130     0.940  0.0200
+1IQ          N1         HN1      SINGLE       n     1.016  0.0100     0.877  0.0135
+1IQ          C8          H8      SINGLE       n     1.089  0.0100     0.994  0.0114
+1IQ          C7         H71      SINGLE       n     1.089  0.0100     0.968  0.0195
+1IQ          C7         H72      SINGLE       n     1.089  0.0100     0.968  0.0195
+1IQ          C7         H73      SINGLE       n     1.089  0.0100     0.968  0.0195
+1IQ         C10        H101      SINGLE       n     1.089  0.0100     0.973  0.0146
+1IQ         C10        H102      SINGLE       n     1.089  0.0100     0.973  0.0146
+1IQ         C10        H103      SINGLE       n     1.089  0.0100     0.973  0.0146
+1IQ          C9         H91      SINGLE       n     1.089  0.0100     0.973  0.0146
+1IQ          C9         H92      SINGLE       n     1.089  0.0100     0.973  0.0146
+1IQ          C9         H93      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+1IQ       "C6'"       "C5'"       "CA'"     119.055    1.50
+1IQ       "C6'"       "C5'"       "C4'"     118.336    1.50
+1IQ       "CA'"       "C5'"       "C4'"     122.608    1.50
+1IQ       "C5'"       "C6'"       "C7'"     119.218    1.50
+1IQ       "C5'"       "C6'"       "N1'"     122.286    1.50
+1IQ       "C7'"       "C6'"       "N1'"     118.496    1.50
+1IQ       "C6'"       "C7'"       "C8'"     120.273    1.50
+1IQ       "C6'"       "C7'"       "H7'"     119.579    1.50
+1IQ       "C8'"       "C7'"       "H7'"     120.147    1.50
+1IQ       "C7'"       "C8'"       "C9'"     120.760    1.50
+1IQ       "C7'"       "C8'"       "H8'"     119.547    1.50
+1IQ       "C9'"       "C8'"       "H8'"     119.694    1.50
+1IQ       "C8'"       "C9'"       "CA'"     120.359    1.50
+1IQ       "C8'"       "C9'"       "H9'"     119.795    1.50
+1IQ       "CA'"       "C9'"       "H9'"     119.851    1.50
+1IQ       "C5'"       "CA'"       "C9'"     120.329    1.50
+1IQ       "C5'"       "CA'"      "H10'"     119.915    1.50
+1IQ       "C9'"       "CA'"      "H10'"     119.756    1.50
+1IQ       "C6'"       "N1'"       "C2'"     118.499    1.50
+1IQ       "C5'"       "C4'"       "C3'"     120.800    1.50
+1IQ       "C5'"       "C4'"       "H4'"     119.771    1.50
+1IQ       "C3'"       "C4'"       "H4'"     119.429    1.50
+1IQ       "C4'"       "C3'"       "C2'"     118.874    1.50
+1IQ       "C4'"       "C3'"       "CB'"     120.381    1.50
+1IQ       "C2'"       "C3'"       "CB'"     120.745    2.28
+1IQ       "N1'"       "C2'"       "C3'"     121.205    1.50
+1IQ       "N1'"       "C2'"          C2     116.968    1.92
+1IQ       "C3'"       "C2'"          C2     121.827    1.57
+1IQ       "C3'"       "CB'"       "OC'"     117.793    1.50
+1IQ       "C3'"       "CB'"       "OD'"     117.793    1.50
+1IQ       "OC'"       "CB'"       "OD'"     124.413    1.50
+1IQ          C2          N3          C4     108.696    1.50
+1IQ       "C2'"          C2          N3     122.102    2.76
+1IQ       "C2'"          C2          N1     124.240    2.20
+1IQ          N3          C2          N1     113.658    1.50
+1IQ          C2          N1          C5     108.917    1.50
+1IQ          C2          N1         HN1     125.748    1.50
+1IQ          C5          N1         HN1     125.327    1.50
+1IQ          N1          C5          C4     105.676    1.50
+1IQ          N1          C5          O6     126.612    1.50
+1IQ          C4          C5          O6     127.706    1.50
+1IQ          N3          C4          C5     102.775    1.50
+1IQ          N3          C4          C8     110.767    1.50
+1IQ          N3          C4          C7     109.733    1.50
+1IQ          C5          C4          C8     110.929    1.50
+1IQ          C5          C4          C7     108.903    1.50
+1IQ          C8          C4          C7     113.243    1.50
+1IQ          C4          C8         C10     112.199    1.50
+1IQ          C4          C8          C9     112.199    1.50
+1IQ          C4          C8          H8     107.310    1.50
+1IQ         C10          C8          C9     110.224    1.50
+1IQ         C10          C8          H8     107.220    1.50
+1IQ          C9          C8          H8     107.220    1.50
+1IQ          C4          C7         H71     109.456    1.50
+1IQ          C4          C7         H72     109.456    1.50
+1IQ          C4          C7         H73     109.456    1.50
+1IQ         H71          C7         H72     109.453    1.50
+1IQ         H71          C7         H73     109.453    1.50
+1IQ         H72          C7         H73     109.453    1.50
+1IQ          C8         C10        H101     109.470    1.50
+1IQ          C8         C10        H102     109.470    1.50
+1IQ          C8         C10        H103     109.470    1.50
+1IQ        H101         C10        H102     109.345    1.50
+1IQ        H101         C10        H103     109.345    1.50
+1IQ        H102         C10        H103     109.345    1.50
+1IQ          C8          C9         H91     109.470    1.50
+1IQ          C8          C9         H92     109.470    1.50
+1IQ          C8          C9         H93     109.470    1.50
+1IQ         H91          C9         H92     109.345    1.50
+1IQ         H91          C9         H93     109.345    1.50
+1IQ         H92          C9         H93     109.345    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+1IQ       const_sp2_sp2_1       "CA'"       "C5'"       "C6'"       "C7'"       0.000     5.0     2
+1IQ              const_33       "C6'"       "C5'"       "CA'"       "C9'"       0.000    10.0     2
+1IQ              const_37       "C3'"       "C4'"       "C5'"       "C6'"       0.000    10.0     2
+1IQ             sp2_sp2_2       "C2'"          C2          N3          C4     180.000     5.0     2
+1IQ             sp2_sp3_8          C2          N3          C4          C8     120.000    10.0     6
+1IQ             sp2_sp2_5       "C2'"          C2          N1          C5     180.000     5.0     2
+1IQ             sp2_sp2_9          O6          C5          N1          C2     180.000     5.0     2
+1IQ             sp2_sp3_5          O6          C5          C4          C8     -60.000    10.0     6
+1IQ             sp3_sp3_8          C7          C4          C8         C10      60.000    10.0     3
+1IQ            sp3_sp3_16          C8          C4          C7         H71     -60.000    10.0     3
+1IQ            sp3_sp3_20        H101         C10          C8          C9     -60.000    10.0     3
+1IQ            sp3_sp3_28         C10          C8          C9         H91     180.000    10.0     3
+1IQ              const_17       "C5'"       "C6'"       "C7'"       "C8'"       0.000    10.0     2
+1IQ       const_sp2_sp2_5       "C5'"       "C6'"       "N1'"       "C2'"       0.000     5.0     2
+1IQ              const_21       "C6'"       "C7'"       "C8'"       "C9'"       0.000    10.0     2
+1IQ              const_25       "C7'"       "C8'"       "C9'"       "CA'"       0.000    10.0     2
+1IQ              const_29       "C8'"       "C9'"       "CA'"       "C5'"       0.000    10.0     2
+1IQ       const_sp2_sp2_7       "C3'"       "C2'"       "N1'"       "C6'"       0.000     5.0     2
+1IQ              const_15       "CB'"       "C3'"       "C4'"       "C5'"     180.000    10.0     2
+1IQ            sp2_sp2_11       "C4'"       "C3'"       "CB'"       "OC'"     180.000     5.0     2
+1IQ              const_10       "N1'"       "C2'"       "C3'"       "CB'"     180.000    10.0     2
+1IQ            sp2_sp2_18          N3          C2       "C2'"       "N1'"     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+1IQ    chir_1    C4    N3    C5    C8    negative
+1IQ    chir_2    C8    C4    C10    C9    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+1IQ    plan-1          C2   0.020
+1IQ    plan-1       "C2'"   0.020
+1IQ    plan-1       "C3'"   0.020
+1IQ    plan-1       "C4'"   0.020
+1IQ    plan-1       "C5'"   0.020
+1IQ    plan-1       "C6'"   0.020
+1IQ    plan-1       "C7'"   0.020
+1IQ    plan-1       "C8'"   0.020
+1IQ    plan-1       "C9'"   0.020
+1IQ    plan-1       "CA'"   0.020
+1IQ    plan-1       "CB'"   0.020
+1IQ    plan-1      "H10'"   0.020
+1IQ    plan-1       "H4'"   0.020
+1IQ    plan-1       "H7'"   0.020
+1IQ    plan-1       "H8'"   0.020
+1IQ    plan-1       "H9'"   0.020
+1IQ    plan-1       "N1'"   0.020
+1IQ    plan-2       "C3'"   0.020
+1IQ    plan-2       "CB'"   0.020
+1IQ    plan-2       "OC'"   0.020
+1IQ    plan-2       "OD'"   0.020
+1IQ    plan-3          C2   0.020
+1IQ    plan-3       "C2'"   0.020
+1IQ    plan-3          N1   0.020
+1IQ    plan-3          N3   0.020
+1IQ    plan-4          C2   0.020
+1IQ    plan-4          C5   0.020
+1IQ    plan-4         HN1   0.020
+1IQ    plan-4          N1   0.020
+1IQ    plan-5          C4   0.020
+1IQ    plan-5          C5   0.020
+1IQ    plan-5          N1   0.020
+1IQ    plan-5          O6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+1IQ           SMILES              ACDLabs 10.04                                                                                           O=C(O)c2c(nc1ccccc1c2)C3=NC(C(=O)N3)(C(C)C)C
+1IQ SMILES_CANONICAL               CACTVS 3.341                                                                                           CC(C)[C@@]1(C)N=C(NC1=O)c2nc3ccccc3cc2C(O)=O
+1IQ           SMILES               CACTVS 3.341                                                                                             CC(C)[C]1(C)N=C(NC1=O)c2nc3ccccc3cc2C(O)=O
+1IQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                       CC(C)[C@@]1(C(=O)NC(=N1)c2c(cc3ccccc3n2)C(=O)O)C
+1IQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                           CC(C)C1(C(=O)NC(=N1)c2c(cc3ccccc3n2)C(=O)O)C
+1IQ            InChI                InChI  1.03 InChI=1S/C17H17N3O3/c1-9(2)17(3)16(23)19-14(20-17)13-11(15(21)22)8-10-6-4-5-7-12(10)18-13/h4-9H,1-3H3,(H,21,22)(H,19,20,23)/t17-/m1/s1
+1IQ         InChIKey                InChI  1.03                                                                                                            CABMTIJINOIHOD-QGZVFWFLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+1IQ acedrg               243         "dictionary generator"                  
+1IQ acedrg_database      11          "data source"                           
+1IQ rdkit                2017.03.2   "Chemoinformatics tool"
+1IQ refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,369 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PZD     PZD      (11aS)-7,8-dimethoxy-2-naphthalen-2-yl-1,10,11,11a-tetrahydro-5H-pyrrolo[2,1-c][1,4]benzodiazepin-5-one     NON-POLYMER     51     29     .     
+#
+data_comp_PZD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PZD     C1A     C       CR6     0       7.192       35.773      -8.073      
+PZD     C2A     C       CR6     0       7.935       35.149      -7.039      
+PZD     C3A     C       CR16    0       7.342       34.195      -6.236      
+PZD     C4A     C       CR6     0       5.997       33.823      -6.417      
+PZD     C5A     C       CR6     0       5.257       34.447      -7.449      
+PZD     C6A     C       CR16    0       5.871       35.419      -8.277      
+PZD     C7A     C       C       0       5.382       32.785      -5.538      
+PZD     N1A     N       NR5     0       4.653       31.703      -6.105      
+PZD     C8A     C       CH1     0       4.399       31.637      -7.561      
+PZD     C10     C       CR15    0       4.127       30.619      -5.430      
+PZD     C11     C       CR5     0       3.601       29.708      -6.370      
+PZD     C12     C       CH2     0       3.755       30.259      -7.769      
+PZD     O1A     O       O       0       5.522       32.846      -4.319      
+PZD     C13     C       CR66    0       2.240       26.170      -6.837      
+PZD     C14     C       CR66    0       1.741       25.906      -5.530      
+PZD     C15     C       CR16    0       1.129       24.641      -5.273      
+PZD     C16     C       CR16    0       1.023       23.704      -6.256      
+PZD     C17     C       CR16    0       1.518       23.970      -7.548      
+PZD     C18     C       CR16    0       2.109       25.166      -7.830      
+PZD     C19     C       CR16    0       2.854       27.435      -7.099      
+PZD     C20     C       CR6     0       2.965       28.395      -6.103      
+PZD     C21     C       CR16    0       2.458       28.104      -4.809      
+PZD     C22     C       CR16    0       1.868       26.903      -4.533      
+PZD     O2A     O       O2      0       9.240       35.549      -6.916      
+PZD     C23     C       CH3     0       9.521       36.792      -6.269      
+PZD     O3A     O       O2      0       7.884       36.688      -8.819      
+PZD     C24     C       CH3     0       7.183       37.773      -9.425      
+PZD     C9A     C       CH2     0       3.502       32.777      -8.049      
+PZD     N2A     N       NH1     0       3.947       34.107      -7.657      
+PZD     H3A     H       H       0       7.846       33.788      -5.553      
+PZD     H6A     H       H       0       5.373       35.823      -8.957      
+PZD     H8A     H       H       0       5.258       31.656      -8.065      
+PZD     H10     H       H       0       4.120       30.502      -4.495      
+PZD     H12A    H       H       0       4.329       29.682      -8.308      
+PZD     H12     H       H       0       2.888       30.334      -8.211      
+PZD     H15     H       H       0       0.794       24.454      -4.411      
+PZD     H16     H       H       0       0.616       22.873      -6.071      
+PZD     H17     H       H       0       1.440       23.314      -8.223      
+PZD     H18     H       H       0       2.436       25.330      -8.700      
+PZD     H19     H       H       0       3.185       27.615      -7.954      
+PZD     H21     H       H       0       2.527       28.746      -4.126      
+PZD     H22     H       H       0       1.539       26.734      -3.664      
+PZD     H23B    H       H       0       8.701       37.180      -5.920      
+PZD     H23     H       H       0       9.919       37.403      -6.911      
+PZD     H23A    H       H       0       10.143      36.642      -5.539      
+PZD     H24A    H       H       0       6.588       38.181      -8.775      
+PZD     H24     H       H       0       6.665       37.443      -10.177     
+PZD     H24B    H       H       0       7.822       38.434      -9.738      
+PZD     H9A     H       H       0       2.598       32.634      -7.700      
+PZD     H9AA    H       H       0       3.453       32.738      -9.027      
+PZD     HN2A    H       H       0       3.338       34.733      -7.547      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PZD         C1A         O3A      SINGLE       n     1.363  0.0100     1.363  0.0100
+PZD         C1A         C6A      DOUBLE       y     1.377  0.0100     1.377  0.0100
+PZD         C1A         C2A      SINGLE       y     1.408  0.0100     1.408  0.0100
+PZD         C2A         O2A      SINGLE       n     1.367  0.0100     1.367  0.0100
+PZD         C2A         C3A      DOUBLE       y     1.374  0.0100     1.374  0.0100
+PZD         C3A         C4A      SINGLE       y     1.401  0.0124     1.401  0.0124
+PZD         C4A         C5A      DOUBLE       y     1.412  0.0116     1.412  0.0116
+PZD         C4A         C7A      SINGLE       n     1.490  0.0100     1.490  0.0100
+PZD         C5A         C6A      SINGLE       y     1.416  0.0100     1.416  0.0100
+PZD         C5A         N2A      SINGLE       n     1.368  0.0166     1.368  0.0166
+PZD         C7A         N1A      SINGLE       n     1.394  0.0200     1.394  0.0200
+PZD         C7A         O1A      DOUBLE       n     1.228  0.0112     1.228  0.0112
+PZD         N1A         C8A      SINGLE       n     1.473  0.0100     1.473  0.0100
+PZD         N1A         C10      SINGLE       n     1.368  0.0200     1.368  0.0200
+PZD         C8A         C9A      SINGLE       n     1.528  0.0102     1.528  0.0102
+PZD         C8A         C12      SINGLE       n     1.534  0.0192     1.534  0.0192
+PZD         C10         C11      DOUBLE       n     1.409  0.0200     1.409  0.0200
+PZD         C11         C12      SINGLE       n     1.513  0.0100     1.513  0.0100
+PZD         C11         C20      SINGLE       n     1.479  0.0100     1.479  0.0100
+PZD         C13         C18      DOUBLE       y     1.415  0.0100     1.415  0.0100
+PZD         C13         C19      SINGLE       y     1.422  0.0147     1.422  0.0147
+PZD         C13         C14      SINGLE       y     1.418  0.0100     1.418  0.0100
+PZD         C14         C15      DOUBLE       y     1.421  0.0157     1.421  0.0157
+PZD         C14         C22      SINGLE       y     1.413  0.0104     1.413  0.0104
+PZD         C15         C16      SINGLE       y     1.358  0.0118     1.358  0.0118
+PZD         C16         C17      DOUBLE       y     1.402  0.0131     1.402  0.0131
+PZD         C17         C18      SINGLE       y     1.358  0.0118     1.358  0.0118
+PZD         C19         C20      DOUBLE       y     1.376  0.0139     1.376  0.0139
+PZD         C20         C21      SINGLE       y     1.413  0.0127     1.413  0.0127
+PZD         C21         C22      DOUBLE       y     1.363  0.0106     1.363  0.0106
+PZD         O2A         C23      SINGLE       n     1.424  0.0117     1.424  0.0117
+PZD         O3A         C24      SINGLE       n     1.424  0.0117     1.424  0.0117
+PZD         C9A         N2A      SINGLE       n     1.455  0.0100     1.455  0.0100
+PZD         C3A         H3A      SINGLE       n     1.082  0.0130     0.942  0.0174
+PZD         C6A         H6A      SINGLE       n     1.082  0.0130     0.935  0.0100
+PZD         C8A         H8A      SINGLE       n     1.089  0.0100     0.996  0.0100
+PZD         C10         H10      SINGLE       n     1.082  0.0130     0.942  0.0155
+PZD         C12        H12A      SINGLE       n     1.089  0.0100     0.976  0.0169
+PZD         C12         H12      SINGLE       n     1.089  0.0100     0.976  0.0169
+PZD         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0192
+PZD         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0184
+PZD         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0184
+PZD         C18         H18      SINGLE       n     1.082  0.0130     0.944  0.0192
+PZD         C19         H19      SINGLE       n     1.082  0.0130     0.935  0.0102
+PZD         C21         H21      SINGLE       n     1.082  0.0130     0.940  0.0108
+PZD         C22         H22      SINGLE       n     1.082  0.0130     0.944  0.0160
+PZD         C23        H23B      SINGLE       n     1.089  0.0100     0.971  0.0157
+PZD         C23         H23      SINGLE       n     1.089  0.0100     0.971  0.0157
+PZD         C23        H23A      SINGLE       n     1.089  0.0100     0.971  0.0157
+PZD         C24        H24A      SINGLE       n     1.089  0.0100     0.971  0.0157
+PZD         C24         H24      SINGLE       n     1.089  0.0100     0.971  0.0157
+PZD         C24        H24B      SINGLE       n     1.089  0.0100     0.971  0.0157
+PZD         C9A         H9A      SINGLE       n     1.089  0.0100     0.980  0.0123
+PZD         C9A        H9AA      SINGLE       n     1.089  0.0100     0.980  0.0123
+PZD         N2A        HN2A      SINGLE       n     1.016  0.0100     0.880  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PZD         O3A         C1A         C6A     124.775    1.50
+PZD         O3A         C1A         C2A     115.229    1.50
+PZD         C6A         C1A         C2A     119.996    1.50
+PZD         C1A         C2A         O2A     115.317    1.50
+PZD         C1A         C2A         C3A     119.788    1.50
+PZD         O2A         C2A         C3A     124.896    1.50
+PZD         C2A         C3A         C4A     120.530    1.50
+PZD         C2A         C3A         H3A     119.768    1.50
+PZD         C4A         C3A         H3A     119.701    1.50
+PZD         C3A         C4A         C5A     118.869    1.50
+PZD         C3A         C4A         C7A     119.930    2.06
+PZD         C5A         C4A         C7A     121.201    1.79
+PZD         C4A         C5A         C6A     120.686    2.02
+PZD         C4A         C5A         N2A     119.851    1.50
+PZD         C6A         C5A         N2A     119.463    1.76
+PZD         C1A         C6A         C5A     120.131    1.50
+PZD         C1A         C6A         H6A     120.110    1.50
+PZD         C5A         C6A         H6A     119.759    1.50
+PZD         C4A         C7A         N1A     119.352    1.50
+PZD         C4A         C7A         O1A     120.907    1.50
+PZD         N1A         C7A         O1A     119.741    1.50
+PZD         C7A         N1A         C8A     120.007    1.68
+PZD         C7A         N1A         C10     127.965    1.50
+PZD         C8A         N1A         C10     112.029    2.00
+PZD         N1A         C8A         C9A     111.763    1.50
+PZD         N1A         C8A         C12     102.354    1.84
+PZD         N1A         C8A         H8A     110.124    2.20
+PZD         C9A         C8A         C12     113.084    2.23
+PZD         C9A         C8A         H8A     109.171    1.55
+PZD         C12         C8A         H8A     108.704    1.50
+PZD         N1A         C10         C11     107.776    1.57
+PZD         N1A         C10         H10     126.340    1.50
+PZD         C11         C10         H10     125.884    1.50
+PZD         C10         C11         C12     111.231    2.72
+PZD         C10         C11         C20     127.478    1.50
+PZD         C12         C11         C20     121.291    1.50
+PZD         C8A         C12         C11     104.009    1.83
+PZD         C8A         C12        H12A     111.205    1.50
+PZD         C8A         C12         H12     111.205    1.50
+PZD         C11         C12        H12A     111.025    1.50
+PZD         C11         C12         H12     111.025    1.50
+PZD        H12A         C12         H12     108.677    1.50
+PZD         C18         C13         C19     122.501    1.50
+PZD         C18         C13         C14     118.775    1.50
+PZD         C19         C13         C14     118.725    1.50
+PZD         C13         C14         C15     118.775    1.50
+PZD         C13         C14         C22     118.878    1.50
+PZD         C15         C14         C22     122.347    1.50
+PZD         C14         C15         C16     120.911    1.50
+PZD         C14         C15         H15     119.431    1.50
+PZD         C16         C15         H15     119.659    1.50
+PZD         C15         C16         C17     120.314    1.50
+PZD         C15         C16         H16     119.871    1.50
+PZD         C17         C16         H16     119.815    1.50
+PZD         C16         C17         C18     120.314    1.50
+PZD         C16         C17         H17     119.815    1.50
+PZD         C18         C17         H17     119.871    1.50
+PZD         C13         C18         C17     120.911    1.50
+PZD         C13         C18         H18     119.431    1.50
+PZD         C17         C18         H18     119.659    1.50
+PZD         C13         C19         C20     120.918    1.50
+PZD         C13         C19         H19     119.700    1.50
+PZD         C20         C19         H19     119.382    1.50
+PZD         C11         C20         C19     120.286    1.53
+PZD         C11         C20         C21     120.168    1.50
+PZD         C19         C20         C21     119.546    1.64
+PZD         C20         C21         C22     121.060    1.50
+PZD         C20         C21         H21     119.629    1.50
+PZD         C22         C21         H21     119.310    1.50
+PZD         C14         C22         C21     120.874    1.50
+PZD         C14         C22         H22     119.453    1.50
+PZD         C21         C22         H22     119.673    1.50
+PZD         C2A         O2A         C23     117.276    1.50
+PZD         O2A         C23        H23B     109.428    1.50
+PZD         O2A         C23         H23     109.428    1.50
+PZD         O2A         C23        H23A     109.428    1.50
+PZD        H23B         C23         H23     109.509    1.50
+PZD        H23B         C23        H23A     109.509    1.50
+PZD         H23         C23        H23A     109.509    1.50
+PZD         C1A         O3A         C24     117.276    1.50
+PZD         O3A         C24        H24A     109.428    1.50
+PZD         O3A         C24         H24     109.428    1.50
+PZD         O3A         C24        H24B     109.428    1.50
+PZD        H24A         C24         H24     109.509    1.50
+PZD        H24A         C24        H24B     109.509    1.50
+PZD         H24         C24        H24B     109.509    1.50
+PZD         C8A         C9A         N2A     111.113    2.62
+PZD         C8A         C9A         H9A     108.875    1.50
+PZD         C8A         C9A        H9AA     108.875    1.50
+PZD         N2A         C9A         H9A     109.052    1.50
+PZD         N2A         C9A        H9AA     109.052    1.50
+PZD         H9A         C9A        H9AA     108.010    1.71
+PZD         C5A         N2A         C9A     123.518    1.53
+PZD         C5A         N2A        HN2A     118.102    2.04
+PZD         C9A         N2A        HN2A     118.374    1.91
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PZD              const_64         O3A         C1A         C2A         O2A       0.000    10.0     2
+PZD             sp2_sp2_5         C6A         C1A         O3A         C24     180.000     5.0     2
+PZD              const_43         O3A         C1A         C6A         C5A     180.000    10.0     2
+PZD             sp2_sp3_7         C10         C11         C12         C8A       0.000    10.0     6
+PZD            sp2_sp2_27         C10         C11         C20         C19       0.000     5.0     2
+PZD              const_65         C18         C13         C14         C15       0.000    10.0     2
+PZD       const_sp2_sp2_3         C19         C13         C18         C17     180.000     5.0     2
+PZD              const_23         C18         C13         C19         C20     180.000    10.0     2
+PZD              const_17         C13         C14         C15         C16       0.000    10.0     2
+PZD              const_37         C13         C14         C22         C21       0.000    10.0     2
+PZD              const_13         C14         C15         C16         C17       0.000    10.0     2
+PZD       const_sp2_sp2_9         C15         C16         C17         C18       0.000     5.0     2
+PZD       const_sp2_sp2_5         C16         C17         C18         C13       0.000     5.0     2
+PZD              const_26         C13         C19         C20         C11     180.000    10.0     2
+PZD              const_59         O2A         C2A         C3A         C4A     180.000    10.0     2
+PZD             sp2_sp2_7         C1A         C2A         O2A         C23     180.000     5.0     2
+PZD              const_31         C11         C20         C21         C22     180.000    10.0     2
+PZD              const_33         C20         C21         C22         C14       0.000    10.0     2
+PZD            sp3_sp3_20        H23B         C23         O2A         C2A     -60.000    10.0     3
+PZD            sp3_sp3_24        H24A         C24         O3A         C1A     -60.000    10.0     3
+PZD            sp2_sp3_14         C5A         N2A         C9A         C8A     120.000    10.0     6
+PZD              const_54         C2A         C3A         C4A         C7A     180.000    10.0     2
+PZD              const_52         C7A         C4A         C5A         N2A       0.000    10.0     2
+PZD            sp2_sp2_10         C3A         C4A         C7A         O1A       0.000     5.0     2
+PZD            sp2_sp2_13         C4A         C5A         N2A         C9A     180.000     5.0     2
+PZD              const_47         N2A         C5A         C6A         C1A     180.000    10.0     2
+PZD            sp2_sp2_19         O1A         C7A         N1A         C8A       0.000     5.0     2
+PZD             sp2_sp3_5         C7A         N1A         C8A         C9A     -60.000    10.0     6
+PZD            sp2_sp2_22         C11         C10         N1A         C7A     180.000     5.0     2
+PZD             sp3_sp3_2         C11         C12         C8A         C9A      60.000    10.0     3
+PZD            sp3_sp3_10         N1A         C8A         C9A         N2A     180.000    10.0     3
+PZD             sp2_sp2_1         N1A         C10         C11         C12       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PZD    chir_1    C8A    N1A    C9A    C12    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PZD    plan-1         C11   0.020
+PZD    plan-1         C13   0.020
+PZD    plan-1         C14   0.020
+PZD    plan-1         C15   0.020
+PZD    plan-1         C16   0.020
+PZD    plan-1         C17   0.020
+PZD    plan-1         C18   0.020
+PZD    plan-1         C19   0.020
+PZD    plan-1         C20   0.020
+PZD    plan-1         C21   0.020
+PZD    plan-1         C22   0.020
+PZD    plan-1         H15   0.020
+PZD    plan-1         H16   0.020
+PZD    plan-1         H17   0.020
+PZD    plan-1         H18   0.020
+PZD    plan-1         H19   0.020
+PZD    plan-1         H21   0.020
+PZD    plan-1         H22   0.020
+PZD    plan-2         C1A   0.020
+PZD    plan-2         C2A   0.020
+PZD    plan-2         C3A   0.020
+PZD    plan-2         C4A   0.020
+PZD    plan-2         C5A   0.020
+PZD    plan-2         C6A   0.020
+PZD    plan-2         C7A   0.020
+PZD    plan-2         H3A   0.020
+PZD    plan-2         H6A   0.020
+PZD    plan-2         N2A   0.020
+PZD    plan-2         O2A   0.020
+PZD    plan-2         O3A   0.020
+PZD    plan-3         C4A   0.020
+PZD    plan-3         C7A   0.020
+PZD    plan-3         N1A   0.020
+PZD    plan-3         O1A   0.020
+PZD    plan-4         C10   0.020
+PZD    plan-4         C7A   0.020
+PZD    plan-4         C8A   0.020
+PZD    plan-4         N1A   0.020
+PZD    plan-5         C10   0.020
+PZD    plan-5         C11   0.020
+PZD    plan-5         H10   0.020
+PZD    plan-5         N1A   0.020
+PZD    plan-6         C10   0.020
+PZD    plan-6         C11   0.020
+PZD    plan-6         C12   0.020
+PZD    plan-6         C20   0.020
+PZD    plan-7         C5A   0.020
+PZD    plan-7         C9A   0.020
+PZD    plan-7        HN2A   0.020
+PZD    plan-7         N2A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PZD           SMILES              ACDLabs 10.04                                                                                                               O=C2c1c(cc(OC)c(OC)c1)NCC5N2C=C(c4cc3ccccc3cc4)C5
+PZD SMILES_CANONICAL               CACTVS 3.341                                                                                                              COc1cc2NC[C@@H]3CC(=CN3C(=O)c2cc1OC)c4ccc5ccccc5c4
+PZD           SMILES               CACTVS 3.341                                                                                                                COc1cc2NC[CH]3CC(=CN3C(=O)c2cc1OC)c4ccc5ccccc5c4
+PZD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                              COc1cc2c(cc1OC)NC[C@@H]3CC(=CN3C2=O)c4ccc5ccccc5c4
+PZD           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                   COc1cc2c(cc1OC)NCC3CC(=CN3C2=O)c4ccc5ccccc5c4
+PZD            InChI                InChI  1.03 InChI=1S/C24H22N2O3/c1-28-22-11-20-21(12-23(22)29-2)25-13-19-10-18(14-26(19)24(20)27)17-8-7-15-5-3-4-6-16(15)9-17/h3-9,11-12,14,19,25H,10,13H2,1-2H3/t19-/m0/s1
+PZD         InChIKey                InChI  1.03                                                                                                                                     QCHVNYAXOGUSSL-IBGZPJMESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PZD acedrg               243         "dictionary generator"                  
+PZD acedrg_database      11          "data source"                           
+PZD rdkit                2017.03.2   "Chemoinformatics tool"
+PZD refmac5              5.8.0238    "optimization tool"                     

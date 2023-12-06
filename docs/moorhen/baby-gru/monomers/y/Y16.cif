@@ -1,0 +1,310 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+Y16     Y16      (E,2R,3R,4S,5R)-N-(2-azanyl-2-oxidanylidene-ethyl)-2-methoxy-8,8-dimethyl-3,4,5-tris(oxidanyl)non-6-enamide     NON-POLYMER     48     22     .     
+#
+data_comp_Y16
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+Y16     N1      N       NH1     0       -3.689      -43.005     2.824       
+Y16     O1      O       OH1     0       -10.856     -43.581     2.819       
+Y16     N2      N       NH2     0       -1.392      -43.061     5.247       
+Y16     O2      O       OH1     0       -6.781      -44.676     2.546       
+Y16     O3      O       OH1     0       -8.534      -42.493     1.849       
+Y16     O4      O       O       0       -4.485      -43.600     4.853       
+Y16     O5      O       O       0       -1.001      -41.592     3.591       
+Y16     O6      O       O2      0       -6.371      -41.472     4.300       
+Y16     C01     C       CT      0       -9.187      -46.567     6.342       
+Y16     C02     C       C1      0       -9.142      -45.899     4.971       
+Y16     C03     C       C1      0       -9.752      -44.794     4.572       
+Y16     C04     C       CH1     0       -9.621      -44.188     3.213       
+Y16     C05     C       CH1     0       -8.524      -43.107     3.142       
+Y16     C06     C       CH1     0       -7.110      -43.618     3.451       
+Y16     C07     C       CH1     0       -6.026      -42.536     3.392       
+Y16     C08     C       CH3     0       -7.751      -46.868     6.772       
+Y16     C09     C       CH3     0       -9.844      -45.710     7.428       
+Y16     C10     C       CH3     0       -9.953      -47.887     6.236       
+Y16     C11     C       C       0       -4.654      -43.096     3.744       
+Y16     C12     C       CH2     0       -2.347      -43.493     3.055       
+Y16     C13     C       C       0       -1.520      -42.635     3.998       
+Y16     C14     C       CH3     0       -5.904      -40.186     3.897       
+Y16     HN1     H       H       0       -3.871      -42.639     2.054       
+Y16     HO1     H       H       0       -10.835     -43.411     1.989       
+Y16     HN2     H       H       0       -0.910      -42.596     5.824       
+Y16     HN2A    H       H       0       -1.791      -43.806     5.510       
+Y16     HO2     H       H       0       -6.653      -44.363     1.768       
+Y16     HO3     H       H       0       -8.550      -43.088     1.244       
+Y16     H02     H       H       0       -8.603      -46.347     4.337       
+Y16     H03     H       H       0       -10.322     -44.354     5.182       
+Y16     H04     H       H       0       -9.404      -44.909     2.567       
+Y16     H05     H       H       0       -8.761      -42.410     3.813       
+Y16     H06     H       H       0       -7.104      -43.992     4.373       
+Y16     H07     H       H       0       -5.996      -42.179     2.471       
+Y16     H08     H       H       0       -7.241      -46.040     6.806       
+Y16     H08A    H       H       0       -7.340      -47.475     6.132       
+Y16     H08B    H       H       0       -7.755      -47.282     7.653       
+Y16     H09     H       H       0       -9.786      -46.169     8.284       
+Y16     H09A    H       H       0       -10.778     -45.560     7.203       
+Y16     H09B    H       H       0       -9.384      -44.854     7.488       
+Y16     H10     H       H       0       -9.971      -48.322     7.107       
+Y16     H10A    H       H       0       -9.511      -48.469     5.594       
+Y16     H10B    H       H       0       -10.863     -47.712     5.942       
+Y16     H12     H       H       0       -1.880      -43.538     2.195       
+Y16     H12A    H       H       0       -2.394      -44.404     3.411       
+Y16     H14     H       H       0       -6.098      -39.541     4.596       
+Y16     H14A    H       H       0       -6.353      -39.920     3.079       
+Y16     H14B    H       H       0       -4.946      -40.219     3.745       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+Y16          N1         C12      SINGLE       n     1.444  0.0100     1.444  0.0100
+Y16          N1         C11      SINGLE       n     1.331  0.0100     1.331  0.0100
+Y16          O1         C04      SINGLE       n     1.431  0.0106     1.431  0.0106
+Y16          N2         C13      SINGLE       n     1.324  0.0100     1.324  0.0100
+Y16          O2         C06      SINGLE       n     1.429  0.0100     1.429  0.0100
+Y16          O3         C05      SINGLE       n     1.429  0.0100     1.429  0.0100
+Y16          O4         C11      DOUBLE       n     1.229  0.0102     1.229  0.0102
+Y16          O5         C13      DOUBLE       n     1.234  0.0100     1.234  0.0100
+Y16          O6         C07      SINGLE       n     1.434  0.0175     1.434  0.0175
+Y16          O6         C14      SINGLE       n     1.422  0.0157     1.422  0.0157
+Y16         C01         C02      SINGLE       n     1.523  0.0100     1.523  0.0100
+Y16         C01         C10      SINGLE       n     1.530  0.0127     1.530  0.0127
+Y16         C01         C08      SINGLE       n     1.530  0.0127     1.530  0.0127
+Y16         C01         C09      SINGLE       n     1.530  0.0127     1.530  0.0127
+Y16         C02         C03      DOUBLE       n     1.321  0.0100     1.321  0.0100
+Y16         C03         C04      SINGLE       n     1.493  0.0100     1.493  0.0100
+Y16         C04         C05      SINGLE       n     1.528  0.0193     1.528  0.0193
+Y16         C05         C06      SINGLE       n     1.531  0.0100     1.531  0.0100
+Y16         C06         C07      SINGLE       n     1.526  0.0133     1.526  0.0133
+Y16         C07         C11      SINGLE       n     1.519  0.0108     1.519  0.0108
+Y16         C12         C13      SINGLE       n     1.517  0.0100     1.517  0.0100
+Y16          N1         HN1      SINGLE       n     1.016  0.0100     0.873  0.0200
+Y16          O1         HO1      SINGLE       n     0.970  0.0120     0.848  0.0200
+Y16          N2         HN2      SINGLE       n     1.016  0.0100     0.884  0.0200
+Y16          N2        HN2A      SINGLE       n     1.016  0.0100     0.884  0.0200
+Y16          O2         HO2      SINGLE       n     0.970  0.0120     0.848  0.0200
+Y16          O3         HO3      SINGLE       n     0.970  0.0120     0.848  0.0200
+Y16         C02         H02      SINGLE       n     1.082  0.0130     0.945  0.0200
+Y16         C03         H03      SINGLE       n     1.082  0.0130     0.945  0.0200
+Y16         C04         H04      SINGLE       n     1.089  0.0100     0.992  0.0100
+Y16         C05         H05      SINGLE       n     1.089  0.0100     0.996  0.0200
+Y16         C06         H06      SINGLE       n     1.089  0.0100     0.996  0.0200
+Y16         C07         H07      SINGLE       n     1.089  0.0100     0.988  0.0129
+Y16         C08         H08      SINGLE       n     1.089  0.0100     0.973  0.0141
+Y16         C08        H08A      SINGLE       n     1.089  0.0100     0.973  0.0141
+Y16         C08        H08B      SINGLE       n     1.089  0.0100     0.973  0.0141
+Y16         C09         H09      SINGLE       n     1.089  0.0100     0.973  0.0141
+Y16         C09        H09A      SINGLE       n     1.089  0.0100     0.973  0.0141
+Y16         C09        H09B      SINGLE       n     1.089  0.0100     0.973  0.0141
+Y16         C10         H10      SINGLE       n     1.089  0.0100     0.973  0.0141
+Y16         C10        H10A      SINGLE       n     1.089  0.0100     0.973  0.0141
+Y16         C10        H10B      SINGLE       n     1.089  0.0100     0.973  0.0141
+Y16         C12         H12      SINGLE       n     1.089  0.0100     0.980  0.0145
+Y16         C12        H12A      SINGLE       n     1.089  0.0100     0.980  0.0145
+Y16         C14         H14      SINGLE       n     1.089  0.0100     0.971  0.0146
+Y16         C14        H14A      SINGLE       n     1.089  0.0100     0.971  0.0146
+Y16         C14        H14B      SINGLE       n     1.089  0.0100     0.971  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+Y16         C12          N1         C11     121.669    1.54
+Y16         C12          N1         HN1     119.409    1.66
+Y16         C11          N1         HN1     118.922    1.94
+Y16         C04          O1         HO1     109.416    1.50
+Y16         C13          N2         HN2     119.954    1.50
+Y16         C13          N2        HN2A     119.954    1.50
+Y16         HN2          N2        HN2A     120.093    2.38
+Y16         C06          O2         HO2     108.564    3.00
+Y16         C05          O3         HO3     108.564    3.00
+Y16         C07          O6         C14     112.983    1.50
+Y16         C02         C01         C10     110.055    2.60
+Y16         C02         C01         C08     110.055    2.60
+Y16         C02         C01         C09     110.055    2.60
+Y16         C10         C01         C08     108.963    1.50
+Y16         C10         C01         C09     108.963    1.50
+Y16         C08         C01         C09     108.963    1.50
+Y16         C01         C02         C03     124.684    3.00
+Y16         C01         C02         H02     116.460    2.02
+Y16         C03         C02         H02     118.856    1.78
+Y16         C02         C03         C04     125.347    1.80
+Y16         C02         C03         H03     117.491    1.78
+Y16         C04         C03         H03     117.162    1.50
+Y16          O1         C04         C03     110.754    1.50
+Y16          O1         C04         C05     107.397    2.35
+Y16          O1         C04         H04     108.666    1.50
+Y16         C03         C04         C05     112.346    1.50
+Y16         C03         C04         H04     108.518    1.50
+Y16         C05         C04         H04     108.674    1.50
+Y16          O3         C05         C04     109.501    1.85
+Y16          O3         C05         C06     109.024    2.24
+Y16          O3         C05         H05     108.243    1.50
+Y16         C04         C05         C06     113.419    1.50
+Y16         C04         C05         H05     107.528    1.50
+Y16         C06         C05         H05     108.569    1.50
+Y16          O2         C06         C05     109.024    2.24
+Y16          O2         C06         C07     109.317    1.50
+Y16          O2         C06         H06     108.243    1.50
+Y16         C05         C06         C07     113.419    1.50
+Y16         C05         C06         H06     108.569    1.50
+Y16         C07         C06         H06     108.238    1.72
+Y16          O6         C07         C06     109.482    3.00
+Y16          O6         C07         C11     110.995    1.87
+Y16          O6         C07         H07     109.077    1.50
+Y16         C06         C07         C11     111.873    1.69
+Y16         C06         C07         H07     108.687    1.50
+Y16         C11         C07         H07     108.529    1.70
+Y16         C01         C08         H08     109.471    1.50
+Y16         C01         C08        H08A     109.471    1.50
+Y16         C01         C08        H08B     109.471    1.50
+Y16         H08         C08        H08A     109.377    1.50
+Y16         H08         C08        H08B     109.377    1.50
+Y16        H08A         C08        H08B     109.377    1.50
+Y16         C01         C09         H09     109.471    1.50
+Y16         C01         C09        H09A     109.471    1.50
+Y16         C01         C09        H09B     109.471    1.50
+Y16         H09         C09        H09A     109.377    1.50
+Y16         H09         C09        H09B     109.377    1.50
+Y16        H09A         C09        H09B     109.377    1.50
+Y16         C01         C10         H10     109.471    1.50
+Y16         C01         C10        H10A     109.471    1.50
+Y16         C01         C10        H10B     109.471    1.50
+Y16         H10         C10        H10A     109.377    1.50
+Y16         H10         C10        H10B     109.377    1.50
+Y16        H10A         C10        H10B     109.377    1.50
+Y16          N1         C11          O4     122.985    1.50
+Y16          N1         C11         C07     117.147    1.50
+Y16          O4         C11         C07     119.851    1.78
+Y16          N1         C12         C13     114.447    1.93
+Y16          N1         C12         H12     109.004    1.50
+Y16          N1         C12        H12A     109.004    1.50
+Y16         C13         C12         H12     108.654    1.50
+Y16         C13         C12        H12A     108.654    1.50
+Y16         H12         C12        H12A     107.845    1.50
+Y16          N2         C13          O5     123.299    1.50
+Y16          N2         C13         C12     116.041    1.94
+Y16          O5         C13         C12     120.660    1.50
+Y16          O6         C14         H14     109.461    1.50
+Y16          O6         C14        H14A     109.461    1.50
+Y16          O6         C14        H14B     109.461    1.50
+Y16         H14         C14        H14A     109.532    1.53
+Y16         H14         C14        H14B     109.532    1.53
+Y16        H14A         C14        H14B     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+Y16             sp2_sp2_3          O4         C11          N1         C12       0.000     5.0     2
+Y16             sp2_sp3_2         C11          N1         C12         C13     120.000    10.0     6
+Y16            sp2_sp3_13         C02         C03         C04          O1       0.000    10.0     6
+Y16            sp3_sp3_43          O1         C04         C05          O3     180.000    10.0     3
+Y16            sp3_sp3_52          O3         C05         C06          O2     180.000    10.0     3
+Y16            sp3_sp3_61          O2         C06         C07          O6     180.000    10.0     3
+Y16            sp2_sp3_19          N1         C11         C07          O6       0.000    10.0     6
+Y16            sp2_sp3_26          N2         C13         C12          N1     120.000    10.0     6
+Y16             sp3_sp3_1         C03         C04          O1         HO1     180.000    10.0     3
+Y16             sp2_sp2_7          O5         C13          N2         HN2       0.000     5.0     2
+Y16             sp3_sp3_4         C05         C06          O2         HO2     180.000    10.0     3
+Y16             sp3_sp3_7         C04         C05          O3         HO3     180.000    10.0     3
+Y16            sp3_sp3_10         C06         C07          O6         C14     180.000    10.0     3
+Y16            sp3_sp3_13         H14         C14          O6         C07     180.000    10.0     3
+Y16            sp3_sp3_28         C02         C01         C08         H08      60.000    10.0     3
+Y16            sp3_sp3_34         C02         C01         C09         H09     180.000    10.0     3
+Y16            sp3_sp3_16         C02         C01         C10         H10     180.000    10.0     3
+Y16             sp2_sp3_8         C03         C02         C01         C10     120.000    10.0     6
+Y16             sp2_sp2_9         C01         C02         C03         C04     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+Y16    chir_1    C01    C02    C10    C08    both
+Y16    chir_2    C04    O1    C05    C03    negative
+Y16    chir_3    C05    O3    C06    C04    positive
+Y16    chir_4    C06    O2    C07    C05    negative
+Y16    chir_5    C07    O6    C11    C06    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+Y16    plan-1         C11   0.020
+Y16    plan-1         C12   0.020
+Y16    plan-1         HN1   0.020
+Y16    plan-1          N1   0.020
+Y16    plan-2         C13   0.020
+Y16    plan-2         HN2   0.020
+Y16    plan-2        HN2A   0.020
+Y16    plan-2          N2   0.020
+Y16    plan-3         C01   0.020
+Y16    plan-3         C02   0.020
+Y16    plan-3         C03   0.020
+Y16    plan-3         H02   0.020
+Y16    plan-4         C02   0.020
+Y16    plan-4         C03   0.020
+Y16    plan-4         C04   0.020
+Y16    plan-4         H03   0.020
+Y16    plan-5         C07   0.020
+Y16    plan-5         C11   0.020
+Y16    plan-5          N1   0.020
+Y16    plan-5          O4   0.020
+Y16    plan-6         C12   0.020
+Y16    plan-6         C13   0.020
+Y16    plan-6          N2   0.020
+Y16    plan-6          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+Y16           SMILES              ACDLabs 12.01                                                                                                                    O=C(NCC(=O)N)C(OC)C(O)C(O)C(O)/C=C/C(C)(C)C
+Y16            InChI                InChI  1.03 InChI=1S/C14H26N2O6/c1-14(2,3)6-5-8(17)10(19)11(20)12(22-4)13(21)16-7-9(15)18/h5-6,8,10-12,17,19-20H,7H2,1-4H3,(H2,15,18)(H,16,21)/b6-5+/t8-,10+,11-,12-/m1/s1
+Y16         InChIKey                InChI  1.03                                                                                                                                    AVLHKXXFCITIMH-JXTMJACFSA-N
+Y16 SMILES_CANONICAL               CACTVS 3.370                                                                                                   CO[C@H]([C@H](O)[C@@H](O)[C@H](O)\C=C\C(C)(C)C)C(=O)NCC(N)=O
+Y16           SMILES               CACTVS 3.370                                                                                                          CO[CH]([CH](O)[CH](O)[CH](O)C=CC(C)(C)C)C(=O)NCC(N)=O
+Y16 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                   CC(C)(C)/C=C/[C@H]([C@@H]([C@H]([C@H](C(=O)NCC(=O)N)OC)O)O)O
+Y16           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                      CC(C)(C)C=CC(C(C(C(C(=O)NCC(=O)N)OC)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+Y16 acedrg               243         "dictionary generator"                  
+Y16 acedrg_database      11          "data source"                           
+Y16 rdkit                2017.03.2   "Chemoinformatics tool"
+Y16 refmac5              5.8.0238    "optimization tool"                     

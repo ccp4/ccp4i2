@@ -1,0 +1,363 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GIN     GIN      2-{[(6-OXO-1,6-DIHYDROPYRIDIN-3-YL)METHYL]AMINO}-N-[4-PROPYL-3-(TRIFLUOROMETHYL)PHENYL]BENZAMIDE     NON-POLYMER     53     31     .     
+#
+data_comp_GIN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GIN     C12     C       C       0       16.922      45.666      56.612      
+GIN     C16     C       CR6     0       15.917      47.851      57.251      
+GIN     C19     C       CR6     0       14.970      50.450      56.795      
+GIN     C20     C       CR16    0       15.782      50.157      57.891      
+GIN     C21     C       CR16    0       16.252      48.878      58.119      
+GIN     C24     C       CH2     0       14.518      51.898      56.650      
+GIN     C30     C       CH2     0       13.273      52.236      57.428      
+GIN     C31     C       CH3     0       12.762      53.638      57.149      
+GIN     C32     C       CH2     0       20.517      43.835      56.180      
+GIN     C33     C       CR6     0       21.366      43.480      54.983      
+GIN     C34     C       CR16    0       22.342      44.357      54.508      
+GIN     C35     C       CR16    0       23.108      44.035      53.413      
+GIN     C01     C       CR6     0       17.017      44.223      57.033      
+GIN     C02     C       CR16    0       16.015      43.656      57.818      
+GIN     C03     C       CR16    0       16.069      42.335      58.219      
+GIN     C04     C       CR16    0       17.129      41.535      57.832      
+GIN     C05     C       CR16    0       18.140      42.049      57.045      
+GIN     C06     C       CR6     0       18.110      43.398      56.639      
+GIN     N11     N       NH1     0       19.104      43.889      55.852      
+GIN     N13     N       NH1     0       16.418      46.549      57.514      
+GIN     O14     O       O       0       17.309      46.003      55.497      
+GIN     C17     C       CR16    0       15.105      48.120      56.154      
+GIN     C18     C       CR6     0       14.618      49.406      55.903      
+GIN     C23     C       CT      0       13.751      49.637      54.696      
+GIN     F27     F       F       0       13.406      48.523      54.055      
+GIN     F28     F       F       0       12.603      50.239      54.988      
+GIN     F29     F       F       0       14.341      50.402      53.783      
+GIN     C36     C       CR6     0       22.917      42.794      52.732      
+GIN     N37     N       NR6     0       21.941      41.985      53.247      
+GIN     C38     C       CR16    0       21.180      42.309      54.338      
+GIN     O41     O       O       0       23.570      42.412      51.721      
+GIN     H20     H       H       0       16.017      50.848      58.488      
+GIN     H21     H       H       0       16.800      48.702      58.865      
+GIN     H241    H       H       0       14.366      52.107      55.707      
+GIN     H242    H       H       0       15.241      52.482      56.962      
+GIN     H301    H       H       0       13.464      52.152      58.386      
+GIN     H302    H       H       0       12.570      51.591      57.206      
+GIN     H311    H       H       0       11.968      53.808      57.685      
+GIN     H312    H       H       0       12.539      53.722      56.206      
+GIN     H313    H       H       0       13.450      54.287      57.377      
+GIN     H321    H       H       0       20.791      44.709      56.529      
+GIN     H322    H       H       0       20.662      43.174      56.889      
+GIN     H34     H       H       0       22.487      45.182      54.941      
+GIN     H35     H       H       0       23.763      44.638      53.111      
+GIN     H02     H       H       0       15.290      44.190      58.090      
+GIN     H03     H       H       0       15.380      41.978      58.756      
+GIN     H04     H       H       0       17.163      40.633      58.105      
+GIN     H05     H       H       0       18.861      41.500      56.786      
+GIN     HN11    H       H       0       18.872      44.246      55.092      
+GIN     HN13    H       H       0       16.422      46.310      58.358      
+GIN     H17     H       H       0       14.884      47.417      55.568      
+GIN     HN37    H       H       0       21.795      41.194      52.841      
+GIN     H38     H       H       0       20.521      41.704      54.643      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GIN         C12         O14      DOUBLE       n     1.226  0.0100     1.226  0.0100
+GIN         C12         C01      SINGLE       n     1.500  0.0113     1.500  0.0113
+GIN         C12         N13      SINGLE       n     1.351  0.0126     1.351  0.0126
+GIN         C16         C17      DOUBLE       y     1.386  0.0100     1.386  0.0100
+GIN         C16         N13      SINGLE       n     1.417  0.0100     1.417  0.0100
+GIN         C16         C21      SINGLE       y     1.385  0.0100     1.385  0.0100
+GIN         C19         C18      DOUBLE       y     1.404  0.0100     1.404  0.0100
+GIN         C19         C24      SINGLE       n     1.518  0.0100     1.518  0.0100
+GIN         C19         C20      SINGLE       y     1.391  0.0100     1.391  0.0100
+GIN         C20         C21      DOUBLE       y     1.380  0.0100     1.380  0.0100
+GIN         C24         C30      SINGLE       n     1.505  0.0200     1.505  0.0200
+GIN         C30         C31      SINGLE       n     1.517  0.0200     1.517  0.0200
+GIN         C32         C33      SINGLE       n     1.510  0.0100     1.510  0.0100
+GIN         C32         N11      SINGLE       n     1.448  0.0127     1.448  0.0127
+GIN         C33         C38      DOUBLE       y     1.347  0.0100     1.347  0.0100
+GIN         C33         C34      SINGLE       y     1.391  0.0107     1.391  0.0107
+GIN         C34         C35      DOUBLE       y     1.368  0.0123     1.368  0.0123
+GIN         C35         C36      SINGLE       y     1.420  0.0141     1.420  0.0141
+GIN         C01         C06      SINGLE       y     1.417  0.0107     1.417  0.0107
+GIN         C01         C02      DOUBLE       y     1.385  0.0124     1.385  0.0124
+GIN         C02         C03      SINGLE       y     1.378  0.0104     1.378  0.0104
+GIN         C03         C04      DOUBLE       y     1.381  0.0102     1.381  0.0102
+GIN         C04         C05      SINGLE       y     1.378  0.0101     1.378  0.0101
+GIN         C05         C06      DOUBLE       y     1.403  0.0122     1.403  0.0122
+GIN         C06         N11      SINGLE       n     1.356  0.0115     1.356  0.0115
+GIN         C17         C18      SINGLE       y     1.388  0.0100     1.388  0.0100
+GIN         C18         C23      SINGLE       n     1.495  0.0102     1.495  0.0102
+GIN         C23         F27      SINGLE       n     1.329  0.0183     1.329  0.0183
+GIN         C23         F29      SINGLE       n     1.329  0.0183     1.329  0.0183
+GIN         C23         F28      SINGLE       n     1.329  0.0183     1.329  0.0183
+GIN         C36         O41      DOUBLE       n     1.263  0.0100     1.263  0.0100
+GIN         C36         N37      SINGLE       y     1.364  0.0110     1.364  0.0110
+GIN         N37         C38      SINGLE       y     1.367  0.0100     1.367  0.0100
+GIN         C20         H20      SINGLE       n     1.082  0.0130     0.943  0.0173
+GIN         C21         H21      SINGLE       n     1.082  0.0130     0.942  0.0183
+GIN         C24        H241      SINGLE       n     1.089  0.0100     0.981  0.0150
+GIN         C24        H242      SINGLE       n     1.089  0.0100     0.981  0.0150
+GIN         C30        H301      SINGLE       n     1.089  0.0100     0.981  0.0200
+GIN         C30        H302      SINGLE       n     1.089  0.0100     0.981  0.0200
+GIN         C31        H311      SINGLE       n     1.089  0.0100     0.973  0.0157
+GIN         C31        H312      SINGLE       n     1.089  0.0100     0.973  0.0157
+GIN         C31        H313      SINGLE       n     1.089  0.0100     0.973  0.0157
+GIN         C32        H321      SINGLE       n     1.089  0.0100     0.980  0.0114
+GIN         C32        H322      SINGLE       n     1.089  0.0100     0.980  0.0114
+GIN         C34         H34      SINGLE       n     1.082  0.0130     0.943  0.0173
+GIN         C35         H35      SINGLE       n     1.082  0.0130     0.940  0.0111
+GIN         C02         H02      SINGLE       n     1.082  0.0130     0.941  0.0168
+GIN         C03         H03      SINGLE       n     1.082  0.0130     0.943  0.0180
+GIN         C04         H04      SINGLE       n     1.082  0.0130     0.943  0.0172
+GIN         C05         H05      SINGLE       n     1.082  0.0130     0.942  0.0198
+GIN         N11        HN11      SINGLE       n     1.016  0.0100     0.871  0.0200
+GIN         N13        HN13      SINGLE       n     1.016  0.0100     0.876  0.0200
+GIN         C17         H17      SINGLE       n     1.082  0.0130     0.942  0.0139
+GIN         N37        HN37      SINGLE       n     1.016  0.0100     0.900  0.0200
+GIN         C38         H38      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GIN         O14         C12         C01     120.960    1.50
+GIN         O14         C12         N13     123.270    1.50
+GIN         C01         C12         N13     115.770    1.71
+GIN         C17         C16         N13     120.084    2.89
+GIN         C17         C16         C21     119.692    1.50
+GIN         N13         C16         C21     120.223    2.93
+GIN         C18         C19         C24     121.409    1.67
+GIN         C18         C19         C20     119.202    1.50
+GIN         C24         C19         C20     119.389    1.73
+GIN         C19         C20         C21     121.047    1.50
+GIN         C19         C20         H20     119.352    1.50
+GIN         C21         C20         H20     119.601    1.50
+GIN         C16         C21         C20     120.188    1.50
+GIN         C16         C21         H21     119.806    1.50
+GIN         C20         C21         H21     120.006    1.50
+GIN         C19         C24         C30     114.108    2.12
+GIN         C19         C24        H241     108.911    1.50
+GIN         C19         C24        H242     108.911    1.50
+GIN         C30         C24        H241     108.781    1.50
+GIN         C30         C24        H242     108.781    1.50
+GIN        H241         C24        H242     107.745    1.50
+GIN         C24         C30         C31     113.113    1.64
+GIN         C24         C30        H301     108.928    1.50
+GIN         C24         C30        H302     108.928    1.50
+GIN         C31         C30        H301     108.952    1.50
+GIN         C31         C30        H302     108.952    1.50
+GIN        H301         C30        H302     107.816    1.50
+GIN         C30         C31        H311     109.589    1.50
+GIN         C30         C31        H312     109.589    1.50
+GIN         C30         C31        H313     109.589    1.50
+GIN        H311         C31        H312     109.380    1.50
+GIN        H311         C31        H313     109.380    1.50
+GIN        H312         C31        H313     109.380    1.50
+GIN         C33         C32         N11     113.671    1.99
+GIN         C33         C32        H321     109.424    1.50
+GIN         C33         C32        H322     109.424    1.50
+GIN         N11         C32        H321     108.755    1.50
+GIN         N11         C32        H322     108.755    1.50
+GIN        H321         C32        H322     107.706    1.50
+GIN         C32         C33         C38     120.511    1.50
+GIN         C32         C33         C34     120.598    1.50
+GIN         C38         C33         C34     118.891    1.74
+GIN         C33         C34         C35     120.678    1.50
+GIN         C33         C34         H34     120.136    1.50
+GIN         C35         C34         H34     119.185    1.50
+GIN         C34         C35         C36     120.225    1.50
+GIN         C34         C35         H35     119.808    1.88
+GIN         C36         C35         H35     119.967    1.50
+GIN         C12         C01         C06     121.870    1.50
+GIN         C12         C01         C02     119.698    1.64
+GIN         C06         C01         C02     118.432    1.50
+GIN         C01         C02         C03     121.377    1.50
+GIN         C01         C02         H02     119.082    1.50
+GIN         C03         C02         H02     119.541    1.50
+GIN         C02         C03         C04     120.144    1.50
+GIN         C02         C03         H03     119.883    1.50
+GIN         C04         C03         H03     119.973    1.50
+GIN         C03         C04         C05     120.470    1.50
+GIN         C03         C04         H04     119.906    1.50
+GIN         C05         C04         H04     119.624    1.50
+GIN         C04         C05         C06     120.181    1.50
+GIN         C04         C05         H05     120.051    1.50
+GIN         C06         C05         H05     119.775    1.50
+GIN         C01         C06         C05     119.388    1.50
+GIN         C01         C06         N11     120.500    1.50
+GIN         C05         C06         N11     120.112    1.76
+GIN         C32         N11         C06     123.176    1.76
+GIN         C32         N11        HN11     118.739    1.50
+GIN         C06         N11        HN11     118.085    2.04
+GIN         C12         N13         C16     126.750    1.50
+GIN         C12         N13        HN13     117.086    2.38
+GIN         C16         N13        HN13     116.164    1.66
+GIN         C16         C17         C18     120.668    1.50
+GIN         C16         C17         H17     119.911    1.50
+GIN         C18         C17         H17     119.420    1.50
+GIN         C19         C18         C17     119.202    1.50
+GIN         C19         C18         C23     121.187    1.50
+GIN         C17         C18         C23     119.610    1.50
+GIN         C18         C23         F27     112.758    1.50
+GIN         C18         C23         F29     112.758    1.50
+GIN         C18         C23         F28     112.758    1.50
+GIN         F27         C23         F29     105.974    1.50
+GIN         F27         C23         F28     105.974    1.50
+GIN         F29         C23         F28     105.974    1.50
+GIN         C35         C36         O41     125.268    1.50
+GIN         C35         C36         N37     115.405    1.50
+GIN         O41         C36         N37     119.326    1.50
+GIN         C36         N37         C38     123.881    1.50
+GIN         C36         N37        HN37     117.642    1.73
+GIN         C38         N37        HN37     118.477    1.65
+GIN         C33         C38         N37     120.920    1.50
+GIN         C33         C38         H38     119.732    1.54
+GIN         N37         C38         H38     119.348    2.23
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GIN             sp2_sp2_2         C06         C01         C12         O14       0.000     5.0     2
+GIN             sp2_sp2_7         O14         C12         N13         C16       0.000     5.0     2
+GIN              const_57         C33         C34         C35         C36       0.000    10.0     2
+GIN              const_54         C34         C35         C36         O41     180.000    10.0     2
+GIN              const_71         C12         C01         C02         C03     180.000    10.0     2
+GIN       const_sp2_sp2_4         C12         C01         C06         N11       0.000     5.0     2
+GIN              const_17         C01         C02         C03         C04       0.000    10.0     2
+GIN              const_13         C02         C03         C04         C05       0.000    10.0     2
+GIN       const_sp2_sp2_9         C03         C04         C05         C06       0.000     5.0     2
+GIN       const_sp2_sp2_6         C04         C05         C06         N11     180.000     5.0     2
+GIN            sp2_sp2_13         C01         C06         N11         C32     180.000     5.0     2
+GIN             sp2_sp2_9         C17         C16         N13         C12     180.000     5.0     2
+GIN              const_23         N13         C16         C17         C18     180.000    10.0     2
+GIN              const_63         N13         C16         C21         C20     180.000    10.0     2
+GIN              const_26         C16         C17         C18         C23     180.000    10.0     2
+GIN            sp2_sp3_19         C19         C18         C23         F27     150.000    10.0     6
+GIN              const_51         O41         C36         N37         C38     180.000    10.0     2
+GIN              const_45         C33         C38         N37         C36       0.000    10.0     2
+GIN              const_32         C23         C18         C19         C24       0.000    10.0     2
+GIN              const_35         C24         C19         C20         C21     180.000    10.0     2
+GIN             sp2_sp3_2         C18         C19         C24         C30     -90.000    10.0     6
+GIN              const_37         C19         C20         C21         C16       0.000    10.0     2
+GIN             sp3_sp3_1         C19         C24         C30         C31     180.000    10.0     3
+GIN            sp3_sp3_10         C24         C30         C31        H311     180.000    10.0     3
+GIN            sp2_sp3_14         C06         N11         C32         C33     120.000    10.0     6
+GIN             sp2_sp3_8         C38         C33         C32         N11     -90.000    10.0     6
+GIN              const_67         C32         C33         C34         C35     180.000    10.0     2
+GIN              const_43         C32         C33         C38         N37     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GIN    chir_1    C23    F27    F29    F28    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GIN    plan-1         C32   0.020
+GIN    plan-1         C33   0.020
+GIN    plan-1         C34   0.020
+GIN    plan-1         C35   0.020
+GIN    plan-1         C36   0.020
+GIN    plan-1         C38   0.020
+GIN    plan-1         H34   0.020
+GIN    plan-1         H35   0.020
+GIN    plan-1         H38   0.020
+GIN    plan-1        HN37   0.020
+GIN    plan-1         N37   0.020
+GIN    plan-1         O41   0.020
+GIN    plan-2         C01   0.020
+GIN    plan-2         C02   0.020
+GIN    plan-2         C03   0.020
+GIN    plan-2         C04   0.020
+GIN    plan-2         C05   0.020
+GIN    plan-2         C06   0.020
+GIN    plan-2         C12   0.020
+GIN    plan-2         H02   0.020
+GIN    plan-2         H03   0.020
+GIN    plan-2         H04   0.020
+GIN    plan-2         H05   0.020
+GIN    plan-2         N11   0.020
+GIN    plan-3         C16   0.020
+GIN    plan-3         C17   0.020
+GIN    plan-3         C18   0.020
+GIN    plan-3         C19   0.020
+GIN    plan-3         C20   0.020
+GIN    plan-3         C21   0.020
+GIN    plan-3         C23   0.020
+GIN    plan-3         C24   0.020
+GIN    plan-3         H17   0.020
+GIN    plan-3         H20   0.020
+GIN    plan-3         H21   0.020
+GIN    plan-3         N13   0.020
+GIN    plan-4         C01   0.020
+GIN    plan-4         C12   0.020
+GIN    plan-4         N13   0.020
+GIN    plan-4         O14   0.020
+GIN    plan-5         C06   0.020
+GIN    plan-5         C32   0.020
+GIN    plan-5        HN11   0.020
+GIN    plan-5         N11   0.020
+GIN    plan-6         C12   0.020
+GIN    plan-6         C16   0.020
+GIN    plan-6        HN13   0.020
+GIN    plan-6         N13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GIN           SMILES              ACDLabs 10.04                                                                                                                O=C1C=CC(=CN1)CNc3ccccc3C(=O)Nc2cc(c(cc2)CCC)C(F)(F)F
+GIN SMILES_CANONICAL               CACTVS 3.341                                                                                                                  CCCc1ccc(NC(=O)c2ccccc2NCC3=CNC(=O)C=C3)cc1C(F)(F)F
+GIN           SMILES               CACTVS 3.341                                                                                                                  CCCc1ccc(NC(=O)c2ccccc2NCC3=CNC(=O)C=C3)cc1C(F)(F)F
+GIN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                  CCCc1ccc(cc1C(F)(F)F)NC(=O)c2ccccc2NCC3=CNC(=O)C=C3
+GIN           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                  CCCc1ccc(cc1C(F)(F)F)NC(=O)c2ccccc2NCC3=CNC(=O)C=C3
+GIN            InChI                InChI  1.03 InChI=1S/C23H22F3N3O2/c1-2-5-16-9-10-17(12-19(16)23(24,25)26)29-22(31)18-6-3-4-7-20(18)27-13-15-8-11-21(30)28-14-15/h3-4,6-12,14,27H,2,5,13H2,1H3,(H,28,30)(H,29,31)
+GIN         InChIKey                InChI  1.03                                                                                                                                          SHSORWZDEKFFLP-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GIN acedrg               243         "dictionary generator"                  
+GIN acedrg_database      11          "data source"                           
+GIN rdkit                2017.03.2   "Chemoinformatics tool"
+GIN refmac5              5.8.0238    "optimization tool"                     

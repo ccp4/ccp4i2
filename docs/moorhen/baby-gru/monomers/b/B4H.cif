@@ -1,0 +1,177 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+B4H     B4H      N-methylidene-3-nitrobenzamide     NON-POLYMER     19     13     .     
+#
+data_comp_B4H
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+B4H     OAC     O       O       0       18.052      -9.863      -28.287     
+B4H     NAN     N       N       1       17.951      -8.678      -28.008     
+B4H     OAD     O       OC      -1      16.894      -8.067      -28.044     
+B4H     CAL     C       CR6     0       19.156      -7.954      -27.609     
+B4H     CAH     C       CR16    0       19.136      -7.219      -26.426     
+B4H     CAG     C       CR16    0       20.288      -8.020      -28.423     
+B4H     CAF     C       CR16    0       21.417      -7.326      -28.022     
+B4H     CAK     C       CR16    0       21.421      -6.587      -26.847     
+B4H     CAM     C       CR6     0       20.283      -6.522      -26.036     
+B4H     CAJ     C       C       0       20.276      -5.727      -24.759     
+B4H     OAB     O       O       0       19.307      -5.800      -23.984     
+B4H     NAI     N       N       0       21.390      -4.954      -24.529     
+B4H     CAA     C       C2      0       21.621      -4.166      -23.439     
+B4H     H1      H       H       0       18.355      -7.194      -25.899     
+B4H     H2      H       H       0       20.289      -8.521      -29.220     
+B4H     H3      H       H       0       22.191      -7.357      -28.554     
+B4H     H4      H       H       0       22.203      -6.127      -26.601     
+B4H     H6      H       H       0       22.447      -3.681      -23.384     
+B4H     H7      H       H       0       20.959      -4.106      -22.748     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+B4H         OAC         NAN      DOUBLE       n     1.221  0.0162     1.221  0.0162
+B4H         CAG         CAF      SINGLE       y     1.382  0.0100     1.382  0.0100
+B4H         CAL         CAG      DOUBLE       y     1.393  0.0100     1.393  0.0100
+B4H         CAF         CAK      DOUBLE       y     1.384  0.0100     1.384  0.0100
+B4H         NAN         CAL      SINGLE       n     1.457  0.0200     1.457  0.0200
+B4H         NAN         OAD      SINGLE       n     1.221  0.0162     1.221  0.0162
+B4H         CAL         CAH      SINGLE       y     1.390  0.0107     1.390  0.0107
+B4H         CAK         CAM      SINGLE       y     1.391  0.0101     1.391  0.0101
+B4H         CAH         CAM      DOUBLE       y     1.391  0.0100     1.391  0.0100
+B4H         CAM         CAJ      SINGLE       n     1.497  0.0100     1.497  0.0100
+B4H         CAJ         OAB      DOUBLE       n     1.239  0.0163     1.239  0.0163
+B4H         CAJ         NAI      SINGLE       n     1.364  0.0200     1.364  0.0200
+B4H         NAI         CAA      DOUBLE       n     1.361  0.0200     1.361  0.0200
+B4H         CAH          H1      SINGLE       n     1.082  0.0130     0.943  0.0184
+B4H         CAG          H2      SINGLE       n     1.082  0.0130     0.941  0.0200
+B4H         CAF          H3      SINGLE       n     1.082  0.0130     0.940  0.0164
+B4H         CAK          H4      SINGLE       n     1.082  0.0130     0.941  0.0168
+B4H         CAA          H6      SINGLE       n     1.082  0.0130     0.959  0.0100
+B4H         CAA          H7      SINGLE       n     1.082  0.0130     0.959  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+B4H         OAC         NAN         CAL     118.257    1.50
+B4H         OAC         NAN         OAD     123.486    1.50
+B4H         CAL         NAN         OAD     118.257    1.50
+B4H         CAG         CAL         NAN     118.866    1.50
+B4H         CAG         CAL         CAH     122.498    1.50
+B4H         NAN         CAL         CAH     118.636    1.50
+B4H         CAL         CAH         CAM     118.993    1.50
+B4H         CAL         CAH          H1     120.501    1.50
+B4H         CAM         CAH          H1     120.506    1.50
+B4H         CAF         CAG         CAL     118.041    1.50
+B4H         CAF         CAG          H2     120.676    1.50
+B4H         CAL         CAG          H2     121.283    1.50
+B4H         CAG         CAF         CAK     120.567    1.50
+B4H         CAG         CAF          H3     119.621    1.50
+B4H         CAK         CAF          H3     119.812    1.50
+B4H         CAF         CAK         CAM     120.349    1.50
+B4H         CAF         CAK          H4     119.751    1.50
+B4H         CAM         CAK          H4     119.900    1.50
+B4H         CAK         CAM         CAH     119.552    1.50
+B4H         CAK         CAM         CAJ     120.321    1.61
+B4H         CAH         CAM         CAJ     120.126    1.83
+B4H         CAM         CAJ         OAB     119.906    1.50
+B4H         CAM         CAJ         NAI     114.522    1.58
+B4H         OAB         CAJ         NAI     125.573    2.21
+B4H         CAJ         NAI         CAA     123.564    3.00
+B4H         NAI         CAA          H6     119.166    3.00
+B4H         NAI         CAA          H7     119.166    3.00
+B4H          H6         CAA          H7     121.668    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+B4H            sp2_sp2_11          H6         CAA         NAI         CAJ     180.000     5.0     2
+B4H             sp2_sp2_1         CAG         CAL         NAN         OAC     180.000     5.0     2
+B4H              const_22         CAM         CAH         CAL         NAN     180.000    10.0     2
+B4H       const_sp2_sp2_2         CAF         CAG         CAL         NAN     180.000     5.0     2
+B4H              const_18         CAL         CAH         CAM         CAJ     180.000    10.0     2
+B4H       const_sp2_sp2_5         CAK         CAF         CAG         CAL       0.000     5.0     2
+B4H       const_sp2_sp2_9         CAG         CAF         CAK         CAM       0.000     5.0     2
+B4H              const_14         CAF         CAK         CAM         CAJ     180.000    10.0     2
+B4H             sp2_sp2_7         OAB         CAJ         CAM         CAK       0.000     5.0     2
+B4H            sp2_sp2_10         OAB         CAJ         NAI         CAA       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+B4H    plan-1         CAF   0.020
+B4H    plan-1         CAG   0.020
+B4H    plan-1         CAH   0.020
+B4H    plan-1         CAJ   0.020
+B4H    plan-1         CAK   0.020
+B4H    plan-1         CAL   0.020
+B4H    plan-1         CAM   0.020
+B4H    plan-1          H1   0.020
+B4H    plan-1          H2   0.020
+B4H    plan-1          H3   0.020
+B4H    plan-1          H4   0.020
+B4H    plan-1         NAN   0.020
+B4H    plan-2         CAL   0.020
+B4H    plan-2         NAN   0.020
+B4H    plan-2         OAC   0.020
+B4H    plan-2         OAD   0.020
+B4H    plan-3         CAJ   0.020
+B4H    plan-3         CAM   0.020
+B4H    plan-3         NAI   0.020
+B4H    plan-3         OAB   0.020
+B4H    plan-4         CAA   0.020
+B4H    plan-4          H6   0.020
+B4H    plan-4          H7   0.020
+B4H    plan-4         NAI   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+B4H           SMILES              ACDLabs 12.01                              O=[N+](c1cc(ccc1)C(=O)\N=C)[O-]
+B4H            InChI                InChI  1.03 InChI=1S/C8H6N2O3/c1-9-8(11)6-3-2-4-7(5-6)10(12)13/h2-5H,1H2
+B4H         InChIKey                InChI  1.03                                  JQVXMNLKFSQZAT-UHFFFAOYSA-N
+B4H SMILES_CANONICAL               CACTVS 3.385                             "[O-][N+](=O)c1cccc(c1)C(=O)N=C"
+B4H           SMILES               CACTVS 3.385                             "[O-][N+](=O)c1cccc(c1)C(=O)N=C"
+B4H SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                               C=NC(=O)c1cccc(c1)[N+](=O)[O-]
+B4H           SMILES "OpenEye OEToolkits" 1.9.2                               C=NC(=O)c1cccc(c1)[N+](=O)[O-]
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+B4H acedrg               243         "dictionary generator"                  
+B4H acedrg_database      11          "data source"                           
+B4H rdkit                2017.03.2   "Chemoinformatics tool"
+B4H refmac5              5.8.0238    "optimization tool"                     

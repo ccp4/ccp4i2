@@ -1,0 +1,299 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZRG     ZRG      (2S)-2-acetamido-N-methyl-5-[[N-(methylcarbamoyl)carbamimidoyl]amino]pentanamide     NON-POLYMER     43     20     .     
+#
+data_comp_ZRG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZRG     CAC     C       CH3     0       71.263      5.131       -7.324      
+ZRG     CAP     C       C       0       70.893      5.587       -5.945      
+ZRG     OAE     O       O       0       70.507      6.740       -5.757      
+ZRG     N       N       NH1     0       70.989      4.728       -4.916      
+ZRG     CA      C       CH1     0       71.513      3.368       -4.979      
+ZRG     C       C       C       0       70.523      2.410       -5.654      
+ZRG     O       O       O       0       69.359      2.370       -5.258      
+ZRG     NAL     N       NH1     0       70.991      1.669       -6.660      
+ZRG     CAB     C       CH3     0       70.174      0.740       -7.424      
+ZRG     CB      C       CH2     0       71.877      2.862       -3.581      
+ZRG     CG      C       CH2     0       72.913      1.746       -3.580      
+ZRG     CD      C       CH2     0       73.121      1.110       -2.216      
+ZRG     NE      N       NH1     0       74.092      1.822       -1.386      
+ZRG     CZ      C       C       0       73.833      2.557       -0.296      
+ZRG     NH1     N       NH2     1       72.617      2.992       -0.008      
+ZRG     NH2     N       NH1     0       74.882      2.807       0.556       
+ZRG     CAR     C       C       0       74.918      3.481       1.792       
+ZRG     OAF     O       O       0       73.879      3.986       2.239       
+ZRG     NAK     N       NH1     0       76.100      3.551       2.449       
+ZRG     CAA     C       CH3     0       76.225      4.167       3.749       
+ZRG     H1AC    H       H       0       72.157      4.754       -7.323      
+ZRG     H2AC    H       H       0       71.240      5.889       -7.931      
+ZRG     H3AC    H       H       0       70.629      4.462       -7.629      
+ZRG     HN      H       H       0       70.698      5.018       -4.144      
+ZRG     HA      H       H       0       72.345      3.384       -5.512      
+ZRG     HNAL    H       H       0       71.832      1.733       -6.880      
+ZRG     H1AB    H       H       0       69.283      0.676       -7.045      
+ZRG     H2AB    H       H       0       70.588      -0.139      -7.411      
+ZRG     H3AB    H       H       0       70.108      1.047       -8.343      
+ZRG     H1B     H       H       0       71.064      2.540       -3.138      
+ZRG     H2B     H       H       0       72.226      3.611       -3.055      
+ZRG     H1G     H       H       0       73.770      2.105       -3.893      
+ZRG     H2G     H       H       0       72.635      1.048       -4.211      
+ZRG     H1D     H       H       0       73.439      0.192       -2.347      
+ZRG     H2D     H       H       0       72.261      1.054       -1.751      
+ZRG     HNE     H       H       0       74.926      1.780       -1.640      
+ZRG     HH1     H       H       0       72.466      3.407       0.750       
+ZRG     HH2     H       H       0       71.971      2.918       -0.594      
+ZRG     HNH2    H       H       0       75.663      2.498       0.297       
+ZRG     HNAK    H       H       0       76.833      3.209       2.068       
+ZRG     H1AA    H       H       0       75.593      3.771       4.371       
+ZRG     H2AA    H       H       0       76.048      5.119       3.690       
+ZRG     H3AA    H       H       0       77.123      4.039       4.097       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZRG         NAL         CAB      SINGLE       n     1.450  0.0100     1.450  0.0100
+ZRG         CAC         CAP      SINGLE       n     1.495  0.0100     1.495  0.0100
+ZRG           C         NAL      SINGLE       n     1.328  0.0101     1.328  0.0101
+ZRG           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+ZRG          CA           C      SINGLE       n     1.530  0.0100     1.530  0.0100
+ZRG         CAP         OAE      DOUBLE       n     1.229  0.0102     1.229  0.0102
+ZRG         CAP           N      SINGLE       n     1.335  0.0100     1.335  0.0100
+ZRG           N          CA      SINGLE       n     1.453  0.0100     1.453  0.0100
+ZRG          CA          CB      SINGLE       n     1.528  0.0100     1.528  0.0100
+ZRG          CB          CG      SINGLE       n     1.522  0.0100     1.522  0.0100
+ZRG          CG          CD      SINGLE       n     1.517  0.0143     1.517  0.0143
+ZRG          CD          NE      SINGLE       n     1.456  0.0136     1.456  0.0136
+ZRG          NE          CZ      SINGLE       n     1.331  0.0100     1.331  0.0100
+ZRG          CZ         NH1      DOUBLE       n     1.318  0.0103     1.318  0.0103
+ZRG          CZ         NH2      SINGLE       n     1.361  0.0133     1.361  0.0133
+ZRG         NH2         CAR      SINGLE       n     1.399  0.0142     1.399  0.0142
+ZRG         CAR         NAK      SINGLE       n     1.345  0.0158     1.345  0.0158
+ZRG         CAR         OAF      DOUBLE       n     1.235  0.0158     1.235  0.0158
+ZRG         NAK         CAA      SINGLE       n     1.443  0.0100     1.443  0.0100
+ZRG         CAC        H1AC      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZRG         CAC        H2AC      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZRG         CAC        H3AC      SINGLE       n     1.089  0.0100     0.971  0.0140
+ZRG           N          HN      SINGLE       n     1.016  0.0100     0.873  0.0200
+ZRG          CA          HA      SINGLE       n     1.089  0.0100     0.991  0.0200
+ZRG         NAL        HNAL      SINGLE       n     1.016  0.0100     0.872  0.0200
+ZRG         CAB        H1AB      SINGLE       n     1.089  0.0100     0.971  0.0198
+ZRG         CAB        H2AB      SINGLE       n     1.089  0.0100     0.971  0.0198
+ZRG         CAB        H3AB      SINGLE       n     1.089  0.0100     0.971  0.0198
+ZRG          CB         H1B      SINGLE       n     1.089  0.0100     0.980  0.0160
+ZRG          CB         H2B      SINGLE       n     1.089  0.0100     0.980  0.0160
+ZRG          CG         H1G      SINGLE       n     1.089  0.0100     0.981  0.0160
+ZRG          CG         H2G      SINGLE       n     1.089  0.0100     0.981  0.0160
+ZRG          CD         H1D      SINGLE       n     1.089  0.0100     0.981  0.0152
+ZRG          CD         H2D      SINGLE       n     1.089  0.0100     0.981  0.0152
+ZRG          NE         HNE      SINGLE       n     1.016  0.0100     0.872  0.0200
+ZRG         NH1         HH1      SINGLE       n     1.016  0.0100     0.879  0.0200
+ZRG         NH1         HH2      SINGLE       n     1.016  0.0100     0.879  0.0200
+ZRG         NH2        HNH2      SINGLE       n     1.016  0.0100     0.878  0.0200
+ZRG         NAK        HNAK      SINGLE       n     1.016  0.0100     0.894  0.0200
+ZRG         CAA        H1AA      SINGLE       n     1.089  0.0100     0.971  0.0198
+ZRG         CAA        H2AA      SINGLE       n     1.089  0.0100     0.971  0.0198
+ZRG         CAA        H3AA      SINGLE       n     1.089  0.0100     0.971  0.0198
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZRG         CAP         CAC        H1AC     109.678    1.50
+ZRG         CAP         CAC        H2AC     109.678    1.50
+ZRG         CAP         CAC        H3AC     109.678    1.50
+ZRG        H1AC         CAC        H2AC     109.365    1.50
+ZRG        H1AC         CAC        H3AC     109.365    1.50
+ZRG        H2AC         CAC        H3AC     109.365    1.50
+ZRG         CAC         CAP         OAE     121.913    1.50
+ZRG         CAC         CAP           N     116.420    1.50
+ZRG         OAE         CAP           N     121.667    1.50
+ZRG         CAP           N          CA     121.618    1.76
+ZRG         CAP           N          HN     119.048    2.25
+ZRG          CA           N          HN     119.334    1.64
+ZRG           C          CA           N     111.371    2.04
+ZRG           C          CA          CB     111.390    2.17
+ZRG           C          CA          HA     107.852    1.50
+ZRG           N          CA          CB     111.528    2.08
+ZRG           N          CA          HA     107.954    1.50
+ZRG          CB          CA          HA     108.242    1.50
+ZRG         NAL           C           O     123.154    1.50
+ZRG         NAL           C          CA     116.390    1.50
+ZRG           O           C          CA     120.456    1.50
+ZRG         CAB         NAL           C     121.933    1.50
+ZRG         CAB         NAL        HNAL     118.526    1.58
+ZRG           C         NAL        HNAL     119.540    1.69
+ZRG         NAL         CAB        H1AB     109.480    1.50
+ZRG         NAL         CAB        H2AB     109.480    1.50
+ZRG         NAL         CAB        H3AB     109.480    1.50
+ZRG        H1AB         CAB        H2AB     109.279    1.79
+ZRG        H1AB         CAB        H3AB     109.279    1.79
+ZRG        H2AB         CAB        H3AB     109.279    1.79
+ZRG          CA          CB          CG     113.702    1.73
+ZRG          CA          CB         H1B     108.827    1.50
+ZRG          CA          CB         H2B     108.827    1.50
+ZRG          CG          CB         H1B     108.775    1.50
+ZRG          CG          CB         H2B     108.775    1.50
+ZRG         H1B          CB         H2B     107.844    1.50
+ZRG          CB          CG          CD     112.387    3.00
+ZRG          CB          CG         H1G     109.262    1.50
+ZRG          CB          CG         H2G     109.262    1.50
+ZRG          CD          CG         H1G     108.956    1.50
+ZRG          CD          CG         H2G     108.956    1.50
+ZRG         H1G          CG         H2G     107.927    1.57
+ZRG          CG          CD          NE     112.382    2.90
+ZRG          CG          CD         H1D     109.197    1.51
+ZRG          CG          CD         H2D     109.197    1.51
+ZRG          NE          CD         H1D     109.183    1.50
+ZRG          NE          CD         H2D     109.183    1.50
+ZRG         H1D          CD         H2D     107.877    1.50
+ZRG          CD          NE          CZ     124.700    1.50
+ZRG          CD          NE         HNE     117.853    1.50
+ZRG          CZ          NE         HNE     117.447    2.01
+ZRG          NE          CZ         NH1     121.095    1.50
+ZRG          NE          CZ         NH2     118.530    3.00
+ZRG         NH1          CZ         NH2     120.375    2.74
+ZRG          CZ         NH1         HH1     119.689    1.50
+ZRG          CZ         NH1         HH2     119.689    1.50
+ZRG         HH1         NH1         HH2     120.621    2.09
+ZRG          CZ         NH2         CAR     127.642    3.00
+ZRG          CZ         NH2        HNH2     116.412    1.80
+ZRG         CAR         NH2        HNH2     115.946    2.37
+ZRG         NH2         CAR         NAK     117.770    1.50
+ZRG         NH2         CAR         OAF     119.777    1.77
+ZRG         NAK         CAR         OAF     122.453    1.50
+ZRG         CAR         NAK         CAA     121.744    2.00
+ZRG         CAR         NAK        HNAK     119.279    2.29
+ZRG         CAA         NAK        HNAK     118.977    1.50
+ZRG         NAK         CAA        H1AA     110.997    1.85
+ZRG         NAK         CAA        H2AA     110.997    1.85
+ZRG         NAK         CAA        H3AA     110.997    1.85
+ZRG        H1AA         CAA        H2AA     109.279    1.79
+ZRG        H1AA         CAA        H3AA     109.279    1.79
+ZRG        H2AA         CAA        H3AA     109.279    1.79
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZRG             sp2_sp3_7         OAE         CAP         CAC        H1AC       0.000    10.0     6
+ZRG            sp3_sp3_19          NE          CD          CG          CB     180.000    10.0     3
+ZRG            sp2_sp3_26          CZ          NE          CD          CG     120.000    10.0     6
+ZRG            sp2_sp2_11         NH1          CZ          NE          CD       0.000     5.0     2
+ZRG            sp2_sp2_13          NE          CZ         NH1         HH1     180.000     5.0     2
+ZRG            sp2_sp2_17          NE          CZ         NH2         CAR     180.000     5.0     2
+ZRG            sp2_sp2_21         NAK         CAR         NH2          CZ     180.000     5.0     2
+ZRG            sp2_sp2_25         NH2         CAR         NAK         CAA     180.000     5.0     2
+ZRG            sp2_sp3_31         CAR         NAK         CAA        H1AA       0.000    10.0     6
+ZRG             sp2_sp2_5         CAC         CAP           N          CA     180.000     5.0     2
+ZRG            sp2_sp3_19         CAP           N          CA           C       0.000    10.0     6
+ZRG            sp2_sp3_13         NAL           C          CA           N       0.000    10.0     6
+ZRG             sp3_sp3_1           C          CA          CB          CG     180.000    10.0     3
+ZRG             sp2_sp2_3           O           C         NAL         CAB       0.000     5.0     2
+ZRG             sp2_sp3_1           C         NAL         CAB        H1AB       0.000    10.0     6
+ZRG            sp3_sp3_10          CA          CB          CG          CD     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZRG    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZRG    plan-1         CAC   0.020
+ZRG    plan-1         CAP   0.020
+ZRG    plan-1           N   0.020
+ZRG    plan-1         OAE   0.020
+ZRG    plan-2          CA   0.020
+ZRG    plan-2         CAP   0.020
+ZRG    plan-2          HN   0.020
+ZRG    plan-2           N   0.020
+ZRG    plan-3           C   0.020
+ZRG    plan-3          CA   0.020
+ZRG    plan-3         NAL   0.020
+ZRG    plan-3           O   0.020
+ZRG    plan-4           C   0.020
+ZRG    plan-4         CAB   0.020
+ZRG    plan-4        HNAL   0.020
+ZRG    plan-4         NAL   0.020
+ZRG    plan-5          CD   0.020
+ZRG    plan-5          CZ   0.020
+ZRG    plan-5         HNE   0.020
+ZRG    plan-5          NE   0.020
+ZRG    plan-6          CZ   0.020
+ZRG    plan-6          NE   0.020
+ZRG    plan-6         NH1   0.020
+ZRG    plan-6         NH2   0.020
+ZRG    plan-7          CZ   0.020
+ZRG    plan-7         HH1   0.020
+ZRG    plan-7         HH2   0.020
+ZRG    plan-7         NH1   0.020
+ZRG    plan-8         CAR   0.020
+ZRG    plan-8          CZ   0.020
+ZRG    plan-8        HNH2   0.020
+ZRG    plan-8         NH2   0.020
+ZRG    plan-9         CAR   0.020
+ZRG    plan-9         NAK   0.020
+ZRG    plan-9         NH2   0.020
+ZRG    plan-9         OAF   0.020
+ZRG   plan-10         CAA   0.020
+ZRG   plan-10         CAR   0.020
+ZRG   plan-10        HNAK   0.020
+ZRG   plan-10         NAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZRG           SMILES              ACDLabs 12.01                                                                                                  O=C(NC)C(NC(=O)C)CCCNC(=[N@H])NC(=O)NC
+ZRG SMILES_CANONICAL               CACTVS 3.370                                                                                                  CNC(=O)NC(=N)NCCC[C@H](NC(C)=O)C(=O)NC
+ZRG           SMILES               CACTVS 3.370                                                                                                   CNC(=O)NC(=N)NCCC[CH](NC(C)=O)C(=O)NC
+ZRG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                         "[H]/N=C(/NCCC[C@@H](C(=O)NC)NC(=O)C)\NC(=O)NC"
+ZRG           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                      CC(=O)NC(CCCNC(=N)NC(=O)NC)C(=O)NC
+ZRG            InChI                InChI  1.03 InChI=1S/C11H22N6O3/c1-7(18)16-8(9(19)13-2)5-4-6-15-10(12)17-11(20)14-3/h8H,4-6H2,1-3H3,(H,13,19)(H,16,18)(H4,12,14,15,17,20)/t8-/m0/s1
+ZRG         InChIKey                InChI  1.03                                                                                                             IHUKVJKKTBLTEE-QMMMGPOBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZRG acedrg               243         "dictionary generator"                  
+ZRG acedrg_database      11          "data source"                           
+ZRG rdkit                2017.03.2   "Chemoinformatics tool"
+ZRG refmac5              5.8.0238    "optimization tool"                     

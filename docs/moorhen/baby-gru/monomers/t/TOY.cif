@@ -1,0 +1,415 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TOY     TOY      TOBRAMYCIN     NON-POLYMER     72     32     .     
+#
+data_comp_TOY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TOY     C11     C       CH1     0       12.099      -6.622      5.831       
+TOY     O11     O       O2      0       13.179      -7.430      5.411       
+TOY     C21     C       CH1     0       10.796      -7.215      5.270       
+TOY     N21     N       NT2     0       10.680      -8.657      5.533       
+TOY     C31     C       CH2     0       10.659      -6.931      3.777       
+TOY     C41     C       CH1     0       10.912      -5.474      3.439       
+TOY     O41     O       OH1     0       10.904      -5.291      2.016       
+TOY     C51     C       CH1     0       12.265      -5.037      4.004       
+TOY     O51     O       O2      0       12.299      -5.260      5.431       
+TOY     C61     C       CH2     0       12.568      -3.569      3.766       
+TOY     N61     N       NT3     1       12.911      -3.240      2.362       
+TOY     C12     C       CH1     0       16.735      -9.051      7.100       
+TOY     N12     N       NT3     1       17.928      -9.150      7.997       
+TOY     C22     C       CH2     0       16.836      -7.781      6.257       
+TOY     C32     C       CH1     0       15.587      -7.553      5.408       
+TOY     N32     N       NT3     1       15.695      -6.252      4.671       
+TOY     C42     C       CH1     0       14.326      -7.570      6.269       
+TOY     C52     C       CH1     0       14.249      -8.897      7.021       
+TOY     O52     O       OH1     0       13.046      -8.951      7.788       
+TOY     C62     C       CH1     0       15.459      -9.069      7.937       
+TOY     O62     O       O2      0       15.379      -10.332     8.624       
+TOY     C13     C       CH1     0       15.470      -10.348     10.033      
+TOY     C23     C       CH1     0       15.900      -11.738     10.500      
+TOY     O23     O       OH1     0       17.060      -12.169     9.773       
+TOY     C33     C       CH1     0       14.773      -12.761     10.336      
+TOY     N33     N       NT2     0       15.162      -14.077     10.861      
+TOY     C43     C       CH1     0       13.470      -12.272     10.969      
+TOY     O43     O       OH1     0       12.412      -13.196     10.706      
+TOY     C53     C       CH1     0       13.120      -10.901     10.388      
+TOY     O53     O       O2      0       14.216      -9.976      10.623      
+TOY     C63     C       CH2     0       11.886      -10.280     11.004      
+TOY     O63     O       OH1     0       12.040      -10.077     12.408      
+TOY     H11     H       H       0       12.053      -6.658      6.819       
+TOY     H21     H       H       0       10.047      -6.762      5.727       
+TOY     HN21    H       H       0       9.908       -8.963      5.215       
+TOY     HN22    H       H       0       10.707      -8.810      6.408       
+TOY     H311    H       H       0       9.749       -7.178      3.482       
+TOY     H312    H       H       0       11.300      -7.495      3.279       
+TOY     H41     H       H       0       10.219      -4.939      3.821       
+TOY     H41O    H       H       0       11.517      -5.748      1.664       
+TOY     H51     H       H       0       12.978      -5.572      3.574       
+TOY     H611    H       H       0       13.319      -3.305      4.342       
+TOY     H612    H       H       0       11.783      -3.040      4.029       
+TOY     HN61    H       H       0       13.187      -2.378      2.299       
+TOY     HN62    H       H       0       12.187      -3.353      1.827       
+TOY     H63     H       H       0       13.577      -3.780      2.067       
+TOY     H12     H       H       0       16.729      -9.841      6.488       
+TOY     HN11    H       H       0       17.914      -8.483      8.600       
+TOY     HN12    H       H       0       18.682      -9.091      7.512       
+TOY     H14     H       H       0       17.919      -9.937      8.431       
+TOY     H221    H       H       0       16.972      -7.009      6.849       
+TOY     H222    H       H       0       17.622      -7.845      5.669       
+TOY     H32     H       H       0       15.522      -8.292      4.737       
+TOY     HN1     H       H       0       15.214      -5.613      5.083       
+TOY     HN2     H       H       0       15.385      -6.351      3.832       
+TOY     H3      H       H       0       16.553      -5.984      4.629       
+TOY     H42     H       H       0       14.368      -6.823      6.917       
+TOY     H52     H       H       0       14.237      -9.638      6.365       
+TOY     H52O    H       H       0       13.045      -8.327      8.353       
+TOY     H62     H       H       0       15.488      -8.323      8.586       
+TOY     H13     H       H       0       16.158      -9.692      10.318      
+TOY     H23     H       H       0       16.133      -11.686     11.445      
+TOY     H23O    H       H       0       16.879      -12.213     8.952       
+TOY     H33     H       H       0       14.610      -12.863     9.375       
+TOY     HN31    H       H       0       15.296      -14.017     11.738      
+TOY     HN32    H       H       0       15.919      -14.337     10.475      
+TOY     H43     H       H       0       13.595      -12.198     11.947      
+TOY     H43O    H       H       0       12.302      -13.276     9.875       
+TOY     H53     H       H       0       12.978      -10.999     9.423       
+TOY     H631    H       H       0       11.115      -10.862     10.844      
+TOY     H632    H       H       0       11.710      -9.418      10.572      
+TOY     H63O    H       H       0       12.634      -9.488      12.545      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TOY         C11         O11      SINGLE       n     1.406  0.0151     1.406  0.0151
+TOY         C11         C21      SINGLE       n     1.535  0.0100     1.535  0.0100
+TOY         C11         O51      SINGLE       n     1.422  0.0172     1.422  0.0172
+TOY         O11         C42      SINGLE       n     1.436  0.0105     1.436  0.0105
+TOY         C21         N21      SINGLE       n     1.470  0.0107     1.470  0.0107
+TOY         C21         C31      SINGLE       n     1.525  0.0112     1.525  0.0112
+TOY         C31         C41      SINGLE       n     1.516  0.0124     1.516  0.0124
+TOY         C41         O41      SINGLE       n     1.434  0.0100     1.434  0.0100
+TOY         C41         C51      SINGLE       n     1.525  0.0174     1.525  0.0174
+TOY         C51         O51      SINGLE       n     1.441  0.0100     1.441  0.0100
+TOY         C51         C61      SINGLE       n     1.518  0.0100     1.518  0.0100
+TOY         C61         N61      SINGLE       n     1.483  0.0133     1.483  0.0133
+TOY         C12         N12      SINGLE       n     1.496  0.0100     1.496  0.0100
+TOY         C12         C22      SINGLE       n     1.525  0.0100     1.525  0.0100
+TOY         C12         C62      SINGLE       n     1.524  0.0103     1.524  0.0103
+TOY         C22         C32      SINGLE       n     1.525  0.0100     1.525  0.0100
+TOY         C32         N32      SINGLE       n     1.496  0.0100     1.496  0.0100
+TOY         C32         C42      SINGLE       n     1.524  0.0103     1.524  0.0103
+TOY         C42         C52      SINGLE       n     1.521  0.0165     1.521  0.0165
+TOY         C52         O52      SINGLE       n     1.427  0.0125     1.427  0.0125
+TOY         C52         C62      SINGLE       n     1.521  0.0165     1.521  0.0165
+TOY         C62         O62      SINGLE       n     1.436  0.0105     1.436  0.0105
+TOY         O62         C13      SINGLE       n     1.406  0.0136     1.406  0.0136
+TOY         C13         C23      SINGLE       n     1.522  0.0129     1.522  0.0129
+TOY         C13         O53      SINGLE       n     1.422  0.0171     1.422  0.0171
+TOY         C23         O23      SINGLE       n     1.432  0.0200     1.432  0.0200
+TOY         C23         C33      SINGLE       n     1.529  0.0115     1.529  0.0115
+TOY         C33         N33      SINGLE       n     1.470  0.0100     1.470  0.0100
+TOY         C33         C43      SINGLE       n     1.529  0.0115     1.529  0.0115
+TOY         C43         O43      SINGLE       n     1.428  0.0123     1.428  0.0123
+TOY         C43         C53      SINGLE       n     1.525  0.0186     1.525  0.0186
+TOY         C53         O53      SINGLE       n     1.439  0.0187     1.439  0.0187
+TOY         C53         C63      SINGLE       n     1.511  0.0100     1.511  0.0100
+TOY         C63         O63      SINGLE       n     1.426  0.0200     1.426  0.0200
+TOY         C11         H11      SINGLE       n     1.089  0.0100     0.989  0.0183
+TOY         C21         H21      SINGLE       n     1.089  0.0100     0.988  0.0199
+TOY         N21        HN21      SINGLE       n     1.036  0.0160     0.889  0.0200
+TOY         N21        HN22      SINGLE       n     1.036  0.0160     0.889  0.0200
+TOY         C31        H311      SINGLE       n     1.089  0.0100     0.988  0.0100
+TOY         C31        H312      SINGLE       n     1.089  0.0100     0.988  0.0100
+TOY         C41         H41      SINGLE       n     1.089  0.0100     0.955  0.0200
+TOY         O41        H41O      SINGLE       n     0.970  0.0120     0.841  0.0200
+TOY         C51         H51      SINGLE       n     1.089  0.0100     0.990  0.0106
+TOY         C61        H611      SINGLE       n     1.089  0.0100     0.982  0.0165
+TOY         C61        H612      SINGLE       n     1.089  0.0100     0.982  0.0165
+TOY         N61        HN61      SINGLE       n     1.036  0.0160     0.907  0.0200
+TOY         N61        HN62      SINGLE       n     1.036  0.0160     0.907  0.0200
+TOY         N61         H63      SINGLE       n     1.036  0.0160     0.907  0.0200
+TOY         C12         H12      SINGLE       n     1.089  0.0100     1.000  0.0100
+TOY         N12        HN11      SINGLE       n     1.036  0.0160     0.899  0.0200
+TOY         N12        HN12      SINGLE       n     1.036  0.0160     0.899  0.0200
+TOY         N12         H14      SINGLE       n     1.036  0.0160     0.899  0.0200
+TOY         C22        H221      SINGLE       n     1.089  0.0100     0.983  0.0138
+TOY         C22        H222      SINGLE       n     1.089  0.0100     0.983  0.0138
+TOY         C32         H32      SINGLE       n     1.089  0.0100     1.000  0.0100
+TOY         N32         HN1      SINGLE       n     1.036  0.0160     0.899  0.0200
+TOY         N32         HN2      SINGLE       n     1.036  0.0160     0.899  0.0200
+TOY         N32          H3      SINGLE       n     1.036  0.0160     0.899  0.0200
+TOY         C42         H42      SINGLE       n     1.089  0.0100     0.989  0.0181
+TOY         C52         H52      SINGLE       n     1.089  0.0100     0.990  0.0140
+TOY         O52        H52O      SINGLE       n     0.970  0.0120     0.841  0.0200
+TOY         C62         H62      SINGLE       n     1.089  0.0100     0.989  0.0181
+TOY         C13         H13      SINGLE       n     1.089  0.0100     0.992  0.0126
+TOY         C23         H23      SINGLE       n     1.089  0.0100     0.975  0.0196
+TOY         O23        H23O      SINGLE       n     0.970  0.0120     0.841  0.0200
+TOY         C33         H33      SINGLE       n     1.089  0.0100     0.980  0.0200
+TOY         N33        HN31      SINGLE       n     1.036  0.0160     0.889  0.0200
+TOY         N33        HN32      SINGLE       n     1.036  0.0160     0.889  0.0200
+TOY         C43         H43      SINGLE       n     1.089  0.0100     0.989  0.0181
+TOY         O43        H43O      SINGLE       n     0.970  0.0120     0.841  0.0200
+TOY         C53         H53      SINGLE       n     1.089  0.0100     0.983  0.0200
+TOY         C63        H631      SINGLE       n     1.089  0.0100     0.980  0.0184
+TOY         C63        H632      SINGLE       n     1.089  0.0100     0.980  0.0184
+TOY         O63        H63O      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TOY         O11         C11         C21     108.367    1.50
+TOY         O11         C11         O51     110.325    1.95
+TOY         O11         C11         H11     107.875    2.12
+TOY         C21         C11         O51     111.350    3.00
+TOY         C21         C11         H11     108.848    1.50
+TOY         O51         C11         H11     109.272    1.61
+TOY         C11         O11         C42     117.169    1.96
+TOY         C11         C21         N21     111.865    2.42
+TOY         C11         C21         C31     111.124    1.57
+TOY         C11         C21         H21     107.511    1.55
+TOY         N21         C21         C31     110.671    1.99
+TOY         N21         C21         H21     108.113    1.50
+TOY         C31         C21         H21     107.655    1.50
+TOY         C21         N21        HN21     109.984    3.00
+TOY         C21         N21        HN22     109.984    3.00
+TOY        HN21         N21        HN22     108.673    3.00
+TOY         C21         C31         C41     112.731    1.50
+TOY         C21         C31        H311     109.341    1.50
+TOY         C21         C31        H312     109.341    1.50
+TOY         C41         C31        H311     109.270    1.50
+TOY         C41         C31        H312     109.270    1.50
+TOY        H311         C31        H312     107.917    1.50
+TOY         C31         C41         O41     109.687    1.93
+TOY         C31         C41         C51     109.820    1.63
+TOY         C31         C41         H41     109.129    1.50
+TOY         O41         C41         C51     109.153    2.02
+TOY         O41         C41         H41     108.790    1.50
+TOY         C51         C41         H41     109.550    1.50
+TOY         C41         O41        H41O     109.099    3.00
+TOY         C41         C51         O51     109.378    1.54
+TOY         C41         C51         C61     113.587    1.96
+TOY         C41         C51         H51     108.898    1.50
+TOY         O51         C51         C61     107.878    2.44
+TOY         O51         C51         H51     108.995    1.50
+TOY         C61         C51         H51     108.699    2.22
+TOY         C11         O51         C51     113.097    1.50
+TOY         C51         C61         N61     113.823    1.83
+TOY         C51         C61        H611     108.444    1.50
+TOY         C51         C61        H612     108.444    1.50
+TOY         N61         C61        H611     108.377    1.50
+TOY         N61         C61        H612     108.377    1.50
+TOY        H611         C61        H612     107.850    1.50
+TOY         C61         N61        HN61     110.335    2.25
+TOY         C61         N61        HN62     110.335    2.25
+TOY         C61         N61         H63     110.335    2.25
+TOY        HN61         N61        HN62     108.820    2.86
+TOY        HN61         N61         H63     108.820    2.86
+TOY        HN62         N61         H63     108.820    2.86
+TOY         N12         C12         C22     109.461    1.50
+TOY         N12         C12         C62     109.671    1.50
+TOY         N12         C12         H12     108.734    1.50
+TOY         C22         C12         C62     111.392    1.50
+TOY         C22         C12         H12     108.719    1.50
+TOY         C62         C12         H12     108.763    1.50
+TOY         C12         N12        HN11     109.908    1.75
+TOY         C12         N12        HN12     109.908    1.75
+TOY         C12         N12         H14     109.908    1.75
+TOY        HN11         N12        HN12     109.122    2.58
+TOY        HN11         N12         H14     109.122    2.58
+TOY        HN12         N12         H14     109.122    2.58
+TOY         C12         C22         C32     112.567    1.88
+TOY         C12         C22        H221     109.552    1.50
+TOY         C12         C22        H222     109.552    1.50
+TOY         C32         C22        H221     109.552    1.50
+TOY         C32         C22        H222     109.552    1.50
+TOY        H221         C22        H222     107.784    1.50
+TOY         C22         C32         N32     109.461    1.50
+TOY         C22         C32         C42     111.392    1.50
+TOY         C22         C32         H32     108.719    1.50
+TOY         N32         C32         C42     109.671    1.50
+TOY         N32         C32         H32     108.734    1.50
+TOY         C42         C32         H32     108.763    1.50
+TOY         C32         N32         HN1     109.908    1.75
+TOY         C32         N32         HN2     109.908    1.75
+TOY         C32         N32          H3     109.908    1.75
+TOY         HN1         N32         HN2     109.122    2.58
+TOY         HN1         N32          H3     109.122    2.58
+TOY         HN2         N32          H3     109.122    2.58
+TOY         O11         C42         C32     107.953    1.94
+TOY         O11         C42         C52     108.580    2.45
+TOY         O11         C42         H42     109.522    1.50
+TOY         C32         C42         C52     108.862    1.50
+TOY         C32         C42         H42     108.664    1.50
+TOY         C52         C42         H42     109.166    1.50
+TOY         C42         C52         O52     110.081    2.02
+TOY         C42         C52         C62     110.796    1.54
+TOY         C42         C52         H52     109.166    1.50
+TOY         O52         C52         C62     110.081    2.02
+TOY         O52         C52         H52     108.767    1.50
+TOY         C62         C52         H52     109.166    1.50
+TOY         C52         O52        H52O     108.895    2.41
+TOY         C12         C62         C52     108.862    1.50
+TOY         C12         C62         O62     107.953    1.94
+TOY         C12         C62         H62     108.664    1.50
+TOY         C52         C62         O62     108.580    2.45
+TOY         C52         C62         H62     109.166    1.50
+TOY         O62         C62         H62     109.522    1.50
+TOY         C62         O62         C13     117.169    1.96
+TOY         O62         C13         C23     108.473    2.03
+TOY         O62         C13         O53     110.157    1.98
+TOY         O62         C13         H13     109.369    1.50
+TOY         C23         C13         O53     110.164    1.50
+TOY         C23         C13         H13     109.599    1.50
+TOY         O53         C13         H13     109.132    1.50
+TOY         C13         C23         O23     109.976    1.78
+TOY         C13         C23         C33     111.124    1.57
+TOY         C13         C23         H23     108.925    1.50
+TOY         O23         C23         C33     110.124    1.87
+TOY         O23         C23         H23     108.790    1.50
+TOY         C33         C23         H23     108.987    1.50
+TOY         C23         O23        H23O     109.099    3.00
+TOY         C23         C33         N33     111.315    2.25
+TOY         C23         C33         C43     111.932    2.44
+TOY         C23         C33         H33     107.258    1.68
+TOY         N33         C33         C43     111.315    2.25
+TOY         N33         C33         H33     107.474    1.50
+TOY         C43         C33         H33     107.258    1.68
+TOY         C33         N33        HN31     109.341    3.00
+TOY         C33         N33        HN32     109.341    3.00
+TOY        HN31         N33        HN32     108.673    3.00
+TOY         C33         C43         O43     110.124    1.87
+TOY         C33         C43         C53     109.627    1.81
+TOY         C33         C43         H43     108.987    1.50
+TOY         O43         C43         C53     109.153    2.02
+TOY         O43         C43         H43     108.790    1.50
+TOY         C53         C43         H43     109.550    1.50
+TOY         C43         O43        H43O     109.099    3.00
+TOY         C43         C53         O53     109.378    1.54
+TOY         C43         C53         C63     113.127    1.52
+TOY         C43         C53         H53     108.898    1.50
+TOY         O53         C53         C63     106.879    1.50
+TOY         O53         C53         H53     109.134    1.50
+TOY         C63         C53         H53     109.269    1.50
+TOY         C13         O53         C53     113.300    1.50
+TOY         C53         C63         O63     111.299    2.09
+TOY         C53         C63        H631     109.363    1.50
+TOY         C53         C63        H632     109.363    1.50
+TOY         O63         C63        H631     109.265    1.50
+TOY         O63         C63        H632     109.265    1.50
+TOY        H631         C63        H632     108.155    1.50
+TOY         C63         O63        H63O     109.472    2.41
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TOY           sp3_sp3_124         C21         C11         O11         C42     180.000    10.0     3
+TOY             sp3_sp3_5         O11         C11         C21         N21     -60.000    10.0     3
+TOY           sp3_sp3_128         O11         C11         O51         C51      60.000    10.0     3
+TOY           sp3_sp3_160         C22         C12         N12        HN11     180.000    10.0     3
+TOY            sp3_sp3_43         N12         C12         C22         C32     -60.000    10.0     3
+TOY           sp3_sp3_173         N12         C12         C62         O62     180.000    10.0     3
+TOY            sp3_sp3_50         C12         C22         C32         N32      60.000    10.0     3
+TOY           sp3_sp3_178         C22         C32         N32         HN1     180.000    10.0     3
+TOY            sp3_sp3_62         N32         C32         C42         O11      60.000    10.0     3
+TOY            sp3_sp3_71         O11         C42         C52         O52     -60.000    10.0     3
+TOY           sp3_sp3_187         C42         C52         O52        H52O     180.000    10.0     3
+TOY            sp3_sp3_80         O52         C52         C62         O62      60.000    10.0     3
+TOY           sp3_sp3_190         C12         C62         O62         C13     180.000    10.0     3
+TOY           sp3_sp3_130         C32         C42         O11         C11     180.000    10.0     3
+TOY           sp3_sp3_193         C23         C13         O62         C62     180.000    10.0     3
+TOY            sp3_sp3_89         O62         C13         C23         O23     -60.000    10.0     3
+TOY           sp3_sp3_197         O62         C13         O53         C53      60.000    10.0     3
+TOY           sp3_sp3_199         C13         C23         O23        H23O     180.000    10.0     3
+TOY            sp3_sp3_98         O23         C23         C33         N33     180.000    10.0     3
+TOY           sp3_sp3_202         C23         C33         N33        HN31     180.000    10.0     3
+TOY           sp3_sp3_107         N33         C33         C43         O43     -60.000    10.0     3
+TOY           sp3_sp3_208         C33         C43         O43        H43O     180.000    10.0     3
+TOY           sp3_sp3_116         O43         C43         C53         C63     180.000    10.0     3
+TOY           sp3_sp3_122         C63         C53         O53         C13     -60.000    10.0     3
+TOY           sp3_sp3_211         C43         C53         C63         O63     180.000    10.0     3
+TOY           sp3_sp3_133         C11         C21         N21        HN21     180.000    10.0     3
+TOY            sp3_sp3_13         N21         C21         C31         C41      60.000    10.0     3
+TOY           sp3_sp3_220         C53         C63         O63        H63O     180.000    10.0     3
+TOY            sp3_sp3_20         C21         C31         C41         O41     180.000    10.0     3
+TOY           sp3_sp3_139         C31         C41         O41        H41O     180.000    10.0     3
+TOY            sp3_sp3_32         O41         C41         C51         C61     180.000    10.0     3
+TOY            sp3_sp3_38         C61         C51         O51         C11     -60.000    10.0     3
+TOY           sp3_sp3_142         C41         C51         C61         N61     180.000    10.0     3
+TOY           sp3_sp3_151         C51         C61         N61        HN61     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TOY    chir_1    C11    O11    O51    C21    negative
+TOY    chir_2    C21    N21    C11    C31    negative
+TOY    chir_3    C41    O41    C51    C31    positive
+TOY    chir_4    C51    O51    C41    C61    negative
+TOY    chir_5    C12    N12    C62    C22    negative
+TOY    chir_6    C32    N32    C42    C22    positive
+TOY    chir_7    C42    O11    C52    C32    negative
+TOY    chir_8    C52    O52    C62    C42    positive
+TOY    chir_9    C62    O62    C52    C12    positive
+TOY    chir_10    C13    O53    O62    C23    positive
+TOY    chir_11    C23    O23    C13    C33    negative
+TOY    chir_12    C33    N33    C23    C43    positive
+TOY    chir_13    C43    O43    C53    C33    positive
+TOY    chir_14    C53    O53    C43    C63    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TOY           SMILES              ACDLabs 10.04                                                                                                                                               O(C2C(O)C(OC1OC(CN)C(O)CC1N)C(N)CC2N)C3OC(C(O)C(N)C3O)CO
+TOY SMILES_CANONICAL               CACTVS 3.341                                                                                    NC[C@H]1O[C@H](O[C@@H]2[C@@H](N)C[C@@H](N)[C@H](O[C@H]3O[C@H](CO)[C@@H](O)[C@H](N)[C@H]3O)[C@H]2O)[C@H](N)C[C@@H]1O
+TOY           SMILES               CACTVS 3.341                                                                                                       NC[CH]1O[CH](O[CH]2[CH](N)C[CH](N)[CH](O[CH]3O[CH](CO)[CH](O)[CH](N)[CH]3O)[CH]2O)[CH](N)C[CH]1O
+TOY SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                          C1[C@@H]([C@H]([C@@H]([C@H]([C@@H]1N)O[C@@H]2[C@@H]([C@H]([C@@H]([C@H](O2)CO)O)N)O)O)O[C@@H]3[C@@H](C[C@@H]([C@H](O3)CN)O)N)N
+TOY           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                           C1C(C(C(C(C1N)OC2C(C(C(C(O2)CO)O)N)O)O)OC3C(CC(C(O3)CN)O)N)N
+TOY            InChI                InChI  1.03 InChI=1S/C18H37N5O9/c19-3-9-8(25)2-7(22)17(29-9)31-15-5(20)1-6(21)16(14(15)28)32-18-13(27)11(23)12(26)10(4-24)30-18/h5-18,24-28H,1-4,19-23H2/t5-,6+,7+,8-,9+,10+,11-,12+,13+,14-,15+,16-,17+,18+/m0/s1
+TOY         InChIKey                InChI  1.03                                                                                                                                                                            NLVFBUXFDBBNBW-PBSUHMDJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TOY acedrg               243         "dictionary generator"                  
+TOY acedrg_database      11          "data source"                           
+TOY rdkit                2017.03.2   "Chemoinformatics tool"
+TOY refmac5              5.8.0238    "optimization tool"                     

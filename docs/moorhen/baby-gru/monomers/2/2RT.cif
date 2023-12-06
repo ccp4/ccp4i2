@@ -1,0 +1,305 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+2RT     2RT      4-({4-[(2,4,6-trimethylphenyl)amino]-1,3,5-triazin-2-yl}amino)benzonitrile     NON-POLYMER     43     25     .     
+#
+data_comp_2RT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+2RT     NAV     N       NH1     0       52.535      -26.253     33.724      
+2RT     CBD     C       CR6     0       51.631      -27.132     34.368      
+2RT     CAH     C       CR16    0       51.870      -28.513     34.403      
+2RT     CAF     C       CR16    0       50.988      -29.359     35.045      
+2RT     CBA     C       CR6     0       49.853      -28.845     35.673      
+2RT     CAE     C       CSP     0       48.933      -29.730     36.342      
+2RT     NAD     N       NSP     0       48.223      -30.403     36.946      
+2RT     CAG     C       CR16    0       49.611      -27.472     35.649      
+2RT     CAI     C       CR16    0       50.488      -26.624     35.004      
+2RT     NAS     N       NRD6    0       53.069      -24.980     35.552      
+2RT     CBF     C       CR6     0       53.795      -23.981     36.074      
+2RT     CBG     C       CR16    0       54.819      -23.594     34.092      
+2RT     NAU     N       NRD6    0       54.690      -23.258     35.368      
+2RT     NAT     N       NRD6    0       54.149      -24.563     33.484      
+2RT     CBE     C       CR6     0       53.272      -25.242     34.253      
+2RT     NAW     N       NH1     0       53.569      -23.734     37.389      
+2RT     CBH     C       CR6     0       52.552      -24.297     38.217      
+2RT     CBB     C       CR6     0       51.370      -23.574     38.444      
+2RT     CAB     C       CH3     0       51.165      -22.193     37.876      
+2RT     CAJ     C       CR16    0       50.382      -24.167     39.235      
+2RT     CAZ     C       CR6     0       50.526      -25.436     39.781      
+2RT     CAA     C       CH3     0       49.433      -26.044     40.630      
+2RT     CAK     C       CR16    0       51.703      -26.127     39.519      
+2RT     CBC     C       CR6     0       52.729      -25.589     38.739      
+2RT     CAC     C       CH3     0       53.985      -26.383     38.484      
+2RT     H1      H       H       0       52.634      -26.375     32.863      
+2RT     H2      H       H       0       52.635      -28.864     33.981      
+2RT     H3      H       H       0       51.158      -30.284     35.057      
+2RT     H4      H       H       0       48.847      -27.117     36.069      
+2RT     H5      H       H       0       50.324      -25.698     34.994      
+2RT     H6      H       H       0       55.440      -23.104     33.574      
+2RT     H7      H       H       0       54.117      -23.163     37.763      
+2RT     H8      H       H       0       50.246      -21.912     38.017      
+2RT     H9      H       H       0       51.354      -22.201     36.924      
+2RT     H10     H       H       0       51.763      -21.568     38.317      
+2RT     H11     H       H       0       49.587      -23.687     39.405      
+2RT     H12     H       H       0       49.670      -26.956     40.866      
+2RT     H13     H       H       0       48.599      -26.048     40.131      
+2RT     H14     H       H       0       49.321      -25.521     41.439      
+2RT     H15     H       H       0       51.814      -26.991     39.884      
+2RT     H16     H       H       0       54.014      -27.153     39.075      
+2RT     H17     H       H       0       54.763      -25.825     38.649      
+2RT     H18     H       H       0       53.997      -26.686     37.562      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+2RT         CBG         NAT      DOUBLE       y     1.321  0.0100     1.321  0.0100
+2RT         NAT         CBE      SINGLE       y     1.343  0.0119     1.343  0.0119
+2RT         CBD         CAH      DOUBLE       y     1.398  0.0100     1.398  0.0100
+2RT         CAH         CAF      SINGLE       y     1.377  0.0100     1.377  0.0100
+2RT         NAV         CBE      SINGLE       n     1.352  0.0129     1.352  0.0129
+2RT         NAV         CBD      SINGLE       n     1.413  0.0102     1.413  0.0102
+2RT         CBG         NAU      SINGLE       y     1.321  0.0100     1.321  0.0100
+2RT         NAS         CBE      DOUBLE       y     1.337  0.0108     1.337  0.0108
+2RT         CBD         CAI      SINGLE       y     1.398  0.0100     1.398  0.0100
+2RT         CAF         CBA      DOUBLE       y     1.392  0.0100     1.392  0.0100
+2RT         CBF         NAU      DOUBLE       y     1.343  0.0119     1.343  0.0119
+2RT         NAS         CBF      SINGLE       y     1.337  0.0108     1.337  0.0108
+2RT         CAG         CAI      DOUBLE       y     1.377  0.0100     1.377  0.0100
+2RT         CBA         CAG      SINGLE       y     1.392  0.0100     1.392  0.0100
+2RT         CBA         CAE      SINGLE       n     1.441  0.0112     1.441  0.0112
+2RT         CBF         NAW      SINGLE       n     1.352  0.0129     1.352  0.0129
+2RT         CAE         NAD      TRIPLE       n     1.149  0.0200     1.149  0.0200
+2RT         NAW         CBH      SINGLE       n     1.423  0.0118     1.423  0.0118
+2RT         CBB         CAB      SINGLE       n     1.506  0.0100     1.506  0.0100
+2RT         CBH         CBB      DOUBLE       y     1.399  0.0100     1.399  0.0100
+2RT         CBH         CBC      SINGLE       y     1.399  0.0100     1.399  0.0100
+2RT         CBB         CAJ      SINGLE       y     1.393  0.0100     1.393  0.0100
+2RT         CBC         CAC      SINGLE       n     1.506  0.0100     1.506  0.0100
+2RT         CAK         CBC      DOUBLE       y     1.393  0.0100     1.393  0.0100
+2RT         CAJ         CAZ      DOUBLE       y     1.386  0.0100     1.386  0.0100
+2RT         CAZ         CAK      SINGLE       y     1.386  0.0100     1.386  0.0100
+2RT         CAZ         CAA      SINGLE       n     1.511  0.0100     1.511  0.0100
+2RT         NAV          H1      SINGLE       n     1.016  0.0100     0.874  0.0200
+2RT         CAH          H2      SINGLE       n     1.082  0.0130     0.941  0.0138
+2RT         CAF          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+2RT         CAG          H4      SINGLE       n     1.082  0.0130     0.941  0.0168
+2RT         CAI          H5      SINGLE       n     1.082  0.0130     0.941  0.0138
+2RT         CBG          H6      SINGLE       n     1.082  0.0130     0.946  0.0165
+2RT         NAW          H7      SINGLE       n     1.016  0.0100     0.874  0.0200
+2RT         CAB          H8      SINGLE       n     1.089  0.0100     0.971  0.0135
+2RT         CAB          H9      SINGLE       n     1.089  0.0100     0.971  0.0135
+2RT         CAB         H10      SINGLE       n     1.089  0.0100     0.971  0.0135
+2RT         CAJ         H11      SINGLE       n     1.082  0.0130     0.944  0.0143
+2RT         CAA         H12      SINGLE       n     1.089  0.0100     0.971  0.0135
+2RT         CAA         H13      SINGLE       n     1.089  0.0100     0.971  0.0135
+2RT         CAA         H14      SINGLE       n     1.089  0.0100     0.971  0.0135
+2RT         CAK         H15      SINGLE       n     1.082  0.0130     0.944  0.0143
+2RT         CAC         H16      SINGLE       n     1.089  0.0100     0.971  0.0135
+2RT         CAC         H17      SINGLE       n     1.089  0.0100     0.971  0.0135
+2RT         CAC         H18      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+2RT         CBE         NAV         CBD     129.384    1.99
+2RT         CBE         NAV          H1     114.882    1.54
+2RT         CBD         NAV          H1     115.734    1.50
+2RT         CAH         CBD         NAV     120.554    3.00
+2RT         CAH         CBD         CAI     118.893    1.50
+2RT         NAV         CBD         CAI     120.554    3.00
+2RT         CBD         CAH         CAF     120.239    1.50
+2RT         CBD         CAH          H2     119.721    1.50
+2RT         CAF         CAH          H2     120.040    1.50
+2RT         CAH         CAF         CBA     120.262    1.50
+2RT         CAH         CAF          H3     119.488    1.50
+2RT         CBA         CAF          H3     120.250    1.50
+2RT         CAF         CBA         CAG     120.106    1.50
+2RT         CAF         CBA         CAE     119.947    1.50
+2RT         CAG         CBA         CAE     119.947    1.50
+2RT         CBA         CAE         NAD     177.968    1.50
+2RT         CAI         CAG         CBA     120.262    1.50
+2RT         CAI         CAG          H4     119.488    1.50
+2RT         CBA         CAG          H4     120.250    1.50
+2RT         CBD         CAI         CAG     120.239    1.50
+2RT         CBD         CAI          H5     119.721    1.50
+2RT         CAG         CAI          H5     120.040    1.50
+2RT         CBE         NAS         CBF     114.424    1.50
+2RT         NAU         CBF         NAS     124.079    1.50
+2RT         NAU         CBF         NAW     117.304    2.95
+2RT         NAS         CBF         NAW     118.617    2.86
+2RT         NAT         CBG         NAU     125.399    1.50
+2RT         NAT         CBG          H6     117.301    1.50
+2RT         NAU         CBG          H6     117.301    1.50
+2RT         CBG         NAU         CBF     116.010    1.50
+2RT         CBG         NAT         CBE     116.010    1.50
+2RT         NAT         CBE         NAV     117.304    2.95
+2RT         NAT         CBE         NAS     124.079    1.50
+2RT         NAV         CBE         NAS     118.617    2.86
+2RT         CBF         NAW         CBH     129.158    2.21
+2RT         CBF         NAW          H7     114.680    1.54
+2RT         CBH         NAW          H7     116.162    2.39
+2RT         NAW         CBH         CBB     119.278    1.50
+2RT         NAW         CBH         CBC     119.280    1.50
+2RT         CBB         CBH         CBC     121.444    1.50
+2RT         CAB         CBB         CBH     121.603    1.50
+2RT         CAB         CBB         CAJ     120.433    1.50
+2RT         CBH         CBB         CAJ     117.964    1.50
+2RT         CBB         CAB          H8     109.584    1.50
+2RT         CBB         CAB          H9     109.584    1.50
+2RT         CBB         CAB         H10     109.584    1.50
+2RT          H8         CAB          H9     109.348    1.50
+2RT          H8         CAB         H10     109.348    1.50
+2RT          H9         CAB         H10     109.348    1.50
+2RT         CBB         CAJ         CAZ     122.339    1.50
+2RT         CBB         CAJ         H11     118.764    1.50
+2RT         CAZ         CAJ         H11     118.897    1.50
+2RT         CAJ         CAZ         CAK     117.954    1.50
+2RT         CAJ         CAZ         CAA     121.020    1.50
+2RT         CAK         CAZ         CAA     121.020    1.50
+2RT         CAZ         CAA         H12     109.567    1.50
+2RT         CAZ         CAA         H13     109.567    1.50
+2RT         CAZ         CAA         H14     109.567    1.50
+2RT         H12         CAA         H13     109.348    1.50
+2RT         H12         CAA         H14     109.348    1.50
+2RT         H13         CAA         H14     109.348    1.50
+2RT         CBC         CAK         CAZ     122.339    1.50
+2RT         CBC         CAK         H15     118.764    1.50
+2RT         CAZ         CAK         H15     118.897    1.50
+2RT         CBH         CBC         CAC     121.603    1.50
+2RT         CBH         CBC         CAK     117.964    1.50
+2RT         CAC         CBC         CAK     120.433    1.50
+2RT         CBC         CAC         H16     109.584    1.50
+2RT         CBC         CAC         H17     109.584    1.50
+2RT         CBC         CAC         H18     109.584    1.50
+2RT         H16         CAC         H17     109.348    1.50
+2RT         H16         CAC         H18     109.348    1.50
+2RT         H17         CAC         H18     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+2RT             sp2_sp2_5         CAH         CBD         NAV         CBE     180.000     5.0     2
+2RT             sp2_sp2_1         NAT         CBE         NAV         CBD     180.000     5.0     2
+2RT              const_50         NAW         CBF         NAU         CBG     180.000    10.0     2
+2RT             sp2_sp2_9         NAU         CBF         NAW         CBH     180.000     5.0     2
+2RT              const_47         NAT         CBG         NAU         CBF       0.000    10.0     2
+2RT              const_45         NAU         CBG         NAT         CBE       0.000    10.0     2
+2RT              const_44         NAV         CBE         NAT         CBG     180.000    10.0     2
+2RT            sp2_sp2_13         CBB         CBH         NAW         CBF     180.000     5.0     2
+2RT              const_24         CAB         CBB         CBH         NAW       0.000    10.0     2
+2RT              const_60         CAC         CBC         CBH         NAW       0.000    10.0     2
+2RT             sp2_sp3_1         CBH         CBB         CAB          H8     150.000    10.0     6
+2RT              const_26         CAZ         CAJ         CBB         CAB     180.000    10.0     2
+2RT              const_30         CBB         CAJ         CAZ         CAA     180.000    10.0     2
+2RT       const_sp2_sp2_2         CAF         CAH         CBD         NAV     180.000     5.0     2
+2RT              const_52         CAG         CAI         CBD         NAV     180.000    10.0     2
+2RT            sp2_sp3_13         CAJ         CAZ         CAA         H12     150.000    10.0     6
+2RT              const_34         CBC         CAK         CAZ         CAA     180.000    10.0     2
+2RT              const_38         CAZ         CAK         CBC         CAC     180.000    10.0     2
+2RT             sp2_sp3_7         CBH         CBC         CAC         H16     150.000    10.0     6
+2RT       const_sp2_sp2_5         CBA         CAF         CAH         CBD       0.000     5.0     2
+2RT              const_10         CAH         CAF         CBA         CAE     180.000    10.0     2
+2RT           other_tor_1         NAD         CAE         CBA         CAF      90.000    10.0     1
+2RT              const_14         CAI         CAG         CBA         CAE     180.000    10.0     2
+2RT              const_17         CBA         CAG         CAI         CBD       0.000    10.0     2
+2RT              const_56         NAW         CBF         NAS         CBE     180.000    10.0     2
+2RT              const_42         NAV         CBE         NAS         CBF     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+2RT    plan-1         CBE   0.020
+2RT    plan-1         CBF   0.020
+2RT    plan-1         CBG   0.020
+2RT    plan-1          H6   0.020
+2RT    plan-1         NAS   0.020
+2RT    plan-1         NAT   0.020
+2RT    plan-1         NAU   0.020
+2RT    plan-1         NAV   0.020
+2RT    plan-1         NAW   0.020
+2RT    plan-2         CAA   0.020
+2RT    plan-2         CAB   0.020
+2RT    plan-2         CAC   0.020
+2RT    plan-2         CAJ   0.020
+2RT    plan-2         CAK   0.020
+2RT    plan-2         CAZ   0.020
+2RT    plan-2         CBB   0.020
+2RT    plan-2         CBC   0.020
+2RT    plan-2         CBH   0.020
+2RT    plan-2         H11   0.020
+2RT    plan-2         H15   0.020
+2RT    plan-2         NAW   0.020
+2RT    plan-3         CAE   0.020
+2RT    plan-3         CAF   0.020
+2RT    plan-3         CAG   0.020
+2RT    plan-3         CAH   0.020
+2RT    plan-3         CAI   0.020
+2RT    plan-3         CBA   0.020
+2RT    plan-3         CBD   0.020
+2RT    plan-3          H2   0.020
+2RT    plan-3          H3   0.020
+2RT    plan-3          H4   0.020
+2RT    plan-3          H5   0.020
+2RT    plan-3         NAV   0.020
+2RT    plan-4         CBD   0.020
+2RT    plan-4         CBE   0.020
+2RT    plan-4          H1   0.020
+2RT    plan-4         NAV   0.020
+2RT    plan-5         CBF   0.020
+2RT    plan-5         CBH   0.020
+2RT    plan-5          H7   0.020
+2RT    plan-5         NAW   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+2RT           SMILES              ACDLabs 12.01                                                                                         N#Cc1ccc(cc1)Nc2ncnc(n2)Nc3c(cc(cc3C)C)C
+2RT            InChI                InChI  1.03 InChI=1S/C19H18N6/c1-12-8-13(2)17(14(3)9-12)24-19-22-11-21-18(25-19)23-16-6-4-15(10-20)5-7-16/h4-9,11H,1-3H3,(H2,21,22,23,24,25)
+2RT         InChIKey                InChI  1.03                                                                                                      SOPKWXMQSHLEKD-UHFFFAOYSA-N
+2RT SMILES_CANONICAL               CACTVS 3.385                                                                                       Cc1cc(C)c(Nc2ncnc(Nc3ccc(cc3)C#N)n2)c(C)c1
+2RT           SMILES               CACTVS 3.385                                                                                       Cc1cc(C)c(Nc2ncnc(Nc3ccc(cc3)C#N)n2)c(C)c1
+2RT SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                       Cc1cc(c(c(c1)C)Nc2ncnc(n2)Nc3ccc(cc3)C#N)C
+2RT           SMILES "OpenEye OEToolkits" 1.7.6                                                                                       Cc1cc(c(c(c1)C)Nc2ncnc(n2)Nc3ccc(cc3)C#N)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+2RT acedrg               243         "dictionary generator"                  
+2RT acedrg_database      11          "data source"                           
+2RT rdkit                2017.03.2   "Chemoinformatics tool"
+2RT refmac5              5.8.0238    "optimization tool"                     

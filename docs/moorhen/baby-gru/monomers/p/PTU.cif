@@ -1,0 +1,195 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PTU     PTU      2-ETHYL-1-PHENYL-ISOTHIOUREA     NON-POLYMER     24     12     .     
+#
+data_comp_PTU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PTU     N1      N       NH2     0       -0.909      10.665      67.100      
+PTU     C       C       C       0       -0.233      9.536       66.867      
+PTU     S       S       S2      0       0.434       8.682       68.265      
+PTU     N2      N       N       0       -0.099      9.097       65.598      
+PTU     C1      C       CR6     0       0.083       7.717       65.337      
+PTU     C2      C       CR16    0       -0.974      6.823       65.480      
+PTU     C3      C       CR16    0       -0.787      5.471       65.234      
+PTU     C4      C       CR16    0       0.452       4.997       64.851      
+PTU     C5      C       CR16    0       1.508       5.876       64.714      
+PTU     C6      C       CR16    0       1.330       7.229       64.958      
+PTU     "C1'"   C       CH2     0       0.171       9.256       69.961      
+PTU     "C2'"   C       CH3     0       1.133       8.639       70.931      
+PTU     HN11    H       H       0       -1.008      10.957      67.922      
+PTU     HN12    H       H       0       -1.253      11.118      66.429      
+PTU     H21     H       H       0       -1.821      7.141       65.740      
+PTU     H31     H       H       0       -1.512      4.874       65.329      
+PTU     H41     H       H       0       0.576       4.076       64.684      
+PTU     H51     H       H       0       2.357       5.556       64.452      
+PTU     H61     H       H       0       2.053       7.824       64.863      
+PTU     "H1'1"  H       H       0       -0.742      9.037       70.230      
+PTU     "H1'2"  H       H       0       0.268       10.228      69.985      
+PTU     "H2'1"  H       H       0       0.676       8.459       71.766      
+PTU     "H2'2"  H       H       0       1.867       9.252       71.090      
+PTU     "H2'3"  H       H       0       1.478       7.810       70.568      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PTU          N1           C      SINGLE       n     1.330  0.0200     1.330  0.0200
+PTU           C           S      SINGLE       n     1.762  0.0200     1.762  0.0200
+PTU           C          N2      DOUBLE       n     1.342  0.0200     1.342  0.0200
+PTU           S       "C1'"      SINGLE       n     1.809  0.0191     1.809  0.0191
+PTU          N2          C1      SINGLE       n     1.415  0.0110     1.415  0.0110
+PTU          C1          C2      DOUBLE       y     1.388  0.0102     1.388  0.0102
+PTU          C1          C6      SINGLE       y     1.388  0.0102     1.388  0.0102
+PTU          C2          C3      SINGLE       y     1.383  0.0100     1.383  0.0100
+PTU          C3          C4      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PTU          C4          C5      SINGLE       y     1.377  0.0118     1.377  0.0118
+PTU          C5          C6      DOUBLE       y     1.383  0.0100     1.383  0.0100
+PTU       "C1'"       "C2'"      SINGLE       n     1.495  0.0200     1.495  0.0200
+PTU          N1        HN11      SINGLE       n     1.016  0.0100     0.878  0.0200
+PTU          N1        HN12      SINGLE       n     1.016  0.0100     0.878  0.0200
+PTU          C2         H21      SINGLE       n     1.082  0.0130     0.941  0.0200
+PTU          C3         H31      SINGLE       n     1.082  0.0130     0.944  0.0200
+PTU          C4         H41      SINGLE       n     1.082  0.0130     0.944  0.0161
+PTU          C5         H51      SINGLE       n     1.082  0.0130     0.944  0.0200
+PTU          C6         H61      SINGLE       n     1.082  0.0130     0.941  0.0200
+PTU       "C1'"      "H1'1"      SINGLE       n     1.089  0.0100     0.977  0.0104
+PTU       "C1'"      "H1'2"      SINGLE       n     1.089  0.0100     0.977  0.0104
+PTU       "C2'"      "H2'1"      SINGLE       n     1.089  0.0100     0.969  0.0134
+PTU       "C2'"      "H2'2"      SINGLE       n     1.089  0.0100     0.969  0.0134
+PTU       "C2'"      "H2'3"      SINGLE       n     1.089  0.0100     0.969  0.0134
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PTU           C          N1        HN11     119.950    1.50
+PTU           C          N1        HN12     119.950    1.50
+PTU        HN11          N1        HN12     120.099    1.51
+PTU          N1           C           S     117.009    3.00
+PTU          N1           C          N2     119.179    3.00
+PTU           S           C          N2     123.812    3.00
+PTU           C           S       "C1'"     120.000    3.00
+PTU           C          N2          C1     119.985    3.00
+PTU          N2          C1          C2     120.671    3.00
+PTU          N2          C1          C6     120.671    3.00
+PTU          C2          C1          C6     118.658    1.50
+PTU          C1          C2          C3     120.281    1.50
+PTU          C1          C2         H21     119.665    1.50
+PTU          C3          C2         H21     120.051    1.50
+PTU          C2          C3          C4     120.465    1.50
+PTU          C2          C3         H31     119.626    1.50
+PTU          C4          C3         H31     119.909    1.50
+PTU          C3          C4          C5     119.856    1.50
+PTU          C3          C4         H41     120.072    1.50
+PTU          C5          C4         H41     120.072    1.50
+PTU          C4          C5          C6     120.465    1.50
+PTU          C4          C5         H51     119.909    1.50
+PTU          C6          C5         H51     119.626    1.50
+PTU          C1          C6          C5     120.281    1.50
+PTU          C1          C6         H61     119.665    1.50
+PTU          C5          C6         H61     120.051    1.50
+PTU           S       "C1'"       "C2'"     112.239    3.00
+PTU           S       "C1'"      "H1'1"     109.066    1.50
+PTU           S       "C1'"      "H1'2"     109.066    1.50
+PTU       "C2'"       "C1'"      "H1'1"     109.420    1.50
+PTU       "C2'"       "C1'"      "H1'2"     109.420    1.50
+PTU      "H1'1"       "C1'"      "H1'2"     108.153    1.50
+PTU       "C1'"       "C2'"      "H2'1"     109.476    1.50
+PTU       "C1'"       "C2'"      "H2'2"     109.476    1.50
+PTU       "C1'"       "C2'"      "H2'3"     109.476    1.50
+PTU      "H2'1"       "C2'"      "H2'2"     109.451    1.50
+PTU      "H2'1"       "C2'"      "H2'3"     109.451    1.50
+PTU      "H2'2"       "C2'"      "H2'3"     109.451    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PTU             sp2_sp2_1           S           C          N1        HN11     180.000     5.0     2
+PTU             sp3_sp3_4           S       "C1'"       "C2'"      "H2'1"     180.000    10.0     3
+PTU             sp2_sp2_5          N1           C           S       "C1'"     180.000     5.0     2
+PTU             sp2_sp2_7          N1           C          N2          C1     180.000     5.0     2
+PTU             sp3_sp3_1       "C2'"       "C1'"           S           C     180.000    10.0     3
+PTU             sp2_sp2_9          C2          C1          N2           C     180.000     5.0     2
+PTU       const_sp2_sp2_3          N2          C1          C2          C3     180.000     5.0     2
+PTU              const_23          N2          C1          C6          C5     180.000    10.0     2
+PTU       const_sp2_sp2_5          C1          C2          C3          C4       0.000     5.0     2
+PTU       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+PTU              const_13          C3          C4          C5          C6       0.000    10.0     2
+PTU              const_17          C4          C5          C6          C1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PTU    plan-1          C1   0.020
+PTU    plan-1          C2   0.020
+PTU    plan-1          C3   0.020
+PTU    plan-1          C4   0.020
+PTU    plan-1          C5   0.020
+PTU    plan-1          C6   0.020
+PTU    plan-1         H21   0.020
+PTU    plan-1         H31   0.020
+PTU    plan-1         H41   0.020
+PTU    plan-1         H51   0.020
+PTU    plan-1         H61   0.020
+PTU    plan-1          N2   0.020
+PTU    plan-2           C   0.020
+PTU    plan-2        HN11   0.020
+PTU    plan-2        HN12   0.020
+PTU    plan-2          N1   0.020
+PTU    plan-3           C   0.020
+PTU    plan-3          N1   0.020
+PTU    plan-3          N2   0.020
+PTU    plan-3           S   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PTU           SMILES              ACDLabs 10.04                                                    S(\C(=N/c1ccccc1)N)CC
+PTU SMILES_CANONICAL               CACTVS 3.341                                                        CCSC(N)=Nc1ccccc1
+PTU           SMILES               CACTVS 3.341                                                        CCSC(N)=Nc1ccccc1
+PTU SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                        CCSC(=Nc1ccccc1)N
+PTU           SMILES "OpenEye OEToolkits" 1.5.0                                                        CCSC(=Nc1ccccc1)N
+PTU            InChI                InChI  1.03 InChI=1S/C9H12N2S/c1-2-12-9(10)11-8-6-4-3-5-7-8/h3-7H,2H2,1H3,(H2,10,11)
+PTU         InChIKey                InChI  1.03                                              LAXNJIWNBHHMDO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PTU acedrg               243         "dictionary generator"                  
+PTU acedrg_database      11          "data source"                           
+PTU rdkit                2017.03.2   "Chemoinformatics tool"
+PTU refmac5              5.8.0238    "optimization tool"                     

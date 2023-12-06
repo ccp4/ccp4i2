@@ -1,0 +1,312 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+P68     P68      1-(4-bromophenyl)-3-(2-{3-[(1E)-N-hydroxyethanimidoyl]phenyl}propan-2-yl)urea     NON-POLYMER     44     24     .     
+#
+data_comp_P68
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+P68     BR1     BR      BR      0       12.480      -27.815     12.769      
+P68     C8      C       CR6     0       12.977      -27.327     11.002      
+P68     C7      C       CR16    0       13.803      -28.161     10.273      
+P68     C6      C       CR16    0       14.163      -27.804     8.983       
+P68     C9      C       CR16    0       12.506      -26.144     10.467      
+P68     C10     C       CR16    0       12.869      -25.789     9.176       
+P68     C5      C       CR6     0       13.703      -26.613     8.425       
+P68     N2      N       NH1     0       14.052      -26.225     7.116       
+P68     C4      C       C       0       15.302      -26.230     6.540       
+P68     O       O       O       0       16.334      -26.410     7.204       
+P68     N1      N       NH1     0       15.312      -26.010     5.203       
+P68     C1      C       CT      0       16.514      -25.995     4.336       
+P68     C2      C       CH3     0       16.053      -25.624     2.918       
+P68     C3      C       CH3     0       17.053      -27.436     4.310       
+P68     C12     C       CR6     0       17.533      -24.931     4.800       
+P68     C17     C       CR16    0       17.089      -23.677     5.220       
+P68     C16     C       CR6     0       17.986      -22.682     5.644       
+P68     C18     C       C       0       17.486      -21.358     6.096       
+P68     N4      N       N       0       17.829      -21.019     7.294       
+P68     O2      O       OH1     0       17.324      -19.746     7.670       
+P68     C19     C       CH3     0       16.642      -20.526     5.176       
+P68     C15     C       CR16    0       19.349      -22.964     5.625       
+P68     C14     C       CR16    0       19.806      -24.201     5.202       
+P68     C13     C       CR16    0       18.912      -25.176     4.787       
+P68     H1      H       H       0       14.118      -28.965     10.648      
+P68     H2      H       H       0       14.727      -28.368     8.482       
+P68     H3      H       H       0       11.943      -25.582     10.972      
+P68     H4      H       H       0       12.551      -24.983     8.807       
+P68     H5      H       H       0       13.387      -25.934     6.619       
+P68     H6      H       H       0       14.547      -25.867     4.803       
+P68     H7      H       H       0       15.586      -24.771     2.941       
+P68     H8      H       H       0       15.453      -26.313     2.582       
+P68     H9      H       H       0       16.827      -25.555     2.333       
+P68     H10     H       H       0       16.312      -28.056     4.196       
+P68     H11     H       H       0       17.510      -27.630     5.146       
+P68     H12     H       H       0       17.675      -27.536     3.569       
+P68     H13     H       H       0       16.163      -23.491     5.231       
+P68     H14     H       H       0       17.852      -19.066     7.702       
+P68     H15     H       H       0       16.522      -20.990     4.334       
+P68     H16     H       H       0       17.079      -19.676     5.013       
+P68     H17     H       H       0       15.776      -20.370     5.582       
+P68     H18     H       H       0       19.965      -22.310     5.904       
+P68     H19     H       H       0       20.734      -24.381     5.195       
+P68     H20     H       H       0       19.243      -26.011     4.503       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+P68          C1          C2      SINGLE       n     1.536  0.0100     1.536  0.0100
+P68          C1         C12      SINGLE       n     1.537  0.0100     1.537  0.0100
+P68          C1          C3      SINGLE       n     1.536  0.0100     1.536  0.0100
+P68          N1          C1      SINGLE       n     1.475  0.0100     1.475  0.0100
+P68         C12         C13      SINGLE       y     1.393  0.0100     1.393  0.0100
+P68         C14         C13      DOUBLE       y     1.383  0.0105     1.383  0.0105
+P68         C12         C17      DOUBLE       y     1.388  0.0100     1.388  0.0100
+P68         C15         C14      SINGLE       y     1.382  0.0100     1.382  0.0100
+P68          C4          N1      SINGLE       n     1.345  0.0100     1.345  0.0100
+P68         C17         C16      SINGLE       y     1.400  0.0127     1.400  0.0127
+P68         C16         C15      DOUBLE       y     1.389  0.0114     1.389  0.0114
+P68         C16         C18      SINGLE       n     1.485  0.0100     1.485  0.0100
+P68         C18         C19      SINGLE       n     1.497  0.0100     1.497  0.0100
+P68         C18          N4      DOUBLE       n     1.285  0.0131     1.285  0.0131
+P68          N2          C4      SINGLE       n     1.360  0.0168     1.360  0.0168
+P68          C4           O      DOUBLE       n     1.235  0.0158     1.235  0.0158
+P68          N4          O2      SINGLE       n     1.415  0.0195     1.415  0.0195
+P68          C5          N2      SINGLE       n     1.407  0.0126     1.407  0.0126
+P68         C10          C5      DOUBLE       y     1.387  0.0116     1.387  0.0116
+P68          C6          C5      SINGLE       y     1.387  0.0116     1.387  0.0116
+P68          C9         C10      SINGLE       y     1.383  0.0100     1.383  0.0100
+P68          C7          C6      DOUBLE       y     1.383  0.0100     1.383  0.0100
+P68          C8          C9      DOUBLE       y     1.377  0.0121     1.377  0.0121
+P68          C8          C7      SINGLE       y     1.377  0.0121     1.377  0.0121
+P68         BR1          C8      SINGLE       n     1.899  0.0100     1.899  0.0100
+P68          C7          H1      SINGLE       n     1.082  0.0130     0.942  0.0176
+P68          C6          H2      SINGLE       n     1.082  0.0130     0.942  0.0186
+P68          C9          H3      SINGLE       n     1.082  0.0130     0.942  0.0176
+P68         C10          H4      SINGLE       n     1.082  0.0130     0.942  0.0186
+P68          N2          H5      SINGLE       n     1.016  0.0100     0.879  0.0200
+P68          N1          H6      SINGLE       n     1.016  0.0100     0.873  0.0200
+P68          C2          H7      SINGLE       n     1.089  0.0100     0.973  0.0141
+P68          C2          H8      SINGLE       n     1.089  0.0100     0.973  0.0141
+P68          C2          H9      SINGLE       n     1.089  0.0100     0.973  0.0141
+P68          C3         H10      SINGLE       n     1.089  0.0100     0.973  0.0141
+P68          C3         H11      SINGLE       n     1.089  0.0100     0.973  0.0141
+P68          C3         H12      SINGLE       n     1.089  0.0100     0.973  0.0141
+P68         C17         H13      SINGLE       n     1.082  0.0130     0.944  0.0147
+P68          O2         H14      SINGLE       n     0.966  0.0059     0.861  0.0200
+P68         C19         H15      SINGLE       n     1.089  0.0100     0.969  0.0177
+P68         C19         H16      SINGLE       n     1.089  0.0100     0.969  0.0177
+P68         C19         H17      SINGLE       n     1.089  0.0100     0.969  0.0177
+P68         C15         H18      SINGLE       n     1.082  0.0130     0.941  0.0168
+P68         C14         H19      SINGLE       n     1.082  0.0130     0.945  0.0184
+P68         C13         H20      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+P68          C9          C8          C7     121.317    1.50
+P68          C9          C8         BR1     119.341    1.50
+P68          C7          C8         BR1     119.341    1.50
+P68          C6          C7          C8     119.386    1.50
+P68          C6          C7          H1     120.218    1.50
+P68          C8          C7          H1     120.396    1.50
+P68          C5          C6          C7     120.316    1.50
+P68          C5          C6          H2     119.886    1.50
+P68          C7          C6          H2     119.799    1.50
+P68         C10          C9          C8     119.386    1.50
+P68         C10          C9          H3     120.218    1.50
+P68          C8          C9          H3     120.396    1.50
+P68          C5         C10          C9     120.316    1.50
+P68          C5         C10          H4     119.886    1.50
+P68          C9         C10          H4     119.799    1.50
+P68          N2          C5         C10     120.360    3.00
+P68          N2          C5          C6     120.360    3.00
+P68         C10          C5          C6     119.279    1.50
+P68          C4          N2          C5     127.320    1.50
+P68          C4          N2          H5     116.258    1.50
+P68          C5          N2          H5     116.423    1.97
+P68          N1          C4          N2     114.050    1.67
+P68          N1          C4           O     122.699    1.50
+P68          N2          C4           O     123.251    1.50
+P68          C1          N1          C4     123.353    1.70
+P68          C1          N1          H6     118.107    2.06
+P68          C4          N1          H6     118.541    1.50
+P68          C2          C1         C12     110.588    2.17
+P68          C2          C1          C3     109.545    1.50
+P68          C2          C1          N1     107.825    2.42
+P68         C12          C1          C3     110.588    2.17
+P68         C12          C1          N1     110.166    1.50
+P68          C3          C1          N1     107.825    2.42
+P68          C1          C2          H7     109.466    1.50
+P68          C1          C2          H8     109.466    1.50
+P68          C1          C2          H9     109.466    1.50
+P68          H7          C2          H8     109.500    1.50
+P68          H7          C2          H9     109.500    1.50
+P68          H8          C2          H9     109.500    1.50
+P68          C1          C3         H10     109.466    1.50
+P68          C1          C3         H11     109.466    1.50
+P68          C1          C3         H12     109.466    1.50
+P68         H10          C3         H11     109.500    1.50
+P68         H10          C3         H12     109.500    1.50
+P68         H11          C3         H12     109.500    1.50
+P68          C1         C12         C13     120.580    1.50
+P68          C1         C12         C17     120.579    1.61
+P68         C13         C12         C17     118.841    1.50
+P68         C12         C17         C16     121.248    1.50
+P68         C12         C17         H13     119.408    1.50
+P68         C16         C17         H13     119.344    1.50
+P68         C17         C16         C15     118.687    1.50
+P68         C17         C16         C18     120.576    1.50
+P68         C15         C16         C18     120.737    1.50
+P68         C16         C18         C19     120.392    1.50
+P68         C16         C18          N4     115.772    1.50
+P68         C19         C18          N4     123.836    1.50
+P68         C18          N4          O2     110.625    1.59
+P68          N4          O2         H14     120.000    3.00
+P68         C18         C19         H15     109.585    1.50
+P68         C18         C19         H16     109.585    1.50
+P68         C18         C19         H17     109.585    1.50
+P68         H15         C19         H16     109.392    1.50
+P68         H15         C19         H17     109.392    1.50
+P68         H16         C19         H17     109.392    1.50
+P68         C14         C15         C16     120.727    1.50
+P68         C14         C15         H18     119.621    1.50
+P68         C16         C15         H18     119.645    1.50
+P68         C13         C14         C15     120.264    1.50
+P68         C13         C14         H19     119.868    1.50
+P68         C15         C14         H19     119.868    1.50
+P68         C12         C13         C14     120.242    1.50
+P68         C12         C13         H20     119.921    1.50
+P68         C14         C13         H20     119.838    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+P68             sp2_sp3_7          C4          N1          C1          C2       0.000    10.0     6
+P68             sp3_sp3_7          C3          C1          C2          H7     -60.000    10.0     3
+P68            sp3_sp3_16          C2          C1          C3         H10     -60.000    10.0     3
+P68             sp2_sp3_2         C13         C12          C1          C2     -90.000    10.0     6
+P68              const_43          C1         C12         C17         C16     180.000    10.0     2
+P68              const_23          C1         C12         C13         C14     180.000    10.0     2
+P68              const_39         C18         C16         C17         C12     180.000    10.0     2
+P68             sp2_sp2_6         C17         C16         C18         C19       0.000     5.0     2
+P68              const_34         C14         C15         C16         C18     180.000    10.0     2
+P68            sp2_sp2_10         C19         C18          N4          O2       0.000     5.0     2
+P68            sp2_sp3_16          N4         C18         C19         H15     180.000    10.0     6
+P68            sp2_sp2_15         C18          N4          O2         H14     180.000     5.0     2
+P68              const_46          C6          C7          C8         BR1     180.000    10.0     2
+P68       const_sp2_sp2_3         BR1          C8          C9         C10     180.000     5.0     2
+P68              const_29         C13         C14         C15         C16       0.000    10.0     2
+P68              const_25         C12         C13         C14         C15       0.000    10.0     2
+P68              const_17          C5          C6          C7          C8       0.000    10.0     2
+P68              const_15          N2          C5          C6          C7     180.000    10.0     2
+P68       const_sp2_sp2_5          C5         C10          C9          C8       0.000     5.0     2
+P68              const_10          C9         C10          C5          N2     180.000    10.0     2
+P68            sp2_sp2_16         C10          C5          N2          C4     180.000     5.0     2
+P68            sp2_sp2_11          N1          C4          N2          C5     180.000     5.0     2
+P68             sp2_sp2_1          N2          C4          N1          C1     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+P68    chir_1    C1    N1    C12    C2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+P68    plan-1          C1   0.020
+P68    plan-1         C12   0.020
+P68    plan-1         C13   0.020
+P68    plan-1         C14   0.020
+P68    plan-1         C15   0.020
+P68    plan-1         C16   0.020
+P68    plan-1         C17   0.020
+P68    plan-1         C18   0.020
+P68    plan-1         H13   0.020
+P68    plan-1         H18   0.020
+P68    plan-1         H19   0.020
+P68    plan-1         H20   0.020
+P68    plan-2         BR1   0.020
+P68    plan-2         C10   0.020
+P68    plan-2          C5   0.020
+P68    plan-2          C6   0.020
+P68    plan-2          C7   0.020
+P68    plan-2          C8   0.020
+P68    plan-2          C9   0.020
+P68    plan-2          H1   0.020
+P68    plan-2          H2   0.020
+P68    plan-2          H3   0.020
+P68    plan-2          H4   0.020
+P68    plan-2          N2   0.020
+P68    plan-3          C4   0.020
+P68    plan-3          C5   0.020
+P68    plan-3          H5   0.020
+P68    plan-3          N2   0.020
+P68    plan-4          C4   0.020
+P68    plan-4          N1   0.020
+P68    plan-4          N2   0.020
+P68    plan-4           O   0.020
+P68    plan-5          C1   0.020
+P68    plan-5          C4   0.020
+P68    plan-5          H6   0.020
+P68    plan-5          N1   0.020
+P68    plan-6         C16   0.020
+P68    plan-6         C18   0.020
+P68    plan-6         C19   0.020
+P68    plan-6          N4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+P68           SMILES              ACDLabs 12.01                                                                                     Brc2ccc(NC(=O)NC(c1cccc(\C(=N\O)C)c1)(C)C)cc2
+P68            InChI                InChI  1.03 InChI=1S/C18H20BrN3O2/c1-12(22-24)13-5-4-6-14(11-13)18(2,3)21-17(23)20-16-9-7-15(19)8-10-16/h4-11,24H,1-3H3,(H2,20,21,23)/b22-12+
+P68         InChIKey                InChI  1.03                                                                                                       DSTKQECXQMKQLN-WSDLNYQXSA-N
+P68 SMILES_CANONICAL               CACTVS 3.385                                                                                     CC(=N\O)/c1cccc(c1)C(C)(C)NC(=O)Nc2ccc(Br)cc2
+P68           SMILES               CACTVS 3.385                                                                                       CC(=NO)c1cccc(c1)C(C)(C)NC(=O)Nc2ccc(Br)cc2
+P68 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                    C/C(=N\O)/c1cccc(c1)C(C)(C)NC(=O)Nc2ccc(cc2)Br
+P68           SMILES "OpenEye OEToolkits" 1.7.6                                                                                       CC(=NO)c1cccc(c1)C(C)(C)NC(=O)Nc2ccc(cc2)Br
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+P68 acedrg               243         "dictionary generator"                  
+P68 acedrg_database      11          "data source"                           
+P68 rdkit                2017.03.2   "Chemoinformatics tool"
+P68 refmac5              5.8.0238    "optimization tool"                     

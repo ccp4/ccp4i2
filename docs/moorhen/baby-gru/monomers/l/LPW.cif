@@ -1,0 +1,331 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LPW     LPW      2-[2-[4-(4-methoxyphenyl)phenyl]sulfonylphenyl]-~{N}-oxidanyl-ethanamide     NON-POLYMER     47     28     .     
+#
+data_comp_LPW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LPW     O3      O       O       0       5.149       1.854       10.488      
+LPW     C24     C       C       0       5.721       1.946       9.399       
+LPW     N1      N       NH1     0       6.996       2.280       9.285       
+LPW     ON1     O       OH1     0       7.750       2.572       10.416      
+LPW     C23     C       CH2     0       5.002       1.665       8.096       
+LPW     C22     C       CR6     0       3.506       1.886       8.176       
+LPW     C21     C       CR16    0       2.704       0.869       8.705       
+LPW     C20     C       CR16    0       1.337       1.000       8.810       
+LPW     C19     C       CR16    0       0.723       2.152       8.388       
+LPW     C18     C       CR16    0       1.474       3.182       7.858       
+LPW     C17     C       CR6     0       2.865       3.072       7.750       
+LPW     S1      S       S3      0       3.680       4.480       7.040       
+LPW     OSB     O       O       0       2.735       5.556       6.888       
+LPW     OSA     O       O       0       4.392       4.038       5.870       
+LPW     C13     C       CR6     0       4.861       5.019       8.236       
+LPW     C12     C       CR16    0       6.174       5.260       7.858       
+LPW     C11     C       CR16    0       7.090       5.688       8.808       
+LPW     C10     C       CR6     0       6.719       5.892       10.143      
+LPW     C15     C       CR16    0       5.386       5.644       10.491      
+LPW     C14     C       CR16    0       4.460       5.214       9.550       
+LPW     C4      C       CR6     0       7.711       6.353       11.151      
+LPW     C3      C       CR16    0       8.575       7.418       10.883      
+LPW     C2      C       CR16    0       9.507       7.852       11.815      
+LPW     C1      C       CR6     0       9.597       7.227       13.054      
+LPW     OA      O       O2      0       10.561      7.737       13.889      
+LPW     C8      C       CH3     0       10.554      7.405       15.276      
+LPW     C6      C       CR16    0       8.749       6.157       13.343      
+LPW     C5      C       CR16    0       7.822       5.735       12.400      
+LPW     H1      H       H       0       7.406       2.324       8.513       
+LPW     H2      H       H       0       7.972       1.822       10.791      
+LPW     H3      H       H       0       5.162       0.734       7.847       
+LPW     H4      H       H       0       5.378       2.225       7.394       
+LPW     H5      H       H       0       3.124       0.077       8.997       
+LPW     H6      H       H       0       0.823       0.296       9.173       
+LPW     H7      H       H       0       -0.210      2.241       8.459       
+LPW     H8      H       H       0       1.046       3.966       7.571       
+LPW     H9      H       H       0       6.447       5.133       6.971       
+LPW     H10     H       H       0       7.980       5.847       8.548       
+LPW     H11     H       H       0       5.110       5.772       11.381      
+LPW     H12     H       H       0       3.572       5.055       9.803       
+LPW     H13     H       H       0       8.526       7.856       10.047      
+LPW     H14     H       H       0       10.077      8.572       11.609      
+LPW     H15     H       H       0       10.747      6.459       15.384      
+LPW     H16     H       H       0       9.681       7.603       15.653      
+LPW     H17     H       H       0       11.231      7.927       15.736      
+LPW     H18     H       H       0       8.799       5.720       14.174      
+LPW     H19     H       H       0       7.253       5.011       12.610      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LPW          S1         OSA      DOUBLE       n     1.439  0.0100     1.439  0.0100
+LPW         C23         C22      SINGLE       n     1.510  0.0100     1.510  0.0100
+LPW         C24         C23      SINGLE       n     1.512  0.0100     1.512  0.0100
+LPW         C24          N1      SINGLE       n     1.320  0.0103     1.320  0.0103
+LPW          N1         ON1      SINGLE       n     1.389  0.0110     1.389  0.0110
+LPW          S1         OSB      DOUBLE       n     1.439  0.0100     1.439  0.0100
+LPW         C17          S1      SINGLE       n     1.765  0.0114     1.765  0.0114
+LPW          S1         C13      SINGLE       n     1.763  0.0102     1.763  0.0102
+LPW         C22         C17      DOUBLE       y     1.401  0.0103     1.401  0.0103
+LPW         C22         C21      SINGLE       y     1.394  0.0100     1.394  0.0100
+LPW          O3         C24      DOUBLE       n     1.232  0.0104     1.232  0.0104
+LPW         C18         C17      SINGLE       y     1.392  0.0100     1.392  0.0100
+LPW         C21         C20      DOUBLE       y     1.375  0.0100     1.375  0.0100
+LPW         C13         C12      DOUBLE       y     1.383  0.0100     1.383  0.0100
+LPW         C12         C11      SINGLE       y     1.384  0.0100     1.384  0.0100
+LPW         C13         C14      SINGLE       y     1.383  0.0100     1.383  0.0100
+LPW         C19         C18      DOUBLE       y     1.379  0.0100     1.379  0.0100
+LPW         C20         C19      SINGLE       y     1.371  0.0105     1.371  0.0105
+LPW         C11         C10      DOUBLE       y     1.396  0.0111     1.396  0.0111
+LPW         C15         C14      DOUBLE       y     1.384  0.0100     1.384  0.0100
+LPW         C10         C15      SINGLE       y     1.396  0.0111     1.396  0.0111
+LPW         C10          C4      SINGLE       n     1.486  0.0100     1.486  0.0100
+LPW          C4          C3      DOUBLE       y     1.395  0.0100     1.395  0.0100
+LPW          C3          C2      SINGLE       y     1.384  0.0100     1.384  0.0100
+LPW          C4          C5      SINGLE       y     1.395  0.0100     1.395  0.0100
+LPW          C2          C1      DOUBLE       y     1.386  0.0109     1.386  0.0109
+LPW          C6          C5      DOUBLE       y     1.384  0.0100     1.384  0.0100
+LPW          C1          C6      SINGLE       y     1.386  0.0109     1.386  0.0109
+LPW          C1          OA      SINGLE       n     1.369  0.0100     1.369  0.0100
+LPW          OA          C8      SINGLE       n     1.424  0.0117     1.424  0.0117
+LPW          N1          H1      SINGLE       n     1.016  0.0100     0.875  0.0200
+LPW         ON1          H2      SINGLE       n     0.970  0.0120     0.867  0.0200
+LPW         C23          H3      SINGLE       n     1.089  0.0100     0.977  0.0143
+LPW         C23          H4      SINGLE       n     1.089  0.0100     0.977  0.0143
+LPW         C21          H5      SINGLE       n     1.082  0.0130     0.943  0.0173
+LPW         C20          H6      SINGLE       n     1.082  0.0130     0.944  0.0175
+LPW         C19          H7      SINGLE       n     1.082  0.0130     0.940  0.0176
+LPW         C18          H8      SINGLE       n     1.082  0.0130     0.940  0.0163
+LPW         C12          H9      SINGLE       n     1.082  0.0130     0.937  0.0111
+LPW         C11         H10      SINGLE       n     1.082  0.0130     0.941  0.0100
+LPW         C15         H11      SINGLE       n     1.082  0.0130     0.941  0.0100
+LPW         C14         H12      SINGLE       n     1.082  0.0130     0.937  0.0111
+LPW          C3         H13      SINGLE       n     1.082  0.0130     0.945  0.0186
+LPW          C2         H14      SINGLE       n     1.082  0.0130     0.941  0.0179
+LPW          C8         H15      SINGLE       n     1.089  0.0100     0.971  0.0157
+LPW          C8         H16      SINGLE       n     1.089  0.0100     0.971  0.0157
+LPW          C8         H17      SINGLE       n     1.089  0.0100     0.971  0.0157
+LPW          C6         H18      SINGLE       n     1.082  0.0130     0.941  0.0179
+LPW          C5         H19      SINGLE       n     1.082  0.0130     0.945  0.0186
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LPW         C23         C24          N1     115.338    1.90
+LPW         C23         C24          O3     121.603    1.50
+LPW          N1         C24          O3     123.059    1.50
+LPW         C24          N1         ON1     120.051    1.50
+LPW         C24          N1          H1     122.120    2.48
+LPW         ON1          N1          H1     117.829    2.59
+LPW          N1         ON1          H2     108.051    2.18
+LPW         C22         C23         C24     111.650    2.25
+LPW         C22         C23          H3     108.957    1.50
+LPW         C22         C23          H4     108.957    1.50
+LPW         C24         C23          H3     109.094    1.50
+LPW         C24         C23          H4     109.094    1.50
+LPW          H3         C23          H4     108.049    1.50
+LPW         C23         C22         C17     121.428    1.78
+LPW         C23         C22         C21     121.123    1.50
+LPW         C17         C22         C21     117.449    1.50
+LPW         C22         C21         C20     120.952    1.50
+LPW         C22         C21          H5     118.912    2.54
+LPW         C20         C21          H5     120.136    1.50
+LPW         C21         C20         C19     120.194    1.50
+LPW         C21         C20          H6     119.857    1.50
+LPW         C19         C20          H6     119.948    1.50
+LPW         C18         C19         C20     120.330    1.50
+LPW         C18         C19          H7     119.734    1.50
+LPW         C20         C19          H7     119.936    1.50
+LPW         C17         C18         C19     120.461    1.50
+LPW         C17         C18          H8     119.261    1.50
+LPW         C19         C18          H8     120.277    1.50
+LPW          S1         C17         C22     122.209    2.88
+LPW          S1         C17         C18     117.177    2.92
+LPW         C22         C17         C18     120.614    1.50
+LPW         OSA          S1         OSB     119.191    1.50
+LPW         OSA          S1         C17     108.510    1.50
+LPW         OSA          S1         C13     107.971    1.50
+LPW         OSB          S1         C17     108.510    1.50
+LPW         OSB          S1         C13     107.971    1.50
+LPW         C17          S1         C13     105.308    1.50
+LPW          S1         C13         C12     119.615    1.50
+LPW          S1         C13         C14     119.616    1.50
+LPW         C12         C13         C14     120.771    1.50
+LPW         C13         C12         C11     119.350    1.50
+LPW         C13         C12          H9     120.489    1.50
+LPW         C11         C12          H9     120.161    1.50
+LPW         C12         C11         C10     121.376    1.50
+LPW         C12         C11         H10     119.258    1.50
+LPW         C10         C11         H10     119.366    1.50
+LPW         C11         C10         C15     117.777    1.50
+LPW         C11         C10          C4     121.111    1.50
+LPW         C15         C10          C4     121.111    1.50
+LPW         C14         C15         C10     121.376    1.50
+LPW         C14         C15         H11     119.258    1.50
+LPW         C10         C15         H11     119.366    1.50
+LPW         C13         C14         C15     119.350    1.50
+LPW         C13         C14         H12     120.489    1.50
+LPW         C15         C14         H12     120.161    1.50
+LPW         C10          C4          C3     121.199    1.50
+LPW         C10          C4          C5     121.199    1.50
+LPW          C3          C4          C5     117.601    1.50
+LPW          C4          C3          C2     121.657    1.50
+LPW          C4          C3         H13     119.315    1.50
+LPW          C2          C3         H13     119.028    1.50
+LPW          C3          C2          C1     119.689    1.50
+LPW          C3          C2         H14     120.138    1.50
+LPW          C1          C2         H14     120.173    1.50
+LPW          C2          C1          C6     119.708    1.50
+LPW          C2          C1          OA     120.146    3.00
+LPW          C6          C1          OA     120.146    3.00
+LPW          C1          OA          C8     117.529    1.50
+LPW          OA          C8         H15     109.428    1.50
+LPW          OA          C8         H16     109.428    1.50
+LPW          OA          C8         H17     109.428    1.50
+LPW         H15          C8         H16     109.509    1.50
+LPW         H15          C8         H17     109.509    1.50
+LPW         H16          C8         H17     109.509    1.50
+LPW          C5          C6          C1     119.689    1.50
+LPW          C5          C6         H18     120.138    1.50
+LPW          C1          C6         H18     120.173    1.50
+LPW          C4          C5          C6     121.657    1.50
+LPW          C4          C5         H19     119.315    1.50
+LPW          C6          C5         H19     119.028    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LPW            sp2_sp3_16         C22         C17          S1         OSA     -90.000    10.0     6
+LPW            sp2_sp3_21         C12         C13          S1         OSA     150.000    10.0     6
+LPW       const_sp2_sp2_2         C11         C12         C13          S1     180.000     5.0     2
+LPW              const_67          S1         C13         C14         C15     180.000    10.0     2
+LPW       const_sp2_sp2_5         C10         C11         C12         C13       0.000     5.0     2
+LPW       const_sp2_sp2_9         C15         C10         C11         C12       0.000     5.0     2
+LPW              const_13         C11         C10         C15         C14       0.000    10.0     2
+LPW             sp2_sp2_5         C11         C10          C4          C3     180.000     5.0     2
+LPW              const_17         C13         C14         C15         C10       0.000    10.0     2
+LPW             sp2_sp2_1         C23         C24          N1         ON1     180.000     5.0     2
+LPW             sp2_sp3_8          N1         C24         C23         C22     120.000    10.0     6
+LPW              const_42          C2          C3          C4         C10     180.000    10.0     2
+LPW              const_71         C10          C4          C5          C6     180.000    10.0     2
+LPW              const_45          C1          C2          C3          C4       0.000    10.0     2
+LPW              const_51          OA          C1          C2          C3     180.000    10.0     2
+LPW             sp2_sp2_9          C2          C1          OA          C8     180.000     5.0     2
+LPW              const_55          OA          C1          C6          C5     180.000    10.0     2
+LPW             sp3_sp3_2         H15          C8          OA          C1     -60.000    10.0     3
+LPW              const_57          C4          C5          C6          C1       0.000    10.0     2
+LPW             sp2_sp3_2         C17         C22         C23         C24     -90.000    10.0     6
+LPW              const_24          S1         C17         C22         C23       0.000    10.0     2
+LPW              const_62         C20         C21         C22         C23     180.000    10.0     2
+LPW              const_37         C19         C20         C21         C22       0.000    10.0     2
+LPW              const_33         C18         C19         C20         C21       0.000    10.0     2
+LPW              const_29         C17         C18         C19         C20       0.000    10.0     2
+LPW              const_27          S1         C17         C18         C19     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LPW    chir_1    S1    OSA    OSB    C17    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LPW    plan-1         C17   0.020
+LPW    plan-1         C18   0.020
+LPW    plan-1         C19   0.020
+LPW    plan-1         C20   0.020
+LPW    plan-1         C21   0.020
+LPW    plan-1         C22   0.020
+LPW    plan-1         C23   0.020
+LPW    plan-1          H5   0.020
+LPW    plan-1          H6   0.020
+LPW    plan-1          H7   0.020
+LPW    plan-1          H8   0.020
+LPW    plan-1          S1   0.020
+LPW    plan-2         C10   0.020
+LPW    plan-2         C11   0.020
+LPW    plan-2         C12   0.020
+LPW    plan-2         C13   0.020
+LPW    plan-2         C14   0.020
+LPW    plan-2         C15   0.020
+LPW    plan-2          C4   0.020
+LPW    plan-2         H10   0.020
+LPW    plan-2         H11   0.020
+LPW    plan-2         H12   0.020
+LPW    plan-2          H9   0.020
+LPW    plan-2          S1   0.020
+LPW    plan-3          C1   0.020
+LPW    plan-3         C10   0.020
+LPW    plan-3          C2   0.020
+LPW    plan-3          C3   0.020
+LPW    plan-3          C4   0.020
+LPW    plan-3          C5   0.020
+LPW    plan-3          C6   0.020
+LPW    plan-3         H13   0.020
+LPW    plan-3         H14   0.020
+LPW    plan-3         H18   0.020
+LPW    plan-3         H19   0.020
+LPW    plan-3          OA   0.020
+LPW    plan-4         C23   0.020
+LPW    plan-4         C24   0.020
+LPW    plan-4          N1   0.020
+LPW    plan-4          O3   0.020
+LPW    plan-5         C24   0.020
+LPW    plan-5          H1   0.020
+LPW    plan-5          N1   0.020
+LPW    plan-5         ON1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LPW            InChI                InChI  1.03 InChI=1S/C21H19NO5S/c1-27-18-10-6-15(7-11-18)16-8-12-19(13-9-16)28(25,26)20-5-3-2-4-17(20)14-21(23)22-24/h2-13,24H,14H2,1H3,(H,22,23)
+LPW         InChIKey                InChI  1.03                                                                                                           DJZNIZCARKSSDE-UHFFFAOYSA-N
+LPW SMILES_CANONICAL               CACTVS 3.385                                                                                     COc1ccc(cc1)c2ccc(cc2)[S](=O)(=O)c3ccccc3CC(=O)NO
+LPW           SMILES               CACTVS 3.385                                                                                     COc1ccc(cc1)c2ccc(cc2)[S](=O)(=O)c3ccccc3CC(=O)NO
+LPW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                       COc1ccc(cc1)c2ccc(cc2)S(=O)(=O)c3ccccc3CC(=O)NO
+LPW           SMILES "OpenEye OEToolkits" 2.0.6                                                                                       COc1ccc(cc1)c2ccc(cc2)S(=O)(=O)c3ccccc3CC(=O)NO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LPW acedrg               243         "dictionary generator"                  
+LPW acedrg_database      11          "data source"                           
+LPW rdkit                2017.03.2   "Chemoinformatics tool"
+LPW refmac5              5.8.0238    "optimization tool"                     

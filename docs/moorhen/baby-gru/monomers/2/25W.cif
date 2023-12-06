@@ -1,0 +1,192 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+25W     25W      (1R,2S,3S,4R,5S)-5-aminocyclohexane-1,2,3,4-tetrol     NON-POLYMER     25     11     .     
+#
+data_comp_25W
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+25W     O1      O       OH1     0       -2.942      -11.192     18.993      
+25W     O2      O       OH1     0       -4.161      -9.002      20.263      
+25W     O3      O       OH1     0       -2.483      -6.918      21.259      
+25W     C5      C       CH1     0       -2.051      -8.275      21.214      
+25W     C       C       CH1     0       -0.534      -8.322      20.982      
+25W     N       N       NT3     1       0.171       -7.602      22.082      
+25W     C4      C       CH1     0       -2.745      -9.048      20.091      
+25W     C3      C       CH1     0       -2.278      -10.501     20.054      
+25W     C2      C       CH1     0       -0.769      -10.585     19.849      
+25W     O       O       OH1     0       -0.333      -11.946     19.922      
+25W     C1      C       CH2     0       -0.027      -9.761      20.896      
+25W     H1      H       H       0       -3.757      -11.270     19.188      
+25W     H2      H       H       0       -4.433      -8.228      20.076      
+25W     H3      H       H       0       -2.442      -6.653      22.057      
+25W     H4      H       H       0       -2.258      -8.711      22.082      
+25W     H5      H       H       0       -0.329      -7.863      20.118      
+25W     H6      H       H       0       -0.051      -6.731      22.069      
+25W     H7      H       H       0       1.060       -7.680      21.978      
+25W     H8      H       H       0       -0.064      -7.953      22.876      
+25W     H9      H       H       0       -2.513      -8.614      19.232      
+25W     H10     H       H       0       -2.514      -10.934     20.912      
+25W     H11     H       H       0       -0.553      -10.230     18.950      
+25W     H12     H       H       0       -0.647      -12.375     19.270      
+25W     H13     H       H       0       -0.130      -10.194     21.778      
+25W     H14     H       H       0       0.936       -9.753      20.675      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+25W          O1          C3      SINGLE       n     1.429  0.0100     1.429  0.0100
+25W          C2           O      SINGLE       n     1.431  0.0100     1.431  0.0100
+25W          C3          C2      SINGLE       n     1.524  0.0100     1.524  0.0100
+25W          C2          C1      SINGLE       n     1.523  0.0100     1.523  0.0100
+25W          C4          C3      SINGLE       n     1.524  0.0100     1.524  0.0100
+25W          O2          C4      SINGLE       n     1.427  0.0125     1.427  0.0125
+25W          C5          C4      SINGLE       n     1.528  0.0111     1.528  0.0111
+25W           C          C1      SINGLE       n     1.527  0.0100     1.527  0.0100
+25W          C5           C      SINGLE       n     1.533  0.0116     1.533  0.0116
+25W           C           N      SINGLE       n     1.491  0.0113     1.491  0.0113
+25W          O3          C5      SINGLE       n     1.424  0.0100     1.424  0.0100
+25W          O1          H1      SINGLE       n     0.970  0.0120     0.841  0.0200
+25W          O2          H2      SINGLE       n     0.970  0.0120     0.841  0.0200
+25W          O3          H3      SINGLE       n     0.970  0.0120     0.841  0.0200
+25W          C5          H4      SINGLE       n     1.089  0.0100     0.994  0.0160
+25W           C          H5      SINGLE       n     1.089  0.0100     1.000  0.0100
+25W           N          H6      SINGLE       n     1.036  0.0160     0.899  0.0200
+25W           N          H7      SINGLE       n     1.036  0.0160     0.899  0.0200
+25W           N          H8      SINGLE       n     1.036  0.0160     0.899  0.0200
+25W          C4          H9      SINGLE       n     1.089  0.0100     0.990  0.0140
+25W          C3         H10      SINGLE       n     1.089  0.0100     0.990  0.0114
+25W          C2         H11      SINGLE       n     1.089  0.0100     0.990  0.0143
+25W           O         H12      SINGLE       n     0.970  0.0120     0.841  0.0200
+25W          C1         H13      SINGLE       n     1.089  0.0100     0.988  0.0100
+25W          C1         H14      SINGLE       n     1.089  0.0100     0.988  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+25W          C3          O1          H1     108.895    2.41
+25W          C4          O2          H2     108.895    2.41
+25W          C5          O3          H3     108.064    2.53
+25W          C4          C5           C     108.438    1.50
+25W          C4          C5          O3     111.630    1.78
+25W          C4          C5          H4     108.943    1.50
+25W           C          C5          O3     109.484    1.50
+25W           C          C5          H4     108.942    1.50
+25W          O3          C5          H4     108.954    1.50
+25W          C1           C          C5     111.392    1.50
+25W          C1           C           N     109.921    1.50
+25W          C1           C          H5     108.531    1.50
+25W          C5           C           N     110.002    1.50
+25W          C5           C          H5     108.719    1.50
+25W           N           C          H5     108.734    1.50
+25W           C           N          H6     109.908    1.75
+25W           C           N          H7     109.908    1.75
+25W           C           N          H8     109.908    1.75
+25W          H6           N          H7     109.122    2.58
+25W          H6           N          H8     109.122    2.58
+25W          H7           N          H8     109.122    2.58
+25W          C3          C4          O2     109.587    1.51
+25W          C3          C4          C5     110.796    1.54
+25W          C3          C4          H9     108.868    1.50
+25W          O2          C4          C5     110.219    1.72
+25W          O2          C4          H9     108.767    1.50
+25W          C5          C4          H9     107.830    1.50
+25W          O1          C3          C2     109.650    1.73
+25W          O1          C3          C4     109.587    1.51
+25W          O1          C3         H10     108.767    1.50
+25W          C2          C3          C4     110.796    1.54
+25W          C2          C3         H10     109.150    1.50
+25W          C4          C3         H10     108.868    1.50
+25W           O          C2          C3     110.515    1.50
+25W           O          C2          C1     109.687    1.93
+25W           O          C2         H11     108.933    1.50
+25W          C3          C2          C1     110.976    1.50
+25W          C3          C2         H11     108.782    1.50
+25W          C1          C2         H11     109.129    1.50
+25W          C2           O         H12     109.387    3.00
+25W          C2          C1           C     112.916    1.50
+25W          C2          C1         H13     109.270    1.50
+25W          C2          C1         H14     109.270    1.50
+25W           C          C1         H13     109.371    1.50
+25W           C          C1         H14     109.371    1.50
+25W         H13          C1         H14     107.917    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+25W            sp3_sp3_46          C2          C3          O1          H1     180.000    10.0     3
+25W            sp3_sp3_52          C3          C4          O2          H2     180.000    10.0     3
+25W            sp3_sp3_73          C4          C5          O3          H3     180.000    10.0     3
+25W            sp3_sp3_59           N           C          C5          O3     180.000    10.0     3
+25W             sp3_sp3_5          O2          C4          C5          O3      60.000    10.0     3
+25W            sp3_sp3_40           N           C          C1          C2     -60.000    10.0     3
+25W            sp3_sp3_64          C1           C           N          H6     180.000    10.0     3
+25W            sp3_sp3_14          O1          C3          C4          O2     -60.000    10.0     3
+25W            sp3_sp3_23           O          C2          C3          O1      60.000    10.0     3
+25W            sp3_sp3_29           C          C1          C2           O      60.000    10.0     3
+25W            sp3_sp3_49          C3          C2           O         H12     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+25W    chir_1    C5    O3    C4    C    negative
+25W    chir_2    C    N    C5    C1    positive
+25W    chir_3    C4    O2    C3    C5    positive
+25W    chir_4    C3    O1    C4    C2    positive
+25W    chir_5    C2    O    C3    C1    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+25W           SMILES              ACDLabs 12.01                                                                 OC1CC(N)C(O)C(O)C1O
+25W            InChI                InChI  1.03 InChI=1S/C6H13NO4/c7-2-1-3(8)5(10)6(11)4(2)9/h2-6,8-11H,1,7H2/t2-,3+,4+,5-,6-/m0/s1
+25W         InChIKey                InChI  1.03                                                         QXQNRSUOYNMXDL-KGJVWPDLSA-N
+25W SMILES_CANONICAL               CACTVS 3.385                                          N[C@H]1C[C@@H](O)[C@H](O)[C@@H](O)[C@@H]1O
+25W           SMILES               CACTVS 3.385                                                  N[CH]1C[CH](O)[CH](O)[CH](O)[CH]1O
+25W SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                        C1[C@@H]([C@H]([C@@H]([C@H]([C@@H]1O)O)O)O)N
+25W           SMILES "OpenEye OEToolkits" 1.7.6                                                               C1C(C(C(C(C1O)O)O)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+25W acedrg               243         "dictionary generator"                  
+25W acedrg_database      11          "data source"                           
+25W rdkit                2017.03.2   "Chemoinformatics tool"
+25W refmac5              5.8.0238    "optimization tool"                     

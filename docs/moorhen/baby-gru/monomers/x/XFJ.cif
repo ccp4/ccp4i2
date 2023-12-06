@@ -1,0 +1,340 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XFJ     XFJ      "6,6'-(pyridine-3,5-diyldiethane-2,1-diyl)bis(4-methylpyridin-2-amine)"     NON-POLYMER     51     26     .     
+#
+data_comp_XFJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XFJ     N01     N       NRD6    0       -0.354      8.982       66.540      
+XFJ     C02     C       CR6     0       -0.084      9.842       67.547      
+XFJ     N02     N       NH2     0       -0.798      10.973      67.600      
+XFJ     C03     C       CR16    0       0.909       9.565       68.508      
+XFJ     C04     C       CR6     0       1.627       8.383       68.419      
+XFJ     C05     C       CR16    0       1.336       7.509       67.375      
+XFJ     C06     C       CR6     0       0.347       7.830       66.452      
+XFJ     C07     C       CH3     0       2.696       8.058       69.434      
+XFJ     C08     C       CH2     0       -0.005      6.917       65.306      
+XFJ     C09     C       CH2     0       -1.012      5.826       65.708      
+XFJ     N11     N       NRD6    0       -2.844      3.979       62.957      
+XFJ     C12     C       CR16    0       -2.547      4.834       63.947      
+XFJ     C13     C       CR6     0       -1.317      4.851       64.596      
+XFJ     C14     C       CR16    0       -0.367      3.923       64.174      
+XFJ     C15     C       CR6     0       -0.647      3.024       63.148      
+XFJ     C16     C       CR16    0       -1.911      3.097       62.572      
+XFJ     C17     C       CH2     0       0.382       2.017       62.692      
+XFJ     C18     C       CH2     0       0.380       0.727       63.530      
+XFJ     N21     N       NRD6    0       2.677       0.022       63.177      
+XFJ     C22     C       CR6     0       3.615       -0.853      62.752      
+XFJ     N22     N       NH2     0       4.897       -0.505      62.910      
+XFJ     C23     C       CR16    0       3.266       -2.085      62.164      
+XFJ     C24     C       CR6     0       1.926       -2.408      62.018      
+XFJ     C25     C       CR16    0       0.972       -1.497      62.461      
+XFJ     C26     C       CR6     0       1.371       -0.294      63.033      
+XFJ     C27     C       CH3     0       1.515       -3.719      61.393      
+XFJ     HN02    H       H       0       -0.694      11.525      68.276      
+XFJ     HN0A    H       H       0       -1.369      11.163      66.960      
+XFJ     H03     H       H       0       1.086       10.175      69.206      
+XFJ     H05     H       H       0       1.814       6.700       67.298      
+XFJ     H07     H       H       0       3.129       7.221       69.198      
+XFJ     H07A    H       H       0       2.295       7.975       70.314      
+XFJ     H07B    H       H       0       3.357       8.769       69.448      
+XFJ     H08     H       H       0       0.816       6.493       64.979      
+XFJ     H08A    H       H       0       -0.383      7.451       64.576      
+XFJ     H09     H       H       0       -1.847      6.256       65.997      
+XFJ     H09A    H       H       0       -0.650      5.329       66.476      
+XFJ     H12     H       H       0       -3.201      5.452       64.217      
+XFJ     H14     H       H       0       0.480       3.904       64.590      
+XFJ     H16     H       H       0       -2.118      2.498       61.878      
+XFJ     H17     H       H       0       1.274       2.427       62.741      
+XFJ     H17A    H       H       0       0.208       1.786       61.753      
+XFJ     H18     H       H       0       -0.517      0.332       63.512      
+XFJ     H18A    H       H       0       0.596       0.948       64.460      
+XFJ     HN22    H       H       0       5.116       0.343       62.972      
+XFJ     HN2A    H       H       0       5.516       -1.126      62.951      
+XFJ     H23     H       H       0       3.932       -2.685      61.872      
+XFJ     H25     H       H       0       0.056       -1.701      62.369      
+XFJ     H27     H       H       0       0.645       -3.984      61.735      
+XFJ     H27A    H       H       0       2.169       -4.402      61.611      
+XFJ     H27B    H       H       0       1.464       -3.618      60.429      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XFJ         N01         C06      DOUBLE       y     1.347  0.0100     1.347  0.0100
+XFJ         N01         C02      SINGLE       y     1.343  0.0133     1.343  0.0133
+XFJ         C02         N02      SINGLE       n     1.335  0.0166     1.335  0.0166
+XFJ         C02         C03      DOUBLE       y     1.398  0.0169     1.398  0.0169
+XFJ         C03         C04      SINGLE       y     1.383  0.0100     1.383  0.0100
+XFJ         C04         C05      DOUBLE       y     1.388  0.0100     1.388  0.0100
+XFJ         C04         C07      SINGLE       n     1.509  0.0144     1.509  0.0144
+XFJ         C05         C06      SINGLE       y     1.378  0.0181     1.378  0.0181
+XFJ         C06         C08      SINGLE       n     1.507  0.0100     1.507  0.0100
+XFJ         C08         C09      SINGLE       n     1.538  0.0110     1.538  0.0110
+XFJ         C09         C13      SINGLE       n     1.510  0.0100     1.510  0.0100
+XFJ         N11         C16      DOUBLE       y     1.336  0.0100     1.336  0.0100
+XFJ         N11         C12      SINGLE       y     1.336  0.0100     1.336  0.0100
+XFJ         C12         C13      DOUBLE       y     1.387  0.0100     1.387  0.0100
+XFJ         C13         C14      SINGLE       y     1.391  0.0100     1.391  0.0100
+XFJ         C14         C15      DOUBLE       y     1.391  0.0100     1.391  0.0100
+XFJ         C15         C17      SINGLE       n     1.510  0.0100     1.510  0.0100
+XFJ         C15         C16      SINGLE       y     1.387  0.0100     1.387  0.0100
+XFJ         C17         C18      SINGLE       n     1.538  0.0110     1.538  0.0110
+XFJ         C18         C26      SINGLE       n     1.507  0.0100     1.507  0.0100
+XFJ         N21         C22      DOUBLE       y     1.343  0.0133     1.343  0.0133
+XFJ         N21         C26      SINGLE       y     1.347  0.0100     1.347  0.0100
+XFJ         C22         C23      SINGLE       y     1.398  0.0169     1.398  0.0169
+XFJ         C22         N22      SINGLE       n     1.335  0.0166     1.335  0.0166
+XFJ         C23         C24      DOUBLE       y     1.383  0.0100     1.383  0.0100
+XFJ         C24         C27      SINGLE       n     1.509  0.0144     1.509  0.0144
+XFJ         C24         C25      SINGLE       y     1.388  0.0100     1.388  0.0100
+XFJ         C25         C26      DOUBLE       y     1.378  0.0181     1.378  0.0181
+XFJ         N02        HN02      SINGLE       n     1.016  0.0100     0.877  0.0200
+XFJ         N02        HN0A      SINGLE       n     1.016  0.0100     0.877  0.0200
+XFJ         C03         H03      SINGLE       n     1.082  0.0130     0.943  0.0168
+XFJ         C05         H05      SINGLE       n     1.082  0.0130     0.943  0.0168
+XFJ         C07         H07      SINGLE       n     1.089  0.0100     0.971  0.0135
+XFJ         C07        H07A      SINGLE       n     1.089  0.0100     0.971  0.0135
+XFJ         C07        H07B      SINGLE       n     1.089  0.0100     0.971  0.0135
+XFJ         C08         H08      SINGLE       n     1.089  0.0100     0.980  0.0175
+XFJ         C08        H08A      SINGLE       n     1.089  0.0100     0.980  0.0175
+XFJ         C09         H09      SINGLE       n     1.089  0.0100     0.983  0.0181
+XFJ         C09        H09A      SINGLE       n     1.089  0.0100     0.983  0.0181
+XFJ         C12         H12      SINGLE       n     1.082  0.0130     0.940  0.0200
+XFJ         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0155
+XFJ         C16         H16      SINGLE       n     1.082  0.0130     0.940  0.0200
+XFJ         C17         H17      SINGLE       n     1.089  0.0100     0.983  0.0181
+XFJ         C17        H17A      SINGLE       n     1.089  0.0100     0.983  0.0181
+XFJ         C18         H18      SINGLE       n     1.089  0.0100     0.980  0.0175
+XFJ         C18        H18A      SINGLE       n     1.089  0.0100     0.980  0.0175
+XFJ         N22        HN22      SINGLE       n     1.016  0.0100     0.877  0.0200
+XFJ         N22        HN2A      SINGLE       n     1.016  0.0100     0.877  0.0200
+XFJ         C23         H23      SINGLE       n     1.082  0.0130     0.943  0.0168
+XFJ         C25         H25      SINGLE       n     1.082  0.0130     0.943  0.0168
+XFJ         C27         H27      SINGLE       n     1.089  0.0100     0.971  0.0135
+XFJ         C27        H27A      SINGLE       n     1.089  0.0100     0.971  0.0135
+XFJ         C27        H27B      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XFJ         C06         N01         C02     118.635    1.50
+XFJ         N01         C02         N02     117.161    1.55
+XFJ         N01         C02         C03     121.879    1.50
+XFJ         N02         C02         C03     120.961    1.50
+XFJ         C02         N02        HN02     119.818    1.59
+XFJ         C02         N02        HN0A     119.818    1.59
+XFJ        HN02         N02        HN0A     120.363    1.85
+XFJ         C02         C03         C04     119.340    1.50
+XFJ         C02         C03         H03     120.642    1.50
+XFJ         C04         C03         H03     120.018    1.50
+XFJ         C03         C04         C05     118.497    1.50
+XFJ         C03         C04         C07     120.586    1.50
+XFJ         C05         C04         C07     120.917    1.50
+XFJ         C04         C05         C06     120.185    1.50
+XFJ         C04         C05         H05     119.490    1.50
+XFJ         C06         C05         H05     120.325    1.50
+XFJ         N01         C06         C05     121.464    1.50
+XFJ         N01         C06         C08     116.278    1.50
+XFJ         C05         C06         C08     122.258    1.50
+XFJ         C04         C07         H07     109.567    1.50
+XFJ         C04         C07        H07A     109.567    1.50
+XFJ         C04         C07        H07B     109.567    1.50
+XFJ         H07         C07        H07A     109.348    1.50
+XFJ         H07         C07        H07B     109.348    1.50
+XFJ        H07A         C07        H07B     109.348    1.50
+XFJ         C06         C08         C09     112.491    1.83
+XFJ         C06         C08         H08     108.537    1.89
+XFJ         C06         C08        H08A     108.537    1.89
+XFJ         C09         C08         H08     109.093    1.50
+XFJ         C09         C08        H08A     109.093    1.50
+XFJ         H08         C08        H08A     108.000    1.50
+XFJ         C08         C09         C13     113.312    1.99
+XFJ         C08         C09         H09     108.812    1.50
+XFJ         C08         C09        H09A     108.812    1.50
+XFJ         C13         C09         H09     108.906    1.50
+XFJ         C13         C09        H09A     108.906    1.50
+XFJ         H09         C09        H09A     107.732    2.63
+XFJ         C16         N11         C12     117.388    1.50
+XFJ         N11         C12         C13     123.040    1.50
+XFJ         N11         C12         H12     118.629    1.50
+XFJ         C13         C12         H12     118.330    1.50
+XFJ         C09         C13         C12     121.694    1.64
+XFJ         C09         C13         C14     120.872    1.50
+XFJ         C12         C13         C14     117.434    1.50
+XFJ         C13         C14         C15     121.663    1.50
+XFJ         C13         C14         H14     119.168    1.50
+XFJ         C15         C14         H14     119.168    1.50
+XFJ         C14         C15         C17     120.872    1.50
+XFJ         C14         C15         C16     117.434    1.50
+XFJ         C17         C15         C16     121.694    1.64
+XFJ         N11         C16         C15     123.040    1.50
+XFJ         N11         C16         H16     118.629    1.50
+XFJ         C15         C16         H16     118.330    1.50
+XFJ         C15         C17         C18     113.312    1.99
+XFJ         C15         C17         H17     108.906    1.50
+XFJ         C15         C17        H17A     108.906    1.50
+XFJ         C18         C17         H17     108.812    1.50
+XFJ         C18         C17        H17A     108.812    1.50
+XFJ         H17         C17        H17A     107.732    2.63
+XFJ         C17         C18         C26     112.491    1.83
+XFJ         C17         C18         H18     109.093    1.50
+XFJ         C17         C18        H18A     109.093    1.50
+XFJ         C26         C18         H18     108.537    1.89
+XFJ         C26         C18        H18A     108.537    1.89
+XFJ         H18         C18        H18A     108.000    1.50
+XFJ         C22         N21         C26     118.635    1.50
+XFJ         N21         C22         C23     121.879    1.50
+XFJ         N21         C22         N22     117.161    1.55
+XFJ         C23         C22         N22     120.961    1.50
+XFJ         C22         N22        HN22     119.818    1.59
+XFJ         C22         N22        HN2A     119.818    1.59
+XFJ        HN22         N22        HN2A     120.363    1.85
+XFJ         C22         C23         C24     119.340    1.50
+XFJ         C22         C23         H23     120.642    1.50
+XFJ         C24         C23         H23     120.018    1.50
+XFJ         C23         C24         C27     120.586    1.50
+XFJ         C23         C24         C25     118.497    1.50
+XFJ         C27         C24         C25     120.917    1.50
+XFJ         C24         C25         C26     120.185    1.50
+XFJ         C24         C25         H25     119.490    1.50
+XFJ         C26         C25         H25     120.325    1.50
+XFJ         C18         C26         N21     116.278    1.50
+XFJ         C18         C26         C25     122.258    1.50
+XFJ         N21         C26         C25     121.464    1.50
+XFJ         C24         C27         H27     109.567    1.50
+XFJ         C24         C27        H27A     109.567    1.50
+XFJ         C24         C27        H27B     109.567    1.50
+XFJ         H27         C27        H27A     109.348    1.50
+XFJ         H27         C27        H27B     109.348    1.50
+XFJ        H27A         C27        H27B     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XFJ              const_56         N02         C02         N01         C06     180.000    10.0     2
+XFJ       const_sp2_sp2_2         C08         C06         N01         C02     180.000     5.0     2
+XFJ              const_57         C13         C12         N11         C16       0.000    10.0     2
+XFJ              const_19         C15         C16         N11         C12       0.000    10.0     2
+XFJ              const_34         N11         C12         C13         C09     180.000    10.0     2
+XFJ              const_31         C09         C13         C14         C15     180.000    10.0     2
+XFJ              const_26         C13         C14         C15         C17     180.000    10.0     2
+XFJ              const_23         C17         C15         C16         N11     180.000    10.0     2
+XFJ            sp2_sp3_20         C14         C15         C17         C18     -90.000    10.0     6
+XFJ            sp3_sp3_10         C15         C17         C18         C26     180.000    10.0     3
+XFJ            sp2_sp3_26         N21         C26         C18         C17     -90.000    10.0     6
+XFJ              const_38         N22         C22         N21         C26     180.000    10.0     2
+XFJ              const_60         C18         C26         N21         C22     180.000    10.0     2
+XFJ             sp2_sp2_7         N21         C22         N22        HN22       0.000     5.0     2
+XFJ              const_41         N22         C22         C23         C24     180.000    10.0     2
+XFJ             sp2_sp2_3         N01         C02         N02        HN02       0.000     5.0     2
+XFJ              const_17         N02         C02         C03         C04     180.000    10.0     2
+XFJ              const_44         C22         C23         C24         C27     180.000    10.0     2
+XFJ              const_49         C27         C24         C25         C26     180.000    10.0     2
+XFJ            sp2_sp3_31         C23         C24         C27         H27     150.000    10.0     6
+XFJ              const_52         C24         C25         C26         C18     180.000    10.0     2
+XFJ              const_12         C02         C03         C04         C07     180.000    10.0     2
+XFJ       const_sp2_sp2_9         C07         C04         C05         C06     180.000     5.0     2
+XFJ             sp2_sp3_1         C03         C04         C07         H07     150.000    10.0     6
+XFJ       const_sp2_sp2_4         C04         C05         C06         C08     180.000     5.0     2
+XFJ             sp2_sp3_8         N01         C06         C08         C09     -90.000    10.0     6
+XFJ             sp3_sp3_1         C06         C08         C09         C13     180.000    10.0     3
+XFJ            sp2_sp3_14         C12         C13         C09         C08     -90.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+XFJ    plan-1         C02   0.020
+XFJ    plan-1         C03   0.020
+XFJ    plan-1         C04   0.020
+XFJ    plan-1         C05   0.020
+XFJ    plan-1         C06   0.020
+XFJ    plan-1         C07   0.020
+XFJ    plan-1         C08   0.020
+XFJ    plan-1         H03   0.020
+XFJ    plan-1         H05   0.020
+XFJ    plan-1         N01   0.020
+XFJ    plan-1         N02   0.020
+XFJ    plan-2         C09   0.020
+XFJ    plan-2         C12   0.020
+XFJ    plan-2         C13   0.020
+XFJ    plan-2         C14   0.020
+XFJ    plan-2         C15   0.020
+XFJ    plan-2         C16   0.020
+XFJ    plan-2         C17   0.020
+XFJ    plan-2         H12   0.020
+XFJ    plan-2         H14   0.020
+XFJ    plan-2         H16   0.020
+XFJ    plan-2         N11   0.020
+XFJ    plan-3         C18   0.020
+XFJ    plan-3         C22   0.020
+XFJ    plan-3         C23   0.020
+XFJ    plan-3         C24   0.020
+XFJ    plan-3         C25   0.020
+XFJ    plan-3         C26   0.020
+XFJ    plan-3         C27   0.020
+XFJ    plan-3         H23   0.020
+XFJ    plan-3         H25   0.020
+XFJ    plan-3         N21   0.020
+XFJ    plan-3         N22   0.020
+XFJ    plan-4         C02   0.020
+XFJ    plan-4        HN02   0.020
+XFJ    plan-4        HN0A   0.020
+XFJ    plan-4         N02   0.020
+XFJ    plan-5         C22   0.020
+XFJ    plan-5        HN22   0.020
+XFJ    plan-5        HN2A   0.020
+XFJ    plan-5         N22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XFJ           SMILES              ACDLabs 12.01                                                                                               n1c(N)cc(cc1CCc2cc(cnc2)CCc3nc(N)cc(c3)C)C
+XFJ SMILES_CANONICAL               CACTVS 3.370                                                                                               Cc1cc(N)nc(CCc2cncc(CCc3cc(C)cc(N)n3)c2)c1
+XFJ           SMILES               CACTVS 3.370                                                                                               Cc1cc(N)nc(CCc2cncc(CCc3cc(C)cc(N)n3)c2)c1
+XFJ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                               Cc1cc(nc(c1)N)CCc2cc(cnc2)CCc3cc(cc(n3)N)C
+XFJ           SMILES "OpenEye OEToolkits" 1.7.0                                                                                               Cc1cc(nc(c1)N)CCc2cc(cnc2)CCc3cc(cc(n3)N)C
+XFJ            InChI                InChI  1.03 InChI=1S/C21H25N5/c1-14-7-18(25-20(22)9-14)5-3-16-11-17(13-24-12-16)4-6-19-8-15(2)10-21(23)26-19/h7-13H,3-6H2,1-2H3,(H2,22,25)(H2,23,26)
+XFJ         InChIKey                InChI  1.03                                                                                                              KZHFSPGMRFCRCE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XFJ acedrg               243         "dictionary generator"                  
+XFJ acedrg_database      11          "data source"                           
+XFJ rdkit                2017.03.2   "Chemoinformatics tool"
+XFJ refmac5              5.8.0238    "optimization tool"                     

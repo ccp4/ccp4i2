@@ -1,0 +1,387 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MIX     MIX      1,4-DIHYDROXY-5,8-BIS({2-[(2-HYDROXYETHYL)AMINO]ETHYL}AMINO)-9,10-ANTHRACENEDIONE     NON-POLYMER     60     32     .     
+#
+data_comp_MIX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MIX     OAC     O       OH1     0       66.224      10.898      -24.965     
+MIX     CAK     C       CH2     0       65.544      11.807      -24.117     
+MIX     CAM     C       CH2     0       64.609      11.090      -23.170     
+MIX     NAS     N       NT1     0       63.649      10.246      -23.889     
+MIX     CAO     C       CH2     0       63.973      8.820       -23.870     
+MIX     CAQ     C       CH2     0       63.076      7.988       -24.769     
+MIX     NAU     N       NH1     0       63.549      6.616       -24.818     
+MIX     CAY     C       CR6     0       62.911      5.549       -24.244     
+MIX     CAI     C       CR16    0       62.543      5.615       -22.886     
+MIX     CAJ     C       CR16    0       61.892      4.532       -22.270     
+MIX     CBE     C       CR66    0       62.624      4.373       -25.004     
+MIX     CBA     C       CR6     0       63.008      4.269       -26.437     
+MIX     OAA     O       O       0       63.165      5.270       -27.127     
+MIX     CBC     C       CR66    0       63.158      2.907       -27.018     
+MIX     CAW     C       CR6     0       63.948      2.680       -28.169     
+MIX     OAE     O       OH1     0       64.591      3.728       -28.785     
+MIX     CAG     C       CR16    0       64.066      1.384       -28.679     
+MIX     CAH     C       CR16    0       63.430      0.324       -28.075     
+MIX     CAX     C       CR6     0       62.645      0.511       -26.934     
+MIX     OAF     O       OH1     0       62.016      -0.561      -26.344     
+MIX     CBD     C       CR66    0       62.498      1.808       -26.392     
+MIX     CBB     C       CR6     0       61.677      2.054       -25.175     
+MIX     OAB     O       O       0       60.773      1.288       -24.859     
+MIX     CBF     C       CR66    0       61.965      3.277       -24.380     
+MIX     CAZ     C       CR6     0       61.600      3.365       -23.000     
+MIX     NAV     N       NH1     0       60.970      2.326       -22.375     
+MIX     CAR     C       CH2     0       59.701      2.446       -21.677     
+MIX     CAP     C       CH2     0       59.203      1.097       -21.187     
+MIX     NAT     N       NT1     0       58.099      1.211       -20.232     
+MIX     CAN     C       CH2     0       58.506      1.188       -18.824     
+MIX     CAL     C       CH2     0       58.696      -0.225      -18.325     
+MIX     OAD     O       OH1     0       57.505      -0.983      -18.454     
+MIX     HAC     H       H       0       66.779      11.326      -25.439     
+MIX     HAK1    H       H       0       65.029      12.436      -24.660     
+MIX     HAK2    H       H       0       66.195      12.318      -23.598     
+MIX     HAM1    H       H       0       64.121      11.752      -22.637     
+MIX     HAM2    H       H       0       65.136      10.541      -22.551     
+MIX     HAS     H       H       0       63.590      10.519      -24.745     
+MIX     HAO1    H       H       0       63.898      8.486       -22.952     
+MIX     HAO2    H       H       0       64.904      8.699       -24.153     
+MIX     HAQ1    H       H       0       63.078      8.367       -25.674     
+MIX     HAQ2    H       H       0       62.157      8.011       -24.427     
+MIX     HAU     H       H       0       64.312      6.465       -25.230     
+MIX     HAI     H       H       0       62.732      6.395       -22.386     
+MIX     HAJ     H       H       0       61.647      4.587       -21.358     
+MIX     HAE     H       H       0       65.393      3.627       -29.081     
+MIX     HAG     H       H       0       64.588      1.236       -29.445     
+MIX     HAH     H       H       0       63.524      -0.538      -28.435     
+MIX     HAF     H       H       0       61.161      -0.644      -26.403     
+MIX     HAV     H       H       0       61.369      1.541       -22.386     
+MIX     HAR1    H       H       0       59.035      2.838       -22.282     
+MIX     HAR2    H       H       0       59.809      3.050       -20.911     
+MIX     HAP1    H       H       0       59.947      0.614       -20.771     
+MIX     HAP2    H       H       0       58.904      0.572       -21.959     
+MIX     HAT     H       H       0       57.513      0.543       -20.377     
+MIX     HAN1    H       H       0       57.821      1.632       -18.282     
+MIX     HAN2    H       H       0       59.343      1.685       -18.716     
+MIX     HAL1    H       H       0       58.965      -0.200      -17.386     
+MIX     HAL2    H       H       0       59.411      -0.653      -18.834     
+MIX     HAD     H       H       0       57.567      -1.678      -17.977     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MIX         OAC         CAK      SINGLE       n     1.417  0.0159     1.417  0.0159
+MIX         CAK         CAM      SINGLE       n     1.509  0.0138     1.509  0.0138
+MIX         CAM         NAS      SINGLE       n     1.460  0.0138     1.460  0.0138
+MIX         NAS         CAO      SINGLE       n     1.462  0.0100     1.462  0.0100
+MIX         CAO         CAQ      SINGLE       n     1.517  0.0145     1.517  0.0145
+MIX         CAQ         NAU      SINGLE       n     1.451  0.0113     1.451  0.0113
+MIX         NAU         CAY      SINGLE       n     1.361  0.0179     1.361  0.0179
+MIX         CAY         CAI      DOUBLE       y     1.399  0.0186     1.399  0.0186
+MIX         CAY         CBE      SINGLE       y     1.422  0.0100     1.422  0.0100
+MIX         CAI         CAJ      SINGLE       y     1.400  0.0170     1.400  0.0170
+MIX         CAJ         CAZ      DOUBLE       y     1.399  0.0186     1.399  0.0186
+MIX         CBE         CBA      SINGLE       n     1.473  0.0158     1.473  0.0158
+MIX         CBE         CBF      DOUBLE       y     1.413  0.0110     1.413  0.0110
+MIX         CBA         OAA      DOUBLE       n     1.224  0.0125     1.224  0.0125
+MIX         CBA         CBC      SINGLE       n     1.476  0.0165     1.476  0.0165
+MIX         CBC         CAW      DOUBLE       y     1.408  0.0100     1.408  0.0100
+MIX         CBC         CBD      SINGLE       y     1.421  0.0100     1.421  0.0100
+MIX         CAW         OAE      SINGLE       n     1.374  0.0155     1.374  0.0155
+MIX         CAW         CAG      SINGLE       y     1.394  0.0100     1.394  0.0100
+MIX         CAG         CAH      DOUBLE       y     1.372  0.0100     1.372  0.0100
+MIX         CAH         CAX      SINGLE       y     1.394  0.0100     1.394  0.0100
+MIX         CAX         OAF      SINGLE       n     1.374  0.0155     1.374  0.0155
+MIX         CAX         CBD      DOUBLE       y     1.408  0.0100     1.408  0.0100
+MIX         CBD         CBB      SINGLE       n     1.476  0.0165     1.476  0.0165
+MIX         CBB         OAB      DOUBLE       n     1.224  0.0125     1.224  0.0125
+MIX         CBB         CBF      SINGLE       n     1.473  0.0158     1.473  0.0158
+MIX         CBF         CAZ      SINGLE       y     1.422  0.0100     1.422  0.0100
+MIX         CAZ         NAV      SINGLE       n     1.361  0.0179     1.361  0.0179
+MIX         NAV         CAR      SINGLE       n     1.451  0.0113     1.451  0.0113
+MIX         CAR         CAP      SINGLE       n     1.517  0.0145     1.517  0.0145
+MIX         CAP         NAT      SINGLE       n     1.462  0.0100     1.462  0.0100
+MIX         NAT         CAN      SINGLE       n     1.460  0.0138     1.460  0.0138
+MIX         CAN         CAL      SINGLE       n     1.509  0.0138     1.509  0.0138
+MIX         CAL         OAD      SINGLE       n     1.417  0.0159     1.417  0.0159
+MIX         OAC         HAC      SINGLE       n     0.970  0.0120     0.846  0.0200
+MIX         CAK        HAK1      SINGLE       n     1.089  0.0100     0.977  0.0146
+MIX         CAK        HAK2      SINGLE       n     1.089  0.0100     0.977  0.0146
+MIX         CAM        HAM1      SINGLE       n     1.089  0.0100     0.980  0.0143
+MIX         CAM        HAM2      SINGLE       n     1.089  0.0100     0.980  0.0143
+MIX         NAS         HAS      SINGLE       n     1.036  0.0160     0.899  0.0200
+MIX         CAO        HAO1      SINGLE       n     1.089  0.0100     0.980  0.0143
+MIX         CAO        HAO2      SINGLE       n     1.089  0.0100     0.980  0.0143
+MIX         CAQ        HAQ1      SINGLE       n     1.089  0.0100     0.981  0.0128
+MIX         CAQ        HAQ2      SINGLE       n     1.089  0.0100     0.981  0.0128
+MIX         NAU         HAU      SINGLE       n     1.016  0.0100     0.880  0.0200
+MIX         CAI         HAI      SINGLE       n     1.082  0.0130     0.946  0.0100
+MIX         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.946  0.0100
+MIX         OAE         HAE      SINGLE       n     0.966  0.0059     0.861  0.0200
+MIX         CAG         HAG      SINGLE       n     1.082  0.0130     0.939  0.0100
+MIX         CAH         HAH      SINGLE       n     1.082  0.0130     0.939  0.0100
+MIX         OAF         HAF      SINGLE       n     0.966  0.0059     0.861  0.0200
+MIX         NAV         HAV      SINGLE       n     1.016  0.0100     0.880  0.0200
+MIX         CAR        HAR1      SINGLE       n     1.089  0.0100     0.981  0.0128
+MIX         CAR        HAR2      SINGLE       n     1.089  0.0100     0.981  0.0128
+MIX         CAP        HAP1      SINGLE       n     1.089  0.0100     0.980  0.0143
+MIX         CAP        HAP2      SINGLE       n     1.089  0.0100     0.980  0.0143
+MIX         NAT         HAT      SINGLE       n     1.036  0.0160     0.899  0.0200
+MIX         CAN        HAN1      SINGLE       n     1.089  0.0100     0.980  0.0143
+MIX         CAN        HAN2      SINGLE       n     1.089  0.0100     0.980  0.0143
+MIX         CAL        HAL1      SINGLE       n     1.089  0.0100     0.977  0.0146
+MIX         CAL        HAL2      SINGLE       n     1.089  0.0100     0.977  0.0146
+MIX         OAD         HAD      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MIX         CAK         OAC         HAC     109.054    3.00
+MIX         OAC         CAK         CAM     111.317    1.83
+MIX         OAC         CAK        HAK1     109.500    1.50
+MIX         OAC         CAK        HAK2     109.500    1.50
+MIX         CAM         CAK        HAK1     109.120    1.50
+MIX         CAM         CAK        HAK2     109.120    1.50
+MIX        HAK1         CAK        HAK2     108.121    1.50
+MIX         CAK         CAM         NAS     111.027    1.50
+MIX         CAK         CAM        HAM1     109.460    1.50
+MIX         CAK         CAM        HAM2     109.460    1.50
+MIX         NAS         CAM        HAM1     109.542    1.51
+MIX         NAS         CAM        HAM2     109.542    1.51
+MIX        HAM1         CAM        HAM2     108.238    1.99
+MIX         CAM         NAS         CAO     113.474    1.55
+MIX         CAM         NAS         HAS     107.057    3.00
+MIX         CAO         NAS         HAS     108.452    3.00
+MIX         NAS         CAO         CAQ     113.402    1.73
+MIX         NAS         CAO        HAO1     109.410    1.50
+MIX         NAS         CAO        HAO2     109.410    1.50
+MIX         CAQ         CAO        HAO1     109.208    1.50
+MIX         CAQ         CAO        HAO2     109.208    1.50
+MIX        HAO1         CAO        HAO2     107.909    1.50
+MIX         CAO         CAQ         NAU     110.288    1.90
+MIX         CAO         CAQ        HAQ1     109.233    1.50
+MIX         CAO         CAQ        HAQ2     109.233    1.50
+MIX         NAU         CAQ        HAQ1     109.157    1.50
+MIX         NAU         CAQ        HAQ2     109.157    1.50
+MIX        HAQ1         CAQ        HAQ2     108.000    1.50
+MIX         CAQ         NAU         CAY     124.114    1.91
+MIX         CAQ         NAU         HAU     118.075    2.37
+MIX         CAY         NAU         HAU     117.815    2.27
+MIX         NAU         CAY         CAI     120.184    2.08
+MIX         NAU         CAY         CBE     119.710    1.50
+MIX         CAI         CAY         CBE     120.106    1.91
+MIX         CAY         CAI         CAJ     120.588    1.50
+MIX         CAY         CAI         HAI     119.626    1.50
+MIX         CAJ         CAI         HAI     119.786    1.50
+MIX         CAI         CAJ         CAZ     120.588    1.50
+MIX         CAI         CAJ         HAJ     119.786    1.50
+MIX         CAZ         CAJ         HAJ     119.626    1.50
+MIX         CAY         CBE         CBA     119.906    1.50
+MIX         CAY         CBE         CBF     119.306    1.50
+MIX         CBA         CBE         CBF     120.788    1.50
+MIX         CBE         CBA         OAA     120.736    1.50
+MIX         CBE         CBA         CBC     118.856    1.50
+MIX         OAA         CBA         CBC     120.408    1.50
+MIX         CBA         CBC         CAW     120.027    1.50
+MIX         CBA         CBC         CBD     120.357    1.50
+MIX         CAW         CBC         CBD     119.616    1.50
+MIX         CBC         CAW         OAE     118.705    2.42
+MIX         CBC         CAW         CAG     119.711    1.50
+MIX         OAE         CAW         CAG     121.585    3.00
+MIX         CAW         OAE         HAE     120.000    3.00
+MIX         CAW         CAG         CAH     120.673    1.50
+MIX         CAW         CAG         HAG     119.621    1.50
+MIX         CAH         CAG         HAG     119.706    1.50
+MIX         CAG         CAH         CAX     120.673    1.50
+MIX         CAG         CAH         HAH     119.706    1.50
+MIX         CAX         CAH         HAH     119.621    1.50
+MIX         CAH         CAX         OAF     121.585    3.00
+MIX         CAH         CAX         CBD     119.711    1.50
+MIX         OAF         CAX         CBD     118.705    2.42
+MIX         CAX         OAF         HAF     120.000    3.00
+MIX         CBC         CBD         CAX     119.616    1.50
+MIX         CBC         CBD         CBB     120.357    1.50
+MIX         CAX         CBD         CBB     120.027    1.50
+MIX         CBD         CBB         OAB     120.408    1.50
+MIX         CBD         CBB         CBF     118.856    1.50
+MIX         OAB         CBB         CBF     120.736    1.50
+MIX         CBE         CBF         CBB     120.788    1.50
+MIX         CBE         CBF         CAZ     119.306    1.50
+MIX         CBB         CBF         CAZ     119.906    1.50
+MIX         CAJ         CAZ         CBF     120.106    1.91
+MIX         CAJ         CAZ         NAV     120.184    2.08
+MIX         CBF         CAZ         NAV     119.710    1.50
+MIX         CAZ         NAV         CAR     124.114    1.91
+MIX         CAZ         NAV         HAV     117.815    2.27
+MIX         CAR         NAV         HAV     118.075    2.37
+MIX         NAV         CAR         CAP     110.288    1.90
+MIX         NAV         CAR        HAR1     109.157    1.50
+MIX         NAV         CAR        HAR2     109.157    1.50
+MIX         CAP         CAR        HAR1     109.233    1.50
+MIX         CAP         CAR        HAR2     109.233    1.50
+MIX        HAR1         CAR        HAR2     108.000    1.50
+MIX         CAR         CAP         NAT     113.402    1.73
+MIX         CAR         CAP        HAP1     109.208    1.50
+MIX         CAR         CAP        HAP2     109.208    1.50
+MIX         NAT         CAP        HAP1     109.410    1.50
+MIX         NAT         CAP        HAP2     109.410    1.50
+MIX        HAP1         CAP        HAP2     107.909    1.50
+MIX         CAP         NAT         CAN     113.474    1.55
+MIX         CAP         NAT         HAT     108.452    3.00
+MIX         CAN         NAT         HAT     107.057    3.00
+MIX         NAT         CAN         CAL     111.027    1.50
+MIX         NAT         CAN        HAN1     109.542    1.51
+MIX         NAT         CAN        HAN2     109.542    1.51
+MIX         CAL         CAN        HAN1     109.460    1.50
+MIX         CAL         CAN        HAN2     109.460    1.50
+MIX        HAN1         CAN        HAN2     108.238    1.99
+MIX         CAN         CAL         OAD     111.317    1.83
+MIX         CAN         CAL        HAL1     109.120    1.50
+MIX         CAN         CAL        HAL2     109.120    1.50
+MIX         OAD         CAL        HAL1     109.500    1.50
+MIX         OAD         CAL        HAL2     109.500    1.50
+MIX        HAL1         CAL        HAL2     108.121    1.50
+MIX         CAL         OAD         HAD     109.054    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MIX             sp3_sp3_1         CAM         CAK         OAC         HAC     180.000    10.0     3
+MIX             sp2_sp2_4         OAA         CBA         CBE         CAY       0.000     5.0     2
+MIX              const_38         CAY         CBE         CBF         CBB     180.000    10.0     2
+MIX             sp2_sp2_8         OAA         CBA         CBC         CAW       0.000     5.0     2
+MIX       const_sp2_sp2_4         OAE         CAW         CBC         CBA       0.000     5.0     2
+MIX              const_42         CBA         CBC         CBD         CAX     180.000    10.0     2
+MIX            sp2_sp2_21         CBC         CAW         OAE         HAE     180.000     5.0     2
+MIX       const_sp2_sp2_6         CAH         CAG         CAW         OAE     180.000     5.0     2
+MIX       const_sp2_sp2_9         CAW         CAG         CAH         CAX       0.000     5.0     2
+MIX              const_14         CAG         CAH         CAX         OAF     180.000    10.0     2
+MIX            sp2_sp2_23         CAH         CAX         OAF         HAF     180.000     5.0     2
+MIX              const_19         OAF         CAX         CBD         CBC     180.000    10.0     2
+MIX             sp3_sp3_4         OAC         CAK         CAM         NAS     180.000    10.0     3
+MIX            sp2_sp2_11         OAB         CBB         CBD         CBC     180.000     5.0     2
+MIX            sp2_sp2_15         OAB         CBB         CBF         CBE     180.000     5.0     2
+MIX              const_35         NAV         CAZ         CBF         CBE     180.000    10.0     2
+MIX            sp2_sp2_25         CAJ         CAZ         NAV         CAR     180.000     5.0     2
+MIX             sp2_sp3_8         CAZ         NAV         CAR         CAP     120.000    10.0     6
+MIX            sp3_sp3_34         NAT         CAP         CAR         NAV     180.000    10.0     3
+MIX            sp3_sp3_43         CAR         CAP         NAT         CAN     180.000    10.0     3
+MIX            sp3_sp3_50         CAL         CAN         NAT         CAP     -60.000    10.0     3
+MIX            sp3_sp3_55         OAD         CAL         CAN         NAT     180.000    10.0     3
+MIX            sp3_sp3_14         CAK         CAM         NAS         CAO     -60.000    10.0     3
+MIX            sp3_sp3_64         CAN         CAL         OAD         HAD     180.000    10.0     3
+MIX            sp3_sp3_19         CAQ         CAO         NAS         CAM     180.000    10.0     3
+MIX            sp3_sp3_25         NAS         CAO         CAQ         NAU     180.000    10.0     3
+MIX             sp2_sp3_2         CAY         NAU         CAQ         CAO     120.000    10.0     6
+MIX            sp2_sp2_17         CAI         CAY         NAU         CAQ     180.000     5.0     2
+MIX              const_48         NAU         CAY         CBE         CBA       0.000    10.0     2
+MIX              const_22         CAJ         CAI         CAY         NAU     180.000    10.0     2
+MIX              const_25         CAY         CAI         CAJ         CAZ       0.000    10.0     2
+MIX              const_30         CAI         CAJ         CAZ         NAV     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MIX    chir_1    NAS    CAM    CAO    HAS    both
+MIX    chir_2    NAT    CAN    CAP    HAT    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MIX    plan-1         CAI   0.020
+MIX    plan-1         CAJ   0.020
+MIX    plan-1         CAY   0.020
+MIX    plan-1         CAZ   0.020
+MIX    plan-1         CBA   0.020
+MIX    plan-1         CBB   0.020
+MIX    plan-1         CBE   0.020
+MIX    plan-1         CBF   0.020
+MIX    plan-1         HAI   0.020
+MIX    plan-1         HAJ   0.020
+MIX    plan-1         NAU   0.020
+MIX    plan-1         NAV   0.020
+MIX    plan-2         CAG   0.020
+MIX    plan-2         CAH   0.020
+MIX    plan-2         CAW   0.020
+MIX    plan-2         CAX   0.020
+MIX    plan-2         CBA   0.020
+MIX    plan-2         CBB   0.020
+MIX    plan-2         CBC   0.020
+MIX    plan-2         CBD   0.020
+MIX    plan-2         HAG   0.020
+MIX    plan-2         HAH   0.020
+MIX    plan-2         OAE   0.020
+MIX    plan-2         OAF   0.020
+MIX    plan-3         CAQ   0.020
+MIX    plan-3         CAY   0.020
+MIX    plan-3         HAU   0.020
+MIX    plan-3         NAU   0.020
+MIX    plan-4         CBA   0.020
+MIX    plan-4         CBC   0.020
+MIX    plan-4         CBE   0.020
+MIX    plan-4         OAA   0.020
+MIX    plan-5         CBB   0.020
+MIX    plan-5         CBD   0.020
+MIX    plan-5         CBF   0.020
+MIX    plan-5         OAB   0.020
+MIX    plan-6         CAR   0.020
+MIX    plan-6         CAZ   0.020
+MIX    plan-6         HAV   0.020
+MIX    plan-6         NAV   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MIX           SMILES              ACDLabs 10.04                                                                                        O=C2c1c(c(NCCNCCO)ccc1NCCNCCO)C(=O)c3c2c(O)ccc3O
+MIX SMILES_CANONICAL               CACTVS 3.341                                                                                      OCCNCCNc1ccc(NCCNCCO)c2C(=O)c3c(O)ccc(O)c3C(=O)c12
+MIX           SMILES               CACTVS 3.341                                                                                      OCCNCCNc1ccc(NCCNCCO)c2C(=O)c3c(O)ccc(O)c3C(=O)c12
+MIX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                      c1cc(c2c(c1NCCNCCO)C(=O)c3c(ccc(c3C2=O)O)O)NCCNCCO
+MIX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                      c1cc(c2c(c1NCCNCCO)C(=O)c3c(ccc(c3C2=O)O)O)NCCNCCO
+MIX            InChI                InChI  1.03 InChI=1S/C22H28N4O6/c27-11-9-23-5-7-25-13-1-2-14(26-8-6-24-10-12-28)18-17(13)21(31)19-15(29)3-4-16(30)20(19)22(18)32/h1-4,23-30H,5-12H2
+MIX         InChIKey                InChI  1.03                                                                                                             KKZJGLLVHKMTCM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MIX acedrg               243         "dictionary generator"                  
+MIX acedrg_database      11          "data source"                           
+MIX rdkit                2017.03.2   "Chemoinformatics tool"
+MIX refmac5              5.8.0238    "optimization tool"                     

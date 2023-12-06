@@ -1,0 +1,363 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DBN     DBN      6-(4,5-DIHYDRO-1H-IMIDAZOL-2-YL)-2-{5-[4-(4,5-DIHYDRO-1H-IMIDAZOL-2-YL)PHENYL]THIEN-2-YL}-1H-BENZIMIDAZOLE     NON-POLYMER     50     30     .     
+#
+data_comp_DBN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DBN     C27     C       CH2     0       9.750       17.978      14.890      
+DBN     C28     C       CH2     0       8.273       17.756      15.145      
+DBN     C29     C       CH2     0       13.716      27.827      -0.456      
+DBN     C30     C       CH2     0       14.488      26.524      -0.428      
+DBN     C1      C       CR5     0       9.544       24.552      5.441       
+DBN     S2      S       S2      0       10.049      23.602      6.728       
+DBN     C3      C       CR5     0       8.545       23.480      7.440       
+DBN     C4      C       CR15    0       7.616       24.168      6.695       
+DBN     C5      C       CR15    0       8.183       24.781      5.551       
+DBN     C6      C       CR5     0       8.314       22.725      8.662       
+DBN     N7      N       NRD5    0       7.176       22.796      9.335       
+DBN     C8      C       CR56    0       7.296       21.938      10.416      
+DBN     C9      C       CR56    0       8.551       21.331      10.372      
+DBN     N10     N       NR5     0       9.172       21.840      9.250       
+DBN     C11     C       CR16    0       6.404       21.634      11.446      
+DBN     C12     C       CR16    0       6.789       20.729      12.412      
+DBN     C13     C       CR6     0       8.046       20.114      12.376      
+DBN     C14     C       CR16    0       8.938       20.417      11.344      
+DBN     C15     C       CR6     0       10.442      25.028      4.379       
+DBN     C16     C       CR16    0       11.636      24.368      4.072       
+DBN     C17     C       CR16    0       12.458      24.823      3.056       
+DBN     C18     C       CR6     0       12.111      25.948      2.303       
+DBN     C19     C       CR16    0       10.911      26.601      2.600       
+DBN     C20     C       CR16    0       10.093      26.146      3.617       
+DBN     C21     C       CR5     0       8.420       19.147      13.425      
+DBN     N22     N       NR5     0       9.685       19.021      13.892      
+DBN     N23     N       NRD5    0       7.582       18.340      13.986      
+DBN     C24     C       CR5     0       12.987      26.432      1.213       
+DBN     N25     N       NR5     0       13.010      27.722      0.797       
+DBN     N26     N       NRD5    0       13.795      25.670      0.552       
+DBN     H271    H       H       0       10.218      18.280      15.704      
+DBN     H272    H       H       0       10.185      17.165      14.542      
+DBN     H281    H       H       0       8.068       16.795      15.218      
+DBN     H282    H       H       0       7.987       18.203      15.975      
+DBN     H291    H       H       0       14.318      28.608      -0.474      
+DBN     H292    H       H       0       13.098      27.868      -1.223      
+DBN     H301    H       H       0       14.490      26.096      -1.315      
+DBN     H302    H       H       0       15.421      26.674      -0.150      
+DBN     H4      H       H       0       6.703       24.230      6.916       
+DBN     H5      H       H       0       7.682       25.292      4.939       
+DBN     H10     H       H       0       9.978       21.634      8.971       
+DBN     H11     H       H       0       5.558       22.041      11.481      
+DBN     H12     H       H       0       6.187       20.524      13.107      
+DBN     H14     H       H       0       9.779       20.006      11.321      
+DBN     H16     H       H       0       11.892      23.608      4.563       
+DBN     H17     H       H       0       13.262      24.366      2.872       
+DBN     H19     H       H       0       10.657      27.362      2.105       
+DBN     H20     H       H       0       9.292       26.604      3.799       
+DBN     H22     H       H       0       10.360      19.501      13.630      
+DBN     H25     H       H       0       12.652      28.389      1.224       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DBN         C27         C28      SINGLE       n     1.517  0.0200     1.517  0.0200
+DBN         C27         N22      SINGLE       n     1.444  0.0200     1.444  0.0200
+DBN         C28         N23      SINGLE       n     1.471  0.0200     1.471  0.0200
+DBN         C29         C30      SINGLE       n     1.517  0.0200     1.517  0.0200
+DBN         C29         N25      SINGLE       n     1.444  0.0200     1.444  0.0200
+DBN         C30         N26      SINGLE       n     1.471  0.0200     1.471  0.0200
+DBN          C1          S2      SINGLE       y     1.695  0.0200     1.695  0.0200
+DBN          C1          C5      DOUBLE       y     1.363  0.0200     1.363  0.0200
+DBN          C1         C15      SINGLE       n     1.464  0.0100     1.464  0.0100
+DBN          S2          C3      SINGLE       y     1.695  0.0200     1.695  0.0200
+DBN          C3          C4      DOUBLE       y     1.363  0.0200     1.363  0.0200
+DBN          C3          C6      SINGLE       n     1.453  0.0100     1.453  0.0100
+DBN          C4          C5      SINGLE       y     1.377  0.0200     1.377  0.0200
+DBN          C6          N7      DOUBLE       y     1.322  0.0100     1.322  0.0100
+DBN          C6         N10      SINGLE       y     1.356  0.0140     1.356  0.0140
+DBN          N7          C8      SINGLE       y     1.388  0.0100     1.388  0.0100
+DBN          C8          C9      DOUBLE       y     1.397  0.0100     1.397  0.0100
+DBN          C8         C11      SINGLE       y     1.393  0.0100     1.393  0.0100
+DBN          C9         N10      SINGLE       y     1.379  0.0100     1.379  0.0100
+DBN          C9         C14      SINGLE       y     1.387  0.0100     1.387  0.0100
+DBN         C11         C12      DOUBLE       y     1.373  0.0102     1.373  0.0102
+DBN         C12         C13      SINGLE       y     1.393  0.0101     1.393  0.0101
+DBN         C13         C14      DOUBLE       y     1.392  0.0100     1.392  0.0100
+DBN         C13         C21      SINGLE       n     1.473  0.0100     1.473  0.0100
+DBN         C15         C16      DOUBLE       y     1.392  0.0100     1.392  0.0100
+DBN         C15         C20      SINGLE       y     1.392  0.0100     1.392  0.0100
+DBN         C16         C17      SINGLE       y     1.379  0.0100     1.379  0.0100
+DBN         C17         C18      DOUBLE       y     1.394  0.0100     1.394  0.0100
+DBN         C18         C19      SINGLE       y     1.394  0.0100     1.394  0.0100
+DBN         C18         C24      SINGLE       n     1.476  0.0100     1.476  0.0100
+DBN         C19         C20      DOUBLE       y     1.379  0.0100     1.379  0.0100
+DBN         C21         N22      SINGLE       n     1.351  0.0200     1.351  0.0200
+DBN         C21         N23      DOUBLE       n     1.289  0.0150     1.289  0.0150
+DBN         C24         N25      SINGLE       n     1.351  0.0200     1.351  0.0200
+DBN         C24         N26      DOUBLE       n     1.289  0.0150     1.289  0.0150
+DBN         C27        H271      SINGLE       n     1.089  0.0100     0.986  0.0200
+DBN         C27        H272      SINGLE       n     1.089  0.0100     0.986  0.0200
+DBN         C28        H281      SINGLE       n     1.089  0.0100     0.985  0.0200
+DBN         C28        H282      SINGLE       n     1.089  0.0100     0.985  0.0200
+DBN         C29        H291      SINGLE       n     1.089  0.0100     0.986  0.0200
+DBN         C29        H292      SINGLE       n     1.089  0.0100     0.986  0.0200
+DBN         C30        H301      SINGLE       n     1.089  0.0100     0.985  0.0200
+DBN         C30        H302      SINGLE       n     1.089  0.0100     0.985  0.0200
+DBN          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0154
+DBN          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0154
+DBN         N10         H10      SINGLE       n     1.016  0.0100     0.878  0.0200
+DBN         C11         H11      SINGLE       n     1.082  0.0130     0.940  0.0191
+DBN         C12         H12      SINGLE       n     1.082  0.0130     0.942  0.0190
+DBN         C14         H14      SINGLE       n     1.082  0.0130     0.937  0.0100
+DBN         C16         H16      SINGLE       n     1.082  0.0130     0.941  0.0147
+DBN         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0127
+DBN         C19         H19      SINGLE       n     1.082  0.0130     0.943  0.0127
+DBN         C20         H20      SINGLE       n     1.082  0.0130     0.941  0.0147
+DBN         N22         H22      SINGLE       n     1.016  0.0100     0.869  0.0179
+DBN         N25         H25      SINGLE       n     1.016  0.0100     0.869  0.0179
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DBN         C28         C27         N22     100.689    2.44
+DBN         C28         C27        H271     111.299    1.50
+DBN         C28         C27        H272     111.299    1.50
+DBN         N22         C27        H271     111.447    1.50
+DBN         N22         C27        H272     111.447    1.50
+DBN        H271         C27        H272     109.191    1.50
+DBN         C27         C28         N23     106.102    1.50
+DBN         C27         C28        H281     110.961    1.50
+DBN         C27         C28        H282     110.961    1.50
+DBN         N23         C28        H281     110.438    2.25
+DBN         N23         C28        H282     110.438    2.25
+DBN        H281         C28        H282     108.683    2.00
+DBN         C30         C29         N25     100.689    2.44
+DBN         C30         C29        H291     111.299    1.50
+DBN         C30         C29        H292     111.299    1.50
+DBN         N25         C29        H291     111.447    1.50
+DBN         N25         C29        H292     111.447    1.50
+DBN        H291         C29        H292     109.191    1.50
+DBN         C29         C30         N26     106.102    1.50
+DBN         C29         C30        H301     110.961    1.50
+DBN         C29         C30        H302     110.961    1.50
+DBN         N26         C30        H301     110.438    2.25
+DBN         N26         C30        H302     110.438    2.25
+DBN        H301         C30        H302     108.683    2.00
+DBN          S2          C1          C5     108.331    3.00
+DBN          S2          C1         C15     120.577    3.00
+DBN          C5          C1         C15     131.092    2.36
+DBN          C1          S2          C3     108.331    3.00
+DBN          S2          C3          C4     108.331    3.00
+DBN          S2          C3          C6     119.764    3.00
+DBN          C4          C3          C6     131.906    2.30
+DBN          C3          C4          C5     107.504    1.50
+DBN          C3          C4          H4     126.632    1.50
+DBN          C5          C4          H4     125.864    1.50
+DBN          C1          C5          C4     107.504    1.50
+DBN          C1          C5          H5     126.632    1.50
+DBN          C4          C5          H5     125.864    1.50
+DBN          C3          C6          N7     125.014    2.71
+DBN          C3          C6         N10     125.117    1.50
+DBN          N7          C6         N10     109.869    1.50
+DBN          C6          N7          C8     106.420    1.50
+DBN          N7          C8          C9     109.540    1.50
+DBN          N7          C8         C11     130.231    1.50
+DBN          C9          C8         C11     120.229    1.50
+DBN          C8          C9         N10     106.171    1.50
+DBN          C8          C9         C14     121.993    1.50
+DBN         N10          C9         C14     131.835    1.50
+DBN          C6         N10          C9     108.000    1.50
+DBN          C6         N10         H10     125.895    2.28
+DBN          C9         N10         H10     126.105    1.93
+DBN          C8         C11         C12     118.234    1.50
+DBN          C8         C11         H11     120.895    1.50
+DBN         C12         C11         H11     120.870    1.50
+DBN         C11         C12         C13     120.463    1.50
+DBN         C11         C12         H12     119.384    1.50
+DBN         C13         C12         H12     120.153    1.50
+DBN         C12         C13         C14     119.623    1.64
+DBN         C12         C13         C21     120.140    1.93
+DBN         C14         C13         C21     120.236    1.63
+DBN          C9         C14         C13     119.457    1.58
+DBN          C9         C14         H14     121.120    1.50
+DBN         C13         C14         H14     119.422    1.50
+DBN          C1         C15         C16     120.629    1.61
+DBN          C1         C15         C20     120.629    1.61
+DBN         C16         C15         C20     118.742    1.50
+DBN         C15         C16         C17     120.595    1.50
+DBN         C15         C16         H16     119.673    1.50
+DBN         C17         C16         H16     119.738    1.50
+DBN         C16         C17         C18     120.544    1.50
+DBN         C16         C17         H17     119.676    1.50
+DBN         C18         C17         H17     119.780    1.50
+DBN         C17         C18         C19     118.968    1.50
+DBN         C17         C18         C24     120.516    1.50
+DBN         C19         C18         C24     120.516    1.50
+DBN         C18         C19         C20     120.544    1.50
+DBN         C18         C19         H19     119.780    1.50
+DBN         C20         C19         H19     119.676    1.50
+DBN         C15         C20         C19     120.595    1.50
+DBN         C15         C20         H20     119.673    1.50
+DBN         C19         C20         H20     119.738    1.50
+DBN         C13         C21         N22     122.284    1.56
+DBN         C13         C21         N23     123.337    1.50
+DBN         N22         C21         N23     114.379    2.38
+DBN         C27         N22         C21     110.937    3.00
+DBN         C27         N22         H22     124.620    1.50
+DBN         C21         N22         H22     124.443    1.50
+DBN         C28         N23         C21     106.956    1.50
+DBN         C18         C24         N25     122.334    1.56
+DBN         C18         C24         N26     123.237    1.50
+DBN         N25         C24         N26     114.429    2.38
+DBN         C29         N25         C24     110.937    3.00
+DBN         C29         N25         H25     124.620    1.50
+DBN         C24         N25         H25     124.443    1.50
+DBN         C30         N26         C24     106.956    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DBN             sp3_sp3_1         N22         C27         C28         N23      60.000    10.0     3
+DBN             sp2_sp3_7         C21         N22         C27         C28       0.000    10.0     6
+DBN              const_55          C9          C8          N7          C6       0.000    10.0     2
+DBN       const_sp2_sp2_1          N7          C8          C9         N10       0.000     5.0     2
+DBN              const_70         C12         C11          C8          N7     180.000    10.0     2
+DBN              const_57          C8          C9         N10          C6       0.000    10.0     2
+DBN       const_sp2_sp2_5         C13         C14          C9          C8       0.000     5.0     2
+DBN              const_17          C8         C11         C12         C13       0.000    10.0     2
+DBN              const_13         C11         C12         C13         C14       0.000    10.0     2
+DBN       const_sp2_sp2_9         C12         C13         C14          C9       0.000     5.0     2
+DBN            sp2_sp2_21         C12         C13         C21         N22     180.000     5.0     2
+DBN              const_23          C1         C15         C16         C17     180.000    10.0     2
+DBN              const_75          C1         C15         C20         C19     180.000    10.0     2
+DBN              const_25         C15         C16         C17         C18       0.000    10.0     2
+DBN             sp2_sp3_1         C21         N23         C28         C27       0.000    10.0     6
+DBN              const_29         C16         C17         C18         C19       0.000    10.0     2
+DBN              const_33         C17         C18         C19         C20       0.000    10.0     2
+DBN            sp2_sp2_25         C17         C18         C24         N25     180.000     5.0     2
+DBN              const_37         C18         C19         C20         C15       0.000    10.0     2
+DBN             sp2_sp2_5         C13         C21         N22         C27     180.000     5.0     2
+DBN             sp2_sp2_2         C13         C21         N23         C28     180.000     5.0     2
+DBN            sp2_sp2_11         C18         C24         N25         C29     180.000     5.0     2
+DBN             sp2_sp2_8         C18         C24         N26         C30     180.000     5.0     2
+DBN            sp2_sp3_13         C24         N25         C29         C30       0.000    10.0     6
+DBN            sp3_sp3_10         N25         C29         C30         N26      60.000    10.0     3
+DBN             sp2_sp3_4         C24         N26         C30         C29       0.000    10.0     6
+DBN            sp2_sp2_15          S2          C1         C15         C16       0.000     5.0     2
+DBN              const_41          C5          C1          S2          C3       0.000    10.0     2
+DBN              const_61          S2          C1          C5          C4       0.000    10.0     2
+DBN              const_43          C4          C3          S2          C1       0.000    10.0     2
+DBN              const_45          S2          C3          C4          C5       0.000    10.0     2
+DBN            sp2_sp2_20          S2          C3          C6          N7     180.000     5.0     2
+DBN              const_49          C3          C4          C5          C1       0.000    10.0     2
+DBN              const_54          C3          C6          N7          C8     180.000    10.0     2
+DBN              const_67          C3          C6         N10          C9     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DBN    plan-1         C11   0.020
+DBN    plan-1         C12   0.020
+DBN    plan-1         C13   0.020
+DBN    plan-1         C14   0.020
+DBN    plan-1         C21   0.020
+DBN    plan-1          C3   0.020
+DBN    plan-1          C6   0.020
+DBN    plan-1          C8   0.020
+DBN    plan-1          C9   0.020
+DBN    plan-1         H10   0.020
+DBN    plan-1         H11   0.020
+DBN    plan-1         H12   0.020
+DBN    plan-1         H14   0.020
+DBN    plan-1         N10   0.020
+DBN    plan-1          N7   0.020
+DBN    plan-2          C1   0.020
+DBN    plan-2         C15   0.020
+DBN    plan-2         C16   0.020
+DBN    plan-2         C17   0.020
+DBN    plan-2         C18   0.020
+DBN    plan-2         C19   0.020
+DBN    plan-2         C20   0.020
+DBN    plan-2         C24   0.020
+DBN    plan-2         H16   0.020
+DBN    plan-2         H17   0.020
+DBN    plan-2         H19   0.020
+DBN    plan-2         H20   0.020
+DBN    plan-3          C1   0.020
+DBN    plan-3         C15   0.020
+DBN    plan-3          C3   0.020
+DBN    plan-3          C4   0.020
+DBN    plan-3          C5   0.020
+DBN    plan-3          C6   0.020
+DBN    plan-3          H4   0.020
+DBN    plan-3          H5   0.020
+DBN    plan-3          S2   0.020
+DBN    plan-4         C13   0.020
+DBN    plan-4         C21   0.020
+DBN    plan-4         N22   0.020
+DBN    plan-4         N23   0.020
+DBN    plan-5         C21   0.020
+DBN    plan-5         C27   0.020
+DBN    plan-5         H22   0.020
+DBN    plan-5         N22   0.020
+DBN    plan-6         C18   0.020
+DBN    plan-6         C24   0.020
+DBN    plan-6         N25   0.020
+DBN    plan-6         N26   0.020
+DBN    plan-7         C24   0.020
+DBN    plan-7         C29   0.020
+DBN    plan-7         H25   0.020
+DBN    plan-7         N25   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DBN           SMILES              ACDLabs 10.04                                                                                                              n3c2c(cc(C1=NCCN1)cc2)nc3c4sc(cc4)c6ccc(C5=NCCN5)cc6
+DBN SMILES_CANONICAL               CACTVS 3.341                                                                                                           C1CN=C(N1)c2ccc(cc2)c3sc(cc3)c4[nH]c5cc(ccc5n4)C6=NCCN6
+DBN           SMILES               CACTVS 3.341                                                                                                           C1CN=C(N1)c2ccc(cc2)c3sc(cc3)c4[nH]c5cc(ccc5n4)C6=NCCN6
+DBN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                             c1cc(ccc1c2ccc(s2)c3[nH]c4cc(ccc4n3)C5=NCCN5)C6=NCCN6
+DBN           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                             c1cc(ccc1c2ccc(s2)c3[nH]c4cc(ccc4n3)C5=NCCN5)C6=NCCN6
+DBN            InChI                InChI  1.03 InChI=1S/C23H20N6S/c1-3-15(21-24-9-10-25-21)4-2-14(1)19-7-8-20(30-19)23-28-17-6-5-16(13-18(17)29-23)22-26-11-12-27-22/h1-8,13H,9-12H2,(H,24,25)(H,26,27)(H,28,29)
+DBN         InChIKey                InChI  1.03                                                                                                                                       KPAUDMFCLSTUBG-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DBN acedrg               243         "dictionary generator"                  
+DBN acedrg_database      11          "data source"                           
+DBN rdkit                2017.03.2   "Chemoinformatics tool"
+DBN refmac5              5.8.0238    "optimization tool"                     

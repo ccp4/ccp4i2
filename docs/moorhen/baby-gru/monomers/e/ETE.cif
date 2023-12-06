@@ -1,0 +1,211 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ETE     ETE      2-{2-[2-2-(METHOXY-ETHOXY)-ETHOXY]-ETHOXY}-ETHANOL     NON-POLYMER     34     14     .     
+#
+data_comp_ETE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ETE     OH2     O       OH1     0       18.618      7.458       42.412      
+ETE     C12     C       CH2     0       19.286      8.653       42.056      
+ETE     C22     C       CH2     0       20.775      8.519       42.132      
+ETE     OH3     O       O2      0       21.206      7.424       41.331      
+ETE     C13     C       CH2     0       22.978      6.047       40.521      
+ETE     C23     C       CH2     0       22.615      7.228       41.365      
+ETE     OH4     O       O2      0       22.656      6.315       39.160      
+ETE     C14     C       CH2     0       22.610      5.595       36.885      
+ETE     C24     C       CH2     0       22.963      5.229       38.292      
+ETE     OH5     O       O2      0       21.204      5.790       36.778      
+ETE     C15     C       CH2     0       19.306      6.329       35.434      
+ETE     C25     C       CH2     0       20.785      6.103       35.454      
+ETE     OH6     O       O2      0       18.622      5.142       35.795      
+ETE     C26     C       CH3     0       17.211      5.272       35.775      
+ETE     HO2     H       H       0       18.782      7.274       43.221      
+ETE     H121    H       H       0       18.996      9.371       42.657      
+ETE     H122    H       H       0       19.031      8.900       41.142      
+ETE     H221    H       H       0       21.047      8.374       43.065      
+ETE     H222    H       H       0       21.199      9.347       41.814      
+ETE     H131    H       H       0       22.484      5.256       40.829      
+ETE     H132    H       H       0       23.939      5.863       40.604      
+ETE     H231    H       H       0       22.907      7.076       42.290      
+ETE     H232    H       H       0       23.070      8.030       41.026      
+ETE     H141    H       H       0       22.893      4.878       36.276      
+ETE     H142    H       H       0       23.079      6.419       36.629      
+ETE     H241    H       H       0       22.456      4.433       38.565      
+ETE     H242    H       H       0       23.921      5.020       38.349      
+ETE     H151    H       H       0       19.028      6.608       34.535      
+ETE     H152    H       H       0       19.073      7.046       36.064      
+ETE     H251    H       H       0       21.015      5.363       34.851      
+ETE     H252    H       H       0       21.247      6.911       35.142      
+ETE     H261    H       H       0       16.805      4.430       36.039      
+ETE     H262    H       H       0       16.919      5.505       34.878      
+ETE     H263    H       H       0       16.941      5.969       36.395      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ETE         OH2         C12      SINGLE       n     1.414  0.0200     1.414  0.0200
+ETE         C12         C22      SINGLE       n     1.496  0.0200     1.496  0.0200
+ETE         C22         OH3      SINGLE       n     1.423  0.0106     1.423  0.0106
+ETE         OH3         C23      SINGLE       n     1.423  0.0106     1.423  0.0106
+ETE         C13         C23      SINGLE       n     1.496  0.0200     1.496  0.0200
+ETE         C13         OH4      SINGLE       n     1.423  0.0106     1.423  0.0106
+ETE         OH4         C24      SINGLE       n     1.423  0.0106     1.423  0.0106
+ETE         C14         C24      SINGLE       n     1.496  0.0200     1.496  0.0200
+ETE         C14         OH5      SINGLE       n     1.423  0.0106     1.423  0.0106
+ETE         OH5         C25      SINGLE       n     1.423  0.0106     1.423  0.0106
+ETE         C15         C25      SINGLE       n     1.496  0.0200     1.496  0.0200
+ETE         C15         OH6      SINGLE       n     1.414  0.0200     1.414  0.0200
+ETE         OH6         C26      SINGLE       n     1.415  0.0200     1.415  0.0200
+ETE         OH2         HO2      SINGLE       n     0.970  0.0120     0.846  0.0200
+ETE         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0144
+ETE         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0144
+ETE         C22        H221      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C22        H222      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C13        H131      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C13        H132      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C23        H231      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C23        H232      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C14        H141      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C14        H142      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C24        H241      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C24        H242      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C15        H151      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C15        H152      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C25        H251      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C25        H252      SINGLE       n     1.089  0.0100     0.982  0.0175
+ETE         C26        H261      SINGLE       n     1.089  0.0100     0.971  0.0146
+ETE         C26        H262      SINGLE       n     1.089  0.0100     0.971  0.0146
+ETE         C26        H263      SINGLE       n     1.089  0.0100     0.971  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ETE         C12         OH2         HO2     109.347    1.86
+ETE         OH2         C12         C22     112.284    1.56
+ETE         OH2         C12        H121     109.012    1.50
+ETE         OH2         C12        H122     109.012    1.50
+ETE         C22         C12        H121     109.198    1.50
+ETE         C22         C12        H122     109.198    1.50
+ETE        H121         C12        H122     108.093    1.50
+ETE         C12         C22         OH3     109.904    1.68
+ETE         C12         C22        H221     109.795    1.50
+ETE         C12         C22        H222     109.795    1.50
+ETE         OH3         C22        H221     109.691    1.50
+ETE         OH3         C22        H222     109.691    1.50
+ETE        H221         C22        H222     108.274    1.50
+ETE         C22         OH3         C23     112.795    1.50
+ETE         C23         C13         OH4     109.613    1.74
+ETE         C23         C13        H131     109.729    1.50
+ETE         C23         C13        H132     109.729    1.50
+ETE         OH4         C13        H131     109.691    1.50
+ETE         OH4         C13        H132     109.691    1.50
+ETE        H131         C13        H132     108.274    1.50
+ETE         OH3         C23         C13     109.613    1.74
+ETE         OH3         C23        H231     109.691    1.50
+ETE         OH3         C23        H232     109.691    1.50
+ETE         C13         C23        H231     109.729    1.50
+ETE         C13         C23        H232     109.729    1.50
+ETE        H231         C23        H232     108.274    1.50
+ETE         C13         OH4         C24     112.795    1.50
+ETE         C24         C14         OH5     109.613    1.74
+ETE         C24         C14        H141     109.729    1.50
+ETE         C24         C14        H142     109.729    1.50
+ETE         OH5         C14        H141     109.691    1.50
+ETE         OH5         C14        H142     109.691    1.50
+ETE        H141         C14        H142     108.274    1.50
+ETE         OH4         C24         C14     109.613    1.74
+ETE         OH4         C24        H241     109.691    1.50
+ETE         OH4         C24        H242     109.691    1.50
+ETE         C14         C24        H241     109.729    1.50
+ETE         C14         C24        H242     109.729    1.50
+ETE        H241         C24        H242     108.274    1.50
+ETE         C14         OH5         C25     112.795    1.50
+ETE         C25         C15         OH6     110.646    3.00
+ETE         C25         C15        H151     109.729    1.50
+ETE         C25         C15        H152     109.729    1.50
+ETE         OH6         C15        H151     109.622    1.50
+ETE         OH6         C15        H152     109.622    1.50
+ETE        H151         C15        H152     108.274    1.50
+ETE         OH5         C25         C15     109.613    1.74
+ETE         OH5         C25        H251     109.691    1.50
+ETE         OH5         C25        H252     109.691    1.50
+ETE         C15         C25        H251     109.729    1.50
+ETE         C15         C25        H252     109.729    1.50
+ETE        H251         C25        H252     108.274    1.50
+ETE         C15         OH6         C26     112.505    3.00
+ETE         OH6         C26        H261     109.470    1.50
+ETE         OH6         C26        H262     109.470    1.50
+ETE         OH6         C26        H263     109.470    1.50
+ETE        H261         C26        H262     109.532    1.53
+ETE        H261         C26        H263     109.532    1.53
+ETE        H262         C26        H263     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ETE             sp3_sp3_1         C22         C12         OH2         HO2     180.000    10.0     3
+ETE            sp3_sp3_49         OH6         C15         C25         OH5     180.000    10.0     3
+ETE            sp3_sp3_58         C25         C15         OH6         C26     180.000    10.0     3
+ETE            sp3_sp3_61        H261         C26         OH6         C15     180.000    10.0     3
+ETE             sp3_sp3_4         OH2         C12         C22         OH3     180.000    10.0     3
+ETE            sp3_sp3_13         C12         C22         OH3         C23     180.000    10.0     3
+ETE            sp3_sp3_16         C13         C23         OH3         C22     180.000    10.0     3
+ETE            sp3_sp3_19         OH4         C13         C23         OH3     180.000    10.0     3
+ETE            sp3_sp3_28         C23         C13         OH4         C24     180.000    10.0     3
+ETE            sp3_sp3_31         C14         C24         OH4         C13     180.000    10.0     3
+ETE            sp3_sp3_34         OH5         C14         C24         OH4     180.000    10.0     3
+ETE            sp3_sp3_43         C24         C14         OH5         C25     180.000    10.0     3
+ETE            sp3_sp3_46         C15         C25         OH5         C14     180.000    10.0     3
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ETE           SMILES              ACDLabs 10.04                                                  O(C)CCOCCOCCOCCO
+ETE SMILES_CANONICAL               CACTVS 3.341                                                    COCCOCCOCCOCCO
+ETE           SMILES               CACTVS 3.341                                                    COCCOCCOCCOCCO
+ETE SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                    COCCOCCOCCOCCO
+ETE           SMILES "OpenEye OEToolkits" 1.5.0                                                    COCCOCCOCCOCCO
+ETE            InChI                InChI  1.03 InChI=1S/C9H20O5/c1-11-4-5-13-8-9-14-7-6-12-3-2-10/h10H,2-9H2,1H3
+ETE         InChIKey                InChI  1.03                                       ZNYRFEPBTVGZDN-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ETE acedrg               243         "dictionary generator"                  
+ETE acedrg_database      11          "data source"                           
+ETE rdkit                2017.03.2   "Chemoinformatics tool"
+ETE refmac5              5.8.0238    "optimization tool"                     

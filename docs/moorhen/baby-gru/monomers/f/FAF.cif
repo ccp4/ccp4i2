@@ -1,0 +1,312 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FAF     FAF      "2-ACETYLAMINO-4-METHYL-PENTANOIC ACID (1-FORMYL-2-PHENYL-ETHYL)-AMIDE"     NON-POLYMER     46     22     .     
+#
+data_comp_FAF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FAF     CX      C       C       0       31.007      3.301       41.732      
+FAF     OX      O       O       0       30.270      4.255       41.486      
+FAF     CAX     C       CH3     0       31.467      3.024       43.129      
+FAF     NL      N       NH1     0       31.430      2.458       40.779      
+FAF     CAL     C       CH1     0       31.028      2.562       39.383      
+FAF     CBL     C       CH2     0       32.104      1.977       38.466      
+FAF     CGL     C       CH1     0       33.508      2.563       38.626      
+FAF     CDL     C       CH3     0       34.519      1.770       37.813      
+FAF     CDM     C       CH3     0       33.542      4.032       38.230      
+FAF     C       C       C       0       29.687      1.855       39.157      
+FAF     O       O       O       0       29.586      0.659       39.427      
+FAF     N       N       NH1     0       28.673      2.593       38.673      
+FAF     CA      C       CH1     0       27.317      2.089       38.478      
+FAF     CB      C       CH2     0       26.372      2.570       39.591      
+FAF     CG      C       CR6     0       26.859      2.262       40.986      
+FAF     CD1     C       CR16    0       26.906      0.951       41.448      
+FAF     CD2     C       CR16    0       27.280      3.277       41.838      
+FAF     CE1     C       CR16    0       27.359      0.664       42.730      
+FAF     CE2     C       CR16    0       27.734      2.989       43.119      
+FAF     CZ      C       CR16    0       27.772      1.683       43.564      
+FAF     CW      C       C1      0       26.748      2.552       37.125      
+FAF     OW      O       O       0       25.704      2.131       36.736      
+FAF     HAX1    H       H       0       31.639      2.075       43.240      
+FAF     HAX2    H       H       0       30.781      3.300       43.757      
+FAF     HAX3    H       H       0       32.283      3.521       43.307      
+FAF     HL      H       H       0       31.976      1.815       41.006      
+FAF     HAL     H       H       0       30.920      3.519       39.156      
+FAF     HBL1    H       H       0       31.821      2.106       37.539      
+FAF     HBL2    H       H       0       32.153      1.013       38.625      
+FAF     HGL     H       H       0       33.767      2.497       39.578      
+FAF     HDL1    H       H       0       35.408      2.144       37.946      
+FAF     HDL2    H       H       0       34.286      1.817       36.869      
+FAF     HDL3    H       H       0       34.512      0.841       38.102      
+FAF     HDM1    H       H       0       33.060      4.558       38.891      
+FAF     HDM2    H       H       0       33.122      4.143       37.359      
+FAF     HDM3    H       H       0       34.465      4.335       38.185      
+FAF     HN      H       H       0       28.827      3.424       38.455      
+FAF     HA      H       H       0       27.329      1.102       38.484      
+FAF     HB1     H       H       0       25.497      2.149       39.464      
+FAF     HB2     H       H       0       26.251      3.539       39.503      
+FAF     HD1     H       H       0       26.625      0.249       40.883      
+FAF     HD2     H       H       0       27.259      4.173       41.541      
+FAF     HE1     H       H       0       27.384      -0.230      43.030      
+FAF     HE2     H       H       0       28.016      3.688       43.686      
+FAF     HZ      H       H       0       28.080      1.488       44.435      
+FAF     HW      H       H       0       27.235      3.174       36.602      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FAF          CX          OX      DOUBLE       n     1.229  0.0102     1.229  0.0102
+FAF          CX         CAX      SINGLE       n     1.495  0.0100     1.495  0.0100
+FAF          CX          NL      SINGLE       n     1.335  0.0100     1.335  0.0100
+FAF          NL         CAL      SINGLE       n     1.453  0.0100     1.453  0.0100
+FAF         CAL         CBL      SINGLE       n     1.528  0.0100     1.528  0.0100
+FAF         CAL           C      SINGLE       n     1.530  0.0100     1.530  0.0100
+FAF         CBL         CGL      SINGLE       n     1.528  0.0105     1.528  0.0105
+FAF         CGL         CDL      SINGLE       n     1.521  0.0151     1.521  0.0151
+FAF         CGL         CDM      SINGLE       n     1.521  0.0151     1.521  0.0151
+FAF           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+FAF           C           N      SINGLE       n     1.337  0.0100     1.337  0.0100
+FAF           N          CA      SINGLE       n     1.456  0.0100     1.456  0.0100
+FAF          CA          CB      SINGLE       n     1.536  0.0102     1.536  0.0102
+FAF          CA          CW      SINGLE       n     1.539  0.0100     1.539  0.0100
+FAF          CB          CG      SINGLE       n     1.508  0.0100     1.508  0.0100
+FAF          CG         CD1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+FAF          CG         CD2      SINGLE       y     1.385  0.0111     1.385  0.0111
+FAF         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+FAF         CD2         CE2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+FAF         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+FAF         CE2          CZ      SINGLE       y     1.376  0.0124     1.376  0.0124
+FAF          CW          OW      DOUBLE       n     1.191  0.0200     1.191  0.0200
+FAF         CAX        HAX1      SINGLE       n     1.089  0.0100     0.971  0.0140
+FAF         CAX        HAX2      SINGLE       n     1.089  0.0100     0.971  0.0140
+FAF         CAX        HAX3      SINGLE       n     1.089  0.0100     0.971  0.0140
+FAF          NL          HL      SINGLE       n     1.016  0.0100     0.873  0.0200
+FAF         CAL         HAL      SINGLE       n     1.089  0.0100     0.991  0.0200
+FAF         CBL        HBL1      SINGLE       n     1.089  0.0100     0.978  0.0119
+FAF         CBL        HBL2      SINGLE       n     1.089  0.0100     0.978  0.0119
+FAF         CGL         HGL      SINGLE       n     1.089  0.0100     0.989  0.0162
+FAF         CDL        HDL1      SINGLE       n     1.089  0.0100     0.973  0.0146
+FAF         CDL        HDL2      SINGLE       n     1.089  0.0100     0.973  0.0146
+FAF         CDL        HDL3      SINGLE       n     1.089  0.0100     0.973  0.0146
+FAF         CDM        HDM1      SINGLE       n     1.089  0.0100     0.973  0.0146
+FAF         CDM        HDM2      SINGLE       n     1.089  0.0100     0.973  0.0146
+FAF         CDM        HDM3      SINGLE       n     1.089  0.0100     0.973  0.0146
+FAF           N          HN      SINGLE       n     1.016  0.0100     0.873  0.0200
+FAF          CA          HA      SINGLE       n     1.089  0.0100     0.987  0.0159
+FAF          CB         HB1      SINGLE       n     1.089  0.0100     0.980  0.0164
+FAF          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0164
+FAF         CD1         HD1      SINGLE       n     1.082  0.0130     0.944  0.0174
+FAF         CD2         HD2      SINGLE       n     1.082  0.0130     0.944  0.0174
+FAF         CE1         HE1      SINGLE       n     1.082  0.0130     0.944  0.0175
+FAF         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+FAF          CZ          HZ      SINGLE       n     1.082  0.0130     0.944  0.0161
+FAF          CW          HW      SINGLE       n     1.082  0.0130     0.947  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FAF          OX          CX         CAX     121.913    1.50
+FAF          OX          CX          NL     121.667    1.50
+FAF         CAX          CX          NL     116.420    1.50
+FAF          CX         CAX        HAX1     109.678    1.50
+FAF          CX         CAX        HAX2     109.678    1.50
+FAF          CX         CAX        HAX3     109.678    1.50
+FAF        HAX1         CAX        HAX2     109.365    1.50
+FAF        HAX1         CAX        HAX3     109.365    1.50
+FAF        HAX2         CAX        HAX3     109.365    1.50
+FAF          CX          NL         CAL     121.618    1.76
+FAF          CX          NL          HL     119.048    2.25
+FAF         CAL          NL          HL     119.334    1.64
+FAF          NL         CAL         CBL     110.363    1.84
+FAF          NL         CAL           C     111.371    2.04
+FAF          NL         CAL         HAL     107.954    1.50
+FAF         CBL         CAL           C     110.666    1.50
+FAF         CBL         CAL         HAL     108.275    1.50
+FAF           C         CAL         HAL     107.852    1.50
+FAF         CAL         CBL         CGL     115.210    1.50
+FAF         CAL         CBL        HBL1     108.470    1.50
+FAF         CAL         CBL        HBL2     108.470    1.50
+FAF         CGL         CBL        HBL1     108.478    1.50
+FAF         CGL         CBL        HBL2     108.478    1.50
+FAF        HBL1         CBL        HBL2     107.542    1.50
+FAF         CBL         CGL         CDL     110.880    1.50
+FAF         CBL         CGL         CDM     110.880    1.50
+FAF         CBL         CGL         HGL     108.053    1.50
+FAF         CDL         CGL         CDM     110.507    1.50
+FAF         CDL         CGL         HGL     108.052    1.50
+FAF         CDM         CGL         HGL     108.052    1.50
+FAF         CGL         CDL        HDL1     109.488    1.50
+FAF         CGL         CDL        HDL2     109.488    1.50
+FAF         CGL         CDL        HDL3     109.488    1.50
+FAF        HDL1         CDL        HDL2     109.411    1.50
+FAF        HDL1         CDL        HDL3     109.411    1.50
+FAF        HDL2         CDL        HDL3     109.411    1.50
+FAF         CGL         CDM        HDM1     109.488    1.50
+FAF         CGL         CDM        HDM2     109.488    1.50
+FAF         CGL         CDM        HDM3     109.488    1.50
+FAF        HDM1         CDM        HDM2     109.411    1.50
+FAF        HDM1         CDM        HDM3     109.411    1.50
+FAF        HDM2         CDM        HDM3     109.411    1.50
+FAF         CAL           C           O     120.345    1.50
+FAF         CAL           C           N     116.639    1.50
+FAF           O           C           N     123.016    1.50
+FAF           C           N          CA     121.950    1.76
+FAF           C           N          HN     119.031    1.83
+FAF          CA           N          HN     119.019    1.92
+FAF           N          CA          CB     110.790    1.50
+FAF           N          CA          CW     110.921    1.74
+FAF           N          CA          HA     108.161    1.50
+FAF          CB          CA          CW     108.756    3.00
+FAF          CB          CA          HA     108.240    1.50
+FAF          CW          CA          HA     108.186    1.50
+FAF          CA          CB          CG     113.420    1.89
+FAF          CA          CB         HB1     108.793    1.50
+FAF          CA          CB         HB2     108.793    1.50
+FAF          CG          CB         HB1     108.862    1.50
+FAF          CG          CB         HB2     108.862    1.50
+FAF         HB1          CB         HB2     107.782    1.50
+FAF          CB          CG         CD1     120.970    1.50
+FAF          CB          CG         CD2     120.970    1.50
+FAF         CD1          CG         CD2     118.060    1.50
+FAF          CG         CD1         CE1     120.624    1.50
+FAF          CG         CD1         HD1     119.591    1.50
+FAF         CE1         CD1         HD1     119.786    1.50
+FAF          CG         CD2         CE2     120.624    1.50
+FAF          CG         CD2         HD2     119.591    1.50
+FAF         CE2         CD2         HD2     119.786    1.50
+FAF         CD1         CE1          CZ     120.325    1.50
+FAF         CD1         CE1         HE1     119.792    1.50
+FAF          CZ         CE1         HE1     119.883    1.50
+FAF         CD2         CE2          CZ     120.325    1.50
+FAF         CD2         CE2         HE2     119.792    1.50
+FAF          CZ         CE2         HE2     119.883    1.50
+FAF         CE1          CZ         CE2     120.043    1.50
+FAF         CE1          CZ          HZ     119.979    1.50
+FAF         CE2          CZ          HZ     119.979    1.50
+FAF          CA          CW          OW     120.289    1.60
+FAF          CA          CW          HW     119.547    2.53
+FAF          OW          CW          HW     120.163    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FAF             sp2_sp3_1          OX          CX         CAX        HAX1       0.000    10.0     6
+FAF             sp2_sp2_3          OX          CX          NL         CAL       0.000     5.0     2
+FAF            sp2_sp3_19           C           N          CA          CB       0.000    10.0     6
+FAF            sp3_sp3_37           N          CA          CB          CG     180.000    10.0     3
+FAF            sp2_sp3_25          OW          CW          CA           N       0.000    10.0     6
+FAF            sp2_sp3_32         CD1          CG          CB          CA     -90.000    10.0     6
+FAF       const_sp2_sp2_2         CE1         CD1          CG          CB     180.000     5.0     2
+FAF              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+FAF       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+FAF              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+FAF       const_sp2_sp2_9         CD1         CE1          CZ         CE2       0.000     5.0     2
+FAF              const_13         CD2         CE2          CZ         CE1       0.000    10.0     2
+FAF             sp2_sp3_7          CX          NL         CAL         CBL       0.000    10.0     6
+FAF             sp3_sp3_1          NL         CAL         CBL         CGL     180.000    10.0     3
+FAF            sp2_sp3_13           O           C         CAL          NL       0.000    10.0     6
+FAF            sp3_sp3_11         CAL         CBL         CGL         CDL     -60.000    10.0     3
+FAF            sp3_sp3_19        HDL1         CDL         CGL         CBL     180.000    10.0     3
+FAF            sp3_sp3_29        HDM1         CDM         CGL         CBL     -60.000    10.0     3
+FAF             sp2_sp2_5         CAL           C           N          CA     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FAF    chir_1    CAL    NL    C    CBL    positive
+FAF    chir_2    CGL    CBL    CDL    CDM    both
+FAF    chir_3    CA    N    CW    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FAF    plan-1          CB   0.020
+FAF    plan-1         CD1   0.020
+FAF    plan-1         CD2   0.020
+FAF    plan-1         CE1   0.020
+FAF    plan-1         CE2   0.020
+FAF    plan-1          CG   0.020
+FAF    plan-1          CZ   0.020
+FAF    plan-1         HD1   0.020
+FAF    plan-1         HD2   0.020
+FAF    plan-1         HE1   0.020
+FAF    plan-1         HE2   0.020
+FAF    plan-1          HZ   0.020
+FAF    plan-2         CAX   0.020
+FAF    plan-2          CX   0.020
+FAF    plan-2          NL   0.020
+FAF    plan-2          OX   0.020
+FAF    plan-3         CAL   0.020
+FAF    plan-3          CX   0.020
+FAF    plan-3          HL   0.020
+FAF    plan-3          NL   0.020
+FAF    plan-4           C   0.020
+FAF    plan-4         CAL   0.020
+FAF    plan-4           N   0.020
+FAF    plan-4           O   0.020
+FAF    plan-5           C   0.020
+FAF    plan-5          CA   0.020
+FAF    plan-5          HN   0.020
+FAF    plan-5           N   0.020
+FAF    plan-6          CA   0.020
+FAF    plan-6          CW   0.020
+FAF    plan-6          HW   0.020
+FAF    plan-6          OW   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FAF           SMILES              ACDLabs 10.04                                                                                                             O=C(NC(C(=O)NC(C=O)Cc1ccccc1)CC(C)C)C
+FAF SMILES_CANONICAL               CACTVS 3.341                                                                                                    CC(C)C[C@H](NC(C)=O)C(=O)N[C@@H](Cc1ccccc1)C=O
+FAF           SMILES               CACTVS 3.341                                                                                                       CC(C)C[CH](NC(C)=O)C(=O)N[CH](Cc1ccccc1)C=O
+FAF SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                   CC(C)C[C@@H](C(=O)N[C@@H](Cc1ccccc1)C=O)NC(=O)C
+FAF           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                             CC(C)CC(C(=O)NC(Cc1ccccc1)C=O)NC(=O)C
+FAF            InChI                InChI  1.03 InChI=1S/C17H24N2O3/c1-12(2)9-16(18-13(3)21)17(22)19-15(11-20)10-14-7-5-4-6-8-14/h4-8,11-12,15-16H,9-10H2,1-3H3,(H,18,21)(H,19,22)/t15-,16-/m0/s1
+FAF         InChIKey                InChI  1.03                                                                                                                       QRDDFQYJOFVDNR-HOTGVXAUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FAF acedrg               243         "dictionary generator"                  
+FAF acedrg_database      11          "data source"                           
+FAF rdkit                2017.03.2   "Chemoinformatics tool"
+FAF refmac5              5.8.0238    "optimization tool"                     

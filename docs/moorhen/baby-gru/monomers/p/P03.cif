@@ -1,0 +1,223 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+P03     P03      2-[3-[3-(2-hydroxyethoxy)propoxy]propoxy]ethanol     NON-POLYMER     37     15     .     
+#
+data_comp_P03
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+P03     C1      C       CH2     0       6.675       51.001      -10.582     
+P03     O1      O       OH1     0       7.009       52.022      -9.662      
+P03     C2      C       CH2     0       7.330       49.699      -10.246     
+P03     O2      O       O2      0       7.043       48.741      -11.260     
+P03     C3      C       CH2     0       7.610       47.463      -10.991     
+P03     O3      O       O2      0       9.329       47.293      -13.373     
+P03     C4      C       CH2     0       7.378       46.542      -12.177     
+P03     O4      O       O2      0       10.261      51.972      -13.920     
+P03     C5      C       CH2     0       7.929       47.059      -13.495     
+P03     O5      O       OH1     0       12.390      53.401      -12.712     
+P03     C6      C       CH2     0       9.901       48.234      -14.276     
+P03     C7      C       CH2     0       9.805       49.627      -13.681     
+P03     C8      C       CH2     0       10.392      50.710      -14.568     
+P03     C9      C       CH2     0       10.925      53.034      -14.600     
+P03     C10     C       CH2     0       12.332      53.157      -14.104     
+P03     H1      H       H       0       6.950       51.278      -11.480     
+P03     H1A     H       H       0       5.702       50.881      -10.585     
+P03     HO1     H       H       0       6.606       52.734      -9.876      
+P03     H2      H       H       0       6.999       49.374      -9.380      
+P03     H2A     H       H       0       8.301       49.826      -10.176     
+P03     H3      H       H       0       7.194       47.083      -10.188     
+P03     H3A     H       H       0       8.572       47.555      -10.823     
+P03     H4      H       H       0       6.411       46.400      -12.277     
+P03     H4A     H       H       0       7.797       45.674      -11.983     
+P03     H5      H       H       0       7.769       46.399      -14.203     
+P03     H5A     H       H       0       7.472       47.891      -13.745     
+P03     HO5     H       H       0       12.056      54.160      -12.546     
+P03     H6      H       H       0       9.428       48.203      -15.135     
+P03     H6A     H       H       0       10.841      48.004      -14.436     
+P03     H7      H       H       0       10.280      49.634      -12.820     
+P03     H7A     H       H       0       8.858       49.834      -13.517     
+P03     H8      H       H       0       11.339      50.521      -14.741     
+P03     H8A     H       H       0       9.920       50.729      -15.427     
+P03     H9      H       H       0       10.445      53.876      -14.439     
+P03     H9A     H       H       0       10.928      52.868      -15.569     
+P03     H10     H       H       0       12.819      52.331      -14.304     
+P03     H10A    H       H       0       12.776      53.893      -14.575     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+P03          C1          O1      SINGLE       n     1.414  0.0200     1.414  0.0200
+P03          C1          C2      SINGLE       n     1.496  0.0200     1.496  0.0200
+P03          C2          O2      SINGLE       n     1.423  0.0106     1.423  0.0106
+P03          O2          C3      SINGLE       n     1.422  0.0111     1.422  0.0111
+P03          C3          C4      SINGLE       n     1.518  0.0115     1.518  0.0115
+P03          O3          C5      SINGLE       n     1.422  0.0111     1.422  0.0111
+P03          O3          C6      SINGLE       n     1.422  0.0111     1.422  0.0111
+P03          C4          C5      SINGLE       n     1.518  0.0115     1.518  0.0115
+P03          O4          C8      SINGLE       n     1.422  0.0111     1.422  0.0111
+P03          O4          C9      SINGLE       n     1.423  0.0106     1.423  0.0106
+P03          O5         C10      SINGLE       n     1.414  0.0200     1.414  0.0200
+P03          C6          C7      SINGLE       n     1.518  0.0115     1.518  0.0115
+P03          C7          C8      SINGLE       n     1.518  0.0115     1.518  0.0115
+P03          C9         C10      SINGLE       n     1.496  0.0200     1.496  0.0200
+P03          C1          H1      SINGLE       n     1.089  0.0100     0.980  0.0144
+P03          C1         H1A      SINGLE       n     1.089  0.0100     0.980  0.0144
+P03          O1         HO1      SINGLE       n     0.970  0.0120     0.846  0.0200
+P03          C2          H2      SINGLE       n     1.089  0.0100     0.982  0.0175
+P03          C2         H2A      SINGLE       n     1.089  0.0100     0.982  0.0175
+P03          C3          H3      SINGLE       n     1.089  0.0100     0.981  0.0174
+P03          C3         H3A      SINGLE       n     1.089  0.0100     0.981  0.0174
+P03          C4          H4      SINGLE       n     1.089  0.0100     0.983  0.0175
+P03          C4         H4A      SINGLE       n     1.089  0.0100     0.983  0.0175
+P03          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0174
+P03          C5         H5A      SINGLE       n     1.089  0.0100     0.981  0.0174
+P03          O5         HO5      SINGLE       n     0.970  0.0120     0.846  0.0200
+P03          C6          H6      SINGLE       n     1.089  0.0100     0.981  0.0174
+P03          C6         H6A      SINGLE       n     1.089  0.0100     0.981  0.0174
+P03          C7          H7      SINGLE       n     1.089  0.0100     0.983  0.0175
+P03          C7         H7A      SINGLE       n     1.089  0.0100     0.983  0.0175
+P03          C8          H8      SINGLE       n     1.089  0.0100     0.981  0.0174
+P03          C8         H8A      SINGLE       n     1.089  0.0100     0.981  0.0174
+P03          C9          H9      SINGLE       n     1.089  0.0100     0.982  0.0175
+P03          C9         H9A      SINGLE       n     1.089  0.0100     0.982  0.0175
+P03         C10         H10      SINGLE       n     1.089  0.0100     0.980  0.0144
+P03         C10        H10A      SINGLE       n     1.089  0.0100     0.980  0.0144
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+P03          O1          C1          C2     112.284    1.56
+P03          O1          C1          H1     109.012    1.50
+P03          O1          C1         H1A     109.012    1.50
+P03          C2          C1          H1     109.198    1.50
+P03          C2          C1         H1A     109.198    1.50
+P03          H1          C1         H1A     108.093    1.50
+P03          C1          O1         HO1     109.347    1.86
+P03          C1          C2          O2     109.904    1.68
+P03          C1          C2          H2     109.795    1.50
+P03          C1          C2         H2A     109.795    1.50
+P03          O2          C2          H2     109.691    1.50
+P03          O2          C2         H2A     109.691    1.50
+P03          H2          C2         H2A     108.274    1.50
+P03          C2          O2          C3     112.342    1.50
+P03          O2          C3          C4     109.601    2.19
+P03          O2          C3          H3     109.746    1.50
+P03          O2          C3         H3A     109.746    1.50
+P03          C4          C3          H3     110.052    1.50
+P03          C4          C3         H3A     110.052    1.50
+P03          H3          C3         H3A     108.375    1.50
+P03          C5          O3          C6     113.198    3.00
+P03          C3          C4          C5     113.605    1.94
+P03          C3          C4          H4     108.567    1.50
+P03          C3          C4         H4A     108.567    1.50
+P03          C5          C4          H4     108.567    1.50
+P03          C5          C4         H4A     108.567    1.50
+P03          H4          C4         H4A     108.411    3.00
+P03          C8          O4          C9     112.342    1.50
+P03          O3          C5          C4     109.601    2.19
+P03          O3          C5          H5     109.746    1.50
+P03          O3          C5         H5A     109.746    1.50
+P03          C4          C5          H5     110.052    1.50
+P03          C4          C5         H5A     110.052    1.50
+P03          H5          C5         H5A     108.375    1.50
+P03         C10          O5         HO5     109.347    1.86
+P03          O3          C6          C7     109.601    2.19
+P03          O3          C6          H6     109.746    1.50
+P03          O3          C6         H6A     109.746    1.50
+P03          C7          C6          H6     110.052    1.50
+P03          C7          C6         H6A     110.052    1.50
+P03          H6          C6         H6A     108.375    1.50
+P03          C6          C7          C8     113.605    1.94
+P03          C6          C7          H7     108.567    1.50
+P03          C6          C7         H7A     108.567    1.50
+P03          C8          C7          H7     108.567    1.50
+P03          C8          C7         H7A     108.567    1.50
+P03          H7          C7         H7A     108.411    3.00
+P03          O4          C8          C7     109.601    2.19
+P03          O4          C8          H8     109.746    1.50
+P03          O4          C8         H8A     109.746    1.50
+P03          C7          C8          H8     110.052    1.50
+P03          C7          C8         H8A     110.052    1.50
+P03          H8          C8         H8A     108.375    1.50
+P03          O4          C9         C10     109.904    1.68
+P03          O4          C9          H9     109.691    1.50
+P03          O4          C9         H9A     109.691    1.50
+P03         C10          C9          H9     109.795    1.50
+P03         C10          C9         H9A     109.795    1.50
+P03          H9          C9         H9A     108.274    1.50
+P03          O5         C10          C9     112.284    1.56
+P03          O5         C10         H10     109.012    1.50
+P03          O5         C10        H10A     109.012    1.50
+P03          C9         C10         H10     109.198    1.50
+P03          C9         C10        H10A     109.198    1.50
+P03         H10         C10        H10A     108.093    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+P03             sp3_sp3_1          C2          C1          O1         HO1     180.000    10.0     3
+P03             sp3_sp3_4          O1          C1          C2          O2     180.000    10.0     3
+P03            sp3_sp3_52          O3          C6          C7          C8     180.000    10.0     3
+P03            sp3_sp3_61          C6          C7          C8          O4     180.000    10.0     3
+P03            sp3_sp3_70          O5         C10          C9          O4     180.000    10.0     3
+P03            sp3_sp3_13          C1          C2          O2          C3     180.000    10.0     3
+P03            sp3_sp3_16          C4          C3          O2          C2     180.000    10.0     3
+P03            sp3_sp3_19          O2          C3          C4          C5     180.000    10.0     3
+P03            sp3_sp3_31          C7          C6          O3          C5     180.000    10.0     3
+P03            sp3_sp3_28          C4          C5          O3          C6     180.000    10.0     3
+P03            sp3_sp3_34          C3          C4          C5          O3     180.000    10.0     3
+P03            sp3_sp3_43          C7          C8          O4          C9     180.000    10.0     3
+P03            sp3_sp3_46         C10          C9          O4          C8     180.000    10.0     3
+P03            sp3_sp3_49          C9         C10          O5         HO5     180.000    10.0     3
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+P03 SMILES_CANONICAL               CACTVS 3.352                                                       OCCOCCCOCCCOCCO
+P03           SMILES               CACTVS 3.352                                                       OCCOCCCOCCCOCCO
+P03 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                     C(COCCCOCCO)COCCO
+P03           SMILES "OpenEye OEToolkits" 1.7.0                                                     C(COCCCOCCO)COCCO
+P03            InChI                InChI  1.03 InChI=1S/C10H22O5/c11-3-9-14-7-1-5-13-6-2-8-15-10-4-12/h11-12H,1-10H2
+P03         InChIKey                InChI  1.03                                           GNAZJSIZGCDIQL-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+P03 acedrg               243         "dictionary generator"                  
+P03 acedrg_database      11          "data source"                           
+P03 rdkit                2017.03.2   "Chemoinformatics tool"
+P03 refmac5              5.8.0238    "optimization tool"                     

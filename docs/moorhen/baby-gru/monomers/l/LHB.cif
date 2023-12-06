@@ -1,0 +1,363 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LHB     LHB      5-[[[(2~{R},3~{S},4~{R},5~{R})-5-(6-aminopurin-9-yl)-3,4-bis(oxidanyl)oxolan-2-yl]methylamino]methyl]-4-azanyl-1-(methoxymethyl)pyrimidin-2-one     NON-POLYMER     54     31     .     
+#
+data_comp_LHB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LHB     C1      C       CR6     0       0.929       16.917      13.115      
+LHB     C2      C       CR56    0       0.148       15.939      13.768      
+LHB     C3      C       CR56    0       -0.363      14.918      12.990      
+LHB     N1      N       NRD6    0       -0.194      14.754      11.664      
+LHB     C4      C       CR16    0       0.557       15.731      11.154      
+LHB     N2      N       NRD6    0       1.119       16.780      11.777      
+LHB     N3      N       NT      0       -1.066      14.107      13.842      
+LHB     C5      C       CR15    0       -0.963      14.678      15.093      
+LHB     N4      N       NRD5    0       -0.238      15.773      15.092      
+LHB     C6      C       CH1     0       -1.802      12.893      13.461      
+LHB     O1      O       O2      0       -3.166      13.230      13.379      
+LHB     C7      C       CH1     0       -3.982      12.091      13.739      
+LHB     C8      C       CH1     0       -3.010      10.971      14.125      
+LHB     C9      C       CH1     0       -1.716      11.730      14.445      
+LHB     O2      O       OH1     0       -0.546      10.965      14.244      
+LHB     O3      O       OH1     0       -2.849      10.034      13.064      
+LHB     C10     C       CH2     0       -4.954      12.509      14.827      
+LHB     N5      N       NT1     0       -4.279      13.179      15.947      
+LHB     C11     C       CH2     0       -5.156      13.808      16.924      
+LHB     C12     C       CR6     0       -5.951      12.811      17.737      
+LHB     N6      N       NH2     0       1.483       17.954      13.737      
+LHB     C13     C       CR6     0       -7.337      12.575      17.511      
+LHB     N7      N       NRD6    0       -8.020      11.677      18.243      
+LHB     C14     C       CR6     0       -7.402      10.962      19.221      
+LHB     N8      N       NR6     0       -6.033      11.177      19.463      
+LHB     C15     C       CR16    0       -5.353      12.094      18.705      
+LHB     N9      N       NH2     0       -8.030      13.233      16.566      
+LHB     C16     C       CH2     0       -5.319      10.424      20.506      
+LHB     O4      O       O2      0       -4.980      9.126       20.091      
+LHB     C17     C       CH3     0       -4.235      8.392       21.051      
+LHB     O5      O       O       0       -8.025      10.128      19.902      
+LHB     H1      H       H       0       0.717       15.678      10.224      
+LHB     H2      H       H       0       -1.357      14.326      15.873      
+LHB     H3      H       H       0       -1.487      12.585      12.582      
+LHB     H4      H       H       0       -4.496      11.807      12.945      
+LHB     H5      H       H       0       -3.335      10.503      14.937      
+LHB     H6      H       H       0       -1.738      12.057      15.380      
+LHB     H7      H       H       0       -0.570      10.602      13.477      
+LHB     H8      H       H       0       -2.651      10.434      12.341      
+LHB     H10     H       H       0       -5.420      11.711      15.157      
+LHB     H9      H       H       0       -5.620      13.118      14.440      
+LHB     H11     H       H       0       -3.779      12.578      16.370      
+LHB     H12     H       H       0       -5.768      14.414      16.458      
+LHB     H13     H       H       0       -4.610      14.349      17.534      
+LHB     H14     H       H       0       1.523       18.733      13.335      
+LHB     H15     H       H       0       1.804       17.855      14.547      
+LHB     H16     H       H       0       -4.433      12.231      18.870      
+LHB     H18     H       H       0       -8.771      13.652      16.780      
+LHB     H17     H       H       0       -7.741      13.242      15.738      
+LHB     H20     H       H       0       -5.885      10.369      21.304      
+LHB     H19     H       H       0       -4.500      10.908      20.745      
+LHB     H22     H       H       0       -4.042      7.507       20.701      
+LHB     H23     H       H       0       -4.753      8.311       21.869      
+LHB     H21     H       H       0       -3.403      8.855       21.239      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LHB          C4          N2      SINGLE       y     1.339  0.0100     1.339  0.0100
+LHB          N1          C4      DOUBLE       y     1.330  0.0100     1.330  0.0100
+LHB          C1          N2      DOUBLE       y     1.354  0.0100     1.354  0.0100
+LHB          C3          N1      SINGLE       y     1.343  0.0100     1.343  0.0100
+LHB          C1          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+LHB          C1          C2      SINGLE       y     1.408  0.0100     1.408  0.0100
+LHB          C2          C3      DOUBLE       y     1.381  0.0100     1.381  0.0100
+LHB          C3          N3      SINGLE       y     1.372  0.0100     1.372  0.0100
+LHB          C9          O2      SINGLE       n     1.411  0.0100     1.411  0.0100
+LHB          C2          N4      SINGLE       y     1.388  0.0100     1.388  0.0100
+LHB          N3          C6      SINGLE       n     1.458  0.0200     1.458  0.0200
+LHB          C6          C9      SINGLE       n     1.525  0.0100     1.525  0.0100
+LHB          C6          O1      SINGLE       n     1.409  0.0100     1.409  0.0100
+LHB          C8          O3      SINGLE       n     1.422  0.0100     1.422  0.0100
+LHB          N3          C5      SINGLE       y     1.372  0.0200     1.372  0.0200
+LHB          C8          C9      SINGLE       n     1.531  0.0100     1.531  0.0100
+LHB          O1          C7      SINGLE       n     1.446  0.0100     1.446  0.0100
+LHB          C7          C8      SINGLE       n     1.528  0.0117     1.528  0.0117
+LHB          C7         C10      SINGLE       n     1.516  0.0118     1.516  0.0118
+LHB          C5          N4      DOUBLE       y     1.310  0.0100     1.310  0.0100
+LHB         C10          N5      SINGLE       n     1.466  0.0139     1.466  0.0139
+LHB          N5         C11      SINGLE       n     1.454  0.0100     1.454  0.0100
+LHB         C13          N9      SINGLE       n     1.343  0.0151     1.343  0.0151
+LHB         C11         C12      SINGLE       n     1.510  0.0100     1.510  0.0100
+LHB         C12         C13      SINGLE       y     1.416  0.0131     1.416  0.0131
+LHB         C13          N7      DOUBLE       y     1.341  0.0100     1.341  0.0100
+LHB         C12         C15      DOUBLE       y     1.342  0.0100     1.342  0.0100
+LHB          N7         C14      SINGLE       y     1.355  0.0100     1.355  0.0100
+LHB          N8         C15      SINGLE       y     1.365  0.0105     1.365  0.0105
+LHB         C14          N8      SINGLE       y     1.393  0.0134     1.393  0.0134
+LHB         C14          O5      DOUBLE       n     1.243  0.0111     1.243  0.0111
+LHB          N8         C16      SINGLE       n     1.468  0.0100     1.468  0.0100
+LHB         C16          O4      SINGLE       n     1.402  0.0123     1.402  0.0123
+LHB          O4         C17      SINGLE       n     1.417  0.0200     1.417  0.0200
+LHB          C4          H1      SINGLE       n     1.082  0.0130     0.945  0.0200
+LHB          C5          H2      SINGLE       n     1.082  0.0130     0.942  0.0170
+LHB          C6          H3      SINGLE       n     1.089  0.0100     0.984  0.0200
+LHB          C7          H4      SINGLE       n     1.089  0.0100     0.988  0.0100
+LHB          C8          H5      SINGLE       n     1.089  0.0100     0.992  0.0200
+LHB          C9          H6      SINGLE       n     1.089  0.0100     0.994  0.0200
+LHB          O2          H7      SINGLE       n     0.970  0.0120     0.849  0.0200
+LHB          O3          H8      SINGLE       n     0.970  0.0120     0.849  0.0200
+LHB         C10         H10      SINGLE       n     1.089  0.0100     0.982  0.0100
+LHB         C10          H9      SINGLE       n     1.089  0.0100     0.982  0.0100
+LHB          N5         H11      SINGLE       n     1.036  0.0160     0.890  0.0200
+LHB         C11         H12      SINGLE       n     1.089  0.0100     0.981  0.0172
+LHB         C11         H13      SINGLE       n     1.089  0.0100     0.981  0.0172
+LHB          N6         H14      SINGLE       n     1.016  0.0100     0.877  0.0200
+LHB          N6         H15      SINGLE       n     1.016  0.0100     0.877  0.0200
+LHB         C15         H16      SINGLE       n     1.082  0.0130     0.945  0.0200
+LHB          N9         H18      SINGLE       n     1.016  0.0100     0.877  0.0200
+LHB          N9         H17      SINGLE       n     1.016  0.0100     0.877  0.0200
+LHB         C16         H20      SINGLE       n     1.089  0.0100     0.980  0.0169
+LHB         C16         H19      SINGLE       n     1.089  0.0100     0.980  0.0169
+LHB         C17         H22      SINGLE       n     1.089  0.0100     0.971  0.0146
+LHB         C17         H23      SINGLE       n     1.089  0.0100     0.971  0.0146
+LHB         C17         H21      SINGLE       n     1.089  0.0100     0.971  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LHB          N2          C1          N6     118.799    1.50
+LHB          N2          C1          C2     117.409    1.50
+LHB          N6          C1          C2     123.792    1.50
+LHB          C1          C2          C3     117.267    1.50
+LHB          C1          C2          N4     132.145    1.50
+LHB          C3          C2          N4     110.588    1.50
+LHB          N1          C3          C2     126.489    1.50
+LHB          N1          C3          N3     125.845    1.50
+LHB          C2          C3          N3     107.666    1.69
+LHB          C4          N1          C3     110.982    1.50
+LHB          N2          C4          N1     129.332    1.50
+LHB          N2          C4          H1     115.313    1.50
+LHB          N1          C4          H1     115.355    1.50
+LHB          C4          N2          C1     118.521    1.50
+LHB          C3          N3          C6     125.158    1.54
+LHB          C3          N3          C5     107.594    1.50
+LHB          C6          N3          C5     126.078    2.46
+LHB          N3          C5          N4     112.130    1.94
+LHB          N3          C5          H2     124.701    2.19
+LHB          N4          C5          H2     123.170    1.50
+LHB          C2          N4          C5     103.927    1.50
+LHB          N3          C6          C9     113.752    2.20
+LHB          N3          C6          O1     108.167    1.51
+LHB          N3          C6          H3     109.246    1.50
+LHB          C9          C6          O1     106.047    1.50
+LHB          C9          C6          H3     109.015    1.50
+LHB          O1          C6          H3     109.807    1.50
+LHB          C6          O1          C7     109.426    1.50
+LHB          O1          C7          C8     105.508    1.50
+LHB          O1          C7         C10     108.989    1.51
+LHB          O1          C7          H4     109.115    1.50
+LHB          C8          C7         C10     115.298    1.50
+LHB          C8          C7          H4     109.143    1.50
+LHB         C10          C7          H4     109.467    1.50
+LHB          O3          C8          C9     111.581    2.83
+LHB          O3          C8          C7     110.985    2.41
+LHB          O3          C8          H5     110.380    1.67
+LHB          C9          C8          C7     102.352    1.50
+LHB          C9          C8          H5     110.504    1.75
+LHB          C7          C8          H5     110.624    1.81
+LHB          O2          C9          C6     111.715    2.69
+LHB          O2          C9          C8     112.782    2.45
+LHB          O2          C9          H6     110.448    1.97
+LHB          C6          C9          C8     101.239    1.50
+LHB          C6          C9          H6     110.636    1.70
+LHB          C8          C9          H6     110.596    1.51
+LHB          C9          O2          H7     109.103    2.13
+LHB          C8          O3          H8     108.744    3.00
+LHB          C7         C10          N5     110.786    2.77
+LHB          C7         C10         H10     109.022    1.50
+LHB          C7         C10          H9     109.022    1.50
+LHB          N5         C10         H10     109.389    1.50
+LHB          N5         C10          H9     109.389    1.50
+LHB         H10         C10          H9     108.479    1.50
+LHB         C10          N5         C11     113.485    3.00
+LHB         C10          N5         H11     107.704    3.00
+LHB         C11          N5         H11     107.918    3.00
+LHB          N5         C11         C12     112.898    1.76
+LHB          N5         C11         H12     108.941    1.50
+LHB          N5         C11         H13     108.941    1.50
+LHB         C12         C11         H12     109.005    1.50
+LHB         C12         C11         H13     109.005    1.50
+LHB         H12         C11         H13     107.860    1.50
+LHB         C11         C12         C13     121.240    1.50
+LHB         C11         C12         C15     120.897    1.50
+LHB         C13         C12         C15     117.862    1.50
+LHB          C1          N6         H14     119.723    1.50
+LHB          C1          N6         H15     119.723    1.50
+LHB         H14          N6         H15     120.554    1.88
+LHB          N9         C13         C12     121.451    1.50
+LHB          N9         C13          N7     117.027    1.55
+LHB         C12         C13          N7     121.523    1.50
+LHB         C13          N7         C14     119.836    1.50
+LHB          N7         C14          N8     118.858    1.50
+LHB          N7         C14          O5     122.130    1.50
+LHB          N8         C14          O5     119.012    1.50
+LHB         C15          N8         C14     119.752    1.50
+LHB         C15          N8         C16     119.991    1.50
+LHB         C14          N8         C16     120.258    1.83
+LHB         C12         C15          N8     122.170    1.50
+LHB         C12         C15         H16     119.031    1.54
+LHB          N8         C15         H16     118.798    1.50
+LHB         C13          N9         H18     119.860    1.50
+LHB         C13          N9         H17     119.860    1.50
+LHB         H18          N9         H17     120.280    1.85
+LHB          N8         C16          O4     112.798    1.50
+LHB          N8         C16         H20     108.793    1.53
+LHB          N8         C16         H19     108.793    1.53
+LHB          O4         C16         H20     109.309    1.50
+LHB          O4         C16         H19     109.309    1.50
+LHB         H20         C16         H19     108.663    1.50
+LHB         C16          O4         C17     112.567    2.21
+LHB          O4         C17         H22     109.352    1.50
+LHB          O4         C17         H23     109.352    1.50
+LHB          O4         C17         H21     109.352    1.50
+LHB         H22         C17         H23     109.532    1.53
+LHB         H22         C17         H21     109.532    1.53
+LHB         H23         C17         H21     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LHB              const_41          N6          C1          C2          C3     180.000    10.0     2
+LHB             sp2_sp2_3          N2          C1          N6         H14       0.000     5.0     2
+LHB              const_18          N6          C1          N2          C4     180.000    10.0     2
+LHB            sp3_sp3_29         C10          C7          O1          C6     180.000    10.0     3
+LHB            sp3_sp3_23         C10          C7          C8          O3      60.000    10.0     3
+LHB            sp3_sp3_40          N5         C10          C7          O1     180.000    10.0     3
+LHB            sp3_sp3_14          O3          C8          C9          O2     -60.000    10.0     3
+LHB            sp3_sp3_37          C9          C8          O3          H8     180.000    10.0     3
+LHB            sp3_sp3_31          C6          C9          O2          H7     180.000    10.0     3
+LHB            sp3_sp3_50          C7         C10          N5         C11     -60.000    10.0     3
+LHB            sp3_sp3_55         C12         C11          N5         C10     180.000    10.0     3
+LHB             sp2_sp3_8         C13         C12         C11          N5     -90.000    10.0     6
+LHB       const_sp2_sp2_4         C11         C12         C13          N9       0.000     5.0     2
+LHB              const_47         C11         C12         C15          N8     180.000    10.0     2
+LHB              const_25          C1          C2          C3          N1       0.000    10.0     2
+LHB              const_44          C1          C2          N4          C5     180.000    10.0     2
+LHB       const_sp2_sp2_6          N9         C13          N7         C14     180.000     5.0     2
+LHB             sp2_sp2_5         C12         C13          N9         H18     180.000     5.0     2
+LHB       const_sp2_sp2_8          O5         C14          N7         C13     180.000     5.0     2
+LHB              const_12          O5         C14          N8         C16       0.000    10.0     2
+LHB              const_14         C12         C15          N8         C16     180.000    10.0     2
+LHB            sp2_sp3_14         C15          N8         C16          O4     -90.000    10.0     6
+LHB            sp3_sp3_61          N8         C16          O4         C17     180.000    10.0     3
+LHB            sp3_sp3_64         H22         C17          O4         C16     180.000    10.0     3
+LHB              const_23          C2          C3          N1          C4       0.000    10.0     2
+LHB              const_32          N1          C3          N3          C6       0.000    10.0     2
+LHB              const_21          N2          C4          N1          C3       0.000    10.0     2
+LHB              const_19          N1          C4          N2          C1       0.000    10.0     2
+LHB              const_33          N4          C5          N3          C3       0.000    10.0     2
+LHB             sp2_sp3_1          C3          N3          C6          C9     150.000    10.0     6
+LHB              const_37          N3          C5          N4          C2       0.000    10.0     2
+LHB            sp3_sp3_35          N3          C6          O1          C7      60.000    10.0     3
+LHB             sp3_sp3_5          N3          C6          C9          O2      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LHB    chir_1    C6    O1    N3    C9    negative
+LHB    chir_2    C7    O1    C8    C10    negative
+LHB    chir_3    C8    O3    C7    C9    positive
+LHB    chir_4    C9    O2    C6    C8    negative
+LHB    chir_5    N5    C10    C11    H11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LHB    plan-1          C1   0.020
+LHB    plan-1          C2   0.020
+LHB    plan-1          C3   0.020
+LHB    plan-1          C4   0.020
+LHB    plan-1          C5   0.020
+LHB    plan-1          C6   0.020
+LHB    plan-1          H1   0.020
+LHB    plan-1          H2   0.020
+LHB    plan-1          N1   0.020
+LHB    plan-1          N2   0.020
+LHB    plan-1          N3   0.020
+LHB    plan-1          N4   0.020
+LHB    plan-1          N6   0.020
+LHB    plan-2         C11   0.020
+LHB    plan-2         C12   0.020
+LHB    plan-2         C13   0.020
+LHB    plan-2         C14   0.020
+LHB    plan-2         C15   0.020
+LHB    plan-2         C16   0.020
+LHB    plan-2         H16   0.020
+LHB    plan-2          N7   0.020
+LHB    plan-2          N8   0.020
+LHB    plan-2          N9   0.020
+LHB    plan-2          O5   0.020
+LHB    plan-3          C1   0.020
+LHB    plan-3         H14   0.020
+LHB    plan-3         H15   0.020
+LHB    plan-3          N6   0.020
+LHB    plan-4         C13   0.020
+LHB    plan-4         H17   0.020
+LHB    plan-4         H18   0.020
+LHB    plan-4          N9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LHB            InChI                InChI  1.03 InChI=1S/C17H23N9O5/c1-30-7-25-4-8(13(18)24-17(25)29)2-20-3-9-11(27)12(28)16(31-9)26-6-23-10-14(19)21-5-22-15(10)26/h4-6,9,11-12,16,20,27-28H,2-3,7H2,1H3,(H2,18,24,29)(H2,19,21,22)/t9-,11-,12-,16-/m1/s1
+LHB         InChIKey                InChI  1.03                                                                                                                                                                                XNIWXZNBHJGVPA-UBEDBUPSSA-N
+LHB SMILES_CANONICAL               CACTVS 3.385                                                                                                                                      COCN1C=C(CNC[C@H]2O[C@H]([C@H](O)[C@@H]2O)n3cnc4c(N)ncnc34)C(=NC1=O)N
+LHB           SMILES               CACTVS 3.385                                                                                                                                           COCN1C=C(CNC[CH]2O[CH]([CH](O)[CH]2O)n3cnc4c(N)ncnc34)C(=NC1=O)N
+LHB SMILES_CANONICAL "OpenEye OEToolkits" 2.0.5                                                                                                                                     COCN1C=C(C(=NC1=O)N)CNC[C@@H]2[C@H]([C@H]([C@@H](O2)n3cnc4c3ncnc4N)O)O
+LHB           SMILES "OpenEye OEToolkits" 2.0.5                                                                                                                                                       COCN1C=C(C(=NC1=O)N)CNCC2C(C(C(O2)n3cnc4c3ncnc4N)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LHB acedrg               243         "dictionary generator"                  
+LHB acedrg_database      11          "data source"                           
+LHB rdkit                2017.03.2   "Chemoinformatics tool"
+LHB refmac5              5.8.0238    "optimization tool"                     

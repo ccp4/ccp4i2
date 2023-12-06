@@ -1,0 +1,350 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VHC     VHC      4-amino-20,22-dimethyl-13-oxa-7-thia-3,5,17-triazatetracyclo[17.3.1.1~2,6~.1~8,12~]pentacosa-1(23),2(25),3,5,8(24),9,11,19,21-nonaen-18-one     NON-POLYMER     51     29     .     
+#
+data_comp_VHC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VHC     C1      C       CH3     0       10.339      -2.931      15.554      
+VHC     C2      C       CR6     0       10.250      -1.535      14.984      
+VHC     C3      C       CR16    0       9.276       -1.265      14.018      
+VHC     C4      C       CR6     0       9.125       -0.002      13.435      
+VHC     C5      C       CH3     0       8.048       0.207       12.396      
+VHC     C6      C       CR6     0       9.970       1.043       13.864      
+VHC     C7      C       CR16    0       10.948      0.766       14.821      
+VHC     C8      C       CR6     0       11.101      -0.493      15.386      
+VHC     C9      C       C       0       12.186      -0.655      16.411      
+VHC     O10     O       O       0       11.931      -1.043      17.551      
+VHC     N11     N       NH1     0       13.399      -0.221      16.037      
+VHC     C13     C       CH2     0       14.452      0.124       16.985      
+VHC     C14     C       CH2     0       14.202      1.469       17.654      
+VHC     C15     C       CH2     0       15.173      2.555       17.262      
+VHC     O16     O       O2      0       14.563      3.451       16.315      
+VHC     C17     C       CR6     0       14.817      3.405       14.962      
+VHC     C18     C       CR16    0       13.861      4.052       14.188      
+VHC     C19     C       CR16    0       15.919      2.831       14.328      
+VHC     C20     C       CR16    0       16.023      2.888       12.945      
+VHC     C21     C       CR16    0       15.058      3.517       12.174      
+VHC     C22     C       CR6     0       13.977      4.122       12.802      
+VHC     S23     S       S2      0       12.682      4.912       11.874      
+VHC     C24     C       CR6     0       11.099      4.292       12.383      
+VHC     N25     N       NRD6    0       9.962       5.003       12.339      
+VHC     C26     C       CR16    0       11.125      2.993       12.865      
+VHC     C27     C       CR6     0       9.943       2.422       13.298      
+VHC     N28     N       NRD6    0       8.789       3.115       13.284      
+VHC     C29     C       CR6     0       8.843       4.377       12.790      
+VHC     N30     N       NH2     0       7.704       5.070       12.745      
+VHC     H1      H       H       0       11.269      -3.208      15.598      
+VHC     H1A     H       H       0       9.850       -3.550      14.989      
+VHC     H1B     H       H       0       9.958       -2.941      16.447      
+VHC     H3      H       H       0       8.702       -1.963      13.746      
+VHC     H5      H       H       0       8.409       0.706       11.646      
+VHC     H5A     H       H       0       7.311       0.703       12.788      
+VHC     H5B     H       H       0       7.725       -0.653      12.081      
+VHC     H7      H       H       0       11.529      1.458       15.093      
+VHC     HN11    H       H       0       13.581      -0.158      15.184      
+VHC     H13     H       H       0       15.310      0.141       16.511      
+VHC     H13A    H       H       0       14.508      -0.572      17.674      
+VHC     H14     H       H       0       14.250      1.343       18.626      
+VHC     H14A    H       H       0       13.290      1.766       17.444      
+VHC     H15     H       H       0       15.992      2.167       16.901      
+VHC     H15A    H       H       0       15.420      3.064       18.062      
+VHC     H18     H       H       0       13.115      4.441       14.606      
+VHC     H19     H       H       0       16.588      2.400       14.827      
+VHC     H20     H       H       0       16.768      2.492       12.522      
+VHC     H21     H       H       0       15.141      3.550       11.239      
+VHC     H26     H       H       0       11.923      2.502       12.902      
+VHC     HN30    H       H       0       6.981       4.700       12.415      
+VHC     HN3A    H       H       0       7.683       5.894       13.046      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VHC          C1          C2      SINGLE       n     1.508  0.0100     1.508  0.0100
+VHC          C2          C3      DOUBLE       y     1.390  0.0100     1.390  0.0100
+VHC          C2          C8      SINGLE       y     1.398  0.0100     1.398  0.0100
+VHC          C3          C4      SINGLE       y     1.392  0.0100     1.392  0.0100
+VHC          C4          C5      SINGLE       n     1.508  0.0100     1.508  0.0100
+VHC          C4          C6      DOUBLE       y     1.404  0.0100     1.404  0.0100
+VHC          C6          C7      SINGLE       y     1.392  0.0116     1.392  0.0116
+VHC          C6         C27      SINGLE       n     1.489  0.0100     1.489  0.0100
+VHC          C7          C8      DOUBLE       y     1.389  0.0100     1.389  0.0100
+VHC          C8          C9      SINGLE       n     1.498  0.0100     1.498  0.0100
+VHC          C9         O10      DOUBLE       n     1.230  0.0114     1.230  0.0114
+VHC          C9         N11      SINGLE       n     1.333  0.0111     1.333  0.0111
+VHC         N11         C13      SINGLE       n     1.455  0.0100     1.455  0.0100
+VHC         C13         C14      SINGLE       n     1.517  0.0100     1.517  0.0100
+VHC         C14         C15      SINGLE       n     1.504  0.0100     1.504  0.0100
+VHC         C15         O16      SINGLE       n     1.432  0.0101     1.432  0.0101
+VHC         O16         C17      SINGLE       n     1.369  0.0106     1.369  0.0106
+VHC         C17         C18      DOUBLE       y     1.384  0.0105     1.384  0.0105
+VHC         C17         C19      SINGLE       y     1.386  0.0109     1.386  0.0109
+VHC         C18         C22      SINGLE       y     1.386  0.0107     1.386  0.0107
+VHC         C19         C20      DOUBLE       y     1.382  0.0116     1.382  0.0116
+VHC         C20         C21      SINGLE       y     1.383  0.0100     1.383  0.0100
+VHC         C21         C22      DOUBLE       y     1.386  0.0105     1.386  0.0105
+VHC         C22         S23      SINGLE       n     1.772  0.0127     1.772  0.0127
+VHC         S23         C24      SINGLE       n     1.772  0.0127     1.772  0.0127
+VHC         C24         N25      DOUBLE       y     1.338  0.0100     1.338  0.0100
+VHC         C24         C26      SINGLE       y     1.389  0.0100     1.389  0.0100
+VHC         N25         C29      SINGLE       y     1.349  0.0100     1.349  0.0100
+VHC         C26         C27      DOUBLE       y     1.387  0.0106     1.387  0.0106
+VHC         C27         N28      SINGLE       y     1.341  0.0100     1.341  0.0100
+VHC         N28         C29      DOUBLE       y     1.346  0.0100     1.346  0.0100
+VHC         C29         N30      SINGLE       n     1.334  0.0100     1.334  0.0100
+VHC          C1          H1      SINGLE       n     1.089  0.0100     0.971  0.0135
+VHC          C1         H1A      SINGLE       n     1.089  0.0100     0.971  0.0135
+VHC          C1         H1B      SINGLE       n     1.089  0.0100     0.971  0.0135
+VHC          C3          H3      SINGLE       n     1.082  0.0130     0.944  0.0155
+VHC          C5          H5      SINGLE       n     1.089  0.0100     0.971  0.0135
+VHC          C5         H5A      SINGLE       n     1.089  0.0100     0.971  0.0135
+VHC          C5         H5B      SINGLE       n     1.089  0.0100     0.971  0.0135
+VHC          C7          H7      SINGLE       n     1.082  0.0130     0.943  0.0197
+VHC         N11        HN11      SINGLE       n     1.016  0.0100     0.873  0.0200
+VHC         C13         H13      SINGLE       n     1.089  0.0100     0.981  0.0152
+VHC         C13        H13A      SINGLE       n     1.089  0.0100     0.981  0.0152
+VHC         C14         H14      SINGLE       n     1.089  0.0100     0.981  0.0122
+VHC         C14        H14A      SINGLE       n     1.089  0.0100     0.981  0.0122
+VHC         C15         H15      SINGLE       n     1.089  0.0100     0.979  0.0131
+VHC         C15        H15A      SINGLE       n     1.089  0.0100     0.979  0.0131
+VHC         C18         H18      SINGLE       n     1.082  0.0130     0.940  0.0147
+VHC         C19         H19      SINGLE       n     1.082  0.0130     0.942  0.0163
+VHC         C20         H20      SINGLE       n     1.082  0.0130     0.944  0.0165
+VHC         C21         H21      SINGLE       n     1.082  0.0130     0.940  0.0163
+VHC         C26         H26      SINGLE       n     1.082  0.0130     0.942  0.0177
+VHC         N30        HN30      SINGLE       n     1.016  0.0100     0.877  0.0200
+VHC         N30        HN3A      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VHC          C2          C1          H1     109.545    1.50
+VHC          C2          C1         H1A     109.545    1.50
+VHC          C2          C1         H1B     109.545    1.50
+VHC          H1          C1         H1A     109.348    1.50
+VHC          H1          C1         H1B     109.348    1.50
+VHC         H1A          C1         H1B     109.348    1.50
+VHC          C1          C2          C3     118.762    1.50
+VHC          C1          C2          C8     122.240    1.50
+VHC          C3          C2          C8     118.999    1.50
+VHC          C2          C3          C4     121.884    1.50
+VHC          C2          C3          H3     119.000    1.50
+VHC          C4          C3          H3     119.115    1.50
+VHC          C3          C4          C5     119.590    1.50
+VHC          C3          C4          C6     119.321    1.50
+VHC          C5          C4          C6     121.089    1.50
+VHC          C4          C5          H5     109.524    1.50
+VHC          C4          C5         H5A     109.524    1.50
+VHC          C4          C5         H5B     109.524    1.50
+VHC          H5          C5         H5A     109.348    1.50
+VHC          H5          C5         H5B     109.348    1.50
+VHC         H5A          C5         H5B     109.348    1.50
+VHC          C4          C6          C7     119.240    1.50
+VHC          C4          C6         C27     120.254    1.50
+VHC          C7          C6         C27     120.506    1.50
+VHC          C6          C7          C8     121.318    1.50
+VHC          C6          C7          H7     119.295    1.50
+VHC          C8          C7          H7     119.387    1.50
+VHC          C2          C8          C7     119.239    1.50
+VHC          C2          C8          C9     120.475    1.50
+VHC          C7          C8          C9     120.286    2.89
+VHC          C8          C9         O10     121.459    1.50
+VHC          C8          C9         N11     115.971    1.50
+VHC         O10          C9         N11     122.570    1.50
+VHC          C9         N11         C13     121.796    1.50
+VHC          C9         N11        HN11     119.379    1.77
+VHC         C13         N11        HN11     118.813    1.50
+VHC         N11         C13         C14     111.491    1.50
+VHC         N11         C13         H13     109.020    1.50
+VHC         N11         C13        H13A     109.020    1.50
+VHC         C14         C13         H13     109.069    1.50
+VHC         C14         C13        H13A     109.069    1.50
+VHC         H13         C13        H13A     107.877    1.50
+VHC         C13         C14         C15     112.303    1.50
+VHC         C13         C14         H14     108.901    1.50
+VHC         C13         C14        H14A     108.901    1.50
+VHC         C15         C14         H14     109.121    1.50
+VHC         C15         C14        H14A     109.121    1.50
+VHC         H14         C14        H14A     107.717    1.50
+VHC         C14         C15         O16     108.230    2.17
+VHC         C14         C15         H15     110.092    1.50
+VHC         C14         C15        H15A     110.092    1.50
+VHC         O16         C15         H15     109.943    1.50
+VHC         O16         C15        H15A     109.943    1.50
+VHC         H15         C15        H15A     108.474    1.50
+VHC         C15         O16         C17     118.103    1.50
+VHC         O16         C17         C18     120.648    3.00
+VHC         O16         C17         C19     119.519    3.00
+VHC         C18         C17         C19     119.832    1.50
+VHC         C17         C18         C22     120.548    1.50
+VHC         C17         C18         H18     119.836    1.50
+VHC         C22         C18         H18     119.616    1.50
+VHC         C17         C19         C20     119.395    1.50
+VHC         C17         C19         H19     120.268    1.50
+VHC         C20         C19         H19     120.337    1.50
+VHC         C19         C20         C21     121.106    1.50
+VHC         C19         C20         H20     119.363    1.50
+VHC         C21         C20         H20     119.531    1.50
+VHC         C20         C21         C22     119.430    1.50
+VHC         C20         C21         H21     120.428    1.50
+VHC         C22         C21         H21     120.141    1.50
+VHC         C18         C22         C21     119.688    1.50
+VHC         C18         C22         S23     120.156    2.83
+VHC         C21         C22         S23     120.156    2.83
+VHC         C22         S23         C24     120.000    3.00
+VHC         S23         C24         N25     116.906    3.00
+VHC         S23         C24         C26     120.352    2.83
+VHC         N25         C24         C26     122.742    1.50
+VHC         C24         N25         C29     115.770    1.50
+VHC         C24         C26         C27     118.592    1.50
+VHC         C24         C26         H26     120.955    1.50
+VHC         C27         C26         H26     120.452    1.50
+VHC          C6         C27         C26     122.192    1.50
+VHC          C6         C27         N28     115.960    1.50
+VHC         C26         C27         N28     121.847    1.50
+VHC         C27         N28         C29     116.569    1.50
+VHC         N25         C29         N28     124.479    1.50
+VHC         N25         C29         N30     117.515    1.50
+VHC         N28         C29         N30     118.005    1.50
+VHC         C29         N30        HN30     119.826    1.50
+VHC         C29         N30        HN3A     119.826    1.50
+VHC        HN30         N30        HN3A     120.348    1.96
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VHC             sp2_sp3_1          C3          C2          C1          H1     150.000    10.0     6
+VHC            sp2_sp3_14          C9         N11         C13         C14     120.000    10.0     6
+VHC             sp3_sp3_1         N11         C13         C14         C15     180.000    10.0     3
+VHC            sp3_sp3_10         C13         C14         C15         O16     180.000    10.0     3
+VHC            sp3_sp3_19         C14         C15         O16         C17     180.000    10.0     3
+VHC            sp2_sp2_13         C18         C17         O16         C15     180.000     5.0     2
+VHC       const_sp2_sp2_3         O16         C17         C18         C22     180.000     5.0     2
+VHC              const_59         O16         C17         C19         C20     180.000    10.0     2
+VHC       const_sp2_sp2_6         C17         C18         C22         S23     180.000     5.0     2
+VHC              const_17         C17         C19         C20         C21       0.000    10.0     2
+VHC              const_13         C19         C20         C21         C22       0.000    10.0     2
+VHC              const_10         C20         C21         C22         S23     180.000    10.0     2
+VHC              const_35          C1          C2          C3          C4     180.000    10.0     2
+VHC              const_56          C1          C2          C8          C9       0.000    10.0     2
+VHC            sp2_sp2_15         C18         C22         S23         C24     180.000     5.0     2
+VHC            sp2_sp2_17         N25         C24         S23         C22     180.000     5.0     2
+VHC              const_22         S23         C24         N25         C29     180.000    10.0     2
+VHC              const_63         S23         C24         C26         C27     180.000    10.0     2
+VHC              const_24         N30         C29         N25         C24     180.000    10.0     2
+VHC              const_30         C24         C26         C27          C6     180.000    10.0     2
+VHC              const_28          C6         C27         N28         C29     180.000    10.0     2
+VHC              const_26         N30         C29         N28         C27     180.000    10.0     2
+VHC            sp2_sp2_19         N25         C29         N30        HN30     180.000     5.0     2
+VHC              const_38          C2          C3          C4          C5     180.000    10.0     2
+VHC             sp2_sp3_7          C3          C4          C5          H5     150.000    10.0     6
+VHC              const_43          C5          C4          C6          C7     180.000    10.0     2
+VHC             sp2_sp2_1         C26         C27          C6          C4     180.000     5.0     2
+VHC              const_45          C4          C6          C7          C8       0.000    10.0     2
+VHC              const_50          C6          C7          C8          C9     180.000    10.0     2
+VHC             sp2_sp2_6          C2          C8          C9         O10       0.000     5.0     2
+VHC            sp2_sp2_11         O10          C9         N11         C13       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VHC    plan-1         C17   0.020
+VHC    plan-1         C18   0.020
+VHC    plan-1         C19   0.020
+VHC    plan-1         C20   0.020
+VHC    plan-1         C21   0.020
+VHC    plan-1         C22   0.020
+VHC    plan-1         H18   0.020
+VHC    plan-1         H19   0.020
+VHC    plan-1         H20   0.020
+VHC    plan-1         H21   0.020
+VHC    plan-1         O16   0.020
+VHC    plan-1         S23   0.020
+VHC    plan-2          C1   0.020
+VHC    plan-2          C2   0.020
+VHC    plan-2         C27   0.020
+VHC    plan-2          C3   0.020
+VHC    plan-2          C4   0.020
+VHC    plan-2          C5   0.020
+VHC    plan-2          C6   0.020
+VHC    plan-2          C7   0.020
+VHC    plan-2          C8   0.020
+VHC    plan-2          C9   0.020
+VHC    plan-2          H3   0.020
+VHC    plan-2          H7   0.020
+VHC    plan-3         C24   0.020
+VHC    plan-3         C26   0.020
+VHC    plan-3         C27   0.020
+VHC    plan-3         C29   0.020
+VHC    plan-3          C6   0.020
+VHC    plan-3         H26   0.020
+VHC    plan-3         N25   0.020
+VHC    plan-3         N28   0.020
+VHC    plan-3         N30   0.020
+VHC    plan-3         S23   0.020
+VHC    plan-4          C8   0.020
+VHC    plan-4          C9   0.020
+VHC    plan-4         N11   0.020
+VHC    plan-4         O10   0.020
+VHC    plan-5         C13   0.020
+VHC    plan-5          C9   0.020
+VHC    plan-5        HN11   0.020
+VHC    plan-5         N11   0.020
+VHC    plan-6         C29   0.020
+VHC    plan-6        HN30   0.020
+VHC    plan-6        HN3A   0.020
+VHC    plan-6         N30   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VHC           SMILES              ACDLabs 12.01                                                                                                                  O=C2NCCCOc4cccc(Sc3nc(nc(c1c(cc(c2c1)C)C)c3)N)c4
+VHC            InChI                InChI  1.03 InChI=1S/C22H22N4O2S/c1-13-9-14(2)18-11-17(13)19-12-20(26-22(23)25-19)29-16-6-3-5-15(10-16)28-8-4-7-24-21(18)27/h3,5-6,9-12H,4,7-8H2,1-2H3,(H,24,27)(H2,23,25,26)
+VHC         InChIKey                InChI  1.03                                                                                                                                       HDKDXSZAJVZYLD-UHFFFAOYSA-N
+VHC SMILES_CANONICAL               CACTVS 3.370                                                                                                                    Cc1cc(C)c2cc1C(=O)NCCCOc3cccc(Sc4cc2nc(N)n4)c3
+VHC           SMILES               CACTVS 3.370                                                                                                                    Cc1cc(C)c2cc1C(=O)NCCCOc3cccc(Sc4cc2nc(N)n4)c3
+VHC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                                   Cc1cc(c2cc1-c3cc(nc(n3)N)Sc4cccc(c4)OCCCNC2=O)C
+VHC           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                   Cc1cc(c2cc1-c3cc(nc(n3)N)Sc4cccc(c4)OCCCNC2=O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VHC acedrg               243         "dictionary generator"                  
+VHC acedrg_database      11          "data source"                           
+VHC rdkit                2017.03.2   "Chemoinformatics tool"
+VHC refmac5              5.8.0238    "optimization tool"                     

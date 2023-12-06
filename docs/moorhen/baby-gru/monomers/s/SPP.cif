@@ -1,0 +1,401 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SPP     SPP      (1-(5-METHANSULPHONAMIDO-1H-INDOL-2-YL-CARBONYL)4-[METHYLAMINO)PYRIDINYL]PIPERAZINE     NON-POLYMER     60     32     .     
+#
+data_comp_SPP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SPP     C2      C       CR6     0       -0.822      -36.016     23.715      
+SPP     C3      C       CR6     0       -0.489      -34.741     24.271      
+SPP     C4      C       CR16    0       0.839       -34.512     24.666      
+SPP     C5      C       CR16    0       1.778       -35.509     24.518      
+SPP     C6      C       CR16    0       1.380       -36.710     23.971      
+SPP     C8      C       CH2     0       -2.395      -36.690     21.909      
+SPP     C9      C       CH2     0       -3.464      -35.781     21.340      
+SPP     C11     C       CH2     0       -4.371      -35.443     23.582      
+SPP     C12     C       CH2     0       -3.271      -36.322     24.150      
+SPP     C       C       C       0       -5.891      -36.179     21.728      
+SPP     C14     C       CR5     0       -7.121      -35.588     22.180      
+SPP     C15     C       CR15    0       -7.321      -34.287     22.645      
+SPP     C16     C       CR16    0       -9.494      -33.101     23.451      
+SPP     C17     C       CR6     0       -10.845     -33.313     23.633      
+SPP     C18     C       CR16    0       -11.428     -34.573     23.307      
+SPP     C19     C       CR16    0       -10.676     -35.613     22.813      
+SPP     C20     C       CR56    0       -9.310      -35.395     22.635      
+SPP     C21     C       CR56    0       -8.708      -34.151     22.950      
+SPP     CA      C       CH1     0       -1.746      -32.995     25.625      
+SPP     CB      C       CH3     0       -0.901      -31.738     25.669      
+SPP     CC      C       CH3     0       -1.577      -33.845     26.870      
+SPP     CE      C       CH3     0       -10.227     -31.373     26.224      
+SPP     N       N       NH1     0       -1.442      -33.763     24.408      
+SPP     N1      N       NRD6    0       0.120       -36.970     23.574      
+SPP     N7      N       NR6     0       -2.092      -36.315     23.286      
+SPP     N10     N       NR6     0       -4.668      -35.801     22.186      
+SPP     N13     N       NR5     0       -8.336      -36.240     22.168      
+SPP     ND      N       NH1     0       -11.717     -32.289     24.135      
+SPP     O       O       O       0       -5.981      -36.948     20.764      
+SPP     OS1     O       O       0       -12.501     -30.396     25.494      
+SPP     OS2     O       O       0       -10.579     -30.107     23.998      
+SPP     S       S       S3      0       -11.303     -30.919     24.921      
+SPP     H4      H       H       0       1.085       -33.676     25.043      
+SPP     H5      H       H       0       2.670       -35.371     24.783      
+SPP     H6      H       H       0       2.021       -37.393     23.867      
+SPP     H81     H       H       0       -2.707      -37.619     21.886      
+SPP     H82     H       H       0       -1.583      -36.624     21.361      
+SPP     H91     H       H       0       -3.118      -34.867     21.295      
+SPP     H92     H       H       0       -3.680      -36.065     20.430      
+SPP     H111    H       H       0       -4.091      -34.507     23.625      
+SPP     H112    H       H       0       -5.173      -35.543     24.133      
+SPP     H121    H       H       0       -3.601      -37.241     24.238      
+SPP     H122    H       H       0       -3.024      -36.000     25.043      
+SPP     H15     H       H       0       -6.659      -33.623     22.752      
+SPP     H16     H       H       0       -9.100      -32.280     23.660      
+SPP     H18     H       H       0       -12.348     -34.692     23.436      
+SPP     H19     H       H       0       -11.065     -36.439     22.603      
+SPP     HA      H       H       0       -2.688      -32.721     25.577      
+SPP     HB1     H       H       0       -0.472      -31.600     24.806      
+SPP     HB2     H       H       0       -0.218      -31.817     26.357      
+SPP     HB3     H       H       0       -1.470      -30.974     25.869      
+SPP     HC1     H       H       0       -2.016      -34.704     26.742      
+SPP     HC2     H       H       0       -1.980      -33.390     27.630      
+SPP     HC3     H       H       0       -0.632      -33.991     27.048      
+SPP     HE1     H       H       0       -9.331      -31.064     26.022      
+SPP     HE2     H       H       0       -10.225     -32.338     26.317      
+SPP     HE3     H       H       0       -10.533     -30.967     27.049      
+SPP     HN      H       H       0       -1.915      -33.566     23.693      
+SPP     HN3     H       H       0       -8.462      -37.076     21.906      
+SPP     HND     H       H       0       -12.562     -32.408     24.005      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SPP          C2          C3      DOUBLE       y     1.410  0.0163     1.410  0.0163
+SPP          C2          N1      SINGLE       y     1.342  0.0109     1.342  0.0109
+SPP          C2          N7      SINGLE       n     1.364  0.0160     1.364  0.0160
+SPP          C3          C4      SINGLE       y     1.396  0.0146     1.396  0.0146
+SPP          C3           N      SINGLE       n     1.361  0.0191     1.361  0.0191
+SPP          C4          C5      DOUBLE       y     1.375  0.0117     1.375  0.0117
+SPP          C5          C6      SINGLE       y     1.374  0.0152     1.374  0.0152
+SPP          C6          N1      DOUBLE       y     1.342  0.0100     1.342  0.0100
+SPP          C8          C9      SINGLE       n     1.514  0.0100     1.514  0.0100
+SPP          C8          N7      SINGLE       n     1.458  0.0100     1.458  0.0100
+SPP          C9         N10      SINGLE       n     1.466  0.0100     1.466  0.0100
+SPP         C11         C12      SINGLE       n     1.514  0.0100     1.514  0.0100
+SPP         C11         N10      SINGLE       n     1.466  0.0100     1.466  0.0100
+SPP         C12          N7      SINGLE       n     1.458  0.0100     1.458  0.0100
+SPP           C         C14      SINGLE       n     1.429  0.0200     1.429  0.0200
+SPP           C         N10      SINGLE       n     1.343  0.0147     1.343  0.0147
+SPP           C           O      DOUBLE       n     1.235  0.0100     1.235  0.0100
+SPP         C14         C15      DOUBLE       y     1.402  0.0200     1.402  0.0200
+SPP         C14         N13      SINGLE       y     1.377  0.0100     1.377  0.0100
+SPP         C15         C21      SINGLE       y     1.428  0.0100     1.428  0.0100
+SPP         C16         C17      SINGLE       y     1.372  0.0100     1.372  0.0100
+SPP         C16         C21      DOUBLE       y     1.400  0.0100     1.400  0.0100
+SPP         C17         C18      DOUBLE       y     1.422  0.0101     1.422  0.0101
+SPP         C17          ND      SINGLE       n     1.422  0.0171     1.422  0.0171
+SPP         C18         C19      SINGLE       y     1.367  0.0176     1.367  0.0176
+SPP         C19         C20      DOUBLE       y     1.392  0.0100     1.392  0.0100
+SPP         C20         C21      SINGLE       y     1.414  0.0100     1.414  0.0100
+SPP         C20         N13      SINGLE       y     1.369  0.0100     1.369  0.0100
+SPP          CA          CB      SINGLE       n     1.512  0.0108     1.512  0.0108
+SPP          CA          CC      SINGLE       n     1.512  0.0108     1.512  0.0108
+SPP          CA           N      SINGLE       n     1.466  0.0100     1.466  0.0100
+SPP          CE           S      SINGLE       n     1.750  0.0100     1.750  0.0100
+SPP          ND           S      SINGLE       n     1.629  0.0128     1.629  0.0128
+SPP         OS1           S      DOUBLE       n     1.427  0.0100     1.427  0.0100
+SPP         OS2           S      DOUBLE       n     1.427  0.0100     1.427  0.0100
+SPP          C4          H4      SINGLE       n     1.082  0.0130     0.950  0.0200
+SPP          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0154
+SPP          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0178
+SPP          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0152
+SPP          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0152
+SPP          C9         H91      SINGLE       n     1.089  0.0100     0.978  0.0161
+SPP          C9         H92      SINGLE       n     1.089  0.0100     0.978  0.0161
+SPP         C11        H111      SINGLE       n     1.089  0.0100     0.978  0.0161
+SPP         C11        H112      SINGLE       n     1.089  0.0100     0.978  0.0161
+SPP         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0152
+SPP         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0152
+SPP         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0200
+SPP         C16         H16      SINGLE       n     1.082  0.0130     0.936  0.0142
+SPP         C18         H18      SINGLE       n     1.082  0.0130     0.937  0.0200
+SPP         C19         H19      SINGLE       n     1.082  0.0130     0.937  0.0100
+SPP          CA          HA      SINGLE       n     1.089  0.0100     0.982  0.0100
+SPP          CB         HB1      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPP          CB         HB2      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPP          CB         HB3      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPP          CC         HC1      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPP          CC         HC2      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPP          CC         HC3      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPP          CE         HE1      SINGLE       n     1.089  0.0100     0.969  0.0154
+SPP          CE         HE2      SINGLE       n     1.089  0.0100     0.969  0.0154
+SPP          CE         HE3      SINGLE       n     1.089  0.0100     0.969  0.0154
+SPP           N          HN      SINGLE       n     1.016  0.0100     0.880  0.0200
+SPP         N13         HN3      SINGLE       n     1.016  0.0100     0.885  0.0200
+SPP          ND         HND      SINGLE       n     1.016  0.0100     0.863  0.0132
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SPP          C3          C2          N1     120.461    1.50
+SPP          C3          C2          N7     121.203    1.50
+SPP          N1          C2          N7     118.336    1.50
+SPP          C2          C3          C4     118.923    1.85
+SPP          C2          C3           N     119.899    2.27
+SPP          C4          C3           N     121.178    1.76
+SPP          C3          C4          C5     119.809    1.50
+SPP          C3          C4          H4     119.861    1.50
+SPP          C5          C4          H4     120.330    1.50
+SPP          C4          C5          C6     118.883    1.50
+SPP          C4          C5          H5     120.401    1.50
+SPP          C6          C5          H5     120.722    1.50
+SPP          C5          C6          N1     123.943    1.50
+SPP          C5          C6          H6     118.517    1.50
+SPP          N1          C6          H6     117.540    1.88
+SPP          C9          C8          N7     110.457    1.50
+SPP          C9          C8         H81     109.514    1.50
+SPP          C9          C8         H82     109.514    1.50
+SPP          N7          C8         H81     109.309    1.50
+SPP          N7          C8         H82     109.309    1.50
+SPP         H81          C8         H82     108.196    1.50
+SPP          C8          C9         N10     110.353    1.50
+SPP          C8          C9         H91     109.482    1.50
+SPP          C8          C9         H92     109.482    1.50
+SPP         N10          C9         H91     109.599    1.50
+SPP         N10          C9         H92     109.599    1.50
+SPP         H91          C9         H92     108.187    1.50
+SPP         C12         C11         N10     110.353    1.50
+SPP         C12         C11        H111     109.482    1.50
+SPP         C12         C11        H112     109.482    1.50
+SPP         N10         C11        H111     109.599    1.50
+SPP         N10         C11        H112     109.599    1.50
+SPP        H111         C11        H112     108.187    1.50
+SPP         C11         C12          N7     110.457    1.50
+SPP         C11         C12        H121     109.514    1.50
+SPP         C11         C12        H122     109.514    1.50
+SPP          N7         C12        H121     109.309    1.50
+SPP          N7         C12        H122     109.309    1.50
+SPP        H121         C12        H122     108.196    1.50
+SPP         C14           C         N10     121.604    3.00
+SPP         C14           C           O     118.375    1.84
+SPP         N10           C           O     120.021    1.50
+SPP           C         C14         C15     128.323    3.00
+SPP           C         C14         N13     122.779    3.00
+SPP         C15         C14         N13     108.898    1.50
+SPP         C14         C15         C21     107.799    1.50
+SPP         C14         C15         H15     126.173    1.50
+SPP         C21         C15         H15     126.028    1.50
+SPP         C17         C16         C21     118.073    1.50
+SPP         C17         C16         H16     121.112    1.50
+SPP         C21         C16         H16     120.815    1.50
+SPP         C16         C17         C18     121.004    1.50
+SPP         C16         C17          ND     119.762    2.08
+SPP         C18         C17          ND     119.234    2.41
+SPP         C17         C18         C19     121.842    1.50
+SPP         C17         C18         H18     118.703    1.50
+SPP         C19         C18         H18     119.455    1.50
+SPP         C18         C19         C20     117.696    1.50
+SPP         C18         C19         H19     121.292    1.50
+SPP         C20         C19         H19     121.012    1.50
+SPP         C19         C20         C21     122.151    1.50
+SPP         C19         C20         N13     130.036    1.50
+SPP         C21         C20         N13     107.813    1.50
+SPP         C15         C21         C16     134.123    1.50
+SPP         C15         C21         C20     106.642    1.50
+SPP         C16         C21         C20     119.235    1.50
+SPP          CB          CA          CC     111.689    1.50
+SPP          CB          CA           N     109.668    1.50
+SPP          CB          CA          HA     108.432    1.50
+SPP          CC          CA           N     109.668    1.50
+SPP          CC          CA          HA     108.432    1.50
+SPP           N          CA          HA     108.349    1.50
+SPP          CA          CB         HB1     109.585    1.50
+SPP          CA          CB         HB2     109.585    1.50
+SPP          CA          CB         HB3     109.585    1.50
+SPP         HB1          CB         HB2     109.386    1.50
+SPP         HB1          CB         HB3     109.386    1.50
+SPP         HB2          CB         HB3     109.386    1.50
+SPP          CA          CC         HC1     109.585    1.50
+SPP          CA          CC         HC2     109.585    1.50
+SPP          CA          CC         HC3     109.585    1.50
+SPP         HC1          CC         HC2     109.386    1.50
+SPP         HC1          CC         HC3     109.386    1.50
+SPP         HC2          CC         HC3     109.386    1.50
+SPP           S          CE         HE1     109.254    1.50
+SPP           S          CE         HE2     109.254    1.50
+SPP           S          CE         HE3     109.254    1.50
+SPP         HE1          CE         HE2     109.614    1.50
+SPP         HE1          CE         HE3     109.614    1.50
+SPP         HE2          CE         HE3     109.614    1.50
+SPP          C3           N          CA     125.207    1.50
+SPP          C3           N          HN     117.829    2.04
+SPP          CA           N          HN     116.964    1.50
+SPP          C2          N1          C6     117.974    1.50
+SPP          C2          N7          C8     123.295    1.63
+SPP          C2          N7         C12     123.295    1.63
+SPP          C8          N7         C12     113.410    1.54
+SPP          C9         N10         C11     113.310    1.50
+SPP          C9         N10           C     123.345    3.00
+SPP         C11         N10           C     123.345    3.00
+SPP         C14         N13         C20     108.847    1.50
+SPP         C14         N13         HN3     125.439    2.15
+SPP         C20         N13         HN3     125.714    1.50
+SPP         C17          ND           S     124.452    3.00
+SPP         C17          ND         HND     117.774    1.56
+SPP           S          ND         HND     117.756    1.59
+SPP          CE           S          ND     106.714    1.50
+SPP          CE           S         OS1     108.412    1.50
+SPP          CE           S         OS2     108.412    1.50
+SPP          ND           S         OS1     106.966    1.72
+SPP          ND           S         OS2     106.966    1.72
+SPP         OS1           S         OS2     118.713    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SPP              const_34          N1          C2          C3           N     180.000    10.0     2
+SPP              const_51          C3          C2          N1          C6       0.000    10.0     2
+SPP             sp2_sp2_1          C3          C2          N7          C8     180.000     5.0     2
+SPP       const_sp2_sp2_3           C         C14         C15         C21     180.000     5.0     2
+SPP              const_55           C         C14         N13         C20     180.000    10.0     2
+SPP       const_sp2_sp2_6         C14         C15         C21         C16     180.000     5.0     2
+SPP              const_18         C21         C16         C17          ND     180.000    10.0     2
+SPP              const_58         C17         C16         C21         C15     180.000    10.0     2
+SPP              const_23          ND         C17         C18         C19     180.000    10.0     2
+SPP            sp2_sp2_17         C16         C17          ND           S     180.000     5.0     2
+SPP              const_25         C17         C18         C19         C20       0.000    10.0     2
+SPP              const_29         C18         C19         C20         C21       0.000    10.0     2
+SPP              const_10         C19         C20         C21         C15     180.000    10.0     2
+SPP              const_15         C19         C20         N13         C14     180.000    10.0     2
+SPP            sp3_sp3_22          CC          CA          CB         HB1      60.000    10.0     3
+SPP            sp3_sp3_28          CB          CA          CC         HC1     180.000    10.0     3
+SPP            sp2_sp3_26          C3           N          CA          CB     120.000    10.0     6
+SPP              const_39           N          C3          C4          C5     180.000    10.0     2
+SPP             sp2_sp2_5          C2          C3           N          CA     180.000     5.0     2
+SPP            sp3_sp3_39         HE1          CE           S          ND      60.000    10.0     3
+SPP            sp2_sp3_33         C17          ND           S          CE    -120.000    10.0     6
+SPP              const_41          C3          C4          C5          C6       0.000    10.0     2
+SPP              const_45          C4          C5          C6          N1       0.000    10.0     2
+SPP              const_49          C5          C6          N1          C2       0.000    10.0     2
+SPP            sp2_sp3_22          C2          N7          C8          C9     180.000    10.0     6
+SPP             sp3_sp3_1          N7          C8          C9         N10      60.000    10.0     3
+SPP             sp2_sp3_4           C         N10          C9          C8     180.000    10.0     6
+SPP            sp2_sp3_10           C         N10         C11         C12     180.000    10.0     6
+SPP            sp3_sp3_10         N10         C11         C12          N7     -60.000    10.0     3
+SPP            sp2_sp3_16          C2          N7         C12         C11     180.000    10.0     6
+SPP            sp2_sp2_11           O           C         C14         C15       0.000     5.0     2
+SPP            sp2_sp2_15           O           C         N10          C9       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SPP    chir_1    CA    N    CB    CC    both
+SPP    chir_2    S    OS1    OS2    ND    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SPP    plan-1           C   0.020
+SPP    plan-1         C14   0.020
+SPP    plan-1         C15   0.020
+SPP    plan-1         C16   0.020
+SPP    plan-1         C17   0.020
+SPP    plan-1         C18   0.020
+SPP    plan-1         C19   0.020
+SPP    plan-1         C20   0.020
+SPP    plan-1         C21   0.020
+SPP    plan-1         H15   0.020
+SPP    plan-1         H16   0.020
+SPP    plan-1         H18   0.020
+SPP    plan-1         H19   0.020
+SPP    plan-1         HN3   0.020
+SPP    plan-1         N13   0.020
+SPP    plan-1          ND   0.020
+SPP    plan-2          C2   0.020
+SPP    plan-2          C3   0.020
+SPP    plan-2          C4   0.020
+SPP    plan-2          C5   0.020
+SPP    plan-2          C6   0.020
+SPP    plan-2          H4   0.020
+SPP    plan-2          H5   0.020
+SPP    plan-2          H6   0.020
+SPP    plan-2           N   0.020
+SPP    plan-2          N1   0.020
+SPP    plan-2          N7   0.020
+SPP    plan-3           C   0.020
+SPP    plan-3         C14   0.020
+SPP    plan-3         N10   0.020
+SPP    plan-3           O   0.020
+SPP    plan-4          C3   0.020
+SPP    plan-4          CA   0.020
+SPP    plan-4          HN   0.020
+SPP    plan-4           N   0.020
+SPP    plan-5         C12   0.020
+SPP    plan-5          C2   0.020
+SPP    plan-5          C8   0.020
+SPP    plan-5          N7   0.020
+SPP    plan-6           C   0.020
+SPP    plan-6         C11   0.020
+SPP    plan-6          C9   0.020
+SPP    plan-6         N10   0.020
+SPP    plan-7         C17   0.020
+SPP    plan-7         HND   0.020
+SPP    plan-7          ND   0.020
+SPP    plan-7           S   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SPP           SMILES              ACDLabs 12.01                                                                                                 O=C(c2cc1cc(NS(=O)(=O)C)ccc1n2)N4CCN(c3ncccc3NC(C)C)CC4
+SPP            InChI                InChI  1.03 InChI=1S/C22H28N6O3S/c1-15(2)24-19-5-4-8-23-21(19)27-9-11-28(12-10-27)22(29)20-14-16-13-17(26-32(3,30)31)6-7-18(16)25-20/h4-8,13-15,24-26H,9-12H2,1-3H3
+SPP         InChIKey                InChI  1.03                                                                                                                             WHBIGIKBNXZKFE-UHFFFAOYSA-N
+SPP SMILES_CANONICAL               CACTVS 3.370                                                                                            CC(C)Nc1cccnc1N2CCN(CC2)C(=O)c3[nH]c4ccc(N[S](C)(=O)=O)cc4c3
+SPP           SMILES               CACTVS 3.370                                                                                            CC(C)Nc1cccnc1N2CCN(CC2)C(=O)c3[nH]c4ccc(N[S](C)(=O)=O)cc4c3
+SPP SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                              CC(C)Nc1cccnc1N2CCN(CC2)C(=O)c3cc4cc(ccc4[nH]3)NS(=O)(=O)C
+SPP           SMILES "OpenEye OEToolkits" 1.7.6                                                                                              CC(C)Nc1cccnc1N2CCN(CC2)C(=O)c3cc4cc(ccc4[nH]3)NS(=O)(=O)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SPP acedrg               243         "dictionary generator"                  
+SPP acedrg_database      11          "data source"                           
+SPP rdkit                2017.03.2   "Chemoinformatics tool"
+SPP refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,217 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HE1     HE1      "4-(2-HYDROXYPHENYLTHIO)-1-BUTENYLPHOSPHONIC ACID"     NON-POLYMER     27     16     .     
+#
+data_comp_HE1
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HE1     P1      P       P       0       47.787      29.338      9.953       
+HE1     O1      O       OP      -1      49.209      29.656      9.584       
+HE1     O2      O       OP      -1      47.093      28.772      8.745       
+HE1     O3      O       O       0       47.097      30.615      10.347      
+HE1     C1      C       C1      0       47.743      28.178      11.287      
+HE1     C2      C       C1      0       48.236      28.462      12.476      
+HE1     C3      C       CH2     0       48.800      28.188      14.918      
+HE1     C4      C       CH2     0       48.250      27.542      13.658      
+HE1     S1      S       S2      0       49.287      26.950      16.143      
+HE1     OH      O       OH1     0       52.280      27.173      16.677      
+HE1     C5      C       CR16    0       52.471      23.914      15.028      
+HE1     C6      C       CR16    0       52.846      25.077      15.679      
+HE1     C7      C       CR6     0       51.889      26.023      16.032      
+HE1     C8      C       CR6     0       50.544      25.775      15.718      
+HE1     C9      C       CR16    0       50.172      24.599      15.059      
+HE1     C10     C       CR16    0       51.147      23.670      14.718      
+HE1     H1      H       H       0       47.355      27.332      11.142      
+HE1     H2      H       H       0       48.614      29.318      12.598      
+HE1     H31     H       H       0       48.119      28.771      15.307      
+HE1     H32     H       H       0       49.580      28.732      14.689      
+HE1     H41     H       H       0       48.791      26.753      13.441      
+HE1     H42     H       H       0       47.335      27.234      13.833      
+HE1     HO7     H       H       0       51.730      27.588      17.194      
+HE1     H5      H       H       0       53.130      23.281      14.795      
+HE1     H6      H       H       0       53.754      25.233      15.885      
+HE1     H9      H       H       0       49.270      24.441      14.852      
+HE1     H10     H       H       0       50.904      22.875      14.275      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HE1          P1          O1      SINGLE       n     1.508  0.0200     1.508  0.0200
+HE1          P1          O2      SINGLE       n     1.508  0.0200     1.508  0.0200
+HE1          P1          O3      DOUBLE       n     1.508  0.0200     1.508  0.0200
+HE1          P1          C1      SINGLE       n     1.768  0.0200     1.768  0.0200
+HE1          C1          C2      DOUBLE       n     1.318  0.0200     1.318  0.0200
+HE1          C2          C4      SINGLE       n     1.498  0.0152     1.498  0.0152
+HE1          C3          C4      SINGLE       n     1.518  0.0100     1.518  0.0100
+HE1          C3          S1      SINGLE       n     1.809  0.0191     1.809  0.0191
+HE1          S1          C8      SINGLE       n     1.772  0.0127     1.772  0.0127
+HE1          OH          C7      SINGLE       n     1.374  0.0155     1.374  0.0155
+HE1          C5          C6      DOUBLE       y     1.378  0.0107     1.378  0.0107
+HE1          C5         C10      SINGLE       y     1.375  0.0111     1.375  0.0111
+HE1          C6          C7      SINGLE       y     1.387  0.0100     1.387  0.0100
+HE1          C7          C8      DOUBLE       y     1.400  0.0117     1.400  0.0117
+HE1          C8          C9      SINGLE       y     1.397  0.0100     1.397  0.0100
+HE1          C9         C10      DOUBLE       y     1.387  0.0100     1.387  0.0100
+HE1          C1          H1      SINGLE       n     1.082  0.0130     0.942  0.0200
+HE1          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0181
+HE1          C3         H31      SINGLE       n     1.089  0.0100     0.978  0.0151
+HE1          C3         H32      SINGLE       n     1.089  0.0100     0.978  0.0151
+HE1          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0185
+HE1          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0185
+HE1          OH         HO7      SINGLE       n     0.966  0.0059     0.861  0.0200
+HE1          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0183
+HE1          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0200
+HE1          C9          H9      SINGLE       n     1.082  0.0130     0.939  0.0200
+HE1         C10         H10      SINGLE       n     1.082  0.0130     0.942  0.0167
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HE1          O1          P1          O2     111.149    3.00
+HE1          O1          P1          O3     111.149    3.00
+HE1          O1          P1          C1     113.187    2.44
+HE1          O2          P1          O3     111.149    3.00
+HE1          O2          P1          C1     113.187    2.44
+HE1          O3          P1          C1     113.187    2.44
+HE1          P1          C1          C2     121.870    3.00
+HE1          P1          C1          H1     118.943    2.51
+HE1          C2          C1          H1     119.187    1.82
+HE1          C1          C2          C4     125.827    2.61
+HE1          C1          C2          H2     117.487    1.82
+HE1          C4          C2          H2     116.685    1.85
+HE1          C4          C3          S1     112.239    3.00
+HE1          C4          C3         H31     109.443    1.50
+HE1          C4          C3         H32     109.443    1.50
+HE1          S1          C3         H31     109.066    1.50
+HE1          S1          C3         H32     109.066    1.50
+HE1         H31          C3         H32     108.532    1.88
+HE1          C2          C4          C3     112.942    2.28
+HE1          C2          C4         H41     109.013    1.50
+HE1          C2          C4         H42     109.013    1.50
+HE1          C3          C4         H41     109.027    1.89
+HE1          C3          C4         H42     109.027    1.89
+HE1         H41          C4         H42     107.705    1.50
+HE1          C3          S1          C8     120.000    3.00
+HE1          C7          OH         HO7     120.000    3.00
+HE1          C6          C5         C10     120.015    1.50
+HE1          C6          C5          H5     119.808    1.50
+HE1         C10          C5          H5     120.177    1.50
+HE1          C5          C6          C7     119.436    1.50
+HE1          C5          C6          H6     120.561    1.50
+HE1          C7          C6          H6     120.003    1.50
+HE1          OH          C7          C6     120.405    3.00
+HE1          OH          C7          C8     120.405    3.00
+HE1          C6          C7          C8     119.191    1.74
+HE1          S1          C8          C7     119.099    2.83
+HE1          S1          C8          C9     119.099    2.83
+HE1          C7          C8          C9     121.802    1.50
+HE1          C8          C9         C10     119.905    1.50
+HE1          C8          C9          H9     119.818    1.50
+HE1         C10          C9          H9     120.277    1.50
+HE1          C5         C10          C9     119.650    1.50
+HE1          C5         C10         H10     120.276    1.50
+HE1          C9         C10         H10     120.074    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HE1             sp2_sp3_1          C2          C1          P1          O1       0.000    10.0     6
+HE1       const_sp2_sp2_1         C10          C5          C6          C7       0.000     5.0     2
+HE1              const_21          C9         C10          C5          C6       0.000    10.0     2
+HE1       const_sp2_sp2_6          C5          C6          C7          OH     180.000     5.0     2
+HE1              const_12          OH          C7          C8          S1       0.000    10.0     2
+HE1              const_15          S1          C8          C9         C10     180.000    10.0     2
+HE1              const_17          C5         C10          C9          C8       0.000    10.0     2
+HE1             sp2_sp2_1          P1          C1          C2          C4     180.000     5.0     2
+HE1             sp2_sp3_8          C1          C2          C4          C3     120.000    10.0     6
+HE1             sp3_sp3_1          S1          C3          C4          C2     180.000    10.0     3
+HE1            sp3_sp3_10          C4          C3          S1          C8     180.000    10.0     3
+HE1             sp2_sp2_5          C7          C8          S1          C3     180.000     5.0     2
+HE1             sp2_sp2_7          C6          C7          OH         HO7     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HE1    chir_1    P1    O1    O2    O3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HE1    plan-1         C10   0.020
+HE1    plan-1          C5   0.020
+HE1    plan-1          C6   0.020
+HE1    plan-1          C7   0.020
+HE1    plan-1          C8   0.020
+HE1    plan-1          C9   0.020
+HE1    plan-1         H10   0.020
+HE1    plan-1          H5   0.020
+HE1    plan-1          H6   0.020
+HE1    plan-1          H9   0.020
+HE1    plan-1          OH   0.020
+HE1    plan-1          S1   0.020
+HE1    plan-2          C1   0.020
+HE1    plan-2          C2   0.020
+HE1    plan-2          H1   0.020
+HE1    plan-2          P1   0.020
+HE1    plan-3          C1   0.020
+HE1    plan-3          C2   0.020
+HE1    plan-3          C4   0.020
+HE1    plan-3          H2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HE1           SMILES              ACDLabs 10.04                                                                           O=P(O)(O)/C=C/CCSc1ccccc1O
+HE1 SMILES_CANONICAL               CACTVS 3.341                                                                         Oc1ccccc1SCC/C=C/[P](O)(O)=O
+HE1           SMILES               CACTVS 3.341                                                                           Oc1ccccc1SCCC=C[P](O)(O)=O
+HE1 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                       c1ccc(c(c1)O)SCC\C=C\P(=O)(O)O
+HE1           SMILES "OpenEye OEToolkits" 1.5.0                                                                         c1ccc(c(c1)O)SCCC=CP(=O)(O)O
+HE1            InChI                InChI  1.03 InChI=1S/C10H13O4PS/c11-9-5-1-2-6-10(9)16-8-4-3-7-15(12,13)14/h1-3,5-7,11H,4,8H2,(H2,12,13,14)/b7-3+
+HE1         InChIKey                InChI  1.03                                                                          GHNIEXOPSISMGX-XVNBXDOJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HE1 acedrg               243         "dictionary generator"                  
+HE1 acedrg_database      11          "data source"                           
+HE1 rdkit                2017.03.2   "Chemoinformatics tool"
+HE1 refmac5              5.8.0238    "optimization tool"                     

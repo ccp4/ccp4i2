@@ -1,0 +1,360 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BDX     BDX      (2E,5R)-5-(2-cyclohexylethyl)-5-(cyclohexylmethyl)-2-imino-3-methylimidazolidin-4-one     NON-POLYMER     57     23     .     
+#
+data_comp_BDX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BDX     C1      C       CR5     0       21.996      10.457      23.980      
+BDX     N1      N       NT      0       21.874      11.865      23.874      
+BDX     O1      O       O       0       20.448      13.273      22.697      
+BDX     C2      C       CR5     0       20.915      12.171      22.922      
+BDX     N2      N       NR5     0       21.271      9.896       23.038      
+BDX     C3      C       CT      0       20.565      10.872      22.204      
+BDX     N3      N       NH2     1       22.702      9.806       24.866      
+BDX     C4      C       CH2     0       19.046      10.628      22.204      
+BDX     C5      C       CH1     0       22.609      11.030      20.537      
+BDX     C6      C       CH2     0       23.344      9.690       20.492      
+BDX     C7      C       CH2     0       24.850      9.872       20.306      
+BDX     C8      C       CH2     0       25.162      10.677      19.057      
+BDX     C9      C       CH2     0       24.423      12.005      19.055      
+BDX     C10     C       CH2     0       22.921      11.812      19.261      
+BDX     C11     C       CH2     0       21.096      10.870      20.759      
+BDX     C12     C       CH2     0       18.359      10.565      23.571      
+BDX     C13     C       CH1     0       16.887      10.162      23.565      
+BDX     C14     C       CH2     0       16.396      9.809       24.966      
+BDX     C15     C       CH2     0       14.915      9.430       24.989      
+BDX     C16     C       CH2     0       14.054      10.523      24.381      
+BDX     C17     C       CH2     0       14.520      10.872      22.980      
+BDX     C18     C       CH2     0       16.001      11.248      22.960      
+BDX     C19     C       CH3     0       22.488      12.865      24.745      
+BDX     HN2     H       H       0       21.217      9.037       22.922      
+BDX     HN3     H       H       0       22.715      8.928       24.846      
+BDX     H20     H       H       0       23.158      10.242      25.476      
+BDX     H4      H       H       0       18.875      9.783       21.736      
+BDX     H4A     H       H       0       18.626      11.343      21.682      
+BDX     H5      H       H       0       22.977      11.544      21.295      
+BDX     H6      H       H       0       23.180      9.202       21.323      
+BDX     H6A     H       H       0       22.990      9.154       19.755      
+BDX     H7      H       H       0       25.278      8.990       20.240      
+BDX     H7A     H       H       0       25.221      10.331      21.090      
+BDX     H8      H       H       0       24.904      10.160      18.264      
+BDX     H8A     H       H       0       26.128      10.843      19.009      
+BDX     H9      H       H       0       24.577      12.461      18.199      
+BDX     H9A     H       H       0       24.779      12.575      19.770      
+BDX     H10     H       H       0       22.489      12.689      19.307      
+BDX     H10A    H       H       0       22.549      11.334      18.493      
+BDX     H11     H       H       0       20.641      11.592      20.277      
+BDX     H11A    H       H       0       20.819      10.027      20.341      
+BDX     H12     H       H       0       18.431      11.448      23.992      
+BDX     H12A    H       H       0       18.850      9.929       24.133      
+BDX     H13     H       H       0       16.805      9.359       23.004      
+BDX     H14     H       H       0       16.923      9.060       25.311      
+BDX     H14A    H       H       0       16.540      10.573      25.558      
+BDX     H15     H       H       0       14.635      9.273       25.917      
+BDX     H15A    H       H       0       14.785      8.596       24.487      
+BDX     H16     H       H       0       14.095      11.323      24.947      
+BDX     H16A    H       H       0       13.121      10.222      24.349      
+BDX     H17     H       H       0       13.989      11.625      22.639      
+BDX     H17A    H       H       0       14.372      10.104      22.387      
+BDX     H18     H       H       0       16.277      11.410      22.036      
+BDX     H18A    H       H       0       16.127      12.080      23.459      
+BDX     H19     H       H       0       22.579      13.703      24.265      
+BDX     H19A    H       H       0       23.364      12.557      25.024      
+BDX     H19B    H       H       0       21.929      12.999      25.527      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BDX          C1          N1      SINGLE       n     1.410  0.0200     1.410  0.0200
+BDX          C1          N2      SINGLE       n     1.313  0.0100     1.313  0.0100
+BDX          C1          N3      DOUBLE       n     1.305  0.0100     1.305  0.0100
+BDX          N1          C2      SINGLE       n     1.386  0.0177     1.386  0.0177
+BDX          N1         C19      SINGLE       n     1.460  0.0106     1.460  0.0106
+BDX          O1          C2      DOUBLE       n     1.217  0.0149     1.217  0.0149
+BDX          C2          C3      SINGLE       n     1.525  0.0100     1.525  0.0100
+BDX          N2          C3      SINGLE       n     1.464  0.0100     1.464  0.0100
+BDX          C3          C4      SINGLE       n     1.536  0.0100     1.536  0.0100
+BDX          C3         C11      SINGLE       n     1.536  0.0100     1.536  0.0100
+BDX          C4         C12      SINGLE       n     1.526  0.0138     1.526  0.0138
+BDX          C5          C6      SINGLE       n     1.526  0.0115     1.526  0.0115
+BDX          C5         C10      SINGLE       n     1.526  0.0115     1.526  0.0115
+BDX          C5         C11      SINGLE       n     1.530  0.0119     1.530  0.0119
+BDX          C6          C7      SINGLE       n     1.527  0.0100     1.527  0.0100
+BDX          C7          C8      SINGLE       n     1.517  0.0112     1.517  0.0112
+BDX          C8          C9      SINGLE       n     1.516  0.0136     1.516  0.0136
+BDX          C9         C10      SINGLE       n     1.527  0.0100     1.527  0.0100
+BDX         C12         C13      SINGLE       n     1.526  0.0114     1.526  0.0114
+BDX         C13         C14      SINGLE       n     1.524  0.0100     1.524  0.0100
+BDX         C13         C18      SINGLE       n     1.524  0.0100     1.524  0.0100
+BDX         C14         C15      SINGLE       n     1.527  0.0100     1.527  0.0100
+BDX         C15         C16      SINGLE       n     1.517  0.0112     1.517  0.0112
+BDX         C16         C17      SINGLE       n     1.516  0.0136     1.516  0.0136
+BDX         C17         C18      SINGLE       n     1.527  0.0100     1.527  0.0100
+BDX          N2         HN2      SINGLE       n     1.016  0.0100     0.869  0.0200
+BDX          N3         HN3      SINGLE       n     1.016  0.0100     0.879  0.0200
+BDX          N3         H20      SINGLE       n     1.016  0.0100     0.879  0.0200
+BDX          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0178
+BDX          C4         H4A      SINGLE       n     1.089  0.0100     0.981  0.0178
+BDX          C5          H5      SINGLE       n     1.089  0.0100     0.988  0.0159
+BDX          C6          H6      SINGLE       n     1.089  0.0100     0.978  0.0143
+BDX          C6         H6A      SINGLE       n     1.089  0.0100     0.978  0.0143
+BDX          C7          H7      SINGLE       n     1.089  0.0100     0.982  0.0142
+BDX          C7         H7A      SINGLE       n     1.089  0.0100     0.982  0.0142
+BDX          C8          H8      SINGLE       n     1.089  0.0100     0.981  0.0138
+BDX          C8         H8A      SINGLE       n     1.089  0.0100     0.981  0.0138
+BDX          C9          H9      SINGLE       n     1.089  0.0100     0.982  0.0142
+BDX          C9         H9A      SINGLE       n     1.089  0.0100     0.982  0.0142
+BDX         C10         H10      SINGLE       n     1.089  0.0100     0.978  0.0143
+BDX         C10        H10A      SINGLE       n     1.089  0.0100     0.978  0.0143
+BDX         C11         H11      SINGLE       n     1.089  0.0100     0.980  0.0160
+BDX         C11        H11A      SINGLE       n     1.089  0.0100     0.980  0.0160
+BDX         C12         H12      SINGLE       n     1.089  0.0100     0.981  0.0140
+BDX         C12        H12A      SINGLE       n     1.089  0.0100     0.981  0.0140
+BDX         C13         H13      SINGLE       n     1.089  0.0100     0.983  0.0100
+BDX         C14         H14      SINGLE       n     1.089  0.0100     0.978  0.0143
+BDX         C14        H14A      SINGLE       n     1.089  0.0100     0.978  0.0143
+BDX         C15         H15      SINGLE       n     1.089  0.0100     0.982  0.0142
+BDX         C15        H15A      SINGLE       n     1.089  0.0100     0.982  0.0142
+BDX         C16         H16      SINGLE       n     1.089  0.0100     0.981  0.0138
+BDX         C16        H16A      SINGLE       n     1.089  0.0100     0.981  0.0138
+BDX         C17         H17      SINGLE       n     1.089  0.0100     0.982  0.0142
+BDX         C17        H17A      SINGLE       n     1.089  0.0100     0.982  0.0142
+BDX         C18         H18      SINGLE       n     1.089  0.0100     0.978  0.0143
+BDX         C18        H18A      SINGLE       n     1.089  0.0100     0.978  0.0143
+BDX         C19         H19      SINGLE       n     1.089  0.0100     0.970  0.0148
+BDX         C19        H19A      SINGLE       n     1.089  0.0100     0.970  0.0148
+BDX         C19        H19B      SINGLE       n     1.089  0.0100     0.970  0.0148
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BDX          N1          C1          N2     109.116    2.20
+BDX          N1          C1          N3     125.448    2.40
+BDX          N2          C1          N3     125.436    1.50
+BDX          C1          N1          C2     109.935    2.71
+BDX          C1          N1         C19     122.993    3.00
+BDX          C2          N1         C19     122.508    1.50
+BDX          N1          C2          O1     125.617    1.50
+BDX          N1          C2          C3     108.095    1.65
+BDX          O1          C2          C3     126.288    1.50
+BDX          C1          N2          C3     112.582    2.00
+BDX          C1          N2         HN2     123.703    1.50
+BDX          C3          N2         HN2     123.715    1.50
+BDX          C2          C3          N2     100.646    1.50
+BDX          C2          C3          C4     110.323    1.50
+BDX          C2          C3         C11     110.323    1.50
+BDX          N2          C3          C4     110.800    1.53
+BDX          N2          C3         C11     110.800    1.53
+BDX          C4          C3         C11     109.499    1.99
+BDX          C1          N3         HN3     119.740    2.22
+BDX          C1          N3         H20     119.740    2.22
+BDX         HN3          N3         H20     120.519    2.04
+BDX          C3          C4         C12     115.545    1.50
+BDX          C3          C4          H4     108.106    1.50
+BDX          C3          C4         H4A     108.106    1.50
+BDX         C12          C4          H4     108.371    1.50
+BDX         C12          C4         H4A     108.371    1.50
+BDX          H4          C4         H4A     107.535    1.50
+BDX          C6          C5         C10     109.460    1.50
+BDX          C6          C5         C11     111.957    1.92
+BDX          C6          C5          H5     107.922    1.50
+BDX         C10          C5         C11     111.957    1.92
+BDX         C10          C5          H5     107.922    1.50
+BDX         C11          C5          H5     107.350    1.50
+BDX          C5          C6          C7     112.005    1.50
+BDX          C5          C6          H6     109.218    1.50
+BDX          C5          C6         H6A     109.218    1.50
+BDX          C7          C6          H6     109.267    1.50
+BDX          C7          C6         H6A     109.267    1.50
+BDX          H6          C6         H6A     107.919    1.50
+BDX          C6          C7          C8     111.360    1.50
+BDX          C6          C7          H7     109.388    1.50
+BDX          C6          C7         H7A     109.388    1.50
+BDX          C8          C7          H7     109.386    1.50
+BDX          C8          C7         H7A     109.386    1.50
+BDX          H7          C7         H7A     108.036    1.50
+BDX          C7          C8          C9     111.038    1.50
+BDX          C7          C8          H8     109.386    1.50
+BDX          C7          C8         H8A     109.386    1.50
+BDX          C9          C8          H8     109.386    1.50
+BDX          C9          C8         H8A     109.386    1.50
+BDX          H8          C8         H8A     108.036    1.50
+BDX          C8          C9         C10     111.360    1.50
+BDX          C8          C9          H9     109.386    1.50
+BDX          C8          C9         H9A     109.386    1.50
+BDX         C10          C9          H9     109.388    1.50
+BDX         C10          C9         H9A     109.388    1.50
+BDX          H9          C9         H9A     108.036    1.50
+BDX          C5         C10          C9     112.005    1.50
+BDX          C5         C10         H10     109.218    1.50
+BDX          C5         C10        H10A     109.218    1.50
+BDX          C9         C10         H10     109.267    1.50
+BDX          C9         C10        H10A     109.267    1.50
+BDX         H10         C10        H10A     107.919    1.50
+BDX          C3         C11          C5     113.749    2.62
+BDX          C3         C11         H11     108.248    1.50
+BDX          C3         C11        H11A     108.248    1.50
+BDX          C5         C11         H11     108.288    1.50
+BDX          C5         C11        H11A     108.288    1.50
+BDX         H11         C11        H11A     107.551    1.50
+BDX          C4         C12         C13     115.760    1.80
+BDX          C4         C12         H12     107.980    1.50
+BDX          C4         C12        H12A     107.980    1.50
+BDX         C13         C12         H12     108.361    1.50
+BDX         C13         C12        H12A     108.361    1.50
+BDX         H12         C12        H12A     107.474    1.50
+BDX         C12         C13         C14     111.907    1.50
+BDX         C12         C13         C18     111.907    1.50
+BDX         C12         C13         H13     107.292    1.50
+BDX         C14         C13         C18     109.635    1.50
+BDX         C14         C13         H13     107.897    1.50
+BDX         C18         C13         H13     107.897    1.50
+BDX         C13         C14         C15     112.229    1.50
+BDX         C13         C14         H14     109.293    1.50
+BDX         C13         C14        H14A     109.293    1.50
+BDX         C15         C14         H14     109.267    1.50
+BDX         C15         C14        H14A     109.267    1.50
+BDX         H14         C14        H14A     107.919    1.50
+BDX         C14         C15         C16     111.360    1.50
+BDX         C14         C15         H15     109.388    1.50
+BDX         C14         C15        H15A     109.388    1.50
+BDX         C16         C15         H15     109.386    1.50
+BDX         C16         C15        H15A     109.386    1.50
+BDX         H15         C15        H15A     108.036    1.50
+BDX         C15         C16         C17     111.038    1.50
+BDX         C15         C16         H16     109.386    1.50
+BDX         C15         C16        H16A     109.386    1.50
+BDX         C17         C16         H16     109.386    1.50
+BDX         C17         C16        H16A     109.386    1.50
+BDX         H16         C16        H16A     108.036    1.50
+BDX         C16         C17         C18     111.360    1.50
+BDX         C16         C17         H17     109.386    1.50
+BDX         C16         C17        H17A     109.386    1.50
+BDX         C18         C17         H17     109.388    1.50
+BDX         C18         C17        H17A     109.388    1.50
+BDX         H17         C17        H17A     108.036    1.50
+BDX         C13         C18         C17     112.229    1.50
+BDX         C13         C18         H18     109.293    1.50
+BDX         C13         C18        H18A     109.293    1.50
+BDX         C17         C18         H18     109.267    1.50
+BDX         C17         C18        H18A     109.267    1.50
+BDX         H18         C18        H18A     107.919    1.50
+BDX          N1         C19         H19     109.525    1.50
+BDX          N1         C19        H19A     109.525    1.50
+BDX          N1         C19        H19B     109.525    1.50
+BDX         H19         C19        H19A     109.462    1.50
+BDX         H19         C19        H19B     109.462    1.50
+BDX        H19A         C19        H19B     109.462    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BDX             sp2_sp2_4          N3          C1          N1         C19       0.000     5.0     2
+BDX            sp2_sp2_11          N3          C1          N2          C3     180.000     5.0     2
+BDX            sp2_sp2_13          N1          C1          N3         HN3     180.000     5.0     2
+BDX            sp3_sp3_19          C6          C7          C8          C9      60.000    10.0     3
+BDX            sp3_sp3_28          C7          C8          C9         C10     -60.000    10.0     3
+BDX            sp3_sp3_37          C5         C10          C9          C8      60.000    10.0     3
+BDX           sp3_sp3_137          C4         C12         C13         C14     -60.000    10.0     3
+BDX            sp3_sp3_52         C12         C13         C14         C15     180.000    10.0     3
+BDX           sp3_sp3_148         C12         C13         C18         C17      60.000    10.0     3
+BDX            sp3_sp3_55         C13         C14         C15         C16     -60.000    10.0     3
+BDX            sp3_sp3_64         C14         C15         C16         C17      60.000    10.0     3
+BDX            sp3_sp3_73         C15         C16         C17         C18     -60.000    10.0     3
+BDX            sp2_sp3_13          C1          N1         C19         H19     150.000    10.0     6
+BDX             sp2_sp2_8          O1          C2          N1         C19       0.000     5.0     2
+BDX            sp3_sp3_82         C16         C17         C18         C13      60.000    10.0     3
+BDX             sp2_sp3_5          O1          C2          C3          C4     -60.000    10.0     6
+BDX             sp2_sp3_8          C1          N2          C3          C4     120.000    10.0     6
+BDX           sp3_sp3_102          C5         C11          C3          C4      60.000    10.0     3
+BDX            sp3_sp3_97         C11          C3          C4         C12     -60.000    10.0     3
+BDX           sp3_sp3_109         C13         C12          C4          C3     180.000    10.0     3
+BDX           sp3_sp3_119          C9         C10          C5         C11     -60.000    10.0     3
+BDX           sp3_sp3_128          C3         C11          C5          C6     -60.000    10.0     3
+BDX             sp3_sp3_7         C11          C5          C6          C7     180.000    10.0     3
+BDX            sp3_sp3_10          C5          C6          C7          C8     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BDX    chir_1    C3    N2    C2    C11    negative
+BDX    chir_2    C5    C11    C6    C10    both
+BDX    chir_3    C13    C12    C14    C18    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BDX    plan-1          C1   0.020
+BDX    plan-1          N1   0.020
+BDX    plan-1          N2   0.020
+BDX    plan-1          N3   0.020
+BDX    plan-2          C2   0.020
+BDX    plan-2          C3   0.020
+BDX    plan-2          N1   0.020
+BDX    plan-2          O1   0.020
+BDX    plan-3          C1   0.020
+BDX    plan-3          C3   0.020
+BDX    plan-3         HN2   0.020
+BDX    plan-3          N2   0.020
+BDX    plan-4          C1   0.020
+BDX    plan-4         H20   0.020
+BDX    plan-4         HN3   0.020
+BDX    plan-4          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BDX SMILES_CANONICAL               CACTVS 3.352                                                                                          CN1C(=N)N[C@](CCC2CCCCC2)(CC3CCCCC3)C1=O
+BDX           SMILES               CACTVS 3.352                                                                                           CN1C(=N)N[C](CCC2CCCCC2)(CC3CCCCC3)C1=O
+BDX SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                  "[H]/N=C/1\N[C@](C(=O)N1C)(CCC2CCCCC2)CC3CCCCC3"
+BDX           SMILES "OpenEye OEToolkits" 1.7.0                                                                                             CN1C(=O)C(NC1=N)(CCC2CCCCC2)CC3CCCCC3
+BDX            InChI                InChI  1.03 InChI=1S/C19H33N3O/c1-22-17(23)19(21-18(22)20,14-16-10-6-3-7-11-16)13-12-15-8-4-2-5-9-15/h15-16H,2-14H2,1H3,(H2,20,21)/t19-/m1/s1
+BDX         InChIKey                InChI  1.03                                                                                                       SVQNYPQKWMFQJJ-LJQANCHMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BDX acedrg               243         "dictionary generator"                  
+BDX acedrg_database      11          "data source"                           
+BDX rdkit                2017.03.2   "Chemoinformatics tool"
+BDX refmac5              5.8.0238    "optimization tool"                     

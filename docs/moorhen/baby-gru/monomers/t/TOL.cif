@@ -1,0 +1,274 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TOL     TOL      TOLRESTAT     NON-POLYMER     37     24     .     
+#
+data_comp_TOL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TOL     C1      C       CT      0       -33.986     28.602      -1.411      
+TOL     F1      F       F       0       -35.003     27.917      -1.944      
+TOL     F2      F       F       0       -33.177     27.700      -0.845      
+TOL     F3      F       F       0       -33.302     29.089      -2.452      
+TOL     C2      C       CR6     0       -34.449     29.658      -0.432      
+TOL     C3      C       CR6     0       -34.161     31.002      -0.646      
+TOL     O1      O       O2      0       -33.455     31.305      -1.775      
+TOL     C4      C       CH3     0       -32.986     32.626      -2.049      
+TOL     C5      C       CR16    0       -34.590     32.001      0.258       
+TOL     C6      C       CR16    0       -35.295     31.662      1.368       
+TOL     C7      C       CR66    0       -35.633     30.318      1.669       
+TOL     C8      C       CR6     0       -36.388     29.952      2.856       
+TOL     C9      C       CR16    0       -36.685     28.633      3.095       
+TOL     C10     C       CR16    0       -36.270     27.626      2.205       
+TOL     C11     C       CR16    0       -35.560     27.941      1.083       
+TOL     C12     C       CR66    0       -35.208     29.289      0.759       
+TOL     C13     C       C       0       -36.863     30.976      3.850       
+TOL     S1      S       S1      0       -38.340     31.701      3.555       
+TOL     N1      N       N       0       -36.083     31.252      4.929       
+TOL     C14     C       CH3     0       -34.751     30.670      5.088       
+TOL     C15     C       CH2     0       -36.521     32.138      6.007       
+TOL     C16     C       C       0       -36.278     33.618      5.709       
+TOL     O2      O       O       0       -37.002     34.439      6.305       
+TOL     O3      O       OC      -1      -35.373     33.904      4.897       
+TOL     H41     H       H       0       -32.438     32.937      -1.310      
+TOL     H42     H       H       0       -33.743     33.222      -2.167      
+TOL     H43     H       H       0       -32.454     32.615      -2.862      
+TOL     H5      H       H       0       -34.391     32.903      0.102       
+TOL     H6      H       H       0       -35.565     32.348      1.952       
+TOL     H9      H       H       0       -37.173     28.398      3.861       
+TOL     H10     H       H       0       -36.483     26.724      2.385       
+TOL     H11     H       H       0       -35.300     27.242      0.513       
+TOL     H141    H       H       0       -34.299     31.066      5.850       
+TOL     H142    H       H       0       -34.223     30.838      4.290       
+TOL     H143    H       H       0       -34.828     29.712      5.228       
+TOL     H151    H       H       0       -36.050     31.908      6.833       
+TOL     H152    H       H       0       -37.475     32.004      6.177       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TOL          C1          F1      SINGLE       n     1.337  0.0100     1.337  0.0100
+TOL          C1          F2      SINGLE       n     1.337  0.0100     1.337  0.0100
+TOL          C1          F3      SINGLE       n     1.337  0.0100     1.337  0.0100
+TOL          C1          C2      SINGLE       n     1.502  0.0100     1.502  0.0100
+TOL          C2          C3      DOUBLE       y     1.377  0.0100     1.377  0.0100
+TOL          C2         C12      SINGLE       y     1.429  0.0140     1.429  0.0140
+TOL          C3          O1      SINGLE       n     1.358  0.0100     1.358  0.0100
+TOL          C3          C5      SINGLE       y     1.405  0.0114     1.405  0.0114
+TOL          O1          C4      SINGLE       n     1.424  0.0117     1.424  0.0117
+TOL          C5          C6      DOUBLE       y     1.358  0.0102     1.358  0.0102
+TOL          C6          C7      SINGLE       y     1.415  0.0100     1.415  0.0100
+TOL          C7          C8      SINGLE       y     1.440  0.0136     1.440  0.0136
+TOL          C7         C12      DOUBLE       y     1.429  0.0100     1.429  0.0100
+TOL          C8          C9      DOUBLE       y     1.372  0.0100     1.372  0.0100
+TOL          C8         C13      SINGLE       n     1.492  0.0174     1.492  0.0174
+TOL          C9         C10      SINGLE       y     1.406  0.0100     1.406  0.0100
+TOL         C10         C11      DOUBLE       y     1.361  0.0115     1.361  0.0115
+TOL         C11         C12      SINGLE       y     1.419  0.0100     1.419  0.0100
+TOL         C13          S1      DOUBLE       n     1.667  0.0133     1.667  0.0133
+TOL         C13          N1      SINGLE       n     1.341  0.0128     1.341  0.0128
+TOL          N1         C14      SINGLE       n     1.453  0.0119     1.453  0.0119
+TOL          N1         C15      SINGLE       n     1.454  0.0105     1.454  0.0105
+TOL         C15         C16      SINGLE       n     1.527  0.0103     1.527  0.0103
+TOL         C16          O2      DOUBLE       n     1.247  0.0187     1.247  0.0187
+TOL         C16          O3      SINGLE       n     1.247  0.0187     1.247  0.0187
+TOL          C4         H41      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOL          C4         H42      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOL          C4         H43      SINGLE       n     1.089  0.0100     0.971  0.0157
+TOL          C5          H5      SINGLE       n     1.082  0.0130     0.937  0.0138
+TOL          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0100
+TOL          C9          H9      SINGLE       n     1.082  0.0130     0.938  0.0129
+TOL         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0158
+TOL         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0180
+TOL         C14        H141      SINGLE       n     1.089  0.0100     0.971  0.0181
+TOL         C14        H142      SINGLE       n     1.089  0.0100     0.971  0.0181
+TOL         C14        H143      SINGLE       n     1.089  0.0100     0.971  0.0181
+TOL         C15        H151      SINGLE       n     1.089  0.0100     0.979  0.0115
+TOL         C15        H152      SINGLE       n     1.089  0.0100     0.979  0.0115
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TOL          F1          C1          F2     106.349    1.50
+TOL          F1          C1          F3     106.349    1.50
+TOL          F1          C1          C2     112.425    1.50
+TOL          F2          C1          F3     106.349    1.50
+TOL          F2          C1          C2     112.425    1.50
+TOL          F3          C1          C2     112.425    1.50
+TOL          C1          C2          C3     120.878    1.50
+TOL          C1          C2         C12     120.133    1.50
+TOL          C3          C2         C12     118.989    1.50
+TOL          C2          C3          O1     116.939    2.52
+TOL          C2          C3          C5     121.526    1.50
+TOL          O1          C3          C5     121.535    1.50
+TOL          C3          O1          C4     118.585    1.50
+TOL          O1          C4         H41     109.428    1.50
+TOL          O1          C4         H42     109.428    1.50
+TOL          O1          C4         H43     109.428    1.50
+TOL         H41          C4         H42     109.509    1.50
+TOL         H41          C4         H43     109.509    1.50
+TOL         H42          C4         H43     109.509    1.50
+TOL          C3          C5          C6     119.388    1.50
+TOL          C3          C5          H5     120.454    1.50
+TOL          C6          C5          H5     120.158    1.50
+TOL          C5          C6          C7     121.897    1.50
+TOL          C5          C6          H6     119.026    1.50
+TOL          C7          C6          H6     119.077    1.50
+TOL          C6          C7          C8     122.284    1.50
+TOL          C6          C7         C12     118.550    1.50
+TOL          C8          C7         C12     119.167    1.50
+TOL          C7          C8          C9     119.936    1.50
+TOL          C7          C8         C13     120.170    1.86
+TOL          C9          C8         C13     119.894    2.75
+TOL          C8          C9         C10     121.031    1.50
+TOL          C8          C9          H9     119.536    1.50
+TOL         C10          C9          H9     119.433    1.50
+TOL          C9         C10         C11     120.112    1.50
+TOL          C9         C10         H10     119.970    1.50
+TOL         C11         C10         H10     119.918    1.50
+TOL         C10         C11         C12     121.264    1.50
+TOL         C10         C11         H11     119.486    1.50
+TOL         C12         C11         H11     119.250    1.50
+TOL          C2         C12          C7     119.650    1.50
+TOL          C2         C12         C11     121.861    1.50
+TOL          C7         C12         C11     118.490    1.50
+TOL          C8         C13          S1     119.369    1.50
+TOL          C8         C13          N1     117.768    1.65
+TOL          S1         C13          N1     122.862    1.50
+TOL         C13          N1         C14     122.192    1.80
+TOL         C13          N1         C15     121.239    2.66
+TOL         C14          N1         C15     116.569    1.50
+TOL          N1         C14        H141     109.528    1.50
+TOL          N1         C14        H142     109.528    1.50
+TOL          N1         C14        H143     109.528    1.50
+TOL        H141         C14        H142     109.408    1.50
+TOL        H141         C14        H143     109.408    1.50
+TOL        H142         C14        H143     109.408    1.50
+TOL          N1         C15         C16     111.249    2.34
+TOL          N1         C15        H151     108.916    1.50
+TOL          N1         C15        H152     108.916    1.50
+TOL         C16         C15        H151     108.544    1.50
+TOL         C16         C15        H152     108.544    1.50
+TOL        H151         C15        H152     107.487    1.50
+TOL         C15         C16          O2     117.146    1.78
+TOL         C15         C16          O3     117.146    1.78
+TOL          O2         C16          O3     125.708    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TOL             sp2_sp3_1          C3          C2          C1          F1     150.000    10.0     6
+TOL       const_sp2_sp2_4          C6          C7          C8         C13       0.000     5.0     2
+TOL              const_37          C2         C12          C7          C6       0.000    10.0     2
+TOL       const_sp2_sp2_7         C13          C8          C9         C10     180.000     5.0     2
+TOL             sp2_sp2_5          S1         C13          C8          C7       0.000     5.0     2
+TOL       const_sp2_sp2_9         C11         C10          C9          C8       0.000     5.0     2
+TOL              const_13          C9         C10         C11         C12       0.000    10.0     2
+TOL              const_18         C10         C11         C12          C2     180.000    10.0     2
+TOL            sp2_sp2_10          S1         C13          N1         C14     180.000     5.0     2
+TOL             sp2_sp3_7         C13          N1         C14        H141       0.000    10.0     6
+TOL            sp2_sp3_14         C13          N1         C15         C16     120.000    10.0     6
+TOL            sp2_sp3_20          O2         C16         C15          N1     120.000    10.0     6
+TOL              const_42          C7         C12          C2          C1     180.000    10.0     2
+TOL              const_24          C1          C2          C3          O1       0.000    10.0     2
+TOL             sp2_sp2_1          C2          C3          O1          C4     180.000     5.0     2
+TOL              const_27          O1          C3          C5          C6     180.000    10.0     2
+TOL             sp3_sp3_2         H41          C4          O1          C3     -60.000    10.0     3
+TOL              const_29          C3          C5          C6          C7       0.000    10.0     2
+TOL              const_34          C5          C6          C7          C8     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TOL    chir_1    C1    F1    F2    F3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TOL    plan-1          C1   0.020
+TOL    plan-1         C10   0.020
+TOL    plan-1         C11   0.020
+TOL    plan-1         C12   0.020
+TOL    plan-1         C13   0.020
+TOL    plan-1          C2   0.020
+TOL    plan-1          C3   0.020
+TOL    plan-1          C5   0.020
+TOL    plan-1          C6   0.020
+TOL    plan-1          C7   0.020
+TOL    plan-1          C8   0.020
+TOL    plan-1          C9   0.020
+TOL    plan-1         H10   0.020
+TOL    plan-1         H11   0.020
+TOL    plan-1          H5   0.020
+TOL    plan-1          H6   0.020
+TOL    plan-1          H9   0.020
+TOL    plan-1          O1   0.020
+TOL    plan-2         C13   0.020
+TOL    plan-2          C8   0.020
+TOL    plan-2          N1   0.020
+TOL    plan-2          S1   0.020
+TOL    plan-3         C13   0.020
+TOL    plan-3         C14   0.020
+TOL    plan-3         C15   0.020
+TOL    plan-3          N1   0.020
+TOL    plan-4         C15   0.020
+TOL    plan-4         C16   0.020
+TOL    plan-4          O2   0.020
+TOL    plan-4          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TOL           SMILES              ACDLabs 10.04                                                                          O=C(O)CN(C(=S)c2c1ccc(OC)c(c1ccc2)C(F)(F)F)C
+TOL SMILES_CANONICAL               CACTVS 3.341                                                                            COc1ccc2c(cccc2c1C(F)(F)F)C(=S)N(C)CC(O)=O
+TOL           SMILES               CACTVS 3.341                                                                            COc1ccc2c(cccc2c1C(F)(F)F)C(=S)N(C)CC(O)=O
+TOL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                            CN(CC(=O)O)C(=S)c1cccc2c1ccc(c2C(F)(F)F)OC
+TOL           SMILES "OpenEye OEToolkits" 1.5.0                                                                            CN(CC(=O)O)C(=S)c1cccc2c1ccc(c2C(F)(F)F)OC
+TOL            InChI                InChI  1.03 InChI=1S/C16H14F3NO3S/c1-20(8-13(21)22)15(24)11-5-3-4-10-9(11)6-7-12(23-2)14(10)16(17,18)19/h3-7H,8H2,1-2H3,(H,21,22)
+TOL         InChIKey                InChI  1.03                                                                                           LUBHDINQXIHVLS-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TOL acedrg               243         "dictionary generator"                  
+TOL acedrg_database      11          "data source"                           
+TOL rdkit                2017.03.2   "Chemoinformatics tool"
+TOL refmac5              5.8.0238    "optimization tool"                     

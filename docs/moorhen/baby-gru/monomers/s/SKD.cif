@@ -1,0 +1,262 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SKD     SKD      "2-ACETYLAMINO-7-(1,2-DIHYDROXY-ETHYL)-3-HYDROXY-6,8-DIOXA-BICYCLO[3.2.1]OCTANE-5-CARBOXYLIC ACID"     NON-POLYMER     36     20     .     
+#
+data_comp_SKD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SKD     C1      C       C       0       2.238       8.026       35.739      
+SKD     C2      C       CT      0       3.261       7.511       36.758      
+SKD     C3      C       CH2     0       4.549       6.988       36.105      
+SKD     C4      C       CH1     0       5.815       7.312       36.885      
+SKD     C5      C       CH1     0       5.579       7.280       38.407      
+SKD     C6      C       CH1     0       4.146       7.726       38.796      
+SKD     C7      C       CH1     0       3.077       6.617       38.894      
+SKD     C8      C       CH1     0       1.862       6.853       39.777      
+SKD     C9      C       CH2     0       2.105       6.460       41.223      
+SKD     C10     C       C       0       7.246       7.721       40.199      
+SKD     C11     C       CH3     0       8.263       8.688       40.728      
+SKD     N5      N       NH1     0       6.586       8.095       39.089      
+SKD     O1A     O       O       0       1.736       7.256       34.970      
+SKD     O1B     O       OC      -1      1.948       9.190       35.711      
+SKD     O4      O       OH1     0       6.845       6.388       36.530      
+SKD     O6      O       O2      0       3.598       8.518       37.719      
+SKD     O7      O       O2      0       2.635       6.480       37.519      
+SKD     O8      O       OH1     0       1.471       8.220       39.714      
+SKD     O9      O       OH1     0       3.039       7.327       41.856      
+SKD     O10     O       O       0       7.034       6.651       40.764      
+SKD     H31     H       H       0       4.480       6.017       36.006      
+SKD     H32     H       H       0       4.630       7.372       35.208      
+SKD     H4      H       H       0       6.110       8.221       36.631      
+SKD     H5      H       H       0       5.705       6.343       38.698      
+SKD     H6      H       H       0       4.183       8.263       39.636      
+SKD     H7      H       H       0       3.517       5.775       39.166      
+SKD     H8      H       H       0       1.121       6.305       39.428      
+SKD     H91     H       H       0       2.444       5.545       41.258      
+SKD     H92     H       H       0       1.259       6.493       41.711      
+SKD     H111    H       H       0       7.942       9.597       40.614      
+SKD     H112    H       H       0       9.098       8.577       40.245      
+SKD     H113    H       H       0       8.412       8.517       41.672      
+SKD     HN5     H       H       0       6.772       8.885       38.758      
+SKD     HO4     H       H       0       7.572       6.643       36.868      
+SKD     HO8     H       H       0       1.104       8.365       38.963      
+SKD     HO9     H       H       0       3.200       7.016       42.626      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SKD          C1          C2      SINGLE       n     1.524  0.0200     1.524  0.0200
+SKD          C1         O1A      DOUBLE       n     1.198  0.0200     1.198  0.0200
+SKD          C1         O1B      SINGLE       n     1.198  0.0200     1.198  0.0200
+SKD          C2          C3      SINGLE       n     1.527  0.0134     1.527  0.0134
+SKD          C2          O6      SINGLE       n     1.429  0.0200     1.429  0.0200
+SKD          C2          O7      SINGLE       n     1.429  0.0200     1.429  0.0200
+SKD          C3          C4      SINGLE       n     1.517  0.0109     1.517  0.0109
+SKD          C4          C5      SINGLE       n     1.529  0.0161     1.529  0.0161
+SKD          C4          O4      SINGLE       n     1.428  0.0123     1.428  0.0123
+SKD          C5          C6      SINGLE       n     1.539  0.0164     1.539  0.0164
+SKD          C5          N5      SINGLE       n     1.460  0.0100     1.460  0.0100
+SKD          C6          C7      SINGLE       n     1.534  0.0148     1.534  0.0148
+SKD          C6          O6      SINGLE       n     1.443  0.0100     1.443  0.0100
+SKD          C7          C8      SINGLE       n     1.518  0.0100     1.518  0.0100
+SKD          C7          O7      SINGLE       n     1.449  0.0100     1.449  0.0100
+SKD          C8          C9      SINGLE       n     1.517  0.0100     1.517  0.0100
+SKD          C8          O8      SINGLE       n     1.423  0.0103     1.423  0.0103
+SKD          C9          O9      SINGLE       n     1.423  0.0100     1.423  0.0100
+SKD         C10         C11      SINGLE       n     1.498  0.0100     1.498  0.0100
+SKD         C10          N5      SINGLE       n     1.336  0.0116     1.336  0.0116
+SKD         C10         O10      DOUBLE       n     1.227  0.0100     1.227  0.0100
+SKD          C3         H31      SINGLE       n     1.089  0.0100     0.978  0.0149
+SKD          C3         H32      SINGLE       n     1.089  0.0100     0.978  0.0149
+SKD          C4          H4      SINGLE       n     1.089  0.0100     0.989  0.0181
+SKD          C5          H5      SINGLE       n     1.089  0.0100     0.990  0.0148
+SKD          C6          H6      SINGLE       n     1.089  0.0100     0.999  0.0200
+SKD          C7          H7      SINGLE       n     1.089  0.0100     0.988  0.0100
+SKD          C8          H8      SINGLE       n     1.089  0.0100     0.985  0.0200
+SKD          C9         H91      SINGLE       n     1.089  0.0100     0.977  0.0200
+SKD          C9         H92      SINGLE       n     1.089  0.0100     0.977  0.0200
+SKD         C11        H111      SINGLE       n     1.089  0.0100     0.971  0.0140
+SKD         C11        H112      SINGLE       n     1.089  0.0100     0.971  0.0140
+SKD         C11        H113      SINGLE       n     1.089  0.0100     0.971  0.0140
+SKD          N5         HN5      SINGLE       n     1.016  0.0100     0.876  0.0200
+SKD          O4         HO4      SINGLE       n     0.970  0.0120     0.841  0.0200
+SKD          O8         HO8      SINGLE       n     0.970  0.0120     0.848  0.0200
+SKD          O9         HO9      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SKD          C2          C1         O1A     119.666    2.42
+SKD          C2          C1         O1B     119.666    2.42
+SKD         O1A          C1         O1B     120.667    1.50
+SKD          C1          C2          C3     110.045    2.33
+SKD          C1          C2          O6     109.754    1.88
+SKD          C1          C2          O7     107.024    1.50
+SKD          C3          C2          O6     107.740    1.55
+SKD          C3          C2          O7     109.996    2.10
+SKD          O6          C2          O7     105.448    1.50
+SKD          C2          C3          C4     111.476    2.14
+SKD          C2          C3         H31     109.008    1.50
+SKD          C2          C3         H32     109.008    1.50
+SKD          C4          C3         H31     109.028    1.50
+SKD          C4          C3         H32     109.028    1.50
+SKD         H31          C3         H32     107.954    1.50
+SKD          C3          C4          C5     110.472    1.50
+SKD          C3          C4          O4     110.046    1.94
+SKD          C3          C4          H4     108.720    1.50
+SKD          C5          C4          O4     110.652    2.09
+SKD          C5          C4          H4     108.832    1.50
+SKD          O4          C4          H4     108.790    1.50
+SKD          C4          C5          C6     111.476    2.14
+SKD          C4          C5          N5     110.565    2.00
+SKD          C4          C5          H5     107.253    1.50
+SKD          C6          C5          N5     110.879    2.08
+SKD          C6          C5          H5     108.207    1.50
+SKD          N5          C5          H5     106.651    1.50
+SKD          C5          C6          C7     114.678    3.00
+SKD          C5          C6          O6     108.771    1.50
+SKD          C5          C6          H6     109.016    2.07
+SKD          C7          C6          O6     100.437    1.50
+SKD          C7          C6          H6     110.813    1.50
+SKD          O6          C6          H6     110.275    1.50
+SKD          C6          C7          C8     116.119    3.00
+SKD          C6          C7          O7     102.258    1.50
+SKD          C6          C7          H7     108.633    1.50
+SKD          C8          C7          O7     109.040    1.51
+SKD          C8          C7          H7     109.215    1.50
+SKD          O7          C7          H7     108.568    1.50
+SKD          C7          C8          C9     112.471    1.50
+SKD          C7          C8          O8     109.576    2.14
+SKD          C7          C8          H8     108.475    1.50
+SKD          C9          C8          O8     109.612    1.79
+SKD          C9          C8          H8     108.829    1.50
+SKD          O8          C8          H8     108.596    1.50
+SKD          C8          C9          O9     111.418    1.68
+SKD          C8          C9         H91     109.377    1.50
+SKD          C8          C9         H92     109.377    1.50
+SKD          O9          C9         H91     109.239    1.50
+SKD          O9          C9         H92     109.239    1.50
+SKD         H91          C9         H92     108.785    2.35
+SKD         C11         C10          N5     116.225    1.50
+SKD         C11         C10         O10     121.977    1.50
+SKD          N5         C10         O10     121.799    1.50
+SKD         C10         C11        H111     109.527    1.50
+SKD         C10         C11        H112     109.527    1.50
+SKD         C10         C11        H113     109.527    1.50
+SKD        H111         C11        H112     109.365    1.50
+SKD        H111         C11        H113     109.365    1.50
+SKD        H112         C11        H113     109.365    1.50
+SKD          C5          N5         C10     122.828    1.50
+SKD          C5          N5         HN5     118.975    1.50
+SKD         C10          N5         HN5     118.197    2.17
+SKD          C4          O4         HO4     109.099    3.00
+SKD          C2          O6          C6     102.841    1.85
+SKD          C2          O7          C7     107.900    1.78
+SKD          C8          O8         HO8     108.778    3.00
+SKD          C9          O9         HO9     107.734    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SKD             sp2_sp3_1         O1A          C1          C2          C3       0.000    10.0     6
+SKD            sp3_sp3_41          C1          C2          O6          C6     -60.000    10.0     3
+SKD            sp3_sp3_56          C1          C2          O7          C7      60.000    10.0     3
+SKD             sp3_sp3_4          C1          C2          C3          C4      60.000    10.0     3
+SKD            sp3_sp3_11          C2          C3          C4          O4     180.000    10.0     3
+SKD            sp3_sp3_58          C3          C4          O4         HO4     180.000    10.0     3
+SKD            sp3_sp3_23          O4          C4          C5          N5     180.000    10.0     3
+SKD             sp2_sp3_7         C10          N5          C5          C4       0.000    10.0     6
+SKD            sp3_sp3_32          N5          C5          C6          C7     -60.000    10.0     3
+SKD            sp3_sp3_37          C5          C6          O6          C2     -60.000    10.0     3
+SKD            sp3_sp3_47          C5          C6          C7          C8      60.000    10.0     3
+SKD            sp3_sp3_53          C8          C7          O7          C2     180.000    10.0     3
+SKD            sp3_sp3_61          C6          C7          C8          C9     180.000    10.0     3
+SKD            sp3_sp3_80          C9          C8          O8         HO8      60.000    10.0     3
+SKD            sp3_sp3_73          O8          C8          C9          O9      60.000    10.0     3
+SKD            sp3_sp3_82          C8          C9          O9         HO9     180.000    10.0     3
+SKD            sp2_sp3_13          N5         C10         C11        H111       0.000    10.0     6
+SKD             sp2_sp2_1         C11         C10          N5          C5     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SKD    chir_1    C2    O7    O6    C1    positive
+SKD    chir_2    C4    O4    C5    C3    positive
+SKD    chir_3    C5    N5    C6    C4    negative
+SKD    chir_4    C6    O6    C7    C5    negative
+SKD    chir_5    C7    O7    C6    C8    negative
+SKD    chir_6    C8    O8    C7    C9    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SKD    plan-1          C1   0.020
+SKD    plan-1          C2   0.020
+SKD    plan-1         O1A   0.020
+SKD    plan-1         O1B   0.020
+SKD    plan-2         C10   0.020
+SKD    plan-2         C11   0.020
+SKD    plan-2          N5   0.020
+SKD    plan-2         O10   0.020
+SKD    plan-3         C10   0.020
+SKD    plan-3          C5   0.020
+SKD    plan-3         HN5   0.020
+SKD    plan-3          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SKD           SMILES              ACDLabs 10.04                                                                                                            O=C(NC1C(O)CC2(OC1C(O2)C(O)CO)C(=O)O)C
+SKD SMILES_CANONICAL               CACTVS 3.341                                                                                  CC(=O)N[C@@H]1[C@@H](O)C[C@]2(O[C@H]([C@H](O)CO)[C@@H]1O2)C(O)=O
+SKD           SMILES               CACTVS 3.341                                                                                           CC(=O)N[CH]1[CH](O)C[C]2(O[CH]([CH](O)CO)[CH]1O2)C(O)=O
+SKD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                  CC(=O)N[C@@H]1[C@H](C[C@@]2(O[C@H]1[C@H](O2)[C@@H](CO)O)C(=O)O)O
+SKD           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                            CC(=O)NC1C(CC2(OC1C(O2)C(CO)O)C(=O)O)O
+SKD            InChI                InChI  1.03 InChI=1S/C11H17NO8/c1-4(14)12-7-5(15)2-11(10(17)18)19-8(6(16)3-13)9(7)20-11/h5-9,13,15-16H,2-3H2,1H3,(H,12,14)(H,17,18)/t5-,6+,7+,8+,9+,11+/m0/s1
+SKD         InChIKey                InChI  1.03                                                                                                                       NCMJSVDTRDLWJE-YRMXFSIDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SKD acedrg               243         "dictionary generator"                  
+SKD acedrg_database      11          "data source"                           
+SKD rdkit                2017.03.2   "Chemoinformatics tool"
+SKD refmac5              5.8.0238    "optimization tool"                     

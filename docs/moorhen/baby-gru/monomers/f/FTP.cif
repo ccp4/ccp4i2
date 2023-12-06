@@ -1,0 +1,274 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FTP     FTP      3-(4-AMINO-2-TRIFLUOROMETHYL-PYRIMIDIN-5-YLMETHYL)-4-METHYL-5-(2-PHOSPHONATOOXY-ETHYL)-THIAZOL-3-IUM     NON-POLYMER     38     25     .     
+#
+data_comp_FTP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FTP     N1A     N       NRD6    0       62.060      36.752      16.304      
+FTP     C2A     C       CR6     0       60.751      37.036      16.475      
+FTP     CM2     C       CT      0       60.330      38.497      16.428      
+FTP     N3A     N       NRD6    0       59.801      36.116      16.694      
+FTP     C4A     C       CR6     0       60.175      34.819      16.741      
+FTP     N4A     N       NH2     0       59.197      33.924      16.959      
+FTP     C5A     C       CR6     0       61.525      34.426      16.557      
+FTP     C6A     C       CR16    0       62.424      35.460      16.351      
+FTP     C7A     C       CH2     0       61.991      32.983      16.625      
+FTP     N3      N       NR5     1       63.133      32.810      17.523      
+FTP     C2      C       CR15    0       64.368      32.418      17.097      
+FTP     S1      S       S2      0       65.427      32.346      18.392      
+FTP     C5      C       CR5     0       64.324      32.820      19.554      
+FTP     C4      C       CR5     0       63.099      33.049      18.924      
+FTP     CM4     C       CH3     0       61.849      33.493      19.626      
+FTP     C6      C       CH2     0       64.720      32.961      20.979      
+FTP     C7      C       CH2     0       64.813      34.419      21.347      
+FTP     O7      O       O2      0       65.180      34.550      22.739      
+FTP     P1      P       P       0       65.304      36.033      23.364      
+FTP     O1      O       OP      -1      66.360      36.742      22.537      
+FTP     O2      O       O       0       65.720      35.839      24.810      
+FTP     O3      O       OP      -1      63.929      36.657      23.225      
+FTP     F1      F       F       0       59.083      38.638      15.994      
+FTP     F2      F       F       0       61.109      39.209      15.621      
+FTP     F3      F       F       0       60.394      39.056      17.632      
+FTP     H4A1    H       H       0       58.681      34.003      17.664      
+FTP     H4A2    H       H       0       59.077      33.262      16.395      
+FTP     H6A1    H       H       0       63.332      35.247      16.232      
+FTP     H7A1    H       H       0       62.244      32.684      15.727      
+FTP     H7A2    H       H       0       61.260      32.413      16.937      
+FTP     H21     H       H       0       64.624      32.208      16.215      
+FTP     HM41    H       H       0       61.940      33.344      20.579      
+FTP     HM42    H       H       0       61.090      32.988      19.295      
+FTP     HM43    H       H       0       61.702      34.438      19.462      
+FTP     H61     H       H       0       65.581      32.529      21.124      
+FTP     H62     H       H       0       64.059      32.521      21.544      
+FTP     H71     H       H       0       63.948      34.854      21.190      
+FTP     H72     H       H       0       65.484      34.858      20.785      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FTP         N1A         C2A      DOUBLE       y     1.344  0.0118     1.344  0.0118
+FTP         N1A         C6A      SINGLE       y     1.340  0.0100     1.340  0.0100
+FTP         C2A         CM2      SINGLE       n     1.520  0.0100     1.520  0.0100
+FTP         C2A         N3A      SINGLE       y     1.335  0.0101     1.335  0.0101
+FTP         CM2          F1      SINGLE       n     1.328  0.0113     1.328  0.0113
+FTP         CM2          F2      SINGLE       n     1.328  0.0113     1.328  0.0113
+FTP         CM2          F3      SINGLE       n     1.328  0.0113     1.328  0.0113
+FTP         N3A         C4A      DOUBLE       y     1.343  0.0133     1.343  0.0133
+FTP         C4A         N4A      SINGLE       n     1.343  0.0151     1.343  0.0151
+FTP         C4A         C5A      SINGLE       y     1.410  0.0130     1.410  0.0130
+FTP         C5A         C6A      DOUBLE       y     1.382  0.0100     1.382  0.0100
+FTP         C5A         C7A      SINGLE       n     1.515  0.0100     1.515  0.0100
+FTP         C7A          N3      SINGLE       n     1.461  0.0100     1.461  0.0100
+FTP          N3          C2      DOUBLE       y     1.356  0.0144     1.356  0.0144
+FTP          N3          C4      SINGLE       y     1.378  0.0200     1.378  0.0200
+FTP          C2          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+FTP          S1          C5      SINGLE       y     1.695  0.0200     1.695  0.0200
+FTP          C5          C4      DOUBLE       y     1.389  0.0200     1.389  0.0200
+FTP          C5          C6      SINGLE       n     1.486  0.0100     1.486  0.0100
+FTP          C4         CM4      SINGLE       n     1.499  0.0100     1.499  0.0100
+FTP          C6          C7      SINGLE       n     1.505  0.0199     1.505  0.0199
+FTP          C7          O7      SINGLE       n     1.447  0.0162     1.447  0.0162
+FTP          O7          P1      SINGLE       n     1.614  0.0178     1.614  0.0178
+FTP          P1          O1      SINGLE       n     1.517  0.0192     1.517  0.0192
+FTP          P1          O2      DOUBLE       n     1.517  0.0192     1.517  0.0192
+FTP          P1          O3      SINGLE       n     1.517  0.0192     1.517  0.0192
+FTP         N4A        H4A1      SINGLE       n     1.016  0.0100     0.877  0.0200
+FTP         N4A        H4A2      SINGLE       n     1.016  0.0100     0.877  0.0200
+FTP         C6A        H6A1      SINGLE       n     1.082  0.0130     0.940  0.0200
+FTP         C7A        H7A1      SINGLE       n     1.089  0.0100     0.979  0.0157
+FTP         C7A        H7A2      SINGLE       n     1.089  0.0100     0.979  0.0157
+FTP          C2         H21      SINGLE       n     1.082  0.0130     0.942  0.0200
+FTP         CM4        HM41      SINGLE       n     1.089  0.0100     0.970  0.0153
+FTP         CM4        HM42      SINGLE       n     1.089  0.0100     0.970  0.0153
+FTP         CM4        HM43      SINGLE       n     1.089  0.0100     0.970  0.0153
+FTP          C6         H61      SINGLE       n     1.089  0.0100     0.974  0.0100
+FTP          C6         H62      SINGLE       n     1.089  0.0100     0.974  0.0100
+FTP          C7         H71      SINGLE       n     1.089  0.0100     0.980  0.0143
+FTP          C7         H72      SINGLE       n     1.089  0.0100     0.980  0.0143
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FTP         C2A         N1A         C6A     117.093    1.65
+FTP         N1A         C2A         CM2     117.801    2.04
+FTP         N1A         C2A         N3A     124.399    1.50
+FTP         CM2         C2A         N3A     117.801    2.04
+FTP         C2A         CM2          F1     111.465    1.50
+FTP         C2A         CM2          F2     111.465    1.50
+FTP         C2A         CM2          F3     111.465    1.50
+FTP          F1         CM2          F2     107.395    1.50
+FTP          F1         CM2          F3     107.395    1.50
+FTP          F2         CM2          F3     107.395    1.50
+FTP         C2A         N3A         C4A     117.145    1.69
+FTP         N3A         C4A         N4A     116.812    1.55
+FTP         N3A         C4A         C5A     121.951    1.50
+FTP         N4A         C4A         C5A     121.236    1.50
+FTP         C4A         N4A        H4A1     119.860    1.50
+FTP         C4A         N4A        H4A2     119.860    1.50
+FTP        H4A1         N4A        H4A2     120.280    1.85
+FTP         C4A         C5A         C6A     116.265    1.50
+FTP         C4A         C5A         C7A     122.046    1.77
+FTP         C6A         C5A         C7A     121.689    1.50
+FTP         N1A         C6A         C5A     123.147    1.50
+FTP         N1A         C6A        H6A1     118.449    1.50
+FTP         C5A         C6A        H6A1     118.404    1.50
+FTP         C5A         C7A          N3     112.991    1.50
+FTP         C5A         C7A        H7A1     109.154    1.50
+FTP         C5A         C7A        H7A2     109.154    1.50
+FTP          N3         C7A        H7A1     108.720    1.50
+FTP          N3         C7A        H7A2     108.720    1.50
+FTP        H7A1         C7A        H7A2     107.959    1.50
+FTP         C7A          N3          C2     126.099    1.71
+FTP         C7A          N3          C4     125.769    1.50
+FTP          C2          N3          C4     108.133    2.04
+FTP          N3          C2          S1     108.002    3.00
+FTP          N3          C2         H21     127.482    1.50
+FTP          S1          C2         H21     124.516    3.00
+FTP          C2          S1          C5     108.002    3.00
+FTP          S1          C5          C4     108.002    3.00
+FTP          S1          C5          C6     120.286    3.00
+FTP          C4          C5          C6     131.713    3.00
+FTP          N3          C4          C5     107.872    2.30
+FTP          N3          C4         CM4     122.365    1.50
+FTP          C5          C4         CM4     129.754    2.46
+FTP          C4         CM4        HM41     109.558    1.50
+FTP          C4         CM4        HM42     109.558    1.50
+FTP          C4         CM4        HM43     109.558    1.50
+FTP        HM41         CM4        HM42     109.354    1.50
+FTP        HM41         CM4        HM43     109.354    1.50
+FTP        HM42         CM4        HM43     109.354    1.50
+FTP          C5          C6          C7     110.747    2.16
+FTP          C5          C6         H61     108.883    1.50
+FTP          C5          C6         H62     108.883    1.50
+FTP          C7          C6         H61     109.160    1.50
+FTP          C7          C6         H62     109.160    1.50
+FTP         H61          C6         H62     107.724    1.50
+FTP          C6          C7          O7     108.926    2.01
+FTP          C6          C7         H71     109.702    1.50
+FTP          C6          C7         H72     109.702    1.50
+FTP          O7          C7         H71     109.739    1.50
+FTP          O7          C7         H72     109.739    1.50
+FTP         H71          C7         H72     108.319    1.50
+FTP          C7          O7          P1     118.671    1.50
+FTP          O7          P1          O1     105.795    2.09
+FTP          O7          P1          O2     105.795    2.09
+FTP          O7          P1          O3     105.795    2.09
+FTP          O1          P1          O2     112.864    1.69
+FTP          O1          P1          O3     112.864    1.69
+FTP          O2          P1          O3     112.864    1.69
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FTP       const_sp2_sp2_2         CM2         C2A         N1A         C6A     180.000     5.0     2
+FTP              const_27         C5A         C6A         N1A         C2A       0.000    10.0     2
+FTP              const_19          N3          C2          S1          C5       0.000    10.0     2
+FTP              const_22          C6          C5          S1          C2     180.000    10.0     2
+FTP              const_26         CM4          C4          C5          C6       0.000    10.0     2
+FTP            sp2_sp3_20          S1          C5          C6          C7     -90.000    10.0     6
+FTP            sp2_sp3_25          N3          C4         CM4        HM41     150.000    10.0     6
+FTP             sp3_sp3_1          C5          C6          C7          O7     180.000    10.0     3
+FTP            sp3_sp3_10          C6          C7          O7          P1     180.000    10.0     3
+FTP            sp3_sp3_14          C7          O7          P1          O1     -60.000    10.0     3
+FTP             sp2_sp3_1         N1A         C2A         CM2          F1     150.000    10.0     6
+FTP       const_sp2_sp2_4         CM2         C2A         N3A         C4A     180.000     5.0     2
+FTP       const_sp2_sp2_6         N4A         C4A         N3A         C2A     180.000     5.0     2
+FTP             sp2_sp2_3         N3A         C4A         N4A        H4A1       0.000     5.0     2
+FTP              const_10         N4A         C4A         C5A         C7A       0.000    10.0     2
+FTP              const_13         C7A         C5A         C6A         N1A     180.000    10.0     2
+FTP             sp2_sp3_8         C4A         C5A         C7A          N3     -90.000    10.0     6
+FTP            sp2_sp3_14          C2          N3         C7A         C5A     -90.000    10.0     6
+FTP              const_16          S1          C2          N3         C7A     180.000    10.0     2
+FTP              const_32         CM4          C4          N3         C7A       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FTP    chir_1    CM2    F1    F2    F3    both
+FTP    chir_2    P1    O7    O1    O3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FTP    plan-1         C2A   0.020
+FTP    plan-1         C4A   0.020
+FTP    plan-1         C5A   0.020
+FTP    plan-1         C6A   0.020
+FTP    plan-1         C7A   0.020
+FTP    plan-1         CM2   0.020
+FTP    plan-1        H6A1   0.020
+FTP    plan-1         N1A   0.020
+FTP    plan-1         N3A   0.020
+FTP    plan-1         N4A   0.020
+FTP    plan-2          C2   0.020
+FTP    plan-2          C4   0.020
+FTP    plan-2          C5   0.020
+FTP    plan-2          C6   0.020
+FTP    plan-2         C7A   0.020
+FTP    plan-2         CM4   0.020
+FTP    plan-2         H21   0.020
+FTP    plan-2          N3   0.020
+FTP    plan-2          S1   0.020
+FTP    plan-3         C4A   0.020
+FTP    plan-3        H4A1   0.020
+FTP    plan-3        H4A2   0.020
+FTP    plan-3         N4A   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FTP           SMILES              ACDLabs 10.04                                                                                      FC(F)(F)c1nc(c(cn1)C[n+]2c(c(sc2)CCOP([O-])([O-])=O)C)N
+FTP SMILES_CANONICAL               CACTVS 3.341                                                                                        Cc1c(CCO[P]([O-])([O-])=O)sc[n+]1Cc2cnc(nc2N)C(F)(F)F
+FTP           SMILES               CACTVS 3.341                                                                                        Cc1c(CCO[P]([O-])([O-])=O)sc[n+]1Cc2cnc(nc2N)C(F)(F)F
+FTP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                          Cc1c(sc[n+]1Cc2cnc(nc2N)C(F)(F)F)CCOP(=O)([O-])[O-]
+FTP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                          Cc1c(sc[n+]1Cc2cnc(nc2N)C(F)(F)F)CCOP(=O)([O-])[O-]
+FTP            InChI                InChI  1.03 InChI=1S/C12H14F3N4O4PS/c1-7-9(2-3-23-24(20,21)22)25-6-19(7)5-8-4-17-11(12(13,14)15)18-10(8)16/h4,6H,2-3,5H2,1H3,(H3-,16,17,18,20,21,22)/p-1
+FTP         InChIKey                InChI  1.03                                                                                                                  ZIBIECXVPMYJCV-UHFFFAOYSA-M
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FTP acedrg               243         "dictionary generator"                  
+FTP acedrg_database      11          "data source"                           
+FTP rdkit                2017.03.2   "Chemoinformatics tool"
+FTP refmac5              5.8.0238    "optimization tool"                     

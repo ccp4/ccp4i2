@@ -1,0 +1,790 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+U20     U20      "uridine-5'-diphosphate-3-O-(R-3-hydroxymyristoyl)-N-acetyl-D-glucosamine"     NON-POLYMER     106     55     .     
+#
+data_comp_U20
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+U20     C4      C       CH1     0       8.845       -4.712      22.491      
+U20     C5      C       CH1     0       10.110      -4.910      23.325      
+U20     C6      C       CH2     0       9.919       -5.866      24.483      
+U20     N2      N       NH1     0       10.636      -3.604      19.322      
+U20     C3      C       CH1     0       9.142       -3.858      21.264      
+U20     CCB     C       CH3     0       18.934      3.629       21.128      
+U20     CCA     C       CH2     0       17.553      3.077       21.408      
+U20     CBZ     C       CH2     0       16.772      2.687       20.178      
+U20     CBY     C       CH2     0       15.391      2.152       20.462      
+U20     CBX     C       CH2     0       14.582      1.836       19.228      
+U20     CBW     C       CH2     0       13.159      1.422       19.511      
+U20     CBV     C       CH2     0       12.294      1.288       18.281      
+U20     CBU     C       CH2     0       10.848      0.977       18.576      
+U20     CBS     C       CH2     0       9.995       0.761       17.349      
+U20     CBR     C       CH2     0       8.533       0.516       17.642      
+U20     CBL     C       CH2     0       8.219       -0.874      18.138      
+U20     CBJ     C       CH1     0       6.802       -1.091      18.646      
+U20     OCC     O       OH1     0       5.863       -0.754      17.624      
+U20     CBI     C       CH2     0       6.522       -2.516      19.111      
+U20     CAM     C       C       0       7.116       -2.824      20.467      
+U20     OAY     O       O       0       6.837       -2.242      21.475      
+U20     O3      O       O2      0       7.972       -3.854      20.416      
+U20     C2      C       CH1     0       10.302      -4.442      20.458      
+U20     CAP     C       C       0       11.346      -4.009      18.262      
+U20     CAQ     C       CH3     0       11.584      -2.982      17.196      
+U20     OAR     O       O       0       11.783      -5.152      18.161      
+U20     O4      O       OH1     0       7.851       -4.085      23.300      
+U20     O6      O       OH1     0       9.561       -7.175      24.041      
+U20     O5      O       O2      0       11.165      -5.462      22.506      
+U20     C1      C       CH1     0       11.515      -4.692      21.364      
+U20     O1      O       O2      0       12.050      -3.446      21.744      
+U20     PAO     P       P       0       13.576      -3.004      21.508      
+U20     OAT     O       OP      -1      13.783      -1.646      22.094      
+U20     OAS     O       O       0       13.930      -3.204      20.072      
+U20     OAN     O       O2      0       14.368      -4.079      22.398      
+U20     PAU     P       P       0       14.537      -4.269      23.981      
+U20     OAW     O       OP      -1      15.289      -5.534      24.234      
+U20     OAV     O       O       0       13.202      -4.100      24.628      
+U20     "O5'"   O       O2      0       15.469      -3.016      24.349      
+U20     "C5'"   C       CH2     0       15.694      -2.716      25.751      
+U20     "C4'"   C       CH1     0       16.497      -1.444      25.881      
+U20     "O4'"   O       O2      0       17.732      -1.554      25.132      
+U20     "C3'"   C       CH1     0       15.859      -0.168      25.321      
+U20     "O3'"   O       OH1     0       14.896      0.361       26.224      
+U20     "C2'"   C       CH1     0       17.085      0.740       25.146      
+U20     "O2'"   O       OH1     0       17.419      1.444       26.325      
+U20     "C1'"   C       CH1     0       18.201      -0.259      24.815      
+U20     NAX     N       NR6     0       18.592      -0.228      23.379      
+U20     CBP     C       CR16    0       17.715      -0.663      22.406      
+U20     CBO     C       CR16    0       18.016      -0.654      21.095      
+U20     CBN     C       CR6     0       19.297      -0.168      20.666      
+U20     OBQ     O       O       0       19.691      -0.107      19.501      
+U20     NBM     N       NR6     0       20.126      0.258       21.689      
+U20     CBK     C       CR6     0       19.850      0.261       23.038      
+U20     OBT     O       O       0       20.670      0.666       23.854      
+U20     H4      H       H       0       8.508       -5.595      22.193      
+U20     H5      H       H       0       10.398      -4.034      23.678      
+U20     H61     H       H       0       9.218       -5.523      25.076      
+U20     H62     H       H       0       10.751      -5.918      24.998      
+U20     HN2     H       H       0       10.359      -2.774      19.334      
+U20     H3      H       H       0       9.374       -2.952      21.544      
+U20     HCB1    H       H       0       19.094      3.646       20.168      
+U20     HCB2    H       H       0       19.602      3.065       21.555      
+U20     HCB3    H       H       0       19.002      4.532       21.482      
+U20     HCA1    H       H       0       17.039      3.752       21.904      
+U20     HCA2    H       H       0       17.641      2.288       21.986      
+U20     HBZ1    H       H       0       17.279      2.005       19.688      
+U20     HBZ2    H       H       0       16.692      3.473       19.595      
+U20     HBY1    H       H       0       14.902      2.813       20.998      
+U20     HBY2    H       H       0       15.474      1.336       21.001      
+U20     HBX1    H       H       0       15.028      1.113       18.736      
+U20     HBX2    H       H       0       14.570      2.627       18.648      
+U20     HBW1    H       H       0       12.752      2.084       20.110      
+U20     HBW2    H       H       0       13.170      0.561       19.982      
+U20     HBV1    H       H       0       12.660      0.575       17.715      
+U20     HBV2    H       H       0       12.339      2.125       17.772      
+U20     HBU1    H       H       0       10.467      1.717       19.097      
+U20     HBU2    H       H       0       10.809      0.171       19.133      
+U20     HBS1    H       H       0       10.348      -0.007      16.852      
+U20     HBS2    H       H       0       10.071      1.550       16.770      
+U20     HBR1    H       H       0       8.017       0.680       16.824      
+U20     HBR2    H       H       0       8.235       1.163       18.316      
+U20     HBL1    H       H       0       8.840       -1.090      18.863      
+U20     HBL2    H       H       0       8.387       -1.510      17.410      
+U20     HBJ     H       H       0       6.656       -0.472      19.412      
+U20     HOCC    H       H       0       5.987       -1.257      16.950      
+U20     HBI1    H       H       0       6.884       -3.146      18.451      
+U20     HBI2    H       H       0       5.552       -2.654      19.155      
+U20     H2      H       H       0       10.003      -5.317      20.113      
+U20     HAQ1    H       H       0       11.866      -2.148      17.605      
+U20     HAQ2    H       H       0       10.764      -2.835      16.697      
+U20     HAQ3    H       H       0       12.277      -3.296      16.592      
+U20     HO4     H       H       0       8.111       -3.323      23.547      
+U20     HO6     H       H       0       10.188      -7.496      23.571      
+U20     H1      H       H       0       12.193      -5.190      20.844      
+U20     "H5'1"  H       H       0       16.183      -3.462      26.177      
+U20     "H5'2"  H       H       0       14.826      -2.608      26.213      
+U20     "H4'"   H       H       0       16.714      -1.312      26.829      
+U20     "H3'"   H       H       0       15.440      -0.344      24.440      
+U20     "HO3'"  H       H       0       14.257      -0.193      26.297      
+U20     "H2'"   H       H       0       16.946      1.361       24.403      
+U20     "HO2'"  H       H       0       16.772      1.948       26.546      
+U20     "H1'"   H       H       0       18.981      -0.068      25.377      
+U20     HBP     H       H       0       16.875      -0.984      22.672      
+U20     HBO     H       H       0       17.396      -0.961      20.467      
+U20     HNBM    H       H       0       20.930      0.566       21.459      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+U20         CBS         CBR      SINGLE       n     1.509  0.0200     1.509  0.0200
+U20         CBU         CBS      SINGLE       n     1.509  0.0200     1.509  0.0200
+U20         CBR         CBL      SINGLE       n     1.509  0.0200     1.509  0.0200
+U20         CBJ         OCC      SINGLE       n     1.426  0.0179     1.426  0.0179
+U20         CBL         CBJ      SINGLE       n     1.520  0.0169     1.520  0.0169
+U20         CBV         CBU      SINGLE       n     1.509  0.0200     1.509  0.0200
+U20         CBW         CBV      SINGLE       n     1.509  0.0200     1.509  0.0200
+U20         CBJ         CBI      SINGLE       n     1.524  0.0118     1.524  0.0118
+U20         CAP         CAQ      SINGLE       n     1.498  0.0100     1.498  0.0100
+U20         CBI         CAM      SINGLE       n     1.504  0.0200     1.504  0.0200
+U20         CBX         CBW      SINGLE       n     1.509  0.0200     1.509  0.0200
+U20         CBY         CBX      SINGLE       n     1.509  0.0200     1.509  0.0200
+U20         CAP         OAR      DOUBLE       n     1.227  0.0100     1.227  0.0100
+U20          N2         CAP      SINGLE       n     1.334  0.0119     1.334  0.0119
+U20         CAM          O3      SINGLE       n     1.329  0.0153     1.329  0.0153
+U20         CAM         OAY      DOUBLE       n     1.197  0.0100     1.197  0.0100
+U20          N2          C2      SINGLE       n     1.448  0.0100     1.448  0.0100
+U20          C3          O3      SINGLE       n     1.441  0.0100     1.441  0.0100
+U20         CBZ         CBY      SINGLE       n     1.509  0.0200     1.509  0.0200
+U20         CCA         CBZ      SINGLE       n     1.507  0.0200     1.507  0.0200
+U20         CBN         OBQ      DOUBLE       n     1.231  0.0100     1.231  0.0100
+U20          C3          C2      SINGLE       n     1.526  0.0100     1.526  0.0100
+U20          C2          C1      SINGLE       n     1.532  0.0100     1.532  0.0100
+U20          C4          C3      SINGLE       n     1.522  0.0100     1.522  0.0100
+U20         CCB         CCA      SINGLE       n     1.510  0.0200     1.510  0.0200
+U20         CBO         CBN      SINGLE       y     1.434  0.0100     1.434  0.0100
+U20         CBN         NBM      SINGLE       y     1.381  0.0100     1.381  0.0100
+U20         CBP         CBO      DOUBLE       y     1.342  0.0100     1.342  0.0100
+U20          C1          O1      SINGLE       n     1.403  0.0143     1.403  0.0143
+U20          O5          C1      SINGLE       n     1.417  0.0109     1.417  0.0109
+U20          O1         PAO      SINGLE       n     1.604  0.0133     1.604  0.0133
+U20         PAO         OAS      DOUBLE       n     1.493  0.0122     1.493  0.0122
+U20          C4          O4      SINGLE       n     1.425  0.0100     1.425  0.0100
+U20          C4          C5      SINGLE       n     1.525  0.0100     1.525  0.0100
+U20         NBM         CBK      SINGLE       y     1.372  0.0112     1.372  0.0112
+U20         PAO         OAT      SINGLE       n     1.493  0.0122     1.493  0.0122
+U20         PAO         OAN      SINGLE       n     1.604  0.0133     1.604  0.0133
+U20         NAX         CBP      SINGLE       y     1.375  0.0106     1.375  0.0106
+U20          C5          O5      SINGLE       n     1.441  0.0100     1.441  0.0100
+U20          C5          C6      SINGLE       n     1.511  0.0142     1.511  0.0142
+U20         NAX         CBK      SINGLE       y     1.383  0.0100     1.383  0.0100
+U20         CBK         OBT      DOUBLE       n     1.224  0.0111     1.224  0.0111
+U20       "C1'"         NAX      SINGLE       n     1.476  0.0133     1.476  0.0133
+U20         OAN         PAU      SINGLE       n     1.604  0.0133     1.604  0.0133
+U20          C6          O6      SINGLE       n     1.426  0.0200     1.426  0.0200
+U20       "C2'"       "C1'"      SINGLE       n     1.529  0.0100     1.529  0.0100
+U20       "C2'"       "O2'"      SINGLE       n     1.412  0.0100     1.412  0.0100
+U20       "C3'"       "C2'"      SINGLE       n     1.533  0.0109     1.533  0.0109
+U20       "O4'"       "C1'"      SINGLE       n     1.412  0.0100     1.412  0.0100
+U20       "C4'"       "O4'"      SINGLE       n     1.451  0.0111     1.451  0.0111
+U20         PAU         OAV      DOUBLE       n     1.493  0.0122     1.493  0.0122
+U20         PAU       "O5'"      SINGLE       n     1.604  0.0133     1.604  0.0133
+U20         PAU         OAW      SINGLE       n     1.493  0.0122     1.493  0.0122
+U20       "O5'"       "C5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+U20       "C4'"       "C3'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+U20       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+U20       "C5'"       "C4'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+U20          C4          H4      SINGLE       n     1.089  0.0100     0.991  0.0105
+U20          C5          H5      SINGLE       n     1.089  0.0100     0.988  0.0182
+U20          C6         H61      SINGLE       n     1.089  0.0100     0.980  0.0184
+U20          C6         H62      SINGLE       n     1.089  0.0100     0.980  0.0184
+U20          N2         HN2      SINGLE       n     1.016  0.0100     0.876  0.0200
+U20          C3          H3      SINGLE       n     1.089  0.0100     0.975  0.0200
+U20         CCB        HCB1      SINGLE       n     1.089  0.0100     0.973  0.0157
+U20         CCB        HCB2      SINGLE       n     1.089  0.0100     0.973  0.0157
+U20         CCB        HCB3      SINGLE       n     1.089  0.0100     0.973  0.0157
+U20         CCA        HCA1      SINGLE       n     1.089  0.0100     0.982  0.0155
+U20         CCA        HCA2      SINGLE       n     1.089  0.0100     0.982  0.0155
+U20         CBZ        HBZ1      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBZ        HBZ2      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBY        HBY1      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBY        HBY2      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBX        HBX1      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBX        HBX2      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBW        HBW1      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBW        HBW2      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBV        HBV1      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBV        HBV2      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBU        HBU1      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBU        HBU2      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBS        HBS1      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBS        HBS2      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBR        HBR1      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBR        HBR2      SINGLE       n     1.089  0.0100     0.981  0.0163
+U20         CBL        HBL1      SINGLE       n     1.089  0.0100     0.981  0.0160
+U20         CBL        HBL2      SINGLE       n     1.089  0.0100     0.981  0.0160
+U20         CBJ         HBJ      SINGLE       n     1.089  0.0100     0.995  0.0200
+U20         OCC        HOCC      SINGLE       n     0.970  0.0120     0.848  0.0200
+U20         CBI        HBI1      SINGLE       n     1.089  0.0100     0.981  0.0185
+U20         CBI        HBI2      SINGLE       n     1.089  0.0100     0.981  0.0185
+U20          C2          H2      SINGLE       n     1.089  0.0100     0.987  0.0166
+U20         CAQ        HAQ1      SINGLE       n     1.089  0.0100     0.971  0.0140
+U20         CAQ        HAQ2      SINGLE       n     1.089  0.0100     0.971  0.0140
+U20         CAQ        HAQ3      SINGLE       n     1.089  0.0100     0.971  0.0140
+U20          O4         HO4      SINGLE       n     0.970  0.0120     0.841  0.0200
+U20          O6         HO6      SINGLE       n     0.970  0.0120     0.848  0.0200
+U20          C1          H1      SINGLE       n     1.089  0.0100     0.989  0.0153
+U20       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.989  0.0200
+U20       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.989  0.0200
+U20       "C4'"       "H4'"      SINGLE       n     1.089  0.0100     0.981  0.0200
+U20       "C3'"       "H3'"      SINGLE       n     1.089  0.0100     0.992  0.0200
+U20       "O3'"      "HO3'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+U20       "C2'"       "H2'"      SINGLE       n     1.089  0.0100     0.978  0.0200
+U20       "O2'"      "HO2'"      SINGLE       n     0.970  0.0120     0.849  0.0200
+U20       "C1'"       "H1'"      SINGLE       n     1.089  0.0100     0.981  0.0118
+U20         CBP         HBP      SINGLE       n     1.082  0.0130     0.938  0.0107
+U20         CBO         HBO      SINGLE       n     1.082  0.0130     0.935  0.0100
+U20         NBM        HNBM      SINGLE       n     1.016  0.0100     0.889  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+U20          C3          C4          O4     110.081    2.02
+U20          C3          C4          C5     110.072    1.92
+U20          C3          C4          H4     109.166    1.50
+U20          O4          C4          C5     109.072    2.07
+U20          O4          C4          H4     109.194    1.50
+U20          C5          C4          H4     109.223    1.50
+U20          C4          C5          O5     109.140    1.86
+U20          C4          C5          C6     112.996    1.59
+U20          C4          C5          H5     108.960    1.50
+U20          O5          C5          C6     106.879    1.50
+U20          O5          C5          H5     109.134    1.50
+U20          C6          C5          H5     109.269    1.50
+U20          C5          C6          O6     111.299    2.09
+U20          C5          C6         H61     109.363    1.50
+U20          C5          C6         H62     109.363    1.50
+U20          O6          C6         H61     109.265    1.50
+U20          O6          C6         H62     109.265    1.50
+U20         H61          C6         H62     108.155    1.50
+U20         CAP          N2          C2     123.083    2.48
+U20         CAP          N2         HN2     118.617    2.66
+U20          C2          N2         HN2     118.300    1.53
+U20          O3          C3          C2     107.885    1.69
+U20          O3          C3          C4     108.122    1.78
+U20          O3          C3          H3     109.954    1.50
+U20          C2          C3          C4     110.742    1.50
+U20          C2          C3          H3     108.987    1.50
+U20          C4          C3          H3     109.166    1.50
+U20         CCA         CCB        HCB1     109.554    1.50
+U20         CCA         CCB        HCB2     109.554    1.50
+U20         CCA         CCB        HCB3     109.554    1.50
+U20        HCB1         CCB        HCB2     109.380    1.50
+U20        HCB1         CCB        HCB3     109.380    1.50
+U20        HCB2         CCB        HCB3     109.380    1.50
+U20         CBZ         CCA         CCB     113.719    3.00
+U20         CBZ         CCA        HCA1     108.758    1.50
+U20         CBZ         CCA        HCA2     108.758    1.50
+U20         CCB         CCA        HCA1     108.918    1.50
+U20         CCB         CCA        HCA2     108.918    1.50
+U20        HCA1         CCA        HCA2     107.763    1.50
+U20         CBY         CBZ         CCA     114.362    3.00
+U20         CBY         CBZ        HBZ1     108.698    1.50
+U20         CBY         CBZ        HBZ2     108.698    1.50
+U20         CCA         CBZ        HBZ1     108.653    1.50
+U20         CCA         CBZ        HBZ2     108.653    1.50
+U20        HBZ1         CBZ        HBZ2     107.646    1.50
+U20         CBX         CBY         CBZ     114.243    1.69
+U20         CBX         CBY        HBY1     108.698    1.50
+U20         CBX         CBY        HBY2     108.698    1.50
+U20         CBZ         CBY        HBY1     108.698    1.50
+U20         CBZ         CBY        HBY2     108.698    1.50
+U20        HBY1         CBY        HBY2     107.646    1.50
+U20         CBW         CBX         CBY     114.243    1.69
+U20         CBW         CBX        HBX1     108.698    1.50
+U20         CBW         CBX        HBX2     108.698    1.50
+U20         CBY         CBX        HBX1     108.698    1.50
+U20         CBY         CBX        HBX2     108.698    1.50
+U20        HBX1         CBX        HBX2     107.646    1.50
+U20         CBV         CBW         CBX     114.243    1.69
+U20         CBV         CBW        HBW1     108.698    1.50
+U20         CBV         CBW        HBW2     108.698    1.50
+U20         CBX         CBW        HBW1     108.698    1.50
+U20         CBX         CBW        HBW2     108.698    1.50
+U20        HBW1         CBW        HBW2     107.646    1.50
+U20         CBU         CBV         CBW     114.243    1.69
+U20         CBU         CBV        HBV1     108.698    1.50
+U20         CBU         CBV        HBV2     108.698    1.50
+U20         CBW         CBV        HBV1     108.698    1.50
+U20         CBW         CBV        HBV2     108.698    1.50
+U20        HBV1         CBV        HBV2     107.646    1.50
+U20         CBS         CBU         CBV     114.243    1.69
+U20         CBS         CBU        HBU1     108.698    1.50
+U20         CBS         CBU        HBU2     108.698    1.50
+U20         CBV         CBU        HBU1     108.698    1.50
+U20         CBV         CBU        HBU2     108.698    1.50
+U20        HBU1         CBU        HBU2     107.646    1.50
+U20         CBR         CBS         CBU     114.243    1.69
+U20         CBR         CBS        HBS1     108.698    1.50
+U20         CBR         CBS        HBS2     108.698    1.50
+U20         CBU         CBS        HBS1     108.698    1.50
+U20         CBU         CBS        HBS2     108.698    1.50
+U20        HBS1         CBS        HBS2     107.646    1.50
+U20         CBS         CBR         CBL     114.776    2.10
+U20         CBS         CBR        HBR1     108.698    1.50
+U20         CBS         CBR        HBR2     108.698    1.50
+U20         CBL         CBR        HBR1     108.597    1.50
+U20         CBL         CBR        HBR2     108.597    1.50
+U20        HBR1         CBR        HBR2     107.646    1.50
+U20         CBR         CBL         CBJ     115.351    1.65
+U20         CBR         CBL        HBL1     108.572    1.50
+U20         CBR         CBL        HBL2     108.572    1.50
+U20         CBJ         CBL        HBL1     108.478    1.50
+U20         CBJ         CBL        HBL2     108.478    1.50
+U20        HBL1         CBL        HBL2     107.428    1.50
+U20         OCC         CBJ         CBL     109.904    2.15
+U20         OCC         CBJ         CBI     108.747    2.04
+U20         OCC         CBJ         HBJ     108.270    1.50
+U20         CBL         CBJ         CBI     114.304    1.50
+U20         CBL         CBJ         HBJ     108.124    1.50
+U20         CBI         CBJ         HBJ     108.825    1.50
+U20         CBJ         OCC        HOCC     108.921    2.24
+U20         CBJ         CBI         CAM     111.511    2.91
+U20         CBJ         CBI        HBI1     109.119    1.50
+U20         CBJ         CBI        HBI2     109.119    1.50
+U20         CAM         CBI        HBI1     108.762    1.50
+U20         CAM         CBI        HBI2     108.762    1.50
+U20        HBI1         CBI        HBI2     107.737    1.50
+U20         CBI         CAM          O3     111.751    1.83
+U20         CBI         CAM         OAY     124.911    1.57
+U20          O3         CAM         OAY     123.338    1.50
+U20         CAM          O3          C3     117.672    1.50
+U20          N2          C2          C3     110.454    2.38
+U20          N2          C2          C1     111.780    3.00
+U20          N2          C2          H2     107.121    2.62
+U20          C3          C2          C1     110.235    1.50
+U20          C3          C2          H2     107.258    1.68
+U20          C1          C2          H2     107.511    1.55
+U20         CAQ         CAP         OAR     122.067    1.50
+U20         CAQ         CAP          N2     115.988    1.50
+U20         OAR         CAP          N2     121.945    1.50
+U20         CAP         CAQ        HAQ1     109.527    1.50
+U20         CAP         CAQ        HAQ2     109.527    1.50
+U20         CAP         CAQ        HAQ3     109.527    1.50
+U20        HAQ1         CAQ        HAQ2     109.365    1.50
+U20        HAQ1         CAQ        HAQ3     109.365    1.50
+U20        HAQ2         CAQ        HAQ3     109.365    1.50
+U20          C4          O4         HO4     109.564    3.00
+U20          C6          O6         HO6     109.472    2.41
+U20          C1          O5          C5     113.152    1.70
+U20          C2          C1          O1     108.367    1.50
+U20          C2          C1          O5     111.350    3.00
+U20          C2          C1          H1     108.848    1.50
+U20          O1          C1          O5     110.394    2.23
+U20          O1          C1          H1     109.322    1.50
+U20          O5          C1          H1     109.272    1.61
+U20          C1          O1         PAO     122.306    2.63
+U20          O1         PAO         OAS     108.530    2.45
+U20          O1         PAO         OAT     108.530    2.45
+U20          O1         PAO         OAN     101.077    2.30
+U20         OAS         PAO         OAT     116.964    2.85
+U20         OAS         PAO         OAN     108.570    2.41
+U20         OAT         PAO         OAN     108.570    2.41
+U20         PAO         OAN         PAU     132.542    3.00
+U20         OAN         PAU         OAV     108.816    2.14
+U20         OAN         PAU       "O5'"     101.065    1.97
+U20         OAN         PAU         OAW     108.816    2.14
+U20         OAV         PAU       "O5'"     109.410    1.50
+U20         OAV         PAU         OAW     118.411    2.35
+U20       "O5'"         PAU         OAW     109.410    1.50
+U20         PAU       "O5'"       "C5'"     118.553    2.41
+U20       "O5'"       "C5'"       "C4'"     109.342    1.50
+U20       "O5'"       "C5'"      "H5'1"     109.845    1.50
+U20       "O5'"       "C5'"      "H5'2"     109.845    1.50
+U20       "C4'"       "C5'"      "H5'1"     109.624    1.50
+U20       "C4'"       "C5'"      "H5'2"     109.624    1.50
+U20      "H5'1"       "C5'"      "H5'2"     108.472    1.50
+U20       "O4'"       "C4'"       "C3'"     104.439    1.50
+U20       "O4'"       "C4'"       "C5'"     109.615    1.50
+U20       "O4'"       "C4'"       "H4'"     108.698    1.50
+U20       "C3'"       "C4'"       "C5'"     116.008    1.52
+U20       "C3'"       "C4'"       "H4'"     109.363    1.86
+U20       "C5'"       "C4'"       "H4'"     108.268    1.50
+U20       "C1'"       "O4'"       "C4'"     109.578    1.50
+U20       "C2'"       "C3'"       "C4'"     102.071    1.50
+U20       "C2'"       "C3'"       "O3'"     111.993    3.00
+U20       "C2'"       "C3'"       "H3'"     110.108    1.66
+U20       "C4'"       "C3'"       "O3'"     111.281    2.46
+U20       "C4'"       "C3'"       "H3'"     110.452    2.54
+U20       "O3'"       "C3'"       "H3'"     110.380    1.67
+U20       "C3'"       "O3'"      "HO3'"     108.744    3.00
+U20       "C1'"       "C2'"       "O2'"     109.476    3.00
+U20       "C1'"       "C2'"       "C3'"     101.269    1.50
+U20       "C1'"       "C2'"       "H2'"     110.760    1.63
+U20       "O2'"       "C2'"       "C3'"     112.861    2.52
+U20       "O2'"       "C2'"       "H2'"     111.022    1.77
+U20       "C3'"       "C2'"       "H2'"     110.799    1.82
+U20       "C2'"       "O2'"      "HO2'"     109.449    1.85
+U20         NAX       "C1'"       "C2'"     112.859    1.50
+U20         NAX       "C1'"       "O4'"     108.667    1.50
+U20         NAX       "C1'"       "H1'"     109.166    1.50
+U20       "C2'"       "C1'"       "O4'"     106.825    1.50
+U20       "C2'"       "C1'"       "H1'"     109.776    1.83
+U20       "O4'"       "C1'"       "H1'"     109.327    1.50
+U20         CBP         NAX         CBK     121.419    1.50
+U20         CBP         NAX       "C1'"     121.471    1.52
+U20         CBK         NAX       "C1'"     117.109    1.50
+U20         CBO         CBP         NAX     122.557    1.50
+U20         CBO         CBP         HBP     118.966    1.50
+U20         NAX         CBP         HBP     118.477    1.50
+U20         CBN         CBO         CBP     119.525    1.50
+U20         CBN         CBO         HBO     120.151    1.50
+U20         CBP         CBO         HBO     120.325    1.50
+U20         OBQ         CBN         CBO     125.940    1.50
+U20         OBQ         CBN         NBM     119.401    1.50
+U20         CBO         CBN         NBM     114.659    1.50
+U20         CBN         NBM         CBK     126.992    1.50
+U20         CBN         NBM        HNBM     117.236    1.73
+U20         CBK         NBM        HNBM     115.772    1.79
+U20         NBM         CBK         NAX     114.848    1.50
+U20         NBM         CBK         OBT     122.311    1.50
+U20         NAX         CBK         OBT     122.841    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+U20                   nu0          C5          O5          C1          C2     -60.901    10.0     3
+U20                   nu1          O5          C1          C2          C3      56.632    10.0     3
+U20                   nu2          C1          C2          C3          C4     -53.726    10.0     3
+U20                   nu3          C2          C3          C4          C5      53.705    10.0     3
+U20                   nu4          C3          C4          C5          O5     -57.656    10.0     3
+U20                   nu5          C4          C5          O5          C1      61.778    10.0     3
+U20             sp3_sp3_1       "C3'"       "C4'"       "O4'"       "C1'"      60.000    10.0     3
+U20             sp3_sp3_2       "C5'"       "C4'"       "O4'"       "C1'"     -60.000    10.0     3
+U20             sp3_sp3_3       "H4'"       "C4'"       "O4'"       "C1'"     180.000    10.0     3
+U20             sp3_sp3_4       "C2'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+U20             sp3_sp3_5         NAX       "C1'"       "O4'"       "C4'"     180.000    10.0     3
+U20             sp3_sp3_6       "H1'"       "C1'"       "O4'"       "C4'"      60.000    10.0     3
+U20             sp3_sp3_7       "O4'"       "C1'"       "C2'"       "C3'"      60.000    10.0     3
+U20             sp3_sp3_8       "O4'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+U20             sp3_sp3_9       "O4'"       "C1'"       "C2'"       "H2'"     -60.000    10.0     3
+U20            sp3_sp3_10         NAX       "C1'"       "C2'"       "C3'"     -60.000    10.0     3
+U20            sp3_sp3_11         NAX       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+U20            sp3_sp3_12         NAX       "C1'"       "C2'"       "H2'"     180.000    10.0     3
+U20            sp3_sp3_13       "H1'"       "C1'"       "C2'"       "C3'"     180.000    10.0     3
+U20            sp3_sp3_14       "H1'"       "C1'"       "C2'"       "O2'"     -60.000    10.0     3
+U20            sp3_sp3_15       "H1'"       "C1'"       "C2'"       "H2'"      60.000    10.0     3
+U20            sp3_sp3_16       "C1'"       "C2'"       "C3'"       "C4'"     -60.000    10.0     3
+U20            sp3_sp3_17       "C1'"       "C2'"       "C3'"       "O3'"      60.000    10.0     3
+U20            sp3_sp3_18       "C1'"       "C2'"       "C3'"       "H3'"     180.000    10.0     3
+U20            sp3_sp3_19       "O2'"       "C2'"       "C3'"       "C4'"     180.000    10.0     3
+U20            sp3_sp3_20       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+U20            sp3_sp3_21       "O2'"       "C2'"       "C3'"       "H3'"      60.000    10.0     3
+U20            sp3_sp3_22       "H2'"       "C2'"       "C3'"       "C4'"      60.000    10.0     3
+U20            sp3_sp3_23       "H2'"       "C2'"       "C3'"       "O3'"     180.000    10.0     3
+U20            sp3_sp3_24       "H2'"       "C2'"       "C3'"       "H3'"     -60.000    10.0     3
+U20       const_sp2_sp2_1         CBO         CBP         NAX         CBK       0.000     5.0     2
+U20       const_sp2_sp2_2         CBO         CBP         NAX       "C1'"     180.000     5.0     2
+U20       const_sp2_sp2_3         HBP         CBP         NAX         CBK     180.000     5.0     2
+U20       const_sp2_sp2_4         HBP         CBP         NAX       "C1'"       0.000     5.0     2
+U20       const_sp2_sp2_5         CBN         CBO         CBP         NAX       0.000     5.0     2
+U20       const_sp2_sp2_6         CBN         CBO         CBP         HBP     180.000     5.0     2
+U20       const_sp2_sp2_7         HBO         CBO         CBP         NAX     180.000     5.0     2
+U20       const_sp2_sp2_8         HBO         CBO         CBP         HBP       0.000     5.0     2
+U20       const_sp2_sp2_9         NBM         CBN         CBO         CBP       0.000     5.0     2
+U20              const_10         NBM         CBN         CBO         HBO     180.000    10.0     2
+U20              const_11         OBQ         CBN         CBO         CBP     180.000    10.0     2
+U20              const_12         OBQ         CBN         CBO         HBO       0.000    10.0     2
+U20              const_13         CBO         CBN         NBM         CBK       0.000    10.0     2
+U20              const_14         CBO         CBN         NBM        HNBM     180.000    10.0     2
+U20              const_15         OBQ         CBN         NBM         CBK     180.000    10.0     2
+U20              const_16         OBQ         CBN         NBM        HNBM       0.000    10.0     2
+U20              const_17         NAX         CBK         NBM         CBN       0.000    10.0     2
+U20              const_18         NAX         CBK         NBM        HNBM     180.000    10.0     2
+U20              const_19         OBT         CBK         NBM         CBN     180.000    10.0     2
+U20              const_20         OBT         CBK         NBM        HNBM       0.000    10.0     2
+U20            sp3_sp3_58         CBL         CBR         CBS         CBU     180.000    10.0     3
+U20            sp3_sp3_59         CBL         CBR         CBS        HBS1     -60.000    10.0     3
+U20            sp3_sp3_60         CBL         CBR         CBS        HBS2      60.000    10.0     3
+U20            sp3_sp3_61        HBR1         CBR         CBS         CBU      60.000    10.0     3
+U20            sp3_sp3_62        HBR1         CBR         CBS        HBS1     180.000    10.0     3
+U20            sp3_sp3_63        HBR1         CBR         CBS        HBS2     -60.000    10.0     3
+U20            sp3_sp3_64        HBR2         CBR         CBS         CBU     -60.000    10.0     3
+U20            sp3_sp3_65        HBR2         CBR         CBS        HBS1      60.000    10.0     3
+U20            sp3_sp3_66        HBR2         CBR         CBS        HBS2     180.000    10.0     3
+U20            sp3_sp3_67         CBR         CBS         CBU         CBV     180.000    10.0     3
+U20            sp3_sp3_68         CBR         CBS         CBU        HBU1     -60.000    10.0     3
+U20            sp3_sp3_69         CBR         CBS         CBU        HBU2      60.000    10.0     3
+U20            sp3_sp3_70        HBS1         CBS         CBU         CBV      60.000    10.0     3
+U20            sp3_sp3_71        HBS1         CBS         CBU        HBU1     180.000    10.0     3
+U20            sp3_sp3_72        HBS1         CBS         CBU        HBU2     -60.000    10.0     3
+U20            sp3_sp3_73        HBS2         CBS         CBU         CBV     -60.000    10.0     3
+U20            sp3_sp3_74        HBS2         CBS         CBU        HBU1      60.000    10.0     3
+U20            sp3_sp3_75        HBS2         CBS         CBU        HBU2     180.000    10.0     3
+U20            sp3_sp3_76         CBJ         CBL         CBR         CBS     180.000    10.0     3
+U20            sp3_sp3_77         CBJ         CBL         CBR        HBR1     -60.000    10.0     3
+U20            sp3_sp3_78         CBJ         CBL         CBR        HBR2      60.000    10.0     3
+U20            sp3_sp3_79        HBL1         CBL         CBR         CBS      60.000    10.0     3
+U20            sp3_sp3_80        HBL1         CBL         CBR        HBR1     180.000    10.0     3
+U20            sp3_sp3_81        HBL1         CBL         CBR        HBR2     -60.000    10.0     3
+U20            sp3_sp3_82        HBL2         CBL         CBR         CBS     -60.000    10.0     3
+U20            sp3_sp3_83        HBL2         CBL         CBR        HBR1      60.000    10.0     3
+U20            sp3_sp3_84        HBL2         CBL         CBR        HBR2     180.000    10.0     3
+U20            sp3_sp3_85         CBL         CBJ         OCC        HOCC     180.000    10.0     3
+U20            sp3_sp3_86         CBI         CBJ         OCC        HOCC      60.000    10.0     3
+U20            sp3_sp3_87         HBJ         CBJ         OCC        HOCC     -60.000    10.0     3
+U20            sp3_sp3_88         OCC         CBJ         CBL         CBR     180.000    10.0     3
+U20            sp3_sp3_89         OCC         CBJ         CBL        HBL1     -60.000    10.0     3
+U20            sp3_sp3_90         OCC         CBJ         CBL        HBL2      60.000    10.0     3
+U20            sp3_sp3_91         CBI         CBJ         CBL         CBR      60.000    10.0     3
+U20            sp3_sp3_92         CBI         CBJ         CBL        HBL1     180.000    10.0     3
+U20            sp3_sp3_93         CBI         CBJ         CBL        HBL2     -60.000    10.0     3
+U20            sp3_sp3_94         HBJ         CBJ         CBL         CBR     -60.000    10.0     3
+U20            sp3_sp3_95         HBJ         CBJ         CBL        HBL1      60.000    10.0     3
+U20            sp3_sp3_96         HBJ         CBJ         CBL        HBL2     180.000    10.0     3
+U20            sp3_sp3_97         CBS         CBU         CBV         CBW     180.000    10.0     3
+U20            sp3_sp3_98         CBS         CBU         CBV        HBV1     -60.000    10.0     3
+U20            sp3_sp3_99         CBS         CBU         CBV        HBV2      60.000    10.0     3
+U20           sp3_sp3_100        HBU1         CBU         CBV         CBW      60.000    10.0     3
+U20           sp3_sp3_101        HBU1         CBU         CBV        HBV1     180.000    10.0     3
+U20           sp3_sp3_102        HBU1         CBU         CBV        HBV2     -60.000    10.0     3
+U20           sp3_sp3_103        HBU2         CBU         CBV         CBW     -60.000    10.0     3
+U20           sp3_sp3_104        HBU2         CBU         CBV        HBV1      60.000    10.0     3
+U20           sp3_sp3_105        HBU2         CBU         CBV        HBV2     180.000    10.0     3
+U20           sp3_sp3_106         CBU         CBV         CBW         CBX     180.000    10.0     3
+U20           sp3_sp3_107         CBU         CBV         CBW        HBW1     -60.000    10.0     3
+U20           sp3_sp3_108         CBU         CBV         CBW        HBW2      60.000    10.0     3
+U20           sp3_sp3_109        HBV1         CBV         CBW         CBX      60.000    10.0     3
+U20           sp3_sp3_110        HBV1         CBV         CBW        HBW1     180.000    10.0     3
+U20           sp3_sp3_111        HBV1         CBV         CBW        HBW2     -60.000    10.0     3
+U20           sp3_sp3_112        HBV2         CBV         CBW         CBX     -60.000    10.0     3
+U20           sp3_sp3_113        HBV2         CBV         CBW        HBW1      60.000    10.0     3
+U20           sp3_sp3_114        HBV2         CBV         CBW        HBW2     180.000    10.0     3
+U20           sp3_sp3_115         CAM         CBI         CBJ         OCC     180.000    10.0     3
+U20           sp3_sp3_116         CAM         CBI         CBJ         CBL     -60.000    10.0     3
+U20           sp3_sp3_117         CAM         CBI         CBJ         HBJ      60.000    10.0     3
+U20           sp3_sp3_118        HBI1         CBI         CBJ         OCC      60.000    10.0     3
+U20           sp3_sp3_119        HBI1         CBI         CBJ         CBL     180.000    10.0     3
+U20           sp3_sp3_120        HBI1         CBI         CBJ         HBJ     -60.000    10.0     3
+U20           sp3_sp3_121        HBI2         CBI         CBJ         OCC     -60.000    10.0     3
+U20           sp3_sp3_122        HBI2         CBI         CBJ         CBL      60.000    10.0     3
+U20           sp3_sp3_123        HBI2         CBI         CBJ         HBJ     180.000    10.0     3
+U20             sp2_sp3_1         OAR         CAP         CAQ        HAQ1       0.000    10.0     6
+U20             sp2_sp3_2         OAR         CAP         CAQ        HAQ2     120.000    10.0     6
+U20             sp2_sp3_3         OAR         CAP         CAQ        HAQ3    -120.000    10.0     6
+U20             sp2_sp3_4          N2         CAP         CAQ        HAQ1     180.000    10.0     6
+U20             sp2_sp3_5          N2         CAP         CAQ        HAQ2     -60.000    10.0     6
+U20             sp2_sp3_6          N2         CAP         CAQ        HAQ3      60.000    10.0     6
+U20             sp2_sp3_7          O3         CAM         CBI        HBI1       0.000    10.0     6
+U20             sp2_sp3_8          O3         CAM         CBI         CBJ     120.000    10.0     6
+U20             sp2_sp3_9          O3         CAM         CBI        HBI2    -120.000    10.0     6
+U20            sp2_sp3_10         OAY         CAM         CBI        HBI1     180.000    10.0     6
+U20            sp2_sp3_11         OAY         CAM         CBI         CBJ     -60.000    10.0     6
+U20            sp2_sp3_12         OAY         CAM         CBI        HBI2      60.000    10.0     6
+U20           sp3_sp3_124         CBV         CBW         CBX         CBY     180.000    10.0     3
+U20           sp3_sp3_125         CBV         CBW         CBX        HBX1     -60.000    10.0     3
+U20           sp3_sp3_126         CBV         CBW         CBX        HBX2      60.000    10.0     3
+U20           sp3_sp3_127        HBW1         CBW         CBX         CBY      60.000    10.0     3
+U20           sp3_sp3_128        HBW1         CBW         CBX        HBX1     180.000    10.0     3
+U20           sp3_sp3_129        HBW1         CBW         CBX        HBX2     -60.000    10.0     3
+U20           sp3_sp3_130        HBW2         CBW         CBX         CBY     -60.000    10.0     3
+U20           sp3_sp3_131        HBW2         CBW         CBX        HBX1      60.000    10.0     3
+U20           sp3_sp3_132        HBW2         CBW         CBX        HBX2     180.000    10.0     3
+U20           sp3_sp3_133         CBW         CBX         CBY         CBZ     180.000    10.0     3
+U20           sp3_sp3_134         CBW         CBX         CBY        HBY1     -60.000    10.0     3
+U20           sp3_sp3_135         CBW         CBX         CBY        HBY2      60.000    10.0     3
+U20           sp3_sp3_136        HBX1         CBX         CBY         CBZ      60.000    10.0     3
+U20           sp3_sp3_137        HBX1         CBX         CBY        HBY1     180.000    10.0     3
+U20           sp3_sp3_138        HBX1         CBX         CBY        HBY2     -60.000    10.0     3
+U20           sp3_sp3_139        HBX2         CBX         CBY         CBZ     -60.000    10.0     3
+U20           sp3_sp3_140        HBX2         CBX         CBY        HBY1      60.000    10.0     3
+U20           sp3_sp3_141        HBX2         CBX         CBY        HBY2     180.000    10.0     3
+U20             sp2_sp2_1         CAQ         CAP          N2          C2     180.000     5.0     2
+U20             sp2_sp2_2         CAQ         CAP          N2         HN2       0.000     5.0     2
+U20             sp2_sp2_3         OAR         CAP          N2          C2       0.000     5.0     2
+U20             sp2_sp2_4         OAR         CAP          N2         HN2     180.000     5.0     2
+U20             sp2_sp2_5         CBI         CAM          O3          C3     180.000     5.0     2
+U20             sp2_sp2_6         OAY         CAM          O3          C3       0.000     5.0     2
+U20            sp2_sp3_13         CAP          N2          C2          C3       0.000    10.0     6
+U20            sp2_sp3_14         CAP          N2          C2          C1     120.000    10.0     6
+U20            sp2_sp3_15         CAP          N2          C2          H2    -120.000    10.0     6
+U20            sp2_sp3_16         HN2          N2          C2          C3     180.000    10.0     6
+U20            sp2_sp3_17         HN2          N2          C2          C1     -60.000    10.0     6
+U20            sp2_sp3_18         HN2          N2          C2          H2      60.000    10.0     6
+U20           sp3_sp3_142          C2          C3          O3         CAM     180.000    10.0     3
+U20           sp3_sp3_143          C4          C3          O3         CAM     -60.000    10.0     3
+U20           sp3_sp3_144          H3          C3          O3         CAM      60.000    10.0     3
+U20           sp3_sp3_145         CBX         CBY         CBZ         CCA     180.000    10.0     3
+U20           sp3_sp3_146         CBX         CBY         CBZ        HBZ1     -60.000    10.0     3
+U20           sp3_sp3_147         CBX         CBY         CBZ        HBZ2      60.000    10.0     3
+U20           sp3_sp3_148        HBY1         CBY         CBZ         CCA      60.000    10.0     3
+U20           sp3_sp3_149        HBY1         CBY         CBZ        HBZ1     180.000    10.0     3
+U20           sp3_sp3_150        HBY1         CBY         CBZ        HBZ2     -60.000    10.0     3
+U20           sp3_sp3_151        HBY2         CBY         CBZ         CCA     -60.000    10.0     3
+U20           sp3_sp3_152        HBY2         CBY         CBZ        HBZ1      60.000    10.0     3
+U20           sp3_sp3_153        HBY2         CBY         CBZ        HBZ2     180.000    10.0     3
+U20           sp3_sp3_154         CBY         CBZ         CCA         CCB     180.000    10.0     3
+U20           sp3_sp3_155         CBY         CBZ         CCA        HCA1     -60.000    10.0     3
+U20           sp3_sp3_156         CBY         CBZ         CCA        HCA2      60.000    10.0     3
+U20           sp3_sp3_157        HBZ1         CBZ         CCA         CCB      60.000    10.0     3
+U20           sp3_sp3_158        HBZ1         CBZ         CCA        HCA1     180.000    10.0     3
+U20           sp3_sp3_159        HBZ1         CBZ         CCA        HCA2     -60.000    10.0     3
+U20           sp3_sp3_160        HBZ2         CBZ         CCA         CCB     -60.000    10.0     3
+U20           sp3_sp3_161        HBZ2         CBZ         CCA        HCA1      60.000    10.0     3
+U20           sp3_sp3_162        HBZ2         CBZ         CCA        HCA2     180.000    10.0     3
+U20           sp3_sp3_163         CBZ         CCA         CCB        HCB1     180.000    10.0     3
+U20           sp3_sp3_164         CBZ         CCA         CCB        HCB2     -60.000    10.0     3
+U20           sp3_sp3_165         CBZ         CCA         CCB        HCB3      60.000    10.0     3
+U20           sp3_sp3_166        HCA1         CCA         CCB        HCB1      60.000    10.0     3
+U20           sp3_sp3_167        HCA1         CCA         CCB        HCB2     180.000    10.0     3
+U20           sp3_sp3_168        HCA1         CCA         CCB        HCB3     -60.000    10.0     3
+U20           sp3_sp3_169        HCA2         CCA         CCB        HCB1     -60.000    10.0     3
+U20           sp3_sp3_170        HCA2         CCA         CCB        HCB2      60.000    10.0     3
+U20           sp3_sp3_171        HCA2         CCA         CCB        HCB3     180.000    10.0     3
+U20           sp3_sp3_172          C2          C1          O1         PAO     180.000    10.0     3
+U20           sp3_sp3_173          O5          C1          O1         PAO      60.000    10.0     3
+U20           sp3_sp3_174          H1          C1          O1         PAO     -60.000    10.0     3
+U20           sp3_sp3_175          C1          O1         PAO         OAN     180.000    10.0     3
+U20           sp3_sp3_176          C1          O1         PAO         OAT     -60.000    10.0     3
+U20           sp3_sp3_177          C1          O1         PAO         OAS      60.000    10.0     3
+U20           sp3_sp3_178          C3          C4          O4         HO4     180.000    10.0     3
+U20           sp3_sp3_179          C5          C4          O4         HO4      60.000    10.0     3
+U20           sp3_sp3_180          H4          C4          O4         HO4     -60.000    10.0     3
+U20           sp3_sp3_190         PAU         OAN         PAO         OAT     180.000    10.0     3
+U20           sp3_sp3_191         PAU         OAN         PAO          O1     -60.000    10.0     3
+U20           sp3_sp3_192         PAU         OAN         PAO         OAS      60.000    10.0     3
+U20           sp3_sp3_193          C4          C5          C6          O6     180.000    10.0     3
+U20           sp3_sp3_194          C4          C5          C6         H61     -60.000    10.0     3
+U20           sp3_sp3_195          C4          C5          C6         H62      60.000    10.0     3
+U20           sp3_sp3_196          O5          C5          C6          O6      60.000    10.0     3
+U20           sp3_sp3_197          O5          C5          C6         H61     180.000    10.0     3
+U20           sp3_sp3_198          O5          C5          C6         H62     -60.000    10.0     3
+U20           sp3_sp3_199          H5          C5          C6          O6     -60.000    10.0     3
+U20           sp3_sp3_200          H5          C5          C6         H61      60.000    10.0     3
+U20           sp3_sp3_201          H5          C5          C6         H62     180.000    10.0     3
+U20              const_21         NBM         CBK         NAX         CBP       0.000    10.0     2
+U20              const_22         NBM         CBK         NAX       "C1'"     180.000    10.0     2
+U20              const_23         OBT         CBK         NAX         CBP     180.000    10.0     2
+U20              const_24         OBT         CBK         NAX       "C1'"       0.000    10.0     2
+U20            sp2_sp3_19         CBP         NAX       "C1'"       "C2'"     150.000    10.0     6
+U20            sp2_sp3_20         CBP         NAX       "C1'"       "O4'"     -90.000    10.0     6
+U20            sp2_sp3_21         CBP         NAX       "C1'"       "H1'"      30.000    10.0     6
+U20            sp2_sp3_22         CBK         NAX       "C1'"       "C2'"     -30.000    10.0     6
+U20            sp2_sp3_23         CBK         NAX       "C1'"       "O4'"      90.000    10.0     6
+U20            sp2_sp3_24         CBK         NAX       "C1'"       "H1'"    -150.000    10.0     6
+U20           sp3_sp3_202         PAO         OAN         PAU         OAW     180.000    10.0     3
+U20           sp3_sp3_203         PAO         OAN         PAU       "O5'"     -60.000    10.0     3
+U20           sp3_sp3_204         PAO         OAN         PAU         OAV      60.000    10.0     3
+U20           sp3_sp3_205          C5          C6          O6         HO6     180.000    10.0     3
+U20           sp3_sp3_206         H61          C6          O6         HO6      60.000    10.0     3
+U20           sp3_sp3_207         H62          C6          O6         HO6     -60.000    10.0     3
+U20           sp3_sp3_208       "C1'"       "C2'"       "O2'"      "HO2'"     180.000    10.0     3
+U20           sp3_sp3_209       "C3'"       "C2'"       "O2'"      "HO2'"      60.000    10.0     3
+U20           sp3_sp3_210       "H2'"       "C2'"       "O2'"      "HO2'"     -60.000    10.0     3
+U20           sp3_sp3_211       "C5'"       "O5'"         PAU         OAN     180.000    10.0     3
+U20           sp3_sp3_212       "C5'"       "O5'"         PAU         OAW     -60.000    10.0     3
+U20           sp3_sp3_213       "C5'"       "O5'"         PAU         OAV      60.000    10.0     3
+U20           sp3_sp3_214       "C4'"       "C5'"       "O5'"         PAU     180.000    10.0     3
+U20           sp3_sp3_215      "H5'1"       "C5'"       "O5'"         PAU      60.000    10.0     3
+U20           sp3_sp3_216      "H5'2"       "C5'"       "O5'"         PAU     -60.000    10.0     3
+U20           sp3_sp3_217       "C2'"       "C3'"       "C4'"       "O4'"     180.000    10.0     3
+U20           sp3_sp3_218       "C2'"       "C3'"       "C4'"       "C5'"     -60.000    10.0     3
+U20           sp3_sp3_219       "C2'"       "C3'"       "C4'"       "H4'"      60.000    10.0     3
+U20           sp3_sp3_220       "O3'"       "C3'"       "C4'"       "O4'"      60.000    10.0     3
+U20           sp3_sp3_221       "O3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+U20           sp3_sp3_222       "O3'"       "C3'"       "C4'"       "H4'"     -60.000    10.0     3
+U20           sp3_sp3_223       "H3'"       "C3'"       "C4'"       "O4'"     -60.000    10.0     3
+U20           sp3_sp3_224       "H3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+U20           sp3_sp3_225       "H3'"       "C3'"       "C4'"       "H4'"     180.000    10.0     3
+U20           sp3_sp3_226       "C2'"       "C3'"       "O3'"      "HO3'"     180.000    10.0     3
+U20           sp3_sp3_227       "C4'"       "C3'"       "O3'"      "HO3'"      60.000    10.0     3
+U20           sp3_sp3_228       "H3'"       "C3'"       "O3'"      "HO3'"     -60.000    10.0     3
+U20           sp3_sp3_229       "O4'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+U20           sp3_sp3_230       "O4'"       "C4'"       "C5'"      "H5'1"     -60.000    10.0     3
+U20           sp3_sp3_231       "O4'"       "C4'"       "C5'"      "H5'2"      60.000    10.0     3
+U20           sp3_sp3_232       "C3'"       "C4'"       "C5'"       "O5'"      60.000    10.0     3
+U20           sp3_sp3_233       "C3'"       "C4'"       "C5'"      "H5'1"     180.000    10.0     3
+U20           sp3_sp3_234       "C3'"       "C4'"       "C5'"      "H5'2"     -60.000    10.0     3
+U20           sp3_sp3_235       "H4'"       "C4'"       "C5'"       "O5'"     -60.000    10.0     3
+U20           sp3_sp3_236       "H4'"       "C4'"       "C5'"      "H5'1"      60.000    10.0     3
+U20           sp3_sp3_237       "H4'"       "C4'"       "C5'"      "H5'2"     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+U20    chir_1    C4    O4    C5    C3    positive
+U20    chir_2    C5    O5    C4    C6    negative
+U20    chir_3    C3    O3    C4    C2    negative
+U20    chir_4    CBJ    OCC    CBI    CBL    negative
+U20    chir_5    C2    N2    C1    C3    negative
+U20    chir_6    C1    O1    O5    C2    negative
+U20    chir_7    PAO    OAN    O1    OAT    both
+U20    chir_8    PAU    OAN    "O5'"    OAW    both
+U20    chir_9    "C4'"    "O4'"    "C3'"    "C5'"    negative
+U20    chir_10    "C3'"    "O3'"    "C4'"    "C2'"    positive
+U20    chir_11    "C2'"    "O2'"    "C1'"    "C3'"    negative
+U20    chir_12    "C1'"    "O4'"    NAX    "C2'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+U20    plan-1       "C1'"   0.020
+U20    plan-1         CBK   0.020
+U20    plan-1         CBN   0.020
+U20    plan-1         CBO   0.020
+U20    plan-1         CBP   0.020
+U20    plan-1         HBO   0.020
+U20    plan-1         HBP   0.020
+U20    plan-1        HNBM   0.020
+U20    plan-1         NAX   0.020
+U20    plan-1         NBM   0.020
+U20    plan-1         OBQ   0.020
+U20    plan-1         OBT   0.020
+U20    plan-2          C2   0.020
+U20    plan-2         CAP   0.020
+U20    plan-2         HN2   0.020
+U20    plan-2          N2   0.020
+U20    plan-3         CAM   0.020
+U20    plan-3         CBI   0.020
+U20    plan-3          O3   0.020
+U20    plan-3         OAY   0.020
+U20    plan-4         CAP   0.020
+U20    plan-4         CAQ   0.020
+U20    plan-4          N2   0.020
+U20    plan-4         OAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+U20           SMILES              ACDLabs 10.04                                                                                                                                                                                                                                         O=P(OC1OC(C(O)C(OC(=O)CC(O)CCCCCCCCCCC)C1NC(=O)C)CO)(O)OP(=O)(O)OCC3OC(N2C=CC(=O)NC2=O)C(O)C3O
+U20 SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                                       CCCCCCCCCCC[C@@H](O)CC(=O)O[C@H]1[C@H](O)[C@@H](CO)O[C@H](O[P@](O)(=O)O[P@](O)(=O)OC[C@H]2O[C@H]([C@H](O)[C@@H]2O)N3C=CC(=O)NC3=O)[C@@H]1NC(C)=O
+U20           SMILES               CACTVS 3.341                                                                                                                                                                                                       CCCCCCCCCCC[CH](O)CC(=O)O[CH]1[CH](O)[CH](CO)O[CH](O[P](O)(=O)O[P](O)(=O)OC[CH]2O[CH]([CH](O)[CH]2O)N3C=CC(=O)NC3=O)[CH]1NC(C)=O
+U20 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                   CCCCCCCCCCC[C@H](CC(=O)O[C@@H]1[C@H]([C@H](O[C@@H]([C@H]1O)CO)O[P@@](=O)(O)O[P@@](=O)(O)OC[C@@H]2[C@H]([C@H]([C@@H](O2)N3C=CC(=O)NC3=O)O)O)NC(=O)C)O
+U20           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                                                                                       CCCCCCCCCCCC(CC(=O)OC1C(C(OC(C1O)CO)OP(=O)(O)OP(=O)(O)OCC2C(C(C(O2)N3C=CC(=O)NC3=O)O)O)NC(=O)C)O
+U20            InChI                InChI  1.03 InChI=1S/C31H53N3O19P2/c1-3-4-5-6-7-8-9-10-11-12-19(37)15-23(39)51-28-24(32-18(2)36)30(50-20(16-35)26(28)41)52-55(46,47)53-54(44,45)48-17-21-25(40)27(42)29(49-21)34-14-13-22(38)33-31(34)43/h13-14,19-21,24-30,35,37,40-42H,3-12,15-17H2,1-2H3,(H,32,36)(H,44,45)(H,46,47)(H,33,38,43)/t19-,20-,21-,24-,25-,26-,27-,28-,29-,30-/m1/s1
+U20         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                            TZSJGZGYQDNRRX-MPLCHSTDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+U20 acedrg               243         "dictionary generator"                  
+U20 acedrg_database      11          "data source"                           
+U20 rdkit                2017.03.2   "Chemoinformatics tool"
+U20 refmac5              5.8.0238    "optimization tool"                     

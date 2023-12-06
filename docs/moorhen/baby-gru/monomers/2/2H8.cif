@@ -1,0 +1,296 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+2H8     2H8      "(3S,4R,5R)-4-(acetylamino)-3-amino-5-(pentan-3-yloxy)cyclohex-1-ene-1-carboxylic acid"     NON-POLYMER     44     20     .     
+#
+data_comp_2H8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+2H8     CAA     C       CH3     0       -26.975     -22.774     -11.627     
+2H8     CAI     C       CH2     0       -26.474     -21.899     -12.760     
+2H8     CAR     C       CH1     0       -26.685     -20.405     -12.530     
+2H8     CAJ     C       CH2     0       -28.146     -19.986     -12.447     
+2H8     CAB     C       CH3     0       -28.342     -18.490     -12.525     
+2H8     OAM     O       O2      0       -26.038     -19.991     -11.298     
+2H8     CAS     C       CH1     0       -24.618     -19.862     -11.314     
+2H8     CAK     C       CH2     0       -24.063     -20.826     -10.276     
+2H8     CAP     C       CR6     0       -22.637     -20.524     -9.862      
+2H8     CAO     C       C       0       -21.858     -21.512     -9.142      
+2H8     OAG     O       O       0       -22.245     -21.906     -8.058      
+2H8     OAF     O       OC      -1      -20.826     -21.935     -9.632      
+2H8     CAH     C       CR16    0       -22.056     -19.345     -10.126     
+2H8     CAQ     C       CH1     0       -22.735     -18.240     -10.889     
+2H8     NAD     N       NT3     1       -22.376     -16.934     -10.254     
+2H8     CAT     C       CH1     0       -24.268     -18.412     -10.961     
+2H8     NAL     N       NH1     0       -24.871     -17.485     -11.904     
+2H8     CAN     C       C       0       -25.461     -16.325     -11.581     
+2H8     OAE     O       O       0       -25.517     -15.908     -10.427     
+2H8     CAC     C       CH3     0       -26.044     -15.546     -12.721     
+2H8     H1      H       H       0       -26.803     -23.708     -11.839     
+2H8     H2      H       H       0       -27.931     -22.642     -11.509     
+2H8     H3      H       H       0       -26.512     -22.541     -10.803     
+2H8     H4      H       H       0       -26.936     -22.159     -13.585     
+2H8     H5      H       H       0       -25.517     -22.068     -12.890     
+2H8     H6      H       H       0       -26.269     -19.912     -13.287     
+2H8     H7      H       H       0       -28.524     -20.313     -11.603     
+2H8     H8      H       H       0       -28.641     -20.410     -13.181     
+2H8     H9      H       H       0       -29.293     -18.288     -12.570     
+2H8     H10     H       H       0       -27.900     -18.145     -13.320     
+2H8     H11     H       H       0       -27.960     -18.070     -11.735     
+2H8     H12     H       H       0       -24.261     -20.079     -12.210     
+2H8     H13     H       H       0       -24.634     -20.797     -9.486      
+2H8     H14     H       H       0       -24.103     -21.730     -10.639     
+2H8     H16     H       H       0       -21.170     -19.192     -9.823      
+2H8     H17     H       H       0       -22.383     -18.247     -11.812     
+2H8     H18     H       H       0       -21.473     -16.869     -10.186     
+2H8     H19     H       H       0       -22.750     -16.891     -9.429      
+2H8     H20     H       H       0       -22.687     -16.257     -10.768     
+2H8     H21     H       H       0       -24.642     -18.237     -10.050     
+2H8     H22     H       H       0       -24.839     -17.714     -12.750     
+2H8     H23     H       H       0       -26.579     -14.814     -12.374     
+2H8     H24     H       H       0       -26.605     -16.129     -13.259     
+2H8     H25     H       H       0       -25.328     -15.190     -13.271     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+2H8         CAN         CAC      SINGLE       n     1.498  0.0100     1.498  0.0100
+2H8         CAI         CAR      SINGLE       n     1.522  0.0153     1.522  0.0153
+2H8         CAA         CAI      SINGLE       n     1.511  0.0200     1.511  0.0200
+2H8         CAR         CAJ      SINGLE       n     1.522  0.0153     1.522  0.0153
+2H8         CAR         OAM      SINGLE       n     1.446  0.0150     1.446  0.0150
+2H8         CAJ         CAB      SINGLE       n     1.511  0.0200     1.511  0.0200
+2H8         NAL         CAN      SINGLE       n     1.334  0.0119     1.334  0.0119
+2H8         CAT         NAL      SINGLE       n     1.449  0.0100     1.449  0.0100
+2H8         CAN         OAE      DOUBLE       n     1.227  0.0100     1.227  0.0100
+2H8         OAM         CAS      SINGLE       n     1.423  0.0100     1.423  0.0100
+2H8         CAS         CAT      SINGLE       n     1.532  0.0100     1.532  0.0100
+2H8         CAS         CAK      SINGLE       n     1.518  0.0142     1.518  0.0142
+2H8         CAQ         CAT      SINGLE       n     1.543  0.0100     1.543  0.0100
+2H8         CAQ         NAD      SINGLE       n     1.494  0.0104     1.494  0.0104
+2H8         CAH         CAQ      SINGLE       n     1.501  0.0100     1.501  0.0100
+2H8         CAP         CAH      DOUBLE       n     1.335  0.0100     1.335  0.0100
+2H8         CAK         CAP      SINGLE       n     1.503  0.0183     1.503  0.0183
+2H8         CAP         CAO      SINGLE       n     1.446  0.0200     1.446  0.0200
+2H8         CAO         OAG      DOUBLE       n     1.217  0.0200     1.217  0.0200
+2H8         CAO         OAF      SINGLE       n     1.217  0.0200     1.217  0.0200
+2H8         CAA          H1      SINGLE       n     1.089  0.0100     0.973  0.0157
+2H8         CAA          H2      SINGLE       n     1.089  0.0100     0.973  0.0157
+2H8         CAA          H3      SINGLE       n     1.089  0.0100     0.973  0.0157
+2H8         CAI          H4      SINGLE       n     1.089  0.0100     0.981  0.0160
+2H8         CAI          H5      SINGLE       n     1.089  0.0100     0.981  0.0160
+2H8         CAR          H6      SINGLE       n     1.089  0.0100     0.994  0.0100
+2H8         CAJ          H7      SINGLE       n     1.089  0.0100     0.981  0.0160
+2H8         CAJ          H8      SINGLE       n     1.089  0.0100     0.981  0.0160
+2H8         CAB          H9      SINGLE       n     1.089  0.0100     0.973  0.0157
+2H8         CAB         H10      SINGLE       n     1.089  0.0100     0.973  0.0157
+2H8         CAB         H11      SINGLE       n     1.089  0.0100     0.973  0.0157
+2H8         CAS         H12      SINGLE       n     1.089  0.0100     0.988  0.0151
+2H8         CAK         H13      SINGLE       n     1.089  0.0100     0.975  0.0100
+2H8         CAK         H14      SINGLE       n     1.089  0.0100     0.975  0.0100
+2H8         CAH         H16      SINGLE       n     1.082  0.0130     0.947  0.0200
+2H8         CAQ         H17      SINGLE       n     1.089  0.0100     0.988  0.0200
+2H8         NAD         H18      SINGLE       n     1.036  0.0160     0.907  0.0200
+2H8         NAD         H19      SINGLE       n     1.036  0.0160     0.907  0.0200
+2H8         NAD         H20      SINGLE       n     1.036  0.0160     0.907  0.0200
+2H8         CAT         H21      SINGLE       n     1.089  0.0100     1.000  0.0100
+2H8         NAL         H22      SINGLE       n     1.016  0.0100     0.876  0.0200
+2H8         CAC         H23      SINGLE       n     1.089  0.0100     0.971  0.0140
+2H8         CAC         H24      SINGLE       n     1.089  0.0100     0.971  0.0140
+2H8         CAC         H25      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+2H8         CAI         CAA          H1     109.517    1.50
+2H8         CAI         CAA          H2     109.517    1.50
+2H8         CAI         CAA          H3     109.517    1.50
+2H8          H1         CAA          H2     109.380    1.50
+2H8          H1         CAA          H3     109.380    1.50
+2H8          H2         CAA          H3     109.380    1.50
+2H8         CAR         CAI         CAA     113.258    1.50
+2H8         CAR         CAI          H4     108.924    1.50
+2H8         CAR         CAI          H5     108.924    1.50
+2H8         CAA         CAI          H4     108.955    1.50
+2H8         CAA         CAI          H5     108.955    1.50
+2H8          H4         CAI          H5     107.797    1.50
+2H8         CAI         CAR         CAJ     114.240    1.50
+2H8         CAI         CAR         OAM     108.494    2.99
+2H8         CAI         CAR          H6     108.488    1.50
+2H8         CAJ         CAR         OAM     108.494    2.99
+2H8         CAJ         CAR          H6     108.488    1.50
+2H8         OAM         CAR          H6     108.457    1.50
+2H8         CAR         CAJ         CAB     113.258    1.50
+2H8         CAR         CAJ          H7     108.924    1.50
+2H8         CAR         CAJ          H8     108.924    1.50
+2H8         CAB         CAJ          H7     108.955    1.50
+2H8         CAB         CAJ          H8     108.955    1.50
+2H8          H7         CAJ          H8     107.797    1.50
+2H8         CAJ         CAB          H9     109.517    1.50
+2H8         CAJ         CAB         H10     109.517    1.50
+2H8         CAJ         CAB         H11     109.517    1.50
+2H8          H9         CAB         H10     109.380    1.50
+2H8          H9         CAB         H11     109.380    1.50
+2H8         H10         CAB         H11     109.380    1.50
+2H8         CAR         OAM         CAS     115.660    1.65
+2H8         OAM         CAS         CAT     107.272    1.50
+2H8         OAM         CAS         CAK     105.466    2.24
+2H8         OAM         CAS         H12     109.096    1.50
+2H8         CAT         CAS         CAK     111.124    1.57
+2H8         CAT         CAS         H12     108.987    1.50
+2H8         CAK         CAS         H12     109.453    2.12
+2H8         CAS         CAK         CAP     112.021    2.38
+2H8         CAS         CAK         H13     108.743    1.50
+2H8         CAS         CAK         H14     108.743    1.50
+2H8         CAP         CAK         H13     109.149    1.50
+2H8         CAP         CAK         H14     109.149    1.50
+2H8         H13         CAK         H14     107.887    1.50
+2H8         CAH         CAP         CAK     121.169    1.50
+2H8         CAH         CAP         CAO     117.572    1.50
+2H8         CAK         CAP         CAO     121.259    1.79
+2H8         CAP         CAO         OAG     119.490    1.50
+2H8         CAP         CAO         OAF     119.490    1.50
+2H8         OAG         CAO         OAF     121.020    1.50
+2H8         CAQ         CAH         CAP     122.050    3.00
+2H8         CAQ         CAH         H16     118.548    1.50
+2H8         CAP         CAH         H16     119.402    1.50
+2H8         CAT         CAQ         NAD     110.019    1.64
+2H8         CAT         CAQ         CAH     111.539    2.18
+2H8         CAT         CAQ         H17     107.334    1.66
+2H8         NAD         CAQ         CAH     107.591    1.82
+2H8         NAD         CAQ         H17     108.032    1.50
+2H8         CAH         CAQ         H17     107.020    1.98
+2H8         CAQ         NAD         H18     108.740    2.04
+2H8         CAQ         NAD         H19     108.740    2.04
+2H8         CAQ         NAD         H20     108.740    2.04
+2H8         H18         NAD         H19     109.122    2.58
+2H8         H18         NAD         H20     109.122    2.58
+2H8         H19         NAD         H20     109.122    2.58
+2H8         NAL         CAT         CAS     110.454    2.38
+2H8         NAL         CAT         CAQ     110.829    2.03
+2H8         NAL         CAT         H21     108.091    1.50
+2H8         CAS         CAT         CAQ     111.124    1.57
+2H8         CAS         CAT         H21     107.258    1.68
+2H8         CAQ         CAT         H21     107.965    1.50
+2H8         CAN         NAL         CAT     123.927    1.50
+2H8         CAN         NAL         H22     118.864    2.66
+2H8         CAT         NAL         H22     117.209    1.75
+2H8         CAC         CAN         NAL     115.988    1.50
+2H8         CAC         CAN         OAE     122.067    1.50
+2H8         NAL         CAN         OAE     121.945    1.50
+2H8         CAN         CAC         H23     109.527    1.50
+2H8         CAN         CAC         H24     109.527    1.50
+2H8         CAN         CAC         H25     109.527    1.50
+2H8         H23         CAC         H24     109.365    1.50
+2H8         H23         CAC         H25     109.365    1.50
+2H8         H24         CAC         H25     109.365    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+2H8            sp3_sp3_28          H1         CAA         CAI         CAR     180.000    10.0     3
+2H8             sp2_sp3_2         CAP         CAH         CAQ         NAD     120.000    10.0     6
+2H8            sp3_sp3_70         CAT         CAQ         NAD         H18     180.000    10.0     3
+2H8            sp3_sp3_14         NAD         CAQ         CAT         NAL     -60.000    10.0     3
+2H8            sp2_sp3_19         CAN         NAL         CAT         CAS       0.000    10.0     6
+2H8             sp2_sp2_5         CAC         CAN         NAL         CAT     180.000     5.0     2
+2H8            sp2_sp3_13         NAL         CAN         CAC         H23       0.000    10.0     6
+2H8            sp3_sp3_20         CAA         CAI         CAR         CAJ     -60.000    10.0     3
+2H8            sp3_sp3_37         CAB         CAJ         CAR         CAI     180.000    10.0     3
+2H8            sp3_sp3_47         CAI         CAR         OAM         CAS      60.000    10.0     3
+2H8            sp3_sp3_49          H9         CAB         CAJ         CAR     180.000    10.0     3
+2H8            sp3_sp3_58         CAT         CAS         OAM         CAR     180.000    10.0     3
+2H8             sp3_sp3_5         OAM         CAS         CAT         NAL      60.000    10.0     3
+2H8            sp3_sp3_62         CAP         CAK         CAS         OAM     -60.000    10.0     3
+2H8            sp2_sp3_10         CAO         CAP         CAK         CAS     180.000    10.0     6
+2H8             sp2_sp2_2         CAQ         CAH         CAP         CAO     180.000     5.0     2
+2H8            sp2_sp2_10         OAG         CAO         CAP         CAH       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+2H8    chir_1    CAR    OAM    CAI    CAJ    both
+2H8    chir_2    CAS    OAM    CAT    CAK    negative
+2H8    chir_3    CAQ    NAD    CAT    CAH    positive
+2H8    chir_4    CAT    NAL    CAS    CAQ    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+2H8    plan-1         CAH   0.020
+2H8    plan-1         CAK   0.020
+2H8    plan-1         CAO   0.020
+2H8    plan-1         CAP   0.020
+2H8    plan-2         CAO   0.020
+2H8    plan-2         CAP   0.020
+2H8    plan-2         OAF   0.020
+2H8    plan-2         OAG   0.020
+2H8    plan-3         CAH   0.020
+2H8    plan-3         CAP   0.020
+2H8    plan-3         CAQ   0.020
+2H8    plan-3         H16   0.020
+2H8    plan-4         CAN   0.020
+2H8    plan-4         CAT   0.020
+2H8    plan-4         H22   0.020
+2H8    plan-4         NAL   0.020
+2H8    plan-5         CAC   0.020
+2H8    plan-5         CAN   0.020
+2H8    plan-5         NAL   0.020
+2H8    plan-5         OAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+2H8           SMILES              ACDLabs 12.01                                                                                                       O=C(O)C1=CC(N)C(NC(=O)C)C(OC(CC)CC)C1
+2H8            InChI                InChI  1.03 InChI=1S/C14H24N2O4/c1-4-10(5-2)20-12-7-9(14(18)19)6-11(15)13(12)16-8(3)17/h6,10-13H,4-5,7,15H2,1-3H3,(H,16,17)(H,18,19)/t11-,12+,13+/m0/s1
+2H8         InChIKey                InChI  1.03                                                                                                                 OTOZLTSLQBBOIB-YNEHKIRRSA-N
+2H8 SMILES_CANONICAL               CACTVS 3.385                                                                                            CCC(CC)O[C@@H]1CC(=C[C@H](N)[C@H]1NC(C)=O)C(O)=O
+2H8           SMILES               CACTVS 3.385                                                                                                CCC(CC)O[CH]1CC(=C[CH](N)[CH]1NC(C)=O)C(O)=O
+2H8 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                           CCC(CC)O[C@@H]1CC(=C[C@@H]([C@H]1NC(=O)C)N)C(=O)O
+2H8           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                         CCC(CC)OC1CC(=CC(C1NC(=O)C)N)C(=O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+2H8 acedrg               243         "dictionary generator"                  
+2H8 acedrg_database      11          "data source"                           
+2H8 rdkit                2017.03.2   "Chemoinformatics tool"
+2H8 refmac5              5.8.0238    "optimization tool"                     

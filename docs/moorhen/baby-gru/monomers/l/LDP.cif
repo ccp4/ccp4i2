@@ -1,0 +1,179 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LDP     LDP      L-DOPAMINE     NON-POLYMER     22     11     .     
+#
+data_comp_LDP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LDP     C7      C       CH2     0       -6.423      24.632      4.118       
+LDP     C1      C       CR6     0       -5.213      25.046      4.924       
+LDP     C4      C       CR6     0       -2.959      25.818      6.397       
+LDP     C2      C       CR16    0       -4.030      25.397      4.281       
+LDP     C6      C       CR16    0       -5.247      25.089      6.311       
+LDP     C5      C       CR16    0       -4.129      25.472      7.051       
+LDP     C3      C       CR6     0       -2.906      25.781      4.999       
+LDP     O1      O       OH1     0       -1.752      26.122      4.333       
+LDP     O2      O       OH1     0       -1.857      26.195      7.127       
+LDP     C8      C       CH2     0       -7.041      25.795      3.348       
+LDP     N1      N       NT2     0       -7.560      26.833      4.242       
+LDP     H71     H       H       0       -7.100      24.253      4.720       
+LDP     H72     H       H       0       -6.163      23.932      3.483       
+LDP     H2      H       H       0       -3.992      25.374      3.337       
+LDP     H6      H       H       0       -6.041      24.854      6.763       
+LDP     H5      H       H       0       -4.167      25.496      7.994       
+LDP     HO1     H       H       0       -1.561      25.748      3.582       
+LDP     HO2     H       H       0       -1.695      25.824      7.886       
+LDP     H81     H       H       0       -7.774      25.460      2.787       
+LDP     H82     H       H       0       -6.363      26.190      2.758       
+LDP     HN11    H       H       0       -8.029      27.426      3.777       
+LDP     HN12    H       H       0       -8.110      26.472      4.839       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LDP          C7          C1      SINGLE       n     1.511  0.0100     1.511  0.0100
+LDP          C7          C8      SINGLE       n     1.525  0.0180     1.525  0.0180
+LDP          C1          C2      DOUBLE       y     1.388  0.0100     1.388  0.0100
+LDP          C1          C6      SINGLE       y     1.385  0.0110     1.385  0.0110
+LDP          C4          C5      SINGLE       y     1.381  0.0100     1.381  0.0100
+LDP          C4          C3      DOUBLE       y     1.395  0.0100     1.395  0.0100
+LDP          C4          O2      SINGLE       n     1.374  0.0155     1.374  0.0155
+LDP          C2          C3      SINGLE       y     1.383  0.0100     1.383  0.0100
+LDP          C6          C5      DOUBLE       y     1.391  0.0100     1.391  0.0100
+LDP          C3          O1      SINGLE       n     1.374  0.0155     1.374  0.0155
+LDP          C8          N1      SINGLE       n     1.464  0.0200     1.464  0.0200
+LDP          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0158
+LDP          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0158
+LDP          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0164
+LDP          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0173
+LDP          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0200
+LDP          O1         HO1      SINGLE       n     0.966  0.0059     0.861  0.0200
+LDP          O2         HO2      SINGLE       n     0.966  0.0059     0.861  0.0200
+LDP          C8         H81      SINGLE       n     1.089  0.0100     0.982  0.0143
+LDP          C8         H82      SINGLE       n     1.089  0.0100     0.982  0.0143
+LDP          N1        HN11      SINGLE       n     1.036  0.0160     0.888  0.0200
+LDP          N1        HN12      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LDP          C1          C7          C8     112.597    2.54
+LDP          C1          C7         H71     109.239    1.50
+LDP          C1          C7         H72     109.239    1.50
+LDP          C8          C7         H71     108.999    1.50
+LDP          C8          C7         H72     108.999    1.50
+LDP         H71          C7         H72     107.823    1.50
+LDP          C7          C1          C2     120.241    1.50
+LDP          C7          C1          C6     121.180    1.50
+LDP          C2          C1          C6     118.579    1.50
+LDP          C5          C4          C3     119.685    1.50
+LDP          C5          C4          O2     120.158    3.00
+LDP          C3          C4          O2     120.158    3.00
+LDP          C1          C2          C3     121.134    1.50
+LDP          C1          C2          H2     119.369    1.50
+LDP          C3          C2          H2     119.498    1.50
+LDP          C1          C6          C5     121.630    1.50
+LDP          C1          C6          H6     119.239    1.50
+LDP          C5          C6          H6     119.132    1.50
+LDP          C4          C5          C6     119.722    1.50
+LDP          C4          C5          H5     119.961    1.50
+LDP          C6          C5          H5     120.317    1.50
+LDP          C4          C3          C2     119.251    1.50
+LDP          C4          C3          O1     120.375    3.00
+LDP          C2          C3          O1     120.375    3.00
+LDP          C3          O1         HO1     120.000    3.00
+LDP          C4          O2         HO2     120.000    3.00
+LDP          C7          C8          N1     111.320    2.66
+LDP          C7          C8         H81     109.149    1.50
+LDP          C7          C8         H82     109.149    1.50
+LDP          N1          C8         H81     108.870    1.50
+LDP          N1          C8         H82     108.870    1.50
+LDP         H81          C8         H82     107.873    1.50
+LDP          C8          N1        HN11     109.962    3.00
+LDP          C8          N1        HN12     109.962    3.00
+LDP        HN11          N1        HN12     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LDP             sp2_sp3_2          C2          C1          C7          C8     -90.000    10.0     6
+LDP             sp3_sp3_1          C1          C7          C8          N1     180.000    10.0     3
+LDP       const_sp2_sp2_3          C7          C1          C2          C3     180.000     5.0     2
+LDP              const_23          C7          C1          C6          C5     180.000    10.0     2
+LDP              const_15          O2          C4          C5          C6     180.000    10.0     2
+LDP              const_12          O1          C3          C4          O2       0.000    10.0     2
+LDP             sp2_sp2_1          C5          C4          O2         HO2     180.000     5.0     2
+LDP       const_sp2_sp2_6          C1          C2          C3          O1     180.000     5.0     2
+LDP              const_17          C4          C5          C6          C1       0.000    10.0     2
+LDP             sp2_sp2_3          C4          C3          O1         HO1     180.000     5.0     2
+LDP            sp3_sp3_10          C7          C8          N1        HN11     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LDP    plan-1          C1   0.020
+LDP    plan-1          C2   0.020
+LDP    plan-1          C3   0.020
+LDP    plan-1          C4   0.020
+LDP    plan-1          C5   0.020
+LDP    plan-1          C6   0.020
+LDP    plan-1          C7   0.020
+LDP    plan-1          H2   0.020
+LDP    plan-1          H5   0.020
+LDP    plan-1          H6   0.020
+LDP    plan-1          O1   0.020
+LDP    plan-1          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LDP           SMILES              ACDLabs 10.04                                                    Oc1ccc(cc1O)CCN
+LDP SMILES_CANONICAL               CACTVS 3.341                                                  NCCc1ccc(O)c(O)c1
+LDP           SMILES               CACTVS 3.341                                                  NCCc1ccc(O)c(O)c1
+LDP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                  c1cc(c(cc1CCN)O)O
+LDP           SMILES "OpenEye OEToolkits" 1.5.0                                                  c1cc(c(cc1CCN)O)O
+LDP            InChI                InChI  1.03 InChI=1S/C8H11NO2/c9-4-3-6-1-2-7(10)8(11)5-6/h1-2,5,10-11H,3-4,9H2
+LDP         InChIKey                InChI  1.03                                        VYFYYTLLBUKUHU-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LDP acedrg               243         "dictionary generator"                  
+LDP acedrg_database      11          "data source"                           
+LDP rdkit                2017.03.2   "Chemoinformatics tool"
+LDP refmac5              5.8.0238    "optimization tool"                     

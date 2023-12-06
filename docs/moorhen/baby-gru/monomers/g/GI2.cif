@@ -1,0 +1,260 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GI2     GI2      "METHYL ACETATE-SUBSTITUTED GLUCOIMIDAZOLE"     NON-POLYMER     36     19     .     
+#
+data_comp_GI2
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GI2     C1      C       CH2     0       -1.591      8.953       13.614      
+GI2     C2      C       C       0       -0.685      7.789       13.932      
+GI2     C4      C       CH3     0       0.004       6.339       15.695      
+GI2     C1B     C       CR56    0       -0.574      10.453      10.438      
+GI2     C2B     C       CH1     0       0.338       11.172      9.496       
+GI2     C3B     C       CH1     0       -0.502      11.783      8.375       
+GI2     C4B     C       CH1     0       -1.414      10.743      7.749       
+GI2     C5B     C       CH1     0       -2.429      10.176      8.747       
+GI2     C6B     C       CH2     0       -3.012      8.848       8.245       
+GI2     O2B     O       OH1     0       1.101       12.168      10.166      
+GI2     O3B     O       OH1     0       0.372       12.341      7.387       
+GI2     O4B     O       OH1     0       -2.095      11.327      6.634       
+GI2     N1B     N       NR5     1       -1.825      10.005      10.074      
+GI2     O6B     O       OH1     0       -2.071      7.785       8.341       
+GI2     N2B     N       NR5     0       -0.365      10.116      11.749      
+GI2     C7B     C       CR5     0       -1.479      9.464       12.206      
+GI2     C8B     C       CR15    0       -2.382      9.400       11.171      
+GI2     O1      O       O2      0       -0.829      7.422       15.207      
+GI2     O5      O       O       0       0.057       7.268       13.144      
+GI2     H1C1    H       H       0       -1.390      9.698       14.243      
+GI2     H1C2    H       H       0       -2.535      8.682       13.783      
+GI2     H4C1    H       H       0       0.939       6.579       15.595      
+GI2     H4C2    H       H       0       -0.182      5.534       15.187      
+GI2     H4C3    H       H       0       -0.191      6.182       16.632      
+GI2     H2B     H       H       0       0.961       10.520      9.100       
+GI2     H3B     H       H       0       -1.055      12.510      8.753       
+GI2     H4B     H       H       0       -0.855      10.000      7.414       
+GI2     H5B     H       H       0       -3.173      10.826      8.820       
+GI2     H6B1    H       H       0       -3.289      8.947       7.311       
+GI2     H6B2    H       H       0       -3.805      8.621       8.774       
+GI2     HB      H       H       0       1.634       12.548      9.644       
+GI2     HC      H       H       0       0.837       11.732      7.039       
+GI2     HD      H       H       0       -2.276      10.727      6.073       
+GI2     H6B     H       H       0       -2.344      7.130       7.877       
+GI2     HA      H       H       0       0.359       10.288      12.218      
+GI2     H8B     H       H       0       -3.236      9.003       11.207      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GI2          C1          C2      SINGLE       n     1.508  0.0100     1.508  0.0100
+GI2          C1         C7B      SINGLE       n     1.501  0.0100     1.501  0.0100
+GI2          C2          O1      SINGLE       n     1.331  0.0100     1.331  0.0100
+GI2          C2          O5      DOUBLE       n     1.199  0.0100     1.199  0.0100
+GI2          C4          O1      SINGLE       n     1.447  0.0130     1.447  0.0130
+GI2         C1B         C2B      SINGLE       n     1.496  0.0100     1.496  0.0100
+GI2         C1B         N1B      DOUBLE       y     1.378  0.0200     1.378  0.0200
+GI2         C1B         N2B      SINGLE       y     1.367  0.0200     1.367  0.0200
+GI2         C2B         C3B      SINGLE       n     1.527  0.0100     1.527  0.0100
+GI2         C2B         O2B      SINGLE       n     1.422  0.0100     1.422  0.0100
+GI2         C3B         C4B      SINGLE       n     1.515  0.0100     1.515  0.0100
+GI2         C3B         O3B      SINGLE       n     1.431  0.0107     1.431  0.0107
+GI2         C4B         C5B      SINGLE       n     1.528  0.0100     1.528  0.0100
+GI2         C4B         O4B      SINGLE       n     1.431  0.0107     1.431  0.0107
+GI2         C5B         C6B      SINGLE       n     1.533  0.0100     1.533  0.0100
+GI2         C5B         N1B      SINGLE       n     1.464  0.0100     1.464  0.0100
+GI2         C6B         O6B      SINGLE       n     1.422  0.0134     1.422  0.0134
+GI2         N1B         C8B      SINGLE       y     1.373  0.0166     1.373  0.0166
+GI2         N2B         C7B      SINGLE       y     1.368  0.0127     1.368  0.0127
+GI2         C7B         C8B      DOUBLE       y     1.375  0.0119     1.375  0.0119
+GI2          C1        H1C1      SINGLE       n     1.089  0.0100     0.996  0.0200
+GI2          C1        H1C2      SINGLE       n     1.089  0.0100     0.996  0.0200
+GI2          C4        H4C1      SINGLE       n     1.089  0.0100     0.970  0.0175
+GI2          C4        H4C2      SINGLE       n     1.089  0.0100     0.970  0.0175
+GI2          C4        H4C3      SINGLE       n     1.089  0.0100     0.970  0.0175
+GI2         C2B         H2B      SINGLE       n     1.089  0.0100     0.985  0.0100
+GI2         C3B         H3B      SINGLE       n     1.089  0.0100     0.988  0.0151
+GI2         C4B         H4B      SINGLE       n     1.089  0.0100     0.988  0.0151
+GI2         C5B         H5B      SINGLE       n     1.089  0.0100     0.990  0.0168
+GI2         C6B        H6B1      SINGLE       n     1.089  0.0100     0.980  0.0159
+GI2         C6B        H6B2      SINGLE       n     1.089  0.0100     0.980  0.0159
+GI2         O2B          HB      SINGLE       n     0.970  0.0120     0.837  0.0200
+GI2         O3B          HC      SINGLE       n     0.970  0.0120     0.841  0.0200
+GI2         O4B          HD      SINGLE       n     0.970  0.0120     0.841  0.0200
+GI2         O6B         H6B      SINGLE       n     0.970  0.0120     0.848  0.0200
+GI2         N2B          HA      SINGLE       n     1.016  0.0100     0.880  0.0200
+GI2         C8B         H8B      SINGLE       n     1.082  0.0130     0.942  0.0152
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GI2          C2          C1         C7B     113.419    1.98
+GI2          C2          C1        H1C1     109.065    1.50
+GI2          C2          C1        H1C2     109.065    1.50
+GI2         C7B          C1        H1C1     109.082    1.50
+GI2         C7B          C1        H1C2     109.082    1.50
+GI2        H1C1          C1        H1C2     106.991    1.54
+GI2          C1          C2          O1     111.115    1.50
+GI2          C1          C2          O5     124.453    2.14
+GI2          O1          C2          O5     124.432    1.50
+GI2          O1          C4        H4C1     109.367    1.50
+GI2          O1          C4        H4C2     109.367    1.50
+GI2          O1          C4        H4C3     109.367    1.50
+GI2        H4C1          C4        H4C2     109.532    1.53
+GI2        H4C1          C4        H4C3     109.532    1.53
+GI2        H4C2          C4        H4C3     109.532    1.53
+GI2         C2B         C1B         N1B     123.458    1.50
+GI2         C2B         C1B         N2B     128.643    1.77
+GI2         N1B         C1B         N2B     107.900    1.50
+GI2         C1B         C2B         C3B     109.287    3.00
+GI2         C1B         C2B         O2B     111.406    2.47
+GI2         C1B         C2B         H2B     108.666    1.50
+GI2         C3B         C2B         O2B     111.077    1.82
+GI2         C3B         C2B         H2B     108.548    1.50
+GI2         O2B         C2B         H2B     108.278    1.50
+GI2         C2B         C3B         C4B     110.123    3.00
+GI2         C2B         C3B         O3B     109.334    1.86
+GI2         C2B         C3B         H3B     108.893    1.55
+GI2         C4B         C3B         O3B     110.081    2.02
+GI2         C4B         C3B         H3B     109.166    1.50
+GI2         O3B         C3B         H3B     108.790    1.50
+GI2         C3B         C4B         C5B     111.928    1.50
+GI2         C3B         C4B         O4B     110.081    2.02
+GI2         C3B         C4B         H4B     109.166    1.50
+GI2         C5B         C4B         O4B     110.894    1.50
+GI2         C5B         C4B         H4B     108.977    1.50
+GI2         O4B         C4B         H4B     108.790    1.50
+GI2         C4B         C5B         C6B     111.163    2.25
+GI2         C4B         C5B         N1B     108.748    1.59
+GI2         C4B         C5B         H5B     107.612    1.50
+GI2         C6B         C5B         N1B     110.288    1.50
+GI2         C6B         C5B         H5B     107.898    1.50
+GI2         N1B         C5B         H5B     108.535    1.50
+GI2         C5B         C6B         O6B     111.669    2.74
+GI2         C5B         C6B        H6B1     109.529    1.50
+GI2         C5B         C6B        H6B2     109.529    1.50
+GI2         O6B         C6B        H6B1     109.275    1.50
+GI2         O6B         C6B        H6B2     109.275    1.50
+GI2        H6B1         C6B        H6B2     108.230    1.50
+GI2         C2B         O2B          HB     111.477    3.00
+GI2         C3B         O3B          HC     109.099    3.00
+GI2         C4B         O4B          HD     109.099    3.00
+GI2         C1B         N1B         C5B     124.561    1.85
+GI2         C1B         N1B         C8B     108.089    1.50
+GI2         C5B         N1B         C8B     127.350    2.38
+GI2         C6B         O6B         H6B     109.039    2.77
+GI2         C1B         N2B         C7B     107.944    1.50
+GI2         C1B         N2B          HA     126.133    1.73
+GI2         C7B         N2B          HA     125.924    1.76
+GI2          C1         C7B         N2B     122.405    1.50
+GI2          C1         C7B         C8B     130.014    2.55
+GI2         N2B         C7B         C8B     107.581    1.50
+GI2         N1B         C8B         C7B     108.487    1.50
+GI2         N1B         C8B         H8B     125.673    1.50
+GI2         C7B         C8B         H8B     125.840    1.50
+GI2          C2          O1          C4     115.943    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GI2            sp2_sp3_14          O1          C2          C1         C7B     120.000    10.0     6
+GI2            sp2_sp3_20         N2B         C7B          C1          C2     -90.000    10.0     6
+GI2       const_sp2_sp2_5         C7B         C8B         N1B         C1B       0.000     5.0     2
+GI2              const_15          C1         C7B         N2B         C1B     180.000    10.0     2
+GI2              const_11          C1         C7B         C8B         N1B     180.000    10.0     2
+GI2             sp2_sp2_1          C1          C2          O1          C4     180.000     5.0     2
+GI2            sp3_sp3_29        H4C1          C4          O1          C2     -60.000    10.0     3
+GI2       const_sp2_sp2_1         C2B         C1B         N1B         C5B       0.000     5.0     2
+GI2              const_19         C2B         C1B         N2B         C7B     180.000    10.0     2
+GI2             sp2_sp3_2         N1B         C1B         C2B         O2B     120.000    10.0     6
+GI2             sp3_sp3_5         O2B         C2B         C3B         O3B     -60.000    10.0     3
+GI2            sp3_sp3_32         C1B         C2B         O2B          HB     180.000    10.0     3
+GI2            sp3_sp3_35         C2B         C3B         O3B          HC     180.000    10.0     3
+GI2            sp3_sp3_14         O3B         C3B         C4B         O4B      60.000    10.0     3
+GI2            sp3_sp3_38         C3B         C4B         O4B          HD     180.000    10.0     3
+GI2            sp3_sp3_23         O4B         C4B         C5B         C6B     -60.000    10.0     3
+GI2             sp2_sp3_8         C1B         N1B         C5B         C6B     120.000    10.0     6
+GI2            sp3_sp3_41         C4B         C5B         C6B         O6B     180.000    10.0     3
+GI2            sp3_sp3_50         C5B         C6B         O6B         H6B     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GI2    chir_1    C2B    O2B    C3B    C1B    positive
+GI2    chir_2    C3B    O3B    C2B    C4B    positive
+GI2    chir_3    C4B    O4B    C3B    C5B    negative
+GI2    chir_4    C5B    N1B    C4B    C6B    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GI2    plan-1          C1   0.020
+GI2    plan-1         C1B   0.020
+GI2    plan-1         C2B   0.020
+GI2    plan-1         C5B   0.020
+GI2    plan-1         C7B   0.020
+GI2    plan-1         C8B   0.020
+GI2    plan-1         H8B   0.020
+GI2    plan-1          HA   0.020
+GI2    plan-1         N1B   0.020
+GI2    plan-1         N2B   0.020
+GI2    plan-2          C1   0.020
+GI2    plan-2          C2   0.020
+GI2    plan-2          O1   0.020
+GI2    plan-2          O5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GI2           SMILES              ACDLabs 10.04                                                                                           O=C(OC)Cc1c[n+]2c(n1)C(O)C(O)C(O)C2CO
+GI2 SMILES_CANONICAL               CACTVS 3.341                                                                      COC(=O)Cc1[nH]c2[C@H](O)[C@@H](O)[C@H](O)[C@@H](CO)[n+]2c1
+GI2           SMILES               CACTVS 3.341                                                                            COC(=O)Cc1[nH]c2[CH](O)[CH](O)[CH](O)[CH](CO)[n+]2c1
+GI2 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                      COC(=O)Cc1c[n+]2c([nH]1)[C@@H]([C@H]([C@@H]([C@H]2CO)O)O)O
+GI2           SMILES "OpenEye OEToolkits" 1.5.0                                                                                        COC(=O)Cc1c[n+]2c([nH]1)C(C(C(C2CO)O)O)O
+GI2            InChI                InChI  1.03 InChI=1S/C11H16N2O6/c1-19-7(15)2-5-3-13-6(4-14)8(16)9(17)10(18)11(13)12-5/h3,6,8-10,14,16-18H,2,4H2,1H3/p+1/t6-,8-,9+,10-/m1/s1
+GI2         InChIKey                InChI  1.03                                                                                                     YBOGGQIIIVIQDH-SFKDOBOXSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GI2 acedrg               243         "dictionary generator"                  
+GI2 acedrg_database      11          "data source"                           
+GI2 rdkit                2017.03.2   "Chemoinformatics tool"
+GI2 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,440 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DVM     DVM      acetylsisomicin     NON-POLYMER     74     34     .     
+#
+data_comp_DVM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DVM     C13     C       CH1     0       -20.058     3.591       73.542      
+DVM     N21     N       NT2     0       -14.541     -1.251      73.286      
+DVM     C22     C       CH2     0       -20.617     -0.561      71.332      
+DVM     C23     C       CH1     0       -20.182     5.011       72.989      
+DVM     C42     C       CH1     0       -18.520     -0.898      72.665      
+DVM     C       C       C       0       -18.981     -3.728      70.711      
+DVM     O       O       O       0       -19.282     -4.912      70.838      
+DVM     CH3     C       CH3     0       -17.948     -3.305      69.708      
+DVM     C11     C       CH1     0       -16.787     -2.158      73.848      
+DVM     C12     C       CH1     0       -20.402     0.949       71.391      
+DVM     C21     C       CH1     0       -15.286     -2.446      73.706      
+DVM     C31     C       CH2     0       -15.044     -3.615      72.749      
+DVM     C32     C       CH1     0       -19.306     -1.337      71.429      
+DVM     C33     C       CH1     0       -18.831     5.735       72.940      
+DVM     C41     C       CR16    0       -16.019     -4.733      72.960      
+DVM     C43     C       CT      0       -18.070     5.618       74.291      
+DVM     C51     C       CR6     0       -17.165     -4.558      73.599      
+DVM     C52     C       CH1     0       -18.288     0.609       72.656      
+DVM     C53     C       CH2     0       -18.042     4.158       74.751      
+DVM     C61     C       CH2     0       -18.174     -5.653      73.809      
+DVM     C62     C       CH1     0       -19.619     1.352       72.638      
+DVM     C83     C       CH3     0       -16.643     6.148       74.185      
+DVM     C93     C       CH3     0       -18.179     7.569       71.429      
+DVM     N12     N       NT3     1       -21.723     1.640       71.380      
+DVM     N32     N       NH1     0       -19.570     -2.783      71.465      
+DVM     N33     N       NT1     0       -19.042     7.128       72.503      
+DVM     N61     N       NT2     0       -19.570     -5.199      73.757      
+DVM     O11     O       O2      0       -17.254     -1.580      72.644      
+DVM     O23     O       OH1     0       -20.754     4.975       71.675      
+DVM     O43     O       OH1     0       -18.755     6.408       75.277      
+DVM     O51     O       O2      0       -17.526     -3.352      74.147      
+DVM     O52     O       OH1     0       -17.536     0.990       73.809      
+DVM     O53     O       O2      0       -19.366     3.596       74.804      
+DVM     O62     O       O2      0       -19.393     2.773       72.602      
+DVM     H1      H       H       0       -20.971     3.232       73.690      
+DVM     H2      H       H       0       -14.621     -0.612      73.899      
+DVM     H3      H       H       0       -13.679     -1.448      73.191      
+DVM     H5      H       H       0       -21.209     -0.835      72.068      
+DVM     H6      H       H       0       -21.066     -0.793      70.488      
+DVM     H7      H       H       0       -20.781     5.515       73.570      
+DVM     H8      H       H       0       -19.028     -1.148      73.477      
+DVM     H9      H       H       0       -17.583     -4.090      69.269      
+DVM     H10     H       H       0       -17.232     -2.827      70.156      
+DVM     H11     H       H       0       -18.357     -2.728      69.042      
+DVM     H12     H       H       0       -16.924     -1.503      74.591      
+DVM     H13     H       H       0       -19.885     1.231       70.583      
+DVM     H14     H       H       0       -14.958     -2.704      74.597      
+DVM     H15     H       H       0       -14.122     -3.951      72.879      
+DVM     H16     H       H       0       -15.113     -3.287      71.817      
+DVM     H17     H       H       0       -18.773     -1.107      70.648      
+DVM     H18     H       H       0       -18.286     5.273       72.256      
+DVM     H19     H       H       0       -15.799     -5.592      72.620      
+DVM     H22     H       H       0       -17.773     0.851       71.845      
+DVM     H23     H       H       0       -17.642     4.112       75.633      
+DVM     H24     H       H       0       -17.492     3.643       74.144      
+DVM     H25     H       H       0       -18.018     -6.072      74.690      
+DVM     H26     H       H       0       -18.051     -6.344      73.114      
+DVM     H27     H       H       0       -20.143     1.105       73.440      
+DVM     H28     H       H       0       -16.110     5.806       74.922      
+DVM     H29     H       H       0       -16.653     7.118       74.220      
+DVM     H30     H       H       0       -16.250     5.861       73.344      
+DVM     H31     H       H       0       -18.344     8.514       71.247      
+DVM     H32     H       H       0       -18.366     7.045       70.626      
+DVM     H33     H       H       0       -17.246     7.445       71.689      
+DVM     H34     H       H       0       -22.178     1.441       72.130      
+DVM     H35     H       H       0       -22.201     1.375       70.667      
+DVM     H36     H       H       0       -21.602     2.530       71.337      
+DVM     H37     H       H       0       -20.175     -3.058      72.037      
+DVM     H38     H       H       0       -18.994     7.701       73.213      
+DVM     H40     H       H       0       -20.061     -5.952      73.861      
+DVM     H41     H       H       0       -19.679     -4.704      74.507      
+DVM     H43     H       H       0       -21.589     4.894       71.740      
+DVM     H44     H       H       0       -19.472     6.038       75.516      
+DVM     H45     H       H       0       -16.846     1.408       73.568      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DVM           C           O      DOUBLE       n     1.227  0.0100     1.227  0.0100
+DVM           C         CH3      SINGLE       n     1.498  0.0100     1.498  0.0100
+DVM           C         N32      SINGLE       n     1.334  0.0119     1.334  0.0119
+DVM         C32         N32      SINGLE       n     1.465  0.0100     1.465  0.0100
+DVM         C22         C32      SINGLE       n     1.525  0.0100     1.525  0.0100
+DVM         C42         C32      SINGLE       n     1.527  0.0100     1.527  0.0100
+DVM         C22         C12      SINGLE       n     1.525  0.0100     1.525  0.0100
+DVM         C12         N12      SINGLE       n     1.491  0.0113     1.491  0.0113
+DVM         C12         C62      SINGLE       n     1.524  0.0103     1.524  0.0103
+DVM         C42         O11      SINGLE       n     1.436  0.0105     1.436  0.0105
+DVM         C11         O11      SINGLE       n     1.413  0.0100     1.413  0.0100
+DVM         C93         N33      SINGLE       n     1.444  0.0128     1.444  0.0128
+DVM         C42         C52      SINGLE       n     1.521  0.0165     1.521  0.0165
+DVM         C23         O23      SINGLE       n     1.432  0.0200     1.432  0.0200
+DVM         C52         C62      SINGLE       n     1.521  0.0165     1.521  0.0165
+DVM         C62         O62      SINGLE       n     1.436  0.0105     1.436  0.0105
+DVM         C52         O52      SINGLE       n     1.427  0.0125     1.427  0.0125
+DVM         C31         C41      SINGLE       n     1.495  0.0100     1.495  0.0100
+DVM         C21         C31      SINGLE       n     1.527  0.0122     1.527  0.0122
+DVM         C11         O51      SINGLE       n     1.429  0.0169     1.429  0.0169
+DVM         C51         O51      SINGLE       n     1.368  0.0140     1.368  0.0140
+DVM         N21         C21      SINGLE       n     1.470  0.0107     1.470  0.0107
+DVM         C13         O62      SINGLE       n     1.406  0.0136     1.406  0.0136
+DVM         C11         C21      SINGLE       n     1.533  0.0100     1.533  0.0100
+DVM         C41         C51      DOUBLE       n     1.322  0.0100     1.322  0.0100
+DVM         C33         N33      SINGLE       n     1.468  0.0132     1.468  0.0132
+DVM         C23         C33      SINGLE       n     1.532  0.0100     1.532  0.0100
+DVM         C33         C43      SINGLE       n     1.551  0.0112     1.551  0.0112
+DVM         C51         C61      SINGLE       n     1.502  0.0145     1.502  0.0145
+DVM         C13         C23      SINGLE       n     1.522  0.0129     1.522  0.0129
+DVM         C13         O53      SINGLE       n     1.419  0.0200     1.419  0.0200
+DVM         C43         C83      SINGLE       n     1.525  0.0100     1.525  0.0100
+DVM         C61         N61      SINGLE       n     1.467  0.0144     1.467  0.0144
+DVM         C43         C53      SINGLE       n     1.529  0.0100     1.529  0.0100
+DVM         C43         O43      SINGLE       n     1.436  0.0120     1.436  0.0120
+DVM         C53         O53      SINGLE       n     1.435  0.0103     1.435  0.0103
+DVM         C13          H1      SINGLE       n     1.089  0.0100     0.992  0.0126
+DVM         N21          H2      SINGLE       n     1.036  0.0160     0.889  0.0200
+DVM         N21          H3      SINGLE       n     1.036  0.0160     0.889  0.0200
+DVM         C22          H5      SINGLE       n     1.089  0.0100     0.983  0.0138
+DVM         C22          H6      SINGLE       n     1.089  0.0100     0.983  0.0138
+DVM         C23          H7      SINGLE       n     1.089  0.0100     0.975  0.0196
+DVM         C42          H8      SINGLE       n     1.089  0.0100     0.989  0.0181
+DVM         CH3          H9      SINGLE       n     1.089  0.0100     0.971  0.0140
+DVM         CH3         H10      SINGLE       n     1.089  0.0100     0.971  0.0140
+DVM         CH3         H11      SINGLE       n     1.089  0.0100     0.971  0.0140
+DVM         C11         H12      SINGLE       n     1.089  0.0100     1.000  0.0100
+DVM         C12         H13      SINGLE       n     1.089  0.0100     1.000  0.0100
+DVM         C21         H14      SINGLE       n     1.089  0.0100     0.984  0.0150
+DVM         C31         H15      SINGLE       n     1.089  0.0100     0.990  0.0139
+DVM         C31         H16      SINGLE       n     1.089  0.0100     0.990  0.0139
+DVM         C32         H17      SINGLE       n     1.089  0.0100     0.977  0.0160
+DVM         C33         H18      SINGLE       n     1.089  0.0100     0.988  0.0199
+DVM         C41         H19      SINGLE       n     1.082  0.0130     0.949  0.0200
+DVM         C52         H22      SINGLE       n     1.089  0.0100     0.990  0.0140
+DVM         C53         H23      SINGLE       n     1.089  0.0100     0.969  0.0200
+DVM         C53         H24      SINGLE       n     1.089  0.0100     0.969  0.0200
+DVM         C61         H25      SINGLE       n     1.089  0.0100     0.988  0.0200
+DVM         C61         H26      SINGLE       n     1.089  0.0100     0.988  0.0200
+DVM         C62         H27      SINGLE       n     1.089  0.0100     0.989  0.0181
+DVM         C83         H28      SINGLE       n     1.089  0.0100     0.971  0.0171
+DVM         C83         H29      SINGLE       n     1.089  0.0100     0.971  0.0171
+DVM         C83         H30      SINGLE       n     1.089  0.0100     0.971  0.0171
+DVM         C93         H31      SINGLE       n     1.089  0.0100     0.977  0.0113
+DVM         C93         H32      SINGLE       n     1.089  0.0100     0.977  0.0113
+DVM         C93         H33      SINGLE       n     1.089  0.0100     0.977  0.0113
+DVM         N12         H34      SINGLE       n     1.036  0.0160     0.899  0.0200
+DVM         N12         H35      SINGLE       n     1.036  0.0160     0.899  0.0200
+DVM         N12         H36      SINGLE       n     1.036  0.0160     0.899  0.0200
+DVM         N32         H37      SINGLE       n     1.016  0.0100     0.876  0.0200
+DVM         N33         H38      SINGLE       n     1.036  0.0160     0.911  0.0200
+DVM         N61         H40      SINGLE       n     1.036  0.0160     0.905  0.0200
+DVM         N61         H41      SINGLE       n     1.036  0.0160     0.905  0.0200
+DVM         O23         H43      SINGLE       n     0.970  0.0120     0.841  0.0200
+DVM         O43         H44      SINGLE       n     0.970  0.0120     0.841  0.0200
+DVM         O52         H45      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DVM         O62         C13         C23     108.473    2.03
+DVM         O62         C13         O53     110.325    1.95
+DVM         O62         C13          H1     109.369    1.50
+DVM         C23         C13         O53     110.164    1.50
+DVM         C23         C13          H1     109.599    1.50
+DVM         O53         C13          H1     109.272    1.61
+DVM         C21         N21          H2     109.984    3.00
+DVM         C21         N21          H3     109.984    3.00
+DVM          H2         N21          H3     108.673    3.00
+DVM         C32         C22         C12     112.283    1.64
+DVM         C32         C22          H5     109.341    1.50
+DVM         C32         C22          H6     109.341    1.50
+DVM         C12         C22          H5     109.552    1.50
+DVM         C12         C22          H6     109.552    1.50
+DVM          H5         C22          H6     107.784    1.50
+DVM         O23         C23         C33     110.124    1.87
+DVM         O23         C23         C13     109.976    1.78
+DVM         O23         C23          H7     108.790    1.50
+DVM         C33         C23         C13     111.124    1.57
+DVM         C33         C23          H7     108.987    1.50
+DVM         C13         C23          H7     108.925    1.50
+DVM         C32         C42         O11     107.272    1.50
+DVM         C32         C42         C52     110.742    1.50
+DVM         C32         C42          H8     108.987    1.50
+DVM         O11         C42         C52     108.580    2.45
+DVM         O11         C42          H8     109.522    1.50
+DVM         C52         C42          H8     109.166    1.50
+DVM           O           C         CH3     122.067    1.50
+DVM           O           C         N32     121.945    1.50
+DVM         CH3           C         N32     115.988    1.50
+DVM           C         CH3          H9     109.527    1.50
+DVM           C         CH3         H10     109.527    1.50
+DVM           C         CH3         H11     109.527    1.50
+DVM          H9         CH3         H10     109.365    1.50
+DVM          H9         CH3         H11     109.365    1.50
+DVM         H10         CH3         H11     109.365    1.50
+DVM         O11         C11         O51     110.279    2.59
+DVM         O11         C11         C21     108.367    1.50
+DVM         O11         C11         H12     107.875    2.12
+DVM         O51         C11         C21     110.991    2.73
+DVM         O51         C11         H12     108.277    2.39
+DVM         C21         C11         H12     108.848    1.50
+DVM         C22         C12         N12     109.461    1.50
+DVM         C22         C12         C62     111.392    1.50
+DVM         C22         C12         H13     108.719    1.50
+DVM         N12         C12         C62     109.671    1.50
+DVM         N12         C12         H13     108.734    1.50
+DVM         C62         C12         H13     108.763    1.50
+DVM         C31         C21         N21     111.865    2.42
+DVM         C31         C21         C11     111.124    1.57
+DVM         C31         C21         H14     108.788    1.50
+DVM         N21         C21         C11     111.865    2.42
+DVM         N21         C21         H14     108.113    1.50
+DVM         C11         C21         H14     107.511    1.55
+DVM         C41         C31         C21     111.781    1.50
+DVM         C41         C31         H15     109.878    1.50
+DVM         C41         C31         H16     109.878    1.50
+DVM         C21         C31         H15     109.290    1.50
+DVM         C21         C31         H16     109.290    1.50
+DVM         H15         C31         H16     108.033    1.87
+DVM         N32         C32         C22     110.528    1.50
+DVM         N32         C32         C42     110.454    2.38
+DVM         N32         C32         H17     108.786    1.50
+DVM         C22         C32         C42     110.196    1.50
+DVM         C22         C32         H17     107.655    1.50
+DVM         C42         C32         H17     107.258    1.68
+DVM         N33         C33         C23     110.827    2.19
+DVM         N33         C33         C43     111.865    2.42
+DVM         N33         C33         H18     108.110    1.50
+DVM         C23         C33         C43     111.124    1.57
+DVM         C23         C33         H18     107.258    1.68
+DVM         C43         C33         H18     107.529    1.50
+DVM         C31         C41         C51     121.663    3.00
+DVM         C31         C41         H19     118.551    1.50
+DVM         C51         C41         H19     119.787    1.50
+DVM         C33         C43         C83     112.539    1.50
+DVM         C33         C43         C53     111.124    1.57
+DVM         C33         C43         O43     109.365    2.30
+DVM         C83         C43         C53     111.163    2.25
+DVM         C83         C43         O43     109.198    1.92
+DVM         C53         C43         O43     109.247    2.43
+DVM         O51         C51         C41     122.559    2.72
+DVM         O51         C51         C61     113.593    2.22
+DVM         C41         C51         C61     123.848    2.28
+DVM         C42         C52         C62     110.796    1.54
+DVM         C42         C52         O52     110.081    2.02
+DVM         C42         C52         H22     109.166    1.50
+DVM         C62         C52         O52     110.081    2.02
+DVM         C62         C52         H22     109.166    1.50
+DVM         O52         C52         H22     108.767    1.50
+DVM         C43         C53         O53     110.767    1.50
+DVM         C43         C53         H23     109.200    1.50
+DVM         C43         C53         H24     109.200    1.50
+DVM         O53         C53         H23     109.216    1.50
+DVM         O53         C53         H24     109.216    1.50
+DVM         H23         C53         H24     108.242    1.50
+DVM         C51         C61         N61     112.869    2.18
+DVM         C51         C61         H25     108.955    1.50
+DVM         C51         C61         H26     108.955    1.50
+DVM         N61         C61         H25     107.542    2.93
+DVM         N61         C61         H26     107.542    2.93
+DVM         H25         C61         H26     107.945    1.50
+DVM         C12         C62         C52     108.862    1.50
+DVM         C12         C62         O62     107.953    1.94
+DVM         C12         C62         H27     108.664    1.50
+DVM         C52         C62         O62     108.580    2.45
+DVM         C52         C62         H27     109.166    1.50
+DVM         O62         C62         H27     109.522    1.50
+DVM         C43         C83         H28     109.584    1.50
+DVM         C43         C83         H29     109.584    1.50
+DVM         C43         C83         H30     109.584    1.50
+DVM         H28         C83         H29     109.376    1.50
+DVM         H28         C83         H30     109.376    1.50
+DVM         H29         C83         H30     109.376    1.50
+DVM         N33         C93         H31     109.483    1.50
+DVM         N33         C93         H32     109.483    1.50
+DVM         N33         C93         H33     109.483    1.50
+DVM         H31         C93         H32     109.459    1.50
+DVM         H31         C93         H33     109.459    1.50
+DVM         H32         C93         H33     109.459    1.50
+DVM         C12         N12         H34     109.908    1.75
+DVM         C12         N12         H35     109.908    1.75
+DVM         C12         N12         H36     109.908    1.75
+DVM         H34         N12         H35     109.122    2.58
+DVM         H34         N12         H36     109.122    2.58
+DVM         H35         N12         H36     109.122    2.58
+DVM           C         N32         C32     122.928    1.53
+DVM           C         N32         H37     118.602    2.66
+DVM         C32         N32         H37     118.471    2.10
+DVM         C93         N33         C33     114.006    1.50
+DVM         C93         N33         H38     110.410    2.59
+DVM         C33         N33         H38     107.785    2.86
+DVM         C61         N61         H40     104.789    3.00
+DVM         C61         N61         H41     104.789    3.00
+DVM         H40         N61         H41     107.163    3.00
+DVM         C42         O11         C11     117.169    1.96
+DVM         C23         O23         H43     109.099    3.00
+DVM         C43         O43         H44     108.747    3.00
+DVM         C11         O51         C51     119.296    2.75
+DVM         C52         O52         H45     108.895    2.41
+DVM         C13         O53         C53     111.784    1.50
+DVM         C62         O62         C13     117.169    1.96
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DVM            sp3_sp3_62         O62         C13         C23         O23     180.000    10.0     3
+DVM           sp3_sp3_161         O62         C13         O53         C53      60.000    10.0     3
+DVM           sp3_sp3_142         C23         C13         O62         C62     180.000    10.0     3
+DVM             sp3_sp3_7         N21         C21         C31         C41     -60.000    10.0     3
+DVM             sp2_sp3_1         C51         C41         C31         C21       0.000    10.0     6
+DVM            sp2_sp3_13           C         N32         C32         C22       0.000    10.0     6
+DVM            sp3_sp3_80         N33         C33         C43         C83     180.000    10.0     3
+DVM           sp3_sp3_155         C23         C33         N33         C93     -60.000    10.0     3
+DVM             sp2_sp2_4         C31         C41         C51         C61     180.000     5.0     2
+DVM            sp3_sp3_88         C83         C43         C53         O53     180.000    10.0     3
+DVM           sp3_sp3_169         O43         C43         C83         H28     -60.000    10.0     3
+DVM           sp3_sp3_179         C83         C43         O43         H44      60.000    10.0     3
+DVM            sp2_sp3_20         O51         C51         C61         N61     -90.000    10.0     6
+DVM             sp2_sp2_2         C61         C51         O51         C11     180.000     5.0     2
+DVM            sp3_sp3_44         O52         C52         C62         O62     -60.000    10.0     3
+DVM           sp3_sp3_133         C42         C52         O52         H45     180.000    10.0     3
+DVM            sp3_sp3_94         C43         C53         O53         C13     -60.000    10.0     3
+DVM           sp3_sp3_172         C51         C61         N61         H40     180.000    10.0     3
+DVM           sp3_sp3_136         C31         C21         N21          H2     180.000    10.0     3
+DVM           sp3_sp3_130         C12         C62         O62         C13     180.000    10.0     3
+DVM           sp3_sp3_121         H31         C93         N33         C33     180.000    10.0     3
+DVM            sp3_sp3_14         C12         C22         C32         N32     180.000    10.0     3
+DVM           sp3_sp3_100         N12         C12         C22         C32      60.000    10.0     3
+DVM            sp3_sp3_71         O23         C23         C33         N33     -60.000    10.0     3
+DVM           sp3_sp3_127         C33         C23         O23         H43     180.000    10.0     3
+DVM            sp3_sp3_26         N32         C32         C42         O11     -60.000    10.0     3
+DVM            sp3_sp3_35         O11         C42         C52         O52      60.000    10.0     3
+DVM           sp3_sp3_115         C32         C42         O11         C11     180.000    10.0     3
+DVM             sp2_sp2_9           O           C         N32         C32       0.000     5.0     2
+DVM             sp2_sp3_7           O           C         CH3          H9       0.000    10.0     6
+DVM           sp3_sp3_149         O11         C11         C21         N21     180.000    10.0     3
+DVM           sp3_sp3_118         O51         C11         O11         C42     180.000    10.0     3
+DVM             sp3_sp3_2         O11         C11         O51         C51     180.000    10.0     3
+DVM            sp3_sp3_53         N12         C12         C62         O62      60.000    10.0     3
+DVM           sp3_sp3_106         C22         C12         N12         H34     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DVM    chir_1    C13    O62    O53    C23    negative
+DVM    chir_2    C23    O23    C13    C33    negative
+DVM    chir_3    C42    O11    C52    C32    negative
+DVM    chir_4    C11    O51    O11    C21    positive
+DVM    chir_5    C12    N12    C62    C22    negative
+DVM    chir_6    C21    N21    C11    C31    negative
+DVM    chir_7    C32    N32    C42    C22    positive
+DVM    chir_8    C33    N33    C43    C23    negative
+DVM    chir_9    C43    O43    C53    C33    negative
+DVM    chir_10    C52    O52    C42    C62    negative
+DVM    chir_11    C62    O62    C52    C12    positive
+DVM    chir_12    N33    C33    C93    H38    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DVM    plan-1           C   0.020
+DVM    plan-1         CH3   0.020
+DVM    plan-1         N32   0.020
+DVM    plan-1           O   0.020
+DVM    plan-2         C31   0.020
+DVM    plan-2         C41   0.020
+DVM    plan-2         C51   0.020
+DVM    plan-2         H19   0.020
+DVM    plan-3         C41   0.020
+DVM    plan-3         C51   0.020
+DVM    plan-3         C61   0.020
+DVM    plan-3         O51   0.020
+DVM    plan-4           C   0.020
+DVM    plan-4         C32   0.020
+DVM    plan-4         H37   0.020
+DVM    plan-4         N32   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DVM           SMILES              ACDLabs 12.01                                                                                                                                                               C1(OCC(C(C1O)NC)(O)C)OC2C(CC(C(C2O)OC3C(N)CC=C(CN)O3)NC(=O)C)N
+DVM            InChI                InChI  1.03 InChI=1S/C21H39N5O8/c1-9(27)26-13-6-12(24)16(33-20-15(29)18(25-3)21(2,30)8-31-20)14(28)17(13)34-19-11(23)5-4-10(7-22)32-19/h4,11-20,25,28-30H,5-8,22-24H2,1-3H3,(H,26,27)/t11-,12-,13+,14-,15-,16+,17-,18-,19-,20-,21+/m1/s1
+DVM         InChIKey                InChI  1.03                                                                                                                                                                                                  OBNIYNLDNPJJOU-IMHCYBRXSA-N
+DVM SMILES_CANONICAL               CACTVS 3.385                                                                                                                    CN[C@@H]1[C@@H](O)[C@H](OC[C@]1(C)O)O[C@H]2[C@H](N)C[C@H](NC(C)=O)[C@@H](O[C@H]3OC(=CC[C@H]3N)CN)[C@@H]2O
+DVM           SMILES               CACTVS 3.385                                                                                                                                   CN[CH]1[CH](O)[CH](OC[C]1(C)O)O[CH]2[CH](N)C[CH](NC(C)=O)[CH](O[CH]3OC(=CC[CH]3N)CN)[CH]2O
+DVM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                             CC(=O)N[C@H]1C[C@H]([C@@H]([C@H]([C@@H]1O[C@@H]2[C@@H](CC=C(O2)CN)N)O)O[C@@H]3[C@@H]([C@H]([C@@](CO3)(C)O)NC)O)N
+DVM           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                               CC(=O)NC1CC(C(C(C1OC2C(CC=C(O2)CN)N)O)OC3C(C(C(CO3)(C)O)NC)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DVM acedrg               243         "dictionary generator"                  
+DVM acedrg_database      11          "data source"                           
+DVM rdkit                2017.03.2   "Chemoinformatics tool"
+DVM refmac5              5.8.0238    "optimization tool"                     

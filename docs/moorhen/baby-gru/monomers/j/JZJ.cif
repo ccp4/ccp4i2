@@ -1,0 +1,293 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JZJ     JZJ      (3S)-3-[4-(4-bromophenyl)-1H-imidazol-2-yl]-1,2,3,4-tetrahydroisoquinoline     NON-POLYMER     38     22     .     
+#
+data_comp_JZJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JZJ     N1      N       NT1     0       2.131       3.670       -17.884     
+JZJ     N3      N       NRD5    0       -0.062      2.849       -15.121     
+JZJ     C4      C       CR5     0       0.993       3.421       -15.736     
+JZJ     C5      C       CR66    0       4.045       2.190       -18.506     
+JZJ     C6      C       CR66    0       4.175       1.817       -17.163     
+JZJ     C7      C       CR16    0       5.011       1.774       -19.436     
+JZJ     C8      C       CR16    0       5.277       1.042       -16.778     
+JZJ     C10     C       CR16    0       6.223       0.641       -17.703     
+JZJ     C13     C       CR6     0       -1.757      3.507       -13.413     
+JZJ     C15     C       CR16    0       -2.227      4.447       -12.496     
+JZJ     C17     C       CR16    0       -3.328      4.188       -11.700     
+JZJ     BR      BR      BR      0       -5.485      2.608       -10.729     
+JZJ     C18     C       CR6     0       -3.973      2.973       -11.818     
+JZJ     C14     C       CR16    0       -2.434      2.290       -13.506     
+JZJ     C16     C       CR16    0       -3.535      2.018       -12.715     
+JZJ     C11     C       CR5     0       -0.585      3.803       -14.251     
+JZJ     N2      N       NR5     0       1.150       4.701       -15.278     
+JZJ     C12     C       CR15    0       0.174       4.939       -14.359     
+JZJ     C1      C       CH1     0       1.870       2.764       -16.762     
+JZJ     C2      C       CH2     0       2.870       3.025       -18.966     
+JZJ     C3      C       CH2     0       3.160       2.245       -16.131     
+JZJ     C9      C       CR16    0       6.091       1.006       -19.031     
+JZJ     HN1     H       H       0       2.581       4.383       -17.587     
+JZJ     H7      H       H       0       4.924       2.021       -20.342     
+JZJ     H8      H       H       0       5.371       0.791       -15.871     
+JZJ     H10     H       H       0       6.958       0.118       -17.428     
+JZJ     H15     H       H       0       -1.793      5.267       -12.416     
+JZJ     H17     H       H       0       -3.632      4.832       -11.086     
+JZJ     H14     H       H       0       -2.142      1.645       -14.110     
+JZJ     H16     H       H       0       -3.981      1.193       -12.789     
+JZJ     HN2     H       H       0       1.773       5.280       -15.529     
+JZJ     H12     H       H       0       0.057       5.749       -13.892     
+JZJ     H1      H       H       0       1.380       1.980       -17.115     
+JZJ     H2      H       H       0       3.201       3.724       -19.584     
+JZJ     H2A     H       H       0       2.248       2.446       -19.473     
+JZJ     H3      H       H       0       3.553       2.949       -15.568     
+JZJ     H3A     H       H       0       2.951       1.480       -15.550     
+JZJ     H9      H       H       0       6.736       0.732       -19.663     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JZJ          N1          C1      SINGLE       n     1.464  0.0100     1.464  0.0100
+JZJ          N1          C2      SINGLE       n     1.459  0.0100     1.459  0.0100
+JZJ          N3          C4      DOUBLE       y     1.352  0.0200     1.352  0.0200
+JZJ          N3         C11      SINGLE       y     1.391  0.0109     1.391  0.0109
+JZJ          C4          N2      SINGLE       y     1.369  0.0148     1.369  0.0148
+JZJ          C4          C1      SINGLE       n     1.500  0.0100     1.500  0.0100
+JZJ          C5          C6      DOUBLE       y     1.394  0.0100     1.394  0.0100
+JZJ          C5          C7      SINGLE       y     1.398  0.0128     1.398  0.0128
+JZJ          C5          C2      SINGLE       n     1.510  0.0117     1.510  0.0117
+JZJ          C6          C8      SINGLE       y     1.397  0.0100     1.397  0.0100
+JZJ          C6          C3      SINGLE       n     1.507  0.0100     1.507  0.0100
+JZJ          C7          C9      DOUBLE       y     1.382  0.0100     1.382  0.0100
+JZJ          C8         C10      DOUBLE       y     1.379  0.0100     1.379  0.0100
+JZJ         C10          C9      SINGLE       y     1.380  0.0108     1.380  0.0108
+JZJ         C13         C15      DOUBLE       y     1.389  0.0100     1.389  0.0100
+JZJ         C13         C14      SINGLE       y     1.389  0.0100     1.389  0.0100
+JZJ         C13         C11      SINGLE       n     1.467  0.0100     1.467  0.0100
+JZJ         C15         C17      SINGLE       y     1.379  0.0100     1.379  0.0100
+JZJ         C17         C18      DOUBLE       y     1.378  0.0111     1.378  0.0111
+JZJ          BR         C18      SINGLE       n     1.899  0.0100     1.899  0.0100
+JZJ         C18         C16      SINGLE       y     1.378  0.0111     1.378  0.0111
+JZJ         C14         C16      DOUBLE       y     1.379  0.0100     1.379  0.0100
+JZJ         C11         C12      DOUBLE       y     1.369  0.0100     1.369  0.0100
+JZJ          N2         C12      SINGLE       y     1.362  0.0105     1.362  0.0105
+JZJ          C1          C3      SINGLE       n     1.525  0.0104     1.525  0.0104
+JZJ          N1         HN1      SINGLE       n     1.036  0.0160     0.894  0.0200
+JZJ          C7          H7      SINGLE       n     1.082  0.0130     0.943  0.0132
+JZJ          C8          H8      SINGLE       n     1.082  0.0130     0.946  0.0179
+JZJ         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0178
+JZJ         C15         H15      SINGLE       n     1.082  0.0130     0.932  0.0177
+JZJ         C17         H17      SINGLE       n     1.082  0.0130     0.941  0.0149
+JZJ         C14         H14      SINGLE       n     1.082  0.0130     0.932  0.0177
+JZJ         C16         H16      SINGLE       n     1.082  0.0130     0.941  0.0149
+JZJ          N2         HN2      SINGLE       n     1.016  0.0100     0.887  0.0200
+JZJ         C12         H12      SINGLE       n     1.082  0.0130     0.942  0.0200
+JZJ          C1          H1      SINGLE       n     1.089  0.0100     0.990  0.0163
+JZJ          C2          H2      SINGLE       n     1.089  0.0100     0.990  0.0100
+JZJ          C2         H2A      SINGLE       n     1.089  0.0100     0.990  0.0100
+JZJ          C3          H3      SINGLE       n     1.089  0.0100     0.983  0.0164
+JZJ          C3         H3A      SINGLE       n     1.089  0.0100     0.983  0.0164
+JZJ          C9          H9      SINGLE       n     1.082  0.0130     0.944  0.0178
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JZJ          C1          N1          C2     111.782    3.00
+JZJ          C1          N1         HN1     108.969    3.00
+JZJ          C2          N1         HN1     110.625    3.00
+JZJ          C4          N3         C11     106.699    1.65
+JZJ          N3          C4          N2     109.689    1.50
+JZJ          N3          C4          C1     125.666    3.00
+JZJ          N2          C4          C1     124.645    2.89
+JZJ          C6          C5          C7     119.555    1.50
+JZJ          C6          C5          C2     120.490    1.50
+JZJ          C7          C5          C2     119.956    1.50
+JZJ          C5          C6          C8     119.173    1.50
+JZJ          C5          C6          C3     120.510    1.50
+JZJ          C8          C6          C3     120.317    1.75
+JZJ          C5          C7          C9     120.388    1.50
+JZJ          C5          C7          H7     119.750    1.50
+JZJ          C9          C7          H7     119.862    1.50
+JZJ          C6          C8         C10     120.911    1.50
+JZJ          C6          C8          H8     119.333    1.50
+JZJ         C10          C8          H8     119.755    1.50
+JZJ          C8         C10          C9     119.986    1.50
+JZJ          C8         C10         H10     119.970    1.50
+JZJ          C9         C10         H10     120.044    1.50
+JZJ         C15         C13         C14     118.272    1.50
+JZJ         C15         C13         C11     120.864    1.50
+JZJ         C14         C13         C11     120.864    1.50
+JZJ         C13         C15         C17     121.080    1.50
+JZJ         C13         C15         H15     119.501    1.50
+JZJ         C17         C15         H15     119.419    1.50
+JZJ         C15         C17         C18     119.125    1.50
+JZJ         C15         C17         H17     120.393    1.50
+JZJ         C18         C17         H17     120.482    1.50
+JZJ         C17         C18          BR     119.342    1.50
+JZJ         C17         C18         C16     121.317    1.50
+JZJ          BR         C18         C16     119.342    1.50
+JZJ         C13         C14         C16     121.080    1.50
+JZJ         C13         C14         H14     119.501    1.50
+JZJ         C16         C14         H14     119.419    1.50
+JZJ         C18         C16         C14     119.125    1.50
+JZJ         C18         C16         H16     120.482    1.50
+JZJ         C14         C16         H16     120.393    1.50
+JZJ          N3         C11         C13     120.406    1.50
+JZJ          N3         C11         C12     108.574    1.50
+JZJ         C13         C11         C12     131.020    1.50
+JZJ          C4          N2         C12     107.723    2.04
+JZJ          C4          N2         HN2     126.693    1.50
+JZJ         C12          N2         HN2     125.584    1.94
+JZJ         C11         C12          N2     107.315    1.50
+JZJ         C11         C12         H12     127.474    1.80
+JZJ          N2         C12         H12     125.210    1.72
+JZJ          N1          C1          C4     111.100    1.79
+JZJ          N1          C1          C3     112.383    2.15
+JZJ          N1          C1          H1     108.139    1.50
+JZJ          C4          C1          C3     111.427    1.75
+JZJ          C4          C1          H1     107.961    1.50
+JZJ          C3          C1          H1     107.615    1.50
+JZJ          N1          C2          C5     113.879    1.67
+JZJ          N1          C2          H2     108.787    1.50
+JZJ          N1          C2         H2A     108.787    1.50
+JZJ          C5          C2          H2     108.802    1.50
+JZJ          C5          C2         H2A     108.802    1.50
+JZJ          H2          C2         H2A     107.753    1.50
+JZJ          C6          C3          C1     111.610    1.50
+JZJ          C6          C3          H3     109.223    1.50
+JZJ          C6          C3         H3A     109.223    1.50
+JZJ          C1          C3          H3     109.403    1.50
+JZJ          C1          C3         H3A     109.403    1.50
+JZJ          H3          C3         H3A     107.873    1.50
+JZJ          C7          C9         C10     119.986    1.50
+JZJ          C7          C9          H9     119.970    1.50
+JZJ         C10          C9          H9     120.044    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JZJ             sp3_sp3_3          C4          C1          N1          C2     -60.000    10.0     3
+JZJ            sp3_sp3_16          C5          C2          N1          C1     180.000    10.0     3
+JZJ              const_44         C15         C17         C18          BR     180.000    10.0     2
+JZJ              const_48         C14         C16         C18          BR     180.000    10.0     2
+JZJ              const_51         C13         C14         C16         C18       0.000    10.0     2
+JZJ              const_31          N3         C11         C12          N2       0.000    10.0     2
+JZJ              const_27         C11         C12          N2          C4       0.000    10.0     2
+JZJ             sp3_sp3_7          N1          C1          C3          C6     -60.000    10.0     3
+JZJ              const_56         C13         C11          N3          C4     180.000    10.0     2
+JZJ              const_21          N2          C4          N3         C11       0.000    10.0     2
+JZJ              const_23          N3          C4          N2         C12       0.000    10.0     2
+JZJ            sp2_sp3_13          N3          C4          C1          N1     150.000    10.0     6
+JZJ             sp2_sp3_7          C6          C5          C2          N1       0.000    10.0     6
+JZJ       const_sp2_sp2_1          C7          C5          C6          C8       0.000     5.0     2
+JZJ              const_57          C6          C5          C7          C9       0.000    10.0     2
+JZJ             sp2_sp3_1          C5          C6          C3          C1       0.000    10.0     6
+JZJ       const_sp2_sp2_5          C5          C6          C8         C10       0.000     5.0     2
+JZJ              const_17          C5          C7          C9         C10       0.000    10.0     2
+JZJ       const_sp2_sp2_9          C9         C10          C8          C6       0.000     5.0     2
+JZJ              const_13          C8         C10          C9          C7       0.000    10.0     2
+JZJ              const_61         C15         C13         C14         C16       0.000    10.0     2
+JZJ             sp2_sp2_3          N3         C11         C13         C15       0.000     5.0     2
+JZJ              const_35         C14         C13         C15         C17       0.000    10.0     2
+JZJ              const_39         C13         C15         C17         C18       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JZJ    chir_1    C1    N1    C4    C3    positive
+JZJ    chir_2    N1    C1    C2    HN1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JZJ    plan-1          BR   0.020
+JZJ    plan-1         C11   0.020
+JZJ    plan-1         C13   0.020
+JZJ    plan-1         C14   0.020
+JZJ    plan-1         C15   0.020
+JZJ    plan-1         C16   0.020
+JZJ    plan-1         C17   0.020
+JZJ    plan-1         C18   0.020
+JZJ    plan-1         H14   0.020
+JZJ    plan-1         H15   0.020
+JZJ    plan-1         H16   0.020
+JZJ    plan-1         H17   0.020
+JZJ    plan-2          C1   0.020
+JZJ    plan-2         C11   0.020
+JZJ    plan-2         C12   0.020
+JZJ    plan-2         C13   0.020
+JZJ    plan-2          C4   0.020
+JZJ    plan-2         H12   0.020
+JZJ    plan-2         HN2   0.020
+JZJ    plan-2          N2   0.020
+JZJ    plan-2          N3   0.020
+JZJ    plan-3         C10   0.020
+JZJ    plan-3          C2   0.020
+JZJ    plan-3          C3   0.020
+JZJ    plan-3          C5   0.020
+JZJ    plan-3          C6   0.020
+JZJ    plan-3          C7   0.020
+JZJ    plan-3          C8   0.020
+JZJ    plan-3          C9   0.020
+JZJ    plan-3         H10   0.020
+JZJ    plan-3          H7   0.020
+JZJ    plan-3          H8   0.020
+JZJ    plan-3          H9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JZJ           SMILES              ACDLabs 11.02                                                                                                  Brc1ccc(cc1)c2nc(nc2)C4NCc3ccccc3C4
+JZJ SMILES_CANONICAL               CACTVS 3.352                                                                                          Brc1ccc(cc1)c2c[nH]c(n2)[C@@H]3Cc4ccccc4CN3
+JZJ           SMILES               CACTVS 3.352                                                                                            Brc1ccc(cc1)c2c[nH]c(n2)[CH]3Cc4ccccc4CN3
+JZJ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                       c1ccc2c(c1)C[C@H](NC2)c3[nH]cc(n3)c4ccc(cc4)Br
+JZJ           SMILES "OpenEye OEToolkits" 1.7.0                                                                                           c1ccc2c(c1)CC(NC2)c3[nH]cc(n3)c4ccc(cc4)Br
+JZJ            InChI                InChI  1.03 InChI=1S/C18H16BrN3/c19-15-7-5-12(6-8-15)17-11-21-18(22-17)16-9-13-3-1-2-4-14(13)10-20-16/h1-8,11,16,20H,9-10H2,(H,21,22)/t16-/m0/s1
+JZJ         InChIKey                InChI  1.03                                                                                                          ZBOUSWQJXIKQSX-INIZCTEOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JZJ acedrg               243         "dictionary generator"                  
+JZJ acedrg_database      11          "data source"                           
+JZJ rdkit                2017.03.2   "Chemoinformatics tool"
+JZJ refmac5              5.8.0238    "optimization tool"                     

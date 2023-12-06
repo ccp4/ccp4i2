@@ -1,0 +1,241 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BFQ     BFQ      IBANDRONATE     NON-POLYMER     38     19     .     
+#
+data_comp_BFQ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BFQ     P1      P       P       0       14.143      77.207      24.136      
+BFQ     O2      O       OP      -1      14.821      78.211      23.246      
+BFQ     O3      O       OP      -1      14.222      75.819      23.565      
+BFQ     O5      O       O       0       12.723      77.600      24.437      
+BFQ     C7      C       CT      0       15.038      77.227      25.744      
+BFQ     P8      P       P       0       16.526      76.145      25.797      
+BFQ     O9      O       O       0       17.432      76.626      24.698      
+BFQ     O10     O       OP      -1      17.160      76.307      27.151      
+BFQ     O12     O       OP      -1      16.076      74.728      25.570      
+BFQ     O14     O       OH1     0       14.131      76.734      26.754      
+BFQ     C16     C       CH2     0       15.456      78.665      26.132      
+BFQ     C19     C       CH2     0       14.368      79.728      26.213      
+BFQ     N22     N       NT      0       14.789      81.025      26.769      
+BFQ     C23     C       CH2     0       15.924      81.692      26.112      
+BFQ     C26     C       CH2     0       15.724      81.982      24.630      
+BFQ     C29     C       CH2     0       16.794      82.868      24.029      
+BFQ     C32     C       CH2     0       16.575      83.194      22.574      
+BFQ     C35     C       CH3     0       17.688      84.009      21.959      
+BFQ     C39     C       CH3     0       14.975      80.972      28.229      
+BFQ     HO14    H       H       0       14.469      76.746      27.533      
+BFQ     H161    H       H       0       16.135      78.954      25.488      
+BFQ     H162    H       H       0       15.921      78.622      26.990      
+BFQ     H191    H       H       0       13.630      79.378      26.754      
+BFQ     H192    H       H       0       14.012      79.882      25.314      
+BFQ     H231    H       H       0       16.726      81.139      26.218      
+BFQ     H232    H       H       0       16.097      82.542      26.568      
+BFQ     H261    H       H       0       14.851      82.413      24.509      
+BFQ     H262    H       H       0       15.708      81.132      24.140      
+BFQ     H291    H       H       0       17.663      82.423      24.124      
+BFQ     H292    H       H       0       16.833      83.707      24.537      
+BFQ     H321    H       H       0       15.732      83.689      22.485      
+BFQ     H322    H       H       0       16.482      82.354      22.074      
+BFQ     H351    H       H       0       17.480      84.191      21.026      
+BFQ     H352    H       H       0       18.523      83.513      22.013      
+BFQ     H353    H       H       0       17.779      84.850      22.439      
+BFQ     H391    H       H       0       15.080      81.878      28.578      
+BFQ     H392    H       H       0       15.773      80.450      28.440      
+BFQ     H393    H       H       0       14.195      80.556      28.647      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BFQ          P1          O2      SINGLE       n     1.505  0.0200     1.505  0.0200
+BFQ          P1          O3      SINGLE       n     1.505  0.0200     1.505  0.0200
+BFQ          P1          O5      DOUBLE       n     1.505  0.0200     1.505  0.0200
+BFQ          P1          C7      SINGLE       n     1.837  0.0200     1.837  0.0200
+BFQ          C7          P8      SINGLE       n     1.837  0.0200     1.837  0.0200
+BFQ          C7         O14      SINGLE       n     1.443  0.0100     1.443  0.0100
+BFQ          C7         C16      SINGLE       n     1.544  0.0100     1.544  0.0100
+BFQ          P8          O9      DOUBLE       n     1.505  0.0200     1.505  0.0200
+BFQ          P8         O10      SINGLE       n     1.505  0.0200     1.505  0.0200
+BFQ          P8         O12      SINGLE       n     1.505  0.0200     1.505  0.0200
+BFQ         C16         C19      SINGLE       n     1.518  0.0116     1.518  0.0116
+BFQ         C19         N22      SINGLE       n     1.466  0.0100     1.466  0.0100
+BFQ         N22         C23      SINGLE       n     1.466  0.0100     1.466  0.0100
+BFQ         N22         C39      SINGLE       n     1.467  0.0135     1.467  0.0135
+BFQ         C23         C26      SINGLE       n     1.522  0.0100     1.522  0.0100
+BFQ         C26         C29      SINGLE       n     1.514  0.0200     1.514  0.0200
+BFQ         C29         C32      SINGLE       n     1.507  0.0200     1.507  0.0200
+BFQ         C32         C35      SINGLE       n     1.510  0.0200     1.510  0.0200
+BFQ         O14        HO14      SINGLE       n     0.970  0.0120     0.849  0.0200
+BFQ         C16        H161      SINGLE       n     1.089  0.0100     0.980  0.0200
+BFQ         C16        H162      SINGLE       n     1.089  0.0100     0.980  0.0200
+BFQ         C19        H191      SINGLE       n     1.089  0.0100     0.980  0.0143
+BFQ         C19        H192      SINGLE       n     1.089  0.0100     0.980  0.0143
+BFQ         C23        H231      SINGLE       n     1.089  0.0100     0.980  0.0143
+BFQ         C23        H232      SINGLE       n     1.089  0.0100     0.980  0.0143
+BFQ         C26        H261      SINGLE       n     1.089  0.0100     0.981  0.0160
+BFQ         C26        H262      SINGLE       n     1.089  0.0100     0.981  0.0160
+BFQ         C29        H291      SINGLE       n     1.089  0.0100     0.981  0.0163
+BFQ         C29        H292      SINGLE       n     1.089  0.0100     0.981  0.0163
+BFQ         C32        H321      SINGLE       n     1.089  0.0100     0.982  0.0155
+BFQ         C32        H322      SINGLE       n     1.089  0.0100     0.982  0.0155
+BFQ         C35        H351      SINGLE       n     1.089  0.0100     0.973  0.0157
+BFQ         C35        H352      SINGLE       n     1.089  0.0100     0.973  0.0157
+BFQ         C35        H353      SINGLE       n     1.089  0.0100     0.973  0.0157
+BFQ         C39        H391      SINGLE       n     1.089  0.0100     0.977  0.0113
+BFQ         C39        H392      SINGLE       n     1.089  0.0100     0.977  0.0113
+BFQ         C39        H393      SINGLE       n     1.089  0.0100     0.977  0.0113
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BFQ          O2          P1          O3     112.502    1.50
+BFQ          O2          P1          O5     112.502    1.50
+BFQ          O2          P1          C7     110.326    3.00
+BFQ          O3          P1          O5     112.502    1.50
+BFQ          O3          P1          C7     110.326    3.00
+BFQ          O5          P1          C7     110.326    3.00
+BFQ          P1          C7          P8     114.813    3.00
+BFQ          P1          C7         O14     108.256    2.94
+BFQ          P1          C7         C16     111.410    2.87
+BFQ          P8          C7         O14     108.256    2.94
+BFQ          P8          C7         C16     111.410    2.87
+BFQ         O14          C7         C16     107.859    1.50
+BFQ          C7          P8          O9     110.326    3.00
+BFQ          C7          P8         O10     110.326    3.00
+BFQ          C7          P8         O12     110.326    3.00
+BFQ          O9          P8         O10     112.502    1.50
+BFQ          O9          P8         O12     112.502    1.50
+BFQ         O10          P8         O12     112.502    1.50
+BFQ          C7         O14        HO14     112.250    3.00
+BFQ          C7         C16         C19     116.408    1.76
+BFQ          C7         C16        H161     108.398    2.72
+BFQ          C7         C16        H162     108.398    2.72
+BFQ         C19         C16        H161     108.805    1.50
+BFQ         C19         C16        H162     108.805    1.50
+BFQ        H161         C16        H162     105.423    3.00
+BFQ         C16         C19         N22     113.952    1.84
+BFQ         C16         C19        H191     109.099    1.50
+BFQ         C16         C19        H192     109.099    1.50
+BFQ         N22         C19        H191     109.022    1.50
+BFQ         N22         C19        H192     109.022    1.50
+BFQ        H191         C19        H192     107.673    1.50
+BFQ         C19         N22         C23     112.216    2.51
+BFQ         C19         N22         C39     111.105    1.50
+BFQ         C23         N22         C39     111.105    1.50
+BFQ         N22         C23         C26     113.952    1.84
+BFQ         N22         C23        H231     109.022    1.50
+BFQ         N22         C23        H232     109.022    1.50
+BFQ         C26         C23        H231     108.873    1.50
+BFQ         C26         C23        H232     108.873    1.50
+BFQ        H231         C23        H232     107.673    1.50
+BFQ         C23         C26         C29     114.202    2.06
+BFQ         C23         C26        H261     108.945    1.50
+BFQ         C23         C26        H262     108.945    1.50
+BFQ         C29         C26        H261     109.041    1.50
+BFQ         C29         C26        H262     109.041    1.50
+BFQ        H261         C26        H262     107.927    1.57
+BFQ         C26         C29         C32     114.022    2.49
+BFQ         C26         C29        H291     108.806    1.50
+BFQ         C26         C29        H292     108.806    1.50
+BFQ         C32         C29        H291     108.653    1.50
+BFQ         C32         C29        H292     108.653    1.50
+BFQ        H291         C29        H292     107.646    1.50
+BFQ         C29         C32         C35     113.719    3.00
+BFQ         C29         C32        H321     108.758    1.50
+BFQ         C29         C32        H322     108.758    1.50
+BFQ         C35         C32        H321     108.918    1.50
+BFQ         C35         C32        H322     108.918    1.50
+BFQ        H321         C32        H322     107.763    1.50
+BFQ         C32         C35        H351     109.554    1.50
+BFQ         C32         C35        H352     109.554    1.50
+BFQ         C32         C35        H353     109.554    1.50
+BFQ        H351         C35        H352     109.380    1.50
+BFQ        H351         C35        H353     109.380    1.50
+BFQ        H352         C35        H353     109.380    1.50
+BFQ         N22         C39        H391     109.480    1.50
+BFQ         N22         C39        H392     109.480    1.50
+BFQ         N22         C39        H393     109.480    1.50
+BFQ        H391         C39        H392     109.408    1.50
+BFQ        H391         C39        H393     109.408    1.50
+BFQ        H392         C39        H393     109.408    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BFQ             sp3_sp3_4          P8          C7          P1          O2      60.000    10.0     3
+BFQ            sp3_sp3_31          C7         C16         C19         N22     180.000    10.0     3
+BFQ            sp3_sp3_40         C16         C19         N22         C23     180.000    10.0     3
+BFQ            sp3_sp3_46         C26         C23         N22         C19     180.000    10.0     3
+BFQ            sp3_sp3_52        H391         C39         N22         C19     180.000    10.0     3
+BFQ            sp3_sp3_58         N22         C23         C26         C29     180.000    10.0     3
+BFQ            sp3_sp3_67         C23         C26         C29         C32     180.000    10.0     3
+BFQ            sp3_sp3_76         C26         C29         C32         C35     180.000    10.0     3
+BFQ            sp3_sp3_85         C29         C32         C35        H351     180.000    10.0     3
+BFQ            sp3_sp3_22         C19         C16          C7          P1     180.000    10.0     3
+BFQ            sp3_sp3_12          P1          C7          P8          O9      60.000    10.0     3
+BFQ            sp3_sp3_20          P1          C7         O14        HO14      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BFQ    chir_1    P1    O2    O3    O5    both
+BFQ    chir_2    C7    P1    P8    O14    both
+BFQ    chir_3    P8    O10    O12    O9    both
+BFQ    chir_4    N22    C19    C23    C39    positive
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BFQ           SMILES              ACDLabs 10.04                                                                              O=P(O)(O)C(O)(CCN(CCCCC)C)P(=O)(O)O
+BFQ SMILES_CANONICAL               CACTVS 3.341                                                                          CCCCCN(C)CCC(O)([P](O)(O)=O)[P](O)(O)=O
+BFQ           SMILES               CACTVS 3.341                                                                          CCCCCN(C)CCC(O)([P](O)(O)=O)[P](O)(O)=O
+BFQ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                           CCCCC[N@](C)CCC(O)(P(=O)(O)O)P(=O)(O)O
+BFQ           SMILES "OpenEye OEToolkits" 1.5.0                                                                              CCCCCN(C)CCC(O)(P(=O)(O)O)P(=O)(O)O
+BFQ            InChI                InChI  1.03 InChI=1S/C9H23NO7P2/c1-3-4-5-7-10(2)8-6-9(11,18(12,13)14)19(15,16)17/h11H,3-8H2,1-2H3,(H2,12,13,14)(H2,15,16,17)
+BFQ         InChIKey                InChI  1.03                                                                                      MPBVHIBUJCELCL-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BFQ acedrg               243         "dictionary generator"                  
+BFQ acedrg_database      11          "data source"                           
+BFQ rdkit                2017.03.2   "Chemoinformatics tool"
+BFQ refmac5              5.8.0238    "optimization tool"                     

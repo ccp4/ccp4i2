@@ -1,0 +1,313 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EZG     EZG      N-[(1R,2R)-1,3-dihydroxy-1-(4-nitrophenyl)propan-2-yl]-L-histidinamide     NON-POLYMER     45     25     .     
+#
+data_comp_EZG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EZG     CG      C       CR5     0       80.189      -54.227     -5.126      
+EZG     CB      C       CH2     0       81.206      -55.282     -5.406      
+EZG     CA      C       CH1     0       81.054      -55.932     -6.790      
+EZG     C       C       C       0       82.303      -56.730     -7.170      
+EZG     O       O       O       0       82.973      -56.383     -8.141      
+EZG     N       N       NT3     1       79.877      -56.846     -6.823      
+EZG     CAG     C       CR16    0       84.563      -56.186     -4.430      
+EZG     CAI     C       CR16    0       85.002      -54.880     -4.280      
+EZG     CAU     C       CR6     0       86.152      -54.481     -4.963      
+EZG     NAY     N       N       1       86.628      -53.104     -4.814      
+EZG     OAF     O       OC      -1      86.669      -52.622     -3.691      
+EZG     OAC     O       O       0       86.964      -52.493     -5.818      
+EZG     CAJ     C       CR16    0       86.859      -55.361     -5.785      
+EZG     CAH     C       CR16    0       86.393      -56.660     -5.917      
+EZG     CAT     C       CR6     0       85.249      -57.092     -5.244      
+EZG     CAW     C       CH1     0       84.762      -58.520     -5.411      
+EZG     OAE     O       OH1     0       84.172      -59.028     -4.217      
+EZG     CAX     C       CH1     0       83.752      -58.663     -6.569      
+EZG     CAM     C       CH2     0       83.257      -60.094     -6.760      
+EZG     OAD     O       OH1     0       84.323      -61.004     -6.975      
+EZG     NAP     N       NH1     0       82.602      -57.783     -6.392      
+EZG     CD2     C       CR15    0       80.130      -52.935     -5.540      
+EZG     NE2     N       NR5     0       78.988      -52.407     -4.998      
+EZG     CE1     C       CR15    0       78.401      -53.374     -4.289      
+EZG     ND1     N       NRD5    0       79.091      -54.497     -4.336      
+EZG     H1      H       H       0       81.146      -55.984     -4.727      
+EZG     H2      H       H       0       82.103      -54.893     -5.347      
+EZG     H3      H       H       0       80.912      -55.219     -7.455      
+EZG     H4      H       H       0       79.111      -56.353     -6.804      
+EZG     H5      H       H       0       79.877      -57.405     -6.105      
+EZG     H6      H       H       0       79.877      -57.346     -7.585      
+EZG     H7      H       H       0       83.787      -56.463     -3.973      
+EZG     H8      H       H       0       84.533      -54.279     -3.728      
+EZG     H9      H       H       0       87.632      -55.083     -6.242      
+EZG     H10     H       H       0       86.863      -57.263     -6.469      
+EZG     H11     H       H       0       85.545      -59.080     -5.625      
+EZG     H12     H       H       0       84.789      -59.148     -3.648      
+EZG     H13     H       H       0       84.230      -58.406     -7.399      
+EZG     H14     H       H       0       82.650      -60.123     -7.531      
+EZG     H15     H       H       0       82.748      -60.372     -5.969      
+EZG     H16     H       H       0       84.008      -61.711     -7.314      
+EZG     H17     H       H       0       82.086      -57.971     -5.715      
+EZG     H18     H       H       0       80.744      -52.474     -6.091      
+EZG     H19     H       H       0       78.708      -51.599     -5.102      
+EZG     H20     H       H       0       77.599      -53.265     -3.817      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EZG         CAM         OAD      SINGLE       n     1.417  0.0200     1.417  0.0200
+EZG           C           O      DOUBLE       n     1.229  0.0102     1.229  0.0102
+EZG          CA           C      SINGLE       n     1.526  0.0100     1.526  0.0100
+EZG           C         NAP      SINGLE       n     1.337  0.0102     1.337  0.0102
+EZG         CAX         CAM      SINGLE       n     1.523  0.0136     1.523  0.0136
+EZG         CAX         NAP      SINGLE       n     1.456  0.0100     1.456  0.0100
+EZG         CAW         CAX      SINGLE       n     1.540  0.0100     1.540  0.0100
+EZG          CA           N      SINGLE       n     1.488  0.0100     1.488  0.0100
+EZG          CB          CA      SINGLE       n     1.534  0.0118     1.534  0.0118
+EZG         CAJ         CAH      DOUBLE       y     1.382  0.0100     1.382  0.0100
+EZG         CAH         CAT      SINGLE       y     1.392  0.0100     1.392  0.0100
+EZG         CAU         CAJ      SINGLE       y     1.393  0.0100     1.393  0.0100
+EZG         CD2         NE2      SINGLE       y     1.370  0.0100     1.370  0.0100
+EZG          CG         CD2      DOUBLE       y     1.357  0.0100     1.357  0.0100
+EZG         NE2         CE1      SINGLE       y     1.335  0.0100     1.335  0.0100
+EZG         CAT         CAW      SINGLE       n     1.515  0.0100     1.515  0.0100
+EZG         CAW         OAE      SINGLE       n     1.423  0.0133     1.423  0.0133
+EZG         CAG         CAT      DOUBLE       y     1.392  0.0100     1.392  0.0100
+EZG         NAY         OAC      DOUBLE       n     1.221  0.0162     1.221  0.0162
+EZG          CG          CB      SINGLE       n     1.492  0.0100     1.492  0.0100
+EZG          CG         ND1      SINGLE       y     1.379  0.0100     1.379  0.0100
+EZG         CE1         ND1      DOUBLE       y     1.320  0.0100     1.320  0.0100
+EZG         CAU         NAY      SINGLE       n     1.457  0.0200     1.457  0.0200
+EZG         CAI         CAU      DOUBLE       y     1.393  0.0100     1.393  0.0100
+EZG         NAY         OAF      SINGLE       n     1.221  0.0162     1.221  0.0162
+EZG         CAG         CAI      SINGLE       y     1.382  0.0100     1.382  0.0100
+EZG          CB          H1      SINGLE       n     1.089  0.0100     0.979  0.0187
+EZG          CB          H2      SINGLE       n     1.089  0.0100     0.979  0.0187
+EZG          CA          H3      SINGLE       n     1.089  0.0100     0.986  0.0200
+EZG           N          H4      SINGLE       n     1.036  0.0160     0.911  0.0200
+EZG           N          H5      SINGLE       n     1.036  0.0160     0.911  0.0200
+EZG           N          H6      SINGLE       n     1.036  0.0160     0.911  0.0200
+EZG         CAG          H7      SINGLE       n     1.082  0.0130     0.943  0.0173
+EZG         CAI          H8      SINGLE       n     1.082  0.0130     0.941  0.0200
+EZG         CAJ          H9      SINGLE       n     1.082  0.0130     0.941  0.0200
+EZG         CAH         H10      SINGLE       n     1.082  0.0130     0.943  0.0173
+EZG         CAW         H11      SINGLE       n     1.089  0.0100     0.987  0.0156
+EZG         OAE         H12      SINGLE       n     0.970  0.0120     0.848  0.0200
+EZG         CAX         H13      SINGLE       n     1.089  0.0100     0.992  0.0100
+EZG         CAM         H14      SINGLE       n     1.089  0.0100     0.981  0.0174
+EZG         CAM         H15      SINGLE       n     1.089  0.0100     0.981  0.0174
+EZG         OAD         H16      SINGLE       n     0.970  0.0120     0.846  0.0200
+EZG         NAP         H17      SINGLE       n     1.016  0.0100     0.872  0.0200
+EZG         CD2         H18      SINGLE       n     1.082  0.0130     0.945  0.0191
+EZG         NE2         H19      SINGLE       n     1.016  0.0100     0.861  0.0200
+EZG         CE1         H20      SINGLE       n     1.082  0.0130     0.937  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EZG         CD2          CG          CB     130.200    1.50
+EZG         CD2          CG         ND1     109.041    1.50
+EZG          CB          CG         ND1     120.759    1.50
+EZG          CA          CB          CG     113.852    1.50
+EZG          CA          CB          H1     108.290    1.50
+EZG          CA          CB          H2     108.290    1.50
+EZG          CG          CB          H1     109.683    1.50
+EZG          CG          CB          H2     109.683    1.50
+EZG          H1          CB          H2     107.541    1.50
+EZG           C          CA           N     107.575    1.50
+EZG           C          CA          CB     110.476    1.81
+EZG           C          CA          H3     109.286    1.50
+EZG           N          CA          CB     110.324    1.50
+EZG           N          CA          H3     108.444    1.50
+EZG          CB          CA          H3     108.492    1.50
+EZG           O           C          CA     120.656    1.50
+EZG           O           C         NAP     123.480    1.50
+EZG          CA           C         NAP     115.863    1.50
+EZG          CA           N          H4     110.142    3.00
+EZG          CA           N          H5     110.142    3.00
+EZG          CA           N          H6     110.142    3.00
+EZG          H4           N          H5     109.028    2.41
+EZG          H4           N          H6     109.028    2.41
+EZG          H5           N          H6     109.028    2.41
+EZG         CAT         CAG         CAI     120.938    1.50
+EZG         CAT         CAG          H7     119.666    1.50
+EZG         CAI         CAG          H7     119.396    1.50
+EZG         CAU         CAI         CAG     118.489    1.50
+EZG         CAU         CAI          H8     121.025    1.50
+EZG         CAG         CAI          H8     120.487    1.50
+EZG         CAJ         CAU         NAY     118.808    1.50
+EZG         CAJ         CAU         CAI     122.384    1.50
+EZG         NAY         CAU         CAI     118.808    1.50
+EZG         OAC         NAY         CAU     118.257    1.50
+EZG         OAC         NAY         OAF     123.486    1.50
+EZG         CAU         NAY         OAF     118.257    1.50
+EZG         CAH         CAJ         CAU     118.489    1.50
+EZG         CAH         CAJ          H9     120.487    1.50
+EZG         CAU         CAJ          H9     121.025    1.50
+EZG         CAJ         CAH         CAT     120.938    1.50
+EZG         CAJ         CAH         H10     119.396    1.50
+EZG         CAT         CAH         H10     119.666    1.50
+EZG         CAH         CAT         CAW     120.619    1.50
+EZG         CAH         CAT         CAG     118.763    1.50
+EZG         CAW         CAT         CAG     120.619    1.50
+EZG         CAX         CAW         CAT     113.018    1.62
+EZG         CAX         CAW         OAE     108.389    2.58
+EZG         CAX         CAW         H11     108.286    1.50
+EZG         CAT         CAW         OAE     112.050    1.50
+EZG         CAT         CAW         H11     108.540    1.50
+EZG         OAE         CAW         H11     108.742    1.50
+EZG         CAW         OAE         H12     108.178    3.00
+EZG         CAM         CAX         NAP     109.157    1.65
+EZG         CAM         CAX         CAW     112.177    1.50
+EZG         CAM         CAX         H13     107.627    1.50
+EZG         NAP         CAX         CAW     111.504    1.50
+EZG         NAP         CAX         H13     108.194    1.50
+EZG         CAW         CAX         H13     107.161    1.50
+EZG         OAD         CAM         CAX     111.903    1.66
+EZG         OAD         CAM         H14     109.411    1.50
+EZG         OAD         CAM         H15     109.411    1.50
+EZG         CAX         CAM         H14     109.343    1.50
+EZG         CAX         CAM         H15     109.343    1.50
+EZG         H14         CAM         H15     108.070    1.50
+EZG         CAM         OAD         H16     108.529    2.94
+EZG           C         NAP         CAX     123.632    1.63
+EZG           C         NAP         H17     118.879    1.83
+EZG         CAX         NAP         H17     117.489    3.00
+EZG         NE2         CD2          CG     106.242    1.50
+EZG         NE2         CD2         H18     125.855    2.21
+EZG          CG         CD2         H18     127.902    1.83
+EZG         CD2         NE2         CE1     107.314    1.50
+EZG         CD2         NE2         H19     125.800    1.75
+EZG         CE1         NE2         H19     126.886    3.00
+EZG         NE2         CE1         ND1     111.692    1.50
+EZG         NE2         CE1         H20     124.008    1.50
+EZG         ND1         CE1         H20     124.304    1.50
+EZG          CG         ND1         CE1     105.707    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EZG            sp2_sp3_20         CD2          CG          CB          CA     -90.000    10.0     6
+EZG              const_22         NE2         CD2          CG          CB     180.000    10.0     2
+EZG              const_36          CB          CG         ND1         CE1     180.000    10.0     2
+EZG       const_sp2_sp2_9         CAT         CAH         CAJ         CAU       0.000     5.0     2
+EZG       const_sp2_sp2_6         CAJ         CAH         CAT         CAW     180.000     5.0     2
+EZG            sp2_sp3_13         CAH         CAT         CAW         CAX     150.000    10.0     6
+EZG            sp3_sp3_40         CAX         CAW         OAE         H12     180.000    10.0     3
+EZG            sp3_sp3_16         OAE         CAW         CAX         CAM      60.000    10.0     3
+EZG             sp3_sp3_4         OAD         CAM         CAX         NAP     180.000    10.0     3
+EZG             sp2_sp3_7           C         NAP         CAX         CAM       0.000    10.0     6
+EZG             sp3_sp3_1         CAX         CAM         OAD         H16     180.000    10.0     3
+EZG            sp3_sp3_31           C          CA          CB          CG     180.000    10.0     3
+EZG              const_25          CG         CD2         NE2         CE1       0.000    10.0     2
+EZG              const_29         ND1         CE1         NE2         CD2       0.000    10.0     2
+EZG              const_33         NE2         CE1         ND1          CG       0.000    10.0     2
+EZG             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+EZG            sp3_sp3_22           C          CA           N          H4     180.000    10.0     3
+EZG             sp2_sp2_3           O           C         NAP         CAX       0.000     5.0     2
+EZG       const_sp2_sp2_2         CAI         CAG         CAT         CAW     180.000     5.0     2
+EZG              const_37         CAT         CAG         CAI         CAU       0.000    10.0     2
+EZG              const_18         CAG         CAI         CAU         NAY     180.000    10.0     2
+EZG              const_14         CAH         CAJ         CAU         NAY     180.000    10.0     2
+EZG             sp2_sp2_5         CAJ         CAU         NAY         OAC     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EZG    chir_1    CA    N    C    CB    positive
+EZG    chir_2    CAW    OAE    CAX    CAT    negative
+EZG    chir_3    CAX    NAP    CAW    CAM    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EZG    plan-1          CB   0.020
+EZG    plan-1         CD2   0.020
+EZG    plan-1         CE1   0.020
+EZG    plan-1          CG   0.020
+EZG    plan-1         H18   0.020
+EZG    plan-1         H19   0.020
+EZG    plan-1         H20   0.020
+EZG    plan-1         ND1   0.020
+EZG    plan-1         NE2   0.020
+EZG    plan-2         CAG   0.020
+EZG    plan-2         CAH   0.020
+EZG    plan-2         CAI   0.020
+EZG    plan-2         CAJ   0.020
+EZG    plan-2         CAT   0.020
+EZG    plan-2         CAU   0.020
+EZG    plan-2         CAW   0.020
+EZG    plan-2         H10   0.020
+EZG    plan-2          H7   0.020
+EZG    plan-2          H8   0.020
+EZG    plan-2          H9   0.020
+EZG    plan-2         NAY   0.020
+EZG    plan-3           C   0.020
+EZG    plan-3          CA   0.020
+EZG    plan-3         NAP   0.020
+EZG    plan-3           O   0.020
+EZG    plan-4         CAU   0.020
+EZG    plan-4         NAY   0.020
+EZG    plan-4         OAC   0.020
+EZG    plan-4         OAF   0.020
+EZG    plan-5           C   0.020
+EZG    plan-5         CAX   0.020
+EZG    plan-5         H17   0.020
+EZG    plan-5         NAP   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EZG           SMILES              ACDLabs 12.01                                                                                                              c2(CC(N)C(NC(C(c1ccc([N+]([O-])=O)cc1)O)CO)=O)ncnc2
+EZG            InChI                InChI  1.03 InChI=1S/C15H19N5O5/c16-12(5-10-6-17-8-18-10)15(23)19-13(7-21)14(22)9-1-3-11(4-2-9)20(24)25/h1-4,6,8,12-14,21-22H,5,7,16H2,(H,17,18)(H,19,23)/t12-,13+,14+/m0/s1
+EZG         InChIKey                InChI  1.03                                                                                                                                      MMDMFLDVXHCRMV-BFHYXJOUSA-N
+EZG SMILES_CANONICAL               CACTVS 3.385                                                                                                N[C@@H](Cc1c[nH]cn1)C(=O)N[C@H](CO)[C@H](O)c2ccc(cc2)[N+]([O-])=O
+EZG           SMILES               CACTVS 3.385                                                                                                    N[CH](Cc1c[nH]cn1)C(=O)N[CH](CO)[CH](O)c2ccc(cc2)[N+]([O-])=O
+EZG SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                c1cc(ccc1[C@H]([C@@H](CO)NC(=O)[C@H](Cc2c[nH]cn2)N)O)[N+](=O)[O-]
+EZG           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                             c1cc(ccc1C(C(CO)NC(=O)C(Cc2c[nH]cn2)N)O)[N+](=O)[O-]
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EZG acedrg               243         "dictionary generator"                  
+EZG acedrg_database      11          "data source"                           
+EZG rdkit                2017.03.2   "Chemoinformatics tool"
+EZG refmac5              5.8.0238    "optimization tool"                     

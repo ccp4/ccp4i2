@@ -1,0 +1,369 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+QSP     QSP      "(4~{S})-4-[(2~{R})-3-[(4-azanyl-2-methyl-pyrimidin-5-yl)methyl]-4-methyl-5-[2-[oxidanyl(phosphonooxy)phosphoryl]oxyethyl]-2~{H}-1,3-thiazol-2-yl]-4-oxidanyl-4-phosphono-butanoic acid"     NON-POLYMER     58     37     .     
+#
+data_comp_QSP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+QSP     "N1'"   N       NRD6    0       40.186      23.511      26.071      
+QSP     "C2'"   C       CR6     0       39.903      22.944      24.891      
+QSP     CM2     C       CH3     0       38.959      21.785      24.884      
+QSP     "N3'"   N       NRD6    0       40.404      23.344      23.715      
+QSP     "C4'"   C       CR6     0       41.258      24.391      23.716      
+QSP     "N4'"   N       NH2     0       41.749      24.774      22.525      
+QSP     "C5'"   C       CR6     0       41.615      25.059      24.920      
+QSP     "C6'"   C       CR16    0       41.034      24.553      26.075      
+QSP     "C7'"   C       CH2     0       42.572      26.228      24.961      
+QSP     N3      N       NR5     0       43.914      25.921      24.475      
+QSP     C2      C       CH1     0       44.524      26.777      23.435      
+QSP     S1      S       S2      0       45.797      25.706      22.784      
+QSP     C5      C       CR5     0       45.692      24.573      24.053      
+QSP     C4      C       CR5     0       44.701      24.904      24.962      
+QSP     CM4     C       CH3     0       44.417      24.201      26.251      
+QSP     C6      C       CH2     0       46.623      23.398      24.093      
+QSP     C7      C       CH2     0       45.904      22.097      23.860      
+QSP     O7      O       O2      0       46.845      21.004      23.969      
+QSP     PA      P       P       0       46.345      19.507      23.682      
+QSP     O1A     O       OP      -1      47.492      18.575      23.898      
+QSP     O2A     O       O       0       45.077      19.279      24.437      
+QSP     O3A     O       O2      0       46.018      19.581      22.113      
+QSP     PB      P       P       0       46.949      19.770      20.808      
+QSP     O1B     O       O       0       46.006      20.031      19.659      
+QSP     O2B     O       OP      -1      47.714      18.479      20.653      
+QSP     O3B     O       OP      -1      47.846      20.947      21.104      
+QSP     C11     C       CT      0       45.082      28.146      23.958      
+QSP     P4      P       P       0       46.118      28.091      25.497      
+QSP     O5      O       O       0       46.580      29.484      25.755      
+QSP     O6      O       OP      -1      45.246      27.605      26.603      
+QSP     O8      O       OP      -1      47.270      27.176      25.265      
+QSP     C12     C       CH2     0       45.896      28.940      22.900      
+QSP     O11     O       OH1     0       43.971      28.987      24.274      
+QSP     C13     C       CH2     0       45.345      29.049      21.482      
+QSP     C14     C       C       0       44.118      29.932      21.320      
+QSP     O15     O       OC      -1      44.262      31.166      21.427      
+QSP     O16     O       O       0       43.022      29.384      21.087      
+QSP     H1      H       H       0       39.002      21.325      25.738      
+QSP     H2      H       H       0       39.205      21.170      24.174      
+QSP     H3      H       H       0       38.055      22.104      24.734      
+QSP     H4      H       H       0       41.674      25.610      22.270      
+QSP     H5      H       H       0       42.142      24.187      22.006      
+QSP     H6      H       H       0       41.242      24.958      26.897      
+QSP     H7      H       H       0       42.644      26.550      25.884      
+QSP     H8      H       H       0       42.200      26.956      24.421      
+QSP     H9      H       H       0       43.853      26.960      22.735      
+QSP     H10     H       H       0       44.075      24.831      26.899      
+QSP     H11     H       H       0       45.232      23.806      26.590      
+QSP     H12     H       H       0       43.763      23.504      26.103      
+QSP     H13     H       H       0       47.065      23.373      24.962      
+QSP     H14     H       H       0       47.313      23.513      23.415      
+QSP     H15     H       H       0       45.503      22.100      22.977      
+QSP     H16     H       H       0       45.198      21.992      24.517      
+QSP     H22     H       H       0       46.788      28.537      22.851      
+QSP     H23     H       H       0       46.013      29.850      23.244      
+QSP     H24     H       H       0       43.657      28.817      25.043      
+QSP     H25     H       H       0       45.130      28.156      21.148      
+QSP     H26     H       H       0       46.052      29.409      20.905      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+QSP         C14         O16      DOUBLE       n     1.247  0.0187     1.247  0.0187
+QSP          PB         O1B      DOUBLE       n     1.509  0.0200     1.509  0.0200
+QSP         C13         C14      SINGLE       n     1.519  0.0109     1.519  0.0109
+QSP         C14         O15      SINGLE       n     1.247  0.0187     1.247  0.0187
+QSP         C12         C13      SINGLE       n     1.518  0.0143     1.518  0.0143
+QSP         O3A          PB      SINGLE       n     1.614  0.0178     1.614  0.0178
+QSP          PB         O3B      SINGLE       n     1.509  0.0200     1.509  0.0200
+QSP          PB         O2B      SINGLE       n     1.509  0.0200     1.509  0.0200
+QSP          PA         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+QSP         C11         C12      SINGLE       n     1.542  0.0140     1.542  0.0140
+QSP          PA         O2A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+QSP          PA         O1A      SINGLE       n     1.493  0.0122     1.493  0.0122
+QSP          O7          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+QSP       "C4'"       "N4'"      SINGLE       n     1.343  0.0151     1.343  0.0151
+QSP          C2          S1      SINGLE       n     1.817  0.0200     1.817  0.0200
+QSP          S1          C5      SINGLE       n     1.734  0.0200     1.734  0.0200
+QSP         C11         O11      SINGLE       n     1.427  0.0100     1.427  0.0100
+QSP          C2         C11      SINGLE       n     1.534  0.0200     1.534  0.0200
+QSP         C11          P4      SINGLE       n     1.837  0.0200     1.837  0.0200
+QSP          N3          C2      SINGLE       n     1.458  0.0161     1.458  0.0161
+QSP          C7          O7      SINGLE       n     1.447  0.0162     1.447  0.0162
+QSP          C6          C7      SINGLE       n     1.505  0.0191     1.505  0.0191
+QSP       "N3'"       "C4'"      DOUBLE       y     1.343  0.0133     1.343  0.0133
+QSP       "C2'"       "N3'"      SINGLE       y     1.333  0.0107     1.333  0.0107
+QSP          P4          O5      DOUBLE       n     1.492  0.0200     1.492  0.0200
+QSP       "C4'"       "C5'"      SINGLE       y     1.416  0.0135     1.416  0.0135
+QSP          P4          O8      SINGLE       n     1.492  0.0200     1.492  0.0200
+QSP          P4          O6      SINGLE       n     1.492  0.0200     1.492  0.0200
+QSP          C5          C6      SINGLE       n     1.499  0.0122     1.499  0.0122
+QSP          C5          C4      DOUBLE       n     1.364  0.0200     1.364  0.0200
+QSP       "C2'"         CM2      SINGLE       n     1.494  0.0103     1.494  0.0103
+QSP       "N1'"       "C2'"      DOUBLE       y     1.335  0.0101     1.335  0.0101
+QSP          N3          C4      SINGLE       n     1.325  0.0178     1.325  0.0178
+QSP       "C7'"          N3      SINGLE       n     1.455  0.0100     1.455  0.0100
+QSP       "C5'"       "C7'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+QSP       "C5'"       "C6'"      DOUBLE       y     1.383  0.0136     1.383  0.0136
+QSP          C4         CM4      SINGLE       n     1.493  0.0100     1.493  0.0100
+QSP       "N1'"       "C6'"      SINGLE       y     1.340  0.0100     1.340  0.0100
+QSP         CM2          H1      SINGLE       n     1.089  0.0100     0.971  0.0138
+QSP         CM2          H2      SINGLE       n     1.089  0.0100     0.971  0.0138
+QSP         CM2          H3      SINGLE       n     1.089  0.0100     0.971  0.0138
+QSP       "N4'"          H4      SINGLE       n     1.016  0.0100     0.877  0.0200
+QSP       "N4'"          H5      SINGLE       n     1.016  0.0100     0.877  0.0200
+QSP       "C6'"          H6      SINGLE       n     1.082  0.0130     0.940  0.0200
+QSP       "C7'"          H7      SINGLE       n     1.089  0.0100     0.980  0.0167
+QSP       "C7'"          H8      SINGLE       n     1.089  0.0100     0.980  0.0167
+QSP          C2          H9      SINGLE       n     1.089  0.0100     0.987  0.0200
+QSP         CM4         H10      SINGLE       n     1.089  0.0100     0.967  0.0119
+QSP         CM4         H11      SINGLE       n     1.089  0.0100     0.967  0.0119
+QSP         CM4         H12      SINGLE       n     1.089  0.0100     0.967  0.0119
+QSP          C6         H13      SINGLE       n     1.089  0.0100     0.975  0.0161
+QSP          C6         H14      SINGLE       n     1.089  0.0100     0.975  0.0161
+QSP          C7         H15      SINGLE       n     1.089  0.0100     0.970  0.0100
+QSP          C7         H16      SINGLE       n     1.089  0.0100     0.970  0.0100
+QSP         C12         H22      SINGLE       n     1.089  0.0100     0.980  0.0178
+QSP         C12         H23      SINGLE       n     1.089  0.0100     0.980  0.0178
+QSP         O11         H24      SINGLE       n     0.970  0.0120     0.848  0.0200
+QSP         C13         H25      SINGLE       n     1.089  0.0100     0.981  0.0185
+QSP         C13         H26      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+QSP       "C2'"       "N1'"       "C6'"     117.093    1.65
+QSP       "N3'"       "C2'"         CM2     117.695    1.52
+QSP       "N3'"       "C2'"       "N1'"     124.399    1.50
+QSP         CM2       "C2'"       "N1'"     117.906    1.50
+QSP       "C2'"         CM2          H1     109.546    1.50
+QSP       "C2'"         CM2          H2     109.546    1.50
+QSP       "C2'"         CM2          H3     109.546    1.50
+QSP          H1         CM2          H2     109.397    1.50
+QSP          H1         CM2          H3     109.397    1.50
+QSP          H2         CM2          H3     109.397    1.50
+QSP       "C4'"       "N3'"       "C2'"     117.145    1.69
+QSP       "N4'"       "C4'"       "N3'"     116.812    1.55
+QSP       "N4'"       "C4'"       "C5'"     121.236    1.50
+QSP       "N3'"       "C4'"       "C5'"     121.951    1.50
+QSP       "C4'"       "N4'"          H4     119.860    1.50
+QSP       "C4'"       "N4'"          H5     119.860    1.50
+QSP          H4       "N4'"          H5     120.280    1.85
+QSP       "C4'"       "C5'"       "C7'"     122.080    1.77
+QSP       "C4'"       "C5'"       "C6'"     116.265    1.50
+QSP       "C7'"       "C5'"       "C6'"     121.655    1.50
+QSP       "C5'"       "C6'"       "N1'"     123.147    1.50
+QSP       "C5'"       "C6'"          H6     118.404    1.50
+QSP       "N1'"       "C6'"          H6     118.449    1.50
+QSP          N3       "C7'"       "C5'"     113.376    1.50
+QSP          N3       "C7'"          H7     108.791    1.50
+QSP          N3       "C7'"          H8     108.791    1.50
+QSP       "C5'"       "C7'"          H7     109.103    1.50
+QSP       "C5'"       "C7'"          H8     109.103    1.50
+QSP          H7       "C7'"          H8     107.959    1.50
+QSP          C2          N3          C4     112.315    2.00
+QSP          C2          N3       "C7'"     122.241    1.87
+QSP          C4          N3       "C7'"     125.443    2.04
+QSP          S1          C2         C11     110.879    2.38
+QSP          S1          C2          N3     104.058    1.61
+QSP          S1          C2          H9     109.925    1.50
+QSP         C11          C2          N3     109.797    2.76
+QSP         C11          C2          H9     108.599    1.67
+QSP          N3          C2          H9     109.342    1.50
+QSP          C2          S1          C5     120.000    3.00
+QSP          S1          C5          C6     119.303    2.33
+QSP          S1          C5          C4     112.900    3.00
+QSP          C6          C5          C4     127.798    1.50
+QSP          C5          C4          N3     107.502    1.57
+QSP          C5          C4         CM4     128.592    1.50
+QSP          N3          C4         CM4     123.906    1.85
+QSP          C4         CM4         H10     109.635    1.50
+QSP          C4         CM4         H11     109.635    1.50
+QSP          C4         CM4         H12     109.635    1.50
+QSP         H10         CM4         H11     109.427    1.50
+QSP         H10         CM4         H12     109.427    1.50
+QSP         H11         CM4         H12     109.427    1.50
+QSP          C7          C6          C5     112.262    1.87
+QSP          C7          C6         H13     109.355    1.50
+QSP          C7          C6         H14     109.355    1.50
+QSP          C5          C6         H13     108.991    1.50
+QSP          C5          C6         H14     108.991    1.50
+QSP         H13          C6         H14     107.544    1.50
+QSP          O7          C7          C6     108.926    2.01
+QSP          O7          C7         H15     109.739    1.50
+QSP          O7          C7         H16     109.739    1.50
+QSP          C6          C7         H15     109.495    1.58
+QSP          C6          C7         H16     109.495    1.58
+QSP         H15          C7         H16     108.319    1.50
+QSP          PA          O7          C7     119.251    1.51
+QSP         O3A          PA         O2A     108.816    2.14
+QSP         O3A          PA         O1A     108.816    2.14
+QSP         O3A          PA          O7     101.065    1.97
+QSP         O2A          PA         O1A     118.411    2.35
+QSP         O2A          PA          O7     107.912    2.57
+QSP         O1A          PA          O7     107.912    2.57
+QSP          PB         O3A          PA     132.584    3.00
+QSP         O1B          PB         O3A     105.965    2.38
+QSP         O1B          PB         O3B     112.716    1.50
+QSP         O1B          PB         O2B     112.716    1.50
+QSP         O3A          PB         O3B     105.965    2.38
+QSP         O3A          PB         O2B     105.965    2.38
+QSP         O3B          PB         O2B     112.716    1.50
+QSP         C12         C11         O11     107.982    2.51
+QSP         C12         C11          C2     112.518    2.73
+QSP         C12         C11          P4     111.410    2.87
+QSP         O11         C11          C2     109.648    2.81
+QSP         O11         C11          P4     108.256    2.94
+QSP          C2         C11          P4     113.361    3.00
+QSP         C11          P4          O5     110.326    3.00
+QSP         C11          P4          O8     110.326    3.00
+QSP         C11          P4          O6     110.326    3.00
+QSP          O5          P4          O8     112.502    1.50
+QSP          O5          P4          O6     112.502    1.50
+QSP          O8          P4          O6     112.502    1.50
+QSP         C13         C12         C11     116.408    1.76
+QSP         C13         C12         H22     108.915    1.50
+QSP         C13         C12         H23     108.915    1.50
+QSP         C11         C12         H22     108.039    1.50
+QSP         C11         C12         H23     108.039    1.50
+QSP         H22         C12         H23     107.715    1.50
+QSP         C11         O11         H24     109.280    3.00
+QSP         C14         C13         C12     114.629    2.24
+QSP         C14         C13         H25     108.404    1.50
+QSP         C14         C13         H26     108.404    1.50
+QSP         C12         C13         H25     108.844    1.50
+QSP         C12         C13         H26     108.844    1.50
+QSP         H25         C13         H26     107.521    1.50
+QSP         O16         C14         C13     118.214    1.64
+QSP         O16         C14         O15     123.571    1.50
+QSP         C13         C14         O15     118.214    1.64
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+QSP       const_sp2_sp2_2         CM2       "C2'"       "N1'"       "C6'"     180.000     5.0     2
+QSP              const_15       "C5'"       "C6'"       "N1'"       "C2'"       0.000    10.0     2
+QSP             sp3_sp3_2         C11          C2          S1          C5      60.000    10.0     3
+QSP            sp3_sp3_34         C12         C11          C2          S1     180.000    10.0     3
+QSP             sp2_sp2_2          C6          C5          S1          C2     180.000     5.0     2
+QSP             sp2_sp2_6         CM4          C4          C5          C6       0.000     5.0     2
+QSP            sp2_sp3_14          S1          C5          C6          C7     -90.000    10.0     6
+QSP            sp2_sp3_37          C5          C4         CM4         H10     150.000    10.0     6
+QSP            sp3_sp3_55          C5          C6          C7          O7     180.000    10.0     3
+QSP            sp3_sp3_52          C6          C7          O7          PA     180.000    10.0     3
+QSP            sp3_sp3_28          C7          O7          PA         O3A     180.000    10.0     3
+QSP            sp3_sp3_18          PB         O3A          PA         O2A      60.000    10.0     3
+QSP            sp2_sp3_19       "N3'"       "C2'"         CM2          H1     150.000    10.0     6
+QSP       const_sp2_sp2_4         CM2       "C2'"       "N3'"       "C4'"     180.000     5.0     2
+QSP            sp3_sp3_15          PA         O3A          PB         O1B      60.000    10.0     3
+QSP            sp3_sp3_45         C12         C11          P4          O5      60.000    10.0     3
+QSP            sp3_sp3_19         O11         C11         C12         C13     180.000    10.0     3
+QSP            sp3_sp3_31         C12         C11         O11         H24     180.000    10.0     3
+QSP             sp3_sp3_4         C11         C12         C13         C14     180.000    10.0     3
+QSP             sp2_sp3_8         O16         C14         C13         C12     120.000    10.0     6
+QSP       const_sp2_sp2_6       "N4'"       "C4'"       "N3'"       "C2'"     180.000     5.0     2
+QSP             sp2_sp2_9       "N3'"       "C4'"       "N4'"          H4       0.000     5.0     2
+QSP              const_10       "N4'"       "C4'"       "C5'"       "C7'"       0.000    10.0     2
+QSP              const_13       "C7'"       "C5'"       "C6'"       "N1'"     180.000    10.0     2
+QSP            sp2_sp3_32       "C4'"       "C5'"       "C7'"          N3     -90.000    10.0     6
+QSP            sp2_sp3_26          C2          N3       "C7'"       "C5'"     -90.000    10.0     6
+QSP             sp2_sp3_5       "C7'"          N3          C2         C11     -60.000    10.0     6
+QSP            sp2_sp2_14         CM4          C4          N3       "C7'"       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+QSP    chir_1    C2    S1    N3    C11    negative
+QSP    chir_2    PA    O3A    O7    O1A    both
+QSP    chir_3    PB    O3A    O3B    O2B    both
+QSP    chir_4    C11    P4    O11    C2    positive
+QSP    chir_5    P4    O8    O6    O5    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+QSP    plan-1       "C2'"   0.020
+QSP    plan-1       "C4'"   0.020
+QSP    plan-1       "C5'"   0.020
+QSP    plan-1       "C6'"   0.020
+QSP    plan-1       "C7'"   0.020
+QSP    plan-1         CM2   0.020
+QSP    plan-1          H6   0.020
+QSP    plan-1       "N1'"   0.020
+QSP    plan-1       "N3'"   0.020
+QSP    plan-1       "N4'"   0.020
+QSP    plan-2       "C4'"   0.020
+QSP    plan-2          H4   0.020
+QSP    plan-2          H5   0.020
+QSP    plan-2       "N4'"   0.020
+QSP    plan-3          C2   0.020
+QSP    plan-3          C4   0.020
+QSP    plan-3       "C7'"   0.020
+QSP    plan-3          N3   0.020
+QSP    plan-4          C4   0.020
+QSP    plan-4          C5   0.020
+QSP    plan-4          C6   0.020
+QSP    plan-4          S1   0.020
+QSP    plan-5          C4   0.020
+QSP    plan-5          C5   0.020
+QSP    plan-5         CM4   0.020
+QSP    plan-5          N3   0.020
+QSP    plan-6         C13   0.020
+QSP    plan-6         C14   0.020
+QSP    plan-6         O15   0.020
+QSP    plan-6         O16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+QSP            InChI                InChI  1.03 InChI=1S/C16H27N4O13P3S/c1-9-12(4-6-32-36(30,31)33-35(27,28)29)37-15(16(23,34(24,25)26)5-3-13(21)22)20(9)8-11-7-18-10(2)19-14(11)17/h7,15,23H,3-6,8H2,1-2H3,(H,21,22)(H,30,31)(H2,17,18,19)(H2,24,25,26)(H2,27,28,29)/t15-,16+/m1/s1
+QSP         InChIKey                InChI  1.03                                                                                                                                                                                                          XWZWGSGHSWWOAH-CVEARBPZSA-N
+QSP SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                Cc1ncc(CN2[C@H](SC(=C2C)CCO[P](O)(=O)O[P](O)(O)=O)[C@](O)(CCC(O)=O)[P](O)(O)=O)c(N)n1
+QSP           SMILES               CACTVS 3.385                                                                                                                                                  Cc1ncc(CN2[CH](SC(=C2C)CCO[P](O)(=O)O[P](O)(O)=O)[C](O)(CCC(O)=O)[P](O)(O)=O)c(N)n1
+QSP SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                                                                     Cc1ncc(c(n1)N)CN2[C@H](SC(=C2C)CCOP(=O)(O)OP(=O)(O)O)[C@@](CCC(=O)O)(O)P(=O)(O)O
+QSP           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                                                                             Cc1ncc(c(n1)N)CN2C(SC(=C2C)CCOP(=O)(O)OP(=O)(O)O)C(CCC(=O)O)(O)P(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+QSP acedrg               243         "dictionary generator"                  
+QSP acedrg_database      11          "data source"                           
+QSP rdkit                2017.03.2   "Chemoinformatics tool"
+QSP refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,393 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NJV     NJV      5-(4-cyclopropyl-1H-imidazol-1-yl)-2-fluoro-4-methyl-N-{6-[4-(propan-2-yl)-4H-1,2,4-triazol-3-yl]pyridin-2-yl}benzamide     NON-POLYMER     57     33     .     
+#
+data_comp_NJV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NJV     C1      C       CR6     0       -0.652      17.537      19.070      
+NJV     C6      C       CR16    0       -0.375      16.696      20.126      
+NJV     C11     C       CH1     0       6.116       17.591      22.670      
+NJV     C12     C       CH2     0       6.108       18.900      23.395      
+NJV     C16     C       CR6     0       -2.759      19.898      13.578      
+NJV     N       N       NT      0       3.305       17.209      20.406      
+NJV     CA      C       CR6     0       1.944       17.313      19.958      
+NJV     C       C       CR6     0       0.936       16.568      20.590      
+NJV     CB      C       CR16    0       1.635       18.157      18.884      
+NJV     CG      C       CR6     0       0.323       18.274      18.420      
+NJV     CD      C       C       0       0.045       19.216      17.260      
+NJV     NE      N       NH1     0       -0.694      18.719      16.222      
+NJV     CZ      C       CR6     0       -1.040      19.372      15.030      
+NJV     NH1     N       NRD6    0       -2.338      19.291      14.706      
+NJV     C10     C       CR15    0       3.814       17.648      21.620      
+NJV     C13     C       CH2     0       7.197       18.602      22.445      
+NJV     C17     C       CR16    0       -1.883      20.584      12.745      
+NJV     C18     C       CR16    0       -0.547      20.654      13.093      
+NJV     C19     C       CR16    0       -0.096      20.046      14.244      
+NJV     C20     C       CR5     0       -4.184      19.802      13.221      
+NJV     C21     C       CR15    0       -6.357      19.800      13.229      
+NJV     C22     C       CH1     0       -5.384      20.317      15.464      
+NJV     C23     C       CH3     0       -5.129      19.094      16.338      
+NJV     C24     C       CH3     0       -4.557      21.536      15.844      
+NJV     C7      C       CH3     0       1.232       15.648      21.748      
+NJV     C8      C       CR15    0       4.357       16.665      19.737      
+NJV     C9      C       CR5     0       5.125       17.345      21.616      
+NJV     F1      F       F       0       -1.937      17.626      18.653      
+NJV     N2      N       NRD5    0       5.460       16.735      20.447      
+NJV     N5      N       NT      0       -5.275      19.995      14.039      
+NJV     N6      N       NRD5    0       -5.985      19.522      12.013      
+NJV     N7      N       NRD5    0       -4.595      19.525      12.003      
+NJV     O1      O       O       0       0.476       20.364      17.297      
+NJV     H1      H       H       0       -1.079      16.195      20.547      
+NJV     H2      H       H       0       6.366       16.806      23.203      
+NJV     H3      H       H       0       5.432       19.571      23.124      
+NJV     H4      H       H       0       6.325       18.891      24.361      
+NJV     H5      H       H       0       2.318       18.652      18.465      
+NJV     H6      H       H       0       -0.984      17.889      16.292      
+NJV     H7      H       H       0       3.326       18.068      22.309      
+NJV     H8      H       H       0       7.200       19.087      21.582      
+NJV     H9      H       H       0       8.092       18.407      22.820      
+NJV     H10     H       H       0       -2.201      20.994      11.959      
+NJV     H11     H       H       0       0.063       21.121      12.538      
+NJV     H12     H       H       0       0.814       20.087      14.497      
+NJV     H13     H       H       0       -7.261      19.866      13.532      
+NJV     H14     H       H       0       -6.324      20.576      15.649      
+NJV     H15     H       H       0       -4.989      18.312      15.776      
+NJV     H16     H       H       0       -5.901      18.943      16.912      
+NJV     H17     H       H       0       -4.341      19.238      16.890      
+NJV     H18     H       H       0       -4.500      22.139      15.083      
+NJV     H19     H       H       0       -3.661      21.259      16.104      
+NJV     H20     H       H       0       -4.982      21.995      16.589      
+NJV     H21     H       H       0       2.002       15.095      21.538      
+NJV     H22     H       H       0       0.467       15.076      21.919      
+NJV     H23     H       H       0       1.422       16.175      22.541      
+NJV     H24     H       H       0       4.306       16.287      18.880      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NJV          N6          N7      SINGLE       y     1.387  0.0124     1.387  0.0124
+NJV         C21          N6      DOUBLE       y     1.302  0.0100     1.302  0.0100
+NJV         C20          N7      DOUBLE       y     1.314  0.0100     1.314  0.0100
+NJV         C17         C18      DOUBLE       y     1.377  0.0127     1.377  0.0127
+NJV         C16         C17      SINGLE       y     1.385  0.0100     1.385  0.0100
+NJV         C21          N5      SINGLE       y     1.368  0.0147     1.368  0.0147
+NJV         C18         C19      SINGLE       y     1.375  0.0106     1.375  0.0106
+NJV         C16         C20      SINGLE       n     1.468  0.0128     1.468  0.0128
+NJV         C20          N5      SINGLE       y     1.374  0.0170     1.374  0.0170
+NJV         C16         NH1      DOUBLE       y     1.342  0.0100     1.342  0.0100
+NJV         C22          N5      SINGLE       n     1.462  0.0101     1.462  0.0101
+NJV          CZ         C19      DOUBLE       y     1.399  0.0100     1.399  0.0100
+NJV          CZ         NH1      SINGLE       y     1.334  0.0100     1.334  0.0100
+NJV          NE          CZ      SINGLE       n     1.399  0.0100     1.399  0.0100
+NJV         C22         C23      SINGLE       n     1.513  0.0200     1.513  0.0200
+NJV         C22         C24      SINGLE       n     1.513  0.0200     1.513  0.0200
+NJV          CD          NE      SINGLE       n     1.363  0.0100     1.363  0.0100
+NJV          CD          O1      DOUBLE       n     1.226  0.0100     1.226  0.0100
+NJV          CG          CD      SINGLE       n     1.508  0.0200     1.508  0.0200
+NJV          C1          F1      SINGLE       n     1.353  0.0100     1.353  0.0100
+NJV          C1          CG      DOUBLE       y     1.380  0.0133     1.380  0.0133
+NJV          CB          CG      SINGLE       y     1.391  0.0100     1.391  0.0100
+NJV          C1          C6      SINGLE       y     1.376  0.0100     1.376  0.0100
+NJV          CA          CB      DOUBLE       y     1.384  0.0163     1.384  0.0163
+NJV          C6           C      DOUBLE       y     1.392  0.0100     1.392  0.0100
+NJV          C8          N2      DOUBLE       y     1.310  0.0102     1.310  0.0102
+NJV           N          C8      SINGLE       y     1.365  0.0136     1.365  0.0136
+NJV          CA           C      SINGLE       y     1.395  0.0100     1.395  0.0100
+NJV           N          CA      SINGLE       n     1.434  0.0100     1.434  0.0100
+NJV           C          C7      SINGLE       n     1.506  0.0100     1.506  0.0100
+NJV          C9          N2      SINGLE       y     1.343  0.0200     1.343  0.0200
+NJV           N         C10      SINGLE       y     1.395  0.0145     1.395  0.0145
+NJV         C10          C9      DOUBLE       y     1.344  0.0140     1.344  0.0140
+NJV         C11          C9      SINGLE       n     1.467  0.0100     1.467  0.0100
+NJV         C11         C13      SINGLE       n     1.497  0.0142     1.497  0.0142
+NJV         C12         C13      SINGLE       n     1.475  0.0140     1.475  0.0140
+NJV         C11         C12      SINGLE       n     1.497  0.0142     1.497  0.0142
+NJV          C6          H1      SINGLE       n     1.082  0.0130     0.961  0.0200
+NJV         C11          H2      SINGLE       n     1.089  0.0100     0.981  0.0200
+NJV         C12          H3      SINGLE       n     1.089  0.0100     0.990  0.0100
+NJV         C12          H4      SINGLE       n     1.089  0.0100     0.990  0.0100
+NJV          CB          H5      SINGLE       n     1.082  0.0130     0.942  0.0108
+NJV          NE          H6      SINGLE       n     1.016  0.0100     0.881  0.0200
+NJV         C10          H7      SINGLE       n     1.082  0.0130     0.943  0.0200
+NJV         C13          H8      SINGLE       n     1.089  0.0100     0.990  0.0100
+NJV         C13          H9      SINGLE       n     1.089  0.0100     0.990  0.0100
+NJV         C17         H10      SINGLE       n     1.082  0.0130     0.942  0.0200
+NJV         C18         H11      SINGLE       n     1.082  0.0130     0.948  0.0164
+NJV         C19         H12      SINGLE       n     1.082  0.0130     0.945  0.0200
+NJV         C21         H13      SINGLE       n     1.082  0.0130     0.956  0.0200
+NJV         C22         H14      SINGLE       n     1.089  0.0100     0.992  0.0151
+NJV         C23         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+NJV         C23         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+NJV         C23         H17      SINGLE       n     1.089  0.0100     0.973  0.0146
+NJV         C24         H18      SINGLE       n     1.089  0.0100     0.973  0.0146
+NJV         C24         H19      SINGLE       n     1.089  0.0100     0.973  0.0146
+NJV         C24         H20      SINGLE       n     1.089  0.0100     0.973  0.0146
+NJV          C7         H21      SINGLE       n     1.089  0.0100     0.971  0.0135
+NJV          C7         H22      SINGLE       n     1.089  0.0100     0.971  0.0135
+NJV          C7         H23      SINGLE       n     1.089  0.0100     0.971  0.0135
+NJV          C8         H24      SINGLE       n     1.082  0.0130     0.938  0.0161
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NJV          F1          C1          CG     119.003    1.50
+NJV          F1          C1          C6     117.698    1.50
+NJV          CG          C1          C6     123.299    1.50
+NJV          C1          C6           C     119.834    1.50
+NJV          C1          C6          H1     120.596    1.50
+NJV           C          C6          H1     119.570    1.50
+NJV          C9         C11         C13     119.304    1.50
+NJV          C9         C11         C12     119.304    1.50
+NJV          C9         C11          H2     115.352    1.50
+NJV         C13         C11         C12      59.041    1.50
+NJV         C13         C11          H2     115.981    1.50
+NJV         C12         C11          H2     115.981    1.50
+NJV         C13         C12         C11      60.447    1.50
+NJV         C13         C12          H3     117.770    1.50
+NJV         C13         C12          H4     117.770    1.50
+NJV         C11         C12          H3     117.721    1.50
+NJV         C11         C12          H4     117.721    1.50
+NJV          H3         C12          H4     115.244    1.51
+NJV         C17         C16         C20     120.751    1.50
+NJV         C17         C16         NH1     121.687    1.50
+NJV         C20         C16         NH1     117.563    1.60
+NJV          C8           N          CA     124.897    2.56
+NJV          C8           N         C10     108.641    1.96
+NJV          CA           N         C10     124.706    2.08
+NJV          CB          CA           C     120.222    1.61
+NJV          CB          CA           N     120.002    1.50
+NJV           C          CA           N     119.777    1.50
+NJV          C6           C          CA     118.355    1.50
+NJV          C6           C          C7     120.372    1.50
+NJV          CA           C          C7     121.273    1.50
+NJV          CG          CB          CA     120.315    1.50
+NJV          CG          CB          H5     119.585    1.50
+NJV          CA          CB          H5     120.101    1.50
+NJV          CD          CG          C1     123.981    1.87
+NJV          CD          CG          CB     118.044    2.89
+NJV          C1          CG          CB     117.975    1.50
+NJV          NE          CD          O1     123.609    1.50
+NJV          NE          CD          CG     115.918    1.50
+NJV          O1          CD          CG     120.489    1.50
+NJV          CZ          NE          CD     127.374    1.50
+NJV          CZ          NE          H6     115.614    1.56
+NJV          CD          NE          H6     117.012    1.64
+NJV         C19          CZ         NH1     123.838    1.50
+NJV         C19          CZ          NE     122.807    1.50
+NJV         NH1          CZ          NE     113.356    2.68
+NJV         C16         NH1          CZ     118.042    1.50
+NJV           N         C10          C9     107.790    2.05
+NJV           N         C10          H7     125.513    1.50
+NJV          C9         C10          H7     126.697    1.50
+NJV         C11         C13         C12      60.447    1.50
+NJV         C11         C13          H8     117.721    1.50
+NJV         C11         C13          H9     117.721    1.50
+NJV         C12         C13          H8     117.770    1.50
+NJV         C12         C13          H9     117.770    1.50
+NJV          H8         C13          H9     115.244    1.51
+NJV         C18         C17         C16     118.511    1.50
+NJV         C18         C17         H10     121.166    1.50
+NJV         C16         C17         H10     120.323    1.50
+NJV         C17         C18         C19     120.322    1.50
+NJV         C17         C18         H11     120.019    1.50
+NJV         C19         C18         H11     119.659    1.50
+NJV         C18         C19          CZ     117.601    1.50
+NJV         C18         C19         H12     121.232    1.50
+NJV          CZ         C19         H12     121.167    1.50
+NJV          N7         C20         C16     123.581    1.50
+NJV          N7         C20          N5     112.328    1.94
+NJV         C16         C20          N5     124.092    2.23
+NJV          N6         C21          N5     111.990    1.94
+NJV          N6         C21         H13     125.055    1.50
+NJV          N5         C21         H13     122.956    1.68
+NJV          N5         C22         C23     111.989    1.71
+NJV          N5         C22         C24     111.989    1.71
+NJV          N5         C22         H14     109.177    1.50
+NJV         C23         C22         C24     113.078    1.98
+NJV         C23         C22         H14     107.549    2.01
+NJV         C24         C22         H14     107.549    2.01
+NJV         C22         C23         H15     109.437    1.50
+NJV         C22         C23         H16     109.437    1.50
+NJV         C22         C23         H17     109.437    1.50
+NJV         H15         C23         H16     109.476    1.50
+NJV         H15         C23         H17     109.476    1.50
+NJV         H16         C23         H17     109.476    1.50
+NJV         C22         C24         H18     109.437    1.50
+NJV         C22         C24         H19     109.437    1.50
+NJV         C22         C24         H20     109.437    1.50
+NJV         H18         C24         H19     109.476    1.50
+NJV         H18         C24         H20     109.476    1.50
+NJV         H19         C24         H20     109.476    1.50
+NJV           C          C7         H21     109.694    1.50
+NJV           C          C7         H22     109.694    1.50
+NJV           C          C7         H23     109.694    1.50
+NJV         H21          C7         H22     109.348    1.50
+NJV         H21          C7         H23     109.348    1.50
+NJV         H22          C7         H23     109.348    1.50
+NJV          N2          C8           N     111.693    1.94
+NJV          N2          C8         H24     124.042    1.50
+NJV           N          C8         H24     124.265    2.19
+NJV          N2          C9         C10     108.334    2.56
+NJV          N2          C9         C11     122.480    3.00
+NJV         C10          C9         C11     129.186    3.00
+NJV          C8          N2          C9     104.430    1.65
+NJV         C21          N5         C20     108.641    1.96
+NJV         C21          N5         C22     124.795    3.00
+NJV         C20          N5         C22     124.795    3.00
+NJV          N7          N6         C21     107.010    1.50
+NJV          N6          N7         C20     107.591    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NJV              const_68          F1          C1          C6           C     180.000    10.0     2
+NJV              const_36          CA          CB          CG          CD     180.000    10.0     2
+NJV            sp2_sp2_13          NE          CD          CG          C1     180.000     5.0     2
+NJV             sp2_sp2_7         NH1          CZ          NE          CD       0.000     5.0     2
+NJV              const_32          C6          C1          CG          CD     180.000    10.0     2
+NJV              const_28         H12         C19          CZ          NE       0.000    10.0     2
+NJV       const_sp2_sp2_9           N         C10          C9          N2       0.000     5.0     2
+NJV              const_19         H10         C17         C18         C19     180.000    10.0     2
+NJV              const_23         H11         C18         C19          CZ     180.000    10.0     2
+NJV              const_63         C16         C20          N5         C22       0.000    10.0     2
+NJV              const_54          N5         C21          N6          N7       0.000    10.0     2
+NJV              const_51          N5         C20          N7          N6       0.000    10.0     2
+NJV              const_59         H13         C21          N5         C22       0.000    10.0     2
+NJV              const_56          N6         C21          N5         C20       0.000    10.0     2
+NJV            sp3_sp3_24         C24         C22         C23         H17     -60.000    10.0     3
+NJV            sp3_sp3_30         C23         C22         C24         H20      60.000    10.0     3
+NJV             sp2_sp3_4         C20          N5         C22         C24     -30.000    10.0     6
+NJV       const_sp2_sp2_5           N          C8          N2          C9       0.000     5.0     2
+NJV       const_sp2_sp2_7         C10          C9          N2          C8       0.000     5.0     2
+NJV             sp3_sp3_1          C9         C11         C13         C12      60.000    10.0     3
+NJV            sp2_sp3_16         C10          C9         C11         C12     -30.000    10.0     6
+NJV            sp3_sp3_43          H2         C11         C12         C13     -60.000    10.0     3
+NJV              const_55         H13         C21          N6          N7     180.000    10.0     2
+NJV             sp2_sp3_1         C21          N5         C22         C24     150.000    10.0     6
+NJV              const_17         C16         C17         C18         C19       0.000    10.0     2
+NJV             sp2_sp2_4         NH1         C16         C20          N7     180.000     5.0     2
+NJV              const_72          H7         C10           N          C8     180.000    10.0     2
+NJV       const_sp2_sp2_2          N2          C8           N          CA     180.000     5.0     2
+NJV            sp2_sp2_19           C          CA           N          C8       0.000     5.0     2
+NJV              const_47          CA           C          C6          C1       0.000    10.0     2
+NJV              const_41           N          CA          CB          CG     180.000    10.0     2
+NJV             sp2_sp3_9          C6           C          C7         H23      30.000    10.0     6
+NJV              const_38          H5          CB          CG          CD       0.000    10.0     2
+NJV            sp2_sp2_15          O1          CD          CG          C1       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NJV    chir_1    C11    C9    C13    C12    both
+NJV    chir_2    C22    N5    C23    C24    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NJV    plan-1           C   0.020
+NJV    plan-1          C1   0.020
+NJV    plan-1          C6   0.020
+NJV    plan-1          C7   0.020
+NJV    plan-1          CA   0.020
+NJV    plan-1          CB   0.020
+NJV    plan-1          CD   0.020
+NJV    plan-1          CG   0.020
+NJV    plan-1          F1   0.020
+NJV    plan-1          H1   0.020
+NJV    plan-1          H5   0.020
+NJV    plan-1           N   0.020
+NJV    plan-2         C16   0.020
+NJV    plan-2         C17   0.020
+NJV    plan-2         C18   0.020
+NJV    plan-2         C19   0.020
+NJV    plan-2         C20   0.020
+NJV    plan-2          CZ   0.020
+NJV    plan-2         H10   0.020
+NJV    plan-2         H11   0.020
+NJV    plan-2         H12   0.020
+NJV    plan-2          NE   0.020
+NJV    plan-2         NH1   0.020
+NJV    plan-3         C10   0.020
+NJV    plan-3         C11   0.020
+NJV    plan-3          C8   0.020
+NJV    plan-3          C9   0.020
+NJV    plan-3          CA   0.020
+NJV    plan-3         H24   0.020
+NJV    plan-3          H7   0.020
+NJV    plan-3           N   0.020
+NJV    plan-3          N2   0.020
+NJV    plan-4         C16   0.020
+NJV    plan-4         C20   0.020
+NJV    plan-4         C21   0.020
+NJV    plan-4         C22   0.020
+NJV    plan-4         H13   0.020
+NJV    plan-4          N5   0.020
+NJV    plan-4          N6   0.020
+NJV    plan-4          N7   0.020
+NJV    plan-5          CD   0.020
+NJV    plan-5          CG   0.020
+NJV    plan-5          NE   0.020
+NJV    plan-5          O1   0.020
+NJV    plan-6          CD   0.020
+NJV    plan-6          CZ   0.020
+NJV    plan-6          H6   0.020
+NJV    plan-6          NE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NJV           SMILES              ACDLabs 12.01                                                                                                         c3(cc(c(n2cc(C1CC1)nc2)cc3C(Nc4nc(ccc4)c5n(cnn5)C(C)C)=O)C)F
+NJV            InChI                InChI  1.03 InChI=1S/C24H24FN7O/c1-14(2)32-13-27-30-23(32)19-5-4-6-22(28-19)29-24(33)17-10-21(15(3)9-18(17)25)31-11-20(26-12-31)16-7-8-16/h4-6,9-14,16H,7-8H2,1-3H3,(H,28,29,33)
+NJV         InChIKey                InChI  1.03                                                                                                                                          YIDDLAAKOYYGJG-UHFFFAOYSA-N
+NJV SMILES_CANONICAL               CACTVS 3.385                                                                                                             CC(C)n1cnnc1c2cccc(NC(=O)c3cc(n4cnc(c4)C5CC5)c(C)cc3F)n2
+NJV           SMILES               CACTVS 3.385                                                                                                             CC(C)n1cnnc1c2cccc(NC(=O)c3cc(n4cnc(c4)C5CC5)c(C)cc3F)n2
+NJV SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                                             Cc1cc(c(cc1n2cc(nc2)C3CC3)C(=O)Nc4cccc(n4)c5nncn5C(C)C)F
+NJV           SMILES "OpenEye OEToolkits" 2.0.7                                                                                                             Cc1cc(c(cc1n2cc(nc2)C3CC3)C(=O)Nc4cccc(n4)c5nncn5C(C)C)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NJV acedrg               243         "dictionary generator"                  
+NJV acedrg_database      11          "data source"                           
+NJV rdkit                2017.03.2   "Chemoinformatics tool"
+NJV refmac5              5.8.0238    "optimization tool"                     

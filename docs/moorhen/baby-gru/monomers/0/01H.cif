@@ -1,0 +1,159 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+01H     01H      4-hydrazinylbutan-1-amine     NON-POLYMER     20     7     .     
+#
+data_comp_01H
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+01H     N1      N       NT2     0       10.163      -12.843     24.022      
+01H     C2      C       CH2     0       10.875      -12.244     22.889      
+01H     C3      C       CH2     0       12.380      -12.458     22.904      
+01H     C4      C       CH2     0       13.095      -11.773     21.752      
+01H     C5      C       CH2     0       14.603      -11.963     21.786      
+01H     N6      N       NT1     0       15.273      -11.292     20.681      
+01H     N7      N       NT2     0       16.689      -11.364     20.763      
+01H     HN11    H       H       0       9.295       -12.917     23.846      
+01H     HN12    H       H       0       10.468      -13.660     24.190      
+01H     H21A    H       H       0       10.698      -11.281     22.882      
+01H     H22A    H       H       0       10.515      -12.619     22.059      
+01H     H31     H       H       0       12.561      -13.422     22.866      
+01H     H32     H       H       0       12.738      -12.117     23.751      
+01H     H41     H       H       0       12.896      -10.813     21.778      
+01H     H42     H       H       0       12.750      -12.130     20.905      
+01H     H51     H       H       0       14.807      -12.921     21.751      
+01H     H52     H       H       0       14.951      -11.613     22.633      
+01H     HN6     H       H       0       14.996      -10.477     20.474      
+01H     HN7     H       H       0       16.984      -12.214     20.736      
+01H     H2      H       H       0       17.000      -10.990     21.521      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+01H          N1          C2      SINGLE       n     1.466  0.0117     1.466  0.0117
+01H          C2          C3      SINGLE       n     1.521  0.0102     1.521  0.0102
+01H          C3          C4      SINGLE       n     1.519  0.0150     1.519  0.0150
+01H          C4          C5      SINGLE       n     1.521  0.0100     1.521  0.0100
+01H          C5          N6      SINGLE       n     1.456  0.0100     1.456  0.0100
+01H          N6          N7      SINGLE       n     1.420  0.0126     1.420  0.0126
+01H          N1        HN11      SINGLE       n     1.036  0.0160     0.888  0.0200
+01H          N1        HN12      SINGLE       n     1.036  0.0160     0.888  0.0200
+01H          C2        H21A      SINGLE       n     1.089  0.0100     0.979  0.0106
+01H          C2        H22A      SINGLE       n     1.089  0.0100     0.979  0.0106
+01H          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0160
+01H          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0160
+01H          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0160
+01H          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0160
+01H          C5         H51      SINGLE       n     1.089  0.0100     0.980  0.0143
+01H          C5         H52      SINGLE       n     1.089  0.0100     0.980  0.0143
+01H          N6         HN6      SINGLE       n     1.036  0.0160     0.886  0.0200
+01H          N7         HN7      SINGLE       n     1.036  0.0160     0.900  0.0200
+01H          N7          H2      SINGLE       n     1.036  0.0160     0.900  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+01H          C2          N1        HN11     110.839    3.00
+01H          C2          N1        HN12     110.839    3.00
+01H        HN11          N1        HN12     107.243    3.00
+01H          N1          C2          C3     114.751    2.00
+01H          N1          C2        H21A     108.763    1.50
+01H          N1          C2        H22A     108.763    1.50
+01H          C3          C2        H21A     108.627    1.50
+01H          C3          C2        H22A     108.627    1.50
+01H        H21A          C2        H22A     107.806    1.50
+01H          C2          C3          C4     113.118    2.03
+01H          C2          C3         H31     108.630    1.50
+01H          C2          C3         H32     108.630    1.50
+01H          C4          C3         H31     108.999    1.50
+01H          C4          C3         H32     108.999    1.50
+01H         H31          C3         H32     107.927    1.57
+01H          C3          C4          C5     113.118    2.03
+01H          C3          C4         H41     108.999    1.50
+01H          C3          C4         H42     108.999    1.50
+01H          C5          C4         H41     108.805    1.50
+01H          C5          C4         H42     108.805    1.50
+01H         H41          C4         H42     107.927    1.57
+01H          C4          C5          N6     112.511    2.33
+01H          C4          C5         H51     109.099    1.50
+01H          C4          C5         H52     109.099    1.50
+01H          N6          C5         H51     109.180    1.50
+01H          N6          C5         H52     109.180    1.50
+01H         H51          C5         H52     107.873    1.50
+01H          C5          N6          N7     113.051    3.00
+01H          C5          N6         HN6     117.220    3.00
+01H          N7          N6         HN6     111.837    3.00
+01H          N6          N7         HN7     111.837    3.00
+01H          N6          N7          H2     111.837    3.00
+01H         HN7          N7          H2     107.713    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+01H             sp3_sp3_1          C3          C2          N1        HN11     180.000    10.0     3
+01H             sp3_sp3_7          N1          C2          C3          C4     180.000    10.0     3
+01H            sp3_sp3_16          C2          C3          C4          C5     180.000    10.0     3
+01H            sp3_sp3_25          C3          C4          C5          N6     180.000    10.0     3
+01H            sp3_sp3_34          C4          C5          N6          N7     180.000    10.0     3
+01H            sp3_sp3_42          C5          N6          N7         HN7      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+01H    chir_1    N6    N7    C5    HN6    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+01H           SMILES              ACDLabs 12.01                                   NCCCCNN
+01H SMILES_CANONICAL               CACTVS 3.370                                   NCCCCNN
+01H           SMILES               CACTVS 3.370                                   NCCCCNN
+01H SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                 C(CCNN)CN
+01H           SMILES "OpenEye OEToolkits" 1.7.0                                 C(CCNN)CN
+01H            InChI                InChI  1.03 InChI=1S/C4H13N3/c5-3-1-2-4-7-6/h7H,1-6H2
+01H         InChIKey                InChI  1.03               VZNAZYIHCOSQCQ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+01H acedrg               243         "dictionary generator"                  
+01H acedrg_database      11          "data source"                           
+01H rdkit                2017.03.2   "Chemoinformatics tool"
+01H refmac5              5.8.0238    "optimization tool"                     

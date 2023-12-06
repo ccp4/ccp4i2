@@ -1,0 +1,350 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EQZ     EQZ      6-[5-chloranyl-2-(oxan-4-ylamino)pyrimidin-4-yl]-2-(2-methoxyethyl)-3~{H}-isoindol-1-one     NON-POLYMER     51     28     .     
+#
+data_comp_EQZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EQZ     C1      C       CH3     0       -0.950      10.260      48.140      
+EQZ     C3      C       CH2     0       -0.789      10.566      45.808      
+EQZ     C6      C       CH2     0       2.088       11.185      44.791      
+EQZ     C7      C       CR56    0       3.488       10.653      44.795      
+EQZ     C8      C       CR16    0       4.698       11.313      44.970      
+EQZ     C10     C       CR6     0       5.866       9.189       44.721      
+EQZ     C11     C       CR16    0       4.641       8.544       44.539      
+EQZ     C12     C       CR56    0       3.459       9.288       44.584      
+EQZ     C13     C       CR5     0       2.055       8.855       44.436      
+EQZ     C15     C       CR6     0       7.145       8.429       44.678      
+EQZ     N18     N       NH1     0       10.074      8.469       42.634      
+EQZ     C19     C       CH1     0       9.928       9.600       41.723      
+EQZ     C21     C       CH2     0       11.101      11.121      40.129      
+EQZ     C23     C       CH2     0       8.931       10.373      39.568      
+EQZ     C24     C       CH2     0       8.971       9.259       40.587      
+EQZ     C26     C       CR16    0       8.705       6.792       45.437      
+EQZ     C27     C       CR6     0       7.472       7.421       45.582      
+EQZ     O2      O       O2      0       -0.393      9.790       46.922      
+EQZ     C4      C       CH2     0       -0.161      9.993       44.565      
+EQZ     N5      N       NR5     0       1.298       9.973       44.598      
+EQZ     C9      C       CR16    0       5.879       10.578      44.930      
+EQZ     O14     O       O       0       1.622       7.724       44.218      
+EQZ     N16     N       NRD6    0       8.006       8.783       43.699      
+EQZ     C17     C       CR6     0       9.194       8.125       43.622      
+EQZ     C20     C       CH2     0       11.278      10.052      41.182      
+EQZ     O22     O       O2      0       10.238      10.676      39.085      
+EQZ     N25     N       NRD6    0       9.565       7.135       44.467      
+EQZ     CL1     CL      CL      0       6.382       6.957       46.850      
+EQZ     H31     H       H       0       -0.650      9.696       48.871      
+EQZ     H30     H       H       0       -1.920      10.230      48.087      
+EQZ     H29     H       H       0       -0.662      11.174      48.298      
+EQZ     H32     H       H       0       -0.503      11.497      45.930      
+EQZ     H33     H       H       0       -1.766      10.553      45.722      
+EQZ     H36     H       H       0       1.869       11.626      45.641      
+EQZ     H37     H       H       0       1.948       11.824      44.058      
+EQZ     H38     H       H       0       4.718       12.247      45.114      
+EQZ     H40     H       H       0       4.616       7.608       44.399      
+EQZ     H41     H       H       0       10.781      7.961       42.546      
+EQZ     H42     H       H       0       9.543       10.357      42.222      
+EQZ     H45     H       H       0       11.974      11.352      39.745      
+EQZ     H46     H       H       0       10.725      11.929      40.537      
+EQZ     H48     H       H       0       8.541       11.178      39.973      
+EQZ     H47     H       H       0       8.365       10.107      38.813      
+EQZ     H49     H       H       0       9.259       8.437       40.160      
+EQZ     H50     H       H       0       8.082       9.115       40.947      
+EQZ     H51     H       H       0       8.953       6.104       46.034      
+EQZ     H34     H       H       0       -0.444      10.525      43.797      
+EQZ     H35     H       H       0       -0.495      9.086       44.436      
+EQZ     H39     H       H       0       6.714       11.027      45.049      
+EQZ     H43     H       H       0       11.743      9.292       40.799      
+EQZ     H44     H       H       0       11.817      10.399      41.910      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EQZ         C23         O22      SINGLE       n     1.423  0.0100     1.423  0.0100
+EQZ         C21         O22      SINGLE       n     1.423  0.0100     1.423  0.0100
+EQZ         C23         C24      SINGLE       n     1.508  0.0118     1.508  0.0118
+EQZ         C19         C24      SINGLE       n     1.521  0.0108     1.521  0.0108
+EQZ         C21         C20      SINGLE       n     1.508  0.0118     1.508  0.0118
+EQZ         C19         C20      SINGLE       n     1.521  0.0108     1.521  0.0108
+EQZ         N18         C19      SINGLE       n     1.457  0.0100     1.457  0.0100
+EQZ         N18         C17      SINGLE       n     1.350  0.0189     1.350  0.0189
+EQZ         N16         C17      DOUBLE       y     1.354  0.0100     1.354  0.0100
+EQZ         C17         N25      SINGLE       y     1.348  0.0100     1.348  0.0100
+EQZ         C15         N16      SINGLE       y     1.346  0.0115     1.346  0.0115
+EQZ          C8          C9      SINGLE       y     1.389  0.0100     1.389  0.0100
+EQZ         C10          C9      DOUBLE       y     1.401  0.0100     1.401  0.0100
+EQZ          C7          C8      DOUBLE       y     1.386  0.0100     1.386  0.0100
+EQZ         C26         N25      DOUBLE       y     1.335  0.0118     1.335  0.0118
+EQZ          C6          C7      SINGLE       n     1.499  0.0100     1.499  0.0100
+EQZ          C7         C12      SINGLE       y     1.379  0.0100     1.379  0.0100
+EQZ         C10         C15      SINGLE       n     1.487  0.0100     1.487  0.0100
+EQZ         C15         C27      DOUBLE       y     1.387  0.0114     1.387  0.0114
+EQZ         C10         C11      SINGLE       y     1.391  0.0108     1.391  0.0108
+EQZ          C6          N5      SINGLE       n     1.459  0.0100     1.459  0.0100
+EQZ         C11         C12      DOUBLE       y     1.392  0.0108     1.392  0.0108
+EQZ         C12         C13      SINGLE       n     1.476  0.0117     1.476  0.0117
+EQZ         C13          N5      SINGLE       n     1.355  0.0100     1.355  0.0100
+EQZ          C4          N5      SINGLE       n     1.455  0.0101     1.455  0.0101
+EQZ         C26         C27      SINGLE       y     1.389  0.0100     1.389  0.0100
+EQZ         C27         CL1      SINGLE       n     1.734  0.0137     1.734  0.0137
+EQZ         C13         O14      DOUBLE       n     1.230  0.0110     1.230  0.0110
+EQZ          C3          C4      SINGLE       n     1.505  0.0100     1.505  0.0100
+EQZ          C3          O2      SINGLE       n     1.412  0.0144     1.412  0.0144
+EQZ          C1          O2      SINGLE       n     1.415  0.0200     1.415  0.0200
+EQZ          C1         H31      SINGLE       n     1.089  0.0100     0.971  0.0146
+EQZ          C1         H30      SINGLE       n     1.089  0.0100     0.971  0.0146
+EQZ          C1         H29      SINGLE       n     1.089  0.0100     0.971  0.0146
+EQZ          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0174
+EQZ          C3         H33      SINGLE       n     1.089  0.0100     0.981  0.0174
+EQZ          C6         H36      SINGLE       n     1.089  0.0100     0.982  0.0106
+EQZ          C6         H37      SINGLE       n     1.089  0.0100     0.982  0.0106
+EQZ          C8         H38      SINGLE       n     1.082  0.0130     0.945  0.0199
+EQZ         C11         H40      SINGLE       n     1.082  0.0130     0.947  0.0100
+EQZ         N18         H41      SINGLE       n     1.016  0.0100     0.873  0.0200
+EQZ         C19         H42      SINGLE       n     1.089  0.0100     0.985  0.0100
+EQZ         C21         H45      SINGLE       n     1.089  0.0100     0.981  0.0100
+EQZ         C21         H46      SINGLE       n     1.089  0.0100     0.981  0.0100
+EQZ         C23         H48      SINGLE       n     1.089  0.0100     0.981  0.0100
+EQZ         C23         H47      SINGLE       n     1.089  0.0100     0.981  0.0100
+EQZ         C24         H49      SINGLE       n     1.089  0.0100     0.970  0.0100
+EQZ         C24         H50      SINGLE       n     1.089  0.0100     0.970  0.0100
+EQZ         C26         H51      SINGLE       n     1.082  0.0130     0.944  0.0190
+EQZ          C4         H34      SINGLE       n     1.089  0.0100     0.976  0.0150
+EQZ          C4         H35      SINGLE       n     1.089  0.0100     0.976  0.0150
+EQZ          C9         H39      SINGLE       n     1.082  0.0130     0.956  0.0200
+EQZ         C20         H43      SINGLE       n     1.089  0.0100     0.970  0.0100
+EQZ         C20         H44      SINGLE       n     1.089  0.0100     0.970  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EQZ          O2          C1         H31     109.470    1.50
+EQZ          O2          C1         H30     109.470    1.50
+EQZ          O2          C1         H29     109.470    1.50
+EQZ         H31          C1         H30     109.532    1.53
+EQZ         H31          C1         H29     109.532    1.53
+EQZ         H30          C1         H29     109.532    1.53
+EQZ          C4          C3          O2     108.765    1.50
+EQZ          C4          C3         H32     109.971    1.50
+EQZ          C4          C3         H33     109.971    1.50
+EQZ          O2          C3         H32     109.954    1.50
+EQZ          O2          C3         H33     109.954    1.50
+EQZ         H32          C3         H33     108.452    1.50
+EQZ          C7          C6          N5     102.275    1.50
+EQZ          C7          C6         H36     111.477    1.50
+EQZ          C7          C6         H37     111.477    1.50
+EQZ          N5          C6         H36     111.411    1.50
+EQZ          N5          C6         H37     111.411    1.50
+EQZ         H36          C6         H37     108.797    1.63
+EQZ          C8          C7          C6     130.053    1.50
+EQZ          C8          C7         C12     120.356    1.50
+EQZ          C6          C7         C12     109.591    1.50
+EQZ          C9          C8          C7     119.033    1.50
+EQZ          C9          C8         H38     120.532    1.50
+EQZ          C7          C8         H38     120.435    1.50
+EQZ          C9         C10         C15     120.412    1.50
+EQZ          C9         C10         C11     119.200    1.50
+EQZ         C15         C10         C11     120.388    1.50
+EQZ         C10         C11         C12     119.274    1.50
+EQZ         C10         C11         H40     120.013    1.50
+EQZ         C12         C11         H40     120.713    1.50
+EQZ          C7         C12         C11     120.771    1.50
+EQZ          C7         C12         C13     109.197    1.50
+EQZ         C11         C12         C13     130.033    1.50
+EQZ         C12         C13          N5     106.215    1.50
+EQZ         C12         C13         O14     128.938    1.50
+EQZ          N5         C13         O14     124.847    1.50
+EQZ         N16         C15         C10     116.213    1.50
+EQZ         N16         C15         C27     121.226    1.50
+EQZ         C10         C15         C27     122.561    1.62
+EQZ         C19         N18         C17     123.282    2.33
+EQZ         C19         N18         H41     118.872    1.57
+EQZ         C17         N18         H41     117.846    2.15
+EQZ         C24         C19         C20     110.769    1.50
+EQZ         C24         C19         N18     111.209    2.04
+EQZ         C24         C19         H42     107.655    1.50
+EQZ         C20         C19         N18     111.209    2.04
+EQZ         C20         C19         H42     107.655    1.50
+EQZ         N18         C19         H42     108.206    1.50
+EQZ         O22         C21         C20     110.817    1.50
+EQZ         O22         C21         H45     109.025    1.50
+EQZ         O22         C21         H46     109.025    1.50
+EQZ         C20         C21         H45     109.639    1.50
+EQZ         C20         C21         H46     109.639    1.50
+EQZ         H45         C21         H46     108.090    1.50
+EQZ         O22         C23         C24     110.817    1.50
+EQZ         O22         C23         H48     109.025    1.50
+EQZ         O22         C23         H47     109.025    1.50
+EQZ         C24         C23         H48     109.639    1.50
+EQZ         C24         C23         H47     109.639    1.50
+EQZ         H48         C23         H47     108.090    1.50
+EQZ         C23         C24         C19     110.430    1.50
+EQZ         C23         C24         H49     109.564    1.50
+EQZ         C23         C24         H50     109.564    1.50
+EQZ         C19         C24         H49     109.341    1.50
+EQZ         C19         C24         H50     109.341    1.50
+EQZ         H49         C24         H50     108.019    1.50
+EQZ         N25         C26         C27     121.718    1.50
+EQZ         N25         C26         H51     118.449    1.50
+EQZ         C27         C26         H51     119.833    1.50
+EQZ         C15         C27         C26     118.707    1.50
+EQZ         C15         C27         CL1     120.310    1.50
+EQZ         C26         C27         CL1     120.982    1.50
+EQZ          C3          O2          C1     112.090    1.50
+EQZ          N5          C4          C3     113.441    1.50
+EQZ          N5          C4         H34     108.795    1.50
+EQZ          N5          C4         H35     108.795    1.50
+EQZ          C3          C4         H34     109.124    1.50
+EQZ          C3          C4         H35     109.124    1.50
+EQZ         H34          C4         H35     108.015    1.50
+EQZ          C6          N5         C13     113.815    1.50
+EQZ          C6          N5          C4     122.880    1.87
+EQZ         C13          N5          C4     123.305    1.50
+EQZ          C8          C9         C10     121.366    1.50
+EQZ          C8          C9         H39     119.233    1.50
+EQZ         C10          C9         H39     119.401    1.50
+EQZ         C17         N16         C15     117.345    1.50
+EQZ         N18         C17         N16     117.874    1.62
+EQZ         N18         C17         N25     117.874    1.62
+EQZ         N16         C17         N25     124.252    1.50
+EQZ         C21         C20         C19     110.430    1.50
+EQZ         C21         C20         H43     109.564    1.50
+EQZ         C21         C20         H44     109.564    1.50
+EQZ         C19         C20         H43     109.341    1.50
+EQZ         C19         C20         H44     109.341    1.50
+EQZ         H43         C20         H44     108.019    1.50
+EQZ         C23         O22         C21     110.807    1.50
+EQZ         C17         N25         C26     116.752    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EQZ            sp3_sp3_55         H31          C1          O2          C3     180.000    10.0     3
+EQZ             sp2_sp3_8         C17         N18         C19         C24     120.000    10.0     6
+EQZ             sp2_sp2_9         N16         C17         N18         C19     180.000     5.0     2
+EQZ             sp3_sp3_7         N18         C19         C24         C23     180.000    10.0     3
+EQZ            sp3_sp3_37         N18         C19         C20         C21      60.000    10.0     3
+EQZ            sp3_sp3_25         C19         C20         C21         O22      60.000    10.0     3
+EQZ            sp3_sp3_22         C20         C21         O22         C23     -60.000    10.0     3
+EQZ            sp3_sp3_10         O22         C23         C24         C19     -60.000    10.0     3
+EQZ            sp3_sp3_19         C24         C23         O22         C21      60.000    10.0     3
+EQZ              const_34         N25         C26         C27         CL1     180.000    10.0     2
+EQZ              const_31         C27         C26         N25         C17       0.000    10.0     2
+EQZ            sp2_sp3_20          C6          N5          C4          C3     -90.000    10.0     6
+EQZ            sp3_sp3_52          C4          C3          O2          C1     180.000    10.0     3
+EQZ            sp3_sp3_43          O2          C3          C4          N5     180.000    10.0     3
+EQZ              const_28         N18         C17         N16         C15     180.000    10.0     2
+EQZ              const_30         N18         C17         N25         C26     180.000    10.0     2
+EQZ            sp2_sp3_16          C4          N5          C6          C7     180.000    10.0     6
+EQZ             sp2_sp3_4          C8          C7          C6          N5     180.000    10.0     6
+EQZ       const_sp2_sp2_3          C6          C7          C8          C9     180.000     5.0     2
+EQZ              const_21         C11         C12          C7          C8       0.000    10.0     2
+EQZ       const_sp2_sp2_5          C7          C8          C9         C10       0.000     5.0     2
+EQZ              const_11         C15         C10          C9          C8     180.000    10.0     2
+EQZ              const_13          C9         C10         C11         C12       0.000    10.0     2
+EQZ            sp2_sp2_14          C9         C10         C15         N16       0.000     5.0     2
+EQZ              const_17         C10         C11         C12          C7       0.000    10.0     2
+EQZ             sp2_sp2_2          C7         C12         C13         O14     180.000     5.0     2
+EQZ             sp2_sp2_8         O14         C13          N5          C4       0.000     5.0     2
+EQZ              const_38         N16         C15         C27         CL1     180.000    10.0     2
+EQZ              const_26         C10         C15         N16         C17     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EQZ    chir_1    C19    N18    C24    C20    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EQZ    plan-1         C10   0.020
+EQZ    plan-1         C15   0.020
+EQZ    plan-1         C17   0.020
+EQZ    plan-1         C26   0.020
+EQZ    plan-1         C27   0.020
+EQZ    plan-1         CL1   0.020
+EQZ    plan-1         H51   0.020
+EQZ    plan-1         N16   0.020
+EQZ    plan-1         N18   0.020
+EQZ    plan-1         N25   0.020
+EQZ    plan-2         C10   0.020
+EQZ    plan-2         C11   0.020
+EQZ    plan-2         C12   0.020
+EQZ    plan-2         C13   0.020
+EQZ    plan-2         C15   0.020
+EQZ    plan-2          C6   0.020
+EQZ    plan-2          C7   0.020
+EQZ    plan-2          C8   0.020
+EQZ    plan-2          C9   0.020
+EQZ    plan-2         H38   0.020
+EQZ    plan-2         H39   0.020
+EQZ    plan-2         H40   0.020
+EQZ    plan-3         C12   0.020
+EQZ    plan-3         C13   0.020
+EQZ    plan-3          N5   0.020
+EQZ    plan-3         O14   0.020
+EQZ    plan-4         C17   0.020
+EQZ    plan-4         C19   0.020
+EQZ    plan-4         H41   0.020
+EQZ    plan-4         N18   0.020
+EQZ    plan-5         C13   0.020
+EQZ    plan-5          C4   0.020
+EQZ    plan-5          C6   0.020
+EQZ    plan-5          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EQZ            InChI                InChI  1.03 InChI=1S/C20H23ClN4O3/c1-27-9-6-25-12-14-3-2-13(10-16(14)19(25)26)18-17(21)11-22-20(24-18)23-15-4-7-28-8-5-15/h2-3,10-11,15H,4-9,12H2,1H3,(H,22,23,24)
+EQZ         InChIKey                InChI  1.03                                                                                                                            PVCKWDJCSQJNFH-UHFFFAOYSA-N
+EQZ SMILES_CANONICAL               CACTVS 3.385                                                                                                             COCCN1Cc2ccc(cc2C1=O)c3nc(NC4CCOCC4)ncc3Cl
+EQZ           SMILES               CACTVS 3.385                                                                                                             COCCN1Cc2ccc(cc2C1=O)c3nc(NC4CCOCC4)ncc3Cl
+EQZ SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                           COCCN1Cc2ccc(cc2C1=O)c3c(cnc(n3)NC4CCOCC4)Cl
+EQZ           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                           COCCN1Cc2ccc(cc2C1=O)c3c(cnc(n3)NC4CCOCC4)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EQZ acedrg               243         "dictionary generator"                  
+EQZ acedrg_database      11          "data source"                           
+EQZ rdkit                2017.03.2   "Chemoinformatics tool"
+EQZ refmac5              5.8.0238    "optimization tool"                     

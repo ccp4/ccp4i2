@@ -1,0 +1,320 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TNS     TNS      "N-(TRANS-4'-NITRO-4-STILBENYL)-N-METHYL-5-AMINO-PENTANOIC ACID"     NON-POLYMER     47     26     .     
+#
+data_comp_TNS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TNS     O22     O       O       0       -57.726     28.145      13.204      
+TNS     C20     C       C       0       -57.071     29.080      12.702      
+TNS     O21     O       OC      -1      -56.911     30.185      13.256      
+TNS     C19     C       CH2     0       -56.431     28.859      11.342      
+TNS     C18     C       CH2     0       -54.970     28.527      11.382      
+TNS     C17     C       CH2     0       -54.691     27.119      11.879      
+TNS     C16     C       CH2     0       -53.233     26.707      11.782      
+TNS     N15     N       N       0       -52.943     25.432      12.448      
+TNS     C23     C       CH3     0       -53.327     24.214      11.726      
+TNS     C14     C       CR6     0       -52.354     25.365      13.692      
+TNS     C13     C       CR16    0       -51.323     24.435      13.971      
+TNS     C12     C       CR16    0       -50.745     24.370      15.225      
+TNS     C9      C       CR16    0       -52.762     26.211      14.751      
+TNS     C10     C       CR16    0       -52.167     26.130      15.996      
+TNS     C11     C       CR6     0       -51.146     25.213      16.267      
+TNS     C8      C       C1      0       -50.524     25.125      17.594      
+TNS     C7      C       C1      0       -50.094     26.135      18.344      
+TNS     C3      C       CR6     0       -49.500     26.042      19.684      
+TNS     C2      C       CR16    0       -49.812     26.977      20.678      
+TNS     C4      C       CR16    0       -48.601     25.019      20.012      
+TNS     C5      C       CR16    0       -48.032     24.918      21.269      
+TNS     C6      C       CR6     0       -48.374     25.872      22.229      
+TNS     C1      C       CR16    0       -49.264     26.910      21.947      
+TNS     N24     N       N       1       -47.785     25.784      23.563      
+TNS     O26     O       O       0       -47.833     24.713      24.150      
+TNS     O25     O       OC      -1      -47.272     26.787      24.036      
+TNS     H191    H       H       0       -56.556     29.672      10.806      
+TNS     H192    H       H       0       -56.909     28.132      10.889      
+TNS     H181    H       H       0       -54.511     29.166      11.966      
+TNS     H182    H       H       0       -54.594     28.625      10.482      
+TNS     H171    H       H       0       -55.231     26.488      11.358      
+TNS     H172    H       H       0       -54.975     27.052      12.815      
+TNS     H161    H       H       0       -52.675     27.408      12.177      
+TNS     H162    H       H       0       -52.989     26.626      10.838      
+TNS     H231    H       H       0       -53.507     23.499      12.359      
+TNS     H232    H       H       0       -52.604     23.946      11.136      
+TNS     H233    H       H       0       -54.125     24.383      11.200      
+TNS     H13     H       H       0       -51.028     23.854      13.292      
+TNS     H12     H       H       0       -50.061     23.743      15.381      
+TNS     H9      H       H       0       -53.445     26.841      14.602      
+TNS     H10     H       H       0       -52.458     26.707      16.680      
+TNS     H8      H       H       0       -50.422     24.254      17.953      
+TNS     H7      H       H       0       -50.179     27.005      17.978      
+TNS     H2      H       H       0       -50.414     27.673      20.478      
+TNS     H4      H       H       0       -48.377     24.381      19.358      
+TNS     H5      H       H       0       -47.431     24.222      21.468      
+TNS     H1      H       H       0       -49.489     27.549      22.601      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TNS         O22         C20      DOUBLE       n     1.247  0.0187     1.247  0.0187
+TNS         C20         O21      SINGLE       n     1.247  0.0187     1.247  0.0187
+TNS         C20         C19      SINGLE       n     1.519  0.0109     1.519  0.0109
+TNS         C19         C18      SINGLE       n     1.497  0.0200     1.497  0.0200
+TNS         C18         C17      SINGLE       n     1.519  0.0164     1.519  0.0164
+TNS         C17         C16      SINGLE       n     1.517  0.0146     1.517  0.0146
+TNS         C16         N15      SINGLE       n     1.457  0.0200     1.457  0.0200
+TNS         N15         C23      SINGLE       n     1.461  0.0146     1.461  0.0146
+TNS         N15         C14      SINGLE       n     1.368  0.0142     1.368  0.0142
+TNS         C14         C13      DOUBLE       y     1.409  0.0111     1.409  0.0111
+TNS         C14          C9      SINGLE       y     1.409  0.0111     1.409  0.0111
+TNS         C13         C12      SINGLE       y     1.379  0.0100     1.379  0.0100
+TNS         C12         C11      DOUBLE       y     1.396  0.0100     1.396  0.0100
+TNS          C9         C10      DOUBLE       y     1.379  0.0100     1.379  0.0100
+TNS         C10         C11      SINGLE       y     1.396  0.0100     1.396  0.0100
+TNS         C11          C8      SINGLE       n     1.468  0.0100     1.468  0.0100
+TNS          C8          C7      DOUBLE       n     1.326  0.0177     1.326  0.0177
+TNS          C7          C3      SINGLE       n     1.468  0.0100     1.468  0.0100
+TNS          C3          C2      DOUBLE       y     1.396  0.0100     1.396  0.0100
+TNS          C3          C4      SINGLE       y     1.396  0.0100     1.396  0.0100
+TNS          C2          C1      SINGLE       y     1.380  0.0103     1.380  0.0103
+TNS          C4          C5      DOUBLE       y     1.380  0.0103     1.380  0.0103
+TNS          C5          C6      SINGLE       y     1.393  0.0100     1.393  0.0100
+TNS          C6          C1      DOUBLE       y     1.393  0.0100     1.393  0.0100
+TNS          C6         N24      SINGLE       n     1.457  0.0200     1.457  0.0200
+TNS         N24         O26      DOUBLE       n     1.221  0.0162     1.221  0.0162
+TNS         N24         O25      SINGLE       n     1.221  0.0162     1.221  0.0162
+TNS         C19        H191      SINGLE       n     1.089  0.0100     0.981  0.0185
+TNS         C19        H192      SINGLE       n     1.089  0.0100     0.981  0.0185
+TNS         C18        H181      SINGLE       n     1.089  0.0100     0.980  0.0160
+TNS         C18        H182      SINGLE       n     1.089  0.0100     0.980  0.0160
+TNS         C17        H171      SINGLE       n     1.089  0.0100     0.981  0.0160
+TNS         C17        H172      SINGLE       n     1.089  0.0100     0.981  0.0160
+TNS         C16        H161      SINGLE       n     1.089  0.0100     0.979  0.0121
+TNS         C16        H162      SINGLE       n     1.089  0.0100     0.979  0.0121
+TNS         C23        H231      SINGLE       n     1.089  0.0100     0.971  0.0181
+TNS         C23        H232      SINGLE       n     1.089  0.0100     0.971  0.0181
+TNS         C23        H233      SINGLE       n     1.089  0.0100     0.971  0.0181
+TNS         C13         H13      SINGLE       n     1.082  0.0130     0.942  0.0198
+TNS         C12         H12      SINGLE       n     1.082  0.0130     0.941  0.0168
+TNS          C9          H9      SINGLE       n     1.082  0.0130     0.942  0.0198
+TNS         C10         H10      SINGLE       n     1.082  0.0130     0.941  0.0168
+TNS          C8          H8      SINGLE       n     1.082  0.0130     0.948  0.0200
+TNS          C7          H7      SINGLE       n     1.082  0.0130     0.948  0.0200
+TNS          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+TNS          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0168
+TNS          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0200
+TNS          C1          H1      SINGLE       n     1.082  0.0130     0.941  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TNS         O22         C20         O21     123.571    1.50
+TNS         O22         C20         C19     118.214    1.64
+TNS         O21         C20         C19     118.214    1.64
+TNS         C20         C19         C18     114.612    2.19
+TNS         C20         C19        H191     108.404    1.50
+TNS         C20         C19        H192     108.404    1.50
+TNS         C18         C19        H191     108.815    1.50
+TNS         C18         C19        H192     108.815    1.50
+TNS        H191         C19        H192     107.521    1.50
+TNS         C19         C18         C17     113.314    2.25
+TNS         C19         C18        H181     109.164    1.50
+TNS         C19         C18        H182     109.164    1.50
+TNS         C17         C18        H181     108.806    1.50
+TNS         C17         C18        H182     108.806    1.50
+TNS        H181         C18        H182     107.646    1.50
+TNS         C18         C17         C16     113.917    1.63
+TNS         C18         C17        H171     109.041    1.50
+TNS         C18         C17        H172     109.041    1.50
+TNS         C16         C17        H171     108.903    1.50
+TNS         C16         C17        H172     108.903    1.50
+TNS        H171         C17        H172     107.927    1.57
+TNS         C17         C16         N15     113.742    1.61
+TNS         C17         C16        H161     108.915    1.50
+TNS         C17         C16        H162     108.915    1.50
+TNS         N15         C16        H161     108.531    1.50
+TNS         N15         C16        H162     108.531    1.50
+TNS        H161         C16        H162     107.869    1.50
+TNS         C16         N15         C23     117.258    1.50
+TNS         C16         N15         C14     121.816    1.50
+TNS         C23         N15         C14     120.926    1.50
+TNS         N15         C23        H231     109.583    1.50
+TNS         N15         C23        H232     109.583    1.50
+TNS         N15         C23        H233     109.583    1.50
+TNS        H231         C23        H232     109.352    1.56
+TNS        H231         C23        H233     109.352    1.56
+TNS        H232         C23        H233     109.352    1.56
+TNS         N15         C14         C13     121.228    1.50
+TNS         N15         C14          C9     121.228    1.50
+TNS         C13         C14          C9     117.545    1.50
+TNS         C14         C13         C12     120.808    1.50
+TNS         C14         C13         H13     119.360    1.50
+TNS         C12         C13         H13     119.832    1.50
+TNS         C13         C12         C11     121.684    1.50
+TNS         C13         C12         H12     119.133    1.50
+TNS         C11         C12         H12     119.182    1.50
+TNS         C14          C9         C10     120.808    1.50
+TNS         C14          C9          H9     119.360    1.50
+TNS         C10          C9          H9     119.832    1.50
+TNS          C9         C10         C11     121.684    1.50
+TNS          C9         C10         H10     119.133    1.50
+TNS         C11         C10         H10     119.182    1.50
+TNS         C12         C11         C10     117.471    1.50
+TNS         C12         C11          C8     121.265    2.07
+TNS         C10         C11          C8     121.265    2.07
+TNS         C11          C8          C7     126.568    1.76
+TNS         C11          C8          H8     116.565    1.50
+TNS          C7          C8          H8     116.867    1.50
+TNS          C8          C7          C3     126.568    1.76
+TNS          C8          C7          H7     116.867    1.50
+TNS          C3          C7          H7     116.565    1.50
+TNS          C7          C3          C2     121.218    2.07
+TNS          C7          C3          C4     121.218    2.07
+TNS          C2          C3          C4     117.563    1.50
+TNS          C3          C2          C1     121.776    1.50
+TNS          C3          C2          H2     119.137    1.50
+TNS          C1          C2          H2     119.088    1.50
+TNS          C3          C4          C5     121.776    1.50
+TNS          C3          C4          H4     119.137    1.50
+TNS          C5          C4          H4     119.088    1.50
+TNS          C4          C5          C6     118.330    1.50
+TNS          C4          C5          H5     120.566    1.50
+TNS          C6          C5          H5     121.104    1.50
+TNS          C5          C6          C1     122.225    1.50
+TNS          C5          C6         N24     118.887    1.50
+TNS          C1          C6         N24     118.887    1.50
+TNS          C2          C1          C6     118.330    1.50
+TNS          C2          C1          H1     120.566    1.50
+TNS          C6          C1          H1     121.104    1.50
+TNS          C6         N24         O26     118.257    1.50
+TNS          C6         N24         O25     118.257    1.50
+TNS         O26         N24         O25     123.486    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TNS       const_sp2_sp2_5         C11         C12         C13         C14       0.000     5.0     2
+TNS              const_11          C8         C11         C12         C13     180.000    10.0     2
+TNS              const_17         C11         C10          C9         C14       0.000    10.0     2
+TNS              const_14          C9         C10         C11          C8     180.000    10.0     2
+TNS             sp2_sp2_5         C12         C11          C8          C7     180.000     5.0     2
+TNS             sp2_sp2_9          C3          C7          C8         C11     180.000     5.0     2
+TNS            sp2_sp2_13          C2          C3          C7          C8     180.000     5.0     2
+TNS              const_22          C1          C2          C3          C7     180.000    10.0     2
+TNS              const_47          C7          C3          C4          C5     180.000    10.0     2
+TNS              const_25          C6          C1          C2          C3       0.000    10.0     2
+TNS              const_37          C3          C4          C5          C6       0.000    10.0     2
+TNS             sp2_sp3_2         O22         C20         C19         C18     120.000    10.0     6
+TNS              const_34          C4          C5          C6         N24     180.000    10.0     2
+TNS              const_30          C2          C1          C6         N24     180.000    10.0     2
+TNS            sp2_sp2_17          C5          C6         N24         O26     180.000     5.0     2
+TNS             sp3_sp3_1         C17         C18         C19         C20     180.000    10.0     3
+TNS            sp3_sp3_10         C16         C17         C18         C19     180.000    10.0     3
+TNS            sp3_sp3_19         N15         C16         C17         C18     180.000    10.0     3
+TNS             sp2_sp3_8         C23         N15         C16         C17     120.000    10.0     6
+TNS            sp2_sp3_13         C16         N15         C23        H231       0.000    10.0     6
+TNS             sp2_sp2_1         C13         C14         N15         C16     180.000     5.0     2
+TNS       const_sp2_sp2_2         C12         C13         C14         N15     180.000     5.0     2
+TNS              const_43         N15         C14          C9         C10     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TNS    plan-1         C10   0.020
+TNS    plan-1         C11   0.020
+TNS    plan-1         C12   0.020
+TNS    plan-1         C13   0.020
+TNS    plan-1         C14   0.020
+TNS    plan-1          C8   0.020
+TNS    plan-1          C9   0.020
+TNS    plan-1         H10   0.020
+TNS    plan-1         H12   0.020
+TNS    plan-1         H13   0.020
+TNS    plan-1          H9   0.020
+TNS    plan-1         N15   0.020
+TNS    plan-2          C1   0.020
+TNS    plan-2          C2   0.020
+TNS    plan-2          C3   0.020
+TNS    plan-2          C4   0.020
+TNS    plan-2          C5   0.020
+TNS    plan-2          C6   0.020
+TNS    plan-2          C7   0.020
+TNS    plan-2          H1   0.020
+TNS    plan-2          H2   0.020
+TNS    plan-2          H4   0.020
+TNS    plan-2          H5   0.020
+TNS    plan-2         N24   0.020
+TNS    plan-3         C19   0.020
+TNS    plan-3         C20   0.020
+TNS    plan-3         O21   0.020
+TNS    plan-3         O22   0.020
+TNS    plan-4         C14   0.020
+TNS    plan-4         C16   0.020
+TNS    plan-4         C23   0.020
+TNS    plan-4         N15   0.020
+TNS    plan-5         C11   0.020
+TNS    plan-5          C7   0.020
+TNS    plan-5          C8   0.020
+TNS    plan-5          H8   0.020
+TNS    plan-6          C3   0.020
+TNS    plan-6          C7   0.020
+TNS    plan-6          C8   0.020
+TNS    plan-6          H7   0.020
+TNS    plan-7          C6   0.020
+TNS    plan-7         N24   0.020
+TNS    plan-7         O25   0.020
+TNS    plan-7         O26   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TNS           SMILES              ACDLabs 10.04                                                                               "[O-][N+](=O)c1ccc(cc1)\C=C\c2ccc(N(C)CCCCC(=O)O)cc2"
+TNS SMILES_CANONICAL               CACTVS 3.341                                                                                 CN(CCCCC(O)=O)c1ccc(\C=C\c2ccc(cc2)[N+]([O-])=O)cc1
+TNS           SMILES               CACTVS 3.341                                                                                   CN(CCCCC(O)=O)c1ccc(C=Cc2ccc(cc2)[N+]([O-])=O)cc1
+TNS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                 CN(CCCCC(=O)O)c1ccc(cc1)\C=C\c2ccc(cc2)[N+](=O)[O-]
+TNS           SMILES "OpenEye OEToolkits" 1.5.0                                                                                   CN(CCCCC(=O)O)c1ccc(cc1)C=Cc2ccc(cc2)[N+](=O)[O-]
+TNS            InChI                InChI  1.03 InChI=1S/C20H22N2O4/c1-21(15-3-2-4-20(23)24)18-11-7-16(8-12-18)5-6-17-9-13-19(14-10-17)22(25)26/h5-14H,2-4,15H2,1H3,(H,23,24)/b6-5+
+TNS         InChIKey                InChI  1.03                                                                                                         QLLZAVDYYAQESE-AATRIKPKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TNS acedrg               243         "dictionary generator"                  
+TNS acedrg_database      11          "data source"                           
+TNS rdkit                2017.03.2   "Chemoinformatics tool"
+TNS refmac5              5.8.0238    "optimization tool"                     

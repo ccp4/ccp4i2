@@ -1,0 +1,328 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MVB     MVB      "(1S,7S,8S,8AR)-1,2,3,7,8,8A-HEXAHYDRO-7-METHYL-8-[2-[(2R,4R)-TETRAHYDRO-4-HY DROXY-6-OXO-2H-PYRAN-2-YL]ETHYL]-1-NAPHTHALENOL"     NON-POLYMER     48     22     .     
+#
+data_comp_MVB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MVB     O1      O       OH1     0       52.771      -0.684      53.213      
+MVB     C1      C       CR6     0       55.635      -2.957      52.401      
+MVB     O2      O       O       0       56.026      -4.092      52.498      
+MVB     O3      O       O2      0       56.528      -2.025      52.017      
+MVB     O5      O       OH1     0       56.491      1.565       48.455      
+MVB     C7      C       CH1     0       56.449      -0.629      52.468      
+MVB     C8      C       CH2     0       55.012      -0.158      52.486      
+MVB     C9      C       CH1     0       54.125      -1.126      53.256      
+MVB     C10     C       CH2     0       54.228      -2.527      52.679      
+MVB     C11     C       CH3     0       57.122      4.502       52.986      
+MVB     C12     C       CH2     0       57.351      0.178       51.559      
+MVB     C13     C       CH2     0       57.519      1.642       51.955      
+MVB     C14     C       CH1     0       56.616      2.653       51.233      
+MVB     C15     C       CH1     0       56.060      3.723       52.206      
+MVB     C16     C       CR16    0       55.143      4.680       51.483      
+MVB     C17     C       CR16    0       55.319      4.959       50.199      
+MVB     C18     C       CR66    0       56.417      4.404       49.425      
+MVB     C19     C       CH1     0       57.277      3.292       49.990      
+MVB     C20     C       CH1     0       57.637      2.309       48.864      
+MVB     C21     C       CH2     0       58.221      3.019       47.654      
+MVB     C22     C       CH2     0       57.243      4.057       47.125      
+MVB     C23     C       CR16    0       56.668      4.912       48.216      
+MVB     HO1     H       H       0       52.332      -1.098      53.797      
+MVB     HO5     H       H       0       56.729      0.915       47.978      
+MVB     H7      H       H       0       56.825      -0.586      53.440      
+MVB     H81     H       H       0       54.682      -0.076      51.557      
+MVB     H82     H       H       0       54.964      0.737       52.907      
+MVB     H9      H       H       0       54.425      -1.140      54.199      
+MVB     H101    H       H       0       53.819      -3.162      53.318      
+MVB     H102    H       H       0       53.710      -2.559      51.835      
+MVB     H111    H       H       0       56.869      5.438       53.061      
+MVB     H112    H       H       0       57.978      4.442       52.534      
+MVB     H113    H       H       0       57.211      4.129       53.878      
+MVB     H121    H       H       0       56.992      0.136       50.644      
+MVB     H122    H       H       0       58.241      -0.246      51.546      
+MVB     H131    H       H       0       58.454      1.896       51.798      
+MVB     H132    H       H       0       57.359      1.713       52.921      
+MVB     H14     H       H       0       55.824      2.138       50.904      
+MVB     H15     H       H       0       55.514      3.243       52.876      
+MVB     H16     H       H       0       54.439      5.075       51.969      
+MVB     H17     H       H       0       54.709      5.539       49.770      
+MVB     H19     H       H       0       58.122      3.700       50.298      
+MVB     H20     H       H       0       58.305      1.668       49.208      
+MVB     H211    H       H       0       58.413      2.366       46.956      
+MVB     H212    H       H       0       59.055      3.456       47.907      
+MVB     H221    H       H       0       56.515      3.601       46.657      
+MVB     H222    H       H       0       57.703      4.629       46.478      
+MVB     H23     H       H       0       56.478      5.849       48.031      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MVB          O1          C9      SINGLE       n     1.425  0.0100     1.425  0.0100
+MVB          C1          O2      DOUBLE       n     1.204  0.0100     1.204  0.0100
+MVB          C1          O3      SINGLE       n     1.345  0.0102     1.345  0.0102
+MVB          C1         C10      SINGLE       n     1.496  0.0103     1.496  0.0103
+MVB          O3          C7      SINGLE       n     1.468  0.0100     1.468  0.0100
+MVB          O5         C20      SINGLE       n     1.426  0.0100     1.426  0.0100
+MVB          C7          C8      SINGLE       n     1.510  0.0100     1.510  0.0100
+MVB          C7         C12      SINGLE       n     1.513  0.0130     1.513  0.0130
+MVB          C8          C9      SINGLE       n     1.520  0.0100     1.520  0.0100
+MVB          C9         C10      SINGLE       n     1.517  0.0100     1.517  0.0100
+MVB         C11         C15      SINGLE       n     1.528  0.0100     1.528  0.0100
+MVB         C12         C13      SINGLE       n     1.524  0.0100     1.524  0.0100
+MVB         C13         C14      SINGLE       n     1.532  0.0100     1.532  0.0100
+MVB         C14         C15      SINGLE       n     1.543  0.0112     1.543  0.0112
+MVB         C14         C19      SINGLE       n     1.540  0.0100     1.540  0.0100
+MVB         C15         C16      SINGLE       n     1.508  0.0109     1.508  0.0109
+MVB         C16         C17      DOUBLE       n     1.325  0.0100     1.325  0.0100
+MVB         C17         C18      SINGLE       n     1.452  0.0100     1.452  0.0100
+MVB         C18         C19      SINGLE       n     1.508  0.0107     1.508  0.0107
+MVB         C18         C23      DOUBLE       n     1.329  0.0152     1.329  0.0152
+MVB         C19         C20      SINGLE       n     1.532  0.0120     1.532  0.0120
+MVB         C20         C21      SINGLE       n     1.518  0.0100     1.518  0.0100
+MVB         C21         C22      SINGLE       n     1.516  0.0142     1.516  0.0142
+MVB         C22         C23      SINGLE       n     1.498  0.0100     1.498  0.0100
+MVB          O1         HO1      SINGLE       n     0.970  0.0120     0.841  0.0200
+MVB          O5         HO5      SINGLE       n     0.970  0.0120     0.841  0.0200
+MVB          C7          H7      SINGLE       n     1.089  0.0100     1.043  0.0200
+MVB          C8         H81      SINGLE       n     1.089  0.0100     0.990  0.0100
+MVB          C8         H82      SINGLE       n     1.089  0.0100     0.990  0.0100
+MVB          C9          H9      SINGLE       n     1.089  0.0100     0.989  0.0104
+MVB         C10        H101      SINGLE       n     1.089  0.0100     0.990  0.0100
+MVB         C10        H102      SINGLE       n     1.089  0.0100     0.990  0.0100
+MVB         C11        H111      SINGLE       n     1.089  0.0100     0.971  0.0163
+MVB         C11        H112      SINGLE       n     1.089  0.0100     0.971  0.0163
+MVB         C11        H113      SINGLE       n     1.089  0.0100     0.971  0.0163
+MVB         C12        H121      SINGLE       n     1.089  0.0100     0.986  0.0200
+MVB         C12        H122      SINGLE       n     1.089  0.0100     0.986  0.0200
+MVB         C13        H131      SINGLE       n     1.089  0.0100     0.981  0.0140
+MVB         C13        H132      SINGLE       n     1.089  0.0100     0.981  0.0140
+MVB         C14         H14      SINGLE       n     1.089  0.0100     1.001  0.0150
+MVB         C15         H15      SINGLE       n     1.089  0.0100     0.989  0.0200
+MVB         C16         H16      SINGLE       n     1.082  0.0130     0.942  0.0158
+MVB         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0187
+MVB         C19         H19      SINGLE       n     1.089  0.0100     0.988  0.0146
+MVB         C20         H20      SINGLE       n     1.089  0.0100     0.987  0.0171
+MVB         C21        H211      SINGLE       n     1.089  0.0100     0.975  0.0100
+MVB         C21        H212      SINGLE       n     1.089  0.0100     0.975  0.0100
+MVB         C22        H221      SINGLE       n     1.089  0.0100     0.978  0.0163
+MVB         C22        H222      SINGLE       n     1.089  0.0100     0.978  0.0163
+MVB         C23         H23      SINGLE       n     1.082  0.0130     0.974  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MVB          C9          O1         HO1     108.820    1.99
+MVB          O2          C1          O3     117.318    1.50
+MVB          O2          C1         C10     123.967    2.22
+MVB          O3          C1         C10     118.715    2.13
+MVB          C1          O3          C7     121.335    2.85
+MVB         C20          O5         HO5     109.778    1.73
+MVB          O3          C7          C8     110.117    1.70
+MVB          O3          C7         C12     106.888    2.06
+MVB          O3          C7          H7     107.785    2.18
+MVB          C8          C7         C12     113.809    1.66
+MVB          C8          C7          H7     108.575    1.50
+MVB         C12          C7          H7     108.902    2.40
+MVB          C7          C8          C9     111.124    1.57
+MVB          C7          C8         H81     109.454    1.50
+MVB          C7          C8         H82     109.454    1.50
+MVB          C9          C8         H81     109.547    1.50
+MVB          C9          C8         H82     109.547    1.50
+MVB         H81          C8         H82     108.036    1.50
+MVB          O1          C9          C8     110.136    2.11
+MVB          O1          C9         C10     109.943    1.55
+MVB          O1          C9          H9     108.828    1.50
+MVB          C8          C9         C10     110.366    1.50
+MVB          C8          C9          H9     108.444    1.50
+MVB         C10          C9          H9     109.453    2.12
+MVB          C1         C10          C9     112.021    2.38
+MVB          C1         C10        H101     108.503    1.50
+MVB          C1         C10        H102     108.503    1.50
+MVB          C9         C10        H101     108.161    1.50
+MVB          C9         C10        H102     108.161    1.50
+MVB        H101         C10        H102     107.877    1.50
+MVB         C15         C11        H111     110.331    1.78
+MVB         C15         C11        H112     110.331    1.78
+MVB         C15         C11        H113     110.331    1.78
+MVB        H111         C11        H112     109.342    1.50
+MVB        H111         C11        H113     109.342    1.50
+MVB        H112         C11        H113     109.342    1.50
+MVB          C7         C12         C13     114.391    1.91
+MVB          C7         C12        H121     108.510    1.50
+MVB          C7         C12        H122     108.510    1.50
+MVB         C13         C12        H121     108.521    1.50
+MVB         C13         C12        H122     108.521    1.50
+MVB        H121         C12        H122     107.474    1.50
+MVB         C12         C13         C14     115.760    1.80
+MVB         C12         C13        H131     108.521    1.50
+MVB         C12         C13        H132     108.521    1.50
+MVB         C14         C13        H131     108.471    1.50
+MVB         C14         C13        H132     108.471    1.50
+MVB        H131         C13        H132     107.474    1.50
+MVB         C13         C14         C15     110.815    2.12
+MVB         C13         C14         C19     112.168    2.77
+MVB         C13         C14         H14     106.549    1.50
+MVB         C15         C14         C19     112.392    2.23
+MVB         C15         C14         H14     107.150    1.50
+MVB         C19         C14         H14     107.223    2.48
+MVB         C11         C15         C14     113.802    1.87
+MVB         C11         C15         C16     109.571    1.50
+MVB         C11         C15         H15     106.386    1.70
+MVB         C14         C15         C16     112.021    2.38
+MVB         C14         C15         H15     106.668    1.50
+MVB         C16         C15         H15     107.086    1.74
+MVB         C15         C16         C17     121.843    3.00
+MVB         C15         C16         H16     117.866    1.50
+MVB         C17         C16         H16     120.291    1.50
+MVB         C16         C17         C18     122.723    1.50
+MVB         C16         C17         H17     118.771    1.50
+MVB         C18         C17         H17     118.506    1.50
+MVB         C17         C18         C19     120.581    2.37
+MVB         C17         C18         C23     118.838    2.38
+MVB         C19         C18         C23     120.581    2.37
+MVB         C14         C19         C18     109.299    2.39
+MVB         C14         C19         C20     112.399    2.36
+MVB         C14         C19         H19     106.651    1.50
+MVB         C18         C19         C20     109.299    2.39
+MVB         C18         C19         H19     107.750    1.86
+MVB         C20         C19         H19     107.288    1.50
+MVB          O5         C20         C19     109.868    1.58
+MVB          O5         C20         C21     109.051    2.17
+MVB          O5         C20         H20     107.424    1.50
+MVB         C19         C20         C21     112.392    2.23
+MVB         C19         C20         H20     108.183    1.50
+MVB         C21         C20         H20     108.506    1.50
+MVB         C20         C21         C22     110.017    1.50
+MVB         C20         C21        H211     109.171    1.50
+MVB         C20         C21        H212     109.171    1.50
+MVB         C22         C21        H211     109.288    1.50
+MVB         C22         C21        H212     109.288    1.50
+MVB        H211         C21        H212     108.261    1.50
+MVB         C21         C22         C23     111.755    1.50
+MVB         C21         C22        H221     109.163    1.50
+MVB         C21         C22        H222     109.163    1.50
+MVB         C23         C22        H221     109.242    1.50
+MVB         C23         C22        H222     109.242    1.50
+MVB        H221         C22        H222     107.926    1.50
+MVB         C18         C23         C22     120.436    1.50
+MVB         C18         C23         H23     120.368    1.97
+MVB         C22         C23         H23     119.195    1.81
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MVB            sp3_sp3_67          C8          C9          O1         HO1     180.000    10.0     3
+MVB            sp3_sp3_91          C7         C12         C13         C14     180.000    10.0     3
+MVB           sp3_sp3_100         C12         C13         C14         C15     180.000    10.0     3
+MVB            sp3_sp3_35         C13         C14         C15         C11      60.000    10.0     3
+MVB           sp3_sp3_112         C13         C14         C19         C18      60.000    10.0     3
+MVB             sp2_sp3_2         C17         C16         C15         C11     120.000    10.0     6
+MVB             sp2_sp2_3         C15         C16         C17         C18       0.000     5.0     2
+MVB             sp2_sp2_7         C16         C17         C18         C19       0.000     5.0     2
+MVB             sp2_sp3_7         C17         C18         C19         C14       0.000    10.0     6
+MVB            sp2_sp2_13         C17         C18         C23         C22     180.000     5.0     2
+MVB            sp3_sp3_44         C14         C19         C20          O5     -60.000    10.0     3
+MVB            sp3_sp3_52          O5         C20         C21         C22     -60.000    10.0     3
+MVB            sp3_sp3_58         C20         C21         C22         C23     -60.000    10.0     3
+MVB             sp2_sp2_2          O2          C1          O3          C7     180.000     5.0     2
+MVB            sp2_sp3_22          O2          C1         C10          C9     180.000    10.0     6
+MVB            sp2_sp3_13         C18         C23         C22         C21       0.000    10.0     6
+MVB             sp3_sp3_2         C12          C7          O3          C1      60.000    10.0     3
+MVB            sp3_sp3_70         C19         C20          O5         HO5     180.000    10.0     3
+MVB            sp3_sp3_73         C13         C12          C7          O3     180.000    10.0     3
+MVB             sp3_sp3_7         C12          C7          C8          C9     -60.000    10.0     3
+MVB            sp3_sp3_14          C7          C8          C9          O1      60.000    10.0     3
+MVB            sp3_sp3_23          C1         C10          C9          O1     180.000    10.0     3
+MVB            sp3_sp3_82        H111         C11         C15         C14     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MVB    chir_1    C7    O3    C8    C12    positive
+MVB    chir_2    C9    O1    C10    C8    negative
+MVB    chir_3    C14    C19    C15    C13    positive
+MVB    chir_4    C15    C16    C14    C11    negative
+MVB    chir_5    C19    C20    C18    C14    negative
+MVB    chir_6    C20    O5    C19    C21    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MVB    plan-1          C1   0.020
+MVB    plan-1         C10   0.020
+MVB    plan-1          O2   0.020
+MVB    plan-1          O3   0.020
+MVB    plan-2         C15   0.020
+MVB    plan-2         C16   0.020
+MVB    plan-2         C17   0.020
+MVB    plan-2         H16   0.020
+MVB    plan-3         C16   0.020
+MVB    plan-3         C17   0.020
+MVB    plan-3         C18   0.020
+MVB    plan-3         H17   0.020
+MVB    plan-4         C17   0.020
+MVB    plan-4         C18   0.020
+MVB    plan-4         C19   0.020
+MVB    plan-4         C23   0.020
+MVB    plan-5         C18   0.020
+MVB    plan-5         C22   0.020
+MVB    plan-5         C23   0.020
+MVB    plan-5         H23   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MVB           SMILES              ACDLabs 10.04                                                                                                                     O=C3OC(CCC2C1C(=CCCC1O)C=CC2C)CC(O)C3
+MVB SMILES_CANONICAL               CACTVS 3.341                                                                                           C[C@H]1C=CC2=CCC[C@H](O)[C@@H]2[C@H]1CC[C@H]3C[C@@H](O)CC(=O)O3
+MVB           SMILES               CACTVS 3.341                                                                                                   C[CH]1C=CC2=CCC[CH](O)[CH]2[CH]1CC[CH]3C[CH](O)CC(=O)O3
+MVB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                           C[C@H]1C=CC2=CCC[C@@H]([C@@H]2[C@H]1CC[C@H]3C[C@H](CC(=O)O3)O)O
+MVB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                     CC1C=CC2=CCCC(C2C1CCC3CC(CC(=O)O3)O)O
+MVB            InChI                InChI  1.03 InChI=1S/C18H26O4/c1-11-5-6-12-3-2-4-16(20)18(12)15(11)8-7-14-9-13(19)10-17(21)22-14/h3,5-6,11,13-16,18-20H,2,4,7-10H2,1H3/t11-,13+,14-,15-,16-,18-/m0/s1
+MVB         InChIKey                InChI  1.03                                                                                                                               WWSNTLOVYSRDEL-TVKPWXLESA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MVB acedrg               243         "dictionary generator"                  
+MVB acedrg_database      11          "data source"                           
+MVB rdkit                2017.03.2   "Chemoinformatics tool"
+MVB refmac5              5.8.0238    "optimization tool"                     

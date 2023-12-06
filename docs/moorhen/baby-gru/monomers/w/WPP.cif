@@ -1,0 +1,419 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+WPP     WPP      Piperacillin     NON-POLYMER     62     36     .     
+#
+data_comp_WPP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+WPP     C       C       C       0       -3.419      -15.338     12.440      
+WPP     N       N       NH1     0       -5.837      -15.273     11.665      
+WPP     O       O       O       0       -2.590      -14.789     11.769      
+WPP     CA      C       CH1     0       -4.909      -15.137     12.755      
+WPP     CB      C       CH1     0       -4.731      -16.364     13.715      
+WPP     CAC     C       CR16    0       -8.749      -17.760     11.502      
+WPP     CAE     C       CH1     0       -2.907      -17.798     12.764      
+WPP     CAF     C       CT      0       -3.994      -18.842     13.224      
+WPP     CAG     C       C       0       -10.251     -14.969     9.651       
+WPP     CAH     C       CH3     0       -3.770      -19.447     14.610      
+WPP     CAI     C       CH3     0       -4.139      -19.952     12.183      
+WPP     CAJ     C       CH2     0       -11.660     -13.051     10.622      
+WPP     CAK     C       C       0       -7.149      -15.050     11.797      
+WPP     CAL     C       CH3     0       -16.086     -13.312     11.890      
+WPP     CAM     C       CH1     0       -8.022      -15.511     10.607      
+WPP     CAN     C       CR6     0       -12.629     -14.642     9.002       
+WPP     CAO     C       C       0       -1.487      -18.109     13.241      
+WPP     CAP     C       CR6     0       -13.965     -14.076     9.312       
+WPP     CAQ     C       CH2     0       -15.359     -12.633     10.757      
+WPP     CAR     C       CH2     0       -12.977     -13.112     11.358      
+WPP     CAS     C       CR6     0       -8.011      -17.032     10.576      
+WPP     CAT     C       CR16    0       -7.262      -17.724     9.631       
+WPP     CAU     C       CR16    0       -7.257      -19.114     9.612       
+WPP     CAV     C       CR16    0       -7.997      -19.823     10.537      
+WPP     CAW     C       CR16    0       -8.742      -19.149     11.480      
+WPP     NAY     N       NH1     0       -9.377      -14.961     10.698      
+WPP     NAZ     N       NR6     0       -11.486     -14.254     9.734       
+WPP     NBA     N       NR6     0       -14.086     -13.298     10.412      
+WPP     NBB     N       NT      0       -3.344      -16.486     13.237      
+WPP     OBC     O       O       0       -7.660      -14.520     12.787      
+WPP     OBE     O       OC      -1      -0.756      -18.730     12.490      
+WPP     OBF     O       O       0       -1.116      -17.737     14.344      
+WPP     OBG     O       O       0       -9.953      -15.515     8.586       
+WPP     OBH     O       O       0       -14.904     -14.364     8.574       
+WPP     OBI     O       O       0       -12.582     -15.494     8.096       
+WPP     SBJ     S       S2      0       -5.584      -17.898     13.278      
+WPP     HN      H       H       0       -5.519      -15.521     10.832      
+WPP     HA      H       H       0       -5.059      -14.287     13.227      
+WPP     HB      H       H       0       -4.808      -16.142     14.674      
+WPP     HAC     H       H       0       -9.263      -17.305     12.150      
+WPP     HAE     H       H       0       -2.892      -17.775     11.769      
+WPP     HAH     H       H       0       -4.594      -19.858     14.920      
+WPP     HAHA    H       H       0       -3.505      -18.748     15.231      
+WPP     HAHB    H       H       0       -3.073      -20.121     14.563      
+WPP     HAI     H       H       0       -4.577      -19.600     11.391      
+WPP     HAIA    H       H       0       -4.671      -20.676     12.552      
+WPP     HAIB    H       H       0       -3.260      -20.286     11.943      
+WPP     HAJ     H       H       0       -11.636     -12.241     10.065      
+WPP     HAJA    H       H       0       -10.925     -12.995     11.271      
+WPP     HAL     H       H       0       -16.938     -12.877     12.034      
+WPP     HALA    H       H       0       -15.555     -13.253     12.696      
+WPP     HALB    H       H       0       -16.233     -14.242     11.669      
+WPP     HAM     H       H       0       -7.603      -15.177     9.773       
+WPP     HAQ     H       H       0       -15.170     -11.702     11.012      
+WPP     HAQA    H       H       0       -15.945     -12.609     9.968       
+WPP     HAR     H       H       0       -12.965     -13.857     11.991      
+WPP     HARA    H       H       0       -13.108     -12.284     11.862      
+WPP     HAT     H       H       0       -6.754      -17.246     8.996       
+WPP     HAU     H       H       0       -6.745      -19.573     8.965       
+WPP     HAV     H       H       0       -7.992      -20.767     10.523      
+WPP     HAW     H       H       0       -9.249      -19.632     12.114      
+WPP     HNAY    H       H       0       -9.654      -14.675     11.467      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+WPP           C           O      DOUBLE       n     1.199  0.0100     1.199  0.0100
+WPP           C          CA      SINGLE       n     1.538  0.0100     1.538  0.0100
+WPP           C         NBB      SINGLE       n     1.397  0.0132     1.397  0.0132
+WPP           N          CA      SINGLE       n     1.436  0.0100     1.436  0.0100
+WPP           N         CAK      SINGLE       n     1.334  0.0104     1.334  0.0104
+WPP          CA          CB      SINGLE       n     1.569  0.0197     1.569  0.0197
+WPP          CB         NBB      SINGLE       n     1.471  0.0139     1.471  0.0139
+WPP          CB         SBJ      SINGLE       n     1.810  0.0119     1.810  0.0119
+WPP         CAC         CAS      DOUBLE       y     1.386  0.0100     1.386  0.0100
+WPP         CAC         CAW      SINGLE       y     1.386  0.0100     1.386  0.0100
+WPP         CAE         CAF      SINGLE       n     1.561  0.0167     1.561  0.0167
+WPP         CAE         CAO      SINGLE       n     1.520  0.0177     1.520  0.0177
+WPP         CAE         NBB      SINGLE       n     1.458  0.0100     1.458  0.0100
+WPP         CAF         CAH      SINGLE       n     1.527  0.0100     1.527  0.0100
+WPP         CAF         CAI      SINGLE       n     1.527  0.0100     1.527  0.0100
+WPP         CAF         SBJ      SINGLE       n     1.851  0.0113     1.851  0.0113
+WPP         CAG         NAY      SINGLE       n     1.339  0.0200     1.339  0.0200
+WPP         CAG         NAZ      SINGLE       n     1.384  0.0200     1.384  0.0200
+WPP         CAG         OBG      DOUBLE       n     1.230  0.0134     1.230  0.0134
+WPP         CAJ         CAR      SINGLE       n     1.508  0.0200     1.508  0.0200
+WPP         CAJ         NAZ      SINGLE       n     1.489  0.0150     1.489  0.0150
+WPP         CAK         CAM      SINGLE       n     1.542  0.0129     1.542  0.0129
+WPP         CAK         OBC      DOUBLE       n     1.232  0.0104     1.232  0.0104
+WPP         CAL         CAQ      SINGLE       n     1.508  0.0200     1.508  0.0200
+WPP         CAM         CAS      SINGLE       n     1.520  0.0100     1.520  0.0100
+WPP         CAM         NAY      SINGLE       n     1.460  0.0129     1.460  0.0129
+WPP         CAN         CAP      SINGLE       n     1.461  0.0200     1.461  0.0200
+WPP         CAN         NAZ      SINGLE       n     1.382  0.0169     1.382  0.0169
+WPP         CAN         OBI      DOUBLE       n     1.238  0.0180     1.238  0.0180
+WPP         CAO         OBE      SINGLE       n     1.218  0.0200     1.218  0.0200
+WPP         CAO         OBF      DOUBLE       n     1.218  0.0200     1.218  0.0200
+WPP         CAP         NBA      SINGLE       n     1.341  0.0133     1.341  0.0133
+WPP         CAP         OBH      DOUBLE       n     1.226  0.0100     1.226  0.0100
+WPP         CAQ         NBA      SINGLE       n     1.472  0.0100     1.472  0.0100
+WPP         CAR         NBA      SINGLE       n     1.467  0.0100     1.467  0.0100
+WPP         CAS         CAT      SINGLE       y     1.386  0.0100     1.386  0.0100
+WPP         CAT         CAU      DOUBLE       y     1.386  0.0100     1.386  0.0100
+WPP         CAU         CAV      SINGLE       y     1.376  0.0124     1.376  0.0124
+WPP         CAV         CAW      DOUBLE       y     1.374  0.0127     1.374  0.0127
+WPP           N          HN      SINGLE       n     1.016  0.0100     0.924  0.0200
+WPP          CA          HA      SINGLE       n     1.089  0.0100     0.984  0.0200
+WPP          CB          HB      SINGLE       n     1.089  0.0100     0.988  0.0132
+WPP         CAC         HAC      SINGLE       n     1.082  0.0130     0.944  0.0174
+WPP         CAE         HAE      SINGLE       n     1.089  0.0100     0.995  0.0104
+WPP         CAH         HAH      SINGLE       n     1.089  0.0100     0.971  0.0169
+WPP         CAH        HAHA      SINGLE       n     1.089  0.0100     0.971  0.0169
+WPP         CAH        HAHB      SINGLE       n     1.089  0.0100     0.971  0.0169
+WPP         CAI         HAI      SINGLE       n     1.089  0.0100     0.971  0.0169
+WPP         CAI        HAIA      SINGLE       n     1.089  0.0100     0.971  0.0169
+WPP         CAI        HAIB      SINGLE       n     1.089  0.0100     0.971  0.0169
+WPP         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.984  0.0105
+WPP         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.984  0.0105
+WPP         CAL         HAL      SINGLE       n     1.089  0.0100     0.967  0.0131
+WPP         CAL        HALA      SINGLE       n     1.089  0.0100     0.967  0.0131
+WPP         CAL        HALB      SINGLE       n     1.089  0.0100     0.967  0.0131
+WPP         CAM         HAM      SINGLE       n     1.089  0.0100     0.992  0.0200
+WPP         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.984  0.0191
+WPP         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.984  0.0191
+WPP         CAR         HAR      SINGLE       n     1.089  0.0100     0.978  0.0161
+WPP         CAR        HARA      SINGLE       n     1.089  0.0100     0.978  0.0161
+WPP         CAT         HAT      SINGLE       n     1.082  0.0130     0.944  0.0174
+WPP         CAU         HAU      SINGLE       n     1.082  0.0130     0.944  0.0175
+WPP         CAV         HAV      SINGLE       n     1.082  0.0130     0.944  0.0161
+WPP         CAW         HAW      SINGLE       n     1.082  0.0130     0.944  0.0175
+WPP         NAY        HNAY      SINGLE       n     1.016  0.0100     0.871  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+WPP           O           C          CA     136.472    1.50
+WPP           O           C         NBB     131.043    1.50
+WPP          CA           C         NBB      92.485    1.50
+WPP          CA           N         CAK     121.316    2.50
+WPP          CA           N          HN     120.719    3.00
+WPP         CAK           N          HN     117.965    2.01
+WPP           C          CA           N     116.563    3.00
+WPP           C          CA          CB      85.978    1.75
+WPP           C          CA          HA     111.185    1.68
+WPP           N          CA          CB     118.905    3.00
+WPP           N          CA          HA     109.992    1.69
+WPP          CB          CA          HA     113.345    1.95
+WPP          CA          CB         NBB      88.590    1.50
+WPP          CA          CB         SBJ     116.971    3.00
+WPP          CA          CB          HB     114.585    1.80
+WPP         NBB          CB         SBJ     109.471    3.00
+WPP         NBB          CB          HB     114.251    1.50
+WPP         SBJ          CB          HB     113.121    1.50
+WPP         CAS         CAC         CAW     120.588    1.50
+WPP         CAS         CAC         HAC     119.682    1.50
+WPP         CAW         CAC         HAC     119.730    1.50
+WPP         CAF         CAE         CAO     112.424    2.46
+WPP         CAF         CAE         NBB     105.237    2.32
+WPP         CAF         CAE         HAE     109.303    1.50
+WPP         CAO         CAE         NBB     111.071    1.62
+WPP         CAO         CAE         HAE     108.963    1.74
+WPP         NBB         CAE         HAE     108.587    1.50
+WPP         CAE         CAF         CAH     112.667    2.44
+WPP         CAE         CAF         CAI     112.667    2.44
+WPP         CAE         CAF         SBJ     107.036    2.68
+WPP         CAH         CAF         CAI     110.924    1.50
+WPP         CAH         CAF         SBJ     108.686    1.50
+WPP         CAI         CAF         SBJ     108.686    1.50
+WPP         NAY         CAG         NAZ     117.422    3.00
+WPP         NAY         CAG         OBG     122.818    1.58
+WPP         NAZ         CAG         OBG     119.741    1.50
+WPP         CAF         CAH         HAH     109.494    1.50
+WPP         CAF         CAH        HAHA     109.494    1.50
+WPP         CAF         CAH        HAHB     109.494    1.50
+WPP         HAH         CAH        HAHA     109.486    1.50
+WPP         HAH         CAH        HAHB     109.486    1.50
+WPP        HAHA         CAH        HAHB     109.486    1.50
+WPP         CAF         CAI         HAI     109.494    1.50
+WPP         CAF         CAI        HAIA     109.494    1.50
+WPP         CAF         CAI        HAIB     109.494    1.50
+WPP         HAI         CAI        HAIA     109.486    1.50
+WPP         HAI         CAI        HAIB     109.486    1.50
+WPP        HAIA         CAI        HAIB     109.486    1.50
+WPP         CAR         CAJ         NAZ     110.160    1.50
+WPP         CAR         CAJ         HAJ     109.532    1.50
+WPP         CAR         CAJ        HAJA     109.532    1.50
+WPP         NAZ         CAJ         HAJ     108.940    1.50
+WPP         NAZ         CAJ        HAJA     108.940    1.50
+WPP         HAJ         CAJ        HAJA     108.187    1.50
+WPP           N         CAK         CAM     115.328    1.50
+WPP           N         CAK         OBC     123.636    1.50
+WPP         CAM         CAK         OBC     121.036    1.50
+WPP         CAQ         CAL         HAL     109.493    1.50
+WPP         CAQ         CAL        HALA     109.493    1.50
+WPP         CAQ         CAL        HALB     109.493    1.50
+WPP         HAL         CAL        HALA     109.417    1.50
+WPP         HAL         CAL        HALB     109.417    1.50
+WPP        HALA         CAL        HALB     109.417    1.50
+WPP         CAK         CAM         CAS     110.517    2.35
+WPP         CAK         CAM         NAY     109.904    2.48
+WPP         CAK         CAM         HAM     108.160    1.50
+WPP         CAS         CAM         NAY     113.090    1.50
+WPP         CAS         CAM         HAM     108.370    1.59
+WPP         NAY         CAM         HAM     108.583    1.50
+WPP         CAP         CAN         NAZ     120.885    1.50
+WPP         CAP         CAN         OBI     117.443    1.50
+WPP         NAZ         CAN         OBI     121.671    1.50
+WPP         CAE         CAO         OBE     118.867    2.73
+WPP         CAE         CAO         OBF     118.867    2.73
+WPP         OBE         CAO         OBF     122.267    1.50
+WPP         CAN         CAP         NBA     118.078    1.50
+WPP         CAN         CAP         OBH     118.681    1.50
+WPP         NBA         CAP         OBH     123.241    1.56
+WPP         CAL         CAQ         NBA     113.158    1.50
+WPP         CAL         CAQ         HAQ     109.296    1.50
+WPP         CAL         CAQ        HAQA     109.296    1.50
+WPP         NBA         CAQ         HAQ     108.907    1.50
+WPP         NBA         CAQ        HAQA     108.907    1.50
+WPP         HAQ         CAQ        HAQA     107.955    1.50
+WPP         CAJ         CAR         NBA     110.821    2.82
+WPP         CAJ         CAR         HAR     109.532    1.50
+WPP         CAJ         CAR        HARA     109.532    1.50
+WPP         NBA         CAR         HAR     109.155    1.50
+WPP         NBA         CAR        HARA     109.155    1.50
+WPP         HAR         CAR        HARA     108.187    1.50
+WPP         CAC         CAS         CAM     120.770    1.50
+WPP         CAC         CAS         CAT     118.460    1.50
+WPP         CAM         CAS         CAT     120.770    1.50
+WPP         CAS         CAT         CAU     120.588    1.50
+WPP         CAS         CAT         HAT     119.682    1.50
+WPP         CAU         CAT         HAT     119.730    1.50
+WPP         CAT         CAU         CAV     120.216    1.50
+WPP         CAT         CAU         HAU     119.847    1.50
+WPP         CAV         CAU         HAU     119.938    1.50
+WPP         CAU         CAV         CAW     119.933    1.50
+WPP         CAU         CAV         HAV     120.033    1.50
+WPP         CAW         CAV         HAV     120.033    1.50
+WPP         CAC         CAW         CAV     120.216    1.50
+WPP         CAC         CAW         HAW     119.847    1.50
+WPP         CAV         CAW         HAW     119.938    1.50
+WPP         CAG         NAY         CAM     122.192    1.61
+WPP         CAG         NAY        HNAY     118.565    2.02
+WPP         CAM         NAY        HNAY     119.242    1.50
+WPP         CAG         NAZ         CAJ     119.211    3.00
+WPP         CAG         NAZ         CAN     120.532    2.86
+WPP         CAJ         NAZ         CAN     120.257    2.69
+WPP         CAP         NBA         CAQ     120.078    1.62
+WPP         CAP         NBA         CAR     122.782    1.61
+WPP         CAQ         NBA         CAR     117.140    1.83
+WPP           C         NBB          CB      93.371    1.96
+WPP           C         NBB         CAE     125.105    2.14
+WPP          CB         NBB         CAE     115.054    3.00
+WPP          CB         SBJ         CAF      92.966    1.65
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+WPP            sp2_sp2_15           O           C         NBB          CB     180.000     5.0     2
+WPP             sp2_sp3_5           O           C          CA           N     -60.000    10.0     6
+WPP            sp3_sp3_22         NAZ         CAJ         CAR         NBA      60.000    10.0     3
+WPP            sp2_sp3_40         CAG         NAZ         CAJ         CAR     180.000    10.0     6
+WPP            sp2_sp3_44           N         CAK         CAM         NAY     120.000    10.0     6
+WPP            sp3_sp3_52         HAL         CAL         CAQ         NBA     180.000    10.0     3
+WPP            sp2_sp3_49         CAC         CAS         CAM         CAK     150.000    10.0     6
+WPP            sp2_sp3_55         CAG         NAY         CAM         CAK       0.000    10.0     6
+WPP             sp2_sp2_8         OBI         CAN         CAP         OBH       0.000     5.0     2
+WPP            sp2_sp2_12         OBI         CAN         NAZ         CAG       0.000     5.0     2
+WPP             sp2_sp2_4         OBH         CAP         NBA         CAQ       0.000     5.0     2
+WPP            sp2_sp3_62         CAP         NBA         CAQ         CAL     -90.000    10.0     6
+WPP            sp2_sp3_22         CAQ         NBA         CAR         CAJ     180.000    10.0     6
+WPP            sp2_sp2_17         CAM         CAK           N          CA     180.000     5.0     2
+WPP            sp2_sp3_25         CAK           N          CA           C       0.000    10.0     6
+WPP       const_sp2_sp2_7         CAM         CAS         CAT         CAU     180.000     5.0     2
+WPP       const_sp2_sp2_9         CAS         CAT         CAU         CAV       0.000     5.0     2
+WPP              const_13         CAT         CAU         CAV         CAW       0.000    10.0     2
+WPP              const_17         CAU         CAV         CAW         CAC       0.000    10.0     2
+WPP             sp3_sp3_4           N          CA          CB         NBB     180.000    10.0     3
+WPP             sp2_sp3_7           C         NBB          CB          CA       0.000    10.0     6
+WPP            sp3_sp3_32          CA          CB         SBJ         CAF      60.000    10.0     3
+WPP       const_sp2_sp2_2         CAW         CAC         CAS         CAM     180.000     5.0     2
+WPP              const_21         CAS         CAC         CAW         CAV       0.000    10.0     2
+WPP            sp2_sp3_31         OBE         CAO         CAE         CAF       0.000    10.0     6
+WPP            sp2_sp3_17           C         NBB         CAE         CAO     -60.000    10.0     6
+WPP            sp3_sp3_14         CAO         CAE         CAF         CAH      60.000    10.0     3
+WPP            sp3_sp3_49         CAH         CAF         CAI         HAI     -60.000    10.0     3
+WPP            sp3_sp3_21         CAH         CAF         SBJ          CB      60.000    10.0     3
+WPP            sp3_sp3_40         CAI         CAF         CAH         HAH     -60.000    10.0     3
+WPP            sp2_sp2_23         OBG         CAG         NAY         CAM       0.000     5.0     2
+WPP            sp2_sp2_25         NAY         CAG         NAZ         CAJ     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+WPP    chir_1    CA    N    CB    C    negative
+WPP    chir_2    CB    SBJ    NBB    CA    negative
+WPP    chir_3    CAE    NBB    CAF    CAO    positive
+WPP    chir_4    CAF    SBJ    CAE    CAH    both
+WPP    chir_5    CAM    NAY    CAK    CAS    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+WPP    plan-1         CAC   0.020
+WPP    plan-1         CAM   0.020
+WPP    plan-1         CAS   0.020
+WPP    plan-1         CAT   0.020
+WPP    plan-1         CAU   0.020
+WPP    plan-1         CAV   0.020
+WPP    plan-1         CAW   0.020
+WPP    plan-1         HAC   0.020
+WPP    plan-1         HAT   0.020
+WPP    plan-1         HAU   0.020
+WPP    plan-1         HAV   0.020
+WPP    plan-1         HAW   0.020
+WPP    plan-2           C   0.020
+WPP    plan-2          CA   0.020
+WPP    plan-2         NBB   0.020
+WPP    plan-2           O   0.020
+WPP    plan-3          CA   0.020
+WPP    plan-3         CAK   0.020
+WPP    plan-3          HN   0.020
+WPP    plan-3           N   0.020
+WPP    plan-4         CAG   0.020
+WPP    plan-4         NAY   0.020
+WPP    plan-4         NAZ   0.020
+WPP    plan-4         OBG   0.020
+WPP    plan-5         CAK   0.020
+WPP    plan-5         CAM   0.020
+WPP    plan-5           N   0.020
+WPP    plan-5         OBC   0.020
+WPP    plan-6         CAN   0.020
+WPP    plan-6         CAP   0.020
+WPP    plan-6         NAZ   0.020
+WPP    plan-6         OBI   0.020
+WPP    plan-7         CAE   0.020
+WPP    plan-7         CAO   0.020
+WPP    plan-7         OBE   0.020
+WPP    plan-7         OBF   0.020
+WPP    plan-8         CAN   0.020
+WPP    plan-8         CAP   0.020
+WPP    plan-8         NBA   0.020
+WPP    plan-8         OBH   0.020
+WPP    plan-9         CAG   0.020
+WPP    plan-9         CAM   0.020
+WPP    plan-9        HNAY   0.020
+WPP    plan-9         NAY   0.020
+WPP   plan-10         CAG   0.020
+WPP   plan-10         CAJ   0.020
+WPP   plan-10         CAN   0.020
+WPP   plan-10         NAZ   0.020
+WPP   plan-11         CAP   0.020
+WPP   plan-11         CAQ   0.020
+WPP   plan-11         CAR   0.020
+WPP   plan-11         NBA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+WPP           SMILES              ACDLabs 12.01                                                                                                                                                 O=C1C(=O)N(CC)CCN1C(=O)NC(c2ccccc2)C(=O)NC4C(=O)N3C(C(=O)O)C(SC34)(C)C
+WPP SMILES_CANONICAL               CACTVS 3.370                                                                                                                                 CCN1CCN(C(=O)N[C@@H](C(=O)N[C@H]2[C@H]3SC(C)(C)[C@@H](N3C2=O)C(O)=O)c4ccccc4)C(=O)C1=O
+WPP           SMILES               CACTVS 3.370                                                                                                                                       CCN1CCN(C(=O)N[CH](C(=O)N[CH]2[CH]3SC(C)(C)[CH](N3C2=O)C(O)=O)c4ccccc4)C(=O)C1=O
+WPP SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                CCN1CCN(C(=O)C1=O)C(=O)N[C@H](c2ccccc2)C(=O)N[C@H]3[C@@H]4N(C3=O)[C@H](C(S4)(C)C)C(=O)O
+WPP           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                 CCN1CCN(C(=O)C1=O)C(=O)NC(c2ccccc2)C(=O)NC3C4N(C3=O)C(C(S4)(C)C)C(=O)O
+WPP            InChI                InChI  1.03 InChI=1S/C23H27N5O7S/c1-4-26-10-11-27(19(32)18(26)31)22(35)25-13(12-8-6-5-7-9-12)16(29)24-14-17(30)28-15(21(33)34)23(2,3)36-20(14)28/h5-9,13-15,20H,4,10-11H2,1-3H3,(H,24,29)(H,25,35)(H,33,34)/t13-,14-,15+,20-/m1/s1
+WPP         InChIKey                InChI  1.03                                                                                                                                                                                            IVBHGBMCVLDMKU-GXNBUGAJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+WPP acedrg               243         "dictionary generator"                  
+WPP acedrg_database      11          "data source"                           
+WPP rdkit                2017.03.2   "Chemoinformatics tool"
+WPP refmac5              5.8.0238    "optimization tool"                     

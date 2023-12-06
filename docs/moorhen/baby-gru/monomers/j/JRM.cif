@@ -1,0 +1,267 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JRM     JRM      "methyl N-(4-phenyl-1,3-thiazol-2-yl)-N-propanoylglycinate"     NON-POLYMER     37     21     .     
+#
+data_comp_JRM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JRM     N1      N       NRD5    0       0.835       -0.243      -0.035      
+JRM     C2      C       CH3     0       -0.624      -4.462      -0.676      
+JRM     C5      C       CH2     0       -2.879      -0.271      -0.655      
+JRM     C12     C       CR16    0       5.217       1.593       0.981       
+JRM     C15     C       CR16    0       3.685       -0.646      0.451       
+JRM     C6      C       C       0       -3.366      0.546       0.522       
+JRM     N       N       N       0       -1.545      -0.860      -0.466      
+JRM     C       C       C       0       -1.494      -2.183      -0.029      
+JRM     C1      C       CH2     0       -0.293      -3.017      -0.437      
+JRM     O       O       O       0       -2.434      -2.691      0.575       
+JRM     C8      C       CR5     0       -0.397      0.009       -0.584      
+JRM     S1      S       S2      0       -0.371      1.511       -1.332      
+JRM     C16     C       CR15    0       1.224       1.829       -1.005      
+JRM     C9      C       CR5     0       1.765       0.778       -0.291      
+JRM     C10     C       CR6     0       3.135       0.618       0.226       
+JRM     C14     C       CR16    0       4.978       -0.781      0.936       
+JRM     C13     C       CR16    0       5.743       0.337       1.200       
+JRM     C11     C       CR16    0       3.925       1.736       0.497       
+JRM     O1      O       O       0       -2.760      0.694       1.547       
+JRM     O2      O       O2      0       -4.564      1.066       0.250       
+JRM     C7      C       CH3     0       -5.110      2.027       1.191       
+JRM     H3      H       H       0       0.154       -4.918      -1.040      
+JRM     H4      H       H       0       -1.361      -4.526      -1.309      
+JRM     H10     H       H       0       -0.881      -4.881      0.163       
+JRM     H9      H       H       0       -2.867      0.301       -1.449      
+JRM     H6      H       H       0       -3.530      -0.982      -0.830      
+JRM     H15     H       H       0       5.737       2.359       1.161       
+JRM     H18     H       H       0       3.176       -1.416      0.275       
+JRM     H1      H       H       0       0.093       -2.645      -1.257      
+JRM     H8      H       H       0       0.386       -2.960      0.268       
+JRM     H19     H       H       0       1.645       2.623       -1.287      
+JRM     H17     H       H       0       5.335       -1.641      1.085       
+JRM     H16     H       H       0       6.623       0.243       1.530       
+JRM     H14     H       H       0       3.577       2.597       0.352       
+JRM     H2      H       H       0       -4.489      2.766       1.297       
+JRM     H5      H       H       0       -5.250      1.595       2.048       
+JRM     H7      H       H       0       -5.956      2.360       0.854       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JRM         C15         C14      DOUBLE       y     1.384  0.0100     1.384  0.0100
+JRM         C14         C13      SINGLE       y     1.376  0.0124     1.376  0.0124
+JRM         C15         C10      SINGLE       y     1.391  0.0100     1.391  0.0100
+JRM          S1         C16      SINGLE       y     1.695  0.0200     1.695  0.0200
+JRM         C16          C9      DOUBLE       y     1.371  0.0200     1.371  0.0200
+JRM          C8          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+JRM         C12         C13      DOUBLE       y     1.376  0.0114     1.376  0.0114
+JRM          C9         C10      SINGLE       n     1.469  0.0100     1.469  0.0100
+JRM         C10         C11      DOUBLE       y     1.391  0.0100     1.391  0.0100
+JRM          N1          C9      SINGLE       y     1.391  0.0109     1.391  0.0109
+JRM           C           O      DOUBLE       n     1.223  0.0143     1.223  0.0143
+JRM         C12         C11      SINGLE       y     1.384  0.0100     1.384  0.0100
+JRM          N1          C8      DOUBLE       y     1.354  0.0165     1.354  0.0165
+JRM           N          C8      SINGLE       n     1.410  0.0200     1.410  0.0200
+JRM           N           C      SINGLE       n     1.359  0.0184     1.359  0.0184
+JRM           C          C1      SINGLE       n     1.514  0.0100     1.514  0.0100
+JRM          C5           N      SINGLE       n     1.461  0.0110     1.461  0.0110
+JRM          C2          C1      SINGLE       n     1.498  0.0200     1.498  0.0200
+JRM          C5          C6      SINGLE       n     1.513  0.0100     1.513  0.0100
+JRM          C6          O1      DOUBLE       n     1.197  0.0100     1.197  0.0100
+JRM          C6          O2      SINGLE       n     1.331  0.0100     1.331  0.0100
+JRM          O2          C7      SINGLE       n     1.447  0.0130     1.447  0.0130
+JRM          C2          H3      SINGLE       n     1.089  0.0100     0.973  0.0141
+JRM          C2          H4      SINGLE       n     1.089  0.0100     0.973  0.0141
+JRM          C2         H10      SINGLE       n     1.089  0.0100     0.973  0.0141
+JRM          C5          H9      SINGLE       n     1.089  0.0100     0.980  0.0145
+JRM          C5          H6      SINGLE       n     1.089  0.0100     0.980  0.0145
+JRM         C12         H15      SINGLE       n     1.082  0.0130     0.943  0.0180
+JRM         C15         H18      SINGLE       n     1.082  0.0130     0.940  0.0143
+JRM          C1          H1      SINGLE       n     1.089  0.0100     0.981  0.0185
+JRM          C1          H8      SINGLE       n     1.089  0.0100     0.981  0.0185
+JRM         C16         H19      SINGLE       n     1.082  0.0130     0.942  0.0200
+JRM         C14         H17      SINGLE       n     1.082  0.0130     0.943  0.0180
+JRM         C13         H16      SINGLE       n     1.082  0.0130     0.944  0.0161
+JRM         C11         H14      SINGLE       n     1.082  0.0130     0.940  0.0143
+JRM          C7          H2      SINGLE       n     1.089  0.0100     0.970  0.0175
+JRM          C7          H5      SINGLE       n     1.089  0.0100     0.970  0.0175
+JRM          C7          H7      SINGLE       n     1.089  0.0100     0.970  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JRM          C9          N1          C8     105.585    1.50
+JRM          C1          C2          H3     109.502    1.50
+JRM          C1          C2          H4     109.502    1.50
+JRM          C1          C2         H10     109.502    1.50
+JRM          H3          C2          H4     109.380    1.50
+JRM          H3          C2         H10     109.380    1.50
+JRM          H4          C2         H10     109.380    1.50
+JRM           N          C5          C6     113.405    2.38
+JRM           N          C5          H9     108.931    1.50
+JRM           N          C5          H6     108.931    1.50
+JRM          C6          C5          H9     108.841    1.50
+JRM          C6          C5          H6     108.841    1.50
+JRM          H9          C5          H6     107.779    1.50
+JRM         C13         C12         C11     120.307    1.50
+JRM         C13         C12         H15     119.947    1.50
+JRM         C11         C12         H15     119.746    1.50
+JRM         C14         C15         C10     120.590    1.50
+JRM         C14         C15         H18     119.782    1.50
+JRM         C10         C15         H18     119.628    1.50
+JRM          C5          C6          O1     124.733    2.01
+JRM          C5          C6          O2     110.475    1.50
+JRM          O1          C6          O2     124.792    1.50
+JRM          C8           N           C     123.658    2.96
+JRM          C8           N          C5     119.320    2.32
+JRM           C           N          C5     117.022    1.50
+JRM           O           C           N     121.224    1.50
+JRM           O           C          C1     122.009    1.50
+JRM           N           C          C1     116.767    1.50
+JRM           C          C1          C2     112.924    1.50
+JRM           C          C1          H1     108.894    1.50
+JRM           C          C1          H8     108.894    1.50
+JRM          C2          C1          H1     109.044    1.50
+JRM          C2          C1          H8     109.044    1.50
+JRM          H1          C1          H8     107.827    1.50
+JRM          S1          C8          N1     108.623    3.00
+JRM          S1          C8           N     124.565    3.00
+JRM          N1          C8           N     126.813    2.98
+JRM         C16          S1          C8     108.623    3.00
+JRM          S1         C16          C9     108.623    3.00
+JRM          S1         C16         H19     122.728    3.00
+JRM          C9         C16         H19     128.649    2.15
+JRM         C16          C9         C10     132.812    2.57
+JRM         C16          C9          N1     108.547    1.50
+JRM         C10          C9          N1     118.641    1.50
+JRM         C15         C10          C9     120.828    1.50
+JRM         C15         C10         C11     118.344    1.50
+JRM          C9         C10         C11     120.828    1.50
+JRM         C15         C14         C13     120.307    1.50
+JRM         C15         C14         H17     119.746    1.50
+JRM         C13         C14         H17     119.947    1.50
+JRM         C14         C13         C12     119.863    1.50
+JRM         C14         C13         H16     120.069    1.50
+JRM         C12         C13         H16     120.069    1.50
+JRM         C10         C11         C12     120.590    1.50
+JRM         C10         C11         H14     119.628    1.50
+JRM         C12         C11         H14     119.782    1.50
+JRM          C6          O2          C7     116.047    1.50
+JRM          O2          C7          H2     109.367    1.50
+JRM          O2          C7          H5     109.367    1.50
+JRM          O2          C7          H7     109.367    1.50
+JRM          H2          C7          H5     109.532    1.53
+JRM          H2          C7          H7     109.532    1.53
+JRM          H5          C7          H7     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JRM              const_36           N          C8          N1          C9     180.000    10.0     2
+JRM              const_21         C16          C9          N1          C8       0.000    10.0     2
+JRM              const_30           N          C8          S1         C16     180.000    10.0     2
+JRM              const_27          C9         C16          S1          C8       0.000    10.0     2
+JRM              const_24          S1         C16          C9         C10     180.000    10.0     2
+JRM             sp2_sp2_1         C15         C10          C9         C16     180.000     5.0     2
+JRM              const_17         C15         C10         C11         C12       0.000    10.0     2
+JRM       const_sp2_sp2_5         C12         C13         C14         C15       0.000     5.0     2
+JRM            sp3_sp3_11          H2          C7          O2          C6     -60.000    10.0     3
+JRM             sp3_sp3_1           C          C1          C2          H3     180.000    10.0     3
+JRM            sp2_sp3_14          O1          C6          C5           N     120.000    10.0     6
+JRM            sp2_sp3_11           C           N          C5          C6     -60.000    10.0     6
+JRM       const_sp2_sp2_1         C11         C12         C13         C14       0.000     5.0     2
+JRM              const_31         C10         C11         C12         C13       0.000    10.0     2
+JRM              const_15          C9         C10         C15         C14     180.000    10.0     2
+JRM       const_sp2_sp2_9         C13         C14         C15         C10       0.000     5.0     2
+JRM            sp2_sp2_13          C5          C6          O2          C7     180.000     5.0     2
+JRM             sp2_sp2_6          S1          C8           N           C       0.000     5.0     2
+JRM            sp2_sp2_11           O           C           N          C5       0.000     5.0     2
+JRM             sp2_sp3_2           O           C          C1          C2     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JRM    plan-1         C10   0.020
+JRM    plan-1         C16   0.020
+JRM    plan-1          C8   0.020
+JRM    plan-1          C9   0.020
+JRM    plan-1         H19   0.020
+JRM    plan-1           N   0.020
+JRM    plan-1          N1   0.020
+JRM    plan-1          S1   0.020
+JRM    plan-2         C10   0.020
+JRM    plan-2         C11   0.020
+JRM    plan-2         C12   0.020
+JRM    plan-2         C13   0.020
+JRM    plan-2         C14   0.020
+JRM    plan-2         C15   0.020
+JRM    plan-2          C9   0.020
+JRM    plan-2         H14   0.020
+JRM    plan-2         H15   0.020
+JRM    plan-2         H16   0.020
+JRM    plan-2         H17   0.020
+JRM    plan-2         H18   0.020
+JRM    plan-3          C5   0.020
+JRM    plan-3          C6   0.020
+JRM    plan-3          O1   0.020
+JRM    plan-3          O2   0.020
+JRM    plan-4           C   0.020
+JRM    plan-4          C5   0.020
+JRM    plan-4          C8   0.020
+JRM    plan-4           N   0.020
+JRM    plan-5           C   0.020
+JRM    plan-5          C1   0.020
+JRM    plan-5           N   0.020
+JRM    plan-5           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JRM           SMILES              ACDLabs 12.01                                                                    n1c(N(CC(=O)OC)C(CC)=O)scc1c2ccccc2
+JRM            InChI                InChI  1.03 InChI=1S/C15H16N2O3S/c1-3-13(18)17(9-14(19)20-2)15-16-12(10-21-15)11-7-5-4-6-8-11/h4-8,10H,3,9H2,1-2H3
+JRM         InChIKey                InChI  1.03                                                                            RUJYJZHKENFJPK-UHFFFAOYSA-N
+JRM SMILES_CANONICAL               CACTVS 3.385                                                                    CCC(=O)N(CC(=O)OC)c1scc(n1)c2ccccc2
+JRM           SMILES               CACTVS 3.385                                                                    CCC(=O)N(CC(=O)OC)c1scc(n1)c2ccccc2
+JRM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                    CCC(=O)N(CC(=O)OC)c1nc(cs1)c2ccccc2
+JRM           SMILES "OpenEye OEToolkits" 2.0.7                                                                    CCC(=O)N(CC(=O)OC)c1nc(cs1)c2ccccc2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JRM acedrg               243         "dictionary generator"                  
+JRM acedrg_database      11          "data source"                           
+JRM rdkit                2017.03.2   "Chemoinformatics tool"
+JRM refmac5              5.8.0238    "optimization tool"                     

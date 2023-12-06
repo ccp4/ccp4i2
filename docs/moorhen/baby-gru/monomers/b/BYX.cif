@@ -1,0 +1,217 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BYX     BYX      "2,2'-(1,4-phenylene)bis(N-hydroxyacetamide)"     NON-POLYMER     28     16     .     
+#
+data_comp_BYX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BYX     O01     O       O       0       109.228     186.070     41.217      
+BYX     C02     C       C       0       110.365     185.594     41.214      
+BYX     N03     N       NH1     0       111.086     185.440     42.312      
+BYX     O04     O       OH1     0       110.561     185.783     43.552      
+BYX     C05     C       CH2     0       111.020     185.146     39.925      
+BYX     C06     C       CR6     0       111.756     186.271     39.237      
+BYX     C07     C       CR16    0       111.258     186.854     38.077      
+BYX     C08     C       CR16    0       111.936     187.886     37.444      
+BYX     C09     C       CR6     0       113.139     188.369     37.948      
+BYX     C10     C       CH2     0       113.876     189.493     37.260      
+BYX     C11     C       C       0       114.815     188.981     36.188      
+BYX     N12     N       NH1     0       114.474     189.240     34.936      
+BYX     O13     O       OH1     0       115.308     188.864     33.889      
+BYX     O14     O       O       0       115.843     188.371     36.489      
+BYX     C15     C       CR16    0       113.638     187.787     39.108      
+BYX     C16     C       CR16    0       112.959     186.755     39.740      
+BYX     H031    H       H       0       111.905     185.130     42.301      
+BYX     H1      H       H       0       110.612     186.644     43.637      
+BYX     H051    H       H       0       110.332     184.797     39.325      
+BYX     H052    H       H       0       111.646     184.420     40.115      
+BYX     H071    H       H       0       110.445     186.543     37.715      
+BYX     H081    H       H       0       111.578     188.265     36.660      
+BYX     H102    H       H       0       114.394     189.989     37.924      
+BYX     H101    H       H       0       113.229     190.109     36.865      
+BYX     H121    H       H       0       113.727     189.642     34.719      
+BYX     H2      H       H       0       115.239     188.006     33.783      
+BYX     H151    H       H       0       114.450     188.098     39.468      
+BYX     H161    H       H       0       113.318     186.376     40.525      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BYX         N12         O13      SINGLE       n     1.389  0.0110     1.389  0.0110
+BYX         C11         N12      SINGLE       n     1.320  0.0103     1.320  0.0103
+BYX         C11         O14      DOUBLE       n     1.232  0.0104     1.232  0.0104
+BYX         C10         C11      SINGLE       n     1.512  0.0100     1.512  0.0100
+BYX         C09         C10      SINGLE       n     1.510  0.0100     1.510  0.0100
+BYX         C08         C09      DOUBLE       y     1.387  0.0100     1.387  0.0100
+BYX         C07         C08      SINGLE       y     1.384  0.0100     1.384  0.0100
+BYX         C09         C15      SINGLE       y     1.387  0.0100     1.387  0.0100
+BYX         C06         C07      DOUBLE       y     1.387  0.0100     1.387  0.0100
+BYX         C15         C16      DOUBLE       y     1.384  0.0100     1.384  0.0100
+BYX         C06         C16      SINGLE       y     1.387  0.0100     1.387  0.0100
+BYX         C05         C06      SINGLE       n     1.510  0.0100     1.510  0.0100
+BYX         C02         C05      SINGLE       n     1.512  0.0100     1.512  0.0100
+BYX         O01         C02      DOUBLE       n     1.232  0.0104     1.232  0.0104
+BYX         C02         N03      SINGLE       n     1.320  0.0103     1.320  0.0103
+BYX         N03         O04      SINGLE       n     1.389  0.0110     1.389  0.0110
+BYX         N03        H031      SINGLE       n     1.016  0.0100     0.875  0.0200
+BYX         O04          H1      SINGLE       n     0.970  0.0120     0.867  0.0200
+BYX         C05        H051      SINGLE       n     1.089  0.0100     0.977  0.0143
+BYX         C05        H052      SINGLE       n     1.089  0.0100     0.977  0.0143
+BYX         C07        H071      SINGLE       n     1.082  0.0130     0.942  0.0167
+BYX         C08        H081      SINGLE       n     1.082  0.0130     0.942  0.0167
+BYX         C10        H102      SINGLE       n     1.089  0.0100     0.977  0.0143
+BYX         C10        H101      SINGLE       n     1.089  0.0100     0.977  0.0143
+BYX         N12        H121      SINGLE       n     1.016  0.0100     0.875  0.0200
+BYX         O13          H2      SINGLE       n     0.970  0.0120     0.867  0.0200
+BYX         C15        H151      SINGLE       n     1.082  0.0130     0.942  0.0167
+BYX         C16        H161      SINGLE       n     1.082  0.0130     0.942  0.0167
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BYX         C05         C02         O01     121.603    1.50
+BYX         C05         C02         N03     115.338    1.90
+BYX         O01         C02         N03     123.059    1.50
+BYX         C02         N03         O04     120.051    1.50
+BYX         C02         N03        H031     122.120    2.48
+BYX         O04         N03        H031     117.829    2.59
+BYX         N03         O04          H1     108.051    2.18
+BYX         C06         C05         C02     111.650    2.25
+BYX         C06         C05        H051     109.288    1.50
+BYX         C06         C05        H052     109.288    1.50
+BYX         C02         C05        H051     109.094    1.50
+BYX         C02         C05        H052     109.094    1.50
+BYX        H051         C05        H052     108.049    1.50
+BYX         C07         C06         C16     117.877    1.50
+BYX         C07         C06         C05     121.061    1.50
+BYX         C16         C06         C05     121.061    1.50
+BYX         C08         C07         C06     121.062    1.50
+BYX         C08         C07        H071     119.544    1.50
+BYX         C06         C07        H071     119.394    1.50
+BYX         C09         C08         C07     121.062    1.50
+BYX         C09         C08        H081     119.394    1.50
+BYX         C07         C08        H081     119.544    1.50
+BYX         C10         C09         C08     121.061    1.50
+BYX         C10         C09         C15     121.061    1.50
+BYX         C08         C09         C15     117.877    1.50
+BYX         C11         C10         C09     111.650    2.25
+BYX         C11         C10        H102     109.094    1.50
+BYX         C11         C10        H101     109.094    1.50
+BYX         C09         C10        H102     109.288    1.50
+BYX         C09         C10        H101     109.288    1.50
+BYX        H102         C10        H101     108.049    1.50
+BYX         N12         C11         O14     123.059    1.50
+BYX         N12         C11         C10     115.338    1.90
+BYX         O14         C11         C10     121.603    1.50
+BYX         O13         N12         C11     120.051    1.50
+BYX         O13         N12        H121     117.829    2.59
+BYX         C11         N12        H121     122.120    2.48
+BYX         N12         O13          H2     108.051    2.18
+BYX         C09         C15         C16     121.062    1.50
+BYX         C09         C15        H151     119.394    1.50
+BYX         C16         C15        H151     119.544    1.50
+BYX         C15         C16         C06     121.062    1.50
+BYX         C15         C16        H161     119.544    1.50
+BYX         C06         C16        H161     119.394    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BYX             sp2_sp2_3         O14         C11         N12         O13       0.000     5.0     2
+BYX              const_17         C09         C15         C16         C06       0.000    10.0     2
+BYX             sp2_sp2_5         C05         C02         N03         O04     180.000     5.0     2
+BYX            sp2_sp3_22         O01         C02         C05         C06     120.000    10.0     6
+BYX            sp2_sp3_16         C07         C06         C05         C02     -90.000    10.0     6
+BYX              const_23         C05         C06         C16         C15     180.000    10.0     2
+BYX       const_sp2_sp2_3         C05         C06         C07         C08     180.000     5.0     2
+BYX       const_sp2_sp2_5         C06         C07         C08         C09       0.000     5.0     2
+BYX              const_10         C07         C08         C09         C10     180.000    10.0     2
+BYX              const_15         C10         C09         C15         C16     180.000    10.0     2
+BYX            sp2_sp3_10         C08         C09         C10         C11     -90.000    10.0     6
+BYX             sp2_sp3_4         N12         C11         C10         C09     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BYX    plan-1         C05   0.020
+BYX    plan-1         C06   0.020
+BYX    plan-1         C07   0.020
+BYX    plan-1         C08   0.020
+BYX    plan-1         C09   0.020
+BYX    plan-1         C10   0.020
+BYX    plan-1         C15   0.020
+BYX    plan-1         C16   0.020
+BYX    plan-1        H071   0.020
+BYX    plan-1        H081   0.020
+BYX    plan-1        H151   0.020
+BYX    plan-1        H161   0.020
+BYX    plan-2         C02   0.020
+BYX    plan-2         C05   0.020
+BYX    plan-2         N03   0.020
+BYX    plan-2         O01   0.020
+BYX    plan-3         C02   0.020
+BYX    plan-3        H031   0.020
+BYX    plan-3         N03   0.020
+BYX    plan-3         O04   0.020
+BYX    plan-4         C10   0.020
+BYX    plan-4         C11   0.020
+BYX    plan-4         N12   0.020
+BYX    plan-4         O14   0.020
+BYX    plan-5         C11   0.020
+BYX    plan-5        H121   0.020
+BYX    plan-5         N12   0.020
+BYX    plan-5         O13   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BYX           SMILES              ACDLabs 12.01                                                                         O=C(NO)Cc1ccc(cc1)CC(NO)=O
+BYX            InChI                InChI  1.03 InChI=1S/C10H12N2O4/c13-9(11-15)5-7-1-2-8(4-3-7)6-10(14)12-16/h1-4,15-16H,5-6H2,(H,11,13)(H,12,14)
+BYX         InChIKey                InChI  1.03                                                                        BKDWYNGFJRBIJD-UHFFFAOYSA-N
+BYX SMILES_CANONICAL               CACTVS 3.385                                                                         ONC(=O)Cc1ccc(CC(=O)NO)cc1
+BYX           SMILES               CACTVS 3.385                                                                         ONC(=O)Cc1ccc(CC(=O)NO)cc1
+BYX SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                         c1cc(ccc1CC(=O)NO)CC(=O)NO
+BYX           SMILES "OpenEye OEToolkits" 2.0.6                                                                         c1cc(ccc1CC(=O)NO)CC(=O)NO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BYX acedrg               243         "dictionary generator"                  
+BYX acedrg_database      11          "data source"                           
+BYX rdkit                2017.03.2   "Chemoinformatics tool"
+BYX refmac5              5.8.0238    "optimization tool"                     

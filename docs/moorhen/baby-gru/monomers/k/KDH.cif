@@ -1,0 +1,352 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KDH     KDH      "(2R,3R)-5,7-dihydroxy-2-(3,4,5-trihydroxyphenyl)-3,4-dihydro-2H-chromen-3-yl 3,4,5-trihydroxybenzoate"     NON-POLYMER     51     33     .     
+#
+data_comp_KDH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KDH     O1      O       OH1     0       9.662       8.496       -10.589     
+KDH     C3      C       CR6     0       8.758       9.196       -9.826      
+KDH     C6      C       CR6     0       7.513       9.535       -10.348     
+KDH     O7      O       OH1     0       7.173       9.173       -11.631     
+KDH     C9      C       CR6     0       6.615       10.244      -9.554      
+KDH     O10     O       OH1     0       5.379       10.590      -10.046     
+KDH     C12     C       CR16    0       6.956       10.610      -8.261      
+KDH     C14     C       CR6     0       8.204       10.271      -7.731      
+KDH     C15     C       CH1     0       8.562       10.679      -6.320      
+KDH     C20     C       CR66    0       9.951       9.889       -4.506      
+KDH     C21     C       CR16    0       10.409      8.785       -3.789      
+KDH     C24     C       CR6     0       11.050      8.983       -2.575      
+KDH     C26     C       CR16    0       11.241      10.265      -2.076      
+KDH     C29     C       CR6     0       10.787      11.362      -2.799      
+KDH     C31     C       CR66    0       10.134      11.191      -4.033      
+KDH     C33     C       CH1     0       9.303       12.015      -6.263      
+KDH     C36     C       C       0       10.769      12.545      -8.151      
+KDH     C38     C       CR6     0       11.970      12.043      -8.883      
+KDH     C39     C       CR16    0       12.439      12.761      -9.988      
+KDH     C41     C       CR16    0       12.629      10.873      -8.486      
+KDH     C01     C       CH2     0       9.635       12.375      -4.826      
+KDH     O01     O       O2      0       9.330       9.613       -5.710      
+KDH     O02     O       OH1     0       11.500      7.900       -1.859      
+KDH     O03     O       OH1     0       10.977      12.631      -2.304      
+KDH     C4      C       CR16    0       9.103       9.560       -8.533      
+KDH     O35     O       O2      0       10.575      11.904      -6.979      
+KDH     O37     O       O       0       10.063      13.436      -8.556      
+KDH     C43     C       CR6     0       13.743      10.433      -9.189      
+KDH     O44     O       OH1     0       14.379      9.283       -8.787      
+KDH     C46     C       CR6     0       14.214      11.148      -10.293     
+KDH     O47     O       OH1     0       15.317      10.708      -10.986     
+KDH     C49     C       CR6     0       13.553      12.314      -10.685     
+KDH     O50     O       OH1     0       13.999      13.033      -11.768     
+KDH     HO1     H       H       0       10.503      8.674       -10.534     
+KDH     HO7     H       H       0       6.780       9.738       -12.148     
+KDH     HO10    H       H       0       5.035       11.354      -9.847      
+KDH     H12     H       H       0       6.340       11.088      -7.738      
+KDH     H15     H       H       0       7.720       10.767      -5.807      
+KDH     H21     H       H       0       10.280      7.907       -4.125      
+KDH     H26     H       H       0       11.680      10.391      -1.246      
+KDH     H33     H       H       0       8.734       12.722      -6.650      
+KDH     H39     H       H       0       12.005      13.549      -10.265     
+KDH     H41     H       H       0       12.326      10.377      -7.747      
+KDH     H01     H       H       0       10.322      13.081      -4.830      
+KDH     H01A    H       H       0       8.828       12.740      -4.396      
+KDH     HO02    H       H       0       12.227      7.958       -1.401      
+KDH     HO03    H       H       0       10.298      13.121      -2.104      
+KDH     H4      H       H       0       9.948       9.324       -8.199      
+KDH     HO44    H       H       0       15.240      9.247       -8.776      
+KDH     HO47    H       H       0       15.313      10.708      -11.847     
+KDH     HO50    H       H       0       14.842      13.178      -11.872     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KDH          O1          C3      SINGLE       n     1.374  0.0155     1.374  0.0155
+KDH          C3          C6      DOUBLE       y     1.389  0.0100     1.389  0.0100
+KDH          C3          C4      SINGLE       y     1.383  0.0100     1.383  0.0100
+KDH          C6          O7      SINGLE       n     1.374  0.0155     1.374  0.0155
+KDH          C6          C9      SINGLE       y     1.389  0.0100     1.389  0.0100
+KDH          C9         O10      SINGLE       n     1.374  0.0155     1.374  0.0155
+KDH          C9         C12      DOUBLE       y     1.383  0.0100     1.383  0.0100
+KDH         C12         C14      SINGLE       y     1.393  0.0100     1.393  0.0100
+KDH         C14         C15      SINGLE       n     1.506  0.0118     1.506  0.0118
+KDH         C14          C4      DOUBLE       y     1.393  0.0100     1.393  0.0100
+KDH         C15         C33      SINGLE       n     1.524  0.0139     1.524  0.0139
+KDH         C15         O01      SINGLE       n     1.435  0.0165     1.435  0.0165
+KDH         C20         C21      DOUBLE       y     1.390  0.0106     1.390  0.0106
+KDH         C20         C31      SINGLE       y     1.391  0.0100     1.391  0.0100
+KDH         C20         O01      SINGLE       n     1.378  0.0100     1.378  0.0100
+KDH         C21         C24      SINGLE       y     1.383  0.0100     1.383  0.0100
+KDH         C24         C26      DOUBLE       y     1.383  0.0124     1.383  0.0124
+KDH         C24         O02      SINGLE       n     1.374  0.0155     1.374  0.0155
+KDH         C26         C29      SINGLE       y     1.382  0.0154     1.382  0.0154
+KDH         C29         C31      DOUBLE       y     1.402  0.0100     1.402  0.0100
+KDH         C29         O03      SINGLE       n     1.374  0.0155     1.374  0.0155
+KDH         C31         C01      SINGLE       n     1.508  0.0100     1.508  0.0100
+KDH         C33         C01      SINGLE       n     1.518  0.0100     1.518  0.0100
+KDH         C33         O35      SINGLE       n     1.456  0.0128     1.456  0.0128
+KDH         C36         C38      SINGLE       n     1.485  0.0109     1.485  0.0109
+KDH         C36         O35      SINGLE       n     1.344  0.0100     1.344  0.0100
+KDH         C36         O37      DOUBLE       n     1.204  0.0100     1.204  0.0100
+KDH         C38         C39      DOUBLE       y     1.393  0.0100     1.393  0.0100
+KDH         C38         C41      SINGLE       y     1.393  0.0100     1.393  0.0100
+KDH         C39         C49      SINGLE       y     1.381  0.0147     1.381  0.0147
+KDH         C41         C43      DOUBLE       y     1.381  0.0147     1.381  0.0147
+KDH         C43         O44      SINGLE       n     1.374  0.0155     1.374  0.0155
+KDH         C43         C46      SINGLE       y     1.393  0.0100     1.393  0.0100
+KDH         C46         O47      SINGLE       n     1.374  0.0155     1.374  0.0155
+KDH         C46         C49      DOUBLE       y     1.393  0.0100     1.393  0.0100
+KDH         C49         O50      SINGLE       n     1.374  0.0155     1.374  0.0155
+KDH          O1         HO1      SINGLE       n     0.966  0.0059     0.861  0.0200
+KDH          O7         HO7      SINGLE       n     0.966  0.0059     0.861  0.0200
+KDH         O10        HO10      SINGLE       n     0.966  0.0059     0.861  0.0200
+KDH         C12         H12      SINGLE       n     1.082  0.0130     0.939  0.0103
+KDH         C15         H15      SINGLE       n     1.089  0.0100     0.990  0.0102
+KDH         C21         H21      SINGLE       n     1.082  0.0130     0.948  0.0200
+KDH         C26         H26      SINGLE       n     1.082  0.0130     0.947  0.0200
+KDH         C33         H33      SINGLE       n     1.089  0.0100     0.987  0.0182
+KDH         C39         H39      SINGLE       n     1.082  0.0130     0.941  0.0168
+KDH         C41         H41      SINGLE       n     1.082  0.0130     0.941  0.0168
+KDH         C01         H01      SINGLE       n     1.089  0.0100     0.985  0.0154
+KDH         C01        H01A      SINGLE       n     1.089  0.0100     0.985  0.0154
+KDH         O02        HO02      SINGLE       n     0.966  0.0059     0.861  0.0200
+KDH         O03        HO03      SINGLE       n     0.966  0.0059     0.861  0.0200
+KDH          C4          H4      SINGLE       n     1.082  0.0130     0.939  0.0103
+KDH         O44        HO44      SINGLE       n     0.966  0.0059     0.861  0.0200
+KDH         O47        HO47      SINGLE       n     0.966  0.0059     0.861  0.0200
+KDH         O50        HO50      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KDH          C3          O1         HO1     120.000    3.00
+KDH          O1          C3          C6     119.695    3.00
+KDH          O1          C3          C4     119.695    3.00
+KDH          C6          C3          C4     120.610    1.50
+KDH          C3          C6          O7     120.200    3.00
+KDH          C3          C6          C9     119.599    1.50
+KDH          O7          C6          C9     120.200    3.00
+KDH          C6          O7         HO7     120.000    3.00
+KDH          C6          C9         O10     119.695    3.00
+KDH          C6          C9         C12     120.610    1.50
+KDH         O10          C9         C12     119.695    3.00
+KDH          C9         O10        HO10     120.000    3.00
+KDH          C9         C12         C14     120.239    1.50
+KDH          C9         C12         H12     119.705    1.50
+KDH         C14         C12         H12     120.056    1.50
+KDH         C12         C14         C15     120.648    1.50
+KDH         C12         C14          C4     118.703    1.50
+KDH         C15         C14          C4     120.648    1.50
+KDH         C14         C15         C33     112.164    2.36
+KDH         C14         C15         O01     107.918    1.55
+KDH         C14         C15         H15     108.538    1.50
+KDH         C33         C15         O01     110.991    2.73
+KDH         C33         C15         H15     109.200    1.50
+KDH         O01         C15         H15     108.157    1.50
+KDH         C21         C20         C31     121.608    1.50
+KDH         C21         C20         O01     116.239    1.50
+KDH         C31         C20         O01     122.154    1.50
+KDH         C20         C21         C24     118.927    1.50
+KDH         C20         C21         H21     120.574    1.50
+KDH         C24         C21         H21     120.499    1.50
+KDH         C21         C24         C26     120.294    1.50
+KDH         C21         C24         O02     119.852    3.00
+KDH         C26         C24         O02     119.852    3.00
+KDH         C24         C26         C29     119.602    1.50
+KDH         C24         C26         H26     120.198    1.50
+KDH         C29         C26         H26     120.200    1.50
+KDH         C26         C29         C31     121.152    1.50
+KDH         C26         C29         O03     120.864    3.00
+KDH         C31         C29         O03     117.984    2.42
+KDH         C20         C31         C29     118.418    1.50
+KDH         C20         C31         C01     121.088    1.50
+KDH         C29         C31         C01     120.494    1.50
+KDH         C15         C33         C01     111.124    1.57
+KDH         C15         C33         O35     108.078    1.99
+KDH         C15         C33         H33     109.200    1.50
+KDH         C01         C33         O35     108.090    1.93
+KDH         C01         C33         H33     109.080    1.50
+KDH         O35         C33         H33     109.681    1.50
+KDH         C38         C36         O35     111.829    1.50
+KDH         C38         C36         O37     124.436    1.50
+KDH         O35         C36         O37     123.735    1.50
+KDH         C36         C38         C39     119.654    1.87
+KDH         C36         C38         C41     119.654    1.87
+KDH         C39         C38         C41     120.692    1.50
+KDH         C38         C39         C49     119.678    1.50
+KDH         C38         C39         H39     120.410    1.50
+KDH         C49         C39         H39     119.912    1.50
+KDH         C38         C41         C43     119.678    1.50
+KDH         C38         C41         H41     120.410    1.50
+KDH         C43         C41         H41     119.912    1.50
+KDH         C31         C01         C33     112.933    1.50
+KDH         C31         C01         H01     109.223    1.50
+KDH         C31         C01        H01A     109.223    1.50
+KDH         C33         C01         H01     108.581    1.50
+KDH         C33         C01        H01A     108.581    1.50
+KDH         H01         C01        H01A     107.747    1.50
+KDH         C15         O01         C20     115.253    1.53
+KDH         C24         O02        HO02     120.000    3.00
+KDH         C29         O03        HO03     120.000    3.00
+KDH          C3          C4         C14     120.239    1.50
+KDH          C3          C4          H4     119.705    1.50
+KDH         C14          C4          H4     120.056    1.50
+KDH         C33         O35         C36     117.396    1.50
+KDH         C41         C43         O44     119.866    3.00
+KDH         C41         C43         C46     120.269    1.50
+KDH         O44         C43         C46     119.866    3.00
+KDH         C43         O44        HO44     120.000    3.00
+KDH         C43         C46         O47     120.293    3.00
+KDH         C43         C46         C49     119.414    1.50
+KDH         O47         C46         C49     120.293    3.00
+KDH         C46         O47        HO47     120.000    3.00
+KDH         C39         C49         C46     120.269    1.50
+KDH         C39         C49         O50     119.866    3.00
+KDH         C46         C49         O50     119.866    3.00
+KDH         C49         O50        HO50     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KDH             sp2_sp2_3          C6          C3          O1         HO1     180.000     5.0     2
+KDH              const_30         C20         C21         C24         O02     180.000    10.0     2
+KDH              const_35         O02         C24         C26         C29     180.000    10.0     2
+KDH             sp2_sp2_9         C21         C24         O02        HO02     180.000     5.0     2
+KDH              const_38         C24         C26         C29         O03     180.000    10.0     2
+KDH              const_43         O03         C29         C31         C20     180.000    10.0     2
+KDH            sp2_sp2_11         C26         C29         O03        HO03     180.000     5.0     2
+KDH             sp2_sp3_1         C20         C31         C01         C33       0.000    10.0     6
+KDH            sp3_sp3_11         C31         C01         C33         O35      60.000    10.0     3
+KDH            sp3_sp3_22         C15         C33         O35         C36     180.000    10.0     3
+KDH            sp2_sp2_13         O35         C36         C38         C39     180.000     5.0     2
+KDH            sp2_sp2_18         O37         C36         O35         C33       0.000     5.0     2
+KDH              const_47         C36         C38         C39         C49     180.000    10.0     2
+KDH              const_71         C36         C38         C41         C43     180.000    10.0     2
+KDH              const_50         C38         C39         C49         O50     180.000    10.0     2
+KDH              const_62         C38         C41         C43         O44     180.000    10.0     2
+KDH       const_sp2_sp2_8          O1          C3          C6          O7       0.000     5.0     2
+KDH              const_67          O1          C3          C4         C14     180.000    10.0     2
+KDH            sp2_sp2_19         C41         C43         O44        HO44     180.000     5.0     2
+KDH              const_60         O44         C43         C46         O47       0.000    10.0     2
+KDH            sp2_sp2_21         C43         C46         O47        HO47     180.000     5.0     2
+KDH              const_56         O47         C46         C49         O50       0.000    10.0     2
+KDH             sp2_sp2_5          C3          C6          O7         HO7     180.000     5.0     2
+KDH              const_12          O7          C6          C9         O10       0.000    10.0     2
+KDH            sp2_sp2_23         C39         C49         O50        HO50     180.000     5.0     2
+KDH             sp2_sp2_7          C6          C9         O10        HO10     180.000     5.0     2
+KDH              const_14         C14         C12          C9         O10     180.000    10.0     2
+KDH              const_18          C9         C12         C14         C15     180.000    10.0     2
+KDH              const_21         C12         C14          C4          C3       0.000    10.0     2
+KDH             sp2_sp3_7         C12         C14         C15         C33     150.000    10.0     6
+KDH             sp3_sp3_5         C14         C15         C33         O35      60.000    10.0     3
+KDH            sp3_sp3_20         C14         C15         O01         C20     180.000    10.0     3
+KDH              const_25         C31         C20         C21         C24       0.000    10.0     2
+KDH       const_sp2_sp2_1         C21         C20         C31         C29       0.000     5.0     2
+KDH             sp2_sp2_2         C21         C20         O01         C15     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KDH    chir_1    C15    O01    C33    C14    negative
+KDH    chir_2    C33    O35    C15    C01    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KDH    plan-1         C01   0.020
+KDH    plan-1         C20   0.020
+KDH    plan-1         C21   0.020
+KDH    plan-1         C24   0.020
+KDH    plan-1         C26   0.020
+KDH    plan-1         C29   0.020
+KDH    plan-1         C31   0.020
+KDH    plan-1         H21   0.020
+KDH    plan-1         H26   0.020
+KDH    plan-1         O01   0.020
+KDH    plan-1         O02   0.020
+KDH    plan-1         O03   0.020
+KDH    plan-2         C36   0.020
+KDH    plan-2         C38   0.020
+KDH    plan-2         C39   0.020
+KDH    plan-2         C41   0.020
+KDH    plan-2         C43   0.020
+KDH    plan-2         C46   0.020
+KDH    plan-2         C49   0.020
+KDH    plan-2         H39   0.020
+KDH    plan-2         H41   0.020
+KDH    plan-2         O44   0.020
+KDH    plan-2         O47   0.020
+KDH    plan-2         O50   0.020
+KDH    plan-3         C12   0.020
+KDH    plan-3         C14   0.020
+KDH    plan-3         C15   0.020
+KDH    plan-3          C3   0.020
+KDH    plan-3          C4   0.020
+KDH    plan-3          C6   0.020
+KDH    plan-3          C9   0.020
+KDH    plan-3         H12   0.020
+KDH    plan-3          H4   0.020
+KDH    plan-3          O1   0.020
+KDH    plan-3         O10   0.020
+KDH    plan-3          O7   0.020
+KDH    plan-4         C36   0.020
+KDH    plan-4         C38   0.020
+KDH    plan-4         O35   0.020
+KDH    plan-4         O37   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KDH           SMILES              ACDLabs 10.04                                                                                                 O=C(OC2Cc3c(OC2c1cc(O)c(O)c(O)c1)cc(O)cc3O)c4cc(O)c(O)c(O)c4
+KDH SMILES_CANONICAL               CACTVS 3.341                                                                                      Oc1cc(O)c2C[C@@H](OC(=O)c3cc(O)c(O)c(O)c3)[C@H](Oc2c1)c4cc(O)c(O)c(O)c4
+KDH           SMILES               CACTVS 3.341                                                                                         Oc1cc(O)c2C[CH](OC(=O)c3cc(O)c(O)c(O)c3)[CH](Oc2c1)c4cc(O)c(O)c(O)c4
+KDH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                     c1c(cc(c(c1O)O)O)[C@@H]2[C@@H](Cc3c(cc(cc3O2)O)O)OC(=O)c4cc(c(c(c4)O)O)O
+KDH           SMILES "OpenEye OEToolkits" 1.5.0                                                                                               c1c(cc(c(c1O)O)O)C2C(Cc3c(cc(cc3O2)O)O)OC(=O)c4cc(c(c(c4)O)O)O
+KDH            InChI                InChI  1.03 InChI=1S/C22H18O11/c23-10-5-12(24)11-7-18(33-22(31)9-3-15(27)20(30)16(28)4-9)21(32-17(11)6-10)8-1-13(25)19(29)14(26)2-8/h1-6,18,21,23-30H,7H2/t18-,21-/m1/s1
+KDH         InChIKey                InChI  1.03                                                                                                                                  WMBWREPUVVBILR-WIYYLYMNSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KDH acedrg               243         "dictionary generator"                  
+KDH acedrg_database      11          "data source"                           
+KDH rdkit                2017.03.2   "Chemoinformatics tool"
+KDH refmac5              5.8.0238    "optimization tool"                     

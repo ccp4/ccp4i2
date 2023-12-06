@@ -1,0 +1,510 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EDS     EDS      "(2S)-4-amino-N-[(1R,2S,3S,4R,5S)-5-amino-4-{[(2S,3R)-3-amino-6-{[(2-hydroxyethyl)amino]methyl}-3,4-dihydro-2H-pyran-2-yl]oxy}-2-{[3-deoxy-4-C-methyl-3-(methylamino)-beta-L-arabinopyranosyl]oxy}-3-hydroxycyclohexyl]-2-hydroxybutanamide"     NON-POLYMER     90     41     .     
+#
+data_comp_EDS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EDS     CAQ     C       CH1     0       53.283      -1.673      -5.935      
+EDS     CAR     C       CH1     0       54.745      -1.911      -5.553      
+EDS     CAS     C       CH1     0       52.916      -2.447      -7.199      
+EDS     CAT     C       CH1     0       53.806      -2.024      -8.361      
+EDS     CAU     C       CH1     0       55.263      -2.305      -8.004      
+EDS     CAV     C       CH2     0       55.666      -1.577      -6.725      
+EDS     CAW     C       CH1     0       51.879      -1.149      -4.002      
+EDS     CAX     C       CH1     0       50.238      -2.703      -2.848      
+EDS     CAY     C       CH1     0       51.458      -1.787      -2.676      
+EDS     CAZ     C       CT      0       49.086      -1.959      -3.581      
+EDS     CBA     C       CH2     0       49.635      -1.396      -4.894      
+EDS     CBB     C       CH1     0       52.784      -2.091      -10.579     
+EDS     CBC     C       CH3     0       47.909      -2.889      -3.862      
+EDS     CBD     C       CH1     0       52.224      -3.122      -11.569     
+EDS     CBE     C       C       0       55.484      -1.645      -3.195      
+EDS     CBF     C       CH2     0       51.644      -2.428      -12.802     
+EDS     CBG     C       CH1     0       55.945      -0.669      -2.144      
+EDS     CBH     C       CH3     0       49.301      -2.581      -0.524      
+EDS     CBI     C       CR6     0       53.452      -0.769      -12.529     
+EDS     CBJ     C       CR16    0       52.537      -1.334      -13.302     
+EDS     CBK     C       CH2     0       54.804      0.202       -1.628      
+EDS     CBL     C       CH2     0       54.371      0.331       -12.983     
+EDS     CBM     C       CH2     0       55.159      1.053       -0.422      
+EDS     CBN     C       CH2     0       56.441      -0.935      -13.400     
+EDS     CBO     C       CH2     0       57.923      -0.970      -13.112     
+EDS     NAK     N       NH1     0       55.126      -1.126      -4.372      
+EDS     NAL     N       NT3     1       56.150      -1.881      -9.127      
+EDS     NAM     N       NT1     0       49.857      -3.389      -1.593      
+EDS     NAN     N       NT2     0       53.234      -4.116      -11.960     
+EDS     NAO     N       NT1     0       55.772      0.112       -12.615     
+EDS     NAP     N       NT2     0       54.019      1.801       0.115       
+EDS     OAA     O       O2      0       52.463      -2.122      -4.840      
+EDS     OAB     O       O2      0       53.464      -2.771      -9.541      
+EDS     OAC     O       O2      0       50.753      -0.521      -4.655      
+EDS     OAD     O       OH1     0       51.549      -2.216      -7.538      
+EDS     OAE     O       OH1     0       52.549      -2.535      -2.121      
+EDS     OAF     O       OH1     0       48.596      -0.848      -2.809      
+EDS     OAG     O       O2      0       53.656      -1.150      -11.225     
+EDS     OAH     O       O       0       55.473      -2.848      -2.949      
+EDS     OAI     O       OH1     0       56.955      0.188       -2.656      
+EDS     OAJ     O       OH1     0       58.176      -1.170      -11.732     
+EDS     H1      H       H       0       53.141      -0.706      -6.092      
+EDS     H2      H       H       0       54.843      -2.864      -5.364      
+EDS     H3      H       H       0       53.044      -3.415      -7.032      
+EDS     H4      H       H       0       53.697      -1.054      -8.524      
+EDS     H5      H       H       0       55.374      -3.288      -7.862      
+EDS     H6      H       H       0       56.589      -1.822      -6.489      
+EDS     H7      H       H       0       55.647      -0.607      -6.882      
+EDS     H8      H       H       0       52.554      -0.447      -3.812      
+EDS     H9      H       H       0       50.535      -3.412      -3.469      
+EDS     H10     H       H       0       51.229      -1.073      -2.056      
+EDS     H11     H       H       0       48.935      -0.902      -5.347      
+EDS     H12     H       H       0       49.908      -2.127      -5.464      
+EDS     H13     H       H       0       52.022      -1.587      -10.172     
+EDS     H14     H       H       0       47.404      -2.562      -4.625      
+EDS     H15     H       H       0       47.328      -2.922      -3.084      
+EDS     H16     H       H       0       48.238      -3.782      -4.055      
+EDS     H17     H       H       0       51.496      -3.599      -11.109     
+EDS     H18     H       H       0       50.757      -2.053      -12.574     
+EDS     H19     H       H       0       51.511      -3.099      -13.517     
+EDS     H20     H       H       0       56.320      -1.180      -1.386      
+EDS     H21     H       H       0       49.445      -3.033      0.330       
+EDS     H22     H       H       0       48.342      -2.467      -0.670      
+EDS     H23     H       H       0       49.732      -1.706      -0.502      
+EDS     H25     H       H       0       52.435      -1.043      -14.200     
+EDS     H27     H       H       0       54.051      -0.379      -1.392      
+EDS     H28     H       H       0       54.511      0.791       -2.354      
+EDS     H29     H       H       0       54.070      1.183       -12.584     
+EDS     H30     H       H       0       54.308      0.419       -13.965     
+EDS     H31     H       H       0       55.861      1.687       -0.674      
+EDS     H32     H       H       0       55.516      0.475       0.283       
+EDS     H33     H       H       0       56.049      -1.807      -13.183     
+EDS     H34     H       H       0       56.301      -0.767      -14.356     
+EDS     H35     H       H       0       58.324      -0.127      -13.399     
+EDS     H36     H       H       0       58.332      -1.693      -13.627     
+EDS     H37     H       H       0       55.119      -0.252      -4.451      
+EDS     H38     H       H       0       57.010      -1.894      -8.862      
+EDS     H39     H       H       0       55.937      -1.047      -9.390      
+EDS     H40     H       H       0       56.051      -2.442      -9.822      
+EDS     H41     H       H       0       50.582      -3.857      -1.296      
+EDS     H43     H       H       0       53.557      -4.522      -11.238     
+EDS     H44     H       H       0       53.905      -3.717      -12.385     
+EDS     H46     H       H       0       56.195      0.853       -12.728     
+EDS     H48     H       H       0       54.290      2.414       0.698       
+EDS     H49     H       H       0       53.587      2.228       -0.534      
+EDS     H51     H       H       0       51.102      -2.912      -7.386      
+EDS     H52     H       H       0       52.535      -2.475      -1.282      
+EDS     H53     H       H       0       49.139      -0.204      -2.815      
+EDS     H54     H       H       0       57.478      0.413       -2.027      
+EDS     H55     H       H       0       59.012      -1.207      -11.608     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EDS         CBF         CBJ      SINGLE       n     1.495  0.0100     1.495  0.0100
+EDS         CBI         CBJ      DOUBLE       n     1.322  0.0100     1.322  0.0100
+EDS         CBN         CBO      SINGLE       n     1.509  0.0138     1.509  0.0138
+EDS         CBN         NAO      SINGLE       n     1.466  0.0145     1.466  0.0145
+EDS         CBO         OAJ      SINGLE       n     1.417  0.0159     1.417  0.0159
+EDS         CBD         CBF      SINGLE       n     1.527  0.0122     1.527  0.0122
+EDS         CBL         NAO      SINGLE       n     1.463  0.0131     1.463  0.0131
+EDS         CBI         CBL      SINGLE       n     1.502  0.0145     1.502  0.0145
+EDS         CBD         NAN      SINGLE       n     1.470  0.0107     1.470  0.0107
+EDS         CBI         OAG      SINGLE       n     1.368  0.0140     1.368  0.0140
+EDS         CBB         CBD      SINGLE       n     1.533  0.0100     1.533  0.0100
+EDS         CBB         OAG      SINGLE       n     1.429  0.0169     1.429  0.0169
+EDS         CBB         OAB      SINGLE       n     1.413  0.0100     1.413  0.0100
+EDS         CAT         OAB      SINGLE       n     1.436  0.0105     1.436  0.0105
+EDS         CAU         NAL      SINGLE       n     1.491  0.0113     1.491  0.0113
+EDS         CAT         CAU      SINGLE       n     1.524  0.0103     1.524  0.0103
+EDS         CAS         CAT      SINGLE       n     1.521  0.0165     1.521  0.0165
+EDS         CAS         OAD      SINGLE       n     1.427  0.0125     1.427  0.0125
+EDS         CAU         CAV      SINGLE       n     1.525  0.0100     1.525  0.0100
+EDS         CAQ         CAS      SINGLE       n     1.521  0.0165     1.521  0.0165
+EDS         CAR         CAV      SINGLE       n     1.525  0.0100     1.525  0.0100
+EDS         CAQ         CAR      SINGLE       n     1.527  0.0100     1.527  0.0100
+EDS         CAQ         OAA      SINGLE       n     1.436  0.0105     1.436  0.0105
+EDS         CBA         OAC      SINGLE       n     1.435  0.0103     1.435  0.0103
+EDS         CAZ         CBA      SINGLE       n     1.529  0.0100     1.529  0.0100
+EDS         CAZ         CBC      SINGLE       n     1.525  0.0100     1.525  0.0100
+EDS         CAW         OAC      SINGLE       n     1.419  0.0200     1.419  0.0200
+EDS         CAR         NAK      SINGLE       n     1.465  0.0100     1.465  0.0100
+EDS         CAW         OAA      SINGLE       n     1.406  0.0136     1.406  0.0136
+EDS         CAZ         OAF      SINGLE       n     1.436  0.0120     1.436  0.0120
+EDS         CAX         CAZ      SINGLE       n     1.551  0.0112     1.551  0.0112
+EDS         CAW         CAY      SINGLE       n     1.522  0.0129     1.522  0.0129
+EDS         CBE         NAK      SINGLE       n     1.330  0.0101     1.330  0.0101
+EDS         CAX         CAY      SINGLE       n     1.532  0.0100     1.532  0.0100
+EDS         CAX         NAM      SINGLE       n     1.468  0.0132     1.468  0.0132
+EDS         CAY         OAE      SINGLE       n     1.432  0.0200     1.432  0.0200
+EDS         CBE         OAH      DOUBLE       n     1.227  0.0100     1.227  0.0100
+EDS         CBE         CBG      SINGLE       n     1.502  0.0148     1.502  0.0148
+EDS         CBH         NAM      SINGLE       n     1.444  0.0128     1.444  0.0128
+EDS         CBG         OAI      SINGLE       n     1.419  0.0162     1.419  0.0162
+EDS         CBG         CBK      SINGLE       n     1.525  0.0100     1.525  0.0100
+EDS         CBK         CBM      SINGLE       n     1.517  0.0197     1.517  0.0197
+EDS         CBM         NAP      SINGLE       n     1.466  0.0117     1.466  0.0117
+EDS         CAQ          H1      SINGLE       n     1.089  0.0100     0.989  0.0181
+EDS         CAR          H2      SINGLE       n     1.089  0.0100     0.977  0.0160
+EDS         CAS          H3      SINGLE       n     1.089  0.0100     0.990  0.0140
+EDS         CAT          H4      SINGLE       n     1.089  0.0100     0.989  0.0181
+EDS         CAU          H5      SINGLE       n     1.089  0.0100     1.000  0.0100
+EDS         CAV          H6      SINGLE       n     1.089  0.0100     0.983  0.0138
+EDS         CAV          H7      SINGLE       n     1.089  0.0100     0.983  0.0138
+EDS         CAW          H8      SINGLE       n     1.089  0.0100     0.992  0.0126
+EDS         CAX          H9      SINGLE       n     1.089  0.0100     0.988  0.0199
+EDS         CAY         H10      SINGLE       n     1.089  0.0100     0.975  0.0196
+EDS         CBA         H11      SINGLE       n     1.089  0.0100     0.969  0.0200
+EDS         CBA         H12      SINGLE       n     1.089  0.0100     0.969  0.0200
+EDS         CBB         H13      SINGLE       n     1.089  0.0100     1.000  0.0100
+EDS         CBC         H14      SINGLE       n     1.089  0.0100     0.971  0.0171
+EDS         CBC         H15      SINGLE       n     1.089  0.0100     0.971  0.0171
+EDS         CBC         H16      SINGLE       n     1.089  0.0100     0.971  0.0171
+EDS         CBD         H17      SINGLE       n     1.089  0.0100     0.984  0.0150
+EDS         CBF         H18      SINGLE       n     1.089  0.0100     0.990  0.0139
+EDS         CBF         H19      SINGLE       n     1.089  0.0100     0.990  0.0139
+EDS         CBG         H20      SINGLE       n     1.089  0.0100     0.988  0.0129
+EDS         CBH         H21      SINGLE       n     1.089  0.0100     0.977  0.0113
+EDS         CBH         H22      SINGLE       n     1.089  0.0100     0.977  0.0113
+EDS         CBH         H23      SINGLE       n     1.089  0.0100     0.977  0.0113
+EDS         CBJ         H25      SINGLE       n     1.082  0.0130     0.949  0.0200
+EDS         CBK         H27      SINGLE       n     1.089  0.0100     0.980  0.0160
+EDS         CBK         H28      SINGLE       n     1.089  0.0100     0.980  0.0160
+EDS         CBL         H29      SINGLE       n     1.089  0.0100     0.988  0.0200
+EDS         CBL         H30      SINGLE       n     1.089  0.0100     0.988  0.0200
+EDS         CBM         H31      SINGLE       n     1.089  0.0100     0.979  0.0106
+EDS         CBM         H32      SINGLE       n     1.089  0.0100     0.979  0.0106
+EDS         CBN         H33      SINGLE       n     1.089  0.0100     0.980  0.0143
+EDS         CBN         H34      SINGLE       n     1.089  0.0100     0.980  0.0143
+EDS         CBO         H35      SINGLE       n     1.089  0.0100     0.977  0.0146
+EDS         CBO         H36      SINGLE       n     1.089  0.0100     0.977  0.0146
+EDS         NAK         H37      SINGLE       n     1.016  0.0100     0.876  0.0200
+EDS         NAL         H38      SINGLE       n     1.036  0.0160     0.899  0.0200
+EDS         NAL         H39      SINGLE       n     1.036  0.0160     0.899  0.0200
+EDS         NAL         H40      SINGLE       n     1.036  0.0160     0.899  0.0200
+EDS         NAM         H41      SINGLE       n     1.036  0.0160     0.911  0.0200
+EDS         NAN         H43      SINGLE       n     1.036  0.0160     0.889  0.0200
+EDS         NAN         H44      SINGLE       n     1.036  0.0160     0.889  0.0200
+EDS         NAO         H46      SINGLE       n     1.036  0.0160     0.860  0.0200
+EDS         NAP         H48      SINGLE       n     1.036  0.0160     0.888  0.0200
+EDS         NAP         H49      SINGLE       n     1.036  0.0160     0.888  0.0200
+EDS         OAD         H51      SINGLE       n     0.970  0.0120     0.841  0.0200
+EDS         OAE         H52      SINGLE       n     0.970  0.0120     0.841  0.0200
+EDS         OAF         H53      SINGLE       n     0.970  0.0120     0.841  0.0200
+EDS         OAI         H54      SINGLE       n     0.970  0.0120     0.848  0.0200
+EDS         OAJ         H55      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EDS         CAS         CAQ         CAR     110.742    1.50
+EDS         CAS         CAQ         OAA     108.580    2.45
+EDS         CAS         CAQ          H1     109.166    1.50
+EDS         CAR         CAQ         OAA     107.272    1.50
+EDS         CAR         CAQ          H1     108.987    1.50
+EDS         OAA         CAQ          H1     109.522    1.50
+EDS         CAV         CAR         CAQ     110.196    1.50
+EDS         CAV         CAR         NAK     110.528    1.50
+EDS         CAV         CAR          H2     107.655    1.50
+EDS         CAQ         CAR         NAK     110.454    2.38
+EDS         CAQ         CAR          H2     107.258    1.68
+EDS         NAK         CAR          H2     108.786    1.50
+EDS         CAT         CAS         OAD     110.081    2.02
+EDS         CAT         CAS         CAQ     110.796    1.54
+EDS         CAT         CAS          H3     109.166    1.50
+EDS         OAD         CAS         CAQ     110.081    2.02
+EDS         OAD         CAS          H3     108.767    1.50
+EDS         CAQ         CAS          H3     109.166    1.50
+EDS         OAB         CAT         CAU     107.953    1.94
+EDS         OAB         CAT         CAS     108.580    2.45
+EDS         OAB         CAT          H4     109.522    1.50
+EDS         CAU         CAT         CAS     108.862    1.50
+EDS         CAU         CAT          H4     108.664    1.50
+EDS         CAS         CAT          H4     109.166    1.50
+EDS         NAL         CAU         CAT     109.671    1.50
+EDS         NAL         CAU         CAV     109.461    1.50
+EDS         NAL         CAU          H5     108.734    1.50
+EDS         CAT         CAU         CAV     111.392    1.50
+EDS         CAT         CAU          H5     108.763    1.50
+EDS         CAV         CAU          H5     108.719    1.50
+EDS         CAU         CAV         CAR     112.283    1.64
+EDS         CAU         CAV          H6     109.552    1.50
+EDS         CAU         CAV          H7     109.552    1.50
+EDS         CAR         CAV          H6     109.341    1.50
+EDS         CAR         CAV          H7     109.341    1.50
+EDS          H6         CAV          H7     107.784    1.50
+EDS         OAC         CAW         OAA     110.325    1.95
+EDS         OAC         CAW         CAY     110.164    1.50
+EDS         OAC         CAW          H8     109.272    1.61
+EDS         OAA         CAW         CAY     108.473    2.03
+EDS         OAA         CAW          H8     109.369    1.50
+EDS         CAY         CAW          H8     109.599    1.50
+EDS         CAZ         CAX         CAY     111.124    1.57
+EDS         CAZ         CAX         NAM     111.865    2.42
+EDS         CAZ         CAX          H9     107.529    1.50
+EDS         CAY         CAX         NAM     110.827    2.19
+EDS         CAY         CAX          H9     107.258    1.68
+EDS         NAM         CAX          H9     108.110    1.50
+EDS         CAW         CAY         CAX     111.124    1.57
+EDS         CAW         CAY         OAE     109.976    1.78
+EDS         CAW         CAY         H10     108.925    1.50
+EDS         CAX         CAY         OAE     110.124    1.87
+EDS         CAX         CAY         H10     108.987    1.50
+EDS         OAE         CAY         H10     108.790    1.50
+EDS         CBA         CAZ         CBC     111.163    2.25
+EDS         CBA         CAZ         OAF     109.247    2.43
+EDS         CBA         CAZ         CAX     111.124    1.57
+EDS         CBC         CAZ         OAF     109.198    1.92
+EDS         CBC         CAZ         CAX     112.539    1.50
+EDS         OAF         CAZ         CAX     109.365    2.30
+EDS         OAC         CBA         CAZ     110.767    1.50
+EDS         OAC         CBA         H11     109.216    1.50
+EDS         OAC         CBA         H12     109.216    1.50
+EDS         CAZ         CBA         H11     109.200    1.50
+EDS         CAZ         CBA         H12     109.200    1.50
+EDS         H11         CBA         H12     108.242    1.50
+EDS         CBD         CBB         OAG     110.991    2.73
+EDS         CBD         CBB         OAB     108.367    1.50
+EDS         CBD         CBB         H13     108.848    1.50
+EDS         OAG         CBB         OAB     110.279    2.59
+EDS         OAG         CBB         H13     108.277    2.39
+EDS         OAB         CBB         H13     107.875    2.12
+EDS         CAZ         CBC         H14     109.584    1.50
+EDS         CAZ         CBC         H15     109.584    1.50
+EDS         CAZ         CBC         H16     109.584    1.50
+EDS         H14         CBC         H15     109.376    1.50
+EDS         H14         CBC         H16     109.376    1.50
+EDS         H15         CBC         H16     109.376    1.50
+EDS         CBF         CBD         NAN     111.865    2.42
+EDS         CBF         CBD         CBB     111.124    1.57
+EDS         CBF         CBD         H17     108.788    1.50
+EDS         NAN         CBD         CBB     111.865    2.42
+EDS         NAN         CBD         H17     108.113    1.50
+EDS         CBB         CBD         H17     107.511    1.55
+EDS         NAK         CBE         OAH     122.980    1.56
+EDS         NAK         CBE         CBG     116.411    1.98
+EDS         OAH         CBE         CBG     120.609    1.50
+EDS         CBJ         CBF         CBD     111.781    1.50
+EDS         CBJ         CBF         H18     109.878    1.50
+EDS         CBJ         CBF         H19     109.878    1.50
+EDS         CBD         CBF         H18     109.290    1.50
+EDS         CBD         CBF         H19     109.290    1.50
+EDS         H18         CBF         H19     108.033    1.87
+EDS         CBE         CBG         OAI     111.028    1.86
+EDS         CBE         CBG         CBK     111.511    2.91
+EDS         CBE         CBG         H20     108.605    1.68
+EDS         OAI         CBG         CBK     108.204    2.17
+EDS         OAI         CBG         H20     108.675    1.50
+EDS         CBK         CBG         H20     108.868    1.50
+EDS         NAM         CBH         H21     109.483    1.50
+EDS         NAM         CBH         H22     109.483    1.50
+EDS         NAM         CBH         H23     109.483    1.50
+EDS         H21         CBH         H22     109.459    1.50
+EDS         H21         CBH         H23     109.459    1.50
+EDS         H22         CBH         H23     109.459    1.50
+EDS         CBJ         CBI         CBL     123.848    2.28
+EDS         CBJ         CBI         OAG     122.559    2.72
+EDS         CBL         CBI         OAG     113.593    2.22
+EDS         CBF         CBJ         CBI     121.663    3.00
+EDS         CBF         CBJ         H25     118.551    1.50
+EDS         CBI         CBJ         H25     119.787    1.50
+EDS         CBG         CBK         CBM     114.540    1.50
+EDS         CBG         CBK         H27     108.460    1.50
+EDS         CBG         CBK         H28     108.460    1.50
+EDS         CBM         CBK         H27     108.805    1.50
+EDS         CBM         CBK         H28     108.805    1.50
+EDS         H27         CBK         H28     107.742    1.50
+EDS         NAO         CBL         CBI     112.869    2.18
+EDS         NAO         CBL         H29     108.790    1.50
+EDS         NAO         CBL         H30     108.790    1.50
+EDS         CBI         CBL         H29     108.955    1.50
+EDS         CBI         CBL         H30     108.955    1.50
+EDS         H29         CBL         H30     107.945    1.50
+EDS         CBK         CBM         NAP     113.282    2.68
+EDS         CBK         CBM         H31     109.099    1.50
+EDS         CBK         CBM         H32     109.099    1.50
+EDS         NAP         CBM         H31     108.763    1.50
+EDS         NAP         CBM         H32     108.763    1.50
+EDS         H31         CBM         H32     107.806    1.50
+EDS         CBO         CBN         NAO     111.027    1.50
+EDS         CBO         CBN         H33     109.460    1.50
+EDS         CBO         CBN         H34     109.460    1.50
+EDS         NAO         CBN         H33     109.402    1.50
+EDS         NAO         CBN         H34     109.402    1.50
+EDS         H33         CBN         H34     108.238    1.99
+EDS         CBN         CBO         OAJ     111.317    1.83
+EDS         CBN         CBO         H35     109.120    1.50
+EDS         CBN         CBO         H36     109.120    1.50
+EDS         OAJ         CBO         H35     109.500    1.50
+EDS         OAJ         CBO         H36     109.500    1.50
+EDS         H35         CBO         H36     108.121    1.50
+EDS         CAR         NAK         CBE     123.056    1.53
+EDS         CAR         NAK         H37     118.599    2.10
+EDS         CBE         NAK         H37     118.346    2.17
+EDS         CAU         NAL         H38     109.908    1.75
+EDS         CAU         NAL         H39     109.908    1.75
+EDS         CAU         NAL         H40     109.908    1.75
+EDS         H38         NAL         H39     109.122    2.58
+EDS         H38         NAL         H40     109.122    2.58
+EDS         H39         NAL         H40     109.122    2.58
+EDS         CAX         NAM         CBH     114.006    1.50
+EDS         CAX         NAM         H41     107.785    2.86
+EDS         CBH         NAM         H41     110.410    2.59
+EDS         CBD         NAN         H43     109.984    3.00
+EDS         CBD         NAN         H44     109.984    3.00
+EDS         H43         NAN         H44     108.673    3.00
+EDS         CBN         NAO         CBL     113.414    1.50
+EDS         CBN         NAO         H46     108.280    3.00
+EDS         CBL         NAO         H46     108.101    1.98
+EDS         CBM         NAP         H48     110.839    3.00
+EDS         CBM         NAP         H49     110.839    3.00
+EDS         H48         NAP         H49     107.243    3.00
+EDS         CAQ         OAA         CAW     117.169    1.96
+EDS         CBB         OAB         CAT     117.169    1.96
+EDS         CBA         OAC         CAW     111.784    1.50
+EDS         CAS         OAD         H51     108.895    2.41
+EDS         CAY         OAE         H52     109.099    3.00
+EDS         CAZ         OAF         H53     108.747    3.00
+EDS         CBI         OAG         CBB     119.296    2.75
+EDS         CBG         OAI         H54     108.894    3.00
+EDS         CBO         OAJ         H55     109.054    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EDS           sp3_sp3_152         OAA         CAQ         CAR         NAK     180.000    10.0     3
+EDS             sp3_sp3_5         OAA         CAQ         CAS         OAD      60.000    10.0     3
+EDS           sp3_sp3_157         CAS         CAQ         OAA         CAW     180.000    10.0     3
+EDS            sp3_sp3_49         CAZ         CBA         OAC         CAW      60.000    10.0     3
+EDS            sp3_sp3_83         OAB         CBB         CBD         NAN      60.000    10.0     3
+EDS           sp3_sp3_130         CBD         CBB         OAB         CAT     180.000    10.0     3
+EDS           sp3_sp3_128         OAB         CBB         OAG         CBI     180.000    10.0     3
+EDS            sp3_sp3_91         NAN         CBD         CBF         CBJ     180.000    10.0     3
+EDS           sp3_sp3_121         CBF         CBD         NAN         H43     180.000    10.0     3
+EDS            sp2_sp3_19         NAK         CBE         CBG         OAI       0.000    10.0     6
+EDS             sp2_sp2_9         OAH         CBE         NAK         CAR       0.000     5.0     2
+EDS             sp2_sp3_1         CBI         CBJ         CBF         CBD       0.000    10.0     6
+EDS           sp3_sp3_202         CBE         CBG         CBK         CBM     180.000    10.0     3
+EDS           sp3_sp3_199         CBE         CBG         OAI         H54     180.000    10.0     3
+EDS           sp3_sp3_193         H21         CBH         NAM         CAX     180.000    10.0     3
+EDS             sp2_sp2_3         CBL         CBI         CBJ         CBF     180.000     5.0     2
+EDS             sp2_sp3_8         CBJ         CBI         CBL         NAO     -90.000    10.0     6
+EDS             sp2_sp2_6         CBL         CBI         OAG         CBB     180.000     5.0     2
+EDS            sp2_sp3_13         CBE         NAK         CAR         CAV       0.000    10.0     6
+EDS            sp3_sp3_40         NAK         CAR         CAV         CAU     -60.000    10.0     3
+EDS           sp3_sp3_211         CBG         CBK         CBM         NAP     180.000    10.0     3
+EDS           sp3_sp3_116         CBI         CBL         NAO         CBN     -60.000    10.0     3
+EDS           sp3_sp3_220         CBK         CBM         NAP         H48     180.000    10.0     3
+EDS            sp3_sp3_97         NAO         CBN         CBO         OAJ     180.000    10.0     3
+EDS           sp3_sp3_106         CBO         CBN         NAO         CBL     180.000    10.0     3
+EDS           sp3_sp3_112         CBN         CBO         OAJ         H55     180.000    10.0     3
+EDS            sp3_sp3_14         OAD         CAS         CAT         OAB     -60.000    10.0     3
+EDS           sp3_sp3_145         CAT         CAS         OAD         H51     180.000    10.0     3
+EDS           sp3_sp3_133         CAU         CAT         OAB         CBB     180.000    10.0     3
+EDS            sp3_sp3_23         OAB         CAT         CAU         NAL      60.000    10.0     3
+EDS           sp3_sp3_136         CAT         CAU         NAL         H38     180.000    10.0     3
+EDS            sp3_sp3_31         NAL         CAU         CAV         CAR     180.000    10.0     3
+EDS           sp3_sp3_169         OAC         CAW         OAA         CAQ     180.000    10.0     3
+EDS            sp3_sp3_47         OAA         CAW         OAC         CBA      60.000    10.0     3
+EDS           sp3_sp3_179         OAA         CAW         CAY         OAE     -60.000    10.0     3
+EDS           sp3_sp3_185         CAZ         CAX         NAM         CBH     -60.000    10.0     3
+EDS            sp3_sp3_74         NAM         CAX         CAY         OAE     180.000    10.0     3
+EDS            sp3_sp3_65         NAM         CAX         CAZ         CBC     -60.000    10.0     3
+EDS           sp3_sp3_190         CAW         CAY         OAE         H52     180.000    10.0     3
+EDS            sp3_sp3_55         CBC         CAZ         CBA         OAC      60.000    10.0     3
+EDS           sp3_sp3_163         OAF         CAZ         CBC         H14      60.000    10.0     3
+EDS           sp3_sp3_173         CBC         CAZ         OAF         H53      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EDS    chir_1    CAQ    OAA    CAS    CAR    positive
+EDS    chir_2    CAR    NAK    CAQ    CAV    negative
+EDS    chir_3    CAS    OAD    CAQ    CAT    positive
+EDS    chir_4    CAT    OAB    CAS    CAU    negative
+EDS    chir_5    CAU    NAL    CAT    CAV    positive
+EDS    chir_6    CAW    OAA    OAC    CAY    negative
+EDS    chir_7    CAX    NAM    CAZ    CAY    negative
+EDS    chir_8    CAY    OAE    CAW    CAX    negative
+EDS    chir_9    CAZ    OAF    CBA    CAX    negative
+EDS    chir_10    CBB    OAG    OAB    CBD    positive
+EDS    chir_11    CBD    NAN    CBB    CBF    negative
+EDS    chir_12    CBG    OAI    CBE    CBK    positive
+EDS    chir_13    NAM    CAX    CBH    H41    both
+EDS    chir_14    NAO    CBL    CBN    H46    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EDS    plan-1         CBE   0.020
+EDS    plan-1         CBG   0.020
+EDS    plan-1         NAK   0.020
+EDS    plan-1         OAH   0.020
+EDS    plan-2         CBI   0.020
+EDS    plan-2         CBJ   0.020
+EDS    plan-2         CBL   0.020
+EDS    plan-2         OAG   0.020
+EDS    plan-3         CBF   0.020
+EDS    plan-3         CBI   0.020
+EDS    plan-3         CBJ   0.020
+EDS    plan-3         H25   0.020
+EDS    plan-4         CAR   0.020
+EDS    plan-4         CBE   0.020
+EDS    plan-4         H37   0.020
+EDS    plan-4         NAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EDS           SMILES              ACDLabs 12.01                                                                                                                                                                                           C1(C(NC(=O)C(CCN)O)CC(C(C1O)OC2C(CC=C(O2)CNCCO)N)N)OC3C(C(NC)C(O)(CO3)C)O
+EDS            InChI                InChI  1.03 InChI=1S/C25H48N6O10/c1-25(37)11-38-24(18(35)21(25)29-2)41-20-15(31-22(36)16(33)5-6-26)9-14(28)19(17(20)34)40-23-13(27)4-3-12(39-23)10-30-7-8-32/h3,13-21,23-24,29-30,32-35,37H,4-11,26-28H2,1-2H3,(H,31,36)/t13-,14+,15-,16+,17+,18-,19-,20+,21-,23-,24-,25+/m1/s1
+EDS         InChIKey                InChI  1.03                                                                                                                                                                                                                                         IYDYFVUFSPQPPV-PEXOCOHZSA-N
+EDS SMILES_CANONICAL               CACTVS 3.385                                                                                                                                            CN[C@@H]1[C@@H](O)[C@H](OC[C@]1(C)O)O[C@@H]2[C@@H](O)[C@H](O[C@H]3OC(=CC[C@H]3N)CNCCO)[C@@H](N)C[C@H]2NC(=O)[C@@H](O)CCN
+EDS           SMILES               CACTVS 3.385                                                                                                                                                              CN[CH]1[CH](O)[CH](OC[C]1(C)O)O[CH]2[CH](O)[CH](O[CH]3OC(=CC[CH]3N)CNCCO)[CH](N)C[CH]2NC(=O)[CH](O)CCN
+EDS SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                        C[C@@]1(CO[C@@H]([C@@H]([C@H]1NC)O)O[C@H]2[C@@H](C[C@@H]([C@H]([C@@H]2O)O[C@@H]3[C@@H](CC=C(O3)CNCCO)N)N)NC(=O)[C@H](CCN)O)O
+EDS           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                               CC1(COC(C(C1NC)O)OC2C(CC(C(C2O)OC3C(CC=C(O3)CNCCO)N)N)NC(=O)C(CCN)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EDS acedrg               243         "dictionary generator"                  
+EDS acedrg_database      11          "data source"                           
+EDS rdkit                2017.03.2   "Chemoinformatics tool"
+EDS refmac5              5.8.0238    "optimization tool"                     

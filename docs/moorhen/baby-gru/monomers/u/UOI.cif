@@ -1,0 +1,207 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+UOI     UOI      3-methyl-N-(pyridin-4-yl)-1,2-oxazole-5-carboxamide     NON-POLYMER     24     15     .     
+#
+data_comp_UOI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+UOI     C01     C       CH3     0       91.469      60.536      12.940      
+UOI     C02     C       CR5     0       90.490      61.457      13.583      
+UOI     C03     C       CR15    0       89.269      61.915      13.076      
+UOI     C04     C       CR5     0       88.744      62.725      14.019      
+UOI     C05     C       C       0       87.505      63.510      14.121      
+UOI     N06     N       NH1     0       86.720      63.516      13.009      
+UOI     C07     C       CR6     0       85.718      64.451      12.670      
+UOI     C08     C       CR16    0       84.508      64.004      12.143      
+UOI     C09     C       CR16    0       83.545      64.926      11.820      
+UOI     N10     N       NRD6    0       83.688      66.249      11.976      
+UOI     C11     C       CR16    0       84.857      66.663      12.484      
+UOI     C12     C       CR16    0       85.884      65.825      12.839      
+UOI     O13     O       O       0       87.228      64.099      15.163      
+UOI     O14     O       O2      0       89.605      62.767      15.069      
+UOI     N15     N       NRD5    0       90.716      61.949      14.769      
+UOI     H01     H       H       0       92.213      60.374      13.542      
+UOI     H01A    H       H       0       91.801      60.934      12.120      
+UOI     H01B    H       H       0       91.035      59.693      12.734      
+UOI     H03     H       H       0       88.880      61.705      12.244      
+UOI     HN06    H       H       0       86.818      62.856      12.446      
+UOI     H08     H       H       0       84.353      63.086      12.012      
+UOI     H09     H       H       0       82.732      64.609      11.464      
+UOI     H11     H       H       0       84.983      67.590      12.604      
+UOI     H12     H       H       0       86.683      66.172      13.192      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+UOI         C01         C02      SINGLE       n     1.489  0.0100     1.489  0.0100
+UOI         C02         C03      SINGLE       y     1.401  0.0113     1.401  0.0113
+UOI         C02         N15      DOUBLE       y     1.303  0.0100     1.303  0.0100
+UOI         C03         C04      DOUBLE       y     1.350  0.0130     1.350  0.0130
+UOI         C04         C05      SINGLE       n     1.466  0.0100     1.466  0.0100
+UOI         C04         O14      SINGLE       y     1.358  0.0100     1.358  0.0100
+UOI         C05         N06      SINGLE       n     1.357  0.0100     1.357  0.0100
+UOI         C05         O13      DOUBLE       n     1.227  0.0100     1.227  0.0100
+UOI         N06         C07      SINGLE       n     1.410  0.0100     1.410  0.0100
+UOI         C07         C08      DOUBLE       y     1.389  0.0100     1.389  0.0100
+UOI         C07         C12      SINGLE       y     1.389  0.0100     1.389  0.0100
+UOI         C08         C09      SINGLE       y     1.369  0.0100     1.369  0.0100
+UOI         C09         N10      DOUBLE       y     1.337  0.0100     1.337  0.0100
+UOI         N10         C11      SINGLE       y     1.337  0.0100     1.337  0.0100
+UOI         C11         C12      DOUBLE       y     1.369  0.0100     1.369  0.0100
+UOI         O14         N15      SINGLE       y     1.409  0.0100     1.409  0.0100
+UOI         C01         H01      SINGLE       n     1.089  0.0100     0.970  0.0153
+UOI         C01        H01A      SINGLE       n     1.089  0.0100     0.970  0.0153
+UOI         C01        H01B      SINGLE       n     1.089  0.0100     0.970  0.0153
+UOI         C03         H03      SINGLE       n     1.082  0.0130     0.942  0.0154
+UOI         N06        HN06      SINGLE       n     1.016  0.0100     0.874  0.0200
+UOI         C08         H08      SINGLE       n     1.082  0.0130     0.940  0.0166
+UOI         C09         H09      SINGLE       n     1.082  0.0130     0.943  0.0178
+UOI         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0178
+UOI         C12         H12      SINGLE       n     1.082  0.0130     0.940  0.0166
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+UOI         C02         C01         H01     109.696    1.50
+UOI         C02         C01        H01A     109.696    1.50
+UOI         C02         C01        H01B     109.696    1.50
+UOI         H01         C01        H01A     109.354    1.50
+UOI         H01         C01        H01B     109.354    1.50
+UOI        H01A         C01        H01B     109.354    1.50
+UOI         C01         C02         C03     128.364    1.50
+UOI         C01         C02         N15     120.705    1.50
+UOI         C03         C02         N15     110.930    1.50
+UOI         C02         C03         C04     107.202    2.27
+UOI         C02         C03         H03     127.072    1.50
+UOI         C04         C03         H03     125.726    1.50
+UOI         C03         C04         C05     133.273    1.84
+UOI         C03         C04         O14     108.958    1.50
+UOI         C05         C04         O14     117.768    3.00
+UOI         C04         C05         N06     114.341    1.53
+UOI         C04         C05         O13     120.926    1.50
+UOI         N06         C05         O13     124.733    1.50
+UOI         C05         N06         C07     127.216    2.35
+UOI         C05         N06        HN06     116.597    1.81
+UOI         C07         N06        HN06     116.187    1.71
+UOI         N06         C07         C08     121.314    3.00
+UOI         N06         C07         C12     121.314    3.00
+UOI         C08         C07         C12     117.372    1.50
+UOI         C07         C08         C09     118.697    1.50
+UOI         C07         C08         H08     120.716    1.50
+UOI         C09         C08         H08     120.587    1.50
+UOI         C08         C09         N10     124.383    1.50
+UOI         C08         C09         H09     117.800    1.50
+UOI         N10         C09         H09     117.817    1.50
+UOI         C09         N10         C11     116.469    1.50
+UOI         N10         C11         C12     124.383    1.50
+UOI         N10         C11         H11     117.817    1.50
+UOI         C12         C11         H11     117.800    1.50
+UOI         C07         C12         C11     118.697    1.50
+UOI         C07         C12         H12     120.716    1.50
+UOI         C11         C12         H12     120.587    1.50
+UOI         C04         O14         N15     107.728    1.50
+UOI         C02         N15         O14     105.182    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+UOI             sp2_sp3_1         C03         C02         C01         H01     150.000    10.0     6
+UOI              const_24         N10         C11         C12         C07       0.000    10.0     2
+UOI              const_11         C02         N15         O14         C04       0.000    10.0     2
+UOI              const_29         C01         C02         N15         O14     180.000    10.0     2
+UOI       const_sp2_sp2_3         C01         C02         C03         C04     180.000     5.0     2
+UOI       const_sp2_sp2_6         C02         C03         C04         C05     180.000     5.0     2
+UOI              const_10         C05         C04         O14         N15     180.000    10.0     2
+UOI             sp2_sp2_1         C03         C04         C05         N06     180.000     5.0     2
+UOI             sp2_sp2_7         O13         C05         N06         C07       0.000     5.0     2
+UOI             sp2_sp2_9         C08         C07         N06         C05     180.000     5.0     2
+UOI              const_32         N06         C07         C12         C11     180.000    10.0     2
+UOI              const_14         N06         C07         C08         C09     180.000    10.0     2
+UOI              const_16         C07         C08         C09         N10       0.000    10.0     2
+UOI              const_20         C08         C09         N10         C11       0.000    10.0     2
+UOI              const_22         C12         C11         N10         C09       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+UOI    plan-1         C07   0.020
+UOI    plan-1         C08   0.020
+UOI    plan-1         C09   0.020
+UOI    plan-1         C11   0.020
+UOI    plan-1         C12   0.020
+UOI    plan-1         H08   0.020
+UOI    plan-1         H09   0.020
+UOI    plan-1         H11   0.020
+UOI    plan-1         H12   0.020
+UOI    plan-1         N06   0.020
+UOI    plan-1         N10   0.020
+UOI    plan-2         C01   0.020
+UOI    plan-2         C02   0.020
+UOI    plan-2         C03   0.020
+UOI    plan-2         C04   0.020
+UOI    plan-2         C05   0.020
+UOI    plan-2         H03   0.020
+UOI    plan-2         N15   0.020
+UOI    plan-2         O14   0.020
+UOI    plan-3         C04   0.020
+UOI    plan-3         C05   0.020
+UOI    plan-3         N06   0.020
+UOI    plan-3         O13   0.020
+UOI    plan-4         C05   0.020
+UOI    plan-4         C07   0.020
+UOI    plan-4        HN06   0.020
+UOI    plan-4         N06   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+UOI           SMILES              ACDLabs 12.01                                                           Cc2cc(C(Nc1ccncc1)=O)on2
+UOI            InChI                InChI  1.03 InChI=1S/C10H9N3O2/c1-7-6-9(15-13-7)10(14)12-8-2-4-11-5-3-8/h2-6H,1H3,(H,11,12,14)
+UOI         InChIKey                InChI  1.03                                                        HPNYMQLDUOKPSU-UHFFFAOYSA-N
+UOI SMILES_CANONICAL               CACTVS 3.385                                                           Cc1cc(on1)C(=O)Nc2ccncc2
+UOI           SMILES               CACTVS 3.385                                                           Cc1cc(on1)C(=O)Nc2ccncc2
+UOI SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                           Cc1cc(on1)C(=O)Nc2ccncc2
+UOI           SMILES "OpenEye OEToolkits" 1.7.6                                                           Cc1cc(on1)C(=O)Nc2ccncc2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+UOI acedrg               243         "dictionary generator"                  
+UOI acedrg_database      11          "data source"                           
+UOI rdkit                2017.03.2   "Chemoinformatics tool"
+UOI refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,300 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EMJ     EMJ      2,5-dihydroxy-3-undecylcyclohexa-2,5-diene-1,4-dione     NON-POLYMER     47     21     .     
+#
+data_comp_EMJ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EMJ     C2      C       CR6     0       10.014      26.748      41.159      
+EMJ     C3      C       CR6     0       10.943      27.756      41.717      
+EMJ     C4      C       CR6     0       10.538      29.082      41.692      
+EMJ     C5      C       CR6     0       9.209       29.505      41.076      
+EMJ     C6      C       CR16    0       8.355       28.492      40.510      
+EMJ     C7      C       CR6     0       8.694       27.190      40.551      
+EMJ     O8      O       O       0       8.912       30.737      41.091      
+EMJ     O9      O       O       0       10.295      25.557      41.182      
+EMJ     O10     O       OH1     0       11.323      30.055      42.226      
+EMJ     O11     O       OH1     0       7.838       26.269      40.042      
+EMJ     C12     C       CH2     0       12.270      27.346      42.311      
+EMJ     C13     C       CH2     0       12.219      27.124      43.814      
+EMJ     C14     C       CH2     0       13.535      26.673      44.434      
+EMJ     C15     C       CH2     0       13.478      26.423      45.921      
+EMJ     C16     C       CH2     0       14.789      25.987      46.528      
+EMJ     C17     C       CH2     0       14.729      25.742      48.015      
+EMJ     C18     C       CH2     0       16.039      25.307      48.626      
+EMJ     C19     C       CH2     0       15.977      25.062      50.113      
+EMJ     C20     C       CH2     0       17.286      24.627      50.725      
+EMJ     C21     C       CH2     0       17.226      24.383      52.211      
+EMJ     C22     C       CH3     0       18.544      23.947      52.806      
+EMJ     H1      H       H       0       7.537       28.756      40.102      
+EMJ     H2      H       H       0       11.514      30.042      43.065      
+EMJ     H3      H       H       0       8.104       25.463      39.897      
+EMJ     H4      H       H       0       12.938      28.039      42.119      
+EMJ     H25     H       H       0       12.575      26.517      41.883      
+EMJ     H5      H       H       0       11.535      26.450      44.007      
+EMJ     H26     H       H       0       11.941      27.960      44.243      
+EMJ     H6      H       H       0       14.214      27.359      44.256      
+EMJ     H7      H       H       0       13.822      25.849      43.987      
+EMJ     H8      H       H       0       12.805      25.733      46.098      
+EMJ     H9      H       H       0       13.184      27.246      46.367      
+EMJ     H10     H       H       0       15.464      26.676      46.349      
+EMJ     H11     H       H       0       15.082      25.162      46.085      
+EMJ     H12     H       H       0       14.055      25.053      48.194      
+EMJ     H13     H       H       0       14.436      26.567      48.458      
+EMJ     H14     H       H       0       16.714      25.996      48.448      
+EMJ     H15     H       H       0       16.333      24.482      48.183      
+EMJ     H16     H       H       0       15.302      24.373      50.291      
+EMJ     H17     H       H       0       15.683      25.887      50.555      
+EMJ     H18     H       H       0       17.961      25.316      50.547      
+EMJ     H19     H       H       0       17.580      23.802      50.283      
+EMJ     H20     H       H       0       16.552      23.692      52.390      
+EMJ     H21     H       H       0       16.934      25.209      52.654      
+EMJ     H22     H       H       0       18.437      23.802      53.762      
+EMJ     H23     H       H       0       19.213      24.637      52.657      
+EMJ     H24     H       H       0       18.834      23.119      52.384      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EMJ          C5          O8      DOUBLE       n     1.265  0.0200     1.265  0.0200
+EMJ          C5          C6      SINGLE       n     1.429  0.0200     1.429  0.0200
+EMJ          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+EMJ          C4         O10      SINGLE       n     1.355  0.0200     1.355  0.0200
+EMJ          C6          C7      DOUBLE       n     1.343  0.0100     1.343  0.0100
+EMJ          C3          C4      DOUBLE       n     1.367  0.0200     1.367  0.0200
+EMJ          C7         O11      SINGLE       n     1.355  0.0200     1.355  0.0200
+EMJ          C2          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+EMJ          C2          C3      SINGLE       n     1.462  0.0200     1.462  0.0200
+EMJ          C3         C12      SINGLE       n     1.507  0.0100     1.507  0.0100
+EMJ          C2          O9      DOUBLE       n     1.223  0.0100     1.223  0.0100
+EMJ         C12         C13      SINGLE       n     1.520  0.0104     1.520  0.0104
+EMJ         C13         C14      SINGLE       n     1.523  0.0122     1.523  0.0122
+EMJ         C14         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+EMJ         C15         C16      SINGLE       n     1.509  0.0200     1.509  0.0200
+EMJ         C16         C17      SINGLE       n     1.509  0.0200     1.509  0.0200
+EMJ         C17         C18      SINGLE       n     1.509  0.0200     1.509  0.0200
+EMJ         C18         C19      SINGLE       n     1.509  0.0200     1.509  0.0200
+EMJ         C19         C20      SINGLE       n     1.509  0.0200     1.509  0.0200
+EMJ         C20         C21      SINGLE       n     1.507  0.0200     1.507  0.0200
+EMJ         C21         C22      SINGLE       n     1.510  0.0200     1.510  0.0200
+EMJ          C6          H1      SINGLE       n     1.082  0.0130     0.951  0.0200
+EMJ         O10          H2      SINGLE       n     0.966  0.0059     0.861  0.0200
+EMJ         O11          H3      SINGLE       n     0.966  0.0059     0.861  0.0200
+EMJ         C12          H4      SINGLE       n     1.089  0.0100     0.982  0.0127
+EMJ         C12         H25      SINGLE       n     1.089  0.0100     0.982  0.0127
+EMJ         C13          H5      SINGLE       n     1.089  0.0100     0.980  0.0160
+EMJ         C13         H26      SINGLE       n     1.089  0.0100     0.980  0.0160
+EMJ         C14          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C14          H7      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C15          H8      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C15          H9      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C16         H10      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C16         H11      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C17         H12      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C17         H13      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C18         H14      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C18         H15      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C19         H16      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C19         H17      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C20         H18      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C20         H19      SINGLE       n     1.089  0.0100     0.981  0.0163
+EMJ         C21         H20      SINGLE       n     1.089  0.0100     0.982  0.0155
+EMJ         C21         H21      SINGLE       n     1.089  0.0100     0.982  0.0155
+EMJ         C22         H22      SINGLE       n     1.089  0.0100     0.973  0.0157
+EMJ         C22         H23      SINGLE       n     1.089  0.0100     0.973  0.0157
+EMJ         C22         H24      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EMJ          C7          C2          C3     120.142    1.50
+EMJ          C7          C2          O9     119.685    1.50
+EMJ          C3          C2          O9     120.173    1.54
+EMJ          C4          C3          C2     117.969    1.50
+EMJ          C4          C3         C12     121.174    2.25
+EMJ          C2          C3         C12     120.857    1.58
+EMJ          C5          C4         O10     119.019    3.00
+EMJ          C5          C4          C3     121.962    1.50
+EMJ         O10          C4          C3     119.019    3.00
+EMJ          O8          C5          C6     123.703    1.50
+EMJ          O8          C5          C4     117.934    2.23
+EMJ          C6          C5          C4     118.363    1.50
+EMJ          C5          C6          C7     120.804    1.50
+EMJ          C5          C6          H1     119.089    1.50
+EMJ          C7          C6          H1     120.107    1.50
+EMJ          C6          C7         O11     119.620    3.00
+EMJ          C6          C7          C2     120.759    1.50
+EMJ         O11          C7          C2     119.620    3.00
+EMJ          C4         O10          H2     120.000    3.00
+EMJ          C7         O11          H3     120.000    3.00
+EMJ          C3         C12         C13     113.676    2.28
+EMJ          C3         C12          H4     108.898    1.50
+EMJ          C3         C12         H25     108.898    1.50
+EMJ         C13         C12          H4     108.550    1.50
+EMJ         C13         C12         H25     108.550    1.50
+EMJ          H4         C12         H25     107.675    1.50
+EMJ         C12         C13         C14     114.513    1.98
+EMJ         C12         C13          H5     108.652    1.50
+EMJ         C12         C13         H26     108.652    1.50
+EMJ         C14         C13          H5     108.694    1.50
+EMJ         C14         C13         H26     108.694    1.50
+EMJ          H5         C13         H26     107.673    1.50
+EMJ         C13         C14         C15     114.879    1.50
+EMJ         C13         C14          H6     108.551    1.50
+EMJ         C13         C14          H7     108.551    1.50
+EMJ         C15         C14          H6     108.698    1.50
+EMJ         C15         C14          H7     108.698    1.50
+EMJ          H6         C14          H7     107.646    1.50
+EMJ         C14         C15         C16     114.243    1.69
+EMJ         C14         C15          H8     108.698    1.50
+EMJ         C14         C15          H9     108.698    1.50
+EMJ         C16         C15          H8     108.698    1.50
+EMJ         C16         C15          H9     108.698    1.50
+EMJ          H8         C15          H9     107.646    1.50
+EMJ         C15         C16         C17     114.243    1.69
+EMJ         C15         C16         H10     108.698    1.50
+EMJ         C15         C16         H11     108.698    1.50
+EMJ         C17         C16         H10     108.698    1.50
+EMJ         C17         C16         H11     108.698    1.50
+EMJ         H10         C16         H11     107.646    1.50
+EMJ         C16         C17         C18     114.243    1.69
+EMJ         C16         C17         H12     108.698    1.50
+EMJ         C16         C17         H13     108.698    1.50
+EMJ         C18         C17         H12     108.698    1.50
+EMJ         C18         C17         H13     108.698    1.50
+EMJ         H12         C17         H13     107.646    1.50
+EMJ         C17         C18         C19     114.243    1.69
+EMJ         C17         C18         H14     108.698    1.50
+EMJ         C17         C18         H15     108.698    1.50
+EMJ         C19         C18         H14     108.698    1.50
+EMJ         C19         C18         H15     108.698    1.50
+EMJ         H14         C18         H15     107.646    1.50
+EMJ         C18         C19         C20     114.243    1.69
+EMJ         C18         C19         H16     108.698    1.50
+EMJ         C18         C19         H17     108.698    1.50
+EMJ         C20         C19         H16     108.698    1.50
+EMJ         C20         C19         H17     108.698    1.50
+EMJ         H16         C19         H17     107.646    1.50
+EMJ         C19         C20         C21     114.362    3.00
+EMJ         C19         C20         H18     108.698    1.50
+EMJ         C19         C20         H19     108.698    1.50
+EMJ         C21         C20         H18     108.653    1.50
+EMJ         C21         C20         H19     108.653    1.50
+EMJ         H18         C20         H19     107.646    1.50
+EMJ         C20         C21         C22     113.719    3.00
+EMJ         C20         C21         H20     108.758    1.50
+EMJ         C20         C21         H21     108.758    1.50
+EMJ         C22         C21         H20     108.918    1.50
+EMJ         C22         C21         H21     108.918    1.50
+EMJ         H20         C21         H21     107.763    1.50
+EMJ         C21         C22         H22     109.554    1.50
+EMJ         C21         C22         H23     109.554    1.50
+EMJ         C21         C22         H24     109.554    1.50
+EMJ         H22         C22         H23     109.380    1.50
+EMJ         H22         C22         H24     109.380    1.50
+EMJ         H23         C22         H24     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EMJ            sp2_sp2_28          O9          C2          C3         C12       0.000     5.0     2
+EMJ             sp2_sp2_4          O9          C2          C7         O11       0.000     5.0     2
+EMJ             sp3_sp3_1          C3         C12         C13         C14     180.000    10.0     3
+EMJ            sp3_sp3_10         C12         C13         C14         C15     180.000    10.0     3
+EMJ            sp3_sp3_19         C13         C14         C15         C16     180.000    10.0     3
+EMJ            sp3_sp3_28         C14         C15         C16         C17     180.000    10.0     3
+EMJ            sp3_sp3_37         C15         C16         C17         C18     180.000    10.0     3
+EMJ            sp3_sp3_46         C16         C17         C18         C19     180.000    10.0     3
+EMJ            sp3_sp3_55         C17         C18         C19         C20     180.000    10.0     3
+EMJ            sp3_sp3_64         C18         C19         C20         C21     180.000    10.0     3
+EMJ            sp3_sp3_73         C19         C20         C21         C22     180.000    10.0     3
+EMJ            sp3_sp3_82         C20         C21         C22         H22     180.000    10.0     3
+EMJ             sp2_sp3_2          C4          C3         C12         C13     -90.000    10.0     6
+EMJ            sp2_sp2_20         C12          C3          C4         O10       0.000     5.0     2
+EMJ            sp2_sp2_16         O10          C4          C5          O8       0.000     5.0     2
+EMJ            sp2_sp2_21          C5          C4         O10          H2     180.000     5.0     2
+EMJ            sp2_sp2_11          O8          C5          C6          C7     180.000     5.0     2
+EMJ             sp2_sp2_6          C5          C6          C7         O11     180.000     5.0     2
+EMJ            sp2_sp2_23          C6          C7         O11          H3     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EMJ    plan-1          C2   0.020
+EMJ    plan-1          C3   0.020
+EMJ    plan-1          C7   0.020
+EMJ    plan-1          O9   0.020
+EMJ    plan-2         C12   0.020
+EMJ    plan-2          C2   0.020
+EMJ    plan-2          C3   0.020
+EMJ    plan-2          C4   0.020
+EMJ    plan-3          C3   0.020
+EMJ    plan-3          C4   0.020
+EMJ    plan-3          C5   0.020
+EMJ    plan-3         O10   0.020
+EMJ    plan-4          C4   0.020
+EMJ    plan-4          C5   0.020
+EMJ    plan-4          C6   0.020
+EMJ    plan-4          O8   0.020
+EMJ    plan-5          C5   0.020
+EMJ    plan-5          C6   0.020
+EMJ    plan-5          C7   0.020
+EMJ    plan-5          H1   0.020
+EMJ    plan-6          C2   0.020
+EMJ    plan-6          C6   0.020
+EMJ    plan-6          C7   0.020
+EMJ    plan-6         O11   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EMJ           SMILES              ACDLabs 12.01                                                                 O=C1C=C(O)C(=O)C(=C1O)CCCCCCCCCCC
+EMJ            InChI                InChI  1.03 InChI=1S/C17H26O4/c1-2-3-4-5-6-7-8-9-10-11-13-16(20)14(18)12-15(19)17(13)21/h12,18,21H,2-11H2,1H3
+EMJ         InChIKey                InChI  1.03                                                                       IRSFLDGTOHBADP-UHFFFAOYSA-N
+EMJ SMILES_CANONICAL               CACTVS 3.370                                                                 CCCCCCCCCCCC1=C(O)C(=O)C=C(O)C1=O
+EMJ           SMILES               CACTVS 3.370                                                                 CCCCCCCCCCCC1=C(O)C(=O)C=C(O)C1=O
+EMJ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                 CCCCCCCCCCCC1=C(C(=O)C=C(C1=O)O)O
+EMJ           SMILES "OpenEye OEToolkits" 1.7.6                                                                 CCCCCCCCCCCC1=C(C(=O)C=C(C1=O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EMJ acedrg               243         "dictionary generator"                  
+EMJ acedrg_database      11          "data source"                           
+EMJ rdkit                2017.03.2   "Chemoinformatics tool"
+EMJ refmac5              5.8.0238    "optimization tool"                     

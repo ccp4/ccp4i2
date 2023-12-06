@@ -1,0 +1,334 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YF7     YF7      "[(1S)-1-{[6-(3-chloro-4-methylphenyl)thieno[2,3-d]pyrimidin-4-yl]amino}-2-(3-fluorophenyl)ethyl]phosphonic acid"     NON-POLYMER     47     31     .     
+#
+data_comp_YF7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YF7     CAF     C       CR16    0       2.574       75.481      28.849      
+YF7     CAA     C       CR6     0       2.435       76.795      29.262      
+YF7     CLA     CL      CL      0       0.827       77.393      29.589      
+YF7     CAB     C       CR6     0       3.535       77.647      29.420      
+YF7     CAG     C       CH3     0       3.383       79.085      29.871      
+YF7     CAC     C       CR16    0       4.793       77.114      29.144      
+YF7     CAD     C       CR16    0       4.946       75.799      28.732      
+YF7     CAE     C       CR6     0       3.839       74.961      28.579      
+YF7     CAI     C       CR5     0       4.024       73.569      28.139      
+YF7     SAJ     S       S2      0       2.997       72.347      28.651      
+YF7     CAM     C       CR15    0       4.987       73.083      27.321      
+YF7     C5      C       CR56    0       4.868       71.667      27.111      
+YF7     C6      C       CR56    0       3.758       71.129      27.820      
+YF7     N1      N       NRD6    0       3.440       69.820      27.777      
+YF7     C2      C       CR16    0       4.228       69.048      27.027      
+YF7     N3      N       NRD6    0       5.295       69.450      26.318      
+YF7     C4      C       CR6     0       5.642       70.762      26.340      
+YF7     NAR     N       NT1     0       6.739       71.145      25.618      
+YF7     CAS     C       CH1     0       8.075       70.618      25.900      
+YF7     PBB     P       P       0       9.069       70.642      24.380      
+YF7     OBD     O       OP      -1      10.332      69.907      24.671      
+YF7     OBE     O       OP      -1      9.326       72.073      24.049      
+YF7     OBC     O       O       0       8.266       69.966      23.321      
+YF7     CAT     C       CH2     0       8.824       71.411      26.998      
+YF7     CAU     C       CR6     0       8.158       71.354      28.353      
+YF7     CAZ     C       CR16    0       7.814       72.522      29.024      
+YF7     CAY     C       CR6     0       7.203       72.438      30.255      
+YF7     FBA     F       F       0       6.875       73.591      30.895      
+YF7     CAX     C       CR16    0       6.915       71.247      30.864      
+YF7     CAW     C       CR16    0       7.256       70.085      30.200      
+YF7     CAV     C       CR16    0       7.872       70.133      28.956      
+YF7     H1      H       H       0       1.819       74.942      28.752      
+YF7     H2      H       H       0       2.751       79.544      29.294      
+YF7     H3      H       H       0       4.242       79.536      29.826      
+YF7     H4      H       H       0       3.057       79.107      30.785      
+YF7     H5      H       H       0       5.555       77.661      29.242      
+YF7     H6      H       H       0       5.809       75.468      28.554      
+YF7     H7      H       H       0       5.664       73.609      26.934      
+YF7     H8      H       H       0       4.016       68.138      26.991      
+YF7     H9      H       H       0       6.760       71.983      25.351      
+YF7     H10     H       H       0       7.994       69.679      26.187      
+YF7     H13     H       H       0       8.898       72.348      26.717      
+YF7     H14     H       H       0       9.734       71.054      27.080      
+YF7     H15     H       H       0       7.998       73.379      28.631      
+YF7     H16     H       H       0       6.496       71.222      31.711      
+YF7     H17     H       H       0       7.068       69.248      30.599      
+YF7     H18     H       H       0       8.099       69.331      28.515      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YF7         PBB         OBC      DOUBLE       n     1.492  0.0200     1.492  0.0200
+YF7         PBB         OBD      SINGLE       n     1.492  0.0200     1.492  0.0200
+YF7         PBB         OBE      SINGLE       n     1.492  0.0200     1.492  0.0200
+YF7         CAS         PBB      SINGLE       n     1.820  0.0200     1.820  0.0200
+YF7         NAR         CAS      SINGLE       n     1.458  0.0163     1.458  0.0163
+YF7         CAS         CAT      SINGLE       n     1.544  0.0129     1.544  0.0129
+YF7          C4         NAR      SINGLE       n     1.364  0.0130     1.364  0.0130
+YF7          N3          C4      DOUBLE       y     1.353  0.0100     1.353  0.0100
+YF7          C5          C4      SINGLE       y     1.414  0.0103     1.414  0.0103
+YF7         CAT         CAU      SINGLE       n     1.509  0.0100     1.509  0.0100
+YF7          C2          N3      SINGLE       y     1.339  0.0100     1.339  0.0100
+YF7         CAM          C5      SINGLE       y     1.425  0.0100     1.425  0.0100
+YF7         CAI         CAM      DOUBLE       y     1.348  0.0100     1.348  0.0100
+YF7          C5          C6      DOUBLE       y     1.401  0.0200     1.401  0.0200
+YF7          N1          C2      DOUBLE       y     1.330  0.0100     1.330  0.0100
+YF7         CAC         CAD      DOUBLE       y     1.383  0.0100     1.383  0.0100
+YF7         CAD         CAE      SINGLE       y     1.392  0.0100     1.392  0.0100
+YF7         CAE         CAI      SINGLE       n     1.466  0.0100     1.466  0.0100
+YF7         CAI         SAJ      SINGLE       y     1.695  0.0200     1.695  0.0200
+YF7         CAB         CAC      SINGLE       y     1.377  0.0200     1.377  0.0200
+YF7         CAF         CAE      DOUBLE       y     1.389  0.0100     1.389  0.0100
+YF7          C6          N1      SINGLE       y     1.338  0.0176     1.338  0.0176
+YF7         SAJ          C6      SINGLE       y     1.695  0.0200     1.695  0.0200
+YF7         CAB         CAG      SINGLE       n     1.511  0.0174     1.511  0.0174
+YF7         CAA         CAB      DOUBLE       y     1.395  0.0102     1.395  0.0102
+YF7         CAF         CAA      SINGLE       y     1.379  0.0124     1.379  0.0124
+YF7         CAU         CAV      SINGLE       y     1.385  0.0110     1.385  0.0110
+YF7         CAU         CAZ      DOUBLE       y     1.385  0.0109     1.385  0.0109
+YF7         CAA         CLA      SINGLE       n     1.746  0.0134     1.746  0.0134
+YF7         CAW         CAV      DOUBLE       y     1.385  0.0100     1.385  0.0100
+YF7         CAZ         CAY      SINGLE       y     1.374  0.0100     1.374  0.0100
+YF7         CAX         CAW      SINGLE       y     1.375  0.0128     1.375  0.0128
+YF7         CAY         CAX      DOUBLE       y     1.364  0.0125     1.364  0.0125
+YF7         CAY         FBA      SINGLE       n     1.359  0.0106     1.359  0.0106
+YF7         CAF          H1      SINGLE       n     1.082  0.0130     0.933  0.0100
+YF7         CAG          H2      SINGLE       n     1.089  0.0100     0.971  0.0135
+YF7         CAG          H3      SINGLE       n     1.089  0.0100     0.971  0.0135
+YF7         CAG          H4      SINGLE       n     1.089  0.0100     0.971  0.0135
+YF7         CAC          H5      SINGLE       n     1.082  0.0130     0.943  0.0173
+YF7         CAD          H6      SINGLE       n     1.082  0.0130     0.941  0.0147
+YF7         CAM          H7      SINGLE       n     1.082  0.0130     0.941  0.0170
+YF7          C2          H8      SINGLE       n     1.082  0.0130     0.935  0.0100
+YF7         NAR          H9      SINGLE       n     1.016  0.0100     0.879  0.0200
+YF7         CAS         H10      SINGLE       n     1.089  0.0100     0.986  0.0200
+YF7         CAT         H13      SINGLE       n     1.089  0.0100     0.981  0.0169
+YF7         CAT         H14      SINGLE       n     1.089  0.0100     0.981  0.0169
+YF7         CAZ         H15      SINGLE       n     1.082  0.0130     0.961  0.0200
+YF7         CAX         H16      SINGLE       n     1.082  0.0130     0.945  0.0200
+YF7         CAW         H17      SINGLE       n     1.082  0.0130     0.946  0.0200
+YF7         CAV         H18      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YF7         CAE         CAF         CAA     120.107    1.50
+YF7         CAE         CAF          H1     119.611    1.50
+YF7         CAA         CAF          H1     120.282    1.50
+YF7         CAB         CAA         CAF     122.110    1.50
+YF7         CAB         CAA         CLA     119.258    1.59
+YF7         CAF         CAA         CLA     118.632    1.50
+YF7         CAC         CAB         CAG     121.130    1.50
+YF7         CAC         CAB         CAA     116.922    1.90
+YF7         CAG         CAB         CAA     121.948    2.63
+YF7         CAB         CAG          H2     109.636    1.50
+YF7         CAB         CAG          H3     109.636    1.50
+YF7         CAB         CAG          H4     109.636    1.50
+YF7          H2         CAG          H3     109.348    1.50
+YF7          H2         CAG          H4     109.348    1.50
+YF7          H3         CAG          H4     109.348    1.50
+YF7         CAD         CAC         CAB     121.022    1.50
+YF7         CAD         CAC          H5     119.745    1.50
+YF7         CAB         CAC          H5     119.233    1.50
+YF7         CAC         CAD         CAE     120.747    1.50
+YF7         CAC         CAD          H6     119.677    1.50
+YF7         CAE         CAD          H6     119.576    1.50
+YF7         CAD         CAE         CAI     120.454    1.80
+YF7         CAD         CAE         CAF     119.092    1.50
+YF7         CAI         CAE         CAF     120.454    1.80
+YF7         CAM         CAI         CAE     130.629    2.77
+YF7         CAM         CAI         SAJ     108.436    3.00
+YF7         CAE         CAI         SAJ     120.935    3.00
+YF7         CAI         SAJ          C6     108.436    3.00
+YF7          C5         CAM         CAI     107.811    1.50
+YF7          C5         CAM          H7     125.715    1.50
+YF7         CAI         CAM          H7     126.474    1.56
+YF7          C4          C5         CAM     134.679    2.40
+YF7          C4          C5          C6     118.440    1.50
+YF7         CAM          C5          C6     106.881    1.50
+YF7          C5          C6          N1     122.412    2.68
+YF7          C5          C6         SAJ     108.436    3.00
+YF7          N1          C6         SAJ     129.152    3.00
+YF7          C2          N1          C6     115.778    1.50
+YF7          N3          C2          N1     126.299    1.50
+YF7          N3          C2          H8     116.831    1.50
+YF7          N1          C2          H8     116.871    1.50
+YF7          C4          N3          C2     118.322    1.50
+YF7         NAR          C4          N3     118.204    2.32
+YF7         NAR          C4          C5     123.047    2.56
+YF7          N3          C4          C5     118.749    1.50
+YF7         CAS         NAR          C4     117.868    3.00
+YF7         CAS         NAR          H9     111.861    3.00
+YF7          C4         NAR          H9     115.343    2.89
+YF7         PBB         CAS         NAR     112.238    3.00
+YF7         PBB         CAS         CAT     111.410    2.87
+YF7         PBB         CAS         H10     108.528    1.50
+YF7         NAR         CAS         CAT     111.883    2.59
+YF7         NAR         CAS         H10     109.140    1.50
+YF7         CAT         CAS         H10     109.124    1.50
+YF7         OBC         PBB         OBD     112.502    1.50
+YF7         OBC         PBB         OBE     112.502    1.50
+YF7         OBC         PBB         CAS     110.326    3.00
+YF7         OBD         PBB         OBE     112.502    1.50
+YF7         OBD         PBB         CAS     110.326    3.00
+YF7         OBE         PBB         CAS     110.326    3.00
+YF7         CAS         CAT         CAU     112.811    1.50
+YF7         CAS         CAT         H13     109.062    1.50
+YF7         CAS         CAT         H14     109.062    1.50
+YF7         CAU         CAT         H13     108.906    1.50
+YF7         CAU         CAT         H14     108.906    1.50
+YF7         H13         CAT         H14     107.735    1.50
+YF7         CAT         CAU         CAV     120.684    1.50
+YF7         CAT         CAU         CAZ     120.684    1.50
+YF7         CAV         CAU         CAZ     118.633    1.50
+YF7         CAU         CAZ         CAY     119.366    1.50
+YF7         CAU         CAZ         H15     120.251    1.50
+YF7         CAY         CAZ         H15     120.383    1.50
+YF7         CAZ         CAY         CAX     123.191    1.50
+YF7         CAZ         CAY         FBA     118.372    1.50
+YF7         CAX         CAY         FBA     118.436    1.50
+YF7         CAW         CAX         CAY     117.830    1.50
+YF7         CAW         CAX         H16     121.169    1.50
+YF7         CAY         CAX         H16     121.001    1.50
+YF7         CAV         CAW         CAX     120.526    1.50
+YF7         CAV         CAW         H17     119.848    1.50
+YF7         CAX         CAW         H17     119.626    1.50
+YF7         CAU         CAV         CAW     120.454    1.50
+YF7         CAU         CAV         H18     119.676    1.50
+YF7         CAW         CAV         H18     119.871    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YF7              const_71         CLA         CAA         CAF         CAE     180.000    10.0     2
+YF7              const_27         CAD         CAE         CAF         CAA       0.000    10.0     2
+YF7              const_19          C4          C5         CAM         CAI     180.000    10.0     2
+YF7              const_21          C4          C5          C6          N1       0.000    10.0     2
+YF7       const_sp2_sp2_4         NAR          C4          C5         CAM       0.000     5.0     2
+YF7              const_11          C5          C6          N1          C2       0.000    10.0     2
+YF7       const_sp2_sp2_9          N3          C2          N1          C6       0.000     5.0     2
+YF7       const_sp2_sp2_7          N1          C2          N3          C4       0.000     5.0     2
+YF7       const_sp2_sp2_6         NAR          C4          N3          C2     180.000     5.0     2
+YF7             sp2_sp2_3          N3          C4         NAR         CAS       0.000     5.0     2
+YF7             sp2_sp3_1          C4         NAR         CAS         PBB       0.000    10.0     6
+YF7             sp3_sp3_3         NAR         CAS         PBB         OBC      60.000    10.0     3
+YF7            sp3_sp3_10         PBB         CAS         CAT         CAU     180.000    10.0     3
+YF7              const_46         CLA         CAA         CAB         CAG       0.000    10.0     2
+YF7             sp2_sp3_8         CAV         CAU         CAT         CAS     -90.000    10.0     6
+YF7              const_75         CAT         CAU         CAZ         CAY     180.000    10.0     2
+YF7              const_49         CAT         CAU         CAV         CAW     180.000    10.0     2
+YF7              const_65         FBA         CAY         CAZ         CAU     180.000    10.0     2
+YF7              const_60         CAW         CAX         CAY         FBA     180.000    10.0     2
+YF7              const_55         CAV         CAW         CAX         CAY       0.000    10.0     2
+YF7              const_51         CAU         CAV         CAW         CAX       0.000    10.0     2
+YF7            sp2_sp3_13         CAC         CAB         CAG          H2     150.000    10.0     6
+YF7              const_41         CAG         CAB         CAC         CAD     180.000    10.0     2
+YF7              const_35         CAB         CAC         CAD         CAE       0.000    10.0     2
+YF7              const_32         CAC         CAD         CAE         CAI     180.000    10.0     2
+YF7             sp2_sp2_5         CAD         CAE         CAI         CAM     180.000     5.0     2
+YF7              const_15         CAE         CAI         CAM          C5     180.000    10.0     2
+YF7              const_67         CAM         CAI         SAJ          C6       0.000    10.0     2
+YF7              const_25          C5          C6         SAJ         CAI       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+YF7    chir_1    CAS    PBB    NAR    CAT    positive
+YF7    chir_2    PBB    OBD    OBE    OBC    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YF7    plan-1          C2   0.020
+YF7    plan-1          C4   0.020
+YF7    plan-1          C5   0.020
+YF7    plan-1          C6   0.020
+YF7    plan-1         CAE   0.020
+YF7    plan-1         CAI   0.020
+YF7    plan-1         CAM   0.020
+YF7    plan-1          H7   0.020
+YF7    plan-1          H8   0.020
+YF7    plan-1          N1   0.020
+YF7    plan-1          N3   0.020
+YF7    plan-1         NAR   0.020
+YF7    plan-1         SAJ   0.020
+YF7    plan-2         CAA   0.020
+YF7    plan-2         CAB   0.020
+YF7    plan-2         CAC   0.020
+YF7    plan-2         CAD   0.020
+YF7    plan-2         CAE   0.020
+YF7    plan-2         CAF   0.020
+YF7    plan-2         CAG   0.020
+YF7    plan-2         CAI   0.020
+YF7    plan-2         CLA   0.020
+YF7    plan-2          H1   0.020
+YF7    plan-2          H5   0.020
+YF7    plan-2          H6   0.020
+YF7    plan-3         CAT   0.020
+YF7    plan-3         CAU   0.020
+YF7    plan-3         CAV   0.020
+YF7    plan-3         CAW   0.020
+YF7    plan-3         CAX   0.020
+YF7    plan-3         CAY   0.020
+YF7    plan-3         CAZ   0.020
+YF7    plan-3         FBA   0.020
+YF7    plan-3         H15   0.020
+YF7    plan-3         H16   0.020
+YF7    plan-3         H17   0.020
+YF7    plan-3         H18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YF7           SMILES              ACDLabs 12.01                                                                                                                            c1c(Cl)c(C)ccc1c2sc3c(c2)c(ncn3)NC(Cc4cccc(c4)F)P(O)(O)=O
+YF7            InChI                InChI  1.03 InChI=1S/C21H18ClFN3O3PS/c1-12-5-6-14(9-17(12)22)18-10-16-20(24-11-25-21(16)31-18)26-19(30(27,28)29)8-13-3-2-4-15(23)7-13/h2-7,9-11,19H,8H2,1H3,(H,24,25,26)(H2,27,28,29)/t19-/m0/s1
+YF7         InChIKey                InChI  1.03                                                                                                                                                          ZSPBSSJYWQDARC-IBGZPJMESA-N
+YF7 SMILES_CANONICAL               CACTVS 3.385                                                                                                                          Cc1ccc(cc1Cl)c2sc3ncnc(N[C@H](Cc4cccc(F)c4)[P](O)(O)=O)c3c2
+YF7           SMILES               CACTVS 3.385                                                                                                                           Cc1ccc(cc1Cl)c2sc3ncnc(N[CH](Cc4cccc(F)c4)[P](O)(O)=O)c3c2
+YF7 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                            Cc1ccc(cc1Cl)c2cc3c(ncnc3s2)N[C@H](Cc4cccc(c4)F)P(=O)(O)O
+YF7           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                Cc1ccc(cc1Cl)c2cc3c(ncnc3s2)NC(Cc4cccc(c4)F)P(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YF7 acedrg               243         "dictionary generator"                  
+YF7 acedrg_database      11          "data source"                           
+YF7 rdkit                2017.03.2   "Chemoinformatics tool"
+YF7 refmac5              5.8.0238    "optimization tool"                     

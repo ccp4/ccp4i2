@@ -1,0 +1,206 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EKZ     EKZ      4-tert-butylbenzene-1,2-diol     NON-POLYMER     26     12     .     
+#
+data_comp_EKZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EKZ     CAA     C       CH3     0       14.636      5.680       41.377      
+EKZ     CAL     C       CT      0       13.634      6.467       42.235      
+EKZ     CAB     C       CH3     0       14.430      7.499       43.045      
+EKZ     CAC     C       CH3     0       12.989      5.483       43.219      
+EKZ     CAK     C       CR6     0       12.543      7.178       41.406      
+EKZ     CAH     C       CR16    0       11.556      7.924       42.068      
+EKZ     CAJ     C       CR6     0       10.556      8.580       41.364      
+EKZ     OAE     O       OH1     0       9.606       9.301       42.048      
+EKZ     CAI     C       CR6     0       10.519      8.505       39.972      
+EKZ     OAD     O       OH1     0       9.533       9.151       39.264      
+EKZ     CAF     C       CR16    0       11.480      7.776       39.295      
+EKZ     CAG     C       CR16    0       12.481      7.121       40.009      
+EKZ     H1      H       H       0       14.167      4.996       40.868      
+EKZ     H2      H       H       0       15.294      5.252       41.954      
+EKZ     H3      H       H       0       15.093      6.284       40.767      
+EKZ     H4      H       H       0       14.747      8.202       42.453      
+EKZ     H5      H       H       0       15.191      7.066       43.469      
+EKZ     H6      H       H       0       13.860      7.888       43.731      
+EKZ     H7      H       H       0       12.370      4.904       42.741      
+EKZ     H8      H       H       0       12.506      5.973       43.906      
+EKZ     H9      H       H       0       13.679      4.939       43.639      
+EKZ     H10     H       H       0       11.570      7.983       43.012      
+EKZ     H11     H       H       0       9.349       9.045       42.829      
+EKZ     H12     H       H       0       9.710       9.498       38.496      
+EKZ     H13     H       H       0       11.456      7.725       38.353      
+EKZ     H14     H       H       0       13.125      6.631       39.532      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EKZ         CAI         OAD      SINGLE       n     1.374  0.0155     1.374  0.0155
+EKZ         CAI         CAF      DOUBLE       y     1.381  0.0100     1.381  0.0100
+EKZ         CAF         CAG      SINGLE       y     1.391  0.0100     1.391  0.0100
+EKZ         CAJ         CAI      SINGLE       y     1.391  0.0100     1.391  0.0100
+EKZ         CAK         CAG      DOUBLE       y     1.392  0.0100     1.392  0.0100
+EKZ         CAA         CAL      SINGLE       n     1.532  0.0112     1.532  0.0112
+EKZ         CAJ         OAE      SINGLE       n     1.374  0.0155     1.374  0.0155
+EKZ         CAH         CAJ      DOUBLE       y     1.383  0.0100     1.383  0.0100
+EKZ         CAL         CAK      SINGLE       n     1.534  0.0100     1.534  0.0100
+EKZ         CAK         CAH      SINGLE       y     1.392  0.0130     1.392  0.0130
+EKZ         CAL         CAB      SINGLE       n     1.532  0.0112     1.532  0.0112
+EKZ         CAL         CAC      SINGLE       n     1.532  0.0112     1.532  0.0112
+EKZ         CAA          H1      SINGLE       n     1.089  0.0100     0.973  0.0141
+EKZ         CAA          H2      SINGLE       n     1.089  0.0100     0.973  0.0141
+EKZ         CAA          H3      SINGLE       n     1.089  0.0100     0.973  0.0141
+EKZ         CAB          H4      SINGLE       n     1.089  0.0100     0.973  0.0141
+EKZ         CAB          H5      SINGLE       n     1.089  0.0100     0.973  0.0141
+EKZ         CAB          H6      SINGLE       n     1.089  0.0100     0.973  0.0141
+EKZ         CAC          H7      SINGLE       n     1.089  0.0100     0.973  0.0141
+EKZ         CAC          H8      SINGLE       n     1.089  0.0100     0.973  0.0141
+EKZ         CAC          H9      SINGLE       n     1.089  0.0100     0.973  0.0141
+EKZ         CAH         H10      SINGLE       n     1.082  0.0130     0.945  0.0164
+EKZ         OAE         H11      SINGLE       n     0.966  0.0059     0.861  0.0200
+EKZ         OAD         H12      SINGLE       n     0.966  0.0059     0.861  0.0200
+EKZ         CAF         H13      SINGLE       n     1.082  0.0130     0.944  0.0200
+EKZ         CAG         H14      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EKZ         CAL         CAA          H1     109.561    1.50
+EKZ         CAL         CAA          H2     109.561    1.50
+EKZ         CAL         CAA          H3     109.561    1.50
+EKZ          H1         CAA          H2     109.375    1.50
+EKZ          H1         CAA          H3     109.375    1.50
+EKZ          H2         CAA          H3     109.375    1.50
+EKZ         CAA         CAL         CAK     110.353    1.57
+EKZ         CAA         CAL         CAB     108.339    1.50
+EKZ         CAA         CAL         CAC     108.339    1.50
+EKZ         CAK         CAL         CAB     110.353    1.57
+EKZ         CAK         CAL         CAC     110.353    1.57
+EKZ         CAB         CAL         CAC     108.339    1.50
+EKZ         CAL         CAB          H4     109.561    1.50
+EKZ         CAL         CAB          H5     109.561    1.50
+EKZ         CAL         CAB          H6     109.561    1.50
+EKZ          H4         CAB          H5     109.375    1.50
+EKZ          H4         CAB          H6     109.375    1.50
+EKZ          H5         CAB          H6     109.375    1.50
+EKZ         CAL         CAC          H7     109.561    1.50
+EKZ         CAL         CAC          H8     109.561    1.50
+EKZ         CAL         CAC          H9     109.561    1.50
+EKZ          H7         CAC          H8     109.375    1.50
+EKZ          H7         CAC          H9     109.375    1.50
+EKZ          H8         CAC          H9     109.375    1.50
+EKZ         CAG         CAK         CAL     120.975    1.50
+EKZ         CAG         CAK         CAH     118.781    1.50
+EKZ         CAL         CAK         CAH     120.244    1.59
+EKZ         CAJ         CAH         CAK     120.423    1.50
+EKZ         CAJ         CAH         H10     119.735    1.50
+EKZ         CAK         CAH         H10     119.844    1.50
+EKZ         CAI         CAJ         OAE     120.351    3.00
+EKZ         CAI         CAJ         CAH     119.297    1.50
+EKZ         OAE         CAJ         CAH     120.351    3.00
+EKZ         CAJ         OAE         H11     120.000    3.00
+EKZ         OAD         CAI         CAF     120.134    3.00
+EKZ         OAD         CAI         CAJ     120.134    3.00
+EKZ         CAF         CAI         CAJ     119.731    1.50
+EKZ         CAI         OAD         H12     120.000    3.00
+EKZ         CAI         CAF         CAG     119.768    1.50
+EKZ         CAI         CAF         H13     119.938    1.50
+EKZ         CAG         CAF         H13     120.294    1.50
+EKZ         CAF         CAG         CAK     121.997    1.50
+EKZ         CAF         CAG         H14     119.050    1.50
+EKZ         CAK         CAG         H14     118.952    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EKZ             sp3_sp3_2          H1         CAA         CAL         CAB     -60.000    10.0     3
+EKZ       const_sp2_sp2_5         CAI         CAF         CAG         CAK       0.000     5.0     2
+EKZ            sp3_sp3_10          H4         CAB         CAL         CAA     180.000    10.0     3
+EKZ            sp3_sp3_20          H7         CAC         CAL         CAA     -60.000    10.0     3
+EKZ             sp2_sp3_2         CAG         CAK         CAL         CAA     -90.000    10.0     6
+EKZ       const_sp2_sp2_2         CAF         CAG         CAK         CAL     180.000     5.0     2
+EKZ              const_22         CAJ         CAH         CAK         CAL     180.000    10.0     2
+EKZ              const_18         CAK         CAH         CAJ         OAE     180.000    10.0     2
+EKZ             sp2_sp2_3         CAI         CAJ         OAE         H11     180.000     5.0     2
+EKZ              const_16         OAD         CAI         CAJ         OAE       0.000    10.0     2
+EKZ              const_10         CAG         CAF         CAI         OAD     180.000    10.0     2
+EKZ             sp2_sp2_1         CAF         CAI         OAD         H12     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EKZ    chir_1    CAL    CAK    CAA    CAB    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EKZ    plan-1         CAF   0.020
+EKZ    plan-1         CAG   0.020
+EKZ    plan-1         CAH   0.020
+EKZ    plan-1         CAI   0.020
+EKZ    plan-1         CAJ   0.020
+EKZ    plan-1         CAK   0.020
+EKZ    plan-1         CAL   0.020
+EKZ    plan-1         H10   0.020
+EKZ    plan-1         H13   0.020
+EKZ    plan-1         H14   0.020
+EKZ    plan-1         OAD   0.020
+EKZ    plan-1         OAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EKZ           SMILES              ACDLabs 12.01                                              Oc1ccc(cc1O)C(C)(C)C
+EKZ            InChI                InChI  1.03 InChI=1S/C10H14O2/c1-10(2,3)7-4-5-8(11)9(12)6-7/h4-6,11-12H,1-3H3
+EKZ         InChIKey                InChI  1.03                                       XESZUVZBAMCAEJ-UHFFFAOYSA-N
+EKZ SMILES_CANONICAL               CACTVS 3.370                                            CC(C)(C)c1ccc(O)c(O)c1
+EKZ           SMILES               CACTVS 3.370                                            CC(C)(C)c1ccc(O)c(O)c1
+EKZ SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                            CC(C)(C)c1ccc(c(c1)O)O
+EKZ           SMILES "OpenEye OEToolkits" 1.7.6                                            CC(C)(C)c1ccc(c(c1)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EKZ acedrg               243         "dictionary generator"                  
+EKZ acedrg_database      11          "data source"                           
+EKZ rdkit                2017.03.2   "Chemoinformatics tool"
+EKZ refmac5              5.8.0238    "optimization tool"                     

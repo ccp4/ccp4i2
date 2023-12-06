@@ -1,0 +1,259 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IRH     IRH      isorhamnetin     NON-POLYMER     35     23     .     
+#
+data_comp_IRH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IRH     C01     C       CH3     0       3.118       31.528      29.278      
+IRH     O25     O       O2      0       4.306       30.739      29.223      
+IRH     C16     C       CR6     0       4.222       29.467      28.723      
+IRH     C15     C       CR16    0       4.618       29.093      27.448      
+IRH     C17     C       CR6     0       3.701       28.507      29.605      
+IRH     O24     O       OH1     0       3.298       28.832      30.880      
+IRH     C18     C       CR16    0       3.578       27.192      29.196      
+IRH     C19     C       CR16    0       3.974       26.820      27.916      
+IRH     C14     C       CR6     0       4.495       27.758      27.021      
+IRH     C11     C       CR6     0       4.915       27.353      25.675      
+IRH     O12     O       O2      0       5.979       26.483      25.651      
+IRH     C4      C       CR66    0       6.498       26.001      24.480      
+IRH     C5      C       CR16    0       7.570       25.134      24.610      
+IRH     C6      C       CR6     0       8.129       24.621      23.444      
+IRH     O29     O       OH1     0       9.194       23.758      23.532      
+IRH     C1      C       CR16    0       7.626       24.966      22.176      
+IRH     C2      C       CR6     0       6.557       25.832      22.079      
+IRH     O30     O       OH1     0       6.059       26.174      20.843      
+IRH     C3      C       CR66    0       5.956       26.380      23.245      
+IRH     C9      C       CR6     0       4.817       27.306      23.225      
+IRH     O13     O       O       0       4.272       27.696      22.160      
+IRH     C10     C       CR6     0       4.334       27.764      24.505      
+IRH     O27     O       OH1     0       3.268       28.634      24.546      
+IRH     H1      H       H       0       2.774       31.529      30.187      
+IRH     H2      H       H       0       2.446       31.161      28.679      
+IRH     H3      H       H       0       3.324       32.439      29.012      
+IRH     H4      H       H       0       4.974       29.750      26.854      
+IRH     H5      H       H       0       3.658       28.441      31.558      
+IRH     H6      H       H       0       3.228       26.550      29.786      
+IRH     H7      H       H       0       3.885       25.921      27.651      
+IRH     H8      H       H       0       7.909       24.901      25.458      
+IRH     H9      H       H       0       9.791       23.871      24.142      
+IRH     H10     H       H       0       8.020       24.605      21.390      
+IRH     H11     H       H       0       5.325       25.823      20.562      
+IRH     H12     H       H       0       2.492       28.353      24.792      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IRH          C2         O30      SINGLE       n     1.374  0.0155     1.374  0.0155
+IRH          C1          C2      DOUBLE       y     1.374  0.0100     1.374  0.0100
+IRH          C2          C3      SINGLE       y     1.416  0.0100     1.416  0.0100
+IRH          C6          C1      SINGLE       y     1.402  0.0106     1.402  0.0106
+IRH          C9         O13      DOUBLE       n     1.257  0.0115     1.257  0.0115
+IRH          C3          C9      SINGLE       y     1.460  0.0141     1.460  0.0141
+IRH          C4          C3      DOUBLE       y     1.397  0.0100     1.397  0.0100
+IRH          C9         C10      SINGLE       y     1.439  0.0100     1.439  0.0100
+IRH          C6         O29      SINGLE       n     1.374  0.0155     1.374  0.0155
+IRH          C5          C6      DOUBLE       y     1.388  0.0100     1.388  0.0100
+IRH          C4          C5      SINGLE       y     1.383  0.0100     1.383  0.0100
+IRH         O12          C4      SINGLE       y     1.365  0.0100     1.365  0.0100
+IRH         C10         O27      SINGLE       n     1.374  0.0155     1.374  0.0155
+IRH         C11         C10      DOUBLE       y     1.364  0.0100     1.364  0.0100
+IRH         C11         O12      SINGLE       y     1.370  0.0100     1.370  0.0100
+IRH         C14         C11      SINGLE       n     1.467  0.0100     1.467  0.0100
+IRH         C15         C14      SINGLE       y     1.403  0.0100     1.403  0.0100
+IRH         C19         C14      DOUBLE       y     1.395  0.0100     1.395  0.0100
+IRH         C16         C15      DOUBLE       y     1.381  0.0100     1.381  0.0100
+IRH         C18         C19      SINGLE       y     1.388  0.0100     1.388  0.0100
+IRH         O25         C16      SINGLE       n     1.367  0.0100     1.367  0.0100
+IRH         C16         C17      SINGLE       y     1.397  0.0105     1.397  0.0105
+IRH         C01         O25      SINGLE       n     1.424  0.0117     1.424  0.0117
+IRH         C17         C18      DOUBLE       y     1.379  0.0100     1.379  0.0100
+IRH         C17         O24      SINGLE       n     1.374  0.0155     1.374  0.0155
+IRH         C01          H1      SINGLE       n     1.089  0.0100     0.971  0.0157
+IRH         C01          H2      SINGLE       n     1.089  0.0100     0.971  0.0157
+IRH         C01          H3      SINGLE       n     1.089  0.0100     0.971  0.0157
+IRH         C15          H4      SINGLE       n     1.082  0.0130     0.955  0.0200
+IRH         O24          H5      SINGLE       n     0.966  0.0059     0.861  0.0200
+IRH         C18          H6      SINGLE       n     1.082  0.0130     0.940  0.0196
+IRH         C19          H7      SINGLE       n     1.082  0.0130     0.941  0.0200
+IRH          C5          H8      SINGLE       n     1.082  0.0130     0.942  0.0200
+IRH         O29          H9      SINGLE       n     0.966  0.0059     0.861  0.0200
+IRH          C1         H10      SINGLE       n     1.082  0.0130     0.951  0.0200
+IRH         O30         H11      SINGLE       n     0.966  0.0059     0.861  0.0200
+IRH         O27         H12      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IRH         O25         C01          H1     109.428    1.50
+IRH         O25         C01          H2     109.428    1.50
+IRH         O25         C01          H3     109.428    1.50
+IRH          H1         C01          H2     109.509    1.50
+IRH          H1         C01          H3     109.509    1.50
+IRH          H2         C01          H3     109.509    1.50
+IRH         C16         O25         C01     117.276    1.50
+IRH         C15         C16         O25     125.172    1.50
+IRH         C15         C16         C17     119.841    1.50
+IRH         O25         C16         C17     114.987    1.50
+IRH         C14         C15         C16     120.394    1.50
+IRH         C14         C15          H4     119.963    1.50
+IRH         C16         C15          H4     119.643    1.50
+IRH         C16         C17         C18     119.703    1.50
+IRH         C16         C17         O24     120.148    3.00
+IRH         C18         C17         O24     120.148    3.00
+IRH         C17         O24          H5     120.000    3.00
+IRH         C19         C18         C17     120.160    1.50
+IRH         C19         C18          H6     120.063    1.50
+IRH         C17         C18          H6     119.780    1.50
+IRH         C14         C19         C18     121.311    1.50
+IRH         C14         C19          H7     119.582    1.50
+IRH         C18         C19          H7     119.107    1.50
+IRH         C11         C14         C15     120.605    1.50
+IRH         C11         C14         C19     120.808    1.50
+IRH         C15         C14         C19     118.587    1.50
+IRH         C10         C11         O12     120.007    1.50
+IRH         C10         C11         C14     124.868    1.79
+IRH         O12         C11         C14     115.126    1.50
+IRH          C4         O12         C11     121.184    1.50
+IRH          C3          C4          C5     123.689    1.50
+IRH          C3          C4         O12     120.892    1.50
+IRH          C5          C4         O12     115.419    1.51
+IRH          C6          C5          C4     117.805    1.50
+IRH          C6          C5          H8     121.115    1.50
+IRH          C4          C5          H8     121.079    1.50
+IRH          C1          C6         O29     119.313    3.00
+IRH          C1          C6          C5     121.375    1.50
+IRH         O29          C6          C5     119.313    3.00
+IRH          C6         O29          H9     120.000    3.00
+IRH          C2          C1          C6     119.275    1.50
+IRH          C2          C1         H10     120.291    1.50
+IRH          C6          C1         H10     120.434    1.50
+IRH         O30          C2          C1     121.363    3.00
+IRH         O30          C2          C3     118.127    2.50
+IRH          C1          C2          C3     120.510    1.50
+IRH          C2         O30         H11     120.000    3.00
+IRH          C2          C3          C9     123.003    1.50
+IRH          C2          C3          C4     117.346    1.50
+IRH          C9          C3          C4     119.651    1.50
+IRH         O13          C9          C3     122.800    1.50
+IRH         O13          C9         C10     120.416    1.50
+IRH          C3          C9         C10     116.791    1.50
+IRH          C9         C10         O27     119.263    3.00
+IRH          C9         C10         C11     121.475    1.50
+IRH         O27         C10         C11     119.263    3.00
+IRH         C10         O27         H12     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IRH             sp3_sp3_2          H1         C01         O25         C16     -60.000    10.0     3
+IRH              const_17          C3          C4         O12         C11       0.000    10.0     2
+IRH              const_55          C3          C4          C5          C6       0.000    10.0     2
+IRH              const_13          C2          C3          C4          C5       0.000    10.0     2
+IRH              const_52          C4          C5          C6         O29     180.000    10.0     2
+IRH             sp2_sp2_3          C1          C6         O29          H9     180.000     5.0     2
+IRH              const_48          C2          C1          C6         O29     180.000    10.0     2
+IRH              const_44          C6          C1          C2         O30     180.000    10.0     2
+IRH             sp2_sp2_1          C1          C2         O30         H11     180.000     5.0     2
+IRH              const_42         O30          C2          C3          C9       0.000    10.0     2
+IRH              const_12          C2          C3          C9         O13       0.000    10.0     2
+IRH       const_sp2_sp2_8         O27         C10          C9         O13       0.000     5.0     2
+IRH            sp2_sp2_11         C15         C16         O25         C01     180.000     5.0     2
+IRH             sp2_sp2_5          C9         C10         O27         H12     180.000     5.0     2
+IRH              const_20         C14         C15         C16         O25     180.000    10.0     2
+IRH              const_64         O25         C16         C17         O24       0.000    10.0     2
+IRH              const_25         C11         C14         C15         C16     180.000    10.0     2
+IRH            sp2_sp2_13         C16         C17         O24          H5     180.000     5.0     2
+IRH              const_37         O24         C17         C18         C19     180.000    10.0     2
+IRH              const_31         C17         C18         C19         C14       0.000    10.0     2
+IRH              const_29         C11         C14         C19         C18     180.000    10.0     2
+IRH             sp2_sp2_7         C10         C11         C14         C15     180.000     5.0     2
+IRH              const_59         C10         C11         O12          C4       0.000    10.0     2
+IRH       const_sp2_sp2_3         O27         C10         C11         O12     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IRH    plan-1          C1   0.020
+IRH    plan-1         C10   0.020
+IRH    plan-1         C11   0.020
+IRH    plan-1         C14   0.020
+IRH    plan-1          C2   0.020
+IRH    plan-1          C3   0.020
+IRH    plan-1          C4   0.020
+IRH    plan-1          C5   0.020
+IRH    plan-1          C6   0.020
+IRH    plan-1          C9   0.020
+IRH    plan-1         H10   0.020
+IRH    plan-1          H8   0.020
+IRH    plan-1         O12   0.020
+IRH    plan-1         O13   0.020
+IRH    plan-1         O27   0.020
+IRH    plan-1         O29   0.020
+IRH    plan-1         O30   0.020
+IRH    plan-2         C11   0.020
+IRH    plan-2         C14   0.020
+IRH    plan-2         C15   0.020
+IRH    plan-2         C16   0.020
+IRH    plan-2         C17   0.020
+IRH    plan-2         C18   0.020
+IRH    plan-2         C19   0.020
+IRH    plan-2          H4   0.020
+IRH    plan-2          H6   0.020
+IRH    plan-2          H7   0.020
+IRH    plan-2         O24   0.020
+IRH    plan-2         O25   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IRH           SMILES              ACDLabs 12.01                                                                 COc1c(O)ccc(c1)C=3Oc2cc(O)cc(c2C(C=3O)=O)O
+IRH            InChI                InChI  1.03 InChI=1S/C16H12O7/c1-22-11-4-7(2-3-9(11)18)16-15(21)14(20)13-10(19)5-8(17)6-12(13)23-16/h2-6,17-19,21H,1H3
+IRH         InChIKey                InChI  1.03                                                                                IZQSVPBOUDKVDZ-UHFFFAOYSA-N
+IRH SMILES_CANONICAL               CACTVS 3.385                                                                  COc1cc(ccc1O)C2=C(O)C(=O)c3c(O)cc(O)cc3O2
+IRH           SMILES               CACTVS 3.385                                                                  COc1cc(ccc1O)C2=C(O)C(=O)c3c(O)cc(O)cc3O2
+IRH SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                  COc1cc(ccc1O)C2=C(C(=O)c3c(cc(cc3O2)O)O)O
+IRH           SMILES "OpenEye OEToolkits" 2.0.6                                                                  COc1cc(ccc1O)C2=C(C(=O)c3c(cc(cc3O2)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IRH acedrg               243         "dictionary generator"                  
+IRH acedrg_database      11          "data source"                           
+IRH rdkit                2017.03.2   "Chemoinformatics tool"
+IRH refmac5              5.8.0238    "optimization tool"                     

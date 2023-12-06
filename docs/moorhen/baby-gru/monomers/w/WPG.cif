@@ -1,0 +1,338 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+WPG     WPG      "(3-{(3R,4R)-3-(2-amino-6-oxo-1,6-dihydro-9H-purin-9-yl)-4-[(2R)-2-hydroxy-2-phosphonoethoxy]pyrrolidin-1-yl}-3-oxopropyl)phosphonic acid"     NON-POLYMER     50     32     .     
+#
+data_comp_WPG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+WPG     C4      C       CR56    0       -39.661     -10.648     25.449      
+WPG     C5      C       CR56    0       -39.909     -11.163     26.706      
+WPG     C6      C       CR6     0       -39.216     -10.630     27.825      
+WPG     C8      C       CR15    0       -41.162     -12.259     25.365      
+WPG     N1      N       NR6     0       -38.337     -9.605      27.453      
+WPG     N2      N       NH2     0       -37.266     -8.158      25.995      
+WPG     N3      N       NRD6    0       -38.798     -9.651      25.109      
+WPG     OAI     O       O       0       -43.700     -17.754     21.323      
+WPG     PBF     P       P       0       -44.127     -16.347     21.573      
+WPG     OAJ     O       OP      -1      -44.899     -16.221     22.842      
+WPG     OAE     O       OP      -1      -44.874     -15.781     20.413      
+WPG     CAZ     C       CH1     0       -42.612     -15.351     21.769      
+WPG     OAF     O       OH1     0       -41.882     -15.385     20.559      
+WPG     CAN     C       CH2     0       -42.922     -13.919     22.136      
+WPG     OAT     O       O2      0       -41.693     -13.202     22.341      
+WPG     CBA     C       CH1     0       -41.817     -11.788     22.466      
+WPG     CAO     C       CH2     0       -41.856     -11.153     21.083      
+WPG     NBC     N       NR5     0       -41.229     -9.833      21.277      
+WPG     CAU     C       C       0       -41.136     -8.839      20.374      
+WPG     OAB     O       O       0       -40.679     -7.746      20.704      
+WPG     CAL     C       CH2     0       -41.604     -9.036      18.946      
+WPG     CAM     C       CH2     0       -40.466     -9.093      17.937      
+WPG     PBE     P       P       0       -39.586     -10.671     17.938      
+WPG     OAG     O       OP      -1      -38.825     -10.768     19.217      
+WPG     OAH     O       O       0       -38.669     -10.648     16.762      
+WPG     OAD     O       OP      -1      -40.595     -11.762     17.819      
+WPG     CAP     C       CH2     0       -40.666     -9.726      22.635      
+WPG     CBB     C       CH1     0       -40.574     -11.180     23.113      
+WPG     N9      N       NT      0       -40.481     -11.359     24.585      
+WPG     C2      C       CR6     0       -38.150     -9.151      26.166      
+WPG     O6      O       O       0       -39.312     -10.968     29.014      
+WPG     N7      N       NRD5    0       -40.858     -12.178     26.639      
+WPG     H1      H       H       0       -41.784     -12.866     25.027      
+WPG     H23     H       H       0       -37.862     -9.220      28.111      
+WPG     H2      H       H       0       -36.528     -8.142      26.469      
+WPG     H3      H       H       0       -37.426     -7.526      25.408      
+WPG     H7      H       H       0       -42.055     -15.751     22.486      
+WPG     H8      H       H       0       -41.100     -15.089     20.697      
+WPG     H9      H       H       0       -43.457     -13.893     22.956      
+WPG     H10     H       H       0       -43.437     -13.496     21.418      
+WPG     H11     H       H       0       -42.624     -11.552     22.986      
+WPG     H12     H       H       0       -41.348     -11.695     20.428      
+WPG     H13     H       H       0       -42.790     -11.059     20.766      
+WPG     H14     H       H       0       -42.191     -8.295      18.711      
+WPG     H15     H       H       0       -42.127     -9.851      18.880      
+WPG     H16     H       H       0       -39.835     -8.369      18.131      
+WPG     H17     H       H       0       -40.828     -8.924      17.044      
+WPG     H20     H       H       0       -41.252     -9.200      23.218      
+WPG     H21     H       H       0       -39.779     -9.310      22.613      
+WPG     H22     H       H       0       -39.782     -11.598     22.695      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+WPG         PBE         OAH      DOUBLE       n     1.492  0.0200     1.492  0.0200
+WPG         CAL         CAM      SINGLE       n     1.519  0.0186     1.519  0.0186
+WPG         CAM         PBE      SINGLE       n     1.803  0.0200     1.803  0.0200
+WPG         CAU         CAL      SINGLE       n     1.511  0.0121     1.511  0.0121
+WPG         PBE         OAD      SINGLE       n     1.492  0.0200     1.492  0.0200
+WPG         PBE         OAG      SINGLE       n     1.492  0.0200     1.492  0.0200
+WPG         CAU         OAB      DOUBLE       n     1.227  0.0149     1.227  0.0149
+WPG         NBC         CAU      SINGLE       n     1.339  0.0100     1.339  0.0100
+WPG         OAI         PBF      DOUBLE       n     1.492  0.0200     1.492  0.0200
+WPG         CAZ         OAF      SINGLE       n     1.413  0.0104     1.413  0.0104
+WPG         CAO         NBC      SINGLE       n     1.470  0.0105     1.470  0.0105
+WPG         NBC         CAP      SINGLE       n     1.470  0.0105     1.470  0.0105
+WPG         CBA         CAO      SINGLE       n     1.523  0.0100     1.523  0.0100
+WPG         PBF         CAZ      SINGLE       n     1.823  0.0200     1.823  0.0200
+WPG         CAZ         CAN      SINGLE       n     1.510  0.0121     1.510  0.0121
+WPG         PBF         OAE      SINGLE       n     1.492  0.0200     1.492  0.0200
+WPG         PBF         OAJ      SINGLE       n     1.492  0.0200     1.492  0.0200
+WPG         CAP         CBB      SINGLE       n     1.533  0.0142     1.533  0.0142
+WPG         OAT         CBA      SINGLE       n     1.423  0.0100     1.423  0.0100
+WPG         CBA         CBB      SINGLE       n     1.528  0.0100     1.528  0.0100
+WPG         CAN         OAT      SINGLE       n     1.432  0.0200     1.432  0.0200
+WPG         CBB          N9      SINGLE       n     1.478  0.0121     1.478  0.0121
+WPG          C8          N9      SINGLE       y     1.368  0.0147     1.368  0.0147
+WPG          C4          N9      SINGLE       y     1.384  0.0181     1.384  0.0181
+WPG          C4          N3      SINGLE       y     1.358  0.0100     1.358  0.0100
+WPG          N3          C2      DOUBLE       y     1.333  0.0104     1.333  0.0104
+WPG          C8          N7      DOUBLE       y     1.311  0.0100     1.311  0.0100
+WPG          C4          C5      DOUBLE       y     1.378  0.0100     1.378  0.0100
+WPG          N2          C2      SINGLE       n     1.340  0.0101     1.340  0.0101
+WPG          N1          C2      SINGLE       y     1.374  0.0100     1.374  0.0100
+WPG          C5          N7      SINGLE       y     1.390  0.0100     1.390  0.0100
+WPG          C5          C6      SINGLE       y     1.417  0.0103     1.417  0.0103
+WPG          C6          N1      SINGLE       y     1.396  0.0107     1.396  0.0107
+WPG          C6          O6      DOUBLE       n     1.239  0.0100     1.239  0.0100
+WPG          C8          H1      SINGLE       n     1.082  0.0130     0.933  0.0103
+WPG          N1         H23      SINGLE       n     1.016  0.0100     0.897  0.0200
+WPG          N2          H2      SINGLE       n     1.016  0.0100     0.877  0.0200
+WPG          N2          H3      SINGLE       n     1.016  0.0100     0.877  0.0200
+WPG         CAZ          H7      SINGLE       n     1.089  0.0100     0.992  0.0156
+WPG         OAF          H8      SINGLE       n     0.970  0.0120     0.848  0.0200
+WPG         CAN          H9      SINGLE       n     1.089  0.0100     0.980  0.0146
+WPG         CAN         H10      SINGLE       n     1.089  0.0100     0.980  0.0146
+WPG         CBA         H11      SINGLE       n     1.089  0.0100     0.988  0.0200
+WPG         CAO         H12      SINGLE       n     1.089  0.0100     0.991  0.0200
+WPG         CAO         H13      SINGLE       n     1.089  0.0100     0.991  0.0200
+WPG         CAL         H14      SINGLE       n     1.089  0.0100     0.974  0.0141
+WPG         CAL         H15      SINGLE       n     1.089  0.0100     0.974  0.0141
+WPG         CAM         H16      SINGLE       n     1.089  0.0100     0.979  0.0200
+WPG         CAM         H17      SINGLE       n     1.089  0.0100     0.979  0.0200
+WPG         CAP         H20      SINGLE       n     1.089  0.0100     0.980  0.0177
+WPG         CAP         H21      SINGLE       n     1.089  0.0100     0.980  0.0177
+WPG         CBB         H22      SINGLE       n     1.089  0.0100     0.988  0.0121
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+WPG          N9          C4          N3     124.990    1.56
+WPG          N9          C4          C5     106.799    1.69
+WPG          N3          C4          C5     128.211    1.50
+WPG          C4          C5          N7     110.629    1.50
+WPG          C4          C5          C6     119.397    1.50
+WPG          N7          C5          C6     129.975    1.50
+WPG          C5          C6          N1     111.367    1.50
+WPG          C5          C6          O6     128.244    1.50
+WPG          N1          C6          O6     120.389    1.50
+WPG          N9          C8          N7     113.450    1.50
+WPG          N9          C8          H1     123.238    1.68
+WPG          N7          C8          H1     123.311    1.50
+WPG          C2          N1          C6     125.351    1.50
+WPG          C2          N1         H23     117.677    2.71
+WPG          C6          N1         H23     116.978    2.44
+WPG          C2          N2          H2     119.868    1.50
+WPG          C2          N2          H3     119.868    1.50
+WPG          H2          N2          H3     120.263    1.96
+WPG          C4          N3          C2     112.066    1.50
+WPG         OAI         PBF         CAZ     110.326    3.00
+WPG         OAI         PBF         OAE     112.502    1.50
+WPG         OAI         PBF         OAJ     112.502    1.50
+WPG         CAZ         PBF         OAE     110.326    3.00
+WPG         CAZ         PBF         OAJ     110.326    3.00
+WPG         OAE         PBF         OAJ     112.502    1.50
+WPG         OAF         CAZ         PBF     108.256    2.94
+WPG         OAF         CAZ         CAN     109.048    2.44
+WPG         OAF         CAZ          H7     108.198    1.81
+WPG         PBF         CAZ         CAN     111.410    2.87
+WPG         PBF         CAZ          H7     108.528    1.50
+WPG         CAN         CAZ          H7     108.441    1.50
+WPG         CAZ         OAF          H8     109.133    3.00
+WPG         CAZ         CAN         OAT     109.482    3.00
+WPG         CAZ         CAN          H9     110.103    1.50
+WPG         CAZ         CAN         H10     110.103    1.50
+WPG         OAT         CAN          H9     109.660    1.50
+WPG         OAT         CAN         H10     109.660    1.50
+WPG          H9         CAN         H10     108.500    1.50
+WPG         CBA         OAT         CAN     114.719    2.29
+WPG         CAO         CBA         OAT     109.088    3.00
+WPG         CAO         CBA         CBB     104.443    2.26
+WPG         CAO         CBA         H11     110.749    1.50
+WPG         OAT         CBA         CBB     110.334    2.29
+WPG         OAT         CBA         H11     110.257    1.68
+WPG         CBB         CBA         H11     110.108    1.94
+WPG         NBC         CAO         CBA     102.939    1.50
+WPG         NBC         CAO         H12     111.006    1.50
+WPG         NBC         CAO         H13     111.006    1.50
+WPG         CBA         CAO         H12     111.050    1.50
+WPG         CBA         CAO         H13     111.050    1.50
+WPG         H12         CAO         H13     108.952    1.50
+WPG         CAU         NBC         CAO     124.814    3.00
+WPG         CAU         NBC         CAP     124.814    3.00
+WPG         CAO         NBC         CAP     110.373    1.50
+WPG         CAL         CAU         OAB     121.054    1.66
+WPG         CAL         CAU         NBC     118.302    1.96
+WPG         OAB         CAU         NBC     120.645    1.54
+WPG         CAM         CAL         CAU     113.384    1.85
+WPG         CAM         CAL         H14     108.974    1.50
+WPG         CAM         CAL         H15     108.974    1.50
+WPG         CAU         CAL         H14     108.699    1.50
+WPG         CAU         CAL         H15     108.699    1.50
+WPG         H14         CAL         H15     107.739    1.50
+WPG         CAL         CAM         PBE     111.410    2.87
+WPG         CAL         CAM         H16     108.941    1.50
+WPG         CAL         CAM         H17     108.941    1.50
+WPG         PBE         CAM         H16     109.545    1.50
+WPG         PBE         CAM         H17     109.545    1.50
+WPG         H16         CAM         H17     107.240    1.91
+WPG         OAH         PBE         CAM     108.625    3.00
+WPG         OAH         PBE         OAD     111.786    1.50
+WPG         OAH         PBE         OAG     111.786    1.50
+WPG         CAM         PBE         OAD     108.625    3.00
+WPG         CAM         PBE         OAG     108.625    3.00
+WPG         OAD         PBE         OAG     111.786    1.50
+WPG         NBC         CAP         CBB     102.354    1.84
+WPG         NBC         CAP         H20     111.006    1.50
+WPG         NBC         CAP         H21     111.006    1.50
+WPG         CBB         CAP         H20     111.094    1.50
+WPG         CBB         CAP         H21     111.094    1.50
+WPG         H20         CAP         H21     109.055    1.50
+WPG         CAP         CBB         CBA     104.443    2.26
+WPG         CAP         CBB          N9     113.752    2.20
+WPG         CAP         CBB         H22     108.548    1.50
+WPG         CBA         CBB          N9     113.752    2.20
+WPG         CBA         CBB         H22     107.878    1.50
+WPG          N9         CBB         H22     108.756    1.83
+WPG         CBB          N9          C8     126.078    2.46
+WPG         CBB          N9          C4     125.158    1.54
+WPG          C8          N9          C4     107.594    1.50
+WPG          N3          C2          N2     119.822    1.50
+WPG          N3          C2          N1     123.602    1.50
+WPG          N2          C2          N1     116.575    1.50
+WPG          C8          N7          C5     103.927    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+WPG              const_29          N9          C4          C5          N7       0.000    10.0     2
+WPG              const_20          N3          C4          N9         CBB       0.000    10.0     2
+WPG       const_sp2_sp2_2          N9          C4          N3          C2     180.000     5.0     2
+WPG            sp3_sp3_37         PBF         CAZ         OAF          H8     180.000    10.0     3
+WPG            sp3_sp3_49         OAT         CAN         CAZ         OAF     180.000    10.0     3
+WPG            sp3_sp3_70         CAZ         CAN         OAT         CBA     180.000    10.0     3
+WPG            sp3_sp3_58         CAO         CBA         OAT         CAN     180.000    10.0     3
+WPG             sp3_sp3_2         NBC         CAO         CBA         OAT     180.000    10.0     3
+WPG            sp3_sp3_64         OAT         CBA         CBB         CAP      60.000    10.0     3
+WPG             sp2_sp3_4         CAU         NBC         CAO         CBA     180.000    10.0     6
+WPG             sp2_sp2_1         CAL         CAU         NBC         CAO     180.000     5.0     2
+WPG            sp2_sp3_10         CAU         NBC         CAP         CBB     180.000    10.0     6
+WPG            sp2_sp3_14         OAB         CAU         CAL         CAM     120.000    10.0     6
+WPG              const_14          C4          C5          C6          O6     180.000    10.0     2
+WPG              const_27          C4          C5          N7          C8       0.000    10.0     2
+WPG            sp3_sp3_19         CAU         CAL         CAM         PBE     180.000    10.0     3
+WPG            sp3_sp3_30         CAL         CAM         PBE         OAH      60.000    10.0     3
+WPG            sp3_sp3_10         NBC         CAP         CBB         CBA     -60.000    10.0     3
+WPG            sp2_sp3_19          C8          N9         CBB         CAP     150.000    10.0     6
+WPG              const_11          O6          C6          N1          C2     180.000    10.0     2
+WPG              const_22          N7          C8          N9         CBB     180.000    10.0     2
+WPG              const_25          N9          C8          N7          C5       0.000    10.0     2
+WPG       const_sp2_sp2_7          N2          C2          N1          C6     180.000     5.0     2
+WPG             sp2_sp2_7          N3          C2          N2          H2       0.000     5.0     2
+WPG       const_sp2_sp2_4          N2          C2          N3          C4     180.000     5.0     2
+WPG            sp3_sp3_42         OAF         CAZ         PBF         OAI      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+WPG    chir_1    PBF    OAE    OAJ    OAI    both
+WPG    chir_2    CAZ    PBF    OAF    CAN    negative
+WPG    chir_3    CBA    OAT    CBB    CAO    negative
+WPG    chir_4    PBE    OAD    OAG    OAH    both
+WPG    chir_5    CBB    N9    CBA    CAP    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+WPG    plan-1          C2   0.020
+WPG    plan-1          C4   0.020
+WPG    plan-1          C5   0.020
+WPG    plan-1          C6   0.020
+WPG    plan-1          C8   0.020
+WPG    plan-1         CBB   0.020
+WPG    plan-1          H1   0.020
+WPG    plan-1         H23   0.020
+WPG    plan-1          N1   0.020
+WPG    plan-1          N2   0.020
+WPG    plan-1          N3   0.020
+WPG    plan-1          N7   0.020
+WPG    plan-1          N9   0.020
+WPG    plan-1          O6   0.020
+WPG    plan-2          C2   0.020
+WPG    plan-2          H2   0.020
+WPG    plan-2          H3   0.020
+WPG    plan-2          N2   0.020
+WPG    plan-3         CAO   0.020
+WPG    plan-3         CAP   0.020
+WPG    plan-3         CAU   0.020
+WPG    plan-3         NBC   0.020
+WPG    plan-4         CAL   0.020
+WPG    plan-4         CAU   0.020
+WPG    plan-4         NBC   0.020
+WPG    plan-4         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+WPG           SMILES              ACDLabs 12.01                                                                                                                                    c12c(C(=O)NC(N)=N1)ncn2C3C(OCC(P(=O)(O)O)O)CN(C3)C(=O)CCP(O)(O)=O
+WPG            InChI                InChI  1.03 InChI=1S/C14H22N6O10P2/c15-14-17-12-11(13(23)18-14)16-6-20(12)7-3-19(9(21)1-2-31(24,25)26)4-8(7)30-5-10(22)32(27,28)29/h6-8,10,22H,1-5H2,(H2,24,25,26)(H2,27,28,29)(H3,15,17,18,23)/t7-,8-,10-/m1/s1
+WPG         InChIKey                InChI  1.03                                                                                                                                                                          RBYFDIJTTUISNF-NQMVMOMDSA-N
+WPG SMILES_CANONICAL               CACTVS 3.385                                                                                                                       NC1=Nc2n(cnc2C(=O)N1)[C@@H]3CN(C[C@H]3OC[C@H](O)[P](O)(O)=O)C(=O)CC[P](O)(O)=O
+WPG           SMILES               CACTVS 3.385                                                                                                                           NC1=Nc2n(cnc2C(=O)N1)[CH]3CN(C[CH]3OC[CH](O)[P](O)(O)=O)C(=O)CC[P](O)(O)=O
+WPG SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                                                           c1nc2c(n1[C@@H]3CN(C[C@H]3OC[C@H](O)P(=O)(O)O)C(=O)CCP(=O)(O)O)N=C(NC2=O)N
+WPG           SMILES "OpenEye OEToolkits" 2.0.4                                                                                                                                        c1nc2c(n1C3CN(CC3OCC(O)P(=O)(O)O)C(=O)CCP(=O)(O)O)N=C(NC2=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+WPG acedrg               243         "dictionary generator"                  
+WPG acedrg_database      11          "data source"                           
+WPG rdkit                2017.03.2   "Chemoinformatics tool"
+WPG refmac5              5.8.0238    "optimization tool"                     

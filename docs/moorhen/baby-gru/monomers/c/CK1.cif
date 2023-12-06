@@ -1,0 +1,182 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CK1     CK1      4-(2,5-DICHLOROTHIEN-3-YL)PYRIMIDIN-2-AMINE     NON-POLYMER     19     14     .     
+#
+data_comp_CK1
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CK1     CL7A    CL      CL      0       14.366      44.171      29.783      
+CK1     C3A     C       CR5     0       14.007      43.966      28.140      
+CK1     C4A     C       CR15    0       13.637      44.898      27.249      
+CK1     S2A     S       S2      0       14.098      42.448      27.451      
+CK1     C1A     C       CR5     0       13.649      42.934      25.924      
+CK1     CL6A    CL      CL      0       13.530      41.823      24.649      
+CK1     C5A     C       CR5     0       13.420      44.322      25.924      
+CK1     C4      C       CR6     0       13.005      45.125      24.779      
+CK1     N3      N       NRD6    0       13.593      44.865      23.590      
+CK1     C5      C       CR16    0       12.045      46.142      24.894      
+CK1     C6      C       CR16    0       11.722      46.850      23.749      
+CK1     N1      N       NRD6    0       12.287      46.601      22.565      
+CK1     C2      C       CR6     0       13.213      45.608      22.517      
+CK1     N7      N       NH2     0       13.790      45.344      21.342      
+CK1     H4A     H       H       0       13.529      45.813      27.444      
+CK1     H5      H       H       0       11.631      46.334      25.725      
+CK1     H6      H       H       0       11.072      47.541      23.806      
+CK1     HN71    H       H       0       13.671      45.887      20.662      
+CK1     HN72    H       H       0       14.287      44.625      21.249      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CK1        CL7A         C3A      SINGLE       n     1.695  0.0100     1.695  0.0100
+CK1         C3A         C4A      DOUBLE       y     1.336  0.0106     1.336  0.0106
+CK1         C3A         S2A      SINGLE       y     1.695  0.0200     1.695  0.0200
+CK1         C4A         C5A      SINGLE       y     1.422  0.0200     1.422  0.0200
+CK1         S2A         C1A      SINGLE       y     1.695  0.0200     1.695  0.0200
+CK1         C1A        CL6A      SINGLE       n     1.695  0.0100     1.695  0.0100
+CK1         C1A         C5A      DOUBLE       y     1.389  0.0200     1.389  0.0200
+CK1         C5A          C4      SINGLE       n     1.455  0.0140     1.455  0.0140
+CK1          C4          N3      DOUBLE       y     1.347  0.0121     1.347  0.0121
+CK1          C4          C5      SINGLE       y     1.403  0.0100     1.403  0.0100
+CK1          N3          C2      SINGLE       y     1.354  0.0100     1.354  0.0100
+CK1          C5          C6      DOUBLE       y     1.381  0.0100     1.381  0.0100
+CK1          C6          N1      SINGLE       y     1.331  0.0100     1.331  0.0100
+CK1          N1          C2      DOUBLE       y     1.352  0.0100     1.352  0.0100
+CK1          C2          N7      SINGLE       n     1.334  0.0100     1.334  0.0100
+CK1         C4A         H4A      SINGLE       n     1.082  0.0130     0.942  0.0169
+CK1          C5          H5      SINGLE       n     1.082  0.0130     0.948  0.0100
+CK1          C6          H6      SINGLE       n     1.082  0.0130     0.950  0.0100
+CK1          N7        HN71      SINGLE       n     1.016  0.0100     0.877  0.0200
+CK1          N7        HN72      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CK1        CL7A         C3A         C4A     129.399    2.18
+CK1        CL7A         C3A         S2A     122.140    3.00
+CK1         C4A         C3A         S2A     108.461    3.00
+CK1         C3A         C4A         C5A     107.668    1.50
+CK1         C3A         C4A         H4A     126.726    1.50
+CK1         C5A         C4A         H4A     125.606    1.50
+CK1         C3A         S2A         C1A     108.461    3.00
+CK1         S2A         C1A        CL6A     122.486    3.00
+CK1         S2A         C1A         C5A     108.461    3.00
+CK1        CL6A         C1A         C5A     129.053    1.50
+CK1         C4A         C5A         C1A     106.949    1.50
+CK1         C4A         C5A          C4     126.889    2.96
+CK1         C1A         C5A          C4     126.162    1.50
+CK1         C5A          C4          N3     116.555    1.50
+CK1         C5A          C4          C5     121.909    1.50
+CK1          N3          C4          C5     121.536    1.50
+CK1          C4          N3          C2     117.965    1.50
+CK1          C4          C5          C6     118.380    1.50
+CK1          C4          C5          H5     120.698    1.50
+CK1          C6          C5          H5     120.922    1.50
+CK1          C5          C6          N1     122.421    1.50
+CK1          C5          C6          H6     118.954    1.50
+CK1          N1          C6          H6     118.624    1.50
+CK1          C6          N1          C2     115.773    1.50
+CK1          N3          C2          N1     123.925    1.50
+CK1          N3          C2          N7     117.894    1.50
+CK1          N1          C2          N7     118.181    1.50
+CK1          C2          N7        HN71     119.826    1.50
+CK1          C2          N7        HN72     119.826    1.50
+CK1        HN71          N7        HN72     120.348    1.96
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CK1              const_21          C5          C6          N1          C2       0.000    10.0     2
+CK1              const_20          N7          C2          N1          C6     180.000    10.0     2
+CK1             sp2_sp2_5          N3          C2          N7        HN71     180.000     5.0     2
+CK1       const_sp2_sp2_3        CL7A         C3A         C4A         C5A     180.000     5.0     2
+CK1              const_28        CL7A         C3A         S2A         C1A     180.000    10.0     2
+CK1       const_sp2_sp2_5         C3A         C4A         C5A         C1A       0.000     5.0     2
+CK1              const_14        CL6A         C1A         S2A         C3A     180.000    10.0     2
+CK1              const_11        CL6A         C1A         C5A         C4A     180.000    10.0     2
+CK1             sp2_sp2_3          N3          C4         C5A         C4A       0.000     5.0     2
+CK1              const_16         C5A          C4          N3          C2     180.000    10.0     2
+CK1              const_31         C5A          C4          C5          C6     180.000    10.0     2
+CK1              const_18          N7          C2          N3          C4     180.000    10.0     2
+CK1              const_23          C4          C5          C6          N1       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CK1    plan-1          C2   0.020
+CK1    plan-1          C4   0.020
+CK1    plan-1          C5   0.020
+CK1    plan-1         C5A   0.020
+CK1    plan-1          C6   0.020
+CK1    plan-1          H5   0.020
+CK1    plan-1          H6   0.020
+CK1    plan-1          N1   0.020
+CK1    plan-1          N3   0.020
+CK1    plan-1          N7   0.020
+CK1    plan-2         C1A   0.020
+CK1    plan-2         C3A   0.020
+CK1    plan-2          C4   0.020
+CK1    plan-2         C4A   0.020
+CK1    plan-2         C5A   0.020
+CK1    plan-2        CL6A   0.020
+CK1    plan-2        CL7A   0.020
+CK1    plan-2         H4A   0.020
+CK1    plan-2         S2A   0.020
+CK1    plan-3          C2   0.020
+CK1    plan-3        HN71   0.020
+CK1    plan-3        HN72   0.020
+CK1    plan-3          N7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CK1           SMILES              ACDLabs 10.04                                                      Clc2sc(Cl)cc2c1nc(ncc1)N
+CK1 SMILES_CANONICAL               CACTVS 3.341                                                      Nc1nccc(n1)c2cc(Cl)sc2Cl
+CK1           SMILES               CACTVS 3.341                                                      Nc1nccc(n1)c2cc(Cl)sc2Cl
+CK1 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                      c1cnc(nc1c2cc(sc2Cl)Cl)N
+CK1           SMILES "OpenEye OEToolkits" 1.5.0                                                      c1cnc(nc1c2cc(sc2Cl)Cl)N
+CK1            InChI                InChI  1.03 InChI=1S/C8H5Cl2N3S/c9-6-3-4(7(10)14-6)5-1-2-12-8(11)13-5/h1-3H,(H2,11,12,13)
+CK1         InChIKey                InChI  1.03                                                   PAPYICJQRHSQGK-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CK1 acedrg               243         "dictionary generator"                  
+CK1 acedrg_database      11          "data source"                           
+CK1 rdkit                2017.03.2   "Chemoinformatics tool"
+CK1 refmac5              5.8.0238    "optimization tool"                     

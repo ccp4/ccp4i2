@@ -1,0 +1,323 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NP7     NP7      2-chloro-N-[2-(4-methylpiperazin-1-yl)-5-nitrophenyl]benzamide     NON-POLYMER     45     26     .     
+#
+data_comp_NP7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NP7     CAA     C       CH3     0       122.477     44.407      28.391      
+NP7     OAB     O       O       0       125.341     42.742      22.030      
+NP7     OAC     O       O       0       127.037     48.360      19.986      
+NP7     OAD     O       OC      -1      127.405     46.282      19.566      
+NP7     CLAE    CL      CL      0       124.829     40.248      23.809      
+NP7     CAF     C       CR16    0       120.926     40.619      23.212      
+NP7     CAG     C       CR16    0       120.791     41.902      22.722      
+NP7     CAH     C       CR16    0       122.171     40.129      23.539      
+NP7     CAI     C       CR16    0       121.907     42.700      22.554      
+NP7     CAJ     C       CR16    0       127.035     47.547      22.750      
+NP7     CAK     C       CR16    0       126.592     47.213      24.008      
+NP7     CAL     C       CR16    0       125.660     45.777      21.791      
+NP7     CAM     C       CH2     0       123.282     46.179      26.940      
+NP7     CAN     C       CH2     0       124.269     44.003      26.795      
+NP7     CAO     C       CH2     0       124.511     46.813      26.327      
+NP7     CAP     C       CH2     0       125.521     44.575      26.164      
+NP7     NAQ     N       NH1     0       124.300     44.369      23.237      
+NP7     CAR     C       C       0       124.377     43.128      22.682      
+NP7     CAS     C       CR6     0       123.291     40.930      23.373      
+NP7     CAT     C       CR6     0       126.569     46.827      21.649      
+NP7     CAU     C       CR6     0       125.221     45.442      23.079      
+NP7     CAV     C       CR6     0       123.185     42.232      22.886      
+NP7     CAW     C       CR6     0       125.689     46.163      24.207      
+NP7     NAX     N       NT      0       123.638     44.974      27.694      
+NP7     NAY     N       NR6     0       125.248     45.854      25.492      
+NP7     NAZ     N       N       1       127.037     47.181      20.308      
+NP7     HAA     H       H       0       122.365     43.469      28.151      
+NP7     HAAA    H       H       0       121.668     44.895      28.148      
+NP7     HAAB    H       H       0       122.615     44.476      29.353      
+NP7     HAF     H       H       0       120.167     40.077      23.325      
+NP7     HAG     H       H       0       119.937     42.235      22.498      
+NP7     HAH     H       H       0       122.263     39.257      23.874      
+NP7     HAI     H       H       0       121.807     43.574      22.221      
+NP7     HAJ     H       H       0       127.644     48.255      22.640      
+NP7     HAK     H       H       0       126.897     47.690      24.760      
+NP7     HAL     H       H       0       125.352     45.292      21.045      
+NP7     HAM     H       H       0       122.851     46.823      27.536      
+NP7     HAMA    H       H       0       122.649     45.946      26.232      
+NP7     HAN     H       H       0       124.503     43.197      27.298      
+NP7     HANA    H       H       0       123.637     43.751      26.093      
+NP7     HAO     H       H       0       124.241     47.582      25.783      
+NP7     HAOA    H       H       0       125.098     47.139      27.042      
+NP7     HAP     H       H       0       125.878     43.933      25.514      
+NP7     HAPA    H       H       0       126.200     44.712      26.858      
+NP7     HNAQ    H       H       0       123.612     44.537      23.754      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NP7         CAA         NAX      SINGLE       n     1.462  0.0100     1.462  0.0100
+NP7         OAB         CAR      DOUBLE       n     1.226  0.0100     1.226  0.0100
+NP7         OAC         NAZ      DOUBLE       n     1.221  0.0162     1.221  0.0162
+NP7         OAD         NAZ      SINGLE       n     1.221  0.0162     1.221  0.0162
+NP7        CLAE         CAS      SINGLE       n     1.737  0.0100     1.737  0.0100
+NP7         CAF         CAG      DOUBLE       y     1.376  0.0124     1.376  0.0124
+NP7         CAF         CAH      SINGLE       y     1.372  0.0132     1.372  0.0132
+NP7         CAG         CAI      SINGLE       y     1.379  0.0100     1.379  0.0100
+NP7         CAH         CAS      DOUBLE       y     1.383  0.0100     1.383  0.0100
+NP7         CAI         CAV      DOUBLE       y     1.396  0.0100     1.396  0.0100
+NP7         CAJ         CAK      DOUBLE       y     1.371  0.0100     1.371  0.0100
+NP7         CAJ         CAT      SINGLE       y     1.393  0.0100     1.393  0.0100
+NP7         CAK         CAW      SINGLE       y     1.393  0.0100     1.393  0.0100
+NP7         CAL         CAT      DOUBLE       y     1.394  0.0127     1.394  0.0127
+NP7         CAL         CAU      SINGLE       y     1.394  0.0127     1.394  0.0127
+NP7         CAM         CAO      SINGLE       n     1.511  0.0100     1.511  0.0100
+NP7         CAM         NAX      SINGLE       n     1.462  0.0100     1.462  0.0100
+NP7         CAN         CAP      SINGLE       n     1.511  0.0100     1.511  0.0100
+NP7         CAN         NAX      SINGLE       n     1.462  0.0100     1.462  0.0100
+NP7         CAO         NAY      SINGLE       n     1.467  0.0100     1.467  0.0100
+NP7         CAP         NAY      SINGLE       n     1.467  0.0100     1.467  0.0100
+NP7         NAQ         CAR      SINGLE       n     1.351  0.0126     1.351  0.0126
+NP7         NAQ         CAU      SINGLE       n     1.413  0.0145     1.413  0.0145
+NP7         CAR         CAV      SINGLE       n     1.502  0.0100     1.502  0.0100
+NP7         CAS         CAV      SINGLE       y     1.387  0.0100     1.387  0.0100
+NP7         CAT         NAZ      SINGLE       n     1.457  0.0200     1.457  0.0200
+NP7         CAU         CAW      DOUBLE       y     1.410  0.0100     1.410  0.0100
+NP7         CAW         NAY      SINGLE       n     1.384  0.0200     1.384  0.0200
+NP7         CAA         HAA      SINGLE       n     1.089  0.0100     0.975  0.0100
+NP7         CAA        HAAA      SINGLE       n     1.089  0.0100     0.975  0.0100
+NP7         CAA        HAAB      SINGLE       n     1.089  0.0100     0.975  0.0100
+NP7         CAF         HAF      SINGLE       n     1.082  0.0130     0.939  0.0165
+NP7         CAG         HAG      SINGLE       n     1.082  0.0130     0.943  0.0180
+NP7         CAH         HAH      SINGLE       n     1.082  0.0130     0.938  0.0140
+NP7         CAI         HAI      SINGLE       n     1.082  0.0130     0.941  0.0168
+NP7         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.941  0.0200
+NP7         CAK         HAK      SINGLE       n     1.082  0.0130     0.941  0.0150
+NP7         CAL         HAL      SINGLE       n     1.082  0.0130     0.941  0.0105
+NP7         CAM         HAM      SINGLE       n     1.089  0.0100     0.978  0.0109
+NP7         CAM        HAMA      SINGLE       n     1.089  0.0100     0.978  0.0109
+NP7         CAN         HAN      SINGLE       n     1.089  0.0100     0.978  0.0109
+NP7         CAN        HANA      SINGLE       n     1.089  0.0100     0.978  0.0109
+NP7         CAO         HAO      SINGLE       n     1.089  0.0100     0.980  0.0187
+NP7         CAO        HAOA      SINGLE       n     1.089  0.0100     0.980  0.0187
+NP7         CAP         HAP      SINGLE       n     1.089  0.0100     0.980  0.0187
+NP7         CAP        HAPA      SINGLE       n     1.089  0.0100     0.980  0.0187
+NP7         NAQ        HNAQ      SINGLE       n     1.016  0.0100     0.876  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NP7         NAX         CAA         HAA     109.526    1.50
+NP7         NAX         CAA        HAAA     109.526    1.50
+NP7         NAX         CAA        HAAB     109.526    1.50
+NP7         HAA         CAA        HAAA     109.428    1.50
+NP7         HAA         CAA        HAAB     109.428    1.50
+NP7        HAAA         CAA        HAAB     109.428    1.50
+NP7         CAG         CAF         CAH     120.320    1.50
+NP7         CAG         CAF         HAF     119.961    1.50
+NP7         CAH         CAF         HAF     119.719    1.50
+NP7         CAF         CAG         CAI     120.222    1.50
+NP7         CAF         CAG         HAG     119.934    1.50
+NP7         CAI         CAG         HAG     119.844    1.50
+NP7         CAF         CAH         CAS     119.476    1.50
+NP7         CAF         CAH         HAH     120.375    1.50
+NP7         CAS         CAH         HAH     120.149    1.50
+NP7         CAG         CAI         CAV     120.869    1.50
+NP7         CAG         CAI         HAI     119.621    1.50
+NP7         CAV         CAI         HAI     119.516    1.50
+NP7         CAK         CAJ         CAT     119.214    1.50
+NP7         CAK         CAJ         HAJ     119.954    1.50
+NP7         CAT         CAJ         HAJ     120.831    1.50
+NP7         CAJ         CAK         CAW     120.196    1.50
+NP7         CAJ         CAK         HAK     120.438    1.50
+NP7         CAW         CAK         HAK     119.366    2.95
+NP7         CAT         CAL         CAU     118.800    1.76
+NP7         CAT         CAL         HAL     121.236    1.50
+NP7         CAU         CAL         HAL     119.965    1.50
+NP7         CAO         CAM         NAX     110.838    1.50
+NP7         CAO         CAM         HAM     109.482    1.50
+NP7         CAO         CAM        HAMA     109.482    1.50
+NP7         NAX         CAM         HAM     109.480    1.50
+NP7         NAX         CAM        HAMA     109.480    1.50
+NP7         HAM         CAM        HAMA     108.187    1.50
+NP7         CAP         CAN         NAX     110.838    1.50
+NP7         CAP         CAN         HAN     109.482    1.50
+NP7         CAP         CAN        HANA     109.482    1.50
+NP7         NAX         CAN         HAN     109.480    1.50
+NP7         NAX         CAN        HANA     109.480    1.50
+NP7         HAN         CAN        HANA     108.187    1.50
+NP7         CAM         CAO         NAY     110.858    1.50
+NP7         CAM         CAO         HAO     109.514    1.50
+NP7         CAM         CAO        HAOA     109.514    1.50
+NP7         NAY         CAO         HAO     109.542    1.50
+NP7         NAY         CAO        HAOA     109.542    1.50
+NP7         HAO         CAO        HAOA     108.196    1.50
+NP7         CAN         CAP         NAY     110.858    1.50
+NP7         CAN         CAP         HAP     109.514    1.50
+NP7         CAN         CAP        HAPA     109.514    1.50
+NP7         NAY         CAP         HAP     109.542    1.50
+NP7         NAY         CAP        HAPA     109.542    1.50
+NP7         HAP         CAP        HAPA     108.196    1.50
+NP7         CAR         NAQ         CAU     126.658    2.29
+NP7         CAR         NAQ        HNAQ     117.054    2.38
+NP7         CAU         NAQ        HNAQ     116.288    2.05
+NP7         OAB         CAR         NAQ     123.471    1.50
+NP7         OAB         CAR         CAV     121.235    1.50
+NP7         NAQ         CAR         CAV     115.294    1.50
+NP7        CLAE         CAS         CAH     118.008    1.50
+NP7        CLAE         CAS         CAV     120.731    1.50
+NP7         CAH         CAS         CAV     121.252    1.50
+NP7         CAJ         CAT         CAL     122.441    1.50
+NP7         CAJ         CAT         NAZ     119.026    1.50
+NP7         CAL         CAT         NAZ     118.534    1.50
+NP7         CAL         CAU         NAQ     119.636    3.00
+NP7         CAL         CAU         CAW     121.180    1.50
+NP7         NAQ         CAU         CAW     119.184    2.04
+NP7         CAI         CAV         CAR     119.667    1.50
+NP7         CAI         CAV         CAS     117.855    1.50
+NP7         CAR         CAV         CAS     122.479    1.50
+NP7         CAK         CAW         CAU     118.170    2.56
+NP7         CAK         CAW         NAY     121.966    1.79
+NP7         CAU         CAW         NAY     119.863    1.50
+NP7         CAA         NAX         CAM     110.746    1.50
+NP7         CAA         NAX         CAN     110.746    1.50
+NP7         CAM         NAX         CAN     109.130    1.50
+NP7         CAO         NAY         CAP     112.989    2.47
+NP7         CAO         NAY         CAW     123.506    1.63
+NP7         CAP         NAY         CAW     123.506    1.63
+NP7         OAC         NAZ         OAD     123.486    1.50
+NP7         OAC         NAZ         CAT     118.257    1.50
+NP7         OAD         NAZ         CAT     118.257    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NP7            sp3_sp3_26         HAA         CAA         NAX         CAM     -60.000    10.0     3
+NP7              const_25         CAJ         CAK         CAW         CAU       0.000    10.0     2
+NP7              const_38         CAU         CAL         CAT         NAZ     180.000    10.0     2
+NP7              const_34         CAT         CAL         CAU         NAQ     180.000    10.0     2
+NP7             sp3_sp3_1         NAX         CAM         CAO         NAY      60.000    10.0     3
+NP7            sp3_sp3_32         CAO         CAM         NAX         CAA     -60.000    10.0     3
+NP7            sp3_sp3_10         NAX         CAN         CAP         NAY     -60.000    10.0     3
+NP7            sp3_sp3_20         CAP         CAN         NAX         CAA     180.000    10.0     3
+NP7             sp2_sp3_1         CAP         NAY         CAO         CAM       0.000    10.0     6
+NP7             sp2_sp3_7         CAO         NAY         CAP         CAN       0.000    10.0     6
+NP7             sp2_sp2_3         OAB         CAR         NAQ         CAU       0.000     5.0     2
+NP7             sp2_sp2_5         CAL         CAU         NAQ         CAR     180.000     5.0     2
+NP7            sp2_sp2_11         OAB         CAR         CAV         CAI       0.000     5.0     2
+NP7              const_16        CLAE         CAS         CAV         CAR       0.000    10.0     2
+NP7            sp2_sp2_13         CAJ         CAT         NAZ         OAC     180.000     5.0     2
+NP7              const_31         NAQ         CAU         CAW         CAK     180.000    10.0     2
+NP7            sp2_sp2_17         CAK         CAW         NAY         CAO     180.000     5.0     2
+NP7       const_sp2_sp2_1         CAH         CAF         CAG         CAI       0.000     5.0     2
+NP7              const_41         CAG         CAF         CAH         CAS       0.000    10.0     2
+NP7       const_sp2_sp2_5         CAF         CAG         CAI         CAV       0.000     5.0     2
+NP7              const_18         CAF         CAH         CAS        CLAE     180.000    10.0     2
+NP7              const_10         CAG         CAI         CAV         CAR     180.000    10.0     2
+NP7              const_21         CAT         CAJ         CAK         CAW       0.000    10.0     2
+NP7              const_46         CAK         CAJ         CAT         NAZ     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NP7    chir_1    NAX    CAM    CAN    CAA    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NP7    plan-1         CAJ   0.020
+NP7    plan-1         CAK   0.020
+NP7    plan-1         CAL   0.020
+NP7    plan-1         CAT   0.020
+NP7    plan-1         CAU   0.020
+NP7    plan-1         CAW   0.020
+NP7    plan-1         HAJ   0.020
+NP7    plan-1         HAK   0.020
+NP7    plan-1         HAL   0.020
+NP7    plan-1         NAQ   0.020
+NP7    plan-1         NAY   0.020
+NP7    plan-1         NAZ   0.020
+NP7    plan-2         CAF   0.020
+NP7    plan-2         CAG   0.020
+NP7    plan-2         CAH   0.020
+NP7    plan-2         CAI   0.020
+NP7    plan-2         CAR   0.020
+NP7    plan-2         CAS   0.020
+NP7    plan-2         CAV   0.020
+NP7    plan-2        CLAE   0.020
+NP7    plan-2         HAF   0.020
+NP7    plan-2         HAG   0.020
+NP7    plan-2         HAH   0.020
+NP7    plan-2         HAI   0.020
+NP7    plan-3         CAR   0.020
+NP7    plan-3         CAU   0.020
+NP7    plan-3        HNAQ   0.020
+NP7    plan-3         NAQ   0.020
+NP7    plan-4         CAR   0.020
+NP7    plan-4         CAV   0.020
+NP7    plan-4         NAQ   0.020
+NP7    plan-4         OAB   0.020
+NP7    plan-5         CAO   0.020
+NP7    plan-5         CAP   0.020
+NP7    plan-5         CAW   0.020
+NP7    plan-5         NAY   0.020
+NP7    plan-6         CAT   0.020
+NP7    plan-6         NAZ   0.020
+NP7    plan-6         OAC   0.020
+NP7    plan-6         OAD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NP7           SMILES              ACDLabs 12.01                                                                                Clc1ccccc1C(=O)Nc3c(N2CCN(C)CC2)ccc([N+]([O-])=O)c3
+NP7            InChI                InChI  1.03 InChI=1S/C18H19ClN4O3/c1-21-8-10-22(11-9-21)17-7-6-13(23(25)26)12-16(17)20-18(24)14-4-2-3-5-15(14)19/h2-7,12H,8-11H2,1H3,(H,20,24)
+NP7         InChIKey                InChI  1.03                                                                                                        WOGZFCMBPXJNFI-UHFFFAOYSA-N
+NP7 SMILES_CANONICAL               CACTVS 3.370                                                                                  CN1CCN(CC1)c2ccc(cc2NC(=O)c3ccccc3Cl)[N+]([O-])=O
+NP7           SMILES               CACTVS 3.370                                                                                  CN1CCN(CC1)c2ccc(cc2NC(=O)c3ccccc3Cl)[N+]([O-])=O
+NP7 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                  CN1CCN(CC1)c2ccc(cc2NC(=O)c3ccccc3Cl)[N+](=O)[O-]
+NP7           SMILES "OpenEye OEToolkits" 1.7.2                                                                                  CN1CCN(CC1)c2ccc(cc2NC(=O)c3ccccc3Cl)[N+](=O)[O-]
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NP7 acedrg               243         "dictionary generator"                  
+NP7 acedrg_database      11          "data source"                           
+NP7 rdkit                2017.03.2   "Chemoinformatics tool"
+NP7 refmac5              5.8.0238    "optimization tool"                     

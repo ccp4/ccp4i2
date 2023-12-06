@@ -1,0 +1,476 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+G2I     G2I      "(3R,4R,5R)-3-hydroxy-5-(hydroxymethyl)piperidin-4-yl 4-O-beta-D-glucopyranosyl-beta-D-glucopyranoside"     NON-POLYMER     65     32     .     
+#
+data_comp_G2I
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+G2I     O61     O       OH1     0       18.399      63.557      33.985      
+G2I     C61     C       CH2     0       19.453      63.101      34.829      
+G2I     C51     C       CH1     0       19.968      64.202      35.744      
+G2I     C71     C       CH2     0       20.627      65.317      34.935      
+G2I     N11     N       NT1     0       21.156      66.357      35.827      
+G2I     C21     C       CH2     0       20.079      66.961      36.623      
+G2I     C31     C       CH1     0       19.429      65.922      37.523      
+G2I     O31     O       OH1     0       18.364      66.522      38.254      
+G2I     C41     C       CH1     0       18.898      64.768      36.679      
+G2I     O41     O       O2      0       18.473      63.719      37.566      
+G2I     C12     C       CH1     0       17.113      63.355      37.564      
+G2I     C22     C       CH1     0       16.930      62.120      38.437      
+G2I     O22     O       OH1     0       17.703      61.040      37.922      
+G2I     C32     C       CH1     0       15.453      61.740      38.518      
+G2I     O32     O       OH1     0       15.303      60.654      39.434      
+G2I     O52     O       O2      0       16.318      64.430      38.061      
+G2I     C52     C       CH1     0       14.899      64.152      38.053      
+G2I     C62     C       CH2     0       14.204      65.419      38.501      
+G2I     O62     O       OH1     0       14.624      65.825      39.803      
+G2I     C42     C       CH1     0       14.609      62.941      38.941      
+G2I     O42     O       O2      0       13.219      62.611      38.792      
+G2I     C13     C       CH1     0       12.528      61.952      39.830      
+G2I     C23     C       CH1     0       11.145      62.576      39.973      
+G2I     O23     O       OH1     0       11.264      63.956      40.312      
+G2I     C33     C       CH1     0       10.339      61.823      41.025      
+G2I     O33     O       OH1     0       9.010       62.339      41.066      
+G2I     C43     C       CH1     0       10.314      60.327      40.733      
+G2I     O43     O       OH1     0       9.683       59.631      41.808      
+G2I     O53     O       O2      0       12.414      60.564      39.525      
+G2I     C53     C       CH1     0       11.739      59.792      40.546      
+G2I     C63     C       CH2     0       11.778      58.348      40.100      
+G2I     O63     O       OH1     0       13.118      57.884      39.947      
+G2I     HO61    H       H       0       17.659      63.485      34.394      
+G2I     H61     H       H       0       20.187      62.771      34.270      
+G2I     H61A    H       H       0       19.128      62.350      35.368      
+G2I     H51     H       H       0       20.664      63.799      36.318      
+G2I     H71     H       H       0       21.357      64.943      34.398      
+G2I     H71A    H       H       0       19.969      65.713      34.326      
+G2I     HN11    H       H       0       21.759      66.000      36.370      
+G2I     H21     H       H       0       19.406      67.334      36.030      
+G2I     H21A    H       H       0       20.441      67.676      37.171      
+G2I     H31     H       H       0       20.095      65.579      38.152      
+G2I     HO31    H       H       0       18.130      65.981      38.854      
+G2I     H41     H       H       0       18.132      65.088      36.141      
+G2I     H12     H       H       0       16.831      63.146      36.636      
+G2I     H22     H       H       0       17.250      62.328      39.348      
+G2I     HO22    H       H       0       17.687      60.403      38.472      
+G2I     H32     H       H       0       15.155      61.441      37.621      
+G2I     HO32    H       H       0       15.523      60.907      40.206      
+G2I     H52     H       H       0       14.620      63.943      37.128      
+G2I     H62     H       H       0       13.235      65.274      38.506      
+G2I     H62A    H       H       0       14.399      66.137      37.863      
+G2I     HO62    H       H       0       15.446      66.030      39.783      
+G2I     H42     H       H       0       14.808      63.170      39.891      
+G2I     H13     H       H       0       13.021      62.055      40.685      
+G2I     H23     H       H       0       10.676      62.505      39.107      
+G2I     HO23    H       H       0       10.503      64.312      40.287      
+G2I     H33     H       H       0       10.763      61.966      41.910      
+G2I     HO33    H       H       0       8.626       62.048      41.756      
+G2I     H43     H       H       0       9.801       60.172      39.906      
+G2I     HO43    H       H       0       10.112      59.747      42.524      
+G2I     H53     H       H       0       12.230      59.883      41.398      
+G2I     H63     H       H       0       11.306      58.259      39.246      
+G2I     H63A    H       H       0       11.318      57.789      40.761      
+G2I     HO63    H       H       0       13.486      58.291      39.299      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+G2I         O61         C61      SINGLE       n     1.425  0.0187     1.425  0.0187
+G2I         C61         C51      SINGLE       n     1.520  0.0100     1.520  0.0100
+G2I         C51         C71      SINGLE       n     1.525  0.0100     1.525  0.0100
+G2I         C51         C41      SINGLE       n     1.527  0.0114     1.527  0.0114
+G2I         C71         N11      SINGLE       n     1.467  0.0111     1.467  0.0111
+G2I         N11         C21      SINGLE       n     1.467  0.0110     1.467  0.0110
+G2I         C21         C31      SINGLE       n     1.519  0.0103     1.519  0.0103
+G2I         C31         O31      SINGLE       n     1.424  0.0100     1.424  0.0100
+G2I         C31         C41      SINGLE       n     1.522  0.0154     1.522  0.0154
+G2I         C41         O41      SINGLE       n     1.436  0.0105     1.436  0.0105
+G2I         O41         C12      SINGLE       n     1.406  0.0135     1.406  0.0135
+G2I         C12         C22      SINGLE       n     1.522  0.0111     1.522  0.0111
+G2I         C12         O52      SINGLE       n     1.422  0.0169     1.422  0.0169
+G2I         C22         O22      SINGLE       n     1.425  0.0112     1.425  0.0112
+G2I         C22         C32      SINGLE       n     1.519  0.0200     1.519  0.0200
+G2I         C32         O32      SINGLE       n     1.427  0.0138     1.427  0.0138
+G2I         C32         C42      SINGLE       n     1.522  0.0126     1.522  0.0126
+G2I         O52         C52      SINGLE       n     1.440  0.0195     1.440  0.0195
+G2I         C52         C62      SINGLE       n     1.511  0.0142     1.511  0.0142
+G2I         C52         C42      SINGLE       n     1.526  0.0115     1.526  0.0115
+G2I         C62         O62      SINGLE       n     1.426  0.0200     1.426  0.0200
+G2I         C42         O42      SINGLE       n     1.434  0.0104     1.434  0.0104
+G2I         O42         C13      SINGLE       n     1.406  0.0135     1.406  0.0135
+G2I         C13         C23      SINGLE       n     1.522  0.0111     1.522  0.0111
+G2I         C13         O53      SINGLE       n     1.422  0.0169     1.422  0.0169
+G2I         C23         O23      SINGLE       n     1.425  0.0112     1.425  0.0112
+G2I         C23         C33      SINGLE       n     1.519  0.0200     1.519  0.0200
+G2I         C33         O33      SINGLE       n     1.427  0.0138     1.427  0.0138
+G2I         C33         C43      SINGLE       n     1.520  0.0158     1.520  0.0158
+G2I         C43         O43      SINGLE       n     1.425  0.0176     1.425  0.0176
+G2I         C43         C53      SINGLE       n     1.524  0.0200     1.524  0.0200
+G2I         O53         C53      SINGLE       n     1.440  0.0195     1.440  0.0195
+G2I         C53         C63      SINGLE       n     1.511  0.0142     1.511  0.0142
+G2I         C63         O63      SINGLE       n     1.426  0.0200     1.426  0.0200
+G2I         O61        HO61      SINGLE       n     0.970  0.0120     0.848  0.0200
+G2I         C61         H61      SINGLE       n     1.089  0.0100     0.980  0.0170
+G2I         C61        H61A      SINGLE       n     1.089  0.0100     0.980  0.0170
+G2I         C51         H51      SINGLE       n     1.089  0.0100     0.988  0.0159
+G2I         C71         H71      SINGLE       n     1.089  0.0100     0.980  0.0172
+G2I         C71        H71A      SINGLE       n     1.089  0.0100     0.980  0.0172
+G2I         N11        HN11      SINGLE       n     1.036  0.0160     0.887  0.0200
+G2I         C21         H21      SINGLE       n     1.089  0.0100     0.971  0.0195
+G2I         C21        H21A      SINGLE       n     1.089  0.0100     0.971  0.0195
+G2I         C31         H31      SINGLE       n     1.089  0.0100     0.978  0.0167
+G2I         O31        HO31      SINGLE       n     0.970  0.0120     0.841  0.0200
+G2I         C41         H41      SINGLE       n     1.089  0.0100     0.989  0.0181
+G2I         C12         H12      SINGLE       n     1.089  0.0100     0.992  0.0127
+G2I         C22         H22      SINGLE       n     1.089  0.0100     0.987  0.0140
+G2I         O22        HO22      SINGLE       n     0.970  0.0120     0.841  0.0200
+G2I         C32         H32      SINGLE       n     1.089  0.0100     0.991  0.0121
+G2I         O32        HO32      SINGLE       n     0.970  0.0120     0.841  0.0200
+G2I         C52         H52      SINGLE       n     1.089  0.0100     0.988  0.0182
+G2I         C62         H62      SINGLE       n     1.089  0.0100     0.980  0.0184
+G2I         C62        H62A      SINGLE       n     1.089  0.0100     0.980  0.0184
+G2I         O62        HO62      SINGLE       n     0.970  0.0120     0.848  0.0200
+G2I         C42         H42      SINGLE       n     1.089  0.0100     0.997  0.0100
+G2I         C13         H13      SINGLE       n     1.089  0.0100     0.992  0.0127
+G2I         C23         H23      SINGLE       n     1.089  0.0100     0.987  0.0140
+G2I         O23        HO23      SINGLE       n     0.970  0.0120     0.841  0.0200
+G2I         C33         H33      SINGLE       n     1.089  0.0100     0.991  0.0121
+G2I         O33        HO33      SINGLE       n     0.970  0.0120     0.841  0.0200
+G2I         C43         H43      SINGLE       n     1.089  0.0100     0.986  0.0131
+G2I         O43        HO43      SINGLE       n     0.970  0.0120     0.841  0.0200
+G2I         C53         H53      SINGLE       n     1.089  0.0100     0.988  0.0182
+G2I         C63         H63      SINGLE       n     1.089  0.0100     0.980  0.0184
+G2I         C63        H63A      SINGLE       n     1.089  0.0100     0.980  0.0184
+G2I         O63        HO63      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+G2I         C61         O61        HO61     109.369    3.00
+G2I         O61         C61         C51     111.464    2.00
+G2I         O61         C61         H61     109.070    1.50
+G2I         O61         C61        H61A     109.070    1.50
+G2I         C51         C61         H61     109.628    1.50
+G2I         C51         C61        H61A     109.628    1.50
+G2I         H61         C61        H61A     107.925    1.50
+G2I         C61         C51         C71     110.883    1.50
+G2I         C61         C51         C41     112.960    1.50
+G2I         C61         C51         H51     107.420    1.84
+G2I         C71         C51         C41     111.124    1.57
+G2I         C71         C51         H51     107.832    1.50
+G2I         C41         C51         H51     107.028    1.50
+G2I         C51         C71         N11     110.258    1.51
+G2I         C51         C71         H71     109.290    1.50
+G2I         C51         C71        H71A     109.290    1.50
+G2I         N11         C71         H71     109.326    1.50
+G2I         N11         C71        H71A     109.326    1.50
+G2I         H71         C71        H71A     108.200    1.50
+G2I         C71         N11         C21     110.415    1.50
+G2I         C71         N11        HN11     109.383    3.00
+G2I         C21         N11        HN11     109.383    3.00
+G2I         N11         C21         C31     110.258    1.51
+G2I         N11         C21         H21     109.326    1.50
+G2I         N11         C21        H21A     109.326    1.50
+G2I         C31         C21         H21     108.826    1.78
+G2I         C31         C21        H21A     108.826    1.78
+G2I         H21         C21        H21A     108.406    1.54
+G2I         C21         C31         O31     109.653    2.18
+G2I         C21         C31         C41     109.659    1.50
+G2I         C21         C31         H31     109.232    1.50
+G2I         O31         C31         C41     110.081    2.02
+G2I         O31         C31         H31     109.251    2.36
+G2I         C41         C31         H31     109.166    1.50
+G2I         C31         O31        HO31     107.637    2.41
+G2I         C51         C41         C31     111.938    1.50
+G2I         C51         C41         O41     107.953    1.94
+G2I         C51         C41         H41     109.119    1.50
+G2I         C31         C41         O41     108.580    2.45
+G2I         C31         C41         H41     109.166    1.50
+G2I         O41         C41         H41     109.522    1.50
+G2I         C41         O41         C12     117.169    1.96
+G2I         O41         C12         C22     108.782    1.93
+G2I         O41         C12         O52     110.157    1.98
+G2I         O41         C12         H12     109.369    1.50
+G2I         C22         C12         O52     110.316    1.50
+G2I         C22         C12         H12     109.438    1.50
+G2I         O52         C12         H12     109.132    1.50
+G2I         C12         C22         O22     109.907    1.90
+G2I         C12         C22         C32     109.880    1.85
+G2I         C12         C22         H22     108.647    1.50
+G2I         O22         C22         C32     111.053    2.62
+G2I         O22         C22         H22     108.551    1.50
+G2I         C32         C22         H22     108.505    1.50
+G2I         C22         O22        HO22     109.126    2.06
+G2I         C22         C32         O32     109.587    2.09
+G2I         C22         C32         C42     110.047    1.50
+G2I         C22         C32         H32     108.712    1.50
+G2I         O32         C32         C42     110.741    1.50
+G2I         O32         C32         H32     108.767    1.50
+G2I         C42         C32         H32     109.015    1.50
+G2I         C32         O32        HO32     108.895    2.41
+G2I         C12         O52         C52     113.300    1.50
+G2I         O52         C52         C62     106.879    1.50
+G2I         O52         C52         C42     109.386    1.50
+G2I         O52         C52         H52     109.134    1.50
+G2I         C62         C52         C42     113.430    1.57
+G2I         C62         C52         H52     109.269    1.50
+G2I         C42         C52         H52     109.100    1.50
+G2I         C52         C62         O62     111.299    2.09
+G2I         C52         C62         H62     109.363    1.50
+G2I         C52         C62        H62A     109.363    1.50
+G2I         O62         C62         H62     109.265    1.50
+G2I         O62         C62        H62A     109.265    1.50
+G2I         H62         C62        H62A     108.155    1.50
+G2I         C62         O62        HO62     109.472    2.41
+G2I         C32         C42         C52     110.928    1.50
+G2I         C32         C42         O42     108.105    2.53
+G2I         C32         C42         H42     109.617    1.50
+G2I         C52         C42         O42     109.005    2.24
+G2I         C52         C42         H42     109.688    1.50
+G2I         O42         C42         H42     109.684    1.50
+G2I         C42         O42         C13     117.488    1.88
+G2I         O42         C13         C23     108.782    1.93
+G2I         O42         C13         O53     110.157    1.98
+G2I         O42         C13         H13     109.369    1.50
+G2I         C23         C13         O53     110.316    1.50
+G2I         C23         C13         H13     109.438    1.50
+G2I         O53         C13         H13     109.132    1.50
+G2I         C13         C23         O23     109.907    1.90
+G2I         C13         C23         C33     109.880    1.85
+G2I         C13         C23         H23     108.647    1.50
+G2I         O23         C23         C33     111.053    2.62
+G2I         O23         C23         H23     108.551    1.50
+G2I         C33         C23         H23     108.505    1.50
+G2I         C23         O23        HO23     109.126    2.06
+G2I         C23         C33         O33     109.587    2.09
+G2I         C23         C33         C43     110.687    1.67
+G2I         C23         C33         H33     108.712    1.50
+G2I         O33         C33         C43     110.243    1.88
+G2I         O33         C33         H33     108.767    1.50
+G2I         C43         C33         H33     108.653    1.50
+G2I         C33         O33        HO33     108.895    2.41
+G2I         C33         C43         O43     110.101    1.97
+G2I         C33         C43         C53     110.272    1.76
+G2I         C33         C43         H43     109.032    1.50
+G2I         O43         C43         C53     109.072    2.07
+G2I         O43         C43         H43     109.194    1.50
+G2I         C53         C43         H43     109.223    1.50
+G2I         C43         O43        HO43     109.564    3.00
+G2I         C13         O53         C53     113.300    1.50
+G2I         C43         C53         O53     109.140    1.86
+G2I         C43         C53         C63     112.996    1.59
+G2I         C43         C53         H53     108.960    1.50
+G2I         O53         C53         C63     106.879    1.50
+G2I         O53         C53         H53     109.134    1.50
+G2I         C63         C53         H53     109.269    1.50
+G2I         C53         C63         O63     111.299    2.09
+G2I         C53         C63         H63     109.363    1.50
+G2I         C53         C63        H63A     109.363    1.50
+G2I         O63         C63         H63     109.265    1.50
+G2I         O63         C63        H63A     109.265    1.50
+G2I         H63         C63        H63A     108.155    1.50
+G2I         C63         O63        HO63     109.472    2.41
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+G2I                  nu02         C52         O52         C12         C22     -66.806    10.0     3
+G2I                  nu12         O52         C12         C22         C32      58.122    10.0     3
+G2I                  nu22         C12         C22         C32         C42     -50.375    10.0     3
+G2I                  nu32         C22         C32         C42         C52      49.026    10.0     3
+G2I                  nu42         C32         C42         C52         O52     -56.385    10.0     3
+G2I                  nu52         C42         C52         O52         C12      66.391    10.0     3
+G2I                  nu03         C53         O53         C13         C23     -66.027    10.0     3
+G2I                  nu13         O53         C13         C23         C33      58.264    10.0     3
+G2I                  nu23         C13         C23         C33         C43     -50.942    10.0     3
+G2I                  nu33         C23         C33         C43         C53      50.140    10.0     3
+G2I                  nu43         C33         C43         C53         O53     -56.996    10.0     3
+G2I                  nu53         C43         C53         O53         C13      65.483    10.0     3
+G2I            sp3_sp3_79         C41         C51         C71         N11      60.000    10.0     3
+G2I            sp3_sp3_80         C41         C51         C71         H71     180.000    10.0     3
+G2I            sp3_sp3_81         C41         C51         C71        H71A     -60.000    10.0     3
+G2I            sp3_sp3_82         C61         C51         C71         N11     -60.000    10.0     3
+G2I            sp3_sp3_83         C61         C51         C71         H71      60.000    10.0     3
+G2I            sp3_sp3_84         C61         C51         C71        H71A     180.000    10.0     3
+G2I            sp3_sp3_85         H51         C51         C71         N11     180.000    10.0     3
+G2I            sp3_sp3_86         H51         C51         C71         H71     -60.000    10.0     3
+G2I            sp3_sp3_87         H51         C51         C71        H71A      60.000    10.0     3
+G2I            sp3_sp3_88         C51         C71         N11         C21     -60.000    10.0     3
+G2I            sp3_sp3_89         C51         C71         N11        HN11      60.000    10.0     3
+G2I            sp3_sp3_90         H71         C71         N11         C21     180.000    10.0     3
+G2I            sp3_sp3_91         H71         C71         N11        HN11     -60.000    10.0     3
+G2I            sp3_sp3_92        H71A         C71         N11         C21      60.000    10.0     3
+G2I            sp3_sp3_93        H71A         C71         N11        HN11     180.000    10.0     3
+G2I            sp3_sp3_94         C31         C21         N11         C71      60.000    10.0     3
+G2I            sp3_sp3_95         C31         C21         N11        HN11     180.000    10.0     3
+G2I            sp3_sp3_96         H21         C21         N11         C71     -60.000    10.0     3
+G2I            sp3_sp3_97         H21         C21         N11        HN11      60.000    10.0     3
+G2I            sp3_sp3_98        H21A         C21         N11         C71     180.000    10.0     3
+G2I            sp3_sp3_99        H21A         C21         N11        HN11     -60.000    10.0     3
+G2I           sp3_sp3_100         N11         C21         C31         C41     -60.000    10.0     3
+G2I           sp3_sp3_101         N11         C21         C31         O31      60.000    10.0     3
+G2I           sp3_sp3_102         N11         C21         C31         H31     180.000    10.0     3
+G2I           sp3_sp3_103         H21         C21         C31         C41     180.000    10.0     3
+G2I           sp3_sp3_104         H21         C21         C31         O31     -60.000    10.0     3
+G2I           sp3_sp3_105         H21         C21         C31         H31      60.000    10.0     3
+G2I           sp3_sp3_106        H21A         C21         C31         C41      60.000    10.0     3
+G2I           sp3_sp3_107        H21A         C21         C31         O31     180.000    10.0     3
+G2I           sp3_sp3_108        H21A         C21         C31         H31     -60.000    10.0     3
+G2I           sp3_sp3_109         C21         C31         C41         C51      60.000    10.0     3
+G2I           sp3_sp3_110         C21         C31         C41         O41     180.000    10.0     3
+G2I           sp3_sp3_111         C21         C31         C41         H41     -60.000    10.0     3
+G2I           sp3_sp3_112         O31         C31         C41         C51     -60.000    10.0     3
+G2I           sp3_sp3_113         O31         C31         C41         O41      60.000    10.0     3
+G2I           sp3_sp3_114         O31         C31         C41         H41     180.000    10.0     3
+G2I           sp3_sp3_115         H31         C31         C41         C51     180.000    10.0     3
+G2I           sp3_sp3_116         H31         C31         C41         O41     -60.000    10.0     3
+G2I           sp3_sp3_117         H31         C31         C41         H41      60.000    10.0     3
+G2I           sp3_sp3_118         C51         C61         O61        HO61     180.000    10.0     3
+G2I           sp3_sp3_119         H61         C61         O61        HO61      60.000    10.0     3
+G2I           sp3_sp3_120        H61A         C61         O61        HO61     -60.000    10.0     3
+G2I           sp3_sp3_121         C71         C51         C61         O61     180.000    10.0     3
+G2I           sp3_sp3_122         C71         C51         C61         H61     -60.000    10.0     3
+G2I           sp3_sp3_123         C71         C51         C61        H61A      60.000    10.0     3
+G2I           sp3_sp3_124         C41         C51         C61         O61      60.000    10.0     3
+G2I           sp3_sp3_125         C41         C51         C61         H61     180.000    10.0     3
+G2I           sp3_sp3_126         C41         C51         C61        H61A     -60.000    10.0     3
+G2I           sp3_sp3_127         H51         C51         C61         O61     -60.000    10.0     3
+G2I           sp3_sp3_128         H51         C51         C61         H61      60.000    10.0     3
+G2I           sp3_sp3_129         H51         C51         C61        H61A     180.000    10.0     3
+G2I           sp3_sp3_130         C31         C41         C51         C71     180.000    10.0     3
+G2I           sp3_sp3_131         C31         C41         C51         C61     -60.000    10.0     3
+G2I           sp3_sp3_132         C31         C41         C51         H51      60.000    10.0     3
+G2I           sp3_sp3_133         O41         C41         C51         C71      60.000    10.0     3
+G2I           sp3_sp3_134         O41         C41         C51         C61     180.000    10.0     3
+G2I           sp3_sp3_135         O41         C41         C51         H51     -60.000    10.0     3
+G2I           sp3_sp3_136         H41         C41         C51         C71     -60.000    10.0     3
+G2I           sp3_sp3_137         H41         C41         C51         C61      60.000    10.0     3
+G2I           sp3_sp3_138         H41         C41         C51         H51     180.000    10.0     3
+G2I           sp3_sp3_139         C21         C31         O31        HO31     180.000    10.0     3
+G2I           sp3_sp3_140         C41         C31         O31        HO31      60.000    10.0     3
+G2I           sp3_sp3_141         H31         C31         O31        HO31     -60.000    10.0     3
+G2I           sp3_sp3_142         C51         C41         O41         C12     180.000    10.0     3
+G2I           sp3_sp3_143         C31         C41         O41         C12      60.000    10.0     3
+G2I           sp3_sp3_144         H41         C41         O41         C12     -60.000    10.0     3
+G2I           sp3_sp3_145         C22         C12         O41         C41     180.000    10.0     3
+G2I           sp3_sp3_146         O52         C12         O41         C41      60.000    10.0     3
+G2I           sp3_sp3_147         H12         C12         O41         C41     -60.000    10.0     3
+G2I           sp3_sp3_151         C12         C22         O22        HO22     180.000    10.0     3
+G2I           sp3_sp3_152         C32         C22         O22        HO22      60.000    10.0     3
+G2I           sp3_sp3_153         H22         C22         O22        HO22     -60.000    10.0     3
+G2I           sp3_sp3_154         C22         C32         O32        HO32     180.000    10.0     3
+G2I           sp3_sp3_155         C42         C32         O32        HO32      60.000    10.0     3
+G2I           sp3_sp3_156         H32         C32         O32        HO32     -60.000    10.0     3
+G2I           sp3_sp3_157         O52         C52         C62         O62     180.000    10.0     3
+G2I           sp3_sp3_158         O52         C52         C62         H62     -60.000    10.0     3
+G2I           sp3_sp3_159         O52         C52         C62        H62A      60.000    10.0     3
+G2I           sp3_sp3_160         C42         C52         C62         O62      60.000    10.0     3
+G2I           sp3_sp3_161         C42         C52         C62         H62     180.000    10.0     3
+G2I           sp3_sp3_162         C42         C52         C62        H62A     -60.000    10.0     3
+G2I           sp3_sp3_163         H52         C52         C62         O62     -60.000    10.0     3
+G2I           sp3_sp3_164         H52         C52         C62         H62      60.000    10.0     3
+G2I           sp3_sp3_165         H52         C52         C62        H62A     180.000    10.0     3
+G2I           sp3_sp3_166         C52         C62         O62        HO62     180.000    10.0     3
+G2I           sp3_sp3_167         H62         C62         O62        HO62      60.000    10.0     3
+G2I           sp3_sp3_168        H62A         C62         O62        HO62     -60.000    10.0     3
+G2I           sp3_sp3_169         C32         C42         O42         C13     180.000    10.0     3
+G2I           sp3_sp3_170         C52         C42         O42         C13      60.000    10.0     3
+G2I           sp3_sp3_171         H42         C42         O42         C13     -60.000    10.0     3
+G2I           sp3_sp3_172         C23         C13         O42         C42     180.000    10.0     3
+G2I           sp3_sp3_173         O53         C13         O42         C42      60.000    10.0     3
+G2I           sp3_sp3_174         H13         C13         O42         C42     -60.000    10.0     3
+G2I           sp3_sp3_178         C13         C23         O23        HO23     180.000    10.0     3
+G2I           sp3_sp3_179         C33         C23         O23        HO23      60.000    10.0     3
+G2I           sp3_sp3_180         H23         C23         O23        HO23     -60.000    10.0     3
+G2I           sp3_sp3_181         C23         C33         O33        HO33     180.000    10.0     3
+G2I           sp3_sp3_182         C43         C33         O33        HO33      60.000    10.0     3
+G2I           sp3_sp3_183         H33         C33         O33        HO33     -60.000    10.0     3
+G2I           sp3_sp3_184         C33         C43         O43        HO43     180.000    10.0     3
+G2I           sp3_sp3_185         C53         C43         O43        HO43      60.000    10.0     3
+G2I           sp3_sp3_186         H43         C43         O43        HO43     -60.000    10.0     3
+G2I           sp3_sp3_187         C43         C53         C63         O63     180.000    10.0     3
+G2I           sp3_sp3_188         C43         C53         C63         H63     -60.000    10.0     3
+G2I           sp3_sp3_189         C43         C53         C63        H63A      60.000    10.0     3
+G2I           sp3_sp3_190         O53         C53         C63         O63      60.000    10.0     3
+G2I           sp3_sp3_191         O53         C53         C63         H63     180.000    10.0     3
+G2I           sp3_sp3_192         O53         C53         C63        H63A     -60.000    10.0     3
+G2I           sp3_sp3_193         H53         C53         C63         O63     -60.000    10.0     3
+G2I           sp3_sp3_194         H53         C53         C63         H63      60.000    10.0     3
+G2I           sp3_sp3_195         H53         C53         C63        H63A     180.000    10.0     3
+G2I           sp3_sp3_196         C53         C63         O63        HO63     180.000    10.0     3
+G2I           sp3_sp3_197         H63         C63         O63        HO63      60.000    10.0     3
+G2I           sp3_sp3_198        H63A         C63         O63        HO63     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+G2I    chir_1    C51    C41    C61    C71    negative
+G2I    chir_2    C31    O31    C41    C21    negative
+G2I    chir_3    C41    O41    C31    C51    negative
+G2I    chir_4    C12    O52    O41    C22    negative
+G2I    chir_5    C22    O22    C12    C32    negative
+G2I    chir_6    C32    O32    C42    C22    negative
+G2I    chir_7    C52    O52    C42    C62    negative
+G2I    chir_8    C42    O42    C52    C32    positive
+G2I    chir_9    C13    O42    O53    C23    positive
+G2I    chir_10    C23    O23    C13    C33    negative
+G2I    chir_11    C33    O33    C23    C43    positive
+G2I    chir_12    C43    O43    C53    C33    positive
+G2I    chir_13    C53    O53    C43    C63    negative
+G2I    chir_14    N11    C21    C71    HN11    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+G2I           SMILES              ACDLabs 10.04                                                                                                                                  O(C1C(O)CNCC1CO)C3OC(C(OC2OC(CO)C(O)C(O)C2O)C(O)C3O)CO
+G2I SMILES_CANONICAL               CACTVS 3.341                                                                          OC[C@H]1CNC[C@@H](O)[C@@H]1O[C@@H]2O[C@H](CO)[C@@H](O[C@@H]3O[C@H](CO)[C@@H](O)[C@H](O)[C@H]3O)[C@H](O)[C@H]2O
+G2I           SMILES               CACTVS 3.341                                                                                             OC[CH]1CNC[CH](O)[CH]1O[CH]2O[CH](CO)[CH](O[CH]3O[CH](CO)[CH](O)[CH](O)[CH]3O)[CH](O)[CH]2O
+G2I SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                  C1[C@@H]([C@H]([C@@H](CN1)O)O[C@H]2[C@@H]([C@H]([C@@H]([C@H](O2)CO)O[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O)O)O)CO
+G2I           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                            C1C(C(C(CN1)O)OC2C(C(C(C(O2)CO)OC3C(C(C(C(O3)CO)O)O)O)O)O)CO
+G2I            InChI                InChI  1.03 InChI=1S/C18H33NO13/c20-3-6-1-19-2-7(23)15(6)31-18-14(28)12(26)16(9(5-22)30-18)32-17-13(27)11(25)10(24)8(4-21)29-17/h6-28H,1-5H2/t6-,7-,8-,9-,10-,11+,12-,13-,14-,15-,16-,17+,18+/m1/s1
+G2I         InChIKey                InChI  1.03                                                                                                                                                             ZIMIYDWQNDRGNF-IONZOCAKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+G2I acedrg               243         "dictionary generator"                  
+G2I acedrg_database      11          "data source"                           
+G2I rdkit                2017.03.2   "Chemoinformatics tool"
+G2I refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,124 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MH6     MH6      "3-hydroxy-2-iminopropanoic acid"     NON-POLYMER     11     7     .     
+#
+data_comp_MH6
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MH6     N       N       NH1     0       124.235     78.604      121.465     
+MH6     CA      C       C       0       123.685     77.567      122.052     
+MH6     C       C       C       0       124.509     76.582      122.474     
+MH6     CB      C       CH2     0       122.183     77.494      122.242     
+MH6     OG      O       OH1     0       121.614     76.541      121.364     
+MH6     O       O       O       0       124.030     75.580      123.013     
+MH6     OXT     O       OC      -1      125.726     76.707      122.312     
+MH6     H       H       H       0       123.672     79.226      121.192     
+MH6     HB2     H       H       0       121.784     78.373      122.074     
+MH6     HB3     H       H       0       121.983     77.245      123.169     
+MH6     HG      H       H       0       120.770     76.616      121.391     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MH6           N          CA      DOUBLE       n     1.299  0.0200     1.299  0.0200
+MH6          CA           C      SINGLE       n     1.331  0.0200     1.331  0.0200
+MH6          CA          CB      SINGLE       n     1.504  0.0180     1.504  0.0180
+MH6           C           O      DOUBLE       n     1.230  0.0200     1.230  0.0200
+MH6           C         OXT      SINGLE       n     1.230  0.0200     1.230  0.0200
+MH6          CB          OG      SINGLE       n     1.415  0.0200     1.415  0.0200
+MH6           N           H      SINGLE       n     1.016  0.0100     0.882  0.0200
+MH6          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0119
+MH6          CB         HB3      SINGLE       n     1.089  0.0100     0.980  0.0119
+MH6          OG          HG      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MH6          CA           N           H     112.238    3.00
+MH6           N          CA           C     117.980    3.00
+MH6           N          CA          CB     120.685    3.00
+MH6           C          CA          CB     121.335    3.00
+MH6          CA           C           O     118.654    3.00
+MH6          CA           C         OXT     118.654    3.00
+MH6           O           C         OXT     122.692    1.63
+MH6          CA          CB          OG     110.427    2.31
+MH6          CA          CB         HB2     109.227    1.50
+MH6          CA          CB         HB3     109.227    1.50
+MH6          OG          CB         HB2     109.407    1.50
+MH6          OG          CB         HB3     109.407    1.50
+MH6         HB2          CB         HB3     107.985    1.50
+MH6          CB          OG          HG     108.779    2.21
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MH6             sp2_sp2_1           C          CA           N           H     180.000     5.0     2
+MH6             sp2_sp2_4           O           C          CA           N       0.000     5.0     2
+MH6             sp2_sp3_2           N          CA          CB          OG     120.000    10.0     6
+MH6             sp3_sp3_1          CA          CB          OG          HG     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MH6    plan-1           C   0.020
+MH6    plan-1          CA   0.020
+MH6    plan-1          CB   0.020
+MH6    plan-1           N   0.020
+MH6    plan-2           C   0.020
+MH6    plan-2          CA   0.020
+MH6    plan-2           O   0.020
+MH6    plan-2         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MH6           SMILES              ACDLabs 12.01                                       O=C(O)C(=[N@H])CO
+MH6 SMILES_CANONICAL               CACTVS 3.370                                           OCC(=N)C(O)=O
+MH6           SMILES               CACTVS 3.370                                           OCC(=N)C(O)=O
+MH6 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                   "[H]/N=C(\CO)/C(=O)O"
+MH6           SMILES "OpenEye OEToolkits" 1.7.0                                         C(C(=N)C(=O)O)O
+MH6            InChI                InChI  1.03 InChI=1S/C3H5NO3/c4-2(1-5)3(6)7/h4-5H,1H2,(H,6,7)/b4-2+
+MH6         InChIKey                InChI  1.03                             MUHXUPVPXJXCGV-DUXPYHPUSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MH6 acedrg               243         "dictionary generator"                  
+MH6 acedrg_database      11          "data source"                           
+MH6 rdkit                2017.03.2   "Chemoinformatics tool"
+MH6 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,372 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SH5     SH5      "5'-O-[(S)-[(8-bromooctanoyl)oxy](hydroxy)phosphoryl]adenosine"     NON-POLYMER     59     33     .     
+#
+data_comp_SH5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SH5     BRA     BR      BR      0       -14.909     -1.363      39.813      
+SH5     CAB     C       CH2     0       -15.284     0.546       40.008      
+SH5     CAC     C       CH2     0       -15.148     1.282       38.704      
+SH5     CAD     C       CH2     0       -16.324     1.049       37.786      
+SH5     CAE     C       CH2     0       -16.224     1.817       36.492      
+SH5     CAF     C       CH2     0       -17.319     1.525       35.495      
+SH5     CAG     C       CH2     0       -17.190     2.318       34.201      
+SH5     CAH     C       CH2     0       -18.260     1.996       33.200      
+SH5     CAI     C       C       0       -18.179     2.798       31.928      
+SH5     OAJ     O       O       0       -17.504     3.778       31.789      
+SH5     OAK     O       O2      0       -18.961     2.282       30.973      
+SH5     PAL     P       P       0       -18.961     2.742       29.421      
+SH5     OAN     O       OP      -1      -19.178     4.215       29.310      
+SH5     OAM     O       O       0       -19.829     1.828       28.620      
+SH5     "O5'"   O       O2      0       -17.447     2.466       28.964      
+SH5     "C5'"   C       CH2     0       -17.003     1.106       28.713      
+SH5     "C4'"   C       CH1     0       -15.530     0.992       29.020      
+SH5     "O4'"   O       O2      0       -15.301     1.346       30.407      
+SH5     "C3'"   C       CH1     0       -14.923     -0.408      28.868      
+SH5     "O3'"   O       OH1     0       -14.498     -0.640      27.530      
+SH5     "C2'"   C       CH1     0       -13.754     -0.362      29.857      
+SH5     "O2'"   O       OH1     0       -12.588     0.215       29.307      
+SH5     "C1'"   C       CH1     0       -14.319     0.509       30.979      
+SH5     N9      N       NR5     0       -14.932     -0.252      32.063      
+SH5     C8      C       CR15    0       -16.125     -0.931      32.021      
+SH5     N7      N       NRD5    0       -16.428     -1.526      33.147      
+SH5     C5      C       CR56    0       -15.370     -1.224      33.992      
+SH5     C4      C       CR56    0       -14.439     -0.438      33.334      
+SH5     N3      N       NRD6    0       -13.290     0.037       33.854      
+SH5     C2      C       CR16    0       -13.136     -0.345      35.122      
+SH5     N1      N       NRD6    0       -13.946     -1.098      35.882      
+SH5     C6      C       CR6     0       -15.098     -1.566      35.335      
+SH5     N6      N       NH2     0       -15.906     -2.314      36.084      
+SH5     H1      H       H       0       -14.665     0.928       40.659      
+SH5     H2      H       H       0       -16.190     0.661       40.350      
+SH5     H3      H       H       0       -14.328     0.988       38.255      
+SH5     H4      H       H       0       -15.069     2.243       38.886      
+SH5     H5      H       H       0       -17.150     1.312       38.247      
+SH5     H6      H       H       0       -16.389     0.091       37.582      
+SH5     H7      H       H       0       -15.359     1.614       36.075      
+SH5     H8      H       H       0       -16.235     2.776       36.697      
+SH5     H9      H       H       0       -18.185     1.729       35.907      
+SH5     H10     H       H       0       -17.307     0.567       35.283      
+SH5     H11     H       H       0       -16.312     2.133       33.806      
+SH5     H12     H       H       0       -17.225     3.273       34.415      
+SH5     H13     H       H       0       -19.136     2.151       33.613      
+SH5     H14     H       H       0       -18.205     1.043       32.973      
+SH5     H16     H       H       0       -17.163     0.871       27.766      
+SH5     H17     H       H       0       -17.509     0.473       29.282      
+SH5     H18     H       H       0       -15.045     1.622       28.445      
+SH5     H19     H       H       0       -15.580     -1.097      29.142      
+SH5     H20     H       H       0       -15.179     -0.634      27.023      
+SH5     H21     H       H       0       -13.553     -1.274      30.196      
+SH5     H22     H       H       0       -11.944     0.109       29.850      
+SH5     H23     H       H       0       -13.592     1.063       31.343      
+SH5     H24     H       H       0       -16.672     -0.964      31.255      
+SH5     H25     H       H       0       -12.347     -0.043      35.545      
+SH5     H26     H       H       0       -15.683     -2.505      36.912      
+SH5     H27     H       H       0       -16.659     -2.613      35.748      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SH5       "C3'"       "O3'"      SINGLE       n     1.422  0.0100     1.422  0.0100
+SH5       "C2'"       "O2'"      SINGLE       n     1.411  0.0100     1.411  0.0100
+SH5       "C3'"       "C2'"      SINGLE       n     1.531  0.0100     1.531  0.0100
+SH5       "C2'"       "C1'"      SINGLE       n     1.525  0.0100     1.525  0.0100
+SH5       "C4'"       "C3'"      SINGLE       n     1.535  0.0100     1.535  0.0100
+SH5       "C5'"       "C4'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+SH5       "C4'"       "O4'"      SINGLE       n     1.451  0.0100     1.451  0.0100
+SH5         PAL         OAM      DOUBLE       n     1.493  0.0122     1.493  0.0122
+SH5       "O5'"       "C5'"      SINGLE       n     1.450  0.0166     1.450  0.0166
+SH5       "O4'"       "C1'"      SINGLE       n     1.409  0.0100     1.409  0.0100
+SH5       "C1'"          N9      SINGLE       n     1.458  0.0100     1.458  0.0100
+SH5         PAL       "O5'"      SINGLE       n     1.604  0.0133     1.604  0.0133
+SH5         PAL         OAN      SINGLE       n     1.493  0.0122     1.493  0.0122
+SH5         OAK         PAL      SINGLE       n     1.617  0.0158     1.617  0.0158
+SH5          N9          C8      SINGLE       y     1.372  0.0100     1.372  0.0100
+SH5          N9          C4      SINGLE       y     1.374  0.0101     1.374  0.0101
+SH5          C8          N7      DOUBLE       y     1.310  0.0100     1.310  0.0100
+SH5         CAI         OAK      SINGLE       n     1.333  0.0162     1.333  0.0162
+SH5          C4          N3      DOUBLE       y     1.343  0.0100     1.343  0.0100
+SH5          C5          C4      SINGLE       y     1.381  0.0100     1.381  0.0100
+SH5          N3          C2      SINGLE       y     1.330  0.0100     1.330  0.0100
+SH5          N7          C5      SINGLE       y     1.388  0.0100     1.388  0.0100
+SH5         CAI         OAJ      DOUBLE       n     1.194  0.0158     1.194  0.0158
+SH5         CAH         CAI      SINGLE       n     1.502  0.0148     1.502  0.0148
+SH5          C5          C6      DOUBLE       y     1.408  0.0100     1.408  0.0100
+SH5          C2          N1      DOUBLE       y     1.339  0.0100     1.339  0.0100
+SH5         CAG         CAH      SINGLE       n     1.497  0.0200     1.497  0.0200
+SH5          N1          C6      SINGLE       y     1.354  0.0100     1.354  0.0100
+SH5          C6          N6      SINGLE       n     1.330  0.0100     1.330  0.0100
+SH5         CAF         CAG      SINGLE       n     1.523  0.0117     1.523  0.0117
+SH5         CAE         CAF      SINGLE       n     1.509  0.0200     1.509  0.0200
+SH5         CAD         CAE      SINGLE       n     1.509  0.0200     1.509  0.0200
+SH5         CAC         CAD      SINGLE       n     1.509  0.0200     1.509  0.0200
+SH5         CAB         CAC      SINGLE       n     1.503  0.0170     1.503  0.0170
+SH5         BRA         CAB      SINGLE       n     1.955  0.0142     1.955  0.0142
+SH5         CAB          H1      SINGLE       n     1.089  0.0100     0.976  0.0134
+SH5         CAB          H2      SINGLE       n     1.089  0.0100     0.976  0.0134
+SH5         CAC          H3      SINGLE       n     1.089  0.0100     0.981  0.0160
+SH5         CAC          H4      SINGLE       n     1.089  0.0100     0.981  0.0160
+SH5         CAD          H5      SINGLE       n     1.089  0.0100     0.981  0.0163
+SH5         CAD          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+SH5         CAE          H7      SINGLE       n     1.089  0.0100     0.981  0.0163
+SH5         CAE          H8      SINGLE       n     1.089  0.0100     0.981  0.0163
+SH5         CAF          H9      SINGLE       n     1.089  0.0100     0.981  0.0163
+SH5         CAF         H10      SINGLE       n     1.089  0.0100     0.981  0.0163
+SH5         CAG         H11      SINGLE       n     1.089  0.0100     0.980  0.0160
+SH5         CAG         H12      SINGLE       n     1.089  0.0100     0.980  0.0160
+SH5         CAH         H13      SINGLE       n     1.089  0.0100     0.981  0.0185
+SH5         CAH         H14      SINGLE       n     1.089  0.0100     0.981  0.0185
+SH5       "C5'"         H16      SINGLE       n     1.089  0.0100     0.989  0.0200
+SH5       "C5'"         H17      SINGLE       n     1.089  0.0100     0.989  0.0200
+SH5       "C4'"         H18      SINGLE       n     1.089  0.0100     0.981  0.0200
+SH5       "C3'"         H19      SINGLE       n     1.089  0.0100     0.992  0.0200
+SH5       "O3'"         H20      SINGLE       n     0.970  0.0120     0.849  0.0200
+SH5       "C2'"         H21      SINGLE       n     1.089  0.0100     0.994  0.0200
+SH5       "O2'"         H22      SINGLE       n     0.970  0.0120     0.849  0.0200
+SH5       "C1'"         H23      SINGLE       n     1.089  0.0100     0.984  0.0200
+SH5          C8         H24      SINGLE       n     1.082  0.0130     0.942  0.0170
+SH5          C2         H25      SINGLE       n     1.082  0.0130     0.945  0.0200
+SH5          N6         H26      SINGLE       n     1.016  0.0100     0.877  0.0200
+SH5          N6         H27      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SH5         CAC         CAB         BRA     111.994    1.50
+SH5         CAC         CAB          H1     109.289    1.50
+SH5         CAC         CAB          H2     109.289    1.50
+SH5         BRA         CAB          H1     109.135    1.50
+SH5         BRA         CAB          H2     109.135    1.50
+SH5          H1         CAB          H2     108.034    1.50
+SH5         CAD         CAC         CAB     112.200    1.73
+SH5         CAD         CAC          H3     109.134    1.50
+SH5         CAD         CAC          H4     109.134    1.50
+SH5         CAB         CAC          H3     109.114    1.50
+SH5         CAB         CAC          H4     109.114    1.50
+SH5          H3         CAC          H4     108.130    1.50
+SH5         CAE         CAD         CAC     113.311    1.50
+SH5         CAE         CAD          H5     108.698    1.50
+SH5         CAE         CAD          H6     108.698    1.50
+SH5         CAC         CAD          H5     109.047    1.50
+SH5         CAC         CAD          H6     109.047    1.50
+SH5          H5         CAD          H6     107.646    1.50
+SH5         CAF         CAE         CAD     114.243    1.69
+SH5         CAF         CAE          H7     108.698    1.50
+SH5         CAF         CAE          H8     108.698    1.50
+SH5         CAD         CAE          H7     108.698    1.50
+SH5         CAD         CAE          H8     108.698    1.50
+SH5          H7         CAE          H8     107.646    1.50
+SH5         CAG         CAF         CAE     114.243    1.69
+SH5         CAG         CAF          H9     108.698    1.50
+SH5         CAG         CAF         H10     108.698    1.50
+SH5         CAE         CAF          H9     108.698    1.50
+SH5         CAE         CAF         H10     108.698    1.50
+SH5          H9         CAF         H10     107.646    1.50
+SH5         CAH         CAG         CAF     112.553    1.50
+SH5         CAH         CAG         H11     109.164    1.50
+SH5         CAH         CAG         H12     109.164    1.50
+SH5         CAF         CAG         H11     108.698    1.50
+SH5         CAF         CAG         H12     108.698    1.50
+SH5         H11         CAG         H12     107.646    1.50
+SH5         CAI         CAH         CAG     114.046    1.93
+SH5         CAI         CAH         H13     108.648    1.50
+SH5         CAI         CAH         H14     108.648    1.50
+SH5         CAG         CAH         H13     108.815    1.50
+SH5         CAG         CAH         H14     108.815    1.50
+SH5         H13         CAH         H14     107.521    1.50
+SH5         OAK         CAI         OAJ     124.062    1.74
+SH5         OAK         CAI         CAH     111.661    1.82
+SH5         OAJ         CAI         CAH     124.278    1.60
+SH5         PAL         OAK         CAI     122.808    2.93
+SH5         OAM         PAL       "O5'"     107.912    2.57
+SH5         OAM         PAL         OAN     119.782    1.83
+SH5         OAM         PAL         OAK     112.304    3.00
+SH5       "O5'"         PAL         OAN     107.912    2.57
+SH5       "O5'"         PAL         OAK     104.460    3.00
+SH5         OAN         PAL         OAK     112.304    3.00
+SH5       "C5'"       "O5'"         PAL     118.553    2.41
+SH5       "C4'"       "C5'"       "O5'"     109.342    1.50
+SH5       "C4'"       "C5'"         H16     109.624    1.50
+SH5       "C4'"       "C5'"         H17     109.624    1.50
+SH5       "O5'"       "C5'"         H16     109.845    1.50
+SH5       "O5'"       "C5'"         H17     109.845    1.50
+SH5         H16       "C5'"         H17     108.472    1.50
+SH5       "C3'"       "C4'"       "C5'"     116.008    1.52
+SH5       "C3'"       "C4'"       "O4'"     105.388    1.50
+SH5       "C3'"       "C4'"         H18     109.363    1.86
+SH5       "C5'"       "C4'"       "O4'"     109.123    1.50
+SH5       "C5'"       "C4'"         H18     108.268    1.50
+SH5       "O4'"       "C4'"         H18     108.947    1.50
+SH5       "C4'"       "O4'"       "C1'"     109.903    1.50
+SH5       "O3'"       "C3'"       "C2'"     111.581    2.83
+SH5       "O3'"       "C3'"       "C4'"     111.281    2.46
+SH5       "O3'"       "C3'"         H19     110.380    1.67
+SH5       "C2'"       "C3'"       "C4'"     102.602    1.50
+SH5       "C2'"       "C3'"         H19     110.504    1.75
+SH5       "C4'"       "C3'"         H19     110.452    2.54
+SH5       "C3'"       "O3'"         H20     108.744    3.00
+SH5       "O2'"       "C2'"       "C3'"     112.782    2.45
+SH5       "O2'"       "C2'"       "C1'"     111.715    2.69
+SH5       "O2'"       "C2'"         H21     110.448    1.97
+SH5       "C3'"       "C2'"       "C1'"     101.239    1.50
+SH5       "C3'"       "C2'"         H21     110.596    1.51
+SH5       "C1'"       "C2'"         H21     110.636    1.70
+SH5       "C2'"       "O2'"         H22     109.103    2.13
+SH5       "C2'"       "C1'"       "O4'"     106.047    1.50
+SH5       "C2'"       "C1'"          N9     113.824    1.50
+SH5       "C2'"       "C1'"         H23     109.015    1.50
+SH5       "O4'"       "C1'"          N9     108.477    1.50
+SH5       "O4'"       "C1'"         H23     109.807    1.50
+SH5          N9       "C1'"         H23     109.561    1.50
+SH5       "C1'"          N9          C8     126.848    1.91
+SH5       "C1'"          N9          C4     127.459    1.80
+SH5          C8          N9          C4     105.693    1.50
+SH5          N9          C8          N7     113.469    1.50
+SH5          N9          C8         H24     123.206    1.50
+SH5          N7          C8         H24     123.326    1.50
+SH5          C8          N7          C5     104.739    1.50
+SH5          C4          C5          N7     110.486    1.50
+SH5          C4          C5          C6     117.267    1.50
+SH5          N7          C5          C6     132.247    1.50
+SH5          N9          C4          N3     127.895    1.50
+SH5          N9          C4          C5     105.616    1.50
+SH5          N3          C4          C5     126.489    1.50
+SH5          C4          N3          C2     110.982    1.50
+SH5          N3          C2          N1     129.332    1.50
+SH5          N3          C2         H25     115.355    1.50
+SH5          N1          C2         H25     115.313    1.50
+SH5          C2          N1          C6     118.521    1.50
+SH5          C5          C6          N1     117.409    1.50
+SH5          C5          C6          N6     123.792    1.50
+SH5          N1          C6          N6     118.799    1.50
+SH5          C6          N6         H26     119.723    1.50
+SH5          C6          N6         H27     119.723    1.50
+SH5         H26          N6         H27     120.554    1.88
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SH5            sp3_sp3_55         OAM         PAL         OAK         CAI     180.000    10.0     3
+SH5            sp3_sp3_54       "C5'"       "O5'"         PAL         OAM      60.000    10.0     3
+SH5            sp3_sp3_49       "C4'"       "C5'"       "O5'"         PAL     180.000    10.0     3
+SH5            sp3_sp3_37       "C3'"       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+SH5            sp3_sp3_47       "C5'"       "C4'"       "O4'"       "C1'"      60.000    10.0     3
+SH5             sp3_sp3_5       "O3'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+SH5            sp3_sp3_28       "C2'"       "C1'"       "O4'"       "C4'"     -60.000    10.0     3
+SH5            sp3_sp3_31       "C2'"       "C3'"       "O3'"         H20     180.000    10.0     3
+SH5            sp3_sp3_14       "O2'"       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+SH5           sp3_sp3_103         BRA         CAB         CAC         CAD     180.000    10.0     3
+SH5            sp3_sp3_34       "C3'"       "C2'"       "O2'"         H22     180.000    10.0     3
+SH5            sp3_sp3_20       "O4'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+SH5             sp2_sp3_1          C8          N9       "C1'"       "C2'"     150.000    10.0     6
+SH5              const_14          N7          C8          N9       "C1'"     180.000    10.0     2
+SH5              const_24          N3          C4          N9       "C1'"       0.000    10.0     2
+SH5              const_17          N9          C8          N7          C5       0.000    10.0     2
+SH5              const_19          C4          C5          N7          C8       0.000    10.0     2
+SH5       const_sp2_sp2_1          N9          C4          C5          N7       0.000     5.0     2
+SH5              const_26          C4          C5          C6          N6     180.000    10.0     2
+SH5       const_sp2_sp2_6          N9          C4          N3          C2     180.000     5.0     2
+SH5       const_sp2_sp2_7          N1          C2          N3          C4       0.000     5.0     2
+SH5       const_sp2_sp2_9          N3          C2          N1          C6       0.000     5.0     2
+SH5            sp3_sp3_94         CAB         CAC         CAD         CAE     180.000    10.0     3
+SH5              const_12          N6          C6          N1          C2     180.000    10.0     2
+SH5             sp2_sp2_3          C5          C6          N6         H26     180.000     5.0     2
+SH5            sp3_sp3_85         CAC         CAD         CAE         CAF     180.000    10.0     3
+SH5            sp3_sp3_76         CAD         CAE         CAF         CAG     180.000    10.0     3
+SH5            sp3_sp3_67         CAE         CAF         CAG         CAH     180.000    10.0     3
+SH5            sp3_sp3_58         CAF         CAG         CAH         CAI     180.000    10.0     3
+SH5             sp2_sp3_8         OAK         CAI         CAH         CAG     120.000    10.0     6
+SH5             sp2_sp2_1         OAJ         CAI         OAK         PAL     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SH5    chir_1    PAL    OAK    "O5'"    OAN    both
+SH5    chir_2    "C4'"    "O4'"    "C3'"    "C5'"    negative
+SH5    chir_3    "C3'"    "O3'"    "C4'"    "C2'"    positive
+SH5    chir_4    "C2'"    "O2'"    "C1'"    "C3'"    negative
+SH5    chir_5    "C1'"    "O4'"    N9    "C2'"    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SH5    plan-1       "C1'"   0.020
+SH5    plan-1          C2   0.020
+SH5    plan-1          C4   0.020
+SH5    plan-1          C5   0.020
+SH5    plan-1          C6   0.020
+SH5    plan-1          C8   0.020
+SH5    plan-1         H24   0.020
+SH5    plan-1         H25   0.020
+SH5    plan-1          N1   0.020
+SH5    plan-1          N3   0.020
+SH5    plan-1          N6   0.020
+SH5    plan-1          N7   0.020
+SH5    plan-1          N9   0.020
+SH5    plan-2         CAH   0.020
+SH5    plan-2         CAI   0.020
+SH5    plan-2         OAJ   0.020
+SH5    plan-2         OAK   0.020
+SH5    plan-3          C6   0.020
+SH5    plan-3         H26   0.020
+SH5    plan-3         H27   0.020
+SH5    plan-3          N6   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SH5           SMILES              ACDLabs 12.01                                                                                                                                               BrCCCCCCCC(=O)OP(=O)(O)OCC3OC(n2cnc1c(ncnc12)N)C(O)C3O
+SH5            InChI                InChI  1.03 InChI=1S/C18H27BrN5O8P/c19-7-5-3-1-2-4-6-12(25)32-33(28,29)30-8-11-14(26)15(27)18(31-11)24-10-23-13-16(20)21-9-22-17(13)24/h9-11,14-15,18,26-27H,1-8H2,(H,28,29)(H2,20,21,22)/t11-,14-,15-,18-/m1/s1
+SH5         InChIKey                InChI  1.03                                                                                                                                                                          UBTOIYSSWKLJCN-XKLVTHTNSA-N
+SH5 SMILES_CANONICAL               CACTVS 3.385                                                                                                                           Nc1ncnc2n(cnc12)[C@@H]3O[C@H](CO[P](O)(=O)OC(=O)CCCCCCCBr)[C@@H](O)[C@H]3O
+SH5           SMILES               CACTVS 3.385                                                                                                                                 Nc1ncnc2n(cnc12)[CH]3O[CH](CO[P](O)(=O)OC(=O)CCCCCCCBr)[CH](O)[CH]3O
+SH5 SMILES_CANONICAL "OpenEye OEToolkits" 1.9.2                                                                                                                       c1nc(c2c(n1)n(cn2)[C@H]3[C@@H]([C@@H]([C@H](O3)COP(=O)(O)OC(=O)CCCCCCCBr)O)O)N
+SH5           SMILES "OpenEye OEToolkits" 1.9.2                                                                                                                                         c1nc(c2c(n1)n(cn2)C3C(C(C(O3)COP(=O)(O)OC(=O)CCCCCCCBr)O)O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SH5 acedrg               243         "dictionary generator"                  
+SH5 acedrg_database      11          "data source"                           
+SH5 rdkit                2017.03.2   "Chemoinformatics tool"
+SH5 refmac5              5.8.0238    "optimization tool"                     

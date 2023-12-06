@@ -1,0 +1,244 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CLK     CLK      ALPHA-N-DICHLOROACETYL-P-AMINOPHENYLSERINOL     NON-POLYMER     32     18     .     
+#
+data_comp_CLK
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CLK     C1      C       CH1     0       12.484      47.385      35.124      
+CLK     CL1A    CL      CL      0       10.994      47.475      36.044      
+CLK     CL1B    CL      CL      0       12.512      45.927      34.153      
+CLK     C2      C       C       0       12.582      48.593      34.213      
+CLK     O2      O       O       0       11.630      48.955      33.523      
+CLK     N2      N       NH1     0       13.763      49.231      34.203      
+CLK     C3      C       CH1     0       14.048      50.428      33.417      
+CLK     C4      C       CH2     0       15.560      50.583      33.261      
+CLK     O4      O       OH1     0       16.121      49.505      32.533      
+CLK     C5      C       CH1     0       13.361      51.673      34.017      
+CLK     O5      O       OH1     0       13.592      52.783      33.154      
+CLK     C6      C       CR6     0       13.782      51.958      35.447      
+CLK     C7      C       CR16    0       14.895      52.751      35.735      
+CLK     C8      C       CR16    0       15.269      53.002      37.046      
+CLK     C9      C       CR6     0       14.540      52.471      38.109      
+CLK     N9      N       NH2     0       14.911      52.722      39.412      
+CLK     C10     C       CR16    0       13.427      51.681      37.825      
+CLK     C11     C       CR16    0       13.055      51.429      36.514      
+CLK     H1      H       H       0       13.231      47.352      35.754      
+CLK     H2      H       H       0       14.415      48.923      34.695      
+CLK     H3      H       H       0       13.671      50.299      32.509      
+CLK     H4C1    H       H       0       15.978      50.624      34.147      
+CLK     H4C2    H       H       0       15.759      51.422      32.795      
+CLK     H4      H       H       0       16.931      49.685      32.367      
+CLK     H5      H       H       0       12.390      51.499      34.023      
+CLK     HA      H       H       0       13.034      53.391      33.349      
+CLK     H7      H       H       0       15.405      53.118      35.032      
+CLK     H8      H       H       0       16.023      53.537      37.225      
+CLK     H9N1    H       H       0       14.433      52.399      40.073      
+CLK     H9N2    H       H       0       15.624      53.205      39.579      
+CLK     H10     H       H       0       12.926      51.317      38.534      
+CLK     H11     H       H       0       12.299      50.892      36.342      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CLK          C1        CL1A      SINGLE       n     1.753  0.0200     1.753  0.0200
+CLK          C1        CL1B      SINGLE       n     1.753  0.0200     1.753  0.0200
+CLK          C1          C2      SINGLE       n     1.508  0.0200     1.508  0.0200
+CLK          C2          O2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+CLK          C2          N2      SINGLE       n     1.337  0.0106     1.337  0.0106
+CLK          N2          C3      SINGLE       n     1.456  0.0100     1.456  0.0100
+CLK          C3          C4      SINGLE       n     1.523  0.0136     1.523  0.0136
+CLK          C3          C5      SINGLE       n     1.540  0.0100     1.540  0.0100
+CLK          C4          O4      SINGLE       n     1.417  0.0200     1.417  0.0200
+CLK          C5          O5      SINGLE       n     1.423  0.0133     1.423  0.0133
+CLK          C5          C6      SINGLE       n     1.515  0.0100     1.515  0.0100
+CLK          C6          C7      DOUBLE       y     1.392  0.0100     1.392  0.0100
+CLK          C6         C11      SINGLE       y     1.392  0.0100     1.392  0.0100
+CLK          C7          C8      SINGLE       y     1.383  0.0100     1.383  0.0100
+CLK          C8          C9      DOUBLE       y     1.390  0.0100     1.390  0.0100
+CLK          C9          N9      SINGLE       n     1.375  0.0178     1.375  0.0178
+CLK          C9         C10      SINGLE       y     1.390  0.0100     1.390  0.0100
+CLK         C10         C11      DOUBLE       y     1.383  0.0100     1.383  0.0100
+CLK          C1          H1      SINGLE       n     1.089  0.0100     0.978  0.0100
+CLK          N2          H2      SINGLE       n     1.016  0.0100     0.872  0.0200
+CLK          C3          H3      SINGLE       n     1.089  0.0100     0.992  0.0100
+CLK          C4        H4C1      SINGLE       n     1.089  0.0100     0.981  0.0174
+CLK          C4        H4C2      SINGLE       n     1.089  0.0100     0.981  0.0174
+CLK          O4          H4      SINGLE       n     0.970  0.0120     0.846  0.0200
+CLK          C5          H5      SINGLE       n     1.089  0.0100     0.987  0.0156
+CLK          O5          HA      SINGLE       n     0.970  0.0120     0.848  0.0200
+CLK          C7          H7      SINGLE       n     1.082  0.0130     0.943  0.0173
+CLK          C8          H8      SINGLE       n     1.082  0.0130     0.942  0.0183
+CLK          N9        H9N1      SINGLE       n     1.016  0.0100     0.877  0.0200
+CLK          N9        H9N2      SINGLE       n     1.016  0.0100     0.877  0.0200
+CLK         C10         H10      SINGLE       n     1.082  0.0130     0.942  0.0183
+CLK         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CLK        CL1A          C1        CL1B     110.440    1.50
+CLK        CL1A          C1          C2     109.320    1.50
+CLK        CL1A          C1          H1     108.651    1.58
+CLK        CL1B          C1          C2     109.320    1.50
+CLK        CL1B          C1          H1     108.651    1.58
+CLK          C2          C1          H1     110.287    2.54
+CLK          C1          C2          O2     122.182    1.50
+CLK          C1          C2          N2     115.446    1.61
+CLK          O2          C2          N2     122.372    1.50
+CLK          C2          N2          C3     123.696    1.63
+CLK          C2          N2          H2     118.752    1.94
+CLK          C3          N2          H2     117.552    3.00
+CLK          N2          C3          C4     109.157    1.65
+CLK          N2          C3          C5     111.504    1.50
+CLK          N2          C3          H3     108.194    1.50
+CLK          C4          C3          C5     112.177    1.50
+CLK          C4          C3          H3     107.627    1.50
+CLK          C5          C3          H3     107.161    1.50
+CLK          C3          C4          O4     111.903    1.66
+CLK          C3          C4        H4C1     109.343    1.50
+CLK          C3          C4        H4C2     109.343    1.50
+CLK          O4          C4        H4C1     109.411    1.50
+CLK          O4          C4        H4C2     109.411    1.50
+CLK        H4C1          C4        H4C2     108.070    1.50
+CLK          C4          O4          H4     108.529    2.94
+CLK          C3          C5          O5     108.389    2.58
+CLK          C3          C5          C6     113.018    1.62
+CLK          C3          C5          H5     108.286    1.50
+CLK          O5          C5          C6     112.050    1.50
+CLK          O5          C5          H5     108.742    1.50
+CLK          C6          C5          H5     108.540    1.50
+CLK          C5          O5          HA     108.178    3.00
+CLK          C5          C6          C7     120.649    1.50
+CLK          C5          C6         C11     120.649    1.50
+CLK          C7          C6         C11     118.702    1.50
+CLK          C6          C7          C8     120.877    1.50
+CLK          C6          C7          H7     119.696    1.50
+CLK          C8          C7          H7     119.427    1.50
+CLK          C7          C8          C9     120.559    1.50
+CLK          C7          C8          H8     120.008    1.50
+CLK          C9          C8          H8     119.433    1.50
+CLK          C8          C9          N9     120.787    1.50
+CLK          C8          C9         C10     118.426    1.50
+CLK          N9          C9         C10     120.787    1.50
+CLK          C9          N9        H9N1     119.811    2.73
+CLK          C9          N9        H9N2     119.811    2.73
+CLK        H9N1          N9        H9N2     120.379    3.00
+CLK          C9         C10         C11     120.559    1.50
+CLK          C9         C10         H10     119.433    1.50
+CLK         C11         C10         H10     120.008    1.50
+CLK          C6         C11         C10     120.877    1.50
+CLK          C6         C11         H11     119.696    1.50
+CLK         C10         C11         H11     119.427    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CLK             sp2_sp3_2          O2          C2          C1        CL1A     120.000    10.0     6
+CLK       const_sp2_sp2_3          C5          C6          C7          C8     180.000     5.0     2
+CLK              const_22         C10         C11          C6          C5     180.000    10.0     2
+CLK       const_sp2_sp2_5          C6          C7          C8          C9       0.000     5.0     2
+CLK              const_10          C7          C8          C9          N9     180.000    10.0     2
+CLK             sp2_sp2_5          C8          C9          N9        H9N1     180.000     5.0     2
+CLK              const_14         C11         C10          C9          N9     180.000    10.0     2
+CLK              const_17          C9         C10         C11          C6       0.000    10.0     2
+CLK             sp2_sp2_1          C1          C2          N2          C3     180.000     5.0     2
+CLK             sp2_sp3_7          C2          N2          C3          C4       0.000    10.0     6
+CLK             sp3_sp3_1          N2          C3          C4          O4     180.000    10.0     3
+CLK            sp3_sp3_10          N2          C3          C5          O5     180.000    10.0     3
+CLK            sp3_sp3_19          C3          C4          O4          H4     180.000    10.0     3
+CLK            sp3_sp3_22          C3          C5          O5          HA     180.000    10.0     3
+CLK            sp2_sp3_13          C7          C6          C5          C3     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CLK    chir_1    C1    CL1A    CL1B    C2    both
+CLK    chir_2    C3    N2    C5    C4    negative
+CLK    chir_3    C5    O5    C3    C6    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CLK    plan-1         C10   0.020
+CLK    plan-1         C11   0.020
+CLK    plan-1          C5   0.020
+CLK    plan-1          C6   0.020
+CLK    plan-1          C7   0.020
+CLK    plan-1          C8   0.020
+CLK    plan-1          C9   0.020
+CLK    plan-1         H10   0.020
+CLK    plan-1         H11   0.020
+CLK    plan-1          H7   0.020
+CLK    plan-1          H8   0.020
+CLK    plan-1          N9   0.020
+CLK    plan-2          C1   0.020
+CLK    plan-2          C2   0.020
+CLK    plan-2          N2   0.020
+CLK    plan-2          O2   0.020
+CLK    plan-3          C2   0.020
+CLK    plan-3          C3   0.020
+CLK    plan-3          H2   0.020
+CLK    plan-3          N2   0.020
+CLK    plan-4          C9   0.020
+CLK    plan-4        H9N1   0.020
+CLK    plan-4        H9N2   0.020
+CLK    plan-4          N9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CLK           SMILES              ACDLabs 10.04                                                                                     ClC(Cl)C(=O)NC(C(O)c1ccc(N)cc1)CO
+CLK SMILES_CANONICAL               CACTVS 3.341                                                                           Nc1ccc(cc1)[C@@H](O)[C@@H](CO)NC(=O)C(Cl)Cl
+CLK           SMILES               CACTVS 3.341                                                                               Nc1ccc(cc1)[CH](O)[CH](CO)NC(=O)C(Cl)Cl
+CLK SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                            c1cc(ccc1[C@H]([C@@H](CO)NC(=O)C(Cl)Cl)O)N
+CLK           SMILES "OpenEye OEToolkits" 1.5.0                                                                                     c1cc(ccc1C(C(CO)NC(=O)C(Cl)Cl)O)N
+CLK            InChI                InChI  1.03 InChI=1S/C11H14Cl2N2O3/c12-10(13)11(18)15-8(5-16)9(17)6-1-3-7(14)4-2-6/h1-4,8-10,16-17H,5,14H2,(H,15,18)/t8-,9-/m1/s1
+CLK         InChIKey                InChI  1.03                                                                                           BFLNGKUCFYKCFZ-RKDXNWHRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CLK acedrg               243         "dictionary generator"                  
+CLK acedrg_database      11          "data source"                           
+CLK rdkit                2017.03.2   "Chemoinformatics tool"
+CLK refmac5              5.8.0238    "optimization tool"                     

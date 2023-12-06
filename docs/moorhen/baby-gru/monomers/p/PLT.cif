@@ -1,0 +1,327 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PLT     PLT      "[3-HYDROXY-2-METHYL-5-PHOSPHONOOXYMETHYL-PYRIDIN-4-YLMETHYL]-L-TRYPTOPHANE"     NON-POLYMER     47     30     .     
+#
+data_comp_PLT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PLT     N1      N       NRD6    0       86.087      13.536      12.391      
+PLT     C2      C       CR6     0       85.864      13.793      11.101      
+PLT     C2A     C       CH3     0       86.841      13.269      10.096      
+PLT     C3      C       CR6     0       84.730      14.537      10.709      
+PLT     O3      O       OH1     0       84.497      14.803      9.378       
+PLT     C4      C       CR6     0       83.834      15.007      11.697      
+PLT     C4A     C       C1      0       82.649      15.784      11.321      
+PLT     C5      C       CR6     0       84.104      14.717      13.049      
+PLT     C6      C       CR16    0       85.230      13.987      13.335      
+PLT     C5A     C       CH2     0       83.206      15.179      14.167      
+PLT     O4P     O       O2      0       81.901      14.522      14.100      
+PLT     P       P       P       0       81.612      13.078      14.764      
+PLT     O1P     O       O       0       80.131      12.823      14.561      
+PLT     O2P     O       OP      -1      81.991      13.206      16.227      
+PLT     O3P     O       OP      -1      82.486      12.090      14.013      
+PLT     N       N       N       0       81.790      15.359      10.475      
+PLT     CA      C       CH1     0       80.487      15.977      10.207      
+PLT     C       C       C       0       80.681      17.401      9.660       
+PLT     O       O       O       0       80.635      17.541      8.424       
+PLT     OXT     O       OC      -1      80.872      18.317      10.482      
+PLT     CB      C       CH2     0       79.632      15.908      11.474      
+PLT     CG      C       CR5     0       78.170      16.194      11.266      
+PLT     CD1     C       CR15    0       77.514      16.458      10.094      
+PLT     NE1     N       NR5     0       76.180      16.660      10.324      
+PLT     CE2     C       CR56    0       75.933      16.527      11.664      
+PLT     CZ2     C       CR16    0       74.738      16.641      12.379      
+PLT     CH2     C       CR16    0       74.794      16.452      13.744      
+PLT     CZ3     C       CR16    0       75.999      16.158      14.391      
+PLT     CE3     C       CR16    0       77.180      16.046      13.685      
+PLT     CD2     C       CR56    0       77.163      16.231      12.294      
+PLT     H2A1    H       H       0       86.842      13.834      9.307       
+PLT     H2A2    H       H       0       86.594      12.364      9.845       
+PLT     H2A3    H       H       0       87.732      13.262      10.484      
+PLT     HO3     H       H       0       84.499      15.616      9.094       
+PLT     H4A     H       H       0       82.514      16.618      11.728      
+PLT     H6      H       H       0       85.421      13.787      14.228      
+PLT     H5A1    H       H       0       83.076      16.151      14.109      
+PLT     H5A2    H       H       0       83.618      14.979      15.036      
+PLT     HA      H       H       0       80.040      15.449      9.500       
+PLT     HB1     H       H       0       79.986      16.542      12.132      
+PLT     HB2     H       H       0       79.720      15.011      11.859      
+PLT     HD1     H       H       0       77.916      16.500      9.241       
+PLT     HNE     H       H       0       75.581      16.845      9.710       
+PLT     HZ2     H       H       0       73.926      16.839      11.943      
+PLT     HH2     H       H       0       74.004      16.523      14.250      
+PLT     HZ3     H       H       0       76.003      16.035      15.327      
+PLT     HE3     H       H       0       77.988      15.847      14.130      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PLT          N1          C2      DOUBLE       y     1.330  0.0101     1.330  0.0101
+PLT          N1          C6      SINGLE       y     1.349  0.0100     1.349  0.0100
+PLT          C2         C2A      SINGLE       n     1.494  0.0100     1.494  0.0100
+PLT          C2          C3      SINGLE       y     1.400  0.0136     1.400  0.0136
+PLT          C3          O3      SINGLE       n     1.374  0.0155     1.374  0.0155
+PLT          C3          C4      DOUBLE       y     1.405  0.0115     1.405  0.0115
+PLT          C4         C4A      SINGLE       n     1.459  0.0148     1.459  0.0148
+PLT          C4          C5      SINGLE       y     1.403  0.0100     1.403  0.0100
+PLT         C4A           N      DOUBLE       n     1.270  0.0167     1.270  0.0167
+PLT          C5          C6      DOUBLE       y     1.368  0.0100     1.368  0.0100
+PLT          C5         C5A      SINGLE       n     1.503  0.0100     1.503  0.0100
+PLT         C5A         O4P      SINGLE       n     1.462  0.0104     1.462  0.0104
+PLT         O4P           P      SINGLE       n     1.614  0.0178     1.614  0.0178
+PLT           P         O1P      DOUBLE       n     1.517  0.0192     1.517  0.0192
+PLT           P         O2P      SINGLE       n     1.517  0.0192     1.517  0.0192
+PLT           P         O3P      SINGLE       n     1.517  0.0192     1.517  0.0192
+PLT           N          CA      SINGLE       n     1.463  0.0100     1.463  0.0100
+PLT          CA           C      SINGLE       n     1.533  0.0100     1.533  0.0100
+PLT          CA          CB      SINGLE       n     1.525  0.0100     1.525  0.0100
+PLT           C           O      DOUBLE       n     1.244  0.0200     1.244  0.0200
+PLT           C         OXT      SINGLE       n     1.244  0.0200     1.244  0.0200
+PLT          CB          CG      SINGLE       n     1.500  0.0100     1.500  0.0100
+PLT          CG         CD1      DOUBLE       y     1.365  0.0100     1.365  0.0100
+PLT          CG         CD2      SINGLE       y     1.439  0.0100     1.439  0.0100
+PLT         CD1         NE1      SINGLE       y     1.369  0.0100     1.369  0.0100
+PLT         NE1         CE2      SINGLE       y     1.370  0.0100     1.370  0.0100
+PLT         CE2         CZ2      SINGLE       y     1.394  0.0100     1.394  0.0100
+PLT         CE2         CD2      DOUBLE       y     1.411  0.0100     1.411  0.0100
+PLT         CZ2         CH2      DOUBLE       y     1.376  0.0100     1.376  0.0100
+PLT         CH2         CZ3      SINGLE       y     1.395  0.0112     1.395  0.0112
+PLT         CZ3         CE3      DOUBLE       y     1.377  0.0100     1.377  0.0100
+PLT         CE3         CD2      SINGLE       y     1.399  0.0100     1.399  0.0100
+PLT         C2A        H2A1      SINGLE       n     1.089  0.0100     0.971  0.0138
+PLT         C2A        H2A2      SINGLE       n     1.089  0.0100     0.971  0.0138
+PLT         C2A        H2A3      SINGLE       n     1.089  0.0100     0.971  0.0138
+PLT          O3         HO3      SINGLE       n     0.966  0.0059     0.861  0.0200
+PLT         C4A         H4A      SINGLE       n     1.082  0.0130     0.939  0.0187
+PLT          C6          H6      SINGLE       n     1.082  0.0130     0.935  0.0200
+PLT         C5A        H5A1      SINGLE       n     1.089  0.0100     0.982  0.0107
+PLT         C5A        H5A2      SINGLE       n     1.089  0.0100     0.982  0.0107
+PLT          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0177
+PLT          CB         HB1      SINGLE       n     1.089  0.0100     0.980  0.0157
+PLT          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0157
+PLT         CD1         HD1      SINGLE       n     1.082  0.0130     0.945  0.0191
+PLT         NE1         HNE      SINGLE       n     1.016  0.0100     0.877  0.0200
+PLT         CZ2         HZ2      SINGLE       n     1.082  0.0130     0.942  0.0188
+PLT         CH2         HH2      SINGLE       n     1.082  0.0130     0.941  0.0181
+PLT         CZ3         HZ3      SINGLE       n     1.082  0.0130     0.944  0.0181
+PLT         CE3         HE3      SINGLE       n     1.082  0.0130     0.944  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PLT          C2          N1          C6     119.480    1.60
+PLT          N1          C2         C2A     118.991    1.50
+PLT          N1          C2          C3     120.420    1.50
+PLT         C2A          C2          C3     120.589    1.50
+PLT          C2         C2A        H2A1     109.484    1.50
+PLT          C2         C2A        H2A2     109.484    1.50
+PLT          C2         C2A        H2A3     109.484    1.50
+PLT        H2A1         C2A        H2A2     109.339    1.66
+PLT        H2A1         C2A        H2A3     109.339    1.66
+PLT        H2A2         C2A        H2A3     109.339    1.66
+PLT          C2          C3          O3     120.157    3.00
+PLT          C2          C3          C4     119.687    1.50
+PLT          O3          C3          C4     120.157    3.00
+PLT          C3          O3         HO3     120.000    3.00
+PLT          C3          C4         C4A     120.419    1.50
+PLT          C3          C4          C5     118.980    1.50
+PLT         C4A          C4          C5     120.602    2.10
+PLT          C4         C4A           N     122.322    1.52
+PLT          C4         C4A         H4A     118.716    1.50
+PLT           N         C4A         H4A     118.962    1.50
+PLT          C4          C5          C6     118.109    1.50
+PLT          C4          C5         C5A     121.832    1.50
+PLT          C6          C5         C5A     120.059    1.59
+PLT          N1          C6          C5     123.324    1.50
+PLT          N1          C6          H6     118.073    1.50
+PLT          C5          C6          H6     118.603    1.50
+PLT          C5         C5A         O4P     110.538    2.24
+PLT          C5         C5A        H5A1     109.800    1.50
+PLT          C5         C5A        H5A2     109.800    1.50
+PLT         O4P         C5A        H5A1     108.933    1.90
+PLT         O4P         C5A        H5A2     108.933    1.90
+PLT        H5A1         C5A        H5A2     108.248    1.50
+PLT         C5A         O4P           P     121.496    2.55
+PLT         O4P           P         O1P     105.808    2.07
+PLT         O4P           P         O2P     105.808    2.07
+PLT         O4P           P         O3P     105.808    2.07
+PLT         O1P           P         O2P     112.864    1.69
+PLT         O1P           P         O3P     112.864    1.69
+PLT         O2P           P         O3P     112.864    1.69
+PLT         C4A           N          CA     119.132    2.76
+PLT           N          CA           C     110.034    2.57
+PLT           N          CA          CB     109.508    2.50
+PLT           N          CA          HA     109.388    1.50
+PLT           C          CA          CB     111.511    2.91
+PLT           C          CA          HA     108.312    1.50
+PLT          CB          CA          HA     109.435    1.50
+PLT          CA           C           O     117.163    1.51
+PLT          CA           C         OXT     117.163    1.51
+PLT           O           C         OXT     125.674    1.50
+PLT          CA          CB          CG     110.747    2.16
+PLT          CA          CB         HB1     108.927    1.50
+PLT          CA          CB         HB2     108.927    1.50
+PLT          CG          CB         HB1     109.029    1.50
+PLT          CG          CB         HB2     109.029    1.50
+PLT         HB1          CB         HB2     107.759    1.50
+PLT          CB          CG         CD1     127.068    1.62
+PLT          CB          CG         CD2     126.820    1.50
+PLT         CD1          CG         CD2     106.112    1.50
+PLT          CG         CD1         NE1     110.404    1.50
+PLT          CG         CD1         HD1     125.159    1.59
+PLT         NE1         CD1         HD1     124.437    1.50
+PLT         CD1         NE1         CE2     109.042    1.50
+PLT         CD1         NE1         HNE     125.328    1.77
+PLT         CE2         NE1         HNE     125.630    1.60
+PLT         NE1         CE2         CZ2     130.294    1.50
+PLT         NE1         CE2         CD2     107.455    1.50
+PLT         CZ2         CE2         CD2     122.250    1.50
+PLT         CE2         CZ2         CH2     117.385    1.50
+PLT         CE2         CZ2         HZ2     121.137    1.50
+PLT         CH2         CZ2         HZ2     121.477    1.50
+PLT         CZ2         CH2         CZ3     121.628    1.50
+PLT         CZ2         CH2         HH2     119.132    1.50
+PLT         CZ3         CH2         HH2     119.240    1.50
+PLT         CH2         CZ3         CE3     121.212    1.50
+PLT         CH2         CZ3         HZ3     119.316    1.50
+PLT         CE3         CZ3         HZ3     119.471    1.50
+PLT         CZ3         CE3         CD2     118.817    1.50
+PLT         CZ3         CE3         HE3     120.678    1.50
+PLT         CD2         CE3         HE3     120.505    1.50
+PLT          CG         CD2         CE2     106.987    1.50
+PLT          CG         CD2         CE3     134.307    1.50
+PLT         CE2         CD2         CE3     118.706    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PLT       const_sp2_sp2_2         C2A          C2          N1          C6     180.000     5.0     2
+PLT              const_55          C5          C6          N1          C2       0.000    10.0     2
+PLT             sp3_sp3_6         C5A         O4P           P         O1P      60.000    10.0     3
+PLT            sp2_sp3_13         C4A           N          CA           C       0.000    10.0     6
+PLT            sp2_sp3_16           O           C          CA           N       0.000    10.0     6
+PLT             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+PLT             sp2_sp3_1          N1          C2         C2A        H2A1     150.000    10.0     6
+PLT       const_sp2_sp2_6         C2A          C2          C3          O3       0.000     5.0     2
+PLT            sp2_sp3_23         CD1          CG          CB          CA     -90.000    10.0     6
+PLT              const_20         NE1         CD1          CG          CB     180.000    10.0     2
+PLT              const_58         CE2         CD2          CG          CB     180.000    10.0     2
+PLT              const_23          CG         CD1         NE1         CE2       0.000    10.0     2
+PLT              const_29         CZ2         CE2         NE1         CD1     180.000    10.0     2
+PLT              const_37         NE1         CE2         CZ2         CH2     180.000    10.0     2
+PLT              const_31          CG         CD2         CE2         NE1       0.000    10.0     2
+PLT              const_39         CZ3         CH2         CZ2         CE2       0.000    10.0     2
+PLT              const_43         CZ2         CH2         CZ3         CE3       0.000    10.0     2
+PLT              const_47         CD2         CE3         CZ3         CH2       0.000    10.0     2
+PLT              const_53          CG         CD2         CE3         CZ3     180.000    10.0     2
+PLT             sp2_sp2_1          C2          C3          O3         HO3     180.000     5.0     2
+PLT              const_10          O3          C3          C4         C4A       0.000    10.0     2
+PLT             sp2_sp2_3          C3          C4         C4A           N     180.000     5.0     2
+PLT              const_14         C4A          C4          C5         C5A       0.000    10.0     2
+PLT             sp2_sp2_7          C4         C4A           N          CA     180.000     5.0     2
+PLT              const_17         C5A          C5          C6          N1     180.000    10.0     2
+PLT             sp2_sp3_8          C4          C5         C5A         O4P     -90.000    10.0     6
+PLT             sp3_sp3_1          C5         C5A         O4P           P     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PLT    chir_1    P    O4P    O2P    O3P    both
+PLT    chir_2    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PLT    plan-1          CB   0.020
+PLT    plan-1         CD1   0.020
+PLT    plan-1         CD2   0.020
+PLT    plan-1         CE2   0.020
+PLT    plan-1         CE3   0.020
+PLT    plan-1          CG   0.020
+PLT    plan-1         CH2   0.020
+PLT    plan-1         CZ2   0.020
+PLT    plan-1         CZ3   0.020
+PLT    plan-1         HD1   0.020
+PLT    plan-1         HE3   0.020
+PLT    plan-1         HH2   0.020
+PLT    plan-1         HNE   0.020
+PLT    plan-1         HZ2   0.020
+PLT    plan-1         HZ3   0.020
+PLT    plan-1         NE1   0.020
+PLT    plan-2          C2   0.020
+PLT    plan-2         C2A   0.020
+PLT    plan-2          C3   0.020
+PLT    plan-2          C4   0.020
+PLT    plan-2         C4A   0.020
+PLT    plan-2          C5   0.020
+PLT    plan-2         C5A   0.020
+PLT    plan-2          C6   0.020
+PLT    plan-2          H6   0.020
+PLT    plan-2          N1   0.020
+PLT    plan-2          O3   0.020
+PLT    plan-3          C4   0.020
+PLT    plan-3         C4A   0.020
+PLT    plan-3         H4A   0.020
+PLT    plan-3           N   0.020
+PLT    plan-4           C   0.020
+PLT    plan-4          CA   0.020
+PLT    plan-4           O   0.020
+PLT    plan-4         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PLT           SMILES              ACDLabs 10.04                                                                                                                                  O=P(O)(O)OCc1cnc(c(O)c1/C=N/C(C(=O)O)Cc3c2ccccc2nc3)C
+PLT SMILES_CANONICAL               CACTVS 3.341                                                                                                                          Cc1ncc(CO[P](O)(O)=O)c(C=N[C@@H](Cc2c[nH]c3ccccc23)C(O)=O)c1O
+PLT           SMILES               CACTVS 3.341                                                                                                                            Cc1ncc(CO[P](O)(O)=O)c(C=N[CH](Cc2c[nH]c3ccccc23)C(O)=O)c1O
+PLT SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                        Cc1c(c(c(cn1)COP(=O)(O)O)\C=N\[C@@H](Cc2c[nH]c3c2cccc3)C(=O)O)O
+PLT           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                               Cc1c(c(c(cn1)COP(=O)(O)O)C=NC(Cc2c[nH]c3c2cccc3)C(=O)O)O
+PLT            InChI                InChI  1.03 InChI=1S/C19H20N3O7P/c1-11-18(23)15(13(8-20-11)10-29-30(26,27)28)9-22-17(19(24)25)6-12-7-21-16-5-3-2-4-14(12)16/h2-5,7-9,17,21,23H,6,10H2,1H3,(H,24,25)(H2,26,27,28)/b22-9+/t17-/m0/s1
+PLT         InChIKey                InChI  1.03                                                                                                                                                            MFRRQHVPLFTBMS-NUYDQDRBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PLT acedrg               243         "dictionary generator"                  
+PLT acedrg_database      11          "data source"                           
+PLT rdkit                2017.03.2   "Chemoinformatics tool"
+PLT refmac5              5.8.0238    "optimization tool"                     

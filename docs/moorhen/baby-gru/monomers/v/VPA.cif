@@ -1,0 +1,467 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+VPA     VPA      2-phenyl-N-(6-O-beta-D-xylopyranosyl-beta-D-glucopyranosyl)ethylamidine     NON-POLYMER     58     30     .     
+#
+data_comp_VPA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+VPA     C1      C       C       0       -28.761     13.497      -21.121     
+VPA     C2      C       CH2     0       -28.659     12.880      -19.767     
+VPA     N2      N       NH1     0       -29.311     14.668      -21.324     
+VPA     C3      C       CR6     0       -29.740     11.839      -19.600     
+VPA     C4      C       CR16    0       -30.970     12.170      -19.043     
+VPA     C5      C       CR16    0       -31.971     11.216      -18.910     
+VPA     C6      C       CR16    0       -31.759     9.923       -19.345     
+VPA     C8      C       CR16    0       -29.548     10.536      -20.045     
+VPA     C7      C       CR16    0       -30.550     9.583       -19.912     
+VPA     N1      N       NH1     0       -28.313     12.728      -22.137     
+VPA     "C1'"   C       CH1     0       -28.527     13.027      -23.519     
+VPA     "O5'"   O       O2      0       -29.930     12.784      -23.693     
+VPA     "C2'"   C       CH1     0       -27.693     12.130      -24.430     
+VPA     "O2'"   O       OH1     0       -26.334     12.534      -24.367     
+VPA     "C3'"   C       CH1     0       -28.177     12.209      -25.872     
+VPA     "O3'"   O       OH1     0       -27.474     11.244      -26.655     
+VPA     "C4'"   C       CH1     0       -29.676     11.973      -25.967     
+VPA     "O4'"   O       OH1     0       -30.113     12.174      -27.308     
+VPA     "C5'"   C       CH1     0       -30.410     12.935      -25.034     
+VPA     "C6'"   C       CH2     0       -31.902     12.703      -24.977     
+VPA     "O6'"   O       O2      0       -32.162     11.437      -24.314     
+VPA     C1A     C       CH1     0       -33.468     11.289      -23.824     
+VPA     O5A     O       O2      0       -33.633     12.028      -22.611     
+VPA     C5A     C       CH2     0       -34.961     11.920      -22.079     
+VPA     C4A     C       CH1     0       -35.302     10.478      -21.747     
+VPA     O4A     O       OH1     0       -36.659     10.407      -21.299     
+VPA     C3A     C       CH1     0       -35.105     9.600       -22.978     
+VPA     O3A     O       OH1     0       -35.282     8.225       -22.640     
+VPA     C2A     C       CH1     0       -33.715     9.806       -23.569     
+VPA     O2A     O       OH1     0       -33.562     9.064       -24.776     
+VPA     H1      H       H       0       -28.762     13.568      -19.082     
+VPA     H2      H       H       0       -27.784     12.460      -19.662     
+VPA     H3      H       H       0       -29.589     15.065      -20.608     
+VPA     H4      H       H       0       -31.122     13.052      -18.744     
+VPA     H5      H       H       0       -32.798     11.452      -18.521     
+VPA     H6      H       H       0       -32.439     9.275       -19.253     
+VPA     H7      H       H       0       -28.723     10.294      -20.434     
+VPA     H8      H       H       0       -30.401     8.699       -20.209     
+VPA     H9      H       H       0       -27.922     11.970      -21.935     
+VPA     H10     H       H       0       -28.313     13.963      -23.687     
+VPA     H11     H       H       0       -27.761     11.183      -24.124     
+VPA     H12     H       H       0       -25.994     12.227      -23.662     
+VPA     H13     H       H       0       -27.976     13.110      -26.222     
+VPA     H14     H       H       0       -26.677     11.497      -26.749     
+VPA     H15     H       H       0       -29.872     11.045      -25.697     
+VPA     H16     H       H       0       -30.032     11.458      -27.742     
+VPA     H17     H       H       0       -30.242     13.857      -25.332     
+VPA     H18     H       H       0       -32.273     12.685      -25.881     
+VPA     H19     H       H       0       -32.328     13.433      -24.483     
+VPA     H20     H       H       0       -34.101     11.611      -24.488     
+VPA     H21     H       H       0       -35.601     12.260      -22.733     
+VPA     H22     H       H       0       -35.029     12.461      -21.270     
+VPA     H23     H       H       0       -34.703     10.161      -21.021     
+VPA     H24     H       H       0       -36.805     9.630       -21.013     
+VPA     H25     H       H       0       -35.778     9.849       -23.657     
+VPA     H26     H       H       0       -35.338     7.776       -23.349     
+VPA     H27     H       H       0       -33.047     9.484       -22.917     
+VPA     H28     H       H       0       -32.749     9.052       -24.991     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+VPA       "C4'"       "O4'"      SINGLE       n     1.425  0.0176     1.425  0.0176
+VPA       "C3'"       "O3'"      SINGLE       n     1.428  0.0100     1.428  0.0100
+VPA       "C3'"       "C4'"      SINGLE       n     1.520  0.0100     1.520  0.0100
+VPA       "C2'"       "C3'"      SINGLE       n     1.522  0.0100     1.522  0.0100
+VPA       "C4'"       "C5'"      SINGLE       n     1.524  0.0200     1.524  0.0200
+VPA       "C5'"       "C6'"      SINGLE       n     1.509  0.0100     1.509  0.0100
+VPA       "O5'"       "C5'"      SINGLE       n     1.431  0.0100     1.431  0.0100
+VPA       "C6'"       "O6'"      SINGLE       n     1.441  0.0183     1.441  0.0183
+VPA         C2A         O2A      SINGLE       n     1.425  0.0112     1.425  0.0112
+VPA       "C2'"       "O2'"      SINGLE       n     1.419  0.0100     1.419  0.0100
+VPA       "C1'"       "C2'"      SINGLE       n     1.523  0.0100     1.523  0.0100
+VPA       "O6'"         C1A      SINGLE       n     1.400  0.0100     1.400  0.0100
+VPA       "C1'"       "O5'"      SINGLE       n     1.431  0.0104     1.431  0.0104
+VPA         C1A         C2A      SINGLE       n     1.523  0.0113     1.523  0.0113
+VPA         C1A         O5A      SINGLE       n     1.422  0.0169     1.422  0.0169
+VPA          N1       "C1'"      SINGLE       n     1.428  0.0106     1.428  0.0106
+VPA         C3A         C2A      SINGLE       n     1.523  0.0100     1.523  0.0100
+VPA         C3A         O3A      SINGLE       n     1.426  0.0100     1.426  0.0100
+VPA         C4A         C3A      SINGLE       n     1.523  0.0100     1.523  0.0100
+VPA         O5A         C5A      SINGLE       n     1.432  0.0100     1.432  0.0100
+VPA         C5A         C4A      SINGLE       n     1.517  0.0100     1.517  0.0100
+VPA          C1          N1      SINGLE       n     1.338  0.0174     1.338  0.0174
+VPA          C1          N2      DOUBLE       n     1.299  0.0200     1.299  0.0200
+VPA         C4A         O4A      SINGLE       n     1.430  0.0100     1.430  0.0100
+VPA          C1          C2      SINGLE       n     1.486  0.0200     1.486  0.0200
+VPA          C8          C7      DOUBLE       y     1.386  0.0100     1.386  0.0100
+VPA          C3          C8      SINGLE       y     1.386  0.0100     1.386  0.0100
+VPA          C2          C3      SINGLE       n     1.510  0.0100     1.510  0.0100
+VPA          C6          C7      SINGLE       y     1.374  0.0127     1.374  0.0127
+VPA          C3          C4      DOUBLE       y     1.386  0.0100     1.386  0.0100
+VPA          C5          C6      DOUBLE       y     1.376  0.0124     1.376  0.0124
+VPA          C4          C5      SINGLE       y     1.386  0.0100     1.386  0.0100
+VPA          C2          H1      SINGLE       n     1.089  0.0100     0.976  0.0140
+VPA          C2          H2      SINGLE       n     1.089  0.0100     0.976  0.0140
+VPA          N2          H3      SINGLE       n     1.016  0.0100     0.864  0.0200
+VPA          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0174
+VPA          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0175
+VPA          C6          H6      SINGLE       n     1.082  0.0130     0.944  0.0161
+VPA          C8          H7      SINGLE       n     1.082  0.0130     0.944  0.0174
+VPA          C7          H8      SINGLE       n     1.082  0.0130     0.944  0.0175
+VPA          N1          H9      SINGLE       n     1.016  0.0100     0.876  0.0200
+VPA       "C1'"         H10      SINGLE       n     1.089  0.0100     0.975  0.0175
+VPA       "C2'"         H11      SINGLE       n     1.089  0.0100     0.998  0.0157
+VPA       "O2'"         H12      SINGLE       n     0.970  0.0120     0.841  0.0200
+VPA       "C3'"         H13      SINGLE       n     1.089  0.0100     0.987  0.0200
+VPA       "O3'"         H14      SINGLE       n     0.970  0.0120     0.841  0.0200
+VPA       "C4'"         H15      SINGLE       n     1.089  0.0100     0.986  0.0131
+VPA       "O4'"         H16      SINGLE       n     0.970  0.0120     0.841  0.0200
+VPA       "C5'"         H17      SINGLE       n     1.089  0.0100     0.983  0.0200
+VPA       "C6'"         H18      SINGLE       n     1.089  0.0100     0.978  0.0169
+VPA       "C6'"         H19      SINGLE       n     1.089  0.0100     0.978  0.0169
+VPA         C1A         H20      SINGLE       n     1.089  0.0100     0.971  0.0193
+VPA         C5A         H21      SINGLE       n     1.089  0.0100     0.976  0.0186
+VPA         C5A         H22      SINGLE       n     1.089  0.0100     0.976  0.0186
+VPA         C4A         H23      SINGLE       n     1.089  0.0100     0.993  0.0111
+VPA         O4A         H24      SINGLE       n     0.970  0.0120     0.841  0.0200
+VPA         C3A         H25      SINGLE       n     1.089  0.0100     0.988  0.0166
+VPA         O3A         H26      SINGLE       n     0.970  0.0120     0.841  0.0200
+VPA         C2A         H27      SINGLE       n     1.089  0.0100     0.987  0.0140
+VPA         O2A         H28      SINGLE       n     0.970  0.0120     0.841  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+VPA          N1          C1          N2     121.471    3.00
+VPA          N1          C1          C2     116.083    1.98
+VPA          N2          C1          C2     122.446    3.00
+VPA          C1          C2          C3     114.984    3.00
+VPA          C1          C2          H1     108.582    1.50
+VPA          C1          C2          H2     108.582    1.50
+VPA          C3          C2          H1     108.572    1.50
+VPA          C3          C2          H2     108.572    1.50
+VPA          H1          C2          H2     108.081    1.50
+VPA          C1          N2          H3     112.238    3.00
+VPA          C8          C3          C2     120.970    1.56
+VPA          C8          C3          C4     118.060    1.50
+VPA          C2          C3          C4     120.970    1.56
+VPA          C3          C4          C5     120.624    1.50
+VPA          C3          C4          H4     119.591    1.50
+VPA          C5          C4          H4     119.786    1.50
+VPA          C6          C5          C4     120.325    1.50
+VPA          C6          C5          H5     119.883    1.50
+VPA          C4          C5          H5     119.792    1.50
+VPA          C7          C6          C5     120.043    1.50
+VPA          C7          C6          H6     119.979    1.50
+VPA          C5          C6          H6     119.979    1.50
+VPA          C7          C8          C3     120.624    1.50
+VPA          C7          C8          H7     119.786    1.50
+VPA          C3          C8          H7     119.591    1.50
+VPA          C8          C7          C6     120.325    1.50
+VPA          C8          C7          H8     119.792    1.50
+VPA          C6          C7          H8     119.883    1.50
+VPA       "C1'"          N1          C1     122.652    2.85
+VPA       "C1'"          N1          H9     118.558    1.50
+VPA          C1          N1          H9     118.790    3.00
+VPA       "C2'"       "C1'"       "O5'"     109.636    1.50
+VPA       "C2'"       "C1'"          N1     111.070    1.50
+VPA       "C2'"       "C1'"         H10     109.264    1.50
+VPA       "O5'"       "C1'"          N1     108.867    2.47
+VPA       "O5'"       "C1'"         H10     110.078    1.50
+VPA          N1       "C1'"         H10     108.615    1.50
+VPA       "C5'"       "O5'"       "C1'"     112.170    1.50
+VPA       "C3'"       "C2'"       "O2'"     109.483    1.54
+VPA       "C3'"       "C2'"       "C1'"     110.461    1.50
+VPA       "C3'"       "C2'"         H11     108.720    1.50
+VPA       "O2'"       "C2'"       "C1'"     109.390    1.75
+VPA       "O2'"       "C2'"         H11     108.851    1.62
+VPA       "C1'"       "C2'"         H11     109.609    1.50
+VPA       "C2'"       "O2'"         H12     108.647    2.52
+VPA       "O3'"       "C3'"       "C4'"     110.243    1.88
+VPA       "O3'"       "C3'"       "C2'"     109.126    1.50
+VPA       "O3'"       "C3'"         H13     108.767    1.50
+VPA       "C4'"       "C3'"       "C2'"     111.119    1.50
+VPA       "C4'"       "C3'"         H13     108.653    1.50
+VPA       "C2'"       "C3'"         H13     108.454    1.50
+VPA       "C3'"       "O3'"         H14     108.895    2.41
+VPA       "O4'"       "C4'"       "C3'"     110.101    1.97
+VPA       "O4'"       "C4'"       "C5'"     109.072    2.07
+VPA       "O4'"       "C4'"         H15     109.194    1.50
+VPA       "C3'"       "C4'"       "C5'"     110.272    1.76
+VPA       "C3'"       "C4'"         H15     109.032    1.50
+VPA       "C5'"       "C4'"         H15     109.223    1.50
+VPA       "C4'"       "O4'"         H16     109.564    3.00
+VPA       "C4'"       "C5'"       "C6'"     113.127    1.52
+VPA       "C4'"       "C5'"       "O5'"     110.101    1.50
+VPA       "C4'"       "C5'"         H17     108.960    1.50
+VPA       "C6'"       "C5'"       "O5'"     107.094    1.51
+VPA       "C6'"       "C5'"         H17     109.006    1.50
+VPA       "O5'"       "C5'"         H17     109.111    1.50
+VPA       "C5'"       "C6'"       "O6'"     108.827    1.50
+VPA       "C5'"       "C6'"         H18     109.852    1.50
+VPA       "C5'"       "C6'"         H19     109.852    1.50
+VPA       "O6'"       "C6'"         H18     109.863    1.50
+VPA       "O6'"       "C6'"         H19     109.863    1.50
+VPA         H18       "C6'"         H19     108.573    1.50
+VPA       "C6'"       "O6'"         C1A     113.403    1.50
+VPA       "O6'"         C1A         C2A     108.249    1.50
+VPA       "O6'"         C1A         O5A     110.062    2.45
+VPA       "O6'"         C1A         H20     109.349    1.50
+VPA         C2A         C1A         O5A     110.237    1.50
+VPA         C2A         C1A         H20     109.511    1.50
+VPA         O5A         C1A         H20     109.461    1.73
+VPA         C1A         O5A         C5A     111.725    1.50
+VPA         O5A         C5A         C4A     110.778    1.50
+VPA         O5A         C5A         H21     109.418    1.50
+VPA         O5A         C5A         H22     109.418    1.50
+VPA         C4A         C5A         H21     109.325    1.50
+VPA         C4A         C5A         H22     109.325    1.50
+VPA         H21         C5A         H22     108.602    1.50
+VPA         C3A         C4A         C5A     109.602    1.50
+VPA         C3A         C4A         O4A     110.286    1.81
+VPA         C3A         C4A         H23     109.054    1.50
+VPA         C5A         C4A         O4A     109.124    1.50
+VPA         C5A         C4A         H23     108.994    1.50
+VPA         O4A         C4A         H23     109.069    1.50
+VPA         C4A         O4A         H24     108.463    3.00
+VPA         C2A         C3A         O3A     109.587    2.09
+VPA         C2A         C3A         C4A     110.186    1.50
+VPA         C2A         C3A         H25     108.712    1.50
+VPA         O3A         C3A         C4A     110.343    1.72
+VPA         O3A         C3A         H25     108.767    1.50
+VPA         C4A         C3A         H25     108.724    1.50
+VPA         C3A         O3A         H26     108.895    2.41
+VPA         O2A         C2A         C1A     110.083    1.70
+VPA         O2A         C2A         C3A     111.053    2.62
+VPA         O2A         C2A         H27     108.551    1.50
+VPA         C1A         C2A         C3A     110.084    1.50
+VPA         C1A         C2A         H27     108.545    1.50
+VPA         C3A         C2A         H27     108.505    1.50
+VPA         C2A         O2A         H28     109.126    2.06
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+VPA                   nu0         C5A         O5A         C1A         C2A     -66.468    10.0     3
+VPA                   nu1         O5A         C1A         C2A         C3A      58.298    10.0     3
+VPA                   nu2         C1A         C2A         C3A         C4A     -50.541    10.0     3
+VPA                   nu3         C2A         C3A         C4A         C5A      49.434    10.0     3
+VPA                   nu4         C3A         C4A         C5A         O5A     -56.623    10.0     3
+VPA                   nu5         C4A         C5A         O5A         C1A      65.859    10.0     3
+VPA             sp3_sp3_1       "O5'"       "C1'"       "C2'"       "C3'"      60.000    10.0     3
+VPA             sp3_sp3_2       "O5'"       "C1'"       "C2'"       "O2'"     180.000    10.0     3
+VPA             sp3_sp3_3       "O5'"       "C1'"       "C2'"         H11     -60.000    10.0     3
+VPA             sp3_sp3_4          N1       "C1'"       "C2'"       "C3'"     180.000    10.0     3
+VPA             sp3_sp3_5          N1       "C1'"       "C2'"       "O2'"     -60.000    10.0     3
+VPA             sp3_sp3_6          N1       "C1'"       "C2'"         H11      60.000    10.0     3
+VPA             sp3_sp3_7         H10       "C1'"       "C2'"       "C3'"     -60.000    10.0     3
+VPA             sp3_sp3_8         H10       "C1'"       "C2'"       "O2'"      60.000    10.0     3
+VPA             sp3_sp3_9         H10       "C1'"       "C2'"         H11     180.000    10.0     3
+VPA            sp3_sp3_10       "C1'"       "C2'"       "C3'"       "C4'"     -60.000    10.0     3
+VPA            sp3_sp3_11       "C1'"       "C2'"       "C3'"       "O3'"      60.000    10.0     3
+VPA            sp3_sp3_12       "C1'"       "C2'"       "C3'"         H13     180.000    10.0     3
+VPA            sp3_sp3_13       "O2'"       "C2'"       "C3'"       "C4'"      60.000    10.0     3
+VPA            sp3_sp3_14       "O2'"       "C2'"       "C3'"       "O3'"     180.000    10.0     3
+VPA            sp3_sp3_15       "O2'"       "C2'"       "C3'"         H13     -60.000    10.0     3
+VPA            sp3_sp3_16         H11       "C2'"       "C3'"       "C4'"     180.000    10.0     3
+VPA            sp3_sp3_17         H11       "C2'"       "C3'"       "O3'"     -60.000    10.0     3
+VPA            sp3_sp3_18         H11       "C2'"       "C3'"         H13      60.000    10.0     3
+VPA            sp3_sp3_19       "C2'"       "C3'"       "C4'"       "C5'"      60.000    10.0     3
+VPA            sp3_sp3_20       "C2'"       "C3'"       "C4'"       "O4'"     180.000    10.0     3
+VPA            sp3_sp3_21       "C2'"       "C3'"       "C4'"         H15     -60.000    10.0     3
+VPA            sp3_sp3_22       "O3'"       "C3'"       "C4'"       "C5'"     180.000    10.0     3
+VPA            sp3_sp3_23       "O3'"       "C3'"       "C4'"       "O4'"     -60.000    10.0     3
+VPA            sp3_sp3_24       "O3'"       "C3'"       "C4'"         H15      60.000    10.0     3
+VPA            sp3_sp3_25         H13       "C3'"       "C4'"       "C5'"     -60.000    10.0     3
+VPA            sp3_sp3_26         H13       "C3'"       "C4'"       "O4'"      60.000    10.0     3
+VPA            sp3_sp3_27         H13       "C3'"       "C4'"         H15     180.000    10.0     3
+VPA            sp3_sp3_28       "C3'"       "C4'"       "C5'"       "O5'"     -60.000    10.0     3
+VPA            sp3_sp3_29       "C3'"       "C4'"       "C5'"       "C6'"      60.000    10.0     3
+VPA            sp3_sp3_30       "C3'"       "C4'"       "C5'"         H17     180.000    10.0     3
+VPA            sp3_sp3_31       "O4'"       "C4'"       "C5'"       "O5'"      60.000    10.0     3
+VPA            sp3_sp3_32       "O4'"       "C4'"       "C5'"       "C6'"     180.000    10.0     3
+VPA            sp3_sp3_33       "O4'"       "C4'"       "C5'"         H17     -60.000    10.0     3
+VPA            sp3_sp3_34         H15       "C4'"       "C5'"       "O5'"     180.000    10.0     3
+VPA            sp3_sp3_35         H15       "C4'"       "C5'"       "C6'"     -60.000    10.0     3
+VPA            sp3_sp3_36         H15       "C4'"       "C5'"         H17      60.000    10.0     3
+VPA            sp3_sp3_37       "C4'"       "C5'"       "O5'"       "C1'"      60.000    10.0     3
+VPA            sp3_sp3_38       "C6'"       "C5'"       "O5'"       "C1'"     -60.000    10.0     3
+VPA            sp3_sp3_39         H17       "C5'"       "O5'"       "C1'"     180.000    10.0     3
+VPA       const_sp2_sp2_1          C4          C3          C8          C7       0.000     5.0     2
+VPA       const_sp2_sp2_2          C4          C3          C8          H7     180.000     5.0     2
+VPA       const_sp2_sp2_3          C2          C3          C8          C7     180.000     5.0     2
+VPA       const_sp2_sp2_4          C2          C3          C8          H7       0.000     5.0     2
+VPA       const_sp2_sp2_5          C6          C7          C8          C3       0.000     5.0     2
+VPA       const_sp2_sp2_6          C6          C7          C8          H7     180.000     5.0     2
+VPA       const_sp2_sp2_7          H8          C7          C8          C3     180.000     5.0     2
+VPA       const_sp2_sp2_8          H8          C7          C8          H7       0.000     5.0     2
+VPA       const_sp2_sp2_9          C5          C6          C7          C8       0.000     5.0     2
+VPA              const_10          C5          C6          C7          H8     180.000    10.0     2
+VPA              const_11          H6          C6          C7          C8     180.000    10.0     2
+VPA              const_12          H6          C6          C7          H8       0.000    10.0     2
+VPA              const_13          C4          C5          C6          C7       0.000    10.0     2
+VPA              const_14          C4          C5          C6          H6     180.000    10.0     2
+VPA              const_15          H5          C5          C6          C7     180.000    10.0     2
+VPA              const_16          H5          C5          C6          H6       0.000    10.0     2
+VPA              const_17          C3          C4          C5          C6       0.000    10.0     2
+VPA              const_18          C3          C4          C5          H5     180.000    10.0     2
+VPA              const_19          H4          C4          C5          C6     180.000    10.0     2
+VPA              const_20          H4          C4          C5          H5       0.000    10.0     2
+VPA            sp3_sp3_79       "C3'"       "C4'"       "O4'"         H16     180.000    10.0     3
+VPA            sp3_sp3_80       "C5'"       "C4'"       "O4'"         H16      60.000    10.0     3
+VPA            sp3_sp3_81         H15       "C4'"       "O4'"         H16     -60.000    10.0     3
+VPA            sp3_sp3_82       "C4'"       "C3'"       "O3'"         H14     180.000    10.0     3
+VPA            sp3_sp3_83       "C2'"       "C3'"       "O3'"         H14      60.000    10.0     3
+VPA            sp3_sp3_84         H13       "C3'"       "O3'"         H14     -60.000    10.0     3
+VPA            sp3_sp3_85       "C4'"       "C5'"       "C6'"       "O6'"     180.000    10.0     3
+VPA            sp3_sp3_86       "C4'"       "C5'"       "C6'"         H18     -60.000    10.0     3
+VPA            sp3_sp3_87       "C4'"       "C5'"       "C6'"         H19      60.000    10.0     3
+VPA            sp3_sp3_88       "O5'"       "C5'"       "C6'"       "O6'"      60.000    10.0     3
+VPA            sp3_sp3_89       "O5'"       "C5'"       "C6'"         H18     180.000    10.0     3
+VPA            sp3_sp3_90       "O5'"       "C5'"       "C6'"         H19     -60.000    10.0     3
+VPA            sp3_sp3_91         H17       "C5'"       "C6'"       "O6'"     -60.000    10.0     3
+VPA            sp3_sp3_92         H17       "C5'"       "C6'"         H18      60.000    10.0     3
+VPA            sp3_sp3_93         H17       "C5'"       "C6'"         H19     180.000    10.0     3
+VPA            sp3_sp3_94       "C5'"       "C6'"       "O6'"         C1A     180.000    10.0     3
+VPA            sp3_sp3_95         H18       "C6'"       "O6'"         C1A      60.000    10.0     3
+VPA            sp3_sp3_96         H19       "C6'"       "O6'"         C1A     -60.000    10.0     3
+VPA            sp3_sp3_97         C1A         C2A         O2A         H28     180.000    10.0     3
+VPA            sp3_sp3_98         C3A         C2A         O2A         H28      60.000    10.0     3
+VPA            sp3_sp3_99         H27         C2A         O2A         H28     -60.000    10.0     3
+VPA           sp3_sp3_100       "C3'"       "C2'"       "O2'"         H12     180.000    10.0     3
+VPA           sp3_sp3_101       "C1'"       "C2'"       "O2'"         H12      60.000    10.0     3
+VPA           sp3_sp3_102         H11       "C2'"       "O2'"         H12     -60.000    10.0     3
+VPA           sp3_sp3_103         C2A         C1A       "O6'"       "C6'"     180.000    10.0     3
+VPA           sp3_sp3_104         O5A         C1A       "O6'"       "C6'"      60.000    10.0     3
+VPA           sp3_sp3_105         H20         C1A       "O6'"       "C6'"     -60.000    10.0     3
+VPA           sp3_sp3_106       "C2'"       "C1'"       "O5'"       "C5'"     -60.000    10.0     3
+VPA           sp3_sp3_107          N1       "C1'"       "O5'"       "C5'"      60.000    10.0     3
+VPA           sp3_sp3_108         H10       "C1'"       "O5'"       "C5'"     180.000    10.0     3
+VPA             sp2_sp3_1          C1          N1       "C1'"       "C2'"       0.000    10.0     6
+VPA             sp2_sp3_2          C1          N1       "C1'"       "O5'"     120.000    10.0     6
+VPA             sp2_sp3_3          C1          N1       "C1'"         H10    -120.000    10.0     6
+VPA             sp2_sp3_4          H9          N1       "C1'"       "C2'"     180.000    10.0     6
+VPA             sp2_sp3_5          H9          N1       "C1'"       "O5'"     -60.000    10.0     6
+VPA             sp2_sp3_6          H9          N1       "C1'"         H10      60.000    10.0     6
+VPA           sp3_sp3_112         C2A         C3A         O3A         H26     180.000    10.0     3
+VPA           sp3_sp3_113         C4A         C3A         O3A         H26      60.000    10.0     3
+VPA           sp3_sp3_114         H25         C3A         O3A         H26     -60.000    10.0     3
+VPA             sp2_sp2_1          C2          C1          N1       "C1'"     180.000     5.0     2
+VPA             sp2_sp2_2          C2          C1          N1          H9       0.000     5.0     2
+VPA             sp2_sp2_3          N2          C1          N1       "C1'"       0.000     5.0     2
+VPA             sp2_sp2_4          N2          C1          N1          H9     180.000     5.0     2
+VPA             sp2_sp2_5          N1          C1          N2          H3     180.000     5.0     2
+VPA             sp2_sp2_6          C2          C1          N2          H3       0.000     5.0     2
+VPA           sp3_sp3_115         C3A         C4A         O4A         H24     180.000    10.0     3
+VPA           sp3_sp3_116         C5A         C4A         O4A         H24      60.000    10.0     3
+VPA           sp3_sp3_117         H23         C4A         O4A         H24     -60.000    10.0     3
+VPA             sp2_sp3_7          N1          C1          C2          H1       0.000    10.0     6
+VPA             sp2_sp3_8          N1          C1          C2          C3     120.000    10.0     6
+VPA             sp2_sp3_9          N1          C1          C2          H2    -120.000    10.0     6
+VPA            sp2_sp3_10          N2          C1          C2          H1     180.000    10.0     6
+VPA            sp2_sp3_11          N2          C1          C2          C3     -60.000    10.0     6
+VPA            sp2_sp3_12          N2          C1          C2          H2      60.000    10.0     6
+VPA            sp2_sp3_13          C8          C3          C2          H1     150.000    10.0     6
+VPA            sp2_sp3_14          C8          C3          C2          C1     -90.000    10.0     6
+VPA            sp2_sp3_15          C8          C3          C2          H2      30.000    10.0     6
+VPA            sp2_sp3_16          C4          C3          C2          H1     -30.000    10.0     6
+VPA            sp2_sp3_17          C4          C3          C2          C1      90.000    10.0     6
+VPA            sp2_sp3_18          C4          C3          C2          H2    -150.000    10.0     6
+VPA              const_21          C8          C3          C4          C5       0.000    10.0     2
+VPA              const_22          C8          C3          C4          H4     180.000    10.0     2
+VPA              const_23          C2          C3          C4          C5     180.000    10.0     2
+VPA              const_24          C2          C3          C4          H4       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+VPA    chir_1    "C1'"    "O5'"    N1    "C2'"    negative
+VPA    chir_2    "C2'"    "O2'"    "C1'"    "C3'"    negative
+VPA    chir_3    "C3'"    "O3'"    "C2'"    "C4'"    positive
+VPA    chir_4    "C4'"    "O4'"    "C5'"    "C3'"    positive
+VPA    chir_5    "C5'"    "O5'"    "C4'"    "C6'"    negative
+VPA    chir_6    C1A    "O6'"    O5A    C2A    positive
+VPA    chir_7    C4A    O4A    C3A    C5A    negative
+VPA    chir_8    C3A    O3A    C2A    C4A    positive
+VPA    chir_9    C2A    O2A    C1A    C3A    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+VPA    plan-1          C2   0.020
+VPA    plan-1          C3   0.020
+VPA    plan-1          C4   0.020
+VPA    plan-1          C5   0.020
+VPA    plan-1          C6   0.020
+VPA    plan-1          C7   0.020
+VPA    plan-1          C8   0.020
+VPA    plan-1          H4   0.020
+VPA    plan-1          H5   0.020
+VPA    plan-1          H6   0.020
+VPA    plan-1          H7   0.020
+VPA    plan-1          H8   0.020
+VPA    plan-2          C1   0.020
+VPA    plan-2          C2   0.020
+VPA    plan-2          N1   0.020
+VPA    plan-2          N2   0.020
+VPA    plan-3          C1   0.020
+VPA    plan-3       "C1'"   0.020
+VPA    plan-3          H9   0.020
+VPA    plan-3          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+VPA           SMILES              ACDLabs 12.01                                                                                                                                           O(CC2OC(NC(=[N@H])Cc1ccccc1)C(O)C(O)C2O)C3OCC(O)C(O)C3O
+VPA            InChI                InChI  1.03 InChI=1S/C19H28N2O9/c20-12(6-9-4-2-1-3-5-9)21-18-16(26)15(25)14(24)11(30-18)8-29-19-17(27)13(23)10(22)7-28-19/h1-5,10-11,13-19,22-27H,6-8H2,(H2,20,21)/t10-,11-,13+,14-,15+,16-,17-,18-,19+/m1/s1
+VPA         InChIKey                InChI  1.03                                                                                                                                                                       SKGTWJNDCFMXKU-GZDQRYBESA-N
+VPA SMILES_CANONICAL               CACTVS 3.385                                                                                                        O[C@@H]1CO[C@@H](OC[C@H]2O[C@@H](NC(=N)Cc3ccccc3)[C@H](O)[C@@H](O)[C@@H]2O)[C@H](O)[C@H]1O
+VPA           SMILES               CACTVS 3.385                                                                                                                      O[CH]1CO[CH](OC[CH]2O[CH](NC(=N)Cc3ccccc3)[CH](O)[CH](O)[CH]2O)[CH](O)[CH]1O
+VPA SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                             "[H]/N=C(\Cc1ccccc1)/N[C@H]2[C@@H]([C@H]([C@@H]([C@H](O2)CO[C@H]3[C@@H]([C@H]([C@@H](CO3)O)O)O)O)O)O"
+VPA           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                                           c1ccc(cc1)CC(=N)NC2C(C(C(C(O2)COC3C(C(C(CO3)O)O)O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+VPA acedrg               243         "dictionary generator"                  
+VPA acedrg_database      11          "data source"                           
+VPA rdkit                2017.03.2   "Chemoinformatics tool"
+VPA refmac5              5.8.0238    "optimization tool"                     

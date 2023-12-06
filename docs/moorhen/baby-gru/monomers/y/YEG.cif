@@ -1,0 +1,150 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YEG     YEG      cyclopentanol     NON-POLYMER     16     6     .     
+#
+data_comp_YEG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YEG     C01     C       CH2     0       0.657       68.192      -67.965     
+YEG     C02     C       CH2     0       1.897       67.984      -68.746     
+YEG     C03     C       CH2     0       2.317       69.356      -69.227     
+YEG     C04     C       CH1     0       1.049       70.212      -69.224     
+YEG     C05     C       CH2     0       -0.058      69.316      -68.667     
+YEG     O06     O       OH1     0       1.221       71.358      -68.400     
+YEG     H01     H       H       0       0.104       67.376      -67.961     
+YEG     H01A    H       H       0       0.866       68.440      -67.034     
+YEG     H02     H       H       0       2.601       67.585      -68.182     
+YEG     H02A    H       H       0       1.730       67.386      -69.512     
+YEG     H03     H       H       0       2.693       69.303      -70.137     
+YEG     H03A    H       H       0       2.997       69.740      -68.624     
+YEG     H04     H       H       0       0.827       70.500      -70.143     
+YEG     H05     H       H       0       -0.625      69.817      -68.035     
+YEG     H05A    H       H       0       -0.621      68.968      -69.398     
+YEG     HO06    H       H       0       1.367       71.123      -67.597     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YEG         C01         C02      SINGLE       n     1.488  0.0200     1.488  0.0200
+YEG         C01         C05      SINGLE       n     1.512  0.0200     1.512  0.0200
+YEG         C02         C03      SINGLE       n     1.512  0.0200     1.512  0.0200
+YEG         C03         C04      SINGLE       n     1.526  0.0119     1.526  0.0119
+YEG         C04         O06      SINGLE       n     1.420  0.0122     1.420  0.0122
+YEG         C04         C05      SINGLE       n     1.526  0.0119     1.526  0.0119
+YEG         C01         H01      SINGLE       n     1.089  0.0100     0.986  0.0110
+YEG         C01        H01A      SINGLE       n     1.089  0.0100     0.986  0.0110
+YEG         C02         H02      SINGLE       n     1.089  0.0100     0.986  0.0110
+YEG         C02        H02A      SINGLE       n     1.089  0.0100     0.986  0.0110
+YEG         C03         H03      SINGLE       n     1.089  0.0100     0.986  0.0108
+YEG         C03        H03A      SINGLE       n     1.089  0.0100     0.986  0.0108
+YEG         C04         H04      SINGLE       n     1.089  0.0100     0.988  0.0200
+YEG         C05         H05      SINGLE       n     1.089  0.0100     0.986  0.0108
+YEG         C05        H05A      SINGLE       n     1.089  0.0100     0.986  0.0108
+YEG         O06        HO06      SINGLE       n     0.970  0.0120     0.849  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YEG         C02         C01         C05     106.171    2.25
+YEG         C02         C01         H01     110.679    1.50
+YEG         C02         C01        H01A     110.679    1.50
+YEG         C05         C01         H01     110.533    1.50
+YEG         C05         C01        H01A     110.533    1.50
+YEG         H01         C01        H01A     108.634    1.62
+YEG         C01         C02         C03     106.171    2.25
+YEG         C01         C02         H02     110.679    1.50
+YEG         C01         C02        H02A     110.679    1.50
+YEG         C03         C02         H02     110.533    1.50
+YEG         C03         C02        H02A     110.533    1.50
+YEG         H02         C02        H02A     108.634    1.62
+YEG         C02         C03         C04     105.200    1.50
+YEG         C02         C03         H03     110.763    1.50
+YEG         C02         C03        H03A     110.763    1.50
+YEG         C04         C03         H03     110.601    1.50
+YEG         C04         C03        H03A     110.601    1.50
+YEG         H03         C03        H03A     109.046    1.50
+YEG         C03         C04         O06     111.015    2.41
+YEG         C03         C04         C05     105.141    1.50
+YEG         C03         C04         H04     111.076    1.50
+YEG         O06         C04         C05     111.015    2.41
+YEG         O06         C04         H04     110.259    1.63
+YEG         C05         C04         H04     111.076    1.50
+YEG         C01         C05         C04     105.200    1.50
+YEG         C01         C05         H05     110.763    1.50
+YEG         C01         C05        H05A     110.763    1.50
+YEG         C04         C05         H05     110.601    1.50
+YEG         C04         C05        H05A     110.601    1.50
+YEG         H05         C05        H05A     109.046    1.50
+YEG         C04         O06        HO06     109.104    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YEG             sp3_sp3_1         C05         C01         C02         C03      60.000    10.0     3
+YEG            sp3_sp3_37         C02         C01         C05         C04     180.000    10.0     3
+YEG            sp3_sp3_10         C01         C02         C03         C04     -60.000    10.0     3
+YEG            sp3_sp3_21         C02         C03         C04         O06     -60.000    10.0     3
+YEG            sp3_sp3_31         O06         C04         C05         C01     180.000    10.0     3
+YEG            sp3_sp3_47         C03         C04         O06        HO06      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+YEG    chir_1    C04    O06    C03    C05    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YEG           SMILES              ACDLabs 12.01                                   OC1CCCC1
+YEG SMILES_CANONICAL               CACTVS 3.370                                   OC1CCCC1
+YEG           SMILES               CACTVS 3.370                                   OC1CCCC1
+YEG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                 C1CCC(C1)O
+YEG           SMILES "OpenEye OEToolkits" 1.7.2                                 C1CCC(C1)O
+YEG            InChI                InChI  1.03 InChI=1S/C5H10O/c6-5-3-1-2-4-5/h5-6H,1-4H2
+YEG         InChIKey                InChI  1.03                XCIXKGXIYUWCLL-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YEG acedrg               243         "dictionary generator"                  
+YEG acedrg_database      11          "data source"                           
+YEG rdkit                2017.03.2   "Chemoinformatics tool"
+YEG refmac5              5.8.0238    "optimization tool"                     

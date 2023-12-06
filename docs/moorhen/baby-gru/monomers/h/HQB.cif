@@ -1,0 +1,236 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HQB     HQB      ~{N}-methyl-10-nitro-pyrido[3,4-g]quinazolin-2-amine     NON-POLYMER     28     19     .     
+#
+data_comp_HQB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HQB     C1      C       CR16    0       -5.398      -30.573     -13.293     
+HQB     C2      C       CR16    0       -5.446      -31.722     -14.022     
+HQB     C3      C       CR16    0       -5.615      -33.080     -12.158     
+HQB     C4      C       CR66    0       -5.576      -31.958     -11.279     
+HQB     C5      C       CR16    0       -5.641      -32.085     -9.891      
+HQB     C6      C       CR66    0       -5.601      -30.970     -9.055      
+HQB     C7      C       CR66    0       -5.489      -29.656     -9.604      
+HQB     C8      C       CR6     0       -5.419      -29.486     -11.025     
+HQB     C9      C       CR6     0       -5.518      -28.763     -7.437      
+HQB     C10     C       CH3     0       -5.188      -26.326     -6.996      
+HQB     C11     C       CR16    0       -5.666      -31.062     -7.642      
+HQB     O1      O       O       0       -4.228      -27.566     -11.485     
+HQB     N1      N       N       1       -5.303      -28.138     -11.577     
+HQB     O       O       OC      -1      -6.286      -27.643     -12.105     
+HQB     C       C       CR66    0       -5.462      -30.654     -11.875     
+HQB     N2      N       NRD6    0       -5.450      -28.559     -8.780      
+HQB     N3      N       NH1     0       -5.488      -27.696     -6.615      
+HQB     N4      N       NRD6    0       -5.627      -29.986     -6.857      
+HQB     N       N       NRD6    0       -5.553      -32.975     -13.477     
+HQB     H1      H       H       0       -5.322      -29.716     -13.728     
+HQB     H2      H       H       0       -5.403      -31.662     -14.961     
+HQB     H3      H       H       0       -5.690      -33.946     -11.779     
+HQB     H4      H       H       0       -5.716      -32.946     -9.509      
+HQB     H5      H       H       0       -5.165      -26.238     -7.960      
+HQB     H6      H       H       0       -4.327      -26.071     -6.630      
+HQB     H7      H       H       0       -5.873      -25.738     -6.640      
+HQB     H8      H       H       0       -5.739      -31.914     -7.245      
+HQB     H9      H       H       0       -5.671      -27.858     -5.767      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HQB          C2           N      SINGLE       y     1.365  0.0100     1.365  0.0100
+HQB          C1          C2      DOUBLE       y     1.358  0.0100     1.358  0.0100
+HQB          C3           N      DOUBLE       y     1.307  0.0186     1.307  0.0186
+HQB          C1           C      SINGLE       y     1.419  0.0103     1.419  0.0103
+HQB          N1           O      SINGLE       n     1.221  0.0162     1.221  0.0162
+HQB          C3          C4      SINGLE       y     1.414  0.0200     1.414  0.0200
+HQB          C4           C      DOUBLE       y     1.433  0.0100     1.433  0.0100
+HQB          C8           C      SINGLE       y     1.433  0.0160     1.433  0.0160
+HQB          O1          N1      DOUBLE       n     1.221  0.0162     1.221  0.0162
+HQB          C8          N1      SINGLE       n     1.457  0.0200     1.457  0.0200
+HQB          C4          C5      SINGLE       y     1.391  0.0100     1.391  0.0100
+HQB          C7          C8      DOUBLE       y     1.430  0.0100     1.430  0.0100
+HQB          C5          C6      DOUBLE       y     1.391  0.0100     1.391  0.0100
+HQB          C6          C7      SINGLE       y     1.424  0.0141     1.424  0.0141
+HQB          C7          N2      SINGLE       y     1.369  0.0100     1.369  0.0100
+HQB          C6         C11      SINGLE       y     1.414  0.0200     1.414  0.0200
+HQB          C9          N2      DOUBLE       y     1.349  0.0118     1.349  0.0118
+HQB         C11          N4      DOUBLE       y     1.322  0.0151     1.322  0.0151
+HQB          C9          N4      SINGLE       y     1.348  0.0113     1.348  0.0113
+HQB          C9          N3      SINGLE       n     1.341  0.0100     1.341  0.0100
+HQB         C10          N3      SINGLE       n     1.448  0.0113     1.448  0.0113
+HQB          C1          H1      SINGLE       n     1.082  0.0130     0.965  0.0200
+HQB          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0128
+HQB          C3          H3      SINGLE       n     1.082  0.0130     0.948  0.0200
+HQB          C5          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+HQB         C10          H5      SINGLE       n     1.089  0.0100     0.970  0.0159
+HQB         C10          H6      SINGLE       n     1.089  0.0100     0.970  0.0159
+HQB         C10          H7      SINGLE       n     1.089  0.0100     0.970  0.0159
+HQB         C11          H8      SINGLE       n     1.082  0.0130     0.943  0.0200
+HQB          N3          H9      SINGLE       n     1.016  0.0100     0.880  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HQB          C2          C1           C     119.384    1.50
+HQB          C2          C1          H1     120.804    1.50
+HQB           C          C1          H1     119.812    1.50
+HQB           N          C2          C1     123.787    1.50
+HQB           N          C2          H2     117.479    1.50
+HQB          C1          C2          H2     118.734    1.51
+HQB           N          C3          C4     123.065    1.50
+HQB           N          C3          H3     118.438    1.50
+HQB          C4          C3          H3     118.498    1.50
+HQB          C3          C4           C     118.032    1.50
+HQB          C3          C4          C5     122.562    1.50
+HQB           C          C4          C5     119.406    1.50
+HQB          C4          C5          C6     121.382    1.50
+HQB          C4          C5          H4     119.309    1.50
+HQB          C6          C5          H4     119.309    1.50
+HQB          C5          C6          C7     119.795    1.50
+HQB          C5          C6         C11     121.898    1.50
+HQB          C7          C6         C11     118.307    2.01
+HQB          C8          C7          C6     119.818    1.57
+HQB          C8          C7          N2     119.049    1.50
+HQB          C6          C7          N2     121.133    1.50
+HQB           C          C8          N1     120.923    2.05
+HQB           C          C8          C7     120.195    1.92
+HQB          N1          C8          C7     118.882    1.79
+HQB          N2          C9          N4     124.000    1.50
+HQB          N2          C9          N3     117.952    1.62
+HQB          N4          C9          N3     118.047    1.50
+HQB          N3         C10          H5     109.503    1.50
+HQB          N3         C10          H6     109.503    1.50
+HQB          N3         C10          H7     109.503    1.50
+HQB          H5         C10          H6     109.396    1.50
+HQB          H5         C10          H7     109.396    1.50
+HQB          H6         C10          H7     109.396    1.50
+HQB          C6         C11          N4     122.452    1.50
+HQB          C6         C11          H8     118.719    1.50
+HQB          N4         C11          H8     118.829    1.50
+HQB           O          N1          O1     123.472    1.50
+HQB           O          N1          C8     118.258    1.50
+HQB          O1          N1          C8     118.258    1.50
+HQB          C1           C          C4     118.998    1.50
+HQB          C1           C          C8     121.598    1.50
+HQB          C4           C          C8     119.404    1.50
+HQB          C7          N2          C9     117.117    1.50
+HQB          C9          N3         C10     122.161    2.30
+HQB          C9          N3          H9     118.132    2.32
+HQB         C10          N3          H9     119.707    1.66
+HQB         C11          N4          C9     116.990    1.50
+HQB          C2           N          C3     116.734    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HQB              const_13           C          C1          C2           N       0.000    10.0     2
+HQB              const_41          C4           C          C1          C2       0.000    10.0     2
+HQB              const_11          C6         C11          N4          C9       0.000    10.0     2
+HQB              const_17          C1          C2           N          C3       0.000    10.0     2
+HQB              const_19          C4          C3           N          C2       0.000    10.0     2
+HQB              const_21           N          C3          C4           C       0.000    10.0     2
+HQB              const_25          C1           C          C4          C3       0.000    10.0     2
+HQB              const_47          C3          C4          C5          C6     180.000    10.0     2
+HQB              const_37          C4          C5          C6          C7       0.000    10.0     2
+HQB              const_50          N4         C11          C6          C5     180.000    10.0     2
+HQB       const_sp2_sp2_1          C5          C6          C7          C8       0.000     5.0     2
+HQB       const_sp2_sp2_6          C8          C7          N2          C9     180.000     5.0     2
+HQB              const_34          C6          C7          C8          N1     180.000    10.0     2
+HQB             sp2_sp2_1           C          C8          N1           O     180.000     5.0     2
+HQB              const_32          C1           C          C8          N1       0.000    10.0     2
+HQB       const_sp2_sp2_8          N3          C9          N2          C7     180.000     5.0     2
+HQB             sp2_sp2_5          N2          C9          N3         C10     180.000     5.0     2
+HQB              const_10          N3          C9          N4         C11     180.000    10.0     2
+HQB             sp2_sp3_1          C9          N3         C10          H5       0.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HQB    plan-1           C   0.020
+HQB    plan-1          C1   0.020
+HQB    plan-1         C11   0.020
+HQB    plan-1          C2   0.020
+HQB    plan-1          C3   0.020
+HQB    plan-1          C4   0.020
+HQB    plan-1          C5   0.020
+HQB    plan-1          C6   0.020
+HQB    plan-1          C7   0.020
+HQB    plan-1          C8   0.020
+HQB    plan-1          H1   0.020
+HQB    plan-1          H2   0.020
+HQB    plan-1          H3   0.020
+HQB    plan-1          H4   0.020
+HQB    plan-1           N   0.020
+HQB    plan-1          N1   0.020
+HQB    plan-1          N2   0.020
+HQB    plan-2         C11   0.020
+HQB    plan-2          C5   0.020
+HQB    plan-2          C6   0.020
+HQB    plan-2          C7   0.020
+HQB    plan-2          C8   0.020
+HQB    plan-2          C9   0.020
+HQB    plan-2          H8   0.020
+HQB    plan-2          N2   0.020
+HQB    plan-2          N3   0.020
+HQB    plan-2          N4   0.020
+HQB    plan-3          C8   0.020
+HQB    plan-3          N1   0.020
+HQB    plan-3           O   0.020
+HQB    plan-3          O1   0.020
+HQB    plan-4         C10   0.020
+HQB    plan-4          C9   0.020
+HQB    plan-4          H9   0.020
+HQB    plan-4          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HQB            InChI                InChI  1.03 InChI=1S/C12H9N5O2/c1-13-12-15-6-8-4-7-5-14-3-2-9(7)11(17(18)19)10(8)16-12/h2-6H,1H3,(H,13,15,16)
+HQB         InChIKey                InChI  1.03                                                                       WJQCMHKMNXKJQR-UHFFFAOYSA-N
+HQB SMILES_CANONICAL               CACTVS 3.385                                                              CNc1ncc2cc3cnccc3c(c2n1)[N+]([O-])=O
+HQB           SMILES               CACTVS 3.385                                                              CNc1ncc2cc3cnccc3c(c2n1)[N+]([O-])=O
+HQB SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                              CNc1ncc2cc3cnccc3c(c2n1)[N+](=O)[O-]
+HQB           SMILES "OpenEye OEToolkits" 2.0.6                                                              CNc1ncc2cc3cnccc3c(c2n1)[N+](=O)[O-]
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HQB acedrg               243         "dictionary generator"                  
+HQB acedrg_database      11          "data source"                           
+HQB rdkit                2017.03.2   "Chemoinformatics tool"
+HQB refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,203 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HCH     HCH      (7-carboxy-1-benzothiophen-2-yl)-tris(oxidanyl)boranuide     NON-POLYMER     23     16     .     
+#
+data_comp_HCH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HCH     C01     C       CR6     0       -5.793      35.975      -11.679     
+HCH     C02     C       C       0       -6.682      36.039      -10.461     
+HCH     O03     O       OC      -1      -6.322      35.428      -9.439      
+HCH     O04     O       O       0       -7.733      36.700      -10.535     
+HCH     C05     C       CR56    0       -6.241      35.454      -12.935     
+HCH     S06     S       S2      0       -7.717      34.831      -13.375     
+HCH     C07     C       CR5     0       -7.281      34.509      -14.953     
+HCH     B08     B       B       -1      -8.290      33.846      -16.054     
+HCH     O09     O       OH1     0       -7.492      33.059      -17.042     
+HCH     O10     O       OH1     0       -9.029      34.938      -16.755     
+HCH     O11     O       OH1     0       -9.257      32.946      -15.357     
+HCH     C12     C       CR15    0       -6.006      34.855      -15.224     
+HCH     C13     C       CR56    0       -5.350      35.416      -14.066     
+HCH     C14     C       CR16    0       -4.038      35.898      -13.918     
+HCH     C15     C       CR16    0       -3.620      36.398      -12.701     
+HCH     C16     C       CR16    0       -4.475      36.438      -11.601     
+HCH     H2      H       H       0       -7.003      32.490      -16.647     
+HCH     H3      H       H       0       -8.489      35.500      -17.089     
+HCH     H4      H       H       0       -9.654      33.358      -14.731     
+HCH     H5      H       H       0       -5.590      34.745      -16.062     
+HCH     H6      H       H       0       -3.444      35.880      -14.649     
+HCH     H7      H       H       0       -2.736      36.719      -12.611     
+HCH     H8      H       H       0       -4.156      36.787      -10.783     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HCH         B08         O10      SINGLE       n     1.494  0.0200     1.494  0.0200
+HCH         B08         O09      SINGLE       n     1.494  0.0200     1.494  0.0200
+HCH         B08         O11      SINGLE       n     1.494  0.0200     1.494  0.0200
+HCH         C07         B08      SINGLE       n     1.633  0.0166     1.633  0.0166
+HCH         C07         C12      DOUBLE       y     1.338  0.0151     1.338  0.0151
+HCH         C12         C13      SINGLE       y     1.432  0.0110     1.432  0.0110
+HCH         S06         C07      SINGLE       y     1.695  0.0200     1.695  0.0200
+HCH         C13         C14      DOUBLE       y     1.401  0.0100     1.401  0.0100
+HCH         C05         C13      SINGLE       y     1.414  0.0200     1.414  0.0200
+HCH         C14         C15      SINGLE       y     1.376  0.0100     1.376  0.0100
+HCH         C05         S06      SINGLE       y     1.695  0.0200     1.695  0.0200
+HCH         C01         C05      DOUBLE       y     1.423  0.0200     1.423  0.0200
+HCH         C15         C16      DOUBLE       y     1.391  0.0100     1.391  0.0100
+HCH         C01         C16      SINGLE       y     1.396  0.0126     1.396  0.0126
+HCH         C01         C02      SINGLE       n     1.509  0.0113     1.509  0.0113
+HCH         C02         O04      DOUBLE       n     1.244  0.0200     1.244  0.0200
+HCH         C02         O03      SINGLE       n     1.244  0.0200     1.244  0.0200
+HCH         O09          H2      SINGLE       n     0.970  0.0120     0.848  0.0200
+HCH         O10          H3      SINGLE       n     0.970  0.0120     0.848  0.0200
+HCH         O11          H4      SINGLE       n     0.970  0.0120     0.848  0.0200
+HCH         C12          H5      SINGLE       n     1.082  0.0130     0.942  0.0149
+HCH         C14          H6      SINGLE       n     1.082  0.0130     0.942  0.0182
+HCH         C15          H7      SINGLE       n     1.082  0.0130     0.945  0.0100
+HCH         C16          H8      SINGLE       n     1.082  0.0130     0.945  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HCH         C05         C01         C16     117.954    2.04
+HCH         C05         C01         C02     122.334    2.66
+HCH         C16         C01         C02     119.712    1.55
+HCH         C01         C02         O04     118.166    2.93
+HCH         C01         C02         O03     118.166    2.93
+HCH         O04         C02         O03     123.668    1.50
+HCH         C13         C05         S06     108.474    3.00
+HCH         C13         C05         C01     120.167    2.83
+HCH         S06         C05         C01     131.359    3.00
+HCH         C07         S06         C05     108.474    3.00
+HCH         B08         C07         C12     125.763    3.00
+HCH         B08         C07         S06     125.763    3.00
+HCH         C12         C07         S06     108.474    3.00
+HCH         O10         B08         O09     110.049    3.00
+HCH         O10         B08         O11     110.049    3.00
+HCH         O10         B08         C07     109.471    3.00
+HCH         O09         B08         O11     110.049    3.00
+HCH         O09         B08         C07     109.471    3.00
+HCH         O11         B08         C07     109.471    3.00
+HCH         B08         O09          H2     110.747    3.00
+HCH         B08         O10          H3     110.747    3.00
+HCH         B08         O11          H4     110.747    3.00
+HCH         C07         C12         C13     107.237    1.50
+HCH         C07         C12          H5     126.655    1.50
+HCH         C13         C12          H5     126.108    1.50
+HCH         C12         C13         C14     132.209    1.50
+HCH         C12         C13         C05     107.340    1.50
+HCH         C14         C13         C05     120.451    1.84
+HCH         C13         C14         C15     118.860    1.50
+HCH         C13         C14          H6     120.592    1.50
+HCH         C15         C14          H6     120.548    1.50
+HCH         C14         C15         C16     120.854    1.50
+HCH         C14         C15          H7     119.590    1.50
+HCH         C16         C15          H7     119.556    1.50
+HCH         C15         C16         C01     121.714    1.50
+HCH         C15         C16          H8     119.083    1.50
+HCH         C01         C16          H8     119.203    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HCH             sp2_sp2_1         C05         C01         C02         O04     180.000     5.0     2
+HCH              const_35         C02         C01         C16         C15     180.000    10.0     2
+HCH       const_sp2_sp2_3         C02         C01         C05         C13     180.000     5.0     2
+HCH              const_22         C07         C12         C13         C14     180.000    10.0     2
+HCH              const_11         C12         C13         C14         C15     180.000    10.0     2
+HCH              const_13         C13         C14         C15         C16       0.000    10.0     2
+HCH              const_17         C14         C15         C16         C01       0.000    10.0     2
+HCH       const_sp2_sp2_5         S06         C05         C13         C12       0.000     5.0     2
+HCH              const_31         C13         C05         S06         C07       0.000    10.0     2
+HCH              const_30         B08         C07         S06         C05     180.000    10.0     2
+HCH              const_27         B08         C07         C12         C13     180.000    10.0     2
+HCH             sp2_sp3_1         C12         C07         B08         O10     150.000    10.0     6
+HCH             sp3_sp3_8         O10         B08         O11          H4      60.000    10.0     3
+HCH             sp3_sp3_4         O10         B08         O09          H2     180.000    10.0     3
+HCH             sp3_sp3_2         O09         B08         O10          H3      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HCH    chir_1    B08    O10    O09    O11    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HCH    plan-1         B08   0.020
+HCH    plan-1         C01   0.020
+HCH    plan-1         C02   0.020
+HCH    plan-1         C05   0.020
+HCH    plan-1         C07   0.020
+HCH    plan-1         C12   0.020
+HCH    plan-1         C13   0.020
+HCH    plan-1         C14   0.020
+HCH    plan-1         C15   0.020
+HCH    plan-1         C16   0.020
+HCH    plan-1          H5   0.020
+HCH    plan-1          H6   0.020
+HCH    plan-1          H7   0.020
+HCH    plan-1          H8   0.020
+HCH    plan-1         S06   0.020
+HCH    plan-2         C01   0.020
+HCH    plan-2         C02   0.020
+HCH    plan-2         O03   0.020
+HCH    plan-2         O04   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HCH            InChI                InChI  1.03 InChI=1S/C9H8BO5S/c11-9(12)6-3-1-2-5-4-7(10(13,14)15)16-8(5)6/h1-4,13-15H,(H,11,12)/q-1
+HCH         InChIKey                InChI  1.03                                                             RPQQLQILJXVZRU-UHFFFAOYSA-N
+HCH SMILES_CANONICAL               CACTVS 3.385                                                        OC(=O)c1cccc2cc(sc12)[B-](O)(O)O
+HCH           SMILES               CACTVS 3.385                                                        OC(=O)c1cccc2cc(sc12)[B-](O)(O)O
+HCH SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                    "[B-](c1cc2cccc(c2s1)C(=O)O)(O)(O)O"
+HCH           SMILES "OpenEye OEToolkits" 2.0.6                                                    "[B-](c1cc2cccc(c2s1)C(=O)O)(O)(O)O"
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HCH acedrg               243         "dictionary generator"                  
+HCH acedrg_database      11          "data source"                           
+HCH rdkit                2017.03.2   "Chemoinformatics tool"
+HCH refmac5              5.8.0238    "optimization tool"                     

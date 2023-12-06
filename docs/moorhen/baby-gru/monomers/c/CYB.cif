@@ -1,0 +1,509 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CYB     CYB      PHYCOUROBILIN     NON-POLYMER     80     42     .     
+#
+data_comp_CYB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CYB     CHA     C       C1      0       36.438      17.837      45.164      
+CYB     NA      N       NRD5    0       36.910      15.496      44.575      
+CYB     C1A     C       CR5     0       36.565      16.485      45.481      
+CYB     C2A     C       CR5     0       36.369      15.884      46.791      
+CYB     C3A     C       CR5     0       36.584      14.527      46.609      
+CYB     C4A     C       CR5     0       36.899      14.328      45.276      
+CYB     CMA     C       CH3     0       36.498      13.462      47.663      
+CYB     CAA     C       CH2     0       36.008      16.611      48.054      
+CYB     CBA     C       CH2     0       34.499      16.764      48.265      
+CYB     CGA     C       C       0       34.121      17.381      49.601      
+CYB     O1A     O       O       0       33.455      16.696      50.403      
+CYB     O2A     O       OC      -1      34.496      18.547      49.837      
+CYB     CHB     C       CH2     0       37.221      13.051      44.566      
+CYB     NB      N       NR5     0       39.476      12.592      45.577      
+CYB     C1B     C       CH1     0       38.740      12.898      44.364      
+CYB     C2B     C       CR5     0       39.095      11.705      43.508      
+CYB     C3B     C       CR5     0       39.815      10.838      44.232      
+CYB     C4B     C       CR5     0       40.071      11.390      45.543      
+CYB     CMB     C       CH3     0       38.666      11.589      42.087      
+CYB     CAB     C       CH2     0       40.333      9.493       43.800      
+CYB     CBB     C       CH3     0       41.761      9.566       43.277      
+CYB     OB      O       O       0       40.723      10.875      46.458      
+CYB     NC      N       NR5     0       39.068      17.574      40.105      
+CYB     C1C     C       CR5     0       39.767      17.620      38.960      
+CYB     C2C     C       CR15    0       38.846      17.372      37.919      
+CYB     C3C     C       CR5     0       37.666      16.999      38.410      
+CYB     C4C     C       CH1     0       37.659      17.298      39.890      
+CYB     CAC     C       CH2     0       36.489      16.370      37.718      
+CYB     CBC     C       CH3     0       36.710      14.921      37.327      
+CYB     OC      O       O       0       40.970      17.837      38.865      
+CYB     CHD     C       CH2     0       36.772      18.488      40.291      
+CYB     ND      N       NR5     0       36.488      17.926      42.703      
+CYB     C1D     C       CR5     0       36.884      18.794      41.743      
+CYB     C2D     C       CR5     0       37.402      19.921      42.348      
+CYB     C3D     C       CR5     0       37.306      19.737      43.737      
+CYB     C4D     C       CR5     0       36.718      18.460      43.951      
+CYB     CMD     C       CH3     0       37.959      21.135      41.664      
+CYB     CAD     C       CH2     0       37.736      20.687      44.820      
+CYB     CBD     C       CH2     0       39.120      20.373      45.377      
+CYB     CGD     C       C       0       40.248      20.523      44.369      
+CYB     O1D     O       O       0       40.727      19.489      43.861      
+CYB     O2D     O       OC      -1      40.643      21.673      44.094      
+CYB     HHA     H       H       0       36.121      18.402      45.850      
+CYB     HMA1    H       H       0       36.116      12.656      47.280      
+CYB     HMA2    H       H       0       35.935      13.769      48.392      
+CYB     HMA3    H       H       0       37.387      13.268      48.001      
+CYB     HAA1    H       H       0       36.418      17.504      48.035      
+CYB     HAA2    H       H       0       36.387      16.124      48.819      
+CYB     HBA1    H       H       0       34.078      15.882      48.199      
+CYB     HBA2    H       H       0       34.133      17.324      47.551      
+CYB     HHB1    H       H       0       36.781      13.039      43.691      
+CYB     HHB2    H       H       0       36.890      12.286      45.078      
+CYB     HB      H       H       0       39.533      13.131      46.265      
+CYB     H1B     H       H       0       39.101      13.719      43.949      
+CYB     HMB1    H       H       0       39.312      11.065      41.595      
+CYB     HMB2    H       H       0       38.604      12.472      41.696      
+CYB     HMB3    H       H       0       37.802      11.157      42.044      
+CYB     HAB1    H       H       0       39.747      9.130       43.094      
+CYB     HAB2    H       H       0       40.301      8.872       44.567      
+CYB     HBB1    H       H       0       42.041      8.683       42.973      
+CYB     HBB2    H       H       0       42.353      9.867       43.991      
+CYB     HBB3    H       H       0       41.803      10.195      42.533      
+CYB     HC      H       H       0       39.433      17.694      40.891      
+CYB     H2C     H       H       0       39.039      17.457      37.002      
+CYB     H4C     H       H       0       37.383      16.495      40.396      
+CYB     HAC1    H       H       0       36.286      16.888      36.915      
+CYB     HAC2    H       H       0       35.713      16.424      38.309      
+CYB     HBC1    H       H       0       35.933      14.594      36.836      
+CYB     HBC2    H       H       0       36.836      14.383      38.130      
+CYB     HBC3    H       H       0       37.502      14.854      36.762      
+CYB     HHD1    H       H       0       35.837      18.283      40.079      
+CYB     HHD2    H       H       0       37.030      19.277      39.771      
+CYB     HD      H       H       0       36.129      17.138      42.552      
+CYB     HMD1    H       H       0       38.572      21.598      42.255      
+CYB     HMD2    H       H       0       37.235      21.736      41.423      
+CYB     HMD3    H       H       0       38.433      20.869      40.860      
+CYB     HAD1    H       H       0       37.084      20.652      45.550      
+CYB     HAD2    H       H       0       37.731      21.601      44.468      
+CYB     HBD1    H       H       0       39.132      19.451      45.719      
+CYB     HBD2    H       H       0       39.307      20.967      46.137      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CYB         CHA         C1A      DOUBLE       n     1.388  0.0200     1.388  0.0200
+CYB         CHA         C4D      SINGLE       n     1.391  0.0139     1.391  0.0139
+CYB          NA         C1A      SINGLE       n     1.394  0.0153     1.394  0.0153
+CYB          NA         C4A      DOUBLE       n     1.363  0.0200     1.363  0.0200
+CYB         C1A         C2A      SINGLE       n     1.457  0.0100     1.457  0.0100
+CYB         C2A         C3A      DOUBLE       n     1.375  0.0200     1.375  0.0200
+CYB         C2A         CAA      SINGLE       n     1.501  0.0100     1.501  0.0100
+CYB         C3A         C4A      SINGLE       n     1.364  0.0200     1.364  0.0200
+CYB         C3A         CMA      SINGLE       n     1.500  0.0100     1.500  0.0100
+CYB         C4A         CHB      SINGLE       n     1.497  0.0125     1.497  0.0125
+CYB         CAA         CBA      SINGLE       n     1.532  0.0136     1.532  0.0136
+CYB         CBA         CGA      SINGLE       n     1.519  0.0109     1.519  0.0109
+CYB         CGA         O1A      DOUBLE       n     1.247  0.0187     1.247  0.0187
+CYB         CGA         O2A      SINGLE       n     1.247  0.0187     1.247  0.0187
+CYB         CHB         C1B      SINGLE       n     1.540  0.0100     1.540  0.0100
+CYB          NB         C1B      SINGLE       n     1.452  0.0100     1.452  0.0100
+CYB          NB         C4B      SINGLE       n     1.341  0.0120     1.341  0.0120
+CYB         C1B         C2B      SINGLE       n     1.512  0.0120     1.512  0.0120
+CYB         C2B         C3B      DOUBLE       n     1.340  0.0100     1.340  0.0100
+CYB         C2B         CMB      SINGLE       n     1.488  0.0176     1.488  0.0176
+CYB         C3B         C4B      SINGLE       n     1.442  0.0200     1.442  0.0200
+CYB         C3B         CAB      SINGLE       n     1.504  0.0100     1.504  0.0100
+CYB         C4B          OB      DOUBLE       n     1.236  0.0100     1.236  0.0100
+CYB         CAB         CBB      SINGLE       n     1.523  0.0130     1.523  0.0130
+CYB          NC         C1C      SINGLE       n     1.341  0.0120     1.341  0.0120
+CYB          NC         C4C      SINGLE       n     1.452  0.0100     1.452  0.0100
+CYB         C1C         C2C      SINGLE       n     1.404  0.0200     1.404  0.0200
+CYB         C1C          OC      DOUBLE       n     1.226  0.0123     1.226  0.0123
+CYB         C2C         C3C      DOUBLE       n     1.331  0.0107     1.331  0.0107
+CYB         C3C         C4C      SINGLE       n     1.512  0.0120     1.512  0.0120
+CYB         C3C         CAC      SINGLE       n     1.504  0.0148     1.504  0.0148
+CYB         C4C         CHD      SINGLE       n     1.534  0.0170     1.534  0.0170
+CYB         CAC         CBC      SINGLE       n     1.516  0.0200     1.516  0.0200
+CYB         CHD         C1D      SINGLE       n     1.488  0.0101     1.488  0.0101
+CYB          ND         C1D      SINGLE       y     1.354  0.0100     1.354  0.0100
+CYB          ND         C4D      SINGLE       y     1.378  0.0100     1.378  0.0100
+CYB         C1D         C2D      DOUBLE       y     1.375  0.0128     1.375  0.0128
+CYB         C2D         C3D      SINGLE       y     1.397  0.0200     1.397  0.0200
+CYB         C2D         CMD      SINGLE       n     1.500  0.0100     1.500  0.0100
+CYB         C3D         C4D      DOUBLE       y     1.429  0.0198     1.429  0.0198
+CYB         C3D         CAD      SINGLE       n     1.502  0.0100     1.502  0.0100
+CYB         CAD         CBD      SINGLE       n     1.524  0.0100     1.524  0.0100
+CYB         CBD         CGD      SINGLE       n     1.519  0.0109     1.519  0.0109
+CYB         CGD         O1D      DOUBLE       n     1.247  0.0187     1.247  0.0187
+CYB         CGD         O2D      SINGLE       n     1.247  0.0187     1.247  0.0187
+CYB         CHA         HHA      SINGLE       n     1.082  0.0130     0.944  0.0100
+CYB         CMA        HMA1      SINGLE       n     1.089  0.0100     0.971  0.0114
+CYB         CMA        HMA2      SINGLE       n     1.089  0.0100     0.971  0.0114
+CYB         CMA        HMA3      SINGLE       n     1.089  0.0100     0.971  0.0114
+CYB         CAA        HAA1      SINGLE       n     1.089  0.0100     0.983  0.0120
+CYB         CAA        HAA2      SINGLE       n     1.089  0.0100     0.983  0.0120
+CYB         CBA        HBA1      SINGLE       n     1.089  0.0100     0.979  0.0100
+CYB         CBA        HBA2      SINGLE       n     1.089  0.0100     0.979  0.0100
+CYB         CHB        HHB1      SINGLE       n     1.089  0.0100     0.979  0.0191
+CYB         CHB        HHB2      SINGLE       n     1.089  0.0100     0.979  0.0191
+CYB          NB          HB      SINGLE       n     1.016  0.0100     0.875  0.0100
+CYB         C1B         H1B      SINGLE       n     1.089  0.0100     0.988  0.0184
+CYB         CMB        HMB1      SINGLE       n     1.089  0.0100     0.967  0.0119
+CYB         CMB        HMB2      SINGLE       n     1.089  0.0100     0.967  0.0119
+CYB         CMB        HMB3      SINGLE       n     1.089  0.0100     0.967  0.0119
+CYB         CAB        HAB1      SINGLE       n     1.089  0.0100     0.987  0.0100
+CYB         CAB        HAB2      SINGLE       n     1.089  0.0100     0.987  0.0100
+CYB         CBB        HBB1      SINGLE       n     1.089  0.0100     0.975  0.0131
+CYB         CBB        HBB2      SINGLE       n     1.089  0.0100     0.975  0.0131
+CYB         CBB        HBB3      SINGLE       n     1.089  0.0100     0.975  0.0131
+CYB          NC          HC      SINGLE       n     1.016  0.0100     0.875  0.0100
+CYB         C2C         H2C      SINGLE       n     1.082  0.0130     0.941  0.0149
+CYB         C4C         H4C      SINGLE       n     1.089  0.0100     0.988  0.0184
+CYB         CAC        HAC1      SINGLE       n     1.089  0.0100     0.977  0.0142
+CYB         CAC        HAC2      SINGLE       n     1.089  0.0100     0.977  0.0142
+CYB         CBC        HBC1      SINGLE       n     1.089  0.0100     0.975  0.0131
+CYB         CBC        HBC2      SINGLE       n     1.089  0.0100     0.975  0.0131
+CYB         CBC        HBC3      SINGLE       n     1.089  0.0100     0.975  0.0131
+CYB         CHD        HHD1      SINGLE       n     1.089  0.0100     0.980  0.0157
+CYB         CHD        HHD2      SINGLE       n     1.089  0.0100     0.980  0.0157
+CYB          ND          HD      SINGLE       n     1.016  0.0100     0.880  0.0200
+CYB         CMD        HMD1      SINGLE       n     1.089  0.0100     0.971  0.0172
+CYB         CMD        HMD2      SINGLE       n     1.089  0.0100     0.971  0.0172
+CYB         CMD        HMD3      SINGLE       n     1.089  0.0100     0.971  0.0172
+CYB         CAD        HAD1      SINGLE       n     1.089  0.0100     0.980  0.0120
+CYB         CAD        HAD2      SINGLE       n     1.089  0.0100     0.980  0.0120
+CYB         CBD        HBD1      SINGLE       n     1.089  0.0100     0.983  0.0139
+CYB         CBD        HBD2      SINGLE       n     1.089  0.0100     0.983  0.0139
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CYB         C1A         CHA         C4D     128.710    1.81
+CYB         C1A         CHA         HHA     115.942    1.50
+CYB         C4D         CHA         HHA     115.348    1.52
+CYB         C1A          NA         C4A     107.795    3.00
+CYB         CHA         C1A          NA     124.441    1.50
+CYB         CHA         C1A         C2A     124.457    1.62
+CYB          NA         C1A         C2A     111.102    1.50
+CYB         C1A         C2A         C3A     106.162    1.50
+CYB         C1A         C2A         CAA     125.490    1.50
+CYB         C3A         C2A         CAA     128.348    1.50
+CYB         C2A         C3A         C4A     106.520    1.50
+CYB         C2A         C3A         CMA     126.933    2.04
+CYB         C4A         C3A         CMA     126.547    2.29
+CYB          NA         C4A         C3A     108.421    3.00
+CYB          NA         C4A         CHB     123.100    3.00
+CYB         C3A         C4A         CHB     128.479    2.76
+CYB         C3A         CMA        HMA1     109.468    1.50
+CYB         C3A         CMA        HMA2     109.468    1.50
+CYB         C3A         CMA        HMA3     109.468    1.50
+CYB        HMA1         CMA        HMA2     109.364    1.50
+CYB        HMA1         CMA        HMA3     109.364    1.50
+CYB        HMA2         CMA        HMA3     109.364    1.50
+CYB         C2A         CAA         CBA     113.666    2.17
+CYB         C2A         CAA        HAA1     108.819    1.50
+CYB         C2A         CAA        HAA2     108.819    1.50
+CYB         CBA         CAA        HAA1     108.842    1.50
+CYB         CBA         CAA        HAA2     108.842    1.50
+CYB        HAA1         CAA        HAA2     107.783    1.50
+CYB         CAA         CBA         CGA     113.936    1.58
+CYB         CAA         CBA        HBA1     108.891    1.50
+CYB         CAA         CBA        HBA2     108.891    1.50
+CYB         CGA         CBA        HBA1     108.416    1.50
+CYB         CGA         CBA        HBA2     108.416    1.50
+CYB        HBA1         CBA        HBA2     107.765    1.50
+CYB         CBA         CGA         O1A     118.187    1.67
+CYB         CBA         CGA         O2A     118.187    1.67
+CYB         O1A         CGA         O2A     123.625    1.50
+CYB         C4A         CHB         C1B     112.085    3.00
+CYB         C4A         CHB        HHB1     109.719    1.72
+CYB         C4A         CHB        HHB2     109.719    1.72
+CYB         C1B         CHB        HHB1     108.834    1.50
+CYB         C1B         CHB        HHB2     108.834    1.50
+CYB        HHB1         CHB        HHB2     107.808    1.50
+CYB         C1B          NB         C4B     113.153    1.50
+CYB         C1B          NB          HB     124.023    1.95
+CYB         C4B          NB          HB     122.824    1.50
+CYB         CHB         C1B          NB     114.579    1.50
+CYB         CHB         C1B         C2B     111.539    2.78
+CYB         CHB         C1B         H1B     109.287    1.50
+CYB          NB         C1B         C2B     101.369    1.50
+CYB          NB         C1B         H1B     109.790    1.50
+CYB         C2B         C1B         H1B     109.338    1.50
+CYB         C1B         C2B         C3B     110.010    1.50
+CYB         C1B         C2B         CMB     121.864    2.33
+CYB         C3B         C2B         CMB     128.129    1.50
+CYB         C2B         C3B         C4B     110.174    3.00
+CYB         C2B         C3B         CAB     127.045    1.77
+CYB         C4B         C3B         CAB     122.782    1.50
+CYB          NB         C4B         C3B     106.529    1.57
+CYB          NB         C4B          OB     126.183    2.67
+CYB         C3B         C4B          OB     127.288    1.50
+CYB         C2B         CMB        HMB1     109.445    1.50
+CYB         C2B         CMB        HMB2     109.445    1.50
+CYB         C2B         CMB        HMB3     109.445    1.50
+CYB        HMB1         CMB        HMB2     109.364    1.50
+CYB        HMB1         CMB        HMB3     109.364    1.50
+CYB        HMB2         CMB        HMB3     109.364    1.50
+CYB         C3B         CAB         CBB     112.232    1.50
+CYB         C3B         CAB        HAB1     109.122    1.50
+CYB         C3B         CAB        HAB2     109.122    1.50
+CYB         CBB         CAB        HAB1     109.054    1.50
+CYB         CBB         CAB        HAB2     109.054    1.50
+CYB        HAB1         CAB        HAB2     107.740    1.50
+CYB         CAB         CBB        HBB1     109.474    1.50
+CYB         CAB         CBB        HBB2     109.474    1.50
+CYB         CAB         CBB        HBB3     109.474    1.50
+CYB        HBB1         CBB        HBB2     109.441    1.50
+CYB        HBB1         CBB        HBB3     109.441    1.50
+CYB        HBB2         CBB        HBB3     109.441    1.50
+CYB         C1C          NC         C4C     113.153    1.50
+CYB         C1C          NC          HC     122.824    1.50
+CYB         C4C          NC          HC     124.023    1.95
+CYB          NC         C1C         C2C     105.976    1.68
+CYB          NC         C1C          OC     126.051    2.67
+CYB         C2C         C1C          OC     127.973    1.50
+CYB         C1C         C2C         C3C     110.470    2.89
+CYB         C1C         C2C         H2C     124.814    1.50
+CYB         C3C         C2C         H2C     124.716    1.50
+CYB         C2C         C3C         C4C     109.967    2.72
+CYB         C2C         C3C         CAC     128.733    2.67
+CYB         C4C         C3C         CAC     121.300    2.33
+CYB          NC         C4C         C3C     101.369    1.50
+CYB          NC         C4C         CHD     109.797    2.76
+CYB          NC         C4C         H4C     109.790    1.50
+CYB         C3C         C4C         CHD     111.539    2.78
+CYB         C3C         C4C         H4C     109.338    1.50
+CYB         CHD         C4C         H4C     108.599    1.67
+CYB         C3C         CAC         CBC     114.083    1.73
+CYB         C3C         CAC        HAC1     108.690    1.50
+CYB         C3C         CAC        HAC2     108.690    1.50
+CYB         CBC         CAC        HAC1     109.054    1.50
+CYB         CBC         CAC        HAC2     109.054    1.50
+CYB        HAC1         CAC        HAC2     107.740    1.50
+CYB         CAC         CBC        HBC1     109.474    1.50
+CYB         CAC         CBC        HBC2     109.474    1.50
+CYB         CAC         CBC        HBC3     109.474    1.50
+CYB        HBC1         CBC        HBC2     109.441    1.50
+CYB        HBC1         CBC        HBC3     109.441    1.50
+CYB        HBC2         CBC        HBC3     109.441    1.50
+CYB         C4C         CHD         C1D     112.544    1.77
+CYB         C4C         CHD        HHD1     109.253    1.50
+CYB         C4C         CHD        HHD2     109.253    1.50
+CYB         C1D         CHD        HHD1     108.947    1.50
+CYB         C1D         CHD        HHD2     108.947    1.50
+CYB        HHD1         CHD        HHD2     107.714    1.50
+CYB         C1D          ND         C4D     109.663    1.50
+CYB         C1D          ND          HD     125.254    1.79
+CYB         C4D          ND          HD     125.083    3.00
+CYB         CHD         C1D          ND     123.691    1.50
+CYB         CHD         C1D         C2D     128.273    1.83
+CYB          ND         C1D         C2D     108.036    1.50
+CYB         C1D         C2D         C3D     107.484    1.50
+CYB         C1D         C2D         CMD     127.202    1.50
+CYB         C3D         C2D         CMD     125.314    1.50
+CYB         C2D         C3D         C4D     107.872    1.50
+CYB         C2D         C3D         CAD     126.922    1.50
+CYB         C4D         C3D         CAD     125.207    1.65
+CYB         CHA         C4D          ND     125.829    1.50
+CYB         CHA         C4D         C3D     127.226    1.50
+CYB          ND         C4D         C3D     106.945    1.50
+CYB         C2D         CMD        HMD1     109.746    1.50
+CYB         C2D         CMD        HMD2     109.746    1.50
+CYB         C2D         CMD        HMD3     109.746    1.50
+CYB        HMD1         CMD        HMD2     109.190    1.68
+CYB        HMD1         CMD        HMD3     109.190    1.68
+CYB        HMD2         CMD        HMD3     109.190    1.68
+CYB         C3D         CAD         CBD     113.075    2.06
+CYB         C3D         CAD        HAD1     109.262    1.50
+CYB         C3D         CAD        HAD2     109.262    1.50
+CYB         CBD         CAD        HAD1     109.247    1.50
+CYB         CBD         CAD        HAD2     109.247    1.50
+CYB        HAD1         CAD        HAD2     107.581    1.50
+CYB         CAD         CBD         CGD     113.936    1.58
+CYB         CAD         CBD        HBD1     109.544    1.50
+CYB         CAD         CBD        HBD2     109.544    1.50
+CYB         CGD         CBD        HBD1     108.416    1.50
+CYB         CGD         CBD        HBD2     108.416    1.50
+CYB        HBD1         CBD        HBD2     107.356    1.50
+CYB         CBD         CGD         O1D     118.187    1.67
+CYB         CBD         CGD         O2D     118.187    1.67
+CYB         O1D         CGD         O2D     123.625    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CYB            sp2_sp2_37          NA         C1A         CHA         C4D       0.000     5.0     2
+CYB            sp2_sp2_39          ND         C4D         CHA         C1A     180.000     5.0     2
+CYB            sp3_sp3_10          NB         C1B         CHB         C4A     180.000    10.0     3
+CYB             sp2_sp3_2         C4B          NB         C1B         CHB     120.000    10.0     6
+CYB            sp2_sp2_47          OB         C4B          NB         C1B     180.000     5.0     2
+CYB            sp2_sp3_11         CMB         C2B         C1B         CHB     -60.000    10.0     6
+CYB            sp2_sp2_18         CMB         C2B         C3B         CAB       0.000     5.0     2
+CYB            sp2_sp3_43         C1B         C2B         CMB        HMB1     150.000    10.0     6
+CYB            sp2_sp2_22         CAB         C3B         C4B          OB       0.000     5.0     2
+CYB            sp2_sp3_50         C2B         C3B         CAB         CBB     -90.000    10.0     6
+CYB            sp3_sp3_19         C3B         CAB         CBB        HBB1     180.000    10.0     3
+CYB             sp2_sp2_2         CHA         C1A          NA         C4A     180.000     5.0     2
+CYB            sp2_sp2_44         CHB         C4A          NA         C1A     180.000     5.0     2
+CYB            sp2_sp2_25          OC         C1C          NC         C4C     180.000     5.0     2
+CYB            sp2_sp3_56         C1C          NC         C4C         CHD     120.000    10.0     6
+CYB            sp2_sp2_29          OC         C1C         C2C         C3C     180.000     5.0     2
+CYB            sp2_sp2_32         C1C         C2C         C3C         CAC     180.000     5.0     2
+CYB            sp2_sp3_17         CAC         C3C         C4C         CHD     -60.000    10.0     6
+CYB            sp2_sp3_62         C2C         C3C         CAC         CBC     -90.000    10.0     6
+CYB            sp3_sp3_28          NC         C4C         CHD         C1D     180.000    10.0     3
+CYB            sp3_sp3_37         C3C         CAC         CBC        HBC1     180.000    10.0     3
+CYB             sp2_sp2_6         CHA         C1A         C2A         CAA       0.000     5.0     2
+CYB            sp2_sp3_68          ND         C1D         CHD         C4C     -90.000    10.0     6
+CYB       const_sp2_sp2_3         CHD         C1D          ND         C4D     180.000     5.0     2
+CYB              const_19         CHA         C4D          ND         C1D     180.000    10.0     2
+CYB       const_sp2_sp2_8         CHD         C1D         C2D         CMD       0.000     5.0     2
+CYB              const_12         CMD         C2D         C3D         CAD       0.000    10.0     2
+CYB            sp2_sp3_73         C1D         C2D         CMD        HMD1     150.000    10.0     6
+CYB              const_16         CAD         C3D         C4D         CHA       0.000    10.0     2
+CYB            sp2_sp3_80         C2D         C3D         CAD         CBD     -90.000    10.0     6
+CYB            sp3_sp3_46         C3D         CAD         CBD         CGD     180.000    10.0     3
+CYB            sp2_sp3_86         O1D         CGD         CBD         CAD     120.000    10.0     6
+CYB            sp2_sp2_10         CAA         C2A         C3A         CMA       0.000     5.0     2
+CYB            sp2_sp3_20         C1A         C2A         CAA         CBA     -90.000    10.0     6
+CYB            sp2_sp2_14         CMA         C3A         C4A         CHB       0.000     5.0     2
+CYB            sp2_sp3_25         C2A         C3A         CMA        HMA1     150.000    10.0     6
+CYB            sp2_sp3_32          NA         C4A         CHB         C1B     -90.000    10.0     6
+CYB             sp3_sp3_1         C2A         CAA         CBA         CGA     180.000    10.0     3
+CYB            sp2_sp3_38         O1A         CGA         CBA         CAA     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CYB    chir_1    C1B    NB    C2B    CHB    negative
+CYB    chir_2    C4C    NC    C3C    CHD    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CYB    plan-1         C1D   0.020
+CYB    plan-1         C2D   0.020
+CYB    plan-1         C3D   0.020
+CYB    plan-1         C4D   0.020
+CYB    plan-1         CAD   0.020
+CYB    plan-1         CHA   0.020
+CYB    plan-1         CHD   0.020
+CYB    plan-1         CMD   0.020
+CYB    plan-1          HD   0.020
+CYB    plan-1          ND   0.020
+CYB    plan-2         C1A   0.020
+CYB    plan-2         C4D   0.020
+CYB    plan-2         CHA   0.020
+CYB    plan-2         HHA   0.020
+CYB    plan-3         C1A   0.020
+CYB    plan-3         C2A   0.020
+CYB    plan-3         CHA   0.020
+CYB    plan-3          NA   0.020
+CYB    plan-4         C1A   0.020
+CYB    plan-4         C2A   0.020
+CYB    plan-4         C3A   0.020
+CYB    plan-4         CAA   0.020
+CYB    plan-5         C2A   0.020
+CYB    plan-5         C3A   0.020
+CYB    plan-5         C4A   0.020
+CYB    plan-5         CMA   0.020
+CYB    plan-6         C3A   0.020
+CYB    plan-6         C4A   0.020
+CYB    plan-6         CHB   0.020
+CYB    plan-6          NA   0.020
+CYB    plan-7         CBA   0.020
+CYB    plan-7         CGA   0.020
+CYB    plan-7         O1A   0.020
+CYB    plan-7         O2A   0.020
+CYB    plan-8         C1B   0.020
+CYB    plan-8         C4B   0.020
+CYB    plan-8          HB   0.020
+CYB    plan-8          NB   0.020
+CYB    plan-9         C1B   0.020
+CYB    plan-9         C2B   0.020
+CYB    plan-9         C3B   0.020
+CYB    plan-9         CMB   0.020
+CYB   plan-10         C2B   0.020
+CYB   plan-10         C3B   0.020
+CYB   plan-10         C4B   0.020
+CYB   plan-10         CAB   0.020
+CYB   plan-11         C3B   0.020
+CYB   plan-11         C4B   0.020
+CYB   plan-11          NB   0.020
+CYB   plan-11          OB   0.020
+CYB   plan-12         C1C   0.020
+CYB   plan-12         C4C   0.020
+CYB   plan-12          HC   0.020
+CYB   plan-12          NC   0.020
+CYB   plan-13         C1C   0.020
+CYB   plan-13         C2C   0.020
+CYB   plan-13          NC   0.020
+CYB   plan-13          OC   0.020
+CYB   plan-14         C1C   0.020
+CYB   plan-14         C2C   0.020
+CYB   plan-14         C3C   0.020
+CYB   plan-14         H2C   0.020
+CYB   plan-15         C2C   0.020
+CYB   plan-15         C3C   0.020
+CYB   plan-15         C4C   0.020
+CYB   plan-15         CAC   0.020
+CYB   plan-16         CBD   0.020
+CYB   plan-16         CGD   0.020
+CYB   plan-16         O1D   0.020
+CYB   plan-16         O2D   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CYB SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                           CCC1=CC(=O)N[C@H]1Cc2[nH]c(\C=C3/N=C(C[C@@H]4NC(=O)C(=C4C)CC)C(=C3CCC(O)=O)C)c(CCC(O)=O)c2C
+CYB           SMILES               CACTVS 3.341                                                                                                                                                                CCC1=CC(=O)N[CH]1Cc2[nH]c(C=C3N=C(C[CH]4NC(=O)C(=C4C)CC)C(=C3CCC(O)=O)C)c(CCC(O)=O)c2C
+CYB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                             CCC1=CC(=O)NC1Cc2c(c(c([nH]2)\C=C/3\C(=C(C(=N3)CC4C(=C(C(=O)N4)CC)C)C)CCC(=O)O)CCC(=O)O)C
+CYB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                CCC1=CC(=O)NC1Cc2c(c(c([nH]2)C=C3C(=C(C(=N3)CC4C(=C(C(=O)N4)CC)C)C)CCC(=O)O)CCC(=O)O)C
+CYB            InChI                InChI  1.03 InChI=1S/C32H40N4O6/c1-6-19-12-29(37)35-26(19)14-24-18(5)22(9-11-31(40)41)28(34-24)15-27-21(8-10-30(38)39)17(4)23(33-27)13-25-16(3)20(7-2)32(42)36-25/h12,15,25-26,34H,6-11,13-14H2,1-5H3,(H,35,37)(H,36,42)(H,38,39)(H,40,41)/b27-15-/t25-,26-/m0/s1
+CYB         InChIKey                InChI  1.03                                                                                                                                                                                                                           MDIUQMZLLDXBIH-PIKPBIHPSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CYB acedrg               243         "dictionary generator"                  
+CYB acedrg_database      11          "data source"                           
+CYB rdkit                2017.03.2   "Chemoinformatics tool"
+CYB refmac5              5.8.0238    "optimization tool"                     

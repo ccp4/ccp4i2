@@ -1,0 +1,207 @@
+# /home/mihaela/Downloads/acedrg243/IDR_unimodal.cif
+# modified by Privateer
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IDR      IDR 'L-IDURONIC ACID                     ' pyranose           22  13 .
+
+data_comp_IDR
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IDR C1 C CH1 0 28.310 27.712 47.837
+IDR C2 C CH1 0 27.664 27.088 49.069
+IDR C3 C CH1 0 26.898 28.115 49.897
+IDR C4 C CH1 0 25.950 28.933 49.026
+IDR C5 C CH1 0 26.719 29.527 47.836
+IDR C6 C C 0 25.835 30.300 46.864
+IDR O1 O OH1 0 29.408 28.478 48.234
+IDR O2 O OH1 0 26.808 26.019 48.676
+IDR O3 O OH1 0 27.822 28.975 50.563
+IDR O4 O OH1 0 24.880 28.099 48.561
+IDR O5 O O2 0 27.367 28.490 47.095
+IDR O6A O O 0 26.355 30.893 45.950
+IDR O6B O OC -1 24.634 30.321 47.004
+IDR H1 H H 0 28.636 26.982 47.251
+IDR H2 H H 0 28.390 26.718 49.626
+IDR H3 H H 0 26.364 27.636 50.579
+IDR H4 H H 0 25.569 29.662 49.573
+IDR H5 H H 0 27.402 30.152 48.173
+IDR HO1 H H 0 30.047 27.959 48.428
+IDR HO2 H H 0 26.582 25.582 49.358
+IDR HO3 H H 0 27.403 29.446 51.120
+IDR HO4 H H 0 25.126 27.611 47.921
+
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IDR C1 C2 SINGLE n 1.517 0.0200 1.517 0.0200
+IDR C1 O1 SINGLE n 1.392 0.0200 1.392 0.0200
+IDR C1 O5 SINGLE n 1.422 0.0149 1.422 0.0149
+IDR C2 C3 SINGLE n 1.520 0.0200 1.520 0.0200
+IDR C2 O2 SINGLE n 1.425 0.0112 1.425 0.0112
+IDR C3 C4 SINGLE n 1.523 0.0100 1.523 0.0100
+IDR C3 O3 SINGLE n 1.427 0.0125 1.427 0.0125
+IDR C4 C5 SINGLE n 1.533 0.0100 1.533 0.0100
+IDR C4 O4 SINGLE n 1.431 0.0107 1.431 0.0107
+IDR C5 C6 SINGLE n 1.518 0.0174 1.518 0.0174
+IDR C5 O5 SINGLE n 1.426 0.0100 1.426 0.0100
+IDR C6 O6A DOUBLE n 1.207 0.0200 1.207 0.0200
+IDR C6 O6B SINGLE n 1.207 0.0200 1.207 0.0200
+IDR C1 H1 SINGLE n 1.089 0.0100 0.991 0.0200
+IDR C2 H2 SINGLE n 1.089 0.0100 0.987 0.0140
+IDR C3 H3 SINGLE n 1.089 0.0100 0.990 0.0140
+IDR C4 H4 SINGLE n 1.089 0.0100 0.988 0.0151
+IDR C5 H5 SINGLE n 1.089 0.0100 0.986 0.0200
+IDR O1 HO1 SINGLE n 0.970 0.0120 0.846 0.0200
+IDR O2 HO2 SINGLE n 0.970 0.0120 0.841 0.0200
+IDR O3 HO3 SINGLE n 0.970 0.0120 0.841 0.0200
+IDR O4 HO4 SINGLE n 0.970 0.0120 0.841 0.0200
+
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IDR C2 C1 O1 109.304 2.75
+IDR C2 C1 O5 110.495 2.07
+IDR C2 C1 H1 109.287 1.97
+IDR O1 C1 O5 110.093 3.00
+IDR O1 C1 H1 108.897 1.73
+IDR O5 C1 H1 108.645 1.60
+IDR C1 C2 C3 111.543 1.84
+IDR C1 C2 O2 109.956 1.70
+IDR C1 C2 H2 107.431 2.02
+IDR C3 C2 O2 111.053 2.62
+IDR C3 C2 H2 108.505 1.50
+IDR O2 C2 H2 108.551 1.50
+IDR C2 C3 C4 110.687 1.67
+IDR C2 C3 O3 109.587 2.09
+IDR C2 C3 H3 108.712 1.50
+IDR C4 C3 O3 110.243 1.88
+IDR C4 C3 H3 108.653 1.50
+IDR O3 C3 H3 108.767 1.50
+IDR C3 C4 C5 109.795 1.50
+IDR C3 C4 O4 110.101 1.97
+IDR C3 C4 H4 109.032 1.50
+IDR C5 C4 O4 109.410 1.87
+IDR C5 C4 H4 110.070 1.50
+IDR O4 C4 H4 109.194 1.50
+IDR C4 C5 C6 111.056 2.52
+IDR C4 C5 O5 109.645 1.79
+IDR C4 C5 H5 109.094 1.50
+IDR C6 C5 O5 107.807 2.54
+IDR C6 C5 H5 107.668 1.59
+IDR O5 C5 H5 108.284 2.17
+IDR C5 C6 O6A 119.643 2.54
+IDR C5 C6 O6B 119.643 2.54
+IDR O6A C6 O6B 120.713 1.50
+IDR C1 O1 HO1 108.606 2.51
+IDR C2 O2 HO2 109.126 2.06
+IDR C3 O3 HO3 108.895 2.41
+IDR C4 O4 HO4 109.564 3.00
+IDR C1 O5 C5 111.559 2.21
+
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IDR tors_18 C2 C1 O1 HO1 75.611488 10.0 3
+IDR tors_17 O5 C1 O1 HO1 -161.032074 10.0 3
+IDR tors_16 H1 C1 O1 HO1 -42.191757 10.0 3
+IDR tors_15 C1 C2 O2 HO2 168.439545 10.0 3
+IDR tors_14 C3 C2 O2 HO2 -67.306664 10.0 3
+IDR tors_13 H2 C2 O2 HO2 51.460434 10.0 3
+IDR tors_12 C2 C3 O3 HO3 -170.019058 10.0 3
+IDR tors_11 C4 C3 O3 HO3 67.221748 10.0 3
+IDR tors_10 H3 C3 O3 HO3 -51.556400 10.0 3
+IDR tors_9 C3 C4 O4 HO4 -78.037254 10.0 3
+IDR tors_8 C5 C4 O4 HO4 43.023739 10.0 3
+IDR tors_7 H4 C4 O4 HO4 163.319046 10.0 3
+IDR tors_6 O6A C6 C5 C4 174.391525 10.0 6
+IDR tors_5 O6A C6 C5 O5 -63.262974 10.0 6
+IDR tors_4 O6A C6 C5 H5 53.696438 10.0 6
+IDR tors_3 O6B C6 C5 C4 -5.575274 10.0 6
+IDR tors_2 O6B C6 C5 O5 116.770241 10.0 6
+IDR tors_1 O6B C6 C5 H5 -126.270348 10.0 6
+IDR ring_1 C5 O5 C1 C2 56.326271 3.0 1
+IDR ring_2 O5 C1 C2 C3 -50.272217 3.0 1
+IDR ring_3 C1 C2 C3 C4 50.078587 3.0 1
+IDR ring_4 C2 C3 C4 C5 -52.438778 3.0 1
+IDR ring_5 C3 C4 C5 O5 56.065407 3.0 1
+IDR ring_6 C4 C5 O5 C1 -59.577446 3.0 1
+
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IDR chir_1 C1 O5 O1 C2 negative
+IDR chir_2 C2 O2 C1 C3 negative
+IDR chir_3 C3 O3 C2 C4 positive
+IDR chir_4 C4 O4 C5 C3 positive
+IDR chir_5 C5 O5 C6 C4 negative
+
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IDR plan-1 C5 0.020
+IDR plan-1 C6 0.020
+IDR plan-1 O6A 0.020
+IDR plan-1 O6B 0.020
+
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IDR SMILES ACDLabs 10.04 O=C(O)C1OC(O)C(O)C(O)C1O
+IDR SMILES_CANONICAL CACTVS 3.341 O[C@@H]1O[C@H]([C@@H](O)[C@H](O)[C@H]1O)C(O)=O
+IDR SMILES CACTVS 3.341 O[CH]1O[CH]([CH](O)[CH](O)[CH]1O)C(O)=O
+IDR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0 "[C@@H]1([C@@H]([C@@H](O[C@H]([C@@H]1O)O)C(=O)O)O)O"
+IDR SMILES "OpenEye OEToolkits" 1.5.0 C1(C(C(OC(C1O)O)C(=O)O)O)O
+IDR InChI InChI 1.03 InChI=1S/C6H10O7/c7-1-2(8)4(5(10)11)13-6(12)3(1)9/h1-4,6-9,12H,(H,10,11)/t1-,2-,3+,4+,6+/m0/s1
+IDR InChIKey InChI 1.03 AEMOLEFTQBMNLQ-VCSGLWQLSA-N
+
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IDR acedrg 243 "dictionary generator"
+IDR acedrg_database 11 "data source"
+IDR rdkit 2017.03.2 "Chemoinformatics tool"
+IDR refmac5 5.8.0238 "optimization tool"

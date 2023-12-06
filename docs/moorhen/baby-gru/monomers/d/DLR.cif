@@ -1,0 +1,290 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DLR     DLR      (2R)-3-benzyl-2-(1H-indazol-5-yl)-1,3-thiazolidin-4-one     NON-POLYMER     37     22     .     
+#
+data_comp_DLR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DLR     CAJ     C       CR16    0       27.737      5.937       13.116      
+DLR     CAS     C       CR56    0       28.368      7.170       12.901      
+DLR     CAI     C       CR15    0       28.225      8.244       11.986      
+DLR     NAM     N       NRD5    0       29.107      9.196       12.233      
+DLR     NAN     N       NR5     0       29.843      8.780       13.301      
+DLR     CAT     C       CR56    0       29.432      7.561       13.739      
+DLR     CAH     C       CR16    0       29.883      6.748       14.790      
+DLR     CAG     C       CR16    0       29.256      5.533       14.998      
+DLR     CAR     C       CR6     0       28.187      5.100       14.168      
+DLR     CAU     C       CH1     0       27.511      3.776       14.430      
+DLR     SAO     S       S2      0       28.694      2.380       14.344      
+DLR     CAK     C       CH2     0       28.619      2.074       16.115      
+DLR     CAP     C       CR5     0       27.466      2.869       16.675      
+DLR     OAA     O       O       0       27.070      2.751       17.836      
+DLR     NAV     N       NR5     0       26.920      3.706       15.757      
+DLR     CAL     C       CH2     0       25.753      4.539       16.054      
+DLR     CAQ     C       CR6     0       26.108      5.941       16.489      
+DLR     CAE     C       CR16    0       25.686      7.040       15.750      
+DLR     CAC     C       CR16    0       26.022      8.328       16.147      
+DLR     CAB     C       CR16    0       26.786      8.529       17.276      
+DLR     CAD     C       CR16    0       27.217      7.446       18.013      
+DLR     CAF     C       CR16    0       26.883      6.156       17.621      
+DLR     HAJ     H       H       0       27.018      5.654       12.564      
+DLR     HAI     H       H       0       27.588      8.286       11.287      
+DLR     HAN     H       H       0       30.496      9.280       13.630      
+DLR     HAH     H       H       0       30.594      7.020       15.342      
+DLR     HAG     H       H       0       29.553      4.976       15.707      
+DLR     HAU     H       H       0       26.801      3.630       13.757      
+DLR     HAK1    H       H       0       29.459      2.350       16.541      
+DLR     HAK2    H       H       0       28.482      1.116       16.285      
+DLR     HAL1    H       H       0       25.220      4.115       16.758      
+DLR     HAL2    H       H       0       25.194      4.588       15.251      
+DLR     HAE     H       H       0       25.162      6.912       14.975      
+DLR     HAC     H       H       0       25.726      9.068       15.641      
+DLR     HAB     H       H       0       27.014      9.405       17.545      
+DLR     HAD     H       H       0       27.740      7.582       18.787      
+DLR     HAF     H       H       0       27.182      5.420       18.131      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DLR         CAJ         CAS      DOUBLE       y     1.400  0.0100     1.400  0.0100
+DLR         CAJ         CAR      SINGLE       y     1.403  0.0200     1.403  0.0200
+DLR         CAS         CAI      SINGLE       y     1.420  0.0100     1.420  0.0100
+DLR         CAS         CAT      SINGLE       y     1.410  0.0100     1.410  0.0100
+DLR         CAI         NAM      DOUBLE       y     1.319  0.0100     1.319  0.0100
+DLR         NAM         NAN      SINGLE       y     1.360  0.0100     1.360  0.0100
+DLR         NAN         CAT      SINGLE       y     1.358  0.0100     1.358  0.0100
+DLR         CAT         CAH      DOUBLE       y     1.400  0.0100     1.400  0.0100
+DLR         CAH         CAG      SINGLE       y     1.378  0.0101     1.378  0.0101
+DLR         CAG         CAR      DOUBLE       y     1.416  0.0100     1.416  0.0100
+DLR         CAR         CAU      SINGLE       n     1.508  0.0100     1.508  0.0100
+DLR         CAU         SAO      SINGLE       n     1.832  0.0100     1.832  0.0100
+DLR         CAU         NAV      SINGLE       n     1.453  0.0100     1.453  0.0100
+DLR         SAO         CAK      SINGLE       n     1.799  0.0133     1.799  0.0133
+DLR         CAK         CAP      SINGLE       n     1.508  0.0100     1.508  0.0100
+DLR         CAP         OAA      DOUBLE       n     1.231  0.0121     1.231  0.0121
+DLR         CAP         NAV      SINGLE       n     1.352  0.0100     1.352  0.0100
+DLR         NAV         CAL      SINGLE       n     1.460  0.0100     1.460  0.0100
+DLR         CAL         CAQ      SINGLE       n     1.508  0.0100     1.508  0.0100
+DLR         CAQ         CAE      DOUBLE       y     1.385  0.0100     1.385  0.0100
+DLR         CAQ         CAF      SINGLE       y     1.385  0.0100     1.385  0.0100
+DLR         CAE         CAC      SINGLE       y     1.386  0.0100     1.386  0.0100
+DLR         CAC         CAB      DOUBLE       y     1.374  0.0127     1.374  0.0127
+DLR         CAB         CAD      SINGLE       y     1.374  0.0127     1.374  0.0127
+DLR         CAD         CAF      DOUBLE       y     1.386  0.0100     1.386  0.0100
+DLR         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.950  0.0100
+DLR         CAI         HAI      SINGLE       n     1.082  0.0130     0.947  0.0200
+DLR         NAN         HAN      SINGLE       n     1.016  0.0100     0.885  0.0160
+DLR         CAH         HAH      SINGLE       n     1.082  0.0130     0.940  0.0163
+DLR         CAG         HAG      SINGLE       n     1.082  0.0130     0.950  0.0100
+DLR         CAU         HAU      SINGLE       n     1.089  0.0100     0.989  0.0155
+DLR         CAK        HAK1      SINGLE       n     1.089  0.0100     0.982  0.0101
+DLR         CAK        HAK2      SINGLE       n     1.089  0.0100     0.982  0.0101
+DLR         CAL        HAL1      SINGLE       n     1.089  0.0100     0.980  0.0167
+DLR         CAL        HAL2      SINGLE       n     1.089  0.0100     0.980  0.0167
+DLR         CAE         HAE      SINGLE       n     1.082  0.0130     0.944  0.0174
+DLR         CAC         HAC      SINGLE       n     1.082  0.0130     0.944  0.0175
+DLR         CAB         HAB      SINGLE       n     1.082  0.0130     0.944  0.0161
+DLR         CAD         HAD      SINGLE       n     1.082  0.0130     0.944  0.0175
+DLR         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DLR         CAS         CAJ         CAR     119.710    1.50
+DLR         CAS         CAJ         HAJ     120.801    1.50
+DLR         CAR         CAJ         HAJ     119.489    1.50
+DLR         CAJ         CAS         CAI     135.264    1.50
+DLR         CAJ         CAS         CAT     119.589    1.50
+DLR         CAI         CAS         CAT     105.147    1.50
+DLR         CAS         CAI         NAM     111.317    1.50
+DLR         CAS         CAI         HAI     125.016    2.49
+DLR         NAM         CAI         HAI     123.668    1.83
+DLR         CAI         NAM         NAN     105.883    1.50
+DLR         NAM         NAN         CAT     110.689    1.50
+DLR         NAM         NAN         HAN     121.430    2.84
+DLR         CAT         NAN         HAN     127.881    2.98
+DLR         CAS         CAT         NAN     106.964    1.50
+DLR         CAS         CAT         CAH     121.934    1.50
+DLR         NAN         CAT         CAH     131.103    1.50
+DLR         CAT         CAH         CAG     118.050    1.50
+DLR         CAT         CAH         HAH     121.215    1.50
+DLR         CAG         CAH         HAH     120.735    1.50
+DLR         CAH         CAG         CAR     121.009    1.50
+DLR         CAH         CAG         HAG     119.311    1.50
+DLR         CAR         CAG         HAG     119.680    1.50
+DLR         CAJ         CAR         CAG     119.709    1.53
+DLR         CAJ         CAR         CAU     120.145    1.78
+DLR         CAG         CAR         CAU     120.145    1.78
+DLR         CAR         CAU         SAO     111.631    2.12
+DLR         CAR         CAU         NAV     112.597    1.76
+DLR         CAR         CAU         HAU     109.691    2.08
+DLR         SAO         CAU         NAV     105.203    1.50
+DLR         SAO         CAU         HAU     108.945    1.50
+DLR         NAV         CAU         HAU     109.058    1.50
+DLR         CAU         SAO         CAK      92.785    1.50
+DLR         SAO         CAK         CAP     107.240    1.50
+DLR         SAO         CAK        HAK1     110.182    1.50
+DLR         SAO         CAK        HAK2     110.182    1.50
+DLR         CAP         CAK        HAK1     110.244    1.50
+DLR         CAP         CAK        HAK2     110.244    1.50
+DLR        HAK1         CAK        HAK2     108.673    1.50
+DLR         CAK         CAP         OAA     123.822    1.50
+DLR         CAK         CAP         NAV     112.219    1.50
+DLR         OAA         CAP         NAV     123.959    1.50
+DLR         CAU         NAV         CAP     119.288    1.50
+DLR         CAU         NAV         CAL     119.409    1.50
+DLR         CAP         NAV         CAL     121.303    1.50
+DLR         NAV         CAL         CAQ     113.376    1.50
+DLR         NAV         CAL        HAL1     108.980    1.50
+DLR         NAV         CAL        HAL2     108.980    1.50
+DLR         CAQ         CAL        HAL1     109.085    1.50
+DLR         CAQ         CAL        HAL2     109.085    1.50
+DLR        HAL1         CAL        HAL2     107.959    1.50
+DLR         CAL         CAQ         CAE     120.629    1.50
+DLR         CAL         CAQ         CAF     120.629    1.50
+DLR         CAE         CAQ         CAF     118.741    1.50
+DLR         CAQ         CAE         CAC     120.357    1.50
+DLR         CAQ         CAE         HAE     119.834    1.50
+DLR         CAC         CAE         HAE     119.809    1.50
+DLR         CAE         CAC         CAB     120.276    1.50
+DLR         CAE         CAC         HAC     119.817    1.50
+DLR         CAB         CAC         HAC     119.907    1.50
+DLR         CAC         CAB         CAD     119.999    1.50
+DLR         CAC         CAB         HAB     119.998    1.50
+DLR         CAD         CAB         HAB     119.998    1.50
+DLR         CAB         CAD         CAF     120.276    1.50
+DLR         CAB         CAD         HAD     119.907    1.50
+DLR         CAF         CAD         HAD     119.817    1.50
+DLR         CAQ         CAF         CAD     120.357    1.50
+DLR         CAQ         CAF         HAF     119.834    1.50
+DLR         CAD         CAF         HAF     119.809    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DLR              const_22         CAR         CAJ         CAS         CAI     180.000    10.0     2
+DLR              const_53         CAS         CAJ         CAR         CAG       0.000    10.0     2
+DLR             sp3_sp3_4         CAP         CAK         SAO         CAU     -60.000    10.0     3
+DLR             sp2_sp3_4         OAA         CAP         CAK         SAO     180.000    10.0     6
+DLR             sp2_sp2_4         OAA         CAP         NAV         CAL       0.000     5.0     2
+DLR            sp2_sp3_20         CAU         NAV         CAL         CAQ     -90.000    10.0     6
+DLR            sp2_sp3_26         CAE         CAQ         CAL         NAV     -90.000    10.0     6
+DLR       const_sp2_sp2_2         CAC         CAE         CAQ         CAL     180.000     5.0     2
+DLR              const_58         CAD         CAF         CAQ         CAL     180.000    10.0     2
+DLR       const_sp2_sp2_5         CAB         CAC         CAE         CAQ       0.000     5.0     2
+DLR       const_sp2_sp2_9         CAD         CAB         CAC         CAE       0.000     5.0     2
+DLR              const_13         CAC         CAB         CAD         CAF       0.000    10.0     2
+DLR              const_42         NAM         CAI         CAS         CAJ     180.000    10.0     2
+DLR              const_26         CAJ         CAS         CAT         NAN     180.000    10.0     2
+DLR              const_17         CAB         CAD         CAF         CAQ       0.000    10.0     2
+DLR              const_45         CAS         CAI         NAM         NAN       0.000    10.0     2
+DLR              const_47         CAI         NAM         NAN         CAT       0.000    10.0     2
+DLR              const_49         CAS         CAT         NAN         NAM       0.000    10.0     2
+DLR              const_29         CAG         CAH         CAT         CAS       0.000    10.0     2
+DLR              const_33         CAR         CAG         CAH         CAT       0.000    10.0     2
+DLR              const_37         CAH         CAG         CAR         CAJ       0.000    10.0     2
+DLR             sp2_sp3_7         CAJ         CAR         CAU         SAO     150.000    10.0     6
+DLR             sp3_sp3_2         CAR         CAU         SAO         CAK     -60.000    10.0     3
+DLR            sp2_sp3_17         CAL         NAV         CAU         CAR     -60.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DLR    chir_1    CAU    SAO    NAV    CAR    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DLR    plan-1         CAG   0.020
+DLR    plan-1         CAH   0.020
+DLR    plan-1         CAI   0.020
+DLR    plan-1         CAJ   0.020
+DLR    plan-1         CAR   0.020
+DLR    plan-1         CAS   0.020
+DLR    plan-1         CAT   0.020
+DLR    plan-1         CAU   0.020
+DLR    plan-1         HAG   0.020
+DLR    plan-1         HAH   0.020
+DLR    plan-1         HAI   0.020
+DLR    plan-1         HAJ   0.020
+DLR    plan-1         HAN   0.020
+DLR    plan-1         NAM   0.020
+DLR    plan-1         NAN   0.020
+DLR    plan-2         CAB   0.020
+DLR    plan-2         CAC   0.020
+DLR    plan-2         CAD   0.020
+DLR    plan-2         CAE   0.020
+DLR    plan-2         CAF   0.020
+DLR    plan-2         CAL   0.020
+DLR    plan-2         CAQ   0.020
+DLR    plan-2         HAB   0.020
+DLR    plan-2         HAC   0.020
+DLR    plan-2         HAD   0.020
+DLR    plan-2         HAE   0.020
+DLR    plan-2         HAF   0.020
+DLR    plan-3         CAK   0.020
+DLR    plan-3         CAP   0.020
+DLR    plan-3         NAV   0.020
+DLR    plan-3         OAA   0.020
+DLR    plan-4         CAL   0.020
+DLR    plan-4         CAP   0.020
+DLR    plan-4         CAU   0.020
+DLR    plan-4         NAV   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+DLR           SMILES              ACDLabs 12.01                                                                                             O=C2N(Cc1ccccc1)C(SC2)c4ccc3nncc3c4
+DLR            InChI                InChI  1.03 InChI=1S/C17H15N3OS/c21-16-11-22-17(20(16)10-12-4-2-1-3-5-12)13-6-7-15-14(8-13)9-18-19-15/h1-9,17H,10-11H2,(H,18,19)/t17-/m1/s1
+DLR         InChIKey                InChI  1.03                                                                                                     UIFSOMZAJQOGHJ-QGZVFWFLSA-N
+DLR SMILES_CANONICAL               CACTVS 3.385                                                                                       O=C1CS[C@@H](N1Cc2ccccc2)c3ccc4[nH]ncc4c3
+DLR           SMILES               CACTVS 3.385                                                                                         O=C1CS[CH](N1Cc2ccccc2)c3ccc4[nH]ncc4c3
+DLR SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                    c1ccc(cc1)CN2[C@H](SCC2=O)c3ccc4c(c3)cn[nH]4
+DLR           SMILES "OpenEye OEToolkits" 1.7.6                                                                                        c1ccc(cc1)CN2C(SCC2=O)c3ccc4c(c3)cn[nH]4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+DLR acedrg               243         "dictionary generator"                  
+DLR acedrg_database      11          "data source"                           
+DLR rdkit                2017.03.2   "Chemoinformatics tool"
+DLR refmac5              5.8.0238    "optimization tool"                     

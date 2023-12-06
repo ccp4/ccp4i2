@@ -1,0 +1,210 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NZH     NZH      (2S)-2-AMINO-3-[1-(1H-TETRAAZOL-5-YL)-1H-IMIDAZOL-4-YL]PROPANAL     NON-POLYMER     24     15     .     
+#
+data_comp_NZH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NZH     N       N       NT2     0       47.452      8.224       18.747      
+NZH     CA      C       CH1     0       47.864      8.109       17.344      
+NZH     CB      C       CH2     0       47.377      6.771       16.757      
+NZH     CG      C       CR5     0       47.944      6.500       15.404      
+NZH     ND1     N       NRD5    0       49.302      6.331       15.222      
+NZH     CE1     C       CR15    0       49.490      6.112       13.942      
+NZH     NE2     N       NR5     0       48.306      6.130       13.269      
+NZH     CD2     C       CR15    0       47.324      6.378       14.199      
+NZH     C       C       C1      0       47.329      9.278       16.498      
+NZH     O       O       O       0       48.084      10.038      15.976      
+NZH     N1      N       NR5     0       46.922      5.949       11.267      
+NZH     N2      N       NRD5    0       47.136      5.728       9.958       
+NZH     N3      N       NRD5    0       48.411      5.586       9.794       
+NZH     N4      N       NRD5    0       49.053      5.710       10.986      
+NZH     C1      C       CR5     0       48.103      5.938       11.901      
+NZH     H       H       H       0       46.555      8.145       18.804      
+NZH     H2      H       H       0       47.816      7.551       19.224      
+NZH     HA      H       H       0       48.847      8.126       17.308      
+NZH     HB2     H       H       0       46.400      6.787       16.707      
+NZH     HB3     H       H       0       47.628      6.049       17.369      
+NZH     HE1     H       H       0       50.326      5.962       13.541      
+NZH     HD2     H       H       0       46.400      6.446       14.021      
+NZH     HC      H       H       0       46.394      9.390       16.394      
+NZH     HN1     H       H       0       46.110      6.075       11.598      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NZH           N          CA      SINGLE       n     1.466  0.0118     1.466  0.0118
+NZH          CA          CB      SINGLE       n     1.539  0.0101     1.539  0.0101
+NZH          CA           C      SINGLE       n     1.539  0.0100     1.539  0.0100
+NZH          CB          CG      SINGLE       n     1.492  0.0100     1.492  0.0100
+NZH          CG         ND1      SINGLE       y     1.379  0.0100     1.379  0.0100
+NZH          CG         CD2      DOUBLE       y     1.362  0.0100     1.362  0.0100
+NZH         ND1         CE1      DOUBLE       y     1.310  0.0102     1.310  0.0102
+NZH         CE1         NE2      SINGLE       y     1.361  0.0126     1.361  0.0126
+NZH         NE2         CD2      SINGLE       y     1.379  0.0139     1.379  0.0139
+NZH         NE2          C1      SINGLE       n     1.395  0.0153     1.395  0.0153
+NZH           C           O      DOUBLE       n     1.191  0.0200     1.191  0.0200
+NZH          N1          N2      SINGLE       y     1.343  0.0100     1.343  0.0100
+NZH          N1          C1      SINGLE       y     1.340  0.0104     1.340  0.0104
+NZH          N2          N3      DOUBLE       y     1.293  0.0100     1.293  0.0100
+NZH          N3          N4      SINGLE       y     1.361  0.0121     1.361  0.0121
+NZH          N4          C1      DOUBLE       y     1.342  0.0200     1.342  0.0200
+NZH           N           H      SINGLE       n     1.036  0.0160     0.902  0.0200
+NZH           N          H2      SINGLE       n     1.036  0.0160     0.902  0.0200
+NZH          CA          HA      SINGLE       n     1.089  0.0100     0.984  0.0149
+NZH          CB         HB2      SINGLE       n     1.089  0.0100     0.979  0.0187
+NZH          CB         HB3      SINGLE       n     1.089  0.0100     0.979  0.0187
+NZH         CE1         HE1      SINGLE       n     1.082  0.0130     0.939  0.0178
+NZH         CD2         HD2      SINGLE       n     1.082  0.0130     0.943  0.0200
+NZH           C          HC      SINGLE       n     1.082  0.0130     0.947  0.0200
+NZH          N1         HN1      SINGLE       n     1.016  0.0100     0.886  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NZH          CA           N           H     109.453    3.00
+NZH          CA           N          H2     109.453    3.00
+NZH           H           N          H2     107.559    3.00
+NZH           N          CA          CB     110.386    2.27
+NZH           N          CA           C     112.134    2.59
+NZH           N          CA          HA     108.372    1.54
+NZH          CB          CA           C     108.756    3.00
+NZH          CB          CA          HA     108.480    1.50
+NZH           C          CA          HA     108.186    1.50
+NZH          CA          CB          CG     112.183    1.50
+NZH          CA          CB         HB2     108.816    1.50
+NZH          CA          CB         HB3     108.816    1.50
+NZH          CG          CB         HB2     109.683    1.50
+NZH          CG          CB         HB3     109.683    1.50
+NZH         HB2          CB         HB3     107.541    1.50
+NZH          CB          CG         ND1     120.852    1.50
+NZH          CB          CG         CD2     130.293    1.50
+NZH         ND1          CG         CD2     108.854    1.50
+NZH          CG         ND1         CE1     105.934    1.50
+NZH         ND1         CE1         NE2     110.220    1.50
+NZH         ND1         CE1         HE1     125.120    1.50
+NZH         NE2         CE1         HE1     124.660    1.50
+NZH         CE1         NE2         CD2     107.100    1.50
+NZH         CE1         NE2          C1     127.189    2.13
+NZH         CD2         NE2          C1     125.712    1.76
+NZH          CG         CD2         NE2     107.892    2.30
+NZH          CG         CD2         HD2     127.031    1.50
+NZH         NE2         CD2         HD2     125.077    2.01
+NZH          CA           C           O     120.289    1.60
+NZH          CA           C          HC     119.547    2.53
+NZH           O           C          HC     120.163    1.50
+NZH          N2          N1          C1     108.322    1.50
+NZH          N2          N1         HN1     122.449    3.00
+NZH          C1          N1         HN1     129.228    3.00
+NZH          N1          N2          N3     106.793    1.50
+NZH          N2          N3          N4     110.067    1.50
+NZH          N3          N4          C1     106.818    1.50
+NZH         NE2          C1          N1     126.098    1.83
+NZH         NE2          C1          N4     125.903    2.02
+NZH          N1          C1          N4     107.999    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NZH             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+NZH       const_sp2_sp2_1          C1          N1          N2          N3       0.000     5.0     2
+NZH              const_25         NE2          C1          N1          N2     180.000    10.0     2
+NZH       const_sp2_sp2_3          N1          N2          N3          N4       0.000     5.0     2
+NZH       const_sp2_sp2_4          N2          N3          N4          C1       0.000     5.0     2
+NZH       const_sp2_sp2_6         NE2          C1          N4          N3     180.000     5.0     2
+NZH             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+NZH             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+NZH             sp2_sp3_8         ND1          CG          CB          CA     -90.000    10.0     6
+NZH       const_sp2_sp2_8          CB          CG         ND1         CE1     180.000     5.0     2
+NZH              const_20         NE2         CD2          CG          CB     180.000    10.0     2
+NZH       const_sp2_sp2_9         NE2         CE1         ND1          CG       0.000     5.0     2
+NZH              const_11         ND1         CE1         NE2         CD2       0.000    10.0     2
+NZH             sp2_sp2_1          N1          C1         NE2         CE1     180.000     5.0     2
+NZH              const_15          CG         CD2         NE2         CE1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NZH    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NZH    plan-1          C1   0.020
+NZH    plan-1         HN1   0.020
+NZH    plan-1          N1   0.020
+NZH    plan-1          N2   0.020
+NZH    plan-1          N3   0.020
+NZH    plan-1          N4   0.020
+NZH    plan-1         NE2   0.020
+NZH    plan-2          C1   0.020
+NZH    plan-2          CB   0.020
+NZH    plan-2         CD2   0.020
+NZH    plan-2         CE1   0.020
+NZH    plan-2          CG   0.020
+NZH    plan-2         HD2   0.020
+NZH    plan-2         HE1   0.020
+NZH    plan-2         ND1   0.020
+NZH    plan-2         NE2   0.020
+NZH    plan-3           C   0.020
+NZH    plan-3          CA   0.020
+NZH    plan-3          HC   0.020
+NZH    plan-3           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NZH           SMILES              ACDLabs 10.04                                                                        O=CC(N)Cc2ncn(c1nnnn1)c2
+NZH SMILES_CANONICAL               CACTVS 3.341                                                                N[C@@H](Cc1cn(cn1)c2[nH]nnn2)C=O
+NZH           SMILES               CACTVS 3.341                                                                  N[CH](Cc1cn(cn1)c2[nH]nnn2)C=O
+NZH SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                c1c(ncn1c2[nH]nnn2)C[C@@H](C=O)N
+NZH           SMILES "OpenEye OEToolkits" 1.5.0                                                                     c1c(ncn1c2[nH]nnn2)CC(C=O)N
+NZH            InChI                InChI  1.03 InChI=1S/C7H9N7O/c8-5(3-15)1-6-2-14(4-9-6)7-10-12-13-11-7/h2-5H,1,8H2,(H,10,11,12,13)/t5-/m0/s1
+NZH         InChIKey                InChI  1.03                                                                     OOFNCFXOGMDAEN-YFKPBYRVSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NZH acedrg               243         "dictionary generator"                  
+NZH acedrg_database      11          "data source"                           
+NZH rdkit                2017.03.2   "Chemoinformatics tool"
+NZH refmac5              5.8.0238    "optimization tool"                     

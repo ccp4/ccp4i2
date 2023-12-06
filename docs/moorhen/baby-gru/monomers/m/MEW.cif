@@ -1,0 +1,181 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MEW     MEW      2-methylquinazolin-4(3H)-one     NON-POLYMER     20     12     .     
+#
+data_comp_MEW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MEW     CAN     C       CH3     0       7.565       -10.637     66.394      
+MEW     CAT     C       CR6     0       7.181       -12.020     66.803      
+MEW     NAO     N       NRD6    0       6.532       -12.764     65.968      
+MEW     CAV     C       CR66    0       6.170       -14.058     66.345      
+MEW     CAK     C       CR16    0       5.465       -14.867     65.440      
+MEW     CAG     C       CR16    0       5.101       -16.139     65.789      
+MEW     CAH     C       CR16    0       5.422       -16.665     67.057      
+MEW     CAL     C       CR16    0       6.111       -15.904     67.971      
+MEW     CAW     C       CR66    0       6.497       -14.582     67.624      
+MEW     CAU     C       CR6     0       7.231       -13.718     68.546      
+MEW     OAC     O       O       0       7.575       -14.053     69.688      
+MEW     NAQ     N       NR6     0       7.540       -12.456     68.076      
+MEW     H1      H       H       0       8.055       -10.208     67.104      
+MEW     H2      H       H       0       6.770       -10.126     66.202      
+MEW     H3      H       H       0       8.117       -10.677     65.604      
+MEW     H4      H       H       0       5.244       -14.529     64.588      
+MEW     H5      H       H       0       4.628       -16.672     65.170      
+MEW     H6      H       H       0       5.162       -17.545     67.279      
+MEW     H7      H       H       0       6.322       -16.258     68.813      
+MEW     H8      H       H       0       7.985       -11.905     68.608      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MEW         CAK         CAG      SINGLE       y     1.363  0.0103     1.363  0.0103
+MEW         CAV         CAK      DOUBLE       y     1.401  0.0100     1.401  0.0100
+MEW         CAG         CAH      DOUBLE       y     1.401  0.0132     1.401  0.0132
+MEW         NAO         CAV      SINGLE       y     1.394  0.0100     1.394  0.0100
+MEW         CAT         NAO      DOUBLE       y     1.286  0.0100     1.286  0.0100
+MEW         CAV         CAW      SINGLE       y     1.419  0.0129     1.419  0.0129
+MEW         CAN         CAT      SINGLE       n     1.490  0.0157     1.490  0.0157
+MEW         CAT         NAQ      SINGLE       y     1.371  0.0161     1.371  0.0161
+MEW         CAH         CAL      SINGLE       y     1.371  0.0100     1.371  0.0100
+MEW         CAL         CAW      DOUBLE       y     1.418  0.0111     1.418  0.0111
+MEW         CAW         CAU      SINGLE       y     1.460  0.0100     1.460  0.0100
+MEW         CAU         NAQ      SINGLE       y     1.376  0.0104     1.376  0.0104
+MEW         CAU         OAC      DOUBLE       n     1.238  0.0100     1.238  0.0100
+MEW         CAN          H1      SINGLE       n     1.089  0.0100     0.964  0.0148
+MEW         CAN          H2      SINGLE       n     1.089  0.0100     0.964  0.0148
+MEW         CAN          H3      SINGLE       n     1.089  0.0100     0.964  0.0148
+MEW         CAK          H4      SINGLE       n     1.082  0.0130     0.943  0.0197
+MEW         CAG          H5      SINGLE       n     1.082  0.0130     0.944  0.0200
+MEW         CAH          H6      SINGLE       n     1.082  0.0130     0.944  0.0184
+MEW         CAL          H7      SINGLE       n     1.082  0.0130     0.937  0.0161
+MEW         NAQ          H8      SINGLE       n     1.016  0.0100     0.886  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MEW         CAT         CAN          H1     109.512    1.50
+MEW         CAT         CAN          H2     109.512    1.50
+MEW         CAT         CAN          H3     109.512    1.50
+MEW          H1         CAN          H2     109.397    1.50
+MEW          H1         CAN          H3     109.397    1.50
+MEW          H2         CAN          H3     109.397    1.50
+MEW         NAO         CAT         CAN     120.128    1.50
+MEW         NAO         CAT         NAQ     121.106    2.80
+MEW         CAN         CAT         NAQ     118.767    2.34
+MEW         CAV         NAO         CAT     118.864    1.50
+MEW         CAK         CAV         NAO     118.367    1.50
+MEW         CAK         CAV         CAW     118.928    1.50
+MEW         NAO         CAV         CAW     122.705    1.50
+MEW         CAG         CAK         CAV     120.150    1.50
+MEW         CAG         CAK          H4     120.209    1.50
+MEW         CAV         CAK          H4     119.641    1.50
+MEW         CAK         CAG         CAH     120.636    1.50
+MEW         CAK         CAG          H5     119.608    1.50
+MEW         CAH         CAG          H5     119.756    1.50
+MEW         CAG         CAH         CAL     120.241    1.50
+MEW         CAG         CAH          H6     119.852    1.50
+MEW         CAL         CAH          H6     119.908    1.50
+MEW         CAH         CAL         CAW     119.807    1.50
+MEW         CAH         CAL          H7     119.910    1.50
+MEW         CAW         CAL          H7     120.283    1.50
+MEW         CAV         CAW         CAL     120.239    1.50
+MEW         CAV         CAW         CAU     119.338    1.50
+MEW         CAL         CAW         CAU     120.423    1.50
+MEW         CAW         CAU         NAQ     116.595    1.50
+MEW         CAW         CAU         OAC     123.711    1.50
+MEW         NAQ         CAU         OAC     119.694    1.50
+MEW         CAT         NAQ         CAU     121.393    2.37
+MEW         CAT         NAQ          H8     119.486    2.18
+MEW         CAU         NAQ          H8     119.122    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MEW             sp2_sp3_1         NAO         CAT         CAN          H1     150.000    10.0     6
+MEW              const_39         CAN         CAT         NAQ         CAU     180.000    10.0     2
+MEW              const_22         CAN         CAT         NAO         CAV     180.000    10.0     2
+MEW              const_24         CAK         CAV         NAO         CAT     180.000    10.0     2
+MEW       const_sp2_sp2_2         CAG         CAK         CAV         NAO     180.000     5.0     2
+MEW              const_25         CAK         CAV         CAW         CAL       0.000    10.0     2
+MEW       const_sp2_sp2_5         CAH         CAG         CAK         CAV       0.000     5.0     2
+MEW       const_sp2_sp2_9         CAK         CAG         CAH         CAL       0.000     5.0     2
+MEW              const_13         CAG         CAH         CAL         CAW       0.000    10.0     2
+MEW              const_17         CAH         CAL         CAW         CAV       0.000    10.0     2
+MEW              const_31         OAC         CAU         CAW         CAV     180.000    10.0     2
+MEW              const_35         OAC         CAU         NAQ         CAT     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MEW    plan-1         CAG   0.020
+MEW    plan-1         CAH   0.020
+MEW    plan-1         CAK   0.020
+MEW    plan-1         CAL   0.020
+MEW    plan-1         CAN   0.020
+MEW    plan-1         CAT   0.020
+MEW    plan-1         CAU   0.020
+MEW    plan-1         CAV   0.020
+MEW    plan-1         CAW   0.020
+MEW    plan-1          H4   0.020
+MEW    plan-1          H5   0.020
+MEW    plan-1          H6   0.020
+MEW    plan-1          H7   0.020
+MEW    plan-1          H8   0.020
+MEW    plan-1         NAO   0.020
+MEW    plan-1         NAQ   0.020
+MEW    plan-1         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MEW           SMILES              ACDLabs 12.01                                                    O=C1c2ccccc2N=C(N1)C
+MEW            InChI                InChI  1.03 InChI=1S/C9H8N2O/c1-6-10-8-5-3-2-4-7(8)9(12)11-6/h2-5H,1H3,(H,10,11,12)
+MEW         InChIKey                InChI  1.03                                             FIEYHAAMDAPVCH-UHFFFAOYSA-N
+MEW SMILES_CANONICAL               CACTVS 3.370                                                    CC1=Nc2ccccc2C(=O)N1
+MEW           SMILES               CACTVS 3.370                                                    CC1=Nc2ccccc2C(=O)N1
+MEW SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                    CC1=Nc2ccccc2C(=O)N1
+MEW           SMILES "OpenEye OEToolkits" 1.7.6                                                    CC1=Nc2ccccc2C(=O)N1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MEW acedrg               243         "dictionary generator"                  
+MEW acedrg_database      11          "data source"                           
+MEW rdkit                2017.03.2   "Chemoinformatics tool"
+MEW refmac5              5.8.0238    "optimization tool"                     

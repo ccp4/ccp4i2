@@ -1,0 +1,336 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZOE     ZOE      "6-({5-[(3aS,4S,5S,6aR)-5-oxido-2-oxohexahydro-1H-thieno[3,4-d]imidazol-4-yl]pentanoyl}amino)hexanoic acid"     NON-POLYMER     51     25     .     
+#
+data_comp_ZOE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZOE     OAD     O       O       0       -1.678      -4.548      -19.494     
+ZOE     SAY     S       S3      0       -1.514      -5.977      -19.096     
+ZOE     CAO     C       CH2     0       -3.132      -6.536      -18.549     
+ZOE     CAV     C       CH1     0       -3.233      -8.028      -18.894     
+ZOE     NAQ     N       NR5     0       -2.624      -8.877      -17.904     
+ZOE     CAU     C       CR5     0       -1.586      -9.589      -18.393     
+ZOE     OAC     O       O       0       -0.893      -10.393     -17.748     
+ZOE     NAR     N       NR5     0       -1.428      -9.290      -19.702     
+ZOE     CAX     C       CH1     0       -2.375      -8.308      -20.165     
+ZOE     CAW     C       CH1     0       -1.751      -6.971      -20.608     
+ZOE     CAN     C       CH2     0       -0.421      -7.089      -21.357     
+ZOE     CAJ     C       CH2     0       -0.015      -5.846      -22.140     
+ZOE     CAI     C       CH2     0       1.181       -6.054      -23.057     
+ZOE     CAM     C       CH2     0       1.668       -4.804      -23.730     
+ZOE     CAT     C       C       0       0.692       -4.279      -24.765     
+ZOE     OAB     O       O       0       0.509       -4.879      -25.823     
+ZOE     NAP     N       NH1     0       -0.014      -3.183      -24.443     
+ZOE     CAK     C       CH2     0       -1.176      -2.692      -25.172     
+ZOE     CAG     C       CH2     0       -2.415      -3.521      -24.890     
+ZOE     CAF     C       CH2     0       -3.646      -3.067      -25.642     
+ZOE     CAH     C       CH2     0       -4.882      -3.903      -25.334     
+ZOE     CAL     C       CH2     0       -6.111      -3.400      -26.025     
+ZOE     CAS     C       C       0       -6.196      -3.749      -27.501     
+ZOE     OAA     O       OC      -1      -6.437      -4.932      -27.813     
+ZOE     OAE     O       O       0       -6.022      -2.838      -28.336     
+ZOE     H2      H       H       0       -3.215      -6.392      -17.584     
+ZOE     H3      H       H       0       -3.825      -6.021      -19.009     
+ZOE     H4      H       H       0       -4.173      -8.293      -19.048     
+ZOE     H5      H       H       0       -2.882      -8.938      -17.079     
+ZOE     H6      H       H       0       -0.821      -9.665      -20.193     
+ZOE     H7      H       H       0       -2.936      -8.676      -20.890     
+ZOE     H8      H       H       0       -2.401      -6.512      -21.192     
+ZOE     H9      H       H       0       -0.480      -7.846      -21.979     
+ZOE     H10     H       H       0       0.286       -7.297      -20.709     
+ZOE     H11     H       H       0       0.195       -5.128      -21.505     
+ZOE     H12     H       H       0       -0.781      -5.553      -22.678     
+ZOE     H13     H       H       0       0.938       -6.708      -23.745     
+ZOE     H14     H       H       0       1.915       -6.435      -22.531     
+ZOE     H15     H       H       0       2.524       -4.993      -24.169     
+ZOE     H16     H       H       0       1.826       -4.117      -23.048     
+ZOE     H17     H       H       0       0.245       -2.723      -23.749     
+ZOE     H18     H       H       0       -0.985      -2.709      -26.135     
+ZOE     H19     H       H       0       -1.345      -1.761      -24.915     
+ZOE     H20     H       H       0       -2.602      -3.488      -23.928     
+ZOE     H21     H       H       0       -2.228      -4.455      -25.125     
+ZOE     H22     H       H       0       -3.465      -3.110      -26.605     
+ZOE     H23     H       H       0       -3.831      -2.131      -25.413     
+ZOE     H24     H       H       0       -5.031      -3.900      -24.366     
+ZOE     H25     H       H       0       -4.712      -4.829      -25.607     
+ZOE     H26     H       H       0       -6.149      -2.424      -25.934     
+ZOE     H27     H       H       0       -6.900      -3.769      -25.574     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZOE         CAS         OAE      DOUBLE       n     1.247  0.0187     1.247  0.0187
+ZOE         CAS         OAA      SINGLE       n     1.247  0.0187     1.247  0.0187
+ZOE         CAL         CAS      SINGLE       n     1.519  0.0109     1.519  0.0109
+ZOE         CAH         CAL      SINGLE       n     1.497  0.0200     1.497  0.0200
+ZOE         CAF         CAH      SINGLE       n     1.523  0.0117     1.523  0.0117
+ZOE         CAG         CAF      SINGLE       n     1.514  0.0200     1.514  0.0200
+ZOE         CAK         CAG      SINGLE       n     1.517  0.0143     1.517  0.0143
+ZOE         NAP         CAK      SINGLE       n     1.456  0.0109     1.456  0.0109
+ZOE         CAT         OAB      DOUBLE       n     1.229  0.0102     1.229  0.0102
+ZOE         CAT         NAP      SINGLE       n     1.337  0.0118     1.337  0.0118
+ZOE         CAM         CAT      SINGLE       n     1.514  0.0100     1.514  0.0100
+ZOE         CAI         CAM      SINGLE       n     1.497  0.0200     1.497  0.0200
+ZOE         CAJ         CAI      SINGLE       n     1.519  0.0164     1.519  0.0164
+ZOE         CAN         CAJ      SINGLE       n     1.524  0.0145     1.524  0.0145
+ZOE         CAW         CAN      SINGLE       n     1.530  0.0123     1.530  0.0123
+ZOE         CAX         CAW      SINGLE       n     1.535  0.0140     1.535  0.0140
+ZOE         SAY         CAW      SINGLE       n     1.833  0.0200     1.833  0.0200
+ZOE         NAR         CAX      SINGLE       n     1.440  0.0100     1.440  0.0100
+ZOE         CAU         NAR      SINGLE       n     1.351  0.0100     1.351  0.0100
+ZOE         CAV         CAX      SINGLE       n     1.546  0.0190     1.546  0.0190
+ZOE         OAD         SAY      DOUBLE       n     1.492  0.0116     1.492  0.0116
+ZOE         SAY         CAO      SINGLE       n     1.800  0.0111     1.800  0.0111
+ZOE         CAU         OAC      DOUBLE       n     1.242  0.0100     1.242  0.0100
+ZOE         NAQ         CAU      SINGLE       n     1.351  0.0100     1.351  0.0100
+ZOE         CAO         CAV      SINGLE       n     1.531  0.0175     1.531  0.0175
+ZOE         CAV         NAQ      SINGLE       n     1.440  0.0100     1.440  0.0100
+ZOE         CAO          H2      SINGLE       n     1.089  0.0100     0.979  0.0169
+ZOE         CAO          H3      SINGLE       n     1.089  0.0100     0.979  0.0169
+ZOE         CAV          H4      SINGLE       n     1.089  0.0100     0.988  0.0148
+ZOE         NAQ          H5      SINGLE       n     1.016  0.0100     0.866  0.0173
+ZOE         NAR          H6      SINGLE       n     1.016  0.0100     0.866  0.0173
+ZOE         CAX          H7      SINGLE       n     1.089  0.0100     0.988  0.0148
+ZOE         CAW          H8      SINGLE       n     1.089  0.0100     0.987  0.0153
+ZOE         CAN          H9      SINGLE       n     1.089  0.0100     0.981  0.0178
+ZOE         CAN         H10      SINGLE       n     1.089  0.0100     0.981  0.0178
+ZOE         CAJ         H11      SINGLE       n     1.089  0.0100     0.981  0.0160
+ZOE         CAJ         H12      SINGLE       n     1.089  0.0100     0.981  0.0160
+ZOE         CAI         H13      SINGLE       n     1.089  0.0100     0.980  0.0160
+ZOE         CAI         H14      SINGLE       n     1.089  0.0100     0.980  0.0160
+ZOE         CAM         H15      SINGLE       n     1.089  0.0100     0.981  0.0185
+ZOE         CAM         H16      SINGLE       n     1.089  0.0100     0.981  0.0185
+ZOE         NAP         H17      SINGLE       n     1.016  0.0100     0.872  0.0200
+ZOE         CAK         H18      SINGLE       n     1.089  0.0100     0.981  0.0152
+ZOE         CAK         H19      SINGLE       n     1.089  0.0100     0.981  0.0152
+ZOE         CAG         H20      SINGLE       n     1.089  0.0100     0.981  0.0160
+ZOE         CAG         H21      SINGLE       n     1.089  0.0100     0.981  0.0160
+ZOE         CAF         H22      SINGLE       n     1.089  0.0100     0.981  0.0163
+ZOE         CAF         H23      SINGLE       n     1.089  0.0100     0.981  0.0163
+ZOE         CAH         H24      SINGLE       n     1.089  0.0100     0.980  0.0160
+ZOE         CAH         H25      SINGLE       n     1.089  0.0100     0.980  0.0160
+ZOE         CAL         H26      SINGLE       n     1.089  0.0100     0.981  0.0185
+ZOE         CAL         H27      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZOE         CAW         SAY         OAD     106.645    1.50
+ZOE         CAW         SAY         CAO      91.968    2.15
+ZOE         OAD         SAY         CAO     106.277    1.50
+ZOE         SAY         CAO         CAV     107.277    3.00
+ZOE         SAY         CAO          H2     109.314    1.86
+ZOE         SAY         CAO          H3     109.314    1.86
+ZOE         CAV         CAO          H2     111.037    1.50
+ZOE         CAV         CAO          H3     111.037    1.50
+ZOE          H2         CAO          H3     108.954    1.50
+ZOE         CAX         CAV         CAO     106.826    1.62
+ZOE         CAX         CAV         NAQ     103.067    1.50
+ZOE         CAX         CAV          H4     110.773    1.50
+ZOE         CAO         CAV         NAQ     113.949    2.21
+ZOE         CAO         CAV          H4     111.504    1.59
+ZOE         NAQ         CAV          H4     110.900    1.50
+ZOE         CAU         NAQ         CAV     112.454    1.50
+ZOE         CAU         NAQ          H5     122.572    2.15
+ZOE         CAV         NAQ          H5     124.974    2.25
+ZOE         NAR         CAU         OAC     125.707    1.50
+ZOE         NAR         CAU         NAQ     108.587    1.50
+ZOE         OAC         CAU         NAQ     125.707    1.50
+ZOE         CAX         NAR         CAU     112.454    1.50
+ZOE         CAX         NAR          H6     124.974    2.25
+ZOE         CAU         NAR          H6     122.572    2.15
+ZOE         CAW         CAX         NAR     113.949    2.21
+ZOE         CAW         CAX         CAV     104.802    1.87
+ZOE         CAW         CAX          H7     110.171    1.70
+ZOE         NAR         CAX         CAV     103.067    1.50
+ZOE         NAR         CAX          H7     110.900    1.50
+ZOE         CAV         CAX          H7     110.773    1.50
+ZOE         CAN         CAW         CAX     113.984    2.76
+ZOE         CAN         CAW         SAY     109.385    2.31
+ZOE         CAN         CAW          H8     108.708    1.80
+ZOE         CAX         CAW         SAY     107.277    3.00
+ZOE         CAX         CAW          H8     108.114    1.75
+ZOE         SAY         CAW          H8     109.124    2.20
+ZOE         CAJ         CAN         CAW     114.962    1.91
+ZOE         CAJ         CAN          H9     108.756    1.50
+ZOE         CAJ         CAN         H10     108.756    1.50
+ZOE         CAW         CAN          H9     108.624    1.50
+ZOE         CAW         CAN         H10     108.624    1.50
+ZOE          H9         CAN         H10     107.535    1.50
+ZOE         CAI         CAJ         CAN     114.188    2.10
+ZOE         CAI         CAJ         H11     108.803    1.50
+ZOE         CAI         CAJ         H12     108.803    1.50
+ZOE         CAN         CAJ         H11     108.765    1.50
+ZOE         CAN         CAJ         H12     108.765    1.50
+ZOE         H11         CAJ         H12     107.696    1.50
+ZOE         CAM         CAI         CAJ     113.314    2.25
+ZOE         CAM         CAI         H13     108.795    1.50
+ZOE         CAM         CAI         H14     108.795    1.50
+ZOE         CAJ         CAI         H13     108.623    1.50
+ZOE         CAJ         CAI         H14     108.623    1.50
+ZOE         H13         CAI         H14     107.646    1.50
+ZOE         CAT         CAM         CAI     112.836    1.50
+ZOE         CAT         CAM         H15     108.930    1.50
+ZOE         CAT         CAM         H16     108.930    1.50
+ZOE         CAI         CAM         H15     108.897    1.50
+ZOE         CAI         CAM         H16     108.897    1.50
+ZOE         H15         CAM         H16     107.846    1.50
+ZOE         OAB         CAT         NAP     121.647    1.50
+ZOE         OAB         CAT         CAM     121.774    1.50
+ZOE         NAP         CAT         CAM     116.579    1.50
+ZOE         CAK         NAP         CAT     124.480    2.27
+ZOE         CAK         NAP         H17     118.241    1.90
+ZOE         CAT         NAP         H17     117.279    2.10
+ZOE         CAG         CAK         NAP     112.624    1.50
+ZOE         CAG         CAK         H18     109.197    1.51
+ZOE         CAG         CAK         H19     109.197    1.51
+ZOE         NAP         CAK         H18     108.979    1.50
+ZOE         NAP         CAK         H19     108.979    1.50
+ZOE         H18         CAK         H19     107.877    1.50
+ZOE         CAF         CAG         CAK     113.159    3.00
+ZOE         CAF         CAG         H20     109.041    1.50
+ZOE         CAF         CAG         H21     109.041    1.50
+ZOE         CAK         CAG         H20     108.956    1.50
+ZOE         CAK         CAG         H21     108.956    1.50
+ZOE         H20         CAG         H21     107.927    1.57
+ZOE         CAH         CAF         CAG     113.853    2.32
+ZOE         CAH         CAF         H22     108.698    1.50
+ZOE         CAH         CAF         H23     108.698    1.50
+ZOE         CAG         CAF         H22     108.806    1.50
+ZOE         CAG         CAF         H23     108.806    1.50
+ZOE         H22         CAF         H23     107.646    1.50
+ZOE         CAL         CAH         CAF     112.553    1.50
+ZOE         CAL         CAH         H24     109.164    1.50
+ZOE         CAL         CAH         H25     109.164    1.50
+ZOE         CAF         CAH         H24     108.698    1.50
+ZOE         CAF         CAH         H25     108.698    1.50
+ZOE         H24         CAH         H25     107.646    1.50
+ZOE         CAS         CAL         CAH     114.612    2.19
+ZOE         CAS         CAL         H26     108.404    1.50
+ZOE         CAS         CAL         H27     108.404    1.50
+ZOE         CAH         CAL         H26     108.815    1.50
+ZOE         CAH         CAL         H27     108.815    1.50
+ZOE         H26         CAL         H27     107.521    1.50
+ZOE         OAE         CAS         OAA     123.571    1.50
+ZOE         OAE         CAS         CAL     118.214    1.64
+ZOE         OAA         CAS         CAL     118.214    1.64
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZOE            sp3_sp3_88         CAI         CAJ         CAN         CAW     180.000    10.0     3
+ZOE            sp3_sp3_79         CAM         CAI         CAJ         CAN     180.000    10.0     3
+ZOE            sp3_sp3_70         CAJ         CAI         CAM         CAT     180.000    10.0     3
+ZOE            sp2_sp3_20         OAB         CAT         CAM         CAI     120.000    10.0     6
+ZOE            sp2_sp2_11         OAB         CAT         NAP         CAK       0.000     5.0     2
+ZOE            sp2_sp3_14         CAT         NAP         CAK         CAG     120.000    10.0     6
+ZOE            sp3_sp3_61         CAF         CAG         CAK         NAP     180.000    10.0     3
+ZOE            sp3_sp3_52         CAH         CAF         CAG         CAK     180.000    10.0     3
+ZOE            sp3_sp3_43         CAG         CAF         CAH         CAL     180.000    10.0     3
+ZOE           sp3_sp3_107         CAV         CAO         SAY         OAD     -60.000    10.0     3
+ZOE             sp3_sp3_4         CAN         CAW         SAY         OAD      60.000    10.0     3
+ZOE            sp3_sp3_34         CAF         CAH         CAL         CAS     180.000    10.0     3
+ZOE             sp2_sp3_8         OAE         CAS         CAL         CAH     120.000    10.0     6
+ZOE            sp3_sp3_25         SAY         CAO         CAV         CAX     -60.000    10.0     3
+ZOE            sp2_sp3_25         CAU         NAQ         CAV         CAX       0.000    10.0     6
+ZOE            sp3_sp3_16         CAO         CAV         CAX         CAW      60.000    10.0     3
+ZOE             sp2_sp2_7         OAC         CAU         NAQ         CAV     180.000     5.0     2
+ZOE             sp2_sp2_3         OAC         CAU         NAR         CAX     180.000     5.0     2
+ZOE             sp2_sp3_2         CAU         NAR         CAX         CAW     120.000    10.0     6
+ZOE            sp3_sp3_11         CAN         CAW         CAX         NAR     -60.000    10.0     3
+ZOE            sp3_sp3_97         CAJ         CAN         CAW         CAX     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZOE    chir_1    SAY    OAD    CAW    CAO    positive
+ZOE    chir_2    CAV    NAQ    CAO    CAX    negative
+ZOE    chir_3    CAX    NAR    CAW    CAV    positive
+ZOE    chir_4    CAW    SAY    CAX    CAN    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZOE    plan-1         CAU   0.020
+ZOE    plan-1         CAV   0.020
+ZOE    plan-1          H5   0.020
+ZOE    plan-1         NAQ   0.020
+ZOE    plan-2         CAU   0.020
+ZOE    plan-2         NAQ   0.020
+ZOE    plan-2         NAR   0.020
+ZOE    plan-2         OAC   0.020
+ZOE    plan-3         CAU   0.020
+ZOE    plan-3         CAX   0.020
+ZOE    plan-3          H6   0.020
+ZOE    plan-3         NAR   0.020
+ZOE    plan-4         CAM   0.020
+ZOE    plan-4         CAT   0.020
+ZOE    plan-4         NAP   0.020
+ZOE    plan-4         OAB   0.020
+ZOE    plan-5         CAK   0.020
+ZOE    plan-5         CAT   0.020
+ZOE    plan-5         H17   0.020
+ZOE    plan-5         NAP   0.020
+ZOE    plan-6         CAL   0.020
+ZOE    plan-6         CAS   0.020
+ZOE    plan-6         OAA   0.020
+ZOE    plan-6         OAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZOE           SMILES              ACDLabs 12.01                                                                                                                              O=S2C(C1NC(=O)NC1C2)CCCCC(=O)NCCCCCC(=O)O
+ZOE            InChI                InChI  1.03 InChI=1S/C16H27N3O5S/c20-13(17-9-5-1-2-8-14(21)22)7-4-3-6-12-15-11(10-25(12)24)18-16(23)19-15/h11-12,15H,1-10H2,(H,17,20)(H,21,22)(H2,18,19,23)/t11-,12-,15-,25-/m0/s1
+ZOE         InChIKey                InChI  1.03                                                                                                                                            WVGTVVXHODUEJR-XNCOPMLMSA-N
+ZOE SMILES_CANONICAL               CACTVS 3.385                                                                                                                 OC(=O)CCCCCNC(=O)CCCC[C@H]1[C@H]2NC(=O)N[C@H]2C[S@]1=O
+ZOE           SMILES               CACTVS 3.385                                                                                                                     OC(=O)CCCCCNC(=O)CCCC[CH]1[CH]2NC(=O)N[CH]2C[S]1=O
+ZOE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                           C1[C@H]2[C@@H]([C@@H]([S@]1=O)CCCCC(=O)NCCCCCC(=O)O)NC(=O)N2
+ZOE           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                            C1C2C(C(S1=O)CCCCC(=O)NCCCCCC(=O)O)NC(=O)N2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZOE acedrg               243         "dictionary generator"                  
+ZOE acedrg_database      11          "data source"                           
+ZOE rdkit                2017.03.2   "Chemoinformatics tool"
+ZOE refmac5              5.8.0238    "optimization tool"                     

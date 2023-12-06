@@ -1,0 +1,289 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+2RD     2RD      "5-(dodecylthio)-1H-1,2,3-triazole-4-carboxylic acid"     NON-POLYMER     47     21     .     
+#
+data_comp_2RD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+2RD     CAA     C       CH3     0       41.807      11.468      7.824       
+2RD     CAD     C       CH2     0       41.531      10.408      6.785       
+2RD     CAE     C       CH2     0       40.768      9.224       7.317       
+2RD     CAF     C       CH2     0       41.562      8.342       8.249       
+2RD     CAG     C       CH2     0       40.890      7.034       8.584       
+2RD     CAH     C       CH2     0       39.672      7.172       9.463       
+2RD     CAI     C       CH2     0       39.080      5.858       9.901       
+2RD     CAJ     C       CH2     0       37.828      5.991       10.728      
+2RD     CAK     C       CH2     0       37.201      4.673       11.103      
+2RD     CAL     C       CH2     0       36.123      4.777       12.150      
+2RD     CAM     C       CH2     0       34.822      5.333       11.628      
+2RD     CAN     C       CH2     0       33.722      5.260       12.670      
+2RD     SAR     S       S2      0       32.146      5.944       12.118      
+2RD     CAU     C       CR5     0       30.863      5.856       13.294      
+2RD     NAQ     N       NR5     0       30.589      6.810       14.194      
+2RD     NAO     N       NRD5    0       29.550      6.414       14.952      
+2RD     NAP     N       NRD5    0       29.172      5.226       14.550      
+2RD     CAT     C       CR5     0       29.972      4.837       13.516      
+2RD     CAS     C       C       0       29.824      3.544       12.819      
+2RD     OAC     O       O       0       29.755      3.563       11.608      
+2RD     OAB     O       OC      -1      29.781      2.540       13.501      
+2RD     HAA1    H       H       0       42.256      12.224      7.407       
+2RD     HAA2    H       H       0       42.376      11.100      8.522       
+2RD     HAA3    H       H       0       40.968      11.766      8.216       
+2RD     HAD1    H       H       0       42.386      10.093      6.417       
+2RD     HAD2    H       H       0       41.019      10.809      6.050       
+2RD     HAE1    H       H       0       40.459      8.683       6.559       
+2RD     HAE2    H       H       0       39.974      9.550       7.793       
+2RD     HAF1    H       H       0       41.727      8.833       9.082       
+2RD     HAF2    H       H       0       42.432      8.152       7.838       
+2RD     HAG1    H       H       0       41.539      6.454       9.036       
+2RD     HAG2    H       H       0       40.627      6.593       7.749       
+2RD     HAH1    H       H       0       38.988      7.679       8.976       
+2RD     HAH2    H       H       0       39.916      7.690       10.260      
+2RD     HAI1    H       H       0       39.752      5.369       10.424      
+2RD     HAI2    H       H       0       38.876      5.324       9.105       
+2RD     HAJ1    H       H       0       37.173      6.520       10.226      
+2RD     HAJ2    H       H       0       38.044      6.484       11.548      
+2RD     HAK1    H       H       0       37.904      4.074       11.435      
+2RD     HAK2    H       H       0       36.819      4.266       10.297      
+2RD     HAL1    H       H       0       36.444      5.349       12.879      
+2RD     HAL2    H       H       0       35.960      3.884       12.522      
+2RD     HAM1    H       H       0       34.551      4.827       10.832      
+2RD     HAM2    H       H       0       34.956      6.268       11.361      
+2RD     HAN1    H       H       0       34.006      5.742       13.471      
+2RD     HAN2    H       H       0       33.583      4.327       12.925      
+2RD     HNAQ    H       H       0       30.987      7.593       14.313      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+2RD         CAA         CAD      SINGLE       n     1.510  0.0200     1.510  0.0200
+2RD         CAD         CAE      SINGLE       n     1.507  0.0200     1.507  0.0200
+2RD         CAE         CAF      SINGLE       n     1.509  0.0200     1.509  0.0200
+2RD         CAF         CAG      SINGLE       n     1.509  0.0200     1.509  0.0200
+2RD         CAG         CAH      SINGLE       n     1.509  0.0200     1.509  0.0200
+2RD         CAH         CAI      SINGLE       n     1.509  0.0200     1.509  0.0200
+2RD         CAI         CAJ      SINGLE       n     1.509  0.0200     1.509  0.0200
+2RD         CAJ         CAK      SINGLE       n     1.509  0.0200     1.509  0.0200
+2RD         CAK         CAL      SINGLE       n     1.509  0.0200     1.509  0.0200
+2RD         CAL         CAM      SINGLE       n     1.510  0.0200     1.510  0.0200
+2RD         CAM         CAN      SINGLE       n     1.519  0.0109     1.519  0.0109
+2RD         CAN         SAR      SINGLE       n     1.809  0.0191     1.809  0.0191
+2RD         SAR         CAU      SINGLE       n     1.744  0.0119     1.744  0.0119
+2RD         CAS         OAC      DOUBLE       n     1.214  0.0200     1.214  0.0200
+2RD         CAT         CAS      SINGLE       n     1.476  0.0200     1.476  0.0200
+2RD         CAS         OAB      SINGLE       n     1.214  0.0200     1.214  0.0200
+2RD         CAU         CAT      DOUBLE       y     1.385  0.0200     1.385  0.0200
+2RD         CAU         NAQ      SINGLE       y     1.340  0.0104     1.340  0.0104
+2RD         NAP         CAT      SINGLE       y     1.366  0.0100     1.366  0.0100
+2RD         NAQ         NAO      SINGLE       y     1.343  0.0100     1.343  0.0100
+2RD         NAO         NAP      DOUBLE       y     1.308  0.0100     1.308  0.0100
+2RD         CAA        HAA1      SINGLE       n     1.089  0.0100     0.973  0.0157
+2RD         CAA        HAA2      SINGLE       n     1.089  0.0100     0.973  0.0157
+2RD         CAA        HAA3      SINGLE       n     1.089  0.0100     0.973  0.0157
+2RD         CAD        HAD1      SINGLE       n     1.089  0.0100     0.982  0.0155
+2RD         CAD        HAD2      SINGLE       n     1.089  0.0100     0.982  0.0155
+2RD         CAE        HAE1      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAE        HAE2      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAF        HAF1      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAF        HAF2      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAG        HAG1      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAG        HAG2      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAH        HAH1      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAH        HAH2      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAI        HAI1      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAI        HAI2      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAJ        HAJ1      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAJ        HAJ2      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAK        HAK1      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAK        HAK2      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAL        HAL1      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAL        HAL2      SINGLE       n     1.089  0.0100     0.981  0.0163
+2RD         CAM        HAM1      SINGLE       n     1.089  0.0100     0.981  0.0160
+2RD         CAM        HAM2      SINGLE       n     1.089  0.0100     0.981  0.0160
+2RD         CAN        HAN1      SINGLE       n     1.089  0.0100     0.977  0.0191
+2RD         CAN        HAN2      SINGLE       n     1.089  0.0100     0.977  0.0191
+2RD         NAQ        HNAQ      SINGLE       n     1.016  0.0100     0.886  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+2RD         CAD         CAA        HAA1     109.554    1.50
+2RD         CAD         CAA        HAA2     109.554    1.50
+2RD         CAD         CAA        HAA3     109.554    1.50
+2RD        HAA1         CAA        HAA2     109.380    1.50
+2RD        HAA1         CAA        HAA3     109.380    1.50
+2RD        HAA2         CAA        HAA3     109.380    1.50
+2RD         CAA         CAD         CAE     113.719    3.00
+2RD         CAA         CAD        HAD1     108.918    1.50
+2RD         CAA         CAD        HAD2     108.918    1.50
+2RD         CAE         CAD        HAD1     108.758    1.50
+2RD         CAE         CAD        HAD2     108.758    1.50
+2RD        HAD1         CAD        HAD2     107.763    1.50
+2RD         CAD         CAE         CAF     114.362    3.00
+2RD         CAD         CAE        HAE1     108.653    1.50
+2RD         CAD         CAE        HAE2     108.653    1.50
+2RD         CAF         CAE        HAE1     108.698    1.50
+2RD         CAF         CAE        HAE2     108.698    1.50
+2RD        HAE1         CAE        HAE2     107.646    1.50
+2RD         CAE         CAF         CAG     114.243    1.69
+2RD         CAE         CAF        HAF1     108.698    1.50
+2RD         CAE         CAF        HAF2     108.698    1.50
+2RD         CAG         CAF        HAF1     108.698    1.50
+2RD         CAG         CAF        HAF2     108.698    1.50
+2RD        HAF1         CAF        HAF2     107.646    1.50
+2RD         CAF         CAG         CAH     114.243    1.69
+2RD         CAF         CAG        HAG1     108.698    1.50
+2RD         CAF         CAG        HAG2     108.698    1.50
+2RD         CAH         CAG        HAG1     108.698    1.50
+2RD         CAH         CAG        HAG2     108.698    1.50
+2RD        HAG1         CAG        HAG2     107.646    1.50
+2RD         CAG         CAH         CAI     114.243    1.69
+2RD         CAG         CAH        HAH1     108.698    1.50
+2RD         CAG         CAH        HAH2     108.698    1.50
+2RD         CAI         CAH        HAH1     108.698    1.50
+2RD         CAI         CAH        HAH2     108.698    1.50
+2RD        HAH1         CAH        HAH2     107.646    1.50
+2RD         CAH         CAI         CAJ     114.243    1.69
+2RD         CAH         CAI        HAI1     108.698    1.50
+2RD         CAH         CAI        HAI2     108.698    1.50
+2RD         CAJ         CAI        HAI1     108.698    1.50
+2RD         CAJ         CAI        HAI2     108.698    1.50
+2RD        HAI1         CAI        HAI2     107.646    1.50
+2RD         CAI         CAJ         CAK     114.243    1.69
+2RD         CAI         CAJ        HAJ1     108.698    1.50
+2RD         CAI         CAJ        HAJ2     108.698    1.50
+2RD         CAK         CAJ        HAJ1     108.698    1.50
+2RD         CAK         CAJ        HAJ2     108.698    1.50
+2RD        HAJ1         CAJ        HAJ2     107.646    1.50
+2RD         CAJ         CAK         CAL     114.243    1.69
+2RD         CAJ         CAK        HAK1     108.698    1.50
+2RD         CAJ         CAK        HAK2     108.698    1.50
+2RD         CAL         CAK        HAK1     108.698    1.50
+2RD         CAL         CAK        HAK2     108.698    1.50
+2RD        HAK1         CAK        HAK2     107.646    1.50
+2RD         CAK         CAL         CAM     113.198    1.72
+2RD         CAK         CAL        HAL1     108.698    1.50
+2RD         CAK         CAL        HAL2     108.698    1.50
+2RD         CAM         CAL        HAL1     108.891    1.50
+2RD         CAM         CAL        HAL2     108.891    1.50
+2RD        HAL1         CAL        HAL2     107.646    1.50
+2RD         CAL         CAM         CAN     112.631    1.53
+2RD         CAL         CAM        HAM1     108.963    1.50
+2RD         CAL         CAM        HAM2     108.963    1.50
+2RD         CAN         CAM        HAM1     108.646    3.00
+2RD         CAN         CAM        HAM2     108.646    3.00
+2RD        HAM1         CAM        HAM2     107.852    1.50
+2RD         CAM         CAN         SAR     112.239    3.00
+2RD         CAM         CAN        HAN1     109.755    1.50
+2RD         CAM         CAN        HAN2     109.755    1.50
+2RD         SAR         CAN        HAN1     109.066    1.50
+2RD         SAR         CAN        HAN2     109.066    1.50
+2RD        HAN1         CAN        HAN2     107.885    1.52
+2RD         CAN         SAR         CAU     120.000    3.00
+2RD         SAR         CAU         CAT     128.165    2.21
+2RD         SAR         CAU         NAQ     124.076    2.05
+2RD         CAT         CAU         NAQ     107.759    2.30
+2RD         CAU         NAQ         NAO     108.312    1.50
+2RD         CAU         NAQ        HNAQ     129.234    3.00
+2RD         NAO         NAQ        HNAQ     122.454    3.00
+2RD         NAQ         NAO         NAP     107.119    1.50
+2RD         CAT         NAP         NAO     108.653    1.50
+2RD         CAS         CAT         CAU     129.256    3.00
+2RD         CAS         CAT         NAP     122.587    2.83
+2RD         CAU         CAT         NAP     108.157    1.50
+2RD         OAC         CAS         CAT     117.574    1.50
+2RD         OAC         CAS         OAB     124.852    1.50
+2RD         CAT         CAS         OAB     117.574    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+2RD             sp3_sp3_1        HAA1         CAA         CAD         CAE     180.000    10.0     3
+2RD            sp3_sp3_91         CAL         CAM         CAN         SAR     180.000    10.0     3
+2RD           sp3_sp3_100         CAM         CAN         SAR         CAU     180.000    10.0     3
+2RD             sp2_sp2_1         CAT         CAU         SAR         CAN     180.000     5.0     2
+2RD              const_12         SAR         CAU         NAQ         NAO     180.000    10.0     2
+2RD       const_sp2_sp2_4         CAS         CAT         CAU         SAR       0.000     5.0     2
+2RD       const_sp2_sp2_8         NAP         NAO         NAQ         CAU       0.000     5.0     2
+2RD       const_sp2_sp2_7         NAQ         NAO         NAP         CAT       0.000     5.0     2
+2RD       const_sp2_sp2_6         CAS         CAT         NAP         NAO     180.000     5.0     2
+2RD             sp2_sp2_3         OAC         CAS         CAT         CAU     180.000     5.0     2
+2RD            sp3_sp3_10         CAA         CAD         CAE         CAF     180.000    10.0     3
+2RD            sp3_sp3_19         CAD         CAE         CAF         CAG     180.000    10.0     3
+2RD            sp3_sp3_28         CAE         CAF         CAG         CAH     180.000    10.0     3
+2RD            sp3_sp3_37         CAF         CAG         CAH         CAI     180.000    10.0     3
+2RD            sp3_sp3_46         CAG         CAH         CAI         CAJ     180.000    10.0     3
+2RD            sp3_sp3_55         CAH         CAI         CAJ         CAK     180.000    10.0     3
+2RD            sp3_sp3_64         CAI         CAJ         CAK         CAL     180.000    10.0     3
+2RD            sp3_sp3_73         CAJ         CAK         CAL         CAM     180.000    10.0     3
+2RD            sp3_sp3_82         CAK         CAL         CAM         CAN     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+2RD    plan-1         CAS   0.020
+2RD    plan-1         CAT   0.020
+2RD    plan-1         CAU   0.020
+2RD    plan-1        HNAQ   0.020
+2RD    plan-1         NAO   0.020
+2RD    plan-1         NAP   0.020
+2RD    plan-1         NAQ   0.020
+2RD    plan-1         SAR   0.020
+2RD    plan-2         CAS   0.020
+2RD    plan-2         CAT   0.020
+2RD    plan-2         OAB   0.020
+2RD    plan-2         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+2RD           SMILES              ACDLabs 10.04                                                                                       O=C(O)c1nnnc1SCCCCCCCCCCCC
+2RD SMILES_CANONICAL               CACTVS 3.341                                                                                    CCCCCCCCCCCCSc1[nH]nnc1C(O)=O
+2RD           SMILES               CACTVS 3.341                                                                                    CCCCCCCCCCCCSc1[nH]nnc1C(O)=O
+2RD SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                  CCCCCCCCCCCCSc1c(nn[nH]1)C(=O)O
+2RD           SMILES "OpenEye OEToolkits" 1.5.0                                                                                  CCCCCCCCCCCCSc1c(nn[nH]1)C(=O)O
+2RD            InChI                InChI  1.03 InChI=1S/C15H27N3O2S/c1-2-3-4-5-6-7-8-9-10-11-12-21-14-13(15(19)20)16-18-17-14/h2-12H2,1H3,(H,19,20)(H,16,17,18)
+2RD         InChIKey                InChI  1.03                                                                                      IEZPFPQAXAREGM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+2RD acedrg               243         "dictionary generator"                  
+2RD acedrg_database      11          "data source"                           
+2RD rdkit                2017.03.2   "Chemoinformatics tool"
+2RD refmac5              5.8.0238    "optimization tool"                     

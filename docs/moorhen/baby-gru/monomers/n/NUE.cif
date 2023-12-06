@@ -1,0 +1,332 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NUE     NUE      4-[(E)-(2-amino-4-hydroxy-3,5-dimethylphenyl)diazenyl]-N-(pyridin-2-yl)benzenesulfonamide     NON-POLYMER     47     28     .     
+#
+data_comp_NUE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NUE     C1      C       CR16    0       -13.039     2.933       -1.148      
+NUE     C2      C       CR16    0       -13.967     3.958       -1.198      
+NUE     C3      C       CR16    0       -13.179     1.885       -2.035      
+NUE     C4      C       CR16    0       -14.993     3.913       -2.116      
+NUE     N5      N       NRD6    0       -14.167     1.803       -2.946      
+NUE     C6      C       CR6     0       -15.065     2.795       -2.992      
+NUE     N7      N       NH1     0       -16.037     2.623       -3.960      
+NUE     S8      S       S3      0       -17.342     3.565       -4.232      
+NUE     C9      C       CR16    0       -17.493     6.265       -4.589      
+NUE     C10     C       CR6     0       -16.758     5.112       -4.831      
+NUE     C11     C       CR16    0       -17.046     7.487       -5.066      
+NUE     C12     C       CR16    0       -15.578     5.181       -5.559      
+NUE     C13     C       CR6     0       -15.855     7.565       -5.786      
+NUE     C14     C       CR16    0       -15.127     6.402       -6.037      
+NUE     O15     O       O       0       -18.008     3.783       -2.985      
+NUE     O16     O       O       0       -18.056     2.929       -5.295      
+NUE     N17     N       N       0       -15.384     8.823       -6.301      
+NUE     N18     N       N       0       -15.241     9.754       -5.465      
+NUE     C19     C       CR6     0       -14.833     10.998      -6.025      
+NUE     C20     C       CR16    0       -13.628     11.068      -6.739      
+NUE     C21     C       CR6     0       -15.607     12.174      -5.870      
+NUE     C22     C       CR6     0       -13.177     12.250      -7.304      
+NUE     C23     C       CR6     0       -15.167     13.383      -6.431      
+NUE     C24     C       CR6     0       -13.955     13.404      -7.145      
+NUE     N25     N       NH2     0       -16.769     12.119      -5.182      
+NUE     C26     C       CH3     0       -15.973     14.658      -6.288      
+NUE     O27     O       OH1     0       -13.511     14.582      -7.707      
+NUE     C28     C       CH3     0       -11.882     12.293      -8.071      
+NUE     H1      H       H       0       -12.330     2.949       -0.525      
+NUE     H2      H       H       0       -13.900     4.690       -0.606      
+NUE     H3      H       H       0       -12.550     1.184       -2.004      
+NUE     H4      H       H       0       -15.630     4.605       -2.162      
+NUE     HN7     H       H       0       -15.957     1.943       -4.487      
+NUE     H9      H       H       0       -18.293     6.221       -4.101      
+NUE     H11     H       H       0       -17.542     8.269       -4.899      
+NUE     H12     H       H       0       -15.081     4.403       -5.729      
+NUE     H14     H       H       0       -14.326     6.450       -6.528      
+NUE     H20     H       H       0       -13.111     10.291      -6.844      
+NUE     HN25    H       H       0       -17.523     12.311      -5.586      
+NUE     HN2A    H       H       0       -16.763     11.892      -4.335      
+NUE     H26     H       H       0       -15.375     15.416      -6.183      
+NUE     H26A    H       H       0       -16.549     14.604      -5.510      
+NUE     H26B    H       H       0       -16.518     14.788      -7.082      
+NUE     HO27    H       H       0       -13.133     15.178      -7.214      
+NUE     H28     H       H       0       -11.377     13.083      -7.821      
+NUE     H28A    H       H       0       -12.069     12.318      -9.023      
+NUE     H28B    H       H       0       -11.356     11.502      -7.869      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NUE          C1          C2      DOUBLE       y     1.379  0.0113     1.379  0.0113
+NUE          C1          C3      SINGLE       y     1.374  0.0152     1.374  0.0152
+NUE          C2          C4      SINGLE       y     1.374  0.0101     1.374  0.0101
+NUE          C3          N5      DOUBLE       y     1.343  0.0100     1.343  0.0100
+NUE          C4          C6      DOUBLE       y     1.396  0.0200     1.396  0.0200
+NUE          N5          C6      SINGLE       y     1.334  0.0100     1.334  0.0100
+NUE          C6          N7      SINGLE       n     1.360  0.0198     1.360  0.0198
+NUE          N7          S8      SINGLE       n     1.629  0.0114     1.629  0.0114
+NUE          S8         C10      SINGLE       n     1.757  0.0100     1.757  0.0100
+NUE          S8         O15      DOUBLE       n     1.430  0.0100     1.430  0.0100
+NUE          S8         O16      DOUBLE       n     1.430  0.0100     1.430  0.0100
+NUE          C9         C10      DOUBLE       y     1.385  0.0100     1.385  0.0100
+NUE          C9         C11      SINGLE       y     1.382  0.0100     1.382  0.0100
+NUE         C10         C12      SINGLE       y     1.385  0.0100     1.385  0.0100
+NUE         C11         C13      DOUBLE       y     1.389  0.0100     1.389  0.0100
+NUE         C12         C14      DOUBLE       y     1.382  0.0100     1.382  0.0100
+NUE         C13         C14      SINGLE       y     1.389  0.0100     1.389  0.0100
+NUE         C13         N17      SINGLE       n     1.430  0.0176     1.430  0.0176
+NUE         N17         N18      DOUBLE       n     1.250  0.0190     1.250  0.0190
+NUE         N18         C19      SINGLE       n     1.420  0.0100     1.420  0.0100
+NUE         C19         C20      DOUBLE       y     1.396  0.0117     1.396  0.0117
+NUE         C19         C21      SINGLE       y     1.409  0.0108     1.409  0.0108
+NUE         C20         C22      SINGLE       y     1.382  0.0100     1.382  0.0100
+NUE         C21         C23      DOUBLE       y     1.396  0.0100     1.396  0.0100
+NUE         C21         N25      SINGLE       n     1.349  0.0100     1.349  0.0100
+NUE         C22         C24      DOUBLE       y     1.395  0.0100     1.395  0.0100
+NUE         C22         C28      SINGLE       n     1.504  0.0100     1.504  0.0100
+NUE         C23         C24      SINGLE       y     1.400  0.0100     1.400  0.0100
+NUE         C23         C26      SINGLE       n     1.507  0.0128     1.507  0.0128
+NUE         C24         O27      SINGLE       n     1.374  0.0155     1.374  0.0155
+NUE          C1          H1      SINGLE       n     1.082  0.0130     0.944  0.0200
+NUE          C2          H2      SINGLE       n     1.082  0.0130     0.944  0.0178
+NUE          C3          H3      SINGLE       n     1.082  0.0130     0.943  0.0178
+NUE          C4          H4      SINGLE       n     1.082  0.0130     0.945  0.0200
+NUE          N7         HN7      SINGLE       n     1.016  0.0100     0.862  0.0200
+NUE          C9          H9      SINGLE       n     1.082  0.0130     0.939  0.0155
+NUE         C11         H11      SINGLE       n     1.082  0.0130     0.941  0.0200
+NUE         C12         H12      SINGLE       n     1.082  0.0130     0.939  0.0155
+NUE         C14         H14      SINGLE       n     1.082  0.0130     0.941  0.0200
+NUE         C20         H20      SINGLE       n     1.082  0.0130     0.939  0.0130
+NUE         N25        HN25      SINGLE       n     1.016  0.0100     0.877  0.0200
+NUE         N25        HN2A      SINGLE       n     1.016  0.0100     0.877  0.0200
+NUE         C26         H26      SINGLE       n     1.089  0.0100     0.971  0.0135
+NUE         C26        H26A      SINGLE       n     1.089  0.0100     0.971  0.0135
+NUE         C26        H26B      SINGLE       n     1.089  0.0100     0.971  0.0135
+NUE         O27        HO27      SINGLE       n     0.966  0.0059     0.861  0.0200
+NUE         C28         H28      SINGLE       n     1.089  0.0100     0.971  0.0135
+NUE         C28        H28A      SINGLE       n     1.089  0.0100     0.971  0.0135
+NUE         C28        H28B      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NUE          C2          C1          C3     118.210    1.50
+NUE          C2          C1          H1     120.966    1.50
+NUE          C3          C1          H1     120.825    1.50
+NUE          C1          C2          C4     119.686    1.50
+NUE          C1          C2          H2     120.443    1.50
+NUE          C4          C2          H2     119.872    1.50
+NUE          C1          C3          N5     123.768    1.50
+NUE          C1          C3          H3     118.451    1.50
+NUE          N5          C3          H3     117.781    1.50
+NUE          C2          C4          C6     118.320    1.50
+NUE          C2          C4          H4     121.276    1.50
+NUE          C6          C4          H4     120.403    1.50
+NUE          C3          N5          C6     117.375    1.50
+NUE          C4          C6          N5     122.641    1.50
+NUE          C4          C6          N7     121.050    2.22
+NUE          N5          C6          N7     116.310    2.98
+NUE          C6          N7          S8     124.132    2.17
+NUE          C6          N7         HN7     118.240    1.52
+NUE          S8          N7         HN7     117.628    1.99
+NUE          N7          S8         C10     106.766    1.50
+NUE          N7          S8         O15     107.008    2.89
+NUE          N7          S8         O16     107.008    2.89
+NUE         C10          S8         O15     108.260    1.50
+NUE         C10          S8         O16     108.260    1.50
+NUE         O15          S8         O16     119.445    1.50
+NUE         C10          C9         C11     120.015    1.50
+NUE         C10          C9          H9     120.138    1.50
+NUE         C11          C9          H9     119.847    1.50
+NUE          S8         C10          C9     119.795    1.50
+NUE          S8         C10         C12     119.795    1.50
+NUE          C9         C10         C12     120.410    1.50
+NUE          C9         C11         C13     119.893    1.50
+NUE          C9         C11         H11     120.212    1.50
+NUE         C13         C11         H11     119.895    1.50
+NUE         C10         C12         C14     120.015    1.50
+NUE         C10         C12         H12     120.138    1.50
+NUE         C14         C12         H12     119.847    1.50
+NUE         C11         C13         C14     119.773    1.50
+NUE         C11         C13         N17     120.113    3.00
+NUE         C14         C13         N17     120.113    3.00
+NUE         C12         C14         C13     119.893    1.50
+NUE         C12         C14         H14     120.212    1.50
+NUE         C13         C14         H14     119.895    1.50
+NUE         C13         N17         N18     113.763    2.05
+NUE         N17         N18         C19     114.025    1.69
+NUE         N18         C19         C20     120.549    3.00
+NUE         N18         C19         C21     120.419    3.00
+NUE         C20         C19         C21     119.032    1.50
+NUE         C19         C20         C22     121.308    1.50
+NUE         C19         C20         H20     119.613    1.50
+NUE         C22         C20         H20     119.079    1.50
+NUE         C19         C21         C23     120.036    1.50
+NUE         C19         C21         N25     120.034    1.50
+NUE         C23         C21         N25     119.930    1.50
+NUE         C20         C22         C24     118.251    1.50
+NUE         C20         C22         C28     121.442    1.50
+NUE         C24         C22         C28     120.307    1.50
+NUE         C21         C23         C24     119.555    1.50
+NUE         C21         C23         C26     120.698    1.50
+NUE         C24         C23         C26     119.748    1.50
+NUE         C22         C24         C23     121.818    1.50
+NUE         C22         C24         O27     119.091    3.00
+NUE         C23         C24         O27     119.091    3.00
+NUE         C21         N25        HN25     119.795    1.50
+NUE         C21         N25        HN2A     119.794    1.50
+NUE        HN25         N25        HN2A     120.408    3.00
+NUE         C23         C26         H26     109.580    1.50
+NUE         C23         C26        H26A     109.580    1.50
+NUE         C23         C26        H26B     109.580    1.50
+NUE         H26         C26        H26A     109.348    1.50
+NUE         H26         C26        H26B     109.348    1.50
+NUE        H26A         C26        H26B     109.348    1.50
+NUE         C24         O27        HO27     120.000    3.00
+NUE         C22         C28         H28     109.597    1.50
+NUE         C22         C28        H28A     109.597    1.50
+NUE         C22         C28        H28B     109.597    1.50
+NUE         H28         C28        H28A     109.348    1.50
+NUE         H28         C28        H28B     109.348    1.50
+NUE        H28A         C28        H28B     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NUE              const_41          C3          C1          C2          C4       0.000    10.0     2
+NUE              const_57          C2          C1          C3          N5       0.000    10.0     2
+NUE              const_18          C9         C11         C13         N17     180.000    10.0     2
+NUE       const_sp2_sp2_9         C10         C12         C14         C13       0.000     5.0     2
+NUE              const_15         N17         C13         C14         C12     180.000    10.0     2
+NUE             sp2_sp2_5         C11         C13         N17         N18     180.000     5.0     2
+NUE             sp2_sp2_7         C13         N17         N18         C19     180.000     5.0     2
+NUE             sp2_sp2_8         C20         C19         N18         N17     180.000     5.0     2
+NUE              const_23         N18         C19         C20         C22     180.000    10.0     2
+NUE              const_68         N18         C19         C21         N25       0.000    10.0     2
+NUE              const_26         C19         C20         C22         C28     180.000    10.0     2
+NUE              const_45          C1          C2          C4          C6       0.000    10.0     2
+NUE              const_40         N25         C21         C23         C26       0.000    10.0     2
+NUE            sp2_sp2_10         C19         C21         N25        HN25     180.000     5.0     2
+NUE              const_32         C28         C22         C24         O27       0.000    10.0     2
+NUE            sp2_sp3_13         C20         C22         C28         H28     150.000    10.0     6
+NUE              const_36         C26         C23         C24         O27       0.000    10.0     2
+NUE            sp2_sp3_19         C21         C23         C26         H26     150.000    10.0     6
+NUE            sp2_sp2_14         C22         C24         O27        HO27     180.000     5.0     2
+NUE              const_55          C1          C3          N5          C6       0.000    10.0     2
+NUE              const_50          C2          C4          C6          N7     180.000    10.0     2
+NUE              const_54          N7          C6          N5          C3     180.000    10.0     2
+NUE             sp2_sp2_1          C4          C6          N7          S8     180.000     5.0     2
+NUE             sp2_sp3_2          C6          N7          S8         O15     120.000    10.0     6
+NUE             sp2_sp3_9          C9         C10          S8          N7      30.000    10.0     6
+NUE              const_61         C13         C11          C9         C10       0.000    10.0     2
+NUE       const_sp2_sp2_3          S8         C10          C9         C11     180.000     5.0     2
+NUE       const_sp2_sp2_7          S8         C10         C12         C14     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NUE    chir_1    S8    O15    O16    N7    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NUE    plan-1          C1   0.020
+NUE    plan-1          C2   0.020
+NUE    plan-1          C3   0.020
+NUE    plan-1          C4   0.020
+NUE    plan-1          C6   0.020
+NUE    plan-1          H1   0.020
+NUE    plan-1          H2   0.020
+NUE    plan-1          H3   0.020
+NUE    plan-1          H4   0.020
+NUE    plan-1          N5   0.020
+NUE    plan-1          N7   0.020
+NUE    plan-2         C10   0.020
+NUE    plan-2         C11   0.020
+NUE    plan-2         C12   0.020
+NUE    plan-2         C13   0.020
+NUE    plan-2         C14   0.020
+NUE    plan-2          C9   0.020
+NUE    plan-2         H11   0.020
+NUE    plan-2         H12   0.020
+NUE    plan-2         H14   0.020
+NUE    plan-2          H9   0.020
+NUE    plan-2         N17   0.020
+NUE    plan-2          S8   0.020
+NUE    plan-3         C19   0.020
+NUE    plan-3         C20   0.020
+NUE    plan-3         C21   0.020
+NUE    plan-3         C22   0.020
+NUE    plan-3         C23   0.020
+NUE    plan-3         C24   0.020
+NUE    plan-3         C26   0.020
+NUE    plan-3         C28   0.020
+NUE    plan-3         H20   0.020
+NUE    plan-3         N18   0.020
+NUE    plan-3         N25   0.020
+NUE    plan-3         O27   0.020
+NUE    plan-4          C6   0.020
+NUE    plan-4         HN7   0.020
+NUE    plan-4          N7   0.020
+NUE    plan-4          S8   0.020
+NUE    plan-5         C21   0.020
+NUE    plan-5        HN25   0.020
+NUE    plan-5        HN2A   0.020
+NUE    plan-5         N25   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NUE           SMILES              ACDLabs 12.01                                                                                              O=S(=O)(Nc1ncccc1)c3ccc(/N=N/c2cc(c(O)c(c2N)C)C)cc3
+NUE            InChI                InChI  1.03 InChI=1S/C19H19N5O3S/c1-12-11-16(18(20)13(2)19(12)25)23-22-14-6-8-15(9-7-14)28(26,27)24-17-5-3-4-10-21-17/h3-11,25H,20H2,1-2H3,(H,21,24)/b23-22+
+NUE         InChIKey                InChI  1.03                                                                                                                      PJXWUXARDBIOKJ-GHVJWSGMSA-N
+NUE SMILES_CANONICAL               CACTVS 3.385                                                                                              Cc1cc(N=Nc2ccc(cc2)[S](=O)(=O)Nc3ccccn3)c(N)c(C)c1O
+NUE           SMILES               CACTVS 3.385                                                                                              Cc1cc(N=Nc2ccc(cc2)[S](=O)(=O)Nc3ccccn3)c(N)c(C)c1O
+NUE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                              Cc1cc(c(c(c1O)C)N)/N=N/c2ccc(cc2)S(=O)(=O)Nc3ccccn3
+NUE           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                Cc1cc(c(c(c1O)C)N)N=Nc2ccc(cc2)S(=O)(=O)Nc3ccccn3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NUE acedrg               243         "dictionary generator"                  
+NUE acedrg_database      11          "data source"                           
+NUE rdkit                2017.03.2   "Chemoinformatics tool"
+NUE refmac5              5.8.0238    "optimization tool"                     

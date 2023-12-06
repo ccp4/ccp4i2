@@ -1,0 +1,251 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FPG     FPG      "(1S)-1-[(1R)-1-FLUOROETHYL]-1,5-DIMETHYLHEXYL TRIHYDROGEN DIPHOSPHATE"     NON-POLYMER     40     20     .     
+#
+data_comp_FPG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FPG     C9      C       CH3     0       20.022      59.180      -55.809     
+FPG     C7      C       CH1     0       20.990      58.079      -56.228     
+FPG     C6      C       CH2     0       21.496      57.294      -55.012     
+FPG     C8      C       CH3     0       22.142      58.662      -57.041     
+FPG     C2      C       CH1     0       21.646      53.819      -52.958     
+FPG     C1      C       CH3     0       20.197      54.274      -52.899     
+FPG     C10     C       CH3     0       22.459      56.041      -52.007     
+FPG     C5      C       CH2     0       22.041      55.908      -55.296     
+FPG     C4      C       CH2     0       23.146      55.410      -54.358     
+FPG     F       F       F       0       21.773      53.006      -54.110     
+FPG     C3      C       CT      0       22.772      54.890      -52.959     
+FPG     O1      O       O2      0       23.997      54.201      -52.513     
+FPG     PA      P       P       0       24.532      53.975      -51.010     
+FPG     O1A     O       O       0       25.395      55.138      -50.646     
+FPG     O2A     O       OP      -1      23.393      53.621      -50.110     
+FPG     O3A     O       O2      0       25.456      52.677      -51.186     
+FPG     PB      P       P       0       25.979      51.584      -50.119     
+FPG     O2B     O       OP      -1      24.774      50.754      -49.750     
+FPG     O3B     O       O       0       27.043      50.783      -50.830     
+FPG     O1B     O       OP      -1      26.524      52.371      -48.952     
+FPG     H91     H       H       0       20.331      59.588      -54.982     
+FPG     H92     H       H       0       19.138      58.798      -55.670     
+FPG     H93     H       H       0       19.974      59.858      -56.506     
+FPG     H7      H       H       0       20.498      57.449      -56.810     
+FPG     H61     H       H       0       20.754      57.207      -54.377     
+FPG     H62     H       H       0       22.198      57.823      -54.576     
+FPG     H81     H       H       0       22.910      58.067      -56.996     
+FPG     H82     H       H       0       22.387      59.533      -56.683     
+FPG     H83     H       H       0       21.865      58.761      -57.969     
+FPG     H2      H       H       0       21.816      53.229      -52.184     
+FPG     H11     H       H       0       20.106      55.156      -53.296     
+FPG     H12     H       H       0       19.904      54.308      -51.973     
+FPG     H13     H       H       0       19.638      53.646      -53.387     
+FPG     H101    H       H       0       23.266      56.559      -51.846     
+FPG     H102    H       H       0       22.126      55.689      -51.165     
+FPG     H103    H       H       0       21.784      56.615      -52.396     
+FPG     H51     H       H       0       22.396      55.905      -56.210     
+FPG     H52     H       H       0       21.296      55.276      -55.283     
+FPG     H41     H       H       0       23.786      56.143      -54.238     
+FPG     H42     H       H       0       23.625      54.692      -54.827     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FPG          C9          C7      SINGLE       n     1.521  0.0151     1.521  0.0151
+FPG          C7          C8      SINGLE       n     1.521  0.0151     1.521  0.0151
+FPG          C7          C6      SINGLE       n     1.529  0.0177     1.529  0.0177
+FPG          C6          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+FPG          C2           F      SINGLE       n     1.414  0.0155     1.414  0.0155
+FPG          C2          C3      SINGLE       n     1.542  0.0140     1.542  0.0140
+FPG          C2          C1      SINGLE       n     1.511  0.0200     1.511  0.0200
+FPG         C10          C3      SINGLE       n     1.522  0.0103     1.522  0.0103
+FPG          C5          C4      SINGLE       n     1.527  0.0105     1.527  0.0105
+FPG          C4          C3      SINGLE       n     1.532  0.0100     1.532  0.0100
+FPG          C3          O1      SINGLE       n     1.455  0.0200     1.455  0.0200
+FPG          O1          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+FPG          PA         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+FPG          PA         O1A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+FPG          PA         O2A      SINGLE       n     1.493  0.0122     1.493  0.0122
+FPG         O3A          PB      SINGLE       n     1.614  0.0178     1.614  0.0178
+FPG          PB         O3B      DOUBLE       n     1.509  0.0200     1.509  0.0200
+FPG          PB         O1B      SINGLE       n     1.509  0.0200     1.509  0.0200
+FPG          PB         O2B      SINGLE       n     1.509  0.0200     1.509  0.0200
+FPG          C9         H91      SINGLE       n     1.089  0.0100     0.973  0.0146
+FPG          C9         H92      SINGLE       n     1.089  0.0100     0.973  0.0146
+FPG          C9         H93      SINGLE       n     1.089  0.0100     0.973  0.0146
+FPG          C7          H7      SINGLE       n     1.089  0.0100     0.989  0.0162
+FPG          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0160
+FPG          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0160
+FPG          C8         H81      SINGLE       n     1.089  0.0100     0.973  0.0146
+FPG          C8         H82      SINGLE       n     1.089  0.0100     0.973  0.0146
+FPG          C8         H83      SINGLE       n     1.089  0.0100     0.973  0.0146
+FPG          C2          H2      SINGLE       n     1.089  0.0100     0.990  0.0178
+FPG          C1         H11      SINGLE       n     1.089  0.0100     0.972  0.0116
+FPG          C1         H12      SINGLE       n     1.089  0.0100     0.972  0.0116
+FPG          C1         H13      SINGLE       n     1.089  0.0100     0.972  0.0116
+FPG         C10        H101      SINGLE       n     1.089  0.0100     0.972  0.0148
+FPG         C10        H102      SINGLE       n     1.089  0.0100     0.972  0.0148
+FPG         C10        H103      SINGLE       n     1.089  0.0100     0.972  0.0148
+FPG          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0163
+FPG          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0163
+FPG          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0160
+FPG          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0160
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FPG          C7          C9         H91     109.488    1.50
+FPG          C7          C9         H92     109.488    1.50
+FPG          C7          C9         H93     109.488    1.50
+FPG         H91          C9         H92     109.411    1.50
+FPG         H91          C9         H93     109.411    1.50
+FPG         H92          C9         H93     109.411    1.50
+FPG          C9          C7          C8     110.507    1.50
+FPG          C9          C7          C6     111.368    1.50
+FPG          C9          C7          H7     108.052    1.50
+FPG          C8          C7          C6     111.368    1.50
+FPG          C8          C7          H7     108.052    1.50
+FPG          C6          C7          H7     107.933    1.50
+FPG          C7          C6          C5     115.585    1.50
+FPG          C7          C6         H61     108.407    1.50
+FPG          C7          C6         H62     108.407    1.50
+FPG          C5          C6         H61     108.469    1.50
+FPG          C5          C6         H62     108.469    1.50
+FPG         H61          C6         H62     107.657    1.50
+FPG          C7          C8         H81     109.488    1.50
+FPG          C7          C8         H82     109.488    1.50
+FPG          C7          C8         H83     109.488    1.50
+FPG         H81          C8         H82     109.411    1.50
+FPG         H81          C8         H83     109.411    1.50
+FPG         H82          C8         H83     109.411    1.50
+FPG           F          C2          C3     109.677    1.89
+FPG           F          C2          C1     107.649    1.50
+FPG           F          C2          H2     107.879    1.55
+FPG          C3          C2          C1     117.460    2.92
+FPG          C3          C2          H2     108.039    1.50
+FPG          C1          C2          H2     110.034    1.50
+FPG          C2          C1         H11     109.639    1.50
+FPG          C2          C1         H12     109.639    1.50
+FPG          C2          C1         H13     109.639    1.50
+FPG         H11          C1         H12     109.294    1.50
+FPG         H11          C1         H13     109.294    1.50
+FPG         H12          C1         H13     109.294    1.50
+FPG          C3         C10        H101     109.483    1.50
+FPG          C3         C10        H102     109.483    1.50
+FPG          C3         C10        H103     109.483    1.50
+FPG        H101         C10        H102     109.441    1.50
+FPG        H101         C10        H103     109.441    1.50
+FPG        H102         C10        H103     109.441    1.50
+FPG          C6          C5          C4     114.183    2.57
+FPG          C6          C5         H51     108.762    1.50
+FPG          C6          C5         H52     108.762    1.50
+FPG          C4          C5         H51     108.962    1.50
+FPG          C4          C5         H52     108.962    1.50
+FPG         H51          C5         H52     107.646    1.50
+FPG          C5          C4          C3     116.288    1.50
+FPG          C5          C4         H41     108.123    1.50
+FPG          C5          C4         H42     108.123    1.50
+FPG          C3          C4         H41     108.201    1.50
+FPG          C3          C4         H42     108.201    1.50
+FPG         H41          C4         H42     107.452    1.50
+FPG          C2          C3         C10     110.581    2.00
+FPG          C2          C3          C4     111.779    1.50
+FPG          C2          C3          O1     108.266    3.00
+FPG         C10          C3          C4     111.119    1.58
+FPG         C10          C3          O1     107.599    3.00
+FPG          C4          C3          O1     108.266    3.00
+FPG          C3          O1          PA     121.496    2.55
+FPG          O1          PA         O3A     101.065    1.97
+FPG          O1          PA         O1A     107.912    2.57
+FPG          O1          PA         O2A     107.912    2.57
+FPG         O3A          PA         O1A     108.816    2.14
+FPG         O3A          PA         O2A     108.816    2.14
+FPG         O1A          PA         O2A     118.411    2.35
+FPG          PA         O3A          PB     132.584    3.00
+FPG         O3A          PB         O3B     105.965    2.38
+FPG         O3A          PB         O1B     105.965    2.38
+FPG         O3A          PB         O2B     105.965    2.38
+FPG         O3B          PB         O1B     112.716    1.50
+FPG         O3B          PB         O2B     112.716    1.50
+FPG         O1B          PB         O2B     112.716    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FPG             sp3_sp3_4          C8          C7          C9         H91      60.000    10.0     3
+FPG            sp3_sp3_82          C2          C3          O1          PA     180.000    10.0     3
+FPG            sp3_sp3_85          C3          O1          PA         O3A     180.000    10.0     3
+FPG            sp3_sp3_89          PB         O3A          PA          O1     -60.000    10.0     3
+FPG            sp3_sp3_93          PA         O3A          PB         O3B      60.000    10.0     3
+FPG            sp3_sp3_20          C5          C6          C7          C9     -60.000    10.0     3
+FPG            sp3_sp3_10          C9          C7          C8         H81     180.000    10.0     3
+FPG            sp3_sp3_28          C4          C5          C6          C7     180.000    10.0     3
+FPG            sp3_sp3_37           F          C2          C3         C10     180.000    10.0     3
+FPG            sp3_sp3_46         H11          C1          C2           F     180.000    10.0     3
+FPG            sp3_sp3_55        H101         C10          C3          C2     180.000    10.0     3
+FPG            sp3_sp3_64          C3          C4          C5          C6     180.000    10.0     3
+FPG            sp3_sp3_73          C2          C3          C4          C5     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FPG    chir_1    C7    C6    C9    C8    both
+FPG    chir_2    C2    F    C3    C1    negative
+FPG    chir_3    C3    O1    C2    C4    positive
+FPG    chir_4    PA    O3A    O1    O2A    both
+FPG    chir_5    PB    O3A    O1B    O2B    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FPG           SMILES              ACDLabs 10.04                                                                                          O=P(OP(=O)(OC(C(F)C)(C)CCCC(C)C)O)(O)O
+FPG SMILES_CANONICAL               CACTVS 3.341                                                                             CC(C)CCC[C@](C)(O[P@](O)(=O)O[P](O)(O)=O)[C@@H](C)F
+FPG           SMILES               CACTVS 3.341                                                                                 CC(C)CCC[C](C)(O[P](O)(=O)O[P](O)(O)=O)[CH](C)F
+FPG SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                  CC(C)CCC[C@@](C)(C(C)F)O[P@@](=O)(O)OP(=O)(O)O
+FPG           SMILES "OpenEye OEToolkits" 1.5.0                                                                                          CC(C)CCCC(C)(C(C)F)OP(=O)(O)OP(=O)(O)O
+FPG            InChI                InChI  1.03 InChI=1S/C10H23FO7P2/c1-8(2)6-5-7-10(4,9(3)11)17-20(15,16)18-19(12,13)14/h8-9H,5-7H2,1-4H3,(H,15,16)(H2,12,13,14)/t9-,10+/m1/s1
+FPG         InChIKey                InChI  1.03                                                                                                     JUOIVVAWJCVSPX-ZJUUUORDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FPG acedrg               243         "dictionary generator"                  
+FPG acedrg_database      11          "data source"                           
+FPG rdkit                2017.03.2   "Chemoinformatics tool"
+FPG refmac5              5.8.0238    "optimization tool"                     

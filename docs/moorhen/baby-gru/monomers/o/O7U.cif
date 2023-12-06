@@ -1,0 +1,167 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+O7U     O7U      "(2R)-2-amino-2,5-dihydro-1,5,2-diazaphosphinin-6(1H)-one 2-oxide"     NON-POLYMER     15     9     .     
+#
+data_comp_O7U
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+O7U     N1      N       NR6     0       -68.348     18.021      -14.890     
+O7U     C2      C       CR6     0       -68.699     19.295      -15.287     
+O7U     O2      O       O       0       -69.660     19.860      -14.792     
+O7U     N3      N       NR6     0       -67.927     19.905      -16.204     
+O7U     N4      N       NT2     0       -67.031     19.287      -18.578     
+O7U     O4      O       O       0       -65.417     19.847      -16.620     
+O7U     P4      P       P       0       -66.675     19.163      -16.994     
+O7U     C5      C       CR16    0       -66.773     17.473      -16.572     
+O7U     C6      C       CR16    0       -67.758     17.096      -15.691     
+O7U     HN1     H       H       0       -68.524     17.801      -14.060     
+O7U     HN3     H       H       0       -68.100     20.744      -16.390     
+O7U     HN4     H       H       0       -66.341     19.342      -19.062     
+O7U     HN4A    H       H       0       -67.561     19.922      -18.742     
+O7U     H5      H       H       0       -66.167     16.843      -16.937     
+O7U     H6      H       H       0       -68.024     16.193      -15.643     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+O7U          N1          C2      SINGLE       n     1.373  0.0100     1.373  0.0100
+O7U          N1          C6      SINGLE       n     1.353  0.0127     1.353  0.0127
+O7U          C2          O2      DOUBLE       n     1.219  0.0100     1.219  0.0100
+O7U          C2          N3      SINGLE       n     1.335  0.0126     1.335  0.0126
+O7U          N3          P4      SINGLE       n     1.652  0.0200     1.652  0.0200
+O7U          N4          P4      SINGLE       n     1.630  0.0200     1.630  0.0200
+O7U          O4          P4      DOUBLE       n     1.481  0.0100     1.481  0.0100
+O7U          P4          C5      SINGLE       n     1.758  0.0200     1.758  0.0200
+O7U          C5          C6      DOUBLE       n     1.378  0.0200     1.378  0.0200
+O7U          N1         HN1      SINGLE       n     1.016  0.0100     0.876  0.0200
+O7U          N3         HN3      SINGLE       n     1.016  0.0100     0.875  0.0200
+O7U          N4         HN4      SINGLE       n     1.036  0.0160     0.844  0.0200
+O7U          N4        HN4A      SINGLE       n     1.036  0.0160     0.844  0.0200
+O7U          C5          H5      SINGLE       n     1.082  0.0130     0.947  0.0200
+O7U          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+O7U          C2          N1          C6     123.270    1.50
+O7U          C2          N1         HN1     117.499    1.92
+O7U          C6          N1         HN1     119.231    2.24
+O7U          N1          C2          O2     121.804    1.50
+O7U          N1          C2          N3     116.179    1.50
+O7U          O2          C2          N3     122.017    1.50
+O7U          C2          N3          P4     121.209    3.00
+O7U          C2          N3         HN3     118.665    2.09
+O7U          P4          N3         HN3     120.125    2.30
+O7U          P4          N4         HN4     112.506    3.00
+O7U          P4          N4        HN4A     112.506    3.00
+O7U         HN4          N4        HN4A     110.637    3.00
+O7U          N3          P4          N4     107.006    3.00
+O7U          N3          P4          O4     109.471    3.00
+O7U          N3          P4          C5     108.762    1.50
+O7U          N4          P4          O4     113.933    2.02
+O7U          N4          P4          C5     109.471    3.00
+O7U          O4          P4          C5     117.367    2.54
+O7U          P4          C5          C6     121.126    2.94
+O7U          P4          C5          H5     119.145    1.50
+O7U          C6          C5          H5     119.729    1.50
+O7U          N1          C6          C5     121.037    3.00
+O7U          N1          C6          H6     119.504    1.50
+O7U          C5          C6          H6     119.458    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+O7U             sp2_sp2_3          O2          C2          N1          C6     180.000     5.0     2
+O7U            sp2_sp2_13          C5          C6          N1          C2       0.000     5.0     2
+O7U             sp2_sp2_7          O2          C2          N3          P4     180.000     5.0     2
+O7U             sp2_sp3_2          C2          N3          P4          N4     120.000    10.0     6
+O7U             sp3_sp3_2         HN4          N4          P4          O4     -60.000    10.0     3
+O7U             sp2_sp3_8          C6          C5          P4          N4     120.000    10.0     6
+O7U             sp2_sp2_9          P4          C5          C6          N1       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+O7U    chir_1    P4    O4    N3    N4    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+O7U    plan-1          C2   0.020
+O7U    plan-1          C6   0.020
+O7U    plan-1         HN1   0.020
+O7U    plan-1          N1   0.020
+O7U    plan-2          C2   0.020
+O7U    plan-2          N1   0.020
+O7U    plan-2          N3   0.020
+O7U    plan-2          O2   0.020
+O7U    plan-3          C2   0.020
+O7U    plan-3         HN3   0.020
+O7U    plan-3          N3   0.020
+O7U    plan-3          P4   0.020
+O7U    plan-4          C5   0.020
+O7U    plan-4          C6   0.020
+O7U    plan-4          H5   0.020
+O7U    plan-4          P4   0.020
+O7U    plan-5          C5   0.020
+O7U    plan-5          C6   0.020
+O7U    plan-5          H6   0.020
+O7U    plan-5          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+O7U           SMILES              ACDLabs 12.01                                                     O=C1NC=CP(=O)(N)N1
+O7U SMILES_CANONICAL               CACTVS 3.370                                                 N[P@@]1(=O)NC(=O)NC=C1
+O7U           SMILES               CACTVS 3.370                                                   N[P]1(=O)NC(=O)NC=C1
+O7U SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                C1=C[P@](=O)(NC(=O)N1)N
+O7U           SMILES "OpenEye OEToolkits" 1.7.0                                                   C1=CP(=O)(NC(=O)N1)N
+O7U            InChI                InChI  1.03 InChI=1S/C3H6N3O2P/c4-9(8)2-1-5-3(7)6-9/h1-2H,(H4,4,5,6,7,8)/t9-/m1/s1
+O7U         InChIKey                InChI  1.03                                            GGLLBAYBJJLFCT-SECBINFHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+O7U acedrg               243         "dictionary generator"                  
+O7U acedrg_database      11          "data source"                           
+O7U rdkit                2017.03.2   "Chemoinformatics tool"
+O7U refmac5              5.8.0238    "optimization tool"                     

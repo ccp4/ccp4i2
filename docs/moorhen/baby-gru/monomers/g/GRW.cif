@@ -1,0 +1,522 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+GRW     GRW      (2~{S})-~{N}-[(2~{S},3~{R})-1-[[(2~{S})-1-[4-(aminomethyl)phenyl]-4-methylsulfonyl-butan-2-yl]amino]-3-oxidanyl-1-oxidanylidene-butan-2-yl]-2-[[(2~{R})-2-azido-3-phenyl-propanoyl]amino]-4-methyl-pentanamide     NON-POLYMER     90     45     .     
+#
+data_comp_GRW
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+GRW     C6      C       CH1     0       58.738      -133.992    33.169      
+GRW     C7      C       C       0       59.697      -134.640    34.141      
+GRW     C10     C       C       0       61.235      -134.321    36.881      
+GRW     C13     C       C       0       62.458      -135.436    40.117      
+GRW     C15     C       CH1     0       63.452      -134.820    42.302      
+GRW     C17     C       CR6     0       63.802      -132.301    42.469      
+GRW     C20     C       CR6     0       64.559      -129.942    41.131      
+GRW     C21     C       CH2     0       64.965      -128.677    40.413      
+GRW     C24     C       CR16    0       65.141      -131.986    42.276      
+GRW     C26     C       CH2     0       62.100      -136.257    43.957      
+GRW     C28     C       CH3     0       61.346      -138.794    43.105      
+GRW     C23     C       CR16    0       65.516      -130.823    41.617      
+GRW     N22     N       NT2     0       65.060      -127.527    41.319      
+GRW     C19     C       CR16    0       63.219      -130.254    41.321      
+GRW     C18     C       CR16    0       62.847      -131.417    41.981      
+GRW     C16     C       CH2     0       63.396      -133.569    43.187      
+GRW     C25     C       CH2     0       63.362      -136.113    43.118      
+GRW     S27     S       S3      0       61.879      -137.926    44.531      
+GRW     O30     O       O       0       63.153      -138.435    44.929      
+GRW     O29     O       O       0       60.822      -137.931    45.493      
+GRW     N14     N       NH1     0       62.406      -134.782    41.287      
+GRW     O31     O       O       0       63.392      -136.168    39.793      
+GRW     C12     C       CH1     0       61.267      -135.253    39.171      
+GRW     C32     C       CH1     0       60.235      -136.377    39.376      
+GRW     C14     C       CH3     0       58.934      -136.098    38.656      
+GRW     O33     O       OH1     0       60.786      -137.611    38.912      
+GRW     N11     N       NH1     0       61.701      -135.202    37.780      
+GRW     O39     O       O       0       60.431      -133.430    37.155      
+GRW     C9      C       CH1     0       61.761      -134.454    35.448      
+GRW     C40     C       CH2     0       63.104      -133.737    35.305      
+GRW     C41     C       CH1     0       63.771      -133.825    33.931      
+GRW     C43     C       CH3     0       64.160      -135.258    33.596      
+GRW     C42     C       CH3     0       64.989      -132.917    33.865      
+GRW     N8      N       NH1     0       60.794      -133.948    34.482      
+GRW     O44     O       O       0       59.430      -135.761    34.582      
+GRW     N51     N       N       0       59.427      -133.651    31.899      
+GRW     N52     N       NSP     1       60.093      -132.542    31.915      
+GRW     N53     N       NSP     -1      60.707      -131.568    31.445      
+GRW     C54     C       CH2     0       58.087      -132.739    33.748      
+GRW     C55     C       CR6     0       57.199      -132.984    34.947      
+GRW     C56     C       CR16    0       56.034      -133.734    34.825      
+GRW     C57     C       CR16    0       55.216      -133.962    35.925      
+GRW     C58     C       CR16    0       55.553      -133.444    37.159      
+GRW     C59     C       CR16    0       56.704      -132.699    37.296      
+GRW     C60     C       CR16    0       57.523      -132.470    36.197      
+GRW     H1      H       H       0       58.022      -134.639    32.947      
+GRW     H2      H       H       0       64.328      -134.816    41.844      
+GRW     H3      H       H       0       64.312      -128.448    39.712      
+GRW     H4      H       H       0       65.844      -128.786    39.982      
+GRW     H5      H       H       0       65.805      -132.571    42.599      
+GRW     H6      H       H       0       61.326      -135.995    43.425      
+GRW     H7      H       H       0       62.154      -135.658    44.724      
+GRW     H8      H       H       0       60.625      -138.302    42.682      
+GRW     H9      H       H       0       61.031      -139.674    43.364      
+GRW     H10     H       H       0       62.088      -138.882    42.487      
+GRW     H11     H       H       0       66.430      -130.630    41.498      
+GRW     H12     H       H       0       65.353      -126.797    40.761      
+GRW     H13     H       H       0       65.788      -127.741    41.914      
+GRW     H15     H       H       0       62.554      -129.669    40.999      
+GRW     H16     H       H       0       61.933      -131.611    42.100      
+GRW     H17     H       H       0       63.990      -133.700    43.957      
+GRW     H18     H       H       0       62.483      -133.460    43.530      
+GRW     H19     H       H       0       64.143      -136.156    43.709      
+GRW     H20     H       H       0       63.422      -136.870    42.498      
+GRW     H21     H       H       0       61.698      -134.307    41.475      
+GRW     H22     H       H       0       60.829      -134.394    39.398      
+GRW     H23     H       H       0       60.050      -136.454    40.343      
+GRW     H24     H       H       0       59.075      -136.157    37.694      
+GRW     H25     H       H       0       58.622      -135.204    38.882      
+GRW     H26     H       H       0       58.265      -136.752    38.926      
+GRW     H27     H       H       0       61.162      -138.019    39.554      
+GRW     H28     H       H       0       62.302      -135.781    37.522      
+GRW     H29     H       H       0       61.904      -135.418    35.265      
+GRW     H30     H       H       0       63.721      -134.106    35.969      
+GRW     H31     H       H       0       62.972      -132.793    35.522      
+GRW     H32     H       H       0       63.123      -133.516    33.251      
+GRW     H33     H       H       0       64.626      -135.654    34.352      
+GRW     H34     H       H       0       64.743      -135.264    32.817      
+GRW     H35     H       H       0       63.359      -135.776    33.403      
+GRW     H36     H       H       0       64.730      -132.008    34.098      
+GRW     H37     H       H       0       65.354      -132.928    32.963      
+GRW     H38     H       H       0       65.664      -133.232    34.491      
+GRW     H39     H       H       0       60.927      -133.164    34.119      
+GRW     H41     H       H       0       57.553      -132.316    33.044      
+GRW     H42     H       H       0       58.795      -132.111    34.000      
+GRW     H43     H       H       0       55.797      -134.092    33.984      
+GRW     H44     H       H       0       54.428      -134.473    35.827      
+GRW     H45     H       H       0       54.997      -133.600    37.906      
+GRW     H46     H       H       0       56.938      -132.343    38.139      
+GRW     H47     H       H       0       58.310      -131.959    36.301      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+GRW         N52         N53      DOUBLE       n     1.135  0.0160     1.135  0.0160
+GRW         N51         N52      DOUBLE       n     1.293  0.0200     1.293  0.0200
+GRW          C6         N51      SINGLE       n     1.484  0.0100     1.484  0.0100
+GRW         C56         C57      DOUBLE       y     1.386  0.0100     1.386  0.0100
+GRW         C55         C56      SINGLE       y     1.385  0.0111     1.385  0.0111
+GRW          C6         C54      SINGLE       n     1.525  0.0100     1.525  0.0100
+GRW          C6          C7      SINGLE       n     1.505  0.0162     1.505  0.0162
+GRW         C57         C58      SINGLE       y     1.376  0.0124     1.376  0.0124
+GRW         C54         C55      SINGLE       n     1.510  0.0100     1.510  0.0100
+GRW         C41         C42      SINGLE       n     1.521  0.0151     1.521  0.0151
+GRW         C41         C43      SINGLE       n     1.521  0.0151     1.521  0.0151
+GRW         C40         C41      SINGLE       n     1.528  0.0105     1.528  0.0105
+GRW          C7          N8      SINGLE       n     1.335  0.0119     1.335  0.0119
+GRW          C7         O44      DOUBLE       n     1.232  0.0104     1.232  0.0104
+GRW         C55         C60      DOUBLE       y     1.385  0.0111     1.385  0.0111
+GRW          C9          N8      SINGLE       n     1.453  0.0100     1.453  0.0100
+GRW         C58         C59      DOUBLE       y     1.374  0.0127     1.374  0.0127
+GRW          C9         C40      SINGLE       n     1.528  0.0100     1.528  0.0100
+GRW         C10          C9      SINGLE       n     1.530  0.0100     1.530  0.0100
+GRW         C59         C60      SINGLE       y     1.386  0.0100     1.386  0.0100
+GRW         C10         O39      DOUBLE       n     1.229  0.0102     1.229  0.0102
+GRW         C10         N11      SINGLE       n     1.337  0.0100     1.337  0.0100
+GRW         C12         N11      SINGLE       n     1.453  0.0100     1.453  0.0100
+GRW         C32         O33      SINGLE       n     1.428  0.0100     1.428  0.0100
+GRW         C32         C14      SINGLE       n     1.513  0.0100     1.513  0.0100
+GRW         C12         C32      SINGLE       n     1.539  0.0100     1.539  0.0100
+GRW         C13         C12      SINGLE       n     1.529  0.0100     1.529  0.0100
+GRW         C13         O31      DOUBLE       n     1.229  0.0102     1.229  0.0102
+GRW         C13         N14      SINGLE       n     1.337  0.0102     1.337  0.0102
+GRW         C21         N22      SINGLE       n     1.467  0.0144     1.467  0.0144
+GRW         C20         C21      SINGLE       n     1.510  0.0100     1.510  0.0100
+GRW         C20         C23      DOUBLE       y     1.386  0.0100     1.386  0.0100
+GRW         C24         C23      SINGLE       y     1.384  0.0100     1.384  0.0100
+GRW         C20         C19      SINGLE       y     1.386  0.0100     1.386  0.0100
+GRW         C15         N14      SINGLE       n     1.455  0.0100     1.455  0.0100
+GRW         C17         C24      DOUBLE       y     1.385  0.0110     1.385  0.0110
+GRW         C15         C25      SINGLE       n     1.530  0.0100     1.530  0.0100
+GRW         C15         C16      SINGLE       n     1.533  0.0100     1.533  0.0100
+GRW         C19         C18      DOUBLE       y     1.384  0.0100     1.384  0.0100
+GRW         C28         S27      SINGLE       n     1.752  0.0100     1.752  0.0100
+GRW         C17         C18      SINGLE       y     1.385  0.0110     1.385  0.0110
+GRW         C17         C16      SINGLE       n     1.512  0.0103     1.512  0.0103
+GRW         C26         C25      SINGLE       n     1.517  0.0200     1.517  0.0200
+GRW         C26         S27      SINGLE       n     1.779  0.0100     1.779  0.0100
+GRW         S27         O30      DOUBLE       n     1.429  0.0100     1.429  0.0100
+GRW         S27         O29      DOUBLE       n     1.429  0.0100     1.429  0.0100
+GRW          C6          H1      SINGLE       n     1.089  0.0100     0.990  0.0177
+GRW         C15          H2      SINGLE       n     1.089  0.0100     0.988  0.0127
+GRW         C21          H3      SINGLE       n     1.089  0.0100     0.985  0.0198
+GRW         C21          H4      SINGLE       n     1.089  0.0100     0.985  0.0198
+GRW         C24          H5      SINGLE       n     1.082  0.0130     0.942  0.0167
+GRW         C26          H6      SINGLE       n     1.089  0.0100     0.975  0.0200
+GRW         C26          H7      SINGLE       n     1.089  0.0100     0.975  0.0200
+GRW         C28          H8      SINGLE       n     1.089  0.0100     0.970  0.0152
+GRW         C28          H9      SINGLE       n     1.089  0.0100     0.970  0.0152
+GRW         C28         H10      SINGLE       n     1.089  0.0100     0.970  0.0152
+GRW         C23         H11      SINGLE       n     1.082  0.0130     0.942  0.0167
+GRW         N22         H12      SINGLE       n     1.036  0.0160     0.965  0.0200
+GRW         N22         H13      SINGLE       n     1.036  0.0160     0.965  0.0200
+GRW         C19         H15      SINGLE       n     1.082  0.0130     0.942  0.0167
+GRW         C18         H16      SINGLE       n     1.082  0.0130     0.942  0.0167
+GRW         C16         H17      SINGLE       n     1.089  0.0100     0.981  0.0150
+GRW         C16         H18      SINGLE       n     1.089  0.0100     0.981  0.0150
+GRW         C25         H19      SINGLE       n     1.089  0.0100     0.981  0.0160
+GRW         C25         H20      SINGLE       n     1.089  0.0100     0.981  0.0160
+GRW         N14         H21      SINGLE       n     1.016  0.0100     0.872  0.0200
+GRW         C12         H22      SINGLE       n     1.089  0.0100     0.991  0.0200
+GRW         C32         H23      SINGLE       n     1.089  0.0100     0.987  0.0200
+GRW         C14         H24      SINGLE       n     1.089  0.0100     0.974  0.0145
+GRW         C14         H25      SINGLE       n     1.089  0.0100     0.974  0.0145
+GRW         C14         H26      SINGLE       n     1.089  0.0100     0.974  0.0145
+GRW         O33         H27      SINGLE       n     0.970  0.0120     0.848  0.0200
+GRW         N11         H28      SINGLE       n     1.016  0.0100     0.873  0.0200
+GRW          C9         H29      SINGLE       n     1.089  0.0100     0.991  0.0200
+GRW         C40         H30      SINGLE       n     1.089  0.0100     0.978  0.0119
+GRW         C40         H31      SINGLE       n     1.089  0.0100     0.978  0.0119
+GRW         C41         H32      SINGLE       n     1.089  0.0100     0.989  0.0162
+GRW         C43         H33      SINGLE       n     1.089  0.0100     0.973  0.0146
+GRW         C43         H34      SINGLE       n     1.089  0.0100     0.973  0.0146
+GRW         C43         H35      SINGLE       n     1.089  0.0100     0.973  0.0146
+GRW         C42         H36      SINGLE       n     1.089  0.0100     0.973  0.0146
+GRW         C42         H37      SINGLE       n     1.089  0.0100     0.973  0.0146
+GRW         C42         H38      SINGLE       n     1.089  0.0100     0.973  0.0146
+GRW          N8         H39      SINGLE       n     1.016  0.0100     0.873  0.0200
+GRW         C54         H41      SINGLE       n     1.089  0.0100     0.980  0.0131
+GRW         C54         H42      SINGLE       n     1.089  0.0100     0.980  0.0131
+GRW         C56         H43      SINGLE       n     1.082  0.0130     0.944  0.0174
+GRW         C57         H44      SINGLE       n     1.082  0.0130     0.944  0.0175
+GRW         C58         H45      SINGLE       n     1.082  0.0130     0.944  0.0161
+GRW         C59         H46      SINGLE       n     1.082  0.0130     0.944  0.0175
+GRW         C60         H47      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+GRW         N51          C6         C54     109.508    2.50
+GRW         N51          C6          C7     110.034    2.57
+GRW         N51          C6          H1     107.305    1.50
+GRW         C54          C6          C7     111.511    2.91
+GRW         C54          C6          H1     108.423    1.84
+GRW          C7          C6          H1     108.874    1.53
+GRW          C6          C7          N8     117.121    1.50
+GRW          C6          C7         O44     119.735    1.84
+GRW          N8          C7         O44     123.143    1.50
+GRW          C9         C10         O39     120.345    1.50
+GRW          C9         C10         N11     116.639    1.50
+GRW         O39         C10         N11     123.016    1.50
+GRW         C12         C13         O31     120.430    1.50
+GRW         C12         C13         N14     116.417    1.50
+GRW         O31         C13         N14     123.154    1.50
+GRW         N14         C15         C25     110.353    1.50
+GRW         N14         C15         C16     110.274    1.50
+GRW         N14         C15          H2     108.194    1.50
+GRW         C25         C15         C16     111.939    1.50
+GRW         C25         C15          H2     107.815    1.50
+GRW         C16         C15          H2     107.624    1.50
+GRW         C24         C17         C18     117.848    1.50
+GRW         C24         C17         C16     121.076    1.50
+GRW         C18         C17         C16     121.076    1.50
+GRW         C21         C20         C23     120.790    2.59
+GRW         C21         C20         C19     120.790    2.59
+GRW         C23         C20         C19     118.421    1.50
+GRW         N22         C21         C20     112.424    2.20
+GRW         N22         C21          H3     107.542    2.93
+GRW         N22         C21          H4     107.542    2.93
+GRW         C20         C21          H3     110.855    3.00
+GRW         C20         C21          H4     110.855    3.00
+GRW          H3         C21          H4     107.838    1.50
+GRW         C23         C24         C17     121.032    1.50
+GRW         C23         C24          H5     119.559    1.50
+GRW         C17         C24          H5     119.409    1.50
+GRW         C25         C26         S27     111.256    2.92
+GRW         C25         C26          H6     109.242    1.50
+GRW         C25         C26          H7     109.242    1.50
+GRW         S27         C26          H6     109.377    1.50
+GRW         S27         C26          H7     109.377    1.50
+GRW          H6         C26          H7     108.043    1.50
+GRW         S27         C28          H8     109.505    1.50
+GRW         S27         C28          H9     109.505    1.50
+GRW         S27         C28         H10     109.505    1.50
+GRW          H8         C28          H9     109.823    1.50
+GRW          H8         C28         H10     109.823    1.50
+GRW          H9         C28         H10     109.823    1.50
+GRW         C20         C23         C24     120.834    1.50
+GRW         C20         C23         H11     119.569    1.50
+GRW         C24         C23         H11     119.597    1.50
+GRW         C21         N22         H12     104.789    3.00
+GRW         C21         N22         H13     104.789    3.00
+GRW         H12         N22         H13     107.163    3.00
+GRW         C20         C19         C18     120.834    1.50
+GRW         C20         C19         H15     119.569    1.50
+GRW         C18         C19         H15     119.597    1.50
+GRW         C19         C18         C17     121.032    1.50
+GRW         C19         C18         H16     119.559    1.50
+GRW         C17         C18         H16     119.409    1.50
+GRW         C15         C16         C17     113.636    1.50
+GRW         C15         C16         H17     108.825    1.50
+GRW         C15         C16         H18     108.825    1.50
+GRW         C17         C16         H17     108.862    1.50
+GRW         C17         C16         H18     108.862    1.50
+GRW         H17         C16         H18     107.782    1.50
+GRW         C15         C25         C26     114.535    1.69
+GRW         C15         C25         H19     108.489    1.50
+GRW         C15         C25         H20     108.489    1.50
+GRW         C26         C25         H19     109.334    1.50
+GRW         C26         C25         H20     109.334    1.50
+GRW         H19         C25         H20     107.698    1.50
+GRW         C28         S27         C26     104.032    1.79
+GRW         C28         S27         O30     108.931    1.50
+GRW         C28         S27         O29     108.931    1.50
+GRW         C26         S27         O30     108.322    1.50
+GRW         C26         S27         O29     108.322    1.50
+GRW         O30         S27         O29     118.392    2.04
+GRW         C13         N14         C15     123.632    1.63
+GRW         C13         N14         H21     118.879    1.83
+GRW         C15         N14         H21     117.489    3.00
+GRW         N11         C12         C32     110.507    1.90
+GRW         N11         C12         C13     111.106    2.53
+GRW         N11         C12         H22     108.161    1.50
+GRW         C32         C12         C13     111.511    2.91
+GRW         C32         C12         H22     108.179    1.50
+GRW         C13         C12         H22     108.061    1.50
+GRW         O33         C32         C14     109.779    2.11
+GRW         O33         C32         C12     108.919    1.50
+GRW         O33         C32         H23     108.878    1.50
+GRW         C14         C32         C12     112.076    1.65
+GRW         C14         C32         H23     108.799    1.50
+GRW         C12         C32         H23     108.267    2.06
+GRW         C32         C14         H24     109.564    1.50
+GRW         C32         C14         H25     109.564    1.50
+GRW         C32         C14         H26     109.564    1.50
+GRW         H24         C14         H25     109.425    1.50
+GRW         H24         C14         H26     109.425    1.50
+GRW         H25         C14         H26     109.425    1.50
+GRW         C32         O33         H27     109.608    2.55
+GRW         C10         N11         C12     121.950    1.76
+GRW         C10         N11         H28     119.031    1.83
+GRW         C12         N11         H28     119.019    1.92
+GRW          N8          C9         C40     110.363    1.84
+GRW          N8          C9         C10     111.371    2.04
+GRW          N8          C9         H29     107.954    1.50
+GRW         C40          C9         C10     110.666    1.50
+GRW         C40          C9         H29     108.275    1.50
+GRW         C10          C9         H29     107.852    1.50
+GRW         C41         C40          C9     115.210    1.50
+GRW         C41         C40         H30     108.478    1.50
+GRW         C41         C40         H31     108.478    1.50
+GRW          C9         C40         H30     108.470    1.50
+GRW          C9         C40         H31     108.470    1.50
+GRW         H30         C40         H31     107.542    1.50
+GRW         C42         C41         C43     110.507    1.50
+GRW         C42         C41         C40     110.880    1.50
+GRW         C42         C41         H32     108.052    1.50
+GRW         C43         C41         C40     110.880    1.50
+GRW         C43         C41         H32     108.052    1.50
+GRW         C40         C41         H32     108.053    1.50
+GRW         C41         C43         H33     109.488    1.50
+GRW         C41         C43         H34     109.488    1.50
+GRW         C41         C43         H35     109.488    1.50
+GRW         H33         C43         H34     109.411    1.50
+GRW         H33         C43         H35     109.411    1.50
+GRW         H34         C43         H35     109.411    1.50
+GRW         C41         C42         H36     109.488    1.50
+GRW         C41         C42         H37     109.488    1.50
+GRW         C41         C42         H38     109.488    1.50
+GRW         H36         C42         H37     109.411    1.50
+GRW         H36         C42         H38     109.411    1.50
+GRW         H37         C42         H38     109.411    1.50
+GRW          C7          N8          C9     121.028    1.58
+GRW          C7          N8         H39     119.169    1.83
+GRW          C9          N8         H39     119.803    1.64
+GRW         N52         N51          C6     115.160    1.71
+GRW         N53         N52         N51     180.000    3.00
+GRW          C6         C54         C55     114.135    2.79
+GRW          C6         C54         H41     108.501    1.50
+GRW          C6         C54         H42     108.501    1.50
+GRW         C55         C54         H41     108.862    1.50
+GRW         C55         C54         H42     108.862    1.50
+GRW         H41         C54         H42     107.782    1.50
+GRW         C56         C55         C54     120.970    1.50
+GRW         C56         C55         C60     118.060    1.50
+GRW         C54         C55         C60     120.970    1.50
+GRW         C57         C56         C55     120.624    1.50
+GRW         C57         C56         H43     119.786    1.50
+GRW         C55         C56         H43     119.591    1.50
+GRW         C56         C57         C58     120.325    1.50
+GRW         C56         C57         H44     119.792    1.50
+GRW         C58         C57         H44     119.883    1.50
+GRW         C57         C58         C59     120.043    1.50
+GRW         C57         C58         H45     119.979    1.50
+GRW         C59         C58         H45     119.979    1.50
+GRW         C58         C59         C60     120.325    1.50
+GRW         C58         C59         H46     119.883    1.50
+GRW         C60         C59         H46     119.792    1.50
+GRW         C55         C60         C59     120.624    1.50
+GRW         C55         C60         H47     119.591    1.50
+GRW         C59         C60         H47     119.786    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+GRW             sp2_sp3_4          N8          C7          C6         N51       0.000    10.0     6
+GRW             sp2_sp3_1         N52         N51          C6         C54       0.000    10.0     6
+GRW             sp3_sp3_1         C55         C54          C6         N51     180.000    10.0     3
+GRW            sp3_sp3_93          H8         C28         S27         C26      60.000    10.0     3
+GRW              const_17         C17         C18         C19         C20       0.000    10.0     2
+GRW             sp2_sp2_1          C6          C7          N8          C9     180.000     5.0     2
+GRW            sp3_sp3_58         N11         C12         C32         O33     180.000    10.0     3
+GRW            sp2_sp3_28         C10         N11         C12         C32       0.000    10.0     6
+GRW            sp3_sp3_49         H24         C14         C32         O33     180.000    10.0     3
+GRW            sp3_sp3_46         C14         C32         O33         H27     180.000    10.0     3
+GRW            sp3_sp3_37         C41         C40          C9          N8     180.000    10.0     3
+GRW            sp2_sp3_16          C7          N8          C9         C40       0.000    10.0     6
+GRW            sp3_sp3_29          C9         C40         C41         C42     -60.000    10.0     3
+GRW             sp2_sp2_5          C9         C10         N11         C12     180.000     5.0     2
+GRW            sp2_sp3_22         O39         C10          C9          N8       0.000    10.0     6
+GRW            sp3_sp3_19         C42         C41         C43         H33     180.000    10.0     3
+GRW            sp3_sp3_13         C43         C41         C42         H36      60.000    10.0     3
+GRW           other_tor_1         N53         N52         N51          C6      90.000    10.0     1
+GRW            sp2_sp3_11         C56         C55         C54          C6     -90.000    10.0     6
+GRW              const_23         C54         C55         C56         C57     180.000    10.0     2
+GRW              const_43         C54         C55         C60         C59     180.000    10.0     2
+GRW             sp2_sp2_9         C12         C13         N14         C15     180.000     5.0     2
+GRW            sp2_sp3_34         O31         C13         C12         N11       0.000    10.0     6
+GRW              const_25         C55         C56         C57         C58       0.000    10.0     2
+GRW              const_29         C56         C57         C58         C59       0.000    10.0     2
+GRW              const_33         C57         C58         C59         C60       0.000    10.0     2
+GRW              const_37         C58         C59         C60         C55       0.000    10.0     2
+GRW            sp3_sp3_82         N14         C15         C16         C17     180.000    10.0     3
+GRW            sp3_sp3_73         N14         C15         C25         C26     180.000    10.0     3
+GRW            sp2_sp3_46         C13         N14         C15         C25       0.000    10.0     6
+GRW              const_47         C16         C17         C18         C19     180.000    10.0     2
+GRW            sp2_sp3_53         C24         C17         C16         C15     -90.000    10.0     6
+GRW       const_sp2_sp2_3         C16         C17         C24         C23     180.000     5.0     2
+GRW              const_11         C21         C20         C23         C24     180.000    10.0     2
+GRW              const_14         C18         C19         C20         C21     180.000    10.0     2
+GRW            sp2_sp3_41         C23         C20         C21         N22     -90.000    10.0     6
+GRW            sp3_sp3_67         C20         C21         N22         H12     180.000    10.0     3
+GRW       const_sp2_sp2_5         C20         C23         C24         C17       0.000     5.0     2
+GRW           sp3_sp3_100         C15         C25         C26         S27     180.000    10.0     3
+GRW           sp3_sp3_111         C25         C26         S27         C28      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+GRW    chir_1    C6    N51    C7    C54    negative
+GRW    chir_2    C15    N14    C25    C16    positive
+GRW    chir_3    S27    O30    O29    C26    both
+GRW    chir_4    C12    N11    C13    C32    positive
+GRW    chir_5    C32    O33    C12    C14    negative
+GRW    chir_6    C9    N8    C10    C40    positive
+GRW    chir_7    C41    C40    C42    C43    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+GRW    plan-1         C16   0.020
+GRW    plan-1         C17   0.020
+GRW    plan-1         C18   0.020
+GRW    plan-1         C19   0.020
+GRW    plan-1         C20   0.020
+GRW    plan-1         C21   0.020
+GRW    plan-1         C23   0.020
+GRW    plan-1         C24   0.020
+GRW    plan-1         H11   0.020
+GRW    plan-1         H15   0.020
+GRW    plan-1         H16   0.020
+GRW    plan-1          H5   0.020
+GRW    plan-2         C54   0.020
+GRW    plan-2         C55   0.020
+GRW    plan-2         C56   0.020
+GRW    plan-2         C57   0.020
+GRW    plan-2         C58   0.020
+GRW    plan-2         C59   0.020
+GRW    plan-2         C60   0.020
+GRW    plan-2         H43   0.020
+GRW    plan-2         H44   0.020
+GRW    plan-2         H45   0.020
+GRW    plan-2         H46   0.020
+GRW    plan-2         H47   0.020
+GRW    plan-3          C6   0.020
+GRW    plan-3          C7   0.020
+GRW    plan-3          N8   0.020
+GRW    plan-3         O44   0.020
+GRW    plan-4         C10   0.020
+GRW    plan-4          C9   0.020
+GRW    plan-4         N11   0.020
+GRW    plan-4         O39   0.020
+GRW    plan-5         C12   0.020
+GRW    plan-5         C13   0.020
+GRW    plan-5         N14   0.020
+GRW    plan-5         O31   0.020
+GRW    plan-6         C13   0.020
+GRW    plan-6         C15   0.020
+GRW    plan-6         H21   0.020
+GRW    plan-6         N14   0.020
+GRW    plan-7         C10   0.020
+GRW    plan-7         C12   0.020
+GRW    plan-7         H28   0.020
+GRW    plan-7         N11   0.020
+GRW    plan-8          C7   0.020
+GRW    plan-8          C9   0.020
+GRW    plan-8         H39   0.020
+GRW    plan-8          N8   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+GRW            InChI                InChI  1.03 InChI=1S/C31H45N7O6S/c1-20(2)16-26(35-30(41)27(37-38-33)18-22-8-6-5-7-9-22)29(40)36-28(21(3)39)31(42)34-25(14-15-45(4,43)44)17-23-10-12-24(19-32)13-11-23/h5-13,20-21,25-28,39H,14-19,32H2,1-4H3,(H,34,42)(H,35,41)(H,36,40)/t21-,25-,26+,27-,28+/m1/s1
+GRW         InChIKey                InChI  1.03                                                                                                                                                                                                                             XLNBYEKPCUBUPH-GSQIWVKLSA-N
+GRW SMILES_CANONICAL               CACTVS 3.385                                                                                                                                         CC(C)C[C@H](NC(=O)[C@@H](Cc1ccccc1)N=[N+]=[N-])C(=O)N[C@@H]([C@@H](C)O)C(=O)N[C@H](CC[S](C)(=O)=O)Cc2ccc(CN)cc2
+GRW           SMILES               CACTVS 3.385                                                                                                                                                 CC(C)C[CH](NC(=O)[CH](Cc1ccccc1)N=[N+]=[N-])C(=O)N[CH]([CH](C)O)C(=O)N[CH](CC[S](C)(=O)=O)Cc2ccc(CN)cc2
+GRW SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                            C[C@H]([C@@H](C(=O)N[C@H](CCS(=O)(=O)C)Cc1ccc(cc1)CN)NC(=O)[C@H](CC(C)C)NC(=O)[C@@H](Cc2ccccc2)N=[N+]=[N-])O
+GRW           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                  CC(C)CC(C(=O)NC(C(C)O)C(=O)NC(CCS(=O)(=O)C)Cc1ccc(cc1)CN)NC(=O)C(Cc2ccccc2)N=[N+]=[N-]
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+GRW acedrg               243         "dictionary generator"                  
+GRW acedrg_database      11          "data source"                           
+GRW rdkit                2017.03.2   "Chemoinformatics tool"
+GRW refmac5              5.8.0238    "optimization tool"                     

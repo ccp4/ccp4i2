@@ -1,0 +1,244 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+CLM     CLM      CHLORAMPHENICOL     NON-POLYMER     32     20     .     
+#
+data_comp_CLM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+CLM     C1      C       CH1     0       0.912       17.248      14.285      
+CLM     CL1     CL      CL      0       2.149       16.790      13.131      
+CLM     CL2     CL      CL      0       -0.040      18.578      13.658      
+CLM     C2      C       C       0       0.004       16.059      14.535      
+CLM     O2      O       O       0       -0.544      15.471      13.604      
+CLM     N2      N       NH1     0       -0.153      15.693      15.819      
+CLM     C3      C       CH1     0       -0.970      14.576      16.286      
+CLM     C4      C       CH2     0       -1.793      15.029      17.490      
+CLM     O4      O       OH1     0       -2.667      14.013      17.952      
+CLM     C5      C       CH1     0       -0.117      13.323      16.576      
+CLM     O5      O       OH1     0       0.743       13.600      17.678      
+CLM     C6      C       CR6     0       0.646       12.848      15.353      
+CLM     C7      C       CR16    0       0.025       12.004      14.431      
+CLM     C8      C       CR16    0       0.690       11.559      13.300      
+CLM     C9      C       CR6     0       2.004       11.982      13.095      
+CLM     N9      N       N       1       2.720       11.524      11.910      
+CLM     O9A     O       OC      -1      3.753       10.892      12.067      
+CLM     O9B     O       O       0       2.257       11.794      10.813      
+CLM     C10     C       CR16    0       2.653       12.830      13.992      
+CLM     C11     C       CR16    0       1.961       13.258      15.113      
+CLM     H1      H       H       0       1.352       17.543      15.106      
+CLM     HN2     H       H       0       0.258       16.143      16.443      
+CLM     H3      H       H       0       -1.612      14.328      15.571      
+CLM     H41     H       H       0       -2.321      15.816      17.238      
+CLM     H42     H       H       0       -1.190      15.294      18.216      
+CLM     HO4     H       H       0       -3.189      14.349      18.526      
+CLM     H5      H       H       0       -0.730      12.599      16.845      
+CLM     HO5     H       H       0       1.058       12.865      17.960      
+CLM     H7      H       H       0       -0.864      11.725      14.581      
+CLM     H8      H       H       0       0.263       10.986      12.687      
+CLM     H10     H       H       0       3.540       13.108      13.843      
+CLM     H11     H       H       0       2.392       13.832      15.724      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+CLM          C1         CL1      SINGLE       n     1.753  0.0200     1.753  0.0200
+CLM          C1         CL2      SINGLE       n     1.753  0.0200     1.753  0.0200
+CLM          C1          C2      SINGLE       n     1.508  0.0200     1.508  0.0200
+CLM          C2          O2      DOUBLE       n     1.229  0.0102     1.229  0.0102
+CLM          C2          N2      SINGLE       n     1.337  0.0106     1.337  0.0106
+CLM          N2          C3      SINGLE       n     1.456  0.0100     1.456  0.0100
+CLM          C3          C4      SINGLE       n     1.523  0.0136     1.523  0.0136
+CLM          C3          C5      SINGLE       n     1.540  0.0100     1.540  0.0100
+CLM          C4          O4      SINGLE       n     1.417  0.0200     1.417  0.0200
+CLM          C5          O5      SINGLE       n     1.423  0.0133     1.423  0.0133
+CLM          C5          C6      SINGLE       n     1.515  0.0100     1.515  0.0100
+CLM          C6          C7      DOUBLE       y     1.392  0.0100     1.392  0.0100
+CLM          C6         C11      SINGLE       y     1.392  0.0100     1.392  0.0100
+CLM          C7          C8      SINGLE       y     1.382  0.0100     1.382  0.0100
+CLM          C8          C9      DOUBLE       y     1.393  0.0100     1.393  0.0100
+CLM          C9          N9      SINGLE       n     1.457  0.0200     1.457  0.0200
+CLM          C9         C10      SINGLE       y     1.393  0.0100     1.393  0.0100
+CLM          N9         O9A      SINGLE       n     1.221  0.0162     1.221  0.0162
+CLM          N9         O9B      DOUBLE       n     1.221  0.0162     1.221  0.0162
+CLM         C10         C11      DOUBLE       y     1.382  0.0100     1.382  0.0100
+CLM          C1          H1      SINGLE       n     1.089  0.0100     0.978  0.0100
+CLM          N2         HN2      SINGLE       n     1.016  0.0100     0.872  0.0200
+CLM          C3          H3      SINGLE       n     1.089  0.0100     0.992  0.0100
+CLM          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0174
+CLM          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0174
+CLM          O4         HO4      SINGLE       n     0.970  0.0120     0.846  0.0200
+CLM          C5          H5      SINGLE       n     1.089  0.0100     0.987  0.0156
+CLM          O5         HO5      SINGLE       n     0.970  0.0120     0.848  0.0200
+CLM          C7          H7      SINGLE       n     1.082  0.0130     0.943  0.0173
+CLM          C8          H8      SINGLE       n     1.082  0.0130     0.941  0.0200
+CLM         C10         H10      SINGLE       n     1.082  0.0130     0.941  0.0200
+CLM         C11         H11      SINGLE       n     1.082  0.0130     0.943  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+CLM         CL1          C1         CL2     110.440    1.50
+CLM         CL1          C1          C2     109.320    1.50
+CLM         CL1          C1          H1     108.651    1.58
+CLM         CL2          C1          C2     109.320    1.50
+CLM         CL2          C1          H1     108.651    1.58
+CLM          C2          C1          H1     110.287    2.54
+CLM          C1          C2          O2     122.182    1.50
+CLM          C1          C2          N2     115.446    1.61
+CLM          O2          C2          N2     122.372    1.50
+CLM          C2          N2          C3     123.696    1.63
+CLM          C2          N2         HN2     118.752    1.94
+CLM          C3          N2         HN2     117.552    3.00
+CLM          N2          C3          C4     109.157    1.65
+CLM          N2          C3          C5     111.504    1.50
+CLM          N2          C3          H3     108.194    1.50
+CLM          C4          C3          C5     112.177    1.50
+CLM          C4          C3          H3     107.627    1.50
+CLM          C5          C3          H3     107.161    1.50
+CLM          C3          C4          O4     111.903    1.66
+CLM          C3          C4         H41     109.343    1.50
+CLM          C3          C4         H42     109.343    1.50
+CLM          O4          C4         H41     109.411    1.50
+CLM          O4          C4         H42     109.411    1.50
+CLM         H41          C4         H42     108.070    1.50
+CLM          C4          O4         HO4     108.529    2.94
+CLM          C3          C5          O5     108.389    2.58
+CLM          C3          C5          C6     113.018    1.62
+CLM          C3          C5          H5     108.286    1.50
+CLM          O5          C5          C6     112.050    1.50
+CLM          O5          C5          H5     108.742    1.50
+CLM          C6          C5          H5     108.540    1.50
+CLM          C5          O5         HO5     108.178    3.00
+CLM          C5          C6          C7     120.619    1.50
+CLM          C5          C6         C11     120.619    1.50
+CLM          C7          C6         C11     118.763    1.50
+CLM          C6          C7          C8     120.938    1.50
+CLM          C6          C7          H7     119.666    1.50
+CLM          C8          C7          H7     119.396    1.50
+CLM          C7          C8          C9     118.489    1.50
+CLM          C7          C8          H8     120.487    1.50
+CLM          C9          C8          H8     121.025    1.50
+CLM          C8          C9          N9     118.808    1.50
+CLM          C8          C9         C10     122.384    1.50
+CLM          N9          C9         C10     118.808    1.50
+CLM          C9          N9         O9A     118.257    1.50
+CLM          C9          N9         O9B     118.257    1.50
+CLM         O9A          N9         O9B     123.486    1.50
+CLM          C9         C10         C11     118.489    1.50
+CLM          C9         C10         H10     121.025    1.50
+CLM         C11         C10         H10     120.487    1.50
+CLM          C6         C11         C10     120.938    1.50
+CLM          C6         C11         H11     119.666    1.50
+CLM         C10         C11         H11     119.396    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+CLM             sp2_sp3_2          O2          C2          C1         CL1     120.000    10.0     6
+CLM       const_sp2_sp2_3          C5          C6          C7          C8     180.000     5.0     2
+CLM              const_22         C10         C11          C6          C5     180.000    10.0     2
+CLM       const_sp2_sp2_5          C6          C7          C8          C9       0.000     5.0     2
+CLM              const_10          C7          C8          C9          N9     180.000    10.0     2
+CLM             sp2_sp2_5          C8          C9          N9         O9A     180.000     5.0     2
+CLM              const_14         C11         C10          C9          N9     180.000    10.0     2
+CLM              const_17          C9         C10         C11          C6       0.000    10.0     2
+CLM             sp2_sp2_1          C1          C2          N2          C3     180.000     5.0     2
+CLM             sp2_sp3_7          C2          N2          C3          C4       0.000    10.0     6
+CLM             sp3_sp3_1          N2          C3          C4          O4     180.000    10.0     3
+CLM            sp3_sp3_10          N2          C3          C5          O5     180.000    10.0     3
+CLM            sp3_sp3_19          C3          C4          O4         HO4     180.000    10.0     3
+CLM            sp3_sp3_22          C3          C5          O5         HO5     180.000    10.0     3
+CLM            sp2_sp3_13          C7          C6          C5          C3     150.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+CLM    chir_1    C1    CL1    CL2    C2    both
+CLM    chir_2    C3    N2    C5    C4    negative
+CLM    chir_3    C5    O5    C3    C6    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+CLM    plan-1         C10   0.020
+CLM    plan-1         C11   0.020
+CLM    plan-1          C5   0.020
+CLM    plan-1          C6   0.020
+CLM    plan-1          C7   0.020
+CLM    plan-1          C8   0.020
+CLM    plan-1          C9   0.020
+CLM    plan-1         H10   0.020
+CLM    plan-1         H11   0.020
+CLM    plan-1          H7   0.020
+CLM    plan-1          H8   0.020
+CLM    plan-1          N9   0.020
+CLM    plan-2          C1   0.020
+CLM    plan-2          C2   0.020
+CLM    plan-2          N2   0.020
+CLM    plan-2          O2   0.020
+CLM    plan-3          C2   0.020
+CLM    plan-3          C3   0.020
+CLM    plan-3         HN2   0.020
+CLM    plan-3          N2   0.020
+CLM    plan-4          C9   0.020
+CLM    plan-4          N9   0.020
+CLM    plan-4         O9A   0.020
+CLM    plan-4         O9B   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+CLM           SMILES              ACDLabs 10.04                                                                             ClC(Cl)C(=O)NC(C(O)c1ccc([N+]([O-])=O)cc1)CO
+CLM SMILES_CANONICAL               CACTVS 3.341                                                                    OC[C@@H](NC(=O)C(Cl)Cl)[C@H](O)c1ccc(cc1)[N+]([O-])=O
+CLM           SMILES               CACTVS 3.341                                                                       OC[CH](NC(=O)C(Cl)Cl)[CH](O)c1ccc(cc1)[N+]([O-])=O
+CLM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                    c1cc(ccc1[C@H]([C@@H](CO)NC(=O)C(Cl)Cl)O)[N+](=O)[O-]
+CLM           SMILES "OpenEye OEToolkits" 1.5.0                                                                             c1cc(ccc1C(C(CO)NC(=O)C(Cl)Cl)O)[N+](=O)[O-]
+CLM            InChI                InChI  1.03 InChI=1S/C11H12Cl2N2O5/c12-10(13)11(18)14-8(5-16)9(17)6-1-3-7(4-2-6)15(19)20/h1-4,8-10,16-17H,5H2,(H,14,18)/t8-,9-/m1/s1
+CLM         InChIKey                InChI  1.03                                                                                              WIIZWVCIJKGZOK-RKDXNWHRSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+CLM acedrg               243         "dictionary generator"                  
+CLM acedrg_database      11          "data source"                           
+CLM rdkit                2017.03.2   "Chemoinformatics tool"
+CLM refmac5              5.8.0238    "optimization tool"                     

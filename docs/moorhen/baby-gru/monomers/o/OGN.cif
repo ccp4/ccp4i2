@@ -1,0 +1,309 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OGN     OGN      "[(Z)-[(3R,4R,5R,6R)-3-acetamido-6-(hydroxymethyl)-4,5-bis(oxidanyl)oxan-2-ylidene]amino] N-phenylcarbamate"     NON-POLYMER     44     25     .     
+#
+data_comp_OGN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OGN     CAA     C       CR6     0       36.315      18.196      -15.749     
+OGN     CAB     C       CH1     0       35.341      17.707      -16.817     
+OGN     CAC     C       CH1     0       34.092      16.984      -16.277     
+OGN     CAD     C       CH1     0       34.411      16.110      -15.069     
+OGN     CAE     C       CH1     0       35.069      16.976      -13.996     
+OGN     CAF     C       CH2     0       35.476      16.206      -12.782     
+OGN     CAG     C       C       0       34.331      19.931      -17.352     
+OGN     CAH     C       CH3     0       34.030      20.919      -18.442     
+OGN     NAI     N       NH1     0       34.960      18.792      -17.722     
+OGN     OAJ     O       OH1     0       33.537      16.197      -17.335     
+OGN     OAK     O       OH1     0       35.279      15.040      -15.454     
+OGN     OAL     O       O2      0       36.278      17.613      -14.517     
+OGN     OAM     O       OH1     0       35.792      17.077      -11.698     
+OGN     OAN     O       O       0       34.018      20.166      -16.188     
+OGN     NAO     N       NH1     0       39.780      20.692      -14.276     
+OGN     CAP     C       C       0       39.265      19.955      -15.293     
+OGN     OAQ     O       O2      0       38.082      19.425      -14.927     
+OGN     OAR     O       O       0       39.789      19.774      -16.372     
+OGN     CAS     C       CR6     0       40.773      21.691      -14.370     
+OGN     CAT     C       CR16    0       41.959      21.555      -13.661     
+OGN     CAU     C       CR16    0       42.937      22.537      -13.750     
+OGN     CAV     C       CR16    0       42.738      23.652      -14.539     
+OGN     CAW     C       CR16    0       41.559      23.790      -15.243     
+OGN     CAX     C       CR16    0       40.574      22.814      -15.163     
+OGN     NAY     N       N       0       37.215      19.162      -16.026     
+OGN     HAB     H       H       0       35.833      17.045      -17.376     
+OGN     HAC     H       H       0       33.421      17.651      -16.001     
+OGN     HAD     H       H       0       33.574      15.732      -14.709     
+OGN     HAE     H       H       0       34.438      17.696      -13.731     
+OGN     HAF     H       H       0       36.258      15.655      -12.993     
+OGN     HAFA    H       H       0       34.745      15.610      -12.515     
+OGN     HAH     H       H       0       34.296      20.561      -19.304     
+OGN     HAHA    H       H       0       34.516      21.742      -18.274     
+OGN     HAHB    H       H       0       33.078      21.106      -18.453     
+OGN     HNAI    H       H       0       35.157      18.689      -18.559     
+OGN     HOAJ    H       H       0       32.784      15.918      -17.086     
+OGN     HOAK    H       H       0       36.080      15.293      -15.512     
+OGN     HOAM    H       H       0       35.913      16.620      -10.994     
+OGN     HNAO    H       H       0       39.476      20.527      -13.479     
+OGN     HAT     H       H       0       42.100      20.795      -13.121     
+OGN     HAU     H       H       0       43.741      22.440      -13.267     
+OGN     HAV     H       H       0       43.405      24.318      -14.596     
+OGN     HAW     H       H       0       41.420      24.550      -15.783     
+OGN     HAX     H       H       0       39.770      22.913      -15.646     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OGN         CAA         CAB      SINGLE       n     1.515  0.0125     1.515  0.0125
+OGN         CAA         OAL      SINGLE       n     1.348  0.0195     1.348  0.0195
+OGN         CAA         NAY      DOUBLE       n     1.333  0.0200     1.333  0.0200
+OGN         CAB         CAC      SINGLE       n     1.535  0.0100     1.535  0.0100
+OGN         CAB         NAI      SINGLE       n     1.456  0.0100     1.456  0.0100
+OGN         CAC         CAD      SINGLE       n     1.523  0.0100     1.523  0.0100
+OGN         CAC         OAJ      SINGLE       n     1.431  0.0107     1.431  0.0107
+OGN         CAD         CAE      SINGLE       n     1.525  0.0171     1.525  0.0171
+OGN         CAD         OAK      SINGLE       n     1.425  0.0167     1.425  0.0167
+OGN         CAE         CAF      SINGLE       n     1.494  0.0128     1.494  0.0128
+OGN         CAE         OAL      SINGLE       n     1.461  0.0128     1.461  0.0128
+OGN         CAF         OAM      SINGLE       n     1.426  0.0200     1.426  0.0200
+OGN         CAG         CAH      SINGLE       n     1.498  0.0100     1.498  0.0100
+OGN         CAG         NAI      SINGLE       n     1.343  0.0109     1.343  0.0109
+OGN         CAG         OAN      DOUBLE       n     1.227  0.0100     1.227  0.0100
+OGN         NAO         CAP      SINGLE       n     1.353  0.0121     1.353  0.0121
+OGN         NAO         CAS      SINGLE       n     1.411  0.0100     1.411  0.0100
+OGN         CAP         OAQ      SINGLE       n     1.338  0.0153     1.338  0.0153
+OGN         CAP         OAR      DOUBLE       n     1.210  0.0111     1.210  0.0111
+OGN         OAQ         NAY      SINGLE       n     1.415  0.0195     1.415  0.0195
+OGN         CAS         CAT      DOUBLE       y     1.385  0.0100     1.385  0.0100
+OGN         CAS         CAX      SINGLE       y     1.385  0.0100     1.385  0.0100
+OGN         CAT         CAU      SINGLE       y     1.385  0.0100     1.385  0.0100
+OGN         CAU         CAV      DOUBLE       y     1.376  0.0124     1.376  0.0124
+OGN         CAV         CAW      SINGLE       y     1.376  0.0112     1.376  0.0112
+OGN         CAW         CAX      DOUBLE       y     1.385  0.0100     1.385  0.0100
+OGN         CAB         HAB      SINGLE       n     1.089  0.0100     0.996  0.0100
+OGN         CAC         HAC      SINGLE       n     1.089  0.0100     0.988  0.0151
+OGN         CAD         HAD      SINGLE       n     1.089  0.0100     0.986  0.0150
+OGN         CAE         HAE      SINGLE       n     1.089  0.0100     0.993  0.0200
+OGN         CAF         HAF      SINGLE       n     1.089  0.0100     0.980  0.0184
+OGN         CAF        HAFA      SINGLE       n     1.089  0.0100     0.980  0.0184
+OGN         CAH         HAH      SINGLE       n     1.089  0.0100     0.971  0.0140
+OGN         CAH        HAHA      SINGLE       n     1.089  0.0100     0.971  0.0140
+OGN         CAH        HAHB      SINGLE       n     1.089  0.0100     0.971  0.0140
+OGN         NAI        HNAI      SINGLE       n     1.016  0.0100     0.866  0.0200
+OGN         OAJ        HOAJ      SINGLE       n     0.970  0.0120     0.841  0.0200
+OGN         OAK        HOAK      SINGLE       n     0.970  0.0120     0.841  0.0200
+OGN         OAM        HOAM      SINGLE       n     0.970  0.0120     0.848  0.0200
+OGN         NAO        HNAO      SINGLE       n     1.016  0.0100     0.867  0.0200
+OGN         CAT         HAT      SINGLE       n     1.082  0.0130     0.943  0.0178
+OGN         CAU         HAU      SINGLE       n     1.082  0.0130     0.943  0.0172
+OGN         CAV         HAV      SINGLE       n     1.082  0.0130     0.944  0.0161
+OGN         CAW         HAW      SINGLE       n     1.082  0.0130     0.943  0.0172
+OGN         CAX         HAX      SINGLE       n     1.082  0.0130     0.943  0.0178
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OGN         CAB         CAA         OAL     117.706    1.85
+OGN         CAB         CAA         NAY     122.093    3.00
+OGN         OAL         CAA         NAY     120.201    1.50
+OGN         CAA         CAB         CAC     112.021    2.38
+OGN         CAA         CAB         NAI     110.078    2.01
+OGN         CAA         CAB         HAB     108.678    1.50
+OGN         CAC         CAB         NAI     110.829    2.03
+OGN         CAC         CAB         HAB     108.258    1.50
+OGN         NAI         CAB         HAB     107.589    1.50
+OGN         CAB         CAC         CAD     111.124    1.57
+OGN         CAB         CAC         OAJ     109.247    2.43
+OGN         CAB         CAC         HAC     109.068    1.50
+OGN         CAD         CAC         OAJ     110.984    1.55
+OGN         CAD         CAC         HAC     108.714    1.50
+OGN         OAJ         CAC         HAC     108.954    1.50
+OGN         CAC         CAD         CAE     109.454    1.50
+OGN         CAC         CAD         OAK     109.301    2.14
+OGN         CAC         CAD         HAD     109.514    1.50
+OGN         CAE         CAD         OAK     109.072    2.07
+OGN         CAE         CAD         HAD     109.223    1.50
+OGN         OAK         CAD         HAD     109.194    1.50
+OGN         CAD         CAE         CAF     112.996    1.59
+OGN         CAD         CAE         OAL     110.938    1.50
+OGN         CAD         CAE         HAE     108.960    1.50
+OGN         CAF         CAE         OAL     106.495    1.50
+OGN         CAF         CAE         HAE     109.269    1.50
+OGN         OAL         CAE         HAE     107.785    2.18
+OGN         CAE         CAF         OAM     111.299    2.09
+OGN         CAE         CAF         HAF     109.363    1.50
+OGN         CAE         CAF        HAFA     109.363    1.50
+OGN         OAM         CAF         HAF     109.265    1.50
+OGN         OAM         CAF        HAFA     109.265    1.50
+OGN         HAF         CAF        HAFA     108.155    1.50
+OGN         CAH         CAG         NAI     115.988    1.50
+OGN         CAH         CAG         OAN     122.067    1.50
+OGN         NAI         CAG         OAN     121.945    1.50
+OGN         CAG         CAH         HAH     109.527    1.50
+OGN         CAG         CAH        HAHA     109.527    1.50
+OGN         CAG         CAH        HAHB     109.527    1.50
+OGN         HAH         CAH        HAHA     109.365    1.50
+OGN         HAH         CAH        HAHB     109.365    1.50
+OGN        HAHA         CAH        HAHB     109.365    1.50
+OGN         CAB         NAI         CAG     122.837    1.50
+OGN         CAB         NAI        HNAI     118.287    1.60
+OGN         CAG         NAI        HNAI     118.876    2.66
+OGN         CAC         OAJ        HOAJ     108.064    2.53
+OGN         CAD         OAK        HOAK     109.564    3.00
+OGN         CAA         OAL         CAE     119.296    2.75
+OGN         CAF         OAM        HOAM     109.472    2.41
+OGN         CAP         NAO         CAS     126.709    1.50
+OGN         CAP         NAO        HNAO     116.637    1.76
+OGN         CAS         NAO        HNAO     116.654    1.63
+OGN         NAO         CAP         OAQ     109.921    1.61
+OGN         NAO         CAP         OAR     126.160    1.50
+OGN         OAQ         CAP         OAR     123.899    1.64
+OGN         CAP         OAQ         NAY     112.258    1.50
+OGN         NAO         CAS         CAT     120.302    3.00
+OGN         NAO         CAS         CAX     120.302    3.00
+OGN         CAT         CAS         CAX     119.396    1.50
+OGN         CAS         CAT         CAU     119.830    1.50
+OGN         CAS         CAT         HAT     120.019    1.50
+OGN         CAU         CAT         HAT     120.151    1.50
+OGN         CAT         CAU         CAV     120.518    1.50
+OGN         CAT         CAU         HAU     119.600    1.50
+OGN         CAV         CAU         HAU     119.882    1.50
+OGN         CAU         CAV         CAW     119.909    1.50
+OGN         CAU         CAV         HAV     120.046    1.50
+OGN         CAW         CAV         HAV     120.046    1.50
+OGN         CAV         CAW         CAX     120.518    1.50
+OGN         CAV         CAW         HAW     119.882    1.50
+OGN         CAX         CAW         HAW     119.600    1.50
+OGN         CAS         CAX         CAW     119.830    1.50
+OGN         CAS         CAX         HAX     120.019    1.50
+OGN         CAW         CAX         HAX     120.151    1.50
+OGN         CAA         NAY         OAQ     110.326    1.71
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OGN             sp2_sp3_5         NAY         CAA         CAB         NAI     -60.000    10.0     6
+OGN             sp2_sp2_2         NAY         CAA         OAL         CAE     180.000     5.0     2
+OGN             sp2_sp2_3         CAB         CAA         NAY         OAQ     180.000     5.0     2
+OGN             sp2_sp2_9         OAQ         CAP         NAO         CAS     180.000     5.0     2
+OGN            sp2_sp2_13         CAT         CAS         NAO         CAP     180.000     5.0     2
+OGN            sp2_sp2_17         NAO         CAP         OAQ         NAY     180.000     5.0     2
+OGN            sp2_sp2_19         CAA         NAY         OAQ         CAP     180.000     5.0     2
+OGN       const_sp2_sp2_3         NAO         CAS         CAT         CAU     180.000     5.0     2
+OGN              const_23         NAO         CAS         CAX         CAW     180.000    10.0     2
+OGN       const_sp2_sp2_5         CAS         CAT         CAU         CAV       0.000     5.0     2
+OGN             sp3_sp3_5         NAI         CAB         CAC         OAJ     -60.000    10.0     3
+OGN             sp2_sp3_7         CAG         NAI         CAB         CAA       0.000    10.0     6
+OGN       const_sp2_sp2_9         CAT         CAU         CAV         CAW       0.000     5.0     2
+OGN              const_13         CAU         CAV         CAW         CAX       0.000    10.0     2
+OGN              const_17         CAV         CAW         CAX         CAS       0.000    10.0     2
+OGN            sp3_sp3_14         OAJ         CAC         CAD         OAK      60.000    10.0     3
+OGN            sp3_sp3_31         CAB         CAC         OAJ        HOAJ     180.000    10.0     3
+OGN            sp3_sp3_34         CAC         CAD         OAK        HOAK     180.000    10.0     3
+OGN            sp3_sp3_23         OAK         CAD         CAE         CAF     -60.000    10.0     3
+OGN            sp3_sp3_29         CAF         CAE         OAL         CAA     180.000    10.0     3
+OGN            sp3_sp3_37         CAD         CAE         CAF         OAM     180.000    10.0     3
+OGN            sp3_sp3_46         CAE         CAF         OAM        HOAM     180.000    10.0     3
+OGN            sp2_sp3_13         NAI         CAG         CAH         HAH       0.000    10.0     6
+OGN             sp2_sp2_5         CAH         CAG         NAI         CAB     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OGN    chir_1    CAB    NAI    CAA    CAC    negative
+OGN    chir_2    CAC    OAJ    CAD    CAB    negative
+OGN    chir_3    CAD    OAK    CAE    CAC    negative
+OGN    chir_4    CAE    OAL    CAD    CAF    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OGN    plan-1         CAS   0.020
+OGN    plan-1         CAT   0.020
+OGN    plan-1         CAU   0.020
+OGN    plan-1         CAV   0.020
+OGN    plan-1         CAW   0.020
+OGN    plan-1         CAX   0.020
+OGN    plan-1         HAT   0.020
+OGN    plan-1         HAU   0.020
+OGN    plan-1         HAV   0.020
+OGN    plan-1         HAW   0.020
+OGN    plan-1         HAX   0.020
+OGN    plan-1         NAO   0.020
+OGN    plan-2         CAA   0.020
+OGN    plan-2         CAB   0.020
+OGN    plan-2         NAY   0.020
+OGN    plan-2         OAL   0.020
+OGN    plan-3         CAG   0.020
+OGN    plan-3         CAH   0.020
+OGN    plan-3         NAI   0.020
+OGN    plan-3         OAN   0.020
+OGN    plan-4         CAB   0.020
+OGN    plan-4         CAG   0.020
+OGN    plan-4        HNAI   0.020
+OGN    plan-4         NAI   0.020
+OGN    plan-5         CAP   0.020
+OGN    plan-5         CAS   0.020
+OGN    plan-5        HNAO   0.020
+OGN    plan-5         NAO   0.020
+OGN    plan-6         CAP   0.020
+OGN    plan-6         NAO   0.020
+OGN    plan-6         OAQ   0.020
+OGN    plan-6         OAR   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OGN           SMILES              ACDLabs 12.01                                                                                                                               O=C(O\N=C1/OC(CO)C(O)C(O)C1NC(=O)C)Nc2ccccc2
+OGN            InChI                InChI  1.03 InChI=1S/C15H19N3O7/c1-8(20)16-11-13(22)12(21)10(7-19)24-14(11)18-25-15(23)17-9-5-3-2-4-6-9/h2-6,10-13,19,21-22H,7H2,1H3,(H,16,20)(H,17,23)/b18-14-/t10-,11-,12+,13-/m1/s1
+OGN         InChIKey                InChI  1.03                                                                                                                                                PBLNJFVQMUMOJY-UYZOWNTJSA-N
+OGN SMILES_CANONICAL               CACTVS 3.370                                                                                                          CC(=O)N[C@@H]\1[C@@H](O)[C@@H](O)[C@@H](CO)OC\1=N\OC(=O)Nc2ccccc2
+OGN           SMILES               CACTVS 3.370                                                                                                                     CC(=O)N[CH]1[CH](O)[CH](O)[CH](CO)OC1=NOC(=O)Nc2ccccc2
+OGN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                             CC(=O)N[C@@H]\1[C@H]([C@H]([C@H](O/C1=N\OC(=O)Nc2ccccc2)CO)O)O
+OGN           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                                                 CC(=O)NC1C(C(C(OC1=NOC(=O)Nc2ccccc2)CO)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OGN acedrg               243         "dictionary generator"                  
+OGN acedrg_database      11          "data source"                           
+OGN rdkit                2017.03.2   "Chemoinformatics tool"
+OGN refmac5              5.8.0238    "optimization tool"                     

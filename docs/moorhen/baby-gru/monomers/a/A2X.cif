@@ -1,0 +1,313 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+A2X     A2X      2-(4,6-dimethylpyrimidin-2-yl)sulfanyl-N-(4-phenylsulfanylphenyl)ethanamide     NON-POLYMER     45     26     .     
+#
+data_comp_A2X
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+A2X     C01     C       CR16    0       -14.647     -11.226     -22.154     
+A2X     C02     C       CR16    0       -13.737     -10.566     -22.956     
+A2X     C03     C       CR16    0       -13.967     -9.254      -23.322     
+A2X     C04     C       CR16    0       -15.108     -8.593      -22.889     
+A2X     C05     C       CR6     0       -16.028     -9.263      -22.090     
+A2X     C06     C       CR16    0       -15.793     -10.580     -21.712     
+A2X     S07     S       S2      0       -17.481     -8.430      -21.514     
+A2X     C08     C       CR6     0       -17.315     -7.852      -19.850     
+A2X     C09     C       CR16    0       -16.625     -6.671      -19.587     
+A2X     C10     C       CR16    0       -16.480     -6.222      -18.286     
+A2X     C11     C       CR6     0       -17.013     -6.952      -17.228     
+A2X     C12     C       CR16    0       -17.696     -8.137      -17.489     
+A2X     C13     C       CR16    0       -17.840     -8.587      -18.790     
+A2X     N14     N       NH1     0       -16.867     -6.500      -15.896     
+A2X     C15     C       C       0       -16.246     -7.133      -14.881     
+A2X     O16     O       O       0       -16.447     -8.300      -14.584     
+A2X     C17     C       CH2     0       -15.262     -6.281      -14.113     
+A2X     S18     S       S2      0       -13.576     -6.434      -14.749     
+A2X     C19     C       CR6     0       -13.205     -5.848      -16.379     
+A2X     N20     N       NRD6    0       -12.884     -4.548      -16.489     
+A2X     C21     C       CR6     0       -12.607     -4.120      -17.735     
+A2X     C22     C       CR16    0       -12.656     -4.982      -18.814     
+A2X     C23     C       CR6     0       -12.997     -6.304      -18.600     
+A2X     N24     N       NRD6    0       -13.280     -6.759      -17.365     
+A2X     C25     C       CH3     0       -13.073     -7.298      -19.721     
+A2X     C26     C       CH3     0       -12.245     -2.673      -17.885     
+A2X     H011    H       H       0       -14.490     -12.121     -21.905     
+A2X     H021    H       H       0       -12.960     -11.010     -23.254     
+A2X     H031    H       H       0       -13.347     -8.804      -23.870     
+A2X     H041    H       H       0       -15.264     -7.700      -23.139     
+A2X     H061    H       H       0       -16.412     -11.030     -21.166     
+A2X     H091    H       H       0       -16.262     -6.174      -20.298     
+A2X     H101    H       H       0       -16.018     -5.419      -18.114     
+A2X     H121    H       H       0       -18.058     -8.634      -16.776     
+A2X     H131    H       H       0       -18.302     -9.390      -18.960     
+A2X     H141    H       H       0       -17.230     -5.725      -15.715     
+A2X     H171    H       H       0       -15.272     -6.549      -13.181     
+A2X     H172    H       H       0       -15.534     -5.352      -14.158     
+A2X     H221    H       H       0       -12.460     -4.672      -19.683     
+A2X     H252    H       H       0       -13.148     -8.197      -19.360     
+A2X     H253    H       H       0       -12.270     -7.237      -20.263     
+A2X     H251    H       H       0       -13.848     -7.108      -20.273     
+A2X     H262    H       H       0       -12.662     -2.155      -17.177     
+A2X     H263    H       H       0       -12.555     -2.348      -18.746     
+A2X     H261    H       H       0       -11.281     -2.571      -17.832     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+A2X         C03         C04      DOUBLE       y     1.385  0.0100     1.385  0.0100
+A2X         C04         C05      SINGLE       y     1.386  0.0112     1.386  0.0112
+A2X         C02         C03      SINGLE       y     1.375  0.0141     1.375  0.0141
+A2X         C05         S07      SINGLE       n     1.772  0.0127     1.772  0.0127
+A2X         S07         C08      SINGLE       n     1.772  0.0127     1.772  0.0127
+A2X         C05         C06      DOUBLE       y     1.386  0.0112     1.386  0.0112
+A2X         C01         C02      DOUBLE       y     1.376  0.0124     1.376  0.0124
+A2X         C08         C09      DOUBLE       y     1.390  0.0100     1.390  0.0100
+A2X         C09         C10      SINGLE       y     1.381  0.0100     1.381  0.0100
+A2X         C01         C06      SINGLE       y     1.385  0.0100     1.385  0.0100
+A2X         C08         C13      SINGLE       y     1.390  0.0100     1.390  0.0100
+A2X         C10         C11      DOUBLE       y     1.388  0.0100     1.388  0.0100
+A2X         C23         C25      SINGLE       n     1.499  0.0100     1.499  0.0100
+A2X         C12         C13      DOUBLE       y     1.381  0.0100     1.381  0.0100
+A2X         C11         C12      SINGLE       y     1.388  0.0100     1.388  0.0100
+A2X         C11         N14      SINGLE       n     1.414  0.0100     1.414  0.0100
+A2X         C22         C23      DOUBLE       y     1.377  0.0100     1.377  0.0100
+A2X         C23         N24      SINGLE       y     1.342  0.0100     1.342  0.0100
+A2X         C21         C22      SINGLE       y     1.377  0.0100     1.377  0.0100
+A2X         N14         C15      SINGLE       n     1.346  0.0100     1.346  0.0100
+A2X         C19         N24      DOUBLE       y     1.340  0.0121     1.340  0.0121
+A2X         C21         C26      SINGLE       n     1.499  0.0100     1.499  0.0100
+A2X         N20         C21      DOUBLE       y     1.342  0.0100     1.342  0.0100
+A2X         C15         O16      DOUBLE       n     1.221  0.0100     1.221  0.0100
+A2X         C15         C17      SINGLE       n     1.510  0.0108     1.510  0.0108
+A2X         C19         N20      SINGLE       y     1.340  0.0121     1.340  0.0121
+A2X         S18         C19      SINGLE       n     1.772  0.0127     1.772  0.0127
+A2X         C17         S18      SINGLE       n     1.809  0.0191     1.809  0.0191
+A2X         C01        H011      SINGLE       n     1.082  0.0130     0.942  0.0167
+A2X         C02        H021      SINGLE       n     1.082  0.0130     0.944  0.0161
+A2X         C03        H031      SINGLE       n     1.082  0.0130     0.942  0.0167
+A2X         C04        H041      SINGLE       n     1.082  0.0130     0.940  0.0163
+A2X         C06        H061      SINGLE       n     1.082  0.0130     0.940  0.0163
+A2X         C09        H091      SINGLE       n     1.082  0.0130     0.941  0.0197
+A2X         C10        H101      SINGLE       n     1.082  0.0130     0.942  0.0186
+A2X         C12        H121      SINGLE       n     1.082  0.0130     0.942  0.0186
+A2X         C13        H131      SINGLE       n     1.082  0.0130     0.941  0.0197
+A2X         N14        H141      SINGLE       n     1.016  0.0100     0.874  0.0200
+A2X         C17        H171      SINGLE       n     1.089  0.0100     0.970  0.0100
+A2X         C17        H172      SINGLE       n     1.089  0.0100     0.970  0.0100
+A2X         C22        H221      SINGLE       n     1.082  0.0130     0.943  0.0168
+A2X         C25        H252      SINGLE       n     1.089  0.0100     0.971  0.0138
+A2X         C25        H253      SINGLE       n     1.089  0.0100     0.971  0.0138
+A2X         C25        H251      SINGLE       n     1.089  0.0100     0.971  0.0138
+A2X         C26        H262      SINGLE       n     1.089  0.0100     0.971  0.0138
+A2X         C26        H263      SINGLE       n     1.089  0.0100     0.971  0.0138
+A2X         C26        H261      SINGLE       n     1.089  0.0100     0.971  0.0138
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+A2X         C02         C01         C06     120.541    1.50
+A2X         C02         C01        H011     119.830    1.50
+A2X         C06         C01        H011     119.629    1.50
+A2X         C03         C02         C01     120.123    1.50
+A2X         C03         C02        H021     119.939    1.50
+A2X         C01         C02        H021     119.939    1.50
+A2X         C04         C03         C02     120.541    1.50
+A2X         C04         C03        H031     119.629    1.50
+A2X         C02         C03        H031     119.830    1.50
+A2X         C03         C04         C05     119.522    1.50
+A2X         C03         C04        H041     120.382    1.50
+A2X         C05         C04        H041     120.096    1.50
+A2X         C04         C05         S07     120.124    2.83
+A2X         C04         C05         C06     119.752    1.50
+A2X         S07         C05         C06     120.124    2.83
+A2X         C05         C06         C01     119.522    1.50
+A2X         C05         C06        H061     120.096    1.50
+A2X         C01         C06        H061     120.382    1.50
+A2X         C05         S07         C08     120.000    3.00
+A2X         S07         C08         C09     120.255    2.83
+A2X         S07         C08         C13     120.255    2.83
+A2X         C09         C08         C13     119.490    1.50
+A2X         C08         C09         C10     120.374    1.50
+A2X         C08         C09        H091     119.805    1.50
+A2X         C10         C09        H091     119.820    1.50
+A2X         C09         C10         C11     120.206    1.50
+A2X         C09         C10        H101     120.004    1.50
+A2X         C11         C10        H101     119.790    1.50
+A2X         C10         C11         C12     119.348    1.50
+A2X         C10         C11         N14     120.326    3.00
+A2X         C12         C11         N14     120.326    3.00
+A2X         C13         C12         C11     120.206    1.50
+A2X         C13         C12        H121     120.004    1.50
+A2X         C11         C12        H121     119.790    1.50
+A2X         C08         C13         C12     120.374    1.50
+A2X         C08         C13        H131     119.805    1.50
+A2X         C12         C13        H131     119.820    1.50
+A2X         C11         N14         C15     127.369    1.50
+A2X         C11         N14        H141     115.920    1.69
+A2X         C15         N14        H141     116.711    1.50
+A2X         N14         C15         O16     123.921    1.50
+A2X         N14         C15         C17     114.232    1.50
+A2X         O16         C15         C17     121.847    1.50
+A2X         C15         C17         S18     111.968    3.00
+A2X         C15         C17        H171     109.144    1.50
+A2X         C15         C17        H172     109.144    1.50
+A2X         S18         C17        H171     109.066    1.50
+A2X         S18         C17        H172     109.066    1.50
+A2X        H171         C17        H172     107.945    1.50
+A2X         C19         S18         C17     120.000    3.00
+A2X         N24         C19         N20     128.182    1.50
+A2X         N24         C19         S18     115.909    3.00
+A2X         N20         C19         S18     115.909    3.00
+A2X         C21         N20         C19     115.671    1.50
+A2X         C22         C21         C26     122.376    1.50
+A2X         C22         C21         N20     120.891    1.50
+A2X         C26         C21         N20     116.733    1.50
+A2X         C23         C22         C21     118.688    1.50
+A2X         C23         C22        H221     120.659    1.50
+A2X         C21         C22        H221     120.659    1.50
+A2X         C25         C23         C22     122.376    1.50
+A2X         C25         C23         N24     116.733    1.50
+A2X         C22         C23         N24     120.891    1.50
+A2X         C23         N24         C19     115.671    1.50
+A2X         C23         C25        H252     109.592    1.50
+A2X         C23         C25        H253     109.592    1.50
+A2X         C23         C25        H251     109.592    1.50
+A2X        H252         C25        H253     109.339    1.66
+A2X        H252         C25        H251     109.339    1.66
+A2X        H253         C25        H251     109.339    1.66
+A2X         C21         C26        H262     109.592    1.50
+A2X         C21         C26        H263     109.592    1.50
+A2X         C21         C26        H261     109.592    1.50
+A2X        H262         C26        H263     109.339    1.66
+A2X        H262         C26        H261     109.339    1.66
+A2X        H263         C26        H261     109.339    1.66
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+A2X       const_sp2_sp2_1         C06         C01         C02         C03       0.000     5.0     2
+A2X              const_55         C02         C01         C06         C05       0.000    10.0     2
+A2X              const_35         N14         C11         C12         C13     180.000    10.0     2
+A2X             sp2_sp2_5         C10         C11         N14         C15     180.000     5.0     2
+A2X              const_37         C11         C12         C13         C08       0.000    10.0     2
+A2X            sp2_sp2_11         O16         C15         N14         C11       0.000     5.0     2
+A2X            sp2_sp3_14         N14         C15         C17         S18     120.000    10.0     6
+A2X             sp3_sp3_1         C15         C17         S18         C19     180.000    10.0     3
+A2X            sp2_sp2_13         N24         C19         S18         C17     180.000     5.0     2
+A2X              const_64         S18         C19         N20         C21     180.000    10.0     2
+A2X              const_42         S18         C19         N24         C23     180.000    10.0     2
+A2X              const_54         C26         C21         N20         C19     180.000    10.0     2
+A2X       const_sp2_sp2_5         C01         C02         C03         C04       0.000     5.0     2
+A2X              const_51         C26         C21         C22         C23     180.000    10.0     2
+A2X             sp2_sp3_7         C22         C21         C26        H262     150.000    10.0     6
+A2X              const_46         C21         C22         C23         C25     180.000    10.0     2
+A2X              const_44         C25         C23         N24         C19     180.000    10.0     2
+A2X             sp2_sp3_1         C22         C23         C25        H252     150.000    10.0     6
+A2X       const_sp2_sp2_9         C02         C03         C04         C05       0.000     5.0     2
+A2X              const_14         C03         C04         C05         S07     180.000    10.0     2
+A2X              const_19         S07         C05         C06         C01     180.000    10.0     2
+A2X             sp2_sp2_1         C04         C05         S07         C08     180.000     5.0     2
+A2X             sp2_sp2_3         C09         C08         S07         C05     180.000     5.0     2
+A2X              const_61         S07         C08         C13         C12     180.000    10.0     2
+A2X              const_23         S07         C08         C09         C10     180.000    10.0     2
+A2X              const_25         C08         C09         C10         C11       0.000    10.0     2
+A2X              const_30         C09         C10         C11         N14     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+A2X    plan-1         C01   0.020
+A2X    plan-1         C02   0.020
+A2X    plan-1         C03   0.020
+A2X    plan-1         C04   0.020
+A2X    plan-1         C05   0.020
+A2X    plan-1         C06   0.020
+A2X    plan-1        H011   0.020
+A2X    plan-1        H021   0.020
+A2X    plan-1        H031   0.020
+A2X    plan-1        H041   0.020
+A2X    plan-1        H061   0.020
+A2X    plan-1         S07   0.020
+A2X    plan-2         C08   0.020
+A2X    plan-2         C09   0.020
+A2X    plan-2         C10   0.020
+A2X    plan-2         C11   0.020
+A2X    plan-2         C12   0.020
+A2X    plan-2         C13   0.020
+A2X    plan-2        H091   0.020
+A2X    plan-2        H101   0.020
+A2X    plan-2        H121   0.020
+A2X    plan-2        H131   0.020
+A2X    plan-2         N14   0.020
+A2X    plan-2         S07   0.020
+A2X    plan-3         C19   0.020
+A2X    plan-3         C21   0.020
+A2X    plan-3         C22   0.020
+A2X    plan-3         C23   0.020
+A2X    plan-3         C25   0.020
+A2X    plan-3         C26   0.020
+A2X    plan-3        H221   0.020
+A2X    plan-3         N20   0.020
+A2X    plan-3         N24   0.020
+A2X    plan-3         S18   0.020
+A2X    plan-4         C11   0.020
+A2X    plan-4         C15   0.020
+A2X    plan-4        H141   0.020
+A2X    plan-4         N14   0.020
+A2X    plan-5         C15   0.020
+A2X    plan-5         C17   0.020
+A2X    plan-5         N14   0.020
+A2X    plan-5         O16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+A2X            InChI                InChI  1.03 InChI=1S/C20H19N3OS2/c1-14-12-15(2)22-20(21-14)25-13-19(24)23-16-8-10-18(11-9-16)26-17-6-4-3-5-7-17/h3-12H,13H2,1-2H3,(H,23,24)
+A2X         InChIKey                InChI  1.03                                                                                                     KOUOSAPHOUALKH-UHFFFAOYSA-N
+A2X SMILES_CANONICAL               CACTVS 3.385                                                                                       Cc1cc(C)nc(SCC(=O)Nc2ccc(Sc3ccccc3)cc2)n1
+A2X           SMILES               CACTVS 3.385                                                                                       Cc1cc(C)nc(SCC(=O)Nc2ccc(Sc3ccccc3)cc2)n1
+A2X SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                       Cc1cc(nc(n1)SCC(=O)Nc2ccc(cc2)Sc3ccccc3)C
+A2X           SMILES "OpenEye OEToolkits" 2.0.6                                                                                       Cc1cc(nc(n1)SCC(=O)Nc2ccc(cc2)Sc3ccccc3)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+A2X acedrg               243         "dictionary generator"                  
+A2X acedrg_database      11          "data source"                           
+A2X rdkit                2017.03.2   "Chemoinformatics tool"
+A2X refmac5              5.8.0238    "optimization tool"                     

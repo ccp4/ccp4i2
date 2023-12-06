@@ -1,0 +1,258 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AVL     AVL      2-methyl-1-[2-(propan-2-yl)pyrazolo[1,5-a]pyridin-3-yl]propan-1-one     NON-POLYMER     35     17     .     
+#
+data_comp_AVL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AVL     CAA     C       CH3     0       -21.482     52.377      -11.760     
+AVL     CAB     C       CH1     0       -20.149     52.471      -12.477     
+AVL     CAC     C       CH3     0       -20.148     53.626      -13.458     
+AVL     CAD     C       C       0       -19.833     51.183      -13.211     
+AVL     OAE     O       O       0       -20.560     50.785      -14.111     
+AVL     CAF     C       CR5     0       -18.646     50.411      -12.826     
+AVL     CAG     C       CR56    0       -18.706     49.064      -12.451     
+AVL     CAH     C       CR16    0       -19.726     48.099      -12.312     
+AVL     CAI     C       CR16    0       -19.401     46.838      -11.907     
+AVL     CAJ     C       CR16    0       -18.047     46.506      -11.631     
+AVL     CAK     C       CR16    0       -17.067     47.432      -11.764     
+AVL     NAL     N       NR5     0       -17.405     48.699      -12.172     
+AVL     NAM     N       NRD5    0       -16.544     49.740      -12.356     
+AVL     CAN     C       CR5     0       -17.290     50.783      -12.750     
+AVL     CAO     C       CH1     0       -16.672     52.125      -13.056     
+AVL     CAQ     C       CH3     0       -16.318     52.254      -14.538     
+AVL     CAP     C       CH3     0       -15.447     52.393      -12.182     
+AVL     H1      H       H       0       -21.672     51.449      -11.537     
+AVL     H2      H       H       0       -22.190     52.721      -12.332     
+AVL     H3      H       H       0       -21.445     52.902      -10.942     
+AVL     H4      H       H       0       -19.450     52.636      -11.805     
+AVL     H5      H       H       0       -20.327     54.456      -12.983     
+AVL     H6      H       H       0       -20.837     53.483      -14.130     
+AVL     H7      H       H       0       -19.280     53.682      -13.893     
+AVL     H8      H       H       0       -20.618     48.326      -12.496     
+AVL     H9      H       H       0       -20.075     46.188      -11.811     
+AVL     H10     H       H       0       -17.826     45.628      -11.350     
+AVL     H11     H       H       0       -16.171     47.213      -11.581     
+AVL     H12     H       H       0       -17.341     52.818      -12.848     
+AVL     H13     H       H       0       -16.212     51.370      -14.931     
+AVL     H14     H       H       0       -15.487     52.752      -14.635     
+AVL     H15     H       H       0       -17.032     52.728      -14.999     
+AVL     H16     H       H       0       -15.654     52.176      -11.256     
+AVL     H17     H       H       0       -15.202     53.332      -12.246     
+AVL     H18     H       H       0       -14.705     51.843      -12.486     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AVL         CAO         CAQ      SINGLE       n     1.526  0.0116     1.526  0.0116
+AVL         CAD         OAE      DOUBLE       n     1.224  0.0152     1.224  0.0152
+AVL         CAB         CAC      SINGLE       n     1.513  0.0106     1.513  0.0106
+AVL         CAO         CAP      SINGLE       n     1.526  0.0116     1.526  0.0116
+AVL         CAN         CAO      SINGLE       n     1.505  0.0100     1.505  0.0100
+AVL         CAD         CAF      SINGLE       n     1.463  0.0183     1.463  0.0183
+AVL         CAB         CAD      SINGLE       n     1.514  0.0100     1.514  0.0100
+AVL         CAF         CAN      SINGLE       y     1.405  0.0134     1.405  0.0134
+AVL         NAM         CAN      DOUBLE       y     1.337  0.0103     1.337  0.0103
+AVL         CAF         CAG      DOUBLE       y     1.402  0.0100     1.402  0.0100
+AVL         NAL         NAM      SINGLE       y     1.362  0.0100     1.362  0.0100
+AVL         CAA         CAB      SINGLE       n     1.513  0.0106     1.513  0.0106
+AVL         CAG         NAL      SINGLE       y     1.379  0.0100     1.379  0.0100
+AVL         CAG         CAH      SINGLE       y     1.407  0.0125     1.407  0.0125
+AVL         CAK         NAL      SINGLE       y     1.369  0.0100     1.369  0.0100
+AVL         CAH         CAI      DOUBLE       y     1.361  0.0100     1.361  0.0100
+AVL         CAJ         CAK      DOUBLE       y     1.351  0.0100     1.351  0.0100
+AVL         CAI         CAJ      SINGLE       y     1.417  0.0100     1.417  0.0100
+AVL         CAA          H1      SINGLE       n     1.089  0.0100     0.973  0.0141
+AVL         CAA          H2      SINGLE       n     1.089  0.0100     0.973  0.0141
+AVL         CAA          H3      SINGLE       n     1.089  0.0100     0.973  0.0141
+AVL         CAB          H4      SINGLE       n     1.089  0.0100     0.984  0.0100
+AVL         CAC          H5      SINGLE       n     1.089  0.0100     0.973  0.0141
+AVL         CAC          H6      SINGLE       n     1.089  0.0100     0.973  0.0141
+AVL         CAC          H7      SINGLE       n     1.089  0.0100     0.973  0.0141
+AVL         CAH          H8      SINGLE       n     1.082  0.0130     0.939  0.0109
+AVL         CAI          H9      SINGLE       n     1.082  0.0130     0.941  0.0181
+AVL         CAJ         H10      SINGLE       n     1.082  0.0130     0.948  0.0100
+AVL         CAK         H11      SINGLE       n     1.082  0.0130     0.940  0.0108
+AVL         CAO         H12      SINGLE       n     1.089  0.0100     0.986  0.0100
+AVL         CAQ         H13      SINGLE       n     1.089  0.0100     0.973  0.0141
+AVL         CAQ         H14      SINGLE       n     1.089  0.0100     0.973  0.0141
+AVL         CAQ         H15      SINGLE       n     1.089  0.0100     0.973  0.0141
+AVL         CAP         H16      SINGLE       n     1.089  0.0100     0.973  0.0141
+AVL         CAP         H17      SINGLE       n     1.089  0.0100     0.973  0.0141
+AVL         CAP         H18      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AVL         CAB         CAA          H1     109.474    1.50
+AVL         CAB         CAA          H2     109.474    1.50
+AVL         CAB         CAA          H3     109.474    1.50
+AVL          H1         CAA          H2     109.411    1.50
+AVL          H1         CAA          H3     109.411    1.50
+AVL          H2         CAA          H3     109.411    1.50
+AVL         CAC         CAB         CAD     110.099    2.06
+AVL         CAC         CAB         CAA     110.641    1.50
+AVL         CAC         CAB          H4     108.636    1.50
+AVL         CAD         CAB         CAA     110.099    2.06
+AVL         CAD         CAB          H4     108.971    1.50
+AVL         CAA         CAB          H4     108.636    1.50
+AVL         CAB         CAC          H5     109.474    1.50
+AVL         CAB         CAC          H6     109.474    1.50
+AVL         CAB         CAC          H7     109.474    1.50
+AVL          H5         CAC          H6     109.411    1.50
+AVL          H5         CAC          H7     109.411    1.50
+AVL          H6         CAC          H7     109.411    1.50
+AVL         OAE         CAD         CAF     120.541    1.50
+AVL         OAE         CAD         CAB     121.032    2.07
+AVL         CAF         CAD         CAB     118.427    2.21
+AVL         CAD         CAF         CAN     129.036    3.00
+AVL         CAD         CAF         CAG     123.409    2.53
+AVL         CAN         CAF         CAG     107.555    1.50
+AVL         CAF         CAG         NAL     106.533    1.50
+AVL         CAF         CAG         CAH     134.879    1.50
+AVL         NAL         CAG         CAH     118.588    1.50
+AVL         CAG         CAH         CAI     119.655    1.50
+AVL         CAG         CAH          H8     119.999    1.50
+AVL         CAI         CAH          H8     120.338    1.50
+AVL         CAH         CAI         CAJ     120.101    1.50
+AVL         CAH         CAI          H9     119.843    1.50
+AVL         CAJ         CAI          H9     120.056    1.50
+AVL         CAK         CAJ         CAI     120.675    1.50
+AVL         CAK         CAJ         H10     119.570    1.50
+AVL         CAI         CAJ         H10     119.755    1.50
+AVL         NAL         CAK         CAJ     118.535    1.50
+AVL         NAL         CAK         H11     120.642    1.50
+AVL         CAJ         CAK         H11     120.823    1.50
+AVL         NAM         NAL         CAG     111.499    1.50
+AVL         NAM         NAL         CAK     126.045    1.50
+AVL         CAG         NAL         CAK     122.456    1.50
+AVL         CAN         NAM         NAL     104.694    1.50
+AVL         CAO         CAN         CAF     128.274    1.50
+AVL         CAO         CAN         NAM     122.007    2.65
+AVL         CAF         CAN         NAM     109.719    1.50
+AVL         CAQ         CAO         CAP     110.428    1.50
+AVL         CAQ         CAO         CAN     111.134    1.50
+AVL         CAQ         CAO         H12     107.888    1.50
+AVL         CAP         CAO         CAN     111.134    1.50
+AVL         CAP         CAO         H12     107.888    1.50
+AVL         CAN         CAO         H12     107.879    1.50
+AVL         CAO         CAQ         H13     109.496    1.50
+AVL         CAO         CAQ         H14     109.496    1.50
+AVL         CAO         CAQ         H15     109.496    1.50
+AVL         H13         CAQ         H14     109.428    1.50
+AVL         H13         CAQ         H15     109.428    1.50
+AVL         H14         CAQ         H15     109.428    1.50
+AVL         CAO         CAP         H16     109.496    1.50
+AVL         CAO         CAP         H17     109.496    1.50
+AVL         CAO         CAP         H18     109.496    1.50
+AVL         H16         CAP         H17     109.428    1.50
+AVL         H16         CAP         H18     109.428    1.50
+AVL         H17         CAP         H18     109.428    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AVL            sp3_sp3_28          H1         CAA         CAB         CAC     180.000    10.0     3
+AVL              const_14         CAJ         CAK         NAL         NAM     180.000    10.0     2
+AVL       const_sp2_sp2_7         CAG         NAL         NAM         CAN       0.000     5.0     2
+AVL       const_sp2_sp2_6         CAO         CAN         NAM         NAL     180.000     5.0     2
+AVL             sp2_sp3_2         CAF         CAN         CAO         CAQ     -90.000    10.0     6
+AVL             sp3_sp3_4         CAP         CAO         CAQ         H13      60.000    10.0     3
+AVL            sp3_sp3_19         CAQ         CAO         CAP         H16     180.000    10.0     3
+AVL            sp3_sp3_10         CAD         CAB         CAC          H5     180.000    10.0     3
+AVL             sp2_sp3_8         OAE         CAD         CAB         CAC     120.000    10.0     6
+AVL             sp2_sp2_3         OAE         CAD         CAF         CAN       0.000     5.0     2
+AVL       const_sp2_sp2_4         CAD         CAF         CAN         CAO       0.000     5.0     2
+AVL              const_31         CAD         CAF         CAG         NAL     180.000    10.0     2
+AVL       const_sp2_sp2_9         CAF         CAG         NAL         NAM       0.000     5.0     2
+AVL              const_35         CAF         CAG         CAH         CAI     180.000    10.0     2
+AVL              const_25         CAG         CAH         CAI         CAJ       0.000    10.0     2
+AVL              const_21         CAH         CAI         CAJ         CAK       0.000    10.0     2
+AVL              const_17         CAI         CAJ         CAK         NAL       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AVL    chir_1    CAB    CAD    CAC    CAA    both
+AVL    chir_2    CAO    CAN    CAQ    CAP    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AVL    plan-1         CAD   0.020
+AVL    plan-1         CAF   0.020
+AVL    plan-1         CAG   0.020
+AVL    plan-1         CAH   0.020
+AVL    plan-1         CAI   0.020
+AVL    plan-1         CAJ   0.020
+AVL    plan-1         CAK   0.020
+AVL    plan-1         CAN   0.020
+AVL    plan-1         CAO   0.020
+AVL    plan-1         H10   0.020
+AVL    plan-1         H11   0.020
+AVL    plan-1          H8   0.020
+AVL    plan-1          H9   0.020
+AVL    plan-1         NAL   0.020
+AVL    plan-1         NAM   0.020
+AVL    plan-2         CAB   0.020
+AVL    plan-2         CAD   0.020
+AVL    plan-2         CAF   0.020
+AVL    plan-2         OAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AVL           SMILES              ACDLabs 12.01                                                     O=C(c1c2ccccn2nc1C(C)C)C(C)C
+AVL            InChI                InChI  1.03 InChI=1S/C14H18N2O/c1-9(2)13-12(14(17)10(3)4)11-7-5-6-8-16(11)15-13/h5-10H,1-4H3
+AVL         InChIKey                InChI  1.03                                                      ZJVFLBOZORBYFE-UHFFFAOYSA-N
+AVL SMILES_CANONICAL               CACTVS 3.370                                                     CC(C)C(=O)c1c2ccccn2nc1C(C)C
+AVL           SMILES               CACTVS 3.370                                                     CC(C)C(=O)c1c2ccccn2nc1C(C)C
+AVL SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                   CC(C)c1c(c2ccccn2n1)C(=O)C(C)C
+AVL           SMILES "OpenEye OEToolkits" 1.7.6                                                   CC(C)c1c(c2ccccn2n1)C(=O)C(C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AVL acedrg               243         "dictionary generator"                  
+AVL acedrg_database      11          "data source"                           
+AVL rdkit                2017.03.2   "Chemoinformatics tool"
+AVL refmac5              5.8.0238    "optimization tool"                     

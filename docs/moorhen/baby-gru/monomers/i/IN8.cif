@@ -1,0 +1,332 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IN8     IN8      "[2-(5-MERCAPTO-[1,3,4]THIADIAZOL-2-YLCARBAMOYL)-1-PHENYL-ETHYL]-CARBAMIC ACID BENZYL ESTER"     NON-POLYMER     46     28     .     
+#
+data_comp_IN8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IN8     C1      C       CR5     0       29.443      45.119      48.411      
+IN8     C2      C       CR5     0       31.296      46.617      47.871      
+IN8     C3      C       C       0       26.983      44.963      48.694      
+IN8     C7      C       CR16    0       26.747      44.884      44.998      
+IN8     C8      C       CR16    0       26.654      45.960      44.123      
+IN8     C9      C       CR16    0       25.568      46.810      44.183      
+IN8     C10     C       CR16    0       24.575      46.588      45.115      
+IN8     C11     C       CR16    0       24.668      45.514      45.992      
+IN8     C12     C       C       0       24.819      41.242      47.167      
+IN8     C13     C       CH2     0       23.475      39.258      47.457      
+IN8     C14     C       CR16    0       23.392      39.001      51.741      
+IN8     C15     C       CR16    0       22.399      39.682      51.069      
+IN8     C16     C       CR16    0       22.425      39.765      49.682      
+IN8     C19     C       CR16    0       24.412      38.403      51.032      
+IN8     S1      S       S2      0       29.639      46.721      47.974      
+IN8     N1      N       NRD5    0       30.632      44.546      48.471      
+IN8     N2      N       NRD5    0       31.695      45.422      48.154      
+IN8     N3      N       NH1     0       28.258      44.462      48.685      
+IN8     S2      S       SH1     0       32.281      47.988      47.430      
+IN8     O1      O       O       0       26.720      46.119      48.995      
+IN8     C4      C       CH2     0       25.903      43.962      48.356      
+IN8     C5      C       CH1     0       25.858      43.471      46.902      
+IN8     C6      C       CR6     0       25.754      44.646      45.942      
+IN8     O2      O       O2      0       23.621      40.642      47.023      
+IN8     O3      O       O       0       25.817      40.705      47.597      
+IN8     N4      N       NH1     0       24.743      42.535      46.752      
+IN8     C17     C       CR6     0       23.446      39.167      48.958      
+IN8     C18     C       CR16    0       24.441      38.485      49.646      
+IN8     H7      H       H       0       27.494      44.308      44.949      
+IN8     H8      H       H       0       27.335      46.108      43.487      
+IN8     H9      H       H       0       25.505      47.540      43.588      
+IN8     H10     H       H       0       23.831      47.168      45.159      
+IN8     H11     H       H       0       23.984      45.368      46.626      
+IN8     H131    H       H       0       24.214      38.719      47.102      
+IN8     H132    H       H       0       22.640      38.897      47.095      
+IN8     H14     H       H       0       23.373      38.945      52.683      
+IN8     H15     H       H       0       21.699      40.092      51.551      
+IN8     H16     H       H       0       21.742      40.233      49.228      
+IN8     H19     H       H       0       25.094      37.936      51.490      
+IN8     HN3     H       H       0       28.363      43.611      48.879      
+IN8     HS2     H       HSH1    0       33.498      47.872      47.366      
+IN8     H41     H       H       0       25.038      44.352      48.575      
+IN8     H42     H       H       0       26.010      43.187      48.937      
+IN8     H5      H       H       0       26.690      42.985      46.705      
+IN8     HN4     H       H       0       23.988      42.826      46.374      
+IN8     H18     H       H       0       25.143      38.073      49.168      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IN8          C1          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+IN8          C1          N1      DOUBLE       y     1.301  0.0200     1.301  0.0200
+IN8          C1          N3      SINGLE       n     1.367  0.0190     1.367  0.0190
+IN8          C2          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+IN8          C2          N2      DOUBLE       y     1.288  0.0100     1.288  0.0100
+IN8          C2          S2      SINGLE       n     1.744  0.0119     1.744  0.0119
+IN8          C3          N3      SINGLE       n     1.357  0.0187     1.357  0.0187
+IN8          C3          O1      DOUBLE       n     1.223  0.0143     1.223  0.0143
+IN8          C3          C4      SINGLE       n     1.509  0.0100     1.509  0.0100
+IN8          C7          C8      DOUBLE       y     1.386  0.0100     1.386  0.0100
+IN8          C7          C6      SINGLE       y     1.386  0.0100     1.386  0.0100
+IN8          C8          C9      SINGLE       y     1.376  0.0124     1.376  0.0124
+IN8          C9         C10      DOUBLE       y     1.376  0.0124     1.376  0.0124
+IN8         C10         C11      SINGLE       y     1.386  0.0100     1.386  0.0100
+IN8         C11          C6      DOUBLE       y     1.386  0.0100     1.386  0.0100
+IN8         C12          O2      SINGLE       n     1.341  0.0100     1.341  0.0100
+IN8         C12          O3      DOUBLE       n     1.210  0.0102     1.210  0.0102
+IN8         C12          N4      SINGLE       n     1.348  0.0165     1.348  0.0165
+IN8         C13          O2      SINGLE       n     1.450  0.0125     1.450  0.0125
+IN8         C13         C17      SINGLE       n     1.501  0.0101     1.501  0.0101
+IN8         C14         C15      DOUBLE       y     1.374  0.0127     1.374  0.0127
+IN8         C14         C19      SINGLE       y     1.374  0.0127     1.374  0.0127
+IN8         C15         C16      SINGLE       y     1.386  0.0100     1.386  0.0100
+IN8         C16         C17      DOUBLE       y     1.383  0.0108     1.383  0.0108
+IN8         C19         C18      DOUBLE       y     1.386  0.0100     1.386  0.0100
+IN8          N1          N2      SINGLE       y     1.395  0.0133     1.395  0.0133
+IN8          C4          C5      SINGLE       n     1.533  0.0100     1.533  0.0100
+IN8          C5          C6      SINGLE       n     1.518  0.0100     1.518  0.0100
+IN8          C5          N4      SINGLE       n     1.459  0.0100     1.459  0.0100
+IN8         C17         C18      SINGLE       y     1.383  0.0108     1.383  0.0108
+IN8          C7          H7      SINGLE       n     1.082  0.0130     0.944  0.0174
+IN8          C8          H8      SINGLE       n     1.082  0.0130     0.944  0.0175
+IN8          C9          H9      SINGLE       n     1.082  0.0130     0.944  0.0161
+IN8         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0175
+IN8         C11         H11      SINGLE       n     1.082  0.0130     0.944  0.0174
+IN8         C13        H131      SINGLE       n     1.089  0.0100     0.980  0.0157
+IN8         C13        H132      SINGLE       n     1.089  0.0100     0.980  0.0157
+IN8         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0161
+IN8         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0175
+IN8         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0174
+IN8         C19         H19      SINGLE       n     1.082  0.0130     0.944  0.0175
+IN8          N3         HN3      SINGLE       n     1.016  0.0100     0.878  0.0200
+IN8          S2         HS2      SINGLE       n     1.345  0.0041     1.224  0.0200
+IN8          C4         H41      SINGLE       n     1.089  0.0100     0.974  0.0191
+IN8          C4         H42      SINGLE       n     1.089  0.0100     0.974  0.0191
+IN8          C5          H5      SINGLE       n     1.089  0.0100     0.983  0.0200
+IN8          N4         HN4      SINGLE       n     1.016  0.0100     0.891  0.0200
+IN8         C18         H18      SINGLE       n     1.082  0.0130     0.944  0.0174
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IN8          S1          C1          N1     108.464    3.00
+IN8          S1          C1          N3     124.592    3.00
+IN8          N1          C1          N3     126.943    3.00
+IN8          S1          C2          N2     108.464    3.00
+IN8          S1          C2          S2     122.969    3.00
+IN8          N2          C2          S2     128.567    3.00
+IN8          N3          C3          O1     122.592    1.50
+IN8          N3          C3          C4     114.884    1.50
+IN8          O1          C3          C4     122.525    1.50
+IN8          C8          C7          C6     120.588    1.50
+IN8          C8          C7          H7     119.730    1.50
+IN8          C6          C7          H7     119.682    1.50
+IN8          C7          C8          C9     120.216    1.50
+IN8          C7          C8          H8     119.847    1.50
+IN8          C9          C8          H8     119.938    1.50
+IN8          C8          C9         C10     119.933    1.50
+IN8          C8          C9          H9     120.033    1.50
+IN8         C10          C9          H9     120.033    1.50
+IN8          C9         C10         C11     120.216    1.50
+IN8          C9         C10         H10     119.938    1.50
+IN8         C11         C10         H10     119.847    1.50
+IN8         C10         C11          C6     120.588    1.50
+IN8         C10         C11         H11     119.730    1.50
+IN8          C6         C11         H11     119.682    1.50
+IN8          O2         C12          O3     124.297    1.50
+IN8          O2         C12          N4     110.360    1.50
+IN8          O3         C12          N4     125.343    1.50
+IN8          O2         C13         C17     109.508    2.22
+IN8          O2         C13        H131     109.538    1.50
+IN8          O2         C13        H132     109.538    1.50
+IN8         C17         C13        H131     109.785    1.50
+IN8         C17         C13        H132     109.785    1.50
+IN8        H131         C13        H132     108.275    1.50
+IN8         C15         C14         C19     119.903    1.50
+IN8         C15         C14         H14     120.048    1.50
+IN8         C19         C14         H14     120.048    1.50
+IN8         C14         C15         C16     120.186    1.50
+IN8         C14         C15         H15     119.952    1.50
+IN8         C16         C15         H15     119.862    1.50
+IN8         C15         C16         C17     120.514    1.50
+IN8         C15         C16         H16     119.754    1.50
+IN8         C17         C16         H16     119.732    1.50
+IN8         C14         C19         C18     120.186    1.50
+IN8         C14         C19         H19     119.952    1.50
+IN8         C18         C19         H19     119.862    1.50
+IN8          C1          S1          C2     108.464    3.00
+IN8          C1          N1          N2     107.362    1.50
+IN8          C2          N2          N1     107.246    1.50
+IN8          C1          N3          C3     124.557    2.96
+IN8          C1          N3         HN3     116.760    2.70
+IN8          C3          N3         HN3     118.683    1.66
+IN8          C2          S2         HS2     120.000    3.00
+IN8          C3          C4          C5     114.213    2.17
+IN8          C3          C4         H41     108.894    1.50
+IN8          C3          C4         H42     108.894    1.50
+IN8          C5          C4         H41     108.519    1.50
+IN8          C5          C4         H42     108.519    1.50
+IN8         H41          C4         H42     107.591    2.75
+IN8          C4          C5          C6     109.803    1.52
+IN8          C4          C5          N4     109.953    2.46
+IN8          C4          C5          H5     108.879    1.50
+IN8          C6          C5          N4     111.449    1.67
+IN8          C6          C5          H5     108.182    1.50
+IN8          N4          C5          H5     107.647    1.50
+IN8          C7          C6         C11     118.460    1.50
+IN8          C7          C6          C5     120.770    1.50
+IN8         C11          C6          C5     120.770    1.50
+IN8         C12          O2         C13     115.730    1.50
+IN8         C12          N4          C5     121.269    1.50
+IN8         C12          N4         HN4     119.673    2.87
+IN8          C5          N4         HN4     119.058    2.66
+IN8         C13         C17         C16     120.651    1.50
+IN8         C13         C17         C18     120.651    1.50
+IN8         C16         C17         C18     118.697    1.50
+IN8         C19         C18         C17     120.514    1.50
+IN8         C19         C18         H18     119.754    1.50
+IN8         C17         C18         H18     119.732    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IN8              const_42          N3          C1          S1          C2     180.000    10.0     2
+IN8              const_49          N3          C1          N1          N2     180.000    10.0     2
+IN8             sp2_sp2_1          S1          C1          N3          C3     180.000     5.0     2
+IN8              const_21         C19         C14         C15         C16       0.000    10.0     2
+IN8              const_54         C15         C14         C19         C18       0.000    10.0     2
+IN8              const_25         C14         C15         C16         C17       0.000    10.0     2
+IN8              const_30         C15         C16         C17         C13     180.000    10.0     2
+IN8              const_37         C17         C18         C19         C14       0.000    10.0     2
+IN8              const_47          C1          N1          N2          C2       0.000    10.0     2
+IN8              const_44          S2          C2          S1          C1     180.000    10.0     2
+IN8              const_46          S2          C2          N2          N1     180.000    10.0     2
+IN8             sp2_sp2_5          S1          C2          S2         HS2     180.000     5.0     2
+IN8             sp3_sp3_5          C3          C4          C5          N4     -60.000    10.0     3
+IN8            sp2_sp3_13          C7          C6          C5          C4     150.000    10.0     6
+IN8            sp2_sp3_19         C12          N4          C5          C4       0.000    10.0     6
+IN8              const_35         C13         C17         C18         C19     180.000    10.0     2
+IN8             sp2_sp2_9          O1          C3          N3          C1       0.000     5.0     2
+IN8             sp2_sp3_2          N3          C3          C4          C5     120.000    10.0     6
+IN8              const_52          C5          C6          C7          C8     180.000    10.0     2
+IN8       const_sp2_sp2_1          C6          C7          C8          C9       0.000     5.0     2
+IN8       const_sp2_sp2_5          C7          C8          C9         C10       0.000     5.0     2
+IN8       const_sp2_sp2_9         C11         C10          C9          C8       0.000     5.0     2
+IN8              const_13          C9         C10         C11          C6       0.000    10.0     2
+IN8              const_18         C10         C11          C6          C5     180.000    10.0     2
+IN8            sp2_sp2_11          O3         C12          O2         C13     180.000     5.0     2
+IN8            sp2_sp2_13          O2         C12          N4          C5     180.000     5.0     2
+IN8             sp3_sp3_1         C17         C13          O2         C12     180.000    10.0     3
+IN8             sp2_sp3_8         C16         C17         C13          O2     -90.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IN8    chir_1    C5    N4    C6    C4    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IN8    plan-1          C1   0.020
+IN8    plan-1          C2   0.020
+IN8    plan-1          N1   0.020
+IN8    plan-1          N2   0.020
+IN8    plan-1          N3   0.020
+IN8    plan-1          S1   0.020
+IN8    plan-1          S2   0.020
+IN8    plan-2         C13   0.020
+IN8    plan-2         C14   0.020
+IN8    plan-2         C15   0.020
+IN8    plan-2         C16   0.020
+IN8    plan-2         C17   0.020
+IN8    plan-2         C18   0.020
+IN8    plan-2         C19   0.020
+IN8    plan-2         H14   0.020
+IN8    plan-2         H15   0.020
+IN8    plan-2         H16   0.020
+IN8    plan-2         H18   0.020
+IN8    plan-2         H19   0.020
+IN8    plan-3         C10   0.020
+IN8    plan-3         C11   0.020
+IN8    plan-3          C5   0.020
+IN8    plan-3          C6   0.020
+IN8    plan-3          C7   0.020
+IN8    plan-3          C8   0.020
+IN8    plan-3          C9   0.020
+IN8    plan-3         H10   0.020
+IN8    plan-3         H11   0.020
+IN8    plan-3          H7   0.020
+IN8    plan-3          H8   0.020
+IN8    plan-3          H9   0.020
+IN8    plan-4          C3   0.020
+IN8    plan-4          C4   0.020
+IN8    plan-4          N3   0.020
+IN8    plan-4          O1   0.020
+IN8    plan-5         C12   0.020
+IN8    plan-5          N4   0.020
+IN8    plan-5          O2   0.020
+IN8    plan-5          O3   0.020
+IN8    plan-6          C1   0.020
+IN8    plan-6          C3   0.020
+IN8    plan-6         HN3   0.020
+IN8    plan-6          N3   0.020
+IN8    plan-7         C12   0.020
+IN8    plan-7          C5   0.020
+IN8    plan-7         HN4   0.020
+IN8    plan-7          N4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IN8           SMILES              ACDLabs 10.04                                                                                                                           O=C(Nc1nnc(S)s1)CC(c2ccccc2)NC(=O)OCc3ccccc3
+IN8 SMILES_CANONICAL               CACTVS 3.341                                                                                                                      Sc1sc(NC(=O)C[C@@H](NC(=O)OCc2ccccc2)c3ccccc3)nn1
+IN8           SMILES               CACTVS 3.341                                                                                                                        Sc1sc(NC(=O)C[CH](NC(=O)OCc2ccccc2)c3ccccc3)nn1
+IN8 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                     c1ccc(cc1)COC(=O)N[C@H](CC(=O)Nc2nnc(s2)S)c3ccccc3
+IN8           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                         c1ccc(cc1)COC(=O)NC(CC(=O)Nc2nnc(s2)S)c3ccccc3
+IN8            InChI                InChI  1.03 InChI=1S/C19H18N4O3S2/c24-16(21-17-22-23-19(27)28-17)11-15(14-9-5-2-6-10-14)20-18(25)26-12-13-7-3-1-4-8-13/h1-10,15H,11-12H2,(H,20,25)(H,23,27)(H,21,22,24)/t15-/m1/s1
+IN8         InChIKey                InChI  1.03                                                                                                                                            AWAKNMKLVLWIIQ-OAHLLOKOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IN8 acedrg               243         "dictionary generator"                  
+IN8 acedrg_database      11          "data source"                           
+IN8 rdkit                2017.03.2   "Chemoinformatics tool"
+IN8 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,253 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TMU     TMU      "N-(4-METHOXYBENZYL)-N'-(5-NITRO-1,3-THIAZOL-2-YL)UREA"     NON-POLYMER     33     21     .     
+#
+data_comp_TMU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TMU     C1      C       CR5     0       22.672      23.596      6.732       
+TMU     S2      S       S2      0       21.663      23.718      8.060       
+TMU     N3      N       NRD5    0       21.966      23.302      5.623       
+TMU     N4      N       NH1     0       24.042      23.771      6.741       
+TMU     C5      C       CR5     0       20.269      23.388      7.208       
+TMU     C6      C       CR15    0       20.610      23.181      5.873       
+TMU     C7      C       C       0       24.902      24.063      7.806       
+TMU     N8      N       N       1       18.980      23.341      7.803       
+TMU     N9      N       NH1     0       26.155      23.578      7.669       
+TMU     O10     O       O       0       24.545      24.734      8.784       
+TMU     O11     O       OC      -1      18.028      23.087      7.079       
+TMU     O12     O       O       0       18.885      23.557      9.003       
+TMU     C13     C       CH2     0       27.204      23.820      8.643       
+TMU     C14     C       CR6     0       27.204      22.839      9.789       
+TMU     C15     C       CR16    0       27.636      21.531      9.602       
+TMU     C16     C       CR16    0       26.782      23.215      11.058      
+TMU     C17     C       CR16    0       27.648      20.617      10.647      
+TMU     C18     C       CR16    0       26.785      22.315      12.115      
+TMU     C19     C       CR6     0       27.213      21.006      11.913      
+TMU     O20     O       O2      0       27.192      20.191      13.018      
+TMU     C21     C       CH3     0       27.088      18.777      12.855      
+TMU     HN4     H       H       0       24.408      23.700      5.945       
+TMU     H6      H       H       0       19.978      22.976      5.196       
+TMU     HN9     H       H       0       26.342      23.092      6.965       
+TMU     H131    H       H       0       27.113      24.730      8.998       
+TMU     H132    H       H       0       28.069      23.768      8.186       
+TMU     H15     H       H       0       27.928      21.258      8.748       
+TMU     H16     H       H       0       26.485      24.098      11.207      
+TMU     H17     H       H       0       27.945      19.736      10.494      
+TMU     H18     H       H       0       26.493      22.589      12.970      
+TMU     H211    H       H       0       27.927      18.431      12.508      
+TMU     H212    H       H       0       26.370      18.572      12.235      
+TMU     H213    H       H       0       26.901      18.367      13.715      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TMU          C1          S2      SINGLE       y     1.695  0.0200     1.695  0.0200
+TMU          C1          N3      DOUBLE       y     1.335  0.0145     1.335  0.0145
+TMU          C1          N4      SINGLE       n     1.367  0.0190     1.367  0.0190
+TMU          S2          C5      SINGLE       y     1.695  0.0200     1.695  0.0200
+TMU          N3          C6      SINGLE       y     1.372  0.0107     1.372  0.0107
+TMU          N4          C7      SINGLE       n     1.380  0.0200     1.380  0.0200
+TMU          C5          C6      DOUBLE       y     1.379  0.0196     1.379  0.0196
+TMU          C5          N8      SINGLE       n     1.409  0.0200     1.409  0.0200
+TMU          C7          N9      SINGLE       n     1.345  0.0100     1.345  0.0100
+TMU          C7         O10      DOUBLE       n     1.235  0.0158     1.235  0.0158
+TMU          N8         O11      SINGLE       n     1.221  0.0162     1.221  0.0162
+TMU          N8         O12      DOUBLE       n     1.221  0.0162     1.221  0.0162
+TMU          N9         C13      SINGLE       n     1.450  0.0100     1.450  0.0100
+TMU         C13         C14      SINGLE       n     1.508  0.0100     1.508  0.0100
+TMU         C14         C15      DOUBLE       y     1.387  0.0100     1.387  0.0100
+TMU         C14         C16      SINGLE       y     1.387  0.0100     1.387  0.0100
+TMU         C15         C17      SINGLE       y     1.385  0.0100     1.385  0.0100
+TMU         C16         C18      DOUBLE       y     1.385  0.0100     1.385  0.0100
+TMU         C17         C19      DOUBLE       y     1.386  0.0109     1.386  0.0109
+TMU         C18         C19      SINGLE       y     1.386  0.0109     1.386  0.0109
+TMU         C19         O20      SINGLE       n     1.369  0.0100     1.369  0.0100
+TMU         O20         C21      SINGLE       n     1.424  0.0117     1.424  0.0117
+TMU          N4         HN4      SINGLE       n     1.016  0.0100     0.878  0.0200
+TMU          C6          H6      SINGLE       n     1.082  0.0130     0.949  0.0200
+TMU          N9         HN9      SINGLE       n     1.016  0.0100     0.874  0.0186
+TMU         C13        H131      SINGLE       n     1.089  0.0100     0.980  0.0169
+TMU         C13        H132      SINGLE       n     1.089  0.0100     0.980  0.0169
+TMU         C15         H15      SINGLE       n     1.082  0.0130     0.943  0.0173
+TMU         C16         H16      SINGLE       n     1.082  0.0130     0.943  0.0173
+TMU         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0169
+TMU         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0169
+TMU         C21        H211      SINGLE       n     1.089  0.0100     0.971  0.0157
+TMU         C21        H212      SINGLE       n     1.089  0.0100     0.971  0.0157
+TMU         C21        H213      SINGLE       n     1.089  0.0100     0.971  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TMU          S2          C1          N3     108.411    3.00
+TMU          S2          C1          N4     122.794    3.00
+TMU          N3          C1          N4     128.795    3.00
+TMU          C1          S2          C5     108.411    3.00
+TMU          C1          N3          C6     105.482    1.50
+TMU          C1          N4          C7     125.100    2.96
+TMU          C1          N4         HN4     117.304    2.70
+TMU          C7          N4         HN4     117.596    1.50
+TMU          S2          C5          C6     108.411    3.00
+TMU          S2          C5          N8     121.853    3.00
+TMU          C6          C5          N8     129.736    2.73
+TMU          N3          C6          C5     109.285    1.50
+TMU          N3          C6          H6     124.972    1.50
+TMU          C5          C6          H6     125.743    1.50
+TMU          N4          C7          N9     114.635    2.00
+TMU          N4          C7         O10     122.567    1.50
+TMU          N9          C7         O10     122.798    1.50
+TMU          C5          N8         O11     117.850    1.50
+TMU          C5          N8         O12     117.850    1.50
+TMU         O11          N8         O12     124.299    1.50
+TMU          C7          N9         C13     121.790    1.50
+TMU          C7          N9         HN9     118.760    1.50
+TMU         C13          N9         HN9     119.451    1.54
+TMU          N9         C13         C14     113.692    1.56
+TMU          N9         C13        H131     108.810    1.50
+TMU          N9         C13        H132     108.810    1.50
+TMU         C14         C13        H131     109.073    1.50
+TMU         C14         C13        H132     109.073    1.50
+TMU        H131         C13        H132     107.860    1.50
+TMU         C13         C14         C15     120.823    1.50
+TMU         C13         C14         C16     120.823    1.50
+TMU         C15         C14         C16     118.355    1.50
+TMU         C14         C15         C17     121.310    1.50
+TMU         C14         C15         H15     119.459    1.50
+TMU         C17         C15         H15     119.230    1.50
+TMU         C14         C16         C18     121.310    1.50
+TMU         C14         C16         H16     119.459    1.50
+TMU         C18         C16         H16     119.230    1.50
+TMU         C15         C17         C19     119.630    1.50
+TMU         C15         C17         H17     120.203    1.50
+TMU         C19         C17         H17     120.166    1.50
+TMU         C16         C18         C19     119.630    1.50
+TMU         C16         C18         H18     120.203    1.50
+TMU         C19         C18         H18     120.166    1.50
+TMU         C17         C19         C18     119.764    1.50
+TMU         C17         C19         O20     120.118    3.00
+TMU         C18         C19         O20     120.118    3.00
+TMU         C19         O20         C21     117.529    1.50
+TMU         O20         C21        H211     109.428    1.50
+TMU         O20         C21        H212     109.428    1.50
+TMU         O20         C21        H213     109.428    1.50
+TMU        H211         C21        H212     109.509    1.50
+TMU        H211         C21        H213     109.509    1.50
+TMU        H212         C21        H213     109.509    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TMU              const_22          N4          C1          S2          C5     180.000    10.0     2
+TMU              const_32          N4          C1          N3          C6     180.000    10.0     2
+TMU             sp2_sp2_1          S2          C1          N4          C7     180.000     5.0     2
+TMU             sp2_sp3_8         C15         C14         C13          N9     -90.000    10.0     6
+TMU       const_sp2_sp2_3         C13         C14         C15         C17     180.000     5.0     2
+TMU              const_35         C13         C14         C16         C18     180.000    10.0     2
+TMU       const_sp2_sp2_5         C14         C15         C17         C19       0.000     5.0     2
+TMU              const_17         C14         C16         C18         C19       0.000    10.0     2
+TMU              const_10         C15         C17         C19         O20     180.000    10.0     2
+TMU              const_14         C16         C18         C19         O20     180.000    10.0     2
+TMU            sp2_sp2_17         C17         C19         O20         C21     180.000     5.0     2
+TMU             sp3_sp3_2        H211         C21         O20         C19     -60.000    10.0     3
+TMU              const_24          N8          C5          S2          C1     180.000    10.0     2
+TMU              const_29          C5          C6          N3          C1       0.000    10.0     2
+TMU             sp2_sp2_5          N9          C7          N4          C1     180.000     5.0     2
+TMU              const_27          N8          C5          C6          N3     180.000    10.0     2
+TMU            sp2_sp2_11          S2          C5          N8         O11       0.000     5.0     2
+TMU            sp2_sp2_13          N4          C7          N9         C13     180.000     5.0     2
+TMU             sp2_sp3_2          C7          N9         C13         C14     120.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TMU    plan-1          C1   0.020
+TMU    plan-1          C5   0.020
+TMU    plan-1          C6   0.020
+TMU    plan-1          H6   0.020
+TMU    plan-1          N3   0.020
+TMU    plan-1          N4   0.020
+TMU    plan-1          N8   0.020
+TMU    plan-1          S2   0.020
+TMU    plan-2         C13   0.020
+TMU    plan-2         C14   0.020
+TMU    plan-2         C15   0.020
+TMU    plan-2         C16   0.020
+TMU    plan-2         C17   0.020
+TMU    plan-2         C18   0.020
+TMU    plan-2         C19   0.020
+TMU    plan-2         H15   0.020
+TMU    plan-2         H16   0.020
+TMU    plan-2         H17   0.020
+TMU    plan-2         H18   0.020
+TMU    plan-2         O20   0.020
+TMU    plan-3          C1   0.020
+TMU    plan-3          C7   0.020
+TMU    plan-3         HN4   0.020
+TMU    plan-3          N4   0.020
+TMU    plan-4          C7   0.020
+TMU    plan-4          N4   0.020
+TMU    plan-4          N9   0.020
+TMU    plan-4         O10   0.020
+TMU    plan-5          C5   0.020
+TMU    plan-5          N8   0.020
+TMU    plan-5         O11   0.020
+TMU    plan-5         O12   0.020
+TMU    plan-6         C13   0.020
+TMU    plan-6          C7   0.020
+TMU    plan-6         HN9   0.020
+TMU    plan-6          N9   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TMU           SMILES              ACDLabs 10.04                                                                         O=C(Nc1ncc(s1)[N+]([O-])=O)NCc2ccc(OC)cc2
+TMU SMILES_CANONICAL               CACTVS 3.341                                                                         COc1ccc(CNC(=O)Nc2sc(cn2)[N+]([O-])=O)cc1
+TMU           SMILES               CACTVS 3.341                                                                         COc1ccc(CNC(=O)Nc2sc(cn2)[N+]([O-])=O)cc1
+TMU SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                         COc1ccc(cc1)CNC(=O)Nc2ncc(s2)[N+](=O)[O-]
+TMU           SMILES "OpenEye OEToolkits" 1.5.0                                                                         COc1ccc(cc1)CNC(=O)Nc2ncc(s2)[N+](=O)[O-]
+TMU            InChI                InChI  1.03 InChI=1S/C12H12N4O4S/c1-20-9-4-2-8(3-5-9)6-13-11(17)15-12-14-7-10(21-12)16(18)19/h2-5,7H,6H2,1H3,(H2,13,14,15,17)
+TMU         InChIKey                InChI  1.03                                                                                       YAEMHJKFIIIULI-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TMU acedrg               243         "dictionary generator"                  
+TMU acedrg_database      11          "data source"                           
+TMU rdkit                2017.03.2   "Chemoinformatics tool"
+TMU refmac5              5.8.0238    "optimization tool"                     

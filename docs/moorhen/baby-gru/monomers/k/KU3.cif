@@ -1,0 +1,311 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KU3     KU3      (5-fluoroisoindolin-2-yl)(4-hydroxy-5-isopropylbenzo[d]isoxazol-7-yl)methanone     NON-POLYMER     42     25     .     
+#
+data_comp_KU3
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KU3     C01     C       CH3     0       22.503      97.007      -8.651      
+KU3     C02     C       CH1     0       21.901      98.219      -7.941      
+KU3     C03     C       CH3     0       21.760      97.943      -6.445      
+KU3     C04     C       CR6     0       22.701      99.486      -8.206      
+KU3     C05     C       CR16    0       24.055      99.544      -7.875      
+KU3     C06     C       CR6     0       24.819      100.708     -8.091      
+KU3     C07     C       CR6     0       24.218      101.841     -8.684      
+KU3     O08     O       OH1     0       24.928      102.993     -8.927      
+KU3     C09     C       CR56    0       22.857      101.800     -9.027      
+KU3     C10     C       CR56    0       22.152      100.627     -8.775      
+KU3     O11     O       O2      0       20.870      100.799     -9.177      
+KU3     N12     N       NRD5    0       20.763      102.129     -9.702      
+KU3     C13     C       CR15    0       21.926      102.698     -9.607      
+KU3     C14     C       C       0       26.274      100.694     -7.720      
+KU3     O15     O       O       0       27.127      100.673     -8.607      
+KU3     N16     N       NR5     0       26.618      100.706     -6.409      
+KU3     C17     C       CH2     0       25.687      100.730     -5.261      
+KU3     C18     C       CR56    0       26.617      100.696     -4.083      
+KU3     C19     C       CR56    0       27.946      100.677     -4.502      
+KU3     C20     C       CH2     0       28.037      100.699     -5.999      
+KU3     C21     C       CR16    0       28.978      100.644     -3.569      
+KU3     C22     C       CR6     0       28.631      100.629     -2.232      
+KU3     F23     F       F       0       29.631      100.597     -1.306      
+KU3     C24     C       CR16    0       27.329      100.646     -1.786      
+KU3     C25     C       CR16    0       26.302      100.679     -2.725      
+KU3     H1      H       H       0       22.778      97.259      -9.550      
+KU3     H2      H       H       0       21.837      96.299      -8.705      
+KU3     H3      H       H       0       23.276      96.687      -8.155      
+KU3     H4      H       H       0       20.988      98.352      -8.306      
+KU3     H5      H       H       0       21.557      98.773      -5.978      
+KU3     H6      H       H       0       22.591      97.574      -6.100      
+KU3     H7      H       H       0       21.038      97.307      -6.299      
+KU3     H8      H       H       0       24.458      98.787      -7.481      
+KU3     H9      H       H       0       25.202      103.478     -8.269      
+KU3     H10     H       H       0       22.125      103.570     -9.880      
+KU3     H11     H       H       0       25.133      101.551     -5.262      
+KU3     H12     H       H       0       25.087      99.942      -5.266      
+KU3     H13     H       H       0       28.509      101.508     -6.320      
+KU3     H14     H       H       0       28.507      99.899      -6.344      
+KU3     H15     H       H       0       29.880      100.632     -3.847      
+KU3     H16     H       H       0       27.142      100.635     -0.866      
+KU3     H17     H       H       0       25.401      100.691     -2.440      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KU3         N12         C13      DOUBLE       y     1.294  0.0100     1.294  0.0100
+KU3         O11         N12      SINGLE       y     1.432  0.0100     1.432  0.0100
+KU3         C09         C13      SINGLE       y     1.416  0.0100     1.416  0.0100
+KU3         C01         C02      SINGLE       n     1.527  0.0115     1.527  0.0115
+KU3         C10         O11      SINGLE       y     1.358  0.0100     1.358  0.0100
+KU3         C09         C10      SINGLE       y     1.393  0.0102     1.393  0.0102
+KU3         C07         C09      DOUBLE       y     1.398  0.0148     1.398  0.0148
+KU3         C07         O08      SINGLE       n     1.374  0.0155     1.374  0.0155
+KU3         C04         C10      DOUBLE       y     1.384  0.0100     1.384  0.0100
+KU3         C06         C07      SINGLE       y     1.404  0.0138     1.404  0.0138
+KU3         C14         O15      DOUBLE       n     1.230  0.0100     1.230  0.0100
+KU3         C02         C04      SINGLE       n     1.519  0.0100     1.519  0.0100
+KU3         C04         C05      SINGLE       y     1.389  0.0107     1.389  0.0107
+KU3         C05         C06      DOUBLE       y     1.400  0.0130     1.400  0.0130
+KU3         C06         C14      SINGLE       n     1.499  0.0100     1.499  0.0100
+KU3         C02         C03      SINGLE       n     1.527  0.0115     1.527  0.0115
+KU3         C14         N16      SINGLE       n     1.348  0.0117     1.348  0.0117
+KU3         N16         C20      SINGLE       n     1.475  0.0135     1.475  0.0135
+KU3         N16         C17      SINGLE       n     1.475  0.0135     1.475  0.0135
+KU3         C19         C20      SINGLE       n     1.500  0.0100     1.500  0.0100
+KU3         C17         C18      SINGLE       n     1.501  0.0100     1.501  0.0100
+KU3         C18         C19      DOUBLE       y     1.389  0.0100     1.389  0.0100
+KU3         C19         C21      SINGLE       y     1.387  0.0100     1.387  0.0100
+KU3         C18         C25      SINGLE       y     1.389  0.0100     1.389  0.0100
+KU3         C21         C22      DOUBLE       y     1.379  0.0100     1.379  0.0100
+KU3         C24         C25      DOUBLE       y     1.388  0.0100     1.388  0.0100
+KU3         C22         C24      SINGLE       y     1.375  0.0100     1.375  0.0100
+KU3         C22         F23      SINGLE       n     1.363  0.0100     1.363  0.0100
+KU3         C01          H1      SINGLE       n     1.089  0.0100     0.973  0.0141
+KU3         C01          H2      SINGLE       n     1.089  0.0100     0.973  0.0141
+KU3         C01          H3      SINGLE       n     1.089  0.0100     0.973  0.0141
+KU3         C02          H4      SINGLE       n     1.089  0.0100     0.993  0.0142
+KU3         C03          H5      SINGLE       n     1.089  0.0100     0.973  0.0141
+KU3         C03          H6      SINGLE       n     1.089  0.0100     0.973  0.0141
+KU3         C03          H7      SINGLE       n     1.089  0.0100     0.973  0.0141
+KU3         C05          H8      SINGLE       n     1.082  0.0130     0.944  0.0103
+KU3         O08          H9      SINGLE       n     0.966  0.0059     0.861  0.0200
+KU3         C13         H10      SINGLE       n     1.082  0.0130     0.936  0.0129
+KU3         C17         H11      SINGLE       n     1.089  0.0100     0.990  0.0100
+KU3         C17         H12      SINGLE       n     1.089  0.0100     0.990  0.0100
+KU3         C20         H13      SINGLE       n     1.089  0.0100     0.990  0.0100
+KU3         C20         H14      SINGLE       n     1.089  0.0100     0.990  0.0100
+KU3         C21         H15      SINGLE       n     1.082  0.0130     0.944  0.0137
+KU3         C24         H16      SINGLE       n     1.082  0.0130     0.938  0.0108
+KU3         C25         H17      SINGLE       n     1.082  0.0130     0.945  0.0189
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KU3         C02         C01          H1     109.531    1.50
+KU3         C02         C01          H2     109.531    1.50
+KU3         C02         C01          H3     109.531    1.50
+KU3          H1         C01          H2     109.411    1.50
+KU3          H1         C01          H3     109.411    1.50
+KU3          H2         C01          H3     109.411    1.50
+KU3         C01         C02         C04     111.748    1.50
+KU3         C01         C02         C03     110.198    1.50
+KU3         C01         C02          H4     107.646    1.50
+KU3         C04         C02         C03     111.748    1.50
+KU3         C04         C02          H4     107.644    1.50
+KU3         C03         C02          H4     107.646    1.50
+KU3         C02         C03          H5     109.531    1.50
+KU3         C02         C03          H6     109.531    1.50
+KU3         C02         C03          H7     109.531    1.50
+KU3          H5         C03          H6     109.411    1.50
+KU3          H5         C03          H7     109.411    1.50
+KU3          H6         C03          H7     109.411    1.50
+KU3         C10         C04         C02     122.829    1.83
+KU3         C10         C04         C05     116.443    1.50
+KU3         C02         C04         C05     120.728    1.50
+KU3         C04         C05         C06     120.970    1.50
+KU3         C04         C05          H8     119.039    1.50
+KU3         C06         C05          H8     119.991    1.50
+KU3         C07         C06         C05     119.841    1.50
+KU3         C07         C06         C14     121.366    2.27
+KU3         C05         C06         C14     118.793    2.06
+KU3         C09         C07         O08     119.548    3.00
+KU3         C09         C07         C06     119.861    1.50
+KU3         O08         C07         C06     120.592    3.00
+KU3         C07         O08          H9     120.000    3.00
+KU3         C13         C09         C10     106.485    1.50
+KU3         C13         C09         C07     135.050    2.28
+KU3         C10         C09         C07     118.465    1.50
+KU3         O11         C10         C09     109.951    1.50
+KU3         O11         C10         C04     125.629    1.57
+KU3         C09         C10         C04     124.420    1.50
+KU3         N12         O11         C10     107.864    1.50
+KU3         C13         N12         O11     106.671    1.50
+KU3         N12         C13         C09     109.030    1.50
+KU3         N12         C13         H10     125.711    1.50
+KU3         C09         C13         H10     125.259    1.52
+KU3         O15         C14         C06     120.764    1.50
+KU3         O15         C14         N16     121.660    1.50
+KU3         C06         C14         N16     117.576    1.50
+KU3         C14         N16         C20     123.418    2.91
+KU3         C14         N16         C17     123.418    2.91
+KU3         C20         N16         C17     113.164    1.70
+KU3         N16         C17         C18     101.401    1.50
+KU3         N16         C17         H11     111.391    1.50
+KU3         N16         C17         H12     111.391    1.50
+KU3         C18         C17         H11     111.477    1.50
+KU3         C18         C17         H12     111.477    1.50
+KU3         H11         C17         H12     108.797    1.63
+KU3         C17         C18         C19     110.124    1.50
+KU3         C17         C18         C25     129.267    1.50
+KU3         C19         C18         C25     120.609    1.50
+KU3         C20         C19         C18     110.273    1.50
+KU3         C20         C19         C21     129.380    1.50
+KU3         C18         C19         C21     120.347    1.50
+KU3         N16         C20         C19     101.401    1.50
+KU3         N16         C20         H13     111.391    1.50
+KU3         N16         C20         H14     111.391    1.50
+KU3         C19         C20         H13     111.477    1.50
+KU3         C19         C20         H14     111.477    1.50
+KU3         H13         C20         H14     108.797    1.63
+KU3         C19         C21         C22     117.524    1.50
+KU3         C19         C21         H15     120.799    1.50
+KU3         C22         C21         H15     121.676    1.50
+KU3         C21         C22         C24     123.849    1.50
+KU3         C21         C22         F23     118.088    1.50
+KU3         C24         C22         F23     118.063    1.50
+KU3         C25         C24         C22     118.719    1.50
+KU3         C25         C24         H16     120.965    1.50
+KU3         C22         C24         H16     120.315    1.50
+KU3         C18         C25         C24     118.951    1.50
+KU3         C18         C25         H17     120.820    1.50
+KU3         C24         C25         H17     120.229    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KU3             sp3_sp3_2          H1         C01         C02         C03     -60.000    10.0     3
+KU3              const_27         C13         N12         O11         C10       0.000    10.0     2
+KU3              const_25         C09         C13         N12         O11       0.000    10.0     2
+KU3             sp2_sp2_9         O15         C14         N16         C20       0.000     5.0     2
+KU3            sp2_sp3_28         C14         N16         C17         C18     180.000    10.0     6
+KU3             sp2_sp3_4         C14         N16         C20         C19     180.000    10.0     6
+KU3            sp2_sp3_13         C19         C18         C17         N16       0.000    10.0     6
+KU3              const_30         C17         C18         C19         C20       0.000    10.0     2
+KU3              const_56         C17         C18         C25         C24     180.000    10.0     2
+KU3             sp2_sp3_7         C18         C19         C20         N16       0.000    10.0     6
+KU3              const_36         C20         C19         C21         C22     180.000    10.0     2
+KU3            sp3_sp3_10         C01         C02         C03          H5     180.000    10.0     3
+KU3            sp2_sp3_20         C10         C04         C02         C01     -90.000    10.0     6
+KU3              const_39         C19         C21         C22         F23     180.000    10.0     2
+KU3              const_44         F23         C22         C24         C25     180.000    10.0     2
+KU3              const_46         C22         C24         C25         C18       0.000    10.0     2
+KU3              const_52         C02         C04         C05         C06     180.000    10.0     2
+KU3       const_sp2_sp2_4         C02         C04         C10         O11       0.000     5.0     2
+KU3              const_18         C04         C05         C06         C14     180.000    10.0     2
+KU3             sp2_sp2_4         C07         C06         C14         O15       0.000     5.0     2
+KU3              const_16         C14         C06         C07         O08       0.000    10.0     2
+KU3             sp2_sp2_1         C09         C07         O08          H9     180.000     5.0     2
+KU3              const_12         O08         C07         C09         C13       0.000    10.0     2
+KU3              const_21         C10         C09         C13         N12       0.000    10.0     2
+KU3       const_sp2_sp2_5         C13         C09         C10         O11       0.000     5.0     2
+KU3              const_28         C09         C10         O11         N12       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KU3    chir_1    C02    C04    C01    C03    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KU3    plan-1         C02   0.020
+KU3    plan-1         C04   0.020
+KU3    plan-1         C05   0.020
+KU3    plan-1         C06   0.020
+KU3    plan-1         C07   0.020
+KU3    plan-1         C09   0.020
+KU3    plan-1         C10   0.020
+KU3    plan-1         C13   0.020
+KU3    plan-1         C14   0.020
+KU3    plan-1         H10   0.020
+KU3    plan-1          H8   0.020
+KU3    plan-1         N12   0.020
+KU3    plan-1         O08   0.020
+KU3    plan-1         O11   0.020
+KU3    plan-2         C17   0.020
+KU3    plan-2         C18   0.020
+KU3    plan-2         C19   0.020
+KU3    plan-2         C20   0.020
+KU3    plan-2         C21   0.020
+KU3    plan-2         C22   0.020
+KU3    plan-2         C24   0.020
+KU3    plan-2         C25   0.020
+KU3    plan-2         F23   0.020
+KU3    plan-2         H15   0.020
+KU3    plan-2         H16   0.020
+KU3    plan-2         H17   0.020
+KU3    plan-3         C06   0.020
+KU3    plan-3         C14   0.020
+KU3    plan-3         N16   0.020
+KU3    plan-3         O15   0.020
+KU3    plan-4         C14   0.020
+KU3    plan-4         C17   0.020
+KU3    plan-4         C20   0.020
+KU3    plan-4         N16   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KU3           SMILES              ACDLabs 12.01                                                                              CC(C)c3cc(C(N1Cc2c(C1)ccc(c2)F)=O)c(O)c4c3onc4
+KU3            InChI                InChI  1.03 InChI=1S/C19H17FN2O3/c1-10(2)14-6-15(17(23)16-7-21-25-18(14)16)19(24)22-8-11-3-4-13(20)5-12(11)9-22/h3-7,10,23H,8-9H2,1-2H3
+KU3         InChIKey                InChI  1.03                                                                                                 XKVXUSFQFBIYEQ-UHFFFAOYSA-N
+KU3 SMILES_CANONICAL               CACTVS 3.385                                                                                CC(C)c1cc(c(O)c2cnoc12)C(=O)N3Cc4ccc(F)cc4C3
+KU3           SMILES               CACTVS 3.385                                                                                CC(C)c1cc(c(O)c2cnoc12)C(=O)N3Cc4ccc(F)cc4C3
+KU3 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                CC(C)c1cc(c(c2c1onc2)O)C(=O)N3Cc4ccc(cc4C3)F
+KU3           SMILES "OpenEye OEToolkits" 2.0.6                                                                                CC(C)c1cc(c(c2c1onc2)O)C(=O)N3Cc4ccc(cc4C3)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KU3 acedrg               243         "dictionary generator"                  
+KU3 acedrg_database      11          "data source"                           
+KU3 rdkit                2017.03.2   "Chemoinformatics tool"
+KU3 refmac5              5.8.0238    "optimization tool"                     

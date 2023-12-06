@@ -1,0 +1,204 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NFA     NFA      "PHENYLALANINE AMIDE"     NON-POLYMER     24     12     .     
+#
+data_comp_NFA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NFA     N       N       NT2     0       4.359       8.210       103.919     
+NFA     CA      C       CH1     0       3.939       8.848       105.168     
+NFA     C       C       C       0       2.433       8.673       105.405     
+NFA     O       O       O       0       1.642       8.791       104.471     
+NFA     CB      C       CH2     0       4.290       10.351      105.142     
+NFA     CG      C       CR6     0       5.746       10.707      104.937     
+NFA     CD1     C       CR16    0       6.787       9.847       105.288     
+NFA     CD2     C       CR16    0       6.080       11.950      104.408     
+NFA     CE1     C       CR16    0       8.113       10.215      105.093     
+NFA     CE2     C       CR16    0       7.407       12.316      104.216     
+NFA     CZ      C       CR16    0       8.422       11.449      104.559     
+NFA     NXT     N       NH2     0       2.056       8.402       106.649     
+NFA     H       H       H       0       5.188       7.870       104.015     
+NFA     H2      H       H       0       3.818       7.519       103.703     
+NFA     HA      H       H       0       4.419       8.414       105.926     
+NFA     HB2     H       H       0       3.992       10.749      105.986     
+NFA     HB3     H       H       0       3.770       10.771      104.425     
+NFA     HD1     H       H       0       6.596       9.001       105.653     
+NFA     HD2     H       H       0       5.392       12.551      104.170     
+NFA     HE1     H       H       0       8.805       9.618       105.329     
+NFA     HE2     H       H       0       7.613       13.162      103.850     
+NFA     HZ      H       H       0       9.323       11.697      104.429     
+NFA     HXT1    H       H       0       1.197       8.285       106.823     
+NFA     HXT2    H       H       0       2.642       8.344       107.308     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NFA           N          CA      SINGLE       n     1.462  0.0100     1.462  0.0100
+NFA          CA           C      SINGLE       n     1.530  0.0124     1.530  0.0124
+NFA          CA          CB      SINGLE       n     1.541  0.0100     1.541  0.0100
+NFA           C           O      DOUBLE       n     1.230  0.0100     1.230  0.0100
+NFA           C         NXT      SINGLE       n     1.325  0.0100     1.325  0.0100
+NFA          CB          CG      SINGLE       n     1.508  0.0100     1.508  0.0100
+NFA          CG         CD1      DOUBLE       y     1.385  0.0111     1.385  0.0111
+NFA          CG         CD2      SINGLE       y     1.385  0.0111     1.385  0.0111
+NFA         CD1         CE1      SINGLE       y     1.386  0.0100     1.386  0.0100
+NFA         CD2         CE2      DOUBLE       y     1.386  0.0100     1.386  0.0100
+NFA         CE1          CZ      DOUBLE       y     1.376  0.0124     1.376  0.0124
+NFA         CE2          CZ      SINGLE       y     1.376  0.0124     1.376  0.0124
+NFA           N           H      SINGLE       n     1.036  0.0160     0.902  0.0200
+NFA           N          H2      SINGLE       n     1.036  0.0160     0.902  0.0200
+NFA          CA          HA      SINGLE       n     1.089  0.0100     0.997  0.0100
+NFA          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0164
+NFA          CB         HB3      SINGLE       n     1.089  0.0100     0.980  0.0164
+NFA         CD1         HD1      SINGLE       n     1.082  0.0130     0.944  0.0174
+NFA         CD2         HD2      SINGLE       n     1.082  0.0130     0.944  0.0174
+NFA         CE1         HE1      SINGLE       n     1.082  0.0130     0.944  0.0175
+NFA         CE2         HE2      SINGLE       n     1.082  0.0130     0.944  0.0175
+NFA          CZ          HZ      SINGLE       n     1.082  0.0130     0.944  0.0161
+NFA         NXT        HXT1      SINGLE       n     1.016  0.0100     0.884  0.0200
+NFA         NXT        HXT2      SINGLE       n     1.016  0.0100     0.884  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NFA          CA           N           H     109.530    3.00
+NFA          CA           N          H2     109.530    3.00
+NFA           H           N          H2     107.559    3.00
+NFA           N          CA           C     110.875    2.17
+NFA           N          CA          CB     110.179    1.50
+NFA           N          CA          HA     109.138    1.50
+NFA           C          CA          CB     110.462    1.54
+NFA           C          CA          HA     108.061    1.50
+NFA          CB          CA          HA     109.184    1.50
+NFA          CA           C           O     120.522    1.50
+NFA          CA           C         NXT     115.746    1.60
+NFA           O           C         NXT     123.732    1.50
+NFA          CA          CB          CG     114.006    1.50
+NFA          CA          CB         HB2     108.760    1.50
+NFA          CA          CB         HB3     108.760    1.50
+NFA          CG          CB         HB2     108.862    1.50
+NFA          CG          CB         HB3     108.862    1.50
+NFA         HB2          CB         HB3     107.782    1.50
+NFA          CB          CG         CD1     120.970    1.50
+NFA          CB          CG         CD2     120.970    1.50
+NFA         CD1          CG         CD2     118.060    1.50
+NFA          CG         CD1         CE1     120.624    1.50
+NFA          CG         CD1         HD1     119.591    1.50
+NFA         CE1         CD1         HD1     119.786    1.50
+NFA          CG         CD2         CE2     120.624    1.50
+NFA          CG         CD2         HD2     119.591    1.50
+NFA         CE2         CD2         HD2     119.786    1.50
+NFA         CD1         CE1          CZ     120.325    1.50
+NFA         CD1         CE1         HE1     119.792    1.50
+NFA          CZ         CE1         HE1     119.883    1.50
+NFA         CD2         CE2          CZ     120.325    1.50
+NFA         CD2         CE2         HE2     119.792    1.50
+NFA          CZ         CE2         HE2     119.883    1.50
+NFA         CE1          CZ         CE2     120.043    1.50
+NFA         CE1          CZ          HZ     119.979    1.50
+NFA         CE2          CZ          HZ     119.979    1.50
+NFA           C         NXT        HXT1     120.017    3.00
+NFA           C         NXT        HXT2     120.017    3.00
+NFA        HXT1         NXT        HXT2     119.966    2.38
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NFA             sp3_sp3_1           C          CA           N           H     180.000    10.0     3
+NFA             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+NFA             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+NFA             sp2_sp2_1          CA           C         NXT        HXT1     180.000     5.0     2
+NFA             sp2_sp3_8         CD1          CG          CB          CA     -90.000    10.0     6
+NFA       const_sp2_sp2_2         CE1         CD1          CG          CB     180.000     5.0     2
+NFA              const_22         CE2         CD2          CG          CB     180.000    10.0     2
+NFA       const_sp2_sp2_5          CG         CD1         CE1          CZ       0.000     5.0     2
+NFA              const_17          CG         CD2         CE2          CZ       0.000    10.0     2
+NFA       const_sp2_sp2_9         CD1         CE1          CZ         CE2       0.000     5.0     2
+NFA              const_13         CD2         CE2          CZ         CE1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+NFA    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NFA    plan-1          CB   0.020
+NFA    plan-1         CD1   0.020
+NFA    plan-1         CD2   0.020
+NFA    plan-1         CE1   0.020
+NFA    plan-1         CE2   0.020
+NFA    plan-1          CG   0.020
+NFA    plan-1          CZ   0.020
+NFA    plan-1         HD1   0.020
+NFA    plan-1         HD2   0.020
+NFA    plan-1         HE1   0.020
+NFA    plan-1         HE2   0.020
+NFA    plan-1          HZ   0.020
+NFA    plan-2           C   0.020
+NFA    plan-2          CA   0.020
+NFA    plan-2         NXT   0.020
+NFA    plan-2           O   0.020
+NFA    plan-3           C   0.020
+NFA    plan-3        HXT1   0.020
+NFA    plan-3        HXT2   0.020
+NFA    plan-3         NXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NFA           SMILES              ACDLabs 10.04                                                                 O=C(N)C(N)Cc1ccccc1
+NFA SMILES_CANONICAL               CACTVS 3.341                                                            N[C@@H](Cc1ccccc1)C(N)=O
+NFA           SMILES               CACTVS 3.341                                                              N[CH](Cc1ccccc1)C(N)=O
+NFA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                          c1ccc(cc1)C[C@@H](C(=O)N)N
+NFA           SMILES "OpenEye OEToolkits" 1.5.0                                                               c1ccc(cc1)CC(C(=O)N)N
+NFA            InChI                InChI  1.03 InChI=1S/C9H12N2O/c10-8(9(11)12)6-7-4-2-1-3-5-7/h1-5,8H,6,10H2,(H2,11,12)/t8-/m0/s1
+NFA         InChIKey                InChI  1.03                                                         OBSIQMZKFXFYLV-QMMMGPOBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NFA acedrg               243         "dictionary generator"                  
+NFA acedrg_database      11          "data source"                           
+NFA rdkit                2017.03.2   "Chemoinformatics tool"
+NFA refmac5              5.8.0238    "optimization tool"                     

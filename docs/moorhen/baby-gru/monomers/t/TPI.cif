@@ -1,0 +1,309 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TPI     TPI      "4-CARBAMOYL-4-{[6-(DIFLUORO-PHOSPHONO-METHYL)-NAPHTHALENE-2-CARBONYL]-AMINO}-BUTYRIC ACID"     NON-POLYMER     43     29     .     
+#
+data_comp_TPI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TPI     P       P       P       0       -20.317     58.172      12.114      
+TPI     O1      O       OP      -1      -19.890     56.758      11.829      
+TPI     O2      O       OP      -1      -21.155     58.737      11.002      
+TPI     O3      O       O       0       -19.143     59.056      12.433      
+TPI     C1      C       CT      0       -21.364     58.125      13.596      
+TPI     F1      F       F       0       -21.651     59.404      13.948      
+TPI     F2      F       F       0       -22.549     57.552      13.261      
+TPI     C2      C       CR16    0       -21.021     56.093      15.055      
+TPI     C3      C       CR6     0       -20.701     57.396      14.750      
+TPI     C4      C       CR16    0       -19.718     58.056      15.537      
+TPI     C5      C       CR16    0       -19.104     57.423      16.580      
+TPI     C6      C       CR16    0       -18.804     55.397      17.987      
+TPI     C7      C       CR6     0       -19.127     54.089      18.286      
+TPI     C8      C       CR16    0       -20.117     53.427      17.505      
+TPI     C9      C       CR16    0       -20.726     54.066      16.460      
+TPI     C10     C       CR66    0       -20.403     55.407      16.131      
+TPI     C11     C       CR66    0       -19.424     56.087      16.909      
+TPI     C12     C       C       0       -18.452     53.414      19.447      
+TPI     O4      O       O       0       -18.191     54.055      20.467      
+TPI     N1      N       NH1     0       -18.190     52.101      19.338      
+TPI     C13     C       CH1     0       -17.685     51.306      20.447      
+TPI     C14     C       C       0       -16.154     51.391      20.491      
+TPI     N2      N       NH2     0       -15.616     51.925      21.580      
+TPI     O5      O       O       0       -15.489     50.975      19.543      
+TPI     C15     C       CH2     0       -18.132     49.846      20.329      
+TPI     C16     C       CH2     0       -19.622     49.659      20.561      
+TPI     C17     C       C       0       -20.089     48.216      20.662      
+TPI     O6      O       O       0       -21.141     47.982      21.289      
+TPI     O7      O       OC      -1      -19.405     47.328      20.111      
+TPI     H21     H       H       0       -21.666     55.641      14.544      
+TPI     H41     H       H       0       -19.487     58.947      15.337      
+TPI     H51     H       H       0       -18.456     57.883      17.089      
+TPI     H61     H       H       0       -18.156     55.846      18.503      
+TPI     H81     H       H       0       -20.347     52.534      17.703      
+TPI     H91     H       H       0       -21.374     53.608      15.950      
+TPI     HN11    H       H       0       -18.297     51.698      18.572      
+TPI     H131    H       H       0       -18.046     51.661      21.299      
+TPI     HN21    H       H       0       -14.735     51.988      21.637      
+TPI     HN22    H       H       0       -16.113     52.219      22.249      
+TPI     H151    H       H       0       -17.640     49.308      20.984      
+TPI     H152    H       H       0       -17.904     49.514      19.435      
+TPI     H161    H       H       0       -20.112     50.089      19.828      
+TPI     H162    H       H       0       -19.872     50.120      21.390      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TPI           P          O1      SINGLE       n     1.505  0.0200     1.505  0.0200
+TPI           P          O2      SINGLE       n     1.505  0.0200     1.505  0.0200
+TPI           P          O3      DOUBLE       n     1.505  0.0200     1.505  0.0200
+TPI           P          C1      SINGLE       n     1.816  0.0183     1.816  0.0183
+TPI          C1          F1      SINGLE       n     1.357  0.0127     1.357  0.0127
+TPI          C1          F2      SINGLE       n     1.357  0.0127     1.357  0.0127
+TPI          C1          C3      SINGLE       n     1.512  0.0108     1.512  0.0108
+TPI          C2          C3      DOUBLE       y     1.368  0.0105     1.368  0.0105
+TPI          C2         C10      SINGLE       y     1.413  0.0100     1.413  0.0100
+TPI          C3          C4      SINGLE       y     1.416  0.0100     1.416  0.0100
+TPI          C4          C5      DOUBLE       y     1.364  0.0100     1.364  0.0100
+TPI          C5         C11      SINGLE       y     1.410  0.0106     1.410  0.0106
+TPI          C6          C7      SINGLE       y     1.376  0.0100     1.376  0.0100
+TPI          C6         C11      DOUBLE       y     1.417  0.0129     1.417  0.0129
+TPI          C7          C8      DOUBLE       y     1.419  0.0100     1.419  0.0100
+TPI          C7         C12      SINGLE       n     1.498  0.0100     1.498  0.0100
+TPI          C8          C9      SINGLE       y     1.364  0.0100     1.364  0.0100
+TPI          C9         C10      DOUBLE       y     1.415  0.0105     1.415  0.0105
+TPI         C10         C11      SINGLE       y     1.418  0.0105     1.418  0.0105
+TPI         C12          O4      DOUBLE       n     1.230  0.0114     1.230  0.0114
+TPI         C12          N1      SINGLE       n     1.337  0.0101     1.337  0.0101
+TPI          N1         C13      SINGLE       n     1.451  0.0100     1.451  0.0100
+TPI         C13         C14      SINGLE       n     1.531  0.0100     1.531  0.0100
+TPI         C13         C15      SINGLE       n     1.531  0.0110     1.531  0.0110
+TPI         C14          N2      SINGLE       n     1.325  0.0100     1.325  0.0100
+TPI         C14          O5      DOUBLE       n     1.230  0.0100     1.230  0.0100
+TPI         C15         C16      SINGLE       n     1.518  0.0153     1.518  0.0153
+TPI         C16         C17      SINGLE       n     1.519  0.0109     1.519  0.0109
+TPI         C17          O6      DOUBLE       n     1.247  0.0187     1.247  0.0187
+TPI         C17          O7      SINGLE       n     1.247  0.0187     1.247  0.0187
+TPI          C2         H21      SINGLE       n     1.082  0.0130     0.939  0.0158
+TPI          C4         H41      SINGLE       n     1.082  0.0130     0.941  0.0105
+TPI          C5         H51      SINGLE       n     1.082  0.0130     0.943  0.0180
+TPI          C6         H61      SINGLE       n     1.082  0.0130     0.942  0.0163
+TPI          C8         H81      SINGLE       n     1.082  0.0130     0.944  0.0200
+TPI          C9         H91      SINGLE       n     1.082  0.0130     0.944  0.0160
+TPI          N1        HN11      SINGLE       n     1.016  0.0100     0.872  0.0200
+TPI         C13        H131      SINGLE       n     1.089  0.0100     0.991  0.0200
+TPI          N2        HN21      SINGLE       n     1.016  0.0100     0.884  0.0200
+TPI          N2        HN22      SINGLE       n     1.016  0.0100     0.884  0.0200
+TPI         C15        H151      SINGLE       n     1.089  0.0100     0.980  0.0178
+TPI         C15        H152      SINGLE       n     1.089  0.0100     0.980  0.0178
+TPI         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0185
+TPI         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0185
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TPI          O1           P          O2     112.502    1.50
+TPI          O1           P          O3     112.502    1.50
+TPI          O1           P          C1     110.326    3.00
+TPI          O2           P          O3     112.502    1.50
+TPI          O2           P          C1     110.326    3.00
+TPI          O3           P          C1     110.326    3.00
+TPI           P          C1          F1     108.594    1.85
+TPI           P          C1          F2     108.594    1.85
+TPI           P          C1          C3     113.602    3.00
+TPI          F1          C1          F2     106.710    1.50
+TPI          F1          C1          C3     110.594    1.53
+TPI          F2          C1          C3     110.594    1.53
+TPI          C3          C2         C10     121.300    1.50
+TPI          C3          C2         H21     119.399    1.50
+TPI         C10          C2         H21     119.301    1.50
+TPI          C1          C3          C2     120.544    1.50
+TPI          C1          C3          C4     120.544    1.50
+TPI          C2          C3          C4     118.912    1.50
+TPI          C3          C4          C5     121.146    1.50
+TPI          C3          C4         H41     119.315    1.50
+TPI          C5          C4         H41     119.539    1.50
+TPI          C4          C5         C11     121.032    1.50
+TPI          C4          C5         H51     119.572    1.50
+TPI         C11          C5         H51     119.396    1.50
+TPI          C7          C6         C11     121.295    1.50
+TPI          C7          C6         H61     119.526    1.50
+TPI         C11          C6         H61     119.179    1.50
+TPI          C6          C7          C8     119.550    1.50
+TPI          C6          C7         C12     119.477    2.01
+TPI          C8          C7         C12     120.974    2.35
+TPI          C7          C8          C9     120.601    1.50
+TPI          C7          C8         H81     119.682    1.50
+TPI          C9          C8         H81     119.717    1.50
+TPI          C8          C9         C10     121.002    1.50
+TPI          C8          C9         H91     119.587    1.50
+TPI         C10          C9         H91     119.411    1.50
+TPI          C2         C10          C9     122.419    1.50
+TPI          C2         C10         C11     118.709    1.50
+TPI          C9         C10         C11     118.872    1.50
+TPI          C5         C11          C6     122.419    1.50
+TPI          C5         C11         C10     118.901    1.50
+TPI          C6         C11         C10     118.680    1.50
+TPI          C7         C12          O4     121.089    1.50
+TPI          C7         C12          N1     116.641    1.50
+TPI          O4         C12          N1     122.269    1.50
+TPI         C12          N1         C13     121.882    1.50
+TPI         C12          N1        HN11     120.021    1.94
+TPI         C13          N1        HN11     118.097    1.56
+TPI          N1         C13         C14     110.342    2.62
+TPI          N1         C13         C15     110.984    1.61
+TPI          N1         C13        H131     109.084    1.50
+TPI         C14         C13         C15     110.281    1.60
+TPI         C14         C13        H131     108.061    1.50
+TPI         C15         C13        H131     108.242    1.50
+TPI         C13         C14          N2     115.746    1.60
+TPI         C13         C14          O5     120.522    1.50
+TPI          N2         C14          O5     123.732    1.50
+TPI         C14          N2        HN21     120.017    3.00
+TPI         C14          N2        HN22     120.017    3.00
+TPI        HN21          N2        HN22     119.966    2.38
+TPI         C13         C15         C16     113.079    1.50
+TPI         C13         C15        H151     108.827    1.50
+TPI         C13         C15        H152     108.827    1.50
+TPI         C16         C15        H151     108.890    1.50
+TPI         C16         C15        H152     108.890    1.50
+TPI        H151         C15        H152     107.844    1.50
+TPI         C15         C16         C17     114.629    2.24
+TPI         C15         C16        H161     108.906    1.50
+TPI         C15         C16        H162     108.906    1.50
+TPI         C17         C16        H161     108.404    1.50
+TPI         C17         C16        H162     108.404    1.50
+TPI        H161         C16        H162     107.521    1.50
+TPI         C16         C17          O6     118.214    1.64
+TPI         C16         C17          O7     118.214    1.64
+TPI          O6         C17          O7     123.571    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TPI             sp3_sp3_4          F1          C1           P          O1      60.000    10.0     3
+TPI              const_15          C6         C11          C5          C4     180.000    10.0     2
+TPI              const_22         C11          C6          C7         C12     180.000    10.0     2
+TPI              const_43          C5         C11          C6          C7     180.000    10.0     2
+TPI              const_27         C12          C7          C8          C9     180.000    10.0     2
+TPI             sp2_sp2_3          O4         C12          C7          C6       0.000     5.0     2
+TPI              const_29          C7          C8          C9         C10       0.000    10.0     2
+TPI              const_35          C2         C10          C9          C8     180.000    10.0     2
+TPI              const_17          C2         C10         C11          C5       0.000    10.0     2
+TPI             sp2_sp2_7          O4         C12          N1         C13       0.000     5.0     2
+TPI             sp2_sp3_7         C12          N1         C13         C14       0.000    10.0     6
+TPI            sp2_sp3_13          N2         C14         C13          N1       0.000    10.0     6
+TPI            sp3_sp3_10          N1         C13         C15         C16     180.000    10.0     3
+TPI             sp2_sp2_9         C13         C14          N2        HN21     180.000     5.0     2
+TPI            sp3_sp3_19         C13         C15         C16         C17     180.000    10.0     3
+TPI            sp2_sp3_20          O6         C17         C16         C15     120.000    10.0     6
+TPI             sp2_sp3_1          C2          C3          C1           P     150.000    10.0     6
+TPI              const_39          C9         C10          C2          C3     180.000    10.0     2
+TPI       const_sp2_sp2_2         C10          C2          C3          C1     180.000     5.0     2
+TPI       const_sp2_sp2_7          C1          C3          C4          C5     180.000     5.0     2
+TPI       const_sp2_sp2_9          C3          C4          C5         C11       0.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TPI    chir_1    P    O1    O2    O3    both
+TPI    chir_2    C1    P    F1    F2    both
+TPI    chir_3    C13    N1    C14    C15    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TPI    plan-1          C1   0.020
+TPI    plan-1         C10   0.020
+TPI    plan-1         C11   0.020
+TPI    plan-1         C12   0.020
+TPI    plan-1          C2   0.020
+TPI    plan-1          C3   0.020
+TPI    plan-1          C4   0.020
+TPI    plan-1          C5   0.020
+TPI    plan-1          C6   0.020
+TPI    plan-1          C7   0.020
+TPI    plan-1          C8   0.020
+TPI    plan-1          C9   0.020
+TPI    plan-1         H21   0.020
+TPI    plan-1         H41   0.020
+TPI    plan-1         H51   0.020
+TPI    plan-1         H61   0.020
+TPI    plan-1         H81   0.020
+TPI    plan-1         H91   0.020
+TPI    plan-2         C12   0.020
+TPI    plan-2          C7   0.020
+TPI    plan-2          N1   0.020
+TPI    plan-2          O4   0.020
+TPI    plan-3         C12   0.020
+TPI    plan-3         C13   0.020
+TPI    plan-3        HN11   0.020
+TPI    plan-3          N1   0.020
+TPI    plan-4         C13   0.020
+TPI    plan-4         C14   0.020
+TPI    plan-4          N2   0.020
+TPI    plan-4          O5   0.020
+TPI    plan-5         C14   0.020
+TPI    plan-5        HN21   0.020
+TPI    plan-5        HN22   0.020
+TPI    plan-5          N2   0.020
+TPI    plan-6         C16   0.020
+TPI    plan-6         C17   0.020
+TPI    plan-6          O6   0.020
+TPI    plan-6          O7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TPI           SMILES              ACDLabs 10.04                                                                                                                          O=C(N)C(NC(=O)c1ccc2c(c1)ccc(c2)C(F)(F)P(=O)(O)O)CCC(=O)O
+TPI SMILES_CANONICAL               CACTVS 3.341                                                                                                                      NC(=O)[C@H](CCC(O)=O)NC(=O)c1ccc2cc(ccc2c1)C(F)(F)[P](O)(O)=O
+TPI           SMILES               CACTVS 3.341                                                                                                                       NC(=O)[CH](CCC(O)=O)NC(=O)c1ccc2cc(ccc2c1)C(F)(F)[P](O)(O)=O
+TPI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                     c1cc(cc2c1cc(cc2)C(F)(F)P(=O)(O)O)C(=O)N[C@@H](CCC(=O)O)C(=O)N
+TPI           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                          c1cc(cc2c1cc(cc2)C(F)(F)P(=O)(O)O)C(=O)NC(CCC(=O)O)C(=O)N
+TPI            InChI                InChI  1.03 InChI=1S/C17H17F2N2O7P/c18-17(19,29(26,27)28)12-4-3-9-7-11(2-1-10(9)8-12)16(25)21-13(15(20)24)5-6-14(22)23/h1-4,7-8,13H,5-6H2,(H2,20,24)(H,21,25)(H,22,23)(H2,26,27,28)/t13-/m0/s1
+TPI         InChIKey                InChI  1.03                                                                                                                                                        OWWCIKSGGKYNHT-ZDUSSCGKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TPI acedrg               243         "dictionary generator"                  
+TPI acedrg_database      11          "data source"                           
+TPI rdkit                2017.03.2   "Chemoinformatics tool"
+TPI refmac5              5.8.0238    "optimization tool"                     

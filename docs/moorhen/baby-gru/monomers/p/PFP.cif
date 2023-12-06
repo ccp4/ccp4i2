@@ -1,0 +1,340 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PFP     PFP      2-[5,6-BIS-(4-METHOXY-PHENYL)-FURO[2,3-D]PYRIMIDIN-4-YLAMINO]-ETHANOL     NON-POLYMER     50     29     .     
+#
+data_comp_PFP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PFP     CAB     C       CH3     0       19.102      -7.861      13.320      
+PFP     OAS     O       O2      0       17.906      -7.525      12.618      
+PFP     CAV     C       CR6     0       17.799      -6.301      12.004      
+PFP     CAG     C       CR16    0       18.436      -5.141      12.443      
+PFP     CAK     C       CR16    0       18.253      -3.950      11.759      
+PFP     CAF     C       CR16    0       16.971      -6.244      10.888      
+PFP     CAJ     C       CR16    0       16.796      -5.046      10.214      
+PFP     CAX     C       CR6     0       17.433      -3.874      10.631      
+PFP     CBA     C       CR5     0       17.233      -2.597      9.909       
+PFP     CBC     C       CR56    0       16.035      -1.806      9.891       
+PFP     CAY     C       CR6     0       14.731      -1.878      10.452      
+PFP     NAQ     N       NH1     0       14.333      -2.893      11.264      
+PFP     CAN     C       CH2     0       12.949      -3.249      11.531      
+PFP     CAM     C       CH2     0       12.452      -2.605      12.800      
+PFP     OAC     O       OH1     0       12.538      -1.192      12.746      
+PFP     NAO     N       NRD6    0       13.864      -0.868      10.175      
+PFP     CAL     C       CR16    0       14.264      0.138       9.377       
+PFP     NAP     N       NRD6    0       15.467      0.265       8.815       
+PFP     CBB     C       CR56    0       16.310      -0.696      9.082       
+PFP     OAT     O       O2      0       17.583      -0.771      8.617       
+PFP     CAZ     C       CR5     0       18.143      -1.927      9.123       
+PFP     CAW     C       CR6     0       19.529      -2.161      8.720       
+PFP     CAH     C       CR16    0       20.457      -1.111      8.687       
+PFP     CAD     C       CR16    0       21.771      -1.326      8.304       
+PFP     CAU     C       CR6     0       22.194      -2.606      7.955       
+PFP     OAR     O       O2      0       23.485      -2.857      7.564       
+PFP     CAA     C       CH3     0       24.557      -2.358      8.363       
+PFP     CAE     C       CR16    0       21.287      -3.661      7.978       
+PFP     CAI     C       CR16    0       19.973      -3.440      8.359       
+PFP     HAB1    H       H       0       19.139      -7.360      14.152      
+PFP     HAB2    H       H       0       19.874      -7.640      12.774      
+PFP     HAB3    H       H       0       19.105      -8.812      13.516      
+PFP     HAG     H       H       0       18.994      -5.162      13.199      
+PFP     HAK     H       H       0       18.691      -3.176      12.063      
+PFP     HAF     H       H       0       16.533      -7.020      10.587      
+PFP     HAJ     H       H       0       16.237      -5.023      9.458       
+PFP     HAQ     H       H       0       14.944      -3.361      11.682      
+PFP     HAN1    H       H       0       12.878      -4.225      11.616      
+PFP     HAN2    H       H       0       12.381      -2.970      10.778      
+PFP     HAM1    H       H       0       12.983      -2.933      13.552      
+PFP     HAM2    H       H       0       11.523      -2.868      12.949      
+PFP     HAC     H       H       0       11.952      -0.899      12.211      
+PFP     HAL     H       H       0       13.633      0.821       9.199       
+PFP     HAH     H       H       0       20.185      -0.242      8.925       
+PFP     HAD     H       H       0       22.377      -0.606      8.288       
+PFP     HAA1    H       H       0       24.362      -2.506      9.303       
+PFP     HAA2    H       H       0       24.663      -1.406      8.200       
+PFP     HAA3    H       H       0       25.377      -2.820      8.126       
+PFP     HAE     H       H       0       21.567      -4.527      7.738       
+PFP     HAI     H       H       0       19.369      -4.163      8.375       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PFP         CAB         OAS      SINGLE       n     1.424  0.0117     1.424  0.0117
+PFP         OAS         CAV      SINGLE       n     1.369  0.0100     1.369  0.0100
+PFP         CAV         CAG      DOUBLE       y     1.386  0.0109     1.386  0.0109
+PFP         CAV         CAF      SINGLE       y     1.386  0.0109     1.386  0.0109
+PFP         CAG         CAK      SINGLE       y     1.382  0.0100     1.382  0.0100
+PFP         CAK         CAX      DOUBLE       y     1.392  0.0139     1.392  0.0139
+PFP         CAF         CAJ      DOUBLE       y     1.382  0.0100     1.382  0.0100
+PFP         CAJ         CAX      SINGLE       y     1.392  0.0139     1.392  0.0139
+PFP         CAX         CBA      SINGLE       n     1.480  0.0100     1.480  0.0100
+PFP         CBA         CBC      SINGLE       y     1.434  0.0100     1.434  0.0100
+PFP         CBA         CAZ      DOUBLE       y     1.372  0.0160     1.372  0.0160
+PFP         CBC         CAY      DOUBLE       y     1.415  0.0100     1.415  0.0100
+PFP         CBC         CBB      SINGLE       y     1.401  0.0200     1.401  0.0200
+PFP         CAY         NAQ      SINGLE       n     1.346  0.0181     1.346  0.0181
+PFP         CAY         NAO      SINGLE       y     1.353  0.0100     1.353  0.0100
+PFP         NAQ         CAN      SINGLE       n     1.451  0.0100     1.451  0.0100
+PFP         CAN         CAM      SINGLE       n     1.507  0.0130     1.507  0.0130
+PFP         CAM         OAC      SINGLE       n     1.417  0.0159     1.417  0.0159
+PFP         NAO         CAL      DOUBLE       y     1.339  0.0100     1.339  0.0100
+PFP         CAL         NAP      SINGLE       y     1.330  0.0100     1.330  0.0100
+PFP         NAP         CBB      DOUBLE       y     1.303  0.0100     1.303  0.0100
+PFP         CBB         OAT      SINGLE       y     1.358  0.0100     1.358  0.0100
+PFP         OAT         CAZ      SINGLE       y     1.379  0.0100     1.379  0.0100
+PFP         CAZ         CAW      SINGLE       n     1.461  0.0100     1.461  0.0100
+PFP         CAW         CAH      DOUBLE       y     1.398  0.0100     1.398  0.0100
+PFP         CAW         CAI      SINGLE       y     1.398  0.0100     1.398  0.0100
+PFP         CAH         CAD      SINGLE       y     1.382  0.0100     1.382  0.0100
+PFP         CAD         CAU      DOUBLE       y     1.386  0.0109     1.386  0.0109
+PFP         CAU         OAR      SINGLE       n     1.369  0.0100     1.369  0.0100
+PFP         CAU         CAE      SINGLE       y     1.386  0.0109     1.386  0.0109
+PFP         OAR         CAA      SINGLE       n     1.424  0.0117     1.424  0.0117
+PFP         CAE         CAI      DOUBLE       y     1.382  0.0100     1.382  0.0100
+PFP         CAB        HAB1      SINGLE       n     1.089  0.0100     0.971  0.0157
+PFP         CAB        HAB2      SINGLE       n     1.089  0.0100     0.971  0.0157
+PFP         CAB        HAB3      SINGLE       n     1.089  0.0100     0.971  0.0157
+PFP         CAG         HAG      SINGLE       n     1.082  0.0130     0.941  0.0179
+PFP         CAK         HAK      SINGLE       n     1.082  0.0130     0.940  0.0144
+PFP         CAF         HAF      SINGLE       n     1.082  0.0130     0.941  0.0179
+PFP         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.940  0.0144
+PFP         NAQ         HAQ      SINGLE       n     1.016  0.0100     0.880  0.0200
+PFP         CAN        HAN1      SINGLE       n     1.089  0.0100     0.983  0.0100
+PFP         CAN        HAN2      SINGLE       n     1.089  0.0100     0.983  0.0100
+PFP         CAM        HAM1      SINGLE       n     1.089  0.0100     0.977  0.0146
+PFP         CAM        HAM2      SINGLE       n     1.089  0.0100     0.977  0.0146
+PFP         OAC         HAC      SINGLE       n     0.970  0.0120     0.846  0.0200
+PFP         CAL         HAL      SINGLE       n     1.082  0.0130     0.947  0.0200
+PFP         CAH         HAH      SINGLE       n     1.082  0.0130     0.942  0.0166
+PFP         CAD         HAD      SINGLE       n     1.082  0.0130     0.941  0.0179
+PFP         CAA        HAA1      SINGLE       n     1.089  0.0100     0.971  0.0157
+PFP         CAA        HAA2      SINGLE       n     1.089  0.0100     0.971  0.0157
+PFP         CAA        HAA3      SINGLE       n     1.089  0.0100     0.971  0.0157
+PFP         CAE         HAE      SINGLE       n     1.082  0.0130     0.941  0.0179
+PFP         CAI         HAI      SINGLE       n     1.082  0.0130     0.942  0.0166
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PFP         OAS         CAB        HAB1     109.428    1.50
+PFP         OAS         CAB        HAB2     109.428    1.50
+PFP         OAS         CAB        HAB3     109.428    1.50
+PFP        HAB1         CAB        HAB2     109.509    1.50
+PFP        HAB1         CAB        HAB3     109.509    1.50
+PFP        HAB2         CAB        HAB3     109.509    1.50
+PFP         CAB         OAS         CAV     117.529    1.50
+PFP         OAS         CAV         CAG     120.144    3.00
+PFP         OAS         CAV         CAF     120.144    3.00
+PFP         CAG         CAV         CAF     119.712    1.50
+PFP         CAV         CAG         CAK     119.788    1.50
+PFP         CAV         CAG         HAG     120.124    1.50
+PFP         CAK         CAG         HAG     120.088    1.50
+PFP         CAG         CAK         CAX     121.457    1.50
+PFP         CAG         CAK         HAK     119.188    1.50
+PFP         CAX         CAK         HAK     119.356    1.50
+PFP         CAV         CAF         CAJ     119.788    1.50
+PFP         CAV         CAF         HAF     120.124    1.50
+PFP         CAJ         CAF         HAF     120.088    1.50
+PFP         CAF         CAJ         CAX     121.457    1.50
+PFP         CAF         CAJ         HAJ     119.188    1.50
+PFP         CAX         CAJ         HAJ     119.356    1.50
+PFP         CAK         CAX         CAJ     117.799    1.50
+PFP         CAK         CAX         CBA     121.101    1.50
+PFP         CAJ         CAX         CBA     121.101    1.50
+PFP         CAX         CBA         CBC     126.033    2.23
+PFP         CAX         CBA         CAZ     127.703    1.50
+PFP         CBC         CBA         CAZ     106.264    1.50
+PFP         CBA         CBC         CAY     134.877    2.28
+PFP         CBA         CBC         CBB     107.312    1.50
+PFP         CAY         CBC         CBB     117.811    1.50
+PFP         CBC         CAY         NAQ     122.628    2.29
+PFP         CBC         CAY         NAO     118.121    1.50
+PFP         NAQ         CAY         NAO     119.252    1.50
+PFP         CAY         NAQ         CAN     123.394    1.50
+PFP         CAY         NAQ         HAQ     118.611    1.50
+PFP         CAN         NAQ         HAQ     117.995    2.37
+PFP         NAQ         CAN         CAM     111.460    1.87
+PFP         NAQ         CAN        HAN1     109.157    1.50
+PFP         NAQ         CAN        HAN2     109.157    1.50
+PFP         CAM         CAN        HAN1     109.163    1.50
+PFP         CAM         CAN        HAN2     109.163    1.50
+PFP        HAN1         CAN        HAN2     107.952    1.50
+PFP         CAN         CAM         OAC     112.084    2.00
+PFP         CAN         CAM        HAM1     109.205    1.50
+PFP         CAN         CAM        HAM2     109.205    1.50
+PFP         OAC         CAM        HAM1     109.500    1.50
+PFP         OAC         CAM        HAM2     109.500    1.50
+PFP        HAM1         CAM        HAM2     108.121    1.50
+PFP         CAM         OAC         HAC     109.054    3.00
+PFP         CAY         NAO         CAL     117.694    1.50
+PFP         NAO         CAL         NAP     125.670    1.50
+PFP         NAO         CAL         HAL     117.145    1.50
+PFP         NAP         CAL         HAL     117.185    1.50
+PFP         CAL         NAP         CBB     115.150    1.50
+PFP         CBC         CBB         NAP     125.556    1.50
+PFP         CBC         CBB         OAT     109.659    1.50
+PFP         NAP         CBB         OAT     124.786    1.67
+PFP         CBB         OAT         CAZ     106.839    1.50
+PFP         CBA         CAZ         OAT     109.927    1.50
+PFP         CBA         CAZ         CAW     135.021    1.50
+PFP         OAT         CAZ         CAW     115.052    1.50
+PFP         CAZ         CAW         CAH     120.797    1.50
+PFP         CAZ         CAW         CAI     120.797    1.50
+PFP         CAH         CAW         CAI     118.406    1.50
+PFP         CAW         CAH         CAD     121.209    1.50
+PFP         CAW         CAH         HAH     119.539    1.50
+PFP         CAD         CAH         HAH     119.252    1.50
+PFP         CAH         CAD         CAU     119.750    1.50
+PFP         CAH         CAD         HAD     120.106    1.50
+PFP         CAU         CAD         HAD     120.143    1.50
+PFP         CAD         CAU         OAR     120.163    3.00
+PFP         CAD         CAU         CAE     119.674    1.50
+PFP         OAR         CAU         CAE     120.163    3.00
+PFP         CAU         OAR         CAA     117.529    1.50
+PFP         OAR         CAA        HAA1     109.428    1.50
+PFP         OAR         CAA        HAA2     109.428    1.50
+PFP         OAR         CAA        HAA3     109.428    1.50
+PFP        HAA1         CAA        HAA2     109.509    1.50
+PFP        HAA1         CAA        HAA3     109.509    1.50
+PFP        HAA2         CAA        HAA3     109.509    1.50
+PFP         CAU         CAE         CAI     119.750    1.50
+PFP         CAU         CAE         HAE     120.143    1.50
+PFP         CAI         CAE         HAE     120.106    1.50
+PFP         CAW         CAI         CAE     121.209    1.50
+PFP         CAW         CAI         HAI     119.539    1.50
+PFP         CAE         CAI         HAI     119.252    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PFP             sp3_sp3_2        HAB1         CAB         OAS         CAV     -60.000    10.0     3
+PFP             sp2_sp2_7         CBC         CAY         NAQ         CAN     180.000     5.0     2
+PFP              const_46         NAQ         CAY         NAO         CAL     180.000    10.0     2
+PFP             sp2_sp3_2         CAY         NAQ         CAN         CAM     120.000    10.0     6
+PFP             sp3_sp3_5         OAC         CAM         CAN         NAQ     180.000    10.0     3
+PFP            sp3_sp3_14         CAN         CAM         OAC         HAC     180.000    10.0     3
+PFP              const_47         NAP         CAL         NAO         CAY       0.000    10.0     2
+PFP              const_49         NAO         CAL         NAP         CBB       0.000    10.0     2
+PFP              const_51         CBC         CBB         NAP         CAL       0.000    10.0     2
+PFP              const_61         CBC         CBB         OAT         CAZ       0.000    10.0     2
+PFP              const_63         CBA         CAZ         OAT         CBB       0.000    10.0     2
+PFP             sp2_sp2_1         CAG         CAV         OAS         CAB     180.000     5.0     2
+PFP            sp2_sp2_11         CAH         CAW         CAZ         CBA     180.000     5.0     2
+PFP       const_sp2_sp2_2         CAD         CAH         CAW         CAZ     180.000     5.0     2
+PFP              const_74         CAE         CAI         CAW         CAZ     180.000    10.0     2
+PFP       const_sp2_sp2_5         CAU         CAD         CAH         CAW       0.000     5.0     2
+PFP              const_10         CAH         CAD         CAU         OAR     180.000    10.0     2
+PFP            sp2_sp2_15         CAD         CAU         OAR         CAA     180.000     5.0     2
+PFP              const_14         CAI         CAE         CAU         OAR     180.000    10.0     2
+PFP            sp3_sp3_18        HAA1         CAA         OAR         CAU     -60.000    10.0     3
+PFP              const_17         CAU         CAE         CAI         CAW       0.000    10.0     2
+PFP              const_22         CAK         CAG         CAV         OAS     180.000    10.0     2
+PFP              const_66         CAJ         CAF         CAV         OAS     180.000    10.0     2
+PFP              const_25         CAV         CAG         CAK         CAX       0.000    10.0     2
+PFP              const_29         CAG         CAK         CAX         CAJ       0.000    10.0     2
+PFP              const_37         CAV         CAF         CAJ         CAX       0.000    10.0     2
+PFP              const_33         CAF         CAJ         CAX         CAK       0.000    10.0     2
+PFP             sp2_sp2_3         CAK         CAX         CBA         CBC     180.000     5.0     2
+PFP              const_70         OAT         CAZ         CBA         CAX     180.000    10.0     2
+PFP              const_56         CAX         CBA         CBC         CAY       0.000    10.0     2
+PFP              const_44         NAQ         CAY         CBC         CBA       0.000    10.0     2
+PFP              const_58         NAP         CBB         CBC         CBA     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PFP    plan-1         CAL   0.020
+PFP    plan-1         CAW   0.020
+PFP    plan-1         CAX   0.020
+PFP    plan-1         CAY   0.020
+PFP    plan-1         CAZ   0.020
+PFP    plan-1         CBA   0.020
+PFP    plan-1         CBB   0.020
+PFP    plan-1         CBC   0.020
+PFP    plan-1         HAL   0.020
+PFP    plan-1         NAO   0.020
+PFP    plan-1         NAP   0.020
+PFP    plan-1         NAQ   0.020
+PFP    plan-1         OAT   0.020
+PFP    plan-2         CAD   0.020
+PFP    plan-2         CAE   0.020
+PFP    plan-2         CAH   0.020
+PFP    plan-2         CAI   0.020
+PFP    plan-2         CAU   0.020
+PFP    plan-2         CAW   0.020
+PFP    plan-2         CAZ   0.020
+PFP    plan-2         HAD   0.020
+PFP    plan-2         HAE   0.020
+PFP    plan-2         HAH   0.020
+PFP    plan-2         HAI   0.020
+PFP    plan-2         OAR   0.020
+PFP    plan-3         CAF   0.020
+PFP    plan-3         CAG   0.020
+PFP    plan-3         CAJ   0.020
+PFP    plan-3         CAK   0.020
+PFP    plan-3         CAV   0.020
+PFP    plan-3         CAX   0.020
+PFP    plan-3         CBA   0.020
+PFP    plan-3         HAF   0.020
+PFP    plan-3         HAG   0.020
+PFP    plan-3         HAJ   0.020
+PFP    plan-3         HAK   0.020
+PFP    plan-3         OAS   0.020
+PFP    plan-4         CAN   0.020
+PFP    plan-4         CAY   0.020
+PFP    plan-4         HAQ   0.020
+PFP    plan-4         NAQ   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PFP           SMILES              ACDLabs 10.04                                                                                                        n1c(c2c(nc1)oc(c2c3ccc(OC)cc3)c4ccc(OC)cc4)NCCO
+PFP SMILES_CANONICAL               CACTVS 3.341                                                                                                            COc1ccc(cc1)c2oc3ncnc(NCCO)c3c2c4ccc(OC)cc4
+PFP           SMILES               CACTVS 3.341                                                                                                            COc1ccc(cc1)c2oc3ncnc(NCCO)c3c2c4ccc(OC)cc4
+PFP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                            COc1ccc(cc1)c2c3c(ncnc3oc2c4ccc(cc4)OC)NCCO
+PFP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                            COc1ccc(cc1)c2c3c(ncnc3oc2c4ccc(cc4)OC)NCCO
+PFP            InChI                InChI  1.03 InChI=1S/C22H21N3O4/c1-27-16-7-3-14(4-8-16)18-19-21(23-11-12-26)24-13-25-22(19)29-20(18)15-5-9-17(28-2)10-6-15/h3-10,13,26H,11-12H2,1-2H3,(H,23,24,25)
+PFP         InChIKey                InChI  1.03                                                                                                                            ARBUGBBNEFAECO-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PFP acedrg               243         "dictionary generator"                  
+PFP acedrg_database      11          "data source"                           
+PFP rdkit                2017.03.2   "Chemoinformatics tool"
+PFP refmac5              5.8.0238    "optimization tool"                     

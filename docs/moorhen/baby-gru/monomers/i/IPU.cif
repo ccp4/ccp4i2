@@ -1,0 +1,159 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+IPU     IPU      S-ISOPROPYL-ISOTHIOUREA     NON-POLYMER     17     7     .     
+#
+data_comp_IPU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+IPU     C1      C       CH3     0       0.628       2.234       53.134      
+IPU     C2      C       CH1     0       2.121       2.365       53.007      
+IPU     C3      C       CH3     0       2.809       1.038       52.806      
+IPU     C       C       C       0       2.773       5.032       54.441      
+IPU     S       S       S2      0       2.769       3.264       54.438      
+IPU     N1      N       NH1     0       2.362       5.736       53.434      
+IPU     N2      N       NH2     0       3.217       5.617       55.556      
+IPU     H11     H       H       0       0.399       1.982       54.046      
+IPU     H12     H       H       0       0.307       1.551       52.520      
+IPU     H13     H       H       0       0.208       3.085       52.919      
+IPU     H2      H       H       0       2.297       2.909       52.198      
+IPU     H31     H       H       0       3.675       1.047       53.249      
+IPU     H32     H       H       0       2.937       0.882       51.854      
+IPU     H33     H       H       0       2.262       0.325       53.179      
+IPU     HN1     H       H       0       2.082       5.243       52.744      
+IPU     HN21    H       H       0       3.241       6.493       55.612      
+IPU     HN22    H       H       0       3.483       5.128       56.236      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+IPU          C1          C2      SINGLE       n     1.503  0.0163     1.503  0.0163
+IPU          C2          C3      SINGLE       n     1.503  0.0163     1.503  0.0163
+IPU          C2           S      SINGLE       n     1.809  0.0191     1.809  0.0191
+IPU           C           S      SINGLE       n     1.762  0.0200     1.762  0.0200
+IPU           C          N1      DOUBLE       n     1.291  0.0200     1.291  0.0200
+IPU           C          N2      SINGLE       n     1.330  0.0200     1.330  0.0200
+IPU          C1         H11      SINGLE       n     1.089  0.0100     0.973  0.0146
+IPU          C1         H12      SINGLE       n     1.089  0.0100     0.973  0.0146
+IPU          C1         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+IPU          C2          H2      SINGLE       n     1.089  0.0100     0.991  0.0193
+IPU          C3         H31      SINGLE       n     1.089  0.0100     0.973  0.0146
+IPU          C3         H32      SINGLE       n     1.089  0.0100     0.973  0.0146
+IPU          C3         H33      SINGLE       n     1.089  0.0100     0.973  0.0146
+IPU          N1         HN1      SINGLE       n     1.016  0.0100     0.892  0.0200
+IPU          N2        HN21      SINGLE       n     1.016  0.0100     0.878  0.0200
+IPU          N2        HN22      SINGLE       n     1.016  0.0100     0.878  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+IPU          C2          C1         H11     109.479    1.50
+IPU          C2          C1         H12     109.479    1.50
+IPU          C2          C1         H13     109.479    1.50
+IPU         H11          C1         H12     109.455    1.50
+IPU         H11          C1         H13     109.455    1.50
+IPU         H12          C1         H13     109.455    1.50
+IPU          C1          C2          C3     113.120    1.50
+IPU          C1          C2           S     112.239    3.00
+IPU          C1          C2          H2     108.175    1.50
+IPU          C3          C2           S     112.239    3.00
+IPU          C3          C2          H2     108.175    1.50
+IPU           S          C2          H2     109.066    1.50
+IPU          C2          C3         H31     109.479    1.50
+IPU          C2          C3         H32     109.479    1.50
+IPU          C2          C3         H33     109.479    1.50
+IPU         H31          C3         H32     109.455    1.50
+IPU         H31          C3         H33     109.455    1.50
+IPU         H32          C3         H33     109.455    1.50
+IPU           S           C          N1     122.410    3.00
+IPU           S           C          N2     115.606    3.00
+IPU          N1           C          N2     121.984    3.00
+IPU          C2           S           C     120.000    3.00
+IPU           C          N1         HN1     112.238    3.00
+IPU           C          N2        HN21     120.029    1.50
+IPU           C          N2        HN22     120.029    1.50
+IPU        HN21          N2        HN22     119.941    1.51
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+IPU             sp3_sp3_2         H11          C1          C2          C3     -60.000    10.0     3
+IPU            sp3_sp3_10          C1          C2          C3         H31     180.000    10.0     3
+IPU            sp3_sp3_19          C1          C2           S           C     180.000    10.0     3
+IPU             sp2_sp2_1          N1           C           S          C2     180.000     5.0     2
+IPU             sp2_sp2_3           S           C          N1         HN1     180.000     5.0     2
+IPU             sp2_sp2_5           S           C          N2        HN21     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+IPU    chir_1    C2    S    C1    C3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+IPU    plan-1           C   0.020
+IPU    plan-1          N1   0.020
+IPU    plan-1          N2   0.020
+IPU    plan-1           S   0.020
+IPU    plan-2           C   0.020
+IPU    plan-2        HN21   0.020
+IPU    plan-2        HN22   0.020
+IPU    plan-2          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+IPU           SMILES              ACDLabs 10.04                                  "[N@H]=C(SC(C)C)N"
+IPU SMILES_CANONICAL               CACTVS 3.341                                        CC(C)SC(N)=N
+IPU           SMILES               CACTVS 3.341                                        CC(C)SC(N)=N
+IPU SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                        CC(C)SC(=N)N
+IPU           SMILES "OpenEye OEToolkits" 1.5.0                                        CC(C)SC(=N)N
+IPU            InChI                InChI  1.03 InChI=1S/C4H10N2S/c1-3(2)7-4(5)6/h3H,1-2H3,(H3,5,6)
+IPU         InChIKey                InChI  1.03                         XSSNABKEYXKKMK-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+IPU acedrg               243         "dictionary generator"                  
+IPU acedrg_database      11          "data source"                           
+IPU rdkit                2017.03.2   "Chemoinformatics tool"
+IPU refmac5              5.8.0238    "optimization tool"                     

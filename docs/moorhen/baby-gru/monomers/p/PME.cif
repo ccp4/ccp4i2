@@ -1,0 +1,277 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+PME     PME      "N-L-ALPHA-ASPARTYL L-PHENYLALANINE 1-METHYL ESTER"     NON-POLYMER     39     21     .     
+#
+data_comp_PME
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+PME     N1      N       NT3     1       23.388      -28.207     81.615      
+PME     C2      C       CH1     0       24.780      -28.299     81.081      
+PME     C3      C       CH2     0       25.040      -27.219     80.025      
+PME     C4      C       C       0       26.381      -27.351     79.321      
+PME     O5      O       O       0       26.579      -28.367     78.626      
+PME     O6      O       OC      -1      27.215      -26.437     79.475      
+PME     C7      C       C       0       25.747      -28.149     82.258      
+PME     O8      O       O       0       25.767      -27.102     82.903      
+PME     N9      N       NH1     0       26.520      -29.217     82.520      
+PME     C10     C       CH1     0       27.601      -29.248     83.502      
+PME     C11     C       CH2     0       28.702      -28.219     83.166      
+PME     C12     C       CR6     0       29.956      -28.361     83.994      
+PME     C13     C       CR16    0       30.339      -27.366     84.888      
+PME     C14     C       CR16    0       31.496      -27.497     85.645      
+PME     C15     C       CR16    0       32.286      -28.622     85.515      
+PME     C16     C       CR16    0       31.922      -29.615     84.632      
+PME     C17     C       CR16    0       30.765      -29.485     83.873      
+PME     C18     C       C       0       27.075      -29.129     84.928      
+PME     O19     O       O       0       26.684      -30.075     85.567      
+PME     O20     O       O2      0       27.086      -27.875     85.382      
+PME     C21     C       CH3     0       26.770      -27.657     86.781      
+PME     HN11    H       H       0       23.274      -28.772     82.322      
+PME     HN12    H       H       0       22.796      -28.433     80.960      
+PME     H18     H       H       0       23.219      -27.354     81.885      
+PME     H2      H       H       0       24.903      -29.172     80.662      
+PME     H31     H       H       0       25.002      -26.338     80.450      
+PME     H32     H       H       0       24.335      -27.260     79.347      
+PME     HN9     H       H       0       26.374      -29.960     82.085      
+PME     H10     H       H       0       28.016      -30.141     83.429      
+PME     H111    H       H       0       28.347      -27.314     83.276      
+PME     H112    H       H       0       28.942      -28.325     82.221      
+PME     H13     H       H       0       29.804      -26.594     84.982      
+PME     H14     H       H       0       31.742      -26.815     86.249      
+PME     H15     H       H       0       33.072      -28.710     86.030      
+PME     H16     H       H       0       32.459      -30.385     84.541      
+PME     H17     H       H       0       30.522      -30.170     83.270      
+PME     H211    H       H       0       27.374      -28.176     87.336      
+PME     H212    H       H       0       25.855      -27.929     86.952      
+PME     H213    H       H       0       26.871      -26.714     86.989      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+PME          N1          C2      SINGLE       n     1.493  0.0100     1.493  0.0100
+PME          C2          C3      SINGLE       n     1.531  0.0107     1.531  0.0107
+PME          C2          C7      SINGLE       n     1.527  0.0100     1.527  0.0100
+PME          C3          C4      SINGLE       n     1.519  0.0109     1.519  0.0109
+PME          C4          O5      DOUBLE       n     1.247  0.0187     1.247  0.0187
+PME          C4          O6      SINGLE       n     1.247  0.0187     1.247  0.0187
+PME          C7          O8      DOUBLE       n     1.229  0.0102     1.229  0.0102
+PME          C7          N9      SINGLE       n     1.337  0.0100     1.337  0.0100
+PME          N9         C10      SINGLE       n     1.455  0.0100     1.455  0.0100
+PME         C10         C11      SINGLE       n     1.538  0.0100     1.538  0.0100
+PME         C10         C18      SINGLE       n     1.518  0.0100     1.518  0.0100
+PME         C11         C12      SINGLE       n     1.508  0.0100     1.508  0.0100
+PME         C12         C13      DOUBLE       y     1.385  0.0111     1.385  0.0111
+PME         C12         C17      SINGLE       y     1.385  0.0111     1.385  0.0111
+PME         C13         C14      SINGLE       y     1.386  0.0100     1.386  0.0100
+PME         C14         C15      DOUBLE       y     1.376  0.0124     1.376  0.0124
+PME         C15         C16      SINGLE       y     1.374  0.0127     1.374  0.0127
+PME         C16         C17      DOUBLE       y     1.386  0.0100     1.386  0.0100
+PME         C18         O19      DOUBLE       n     1.203  0.0150     1.203  0.0150
+PME         C18         O20      SINGLE       n     1.326  0.0123     1.326  0.0123
+PME         O20         C21      SINGLE       n     1.447  0.0130     1.447  0.0130
+PME          N1        HN11      SINGLE       n     1.036  0.0160     0.911  0.0200
+PME          N1        HN12      SINGLE       n     1.036  0.0160     0.911  0.0200
+PME          N1         H18      SINGLE       n     1.036  0.0160     0.911  0.0200
+PME          C2          H2      SINGLE       n     1.089  0.0100     0.977  0.0200
+PME          C3         H31      SINGLE       n     1.089  0.0100     0.979  0.0159
+PME          C3         H32      SINGLE       n     1.089  0.0100     0.979  0.0159
+PME          N9         HN9      SINGLE       n     1.016  0.0100     0.873  0.0200
+PME         C10         H10      SINGLE       n     1.089  0.0100     0.988  0.0135
+PME         C11        H111      SINGLE       n     1.089  0.0100     0.980  0.0164
+PME         C11        H112      SINGLE       n     1.089  0.0100     0.980  0.0164
+PME         C13         H13      SINGLE       n     1.082  0.0130     0.944  0.0174
+PME         C14         H14      SINGLE       n     1.082  0.0130     0.944  0.0175
+PME         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0161
+PME         C16         H16      SINGLE       n     1.082  0.0130     0.944  0.0175
+PME         C17         H17      SINGLE       n     1.082  0.0130     0.944  0.0174
+PME         C21        H211      SINGLE       n     1.089  0.0100     0.970  0.0175
+PME         C21        H212      SINGLE       n     1.089  0.0100     0.970  0.0175
+PME         C21        H213      SINGLE       n     1.089  0.0100     0.970  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+PME          C2          N1        HN11     109.708    3.00
+PME          C2          N1        HN12     109.708    3.00
+PME          C2          N1         H18     109.708    3.00
+PME        HN11          N1        HN12     109.028    2.41
+PME        HN11          N1         H18     109.028    2.41
+PME        HN12          N1         H18     109.028    2.41
+PME          N1          C2          C3     111.386    1.50
+PME          N1          C2          C7     107.604    1.50
+PME          N1          C2          H2     109.157    1.50
+PME          C3          C2          C7     110.394    3.00
+PME          C3          C2          H2     108.539    1.53
+PME          C7          C2          H2     109.024    1.50
+PME          C2          C3          C4     113.398    1.64
+PME          C2          C3         H31     108.808    1.77
+PME          C2          C3         H32     108.808    1.77
+PME          C4          C3         H31     107.840    2.14
+PME          C4          C3         H32     107.840    2.14
+PME         H31          C3         H32     107.891    1.66
+PME          C3          C4          O5     117.986    1.50
+PME          C3          C4          O6     117.986    1.50
+PME          O5          C4          O6     124.027    1.50
+PME          C2          C7          O8     121.041    1.50
+PME          C2          C7          N9     115.315    1.50
+PME          O8          C7          N9     123.644    1.50
+PME          C7          N9         C10     122.371    1.50
+PME          C7          N9         HN9     118.998    1.83
+PME         C10          N9         HN9     118.631    2.22
+PME          N9         C10         C11     111.246    1.50
+PME          N9         C10         C18     110.851    1.77
+PME          N9         C10         H10     107.939    1.50
+PME         C11         C10         C18     109.961    1.71
+PME         C11         C10         H10     108.204    1.50
+PME         C18         C10         H10     108.162    1.50
+PME         C10         C11         C12     113.563    1.55
+PME         C10         C11        H111     108.745    1.50
+PME         C10         C11        H112     108.745    1.50
+PME         C12         C11        H111     108.862    1.50
+PME         C12         C11        H112     108.862    1.50
+PME        H111         C11        H112     107.782    1.50
+PME         C11         C12         C13     120.970    1.50
+PME         C11         C12         C17     120.970    1.50
+PME         C13         C12         C17     118.060    1.50
+PME         C12         C13         C14     120.624    1.50
+PME         C12         C13         H13     119.591    1.50
+PME         C14         C13         H13     119.786    1.50
+PME         C13         C14         C15     120.325    1.50
+PME         C13         C14         H14     119.792    1.50
+PME         C15         C14         H14     119.883    1.50
+PME         C14         C15         C16     120.043    1.50
+PME         C14         C15         H15     119.979    1.50
+PME         C16         C15         H15     119.979    1.50
+PME         C15         C16         C17     120.325    1.50
+PME         C15         C16         H16     119.883    1.50
+PME         C17         C16         H16     119.792    1.50
+PME         C12         C17         C16     120.624    1.50
+PME         C12         C17         H17     119.591    1.50
+PME         C16         C17         H17     119.786    1.50
+PME         C10         C18         O19     124.495    1.50
+PME         C10         C18         O20     111.442    1.59
+PME         O19         C18         O20     124.063    1.50
+PME         C18         O20         C21     116.120    1.50
+PME         O20         C21        H211     109.367    1.50
+PME         O20         C21        H212     109.367    1.50
+PME         O20         C21        H213     109.367    1.50
+PME        H211         C21        H212     109.532    1.53
+PME        H211         C21        H213     109.532    1.53
+PME        H212         C21        H213     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+PME             sp3_sp3_1          C3          C2          N1        HN11     180.000    10.0     3
+PME            sp2_sp3_26         C13         C12         C11         C10     -90.000    10.0     6
+PME       const_sp2_sp2_3         C11         C12         C13         C14     180.000     5.0     2
+PME              const_23         C11         C12         C17         C16     180.000    10.0     2
+PME       const_sp2_sp2_5         C12         C13         C14         C15       0.000     5.0     2
+PME       const_sp2_sp2_9         C13         C14         C15         C16       0.000     5.0     2
+PME              const_13         C14         C15         C16         C17       0.000    10.0     2
+PME              const_17         C15         C16         C17         C12       0.000    10.0     2
+PME             sp2_sp2_5         C10         C18         O20         C21     180.000     5.0     2
+PME            sp3_sp3_29        H211         C21         O20         C18     -60.000    10.0     3
+PME            sp3_sp3_10          N1          C2          C3          C4     180.000    10.0     3
+PME             sp2_sp3_1          O8          C7          C2          N1       0.000    10.0     6
+PME             sp2_sp3_8          O5          C4          C3          C2     120.000    10.0     6
+PME             sp2_sp2_1          C2          C7          N9         C10     180.000     5.0     2
+PME            sp2_sp3_13          C7          N9         C10         C11       0.000    10.0     6
+PME            sp3_sp3_19          N9         C10         C11         C12     180.000    10.0     3
+PME            sp2_sp3_19         O19         C18         C10          N9       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+PME    chir_1    C2    N1    C7    C3    positive
+PME    chir_2    C10    N9    C18    C11    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+PME    plan-1         C11   0.020
+PME    plan-1         C12   0.020
+PME    plan-1         C13   0.020
+PME    plan-1         C14   0.020
+PME    plan-1         C15   0.020
+PME    plan-1         C16   0.020
+PME    plan-1         C17   0.020
+PME    plan-1         H13   0.020
+PME    plan-1         H14   0.020
+PME    plan-1         H15   0.020
+PME    plan-1         H16   0.020
+PME    plan-1         H17   0.020
+PME    plan-2          C3   0.020
+PME    plan-2          C4   0.020
+PME    plan-2          O5   0.020
+PME    plan-2          O6   0.020
+PME    plan-3          C2   0.020
+PME    plan-3          C7   0.020
+PME    plan-3          N9   0.020
+PME    plan-3          O8   0.020
+PME    plan-4         C10   0.020
+PME    plan-4          C7   0.020
+PME    plan-4         HN9   0.020
+PME    plan-4          N9   0.020
+PME    plan-5         C10   0.020
+PME    plan-5         C18   0.020
+PME    plan-5         O19   0.020
+PME    plan-5         O20   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+PME           SMILES              ACDLabs 10.04                                                                                                    O=C(O)CC(N)C(=O)NC(C(=O)OC)Cc1ccccc1
+PME SMILES_CANONICAL               CACTVS 3.341                                                                                           COC(=O)[C@H](Cc1ccccc1)NC(=O)[C@@H](N)CC(O)=O
+PME           SMILES               CACTVS 3.341                                                                                              COC(=O)[CH](Cc1ccccc1)NC(=O)[CH](N)CC(O)=O
+PME SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                            COC(=O)[C@H](Cc1ccccc1)NC(=O)[C@H](CC(=O)O)N
+PME           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                    COC(=O)C(Cc1ccccc1)NC(=O)C(CC(=O)O)N
+PME            InChI                InChI  1.03 InChI=1S/C14H18N2O5/c1-21-14(20)11(7-9-5-3-2-4-6-9)16-13(19)10(15)8-12(17)18/h2-6,10-11H,7-8,15H2,1H3,(H,16,19)(H,17,18)/t10-,11-/m0/s1
+PME         InChIKey                InChI  1.03                                                                                                             IAOZJIPTCAWIRG-QWRGUYRKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+PME acedrg               243         "dictionary generator"                  
+PME acedrg_database      11          "data source"                           
+PME rdkit                2017.03.2   "Chemoinformatics tool"
+PME refmac5              5.8.0238    "optimization tool"                     

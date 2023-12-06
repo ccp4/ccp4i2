@@ -1,0 +1,271 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LD5     LD5      4-[(6-ethenyl-7~{H}-purin-2-yl)amino]benzenesulfonamide     NON-POLYMER     34     22     .     
+#
+data_comp_LD5
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LD5     C15     C       CR16    0       25.622      -9.103      22.143      
+LD5     C18     C       CR6     0       25.137      -6.079      17.559      
+LD5     C19     C       C1      0       25.956      -6.910      16.702      
+LD5     C27     C       CR56    0       24.213      -5.117      17.062      
+LD5     N28     N       NR5     0       23.804      -4.668      15.839      
+LD5     C20     C       C2      0       26.488      -6.539      15.567      
+LD5     C01     C       CR15    0       22.881      -3.720      16.066      
+LD5     C03     C       CR56    0       23.478      -4.379      17.999      
+LD5     C05     C       CR6     0       24.519      -5.494      19.726      
+LD5     C07     C       CR6     0       25.250      -6.738      21.787      
+LD5     C08     C       CR16    0       26.058      -6.462      22.897      
+LD5     C09     C       CR16    0       26.641      -7.490      23.617      
+LD5     C10     C       CR6     0       26.424      -8.812      23.243      
+LD5     C16     C       CR16    0       25.036      -8.075      21.425      
+LD5     N02     N       NRD5    0       22.642      -3.502      17.349      
+LD5     N04     N       NRD6    0       23.627      -4.562      19.325      
+LD5     N06     N       NH1     0       24.664      -5.670      21.067      
+LD5     N12     N       NT2     0       26.361      -11.474     23.909      
+LD5     N17     N       NRD6    0       25.270      -6.242      18.889      
+LD5     O13     O       O       0       27.025      -9.797      25.556      
+LD5     O14     O       O       0       28.493      -10.311     23.641      
+LD5     S11     S       S3      0       27.175      -10.117     24.168      
+LD5     H151    H       H       0       25.473      -9.994      21.886      
+LD5     H191    H       H       0       26.122      -7.797      16.986      
+LD5     H1      H       H       0       24.101      -4.957      15.035      
+LD5     H2      H       H       0       26.822      -7.188      14.963      
+LD5     H201    H       H       0       26.540      -5.620      15.343      
+LD5     H011    H       H       0       22.443      -3.254      15.369      
+LD5     H081    H       H       0       26.207      -5.569      23.152      
+LD5     H091    H       H       0       27.184      -7.293      24.359      
+LD5     H161    H       H       0       24.496      -8.273      20.680      
+LD5     H061    H       H       0       24.351      -5.017      21.559      
+LD5     H122    H       H       0       26.761      -12.177     24.227      
+LD5     H121    H       H       0       25.514      -11.403     24.090      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LD5         C19         C20      DOUBLE       n     1.306  0.0200     1.306  0.0200
+LD5         N28         C01      SINGLE       y     1.341  0.0100     1.341  0.0100
+LD5         C27         N28      SINGLE       y     1.367  0.0100     1.367  0.0100
+LD5         C01         N02      DOUBLE       y     1.322  0.0100     1.322  0.0100
+LD5         C18         C19      SINGLE       n     1.445  0.0162     1.445  0.0162
+LD5         C18         C27      DOUBLE       y     1.413  0.0168     1.413  0.0168
+LD5         C27         C03      SINGLE       y     1.401  0.0200     1.401  0.0200
+LD5         C03         N02      SINGLE       y     1.375  0.0100     1.375  0.0100
+LD5         C18         N17      SINGLE       y     1.341  0.0107     1.341  0.0107
+LD5         C03         N04      DOUBLE       y     1.344  0.0101     1.344  0.0101
+LD5         C05         N17      DOUBLE       y     1.342  0.0113     1.342  0.0113
+LD5         C05         N04      SINGLE       y     1.343  0.0120     1.343  0.0120
+LD5         C05         N06      SINGLE       n     1.353  0.0130     1.353  0.0130
+LD5         C07         N06      SINGLE       n     1.413  0.0102     1.413  0.0102
+LD5         C07         C16      SINGLE       y     1.397  0.0100     1.397  0.0100
+LD5         C15         C16      DOUBLE       y     1.380  0.0100     1.380  0.0100
+LD5         C07         C08      DOUBLE       y     1.397  0.0100     1.397  0.0100
+LD5         C15         C10      SINGLE       y     1.388  0.0100     1.388  0.0100
+LD5         C08         C09      SINGLE       y     1.380  0.0100     1.380  0.0100
+LD5         C09         C10      DOUBLE       y     1.388  0.0100     1.388  0.0100
+LD5         C10         S11      SINGLE       n     1.766  0.0100     1.766  0.0100
+LD5         N12         S11      SINGLE       n     1.603  0.0110     1.603  0.0110
+LD5         O14         S11      DOUBLE       n     1.433  0.0100     1.433  0.0100
+LD5         O13         S11      DOUBLE       n     1.433  0.0100     1.433  0.0100
+LD5         C15        H151      SINGLE       n     1.082  0.0130     0.941  0.0197
+LD5         C19        H191      SINGLE       n     1.082  0.0130     0.946  0.0187
+LD5         N28          H1      SINGLE       n     1.016  0.0100     0.904  0.0200
+LD5         C20          H2      SINGLE       n     1.082  0.0130     0.947  0.0196
+LD5         C20        H201      SINGLE       n     1.082  0.0130     0.947  0.0196
+LD5         C01        H011      SINGLE       n     1.082  0.0130     0.946  0.0200
+LD5         C08        H081      SINGLE       n     1.082  0.0130     0.941  0.0200
+LD5         C09        H091      SINGLE       n     1.082  0.0130     0.941  0.0197
+LD5         C16        H161      SINGLE       n     1.082  0.0130     0.941  0.0200
+LD5         N06        H061      SINGLE       n     1.016  0.0100     0.874  0.0200
+LD5         N12        H122      SINGLE       n     1.036  0.0160     0.869  0.0200
+LD5         N12        H121      SINGLE       n     1.036  0.0160     0.869  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LD5         C16         C15         C10     119.973    1.50
+LD5         C16         C15        H151     119.868    1.50
+LD5         C10         C15        H151     120.159    1.50
+LD5         C19         C18         C27     123.157    2.66
+LD5         C19         C18         N17     117.741    1.50
+LD5         C27         C18         N17     119.101    1.64
+LD5         C20         C19         C18     124.961    3.00
+LD5         C20         C19        H191     117.329    1.50
+LD5         C18         C19        H191     117.710    1.50
+LD5         N28         C27         C18     135.637    2.84
+LD5         N28         C27         C03     106.097    1.50
+LD5         C18         C27         C03     118.266    1.50
+LD5         C01         N28         C27     106.807    1.50
+LD5         C01         N28          H1     126.916    2.71
+LD5         C27         N28          H1     126.277    1.93
+LD5         C19         C20          H2     120.187    1.50
+LD5         C19         C20        H201     120.195    1.50
+LD5          H2         C20        H201     119.633    1.50
+LD5         N28         C01         N02     113.493    1.50
+LD5         N28         C01        H011     123.012    1.50
+LD5         N02         C01        H011     123.496    1.50
+LD5         C27         C03         N02     109.842    1.50
+LD5         C27         C03         N04     122.468    1.50
+LD5         N02         C03         N04     127.690    1.50
+LD5         N17         C05         N04     124.751    1.50
+LD5         N17         C05         N06     117.782    2.95
+LD5         N04         C05         N06     117.467    2.85
+LD5         N06         C07         C16     120.596    3.00
+LD5         N06         C07         C08     120.596    3.00
+LD5         C16         C07         C08     118.808    1.50
+LD5         C07         C08         C09     120.439    1.50
+LD5         C07         C08        H081     119.615    1.50
+LD5         C09         C08        H081     119.946    1.50
+LD5         C08         C09         C10     119.973    1.50
+LD5         C08         C09        H091     119.868    1.50
+LD5         C10         C09        H091     120.159    1.50
+LD5         C15         C10         C09     120.368    1.50
+LD5         C15         C10         S11     119.816    1.50
+LD5         C09         C10         S11     119.816    1.50
+LD5         C07         C16         C15     120.439    1.50
+LD5         C07         C16        H161     119.615    1.50
+LD5         C15         C16        H161     119.946    1.50
+LD5         C01         N02         C03     103.761    1.50
+LD5         C03         N04         C05     117.563    2.19
+LD5         C05         N06         C07     129.051    2.10
+LD5         C05         N06        H061     115.032    1.60
+LD5         C07         N06        H061     115.917    1.50
+LD5         S11         N12        H122     113.070    3.00
+LD5         S11         N12        H121     113.070    3.00
+LD5        H122         N12        H121     115.993    3.00
+LD5         C18         N17         C05     117.852    1.50
+LD5         C10         S11         N12     108.480    1.50
+LD5         C10         S11         O14     107.472    1.50
+LD5         C10         S11         O13     107.472    1.50
+LD5         N12         S11         O14     107.154    1.50
+LD5         N12         S11         O13     107.154    1.50
+LD5         O14         S11         O13     118.954    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LD5              const_51         S11         C10         C15         C16     180.000    10.0     2
+LD5              const_27         C10         C15         C16         C07       0.000    10.0     2
+LD5              const_39         C07         C08         C09         C10       0.000    10.0     2
+LD5              const_44         C08         C09         C10         S11     180.000    10.0     2
+LD5             sp2_sp3_3         C15         C10         S11         N12      30.000    10.0     6
+LD5             sp3_sp3_2        H122         N12         S11         O14     -60.000    10.0     3
+LD5              const_48         C19         C18         N17         C05     180.000    10.0     2
+LD5             sp2_sp2_5         C27         C18         C19         C20     180.000     5.0     2
+LD5              const_16         C19         C18         C27         N28       0.000    10.0     2
+LD5             sp2_sp2_1         C18         C19         C20          H2     180.000     5.0     2
+LD5       const_sp2_sp2_3         C18         C27         N28         C01     180.000     5.0     2
+LD5              const_17         N02         C03         C27         N28       0.000    10.0     2
+LD5       const_sp2_sp2_5         N02         C01         N28         C27       0.000     5.0     2
+LD5       const_sp2_sp2_9         N28         C01         N02         C03       0.000     5.0     2
+LD5              const_11         C27         C03         N02         C01       0.000    10.0     2
+LD5              const_21         C27         C03         N04         C05       0.000    10.0     2
+LD5              const_24         N06         C05         N04         C03     180.000    10.0     2
+LD5             sp2_sp2_9         N17         C05         N06         C07     180.000     5.0     2
+LD5              const_26         N06         C05         N17         C18     180.000    10.0     2
+LD5              const_37         N06         C07         C08         C09     180.000    10.0     2
+LD5              const_33         N06         C07         C16         C15     180.000    10.0     2
+LD5            sp2_sp2_13         C16         C07         N06         C05     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LD5    chir_1    S11    O14    O13    N12    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LD5    plan-1         C01   0.020
+LD5    plan-1         C03   0.020
+LD5    plan-1         C05   0.020
+LD5    plan-1         C18   0.020
+LD5    plan-1         C19   0.020
+LD5    plan-1         C27   0.020
+LD5    plan-1        H011   0.020
+LD5    plan-1          H1   0.020
+LD5    plan-1         N02   0.020
+LD5    plan-1         N04   0.020
+LD5    plan-1         N06   0.020
+LD5    plan-1         N17   0.020
+LD5    plan-1         N28   0.020
+LD5    plan-2         C07   0.020
+LD5    plan-2         C08   0.020
+LD5    plan-2         C09   0.020
+LD5    plan-2         C10   0.020
+LD5    plan-2         C15   0.020
+LD5    plan-2         C16   0.020
+LD5    plan-2        H081   0.020
+LD5    plan-2        H091   0.020
+LD5    plan-2        H151   0.020
+LD5    plan-2        H161   0.020
+LD5    plan-2         N06   0.020
+LD5    plan-2         S11   0.020
+LD5    plan-3         C18   0.020
+LD5    plan-3         C19   0.020
+LD5    plan-3         C20   0.020
+LD5    plan-3        H191   0.020
+LD5    plan-4         C19   0.020
+LD5    plan-4         C20   0.020
+LD5    plan-4          H2   0.020
+LD5    plan-4        H201   0.020
+LD5    plan-5         C05   0.020
+LD5    plan-5         C07   0.020
+LD5    plan-5        H061   0.020
+LD5    plan-5         N06   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LD5            InChI                InChI  1.03 InChI=1S/C13H12N6O2S/c1-2-10-11-12(16-7-15-11)19-13(18-10)17-8-3-5-9(6-4-8)22(14,20)21/h2-7H,1H2,(H2,14,20,21)(H2,15,16,17,18,19)
+LD5         InChIKey                InChI  1.03                                                                                                       KGGMBTYAIOMGPI-UHFFFAOYSA-N
+LD5 SMILES_CANONICAL               CACTVS 3.385                                                                                      N[S](=O)(=O)c1ccc(Nc2nc(C=C)c3[nH]cnc3n2)cc1
+LD5           SMILES               CACTVS 3.385                                                                                      N[S](=O)(=O)c1ccc(Nc2nc(C=C)c3[nH]cnc3n2)cc1
+LD5 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.7                                                                                      C=Cc1c2c(nc[nH]2)nc(n1)Nc3ccc(cc3)S(=O)(=O)N
+LD5           SMILES "OpenEye OEToolkits" 2.0.7                                                                                      C=Cc1c2c(nc[nH]2)nc(n1)Nc3ccc(cc3)S(=O)(=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LD5 acedrg               243         "dictionary generator"                  
+LD5 acedrg_database      11          "data source"                           
+LD5 rdkit                2017.03.2   "Chemoinformatics tool"
+LD5 refmac5              5.8.0238    "optimization tool"                     

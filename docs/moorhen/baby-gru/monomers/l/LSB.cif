@@ -1,0 +1,473 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LSB     LSB      (4R,5S)-3-[(2R,3S,4S)-2-ethyl-5-[(3R)-2-ethyl-3-[2-[(2R,3R)-2-ethyl-3-methyl-oxiran-2-yl]ethyl]oxiran-2-yl]-3-hydroxy-4-methyl-pentanoyl]-4-methyl-5-phenyl-1,3-oxazolidin-2-one     NON-POLYMER     79     36     .     
+#
+data_comp_LSB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LSB     C1      C       CR6     0       60.431      54.936      9.662       
+LSB     C2      C       CR16    0       61.209      55.467      10.691      
+LSB     C3      C       CR16    0       62.577      55.229      10.737      
+LSB     C4      C       CR16    0       63.183      54.462      9.762       
+LSB     C5      C       CR16    0       62.425      53.930      8.740       
+LSB     C6      C       CR16    0       61.056      54.162      8.688       
+LSB     C7      C       CH3     0       58.724      53.418      11.498      
+LSB     C8      C       CH1     0       58.030      54.284      10.459      
+LSB     C9      C       CH1     0       58.945      55.180      9.600       
+LSB     O10     O       O2      0       58.657      56.544      10.030      
+LSB     C11     C       CR5     0       57.627      56.579      10.895      
+LSB     N12     N       NR5     0       57.137      55.289      11.090      
+LSB     C13     C       C       0       55.950      54.943      11.775      
+LSB     C14     C       CH1     0       55.256      53.584      11.523      
+LSB     C15     C       CH1     0       54.455      53.109      12.767      
+LSB     C16     C       CH1     0       55.291      52.370      13.844      
+LSB     C17     C       CH2     0       54.441      51.686      14.937      
+LSB     C18     C       CT      0       53.826      50.324      14.672      
+LSB     C19     C       CH1     0       52.374      50.214      14.446      
+LSB     C20     C       CH2     0       51.693      49.143      13.650      
+LSB     C21     C       CH2     0       50.223      49.483      13.380      
+LSB     C22     C       CT      0       49.426      48.360      12.750      
+LSB     C23     C       CH1     0       48.055      48.092      13.219      
+LSB     C24     C       CH3     0       46.996      47.480      12.360      
+LSB     O25     O       O       0       57.221      57.614      11.341      
+LSB     O26     O       O       0       55.436      55.796      12.490      
+LSB     C27     C       CH2     0       54.441      53.740      10.223      
+LSB     C28     C       CH3     0       53.221      54.652      10.331      
+LSB     O29     O       OH1     0       53.404      52.252      12.306      
+LSB     C30     C       CH3     0       56.312      53.307      14.491      
+LSB     C31     C       CH2     0       54.777      49.264      14.151      
+LSB     C32     C       CH3     0       56.057      49.088      14.951      
+LSB     O33     O       O2      0       52.938      49.855      15.725      
+LSB     C34     C       CH2     0       49.881      47.962      11.359      
+LSB     C35     C       CH3     0       49.698      49.033      10.295      
+LSB     O36     O       O2      0       49.145      47.242      13.637      
+LSB     H2      H       H       0       60.805      55.991      11.366      
+LSB     H3      H       H       0       63.094      55.595      11.437      
+LSB     H4      H       H       0       64.113      54.303      9.795       
+LSB     H5      H       H       0       62.838      53.405      8.072       
+LSB     H6      H       H       0       60.544      53.793      7.983       
+LSB     H7      H       H       0       59.181      53.985      12.140      
+LSB     H7A     H       H       0       59.369      52.837      11.063      
+LSB     H7B     H       H       0       58.072      52.872      11.957      
+LSB     H8      H       H       0       57.503      53.696      9.849       
+LSB     H9      H       H       0       58.655      55.091      8.649       
+LSB     H14     H       H       0       55.939      52.903      11.353      
+LSB     H15     H       H       0       54.027      53.895      13.198      
+LSB     H16     H       H       0       55.801      51.668      13.374      
+LSB     H17     H       H       0       53.717      52.297      15.170      
+LSB     H17A    H       H       0       54.989      51.585      15.737      
+LSB     H19     H       H       0       51.894      51.079      14.447      
+LSB     H20     H       H       0       51.747      48.298      14.135      
+LSB     H20A    H       H       0       52.160      49.031      12.801      
+LSB     H21     H       H       0       50.185      50.266      12.798      
+LSB     H21A    H       H       0       49.802      49.728      14.226      
+LSB     H23     H       H       0       47.705      48.743      13.877      
+LSB     H24     H       H       0       47.230      46.548      12.163      
+LSB     H24A    H       H       0       46.923      47.981      11.520      
+LSB     H24B    H       H       0       46.135      47.506      12.829      
+LSB     H27     H       H       0       54.144      52.854      9.927       
+LSB     H27A    H       H       0       55.032      54.097      9.527       
+LSB     H28     H       H       0       53.154      55.021      11.228      
+LSB     H28A    H       H       0       52.417      54.142      10.133      
+LSB     H28B    H       H       0       53.304      55.380      9.690       
+LSB     HO29    H       H       0       53.722      51.559      11.935      
+LSB     H30     H       H       0       55.898      54.172      14.659      
+LSB     H30A    H       H       0       57.069      53.424      13.897      
+LSB     H30B    H       H       0       56.627      52.933      15.332      
+LSB     H31     H       H       0       55.009      49.483      13.229      
+LSB     H31A    H       H       0       54.306      48.410      14.134      
+LSB     H32     H       H       0       55.907      49.345      15.878      
+LSB     H32A    H       H       0       56.757      49.645      14.569      
+LSB     H32B    H       H       0       56.333      48.155      14.916      
+LSB     H34     H       H       0       49.394      47.163      11.086      
+LSB     H34A    H       H       0       50.825      47.719      11.398      
+LSB     H35     H       H       0       49.174      49.773      10.650      
+LSB     H35A    H       H       0       49.236      48.651      9.529       
+LSB     H35B    H       H       0       50.570      49.361      10.013      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LSB          C1          C2      DOUBLE       y     1.387  0.0116     1.387  0.0116
+LSB          C1          C6      SINGLE       y     1.387  0.0116     1.387  0.0116
+LSB          C1          C9      SINGLE       n     1.503  0.0100     1.503  0.0100
+LSB          C2          C3      SINGLE       y     1.386  0.0100     1.386  0.0100
+LSB          C3          C4      DOUBLE       y     1.376  0.0124     1.376  0.0124
+LSB          C4          C5      SINGLE       y     1.374  0.0127     1.374  0.0127
+LSB          C5          C6      DOUBLE       y     1.386  0.0100     1.386  0.0100
+LSB          C7          C8      SINGLE       n     1.516  0.0107     1.516  0.0107
+LSB          C8          C9      SINGLE       n     1.536  0.0100     1.536  0.0100
+LSB          C8         N12      SINGLE       n     1.478  0.0100     1.478  0.0100
+LSB          C9         O10      SINGLE       n     1.459  0.0100     1.459  0.0100
+LSB         O10         C11      SINGLE       n     1.348  0.0100     1.348  0.0100
+LSB         C11         N12      SINGLE       n     1.390  0.0108     1.390  0.0108
+LSB         C11         O25      DOUBLE       n     1.197  0.0100     1.197  0.0100
+LSB         N12         C13      SINGLE       n     1.399  0.0115     1.399  0.0115
+LSB         C13         C14      SINGLE       n     1.522  0.0167     1.522  0.0167
+LSB         C13         O26      DOUBLE       n     1.224  0.0119     1.224  0.0119
+LSB         C14         C15      SINGLE       n     1.542  0.0100     1.542  0.0100
+LSB         C14         C27      SINGLE       n     1.537  0.0100     1.537  0.0100
+LSB         C15         C16      SINGLE       n     1.539  0.0120     1.539  0.0120
+LSB         C15         O29      SINGLE       n     1.426  0.0179     1.426  0.0179
+LSB         C16         C17      SINGLE       n     1.528  0.0141     1.528  0.0141
+LSB         C16         C30      SINGLE       n     1.521  0.0151     1.521  0.0151
+LSB         C17         C18      SINGLE       n     1.512  0.0100     1.512  0.0100
+LSB         C18         C19      SINGLE       n     1.472  0.0100     1.472  0.0100
+LSB         C18         C31      SINGLE       n     1.512  0.0100     1.512  0.0100
+LSB         C18         O33      SINGLE       n     1.455  0.0100     1.455  0.0100
+LSB         C19         C20      SINGLE       n     1.498  0.0124     1.498  0.0124
+LSB         C19         O33      SINGLE       n     1.443  0.0100     1.443  0.0100
+LSB         C20         C21      SINGLE       n     1.532  0.0100     1.532  0.0100
+LSB         C21         C22      SINGLE       n     1.512  0.0100     1.512  0.0100
+LSB         C22         C23      SINGLE       n     1.472  0.0100     1.472  0.0100
+LSB         C22         C34      SINGLE       n     1.512  0.0100     1.512  0.0100
+LSB         C22         O36      SINGLE       n     1.455  0.0100     1.455  0.0100
+LSB         C23         C24      SINGLE       n     1.494  0.0122     1.494  0.0122
+LSB         C23         O36      SINGLE       n     1.443  0.0100     1.443  0.0100
+LSB         C27         C28      SINGLE       n     1.515  0.0200     1.515  0.0200
+LSB         C31         C32      SINGLE       n     1.514  0.0182     1.514  0.0182
+LSB         C34         C35      SINGLE       n     1.514  0.0182     1.514  0.0182
+LSB          C2          H2      SINGLE       n     1.082  0.0130     0.946  0.0200
+LSB          C3          H3      SINGLE       n     1.082  0.0130     0.944  0.0175
+LSB          C4          H4      SINGLE       n     1.082  0.0130     0.944  0.0161
+LSB          C5          H5      SINGLE       n     1.082  0.0130     0.944  0.0175
+LSB          C6          H6      SINGLE       n     1.082  0.0130     0.946  0.0200
+LSB          C7          H7      SINGLE       n     1.089  0.0100     0.971  0.0169
+LSB          C7         H7A      SINGLE       n     1.089  0.0100     0.971  0.0169
+LSB          C7         H7B      SINGLE       n     1.089  0.0100     0.971  0.0169
+LSB          C8          H8      SINGLE       n     1.089  0.0100     0.998  0.0100
+LSB          C9          H9      SINGLE       n     1.089  0.0100     0.998  0.0100
+LSB         C14         H14      SINGLE       n     1.089  0.0100     0.986  0.0165
+LSB         C15         H15      SINGLE       n     1.089  0.0100     0.995  0.0200
+LSB         C16         H16      SINGLE       n     1.089  0.0100     0.989  0.0162
+LSB         C17         H17      SINGLE       n     1.089  0.0100     0.976  0.0131
+LSB         C17        H17A      SINGLE       n     1.089  0.0100     0.976  0.0131
+LSB         C19         H19      SINGLE       n     1.089  0.0100     0.989  0.0200
+LSB         C20         H20      SINGLE       n     1.089  0.0100     0.976  0.0100
+LSB         C20        H20A      SINGLE       n     1.089  0.0100     0.976  0.0100
+LSB         C21         H21      SINGLE       n     1.089  0.0100     0.976  0.0100
+LSB         C21        H21A      SINGLE       n     1.089  0.0100     0.976  0.0100
+LSB         C23         H23      SINGLE       n     1.089  0.0100     0.989  0.0200
+LSB         C24         H24      SINGLE       n     1.089  0.0100     0.981  0.0200
+LSB         C24        H24A      SINGLE       n     1.089  0.0100     0.981  0.0200
+LSB         C24        H24B      SINGLE       n     1.089  0.0100     0.981  0.0200
+LSB         C27         H27      SINGLE       n     1.089  0.0100     0.980  0.0160
+LSB         C27        H27A      SINGLE       n     1.089  0.0100     0.980  0.0160
+LSB         C28         H28      SINGLE       n     1.089  0.0100     0.973  0.0157
+LSB         C28        H28A      SINGLE       n     1.089  0.0100     0.973  0.0157
+LSB         C28        H28B      SINGLE       n     1.089  0.0100     0.973  0.0157
+LSB         O29        HO29      SINGLE       n     0.970  0.0120     0.848  0.0200
+LSB         C30         H30      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSB         C30        H30A      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSB         C30        H30B      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSB         C31         H31      SINGLE       n     1.089  0.0100     0.976  0.0131
+LSB         C31        H31A      SINGLE       n     1.089  0.0100     0.976  0.0131
+LSB         C32         H32      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSB         C32        H32A      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSB         C32        H32B      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSB         C34         H34      SINGLE       n     1.089  0.0100     0.976  0.0131
+LSB         C34        H34A      SINGLE       n     1.089  0.0100     0.976  0.0131
+LSB         C35         H35      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSB         C35        H35A      SINGLE       n     1.089  0.0100     0.973  0.0146
+LSB         C35        H35B      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LSB          C2          C1          C6     118.802    1.50
+LSB          C2          C1          C9     120.599    1.57
+LSB          C6          C1          C9     120.599    1.57
+LSB          C1          C2          C3     120.439    1.50
+LSB          C1          C2          H2     119.733    1.50
+LSB          C3          C2          H2     119.828    1.50
+LSB          C2          C3          C4     120.231    1.50
+LSB          C2          C3          H3     119.801    1.50
+LSB          C4          C3          H3     119.968    1.50
+LSB          C3          C4          C5     119.860    1.50
+LSB          C3          C4          H4     120.070    1.50
+LSB          C5          C4          H4     120.070    1.50
+LSB          C4          C5          C6     120.231    1.50
+LSB          C4          C5          H5     119.968    1.50
+LSB          C6          C5          H5     119.801    1.50
+LSB          C1          C6          C5     120.439    1.50
+LSB          C1          C6          H6     119.733    1.50
+LSB          C5          C6          H6     119.828    1.50
+LSB          C8          C7          H7     109.476    1.50
+LSB          C8          C7         H7A     109.476    1.50
+LSB          C8          C7         H7B     109.476    1.50
+LSB          H7          C7         H7A     109.421    1.50
+LSB          H7          C7         H7B     109.421    1.50
+LSB         H7A          C7         H7B     109.421    1.50
+LSB          C7          C8          C9     115.564    1.50
+LSB          C7          C8         N12     111.585    1.50
+LSB          C7          C8          H8     109.219    1.50
+LSB          C9          C8         N12      99.451    1.50
+LSB          C9          C8          H8     109.220    1.50
+LSB         N12          C8          H8     109.952    1.50
+LSB          C1          C9          C8     116.665    1.50
+LSB          C1          C9         O10     109.897    1.50
+LSB          C1          C9          H9     108.754    1.50
+LSB          C8          C9         O10     103.612    1.50
+LSB          C8          C9          H9     108.570    1.50
+LSB         O10          C9          H9     108.540    1.50
+LSB          C9         O10         C11     109.939    1.50
+LSB         O10         C11         N12     108.586    1.50
+LSB         O10         C11         O25     122.588    1.50
+LSB         N12         C11         O25     128.827    1.50
+LSB          C8         N12         C11     111.158    1.50
+LSB          C8         N12         C13     120.662    1.99
+LSB         C11         N12         C13     128.181    1.92
+LSB         N12         C13         C14     118.722    1.50
+LSB         N12         C13         O26     118.661    1.50
+LSB         C14         C13         O26     122.617    1.50
+LSB         C13         C14         C15     108.959    1.81
+LSB         C13         C14         C27     112.553    3.00
+LSB         C13         C14         H14     108.827    1.50
+LSB         C15         C14         C27     111.094    2.85
+LSB         C15         C14         H14     108.385    1.50
+LSB         C27         C14         H14     108.345    1.50
+LSB         C14         C15         C16     111.094    2.85
+LSB         C14         C15         O29     107.902    2.58
+LSB         C14         C15         H15     108.532    1.50
+LSB         C16         C15         O29     109.580    2.17
+LSB         C16         C15         H15     108.131    1.50
+LSB         O29         C15         H15     108.007    1.50
+LSB         C15         C16         C17     113.128    1.50
+LSB         C15         C16         C30     111.475    1.50
+LSB         C15         C16         H16     107.173    1.50
+LSB         C17         C16         C30     111.043    1.67
+LSB         C17         C16         H16     107.680    1.50
+LSB         C30         C16         H16     107.863    1.50
+LSB         C16         C17         C18     112.541    2.49
+LSB         C16         C17         H17     108.394    1.50
+LSB         C16         C17        H17A     108.394    1.50
+LSB         C18         C17         H17     108.949    2.31
+LSB         C18         C17        H17A     108.949    2.31
+LSB         H17         C17        H17A     107.717    1.63
+LSB         C17         C18         C19     119.817    2.36
+LSB         C17         C18         C31     113.987    1.50
+LSB         C17         C18         O33     114.597    1.50
+LSB         C19         C18         C31     119.817    2.36
+LSB         C19         C18         O33      59.313    1.50
+LSB         C31         C18         O33     114.597    1.50
+LSB         C18         C19         C20     125.495    1.50
+LSB         C18         C19         O33      59.824    1.50
+LSB         C18         C19         H19     114.615    1.95
+LSB         C20         C19         O33     118.112    1.53
+LSB         C20         C19         H19     114.268    1.50
+LSB         O33         C19         H19     114.226    1.50
+LSB         C19         C20         C21     111.632    1.67
+LSB         C19         C20         H20     109.287    1.50
+LSB         C19         C20        H20A     109.287    1.50
+LSB         C21         C20         H20     109.304    1.50
+LSB         C21         C20        H20A     109.304    1.50
+LSB         H20         C20        H20A     107.870    1.50
+LSB         C20         C21         C22     113.837    1.50
+LSB         C20         C21         H21     108.800    1.50
+LSB         C20         C21        H21A     108.800    1.50
+LSB         C22         C21         H21     108.949    2.31
+LSB         C22         C21        H21A     108.949    2.31
+LSB         H21         C21        H21A     107.674    1.50
+LSB         C21         C22         C23     119.817    2.36
+LSB         C21         C22         C34     113.987    1.50
+LSB         C21         C22         O36     114.597    1.50
+LSB         C23         C22         C34     119.817    2.36
+LSB         C23         C22         O36      59.313    1.50
+LSB         C34         C22         O36     114.597    1.50
+LSB         C22         C23         C24     120.272    3.00
+LSB         C22         C23         O36      59.824    1.50
+LSB         C22         C23         H23     114.615    1.95
+LSB         C24         C23         O36     117.197    1.50
+LSB         C24         C23         H23     113.557    2.83
+LSB         O36         C23         H23     117.322    3.00
+LSB         C23         C24         H24     109.685    1.50
+LSB         C23         C24        H24A     109.685    1.50
+LSB         C23         C24        H24B     109.685    1.50
+LSB         H24         C24        H24A     109.343    1.50
+LSB         H24         C24        H24B     109.343    1.50
+LSB        H24A         C24        H24B     109.343    1.50
+LSB         C14         C27         C28     112.993    1.60
+LSB         C14         C27         H27     108.680    1.50
+LSB         C14         C27        H27A     108.680    1.50
+LSB         C28         C27         H27     108.717    1.50
+LSB         C28         C27        H27A     108.717    1.50
+LSB         H27         C27        H27A     107.862    1.50
+LSB         C27         C28         H28     109.566    1.50
+LSB         C27         C28        H28A     109.566    1.50
+LSB         C27         C28        H28B     109.566    1.50
+LSB         H28         C28        H28A     109.380    1.50
+LSB         H28         C28        H28B     109.380    1.50
+LSB        H28A         C28        H28B     109.380    1.50
+LSB         C15         O29        HO29     110.295    3.00
+LSB         C16         C30         H30     109.513    1.50
+LSB         C16         C30        H30A     109.513    1.50
+LSB         C16         C30        H30B     109.513    1.50
+LSB         H30         C30        H30A     109.411    1.50
+LSB         H30         C30        H30B     109.411    1.50
+LSB        H30A         C30        H30B     109.411    1.50
+LSB         C18         C31         C32     112.541    2.49
+LSB         C18         C31         H31     108.949    2.31
+LSB         C18         C31        H31A     108.949    2.31
+LSB         C32         C31         H31     109.102    1.50
+LSB         C32         C31        H31A     109.102    1.50
+LSB         H31         C31        H31A     107.717    1.63
+LSB         C31         C32         H32     109.501    1.50
+LSB         C31         C32        H32A     109.501    1.50
+LSB         C31         C32        H32B     109.501    1.50
+LSB         H32         C32        H32A     109.440    1.50
+LSB         H32         C32        H32B     109.440    1.50
+LSB        H32A         C32        H32B     109.440    1.50
+LSB         C18         O33         C19      60.912    1.50
+LSB         C22         C34         C35     112.541    2.49
+LSB         C22         C34         H34     108.949    2.31
+LSB         C22         C34        H34A     108.949    2.31
+LSB         C35         C34         H34     109.102    1.50
+LSB         C35         C34        H34A     109.102    1.50
+LSB         H34         C34        H34A     107.717    1.63
+LSB         C34         C35         H35     109.501    1.50
+LSB         C34         C35        H35A     109.501    1.50
+LSB         C34         C35        H35B     109.501    1.50
+LSB         H35         C35        H35A     109.440    1.50
+LSB         H35         C35        H35B     109.440    1.50
+LSB        H35A         C35        H35B     109.440    1.50
+LSB         C22         O36         C23      60.912    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LSB       const_sp2_sp2_1          C6          C1          C2          C3       0.000     5.0     2
+LSB             sp2_sp3_1          C2          C1          C9          C8     150.000    10.0     6
+LSB             sp2_sp3_5          C6          C1          C9         O10      90.000    10.0     6
+LSB             sp2_sp2_6         O25         C11         N12         C13       0.000     5.0     2
+LSB            sp2_sp3_13         N12         C13         C14         C15       0.000    10.0     6
+LSB            sp3_sp3_47         C13         C14         C15         O29     -60.000    10.0     3
+LSB            sp3_sp3_50         C27         C14         C15         O29     180.000    10.0     3
+LSB            sp3_sp3_59         C15         C14         C27         H27     180.000    10.0     3
+LSB            sp3_sp3_68         O29         C15         C16         C30     180.000    10.0     3
+LSB            sp3_sp3_77         C15         C16         C17         H17     -60.000    10.0     3
+LSB            sp3_sp3_80         C30         C16         C17         H17     180.000    10.0     3
+LSB            sp3_sp3_89         C17         C16         C30        H30A     180.000    10.0     3
+LSB            sp3_sp3_99         H17         C17         C18         O33     -60.000    10.0     3
+LSB            sp3_sp3_13         C17         C18         C19         C20      60.000    10.0     3
+LSB           sp3_sp3_107         C19         C18         C31         H31     180.000    10.0     3
+LSB           sp3_sp3_117         C18         C19         C20        H20A      60.000    10.0     3
+LSB           sp3_sp3_120         O33         C19         C20        H20A     -60.000    10.0     3
+LSB       const_sp2_sp2_1          C6          C1          C2          C3       0.000     5.0     2
+LSB           sp3_sp3_129         H20         C20         C21        H21A     -60.000    10.0     3
+LSB       const_sp2_sp2_7          H2          C2          C3          C4     180.000     5.0     2
+LSB           sp3_sp3_139        H21A         C21         C22         C23     -60.000    10.0     3
+LSB            sp3_sp3_27         C21         C22         C23         H23     -60.000    10.0     3
+LSB           sp3_sp3_147         C23         C22         C34        H34A     -60.000    10.0     3
+LSB           sp3_sp3_157         O36         C23         C24         H24      60.000    10.0     3
+LSB           sp3_sp3_160         H23         C23         C24         H24     -60.000    10.0     3
+LSB              const_23          C9          C1          C6          C5     180.000    10.0     2
+LSB           sp3_sp3_169        H27A         C27         C28         H28     -60.000    10.0     3
+LSB              const_11          H3          C3          C4          C5     180.000    10.0     2
+LSB           sp3_sp3_178        H31A         C31         C32         H32     -60.000    10.0     3
+LSB           sp3_sp3_187        H34A         C34         C35         H35     -60.000    10.0     3
+LSB              const_15          H4          C4          C5          C6     180.000    10.0     2
+LSB              const_19          H5          C5          C6          C1     180.000    10.0     2
+LSB            sp3_sp3_41         H7A          C7          C8         N12     180.000    10.0     3
+LSB             sp2_sp2_9         O26         C13         N12          C8       0.000     5.0     2
+LSB             sp3_sp3_5          C7          C8          C9          C1      60.000    10.0     3
+LSB            sp3_sp3_11          C1          C9         O10         C11      60.000    10.0     3
+LSB             sp2_sp2_2         O25         C11         O10          C9     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LSB    chir_1    C8    N12    C9    C7    negative
+LSB    chir_2    C9    O10    C8    C1    positive
+LSB    chir_3    C14    C13    C15    C27    negative
+LSB    chir_4    C15    O29    C14    C16    positive
+LSB    chir_5    C16    C15    C17    C30    positive
+LSB    chir_6    C18    O33    C19    C17    negative
+LSB    chir_7    C19    O33    C18    C20    negative
+LSB    chir_8    C22    O36    C23    C21    negative
+LSB    chir_9    C23    O36    C22    C24    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LSB    plan-1          C1   0.020
+LSB    plan-1          C2   0.020
+LSB    plan-1          C3   0.020
+LSB    plan-1          C4   0.020
+LSB    plan-1          C5   0.020
+LSB    plan-1          C6   0.020
+LSB    plan-1          C9   0.020
+LSB    plan-1          H2   0.020
+LSB    plan-1          H3   0.020
+LSB    plan-1          H4   0.020
+LSB    plan-1          H5   0.020
+LSB    plan-1          H6   0.020
+LSB    plan-2         C11   0.020
+LSB    plan-2         N12   0.020
+LSB    plan-2         O10   0.020
+LSB    plan-2         O25   0.020
+LSB    plan-3         C11   0.020
+LSB    plan-3         C13   0.020
+LSB    plan-3          C8   0.020
+LSB    plan-3         N12   0.020
+LSB    plan-4         C13   0.020
+LSB    plan-4         C14   0.020
+LSB    plan-4         N12   0.020
+LSB    plan-4         O26   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LSB           SMILES              ACDLabs 12.01                                                                                                                                                         O=C2OC(c1ccccc1)C(N2C(=O)C(CC)C(O)C(C)CC4(OC4CCC3(OC3C)CC)CC)C
+LSB SMILES_CANONICAL               CACTVS 3.370                                                                                                                CC[C@H]([C@@H](O)[C@@H](C)C[C@@]1(CC)O[C@@H]1CC[C@@]2(CC)O[C@@H]2C)C(=O)N3[C@H](C)[C@@H](OC3=O)c4ccccc4
+LSB           SMILES               CACTVS 3.370                                                                                                                                CC[CH]([CH](O)[CH](C)C[C]1(CC)O[CH]1CC[C]2(CC)O[CH]2C)C(=O)N3[CH](C)[CH](OC3=O)c4ccccc4
+LSB SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                  CC[C@H]([C@H]([C@@H](C)CC1([C@H](O1)CC[C@@]2([C@H](O2)C)CC)CC)O)C(=O)N3[C@@H]([C@@H](OC3=O)c4ccccc4)C
+LSB           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                     CCC(C(C(C)CC1(C(O1)CCC2(C(O2)C)CC)CC)O)C(=O)N3C(C(OC3=O)c4ccccc4)C
+LSB            InChI                InChI  1.03 InChI=1S/C29H43NO6/c1-7-22(26(32)30-19(5)25(34-27(30)33)21-13-11-10-12-14-21)24(31)18(4)17-29(9-3)23(36-29)15-16-28(8-2)20(6)35-28/h10-14,18-20,22-25,31H,7-9,15-17H2,1-6H3/t18-,19+,20+,22+,23+,24-,25+,28+,29+/m0/s1
+LSB         InChIKey                InChI  1.03                                                                                                                                                                                            PLMSSXURLNIBST-CWZDORBJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LSB acedrg               243         "dictionary generator"                  
+LSB acedrg_database      11          "data source"                           
+LSB rdkit                2017.03.2   "Chemoinformatics tool"
+LSB refmac5              5.8.0238    "optimization tool"                     

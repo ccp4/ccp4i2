@@ -1,0 +1,151 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+NVI     NVI      1-VINYLIMIDAZOLE     NON-POLYMER     14     7     .     
+#
+data_comp_NVI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+NVI     N1      N       NR5     1       31.535      93.549      47.858      
+NVI     C2      C       CR15    0       32.192      93.464      49.068      
+NVI     N3      N       NR5     0       33.413      92.898      48.819      
+NVI     C4      C       CR15    0       33.522      92.635      47.497      
+NVI     C5      C       CR15    0       32.370      93.031      46.886      
+NVI     C6      C       C1      0       30.229      94.079      47.673      
+NVI     C7      C       C2      0       29.619      94.218      46.520      
+NVI     H2      H       H       0       31.866      93.741      49.908      
+NVI     HN3     H       H       0       34.038      92.729      49.430      
+NVI     H4      H       H       0       34.266      92.244      47.058      
+NVI     H5      H       H       0       32.183      92.961      45.966      
+NVI     H6      H       H       0       29.762      94.356      48.444      
+NVI     H71     H       H       0       28.798      94.689      46.475      
+NVI     H72     H       H       0       29.993      93.847      45.733      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+NVI          N1          C2      DOUBLE       y     1.382  0.0156     1.382  0.0156
+NVI          N1          C5      SINGLE       y     1.382  0.0156     1.382  0.0156
+NVI          N1          C6      SINGLE       n     1.414  0.0173     1.414  0.0173
+NVI          C2          N3      SINGLE       y     1.366  0.0157     1.366  0.0157
+NVI          N3          C4      SINGLE       y     1.351  0.0118     1.351  0.0118
+NVI          C4          C5      DOUBLE       y     1.362  0.0134     1.362  0.0134
+NVI          C6          C7      DOUBLE       n     1.305  0.0200     1.305  0.0200
+NVI          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0185
+NVI          N3         HN3      SINGLE       n     1.016  0.0100     0.890  0.0200
+NVI          C4          H4      SINGLE       n     1.082  0.0130     0.948  0.0200
+NVI          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0152
+NVI          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0200
+NVI          C7         H71      SINGLE       n     1.082  0.0130     0.948  0.0200
+NVI          C7         H72      SINGLE       n     1.082  0.0130     0.948  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+NVI          C2          N1          C5     108.430    1.57
+NVI          C2          N1          C6     125.556    2.79
+NVI          C5          N1          C6     126.014    1.50
+NVI          N1          C2          N3     106.891    1.50
+NVI          N1          C2          H2     126.746    1.96
+NVI          N3          C2          H2     126.363    1.61
+NVI          C2          N3          C4     108.719    1.50
+NVI          C2          N3         HN3     125.618    1.84
+NVI          C4          N3         HN3     125.663    3.00
+NVI          N3          C4          C5     107.959    1.50
+NVI          N3          C4          H4     126.703    1.50
+NVI          C5          C4          H4     125.338    1.50
+NVI          N1          C5          C4     108.002    1.53
+NVI          N1          C5          H5     126.249    2.13
+NVI          C4          C5          H5     125.750    1.50
+NVI          N1          C6          C7     124.535    1.50
+NVI          N1          C6          H6     117.775    1.50
+NVI          C7          C6          H6     117.689    1.50
+NVI          C6          C7         H71     119.990    1.50
+NVI          C6          C7         H72     119.995    1.50
+NVI         H71          C7         H72     120.025    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+NVI       const_sp2_sp2_2          N3          C2          N1          C6     180.000     5.0     2
+NVI              const_18          C4          C5          N1          C6     180.000    10.0     2
+NVI             sp2_sp2_1          C7          C6          N1          C2     180.000     5.0     2
+NVI       const_sp2_sp2_5          N1          C2          N3          C4       0.000     5.0     2
+NVI       const_sp2_sp2_9          C5          C4          N3          C2       0.000     5.0     2
+NVI              const_13          N3          C4          C5          N1       0.000    10.0     2
+NVI             sp2_sp2_5          N1          C6          C7         H71     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+NVI    plan-1          C2   0.020
+NVI    plan-1          C4   0.020
+NVI    plan-1          C5   0.020
+NVI    plan-1          C6   0.020
+NVI    plan-1          H2   0.020
+NVI    plan-1          H4   0.020
+NVI    plan-1          H5   0.020
+NVI    plan-1         HN3   0.020
+NVI    plan-1          N1   0.020
+NVI    plan-1          N3   0.020
+NVI    plan-2          C6   0.020
+NVI    plan-2          C7   0.020
+NVI    plan-2          H6   0.020
+NVI    plan-2          N1   0.020
+NVI    plan-3          C6   0.020
+NVI    plan-3          C7   0.020
+NVI    plan-3         H71   0.020
+NVI    plan-3         H72   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+NVI           SMILES              ACDLabs 10.04                                 C=C\[n+]1ccnc1
+NVI SMILES_CANONICAL               CACTVS 3.341                               C=C[n+]1c[nH]cc1
+NVI           SMILES               CACTVS 3.341                               C=C[n+]1c[nH]cc1
+NVI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                               C=C[n+]1cc[nH]c1
+NVI           SMILES "OpenEye OEToolkits" 1.5.0                               C=C[n+]1cc[nH]c1
+NVI            InChI                InChI  1.03 InChI=1S/C5H6N2/c1-2-7-4-3-6-5-7/h2-5H,1H2/p+1
+NVI         InChIKey                InChI  1.03                    OSSNTDFYBPYIEC-UHFFFAOYSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+NVI acedrg               243         "dictionary generator"                  
+NVI acedrg_database      11          "data source"                           
+NVI rdkit                2017.03.2   "Chemoinformatics tool"
+NVI refmac5              5.8.0238    "optimization tool"                     

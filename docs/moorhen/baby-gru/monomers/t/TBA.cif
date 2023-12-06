@@ -1,0 +1,304 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TBA     TBA      "TETRABUTYLAMMONIUM ION"     NON-POLYMER     53     17     .     
+#
+data_comp_TBA
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TBA     N1      N       NT      1       2.311       -0.601      -4.579      
+TBA     C11     C       CH2     0       1.162       0.267       -4.075      
+TBA     C12     C       CH2     0       1.409       1.169       -2.878      
+TBA     C21     C       CH2     0       3.508       0.253       -4.986      
+TBA     C22     C       CH2     0       3.315       1.293       -6.076      
+TBA     C31     C       CH2     0       1.767       -1.387      -5.768      
+TBA     C32     C       CH2     0       2.699       -2.349      -6.486      
+TBA     C41     C       CH2     0       2.808       -1.540      -3.483      
+TBA     C42     C       CH2     0       1.824       -2.522      -2.871      
+TBA     C13     C       CH2     0       0.147       1.948       -2.543      
+TBA     C14     C       CH3     0       0.322       2.874       -1.363      
+TBA     C23     C       CH2     0       4.619       2.033       -6.328      
+TBA     C24     C       CH3     0       4.499       3.091       -7.399      
+TBA     C33     C       CH2     0       1.966       -3.026      -7.632      
+TBA     C34     C       CH3     0       2.833       -4.002      -8.391      
+TBA     C43     C       CH2     0       2.517       -3.362      -1.808      
+TBA     C44     C       CH3     0       1.603       -4.371      -1.147      
+TBA     H111    H       H       0       0.415       -0.319      -3.854      
+TBA     H112    H       H       0       0.864       0.830       -4.812      
+TBA     H121    H       H       0       2.134       1.799       -3.074      
+TBA     H122    H       H       0       1.672       0.634       -2.101      
+TBA     H211    H       H       0       4.222       -0.345      -5.272      
+TBA     H212    H       H       0       3.834       0.715       -4.192      
+TBA     H221    H       H       0       2.625       1.937       -5.810      
+TBA     H222    H       H       0       3.024       0.862       -6.906      
+TBA     H311    H       H       0       1.438       -0.748      -6.426      
+TBA     H312    H       H       0       0.993       -1.896      -5.465      
+TBA     H321    H       H       0       3.024       -3.032      -5.863      
+TBA     H322    H       H       0       3.474       -1.866      -6.840      
+TBA     H411    H       H       0       3.170       -0.996      -2.760      
+TBA     H412    H       H       0       3.554       -2.055      -3.842      
+TBA     H421    H       H       0       1.462       -3.113      -3.564      
+TBA     H422    H       H       0       1.076       -2.039      -2.462      
+TBA     H131    H       H       0       -0.577      1.315       -2.347      
+TBA     H132    H       H       0       -0.120      2.477       -3.327      
+TBA     H141    H       H       0       -0.504      3.365       -1.210      
+TBA     H142    H       H       0       1.042       3.502       -1.546      
+TBA     H143    H       H       0       0.540       2.354       -0.571      
+TBA     H231    H       H       0       5.307       1.386       -6.595      
+TBA     H232    H       H       0       4.912       2.457       -5.493      
+TBA     H241    H       H       0       5.350       3.550       -7.501      
+TBA     H242    H       H       0       3.813       3.733       -7.147      
+TBA     H243    H       H       0       4.255       2.673       -8.244      
+TBA     H331    H       H       0       1.639       -2.340      -8.254      
+TBA     H332    H       H       0       1.185       -3.504      -7.275      
+TBA     H341    H       H       0       2.319       -4.400      -9.115      
+TBA     H342    H       H       0       3.138       -4.703      -7.789      
+TBA     H343    H       H       0       3.603       -3.535      -8.760      
+TBA     H431    H       H       0       2.883       -2.765      -1.119      
+TBA     H432    H       H       0       3.270       -3.839      -2.220      
+TBA     H441    H       H       0       1.947       -5.269      -1.296      
+TBA     H442    H       H       0       0.707       -4.303      -1.523      
+TBA     H443    H       H       0       1.564       -4.196      -0.190      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TBA          N1         C11      SINGLE       n     1.516  0.0100     1.516  0.0100
+TBA          N1         C21      SINGLE       n     1.516  0.0100     1.516  0.0100
+TBA          N1         C31      SINGLE       n     1.516  0.0100     1.516  0.0100
+TBA          N1         C41      SINGLE       n     1.516  0.0100     1.516  0.0100
+TBA         C11         C12      SINGLE       n     1.516  0.0105     1.516  0.0105
+TBA         C12         C13      SINGLE       n     1.520  0.0176     1.520  0.0176
+TBA         C21         C22      SINGLE       n     1.516  0.0105     1.516  0.0105
+TBA         C22         C23      SINGLE       n     1.520  0.0176     1.520  0.0176
+TBA         C31         C32      SINGLE       n     1.516  0.0105     1.516  0.0105
+TBA         C32         C33      SINGLE       n     1.520  0.0176     1.520  0.0176
+TBA         C41         C42      SINGLE       n     1.516  0.0105     1.516  0.0105
+TBA         C42         C43      SINGLE       n     1.520  0.0176     1.520  0.0176
+TBA         C13         C14      SINGLE       n     1.510  0.0200     1.510  0.0200
+TBA         C23         C24      SINGLE       n     1.510  0.0200     1.510  0.0200
+TBA         C33         C34      SINGLE       n     1.510  0.0200     1.510  0.0200
+TBA         C43         C44      SINGLE       n     1.510  0.0200     1.510  0.0200
+TBA         C11        H111      SINGLE       n     1.089  0.0100     0.976  0.0165
+TBA         C11        H112      SINGLE       n     1.089  0.0100     0.976  0.0165
+TBA         C12        H121      SINGLE       n     1.089  0.0100     0.981  0.0160
+TBA         C12        H122      SINGLE       n     1.089  0.0100     0.981  0.0160
+TBA         C21        H211      SINGLE       n     1.089  0.0100     0.976  0.0165
+TBA         C21        H212      SINGLE       n     1.089  0.0100     0.976  0.0165
+TBA         C22        H221      SINGLE       n     1.089  0.0100     0.981  0.0160
+TBA         C22        H222      SINGLE       n     1.089  0.0100     0.981  0.0160
+TBA         C31        H311      SINGLE       n     1.089  0.0100     0.976  0.0165
+TBA         C31        H312      SINGLE       n     1.089  0.0100     0.976  0.0165
+TBA         C32        H321      SINGLE       n     1.089  0.0100     0.981  0.0160
+TBA         C32        H322      SINGLE       n     1.089  0.0100     0.981  0.0160
+TBA         C41        H411      SINGLE       n     1.089  0.0100     0.976  0.0165
+TBA         C41        H412      SINGLE       n     1.089  0.0100     0.976  0.0165
+TBA         C42        H421      SINGLE       n     1.089  0.0100     0.981  0.0160
+TBA         C42        H422      SINGLE       n     1.089  0.0100     0.981  0.0160
+TBA         C13        H131      SINGLE       n     1.089  0.0100     0.982  0.0155
+TBA         C13        H132      SINGLE       n     1.089  0.0100     0.982  0.0155
+TBA         C14        H141      SINGLE       n     1.089  0.0100     0.973  0.0157
+TBA         C14        H142      SINGLE       n     1.089  0.0100     0.973  0.0157
+TBA         C14        H143      SINGLE       n     1.089  0.0100     0.973  0.0157
+TBA         C23        H231      SINGLE       n     1.089  0.0100     0.982  0.0155
+TBA         C23        H232      SINGLE       n     1.089  0.0100     0.982  0.0155
+TBA         C24        H241      SINGLE       n     1.089  0.0100     0.973  0.0157
+TBA         C24        H242      SINGLE       n     1.089  0.0100     0.973  0.0157
+TBA         C24        H243      SINGLE       n     1.089  0.0100     0.973  0.0157
+TBA         C33        H331      SINGLE       n     1.089  0.0100     0.982  0.0155
+TBA         C33        H332      SINGLE       n     1.089  0.0100     0.982  0.0155
+TBA         C34        H341      SINGLE       n     1.089  0.0100     0.973  0.0157
+TBA         C34        H342      SINGLE       n     1.089  0.0100     0.973  0.0157
+TBA         C34        H343      SINGLE       n     1.089  0.0100     0.973  0.0157
+TBA         C43        H431      SINGLE       n     1.089  0.0100     0.982  0.0155
+TBA         C43        H432      SINGLE       n     1.089  0.0100     0.982  0.0155
+TBA         C44        H441      SINGLE       n     1.089  0.0100     0.973  0.0157
+TBA         C44        H442      SINGLE       n     1.089  0.0100     0.973  0.0157
+TBA         C44        H443      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TBA         C11          N1         C21     109.487    2.25
+TBA         C11          N1         C31     109.487    2.25
+TBA         C11          N1         C41     109.487    2.25
+TBA         C21          N1         C31     109.487    2.25
+TBA         C21          N1         C41     109.487    2.25
+TBA         C31          N1         C41     109.487    2.25
+TBA          N1         C11         C12     115.960    1.50
+TBA          N1         C11        H111     108.124    1.50
+TBA          N1         C11        H112     108.124    1.50
+TBA         C12         C11        H111     108.393    1.50
+TBA         C12         C11        H112     108.393    1.50
+TBA        H111         C11        H112     107.519    1.50
+TBA         C11         C12         C13     110.307    1.50
+TBA         C11         C12        H121     109.624    1.50
+TBA         C11         C12        H122     109.624    1.50
+TBA         C13         C12        H121     109.463    1.50
+TBA         C13         C12        H122     109.463    1.50
+TBA        H121         C12        H122     107.927    1.57
+TBA          N1         C21         C22     115.960    1.50
+TBA          N1         C21        H211     108.124    1.50
+TBA          N1         C21        H212     108.124    1.50
+TBA         C22         C21        H211     108.393    1.50
+TBA         C22         C21        H212     108.393    1.50
+TBA        H211         C21        H212     107.519    1.50
+TBA         C21         C22         C23     110.307    1.50
+TBA         C21         C22        H221     109.624    1.50
+TBA         C21         C22        H222     109.624    1.50
+TBA         C23         C22        H221     109.463    1.50
+TBA         C23         C22        H222     109.463    1.50
+TBA        H221         C22        H222     107.927    1.57
+TBA          N1         C31         C32     115.960    1.50
+TBA          N1         C31        H311     108.124    1.50
+TBA          N1         C31        H312     108.124    1.50
+TBA         C32         C31        H311     108.393    1.50
+TBA         C32         C31        H312     108.393    1.50
+TBA        H311         C31        H312     107.519    1.50
+TBA         C31         C32         C33     110.307    1.50
+TBA         C31         C32        H321     109.624    1.50
+TBA         C31         C32        H322     109.624    1.50
+TBA         C33         C32        H321     109.463    1.50
+TBA         C33         C32        H322     109.463    1.50
+TBA        H321         C32        H322     107.927    1.57
+TBA          N1         C41         C42     115.960    1.50
+TBA          N1         C41        H411     108.124    1.50
+TBA          N1         C41        H412     108.124    1.50
+TBA         C42         C41        H411     108.393    1.50
+TBA         C42         C41        H412     108.393    1.50
+TBA        H411         C41        H412     107.519    1.50
+TBA         C41         C42         C43     110.307    1.50
+TBA         C41         C42        H421     109.624    1.50
+TBA         C41         C42        H422     109.624    1.50
+TBA         C43         C42        H421     109.463    1.50
+TBA         C43         C42        H422     109.463    1.50
+TBA        H421         C42        H422     107.927    1.57
+TBA         C12         C13         C14     112.927    1.64
+TBA         C12         C13        H131     108.966    1.50
+TBA         C12         C13        H132     108.966    1.50
+TBA         C14         C13        H131     108.918    1.50
+TBA         C14         C13        H132     108.918    1.50
+TBA        H131         C13        H132     107.763    1.50
+TBA         C13         C14        H141     109.554    1.50
+TBA         C13         C14        H142     109.554    1.50
+TBA         C13         C14        H143     109.554    1.50
+TBA        H141         C14        H142     109.380    1.50
+TBA        H141         C14        H143     109.380    1.50
+TBA        H142         C14        H143     109.380    1.50
+TBA         C22         C23         C24     112.927    1.64
+TBA         C22         C23        H231     108.966    1.50
+TBA         C22         C23        H232     108.966    1.50
+TBA         C24         C23        H231     108.918    1.50
+TBA         C24         C23        H232     108.918    1.50
+TBA        H231         C23        H232     107.763    1.50
+TBA         C23         C24        H241     109.554    1.50
+TBA         C23         C24        H242     109.554    1.50
+TBA         C23         C24        H243     109.554    1.50
+TBA        H241         C24        H242     109.380    1.50
+TBA        H241         C24        H243     109.380    1.50
+TBA        H242         C24        H243     109.380    1.50
+TBA         C32         C33         C34     112.927    1.64
+TBA         C32         C33        H331     108.966    1.50
+TBA         C32         C33        H332     108.966    1.50
+TBA         C34         C33        H331     108.918    1.50
+TBA         C34         C33        H332     108.918    1.50
+TBA        H331         C33        H332     107.763    1.50
+TBA         C33         C34        H341     109.554    1.50
+TBA         C33         C34        H342     109.554    1.50
+TBA         C33         C34        H343     109.554    1.50
+TBA        H341         C34        H342     109.380    1.50
+TBA        H341         C34        H343     109.380    1.50
+TBA        H342         C34        H343     109.380    1.50
+TBA         C42         C43         C44     112.927    1.64
+TBA         C42         C43        H431     108.966    1.50
+TBA         C42         C43        H432     108.966    1.50
+TBA         C44         C43        H431     108.918    1.50
+TBA         C44         C43        H432     108.918    1.50
+TBA        H431         C43        H432     107.763    1.50
+TBA         C43         C44        H441     109.554    1.50
+TBA         C43         C44        H442     109.554    1.50
+TBA         C43         C44        H443     109.554    1.50
+TBA        H441         C44        H442     109.380    1.50
+TBA        H441         C44        H443     109.380    1.50
+TBA        H442         C44        H443     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TBA             sp3_sp3_2         C12         C11          N1         C21     -60.000    10.0     3
+TBA            sp3_sp3_10         C22         C21          N1         C11     180.000    10.0     3
+TBA            sp3_sp3_20         C32         C31          N1         C11     -60.000    10.0     3
+TBA            sp3_sp3_28         C42         C41          N1         C11     180.000    10.0     3
+TBA           sp3_sp3_118         C22         C23         C24        H241     180.000    10.0     3
+TBA           sp3_sp3_127         C32         C33         C34        H341     180.000    10.0     3
+TBA           sp3_sp3_136         C42         C43         C44        H441     180.000    10.0     3
+TBA            sp3_sp3_37          N1         C11         C12         C13     180.000    10.0     3
+TBA            sp3_sp3_46         C11         C12         C13         C14     180.000    10.0     3
+TBA            sp3_sp3_55          N1         C21         C22         C23     180.000    10.0     3
+TBA            sp3_sp3_64         C21         C22         C23         C24     180.000    10.0     3
+TBA            sp3_sp3_73          N1         C31         C32         C33     180.000    10.0     3
+TBA            sp3_sp3_82         C31         C32         C33         C34     180.000    10.0     3
+TBA            sp3_sp3_91          N1         C41         C42         C43     180.000    10.0     3
+TBA           sp3_sp3_100         C41         C42         C43         C44     180.000    10.0     3
+TBA           sp3_sp3_109         C12         C13         C14        H141     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TBA    chir_1    N1    C11    C21    C31    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TBA           SMILES              ACDLabs 10.04                                                      CCCC[N+](CCCC)(CCCC)CCCC
+TBA SMILES_CANONICAL               CACTVS 3.341                                                      CCCC[N+](CCCC)(CCCC)CCCC
+TBA           SMILES               CACTVS 3.341                                                      CCCC[N+](CCCC)(CCCC)CCCC
+TBA SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                      CCCC[N+](CCCC)(CCCC)CCCC
+TBA           SMILES "OpenEye OEToolkits" 1.5.0                                                      CCCC[N+](CCCC)(CCCC)CCCC
+TBA            InChI                InChI  1.03 InChI=1S/C16H36N/c1-5-9-13-17(14-10-6-2,15-11-7-3)16-12-8-4/h5-16H2,1-4H3/q+1
+TBA         InChIKey                InChI  1.03                                                   DZLFLBLQUQXARW-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TBA acedrg               243         "dictionary generator"                  
+TBA acedrg_database      11          "data source"                           
+TBA rdkit                2017.03.2   "Chemoinformatics tool"
+TBA refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,638 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RXM     RXM      "(2S,16Z,18E,20S,21S,22R,23R,24R,25S,26R,27S,28E)-5,6,21,23-tetrahydroxy-27-methoxy-2,4,11,16,20,22,24,26-octamethyl-1,15-dioxo-1,2-dihydro-2,7-(epoxypentadeca[1,11,13]trienoimino)furo[2'',3'':7',8']naphtho[1',2':4,5]imidazo[1,2-a]pyridin-25-yl acetate"     NON-POLYMER     108     57     .     
+#
+data_comp_RXM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RXM     N1      N       NT1     0       92.490      101.029     42.588      
+RXM     C2      C       CR6     0       92.506      102.378     43.038      
+RXM     O11     O       O       0       90.898      100.149     43.888      
+RXM     C15     C       C       0       91.778      99.969      43.047      
+RXM     C16     C       C       0       92.064      98.574      42.555      
+RXM     C30     C       CH3     0       90.938      97.612      42.836      
+RXM     C17     C       C1      0       93.185      98.187      41.901      
+RXM     C18     C       C1      0       94.451      98.868      41.739      
+RXM     C19     C       C1      0       95.463      98.451      40.993      
+RXM     C20     C       CH1     0       96.801      99.137      40.859      
+RXM     C31     C       CH3     0       97.599      98.872      42.132      
+RXM     C21     C       CH1     0       96.674      100.645     40.568      
+RXM     O10     O       OH1     0       95.951      100.800     39.346      
+RXM     C22     C       CH1     0       97.993      101.449     40.496      
+RXM     C32     C       CH3     0       98.979      100.835     39.490      
+RXM     C23     C       CH1     0       97.775      102.958     40.199      
+RXM     O9      O       OH1     0       97.298      103.095     38.857      
+RXM     C24     C       CH1     0       96.846      103.732     41.174      
+RXM     C33     C       CH3     0       97.249      103.493     42.640      
+RXM     C25     C       CH1     0       96.794      105.242     40.837      
+RXM     O7      O       O2      0       98.012      105.842     41.380      
+RXM     C35     C       C       0       99.023      106.245     40.575      
+RXM     O8      O       O       0       99.170      105.886     39.437      
+RXM     C36     C       CH3     0       99.945      107.170     41.290      
+RXM     C26     C       CH1     0       95.586      106.022     41.399      
+RXM     C34     C       CH3     0       94.291      105.511     40.769      
+RXM     C27     C       CH1     0       95.680      107.562     41.270      
+RXM     O6      O       O2      0       95.661      107.945     39.869      
+RXM     C37     C       CH3     0       96.345      109.160     39.568      
+RXM     C28     C       C1      0       94.607      108.311     42.019      
+RXM     C29     C       C1      0       94.775      108.791     43.243      
+RXM     O5      O       O2      0       93.834      109.496     43.990      
+RXM     C12     C       CT      0       92.854      108.822     44.758      
+RXM     O3      O       O2      0       91.617      108.693     43.973      
+RXM     C6      C       CR56    0       91.552      107.396     43.540      
+RXM     C13     C       CH3     0       92.582      109.670     45.974      
+RXM     C11     C       CR5     0       93.200      107.371     45.121      
+RXM     O4      O       O       0       93.945      107.107     46.046      
+RXM     C5      C       CR56    0       92.454      106.534     44.171      
+RXM     C10     C       CR66    0       92.496      105.136     43.801      
+RXM     C9      C       CR66    0       91.584      104.681     42.793      
+RXM     C8      C       CR6     0       90.676      105.618     42.187      
+RXM     O2      O       OH1     0       89.805      105.169     41.218      
+RXM     C7      C       CR6     0       90.655      106.959     42.555      
+RXM     C14     C       CH3     0       89.686      107.907     41.893      
+RXM     C1      C       CR6     0       91.604      103.300     42.414      
+RXM     O1      O       OH1     0       90.739      102.838     41.447      
+RXM     C4      C       CR56    0       93.395      104.182     44.393      
+RXM     N3      N       NRD5    0       94.345      104.390     45.366      
+RXM     C38     C       CR56    0       94.934      103.230     45.600      
+RXM     N2      N       NR5     0       94.393      102.227     44.791      
+RXM     C3      C       CR56    0       93.405      102.846     44.017      
+RXM     C39     C       CR16    0       95.968      102.907     46.503      
+RXM     C40     C       CR6     0       96.425      101.598     46.567      
+RXM     C41     C       CR16    0       94.852      100.929     44.858      
+RXM     C42     C       CR16    0       95.843      100.607     45.720      
+RXM     C43     C       CH3     0       97.531      101.229     47.524      
+RXM     H1      H       H       0       92.669      100.999     41.724      
+RXM     H3      H       H       0       91.104      96.769      42.388      
+RXM     H4      H       H       0       90.104      97.986      42.514      
+RXM     H5      H       H       0       90.873      97.459      43.791      
+RXM     H6      H       H       0       93.148      97.346      41.477      
+RXM     H7      H       H       0       94.558      99.656      42.221      
+RXM     H8      H       H       0       95.342      97.657      40.500      
+RXM     H9      H       H       0       97.281      98.717      40.103      
+RXM     H10     H       H       0       97.505      97.939      42.393      
+RXM     H11     H       H       0       97.269      99.441      42.849      
+RXM     H12     H       H       0       98.540      99.066      41.976      
+RXM     H13     H       H       0       96.131      101.043     41.296      
+RXM     H14     H       H       0       95.122      100.904     39.497      
+RXM     H15     H       H       0       98.424      101.388     41.380      
+RXM     H16     H       H       0       99.336      100.005     39.851      
+RXM     H17     H       H       0       99.709      101.457     39.330      
+RXM     H18     H       H       0       98.520      100.652     38.652      
+RXM     H19     H       H       0       98.665      103.389     40.243      
+RXM     H20     H       H       0       96.481      102.876     38.794      
+RXM     H21     H       H       0       95.940      103.364     41.063      
+RXM     H22     H       H       0       96.883      104.195     43.203      
+RXM     H23     H       H       0       98.220      103.493     42.712      
+RXM     H24     H       H       0       96.904      102.632     42.934      
+RXM     H25     H       H       0       96.787      105.347     39.854      
+RXM     H26     H       H       0       99.906      106.999     42.246      
+RXM     H27     H       H       0       99.682      108.088     41.116      
+RXM     H28     H       H       0       100.853     107.030     40.975      
+RXM     H29     H       H       0       95.528      105.823     42.365      
+RXM     H30     H       H       0       93.577      106.158     40.894      
+RXM     H31     H       H       0       94.036      104.672     41.189      
+RXM     H32     H       H       0       94.428      105.365     39.817      
+RXM     H33     H       H       0       96.548      107.842     41.647      
+RXM     H34     H       H       0       96.220      109.375     38.629      
+RXM     H35     H       H       0       97.292      109.053     39.751      
+RXM     H36     H       H       0       95.988      109.879     40.114      
+RXM     H37     H       H       0       93.778      108.444     41.597      
+RXM     H38     H       H       0       95.609      108.640     43.648      
+RXM     H39     H       H       0       92.044      109.168     46.606      
+RXM     H40     H       H       0       92.104      110.471     45.708      
+RXM     H41     H       H       0       93.422      109.919     46.389      
+RXM     H42     H       H       0       89.158      104.642     41.431      
+RXM     H43     H       H       0       89.653      108.752     42.378      
+RXM     H44     H       H       0       88.794      107.516     41.884      
+RXM     H45     H       H       0       89.968      108.079     40.976      
+RXM     H2      H       H       0       90.192      102.199     41.629      
+RXM     H46     H       H       0       96.339      103.574     47.053      
+RXM     H47     H       H       0       94.470      100.273     44.310      
+RXM     H48     H       H       0       96.152      99.722      45.764      
+RXM     H49     H       H       0       98.196      101.936     47.539      
+RXM     H50     H       H       0       97.947      100.401     47.236      
+RXM     H51     H       H       0       97.163      101.114     48.415      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RXM         C23          O9      SINGLE       n     1.424  0.0199     1.424  0.0199
+RXM         C21         O10      SINGLE       n     1.426  0.0179     1.426  0.0179
+RXM          O6         C37      SINGLE       n     1.422  0.0157     1.422  0.0157
+RXM         C22         C32      SINGLE       n     1.534  0.0118     1.534  0.0118
+RXM         C27          O6      SINGLE       n     1.444  0.0200     1.444  0.0200
+RXM         C26         C34      SINGLE       n     1.521  0.0135     1.521  0.0135
+RXM         C22         C23      SINGLE       n     1.542  0.0135     1.542  0.0135
+RXM         C23         C24      SINGLE       n     1.542  0.0135     1.542  0.0135
+RXM         C21         C22      SINGLE       n     1.539  0.0120     1.539  0.0120
+RXM         C20         C21      SINGLE       n     1.535  0.0100     1.535  0.0100
+RXM         C35          O8      DOUBLE       n     1.199  0.0170     1.199  0.0170
+RXM         C19         C20      SINGLE       n     1.505  0.0125     1.505  0.0125
+RXM         C20         C31      SINGLE       n     1.521  0.0173     1.521  0.0173
+RXM         C24         C25      SINGLE       n     1.539  0.0104     1.539  0.0104
+RXM         C25         C26      SINGLE       n     1.534  0.0116     1.534  0.0116
+RXM         C25          O7      SINGLE       n     1.454  0.0123     1.454  0.0123
+RXM         C26         C27      SINGLE       n     1.540  0.0120     1.540  0.0120
+RXM         C27         C28      SINGLE       n     1.499  0.0172     1.499  0.0172
+RXM          C8          O2      SINGLE       n     1.374  0.0155     1.374  0.0155
+RXM         C24         C33      SINGLE       n     1.534  0.0118     1.534  0.0118
+RXM         C18         C19      DOUBLE       n     1.325  0.0126     1.325  0.0126
+RXM          O7         C35      SINGLE       n     1.346  0.0123     1.346  0.0123
+RXM         C35         C36      SINGLE       n     1.487  0.0164     1.487  0.0164
+RXM          C1          O1      SINGLE       n     1.374  0.0155     1.374  0.0155
+RXM          C7         C14      SINGLE       n     1.505  0.0100     1.505  0.0100
+RXM         C17         C18      SINGLE       n     1.439  0.0200     1.439  0.0200
+RXM          C8          C7      SINGLE       y     1.379  0.0137     1.379  0.0137
+RXM          C9          C8      DOUBLE       y     1.429  0.0107     1.429  0.0107
+RXM         C28         C29      DOUBLE       n     1.323  0.0147     1.323  0.0147
+RXM          C6          C7      DOUBLE       y     1.391  0.0136     1.391  0.0136
+RXM          C9          C1      SINGLE       y     1.426  0.0112     1.426  0.0112
+RXM          C2          C1      DOUBLE       y     1.429  0.0115     1.429  0.0115
+RXM         C16         C17      DOUBLE       n     1.342  0.0135     1.342  0.0135
+RXM         C10          C9      SINGLE       y     1.425  0.0118     1.425  0.0118
+RXM          N1         C15      SINGLE       n     1.354  0.0100     1.354  0.0100
+RXM          N1          C2      SINGLE       n     1.420  0.0104     1.420  0.0104
+RXM         C15         C16      SINGLE       n     1.499  0.0100     1.499  0.0100
+RXM         C16         C30      SINGLE       n     1.503  0.0128     1.503  0.0128
+RXM         O11         C15      DOUBLE       n     1.228  0.0122     1.228  0.0122
+RXM          C2          C3      SINGLE       y     1.404  0.0100     1.404  0.0100
+RXM         C29          O5      SINGLE       n     1.390  0.0107     1.390  0.0107
+RXM          O3          C6      SINGLE       n     1.365  0.0100     1.365  0.0100
+RXM          C6          C5      SINGLE       y     1.392  0.0117     1.392  0.0117
+RXM          C5         C10      DOUBLE       y     1.434  0.0146     1.434  0.0146
+RXM         C10          C4      SINGLE       y     1.431  0.0100     1.431  0.0100
+RXM         C12          O3      SINGLE       n     1.465  0.0199     1.465  0.0199
+RXM         C11          C5      SINGLE       n     1.469  0.0150     1.469  0.0150
+RXM          C4          C3      DOUBLE       y     1.379  0.0100     1.379  0.0100
+RXM          N2          C3      SINGLE       y     1.397  0.0124     1.397  0.0124
+RXM          O5         C12      SINGLE       n     1.412  0.0100     1.412  0.0100
+RXM          C4          N3      SINGLE       y     1.366  0.0200     1.366  0.0200
+RXM         C12         C11      SINGLE       n     1.540  0.0200     1.540  0.0200
+RXM         C12         C13      SINGLE       n     1.505  0.0200     1.505  0.0200
+RXM          N2         C41      SINGLE       y     1.374  0.0115     1.374  0.0115
+RXM         C38          N2      SINGLE       y     1.401  0.0139     1.401  0.0139
+RXM         C11          O4      DOUBLE       n     1.217  0.0100     1.217  0.0100
+RXM         C41         C42      DOUBLE       y     1.348  0.0100     1.348  0.0100
+RXM          N3         C38      DOUBLE       y     1.326  0.0100     1.326  0.0100
+RXM         C38         C39      SINGLE       y     1.407  0.0112     1.407  0.0112
+RXM         C40         C42      SINGLE       y     1.424  0.0100     1.424  0.0100
+RXM         C39         C40      DOUBLE       y     1.385  0.0109     1.385  0.0109
+RXM         C40         C43      SINGLE       n     1.508  0.0100     1.508  0.0100
+RXM          N1          H1      SINGLE       n     1.016  0.0100     0.883  0.0200
+RXM         C30          H3      SINGLE       n     1.089  0.0100     0.969  0.0177
+RXM         C30          H4      SINGLE       n     1.089  0.0100     0.969  0.0177
+RXM         C30          H5      SINGLE       n     1.089  0.0100     0.969  0.0177
+RXM         C17          H6      SINGLE       n     1.082  0.0130     0.943  0.0196
+RXM         C18          H7      SINGLE       n     1.082  0.0130     0.943  0.0200
+RXM         C19          H8      SINGLE       n     1.082  0.0130     0.943  0.0181
+RXM         C20          H9      SINGLE       n     1.089  0.0100     0.990  0.0142
+RXM         C31         H10      SINGLE       n     1.089  0.0100     0.973  0.0141
+RXM         C31         H11      SINGLE       n     1.089  0.0100     0.973  0.0141
+RXM         C31         H12      SINGLE       n     1.089  0.0100     0.973  0.0141
+RXM         C21         H13      SINGLE       n     1.089  0.0100     0.995  0.0200
+RXM         O10         H14      SINGLE       n     0.970  0.0120     0.848  0.0200
+RXM         C22         H15      SINGLE       n     1.089  0.0100     0.988  0.0186
+RXM         C32         H16      SINGLE       n     1.089  0.0100     0.973  0.0146
+RXM         C32         H17      SINGLE       n     1.089  0.0100     0.973  0.0146
+RXM         C32         H18      SINGLE       n     1.089  0.0100     0.973  0.0146
+RXM         C23         H19      SINGLE       n     1.089  0.0100     0.992  0.0184
+RXM          O9         H20      SINGLE       n     0.970  0.0120     0.848  0.0200
+RXM         C24         H21      SINGLE       n     1.089  0.0100     0.988  0.0186
+RXM         C33         H22      SINGLE       n     1.089  0.0100     0.973  0.0146
+RXM         C33         H23      SINGLE       n     1.089  0.0100     0.973  0.0146
+RXM         C33         H24      SINGLE       n     1.089  0.0100     0.973  0.0146
+RXM         C25         H25      SINGLE       n     1.089  0.0100     0.990  0.0148
+RXM         C36         H26      SINGLE       n     1.089  0.0100     0.971  0.0140
+RXM         C36         H27      SINGLE       n     1.089  0.0100     0.971  0.0140
+RXM         C36         H28      SINGLE       n     1.089  0.0100     0.971  0.0140
+RXM         C26         H29      SINGLE       n     1.089  0.0100     0.989  0.0175
+RXM         C34         H30      SINGLE       n     1.089  0.0100     0.973  0.0146
+RXM         C34         H31      SINGLE       n     1.089  0.0100     0.973  0.0146
+RXM         C34         H32      SINGLE       n     1.089  0.0100     0.973  0.0146
+RXM         C27         H33      SINGLE       n     1.089  0.0100     0.988  0.0129
+RXM         C37         H34      SINGLE       n     1.089  0.0100     0.971  0.0146
+RXM         C37         H35      SINGLE       n     1.089  0.0100     0.971  0.0146
+RXM         C37         H36      SINGLE       n     1.089  0.0100     0.971  0.0146
+RXM         C28         H37      SINGLE       n     1.082  0.0130     0.940  0.0110
+RXM         C29         H38      SINGLE       n     1.082  0.0130     0.940  0.0112
+RXM         C13         H39      SINGLE       n     1.089  0.0100     0.970  0.0192
+RXM         C13         H40      SINGLE       n     1.089  0.0100     0.970  0.0192
+RXM         C13         H41      SINGLE       n     1.089  0.0100     0.970  0.0192
+RXM          O2         H42      SINGLE       n     0.966  0.0059     0.861  0.0200
+RXM         C14         H43      SINGLE       n     1.089  0.0100     0.975  0.0172
+RXM         C14         H44      SINGLE       n     1.089  0.0100     0.975  0.0172
+RXM         C14         H45      SINGLE       n     1.089  0.0100     0.975  0.0172
+RXM          O1          H2      SINGLE       n     0.966  0.0059     0.861  0.0200
+RXM         C39         H46      SINGLE       n     1.082  0.0130     0.941  0.0170
+RXM         C41         H47      SINGLE       n     1.082  0.0130     0.938  0.0110
+RXM         C42         H48      SINGLE       n     1.082  0.0130     0.938  0.0112
+RXM         C43         H49      SINGLE       n     1.089  0.0100     0.971  0.0135
+RXM         C43         H50      SINGLE       n     1.089  0.0100     0.971  0.0135
+RXM         C43         H51      SINGLE       n     1.089  0.0100     0.971  0.0135
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RXM         C15          N1          C2     125.488    2.46
+RXM         C15          N1          H1     116.380    2.26
+RXM          C2          N1          H1     115.230    3.00
+RXM          C1          C2          N1     119.529    2.33
+RXM          C1          C2          C3     118.839    1.50
+RXM          N1          C2          C3     121.632    2.56
+RXM          N1         C15         C16     119.588    3.00
+RXM          N1         C15         O11     121.002    2.62
+RXM         C16         C15         O11     119.409    1.50
+RXM         C17         C16         C15     121.762    3.00
+RXM         C17         C16         C30     123.413    1.50
+RXM         C15         C16         C30     114.824    2.33
+RXM         C16         C30          H3     109.464    1.50
+RXM         C16         C30          H4     109.464    1.50
+RXM         C16         C30          H5     109.464    1.50
+RXM          H3         C30          H4     109.342    1.50
+RXM          H3         C30          H5     109.342    1.50
+RXM          H4         C30          H5     109.342    1.50
+RXM         C18         C17         C16     128.659    1.50
+RXM         C18         C17          H6     115.208    2.90
+RXM         C16         C17          H6     116.133    1.50
+RXM         C19         C18         C17     124.335    1.58
+RXM         C19         C18          H7     118.935    1.50
+RXM         C17         C18          H7     116.731    2.93
+RXM         C20         C19         C18     126.728    2.96
+RXM         C20         C19          H8     116.415    1.50
+RXM         C18         C19          H8     116.857    1.85
+RXM         C21         C20         C19     112.063    3.00
+RXM         C21         C20         C31     111.290    1.50
+RXM         C21         C20          H9     107.966    1.50
+RXM         C19         C20         C31     109.455    2.23
+RXM         C19         C20          H9     108.126    1.50
+RXM         C31         C20          H9     108.191    1.50
+RXM         C20         C31         H10     109.820    1.50
+RXM         C20         C31         H11     109.820    1.50
+RXM         C20         C31         H12     109.820    1.50
+RXM         H10         C31         H11     109.411    1.50
+RXM         H10         C31         H12     109.411    1.50
+RXM         H11         C31         H12     109.411    1.50
+RXM         O10         C21         C22     109.669    1.94
+RXM         O10         C21         C20     108.225    1.99
+RXM         O10         C21         H13     108.007    1.50
+RXM         C22         C21         C20     114.575    1.50
+RXM         C22         C21         H13     107.659    1.50
+RXM         C20         C21         H13     107.784    1.50
+RXM         C21         O10         H14     110.295    3.00
+RXM         C32         C22         C23     111.031    1.54
+RXM         C32         C22         C21     111.031    1.54
+RXM         C32         C22         H15     107.070    1.50
+RXM         C23         C22         C21     112.625    1.50
+RXM         C23         C22         H15     107.296    1.50
+RXM         C21         C22         H15     107.296    1.50
+RXM         C22         C32         H16     109.455    1.50
+RXM         C22         C32         H17     109.455    1.50
+RXM         C22         C32         H18     109.455    1.50
+RXM         H16         C32         H17     109.411    1.50
+RXM         H16         C32         H18     109.411    1.50
+RXM         H17         C32         H18     109.411    1.50
+RXM          O9         C23         C22     109.669    1.94
+RXM          O9         C23         C24     109.669    1.94
+RXM          O9         C23         H19     108.007    1.50
+RXM         C22         C23         C24     115.460    1.50
+RXM         C22         C23         H19     107.659    1.50
+RXM         C24         C23         H19     107.659    1.50
+RXM         C23          O9         H20     110.295    3.00
+RXM         C23         C24         C25     110.273    1.50
+RXM         C23         C24         C33     111.031    1.54
+RXM         C23         C24         H21     107.296    1.50
+RXM         C25         C24         C33     110.589    1.50
+RXM         C25         C24         H21     107.580    1.50
+RXM         C33         C24         H21     107.070    1.50
+RXM         C24         C33         H22     109.455    1.50
+RXM         C24         C33         H23     109.455    1.50
+RXM         C24         C33         H24     109.455    1.50
+RXM         H22         C33         H23     109.411    1.50
+RXM         H22         C33         H24     109.411    1.50
+RXM         H23         C33         H24     109.411    1.50
+RXM         C24         C25         C26     115.331    1.81
+RXM         C24         C25          O7     107.136    1.50
+RXM         C24         C25         H25     108.887    1.50
+RXM         C26         C25          O7     107.136    1.50
+RXM         C26         C25         H25     108.887    1.50
+RXM          O7         C25         H25     108.952    1.50
+RXM         C25          O7         C35     118.648    1.50
+RXM          O8         C35          O7     123.209    1.50
+RXM          O8         C35         C36     125.639    2.23
+RXM          O7         C35         C36     111.151    1.50
+RXM         C35         C36         H26     109.509    1.50
+RXM         C35         C36         H27     109.509    1.50
+RXM         C35         C36         H28     109.509    1.50
+RXM         H26         C36         H27     109.424    1.50
+RXM         H26         C36         H28     109.424    1.50
+RXM         H27         C36         H28     109.424    1.50
+RXM         C34         C26         C25     110.589    1.50
+RXM         C34         C26         C27     110.455    2.02
+RXM         C34         C26         H29     107.070    1.50
+RXM         C25         C26         C27     114.414    1.50
+RXM         C25         C26         H29     107.580    1.50
+RXM         C27         C26         H29     107.157    1.50
+RXM         C26         C34         H30     109.455    1.50
+RXM         C26         C34         H31     109.455    1.50
+RXM         C26         C34         H32     109.455    1.50
+RXM         H30         C34         H31     109.411    1.50
+RXM         H30         C34         H32     109.411    1.50
+RXM         H31         C34         H32     109.411    1.50
+RXM          O6         C27         C26     110.708    2.25
+RXM          O6         C27         C28     110.119    1.82
+RXM          O6         C27         H33     107.626    1.50
+RXM         C26         C27         C28     112.809    2.71
+RXM         C26         C27         H33     107.676    1.50
+RXM         C28         C27         H33     107.633    1.50
+RXM         C37          O6         C27     113.343    1.90
+RXM          O6         C37         H34     109.461    1.50
+RXM          O6         C37         H35     109.461    1.50
+RXM          O6         C37         H36     109.461    1.50
+RXM         H34         C37         H35     109.532    1.53
+RXM         H34         C37         H36     109.532    1.53
+RXM         H35         C37         H36     109.532    1.53
+RXM         C27         C28         C29     122.223    2.77
+RXM         C27         C28         H37     118.878    1.50
+RXM         C29         C28         H37     118.899    1.50
+RXM         C28         C29          O5     126.459    2.96
+RXM         C28         C29         H38     116.762    1.50
+RXM          O5         C29         H38     116.779    1.50
+RXM         C29          O5         C12     116.772    2.35
+RXM          O3         C12          O5     109.437    1.50
+RXM          O3         C12         C11     104.546    1.50
+RXM          O3         C12         C13     109.690    1.50
+RXM          O5         C12         C11     112.869    1.97
+RXM          O5         C12         C13     107.525    1.50
+RXM         C11         C12         C13     112.486    1.75
+RXM          C6          O3         C12     105.603    1.50
+RXM          C7          C6          O3     123.977    3.00
+RXM          C7          C6          C5     122.201    1.53
+RXM          O3          C6          C5     113.822    1.67
+RXM         C12         C13         H39     109.475    1.50
+RXM         C12         C13         H40     109.475    1.50
+RXM         C12         C13         H41     109.475    1.50
+RXM         H39         C13         H40     109.532    1.50
+RXM         H39         C13         H41     109.532    1.50
+RXM         H40         C13         H41     109.532    1.50
+RXM          C5         C11         C12     107.700    1.50
+RXM          C5         C11          O4     130.633    2.27
+RXM         C12         C11          O4     121.666    1.50
+RXM          C6          C5         C10     120.120    1.50
+RXM          C6          C5         C11     108.320    1.96
+RXM         C10          C5         C11     131.560    2.06
+RXM          C9         C10          C5     119.038    1.50
+RXM          C9         C10          C4     118.885    1.50
+RXM          C5         C10          C4     122.078    2.30
+RXM          C8          C9          C1     120.525    1.63
+RXM          C8          C9         C10     119.663    1.50
+RXM          C1          C9         C10     119.812    1.50
+RXM          O2          C8          C7     121.097    3.00
+RXM          O2          C8          C9     117.861    2.50
+RXM          C7          C8          C9     121.042    1.50
+RXM          C8          O2         H42     120.000    3.00
+RXM         C14          C7          C8     120.474    1.50
+RXM         C14          C7          C6     121.590    1.50
+RXM          C8          C7          C6     117.936    1.50
+RXM          C7         C14         H43     109.855    1.50
+RXM          C7         C14         H44     109.855    1.50
+RXM          C7         C14         H45     109.855    1.50
+RXM         H43         C14         H44     109.071    1.50
+RXM         H43         C14         H45     109.071    1.50
+RXM         H44         C14         H45     109.071    1.50
+RXM          O1          C1          C9     117.842    2.50
+RXM          O1          C1          C2     121.078    3.00
+RXM          C9          C1          C2     121.080    1.50
+RXM          C1          O1          H2     120.000    3.00
+RXM         C10          C4          C3     121.748    1.74
+RXM         C10          C4          N3     129.188    1.50
+RXM          C3          C4          N3     109.064    1.50
+RXM          C4          N3         C38     106.425    1.50
+RXM          N2         C38          N3     111.213    1.50
+RXM          N2         C38         C39     119.352    2.26
+RXM          N3         C38         C39     129.435    1.50
+RXM          C3          N2         C41     131.338    2.41
+RXM          C3          N2         C38     106.937    1.50
+RXM         C41          N2         C38     121.725    1.50
+RXM          C2          C3          C4     119.636    1.51
+RXM          C2          C3          N2     134.002    1.60
+RXM          C4          C3          N2     106.362    1.50
+RXM         C38         C39         C40     119.461    1.65
+RXM         C38         C39         H46     119.899    1.50
+RXM         C40         C39         H46     120.640    1.50
+RXM         C42         C40         C39     119.540    1.50
+RXM         C42         C40         C43     120.370    1.50
+RXM         C39         C40         C43     120.090    1.50
+RXM          N2         C41         C42     119.457    1.60
+RXM          N2         C41         H47     119.842    1.50
+RXM         C42         C41         H47     120.701    1.52
+RXM         C41         C42         C40     120.465    1.50
+RXM         C41         C42         H48     119.859    1.50
+RXM         C40         C42         H48     119.676    1.50
+RXM         C40         C43         H49     109.472    1.50
+RXM         C40         C43         H50     109.472    1.50
+RXM         C40         C43         H51     109.472    1.50
+RXM         H49         C43         H50     109.348    1.50
+RXM         H49         C43         H51     109.348    1.50
+RXM         H50         C43         H51     109.348    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RXM            sp2_sp2_33          C1          C2          N1         C15     180.000     5.0     2
+RXM            sp2_sp2_29         C16         C15          N1          C2     180.000     5.0     2
+RXM             sp3_sp3_7         C22         C21         O10         H14     180.000    10.0     3
+RXM            sp3_sp3_52         O10         C21         C22         C32     180.000    10.0     3
+RXM            sp3_sp3_13         C23         C22         C32         H16     180.000    10.0     3
+RXM            sp3_sp3_34         C32         C22         C23          O9     180.000    10.0     3
+RXM             sp3_sp3_4         C22         C23          O9         H20     180.000    10.0     3
+RXM            sp3_sp3_43          O9         C23         C24         C25     180.000    10.0     3
+RXM           sp3_sp3_109         C23         C24         C33         H22     180.000    10.0     3
+RXM            sp3_sp3_79         C23         C24         C25         C26     180.000    10.0     3
+RXM            sp3_sp3_97         C24         C25          O7         C35     180.000    10.0     3
+RXM            sp3_sp3_88         C24         C25         C26         C34     180.000    10.0     3
+RXM       const_sp2_sp2_4          O1          C1          C2          N1       0.000     5.0     2
+RXM              const_69          N1          C2          C3          C4     180.000    10.0     2
+RXM            sp2_sp2_13          O8         C35          O7         C25     180.000     5.0     2
+RXM            sp2_sp3_13          O8         C35         C36         H26       0.000    10.0     6
+RXM            sp3_sp3_25         C25         C26         C34         H30     180.000    10.0     3
+RXM           sp3_sp3_100         C34         C26         C27          O6     180.000    10.0     3
+RXM            sp3_sp3_22         C26         C27          O6         C37     180.000    10.0     3
+RXM             sp2_sp3_7         C29         C28         C27          O6       0.000    10.0     6
+RXM            sp3_sp3_10         H34         C37          O6         C27     180.000    10.0     3
+RXM            sp2_sp2_21         C27         C28         C29          O5     180.000     5.0     2
+RXM            sp2_sp2_41         C28         C29          O5         C12     180.000     5.0     2
+RXM           sp3_sp3_120         C13         C12          O5         C29      60.000    10.0     3
+RXM             sp3_sp3_2          O5         C12          O3          C6     180.000    10.0     3
+RXM           sp3_sp3_124          O5         C12         C13         H39      60.000    10.0     3
+RXM            sp2_sp3_35          O4         C11         C12          O5     -60.000    10.0     6
+RXM             sp2_sp2_2          C7          C6          O3         C12     180.000     5.0     2
+RXM              const_37         C10          C5          C6          C7       0.000    10.0     2
+RXM              const_24          O3          C6          C7         C14       0.000    10.0     2
+RXM             sp2_sp2_5          O4         C11          C5          C6     180.000     5.0     2
+RXM              const_33          C9         C10          C5          C6       0.000    10.0     2
+RXM       const_sp2_sp2_9          C5         C10          C9          C8       0.000     5.0     2
+RXM              const_13          C9         C10          C4          C3       0.000    10.0     2
+RXM            sp2_sp2_37          N1         C15         C16         C17     180.000     5.0     2
+RXM              const_32          O2          C8          C9          C1       0.000    10.0     2
+RXM       const_sp2_sp2_8          O1          C1          C9          C8       0.000     5.0     2
+RXM             sp2_sp2_7          C7          C8          O2         H42     180.000     5.0     2
+RXM              const_28         C14          C7          C8          O2       0.000    10.0     2
+RXM            sp2_sp3_19          C8          C7         C14         H43     150.000    10.0     6
+RXM            sp2_sp2_15          C9          C1          O1          H2     180.000     5.0     2
+RXM              const_72         C10          C4          N3         C38     180.000    10.0     2
+RXM              const_17          C2          C3          C4         C10       0.000    10.0     2
+RXM              const_65          N2         C38          N3          C4       0.000    10.0     2
+RXM              const_41          N3         C38          N2          C3       0.000    10.0     2
+RXM              const_73          N2         C38         C39         C40       0.000    10.0     2
+RXM            sp2_sp3_25         C17         C16         C30          H3       0.000    10.0     6
+RXM            sp2_sp2_27         C15         C16         C17         C18       0.000     5.0     2
+RXM              const_64          C2          C3          N2         C41       0.000    10.0     2
+RXM              const_46         C42         C41          N2          C3     180.000    10.0     2
+RXM              const_58         C38         C39         C40         C43     180.000    10.0     2
+RXM              const_55         C43         C40         C42         C41     180.000    10.0     2
+RXM            sp2_sp3_37         C42         C40         C43         H49     150.000    10.0     6
+RXM              const_49          N2         C41         C42         C40       0.000    10.0     2
+RXM            sp2_sp2_17         C16         C17         C18         C19     180.000     5.0     2
+RXM             sp2_sp2_9         C17         C18         C19         C20     180.000     5.0     2
+RXM             sp2_sp3_1         C18         C19         C20         C21       0.000    10.0     6
+RXM            sp3_sp3_70         C21         C20         C31         H10     180.000    10.0     3
+RXM            sp3_sp3_61         C19         C20         C21         O10     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RXM    chir_1    C20    C21    C19    C31    positive
+RXM    chir_2    C21    O10    C22    C20    positive
+RXM    chir_3    C22    C23    C21    C32    negative
+RXM    chir_4    C23    O9    C24    C22    negative
+RXM    chir_5    C24    C25    C23    C33    negative
+RXM    chir_6    C25    O7    C26    C24    positive
+RXM    chir_7    C26    C25    C27    C34    negative
+RXM    chir_8    C27    O6    C28    C26    negative
+RXM    chir_9    C12    O3    O5    C11    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RXM    plan-1          C1   0.020
+RXM    plan-1         C10   0.020
+RXM    plan-1         C11   0.020
+RXM    plan-1         C14   0.020
+RXM    plan-1          C2   0.020
+RXM    plan-1          C3   0.020
+RXM    plan-1         C38   0.020
+RXM    plan-1         C39   0.020
+RXM    plan-1          C4   0.020
+RXM    plan-1         C40   0.020
+RXM    plan-1         C41   0.020
+RXM    plan-1         C42   0.020
+RXM    plan-1         C43   0.020
+RXM    plan-1          C5   0.020
+RXM    plan-1          C6   0.020
+RXM    plan-1          C7   0.020
+RXM    plan-1          C8   0.020
+RXM    plan-1          C9   0.020
+RXM    plan-1         H46   0.020
+RXM    plan-1         H47   0.020
+RXM    plan-1         H48   0.020
+RXM    plan-1          N1   0.020
+RXM    plan-1          N2   0.020
+RXM    plan-1          N3   0.020
+RXM    plan-1          O1   0.020
+RXM    plan-1          O2   0.020
+RXM    plan-1          O3   0.020
+RXM    plan-2         C15   0.020
+RXM    plan-2         C16   0.020
+RXM    plan-2          N1   0.020
+RXM    plan-2         O11   0.020
+RXM    plan-3         C15   0.020
+RXM    plan-3         C16   0.020
+RXM    plan-3         C17   0.020
+RXM    plan-3         C30   0.020
+RXM    plan-4         C16   0.020
+RXM    plan-4         C17   0.020
+RXM    plan-4         C18   0.020
+RXM    plan-4          H6   0.020
+RXM    plan-5         C17   0.020
+RXM    plan-5         C18   0.020
+RXM    plan-5         C19   0.020
+RXM    plan-5          H7   0.020
+RXM    plan-6         C18   0.020
+RXM    plan-6         C19   0.020
+RXM    plan-6         C20   0.020
+RXM    plan-6          H8   0.020
+RXM    plan-7         C35   0.020
+RXM    plan-7         C36   0.020
+RXM    plan-7          O7   0.020
+RXM    plan-7          O8   0.020
+RXM    plan-8         C27   0.020
+RXM    plan-8         C28   0.020
+RXM    plan-8         C29   0.020
+RXM    plan-8         H37   0.020
+RXM    plan-9         C28   0.020
+RXM    plan-9         C29   0.020
+RXM    plan-9         H38   0.020
+RXM    plan-9          O5   0.020
+RXM   plan-10         C11   0.020
+RXM   plan-10         C12   0.020
+RXM   plan-10          C5   0.020
+RXM   plan-10          O4   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RXM           SMILES              ACDLabs 12.01                                                                                                                                                                                                                  N4C(=O)C(C)=CC=CC(C)C(C(C)C(C(C)C(C(C)C(C=COC1(C(=O)c2c(O1)c(c(c5c2c6nc3cc(C)ccn3c6c4c5O)O)C)C)OC)OC(C)=O)O)O
+RXM            InChI                InChI  1.03 InChI=1S/C43H51N3O11/c1-19-14-16-46-28(18-19)44-32-29-30-37(50)25(7)40-31(29)41(52)43(9,57-40)55-17-15-27(54-10)22(4)39(56-26(8)47)24(6)36(49)23(5)35(48)20(2)12-11-13-21(3)42(53)45-33(34(32)46)38(30)51/h11-18,20,22-24,27,35-36,39,48-51H,1-10H3,(H,45,53)/b12-11+,17-15+,21-13-/t20-,22+,23+,24+,27-,35-,36+,39+,43-/m0/s1
+RXM         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                                                    NZCRJKRKKOLAOJ-XRCRFVBUSA-N
+RXM SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                         CO[C@H]1\C=C\O[C@@]2(C)Oc3c(C)c(O)c4c(O)c(NC(=O)\C(=C/C=C/[C@H](C)[C@H](O)[C@@H](C)[C@@H](O)[C@@H](C)[C@H](OC(C)=O)[C@@H]1C)C)c5n6ccc(C)cc6nc5c4c3C2=O
+RXM           SMILES               CACTVS 3.385                                                                                                                                                                                            CO[CH]1C=CO[C]2(C)Oc3c(C)c(O)c4c(O)c(NC(=O)C(=CC=C[CH](C)[CH](O)[CH](C)[CH](O)[CH](C)[CH](OC(C)=O)[CH]1C)C)c5n6ccc(C)cc6nc5c4c3C2=O
+RXM SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                                                                    Cc1ccn2c(c1)nc3c2c4c(c5c3c6c(c(c5O)C)O[C@@](C6=O)(O/C=C/[C@@H]([C@H]([C@H]([C@@H]([C@@H]([C@@H]([C@H]([C@H](/C=C/C=C(\C(=O)N4)/C)C)O)C)O)C)OC(=O)C)C)OC)C)O
+RXM           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                                                                                                  Cc1ccn2c(c1)nc3c2c4c(c5c3c6c(c(c5O)C)OC(C6=O)(OC=CC(C(C(C(C(C(C(C(C=CC=C(C(=O)N4)C)C)O)C)O)C)OC(=O)C)C)OC)C)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RXM acedrg               243         "dictionary generator"                  
+RXM acedrg_database      11          "data source"                           
+RXM rdkit                2017.03.2   "Chemoinformatics tool"
+RXM refmac5              5.8.0238    "optimization tool"                     

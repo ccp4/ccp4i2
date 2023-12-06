@@ -1,0 +1,226 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+S10     S10      "DIETHYL PROPANE-1,3-DIYLBISCARBAMATE"     NON-POLYMER     33     15     .     
+#
+data_comp_S10
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+S10     O15     O       O       0       -35.694     55.068      21.445      
+S10     C10     C       C       0       -36.348     54.105      21.108      
+S10     O11     O       O2      0       -37.176     53.419      21.914      
+S10     C12     C       CH2     0       -37.001     53.586      23.349      
+S10     C13     C       CH3     0       -37.927     52.658      24.032      
+S10     N9      N       NH1     0       -36.352     53.588      19.863      
+S10     C8      C       CH2     0       -35.566     54.161      18.777      
+S10     C7      C       CH2     0       -34.083     53.868      18.913      
+S10     C6      C       CH2     0       -33.759     52.386      18.914      
+S10     N5      N       NH1     0       -33.900     51.794      20.242      
+S10     C4      C       C       0       -34.718     50.751      20.508      
+S10     O14     O       O       0       -35.419     50.196      19.690      
+S10     O3      O       O2      0       -34.639     50.405      21.805      
+S10     C2      C       CH2     0       -35.680     49.533      22.327      
+S10     C1      C       CH3     0       -35.468     49.392      23.783      
+S10     H121    H       H       0       -37.200     54.510      23.608      
+S10     H122    H       H       0       -36.076     53.384      23.604      
+S10     H131    H       H       0       -37.905     52.824      24.989      
+S10     H132    H       H       0       -37.657     51.742      23.856      
+S10     H133    H       H       0       -38.829     52.798      23.701      
+S10     H9      H       H       0       -36.841     52.883      19.694      
+S10     H8C1    H       H       0       -35.705     55.132      18.760      
+S10     H8C2    H       H       0       -35.890     53.797      17.926      
+S10     H7C1    H       H       0       -33.754     54.266      19.744      
+S10     H7C2    H       H       0       -33.607     54.296      18.172      
+S10     H6C1    H       H       0       -32.836     52.259      18.608      
+S10     H6C2    H       H       0       -34.348     51.928      18.277      
+S10     H5      H       H       0       -33.429     52.137      20.894      
+S10     H2C1    H       H       0       -35.633     48.654      21.895      
+S10     H2C2    H       H       0       -36.565     49.918      22.153      
+S10     H1C1    H       H       0       -36.083     48.730      24.138      
+S10     H1C2    H       H       0       -35.626     50.246      24.218      
+S10     H1C3    H       H       0       -34.555     49.108      23.952      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+S10         O15         C10      DOUBLE       n     1.210  0.0102     1.210  0.0102
+S10         C10         O11      SINGLE       n     1.341  0.0101     1.341  0.0101
+S10         C10          N9      SINGLE       n     1.340  0.0141     1.340  0.0141
+S10         O11         C12      SINGLE       n     1.453  0.0100     1.453  0.0100
+S10         C12         C13      SINGLE       n     1.478  0.0200     1.478  0.0200
+S10          N9          C8      SINGLE       n     1.455  0.0131     1.455  0.0131
+S10          C8          C7      SINGLE       n     1.517  0.0117     1.517  0.0117
+S10          C7          C6      SINGLE       n     1.517  0.0117     1.517  0.0117
+S10          C6          N5      SINGLE       n     1.455  0.0131     1.455  0.0131
+S10          N5          C4      SINGLE       n     1.340  0.0141     1.340  0.0141
+S10          C4         O14      DOUBLE       n     1.210  0.0102     1.210  0.0102
+S10          C4          O3      SINGLE       n     1.341  0.0101     1.341  0.0101
+S10          O3          C2      SINGLE       n     1.453  0.0100     1.453  0.0100
+S10          C2          C1      SINGLE       n     1.478  0.0200     1.478  0.0200
+S10         C12        H121      SINGLE       n     1.089  0.0100     0.980  0.0148
+S10         C12        H122      SINGLE       n     1.089  0.0100     0.980  0.0148
+S10         C13        H131      SINGLE       n     1.089  0.0100     0.971  0.0156
+S10         C13        H132      SINGLE       n     1.089  0.0100     0.971  0.0156
+S10         C13        H133      SINGLE       n     1.089  0.0100     0.971  0.0156
+S10          N9          H9      SINGLE       n     1.016  0.0100     0.872  0.0200
+S10          C8        H8C1      SINGLE       n     1.089  0.0100     0.981  0.0152
+S10          C8        H8C2      SINGLE       n     1.089  0.0100     0.981  0.0152
+S10          C7        H7C1      SINGLE       n     1.089  0.0100     0.979  0.0161
+S10          C7        H7C2      SINGLE       n     1.089  0.0100     0.979  0.0161
+S10          C6        H6C1      SINGLE       n     1.089  0.0100     0.981  0.0152
+S10          C6        H6C2      SINGLE       n     1.089  0.0100     0.981  0.0152
+S10          N5          H5      SINGLE       n     1.016  0.0100     0.872  0.0200
+S10          C2        H2C1      SINGLE       n     1.089  0.0100     0.980  0.0148
+S10          C2        H2C2      SINGLE       n     1.089  0.0100     0.980  0.0148
+S10          C1        H1C1      SINGLE       n     1.089  0.0100     0.971  0.0156
+S10          C1        H1C2      SINGLE       n     1.089  0.0100     0.971  0.0156
+S10          C1        H1C3      SINGLE       n     1.089  0.0100     0.971  0.0156
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+S10         O15         C10         O11     124.665    1.50
+S10         O15         C10          N9     124.362    1.50
+S10         O11         C10          N9     110.973    1.50
+S10         C10         O11         C12     115.973    1.50
+S10         O11         C12         C13     107.885    1.78
+S10         O11         C12        H121     110.095    1.50
+S10         O11         C12        H122     110.095    1.50
+S10         C13         C12        H121     110.009    1.50
+S10         C13         C12        H122     110.009    1.50
+S10        H121         C12        H122     108.453    1.50
+S10         C12         C13        H131     109.517    1.50
+S10         C12         C13        H132     109.517    1.50
+S10         C12         C13        H133     109.517    1.50
+S10        H131         C13        H132     109.410    1.50
+S10        H131         C13        H133     109.410    1.50
+S10        H132         C13        H133     109.410    1.50
+S10         C10          N9          C8     121.872    1.50
+S10         C10          N9          H9     119.301    1.50
+S10          C8          N9          H9     118.828    1.50
+S10          N9          C8          C7     112.309    1.89
+S10          N9          C8        H8C1     109.015    1.50
+S10          N9          C8        H8C2     109.015    1.50
+S10          C7          C8        H8C1     109.350    1.50
+S10          C7          C8        H8C2     109.350    1.50
+S10        H8C1          C8        H8C2     107.877    1.50
+S10          C8          C7          C6     113.258    1.75
+S10          C8          C7        H7C1     108.958    1.50
+S10          C8          C7        H7C2     108.958    1.50
+S10          C6          C7        H7C1     108.958    1.50
+S10          C6          C7        H7C2     108.958    1.50
+S10        H7C1          C7        H7C2     107.594    1.73
+S10          C7          C6          N5     112.309    1.89
+S10          C7          C6        H6C1     109.350    1.50
+S10          C7          C6        H6C2     109.350    1.50
+S10          N5          C6        H6C1     109.015    1.50
+S10          N5          C6        H6C2     109.015    1.50
+S10        H6C1          C6        H6C2     107.877    1.50
+S10          C6          N5          C4     121.872    1.50
+S10          C6          N5          H5     118.828    1.50
+S10          C4          N5          H5     119.301    1.50
+S10          N5          C4         O14     124.362    1.50
+S10          N5          C4          O3     110.973    1.50
+S10         O14          C4          O3     124.665    1.50
+S10          C4          O3          C2     115.973    1.50
+S10          O3          C2          C1     107.885    1.78
+S10          O3          C2        H2C1     110.095    1.50
+S10          O3          C2        H2C2     110.095    1.50
+S10          C1          C2        H2C1     110.009    1.50
+S10          C1          C2        H2C2     110.009    1.50
+S10        H2C1          C2        H2C2     108.453    1.50
+S10          C2          C1        H1C1     109.517    1.50
+S10          C2          C1        H1C2     109.517    1.50
+S10          C2          C1        H1C3     109.517    1.50
+S10        H1C1          C1        H1C2     109.410    1.50
+S10        H1C1          C1        H1C3     109.410    1.50
+S10        H1C2          C1        H1C3     109.410    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+S10            sp2_sp2_11          N5          C4          O3          C2     180.000     5.0     2
+S10            sp3_sp3_31          C1          C2          O3          C4     180.000    10.0     3
+S10            sp3_sp3_34        H1C1          C1          C2          O3     180.000    10.0     3
+S10             sp2_sp2_1         O15         C10         O11         C12     180.000     5.0     2
+S10             sp2_sp2_5         O15         C10          N9          C8       0.000     5.0     2
+S10             sp3_sp3_1         C13         C12         O11         C10     180.000    10.0     3
+S10             sp3_sp3_4         O11         C12         C13        H131     180.000    10.0     3
+S10             sp2_sp3_2         C10          N9          C8          C7     120.000    10.0     6
+S10            sp3_sp3_13          C6          C7          C8          N9     180.000    10.0     3
+S10            sp3_sp3_22          N5          C6          C7          C8     180.000    10.0     3
+S10             sp2_sp3_8          C4          N5          C6          C7     120.000    10.0     6
+S10             sp2_sp2_9         O14          C4          N5          C6       0.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+S10    plan-1         C10   0.020
+S10    plan-1          N9   0.020
+S10    plan-1         O11   0.020
+S10    plan-1         O15   0.020
+S10    plan-2         C10   0.020
+S10    plan-2          C8   0.020
+S10    plan-2          H9   0.020
+S10    plan-2          N9   0.020
+S10    plan-3          C4   0.020
+S10    plan-3          C6   0.020
+S10    plan-3          H5   0.020
+S10    plan-3          N5   0.020
+S10    plan-4          C4   0.020
+S10    plan-4          N5   0.020
+S10    plan-4         O14   0.020
+S10    plan-4          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+S10           SMILES              ACDLabs 10.04                                                                   O=C(OCC)NCCCNC(=O)OCC
+S10 SMILES_CANONICAL               CACTVS 3.341                                                                   CCOC(=O)NCCCNC(=O)OCC
+S10           SMILES               CACTVS 3.341                                                                   CCOC(=O)NCCCNC(=O)OCC
+S10 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                   CCOC(=O)NCCCNC(=O)OCC
+S10           SMILES "OpenEye OEToolkits" 1.5.0                                                                   CCOC(=O)NCCCNC(=O)OCC
+S10            InChI                InChI  1.03 InChI=1S/C9H18N2O4/c1-3-14-8(12)10-6-5-7-11-9(13)15-4-2/h3-7H2,1-2H3,(H,10,12)(H,11,13)
+S10         InChIKey                InChI  1.03                                                             BWWHOVJFNMPUKF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+S10 acedrg               243         "dictionary generator"                  
+S10 acedrg_database      11          "data source"                           
+S10 rdkit                2017.03.2   "Chemoinformatics tool"
+S10 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,373 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MGM     MGM      2-[METHYL-(5-GERANYL-4-METHYL-PENT-3-ENYL)-AMINO]-ETHYL-DIPHOSPHATE     NON-POLYMER     63     29     .     
+#
+data_comp_MGM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MGM     C20     C       CH3     0       34.894      84.067      65.759      
+MGM     C19     C       CH3     0       35.737      85.328      67.768      
+MGM     C18     C       C       0       35.603      85.289      66.271      
+MGM     C17     C       C1      0       36.072      86.236      65.467      
+MGM     C16     C       CH2     0       36.763      87.519      65.825      
+MGM     C14     C       CH3     0       35.536      88.377      62.590      
+MGM     C13     C       C       0       35.819      88.947      63.953      
+MGM     C15     C       CH2     0       37.052      88.403      64.624      
+MGM     C12     C       C1      0       35.060      89.860      64.557      
+MGM     C11     C       CH2     0       33.800      90.503      64.060      
+MGM     C9      C       CH2     0       33.212      91.515      65.023      
+MGM     C8      C       C       0       31.960      92.150      64.483      
+MGM     C10     C       CH3     0       30.680      91.671      65.111      
+MGM     C7      C       C1      0       32.028      93.065      63.518      
+MGM     C6      C       CH2     0       30.903      93.729      62.777      
+MGM     C5      C       CH2     0       30.370      92.853      61.656      
+MGM     N3      N       NT      0       29.171      93.397      60.998      
+MGM     C4      C       CH3     0       28.494      92.368      60.190      
+MGM     C2      C       CH2     0       29.400      94.639      60.231      
+MGM     C1      C       CH2     0       28.713      95.829      60.847      
+MGM     O1      O       O2      0       27.279      95.593      60.919      
+MGM     PA      P       P       0       26.303      96.786      61.366      
+MGM     O1A     O       OP      -1      26.537      97.950      60.461      
+MGM     O3A     O       O2      0       26.870      97.131      62.827      
+MGM     O2A     O       O       0       24.920      96.239      61.494      
+MGM     PB      P       P       0       26.401      98.180      63.960      
+MGM     O1B     O       OP      -1      24.909      98.331      63.795      
+MGM     O2B     O       OP      -1      27.151      99.459      63.677      
+MGM     O3B     O       O       0       26.783      97.562      65.283      
+MGM     H201    H       H       0       34.792      84.121      64.795      
+MGM     H202    H       H       0       34.018      84.004      66.172      
+MGM     H203    H       H       0       35.411      83.276      65.983      
+MGM     H191    H       H       0       36.106      86.180      68.051      
+MGM     H192    H       H       0       36.325      84.612      68.060      
+MGM     H193    H       H       0       34.863      85.209      68.174      
+MGM     H17     H       H       0       35.963      86.082      64.541      
+MGM     H161    H       H       0       37.608      87.311      66.273      
+MGM     H162    H       H       0       36.205      88.016      66.457      
+MGM     H141    H       H       0       34.786      88.839      62.183      
+MGM     H142    H       H       0       35.324      87.433      62.672      
+MGM     H143    H       H       0       36.319      88.482      62.026      
+MGM     H151    H       H       0       37.570      87.889      63.971      
+MGM     H152    H       H       0       37.608      89.155      64.914      
+MGM     H12     H       H       0       35.349      90.143      65.412      
+MGM     H111    H       H       0       33.134      89.806      63.890      
+MGM     H112    H       H       0       33.986      90.949      63.209      
+MGM     HC91    H       H       0       33.874      92.214      65.195      
+MGM     HC92    H       H       0       33.012      91.071      65.873      
+MGM     H101    H       H       0       29.935      91.829      64.510      
+MGM     H102    H       H       0       30.529      92.148      65.944      
+MGM     H103    H       H       0       30.745      90.719      65.295      
+MGM     HC7     H       H       0       32.900      93.333      63.266      
+MGM     HC61    H       H       0       31.227      94.578      62.397      
+MGM     HC62    H       H       0       30.172      93.928      63.406      
+MGM     HC51    H       H       0       30.160      91.968      62.027      
+MGM     HC52    H       H       0       31.077      92.733      60.986      
+MGM     HC41    H       H       0       27.731      92.761      59.721      
+MGM     HC42    H       H       0       28.177      91.653      60.775      
+MGM     HC43    H       H       0       29.122      92.000      59.539      
+MGM     HC21    H       H       0       29.075      94.529      59.313      
+MGM     HC22    H       H       0       30.362      94.822      60.186      
+MGM     HC11    H       H       0       28.889      96.634      60.306      
+MGM     HC12    H       H       0       29.068      95.988      61.753      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MGM         C20         C18      SINGLE       n     1.499  0.0156     1.499  0.0156
+MGM         C19         C18      SINGLE       n     1.499  0.0156     1.499  0.0156
+MGM         C18         C17      DOUBLE       n     1.324  0.0100     1.324  0.0100
+MGM         C17         C16      SINGLE       n     1.498  0.0141     1.498  0.0141
+MGM         C16         C15      SINGLE       n     1.516  0.0200     1.516  0.0200
+MGM         C14         C13      SINGLE       n     1.499  0.0156     1.499  0.0156
+MGM         C13         C15      SINGLE       n     1.503  0.0104     1.503  0.0104
+MGM         C13         C12      DOUBLE       n     1.330  0.0100     1.330  0.0100
+MGM         C12         C11      SINGLE       n     1.498  0.0141     1.498  0.0141
+MGM         C11          C9      SINGLE       n     1.516  0.0200     1.516  0.0200
+MGM          C9          C8      SINGLE       n     1.503  0.0104     1.503  0.0104
+MGM          C8         C10      SINGLE       n     1.499  0.0156     1.499  0.0156
+MGM          C8          C7      DOUBLE       n     1.330  0.0100     1.330  0.0100
+MGM          C7          C6      SINGLE       n     1.501  0.0100     1.501  0.0100
+MGM          C6          C5      SINGLE       n     1.518  0.0129     1.518  0.0129
+MGM          C5          N3      SINGLE       n     1.469  0.0103     1.469  0.0103
+MGM          N3          C4      SINGLE       n     1.467  0.0135     1.467  0.0135
+MGM          N3          C2      SINGLE       n     1.471  0.0100     1.471  0.0100
+MGM          C2          C1      SINGLE       n     1.506  0.0173     1.506  0.0173
+MGM          C1          O1      SINGLE       n     1.454  0.0165     1.454  0.0165
+MGM          O1          PA      SINGLE       n     1.604  0.0133     1.604  0.0133
+MGM          PA         O1A      SINGLE       n     1.493  0.0122     1.493  0.0122
+MGM          PA         O3A      SINGLE       n     1.604  0.0133     1.604  0.0133
+MGM          PA         O2A      DOUBLE       n     1.493  0.0122     1.493  0.0122
+MGM         O3A          PB      SINGLE       n     1.614  0.0178     1.614  0.0178
+MGM          PB         O1B      SINGLE       n     1.509  0.0200     1.509  0.0200
+MGM          PB         O2B      SINGLE       n     1.509  0.0200     1.509  0.0200
+MGM          PB         O3B      DOUBLE       n     1.509  0.0200     1.509  0.0200
+MGM         C20        H201      SINGLE       n     1.089  0.0100     0.971  0.0140
+MGM         C20        H202      SINGLE       n     1.089  0.0100     0.971  0.0140
+MGM         C20        H203      SINGLE       n     1.089  0.0100     0.971  0.0140
+MGM         C19        H191      SINGLE       n     1.089  0.0100     0.971  0.0140
+MGM         C19        H192      SINGLE       n     1.089  0.0100     0.971  0.0140
+MGM         C19        H193      SINGLE       n     1.089  0.0100     0.971  0.0140
+MGM         C17         H17      SINGLE       n     1.082  0.0130     0.945  0.0200
+MGM         C16        H161      SINGLE       n     1.089  0.0100     0.979  0.0159
+MGM         C16        H162      SINGLE       n     1.089  0.0100     0.979  0.0159
+MGM         C14        H141      SINGLE       n     1.089  0.0100     0.971  0.0140
+MGM         C14        H142      SINGLE       n     1.089  0.0100     0.971  0.0140
+MGM         C14        H143      SINGLE       n     1.089  0.0100     0.971  0.0140
+MGM         C15        H151      SINGLE       n     1.089  0.0100     0.979  0.0159
+MGM         C15        H152      SINGLE       n     1.089  0.0100     0.979  0.0159
+MGM         C12         H12      SINGLE       n     1.082  0.0130     0.945  0.0200
+MGM         C11        H111      SINGLE       n     1.089  0.0100     0.979  0.0159
+MGM         C11        H112      SINGLE       n     1.089  0.0100     0.979  0.0159
+MGM          C9        HC91      SINGLE       n     1.089  0.0100     0.979  0.0159
+MGM          C9        HC92      SINGLE       n     1.089  0.0100     0.979  0.0159
+MGM         C10        H101      SINGLE       n     1.089  0.0100     0.971  0.0140
+MGM         C10        H102      SINGLE       n     1.089  0.0100     0.971  0.0140
+MGM         C10        H103      SINGLE       n     1.089  0.0100     0.971  0.0140
+MGM          C7         HC7      SINGLE       n     1.082  0.0130     0.945  0.0200
+MGM          C6        HC61      SINGLE       n     1.089  0.0100     0.985  0.0177
+MGM          C6        HC62      SINGLE       n     1.089  0.0100     0.985  0.0177
+MGM          C5        HC51      SINGLE       n     1.089  0.0100     0.982  0.0143
+MGM          C5        HC52      SINGLE       n     1.089  0.0100     0.982  0.0143
+MGM          C4        HC41      SINGLE       n     1.089  0.0100     0.977  0.0113
+MGM          C4        HC42      SINGLE       n     1.089  0.0100     0.977  0.0113
+MGM          C4        HC43      SINGLE       n     1.089  0.0100     0.977  0.0113
+MGM          C2        HC21      SINGLE       n     1.089  0.0100     0.980  0.0143
+MGM          C2        HC22      SINGLE       n     1.089  0.0100     0.980  0.0143
+MGM          C1        HC11      SINGLE       n     1.089  0.0100     0.986  0.0100
+MGM          C1        HC12      SINGLE       n     1.089  0.0100     0.986  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MGM         C18         C20        H201     109.600    1.50
+MGM         C18         C20        H202     109.600    1.50
+MGM         C18         C20        H203     109.600    1.50
+MGM        H201         C20        H202     109.342    1.50
+MGM        H201         C20        H203     109.342    1.50
+MGM        H202         C20        H203     109.342    1.50
+MGM         C18         C19        H191     109.600    1.50
+MGM         C18         C19        H192     109.600    1.50
+MGM         C18         C19        H193     109.600    1.50
+MGM        H191         C19        H192     109.342    1.50
+MGM        H191         C19        H193     109.342    1.50
+MGM        H192         C19        H193     109.342    1.50
+MGM         C20         C18         C19     114.618    1.50
+MGM         C20         C18         C17     122.691    1.63
+MGM         C19         C18         C17     122.691    1.63
+MGM         C18         C17         C16     128.282    1.50
+MGM         C18         C17         H17     116.082    1.50
+MGM         C16         C17         H17     115.635    1.60
+MGM         C17         C16         C15     112.751    2.50
+MGM         C17         C16        H161     109.181    1.50
+MGM         C17         C16        H162     109.181    1.50
+MGM         C15         C16        H161     109.013    1.50
+MGM         C15         C16        H162     109.013    1.50
+MGM        H161         C16        H162     107.922    1.50
+MGM         C13         C14        H141     109.541    1.50
+MGM         C13         C14        H142     109.541    1.50
+MGM         C13         C14        H143     109.541    1.50
+MGM        H141         C14        H142     109.342    1.50
+MGM        H141         C14        H143     109.342    1.50
+MGM        H142         C14        H143     109.342    1.50
+MGM         C14         C13         C15     115.131    1.50
+MGM         C14         C13         C12     123.681    1.50
+MGM         C15         C13         C12     121.188    1.50
+MGM         C16         C15         C13     113.520    2.62
+MGM         C16         C15        H151     108.867    1.50
+MGM         C16         C15        H152     108.867    1.50
+MGM         C13         C15        H151     108.816    1.50
+MGM         C13         C15        H152     108.816    1.50
+MGM        H151         C15        H152     107.710    1.94
+MGM         C13         C12         C11     128.114    1.50
+MGM         C13         C12         H12     116.261    1.50
+MGM         C11         C12         H12     115.635    1.60
+MGM         C12         C11          C9     112.751    2.50
+MGM         C12         C11        H111     109.181    1.50
+MGM         C12         C11        H112     109.181    1.50
+MGM          C9         C11        H111     109.013    1.50
+MGM          C9         C11        H112     109.013    1.50
+MGM        H111         C11        H112     107.922    1.50
+MGM         C11          C9          C8     113.520    2.62
+MGM         C11          C9        HC91     108.867    1.50
+MGM         C11          C9        HC92     108.867    1.50
+MGM          C8          C9        HC91     108.816    1.50
+MGM          C8          C9        HC92     108.816    1.50
+MGM        HC91          C9        HC92     107.710    1.94
+MGM          C9          C8         C10     115.131    1.50
+MGM          C9          C8          C7     121.188    1.50
+MGM         C10          C8          C7     123.681    1.50
+MGM          C8         C10        H101     109.541    1.50
+MGM          C8         C10        H102     109.541    1.50
+MGM          C8         C10        H103     109.541    1.50
+MGM        H101         C10        H102     109.342    1.50
+MGM        H101         C10        H103     109.342    1.50
+MGM        H102         C10        H103     109.342    1.50
+MGM          C8          C7          C6     127.670    1.50
+MGM          C8          C7         HC7     115.988    1.50
+MGM          C6          C7         HC7     116.342    1.85
+MGM          C7          C6          C5     112.829    2.66
+MGM          C7          C6        HC61     109.013    1.50
+MGM          C7          C6        HC62     109.013    1.50
+MGM          C5          C6        HC61     108.796    1.50
+MGM          C5          C6        HC62     108.796    1.50
+MGM        HC61          C6        HC62     108.298    1.50
+MGM          C6          C5          N3     113.130    1.75
+MGM          C6          C5        HC51     108.787    1.50
+MGM          C6          C5        HC52     108.787    1.50
+MGM          N3          C5        HC51     109.022    1.50
+MGM          N3          C5        HC52     109.022    1.50
+MGM        HC51          C5        HC52     107.673    1.50
+MGM          C5          N3          C4     111.105    1.50
+MGM          C5          N3          C2     112.216    2.51
+MGM          C4          N3          C2     110.514    1.54
+MGM          N3          C4        HC41     109.480    1.50
+MGM          N3          C4        HC42     109.480    1.50
+MGM          N3          C4        HC43     109.480    1.50
+MGM        HC41          C4        HC42     109.408    1.50
+MGM        HC41          C4        HC43     109.408    1.50
+MGM        HC42          C4        HC43     109.408    1.50
+MGM          N3          C2          C1     112.810    2.41
+MGM          N3          C2        HC21     108.716    1.50
+MGM          N3          C2        HC22     108.716    1.50
+MGM          C1          C2        HC21     108.620    1.50
+MGM          C1          C2        HC22     108.620    1.50
+MGM        HC21          C2        HC22     107.851    1.50
+MGM          C2          C1          O1     109.643    2.62
+MGM          C2          C1        HC11     109.715    1.50
+MGM          C2          C1        HC12     109.715    1.50
+MGM          O1          C1        HC11     109.451    1.50
+MGM          O1          C1        HC12     109.451    1.50
+MGM        HC11          C1        HC12     107.889    1.50
+MGM          C1          O1          PA     119.251    1.51
+MGM          O1          PA         O1A     107.912    2.57
+MGM          O1          PA         O3A     101.065    1.97
+MGM          O1          PA         O2A     107.912    2.57
+MGM         O1A          PA         O3A     108.816    2.14
+MGM         O1A          PA         O2A     118.411    2.35
+MGM         O3A          PA         O2A     108.816    2.14
+MGM          PA         O3A          PB     132.584    3.00
+MGM         O3A          PB         O1B     105.965    2.38
+MGM         O3A          PB         O2B     105.965    2.38
+MGM         O3A          PB         O3B     105.965    2.38
+MGM         O1B          PB         O2B     112.716    1.50
+MGM         O1B          PB         O3B     112.716    1.50
+MGM         O2B          PB         O3B     112.716    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MGM             sp2_sp3_1         C19         C18         C20        H201       0.000    10.0     6
+MGM            sp2_sp3_38         C10          C8          C9         C11     120.000    10.0     6
+MGM            sp2_sp3_43          C9          C8         C10        H101       0.000    10.0     6
+MGM             sp2_sp2_9          C6          C7          C8          C9     180.000     5.0     2
+MGM            sp2_sp3_50          C8          C7          C6          C5     120.000    10.0     6
+MGM            sp3_sp3_19          N3          C5          C6          C7     180.000    10.0     3
+MGM            sp3_sp3_28          C6          C5          N3          C4     180.000    10.0     3
+MGM            sp3_sp3_34        HC41          C4          N3          C5     180.000    10.0     3
+MGM            sp3_sp3_40          C1          C2          N3          C5     180.000    10.0     3
+MGM            sp3_sp3_46          O1          C1          C2          N3     180.000    10.0     3
+MGM            sp3_sp3_55          C2          C1          O1          PA     180.000    10.0     3
+MGM             sp2_sp3_7         C20         C18         C19        H191       0.000    10.0     6
+MGM            sp3_sp3_59          C1          O1          PA         O1A     -60.000    10.0     3
+MGM            sp3_sp3_62          PB         O3A          PA          O1     -60.000    10.0     3
+MGM            sp3_sp3_65          PA         O3A          PB         O1B     -60.000    10.0     3
+MGM             sp2_sp2_1         C16         C17         C18         C20     180.000     5.0     2
+MGM            sp2_sp3_14         C18         C17         C16         C15     120.000    10.0     6
+MGM             sp3_sp3_1         C13         C15         C16         C17     180.000    10.0     3
+MGM            sp2_sp3_19         C15         C13         C14        H141       0.000    10.0     6
+MGM            sp2_sp3_26         C14         C13         C15         C16     120.000    10.0     6
+MGM             sp2_sp2_6         C11         C12         C13         C14       0.000     5.0     2
+MGM            sp2_sp3_32         C13         C12         C11          C9     120.000    10.0     6
+MGM            sp3_sp3_10         C12         C11          C9          C8     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MGM    chir_1    N3    C2    C5    C4    positive
+MGM    chir_2    PA    O3A    O1    O1A    both
+MGM    chir_3    PB    O3A    O1B    O2B    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MGM    plan-1         C17   0.020
+MGM    plan-1         C18   0.020
+MGM    plan-1         C19   0.020
+MGM    plan-1         C20   0.020
+MGM    plan-2         C16   0.020
+MGM    plan-2         C17   0.020
+MGM    plan-2         C18   0.020
+MGM    plan-2         H17   0.020
+MGM    plan-3         C12   0.020
+MGM    plan-3         C13   0.020
+MGM    plan-3         C14   0.020
+MGM    plan-3         C15   0.020
+MGM    plan-4         C11   0.020
+MGM    plan-4         C12   0.020
+MGM    plan-4         C13   0.020
+MGM    plan-4         H12   0.020
+MGM    plan-5         C10   0.020
+MGM    plan-5          C7   0.020
+MGM    plan-5          C8   0.020
+MGM    plan-5          C9   0.020
+MGM    plan-6          C6   0.020
+MGM    plan-6          C7   0.020
+MGM    plan-6          C8   0.020
+MGM    plan-6         HC7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MGM           SMILES              ACDLabs 10.04                                                                                                                    O=P(OP(=O)(OCCN(C)CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)C)O)(O)O
+MGM SMILES_CANONICAL               CACTVS 3.341                                                                                                                CN(CCO[P@@](O)(=O)O[P](O)(O)=O)CC/C=C(C)/CC\C=C(/C)CCC=C(C)C
+MGM           SMILES               CACTVS 3.341                                                                                                                      CN(CCO[P](O)(=O)O[P](O)(O)=O)CCC=C(C)CCC=C(C)CCC=C(C)C
+MGM SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                 CC(=CCC/C(=C/CC/C(=C/CCN(C)CCO[P@](=O)(O)OP(=O)(O)O)/C)/C)C
+MGM           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                          CC(=CCCC(=CCCC(=CCCN(C)CCOP(=O)(O)OP(=O)(O)O)C)C)C
+MGM            InChI                InChI  1.03 InChI=1S/C19H37NO7P2/c1-17(2)9-6-10-18(3)11-7-12-19(4)13-8-14-20(5)15-16-26-29(24,25)27-28(21,22)23/h9,11,13H,6-8,10,12,14-16H2,1-5H3,(H,24,25)(H2,21,22,23)/b18-11+,19-13+
+MGM         InChIKey                InChI  1.03                                                                                                                                                 OEMBPHBKZPOPBN-NWLVNBMCSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MGM acedrg               243         "dictionary generator"                  
+MGM acedrg_database      11          "data source"                           
+MGM rdkit                2017.03.2   "Chemoinformatics tool"
+MGM refmac5              5.8.0238    "optimization tool"                     

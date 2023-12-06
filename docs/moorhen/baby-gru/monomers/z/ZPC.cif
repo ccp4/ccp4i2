@@ -1,0 +1,324 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ZPC     ZPC      "(5R)-6-(5-chloropyridin-2-yl)-7-oxo-6,7-dihydro-5H-pyrrolo[3,4-b]pyrazin-5-yl 4-methylpiperazine-1-carboxylate"     NON-POLYMER     44     27     .     
+#
+data_comp_ZPC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ZPC     C01     C       CH3     0       -83.215     -33.376     -67.634     
+ZPC     N02     N       NT      0       -81.902     -33.897     -68.040     
+ZPC     C03     C       CH2     0       -80.790     -33.006     -67.687     
+ZPC     C04     C       CH2     0       -80.495     -33.030     -66.202     
+ZPC     N05     N       NR6     0       -80.229     -34.393     -65.754     
+ZPC     C06     C       CH2     0       -81.336     -35.291     -66.073     
+ZPC     C07     C       CH2     0       -81.641     -35.259     -67.557     
+ZPC     C08     C       C       0       -79.091     -34.727     -65.084     
+ZPC     O09     O       O       0       -78.236     -33.924     -64.774     
+ZPC     O10     O       O2      0       -79.046     -36.054     -64.786     
+ZPC     C11     C       CH1     0       -77.805     -36.725     -64.390     
+ZPC     N12     N       NR5     0       -76.712     -36.443     -65.359     
+ZPC     C13     C       CR5     0       -75.681     -35.715     -64.786     
+ZPC     O14     O       O       0       -74.708     -35.265     -65.354     
+ZPC     C15     C       CR56    0       -75.981     -35.623     -63.360     
+ZPC     N16     N       NRD6    0       -75.230     -35.062     -62.347     
+ZPC     C17     C       CR16    0       -75.760     -35.115     -61.105     
+ZPC     C18     C       CR16    0       -76.996     -35.701     -60.864     
+ZPC     N19     N       NRD6    0       -77.726     -36.249     -61.875     
+ZPC     C20     C       CR56    0       -77.206     -36.205     -63.112     
+ZPC     C21     C       CR6     0       -76.714     -36.947     -66.679     
+ZPC     N22     N       NRD6    0       -77.898     -36.853     -67.295     
+ZPC     C23     C       CR16    0       -78.001     -37.314     -68.556     
+ZPC     C24     C       CR6     0       -76.931     -37.872     -69.221     
+ZPC     CL      CL      CL      0       -77.129     -38.445     -70.848     
+ZPC     C26     C       CR16    0       -75.703     -37.970     -68.578     
+ZPC     C27     C       CR16    0       -75.579     -37.506     -67.278     
+ZPC     H01     H       H       0       -83.666     -34.010     -67.047     
+ZPC     H01A    H       H       0       -83.762     -33.236     -68.429     
+ZPC     H01B    H       H       0       -83.114     -32.527     -67.166     
+ZPC     H03     H       H       0       -79.990     -33.286     -68.177     
+ZPC     H03A    H       H       0       -81.003     -32.092     -67.962     
+ZPC     H04     H       H       0       -81.259     -32.670     -65.710     
+ZPC     H04A    H       H       0       -79.726     -32.453     -66.022     
+ZPC     H06     H       H       0       -82.129     -35.016     -65.572     
+ZPC     H06A    H       H       0       -81.123     -36.206     -65.813     
+ZPC     H07     H       H       0       -80.881     -35.631     -68.047     
+ZPC     H07A    H       H       0       -82.418     -35.825     -67.740     
+ZPC     H11     H       H       0       -77.965     -37.696     -64.325     
+ZPC     H17     H       H       0       -75.267     -34.741     -60.398     
+ZPC     H18     H       H       0       -77.349     -35.730     -59.995     
+ZPC     H23     H       H       0       -78.841     -37.245     -68.992     
+ZPC     H26     H       H       0       -74.957     -38.352     -69.022     
+ZPC     H27     H       H       0       -74.753     -37.563     -66.830     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ZPC         C01         N02      SINGLE       n     1.462  0.0100     1.462  0.0100
+ZPC         N02         C03      SINGLE       n     1.462  0.0100     1.462  0.0100
+ZPC         N02         C07      SINGLE       n     1.462  0.0100     1.462  0.0100
+ZPC         C03         C04      SINGLE       n     1.512  0.0100     1.512  0.0100
+ZPC         C04         N05      SINGLE       n     1.454  0.0100     1.454  0.0100
+ZPC         N05         C06      SINGLE       n     1.454  0.0100     1.454  0.0100
+ZPC         N05         C08      SINGLE       n     1.351  0.0100     1.351  0.0100
+ZPC         C06         C07      SINGLE       n     1.512  0.0100     1.512  0.0100
+ZPC         C08         O09      DOUBLE       n     1.211  0.0100     1.211  0.0100
+ZPC         C08         O10      SINGLE       n     1.352  0.0102     1.352  0.0102
+ZPC         O10         C11      SINGLE       n     1.435  0.0184     1.435  0.0184
+ZPC         C11         N12      SINGLE       n     1.472  0.0141     1.472  0.0141
+ZPC         C11         C20      SINGLE       n     1.506  0.0107     1.506  0.0107
+ZPC         N12         C13      SINGLE       n     1.352  0.0200     1.352  0.0200
+ZPC         N12         C21      SINGLE       n     1.406  0.0100     1.406  0.0100
+ZPC         C13         O14      DOUBLE       n     1.212  0.0117     1.212  0.0117
+ZPC         C13         C15      SINGLE       n     1.455  0.0200     1.455  0.0200
+ZPC         C15         N16      SINGLE       y     1.362  0.0200     1.362  0.0200
+ZPC         C15         C20      DOUBLE       y     1.385  0.0200     1.385  0.0200
+ZPC         N16         C17      DOUBLE       y     1.344  0.0121     1.344  0.0121
+ZPC         C17         C18      SINGLE       y     1.385  0.0100     1.385  0.0100
+ZPC         C18         N19      DOUBLE       y     1.351  0.0200     1.351  0.0200
+ZPC         N19         C20      SINGLE       y     1.340  0.0100     1.340  0.0100
+ZPC         C21         N22      DOUBLE       y     1.333  0.0100     1.333  0.0100
+ZPC         C21         C27      SINGLE       y     1.395  0.0100     1.395  0.0100
+ZPC         N22         C23      SINGLE       y     1.342  0.0100     1.342  0.0100
+ZPC         C23         C24      DOUBLE       y     1.374  0.0100     1.374  0.0100
+ZPC         C24          CL      SINGLE       n     1.736  0.0100     1.736  0.0100
+ZPC         C24         C26      SINGLE       y     1.385  0.0117     1.385  0.0117
+ZPC         C26         C27      DOUBLE       y     1.383  0.0100     1.383  0.0100
+ZPC         C01         H01      SINGLE       n     1.089  0.0100     0.975  0.0100
+ZPC         C01        H01A      SINGLE       n     1.089  0.0100     0.975  0.0100
+ZPC         C01        H01B      SINGLE       n     1.089  0.0100     0.975  0.0100
+ZPC         C03         H03      SINGLE       n     1.089  0.0100     0.978  0.0109
+ZPC         C03        H03A      SINGLE       n     1.089  0.0100     0.978  0.0109
+ZPC         C04         H04      SINGLE       n     1.089  0.0100     0.978  0.0161
+ZPC         C04        H04A      SINGLE       n     1.089  0.0100     0.978  0.0161
+ZPC         C06         H06      SINGLE       n     1.089  0.0100     0.978  0.0161
+ZPC         C06        H06A      SINGLE       n     1.089  0.0100     0.978  0.0161
+ZPC         C07         H07      SINGLE       n     1.089  0.0100     0.978  0.0109
+ZPC         C07        H07A      SINGLE       n     1.089  0.0100     0.978  0.0109
+ZPC         C11         H11      SINGLE       n     1.089  0.0100     0.987  0.0157
+ZPC         C17         H17      SINGLE       n     1.082  0.0130     0.939  0.0200
+ZPC         C18         H18      SINGLE       n     1.082  0.0130     0.939  0.0200
+ZPC         C23         H23      SINGLE       n     1.082  0.0130     0.949  0.0183
+ZPC         C26         H26      SINGLE       n     1.082  0.0130     0.948  0.0200
+ZPC         C27         H27      SINGLE       n     1.082  0.0130     0.941  0.0127
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ZPC         N02         C01         H01     109.526    1.50
+ZPC         N02         C01        H01A     109.526    1.50
+ZPC         N02         C01        H01B     109.526    1.50
+ZPC         H01         C01        H01A     109.428    1.50
+ZPC         H01         C01        H01B     109.428    1.50
+ZPC        H01A         C01        H01B     109.428    1.50
+ZPC         C01         N02         C03     110.746    1.50
+ZPC         C01         N02         C07     110.746    1.50
+ZPC         C03         N02         C07     109.130    1.50
+ZPC         N02         C03         C04     110.810    1.50
+ZPC         N02         C03         H03     109.480    1.50
+ZPC         N02         C03        H03A     109.480    1.50
+ZPC         C04         C03         H03     109.532    1.50
+ZPC         C04         C03        H03A     109.532    1.50
+ZPC         H03         C03        H03A     108.187    1.50
+ZPC         C03         C04         N05     110.312    1.50
+ZPC         C03         C04         H04     109.532    1.50
+ZPC         C03         C04        H04A     109.532    1.50
+ZPC         N05         C04         H04     109.619    1.50
+ZPC         N05         C04        H04A     109.619    1.50
+ZPC         H04         C04        H04A     108.187    1.50
+ZPC         C04         N05         C06     113.902    1.50
+ZPC         C04         N05         C08     123.049    2.71
+ZPC         C06         N05         C08     123.049    2.71
+ZPC         N05         C06         C07     110.312    1.50
+ZPC         N05         C06         H06     109.619    1.50
+ZPC         N05         C06        H06A     109.619    1.50
+ZPC         C07         C06         H06     109.532    1.50
+ZPC         C07         C06        H06A     109.532    1.50
+ZPC         H06         C06        H06A     108.187    1.50
+ZPC         N02         C07         C06     110.810    1.50
+ZPC         N02         C07         H07     109.480    1.50
+ZPC         N02         C07        H07A     109.480    1.50
+ZPC         C06         C07         H07     109.532    1.50
+ZPC         C06         C07        H07A     109.532    1.50
+ZPC         H07         C07        H07A     108.187    1.50
+ZPC         N05         C08         O09     124.545    1.50
+ZPC         N05         C08         O10     111.153    1.50
+ZPC         O09         C08         O10     124.302    1.66
+ZPC         C08         O10         C11     116.971    1.50
+ZPC         O10         C11         N12     107.609    1.50
+ZPC         O10         C11         C20     110.663    3.00
+ZPC         O10         C11         H11     110.080    2.19
+ZPC         N12         C11         C20     101.401    1.50
+ZPC         N12         C11         H11     110.672    1.50
+ZPC         C20         C11         H11     110.739    1.50
+ZPC         C11         N12         C13     112.260    2.00
+ZPC         C11         N12         C21     122.478    2.19
+ZPC         C13         N12         C21     125.262    2.22
+ZPC         N12         C13         O14     126.322    2.10
+ZPC         N12         C13         C15     105.942    1.59
+ZPC         O14         C13         C15     127.736    1.78
+ZPC         C13         C15         N16     128.187    1.50
+ZPC         C13         C15         C20     110.704    1.95
+ZPC         N16         C15         C20     121.109    1.92
+ZPC         C15         N16         C17     115.892    1.50
+ZPC         N16         C17         C18     121.763    1.50
+ZPC         N16         C17         H17     117.974    1.50
+ZPC         C18         C17         H17     120.263    1.50
+ZPC         C17         C18         N19     121.763    1.50
+ZPC         C17         C18         H18     120.263    1.50
+ZPC         N19         C18         H18     117.974    1.50
+ZPC         C18         N19         C20     118.363    1.67
+ZPC         C11         C20         C15     112.221    1.65
+ZPC         C11         C20         N19     126.670    1.73
+ZPC         C15         C20         N19     121.109    1.92
+ZPC         N12         C21         N22     113.202    1.50
+ZPC         N12         C21         C27     122.447    1.50
+ZPC         N22         C21         C27     124.351    1.50
+ZPC         C21         N22         C23     117.365    1.50
+ZPC         N22         C23         C24     121.696    1.50
+ZPC         N22         C23         H23     118.432    1.50
+ZPC         C24         C23         H23     119.872    1.50
+ZPC         C23         C24          CL     119.808    1.50
+ZPC         C23         C24         C26     119.497    1.50
+ZPC          CL         C24         C26     120.695    1.50
+ZPC         C24         C26         C27     119.367    1.50
+ZPC         C24         C26         H26     120.467    1.92
+ZPC         C27         C26         H26     120.166    1.50
+ZPC         C21         C27         C26     117.725    1.50
+ZPC         C21         C27         H27     121.945    1.50
+ZPC         C26         C27         H27     120.331    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ZPC            sp3_sp3_26         H01         C01         N02         C03     -60.000    10.0     3
+ZPC            sp2_sp3_14         C13         N12         C11         O10     120.000    10.0     6
+ZPC            sp2_sp3_20         C15         C20         C11         O10     120.000    10.0     6
+ZPC             sp2_sp2_3         O14         C13         N12         C11     180.000     5.0     2
+ZPC            sp2_sp2_17         N22         C21         N12         C11       0.000     5.0     2
+ZPC             sp2_sp2_8         O14         C13         C15         N16       0.000     5.0     2
+ZPC       const_sp2_sp2_6         C13         C15         N16         C17     180.000     5.0     2
+ZPC       const_sp2_sp2_1         C13         C15         C20         C11       0.000     5.0     2
+ZPC       const_sp2_sp2_7         C18         C17         N16         C15       0.000     5.0     2
+ZPC       const_sp2_sp2_9         N16         C17         C18         N19       0.000     5.0     2
+ZPC              const_13         C17         C18         N19         C20       0.000    10.0     2
+ZPC              const_16         C11         C20         N19         C18     180.000    10.0     2
+ZPC             sp3_sp3_2         C04         C03         N02         C01     180.000    10.0     3
+ZPC            sp3_sp3_32         C06         C07         N02         C01     -60.000    10.0     3
+ZPC              const_18         N12         C21         N22         C23     180.000    10.0     2
+ZPC              const_35         N12         C21         C27         C26     180.000    10.0     2
+ZPC              const_19         C24         C23         N22         C21       0.000    10.0     2
+ZPC              const_22         N22         C23         C24          CL     180.000    10.0     2
+ZPC              const_27          CL         C24         C26         C27     180.000    10.0     2
+ZPC              const_29         C24         C26         C27         C21       0.000    10.0     2
+ZPC             sp3_sp3_7         N02         C03         C04         N05     -60.000    10.0     3
+ZPC             sp2_sp3_4         C08         N05         C04         C03     180.000    10.0     6
+ZPC            sp2_sp3_10         C08         N05         C06         C07     180.000    10.0     6
+ZPC            sp2_sp2_11         O09         C08         N05         C04       0.000     5.0     2
+ZPC            sp3_sp3_16         N05         C06         C07         N02      60.000    10.0     3
+ZPC            sp2_sp2_14         O09         C08         O10         C11       0.000     5.0     2
+ZPC            sp3_sp3_37         N12         C11         O10         C08     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ZPC    chir_1    N02    C03    C07    C01    both
+ZPC    chir_2    C11    O10    N12    C20    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ZPC    plan-1         C11   0.020
+ZPC    plan-1         C13   0.020
+ZPC    plan-1         C15   0.020
+ZPC    plan-1         C17   0.020
+ZPC    plan-1         C18   0.020
+ZPC    plan-1         C20   0.020
+ZPC    plan-1         H17   0.020
+ZPC    plan-1         H18   0.020
+ZPC    plan-1         N16   0.020
+ZPC    plan-1         N19   0.020
+ZPC    plan-2         C21   0.020
+ZPC    plan-2         C23   0.020
+ZPC    plan-2         C24   0.020
+ZPC    plan-2         C26   0.020
+ZPC    plan-2         C27   0.020
+ZPC    plan-2          CL   0.020
+ZPC    plan-2         H23   0.020
+ZPC    plan-2         H26   0.020
+ZPC    plan-2         H27   0.020
+ZPC    plan-2         N12   0.020
+ZPC    plan-2         N22   0.020
+ZPC    plan-3         C04   0.020
+ZPC    plan-3         C06   0.020
+ZPC    plan-3         C08   0.020
+ZPC    plan-3         N05   0.020
+ZPC    plan-4         C08   0.020
+ZPC    plan-4         N05   0.020
+ZPC    plan-4         O09   0.020
+ZPC    plan-4         O10   0.020
+ZPC    plan-5         C11   0.020
+ZPC    plan-5         C13   0.020
+ZPC    plan-5         C21   0.020
+ZPC    plan-5         N12   0.020
+ZPC    plan-6         C13   0.020
+ZPC    plan-6         C15   0.020
+ZPC    plan-6         N12   0.020
+ZPC    plan-6         O14   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ZPC            InChI                InChI  1.03 InChI=1S/C17H17ClN6O3/c1-22-6-8-23(9-7-22)17(26)27-16-14-13(19-4-5-20-14)15(25)24(16)12-3-2-11(18)10-21-12/h2-5,10,16H,6-9H2,1H3/t16-/m1/s1
+ZPC         InChIKey                InChI  1.03                                                                                                                 GBBSUAFBMRNDJC-MRXNPFEDSA-N
+ZPC           SMILES              ACDLabs 12.01                                                                                              O=C(OC3c1nccnc1C(=O)N3c2ncc(Cl)cc2)N4CCN(C)CC4
+ZPC SMILES_CANONICAL               CACTVS 3.370                                                                                        CN1CCN(CC1)C(=O)O[C@H]2N(C(=O)c3nccnc23)c4ccc(Cl)cn4
+ZPC           SMILES               CACTVS 3.370                                                                                         CN1CCN(CC1)C(=O)O[CH]2N(C(=O)c3nccnc23)c4ccc(Cl)cn4
+ZPC SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                       CN1CCN(CC1)C(=O)O[C@@H]2c3c(nccn3)C(=O)N2c4ccc(cn4)Cl
+ZPC           SMILES "OpenEye OEToolkits" 1.7.6                                                                                            CN1CCN(CC1)C(=O)OC2c3c(nccn3)C(=O)N2c4ccc(cn4)Cl
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ZPC acedrg               243         "dictionary generator"                  
+ZPC acedrg_database      11          "data source"                           
+ZPC rdkit                2017.03.2   "Chemoinformatics tool"
+ZPC refmac5              5.8.0238    "optimization tool"                     

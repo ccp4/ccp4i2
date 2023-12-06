@@ -1,0 +1,188 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+J0M     J0M      "D-galactonic acid"     NON-POLYMER     24     13     .     
+#
+data_comp_J0M
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+J0M     C4      C       CH1     0       187.106     -76.240     288.383     
+J0M     C5      C       CH2     0       184.600     -79.423     290.400     
+J0M     C6      C       C       0       188.303     -76.603     287.494     
+J0M     C3      C       CH1     0       185.858     -79.774     289.629     
+J0M     C1      C       CH1     0       186.801     -78.585     289.401     
+J0M     C2      C       CH1     0       186.162     -77.417     288.645     
+J0M     O1      O       OH1     0       187.284     -78.129     290.662     
+J0M     O2      O       OH1     0       185.643     -77.883     287.396     
+J0M     O3      O       OH1     0       185.496     -80.345     288.369     
+J0M     O4      O       OH1     0       187.535     -75.710     289.629     
+J0M     O5      O       OH1     0       184.894     -78.741     291.616     
+J0M     O6      O       O       0       188.165     -76.449     286.264     
+J0M     O7      O       OC      -1      189.331     -77.028     288.061     
+J0M     H1      H       H       0       186.590     -75.538     287.917     
+J0M     H2      H       H       0       184.108     -80.254     290.607     
+J0M     H3      H       H       0       184.019     -78.854     289.839     
+J0M     H4      H       H       0       186.351     -80.470     290.157     
+J0M     H5      H       H       0       187.576     -78.914     288.879     
+J0M     H6      H       H       0       185.402     -77.070     289.184     
+J0M     H7      H       H       0       187.814     -78.712     290.975     
+J0M     H8      H       H       0       184.833     -78.110     287.499     
+J0M     H9      H       H       0       185.107     -81.091     288.471     
+J0M     H10     H       H       0       186.881     -75.317     290.000     
+J0M     H11     H       H       0       184.170     -78.627     292.038     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+J0M          C6          O6      DOUBLE       n     1.247  0.0187     1.247  0.0187
+J0M          C2          O2      SINGLE       n     1.429  0.0100     1.429  0.0100
+J0M          C6          O7      SINGLE       n     1.247  0.0187     1.247  0.0187
+J0M          C4          C6      SINGLE       n     1.533  0.0100     1.533  0.0100
+J0M          C3          O3      SINGLE       n     1.429  0.0100     1.429  0.0100
+J0M          C4          C2      SINGLE       n     1.526  0.0133     1.526  0.0133
+J0M          C4          O4      SINGLE       n     1.419  0.0162     1.419  0.0162
+J0M          C1          C2      SINGLE       n     1.526  0.0100     1.526  0.0100
+J0M          C3          C1      SINGLE       n     1.530  0.0100     1.530  0.0100
+J0M          C1          O1      SINGLE       n     1.424  0.0199     1.424  0.0199
+J0M          C5          C3      SINGLE       n     1.514  0.0100     1.514  0.0100
+J0M          C5          O5      SINGLE       n     1.425  0.0100     1.425  0.0100
+J0M          C4          H1      SINGLE       n     1.089  0.0100     0.988  0.0129
+J0M          C5          H2      SINGLE       n     1.089  0.0100     0.988  0.0200
+J0M          C5          H3      SINGLE       n     1.089  0.0100     0.988  0.0200
+J0M          C3          H4      SINGLE       n     1.089  0.0100     1.004  0.0200
+J0M          C1          H5      SINGLE       n     1.089  0.0100     0.992  0.0184
+J0M          C2          H6      SINGLE       n     1.089  0.0100     0.996  0.0200
+J0M          O1          H7      SINGLE       n     0.970  0.0120     0.848  0.0200
+J0M          O2          H8      SINGLE       n     0.970  0.0120     0.848  0.0200
+J0M          O3          H9      SINGLE       n     0.970  0.0120     0.848  0.0200
+J0M          O4         H10      SINGLE       n     0.970  0.0120     0.848  0.0200
+J0M          O5         H11      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+J0M          C6          C4          C2     111.511    2.91
+J0M          C6          C4          O4     111.490    1.56
+J0M          C6          C4          H1     108.467    1.50
+J0M          C2          C4          O4     109.434    2.40
+J0M          C2          C4          H1     108.687    1.50
+J0M          O4          C4          H1     108.747    1.50
+J0M          C3          C5          O5     111.364    1.50
+J0M          C3          C5          H2     109.234    1.50
+J0M          C3          C5          H3     109.234    1.50
+J0M          O5          C5          H2     109.268    1.50
+J0M          O5          C5          H3     109.268    1.50
+J0M          H2          C5          H3     108.313    1.50
+J0M          O6          C6          O7     125.683    1.50
+J0M          O6          C6          C4     117.159    1.50
+J0M          O7          C6          C4     117.159    1.50
+J0M          O3          C3          C1     109.549    1.85
+J0M          O3          C3          C5     109.623    1.60
+J0M          O3          C3          H4     108.591    1.50
+J0M          C1          C3          C5     112.159    1.50
+J0M          C1          C3          H4     108.777    1.50
+J0M          C5          C3          H4     107.986    1.50
+J0M          C2          C1          C3     112.413    1.50
+J0M          C2          C1          O1     109.024    2.24
+J0M          C2          C1          H5     108.569    1.50
+J0M          C3          C1          O1     109.164    1.97
+J0M          C3          C1          H5     108.336    1.50
+J0M          O1          C1          H5     108.243    1.50
+J0M          O2          C2          C4     109.317    1.50
+J0M          O2          C2          C1     109.024    2.24
+J0M          O2          C2          H6     108.243    1.50
+J0M          C4          C2          C1     113.419    1.50
+J0M          C4          C2          H6     108.238    1.72
+J0M          C1          C2          H6     108.569    1.50
+J0M          C1          O1          H7     108.564    3.00
+J0M          C2          O2          H8     108.564    3.00
+J0M          C3          O3          H9     111.202    3.00
+J0M          C4          O4         H10     108.941    3.00
+J0M          C5          O5         H11     108.280    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+J0M             sp2_sp3_1          O6          C6          C4          C2       0.000    10.0     6
+J0M             sp3_sp3_7          O2          C2          C4          C6     180.000    10.0     3
+J0M            sp3_sp3_16          C6          C4          O4         H10     180.000    10.0     3
+J0M            sp3_sp3_49          C3          C5          O5         H11     180.000    10.0     3
+J0M            sp3_sp3_40          O3          C3          C5          O5     180.000    10.0     3
+J0M            sp3_sp3_28          C2          C1          C3          O3     180.000    10.0     3
+J0M             sp3_sp3_4          C1          C3          O3          H9     180.000    10.0     3
+J0M            sp3_sp3_19          C3          C1          C2          O2     180.000    10.0     3
+J0M            sp3_sp3_37          C2          C1          O1          H7     180.000    10.0     3
+J0M             sp3_sp3_1          C4          C2          O2          H8     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+J0M    chir_1    C4    O4    C6    C2    negative
+J0M    chir_2    C3    O3    C1    C5    negative
+J0M    chir_3    C1    O1    C2    C3    positive
+J0M    chir_4    C2    O2    C4    C1    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+J0M    plan-1          C4   0.020
+J0M    plan-1          C6   0.020
+J0M    plan-1          O6   0.020
+J0M    plan-1          O7   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+J0M           SMILES              ACDLabs 12.01                                                                  C(C(C(C(CO)O)O)O)(O)C(O)=O
+J0M            InChI                InChI  1.03 InChI=1S/C6H12O7/c7-1-2(8)3(9)4(10)5(11)6(12)13/h2-5,7-11H,1H2,(H,12,13)/t2-,3+,4+,5-/m1/s1
+J0M         InChIKey                InChI  1.03                                                                 RGHNJXZEOKUKBD-MGCNEYSASA-N
+J0M SMILES_CANONICAL               CACTVS 3.385                                                  OC[C@@H](O)[C@H](O)[C@H](O)[C@@H](O)C(O)=O
+J0M           SMILES               CACTVS 3.385                                                        OC[CH](O)[CH](O)[CH](O)[CH](O)C(O)=O
+J0M SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                C([C@H]([C@@H]([C@@H]([C@H](C(=O)O)O)O)O)O)O
+J0M           SMILES "OpenEye OEToolkits" 2.0.6                                                                  C(C(C(C(C(C(=O)O)O)O)O)O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+J0M acedrg               243         "dictionary generator"                  
+J0M acedrg_database      11          "data source"                           
+J0M rdkit                2017.03.2   "Chemoinformatics tool"
+J0M refmac5              5.8.0238    "optimization tool"                     

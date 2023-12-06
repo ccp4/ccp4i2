@@ -1,0 +1,274 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SPZ     SPZ      "(3S,3'S)-N~1~,N~1~'-butane-1,4-diyldibutane-1,3-diamine"     NON-POLYMER     46     16     .     
+#
+data_comp_SPZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SPZ     N1B     N       NT2     0       33.435      14.687      117.011     
+SPZ     C1C     C       CH1     0       33.736      14.647      115.565     
+SPZ     C1A     C       CH3     0       34.916      15.531      115.257     
+SPZ     C1D     C       CH2     0       33.970      13.198      115.105     
+SPZ     C1E     C       CH2     0       35.058      12.450      115.865     
+SPZ     N1F     N       NT1     0       35.308      11.117      115.309     
+SPZ     C1G     C       CH2     0       34.248      10.128      115.512     
+SPZ     C1H     C       CH2     0       34.767      8.705       115.369     
+SPZ     C1I     C       CH2     0       35.127      8.353       113.935     
+SPZ     C1J     C       CH2     0       35.397      6.867       113.738     
+SPZ     N1K     N       NT1     0       36.745      6.481       114.163     
+SPZ     C1L     C       CH2     0       37.817      6.717       113.194     
+SPZ     C1M     C       CH2     0       38.036      5.511       112.292     
+SPZ     C1N     C       CH1     0       38.929      4.424       112.899     
+SPZ     C1P     C       CH3     0       39.268      3.371       111.878     
+SPZ     N1O     N       NT2     0       38.283      3.801       114.072     
+SPZ     HN1B    H       H       0       32.761      14.140      117.200     
+SPZ     HN1A    H       H       0       33.192      15.506      117.251     
+SPZ     H1C     H       H       0       32.948      14.995      115.072     
+SPZ     H1A     H       H       0       35.536      15.065      114.668     
+SPZ     H1AA    H       H       0       35.374      15.766      116.083     
+SPZ     H1AB    H       H       0       34.605      16.342      114.819     
+SPZ     H1D     H       H       0       34.198      13.207      114.149     
+SPZ     H1DA    H       H       0       33.124      12.707      115.199     
+SPZ     H1E     H       H       0       34.793      12.364      116.804     
+SPZ     H1EA    H       H       0       35.888      12.969      115.835     
+SPZ     HN1F    H       H       0       35.453      11.198      114.424     
+SPZ     H1G     H       H       0       33.535      10.278      114.857     
+SPZ     H1GA    H       H       0       33.863      10.240      116.406     
+SPZ     H1H     H       H       0       34.080      8.083       115.690     
+SPZ     H1HA    H       H       0       35.561      8.597       115.934     
+SPZ     H1I     H       H       0       35.926      8.859       113.673     
+SPZ     H1IA    H       H       0       34.392      8.623       113.345     
+SPZ     H1J     H       H       0       35.281      6.644       112.791     
+SPZ     H1JA    H       H       0       34.739      6.351       114.248     
+SPZ     HN1K    H       H       0       36.954      6.900       114.932     
+SPZ     H1L     H       H       0       38.649      6.914       113.673     
+SPZ     H1LA    H       H       0       37.596      7.495       112.642     
+SPZ     H1M     H       H       0       38.442      5.815       111.450     
+SPZ     H1MA    H       H       0       37.164      5.115       112.073     
+SPZ     H1N     H       H       0       39.772      4.856       113.197     
+SPZ     H1P     H       H       0       39.313      2.500       112.309     
+SPZ     H1PA    H       H       0       40.130      3.576       111.477     
+SPZ     H1PB    H       H       0       38.585      3.352       111.185     
+SPZ     HN1O    H       H       0       37.427      3.625       113.912     
+SPZ     HN1C    H       H       0       38.323      4.342       114.775     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SPZ         N1B         C1C      SINGLE       n     1.476  0.0100     1.476  0.0100
+SPZ         C1C         C1A      SINGLE       n     1.503  0.0107     1.503  0.0107
+SPZ         C1C         C1D      SINGLE       n     1.526  0.0200     1.526  0.0200
+SPZ         C1D         C1E      SINGLE       n     1.521  0.0115     1.521  0.0115
+SPZ         C1E         N1F      SINGLE       n     1.463  0.0111     1.463  0.0111
+SPZ         N1F         C1G      SINGLE       n     1.463  0.0111     1.463  0.0111
+SPZ         C1G         C1H      SINGLE       n     1.521  0.0100     1.521  0.0100
+SPZ         C1H         C1I      SINGLE       n     1.519  0.0150     1.519  0.0150
+SPZ         C1I         C1J      SINGLE       n     1.521  0.0100     1.521  0.0100
+SPZ         C1J         N1K      SINGLE       n     1.463  0.0111     1.463  0.0111
+SPZ         N1K         C1L      SINGLE       n     1.463  0.0111     1.463  0.0111
+SPZ         C1L         C1M      SINGLE       n     1.521  0.0115     1.521  0.0115
+SPZ         C1M         C1N      SINGLE       n     1.526  0.0200     1.526  0.0200
+SPZ         C1N         C1P      SINGLE       n     1.503  0.0107     1.503  0.0107
+SPZ         C1N         N1O      SINGLE       n     1.476  0.0100     1.476  0.0100
+SPZ         N1B        HN1B      SINGLE       n     1.036  0.0160     0.888  0.0200
+SPZ         N1B        HN1A      SINGLE       n     1.036  0.0160     0.888  0.0200
+SPZ         C1C         H1C      SINGLE       n     1.089  0.0100     0.993  0.0104
+SPZ         C1A         H1A      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPZ         C1A        H1AA      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPZ         C1A        H1AB      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPZ         C1D         H1D      SINGLE       n     1.089  0.0100     0.983  0.0200
+SPZ         C1D        H1DA      SINGLE       n     1.089  0.0100     0.983  0.0200
+SPZ         C1E         H1E      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPZ         C1E        H1EA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPZ         N1F        HN1F      SINGLE       n     1.036  0.0160     0.899  0.0200
+SPZ         C1G         H1G      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPZ         C1G        H1GA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPZ         C1H         H1H      SINGLE       n     1.089  0.0100     0.981  0.0160
+SPZ         C1H        H1HA      SINGLE       n     1.089  0.0100     0.981  0.0160
+SPZ         C1I         H1I      SINGLE       n     1.089  0.0100     0.981  0.0160
+SPZ         C1I        H1IA      SINGLE       n     1.089  0.0100     0.981  0.0160
+SPZ         C1J         H1J      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPZ         C1J        H1JA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPZ         N1K        HN1K      SINGLE       n     1.036  0.0160     0.899  0.0200
+SPZ         C1L         H1L      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPZ         C1L        H1LA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SPZ         C1M         H1M      SINGLE       n     1.089  0.0100     0.983  0.0200
+SPZ         C1M        H1MA      SINGLE       n     1.089  0.0100     0.983  0.0200
+SPZ         C1N         H1N      SINGLE       n     1.089  0.0100     0.993  0.0104
+SPZ         C1P         H1P      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPZ         C1P        H1PA      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPZ         C1P        H1PB      SINGLE       n     1.089  0.0100     0.973  0.0146
+SPZ         N1O        HN1O      SINGLE       n     1.036  0.0160     0.888  0.0200
+SPZ         N1O        HN1C      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SPZ         C1C         N1B        HN1B     110.246    3.00
+SPZ         C1C         N1B        HN1A     110.246    3.00
+SPZ        HN1B         N1B        HN1A     107.559    3.00
+SPZ         N1B         C1C         C1A     109.538    2.08
+SPZ         N1B         C1C         C1D     110.129    2.63
+SPZ         N1B         C1C         H1C     108.540    1.50
+SPZ         C1A         C1C         C1D     110.573    1.63
+SPZ         C1A         C1C         H1C     108.561    1.50
+SPZ         C1D         C1C         H1C     107.815    1.50
+SPZ         C1C         C1A         H1A     109.460    1.50
+SPZ         C1C         C1A        H1AA     109.460    1.50
+SPZ         C1C         C1A        H1AB     109.460    1.50
+SPZ         H1A         C1A        H1AA     109.386    1.50
+SPZ         H1A         C1A        H1AB     109.386    1.50
+SPZ        H1AA         C1A        H1AB     109.386    1.50
+SPZ         C1C         C1D         C1E     113.808    1.88
+SPZ         C1C         C1D         H1D     108.489    1.50
+SPZ         C1C         C1D        H1DA     108.489    1.50
+SPZ         C1E         C1D         H1D     108.805    1.50
+SPZ         C1E         C1D        H1DA     108.805    1.50
+SPZ         H1D         C1D        H1DA     107.469    1.50
+SPZ         C1D         C1E         N1F     111.754    2.01
+SPZ         C1D         C1E         H1E     109.099    1.50
+SPZ         C1D         C1E        H1EA     109.099    1.50
+SPZ         N1F         C1E         H1E     109.338    1.50
+SPZ         N1F         C1E        H1EA     109.338    1.50
+SPZ         H1E         C1E        H1EA     107.877    1.50
+SPZ         C1E         N1F         C1G     114.187    2.61
+SPZ         C1E         N1F        HN1F     108.180    3.00
+SPZ         C1G         N1F        HN1F     108.180    3.00
+SPZ         N1F         C1G         C1H     111.754    2.01
+SPZ         N1F         C1G         H1G     109.338    1.50
+SPZ         N1F         C1G        H1GA     109.338    1.50
+SPZ         C1H         C1G         H1G     109.197    1.51
+SPZ         C1H         C1G        H1GA     109.197    1.51
+SPZ         H1G         C1G        H1GA     107.877    1.50
+SPZ         C1G         C1H         C1I     112.652    1.50
+SPZ         C1G         C1H         H1H     108.956    1.50
+SPZ         C1G         C1H        H1HA     108.956    1.50
+SPZ         C1I         C1H         H1H     108.999    1.50
+SPZ         C1I         C1H        H1HA     108.999    1.50
+SPZ         H1H         C1H        H1HA     107.927    1.57
+SPZ         C1H         C1I         C1J     112.652    1.50
+SPZ         C1H         C1I         H1I     108.999    1.50
+SPZ         C1H         C1I        H1IA     108.999    1.50
+SPZ         C1J         C1I         H1I     108.956    1.50
+SPZ         C1J         C1I        H1IA     108.956    1.50
+SPZ         H1I         C1I        H1IA     107.927    1.57
+SPZ         C1I         C1J         N1K     111.754    2.01
+SPZ         C1I         C1J         H1J     109.197    1.51
+SPZ         C1I         C1J        H1JA     109.197    1.51
+SPZ         N1K         C1J         H1J     109.338    1.50
+SPZ         N1K         C1J        H1JA     109.338    1.50
+SPZ         H1J         C1J        H1JA     107.877    1.50
+SPZ         C1J         N1K         C1L     114.187    2.61
+SPZ         C1J         N1K        HN1K     108.180    3.00
+SPZ         C1L         N1K        HN1K     108.180    3.00
+SPZ         N1K         C1L         C1M     111.754    2.01
+SPZ         N1K         C1L         H1L     109.338    1.50
+SPZ         N1K         C1L        H1LA     109.338    1.50
+SPZ         C1M         C1L         H1L     109.099    1.50
+SPZ         C1M         C1L        H1LA     109.099    1.50
+SPZ         H1L         C1L        H1LA     107.877    1.50
+SPZ         C1L         C1M         C1N     113.808    1.88
+SPZ         C1L         C1M         H1M     108.805    1.50
+SPZ         C1L         C1M        H1MA     108.805    1.50
+SPZ         C1N         C1M         H1M     108.489    1.50
+SPZ         C1N         C1M        H1MA     108.489    1.50
+SPZ         H1M         C1M        H1MA     107.469    1.50
+SPZ         C1M         C1N         C1P     110.573    1.63
+SPZ         C1M         C1N         N1O     110.129    2.63
+SPZ         C1M         C1N         H1N     107.815    1.50
+SPZ         C1P         C1N         N1O     109.538    2.08
+SPZ         C1P         C1N         H1N     108.561    1.50
+SPZ         N1O         C1N         H1N     108.540    1.50
+SPZ         C1N         C1P         H1P     109.460    1.50
+SPZ         C1N         C1P        H1PA     109.460    1.50
+SPZ         C1N         C1P        H1PB     109.460    1.50
+SPZ         H1P         C1P        H1PA     109.386    1.50
+SPZ         H1P         C1P        H1PB     109.386    1.50
+SPZ        H1PA         C1P        H1PB     109.386    1.50
+SPZ         C1N         N1O        HN1O     110.246    3.00
+SPZ         C1N         N1O        HN1C     110.246    3.00
+SPZ        HN1O         N1O        HN1C     107.559    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SPZ             sp3_sp3_1         C1A         C1C         N1B        HN1B     180.000    10.0     3
+SPZ            sp3_sp3_80         C1M         C1L         N1K         C1J     -60.000    10.0     3
+SPZ            sp3_sp3_85         N1K         C1L         C1M         C1N     180.000    10.0     3
+SPZ            sp3_sp3_94         C1L         C1M         C1N         C1P     180.000    10.0     3
+SPZ           sp3_sp3_103         C1M         C1N         C1P         H1P     180.000    10.0     3
+SPZ           sp3_sp3_112         C1M         C1N         N1O        HN1O     180.000    10.0     3
+SPZ             sp3_sp3_7         H1A         C1A         C1C         N1B     180.000    10.0     3
+SPZ            sp3_sp3_16         N1B         C1C         C1D         C1E     180.000    10.0     3
+SPZ            sp3_sp3_25         C1C         C1D         C1E         N1F     180.000    10.0     3
+SPZ            sp3_sp3_35         C1D         C1E         N1F         C1G     -60.000    10.0     3
+SPZ            sp3_sp3_40         C1H         C1G         N1F         C1E     180.000    10.0     3
+SPZ            sp3_sp3_46         N1F         C1G         C1H         C1I     180.000    10.0     3
+SPZ            sp3_sp3_55         C1G         C1H         C1I         C1J     180.000    10.0     3
+SPZ            sp3_sp3_64         C1H         C1I         C1J         N1K     180.000    10.0     3
+SPZ            sp3_sp3_73         C1I         C1J         N1K         C1L     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SPZ    chir_1    C1C    N1B    C1D    C1A    positive
+SPZ    chir_2    C1N    N1O    C1M    C1P    positive
+SPZ    chir_3    N1F    C1E    C1G    HN1F    both
+SPZ    chir_4    N1K    C1L    C1J    HN1K    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SPZ           SMILES              ACDLabs 10.04                                                                                      NC(CCNCCCCNCCC(N)C)C
+SPZ SMILES_CANONICAL               CACTVS 3.341                                                                              C[C@H](N)CCNCCCCNCC[C@H](C)N
+SPZ           SMILES               CACTVS 3.341                                                                                C[CH](N)CCNCCCCNCC[CH](C)N
+SPZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                             C[C@@H](CCNCCCCNCC[C@H](C)N)N
+SPZ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                      CC(CCNCCCCNCCC(C)N)N
+SPZ            InChI                InChI  1.03 InChI=1S/C12H30N4/c1-11(13)5-9-15-7-3-4-8-16-10-6-12(2)14/h11-12,15-16H,3-10,13-14H2,1-2H3/t11-,12-/m0/s1
+SPZ         InChIKey                InChI  1.03                                                                               LXKFTCVCBKNJNM-RYUDHWBXSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SPZ acedrg               243         "dictionary generator"                  
+SPZ acedrg_database      11          "data source"                           
+SPZ rdkit                2017.03.2   "Chemoinformatics tool"
+SPZ refmac5              5.8.0238    "optimization tool"                     

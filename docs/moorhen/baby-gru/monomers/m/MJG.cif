@@ -1,0 +1,508 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MJG     MJG      N-[5-({5-[(4-acetylpiperazin-1-yl)carbonyl]-4-methoxy-2-methylphenyl}sulfanyl)-1,3-thiazol-2-yl]-4-({[(1S)-1,2,2-trimethylpropyl]amino}methyl)benzamide     NON-POLYMER     84     43     .     
+#
+data_comp_MJG
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MJG     C1      C       CR6     0       16.047      1.456       0.013       
+MJG     C2      C       CR6     0       16.800      2.250       -0.878      
+MJG     C3      C       CR16    0       16.567      2.108       -2.251      
+MJG     C4      C       CR6     0       15.619      1.207       -2.731      
+MJG     C5      C       CR6     0       14.865      0.425       -1.844      
+MJG     C6      C       CR16    0       15.101      0.560       -0.479      
+MJG     O7      O       O2      0       16.298      1.603       1.351       
+MJG     C8      C       CH3     0       15.203      1.667       2.265       
+MJG     C9      C       C       0       17.851      3.233       -0.435      
+MJG     N10     N       NT      0       17.890      4.475       -0.990      
+MJG     O11     O       O       0       18.712      2.854       0.358       
+MJG     C12     C       CH2     0       19.094      5.318       -0.872      
+MJG     C13     C       CH2     0       19.204      6.264       -2.054      
+MJG     N14     N       NR6     0       17.997      7.089       -2.171      
+MJG     C15     C       CH2     0       16.805      6.243       -2.301      
+MJG     C16     C       CH2     0       16.679      5.307       -1.114      
+MJG     C17     C       C       0       17.959      8.443       -2.228      
+MJG     C18     C       CH3     0       19.219      9.209       -2.515      
+MJG     O19     O       O       0       16.921      9.057       -2.000      
+MJG     S20     S       S2      0       15.388      1.122       -4.486      
+MJG     C21     C       CR15    0       13.563      2.941       -5.678      
+MJG     C22     C       CR5     0       14.810      2.606       -5.193      
+MJG     S23     S       S2      0       15.794      3.930       -5.345      
+MJG     C24     C       CR5     0       14.618      4.909       -6.036      
+MJG     N25     N       NRD5    0       13.456      4.239       -6.162      
+MJG     N26     N       NH1     0       14.842      6.212       -6.430      
+MJG     C27     C       C       0       16.029      6.894       -6.395      
+MJG     C28     C       CR6     0       16.016      8.260       -5.800      
+MJG     C29     C       CR16    0       17.024      9.162       -6.131      
+MJG     C30     C       CR16    0       17.038      10.439      -5.592      
+MJG     C31     C       CR6     0       16.053      10.852      -4.708      
+MJG     C32     C       CR16    0       15.043      9.956       -4.380      
+MJG     C33     C       CR16    0       15.026      8.674       -4.913      
+MJG     O34     O       O       0       17.057      6.423       -6.859      
+MJG     C35     C       CH2     0       16.077      12.248      -4.135      
+MJG     N36     N       NT1     0       15.836      13.283      -5.130      
+MJG     C37     C       CH1     0       14.420      13.514      -5.488      
+MJG     C38     C       CT      0       14.224      13.605      -7.035      
+MJG     C39     C       CH3     0       14.769      12.339      -7.705      
+MJG     C40     C       CH3     0       12.737      13.728      -7.382      
+MJG     C41     C       CH3     0       14.964      14.811      -7.622      
+MJG     C42     C       CH3     0       13.825      -0.556      -2.338      
+MJG     C43     C       CH3     0       13.877      14.693      -4.689      
+MJG     H3      H       H       0       17.061      2.632       -2.864      
+MJG     H6      H       H       0       14.603      0.033       0.126       
+MJG     H8      H       H       0       14.862      0.771       2.420       
+MJG     H8A     H       H       0       14.497      2.222       1.893       
+MJG     H8B     H       H       0       15.506      2.048       3.105       
+MJG     H12     H       H       0       19.050      5.837       -0.044      
+MJG     H12A    H       H       0       19.895      4.758       -0.838      
+MJG     H13     H       H       0       19.321      5.745       -2.875      
+MJG     H13A    H       H       0       19.993      6.827       -1.938      
+MJG     H15     H       H       0       16.876      5.715       -3.121      
+MJG     H15A    H       H       0       16.000      6.793       -2.367      
+MJG     H16     H       H       0       16.559      5.833       -0.298      
+MJG     H16A    H       H       0       15.889      4.745       -1.231      
+MJG     H18     H       H       0       19.677      8.813       -3.271      
+MJG     H18A    H       H       0       19.799      9.185       -1.741      
+MJG     H18B    H       H       0       19.001      10.129      -2.722      
+MJG     H21     H       H       0       12.833      2.345       -5.692      
+MJG     HN26    H       H       0       14.140      6.631       -6.735      
+MJG     H29     H       H       0       17.705      8.907       -6.727      
+MJG     H30     H       H       0       17.728      11.036      -5.830      
+MJG     H32     H       H       0       14.365      10.218      -3.780      
+MJG     H33     H       H       0       14.334      8.085       -4.672      
+MJG     H35     H       H       0       16.954      12.408      -3.724      
+MJG     H35A    H       H       0       15.399      12.322      -3.429      
+MJG     HN36    H       H       0       16.210      14.055      -4.882      
+MJG     H37     H       H       0       13.896      12.722      -5.198      
+MJG     H39     H       H       0       14.516      12.329      -8.644      
+MJG     H39A    H       H       0       14.401      11.554      -7.263      
+MJG     H39B    H       H       0       15.739      12.323      -7.635      
+MJG     H40     H       H       0       12.613      13.619      -8.341      
+MJG     H40A    H       H       0       12.409      14.604      -7.116      
+MJG     H40B    H       H       0       12.236      13.040      -6.912      
+MJG     H41     H       H       0       15.889      14.807      -7.321      
+MJG     H41A    H       H       0       14.534      15.633      -7.333      
+MJG     H41B    H       H       0       14.943      14.762      -8.594      
+MJG     H42     H       H       0       13.408      -1.002      -1.583      
+MJG     H42A    H       H       0       14.248      -1.219      -2.907      
+MJG     H42B    H       H       0       13.146      -0.083      -2.845      
+MJG     H43     H       H       0       12.911      14.745      -4.792      
+MJG     H43A    H       H       0       14.281      15.519      -5.003      
+MJG     H43B    H       H       0       14.092      14.569      -3.748      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MJG          C1          C2      DOUBLE       y     1.403  0.0100     1.403  0.0100
+MJG          C1          C6      SINGLE       y     1.387  0.0100     1.387  0.0100
+MJG          C1          O7      SINGLE       n     1.365  0.0100     1.365  0.0100
+MJG          C2          C3      SINGLE       y     1.396  0.0100     1.396  0.0100
+MJG          C2          C9      SINGLE       n     1.501  0.0100     1.501  0.0100
+MJG          C3          C4      DOUBLE       y     1.388  0.0132     1.388  0.0132
+MJG          C4         S20      SINGLE       n     1.772  0.0127     1.772  0.0127
+MJG          C4          C5      SINGLE       y     1.398  0.0100     1.398  0.0100
+MJG          C5         C42      SINGLE       n     1.510  0.0100     1.510  0.0100
+MJG          C5          C6      DOUBLE       y     1.388  0.0100     1.388  0.0100
+MJG          O7          C8      SINGLE       n     1.424  0.0117     1.424  0.0117
+MJG          C9         O11      DOUBLE       n     1.228  0.0115     1.228  0.0115
+MJG          C9         N10      SINGLE       n     1.352  0.0100     1.352  0.0100
+MJG         N10         C12      SINGLE       n     1.468  0.0100     1.468  0.0100
+MJG         N10         C16      SINGLE       n     1.468  0.0100     1.468  0.0100
+MJG         C12         C13      SINGLE       n     1.515  0.0105     1.515  0.0105
+MJG         C13         N14      SINGLE       n     1.462  0.0100     1.462  0.0100
+MJG         N14         C17      SINGLE       n     1.346  0.0100     1.346  0.0100
+MJG         N14         C15      SINGLE       n     1.462  0.0100     1.462  0.0100
+MJG         C15         C16      SINGLE       n     1.515  0.0105     1.515  0.0105
+MJG         C17         C18      SINGLE       n     1.499  0.0131     1.499  0.0131
+MJG         C17         O19      DOUBLE       n     1.226  0.0100     1.226  0.0100
+MJG         S20         C22      SINGLE       n     1.744  0.0119     1.744  0.0119
+MJG         C21         C22      DOUBLE       y     1.372  0.0200     1.372  0.0200
+MJG         C21         N25      SINGLE       y     1.371  0.0139     1.371  0.0139
+MJG         C22         S23      SINGLE       y     1.695  0.0200     1.695  0.0200
+MJG         S23         C24      SINGLE       y     1.695  0.0200     1.695  0.0200
+MJG         C24         N26      SINGLE       n     1.367  0.0190     1.367  0.0190
+MJG         C24         N25      DOUBLE       y     1.335  0.0145     1.335  0.0145
+MJG         N26         C27      SINGLE       n     1.360  0.0157     1.360  0.0157
+MJG         C27         O34      DOUBLE       n     1.221  0.0100     1.221  0.0100
+MJG         C27         C28      SINGLE       n     1.485  0.0100     1.485  0.0100
+MJG         C28         C33      SINGLE       y     1.386  0.0100     1.386  0.0100
+MJG         C28         C29      DOUBLE       y     1.386  0.0100     1.386  0.0100
+MJG         C29         C30      SINGLE       y     1.384  0.0100     1.384  0.0100
+MJG         C30         C31      DOUBLE       y     1.385  0.0100     1.385  0.0100
+MJG         C31         C32      SINGLE       y     1.385  0.0100     1.385  0.0100
+MJG         C31         C35      SINGLE       n     1.509  0.0100     1.509  0.0100
+MJG         C32         C33      DOUBLE       y     1.383  0.0100     1.383  0.0100
+MJG         C35         N36      SINGLE       n     1.454  0.0100     1.454  0.0100
+MJG         N36         C37      SINGLE       n     1.475  0.0100     1.475  0.0100
+MJG         C37         C38      SINGLE       n     1.557  0.0100     1.557  0.0100
+MJG         C37         C43      SINGLE       n     1.521  0.0100     1.521  0.0100
+MJG         C38         C40      SINGLE       n     1.530  0.0100     1.530  0.0100
+MJG         C38         C41      SINGLE       n     1.530  0.0100     1.530  0.0100
+MJG         C38         C39      SINGLE       n     1.530  0.0100     1.530  0.0100
+MJG          C3          H3      SINGLE       n     1.082  0.0130     0.945  0.0200
+MJG          C6          H6      SINGLE       n     1.082  0.0130     0.945  0.0164
+MJG          C8          H8      SINGLE       n     1.089  0.0100     0.971  0.0157
+MJG          C8         H8A      SINGLE       n     1.089  0.0100     0.971  0.0157
+MJG          C8         H8B      SINGLE       n     1.089  0.0100     0.971  0.0157
+MJG         C12         H12      SINGLE       n     1.089  0.0100     0.978  0.0161
+MJG         C12        H12A      SINGLE       n     1.089  0.0100     0.978  0.0161
+MJG         C13         H13      SINGLE       n     1.089  0.0100     0.978  0.0161
+MJG         C13        H13A      SINGLE       n     1.089  0.0100     0.978  0.0161
+MJG         C15         H15      SINGLE       n     1.089  0.0100     0.978  0.0161
+MJG         C15        H15A      SINGLE       n     1.089  0.0100     0.978  0.0161
+MJG         C16         H16      SINGLE       n     1.089  0.0100     0.978  0.0161
+MJG         C16        H16A      SINGLE       n     1.089  0.0100     0.978  0.0161
+MJG         C18         H18      SINGLE       n     1.089  0.0100     0.968  0.0151
+MJG         C18        H18A      SINGLE       n     1.089  0.0100     0.968  0.0151
+MJG         C18        H18B      SINGLE       n     1.089  0.0100     0.968  0.0151
+MJG         C21         H21      SINGLE       n     1.082  0.0130     0.942  0.0176
+MJG         N26        HN26      SINGLE       n     1.016  0.0100     0.873  0.0200
+MJG         C29         H29      SINGLE       n     1.082  0.0130     0.941  0.0168
+MJG         C30         H30      SINGLE       n     1.082  0.0130     0.943  0.0173
+MJG         C32         H32      SINGLE       n     1.082  0.0130     0.943  0.0173
+MJG         C33         H33      SINGLE       n     1.082  0.0130     0.941  0.0168
+MJG         C35         H35      SINGLE       n     1.089  0.0100     0.981  0.0172
+MJG         C35        H35A      SINGLE       n     1.089  0.0100     0.981  0.0172
+MJG         N36        HN36      SINGLE       n     1.036  0.0160     0.890  0.0200
+MJG         C37         H37      SINGLE       n     1.089  0.0100     0.992  0.0135
+MJG         C39         H39      SINGLE       n     1.089  0.0100     0.973  0.0146
+MJG         C39        H39A      SINGLE       n     1.089  0.0100     0.973  0.0146
+MJG         C39        H39B      SINGLE       n     1.089  0.0100     0.973  0.0146
+MJG         C40         H40      SINGLE       n     1.089  0.0100     0.973  0.0146
+MJG         C40        H40A      SINGLE       n     1.089  0.0100     0.973  0.0146
+MJG         C40        H40B      SINGLE       n     1.089  0.0100     0.973  0.0146
+MJG         C41         H41      SINGLE       n     1.089  0.0100     0.973  0.0146
+MJG         C41        H41A      SINGLE       n     1.089  0.0100     0.973  0.0146
+MJG         C41        H41B      SINGLE       n     1.089  0.0100     0.973  0.0146
+MJG         C42         H42      SINGLE       n     1.089  0.0100     0.971  0.0135
+MJG         C42        H42A      SINGLE       n     1.089  0.0100     0.971  0.0135
+MJG         C42        H42B      SINGLE       n     1.089  0.0100     0.971  0.0135
+MJG         C43         H43      SINGLE       n     1.089  0.0100     0.973  0.0146
+MJG         C43        H43A      SINGLE       n     1.089  0.0100     0.973  0.0146
+MJG         C43        H43B      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MJG          C2          C1          C6     120.415    1.50
+MJG          C2          C1          O7     116.532    2.15
+MJG          C6          C1          O7     123.053    1.50
+MJG          C1          C2          C3     118.800    1.50
+MJG          C1          C2          C9     121.749    2.27
+MJG          C3          C2          C9     119.451    1.95
+MJG          C2          C3          C4     120.663    1.50
+MJG          C2          C3          H3     119.603    1.50
+MJG          C4          C3          H3     119.735    1.50
+MJG          C3          C4         S20     119.713    2.83
+MJG          C3          C4          C5     120.575    1.50
+MJG         S20          C4          C5     119.713    2.83
+MJG          C4          C5         C42     121.353    1.50
+MJG          C4          C5          C6     118.520    1.50
+MJG         C42          C5          C6     120.127    1.50
+MJG          C1          C6          C5     121.027    1.50
+MJG          C1          C6          H6     119.573    1.50
+MJG          C5          C6          H6     119.400    1.50
+MJG          C1          O7          C8     118.009    1.50
+MJG          O7          C8          H8     109.428    1.50
+MJG          O7          C8         H8A     109.428    1.50
+MJG          O7          C8         H8B     109.428    1.50
+MJG          H8          C8         H8A     109.509    1.50
+MJG          H8          C8         H8B     109.509    1.50
+MJG         H8A          C8         H8B     109.509    1.50
+MJG          C2          C9         O11     119.583    1.50
+MJG          C2          C9         N10     118.728    1.50
+MJG         O11          C9         N10     121.688    1.50
+MJG          C9         N10         C12     122.375    3.00
+MJG          C9         N10         C16     122.375    3.00
+MJG         C12         N10         C16     112.431    1.50
+MJG         N10         C12         C13     109.884    1.50
+MJG         N10         C12         H12     109.637    1.50
+MJG         N10         C12        H12A     109.637    1.50
+MJG         C13         C12         H12     109.532    1.50
+MJG         C13         C12        H12A     109.532    1.50
+MJG         H12         C12        H12A     108.187    1.50
+MJG         C12         C13         N14     110.526    1.50
+MJG         C12         C13         H13     109.532    1.50
+MJG         C12         C13        H13A     109.532    1.50
+MJG         N14         C13         H13     109.471    1.50
+MJG         N14         C13        H13A     109.471    1.50
+MJG         H13         C13        H13A     108.187    1.50
+MJG         C13         N14         C17     123.517    2.72
+MJG         C13         N14         C15     112.966    1.50
+MJG         C17         N14         C15     123.517    2.72
+MJG         N14         C15         C16     110.526    1.50
+MJG         N14         C15         H15     109.471    1.50
+MJG         N14         C15        H15A     109.471    1.50
+MJG         C16         C15         H15     109.532    1.50
+MJG         C16         C15        H15A     109.532    1.50
+MJG         H15         C15        H15A     108.187    1.50
+MJG         N10         C16         C15     109.884    1.50
+MJG         N10         C16         H16     109.637    1.50
+MJG         N10         C16        H16A     109.637    1.50
+MJG         C15         C16         H16     109.532    1.50
+MJG         C15         C16        H16A     109.532    1.50
+MJG         H16         C16        H16A     108.187    1.50
+MJG         N14         C17         C18     118.222    1.50
+MJG         N14         C17         O19     120.940    1.50
+MJG         C18         C17         O19     120.838    1.50
+MJG         C17         C18         H18     109.694    1.50
+MJG         C17         C18        H18A     109.694    1.50
+MJG         C17         C18        H18B     109.694    1.50
+MJG         H18         C18        H18A     109.352    1.50
+MJG         H18         C18        H18B     109.352    1.50
+MJG        H18A         C18        H18B     109.352    1.50
+MJG          C4         S20         C22     120.000    3.00
+MJG         C22         C21         N25     109.174    2.56
+MJG         C22         C21         H21     126.390    1.51
+MJG         N25         C21         H21     124.436    1.50
+MJG         S20         C22         C21     129.222    2.21
+MJG         S20         C22         S23     122.339    3.00
+MJG         C21         C22         S23     108.439    3.00
+MJG         C22         S23         C24     108.439    3.00
+MJG         S23         C24         N26     122.781    3.00
+MJG         S23         C24         N25     108.439    3.00
+MJG         N26         C24         N25     128.781    3.00
+MJG         C21         N25         C24     105.510    1.50
+MJG         C24         N26         C27     124.630    2.96
+MJG         C24         N26        HN26     116.833    2.70
+MJG         C27         N26        HN26     118.536    1.72
+MJG         N26         C27         O34     122.627    1.50
+MJG         N26         C27         C28     116.259    1.50
+MJG         O34         C27         C28     121.114    1.50
+MJG         C27         C28         C33     120.545    2.14
+MJG         C27         C28         C29     120.545    2.14
+MJG         C33         C28         C29     118.909    1.50
+MJG         C28         C29         C30     120.479    1.50
+MJG         C28         C29         H29     119.857    1.50
+MJG         C30         C29         H29     119.663    1.50
+MJG         C29         C30         C31     120.849    1.50
+MJG         C29         C30         H30     119.590    1.50
+MJG         C31         C30         H30     119.562    1.50
+MJG         C30         C31         C32     118.435    1.50
+MJG         C30         C31         C35     120.782    1.50
+MJG         C32         C31         C35     120.782    1.50
+MJG         C31         C32         C33     120.849    1.50
+MJG         C31         C32         H32     119.562    1.50
+MJG         C33         C32         H32     119.590    1.50
+MJG         C28         C33         C32     120.479    1.50
+MJG         C28         C33         H33     119.857    1.50
+MJG         C32         C33         H33     119.663    1.50
+MJG         C31         C35         N36     114.140    1.94
+MJG         C31         C35         H35     109.073    1.50
+MJG         C31         C35        H35A     109.073    1.50
+MJG         N36         C35         H35     108.705    1.50
+MJG         N36         C35        H35A     108.705    1.50
+MJG         H35         C35        H35A     107.860    1.50
+MJG         C35         N36         C37     112.615    2.70
+MJG         C35         N36        HN36     110.633    2.02
+MJG         C37         N36        HN36     108.160    2.24
+MJG         N36         C37         C38     111.883    2.59
+MJG         N36         C37         C43     110.758    2.72
+MJG         N36         C37         H37     108.459    1.50
+MJG         C38         C37         C43     114.102    1.50
+MJG         C38         C37         H37     106.905    1.50
+MJG         C43         C37         H37     107.146    1.50
+MJG         C37         C38         C40     110.043    1.50
+MJG         C37         C38         C41     110.043    1.50
+MJG         C37         C38         C39     110.043    1.50
+MJG         C40         C38         C41     108.477    1.50
+MJG         C40         C38         C39     108.477    1.50
+MJG         C41         C38         C39     108.477    1.50
+MJG         C38         C39         H39     109.547    1.50
+MJG         C38         C39        H39A     109.547    1.50
+MJG         C38         C39        H39B     109.547    1.50
+MJG         H39         C39        H39A     109.377    1.50
+MJG         H39         C39        H39B     109.377    1.50
+MJG        H39A         C39        H39B     109.377    1.50
+MJG         C38         C40         H40     109.547    1.50
+MJG         C38         C40        H40A     109.547    1.50
+MJG         C38         C40        H40B     109.547    1.50
+MJG         H40         C40        H40A     109.377    1.50
+MJG         H40         C40        H40B     109.377    1.50
+MJG        H40A         C40        H40B     109.377    1.50
+MJG         C38         C41         H41     109.547    1.50
+MJG         C38         C41        H41A     109.547    1.50
+MJG         C38         C41        H41B     109.547    1.50
+MJG         H41         C41        H41A     109.377    1.50
+MJG         H41         C41        H41B     109.377    1.50
+MJG        H41A         C41        H41B     109.377    1.50
+MJG          C5         C42         H42     109.582    1.50
+MJG          C5         C42        H42A     109.582    1.50
+MJG          C5         C42        H42B     109.582    1.50
+MJG         H42         C42        H42A     109.348    1.50
+MJG         H42         C42        H42B     109.348    1.50
+MJG        H42A         C42        H42B     109.348    1.50
+MJG         C37         C43         H43     109.468    1.50
+MJG         C37         C43        H43A     109.468    1.50
+MJG         C37         C43        H43B     109.468    1.50
+MJG         H43         C43        H43A     109.386    1.50
+MJG         H43         C43        H43B     109.386    1.50
+MJG        H43A         C43        H43B     109.386    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MJG       const_sp2_sp2_4          O7          C1          C2          C9       0.000     5.0     2
+MJG              const_53          O7          C1          C6          C5     180.000    10.0     2
+MJG             sp2_sp2_1          C2          C1          O7          C8     180.000     5.0     2
+MJG             sp3_sp3_1         N10         C12         C13         N14     -60.000    10.0     3
+MJG            sp2_sp3_10         C17         N14         C13         C12     180.000    10.0     6
+MJG            sp2_sp3_16         C17         N14         C15         C16     180.000    10.0     6
+MJG            sp2_sp2_13         C18         C17         N14         C13     180.000     5.0     2
+MJG            sp3_sp3_10         N14         C15         C16         N10      60.000    10.0     3
+MJG            sp2_sp3_34         O19         C17         C18         H18     180.000    10.0     6
+MJG            sp2_sp2_17         C21         C22         S20          C4     180.000     5.0     2
+MJG       const_sp2_sp2_7          C9          C2          C3          C4     180.000     5.0     2
+MJG             sp2_sp2_4          C1          C2          C9         O11       0.000     5.0     2
+MJG              const_22         N25         C21         C22         S20     180.000    10.0     2
+MJG              const_55         C22         C21         N25         C24       0.000    10.0     2
+MJG              const_26         S20         C22         S23         C24     180.000    10.0     2
+MJG              const_28         N26         C24         S23         C22     180.000    10.0     2
+MJG              const_30         N26         C24         N25         C21     180.000    10.0     2
+MJG            sp2_sp2_19         S23         C24         N26         C27     180.000     5.0     2
+MJG            sp2_sp2_25         O34         C27         N26         C24       0.000     5.0     2
+MJG            sp2_sp2_27         N26         C27         C28         C33     180.000     5.0     2
+MJG              const_59         C27         C28         C29         C30     180.000    10.0     2
+MJG              const_33         C27         C28         C33         C32     180.000    10.0     2
+MJG              const_47         C28         C29         C30         C31       0.000    10.0     2
+MJG              const_44         C29         C30         C31         C35     180.000    10.0     2
+MJG              const_10          C2          C3          C4         S20     180.000    10.0     2
+MJG              const_41         C35         C31         C32         C33     180.000    10.0     2
+MJG            sp2_sp3_38         C30         C31         C35         N36     -90.000    10.0     6
+MJG              const_35         C31         C32         C33         C28       0.000    10.0     2
+MJG            sp3_sp3_23         C31         C35         N36         C37     180.000    10.0     3
+MJG            sp3_sp3_30         C38         C37         N36         C35     -60.000    10.0     3
+MJG            sp3_sp3_36         N36         C37         C38         C40     -60.000    10.0     3
+MJG            sp3_sp3_44         N36         C37         C43         H43     180.000    10.0     3
+MJG            sp3_sp3_71         C37         C38         C39         H39     180.000    10.0     3
+MJG            sp3_sp3_53         C37         C38         C40         H40     180.000    10.0     3
+MJG            sp3_sp3_65         C37         C38         C41         H41      60.000    10.0     3
+MJG             sp2_sp2_7          C3          C4         S20         C22     180.000     5.0     2
+MJG              const_16         S20          C4          C5         C42       0.000    10.0     2
+MJG            sp2_sp3_19          C4          C5         C42         H42     150.000    10.0     6
+MJG              const_19         C42          C5          C6          C1     180.000    10.0     2
+MJG            sp3_sp3_20          H8          C8          O7          C1     -60.000    10.0     3
+MJG            sp2_sp2_11         O11          C9         N10         C12       0.000     5.0     2
+MJG             sp2_sp3_4          C9         N10         C12         C13     180.000    10.0     6
+MJG            sp2_sp3_28          C9         N10         C16         C15     180.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MJG    chir_1    C37    N36    C38    C43    positive
+MJG    chir_2    C38    C37    C40    C41    both
+MJG    chir_3    N36    C37    C35    HN36    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MJG    plan-1          C1   0.020
+MJG    plan-1          C2   0.020
+MJG    plan-1          C3   0.020
+MJG    plan-1          C4   0.020
+MJG    plan-1         C42   0.020
+MJG    plan-1          C5   0.020
+MJG    plan-1          C6   0.020
+MJG    plan-1          C9   0.020
+MJG    plan-1          H3   0.020
+MJG    plan-1          H6   0.020
+MJG    plan-1          O7   0.020
+MJG    plan-1         S20   0.020
+MJG    plan-2         C21   0.020
+MJG    plan-2         C22   0.020
+MJG    plan-2         C24   0.020
+MJG    plan-2         H21   0.020
+MJG    plan-2         N25   0.020
+MJG    plan-2         N26   0.020
+MJG    plan-2         S20   0.020
+MJG    plan-2         S23   0.020
+MJG    plan-3         C27   0.020
+MJG    plan-3         C28   0.020
+MJG    plan-3         C29   0.020
+MJG    plan-3         C30   0.020
+MJG    plan-3         C31   0.020
+MJG    plan-3         C32   0.020
+MJG    plan-3         C33   0.020
+MJG    plan-3         C35   0.020
+MJG    plan-3         H29   0.020
+MJG    plan-3         H30   0.020
+MJG    plan-3         H32   0.020
+MJG    plan-3         H33   0.020
+MJG    plan-4          C2   0.020
+MJG    plan-4          C9   0.020
+MJG    plan-4         N10   0.020
+MJG    plan-4         O11   0.020
+MJG    plan-5         C13   0.020
+MJG    plan-5         C15   0.020
+MJG    plan-5         C17   0.020
+MJG    plan-5         N14   0.020
+MJG    plan-6         C17   0.020
+MJG    plan-6         C18   0.020
+MJG    plan-6         N14   0.020
+MJG    plan-6         O19   0.020
+MJG    plan-7         C24   0.020
+MJG    plan-7         C27   0.020
+MJG    plan-7        HN26   0.020
+MJG    plan-7         N26   0.020
+MJG    plan-8         C27   0.020
+MJG    plan-8         C28   0.020
+MJG    plan-8         N26   0.020
+MJG    plan-8         O34   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MJG           SMILES              ACDLabs 12.01                                                                                                                                              O=C(Nc3ncc(Sc2cc(C(=O)N1CCN(C(=O)C)CC1)c(OC)cc2C)s3)c4ccc(cc4)CNC(C)C(C)(C)C
+MJG SMILES_CANONICAL               CACTVS 3.370                                                                                                                                         COc1cc(C)c(Sc2sc(NC(=O)c3ccc(CN[C@@H](C)C(C)(C)C)cc3)nc2)cc1C(=O)N4CCN(CC4)C(C)=O
+MJG           SMILES               CACTVS 3.370                                                                                                                                           COc1cc(C)c(Sc2sc(NC(=O)c3ccc(CN[CH](C)C(C)(C)C)cc3)nc2)cc1C(=O)N4CCN(CC4)C(C)=O
+MJG SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                         Cc1cc(c(cc1Sc2cnc(s2)NC(=O)c3ccc(cc3)CN[C@@H](C)C(C)(C)C)C(=O)N4CCN(CC4)C(=O)C)OC
+MJG           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                              Cc1cc(c(cc1Sc2cnc(s2)NC(=O)c3ccc(cc3)CNC(C)C(C)(C)C)C(=O)N4CCN(CC4)C(=O)C)OC
+MJG            InChI                InChI  1.03 InChI=1S/C32H41N5O4S2/c1-20-16-26(41-7)25(30(40)37-14-12-36(13-15-37)22(3)38)17-27(20)42-28-19-34-31(43-28)35-29(39)24-10-8-23(9-11-24)18-33-21(2)32(4,5)6/h8-11,16-17,19,21,33H,12-15,18H2,1-7H3,(H,34,35,39)/t21-/m0/s1
+MJG         InChIKey                InChI  1.03                                                                                                                                                                                               ZHXNIYGJAOPMSO-NRFANRHFSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MJG acedrg               243         "dictionary generator"                  
+MJG acedrg_database      11          "data source"                           
+MJG rdkit                2017.03.2   "Chemoinformatics tool"
+MJG refmac5              5.8.0238    "optimization tool"                     

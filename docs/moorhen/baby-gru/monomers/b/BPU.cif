@@ -1,0 +1,199 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BPU     BPU      7-bromopyrrolo[1,2-a]quinoxalin-4(5H)-one     NON-POLYMER     22     15     .     
+#
+data_comp_BPU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BPU     OAA     O       O       0       8.074       -41.025     -14.084     
+BPU     BR      BR      BR      0       8.326       -42.922     -21.355     
+BPU     CAC     C       CR15    0       11.094      -44.113     -13.649     
+BPU     CAD     C       CR16    0       9.868       -44.075     -19.244     
+BPU     CAE     C       CR15    0       10.181      -43.091     -13.384     
+BPU     CAF     C       CR16    0       10.293      -44.232     -17.940     
+BPU     CAG     C       CR15    0       11.060      -44.378     -14.989     
+BPU     CAH     C       CR16    0       8.346       -42.317     -18.566     
+BPU     NAI     N       NR6     0       8.226       -41.664     -16.220     
+BPU     CAJ     C       CR6     0       8.893       -43.116     -19.551     
+BPU     CAK     C       CR6     0       8.605       -41.769     -14.906     
+BPU     CAL     C       CR66    0       8.765       -42.461     -17.236     
+BPU     CAM     C       CR56    0       9.594       -42.741     -14.583     
+BPU     CAN     C       CR66    0       9.749       -43.428     -16.919     
+BPU     NAO     N       NR5     0       10.149      -43.549     -15.576     
+BPU     HAC     H       H       0       11.640      -44.548     -13.012     
+BPU     HAD     H       H       0       10.232      -44.611     -19.918     
+BPU     HAE     H       H       0       9.999       -42.710     -12.542     
+BPU     HAF     H       H       0       10.947      -44.877     -17.740     
+BPU     HAG     H       H       0       11.580      -45.027     -15.434     
+BPU     HAH     H       H       0       7.692       -41.677     -18.787     
+BPU     HNAI    H       H       0       7.606       -41.058     -16.433     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BPU         OAA         CAK      DOUBLE       n     1.229  0.0100     1.229  0.0100
+BPU          BR         CAJ      SINGLE       n     1.901  0.0100     1.901  0.0100
+BPU         CAC         CAE      SINGLE       y     1.396  0.0100     1.396  0.0100
+BPU         CAC         CAG      DOUBLE       y     1.365  0.0100     1.365  0.0100
+BPU         CAD         CAF      SINGLE       y     1.375  0.0100     1.375  0.0100
+BPU         CAD         CAJ      DOUBLE       y     1.398  0.0101     1.398  0.0101
+BPU         CAE         CAM      DOUBLE       y     1.382  0.0143     1.382  0.0143
+BPU         CAF         CAN      DOUBLE       y     1.400  0.0118     1.400  0.0118
+BPU         CAG         NAO      SINGLE       y     1.363  0.0116     1.363  0.0116
+BPU         CAH         CAJ      SINGLE       y     1.378  0.0131     1.378  0.0131
+BPU         CAH         CAL      DOUBLE       y     1.400  0.0100     1.400  0.0100
+BPU         NAI         CAK      SINGLE       y     1.362  0.0132     1.362  0.0132
+BPU         NAI         CAL      SINGLE       y     1.397  0.0100     1.397  0.0100
+BPU         CAK         CAM      SINGLE       y     1.418  0.0116     1.418  0.0116
+BPU         CAL         CAN      SINGLE       y     1.407  0.0160     1.407  0.0160
+BPU         CAM         NAO      SINGLE       y     1.392  0.0100     1.392  0.0100
+BPU         CAN         NAO      SINGLE       y     1.401  0.0128     1.401  0.0128
+BPU         CAC         HAC      SINGLE       n     1.082  0.0130     0.945  0.0106
+BPU         CAD         HAD      SINGLE       n     1.082  0.0130     0.935  0.0100
+BPU         CAE         HAE      SINGLE       n     1.082  0.0130     0.942  0.0115
+BPU         CAF         HAF      SINGLE       n     1.082  0.0130     0.940  0.0101
+BPU         CAG         HAG      SINGLE       n     1.082  0.0130     0.943  0.0100
+BPU         CAH         HAH      SINGLE       n     1.082  0.0130     0.941  0.0186
+BPU         NAI        HNAI      SINGLE       n     1.016  0.0100     0.891  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BPU         CAE         CAC         CAG     107.891    1.50
+BPU         CAE         CAC         HAC     126.068    1.50
+BPU         CAG         CAC         HAC     126.041    1.50
+BPU         CAF         CAD         CAJ     119.523    1.50
+BPU         CAF         CAD         HAD     119.984    1.50
+BPU         CAJ         CAD         HAD     120.493    1.50
+BPU         CAC         CAE         CAM     107.532    1.50
+BPU         CAC         CAE         HAE     126.228    1.50
+BPU         CAM         CAE         HAE     126.240    1.50
+BPU         CAD         CAF         CAN     119.544    1.50
+BPU         CAD         CAF         HAF     120.003    1.50
+BPU         CAN         CAF         HAF     120.453    1.50
+BPU         CAC         CAG         NAO     108.265    1.50
+BPU         CAC         CAG         HAG     125.859    1.50
+BPU         NAO         CAG         HAG     125.876    1.50
+BPU         CAJ         CAH         CAL     120.493    1.50
+BPU         CAJ         CAH         HAH     119.815    1.50
+BPU         CAL         CAH         HAH     119.692    1.50
+BPU         CAK         NAI         CAL     122.766    1.50
+BPU         CAK         NAI        HNAI     118.172    2.15
+BPU         CAL         NAI        HNAI     119.062    1.72
+BPU          BR         CAJ         CAD     118.827    1.50
+BPU          BR         CAJ         CAH     119.755    1.50
+BPU         CAD         CAJ         CAH     121.418    1.50
+BPU         OAA         CAK         NAI     118.730    1.67
+BPU         OAA         CAK         CAM     124.654    1.50
+BPU         NAI         CAK         CAM     116.616    1.76
+BPU         CAH         CAL         NAI     120.348    1.50
+BPU         CAH         CAL         CAN     119.511    1.50
+BPU         NAI         CAL         CAN     120.141    1.50
+BPU         CAE         CAM         CAK     132.063    2.56
+BPU         CAE         CAM         NAO     108.064    1.50
+BPU         CAK         CAM         NAO     119.873    1.54
+BPU         CAF         CAN         CAL     119.511    1.50
+BPU         CAF         CAN         NAO     121.299    1.50
+BPU         CAL         CAN         NAO     119.190    1.50
+BPU         CAG         NAO         CAM     108.248    1.50
+BPU         CAG         NAO         CAN     130.338    1.50
+BPU         CAM         NAO         CAN     121.414    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BPU              const_44         OAA         CAK         CAM         CAE       0.000    10.0     2
+BPU              const_25         CAH         CAL         CAN         CAF       0.000    10.0     2
+BPU       const_sp2_sp2_9         CAE         CAM         NAO         CAG       0.000     5.0     2
+BPU              const_48         CAF         CAN         NAO         CAG       0.000    10.0     2
+BPU       const_sp2_sp2_1         CAG         CAC         CAE         CAM       0.000     5.0     2
+BPU              const_49         CAE         CAC         CAG         NAO       0.000    10.0     2
+BPU              const_17         CAJ         CAD         CAF         CAN       0.000    10.0     2
+BPU              const_54         CAF         CAD         CAJ          BR     180.000    10.0     2
+BPU       const_sp2_sp2_6         CAC         CAE         CAM         CAK     180.000     5.0     2
+BPU              const_21         CAD         CAF         CAN         CAL       0.000    10.0     2
+BPU              const_13         CAC         CAG         NAO         CAM       0.000    10.0     2
+BPU              const_30         CAJ         CAH         CAL         NAI     180.000    10.0     2
+BPU              const_34         CAL         CAH         CAJ          BR     180.000    10.0     2
+BPU              const_39         OAA         CAK         NAI         CAL     180.000    10.0     2
+BPU              const_59         CAH         CAL         NAI         CAK     180.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BPU    plan-1          BR   0.020
+BPU    plan-1         CAC   0.020
+BPU    plan-1         CAD   0.020
+BPU    plan-1         CAE   0.020
+BPU    plan-1         CAF   0.020
+BPU    plan-1         CAG   0.020
+BPU    plan-1         CAH   0.020
+BPU    plan-1         CAJ   0.020
+BPU    plan-1         CAK   0.020
+BPU    plan-1         CAL   0.020
+BPU    plan-1         CAM   0.020
+BPU    plan-1         CAN   0.020
+BPU    plan-1         HAC   0.020
+BPU    plan-1         HAD   0.020
+BPU    plan-1         HAE   0.020
+BPU    plan-1         HAF   0.020
+BPU    plan-1         HAG   0.020
+BPU    plan-1         HAH   0.020
+BPU    plan-1        HNAI   0.020
+BPU    plan-1         NAI   0.020
+BPU    plan-1         NAO   0.020
+BPU    plan-1         OAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BPU           SMILES              ACDLabs 12.01                                                   Brc1cc2c(cc1)n3c(C(=O)N2)ccc3
+BPU            InChI                InChI  1.03 InChI=1S/C11H7BrN2O/c12-7-3-4-9-8(6-7)13-11(15)10-2-1-5-14(9)10/h1-6H,(H,13,15)
+BPU         InChIKey                InChI  1.03                                                     RNCKOJOKKQPZIB-UHFFFAOYSA-N
+BPU SMILES_CANONICAL               CACTVS 3.370                                                       Brc1ccc2n3cccc3C(=O)Nc2c1
+BPU           SMILES               CACTVS 3.370                                                       Brc1ccc2n3cccc3C(=O)Nc2c1
+BPU SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                    c1cc2n(c1)-c3ccc(cc3NC2=O)Br
+BPU           SMILES "OpenEye OEToolkits" 1.7.6                                                    c1cc2n(c1)-c3ccc(cc3NC2=O)Br
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BPU acedrg               243         "dictionary generator"                  
+BPU acedrg_database      11          "data source"                           
+BPU rdkit                2017.03.2   "Chemoinformatics tool"
+BPU refmac5              5.8.0238    "optimization tool"                     

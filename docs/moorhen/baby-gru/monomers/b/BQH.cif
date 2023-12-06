@@ -1,0 +1,242 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BQH     BQH      (2~{S})-~{N}-(4-ethanoyl-1,3-thiazol-2-yl)piperazine-2-carboxamide     NON-POLYMER     31     17     .     
+#
+data_comp_BQH
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BQH     N       N       NT1     0       -32.631     42.643      13.496      
+BQH     CA      C       CH1     0       -31.168     42.614      13.757      
+BQH     C       C       C       0       -30.414     43.109      12.522      
+BQH     O       O       O       0       -30.976     43.187      11.436      
+BQH     CB      C       CH2     0       -30.719     41.213      14.199      
+BQH     CAA     C       CH3     0       -23.784     45.249      10.157      
+BQH     CAD     C       CR15    0       -26.669     44.194      9.852       
+BQH     CAE     C       CH2     0       -32.836     41.060      15.373      
+BQH     CAF     C       CH2     0       -33.462     42.222      14.639      
+BQH     CAM     C       C       0       -24.605     44.753      11.312      
+BQH     CAO     C       CR5     0       -26.011     44.363      11.067      
+BQH     CAP     C       CR5     0       -28.107     43.757      11.813      
+BQH     NAH     N       NRD5    0       -26.835     44.111      12.171      
+BQH     NAI     N       NT1     0       -31.870     40.355      14.520      
+BQH     NAK     N       NH1     0       -29.110     43.461      12.718      
+BQH     OAB     O       O       0       -24.124     44.666      12.436      
+BQH     SAL     S       S2      0       -28.244     43.746      10.142      
+BQH     H1      H       H       0       -32.869     43.471      13.259      
+BQH     H3      H       H       0       -30.978     43.243      14.504      
+BQH     H4      H       H       0       -30.146     41.293      14.990      
+BQH     H5      H       H       0       -30.195     40.794      13.484      
+BQH     H6      H       H       0       -24.362     45.597      9.463       
+BQH     H7      H       H       0       -23.255     44.521      9.800       
+BQH     H8      H       H       0       -23.194     45.955      10.462      
+BQH     H9      H       H       0       -26.324     44.306      8.983       
+BQH     H10     H       H       0       -33.540     40.433      15.656      
+BQH     H11     H       H       0       -32.380     41.389      16.181      
+BQH     H12     H       H       0       -34.356     41.962      14.313      
+BQH     H13     H       H       0       -33.573     42.981      15.258      
+BQH     H14     H       H       0       -31.585     39.623      14.932      
+BQH     H16     H       H       0       -28.849     43.513      13.555      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BQH         CAA         CAM      SINGLE       n     1.497  0.0156     1.497  0.0156
+BQH         CAD         CAO      DOUBLE       y     1.379  0.0196     1.379  0.0196
+BQH         CAD         SAL      SINGLE       y     1.695  0.0200     1.695  0.0200
+BQH         CAM         CAO      SINGLE       n     1.476  0.0100     1.476  0.0100
+BQH         CAM         OAB      DOUBLE       n     1.224  0.0152     1.224  0.0152
+BQH         CAO         NAH      SINGLE       y     1.390  0.0100     1.390  0.0100
+BQH         CAP         SAL      SINGLE       y     1.695  0.0200     1.695  0.0200
+BQH         CAP         NAH      DOUBLE       y     1.354  0.0165     1.354  0.0165
+BQH         CAP         NAK      SINGLE       n     1.367  0.0190     1.367  0.0190
+BQH           C           O      DOUBLE       n     1.224  0.0100     1.224  0.0100
+BQH           C         NAK      SINGLE       n     1.355  0.0135     1.355  0.0135
+BQH          CA           C      SINGLE       n     1.517  0.0168     1.517  0.0168
+BQH           N          CA      SINGLE       n     1.479  0.0140     1.479  0.0140
+BQH           N         CAF      SINGLE       n     1.470  0.0141     1.470  0.0141
+BQH          CA          CB      SINGLE       n     1.532  0.0100     1.532  0.0100
+BQH         CAE         CAF      SINGLE       n     1.508  0.0104     1.508  0.0104
+BQH          CB         NAI      SINGLE       n     1.467  0.0114     1.467  0.0114
+BQH         CAE         NAI      SINGLE       n     1.466  0.0134     1.466  0.0134
+BQH           N          H1      SINGLE       n     1.036  0.0160     0.892  0.0200
+BQH          CA          H3      SINGLE       n     1.089  0.0100     0.994  0.0120
+BQH          CB          H4      SINGLE       n     1.089  0.0100     0.980  0.0143
+BQH          CB          H5      SINGLE       n     1.089  0.0100     0.980  0.0143
+BQH         CAA          H6      SINGLE       n     1.089  0.0100     0.969  0.0198
+BQH         CAA          H7      SINGLE       n     1.089  0.0100     0.969  0.0198
+BQH         CAA          H8      SINGLE       n     1.089  0.0100     0.969  0.0198
+BQH         CAD          H9      SINGLE       n     1.082  0.0130     0.942  0.0200
+BQH         CAE         H10      SINGLE       n     1.089  0.0100     0.984  0.0121
+BQH         CAE         H11      SINGLE       n     1.089  0.0100     0.984  0.0121
+BQH         CAF         H12      SINGLE       n     1.089  0.0100     0.986  0.0200
+BQH         CAF         H13      SINGLE       n     1.089  0.0100     0.986  0.0200
+BQH         NAI         H14      SINGLE       n     1.036  0.0160     0.887  0.0200
+BQH         NAK         H16      SINGLE       n     1.016  0.0100     0.878  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BQH          CA           N         CAF     111.782    3.00
+BQH          CA           N          H1     108.770    3.00
+BQH         CAF           N          H1     109.383    3.00
+BQH           C          CA           N     108.833    1.76
+BQH           C          CA          CB     111.056    2.52
+BQH           C          CA          H3     107.955    1.50
+BQH           N          CA          CB     110.258    1.51
+BQH           N          CA          H3     108.275    1.50
+BQH          CB          CA          H3     107.949    1.50
+BQH           O           C         NAK     122.628    1.50
+BQH           O           C          CA     121.114    1.50
+BQH         NAK           C          CA     116.259    2.43
+BQH          CA          CB         NAI     110.258    1.51
+BQH          CA          CB          H4     109.284    1.50
+BQH          CA          CB          H5     109.284    1.50
+BQH         NAI          CB          H4     109.326    1.50
+BQH         NAI          CB          H5     109.326    1.50
+BQH          H4          CB          H5     108.200    1.50
+BQH         CAM         CAA          H6     109.525    1.50
+BQH         CAM         CAA          H7     109.525    1.50
+BQH         CAM         CAA          H8     109.525    1.50
+BQH          H6         CAA          H7     109.390    1.59
+BQH          H6         CAA          H8     109.390    1.59
+BQH          H7         CAA          H8     109.390    1.59
+BQH         CAO         CAD         SAL     108.532    3.00
+BQH         CAO         CAD          H9     128.300    1.50
+BQH         SAL         CAD          H9     123.168    3.00
+BQH         CAF         CAE         NAI     110.667    1.74
+BQH         CAF         CAE         H10     109.591    1.50
+BQH         CAF         CAE         H11     109.591    1.50
+BQH         NAI         CAE         H10     109.479    1.50
+BQH         NAI         CAE         H11     109.479    1.50
+BQH         H10         CAE         H11     108.060    1.50
+BQH           N         CAF         CAE     110.456    1.63
+BQH           N         CAF         H12     109.326    1.50
+BQH           N         CAF         H13     109.326    1.50
+BQH         CAE         CAF         H12     109.591    1.50
+BQH         CAE         CAF         H13     109.591    1.50
+BQH         H12         CAF         H13     108.060    1.50
+BQH         CAA         CAM         CAO     117.684    1.50
+BQH         CAA         CAM         OAB     121.736    1.50
+BQH         CAO         CAM         OAB     120.580    1.50
+BQH         CAD         CAO         CAM     129.705    3.00
+BQH         CAD         CAO         NAH     108.704    1.50
+BQH         CAM         CAO         NAH     121.591    3.00
+BQH         SAL         CAP         NAH     108.532    3.00
+BQH         SAL         CAP         NAK     122.734    3.00
+BQH         NAH         CAP         NAK     128.734    3.00
+BQH         CAO         NAH         CAP     105.700    1.59
+BQH          CB         NAI         CAE     110.415    1.50
+BQH          CB         NAI         H14     109.383    3.00
+BQH         CAE         NAI         H14     109.673    3.00
+BQH         CAP         NAK           C     124.962    2.96
+BQH         CAP         NAK         H16     117.165    2.70
+BQH           C         NAK         H16     117.873    2.44
+BQH         CAD         SAL         CAP     108.532    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BQH             sp3_sp3_3           C          CA           N         CAF     -60.000    10.0     3
+BQH            sp3_sp3_37         CAE         CAF           N          CA     180.000    10.0     3
+BQH       const_sp2_sp2_6         CAM         CAO         NAH         CAP     180.000     5.0     2
+BQH       const_sp2_sp2_8         NAK         CAP         NAH         CAO     180.000     5.0     2
+BQH             sp2_sp2_5         SAL         CAP         NAK           C     180.000     5.0     2
+BQH              const_10         NAK         CAP         SAL         CAD     180.000    10.0     2
+BQH             sp2_sp3_7           O           C          CA           N       0.000    10.0     6
+BQH            sp3_sp3_10           C          CA          CB         NAI     180.000    10.0     3
+BQH            sp2_sp2_11           O           C         NAK         CAP       0.000     5.0     2
+BQH            sp3_sp3_16          CA          CB         NAI         CAE      60.000    10.0     3
+BQH             sp2_sp3_4         OAB         CAM         CAA          H6     180.000    10.0     6
+BQH       const_sp2_sp2_2         SAL         CAD         CAO         CAM     180.000     5.0     2
+BQH              const_11         CAO         CAD         SAL         CAP       0.000    10.0     2
+BQH            sp3_sp3_22         CAF         CAE         NAI          CB     -60.000    10.0     3
+BQH            sp3_sp3_28         NAI         CAE         CAF           N      60.000    10.0     3
+BQH             sp2_sp2_1         CAA         CAM         CAO         CAD     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BQH    chir_1    CA    N    C    CB    positive
+BQH    chir_2    N    CA    CAF    H1    both
+BQH    chir_3    NAI    CB    CAE    H14    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BQH    plan-1         CAD   0.020
+BQH    plan-1         CAM   0.020
+BQH    plan-1         CAO   0.020
+BQH    plan-1         CAP   0.020
+BQH    plan-1          H9   0.020
+BQH    plan-1         NAH   0.020
+BQH    plan-1         NAK   0.020
+BQH    plan-1         SAL   0.020
+BQH    plan-2           C   0.020
+BQH    plan-2          CA   0.020
+BQH    plan-2         NAK   0.020
+BQH    plan-2           O   0.020
+BQH    plan-3         CAA   0.020
+BQH    plan-3         CAM   0.020
+BQH    plan-3         CAO   0.020
+BQH    plan-3         OAB   0.020
+BQH    plan-4           C   0.020
+BQH    plan-4         CAP   0.020
+BQH    plan-4         H16   0.020
+BQH    plan-4         NAK   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BQH            InChI                InChI  1.03 InChI=1S/C10H14N4O2S/c1-6(15)8-5-17-10(13-8)14-9(16)7-4-11-2-3-12-7/h5,7,11-12H,2-4H2,1H3,(H,13,14,16)/t7-/m0/s1
+BQH         InChIKey                InChI  1.03                                                                                      AESXBAWWRWZMPF-ZETCQYMHSA-N
+BQH SMILES_CANONICAL               CACTVS 3.385                                                                               CC(=O)c1csc(NC(=O)[C@@H]2CNCCN2)n1
+BQH           SMILES               CACTVS 3.385                                                                                 CC(=O)c1csc(NC(=O)[CH]2CNCCN2)n1
+BQH SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                               CC(=O)c1csc(n1)NC(=O)[C@@H]2CNCCN2
+BQH           SMILES "OpenEye OEToolkits" 2.0.6                                                                                    CC(=O)c1csc(n1)NC(=O)C2CNCCN2
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BQH acedrg               243         "dictionary generator"                  
+BQH acedrg_database      11          "data source"                           
+BQH rdkit                2017.03.2   "Chemoinformatics tool"
+BQH refmac5              5.8.0238    "optimization tool"                     

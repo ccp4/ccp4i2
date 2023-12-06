@@ -1,0 +1,352 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BVY     BVY      (3aS,4S,6aR)-4-(5-{1-[(3-fluorophenyl)methyl]-1H-1,2,3-triazol-4-yl}pentyl)tetrahydro-1H-thieno[3,4-d]imidazol-2(3H)-one     NON-POLYMER     51     27     .     
+#
+data_comp_BVY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BVY     C02     C       CR5     0       12.705      -49.036     22.095      
+BVY     C04     C       CH1     0       13.674      -47.971     23.919      
+BVY     C05     C       CH2     0       14.589      -48.676     24.920      
+BVY     C07     C       CH1     0       15.939      -48.201     22.912      
+BVY     C08     C       CH2     0       16.741      -48.513     21.661      
+BVY     C09     C       CH2     0       18.244      -48.678     21.878      
+BVY     C10     C       CH2     0       19.017      -48.953     20.609      
+BVY     C11     C       CH2     0       20.530      -49.071     20.769      
+BVY     C12     C       CH2     0       21.011      -50.203     21.677      
+BVY     C13     C       CR5     0       20.615      -51.568     21.211      
+BVY     C14     C       CR15    0       20.949      -52.249     20.077      
+BVY     C16     C       CH2     0       20.315      -54.552     19.223      
+BVY     C17     C       CR6     0       20.977      -55.779     19.803      
+BVY     C18     C       CR16    0       22.318      -55.752     20.160      
+BVY     C19     C       CR16    0       22.932      -56.877     20.695      
+BVY     C20     C       CR16    0       22.220      -58.046     20.881      
+BVY     C21     C       CR6     0       20.899      -58.053     20.523      
+BVY     C23     C       CR16    0       20.262      -56.954     19.991      
+BVY     C26     C       CH1     0       14.513      -47.681     22.640      
+BVY     F22     F       F       0       20.183      -59.194     20.700      
+BVY     N03     N       NR5     0       12.609      -48.803     23.423      
+BVY     N15     N       NR5     0       20.314      -53.427     20.166      
+BVY     N24     N       NRD5    0       19.606      -53.497     21.303      
+BVY     N25     N       NRD5    0       19.790      -52.360     21.942      
+BVY     N27     N       NR5     0       13.797      -48.399     21.618      
+BVY     O01     O       O       0       11.918      -49.723     21.424      
+BVY     S06     S       S2      0       15.721      -49.691     23.944      
+BVY     H1      H       H       0       13.317      -47.130     24.303      
+BVY     H2      H       H       0       15.085      -48.023     25.444      
+BVY     H3      H       H       0       14.066      -49.234     25.522      
+BVY     H4      H       H       0       16.430      -47.526     23.441      
+BVY     H5      H       H       0       16.593      -47.785     21.007      
+BVY     H6      H       H       0       16.384      -49.347     21.264      
+BVY     H7      H       H       0       18.391      -49.416     22.505      
+BVY     H8      H       H       0       18.595      -47.861     22.291      
+BVY     H9      H       H       0       18.834      -48.229     19.974      
+BVY     H10     H       H       0       18.679      -49.783     20.211      
+BVY     H11     H       H       0       20.869      -48.222     21.124      
+BVY     H12     H       H       0       20.925      -49.194     19.881      
+BVY     H13     H       H       0       20.654      -50.061     22.580      
+BVY     H14     H       H       0       21.991      -50.164     21.733      
+BVY     H15     H       H       0       21.509      -51.953     19.376      
+BVY     H16     H       H       0       19.393      -54.765     18.979      
+BVY     H17     H       H       0       20.788      -54.287     18.410      
+BVY     H18     H       H       0       22.818      -54.960     20.039      
+BVY     H19     H       H       0       23.847      -56.845     20.934      
+BVY     H20     H       H       0       22.630      -58.816     21.244      
+BVY     H21     H       H       0       19.332      -56.990     19.750      
+BVY     H22     H       H       0       14.527      -46.708     22.444      
+BVY     H23     H       H       0       11.968      -49.128     23.907      
+BVY     H24     H       H       0       14.020      -48.427     20.781      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BVY         C21         F22      SINGLE       n     1.359  0.0106     1.359  0.0106
+BVY         C21         C23      DOUBLE       y     1.374  0.0100     1.374  0.0100
+BVY         C17         C23      SINGLE       y     1.384  0.0100     1.384  0.0100
+BVY         C20         C21      SINGLE       y     1.364  0.0125     1.364  0.0125
+BVY         C16         C17      SINGLE       n     1.509  0.0100     1.509  0.0100
+BVY         C16         N15      SINGLE       n     1.467  0.0100     1.467  0.0100
+BVY         C17         C18      DOUBLE       y     1.384  0.0100     1.384  0.0100
+BVY         C19         C20      DOUBLE       y     1.375  0.0128     1.375  0.0128
+BVY         N15         N24      SINGLE       y     1.342  0.0100     1.342  0.0100
+BVY         C14         N15      SINGLE       y     1.342  0.0100     1.342  0.0100
+BVY         N24         N25      DOUBLE       y     1.317  0.0100     1.317  0.0100
+BVY         C13         C14      DOUBLE       y     1.365  0.0100     1.365  0.0100
+BVY         C18         C19      SINGLE       y     1.385  0.0100     1.385  0.0100
+BVY         C13         N25      SINGLE       y     1.357  0.0100     1.357  0.0100
+BVY         C10         C11      SINGLE       n     1.523  0.0120     1.523  0.0120
+BVY         C11         C12      SINGLE       n     1.526  0.0111     1.526  0.0111
+BVY         C12         C13      SINGLE       n     1.495  0.0100     1.495  0.0100
+BVY         C09         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+BVY         C08         C09      SINGLE       n     1.527  0.0100     1.527  0.0100
+BVY         C07         C08      SINGLE       n     1.516  0.0200     1.516  0.0200
+BVY         C07         C26      SINGLE       n     1.540  0.0100     1.540  0.0100
+BVY         C07         S06      SINGLE       n     1.828  0.0100     1.828  0.0100
+BVY         C26         N27      SINGLE       n     1.440  0.0100     1.440  0.0100
+BVY         C04         C26      SINGLE       n     1.546  0.0190     1.546  0.0190
+BVY         C02         N27      SINGLE       n     1.351  0.0100     1.351  0.0100
+BVY         C05         S06      SINGLE       n     1.809  0.0122     1.809  0.0122
+BVY         C04         C05      SINGLE       n     1.527  0.0106     1.527  0.0106
+BVY         C04         N03      SINGLE       n     1.440  0.0100     1.440  0.0100
+BVY         C02         N03      SINGLE       n     1.351  0.0100     1.351  0.0100
+BVY         C02         O01      DOUBLE       n     1.242  0.0100     1.242  0.0100
+BVY         C04          H1      SINGLE       n     1.089  0.0100     0.992  0.0104
+BVY         C05          H2      SINGLE       n     1.089  0.0100     0.973  0.0162
+BVY         C05          H3      SINGLE       n     1.089  0.0100     0.973  0.0162
+BVY         C07          H4      SINGLE       n     1.089  0.0100     0.988  0.0181
+BVY         C08          H5      SINGLE       n     1.089  0.0100     0.990  0.0100
+BVY         C08          H6      SINGLE       n     1.089  0.0100     0.990  0.0100
+BVY         C09          H7      SINGLE       n     1.089  0.0100     0.981  0.0160
+BVY         C09          H8      SINGLE       n     1.089  0.0100     0.981  0.0160
+BVY         C10          H9      SINGLE       n     1.089  0.0100     0.981  0.0163
+BVY         C10         H10      SINGLE       n     1.089  0.0100     0.981  0.0163
+BVY         C11         H11      SINGLE       n     1.089  0.0100     0.980  0.0160
+BVY         C11         H12      SINGLE       n     1.089  0.0100     0.980  0.0160
+BVY         C12         H13      SINGLE       n     1.089  0.0100     0.982  0.0147
+BVY         C12         H14      SINGLE       n     1.089  0.0100     0.982  0.0147
+BVY         C14         H15      SINGLE       n     1.082  0.0130     0.945  0.0191
+BVY         C16         H16      SINGLE       n     1.089  0.0100     0.978  0.0118
+BVY         C16         H17      SINGLE       n     1.089  0.0100     0.978  0.0118
+BVY         C18         H18      SINGLE       n     1.082  0.0130     0.944  0.0174
+BVY         C19         H19      SINGLE       n     1.082  0.0130     0.946  0.0200
+BVY         C20         H20      SINGLE       n     1.082  0.0130     0.945  0.0200
+BVY         C23         H21      SINGLE       n     1.082  0.0130     0.961  0.0200
+BVY         C26         H22      SINGLE       n     1.089  0.0100     0.992  0.0104
+BVY         N03         H23      SINGLE       n     1.016  0.0100     0.866  0.0173
+BVY         N27         H24      SINGLE       n     1.016  0.0100     0.866  0.0173
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BVY         N27         C02         N03     108.587    1.50
+BVY         N27         C02         O01     125.707    1.50
+BVY         N03         C02         O01     125.707    1.50
+BVY         C26         C04         C05     104.802    1.87
+BVY         C26         C04         N03     103.067    1.50
+BVY         C26         C04          H1     110.773    1.50
+BVY         C05         C04         N03     113.949    2.21
+BVY         C05         C04          H1     110.691    1.64
+BVY         N03         C04          H1     110.900    1.50
+BVY         S06         C05         C04     105.927    1.58
+BVY         S06         C05          H2     110.350    1.50
+BVY         S06         C05          H3     110.350    1.50
+BVY         C04         C05          H2     110.225    1.62
+BVY         C04         C05          H3     110.225    1.62
+BVY          H2         C05          H3     108.811    1.50
+BVY         C08         C07         C26     113.984    2.76
+BVY         C08         C07         S06     111.156    2.31
+BVY         C08         C07          H4     109.052    1.71
+BVY         C26         C07         S06     105.927    1.58
+BVY         C26         C07          H4     109.157    1.50
+BVY         S06         C07          H4     108.608    1.50
+BVY         C09         C08         C07     114.922    2.04
+BVY         C09         C08          H5     108.756    1.50
+BVY         C09         C08          H6     108.756    1.50
+BVY         C07         C08          H5     108.334    1.50
+BVY         C07         C08          H6     108.334    1.50
+BVY          H5         C08          H6     107.535    1.50
+BVY         C10         C09         C08     114.188    2.10
+BVY         C10         C09          H7     108.803    1.50
+BVY         C10         C09          H8     108.803    1.50
+BVY         C08         C09          H7     108.765    1.50
+BVY         C08         C09          H8     108.765    1.50
+BVY          H7         C09          H8     107.696    1.50
+BVY         C11         C10         C09     114.183    2.57
+BVY         C11         C10          H9     108.419    1.50
+BVY         C11         C10         H10     108.419    1.50
+BVY         C09         C10          H9     108.623    1.50
+BVY         C09         C10         H10     108.623    1.50
+BVY          H9         C10         H10     107.646    1.50
+BVY         C10         C11         C12     114.425    1.59
+BVY         C10         C11         H11     108.593    1.50
+BVY         C10         C11         H12     108.593    1.50
+BVY         C12         C11         H11     108.828    1.50
+BVY         C12         C11         H12     108.828    1.50
+BVY         H11         C11         H12     107.698    1.77
+BVY         C11         C12         C13     113.561    1.58
+BVY         C11         C12         H13     108.768    1.50
+BVY         C11         C12         H14     108.768    1.50
+BVY         C13         C12         H13     108.707    1.50
+BVY         C13         C12         H14     108.707    1.50
+BVY         H13         C12         H14     107.832    1.50
+BVY         C14         C13         N25     107.770    1.50
+BVY         C14         C13         C12     130.496    1.50
+BVY         N25         C13         C12     121.735    1.50
+BVY         N15         C14         C13     105.689    1.50
+BVY         N15         C14         H15     127.107    1.50
+BVY         C13         C14         H15     127.204    1.50
+BVY         C17         C16         N15     112.045    1.50
+BVY         C17         C16         H16     109.138    1.50
+BVY         C17         C16         H17     109.138    1.50
+BVY         N15         C16         H16     109.105    1.50
+BVY         N15         C16         H17     109.105    1.50
+BVY         H16         C16         H17     107.929    1.50
+BVY         C23         C17         C16     120.704    1.50
+BVY         C23         C17         C18     118.611    1.50
+BVY         C16         C17         C18     120.685    1.50
+BVY         C17         C18         C19     120.562    1.50
+BVY         C17         C18         H18     119.716    1.50
+BVY         C19         C18         H18     119.723    1.50
+BVY         C20         C19         C18     120.505    1.50
+BVY         C20         C19         H19     119.636    1.50
+BVY         C18         C19         H19     119.859    1.50
+BVY         C21         C20         C19     117.809    1.50
+BVY         C21         C20         H20     121.011    1.50
+BVY         C19         C20         H20     121.180    1.50
+BVY         F22         C21         C23     118.383    1.50
+BVY         F22         C21         C20     118.447    1.50
+BVY         C23         C21         C20     123.170    1.50
+BVY         C21         C23         C17     119.344    1.50
+BVY         C21         C23         H21     121.006    1.50
+BVY         C17         C23         H21     119.650    1.50
+BVY         C07         C26         N27     113.949    2.21
+BVY         C07         C26         C04     104.802    1.87
+BVY         C07         C26         H22     110.779    1.50
+BVY         N27         C26         C04     103.067    1.50
+BVY         N27         C26         H22     110.900    1.50
+BVY         C04         C26         H22     110.773    1.50
+BVY         C04         N03         C02     112.454    1.50
+BVY         C04         N03         H23     124.974    2.25
+BVY         C02         N03         H23     122.572    2.15
+BVY         C16         N15         N24     120.198    1.50
+BVY         C16         N15         C14     129.069    1.50
+BVY         N24         N15         C14     110.733    1.50
+BVY         N15         N24         N25     106.886    1.50
+BVY         N24         N25         C13     108.922    1.50
+BVY         C26         N27         C02     112.454    1.50
+BVY         C26         N27         H24     124.974    2.25
+BVY         C02         N27         H24     122.572    2.15
+BVY         C07         S06         C05      92.264    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BVY             sp2_sp2_7         O01         C02         N03         C04     180.000     5.0     2
+BVY             sp2_sp2_3         O01         C02         N27         C26     180.000     5.0     2
+BVY       const_sp2_sp2_6         C13         C14         N15         C16     180.000     5.0     2
+BVY            sp2_sp3_14         C23         C17         C16         N15     -90.000    10.0     6
+BVY            sp2_sp3_20         N24         N15         C16         C17     -90.000    10.0     6
+BVY              const_34         C16         C17         C18         C19     180.000    10.0     2
+BVY              const_14         C16         C17         C23         C21     180.000    10.0     2
+BVY              const_28         C17         C18         C19         C20       0.000    10.0     2
+BVY              const_24         C18         C19         C20         C21       0.000    10.0     2
+BVY              const_21         C19         C20         C21         F22     180.000    10.0     2
+BVY              const_18         F22         C21         C23         C17     180.000    10.0     2
+BVY             sp2_sp3_2         C02         N27         C26         C07     120.000    10.0     6
+BVY             sp3_sp3_1         C05         C04         C26         C07      60.000    10.0     3
+BVY            sp3_sp3_70         C26         C04         C05         S06     180.000    10.0     3
+BVY             sp2_sp3_7         C02         N03         C04         C26       0.000    10.0     6
+BVY              const_10         C16         N15         N24         N25     180.000    10.0     2
+BVY              const_11         N15         N24         N25         C13       0.000    10.0     2
+BVY            sp3_sp3_22         C04         C05         S06         C07     -60.000    10.0     3
+BVY            sp3_sp3_14         C08         C07         C26         N27     -60.000    10.0     3
+BVY            sp3_sp3_20         C08         C07         S06         C05     -60.000    10.0     3
+BVY            sp3_sp3_61         C26         C07         C08         C09     180.000    10.0     3
+BVY            sp3_sp3_52         C07         C08         C09         C10     180.000    10.0     3
+BVY            sp3_sp3_43         C08         C09         C10         C11     180.000    10.0     3
+BVY            sp3_sp3_25         C09         C10         C11         C12     180.000    10.0     3
+BVY            sp3_sp3_34         C10         C11         C12         C13     180.000    10.0     3
+BVY            sp2_sp3_26         C14         C13         C12         C11     -90.000    10.0     6
+BVY       const_sp2_sp2_3         C12         C13         C14         N15     180.000     5.0     2
+BVY              const_37         C12         C13         N25         N24     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BVY    chir_1    C04    N03    C05    C26    negative
+BVY    chir_2    C07    S06    C26    C08    positive
+BVY    chir_3    C26    N27    C07    C04    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BVY    plan-1         C12   0.020
+BVY    plan-1         C13   0.020
+BVY    plan-1         C14   0.020
+BVY    plan-1         C16   0.020
+BVY    plan-1         H15   0.020
+BVY    plan-1         N15   0.020
+BVY    plan-1         N24   0.020
+BVY    plan-1         N25   0.020
+BVY    plan-2         C16   0.020
+BVY    plan-2         C17   0.020
+BVY    plan-2         C18   0.020
+BVY    plan-2         C19   0.020
+BVY    plan-2         C20   0.020
+BVY    plan-2         C21   0.020
+BVY    plan-2         C23   0.020
+BVY    plan-2         F22   0.020
+BVY    plan-2         H18   0.020
+BVY    plan-2         H19   0.020
+BVY    plan-2         H20   0.020
+BVY    plan-2         H21   0.020
+BVY    plan-3         C02   0.020
+BVY    plan-3         N03   0.020
+BVY    plan-3         N27   0.020
+BVY    plan-3         O01   0.020
+BVY    plan-4         C02   0.020
+BVY    plan-4         C04   0.020
+BVY    plan-4         H23   0.020
+BVY    plan-4         N03   0.020
+BVY    plan-5         C02   0.020
+BVY    plan-5         C26   0.020
+BVY    plan-5         H24   0.020
+BVY    plan-5         N27   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BVY           SMILES              ACDLabs 12.01                                                                                                                                C2(NC1CSC(C1N2)CCCCCc4cn(Cc3cccc(c3)F)nn4)=O
+BVY            InChI                InChI  1.03 InChI=1S/C19H24FN5OS/c20-14-6-4-5-13(9-14)10-25-11-15(23-24-25)7-2-1-3-8-17-18-16(12-27-17)21-19(26)22-18/h4-6,9,11,16-18H,1-3,7-8,10,12H2,(H2,21,22,26)/t16-,17-,18-/m0/s1
+BVY         InChIKey                InChI  1.03                                                                                                                                                 RJRZSEAZACQQJO-BZSNNMDCSA-N
+BVY SMILES_CANONICAL               CACTVS 3.385                                                                                                                    Fc1cccc(Cn2cc(CCCCC[C@@H]3SC[C@@H]4NC(=O)N[C@H]34)nn2)c1
+BVY           SMILES               CACTVS 3.385                                                                                                                         Fc1cccc(Cn2cc(CCCCC[CH]3SC[CH]4NC(=O)N[CH]34)nn2)c1
+BVY SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                 c1cc(cc(c1)F)Cn2cc(nn2)CCCCC[C@H]3[C@@H]4[C@H](CS3)NC(=O)N4
+BVY           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                              c1cc(cc(c1)F)Cn2cc(nn2)CCCCCC3C4C(CS3)NC(=O)N4
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BVY acedrg               243         "dictionary generator"                  
+BVY acedrg_database      11          "data source"                           
+BVY rdkit                2017.03.2   "Chemoinformatics tool"
+BVY refmac5              5.8.0238    "optimization tool"                     

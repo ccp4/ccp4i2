@@ -1,0 +1,330 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EL8     EL8      (6~{R})-6-[[3,4-bis(oxidanylidene)-2-[[4-(trifluoromethyloxy)phenyl]amino]cyclobuten-1-yl]amino]-~{N}-oxidanyl-heptanamide     NON-POLYMER     49     29     .     
+#
+data_comp_EL8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EL8     C4      C       C       0       -26.398     -12.870     -0.163      
+EL8     C8      C       CH1     0       -27.506     -15.616     1.194       
+EL8     C9      C       CH2     0       -26.024     -15.930     1.406       
+EL8     O5      O       O       0       -26.154     -11.149     -1.983      
+EL8     C10     C       CH2     0       -25.418     -16.876     0.395       
+EL8     O6      O       O       0       -25.784     -12.637     0.873       
+EL8     C11     C       CH2     0       -23.965     -17.247     0.658       
+EL8     C12     C       CH2     0       -23.408     -18.220     -0.335      
+EL8     C13     C       C       0       -21.923     -18.453     -0.162      
+EL8     C1      C       C       0       -26.565     -12.186     -1.473      
+EL8     C2      C       C       0       -27.436     -13.283     -1.896      
+EL8     C3      C       C       0       -27.283     -13.941     -0.649      
+EL8     N7      N       NH1     0       -27.755     -15.070     -0.152      
+EL8     N14     N       NH1     0       -21.572     -19.648     0.266       
+EL8     O15     O       O       0       -21.105     -17.559     -0.410      
+EL8     O16     O       OH1     0       -20.234     -19.981     0.442       
+EL8     C17     C       CH3     0       -28.052     -14.695     2.272       
+EL8     N18     N       NH1     0       -28.116     -13.563     -3.002      
+EL8     C19     C       CR6     0       -28.286     -12.717     -4.111      
+EL8     C20     C       CR16    0       -28.697     -11.392     -3.959      
+EL8     C21     C       CR16    0       -28.857     -10.581     -5.072      
+EL8     C22     C       CR6     0       -28.628     -11.077     -6.352      
+EL8     C23     C       CR16    0       -28.213     -12.404     -6.503      
+EL8     C24     C       CR16    0       -28.052     -13.219     -5.392      
+EL8     O25     O       O2      0       -28.810     -10.155     -7.431      
+EL8     C26     C       CT      0       -28.894     -10.542     -8.713      
+EL8     F27     F       F       0       -29.256     -9.526      -9.470      
+EL8     F28     F       F       0       -29.780     -11.498     -8.917      
+EL8     F29     F       F       0       -27.735     -10.964     -9.183      
+EL8     H1      H       H       0       -28.008     -16.469     1.263       
+EL8     H2      H       H       0       -25.923     -16.326     2.298       
+EL8     H3      H       H       0       -25.518     -15.096     1.394       
+EL8     H4      H       H       0       -25.479     -16.466     -0.493      
+EL8     H5      H       H       0       -25.953     -17.698     0.379       
+EL8     H6      H       H       0       -23.894     -17.633     1.555       
+EL8     H7      H       H       0       -23.423     -16.430     0.640       
+EL8     H8      H       H       0       -23.573     -17.874     -1.238      
+EL8     H9      H       H       0       -23.892     -19.068     -0.250      
+EL8     H10     H       H       0       -28.270     -15.558     -0.660      
+EL8     H11     H       H       0       -22.173     -20.257     0.452       
+EL8     H12     H       H       0       -19.964     -19.625     1.185       
+EL8     H13     H       H       0       -28.030     -15.153     3.131       
+EL8     H14     H       H       0       -28.970     -14.454     2.060       
+EL8     H15     H       H       0       -27.512     -13.891     2.325       
+EL8     H16     H       H       0       -28.498     -14.346     -3.056      
+EL8     H17     H       H       0       -28.859     -11.043     -3.099      
+EL8     H18     H       H       0       -29.130     -9.686      -4.960      
+EL8     H19     H       H       0       -28.049     -12.761     -7.357      
+EL8     H20     H       H       0       -27.778     -14.113     -5.503      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EL8         C26         F27      SINGLE       n     1.318  0.0152     1.318  0.0152
+EL8         C26         F29      SINGLE       n     1.318  0.0152     1.318  0.0152
+EL8         O25         C26      SINGLE       n     1.327  0.0168     1.327  0.0168
+EL8         C26         F28      SINGLE       n     1.318  0.0152     1.318  0.0152
+EL8         C22         O25      SINGLE       n     1.421  0.0100     1.421  0.0100
+EL8         C22         C23      DOUBLE       y     1.386  0.0109     1.386  0.0109
+EL8         C23         C24      SINGLE       y     1.383  0.0100     1.383  0.0100
+EL8         C21         C22      SINGLE       y     1.386  0.0109     1.386  0.0109
+EL8         C19         C24      DOUBLE       y     1.393  0.0100     1.393  0.0100
+EL8         C20         C21      DOUBLE       y     1.383  0.0100     1.383  0.0100
+EL8         C19         C20      SINGLE       y     1.393  0.0100     1.393  0.0100
+EL8         N18         C19      SINGLE       n     1.403  0.0100     1.403  0.0100
+EL8          C2         N18      SINGLE       n     1.324  0.0148     1.324  0.0148
+EL8          C1          C2      SINGLE       y     1.465  0.0136     1.465  0.0136
+EL8          C2          C3      DOUBLE       y     1.416  0.0100     1.416  0.0100
+EL8          O5          C1      DOUBLE       n     1.227  0.0100     1.227  0.0100
+EL8          C4          C1      SINGLE       y     1.492  0.0160     1.492  0.0160
+EL8          C3          N7      SINGLE       n     1.317  0.0100     1.317  0.0100
+EL8          C4          C3      SINGLE       y     1.465  0.0136     1.465  0.0136
+EL8          C8          N7      SINGLE       n     1.468  0.0100     1.468  0.0100
+EL8          C4          O6      DOUBLE       n     1.227  0.0100     1.227  0.0100
+EL8         C12         C13      SINGLE       n     1.510  0.0100     1.510  0.0100
+EL8         C11         C12      SINGLE       n     1.497  0.0200     1.497  0.0200
+EL8         C10         C11      SINGLE       n     1.523  0.0117     1.523  0.0117
+EL8          C9         C10      SINGLE       n     1.509  0.0200     1.509  0.0200
+EL8          C8          C9      SINGLE       n     1.527  0.0100     1.527  0.0100
+EL8          C8         C17      SINGLE       n     1.518  0.0109     1.518  0.0109
+EL8         C13         O15      DOUBLE       n     1.236  0.0100     1.236  0.0100
+EL8         C13         N14      SINGLE       n     1.313  0.0100     1.313  0.0100
+EL8         N14         O16      SINGLE       n     1.389  0.0110     1.389  0.0110
+EL8          C8          H1      SINGLE       n     1.089  0.0100     0.992  0.0164
+EL8          C9          H2      SINGLE       n     1.089  0.0100     0.981  0.0160
+EL8          C9          H3      SINGLE       n     1.089  0.0100     0.981  0.0160
+EL8         C10          H4      SINGLE       n     1.089  0.0100     0.981  0.0163
+EL8         C10          H5      SINGLE       n     1.089  0.0100     0.981  0.0163
+EL8         C11          H6      SINGLE       n     1.089  0.0100     0.980  0.0160
+EL8         C11          H7      SINGLE       n     1.089  0.0100     0.980  0.0160
+EL8         C12          H8      SINGLE       n     1.089  0.0100     0.981  0.0185
+EL8         C12          H9      SINGLE       n     1.089  0.0100     0.981  0.0185
+EL8          N7         H10      SINGLE       n     1.016  0.0100     0.873  0.0200
+EL8         N14         H11      SINGLE       n     1.016  0.0100     0.875  0.0200
+EL8         O16         H12      SINGLE       n     0.970  0.0120     0.867  0.0200
+EL8         C17         H13      SINGLE       n     1.089  0.0100     0.973  0.0146
+EL8         C17         H14      SINGLE       n     1.089  0.0100     0.973  0.0146
+EL8         C17         H15      SINGLE       n     1.089  0.0100     0.973  0.0146
+EL8         N18         H16      SINGLE       n     1.016  0.0100     0.873  0.0200
+EL8         C20         H17      SINGLE       n     1.082  0.0130     0.942  0.0170
+EL8         C21         H18      SINGLE       n     1.082  0.0130     0.942  0.0151
+EL8         C23         H19      SINGLE       n     1.082  0.0130     0.942  0.0151
+EL8         C24         H20      SINGLE       n     1.082  0.0130     0.942  0.0170
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EL8          C1          C4          C3      88.783    1.50
+EL8          C1          C4          O6     136.076    1.50
+EL8          C3          C4          O6     135.141    1.50
+EL8          N7          C8          C9     109.328    1.50
+EL8          N7          C8         C17     109.812    1.50
+EL8          N7          C8          H1     107.862    1.50
+EL8          C9          C8         C17     110.927    1.50
+EL8          C9          C8          H1     108.261    1.50
+EL8         C17          C8          H1     107.403    1.50
+EL8         C10          C9          C8     114.477    2.22
+EL8         C10          C9          H2     108.650    1.50
+EL8         C10          C9          H3     108.650    1.50
+EL8          C8          C9          H2     108.329    1.50
+EL8          C8          C9          H3     108.329    1.50
+EL8          H2          C9          H3     107.844    1.50
+EL8         C11         C10          C9     115.138    2.03
+EL8         C11         C10          H4     108.698    1.50
+EL8         C11         C10          H5     108.698    1.50
+EL8          C9         C10          H4     108.601    1.50
+EL8          C9         C10          H5     108.601    1.50
+EL8          H4         C10          H5     107.646    1.50
+EL8         C12         C11         C10     113.472    1.51
+EL8         C12         C11          H6     108.795    1.50
+EL8         C12         C11          H7     108.795    1.50
+EL8         C10         C11          H6     108.698    1.50
+EL8         C10         C11          H7     108.698    1.50
+EL8          H6         C11          H7     107.646    1.50
+EL8         C13         C12         C11     112.984    1.82
+EL8         C13         C12          H8     109.247    1.50
+EL8         C13         C12          H9     109.247    1.50
+EL8         C11         C12          H8     108.897    1.50
+EL8         C11         C12          H9     108.897    1.50
+EL8          H8         C12          H9     107.846    1.50
+EL8         C12         C13         O15     121.816    1.50
+EL8         C12         C13         N14     114.903    1.50
+EL8         O15         C13         N14     123.281    1.50
+EL8          C2          C1          O5     135.353    1.50
+EL8          C2          C1          C4      88.909    1.50
+EL8          O5          C1          C4     135.738    1.50
+EL8         N18          C2          C1     134.423    3.00
+EL8         N18          C2          C3     134.423    3.00
+EL8          C1          C2          C3      91.154    1.50
+EL8          C2          C3          N7     135.248    1.50
+EL8          C2          C3          C4      91.154    1.50
+EL8          N7          C3          C4     133.597    1.61
+EL8          C3          N7          C8     122.945    1.57
+EL8          C3          N7         H10     119.982    3.00
+EL8          C8          N7         H10     117.073    3.00
+EL8         C13         N14         O16     120.736    1.50
+EL8         C13         N14         H11     120.460    1.50
+EL8         O16         N14         H11     118.803    2.59
+EL8         N14         O16         H12     108.051    2.18
+EL8          C8         C17         H13     109.592    1.50
+EL8          C8         C17         H14     109.592    1.50
+EL8          C8         C17         H15     109.592    1.50
+EL8         H13         C17         H14     109.386    1.50
+EL8         H13         C17         H15     109.386    1.50
+EL8         H14         C17         H15     109.386    1.50
+EL8         C19         N18          C2     124.498    3.00
+EL8         C19         N18         H16     116.644    2.16
+EL8          C2         N18         H16     118.858    3.00
+EL8         C24         C19         C20     120.222    2.01
+EL8         C24         C19         N18     119.889    2.92
+EL8         C20         C19         N18     119.889    2.92
+EL8         C21         C20         C19     119.984    1.50
+EL8         C21         C20         H17     119.949    1.50
+EL8         C19         C20         H17     120.068    1.50
+EL8         C22         C21         C20     119.976    1.50
+EL8         C22         C21         H18     120.081    1.50
+EL8         C20         C21         H18     119.943    1.50
+EL8         O25         C22         C23     120.071    1.84
+EL8         O25         C22         C21     120.071    1.84
+EL8         C23         C22         C21     119.859    1.50
+EL8         C22         C23         C24     119.976    1.50
+EL8         C22         C23         H19     120.081    1.50
+EL8         C24         C23         H19     119.943    1.50
+EL8         C23         C24         C19     119.984    1.50
+EL8         C23         C24         H20     119.949    1.50
+EL8         C19         C24         H20     120.068    1.50
+EL8         C26         O25         C22     117.389    1.50
+EL8         F27         C26         F29     107.218    1.66
+EL8         F27         C26         O25     111.622    2.31
+EL8         F27         C26         F28     107.218    1.66
+EL8         F29         C26         O25     111.622    2.31
+EL8         F29         C26         F28     107.218    1.66
+EL8         O25         C26         F28     111.622    2.31
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EL8              const_40          N7          C3          C4          O6       0.000    10.0     2
+EL8              const_24          O5          C1          C4          O6       0.000    10.0     2
+EL8              const_32         N18          C2          C3          N7       0.000    10.0     2
+EL8             sp2_sp2_7          C1          C2         N18         C19     180.000     5.0     2
+EL8            sp2_sp2_11          C2          C3          N7          C8     180.000     5.0     2
+EL8             sp2_sp2_3         C24         C19         N18          C2     180.000     5.0     2
+EL8              const_35         N18         C19         C20         C21     180.000    10.0     2
+EL8       const_sp2_sp2_3         N18         C19         C24         C23     180.000     5.0     2
+EL8              const_17         C19         C20         C21         C22       0.000    10.0     2
+EL8             sp2_sp3_1          C3          N7          C8          C9       0.000    10.0     6
+EL8            sp3_sp3_40         H13         C17          C8          N7     180.000    10.0     3
+EL8            sp3_sp3_31          N7          C8          C9         C10     180.000    10.0     3
+EL8              const_14         C20         C21         C22         O25     180.000    10.0     2
+EL8              const_11         O25         C22         C23         C24     180.000    10.0     2
+EL8             sp2_sp2_1         C23         C22         O25         C26     180.000     5.0     2
+EL8       const_sp2_sp2_5         C22         C23         C24         C19       0.000     5.0     2
+EL8             sp3_sp3_1         F27         C26         O25         C22     180.000    10.0     3
+EL8            sp3_sp3_22         C11         C10          C9          C8     180.000    10.0     3
+EL8            sp3_sp3_13          C9         C10         C11         C12     180.000    10.0     3
+EL8             sp3_sp3_4         C10         C11         C12         C13     180.000    10.0     3
+EL8             sp2_sp3_8         O15         C13         C12         C11     120.000    10.0     6
+EL8            sp2_sp2_15         C12         C13         N14         O16     180.000     5.0     2
+EL8              const_28          O5          C1          C2         N18       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EL8    chir_1    C8    N7    C9    C17    negative
+EL8    chir_2    C26    F27    F29    F28    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EL8    plan-1          C1   0.020
+EL8    plan-1          C2   0.020
+EL8    plan-1          C3   0.020
+EL8    plan-1          C4   0.020
+EL8    plan-1         N18   0.020
+EL8    plan-1          N7   0.020
+EL8    plan-1          O5   0.020
+EL8    plan-1          O6   0.020
+EL8    plan-2         C19   0.020
+EL8    plan-2         C20   0.020
+EL8    plan-2         C21   0.020
+EL8    plan-2         C22   0.020
+EL8    plan-2         C23   0.020
+EL8    plan-2         C24   0.020
+EL8    plan-2         H17   0.020
+EL8    plan-2         H18   0.020
+EL8    plan-2         H19   0.020
+EL8    plan-2         H20   0.020
+EL8    plan-2         N18   0.020
+EL8    plan-2         O25   0.020
+EL8    plan-3         C12   0.020
+EL8    plan-3         C13   0.020
+EL8    plan-3         N14   0.020
+EL8    plan-3         O15   0.020
+EL8    plan-4          C3   0.020
+EL8    plan-4          C8   0.020
+EL8    plan-4         H10   0.020
+EL8    plan-4          N7   0.020
+EL8    plan-5         C13   0.020
+EL8    plan-5         H11   0.020
+EL8    plan-5         N14   0.020
+EL8    plan-5         O16   0.020
+EL8    plan-6         C19   0.020
+EL8    plan-6          C2   0.020
+EL8    plan-6         H16   0.020
+EL8    plan-6         N18   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EL8            InChI                InChI  1.03 InChI=1S/C18H20F3N3O5/c1-10(4-2-3-5-13(25)24-28)22-14-15(17(27)16(14)26)23-11-6-8-12(9-7-11)29-18(19,20)21/h6-10,22-23,28H,2-5H2,1H3,(H,24,25)/t10-/m1/s1
+EL8         InChIKey                InChI  1.03                                                                                                                               WFKNHSZTAURQLQ-SNVBAGLBSA-N
+EL8 SMILES_CANONICAL               CACTVS 3.385                                                                                                   C[C@H](CCCCC(=O)NO)NC1=C(Nc2ccc(OC(F)(F)F)cc2)C(=O)C1=O
+EL8           SMILES               CACTVS 3.385                                                                                                    C[CH](CCCCC(=O)NO)NC1=C(Nc2ccc(OC(F)(F)F)cc2)C(=O)C1=O
+EL8 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                   C[C@H](CCCCC(=O)NO)NC1=C(C(=O)C1=O)Nc2ccc(cc2)OC(F)(F)F
+EL8           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                       CC(CCCCC(=O)NO)NC1=C(C(=O)C1=O)Nc2ccc(cc2)OC(F)(F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EL8 acedrg               243         "dictionary generator"                  
+EL8 acedrg_database      11          "data source"                           
+EL8 rdkit                2017.03.2   "Chemoinformatics tool"
+EL8 refmac5              5.8.0238    "optimization tool"                     

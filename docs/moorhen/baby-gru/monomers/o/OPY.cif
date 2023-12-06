@@ -1,0 +1,235 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OPY     OPY      (3S)-4-oxo-4-piperidin-1-ylbutane-1,3-diamine     NON-POLYMER     33     13     .     
+#
+data_comp_OPY
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OPY     C       C       C       0       -18.216     32.572      -17.693     
+OPY     N       N       NT3     1       -16.340     33.031      -19.271     
+OPY     O       O       O       0       -18.874     33.270      -18.476     
+OPY     CA      C       CH1     0       -16.716     32.425      -17.950     
+OPY     CB      C       CH2     0       -15.879     33.023      -16.805     
+OPY     NAA     N       NT2     0       -15.150     35.061      -15.570     
+OPY     CAD     C       CH2     0       -16.089     34.511      -16.552     
+OPY     CAE     C       CH2     0       -20.698     30.371      -15.213     
+OPY     CAF     C       CH2     0       -21.105     31.652      -15.923     
+OPY     CAG     C       CH2     0       -19.423     29.813      -15.826     
+OPY     CAI     C       CH2     0       -19.963     32.651      -15.935     
+OPY     CAJ     C       CH2     0       -18.320     30.857      -15.853     
+OPY     NAM     N       NR6     0       -18.764     32.069      -16.560     
+OPY     HN      H       H       0       -15.432     33.075      -19.341     
+OPY     HNA     H       H       0       -16.688     33.870      -19.337     
+OPY     H1      H       H       0       -16.667     32.516      -19.947     
+OPY     HA      H       H       0       -16.490     31.445      -18.003     
+OPY     HB      H       H       0       -14.931     32.873      -17.005     
+OPY     HBA     H       H       0       -16.080     32.535      -15.980     
+OPY     HNAA    H       H       0       -15.404     35.871      -15.310     
+OPY     HNAB    H       H       0       -15.117     34.550      -14.844     
+OPY     HAD     H       H       0       -17.000     34.660      -16.229     
+OPY     HADA    H       H       0       -15.984     34.999      -17.393     
+OPY     HAE     H       H       0       -20.553     30.554      -14.261     
+OPY     HAEA    H       H       0       -21.418     29.709      -15.289     
+OPY     HAF     H       H       0       -21.369     31.445      -16.847     
+OPY     HAFA    H       H       0       -21.880     32.047      -15.466     
+OPY     HAG     H       H       0       -19.607     29.510      -16.743     
+OPY     HAGA    H       H       0       -19.123     29.035      -15.304     
+OPY     HAI     H       H       0       -19.750     32.909      -15.011     
+OPY     HAIA    H       H       0       -20.242     33.461      -16.417     
+OPY     HAJ     H       H       0       -17.529     30.475      -16.289     
+OPY     HAJA    H       H       0       -18.073     31.093      -14.931     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OPY           C           O      DOUBLE       n     1.236  0.0100     1.236  0.0100
+OPY           C          CA      SINGLE       n     1.523  0.0118     1.523  0.0118
+OPY           C         NAM      SINGLE       n     1.346  0.0100     1.346  0.0100
+OPY           N          CA      SINGLE       n     1.499  0.0102     1.499  0.0102
+OPY          CA          CB      SINGLE       n     1.533  0.0147     1.533  0.0147
+OPY          CB         CAD      SINGLE       n     1.517  0.0197     1.517  0.0197
+OPY         NAA         CAD      SINGLE       n     1.466  0.0117     1.466  0.0117
+OPY         CAE         CAF      SINGLE       n     1.519  0.0104     1.519  0.0104
+OPY         CAE         CAG      SINGLE       n     1.519  0.0104     1.519  0.0104
+OPY         CAF         CAI      SINGLE       n     1.516  0.0108     1.516  0.0108
+OPY         CAG         CAJ      SINGLE       n     1.516  0.0108     1.516  0.0108
+OPY         CAI         NAM      SINGLE       n     1.465  0.0108     1.465  0.0108
+OPY         CAJ         NAM      SINGLE       n     1.465  0.0108     1.465  0.0108
+OPY           N          HN      SINGLE       n     1.036  0.0160     0.911  0.0200
+OPY           N         HNA      SINGLE       n     1.036  0.0160     0.911  0.0200
+OPY           N          H1      SINGLE       n     1.036  0.0160     0.911  0.0200
+OPY          CA          HA      SINGLE       n     1.089  0.0100     1.009  0.0200
+OPY          CB          HB      SINGLE       n     1.089  0.0100     0.980  0.0160
+OPY          CB         HBA      SINGLE       n     1.089  0.0100     0.980  0.0160
+OPY         NAA        HNAA      SINGLE       n     1.036  0.0160     0.888  0.0200
+OPY         NAA        HNAB      SINGLE       n     1.036  0.0160     0.888  0.0200
+OPY         CAD         HAD      SINGLE       n     1.089  0.0100     0.979  0.0106
+OPY         CAD        HADA      SINGLE       n     1.089  0.0100     0.979  0.0106
+OPY         CAE         HAE      SINGLE       n     1.089  0.0100     0.981  0.0121
+OPY         CAE        HAEA      SINGLE       n     1.089  0.0100     0.981  0.0121
+OPY         CAF         HAF      SINGLE       n     1.089  0.0100     0.983  0.0130
+OPY         CAF        HAFA      SINGLE       n     1.089  0.0100     0.983  0.0130
+OPY         CAG         HAG      SINGLE       n     1.089  0.0100     0.983  0.0130
+OPY         CAG        HAGA      SINGLE       n     1.089  0.0100     0.983  0.0130
+OPY         CAI         HAI      SINGLE       n     1.089  0.0100     0.983  0.0130
+OPY         CAI        HAIA      SINGLE       n     1.089  0.0100     0.983  0.0130
+OPY         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.983  0.0130
+OPY         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.983  0.0130
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OPY           O           C          CA     119.851    2.07
+OPY           O           C         NAM     121.484    1.50
+OPY          CA           C         NAM     118.665    1.50
+OPY          CA           N          HN     109.509    1.57
+OPY          CA           N         HNA     109.509    1.57
+OPY          CA           N          H1     109.509    1.57
+OPY          HN           N         HNA     109.028    2.41
+OPY          HN           N          H1     109.028    2.41
+OPY         HNA           N          H1     109.028    2.41
+OPY           C          CA           N     109.935    2.65
+OPY           C          CA          CB     110.354    3.00
+OPY           C          CA          HA     108.971    1.50
+OPY           N          CA          CB     112.810    3.00
+OPY           N          CA          HA     107.832    1.50
+OPY          CB          CA          HA     107.552    1.50
+OPY          CA          CB         CAD     114.483    1.50
+OPY          CA          CB          HB     108.677    1.50
+OPY          CA          CB         HBA     108.677    1.50
+OPY         CAD          CB          HB     108.805    1.50
+OPY         CAD          CB         HBA     108.805    1.50
+OPY          HB          CB         HBA     107.469    1.50
+OPY         CAD         NAA        HNAA     110.839    3.00
+OPY         CAD         NAA        HNAB     110.839    3.00
+OPY        HNAA         NAA        HNAB     107.243    3.00
+OPY          CB         CAD         NAA     113.282    2.68
+OPY          CB         CAD         HAD     109.099    1.50
+OPY          CB         CAD        HADA     109.099    1.50
+OPY         NAA         CAD         HAD     108.763    1.50
+OPY         NAA         CAD        HADA     108.763    1.50
+OPY         HAD         CAD        HADA     107.806    1.50
+OPY         CAF         CAE         CAG     110.168    1.50
+OPY         CAF         CAE         HAE     109.613    1.50
+OPY         CAF         CAE        HAEA     109.613    1.50
+OPY         CAG         CAE         HAE     109.613    1.50
+OPY         CAG         CAE        HAEA     109.613    1.50
+OPY         HAE         CAE        HAEA     108.036    1.50
+OPY         CAE         CAF         CAI     111.021    1.50
+OPY         CAE         CAF         HAF     109.453    1.50
+OPY         CAE         CAF        HAFA     109.453    1.50
+OPY         CAI         CAF         HAF     109.380    1.50
+OPY         CAI         CAF        HAFA     109.380    1.50
+OPY         HAF         CAF        HAFA     108.022    1.50
+OPY         CAE         CAG         CAJ     111.021    1.50
+OPY         CAE         CAG         HAG     109.453    1.50
+OPY         CAE         CAG        HAGA     109.453    1.50
+OPY         CAJ         CAG         HAG     109.380    1.50
+OPY         CAJ         CAG        HAGA     109.380    1.50
+OPY         HAG         CAG        HAGA     108.022    1.50
+OPY         CAF         CAI         NAM     110.568    1.50
+OPY         CAF         CAI         HAI     109.566    1.50
+OPY         CAF         CAI        HAIA     109.566    1.50
+OPY         NAM         CAI         HAI     109.413    1.50
+OPY         NAM         CAI        HAIA     109.413    1.50
+OPY         HAI         CAI        HAIA     108.159    1.50
+OPY         CAG         CAJ         NAM     110.568    1.50
+OPY         CAG         CAJ         HAJ     109.566    1.50
+OPY         CAG         CAJ        HAJA     109.566    1.50
+OPY         NAM         CAJ         HAJ     109.413    1.50
+OPY         NAM         CAJ        HAJA     109.413    1.50
+OPY         HAJ         CAJ        HAJA     108.159    1.50
+OPY           C         NAM         CAI     123.243    3.00
+OPY           C         NAM         CAJ     123.243    3.00
+OPY         CAI         NAM         CAJ     113.515    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OPY             sp2_sp2_3           O           C         NAM         CAI       0.000     5.0     2
+OPY            sp2_sp3_13           O           C          CA           N       0.000    10.0     6
+OPY             sp2_sp3_4           C         NAM         CAI         CAF     180.000    10.0     6
+OPY            sp2_sp3_10           C         NAM         CAJ         CAG     180.000    10.0     6
+OPY            sp3_sp3_28           C          CA           N          HN     180.000    10.0     3
+OPY            sp3_sp3_37           C          CA          CB         CAD     180.000    10.0     3
+OPY            sp3_sp3_46         NAA         CAD          CB          CA     180.000    10.0     3
+OPY            sp3_sp3_55          CB         CAD         NAA        HNAA     180.000    10.0     3
+OPY             sp3_sp3_1         CAG         CAE         CAF         CAI      60.000    10.0     3
+OPY            sp3_sp3_61         CAF         CAE         CAG         CAJ     180.000    10.0     3
+OPY            sp3_sp3_10         CAE         CAF         CAI         NAM     -60.000    10.0     3
+OPY            sp3_sp3_19         CAE         CAG         CAJ         NAM      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OPY    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OPY    plan-1           C   0.020
+OPY    plan-1          CA   0.020
+OPY    plan-1         NAM   0.020
+OPY    plan-1           O   0.020
+OPY    plan-2           C   0.020
+OPY    plan-2         CAI   0.020
+OPY    plan-2         CAJ   0.020
+OPY    plan-2         NAM   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OPY           SMILES              ACDLabs 12.01                                                          O=C(N1CCCCC1)C(N)CCN
+OPY SMILES_CANONICAL               CACTVS 3.370                                                      NCC[C@H](N)C(=O)N1CCCCC1
+OPY           SMILES               CACTVS 3.370                                                       NCC[CH](N)C(=O)N1CCCCC1
+OPY SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                    C1CCN(CC1)C(=O)[C@H](CCN)N
+OPY           SMILES "OpenEye OEToolkits" 1.7.0                                                        C1CCN(CC1)C(=O)C(CCN)N
+OPY            InChI                InChI  1.03 InChI=1S/C9H19N3O/c10-5-4-8(11)9(13)12-6-2-1-3-7-12/h8H,1-7,10-11H2/t8-/m0/s1
+OPY         InChIKey                InChI  1.03                                                   RKBKYSFKXFKBBM-QMMMGPOBSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OPY acedrg               243         "dictionary generator"                  
+OPY acedrg_database      11          "data source"                           
+OPY rdkit                2017.03.2   "Chemoinformatics tool"
+OPY refmac5              5.8.0238    "optimization tool"                     

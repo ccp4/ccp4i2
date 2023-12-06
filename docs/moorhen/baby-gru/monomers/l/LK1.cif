@@ -1,0 +1,324 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LK1     LK1      "N-[(6-BUTOXYNAPHTHALEN-2-YL)SULFONYL]-L-GLUTAMIC ACID"     NON-POLYMER     49     28     .     
+#
+data_comp_LK1
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LK1     O28     O       O       0       22.412      -2.983      18.299      
+LK1     S11     S       S3      0       22.253      -3.370      19.668      
+LK1     O27     O       O       0       21.911      -4.724      19.978      
+LK1     N       N       NT1     0       23.666      -3.066      20.398      
+LK1     CA      C       CH1     0       24.882      -3.781      19.987      
+LK1     C       C       C       0       25.019      -5.142      20.693      
+LK1     OXT     O       OC      -1      25.193      -6.145      19.972      
+LK1     O       O       O       0       24.946      -5.149      21.938      
+LK1     CB      C       CH2     0       26.142      -2.939      20.235      
+LK1     CG      C       CH2     0       27.369      -3.452      19.498      
+LK1     CD      C       C       0       28.569      -2.522      19.546      
+LK1     OE2     O       OC      -1      29.036      -2.105      18.467      
+LK1     OE1     O       O       0       29.035      -2.217      20.662      
+LK1     C12     C       CR6     0       21.016      -2.325      20.389      
+LK1     C17     C       CR16    0       21.114      -1.944      21.750      
+LK1     C16     C       CR16    0       20.146      -1.141      22.291      
+LK1     C15     C       CR66    0       19.044      -0.686      21.519      
+LK1     C21     C       CR16    0       18.032      0.148       22.066      
+LK1     C20     C       CR6     0       16.977      0.573       21.291      
+LK1     C19     C       CR16    0       16.895      0.176       19.929      
+LK1     C18     C       CR16    0       17.855      -0.623      19.387      
+LK1     C14     C       CR66    0       18.955      -1.079      20.154      
+LK1     C13     C       CR16    0       19.968      -1.910      19.616      
+LK1     O22     O       O2      0       16.054      1.371       21.915      
+LK1     C23     C       CH2     0       14.899      1.901       21.244      
+LK1     C24     C       CH2     0       13.842      0.828       21.165      
+LK1     C25     C       CH2     0       12.560      1.285       20.517      
+LK1     C26     C       CH3     0       11.525      0.190       20.403      
+LK1     H       H       H       0       23.750      -2.230      20.569      
+LK1     HA      H       H       0       24.826      -3.955      19.013      
+LK1     HBC1    H       H       0       26.329      -2.927      21.197      
+LK1     HBC2    H       H       0       25.966      -2.017      19.950      
+LK1     HGC1    H       H       0       27.135      -3.605      18.558      
+LK1     HGC2    H       H       0       27.635      -4.315      19.880      
+LK1     H17     H       H       0       21.836      -2.235      22.275      
+LK1     H16     H       H       0       20.211      -0.886      23.189      
+LK1     H21     H       H       0       18.086      0.412       22.968      
+LK1     H19     H       H       0       16.177      0.459       19.394      
+LK1     H18     H       H       0       17.786      -0.878      18.484      
+LK1     H13     H       H       0       19.917      -2.176      18.717      
+LK1     H231    H       H       0       15.135      2.216       20.348      
+LK1     H232    H       H       0       14.553      2.665       21.749      
+LK1     H241    H       H       0       13.640      0.515       22.071      
+LK1     H242    H       H       0       14.191      0.067       20.658      
+LK1     H251    H       H       0       12.762      1.627       19.619      
+LK1     H252    H       H       0       12.184      2.025       21.042      
+LK1     H261    H       H       0       10.734      0.535       19.952      
+LK1     H262    H       H       0       11.280      -0.121      21.291      
+LK1     H263    H       H       0       11.891      -0.552      19.890      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LK1         O28         S11      DOUBLE       n     1.431  0.0100     1.431  0.0100
+LK1         S11         O27      DOUBLE       n     1.431  0.0100     1.431  0.0100
+LK1         S11           N      SINGLE       n     1.617  0.0119     1.617  0.0119
+LK1         S11         C12      SINGLE       n     1.772  0.0100     1.772  0.0100
+LK1           N          CA      SINGLE       n     1.467  0.0100     1.467  0.0100
+LK1          CA           C      SINGLE       n     1.539  0.0100     1.539  0.0100
+LK1          CA          CB      SINGLE       n     1.533  0.0100     1.533  0.0100
+LK1           C         OXT      SINGLE       n     1.247  0.0187     1.247  0.0187
+LK1           C           O      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LK1          CB          CG      SINGLE       n     1.518  0.0153     1.518  0.0153
+LK1          CG          CD      SINGLE       n     1.519  0.0109     1.519  0.0109
+LK1          CD         OE2      SINGLE       n     1.247  0.0187     1.247  0.0187
+LK1          CD         OE1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+LK1         C12         C17      DOUBLE       y     1.413  0.0100     1.413  0.0100
+LK1         C12         C13      SINGLE       y     1.365  0.0100     1.365  0.0100
+LK1         C17         C16      SINGLE       y     1.363  0.0100     1.363  0.0100
+LK1         C16         C15      DOUBLE       y     1.415  0.0105     1.415  0.0105
+LK1         C15         C21      SINGLE       y     1.417  0.0100     1.417  0.0100
+LK1         C15         C14      SINGLE       y     1.418  0.0105     1.418  0.0105
+LK1         C21         C20      DOUBLE       y     1.370  0.0100     1.370  0.0100
+LK1         C20         C19      SINGLE       y     1.410  0.0112     1.410  0.0112
+LK1         C20         O22      SINGLE       n     1.362  0.0100     1.362  0.0100
+LK1         C19         C18      DOUBLE       y     1.359  0.0100     1.359  0.0100
+LK1         C18         C14      SINGLE       y     1.415  0.0105     1.415  0.0105
+LK1         C14         C13      DOUBLE       y     1.415  0.0105     1.415  0.0105
+LK1         O22         C23      SINGLE       n     1.432  0.0101     1.432  0.0101
+LK1         C23         C24      SINGLE       n     1.506  0.0128     1.506  0.0128
+LK1         C24         C25      SINGLE       n     1.508  0.0200     1.508  0.0200
+LK1         C25         C26      SINGLE       n     1.510  0.0200     1.510  0.0200
+LK1           N           H      SINGLE       n     1.036  0.0160     0.857  0.0200
+LK1          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0200
+LK1          CB        HBC1      SINGLE       n     1.089  0.0100     0.980  0.0178
+LK1          CB        HBC2      SINGLE       n     1.089  0.0100     0.980  0.0178
+LK1          CG        HGC1      SINGLE       n     1.089  0.0100     0.981  0.0185
+LK1          CG        HGC2      SINGLE       n     1.089  0.0100     0.981  0.0185
+LK1         C17         H17      SINGLE       n     1.082  0.0130     0.939  0.0104
+LK1         C16         H16      SINGLE       n     1.082  0.0130     0.935  0.0116
+LK1         C21         H21      SINGLE       n     1.082  0.0130     0.942  0.0157
+LK1         C19         H19      SINGLE       n     1.082  0.0130     0.941  0.0131
+LK1         C18         H18      SINGLE       n     1.082  0.0130     0.941  0.0145
+LK1         C13         H13      SINGLE       n     1.082  0.0130     0.939  0.0112
+LK1         C23        H231      SINGLE       n     1.089  0.0100     0.979  0.0131
+LK1         C23        H232      SINGLE       n     1.089  0.0100     0.979  0.0131
+LK1         C24        H241      SINGLE       n     1.089  0.0100     0.980  0.0166
+LK1         C24        H242      SINGLE       n     1.089  0.0100     0.980  0.0166
+LK1         C25        H251      SINGLE       n     1.089  0.0100     0.982  0.0155
+LK1         C25        H252      SINGLE       n     1.089  0.0100     0.982  0.0155
+LK1         C26        H261      SINGLE       n     1.089  0.0100     0.973  0.0157
+LK1         C26        H262      SINGLE       n     1.089  0.0100     0.973  0.0157
+LK1         C26        H263      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LK1         O28         S11         O27     119.599    1.50
+LK1         O28         S11           N     106.820    1.50
+LK1         O28         S11         C12     108.022    1.50
+LK1         O27         S11           N     106.820    1.50
+LK1         O27         S11         C12     108.022    1.50
+LK1           N         S11         C12     107.637    1.50
+LK1         S11           N          CA     120.490    1.71
+LK1         S11           N           H     111.495    3.00
+LK1          CA           N           H     114.792    3.00
+LK1           N          CA           C     113.481    2.07
+LK1           N          CA          CB     109.731    2.61
+LK1           N          CA          HA     108.676    1.50
+LK1           C          CA          CB     110.328    1.98
+LK1           C          CA          HA     108.169    1.50
+LK1          CB          CA          HA     108.223    1.50
+LK1          CA           C         OXT     117.226    1.56
+LK1          CA           C           O     117.226    1.56
+LK1         OXT           C           O     125.548    1.50
+LK1          CA          CB          CG     113.079    1.50
+LK1          CA          CB        HBC1     108.562    1.50
+LK1          CA          CB        HBC2     108.562    1.50
+LK1          CG          CB        HBC1     108.890    1.50
+LK1          CG          CB        HBC2     108.890    1.50
+LK1        HBC1          CB        HBC2     107.844    1.50
+LK1          CB          CG          CD     114.629    2.24
+LK1          CB          CG        HGC1     108.906    1.50
+LK1          CB          CG        HGC2     108.906    1.50
+LK1          CD          CG        HGC1     108.404    1.50
+LK1          CD          CG        HGC2     108.404    1.50
+LK1        HGC1          CG        HGC2     107.521    1.50
+LK1          CG          CD         OE2     118.214    1.64
+LK1          CG          CD         OE1     118.214    1.64
+LK1         OE2          CD         OE1     123.571    1.50
+LK1         S11         C12         C17     119.508    1.50
+LK1         S11         C12         C13     119.001    1.50
+LK1         C17         C12         C13     121.491    1.50
+LK1         C12         C17         C16     119.016    1.50
+LK1         C12         C17         H17     120.530    1.50
+LK1         C16         C17         H17     120.453    1.50
+LK1         C17         C16         C15     120.820    1.50
+LK1         C17         C16         H16     119.677    1.50
+LK1         C15         C16         H16     119.503    1.50
+LK1         C16         C15         C21     122.044    1.50
+LK1         C16         C15         C14     118.770    1.50
+LK1         C21         C15         C14     119.186    1.50
+LK1         C15         C21         C20     119.876    1.50
+LK1         C15         C21         H21     119.895    1.50
+LK1         C20         C21         H21     120.229    1.50
+LK1         C21         C20         C19     120.644    1.50
+LK1         C21         C20         O22     124.069    2.80
+LK1         C19         C20         O22     115.287    3.00
+LK1         C20         C19         C18     120.072    1.50
+LK1         C20         C19         H19     119.843    1.50
+LK1         C18         C19         H19     120.085    1.50
+LK1         C19         C18         C14     121.415    1.50
+LK1         C19         C18         H18     119.263    1.50
+LK1         C14         C18         H18     119.322    1.50
+LK1         C15         C14         C18     118.806    1.50
+LK1         C15         C14         C13     118.734    1.50
+LK1         C18         C14         C13     122.460    1.50
+LK1         C12         C13         C14     121.169    1.50
+LK1         C12         C13         H13     119.562    1.50
+LK1         C14         C13         H13     119.269    1.50
+LK1         C20         O22         C23     118.160    1.50
+LK1         O22         C23         C24     107.985    2.03
+LK1         O22         C23        H231     109.943    1.50
+LK1         O22         C23        H232     109.943    1.50
+LK1         C24         C23        H231     110.162    1.50
+LK1         C24         C23        H232     110.162    1.50
+LK1        H231         C23        H232     108.474    1.50
+LK1         C23         C24         C25     113.629    3.00
+LK1         C23         C24        H241     108.916    1.50
+LK1         C23         C24        H242     108.916    1.50
+LK1         C25         C24        H241     108.683    1.93
+LK1         C25         C24        H242     108.683    1.93
+LK1        H241         C24        H242     107.788    1.50
+LK1         C24         C25         C26     113.306    3.00
+LK1         C24         C25        H251     108.835    1.50
+LK1         C24         C25        H252     108.835    1.50
+LK1         C26         C25        H251     108.918    1.50
+LK1         C26         C25        H252     108.918    1.50
+LK1        H251         C25        H252     107.763    1.50
+LK1         C25         C26        H261     109.554    1.50
+LK1         C25         C26        H262     109.554    1.50
+LK1         C25         C26        H263     109.554    1.50
+LK1        H261         C26        H262     109.380    1.50
+LK1        H261         C26        H263     109.380    1.50
+LK1        H262         C26        H263     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LK1       const_sp2_sp2_3         S11         C12         C17         C16     180.000     5.0     2
+LK1              const_43         S11         C12         C13         C14     180.000    10.0     2
+LK1       const_sp2_sp2_5         C15         C16         C17         C12       0.000     5.0     2
+LK1              const_11         C21         C15         C16         C17     180.000    10.0     2
+LK1              const_23         C16         C15         C21         C20     180.000    10.0     2
+LK1              const_14         C18         C14         C15         C16     180.000    10.0     2
+LK1              const_27         O22         C20         C21         C15     180.000    10.0     2
+LK1              const_30         C18         C19         C20         O22     180.000    10.0     2
+LK1             sp2_sp2_1         C21         C20         O22         C23     180.000     5.0     2
+LK1              const_33         C14         C18         C19         C20       0.000    10.0     2
+LK1             sp2_sp3_1         C17         C12         S11         O28     150.000    10.0     6
+LK1             sp3_sp3_5          CA           N         S11         O28     180.000    10.0     3
+LK1              const_37         C15         C14         C18         C19       0.000    10.0     2
+LK1              const_17         C12         C13         C14         C15       0.000    10.0     2
+LK1            sp3_sp3_31         C24         C23         O22         C20     180.000    10.0     3
+LK1            sp3_sp3_34         O22         C23         C24         C25     180.000    10.0     3
+LK1            sp3_sp3_43         C23         C24         C25         C26     180.000    10.0     3
+LK1            sp3_sp3_52         C24         C25         C26        H261     180.000    10.0     3
+LK1             sp3_sp3_7           C          CA           N         S11     180.000    10.0     3
+LK1             sp2_sp3_7         OXT           C          CA           N       0.000    10.0     6
+LK1            sp3_sp3_13           N          CA          CB          CG     180.000    10.0     3
+LK1            sp3_sp3_22          CA          CB          CG          CD     180.000    10.0     3
+LK1            sp2_sp3_14         OE2          CD          CG          CB     120.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LK1    chir_1    S11    O28    O27    N    both
+LK1    chir_2    CA    N    C    CB    positive
+LK1    chir_3    N    S11    CA    H    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LK1    plan-1         C12   0.020
+LK1    plan-1         C13   0.020
+LK1    plan-1         C14   0.020
+LK1    plan-1         C15   0.020
+LK1    plan-1         C16   0.020
+LK1    plan-1         C17   0.020
+LK1    plan-1         C18   0.020
+LK1    plan-1         C19   0.020
+LK1    plan-1         C20   0.020
+LK1    plan-1         C21   0.020
+LK1    plan-1         H13   0.020
+LK1    plan-1         H16   0.020
+LK1    plan-1         H17   0.020
+LK1    plan-1         H18   0.020
+LK1    plan-1         H19   0.020
+LK1    plan-1         H21   0.020
+LK1    plan-1         O22   0.020
+LK1    plan-1         S11   0.020
+LK1    plan-2           C   0.020
+LK1    plan-2          CA   0.020
+LK1    plan-2           O   0.020
+LK1    plan-2         OXT   0.020
+LK1    plan-3          CD   0.020
+LK1    plan-3          CG   0.020
+LK1    plan-3         OE1   0.020
+LK1    plan-3         OE2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LK1           SMILES              ACDLabs 10.04                                                                                                                   O=C(O)C(NS(=O)(=O)c1ccc2c(c1)ccc(OCCCC)c2)CCC(=O)O
+LK1 SMILES_CANONICAL               CACTVS 3.341                                                                                                              CCCCOc1ccc2cc(ccc2c1)[S](=O)(=O)N[C@@H](CCC(O)=O)C(O)=O
+LK1           SMILES               CACTVS 3.341                                                                                                                CCCCOc1ccc2cc(ccc2c1)[S](=O)(=O)N[CH](CCC(O)=O)C(O)=O
+LK1 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                CCCCOc1ccc2cc(ccc2c1)S(=O)(=O)N[C@@H](CCC(=O)O)C(=O)O
+LK1           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                     CCCCOc1ccc2cc(ccc2c1)S(=O)(=O)NC(CCC(=O)O)C(=O)O
+LK1            InChI                InChI  1.03 InChI=1S/C19H23NO7S/c1-2-3-10-27-15-6-4-14-12-16(7-5-13(14)11-15)28(25,26)20-17(19(23)24)8-9-18(21)22/h4-7,11-12,17,20H,2-3,8-10H2,1H3,(H,21,22)(H,23,24)/t17-/m0/s1
+LK1         InChIKey                InChI  1.03                                                                                                                                          UAGYXJBYAFGRFR-KRWDZBQOSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LK1 acedrg               243         "dictionary generator"                  
+LK1 acedrg_database      11          "data source"                           
+LK1 rdkit                2017.03.2   "Chemoinformatics tool"
+LK1 refmac5              5.8.0238    "optimization tool"                     

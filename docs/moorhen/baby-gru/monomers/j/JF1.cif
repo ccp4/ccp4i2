@@ -1,0 +1,280 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JF1     JF1      (1S,5S,8S,9aR)-1,9a-dimethyl-8-(prop-1-en-2-yl)octahydro-2H-quinolizinium     NON-POLYMER     41     15     .     
+#
+data_comp_JF1
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JF1     CAJ     C       CH2     0       48.259      -38.270     -24.394     
+JF1     CAO     C       CT      0       47.598      -39.499     -25.057     
+JF1     CAD     C       CH3     0       48.688      -40.571     -25.304     
+JF1     CAM     C       CH1     0       46.907      -39.069     -26.401     
+JF1     CAC     C       CH3     0       47.837      -38.515     -27.487     
+JF1     CAF     C       CH2     0       46.026      -40.189     -26.976     
+JF1     CAE     C       CH2     0       45.026      -40.752     -25.979     
+JF1     CAH     C       CH2     0       45.688      -41.144     -24.676     
+JF1     NAN     N       NT1     1       46.457      -39.986     -24.105     
+JF1     CAI     C       CH2     0       46.924      -40.280     -22.706     
+JF1     CAG     C       CH2     0       47.562      -39.049     -22.083     
+JF1     CAL     C       CH1     0       48.718      -38.523     -22.948     
+JF1     CAK     C       C       0       49.416      -37.317     -22.333     
+JF1     CAB     C       C2      0       50.713      -37.328     -21.993     
+JF1     CAA     C       CH3     0       48.581      -36.096     -22.118     
+JF1     H1      H       H       0       49.031      -37.992     -24.929     
+JF1     H2      H       H       0       47.615      -37.533     -24.398     
+JF1     H3      H       H       0       48.565      -41.338     -24.684     
+JF1     H4      H       H       0       49.593      -40.186     -25.157     
+JF1     H5      H       H       0       48.638      -40.912     -26.236     
+JF1     H6      H       H       0       46.292      -38.339     -26.158     
+JF1     H7      H       H       0       48.320      -37.746     -27.148     
+JF1     H8      H       H       0       47.308      -38.243     -28.255     
+JF1     H9      H       H       0       48.469      -39.196     -27.763     
+JF1     H10     H       H       0       46.601      -40.914     -27.296     
+JF1     H11     H       H       0       45.538      -39.836     -27.749     
+JF1     H12     H       H       0       44.586      -41.545     -26.369     
+JF1     H13     H       H       0       44.330      -40.076     -25.797     
+JF1     H14     H       H       0       46.288      -41.892     -24.818     
+JF1     H15     H       H       0       45.013      -41.417     -24.035     
+JF1     H16     H       H       0       45.882      -39.303     -24.040     
+JF1     H17     H       H       0       47.568      -41.015     -22.720     
+JF1     H18     H       H       0       46.157      -40.556     -22.166     
+JF1     H19     H       H       0       47.899      -39.273     -21.190     
+JF1     H20     H       H       0       46.881      -38.351     -21.985     
+JF1     H21     H       H       0       49.393      -39.249     -22.988     
+JF1     H22     H       H       0       51.115      -36.559     -21.609     
+JF1     H23     H       H       0       51.239      -38.105     -22.134     
+JF1     H24     H       H       0       49.132      -35.376     -21.770     
+JF1     H25     H       H       0       47.875      -36.290     -21.481     
+JF1     H26     H       H       0       48.186      -35.815     -22.958     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JF1         CAM         CAC      SINGLE       n     1.530  0.0100     1.530  0.0100
+JF1         CAM         CAF      SINGLE       n     1.531  0.0114     1.531  0.0114
+JF1         CAF         CAE      SINGLE       n     1.517  0.0104     1.517  0.0104
+JF1         CAO         CAM      SINGLE       n     1.563  0.0116     1.563  0.0116
+JF1         CAE         CAH      SINGLE       n     1.510  0.0112     1.510  0.0112
+JF1         CAO         CAD      SINGLE       n     1.540  0.0100     1.540  0.0100
+JF1         CAJ         CAO      SINGLE       n     1.541  0.0100     1.541  0.0100
+JF1         CAO         NAN      SINGLE       n     1.559  0.0100     1.559  0.0100
+JF1         CAH         NAN      SINGLE       n     1.500  0.0100     1.500  0.0100
+JF1         CAJ         CAL      SINGLE       n     1.533  0.0100     1.533  0.0100
+JF1         NAN         CAI      SINGLE       n     1.500  0.0100     1.500  0.0100
+JF1         CAK         CAB      DOUBLE       n     1.332  0.0200     1.332  0.0200
+JF1         CAL         CAK      SINGLE       n     1.518  0.0100     1.518  0.0100
+JF1         CAG         CAL      SINGLE       n     1.534  0.0100     1.534  0.0100
+JF1         CAI         CAG      SINGLE       n     1.515  0.0200     1.515  0.0200
+JF1         CAK         CAA      SINGLE       n     1.481  0.0200     1.481  0.0200
+JF1         CAJ          H1      SINGLE       n     1.089  0.0100     0.980  0.0156
+JF1         CAJ          H2      SINGLE       n     1.089  0.0100     0.980  0.0156
+JF1         CAD          H3      SINGLE       n     1.089  0.0100     0.995  0.0106
+JF1         CAD          H4      SINGLE       n     1.089  0.0100     0.995  0.0106
+JF1         CAD          H5      SINGLE       n     1.089  0.0100     0.995  0.0106
+JF1         CAM          H6      SINGLE       n     1.089  0.0100     0.986  0.0187
+JF1         CAC          H7      SINGLE       n     1.089  0.0100     0.971  0.0171
+JF1         CAC          H8      SINGLE       n     1.089  0.0100     0.971  0.0171
+JF1         CAC          H9      SINGLE       n     1.089  0.0100     0.971  0.0171
+JF1         CAF         H10      SINGLE       n     1.089  0.0100     0.980  0.0131
+JF1         CAF         H11      SINGLE       n     1.089  0.0100     0.980  0.0131
+JF1         CAE         H12      SINGLE       n     1.089  0.0100     0.987  0.0100
+JF1         CAE         H13      SINGLE       n     1.089  0.0100     0.987  0.0100
+JF1         CAH         H14      SINGLE       n     1.089  0.0100     0.970  0.0100
+JF1         CAH         H15      SINGLE       n     1.089  0.0100     0.970  0.0100
+JF1         NAN         H16      SINGLE       n     1.036  0.0160     0.895  0.0200
+JF1         CAI         H17      SINGLE       n     1.089  0.0100     0.978  0.0123
+JF1         CAI         H18      SINGLE       n     1.089  0.0100     0.978  0.0123
+JF1         CAG         H19      SINGLE       n     1.089  0.0100     0.981  0.0170
+JF1         CAG         H20      SINGLE       n     1.089  0.0100     0.981  0.0170
+JF1         CAL         H21      SINGLE       n     1.089  0.0100     0.992  0.0117
+JF1         CAB         H22      SINGLE       n     1.082  0.0130     0.949  0.0200
+JF1         CAB         H23      SINGLE       n     1.082  0.0130     0.949  0.0200
+JF1         CAA         H24      SINGLE       n     1.089  0.0100     0.971  0.0140
+JF1         CAA         H25      SINGLE       n     1.089  0.0100     0.971  0.0140
+JF1         CAA         H26      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JF1         CAO         CAJ         CAL     112.392    2.23
+JF1         CAO         CAJ          H1     108.802    1.50
+JF1         CAO         CAJ          H2     108.802    1.50
+JF1         CAL         CAJ          H1     109.120    1.50
+JF1         CAL         CAJ          H2     109.120    1.50
+JF1          H1         CAJ          H2     107.853    1.50
+JF1         CAM         CAO         CAD     111.241    1.50
+JF1         CAM         CAO         CAJ     109.679    1.72
+JF1         CAM         CAO         NAN     109.763    1.58
+JF1         CAD         CAO         CAJ     108.275    1.50
+JF1         CAD         CAO         NAN     109.661    3.00
+JF1         CAJ         CAO         NAN     109.763    1.58
+JF1         CAO         CAD          H3     109.570    1.50
+JF1         CAO         CAD          H4     109.570    1.50
+JF1         CAO         CAD          H5     109.570    1.50
+JF1          H3         CAD          H4     108.796    1.50
+JF1          H3         CAD          H5     108.796    1.50
+JF1          H4         CAD          H5     108.796    1.50
+JF1         CAC         CAM         CAF     110.494    1.50
+JF1         CAC         CAM         CAO     114.144    1.50
+JF1         CAC         CAM          H6     107.155    1.50
+JF1         CAF         CAM         CAO     111.493    1.50
+JF1         CAF         CAM          H6     106.470    1.50
+JF1         CAO         CAM          H6     105.731    1.50
+JF1         CAM         CAC          H7     109.609    1.50
+JF1         CAM         CAC          H8     109.609    1.50
+JF1         CAM         CAC          H9     109.609    1.50
+JF1          H7         CAC          H8     109.350    1.50
+JF1          H7         CAC          H9     109.350    1.50
+JF1          H8         CAC          H9     109.350    1.50
+JF1         CAM         CAF         CAE     112.608    1.50
+JF1         CAM         CAF         H10     109.016    1.50
+JF1         CAM         CAF         H11     109.016    1.50
+JF1         CAE         CAF         H10     109.388    1.50
+JF1         CAE         CAF         H11     109.388    1.50
+JF1         H10         CAF         H11     107.974    1.50
+JF1         CAF         CAE         CAH     111.207    1.50
+JF1         CAF         CAE         H12     109.388    1.50
+JF1         CAF         CAE         H13     109.388    1.50
+JF1         CAH         CAE         H12     109.133    1.50
+JF1         CAH         CAE         H13     109.133    1.50
+JF1         H12         CAE         H13     108.003    1.50
+JF1         CAE         CAH         NAN     111.089    1.50
+JF1         CAE         CAH         H14     110.087    1.50
+JF1         CAE         CAH         H15     110.087    1.50
+JF1         NAN         CAH         H14     108.926    1.50
+JF1         NAN         CAH         H15     108.926    1.50
+JF1         H14         CAH         H15     108.370    1.50
+JF1         CAO         NAN         CAH     111.749    1.52
+JF1         CAO         NAN         CAI     111.749    1.52
+JF1         CAO         NAN         H16     107.815    2.08
+JF1         CAH         NAN         CAI     109.790    1.50
+JF1         CAH         NAN         H16     107.866    1.69
+JF1         CAI         NAN         H16     107.866    1.69
+JF1         NAN         CAI         CAG     111.089    1.50
+JF1         NAN         CAI         H17     108.926    1.50
+JF1         NAN         CAI         H18     108.926    1.50
+JF1         CAG         CAI         H17     109.539    1.50
+JF1         CAG         CAI         H18     109.539    1.50
+JF1         H17         CAI         H18     108.370    1.50
+JF1         CAL         CAG         CAI     111.161    1.50
+JF1         CAL         CAG         H19     109.320    1.50
+JF1         CAL         CAG         H20     109.320    1.50
+JF1         CAI         CAG         H19     109.337    1.50
+JF1         CAI         CAG         H20     109.337    1.50
+JF1         H19         CAG         H20     108.019    1.50
+JF1         CAJ         CAL         CAK     112.295    1.50
+JF1         CAJ         CAL         CAG     110.504    1.50
+JF1         CAJ         CAL         H21     107.034    1.50
+JF1         CAK         CAL         CAG     112.362    1.58
+JF1         CAK         CAL         H21     107.147    1.50
+JF1         CAG         CAL         H21     107.687    1.74
+JF1         CAB         CAK         CAL     123.258    1.74
+JF1         CAB         CAK         CAA     121.011    1.50
+JF1         CAL         CAK         CAA     115.731    1.50
+JF1         CAK         CAB         H22     120.142    2.07
+JF1         CAK         CAB         H23     120.142    2.07
+JF1         H22         CAB         H23     119.716    2.51
+JF1         CAK         CAA         H24     109.610    1.50
+JF1         CAK         CAA         H25     109.610    1.50
+JF1         CAK         CAA         H26     109.610    1.50
+JF1         H24         CAA         H25     109.347    1.50
+JF1         H24         CAA         H26     109.347    1.50
+JF1         H25         CAA         H26     109.347    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JF1            sp3_sp3_48         CAL         CAJ         CAO         CAD     -60.000    10.0     3
+JF1           sp3_sp3_110         CAO         CAJ         CAL         CAK     -60.000    10.0     3
+JF1            sp3_sp3_83         CAI         CAG         CAL         CAK     180.000    10.0     3
+JF1             sp2_sp3_1         CAB         CAK         CAL         CAJ       0.000    10.0     6
+JF1             sp2_sp2_2         H22         CAB         CAK         CAA       0.000     5.0     2
+JF1             sp2_sp3_7         CAB         CAK         CAA         H24       0.000    10.0     6
+JF1           sp3_sp3_100          H3         CAD         CAO         CAM     180.000    10.0     3
+JF1             sp3_sp3_5         CAC         CAM         CAO         CAD      60.000    10.0     3
+JF1            sp3_sp3_58         CAD         CAO         NAN         CAH     180.000    10.0     3
+JF1            sp3_sp3_91          H7         CAC         CAM         CAF     180.000    10.0     3
+JF1            sp3_sp3_11         CAE         CAF         CAM         CAC      60.000    10.0     3
+JF1            sp3_sp3_19         CAH         CAE         CAF         CAM      60.000    10.0     3
+JF1            sp3_sp3_28         CAF         CAE         CAH         NAN     -60.000    10.0     3
+JF1            sp3_sp3_37         CAE         CAH         NAN         CAO      60.000    10.0     3
+JF1            sp3_sp3_64         CAG         CAI         NAN         CAO      60.000    10.0     3
+JF1            sp3_sp3_73         CAL         CAG         CAI         NAN     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JF1    chir_1    CAO    NAN    CAM    CAJ    negative
+JF1    chir_2    CAM    CAO    CAF    CAC    positive
+JF1    chir_3    NAN    CAO    CAI    CAH    positive
+JF1    chir_4    CAL    CAK    CAJ    CAG    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JF1    plan-1         CAA   0.020
+JF1    plan-1         CAB   0.020
+JF1    plan-1         CAK   0.020
+JF1    plan-1         CAL   0.020
+JF1    plan-2         CAB   0.020
+JF1    plan-2         CAK   0.020
+JF1    plan-2         H22   0.020
+JF1    plan-2         H23   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JF1           SMILES              ACDLabs 12.01                                                                           C=C(/C2CC1(C(CCC[NH+]1CC2)C)C)C
+JF1            InChI                InChI  1.03 InChI=1S/C14H25N/c1-11(2)13-7-9-15-8-5-6-12(3)14(15,4)10-13/h12-13H,1,5-10H2,2-4H3/p+1/t12-,13-,14+/m0/s1
+JF1         InChIKey                InChI  1.03                                                                               XJMHVRNRJICXTC-MELADBBJSA-O
+JF1 SMILES_CANONICAL               CACTVS 3.370                                                                  C[C@H]1CCC[NH+]2CC[C@@H](C[C@]12C)C(C)=C
+JF1           SMILES               CACTVS 3.370                                                                      C[CH]1CCC[NH+]2CC[CH](C[C]12C)C(C)=C
+JF1 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                C[C@H]1CCC[NH+]2[C@@]1(C[C@H](CC2)C(=C)C)C
+JF1           SMILES "OpenEye OEToolkits" 1.7.6                                                                            CC1CCC[NH+]2C1(CC(CC2)C(=C)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JF1 acedrg               243         "dictionary generator"                  
+JF1 acedrg_database      11          "data source"                           
+JF1 rdkit                2017.03.2   "Chemoinformatics tool"
+JF1 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,151 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+KIV     KIV      "3-METHYL-2-OXOBUTANOIC ACID"     NON-POLYMER     15     8     .     
+#
+data_comp_KIV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+KIV     O1      O       OC      -1      9.820       -12.932     0.539       
+KIV     C1      C       C       0       10.495      -13.083     1.562       
+KIV     O2      O       O       0       11.708      -12.862     1.566       
+KIV     C2      C       C       0       9.884       -13.483     2.669       
+KIV     C3      C       CH1     0       10.563      -13.744     4.006       
+KIV     C4      C       CH3     0       10.234      -15.153     4.507       
+KIV     C5      C       CH3     0       10.132      -12.675     5.015       
+KIV     O3      O       O       0       8.659       -13.644     2.626       
+KIV     HC31    H       H       0       11.540      -13.682     3.897       
+KIV     HC41    H       H       0       10.785      -15.358     5.283       
+KIV     HC42    H       H       0       10.415      -15.800     3.803       
+KIV     HC43    H       H       0       9.295       -15.199     4.756       
+KIV     HC51    H       H       0       9.170       -12.723     5.148       
+KIV     HC52    H       H       0       10.369      -11.794     4.676       
+KIV     HC53    H       H       0       10.584      -12.828     5.863       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+KIV          O1          C1      SINGLE       n     1.230  0.0200     1.230  0.0200
+KIV          C1          O2      DOUBLE       n     1.230  0.0200     1.230  0.0200
+KIV          C1          C2      SINGLE       n     1.299  0.0200     1.299  0.0200
+KIV          C2          C3      SINGLE       n     1.518  0.0100     1.518  0.0100
+KIV          C2          O3      DOUBLE       n     1.230  0.0184     1.230  0.0184
+KIV          C3          C4      SINGLE       n     1.531  0.0100     1.531  0.0100
+KIV          C3          C5      SINGLE       n     1.531  0.0100     1.531  0.0100
+KIV          C3        HC31      SINGLE       n     1.089  0.0100     0.986  0.0117
+KIV          C4        HC41      SINGLE       n     1.089  0.0100     0.973  0.0141
+KIV          C4        HC42      SINGLE       n     1.089  0.0100     0.973  0.0141
+KIV          C4        HC43      SINGLE       n     1.089  0.0100     0.973  0.0141
+KIV          C5        HC51      SINGLE       n     1.089  0.0100     0.973  0.0141
+KIV          C5        HC52      SINGLE       n     1.089  0.0100     0.973  0.0141
+KIV          C5        HC53      SINGLE       n     1.089  0.0100     0.973  0.0141
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+KIV          O1          C1          O2     122.692    1.63
+KIV          O1          C1          C2     118.654    3.00
+KIV          O2          C1          C2     118.654    3.00
+KIV          C1          C2          C3     123.576    2.02
+KIV          C1          C2          O3     118.262    3.00
+KIV          C3          C2          O3     118.162    1.78
+KIV          C2          C3          C4     109.495    2.07
+KIV          C2          C3          C5     109.495    2.07
+KIV          C2          C3        HC31     107.425    2.18
+KIV          C4          C3          C5     111.434    1.50
+KIV          C4          C3        HC31     107.907    1.50
+KIV          C5          C3        HC31     107.907    1.50
+KIV          C3          C4        HC41     109.470    1.50
+KIV          C3          C4        HC42     109.470    1.50
+KIV          C3          C4        HC43     109.470    1.50
+KIV        HC41          C4        HC42     109.411    1.50
+KIV        HC41          C4        HC43     109.411    1.50
+KIV        HC42          C4        HC43     109.411    1.50
+KIV          C3          C5        HC51     109.470    1.50
+KIV          C3          C5        HC52     109.470    1.50
+KIV          C3          C5        HC53     109.470    1.50
+KIV        HC51          C5        HC52     109.411    1.50
+KIV        HC51          C5        HC53     109.411    1.50
+KIV        HC52          C5        HC53     109.411    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+KIV             sp2_sp2_1          O1          C1          C2          C3     180.000     5.0     2
+KIV             sp2_sp3_2          C1          C2          C3          C4     120.000    10.0     6
+KIV             sp3_sp3_1          C2          C3          C4        HC41     180.000    10.0     3
+KIV            sp3_sp3_13          C2          C3          C5        HC51      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+KIV    chir_1    C3    C2    C4    C5    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+KIV    plan-1          C1   0.020
+KIV    plan-1          C2   0.020
+KIV    plan-1          O1   0.020
+KIV    plan-1          O2   0.020
+KIV    plan-2          C1   0.020
+KIV    plan-2          C2   0.020
+KIV    plan-2          C3   0.020
+KIV    plan-2          O3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+KIV           SMILES              ACDLabs 10.04                                   O=C(C(=O)O)C(C)C
+KIV SMILES_CANONICAL               CACTVS 3.341                                   CC(C)C(=O)C(O)=O
+KIV           SMILES               CACTVS 3.341                                   CC(C)C(=O)C(O)=O
+KIV SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                   CC(C)C(=O)C(=O)O
+KIV           SMILES "OpenEye OEToolkits" 1.5.0                                   CC(C)C(=O)C(=O)O
+KIV            InChI                InChI  1.03 InChI=1S/C5H8O3/c1-3(2)4(6)5(7)8/h3H,1-2H3,(H,7,8)
+KIV         InChIKey                InChI  1.03                        QHKABHOOEWYVLI-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+KIV acedrg               243         "dictionary generator"                  
+KIV acedrg_database      11          "data source"                           
+KIV rdkit                2017.03.2   "Chemoinformatics tool"
+KIV refmac5              5.8.0238    "optimization tool"                     

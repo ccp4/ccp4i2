@@ -1,0 +1,86 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FPO     FPO      "FLUORO-PHOSPHITE ION"     NON-POLYMER     5     5     .     
+#
+data_comp_FPO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FPO     P       P       P       0       28.109      24.756      24.377      
+FPO     O1      O       O       0       28.163      26.138      25.017      
+FPO     O2      O       OP      -1      29.111      24.555      23.246      
+FPO     O3      O       OP      -1      26.700      24.275      24.052      
+FPO     F       F       F       0       28.594      23.798      25.493      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FPO           P          O1      DOUBLE       n     1.524  0.0200     1.524  0.0200
+FPO           P          O2      SINGLE       n     1.524  0.0200     1.524  0.0200
+FPO           P          O3      SINGLE       n     1.524  0.0200     1.524  0.0200
+FPO           P           F      SINGLE       n     1.549  0.0200     1.549  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FPO          O1           P          O2     114.084    1.50
+FPO          O1           P          O3     114.084    1.50
+FPO          O1           P           F     104.318    1.50
+FPO          O2           P          O3     114.084    1.50
+FPO          O2           P           F     104.318    1.50
+FPO          O3           P           F     104.318    1.50
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FPO    chir_1    P    F    O2    O3    both
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FPO           SMILES              ACDLabs 10.04                         "[O-]P([O-])(F)=O"
+FPO SMILES_CANONICAL               CACTVS 3.341                       "[O-][P]([O-])(F)=O"
+FPO           SMILES               CACTVS 3.341                       "[O-][P]([O-])(F)=O"
+FPO SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                         "[O-]P(=O)([O-])F"
+FPO           SMILES "OpenEye OEToolkits" 1.5.0                         "[O-]P(=O)([O-])F"
+FPO            InChI                InChI  1.03 InChI=1S/FH2O3P/c1-5(2,3)4/h(H2,2,3,4)/p-2
+FPO         InChIKey                InChI  1.03                DWYMPOCYEZONEA-UHFFFAOYSA-L
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FPO acedrg               243         "dictionary generator"                  
+FPO acedrg_database      11          "data source"                           
+FPO rdkit                2017.03.2   "Chemoinformatics tool"
+FPO refmac5              5.8.0238    "optimization tool"                     

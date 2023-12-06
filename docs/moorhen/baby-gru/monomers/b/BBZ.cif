@@ -1,0 +1,425 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BBZ     BBZ      "2'-(4-DIMETHYLAMINOPHENYL)-5-(4-METHYL-1-PIPERAZINYL)-2,5'-BI-BENZIMIDAZOLE"     NON-POLYMER     63     34     .     
+#
+data_comp_BBZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BBZ     C       C       CR6     0       10.025      18.481      15.316      
+BBZ     C1      C       CR6     0       9.104       20.124      13.187      
+BBZ     C2      C       CR16    0       10.603      18.412      14.029      
+BBZ     C3      C       CR16    0       10.149      19.215      13.003      
+BBZ     C4      C       CR16    0       8.969       19.404      15.499      
+BBZ     C5      C       CR16    0       8.529       20.198      14.457      
+BBZ     N       N       N       0       10.472      17.687      16.343      
+BBZ     C6      C       CR5     0       8.641       20.967      12.074      
+BBZ     C7      C       CR56    0       8.511       21.943      10.151      
+BBZ     C8      C       CR56    0       7.413       22.377      10.893      
+BBZ     C9      C       CR16    0       6.489       23.273      10.364      
+BBZ     C10     C       CR16    0       6.684       23.730      9.072       
+BBZ     C11     C       CR6     0       7.779       23.308      8.306       
+BBZ     C12     C       CR16    0       8.700       22.408      8.852       
+BBZ     N1      N       NRD5    0       9.270       21.061      10.907      
+BBZ     N2      N       NR5     0       7.517       21.740      12.115      
+BBZ     C13     C       CR5     0       7.975       23.802      6.931       
+BBZ     C14     C       CR56    0       8.762       23.981      4.927       
+BBZ     C15     C       CR56    0       7.794       24.977      5.067       
+BBZ     C16     C       CR16    0       7.494       25.852      4.026       
+BBZ     C17     C       CR16    0       8.185       25.714      2.834       
+BBZ     C18     C       CR6     0       9.164       24.713      2.668       
+BBZ     N3      N       NRD5    0       8.860       23.255      6.104       
+BBZ     N4      N       NR5     0       7.308       24.843      6.354       
+BBZ     C19     C       CR16    0       9.454       23.842      3.726       
+BBZ     N5      N       NR6     0       9.866       24.575      1.468       
+BBZ     N6      N       NT      0       11.147      25.937      -0.483      
+BBZ     C20     C       CH2     0       11.329      24.421      1.435       
+BBZ     C21     C       CH2     0       11.922      24.846      0.111       
+BBZ     C22     C       CH2     0       9.808       25.467      -0.856      
+BBZ     C23     C       CH2     0       9.217       24.497      0.149       
+BBZ     C24     C       CH3     0       11.852      26.520      -1.628      
+BBZ     CN1     C       CH3     0       9.547       16.927      17.161      
+BBZ     CN2     C       CH3     0       11.886      17.575      16.643      
+BBZ     H2      H       H       0       11.309      17.808      13.871      
+BBZ     H3      H       H       0       10.556      19.142      12.158      
+BBZ     H4      H       H       0       8.560       19.477      16.345      
+BBZ     H5      H       H       0       7.825       20.800      14.614      
+BBZ     H9      H       H       0       5.749       23.562      10.869      
+BBZ     H10     H       H       0       6.070       24.331      8.705       
+BBZ     H12     H       H       0       9.439       22.122      8.342       
+BBZ     HN2     H       H       0       6.960       21.824      12.783      
+BBZ     H16     H       H       0       6.848       26.514      4.126       
+BBZ     H17     H       H       0       7.991       26.299      2.120       
+BBZ     HN4     H       H       0       6.688       25.337      6.722       
+BBZ     H19     H       H       0       10.109      23.174      3.618       
+BBZ     H201    H       H       0       11.725      24.959      2.152       
+BBZ     H202    H       H       0       11.557      23.483      1.602       
+BBZ     H211    H       H       0       12.844      25.142      0.253       
+BBZ     H212    H       H       0       11.940      24.083      -0.501      
+BBZ     H221    H       H       0       9.852       25.028      -1.729      
+BBZ     H222    H       H       0       9.213       26.238      -0.941      
+BBZ     H231    H       H       0       8.259       24.681      0.244       
+BBZ     H232    H       H       0       9.310       23.585      -0.198      
+BBZ     H241    H       H       0       11.226      27.028      -2.177      
+BBZ     H242    H       H       0       12.249      25.810      -2.166      
+BBZ     H243    H       H       0       12.555      27.114      -1.307      
+BBZ     HN11    H       H       0       8.751       16.711      16.647      
+BBZ     HN12    H       H       0       9.293       17.453      17.938      
+BBZ     HN13    H       H       0       9.970       16.104      17.456      
+BBZ     HN21    H       H       0       12.008      17.421      17.595      
+BBZ     HN22    H       H       0       12.343      18.394      16.391      
+BBZ     HN23    H       H       0       12.266      16.831      16.147      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BBZ           C          C2      DOUBLE       y     1.409  0.0111     1.409  0.0111
+BBZ           C          C4      SINGLE       y     1.409  0.0111     1.409  0.0111
+BBZ           C           N      SINGLE       n     1.369  0.0106     1.369  0.0106
+BBZ          C1          C3      DOUBLE       y     1.391  0.0100     1.391  0.0100
+BBZ          C1          C5      SINGLE       y     1.391  0.0100     1.391  0.0100
+BBZ          C1          C6      SINGLE       n     1.465  0.0100     1.465  0.0100
+BBZ          C2          C3      SINGLE       y     1.378  0.0100     1.378  0.0100
+BBZ          C4          C5      DOUBLE       y     1.378  0.0100     1.378  0.0100
+BBZ           N         CN1      SINGLE       n     1.447  0.0119     1.447  0.0119
+BBZ           N         CN2      SINGLE       n     1.447  0.0119     1.447  0.0119
+BBZ          C6          N1      DOUBLE       y     1.327  0.0133     1.327  0.0133
+BBZ          C6          N2      SINGLE       y     1.358  0.0121     1.358  0.0121
+BBZ          C7          C8      SINGLE       y     1.397  0.0100     1.397  0.0100
+BBZ          C7         C12      DOUBLE       y     1.392  0.0100     1.392  0.0100
+BBZ          C7          N1      SINGLE       y     1.390  0.0100     1.390  0.0100
+BBZ          C8          C9      DOUBLE       y     1.389  0.0100     1.389  0.0100
+BBZ          C8          N2      SINGLE       y     1.380  0.0100     1.380  0.0100
+BBZ          C9         C10      SINGLE       y     1.378  0.0100     1.378  0.0100
+BBZ         C10         C11      DOUBLE       y     1.393  0.0100     1.393  0.0100
+BBZ         C11         C12      SINGLE       y     1.392  0.0100     1.392  0.0100
+BBZ         C11         C13      SINGLE       n     1.466  0.0119     1.466  0.0119
+BBZ         C13          N3      DOUBLE       y     1.327  0.0133     1.327  0.0133
+BBZ         C13          N4      SINGLE       y     1.358  0.0121     1.358  0.0121
+BBZ         C14         C15      SINGLE       y     1.397  0.0100     1.397  0.0100
+BBZ         C14          N3      SINGLE       y     1.390  0.0100     1.390  0.0100
+BBZ         C14         C19      DOUBLE       y     1.393  0.0100     1.393  0.0100
+BBZ         C15         C16      DOUBLE       y     1.389  0.0100     1.389  0.0100
+BBZ         C15          N4      SINGLE       y     1.380  0.0100     1.380  0.0100
+BBZ         C16         C17      SINGLE       y     1.378  0.0101     1.378  0.0101
+BBZ         C17         C18      DOUBLE       y     1.396  0.0142     1.396  0.0142
+BBZ         C18         C19      SINGLE       y     1.393  0.0132     1.393  0.0132
+BBZ         C18          N5      SINGLE       n     1.384  0.0200     1.384  0.0200
+BBZ          N5         C20      SINGLE       n     1.467  0.0100     1.467  0.0100
+BBZ          N5         C23      SINGLE       n     1.467  0.0100     1.467  0.0100
+BBZ          N6         C21      SINGLE       n     1.462  0.0100     1.462  0.0100
+BBZ          N6         C22      SINGLE       n     1.462  0.0100     1.462  0.0100
+BBZ          N6         C24      SINGLE       n     1.462  0.0100     1.462  0.0100
+BBZ         C20         C21      SINGLE       n     1.511  0.0100     1.511  0.0100
+BBZ         C22         C23      SINGLE       n     1.511  0.0100     1.511  0.0100
+BBZ          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0198
+BBZ          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0157
+BBZ          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0198
+BBZ          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0157
+BBZ          C9          H9      SINGLE       n     1.082  0.0130     0.941  0.0154
+BBZ         C10         H10      SINGLE       n     1.082  0.0130     0.935  0.0100
+BBZ         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0180
+BBZ          N2         HN2      SINGLE       n     1.016  0.0100     0.876  0.0200
+BBZ         C16         H16      SINGLE       n     1.082  0.0130     0.930  0.0100
+BBZ         C17         H17      SINGLE       n     1.082  0.0130     0.943  0.0168
+BBZ          N4         HN4      SINGLE       n     1.016  0.0100     0.876  0.0200
+BBZ         C19         H19      SINGLE       n     1.082  0.0130     0.942  0.0173
+BBZ         C20        H201      SINGLE       n     1.089  0.0100     0.980  0.0187
+BBZ         C20        H202      SINGLE       n     1.089  0.0100     0.980  0.0187
+BBZ         C21        H211      SINGLE       n     1.089  0.0100     0.978  0.0109
+BBZ         C21        H212      SINGLE       n     1.089  0.0100     0.978  0.0109
+BBZ         C22        H221      SINGLE       n     1.089  0.0100     0.978  0.0109
+BBZ         C22        H222      SINGLE       n     1.089  0.0100     0.978  0.0109
+BBZ         C23        H231      SINGLE       n     1.089  0.0100     0.980  0.0187
+BBZ         C23        H232      SINGLE       n     1.089  0.0100     0.980  0.0187
+BBZ         C24        H241      SINGLE       n     1.089  0.0100     0.975  0.0100
+BBZ         C24        H242      SINGLE       n     1.089  0.0100     0.975  0.0100
+BBZ         C24        H243      SINGLE       n     1.089  0.0100     0.975  0.0100
+BBZ         CN1        HN11      SINGLE       n     1.089  0.0100     0.971  0.0181
+BBZ         CN1        HN12      SINGLE       n     1.089  0.0100     0.971  0.0181
+BBZ         CN1        HN13      SINGLE       n     1.089  0.0100     0.971  0.0181
+BBZ         CN2        HN21      SINGLE       n     1.089  0.0100     0.971  0.0181
+BBZ         CN2        HN22      SINGLE       n     1.089  0.0100     0.971  0.0181
+BBZ         CN2        HN23      SINGLE       n     1.089  0.0100     0.971  0.0181
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BBZ          C2           C          C4     117.364    1.50
+BBZ          C2           C           N     121.318    1.50
+BBZ          C4           C           N     121.318    1.50
+BBZ          C3          C1          C5     118.197    1.50
+BBZ          C3          C1          C6     120.901    1.50
+BBZ          C5          C1          C6     120.901    1.50
+BBZ           C          C2          C3     120.768    1.50
+BBZ           C          C2          H2     119.411    1.50
+BBZ          C3          C2          H2     119.821    1.50
+BBZ          C1          C3          C2     121.451    1.50
+BBZ          C1          C3          H3     119.413    1.50
+BBZ          C2          C3          H3     119.135    1.50
+BBZ           C          C4          C5     120.768    1.50
+BBZ           C          C4          H4     119.411    1.50
+BBZ          C5          C4          H4     119.821    1.50
+BBZ          C1          C5          C4     121.451    1.50
+BBZ          C1          C5          H5     119.413    1.50
+BBZ          C4          C5          H5     119.135    1.50
+BBZ           C           N         CN1     121.018    1.50
+BBZ           C           N         CN2     121.018    1.50
+BBZ         CN1           N         CN2     117.963    1.50
+BBZ          C1          C6          N1     124.567    1.50
+BBZ          C1          C6          N2     122.833    1.50
+BBZ          N1          C6          N2     112.600    1.50
+BBZ          C8          C7         C12     120.378    1.50
+BBZ          C8          C7          N1     109.635    1.50
+BBZ         C12          C7          N1     129.986    1.50
+BBZ          C7          C8          C9     122.482    1.50
+BBZ          C7          C8          N2     105.546    1.50
+BBZ          C9          C8          N2     131.972    1.50
+BBZ          C8          C9         C10     117.996    1.50
+BBZ          C8          C9          H9     121.211    1.50
+BBZ         C10          C9          H9     120.793    1.50
+BBZ          C9         C10         C11     120.532    1.50
+BBZ          C9         C10         H10     119.770    1.50
+BBZ         C11         C10         H10     119.698    1.50
+BBZ         C10         C11         C12     119.693    1.64
+BBZ         C10         C11         C13     119.477    2.24
+BBZ         C12         C11         C13     120.830    1.80
+BBZ          C7         C12         C11     118.919    1.50
+BBZ          C7         C12         H12     121.256    1.50
+BBZ         C11         C12         H12     119.825    1.50
+BBZ          C6          N1          C7     105.064    1.50
+BBZ          C6          N2          C8     107.155    1.50
+BBZ          C6          N2         HN2     126.568    1.56
+BBZ          C8          N2         HN2     126.277    1.84
+BBZ         C11         C13          N3     122.899    1.63
+BBZ         C11         C13          N4     124.501    1.52
+BBZ          N3         C13          N4     112.600    1.50
+BBZ         C15         C14          N3     109.635    1.50
+BBZ         C15         C14         C19     120.378    1.50
+BBZ          N3         C14         C19     129.986    1.50
+BBZ         C14         C15         C16     122.482    1.50
+BBZ         C14         C15          N4     105.546    1.50
+BBZ         C16         C15          N4     131.972    1.50
+BBZ         C15         C16         C17     117.996    1.50
+BBZ         C15         C16         H16     121.211    1.50
+BBZ         C17         C16         H16     120.793    1.50
+BBZ         C16         C17         C18     120.532    1.50
+BBZ         C16         C17         H17     119.488    1.50
+BBZ         C18         C17         H17     119.980    1.50
+BBZ         C17         C18         C19     119.693    1.64
+BBZ         C17         C18          N5     120.249    1.79
+BBZ         C19         C18          N5     120.059    1.87
+BBZ         C13          N3         C14     105.064    1.50
+BBZ         C13          N4         C15     107.155    1.50
+BBZ         C13          N4         HN4     126.568    1.56
+BBZ         C15          N4         HN4     126.277    1.84
+BBZ         C14         C19         C18     118.919    1.50
+BBZ         C14         C19         H19     121.256    1.50
+BBZ         C18         C19         H19     119.825    1.50
+BBZ         C18          N5         C20     123.506    1.63
+BBZ         C18          N5         C23     123.506    1.63
+BBZ         C20          N5         C23     112.989    2.47
+BBZ         C21          N6         C22     109.130    1.50
+BBZ         C21          N6         C24     110.746    1.50
+BBZ         C22          N6         C24     110.746    1.50
+BBZ          N5         C20         C21     110.858    1.50
+BBZ          N5         C20        H201     109.542    1.50
+BBZ          N5         C20        H202     109.542    1.50
+BBZ         C21         C20        H201     109.514    1.50
+BBZ         C21         C20        H202     109.514    1.50
+BBZ        H201         C20        H202     108.196    1.50
+BBZ          N6         C21         C20     110.838    1.50
+BBZ          N6         C21        H211     109.480    1.50
+BBZ          N6         C21        H212     109.480    1.50
+BBZ         C20         C21        H211     109.482    1.50
+BBZ         C20         C21        H212     109.482    1.50
+BBZ        H211         C21        H212     108.187    1.50
+BBZ          N6         C22         C23     110.838    1.50
+BBZ          N6         C22        H221     109.480    1.50
+BBZ          N6         C22        H222     109.480    1.50
+BBZ         C23         C22        H221     109.482    1.50
+BBZ         C23         C22        H222     109.482    1.50
+BBZ        H221         C22        H222     108.187    1.50
+BBZ          N5         C23         C22     110.858    1.50
+BBZ          N5         C23        H231     109.542    1.50
+BBZ          N5         C23        H232     109.542    1.50
+BBZ         C22         C23        H231     109.514    1.50
+BBZ         C22         C23        H232     109.514    1.50
+BBZ        H231         C23        H232     108.196    1.50
+BBZ          N6         C24        H241     109.526    1.50
+BBZ          N6         C24        H242     109.526    1.50
+BBZ          N6         C24        H243     109.526    1.50
+BBZ        H241         C24        H242     109.428    1.50
+BBZ        H241         C24        H243     109.428    1.50
+BBZ        H242         C24        H243     109.428    1.50
+BBZ           N         CN1        HN11     109.662    1.50
+BBZ           N         CN1        HN12     109.662    1.50
+BBZ           N         CN1        HN13     109.662    1.50
+BBZ        HN11         CN1        HN12     109.352    1.56
+BBZ        HN11         CN1        HN13     109.352    1.56
+BBZ        HN12         CN1        HN13     109.352    1.56
+BBZ           N         CN2        HN21     109.662    1.50
+BBZ           N         CN2        HN22     109.662    1.50
+BBZ           N         CN2        HN23     109.662    1.50
+BBZ        HN21         CN2        HN22     109.352    1.56
+BBZ        HN21         CN2        HN23     109.352    1.56
+BBZ        HN22         CN2        HN23     109.352    1.56
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BBZ              const_51           N           C          C2          C3     180.000    10.0     2
+BBZ              const_79           N           C          C4          C5     180.000    10.0     2
+BBZ             sp2_sp2_1          C2           C           N         CN1     180.000     5.0     2
+BBZ       const_sp2_sp2_9         C11         C10          C9          C8       0.000     5.0     2
+BBZ              const_13          C9         C10         C11         C12       0.000    10.0     2
+BBZ              const_17         C10         C11         C12          C7       0.000    10.0     2
+BBZ            sp2_sp2_10         C10         C11         C13          N3       0.000     5.0     2
+BBZ              const_22         C11         C13          N3         C14     180.000    10.0     2
+BBZ              const_91         C11         C13          N4         C15     180.000    10.0     2
+BBZ              const_26          N3         C14         C15         C16     180.000    10.0     2
+BBZ              const_23         C15         C14          N3         C13       0.000    10.0     2
+BBZ              const_93         C15         C14         C19         C18       0.000    10.0     2
+BBZ              const_33         C14         C15         C16         C17       0.000    10.0     2
+BBZ              const_29         C14         C15          N4         C13       0.000    10.0     2
+BBZ              const_37         C15         C16         C17         C18       0.000    10.0     2
+BBZ              const_57          C5          C1          C3          C2       0.000    10.0     2
+BBZ              const_61          C3          C1          C5          C4       0.000    10.0     2
+BBZ             sp2_sp2_6          C3          C1          C6          N1       0.000     5.0     2
+BBZ              const_41         C16         C17         C18         C19       0.000    10.0     2
+BBZ              const_45         C17         C18         C19         C14       0.000    10.0     2
+BBZ            sp2_sp2_13         C17         C18          N5         C20     180.000     5.0     2
+BBZ             sp2_sp3_4         C18          N5         C20         C21     180.000    10.0     6
+BBZ            sp2_sp3_22         C18          N5         C23         C22     180.000    10.0     6
+BBZ            sp3_sp3_11         C20         C21          N6         C24     180.000    10.0     3
+BBZ            sp3_sp3_17         C23         C22          N6         C24      60.000    10.0     3
+BBZ            sp3_sp3_32        H241         C24          N6         C21     -60.000    10.0     3
+BBZ             sp3_sp3_1          N5         C20         C21          N6     -60.000    10.0     3
+BBZ            sp3_sp3_22          N6         C22         C23          N5      60.000    10.0     3
+BBZ              const_53           C          C2          C3          C1       0.000    10.0     2
+BBZ              const_65           C          C4          C5          C1       0.000    10.0     2
+BBZ            sp2_sp3_10         CN2           N         CN1        HN11     180.000    10.0     6
+BBZ            sp2_sp3_16         CN1           N         CN2        HN21     180.000    10.0     6
+BBZ              const_70          C1          C6          N1          C7     180.000    10.0     2
+BBZ              const_83          C1          C6          N2          C8     180.000    10.0     2
+BBZ              const_85         C11         C12          C7          C8       0.000    10.0     2
+BBZ              const_71          C8          C7          N1          C6       0.000    10.0     2
+BBZ       const_sp2_sp2_1         C12          C7          C8          C9       0.000     5.0     2
+BBZ       const_sp2_sp2_5          C7          C8          C9         C10       0.000     5.0     2
+BBZ              const_73          C7          C8          N2          C6       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BBZ    chir_1    N6    C21    C22    C24    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BBZ    plan-1          C1   0.020
+BBZ    plan-1         C10   0.020
+BBZ    plan-1         C11   0.020
+BBZ    plan-1         C12   0.020
+BBZ    plan-1         C13   0.020
+BBZ    plan-1          C6   0.020
+BBZ    plan-1          C7   0.020
+BBZ    plan-1          C8   0.020
+BBZ    plan-1          C9   0.020
+BBZ    plan-1         H10   0.020
+BBZ    plan-1         H12   0.020
+BBZ    plan-1          H9   0.020
+BBZ    plan-1         HN2   0.020
+BBZ    plan-1          N1   0.020
+BBZ    plan-1          N2   0.020
+BBZ    plan-2         C11   0.020
+BBZ    plan-2         C13   0.020
+BBZ    plan-2         C14   0.020
+BBZ    plan-2         C15   0.020
+BBZ    plan-2         C16   0.020
+BBZ    plan-2         C17   0.020
+BBZ    plan-2         C18   0.020
+BBZ    plan-2         C19   0.020
+BBZ    plan-2         H16   0.020
+BBZ    plan-2         H17   0.020
+BBZ    plan-2         H19   0.020
+BBZ    plan-2         HN4   0.020
+BBZ    plan-2          N3   0.020
+BBZ    plan-2          N4   0.020
+BBZ    plan-2          N5   0.020
+BBZ    plan-3           C   0.020
+BBZ    plan-3          C1   0.020
+BBZ    plan-3          C2   0.020
+BBZ    plan-3          C3   0.020
+BBZ    plan-3          C4   0.020
+BBZ    plan-3          C5   0.020
+BBZ    plan-3          C6   0.020
+BBZ    plan-3          H2   0.020
+BBZ    plan-3          H3   0.020
+BBZ    plan-3          H4   0.020
+BBZ    plan-3          H5   0.020
+BBZ    plan-3           N   0.020
+BBZ    plan-4           C   0.020
+BBZ    plan-4         CN1   0.020
+BBZ    plan-4         CN2   0.020
+BBZ    plan-4           N   0.020
+BBZ    plan-5         C18   0.020
+BBZ    plan-5         C20   0.020
+BBZ    plan-5         C23   0.020
+BBZ    plan-5          N5   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BBZ           SMILES              ACDLabs 10.04                                                                                                                      n2c(c1ccc(N(C)C)cc1)nc3ccc(cc23)c5nc4cc(ccc4n5)N6CCN(C)CC6
+BBZ SMILES_CANONICAL               CACTVS 3.341                                                                                                                  CN1CCN(CC1)c2ccc3[nH]c(nc3c2)c4ccc5[nH]c(nc5c4)c6ccc(cc6)N(C)C
+BBZ           SMILES               CACTVS 3.341                                                                                                                  CN1CCN(CC1)c2ccc3[nH]c(nc3c2)c4ccc5[nH]c(nc5c4)c6ccc(cc6)N(C)C
+BBZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                              CN1CCN(CC1)c2ccc3c(c2)nc([nH]3)c4ccc5c(c4)nc([nH]5)c6ccc(cc6)N(C)C
+BBZ           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                              CN1CCN(CC1)c2ccc3c(c2)nc([nH]3)c4ccc5c(c4)nc([nH]5)c6ccc(cc6)N(C)C
+BBZ            InChI                InChI  1.03 InChI=1S/C27H29N7/c1-32(2)20-7-4-18(5-8-20)26-28-22-10-6-19(16-24(22)30-26)27-29-23-11-9-21(17-25(23)31-27)34-14-12-33(3)13-15-34/h4-11,16-17H,12-15H2,1-3H3,(H,28,30)(H,29,31)
+BBZ         InChIKey                InChI  1.03                                                                                                                                                     VMCOQLKKSNQANE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BBZ acedrg               243         "dictionary generator"                  
+BBZ acedrg_database      11          "data source"                           
+BBZ rdkit                2017.03.2   "Chemoinformatics tool"
+BBZ refmac5              5.8.0238    "optimization tool"                     

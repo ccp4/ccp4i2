@@ -1,0 +1,388 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MFP     MFP      ((2-BROMO-4-METHYLPHENYL){6-[(4-{[(2R)-3-(DIMETHYLAMINO)-2-HYDROXYPROPYL]OXY}PHENYL)AMINO]PYRIMIDIN-4-YL}AMINO)ACETONITRILE     NON-POLYMER     60     33     .     
+#
+data_comp_MFP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MFP     C22     C       CR16    0       3.632       26.240      7.148       
+MFP     C1      C       CR16    0       1.039       32.158      9.441       
+MFP     C5      C       CR6     0       1.887       30.446      8.214       
+MFP     C4      C       CR16    0       0.649       29.796      8.280       
+MFP     C3      C       CR6     0       -0.374      30.442      8.980       
+MFP     C11     C       CR6     0       -2.057      25.782      10.198      
+MFP     C10     C       CR16    0       -1.815      26.746      11.158      
+MFP     C9      C       CR6     0       -1.686      28.087      10.809      
+MFP     C8      C       CR6     0       -1.800      28.499      9.480       
+MFP     C12     C       CR16    0       -2.169      26.187      8.875       
+MFP     C17     C       CSP     0       -3.416      31.269      10.080      
+MFP     C16     C       CH2     0       -2.870      30.686      8.847       
+MFP     C13     C       CR16    0       -2.043      27.517      8.505       
+MFP     C15     C       CH3     0       -2.198      24.314      10.581      
+MFP     C20     C       CR6     0       3.457       28.568      7.771       
+MFP     N2      N       NRD6    0       -0.183      31.644      9.574       
+MFP     N6      N       NRD6    0       2.086       31.638      8.803       
+MFP     N7      N       N       0       -1.662      29.880      9.110       
+MFP     BR      BR      BR      0       -1.353      29.348      12.190      
+MFP     N18     N       NSP     0       -3.832      31.728      11.055      
+MFP     N19     N       NH1     0       2.942       29.861      7.550       
+MFP     C21     C       CR16    0       3.134       27.514      6.921       
+MFP     C23     C       CR6     0       4.461       26.002      8.238       
+MFP     C24     C       CR16    0       4.785       27.046      9.098       
+MFP     C25     C       CR16    0       4.281       28.317      8.864       
+MFP     O26     O       O2      0       4.949       24.742      8.465       
+MFP     C27     C       CH2     0       4.562       24.083      9.678       
+MFP     C28     C       CH1     0       4.719       22.591      9.470       
+MFP     C29     C       CH2     0       6.170       22.129      9.509       
+MFP     N30     N       NT      0       6.569       21.444      10.737      
+MFP     C31     C       CH3     0       6.864       22.383      11.828      
+MFP     C32     C       CH3     0       7.713       20.545      10.528      
+MFP     O33     O       OH1     0       3.949       21.921      10.456      
+MFP     H22     H       H       0       3.409       25.536      6.562       
+MFP     H1      H       H       0       1.181       32.998      9.852       
+MFP     H4      H       H       0       0.520       28.962      7.869       
+MFP     H10     H       H       0       -1.737      26.487      12.059      
+MFP     H12     H       H       0       -2.334      25.540      8.209       
+MFP     H161    H       H       0       -2.649      31.408      8.219       
+MFP     H162    H       H       0       -3.553      30.120      8.428       
+MFP     H13     H       H       0       -2.121      27.757      7.627       
+MFP     H151    H       H       0       -2.691      23.843      9.889       
+MFP     H152    H       H       0       -2.677      24.242      11.422      
+MFP     H153    H       H       0       -1.318      23.917      10.677      
+MFP     H19     H       H       0       3.335       30.342      6.926       
+MFP     H21     H       H       0       2.573       27.670      6.180       
+MFP     H24     H       H       0       5.344       26.891      9.840       
+MFP     H25     H       H       0       4.504       29.021      9.449       
+MFP     H271    H       H       0       3.630       24.294      9.895       
+MFP     H272    H       H       0       5.131       24.385      10.414      
+MFP     H28     H       H       0       4.345       22.362      8.581       
+MFP     H291    H       H       0       6.757       22.910      9.378       
+MFP     H292    H       H       0       6.319       21.522      8.746       
+MFP     H311    H       H       0       7.064       21.886      12.644      
+MFP     H312    H       H       0       6.091       22.959      11.983      
+MFP     H313    H       H       0       7.636       22.933      11.586      
+MFP     H321    H       H       0       8.467       21.055      10.173      
+MFP     H322    H       H       0       7.467       19.845      9.893       
+MFP     H323    H       H       0       7.970       20.135      11.377      
+MFP     H33     H       H       0       3.834       21.109      10.241      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MFP         C22         C21      DOUBLE       y     1.383  0.0100     1.383  0.0100
+MFP         C22         C23      SINGLE       y     1.386  0.0109     1.386  0.0109
+MFP          C1          N2      DOUBLE       y     1.328  0.0100     1.328  0.0100
+MFP          C1          N6      SINGLE       y     1.328  0.0100     1.328  0.0100
+MFP          C5          C4      SINGLE       y     1.396  0.0100     1.396  0.0100
+MFP          C5          N6      DOUBLE       y     1.341  0.0112     1.341  0.0112
+MFP          C5         N19      SINGLE       n     1.377  0.0140     1.377  0.0140
+MFP          C4          C3      DOUBLE       y     1.393  0.0100     1.393  0.0100
+MFP          C3          N2      SINGLE       y     1.349  0.0100     1.349  0.0100
+MFP          C3          N7      SINGLE       n     1.398  0.0198     1.398  0.0198
+MFP         C11         C10      DOUBLE       y     1.378  0.0100     1.378  0.0100
+MFP         C11         C12      SINGLE       y     1.385  0.0100     1.385  0.0100
+MFP         C11         C15      SINGLE       n     1.523  0.0200     1.523  0.0200
+MFP         C10          C9      SINGLE       y     1.387  0.0100     1.387  0.0100
+MFP          C9          C8      DOUBLE       y     1.392  0.0100     1.392  0.0100
+MFP          C9          BR      SINGLE       n     1.899  0.0100     1.899  0.0100
+MFP          C8         C13      SINGLE       y     1.398  0.0146     1.398  0.0146
+MFP          C8          N7      SINGLE       n     1.432  0.0147     1.432  0.0147
+MFP         C12         C13      DOUBLE       y     1.383  0.0100     1.383  0.0100
+MFP         C17         C16      SINGLE       n     1.470  0.0111     1.470  0.0111
+MFP         C17         N18      TRIPLE       n     1.149  0.0200     1.149  0.0200
+MFP         C16          N7      SINGLE       n     1.469  0.0192     1.469  0.0192
+MFP         C20         N19      SINGLE       n     1.409  0.0100     1.409  0.0100
+MFP         C20         C21      SINGLE       y     1.389  0.0100     1.389  0.0100
+MFP         C20         C25      DOUBLE       y     1.389  0.0100     1.389  0.0100
+MFP         C23         C24      DOUBLE       y     1.386  0.0109     1.386  0.0109
+MFP         C23         O26      SINGLE       n     1.369  0.0106     1.369  0.0106
+MFP         C24         C25      SINGLE       y     1.383  0.0100     1.383  0.0100
+MFP         O26         C27      SINGLE       n     1.432  0.0101     1.432  0.0101
+MFP         C27         C28      SINGLE       n     1.513  0.0130     1.513  0.0130
+MFP         C28         C29      SINGLE       n     1.519  0.0100     1.519  0.0100
+MFP         C28         O33      SINGLE       n     1.418  0.0108     1.418  0.0108
+MFP         C29         N30      SINGLE       n     1.457  0.0100     1.457  0.0100
+MFP         N30         C31      SINGLE       n     1.466  0.0117     1.466  0.0117
+MFP         N30         C32      SINGLE       n     1.466  0.0117     1.466  0.0117
+MFP         C22         H22      SINGLE       n     1.082  0.0130     0.942  0.0151
+MFP          C1          H1      SINGLE       n     1.082  0.0130     0.946  0.0100
+MFP          C4          H4      SINGLE       n     1.082  0.0130     0.939  0.0101
+MFP         C10         H10      SINGLE       n     1.082  0.0130     0.940  0.0154
+MFP         C12         H12      SINGLE       n     1.082  0.0130     0.943  0.0173
+MFP         C16        H161      SINGLE       n     1.089  0.0100     0.981  0.0131
+MFP         C16        H162      SINGLE       n     1.089  0.0100     0.981  0.0131
+MFP         C13         H13      SINGLE       n     1.082  0.0130     0.914  0.0200
+MFP         C15        H151      SINGLE       n     1.089  0.0100     0.971  0.0135
+MFP         C15        H152      SINGLE       n     1.089  0.0100     0.971  0.0135
+MFP         C15        H153      SINGLE       n     1.089  0.0100     0.971  0.0135
+MFP         N19         H19      SINGLE       n     1.016  0.0100     0.880  0.0200
+MFP         C21         H21      SINGLE       n     1.082  0.0130     0.942  0.0170
+MFP         C24         H24      SINGLE       n     1.082  0.0130     0.942  0.0151
+MFP         C25         H25      SINGLE       n     1.082  0.0130     0.942  0.0170
+MFP         C27        H271      SINGLE       n     1.089  0.0100     0.979  0.0131
+MFP         C27        H272      SINGLE       n     1.089  0.0100     0.979  0.0131
+MFP         C28         H28      SINGLE       n     1.089  0.0100     0.991  0.0104
+MFP         C29        H291      SINGLE       n     1.089  0.0100     0.985  0.0159
+MFP         C29        H292      SINGLE       n     1.089  0.0100     0.985  0.0159
+MFP         C31        H311      SINGLE       n     1.089  0.0100     0.977  0.0113
+MFP         C31        H312      SINGLE       n     1.089  0.0100     0.977  0.0113
+MFP         C31        H313      SINGLE       n     1.089  0.0100     0.977  0.0113
+MFP         C32        H321      SINGLE       n     1.089  0.0100     0.977  0.0113
+MFP         C32        H322      SINGLE       n     1.089  0.0100     0.977  0.0113
+MFP         C32        H323      SINGLE       n     1.089  0.0100     0.977  0.0113
+MFP         O33         H33      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MFP         C21         C22         C23     119.912    1.50
+MFP         C21         C22         H22     119.975    1.50
+MFP         C23         C22         H22     120.114    1.50
+MFP          N2          C1          N6     128.294    1.50
+MFP          N2          C1          H1     115.853    1.50
+MFP          N6          C1          H1     115.853    1.50
+MFP          C4          C5          N6     121.659    1.50
+MFP          C4          C5         N19     120.831    2.89
+MFP          N6          C5         N19     117.510    2.42
+MFP          C5          C4          C3     117.180    1.50
+MFP          C5          C4          H4     121.070    1.50
+MFP          C3          C4          H4     121.750    1.50
+MFP          C4          C3          N2     121.784    1.50
+MFP          C4          C3          N7     122.031    1.50
+MFP          N2          C3          N7     116.185    1.50
+MFP         C10         C11         C12     117.793    1.50
+MFP         C10         C11         C15     121.111    1.50
+MFP         C12         C11         C15     121.096    1.50
+MFP         C11         C10          C9     120.600    1.50
+MFP         C11         C10         H10     119.309    1.50
+MFP          C9         C10         H10     120.092    1.50
+MFP         C10          C9          C8     121.400    1.69
+MFP         C10          C9          BR     118.615    1.50
+MFP          C8          C9          BR     119.985    1.66
+MFP          C9          C8         C13     118.481    1.98
+MFP          C9          C8          N7     120.547    1.50
+MFP         C13          C8          N7     120.972    1.50
+MFP         C11         C12         C13     121.690    1.50
+MFP         C11         C12         H12     119.142    1.50
+MFP         C13         C12         H12     119.168    1.50
+MFP         C16         C17         N18     180.000    3.00
+MFP         C17         C16          N7     111.532    1.60
+MFP         C17         C16        H161     109.116    1.50
+MFP         C17         C16        H162     109.116    1.50
+MFP          N7         C16        H161     109.172    1.50
+MFP          N7         C16        H162     109.172    1.50
+MFP        H161         C16        H162     107.890    1.50
+MFP          C8         C13         C12     120.036    1.50
+MFP          C8         C13         H13     119.950    1.50
+MFP         C12         C13         H13     120.014    1.50
+MFP         C11         C15        H151     109.567    1.50
+MFP         C11         C15        H152     109.567    1.50
+MFP         C11         C15        H153     109.567    1.50
+MFP        H151         C15        H152     109.348    1.50
+MFP        H151         C15        H153     109.348    1.50
+MFP        H152         C15        H153     109.348    1.50
+MFP         N19         C20         C21     120.641    3.00
+MFP         N19         C20         C25     120.641    3.00
+MFP         C21         C20         C25     118.718    1.50
+MFP          C1          N2          C3     114.654    1.50
+MFP          C1          N6          C5     116.430    1.50
+MFP          C3          N7          C8     119.506    1.50
+MFP          C3          N7         C16     120.247    2.30
+MFP          C8          N7         C16     120.247    2.30
+MFP          C5         N19         C20     128.211    2.93
+MFP          C5         N19         H19     116.013    2.55
+MFP         C20         N19         H19     115.776    2.63
+MFP         C22         C21         C20     120.832    1.50
+MFP         C22         C21         H21     119.652    1.50
+MFP         C20         C21         H21     119.516    1.50
+MFP         C22         C23         C24     119.794    1.50
+MFP         C22         C23         O26     120.103    3.00
+MFP         C24         C23         O26     120.103    3.00
+MFP         C23         C24         C25     119.912    1.50
+MFP         C23         C24         H24     120.114    1.50
+MFP         C25         C24         H24     119.975    1.50
+MFP         C20         C25         C24     120.832    1.50
+MFP         C20         C25         H25     119.516    1.50
+MFP         C24         C25         H25     119.652    1.50
+MFP         C23         O26         C27     117.476    1.50
+MFP         O26         C27         C28     107.433    2.98
+MFP         O26         C27        H271     109.978    1.50
+MFP         O26         C27        H272     109.978    1.50
+MFP         C28         C27        H271     110.231    1.50
+MFP         C28         C27        H272     110.231    1.50
+MFP        H271         C27        H272     108.824    1.50
+MFP         C27         C28         C29     111.094    2.85
+MFP         C27         C28         O33     109.201    3.00
+MFP         C27         C28         H28     108.439    1.50
+MFP         C29         C28         O33     109.290    2.07
+MFP         C29         C28         H28     108.552    1.50
+MFP         O33         C28         H28     108.395    1.50
+MFP         C28         C29         N30     112.438    2.65
+MFP         C28         C29        H291     109.093    1.50
+MFP         C28         C29        H292     109.093    1.50
+MFP         N30         C29        H291     108.847    1.50
+MFP         N30         C29        H292     108.847    1.50
+MFP        H291         C29        H292     107.873    1.50
+MFP         C29         N30         C31     111.259    1.99
+MFP         C29         N30         C32     111.259    1.99
+MFP         C31         N30         C32     109.730    1.50
+MFP         N30         C31        H311     109.516    1.50
+MFP         N30         C31        H312     109.516    1.50
+MFP         N30         C31        H313     109.516    1.50
+MFP        H311         C31        H312     109.408    1.50
+MFP        H311         C31        H313     109.408    1.50
+MFP        H312         C31        H313     109.408    1.50
+MFP         N30         C32        H321     109.516    1.50
+MFP         N30         C32        H322     109.516    1.50
+MFP         N30         C32        H323     109.516    1.50
+MFP        H321         C32        H322     109.408    1.50
+MFP        H321         C32        H323     109.408    1.50
+MFP        H322         C32        H323     109.408    1.50
+MFP         C28         O33         H33     110.408    2.04
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MFP              const_35         C20         C21         C22         C23       0.000    10.0     2
+MFP              const_56         C21         C22         C23         O26     180.000    10.0     2
+MFP             sp3_sp3_1         N18         C17         C16          N7     180.000    10.0     3
+MFP             sp2_sp3_8          C3          N7         C16         C17     120.000    10.0     6
+MFP            sp2_sp2_13         C21         C20         N19          C5     180.000     5.0     2
+MFP              const_41         N19         C20         C21         C22     180.000    10.0     2
+MFP              const_45         N19         C20         C25         C24     180.000    10.0     2
+MFP              const_21          N6          C1          N2          C3       0.000    10.0     2
+MFP              const_59          N2          C1          N6          C5       0.000    10.0     2
+MFP              const_53         O26         C23         C24         C25     180.000    10.0     2
+MFP            sp2_sp2_17         C22         C23         O26         C27     180.000     5.0     2
+MFP              const_47         C23         C24         C25         C20       0.000    10.0     2
+MFP             sp3_sp3_4         C28         C27         O26         C23     180.000    10.0     3
+MFP             sp3_sp3_7         O26         C27         C28         C29     180.000    10.0     3
+MFP            sp3_sp3_16         C27         C28         C29         N30     180.000    10.0     3
+MFP            sp3_sp3_25         C27         C28         O33         H33     180.000    10.0     3
+MFP            sp3_sp3_29         C28         C29         N30         C31     -60.000    10.0     3
+MFP            sp3_sp3_34        H311         C31         N30         C29     180.000    10.0     3
+MFP            sp3_sp3_41        H321         C32         N30         C29     -60.000    10.0     3
+MFP              const_34         N19          C5          N6          C1     180.000    10.0     2
+MFP             sp2_sp2_1          C4          C5         N19         C20     180.000     5.0     2
+MFP              const_30          C3          C4          C5         N19     180.000    10.0     2
+MFP              const_27          N7          C3          C4          C5     180.000    10.0     2
+MFP              const_24          N7          C3          N2          C1     180.000    10.0     2
+MFP             sp2_sp2_5          C4          C3          N7         C16     180.000     5.0     2
+MFP             sp2_sp3_1         C10         C11         C15        H151     150.000    10.0     6
+MFP       const_sp2_sp2_2          C9         C10         C11         C15     180.000     5.0     2
+MFP              const_63         C15         C11         C12         C13     180.000    10.0     2
+MFP       const_sp2_sp2_6         C11         C10          C9          BR     180.000     5.0     2
+MFP              const_12          N7          C8          C9          BR       0.000    10.0     2
+MFP              const_14         C12         C13          C8          N7     180.000    10.0     2
+MFP             sp2_sp2_9          C9          C8          N7         C16     180.000     5.0     2
+MFP              const_17         C11         C12         C13          C8       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MFP    chir_1    C28    O33    C27    C29    negative
+MFP    chir_2    N30    C29    C31    C32    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MFP    plan-1         C20   0.020
+MFP    plan-1         C21   0.020
+MFP    plan-1         C22   0.020
+MFP    plan-1         C23   0.020
+MFP    plan-1         C24   0.020
+MFP    plan-1         C25   0.020
+MFP    plan-1         H21   0.020
+MFP    plan-1         H22   0.020
+MFP    plan-1         H24   0.020
+MFP    plan-1         H25   0.020
+MFP    plan-1         N19   0.020
+MFP    plan-1         O26   0.020
+MFP    plan-2          BR   0.020
+MFP    plan-2         C10   0.020
+MFP    plan-2         C11   0.020
+MFP    plan-2         C12   0.020
+MFP    plan-2         C13   0.020
+MFP    plan-2         C15   0.020
+MFP    plan-2          C8   0.020
+MFP    plan-2          C9   0.020
+MFP    plan-2         H10   0.020
+MFP    plan-2         H12   0.020
+MFP    plan-2         H13   0.020
+MFP    plan-2          N7   0.020
+MFP    plan-3          C1   0.020
+MFP    plan-3          C3   0.020
+MFP    plan-3          C4   0.020
+MFP    plan-3          C5   0.020
+MFP    plan-3          H1   0.020
+MFP    plan-3          H4   0.020
+MFP    plan-3         N19   0.020
+MFP    plan-3          N2   0.020
+MFP    plan-3          N6   0.020
+MFP    plan-3          N7   0.020
+MFP    plan-4         C16   0.020
+MFP    plan-4          C3   0.020
+MFP    plan-4          C8   0.020
+MFP    plan-4          N7   0.020
+MFP    plan-5         C20   0.020
+MFP    plan-5          C5   0.020
+MFP    plan-5         H19   0.020
+MFP    plan-5         N19   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MFP           SMILES              ACDLabs 10.04                                                                                                                                   Brc1cc(ccc1N(c3ncnc(Nc2ccc(OCC(O)CN(C)C)cc2)c3)CC#N)C
+MFP SMILES_CANONICAL               CACTVS 3.341                                                                                                                              CN(C)C[C@@H](O)COc1ccc(Nc2cc(ncn2)N(CC#N)c3ccc(C)cc3Br)cc1
+MFP           SMILES               CACTVS 3.341                                                                                                                                CN(C)C[CH](O)COc1ccc(Nc2cc(ncn2)N(CC#N)c3ccc(C)cc3Br)cc1
+MFP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                            Cc1ccc(c(c1)Br)N(CC#N)c2cc(ncn2)Nc3ccc(cc3)OC[C@@H](CN(C)C)O
+MFP           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                 Cc1ccc(c(c1)Br)N(CC#N)c2cc(ncn2)Nc3ccc(cc3)OCC(CN(C)C)O
+MFP            InChI                InChI  1.03 InChI=1S/C24H27BrN6O2/c1-17-4-9-22(21(25)12-17)31(11-10-26)24-13-23(27-16-28-24)29-18-5-7-20(8-6-18)33-15-19(32)14-30(2)3/h4-9,12-13,16,19,32H,11,14-15H2,1-3H3,(H,27,28,29)/t19-/m1/s1
+MFP         InChIKey                InChI  1.03                                                                                                                                                             UUISESFNPSRBFN-LJQANCHMSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MFP acedrg               243         "dictionary generator"                  
+MFP acedrg_database      11          "data source"                           
+MFP rdkit                2017.03.2   "Chemoinformatics tool"
+MFP refmac5              5.8.0238    "optimization tool"                     

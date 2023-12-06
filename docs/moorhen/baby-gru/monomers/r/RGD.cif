@@ -1,0 +1,290 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+RGD     RGD      cyclobutyl[(2S,3aS,6aS)-6a-(2-hydroxyethyl)-2-(hydroxymethyl)hexahydro-5H-furo[2,3-c]pyrrol-5-yl]methanone     NON-POLYMER     42     19     .     
+#
+data_comp_RGD
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+RGD     C10     C       CH1     0       29.820      44.973      -12.720     
+RGD     C17     C       CH2     0       25.655      43.731      -8.641      
+RGD     C02     C       CH2     0       29.357      48.352      -10.332     
+RGD     C03     C       CH2     0       28.695      47.947      -11.632     
+RGD     C04     C       CT      0       28.268      46.493      -11.750     
+RGD     C05     C       CH2     0       27.123      46.106      -10.819     
+RGD     C07     C       CH2     0       26.712      45.062      -12.988     
+RGD     C08     C       CH1     0       27.778      46.137      -13.168     
+RGD     C09     C       CH2     0       29.050      45.646      -13.855     
+RGD     C11     C       CH2     0       31.323      45.067      -12.847     
+RGD     C14     C       C       0       25.244      44.463      -11.084     
+RGD     C16     C       CH1     0       24.857      44.604      -9.632      
+RGD     C18     C       CH2     0       24.376      42.950      -8.320      
+RGD     C19     C       CH2     0       23.549      43.939      -9.146      
+RGD     N06     N       NR5     0       26.284      45.164      -11.581     
+RGD     O01     O       OH1     0       28.411      48.513      -9.289      
+RGD     O12     O       OH1     0       31.972      44.419      -11.762     
+RGD     O13     O       O2      0       29.395      45.626      -11.504     
+RGD     O15     O       O       0       24.620      43.699      -11.820     
+RGD     H1      H       H       0       29.560      44.013      -12.677     
+RGD     H2      H       H       0       26.357      43.187      -9.067      
+RGD     H3      H       H       0       26.020      44.232      -7.876      
+RGD     H4      H       H       0       29.831      49.201      -10.464     
+RGD     H5      H       H       0       30.017      47.677      -10.067     
+RGD     H6      H       H       0       29.313      48.145      -12.368     
+RGD     H7      H       H       0       27.903      48.511      -11.763     
+RGD     H8      H       H       0       27.471      45.680      -10.005     
+RGD     H9      H       H       0       26.605      46.899      -10.560     
+RGD     H10     H       H       0       27.079      44.170      -13.173     
+RGD     H11     H       H       0       25.955      45.221      -13.592     
+RGD     H12     H       H       0       27.419      46.925      -13.640     
+RGD     H13     H       H       0       29.556      46.395      -14.233     
+RGD     H14     H       H       0       28.840      45.008      -14.569     
+RGD     H15     H       H       0       31.591      46.010      -12.868     
+RGD     H16     H       H       0       31.606      44.650      -13.689     
+RGD     H17     H       H       0       24.877      45.552      -9.352      
+RGD     H18     H       H       0       24.148      42.948      -7.367      
+RGD     H19     H       H       0       24.372      42.038      -8.678      
+RGD     H20     H       H       0       23.020      43.516      -9.860      
+RGD     H21     H       H       0       22.982      44.534      -8.603      
+RGD     H22     H       H       0       28.822      48.575      -8.553      
+RGD     H23     H       H       0       32.811      44.451      -11.883     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+RGD         C08         C09      SINGLE       n     1.530  0.0108     1.530  0.0108
+RGD         C10         C09      SINGLE       n     1.528  0.0100     1.528  0.0100
+RGD         C07         C08      SINGLE       n     1.525  0.0100     1.525  0.0100
+RGD         C04         C08      SINGLE       n     1.548  0.0131     1.548  0.0131
+RGD         C07         N06      SINGLE       n     1.470  0.0107     1.470  0.0107
+RGD         C10         C11      SINGLE       n     1.511  0.0110     1.511  0.0110
+RGD         C11         O12      SINGLE       n     1.421  0.0131     1.421  0.0131
+RGD         C10         O13      SINGLE       n     1.441  0.0100     1.441  0.0100
+RGD         C14         O15      DOUBLE       n     1.229  0.0108     1.229  0.0108
+RGD         C14         N06      SINGLE       n     1.343  0.0101     1.343  0.0101
+RGD         C05         N06      SINGLE       n     1.470  0.0107     1.470  0.0107
+RGD         C03         C04      SINGLE       n     1.517  0.0100     1.517  0.0100
+RGD         C04         O13      SINGLE       n     1.440  0.0100     1.440  0.0100
+RGD         C04         C05      SINGLE       n     1.523  0.0159     1.523  0.0159
+RGD         C02         C03      SINGLE       n     1.505  0.0200     1.505  0.0200
+RGD         C14         C16      SINGLE       n     1.501  0.0130     1.501  0.0130
+RGD         C02         O01      SINGLE       n     1.417  0.0200     1.417  0.0200
+RGD         C16         C19      SINGLE       n     1.541  0.0144     1.541  0.0144
+RGD         C17         C16      SINGLE       n     1.541  0.0144     1.541  0.0144
+RGD         C18         C19      SINGLE       n     1.532  0.0141     1.532  0.0141
+RGD         C17         C18      SINGLE       n     1.532  0.0141     1.532  0.0141
+RGD         C10          H1      SINGLE       n     1.089  0.0100     0.995  0.0101
+RGD         C17          H2      SINGLE       n     1.089  0.0100     0.985  0.0184
+RGD         C17          H3      SINGLE       n     1.089  0.0100     0.985  0.0184
+RGD         C02          H4      SINGLE       n     1.089  0.0100     0.981  0.0174
+RGD         C02          H5      SINGLE       n     1.089  0.0100     0.981  0.0174
+RGD         C03          H6      SINGLE       n     1.089  0.0100     0.981  0.0123
+RGD         C03          H7      SINGLE       n     1.089  0.0100     0.981  0.0123
+RGD         C05          H8      SINGLE       n     1.089  0.0100     0.982  0.0117
+RGD         C05          H9      SINGLE       n     1.089  0.0100     0.982  0.0117
+RGD         C07         H10      SINGLE       n     1.089  0.0100     0.982  0.0117
+RGD         C07         H11      SINGLE       n     1.089  0.0100     0.982  0.0117
+RGD         C08         H12      SINGLE       n     1.089  0.0100     0.986  0.0200
+RGD         C09         H13      SINGLE       n     1.089  0.0100     0.980  0.0164
+RGD         C09         H14      SINGLE       n     1.089  0.0100     0.980  0.0164
+RGD         C11         H15      SINGLE       n     1.089  0.0100     0.981  0.0200
+RGD         C11         H16      SINGLE       n     1.089  0.0100     0.981  0.0200
+RGD         C16         H17      SINGLE       n     1.089  0.0100     0.989  0.0200
+RGD         C18         H18      SINGLE       n     1.089  0.0100     0.980  0.0119
+RGD         C18         H19      SINGLE       n     1.089  0.0100     0.980  0.0119
+RGD         C19         H20      SINGLE       n     1.089  0.0100     0.985  0.0184
+RGD         C19         H21      SINGLE       n     1.089  0.0100     0.985  0.0184
+RGD         O01         H22      SINGLE       n     0.970  0.0120     0.846  0.0200
+RGD         O12         H23      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+RGD         C09         C10         C11     114.512    2.37
+RGD         C09         C10         O13     105.012    1.50
+RGD         C09         C10          H1     109.090    1.50
+RGD         C11         C10         O13     109.749    1.70
+RGD         C11         C10          H1     108.962    1.72
+RGD         O13         C10          H1     108.980    1.50
+RGD         C16         C17         C18      88.138    1.50
+RGD         C16         C17          H2     113.700    1.50
+RGD         C16         C17          H3     113.700    1.50
+RGD         C18         C17          H2     113.877    1.50
+RGD         C18         C17          H3     113.877    1.50
+RGD          H2         C17          H3     110.670    1.50
+RGD         C03         C02         O01     110.983    3.00
+RGD         C03         C02          H4     109.556    1.50
+RGD         C03         C02          H5     109.556    1.50
+RGD         O01         C02          H4     109.256    1.50
+RGD         O01         C02          H5     109.256    1.50
+RGD          H4         C02          H5     108.319    1.50
+RGD         C04         C03         C02     112.751    2.75
+RGD         C04         C03          H6     108.836    1.50
+RGD         C04         C03          H7     108.836    1.50
+RGD         C02         C03          H6     108.910    1.50
+RGD         C02         C03          H7     108.910    1.50
+RGD          H6         C03          H7     107.550    1.50
+RGD         C08         C04         C03     115.230    3.00
+RGD         C08         C04         O13     105.292    1.61
+RGD         C08         C04         C05     104.802    1.87
+RGD         C03         C04         O13     109.628    1.50
+RGD         C03         C04         C05     113.078    2.77
+RGD         O13         C04         C05     109.099    1.50
+RGD         N06         C05         C04     103.391    1.79
+RGD         N06         C05          H8     110.966    1.50
+RGD         N06         C05          H9     110.966    1.50
+RGD         C04         C05          H8     110.895    1.50
+RGD         C04         C05          H9     110.895    1.50
+RGD          H8         C05          H9     108.987    1.50
+RGD         C08         C07         N06     103.391    1.79
+RGD         C08         C07         H10     111.084    1.50
+RGD         C08         C07         H11     111.084    1.50
+RGD         N06         C07         H10     110.966    1.50
+RGD         N06         C07         H11     110.966    1.50
+RGD         H10         C07         H11     108.987    1.50
+RGD         C09         C08         C07     114.013    1.50
+RGD         C09         C08         C04     104.802    1.87
+RGD         C09         C08         H12     109.658    2.16
+RGD         C07         C08         C04     104.802    1.87
+RGD         C07         C08         H12     111.202    1.50
+RGD         C04         C08         H12     111.544    1.50
+RGD         C08         C09         C10     103.933    1.82
+RGD         C08         C09         H13     110.793    1.50
+RGD         C08         C09         H14     110.793    1.50
+RGD         C10         C09         H13     111.027    1.50
+RGD         C10         C09         H14     111.027    1.50
+RGD         H13         C09         H14     108.883    1.55
+RGD         C10         C11         O12     111.261    1.96
+RGD         C10         C11         H15     109.496    1.62
+RGD         C10         C11         H16     109.496    1.62
+RGD         O12         C11         H15     109.280    1.50
+RGD         O12         C11         H16     109.280    1.50
+RGD         H15         C11         H16     108.248    2.26
+RGD         O15         C14         N06     120.165    1.50
+RGD         O15         C14         C16     120.732    1.50
+RGD         N06         C14         C16     119.103    3.00
+RGD         C14         C16         C19     115.888    2.04
+RGD         C14         C16         C17     115.888    2.04
+RGD         C14         C16         H17     110.576    2.11
+RGD         C19         C16         C17      88.246    1.50
+RGD         C19         C16         H17     110.492    1.66
+RGD         C17         C16         H17     110.492    1.66
+RGD         C19         C18         C17      89.467    1.50
+RGD         C19         C18         H18     113.763    1.50
+RGD         C19         C18         H19     113.763    1.50
+RGD         C17         C18         H18     113.763    1.50
+RGD         C17         C18         H19     113.763    1.50
+RGD         H18         C18         H19     110.794    1.50
+RGD         C16         C19         C18      88.138    1.50
+RGD         C16         C19         H20     113.700    1.50
+RGD         C16         C19         H21     113.700    1.50
+RGD         C18         C19         H20     113.877    1.50
+RGD         C18         C19         H21     113.877    1.50
+RGD         H20         C19         H21     110.670    1.50
+RGD         C07         N06         C14     124.586    3.00
+RGD         C07         N06         C05     110.827    1.50
+RGD         C14         N06         C05     124.586    3.00
+RGD         C02         O01         H22     108.972    3.00
+RGD         C11         O12         H23     109.007    3.00
+RGD         C10         O13         C04     108.501    1.71
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+RGD            sp3_sp3_80         C11         C10         O13         C04      60.000    10.0     3
+RGD            sp3_sp3_20         C08         C09         C10         C11     180.000    10.0     3
+RGD            sp3_sp3_67         C09         C10         C11         O12     180.000    10.0     3
+RGD            sp2_sp3_14         O15         C14         C16         C19     120.000    10.0     6
+RGD             sp2_sp2_3         O15         C14         N06         C07       0.000     5.0     2
+RGD            sp3_sp3_55         C14         C16         C19         C18      60.000    10.0     3
+RGD            sp3_sp3_58         C17         C18         C19         C16      60.000    10.0     3
+RGD            sp3_sp3_43         C14         C16         C17         C18     -60.000    10.0     3
+RGD           sp3_sp3_112         C16         C17         C18         C19     180.000    10.0     3
+RGD           sp3_sp3_109         C03         C02         O01         H22     180.000    10.0     3
+RGD           sp3_sp3_100         O01         C02         C03         C04     180.000    10.0     3
+RGD            sp3_sp3_82         C02         C03         C04         C08     180.000    10.0     3
+RGD            sp3_sp3_38         C03         C04         O13         C10     180.000    10.0     3
+RGD            sp3_sp3_94         C03         C04         C05         N06      60.000    10.0     3
+RGD             sp3_sp3_4         C03         C04         C08         C09     -60.000    10.0     3
+RGD            sp2_sp3_10         C14         N06         C05         C04     180.000    10.0     6
+RGD             sp2_sp3_4         C14         N06         C07         C08     180.000    10.0     6
+RGD            sp3_sp3_11         N06         C07         C08         C09      60.000    10.0     3
+RGD            sp3_sp3_31         C07         C08         C09         C10     180.000    10.0     3
+RGD            sp3_sp3_76         C10         C11         O12         H23     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+RGD    chir_1    C10    O13    C11    C09    positive
+RGD    chir_2    C04    O13    C05    C08    positive
+RGD    chir_3    C08    C04    C07    C09    positive
+RGD    chir_4    C16    C14    C19    C17    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+RGD    plan-1         C14   0.020
+RGD    plan-1         C16   0.020
+RGD    plan-1         N06   0.020
+RGD    plan-1         O15   0.020
+RGD    plan-2         C05   0.020
+RGD    plan-2         C07   0.020
+RGD    plan-2         C14   0.020
+RGD    plan-2         N06   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+RGD           SMILES              ACDLabs 12.01                                                                                  C2(OC1(CCO)CN(CC1C2)C(C3CCC3)=O)CO
+RGD            InChI                InChI  1.03 InChI=1S/C14H23NO4/c16-5-4-14-9-15(13(18)10-2-1-3-10)7-11(14)6-12(8-17)19-14/h10-12,16-17H,1-9H2/t11-,12-,14+/m0/s1
+RGD         InChIKey                InChI  1.03                                                                                         LOAFEZNLOIOHIT-SGMGOOAPSA-N
+RGD SMILES_CANONICAL               CACTVS 3.385                                                                      OCC[C@@]12CN(C[C@@H]1C[C@@H](CO)O2)C(=O)C3CCC3
+RGD           SMILES               CACTVS 3.385                                                                            OCC[C]12CN(C[CH]1C[CH](CO)O2)C(=O)C3CCC3
+RGD SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                     C1CC(C1)C(=O)N2C[C@@H]3C[C@H](O[C@@]3(C2)CCO)CO
+RGD           SMILES "OpenEye OEToolkits" 2.0.6                                                                                  C1CC(C1)C(=O)N2CC3CC(OC3(C2)CCO)CO
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+RGD acedrg               243         "dictionary generator"                  
+RGD acedrg_database      11          "data source"                           
+RGD rdkit                2017.03.2   "Chemoinformatics tool"
+RGD refmac5              5.8.0238    "optimization tool"                     

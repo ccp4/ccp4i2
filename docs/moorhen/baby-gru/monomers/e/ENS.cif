@@ -1,0 +1,427 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ENS     ENS      "methyl(2Z)-3-[(3-chloro-1H-indol-7-yl)amino]-2-cyano-3-{[(3S)-2-oxo-1-(2-oxo-2-pyrrolidin-1-ylethyl)azepan-3-yl]amino}acrylate"     NON-POLYMER     65     36     .     
+#
+data_comp_ENS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ENS     C1      C       CSP     0       0.373       7.935       26.031      
+ENS     C2      C       CR16    0       5.656       4.780       28.430      
+ENS     C3      C       CR16    0       6.921       4.692       27.891      
+ENS     C4      C       CR16    0       4.621       5.464       27.757      
+ENS     C5      C       CR5     0       8.331       5.400       25.823      
+ENS     C6      C       CR15    0       7.983       6.116       24.714      
+ENS     C7      C       CR56    0       7.174       5.297       26.650      
+ENS     C8      C       CR56    0       6.136       5.981       25.981      
+ENS     C9      C       CR6     0       4.841       6.071       26.525      
+ENS     C10     C       C       0       3.085       10.212      28.933      
+ENS     C11     C       C       0       1.499       7.081       25.875      
+ENS     C12     C       C       0       2.835       7.497       26.311      
+ENS     C13     C       C       0       1.237       5.737       25.274      
+ENS     C14     C       C       0       3.722       13.215      29.742      
+ENS     C15     C       CH2     0       0.263       8.710       29.656      
+ENS     C16     C       CH2     0       0.384       9.917       30.559      
+ENS     C17     C       CH2     0       7.066       14.027      28.586      
+ENS     C18     C       CH2     0       7.392       13.432      29.914      
+ENS     C19     C       CH2     0       1.602       8.202       29.138      
+ENS     C20     C       CH2     0       0.968       11.141      29.868      
+ENS     C21     C       CH2     0       5.618       14.443      28.727      
+ENS     C22     C       CH2     0       6.132       12.685      30.308      
+ENS     C23     C       CH1     0       2.288       9.154       28.154      
+ENS     C24     C       CH3     0       -0.332      5.477       23.521      
+ENS     C25     C       CH2     0       3.191       12.047      30.556      
+ENS     N26     N       NSP     0       -0.550      8.685       25.746      
+ENS     N27     N       NR5     0       6.662       6.468       24.805      
+ENS     N28     N       N       0       2.439       11.096      29.743      
+ENS     N29     N       NR5     0       5.052       13.408      29.610      
+ENS     N30     N       NH1     0       3.835       6.775       25.816      
+ENS     N31     N       NH1     0       3.157       8.446       27.221      
+ENS     O32     O       O       0       4.312       10.234      28.804      
+ENS     O33     O       O       0       2.082       4.896       25.101      
+ENS     O34     O       O       0       2.925       13.988      29.214      
+ENS     O35     O       O2      0       -0.046      5.558       24.939      
+ENS     CL36    CL      CL      0       9.877       4.740       26.169      
+ENS     H2      H       H       0       5.474       4.375       29.265      
+ENS     H3      H       H       0       7.596       4.238       28.342      
+ENS     H4      H       H       0       3.767       5.507       28.151      
+ENS     H6      H       H       0       8.549       6.342       23.991      
+ENS     H15     H       H       0       -0.306      8.939       28.891      
+ENS     H15A    H       H       0       -0.178      7.986       30.151      
+ENS     H16     H       H       0       0.953       9.685       31.324      
+ENS     H16A    H       H       0       -0.505      10.144      30.905      
+ENS     H17     H       H       0       7.637       14.800      28.398      
+ENS     H17A    H       H       0       7.174       13.368      27.870      
+ENS     H18     H       H       0       8.153       12.820      29.846      
+ENS     H18A    H       H       0       7.602       14.130      30.567      
+ENS     H19     H       H       0       1.455       7.337       28.706      
+ENS     H19A    H       H       0       2.196       8.052       29.904      
+ENS     H20     H       H       0       0.706       11.941      30.371      
+ENS     H20A    H       H       0       0.576       11.219      28.973      
+ENS     H21     H       H       0       5.169       14.451      27.856      
+ENS     H21A    H       H       0       5.544       15.332      29.132      
+ENS     H22     H       H       0       6.000       12.710      31.279      
+ENS     H22A    H       H       0       6.174       11.750      30.018      
+ENS     H23     H       H       0       1.591       9.612       27.627      
+ENS     H24     H       H       0       0.142       4.723       23.137      
+ENS     H24A    H       H       0       -0.046      6.297       23.085      
+ENS     H24B    H       H       0       -1.286      5.359       23.393      
+ENS     H25     H       H       0       2.617       12.397      31.268      
+ENS     H25A    H       H       0       3.932       11.578      30.989      
+ENS     HN27    H       H       0       6.222       6.933       24.203      
+ENS     H29     H       H       0       3.894       6.747       24.942      
+ENS     HN31    H       H       0       4.002       8.677       27.237      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ENS          C1         C11      SINGLE       n     1.419  0.0117     1.419  0.0117
+ENS          C1         N26      TRIPLE       n     1.149  0.0200     1.149  0.0200
+ENS          C2          C3      DOUBLE       y     1.376  0.0100     1.376  0.0100
+ENS          C2          C4      SINGLE       y     1.408  0.0100     1.408  0.0100
+ENS          C3          C7      SINGLE       y     1.400  0.0100     1.400  0.0100
+ENS          C4          C9      DOUBLE       y     1.386  0.0103     1.386  0.0103
+ENS          C5          C6      DOUBLE       y     1.363  0.0131     1.363  0.0131
+ENS          C5          C7      SINGLE       y     1.429  0.0113     1.429  0.0113
+ENS          C5        CL36      SINGLE       n     1.716  0.0109     1.716  0.0109
+ENS          C6         N27      SINGLE       y     1.368  0.0100     1.368  0.0100
+ENS          C7          C8      DOUBLE       y     1.410  0.0100     1.410  0.0100
+ENS          C8          C9      SINGLE       y     1.403  0.0100     1.403  0.0100
+ENS          C8         N27      SINGLE       y     1.377  0.0100     1.377  0.0100
+ENS          C9         N30      SINGLE       n     1.415  0.0100     1.415  0.0100
+ENS         C10         C23      SINGLE       n     1.531  0.0100     1.531  0.0100
+ENS         C10         N28      SINGLE       n     1.348  0.0123     1.348  0.0123
+ENS         C10         O32      DOUBLE       n     1.232  0.0100     1.232  0.0100
+ENS         C11         C12      DOUBLE       n     1.426  0.0200     1.426  0.0200
+ENS         C11         C13      SINGLE       n     1.477  0.0174     1.477  0.0174
+ENS         C12         N30      SINGLE       n     1.325  0.0100     1.325  0.0100
+ENS         C12         N31      SINGLE       n     1.331  0.0158     1.331  0.0158
+ENS         C13         O33      DOUBLE       n     1.204  0.0104     1.204  0.0104
+ENS         C13         O35      SINGLE       n     1.335  0.0106     1.335  0.0106
+ENS         C14         C25      SINGLE       n     1.514  0.0123     1.514  0.0123
+ENS         C14         N29      SINGLE       n     1.342  0.0108     1.342  0.0108
+ENS         C14         O34      DOUBLE       n     1.227  0.0149     1.227  0.0149
+ENS         C15         C16      SINGLE       n     1.514  0.0200     1.514  0.0200
+ENS         C15         C19      SINGLE       n     1.523  0.0114     1.523  0.0114
+ENS         C16         C20      SINGLE       n     1.522  0.0104     1.522  0.0104
+ENS         C17         C18      SINGLE       n     1.500  0.0200     1.500  0.0200
+ENS         C17         C21      SINGLE       n     1.516  0.0140     1.516  0.0140
+ENS         C18         C22      SINGLE       n     1.516  0.0140     1.516  0.0140
+ENS         C19         C23      SINGLE       n     1.528  0.0100     1.528  0.0100
+ENS         C20         N28      SINGLE       n     1.471  0.0102     1.471  0.0102
+ENS         C21         N29      SINGLE       n     1.471  0.0104     1.471  0.0104
+ENS         C22         N29      SINGLE       n     1.471  0.0104     1.471  0.0104
+ENS         C23         N31      SINGLE       n     1.452  0.0100     1.452  0.0100
+ENS         C24         O35      SINGLE       n     1.447  0.0130     1.447  0.0130
+ENS         C25         N28      SINGLE       n     1.450  0.0121     1.450  0.0121
+ENS          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0137
+ENS          C3          H3      SINGLE       n     1.082  0.0130     0.930  0.0100
+ENS          C4          H4      SINGLE       n     1.082  0.0130     0.942  0.0122
+ENS          C6          H6      SINGLE       n     1.082  0.0130     0.945  0.0191
+ENS         C15         H15      SINGLE       n     1.089  0.0100     0.981  0.0163
+ENS         C15        H15A      SINGLE       n     1.089  0.0100     0.981  0.0163
+ENS         C16         H16      SINGLE       n     1.089  0.0100     0.981  0.0160
+ENS         C16        H16A      SINGLE       n     1.089  0.0100     0.981  0.0160
+ENS         C17         H17      SINGLE       n     1.089  0.0100     0.979  0.0132
+ENS         C17        H17A      SINGLE       n     1.089  0.0100     0.979  0.0132
+ENS         C18         H18      SINGLE       n     1.089  0.0100     0.979  0.0132
+ENS         C18        H18A      SINGLE       n     1.089  0.0100     0.979  0.0132
+ENS         C19         H19      SINGLE       n     1.089  0.0100     0.980  0.0160
+ENS         C19        H19A      SINGLE       n     1.089  0.0100     0.980  0.0160
+ENS         C20         H20      SINGLE       n     1.089  0.0100     0.981  0.0152
+ENS         C20        H20A      SINGLE       n     1.089  0.0100     0.981  0.0152
+ENS         C21         H21      SINGLE       n     1.089  0.0100     0.980  0.0138
+ENS         C21        H21A      SINGLE       n     1.089  0.0100     0.980  0.0138
+ENS         C22         H22      SINGLE       n     1.089  0.0100     0.980  0.0138
+ENS         C22        H22A      SINGLE       n     1.089  0.0100     0.980  0.0138
+ENS         C23         H23      SINGLE       n     1.089  0.0100     0.991  0.0200
+ENS         C24         H24      SINGLE       n     1.089  0.0100     0.970  0.0175
+ENS         C24        H24A      SINGLE       n     1.089  0.0100     0.970  0.0175
+ENS         C24        H24B      SINGLE       n     1.089  0.0100     0.970  0.0175
+ENS         C25         H25      SINGLE       n     1.089  0.0100     0.980  0.0137
+ENS         C25        H25A      SINGLE       n     1.089  0.0100     0.980  0.0137
+ENS         N27        HN27      SINGLE       n     1.016  0.0100     0.878  0.0200
+ENS         N30         H29      SINGLE       n     1.016  0.0100     0.874  0.0200
+ENS         N31        HN31      SINGLE       n     1.016  0.0100     0.873  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ENS         C11          C1         N26     180.000    3.00
+ENS          C3          C2          C4     121.562    1.50
+ENS          C3          C2          H2     119.430    1.50
+ENS          C4          C2          H2     119.013    1.50
+ENS          C2          C3          C7     119.132    1.50
+ENS          C2          C3          H3     120.412    1.50
+ENS          C7          C3          H3     120.456    1.50
+ENS          C2          C4          C9     121.400    1.50
+ENS          C2          C4          H4     119.283    1.50
+ENS          C9          C4          H4     119.318    1.50
+ENS          C6          C5          C7     107.622    1.50
+ENS          C6          C5        CL36     126.499    1.88
+ENS          C7          C5        CL36     125.879    2.67
+ENS          C5          C6         N27     108.223    1.50
+ENS          C5          C6          H6     126.823    1.50
+ENS         N27          C6          H6     124.955    1.50
+ENS          C3          C7          C5     132.906    2.56
+ENS          C3          C7          C8     119.444    1.50
+ENS          C5          C7          C8     107.650    1.50
+ENS          C7          C8          C9     121.142    1.50
+ENS          C7          C8         N27     107.710    1.50
+ENS          C9          C8         N27     131.148    1.78
+ENS          C4          C9          C8     117.316    1.50
+ENS          C4          C9         N30     121.649    3.00
+ENS          C8          C9         N30     121.035    3.00
+ENS         C23         C10         N28     118.615    1.50
+ENS         C23         C10         O32     119.603    1.50
+ENS         N28         C10         O32     121.782    1.50
+ENS          C1         C11         C12     120.259    1.50
+ENS          C1         C11         C13     117.743    2.23
+ENS         C12         C11         C13     121.998    1.84
+ENS         C11         C12         N30     119.837    3.00
+ENS         C11         C12         N31     119.837    3.00
+ENS         N30         C12         N31     120.327    1.69
+ENS         C11         C13         O33     124.305    1.50
+ENS         C11         C13         O35     112.062    1.50
+ENS         O33         C13         O35     123.633    1.50
+ENS         C25         C14         N29     118.311    1.83
+ENS         C25         C14         O34     120.730    1.50
+ENS         N29         C14         O34     120.959    1.54
+ENS         C16         C15         C19     113.328    2.00
+ENS         C16         C15         H15     108.806    1.50
+ENS         C16         C15        H15A     108.806    1.50
+ENS         C19         C15         H15     108.601    1.50
+ENS         C19         C15        H15A     108.601    1.50
+ENS         H15         C15        H15A     107.646    1.50
+ENS         C15         C16         C20     114.202    2.06
+ENS         C15         C16         H16     109.041    1.50
+ENS         C15         C16        H16A     109.041    1.50
+ENS         C20         C16         H16     108.945    1.50
+ENS         C20         C16        H16A     108.945    1.50
+ENS         H16         C16        H16A     107.927    1.57
+ENS         C18         C17         C21     104.440    1.79
+ENS         C18         C17         H17     110.800    1.50
+ENS         C18         C17        H17A     110.800    1.50
+ENS         C21         C17         H17     110.793    1.50
+ENS         C21         C17        H17A     110.793    1.50
+ENS         H17         C17        H17A     108.899    1.50
+ENS         C17         C18         C22     104.440    1.79
+ENS         C17         C18         H18     110.800    1.50
+ENS         C17         C18        H18A     110.800    1.50
+ENS         C22         C18         H18     110.793    1.50
+ENS         C22         C18        H18A     110.793    1.50
+ENS         H18         C18        H18A     108.899    1.50
+ENS         C15         C19         C23     113.702    1.73
+ENS         C15         C19         H19     108.650    1.50
+ENS         C15         C19        H19A     108.650    1.50
+ENS         C23         C19         H19     108.827    1.50
+ENS         C23         C19        H19A     108.827    1.50
+ENS         H19         C19        H19A     107.844    1.50
+ENS         C16         C20         N28     113.303    1.62
+ENS         C16         C20         H20     108.873    1.50
+ENS         C16         C20        H20A     108.873    1.50
+ENS         N28         C20         H20     108.589    1.50
+ENS         N28         C20        H20A     108.589    1.50
+ENS         H20         C20        H20A     107.673    1.50
+ENS         C17         C21         N29     103.135    1.50
+ENS         C17         C21         H21     111.171    1.50
+ENS         C17         C21        H21A     111.171    1.50
+ENS         N29         C21         H21     111.133    1.50
+ENS         N29         C21        H21A     111.133    1.50
+ENS         H21         C21        H21A     108.998    1.50
+ENS         C18         C22         N29     103.135    1.50
+ENS         C18         C22         H22     111.171    1.50
+ENS         C18         C22        H22A     111.171    1.50
+ENS         N29         C22         H22     111.133    1.50
+ENS         N29         C22        H22A     111.133    1.50
+ENS         H22         C22        H22A     108.998    1.50
+ENS         C10         C23         C19     110.281    1.60
+ENS         C10         C23         N31     111.106    2.53
+ENS         C10         C23         H23     109.162    1.50
+ENS         C19         C23         N31     111.076    1.75
+ENS         C19         C23         H23     108.242    1.50
+ENS         N31         C23         H23     108.161    1.50
+ENS         O35         C24         H24     109.367    1.50
+ENS         O35         C24        H24A     109.367    1.50
+ENS         O35         C24        H24B     109.367    1.50
+ENS         H24         C24        H24A     109.532    1.53
+ENS         H24         C24        H24B     109.532    1.53
+ENS        H24A         C24        H24B     109.532    1.53
+ENS         C14         C25         N28     112.712    1.50
+ENS         C14         C25         H25     109.078    1.50
+ENS         C14         C25        H25A     109.078    1.50
+ENS         N28         C25         H25     109.037    1.50
+ENS         N28         C25        H25A     109.037    1.50
+ENS         H25         C25        H25A     107.908    1.50
+ENS          C6         N27          C8     108.796    1.50
+ENS          C6         N27        HN27     125.286    1.67
+ENS          C8         N27        HN27     125.918    1.93
+ENS         C10         N28         C20     121.478    3.00
+ENS         C10         N28         C25     121.973    2.70
+ENS         C20         N28         C25     116.566    1.82
+ENS         C14         N29         C21     124.683    3.00
+ENS         C14         N29         C22     124.683    3.00
+ENS         C21         N29         C22     110.635    1.50
+ENS          C9         N30         C12     126.999    2.65
+ENS          C9         N30         H29     116.244    1.50
+ENS         C12         N30         H29     116.757    2.33
+ENS         C12         N31         C23     122.639    2.35
+ENS         C12         N31        HN31     117.635    1.51
+ENS         C23         N31        HN31     119.726    1.92
+ENS         C13         O35         C24     115.802    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ENS           other_tor_1         N26          C1         C11         C12      90.000    10.0     1
+ENS            sp2_sp2_11          C1         C11         C12         N30       0.000     5.0     2
+ENS            sp2_sp2_16          C1         C11         C13         O33     180.000     5.0     2
+ENS            sp2_sp2_17         C11         C12         N30          C9     180.000     5.0     2
+ENS            sp2_sp2_21         C11         C12         N31         C23     180.000     5.0     2
+ENS            sp2_sp2_25         C11         C13         O35         C24     180.000     5.0     2
+ENS            sp2_sp3_23         O34         C14         C25         N28     -60.000    10.0     6
+ENS            sp2_sp2_27         C25         C14         N29         C21     180.000     5.0     2
+ENS            sp3_sp3_19         C19         C15         C16         C20     180.000    10.0     3
+ENS            sp3_sp3_28         C16         C15         C19         C23     180.000    10.0     3
+ENS            sp3_sp3_37         C15         C16         C20         N28     180.000    10.0     3
+ENS             sp3_sp3_1         C21         C17         C18         C22      60.000    10.0     3
+ENS            sp3_sp3_46         C18         C17         C21         N29     180.000    10.0     3
+ENS            sp3_sp3_10         C17         C18         C22         N29     -60.000    10.0     3
+ENS            sp3_sp3_55         C15         C19         C23         C10     180.000    10.0     3
+ENS            sp2_sp3_26         C10         N28         C20         C16     120.000    10.0     6
+ENS       const_sp2_sp2_1          C4          C2          C3          C7       0.000     5.0     2
+ENS              const_33          C3          C2          C4          C9       0.000    10.0     2
+ENS            sp2_sp3_10         C14         N29         C21         C17     180.000    10.0     6
+ENS             sp2_sp3_4         C14         N29         C22         C18     180.000    10.0     6
+ENS            sp2_sp3_31         C12         N31         C23         C10       0.000    10.0     6
+ENS            sp3_sp3_65         H24         C24         O35         C13     -60.000    10.0     3
+ENS            sp2_sp3_38         C10         N28         C25         C14     120.000    10.0     6
+ENS       const_sp2_sp2_6          C2          C3          C7          C5     180.000     5.0     2
+ENS              const_18          C2          C4          C9         N30     180.000    10.0     2
+ENS              const_23        CL36          C5          C6         N27     180.000    10.0     2
+ENS              const_40        CL36          C5          C7          C3       0.000    10.0     2
+ENS              const_25          C5          C6         N27          C8       0.000    10.0     2
+ENS       const_sp2_sp2_9          C3          C7          C8          C9       0.000     5.0     2
+ENS              const_29          C7          C8         N27          C6       0.000    10.0     2
+ENS              const_14          C7          C8          C9         N30     180.000    10.0     2
+ENS             sp2_sp2_1          C4          C9         N30         C12     180.000     5.0     2
+ENS            sp2_sp3_13         N28         C10         C23         C19       0.000    10.0     6
+ENS             sp2_sp2_5         C23         C10         N28         C20     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+ENS    chir_1    C23    N31    C10    C19    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ENS    plan-1          C2   0.020
+ENS    plan-1          C3   0.020
+ENS    plan-1          C4   0.020
+ENS    plan-1          C5   0.020
+ENS    plan-1          C6   0.020
+ENS    plan-1          C7   0.020
+ENS    plan-1          C8   0.020
+ENS    plan-1          C9   0.020
+ENS    plan-1        CL36   0.020
+ENS    plan-1          H2   0.020
+ENS    plan-1          H3   0.020
+ENS    plan-1          H4   0.020
+ENS    plan-1          H6   0.020
+ENS    plan-1        HN27   0.020
+ENS    plan-1         N27   0.020
+ENS    plan-1         N30   0.020
+ENS    plan-2         C10   0.020
+ENS    plan-2         C23   0.020
+ENS    plan-2         N28   0.020
+ENS    plan-2         O32   0.020
+ENS    plan-3          C1   0.020
+ENS    plan-3         C11   0.020
+ENS    plan-3         C12   0.020
+ENS    plan-3         C13   0.020
+ENS    plan-4         C11   0.020
+ENS    plan-4         C12   0.020
+ENS    plan-4         N30   0.020
+ENS    plan-4         N31   0.020
+ENS    plan-5         C11   0.020
+ENS    plan-5         C13   0.020
+ENS    plan-5         O33   0.020
+ENS    plan-5         O35   0.020
+ENS    plan-6         C14   0.020
+ENS    plan-6         C25   0.020
+ENS    plan-6         N29   0.020
+ENS    plan-6         O34   0.020
+ENS    plan-7         C10   0.020
+ENS    plan-7         C20   0.020
+ENS    plan-7         C25   0.020
+ENS    plan-7         N28   0.020
+ENS    plan-8         C14   0.020
+ENS    plan-8         C21   0.020
+ENS    plan-8         C22   0.020
+ENS    plan-8         N29   0.020
+ENS    plan-9         C12   0.020
+ENS    plan-9          C9   0.020
+ENS    plan-9         H29   0.020
+ENS    plan-9         N30   0.020
+ENS   plan-10         C12   0.020
+ENS   plan-10         C23   0.020
+ENS   plan-10        HN31   0.020
+ENS   plan-10         N31   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ENS           SMILES              ACDLabs 10.04                                                                                                                                  N#C/C(C(=O)OC)=C(\NC2C(=O)N(CC(=O)N1CCCC1)CCCC2)Nc3cccc4c3ncc4Cl
+ENS SMILES_CANONICAL               CACTVS 3.341                                                                                                                           COC(=O)C(/C#N)=C(N[C@H]1CCCCN(CC(=O)N2CCCC2)C1=O)\Nc3cccc4c(Cl)c[nH]c34
+ENS           SMILES               CACTVS 3.341                                                                                                                              COC(=O)C(C#N)=C(N[CH]1CCCCN(CC(=O)N2CCCC2)C1=O)Nc3cccc4c(Cl)c[nH]c34
+ENS SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                               COC(=O)C(=C(Nc1cccc2c1[nH]cc2Cl)N[C@H]3CCCCN(C3=O)CC(=O)N4CCCC4)C#N
+ENS           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                   COC(=O)C(=C(Nc1cccc2c1[nH]cc2Cl)NC3CCCCN(C3=O)CC(=O)N4CCCC4)C#N
+ENS            InChI                InChI  1.03 InChI=1S/C25H29ClN6O4/c1-36-25(35)17(13-27)23(29-19-9-6-7-16-18(26)14-28-22(16)19)30-20-8-2-3-12-32(24(20)34)15-21(33)31-10-4-5-11-31/h6-7,9,14,20,28-30H,2-5,8,10-12,15H2,1H3/b23-17+/t20-/m0/s1
+ENS         InChIKey                InChI  1.03                                                                                                                                                                       QDGDCWKBZPDHTQ-UZXYXVAJSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ENS acedrg               243         "dictionary generator"                  
+ENS acedrg_database      11          "data source"                           
+ENS rdkit                2017.03.2   "Chemoinformatics tool"
+ENS refmac5              5.8.0238    "optimization tool"                     

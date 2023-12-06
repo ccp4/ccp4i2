@@ -1,0 +1,186 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TYZ     TYZ      "PARA ACETAMIDO BENZOIC ACID"     NON-POLYMER     21     13     .     
+#
+data_comp_TYZ
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TYZ     O1      O       O       0       1.173       -1.707      -2.221      
+TYZ     O2      O       OC      -1      2.901       -0.345      -2.149      
+TYZ     C7      C       C       0       2.010       -1.022      -1.605      
+TYZ     C3      C       CR6     0       1.941       -1.012      -0.108      
+TYZ     C4      C       CR16    0       0.739       -0.753      0.542       
+TYZ     C5      C       CR16    0       0.670       -0.743      1.923       
+TYZ     C6      C       CR6     0       1.813       -0.993      2.683       
+TYZ     C1      C       CR16    0       3.022       -1.252      2.034       
+TYZ     C2      C       CR16    0       3.079       -1.260      0.652       
+TYZ     C8      C       C       0       2.183       -1.917      4.967       
+TYZ     N       N       NH1     0       1.736       -0.981      4.095       
+TYZ     O4      O       O       0       2.439       -3.072      4.639       
+TYZ     C9      C       CH3     0       2.346       -1.450      6.386       
+TYZ     H4      H       H       0       -0.038      -0.584      0.039       
+TYZ     H5      H       H       0       -0.149      -0.567      2.353       
+TYZ     HA      H       H       0       3.798       -1.422      2.539       
+TYZ     H2      H       H       0       3.898       -1.436      0.224       
+TYZ     HN      H       H       0       1.343       -0.279      4.442       
+TYZ     H9C1    H       H       0       2.872       -2.097      6.883       
+TYZ     H9C2    H       H       0       1.472       -1.358      6.800       
+TYZ     H9C3    H       H       0       2.799       -0.591      6.395       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TYZ          O1          C7      DOUBLE       n     1.244  0.0200     1.244  0.0200
+TYZ          O2          C7      SINGLE       n     1.244  0.0200     1.244  0.0200
+TYZ          C7          C3      SINGLE       n     1.498  0.0200     1.498  0.0200
+TYZ          C3          C4      DOUBLE       y     1.387  0.0103     1.387  0.0103
+TYZ          C3          C2      SINGLE       y     1.387  0.0103     1.387  0.0103
+TYZ          C4          C5      SINGLE       y     1.379  0.0100     1.379  0.0100
+TYZ          C5          C6      DOUBLE       y     1.392  0.0100     1.392  0.0100
+TYZ          C6          C1      SINGLE       y     1.392  0.0100     1.392  0.0100
+TYZ          C6           N      SINGLE       n     1.414  0.0100     1.414  0.0100
+TYZ          C1          C2      DOUBLE       y     1.379  0.0100     1.379  0.0100
+TYZ          C8           N      SINGLE       n     1.353  0.0110     1.353  0.0110
+TYZ          C8          O4      DOUBLE       n     1.226  0.0169     1.226  0.0169
+TYZ          C8          C9      SINGLE       n     1.501  0.0141     1.501  0.0141
+TYZ          C4          H4      SINGLE       n     1.082  0.0130     0.941  0.0168
+TYZ          C5          H5      SINGLE       n     1.082  0.0130     0.942  0.0198
+TYZ          C1          HA      SINGLE       n     1.082  0.0130     0.942  0.0198
+TYZ          C2          H2      SINGLE       n     1.082  0.0130     0.941  0.0168
+TYZ           N          HN      SINGLE       n     1.016  0.0100     0.874  0.0200
+TYZ          C9        H9C1      SINGLE       n     1.089  0.0100     0.971  0.0140
+TYZ          C9        H9C2      SINGLE       n     1.089  0.0100     0.971  0.0140
+TYZ          C9        H9C3      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TYZ          O1          C7          O2     124.418    1.50
+TYZ          O1          C7          C3     117.791    1.50
+TYZ          O2          C7          C3     117.791    1.50
+TYZ          C7          C3          C4     120.452    1.50
+TYZ          C7          C3          C2     120.452    1.50
+TYZ          C4          C3          C2     119.095    1.50
+TYZ          C3          C4          C5     120.726    1.50
+TYZ          C3          C4          H4     119.829    1.50
+TYZ          C5          C4          H4     119.445    1.50
+TYZ          C4          C5          C6     120.049    1.50
+TYZ          C4          C5          H5     120.076    1.50
+TYZ          C6          C5          H5     119.875    1.50
+TYZ          C5          C6          C1     119.355    1.50
+TYZ          C5          C6           N     120.322    3.00
+TYZ          C1          C6           N     120.322    3.00
+TYZ          C6          C1          C2     120.049    1.50
+TYZ          C6          C1          HA     119.875    1.50
+TYZ          C2          C1          HA     120.076    1.50
+TYZ          C3          C2          C1     120.726    1.50
+TYZ          C3          C2          H2     119.829    1.50
+TYZ          C1          C2          H2     119.445    1.50
+TYZ           N          C8          O4     123.122    1.50
+TYZ           N          C8          C9     115.097    1.50
+TYZ          O4          C8          C9     121.781    1.50
+TYZ          C6           N          C8     127.894    1.50
+TYZ          C6           N          HN     115.674    1.69
+TYZ          C8           N          HN     116.432    1.78
+TYZ          C8          C9        H9C1     109.546    1.50
+TYZ          C8          C9        H9C2     109.546    1.50
+TYZ          C8          C9        H9C3     109.546    1.50
+TYZ        H9C1          C9        H9C2     109.365    1.50
+TYZ        H9C1          C9        H9C3     109.365    1.50
+TYZ        H9C2          C9        H9C3     109.365    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TYZ             sp2_sp2_1          C4          C3          C7          O1     180.000     5.0     2
+TYZ       const_sp2_sp2_3          C7          C3          C4          C5     180.000     5.0     2
+TYZ              const_22          C1          C2          C3          C7     180.000    10.0     2
+TYZ       const_sp2_sp2_5          C3          C4          C5          C6       0.000     5.0     2
+TYZ              const_10          C4          C5          C6           N     180.000    10.0     2
+TYZ             sp2_sp2_5          C5          C6           N          C8     180.000     5.0     2
+TYZ              const_14          C2          C1          C6           N     180.000    10.0     2
+TYZ              const_17          C6          C1          C2          C3       0.000    10.0     2
+TYZ            sp2_sp2_11          O4          C8           N          C6       0.000     5.0     2
+TYZ             sp2_sp3_1           N          C8          C9        H9C1       0.000    10.0     6
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TYZ    plan-1          C1   0.020
+TYZ    plan-1          C2   0.020
+TYZ    plan-1          C3   0.020
+TYZ    plan-1          C4   0.020
+TYZ    plan-1          C5   0.020
+TYZ    plan-1          C6   0.020
+TYZ    plan-1          C7   0.020
+TYZ    plan-1          H2   0.020
+TYZ    plan-1          H4   0.020
+TYZ    plan-1          H5   0.020
+TYZ    plan-1          HA   0.020
+TYZ    plan-1           N   0.020
+TYZ    plan-2          C3   0.020
+TYZ    plan-2          C7   0.020
+TYZ    plan-2          O1   0.020
+TYZ    plan-2          O2   0.020
+TYZ    plan-3          C8   0.020
+TYZ    plan-3          C9   0.020
+TYZ    plan-3           N   0.020
+TYZ    plan-3          O4   0.020
+TYZ    plan-4          C6   0.020
+TYZ    plan-4          C8   0.020
+TYZ    plan-4          HN   0.020
+TYZ    plan-4           N   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TYZ           SMILES              ACDLabs 10.04                                                        O=C(Nc1ccc(cc1)C(=O)O)C
+TYZ SMILES_CANONICAL               CACTVS 3.341                                                        CC(=O)Nc1ccc(cc1)C(O)=O
+TYZ           SMILES               CACTVS 3.341                                                        CC(=O)Nc1ccc(cc1)C(O)=O
+TYZ SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                        CC(=O)Nc1ccc(cc1)C(=O)O
+TYZ           SMILES "OpenEye OEToolkits" 1.5.0                                                        CC(=O)Nc1ccc(cc1)C(=O)O
+TYZ            InChI                InChI  1.03 InChI=1S/C9H9NO3/c1-6(11)10-8-4-2-7(3-5-8)9(12)13/h2-5H,1H3,(H,10,11)(H,12,13)
+TYZ         InChIKey                InChI  1.03                                                    QCXJEYYXVJIFCE-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TYZ acedrg               243         "dictionary generator"                  
+TYZ acedrg_database      11          "data source"                           
+TYZ rdkit                2017.03.2   "Chemoinformatics tool"
+TYZ refmac5              5.8.0238    "optimization tool"                     

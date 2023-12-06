@@ -1,0 +1,287 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SP9     SP9      N-{(1R)-3-[(4-aminobutyl)amino]-1-methylpropyl}benzamide     NON-POLYMER     44     19     .     
+#
+data_comp_SP9
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SP9     CAE     C       CR16    0       44.356      11.015      32.636      
+SP9     CAD     C       CR16    0       43.581      11.096      31.488      
+SP9     CAC     C       CR16    0       42.519      10.232      31.304      
+SP9     CAR     C       CR16    0       42.227      9.285       32.266      
+SP9     CAS     C       CR16    0       42.996      9.200       33.418      
+SP9     CAF     C       CR6     0       44.065      10.070      33.617      
+SP9     CAG     C       C       0       44.897      9.961       34.866      
+SP9     OAA     O       O       0       45.622      8.982       35.040      
+SP9     NAH     N       NT1     0       44.835      10.948      35.784      
+SP9     CAI     C       CH1     0       44.031      12.176      35.756      
+SP9     CAB     C       CH3     0       44.901      13.352      35.362      
+SP9     CAJ     C       CH2     0       43.363      12.427      37.110      
+SP9     CAK     C       CH2     0       42.277      13.495      37.099      
+SP9     NAL     N       NT1     0       42.743      14.766      37.657      
+SP9     CAM     C       CH2     0       41.815      15.884      37.481      
+SP9     CAN     C       CH2     0       42.446      17.214      37.865      
+SP9     CAO     C       CH2     0       41.522      18.394      37.616      
+SP9     CAP     C       CH2     0       40.449      18.551      38.682      
+SP9     NAQ     N       NT2     0       39.606      19.740      38.528      
+SP9     HAE     H       H       0       45.077      11.608      32.755      
+SP9     HAD     H       H       0       43.781      11.742      30.831      
+SP9     HAC     H       H       0       41.994      10.288      30.521      
+SP9     HAR     H       H       0       41.502      8.696       32.141      
+SP9     HAS     H       H       0       42.791      8.553       34.069      
+SP9     HNAH    H       H       0       45.343      10.901      36.460      
+SP9     HAI     H       H       0       43.314      12.079      35.084      
+SP9     HAB     H       H       0       44.340      14.125      35.177      
+SP9     HABA    H       H       0       45.413      13.125      34.567      
+SP9     HABB    H       H       0       45.512      13.562      36.090      
+SP9     HAJ     H       H       0       44.057      12.685      37.757      
+SP9     HAJA    H       H       0       42.970      11.582      37.423      
+SP9     HAK     H       H       0       41.511      13.176      37.621      
+SP9     HAKA    H       H       0       41.972      13.638      36.179      
+SP9     HNAL    H       H       0       43.524      14.979      37.265      
+SP9     HAM     H       H       0       41.019      15.734      38.033      
+SP9     HAMA    H       H       0       41.528      15.924      36.545      
+SP9     HAN     H       H       0       43.270      17.340      37.348      
+SP9     HANA    H       H       0       42.686      17.191      38.816      
+SP9     HAO     H       H       0       41.085      18.280      36.745      
+SP9     HAOA    H       H       0       42.054      19.217      37.582      
+SP9     HAP     H       H       0       40.884      18.587      39.558      
+SP9     HAPA    H       H       0       39.876      17.756      38.667      
+SP9     HNAQ    H       H       0       39.182      19.927      39.286      
+SP9     HNAA    H       H       0       40.096      20.450      38.318      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SP9         CAE         CAD      DOUBLE       y     1.384  0.0100     1.384  0.0100
+SP9         CAE         CAF      SINGLE       y     1.389  0.0100     1.389  0.0100
+SP9         CAD         CAC      SINGLE       y     1.376  0.0124     1.376  0.0124
+SP9         CAC         CAR      DOUBLE       y     1.376  0.0124     1.376  0.0124
+SP9         CAR         CAS      SINGLE       y     1.384  0.0100     1.384  0.0100
+SP9         CAS         CAF      DOUBLE       y     1.389  0.0100     1.389  0.0100
+SP9         CAF         CAG      SINGLE       n     1.502  0.0100     1.502  0.0100
+SP9         CAG         OAA      DOUBLE       n     1.230  0.0114     1.230  0.0114
+SP9         CAG         NAH      SINGLE       n     1.340  0.0118     1.340  0.0118
+SP9         NAH         CAI      SINGLE       n     1.465  0.0107     1.465  0.0107
+SP9         CAI         CAB      SINGLE       n     1.514  0.0111     1.514  0.0111
+SP9         CAI         CAJ      SINGLE       n     1.528  0.0145     1.528  0.0145
+SP9         CAJ         CAK      SINGLE       n     1.521  0.0115     1.521  0.0115
+SP9         CAK         NAL      SINGLE       n     1.463  0.0111     1.463  0.0111
+SP9         NAL         CAM      SINGLE       n     1.463  0.0111     1.463  0.0111
+SP9         CAM         CAN      SINGLE       n     1.521  0.0100     1.521  0.0100
+SP9         CAN         CAO      SINGLE       n     1.519  0.0150     1.519  0.0150
+SP9         CAO         CAP      SINGLE       n     1.521  0.0102     1.521  0.0102
+SP9         CAP         NAQ      SINGLE       n     1.466  0.0117     1.466  0.0117
+SP9         CAE         HAE      SINGLE       n     1.082  0.0130     0.941  0.0168
+SP9         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0180
+SP9         CAC         HAC      SINGLE       n     1.082  0.0130     0.944  0.0161
+SP9         CAR         HAR      SINGLE       n     1.082  0.0130     0.943  0.0180
+SP9         CAS         HAS      SINGLE       n     1.082  0.0130     0.941  0.0168
+SP9         NAH        HNAH      SINGLE       n     1.016  0.0100     0.845  0.0200
+SP9         CAI         HAI      SINGLE       n     1.089  0.0100     0.989  0.0122
+SP9         CAB         HAB      SINGLE       n     1.089  0.0100     0.973  0.0146
+SP9         CAB        HABA      SINGLE       n     1.089  0.0100     0.973  0.0146
+SP9         CAB        HABB      SINGLE       n     1.089  0.0100     0.973  0.0146
+SP9         CAJ         HAJ      SINGLE       n     1.089  0.0100     0.983  0.0200
+SP9         CAJ        HAJA      SINGLE       n     1.089  0.0100     0.983  0.0200
+SP9         CAK         HAK      SINGLE       n     1.089  0.0100     0.980  0.0143
+SP9         CAK        HAKA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SP9         NAL        HNAL      SINGLE       n     1.036  0.0160     0.899  0.0200
+SP9         CAM         HAM      SINGLE       n     1.089  0.0100     0.980  0.0143
+SP9         CAM        HAMA      SINGLE       n     1.089  0.0100     0.980  0.0143
+SP9         CAN         HAN      SINGLE       n     1.089  0.0100     0.981  0.0160
+SP9         CAN        HANA      SINGLE       n     1.089  0.0100     0.981  0.0160
+SP9         CAO         HAO      SINGLE       n     1.089  0.0100     0.981  0.0160
+SP9         CAO        HAOA      SINGLE       n     1.089  0.0100     0.981  0.0160
+SP9         CAP         HAP      SINGLE       n     1.089  0.0100     0.979  0.0106
+SP9         CAP        HAPA      SINGLE       n     1.089  0.0100     0.979  0.0106
+SP9         NAQ        HNAQ      SINGLE       n     1.036  0.0160     0.888  0.0200
+SP9         NAQ        HNAA      SINGLE       n     1.036  0.0160     0.888  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SP9         CAD         CAE         CAF     120.300    1.50
+SP9         CAD         CAE         HAE     119.776    1.50
+SP9         CAF         CAE         HAE     119.925    1.50
+SP9         CAE         CAD         CAC     120.226    1.50
+SP9         CAE         CAD         HAD     119.842    1.50
+SP9         CAC         CAD         HAD     119.933    1.50
+SP9         CAD         CAC         CAR     119.943    1.50
+SP9         CAD         CAC         HAC     120.028    1.50
+SP9         CAR         CAC         HAC     120.028    1.50
+SP9         CAC         CAR         CAS     120.226    1.50
+SP9         CAC         CAR         HAR     119.933    1.50
+SP9         CAS         CAR         HAR     119.842    1.50
+SP9         CAR         CAS         CAF     120.300    1.50
+SP9         CAR         CAS         HAS     119.776    1.50
+SP9         CAF         CAS         HAS     119.925    1.50
+SP9         CAE         CAF         CAS     119.007    1.50
+SP9         CAE         CAF         CAG     120.497    2.80
+SP9         CAS         CAF         CAG     120.497    2.80
+SP9         CAF         CAG         OAA     121.327    1.50
+SP9         CAF         CAG         NAH     116.733    1.50
+SP9         OAA         CAG         NAH     121.940    1.56
+SP9         CAG         NAH         CAI     124.504    1.75
+SP9         CAG         NAH        HNAH     119.912    2.29
+SP9         CAI         NAH        HNAH     116.177    3.00
+SP9         NAH         CAI         CAB     109.902    1.50
+SP9         NAH         CAI         CAJ     111.883    2.59
+SP9         NAH         CAI         HAI     108.111    1.50
+SP9         CAB         CAI         CAJ     110.573    1.63
+SP9         CAB         CAI         HAI     108.356    1.50
+SP9         CAJ         CAI         HAI     107.815    1.50
+SP9         CAI         CAB         HAB     109.466    1.50
+SP9         CAI         CAB        HABA     109.466    1.50
+SP9         CAI         CAB        HABB     109.466    1.50
+SP9         HAB         CAB        HABA     109.386    1.50
+SP9         HAB         CAB        HABB     109.386    1.50
+SP9        HABA         CAB        HABB     109.386    1.50
+SP9         CAI         CAJ         CAK     113.808    1.88
+SP9         CAI         CAJ         HAJ     108.489    1.50
+SP9         CAI         CAJ        HAJA     108.489    1.50
+SP9         CAK         CAJ         HAJ     108.805    1.50
+SP9         CAK         CAJ        HAJA     108.805    1.50
+SP9         HAJ         CAJ        HAJA     107.469    1.50
+SP9         CAJ         CAK         NAL     111.754    2.01
+SP9         CAJ         CAK         HAK     109.099    1.50
+SP9         CAJ         CAK        HAKA     109.099    1.50
+SP9         NAL         CAK         HAK     109.338    1.50
+SP9         NAL         CAK        HAKA     109.338    1.50
+SP9         HAK         CAK        HAKA     107.877    1.50
+SP9         CAK         NAL         CAM     114.187    2.61
+SP9         CAK         NAL        HNAL     108.180    3.00
+SP9         CAM         NAL        HNAL     108.180    3.00
+SP9         NAL         CAM         CAN     111.754    2.01
+SP9         NAL         CAM         HAM     109.338    1.50
+SP9         NAL         CAM        HAMA     109.338    1.50
+SP9         CAN         CAM         HAM     109.197    1.51
+SP9         CAN         CAM        HAMA     109.197    1.51
+SP9         HAM         CAM        HAMA     107.877    1.50
+SP9         CAM         CAN         CAO     112.652    1.50
+SP9         CAM         CAN         HAN     108.956    1.50
+SP9         CAM         CAN        HANA     108.956    1.50
+SP9         CAO         CAN         HAN     108.999    1.50
+SP9         CAO         CAN        HANA     108.999    1.50
+SP9         HAN         CAN        HANA     107.927    1.57
+SP9         CAN         CAO         CAP     113.118    2.03
+SP9         CAN         CAO         HAO     108.999    1.50
+SP9         CAN         CAO        HAOA     108.999    1.50
+SP9         CAP         CAO         HAO     108.630    1.50
+SP9         CAP         CAO        HAOA     108.630    1.50
+SP9         HAO         CAO        HAOA     107.927    1.57
+SP9         CAO         CAP         NAQ     114.751    2.00
+SP9         CAO         CAP         HAP     108.627    1.50
+SP9         CAO         CAP        HAPA     108.627    1.50
+SP9         NAQ         CAP         HAP     108.763    1.50
+SP9         NAQ         CAP        HAPA     108.763    1.50
+SP9         HAP         CAP        HAPA     107.806    1.50
+SP9         CAP         NAQ        HNAQ     110.839    3.00
+SP9         CAP         NAQ        HNAA     110.839    3.00
+SP9        HNAQ         NAQ        HNAA     107.243    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SP9       const_sp2_sp2_1         CAC         CAD         CAE         CAF       0.000     5.0     2
+SP9              const_22         CAD         CAE         CAF         CAG     180.000    10.0     2
+SP9            sp3_sp3_19         CAI         CAJ         CAK         NAL     180.000    10.0     3
+SP9            sp3_sp3_29         CAJ         CAK         NAL         CAM     -60.000    10.0     3
+SP9            sp3_sp3_34         CAN         CAM         NAL         CAK     180.000    10.0     3
+SP9            sp3_sp3_40         NAL         CAM         CAN         CAO     180.000    10.0     3
+SP9            sp3_sp3_49         CAM         CAN         CAO         CAP     180.000    10.0     3
+SP9            sp3_sp3_58         CAN         CAO         CAP         NAQ     180.000    10.0     3
+SP9            sp3_sp3_67         CAO         CAP         NAQ        HNAQ     180.000    10.0     3
+SP9       const_sp2_sp2_5         CAR         CAC         CAD         CAE       0.000     5.0     2
+SP9       const_sp2_sp2_9         CAD         CAC         CAR         CAS       0.000     5.0     2
+SP9              const_13         CAC         CAR         CAS         CAF       0.000    10.0     2
+SP9              const_19         CAG         CAF         CAS         CAR     180.000    10.0     2
+SP9             sp2_sp2_2         CAE         CAF         CAG         OAA       0.000     5.0     2
+SP9             sp2_sp2_7         OAA         CAG         NAH         CAI       0.000     5.0     2
+SP9             sp2_sp3_1         CAG         NAH         CAI         CAB       0.000    10.0     6
+SP9             sp3_sp3_1         HAB         CAB         CAI         NAH     180.000    10.0     3
+SP9            sp3_sp3_10         NAH         CAI         CAJ         CAK     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+SP9    chir_1    CAI    NAH    CAJ    CAB    negative
+SP9    chir_2    NAL    CAK    CAM    HNAL    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SP9    plan-1         CAC   0.020
+SP9    plan-1         CAD   0.020
+SP9    plan-1         CAE   0.020
+SP9    plan-1         CAF   0.020
+SP9    plan-1         CAG   0.020
+SP9    plan-1         CAR   0.020
+SP9    plan-1         CAS   0.020
+SP9    plan-1         HAC   0.020
+SP9    plan-1         HAD   0.020
+SP9    plan-1         HAE   0.020
+SP9    plan-1         HAR   0.020
+SP9    plan-1         HAS   0.020
+SP9    plan-2         CAF   0.020
+SP9    plan-2         CAG   0.020
+SP9    plan-2         NAH   0.020
+SP9    plan-2         OAA   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SP9           SMILES              ACDLabs 10.04                                                                                                    O=C(NC(C)CCNCCCCN)c1ccccc1
+SP9 SMILES_CANONICAL               CACTVS 3.341                                                                                                C[C@H](CCNCCCCN)NC(=O)c1ccccc1
+SP9           SMILES               CACTVS 3.341                                                                                                 C[CH](CCNCCCCN)NC(=O)c1ccccc1
+SP9 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                C[C@H](CCNCCCCN)NC(=O)c1ccccc1
+SP9           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                    CC(CCNCCCCN)NC(=O)c1ccccc1
+SP9            InChI                InChI  1.03 InChI=1S/C15H25N3O/c1-13(9-12-17-11-6-5-10-16)18-15(19)14-7-3-2-4-8-14/h2-4,7-8,13,17H,5-6,9-12,16H2,1H3,(H,18,19)/t13-/m1/s1
+SP9         InChIKey                InChI  1.03                                                                                                   UWDXTOVSVLCTLF-CYBMUJFWSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SP9 acedrg               243         "dictionary generator"                  
+SP9 acedrg_database      11          "data source"                           
+SP9 rdkit                2017.03.2   "Chemoinformatics tool"
+SP9 refmac5              5.8.0238    "optimization tool"                     

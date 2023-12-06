@@ -1,0 +1,203 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+8WO     8WO      6-methoxy-1-methyl-2H-pyridine-3-carboxamide     NON-POLYMER     24     12     .     
+#
+data_comp_8WO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+8WO     C4      C       CR16    0       -4.343      -6.819      10.227      
+8WO     C5      C       CR16    0       -4.864      -5.556      10.002      
+8WO     C2      C       CH2     0       -3.924      -7.043      7.824       
+8WO     C3      C       CR6     0       -4.127      -7.685      9.178       
+8WO     C1      C       CR6     0       -4.498      -4.859      8.859       
+8WO     C6      C       C       0       -4.084      -9.113      9.429       
+8WO     C8      C       CH3     0       -3.848      -4.942      6.462       
+8WO     C7      C       CH3     0       -5.256      -2.692      9.537       
+8WO     N1      N       NR6     0       -4.120      -5.578      7.757       
+8WO     N2      N       NH2     0       -3.746      -9.943      8.448       
+8WO     O1      O       O       0       -4.389      -9.552      10.545      
+8WO     O2      O       O2      0       -4.454      -3.540      8.687       
+8WO     H1      H       H       0       -4.114      -7.084      11.098      
+8WO     H2      H       H       0       -5.472      -5.182      10.616      
+8WO     H3      H       H       0       -4.542      -7.455      7.183       
+8WO     H12     H       H       0       -3.012      -7.234      7.517       
+8WO     H4      H       H       0       -4.625      -4.430      6.182       
+8WO     H5      H       H       0       -3.657      -5.623      5.796       
+8WO     H6      H       H       0       -3.083      -4.350      6.545       
+8WO     H7      H       H       0       -4.900      -2.710      10.440      
+8WO     H8      H       H       0       -6.173      -3.011      9.544       
+8WO     H9      H       H       0       -5.233      -1.782      9.199       
+8WO     H10     H       H       0       -3.752      -10.819     8.591       
+8WO     H11     H       H       0       -3.501      -9.645      7.651       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+8WO          C8          N1      SINGLE       n     1.465  0.0100     1.465  0.0100
+8WO          C2          N1      SINGLE       n     1.467  0.0150     1.467  0.0150
+8WO          C1          N1      SINGLE       n     1.340  0.0198     1.340  0.0198
+8WO          C2          C3      SINGLE       n     1.507  0.0100     1.507  0.0100
+8WO          C6          N2      SINGLE       n     1.325  0.0100     1.325  0.0100
+8WO          C1          O2      SINGLE       n     1.326  0.0100     1.326  0.0100
+8WO          C7          O2      SINGLE       n     1.441  0.0100     1.441  0.0100
+8WO          C5          C1      DOUBLE       n     1.375  0.0179     1.375  0.0179
+8WO          C3          C6      SINGLE       n     1.422  0.0200     1.422  0.0200
+8WO          C4          C3      DOUBLE       n     1.358  0.0200     1.358  0.0200
+8WO          C6          O1      DOUBLE       n     1.235  0.0110     1.235  0.0110
+8WO          C4          C5      SINGLE       n     1.382  0.0155     1.382  0.0155
+8WO          C4          H1      SINGLE       n     1.082  0.0130     0.939  0.0124
+8WO          C5          H2      SINGLE       n     1.082  0.0130     0.942  0.0127
+8WO          C2          H3      SINGLE       n     1.089  0.0100     0.981  0.0100
+8WO          C2         H12      SINGLE       n     1.089  0.0100     0.981  0.0100
+8WO          C8          H4      SINGLE       n     1.089  0.0100     0.971  0.0199
+8WO          C8          H5      SINGLE       n     1.089  0.0100     0.971  0.0199
+8WO          C8          H6      SINGLE       n     1.089  0.0100     0.971  0.0199
+8WO          C7          H7      SINGLE       n     1.089  0.0100     0.971  0.0174
+8WO          C7          H8      SINGLE       n     1.089  0.0100     0.971  0.0174
+8WO          C7          H9      SINGLE       n     1.089  0.0100     0.971  0.0174
+8WO          N2         H10      SINGLE       n     1.016  0.0100     0.887  0.0200
+8WO          N2         H11      SINGLE       n     1.016  0.0100     0.887  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+8WO          C3          C4          C5     120.914    1.50
+8WO          C3          C4          H1     118.948    1.50
+8WO          C5          C4          H1     120.137    1.50
+8WO          C1          C5          C4     119.928    1.50
+8WO          C1          C5          H2     119.950    1.50
+8WO          C4          C5          H2     120.122    1.50
+8WO          N1          C2          C3     111.725    2.77
+8WO          N1          C2          H3     108.242    1.50
+8WO          N1          C2         H12     108.242    1.50
+8WO          C3          C2          H3     109.545    1.50
+8WO          C3          C2         H12     109.545    1.50
+8WO          H3          C2         H12     108.030    1.50
+8WO          C2          C3          C6     124.445    3.00
+8WO          C2          C3          C4     117.540    3.00
+8WO          C6          C3          C4     118.015    1.96
+8WO          N1          C1          O2     113.297    3.00
+8WO          N1          C1          C5     119.380    1.66
+8WO          O2          C1          C5     127.323    1.50
+8WO          N2          C6          C3     118.037    3.00
+8WO          N2          C6          O1     122.085    1.50
+8WO          C3          C6          O1     119.878    1.50
+8WO          N1          C8          H4     109.468    1.50
+8WO          N1          C8          H5     109.468    1.50
+8WO          N1          C8          H6     109.468    1.50
+8WO          H4          C8          H5     109.428    1.50
+8WO          H4          C8          H6     109.428    1.50
+8WO          H5          C8          H6     109.428    1.50
+8WO          O2          C7          H7     109.468    1.50
+8WO          O2          C7          H8     109.468    1.50
+8WO          O2          C7          H9     109.468    1.50
+8WO          H7          C7          H8     109.450    1.50
+8WO          H7          C7          H9     109.450    1.50
+8WO          H8          C7          H9     109.450    1.50
+8WO          C8          N1          C2     117.334    1.50
+8WO          C8          N1          C1     121.690    1.50
+8WO          C2          N1          C1     120.976    1.50
+8WO          C6          N2         H10     120.214    2.13
+8WO          C6          N2         H11     120.224    2.13
+8WO         H10          N2         H11     119.583    2.34
+8WO          C1          O2          C7     116.996    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+8WO            sp2_sp2_23          C3          C4          C5          C1       0.000     5.0     2
+8WO             sp2_sp2_3          C6          C3          C4          C5     180.000     5.0     2
+8WO            sp2_sp2_11          O2          C1          C5          C4     180.000     5.0     2
+8WO             sp2_sp3_4          C6          C3          C2          N1     180.000    10.0     6
+8WO            sp2_sp3_10          C8          N1          C2          C3     180.000    10.0     6
+8WO            sp2_sp2_19          C2          C3          C6          N2     180.000     5.0     2
+8WO            sp2_sp2_17          N1          C1          O2          C7     180.000     5.0     2
+8WO             sp2_sp2_8          O2          C1          N1          C8       0.000     5.0     2
+8WO            sp2_sp2_15          O1          C6          N2         H10       0.000     5.0     2
+8WO            sp2_sp3_13          C2          N1          C8          H4     150.000    10.0     6
+8WO             sp3_sp3_2          H7          C7          O2          C1     -60.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+8WO    plan-1          C3   0.020
+8WO    plan-1          C4   0.020
+8WO    plan-1          C5   0.020
+8WO    plan-1          H1   0.020
+8WO    plan-2          C1   0.020
+8WO    plan-2          C4   0.020
+8WO    plan-2          C5   0.020
+8WO    plan-2          H2   0.020
+8WO    plan-3          C2   0.020
+8WO    plan-3          C3   0.020
+8WO    plan-3          C4   0.020
+8WO    plan-3          C6   0.020
+8WO    plan-4          C1   0.020
+8WO    plan-4          C5   0.020
+8WO    plan-4          N1   0.020
+8WO    plan-4          O2   0.020
+8WO    plan-5          C3   0.020
+8WO    plan-5          C6   0.020
+8WO    plan-5          N2   0.020
+8WO    plan-5          O1   0.020
+8WO    plan-6          C1   0.020
+8WO    plan-6          C2   0.020
+8WO    plan-6          C8   0.020
+8WO    plan-6          N1   0.020
+8WO    plan-7          C6   0.020
+8WO    plan-7         H10   0.020
+8WO    plan-7         H11   0.020
+8WO    plan-7          N2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+8WO            InChI                InChI  1.03 InChI=1S/C8H12N2O2/c1-10-5-6(8(9)11)3-4-7(10)12-2/h3-4H,5H2,1-2H3,(H2,9,11)
+8WO         InChIKey                InChI  1.03                                                 XDTUJYQFSMEIJT-UHFFFAOYSA-N
+8WO SMILES_CANONICAL               CACTVS 3.385                                                       COC1=CC=C(CN1C)C(N)=O
+8WO           SMILES               CACTVS 3.385                                                       COC1=CC=C(CN1C)C(N)=O
+8WO SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                       CN1CC(=CC=C1OC)C(=O)N
+8WO           SMILES "OpenEye OEToolkits" 2.0.6                                                       CN1CC(=CC=C1OC)C(=O)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+8WO acedrg               243         "dictionary generator"                  
+8WO acedrg_database      11          "data source"                           
+8WO rdkit                2017.03.2   "Chemoinformatics tool"
+8WO refmac5              5.8.0238    "optimization tool"                     

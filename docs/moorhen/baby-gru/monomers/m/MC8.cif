@@ -1,0 +1,475 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MC8     MC8      "2-({[(1Z)-1-(2-amino-1,3-thiazol-4-yl)-2-{[(1S)-2-{[(3R,5Z)-3-{4-[(2R)-2,3-dihydroxypropyl]-3-(4,5-dihydroxypyridin-2-yl)-5-oxo-4,5-dihydro-1H-1,2,4-triazol-1-yl}-3-hydroxy-1,2,3lambda~4~,4-dioxathiazolidin-5-ylidene]amino}-1-formylethyl]amino}-2-oxoethylidene]amino}oxy)-2-methylpropanoic acid"     NON-POLYMER     75     48     .     
+#
+data_comp_MC8
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MC8     N1      N       NR5     0       34.401      9.279       14.980      
+MC8     C2      C       CR5     0       35.719      8.990       15.014      
+MC8     N3      N       NT      0       35.836      8.055       16.034      
+MC8     C4      C       CR5     0       34.569      7.844       16.518      
+MC8     N5      N       NRD5    0       33.677      8.580       15.897      
+MC8     N6      N       NRD5    0       26.535      1.154       13.960      
+MC8     C7      C       CR5     0       25.443      0.485       13.489      
+MC8     S8      S       S2      0       24.944      1.111       12.023      
+MC8     C9      C       CR15    0       26.134      2.275       11.946      
+MC8     C10     C       CH1     0       28.922      6.819       13.295      
+MC8     C11     C       C1      0       28.309      7.254       11.950      
+MC8     N12     N       N       0       30.218      8.948       13.375      
+MC8     C13     C       CH2     0       30.296      7.464       13.483      
+MC8     O14     O       O       0       28.743      6.828       10.925      
+MC8     N15     N       NH1     0       29.007      5.365       13.380      
+MC8     C16     C       C       0       27.930      4.559       13.394      
+MC8     O17     O       O       0       26.782      5.005       13.458      
+MC8     C18     C       C       0       28.094      3.042       13.371      
+MC8     N19     N       N       0       29.191      2.390       13.570      
+MC8     O20     O       O2      0       30.244      3.179       14.098      
+MC8     C21     C       CT      0       31.037      2.398       15.021      
+MC8     C22     C       C       0       30.186      1.853       16.204      
+MC8     C23     C       CH3     0       31.753      1.303       14.238      
+MC8     C24     C       CH3     0       32.051      3.377       15.598      
+MC8     O25     O       O       0       30.492      0.739       16.681      
+MC8     O26     O       OC      -1      29.256      2.575       16.618      
+MC8     C27     C       CR5     0       26.937      2.186       13.079      
+MC8     N28     N       NH2     0       24.835      -0.531      14.092      
+MC8     C29     C       CR5     0       31.215      9.669       13.671      
+MC8     O30     O       O2      0       31.196      10.729      14.557      
+MC8     N31     N       NR5     0       32.435      9.512       13.131      
+MC8     S32     S       S3      0       33.625      10.377      13.911      
+MC8     O33     O       O2      0       32.573      11.268      14.671      
+MC8     O34     O       OH1     0       34.584      11.174      12.942      
+MC8     O35     O       O       0       36.616      9.458       14.306      
+MC8     C36     C       CH2     0       37.090      7.420       16.455      
+MC8     C37     C       CH1     0       37.633      7.935       17.788      
+MC8     C38     C       CH2     0       37.639      6.849       18.846      
+MC8     O39     O       OH1     0       36.898      9.056       18.288      
+MC8     O40     O       OH1     0       38.219      7.311       20.064      
+MC8     C41     C       CR6     0       34.212      6.932       17.609      
+MC8     N42     N       NRD6    0       34.394      5.611       17.402      
+MC8     C43     C       CR16    0       34.066      4.746       18.392      
+MC8     C44     C       CR6     0       33.547      5.175       19.608      
+MC8     C45     C       CR6     0       33.356      6.541       19.818      
+MC8     C46     C       CR16    0       33.691      7.428       18.805      
+MC8     O47     O       OH1     0       32.846      7.009       21.005      
+MC8     O48     O       OH1     0       33.228      4.262       20.585      
+MC8     H9      H       H       0       26.206      2.879       11.227      
+MC8     H10     H       H       0       28.324      7.131       14.016      
+MC8     H11     H       H       0       27.583      7.863       11.943      
+MC8     H13     H       H       0       30.909      7.118       12.801      
+MC8     H13A    H       H       0       30.649      7.215       14.363      
+MC8     HN15    H       H       0       29.800      5.000       13.424      
+MC8     H23     H       H       0       32.048      1.657       13.380      
+MC8     H23A    H       H       0       31.147      0.556       14.088      
+MC8     H23B    H       H       0       32.526      0.995       14.743      
+MC8     H24     H       H       0       32.616      2.916       16.243      
+MC8     H24A    H       H       0       31.584      4.106       16.042      
+MC8     H24B    H       H       0       32.603      3.734       14.881      
+MC8     HN28    H       H       0       24.004      -0.724      13.889      
+MC8     HN2A    H       H       0       25.267      -1.005      14.690      
+MC8     HN31    H       H       0       32.594      9.006       12.436      
+MC8     HO34    H       H       0       34.664      10.749      12.212      
+MC8     H36     H       H       0       37.759      7.566       15.773      
+MC8     H36A    H       H       0       36.944      6.466       16.518      
+MC8     H37     H       H       0       38.568      8.235       17.650      
+MC8     H38     H       H       0       38.154      6.071       18.518      
+MC8     H38A    H       H       0       36.713      6.553       19.022      
+MC8     HO39    H       H       0       37.342      9.428       18.908      
+MC8     HO40    H       H       0       38.418      6.637       20.535      
+MC8     H43     H       H       0       34.196      3.819       18.248      
+MC8     H46     H       H       0       33.570      8.355       18.927      
+MC8     HO47    H       H       0       32.351      7.714       21.013      
+MC8     HO48    H       H       0       32.403      4.087       20.757      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MC8          N1         S32      SINGLE       n     1.719  0.0100     1.719  0.0100
+MC8          N1          C2      SINGLE       y     1.350  0.0100     1.350  0.0100
+MC8          N1          N5      SINGLE       y     1.362  0.0100     1.362  0.0100
+MC8          C2         O35      DOUBLE       n     1.235  0.0131     1.235  0.0131
+MC8          C2          N3      SINGLE       y     1.388  0.0102     1.388  0.0102
+MC8          N3         C36      SINGLE       n     1.465  0.0105     1.465  0.0105
+MC8          N3          C4      SINGLE       y     1.371  0.0105     1.371  0.0105
+MC8          C4          N5      DOUBLE       y     1.313  0.0146     1.313  0.0146
+MC8          C4         C41      SINGLE       n     1.467  0.0107     1.467  0.0107
+MC8          N6          C7      DOUBLE       y     1.354  0.0165     1.354  0.0165
+MC8          N6         C27      SINGLE       y     1.377  0.0200     1.377  0.0200
+MC8          C7         N28      SINGLE       n     1.328  0.0105     1.328  0.0105
+MC8          C7          S8      SINGLE       y     1.695  0.0200     1.695  0.0200
+MC8          S8          C9      SINGLE       y     1.695  0.0200     1.695  0.0200
+MC8          C9         C27      DOUBLE       y     1.379  0.0196     1.379  0.0196
+MC8         C10         N15      SINGLE       n     1.455  0.0100     1.455  0.0100
+MC8         C10         C11      SINGLE       n     1.539  0.0100     1.539  0.0100
+MC8         C10         C13      SINGLE       n     1.525  0.0185     1.525  0.0185
+MC8         C11         O14      DOUBLE       n     1.191  0.0200     1.191  0.0200
+MC8         N12         C29      DOUBLE       n     1.265  0.0200     1.265  0.0200
+MC8         N12         C13      SINGLE       n     1.483  0.0200     1.483  0.0200
+MC8         N15         C16      SINGLE       n     1.334  0.0149     1.334  0.0149
+MC8         C16         C18      SINGLE       n     1.498  0.0200     1.498  0.0200
+MC8         C16         O17      DOUBLE       n     1.231  0.0100     1.231  0.0100
+MC8         C18         C27      SINGLE       n     1.467  0.0100     1.467  0.0100
+MC8         C18         N19      DOUBLE       n     1.285  0.0117     1.285  0.0117
+MC8         N19         O20      SINGLE       n     1.411  0.0138     1.411  0.0138
+MC8         O20         C21      SINGLE       n     1.434  0.0141     1.434  0.0141
+MC8         C21         C23      SINGLE       n     1.522  0.0100     1.522  0.0100
+MC8         C21         C22      SINGLE       n     1.551  0.0100     1.551  0.0100
+MC8         C21         C24      SINGLE       n     1.522  0.0100     1.522  0.0100
+MC8         C22         O25      DOUBLE       n     1.247  0.0187     1.247  0.0187
+MC8         C22         O26      SINGLE       n     1.247  0.0187     1.247  0.0187
+MC8         C29         N31      SINGLE       n     1.338  0.0182     1.338  0.0182
+MC8         C29         O30      SINGLE       n     1.366  0.0200     1.366  0.0200
+MC8         O30         O33      SINGLE       n     1.481  0.0140     1.481  0.0140
+MC8         N31         S32      SINGLE       n     1.677  0.0200     1.677  0.0200
+MC8         S32         O34      SINGLE       n     1.578  0.0200     1.578  0.0200
+MC8         S32         O33      SINGLE       n     1.588  0.0200     1.588  0.0200
+MC8         C36         C37      SINGLE       n     1.520  0.0127     1.520  0.0127
+MC8         C37         C38      SINGLE       n     1.514  0.0100     1.514  0.0100
+MC8         C37         O39      SINGLE       n     1.424  0.0199     1.424  0.0199
+MC8         C38         O40      SINGLE       n     1.425  0.0100     1.425  0.0100
+MC8         C41         C46      SINGLE       y     1.392  0.0100     1.392  0.0100
+MC8         C41         N42      DOUBLE       y     1.342  0.0120     1.342  0.0120
+MC8         N42         C43      SINGLE       y     1.340  0.0166     1.340  0.0166
+MC8         C43         C44      DOUBLE       y     1.382  0.0147     1.382  0.0147
+MC8         C44         C45      SINGLE       y     1.393  0.0100     1.393  0.0100
+MC8         C44         O48      SINGLE       n     1.374  0.0155     1.374  0.0155
+MC8         C45         C46      DOUBLE       y     1.385  0.0100     1.385  0.0100
+MC8         C45         O47      SINGLE       n     1.374  0.0155     1.374  0.0155
+MC8          C9          H9      SINGLE       n     1.082  0.0130     0.942  0.0200
+MC8         C10         H10      SINGLE       n     1.089  0.0100     0.987  0.0159
+MC8         C11         H11      SINGLE       n     1.082  0.0130     0.947  0.0200
+MC8         C13         H13      SINGLE       n     1.089  0.0100     0.980  0.0129
+MC8         C13        H13A      SINGLE       n     1.089  0.0100     0.980  0.0129
+MC8         N15        HN15      SINGLE       n     1.016  0.0100     0.874  0.0200
+MC8         C23         H23      SINGLE       n     1.089  0.0100     0.973  0.0141
+MC8         C23        H23A      SINGLE       n     1.089  0.0100     0.973  0.0141
+MC8         C23        H23B      SINGLE       n     1.089  0.0100     0.973  0.0141
+MC8         C24         H24      SINGLE       n     1.089  0.0100     0.973  0.0141
+MC8         C24        H24A      SINGLE       n     1.089  0.0100     0.973  0.0141
+MC8         C24        H24B      SINGLE       n     1.089  0.0100     0.973  0.0141
+MC8         N28        HN28      SINGLE       n     1.016  0.0100     0.877  0.0200
+MC8         N28        HN2A      SINGLE       n     1.016  0.0100     0.877  0.0200
+MC8         N31        HN31      SINGLE       n     1.016  0.0100     0.874  0.0200
+MC8         O34        HO34      SINGLE       n     0.970  0.0120     0.848  0.0200
+MC8         C36         H36      SINGLE       n     1.089  0.0100     0.966  0.0200
+MC8         C36        H36A      SINGLE       n     1.089  0.0100     0.966  0.0200
+MC8         C37         H37      SINGLE       n     1.089  0.0100     0.992  0.0184
+MC8         C38         H38      SINGLE       n     1.089  0.0100     0.988  0.0200
+MC8         C38        H38A      SINGLE       n     1.089  0.0100     0.988  0.0200
+MC8         O39        HO39      SINGLE       n     0.970  0.0120     0.848  0.0200
+MC8         O40        HO40      SINGLE       n     0.970  0.0120     0.846  0.0200
+MC8         C43         H43      SINGLE       n     1.082  0.0130     0.947  0.0102
+MC8         C46         H46      SINGLE       n     1.082  0.0130     0.942  0.0177
+MC8         O47        HO47      SINGLE       n     0.966  0.0059     0.861  0.0200
+MC8         O48        HO48      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MC8         S32          N1          C2     122.792    3.00
+MC8         S32          N1          N5     122.792    3.00
+MC8          C2          N1          N5     114.416    1.50
+MC8          N1          C2         O35     126.845    2.12
+MC8          N1          C2          N3     106.039    1.50
+MC8         O35          C2          N3     127.116    1.50
+MC8          C2          N3         C36     122.120    2.31
+MC8          C2          N3          C4     108.641    1.96
+MC8         C36          N3          C4     127.448    1.50
+MC8          N3          C4          N5     112.809    1.80
+MC8          N3          C4         C41     124.153    2.23
+MC8          N5          C4         C41     123.039    2.46
+MC8          N1          N5          C4     104.758    1.50
+MC8          C7          N6         C27     105.700    1.59
+MC8          N6          C7         N28     126.664    2.12
+MC8          N6          C7          S8     108.532    3.00
+MC8         N28          C7          S8     124.804    3.00
+MC8          C7          S8          C9     108.532    3.00
+MC8          S8          C9         C27     108.532    3.00
+MC8          S8          C9          H9     123.168    3.00
+MC8         C27          C9          H9     128.300    1.50
+MC8         N15         C10         C11     110.921    1.74
+MC8         N15         C10         C13     111.308    2.28
+MC8         N15         C10         H10     108.161    1.50
+MC8         C11         C10         C13     111.511    2.91
+MC8         C11         C10         H10     108.186    1.50
+MC8         C13         C10         H10     109.155    1.50
+MC8         C10         C11         O14     120.289    1.60
+MC8         C10         C11         H11     119.547    2.53
+MC8         O14         C11         H11     120.163    1.50
+MC8         C29         N12         C13     122.065    3.00
+MC8         C10         C13         N12     109.508    2.50
+MC8         C10         C13         H13     109.155    1.50
+MC8         C10         C13        H13A     109.155    1.50
+MC8         N12         C13         H13     109.606    1.50
+MC8         N12         C13        H13A     109.606    1.50
+MC8         H13         C13        H13A     108.043    1.50
+MC8         C10         N15         C16     122.417    1.88
+MC8         C10         N15        HN15     118.868    1.92
+MC8         C16         N15        HN15     118.715    2.08
+MC8         N15         C16         C18     118.431    3.00
+MC8         N15         C16         O17     122.961    1.83
+MC8         C18         C16         O17     118.608    1.54
+MC8         C16         C18         C27     122.513    3.00
+MC8         C16         C18         N19     117.209    3.00
+MC8         C27         C18         N19     120.279    3.00
+MC8         C18         N19         O20     111.365    1.50
+MC8         N19         O20         C21     108.539    1.50
+MC8         O20         C21         C23     107.754    2.90
+MC8         O20         C21         C22     110.354    2.51
+MC8         O20         C21         C24     107.754    2.90
+MC8         C23         C21         C22     111.511    2.91
+MC8         C23         C21         C24     110.882    1.50
+MC8         C22         C21         C24     111.511    2.91
+MC8         C21         C22         O25     117.350    1.66
+MC8         C21         C22         O26     117.350    1.66
+MC8         O25         C22         O26     125.300    1.50
+MC8         C21         C23         H23     109.538    1.50
+MC8         C21         C23        H23A     109.538    1.50
+MC8         C21         C23        H23B     109.538    1.50
+MC8         H23         C23        H23A     109.441    1.50
+MC8         H23         C23        H23B     109.441    1.50
+MC8        H23A         C23        H23B     109.441    1.50
+MC8         C21         C24         H24     109.538    1.50
+MC8         C21         C24        H24A     109.538    1.50
+MC8         C21         C24        H24B     109.538    1.50
+MC8         H24         C24        H24A     109.441    1.50
+MC8         H24         C24        H24B     109.441    1.50
+MC8        H24A         C24        H24B     109.441    1.50
+MC8          N6         C27          C9     108.704    1.50
+MC8          N6         C27         C18     122.488    1.50
+MC8          C9         C27         C18     128.808    3.00
+MC8          C7         N28        HN28     119.811    1.50
+MC8          C7         N28        HN2A     119.811    1.50
+MC8        HN28         N28        HN2A     120.377    1.82
+MC8         N12         C29         N31     124.576    3.00
+MC8         N12         C29         O30     125.050    3.00
+MC8         N31         C29         O30     110.374    1.67
+MC8         C29         O30         O33     108.097    1.50
+MC8         C29         N31         S32     114.627    1.50
+MC8         C29         N31        HN31     123.021    2.21
+MC8         S32         N31        HN31     122.352    2.27
+MC8          N1         S32         N31     109.471    3.00
+MC8          N1         S32         O34     109.471    3.00
+MC8          N1         S32         O33     109.471    3.00
+MC8         N31         S32         O34     109.471    3.00
+MC8         N31         S32         O33      95.109    1.55
+MC8         O34         S32         O33     109.471    3.00
+MC8         O30         O33         S32     120.000    3.00
+MC8         S32         O34        HO34     109.471    3.00
+MC8          N3         C36         C37     111.989    1.71
+MC8          N3         C36         H36     109.197    1.50
+MC8          N3         C36        H36A     109.197    1.50
+MC8         C37         C36         H36     109.255    1.50
+MC8         C37         C36        H36A     109.255    1.50
+MC8         H36         C36        H36A     108.859    2.16
+MC8         C36         C37         C38     111.094    2.85
+MC8         C36         C37         O39     109.670    2.62
+MC8         C36         C37         H37     108.989    1.50
+MC8         C38         C37         O39     109.314    1.96
+MC8         C38         C37         H37     108.656    1.50
+MC8         O39         C37         H37     108.183    1.96
+MC8         C37         C38         O40     111.469    1.50
+MC8         C37         C38         H38     109.582    1.50
+MC8         C37         C38        H38A     109.582    1.50
+MC8         O40         C38         H38     109.268    1.50
+MC8         O40         C38        H38A     109.268    1.50
+MC8         H38         C38        H38A     108.313    1.50
+MC8         C37         O39        HO39     109.265    3.00
+MC8         C38         O40        HO40     108.280    3.00
+MC8          C4         C41         C46     120.780    1.50
+MC8          C4         C41         N42     117.593    1.60
+MC8         C46         C41         N42     121.627    1.50
+MC8         C41         N42         C43     117.453    1.50
+MC8         N42         C43         C44     121.831    1.50
+MC8         N42         C43         H43     118.820    1.50
+MC8         C44         C43         H43     119.349    1.50
+MC8         C43         C44         C45     119.753    1.50
+MC8         C43         C44         O48     120.124    3.00
+MC8         C45         C44         O48     120.124    3.00
+MC8         C44         C45         C46     119.833    1.50
+MC8         C44         C45         O47     120.084    3.00
+MC8         C46         C45         O47     120.084    3.00
+MC8         C41         C46         C45     119.504    1.50
+MC8         C41         C46         H46     120.391    1.50
+MC8         C45         C46         H46     120.104    1.50
+MC8         C45         O47        HO47     120.000    3.00
+MC8         C44         O48        HO48     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MC8              const_14         O35          C2          N1         S32       0.000    10.0     2
+MC8             sp2_sp3_8          C2          N1         S32         O34     -90.000    10.0     6
+MC8              const_44         S32          N1          N5          C4     180.000    10.0     2
+MC8            sp2_sp3_32         C29         N12         C13         C10     120.000    10.0     6
+MC8            sp2_sp2_14         N31         C29         N12         C13     180.000     5.0     2
+MC8            sp2_sp2_16         C18         C16         N15         C10     180.000     5.0     2
+MC8            sp2_sp2_21         N15         C16         C18         N19       0.000     5.0     2
+MC8            sp2_sp2_28         C16         C18         N19         O20     180.000     5.0     2
+MC8            sp2_sp2_25         C16         C18         C27          N6       0.000     5.0     2
+MC8            sp2_sp2_30         C18         N19         O20         C21     180.000     5.0     2
+MC8            sp3_sp3_13         C23         C21         O20         N19     180.000    10.0     3
+MC8              const_18         O35          C2          N3         C36       0.000    10.0     2
+MC8            sp2_sp3_34         O25         C22         C21         O20       0.000    10.0     6
+MC8            sp3_sp3_19         O20         C21         C23         H23      60.000    10.0     3
+MC8            sp3_sp3_25         O20         C21         C24         H24     180.000    10.0     3
+MC8            sp2_sp2_32         N12         C29         O30         O33     180.000     5.0     2
+MC8             sp2_sp2_3         N12         C29         N31         S32     180.000     5.0     2
+MC8             sp2_sp2_5         C29         O30         O33         S32       0.000     5.0     2
+MC8              const_20          N5          C4          N3         C36     180.000    10.0     2
+MC8            sp2_sp3_14          C2          N3         C36         C37     -90.000    10.0     6
+MC8             sp2_sp3_3         C29         N31         S32         O34    -120.000    10.0     6
+MC8             sp3_sp3_3         O34         S32         O33         O30     -60.000    10.0     3
+MC8            sp3_sp3_34        HO34         O34         S32          N1     180.000    10.0     3
+MC8            sp3_sp3_37          N3         C36         C37         C38     180.000    10.0     3
+MC8            sp3_sp3_46         C36         C37         C38         O40     180.000    10.0     3
+MC8            sp3_sp3_55         C36         C37         O39        HO39     180.000    10.0     3
+MC8            sp3_sp3_58         C37         C38         O40        HO40     180.000    10.0     3
+MC8              const_23          N3          C4          N5          N1       0.000    10.0     2
+MC8             sp2_sp2_6          N3          C4         C41         C46     180.000     5.0     2
+MC8              const_48          C4         C41         N42         C43     180.000    10.0     2
+MC8              const_27          C4         C41         C46         C45     180.000    10.0     2
+MC8              const_41         C44         C43         N42         C41       0.000    10.0     2
+MC8              const_38         N42         C43         C44         O48     180.000    10.0     2
+MC8              const_36         O48         C44         C45         O47       0.000    10.0     2
+MC8            sp2_sp2_33         C43         C44         O48        HO48     180.000     5.0     2
+MC8              const_31         O47         C45         C46         C41     180.000    10.0     2
+MC8            sp2_sp2_35         C44         C45         O47        HO47     180.000     5.0     2
+MC8              const_46         C18         C27          N6          C7     180.000    10.0     2
+MC8       const_sp2_sp2_2         N28          C7          N6         C27     180.000     5.0     2
+MC8            sp2_sp2_10          N6          C7         N28        HN28     180.000     5.0     2
+MC8       const_sp2_sp2_4         N28          C7          S8          C9     180.000     5.0     2
+MC8       const_sp2_sp2_5         C27          C9          S8          C7       0.000     5.0     2
+MC8       const_sp2_sp2_9         C18         C27          C9          S8     180.000     5.0     2
+MC8            sp2_sp3_25         O14         C11         C10         N15       0.000    10.0     6
+MC8             sp3_sp3_4         N15         C10         C13         N12     180.000    10.0     3
+MC8            sp2_sp3_19         C16         N15         C10         C11       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MC8    chir_1    C10    N15    C11    C13    positive
+MC8    chir_2    C21    O20    C22    C23    both
+MC8    chir_3    C37    O39    C38    C36    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MC8    plan-1          C2   0.020
+MC8    plan-1         C36   0.020
+MC8    plan-1          C4   0.020
+MC8    plan-1         C41   0.020
+MC8    plan-1          N1   0.020
+MC8    plan-1          N3   0.020
+MC8    plan-1          N5   0.020
+MC8    plan-1         O35   0.020
+MC8    plan-1         S32   0.020
+MC8    plan-2         C18   0.020
+MC8    plan-2         C27   0.020
+MC8    plan-2          C7   0.020
+MC8    plan-2          C9   0.020
+MC8    plan-2          H9   0.020
+MC8    plan-2         N28   0.020
+MC8    plan-2          N6   0.020
+MC8    plan-2          S8   0.020
+MC8    plan-3          C4   0.020
+MC8    plan-3         C41   0.020
+MC8    plan-3         C43   0.020
+MC8    plan-3         C44   0.020
+MC8    plan-3         C45   0.020
+MC8    plan-3         C46   0.020
+MC8    plan-3         H43   0.020
+MC8    plan-3         H46   0.020
+MC8    plan-3         N42   0.020
+MC8    plan-3         O47   0.020
+MC8    plan-3         O48   0.020
+MC8    plan-4         C10   0.020
+MC8    plan-4         C11   0.020
+MC8    plan-4         H11   0.020
+MC8    plan-4         O14   0.020
+MC8    plan-5         C10   0.020
+MC8    plan-5         C16   0.020
+MC8    plan-5        HN15   0.020
+MC8    plan-5         N15   0.020
+MC8    plan-6         C16   0.020
+MC8    plan-6         C18   0.020
+MC8    plan-6         N15   0.020
+MC8    plan-6         O17   0.020
+MC8    plan-7         C16   0.020
+MC8    plan-7         C18   0.020
+MC8    plan-7         C27   0.020
+MC8    plan-7         N19   0.020
+MC8    plan-8         C21   0.020
+MC8    plan-8         C22   0.020
+MC8    plan-8         O25   0.020
+MC8    plan-8         O26   0.020
+MC8    plan-9          C7   0.020
+MC8    plan-9        HN28   0.020
+MC8    plan-9        HN2A   0.020
+MC8    plan-9         N28   0.020
+MC8   plan-10         C29   0.020
+MC8   plan-10         N12   0.020
+MC8   plan-10         N31   0.020
+MC8   plan-10         O30   0.020
+MC8   plan-11         C29   0.020
+MC8   plan-11        HN31   0.020
+MC8   plan-11         N31   0.020
+MC8   plan-11         S32   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MC8           SMILES              ACDLabs 12.01                                                                                                                                                                                          O=C(O)C(O\N=C(\c1nc(sc1)N)C(=O)NC(C=O)C/N=C4\OOS(O)(N3N=C(c2ncc(O)c(O)c2)N(C3=O)CC(O)CO)N4)(C)C
+MC8 SMILES_CANONICAL               CACTVS 3.370                                                                                                                                                                              CC(C)(O\N=C(/C(=O)N[C@@H](CN=C1N[S@@](O)(OO1)N2N=C(N(C[C@@H](O)CO)C2=O)c3cc(O)c(O)cn3)C=O)c4csc(N)n4)C(O)=O
+MC8           SMILES               CACTVS 3.370                                                                                                                                                                                      CC(C)(ON=C(C(=O)N[CH](CN=C1N[S](O)(OO1)N2N=C(N(C[CH](O)CO)C2=O)c3cc(O)c(O)cn3)C=O)c4csc(N)n4)C(O)=O
+MC8 SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                                                                                                         CC(C)(C(=O)O)O/N=C(/c1csc(n1)N)\C(=O)N[C@@H](C/N=C\2/N[S@@](OO2)(N3C(=O)N(C(=N3)c4cc(c(cn4)O)O)C[C@H](CO)O)O)C=O
+MC8           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                                                                                                            CC(C)(C(=O)O)ON=C(c1csc(n1)N)C(=O)NC(CN=C2NS(OO2)(N3C(=O)N(C(=N3)c4cc(c(cn4)O)O)CC(CO)O)O)C=O
+MC8            InChI                InChI  1.03 InChI=1S/C23H28N10O13S2/c1-23(2,19(40)41)45-30-16(13-9-47-20(24)28-13)18(39)27-10(7-34)4-26-21-31-48(43,46-44-21)33-22(42)32(6-11(36)8-35)17(29-33)12-3-14(37)15(38)5-25-12/h3,5,7,9-11,35-36,38,43H,4,6,8H2,1-2H3,(H2,24,28)(H,25,37)(H,26,31)(H,27,39)(H,40,41)/b30-16-/t10-,11+/m0/s1
+MC8         InChIKey                InChI  1.03                                                                                                                                                                                                                                                              JVOPYPNERYUSGO-DXKYJFGHSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MC8 acedrg               243         "dictionary generator"                  
+MC8 acedrg_database      11          "data source"                           
+MC8 rdkit                2017.03.2   "Chemoinformatics tool"
+MC8 refmac5              5.8.0238    "optimization tool"                     

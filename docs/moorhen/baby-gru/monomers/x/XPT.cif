@@ -1,0 +1,204 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+XPT     XPT      1-[chloro(dipropyl)-lambda~4~-sulfanyl]propane     NON-POLYMER     32     11     .     
+#
+data_comp_XPT
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+XPT     CL1     CL      CL      0       38.872      -6.510      40.917      
+XPT     C3      C       CH2     0       35.922      -5.859      41.789      
+XPT     C4      C       CH2     0       36.066      -5.768      43.304      
+XPT     C5      C       CH3     0       37.293      -6.454      43.861      
+XPT     C6      C       CH2     0       37.755      -3.591      41.394      
+XPT     C7      C       CH2     0       39.258      -3.403      41.488      
+XPT     C8      C       CH3     0       39.655      -1.962      41.714      
+XPT     C9      C       CH2     0       36.710      -5.069      39.174      
+XPT     C10     C       CH2     0       37.790      -4.695      38.161      
+XPT     C11     C       CH3     0       37.797      -3.234      37.764      
+XPT     SN1     S       S3      0       37.311      -5.233      40.849      
+XPT     H3      H       H       0       35.121      -5.360      41.524      
+XPT     H3A     H       H       0       35.785      -6.799      41.547      
+XPT     H4      H       H       0       35.264      -6.172      43.719      
+XPT     H4A     H       H       0       36.086      -4.816      43.566      
+XPT     H5      H       H       0       37.157      -6.648      44.805      
+XPT     H5A     H       H       0       38.066      -5.872      43.759      
+XPT     H5B     H       H       0       37.449      -7.285      43.379      
+XPT     H6      H       H       0       37.358      -3.424      42.272      
+XPT     H6A     H       H       0       37.390      -2.938      40.762      
+XPT     H7      H       H       0       39.675      -3.724      40.651      
+XPT     H7A     H       H       0       39.604      -3.955      42.232      
+XPT     H8      H       H       0       40.625      -1.893      41.746      
+XPT     H8A     H       H       0       39.282      -1.650      42.556      
+XPT     H8B     H       H       0       39.316      -1.413      40.986      
+XPT     H9      H       H       0       36.308      -5.920      38.904      
+XPT     H9A     H       H       0       36.009      -4.384      39.161      
+XPT     H10     H       H       0       37.659      -5.242      37.348      
+XPT     H10A    H       H       0       38.675      -4.925      38.534      
+XPT     H11     H       H       0       38.400      -3.105      37.011      
+XPT     H11A    H       H       0       38.099      -2.693      38.514      
+XPT     H11B    H       H       0       36.899      -2.959      37.509      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+XPT         CL1         SN1      SINGLE       n     2.015  0.0200     2.015  0.0200
+XPT          C3         SN1      SINGLE       n     1.781  0.0200     1.781  0.0200
+XPT          C3          C4      SINGLE       n     1.517  0.0200     1.517  0.0200
+XPT          C4          C5      SINGLE       n     1.511  0.0200     1.511  0.0200
+XPT          C6         SN1      SINGLE       n     1.781  0.0200     1.781  0.0200
+XPT          C6          C7      SINGLE       n     1.517  0.0200     1.517  0.0200
+XPT          C7          C8      SINGLE       n     1.511  0.0200     1.511  0.0200
+XPT          C9         C10      SINGLE       n     1.517  0.0200     1.517  0.0200
+XPT          C9         SN1      SINGLE       n     1.781  0.0200     1.781  0.0200
+XPT         C10         C11      SINGLE       n     1.511  0.0200     1.511  0.0200
+XPT          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0160
+XPT          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0160
+XPT          C4          H4      SINGLE       n     1.089  0.0100     0.989  0.0171
+XPT          C4         H4A      SINGLE       n     1.089  0.0100     0.989  0.0171
+XPT          C5          H5      SINGLE       n     1.089  0.0100     0.973  0.0157
+XPT          C5         H5A      SINGLE       n     1.089  0.0100     0.973  0.0157
+XPT          C5         H5B      SINGLE       n     1.089  0.0100     0.973  0.0157
+XPT          C6          H6      SINGLE       n     1.089  0.0100     0.980  0.0160
+XPT          C6         H6A      SINGLE       n     1.089  0.0100     0.980  0.0160
+XPT          C7          H7      SINGLE       n     1.089  0.0100     0.989  0.0171
+XPT          C7         H7A      SINGLE       n     1.089  0.0100     0.989  0.0171
+XPT          C8          H8      SINGLE       n     1.089  0.0100     0.973  0.0157
+XPT          C8         H8A      SINGLE       n     1.089  0.0100     0.973  0.0157
+XPT          C8         H8B      SINGLE       n     1.089  0.0100     0.973  0.0157
+XPT          C9          H9      SINGLE       n     1.089  0.0100     0.980  0.0160
+XPT          C9         H9A      SINGLE       n     1.089  0.0100     0.980  0.0160
+XPT         C10         H10      SINGLE       n     1.089  0.0100     0.989  0.0171
+XPT         C10        H10A      SINGLE       n     1.089  0.0100     0.989  0.0171
+XPT         C11         H11      SINGLE       n     1.089  0.0100     0.973  0.0157
+XPT         C11        H11A      SINGLE       n     1.089  0.0100     0.973  0.0157
+XPT         C11        H11B      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+XPT         SN1          C3          C4     111.256    2.92
+XPT         SN1          C3          H3     108.888    1.50
+XPT         SN1          C3         H3A     108.888    1.50
+XPT          C4          C3          H3     109.091    1.50
+XPT          C4          C3         H3A     109.091    1.50
+XPT          H3          C3         H3A     108.426    1.50
+XPT          C3          C4          C5     113.191    3.00
+XPT          C3          C4          H4     108.906    1.50
+XPT          C3          C4         H4A     108.906    1.50
+XPT          C5          C4          H4     109.107    1.50
+XPT          C5          C4         H4A     109.107    1.50
+XPT          H4          C4         H4A     107.897    1.50
+XPT          C4          C5          H5     109.543    1.50
+XPT          C4          C5         H5A     109.543    1.50
+XPT          C4          C5         H5B     109.543    1.50
+XPT          H5          C5         H5A     109.380    1.50
+XPT          H5          C5         H5B     109.380    1.50
+XPT         H5A          C5         H5B     109.380    1.50
+XPT         SN1          C6          C7     111.256    2.92
+XPT         SN1          C6          H6     108.888    1.50
+XPT         SN1          C6         H6A     108.888    1.50
+XPT          C7          C6          H6     109.091    1.50
+XPT          C7          C6         H6A     109.091    1.50
+XPT          H6          C6         H6A     108.426    1.50
+XPT          C6          C7          C8     113.191    3.00
+XPT          C6          C7          H7     108.906    1.50
+XPT          C6          C7         H7A     108.906    1.50
+XPT          C8          C7          H7     109.107    1.50
+XPT          C8          C7         H7A     109.107    1.50
+XPT          H7          C7         H7A     107.897    1.50
+XPT          C7          C8          H8     109.543    1.50
+XPT          C7          C8         H8A     109.543    1.50
+XPT          C7          C8         H8B     109.543    1.50
+XPT          H8          C8         H8A     109.380    1.50
+XPT          H8          C8         H8B     109.380    1.50
+XPT         H8A          C8         H8B     109.380    1.50
+XPT         C10          C9         SN1     111.256    2.92
+XPT         C10          C9          H9     109.091    1.50
+XPT         C10          C9         H9A     109.091    1.50
+XPT         SN1          C9          H9     108.888    1.50
+XPT         SN1          C9         H9A     108.888    1.50
+XPT          H9          C9         H9A     108.426    1.50
+XPT          C9         C10         C11     113.191    3.00
+XPT          C9         C10         H10     108.906    1.50
+XPT          C9         C10        H10A     108.906    1.50
+XPT         C11         C10         H10     109.107    1.50
+XPT         C11         C10        H10A     109.107    1.50
+XPT         H10         C10        H10A     107.897    1.50
+XPT         C10         C11         H11     109.543    1.50
+XPT         C10         C11        H11A     109.543    1.50
+XPT         C10         C11        H11B     109.543    1.50
+XPT         H11         C11        H11A     109.380    1.50
+XPT         H11         C11        H11B     109.380    1.50
+XPT        H11A         C11        H11B     109.380    1.50
+XPT         CL1         SN1          C3     109.471    3.00
+XPT         CL1         SN1          C6     109.471    3.00
+XPT         CL1         SN1          C9     109.471    3.00
+XPT          C3         SN1          C6     106.430    3.00
+XPT          C3         SN1          C9     106.430    3.00
+XPT          C6         SN1          C9     106.430    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+XPT             sp3_sp3_1          C4          C3         SN1         CL1     180.000    10.0     3
+XPT            sp3_sp3_10         SN1          C3          C4          C5     180.000    10.0     3
+XPT            sp3_sp3_19          C3          C4          C5          H5     180.000    10.0     3
+XPT            sp3_sp3_28          C7          C6         SN1         CL1     180.000    10.0     3
+XPT            sp3_sp3_37         SN1          C6          C7          C8     180.000    10.0     3
+XPT            sp3_sp3_46          C6          C7          C8          H8     180.000    10.0     3
+XPT            sp3_sp3_64         C10          C9         SN1         CL1     180.000    10.0     3
+XPT            sp3_sp3_55         C11         C10          C9         SN1     180.000    10.0     3
+XPT            sp3_sp3_73          C9         C10         C11         H11     180.000    10.0     3
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+XPT           SMILES              ACDLabs 12.01                                        ClS(CCC)(CCC)CCC
+XPT SMILES_CANONICAL               CACTVS 3.370                                      CCC[S](Cl)(CCC)CCC
+XPT           SMILES               CACTVS 3.370                                      CCC[S](Cl)(CCC)CCC
+XPT SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                        CCCS(CCC)(CCC)Cl
+XPT           SMILES "OpenEye OEToolkits" 1.7.0                                        CCCS(CCC)(CCC)Cl
+XPT            InChI                InChI  1.03 InChI=1S/C9H21ClS/c1-4-7-11(10,8-5-2)9-6-3/h4-9H2,1-3H3
+XPT         InChIKey                InChI  1.03                             OKMMYIYQBZXYLN-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+XPT acedrg               243         "dictionary generator"                  
+XPT acedrg_database      11          "data source"                           
+XPT rdkit                2017.03.2   "Chemoinformatics tool"
+XPT refmac5              5.8.0238    "optimization tool"                     

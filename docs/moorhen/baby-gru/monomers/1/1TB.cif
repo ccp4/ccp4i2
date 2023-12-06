@@ -1,0 +1,310 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+1TB     1TB      "METHYL 2-[4-METHOXY-6-METHYL-1,3,5-TRAZIN-2-YL(METHYL)CARBAMOYLSULFAMOYL]BENZOATE"     NON-POLYMER     44     27     .     
+#
+data_comp_1TB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+1TB     C4      C       CR16    0       -11.927     106.465     57.340      
+1TB     C5      C       CR16    0       -10.664     107.018     57.342      
+1TB     C6      C       CR16    0       -9.797      106.760     56.294      
+1TB     C1      C       CR6     0       -10.176     105.943     55.222      
+1TB     C2      C       CR6     0       -11.477     105.387     55.230      
+1TB     C3      C       CR16    0       -12.336     105.651     56.294      
+1TB     C11     C       C       0       -9.179      105.723     54.141      
+1TB     O12     O       O2      0       -8.111      105.057     54.593      
+1TB     C13     C       CH3     0       -7.008      104.845     53.675      
+1TB     O11     O       O       0       -9.312      106.096     53.002      
+1TB     S7      S       S3      0       -12.080     104.330     53.946      
+1TB     N8      N       NH1     0       -10.926     103.190     53.752      
+1TB     C9      C       C       0       -10.354     102.480     54.780      
+1TB     O7A     O       O       0       -13.244     103.631     54.391      
+1TB     O7B     O       O       0       -12.131     105.068     52.724      
+1TB     O9      O       O       0       -10.921     102.432     55.883      
+1TB     N10     N       N       0       -9.135      101.812     54.586      
+1TB     "C2'"   C       CR6     0       -8.056      101.933     55.492      
+1TB     "N1'"   N       NRD6    0       -6.849      101.424     55.142      
+1TB     "C6'"   C       CR6     0       -5.858      101.583     56.026      
+1TB     "N5'"   N       NRD6    0       -6.011      102.218     57.191      
+1TB     "C4'"   C       CR6     0       -7.218      102.712     57.457      
+1TB     "N3'"   N       NRD6    0       -8.267      102.604     56.651      
+1TB     C10     C       CH3     0       -8.921      101.125     53.301      
+1TB     "O4'"   O       O2      0       -7.432      103.351     58.606      
+1TB     "C5'"   C       CH3     0       -6.461      104.291     59.068      
+1TB     "C7'"   C       CH3     0       -4.514      101.023     55.691      
+1TB     H4      H       H       0       -12.516     106.641     58.051      
+1TB     H5      H       H       0       -10.390     107.572     58.054      
+1TB     H6      H       H       0       -8.936      107.141     56.300      
+1TB     H3      H       H       0       -13.196     105.282     56.304      
+1TB     H131    H       H       0       -6.684      105.701     53.352      
+1TB     H132    H       H       0       -7.309      104.307     52.926      
+1TB     H133    H       H       0       -6.291      104.382     54.137      
+1TB     HN8     H       H       0       -10.653     103.038     52.943      
+1TB     H101    H       H       0       -9.774      100.925     52.883      
+1TB     H102    H       H       0       -8.445      100.293     53.449      
+1TB     H103    H       H       0       -8.400      101.694     52.712      
+1TB     "H5'1"  H       H       0       -6.142      104.828     58.323      
+1TB     "H5'2"  H       H       0       -5.715      103.814     59.466      
+1TB     "H5'3"  H       H       0       -6.865      104.871     59.734      
+1TB     "H7'1"  H       H       0       -3.846      101.397     56.288      
+1TB     "H7'2"  H       H       0       -4.288      101.249     54.774      
+1TB     "H7'3"  H       H       0       -4.532      100.058     55.790      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+1TB          C4          C5      DOUBLE       y     1.376  0.0124     1.376  0.0124
+1TB          C4          C3      SINGLE       y     1.383  0.0100     1.383  0.0100
+1TB          C5          C6      SINGLE       y     1.382  0.0100     1.382  0.0100
+1TB          C6          C1      DOUBLE       y     1.396  0.0100     1.396  0.0100
+1TB          C1          C2      SINGLE       y     1.405  0.0109     1.405  0.0109
+1TB          C1         C11      SINGLE       n     1.485  0.0112     1.485  0.0112
+1TB          C2          C3      DOUBLE       y     1.386  0.0100     1.386  0.0100
+1TB          C2          S7      SINGLE       n     1.763  0.0100     1.763  0.0100
+1TB         C11         O12      SINGLE       n     1.332  0.0114     1.332  0.0114
+1TB         C11         O11      DOUBLE       n     1.204  0.0101     1.204  0.0101
+1TB         O12         C13      SINGLE       n     1.448  0.0100     1.448  0.0100
+1TB          S7          N8      SINGLE       n     1.630  0.0155     1.630  0.0155
+1TB          S7         O7A      DOUBLE       n     1.429  0.0100     1.429  0.0100
+1TB          S7         O7B      DOUBLE       n     1.429  0.0100     1.429  0.0100
+1TB          N8          C9      SINGLE       n     1.351  0.0200     1.351  0.0200
+1TB          C9          O9      DOUBLE       n     1.235  0.0158     1.235  0.0158
+1TB          C9         N10      SINGLE       n     1.368  0.0200     1.368  0.0200
+1TB         N10       "C2'"      SINGLE       n     1.374  0.0200     1.374  0.0200
+1TB         N10         C10      SINGLE       n     1.466  0.0100     1.466  0.0100
+1TB       "C2'"       "N1'"      DOUBLE       y     1.346  0.0108     1.346  0.0108
+1TB       "C2'"       "N3'"      SINGLE       y     1.343  0.0119     1.343  0.0119
+1TB       "N1'"       "C6'"      SINGLE       y     1.333  0.0100     1.333  0.0100
+1TB       "C6'"       "N5'"      DOUBLE       y     1.334  0.0105     1.334  0.0105
+1TB       "C6'"       "C7'"      SINGLE       n     1.494  0.0103     1.494  0.0103
+1TB       "N5'"       "C4'"      SINGLE       y     1.329  0.0100     1.329  0.0100
+1TB       "C4'"       "N3'"      DOUBLE       y     1.324  0.0100     1.324  0.0100
+1TB       "C4'"       "O4'"      SINGLE       n     1.329  0.0100     1.329  0.0100
+1TB       "O4'"       "C5'"      SINGLE       n     1.425  0.0118     1.425  0.0118
+1TB          C4          H4      SINGLE       n     1.082  0.0130     0.940  0.0176
+1TB          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0180
+1TB          C6          H6      SINGLE       n     1.082  0.0130     0.941  0.0168
+1TB          C3          H3      SINGLE       n     1.082  0.0130     0.937  0.0111
+1TB         C13        H131      SINGLE       n     1.089  0.0100     0.970  0.0175
+1TB         C13        H132      SINGLE       n     1.089  0.0100     0.970  0.0175
+1TB         C13        H133      SINGLE       n     1.089  0.0100     0.970  0.0175
+1TB          N8         HN8      SINGLE       n     1.016  0.0100     0.868  0.0105
+1TB         C10        H101      SINGLE       n     1.089  0.0100     0.970  0.0149
+1TB         C10        H102      SINGLE       n     1.089  0.0100     0.970  0.0149
+1TB         C10        H103      SINGLE       n     1.089  0.0100     0.970  0.0149
+1TB       "C5'"      "H5'1"      SINGLE       n     1.089  0.0100     0.971  0.0157
+1TB       "C5'"      "H5'2"      SINGLE       n     1.089  0.0100     0.971  0.0157
+1TB       "C5'"      "H5'3"      SINGLE       n     1.089  0.0100     0.971  0.0157
+1TB       "C7'"      "H7'1"      SINGLE       n     1.089  0.0100     0.971  0.0138
+1TB       "C7'"      "H7'2"      SINGLE       n     1.089  0.0100     0.971  0.0138
+1TB       "C7'"      "H7'3"      SINGLE       n     1.089  0.0100     0.971  0.0138
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+1TB          C5          C4          C3     120.202    1.50
+1TB          C5          C4          H4     119.998    1.50
+1TB          C3          C4          H4     119.796    1.50
+1TB          C4          C5          C6     120.062    1.50
+1TB          C4          C5          H5     120.014    1.50
+1TB          C6          C5          H5     119.923    1.50
+1TB          C5          C6          C1     121.258    1.50
+1TB          C5          C6          H6     119.586    1.50
+1TB          C1          C6          H6     119.156    1.50
+1TB          C6          C1          C2     118.372    1.50
+1TB          C6          C1         C11     118.255    1.50
+1TB          C2          C1         C11     123.373    1.50
+1TB          C1          C2          C3     120.250    1.50
+1TB          C1          C2          S7     122.438    1.78
+1TB          C3          C2          S7     117.312    1.50
+1TB          C4          C3          C2     119.859    1.50
+1TB          C4          C3          H3     120.255    1.50
+1TB          C2          C3          H3     119.886    1.50
+1TB          C1         C11         O12     111.799    1.50
+1TB          C1         C11         O11     124.927    1.50
+1TB         O12         C11         O11     123.274    1.50
+1TB         C11         O12         C13     115.869    1.50
+1TB         O12         C13        H131     109.389    1.50
+1TB         O12         C13        H132     109.389    1.50
+1TB         O12         C13        H133     109.389    1.50
+1TB        H131         C13        H132     109.532    1.53
+1TB        H131         C13        H133     109.532    1.53
+1TB        H132         C13        H133     109.532    1.53
+1TB          C2          S7          N8     105.557    1.50
+1TB          C2          S7         O7A     109.218    1.50
+1TB          C2          S7         O7B     109.218    1.50
+1TB          N8          S7         O7A     106.840    2.68
+1TB          N8          S7         O7B     106.840    2.68
+1TB         O7A          S7         O7B     119.599    1.50
+1TB          S7          N8          C9     124.271    1.97
+1TB          S7          N8         HN8     117.816    1.50
+1TB          C9          N8         HN8     117.913    1.50
+1TB          N8          C9          O9     120.969    1.50
+1TB          N8          C9         N10     117.524    3.00
+1TB          O9          C9         N10     121.507    1.50
+1TB          C9         N10       "C2'"     124.391    3.00
+1TB          C9         N10         C10     116.407    1.92
+1TB       "C2'"         N10         C10     119.202    2.30
+1TB         N10       "C2'"       "N1'"     118.279    2.18
+1TB         N10       "C2'"       "N3'"     118.279    2.18
+1TB       "N1'"       "C2'"       "N3'"     123.443    1.50
+1TB       "C2'"       "N1'"       "C6'"     115.308    1.50
+1TB       "N1'"       "C6'"       "N5'"     123.573    1.50
+1TB       "N1'"       "C6'"       "C7'"     118.159    1.50
+1TB       "N5'"       "C6'"       "C7'"     118.267    1.50
+1TB       "C6'"       "N5'"       "C4'"     118.345    1.58
+1TB       "N5'"       "C4'"       "N3'"     125.181    1.50
+1TB       "N5'"       "C4'"       "O4'"     117.410    3.00
+1TB       "N3'"       "C4'"       "O4'"     117.410    3.00
+1TB       "C2'"       "N3'"       "C4'"     114.150    1.50
+1TB         N10         C10        H101     109.527    1.50
+1TB         N10         C10        H102     109.527    1.50
+1TB         N10         C10        H103     109.527    1.50
+1TB        H101         C10        H102     109.352    1.56
+1TB        H101         C10        H103     109.352    1.56
+1TB        H102         C10        H103     109.352    1.56
+1TB       "C4'"       "O4'"       "C5'"     117.553    1.50
+1TB       "O4'"       "C5'"      "H5'1"     109.415    1.50
+1TB       "O4'"       "C5'"      "H5'2"     109.415    1.50
+1TB       "O4'"       "C5'"      "H5'3"     109.415    1.50
+1TB      "H5'1"       "C5'"      "H5'2"     109.509    1.50
+1TB      "H5'1"       "C5'"      "H5'3"     109.509    1.50
+1TB      "H5'2"       "C5'"      "H5'3"     109.509    1.50
+1TB       "C6'"       "C7'"      "H7'1"     109.546    1.50
+1TB       "C6'"       "C7'"      "H7'2"     109.546    1.50
+1TB       "C6'"       "C7'"      "H7'3"     109.546    1.50
+1TB      "H7'1"       "C7'"      "H7'2"     109.397    1.50
+1TB      "H7'1"       "C7'"      "H7'3"     109.397    1.50
+1TB      "H7'2"       "C7'"      "H7'3"     109.397    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+1TB       const_sp2_sp2_1          C3          C4          C5          C6       0.000     5.0     2
+1TB              const_31          C2          C3          C4          C5       0.000    10.0     2
+1TB             sp2_sp3_8          C9          N8          S7         O7A     120.000    10.0     6
+1TB             sp2_sp2_9          O9          C9          N8          S7       0.000     5.0     2
+1TB            sp2_sp2_12          N8          C9         N10         C10       0.000     5.0     2
+1TB            sp2_sp2_15       "N1'"       "C2'"         N10          C9     180.000     5.0     2
+1TB            sp2_sp3_13          C9         N10         C10        H101       0.000    10.0     6
+1TB              const_22         N10       "C2'"       "N1'"       "C6'"     180.000    10.0     2
+1TB              const_36         N10       "C2'"       "N3'"       "C4'"     180.000    10.0     2
+1TB              const_24       "C7'"       "C6'"       "N1'"       "C2'"     180.000    10.0     2
+1TB              const_26       "C7'"       "C6'"       "N5'"       "C4'"     180.000    10.0     2
+1TB            sp2_sp3_19       "N1'"       "C6'"       "C7'"      "H7'1"     150.000    10.0     6
+1TB       const_sp2_sp2_5          C4          C5          C6          C1       0.000     5.0     2
+1TB              const_28       "O4'"       "C4'"       "N5'"       "C6'"     180.000    10.0     2
+1TB              const_30       "O4'"       "C4'"       "N3'"       "C2'"     180.000    10.0     2
+1TB            sp2_sp2_19       "N5'"       "C4'"       "O4'"       "C5'"     180.000     5.0     2
+1TB             sp3_sp3_6      "H5'1"       "C5'"       "O4'"       "C4'"     -60.000    10.0     3
+1TB              const_11         C11          C1          C6          C5     180.000    10.0     2
+1TB              const_16         C11          C1          C2          S7       0.000    10.0     2
+1TB             sp2_sp2_1          C6          C1         C11         O12     180.000     5.0     2
+1TB             sp2_sp3_3          C1          C2          S7          N8      30.000    10.0     6
+1TB              const_19          S7          C2          C3          C4     180.000    10.0     2
+1TB             sp2_sp2_6         O11         C11         O12         C13       0.000     5.0     2
+1TB             sp3_sp3_2        H131         C13         O12         C11     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+1TB    chir_1    S7    O7A    O7B    N8    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+1TB    plan-1          C1   0.020
+1TB    plan-1         C11   0.020
+1TB    plan-1          C2   0.020
+1TB    plan-1          C3   0.020
+1TB    plan-1          C4   0.020
+1TB    plan-1          C5   0.020
+1TB    plan-1          C6   0.020
+1TB    plan-1          H3   0.020
+1TB    plan-1          H4   0.020
+1TB    plan-1          H5   0.020
+1TB    plan-1          H6   0.020
+1TB    plan-1          S7   0.020
+1TB    plan-2       "C2'"   0.020
+1TB    plan-2       "C4'"   0.020
+1TB    plan-2       "C6'"   0.020
+1TB    plan-2       "C7'"   0.020
+1TB    plan-2       "N1'"   0.020
+1TB    plan-2         N10   0.020
+1TB    plan-2       "N3'"   0.020
+1TB    plan-2       "N5'"   0.020
+1TB    plan-2       "O4'"   0.020
+1TB    plan-3          C1   0.020
+1TB    plan-3         C11   0.020
+1TB    plan-3         O11   0.020
+1TB    plan-3         O12   0.020
+1TB    plan-4          C9   0.020
+1TB    plan-4         HN8   0.020
+1TB    plan-4          N8   0.020
+1TB    plan-4          S7   0.020
+1TB    plan-5          C9   0.020
+1TB    plan-5         N10   0.020
+1TB    plan-5          N8   0.020
+1TB    plan-5          O9   0.020
+1TB    plan-6         C10   0.020
+1TB    plan-6       "C2'"   0.020
+1TB    plan-6          C9   0.020
+1TB    plan-6         N10   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+1TB           SMILES              ACDLabs 10.04                                                                        O=C(OC)c1ccccc1S(=O)(=O)NC(=O)N(c2nc(nc(OC)n2)C)C
+1TB SMILES_CANONICAL               CACTVS 3.341                                                                      COC(=O)c1ccccc1[S](=O)(=O)NC(=O)N(C)c2nc(C)nc(OC)n2
+1TB           SMILES               CACTVS 3.341                                                                      COC(=O)c1ccccc1[S](=O)(=O)NC(=O)N(C)c2nc(C)nc(OC)n2
+1TB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                        Cc1nc(nc(n1)OC)N(C)C(=O)NS(=O)(=O)c2ccccc2C(=O)OC
+1TB           SMILES "OpenEye OEToolkits" 1.5.0                                                                        Cc1nc(nc(n1)OC)N(C)C(=O)NS(=O)(=O)c2ccccc2C(=O)OC
+1TB            InChI                InChI  1.03 InChI=1S/C15H17N5O6S/c1-9-16-13(18-14(17-9)26-4)20(2)15(22)19-27(23,24)11-8-6-5-7-10(11)12(21)25-3/h5-8H,1-4H3,(H,19,22)
+1TB         InChIKey                InChI  1.03                                                                                              VLCQZHSMCYCDJL-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+1TB acedrg               243         "dictionary generator"                  
+1TB acedrg_database      11          "data source"                           
+1TB rdkit                2017.03.2   "Chemoinformatics tool"
+1TB refmac5              5.8.0238    "optimization tool"                     

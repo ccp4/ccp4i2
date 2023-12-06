@@ -1,0 +1,370 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+OLC     OLC      "(2R)-2,3-dihydroxypropyl (9Z)-octadec-9-enoate"     NON-POLYMER     65     25     .     
+#
+data_comp_OLC
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+OLC     C18     C       CH3     0       -8.254      -10.462     42.218      
+OLC     C10     C       C1      0       -6.875      -8.771      35.960      
+OLC     C9      C       C1      0       -5.990      -9.152      35.071      
+OLC     C17     C       CH2     0       -9.169      -9.390      41.675      
+OLC     C11     C       CH2     0       -7.844      -7.637      35.820      
+OLC     C8      C       CH2     0       -5.758      -8.539      33.725      
+OLC     C24     C       CH2     0       -2.227      -8.320      26.653      
+OLC     C16     C       CH2     0       -8.485      -8.435      40.732      
+OLC     C12     C       CH2     0       -8.645      -7.386      37.059      
+OLC     C7      C       CH2     0       -4.894      -7.317      33.771      
+OLC     C15     C       CH2     0       -9.403      -7.407      40.113      
+OLC     C13     C       CH2     0       -7.861      -6.727      38.183      
+OLC     C6      C       CH2     0       -4.659      -6.664      32.415      
+OLC     C14     C       CH2     0       -8.697      -6.291      39.370      
+OLC     C5      C       CH2     0       -5.859      -5.936      31.860      
+OLC     C4      C       CH2     0       -5.557      -5.035      30.686      
+OLC     C3      C       CH2     0       -5.298      -5.765      29.378      
+OLC     C2      C       CH2     0       -5.130      -4.823      28.225      
+OLC     C21     C       CH2     0       -3.376      -6.467      25.390      
+OLC     C1      C       C       0       -4.995      -5.507      26.890      
+OLC     C22     C       CH1     0       -2.073      -7.185      25.663      
+OLC     O19     O       O       0       -5.932      -5.829      26.202      
+OLC     O25     O       OH1     0       -0.990      -8.989      26.883      
+OLC     O23     O       OH1     0       -1.540      -7.674      24.432      
+OLC     O20     O       O2      0       -3.712      -5.683      26.561      
+OLC     H18     H       H       0       -8.766      -11.077     42.772      
+OLC     H18A    H       H       0       -7.553      -10.052     42.753      
+OLC     H18B    H       H       0       -7.852      -10.952     41.480      
+OLC     H10     H       H       0       -6.903      -9.259      36.769      
+OLC     H9      H       H       0       -5.444      -9.888      35.302      
+OLC     H17     H       H       0       -9.542      -8.880      42.426      
+OLC     H17A    H       H       0       -9.916      -9.818      41.203      
+OLC     H11     H       H       0       -8.459      -7.835      35.079      
+OLC     H11A    H       H       0       -7.348      -6.820      35.591      
+OLC     H8      H       H       0       -6.625      -8.301      33.327      
+OLC     H8A     H       H       0       -5.332      -9.205      33.142      
+OLC     H24     H       H       0       -2.888      -8.967      26.305      
+OLC     H24A    H       H       0       -2.566      -7.960      27.509      
+OLC     H16     H       H       0       -8.062      -8.953      40.014      
+OLC     H16A    H       H       0       -7.773      -7.968      41.220      
+OLC     H12     H       H       0       -9.000      -8.240      37.382      
+OLC     H12A    H       H       0       -9.408      -6.815      36.832      
+OLC     H7      H       H       0       -4.026      -7.560      34.156      
+OLC     H7A     H       H       0       -5.308      -6.659      34.368      
+OLC     H15     H       H       0       -9.949      -7.010      40.824      
+OLC     H15A    H       H       0       -10.013     -7.863      39.495      
+OLC     H13     H       H       0       -7.403      -5.938      37.820      
+OLC     H13A    H       H       0       -7.171      -7.350      38.492      
+OLC     H6      H       H       0       -4.389      -7.357      31.776      
+OLC     H6A     H       H       0       -3.915      -6.030      32.497      
+OLC     H14     H       H       0       -8.115      -5.817      40.002      
+OLC     H14A    H       H       0       -9.371      -5.651      39.057      
+OLC     H5      H       H       0       -6.256      -5.394      32.576      
+OLC     H5A     H       H       0       -6.529      -6.598      31.584      
+OLC     H4      H       H       0       -4.770      -4.491      30.902      
+OLC     H4A     H       H       0       -6.313      -4.424      30.558      
+OLC     H3      H       H       0       -6.048      -6.370      29.198      
+OLC     H3A     H       H       0       -4.489      -6.311      29.473      
+OLC     H2      H       H       0       -4.335      -4.269      28.383      
+OLC     H2A     H       H       0       -5.905      -4.222      28.194      
+OLC     H21     H       H       0       -4.079      -7.130      25.199      
+OLC     H21A    H       H       0       -3.274      -5.875      24.609      
+OLC     H22     H       H       0       -1.435      -6.534      26.041      
+OLC     HO25    H       H       0       -1.096      -9.528      27.526      
+OLC     HO23    H       H       0       -2.074      -8.252      24.110      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+OLC         C18         C17      SINGLE       n     1.510  0.0200     1.510  0.0200
+OLC         C10          C9      DOUBLE       n     1.308  0.0200     1.308  0.0200
+OLC         C10         C11      SINGLE       n     1.497  0.0127     1.497  0.0127
+OLC          C9          C8      SINGLE       n     1.497  0.0127     1.497  0.0127
+OLC         C17         C16      SINGLE       n     1.507  0.0200     1.507  0.0200
+OLC         C11         C12      SINGLE       n     1.497  0.0200     1.497  0.0200
+OLC          C8          C7      SINGLE       n     1.497  0.0200     1.497  0.0200
+OLC         C24         C22      SINGLE       n     1.514  0.0105     1.514  0.0105
+OLC         C24         O25      SINGLE       n     1.425  0.0100     1.425  0.0100
+OLC         C16         C15      SINGLE       n     1.509  0.0200     1.509  0.0200
+OLC         C12         C13      SINGLE       n     1.519  0.0164     1.519  0.0164
+OLC          C7          C6      SINGLE       n     1.523  0.0117     1.523  0.0117
+OLC         C15         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+OLC         C13         C14      SINGLE       n     1.509  0.0200     1.509  0.0200
+OLC          C6          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+OLC          C5          C4      SINGLE       n     1.509  0.0200     1.509  0.0200
+OLC          C4          C3      SINGLE       n     1.519  0.0164     1.519  0.0164
+OLC          C3          C2      SINGLE       n     1.497  0.0200     1.497  0.0200
+OLC          C2          C1      SINGLE       n     1.503  0.0174     1.503  0.0174
+OLC         C21         C22      SINGLE       n     1.512  0.0104     1.512  0.0104
+OLC         C21         O20      SINGLE       n     1.444  0.0100     1.444  0.0100
+OLC          C1         O19      DOUBLE       n     1.203  0.0150     1.203  0.0150
+OLC          C1         O20      SINGLE       n     1.329  0.0116     1.329  0.0116
+OLC         C22         O23      SINGLE       n     1.427  0.0100     1.427  0.0100
+OLC         C18         H18      SINGLE       n     1.089  0.0100     0.973  0.0157
+OLC         C18        H18A      SINGLE       n     1.089  0.0100     0.973  0.0157
+OLC         C18        H18B      SINGLE       n     1.089  0.0100     0.973  0.0157
+OLC         C10         H10      SINGLE       n     1.082  0.0130     0.945  0.0200
+OLC          C9          H9      SINGLE       n     1.082  0.0130     0.945  0.0200
+OLC         C17         H17      SINGLE       n     1.089  0.0100     0.982  0.0155
+OLC         C17        H17A      SINGLE       n     1.089  0.0100     0.982  0.0155
+OLC         C11         H11      SINGLE       n     1.089  0.0100     0.983  0.0180
+OLC         C11        H11A      SINGLE       n     1.089  0.0100     0.983  0.0180
+OLC          C8          H8      SINGLE       n     1.089  0.0100     0.983  0.0180
+OLC          C8         H8A      SINGLE       n     1.089  0.0100     0.983  0.0180
+OLC         C24         H24      SINGLE       n     1.089  0.0100     0.988  0.0200
+OLC         C24        H24A      SINGLE       n     1.089  0.0100     0.988  0.0200
+OLC         C16         H16      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC         C16        H16A      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC         C12         H12      SINGLE       n     1.089  0.0100     0.980  0.0160
+OLC         C12        H12A      SINGLE       n     1.089  0.0100     0.980  0.0160
+OLC          C7          H7      SINGLE       n     1.089  0.0100     0.980  0.0160
+OLC          C7         H7A      SINGLE       n     1.089  0.0100     0.980  0.0160
+OLC         C15         H15      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC         C15        H15A      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC         C13         H13      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC         C13        H13A      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC          C6          H6      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC          C6         H6A      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC         C14         H14      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC         C14        H14A      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC          C5          H5      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC          C5         H5A      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC          C4          H4      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC          C4         H4A      SINGLE       n     1.089  0.0100     0.981  0.0163
+OLC          C3          H3      SINGLE       n     1.089  0.0100     0.980  0.0160
+OLC          C3         H3A      SINGLE       n     1.089  0.0100     0.980  0.0160
+OLC          C2          H2      SINGLE       n     1.089  0.0100     0.981  0.0185
+OLC          C2         H2A      SINGLE       n     1.089  0.0100     0.981  0.0185
+OLC         C21         H21      SINGLE       n     1.089  0.0100     0.985  0.0188
+OLC         C21        H21A      SINGLE       n     1.089  0.0100     0.985  0.0188
+OLC         C22         H22      SINGLE       n     1.089  0.0100     0.987  0.0186
+OLC         O25        HO25      SINGLE       n     0.970  0.0120     0.846  0.0200
+OLC         O23        HO23      SINGLE       n     0.970  0.0120     0.848  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+OLC         C17         C18         H18     109.554    1.50
+OLC         C17         C18        H18A     109.554    1.50
+OLC         C17         C18        H18B     109.554    1.50
+OLC         H18         C18        H18A     109.380    1.50
+OLC         H18         C18        H18B     109.380    1.50
+OLC        H18A         C18        H18B     109.380    1.50
+OLC          C9         C10         C11     125.684    3.00
+OLC          C9         C10         H10     117.310    2.16
+OLC         C11         C10         H10     117.007    1.61
+OLC         C10          C9          C8     125.684    3.00
+OLC         C10          C9          H9     117.310    2.16
+OLC          C8          C9          H9     117.007    1.61
+OLC         C18         C17         C16     113.719    3.00
+OLC         C18         C17         H17     108.918    1.50
+OLC         C18         C17        H17A     108.918    1.50
+OLC         C16         C17         H17     108.758    1.50
+OLC         C16         C17        H17A     108.758    1.50
+OLC         H17         C17        H17A     107.763    1.50
+OLC         C10         C11         C12     113.226    1.94
+OLC         C10         C11         H11     108.886    1.50
+OLC         C10         C11        H11A     108.886    1.50
+OLC         C12         C11         H11     108.819    1.50
+OLC         C12         C11        H11A     108.819    1.50
+OLC         H11         C11        H11A     107.922    1.50
+OLC          C9          C8          C7     113.226    1.94
+OLC          C9          C8          H8     108.886    1.50
+OLC          C9          C8         H8A     108.886    1.50
+OLC          C7          C8          H8     108.819    1.50
+OLC          C7          C8         H8A     108.819    1.50
+OLC          H8          C8         H8A     107.922    1.50
+OLC         C22         C24         O25     111.586    1.51
+OLC         C22         C24         H24     109.193    1.50
+OLC         C22         C24        H24A     109.193    1.50
+OLC         O25         C24         H24     109.268    1.50
+OLC         O25         C24        H24A     109.268    1.50
+OLC         H24         C24        H24A     108.313    1.50
+OLC         C17         C16         C15     114.362    3.00
+OLC         C17         C16         H16     108.653    1.50
+OLC         C17         C16        H16A     108.653    1.50
+OLC         C15         C16         H16     108.698    1.50
+OLC         C15         C16        H16A     108.698    1.50
+OLC         H16         C16        H16A     107.646    1.50
+OLC         C11         C12         C13     114.266    1.80
+OLC         C11         C12         H12     108.805    1.50
+OLC         C11         C12        H12A     108.805    1.50
+OLC         C13         C12         H12     108.698    1.50
+OLC         C13         C12        H12A     108.698    1.50
+OLC         H12         C12        H12A     107.646    1.50
+OLC          C8          C7          C6     114.266    1.80
+OLC          C8          C7          H7     108.805    1.50
+OLC          C8          C7         H7A     108.805    1.50
+OLC          C6          C7          H7     108.698    1.50
+OLC          C6          C7         H7A     108.698    1.50
+OLC          H7          C7         H7A     107.646    1.50
+OLC         C16         C15         C14     114.243    1.69
+OLC         C16         C15         H15     108.698    1.50
+OLC         C16         C15        H15A     108.698    1.50
+OLC         C14         C15         H15     108.698    1.50
+OLC         C14         C15        H15A     108.698    1.50
+OLC         H15         C15        H15A     107.646    1.50
+OLC         C12         C13         C14     114.243    1.69
+OLC         C12         C13         H13     108.698    1.50
+OLC         C12         C13        H13A     108.698    1.50
+OLC         C14         C13         H13     108.698    1.50
+OLC         C14         C13        H13A     108.698    1.50
+OLC         H13         C13        H13A     107.646    1.50
+OLC          C7          C6          C5     114.243    1.69
+OLC          C7          C6          H6     108.698    1.50
+OLC          C7          C6         H6A     108.698    1.50
+OLC          C5          C6          H6     108.698    1.50
+OLC          C5          C6         H6A     108.698    1.50
+OLC          H6          C6         H6A     107.646    1.50
+OLC         C15         C14         C13     114.243    1.69
+OLC         C15         C14         H14     108.698    1.50
+OLC         C15         C14        H14A     108.698    1.50
+OLC         C13         C14         H14     108.698    1.50
+OLC         C13         C14        H14A     108.698    1.50
+OLC         H14         C14        H14A     107.646    1.50
+OLC          C6          C5          C4     114.243    1.69
+OLC          C6          C5          H5     108.698    1.50
+OLC          C6          C5         H5A     108.698    1.50
+OLC          C4          C5          H5     108.698    1.50
+OLC          C4          C5         H5A     108.698    1.50
+OLC          H5          C5         H5A     107.646    1.50
+OLC          C5          C4          C3     114.243    1.69
+OLC          C5          C4          H4     108.698    1.50
+OLC          C5          C4         H4A     108.698    1.50
+OLC          C3          C4          H4     108.698    1.50
+OLC          C3          C4         H4A     108.698    1.50
+OLC          H4          C4         H4A     107.646    1.50
+OLC          C4          C3          C2     112.553    1.50
+OLC          C4          C3          H3     108.698    1.50
+OLC          C4          C3         H3A     108.698    1.50
+OLC          C2          C3          H3     109.164    1.50
+OLC          C2          C3         H3A     109.164    1.50
+OLC          H3          C3         H3A     107.646    1.50
+OLC          C3          C2          C1     113.365    1.50
+OLC          C3          C2          H2     108.815    1.50
+OLC          C3          C2         H2A     108.815    1.50
+OLC          C1          C2          H2     108.883    1.50
+OLC          C1          C2         H2A     108.883    1.50
+OLC          H2          C2         H2A     107.521    1.50
+OLC         C22         C21         O20     108.641    1.70
+OLC         C22         C21         H21     109.582    1.50
+OLC         C22         C21        H21A     109.582    1.50
+OLC         O20         C21         H21     109.514    1.50
+OLC         O20         C21        H21A     109.514    1.50
+OLC         H21         C21        H21A     108.601    1.50
+OLC          C2          C1         O19     125.251    2.71
+OLC          C2          C1         O20     111.516    1.50
+OLC         O19          C1         O20     123.233    1.50
+OLC         C24         C22         C21     113.504    1.50
+OLC         C24         C22         O23     110.247    1.72
+OLC         C24         C22         H22     108.441    1.50
+OLC         C21         C22         O23     109.314    1.96
+OLC         C21         C22         H22     108.656    1.50
+OLC         O23         C22         H22     108.721    1.50
+OLC         C24         O25        HO25     108.280    3.00
+OLC         C22         O23        HO23     107.936    3.00
+OLC         C21         O20          C1     116.187    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+OLC             sp3_sp3_1         C16         C17         C18         H18     180.000    10.0     3
+OLC            sp3_sp3_76         C13         C14         C15         C16     180.000    10.0     3
+OLC            sp3_sp3_85         C12         C13         C14         C15     180.000    10.0     3
+OLC            sp3_sp3_94          C4          C5          C6          C7     180.000    10.0     3
+OLC           sp3_sp3_103          C3          C4          C5          C6     180.000    10.0     3
+OLC           sp3_sp3_112          C2          C3          C4          C5     180.000    10.0     3
+OLC           sp3_sp3_121          C1          C2          C3          C4     180.000    10.0     3
+OLC            sp2_sp3_14         O19          C1          C2          C3     120.000    10.0     6
+OLC           sp3_sp3_130         O20         C21         C22         C24     180.000    10.0     3
+OLC           sp3_sp3_139         C22         C21         O20          C1     180.000    10.0     3
+OLC             sp2_sp2_5          C2          C1         O20         C21     180.000     5.0     2
+OLC             sp2_sp2_1         C11         C10          C9          C8     180.000     5.0     2
+OLC             sp2_sp3_2          C9         C10         C11         C12     120.000    10.0     6
+OLC           sp3_sp3_142         C24         C22         O23        HO23     180.000    10.0     3
+OLC             sp2_sp3_8         C10          C9          C8          C7     120.000    10.0     6
+OLC            sp3_sp3_10         C15         C16         C17         C18     180.000    10.0     3
+OLC            sp3_sp3_19         C10         C11         C12         C13     180.000    10.0     3
+OLC            sp3_sp3_28          C6          C7          C8          C9     180.000    10.0     3
+OLC            sp3_sp3_37         C21         C22         C24         O25     180.000    10.0     3
+OLC            sp3_sp3_46         C22         C24         O25        HO25     180.000    10.0     3
+OLC            sp3_sp3_49         C14         C15         C16         C17     180.000    10.0     3
+OLC            sp3_sp3_58         C11         C12         C13         C14     180.000    10.0     3
+OLC            sp3_sp3_67          C5          C6          C7          C8     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+OLC    chir_1    C22    O23    C21    C24    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+OLC    plan-1         C10   0.020
+OLC    plan-1         C11   0.020
+OLC    plan-1          C9   0.020
+OLC    plan-1         H10   0.020
+OLC    plan-2         C10   0.020
+OLC    plan-2          C8   0.020
+OLC    plan-2          C9   0.020
+OLC    plan-2          H9   0.020
+OLC    plan-3          C1   0.020
+OLC    plan-3          C2   0.020
+OLC    plan-3         O19   0.020
+OLC    plan-3         O20   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+OLC           SMILES              ACDLabs 10.04                                                                                                      O=C(OCC(O)CO)CCCCCCC\C=C/CCCCCCCC
+OLC SMILES_CANONICAL               CACTVS 3.341                                                                                                  CCCCCCCC\C=C/CCCCCCCC(=O)OC[C@H](O)CO
+OLC           SMILES               CACTVS 3.341                                                                                                     CCCCCCCCC=CCCCCCCCC(=O)OC[CH](O)CO
+OLC SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                 CCCCCCCC\C=C/CCCCCCCC(=O)OC[C@@H](CO)O
+OLC           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                        CCCCCCCCC=CCCCCCCCC(=O)OCC(CO)O
+OLC            InChI                InChI  1.03 InChI=1S/C21H40O4/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-21(24)25-19-20(23)18-22/h9-10,20,22-23H,2-8,11-19H2,1H3/b10-9-/t20-/m1/s1
+OLC         InChIKey                InChI  1.03                                                                                                            RZRNAYUHWVFMIP-GDCKJWNLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+OLC acedrg               243         "dictionary generator"                  
+OLC acedrg_database      11          "data source"                           
+OLC rdkit                2017.03.2   "Chemoinformatics tool"
+OLC refmac5              5.8.0238    "optimization tool"                     

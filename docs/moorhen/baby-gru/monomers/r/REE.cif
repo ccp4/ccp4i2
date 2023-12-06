@@ -1,0 +1,187 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+REE     REE      2-(2-carboxyethyl)-1,1,1-trimethyldiazanium     NON-POLYMER     24     10     .     
+#
+data_comp_REE
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+REE     C1      C       C       0       21.847      27.315      87.334      
+REE     N1      N       NT1     0       21.573      30.509      87.846      
+REE     O1      O       O       0       22.697      26.837      86.558      
+REE     C2      C       CH2     0       20.893      28.368      86.795      
+REE     N2      N       NT      1       22.335      31.743      87.876      
+REE     O2      O       OC      -1      21.736      26.977      88.530      
+REE     C3      C       CH2     0       21.516      29.739      86.590      
+REE     C4      C       CH3     0       22.090      32.353      89.230      
+REE     C5      C       CH3     0       23.811      31.496      87.717      
+REE     C6      C       CH3     0       21.870      32.712      86.821      
+REE     HN1     H       H       0       21.889      29.981      88.483      
+REE     H2      H       H       0       20.144      28.450      87.413      
+REE     H2A     H       H       0       20.537      28.052      85.943      
+REE     H3      H       H       0       22.419      29.625      86.225      
+REE     H3A     H       H       0       20.983      30.230      85.927      
+REE     H4      H       H       0       22.543      33.213      89.287      
+REE     H4A     H       H       0       22.436      31.760      89.922      
+REE     H4B     H       H       0       21.133      32.480      89.360      
+REE     H5      H       H       0       24.003      31.232      86.800      
+REE     H5A     H       H       0       24.091      30.787      88.323      
+REE     H5B     H       H       0       24.301      32.312      87.926      
+REE     H6      H       H       0       22.263      33.588      86.986      
+REE     H6A     H       H       0       20.899      32.782      86.852      
+REE     H6B     H       H       0       22.144      32.396      85.941      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+REE          C1          C2      SINGLE       n     1.519  0.0109     1.519  0.0109
+REE          C1          O1      DOUBLE       n     1.247  0.0187     1.247  0.0187
+REE          C1          O2      SINGLE       n     1.247  0.0187     1.247  0.0187
+REE          N1          C3      SINGLE       n     1.468  0.0119     1.468  0.0119
+REE          N1          N2      SINGLE       n     1.444  0.0100     1.444  0.0100
+REE          C2          C3      SINGLE       n     1.518  0.0129     1.518  0.0129
+REE          N2          C6      SINGLE       n     1.503  0.0100     1.503  0.0100
+REE          N2          C5      SINGLE       n     1.503  0.0100     1.503  0.0100
+REE          N2          C4      SINGLE       n     1.503  0.0100     1.503  0.0100
+REE          N1         HN1      SINGLE       n     1.036  0.0160     0.882  0.0200
+REE          C2          H2      SINGLE       n     1.089  0.0100     0.975  0.0162
+REE          C2         H2A      SINGLE       n     1.089  0.0100     0.975  0.0162
+REE          C3          H3      SINGLE       n     1.089  0.0100     0.982  0.0143
+REE          C3         H3A      SINGLE       n     1.089  0.0100     0.982  0.0143
+REE          C4          H4      SINGLE       n     1.089  0.0100     0.974  0.0151
+REE          C4         H4A      SINGLE       n     1.089  0.0100     0.974  0.0151
+REE          C4         H4B      SINGLE       n     1.089  0.0100     0.974  0.0151
+REE          C5          H5      SINGLE       n     1.089  0.0100     0.974  0.0151
+REE          C5         H5A      SINGLE       n     1.089  0.0100     0.974  0.0151
+REE          C5         H5B      SINGLE       n     1.089  0.0100     0.974  0.0151
+REE          C6          H6      SINGLE       n     1.089  0.0100     0.974  0.0151
+REE          C6         H6A      SINGLE       n     1.089  0.0100     0.974  0.0151
+REE          C6         H6B      SINGLE       n     1.089  0.0100     0.974  0.0151
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+REE          C2          C1          O1     118.187    1.50
+REE          C2          C1          O2     118.187    1.50
+REE          O1          C1          O2     123.626    1.50
+REE          C3          N1          N2     109.471    3.00
+REE          C3          N1         HN1     108.898    3.00
+REE          N2          N1         HN1     106.815    3.00
+REE          C1          C2          C3     114.481    1.97
+REE          C1          C2          H2     108.506    1.50
+REE          C1          C2         H2A     108.506    1.50
+REE          C3          C2          H2     109.090    1.50
+REE          C3          C2         H2A     109.090    1.50
+REE          H2          C2         H2A     107.647    1.50
+REE          N1          N2          C6     110.847    3.00
+REE          N1          N2          C5     110.847    3.00
+REE          N1          N2          C4     110.847    3.00
+REE          C6          N2          C5     110.323    1.65
+REE          C6          N2          C4     110.323    1.65
+REE          C5          N2          C4     110.323    1.65
+REE          N1          C3          C2     111.576    2.24
+REE          N1          C3          H3     109.366    1.50
+REE          N1          C3         H3A     109.366    1.50
+REE          C2          C3          H3     109.053    1.50
+REE          C2          C3         H3A     109.053    1.50
+REE          H3          C3         H3A     107.873    1.50
+REE          N2          C4          H4     109.453    1.50
+REE          N2          C4         H4A     109.453    1.50
+REE          N2          C4         H4B     109.453    1.50
+REE          H4          C4         H4A     109.475    1.50
+REE          H4          C4         H4B     109.475    1.50
+REE         H4A          C4         H4B     109.475    1.50
+REE          N2          C5          H5     109.453    1.50
+REE          N2          C5         H5A     109.453    1.50
+REE          N2          C5         H5B     109.453    1.50
+REE          H5          C5         H5A     109.475    1.50
+REE          H5          C5         H5B     109.475    1.50
+REE         H5A          C5         H5B     109.475    1.50
+REE          N2          C6          H6     109.453    1.50
+REE          N2          C6         H6A     109.453    1.50
+REE          N2          C6         H6B     109.453    1.50
+REE          H6          C6         H6A     109.475    1.50
+REE          H6          C6         H6B     109.475    1.50
+REE         H6A          C6         H6B     109.475    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+REE             sp2_sp3_2          O1          C1          C2          C3     120.000    10.0     6
+REE            sp3_sp3_11          C3          N1          N2          C6     180.000    10.0     3
+REE             sp3_sp3_1          C2          C3          N1          N2     180.000    10.0     3
+REE            sp3_sp3_13          C1          C2          C3          N1     180.000    10.0     3
+REE            sp3_sp3_40          H4          C4          N2          N1     180.000    10.0     3
+REE            sp3_sp3_32          H5          C5          N2          N1     -60.000    10.0     3
+REE            sp3_sp3_22          H6          C6          N2          N1     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+REE    chir_1    N2    N1    C6    C5    both
+REE    chir_2    N1    N2    C3    HN1    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+REE    plan-1          C1   0.020
+REE    plan-1          C2   0.020
+REE    plan-1          O1   0.020
+REE    plan-1          O2   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+REE           SMILES              ACDLabs 12.01                                         O=C(O)CCN[N+](C)(C)C
+REE SMILES_CANONICAL               CACTVS 3.370                                         C[N+](C)(C)NCCC(O)=O
+REE           SMILES               CACTVS 3.370                                         C[N+](C)(C)NCCC(O)=O
+REE SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                         C[N+](C)(C)NCCC(=O)O
+REE           SMILES "OpenEye OEToolkits" 1.7.0                                         C[N+](C)(C)NCCC(=O)O
+REE            InChI                InChI  1.03 InChI=1S/C6H14N2O2/c1-8(2,3)7-5-4-6(9)10/h7H,4-5H2,1-3H3/p+1
+REE         InChIKey                InChI  1.03                                  PVBQYTCFVWZSJK-UHFFFAOYSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+REE acedrg               243         "dictionary generator"                  
+REE acedrg_database      11          "data source"                           
+REE rdkit                2017.03.2   "Chemoinformatics tool"
+REE refmac5              5.8.0238    "optimization tool"                     

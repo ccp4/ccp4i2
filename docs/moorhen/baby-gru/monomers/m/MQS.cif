@@ -1,0 +1,272 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+MQS     MQS      "[(3S)-3-methylpiperidin-1-yl](quinoxalin-6-yl)methanone"     NON-POLYMER     36     19     .     
+#
+data_comp_MQS
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+MQS     C1      C       CR16    0       40.583      28.815      -5.340      
+MQS     C2      C       CR6     0       41.115      30.081      -5.277      
+MQS     C3      C       CR16    0       40.293      31.208      -5.565      
+MQS     C4      C       CR16    0       38.983      31.049      -5.928      
+MQS     C5      C       CR66    0       39.233      28.628      -5.713      
+MQS     C6      C       CR66    0       38.422      29.755      -6.010      
+MQS     N1      N       NRD6    0       37.106      29.598      -6.374      
+MQS     C7      C       CR16    0       36.650      28.363      -6.430      
+MQS     C8      C       CR16    0       37.452      27.246      -6.137      
+MQS     N2      N       NRD6    0       38.717      27.354      -5.784      
+MQS     C9      C       C       0       42.547      30.281      -4.863      
+MQS     C10     C       CH2     0       45.114      27.925      -4.996      
+MQS     C11     C       CH2     0       44.854      29.418      -4.980      
+MQS     N3      N       NR6     0       43.542      29.706      -5.570      
+MQS     C12     C       CH2     0       43.479      29.242      -6.964      
+MQS     C13     C       CH1     0       43.716      27.749      -7.067      
+MQS     C14     C       CH2     0       45.022      27.366      -6.404      
+MQS     O1      O       O       0       42.753      30.902      -3.823      
+MQS     C15     C       CH3     0       43.676      27.321      -8.530      
+MQS     H1      H       H       0       41.130      28.076      -5.142      
+MQS     H2      H       H       0       40.657      32.075      -5.514      
+MQS     H3      H       H       0       38.448      31.809      -6.125      
+MQS     H4      H       H       0       35.737      28.226      -6.681      
+MQS     H5      H       H       0       37.068      26.372      -6.193      
+MQS     H6      H       H       0       45.999      27.748      -4.633      
+MQS     H7      H       H       0       44.462      27.479      -4.428      
+MQS     H8      H       H       0       44.899      29.745      -4.054      
+MQS     H9      H       H       0       45.553      29.877      -5.497      
+MQS     H10     H       H       0       44.163      29.708      -7.488      
+MQS     H11     H       H       0       42.608      29.457      -7.357      
+MQS     H12     H       H       0       42.982      27.283      -6.592      
+MQS     H13     H       H       0       45.096      26.399      -6.371      
+MQS     H14     H       H       0       45.763      27.703      -6.932      
+MQS     H15     H       H       0       43.851      26.368      -8.595      
+MQS     H16     H       H       0       44.352      27.808      -9.029      
+MQS     H17     H       H       0       42.800      27.515      -8.901      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+MQS         C13         C15      SINGLE       n     1.524  0.0100     1.524  0.0100
+MQS         C12         C13      SINGLE       n     1.509  0.0136     1.509  0.0136
+MQS         C13         C14      SINGLE       n     1.510  0.0131     1.510  0.0131
+MQS          N3         C12      SINGLE       n     1.463  0.0100     1.463  0.0100
+MQS         C10         C14      SINGLE       n     1.517  0.0103     1.517  0.0103
+MQS          N1          C7      DOUBLE       y     1.314  0.0100     1.314  0.0100
+MQS          C7          C8      SINGLE       y     1.399  0.0149     1.399  0.0149
+MQS          C6          N1      SINGLE       y     1.371  0.0100     1.371  0.0100
+MQS          C8          N2      DOUBLE       y     1.314  0.0100     1.314  0.0100
+MQS          C4          C6      DOUBLE       y     1.410  0.0100     1.410  0.0100
+MQS          C5          C6      SINGLE       y     1.414  0.0100     1.414  0.0100
+MQS          C3          C4      SINGLE       y     1.365  0.0100     1.365  0.0100
+MQS          C5          N2      SINGLE       y     1.373  0.0100     1.373  0.0100
+MQS          C1          C5      DOUBLE       y     1.410  0.0100     1.410  0.0100
+MQS         C11          N3      SINGLE       n     1.462  0.0100     1.462  0.0100
+MQS          C9          N3      SINGLE       n     1.339  0.0103     1.339  0.0103
+MQS          C2          C3      DOUBLE       y     1.420  0.0100     1.420  0.0100
+MQS          C1          C2      SINGLE       y     1.369  0.0116     1.369  0.0116
+MQS         C10         C11      SINGLE       n     1.515  0.0114     1.515  0.0114
+MQS          C2          C9      SINGLE       n     1.501  0.0100     1.501  0.0100
+MQS          C9          O1      DOUBLE       n     1.228  0.0115     1.228  0.0115
+MQS          C1          H1      SINGLE       n     1.082  0.0130     0.940  0.0100
+MQS          C3          H2      SINGLE       n     1.082  0.0130     0.941  0.0200
+MQS          C4          H3      SINGLE       n     1.082  0.0130     0.950  0.0164
+MQS          C7          H4      SINGLE       n     1.082  0.0130     0.956  0.0200
+MQS          C8          H5      SINGLE       n     1.082  0.0130     0.956  0.0200
+MQS         C10          H6      SINGLE       n     1.089  0.0100     0.973  0.0100
+MQS         C10          H7      SINGLE       n     1.089  0.0100     0.973  0.0100
+MQS         C11          H8      SINGLE       n     1.089  0.0100     0.983  0.0130
+MQS         C11          H9      SINGLE       n     1.089  0.0100     0.983  0.0130
+MQS         C12         H10      SINGLE       n     1.089  0.0100     0.980  0.0103
+MQS         C12         H11      SINGLE       n     1.089  0.0100     0.980  0.0103
+MQS         C13         H12      SINGLE       n     1.089  0.0100     0.991  0.0100
+MQS         C14         H13      SINGLE       n     1.089  0.0100     0.970  0.0100
+MQS         C14         H14      SINGLE       n     1.089  0.0100     0.970  0.0100
+MQS         C15         H15      SINGLE       n     1.089  0.0100     0.971  0.0171
+MQS         C15         H16      SINGLE       n     1.089  0.0100     0.971  0.0171
+MQS         C15         H17      SINGLE       n     1.089  0.0100     0.971  0.0171
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+MQS          C5          C1          C2     120.025    1.50
+MQS          C5          C1          H1     120.569    1.50
+MQS          C2          C1          H1     119.406    1.50
+MQS          C3          C2          C1     119.594    1.50
+MQS          C3          C2          C9     120.201    1.95
+MQS          C1          C2          C9     120.205    2.75
+MQS          C4          C3          C2     120.830    1.50
+MQS          C4          C3          H2     119.507    1.50
+MQS          C2          C3          H2     119.663    1.50
+MQS          C6          C4          C3     120.308    1.50
+MQS          C6          C4          H3     119.743    1.50
+MQS          C3          C4          H3     119.949    1.50
+MQS          C6          C5          N2     120.859    1.50
+MQS          C6          C5          C1     119.707    1.50
+MQS          N2          C5          C1     119.433    1.50
+MQS          N1          C6          C4     119.605    1.50
+MQS          N1          C6          C5     120.859    1.50
+MQS          C4          C6          C5     119.536    1.50
+MQS          C7          N1          C6     116.402    1.50
+MQS          N1          C7          C8     122.739    1.50
+MQS          N1          C7          H4     118.352    1.50
+MQS          C8          C7          H4     118.910    1.71
+MQS          C7          C8          N2     122.739    1.50
+MQS          C7          C8          H5     118.910    1.71
+MQS          N2          C8          H5     118.352    1.50
+MQS          C8          N2          C5     116.402    1.50
+MQS          N3          C9          C2     118.176    1.50
+MQS          N3          C9          O1     122.403    1.50
+MQS          C2          C9          O1     119.421    1.50
+MQS         C14         C10         C11     111.801    1.55
+MQS         C14         C10          H6     109.500    1.50
+MQS         C14         C10          H7     109.500    1.50
+MQS         C11         C10          H6     109.380    1.50
+MQS         C11         C10          H7     109.380    1.50
+MQS          H6         C10          H7     108.022    1.50
+MQS          N3         C11         C10     110.373    1.50
+MQS          N3         C11          H8     109.572    1.50
+MQS          N3         C11          H9     109.572    1.50
+MQS         C10         C11          H8     109.566    1.50
+MQS         C10         C11          H9     109.566    1.50
+MQS          H8         C11          H9     108.159    1.50
+MQS         C12          N3         C11     113.189    1.50
+MQS         C12          N3          C9     123.383    2.77
+MQS         C11          N3          C9     123.429    2.85
+MQS         C13         C12          N3     110.639    1.50
+MQS         C13         C12         H10     109.209    1.50
+MQS         C13         C12         H11     109.209    1.50
+MQS          N3         C12         H10     109.531    1.50
+MQS          N3         C12         H11     109.531    1.50
+MQS         H10         C12         H11     107.931    1.50
+MQS         C15         C13         C12     109.969    1.50
+MQS         C15         C13         C14     112.344    1.50
+MQS         C15         C13         H12     108.066    1.50
+MQS         C12         C13         C14     109.880    1.50
+MQS         C12         C13         H12     108.314    1.50
+MQS         C14         C13         H12     108.100    1.50
+MQS         C13         C14         C10     111.210    1.50
+MQS         C13         C14         H13     109.492    1.50
+MQS         C13         C14         H14     109.492    1.50
+MQS         C10         C14         H13     109.433    1.50
+MQS         C10         C14         H14     109.433    1.50
+MQS         H13         C14         H14     107.919    1.50
+MQS         C13         C15         H15     109.468    1.50
+MQS         C13         C15         H16     109.468    1.50
+MQS         C13         C15         H17     109.468    1.50
+MQS         H15         C15         H16     109.342    1.50
+MQS         H15         C15         H17     109.342    1.50
+MQS         H16         C15         H17     109.342    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+MQS              const_34          C5          C1          C2          C9     180.000    10.0     2
+MQS       const_sp2_sp2_1          C2          C1          C5          C6       0.000     5.0     2
+MQS             sp2_sp2_3          O1          C9          N3         C12       0.000     5.0     2
+MQS            sp3_sp3_37         C14         C10         C11          N3     180.000    10.0     3
+MQS             sp3_sp3_1         C11         C10         C14         C13      60.000    10.0     3
+MQS            sp2_sp3_10          C9          N3         C11         C10     180.000    10.0     6
+MQS             sp2_sp3_4          C9          N3         C12         C13     180.000    10.0     6
+MQS            sp3_sp3_20          N3         C12         C13         C15     180.000    10.0     3
+MQS            sp3_sp3_13         C15         C13         C14         C10     180.000    10.0     3
+MQS            sp3_sp3_28         C12         C13         C15         H15     180.000    10.0     3
+MQS             sp2_sp2_6          C3          C2          C9          O1       0.000     5.0     2
+MQS              const_19          C9          C2          C3          C4     180.000    10.0     2
+MQS              const_13          C2          C3          C4          C6       0.000    10.0     2
+MQS              const_10          C3          C4          C6          N1     180.000    10.0     2
+MQS       const_sp2_sp2_5          N2          C5          C6          N1       0.000     5.0     2
+MQS              const_31          C6          C5          N2          C8       0.000    10.0     2
+MQS              const_22          C4          C6          N1          C7     180.000    10.0     2
+MQS              const_23          C8          C7          N1          C6       0.000    10.0     2
+MQS              const_25          N1          C7          C8          N2       0.000    10.0     2
+MQS              const_29          C7          C8          N2          C5       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+MQS    chir_1    C13    C12    C14    C15    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+MQS    plan-1          C1   0.020
+MQS    plan-1          C2   0.020
+MQS    plan-1          C3   0.020
+MQS    plan-1          C4   0.020
+MQS    plan-1          C5   0.020
+MQS    plan-1          C6   0.020
+MQS    plan-1          C7   0.020
+MQS    plan-1          C8   0.020
+MQS    plan-1          C9   0.020
+MQS    plan-1          H1   0.020
+MQS    plan-1          H2   0.020
+MQS    plan-1          H3   0.020
+MQS    plan-1          H4   0.020
+MQS    plan-1          H5   0.020
+MQS    plan-1          N1   0.020
+MQS    plan-1          N2   0.020
+MQS    plan-2          C2   0.020
+MQS    plan-2          C9   0.020
+MQS    plan-2          N3   0.020
+MQS    plan-2          O1   0.020
+MQS    plan-3         C11   0.020
+MQS    plan-3         C12   0.020
+MQS    plan-3          C9   0.020
+MQS    plan-3          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+MQS           SMILES              ACDLabs 12.01                                                                                    O=C(c2cc1nccnc1cc2)N3CCCC(C)C3
+MQS            InChI                InChI  1.03 InChI=1S/C15H17N3O/c1-11-3-2-8-18(10-11)15(19)12-4-5-13-14(9-12)17-7-6-16-13/h4-7,9,11H,2-3,8,10H2,1H3/t11-/m0/s1
+MQS         InChIKey                InChI  1.03                                                                                       HFURVWIZXOIASJ-NSHDSACASA-N
+MQS SMILES_CANONICAL               CACTVS 3.370                                                                                C[C@H]1CCCN(C1)C(=O)c2ccc3nccnc3c2
+MQS           SMILES               CACTVS 3.370                                                                                 C[CH]1CCCN(C1)C(=O)c2ccc3nccnc3c2
+MQS SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                              C[C@H]1CCCN(C1)C(=O)c2ccc3c(c2)nccn3
+MQS           SMILES "OpenEye OEToolkits" 1.7.6                                                                                  CC1CCCN(C1)C(=O)c2ccc3c(c2)nccn3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+MQS acedrg               243         "dictionary generator"                  
+MQS acedrg_database      11          "data source"                           
+MQS rdkit                2017.03.2   "Chemoinformatics tool"
+MQS refmac5              5.8.0238    "optimization tool"                     

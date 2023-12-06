@@ -1,0 +1,208 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+EBM     EBM      2-iodo-N-(1-methylethyl)benzamide     NON-POLYMER     25     13     .     
+#
+data_comp_EBM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+EBM     I       I       I       0       -23.268     -27.923     58.967      
+EBM     N       N       NH1     0       -21.076     -24.809     61.148      
+EBM     O       O       O       0       -21.692     -25.118     59.000      
+EBM     C1      C       CR6     0       -24.098     -26.459     60.228      
+EBM     C2      C       CR6     0       -23.388     -25.331     60.640      
+EBM     C3      C       CR16    0       -24.031     -24.404     61.479      
+EBM     C4      C       CR16    0       -25.338     -24.612     61.898      
+EBM     C5      C       CR16    0       -26.028     -25.744     61.481      
+EBM     C6      C       CR16    0       -25.412     -26.667     60.647      
+EBM     C7      C       C       0       -21.976     -25.081     60.197      
+EBM     C8      C       CH1     0       -19.678     -24.472     60.863      
+EBM     C9      C       CH3     0       -19.589     -23.086     60.260      
+EBM     C10     C       CH3     0       -18.845     -24.586     62.123      
+EBM     HN      H       H       0       -21.321     -24.838     61.988      
+EBM     H3      H       H       0       -23.567     -23.637     61.766      
+EBM     H4      H       H       0       -25.756     -23.985     62.464      
+EBM     H5      H       H       0       -26.916     -25.886     61.763      
+EBM     H6      H       H       0       -25.880     -27.437     60.363      
+EBM     H8      H       H       0       -19.331     -25.123     60.203      
+EBM     H9      H       H       0       -18.659     -22.798     60.244      
+EBM     H9A     H       H       0       -20.111     -22.464     60.796      
+EBM     H9B     H       H       0       -19.938     -23.102     59.352      
+EBM     H10     H       H       0       -18.919     -25.487     62.481      
+EBM     H10A    H       H       0       -19.166     -23.947     62.783      
+EBM     H10B    H       H       0       -17.913     -24.395     61.914      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+EBM           I          C1      SINGLE       n     2.103  0.0100     2.103  0.0100
+EBM           N          C7      SINGLE       n     1.332  0.0109     1.332  0.0109
+EBM           N          C8      SINGLE       n     1.463  0.0100     1.463  0.0100
+EBM           O          C7      DOUBLE       n     1.230  0.0114     1.230  0.0114
+EBM          C1          C2      DOUBLE       y     1.389  0.0117     1.389  0.0117
+EBM          C1          C6      SINGLE       y     1.390  0.0100     1.390  0.0100
+EBM          C2          C3      SINGLE       y     1.400  0.0131     1.400  0.0131
+EBM          C2          C7      SINGLE       n     1.498  0.0100     1.498  0.0100
+EBM          C3          C4      DOUBLE       y     1.385  0.0100     1.385  0.0100
+EBM          C4          C5      SINGLE       y     1.379  0.0192     1.379  0.0192
+EBM          C5          C6      DOUBLE       y     1.380  0.0150     1.380  0.0150
+EBM          C8          C9      SINGLE       n     1.514  0.0108     1.514  0.0108
+EBM          C8         C10      SINGLE       n     1.514  0.0108     1.514  0.0108
+EBM           N          HN      SINGLE       n     1.016  0.0100     0.873  0.0200
+EBM          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0168
+EBM          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0180
+EBM          C5          H5      SINGLE       n     1.082  0.0130     0.943  0.0146
+EBM          C6          H6      SINGLE       n     1.082  0.0130     0.945  0.0136
+EBM          C8          H8      SINGLE       n     1.089  0.0100     0.989  0.0106
+EBM          C9          H9      SINGLE       n     1.089  0.0100     0.973  0.0146
+EBM          C9         H9A      SINGLE       n     1.089  0.0100     0.973  0.0146
+EBM          C9         H9B      SINGLE       n     1.089  0.0100     0.973  0.0146
+EBM         C10         H10      SINGLE       n     1.089  0.0100     0.973  0.0146
+EBM         C10        H10A      SINGLE       n     1.089  0.0100     0.973  0.0146
+EBM         C10        H10B      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+EBM          C7           N          C8     122.601    1.50
+EBM          C7           N          HN     119.151    1.94
+EBM          C8           N          HN     118.248    1.99
+EBM           I          C1          C2     122.385    1.50
+EBM           I          C1          C6     116.905    1.50
+EBM          C2          C1          C6     120.710    1.50
+EBM          C1          C2          C3     118.583    1.50
+EBM          C1          C2          C7     121.533    2.22
+EBM          C3          C2          C7     119.884    2.89
+EBM          C2          C3          C4     120.794    1.50
+EBM          C2          C3          H3     119.577    1.50
+EBM          C4          C3          H3     119.621    1.50
+EBM          C3          C4          C5     120.099    1.50
+EBM          C3          C4          H4     119.907    1.50
+EBM          C5          C4          H4     119.998    1.50
+EBM          C4          C5          C6     120.072    1.50
+EBM          C4          C5          H5     120.077    1.50
+EBM          C6          C5          H5     119.851    1.50
+EBM          C1          C6          C5     119.746    1.50
+EBM          C1          C6          H6     119.988    1.50
+EBM          C5          C6          H6     120.266    1.50
+EBM           N          C7           O     122.442    1.50
+EBM           N          C7          C2     116.814    1.50
+EBM           O          C7          C2     120.744    1.50
+EBM           N          C8          C9     109.900    1.50
+EBM           N          C8         C10     109.900    1.50
+EBM           N          C8          H8     108.116    1.50
+EBM          C9          C8         C10     111.835    1.50
+EBM          C9          C8          H8     108.408    1.50
+EBM         C10          C8          H8     108.408    1.50
+EBM          C8          C9          H9     109.432    1.50
+EBM          C8          C9         H9A     109.432    1.50
+EBM          C8          C9         H9B     109.432    1.50
+EBM          H9          C9         H9A     109.386    1.50
+EBM          H9          C9         H9B     109.386    1.50
+EBM         H9A          C9         H9B     109.386    1.50
+EBM          C8         C10         H10     109.432    1.50
+EBM          C8         C10        H10A     109.432    1.50
+EBM          C8         C10        H10B     109.432    1.50
+EBM         H10         C10        H10A     109.386    1.50
+EBM         H10         C10        H10B     109.386    1.50
+EBM        H10A         C10        H10B     109.386    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+EBM             sp3_sp3_1           N          C8          C9          H9     180.000    10.0     3
+EBM            sp3_sp3_11         H10         C10          C8           N     -60.000    10.0     3
+EBM             sp2_sp3_2          C7           N          C8          C9     120.000    10.0     6
+EBM             sp2_sp2_3           O          C7           N          C8       0.000     5.0     2
+EBM       const_sp2_sp2_4           I          C1          C2          C7       0.000     5.0     2
+EBM              const_23           I          C1          C6          C5     180.000    10.0     2
+EBM       const_sp2_sp2_7          C7          C2          C3          C4     180.000     5.0     2
+EBM             sp2_sp2_5          C1          C2          C7           N     180.000     5.0     2
+EBM       const_sp2_sp2_9          C2          C3          C4          C5       0.000     5.0     2
+EBM              const_13          C3          C4          C5          C6       0.000    10.0     2
+EBM              const_17          C4          C5          C6          C1       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+EBM    chir_1    C8    N    C9    C10    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+EBM    plan-1          C1   0.020
+EBM    plan-1          C2   0.020
+EBM    plan-1          C3   0.020
+EBM    plan-1          C4   0.020
+EBM    plan-1          C5   0.020
+EBM    plan-1          C6   0.020
+EBM    plan-1          C7   0.020
+EBM    plan-1          H3   0.020
+EBM    plan-1          H4   0.020
+EBM    plan-1          H5   0.020
+EBM    plan-1          H6   0.020
+EBM    plan-1           I   0.020
+EBM    plan-2          C7   0.020
+EBM    plan-2          C8   0.020
+EBM    plan-2          HN   0.020
+EBM    plan-2           N   0.020
+EBM    plan-3          C2   0.020
+EBM    plan-3          C7   0.020
+EBM    plan-3           N   0.020
+EBM    plan-3           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+EBM SMILES_CANONICAL               CACTVS 3.352                                                      CC(C)NC(=O)c1ccccc1I
+EBM           SMILES               CACTVS 3.352                                                      CC(C)NC(=O)c1ccccc1I
+EBM SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                      CC(C)NC(=O)c1ccccc1I
+EBM           SMILES "OpenEye OEToolkits" 1.7.0                                                      CC(C)NC(=O)c1ccccc1I
+EBM            InChI                InChI  1.03 InChI=1S/C10H12INO/c1-7(2)12-10(13)8-5-3-4-6-9(8)11/h3-7H,1-2H3,(H,12,13)
+EBM         InChIKey                InChI  1.03                                               PSGIDUPRPSJZRV-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+EBM acedrg               243         "dictionary generator"                  
+EBM acedrg_database      11          "data source"                           
+EBM rdkit                2017.03.2   "Chemoinformatics tool"
+EBM refmac5              5.8.0238    "optimization tool"                     

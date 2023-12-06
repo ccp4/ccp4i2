@@ -1,0 +1,291 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FUU     FUU      "2-(3-((3-(5-(furan-2-yl)-1,3,4-oxadiazol-2-yl)ureido)methyl)phenoxy)acetic acid"     NON-POLYMER     39     26     .     
+#
+data_comp_FUU
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FUU     CAI     C       CR15    0       6.831       -36.731     -29.472     
+FUU     CAD     C       CR15    0       7.265       -37.142     -30.762     
+FUU     CAF     C       CR15    0       8.636       -37.242     -30.686     
+FUU     OAR     O       O2      0       9.060       -36.918     -29.424     
+FUU     CAY     C       CR5     0       7.939       -36.601     -28.703     
+FUU     CAZ     C       CR5     0       8.078       -36.224     -27.328     
+FUU     OAS     O       O2      0       9.303       -36.244     -26.724     
+FUU     NAN     N       NRD5    0       7.152       -35.831     -26.516     
+FUU     NAM     N       NRD5    0       7.786       -35.573     -25.280     
+FUU     CAX     C       CR5     0       9.056       -35.834     -25.451     
+FUU     NAP     N       NH1     0       10.067      -35.734     -24.521     
+FUU     CAU     C       C       0       9.943       -35.353     -23.180     
+FUU     OAB     O       O       0       8.899       -35.538     -22.538     
+FUU     NAO     N       NH1     0       11.042      -34.788     -22.636     
+FUU     CAK     C       CH2     0       11.083      -34.319     -21.262     
+FUU     CAV     C       CR6     0       10.516      -32.937     -21.082     
+FUU     CAJ     C       CR16    0       11.283      -31.827     -21.428     
+FUU     CAG     C       CR16    0       9.234       -32.746     -20.571     
+FUU     CAE     C       CR16    0       8.732       -31.463     -20.411     
+FUU     CAH     C       CR16    0       9.496       -30.358     -20.755     
+FUU     CAW     C       CR6     0       10.777      -30.541     -21.274     
+FUU     OAQ     O       O2      0       11.634      -29.533     -21.640     
+FUU     CAL     C       CH2     0       11.121      -28.256     -22.001     
+FUU     CAT     C       C       0       12.192      -27.367     -22.614     
+FUU     OAC     O       O       0       12.952      -27.879     -23.460     
+FUU     OAA     O       OC      -1      12.233      -26.182     -22.226     
+FUU     H1      H       H       0       5.940       -36.572     -29.201     
+FUU     H2      H       H       0       6.730       -37.311     -31.513     
+FUU     H3      H       H       0       9.210       -37.497     -31.387     
+FUU     H4      H       H       0       10.869      -35.949     -24.810     
+FUU     H5      H       H       0       11.757      -34.699     -23.132     
+FUU     H6      H       H       0       12.016      -34.317     -20.963     
+FUU     H7      H       H       0       10.592      -34.945     -20.691     
+FUU     H8      H       H       0       12.153      -31.949     -21.775     
+FUU     H9      H       H       0       8.706       -33.491     -20.333     
+FUU     H10     H       H       0       7.866       -31.339     -20.066     
+FUU     H11     H       H       0       9.145       -29.492     -20.642     
+FUU     H12     H       H       0       10.761      -27.820     -21.208     
+FUU     H13     H       H       0       10.393      -28.366     -22.640     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FUU         CAD         CAF      DOUBLE       y     1.384  0.0200     1.384  0.0200
+FUU         CAF         OAR      SINGLE       y     1.371  0.0100     1.371  0.0100
+FUU         CAI         CAD      SINGLE       y     1.423  0.0107     1.423  0.0107
+FUU         OAR         CAY      SINGLE       y     1.368  0.0100     1.368  0.0100
+FUU         CAI         CAY      DOUBLE       y     1.353  0.0117     1.353  0.0117
+FUU         CAY         CAZ      SINGLE       n     1.432  0.0100     1.432  0.0100
+FUU         CAZ         OAS      SINGLE       y     1.366  0.0102     1.366  0.0102
+FUU         CAZ         NAN      DOUBLE       y     1.294  0.0153     1.294  0.0153
+FUU         OAS         CAX      SINGLE       y     1.360  0.0100     1.360  0.0100
+FUU         NAN         NAM      SINGLE       y     1.412  0.0100     1.412  0.0100
+FUU         NAM         CAX      DOUBLE       y     1.301  0.0200     1.301  0.0200
+FUU         CAX         NAP      SINGLE       n     1.367  0.0190     1.367  0.0190
+FUU         NAP         CAU      SINGLE       n     1.380  0.0200     1.380  0.0200
+FUU         CAU         OAB      DOUBLE       n     1.235  0.0158     1.235  0.0158
+FUU         CAU         NAO      SINGLE       n     1.345  0.0100     1.345  0.0100
+FUU         NAO         CAK      SINGLE       n     1.450  0.0100     1.450  0.0100
+FUU         CAT         OAC      DOUBLE       n     1.247  0.0187     1.247  0.0187
+FUU         CAT         OAA      SINGLE       n     1.247  0.0187     1.247  0.0187
+FUU         CAL         CAT      SINGLE       n     1.520  0.0100     1.520  0.0100
+FUU         OAQ         CAL      SINGLE       n     1.420  0.0100     1.420  0.0100
+FUU         CAK         CAV      SINGLE       n     1.504  0.0100     1.504  0.0100
+FUU         CAV         CAJ      DOUBLE       y     1.390  0.0100     1.390  0.0100
+FUU         CAJ         CAW      SINGLE       y     1.386  0.0100     1.386  0.0100
+FUU         CAV         CAG      SINGLE       y     1.391  0.0100     1.391  0.0100
+FUU         CAW         OAQ      SINGLE       n     1.369  0.0100     1.369  0.0100
+FUU         CAH         CAW      DOUBLE       y     1.386  0.0109     1.386  0.0109
+FUU         CAG         CAE      DOUBLE       y     1.382  0.0119     1.382  0.0119
+FUU         CAE         CAH      SINGLE       y     1.382  0.0111     1.382  0.0111
+FUU         CAI          H1      SINGLE       n     1.082  0.0130     0.945  0.0130
+FUU         CAD          H2      SINGLE       n     1.082  0.0130     0.938  0.0166
+FUU         CAF          H3      SINGLE       n     1.082  0.0130     0.941  0.0191
+FUU         NAP          H4      SINGLE       n     1.016  0.0100     0.878  0.0200
+FUU         NAO          H5      SINGLE       n     1.016  0.0100     0.874  0.0186
+FUU         CAK          H6      SINGLE       n     1.089  0.0100     0.980  0.0169
+FUU         CAK          H7      SINGLE       n     1.089  0.0100     0.980  0.0169
+FUU         CAJ          H8      SINGLE       n     1.082  0.0130     0.945  0.0164
+FUU         CAG          H9      SINGLE       n     1.082  0.0130     0.944  0.0174
+FUU         CAE         H10      SINGLE       n     1.082  0.0130     0.941  0.0152
+FUU         CAH         H11      SINGLE       n     1.082  0.0130     0.942  0.0163
+FUU         CAL         H12      SINGLE       n     1.089  0.0100     0.974  0.0102
+FUU         CAL         H13      SINGLE       n     1.089  0.0100     0.974  0.0102
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FUU         CAD         CAI         CAY     106.815    1.50
+FUU         CAD         CAI          H1     126.761    1.50
+FUU         CAY         CAI          H1     126.424    1.50
+FUU         CAF         CAD         CAI     106.586    1.50
+FUU         CAF         CAD          H2     126.517    1.50
+FUU         CAI         CAD          H2     126.896    1.50
+FUU         CAD         CAF         OAR     110.682    1.50
+FUU         CAD         CAF          H3     125.633    2.87
+FUU         OAR         CAF          H3     123.685    2.96
+FUU         CAF         OAR         CAY     106.398    1.50
+FUU         OAR         CAY         CAI     109.518    1.50
+FUU         OAR         CAY         CAZ     118.487    1.64
+FUU         CAI         CAY         CAZ     131.995    3.00
+FUU         CAY         CAZ         OAS     119.628    1.50
+FUU         CAY         CAZ         NAN     128.579    3.00
+FUU         OAS         CAZ         NAN     111.793    1.50
+FUU         CAZ         OAS         CAX     105.001    1.50
+FUU         CAZ         NAN         NAM     106.061    1.50
+FUU         NAN         NAM         CAX     105.768    1.50
+FUU         OAS         CAX         NAM     111.377    1.50
+FUU         OAS         CAX         NAP     121.456    1.55
+FUU         NAM         CAX         NAP     127.167    3.00
+FUU         CAX         NAP         CAU     125.100    2.96
+FUU         CAX         NAP          H4     117.304    2.70
+FUU         CAU         NAP          H4     117.596    1.50
+FUU         NAP         CAU         OAB     122.567    1.50
+FUU         NAP         CAU         NAO     114.635    2.00
+FUU         OAB         CAU         NAO     122.798    1.50
+FUU         CAU         NAO         CAK     121.790    1.50
+FUU         CAU         NAO          H5     118.760    1.50
+FUU         CAK         NAO          H5     119.451    1.54
+FUU         NAO         CAK         CAV     113.692    1.56
+FUU         NAO         CAK          H6     108.810    1.50
+FUU         NAO         CAK          H7     108.810    1.50
+FUU         CAV         CAK          H6     109.073    1.50
+FUU         CAV         CAK          H7     109.073    1.50
+FUU          H6         CAK          H7     107.860    1.50
+FUU         CAK         CAV         CAJ     119.826    1.50
+FUU         CAK         CAV         CAG     120.800    1.50
+FUU         CAJ         CAV         CAG     119.375    1.50
+FUU         CAV         CAJ         CAW     120.285    1.50
+FUU         CAV         CAJ          H8     119.874    1.50
+FUU         CAW         CAJ          H8     119.841    1.50
+FUU         CAV         CAG         CAE     120.410    1.50
+FUU         CAV         CAG          H9     119.759    1.50
+FUU         CAE         CAG          H9     119.832    1.50
+FUU         CAG         CAE         CAH     120.471    1.50
+FUU         CAG         CAE         H10     119.907    1.50
+FUU         CAH         CAE         H10     119.629    1.50
+FUU         CAW         CAH         CAE     119.321    1.50
+FUU         CAW         CAH         H11     120.305    1.50
+FUU         CAE         CAH         H11     120.374    1.50
+FUU         CAJ         CAW         OAQ     119.661    3.00
+FUU         CAJ         CAW         CAH     120.132    1.50
+FUU         OAQ         CAW         CAH     120.207    3.00
+FUU         CAL         OAQ         CAW     117.722    1.50
+FUU         CAT         CAL         OAQ     111.607    2.58
+FUU         CAT         CAL         H12     109.314    1.50
+FUU         CAT         CAL         H13     109.314    1.50
+FUU         OAQ         CAL         H12     109.378    1.50
+FUU         OAQ         CAL         H13     109.378    1.50
+FUU         H12         CAL         H13     108.052    1.50
+FUU         OAC         CAT         OAA     125.570    1.50
+FUU         OAC         CAT         CAL     117.215    2.48
+FUU         OAA         CAT         CAL     117.215    2.48
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FUU       const_sp2_sp2_1         CAF         CAD         CAI         CAY       0.000     5.0     2
+FUU              const_40         CAD         CAI         CAY         OAR       0.000    10.0     2
+FUU            sp2_sp2_11         OAB         CAU         NAP         CAX       0.000     5.0     2
+FUU            sp2_sp2_13         NAP         CAU         NAO         CAK     180.000     5.0     2
+FUU             sp2_sp3_2         CAU         NAO         CAK         CAV     120.000    10.0     6
+FUU            sp2_sp3_14         CAJ         CAV         CAK         NAO     -90.000    10.0     6
+FUU              const_14         CAW         CAJ         CAV         CAK     180.000    10.0     2
+FUU              const_47         CAE         CAG         CAV         CAK     180.000    10.0     2
+FUU              const_18         CAV         CAJ         CAW         OAQ     180.000    10.0     2
+FUU              const_29         CAH         CAE         CAG         CAV       0.000    10.0     2
+FUU              const_25         CAG         CAE         CAH         CAW       0.000    10.0     2
+FUU              const_22         CAE         CAH         CAW         OAQ     180.000    10.0     2
+FUU       const_sp2_sp2_5         CAI         CAD         CAF         OAR       0.000     5.0     2
+FUU            sp2_sp2_17         CAJ         CAW         OAQ         CAL     180.000     5.0     2
+FUU             sp3_sp3_1         CAT         CAL         OAQ         CAW     180.000    10.0     3
+FUU             sp2_sp3_8         OAC         CAT         CAL         OAQ     120.000    10.0     6
+FUU       const_sp2_sp2_9         CAD         CAF         OAR         CAY       0.000     5.0     2
+FUU              const_11         CAI         CAY         OAR         CAF       0.000    10.0     2
+FUU             sp2_sp2_3         OAR         CAY         CAZ         OAS       0.000     5.0     2
+FUU              const_34         CAY         CAZ         OAS         CAX     180.000    10.0     2
+FUU              const_45         CAY         CAZ         NAN         NAM     180.000    10.0     2
+FUU              const_36         NAP         CAX         OAS         CAZ     180.000    10.0     2
+FUU              const_39         CAX         NAM         NAN         CAZ       0.000    10.0     2
+FUU              const_38         NAP         CAX         NAM         NAN     180.000    10.0     2
+FUU             sp2_sp2_5         OAS         CAX         NAP         CAU     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FUU    plan-1         CAD   0.020
+FUU    plan-1         CAF   0.020
+FUU    plan-1         CAI   0.020
+FUU    plan-1         CAY   0.020
+FUU    plan-1         CAZ   0.020
+FUU    plan-1          H1   0.020
+FUU    plan-1          H2   0.020
+FUU    plan-1          H3   0.020
+FUU    plan-1         OAR   0.020
+FUU    plan-2         CAE   0.020
+FUU    plan-2         CAG   0.020
+FUU    plan-2         CAH   0.020
+FUU    plan-2         CAJ   0.020
+FUU    plan-2         CAK   0.020
+FUU    plan-2         CAV   0.020
+FUU    plan-2         CAW   0.020
+FUU    plan-2         H10   0.020
+FUU    plan-2         H11   0.020
+FUU    plan-2          H8   0.020
+FUU    plan-2          H9   0.020
+FUU    plan-2         OAQ   0.020
+FUU    plan-3         CAX   0.020
+FUU    plan-3         CAY   0.020
+FUU    plan-3         CAZ   0.020
+FUU    plan-3         NAM   0.020
+FUU    plan-3         NAN   0.020
+FUU    plan-3         NAP   0.020
+FUU    plan-3         OAS   0.020
+FUU    plan-4         CAU   0.020
+FUU    plan-4         CAX   0.020
+FUU    plan-4          H4   0.020
+FUU    plan-4         NAP   0.020
+FUU    plan-5         CAU   0.020
+FUU    plan-5         NAO   0.020
+FUU    plan-5         NAP   0.020
+FUU    plan-5         OAB   0.020
+FUU    plan-6         CAK   0.020
+FUU    plan-6         CAU   0.020
+FUU    plan-6          H5   0.020
+FUU    plan-6         NAO   0.020
+FUU    plan-7         CAL   0.020
+FUU    plan-7         CAT   0.020
+FUU    plan-7         OAA   0.020
+FUU    plan-7         OAC   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FUU           SMILES              ACDLabs 12.01                                                                                               O=C(Nc1nnc(o1)c2occc2)NCc3cccc(OCC(=O)O)c3
+FUU            InChI                InChI  1.03 InChI=1S/C16H14N4O6/c21-13(22)9-25-11-4-1-3-10(7-11)8-17-15(23)18-16-20-19-14(26-16)12-5-2-6-24-12/h1-7H,8-9H2,(H,21,22)(H2,17,18,20,23)
+FUU         InChIKey                InChI  1.03                                                                                                              COAUEHYQQBGZLC-UHFFFAOYSA-N
+FUU SMILES_CANONICAL               CACTVS 3.370                                                                                               OC(=O)COc1cccc(CNC(=O)Nc2oc(nn2)c3occc3)c1
+FUU           SMILES               CACTVS 3.370                                                                                               OC(=O)COc1cccc(CNC(=O)Nc2oc(nn2)c3occc3)c1
+FUU SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                             c1cc(cc(c1)OCC(=O)O)CNC(=O)Nc2nnc(o2)c3ccco3
+FUU           SMILES "OpenEye OEToolkits" 1.7.6                                                                                             c1cc(cc(c1)OCC(=O)O)CNC(=O)Nc2nnc(o2)c3ccco3
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FUU acedrg               243         "dictionary generator"                  
+FUU acedrg_database      11          "data source"                           
+FUU rdkit                2017.03.2   "Chemoinformatics tool"
+FUU refmac5              5.8.0238    "optimization tool"                     

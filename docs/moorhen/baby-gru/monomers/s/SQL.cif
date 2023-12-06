@@ -1,0 +1,457 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+SQL     SQL      (6E,10E,14E,18E)-2,6,10,15,19,23-hexamethyltetracosa-2,6,10,14,18,22-hexaene     NON-POLYMER     80     30     .     
+#
+data_comp_SQL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+SQL     C1      C       CH3     0       58.969      27.242      25.394      
+SQL     C2      C       C       0       57.762      26.835      26.194      
+SQL     C3      C       CH3     0       56.493      26.793      25.392      
+SQL     C4      C       C1      0       57.806      26.539      27.487      
+SQL     C5      C       CH2     0       58.991      26.536      28.407      
+SQL     C6      C       CH2     0       58.655      26.137      29.844      
+SQL     C7      C       C       0       59.773      26.103      30.858      
+SQL     C8      C       CH3     0       61.150      26.463      30.355      
+SQL     C9      C       C1      0       59.522      25.767      32.124      
+SQL     C10     C       CH2     0       60.490      25.671      33.265      
+SQL     C11     C       CH2     0       59.860      25.235      34.585      
+SQL     C12     C       C       0       60.750      25.110      35.798      
+SQL     C13     C       CH3     0       62.215      25.417      35.597      
+SQL     C14     C       C1      0       60.232      24.745      36.970      
+SQL     C15     C       CH2     0       60.929      24.558      38.286      
+SQL     C16     C       CH2     0       59.994      24.107      39.390      
+SQL     C17     C       C1      0       60.684      23.892      40.704      
+SQL     C18     C       C       0       60.142      23.536      41.867      
+SQL     C19     C       CH3     0       58.664      23.264      42.020      
+SQL     C20     C       CH2     0       61.013      23.412      43.096      
+SQL     C21     C       CH2     0       60.394      23.017      44.434      
+SQL     C22     C       C1      0       61.380      22.991      45.564      
+SQL     C23     C       C       0       61.179      22.619      46.828      
+SQL     C24     C       CH2     0       62.301      22.609      47.832      
+SQL     C25     C       CH2     0       62.269      23.788      48.786      
+SQL     C26     C       C1      0       62.621      25.088      48.124      
+SQL     C27     C       C       0       62.576      26.317      48.624      
+SQL     C28     C       CH3     0       62.149      26.628      50.031      
+SQL     C29     C       CH3     0       62.955      27.531      47.824      
+SQL     C30     C       CH3     0       59.848      22.182      47.376      
+SQL     H1      H       H       0       59.749      27.305      25.967      
+SQL     H2      H       H       0       58.807      28.106      24.981      
+SQL     H3      H       H       0       59.135      26.583      24.700      
+SQL     H4      H       H       0       55.751      26.524      25.958      
+SQL     H5      H       H       0       56.589      26.156      24.666      
+SQL     H6      H       H       0       56.312      27.674      25.024      
+SQL     H7      H       H       0       56.985      26.297      27.887      
+SQL     H8      H       H       0       59.385      27.432      28.410      
+SQL     H43     H       H       0       59.660      25.916      28.052      
+SQL     H9      H       H       0       58.243      25.249      29.821      
+SQL     H44     H       H       0       57.968      26.751      30.175      
+SQL     H10     H       H       0       61.794      26.410      31.078      
+SQL     H11     H       H       0       61.143      27.369      30.005      
+SQL     H12     H       H       0       61.412      25.847      29.652      
+SQL     H13     H       H       0       58.623      25.563      32.333      
+SQL     H14     H       H       0       60.912      26.546      33.390      
+SQL     H45     H       H       0       61.193      25.034      33.024      
+SQL     H15     H       H       0       59.427      24.368      34.440      
+SQL     H46     H       H       0       59.145      25.867      34.801      
+SQL     H16     H       H       0       62.697      25.303      36.431      
+SQL     H17     H       H       0       62.318      26.333      35.295      
+SQL     H18     H       H       0       62.587      24.814      34.933      
+SQL     H19     H       H       0       59.300      24.580      36.979      
+SQL     H20     H       H       0       61.347      25.404      38.548      
+SQL     H21     H       H       0       61.640      23.894      38.179      
+SQL     H22     H       H       0       59.563      23.271      39.117      
+SQL     H47     H       H       0       59.293      24.779      39.505      
+SQL     H23     H       H       0       61.620      24.027      40.702      
+SQL     H24     H       H       0       58.495      22.701      42.788      
+SQL     H25     H       H       0       58.335      22.813      41.226      
+SQL     H26     H       H       0       58.191      24.105      42.129      
+SQL     H27     H       H       0       61.466      24.271      43.223      
+SQL     H48     H       H       0       61.718      22.765      42.893      
+SQL     H28     H       H       0       59.997      22.127      44.349      
+SQL     H49     H       H       0       59.677      23.647      44.653      
+SQL     H29     H       H       0       62.253      23.280      45.346      
+SQL     H30     H       H       0       63.157      22.609      47.358      
+SQL     H50     H       H       0       62.252      21.782      48.352      
+SQL     H31     H       H       0       62.899      23.621      49.517      
+SQL     H32     H       H       0       61.373      23.859      49.174      
+SQL     H33     H       H       0       62.916      25.016      47.229      
+SQL     H34     H       H       0       61.909      25.813      50.499      
+SQL     H35     H       H       0       61.382      27.223      50.013      
+SQL     H36     H       H       0       62.879      27.063      50.502      
+SQL     H37     H       H       0       63.162      27.276      46.910      
+SQL     H38     H       H       0       63.733      27.952      48.223      
+SQL     H39     H       H       0       62.216      28.161      47.821      
+SQL     H40     H       H       0       59.967      21.388      47.922      
+SQL     H41     H       H       0       59.239      21.979      46.649      
+SQL     H42     H       H       0       59.473      22.892      47.921      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+SQL          C2          C3      SINGLE       n     1.499  0.0156     1.499  0.0156
+SQL          C1          C2      SINGLE       n     1.499  0.0156     1.499  0.0156
+SQL          C2          C4      DOUBLE       n     1.324  0.0100     1.324  0.0100
+SQL          C4          C5      SINGLE       n     1.498  0.0141     1.498  0.0141
+SQL          C5          C6      SINGLE       n     1.516  0.0200     1.516  0.0200
+SQL          C6          C7      SINGLE       n     1.503  0.0104     1.503  0.0104
+SQL          C7          C8      SINGLE       n     1.499  0.0156     1.499  0.0156
+SQL          C7          C9      DOUBLE       n     1.330  0.0100     1.330  0.0100
+SQL          C9         C10      SINGLE       n     1.498  0.0141     1.498  0.0141
+SQL         C10         C11      SINGLE       n     1.516  0.0200     1.516  0.0200
+SQL         C11         C12      SINGLE       n     1.503  0.0104     1.503  0.0104
+SQL         C12         C13      SINGLE       n     1.499  0.0156     1.499  0.0156
+SQL         C12         C14      DOUBLE       n     1.330  0.0100     1.330  0.0100
+SQL         C14         C15      SINGLE       n     1.498  0.0141     1.498  0.0141
+SQL         C15         C16      SINGLE       n     1.516  0.0200     1.516  0.0200
+SQL         C16         C17      SINGLE       n     1.498  0.0141     1.498  0.0141
+SQL         C17         C18      DOUBLE       n     1.330  0.0100     1.330  0.0100
+SQL         C18         C19      SINGLE       n     1.499  0.0156     1.499  0.0156
+SQL         C18         C20      SINGLE       n     1.503  0.0104     1.503  0.0104
+SQL         C20         C21      SINGLE       n     1.516  0.0200     1.516  0.0200
+SQL         C21         C22      SINGLE       n     1.498  0.0141     1.498  0.0141
+SQL         C22         C23      DOUBLE       n     1.330  0.0100     1.330  0.0100
+SQL         C23         C30      SINGLE       n     1.499  0.0156     1.499  0.0156
+SQL         C23         C24      SINGLE       n     1.503  0.0104     1.503  0.0104
+SQL         C24         C25      SINGLE       n     1.516  0.0200     1.516  0.0200
+SQL         C25         C26      SINGLE       n     1.498  0.0141     1.498  0.0141
+SQL         C26         C27      DOUBLE       n     1.324  0.0100     1.324  0.0100
+SQL         C27         C29      SINGLE       n     1.499  0.0156     1.499  0.0156
+SQL         C27         C28      SINGLE       n     1.499  0.0156     1.499  0.0156
+SQL          C1          H1      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL          C1          H2      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL          C1          H3      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL          C3          H4      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL          C3          H5      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL          C3          H6      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL          C4          H7      SINGLE       n     1.082  0.0130     0.945  0.0200
+SQL          C5          H8      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL          C5         H43      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL          C6          H9      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL          C6         H44      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL          C8         H10      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL          C8         H11      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL          C8         H12      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL          C9         H13      SINGLE       n     1.082  0.0130     0.945  0.0200
+SQL         C10         H14      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C10         H45      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C11         H15      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C11         H46      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C13         H16      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C13         H17      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C13         H18      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C14         H19      SINGLE       n     1.082  0.0130     0.945  0.0200
+SQL         C15         H20      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C15         H21      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C16         H22      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C16         H47      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C17         H23      SINGLE       n     1.082  0.0130     0.945  0.0200
+SQL         C19         H24      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C19         H25      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C19         H26      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C20         H27      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C20         H48      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C21         H28      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C21         H49      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C22         H29      SINGLE       n     1.082  0.0130     0.945  0.0200
+SQL         C24         H30      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C24         H50      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C25         H31      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C25         H32      SINGLE       n     1.089  0.0100     0.979  0.0159
+SQL         C26         H33      SINGLE       n     1.082  0.0130     0.945  0.0200
+SQL         C28         H34      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C28         H35      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C28         H36      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C29         H37      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C29         H38      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C29         H39      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C30         H40      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C30         H41      SINGLE       n     1.089  0.0100     0.971  0.0140
+SQL         C30         H42      SINGLE       n     1.089  0.0100     0.971  0.0140
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+SQL          C2          C1          H1     109.600    1.50
+SQL          C2          C1          H2     109.600    1.50
+SQL          C2          C1          H3     109.600    1.50
+SQL          H1          C1          H2     109.342    1.50
+SQL          H1          C1          H3     109.342    1.50
+SQL          H2          C1          H3     109.342    1.50
+SQL          C3          C2          C1     114.618    1.50
+SQL          C3          C2          C4     122.691    1.63
+SQL          C1          C2          C4     122.691    1.63
+SQL          C2          C3          H4     109.600    1.50
+SQL          C2          C3          H5     109.600    1.50
+SQL          C2          C3          H6     109.600    1.50
+SQL          H4          C3          H5     109.342    1.50
+SQL          H4          C3          H6     109.342    1.50
+SQL          H5          C3          H6     109.342    1.50
+SQL          C2          C4          C5     128.282    1.50
+SQL          C2          C4          H7     116.082    1.50
+SQL          C5          C4          H7     115.635    1.60
+SQL          C4          C5          C6     112.751    2.50
+SQL          C4          C5          H8     109.181    1.50
+SQL          C4          C5         H43     109.181    1.50
+SQL          C6          C5          H8     109.013    1.50
+SQL          C6          C5         H43     109.013    1.50
+SQL          H8          C5         H43     107.922    1.50
+SQL          C5          C6          C7     113.520    2.62
+SQL          C5          C6          H9     108.867    1.50
+SQL          C5          C6         H44     108.867    1.50
+SQL          C7          C6          H9     108.816    1.50
+SQL          C7          C6         H44     108.816    1.50
+SQL          H9          C6         H44     107.710    1.94
+SQL          C6          C7          C8     115.131    1.50
+SQL          C6          C7          C9     121.188    1.50
+SQL          C8          C7          C9     123.681    1.50
+SQL          C7          C8         H10     109.541    1.50
+SQL          C7          C8         H11     109.541    1.50
+SQL          C7          C8         H12     109.541    1.50
+SQL         H10          C8         H11     109.342    1.50
+SQL         H10          C8         H12     109.342    1.50
+SQL         H11          C8         H12     109.342    1.50
+SQL          C7          C9         C10     128.114    1.50
+SQL          C7          C9         H13     116.261    1.50
+SQL         C10          C9         H13     115.635    1.60
+SQL          C9         C10         C11     112.751    2.50
+SQL          C9         C10         H14     109.181    1.50
+SQL          C9         C10         H45     109.181    1.50
+SQL         C11         C10         H14     109.013    1.50
+SQL         C11         C10         H45     109.013    1.50
+SQL         H14         C10         H45     107.922    1.50
+SQL         C10         C11         C12     113.520    2.62
+SQL         C10         C11         H15     108.867    1.50
+SQL         C10         C11         H46     108.867    1.50
+SQL         C12         C11         H15     108.816    1.50
+SQL         C12         C11         H46     108.816    1.50
+SQL         H15         C11         H46     107.710    1.94
+SQL         C11         C12         C13     115.131    1.50
+SQL         C11         C12         C14     121.188    1.50
+SQL         C13         C12         C14     123.681    1.50
+SQL         C12         C13         H16     109.541    1.50
+SQL         C12         C13         H17     109.541    1.50
+SQL         C12         C13         H18     109.541    1.50
+SQL         H16         C13         H17     109.342    1.50
+SQL         H16         C13         H18     109.342    1.50
+SQL         H17         C13         H18     109.342    1.50
+SQL         C12         C14         C15     128.114    1.50
+SQL         C12         C14         H19     116.261    1.50
+SQL         C15         C14         H19     115.635    1.60
+SQL         C14         C15         C16     112.930    2.60
+SQL         C14         C15         H20     109.181    1.50
+SQL         C14         C15         H21     109.181    1.50
+SQL         C16         C15         H20     109.125    1.50
+SQL         C16         C15         H21     109.125    1.50
+SQL         H20         C15         H21     107.922    1.50
+SQL         C15         C16         C17     112.930    2.60
+SQL         C15         C16         H22     109.125    1.50
+SQL         C15         C16         H47     109.125    1.50
+SQL         C17         C16         H22     109.181    1.50
+SQL         C17         C16         H47     109.181    1.50
+SQL         H22         C16         H47     107.922    1.50
+SQL         C16         C17         C18     128.114    1.50
+SQL         C16         C17         H23     115.635    1.60
+SQL         C18         C17         H23     116.261    1.50
+SQL         C17         C18         C19     123.681    1.50
+SQL         C17         C18         C20     121.188    1.50
+SQL         C19         C18         C20     115.131    1.50
+SQL         C18         C19         H24     109.541    1.50
+SQL         C18         C19         H25     109.541    1.50
+SQL         C18         C19         H26     109.541    1.50
+SQL         H24         C19         H25     109.342    1.50
+SQL         H24         C19         H26     109.342    1.50
+SQL         H25         C19         H26     109.342    1.50
+SQL         C18         C20         C21     113.520    2.62
+SQL         C18         C20         H27     108.816    1.50
+SQL         C18         C20         H48     108.816    1.50
+SQL         C21         C20         H27     108.867    1.50
+SQL         C21         C20         H48     108.867    1.50
+SQL         H27         C20         H48     107.710    1.94
+SQL         C20         C21         C22     112.751    2.50
+SQL         C20         C21         H28     109.013    1.50
+SQL         C20         C21         H49     109.013    1.50
+SQL         C22         C21         H28     109.181    1.50
+SQL         C22         C21         H49     109.181    1.50
+SQL         H28         C21         H49     107.922    1.50
+SQL         C21         C22         C23     128.114    1.50
+SQL         C21         C22         H29     115.635    1.60
+SQL         C23         C22         H29     116.261    1.50
+SQL         C22         C23         C30     123.681    1.50
+SQL         C22         C23         C24     121.188    1.50
+SQL         C30         C23         C24     115.131    1.50
+SQL         C23         C24         C25     113.520    2.62
+SQL         C23         C24         H30     108.816    1.50
+SQL         C23         C24         H50     108.816    1.50
+SQL         C25         C24         H30     108.867    1.50
+SQL         C25         C24         H50     108.867    1.50
+SQL         H30         C24         H50     107.710    1.94
+SQL         C24         C25         C26     112.751    2.50
+SQL         C24         C25         H31     109.013    1.50
+SQL         C24         C25         H32     109.013    1.50
+SQL         C26         C25         H31     109.181    1.50
+SQL         C26         C25         H32     109.181    1.50
+SQL         H31         C25         H32     107.922    1.50
+SQL         C25         C26         C27     128.282    1.50
+SQL         C25         C26         H33     115.635    1.60
+SQL         C27         C26         H33     116.082    1.50
+SQL         C26         C27         C29     122.691    1.63
+SQL         C26         C27         C28     122.691    1.63
+SQL         C29         C27         C28     114.618    1.50
+SQL         C27         C28         H34     109.600    1.50
+SQL         C27         C28         H35     109.600    1.50
+SQL         C27         C28         H36     109.600    1.50
+SQL         H34         C28         H35     109.342    1.50
+SQL         H34         C28         H36     109.342    1.50
+SQL         H35         C28         H36     109.342    1.50
+SQL         C27         C29         H37     109.600    1.50
+SQL         C27         C29         H38     109.600    1.50
+SQL         C27         C29         H39     109.600    1.50
+SQL         H37         C29         H38     109.342    1.50
+SQL         H37         C29         H39     109.342    1.50
+SQL         H38         C29         H39     109.342    1.50
+SQL         C23         C30         H40     109.541    1.50
+SQL         C23         C30         H41     109.541    1.50
+SQL         C23         C30         H42     109.541    1.50
+SQL         H40         C30         H41     109.342    1.50
+SQL         H40         C30         H42     109.342    1.50
+SQL         H41         C30         H42     109.342    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+SQL             sp2_sp3_7          C3          C2          C1          H1       0.000    10.0     6
+SQL            sp2_sp3_38         C13         C12         C11         C10     120.000    10.0     6
+SQL            sp2_sp3_43         C11         C12         C13         H16       0.000    10.0     6
+SQL             sp2_sp2_9         C11         C12         C14         C15     180.000     5.0     2
+SQL            sp2_sp3_50         C12         C14         C15         C16     120.000    10.0     6
+SQL            sp3_sp3_19         C14         C15         C16         C17     180.000    10.0     3
+SQL            sp2_sp3_56         C18         C17         C16         C15     120.000    10.0     6
+SQL            sp2_sp2_14         C16         C17         C18         C19       0.000     5.0     2
+SQL            sp2_sp3_61         C17         C18         C19         H24       0.000    10.0     6
+SQL            sp2_sp3_68         C17         C18         C20         C21     120.000    10.0     6
+SQL            sp3_sp3_28         C18         C20         C21         C22     180.000    10.0     3
+SQL             sp2_sp3_1          C1          C2          C3          H4       0.000    10.0     6
+SQL             sp2_sp2_1          C3          C2          C4          C5     180.000     5.0     2
+SQL            sp2_sp3_74         C23         C22         C21         C20     120.000    10.0     6
+SQL            sp2_sp2_18         C21         C22         C23         C30       0.000     5.0     2
+SQL            sp2_sp3_86         C22         C23         C24         C25     120.000    10.0     6
+SQL            sp2_sp3_79         C22         C23         C30         H40       0.000    10.0     6
+SQL            sp3_sp3_37         C23         C24         C25         C26     180.000    10.0     3
+SQL            sp2_sp3_92         C27         C26         C25         C24     120.000    10.0     6
+SQL            sp2_sp2_21         C25         C26         C27         C29     180.000     5.0     2
+SQL           sp2_sp3_103         C26         C27         C28         H34       0.000    10.0     6
+SQL            sp2_sp3_97         C26         C27         C29         H37       0.000    10.0     6
+SQL            sp2_sp3_14          C2          C4          C5          C6     120.000    10.0     6
+SQL             sp3_sp3_1          C4          C5          C6          C7     180.000    10.0     3
+SQL            sp2_sp3_20          C8          C7          C6          C5     120.000    10.0     6
+SQL            sp2_sp3_25          C6          C7          C8         H10       0.000    10.0     6
+SQL             sp2_sp2_5          C6          C7          C9         C10     180.000     5.0     2
+SQL            sp2_sp3_32          C7          C9         C10         C11     120.000    10.0     6
+SQL            sp3_sp3_10          C9         C10         C11         C12     180.000    10.0     3
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+SQL    plan-1          C1   0.020
+SQL    plan-1          C2   0.020
+SQL    plan-1          C3   0.020
+SQL    plan-1          C4   0.020
+SQL    plan-2          C2   0.020
+SQL    plan-2          C4   0.020
+SQL    plan-2          C5   0.020
+SQL    plan-2          H7   0.020
+SQL    plan-3          C6   0.020
+SQL    plan-3          C7   0.020
+SQL    plan-3          C8   0.020
+SQL    plan-3          C9   0.020
+SQL    plan-4         C10   0.020
+SQL    plan-4          C7   0.020
+SQL    plan-4          C9   0.020
+SQL    plan-4         H13   0.020
+SQL    plan-5         C11   0.020
+SQL    plan-5         C12   0.020
+SQL    plan-5         C13   0.020
+SQL    plan-5         C14   0.020
+SQL    plan-6         C12   0.020
+SQL    plan-6         C14   0.020
+SQL    plan-6         C15   0.020
+SQL    plan-6         H19   0.020
+SQL    plan-7         C16   0.020
+SQL    plan-7         C17   0.020
+SQL    plan-7         C18   0.020
+SQL    plan-7         H23   0.020
+SQL    plan-8         C17   0.020
+SQL    plan-8         C18   0.020
+SQL    plan-8         C19   0.020
+SQL    plan-8         C20   0.020
+SQL    plan-9         C21   0.020
+SQL    plan-9         C22   0.020
+SQL    plan-9         C23   0.020
+SQL    plan-9         H29   0.020
+SQL   plan-10         C22   0.020
+SQL   plan-10         C23   0.020
+SQL   plan-10         C24   0.020
+SQL   plan-10         C30   0.020
+SQL   plan-11         C25   0.020
+SQL   plan-11         C26   0.020
+SQL   plan-11         C27   0.020
+SQL   plan-11         H33   0.020
+SQL   plan-12         C26   0.020
+SQL   plan-12         C27   0.020
+SQL   plan-12         C28   0.020
+SQL   plan-12         C29   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+SQL           SMILES              ACDLabs 12.01                                                                                                  C(=C/CC/C(=C/CCC(=C/CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)C)/C)C)(\C)C
+SQL            InChI                InChI  1.03 InChI=1S/C30H50/c1-25(2)15-11-19-29(7)23-13-21-27(5)17-9-10-18-28(6)22-14-24-30(8)20-12-16-26(3)4/h15-18,23-24H,9-14,19-22H2,1-8H3/b27-17+,28-18+,29-23+,30-24+
+SQL         InChIKey                InChI  1.03                                                                                                                                     YYGNTYWPHWGJRM-AAJYLUCBSA-N
+SQL SMILES_CANONICAL               CACTVS 3.370                                                                                                        CC(C)=CCC\C(C)=C\CC\C(C)=C\CC\C=C(/C)CC\C=C(C)\CCC=C(C)C
+SQL           SMILES               CACTVS 3.370                                                                                                                CC(C)=CCCC(C)=CCCC(C)=CCCC=C(C)CCC=C(C)CCC=C(C)C
+SQL SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                    CC(=CCC/C(=C/CC/C(=C/CC/C=C(/CC/C=C(/CCC=C(C)C)\C)\C)/C)/C)C
+SQL           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                                CC(=CCCC(=CCCC(=CCCC=C(C)CCC=C(C)CCC=C(C)C)C)C)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+SQL acedrg               243         "dictionary generator"                  
+SQL acedrg_database      11          "data source"                           
+SQL rdkit                2017.03.2   "Chemoinformatics tool"
+SQL refmac5              5.8.0238    "optimization tool"                     

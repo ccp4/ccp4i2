@@ -1,0 +1,199 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+LYN     LYN      "2,6-DIAMINO-HEXANOIC ACID AMIDE"     NON-POLYMER     27     10     .     
+#
+data_comp_LYN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LYN     N       N       NT2     0       31.198      -0.034      2.244       
+LYN     CA      C       CH1     0       32.252      0.919       1.887       
+LYN     CB      C       CH2     0       31.828      2.355       2.214       
+LYN     CG      C       CH2     0       30.654      2.865       1.388       
+LYN     CD      C       CH2     0       30.224      4.271       1.750       
+LYN     CE      C       CH2     0       31.129      5.337       1.169       
+LYN     NZ      N       NT3     1       30.606      6.700       1.428       
+LYN     C       C       C       0       33.582      0.557       2.553       
+LYN     O       O       O       0       33.950      1.122       3.563       
+LYN     NT      N       NT3     1       34.417      -0.509      1.958       
+LYN     H       H       H       0       31.520      -0.878      2.247       
+LYN     H2      H       H       0       30.543      -0.006      1.625       
+LYN     HA      H       H       0       32.390      0.863       0.908       
+LYN     HB2     H       H       0       32.594      2.949       2.069       
+LYN     HB3     H       H       0       31.587      2.402       3.163       
+LYN     HG2     H       H       0       29.892      2.260       1.513       
+LYN     HG3     H       H       0       30.902      2.842       0.439       
+LYN     HD2     H       H       0       30.216      4.361       2.727       
+LYN     HD3     H       H       0       29.311      4.420       1.426       
+LYN     HE2     H       H       0       31.211      5.207       0.206       
+LYN     HE3     H       H       0       32.019      5.259       1.561       
+LYN     HZ1     H       H       0       31.168      7.317       1.073       
+LYN     HZ2     H       H       0       30.539      6.838       2.322       
+LYN     HZ3     H       H       0       29.787      6.791       1.051       
+LYN     HNT1    H       H       0       35.258      -0.445      2.278       
+LYN     HNT2    H       H       0       34.418      -0.408      1.063       
+LYN     HT3     H       H       0       34.063      -1.308      2.178       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LYN           N          CA      SINGLE       n     1.463  0.0141     1.463  0.0141
+LYN          CA          CB      SINGLE       n     1.530  0.0137     1.530  0.0137
+LYN          CA           C      SINGLE       n     1.529  0.0100     1.529  0.0100
+LYN          CB          CG      SINGLE       n     1.523  0.0114     1.523  0.0114
+LYN          CG          CD      SINGLE       n     1.514  0.0200     1.514  0.0200
+LYN          CD          CE      SINGLE       n     1.514  0.0111     1.514  0.0111
+LYN          CE          NZ      SINGLE       n     1.482  0.0123     1.482  0.0123
+LYN           C           O      DOUBLE       n     1.210  0.0200     1.210  0.0200
+LYN           C          NT      SINGLE       n     1.477  0.0200     1.477  0.0200
+LYN           N           H      SINGLE       n     1.036  0.0160     0.902  0.0200
+LYN           N          H2      SINGLE       n     1.036  0.0160     0.902  0.0200
+LYN          CA          HA      SINGLE       n     1.089  0.0100     0.990  0.0200
+LYN          CB         HB2      SINGLE       n     1.089  0.0100     0.980  0.0160
+LYN          CB         HB3      SINGLE       n     1.089  0.0100     0.980  0.0160
+LYN          CG         HG2      SINGLE       n     1.089  0.0100     0.981  0.0163
+LYN          CG         HG3      SINGLE       n     1.089  0.0100     0.981  0.0163
+LYN          CD         HD2      SINGLE       n     1.089  0.0100     0.981  0.0160
+LYN          CD         HD3      SINGLE       n     1.089  0.0100     0.981  0.0160
+LYN          CE         HE2      SINGLE       n     1.089  0.0100     0.976  0.0165
+LYN          CE         HE3      SINGLE       n     1.089  0.0100     0.976  0.0165
+LYN          NZ         HZ1      SINGLE       n     1.036  0.0160     0.907  0.0200
+LYN          NZ         HZ2      SINGLE       n     1.036  0.0160     0.907  0.0200
+LYN          NZ         HZ3      SINGLE       n     1.036  0.0160     0.907  0.0200
+LYN          NT        HNT1      SINGLE       n     1.036  0.0160     0.901  0.0200
+LYN          NT        HNT2      SINGLE       n     1.036  0.0160     0.901  0.0200
+LYN          NT         HT3      SINGLE       n     1.036  0.0160     0.901  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+LYN          CA           N           H     109.453    3.00
+LYN          CA           N          H2     109.453    3.00
+LYN           H           N          H2     107.559    3.00
+LYN           N          CA          CB     111.883    2.59
+LYN           N          CA           C     112.134    2.59
+LYN           N          CA          HA     108.372    1.54
+LYN          CB          CA           C     111.407    1.50
+LYN          CB          CA          HA     108.223    1.50
+LYN           C          CA          HA     107.798    1.50
+LYN          CA          CB          CG     113.702    1.73
+LYN          CA          CB         HB2     108.562    1.50
+LYN          CA          CB         HB3     108.562    1.50
+LYN          CG          CB         HB2     108.650    1.50
+LYN          CG          CB         HB3     108.650    1.50
+LYN         HB2          CB         HB3     107.844    1.50
+LYN          CB          CG          CD     113.328    2.00
+LYN          CB          CG         HG2     108.601    1.50
+LYN          CB          CG         HG3     108.601    1.50
+LYN          CD          CG         HG2     108.806    1.50
+LYN          CD          CG         HG3     108.806    1.50
+LYN         HG2          CG         HG3     107.646    1.50
+LYN          CG          CD          CE     113.073    1.98
+LYN          CG          CD         HD2     109.041    1.50
+LYN          CG          CD         HD3     109.041    1.50
+LYN          CE          CD         HD2     108.889    1.50
+LYN          CE          CD         HD3     108.889    1.50
+LYN         HD2          CD         HD3     107.927    1.57
+LYN          CD          CE          NZ     111.734    1.84
+LYN          CD          CE         HE2     109.576    1.50
+LYN          CD          CE         HE3     109.576    1.50
+LYN          NZ          CE         HE2     108.989    1.50
+LYN          NZ          CE         HE3     108.989    1.50
+LYN         HE2          CE         HE3     108.067    1.50
+LYN          CE          NZ         HZ1     109.775    1.81
+LYN          CE          NZ         HZ2     109.775    1.81
+LYN          CE          NZ         HZ3     109.775    1.81
+LYN         HZ1          NZ         HZ2     109.021    2.83
+LYN         HZ1          NZ         HZ3     109.021    2.83
+LYN         HZ2          NZ         HZ3     109.021    2.83
+LYN          CA           C           O     120.452    1.50
+LYN          CA           C          NT     119.774    3.00
+LYN           O           C          NT     119.774    3.00
+LYN           C          NT        HNT1     107.481    3.00
+LYN           C          NT        HNT2     107.481    3.00
+LYN           C          NT         HT3     107.481    3.00
+LYN        HNT1          NT        HNT2     108.863    3.00
+LYN        HNT1          NT         HT3     108.863    3.00
+LYN        HNT2          NT         HT3     108.863    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+LYN             sp3_sp3_1          CB          CA           N           H     180.000    10.0     3
+LYN             sp3_sp3_7           N          CA          CB          CG     180.000    10.0     3
+LYN             sp2_sp3_1           O           C          CA           N       0.000    10.0     6
+LYN            sp3_sp3_16          CA          CB          CG          CD     180.000    10.0     3
+LYN            sp3_sp3_25          CE          CD          CG          CB     180.000    10.0     3
+LYN            sp3_sp3_34          CG          CD          CE          NZ     180.000    10.0     3
+LYN            sp3_sp3_43          CD          CE          NZ         HZ1     180.000    10.0     3
+LYN             sp2_sp3_7          CA           C          NT        HNT1       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+LYN    chir_1    CA    N    C    CB    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+LYN    plan-1           C   0.020
+LYN    plan-1          CA   0.020
+LYN    plan-1          NT   0.020
+LYN    plan-1           O   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+LYN           SMILES              ACDLabs 10.04                                                          O=C(N)C(N)CCCC[NH3+]
+LYN SMILES_CANONICAL               CACTVS 3.341                                                     N[C@@H](CCCC[NH3+])C(N)=O
+LYN           SMILES               CACTVS 3.341                                                       N[CH](CCCC[NH3+])C(N)=O
+LYN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                   C(CC[NH3+])C[C@@H](C(=O)N)N
+LYN           SMILES "OpenEye OEToolkits" 1.5.0                                                        C(CC[NH3+])CC(C(=O)N)N
+LYN            InChI                InChI  1.03 InChI=1S/C6H15N3O/c7-4-2-1-3-5(8)6(9)10/h5H,1-4,7-8H2,(H2,9,10)/p+1/t5-/m0/s1
+LYN         InChIKey                InChI  1.03                                                   HKXLAGBDJVHRQG-YFKPBYRVSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+LYN acedrg               243         "dictionary generator"                  
+LYN acedrg_database      11          "data source"                           
+LYN rdkit                2017.03.2   "Chemoinformatics tool"
+LYN refmac5              5.8.0238    "optimization tool"                     

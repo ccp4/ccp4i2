@@ -1,0 +1,193 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+HMI     HMI      "2-HYDROXYCARBAMOYL-4-METHYL-PENTANOIC ACID"     NON-POLYMER     24     12     .     
+#
+data_comp_HMI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+HMI     N       N       NH1     0       25.207      60.069      53.576      
+HMI     OH      O       OH1     0       24.100      59.268      53.831      
+HMI     C1      C       C       0       26.425      59.553      53.609      
+HMI     O1      O       O       0       26.656      58.372      53.878      
+HMI     CA      C       CH1     0       27.562      60.510      53.257      
+HMI     CB      C       CH2     0       28.656      60.539      54.340      
+HMI     CG      C       CH1     0       28.407      61.413      55.586      
+HMI     CD1     C       CH3     0       28.131      62.868      55.222      
+HMI     CD2     C       CH3     0       27.291      60.859      56.463      
+HMI     C       C       C       0       28.161      60.089      51.902      
+HMI     O       O       O       0       27.950      60.822      50.919      
+HMI     OXT     O       OC      -1      28.824      59.036      51.863      
+HMI     HN      H       H       0       25.048      60.911      53.398      
+HMI     HOH     H       H       0       24.042      59.154      54.688      
+HMI     HA      H       H       0       27.198      61.409      53.155      
+HMI     HB1     H       H       0       29.491      60.854      53.927      
+HMI     HB2     H       H       0       28.820      59.621      54.648      
+HMI     HG      H       H       0       29.236      61.399      56.124      
+HMI     HD11    H       H       0       28.248      63.427      56.010      
+HMI     HD12    H       H       0       27.219      62.959      54.896      
+HMI     HD13    H       H       0       28.752      63.153      54.529      
+HMI     HD21    H       H       0       27.365      59.890      56.509      
+HMI     HD22    H       H       0       26.427      61.099      56.086      
+HMI     HD23    H       H       0       27.367      61.231      57.358      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+HMI           N          OH      SINGLE       n     1.389  0.0110     1.389  0.0110
+HMI           N          C1      SINGLE       n     1.320  0.0103     1.320  0.0103
+HMI          C1          O1      DOUBLE       n     1.232  0.0104     1.232  0.0104
+HMI          C1          CA      SINGLE       n     1.521  0.0121     1.521  0.0121
+HMI          CA          CB      SINGLE       n     1.530  0.0132     1.530  0.0132
+HMI          CA           C      SINGLE       n     1.539  0.0100     1.539  0.0100
+HMI          CB          CG      SINGLE       n     1.532  0.0142     1.532  0.0142
+HMI          CG         CD1      SINGLE       n     1.521  0.0151     1.521  0.0151
+HMI          CG         CD2      SINGLE       n     1.521  0.0151     1.521  0.0151
+HMI           C           O      DOUBLE       n     1.244  0.0200     1.244  0.0200
+HMI           C         OXT      SINGLE       n     1.244  0.0200     1.244  0.0200
+HMI           N          HN      SINGLE       n     1.016  0.0100     0.875  0.0200
+HMI          OH         HOH      SINGLE       n     0.970  0.0120     0.867  0.0200
+HMI          CA          HA      SINGLE       n     1.089  0.0100     0.979  0.0200
+HMI          CB         HB1      SINGLE       n     1.089  0.0100     0.982  0.0155
+HMI          CB         HB2      SINGLE       n     1.089  0.0100     0.982  0.0155
+HMI          CG          HG      SINGLE       n     1.089  0.0100     0.989  0.0162
+HMI         CD1        HD11      SINGLE       n     1.089  0.0100     0.973  0.0146
+HMI         CD1        HD12      SINGLE       n     1.089  0.0100     0.973  0.0146
+HMI         CD1        HD13      SINGLE       n     1.089  0.0100     0.973  0.0146
+HMI         CD2        HD21      SINGLE       n     1.089  0.0100     0.973  0.0146
+HMI         CD2        HD22      SINGLE       n     1.089  0.0100     0.973  0.0146
+HMI         CD2        HD23      SINGLE       n     1.089  0.0100     0.973  0.0146
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+HMI          OH           N          C1     120.051    1.50
+HMI          OH           N          HN     117.829    2.59
+HMI          C1           N          HN     122.120    2.48
+HMI           N          OH         HOH     108.051    2.18
+HMI           N          C1          O1     123.805    1.50
+HMI           N          C1          CA     115.028    1.50
+HMI          O1          C1          CA     121.167    1.50
+HMI          C1          CA          CB     110.376    1.58
+HMI          C1          CA           C     111.575    3.00
+HMI          C1          CA          HA     108.305    1.50
+HMI          CB          CA           C     110.294    1.95
+HMI          CB          CA          HA     108.234    1.50
+HMI           C          CA          HA     108.186    1.50
+HMI          CA          CB          CG     115.164    1.50
+HMI          CA          CB         HB1     108.882    1.50
+HMI          CA          CB         HB2     108.882    1.50
+HMI          CG          CB         HB1     108.194    1.50
+HMI          CG          CB         HB2     108.194    1.50
+HMI         HB1          CB         HB2     107.599    1.50
+HMI          CB          CG         CD1     111.049    1.51
+HMI          CB          CG         CD2     111.049    1.51
+HMI          CB          CG          HG     108.023    1.50
+HMI         CD1          CG         CD2     110.507    1.50
+HMI         CD1          CG          HG     108.052    1.50
+HMI         CD2          CG          HG     108.052    1.50
+HMI          CG         CD1        HD11     109.488    1.50
+HMI          CG         CD1        HD12     109.488    1.50
+HMI          CG         CD1        HD13     109.488    1.50
+HMI        HD11         CD1        HD12     109.411    1.50
+HMI        HD11         CD1        HD13     109.411    1.50
+HMI        HD12         CD1        HD13     109.411    1.50
+HMI          CG         CD2        HD21     109.488    1.50
+HMI          CG         CD2        HD22     109.488    1.50
+HMI          CG         CD2        HD23     109.488    1.50
+HMI        HD21         CD2        HD22     109.411    1.50
+HMI        HD21         CD2        HD23     109.411    1.50
+HMI        HD22         CD2        HD23     109.411    1.50
+HMI          CA           C           O     117.800    1.60
+HMI          CA           C         OXT     117.800    1.60
+HMI           O           C         OXT     124.400    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+HMI             sp2_sp2_3          O1          C1           N          OH       0.000     5.0     2
+HMI             sp2_sp3_3           N          C1          CA          CB       0.000    10.0     6
+HMI             sp3_sp3_1          C1          CA          CB          CG     180.000    10.0     3
+HMI             sp2_sp3_9           O           C          CA          C1       0.000    10.0     6
+HMI            sp3_sp3_11          CA          CB          CG         CD1     -60.000    10.0     3
+HMI            sp3_sp3_19        HD11         CD1          CG          CB     180.000    10.0     3
+HMI            sp3_sp3_29        HD21         CD2          CG          CB     -60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+HMI    chir_1    CA    C    C1    CB    negative
+HMI    chir_2    CG    CB    CD1    CD2    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+HMI    plan-1          C1   0.020
+HMI    plan-1          HN   0.020
+HMI    plan-1           N   0.020
+HMI    plan-1          OH   0.020
+HMI    plan-2          C1   0.020
+HMI    plan-2          CA   0.020
+HMI    plan-2           N   0.020
+HMI    plan-2          O1   0.020
+HMI    plan-3           C   0.020
+HMI    plan-3          CA   0.020
+HMI    plan-3           O   0.020
+HMI    plan-3         OXT   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+HMI           SMILES              ACDLabs 10.04                                                                      O=C(NO)C(C(=O)O)CC(C)C
+HMI SMILES_CANONICAL               CACTVS 3.341                                                                 CC(C)C[C@@H](C(O)=O)C(=O)NO
+HMI           SMILES               CACTVS 3.341                                                                   CC(C)C[CH](C(O)=O)C(=O)NO
+HMI SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                  CC(C)C[C@H](C(=O)NO)C(=O)O
+HMI           SMILES "OpenEye OEToolkits" 1.5.0                                                                      CC(C)CC(C(=O)NO)C(=O)O
+HMI            InChI                InChI  1.03 InChI=1S/C7H13NO4/c1-4(2)3-5(7(10)11)6(9)8-12/h4-5,12H,3H2,1-2H3,(H,8,9)(H,10,11)/t5-/m1/s1
+HMI         InChIKey                InChI  1.03                                                                 CINIOMOBGSHXRK-RXMQYKEDSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+HMI acedrg               243         "dictionary generator"                  
+HMI acedrg_database      11          "data source"                           
+HMI rdkit                2017.03.2   "Chemoinformatics tool"
+HMI refmac5              5.8.0238    "optimization tool"                     

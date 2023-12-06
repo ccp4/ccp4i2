@@ -1,0 +1,361 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+ICX     ICX      "methyl N-[(5Z)-6-({[4-(4-iodobenzyl)phenyl]carbonyl}amino)hex-5-enoyl]glycinate"     NON-POLYMER     55     30     .     
+#
+data_comp_ICX
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+ICX     C5      C       CR16    0       11.331      129.850     81.595      
+ICX     C4      C       CR16    0       10.011      129.421     81.662      
+ICX     C3      C       CR6     0       9.364       129.265     82.891      
+ICX     C7      C       CH2     0       7.923       128.804     82.959      
+ICX     C8      C       CR6     0       6.941       129.956     82.989      
+ICX     C9      C       CR16    0       6.475       130.534     81.809      
+ICX     C10     C       CR16    0       5.578       131.592     81.834      
+ICX     C11     C       CR6     0       5.132       132.112     83.043      
+ICX     C12     C       CR16    0       5.590       131.542     84.224      
+ICX     C13     C       CR16    0       6.485       130.482     84.196      
+ICX     C23     C       C       0       4.163       133.249     83.090      
+ICX     O24     O       O       0       3.143       133.172     83.774      
+ICX     N25     N       NH1     0       4.475       134.365     82.338      
+ICX     C26     C       C1      0       3.726       135.531     82.219      
+ICX     C27     C       C1      0       4.040       136.578     81.471      
+ICX     C28     C       CH2     0       5.238       136.728     80.583      
+ICX     C29     C       CH2     0       6.534       136.933     81.364      
+ICX     C30     C       CH2     0       7.772       136.828     80.487      
+ICX     C31     C       C       0       8.094       135.404     80.084      
+ICX     O32     O       O       0       7.923       135.016     78.929      
+ICX     N33     N       NH1     0       8.569       134.604     81.042      
+ICX     C34     C       CH2     0       8.835       133.196     80.841      
+ICX     C35     C       C       0       10.103      132.964     80.066      
+ICX     O36     O       O       0       10.152      132.467     78.977      
+ICX     O37     O       O2      0       11.159      133.379     80.768      
+ICX     C38     C       CH3     0       12.413      133.542     80.057      
+ICX     C2      C       CR16    0       10.079      129.561     84.054      
+ICX     C1      C       CR16    0       11.399      129.990     83.997      
+ICX     C6      C       CR6     0       12.016      130.132     82.765      
+ICX     I1      I       I       0       14.008      130.779     82.671      
+ICX     H5      H       H       0       11.755      129.948     80.762      
+ICX     H4      H       H       0       9.543       129.229     80.867      
+ICX     H7      H       H       0       7.800       128.257     83.767      
+ICX     H7A     H       H       0       7.731       128.239     82.178      
+ICX     H9      H       H       0       6.773       130.195     80.981      
+ICX     H10     H       H       0       5.278       131.965     81.024      
+ICX     H12     H       H       0       5.294       131.879     85.052      
+ICX     H13     H       H       0       6.789       130.109     85.006      
+ICX     HN25    H       H       0       5.241       134.334     81.889      
+ICX     H26     H       H       0       2.930       135.575     82.712      
+ICX     H27     H       H       0       3.435       137.319     81.499      
+ICX     H28     H       H       0       5.106       137.498     79.986      
+ICX     H28A    H       H       0       5.325       135.926     80.023      
+ICX     H29     H       H       0       6.589       136.263     82.076      
+ICX     H29A    H       H       0       6.516       137.818     81.785      
+ICX     H30     H       H       0       8.538       137.203     80.972      
+ICX     H30A    H       H       0       7.635       137.365     79.678      
+ICX     HN33    H       H       0       8.725       134.959     81.825      
+ICX     H34     H       H       0       8.085       132.790     80.363      
+ICX     H34A    H       H       0       8.908       132.759     81.712      
+ICX     H38     H       H       0       12.281      134.127     79.294      
+ICX     H38A    H       H       0       12.725      132.675     79.752      
+ICX     H38B    H       H       0       13.071      133.931     80.654      
+ICX     H2      H       H       0       9.657       129.464     84.892      
+ICX     H1      H       H       0       11.869      130.183     84.787      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+ICX          C5          C4      DOUBLE       y     1.386  0.0102     1.386  0.0102
+ICX          C5          C6      SINGLE       y     1.382  0.0100     1.382  0.0100
+ICX          C4          C3      SINGLE       y     1.393  0.0100     1.393  0.0100
+ICX          C3          C7      SINGLE       n     1.515  0.0100     1.515  0.0100
+ICX          C3          C2      DOUBLE       y     1.393  0.0100     1.393  0.0100
+ICX          C7          C8      SINGLE       n     1.515  0.0100     1.515  0.0100
+ICX          C8          C9      DOUBLE       y     1.390  0.0100     1.390  0.0100
+ICX          C8         C13      SINGLE       y     1.390  0.0100     1.390  0.0100
+ICX          C9         C10      SINGLE       y     1.384  0.0100     1.384  0.0100
+ICX         C10         C11      DOUBLE       y     1.386  0.0100     1.386  0.0100
+ICX         C11         C23      SINGLE       n     1.492  0.0100     1.492  0.0100
+ICX         C11         C12      SINGLE       y     1.386  0.0100     1.386  0.0100
+ICX         C12         C13      DOUBLE       y     1.384  0.0100     1.384  0.0100
+ICX         C23         N25      SINGLE       n     1.377  0.0104     1.377  0.0104
+ICX         C23         O24      DOUBLE       n     1.230  0.0110     1.230  0.0110
+ICX         N25         C26      SINGLE       n     1.385  0.0144     1.385  0.0144
+ICX         C26         C27      DOUBLE       n     1.322  0.0100     1.322  0.0100
+ICX         C27         C28      SINGLE       n     1.497  0.0154     1.497  0.0154
+ICX         C28         C29      SINGLE       n     1.523  0.0175     1.523  0.0175
+ICX         C29         C30      SINGLE       n     1.518  0.0149     1.518  0.0149
+ICX         C30         C31      SINGLE       n     1.514  0.0100     1.514  0.0100
+ICX         C31         N33      SINGLE       n     1.330  0.0100     1.330  0.0100
+ICX         C31         O32      DOUBLE       n     1.229  0.0102     1.229  0.0102
+ICX         N33         C34      SINGLE       n     1.445  0.0100     1.445  0.0100
+ICX         C34         C35      SINGLE       n     1.503  0.0100     1.503  0.0100
+ICX         C35         O36      DOUBLE       n     1.197  0.0100     1.197  0.0100
+ICX         C35         O37      SINGLE       n     1.331  0.0100     1.331  0.0100
+ICX         O37         C38      SINGLE       n     1.447  0.0130     1.447  0.0130
+ICX          C2          C1      SINGLE       y     1.386  0.0102     1.386  0.0102
+ICX          C1          C6      DOUBLE       y     1.382  0.0100     1.382  0.0100
+ICX          C6          I1      SINGLE       n     2.097  0.0157     2.097  0.0157
+ICX          C5          H5      SINGLE       n     1.082  0.0130     0.940  0.0111
+ICX          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0173
+ICX          C7          H7      SINGLE       n     1.089  0.0100     0.983  0.0146
+ICX          C7         H7A      SINGLE       n     1.089  0.0100     0.983  0.0146
+ICX          C9          H9      SINGLE       n     1.082  0.0130     0.943  0.0173
+ICX         C10         H10      SINGLE       n     1.082  0.0130     0.941  0.0168
+ICX         C12         H12      SINGLE       n     1.082  0.0130     0.941  0.0168
+ICX         C13         H13      SINGLE       n     1.082  0.0130     0.943  0.0173
+ICX         N25        HN25      SINGLE       n     1.016  0.0100     0.889  0.0200
+ICX         C26         H26      SINGLE       n     1.082  0.0130     0.937  0.0100
+ICX         C27         H27      SINGLE       n     1.082  0.0130     0.957  0.0200
+ICX         C28         H28      SINGLE       n     1.089  0.0100     0.983  0.0180
+ICX         C28        H28A      SINGLE       n     1.089  0.0100     0.983  0.0180
+ICX         C29         H29      SINGLE       n     1.089  0.0100     0.980  0.0178
+ICX         C29        H29A      SINGLE       n     1.089  0.0100     0.980  0.0178
+ICX         C30         H30      SINGLE       n     1.089  0.0100     0.981  0.0185
+ICX         C30        H30A      SINGLE       n     1.089  0.0100     0.981  0.0185
+ICX         N33        HN33      SINGLE       n     1.016  0.0100     0.873  0.0200
+ICX         C34         H34      SINGLE       n     1.089  0.0100     0.977  0.0124
+ICX         C34        H34A      SINGLE       n     1.089  0.0100     0.977  0.0124
+ICX         C38         H38      SINGLE       n     1.089  0.0100     0.970  0.0175
+ICX         C38        H38A      SINGLE       n     1.089  0.0100     0.970  0.0175
+ICX         C38        H38B      SINGLE       n     1.089  0.0100     0.970  0.0175
+ICX          C2          H2      SINGLE       n     1.082  0.0130     0.943  0.0173
+ICX          C1          H1      SINGLE       n     1.082  0.0130     0.940  0.0111
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+ICX          C4          C5          C6     119.518    1.50
+ICX          C4          C5          H5     120.232    1.50
+ICX          C6          C5          H5     120.250    1.50
+ICX          C5          C4          C3     121.031    1.50
+ICX          C5          C4          H4     119.596    1.50
+ICX          C3          C4          H4     119.373    1.50
+ICX          C4          C3          C7     121.026    1.50
+ICX          C4          C3          C2     117.949    1.50
+ICX          C7          C3          C2     121.026    1.50
+ICX          C3          C7          C8     113.580    2.36
+ICX          C3          C7          H7     108.797    1.50
+ICX          C3          C7         H7A     108.797    1.50
+ICX          C8          C7          H7     108.797    1.50
+ICX          C8          C7         H7A     108.797    1.50
+ICX          H7          C7         H7A     107.770    1.50
+ICX          C7          C8          C9     121.129    1.50
+ICX          C7          C8         C13     121.129    1.50
+ICX          C9          C8         C13     117.742    1.50
+ICX          C8          C9         C10     121.125    1.50
+ICX          C8          C9          H9     119.307    1.50
+ICX         C10          C9          H9     119.576    1.50
+ICX          C9         C10         C11     120.520    1.50
+ICX          C9         C10         H10     119.643    1.50
+ICX         C11         C10         H10     119.837    1.50
+ICX         C10         C11         C23     120.525    2.80
+ICX         C10         C11         C12     118.950    1.50
+ICX         C23         C11         C12     120.525    2.80
+ICX         C11         C12         C13     120.520    1.50
+ICX         C11         C12         H12     119.837    1.50
+ICX         C13         C12         H12     119.643    1.50
+ICX          C8         C13         C12     121.125    1.50
+ICX          C8         C13         H13     119.307    1.50
+ICX         C12         C13         H13     119.576    1.50
+ICX         C11         C23         N25     115.996    1.50
+ICX         C11         C23         O24     121.307    1.50
+ICX         N25         C23         O24     122.697    1.50
+ICX         C23         N25         C26     127.019    2.04
+ICX         C23         N25        HN25     116.116    1.74
+ICX         C26         N25        HN25     116.865    1.50
+ICX         N25         C26         C27     124.443    1.50
+ICX         N25         C26         H26     116.933    1.69
+ICX         C27         C26         H26     118.624    2.68
+ICX         C26         C27         C28     124.896    3.00
+ICX         C26         C27         H27     117.724    2.09
+ICX         C28         C27         H27     117.380    1.85
+ICX         C27         C28         C29     113.132    2.43
+ICX         C27         C28         H28     109.560    1.82
+ICX         C27         C28        H28A     109.560    1.82
+ICX         C29         C28         H28     108.819    1.50
+ICX         C29         C28        H28A     108.819    1.50
+ICX         H28         C28        H28A     107.922    1.50
+ICX         C28         C29         C30     112.061    1.52
+ICX         C28         C29         H29     108.805    1.50
+ICX         C28         C29        H29A     108.805    1.50
+ICX         C30         C29         H29     108.795    1.50
+ICX         C30         C29        H29A     108.795    1.50
+ICX         H29         C29        H29A     107.646    1.50
+ICX         C29         C30         C31     112.836    1.50
+ICX         C29         C30         H30     108.897    1.50
+ICX         C29         C30        H30A     108.897    1.50
+ICX         C31         C30         H30     108.930    1.50
+ICX         C31         C30        H30A     108.930    1.50
+ICX         H30         C30        H30A     107.846    1.50
+ICX         C30         C31         N33     116.579    1.50
+ICX         C30         C31         O32     121.774    1.50
+ICX         N33         C31         O32     121.647    1.50
+ICX         C31         N33         C34     122.154    1.54
+ICX         C31         N33        HN33     118.111    2.10
+ICX         C34         N33        HN33     119.736    1.57
+ICX         N33         C34         C35     111.454    1.50
+ICX         N33         C34         H34     109.066    1.50
+ICX         N33         C34        H34A     109.066    1.50
+ICX         C35         C34         H34     109.222    1.50
+ICX         C35         C34        H34A     109.222    1.50
+ICX         H34         C34        H34A     107.999    1.50
+ICX         C34         C35         O36     124.956    1.50
+ICX         C34         C35         O37     110.718    1.56
+ICX         O36         C35         O37     124.327    1.50
+ICX         C35         O37         C38     116.047    1.50
+ICX         O37         C38         H38     109.367    1.50
+ICX         O37         C38        H38A     109.367    1.50
+ICX         O37         C38        H38B     109.367    1.50
+ICX         H38         C38        H38A     109.532    1.53
+ICX         H38         C38        H38B     109.532    1.53
+ICX        H38A         C38        H38B     109.532    1.53
+ICX          C3          C2          C1     121.031    1.50
+ICX          C3          C2          H2     119.373    1.50
+ICX          C1          C2          H2     119.596    1.50
+ICX          C2          C1          C6     119.518    1.50
+ICX          C2          C1          H1     120.232    1.50
+ICX          C6          C1          H1     120.250    1.50
+ICX          C5          C6          C1     120.954    1.50
+ICX          C5          C6          I1     119.523    1.50
+ICX          C1          C6          I1     119.523    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+ICX              const_21          C3          C4          C5          C6       0.000    10.0     2
+ICX              const_42          C4          C5          C6          I1     180.000    10.0     2
+ICX             sp2_sp2_7         O24         C23         N25         C26       0.000     5.0     2
+ICX             sp2_sp2_9         C27         C26         N25         C23     180.000     5.0     2
+ICX            sp2_sp2_13         N25         C26         C27         C28     180.000     5.0     2
+ICX            sp2_sp3_14         C26         C27         C28         C29     120.000    10.0     6
+ICX             sp3_sp3_1         C27         C28         C29         C30     180.000    10.0     3
+ICX            sp3_sp3_10         C28         C29         C30         C31     180.000    10.0     3
+ICX            sp2_sp3_20         N33         C31         C30         C29     120.000    10.0     6
+ICX            sp2_sp2_17         C30         C31         N33         C34     180.000     5.0     2
+ICX              const_27          C7          C3          C4          C5     180.000    10.0     2
+ICX            sp2_sp3_26         C31         N33         C34         C35     120.000    10.0     6
+ICX            sp2_sp3_32         O36         C35         C34         N33     120.000    10.0     6
+ICX            sp2_sp2_21         C34         C35         O37         C38     180.000     5.0     2
+ICX            sp3_sp3_20         H38         C38         O37         C35     -60.000    10.0     3
+ICX              const_33          C6          C1          C2          C3       0.000    10.0     2
+ICX              const_38          C2          C1          C6          I1     180.000    10.0     2
+ICX              const_30          C1          C2          C3          C7     180.000    10.0     2
+ICX             sp2_sp3_2          C4          C3          C7          C8     -90.000    10.0     6
+ICX             sp2_sp3_8          C9          C8          C7          C3     -90.000    10.0     6
+ICX       const_sp2_sp2_3          C7          C8          C9         C10     180.000     5.0     2
+ICX              const_46         C12         C13          C8          C7     180.000    10.0     2
+ICX       const_sp2_sp2_5         C11         C10          C9          C8       0.000     5.0     2
+ICX              const_10          C9         C10         C11         C23     180.000    10.0     2
+ICX             sp2_sp2_1         C10         C11         C23         N25     180.000     5.0     2
+ICX              const_15         C23         C11         C12         C13     180.000    10.0     2
+ICX              const_17         C11         C12         C13          C8       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+ICX    plan-1          C1   0.020
+ICX    plan-1          C2   0.020
+ICX    plan-1          C3   0.020
+ICX    plan-1          C4   0.020
+ICX    plan-1          C5   0.020
+ICX    plan-1          C6   0.020
+ICX    plan-1          C7   0.020
+ICX    plan-1          H1   0.020
+ICX    plan-1          H2   0.020
+ICX    plan-1          H4   0.020
+ICX    plan-1          H5   0.020
+ICX    plan-1          I1   0.020
+ICX    plan-2         C10   0.020
+ICX    plan-2         C11   0.020
+ICX    plan-2         C12   0.020
+ICX    plan-2         C13   0.020
+ICX    plan-2         C23   0.020
+ICX    plan-2          C7   0.020
+ICX    plan-2          C8   0.020
+ICX    plan-2          C9   0.020
+ICX    plan-2         H10   0.020
+ICX    plan-2         H12   0.020
+ICX    plan-2         H13   0.020
+ICX    plan-2          H9   0.020
+ICX    plan-3         C11   0.020
+ICX    plan-3         C23   0.020
+ICX    plan-3         N25   0.020
+ICX    plan-3         O24   0.020
+ICX    plan-4         C23   0.020
+ICX    plan-4         C26   0.020
+ICX    plan-4        HN25   0.020
+ICX    plan-4         N25   0.020
+ICX    plan-5         C26   0.020
+ICX    plan-5         C27   0.020
+ICX    plan-5         H26   0.020
+ICX    plan-5         N25   0.020
+ICX    plan-6         C26   0.020
+ICX    plan-6         C27   0.020
+ICX    plan-6         C28   0.020
+ICX    plan-6         H27   0.020
+ICX    plan-7         C30   0.020
+ICX    plan-7         C31   0.020
+ICX    plan-7         N33   0.020
+ICX    plan-7         O32   0.020
+ICX    plan-8         C31   0.020
+ICX    plan-8         C34   0.020
+ICX    plan-8        HN33   0.020
+ICX    plan-8         N33   0.020
+ICX    plan-9         C34   0.020
+ICX    plan-9         C35   0.020
+ICX    plan-9         O36   0.020
+ICX    plan-9         O37   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+ICX           SMILES              ACDLabs 10.04                                                                                                                Ic1ccc(cc1)Cc2ccc(C(=O)N\C=C/CCCC(=O)NCC(=O)OC)cc2
+ICX SMILES_CANONICAL               CACTVS 3.341                                                                                                                COC(=O)CNC(=O)CCC\C=C/NC(=O)c1ccc(Cc2ccc(I)cc2)cc1
+ICX           SMILES               CACTVS 3.341                                                                                                                  COC(=O)CNC(=O)CCCC=CNC(=O)c1ccc(Cc2ccc(I)cc2)cc1
+ICX SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                COC(=O)CNC(=O)CCC\C=C/NC(=O)c1ccc(cc1)Cc2ccc(cc2)I
+ICX           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                  COC(=O)CNC(=O)CCCC=CNC(=O)c1ccc(cc1)Cc2ccc(cc2)I
+ICX            InChI                InChI  1.03 InChI=1S/C23H25IN2O4/c1-30-22(28)16-26-21(27)5-3-2-4-14-25-23(29)19-10-6-17(7-11-19)15-18-8-12-20(24)13-9-18/h4,6-14H,2-3,5,15-16H2,1H3,(H,25,29)(H,26,27)/b14-4-
+ICX         InChIKey                InChI  1.03                                                                                                                                       GJXNVOLPXGNHOU-CPSFFCFKSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+ICX acedrg               243         "dictionary generator"                  
+ICX acedrg_database      11          "data source"                           
+ICX rdkit                2017.03.2   "Chemoinformatics tool"
+ICX refmac5              5.8.0238    "optimization tool"                     

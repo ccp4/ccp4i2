@@ -1,0 +1,363 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+YIN     YIN      (6R,7S)-6,7-bis(4-bromophenyl)-7,11-dihydro-6H-chromeno[4,3-d][1,2,4]triazolo[1,5-a]pyrimidine     NON-POLYMER     47     31     .     
+#
+data_comp_YIN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+YIN     C1      C       CR6     0       9.941       -15.594     25.782      
+YIN     N1      N       NT      0       10.811      -16.961     23.916      
+YIN     O1      O       O2      0       6.565       -14.998     22.644      
+YIN     BR1     BR      BR      0       10.995      -12.970     29.506      
+YIN     C2      C       CR16    0       9.504       -15.956     27.053      
+YIN     N2      N       NR5     0       12.665      -16.541     22.875      
+YIN     BR2     BR      BR      0       6.670       -10.827     27.998      
+YIN     C3      C       CR16    0       9.816       -15.179     28.163      
+YIN     N3      N       NRD6    0       10.664      -15.566     21.987      
+YIN     C4      C       CR6     0       10.565      -14.034     27.994      
+YIN     N4      N       NRD5    0       11.845      -17.418     24.717      
+YIN     C5      C       CR16    0       11.008      -13.648     26.747      
+YIN     C6      C       CR16    0       10.691      -14.431     25.642      
+YIN     C7      C       CH1     0       7.326       -15.371     23.842      
+YIN     C8      C       CR15    0       12.931      -17.170     24.048      
+YIN     C9      C       CR66    0       8.789       -15.662     23.535      
+YIN     C10     C       CH1     0       9.589       -16.446     24.564      
+YIN     C11     C       CR56    0       11.347      -16.312     22.843      
+YIN     C12     C       CR66    0       9.389       -15.254     22.314      
+YIN     C13     C       CR16    0       9.110       -13.839     20.230      
+YIN     C14     C       CR16    0       8.298       -13.136     19.365      
+YIN     C15     C       CR16    0       6.931       -13.064     19.603      
+YIN     C16     C       CR16    0       6.374       -13.691     20.701      
+YIN     C17     C       CR66    0       7.182       -14.398     21.574      
+YIN     C18     C       CR66    0       8.569       -14.490     21.356      
+YIN     C19     C       CR16    0       6.498       -14.476     26.060      
+YIN     C20     C       CR6     0       7.159       -14.254     24.855      
+YIN     C21     C       CR16    0       7.679       -12.986     24.618      
+YIN     C22     C       CR16    0       7.537       -11.966     25.543      
+YIN     C23     C       CR6     0       6.871       -12.219     26.723      
+YIN     C24     C       CR16    0       6.348       -13.465     26.994      
+YIN     H2      H       H       0       8.992       -16.738     27.166      
+YIN     HN2     H       H       0       13.238      -16.333     22.273      
+YIN     H3      H       H       0       9.520       -15.432     29.020      
+YIN     H5      H       H       0       11.519      -12.864     26.645      
+YIN     H6      H       H       0       10.991      -14.170     24.789      
+YIN     H7      H       H       0       6.919       -16.188     24.223      
+YIN     H8      H       H       0       13.798      -17.400     24.344      
+YIN     H10     H       H       0       9.045       -17.208     24.873      
+YIN     H13     H       H       0       10.037      -13.883     20.061      
+YIN     H14     H       H       0       8.669       -12.705     18.613      
+YIN     H15     H       H       0       6.377       -12.582     19.011      
+YIN     H16     H       H       0       5.443       -13.638     20.858      
+YIN     H19     H       H       0       6.145       -15.316     26.243      
+YIN     H21     H       H       0       8.129       -12.816     23.822      
+YIN     H22     H       H       0       7.890       -11.111     25.368      
+YIN     H24     H       H       0       5.895       -13.627     27.803      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+YIN          C1          C2      DOUBLE       y     1.387  0.0100     1.387  0.0100
+YIN          C1          C6      SINGLE       y     1.387  0.0100     1.387  0.0100
+YIN          C1         C10      SINGLE       n     1.524  0.0100     1.524  0.0100
+YIN          N1          N4      SINGLE       n     1.390  0.0161     1.390  0.0161
+YIN          N1         C10      SINGLE       n     1.473  0.0100     1.473  0.0100
+YIN          N1         C11      SINGLE       n     1.375  0.0200     1.375  0.0200
+YIN          O1          C7      SINGLE       n     1.447  0.0200     1.447  0.0200
+YIN          O1         C17      SINGLE       n     1.369  0.0102     1.369  0.0102
+YIN         BR1          C4      SINGLE       n     1.899  0.0100     1.899  0.0100
+YIN          C2          C3      SINGLE       y     1.387  0.0100     1.387  0.0100
+YIN          N2          C8      SINGLE       n     1.351  0.0123     1.351  0.0123
+YIN          N2         C11      SINGLE       n     1.336  0.0190     1.336  0.0190
+YIN         BR2         C23      SINGLE       n     1.899  0.0100     1.899  0.0100
+YIN          C3          C4      DOUBLE       y     1.374  0.0117     1.374  0.0117
+YIN          N3         C11      DOUBLE       n     1.315  0.0200     1.315  0.0200
+YIN          N3         C12      SINGLE       n     1.328  0.0200     1.328  0.0200
+YIN          C4          C5      SINGLE       y     1.374  0.0117     1.374  0.0117
+YIN          N4          C8      DOUBLE       n     1.297  0.0100     1.297  0.0100
+YIN          C5          C6      DOUBLE       y     1.387  0.0100     1.387  0.0100
+YIN          C7          C9      SINGLE       n     1.508  0.0177     1.508  0.0177
+YIN          C7         C20      SINGLE       n     1.514  0.0100     1.514  0.0100
+YIN          C9         C10      SINGLE       n     1.516  0.0100     1.516  0.0100
+YIN          C9         C12      DOUBLE       n     1.397  0.0200     1.397  0.0200
+YIN         C12         C18      SINGLE       n     1.463  0.0175     1.463  0.0175
+YIN         C13         C14      SINGLE       y     1.375  0.0126     1.375  0.0126
+YIN         C13         C18      DOUBLE       y     1.402  0.0116     1.402  0.0116
+YIN         C14         C15      DOUBLE       y     1.386  0.0104     1.386  0.0104
+YIN         C15         C16      SINGLE       y     1.378  0.0100     1.378  0.0100
+YIN         C16         C17      DOUBLE       y     1.380  0.0100     1.380  0.0100
+YIN         C17         C18      SINGLE       y     1.397  0.0128     1.397  0.0128
+YIN         C19         C20      DOUBLE       y     1.387  0.0100     1.387  0.0100
+YIN         C19         C24      SINGLE       y     1.380  0.0100     1.380  0.0100
+YIN         C20         C21      SINGLE       y     1.387  0.0100     1.387  0.0100
+YIN         C21         C22      DOUBLE       y     1.380  0.0100     1.380  0.0100
+YIN         C22         C23      SINGLE       y     1.374  0.0117     1.374  0.0117
+YIN         C23         C24      DOUBLE       y     1.374  0.0117     1.374  0.0117
+YIN          C2          H2      SINGLE       n     1.082  0.0130     0.942  0.0100
+YIN          N2         HN2      SINGLE       n     1.016  0.0100     0.857  0.0200
+YIN          C3          H3      SINGLE       n     1.082  0.0130     0.941  0.0144
+YIN          C5          H5      SINGLE       n     1.082  0.0130     0.941  0.0144
+YIN          C6          H6      SINGLE       n     1.082  0.0130     0.942  0.0100
+YIN          C7          H7      SINGLE       n     1.089  0.0100     0.989  0.0164
+YIN          C8          H8      SINGLE       n     1.082  0.0130     0.945  0.0200
+YIN         C10         H10      SINGLE       n     1.089  0.0100     0.986  0.0143
+YIN         C13         H13      SINGLE       n     1.082  0.0130     0.944  0.0178
+YIN         C14         H14      SINGLE       n     1.082  0.0130     0.943  0.0198
+YIN         C15         H15      SINGLE       n     1.082  0.0130     0.944  0.0200
+YIN         C16         H16      SINGLE       n     1.082  0.0130     0.946  0.0155
+YIN         C19         H19      SINGLE       n     1.082  0.0130     0.930  0.0100
+YIN         C21         H21      SINGLE       n     1.082  0.0130     0.930  0.0100
+YIN         C22         H22      SINGLE       n     1.082  0.0130     0.941  0.0144
+YIN         C24         H24      SINGLE       n     1.082  0.0130     0.941  0.0144
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+YIN          C2          C1          C6     118.720    1.50
+YIN          C2          C1         C10     120.640    1.50
+YIN          C6          C1         C10     120.640    1.50
+YIN          N4          N1         C10     114.288    1.99
+YIN          N4          N1         C11     111.935    1.68
+YIN         C10          N1         C11     121.140    1.50
+YIN          C7          O1         C17     116.058    2.40
+YIN          C1          C2          C3     120.786    1.50
+YIN          C1          C2          H2     119.686    1.50
+YIN          C3          C2          H2     119.528    1.50
+YIN          C8          N2         C11     109.171    2.61
+YIN          C8          N2         HN2     124.776    3.00
+YIN         C11          N2         HN2     126.053    2.54
+YIN          C2          C3          C4     119.130    1.50
+YIN          C2          C3          H3     120.445    1.50
+YIN          C4          C3          H3     120.425    1.50
+YIN         C11          N3         C12     117.376    1.94
+YIN         BR1          C4          C3     119.276    1.50
+YIN         BR1          C4          C5     119.276    1.50
+YIN          C3          C4          C5     121.449    1.50
+YIN          N1          N4          C8     107.733    1.50
+YIN          C4          C5          C6     119.130    1.50
+YIN          C4          C5          H5     120.425    1.50
+YIN          C6          C5          H5     120.445    1.50
+YIN          C1          C6          C5     120.786    1.50
+YIN          C1          C6          H6     119.686    1.50
+YIN          C5          C6          H6     119.528    1.50
+YIN          O1          C7          C9     111.147    1.69
+YIN          O1          C7         C20     107.436    1.75
+YIN          O1          C7          H7     108.665    1.50
+YIN          C9          C7         C20     111.713    1.67
+YIN          C9          C7          H7     108.985    1.50
+YIN         C20          C7          H7     107.925    1.69
+YIN          N2          C8          N4     112.227    1.50
+YIN          N2          C8          H8     124.140    1.50
+YIN          N4          C8          H8     123.632    2.01
+YIN          C7          C9         C10     116.188    2.30
+YIN          C7          C9         C12     121.906    2.42
+YIN         C10          C9         C12     121.906    2.42
+YIN          C1         C10          N1     109.420    1.89
+YIN          C1         C10          C9     111.713    1.67
+YIN          C1         C10         H10     107.947    1.50
+YIN          N1         C10          C9     112.066    2.67
+YIN          N1         C10         H10     109.262    1.50
+YIN          C9         C10         H10     108.985    1.50
+YIN          N1         C11          N2     108.623    1.50
+YIN          N1         C11          N3     125.758    1.50
+YIN          N2         C11          N3     125.619    2.24
+YIN          N3         C12          C9     122.798    1.92
+YIN          N3         C12         C18     117.479    1.73
+YIN          C9         C12         C18     119.723    2.61
+YIN         C14         C13         C18     120.895    1.50
+YIN         C14         C13         H13     119.594    1.50
+YIN         C18         C13         H13     119.511    1.50
+YIN         C13         C14         C15     120.073    1.50
+YIN         C13         C14         H14     119.969    1.50
+YIN         C15         C14         H14     119.958    1.50
+YIN         C14         C15         C16     120.580    1.50
+YIN         C14         C15         H15     119.789    1.50
+YIN         C16         C15         H15     119.631    1.50
+YIN         C15         C16         C17     119.454    1.50
+YIN         C15         C16         H16     120.416    1.50
+YIN         C17         C16         H16     120.130    1.50
+YIN          O1         C17         C16     117.178    1.50
+YIN          O1         C17         C18     122.289    1.50
+YIN         C16         C17         C18     120.533    1.50
+YIN         C12         C18         C13     121.863    1.50
+YIN         C12         C18         C17     119.672    1.50
+YIN         C13         C18         C17     118.465    1.50
+YIN         C20         C19         C24     121.133    1.50
+YIN         C20         C19         H19     119.558    1.50
+YIN         C24         C19         H19     119.309    1.50
+YIN          C7         C20         C19     120.861    1.77
+YIN          C7         C20         C21     120.861    1.77
+YIN         C19         C20         C21     118.278    1.50
+YIN         C20         C21         C22     121.133    1.50
+YIN         C20         C21         H21     119.558    1.50
+YIN         C22         C21         H21     119.309    1.50
+YIN         C21         C22         C23     119.045    1.50
+YIN         C21         C22         H22     120.487    1.50
+YIN         C23         C22         H22     120.467    1.50
+YIN         BR2         C23         C22     119.318    1.50
+YIN         BR2         C23         C24     119.318    1.50
+YIN         C22         C23         C24     121.365    1.50
+YIN         C19         C24         C23     119.045    1.50
+YIN         C19         C24         H24     120.487    1.50
+YIN         C23         C24         H24     120.467    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+YIN              const_61          C2          C1          C6          C5       0.000    10.0     2
+YIN            sp2_sp3_19          C2          C1         C10          N1     150.000    10.0     6
+YIN              const_41          C6          C1          C2          C3       0.000    10.0     2
+YIN            sp2_sp2_11          N2          C8          N4          N1       0.000     5.0     2
+YIN              const_57          C4          C5          C6          C1       0.000    10.0     2
+YIN            sp2_sp3_16         C10          C9          C7          O1     180.000    10.0     6
+YIN            sp2_sp3_25         C19         C20          C7          O1     150.000    10.0     6
+YIN            sp2_sp3_11          C7          C9         C10          C1     -60.000    10.0     6
+YIN             sp2_sp2_2          N3         C12          C9          C7     180.000     5.0     2
+YIN            sp2_sp2_24          N3         C12         C18         C13       0.000     5.0     2
+YIN       const_sp2_sp2_5         C18         C13         C14         C15       0.000     5.0     2
+YIN              const_66         C14         C13         C18         C12     180.000    10.0     2
+YIN            sp2_sp2_10         C10          N1          N4          C8     180.000     5.0     2
+YIN             sp2_sp3_5          N4          N1         C10          C1     -60.000    10.0     6
+YIN            sp2_sp2_25          N2         C11          N1          N4       0.000     5.0     2
+YIN       const_sp2_sp2_9         C13         C14         C15         C16       0.000     5.0     2
+YIN              const_13         C14         C15         C16         C17       0.000    10.0     2
+YIN              const_18         C15         C16         C17          O1     180.000    10.0     2
+YIN       const_sp2_sp2_1          O1         C17         C18         C12       0.000     5.0     2
+YIN              const_22         C24         C19         C20          C7     180.000    10.0     2
+YIN              const_69         C20         C19         C24         C23       0.000    10.0     2
+YIN              const_27          C7         C20         C21         C22     180.000    10.0     2
+YIN              const_29         C20         C21         C22         C23       0.000    10.0     2
+YIN              const_34         C21         C22         C23         BR2     180.000    10.0     2
+YIN              const_39         BR2         C23         C24         C19     180.000    10.0     2
+YIN             sp3_sp3_1          C9          C7          O1         C17      60.000    10.0     3
+YIN            sp2_sp2_30         C16         C17          O1          C7     180.000     5.0     2
+YIN              const_45          C1          C2          C3          C4       0.000    10.0     2
+YIN            sp2_sp2_13          N4          C8          N2         C11       0.000     5.0     2
+YIN            sp2_sp2_17          N1         C11          N2          C8       0.000     5.0     2
+YIN              const_50          C2          C3          C4         BR1     180.000    10.0     2
+YIN             sp2_sp2_7          N1         C11          N3         C12       0.000     5.0     2
+YIN             sp2_sp2_5          C9         C12          N3         C11       0.000     5.0     2
+YIN              const_55         BR1          C4          C5          C6     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+YIN    chir_1    C7    O1    C9    C20    negative
+YIN    chir_2    C10    N1    C9    C1    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+YIN    plan-1         BR1   0.020
+YIN    plan-1          C1   0.020
+YIN    plan-1         C10   0.020
+YIN    plan-1          C2   0.020
+YIN    plan-1          C3   0.020
+YIN    plan-1          C4   0.020
+YIN    plan-1          C5   0.020
+YIN    plan-1          C6   0.020
+YIN    plan-1          H2   0.020
+YIN    plan-1          H3   0.020
+YIN    plan-1          H5   0.020
+YIN    plan-1          H6   0.020
+YIN    plan-2         C12   0.020
+YIN    plan-2         C13   0.020
+YIN    plan-2         C14   0.020
+YIN    plan-2         C15   0.020
+YIN    plan-2         C16   0.020
+YIN    plan-2         C17   0.020
+YIN    plan-2         C18   0.020
+YIN    plan-2         H13   0.020
+YIN    plan-2         H14   0.020
+YIN    plan-2         H15   0.020
+YIN    plan-2         H16   0.020
+YIN    plan-2          O1   0.020
+YIN    plan-3         BR2   0.020
+YIN    plan-3         C19   0.020
+YIN    plan-3         C20   0.020
+YIN    plan-3         C21   0.020
+YIN    plan-3         C22   0.020
+YIN    plan-3         C23   0.020
+YIN    plan-3         C24   0.020
+YIN    plan-3          C7   0.020
+YIN    plan-3         H19   0.020
+YIN    plan-3         H21   0.020
+YIN    plan-3         H22   0.020
+YIN    plan-3         H24   0.020
+YIN    plan-4         C11   0.020
+YIN    plan-4          C8   0.020
+YIN    plan-4         HN2   0.020
+YIN    plan-4          N2   0.020
+YIN    plan-5          C8   0.020
+YIN    plan-5          H8   0.020
+YIN    plan-5          N2   0.020
+YIN    plan-5          N4   0.020
+YIN    plan-6         C10   0.020
+YIN    plan-6         C12   0.020
+YIN    plan-6          C7   0.020
+YIN    plan-6          C9   0.020
+YIN    plan-7         C11   0.020
+YIN    plan-7          N1   0.020
+YIN    plan-7          N2   0.020
+YIN    plan-7          N3   0.020
+YIN    plan-8         C12   0.020
+YIN    plan-8         C18   0.020
+YIN    plan-8          C9   0.020
+YIN    plan-8          N3   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+YIN           SMILES              ACDLabs 11.02                                                                                                                Brc1ccc(cc1)C2N6N=CNC6=NC4=C2C(Oc3ccccc34)c5ccc(Br)cc5
+YIN SMILES_CANONICAL               CACTVS 3.352                                                                                                       Brc1ccc(cc1)[C@H]2Oc3ccccc3C4=C2[C@@H](N5N=CNC5=N4)c6ccc(Br)cc6
+YIN           SMILES               CACTVS 3.352                                                                                                          Brc1ccc(cc1)[CH]2Oc3ccccc3C4=C2[CH](N5N=CNC5=N4)c6ccc(Br)cc6
+YIN SMILES_CANONICAL "OpenEye OEToolkits" 1.7.0                                                                                               c1ccc2c(c1)C3=C([C@@H](N4C(=N3)NC=N4)c5ccc(cc5)Br)[C@H](O2)c6ccc(cc6)Br
+YIN           SMILES "OpenEye OEToolkits" 1.7.0                                                                                                        c1ccc2c(c1)C3=C(C(N4C(=N3)NC=N4)c5ccc(cc5)Br)C(O2)c6ccc(cc6)Br
+YIN            InChI                InChI  1.03 InChI=1S/C24H16Br2N4O/c25-16-9-5-14(6-10-16)22-20-21(29-24-27-13-28-30(22)24)18-3-1-2-4-19(18)31-23(20)15-7-11-17(26)12-8-15/h1-13,22-23H,(H,27,28,29)/t22-,23+/m0/s1
+YIN         InChIKey                InChI  1.03                                                                                                                                           HNNGTASVWGJHBY-XZOQPEGZSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+YIN acedrg               243         "dictionary generator"                  
+YIN acedrg_database      11          "data source"                           
+YIN rdkit                2017.03.2   "Chemoinformatics tool"
+YIN refmac5              5.8.0238    "optimization tool"                     

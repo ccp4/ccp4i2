@@ -1,0 +1,213 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+JLV     JLV      "N-cyclohexyl-N'-methylthiourea"     NON-POLYMER     27     11     .     
+#
+data_comp_JLV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+JLV     C10     C       CH2     0       22.642      -24.430     -25.766     
+JLV     C01     C       CH3     0       22.021      -17.400     -25.229     
+JLV     N02     N       NH1     0       21.508      -18.714     -24.878     
+JLV     C03     C       C       0       22.179      -19.864     -24.998     
+JLV     S04     S       S1      0       23.790      -19.883     -25.547     
+JLV     N05     N       NH1     0       21.457      -20.965     -24.643     
+JLV     C06     C       CH1     0       21.879      -22.372     -24.551     
+JLV     C07     C       CH2     0       22.963      -22.578     -23.504     
+JLV     C08     C       CH2     0       23.307      -24.061     -23.374     
+JLV     C09     C       CH2     0       23.712      -24.656     -24.712     
+JLV     C11     C       CH2     0       22.292      -22.948     -25.899     
+JLV     H102    H       H       0       22.961      -24.767     -26.631     
+JLV     H101    H       H       0       21.835      -24.933     -25.523     
+JLV     H012    H       H       0       22.857      -17.235     -24.763     
+JLV     H013    H       H       0       21.375      -16.722     -24.970     
+JLV     H011    H       H       0       22.168      -17.353     -26.188     
+JLV     H021    H       H       0       20.699      -18.740     -24.557     
+JLV     H051    H       H       0       20.624      -20.843     -24.447     
+JLV     H061    H       H       0       21.090      -22.887     -24.251     
+JLV     H072    H       H       0       22.650      -22.236     -22.639     
+JLV     H071    H       H       0       23.769      -22.081     -23.754     
+JLV     H082    H       H       0       22.527      -24.546     -23.026     
+JLV     H081    H       H       0       24.042      -24.170     -22.733     
+JLV     H092    H       H       0       23.867      -25.619     -24.607     
+JLV     H091    H       H       0       24.552      -24.245     -25.009     
+JLV     H112    H       H       0       21.555      -22.841     -26.538     
+JLV     H111    H       H       0       23.069      -22.465     -26.246     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+JLV         C10         C11      SINGLE       n     1.527  0.0100     1.527  0.0100
+JLV         C06         C11      SINGLE       n     1.518  0.0108     1.518  0.0108
+JLV         C10         C09      SINGLE       n     1.515  0.0126     1.515  0.0126
+JLV         C01         N02      SINGLE       n     1.452  0.0100     1.452  0.0100
+JLV         C03         S04      DOUBLE       n     1.694  0.0149     1.694  0.0149
+JLV         N02         C03      SINGLE       n     1.328  0.0100     1.328  0.0100
+JLV         C03         N05      SINGLE       n     1.327  0.0175     1.327  0.0175
+JLV         N05         C06      SINGLE       n     1.465  0.0100     1.465  0.0100
+JLV         C08         C09      SINGLE       n     1.516  0.0136     1.516  0.0136
+JLV         C06         C07      SINGLE       n     1.518  0.0108     1.518  0.0108
+JLV         C07         C08      SINGLE       n     1.527  0.0100     1.527  0.0100
+JLV         C10        H102      SINGLE       n     1.089  0.0100     0.982  0.0131
+JLV         C10        H101      SINGLE       n     1.089  0.0100     0.982  0.0131
+JLV         C01        H012      SINGLE       n     1.089  0.0100     0.971  0.0198
+JLV         C01        H013      SINGLE       n     1.089  0.0100     0.971  0.0198
+JLV         C01        H011      SINGLE       n     1.089  0.0100     0.971  0.0198
+JLV         N02        H021      SINGLE       n     1.016  0.0100     0.870  0.0200
+JLV         N05        H051      SINGLE       n     1.016  0.0100     0.864  0.0163
+JLV         C06        H061      SINGLE       n     1.089  0.0100     0.989  0.0155
+JLV         C07        H072      SINGLE       n     1.089  0.0100     0.981  0.0121
+JLV         C07        H071      SINGLE       n     1.089  0.0100     0.981  0.0121
+JLV         C08        H082      SINGLE       n     1.089  0.0100     0.982  0.0131
+JLV         C08        H081      SINGLE       n     1.089  0.0100     0.982  0.0131
+JLV         C09        H092      SINGLE       n     1.089  0.0100     0.981  0.0138
+JLV         C09        H091      SINGLE       n     1.089  0.0100     0.981  0.0138
+JLV         C11        H112      SINGLE       n     1.089  0.0100     0.981  0.0121
+JLV         C11        H111      SINGLE       n     1.089  0.0100     0.981  0.0121
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+JLV         C11         C10         C09     111.328    1.50
+JLV         C11         C10        H102     109.340    1.50
+JLV         C11         C10        H101     109.340    1.50
+JLV         C09         C10        H102     109.386    1.50
+JLV         C09         C10        H101     109.386    1.50
+JLV        H102         C10        H101     108.036    1.50
+JLV         N02         C01        H012     109.516    1.50
+JLV         N02         C01        H013     109.516    1.50
+JLV         N02         C01        H011     109.516    1.50
+JLV        H012         C01        H013     109.279    1.79
+JLV        H012         C01        H011     109.279    1.79
+JLV        H013         C01        H011     109.279    1.79
+JLV         C01         N02         C03     124.162    1.50
+JLV         C01         N02        H021     118.281    2.18
+JLV         C03         N02        H021     117.557    1.76
+JLV         S04         C03         N02     122.056    1.52
+JLV         S04         C03         N05     123.870    1.50
+JLV         N02         C03         N05     114.074    1.50
+JLV         C03         N05         C06     125.188    1.50
+JLV         C03         N05        H051     117.076    1.50
+JLV         C06         N05        H051     117.736    2.52
+JLV         C11         C06         N05     110.381    1.50
+JLV         C11         C06         C07     110.870    1.50
+JLV         C11         C06        H061     108.306    1.50
+JLV         N05         C06         C07     110.381    1.50
+JLV         N05         C06        H061     108.286    1.50
+JLV         C07         C06        H061     108.306    1.50
+JLV         C06         C07         C08     110.796    1.50
+JLV         C06         C07        H072     109.338    1.50
+JLV         C06         C07        H071     109.338    1.50
+JLV         C08         C07        H072     109.472    1.50
+JLV         C08         C07        H071     109.472    1.50
+JLV        H072         C07        H071     108.076    1.50
+JLV         C09         C08         C07     111.328    1.50
+JLV         C09         C08        H082     109.386    1.50
+JLV         C09         C08        H081     109.386    1.50
+JLV         C07         C08        H082     109.340    1.50
+JLV         C07         C08        H081     109.340    1.50
+JLV        H082         C08        H081     108.036    1.50
+JLV         C10         C09         C08     111.038    1.50
+JLV         C10         C09        H092     109.386    1.50
+JLV         C10         C09        H091     109.386    1.50
+JLV         C08         C09        H092     109.386    1.50
+JLV         C08         C09        H091     109.386    1.50
+JLV        H092         C09        H091     108.036    1.50
+JLV         C10         C11         C06     110.796    1.50
+JLV         C10         C11        H112     109.472    1.50
+JLV         C10         C11        H111     109.472    1.50
+JLV         C06         C11        H112     109.338    1.50
+JLV         C06         C11        H111     109.338    1.50
+JLV        H112         C11        H111     108.076    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+JLV             sp3_sp3_1         C09         C10         C11         C06      60.000    10.0     3
+JLV            sp3_sp3_46         C08         C09         C10         C11     180.000    10.0     3
+JLV             sp2_sp3_1         C03         N02         C01        H012       0.000    10.0     6
+JLV             sp2_sp2_3         S04         C03         N02         C01       0.000     5.0     2
+JLV             sp2_sp2_7         S04         C03         N05         C06       0.000     5.0     2
+JLV             sp2_sp3_8         C03         N05         C06         C11     120.000    10.0     6
+JLV            sp3_sp3_16         N05         C06         C11         C10      60.000    10.0     3
+JLV            sp3_sp3_22         N05         C06         C07         C08     -60.000    10.0     3
+JLV            sp3_sp3_28         C06         C07         C08         C09     -60.000    10.0     3
+JLV            sp3_sp3_37         C07         C08         C09         C10      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+JLV    chir_1    C06    N05    C11    C07    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+JLV    plan-1         C01   0.020
+JLV    plan-1         C03   0.020
+JLV    plan-1        H021   0.020
+JLV    plan-1         N02   0.020
+JLV    plan-2         C03   0.020
+JLV    plan-2         N02   0.020
+JLV    plan-2         N05   0.020
+JLV    plan-2         S04   0.020
+JLV    plan-3         C03   0.020
+JLV    plan-3         C06   0.020
+JLV    plan-3        H051   0.020
+JLV    plan-3         N05   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+JLV           SMILES              ACDLabs 12.01                                                      C1CCCC(NC(NC)=S)C1
+JLV            InChI                InChI  1.03 InChI=1S/C8H16N2S/c1-9-8(11)10-7-5-3-2-4-6-7/h7H,2-6H2,1H3,(H2,9,10,11)
+JLV         InChIKey                InChI  1.03                                             PRAZUYSYQSKVQL-UHFFFAOYSA-N
+JLV SMILES_CANONICAL               CACTVS 3.385                                                        CNC(=S)NC1CCCCC1
+JLV           SMILES               CACTVS 3.385                                                        CNC(=S)NC1CCCCC1
+JLV SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                        CNC(=S)NC1CCCCC1
+JLV           SMILES "OpenEye OEToolkits" 2.0.6                                                        CNC(=S)NC1CCCCC1
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+JLV acedrg               243         "dictionary generator"                  
+JLV acedrg_database      11          "data source"                           
+JLV rdkit                2017.03.2   "Chemoinformatics tool"
+JLV refmac5              5.8.0238    "optimization tool"                     

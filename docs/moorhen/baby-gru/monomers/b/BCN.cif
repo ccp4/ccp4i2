@@ -1,0 +1,181 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BCN     BCN      BICINE     NON-POLYMER     23     11     .     
+#
+data_comp_BCN
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BCN     N1      N       NT      0       8.479       22.171      13.635      
+BCN     C1      C       CH2     0       7.717       23.119      14.480      
+BCN     C2      C       C       0       8.122       24.583      14.305      
+BCN     O21     O       O       0       7.828       25.364      15.232      
+BCN     O22     O       OC      -1      8.714       24.897      13.252      
+BCN     C3      C       CH2     0       7.689       20.995      13.229      
+BCN     C4      C       CH2     0       6.822       21.261      12.023      
+BCN     O4      O       OH1     0       7.613       21.572      10.889      
+BCN     C5      C       CH2     0       9.803       21.836      14.190      
+BCN     C6      C       CH2     0       10.837      21.576      13.120      
+BCN     O6      O       OH1     0       10.993      22.706      12.279      
+BCN     H11     H       H       0       7.837       22.874      15.413      
+BCN     H12     H       H       0       6.771       23.038      14.278      
+BCN     H31     H       H       0       7.119       20.714      13.976      
+BCN     H32     H       H       0       8.293       20.251      13.023      
+BCN     H41     H       H       0       6.219       22.006      12.213      
+BCN     H42     H       H       0       6.277       20.472      11.834      
+BCN     HO4     H       H       0       7.108       21.656      10.215      
+BCN     H51     H       H       0       9.723       21.039      14.755      
+BCN     H52     H       H       0       10.117      22.571      14.757      
+BCN     H61     H       H       0       10.563      20.806      12.584      
+BCN     H62     H       H       0       11.692      21.363      13.541      
+BCN     HO6     H       H       0       11.529      22.513      11.654      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BCN          N1          C1      SINGLE       n     1.464  0.0183     1.464  0.0183
+BCN          N1          C3      SINGLE       n     1.470  0.0100     1.470  0.0100
+BCN          N1          C5      SINGLE       n     1.470  0.0100     1.470  0.0100
+BCN          C1          C2      SINGLE       n     1.527  0.0103     1.527  0.0103
+BCN          C2         O21      DOUBLE       n     1.247  0.0187     1.247  0.0187
+BCN          C2         O22      SINGLE       n     1.247  0.0187     1.247  0.0187
+BCN          C3          C4      SINGLE       n     1.509  0.0138     1.509  0.0138
+BCN          C4          O4      SINGLE       n     1.417  0.0159     1.417  0.0159
+BCN          C5          C6      SINGLE       n     1.509  0.0138     1.509  0.0138
+BCN          C6          O6      SINGLE       n     1.417  0.0159     1.417  0.0159
+BCN          C1         H11      SINGLE       n     1.089  0.0100     0.971  0.0200
+BCN          C1         H12      SINGLE       n     1.089  0.0100     0.971  0.0200
+BCN          C3         H31      SINGLE       n     1.089  0.0100     0.980  0.0143
+BCN          C3         H32      SINGLE       n     1.089  0.0100     0.980  0.0143
+BCN          C4         H41      SINGLE       n     1.089  0.0100     0.977  0.0146
+BCN          C4         H42      SINGLE       n     1.089  0.0100     0.977  0.0146
+BCN          O4         HO4      SINGLE       n     0.970  0.0120     0.846  0.0200
+BCN          C5         H51      SINGLE       n     1.089  0.0100     0.980  0.0143
+BCN          C5         H52      SINGLE       n     1.089  0.0100     0.980  0.0143
+BCN          C6         H61      SINGLE       n     1.089  0.0100     0.977  0.0146
+BCN          C6         H62      SINGLE       n     1.089  0.0100     0.977  0.0146
+BCN          O6         HO6      SINGLE       n     0.970  0.0120     0.846  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BCN          C1          N1          C3     112.133    1.68
+BCN          C1          N1          C5     112.133    1.68
+BCN          C3          N1          C5     112.427    2.39
+BCN          N1          C1          C2     112.134    2.59
+BCN          N1          C1         H11     108.627    1.50
+BCN          N1          C1         H12     108.627    1.50
+BCN          C2          C1         H11     108.544    1.50
+BCN          C2          C1         H12     108.544    1.50
+BCN         H11          C1         H12     107.487    1.50
+BCN          C1          C2         O21     117.146    1.78
+BCN          C1          C2         O22     117.146    1.78
+BCN         O21          C2         O22     125.708    1.50
+BCN          N1          C3          C4     112.810    2.41
+BCN          N1          C3         H31     109.118    1.50
+BCN          N1          C3         H32     109.118    1.50
+BCN          C4          C3         H31     109.060    1.50
+BCN          C4          C3         H32     109.060    1.50
+BCN         H31          C3         H32     107.851    1.50
+BCN          C3          C4          O4     111.016    1.85
+BCN          C3          C4         H41     109.434    1.50
+BCN          C3          C4         H42     109.434    1.50
+BCN          O4          C4         H41     109.500    1.50
+BCN          O4          C4         H42     109.500    1.50
+BCN         H41          C4         H42     108.121    1.50
+BCN          C4          O4         HO4     109.054    3.00
+BCN          N1          C5          C6     112.810    2.41
+BCN          N1          C5         H51     109.118    1.50
+BCN          N1          C5         H52     109.118    1.50
+BCN          C6          C5         H51     109.060    1.50
+BCN          C6          C5         H52     109.060    1.50
+BCN         H51          C5         H52     107.851    1.50
+BCN          C5          C6          O6     111.016    1.85
+BCN          C5          C6         H61     109.434    1.50
+BCN          C5          C6         H62     109.434    1.50
+BCN          O6          C6         H61     109.500    1.50
+BCN          O6          C6         H62     109.500    1.50
+BCN         H61          C6         H62     108.121    1.50
+BCN          C6          O6         HO6     109.054    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BCN             sp3_sp3_2          C2          C1          N1          C3     -60.000    10.0     3
+BCN             sp3_sp3_7          C4          C3          N1          C1     180.000    10.0     3
+BCN            sp3_sp3_14          C6          C5          N1          C1     -60.000    10.0     3
+BCN             sp2_sp3_2         O21          C2          C1          N1     120.000    10.0     6
+BCN            sp3_sp3_19          N1          C3          C4          O4     180.000    10.0     3
+BCN            sp3_sp3_28          C3          C4          O4         HO4     180.000    10.0     3
+BCN            sp3_sp3_31          N1          C5          C6          O6     180.000    10.0     3
+BCN            sp3_sp3_40          C5          C6          O6         HO6     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BCN    chir_1    N1    C1    C3    C5    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BCN    plan-1          C1   0.020
+BCN    plan-1          C2   0.020
+BCN    plan-1         O21   0.020
+BCN    plan-1         O22   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BCN           SMILES              ACDLabs 10.04                                                 O=C(O)CN(CCO)CCO
+BCN SMILES_CANONICAL               CACTVS 3.341                                                 OCCN(CCO)CC(O)=O
+BCN           SMILES               CACTVS 3.341                                                 OCCN(CCO)CC(O)=O
+BCN SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                               C(CO)N(CCO)CC(=O)O
+BCN           SMILES "OpenEye OEToolkits" 1.5.0                                               C(CO)N(CCO)CC(=O)O
+BCN            InChI                InChI  1.03 InChI=1S/C6H13NO4/c8-3-1-7(2-4-9)5-6(10)11/h8-9H,1-5H2,(H,10,11)
+BCN         InChIKey                InChI  1.03                                      FSVCELGFZIQNCK-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BCN acedrg               243         "dictionary generator"                  
+BCN acedrg_database      11          "data source"                           
+BCN rdkit                2017.03.2   "Chemoinformatics tool"
+BCN refmac5              5.8.0238    "optimization tool"                     

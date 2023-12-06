@@ -1,0 +1,228 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FIP     FIP      "5-FLUOROINDOLE PROPANOL PHOSPHATE"     NON-POLYMER     29     18     .     
+#
+data_comp_FIP
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FIP     C3      C       CR5     0       49.698      27.466      15.015      
+FIP     C9      C       CR56    0       50.439      26.242      15.165      
+FIP     C8      C       CR56    0       51.760      26.602      15.522      
+FIP     C4      C       CR16    0       50.110      24.883      15.034      
+FIP     C2      C       CR15    0       50.577      28.477      15.276      
+FIP     N1      N       NR5     0       51.812      27.969      15.581      
+FIP     C7      C       CR16    0       52.753      25.648      15.749      
+FIP     C5      C       CR6     0       51.111      23.974      15.265      
+FIP     C6      C       CR16    0       52.414      24.316      15.616      
+FIP     F       F       F       0       50.819      22.646      15.144      
+FIP     C3P     C       CH2     0       48.250      27.582      14.637      
+FIP     C2P     C       CH2     0       47.965      27.376      13.152      
+FIP     C1P     C       CH2     0       48.529      28.469      12.283      
+FIP     P       P       P       0       48.740      29.173      9.744       
+FIP     OP1     O       O       0       50.219      28.834      9.737       
+FIP     OP2     O       OP      -1      48.468      30.613      10.133      
+FIP     OP3     O       OP      -1      48.037      28.765      8.463       
+FIP     OP4     O       O2      0       48.084      28.270      10.911      
+FIP     H4      H       H       0       49.239      24.618      14.798      
+FIP     H2      H       H       0       50.370      29.398      15.253      
+FIP     HN1     H       H       0       52.520      28.445      15.782      
+FIP     H7      H       H       0       53.628      25.905      15.986      
+FIP     H6      H       H       0       53.056      23.645      15.761      
+FIP     H3P1    H       H       0       47.925      28.471      14.901      
+FIP     H3P2    H       H       0       47.735      26.923      15.152      
+FIP     H2P1    H       H       0       47.005      27.337      13.020      
+FIP     H2P2    H       H       0       48.346      26.528      12.874      
+FIP     H1P1    H       H       0       49.509      28.452      12.319      
+FIP     H1P2    H       H       0       48.224      29.343      12.608      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FIP          C3          C9      SINGLE       y     1.439  0.0100     1.439  0.0100
+FIP          C3          C2      DOUBLE       y     1.365  0.0100     1.365  0.0100
+FIP          C3         C3P      SINGLE       n     1.500  0.0100     1.500  0.0100
+FIP          C9          C8      DOUBLE       y     1.411  0.0100     1.411  0.0100
+FIP          C9          C4      SINGLE       y     1.401  0.0100     1.401  0.0100
+FIP          C8          N1      SINGLE       y     1.370  0.0100     1.370  0.0100
+FIP          C8          C7      SINGLE       y     1.392  0.0100     1.392  0.0100
+FIP          C4          C5      DOUBLE       y     1.369  0.0100     1.369  0.0100
+FIP          C2          N1      SINGLE       y     1.369  0.0100     1.369  0.0100
+FIP          C7          C6      DOUBLE       y     1.377  0.0100     1.377  0.0100
+FIP          C5          C6      SINGLE       y     1.389  0.0100     1.389  0.0100
+FIP          C5           F      SINGLE       n     1.365  0.0100     1.365  0.0100
+FIP         C3P         C2P      SINGLE       n     1.526  0.0100     1.526  0.0100
+FIP         C2P         C1P      SINGLE       n     1.506  0.0100     1.506  0.0100
+FIP         C1P         OP4      SINGLE       n     1.456  0.0100     1.456  0.0100
+FIP           P         OP1      DOUBLE       n     1.517  0.0192     1.517  0.0192
+FIP           P         OP2      SINGLE       n     1.517  0.0192     1.517  0.0192
+FIP           P         OP3      SINGLE       n     1.517  0.0192     1.517  0.0192
+FIP           P         OP4      SINGLE       n     1.614  0.0178     1.614  0.0178
+FIP          C4          H4      SINGLE       n     1.082  0.0130     0.940  0.0102
+FIP          C2          H2      SINGLE       n     1.082  0.0130     0.945  0.0191
+FIP          N1         HN1      SINGLE       n     1.016  0.0100     0.877  0.0200
+FIP          C7          H7      SINGLE       n     1.082  0.0130     0.942  0.0103
+FIP          C6          H6      SINGLE       n     1.082  0.0130     0.940  0.0122
+FIP         C3P        H3P1      SINGLE       n     1.089  0.0100     0.982  0.0147
+FIP         C3P        H3P2      SINGLE       n     1.089  0.0100     0.982  0.0147
+FIP         C2P        H2P1      SINGLE       n     1.089  0.0100     0.970  0.0193
+FIP         C2P        H2P2      SINGLE       n     1.089  0.0100     0.970  0.0193
+FIP         C1P        H1P1      SINGLE       n     1.089  0.0100     0.981  0.0100
+FIP         C1P        H1P2      SINGLE       n     1.089  0.0100     0.981  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FIP          C9          C3          C2     106.112    1.50
+FIP          C9          C3         C3P     126.057    1.50
+FIP          C2          C3         C3P     127.831    1.57
+FIP          C3          C9          C8     106.987    1.50
+FIP          C3          C9          C4     133.783    1.50
+FIP          C8          C9          C4     119.230    1.50
+FIP          C9          C8          N1     107.455    1.50
+FIP          C9          C8          C7     122.183    1.50
+FIP          N1          C8          C7     130.362    1.50
+FIP          C9          C4          C5     117.023    1.50
+FIP          C9          C4          H4     120.882    1.50
+FIP          C5          C4          H4     122.096    1.50
+FIP          C3          C2          N1     110.404    1.50
+FIP          C3          C2          H2     125.159    1.59
+FIP          N1          C2          H2     124.437    1.50
+FIP          C8          N1          C2     109.042    1.50
+FIP          C8          N1         HN1     125.630    1.60
+FIP          C2          N1         HN1     125.328    1.77
+FIP          C8          C7          C6     117.597    1.50
+FIP          C8          C7          H7     121.192    1.50
+FIP          C6          C7          H7     121.211    1.50
+FIP          C4          C5          C6     124.614    1.50
+FIP          C4          C5           F     118.091    1.50
+FIP          C6          C5           F     117.295    1.50
+FIP          C7          C6          C5     119.354    1.50
+FIP          C7          C6          H6     120.379    1.50
+FIP          C5          C6          H6     120.267    1.50
+FIP          C3         C3P         C2P     114.548    1.63
+FIP          C3         C3P        H3P1     108.855    1.50
+FIP          C3         C3P        H3P2     108.855    1.50
+FIP         C2P         C3P        H3P1     108.831    1.50
+FIP         C2P         C3P        H3P2     108.831    1.50
+FIP        H3P1         C3P        H3P2     107.076    1.55
+FIP         C3P         C2P         C1P     112.987    1.50
+FIP         C3P         C2P        H2P1     108.882    1.50
+FIP         C3P         C2P        H2P2     108.882    1.50
+FIP         C1P         C2P        H2P1     108.802    1.50
+FIP         C1P         C2P        H2P2     108.802    1.50
+FIP        H2P1         C2P        H2P2     108.352    1.50
+FIP         C2P         C1P         OP4     109.312    1.50
+FIP         C2P         C1P        H1P1     109.787    1.50
+FIP         C2P         C1P        H1P2     109.787    1.50
+FIP         OP4         C1P        H1P1     109.902    1.50
+FIP         OP4         C1P        H1P2     109.902    1.50
+FIP        H1P1         C1P        H1P2     108.388    1.50
+FIP         OP1           P         OP2     112.864    1.69
+FIP         OP1           P         OP3     112.864    1.69
+FIP         OP1           P         OP4     105.795    2.09
+FIP         OP2           P         OP3     112.864    1.69
+FIP         OP2           P         OP4     105.795    2.09
+FIP         OP3           P         OP4     105.795    2.09
+FIP         C1P         OP4           P     118.671    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FIP       const_sp2_sp2_3         C3P          C3          C9          C8     180.000     5.0     2
+FIP             sp2_sp3_2          C9          C3         C3P         C2P     -90.000    10.0     6
+FIP              const_34          N1          C2          C3         C3P     180.000    10.0     2
+FIP             sp3_sp3_1         C1P         C2P         C3P          C3     180.000    10.0     3
+FIP            sp3_sp3_10         OP4         C1P         C2P         C3P     180.000    10.0     3
+FIP            sp3_sp3_19         C2P         C1P         OP4           P     180.000    10.0     3
+FIP            sp3_sp3_24         C1P         OP4           P         OP1      60.000    10.0     3
+FIP       const_sp2_sp2_5          N1          C8          C9          C3       0.000     5.0     2
+FIP              const_38          C5          C4          C9          C3     180.000    10.0     2
+FIP       const_sp2_sp2_9          C9          C8          N1          C2       0.000     5.0     2
+FIP              const_17          C6          C7          C8          C9       0.000    10.0     2
+FIP              const_30          C9          C4          C5           F     180.000    10.0     2
+FIP              const_13          C3          C2          N1          C8       0.000    10.0     2
+FIP              const_21          C5          C6          C7          C8       0.000    10.0     2
+FIP              const_27           F          C5          C6          C7     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FIP    chir_1    P    OP4    OP2    OP3    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FIP    plan-1          C2   0.020
+FIP    plan-1          C3   0.020
+FIP    plan-1         C3P   0.020
+FIP    plan-1          C4   0.020
+FIP    plan-1          C5   0.020
+FIP    plan-1          C6   0.020
+FIP    plan-1          C7   0.020
+FIP    plan-1          C8   0.020
+FIP    plan-1          C9   0.020
+FIP    plan-1           F   0.020
+FIP    plan-1          H2   0.020
+FIP    plan-1          H4   0.020
+FIP    plan-1          H6   0.020
+FIP    plan-1          H7   0.020
+FIP    plan-1         HN1   0.020
+FIP    plan-1          N1   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FIP           SMILES              ACDLabs 10.04                                                                              Fc1cc2c(cc1)ncc2CCCOP(=O)(O)O
+FIP SMILES_CANONICAL               CACTVS 3.341                                                                         O[P](O)(=O)OCCCc1c[nH]c2ccc(F)cc12
+FIP           SMILES               CACTVS 3.341                                                                         O[P](O)(=O)OCCCc1c[nH]c2ccc(F)cc12
+FIP SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                         c1cc2c(cc1F)c(c[nH]2)CCCOP(=O)(O)O
+FIP           SMILES "OpenEye OEToolkits" 1.5.0                                                                         c1cc2c(cc1F)c(c[nH]2)CCCOP(=O)(O)O
+FIP            InChI                InChI  1.03 InChI=1S/C11H13FNO4P/c12-9-3-4-11-10(6-9)8(7-13-11)2-1-5-17-18(14,15)16/h3-4,6-7,13H,1-2,5H2,(H2,14,15,16)
+FIP         InChIKey                InChI  1.03                                                                                YVYGGBFCYXRNKM-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FIP acedrg               243         "dictionary generator"                  
+FIP acedrg_database      11          "data source"                           
+FIP rdkit                2017.03.2   "Chemoinformatics tool"
+FIP refmac5              5.8.0238    "optimization tool"                     

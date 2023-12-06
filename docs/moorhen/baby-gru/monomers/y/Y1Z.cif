@@ -1,0 +1,409 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+Y1Z     Y1Z      2-chloro-N-[5-(3-methyl[1,2,4]triazolo[3,4-a]phthalazin-6-yl)-2-(morpholin-4-yl)phenyl]benzenesulfonamide     NON-POLYMER     60     37     .     
+#
+data_comp_Y1Z
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+Y1Z     OBD     O       O       0       11.288      6.835       6.283       
+Y1Z     SBB     S       S3      0       10.510      5.682       6.616       
+Y1Z     OBC     O       O       0       9.243       5.848       7.259       
+Y1Z     CBE     C       CR6     0       11.490      4.595       7.628       
+Y1Z     CBF     C       CR16    0       11.337      3.225       7.424       
+Y1Z     CBG     C       CR16    0       12.067      2.314       8.168       
+Y1Z     CBH     C       CR16    0       12.953      2.752       9.120       
+Y1Z     CBI     C       CR16    0       13.124      4.101       9.341       
+Y1Z     CBJ     C       CR6     0       12.399      5.024       8.601       
+Y1Z     CL      CL      CL      0       12.671      6.699       8.945       
+Y1Z     NAU     N       NH1     0       10.236      4.906       5.210       
+Y1Z     CAS     C       CR6     0       11.130      4.880       4.100       
+Y1Z     CAR     C       CR6     0       10.669      5.209       2.792       
+Y1Z     NAV     N       NT      0       9.327       5.545       2.557       
+Y1Z     CBA     C       CH2     0       8.545       4.781       1.573       
+Y1Z     CAZ     C       CH2     0       7.072       4.899       1.896       
+Y1Z     OAY     O       O2      0       6.649       6.260       1.947       
+Y1Z     CAX     C       CH2     0       7.400       6.993       2.913       
+Y1Z     CAW     C       CH2     0       8.885       6.946       2.627       
+Y1Z     CAQ     C       CR16    0       11.600      5.169       1.739       
+Y1Z     CAP     C       CR16    0       12.926      4.827       1.974       
+Y1Z     CAO     C       CR6     0       13.377      4.520       3.257       
+Y1Z     CAT     C       CR16    0       12.471      4.528       4.315       
+Y1Z     CAG     C       CR6     0       14.803      4.137       3.505       
+Y1Z     CAD     C       CR66    0       15.685      4.849       4.473       
+Y1Z     CAC     C       CR16    0       15.260      5.956       5.218       
+Y1Z     CAB     C       CR16    0       16.116      6.586       6.099       
+Y1Z     CAA     C       CR16    0       17.424      6.132       6.261       
+Y1Z     CAF     C       CR16    0       17.874      5.051       5.546       
+Y1Z     CAE     C       CR66    0       17.024      4.392       4.645       
+Y1Z     CAJ     C       CR56    0       17.440      3.252       3.867       
+Y1Z     NAI     N       NT      0       16.540      2.684       3.021       
+Y1Z     NAH     N       NRD6    0       15.222      3.066       2.796       
+Y1Z     NAM     N       NRD5    0       18.602      2.598       3.800       
+Y1Z     NAL     N       NRD5    0       18.424      1.566       2.867       
+Y1Z     CAK     C       CR5     0       17.199      1.637       2.421       
+Y1Z     CAN     C       CH3     0       16.626      0.726       1.424       
+Y1Z     H1      H       H       0       10.733      2.918       6.777       
+Y1Z     H2      H       H       0       11.953      1.393       8.021       
+Y1Z     H3      H       H       0       13.446      2.131       9.624       
+Y1Z     H4      H       H       0       13.728      4.398       9.990       
+Y1Z     H5      H       H       0       9.490       4.478       5.134       
+Y1Z     H6      H       H       0       8.716       5.129       0.673       
+Y1Z     H7      H       H       0       8.814       3.838       1.595       
+Y1Z     H8      H       H       0       6.895       4.474       2.761       
+Y1Z     H9      H       H       0       6.553       4.427       1.212       
+Y1Z     H10     H       H       0       7.230       6.620       3.804       
+Y1Z     H11     H       H       0       7.101       7.926       2.912       
+Y1Z     H12     H       H       0       9.073       7.395       1.776       
+Y1Z     H13     H       H       0       9.374       7.414       3.336       
+Y1Z     H14     H       H       0       11.310      5.381       0.870       
+Y1Z     H15     H       H       0       13.534      4.809       1.253       
+Y1Z     H16     H       H       0       12.772      4.324       5.173       
+Y1Z     H17     H       H       0       14.374      6.282       5.123       
+Y1Z     H18     H       H       0       15.814      7.330       6.594       
+Y1Z     H19     H       H       0       18.003      6.569       6.863       
+Y1Z     H20     H       H       0       18.748      4.753       5.656       
+Y1Z     H21     H       H       0       15.970      1.193       0.901       
+Y1Z     H22     H       H       0       16.210      -0.015      1.870       
+Y1Z     H23     H       H       0       17.323      0.403       0.848       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+Y1Z         CBA         CAZ      SINGLE       n     1.511  0.0100     1.511  0.0100
+Y1Z         NAV         CBA      SINGLE       n     1.469  0.0100     1.469  0.0100
+Y1Z         CAZ         OAY      SINGLE       n     1.423  0.0105     1.423  0.0105
+Y1Z         CAK         CAN      SINGLE       n     1.467  0.0157     1.467  0.0157
+Y1Z         OAY         CAX      SINGLE       n     1.423  0.0105     1.423  0.0105
+Y1Z         CAQ         CAP      DOUBLE       y     1.383  0.0100     1.383  0.0100
+Y1Z         CAR         CAQ      SINGLE       y     1.396  0.0142     1.396  0.0142
+Y1Z         CAP         CAO      SINGLE       y     1.390  0.0100     1.390  0.0100
+Y1Z         NAL         CAK      DOUBLE       y     1.302  0.0100     1.302  0.0100
+Y1Z         NAI         CAK      SINGLE       y     1.375  0.0100     1.375  0.0100
+Y1Z         CAR         NAV      SINGLE       n     1.399  0.0192     1.399  0.0192
+Y1Z         NAV         CAW      SINGLE       n     1.469  0.0100     1.469  0.0100
+Y1Z         NAI         NAH      SINGLE       y     1.389  0.0100     1.389  0.0100
+Y1Z         CAG         NAH      DOUBLE       y     1.328  0.0200     1.328  0.0200
+Y1Z         NAM         NAL      SINGLE       y     1.398  0.0143     1.398  0.0143
+Y1Z         CAS         CAR      DOUBLE       y     1.415  0.0200     1.415  0.0200
+Y1Z         CAJ         NAI      SINGLE       y     1.370  0.0142     1.370  0.0142
+Y1Z         CAX         CAW      SINGLE       n     1.511  0.0100     1.511  0.0100
+Y1Z         CAO         CAG      SINGLE       n     1.494  0.0100     1.494  0.0100
+Y1Z         CAO         CAT      DOUBLE       y     1.390  0.0105     1.390  0.0105
+Y1Z         CAG         CAD      SINGLE       y     1.463  0.0149     1.463  0.0149
+Y1Z         CAJ         NAM      DOUBLE       y     1.342  0.0200     1.342  0.0200
+Y1Z         CAE         CAJ      SINGLE       y     1.441  0.0161     1.441  0.0161
+Y1Z         CAS         CAT      SINGLE       y     1.399  0.0150     1.399  0.0150
+Y1Z         NAU         CAS      SINGLE       n     1.422  0.0124     1.422  0.0124
+Y1Z         CAD         CAE      SINGLE       y     1.417  0.0100     1.417  0.0100
+Y1Z         CAD         CAC      DOUBLE       y     1.393  0.0100     1.393  0.0100
+Y1Z         CAF         CAE      DOUBLE       y     1.400  0.0100     1.400  0.0100
+Y1Z         CAC         CAB      SINGLE       y     1.377  0.0100     1.377  0.0100
+Y1Z         SBB         NAU      SINGLE       n     1.627  0.0106     1.627  0.0106
+Y1Z         CAA         CAF      SINGLE       y     1.369  0.0100     1.369  0.0100
+Y1Z         CAB         CAA      DOUBLE       y     1.389  0.0136     1.389  0.0136
+Y1Z         OBD         SBB      DOUBLE       n     1.430  0.0100     1.430  0.0100
+Y1Z         SBB         OBC      DOUBLE       n     1.430  0.0100     1.430  0.0100
+Y1Z         SBB         CBE      SINGLE       n     1.776  0.0100     1.776  0.0100
+Y1Z         CBE         CBF      DOUBLE       y     1.388  0.0100     1.388  0.0100
+Y1Z         CBF         CBG      SINGLE       y     1.382  0.0100     1.382  0.0100
+Y1Z         CBE         CBJ      SINGLE       y     1.391  0.0100     1.391  0.0100
+Y1Z         CBG         CBH      DOUBLE       y     1.370  0.0100     1.370  0.0100
+Y1Z         CBJ          CL      SINGLE       n     1.731  0.0100     1.731  0.0100
+Y1Z         CBI         CBJ      DOUBLE       y     1.383  0.0100     1.383  0.0100
+Y1Z         CBH         CBI      SINGLE       y     1.375  0.0100     1.375  0.0100
+Y1Z         CBF          H1      SINGLE       n     1.082  0.0130     0.938  0.0115
+Y1Z         CBG          H2      SINGLE       n     1.082  0.0130     0.940  0.0176
+Y1Z         CBH          H3      SINGLE       n     1.082  0.0130     0.939  0.0165
+Y1Z         CBI          H4      SINGLE       n     1.082  0.0130     0.936  0.0117
+Y1Z         NAU          H5      SINGLE       n     1.016  0.0100     0.863  0.0160
+Y1Z         CBA          H6      SINGLE       n     1.089  0.0100     0.980  0.0155
+Y1Z         CBA          H7      SINGLE       n     1.089  0.0100     0.980  0.0155
+Y1Z         CAZ          H8      SINGLE       n     1.089  0.0100     0.980  0.0155
+Y1Z         CAZ          H9      SINGLE       n     1.089  0.0100     0.980  0.0155
+Y1Z         CAX         H10      SINGLE       n     1.089  0.0100     0.980  0.0155
+Y1Z         CAX         H11      SINGLE       n     1.089  0.0100     0.980  0.0155
+Y1Z         CAW         H12      SINGLE       n     1.089  0.0100     0.980  0.0155
+Y1Z         CAW         H13      SINGLE       n     1.089  0.0100     0.980  0.0155
+Y1Z         CAQ         H14      SINGLE       n     1.082  0.0130     0.941  0.0150
+Y1Z         CAP         H15      SINGLE       n     1.082  0.0130     0.943  0.0195
+Y1Z         CAT         H16      SINGLE       n     1.082  0.0130     0.933  0.0100
+Y1Z         CAC         H17      SINGLE       n     1.082  0.0130     0.954  0.0200
+Y1Z         CAB         H18      SINGLE       n     1.082  0.0130     0.943  0.0198
+Y1Z         CAA         H19      SINGLE       n     1.082  0.0130     0.943  0.0198
+Y1Z         CAF         H20      SINGLE       n     1.082  0.0130     0.930  0.0100
+Y1Z         CAN         H21      SINGLE       n     1.089  0.0100     0.960  0.0100
+Y1Z         CAN         H22      SINGLE       n     1.089  0.0100     0.960  0.0100
+Y1Z         CAN         H23      SINGLE       n     1.089  0.0100     0.960  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+Y1Z         NAU         SBB         OBD     106.760    2.22
+Y1Z         NAU         SBB         OBC     106.760    2.22
+Y1Z         NAU         SBB         CBE     106.766    1.50
+Y1Z         OBD         SBB         OBC     119.445    1.50
+Y1Z         OBD         SBB         CBE     107.503    1.80
+Y1Z         OBC         SBB         CBE     107.503    1.80
+Y1Z         SBB         CBE         CBF     117.823    1.50
+Y1Z         SBB         CBE         CBJ     123.533    1.50
+Y1Z         CBF         CBE         CBJ     118.644    1.50
+Y1Z         CBE         CBF         CBG     120.353    1.50
+Y1Z         CBE         CBF          H1     119.531    1.50
+Y1Z         CBG         CBF          H1     120.117    1.50
+Y1Z         CBF         CBG         CBH     120.398    1.50
+Y1Z         CBF         CBG          H2     119.700    1.50
+Y1Z         CBH         CBG          H2     119.902    1.50
+Y1Z         CBG         CBH         CBI     120.360    1.50
+Y1Z         CBG         CBH          H3     119.941    1.50
+Y1Z         CBI         CBH          H3     119.699    1.50
+Y1Z         CBJ         CBI         CBH     119.821    1.50
+Y1Z         CBJ         CBI          H4     119.899    1.50
+Y1Z         CBH         CBI          H4     120.281    1.50
+Y1Z         CBE         CBJ          CL     121.636    1.50
+Y1Z         CBE         CBJ         CBI     120.424    1.50
+Y1Z          CL         CBJ         CBI     117.940    1.50
+Y1Z         CAS         NAU         SBB     124.759    3.00
+Y1Z         CAS         NAU          H5     117.795    1.56
+Y1Z         SBB         NAU          H5     117.446    1.95
+Y1Z         CAR         CAS         CAT     121.270    1.50
+Y1Z         CAR         CAS         NAU     119.823    2.16
+Y1Z         CAT         CAS         NAU     118.907    2.41
+Y1Z         CAQ         CAR         NAV     120.601    1.50
+Y1Z         CAQ         CAR         CAS     118.261    2.56
+Y1Z         NAV         CAR         CAS     121.139    2.60
+Y1Z         CBA         NAV         CAR     116.897    2.51
+Y1Z         CBA         NAV         CAW     110.498    1.50
+Y1Z         CAR         NAV         CAW     116.897    2.51
+Y1Z         CAZ         CBA         NAV     109.802    1.50
+Y1Z         CAZ         CBA          H6     109.720    1.50
+Y1Z         CAZ         CBA          H7     109.720    1.50
+Y1Z         NAV         CBA          H6     109.697    1.50
+Y1Z         NAV         CBA          H7     109.697    1.50
+Y1Z          H6         CBA          H7     108.247    1.50
+Y1Z         CBA         CAZ         OAY     111.654    1.50
+Y1Z         CBA         CAZ          H8     109.316    1.50
+Y1Z         CBA         CAZ          H9     109.316    1.50
+Y1Z         OAY         CAZ          H8     109.195    1.50
+Y1Z         OAY         CAZ          H9     109.195    1.50
+Y1Z          H8         CAZ          H9     108.175    1.50
+Y1Z         CAZ         OAY         CAX     109.829    1.50
+Y1Z         OAY         CAX         CAW     111.654    1.50
+Y1Z         OAY         CAX         H10     109.195    1.50
+Y1Z         OAY         CAX         H11     109.195    1.50
+Y1Z         CAW         CAX         H10     109.316    1.50
+Y1Z         CAW         CAX         H11     109.316    1.50
+Y1Z         H10         CAX         H11     108.175    1.50
+Y1Z         NAV         CAW         CAX     109.802    1.50
+Y1Z         NAV         CAW         H12     109.697    1.50
+Y1Z         NAV         CAW         H13     109.697    1.50
+Y1Z         CAX         CAW         H12     109.720    1.50
+Y1Z         CAX         CAW         H13     109.720    1.50
+Y1Z         H12         CAW         H13     108.247    1.50
+Y1Z         CAP         CAQ         CAR     120.286    1.50
+Y1Z         CAP         CAQ         H14     120.532    1.50
+Y1Z         CAR         CAQ         H14     119.182    2.95
+Y1Z         CAQ         CAP         CAO     120.845    1.50
+Y1Z         CAQ         CAP         H15     119.616    1.50
+Y1Z         CAO         CAP         H15     119.539    1.50
+Y1Z         CAP         CAO         CAG     120.410    1.65
+Y1Z         CAP         CAO         CAT     119.180    1.50
+Y1Z         CAG         CAO         CAT     120.410    1.65
+Y1Z         CAO         CAT         CAS     120.159    1.81
+Y1Z         CAO         CAT         H16     119.752    1.50
+Y1Z         CAS         CAT         H16     120.090    1.50
+Y1Z         NAH         CAG         CAO     116.422    1.83
+Y1Z         NAH         CAG         CAD     122.820    2.19
+Y1Z         CAO         CAG         CAD     120.758    2.19
+Y1Z         CAG         CAD         CAE     119.061    1.58
+Y1Z         CAG         CAD         CAC     121.475    1.50
+Y1Z         CAE         CAD         CAC     119.464    1.50
+Y1Z         CAD         CAC         CAB     120.497    1.50
+Y1Z         CAD         CAC         H17     119.624    1.50
+Y1Z         CAB         CAC         H17     119.879    1.50
+Y1Z         CAC         CAB         CAA     120.177    1.50
+Y1Z         CAC         CAB         H18     119.875    1.50
+Y1Z         CAA         CAB         H18     119.948    1.50
+Y1Z         CAF         CAA         CAB     120.224    1.50
+Y1Z         CAF         CAA         H19     119.853    1.50
+Y1Z         CAB         CAA         H19     119.921    1.50
+Y1Z         CAE         CAF         CAA     120.311    1.50
+Y1Z         CAE         CAF         H20     119.683    1.50
+Y1Z         CAA         CAF         H20     120.006    1.50
+Y1Z         CAJ         CAE         CAD     117.643    1.50
+Y1Z         CAJ         CAE         CAF     123.027    1.50
+Y1Z         CAD         CAE         CAF     119.329    1.50
+Y1Z         NAI         CAJ         NAM     111.426    1.50
+Y1Z         NAI         CAJ         CAE     119.185    1.50
+Y1Z         NAM         CAJ         CAE     129.389    1.68
+Y1Z         CAK         NAI         NAH     124.271    1.50
+Y1Z         CAK         NAI         CAJ     107.156    1.50
+Y1Z         NAH         NAI         CAJ     128.423    1.50
+Y1Z         NAI         NAH         CAG     115.193    1.50
+Y1Z         NAL         NAM         CAJ     108.127    1.50
+Y1Z         CAK         NAL         NAM     108.142    1.50
+Y1Z         CAN         CAK         NAL     123.783    3.00
+Y1Z         CAN         CAK         NAI     125.161    1.50
+Y1Z         NAL         CAK         NAI     111.056    1.50
+Y1Z         CAK         CAN         H21     109.454    1.50
+Y1Z         CAK         CAN         H22     109.454    1.50
+Y1Z         CAK         CAN         H23     109.454    1.50
+Y1Z         H21         CAN         H22     109.493    1.50
+Y1Z         H21         CAN         H23     109.493    1.50
+Y1Z         H22         CAN         H23     109.493    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+Y1Z            sp2_sp2_21         CAR         CAS         NAU         SBB     180.000     5.0     2
+Y1Z              const_33         CAQ         CAR         CAS         NAU     180.000    10.0     2
+Y1Z              const_76         NAU         CAS         CAT         CAO     180.000    10.0     2
+Y1Z             sp2_sp2_9         CAQ         CAR         NAV         CBA     180.000     5.0     2
+Y1Z              const_37         CAP         CAQ         CAR         NAV     180.000    10.0     2
+Y1Z             sp2_sp3_4         CAR         NAV         CBA         CAZ     180.000    10.0     6
+Y1Z            sp2_sp3_13         CBA         NAV         CAW         CAX       0.000    10.0     6
+Y1Z             sp3_sp3_1         OAY         CAZ         CBA         NAV     -60.000    10.0     3
+Y1Z            sp3_sp3_10         CBA         CAZ         OAY         CAX      60.000    10.0     3
+Y1Z            sp3_sp3_13         CAW         CAX         OAY         CAZ     -60.000    10.0     3
+Y1Z            sp3_sp3_16         NAV         CAW         CAX         OAY      60.000    10.0     3
+Y1Z              const_40         CAO         CAP         CAQ         CAR       0.000    10.0     2
+Y1Z            sp2_sp3_20         CAS         NAU         SBB         OBD     120.000    10.0     6
+Y1Z            sp2_sp3_27         CBF         CBE         SBB         NAU      30.000    10.0     6
+Y1Z              const_46         CAG         CAO         CAP         CAQ     180.000    10.0     2
+Y1Z              const_48         CAP         CAO         CAT         CAS       0.000    10.0     2
+Y1Z            sp2_sp2_15         NAH         CAG         CAO         CAP       0.000     5.0     2
+Y1Z            sp2_sp2_17         CAE         CAD         CAG         NAH       0.000     5.0     2
+Y1Z             sp2_sp2_2         CAO         CAG         NAH         NAI     180.000     5.0     2
+Y1Z              const_79         CAB         CAC         CAD         CAG     180.000    10.0     2
+Y1Z       const_sp2_sp2_1         CAG         CAD         CAE         CAJ       0.000     5.0     2
+Y1Z              const_17         CAA         CAB         CAC         CAD       0.000    10.0     2
+Y1Z              const_13         CAF         CAA         CAB         CAC       0.000    10.0     2
+Y1Z       const_sp2_sp2_9         CAB         CAA         CAF         CAE       0.000     5.0     2
+Y1Z       const_sp2_sp2_7         CAJ         CAE         CAF         CAA     180.000     5.0     2
+Y1Z             sp2_sp2_5         CAD         CAE         CAJ         NAI       0.000     5.0     2
+Y1Z              const_21         NAM         CAJ         NAI         CAK       0.000    10.0     2
+Y1Z              const_72         NAI         CAJ         NAM         NAL       0.000    10.0     2
+Y1Z             sp2_sp2_4         CAG         NAH         NAI         CAK     180.000     5.0     2
+Y1Z              const_28         CAN         CAK         NAI         NAH       0.000    10.0     2
+Y1Z              const_31         CAK         NAL         NAM         CAJ       0.000    10.0     2
+Y1Z              const_30         CAN         CAK         NAL         NAM     180.000    10.0     2
+Y1Z             sp2_sp3_7         NAL         CAK         CAN         H21     150.000    10.0     6
+Y1Z              const_54         SBB         CBE         CBF         CBG     180.000    10.0     2
+Y1Z              const_85         SBB         CBE         CBJ          CL       0.000    10.0     2
+Y1Z              const_56         CBE         CBF         CBG         CBH       0.000    10.0     2
+Y1Z              const_60         CBF         CBG         CBH         CBI       0.000    10.0     2
+Y1Z              const_64         CBG         CBH         CBI         CBJ       0.000    10.0     2
+Y1Z              const_69         CBH         CBI         CBJ          CL     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+Y1Z    chir_1    SBB    OBD    OBC    NAU    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+Y1Z    plan-1         CAA   0.020
+Y1Z    plan-1         CAB   0.020
+Y1Z    plan-1         CAC   0.020
+Y1Z    plan-1         CAD   0.020
+Y1Z    plan-1         CAE   0.020
+Y1Z    plan-1         CAF   0.020
+Y1Z    plan-1         CAG   0.020
+Y1Z    plan-1         CAJ   0.020
+Y1Z    plan-1         CAK   0.020
+Y1Z    plan-1         CAN   0.020
+Y1Z    plan-1         CAO   0.020
+Y1Z    plan-1         H17   0.020
+Y1Z    plan-1         H18   0.020
+Y1Z    plan-1         H19   0.020
+Y1Z    plan-1         H20   0.020
+Y1Z    plan-1         NAH   0.020
+Y1Z    plan-1         NAI   0.020
+Y1Z    plan-1         NAL   0.020
+Y1Z    plan-1         NAM   0.020
+Y1Z    plan-2         CAG   0.020
+Y1Z    plan-2         CAO   0.020
+Y1Z    plan-2         CAP   0.020
+Y1Z    plan-2         CAQ   0.020
+Y1Z    plan-2         CAR   0.020
+Y1Z    plan-2         CAS   0.020
+Y1Z    plan-2         CAT   0.020
+Y1Z    plan-2         H14   0.020
+Y1Z    plan-2         H15   0.020
+Y1Z    plan-2         H16   0.020
+Y1Z    plan-2         NAU   0.020
+Y1Z    plan-2         NAV   0.020
+Y1Z    plan-3         CBE   0.020
+Y1Z    plan-3         CBF   0.020
+Y1Z    plan-3         CBG   0.020
+Y1Z    plan-3         CBH   0.020
+Y1Z    plan-3         CBI   0.020
+Y1Z    plan-3         CBJ   0.020
+Y1Z    plan-3          CL   0.020
+Y1Z    plan-3          H1   0.020
+Y1Z    plan-3          H2   0.020
+Y1Z    plan-3          H3   0.020
+Y1Z    plan-3          H4   0.020
+Y1Z    plan-3         SBB   0.020
+Y1Z    plan-4         CAS   0.020
+Y1Z    plan-4          H5   0.020
+Y1Z    plan-4         NAU   0.020
+Y1Z    plan-4         SBB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+Y1Z           SMILES              ACDLabs 12.01                                                                                                             Clc1ccccc1S(=O)(=O)Nc5cc(c4nn2c(nnc2C)c3ccccc34)ccc5N6CCOCC6
+Y1Z            InChI                InChI  1.03 InChI=1S/C26H23ClN6O3S/c1-17-28-29-26-20-7-3-2-6-19(20)25(30-33(17)26)18-10-11-23(32-12-14-36-15-13-32)22(16-18)31-37(34,35)24-9-5-4-8-21(24)27/h2-11,16,31H,12-15H2,1H3
+Y1Z         InChIKey                InChI  1.03                                                                                                                                              WLUMGCPGWDQOSB-UHFFFAOYSA-N
+Y1Z SMILES_CANONICAL               CACTVS 3.385                                                                                                         Cc1nnc2n1nc(c3ccc(N4CCOCC4)c(N[S](=O)(=O)c5ccccc5Cl)c3)c6ccccc26
+Y1Z           SMILES               CACTVS 3.385                                                                                                         Cc1nnc2n1nc(c3ccc(N4CCOCC4)c(N[S](=O)(=O)c5ccccc5Cl)c3)c6ccccc26
+Y1Z SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                                                                           Cc1nnc2n1nc(c3c2cccc3)c4ccc(c(c4)NS(=O)(=O)c5ccccc5Cl)N6CCOCC6
+Y1Z           SMILES "OpenEye OEToolkits" 1.7.6                                                                                                           Cc1nnc2n1nc(c3c2cccc3)c4ccc(c(c4)NS(=O)(=O)c5ccccc5Cl)N6CCOCC6
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+Y1Z acedrg               243         "dictionary generator"                  
+Y1Z acedrg_database      11          "data source"                           
+Y1Z rdkit                2017.03.2   "Chemoinformatics tool"
+Y1Z refmac5              5.8.0238    "optimization tool"                     

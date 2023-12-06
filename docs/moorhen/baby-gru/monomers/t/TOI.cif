@@ -1,0 +1,486 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TOI     TOI      "(1~{R},2~{S},5~{S},6~{S})-2-[(1~{S})-1-[3-[(4-azanylidene-2-methyl-1~{H}-pyrimidin-5-yl)methyl]-4-methyl-5-[2-[oxidanyl(phosphonooxy)phosphoryl]oxyethyl]-1,3-thiazol-3-ium-2-yl]-1,4-bis(oxidanyl)-4-oxidanylidene-butyl]-6-oxidanyl-5-(3-oxidanyl-3-oxidanylidene-prop-1-en-2-yl)oxy-cyclohex-3-ene-1-carboxylic acid"     NON-POLYMER     78     49     .     
+#
+data_comp_TOI
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TOI     O2P     O       OC      -1      -66.413     16.747      27.001      
+TOI     C1P     C       C       0       -66.384     16.154      25.919      
+TOI     O1P     O       O       0       -65.609     16.503      25.022      
+TOI     C2P     C       C       0       -67.231     15.093      25.701      
+TOI     C3P     C       C2      0       -68.171     14.642      26.599      
+TOI     O3P     O       O2      0       -67.074     14.558      24.454      
+TOI     C5I     C       CH1     0       -67.478     13.193      24.137      
+TOI     C6I     C       CH1     0       -66.541     12.640      23.074      
+TOI     O3I     O       OH1     0       -65.248     12.460      23.643      
+TOI     C1I     C       CH1     0       -67.059     11.315      22.498      
+TOI     CI      C       C       0       -66.115     10.820      21.393      
+TOI     O2I     O       OC      -1      -65.631     9.720       21.509      
+TOI     O1I     O       O       0       -65.892     11.544      20.449      
+TOI     C4I     C       CR16    0       -68.883     13.246      23.640      
+TOI     C3I     C       CR16    0       -69.322     12.494      22.648      
+TOI     C2I     C       CH1     0       -68.521     11.404      21.973      
+TOI     C21     C       CT      0       -69.316     10.057      22.015      
+TOI     C3      C       CH2     0       -69.777     9.722       23.457      
+TOI     C41     C       CH2     0       -70.313     8.315       23.696      
+TOI     C51     C       C       0       -71.004     8.125       25.035      
+TOI     O3      O       O       0       -72.247     8.205       25.075      
+TOI     O4      O       OC      -1      -70.295     7.897       26.036      
+TOI     O5      O       OH1     0       -68.432     8.994       21.646      
+TOI     C2      C       CR5     0       -70.466     10.123      21.046      
+TOI     S1      S       S2      0       -72.060     10.452      21.492      
+TOI     N3      N       NR5     1       -70.447     9.965       19.663      
+TOI     C35     C       CH2     0       -69.260     9.677       18.853      
+TOI     "C5'"   C       CR6     0       -69.058     8.212       18.509      
+TOI     "C4'"   C       CR6     0       -69.843     7.118       18.972      
+TOI     "N4'"   N       NH1     0       -70.810     7.225       19.832      
+TOI     "N3'"   N       NRD6    0       -69.593     5.863       18.495      
+TOI     "C2'"   C       CR6     0       -68.482     5.623       17.846      
+TOI     C2A     C       CH3     0       -68.048     4.227       17.585      
+TOI     "N1'"   N       NR6     0       -67.698     6.620       17.387      
+TOI     "C6'"   C       CR16    0       -67.990     7.908       17.676      
+TOI     C4      C       CR5     0       -71.743     10.120      19.077      
+TOI     C4A     C       CH3     0       -71.960     9.979       17.598      
+TOI     C5      C       CR5     0       -72.758     10.396      19.990      
+TOI     C5A     C       CH2     0       -74.220     10.611      19.826      
+TOI     C5B     C       CH2     0       -74.946     9.292       19.802      
+TOI     O5G     O       O2      0       -76.352     9.518       19.551      
+TOI     P1      P       P       0       -77.356     8.266       19.551      
+TOI     O13     O       O       0       -78.727     8.760       19.227      
+TOI     O12     O       OP      -1      -76.763     7.182       18.712      
+TOI     O11     O       O2      0       -77.306     7.822       21.092      
+TOI     P2      P       P       0       -77.811     8.529       22.452      
+TOI     O23     O       OP      -1      -77.273     9.938       22.413      
+TOI     O21     O       O       0       -79.318     8.479       22.410      
+TOI     O22     O       OP      -1      -77.232     7.715       23.583      
+TOI     H2      H       H       0       -68.766     13.938      26.355      
+TOI     H3      H       H       0       -68.215     15.043      27.466      
+TOI     H4      H       H       0       -67.423     12.618      24.943      
+TOI     H5      H       H       0       -66.466     13.297      22.340      
+TOI     H6      H       H       0       -64.883     13.215      23.713      
+TOI     H7      H       H       0       -67.023     10.647      23.227      
+TOI     H9      H       H       0       -69.487     13.853      24.063      
+TOI     H11     H       H       0       -70.193     12.657      22.321      
+TOI     H13     H       H       0       -68.462     11.669      21.012      
+TOI     H14     H       H       0       -70.461     10.362      23.736      
+TOI     H15     H       H       0       -69.007     9.855       24.045      
+TOI     H16     H       H       0       -69.569     7.678       23.642      
+TOI     H17     H       H       0       -70.949     8.085       22.986      
+TOI     H19     H       H       0       -68.842     8.293       21.405      
+TOI     H20     H       H       0       -68.463     10.000      19.316      
+TOI     H21     H       H       0       -69.319     10.181      18.017      
+TOI     H22     H       H       0       -70.593     6.858       20.616      
+TOI     H24     H       H       0       -68.380     3.647       18.287      
+TOI     H25     H       H       0       -67.080     4.185       17.565      
+TOI     H26     H       H       0       -68.401     3.933       16.731      
+TOI     H10     H       H       0       -67.004     6.452       16.903      
+TOI     H27     H       H       0       -67.461     8.597       17.308      
+TOI     H28     H       H       0       -72.906     10.040      17.396      
+TOI     H29     H       H       0       -71.624     9.118       17.302      
+TOI     H30     H       H       0       -71.486     10.686      17.132      
+TOI     H31     H       H       0       -74.384     11.090      18.994      
+TOI     H32     H       H       0       -74.553     11.156      20.561      
+TOI     H33     H       H       0       -74.832     8.837       20.662      
+TOI     H34     H       H       0       -74.571     8.721       19.099      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TOI       "N1'"       "C6'"      SINGLE       n     1.349  0.0100     1.349  0.0100
+TOI       "C2'"       "N1'"      SINGLE       n     1.344  0.0100     1.344  0.0100
+TOI       "C2'"         C2A      SINGLE       n     1.485  0.0100     1.485  0.0100
+TOI       "C5'"       "C6'"      DOUBLE       n     1.379  0.0200     1.379  0.0200
+TOI       "N3'"       "C2'"      DOUBLE       n     1.304  0.0100     1.304  0.0100
+TOI          C4         C4A      SINGLE       n     1.499  0.0100     1.499  0.0100
+TOI         C35       "C5'"      SINGLE       n     1.511  0.0100     1.511  0.0100
+TOI       "C5'"       "C4'"      SINGLE       n     1.387  0.0200     1.387  0.0200
+TOI       "C4'"       "N3'"      SINGLE       n     1.347  0.0200     1.347  0.0200
+TOI          N3         C35      SINGLE       n     1.459  0.0100     1.459  0.0100
+TOI          N3          C4      SINGLE       y     1.378  0.0200     1.378  0.0200
+TOI          C4          C5      DOUBLE       y     1.389  0.0200     1.389  0.0200
+TOI       "C4'"       "N4'"      DOUBLE       n     1.299  0.0200     1.299  0.0200
+TOI          C5         C5A      SINGLE       n     1.486  0.0100     1.486  0.0100
+TOI         C5A         C5B      SINGLE       n     1.505  0.0199     1.505  0.0199
+TOI          C2          N3      DOUBLE       y     1.367  0.0129     1.367  0.0129
+TOI          P1         O13      DOUBLE       n     1.493  0.0122     1.493  0.0122
+TOI          CI         O1I      DOUBLE       n     1.207  0.0200     1.207  0.0200
+TOI         C5B         O5G      SINGLE       n     1.447  0.0162     1.447  0.0162
+TOI         O5G          P1      SINGLE       n     1.604  0.0133     1.604  0.0133
+TOI          S1          C5      SINGLE       y     1.695  0.0200     1.695  0.0200
+TOI          P1         O12      SINGLE       n     1.493  0.0122     1.493  0.0122
+TOI          P1         O11      SINGLE       n     1.604  0.0133     1.604  0.0133
+TOI          CI         O2I      SINGLE       n     1.207  0.0200     1.207  0.0200
+TOI         C1I          CI      SINGLE       n     1.524  0.0156     1.524  0.0156
+TOI          C2          S1      SINGLE       y     1.695  0.0200     1.695  0.0200
+TOI         C21          C2      SINGLE       n     1.490  0.0111     1.490  0.0111
+TOI          P2         O21      DOUBLE       n     1.509  0.0200     1.509  0.0200
+TOI         C21          O5      SINGLE       n     1.427  0.0139     1.427  0.0139
+TOI         C2I         C21      SINGLE       n     1.534  0.0159     1.534  0.0159
+TOI         C1I         C2I      SINGLE       n     1.543  0.0100     1.543  0.0100
+TOI         C3I         C2I      SINGLE       n     1.506  0.0100     1.506  0.0100
+TOI         C21          C3      SINGLE       n     1.540  0.0102     1.540  0.0102
+TOI         O11          P2      SINGLE       n     1.614  0.0178     1.614  0.0178
+TOI         C6I         C1I      SINGLE       n     1.529  0.0100     1.529  0.0100
+TOI         C4I         C3I      DOUBLE       n     1.321  0.0141     1.321  0.0141
+TOI          P2         O23      SINGLE       n     1.509  0.0200     1.509  0.0200
+TOI          P2         O22      SINGLE       n     1.509  0.0200     1.509  0.0200
+TOI         C6I         O3I      SINGLE       n     1.424  0.0100     1.424  0.0100
+TOI         C5I         C6I      SINGLE       n     1.520  0.0131     1.520  0.0131
+TOI         C5I         C4I      SINGLE       n     1.492  0.0100     1.492  0.0100
+TOI          C3         C41      SINGLE       n     1.518  0.0143     1.518  0.0143
+TOI         C41         C51      SINGLE       n     1.519  0.0109     1.519  0.0109
+TOI         O3P         C5I      SINGLE       n     1.454  0.0103     1.454  0.0103
+TOI         C2P         O3P      SINGLE       n     1.339  0.0174     1.339  0.0174
+TOI         C51          O3      DOUBLE       n     1.247  0.0187     1.247  0.0187
+TOI         C51          O4      SINGLE       n     1.247  0.0187     1.247  0.0187
+TOI         C2P         C3P      DOUBLE       n     1.348  0.0200     1.348  0.0200
+TOI         C1P         C2P      SINGLE       n     1.348  0.0200     1.348  0.0200
+TOI         C1P         O1P      DOUBLE       n     1.230  0.0200     1.230  0.0200
+TOI         O2P         C1P      SINGLE       n     1.230  0.0200     1.230  0.0200
+TOI         C3P          H2      SINGLE       n     1.082  0.0130     0.957  0.0200
+TOI         C3P          H3      SINGLE       n     1.082  0.0130     0.957  0.0200
+TOI         C5I          H4      SINGLE       n     1.089  0.0100     0.992  0.0106
+TOI         C6I          H5      SINGLE       n     1.089  0.0100     0.988  0.0175
+TOI         O3I          H6      SINGLE       n     0.970  0.0120     0.841  0.0200
+TOI         C1I          H7      SINGLE       n     1.089  0.0100     0.990  0.0161
+TOI         C4I          H9      SINGLE       n     1.082  0.0130     0.955  0.0200
+TOI         C3I         H11      SINGLE       n     1.082  0.0130     0.946  0.0200
+TOI         C2I         H13      SINGLE       n     1.089  0.0100     0.998  0.0156
+TOI          C3         H14      SINGLE       n     1.089  0.0100     0.980  0.0178
+TOI          C3         H15      SINGLE       n     1.089  0.0100     0.980  0.0178
+TOI         C41         H16      SINGLE       n     1.089  0.0100     0.981  0.0185
+TOI         C41         H17      SINGLE       n     1.089  0.0100     0.981  0.0185
+TOI          O5         H19      SINGLE       n     0.970  0.0120     0.848  0.0200
+TOI         C35         H20      SINGLE       n     1.089  0.0100     0.979  0.0162
+TOI         C35         H21      SINGLE       n     1.089  0.0100     0.979  0.0162
+TOI       "N4'"         H22      SINGLE       n     1.016  0.0100     0.893  0.0200
+TOI         C2A         H24      SINGLE       n     1.089  0.0100     0.969  0.0158
+TOI         C2A         H25      SINGLE       n     1.089  0.0100     0.969  0.0158
+TOI         C2A         H26      SINGLE       n     1.089  0.0100     0.969  0.0158
+TOI       "N1'"         H10      SINGLE       n     1.016  0.0100     0.863  0.0123
+TOI       "C6'"         H27      SINGLE       n     1.082  0.0130     0.943  0.0178
+TOI         C4A         H28      SINGLE       n     1.089  0.0100     0.970  0.0153
+TOI         C4A         H29      SINGLE       n     1.089  0.0100     0.970  0.0153
+TOI         C4A         H30      SINGLE       n     1.089  0.0100     0.970  0.0153
+TOI         C5A         H31      SINGLE       n     1.089  0.0100     0.974  0.0100
+TOI         C5A         H32      SINGLE       n     1.089  0.0100     0.974  0.0100
+TOI         C5B         H33      SINGLE       n     1.089  0.0100     0.980  0.0143
+TOI         C5B         H34      SINGLE       n     1.089  0.0100     0.980  0.0143
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TOI         C2P         C1P         O1P     118.654    3.00
+TOI         C2P         C1P         O2P     118.654    3.00
+TOI         O1P         C1P         O2P     122.692    1.63
+TOI         O3P         C2P         C3P     116.262    3.00
+TOI         O3P         C2P         C1P     116.262    3.00
+TOI         C3P         C2P         C1P     127.477    3.00
+TOI         C2P         C3P          H2     119.183    2.19
+TOI         C2P         C3P          H3     119.183    2.19
+TOI          H2         C3P          H3     121.634    1.50
+TOI         C5I         O3P         C2P     117.637    1.50
+TOI         C6I         C5I         C4I     111.632    1.50
+TOI         C6I         C5I         O3P     108.623    2.09
+TOI         C6I         C5I          H4     108.836    1.50
+TOI         C4I         C5I         O3P     108.590    2.07
+TOI         C4I         C5I          H4     109.309    1.50
+TOI         O3P         C5I          H4     109.240    1.50
+TOI         C1I         C6I         O3I     110.445    1.75
+TOI         C1I         C6I         C5I     111.124    1.57
+TOI         C1I         C6I          H5     108.961    1.50
+TOI         O3I         C6I         C5I     109.779    1.72
+TOI         O3I         C6I          H5     108.541    1.50
+TOI         C5I         C6I          H5     109.434    1.50
+TOI         C6I         O3I          H6     108.225    2.48
+TOI          CI         C1I         C2I     109.543    1.50
+TOI          CI         C1I         C6I     111.056    2.52
+TOI          CI         C1I          H7     106.966    1.50
+TOI         C2I         C1I         C6I     111.124    1.57
+TOI         C2I         C1I          H7     108.135    1.50
+TOI         C6I         C1I          H7     107.422    1.50
+TOI         O1I          CI         O2I     123.435    1.50
+TOI         O1I          CI         C1I     118.283    1.50
+TOI         O2I          CI         C1I     118.283    1.50
+TOI         C3I         C4I         C5I     122.905    1.50
+TOI         C3I         C4I          H9     118.933    1.54
+TOI         C5I         C4I          H9     118.162    1.50
+TOI         C2I         C3I         C4I     124.049    1.50
+TOI         C2I         C3I         H11     117.385    1.50
+TOI         C4I         C3I         H11     118.566    1.54
+TOI         C21         C2I         C1I     111.163    2.25
+TOI         C21         C2I         C3I     110.115    2.66
+TOI         C21         C2I         H13     107.642    1.65
+TOI         C1I         C2I         C3I     111.539    2.18
+TOI         C1I         C2I         H13     107.302    1.50
+TOI         C3I         C2I         H13     107.287    1.59
+TOI          C2         C21          O5     111.149    2.31
+TOI          C2         C21         C2I     114.126    2.44
+TOI          C2         C21          C3     110.747    2.16
+TOI          O5         C21         C2I     110.483    2.43
+TOI          O5         C21          C3     108.679    1.58
+TOI         C2I         C21          C3     113.198    2.74
+TOI         C21          C3         C41     111.094    2.85
+TOI         C21          C3         H14     108.026    1.92
+TOI         C21          C3         H15     108.026    1.92
+TOI         C41          C3         H14     108.915    1.50
+TOI         C41          C3         H15     108.915    1.50
+TOI         H14          C3         H15     107.715    1.50
+TOI          C3         C41         C51     114.629    2.24
+TOI          C3         C41         H16     108.844    1.50
+TOI          C3         C41         H17     108.844    1.50
+TOI         C51         C41         H16     108.404    1.50
+TOI         C51         C41         H17     108.404    1.50
+TOI         H16         C41         H17     107.521    1.50
+TOI         C41         C51          O3     118.214    1.64
+TOI         C41         C51          O4     118.214    1.64
+TOI          O3         C51          O4     123.571    1.50
+TOI         C21          O5         H19     109.469    3.00
+TOI          N3          C2          S1     108.002    3.00
+TOI          N3          C2         C21     127.304    1.69
+TOI          S1          C2         C21     124.694    3.00
+TOI          C5          S1          C2     108.002    3.00
+TOI         C35          N3          C4     125.249    1.50
+TOI         C35          N3          C2     126.619    1.50
+TOI          C4          N3          C2     108.133    2.04
+TOI       "C5'"         C35          N3     112.124    1.52
+TOI       "C5'"         C35         H20     108.988    1.50
+TOI       "C5'"         C35         H21     108.988    1.50
+TOI          N3         C35         H20     109.210    1.50
+TOI          N3         C35         H21     109.210    1.50
+TOI         H20         C35         H21     107.847    1.50
+TOI       "C6'"       "C5'"         C35     120.048    1.80
+TOI       "C6'"       "C5'"       "C4'"     119.425    1.50
+TOI         C35       "C5'"       "C4'"     120.528    2.28
+TOI       "C5'"       "C4'"       "N3'"     120.173    1.66
+TOI       "C5'"       "C4'"       "N4'"     118.806    3.00
+TOI       "N3'"       "C4'"       "N4'"     121.021    2.37
+TOI       "C4'"       "N4'"         H22     111.493    3.00
+TOI       "C2'"       "N3'"       "C4'"     118.430    1.50
+TOI       "N1'"       "C2'"         C2A     117.527    1.50
+TOI       "N1'"       "C2'"       "N3'"     121.476    1.50
+TOI         C2A       "C2'"       "N3'"     120.997    1.50
+TOI       "C2'"         C2A         H24     109.472    1.50
+TOI       "C2'"         C2A         H25     109.472    1.50
+TOI       "C2'"         C2A         H26     109.472    1.50
+TOI         H24         C2A         H25     109.406    1.50
+TOI         H24         C2A         H26     109.406    1.50
+TOI         H25         C2A         H26     109.406    1.50
+TOI       "C6'"       "N1'"       "C2'"     120.173    2.15
+TOI       "C6'"       "N1'"         H10     119.024    2.24
+TOI       "C2'"       "N1'"         H10     120.803    2.33
+TOI       "N1'"       "C6'"       "C5'"     120.323    1.50
+TOI       "N1'"       "C6'"         H27     119.407    1.50
+TOI       "C5'"       "C6'"         H27     120.270    1.91
+TOI         C4A          C4          N3     122.374    1.50
+TOI         C4A          C4          C5     129.754    2.46
+TOI          N3          C4          C5     107.863    2.30
+TOI          C4         C4A         H28     109.558    1.50
+TOI          C4         C4A         H29     109.558    1.50
+TOI          C4         C4A         H30     109.558    1.50
+TOI         H28         C4A         H29     109.354    1.50
+TOI         H28         C4A         H30     109.354    1.50
+TOI         H29         C4A         H30     109.354    1.50
+TOI          C4          C5         C5A     131.713    3.00
+TOI          C4          C5          S1     108.002    3.00
+TOI         C5A          C5          S1     120.286    3.00
+TOI          C5         C5A         C5B     110.747    2.16
+TOI          C5         C5A         H31     108.883    1.50
+TOI          C5         C5A         H32     108.883    1.50
+TOI         C5B         C5A         H31     109.160    1.50
+TOI         C5B         C5A         H32     109.160    1.50
+TOI         H31         C5A         H32     107.724    1.50
+TOI         C5A         C5B         O5G     108.926    2.01
+TOI         C5A         C5B         H33     109.702    1.50
+TOI         C5A         C5B         H34     109.702    1.50
+TOI         O5G         C5B         H33     109.739    1.50
+TOI         O5G         C5B         H34     109.739    1.50
+TOI         H33         C5B         H34     108.319    1.50
+TOI         C5B         O5G          P1     119.251    1.51
+TOI         O13          P1         O5G     107.912    2.57
+TOI         O13          P1         O12     118.411    2.35
+TOI         O13          P1         O11     108.816    2.14
+TOI         O5G          P1         O12     107.912    2.57
+TOI         O5G          P1         O11     101.065    1.97
+TOI         O12          P1         O11     108.816    2.14
+TOI          P1         O11          P2     132.584    3.00
+TOI         O21          P2         O11     105.965    2.38
+TOI         O21          P2         O23     112.716    1.50
+TOI         O21          P2         O22     112.716    1.50
+TOI         O11          P2         O23     105.965    2.38
+TOI         O11          P2         O22     105.965    2.38
+TOI         O23          P2         O22     112.716    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TOI             sp2_sp2_1         C2I         C3I         C4I         C5I       0.000     5.0     2
+TOI             sp2_sp3_2         C4I         C3I         C2I         C21     120.000    10.0     6
+TOI            sp3_sp3_52          O5         C21         C2I         C1I      60.000    10.0     3
+TOI            sp3_sp3_61          O5         C21          C3         C41      60.000    10.0     3
+TOI            sp3_sp3_48          C3         C21          O5         H19     -60.000    10.0     3
+TOI            sp2_sp3_43          N3          C2         C21          O5     150.000    10.0     6
+TOI            sp3_sp3_73         C21          C3         C41         C51     180.000    10.0     3
+TOI            sp2_sp3_56          O3         C51         C41          C3     120.000    10.0     6
+TOI            sp2_sp2_33         O1P         C1P         C2P         O3P     180.000     5.0     2
+TOI              const_16         C21          C2          S1          C5     180.000    10.0     2
+TOI       const_sp2_sp2_4         C21          C2          N3         C35       0.000     5.0     2
+TOI              const_14         C5A          C5          S1          C2     180.000    10.0     2
+TOI            sp2_sp3_26          C4          N3         C35       "C5'"     -90.000    10.0     6
+TOI       const_sp2_sp2_8         C4A          C4          N3         C35       0.000     5.0     2
+TOI            sp2_sp3_20       "C6'"       "C5'"         C35          N3     -90.000    10.0     6
+TOI            sp2_sp2_24       "N4'"       "C4'"       "C5'"         C35       0.000     5.0     2
+TOI             sp2_sp2_7         C35       "C5'"       "C6'"       "N1'"     180.000     5.0     2
+TOI            sp2_sp2_25       "C5'"       "C4'"       "N4'"         H22     180.000     5.0     2
+TOI            sp2_sp2_20       "N4'"       "C4'"       "N3'"       "C2'"     180.000     5.0     2
+TOI            sp2_sp2_18         C2A       "C2'"       "N3'"       "C4'"     180.000     5.0     2
+TOI             sp2_sp3_7       "N1'"       "C2'"         C2A         H24     150.000    10.0     6
+TOI            sp2_sp2_15         C2A       "C2'"       "N1'"       "C6'"     180.000     5.0     2
+TOI             sp2_sp2_9       "C5'"       "C6'"       "N1'"       "C2'"       0.000     5.0     2
+TOI            sp2_sp3_13          N3          C4         C4A         H28     150.000    10.0     6
+TOI              const_12         C4A          C4          C5         C5A       0.000    10.0     2
+TOI            sp2_sp3_32          C4          C5         C5A         C5B     -90.000    10.0     6
+TOI            sp3_sp3_28          C5         C5A         C5B         O5G     180.000    10.0     3
+TOI            sp3_sp3_37         C5A         C5B         O5G          P1     180.000    10.0     3
+TOI            sp2_sp2_31         O3P         C2P         C3P          H2       0.000     5.0     2
+TOI            sp2_sp2_27         C3P         C2P         O3P         C5I     180.000     5.0     2
+TOI            sp3_sp3_42         C5B         O5G          P1         O13      60.000    10.0     3
+TOI            sp3_sp3_45          P2         O11          P1         O13      60.000    10.0     3
+TOI            sp3_sp3_69          P1         O11          P2         O21      60.000    10.0     3
+TOI            sp3_sp3_82         C6I         C5I         O3P         C2P     180.000    10.0     3
+TOI            sp2_sp3_50         C3I         C4I         C5I         O3P     120.000    10.0     6
+TOI             sp3_sp3_5         O3P         C5I         C6I         O3I      60.000    10.0     3
+TOI            sp3_sp3_70         C1I         C6I         O3I          H6     180.000    10.0     3
+TOI            sp3_sp3_14          CI         C1I         C6I         O3I     -60.000    10.0     3
+TOI            sp2_sp3_37         O1I          CI         C1I         C2I       0.000    10.0     6
+TOI            sp3_sp3_23          CI         C1I         C2I         C21      60.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TOI    chir_1    C5I    O3P    C6I    C4I    positive
+TOI    chir_2    C6I    O3I    C5I    C1I    positive
+TOI    chir_3    C1I    CI    C6I    C2I    negative
+TOI    chir_4    C2I    C21    C1I    C3I    positive
+TOI    chir_5    C21    O5    C2    C2I    positive
+TOI    chir_6    P1    O11    O5G    O12    both
+TOI    chir_7    P2    O11    O23    O22    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TOI    plan-1          C2   0.020
+TOI    plan-1         C21   0.020
+TOI    plan-1         C35   0.020
+TOI    plan-1          C4   0.020
+TOI    plan-1         C4A   0.020
+TOI    plan-1          C5   0.020
+TOI    plan-1         C5A   0.020
+TOI    plan-1          N3   0.020
+TOI    plan-1          S1   0.020
+TOI    plan-2         C1P   0.020
+TOI    plan-2         C2P   0.020
+TOI    plan-2         O1P   0.020
+TOI    plan-2         O2P   0.020
+TOI    plan-3         C1P   0.020
+TOI    plan-3         C2P   0.020
+TOI    plan-3         C3P   0.020
+TOI    plan-3         O3P   0.020
+TOI    plan-4         C2P   0.020
+TOI    plan-4         C3P   0.020
+TOI    plan-4          H2   0.020
+TOI    plan-4          H3   0.020
+TOI    plan-5         C1I   0.020
+TOI    plan-5          CI   0.020
+TOI    plan-5         O1I   0.020
+TOI    plan-5         O2I   0.020
+TOI    plan-6         C3I   0.020
+TOI    plan-6         C4I   0.020
+TOI    plan-6         C5I   0.020
+TOI    plan-6          H9   0.020
+TOI    plan-7         C2I   0.020
+TOI    plan-7         C3I   0.020
+TOI    plan-7         C4I   0.020
+TOI    plan-7         H11   0.020
+TOI    plan-8         C41   0.020
+TOI    plan-8         C51   0.020
+TOI    plan-8          O3   0.020
+TOI    plan-8          O4   0.020
+TOI    plan-9         C35   0.020
+TOI    plan-9       "C4'"   0.020
+TOI    plan-9       "C5'"   0.020
+TOI    plan-9       "C6'"   0.020
+TOI   plan-10       "C4'"   0.020
+TOI   plan-10       "C5'"   0.020
+TOI   plan-10       "N3'"   0.020
+TOI   plan-10       "N4'"   0.020
+TOI   plan-11       "C2'"   0.020
+TOI   plan-11         C2A   0.020
+TOI   plan-11       "N1'"   0.020
+TOI   plan-11       "N3'"   0.020
+TOI   plan-12       "C2'"   0.020
+TOI   plan-12       "C6'"   0.020
+TOI   plan-12         H10   0.020
+TOI   plan-12       "N1'"   0.020
+TOI   plan-13       "C5'"   0.020
+TOI   plan-13       "C6'"   0.020
+TOI   plan-13         H27   0.020
+TOI   plan-13       "N1'"   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+TOI            InChI                InChI  1.03 InChI=1S/C26H34N4O16P2S/c1-12-18(7-9-44-48(42,43)46-47(39,40)41)49-25(30(12)11-15-10-28-14(3)29-22(15)27)26(38,8-6-19(31)32)16-4-5-17(45-13(2)23(34)35)21(33)20(16)24(36)37/h4-5,10,16-17,20-21,33,38H,2,6-9,11H2,1,3H3,(H7-,27,28,29,31,32,34,35,36,37,39,40,41,42,43)/p+1/t16-,17-,20+,21+,26-/m0/s1
+TOI         InChIKey                InChI  1.03                                                                                                                                                                                                                                                                            AJVZCJMDQDMTBE-BLORIJLWSA-O
+TOI SMILES_CANONICAL               CACTVS 3.385                                                                                                                                                                          CC1=NC(=N)C(=CN1)C[n+]2c(C)c(CCO[P](O)(=O)O[P](O)(O)=O)sc2[C@](O)(CCC(O)=O)[C@H]3C=C[C@H](OC(=C)C(O)=O)[C@@H](O)[C@@H]3C(O)=O
+TOI           SMILES               CACTVS 3.385                                                                                                                                                                                 CC1=NC(=N)C(=CN1)C[n+]2c(C)c(CCO[P](O)(=O)O[P](O)(O)=O)sc2[C](O)(CCC(O)=O)[CH]3C=C[CH](OC(=C)C(O)=O)[CH](O)[CH]3C(O)=O
+TOI SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                                                                                                                                      "[H]/N=C/1\C(=CNC(=N1)C)C[n+]2c(c(sc2[C@](CCC(=O)O)([C@H]3C=C[C@@H]([C@H]([C@@H]3C(=O)O)O)OC(=C)C(=O)O)O)CCOP(=O)(O)OP(=O)(O)O)C"
+TOI           SMILES "OpenEye OEToolkits" 2.0.4                                                                                                                                                                                                     Cc1c(sc([n+]1CC2=CNC(=NC2=N)C)C(CCC(=O)O)(C3C=CC(C(C3C(=O)O)O)OC(=C)C(=O)O)O)CCOP(=O)(O)OP(=O)(O)O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+TOI acedrg               243         "dictionary generator"                  
+TOI acedrg_database      11          "data source"                           
+TOI rdkit                2017.03.2   "Chemoinformatics tool"
+TOI refmac5              5.8.0238    "optimization tool"                     

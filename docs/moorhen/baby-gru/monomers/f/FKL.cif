@@ -1,0 +1,396 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FKL     FKL      N-cyclopropyl-4-methyl-3-[8-methyl-7-oxo-2-(tetrahydro-2H-pyran-4-ylamino)-7,8-dihydropyrido[2,3-d]pyrimidin-6-yl]benzamide     NON-POLYMER     59     32     .     
+#
+data_comp_FKL
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FKL     N1      N       NRD6    0       22.552      6.991       30.400      
+FKL     N3      N       NRD6    0       23.336      9.167       31.049      
+FKL     C4      C       CR16    0       21.357      7.497       30.108      
+FKL     C5      C       CR66    0       21.065      8.876       30.264      
+FKL     C6      C       CR66    0       22.133      9.705       30.758      
+FKL     C8      C       CR6     0       20.691      11.641      30.645      
+FKL     C10     C       CR16    0       19.823      9.461       29.968      
+FKL     C15     C       CR16    0       18.175      12.291      28.730      
+FKL     C17     C       CR16    0       15.839      12.615      29.136      
+FKL     C20     C       CH3     0       17.134      10.229      31.787      
+FKL     C21     C       C       0       16.927      13.813      27.189      
+FKL     C24     C       CH1     0       15.721      15.653      26.068      
+FKL     C26     C       CH2     0       14.270      15.781      25.754      
+FKL     C28     C       CH2     0       26.951      7.071       32.182      
+FKL     O22     O       O       0       17.639      13.584      26.210      
+FKL     N23     N       NH1     0       16.095      14.885      27.243      
+FKL     C25     C       CH2     0       15.144      14.942      24.892      
+FKL     C16     C       CR6     0       16.970      12.897      28.376      
+FKL     C18     C       CR16    0       15.917      11.761      30.226      
+FKL     C19     C       CR6     0       17.122      11.153      30.592      
+FKL     C14     C       CR6     0       18.276      11.427      29.824      
+FKL     C9      C       CR6     0       19.601      10.805      30.149      
+FKL     O13     O       O       0       20.525      12.857      30.814      
+FKL     N7      N       NR6     0       21.933      11.081      30.937      
+FKL     C12     C       CH3     0       23.003      11.959      31.445      
+FKL     C2      C       CR6     0       23.512      7.832       30.861      
+FKL     N11     N       NH1     0       24.729      7.281       31.154      
+FKL     C27     C       CH1     0       25.926      8.011       31.560      
+FKL     C32     C       CH2     0       26.533      8.781       30.393      
+FKL     C31     C       CH2     0       27.844      9.413       30.796      
+FKL     O30     O       O2      0       28.750      8.439       31.310      
+FKL     C29     C       CH2     0       28.239      7.802       32.478      
+FKL     H4      H       H       0       20.683      6.921       29.787      
+FKL     H10     H       H       0       19.119      8.918       29.646      
+FKL     H15     H       H       0       18.944      12.465      28.229      
+FKL     H17     H       H       0       15.016      13.014      28.916      
+FKL     H20     H       H       0       17.919      10.403      32.331      
+FKL     H20A    H       H       0       17.150      9.307       31.484      
+FKL     H20B    H       H       0       16.338      10.376      32.324      
+FKL     H24     H       H       0       16.285      16.439      25.874      
+FKL     H26     H       H       0       13.637      15.325      26.341      
+FKL     H26A    H       H       0       13.959      16.634      25.392      
+FKL     H28     H       H       0       26.592      6.699       33.002      
+FKL     H28A    H       H       0       27.127      6.338       31.571      
+FKL     HN23    H       H       0       15.786      15.135      28.020      
+FKL     H25     H       H       0       15.044      13.972      24.951      
+FKL     H25A    H       H       0       15.368      15.281      24.003      
+FKL     H18     H       H       0       15.140      11.586      30.730      
+FKL     H12     H       H       0       22.958      12.827      31.011      
+FKL     H12A    H       H       0       23.872      11.572      31.260      
+FKL     H12B    H       H       0       22.900      12.073      32.404      
+FKL     HN11    H       H       0       24.785      6.410       31.087      
+FKL     H27     H       H       0       25.673      8.666       32.251      
+FKL     H32     H       H       0       25.915      9.470       30.104      
+FKL     H32A    H       H       0       26.678      8.175       29.649      
+FKL     H31     H       H       0       27.685      10.099      31.480      
+FKL     H31A    H       H       0       28.252      9.849       30.018      
+FKL     H29     H       H       0       28.908      7.168       32.814      
+FKL     H29A    H       H       0       28.084      8.477       33.173      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FKL          N1          C4      DOUBLE       y     1.322  0.0151     1.322  0.0151
+FKL          N1          C2      SINGLE       y     1.348  0.0113     1.348  0.0113
+FKL          N3          C6      SINGLE       y     1.337  0.0145     1.337  0.0145
+FKL          N3          C2      DOUBLE       y     1.349  0.0111     1.349  0.0111
+FKL          C4          C5      SINGLE       y     1.417  0.0200     1.417  0.0200
+FKL          C5          C6      DOUBLE       y     1.423  0.0200     1.423  0.0200
+FKL          C5         C10      SINGLE       y     1.403  0.0100     1.403  0.0100
+FKL          C6          N7      SINGLE       y     1.383  0.0129     1.383  0.0129
+FKL          C8          C9      SINGLE       y     1.454  0.0116     1.454  0.0116
+FKL          C8         O13      DOUBLE       n     1.235  0.0126     1.235  0.0126
+FKL          C8          N7      SINGLE       y     1.382  0.0100     1.382  0.0100
+FKL         C10          C9      DOUBLE       y     1.372  0.0165     1.372  0.0165
+FKL         C15         C16      DOUBLE       y     1.391  0.0100     1.391  0.0100
+FKL         C15         C14      SINGLE       y     1.392  0.0110     1.392  0.0110
+FKL         C17         C16      SINGLE       y     1.389  0.0100     1.389  0.0100
+FKL         C17         C18      DOUBLE       y     1.384  0.0100     1.384  0.0100
+FKL         C20         C19      SINGLE       n     1.498  0.0200     1.498  0.0200
+FKL         C21         O22      DOUBLE       n     1.230  0.0114     1.230  0.0114
+FKL         C21         N23      SINGLE       n     1.343  0.0186     1.343  0.0186
+FKL         C21         C16      SINGLE       n     1.495  0.0106     1.495  0.0106
+FKL         C24         C26      SINGLE       n     1.490  0.0100     1.490  0.0100
+FKL         C24         N23      SINGLE       n     1.443  0.0200     1.443  0.0200
+FKL         C24         C25      SINGLE       n     1.490  0.0100     1.490  0.0100
+FKL         C26         C25      SINGLE       n     1.486  0.0159     1.486  0.0159
+FKL         C28         C27      SINGLE       n     1.521  0.0108     1.521  0.0108
+FKL         C28         C29      SINGLE       n     1.508  0.0118     1.508  0.0118
+FKL         C18         C19      SINGLE       y     1.393  0.0100     1.393  0.0100
+FKL         C19         C14      DOUBLE       y     1.404  0.0100     1.404  0.0100
+FKL         C14          C9      SINGLE       n     1.497  0.0100     1.497  0.0100
+FKL          N7         C12      SINGLE       n     1.467  0.0100     1.467  0.0100
+FKL          C2         N11      SINGLE       n     1.350  0.0189     1.350  0.0189
+FKL         N11         C27      SINGLE       n     1.457  0.0100     1.457  0.0100
+FKL         C27         C32      SINGLE       n     1.521  0.0108     1.521  0.0108
+FKL         C32         C31      SINGLE       n     1.508  0.0118     1.508  0.0118
+FKL         C31         O30      SINGLE       n     1.423  0.0100     1.423  0.0100
+FKL         O30         C29      SINGLE       n     1.423  0.0100     1.423  0.0100
+FKL          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0200
+FKL         C10         H10      SINGLE       n     1.082  0.0130     0.945  0.0164
+FKL         C15         H15      SINGLE       n     1.082  0.0130     0.934  0.0200
+FKL         C17         H17      SINGLE       n     1.082  0.0130     0.941  0.0168
+FKL         C20         H20      SINGLE       n     1.089  0.0100     0.971  0.0135
+FKL         C20        H20A      SINGLE       n     1.089  0.0100     0.971  0.0135
+FKL         C20        H20B      SINGLE       n     1.089  0.0100     0.971  0.0135
+FKL         C24         H24      SINGLE       n     1.089  0.0100     0.987  0.0159
+FKL         C26         H26      SINGLE       n     1.089  0.0100     0.977  0.0155
+FKL         C26        H26A      SINGLE       n     1.089  0.0100     0.977  0.0155
+FKL         C28         H28      SINGLE       n     1.089  0.0100     0.970  0.0100
+FKL         C28        H28A      SINGLE       n     1.089  0.0100     0.970  0.0100
+FKL         N23        HN23      SINGLE       n     1.016  0.0100     0.872  0.0200
+FKL         C25         H25      SINGLE       n     1.089  0.0100     0.977  0.0155
+FKL         C25        H25A      SINGLE       n     1.089  0.0100     0.977  0.0155
+FKL         C18         H18      SINGLE       n     1.082  0.0130     0.943  0.0173
+FKL         C12         H12      SINGLE       n     1.089  0.0100     0.971  0.0182
+FKL         C12        H12A      SINGLE       n     1.089  0.0100     0.971  0.0182
+FKL         C12        H12B      SINGLE       n     1.089  0.0100     0.971  0.0182
+FKL         N11        HN11      SINGLE       n     1.016  0.0100     0.873  0.0200
+FKL         C27         H27      SINGLE       n     1.089  0.0100     0.985  0.0100
+FKL         C32         H32      SINGLE       n     1.089  0.0100     0.970  0.0100
+FKL         C32        H32A      SINGLE       n     1.089  0.0100     0.970  0.0100
+FKL         C31         H31      SINGLE       n     1.089  0.0100     0.981  0.0100
+FKL         C31        H31A      SINGLE       n     1.089  0.0100     0.981  0.0100
+FKL         C29         H29      SINGLE       n     1.089  0.0100     0.981  0.0100
+FKL         C29        H29A      SINGLE       n     1.089  0.0100     0.981  0.0100
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FKL          C4          N1          C2     116.798    1.50
+FKL          C6          N3          C2     116.925    1.50
+FKL          N1          C4          C5     122.260    1.50
+FKL          N1          C4          H4     118.925    1.50
+FKL          C5          C4          H4     118.815    1.50
+FKL          C4          C5          C6     118.114    2.01
+FKL          C4          C5         C10     123.814    1.50
+FKL          C6          C5         C10     118.072    1.50
+FKL          N3          C6          C5     122.096    1.50
+FKL          N3          C6          N7     118.118    1.50
+FKL          C5          C6          N7     119.785    1.50
+FKL          C9          C8         O13     121.248    1.71
+FKL          C9          C8          N7     120.802    3.00
+FKL         O13          C8          N7     117.950    1.50
+FKL          C5         C10          C9     121.546    1.50
+FKL          C5         C10         H10     119.395    1.50
+FKL          C9         C10         H10     119.059    1.50
+FKL         C16         C15         C14     121.487    1.50
+FKL         C16         C15         H15     119.722    1.50
+FKL         C14         C15         H15     118.790    1.50
+FKL         C16         C17         C18     120.752    1.50
+FKL         C16         C17         H17     119.721    1.50
+FKL         C18         C17         H17     119.527    1.50
+FKL         C19         C20         H20     109.524    1.50
+FKL         C19         C20        H20A     109.524    1.50
+FKL         C19         C20        H20B     109.524    1.50
+FKL         H20         C20        H20A     109.348    1.50
+FKL         H20         C20        H20B     109.348    1.50
+FKL        H20A         C20        H20B     109.348    1.50
+FKL         O22         C21         N23     122.577    1.58
+FKL         O22         C21         C16     120.728    1.50
+FKL         N23         C21         C16     116.695    1.95
+FKL         C26         C24         N23     118.171    2.10
+FKL         C26         C24         C25      60.272    1.50
+FKL         C26         C24         H24     116.756    1.50
+FKL         N23         C24         C25     118.171    2.10
+FKL         N23         C24         H24     116.114    1.50
+FKL         C25         C24         H24     116.756    1.50
+FKL         C24         C26         C25      60.005    1.50
+FKL         C24         C26         H26     117.644    1.50
+FKL         C24         C26        H26A     117.644    1.50
+FKL         C25         C26         H26     117.795    1.50
+FKL         C25         C26        H26A     117.795    1.50
+FKL         H26         C26        H26A     115.138    1.50
+FKL         C27         C28         C29     110.430    1.50
+FKL         C27         C28         H28     109.341    1.50
+FKL         C27         C28        H28A     109.341    1.50
+FKL         C29         C28         H28     109.564    1.50
+FKL         C29         C28        H28A     109.564    1.50
+FKL         H28         C28        H28A     108.019    1.50
+FKL         C21         N23         C24     121.907    2.85
+FKL         C21         N23        HN23     118.774    2.02
+FKL         C24         N23        HN23     119.320    1.50
+FKL         C24         C25         C26      60.005    1.50
+FKL         C24         C25         H25     117.644    1.50
+FKL         C24         C25        H25A     117.644    1.50
+FKL         C26         C25         H25     117.795    1.50
+FKL         C26         C25        H25A     117.795    1.50
+FKL         H25         C25        H25A     115.138    1.50
+FKL         C15         C16         C17     119.328    1.50
+FKL         C15         C16         C21     120.336    2.89
+FKL         C17         C16         C21     120.336    2.89
+FKL         C17         C18         C19     121.158    1.50
+FKL         C17         C18         H18     119.498    1.50
+FKL         C19         C18         H18     119.344    1.50
+FKL         C20         C19         C18     119.355    1.50
+FKL         C20         C19         C14     122.198    1.50
+FKL         C18         C19         C14     118.447    1.50
+FKL         C15         C14         C19     118.829    1.50
+FKL         C15         C14          C9     120.671    1.52
+FKL         C19         C14          C9     120.500    1.56
+FKL          C8          C9         C10     119.573    1.64
+FKL          C8          C9         C14     118.713    1.63
+FKL         C10          C9         C14     121.714    1.63
+FKL          C6          N7          C8     120.221    1.51
+FKL          C6          N7         C12     121.306    1.50
+FKL          C8          N7         C12     118.473    1.50
+FKL          N7         C12         H12     109.474    1.50
+FKL          N7         C12        H12A     109.474    1.50
+FKL          N7         C12        H12B     109.474    1.50
+FKL         H12         C12        H12A     109.454    1.88
+FKL         H12         C12        H12B     109.454    1.88
+FKL        H12A         C12        H12B     109.454    1.88
+FKL          N1          C2          N3     123.808    1.50
+FKL          N1          C2         N11     118.096    1.62
+FKL          N3          C2         N11     118.096    1.62
+FKL          C2         N11         C27     123.282    2.33
+FKL          C2         N11        HN11     117.846    2.15
+FKL         C27         N11        HN11     118.872    1.57
+FKL         C28         C27         N11     111.209    2.04
+FKL         C28         C27         C32     110.769    1.50
+FKL         C28         C27         H27     107.655    1.50
+FKL         N11         C27         C32     111.209    2.04
+FKL         N11         C27         H27     108.206    1.50
+FKL         C32         C27         H27     107.655    1.50
+FKL         C27         C32         C31     110.430    1.50
+FKL         C27         C32         H32     109.341    1.50
+FKL         C27         C32        H32A     109.341    1.50
+FKL         C31         C32         H32     109.564    1.50
+FKL         C31         C32        H32A     109.564    1.50
+FKL         H32         C32        H32A     108.019    1.50
+FKL         C32         C31         O30     110.817    1.50
+FKL         C32         C31         H31     109.639    1.50
+FKL         C32         C31        H31A     109.639    1.50
+FKL         O30         C31         H31     109.025    1.50
+FKL         O30         C31        H31A     109.025    1.50
+FKL         H31         C31        H31A     108.090    1.50
+FKL         C31         O30         C29     110.807    1.50
+FKL         C28         C29         O30     110.817    1.50
+FKL         C28         C29         H29     109.639    1.50
+FKL         C28         C29        H29A     109.639    1.50
+FKL         O30         C29         H29     109.025    1.50
+FKL         O30         C29        H29A     109.025    1.50
+FKL         H29         C29        H29A     108.090    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FKL              const_41          C5          C4          N1          C2       0.000    10.0     2
+FKL              const_54          C9         C10          C5          C4     180.000    10.0     2
+FKL             sp2_sp2_5         C15         C16         C21         N23     180.000     5.0     2
+FKL             sp2_sp2_8         C17         C16         C21         O22     180.000     5.0     2
+FKL             sp3_sp3_1         N23         C24         C26         C25      60.000    10.0     3
+FKL            sp2_sp3_10        HN23         N23         C24         C25     180.000    10.0     6
+FKL            sp3_sp3_58         H24         C24         C25         C26     -60.000    10.0     3
+FKL            sp3_sp3_27         N11         C27         C28        H28A      60.000    10.0     3
+FKL            sp3_sp3_64         H28         C28         C29         O30      60.000    10.0     3
+FKL              const_34         C17         C18         C19         C20     180.000    10.0     2
+FKL              const_38         C15         C14         C19         C20     180.000    10.0     2
+FKL              const_52         N11          C2          N1          C4     180.000    10.0     2
+FKL              const_49          N1          C2          N3          C6       0.000    10.0     2
+FKL            sp2_sp2_12         C19         C14          C9         C10     180.000     5.0     2
+FKL            sp2_sp3_16          C8          N7         C12         H12     -30.000    10.0     6
+FKL            sp2_sp2_16          N3          C2         N11        HN11     180.000     5.0     2
+FKL            sp2_sp3_23        HN11         N11         C27         C28     -60.000    10.0     6
+FKL            sp3_sp3_33         N11         C27         C32        H32A      60.000    10.0     3
+FKL            sp3_sp3_39         O30         C31         C32        H32A     -60.000    10.0     3
+FKL            sp3_sp3_48        H31A         C31         O30         C29      60.000    10.0     3
+FKL              const_45          H4          C4          C5          C6     180.000    10.0     2
+FKL            sp3_sp3_51        H29A         C29         O30         C31     180.000    10.0     3
+FKL       const_sp2_sp2_1          C4          C5          C6          N3       0.000     5.0     2
+FKL              const_56         H10         C10          C5          C4       0.000    10.0     2
+FKL       const_sp2_sp2_8          N3          C6          N7         C12       0.000     5.0     2
+FKL              const_15         O13          C8          C9         C10     180.000    10.0     2
+FKL              const_12         O13          C8          N7         C12       0.000    10.0     2
+FKL              const_17          C5         C10          C9          C8       0.000    10.0     2
+FKL              const_22         C14         C15         C16         C21     180.000    10.0     2
+FKL              const_59          C9         C14         C15         C16     180.000    10.0     2
+FKL              const_27         C21         C16         C17         C18     180.000    10.0     2
+FKL              const_29         C16         C17         C18         C19       0.000    10.0     2
+FKL             sp2_sp3_3         C18         C19         C20        H20B      30.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FKL    chir_1    C24    N23    C26    C25    both
+FKL    chir_2    C27    N11    C28    C32    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FKL    plan-1         C10   0.020
+FKL    plan-1         C12   0.020
+FKL    plan-1         C14   0.020
+FKL    plan-1          C2   0.020
+FKL    plan-1          C4   0.020
+FKL    plan-1          C5   0.020
+FKL    plan-1          C6   0.020
+FKL    plan-1          C8   0.020
+FKL    plan-1          C9   0.020
+FKL    plan-1         H10   0.020
+FKL    plan-1          H4   0.020
+FKL    plan-1          N1   0.020
+FKL    plan-1         N11   0.020
+FKL    plan-1          N3   0.020
+FKL    plan-1          N7   0.020
+FKL    plan-1         O13   0.020
+FKL    plan-2         C14   0.020
+FKL    plan-2         C15   0.020
+FKL    plan-2         C16   0.020
+FKL    plan-2         C17   0.020
+FKL    plan-2         C18   0.020
+FKL    plan-2         C19   0.020
+FKL    plan-2         C20   0.020
+FKL    plan-2         C21   0.020
+FKL    plan-2          C9   0.020
+FKL    plan-2         H15   0.020
+FKL    plan-2         H17   0.020
+FKL    plan-2         H18   0.020
+FKL    plan-3         C16   0.020
+FKL    plan-3         C21   0.020
+FKL    plan-3         N23   0.020
+FKL    plan-3         O22   0.020
+FKL    plan-4         C21   0.020
+FKL    plan-4         C24   0.020
+FKL    plan-4        HN23   0.020
+FKL    plan-4         N23   0.020
+FKL    plan-5          C2   0.020
+FKL    plan-5         C27   0.020
+FKL    plan-5        HN11   0.020
+FKL    plan-5         N11   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FKL           SMILES              ACDLabs 10.04                                                                                                                      O=C(NC1CC1)c2cc(c(cc2)C)C=4C(=O)N(c3nc(ncc3C=4)NC5CCOCC5)C
+FKL SMILES_CANONICAL               CACTVS 3.341                                                                                                                         CN1C(=O)C(=Cc2cnc(NC3CCOCC3)nc12)c4cc(ccc4C)C(=O)NC5CC5
+FKL           SMILES               CACTVS 3.341                                                                                                                         CN1C(=O)C(=Cc2cnc(NC3CCOCC3)nc12)c4cc(ccc4C)C(=O)NC5CC5
+FKL SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                           Cc1ccc(cc1C2=Cc3cnc(nc3N(C2=O)C)NC4CCOCC4)C(=O)NC5CC5
+FKL           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                           Cc1ccc(cc1C2=Cc3cnc(nc3N(C2=O)C)NC4CCOCC4)C(=O)NC5CC5
+FKL            InChI                InChI  1.03 InChI=1S/C24H27N5O3/c1-14-3-4-15(22(30)26-17-5-6-17)11-19(14)20-12-16-13-25-24(27-18-7-9-32-10-8-18)28-21(16)29(2)23(20)31/h3-4,11-13,17-18H,5-10H2,1-2H3,(H,26,30)(H,25,27,28)
+FKL         InChIKey                InChI  1.03                                                                                                                                                     HYTAHRCKAXESOF-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FKL acedrg               243         "dictionary generator"                  
+FKL acedrg_database      11          "data source"                           
+FKL rdkit                2017.03.2   "Chemoinformatics tool"
+FKL refmac5              5.8.0238    "optimization tool"                     

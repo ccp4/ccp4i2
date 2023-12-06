@@ -1,0 +1,404 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+FXV     FXV      "METHYL-3-(4'-N-OXOPYRIDYLPHENOYL)-3-METHYL-2-(M-AMIDINOBENZYL)-PROPIONATE"     NON-POLYMER     60     33     .     
+#
+data_comp_FXV
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+FXV     C1      C       CR16    0       7.582       0.264       20.776      
+FXV     C2      C       CR6     0       7.949       1.565       21.066      
+FXV     C3      C       CR16    0       9.299       1.856       21.158      
+FXV     C4      C       CR16    0       10.261      0.876       20.963      
+FXV     N1      N       NR6     1       9.851       -0.387      20.679      
+FXV     C6      C       CR16    0       8.537       -0.723      20.579      
+FXV     C7      C       CR16    0       6.049       4.825       20.775      
+FXV     C8      C       CR6     0       5.007       4.655       21.689      
+FXV     C9      C       CR16    0       4.957       3.462       22.412      
+FXV     C10     C       CR16    0       5.898       2.467       22.207      
+FXV     C11     C       CR6     0       6.931       2.625       21.281      
+FXV     C12     C       CR16    0       6.987       3.826       20.575      
+FXV     C13     C       C       0       3.980       5.726       21.961      
+FXV     N14     N       NH1     0       4.309       6.978       21.625      
+FXV     C15     C       CH1     0       4.088       8.130       22.491      
+FXV     C16     C       CH3     0       3.942       9.406       21.658      
+FXV     C17     C       CH1     0       5.231       8.199       23.559      
+FXV     C18     C       C       0       4.895       9.238       24.614      
+FXV     O19     O       O2      0       4.378       8.678       25.709      
+FXV     C20     C       CH2     0       6.628       8.433       22.955      
+FXV     C23     C       CR16    0       7.936       6.407       23.695      
+FXV     C24     C       CR6     0       8.985       5.792       24.402      
+FXV     C25     C       CR16    0       9.859       6.588       25.137      
+FXV     C26     C       CR16    0       9.690       7.962       25.166      
+FXV     C27     C       CR16    0       8.650       8.555       24.464      
+FXV     C28     C       CR6     0       7.756       7.787       23.725      
+FXV     C29     C       C       0       9.158       4.316       24.364      
+FXV     N30     N       NH2     0       10.301      3.798       23.962      
+FXV     N31     N       NH2     1       8.174       3.532       24.734      
+FXV     O32     O       O       0       5.051       10.425      24.469      
+FXV     O33     O       O       0       2.992       5.478       22.655      
+FXV     C34     C       CH3     0       4.674       9.306       26.983      
+FXV     O1      O       OC      -1      10.795      -1.355      20.486      
+FXV     H1      H       H       0       6.663       0.041       20.710      
+FXV     H3      H       H       0       9.573       2.742       21.357      
+FXV     H4      H       H       0       11.180      1.075       21.025      
+FXV     H6      H       H       0       8.288       -1.611      20.381      
+FXV     H7      H       H       0       6.118       5.618       20.278      
+FXV     H9      H       H       0       4.273       3.322       23.042      
+FXV     H10     H       H       0       5.839       1.665       22.701      
+FXV     H12     H       H       0       7.677       3.960       19.944      
+FXV     H14     H       H       0       4.620       7.136       20.827      
+FXV     H15     H       H       0       3.242       8.004       22.985      
+FXV     H161    H       H       0       3.603       10.127      22.217      
+FXV     H162    H       H       0       3.318       9.246       20.929      
+FXV     H163    H       H       0       4.805       9.661       21.289      
+FXV     H17     H       H       0       5.252       7.327       24.019      
+FXV     H201    H       H       0       6.798       9.397       22.895      
+FXV     H202    H       H       0       6.640       8.079       22.041      
+FXV     H23     H       H       0       7.337       5.876       23.195      
+FXV     H25     H       H       0       10.567      6.193       25.615      
+FXV     H26     H       H       0       10.285      8.499       25.666      
+FXV     H27     H       H       0       8.544       9.493       24.492      
+FXV     H301    H       H       0       10.968      4.327       23.710      
+FXV     H302    H       H       0       10.412      2.918       23.941      
+FXV     H311    H       H       0       7.410       3.876       25.003      
+FXV     H312    H       H       0       8.268       2.658       24.717      
+FXV     H341    H       H       0       4.221       10.162      27.032      
+FXV     H342    H       H       0       5.632       9.439       27.066      
+FXV     H343    H       H       0       4.363       8.734       27.702      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+FXV          C1          C2      DOUBLE       y     1.379  0.0100     1.379  0.0100
+FXV          C1          C6      SINGLE       y     1.384  0.0100     1.384  0.0100
+FXV          C2          C3      SINGLE       y     1.379  0.0100     1.379  0.0100
+FXV          C2         C11      SINGLE       n     1.486  0.0100     1.486  0.0100
+FXV          C3          C4      DOUBLE       y     1.384  0.0100     1.384  0.0100
+FXV          C4          N1      SINGLE       y     1.356  0.0119     1.356  0.0119
+FXV          N1          C6      DOUBLE       y     1.356  0.0119     1.356  0.0119
+FXV          N1          O1      SINGLE       n     1.366  0.0100     1.366  0.0100
+FXV          C7          C8      DOUBLE       y     1.389  0.0100     1.389  0.0100
+FXV          C7         C12      SINGLE       y     1.382  0.0104     1.382  0.0104
+FXV          C8          C9      SINGLE       y     1.389  0.0100     1.389  0.0100
+FXV          C8         C13      SINGLE       n     1.502  0.0100     1.502  0.0100
+FXV          C9         C10      DOUBLE       y     1.382  0.0104     1.382  0.0104
+FXV         C10         C11      SINGLE       y     1.392  0.0129     1.392  0.0129
+FXV         C11         C12      DOUBLE       y     1.392  0.0129     1.392  0.0129
+FXV         C13         N14      SINGLE       n     1.332  0.0109     1.332  0.0109
+FXV         C13         O33      DOUBLE       n     1.230  0.0114     1.230  0.0114
+FXV         N14         C15      SINGLE       n     1.455  0.0112     1.455  0.0112
+FXV         C15         C16      SINGLE       n     1.526  0.0143     1.526  0.0143
+FXV         C15         C17      SINGLE       n     1.550  0.0182     1.550  0.0182
+FXV         C17         C18      SINGLE       n     1.513  0.0114     1.513  0.0114
+FXV         C17         C20      SINGLE       n     1.534  0.0100     1.534  0.0100
+FXV         C18         O19      SINGLE       n     1.328  0.0136     1.328  0.0136
+FXV         C18         O32      DOUBLE       n     1.203  0.0150     1.203  0.0150
+FXV         O19         C34      SINGLE       n     1.447  0.0130     1.447  0.0130
+FXV         C20         C28      SINGLE       n     1.509  0.0100     1.509  0.0100
+FXV         C23         C24      DOUBLE       y     1.400  0.0127     1.400  0.0127
+FXV         C23         C28      SINGLE       y     1.388  0.0100     1.388  0.0100
+FXV         C24         C25      SINGLE       y     1.390  0.0100     1.390  0.0100
+FXV         C24         C29      SINGLE       n     1.485  0.0110     1.485  0.0110
+FXV         C25         C26      DOUBLE       y     1.382  0.0100     1.382  0.0100
+FXV         C26         C27      SINGLE       y     1.383  0.0105     1.383  0.0105
+FXV         C27         C28      DOUBLE       y     1.385  0.0110     1.385  0.0110
+FXV         C29         N30      SINGLE       n     1.313  0.0150     1.313  0.0150
+FXV         C29         N31      DOUBLE       n     1.309  0.0100     1.309  0.0100
+FXV          C1          H1      SINGLE       n     1.082  0.0130     0.948  0.0200
+FXV          C3          H3      SINGLE       n     1.082  0.0130     0.948  0.0200
+FXV          C4          H4      SINGLE       n     1.082  0.0130     0.943  0.0169
+FXV          C6          H6      SINGLE       n     1.082  0.0130     0.943  0.0169
+FXV          C7          H7      SINGLE       n     1.082  0.0130     0.941  0.0168
+FXV          C9          H9      SINGLE       n     1.082  0.0130     0.941  0.0168
+FXV         C10         H10      SINGLE       n     1.082  0.0130     0.944  0.0200
+FXV         C12         H12      SINGLE       n     1.082  0.0130     0.944  0.0200
+FXV         N14         H14      SINGLE       n     1.016  0.0100     0.873  0.0200
+FXV         C15         H15      SINGLE       n     1.089  0.0100     0.988  0.0127
+FXV         C16        H161      SINGLE       n     1.089  0.0100     0.973  0.0146
+FXV         C16        H162      SINGLE       n     1.089  0.0100     0.973  0.0146
+FXV         C16        H163      SINGLE       n     1.089  0.0100     0.973  0.0146
+FXV         C17         H17      SINGLE       n     1.089  0.0100     0.985  0.0200
+FXV         C20        H201      SINGLE       n     1.089  0.0100     0.981  0.0169
+FXV         C20        H202      SINGLE       n     1.089  0.0100     0.981  0.0169
+FXV         C23         H23      SINGLE       n     1.082  0.0130     0.944  0.0147
+FXV         C25         H25      SINGLE       n     1.082  0.0130     0.941  0.0168
+FXV         C26         H26      SINGLE       n     1.082  0.0130     0.945  0.0184
+FXV         C27         H27      SINGLE       n     1.082  0.0130     0.944  0.0174
+FXV         N30        H301      SINGLE       n     1.016  0.0100     0.887  0.0200
+FXV         N30        H302      SINGLE       n     1.016  0.0100     0.887  0.0200
+FXV         N31        H311      SINGLE       n     1.016  0.0100     0.879  0.0200
+FXV         N31        H312      SINGLE       n     1.016  0.0100     0.879  0.0200
+FXV         C34        H341      SINGLE       n     1.089  0.0100     0.970  0.0175
+FXV         C34        H342      SINGLE       n     1.089  0.0100     0.970  0.0175
+FXV         C34        H343      SINGLE       n     1.089  0.0100     0.970  0.0175
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+FXV          C2          C1          C6     120.790    1.50
+FXV          C2          C1          H1     119.697    1.50
+FXV          C6          C1          H1     119.512    1.50
+FXV          C1          C2          C3     117.144    1.50
+FXV          C1          C2         C11     121.428    1.50
+FXV          C3          C2         C11     121.428    1.50
+FXV          C2          C3          C4     120.790    1.50
+FXV          C2          C3          H3     119.697    1.50
+FXV          C4          C3          H3     119.512    1.50
+FXV          C3          C4          N1     118.983    2.98
+FXV          C3          C4          H4     121.019    1.54
+FXV          N1          C4          H4     119.998    1.90
+FXV          C4          N1          C6     123.309    2.07
+FXV          C4          N1          O1     118.345    3.00
+FXV          C6          N1          O1     118.345    3.00
+FXV          C1          C6          N1     118.983    2.98
+FXV          C1          C6          H6     121.019    1.54
+FXV          N1          C6          H6     119.998    1.90
+FXV          C8          C7         C12     120.435    1.50
+FXV          C8          C7          H7     119.922    1.50
+FXV         C12          C7          H7     119.643    1.50
+FXV          C7          C8          C9     118.910    1.50
+FXV          C7          C8         C13     120.545    2.80
+FXV          C9          C8         C13     120.545    2.80
+FXV          C8          C9         C10     120.435    1.50
+FXV          C8          C9          H9     119.922    1.50
+FXV         C10          C9          H9     119.643    1.50
+FXV          C9         C10         C11     121.241    1.50
+FXV          C9         C10         H10     119.372    1.50
+FXV         C11         C10         H10     119.387    1.50
+FXV          C2         C11         C10     121.131    1.50
+FXV          C2         C11         C12     121.131    1.50
+FXV         C10         C11         C12     117.739    1.50
+FXV          C7         C12         C11     121.241    1.50
+FXV          C7         C12         H12     119.372    1.50
+FXV         C11         C12         H12     119.387    1.50
+FXV          C8         C13         N14     116.740    1.50
+FXV          C8         C13         O33     120.865    1.50
+FXV         N14         C13         O33     122.394    1.50
+FXV         C13         N14         C15     122.601    1.50
+FXV         C13         N14         H14     119.151    1.94
+FXV         C15         N14         H14     118.248    1.99
+FXV         N14         C15         C16     109.955    1.50
+FXV         N14         C15         C17     111.308    2.28
+FXV         N14         C15         H15     108.116    1.50
+FXV         C16         C15         C17     111.865    1.50
+FXV         C16         C15         H15     107.146    1.50
+FXV         C17         C15         H15     106.376    1.55
+FXV         C15         C16        H161     109.483    1.50
+FXV         C15         C16        H162     109.483    1.50
+FXV         C15         C16        H163     109.483    1.50
+FXV        H161         C16        H162     109.386    1.50
+FXV        H161         C16        H163     109.386    1.50
+FXV        H162         C16        H163     109.386    1.50
+FXV         C15         C17         C18     109.389    1.50
+FXV         C15         C17         C20     113.084    1.74
+FXV         C15         C17         H17     108.058    1.50
+FXV         C18         C17         C20     110.300    1.50
+FXV         C18         C17         H17     107.456    2.04
+FXV         C20         C17         H17     107.967    1.50
+FXV         C17         C18         O19     111.930    1.81
+FXV         C17         C18         O32     123.900    2.15
+FXV         O19         C18         O32     124.171    1.50
+FXV         C18         O19         C34     116.104    1.50
+FXV         C17         C20         C28     113.495    1.50
+FXV         C17         C20        H201     108.879    1.50
+FXV         C17         C20        H202     108.879    1.50
+FXV         C28         C20        H201     108.738    1.50
+FXV         C28         C20        H202     108.738    1.50
+FXV        H201         C20        H202     107.709    1.50
+FXV         C24         C23         C28     121.233    1.50
+FXV         C24         C23         H23     119.680    1.50
+FXV         C28         C23         H23     119.087    1.50
+FXV         C23         C24         C25     119.277    1.50
+FXV         C23         C24         C29     120.299    1.50
+FXV         C25         C24         C29     120.424    1.50
+FXV         C24         C25         C26     120.394    1.50
+FXV         C24         C25         H25     119.906    1.50
+FXV         C26         C25         H25     119.700    1.50
+FXV         C25         C26         C27     120.250    1.50
+FXV         C25         C26         H26     119.875    1.50
+FXV         C27         C26         H26     119.875    1.50
+FXV         C26         C27         C28     120.648    1.50
+FXV         C26         C27         H27     119.774    1.50
+FXV         C28         C27         H27     119.579    1.50
+FXV         C20         C28         C23     120.732    1.50
+FXV         C20         C28         C27     121.070    1.50
+FXV         C23         C28         C27     118.199    1.50
+FXV         C24         C29         N30     120.060    1.50
+FXV         C24         C29         N31     120.060    1.50
+FXV         N30         C29         N31     119.881    1.50
+FXV         C29         N30        H301     120.106    1.76
+FXV         C29         N30        H302     120.102    1.76
+FXV        H301         N30        H302     119.783    2.70
+FXV         C29         N31        H311     120.106    1.76
+FXV         C29         N31        H312     120.102    1.76
+FXV        H311         N31        H312     119.783    2.70
+FXV         O19         C34        H341     109.367    1.50
+FXV         O19         C34        H342     109.367    1.50
+FXV         O19         C34        H343     109.367    1.50
+FXV        H341         C34        H342     109.532    1.53
+FXV        H341         C34        H343     109.532    1.53
+FXV        H342         C34        H343     109.532    1.53
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+FXV              const_21          C6          C1          C2          C3       0.000    10.0     2
+FXV              const_61          C2          C1          C6          N1       0.000    10.0     2
+FXV              const_19          C2         C11         C12          C7     180.000    10.0     2
+FXV            sp2_sp2_11         O33         C13         N14         C15       0.000     5.0     2
+FXV             sp2_sp3_1         C13         N14         C15         C16       0.000    10.0     6
+FXV             sp3_sp3_1         N14         C15         C16        H161     180.000    10.0     3
+FXV            sp3_sp3_10         N14         C15         C17         C18     180.000    10.0     3
+FXV             sp2_sp3_7         O19         C18         C17         C15       0.000    10.0     6
+FXV            sp3_sp3_19         C15         C17         C20         C28     180.000    10.0     3
+FXV            sp2_sp2_13         C17         C18         O19         C34     180.000     5.0     2
+FXV            sp3_sp3_29        H341         C34         O19         C18     -60.000    10.0     3
+FXV            sp2_sp3_14         C23         C28         C20         C17     -90.000    10.0     6
+FXV             sp2_sp2_1         C10         C11          C2          C1     180.000     5.0     2
+FXV              const_25          C1          C2          C3          C4       0.000    10.0     2
+FXV              const_42         C28         C23         C24         C29     180.000    10.0     2
+FXV              const_70         C24         C23         C28         C20     180.000    10.0     2
+FXV              const_47         C29         C24         C25         C26     180.000    10.0     2
+FXV            sp2_sp2_15         C23         C24         C29         N30     180.000     5.0     2
+FXV              const_49         C24         C25         C26         C27       0.000    10.0     2
+FXV              const_53         C25         C26         C27         C28       0.000    10.0     2
+FXV              const_58         C26         C27         C28         C20     180.000    10.0     2
+FXV            sp2_sp2_21         N31         C29         N30        H301       0.000     5.0     2
+FXV            sp2_sp2_25         N30         C29         N31        H311       0.000     5.0     2
+FXV              const_29          C2          C3          C4          N1       0.000    10.0     2
+FXV              const_34          C3          C4          N1          O1     180.000    10.0     2
+FXV              const_38          C1          C6          N1          O1     180.000    10.0     2
+FXV              const_65         C11         C12          C7          C8       0.000    10.0     2
+FXV       const_sp2_sp2_2         C12          C7          C8         C13     180.000     5.0     2
+FXV             sp2_sp2_5         N14         C13          C8          C7     180.000     5.0     2
+FXV       const_sp2_sp2_7         C13          C8          C9         C10     180.000     5.0     2
+FXV       const_sp2_sp2_9         C11         C10          C9          C8       0.000     5.0     2
+FXV              const_14          C9         C10         C11          C2     180.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+FXV    chir_1    C15    N14    C17    C16    negative
+FXV    chir_2    C17    C18    C15    C20    negative
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+FXV    plan-1          C1   0.020
+FXV    plan-1         C11   0.020
+FXV    plan-1          C2   0.020
+FXV    plan-1          C3   0.020
+FXV    plan-1          C4   0.020
+FXV    plan-1          C6   0.020
+FXV    plan-1          H1   0.020
+FXV    plan-1          H3   0.020
+FXV    plan-1          H4   0.020
+FXV    plan-1          H6   0.020
+FXV    plan-1          N1   0.020
+FXV    plan-1          O1   0.020
+FXV    plan-2         C10   0.020
+FXV    plan-2         C11   0.020
+FXV    plan-2         C12   0.020
+FXV    plan-2         C13   0.020
+FXV    plan-2          C2   0.020
+FXV    plan-2          C7   0.020
+FXV    plan-2          C8   0.020
+FXV    plan-2          C9   0.020
+FXV    plan-2         H10   0.020
+FXV    plan-2         H12   0.020
+FXV    plan-2          H7   0.020
+FXV    plan-2          H9   0.020
+FXV    plan-3         C20   0.020
+FXV    plan-3         C23   0.020
+FXV    plan-3         C24   0.020
+FXV    plan-3         C25   0.020
+FXV    plan-3         C26   0.020
+FXV    plan-3         C27   0.020
+FXV    plan-3         C28   0.020
+FXV    plan-3         C29   0.020
+FXV    plan-3         H23   0.020
+FXV    plan-3         H25   0.020
+FXV    plan-3         H26   0.020
+FXV    plan-3         H27   0.020
+FXV    plan-4         C13   0.020
+FXV    plan-4          C8   0.020
+FXV    plan-4         N14   0.020
+FXV    plan-4         O33   0.020
+FXV    plan-5         C13   0.020
+FXV    plan-5         C15   0.020
+FXV    plan-5         H14   0.020
+FXV    plan-5         N14   0.020
+FXV    plan-6         C17   0.020
+FXV    plan-6         C18   0.020
+FXV    plan-6         O19   0.020
+FXV    plan-6         O32   0.020
+FXV    plan-7         C24   0.020
+FXV    plan-7         C29   0.020
+FXV    plan-7         N30   0.020
+FXV    plan-7         N31   0.020
+FXV    plan-8         C29   0.020
+FXV    plan-8        H301   0.020
+FXV    plan-8        H302   0.020
+FXV    plan-8         N30   0.020
+FXV    plan-9         C29   0.020
+FXV    plan-9        H311   0.020
+FXV    plan-9        H312   0.020
+FXV    plan-9         N31   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+FXV           SMILES              ACDLabs 10.04                                                                                                                 O=C(OC)C(Cc1cc(C(=[NH2+])\N)ccc1)C(NC(=O)c3ccc(c2cc[n+]([O-])cc2)cc3)C
+FXV SMILES_CANONICAL               CACTVS 3.341                                                                                                         COC(=O)[C@H](Cc1cccc(c1)C(N)=[NH2+])[C@@H](C)NC(=O)c2ccc(cc2)c3cc[n+]([O-])cc3
+FXV           SMILES               CACTVS 3.341                                                                                                            COC(=O)[CH](Cc1cccc(c1)C(N)=[NH2+])[CH](C)NC(=O)c2ccc(cc2)c3cc[n+]([O-])cc3
+FXV SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                         C[C@H]([C@@H](Cc1cccc(c1)C(=[NH2+])N)C(=O)OC)NC(=O)c2ccc(cc2)c3cc[n+](cc3)[O-]
+FXV           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                  CC(C(Cc1cccc(c1)C(=[NH2+])N)C(=O)OC)NC(=O)c2ccc(cc2)c3cc[n+](cc3)[O-]
+FXV            InChI                InChI  1.03 InChI=1S/C25H26N4O4/c1-16(22(25(31)33-2)15-17-4-3-5-21(14-17)23(26)27)28-24(30)20-8-6-18(7-9-20)19-10-12-29(32)13-11-19/h3-14,16,22H,15H2,1-2H3,(H3,26,27)(H,28,30)/p+1/t16-,22-/m1/s1
+FXV         InChIKey                InChI  1.03                                                                                                                                                            PFGVNLZDWRZPJW-OPAMFIHVSA-O
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+FXV acedrg               243         "dictionary generator"                  
+FXV acedrg_database      11          "data source"                           
+FXV rdkit                2017.03.2   "Chemoinformatics tool"
+FXV refmac5              5.8.0238    "optimization tool"                     

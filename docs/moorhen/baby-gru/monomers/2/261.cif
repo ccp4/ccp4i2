@@ -1,0 +1,171 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+261     261      2-ethoxyphenol     NON-POLYMER     20     10     .     
+#
+data_comp_261
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+261     CAA     C       CH3     0       -24.064     23.848      -0.591      
+261     CAG     C       CH2     0       -24.072     24.310      -2.016      
+261     OAH     O       O2      0       -22.988     25.234      -2.178      
+261     CAJ     C       CR6     0       -22.755     25.811      -3.401      
+261     CAF     C       CR16    0       -23.495     25.620      -4.566      
+261     CAD     C       CR16    0       -23.137     26.279      -5.740      
+261     CAC     C       CR16    0       -22.050     27.121      -5.757      
+261     CAE     C       CR16    0       -21.301     27.322      -4.601      
+261     CAI     C       CR6     0       -21.647     26.674      -3.427      
+261     OAB     O       OH1     0       -20.879     26.901      -2.307      
+261     HAA1    H       H       0       -24.797     23.228      -0.446      
+261     HAA2    H       H       0       -24.166     24.612      -0.001      
+261     HAA3    H       H       0       -23.223     23.402      -0.399      
+261     HAG1    H       H       0       -24.922     24.748      -2.225      
+261     HAG2    H       H       0       -23.957     23.548      -2.620      
+261     HAF     H       H       0       -24.241     25.046      -4.564      
+261     HAD     H       H       0       -23.643     26.144      -6.524      
+261     HAC     H       H       0       -21.810     27.566      -6.553      
+261     HAE     H       H       0       -20.557     27.900      -4.614      
+261     HAB     H       H       0       -21.126     26.600      -1.538      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+261         CAA         CAG      SINGLE       n     1.498  0.0164     1.498  0.0164
+261         CAG         OAH      SINGLE       n     1.432  0.0104     1.432  0.0104
+261         OAH         CAJ      SINGLE       n     1.367  0.0100     1.367  0.0100
+261         CAJ         CAF      DOUBLE       y     1.386  0.0100     1.386  0.0100
+261         CAJ         CAI      SINGLE       y     1.397  0.0105     1.397  0.0105
+261         CAF         CAD      SINGLE       y     1.390  0.0100     1.390  0.0100
+261         CAD         CAC      DOUBLE       y     1.373  0.0107     1.373  0.0107
+261         CAC         CAE      SINGLE       y     1.390  0.0100     1.390  0.0100
+261         CAE         CAI      DOUBLE       y     1.381  0.0100     1.381  0.0100
+261         CAI         OAB      SINGLE       n     1.374  0.0155     1.374  0.0155
+261         CAA        HAA1      SINGLE       n     1.089  0.0100     0.971  0.0156
+261         CAA        HAA2      SINGLE       n     1.089  0.0100     0.971  0.0156
+261         CAA        HAA3      SINGLE       n     1.089  0.0100     0.971  0.0156
+261         CAG        HAG1      SINGLE       n     1.089  0.0100     0.979  0.0127
+261         CAG        HAG2      SINGLE       n     1.089  0.0100     0.979  0.0127
+261         CAF         HAF      SINGLE       n     1.082  0.0130     0.942  0.0174
+261         CAD         HAD      SINGLE       n     1.082  0.0130     0.943  0.0183
+261         CAC         HAC      SINGLE       n     1.082  0.0130     0.943  0.0183
+261         CAE         HAE      SINGLE       n     1.082  0.0130     0.942  0.0174
+261         OAB         HAB      SINGLE       n     0.966  0.0059     0.861  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+261         CAG         CAA        HAA1     109.553    1.50
+261         CAG         CAA        HAA2     109.553    1.50
+261         CAG         CAA        HAA3     109.553    1.50
+261        HAA1         CAA        HAA2     109.410    1.50
+261        HAA1         CAA        HAA3     109.410    1.50
+261        HAA2         CAA        HAA3     109.410    1.50
+261         CAA         CAG         OAH     107.613    1.50
+261         CAA         CAG        HAG1     110.271    1.50
+261         CAA         CAG        HAG2     110.271    1.50
+261         OAH         CAG        HAG1     110.040    1.50
+261         OAH         CAG        HAG2     110.040    1.50
+261        HAG1         CAG        HAG2     108.599    1.50
+261         CAG         OAH         CAJ     117.576    1.50
+261         OAH         CAJ         CAF     125.548    1.50
+261         OAH         CAJ         CAI     114.971    1.50
+261         CAF         CAJ         CAI     119.482    1.50
+261         CAJ         CAF         CAD     120.134    1.50
+261         CAJ         CAF         HAF     119.788    1.50
+261         CAD         CAF         HAF     120.078    1.50
+261         CAF         CAD         CAC     120.531    1.50
+261         CAF         CAD         HAD     119.550    1.50
+261         CAC         CAD         HAD     119.919    1.50
+261         CAD         CAC         CAE     120.531    1.50
+261         CAD         CAC         HAC     119.919    1.50
+261         CAE         CAC         HAC     119.550    1.50
+261         CAC         CAE         CAI     119.898    1.50
+261         CAC         CAE         HAE     120.245    1.50
+261         CAI         CAE         HAE     119.857    1.50
+261         CAJ         CAI         CAE     119.425    1.50
+261         CAJ         CAI         OAB     120.287    3.00
+261         CAE         CAI         OAB     120.287    3.00
+261         CAI         OAB         HAB     120.000    3.00
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+261             sp3_sp3_1        HAA1         CAA         CAG         OAH     180.000    10.0     3
+261            sp3_sp3_10         CAA         CAG         OAH         CAJ     180.000    10.0     3
+261             sp2_sp2_1         CAF         CAJ         OAH         CAG     180.000     5.0     2
+261       const_sp2_sp2_2         CAD         CAF         CAJ         OAH     180.000     5.0     2
+261              const_24         OAB         CAI         CAJ         OAH       0.000    10.0     2
+261       const_sp2_sp2_5         CAC         CAD         CAF         CAJ       0.000     5.0     2
+261       const_sp2_sp2_9         CAE         CAC         CAD         CAF       0.000     5.0     2
+261              const_13         CAD         CAC         CAE         CAI       0.000    10.0     2
+261              const_18         CAC         CAE         CAI         OAB     180.000    10.0     2
+261             sp2_sp2_3         CAJ         CAI         OAB         HAB     180.000     5.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+261    plan-1         CAC   0.020
+261    plan-1         CAD   0.020
+261    plan-1         CAE   0.020
+261    plan-1         CAF   0.020
+261    plan-1         CAI   0.020
+261    plan-1         CAJ   0.020
+261    plan-1         HAC   0.020
+261    plan-1         HAD   0.020
+261    plan-1         HAE   0.020
+261    plan-1         HAF   0.020
+261    plan-1         OAB   0.020
+261    plan-1         OAH   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+261           SMILES              ACDLabs 10.04                                           O(c1ccccc1O)CC
+261 SMILES_CANONICAL               CACTVS 3.341                                             CCOc1ccccc1O
+261           SMILES               CACTVS 3.341                                             CCOc1ccccc1O
+261 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                             CCOc1ccccc1O
+261           SMILES "OpenEye OEToolkits" 1.5.0                                             CCOc1ccccc1O
+261            InChI                InChI  1.03 InChI=1S/C8H10O2/c1-2-10-8-6-4-3-5-7(8)9/h3-6,9H,2H2,1H3
+261         InChIKey                InChI  1.03                              MOEFFSWKSMRFRQ-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+261 acedrg               243         "dictionary generator"                  
+261 acedrg_database      11          "data source"                           
+261 rdkit                2017.03.2   "Chemoinformatics tool"
+261 refmac5              5.8.0238    "optimization tool"                     

@@ -1,0 +1,295 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+C11     C11      "UNDECYL-PHOSPHINIC ACID BUTYL ESTER"     NON-POLYMER     51     18     .     
+#
+data_comp_C11
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+C11     C1      C       CH2     0       30.929      81.020      22.730      
+C11     C2      C       CH2     0       30.888      80.542      24.177      
+C11     C3      C       CH2     0       30.923      81.690      25.179      
+C11     C4      C       CH2     0       30.986      81.243      26.620      
+C11     C5      C       CH2     0       31.391      82.328      27.588      
+C11     C6      C       CH2     0       32.880      82.564      27.668      
+C11     C7      C       CH2     0       33.281      83.694      28.585      
+C11     C8      C       CH2     0       34.772      83.875      28.732      
+C11     C9      C       CH2     0       35.442      84.502      27.534      
+C11     C10     C       CH2     0       36.923      84.731      27.698      
+C11     C11     C       CH3     0       37.581      85.328      26.477      
+C11     P       P       P       0       32.012      80.027      21.643      
+C11     O1P     O       O       0       31.915      78.576      22.034      
+C11     O2P     O       O2      0       33.494      80.582      21.824      
+C11     CY1     C       CH2     0       34.130      80.675      23.133      
+C11     CY2     C       CH2     0       35.558      81.126      22.967      
+C11     CY3     C       CH2     0       36.265      81.353      24.280      
+C11     CY4     C       CH3     0       37.687      81.837      24.126      
+C11     H11     H       H       0       31.234      81.951      22.709      
+C11     H12     H       H       0       30.019      81.000      22.369      
+C11     H21     H       H       0       31.649      79.949      24.344      
+C11     H22     H       H       0       30.070      80.021      24.319      
+C11     H31     H       H       0       30.123      82.243      25.055      
+C11     H32     H       H       0       31.705      82.252      24.991      
+C11     H41     H       H       0       31.626      80.503      26.692      
+C11     H42     H       H       0       30.105      80.901      26.882      
+C11     H51     H       H       0       31.062      82.091      28.482      
+C11     H52     H       H       0       30.954      83.165      27.323      
+C11     H61     H       H       0       33.217      82.756      26.767      
+C11     H62     H       H       0       33.313      81.740      27.978      
+C11     H71     H       H       0       32.895      83.532      29.472      
+C11     H72     H       H       0       32.896      84.529      28.242      
+C11     H81     H       H       0       35.180      82.998      28.897      
+C11     H82     H       H       0       34.945      84.436      29.518      
+C11     H91     H       H       0       35.011      85.364      27.348      
+C11     H92     H       H       0       35.300      83.924      26.755      
+C11     H101    H       H       0       37.354      83.873      27.905      
+C11     H102    H       H       0       37.067      85.330      28.462      
+C11     H111    H       H       0       38.533      85.444      26.644      
+C11     H112    H       H       0       37.181      86.193      26.281      
+C11     H113    H       H       0       37.457      84.735      25.717      
+C11     HP      H       H       0       31.653      80.220      20.425      
+C11     HY11    H       H       0       34.105      79.799      23.574      
+C11     HY12    H       H       0       33.640      81.315      23.692      
+C11     HY21    H       H       0       35.568      81.960      22.452      
+C11     HY22    H       H       0       36.046      80.448      22.455      
+C11     HY31    H       H       0       36.269      80.512      24.786      
+C11     HY32    H       H       0       35.759      82.014      24.802      
+C11     HY41    H       H       0       38.082      81.971      25.005      
+C11     HY42    H       H       0       37.693      82.679      23.637      
+C11     HY43    H       H       0       38.205      81.175      23.636      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+C11          C1          C2      SINGLE       n     1.520  0.0163     1.520  0.0163
+C11          C1           P      SINGLE       n     1.822  0.0194     1.822  0.0194
+C11          C2          C3      SINGLE       n     1.523  0.0117     1.523  0.0117
+C11          C3          C4      SINGLE       n     1.509  0.0200     1.509  0.0200
+C11          C4          C5      SINGLE       n     1.509  0.0200     1.509  0.0200
+C11          C5          C6      SINGLE       n     1.509  0.0200     1.509  0.0200
+C11          C6          C7      SINGLE       n     1.509  0.0200     1.509  0.0200
+C11          C7          C8      SINGLE       n     1.509  0.0200     1.509  0.0200
+C11          C8          C9      SINGLE       n     1.509  0.0200     1.509  0.0200
+C11          C9         C10      SINGLE       n     1.507  0.0200     1.507  0.0200
+C11         C10         C11      SINGLE       n     1.510  0.0200     1.510  0.0200
+C11           P         O1P      DOUBLE       n     1.504  0.0125     1.504  0.0125
+C11           P         O2P      SINGLE       n     1.590  0.0138     1.590  0.0138
+C11         O2P         CY1      SINGLE       n     1.458  0.0100     1.458  0.0100
+C11         CY1         CY2      SINGLE       n     1.507  0.0151     1.507  0.0151
+C11         CY2         CY3      SINGLE       n     1.508  0.0200     1.508  0.0200
+C11         CY3         CY4      SINGLE       n     1.510  0.0200     1.510  0.0200
+C11          C1         H11      SINGLE       n     1.089  0.0100     0.980  0.0122
+C11          C1         H12      SINGLE       n     1.089  0.0100     0.980  0.0122
+C11          C2         H21      SINGLE       n     1.089  0.0100     0.980  0.0160
+C11          C2         H22      SINGLE       n     1.089  0.0100     0.980  0.0160
+C11          C3         H31      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11          C3         H32      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11          C4         H41      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11          C4         H42      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11          C5         H51      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11          C5         H52      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11          C6         H61      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11          C6         H62      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11          C7         H71      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11          C7         H72      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11          C8         H81      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11          C8         H82      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11          C9         H91      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11          C9         H92      SINGLE       n     1.089  0.0100     0.981  0.0163
+C11         C10        H101      SINGLE       n     1.089  0.0100     0.982  0.0155
+C11         C10        H102      SINGLE       n     1.089  0.0100     0.982  0.0155
+C11         C11        H111      SINGLE       n     1.089  0.0100     0.973  0.0157
+C11         C11        H112      SINGLE       n     1.089  0.0100     0.973  0.0157
+C11         C11        H113      SINGLE       n     1.089  0.0100     0.973  0.0157
+C11           P          HP      SINGLE       n     1.284  0.0200     1.284  0.0200
+C11         CY1        HY11      SINGLE       n     1.089  0.0100     0.981  0.0100
+C11         CY1        HY12      SINGLE       n     1.089  0.0100     0.981  0.0100
+C11         CY2        HY21      SINGLE       n     1.089  0.0100     0.980  0.0166
+C11         CY2        HY22      SINGLE       n     1.089  0.0100     0.980  0.0166
+C11         CY3        HY31      SINGLE       n     1.089  0.0100     0.982  0.0155
+C11         CY3        HY32      SINGLE       n     1.089  0.0100     0.982  0.0155
+C11         CY4        HY41      SINGLE       n     1.089  0.0100     0.973  0.0157
+C11         CY4        HY42      SINGLE       n     1.089  0.0100     0.973  0.0157
+C11         CY4        HY43      SINGLE       n     1.089  0.0100     0.973  0.0157
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+C11          C2          C1           P     114.025    1.50
+C11          C2          C1         H11     108.554    1.50
+C11          C2          C1         H12     108.554    1.50
+C11           P          C1         H11     108.697    1.50
+C11           P          C1         H12     108.697    1.50
+C11         H11          C1         H12     107.498    1.50
+C11          C1          C2          C3     112.125    1.58
+C11          C1          C2         H21     109.217    1.50
+C11          C1          C2         H22     109.217    1.50
+C11          C3          C2         H21     109.087    1.50
+C11          C3          C2         H22     109.087    1.50
+C11         H21          C2         H22     107.744    1.50
+C11          C2          C3          C4     113.860    1.50
+C11          C2          C3         H31     108.776    1.50
+C11          C2          C3         H32     108.776    1.50
+C11          C4          C3         H31     108.698    1.50
+C11          C4          C3         H32     108.698    1.50
+C11         H31          C3         H32     107.646    1.50
+C11          C3          C4          C5     114.243    1.69
+C11          C3          C4         H41     108.698    1.50
+C11          C3          C4         H42     108.698    1.50
+C11          C5          C4         H41     108.698    1.50
+C11          C5          C4         H42     108.698    1.50
+C11         H41          C4         H42     107.646    1.50
+C11          C4          C5          C6     114.243    1.69
+C11          C4          C5         H51     108.698    1.50
+C11          C4          C5         H52     108.698    1.50
+C11          C6          C5         H51     108.698    1.50
+C11          C6          C5         H52     108.698    1.50
+C11         H51          C5         H52     107.646    1.50
+C11          C5          C6          C7     114.243    1.69
+C11          C5          C6         H61     108.698    1.50
+C11          C5          C6         H62     108.698    1.50
+C11          C7          C6         H61     108.698    1.50
+C11          C7          C6         H62     108.698    1.50
+C11         H61          C6         H62     107.646    1.50
+C11          C6          C7          C8     114.243    1.69
+C11          C6          C7         H71     108.698    1.50
+C11          C6          C7         H72     108.698    1.50
+C11          C8          C7         H71     108.698    1.50
+C11          C8          C7         H72     108.698    1.50
+C11         H71          C7         H72     107.646    1.50
+C11          C7          C8          C9     114.243    1.69
+C11          C7          C8         H81     108.698    1.50
+C11          C7          C8         H82     108.698    1.50
+C11          C9          C8         H81     108.698    1.50
+C11          C9          C8         H82     108.698    1.50
+C11         H81          C8         H82     107.646    1.50
+C11          C8          C9         C10     114.362    3.00
+C11          C8          C9         H91     108.698    1.50
+C11          C8          C9         H92     108.698    1.50
+C11         C10          C9         H91     108.653    1.50
+C11         C10          C9         H92     108.653    1.50
+C11         H91          C9         H92     107.646    1.50
+C11          C9         C10         C11     113.719    3.00
+C11          C9         C10        H101     108.758    1.50
+C11          C9         C10        H102     108.758    1.50
+C11         C11         C10        H101     108.918    1.50
+C11         C11         C10        H102     108.918    1.50
+C11        H101         C10        H102     107.763    1.50
+C11         C10         C11        H111     109.554    1.50
+C11         C10         C11        H112     109.554    1.50
+C11         C10         C11        H113     109.554    1.50
+C11        H111         C11        H112     109.380    1.50
+C11        H111         C11        H113     109.380    1.50
+C11        H112         C11        H113     109.380    1.50
+C11          C1           P         O1P     107.585    2.44
+C11          C1           P         O2P     105.177    2.72
+C11          C1           P          HP     104.658    3.00
+C11         O1P           P         O2P     109.115    3.00
+C11         O1P           P          HP     108.562    2.72
+C11         O2P           P          HP     104.778    2.90
+C11           P         O2P         CY1     122.143    1.53
+C11         O2P         CY1         CY2     109.312    1.50
+C11         O2P         CY1        HY11     109.739    1.50
+C11         O2P         CY1        HY12     109.739    1.50
+C11         CY2         CY1        HY11     110.079    1.50
+C11         CY2         CY1        HY12     110.079    1.50
+C11        HY11         CY1        HY12     108.388    1.50
+C11         CY1         CY2         CY3     113.691    3.00
+C11         CY1         CY2        HY21     108.650    1.50
+C11         CY1         CY2        HY22     108.650    1.50
+C11         CY3         CY2        HY21     108.683    1.93
+C11         CY3         CY2        HY22     108.683    1.93
+C11        HY21         CY2        HY22     107.788    1.50
+C11         CY2         CY3         CY4     113.306    3.00
+C11         CY2         CY3        HY31     108.835    1.50
+C11         CY2         CY3        HY32     108.835    1.50
+C11         CY4         CY3        HY31     108.918    1.50
+C11         CY4         CY3        HY32     108.918    1.50
+C11        HY31         CY3        HY32     107.763    1.50
+C11         CY3         CY4        HY41     109.554    1.50
+C11         CY3         CY4        HY42     109.554    1.50
+C11         CY3         CY4        HY43     109.554    1.50
+C11        HY41         CY4        HY42     109.380    1.50
+C11        HY41         CY4        HY43     109.380    1.50
+C11        HY42         CY4        HY43     109.380    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+C11             sp3_sp3_1           P          C1          C2          C3     180.000    10.0     3
+C11            sp3_sp3_10          C2          C1           P         O1P     180.000    10.0     3
+C11           sp3_sp3_100         CY1         O2P           P          C1     180.000    10.0     3
+C11           sp3_sp3_103         CY2         CY1         O2P           P     180.000    10.0     3
+C11           sp3_sp3_106         O2P         CY1         CY2         CY3     180.000    10.0     3
+C11           sp3_sp3_115         CY1         CY2         CY3         CY4     180.000    10.0     3
+C11           sp3_sp3_124         CY2         CY3         CY4        HY41     180.000    10.0     3
+C11            sp3_sp3_19          C1          C2          C3          C4     180.000    10.0     3
+C11            sp3_sp3_28          C2          C3          C4          C5     180.000    10.0     3
+C11            sp3_sp3_37          C3          C4          C5          C6     180.000    10.0     3
+C11            sp3_sp3_46          C4          C5          C6          C7     180.000    10.0     3
+C11            sp3_sp3_55          C5          C6          C7          C8     180.000    10.0     3
+C11            sp3_sp3_64          C6          C7          C8          C9     180.000    10.0     3
+C11            sp3_sp3_73          C7          C8          C9         C10     180.000    10.0     3
+C11            sp3_sp3_82         C11         C10          C9          C8     180.000    10.0     3
+C11            sp3_sp3_91          C9         C10         C11        H111     180.000    10.0     3
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+C11    chir_1    P    O2P    O1P    C1    negative
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+C11           SMILES              ACDLabs 10.04                                                              O=P(OCCCC)CCCCCCCCCCC
+C11 SMILES_CANONICAL               CACTVS 3.341                                                          CCCCCCCCCCC[P@H](=O)OCCCC
+C11           SMILES               CACTVS 3.341                                                           CCCCCCCCCCC[PH](=O)OCCCC
+C11 SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                          CCCCCCCCCCC[P@H](=O)OCCCC
+C11           SMILES "OpenEye OEToolkits" 1.5.0                                                              CCCCCCCCCCCP(=O)OCCCC
+C11            InChI                InChI  1.03 InChI=1S/C15H33O2P/c1-3-5-7-8-9-10-11-12-13-15-18(16)17-14-6-4-2/h18H,3-15H2,1-2H3
+C11         InChIKey                InChI  1.03                                                        QCBLJDSWVGAXQB-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+C11 acedrg               243         "dictionary generator"                  
+C11 acedrg_database      11          "data source"                           
+C11 rdkit                2017.03.2   "Chemoinformatics tool"
+C11 refmac5              5.8.0238    "optimization tool"                     

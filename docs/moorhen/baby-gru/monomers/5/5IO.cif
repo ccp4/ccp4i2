@@ -1,0 +1,362 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+5IO     5IO      6-ethyl-5-iodo-2-{5-[(4-methylpiperazin-1-yl)sulfonyl]-2-propoxyphenyl}pyrimidin-4(3H)-one     NON-POLYMER     57     30     .     
+#
+data_comp_5IO
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+5IO     CAA     C       CH3     0       -25.476     19.091      -19.281     
+5IO     CAB     C       CH3     0       -29.469     13.914      -14.729     
+5IO     CAC     C       CH3     0       -31.678     8.861       -22.669     
+5IO     OAD     O       O       0       -29.256     19.070      -16.698     
+5IO     OAE     O       O       0       -31.246     13.704      -24.146     
+5IO     OAF     O       O       0       -32.531     13.748      -22.043     
+5IO     IAG     I       I       0       -30.252     17.505      -14.078     
+5IO     CAH     C       CR16    0       -28.878     14.767      -22.689     
+5IO     CAI     C       CR16    0       -27.880     15.523      -22.097     
+5IO     CAJ     C       CR16    0       -30.185     14.931      -20.677     
+5IO     CAK     C       CH2     0       -24.940     17.737      -19.670     
+5IO     CAL     C       CH2     0       -30.563     14.512      -15.579     
+5IO     CAM     C       CH2     0       -25.793     17.069      -20.712     
+5IO     CAN     C       CH2     0       -29.537     9.969       -23.077     
+5IO     CAO     C       CH2     0       -30.536     10.065      -20.876     
+5IO     CAP     C       CH2     0       -29.595     11.484      -22.963     
+5IO     CAQ     C       CH2     0       -31.226     11.395      -21.123     
+5IO     NAR     N       NRD6    0       -29.850     15.255      -17.763     
+5IO     NAS     N       NR6     0       -29.232     17.464      -18.279     
+5IO     OAT     O       O2      0       -27.069     16.742      -20.145     
+5IO     CAU     C       CR6     0       -30.035     14.474      -21.981     
+5IO     CAV     C       CR6     0       -28.023     15.989      -20.791     
+5IO     CAW     C       CR6     0       -30.087     15.612      -16.487     
+5IO     CAX     C       CR6     0       -29.896     16.925      -16.063     
+5IO     CAY     C       CR6     0       -29.193     15.696      -20.059     
+5IO     CAZ     C       CR6     0       -29.424     16.156      -18.657     
+5IO     CBA     C       CR6     0       -29.453     17.878      -16.990     
+5IO     NBB     N       NT      0       -30.389     9.277       -22.102     
+5IO     NBC     N       NT      0       -30.912     11.926      -22.464     
+5IO     SBD     S       S3      0       -31.305     13.497      -22.734     
+5IO     HAA     H       H       0       -24.837     19.540      -18.701     
+5IO     HAAA    H       H       0       -26.320     18.985      -18.809     
+5IO     HAAB    H       H       0       -25.618     19.628      -20.080     
+5IO     HAB     H       H       0       -29.851     13.253      -14.127     
+5IO     HABA    H       H       0       -29.038     14.613      -14.211     
+5IO     HABB    H       H       0       -28.811     13.485      -15.302     
+5IO     HAC     H       H       0       -32.321     8.701       -21.953     
+5IO     HACA    H       H       0       -31.555     8.037       -23.176     
+5IO     HACB    H       H       0       -32.021     9.555       -23.261     
+5IO     HAH     H       H       0       -28.767     14.458      -23.568     
+5IO     HAI     H       H       0       -27.107     15.717      -22.584     
+5IO     HAJ     H       H       0       -30.962     14.728      -20.202     
+5IO     HAK     H       H       0       -24.898     17.165      -18.874     
+5IO     HAKA    H       H       0       -24.028     17.838      -20.017     
+5IO     HAL     H       H       0       -31.269     14.858      -14.995     
+5IO     HALA    H       H       0       -30.958     13.799      -16.126     
+5IO     HAM     H       H       0       -25.350     16.255      -21.027     
+5IO     HAMA    H       H       0       -25.913     17.669      -21.476     
+5IO     HAN     H       H       0       -29.797     9.707       -23.983     
+5IO     HANA    H       H       0       -28.612     9.680       -22.943     
+5IO     HAO     H       H       0       -31.054     9.552       -20.224     
+5IO     HAOA    H       H       0       -29.653     10.227      -20.488     
+5IO     HAP     H       H       0       -28.896     11.793      -22.361     
+5IO     HAPA    H       H       0       -29.426     11.874      -23.838     
+5IO     HAQ     H       H       0       -30.945     12.034      -20.446     
+5IO     HAQA    H       H       0       -32.189     11.277      -21.039     
+5IO     HNAS    H       H       0       -28.954     18.055      -18.869     
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+5IO         CAA         CAK      SINGLE       n     1.508  0.0200     1.508  0.0200
+5IO         CAB         CAL      SINGLE       n     1.509  0.0200     1.509  0.0200
+5IO         CAC         NBB      SINGLE       n     1.462  0.0100     1.462  0.0100
+5IO         OAD         CBA      DOUBLE       n     1.242  0.0172     1.242  0.0172
+5IO         OAE         SBD      DOUBLE       n     1.429  0.0100     1.429  0.0100
+5IO         OAF         SBD      DOUBLE       n     1.429  0.0100     1.429  0.0100
+5IO         IAG         CAX      SINGLE       n     2.096  0.0128     2.096  0.0128
+5IO         CAH         CAI      DOUBLE       y     1.381  0.0100     1.381  0.0100
+5IO         CAH         CAU      SINGLE       y     1.385  0.0100     1.385  0.0100
+5IO         CAI         CAV      SINGLE       y     1.387  0.0100     1.387  0.0100
+5IO         CAJ         CAU      DOUBLE       y     1.387  0.0100     1.387  0.0100
+5IO         CAJ         CAY      SINGLE       y     1.392  0.0100     1.392  0.0100
+5IO         CAK         CAM      SINGLE       n     1.503  0.0136     1.503  0.0136
+5IO         CAL         CAW      SINGLE       n     1.501  0.0100     1.501  0.0100
+5IO         CAM         OAT      SINGLE       n     1.432  0.0101     1.432  0.0101
+5IO         CAN         CAP      SINGLE       n     1.512  0.0129     1.512  0.0129
+5IO         CAN         NBB      SINGLE       n     1.460  0.0100     1.460  0.0100
+5IO         CAO         CAQ      SINGLE       n     1.512  0.0129     1.512  0.0129
+5IO         CAO         NBB      SINGLE       n     1.460  0.0100     1.460  0.0100
+5IO         CAP         NBC      SINGLE       n     1.471  0.0100     1.471  0.0100
+5IO         CAQ         NBC      SINGLE       n     1.471  0.0100     1.471  0.0100
+5IO         NAR         CAW      SINGLE       y     1.341  0.0100     1.341  0.0100
+5IO         NAR         CAZ      DOUBLE       y     1.332  0.0113     1.332  0.0113
+5IO         NAS         CAZ      SINGLE       y     1.372  0.0100     1.372  0.0100
+5IO         NAS         CBA      SINGLE       y     1.368  0.0109     1.368  0.0109
+5IO         OAT         CAV      SINGLE       n     1.371  0.0100     1.371  0.0100
+5IO         CAU         SBD      SINGLE       n     1.769  0.0100     1.769  0.0100
+5IO         CAV         CAY      DOUBLE       y     1.402  0.0100     1.402  0.0100
+5IO         CAW         CAX      DOUBLE       y     1.382  0.0127     1.382  0.0127
+5IO         CAX         CBA      SINGLE       y     1.389  0.0199     1.389  0.0199
+5IO         CAY         CAZ      SINGLE       n     1.489  0.0100     1.489  0.0100
+5IO         NBC         SBD      SINGLE       n     1.638  0.0100     1.638  0.0100
+5IO         CAA         HAA      SINGLE       n     1.089  0.0100     0.973  0.0157
+5IO         CAA        HAAA      SINGLE       n     1.089  0.0100     0.973  0.0157
+5IO         CAA        HAAB      SINGLE       n     1.089  0.0100     0.973  0.0157
+5IO         CAB         HAB      SINGLE       n     1.089  0.0100     0.972  0.0140
+5IO         CAB        HABA      SINGLE       n     1.089  0.0100     0.972  0.0140
+5IO         CAB        HABB      SINGLE       n     1.089  0.0100     0.972  0.0140
+5IO         CAC         HAC      SINGLE       n     1.089  0.0100     0.975  0.0100
+5IO         CAC        HACA      SINGLE       n     1.089  0.0100     0.975  0.0100
+5IO         CAC        HACB      SINGLE       n     1.089  0.0100     0.975  0.0100
+5IO         CAH         HAH      SINGLE       n     1.082  0.0130     0.939  0.0200
+5IO         CAI         HAI      SINGLE       n     1.082  0.0130     0.934  0.0104
+5IO         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.933  0.0100
+5IO         CAK         HAK      SINGLE       n     1.089  0.0100     0.981  0.0133
+5IO         CAK        HAKA      SINGLE       n     1.089  0.0100     0.981  0.0133
+5IO         CAL         HAL      SINGLE       n     1.089  0.0100     0.981  0.0150
+5IO         CAL        HALA      SINGLE       n     1.089  0.0100     0.981  0.0150
+5IO         CAM         HAM      SINGLE       n     1.089  0.0100     0.979  0.0131
+5IO         CAM        HAMA      SINGLE       n     1.089  0.0100     0.979  0.0131
+5IO         CAN         HAN      SINGLE       n     1.089  0.0100     0.978  0.0109
+5IO         CAN        HANA      SINGLE       n     1.089  0.0100     0.978  0.0109
+5IO         CAO         HAO      SINGLE       n     1.089  0.0100     0.978  0.0109
+5IO         CAO        HAOA      SINGLE       n     1.089  0.0100     0.978  0.0109
+5IO         CAP         HAP      SINGLE       n     1.089  0.0100     0.973  0.0100
+5IO         CAP        HAPA      SINGLE       n     1.089  0.0100     0.973  0.0100
+5IO         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.973  0.0100
+5IO         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.973  0.0100
+5IO         NAS        HNAS      SINGLE       n     1.016  0.0100     0.880  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+5IO         CAK         CAA         HAA     109.599    1.50
+5IO         CAK         CAA        HAAA     109.599    1.50
+5IO         CAK         CAA        HAAB     109.599    1.50
+5IO         HAA         CAA        HAAA     109.380    1.50
+5IO         HAA         CAA        HAAB     109.380    1.50
+5IO        HAAA         CAA        HAAB     109.380    1.50
+5IO         CAL         CAB         HAB     109.510    1.50
+5IO         CAL         CAB        HABA     109.510    1.50
+5IO         CAL         CAB        HABB     109.510    1.50
+5IO         HAB         CAB        HABA     109.417    1.50
+5IO         HAB         CAB        HABB     109.417    1.50
+5IO        HABA         CAB        HABB     109.417    1.50
+5IO         NBB         CAC         HAC     109.526    1.50
+5IO         NBB         CAC        HACA     109.526    1.50
+5IO         NBB         CAC        HACB     109.526    1.50
+5IO         HAC         CAC        HACA     109.428    1.50
+5IO         HAC         CAC        HACB     109.428    1.50
+5IO        HACA         CAC        HACB     109.428    1.50
+5IO         CAI         CAH         CAU     119.532    1.50
+5IO         CAI         CAH         HAH     119.967    1.50
+5IO         CAU         CAH         HAH     120.501    1.50
+5IO         CAH         CAI         CAV     119.972    1.50
+5IO         CAH         CAI         HAI     119.934    1.50
+5IO         CAV         CAI         HAI     120.094    1.50
+5IO         CAU         CAJ         CAY     121.028    1.50
+5IO         CAU         CAJ         HAJ     119.835    1.50
+5IO         CAY         CAJ         HAJ     119.137    1.50
+5IO         CAA         CAK         CAM     111.939    1.73
+5IO         CAA         CAK         HAK     109.194    1.50
+5IO         CAA         CAK        HAKA     109.194    1.50
+5IO         CAM         CAK         HAK     109.095    1.50
+5IO         CAM         CAK        HAKA     109.095    1.50
+5IO         HAK         CAK        HAKA     107.894    1.50
+5IO         CAB         CAL         CAW     113.109    2.01
+5IO         CAB         CAL         HAL     108.961    1.50
+5IO         CAB         CAL        HALA     108.961    1.50
+5IO         CAW         CAL         HAL     108.900    1.50
+5IO         CAW         CAL        HALA     108.900    1.50
+5IO         HAL         CAL        HALA     107.833    1.50
+5IO         CAK         CAM         OAT     109.363    2.29
+5IO         CAK         CAM         HAM     109.925    1.50
+5IO         CAK         CAM        HAMA     109.925    1.50
+5IO         OAT         CAM         HAM     109.943    1.50
+5IO         OAT         CAM        HAMA     109.943    1.50
+5IO         HAM         CAM        HAMA     108.474    1.50
+5IO         CAP         CAN         NBB     110.745    1.50
+5IO         CAP         CAN         HAN     109.523    1.50
+5IO         CAP         CAN        HANA     109.523    1.50
+5IO         NBB         CAN         HAN     109.480    1.50
+5IO         NBB         CAN        HANA     109.480    1.50
+5IO         HAN         CAN        HANA     108.187    1.50
+5IO         CAQ         CAO         NBB     110.745    1.50
+5IO         CAQ         CAO         HAO     109.523    1.50
+5IO         CAQ         CAO        HAOA     109.523    1.50
+5IO         NBB         CAO         HAO     109.480    1.50
+5IO         NBB         CAO        HAOA     109.480    1.50
+5IO         HAO         CAO        HAOA     108.187    1.50
+5IO         CAN         CAP         NBC     109.008    1.50
+5IO         CAN         CAP         HAP     109.820    1.50
+5IO         CAN         CAP        HAPA     109.820    1.50
+5IO         NBC         CAP         HAP     109.891    1.50
+5IO         NBC         CAP        HAPA     109.891    1.50
+5IO         HAP         CAP        HAPA     108.243    1.50
+5IO         CAO         CAQ         NBC     109.008    1.50
+5IO         CAO         CAQ         HAQ     109.820    1.50
+5IO         CAO         CAQ        HAQA     109.820    1.50
+5IO         NBC         CAQ         HAQ     109.891    1.50
+5IO         NBC         CAQ        HAQA     109.891    1.50
+5IO         HAQ         CAQ        HAQA     108.243    1.50
+5IO         CAW         NAR         CAZ     119.148    1.50
+5IO         CAZ         NAS         CBA     121.694    1.50
+5IO         CAZ         NAS        HNAS     119.721    2.44
+5IO         CBA         NAS        HNAS     118.586    1.78
+5IO         CAM         OAT         CAV     118.113    2.52
+5IO         CAH         CAU         CAJ     120.348    1.50
+5IO         CAH         CAU         SBD     119.841    1.50
+5IO         CAJ         CAU         SBD     119.820    1.50
+5IO         CAI         CAV         OAT     122.847    2.10
+5IO         CAI         CAV         CAY     120.854    1.50
+5IO         OAT         CAV         CAY     116.300    2.00
+5IO         CAL         CAW         NAR     116.660    1.50
+5IO         CAL         CAW         CAX     122.421    1.75
+5IO         NAR         CAW         CAX     120.919    1.50
+5IO         IAG         CAX         CAW     120.341    1.83
+5IO         IAG         CAX         CBA     120.286    1.78
+5IO         CAW         CAX         CBA     119.373    1.50
+5IO         CAJ         CAY         CAV     118.257    1.50
+5IO         CAJ         CAY         CAZ     119.934    2.76
+5IO         CAV         CAY         CAZ     121.809    1.50
+5IO         NAR         CAZ         NAS     120.551    2.80
+5IO         NAR         CAZ         CAY     118.147    1.50
+5IO         NAS         CAZ         CAY     121.303    1.53
+5IO         OAD         CBA         NAS     118.874    1.50
+5IO         OAD         CBA         CAX     122.810    3.00
+5IO         NAS         CBA         CAX     118.316    2.98
+5IO         CAC         NBB         CAN     110.746    1.50
+5IO         CAC         NBB         CAO     110.746    1.50
+5IO         CAN         NBB         CAO     109.130    1.50
+5IO         CAP         NBC         CAQ     111.689    1.50
+5IO         CAP         NBC         SBD     116.783    1.50
+5IO         CAQ         NBC         SBD     116.783    1.50
+5IO         OAE         SBD         OAF     119.764    1.50
+5IO         OAE         SBD         CAU     107.836    1.50
+5IO         OAE         SBD         NBC     106.552    1.50
+5IO         OAF         SBD         CAU     107.836    1.50
+5IO         OAF         SBD         NBC     106.552    1.50
+5IO         CAU         SBD         NBC     107.477    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+5IO            sp3_sp3_37         HAA         CAA         CAK         CAM     180.000    10.0     3
+5IO            sp3_sp3_61         CAA         CAK         CAM         OAT     180.000    10.0     3
+5IO             sp2_sp3_2         NAR         CAW         CAL         CAB     -90.000    10.0     6
+5IO            sp3_sp3_70         CAK         CAM         OAT         CAV     180.000    10.0     3
+5IO             sp3_sp3_1         NBB         CAN         CAP         NBC      60.000    10.0     3
+5IO            sp3_sp3_74         CAP         CAN         NBB         CAC     -60.000    10.0     3
+5IO            sp3_sp3_22         NBB         CAO         CAQ         NBC     -60.000    10.0     3
+5IO            sp3_sp3_32         CAQ         CAO         NBB         CAC     180.000    10.0     3
+5IO            sp3_sp3_11         CAN         CAP         NBC         SBD      60.000    10.0     3
+5IO            sp3_sp3_17         CAO         CAQ         NBC         SBD     180.000    10.0     3
+5IO              const_22         CAL         CAW         NAR         CAZ     180.000    10.0     2
+5IO              const_43         NAS         CAZ         NAR         CAW       0.000    10.0     2
+5IO              const_35         NAR         CAZ         NAS         CBA       0.000    10.0     2
+5IO              const_33         OAD         CBA         NAS         CAZ     180.000    10.0     2
+5IO             sp2_sp2_1         CAI         CAV         OAT         CAM     180.000     5.0     2
+5IO            sp3_sp3_46         HAB         CAB         CAL         CAW     180.000    10.0     3
+5IO             sp2_sp3_7         CAH         CAU         SBD         OAE     150.000    10.0     6
+5IO              const_11         OAT         CAV         CAY         CAJ     180.000    10.0     2
+5IO              const_26         CAL         CAW         CAX         IAG       0.000    10.0     2
+5IO              const_30         IAG         CAX         CBA         OAD       0.000    10.0     2
+5IO             sp2_sp2_4         CAJ         CAY         CAZ         NAR       0.000     5.0     2
+5IO            sp3_sp3_83         CAP         NBC         SBD         OAE     180.000    10.0     3
+5IO            sp3_sp3_56         HAC         CAC         NBB         CAN     -60.000    10.0     3
+5IO              const_40         CAI         CAH         CAU         SBD     180.000    10.0     2
+5IO       const_sp2_sp2_1         CAU         CAH         CAI         CAV       0.000     5.0     2
+5IO       const_sp2_sp2_6         CAH         CAI         CAV         OAT     180.000     5.0     2
+5IO              const_18         CAY         CAJ         CAU         SBD     180.000    10.0     2
+5IO              const_13         CAU         CAJ         CAY         CAV       0.000    10.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+5IO    chir_1    NBB    CAN    CAO    CAC    both
+5IO    chir_2    NBC    SBD    CAP    CAQ    both
+5IO    chir_3    SBD    OAE    OAF    NBC    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+5IO    plan-1         CAL   0.020
+5IO    plan-1         CAW   0.020
+5IO    plan-1         CAX   0.020
+5IO    plan-1         CAY   0.020
+5IO    plan-1         CAZ   0.020
+5IO    plan-1         CBA   0.020
+5IO    plan-1        HNAS   0.020
+5IO    plan-1         IAG   0.020
+5IO    plan-1         NAR   0.020
+5IO    plan-1         NAS   0.020
+5IO    plan-1         OAD   0.020
+5IO    plan-2         CAH   0.020
+5IO    plan-2         CAI   0.020
+5IO    plan-2         CAJ   0.020
+5IO    plan-2         CAU   0.020
+5IO    plan-2         CAV   0.020
+5IO    plan-2         CAY   0.020
+5IO    plan-2         CAZ   0.020
+5IO    plan-2         HAH   0.020
+5IO    plan-2         HAI   0.020
+5IO    plan-2         HAJ   0.020
+5IO    plan-2         OAT   0.020
+5IO    plan-2         SBD   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+5IO           SMILES              ACDLabs 12.01                                                                                               O=S(=O)(c2cc(C1=NC(=C(I)C(=O)N1)CC)c(OCCC)cc2)N3CCN(C)CC3
+5IO            InChI                InChI  1.03 InChI=1S/C20H27IN4O4S/c1-4-12-29-17-7-6-14(30(27,28)25-10-8-24(3)9-11-25)13-15(17)19-22-16(5-2)18(21)20(26)23-19/h6-7,13H,4-5,8-12H2,1-3H3,(H,22,23,26)
+5IO         InChIKey                InChI  1.03                                                                                                                             CLYYLXSJJMHCHN-UHFFFAOYSA-N
+5IO SMILES_CANONICAL               CACTVS 3.370                                                                                               CCCOc1ccc(cc1C2=NC(=C(I)C(=O)N2)CC)[S](=O)(=O)N3CCN(C)CC3
+5IO           SMILES               CACTVS 3.370                                                                                               CCCOc1ccc(cc1C2=NC(=C(I)C(=O)N2)CC)[S](=O)(=O)N3CCN(C)CC3
+5IO SMILES_CANONICAL "OpenEye OEToolkits" 1.7.2                                                                                                 CCCOc1ccc(cc1C2=NC(=C(C(=O)N2)I)CC)S(=O)(=O)N3CCN(CC3)C
+5IO           SMILES "OpenEye OEToolkits" 1.7.2                                                                                                 CCCOc1ccc(cc1C2=NC(=C(C(=O)N2)I)CC)S(=O)(=O)N3CCN(CC3)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+5IO acedrg               243         "dictionary generator"                  
+5IO acedrg_database      11          "data source"                           
+5IO rdkit                2017.03.2   "Chemoinformatics tool"
+5IO refmac5              5.8.0238    "optimization tool"                     

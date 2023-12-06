@@ -1,0 +1,187 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+14B     14B      "2-amino-3,5-dimethylbenzoic acid"     NON-POLYMER     22     12     .     
+#
+data_comp_14B
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+14B     CAA     C       CH3     0       31.163      77.390      32.485      
+14B     CAB     C       CH3     0       35.957      77.022      33.941      
+14B     NAC     N       NH2     0       36.204      79.849      33.472      
+14B     OAD     O       OC      -1      34.386      82.249      33.453      
+14B     OAE     O       O       0       33.708      81.949      31.379      
+14B     CAF     C       CR16    0       33.581      77.323      33.196      
+14B     CAG     C       CR16    0       32.665      79.422      32.530      
+14B     CAH     C       C       0       34.004      81.530      32.513      
+14B     CAI     C       CR6     0       32.493      78.058      32.741      
+14B     CAJ     C       CR6     0       34.827      77.892      33.446      
+14B     CAK     C       CR6     0       34.986      79.275      33.229      
+14B     CAL     C       CR6     0       33.892      80.054      32.763      
+14B     HAA     H       H       0       30.534      78.037      32.126      
+14B     HAAA    H       H       0       30.814      77.031      33.317      
+14B     HAAB    H       H       0       31.279      76.667      31.847      
+14B     HAB     H       H       0       36.806      77.363      33.619      
+14B     HABA    H       H       0       35.834      76.116      33.614      
+14B     HABB    H       H       0       35.960      77.015      34.912      
+14B     HNAC    H       H       0       36.652      80.215      32.813      
+14B     HNAA    H       H       0       36.531      79.848      34.286      
+14B     HAF     H       H       0       33.471      76.397      33.342      
+14B     HAG     H       H       0       31.937      79.937      32.221      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+14B         CAA         CAI      SINGLE       n     1.510  0.0100     1.510  0.0100
+14B         CAB         CAJ      SINGLE       n     1.507  0.0100     1.507  0.0100
+14B         NAC         CAK      SINGLE       n     1.363  0.0184     1.363  0.0184
+14B         OAD         CAH      SINGLE       n     1.244  0.0200     1.244  0.0200
+14B         OAE         CAH      DOUBLE       n     1.244  0.0200     1.244  0.0200
+14B         CAF         CAI      DOUBLE       y     1.386  0.0100     1.386  0.0100
+14B         CAF         CAJ      SINGLE       y     1.389  0.0100     1.389  0.0100
+14B         CAG         CAI      SINGLE       y     1.388  0.0100     1.388  0.0100
+14B         CAG         CAL      DOUBLE       y     1.396  0.0100     1.396  0.0100
+14B         CAH         CAL      SINGLE       n     1.498  0.0200     1.498  0.0200
+14B         CAJ         CAK      DOUBLE       y     1.401  0.0100     1.401  0.0100
+14B         CAK         CAL      SINGLE       y     1.411  0.0141     1.411  0.0141
+14B         CAA         HAA      SINGLE       n     1.089  0.0100     0.971  0.0135
+14B         CAA        HAAA      SINGLE       n     1.089  0.0100     0.971  0.0135
+14B         CAA        HAAB      SINGLE       n     1.089  0.0100     0.971  0.0135
+14B         CAB         HAB      SINGLE       n     1.089  0.0100     0.971  0.0135
+14B         CAB        HABA      SINGLE       n     1.089  0.0100     0.971  0.0135
+14B         CAB        HABB      SINGLE       n     1.089  0.0100     0.971  0.0135
+14B         NAC        HNAC      SINGLE       n     1.016  0.0100     0.877  0.0200
+14B         NAC        HNAA      SINGLE       n     1.016  0.0100     0.877  0.0200
+14B         CAF         HAF      SINGLE       n     1.082  0.0130     0.944  0.0143
+14B         CAG         HAG      SINGLE       n     1.082  0.0130     0.944  0.0147
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+14B         CAI         CAA         HAA     109.567    1.50
+14B         CAI         CAA        HAAA     109.567    1.50
+14B         CAI         CAA        HAAB     109.567    1.50
+14B         HAA         CAA        HAAA     109.348    1.50
+14B         HAA         CAA        HAAB     109.348    1.50
+14B        HAAA         CAA        HAAB     109.348    1.50
+14B         CAJ         CAB         HAB     109.584    1.50
+14B         CAJ         CAB        HABA     109.584    1.50
+14B         CAJ         CAB        HABB     109.584    1.50
+14B         HAB         CAB        HABA     109.348    1.50
+14B         HAB         CAB        HABB     109.348    1.50
+14B        HABA         CAB        HABB     109.348    1.50
+14B         CAK         NAC        HNAC     119.788    1.50
+14B         CAK         NAC        HNAA     119.788    1.50
+14B        HNAC         NAC        HNAA     120.425    3.00
+14B         CAI         CAF         CAJ     122.668    1.50
+14B         CAI         CAF         HAF     118.732    1.50
+14B         CAJ         CAF         HAF     118.599    1.50
+14B         CAI         CAG         CAL     121.818    1.50
+14B         CAI         CAG         HAG     119.203    1.50
+14B         CAL         CAG         HAG     118.980    1.50
+14B         OAD         CAH         OAE     124.521    1.50
+14B         OAD         CAH         CAL     117.739    1.50
+14B         OAE         CAH         CAL     117.739    1.50
+14B         CAA         CAI         CAF     120.861    1.50
+14B         CAA         CAI         CAG     120.861    1.50
+14B         CAF         CAI         CAG     118.278    1.50
+14B         CAB         CAJ         CAF     120.478    1.50
+14B         CAB         CAJ         CAK     121.229    1.50
+14B         CAF         CAJ         CAK     118.294    1.50
+14B         NAC         CAK         CAJ     118.424    1.50
+14B         NAC         CAK         CAL     121.382    1.50
+14B         CAJ         CAK         CAL     120.194    1.51
+14B         CAG         CAL         CAH     119.053    1.50
+14B         CAG         CAL         CAK     118.748    1.50
+14B         CAH         CAL         CAK     122.199    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+14B             sp2_sp3_1         CAF         CAI         CAA         HAA     150.000    10.0     6
+14B              const_16         NAC         CAK         CAL         CAH       0.000    10.0     2
+14B             sp2_sp3_7         CAF         CAJ         CAB         HAB     150.000    10.0     6
+14B             sp2_sp2_1         CAJ         CAK         NAC        HNAC     180.000     5.0     2
+14B       const_sp2_sp2_2         CAJ         CAF         CAI         CAA     180.000     5.0     2
+14B              const_22         CAI         CAF         CAJ         CAB     180.000    10.0     2
+14B              const_10         CAI         CAG         CAL         CAH     180.000    10.0     2
+14B       const_sp2_sp2_6         CAL         CAG         CAI         CAA     180.000     5.0     2
+14B             sp2_sp2_5         OAD         CAH         CAL         CAG     180.000     5.0     2
+14B              const_20         CAB         CAJ         CAK         NAC       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+14B    plan-1         CAA   0.020
+14B    plan-1         CAB   0.020
+14B    plan-1         CAF   0.020
+14B    plan-1         CAG   0.020
+14B    plan-1         CAH   0.020
+14B    plan-1         CAI   0.020
+14B    plan-1         CAJ   0.020
+14B    plan-1         CAK   0.020
+14B    plan-1         CAL   0.020
+14B    plan-1         HAF   0.020
+14B    plan-1         HAG   0.020
+14B    plan-1         NAC   0.020
+14B    plan-2         CAK   0.020
+14B    plan-2        HNAA   0.020
+14B    plan-2        HNAC   0.020
+14B    plan-2         NAC   0.020
+14B    plan-3         CAH   0.020
+14B    plan-3         CAL   0.020
+14B    plan-3         OAD   0.020
+14B    plan-3         OAE   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+14B           SMILES              ACDLabs 12.01                                                      O=C(O)c1cc(cc(c1N)C)C
+14B            InChI                InChI  1.03 InChI=1S/C9H11NO2/c1-5-3-6(2)8(10)7(4-5)9(11)12/h3-4H,10H2,1-2H3,(H,11,12)
+14B         InChIKey                InChI  1.03                                                GIMYRAQQQBFFFJ-UHFFFAOYSA-N
+14B SMILES_CANONICAL               CACTVS 3.370                                                    Cc1cc(C)c(N)c(c1)C(O)=O
+14B           SMILES               CACTVS 3.370                                                    Cc1cc(C)c(N)c(c1)C(O)=O
+14B SMILES_CANONICAL "OpenEye OEToolkits" 1.7.6                                                    Cc1cc(c(c(c1)C(=O)O)N)C
+14B           SMILES "OpenEye OEToolkits" 1.7.6                                                    Cc1cc(c(c(c1)C(=O)O)N)C
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+14B acedrg               243         "dictionary generator"                  
+14B acedrg_database      11          "data source"                           
+14B rdkit                2017.03.2   "Chemoinformatics tool"
+14B refmac5              5.8.0238    "optimization tool"                     

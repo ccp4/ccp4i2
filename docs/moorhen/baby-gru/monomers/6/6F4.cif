@@ -1,0 +1,192 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+6F4     6F4      N~2~-[(thiophen-2-yl)methyl]-1,3,4-thiadiazole-2,5-diamine     NON-POLYMER     21     13     .     
+#
+data_comp_6F4
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+6F4     CAB     C       CR15    0       5.928       -17.516     15.653      
+6F4     CAA     C       CR15    0       4.676       -18.199     15.453      
+6F4     CAE     C       CR15    0       4.063       -17.791     14.311      
+6F4     SAD     S       S2      0       4.957       -16.633     13.514      
+6F4     CAC     C       CR5     0       6.192       -16.615     14.632      
+6F4     CAF     C       CH2     0       7.346       -15.702     14.420      
+6F4     NAG     N       NH1     0       7.155       -14.395     15.033      
+6F4     CAH     C       CR5     0       8.141       -13.391     14.984      
+6F4     SAJ     S       S2      0       9.628       -13.520     14.236      
+6F4     NAI     N       NRD5    0       8.018       -12.199     15.533      
+6F4     NAL     N       NRD5    0       9.153       -11.381     15.338      
+6F4     CAK     C       CR5     0       10.102      -11.978     14.649      
+6F4     NAM     N       NH2     0       11.279      -11.464     14.310      
+6F4     H1      H       H       0       6.496       -17.666     16.390      
+6F4     H2      H       H       0       4.332       -18.847     16.044      
+6F4     H3      H       H       0       3.238       -18.091     13.969      
+6F4     H4      H       H       0       7.489       -15.585     13.465      
+6F4     H5      H       H       0       8.145       -16.113     14.795      
+6F4     H6      H       H       0       6.405       -14.223     15.447      
+6F4     H7      H       H       0       11.849      -11.944     13.846      
+6F4     H8      H       H       0       11.483      -10.646     14.551      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+6F4         SAD         CAC      SINGLE       y     1.695  0.0200     1.695  0.0200
+6F4         CAE         SAD      SINGLE       y     1.695  0.0200     1.695  0.0200
+6F4         CAH         SAJ      SINGLE       y     1.695  0.0200     1.695  0.0200
+6F4         SAJ         CAK      SINGLE       y     1.695  0.0200     1.695  0.0200
+6F4         CAF         NAG      SINGLE       n     1.454  0.0100     1.454  0.0100
+6F4         NAG         CAH      SINGLE       n     1.402  0.0200     1.402  0.0200
+6F4         CAC         CAF      SINGLE       n     1.486  0.0105     1.486  0.0105
+6F4         CAH         NAI      DOUBLE       y     1.301  0.0200     1.301  0.0200
+6F4         CAK         NAM      SINGLE       n     1.328  0.0105     1.328  0.0105
+6F4         NAL         CAK      DOUBLE       y     1.301  0.0200     1.301  0.0200
+6F4         CAB         CAC      DOUBLE       y     1.373  0.0200     1.373  0.0200
+6F4         CAA         CAE      DOUBLE       y     1.343  0.0200     1.343  0.0200
+6F4         NAI         NAL      SINGLE       y     1.395  0.0133     1.395  0.0133
+6F4         CAB         CAA      SINGLE       y     1.417  0.0151     1.417  0.0151
+6F4         CAB          H1      SINGLE       n     1.082  0.0130     0.942  0.0153
+6F4         CAA          H2      SINGLE       n     1.082  0.0130     0.942  0.0153
+6F4         CAE          H3      SINGLE       n     1.082  0.0130     0.942  0.0200
+6F4         CAF          H4      SINGLE       n     1.089  0.0100     0.973  0.0180
+6F4         CAF          H5      SINGLE       n     1.089  0.0100     0.973  0.0180
+6F4         NAG          H6      SINGLE       n     1.016  0.0100     0.873  0.0200
+6F4         NAM          H7      SINGLE       n     1.016  0.0100     0.877  0.0200
+6F4         NAM          H8      SINGLE       n     1.016  0.0100     0.877  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+6F4         CAC         CAB         CAA     107.709    1.50
+6F4         CAC         CAB          H1     126.392    1.50
+6F4         CAA         CAB          H1     125.900    1.50
+6F4         CAE         CAA         CAB     107.351    1.50
+6F4         CAE         CAA          H2     126.690    1.50
+6F4         CAB         CAA          H2     125.960    1.50
+6F4         SAD         CAE         CAA     108.313    3.00
+6F4         SAD         CAE          H3     123.215    3.00
+6F4         CAA         CAE          H3     128.471    2.40
+6F4         CAC         SAD         CAE     108.313    3.00
+6F4         SAD         CAC         CAF     119.849    3.00
+6F4         SAD         CAC         CAB     108.313    3.00
+6F4         CAF         CAC         CAB     131.838    2.45
+6F4         NAG         CAF         CAC     112.107    2.16
+6F4         NAG         CAF          H4     108.905    1.50
+6F4         NAG         CAF          H5     108.905    1.50
+6F4         CAC         CAF          H4     108.978    1.50
+6F4         CAC         CAF          H5     108.978    1.50
+6F4          H4         CAF          H5     107.966    1.50
+6F4         CAF         NAG         CAH     121.079    2.32
+6F4         CAF         NAG          H6     119.385    1.99
+6F4         CAH         NAG          H6     119.535    2.44
+6F4         SAJ         CAH         NAG     124.655    3.00
+6F4         SAJ         CAH         NAI     108.441    3.00
+6F4         NAG         CAH         NAI     126.903    2.98
+6F4         CAH         SAJ         CAK     108.441    3.00
+6F4         CAH         NAI         NAL     107.338    1.50
+6F4         CAK         NAL         NAI     107.338    1.50
+6F4         SAJ         CAK         NAM     123.966    3.00
+6F4         SAJ         CAK         NAL     108.441    3.00
+6F4         NAM         CAK         NAL     127.592    2.48
+6F4         CAK         NAM          H7     119.811    1.50
+6F4         CAK         NAM          H8     119.811    1.50
+6F4          H7         NAM          H8     120.377    1.82
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+6F4              const_22         CAE         CAA         CAB         CAC       0.000    10.0     2
+6F4       const_sp2_sp2_2         CAA         CAB         CAC         CAF     180.000     5.0     2
+6F4              const_18         NAM         CAK         NAL         NAI     180.000    10.0     2
+6F4             sp2_sp2_5         SAJ         CAK         NAM          H7     180.000     5.0     2
+6F4       const_sp2_sp2_9         CAB         CAA         CAE         SAD       0.000     5.0     2
+6F4       const_sp2_sp2_7         CAA         CAE         SAD         CAC       0.000     5.0     2
+6F4       const_sp2_sp2_6         CAF         CAC         SAD         CAE     180.000     5.0     2
+6F4             sp2_sp3_8         SAD         CAC         CAF         NAG     -90.000    10.0     6
+6F4             sp2_sp3_2         CAH         NAG         CAF         CAC     120.000    10.0     6
+6F4             sp2_sp2_1         SAJ         CAH         NAG         CAF     180.000     5.0     2
+6F4              const_14         NAG         CAH         SAJ         CAK     180.000    10.0     2
+6F4              const_21         NAG         CAH         NAI         NAL     180.000    10.0     2
+6F4              const_16         NAM         CAK         SAJ         CAH     180.000    10.0     2
+6F4              const_19         CAH         NAI         NAL         CAK       0.000    10.0     2
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+6F4    plan-1         CAA   0.020
+6F4    plan-1         CAB   0.020
+6F4    plan-1         CAC   0.020
+6F4    plan-1         CAE   0.020
+6F4    plan-1         CAF   0.020
+6F4    plan-1          H1   0.020
+6F4    plan-1          H2   0.020
+6F4    plan-1          H3   0.020
+6F4    plan-1         SAD   0.020
+6F4    plan-2         CAH   0.020
+6F4    plan-2         CAK   0.020
+6F4    plan-2         NAG   0.020
+6F4    plan-2         NAI   0.020
+6F4    plan-2         NAL   0.020
+6F4    plan-2         NAM   0.020
+6F4    plan-2         SAJ   0.020
+6F4    plan-3         CAF   0.020
+6F4    plan-3         CAH   0.020
+6F4    plan-3          H6   0.020
+6F4    plan-3         NAG   0.020
+6F4    plan-4         CAK   0.020
+6F4    plan-4          H7   0.020
+6F4    plan-4          H8   0.020
+6F4    plan-4         NAM   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+6F4           SMILES              ACDLabs 12.01                                                              c1ccsc1CNc2nnc(s2)N
+6F4            InChI                InChI  1.03 InChI=1S/C7H8N4S2/c8-6-10-11-7(13-6)9-4-5-2-1-3-12-5/h1-3H,4H2,(H2,8,10)(H,9,11)
+6F4         InChIKey                InChI  1.03                                                      KYOKGDLJKFUPBK-UHFFFAOYSA-N
+6F4 SMILES_CANONICAL               CACTVS 3.385                                                              Nc1sc(NCc2sccc2)nn1
+6F4           SMILES               CACTVS 3.385                                                              Nc1sc(NCc2sccc2)nn1
+6F4 SMILES_CANONICAL "OpenEye OEToolkits" 2.0.4                                                            c1cc(sc1)CNc2nnc(s2)N
+6F4           SMILES "OpenEye OEToolkits" 2.0.4                                                            c1cc(sc1)CNc2nnc(s2)N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+6F4 acedrg               243         "dictionary generator"                  
+6F4 acedrg_database      11          "data source"                           
+6F4 rdkit                2017.03.2   "Chemoinformatics tool"
+6F4 refmac5              5.8.0238    "optimization tool"                     

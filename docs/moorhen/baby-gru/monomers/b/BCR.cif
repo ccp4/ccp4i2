@@ -1,0 +1,583 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BCR     BCR      BETA-CAROTENE     NON-POLYMER     96     40     .     
+#
+data_comp_BCR
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BCR     C1      C       CT      0       67.293      70.891      86.595      
+BCR     C2      C       CH2     0       68.202      69.673      86.822      
+BCR     C3      C       CH2     0       69.384      69.607      85.915      
+BCR     C4      C       CH2     0       68.965      69.712      84.452      
+BCR     C5      C       CR6     0       67.975      70.814      84.174      
+BCR     C6      C       CR6     0       67.081      71.215      85.115      
+BCR     C7      C       C1      0       65.944      72.103      84.819      
+BCR     C8      C       C1      0       65.225      72.221      83.654      
+BCR     C9      C       C       0       64.317      73.239      83.283      
+BCR     C10     C       C1      0       63.554      73.109      82.089      
+BCR     C11     C       C1      0       62.513      73.884      81.588      
+BCR     C33     C       CH3     0       68.082      71.360      82.771      
+BCR     C31     C       CH3     0       67.913      72.102      87.322      
+BCR     C32     C       CH3     0       65.951      70.556      87.277      
+BCR     C34     C       CH3     0       64.143      74.489      84.094      
+BCR     C12     C       C1      0       61.871      73.703      80.370      
+BCR     C13     C       C       0       60.822      74.435      79.760      
+BCR     C14     C       C1      0       60.439      74.168      78.421      
+BCR     C15     C       C1      0       59.585      74.846      77.564      
+BCR     C16     C       C1      0       59.309      74.585      76.232      
+BCR     C17     C       C1      0       58.549      75.306      75.322      
+BCR     C18     C       C       0       58.343      75.107      73.934      
+BCR     C19     C       C1      0       57.717      76.102      73.144      
+BCR     C20     C       C1      0       57.630      76.236      71.764      
+BCR     C21     C       C1      0       57.047      77.300      71.086      
+BCR     C22     C       C       0       57.032      77.621      69.701      
+BCR     C23     C       C1      0       56.466      78.838      69.272      
+BCR     C24     C       C1      0       56.544      79.449      68.050      
+BCR     C25     C       CR6     0       55.738      80.560      67.581      
+BCR     C26     C       CR6     0       55.856      81.786      68.147      
+BCR     C27     C       CH2     0       55.066      82.976      67.670      
+BCR     C28     C       CH2     0       54.384      82.786      66.318      
+BCR     C29     C       CH2     0       53.787      81.424      66.196      
+BCR     C30     C       CT      0       54.791      80.284      66.417      
+BCR     C35     C       CH3     0       60.089      75.476      80.548      
+BCR     C36     C       CH3     0       58.752      73.812      73.305      
+BCR     C37     C       CH3     0       57.606      76.624      68.747      
+BCR     C38     C       CH3     0       56.775      82.112      69.296      
+BCR     C39     C       CH3     0       55.604      80.100      65.124      
+BCR     C40     C       CH3     0       53.984      78.995      66.664      
+BCR     HC21    H       H       0       68.514      69.683      87.748      
+BCR     HC22    H       H       0       67.672      68.861      86.700      
+BCR     HC31    H       H       0       69.855      68.760      86.057      
+BCR     HC32    H       H       0       70.001      70.337      86.129      
+BCR     HC41    H       H       0       68.564      68.864      84.174      
+BCR     HC42    H       H       0       69.764      69.858      83.909      
+BCR     HC7     H       H       0       65.687      72.679      85.513      
+BCR     HC8     H       H       0       65.313      71.527      83.025      
+BCR     H10C    H       H       0       63.782      72.382      81.533      
+BCR     H11C    H       H       0       62.209      74.592      82.125      
+BCR     H331    H       H       0       67.910      72.313      82.776      
+BCR     H332    H       H       0       67.431      70.923      82.202      
+BCR     H333    H       H       0       68.967      71.207      82.409      
+BCR     H311    H       H       0       67.595      72.928      86.924      
+BCR     H312    H       H       0       68.880      72.069      87.253      
+BCR     H313    H       H       0       67.661      72.084      88.260      
+BCR     H321    H       H       0       65.415      69.997      86.690      
+BCR     H322    H       H       0       65.466      71.374      87.473      
+BCR     H323    H       H       0       66.115      70.080      88.108      
+BCR     H341    H       H       0       63.957      75.237      83.510      
+BCR     H342    H       H       0       64.953      74.674      84.591      
+BCR     H343    H       H       0       63.406      74.373      84.713      
+BCR     H12C    H       H       0       62.196      72.967      79.878      
+BCR     H14C    H       H       0       60.820      73.398      78.032      
+BCR     H15C    H       H       0       59.132      75.591      77.919      
+BCR     H16C    H       H       0       59.709      73.800      75.902      
+BCR     H17C    H       H       0       58.103      76.045      75.702      
+BCR     H19C    H       H       0       57.283      76.789      73.621      
+BCR     H20C    H       H       0       58.008      75.549      71.244      
+BCR     H21C    H       H       0       56.586      77.898      71.652      
+BCR     H23C    H       H       0       55.953      79.282      69.928      
+BCR     H24C    H       H       0       57.193      79.127      67.455      
+BCR     H271    H       H       0       55.670      83.743      67.612      
+BCR     H272    H       H       0       54.387      83.181      68.344      
+BCR     H281    H       H       0       55.040      82.920      65.603      
+BCR     H282    H       H       0       53.679      83.459      66.213      
+BCR     H291    H       H       0       53.389      81.330      65.308      
+BCR     H292    H       H       0       53.067      81.338      66.851      
+BCR     H351    H       H       0       59.182      75.558      80.223      
+BCR     H352    H       H       0       60.541      76.328      80.459      
+BCR     H353    H       H       0       60.065      75.222      81.482      
+BCR     H361    H       H       0       58.186      73.623      72.544      
+BCR     H362    H       H       0       58.664      73.094      73.948      
+BCR     H363    H       H       0       59.674      73.871      73.014      
+BCR     H371    H       H       0       57.302      76.812      67.848      
+BCR     H372    H       H       0       57.320      75.733      68.996      
+BCR     H373    H       H       0       58.574      76.669      68.775      
+BCR     H381    H       H       0       56.721      83.053      69.523      
+BCR     H382    H       H       0       57.689      81.899      69.052      
+BCR     H383    H       H       0       56.525      81.588      70.072      
+BCR     H391    H       H       0       56.220      79.357      65.227      
+BCR     H392    H       H       0       56.107      80.909      64.937      
+BCR     H393    H       H       0       55.004      79.916      64.383      
+BCR     H401    H       H       0       53.219      78.968      66.066      
+BCR     H402    H       H       0       53.673      78.975      67.583      
+BCR     H403    H       H       0       54.544      78.218      66.498      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BCR          C1          C2      SINGLE       n     1.532  0.0100     1.532  0.0100
+BCR          C1          C6      SINGLE       n     1.519  0.0100     1.519  0.0100
+BCR          C1         C31      SINGLE       n     1.537  0.0100     1.537  0.0100
+BCR          C1         C32      SINGLE       n     1.537  0.0100     1.537  0.0100
+BCR          C2          C3      SINGLE       n     1.492  0.0200     1.492  0.0200
+BCR          C3          C4      SINGLE       n     1.524  0.0139     1.524  0.0139
+BCR          C4          C5      SINGLE       n     1.501  0.0100     1.501  0.0100
+BCR          C5          C6      DOUBLE       n     1.347  0.0100     1.347  0.0100
+BCR          C5         C33      SINGLE       n     1.504  0.0100     1.504  0.0100
+BCR          C6          C7      SINGLE       n     1.442  0.0200     1.442  0.0200
+BCR          C7          C8      DOUBLE       n     1.365  0.0200     1.365  0.0200
+BCR          C8          C9      SINGLE       n     1.397  0.0200     1.397  0.0200
+BCR          C9         C10      DOUBLE       n     1.408  0.0200     1.408  0.0200
+BCR          C9         C34      SINGLE       n     1.483  0.0200     1.483  0.0200
+BCR         C10         C11      SINGLE       n     1.385  0.0200     1.385  0.0200
+BCR         C11         C12      DOUBLE       n     1.385  0.0200     1.385  0.0200
+BCR         C12         C13      SINGLE       n     1.408  0.0200     1.408  0.0200
+BCR         C13         C14      DOUBLE       n     1.408  0.0200     1.408  0.0200
+BCR         C13         C35      SINGLE       n     1.483  0.0200     1.483  0.0200
+BCR         C14         C15      SINGLE       n     1.385  0.0200     1.385  0.0200
+BCR         C15         C16      DOUBLE       n     1.391  0.0200     1.391  0.0200
+BCR         C16         C17      SINGLE       n     1.385  0.0200     1.385  0.0200
+BCR         C17         C18      DOUBLE       n     1.408  0.0200     1.408  0.0200
+BCR         C18         C19      SINGLE       n     1.408  0.0200     1.408  0.0200
+BCR         C18         C36      SINGLE       n     1.483  0.0200     1.483  0.0200
+BCR         C19         C20      DOUBLE       n     1.385  0.0200     1.385  0.0200
+BCR         C20         C21      SINGLE       n     1.385  0.0200     1.385  0.0200
+BCR         C21         C22      DOUBLE       n     1.408  0.0200     1.408  0.0200
+BCR         C22         C23      SINGLE       n     1.397  0.0200     1.397  0.0200
+BCR         C22         C37      SINGLE       n     1.483  0.0200     1.483  0.0200
+BCR         C23         C24      DOUBLE       n     1.365  0.0200     1.365  0.0200
+BCR         C24         C25      SINGLE       n     1.442  0.0200     1.442  0.0200
+BCR         C25         C26      DOUBLE       n     1.347  0.0100     1.347  0.0100
+BCR         C25         C30      SINGLE       n     1.519  0.0100     1.519  0.0100
+BCR         C26         C27      SINGLE       n     1.501  0.0100     1.501  0.0100
+BCR         C26         C38      SINGLE       n     1.504  0.0100     1.504  0.0100
+BCR         C27         C28      SINGLE       n     1.524  0.0139     1.524  0.0139
+BCR         C28         C29      SINGLE       n     1.492  0.0200     1.492  0.0200
+BCR         C29         C30      SINGLE       n     1.532  0.0100     1.532  0.0100
+BCR         C30         C39      SINGLE       n     1.537  0.0100     1.537  0.0100
+BCR         C30         C40      SINGLE       n     1.537  0.0100     1.537  0.0100
+BCR          C2        HC21      SINGLE       n     1.089  0.0100     0.977  0.0105
+BCR          C2        HC22      SINGLE       n     1.089  0.0100     0.977  0.0105
+BCR          C3        HC31      SINGLE       n     1.089  0.0100     0.980  0.0113
+BCR          C3        HC32      SINGLE       n     1.089  0.0100     0.980  0.0113
+BCR          C4        HC41      SINGLE       n     1.089  0.0100     0.978  0.0148
+BCR          C4        HC42      SINGLE       n     1.089  0.0100     0.978  0.0148
+BCR          C7         HC7      SINGLE       n     1.082  0.0130     0.938  0.0146
+BCR          C8         HC8      SINGLE       n     1.082  0.0130     0.943  0.0196
+BCR         C10        H10C      SINGLE       n     1.082  0.0130     0.943  0.0196
+BCR         C11        H11C      SINGLE       n     1.082  0.0130     0.943  0.0196
+BCR         C33        H331      SINGLE       n     1.089  0.0100     0.969  0.0158
+BCR         C33        H332      SINGLE       n     1.089  0.0100     0.969  0.0158
+BCR         C33        H333      SINGLE       n     1.089  0.0100     0.969  0.0158
+BCR         C31        H311      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCR         C31        H312      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCR         C31        H313      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCR         C32        H321      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCR         C32        H322      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCR         C32        H323      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCR         C34        H341      SINGLE       n     1.089  0.0100     0.969  0.0177
+BCR         C34        H342      SINGLE       n     1.089  0.0100     0.969  0.0177
+BCR         C34        H343      SINGLE       n     1.089  0.0100     0.969  0.0177
+BCR         C12        H12C      SINGLE       n     1.082  0.0130     0.943  0.0196
+BCR         C14        H14C      SINGLE       n     1.082  0.0130     0.943  0.0196
+BCR         C15        H15C      SINGLE       n     1.082  0.0130     0.943  0.0196
+BCR         C16        H16C      SINGLE       n     1.082  0.0130     0.943  0.0196
+BCR         C17        H17C      SINGLE       n     1.082  0.0130     0.943  0.0196
+BCR         C19        H19C      SINGLE       n     1.082  0.0130     0.943  0.0196
+BCR         C20        H20C      SINGLE       n     1.082  0.0130     0.943  0.0196
+BCR         C21        H21C      SINGLE       n     1.082  0.0130     0.943  0.0196
+BCR         C23        H23C      SINGLE       n     1.082  0.0130     0.943  0.0196
+BCR         C24        H24C      SINGLE       n     1.082  0.0130     0.938  0.0146
+BCR         C27        H271      SINGLE       n     1.089  0.0100     0.978  0.0148
+BCR         C27        H272      SINGLE       n     1.089  0.0100     0.978  0.0148
+BCR         C28        H281      SINGLE       n     1.089  0.0100     0.980  0.0113
+BCR         C28        H282      SINGLE       n     1.089  0.0100     0.980  0.0113
+BCR         C29        H291      SINGLE       n     1.089  0.0100     0.977  0.0105
+BCR         C29        H292      SINGLE       n     1.089  0.0100     0.977  0.0105
+BCR         C35        H351      SINGLE       n     1.089  0.0100     0.969  0.0177
+BCR         C35        H352      SINGLE       n     1.089  0.0100     0.969  0.0177
+BCR         C35        H353      SINGLE       n     1.089  0.0100     0.969  0.0177
+BCR         C36        H361      SINGLE       n     1.089  0.0100     0.969  0.0177
+BCR         C36        H362      SINGLE       n     1.089  0.0100     0.969  0.0177
+BCR         C36        H363      SINGLE       n     1.089  0.0100     0.969  0.0177
+BCR         C37        H371      SINGLE       n     1.089  0.0100     0.969  0.0177
+BCR         C37        H372      SINGLE       n     1.089  0.0100     0.969  0.0177
+BCR         C37        H373      SINGLE       n     1.089  0.0100     0.969  0.0177
+BCR         C38        H381      SINGLE       n     1.089  0.0100     0.969  0.0158
+BCR         C38        H382      SINGLE       n     1.089  0.0100     0.969  0.0158
+BCR         C38        H383      SINGLE       n     1.089  0.0100     0.969  0.0158
+BCR         C39        H391      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCR         C39        H392      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCR         C39        H393      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCR         C40        H401      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCR         C40        H402      SINGLE       n     1.089  0.0100     0.971  0.0163
+BCR         C40        H403      SINGLE       n     1.089  0.0100     0.971  0.0163
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BCR          C2          C1          C6     112.021    2.38
+BCR          C2          C1         C31     108.237    2.03
+BCR          C2          C1         C32     108.237    2.03
+BCR          C6          C1         C31     110.110    1.50
+BCR          C6          C1         C32     110.110    1.50
+BCR         C31          C1         C32     108.431    1.50
+BCR          C1          C2          C3     113.880    1.50
+BCR          C1          C2        HC21     108.646    1.50
+BCR          C1          C2        HC22     108.646    1.50
+BCR          C3          C2        HC21     108.941    1.50
+BCR          C3          C2        HC22     108.941    1.50
+BCR        HC21          C2        HC22     107.710    1.50
+BCR          C2          C3          C4     111.448    2.19
+BCR          C2          C3        HC31     109.322    1.50
+BCR          C2          C3        HC32     109.322    1.50
+BCR          C4          C3        HC31     109.281    1.50
+BCR          C4          C3        HC32     109.281    1.50
+BCR        HC31          C3        HC32     108.036    1.50
+BCR          C3          C4          C5     113.289    1.74
+BCR          C3          C4        HC41     109.190    1.50
+BCR          C3          C4        HC42     109.190    1.50
+BCR          C5          C4        HC41     108.281    1.50
+BCR          C5          C4        HC42     108.281    1.50
+BCR        HC41          C4        HC42     107.973    1.50
+BCR          C4          C5          C6     121.531    1.95
+BCR          C4          C5         C33     113.673    1.50
+BCR          C6          C5         C33     124.797    1.50
+BCR          C1          C6          C5     119.631    3.00
+BCR          C1          C6          C7     119.411    3.00
+BCR          C5          C6          C7     120.958    1.50
+BCR          C6          C7          C8     126.680    1.50
+BCR          C6          C7         HC7     116.520    1.50
+BCR          C8          C7         HC7     116.800    1.66
+BCR          C7          C8          C9     126.725    3.00
+BCR          C7          C8         HC8     118.267    2.25
+BCR          C9          C8         HC8     115.008    1.81
+BCR          C8          C9         C10     122.650    3.00
+BCR          C8          C9         C34     120.215    3.00
+BCR         C10          C9         C34     117.135    1.50
+BCR          C9         C10         C11     128.593    1.85
+BCR          C9         C10        H10C     116.030    1.50
+BCR         C11         C10        H10C     115.376    2.90
+BCR         C10         C11         C12     128.131    3.00
+BCR         C10         C11        H11C     115.934    2.93
+BCR         C12         C11        H11C     115.934    2.93
+BCR          C5         C33        H331     110.039    1.89
+BCR          C5         C33        H332     110.039    1.89
+BCR          C5         C33        H333     110.039    1.89
+BCR        H331         C33        H332     109.339    1.50
+BCR        H331         C33        H333     109.339    1.50
+BCR        H332         C33        H333     109.339    1.50
+BCR          C1         C31        H311     109.665    1.50
+BCR          C1         C31        H312     109.665    1.50
+BCR          C1         C31        H313     109.665    1.50
+BCR        H311         C31        H312     109.363    1.50
+BCR        H311         C31        H313     109.363    1.50
+BCR        H312         C31        H313     109.363    1.50
+BCR          C1         C32        H321     109.665    1.50
+BCR          C1         C32        H322     109.665    1.50
+BCR          C1         C32        H323     109.665    1.50
+BCR        H321         C32        H322     109.363    1.50
+BCR        H321         C32        H323     109.363    1.50
+BCR        H322         C32        H323     109.363    1.50
+BCR          C9         C34        H341     109.517    1.50
+BCR          C9         C34        H342     109.517    1.50
+BCR          C9         C34        H343     109.517    1.50
+BCR        H341         C34        H342     109.342    1.50
+BCR        H341         C34        H343     109.342    1.50
+BCR        H342         C34        H343     109.342    1.50
+BCR         C11         C12         C13     128.593    1.85
+BCR         C11         C12        H12C     115.376    2.90
+BCR         C13         C12        H12C     116.030    1.50
+BCR         C12         C13         C14     123.676    3.00
+BCR         C12         C13         C35     118.162    1.50
+BCR         C14         C13         C35     118.162    1.50
+BCR         C13         C14         C15     128.593    1.85
+BCR         C13         C14        H14C     116.030    1.50
+BCR         C15         C14        H14C     115.376    2.90
+BCR         C14         C15         C16     131.161    3.00
+BCR         C14         C15        H15C     114.236    2.93
+BCR         C16         C15        H15C     114.602    1.85
+BCR         C15         C16         C17     131.162    3.00
+BCR         C15         C16        H16C     114.603    1.85
+BCR         C17         C16        H16C     114.236    2.93
+BCR         C16         C17         C18     128.593    1.85
+BCR         C16         C17        H17C     115.376    2.90
+BCR         C18         C17        H17C     116.030    1.50
+BCR         C17         C18         C19     123.676    3.00
+BCR         C17         C18         C36     118.162    1.50
+BCR         C19         C18         C36     118.162    1.50
+BCR         C18         C19         C20     128.593    1.85
+BCR         C18         C19        H19C     116.030    1.50
+BCR         C20         C19        H19C     115.376    2.90
+BCR         C19         C20         C21     128.131    3.00
+BCR         C19         C20        H20C     115.934    2.93
+BCR         C21         C20        H20C     115.934    2.93
+BCR         C20         C21         C22     128.593    1.85
+BCR         C20         C21        H21C     115.376    2.90
+BCR         C22         C21        H21C     116.030    1.50
+BCR         C21         C22         C23     122.650    3.00
+BCR         C21         C22         C37     117.135    1.50
+BCR         C23         C22         C37     120.215    3.00
+BCR         C22         C23         C24     126.725    3.00
+BCR         C22         C23        H23C     115.008    1.81
+BCR         C24         C23        H23C     118.267    2.25
+BCR         C23         C24         C25     126.680    1.50
+BCR         C23         C24        H24C     116.800    1.66
+BCR         C25         C24        H24C     116.520    1.50
+BCR         C24         C25         C26     120.958    1.50
+BCR         C24         C25         C30     119.411    3.00
+BCR         C26         C25         C30     119.631    3.00
+BCR         C25         C26         C27     121.531    1.95
+BCR         C25         C26         C38     124.797    1.50
+BCR         C27         C26         C38     113.673    1.50
+BCR         C26         C27         C28     113.289    1.74
+BCR         C26         C27        H271     108.281    1.50
+BCR         C26         C27        H272     108.281    1.50
+BCR         C28         C27        H271     109.190    1.50
+BCR         C28         C27        H272     109.190    1.50
+BCR        H271         C27        H272     107.973    1.50
+BCR         C27         C28         C29     111.448    2.19
+BCR         C27         C28        H281     109.281    1.50
+BCR         C27         C28        H282     109.281    1.50
+BCR         C29         C28        H281     109.322    1.50
+BCR         C29         C28        H282     109.322    1.50
+BCR        H281         C28        H282     108.036    1.50
+BCR         C28         C29         C30     113.880    1.50
+BCR         C28         C29        H291     108.941    1.50
+BCR         C28         C29        H292     108.941    1.50
+BCR         C30         C29        H291     108.646    1.50
+BCR         C30         C29        H292     108.646    1.50
+BCR        H291         C29        H292     107.710    1.50
+BCR         C25         C30         C29     112.021    2.38
+BCR         C25         C30         C39     110.110    1.50
+BCR         C25         C30         C40     110.110    1.50
+BCR         C29         C30         C39     108.237    2.03
+BCR         C29         C30         C40     108.237    2.03
+BCR         C39         C30         C40     108.431    1.50
+BCR         C13         C35        H351     109.517    1.50
+BCR         C13         C35        H352     109.517    1.50
+BCR         C13         C35        H353     109.517    1.50
+BCR        H351         C35        H352     109.342    1.50
+BCR        H351         C35        H353     109.342    1.50
+BCR        H352         C35        H353     109.342    1.50
+BCR         C18         C36        H361     109.517    1.50
+BCR         C18         C36        H362     109.517    1.50
+BCR         C18         C36        H363     109.517    1.50
+BCR        H361         C36        H362     109.342    1.50
+BCR        H361         C36        H363     109.342    1.50
+BCR        H362         C36        H363     109.342    1.50
+BCR         C22         C37        H371     109.517    1.50
+BCR         C22         C37        H372     109.517    1.50
+BCR         C22         C37        H373     109.517    1.50
+BCR        H371         C37        H372     109.342    1.50
+BCR        H371         C37        H373     109.342    1.50
+BCR        H372         C37        H373     109.342    1.50
+BCR         C26         C38        H381     110.039    1.89
+BCR         C26         C38        H382     110.039    1.89
+BCR         C26         C38        H383     110.039    1.89
+BCR        H381         C38        H382     109.339    1.50
+BCR        H381         C38        H383     109.339    1.50
+BCR        H382         C38        H383     109.339    1.50
+BCR         C30         C39        H391     109.665    1.50
+BCR         C30         C39        H392     109.665    1.50
+BCR         C30         C39        H393     109.665    1.50
+BCR        H391         C39        H392     109.363    1.50
+BCR        H391         C39        H393     109.363    1.50
+BCR        H392         C39        H393     109.363    1.50
+BCR         C30         C40        H401     109.665    1.50
+BCR         C30         C40        H402     109.665    1.50
+BCR         C30         C40        H403     109.665    1.50
+BCR        H401         C40        H402     109.363    1.50
+BCR        H401         C40        H403     109.363    1.50
+BCR        H402         C40        H403     109.363    1.50
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BCR             sp3_sp3_4         C31          C1          C2          C3     -60.000    10.0     3
+BCR            sp3_sp3_61         C32          C1         C31        H311     -60.000    10.0     3
+BCR            sp3_sp3_70         C31          C1         C32        H321     -60.000    10.0     3
+BCR            sp2_sp3_18          C7          C6          C1         C31      60.000    10.0     6
+BCR            sp2_sp2_29         C10         C11         C12         C13     180.000     5.0     2
+BCR            sp2_sp2_33         C11         C12         C13         C14     180.000     5.0     2
+BCR            sp2_sp2_39         C12         C13         C14         C15       0.000     5.0     2
+BCR            sp2_sp3_31         C12         C13         C35        H351       0.000    10.0     6
+BCR            sp2_sp2_41         C13         C14         C15         C16     180.000     5.0     2
+BCR            sp2_sp2_45         C14         C15         C16         C17     180.000     5.0     2
+BCR            sp2_sp2_49         C15         C16         C17         C18     180.000     5.0     2
+BCR            sp3_sp3_10          C1          C2          C3          C4     -60.000    10.0     3
+BCR            sp2_sp2_53         C16         C17         C18         C19     180.000     5.0     2
+BCR            sp2_sp2_59         C17         C18         C19         C20       0.000     5.0     2
+BCR            sp2_sp3_37         C17         C18         C36        H361       0.000    10.0     6
+BCR            sp2_sp2_61         C18         C19         C20         C21     180.000     5.0     2
+BCR            sp2_sp2_65         C19         C20         C21         C22     180.000     5.0     2
+BCR            sp2_sp2_69         C20         C21         C22         C23     180.000     5.0     2
+BCR            sp2_sp2_75         C21         C22         C23         C24       0.000     5.0     2
+BCR            sp2_sp3_43         C21         C22         C37        H371       0.000    10.0     6
+BCR            sp2_sp2_77         C22         C23         C24         C25     180.000     5.0     2
+BCR            sp2_sp2_82         C23         C24         C25         C26       0.000     5.0     2
+BCR             sp2_sp2_8         C24         C25         C26         C38       0.000     5.0     2
+BCR            sp2_sp3_54         C24         C25         C30         C39      60.000    10.0     6
+BCR            sp2_sp3_10         C38         C26         C27         C28     180.000    10.0     6
+BCR            sp2_sp3_55         C25         C26         C38        H381     150.000    10.0     6
+BCR            sp3_sp3_19          C2          C3          C4          C5      60.000    10.0     3
+BCR            sp3_sp3_28         C26         C27         C28         C29      60.000    10.0     3
+BCR            sp3_sp3_37         C27         C28         C29         C30     -60.000    10.0     3
+BCR            sp3_sp3_47         C28         C29         C30         C39     180.000    10.0     3
+BCR            sp3_sp3_79         C40         C30         C39        H391     -60.000    10.0     3
+BCR            sp3_sp3_88         C39         C30         C40        H401     -60.000    10.0     3
+BCR             sp2_sp3_4         C33          C5          C4          C3     180.000    10.0     6
+BCR            sp2_sp3_19          C4          C5         C33        H331     150.000    10.0     6
+BCR             sp2_sp2_4         C33          C5          C6          C7       0.000     5.0     2
+BCR             sp2_sp2_9          C1          C6          C7          C8     180.000     5.0     2
+BCR            sp2_sp2_13          C6          C7          C8          C9     180.000     5.0     2
+BCR            sp2_sp2_17          C7          C8          C9         C10     180.000     5.0     2
+BCR            sp2_sp3_25          C8          C9         C34        H341       0.000    10.0     6
+BCR            sp2_sp2_21         C11         C10          C9          C8     180.000     5.0     2
+BCR            sp2_sp2_25          C9         C10         C11         C12     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BCR    chir_1    C1    C6    C2    C31    both
+BCR    chir_2    C30    C25    C29    C39    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BCR    plan-1         C33   0.020
+BCR    plan-1          C4   0.020
+BCR    plan-1          C5   0.020
+BCR    plan-1          C6   0.020
+BCR    plan-2          C1   0.020
+BCR    plan-2          C5   0.020
+BCR    plan-2          C6   0.020
+BCR    plan-2          C7   0.020
+BCR    plan-3          C6   0.020
+BCR    plan-3          C7   0.020
+BCR    plan-3          C8   0.020
+BCR    plan-3         HC7   0.020
+BCR    plan-4          C7   0.020
+BCR    plan-4          C8   0.020
+BCR    plan-4          C9   0.020
+BCR    plan-4         HC8   0.020
+BCR    plan-5         C10   0.020
+BCR    plan-5         C34   0.020
+BCR    plan-5          C8   0.020
+BCR    plan-5          C9   0.020
+BCR    plan-6         C10   0.020
+BCR    plan-6         C11   0.020
+BCR    plan-6          C9   0.020
+BCR    plan-6        H10C   0.020
+BCR    plan-7         C10   0.020
+BCR    plan-7         C11   0.020
+BCR    plan-7         C12   0.020
+BCR    plan-7        H11C   0.020
+BCR    plan-8         C11   0.020
+BCR    plan-8         C12   0.020
+BCR    plan-8         C13   0.020
+BCR    plan-8        H12C   0.020
+BCR    plan-9         C12   0.020
+BCR    plan-9         C13   0.020
+BCR    plan-9         C14   0.020
+BCR    plan-9         C35   0.020
+BCR   plan-10         C13   0.020
+BCR   plan-10         C14   0.020
+BCR   plan-10         C15   0.020
+BCR   plan-10        H14C   0.020
+BCR   plan-11         C14   0.020
+BCR   plan-11         C15   0.020
+BCR   plan-11         C16   0.020
+BCR   plan-11        H15C   0.020
+BCR   plan-12         C15   0.020
+BCR   plan-12         C16   0.020
+BCR   plan-12         C17   0.020
+BCR   plan-12        H16C   0.020
+BCR   plan-13         C16   0.020
+BCR   plan-13         C17   0.020
+BCR   plan-13         C18   0.020
+BCR   plan-13        H17C   0.020
+BCR   plan-14         C17   0.020
+BCR   plan-14         C18   0.020
+BCR   plan-14         C19   0.020
+BCR   plan-14         C36   0.020
+BCR   plan-15         C18   0.020
+BCR   plan-15         C19   0.020
+BCR   plan-15         C20   0.020
+BCR   plan-15        H19C   0.020
+BCR   plan-16         C19   0.020
+BCR   plan-16         C20   0.020
+BCR   plan-16         C21   0.020
+BCR   plan-16        H20C   0.020
+BCR   plan-17         C20   0.020
+BCR   plan-17         C21   0.020
+BCR   plan-17         C22   0.020
+BCR   plan-17        H21C   0.020
+BCR   plan-18         C21   0.020
+BCR   plan-18         C22   0.020
+BCR   plan-18         C23   0.020
+BCR   plan-18         C37   0.020
+BCR   plan-19         C22   0.020
+BCR   plan-19         C23   0.020
+BCR   plan-19         C24   0.020
+BCR   plan-19        H23C   0.020
+BCR   plan-20         C23   0.020
+BCR   plan-20         C24   0.020
+BCR   plan-20         C25   0.020
+BCR   plan-20        H24C   0.020
+BCR   plan-21         C24   0.020
+BCR   plan-21         C25   0.020
+BCR   plan-21         C26   0.020
+BCR   plan-21         C30   0.020
+BCR   plan-22         C25   0.020
+BCR   plan-22         C26   0.020
+BCR   plan-22         C27   0.020
+BCR   plan-22         C38   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BCR           SMILES              ACDLabs 10.04                                                                                                                                                                  C(/C1=C(CCCC1(C)C)C)=C\C(=C\C=C\C(=C\C=C\C=C(\C=C\C=C(\C=C\C2=C(C)CCCC2(C)C)C)C)C)C
+BCR SMILES_CANONICAL               CACTVS 3.341                                                                                                                                                                  CC1=C(\C=C\C(C)=C\C=C\C(C)=C\C=C\C=C(C)\C=C\C=C(C)\C=C\C2=C(C)CCCC2(C)C)C(C)(C)CCC1
+BCR           SMILES               CACTVS 3.341                                                                                                                                                                            CC1=C(C=CC(C)=CC=CC(C)=CC=CC=C(C)C=CC=C(C)C=CC2=C(C)CCCC2(C)C)C(C)(C)CCC1
+BCR SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                                                                              CC1=C(C(CCC1)(C)C)\C=C\C(=C\C=C\C(=C\C=C\C=C(/C)\C=C\C=C(/C)\C=C\C2=C(CCCC2(C)C)C)\C)\C
+BCR           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                                                                                            CC1=C(C(CCC1)(C)C)C=CC(=CC=CC(=CC=CC=C(C)C=CC=C(C)C=CC2=C(CCCC2(C)C)C)C)C
+BCR            InChI                InChI  1.03 InChI=1S/C40H56/c1-31(19-13-21-33(3)25-27-37-35(5)23-15-29-39(37,7)8)17-11-12-18-32(2)20-14-22-34(4)26-28-38-36(6)24-16-30-40(38,9)10/h11-14,17-22,25-28H,15-16,23-24,29-30H2,1-10H3/b12-11+,19-13+,20-14+,27-25+,28-26+,31-17+,32-18+,33-21+,34-22+
+BCR         InChIKey                InChI  1.03                                                                                                                                                                                                                          OENHQHLEOONYIE-JLTXGRSLSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BCR acedrg               243         "dictionary generator"                  
+BCR acedrg_database      11          "data source"                           
+BCR rdkit                2017.03.2   "Chemoinformatics tool"
+BCR refmac5              5.8.0238    "optimization tool"                     

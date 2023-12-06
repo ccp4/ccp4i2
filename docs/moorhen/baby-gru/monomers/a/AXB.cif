@@ -1,0 +1,406 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+AXB     AXB      "N-{[2-(2-amino-3,4-dioxocyclobut-1-en-1-yl)-1,2,3,4-tetrahydroisoquinolin-7-yl]methyl}-4-oxo-3,5,6,8-tetrahydro-4H-thiopyrano[4',3':4,5]thieno[2,3-d]pyrimidine-2-carboxamide 7,7-dioxide"     NON-POLYMER     58     37     .     
+#
+data_comp_AXB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+AXB     N1      N       NH2     0       10.645      -0.493      1.240       
+AXB     CAZ     C       C       0       10.825      0.435       2.169       
+AXB     CBF     C       C       0       11.106      1.871       2.105       
+AXB     OAD     O       O       0       11.272      2.693       1.209       
+AXB     CBG     C       C       0       11.107      1.915       3.595       
+AXB     OAE     O       O       0       11.275      2.793       4.445       
+AXB     CBD     C       C       0       10.817      0.477       3.627       
+AXB     N2      N       NR6     0       10.643      -0.422      4.593       
+AXB     CAM     C       CH2     0       10.633      -0.021      6.016       
+AXB     CAK     C       CH2     0       9.684       -0.884      6.819       
+AXB     CAP     C       CH2     0       10.490      -1.848      4.222       
+AXB     CAY     C       CR66    0       10.388      -2.801      5.387       
+AXB     CAJ     C       CR16    0       10.678      -4.160      5.215       
+AXB     CAX     C       CR66    0       9.994       -2.344      6.641       
+AXB     CAI     C       CR16    0       9.907       -3.249      7.702       
+AXB     CAH     C       CR16    0       10.199      -4.593      7.520       
+AXB     CAW     C       CR6     0       10.595      -5.068      6.268       
+AXB     CAO     C       CH2     0       10.907      -6.531      6.066       
+AXB     N3      N       NH1     0       9.701       -7.353      6.062       
+AXB     CAV     C       C       0       8.845       -7.383      5.027       
+AXB     OAB     O       O       0       9.071       -6.807      3.964       
+AXB     CBB     C       CR6     0       7.536       -8.108      5.223       
+AXB     N4      N       NRD6    0       7.323       -8.751      6.369       
+AXB     CBH     C       CR56    0       6.146       -9.392      6.538       
+AXB     SAU     S       S2      0       5.660       -10.259     7.873       
+AXB     CBA     C       CR56    0       4.160       -10.687     7.279       
+AXB     CAQ     C       CH2     0       3.273       -11.516     8.128       
+AXB     SBK     S       S3      0       1.623       -11.592     7.467       
+AXB     OAF     O       O       0       1.002       -12.811     7.909       
+AXB     OAG     O       O       0       0.957       -10.349     7.751       
+AXB     CAN     C       CH2     0       1.966       -11.695     5.737       
+AXB     CAL     C       CH2     0       2.679       -10.430     5.260       
+AXB     CBC     C       CR56    0       3.960       -10.189     6.006       
+AXB     CBI     C       CR56    0       5.106       -9.422      5.560       
+AXB     CBE     C       CR6     0       5.352       -8.729      4.352       
+AXB     OAC     O       O       0       4.561       -8.658      3.411       
+AXB     N5      N       NR6     0       6.582       -8.087      4.233       
+AXB     HN1     H       H       0       10.481      -1.323      1.470       
+AXB     HN1A    H       H       0       10.693      -0.263      0.393       
+AXB     HAM     H       H       0       11.540      -0.104      6.380       
+AXB     HAMA    H       H       0       10.359      0.916       6.097       
+AXB     HAK     H       H       0       8.764       -0.711      6.533       
+AXB     HAKA    H       H       0       9.754       -0.651      7.768       
+AXB     HAP     H       H       0       11.255      -2.107      3.670       
+AXB     HAPA    H       H       0       9.687       -1.938      3.670       
+AXB     HAJ     H       H       0       10.942      -4.471      4.365       
+AXB     HAI     H       H       0       9.644       -2.941      8.552       
+AXB     HAH     H       H       0       10.134      -5.189      8.245       
+AXB     HAO     H       H       0       11.498      -6.832      6.788       
+AXB     HAOA    H       H       0       11.385      -6.646      5.219       
+AXB     HN3     H       H       0       9.532       -7.850      6.764       
+AXB     HAQ     H       H       0       3.629       -12.427     8.191       
+AXB     HAQA    H       H       0       3.233       -11.142     9.033       
+AXB     HAN     H       H       0       1.125       -11.802     5.245       
+AXB     HANA    H       H       0       2.533       -12.476     5.564       
+AXB     HAL     H       H       0       2.081       -9.660      5.379       
+AXB     HALA    H       H       0       2.870       -10.516     4.301       
+AXB     HN5     H       H       0       6.750       -7.652      3.487       
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+AXB          N1         CAZ      SINGLE       n     1.324  0.0148     1.324  0.0148
+AXB         CAZ         CBF      SINGLE       y     1.465  0.0136     1.465  0.0136
+AXB         CAZ         CBD      DOUBLE       y     1.452  0.0200     1.452  0.0200
+AXB         CBF         OAD      DOUBLE       n     1.227  0.0100     1.227  0.0100
+AXB         CBF         CBG      SINGLE       y     1.492  0.0191     1.492  0.0191
+AXB         CBG         OAE      DOUBLE       n     1.233  0.0158     1.233  0.0158
+AXB         CBG         CBD      SINGLE       y     1.465  0.0136     1.465  0.0136
+AXB         CBD          N2      SINGLE       n     1.326  0.0100     1.326  0.0100
+AXB          N2         CAM      SINGLE       n     1.472  0.0100     1.472  0.0100
+AXB          N2         CAP      SINGLE       n     1.467  0.0150     1.467  0.0150
+AXB         CAM         CAK      SINGLE       n     1.513  0.0107     1.513  0.0107
+AXB         CAK         CAX      SINGLE       n     1.504  0.0100     1.504  0.0100
+AXB         CAP         CAY      SINGLE       n     1.505  0.0100     1.505  0.0100
+AXB         CAY         CAJ      SINGLE       y     1.395  0.0100     1.395  0.0100
+AXB         CAY         CAX      DOUBLE       y     1.387  0.0100     1.387  0.0100
+AXB         CAJ         CAW      DOUBLE       y     1.388  0.0100     1.388  0.0100
+AXB         CAX         CAI      SINGLE       y     1.395  0.0100     1.395  0.0100
+AXB         CAI         CAH      DOUBLE       y     1.385  0.0100     1.385  0.0100
+AXB         CAH         CAW      SINGLE       y     1.392  0.0125     1.392  0.0125
+AXB         CAW         CAO      SINGLE       n     1.508  0.0100     1.508  0.0100
+AXB         CAO          N3      SINGLE       n     1.458  0.0100     1.458  0.0100
+AXB          N3         CAV      SINGLE       n     1.334  0.0145     1.334  0.0145
+AXB         CAV         OAB      DOUBLE       n     1.228  0.0115     1.228  0.0115
+AXB         CAV         CBB      SINGLE       n     1.488  0.0200     1.488  0.0200
+AXB         CBB          N4      DOUBLE       y     1.322  0.0146     1.322  0.0146
+AXB         CBB          N5      SINGLE       y     1.370  0.0100     1.370  0.0100
+AXB          N4         CBH      SINGLE       y     1.338  0.0176     1.338  0.0176
+AXB         CBH         SAU      SINGLE       y     1.695  0.0200     1.695  0.0200
+AXB         CBH         CBI      DOUBLE       y     1.401  0.0200     1.401  0.0200
+AXB         SAU         CBA      SINGLE       y     1.695  0.0200     1.695  0.0200
+AXB         CBA         CAQ      SINGLE       n     1.479  0.0100     1.479  0.0100
+AXB         CBA         CBC      DOUBLE       y     1.362  0.0156     1.362  0.0156
+AXB         CAQ         SBK      SINGLE       n     1.781  0.0200     1.781  0.0200
+AXB         SBK         OAF      DOUBLE       n     1.438  0.0100     1.438  0.0100
+AXB         SBK         OAG      DOUBLE       n     1.438  0.0100     1.438  0.0100
+AXB         SBK         CAN      SINGLE       n     1.767  0.0107     1.767  0.0107
+AXB         CAN         CAL      SINGLE       n     1.527  0.0107     1.527  0.0107
+AXB         CAL         CBC      SINGLE       n     1.497  0.0100     1.497  0.0100
+AXB         CBC         CBI      SINGLE       y     1.436  0.0112     1.436  0.0112
+AXB         CBI         CBE      SINGLE       y     1.406  0.0138     1.406  0.0138
+AXB         CBE         OAC      DOUBLE       n     1.231  0.0132     1.231  0.0132
+AXB         CBE          N5      SINGLE       y     1.383  0.0165     1.383  0.0165
+AXB          N1         HN1      SINGLE       n     1.016  0.0100     0.879  0.0200
+AXB          N1        HN1A      SINGLE       n     1.016  0.0100     0.879  0.0200
+AXB         CAM         HAM      SINGLE       n     1.089  0.0100     0.980  0.0153
+AXB         CAM        HAMA      SINGLE       n     1.089  0.0100     0.980  0.0153
+AXB         CAK         HAK      SINGLE       n     1.089  0.0100     0.979  0.0162
+AXB         CAK        HAKA      SINGLE       n     1.089  0.0100     0.979  0.0162
+AXB         CAP         HAP      SINGLE       n     1.089  0.0100     0.978  0.0140
+AXB         CAP        HAPA      SINGLE       n     1.089  0.0100     0.978  0.0140
+AXB         CAJ         HAJ      SINGLE       n     1.082  0.0130     0.943  0.0148
+AXB         CAI         HAI      SINGLE       n     1.082  0.0130     0.941  0.0102
+AXB         CAH         HAH      SINGLE       n     1.082  0.0130     0.941  0.0100
+AXB         CAO         HAO      SINGLE       n     1.089  0.0100     0.980  0.0169
+AXB         CAO        HAOA      SINGLE       n     1.089  0.0100     0.980  0.0169
+AXB          N3         HN3      SINGLE       n     1.016  0.0100     0.875  0.0200
+AXB         CAQ         HAQ      SINGLE       n     1.089  0.0100     0.980  0.0164
+AXB         CAQ        HAQA      SINGLE       n     1.089  0.0100     0.980  0.0164
+AXB         CAN         HAN      SINGLE       n     1.089  0.0100     0.980  0.0154
+AXB         CAN        HANA      SINGLE       n     1.089  0.0100     0.980  0.0154
+AXB         CAL         HAL      SINGLE       n     1.089  0.0100     0.982  0.0125
+AXB         CAL        HALA      SINGLE       n     1.089  0.0100     0.982  0.0125
+AXB          N5         HN5      SINGLE       n     1.016  0.0100     0.880  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+AXB         CAZ          N1         HN1     119.507    3.00
+AXB         CAZ          N1        HN1A     119.507    3.00
+AXB         HN1          N1        HN1A     120.986    2.38
+AXB          N1         CAZ         CBF     134.581    3.00
+AXB          N1         CAZ         CBD     134.581    3.00
+AXB         CBF         CAZ         CBD      90.837    1.50
+AXB         CAZ         CBF         OAD     135.683    1.50
+AXB         CAZ         CBF         CBG      88.958    1.50
+AXB         OAD         CBF         CBG     135.358    1.50
+AXB         CBF         CBG         OAE     135.467    1.50
+AXB         CBF         CBG         CBD      89.367    1.50
+AXB         OAE         CBG         CBD     135.166    1.50
+AXB         CAZ         CBD         CBG      90.837    1.50
+AXB         CAZ         CBD          N2     134.581    3.00
+AXB         CBG         CBD          N2     134.581    3.00
+AXB         CBD          N2         CAM     121.813    3.00
+AXB         CBD          N2         CAP     121.813    3.00
+AXB         CAM          N2         CAP     116.374    2.92
+AXB          N2         CAM         CAK     110.160    1.50
+AXB          N2         CAM         HAM     109.261    1.50
+AXB          N2         CAM        HAMA     109.261    1.50
+AXB         CAK         CAM         HAM     109.708    1.50
+AXB         CAK         CAM        HAMA     109.708    1.50
+AXB         HAM         CAM        HAMA     108.200    1.50
+AXB         CAM         CAK         CAX     111.407    1.50
+AXB         CAM         CAK         HAK     109.445    1.50
+AXB         CAM         CAK        HAKA     109.445    1.50
+AXB         CAX         CAK         HAK     109.345    1.50
+AXB         CAX         CAK        HAKA     109.345    1.50
+AXB         HAK         CAK        HAKA     107.965    1.50
+AXB          N2         CAP         CAY     112.630    1.50
+AXB          N2         CAP         HAP     108.740    1.50
+AXB          N2         CAP        HAPA     108.740    1.50
+AXB         CAY         CAP         HAP     109.233    1.50
+AXB         CAY         CAP        HAPA     109.233    1.50
+AXB         HAP         CAP        HAPA     107.808    1.50
+AXB         CAP         CAY         CAJ     120.708    1.96
+AXB         CAP         CAY         CAX     120.078    2.13
+AXB         CAJ         CAY         CAX     119.214    1.50
+AXB         CAY         CAJ         CAW     121.618    1.50
+AXB         CAY         CAJ         HAJ     119.366    1.50
+AXB         CAW         CAJ         HAJ     119.015    1.50
+AXB         CAK         CAX         CAY     119.397    1.99
+AXB         CAK         CAX         CAI     121.568    1.63
+AXB         CAY         CAX         CAI     119.036    1.50
+AXB         CAX         CAI         CAH     121.197    1.50
+AXB         CAX         CAI         HAI     119.325    1.50
+AXB         CAH         CAI         HAI     119.478    1.50
+AXB         CAI         CAH         CAW     120.699    1.50
+AXB         CAI         CAH         HAH     119.766    1.50
+AXB         CAW         CAH         HAH     119.535    1.50
+AXB         CAJ         CAW         CAH     118.236    1.50
+AXB         CAJ         CAW         CAO     120.838    1.50
+AXB         CAH         CAW         CAO     120.926    1.50
+AXB         CAW         CAO          N3     112.746    1.93
+AXB         CAW         CAO         HAO     109.005    1.50
+AXB         CAW         CAO        HAOA     109.005    1.50
+AXB          N3         CAO         HAO     109.133    1.50
+AXB          N3         CAO        HAOA     109.133    1.50
+AXB         HAO         CAO        HAOA     107.860    1.50
+AXB         CAO          N3         CAV     122.226    1.50
+AXB         CAO          N3         HN3     118.799    1.50
+AXB         CAV          N3         HN3     118.975    1.99
+AXB          N3         CAV         OAB     122.982    1.50
+AXB          N3         CAV         CBB     116.885    2.33
+AXB         OAB         CAV         CBB     120.134    1.55
+AXB         CAV         CBB          N4     118.987    1.74
+AXB         CAV         CBB          N5     119.180    3.00
+AXB          N4         CBB          N5     121.833    1.50
+AXB         CBB          N4         CBH     117.372    1.79
+AXB          N4         CBH         SAU     128.908    3.00
+AXB          N4         CBH         CBI     122.877    2.68
+AXB         SAU         CBH         CBI     108.215    3.00
+AXB         CBH         SAU         CBA     108.215    3.00
+AXB         SAU         CBA         CAQ     122.138    3.00
+AXB         SAU         CBA         CBC     108.215    3.00
+AXB         CAQ         CBA         CBC     129.647    1.50
+AXB         CBA         CAQ         SBK     109.471    3.00
+AXB         CBA         CAQ         HAQ     109.875    1.50
+AXB         CBA         CAQ        HAQA     109.875    1.50
+AXB         SBK         CAQ         HAQ     108.744    1.50
+AXB         SBK         CAQ        HAQA     108.744    1.50
+AXB         HAQ         CAQ        HAQA     108.001    1.50
+AXB         CAQ         SBK         OAF     108.644    2.07
+AXB         CAQ         SBK         OAG     108.644    2.07
+AXB         CAQ         SBK         CAN     103.210    2.19
+AXB         OAF         SBK         OAG     118.147    1.72
+AXB         OAF         SBK         CAN     109.470    1.50
+AXB         OAG         SBK         CAN     109.470    1.50
+AXB         SBK         CAN         CAL     110.645    3.00
+AXB         SBK         CAN         HAN     109.376    1.50
+AXB         SBK         CAN        HANA     109.376    1.50
+AXB         CAL         CAN         HAN     109.426    1.50
+AXB         CAL         CAN        HANA     109.426    1.50
+AXB         HAN         CAN        HANA     108.651    1.76
+AXB         CAN         CAL         CBC     109.884    1.50
+AXB         CAN         CAL         HAL     109.401    1.50
+AXB         CAN         CAL        HALA     109.401    1.50
+AXB         CBC         CAL         HAL     109.790    1.50
+AXB         CBC         CAL        HALA     109.790    1.50
+AXB         HAL         CAL        HALA     108.071    1.50
+AXB         CBA         CBC         CAL     122.773    2.35
+AXB         CBA         CBC         CBI     107.420    1.50
+AXB         CAL         CBC         CBI     129.807    1.50
+AXB         CBH         CBI         CBC     107.935    1.50
+AXB         CBH         CBI         CBE     119.200    2.44
+AXB         CBC         CBI         CBE     132.865    1.50
+AXB         CBI         CBE         OAC     125.008    1.50
+AXB         CBI         CBE          N5     116.086    1.76
+AXB         OAC         CBE          N5     118.906    1.50
+AXB         CBB          N5         CBE     122.631    1.50
+AXB         CBB          N5         HN5     118.862    1.58
+AXB         CBE          N5         HN5     118.506    1.86
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+AXB             sp2_sp2_1         CBF         CAZ          N1         HN1     180.000     5.0     2
+AXB            sp2_sp3_16         CAJ         CAY         CAP          N2     180.000    10.0     6
+AXB       const_sp2_sp2_2         CAW         CAJ         CAY         CAP     180.000     5.0     2
+AXB              const_21         CAK         CAX         CAY         CAP       0.000    10.0     2
+AXB       const_sp2_sp2_6         CAY         CAJ         CAW         CAO     180.000     5.0     2
+AXB              const_18         CAH         CAI         CAX         CAK     180.000    10.0     2
+AXB              const_13         CAW         CAH         CAI         CAX       0.000    10.0     2
+AXB              const_10         CAI         CAH         CAW         CAO     180.000    10.0     2
+AXB            sp2_sp3_38         CAJ         CAW         CAO          N3     -90.000    10.0     6
+AXB            sp2_sp3_44         CAV          N3         CAO         CAW     120.000    10.0     6
+AXB            sp2_sp2_11         OAB         CAV          N3         CAO       0.000     5.0     2
+AXB            sp2_sp2_14          N3         CAV         CBB          N4       0.000     5.0     2
+AXB              const_28          N1         CAZ         CBF         OAD       0.000    10.0     2
+AXB              const_67          N1         CAZ         CBD         CBG     180.000    10.0     2
+AXB              const_50         CAV         CBB          N4         CBH     180.000    10.0     2
+AXB              const_71         CAV         CBB          N5         CBE     180.000    10.0     2
+AXB              const_52         SAU         CBH          N4         CBB     180.000    10.0     2
+AXB              const_38          N4         CBH         SAU         CBA     180.000    10.0     2
+AXB              const_54          N4         CBH         CBI         CBC     180.000    10.0     2
+AXB              const_40         CAQ         CBA         SAU         CBH     180.000    10.0     2
+AXB            sp2_sp3_22         SAU         CBA         CAQ         SBK     180.000    10.0     6
+AXB              const_42         SAU         CBA         CBC         CAL     180.000    10.0     2
+AXB            sp3_sp3_12         CBA         CAQ         SBK         OAF     180.000    10.0     3
+AXB            sp3_sp3_20         CAL         CAN         SBK         OAF     180.000    10.0     3
+AXB              const_32         OAD         CBF         CBG         OAE       0.000    10.0     2
+AXB            sp3_sp3_28         CBC         CAL         CAN         SBK     -60.000    10.0     3
+AXB            sp2_sp3_25         CBA         CBC         CAL         CAN       0.000    10.0     6
+AXB              const_45         CBA         CBC         CBI         CBH       0.000    10.0     2
+AXB              const_59         OAC         CBE         CBI         CBH     180.000    10.0     2
+AXB              const_63         OAC         CBE          N5         CBB     180.000    10.0     2
+AXB              const_34         CAZ         CBD         CBG         OAE     180.000    10.0     2
+AXB             sp2_sp2_5         CAZ         CBD          N2         CAM     180.000     5.0     2
+AXB            sp2_sp3_34         CBD          N2         CAP         CAY     180.000    10.0     6
+AXB             sp2_sp3_4         CBD          N2         CAM         CAK     180.000    10.0     6
+AXB             sp3_sp3_1         CAX         CAK         CAM          N2     -60.000    10.0     3
+AXB             sp2_sp3_7         CAY         CAX         CAK         CAM       0.000    10.0     6
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+AXB    chir_1    SBK    OAF    OAG    CAQ    both
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+AXB    plan-1         CAL   0.020
+AXB    plan-1         CAQ   0.020
+AXB    plan-1         CAV   0.020
+AXB    plan-1         CBA   0.020
+AXB    plan-1         CBB   0.020
+AXB    plan-1         CBC   0.020
+AXB    plan-1         CBE   0.020
+AXB    plan-1         CBH   0.020
+AXB    plan-1         CBI   0.020
+AXB    plan-1         HN5   0.020
+AXB    plan-1          N4   0.020
+AXB    plan-1          N5   0.020
+AXB    plan-1         OAC   0.020
+AXB    plan-1         SAU   0.020
+AXB    plan-2         CAH   0.020
+AXB    plan-2         CAI   0.020
+AXB    plan-2         CAJ   0.020
+AXB    plan-2         CAK   0.020
+AXB    plan-2         CAO   0.020
+AXB    plan-2         CAP   0.020
+AXB    plan-2         CAW   0.020
+AXB    plan-2         CAX   0.020
+AXB    plan-2         CAY   0.020
+AXB    plan-2         HAH   0.020
+AXB    plan-2         HAI   0.020
+AXB    plan-2         HAJ   0.020
+AXB    plan-3         CAZ   0.020
+AXB    plan-3         CBD   0.020
+AXB    plan-3         CBF   0.020
+AXB    plan-3         CBG   0.020
+AXB    plan-3          N1   0.020
+AXB    plan-3          N2   0.020
+AXB    plan-3         OAD   0.020
+AXB    plan-3         OAE   0.020
+AXB    plan-4         CAZ   0.020
+AXB    plan-4         HN1   0.020
+AXB    plan-4        HN1A   0.020
+AXB    plan-4          N1   0.020
+AXB    plan-5         CAM   0.020
+AXB    plan-5         CAP   0.020
+AXB    plan-5         CBD   0.020
+AXB    plan-5          N2   0.020
+AXB    plan-6         CAO   0.020
+AXB    plan-6         CAV   0.020
+AXB    plan-6         HN3   0.020
+AXB    plan-6          N3   0.020
+AXB    plan-7         CAV   0.020
+AXB    plan-7         CBB   0.020
+AXB    plan-7          N3   0.020
+AXB    plan-7         OAB   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+AXB           SMILES              ACDLabs 10.04                                                                                                                  O=C1C(N)=C(C1=O)N3CCc2ccc(cc2C3)CNC(=O)C5=Nc4sc6c(c4C(=O)N5)CCS(=O)(=O)C6
+AXB SMILES_CANONICAL               CACTVS 3.341                                                                                                                  NC1=C(N2CCc3ccc(CNC(=O)C4=Nc5sc6C[S](=O)(=O)CCc6c5C(=O)N4)cc3C2)C(=O)C1=O
+AXB           SMILES               CACTVS 3.341                                                                                                                  NC1=C(N2CCc3ccc(CNC(=O)C4=Nc5sc6C[S](=O)(=O)CCc6c5C(=O)N4)cc3C2)C(=O)C1=O
+AXB SMILES_CANONICAL "OpenEye OEToolkits" 1.5.0                                                                                                          c1cc2c(cc1CNC(=O)C3=Nc4c(c5c(s4)CS(=O)(=O)CC5)C(=O)N3)C[N@@](CC2)C6=C(C(=O)C6=O)N
+AXB           SMILES "OpenEye OEToolkits" 1.5.0                                                                                                              c1cc2c(cc1CNC(=O)C3=Nc4c(c5c(s4)CS(=O)(=O)CC5)C(=O)N3)CN(CC2)C6=C(C(=O)C6=O)N
+AXB            InChI                InChI  1.03 InChI=1S/C24H21N5O6S2/c25-17-18(20(31)19(17)30)29-5-3-12-2-1-11(7-13(12)9-29)8-26-23(33)21-27-22(32)16-14-4-6-37(34,35)10-15(14)36-24(16)28-21/h1-2,7H,3-6,8-10,25H2,(H,26,33)(H,27,28,32)
+AXB         InChIKey                InChI  1.03                                                                                                                                                                QHDIXGPUTSAIJX-UHFFFAOYSA-N
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+AXB acedrg               243         "dictionary generator"                  
+AXB acedrg_database      11          "data source"                           
+AXB rdkit                2017.03.2   "Chemoinformatics tool"
+AXB refmac5              5.8.0238    "optimization tool"                     

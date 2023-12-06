@@ -1,0 +1,336 @@
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+BYB     BYB      "(2~{S},3~{S})-3-[[5-fluoranyl-2-(5-fluoranyl-1~{H}-pyrazolo[3,4-b]pyridin-3-yl)pyrimidin-4-yl]amino]bicyclo[2.2.2]octane-2-carboxylic acid"     NON-POLYMER     46     29     .     
+#
+data_comp_BYB
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+BYB     C1      C       CR6     0       20.918      -31.077     -9.210      
+BYB     C2      C       CR16    0       21.238      -29.884     -9.883      
+BYB     C4      C       CR16    0       20.051      -31.985     -9.768      
+BYB     C5      C       CR56    0       19.502      -31.685     -11.023     
+BYB     C6      C       CR56    0       19.880      -30.464     -11.626     
+BYB     N3      N       NRD6    0       20.730      -29.564     -11.086     
+BYB     N7      N       NR5     0       19.236      -30.396     -12.805     
+BYB     N8      N       NRD5    0       18.469      -31.498     -12.995     
+BYB     C9      C       CR5     0       18.614      -32.289     -11.933     
+BYB     C10     C       CR6     0       17.907      -33.577     -11.826     
+BYB     N11     N       NRD6    0       18.110      -34.327     -10.730     
+BYB     C12     C       CR6     0       17.481      -35.504     -10.599     
+BYB     C13     C       CR6     0       16.605      -35.943     -11.629     
+BYB     C14     C       CR16    0       16.444      -35.122     -12.728     
+BYB     N15     N       NRD6    0       17.089      -33.947     -12.826     
+BYB     N16     N       NH1     0       17.697      -36.271     -9.462      
+BYB     C17     C       CH1     0       18.472      -35.833     -8.298      
+BYB     C18     C       CH1     0       17.753      -34.742     -7.476      
+BYB     C19     C       CH2     0       16.540      -35.350     -6.740      
+BYB     C20     C       CH2     0       17.022      -36.456     -5.768      
+BYB     C21     C       CH1     0       18.543      -36.641     -5.897      
+BYB     C22     C       CH1     0       18.866      -37.017     -7.361      
+BYB     F23     F       F       0       21.459      -31.343     -8.004      
+BYB     F24     F       F       0       15.961      -37.122     -11.524     
+BYB     C25     C       C       0       20.297      -37.557     -7.495      
+BYB     O26     O       O       0       21.210      -36.778     -7.557      
+BYB     O27     O       OC      -1      20.442      -38.749     -7.530      
+BYB     C28     C       CH2     0       18.737      -34.173     -6.433      
+BYB     C29     C       CH2     0       19.217      -35.314     -5.503      
+BYB     H1      H       H       0       21.836      -29.279     -9.475      
+BYB     H2      H       H       0       19.829      -32.786     -9.329      
+BYB     H3      H       H       0       19.273      -29.754     -13.402     
+BYB     H4      H       H       0       15.874      -35.383     -13.424     
+BYB     H5      H       H       0       17.333      -37.064     -9.457      
+BYB     H6      H       H       0       19.308      -35.437     -8.644      
+BYB     H7      H       H       0       17.448      -34.011     -8.087      
+BYB     H8      H       H       0       16.070      -34.647     -6.235      
+BYB     H9      H       H       0       15.911      -35.734     -7.393      
+BYB     H10     H       H       0       16.559      -37.321     -5.983      
+BYB     H11     H       H       0       16.794      -36.201     -4.824      
+BYB     H12     H       H       0       18.849      -37.367     -5.306      
+BYB     H13     H       H       0       18.276      -37.773     -7.591      
+BYB     H15     H       H       0       18.292      -33.475     -5.899      
+BYB     H16     H       H       0       19.511      -33.769     -6.889      
+BYB     H17     H       H       0       20.214      -35.399     -5.556      
+BYB     H18     H       H       0       18.973      -35.098     -4.553      
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.aromatic
+_chem_comp_bond.value_dist_nucleus
+_chem_comp_bond.value_dist_nucleus_esd
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+BYB          N7          N8      SINGLE       y     1.352  0.0123     1.352  0.0123
+BYB          N8          C9      DOUBLE       y     1.328  0.0100     1.328  0.0100
+BYB         C14         N15      DOUBLE       y     1.338  0.0125     1.338  0.0125
+BYB         C10         N15      SINGLE       y     1.335  0.0127     1.335  0.0127
+BYB         C13         C14      SINGLE       y     1.378  0.0116     1.378  0.0116
+BYB          C6          N7      SINGLE       y     1.347  0.0100     1.347  0.0100
+BYB          C9         C10      SINGLE       n     1.469  0.0105     1.469  0.0105
+BYB          C5          C9      SINGLE       y     1.400  0.0187     1.400  0.0187
+BYB         C10         N11      DOUBLE       y     1.335  0.0127     1.335  0.0127
+BYB         C13         F24      SINGLE       n     1.348  0.0100     1.348  0.0100
+BYB         C12         C13      DOUBLE       y     1.409  0.0200     1.409  0.0200
+BYB          C5          C6      DOUBLE       y     1.416  0.0100     1.416  0.0100
+BYB          C6          N3      SINGLE       y     1.348  0.0100     1.348  0.0100
+BYB          C4          C5      SINGLE       y     1.398  0.0100     1.398  0.0100
+BYB          C2          N3      DOUBLE       y     1.340  0.0100     1.340  0.0100
+BYB         N11         C12      SINGLE       y     1.336  0.0100     1.336  0.0100
+BYB         C12         N16      SINGLE       n     1.372  0.0200     1.372  0.0200
+BYB          C1          C2      SINGLE       y     1.395  0.0149     1.395  0.0149
+BYB          C1          C4      DOUBLE       y     1.369  0.0100     1.369  0.0100
+BYB         N16         C17      SINGLE       n     1.461  0.0100     1.461  0.0100
+BYB          C1         F23      SINGLE       n     1.348  0.0100     1.348  0.0100
+BYB         C17         C18      SINGLE       n     1.540  0.0108     1.540  0.0108
+BYB         C17         C22      SINGLE       n     1.541  0.0169     1.541  0.0169
+BYB         C25         O26      DOUBLE       n     1.201  0.0200     1.201  0.0200
+BYB         C22         C25      SINGLE       n     1.531  0.0119     1.531  0.0119
+BYB         C25         O27      SINGLE       n     1.201  0.0200     1.201  0.0200
+BYB         C18         C19      SINGLE       n     1.541  0.0100     1.541  0.0100
+BYB         C18         C28      SINGLE       n     1.541  0.0100     1.541  0.0100
+BYB         C21         C22      SINGLE       n     1.540  0.0108     1.540  0.0108
+BYB         C19         C20      SINGLE       n     1.544  0.0117     1.544  0.0117
+BYB         C28         C29      SINGLE       n     1.544  0.0117     1.544  0.0117
+BYB         C20         C21      SINGLE       n     1.535  0.0107     1.535  0.0107
+BYB         C21         C29      SINGLE       n     1.535  0.0107     1.535  0.0107
+BYB          C2          H1      SINGLE       n     1.082  0.0130     0.944  0.0200
+BYB          C4          H2      SINGLE       n     1.082  0.0130     0.940  0.0102
+BYB          N7          H3      SINGLE       n     1.016  0.0100     0.877  0.0200
+BYB         C14          H4      SINGLE       n     1.082  0.0130     0.936  0.0100
+BYB         N16          H5      SINGLE       n     1.016  0.0100     0.872  0.0200
+BYB         C17          H6      SINGLE       n     1.089  0.0100     0.989  0.0199
+BYB         C18          H7      SINGLE       n     1.089  0.0100     1.000  0.0100
+BYB         C19          H8      SINGLE       n     1.089  0.0100     0.985  0.0100
+BYB         C19          H9      SINGLE       n     1.089  0.0100     0.985  0.0100
+BYB         C20         H10      SINGLE       n     1.089  0.0100     1.004  0.0200
+BYB         C20         H11      SINGLE       n     1.089  0.0100     1.004  0.0200
+BYB         C21         H12      SINGLE       n     1.089  0.0100     0.984  0.0189
+BYB         C22         H13      SINGLE       n     1.089  0.0100     0.987  0.0200
+BYB         C28         H15      SINGLE       n     1.089  0.0100     0.985  0.0100
+BYB         C28         H16      SINGLE       n     1.089  0.0100     0.985  0.0100
+BYB         C29         H17      SINGLE       n     1.089  0.0100     1.004  0.0200
+BYB         C29         H18      SINGLE       n     1.089  0.0100     1.004  0.0200
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+BYB          C2          C1          C4     120.104    1.50
+BYB          C2          C1         F23     120.586    1.65
+BYB          C4          C1         F23     119.311    1.50
+BYB          N3          C2          C1     122.611    1.50
+BYB          N3          C2          H1     118.488    1.50
+BYB          C1          C2          H1     118.901    1.50
+BYB          C5          C4          C1     117.577    1.50
+BYB          C5          C4          H2     120.577    1.50
+BYB          C1          C4          H2     121.846    1.50
+BYB          C9          C5          C6     106.474    1.50
+BYB          C9          C5          C4     135.205    2.09
+BYB          C6          C5          C4     118.321    1.50
+BYB          N7          C6          C5     107.340    1.50
+BYB          N7          C6          N3     127.158    1.50
+BYB          C5          C6          N3     125.502    1.50
+BYB          C6          N3          C2     115.886    1.50
+BYB          N8          N7          C6     110.311    1.50
+BYB          N8          N7          H3     121.725    3.00
+BYB          C6          N7          H3     127.964    2.37
+BYB          N7          N8          C9     106.335    1.50
+BYB          N8          C9         C10     122.744    3.00
+BYB          N8          C9          C5     109.539    1.50
+BYB         C10          C9          C5     127.717    3.00
+BYB         N15         C10          C9     118.375    1.64
+BYB         N15         C10         N11     123.251    1.50
+BYB          C9         C10         N11     118.375    1.64
+BYB         C10         N11         C12     118.734    1.50
+BYB         C13         C12         N11     119.897    1.50
+BYB         C13         C12         N16     121.496    2.27
+BYB         N11         C12         N16     118.607    2.18
+BYB         C14         C13         F24     121.453    1.51
+BYB         C14         C13         C12     118.334    1.50
+BYB         F24         C13         C12     120.214    1.50
+BYB         N15         C14         C13     121.605    1.50
+BYB         N15         C14          H4     118.685    1.50
+BYB         C13         C14          H4     119.709    1.50
+BYB         C14         N15         C10     118.179    1.50
+BYB         C12         N16         C17     122.812    2.42
+BYB         C12         N16          H5     117.803    2.62
+BYB         C17         N16          H5     119.385    1.70
+BYB         N16         C17         C18     112.987    2.61
+BYB         N16         C17         C22     110.761    2.00
+BYB         N16         C17          H6     107.022    2.00
+BYB         C18         C17         C22     109.182    1.50
+BYB         C18         C17          H6     107.685    1.50
+BYB         C22         C17          H6     107.508    1.50
+BYB         C17         C18         C19     109.485    1.83
+BYB         C17         C18         C28     109.485    1.83
+BYB         C17         C18          H7     109.430    1.50
+BYB         C19         C18         C28     108.677    1.50
+BYB         C19         C18          H7     110.038    1.50
+BYB         C28         C18          H7     110.038    1.50
+BYB         C18         C19         C20     108.925    1.50
+BYB         C18         C19          H8     109.900    1.50
+BYB         C18         C19          H9     109.900    1.50
+BYB         C20         C19          H8     109.803    1.50
+BYB         C20         C19          H9     109.803    1.50
+BYB          H8         C19          H9     108.418    1.54
+BYB         C19         C20         C21     109.473    1.50
+BYB         C19         C20         H10     109.803    1.50
+BYB         C19         C20         H11     109.803    1.50
+BYB         C21         C20         H10     109.623    2.54
+BYB         C21         C20         H11     109.623    2.54
+BYB         H10         C20         H11     108.418    1.54
+BYB         C22         C21         C20     109.485    1.83
+BYB         C22         C21         C29     109.485    1.83
+BYB         C22         C21         H12     109.529    1.65
+BYB         C20         C21         C29     108.677    1.50
+BYB         C20         C21         H12     110.996    1.70
+BYB         C29         C21         H12     110.996    1.70
+BYB         C17         C22         C25     115.483    3.00
+BYB         C17         C22         C21     109.182    1.50
+BYB         C17         C22         H13     107.508    1.50
+BYB         C25         C22         C21     111.625    3.00
+BYB         C25         C22         H13     106.842    1.50
+BYB         C21         C22         H13     107.765    1.50
+BYB         O26         C25         C22     118.118    1.95
+BYB         O26         C25         O27     123.764    1.50
+BYB         C22         C25         O27     118.118    1.95
+BYB         C18         C28         C29     108.925    1.50
+BYB         C18         C28         H15     109.900    1.50
+BYB         C18         C28         H16     109.900    1.50
+BYB         C29         C28         H15     109.803    1.50
+BYB         C29         C28         H16     109.803    1.50
+BYB         H15         C28         H16     108.418    1.54
+BYB         C28         C29         C21     109.473    1.50
+BYB         C28         C29         H17     109.803    1.50
+BYB         C28         C29         H18     109.803    1.50
+BYB         C21         C29         H17     109.623    2.54
+BYB         C21         C29         H18     109.623    2.54
+BYB         H17         C29         H18     108.418    1.54
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+BYB              const_17         F23          C1          C2          N3     180.000    10.0     2
+BYB              const_47         F23          C1          C4          C5     180.000    10.0     2
+BYB              const_14         N16         C12         N11         C10     180.000    10.0     2
+BYB              const_12         N16         C12         C13         F24       0.000    10.0     2
+BYB             sp2_sp2_5         C13         C12         N16         C17     180.000     5.0     2
+BYB       const_sp2_sp2_7         F24         C13         C14         N15     180.000     5.0     2
+BYB       const_sp2_sp2_3         C13         C14         N15         C10       0.000     5.0     2
+BYB             sp2_sp3_1         C12         N16         C17         C18       0.000    10.0     6
+BYB             sp3_sp3_4         N16         C17         C18         C19     -60.000    10.0     3
+BYB            sp3_sp3_77         N16         C17         C22         C25     180.000    10.0     3
+BYB            sp3_sp3_10         C17         C18         C19         C20     -60.000    10.0     3
+BYB            sp3_sp3_46         C17         C18         C28         C29     -60.000    10.0     3
+BYB            sp3_sp3_19         C18         C19         C20         C21      60.000    10.0     3
+BYB            sp3_sp3_28         C19         C20         C21         C22     -60.000    10.0     3
+BYB              const_19          C1          C2          N3          C6       0.000    10.0     2
+BYB            sp3_sp3_38         C20         C21         C22         C25     180.000    10.0     3
+BYB            sp3_sp3_64         C22         C21         C29         C28     -60.000    10.0     3
+BYB             sp2_sp3_7         O26         C25         C22         C17       0.000    10.0     6
+BYB            sp3_sp3_55         C18         C28         C29         C21      60.000    10.0     3
+BYB              const_28          C1          C4          C5          C9     180.000    10.0     2
+BYB              const_23          C9          C5          C6          N7       0.000    10.0     2
+BYB              const_31          C6          C5          C9          N8       0.000    10.0     2
+BYB              const_22          N7          C6          N3          C2     180.000    10.0     2
+BYB              const_39          C5          C6          N7          N8       0.000    10.0     2
+BYB              const_37          C6          N7          N8          C9       0.000    10.0     2
+BYB              const_36         C10          C9          N8          N7     180.000    10.0     2
+BYB             sp2_sp2_2         N15         C10          C9          N8       0.000     5.0     2
+BYB              const_43         N15         C10         N11         C12       0.000    10.0     2
+BYB       const_sp2_sp2_2          C9         C10         N15         C14     180.000     5.0     2
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+BYB    chir_1    C17    N16    C22    C18    positive
+BYB    chir_2    C18    C17    C19    C28    both
+BYB    chir_3    C21    C22    C20    C29    both
+BYB    chir_4    C22    C25    C17    C21    positive
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+BYB    plan-1          C1   0.020
+BYB    plan-1         C10   0.020
+BYB    plan-1          C2   0.020
+BYB    plan-1          C4   0.020
+BYB    plan-1          C5   0.020
+BYB    plan-1          C6   0.020
+BYB    plan-1          C9   0.020
+BYB    plan-1         F23   0.020
+BYB    plan-1          H1   0.020
+BYB    plan-1          H2   0.020
+BYB    plan-1          H3   0.020
+BYB    plan-1          N3   0.020
+BYB    plan-1          N7   0.020
+BYB    plan-1          N8   0.020
+BYB    plan-2         C10   0.020
+BYB    plan-2         C12   0.020
+BYB    plan-2         C13   0.020
+BYB    plan-2         C14   0.020
+BYB    plan-2          C9   0.020
+BYB    plan-2         F24   0.020
+BYB    plan-2          H4   0.020
+BYB    plan-2         N11   0.020
+BYB    plan-2         N15   0.020
+BYB    plan-2         N16   0.020
+BYB    plan-3         C12   0.020
+BYB    plan-3         C17   0.020
+BYB    plan-3          H5   0.020
+BYB    plan-3         N16   0.020
+BYB    plan-4         C22   0.020
+BYB    plan-4         C25   0.020
+BYB    plan-4         O26   0.020
+BYB    plan-4         O27   0.020
+loop_
+_pdbx_chem_comp_descriptor.comp_id
+_pdbx_chem_comp_descriptor.type
+_pdbx_chem_comp_descriptor.program
+_pdbx_chem_comp_descriptor.program_version
+_pdbx_chem_comp_descriptor.descriptor
+BYB            InChI                InChI  1.03 InChI=1S/C19H18F2N6O2/c20-10-5-11-15(26-27-16(11)22-6-10)18-23-7-12(21)17(25-18)24-14-9-3-1-8(2-4-9)13(14)19(28)29/h5-9,13-14H,1-4H2,(H,28,29)(H,22,26,27)(H,23,24,25)/t8-,9+,13-,14-/m0/s1
+BYB         InChIKey                InChI  1.03                                                                                                                                                                 YCNZDZZTLLGBPM-WAYYCVMKSA-N
+BYB SMILES_CANONICAL               CACTVS 3.385                                                                                                                                OC(=O)[C@H]1C2CCC(CC2)[C@@H]1Nc3nc(ncc3F)c4n[nH]c5ncc(F)cc45
+BYB           SMILES               CACTVS 3.385                                                                                                                                   OC(=O)[CH]1C2CCC(CC2)[CH]1Nc3nc(ncc3F)c4n[nH]c5ncc(F)cc45
+BYB SMILES_CANONICAL "OpenEye OEToolkits" 2.0.6                                                                                                                            c1c(cnc2c1c(n[nH]2)c3ncc(c(n3)N[C@@H]4[C@H](C5CCC4CC5)C(=O)O)F)F
+BYB           SMILES "OpenEye OEToolkits" 2.0.6                                                                                                                                     c1c(cnc2c1c(n[nH]2)c3ncc(c(n3)NC4C5CCC(C4C(=O)O)CC5)F)F
+loop_
+_pdbx_chem_comp_description_generator.comp_id
+_pdbx_chem_comp_description_generator.program_name
+_pdbx_chem_comp_description_generator.program_version
+_pdbx_chem_comp_description_generator.descriptor
+BYB acedrg               243         "dictionary generator"                  
+BYB acedrg_database      11          "data source"                           
+BYB rdkit                2017.03.2   "Chemoinformatics tool"
+BYB refmac5              5.8.0238    "optimization tool"                     
